@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch19",
+  "number": 19,
+  "title": "Incentives",
+  "readingTimeMinutes": 12,
+  "hook": "The scorecard screen rewarded speed, and Isabelle's agents learned to end calls before service was done.",
+  "counterintuition": "Good intentions can buy bad behavior. Incentives steer the action that earns the payoff, not the action the policy says it hopes to encourage.",
+  "tryThisNow": "Find one metric, reward, or penalty you use. Write the behavior it buys, then adjust one signal so the desired action earns the payoff.",
+  "keyTakeaway": "Incentives steer behavior through rewards, penalties, signals, and consequences; read what they buy, not what they claim to value.",
+  "breakdown": {
+    "fastRead": "Isabelle's scorecard screen praised short calls. The call transcript told another story: agents rushed refunds, skipped diagnosis, and left customers calling back. The refund note was supposed to protect service, but the reward bought speed.\n\nShe changed the score so a resolved refund with no repeat call counted more than a fast goodbye.\n\nIncentives are consequences with direction. People respond to what the system rewards, penalizes, and signals as valuable.",
+    "deepRead": "\"The label says five cents,\" Colin said, holding a bottle beside the return kiosk receipt. The deposit existed, but the crate tag hid it near the warehouse door. People tossed containers because the reward was invisible at the moment of choice.\n\nThe support is conservative: incentives steer behavior through reward, penalty, signal, and consequence. Colin did not need a speech about caring. He needed the deposit label, crate tag, and kiosk receipt to make the rewarded behavior obvious. A weak signal can make a real incentive behave like no incentive at all. Behavior reads the payoff, not the poster.\n\nAn incentive is a map of consequences.\n\nMarcel saw the same pattern in a seminar. The participation grid gave points for speaking, so students spoke early and shallowly. The seminar card asked for careful response to someone else's idea, but the attendance ping rewarded mere presence. He had to redesign the grade so the bought behavior matched the hoped-for learning.\n\nThe limit is simplification. Incentives cannot carry every value. Once you attach a reward or penalty, people may optimize around it and neglect what you forgot to measure. That is why the first draft of an incentive should be treated like a hypothesis, not a finished policy. Watch the behavior it produces, especially at the edge cases, then adjust the signal before the workaround becomes normal.",
+    "fullRead": "At 10:20 a.m., Alba opened the commission sheet and predicted higher commissions would create better sales. The discount approvals revealed the opposite. Reps won deals by cutting prices for accounts that were never a good fit, then moved on before support inherited the mess.\n\nThis is why incentives require suspicion. Suspicion here does not mean cynicism about people; it means honesty about consequences. The designer hopes to buy growth, quality, learning, safety, or service. The system may buy speed, volume, silence, appearances, or short-term wins. The paid-for behavior is the real design. The gap between hoped-for behavior and rewarded behavior is where the damage starts.\n\nWhat behavior gets paid when nobody explains the intention?\n\nThat question is more useful than asking whether people are motivated. They usually are. The problem is direction. Isabelle's agents were motivated by score. Colin's recyclers needed the deposit signal at the crate. Marcel's students were motivated by points. Alba's reps were motivated by commission. The design question is whether the reward, penalty, or signal points toward the behavior that matters.\n\nYou can feel it in a clinic no-show fee. Henry reviews an appointment reminder and a missed-slot bill after patients book casually and skip visits. A penalty may help if it makes the cost of a missed slot visible. It may harm if it scares patients who cannot control transport. The waiting list becomes part of the incentive design: cancel early, release the slot, avoid the fee, help someone else get care.\n\nNuria learned the same lesson from a bug bounty table. Researchers chased easy low-severity bugs because the reward was predictable and quick. The bug reports were numerous, but the severe risks remained thin. She changed the severity label and reward table so depth, reproducibility, and actual risk mattered more than the easiest report count.\n\nIncentives have moral weight. A reward can invite useful action, or it can buy behavior you would be ashamed to request directly. A penalty can protect scarce capacity, or it can punish people already facing constraints. You are responsible for the behavior the system purchases, not only the behavior you say you wanted. The hard cases are the incentives that partly work. A speed metric may clear a backlog and damage service. A no-show fee may open appointments and scare patients with bad transport. A bounty may surface bugs and bury the severe ones. The question is not whether the incentive has an effect. The question is whether you can defend the effect once people respond rationally to it.\n\nFollow the consequence. Watch what people do when the reward is clear, the penalty is real, and the signal is visible. Then redesign the incentive until the behavior it buys is the behavior you can defend."
+  },
+  "examples": [
+    {
+      "exampleId": "ch19-ex01-isabelle-call-score",
+      "title": "Isabelle Changes the Refund Score",
+      "tags": [
+        "vignette",
+        "call-center",
+        "behavior"
+      ],
+      "planSpec": {
+        "domain": "call center quality score",
+        "audience": "readers who face call center quality score decisions where incentives is easy to misread",
+        "stakes": "agents optimizing score over service",
+        "format": "vignette",
+        "requiredBeat": "Isabelle compares the rewarded behavior on the scorecard screen with the hoped-for behavior in the call transcript, then changes the refund note to buy the action that matters. Domain: call center quality score."
+      },
+      "scenario": "The scorecard screen glows green while Isabelle reads a call transcript full of rushed refunds and a second call from the same customer. The refund note says \"resolve fully,\" but the metric pays for short calls and agents have learned which number matters. Isabelle must choose between praising speed again and changing the score so repeat-contact-free refunds earn more weight.",
+      "whatToDo": "Reward resolved refunds with no repeat call, then audit transcripts for the service behavior the score now buys.",
+      "whyItMatters": "The agents followed the real payoff. Incentive design begins by reading the behavior the score purchases."
+    },
+    {
+      "exampleId": "ch19-ex02-colin-bottle-deposit",
+      "title": "Colin Moves the Crate Tag",
+      "tags": [
+        "dialogue",
+        "recycling",
+        "signal"
+      ],
+      "planSpec": {
+        "domain": "bottle deposit return program",
+        "audience": "readers who face bottle deposit return program decisions where incentives is easy to misread",
+        "stakes": "containers tossed because deposit is invisible",
+        "format": "dialogue",
+        "requiredBeat": "Colin compares the rewarded behavior on the deposit label with the hoped-for behavior in the return kiosk receipt, then changes the crate tag to buy the action that matters. Domain: bottle deposit return program."
+      },
+      "scenario": "\"The deposit is already printed,\" Colin says, turning the bottle label toward the return kiosk receipt while a customer drops another container in the trash. The crate tag sits behind the counter where nobody deciding to toss a container can see it. Colin faces a choice: blame careless customers, or move the signal to the moment when the return behavior can happen.",
+      "whatToDo": "Put the deposit cue on the crate tag and near the disposal point, then show the kiosk receipt value clearly.",
+      "whyItMatters": "The reward was real but poorly signaled. Behavior follows visible consequences at the decision point."
+    },
+    {
+      "exampleId": "ch19-ex03-marcel-participation-grade",
+      "title": "Marcel Reweights the Seminar Card",
+      "tags": [
+        "decision_point",
+        "seminar",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "seminar participation grade",
+        "audience": "readers who face seminar participation grade decisions where incentives is easy to misread",
+        "stakes": "students speaking for points only",
+        "format": "decision_point",
+        "requiredBeat": "Marcel compares the rewarded behavior on the participation grid with the hoped-for behavior in the seminar card, then changes the attendance ping to buy the action that matters. Domain: seminar participation grade."
+      },
+      "scenario": "The seminar room is quiet until the participation grid appears on the projector. Then hands rise for short comments that repeat the reading, and three students stop listening after they earn their point. Marcel's seminar card asks for building on another student's idea, and the attendance ping rewards presence. He must decide which behavior the grade should buy.",
+      "whatToDo": "Score fewer, better contributions that respond to peers, and stop counting attendance as a substitute for thinking.",
+      "whyItMatters": "The old incentive bought airtime. The revised one buys the seminar behavior Marcel actually wants."
+    },
+    {
+      "exampleId": "ch19-ex04-alba-commission-sheet",
+      "title": "Alba Prices the Right Accounts",
+      "tags": [
+        "predict_reveal",
+        "sales",
+        "reward"
+      ],
+      "planSpec": {
+        "domain": "sales commission redesign",
+        "audience": "readers who face sales commission redesign decisions where incentives is easy to misread",
+        "stakes": "reps discounting bad-fit accounts",
+        "format": "predict_reveal",
+        "requiredBeat": "Alba compares the rewarded behavior on the commission sheet with the hoped-for behavior in the discount approval, then changes the account fit note to buy the action that matters. Domain: sales commission redesign."
+      },
+      "scenario": "At 10:20 a.m., Alba predicts the new commission sheet will drive quality growth because higher payouts should focus the sales team. The discount approval folder reveals reps closing bad-fit accounts with heavy cuts, then handing the churn risk to support. She has to choose: keep paying for booked revenue alone, or add the account fit note before commission vests.",
+      "whatToDo": "Tie commission to fit, retention, and approved discount quality, not just booked revenue.",
+      "whyItMatters": "The reward bought deals, not good customers. Incentives must be read by the behavior they create."
+    },
+    {
+      "exampleId": "ch19-ex05-henry-no-show-fee",
+      "title": "Henry Rewrites the Reminder",
+      "tags": [
+        "postmortem",
+        "clinic",
+        "penalty"
+      ],
+      "planSpec": {
+        "domain": "clinic no-show fee",
+        "audience": "readers who face clinic no-show fee decisions where incentives is easy to misread",
+        "stakes": "patients booking casually then skipping",
+        "format": "postmortem",
+        "requiredBeat": "Henry compares the rewarded behavior on the appointment reminder with the hoped-for behavior in the missed-slot bill, then changes the waiting list to buy the action that matters. Domain: clinic no-show fee."
+      },
+      "scenario": "You read Henry's appointment reminder beside a missed-slot bill after three empty clinic rooms and a waiting list that never got a call. The fee was meant to protect capacity, but the current message only threatens patients after they miss. In the postmortem, Henry must decide whether the fee punishes absence or rewards early release of the slot.",
+      "whatToDo": "Make the reminder show how early cancellation avoids the fee and opens the slot for the waiting list.",
+      "whyItMatters": "The penalty should buy timely cancellation, not fear. The desired behavior is releasing capacity while it can still help."
+    },
+    {
+      "exampleId": "ch19-ex06-nuria-bug-bounty",
+      "title": "Nuria Changes the Severity Label",
+      "tags": [
+        "scene",
+        "security",
+        "consequence"
+      ],
+      "planSpec": {
+        "domain": "bug bounty reward table",
+        "audience": "readers who face bug bounty reward table decisions where incentives is easy to misread",
+        "stakes": "researchers chasing easy bugs",
+        "format": "scene",
+        "requiredBeat": "Nuria compares the rewarded behavior on the bounty table with the hoped-for behavior in the bug report, then changes the severity label to buy the action that matters. Domain: bug bounty reward table."
+      },
+      "scenario": "It took Nuria one Friday report batch to see the bounty table was buying volume. The bug reports were easy to reproduce and low risk, while one severe path stayed unexplored because it took longer and paid less predictably. She hovers over two fixes: pay every report faster, or change severity labels so depth and actual risk earn the reward.",
+      "whatToDo": "Weight rewards toward severity, reproducibility, and risk, then explain the labels researchers should optimize for.",
+      "whyItMatters": "The old table bought easy bugs. The new incentive has to buy the risk reduction that matters."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A call center rewards short calls, and agents rush refunds that lead to repeat contacts even though the policy says service matters. What should the manager read first?",
+        "choices": [
+          "The motivational poster near the phones.",
+          "The behavior the scorecard actually buys.",
+          "The agents' stated intentions only."
+        ],
+        "correctIndex": 1,
+        "explanation": "The score buys speed, so agents optimize speed. The fix is to reward resolved service rather than the hoped-for behavior in name only.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A bottle deposit exists, but people toss containers because the deposit cue is hidden behind the counter until after the disposal choice. Which action fits incentives?",
+        "choices": [
+          "Move the deposit signal to the crate and disposal point where the choice happens.",
+          "Tell customers they should care more.",
+          "Lower the deposit so it matters less."
+        ],
+        "correctIndex": 0,
+        "explanation": "A reward needs a visible signal at the decision point. Hidden incentives behave like weak incentives.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A seminar participation grade rewards speaking once, so students make shallow comments early, stop listening, and treat presence as learning. What should change?",
+        "choices": [
+          "Give points for any sound in the room.",
+          "Remove all feedback about participation.",
+          "Reward comments that build on another student's idea."
+        ],
+        "correctIndex": 2,
+        "explanation": "The old incentive bought airtime. The revised reward buys the learning behavior the seminar actually needs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Sales reps earn commission on booked revenue, so they heavily discount bad-fit accounts that later churn and burden support. What is the incentive problem?",
+        "choices": [
+          "The reps lack any motivation.",
+          "The reward buys deals without enough consequence for account fit.",
+          "Discount approvals are always wrong."
+        ],
+        "correctIndex": 1,
+        "explanation": "The commission steers behavior toward booked revenue. Adding fit and retention changes what the reward purchases.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A clinic no-show fee makes patients anxious, but the real need is early cancellation so waitlisted patients can take slots before the day is lost. What should the reminder emphasize?",
+        "choices": [
+          "Cancel early to avoid the fee and release the slot to the waiting list.",
+          "Fees are punishment, so no explanation is needed.",
+          "Missed slots do not matter if bills go out."
+        ],
+        "correctIndex": 0,
+        "explanation": "The desired behavior is timely release of capacity. The penalty should signal that action, not merely punish after the fact.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A bug bounty table pays many small rewards for low-risk reports, and researchers stop looking for severe issues that take longer to prove. What is the strongest diagnosis?",
+        "choices": [
+          "Researchers dislike important bugs.",
+          "All bounty programs are flawed.",
+          "Researchers are optimizing for the consequence the reward table makes predictable."
+        ],
+        "correctIndex": 2,
+        "explanation": "The reward table buys easy volume. Weighting severity and reproducibility can redirect attention to meaningful risk.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A school gives prizes for perfect attendance, and sick students come to class to protect the prize even when staying home would protect others. What did the incentive buy?",
+        "choices": [
+          "Better health judgment.",
+          "Attendance even when staying home would protect others.",
+          "Deep learning in every class."
+        ],
+        "correctIndex": 1,
+        "explanation": "The reward bought physical presence. The designer may have hoped for commitment, but the consequence points at attendance itself.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team bonus rewards both quality and customer retention, and shortcuts lose value if customers churn quickly after the sale. How should you evaluate it?",
+        "choices": [
+          "It proves people never need judgment.",
+          "It fails because incentives should only be simple.",
+          "It may align the reward with the behavior the company can defend."
+        ],
+        "correctIndex": 2,
+        "explanation": "The reward carries consequences for quality and retention, so it is less likely to buy shallow volume alone.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A warehouse pays pickers only by item count, and fragile items get damaged as people rush to protect the metric. Which response transfers the model?",
+        "choices": [
+          "Tell pickers to care while keeping the same pay rule.",
+          "Remove all measurement from the warehouse.",
+          "Add damage-free completion to the incentive so speed does not buy breakage."
+        ],
+        "correctIndex": 2,
+        "explanation": "The current reward buys speed alone. Adding damage-free completion changes the behavior the incentive purchases.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "People do the opposite of what a policy says it values. What should you retrieve?",
+      "back": "Retrieve incentives: read the behavior the reward, penalty, signal, or consequence actually buys.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A reward exists, but people do not see it until after the choice. Why can a real reward still fail to change behavior?",
+      "back": "If the signal is invisible at the decision point, the reward may not guide action.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What is the danger of measuring one easy behavior?",
+      "back": "People may optimize that behavior and neglect the unmeasured value you hoped the metric represented.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why inspect penalties as carefully as rewards?",
+      "back": "Penalties steer behavior too, and they can punish constraints or buy avoidance instead of the desired action.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What responsibility follows from designing an incentive?",
+      "back": "You are responsible for the behavior the system purchases, not just the intention you announce.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to read incentives by behavior purchased. The skill is comparing hoped-for action with the actual reward, penalty, signal, and consequence.",
+    "ifThenPlans": [
+      {
+        "context": "metrics",
+        "plan": "If a metric improves while the real outcome worsens, then I will identify the behavior the metric is buying."
+      },
+      {
+        "context": "rewards",
+        "plan": "If a reward exists but behavior does not change, then I will move the signal to the decision point."
+      },
+      {
+        "context": "penalties",
+        "plan": "If I add a penalty, then I will name the positive behavior it should steer before using it."
+      },
+      {
+        "context": "compensation",
+        "plan": "If pay rewards volume, then I will add quality or fit consequences before expecting better behavior."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, choose one score, bonus, fee, or badge. Write the behavior it buys and one adjustment that would buy the behavior you want.",
+    "weeklyPractice": "Each week, audit one incentive by asking: reward, penalty, signal, consequence, observed behavior, and unintended tradeoff."
+  },
+  "memorableLines": [
+    {
+      "text": "Behavior reads the payoff, not the poster.",
+      "location": "breakdown.deepRead",
+      "why": "It exposes the gap between stated intention and actual incentive."
+    },
+    {
+      "text": "An incentive is a map of consequences.",
+      "location": "breakdown.deepRead",
+      "why": "It frames rewards and penalties as directional signals."
+    },
+    {
+      "text": "The paid-for behavior is the real design.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader the core diagnostic move."
+    }
+  ]
+}

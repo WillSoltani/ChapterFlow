@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-gift-of-fear-ch02",
+  "number": 2,
+  "title": "The Technology of Intuition",
+  "coreMove": "Translate a gut signal into the cue that produced it before deciding what to do.",
+  "sourcePressure": "Intuition is presented as a practical process of fast cue recognition, useful only when tied back to concrete perception rather than treated as magic.",
+  "chapterSpecificMisunderstanding": "Treating intuition as mystical certainty or as always correct.",
+  "sourceAlignmentTerms": [
+    "intuition",
+    "perception",
+    "cue",
+    "judgment",
+    "rationalization",
+    "true fear",
+    "worry",
+    "environment"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain source guidance but no traceable named anecdote, study, place, date, or artifact suitable for natural prose anchoring; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch02",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "urgent-care waiting room triage desk",
+      "audience": "a nurse whose body reacts before she can explain why",
+      "stakes": "whether to trust the unease or locate its cue",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "spots the cue: the visitor knows a patient detail he should not know, then changes seating and alerts security",
+      "firstImage": "a clipboard paused above a half-filled form",
+      "mustInclude": [
+        "visitor sticker",
+        "triage clipboard",
+        "privacy screen"
+      ],
+      "mustAvoid": [
+        "personality tests",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "airport arrivals hall after a delayed flight",
+      "audience": "a traveler separating intuition from tired irritability",
+      "stakes": "whether the feeling has evidence or only exhaustion",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "names the actual cue: the same man has changed lanes each time she changed lanes",
+      "firstImage": "the carousel belt grinding with one red suitcase left",
+      "mustInclude": [
+        "baggage tag",
+        "glass exit doors",
+        "rideshare sign"
+      ],
+      "mustAvoid": [
+        "personality tests",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "university lab during a weekend equipment check",
+      "audience": "a graduate researcher sensing something wrong in a familiar room",
+      "stakes": "whether to dismiss the feeling as nerves",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "finds the concrete cue: the incubator latch is ajar and the log sheet was altered",
+      "firstImage": "a blue indicator light blinking in an empty lab",
+      "mustInclude": [
+        "lab log",
+        "incubator latch",
+        "badge reader"
+      ],
+      "mustAvoid": [
+        "personality tests",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "community pool closing shift",
+      "audience": "a lifeguard distinguishing signal from imagination",
+      "stakes": "whether a gut feeling belongs to a real pattern",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "traces the feeling to one adult repeatedly choosing sightlines near the changing-room door",
+      "firstImage": "the last lane rope coiled on wet tile",
+      "mustInclude": [
+        "whistle",
+        "locker key",
+        "pool deck clock"
+      ],
+      "mustAvoid": [
+        "personality tests",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "library archive reading room",
+      "audience": "an archivist who felt watched all afternoon",
+      "stakes": "whether to worship the feeling or test it",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "checks the sign-in sheet and notices the same visitor requested every box she handled",
+      "firstImage": "white cotton gloves folded beside a file box",
+      "mustInclude": [
+        "request slip",
+        "cotton gloves",
+        "reading-room camera"
+      ],
+      "mustAvoid": [
+        "personality tests",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "downtown pharmacy during a power flicker",
+      "audience": "a pharmacist hearing an alarm before the alarm sounds",
+      "stakes": "whether anxiety or perception is speaking",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "connects the unease to a customer blocking the only clear path to the staff door",
+      "firstImage": "the backup lights turning the aisle labels green",
+      "mustInclude": [
+        "prescription tote",
+        "staff door",
+        "aisle sign"
+      ],
+      "mustAvoid": [
+        "personality tests",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish intuition from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits translate a gut signal into the cue that produced it before deciding what to do.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: treating intuition as mystical certainty or as always correct."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one gut feeling from today and write the cue it points to. If you cannot name a present cue, label it worry for now.",
+  "readingTimeMinutes": 12
+}

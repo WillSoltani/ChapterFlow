@@ -1,0 +1,99 @@
+{
+  "bookId": "the-outsiders",
+  "title": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
+  "author": "William N. Thorndike Jr.",
+  "thesisParagraph": "The Outsiders argues that exceptional CEOs are best understood as capital allocators, not as celebrities, empire builders, or charisma engines. Across eight very different cases, the recurring advantage is a disciplined scorecard: keep the center lean when local operators know more, shift tools when valuation changes, cut legacy assets when recovery demands it, use complexity only when it improves real retained value, and refuse to confuse size, reputation, continuity, or convention with owner returns.",
+  "coreIdeas": [
+    {
+      "name": "Capital allocation as leadership",
+      "oneSentence": "The chief executive job is to decide where cash, attention, authority, and risk belong.",
+      "mentalMove": "Translate every operating choice into a capital-allocation choice with an owner-return consequence.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Scorecard over tactic",
+      "oneSentence": "A move is rational only while it serves per-share or owner value under current facts.",
+      "mentalMove": "Keep the standard fixed while changing buy, sell, hold, prune, borrow, or decentralize decisions as conditions change.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Discipline under different ownership shapes",
+      "oneSentence": "Public companies, family firms, inherited roles, and holding companies all need hard scorecards, but the pressure looks different in each.",
+      "mentalMove": "Find the ownership constraint first, then decide what discipline must look like there.",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source",
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Anti-empire rationality",
+      "oneSentence": "Size, breadth, and visible activity can destroy value when they are protected for prestige.",
+      "mentalMove": "Ask what the company should stop being before asking how to make it look more impressive.",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch06.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Complexity with a plain test",
+      "oneSentence": "Debt, tax structure, acquisitions, and decentralized trust are tools, not magic.",
+      "mentalMove": "Demand that every sophisticated structure remain explainable in terms of retained value and governed risk.",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch08.source"
+      ]
+    }
+  ],
+  "targetReader": "Operators, founders, managers, investors, and ambitious professionals who already know generic leadership advice and need a sharper way to judge resource decisions, incentives, and organizational design under real constraints.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete operating moment before naming the rule",
+      "use plain sentences with one sharp image from the decision table, factory floor, ledger, or board packet",
+      "teach through tradeoffs where money, authority, time, and reputation cannot all be protected",
+      "make financial ideas feel physical: a route map, capital request, service log, debt schedule, or inventory rack"
+    ],
+    "avoidMoves": [
+      "no visible source scaffolding or bibliography talk",
+      "no dash-heavy sentence styling",
+      "no reusable hook, counter, or immediate-action stems",
+      "no generic coaching language",
+      "no CEO worship, stock-picking tips, or business-school fog"
+    ]
+  },
+  "voiceSpecimens": [
+    "The expensive part is not always the invoice; sometimes it is the decision layer that keeps cash from getting to the place where it can work.",
+    "A proud asset can still be a drain, and pride does not pay the bank while the core business waits for oxygen.",
+    "The harder question is not whether the structure looks clever. It is what value remains after debt, tax, time, and risk have all taken their share.",
+    "A title can put you in the chair. It cannot make the next capital decision for you.",
+    "Decentralization is not trust without a center. It is trust with a center that knows exactly which decisions it must still own.",
+    "The tactic travels badly when the scorecard stays home."
+  ],
+  "voiceAntiSpecimens": [
+    "Great leaders are different because they challenge conventional wisdom and inspire people to perform at their best.",
+    "This chapter teaches that capital allocation is important in business and life.",
+    "In today's fast-paced world, managers must be agile, innovative, and focused on long-term success.",
+    "The key is to think outside the box while staying true to your core values.",
+    "The outsider mindset is a powerful framework that can transform how you lead."
+  ],
+  "teachingArc": "The book starts with Murphy joining operating discipline to capital allocation, then Singleton separates the scorecard from the tool. Anders applies the scorecard under distress, Malone under complexity, Graham under inherited authority, Stiritz under public-company sprawl, Smith under family-control protection, and Buffett under decentralized holding-company trust. The synthesis then warns readers not to copy the surface moves, only the discipline that made each move rational in context.",
+  "forbiddenMoves": [
+    "Do not reduce the book to buybacks, decentralization, or contrarian CEO personality.",
+    "Do not write any chapter as generic leadership advice detached from the named company pressure.",
+    "Do not invent detailed transaction math, boardroom dialogue, or unsupported source anecdotes.",
+    "Do not turn Warren Buffett into a celebrity investing chapter or Katharine Graham into a journalism-history chapter.",
+    "Do not let every example become a budget meeting, product cut, or boardroom vote."
+  ]
+}

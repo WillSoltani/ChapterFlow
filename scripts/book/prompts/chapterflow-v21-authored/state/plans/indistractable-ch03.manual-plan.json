@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch03",
+  "number": 3,
+  "title": "Deal with Distraction from Within",
+  "coreMove": "Catch the urge in the body, label it plainly, and create a small pause before it chooses the next action.",
+  "sourcePressure": "The chapter stays with internal triggers and moves from diagnosis toward intercepting urges before they become visible distraction.",
+  "chapterSpecificMisunderstanding": "A weak run would tell the reader to resist urges harder instead of watching the urge long enough to separate it from action.",
+  "sourceAlignmentTerms": [
+    "urge",
+    "internal trigger",
+    "pause",
+    "labeling",
+    "sensations",
+    "distraction from within"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Deal with Distraction from Within as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "court interpreter waiting outside a tense hearing",
+      "audience": "interpreter who opens a game whenever nerves rise",
+      "stakes": "one missed announcement can disrupt the docket",
+      "format": "scene",
+      "requiredBeat": "she names the tight jaw and fluttering chest before unlocking the phone",
+      "firstImage": "A courthouse badge lies beside a folded hearing schedule.",
+      "mustInclude": [
+        "courthouse badge",
+        "hearing schedule",
+        "locked phone"
+      ],
+      "mustAvoid": [
+        "generic meditation"
+      ]
+    },
+    {
+      "domain": "customs broker reviewing a flagged shipment",
+      "audience": "broker who checks sports scores when uncertainty spikes",
+      "stakes": "a client shipment sits in limbo while the broker escapes ambiguity",
+      "format": "decision_point",
+      "requiredBeat": "he writes 'uncertainty in stomach' on the clearance worksheet before opening the tariff table",
+      "firstImage": "A clearance worksheet is clipped to a yellow customs notice.",
+      "mustInclude": [
+        "clearance worksheet",
+        "customs notice",
+        "tariff table"
+      ],
+      "mustAvoid": [
+        "office inbox shell"
+      ]
+    },
+    {
+      "domain": "choir director before a difficult rehearsal correction",
+      "audience": "director tempted to browse sheet-music forums instead of addressing a sour entrance",
+      "stakes": "the ensemble repeats the same flaw because discomfort wins",
+      "format": "dialogue",
+      "requiredBeat": "she feels heat in her neck, names it, and asks altos to start at bar seventeen",
+      "firstImage": "A conductor score is open to a penciled bar seventeen.",
+      "mustInclude": [
+        "conductor score",
+        "penciled bar",
+        "alto row"
+      ],
+      "mustAvoid": [
+        "performance anxiety lecture"
+      ]
+    },
+    {
+      "domain": "aquarium keeper entering water-quality anomalies",
+      "audience": "keeper who wanders into supply shopping when numbers look wrong",
+      "stakes": "a tank problem gets slower treatment if the urge is obeyed",
+      "format": "postmortem",
+      "requiredBeat": "he logs the urge to flee after the nitrate spike and retests before browsing supplies",
+      "firstImage": "A nitrate test vial stands beside a damp logbook.",
+      "mustInclude": [
+        "nitrate test vial",
+        "damp logbook",
+        "supply catalog"
+      ],
+      "mustAvoid": [
+        "pet-care advice"
+      ]
+    },
+    {
+      "domain": "wedding officiant drafting a ceremony after a family dispute",
+      "audience": "officiant who reaches for recipes when the couple's conflict feels delicate",
+      "stakes": "ceremony language stays evasive unless the discomfort is named",
+      "format": "reflection",
+      "requiredBeat": "she labels the urge as conflict dread and writes one honest sentence before checking anything else",
+      "firstImage": "A fountain pen rests on a half-written ceremony page.",
+      "mustInclude": [
+        "fountain pen",
+        "ceremony page",
+        "recipe bookmark"
+      ],
+      "mustAvoid": [
+        "relationship advice drift"
+      ]
+    },
+    {
+      "domain": "rail-signal maintainer filling an incident report",
+      "audience": "maintainer tempted to open a video app after a near miss",
+      "stakes": "the report loses precision when adrenaline becomes escape",
+      "format": "before_after",
+      "requiredBeat": "before, his thumb hovers over video; after, he writes 'adrenaline buzzing' and completes the signal sequence",
+      "firstImage": "A signal diagram sits under a grease-stained incident form.",
+      "mustInclude": [
+        "signal diagram",
+        "incident form",
+        "video app icon"
+      ],
+      "mustAvoid": [
+        "transportation thriller"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Catch the urge in the body, label it plainly, and create a small pause before it chooses the next action.",
+      "choose the action that stays inside Deal with Distraction from Within's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would tell the reader to resist urges harder instead of watching the urge long enough to separate it from action.",
+      "use chapter-specific terms such as urge, internal trigger, pause, labeling in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "At the next urge, write the body signal in six words or fewer, wait one breath, then choose the planned next action.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch08",
+  "number": 8,
+  "title": "An Expert Called Lindy",
+  "coreMove": "Use endurance as evidence, without confusing age alone with truth.",
+  "sourcePressure": "Time becomes a credibility test in uncertain domains because survival under repeated stress reveals what a fresh argument cannot.",
+  "chapterSpecificMisunderstanding": "Treating Lindy as nostalgia or automatic respect for old things.",
+  "sourceAlignmentTerms": [
+    "Lindy",
+    "time-tested credibility",
+    "survival",
+    "durability",
+    "uncertainty",
+    "novelty",
+    "endurance"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Lindy",
+      "detail": "The sidecar supports Lindy as survival over time used as evidence under uncertainty.",
+      "useIn": "both",
+      "phrasingHint": "Lindy should land as a stress record, not a museum label: what keeps being used has passed tests no launch deck can fake."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "library choosing whether to discard worn reference books for flashy new guides",
+      "audience": "librarian using survival as evidence without worshiping age",
+      "stakes": "patrons may lose reliable tools for fashionable replacements",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Megan checks which volumes keep being requested before replacing the shelf with new releases.",
+      "firstImage": "worn cloth spines under a checkout scanner",
+      "mustInclude": [
+        "checkout history",
+        "new-release catalog",
+        "repair tape"
+      ],
+      "mustAvoid": [
+        "nostalgia"
+      ]
+    },
+    {
+      "domain": "software team deciding whether to adopt a brand-new framework",
+      "audience": "engineering lead balancing novelty against tools that survived production incidents",
+      "stakes": "a rewrite could trade boring durability for untested elegance",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivier asks which framework has survived three ugly outages before approving the migration.",
+      "firstImage": "incident postmortems pinned beside a whiteboard",
+      "mustInclude": [
+        "framework proposal",
+        "outage log",
+        "migration plan"
+      ],
+      "mustAvoid": [
+        "anti-innovation"
+      ]
+    },
+    {
+      "domain": "bakery keeping a slow sourdough method despite a viral shortcut",
+      "audience": "owner judging process by endurance under daily use",
+      "stakes": "the shortcut may fail outside video conditions",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marit compares the decade-old starter ledger with three test loaves from the viral method.",
+      "firstImage": "starter bubbles under a glass lid",
+      "mustInclude": [
+        "starter ledger",
+        "test loaf",
+        "daily order sheet"
+      ],
+      "mustAvoid": [
+        "heritage branding"
+      ]
+    },
+    {
+      "domain": "municipal bridge maintenance favoring old inspection routines over new dashboard scores",
+      "audience": "engineer using time-tested checks as stress records",
+      "stakes": "public safety depends on what has caught cracks before",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Thomas keeps the hammer-sounding walk after the dashboard misses a hairline crack.",
+      "firstImage": "frost on a steel bridge joint",
+      "mustInclude": [
+        "inspection dashboard",
+        "hammer log",
+        "crack photo"
+      ],
+      "mustAvoid": [
+        "technology skepticism"
+      ]
+    },
+    {
+      "domain": "medical clinic evaluating an old triage question against a new app prompt",
+      "audience": "nurse manager asking what has survived real waiting-room pressure",
+      "stakes": "patients may be sorted by novelty instead of durable signal",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lin runs both tools for a week and keeps the old question where it catches the dangerous case.",
+      "firstImage": "clipboard edges softened by years of use",
+      "mustInclude": [
+        "triage question",
+        "app prompt",
+        "case log"
+      ],
+      "mustAvoid": [
+        "age worship"
+      ]
+    },
+    {
+      "domain": "musician choosing practice drills from a centuries-old method versus a trend course",
+      "audience": "student learning that endurance is evidence but not proof",
+      "stakes": "skill growth depends on tested feedback, not antique aura",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Diego tests both drills under a metronome and keeps the one whose result survives recording.",
+      "firstImage": "rosin dust on a black music stand",
+      "mustInclude": [
+        "metronome",
+        "recording file",
+        "practice notebook"
+      ],
+      "mustAvoid": [
+        "classical snobbery"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify Lindy in a new concrete scenario",
+      "choose the action that performs the chapter move: Use endurance as evidence, without confusing age alone with truth.",
+      "separate the chapter's mechanism from the weak misread: Treating Lindy as nostalgia or automatic respect for old things.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for An Expert Called Lindy.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

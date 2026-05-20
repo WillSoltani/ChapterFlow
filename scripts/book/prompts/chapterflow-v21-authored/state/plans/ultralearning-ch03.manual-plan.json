@@ -1,0 +1,182 @@
+{
+  "chapterId": "ultralearning-ch03",
+  "number": 3,
+  "title": "How to become an ultralearner",
+  "coreMove": "Convert ambition into one constrained project format, then test the plan with a pilot before committing fully.",
+  "sourcePressure": "First projects should focus on one thing, use clear constraints, choose a full-time, fixed-schedule, or fixed-hour format, and run preparation through a pilot week. The source sidecar contains no named people, studies, institutions, places, dates, or artifacts for this chapter, so named source anchors must be omitted rather than invented.",
+  "chapterSpecificMisunderstanding": "Skipping straight from excitement to an oversized plan with no test of schedule, materials, or first week reality.",
+  "sourceAlignmentTerms": [
+    "one target",
+    "project format",
+    "fixed schedule",
+    "fixed hours",
+    "materials",
+    "attack plan",
+    "pilot week"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Ch3: learner stares at browser tabs and realizes motivation is not enough",
+      "Ch3: broad modern world pressure opener"
+    ],
+    "counterintuition": [
+      "The obvious move is not the real move",
+      "Most people think more effort is enough",
+      "This is not about working harder"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three goals",
+      "Spend one minute thinking about your learning journey"
+    ],
+    "examples": [
+      "desk plus laptop plus vague course collection",
+      "generic student in a classroom",
+      "manager in a recurring meeting with no concrete artifact",
+      "kitchen-table life overhaul"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Hannah, a nurse choosing one wound-care credential instead of four ambitions",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the next month produces visible evidence or another private feeling of effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hannah cuts four nursing credentials down to one wound-care target and writes a pilot week around two real dressing-change observations.",
+      "firstImage": "a sterile dressing kit unopened beside a shift roster",
+      "mustInclude": [
+        "printed standard",
+        "deadline box",
+        "proof artifact"
+      ],
+      "mustAvoid": [
+        "generic motivation speech",
+        "anti-school rant"
+      ]
+    },
+    {
+      "domain": "James, a theatre student picking a fixed-schedule dialect project",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether a deadline exposes the weakness early enough to adjust",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "James chooses fixed-schedule dialect practice after seeing that full immersion would collide with rehearsals and rent work.",
+      "firstImage": "a rehearsal call sheet taped above a phonetics chart",
+      "mustInclude": [
+        "calendar conflict",
+        "single constraint",
+        "revised first session"
+      ],
+      "mustAvoid": [
+        "heroic schedule fantasy",
+        "all-night grind"
+      ]
+    },
+    {
+      "domain": "Chloe, a warehouse supervisor piloting Spanish practice before a new team starts",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chloe runs one week of Spanish handoff practice with warehouse labels before promising a full supervisor-language project.",
+      "firstImage": "a pallet tag with handwritten Spanish verbs in the margin",
+      "mustInclude": [
+        "closed source",
+        "blank page",
+        "visible answer"
+      ],
+      "mustAvoid": [
+        "passive rereading",
+        "smooth familiarity"
+      ]
+    },
+    {
+      "domain": "Mathieu, a product designer testing whether a six-week accessibility plan is survivable",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the project survives contact with a real schedule and real standards",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu tests a six-week accessibility plan by doing the first audit on a live checkout flow before buying another course.",
+      "firstImage": "a screen-reader transcript beside a checkout wireframe",
+      "mustInclude": [
+        "review note",
+        "circled weak step",
+        "one narrow prompt"
+      ],
+      "mustAvoid": [
+        "broad self-improvement chat",
+        "vague weakness label"
+      ]
+    },
+    {
+      "domain": "Anya, a legal assistant gathering materials for a paralegal exam sprint",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether comfort keeps protecting the exact skill gap that matters",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Anya gathers only the paralegal materials needed for the first scored practice section, then schedules the pilot before more research.",
+      "firstImage": "a tabbed binder of civil-procedure notes beside a kitchen timer",
+      "mustInclude": [
+        "before-and-after attempt",
+        "small test condition",
+        "written prediction"
+      ],
+      "mustAvoid": [
+        "novelty for novelty's sake",
+        "unsupported science claim"
+      ]
+    },
+    {
+      "domain": "Hiroshi, a robotics-club mentor cutting a broad AI goal into one sensor project",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the next attempt changes the skill instead of decorating the plan",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hiroshi narrows the robotics goal to one sensor that must trigger cleanly by club night, not a whole artificial-intelligence curriculum.",
+      "firstImage": "an ultrasonic sensor wired to a breadboard under a desk lamp",
+      "mustInclude": [
+        "old plan",
+        "new evidence",
+        "one crossed-out escape"
+      ],
+      "mustAvoid": [
+        "desk-laptop-browser-tabs shell",
+        "fake named study"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "select a viable project format from real schedule constraints",
+      "use a pilot week to reveal bad assumptions",
+      "cut a first project down without making it trivial"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one project format for a real week, then write the first pilot session you can run before Sunday.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

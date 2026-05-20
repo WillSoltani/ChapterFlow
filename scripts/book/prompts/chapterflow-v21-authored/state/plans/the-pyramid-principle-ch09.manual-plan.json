@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-pyramid-principle-ch09",
+  "number": 9,
+  "title": "Questioning the summary statement",
+  "coreMove": "Make the summary line specific, level-accurate, and structurally faithful to the conclusions beneath it.",
+  "sourcePressure": "Chapter 9 tests the summary statement: stating action effects, making wording specific, distinguishing levels of action, drawing inference from conclusions, finding structural similarity, and visualizing relationships.",
+  "chapterSpecificMisunderstanding": "Writing a polished headline that sounds strategic while overclaiming, underclaiming, or blurring what the lower points prove.",
+  "sourceAlignmentTerms": [
+    "summary statement",
+    "effect of actions",
+    "specific wording",
+    "levels of action",
+    "inference from conclusions",
+    "structural similarity",
+    "visualize relationships"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "effect of actions",
+      "detail": "the Chapter 9 heading map supports testing whether the summary statement states the effect of actions",
+      "useIn": "both",
+      "phrasingHint": "A real summary names the effect the actions jointly create, not just the activity they keep busy with."
+    },
+    {
+      "kind": "artifact",
+      "name": "visualize the relationships",
+      "detail": "the sidecar says visualization of relationships is a supported aid for checking the summary line",
+      "useIn": "fullRead",
+      "phrasingHint": "When the relationships are sketched, a vague top line has fewer places to hide."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A polished heading pretends the structure underneath is solved",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "The point is not polish; the point is discipline",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Ask what the reader needs to know next",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "manager fixes a team memo with colored markers",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional pharmacy chain summarizing medication-adherence pilots",
+      "audience": "healthcare managers writing outcome summaries",
+      "stakes": "executives may fund scattered activities unless the summary names the shared patient effect",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hugo changes improve adherence programs to reduce missed refills in high-risk patients after checking that each pilot supports that effect.",
+      "firstImage": "Orange prescription labels line the edge of Hugo's conference table.",
+      "mustInclude": [
+        "refill-rate chart",
+        "pilot comparison sheet",
+        "patient-risk segment"
+      ],
+      "mustAvoid": [
+        "hospital meal analysis from ch8"
+      ]
+    },
+    {
+      "domain": "a shipping insurer summarizing three loss-prevention actions",
+      "audience": "claims and underwriting teams needing level control",
+      "stakes": "a vague loss prevention heading will hide which action affects frequency and which affects severity",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Chloé asks what effect all three actions actually share, then splits severity-reduction actions from frequency-reduction actions before writing two summary lines.",
+      "firstImage": "Which loss did these actions prevent: more claims, or worse claims?",
+      "mustInclude": [
+        "loss run",
+        "port inspection record",
+        "crew training note"
+      ],
+      "mustAvoid": [
+        "marine storm claims from ch3"
+      ]
+    },
+    {
+      "domain": "a university athletics director reporting academic-support changes",
+      "audience": "administrators distinguishing actions from outcomes",
+      "stakes": "the provost will dismiss the plan if the summary says support students without naming the effect",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Matthew rewrites expand tutoring into raise first-year eligibility retention after checking that advising, tutoring, and progress alerts all point there.",
+      "firstImage": "It took Matthew one retention table to stop calling the actions the result.",
+      "mustInclude": [
+        "retention table",
+        "advising schedule",
+        "progress-alert log"
+      ],
+      "mustAvoid": [
+        "university admissions proposal from ch4"
+      ]
+    },
+    {
+      "domain": "a textile factory quality team summarizing defect-reduction work",
+      "audience": "manufacturing managers reading action-effect summaries",
+      "stakes": "plant leaders need to know whether the work reduces rework time, customer returns, or scrap",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Cleaner quality process says nothing,\" Anke says, then visualizes inspection, calibration, and packing relationships until the common effect is fewer customer returns.",
+      "firstImage": "\"Cleaner quality process says nothing,\" Anke says beside a bolt of rejected fabric.",
+      "mustInclude": [
+        "defect board",
+        "calibration log",
+        "return report"
+      ],
+      "mustAvoid": [
+        "packaging cracked jars from ch7"
+      ]
+    },
+    {
+      "domain": "a civic-data team naming the result of permit-processing changes",
+      "audience": "government analysts summarizing process improvements",
+      "stakes": "leaders will overclaim transformation if the changes only reduce one queue bottleneck",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Devon draw the permit stages, locate where each action acts, and lower the summary from citywide modernization to two-day reduction in intake review.",
+      "firstImage": "You are looking at a permit-flow sketch with one thick red bottleneck.",
+      "mustInclude": [
+        "permit-flow sketch",
+        "intake queue report",
+        "service standard"
+      ],
+      "mustAvoid": [
+        "parks funding request from ch4"
+      ]
+    },
+    {
+      "domain": "a specialty coffee roaster summarizing wholesale account changes",
+      "audience": "small-business managers connecting actions to effects",
+      "stakes": "the owner may expand discounts when the evidence supports retention through delivery reliability",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 2:15 p.m., Frida replaces strengthen wholesale with reduce account churn by improving delivery reliability, then deletes one pricing point that does not fit.",
+      "firstImage": "At 2:15 p.m., Frida places three returned coffee bags beside the churn report.",
+      "mustInclude": [
+        "churn report",
+        "delivery miss log",
+        "pricing note"
+      ],
+      "mustAvoid": [
+        "restaurant closure from ch5"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn activity labels into effect statements",
+      "distinguish strategic outcome from sub-action",
+      "infer a top line without leaping beyond support",
+      "use structural similarity to test whether one summary can cover the group"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one heading and add the words so that after it. If you cannot name the effect, the summary is probably activity, not conclusion.",
+  "readingTimeMinutes": 12
+}

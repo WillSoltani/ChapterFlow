@@ -1,0 +1,194 @@
+{
+  "chapterId": "difficult-conversations-ch12",
+  "number": 12,
+  "title": "Putting It All Together",
+  "coreMove": "Compose the right move for the live situation while staying genuinely open to what may change.",
+  "sourcePressure": "The chapter integrates the whole arc and warns that the framework is not a script; openness to being changed is the real skill, with real limits around non-engagement, power gaps, old issues, and written media.",
+  "chapterSpecificMisunderstanding": "Recapping a checklist or performing the framework mechanically.",
+  "sourceAlignmentTerms": [
+    "full conversation integration",
+    "framework is not a script",
+    "openness to being changed",
+    "hold the AND",
+    "learning over winning",
+    "non-engagement",
+    "large power gaps",
+    "written medium"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "the 2010 supplement",
+      "detail": "The source says the 10th Anniversary Edition added answers to common reader questions about non-engagement, power gaps, illegitimate-feeling feelings, old issues, and written conversations.",
+      "useIn": "fullRead",
+      "phrasingHint": "The closing honesty checks matter because real conversations often arrive with silence, power, history, or a screen between people."
+    },
+    {
+      "kind": "artifact",
+      "name": "the framework is not a script",
+      "detail": "The source warns that a mechanical performance of the moves sounds rehearsed and can feel manipulative.",
+      "useIn": "both",
+      "phrasingHint": "The moves only help when they make you sound more like yourself, not like someone reciting a procedure."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch12 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: question-as-hook; environmental detail before any human; dialogue first line; sensory detail first; retrospective first line; timestamp+name+action",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "full arc for a strained team-lead conversation",
+      "audience": "readers needing the whole sequence without sounding scripted",
+      "stakes": "a key designer may quit if the team lead performs technique instead of being real",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Beatrice works from preparation notes, then leaves them in her bag when the live conversation needs listening first",
+      "firstImage": "a folded page of notes inside a canvas bag",
+      "mustInclude": [
+        "preparation notes",
+        "retention-risk email",
+        "conference room clock"
+      ],
+      "mustAvoid": [
+        "reciting the framework"
+      ]
+    },
+    {
+      "domain": "lab group old issue resurfacing",
+      "audience": "students and researchers with recurring unfinished conflict",
+      "stakes": "an old authorship issue keeps entering every new decision",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anke stops swatting away the old issue and asks whether the previous conversation ever actually finished",
+      "firstImage": "a lab freezer humming behind a tense meeting",
+      "mustInclude": [
+        "lab freezer",
+        "authorship spreadsheet",
+        "meeting agenda"
+      ],
+      "mustAvoid": [
+        "old issue as irrelevant"
+      ]
+    },
+    {
+      "domain": "partner conversation across text and in person",
+      "audience": "couples moving from risky written medium to live repair",
+      "stakes": "a late-night text thread has created tone neither person intended",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Pablo moves the conversation out of the thread and restarts from purpose, feeling, and listening",
+      "firstImage": "\"This is getting worse by text,\" Luke writes",
+      "mustInclude": [
+        "text thread",
+        "phone charger",
+        "front steps"
+      ],
+      "mustAvoid": [
+        "perfect written script"
+      ]
+    },
+    {
+      "domain": "employee facing non-engagement from a senior leader",
+      "audience": "workers needing limits when the other person will not participate",
+      "stakes": "silence from the leader means the hoped-for talk cannot happen on hoped-for terms",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Luke documents the pattern and chooses a safer next move instead of forcing one more invitation",
+      "firstImage": "a calendar invite declined without comment",
+      "mustInclude": [
+        "declined invite",
+        "notes file",
+        "HR contact"
+      ],
+      "mustAvoid": [
+        "framework failure shame"
+      ]
+    },
+    {
+      "domain": "friendship with large power gap in arts collective",
+      "audience": "creative communities where status changes the conversation",
+      "stakes": "a famous founder can decide access regardless of collaborative language",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes Min one rehearsal to see she needs an ally and exit options, not only a better opener",
+      "firstImage": "stage lights warming an empty rehearsal room",
+      "mustInclude": [
+        "rehearsal schedule",
+        "access badge",
+        "ally text"
+      ],
+      "mustAvoid": [
+        "skill erases structure"
+      ]
+    },
+    {
+      "domain": "reader preparing the avoided conversation",
+      "audience": "general readers turning the framework into one concrete act",
+      "stakes": "the conversation has been delayed long enough that avoidance now has its own cost",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hugo writes the three layers, purpose, opener, listening reminder, and one possible next step before making the call",
+      "firstImage": "a phone face down beside a handwritten plan",
+      "mustInclude": [
+        "handwritten plan",
+        "phone",
+        "half-finished tea"
+      ],
+      "mustAvoid": [
+        "abstract mastery ending"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs compose the right move for the live situation while staying genuinely open to what may change.",
+      "distinguish full conversation integration from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate recapping a checklist or performing the framework mechanically."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick the avoided conversation and sketch the sequence: raise or let go, prepare, open, listen, speak, solve, close.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

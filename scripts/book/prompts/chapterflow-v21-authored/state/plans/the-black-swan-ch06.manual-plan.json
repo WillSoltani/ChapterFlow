@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch06",
+  "number": 6,
+  "title": "The Narrative Fallacy",
+  "coreMove": "Treat a clean story as an edited object and recover what it cut away.",
+  "sourcePressure": "Story-shaped understanding selects details, assigns causes, removes mess, and makes opacity feel like comprehension after the outcome is visible.",
+  "chapterSpecificMisunderstanding": "Declaring all stories false or useless.",
+  "sourceAlignmentTerms": [
+    "narrative fallacy",
+    "omission",
+    "hindsight",
+    "causal story",
+    "coherence",
+    "randomness",
+    "rival story",
+    "opacity"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the narrative fallacy",
+      "detail": "the frozen source says the mind prefers smooth causal narrative to messy reality and compresses randomness and omitted facts away",
+      "useIn": "both",
+      "phrasingHint": "A story can feel finished because the loose ends were removed before you arrived."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "post-acquisition company memo",
+      "audience": "an executive explaining a failed merger with one tidy villain",
+      "stakes": "repeating the same diligence blind spots",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the executive adds a page titled facts this story leaves out",
+      "firstImage": "At 8:17 a.m., Etienne faces a merger timeline pinned with missing documents.",
+      "mustInclude": [
+        "Etienne",
+        "a merger timeline pinned with missing documents",
+        "narrative fallacy"
+      ],
+      "mustAvoid": [
+        "Declaring all stories false or useless.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "elite university admissions essay coaching",
+      "audience": "a counselor packaging a student's acceptance as destiny",
+      "stakes": "teaching families to mistake edited arcs for causality",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the counselor shows the rejected drafts and random waitlist movement",
+      "firstImage": "A first line of dialogue lands before the reader sees a folder of essays with crossed-out openings.",
+      "mustInclude": [
+        "Mathieu",
+        "a folder of essays with crossed-out openings",
+        "omission"
+      ],
+      "mustAvoid": [
+        "Declaring all stories false or useless.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "accident investigation board",
+      "audience": "an investigator tempted by a single driver-error account",
+      "stakes": "missing design faults that could recur",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the investigator maps the alternate causal chain before closing the report",
+      "firstImage": "Open on the texture, sound, or light of skid marks photographed under sodium lights.",
+      "mustInclude": [
+        "Nicolas",
+        "skid marks photographed under sodium lights",
+        "hindsight"
+      ],
+      "mustAvoid": [
+        "Declaring all stories false or useless.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "museum exhibit curation",
+      "audience": "a curator building a neat innovation timeline",
+      "stakes": "visitors learning inevitability instead of contingency",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the curator installs a panel of failed prototypes beside the celebrated object",
+      "firstImage": "You are looking at a glass case holding a cracked prototype before the choice becomes abstract.",
+      "mustInclude": [
+        "Antoine",
+        "a glass case holding a cracked prototype",
+        "causal story"
+      ],
+      "mustAvoid": [
+        "Declaring all stories false or useless.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "sports commentary room",
+      "audience": "an analyst explaining a championship as character",
+      "stakes": "ignoring injury luck and schedule quirks",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the analyst marks what was unknowable before the final series",
+      "firstImage": "It takes Vincent several weeks to understand what headsets hanging above a marked-up bracket was really showing.",
+      "mustInclude": [
+        "Vincent",
+        "headsets hanging above a marked-up bracket",
+        "coherence"
+      ],
+      "mustAvoid": [
+        "Declaring all stories false or useless.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "family business succession",
+      "audience": "siblings telling one clean story about why the bakery failed",
+      "stakes": "selling assets before seeing the supply shock and lease trap",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the mediator writes three possible explanations on separate sheets",
+      "firstImage": "flour prints on an old account ledger appears before any human enters the sentence.",
+      "mustInclude": [
+        "Julien",
+        "flour prints on an old account ledger",
+        "randomness"
+      ],
+      "mustAvoid": [
+        "Declaring all stories false or useless.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify omitted facts in causal stories",
+      "separate coherence from contact with reality",
+      "test one outcome against rival narratives"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one explanation you believe and list two facts it omits and one rival story the same facts could support.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch30",
+  "number": 30,
+  "title": "The Mediating Assessments Protocol",
+  "coreMove": "Work through intermediate assessments in a fixed, independent sequence before reaching a final judgment, so that each step constrains the next rather than letting a global intuition skip the structure.",
+  "sourcePressure": "The mediating assessments protocol is a structured evaluation sequence: judges make independent assessments on specific intermediate dimensions before reaching any final judgment, and the final judgment integrates those intermediates through a defined path rather than a free intuition leap. This constrains noise at each step and prevents early global impressions from contaminating later dimensional assessments. The protocol does not replace human judgment; it requires judgment to operate in a structured order.",
+  "chapterSpecificMisunderstanding": "Treating the mediating assessments protocol as an algorithmic replacement for human judgment rather than a disciplined path through the judgment that keeps each step honest by preventing later steps from collapsing earlier ones.",
+  "sourceAlignmentTerms": ["mediating assessments", "intermediate", "sequence", "protocol", "final judgment", "structured path", "constraint", "dimensional assessment"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Structured sequential assessment in high-stakes professional evaluation",
+      "detail": "Research in personnel selection, criminal sentencing, and clinical assessment consistently shows that requiring judges to assess specific intermediate dimensions independently — before forming any overall impression — reduces inter-judge spread relative to holistic evaluation. The improvement occurs because the structure prevents early global impressions from overwriting dimensional assessments before they are recorded.",
+      "useIn": "deepRead",
+      "phrasingHint": "The protocol does not trust the judge less. It trusts that any judge — no matter how experienced — will have their dimensional assessments pulled toward whatever global impression formed first. The protocol asks the judge to form no global impression until the dimensions are locked in. That single discipline accounts for most of its noise-reduction effect."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["the trick that makes any judgment more consistent", "how to structure a decision in five steps"],
+    "counterintuition": ["experts who follow protocols make better decisions than experts who trust their experience", "the structured judge is always better than the intuitive judge"],
+    "tryThisNow": ["break your next decision into five mediating assessments", "list the intermediate dimensions you should assess before reaching any final judgment on your most common decision type"],
+    "examples": ["a scene where the protocol is followed perfectly and produces the correct outcome — the protocol reduces noise, not necessarily the error in any specific case", "a scene where an expert correctly bypasses the protocol based on experience — that is a reason to clarify the broken-leg exception, not to present bypass as generally appropriate"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Mediating-assessments examples risk reading as workflow redesign case studies. The six domains must show the protocol's core mechanism — that recording intermediate assessments independently before allowing a final judgment prevents earlier impressions from collapsing later ones — across domains where the contamination risk is genuinely different."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "criminal sentencing with structured factor assessment: a sentencing commission studying whether requiring judges to assess aggravating and mitigating factors independently before announcing a sentence reduces inter-judge variance",
+      "audience": "a sentencing commission researcher studying whether mediating assessment protocols reduce inter-judge sentencing spread for comparable offenses",
+      "stakes": "sentencing consistency — comparable offenses that are processed through different judges produce different sentence lengths under unstructured holistic evaluation; the protocol's value is in how much it narrows that spread",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the commission's protocol comparison: under holistic sentencing (judges evaluate all case factors simultaneously and announce a sentence), inter-judge variance for matched offense types is 14 months; under the mediating assessments protocol (judges first record their independent assessment of each aggravating factor, then each mitigating factor, then — and only then — integrate those assessments into a sentencing recommendation), inter-judge variance falls to 7 months; the reduction occurs because the dimensional recording prevents judges from adjusting their factor assessments toward a sentencing anchor they have already chosen globally",
+      "firstImage": "a sentencing variance comparison chart showing the distribution of sentences under holistic evaluation (wider spread) versus the mediating assessments protocol (narrower spread) for the same matched offense set",
+      "mustInclude": ["the 14-to-7-month variance reduction", "the mechanism: the protocol prevents factor assessments from being adjusted toward a pre-formed sentencing number", "the researcher's framing: the judges are not doing less — they are doing more, in a different order, and the order is what reduces noise"],
+      "mustAvoid": ["a specific criminal case or sentencing outcome", "implying the protocol eliminates judicial discretion or that the same sentence should always result for the same offense"]
+    },
+    {
+      "domain": "organ transplant candidate evaluation: a transplant center studying whether assessing medical, psychosocial, and logistical eligibility criteria independently before final listing decisions reduces inter-committee variation",
+      "audience": "a transplant program medical director studying whether a mediating assessments protocol reduces inter-committee spread in organ transplant listing decisions",
+      "stakes": "patient access to transplantation and organ allocation justice — candidates whose overall impression drives committee discussion before medical, psychosocial, and logistical dimensions are assessed independently face decisions shaped by global impressions rather than systematic dimensional review",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two program medical directors compare two transplant centers' listing decision consistency: center A uses holistic discussion (the committee discusses all candidate factors simultaneously, often led by the strongest initial impression); center B uses a mediating assessment protocol (each committee member independently scores the candidate on medical suitability, psychosocial support, and logistical compliance before any discussion); the listing agreement rate for matched candidates is 67 percent at center A and 84 percent at center B; the difference is attributable not to different criteria but to whether early global impressions are allowed to shape dimensional assessments before those assessments are recorded",
+      "firstImage": "a side-by-side agreement rate comparison for two transplant centers processing matched candidate profiles: holistic discussion (67% agreement) versus mediating assessments protocol (84% agreement)",
+      "mustInclude": ["the 67 vs. 84 percent agreement comparison", "the mechanism: holistic discussion lets early global impressions pull dimensional assessments toward a pre-formed conclusion", "the director's framing: the protocol does not change the criteria — it changes the order in which the criteria are assessed relative to the overall impression"],
+      "mustAvoid": ["a specific transplant candidate's case or outcome", "implying the protocol should replace transplant committee clinical judgment entirely"]
+    },
+    {
+      "domain": "executive promotion committee: a corporation studying whether assessing candidates on leadership, strategic capability, and operational performance independently before deliberating reduces inter-committee-member variation in promotion recommendations",
+      "audience": "a chief human resources officer studying whether a mediating assessments protocol reduces inter-committee spread in executive promotion recommendations",
+      "stakes": "organizational leadership quality and promotion equity — promotion committee recommendations driven by holistic impressions rather than dimensional assessment produce noise that determines who advances based on first impressions rather than structured evidence review",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the CHRO presents the protocol comparison to the board: under holistic committee evaluation (committee members discuss all candidate factors before individual ratings), inter-member spread in promotion scores averages 0.9 points on a 5-point scale; under the mediating assessments protocol (each member independently scores candidates on three pre-defined dimensions — leadership style, strategic thinking evidence, and operational performance record — before any discussion), inter-member spread falls to 0.4 points; the spread reduction is largest for candidates who generate strong initial reactions — exactly the candidates most likely to have their dimensional assessments inflated or deflated by the global first impression",
+      "firstImage": "a committee spread comparison for the same executive candidate pool: holistic evaluation (wider box plot) versus mediating assessments protocol (narrower box plot) — the reduction most visible for high-impression candidates",
+      "mustInclude": ["the 0.9-to-0.4-point spread reduction", "the finding that the reduction is largest for high-first-impression candidates", "the CHRO's framing: the protocol's value is greatest exactly where holistic impressions are strongest and most likely to contaminate dimensional assessments"],
+      "mustAvoid": ["a specific executive's promotion outcome", "implying promotion committees should not deliberate or that the protocol replaces management judgment"]
+    },
+    {
+      "domain": "university scholarship committee: a scholarship program studying whether assessing academic merit, financial need, and community impact independently before deliberation reduces inter-committee member variation in award recommendations",
+      "audience": "a scholarship program director studying whether requiring independent dimensional scoring before committee discussion reduces inter-member spread in award recommendations",
+      "stakes": "award equity and scholarship access — committees where holistic impressions drive discussion produce awards that favor candidates who generate strong global reactions over those who perform consistently well across dimensions but generate less immediate enthusiasm",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the program director presents the two-year protocol comparison: in years where committees used holistic discussion (discussing all candidate factors together from the start), inter-member agreement on award-level recommendations was 61 percent; in years where committees used the mediating assessments protocol (each member independently scored candidates on academic merit, documented financial need, and community impact before any discussion), agreement rose to 79 percent; candidates in the middle of the quality distribution — the largest group — showed the largest agreement improvement, because holistic discussion's first-impression variance concentrates in exactly those candidates",
+      "firstImage": "a scholarship committee agreement rate by candidate quality tier: holistic discussion (lower agreement line) versus mediating assessments protocol (higher agreement line) — the largest gap visible in the middle-quality tier",
+      "mustInclude": ["the 61 to 79 percent agreement improvement", "the concentration of the improvement in middle-quality candidates", "the director's framing: the protocol's benefit is largest for the largest group — the candidates who are neither so strong nor so weak that their global impression is obvious"],
+      "mustAvoid": ["a specific scholarship applicant's case", "implying scholarship committees should not deliberate on individual merit"]
+    },
+    {
+      "domain": "commercial lease underwriting: a real estate lender studying whether assessing borrower creditworthiness, property quality, and market conditions independently before a final credit committee recommendation reduces inter-committee variance",
+      "audience": "a commercial real estate lending quality director studying whether a mediating assessments protocol reduces inter-committee member spread in loan approval recommendations",
+      "stakes": "credit risk accuracy and lending equity — committee members who form a global credit impression before completing dimensional assessments produce approval recommendations shaped by the initial impression rather than by systematic credit factor review",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality director reviews the lending team's protocol comparison study: under holistic committee review (members discuss borrower, property, and market simultaneously from the start), inter-member spread in credit quality scores averages 0.8 points on a 10-point scale; under the mediating assessments protocol (each member independently scores borrower creditworthiness, property condition, and market demand before any group discussion), spread falls to 0.4 points; the study identifies the mechanism: in holistic review, the borrower's presentation creates a first impression that systematically pulls both the property and market assessments toward the initial credit quality signal",
+      "firstImage": "a credit committee spread comparison for the same loan application sample: holistic review (wider distribution) versus mediating assessments protocol (narrower distribution) — the mechanism annotated showing the borrower-impression spillover onto property and market scores under holistic review",
+      "mustInclude": ["the 0.8-to-0.4-point spread reduction", "the borrower-impression spillover mechanism as the specific noise source the protocol addresses", "the quality director's framing: the protocol does not improve the committee's credit judgment — it prevents the first dimension assessed from contaminating the others before they are scored"],
+      "mustAvoid": ["a specific real estate loan or borrower", "implying credit committees should not discuss cases or that human judgment should be removed from lending"]
+    },
+    {
+      "domain": "water discharge permit decision: a regulatory agency studying whether assessing environmental impact, technical feasibility, and monitoring compliance independently before a final permit recommendation reduces inter-reviewer spread",
+      "audience": "a state environmental agency permit quality director studying whether a mediating assessments protocol reduces inter-reviewer spread in water discharge permit recommendations",
+      "stakes": "environmental protection and permit consistency — reviewers whose holistic impressions drive their dimensional assessments produce permit recommendations that reflect the global impression formed from the permit application narrative rather than systematic factor-by-factor review",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the quality director asks: if we require permit reviewers to score environmental impact, technical feasibility, and monitoring compliance independently before formulating any permit recommendation, will inter-reviewer spread on final recommendations decrease? The pilot study's answer: yes — under holistic review, inter-reviewer spread in permit stringency recommendations averages 0.7 points on a 5-point scale; under the mediating assessments protocol, spread falls to 0.35 points; reviewers who completed the protocol report that scoring environmental impact first, before reading the technical sections, changed their final assessments relative to their typical approach — the order of the dimensional assessments mattered",
+      "firstImage": "a permit review spread comparison: holistic review (wider distribution of stringency recommendations) versus mediating assessments protocol (narrower distribution) for the same permit application set",
+      "mustInclude": ["the 0.7-to-0.35-point spread reduction", "the reviewer report that assessment order changed their final recommendations — illustrating why the protocol specifies the sequence and not just the dimensions", "the director's framing: the protocol requires each dimension to be assessed before the next, not just that each dimension be assessed somewhere in the review"],
+      "mustAvoid": ["a specific environmental facility or water body", "implying environmental permit review should be algorithmic rather than expert-based"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why requiring independent dimensional assessments before a final judgment reduces inter-judge noise even when the criteria and the judges are unchanged",
+      "identify the mechanism by which early global impressions contaminate later dimensional assessments in holistic evaluation",
+      "apply the mediating assessments protocol design principles to structure an evaluation process in a described professional context",
+      "analyze why the protocol's noise-reduction benefit is largest for candidates or cases that generate strong first impressions",
+      "evaluate whether a described evaluation process provides the structure necessary to prevent early impressions from contaminating dimensional assessments"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of the last significant evaluation decision you participated in — a hire, a promotion, a case review, a grant recommendation. Before anyone spoke, did you already have a global sense of the outcome you preferred? If yes, your dimensional assessments were made after that global impression was formed. Now ask: if you had been required to score each dimension independently and in writing before any discussion began, would your dimensional scores have been different? If the answer is yes or probably, you experienced the contamination the mediating assessments protocol is designed to prevent.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on the single key discipline the protocol requires — no global impression until the dimensions are locked — and why that single requirement accounts for most of its noise-reduction effect, at least one 5+ sentence paragraph on how holistic evaluation allows a dominant first impression to pull all subsequent dimensional assessments toward it, using a specific domain to make the mechanism concrete, at least one one-sentence punch line about what you are really measuring when you skip the protocol and go straight to holistic discussion",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to present the mediating assessments protocol as a general principle of decision architecture — applicable across criminal justice, medicine, finance, and professional evaluation — rather than as a specific organizational tool; framing it as what happens when you force the structure that expert intuition is tempted to skip",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

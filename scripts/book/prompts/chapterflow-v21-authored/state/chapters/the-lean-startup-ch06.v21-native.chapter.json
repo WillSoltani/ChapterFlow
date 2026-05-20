@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch06",
+  "number": 6,
+  "title": "Test",
+  "readingTimeMinutes": 12,
+  "hook": "One phone at the host stand can teach more than a finished waitlist app.",
+  "counterintuition": "An MVP is not a cheap product, but the shortest honest path to one learning cycle. The test can be rough only if it still delivers enough value to teach.",
+  "tryThisNow": "Find the smallest version of your next build that can answer the assumption. Remove every feature that does not help complete one learning cycle.",
+  "keyTakeaway": "Build the smallest honest learning device that exposes the assumption, measures behavior, and prevents waste before the full product exists.",
+  "breakdown": {
+    "fastRead": "Olivia's host stand phone buzzes beside the reservation book. She could spend weeks building a restaurant waitlist app. Instead, she runs the whole waitlist from one phone for two nights and watches whether diners return when text updates work.\n\nThat is the standard for a minimum viable product.\n\nThe minimum viable product is not small because small is noble. It is small because the question should not need a castle to answer it. If one phone can complete a build-measure-learn cycle, the app can wait.",
+    "deepRead": "\"Do not buy sensors yet,\" Jonas says while a rough video is paused on a basement fuse box. The climate startup wants hardware for home energy audits. The energy bill on the table can already support a manual checklist and a walkthrough video. The question is not whether sensors would look serious. The question is whether homeowners act on advice after seeing the walkthrough.\n\nA rough video can be a real test.\n\nMinimum viable product means a learning instrument, not a low-status product. It has to be honest about what it can and cannot prove. A low-fidelity screen can test whether people understand a flow. A concierge service can test whether people value a result. A manual process can test whether behavior appears before software exists. None of these are shortcuts if they complete the learning cycle.\n\nCheapness is not the goal. Minimum waste is the goal. A sloppy test that confuses users teaches little. A small test that exposes the right assumption teaches a lot.\n\nThe size of the build should match the size of the question.\n\nJonas marks one line on the energy bill before the hardware debate continues. If homeowners will not act after a manual checklist and a rough walkthrough, sensors will not rescue the audit. If they do act, the following build can focus on the part that made action easier. The minimum build earns its next size by teaching.",
+    "fullRead": "Chloe stands at admissions beside a tray of rented headsets. The visitor-experience team wants an audio guide app with maps, routes, and clips. She has six visitors, a route card, and a stopwatch. For one afternoon, she walks the route manually and listens for where people ask for help.\n\nThe test does not look like the product. It looks like the question.\n\nConcierge / low-fidelity / manual MVPs all carry the same burden: expose the customer decision sooner. Visitors either want route help or they do not. Patients either submit movement videos or they do not. Readers either join a book-club match or they do not. Workers either accept voice prompts in the aisle or they do not. A finished platform might hide those answers under design, onboarding, and technical details. The small test brings the assumption into view.\n\nWhat is the cheapest version that still tells the truth?\n\nMichael faces that in a remote physiotherapy service. A phone is propped against a yoga block, and therapist notes are ready for three patients. The team wants a portal. He asks the patients to text movement videos for one week before any portal exists. If they will not send videos to a therapist by text, the portal may be solving a problem that is not yet proven.\n\nThis does not excuse low standards. The test must respect the customer. It cannot trick people, hide important limits, or deliver a broken experience and call the confusion learning. The word viable still matters. The test has to create enough of the promised value that the customer's behavior means something.\n\nFrida's book-club matching page shows the same line. The landing page gets signups, but the algorithm is premature. She opens a spreadsheet beside a stack of paperbacks and makes six matches by hand. The manual work is slow. It is also precise. It tells her whether people want the match before she automates matching.\n\nTomas learns it on a warehouse floor. A headset cable is coiled on the packing bench, and the logistics team is pricing devices. Before procurement, he shadows pickers in one aisle and reads manual prompts through a borrowed headset. If workers reject voice guidance in a single aisle, buying devices would only make the waste more expensive.\n\nThe point is not to stay small. The point is to earn the next size. When the test teaches, the next build can be sharper. When the test fails, the team has bought the truth before it bought the machinery.\n\nA good MVP is not the product with features missing. It is the shortest honest path to learning.\n\nThe same standard protects customers. A thin test should never be a broken promise dressed up as learning. It should deliver the core result in a smaller way, with the limits clear enough that behavior still means something. When the customer can fairly judge the value, the team can fairly trust the lesson."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-olivia-waitlist",
+      "title": "Olivia Runs the Waitlist From One Phone",
+      "tags": [
+        "scene",
+        "restaurant",
+        "concierge"
+      ],
+      "planSpec": {
+        "domain": "restaurant waitlist concierge MVP",
+        "audience": "hospitality founder",
+        "stakes": "a full app may be waste if diners only need human text updates",
+        "format": "scene",
+        "requiredBeat": "Olivia runs the whole waitlist from one phone for two nights to test return visits"
+      },
+      "scenario": "At 6:40 p.m. Thursday, Olivia watches the host stand phone buzz beside the reservation book. The two-night test starts with one phone, not an app. Diners get manual text updates when tables open. Before hiring a developer, Olivia must decide whether return visits from this concierge waitlist prove the core behavior. The reservation book makes the test fair because diners still receive the core benefit of a faster table update.",
+      "whatToDo": "Run the waitlist manually for two nights and track whether diners return after text updates. Build software only if the single-phone service teaches that the behavior is real.",
+      "whyItMatters": "A full app may automate the wrong thing. One phone can expose whether diners value updates enough to come back."
+    },
+    {
+      "exampleId": "ch06-ex02-jonas-energy",
+      "title": "Jonas Sends the Rough Fuse-Box Video",
+      "tags": [
+        "dialogue",
+        "climate",
+        "video"
+      ],
+      "planSpec": {
+        "domain": "home energy audit video MVP",
+        "audience": "climate startup",
+        "stakes": "hardware buildout could outrun proof that homeowners act on advice",
+        "format": "dialogue",
+        "requiredBeat": "Jonas sends one rough walkthrough video before buying sensors"
+      },
+      "scenario": "\"Send the video before we buy anything,\" Jonas says, pointing at the draft walkthrough paused on a basement fuse box. The energy bill is on the table, and the manual checklist fits one page. The team is about to price sensors. Jonas has to choose between a hardware buildout and one rough video that tests whether homeowners act on advice. The energy bill gives the team a concrete before-and-after measure before hardware turns the bet expensive.",
+      "whatToDo": "Send the rough walkthrough with the manual checklist to a small group. Measure whether homeowners complete one recommended action before buying sensors.",
+      "whyItMatters": "Hardware can make the test look serious while hiding the behavior question. The video tests whether advice changes action before the team builds the system."
+    },
+    {
+      "exampleId": "ch06-ex03-chloe-audio",
+      "title": "Chloe Walks the Audio Route by Hand",
+      "tags": [
+        "vignette",
+        "museum",
+        "manual test"
+      ],
+      "planSpec": {
+        "domain": "museum audio guide concierge test",
+        "audience": "visitor-experience team",
+        "stakes": "building an app may hide whether visitors want route help",
+        "format": "vignette",
+        "requiredBeat": "Chloe walks six visitors manually with rented headsets to test the guide logic"
+      },
+      "scenario": "At 1:10 p.m. in the museum admissions hall, Chloe folds six route cards beside a tray of rented headsets and a visitor stopwatch. As visitor-experience lead, she has an audio-guide app brief that is still only a sketch. Before the afternoon tour, she has a decision to make: commission the app build or walk the route manually and test where visitors need help. The stopwatch lets Chloe see where route help matters without hiding the answer inside app design.",
+      "whatToDo": "Run the route by hand with rented headsets and a stopwatch. Listen for confusion, drop-offs, and requests before turning the guide into an app.",
+      "whyItMatters": "Manual route help can test the guide logic sooner than software. If visitors do not value the help, a polished app only hides the weak assumption."
+    },
+    {
+      "exampleId": "ch06-ex04-michael-physio",
+      "title": "Michael Asks for Texted Movement Videos",
+      "tags": [
+        "decision point",
+        "health",
+        "manual service"
+      ],
+      "planSpec": {
+        "domain": "remote physiotherapy manual service",
+        "audience": "health product team",
+        "stakes": "software investment may precede proof that patients submit movement videos",
+        "format": "decision_point",
+        "requiredBeat": "Michael asks three patients to text videos to a therapist before any portal exists"
+      },
+      "scenario": "You are beside Michael in a physiotherapy clinic exam room as a phone leans against a yoga block and therapist notes cover a one-week plan. The team wants a patient portal, but nobody knows whether people will submit movement videos. Before the software estimate is approved, Michael must decide whether to ask three patients to text videos for a week. The texted videos still deliver therapist feedback, so refusal would teach about behavior rather than software polish.",
+      "whatToDo": "Ask three patients to text movement videos for one week. Use therapist notes and submission rates to decide whether a portal solves a proven behavior.",
+      "whyItMatters": "The portal is waste if patients will not send videos. A manual service tests the core behavior before engineering turns the assumption into infrastructure."
+    },
+    {
+      "exampleId": "ch06-ex05-frida-book-club",
+      "title": "Frida Makes Six Matches by Spreadsheet",
+      "tags": [
+        "postmortem",
+        "community",
+        "manual match"
+      ],
+      "planSpec": {
+        "domain": "book-club matching landing page",
+        "audience": "community founder",
+        "stakes": "the matching algorithm is premature if readers will not join",
+        "format": "postmortem",
+        "requiredBeat": "Frida uses a spreadsheet to make six matches by hand after a landing-page signup"
+      },
+      "scenario": "It took Frida one signup weekend to stop designing the algorithm. The landing page worked well enough, and the spreadsheet sat open beside a stack of paperbacks. Before writing matching rules, she made six manual matches by hand. The postmortem showed whether readers wanted the match, not whether the algorithm was elegant. The spreadsheet keeps the matching promise small enough to test before algorithm work begins.",
+      "whatToDo": "Make the first six matches manually after landing-page signup. Check whether readers accept and attend before building matching logic.",
+      "whyItMatters": "The algorithm is premature if people will not join a matched club. The spreadsheet teaches demand before automation hides the question."
+    },
+    {
+      "exampleId": "ch06-ex06-tomas-warehouse",
+      "title": "Tomas Reads Voice Prompts in One Aisle",
+      "tags": [
+        "before after",
+        "warehouse",
+        "voice assist"
+      ],
+      "planSpec": {
+        "domain": "warehouse picking voice-assist prototype",
+        "audience": "logistics innovation team",
+        "stakes": "device procurement may be waste before workers accept voice prompts",
+        "format": "before_after",
+        "requiredBeat": "Tomás shadows pickers and reads prompts aloud through a headset for one aisle"
+      },
+      "scenario": "A headset cable is coiled on the packing bench beside a borrowed headset. Before, Tomas's logistics team priced devices for the whole warehouse. After one supervisor asks whether pickers will tolerate voice prompts, he shadows workers in one aisle and reads manual prompts aloud before any procurement order is signed. The borrowed headset tests aisle behavior while the procurement form stays unopened.",
+      "whatToDo": "Borrow one headset, shadow pickers, and read prompts manually in a single aisle. Decide on device procurement only after workers react to the voice flow.",
+      "whyItMatters": "Buying devices before testing acceptance makes waste expensive. One aisle with manual prompts exposes whether the workflow helps or irritates workers."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team calls its MVP a cheap version of the final product, then ships a confusing test that leaves customers unsure what value is being offered. In the review meeting, what did it misunderstand?",
+        "choices": [
+          "An MVP should be a learning instrument that is small but still honest enough to test the assumption.",
+          "An MVP should always include every feature customers requested.",
+          "An MVP should avoid customer contact until the full product is ready."
+        ],
+        "correctIndex": 0,
+        "explanation": "The point is learning with minimum waste, not cheapness for its own sake. A confusing test can fail to teach even if it is small.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A restaurant founder wants a waitlist app, but one phone could send manual text updates for two nights. Which move best fits MVP logic?",
+        "choices": [
+          "Build the app first because diners expect polished software.",
+          "Run the phone-based concierge test and measure return visits.",
+          "Skip testing because restaurants already understand waitlists."
+        ],
+        "correctIndex": 1,
+        "explanation": "The phone test completes a learning cycle before app work. It tests whether diners value updates without the waste of a full build.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A climate startup wants to buy sensors for home audits, but a rough walkthrough video could test whether homeowners act on advice. What should happen first?",
+        "choices": [
+          "Buy sensors to make the advice more credible.",
+          "Wait until the audit can be fully automated.",
+          "Send the video and manual checklist to test behavior."
+        ],
+        "correctIndex": 2,
+        "explanation": "The video tests action before hardware spend. Sensors may matter later, but they are premature if homeowners ignore advice.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A museum team wants an audio guide app with maps, clips, and routes, but first needs to know whether visitors actually value route help during a real afternoon visit. Which MVP best tests route value with minimum waste?",
+        "choices": [
+          "A manual route walk with rented headsets and a stopwatch.",
+          "A full app prototype with every stop included.",
+          "A survey asking visitors whether audio guides are useful."
+        ],
+        "correctIndex": 0,
+        "explanation": "The manual route tests whether visitors want route help in the museum. The full app is costly, and a survey does not expose actual route behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A health team wants a portal for movement videos, but nobody knows whether patients will submit videos. What is the smallest honest test?",
+        "choices": [
+          "Design the portal interface and ask patients for opinions.",
+          "Ask three patients to text videos to a therapist for one week.",
+          "Buy secure video storage before testing submissions."
+        ],
+        "correctIndex": 1,
+        "explanation": "Texted videos test the submission behavior directly. Interface opinions and storage decisions may matter after the behavior exists.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A book-club founder wants an algorithm before matching any readers, even though she has a spreadsheet, six willing members, and a shelf of paperbacks. Why might a spreadsheet be the better first build?",
+        "choices": [
+          "It proves spreadsheets are better than algorithms for community products.",
+          "It removes the need to understand reader preferences.",
+          "It manually tests whether readers want and accept matches before automation hides demand."
+        ],
+        "correctIndex": 2,
+        "explanation": "Manual matching tests the customer decision sooner. The point is not that spreadsheets are superior, but that automation should wait for proven demand.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A warehouse team wants to buy voice-assist devices, but workers may reject spoken prompts. What does a borrowed-headset test reveal?",
+        "choices": [
+          "Whether the workflow helps pickers before procurement makes the assumption expensive.",
+          "Whether the device vendor can deliver units quickly enough.",
+          "Whether voice technology is modern enough for logistics."
+        ],
+        "correctIndex": 0,
+        "explanation": "The borrowed headset tests worker acceptance in the aisle. Vendor timing and technology appeal miss the assumption that controls value.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team says its rough MVP failed because customers disliked the unfinished look. The test also lacked the core value customers were promised. What is the best diagnosis?",
+        "choices": [
+          "Customers can never evaluate early versions.",
+          "The team confused small with viable and did not create a fair test of the assumption.",
+          "The team should have hidden the test from customers."
+        ],
+        "correctIndex": 1,
+        "explanation": "An MVP must be small and honest enough to test value. If the core value is absent, the result may reflect a broken test rather than the assumption.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A founder can build a polished platform in three months or manually deliver the result to ten customers this week. Which is better if the main question is whether customers value the result?",
+        "choices": [
+          "The platform, because polish protects the brand.",
+          "Neither, because value cannot be learned without full automation.",
+          "The manual delivery, because it exposes the customer decision sooner with less waste."
+        ],
+        "correctIndex": 2,
+        "explanation": "Manual delivery is stronger when it tests the value assumption now. Polish and automation can wait until the team knows the result matters.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What is the real purpose of a minimum viable product?",
+      "back": "It exists to complete one learning cycle with as little waste as possible. It is a learning instrument, not a cheap excuse for a broken product.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "When is a manual MVP better than software?",
+      "back": "It is better when manual delivery exposes the customer behavior sooner. If one person, phone, spreadsheet, or borrowed headset can test the assumption, automation can wait.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A rough MVP confuses users and hides the core value. What does viable mean in MVP?",
+      "back": "Viable means the test creates enough of the promised value for the result to mean something. Small is useful only when the test is still honest.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A team wants to build infrastructure before testing behavior. What should you ask?",
+      "back": "Ask what smaller device could expose the behavior first. If a rough video, concierge service, or manual workflow can answer the question, infrastructure is premature.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "Why is an MVP not the final product with features missing?",
+      "back": "Because its shape should come from the question, not from a shrunken roadmap. The right MVP may be manual, low-fidelity, or concierge if that reaches learning faster.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to build the smallest honest learning device. The skill is removing everything that does not help expose the assumption while keeping enough value for customer behavior to mean something.",
+    "ifThenPlans": [
+      {
+        "context": "software build",
+        "plan": "If the team wants a platform, then ask whether a spreadsheet, phone, or manual service can test the same customer decision first."
+      },
+      {
+        "context": "hardware purchase",
+        "plan": "If procurement appears before behavior evidence, then borrow, simulate, or manually deliver one workflow before buying devices."
+      },
+      {
+        "context": "service design",
+        "plan": "If the full service seems large, then deliver the core result to a few customers by hand and measure whether they value it."
+      },
+      {
+        "context": "prototype review",
+        "plan": "If an MVP feels cheap or confusing, then restore the minimum value needed for a fair test and cut only the parts unrelated to learning."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, take one planned build and write a manual or low-fidelity version that could answer the same assumption within a week.",
+    "weeklyPractice": "Every week, inspect one build request and ask whether it is the shortest honest path to learning. Replace one overbuilt plan with a smaller test that still delivers the core value."
+  },
+  "memorableLines": [
+    {
+      "text": "The minimum viable product is not small because small is noble.",
+      "location": "breakdown.fastRead",
+      "why": "It blocks the common cheapness misread of MVP."
+    },
+    {
+      "text": "The size of the build should match the size of the question.",
+      "location": "breakdown.deepRead",
+      "why": "It gives a practical standard for scoping tests."
+    },
+    {
+      "text": "The test does not look like the product.",
+      "location": "breakdown.fullRead",
+      "why": "It makes room for manual, concierge, and low-fidelity MVPs."
+    }
+  ]
+}

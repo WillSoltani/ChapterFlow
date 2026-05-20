@@ -1,0 +1,198 @@
+{
+  "chapterId": "getting-things-done-ch04",
+  "number": 4,
+  "title": "Getting Started: Setting Up the Time, Space, and Tools",
+  "coreMove": "Set up the physical and digital conditions that make capturing and clarifying commitments friction-light.",
+  "sourcePressure": "This chapter moves from theory to operating conditions: enough time, space, and simple tools must be ready so capture and review are easier than informal memory.",
+  "chapterSpecificMisunderstanding": "Shopping for an elaborate productivity tool instead of preparing the few conditions that let the system be used daily.",
+  "sourceAlignmentTerms": [
+    "time",
+    "space",
+    "tools",
+    "setup",
+    "trusted system",
+    "capture readiness",
+    "friction"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "time, space, and tools",
+      "detail": "The source sidecar identifies these as the practical setup requirements for using the system.",
+      "useIn": "both",
+      "phrasingHint": "A trusted system starts before the first list: there has to be a place, a block of time, and ordinary tools within reach."
+    },
+    {
+      "kind": "artifact",
+      "name": "Penguin Books 2015 revised edition",
+      "detail": "The locked edition metadata identifies the revised and updated Penguin Books edition as the source basis.",
+      "useIn": "both",
+      "phrasingHint": "The revised edition keeps setup practical because modern capture now moves between paper, inboxes, and devices."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "a courthouse clerk reserving a Friday backlog reset block",
+      "audience": "a clerk whose counter, email, and forms produce loose commitments",
+      "stakes": "a missed seal request could delay a filing for days",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 8:05 a.m., Hannah blocks ninety minutes, clears the side counter, and labels two trays before opening the first envelope.",
+      "firstImage": "a date stamp beside two empty metal trays",
+      "mustInclude": [
+        "date stamp",
+        "metal trays",
+        "ninety-minute block"
+      ],
+      "mustAvoid": [
+        "public defender repeats from earlier plans"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "a touring sound technician rebuilding his portable admin kit after a lost invoice",
+      "audience": "a freelancer whose work happens in vans and venues",
+      "stakes": "payment and booking promises can vanish between load-out and the next city",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Andrew one unpaid festival invoice to admit that his kit had microphones for every venue and no capture tool for commitments.",
+      "firstImage": "coiled audio cables beside an unpaid invoice",
+      "mustInclude": [
+        "audio cables",
+        "invoice",
+        "zip pouch"
+      ],
+      "mustAvoid": [
+        "making the van a messy-life metaphor"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "a university admissions office before scholarship week",
+      "audience": "an administrator receiving applicant calls and faculty requests all day",
+      "stakes": "an incomplete scholarship file could miss committee review",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The copier warms with a papery smell while Margaux builds a small intake station beside the phone before the calls begin.",
+      "firstImage": "a copier light blinking warm-up beside file tabs",
+      "mustInclude": [
+        "copier light",
+        "file tabs",
+        "phone log"
+      ],
+      "mustAvoid": [
+        "classroom shells"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "a home-care physiotherapist preparing a car-based capture setup",
+      "audience": "a clinician moving between patients without an office desk",
+      "stakes": "exercise changes and equipment requests could stay in memory until they are gone",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "The passenger seat holds only a clipboard, a sealed pen, and a folder labeled in, because Lars has learned the car is where commitments arrive.",
+      "firstImage": "a clipboard strapped under a seat belt",
+      "mustInclude": [
+        "clipboard",
+        "sealed pen",
+        "patient folder"
+      ],
+      "mustAvoid": [
+        "using medical drama instead of setup friction"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "a game studio producer creating a low-friction bug triage corner",
+      "audience": "a producer whose team already has too many tools",
+      "stakes": "urgent defects could scatter across chat, screenshots, and hallway comments",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"No new app,\" Lin says, and points to the one shared capture board where every defect must land before triage.",
+      "firstImage": "a bug screenshot pinned beside a capture board",
+      "mustInclude": [
+        "bug screenshot",
+        "capture board",
+        "triage slot"
+      ],
+      "mustAvoid": [
+        "turning it into tool evangelism"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "a youth orchestra manager setting up concert-week administration in a church office",
+      "audience": "a volunteer coordinator who borrows space and has no permanent desk",
+      "stakes": "permission forms and instrument repairs could get lost in borrowed rooms",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "You can test Luca’s setup by asking where a new parent email, a broken viola peg, and a venue invoice would each land in ten seconds.",
+      "firstImage": "a folding music stand used as a temporary inbox",
+      "mustInclude": [
+        "music stand",
+        "parent email",
+        "venue invoice"
+      ],
+      "mustAvoid": [
+        "reusing classrooms or kitchens"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify setup friction",
+      "choose simple tools by job",
+      "separate setup from doing the work itself"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one capture place, clear one square foot of sorting surface, and put the capture tool where your next interruption will happen.",
+  "readingTimeMinutes": 12
+}

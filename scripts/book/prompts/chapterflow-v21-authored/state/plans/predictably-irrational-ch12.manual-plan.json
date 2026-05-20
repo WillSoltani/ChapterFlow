@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch12",
+  "number": 12,
+  "title": "The Context of Our Character, Part 2",
+  "coreMove": "Translate indirect value back into money before moral distance softens the rule.",
+  "sourcePressure": "The source extends the character argument by showing that cheating becomes easier when value is mediated through tokens, goods, credits, or other noncash forms.",
+  "chapterSpecificMisunderstanding": "The weak version repeats Part 1 on honesty; the chapter-specific lesson is that distance from cash makes value feel morally softer.",
+  "sourceAlignmentTerms": ["token effect", "cash distance", "indirect value", "noncash reward", "moral distance", "abstraction"],
+  "forbiddenFrames": {
+    "hook": ["A token can launder the dollar", "Cash has a conscience", "The disguise changes the rule"],
+    "counterintuition": ["Value is value", "Credits are harmless", "Noncash rewards are cleaner"],
+    "tryThisNow": ["Translate it to dollars", "Treat points like cash", "Name the value"],
+    "examples": ["office pens", "arcade tokens", "meal-plan points"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital parking validation stickers",
+      "audience": "a clinic receptionist deciding whether to hand extras to friends",
+      "stakes": "misusing real value because stickers feel less like money than cash from the drawer",
+      "format": "decision_point",
+      "requiredBeat": "the receptionist writes the dollar value beside the validation roll before deciding whether an extra sticker is a harmless favor",
+      "firstImage": "a roll of parking validation stickers beside a clinic appointment ledger",
+      "mustInclude": ["dollar value", "validation roll", "appointment ledger"],
+      "mustAvoid": ["cash drawer theft", "honor pledge", "office supplies"]
+    },
+    {
+      "domain": "ski resort lift-pass barcode credits",
+      "audience": "a seasonal employee tempted to transfer unused guest credits",
+      "stakes": "giving away access because barcode credits feel like leftovers, not inventory",
+      "format": "dialogue",
+      "requiredBeat": "a supervisor scans one credit and shows the full ticket price before the employee calls it unused",
+      "firstImage": "a lift-pass scanner blinking beside a rack of rental skis",
+      "mustInclude": ["barcode credit", "full ticket price", "scanner"],
+      "mustAvoid": ["public beer order", "sports ticket ownership", "arcade tokens"]
+    },
+    {
+      "domain": "corporate travel meal vouchers at a training hotel",
+      "audience": "a trainee deciding whether to trade unused vouchers for cash with another guest",
+      "stakes": "bending policy because vouchers feel like paper perks rather than reimbursed company money",
+      "format": "vignette",
+      "requiredBeat": "the trainee totals the voucher stack at menu prices and writes that amount on the envelope before deciding",
+      "firstImage": "meal vouchers fanned beside a hotel breakfast menu",
+      "mustInclude": ["menu prices", "voucher envelope", "training policy"],
+      "mustAvoid": ["gift card bonus", "expense report", "free lounge pass"]
+    },
+    {
+      "domain": "aquarium membership guest passes",
+      "audience": "a front-desk manager tracking staff use of complimentary guest passes",
+      "stakes": "staff treating passes as no-cost favors because no cash changes hands",
+      "format": "postmortem",
+      "requiredBeat": "the manager converts each missing pass into the admission price on the weekly sheet and watches the pattern become harder to excuse",
+      "firstImage": "blue guest passes stacked under a plexiglass ticket window",
+      "mustInclude": ["admission price", "weekly sheet", "complimentary pass"],
+      "mustAvoid": ["museum membership decoy", "family entertainment vote", "cash register theft"]
+    },
+    {
+      "domain": "university lab using reagent allotment codes",
+      "audience": "a graduate student ordering supplies under a shared grant code",
+      "stakes": "adding personal side-project reagents because allotment codes feel abstract",
+      "format": "reflection",
+      "requiredBeat": "the student converts the code balance into grant dollars next to each reagent before submitting the order",
+      "firstImage": "a reagent order screen beside a handwritten grant-code card",
+      "mustInclude": ["grant dollars", "reagent list", "allotment code"],
+      "mustAvoid": ["research apparatus ownership", "clinic freezer", "generic academic cheating"]
+    },
+    {
+      "domain": "festival drink tokens handled by volunteers",
+      "audience": "a volunteer captain preventing casual token skimming",
+      "stakes": "tokens disappearing because they look like plastic chips rather than revenue",
+      "format": "before_after",
+      "requiredBeat": "after the captain posts the cash equivalent above the token tray, volunteers count tokens with the same care as bills",
+      "firstImage": "colored drink tokens in a shallow tray under a string of booth lights",
+      "mustInclude": ["cash equivalent", "token tray", "shift count"],
+      "mustAvoid": ["beer preference", "arcade leftovers", "public ordering"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify moral distance created by noncash value", "translate tokens, credits, vouchers, and goods into explicit value", "distinguish Part 2 token effects from Part 1 reminders", "evaluate whether a design makes indirect value feel concrete before misuse"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one points balance, voucher, credit, or shared good and write its cash equivalent directly beside the place where it gets used.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,204 @@
+{
+  "chapterId": "never-eat-alone-ch31",
+  "number": 31,
+  "title": "Find Mentors, Find Mentees, Repeat",
+  "coreMove": "Keep learning and teaching in circulation instead of waiting for one heroic mentor.",
+  "sourcePressure": "Healthy network growth keeps guidance moving in both directions through mentors, mentees, and repeated renewal.",
+  "chapterSpecificMisunderstanding": "Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+  "sourceAlignmentTerms": [
+    "mentors",
+    "mentees",
+    "repeat",
+    "guidance",
+    "reciprocity",
+    "renewal"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Eleanor Roosevelt",
+      "detail": "listed in the frozen table of contents as a Connectors' Hall of Fame Profile after chapter 31",
+      "useIn": "fullRead",
+      "phrasingHint": "Eleanor Roosevelt can appear as a profile marker for guidance moving through generations and circles."
+    }
+  ],
+  "sourceAnchorNote": "Use only these frozen anchors and do not add unsupported named anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Stuart",
+      "domain": "apprenticeship shadow schedule",
+      "audience": "a reader facing apprenticeship shadow schedule where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if apprenticeship shadow schedule becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Stuart asks for guidance in one place and passes useful guidance along in another in front of coaching circle card, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "coaching circle card on the edge of apprenticeship shadow schedule",
+      "mustInclude": [
+        "coaching circle card",
+        "apprenticeship shadow schedule constraint",
+        "one named next step tied to mentors"
+      ],
+      "mustAvoid": [
+        "Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Tyler",
+      "domain": "first-time manager coaching circle",
+      "audience": "a reader facing first-time manager coaching circle where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if first-time manager coaching circle becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Tyler asks for guidance in one place and passes useful guidance along in another in front of critique form, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "critique form on the edge of first-time manager coaching circle",
+      "mustInclude": [
+        "critique form",
+        "first-time manager coaching circle constraint",
+        "one named next step tied to mentors"
+      ],
+      "mustAvoid": [
+        "Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Wesley",
+      "domain": "graduate portfolio critique",
+      "audience": "a reader facing graduate portfolio critique where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if graduate portfolio critique becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Wesley asks for guidance in one place and passes useful guidance along in another in front of breakfast tab, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "breakfast tab on the edge of graduate portfolio critique",
+      "mustInclude": [
+        "breakfast tab",
+        "graduate portfolio critique constraint",
+        "one named next step tied to mentors"
+      ],
+      "mustAvoid": [
+        "Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Frederick",
+      "domain": "retired founder breakfast",
+      "audience": "a reader facing retired founder breakfast where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if retired founder breakfast becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Frederick asks for guidance in one place and passes useful guidance along in another in front of observation badge, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "observation badge on the edge of retired founder breakfast",
+      "mustInclude": [
+        "observation badge",
+        "retired founder breakfast constraint",
+        "one named next step tied to mentors"
+      ],
+      "mustAvoid": [
+        "Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "community mediation observation",
+      "audience": "a reader facing community mediation observation where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if community mediation observation becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Pablo asks for guidance in one place and passes useful guidance along in another in front of ward chart, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "ward chart on the edge of community mediation observation",
+      "mustInclude": [
+        "ward chart",
+        "community mediation observation constraint",
+        "one named next step tied to mentors"
+      ],
+      "mustAvoid": [
+        "Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Zain",
+      "domain": "nursing student ward round",
+      "audience": "a reader facing nursing student ward round where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if nursing student ward round becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Zain asks for guidance in one place and passes useful guidance along in another in front of custody calendar, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "custody calendar on the edge of nursing student ward round",
+      "mustInclude": [
+        "custody calendar",
+        "nursing student ward round constraint",
+        "one named next step tied to mentors"
+      ],
+      "mustAvoid": [
+        "Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish mentors from Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+      "choose the visible action that performs: Keep learning and teaching in circulation instead of waiting for one heroic mentor.",
+      "diagnose when a scenario drifts into Turning mentoring into hierarchy, hero worship, or one-way extraction.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real mentors moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch07",
+  "number": 7,
+  "title": "Do Your Homework",
+  "coreMove": "Prepare enough that the first exchange proves attention rather than appetite.",
+  "sourcePressure": "Preparation is the baseline of respectful connection: research makes questions relevant and keeps access from being wasted.",
+  "chapterSpecificMisunderstanding": "Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+  "sourceAlignmentTerms": [
+    "homework",
+    "research",
+    "preparation",
+    "relevant questions",
+    "respectful access",
+    "human relevance"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Diana",
+      "domain": "city council biography packet",
+      "audience": "a reader facing city council biography packet where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if city council biography packet becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Diana replaces a generic opener with one grounded in a specific public detail in front of archive printout, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "archive printout on the edge of city council biography packet",
+      "mustInclude": [
+        "archive printout",
+        "city council biography packet constraint",
+        "one named next step tied to homework"
+      ],
+      "mustAvoid": [
+        "Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Fiona",
+      "domain": "publisher catalog margin notes",
+      "audience": "a reader facing publisher catalog margin notes where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if publisher catalog margin notes becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Fiona replaces a generic opener with one grounded in a specific public detail in front of catalog page, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "catalog page on the edge of publisher catalog margin notes",
+      "mustInclude": [
+        "catalog page",
+        "publisher catalog margin notes constraint",
+        "one named next step tied to homework"
+      ],
+      "mustAvoid": [
+        "Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Georgia",
+      "domain": "hospital department annual report",
+      "audience": "a reader facing hospital department annual report where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if hospital department annual report becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Georgia replaces a generic opener with one grounded in a specific public detail in front of annual report spine, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "annual report spine on the edge of hospital department annual report",
+      "mustInclude": [
+        "annual report spine",
+        "hospital department annual report constraint",
+        "one named next step tied to homework"
+      ],
+      "mustAvoid": [
+        "Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Harriet",
+      "domain": "conference speaker archive spreadsheet",
+      "audience": "a reader facing conference speaker archive spreadsheet where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if conference speaker archive spreadsheet becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Harriet replaces a generic opener with one grounded in a specific public detail in front of spreadsheet tab, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "spreadsheet tab on the edge of conference speaker archive spreadsheet",
+      "mustInclude": [
+        "spreadsheet tab",
+        "conference speaker archive spreadsheet constraint",
+        "one named next step tied to homework"
+      ],
+      "mustAvoid": [
+        "Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "foundation grant database",
+      "audience": "a reader facing foundation grant database where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if foundation grant database becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Mathieu replaces a generic opener with one grounded in a specific public detail in front of grant rubric, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "grant rubric on the edge of foundation grant database",
+      "mustInclude": [
+        "grant rubric",
+        "foundation grant database constraint",
+        "one named next step tied to homework"
+      ],
+      "mustAvoid": [
+        "Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "product review transcript folder",
+      "audience": "a reader facing product review transcript folder where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if product review transcript folder becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Yusuf replaces a generic opener with one grounded in a specific public detail in front of transcript highlight, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "transcript highlight on the edge of product review transcript folder",
+      "mustInclude": [
+        "transcript highlight",
+        "product review transcript folder constraint",
+        "one named next step tied to homework"
+      ],
+      "mustAvoid": [
+        "Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish homework from Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+      "choose the visible action that performs: Prepare enough that the first exchange proves attention rather than appetite.",
+      "diagnose when a scenario drifts into Turning homework into robotic stalking, trivia-dropping, or a pretext for showing off.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real homework moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

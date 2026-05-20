@@ -1,0 +1,197 @@
+{
+  "chapterId": "thinking-in-bets-ch02",
+  "number": 2,
+  "title": "Life is poker, not chess",
+  "coreMove": "Commit under incomplete information while describing confidence as a range, not a verdict.",
+  "sourcePressure": "The chapter makes poker the governing model for real decisions because information stays hidden and luck can separate a sound process from a single result.",
+  "chapterSpecificMisunderstanding": "The writer must not teach caution as waiting for full certainty; the lesson is deciding while naming what remains hidden.",
+  "sourceAlignmentTerms": [
+    "hidden information",
+    "incomplete board",
+    "variance",
+    "skill and luck",
+    "calibrated confidence",
+    "I'm not sure",
+    "process quality"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "chess board",
+      "detail": "The source uses chess as the near-perfect-information contrast that misleads people about ordinary decisions.",
+      "useIn": "both",
+      "phrasingHint": "A chess board offers the comfort of exposed pieces, but most real choices do not lay their facts out that politely."
+    },
+    {
+      "kind": "artifact",
+      "name": "poker hand",
+      "detail": "The source uses poker as the structural model for hidden information, partial reads, and luck shaping a result after commitment.",
+      "useIn": "both",
+      "phrasingHint": "A poker hand makes the missing information visible by refusing to show it."
+    },
+    {
+      "kind": "artifact",
+      "name": "I'm not sure",
+      "detail": "The source reframes the admission as accurate reporting rather than weakness when the situation genuinely contains uncertainty.",
+      "useIn": "deepRead",
+      "phrasingHint": "In an incomplete environment, the honest sentence is often the one that leaves room for what cannot yet be seen."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Life is not chess",
+      "The board is never complete",
+      "Hidden cards are everywhere"
+    ],
+    "counterintuition": [
+      "Certainty is always bad",
+      "Decisiveness requires total information"
+    ],
+    "tryThisNow": [
+      "Say I am not sure today",
+      "Make a pros and cons list"
+    ],
+    "examples": [
+      "product launch with partial market data",
+      "student investment club lucky win",
+      "seminar forecast under professor pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "orchard frost insurance purchase before blossom season",
+      "audience": "family-farm operators",
+      "stakes": "whether a costly premium is bought without knowing the late-April frost pattern",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Daniel marks known bud counts, unknown night temperatures, and premium cost in separate columns before recommending a policy with a confidence range.",
+      "firstImage": "Rows of closed apple buds shine silver in the cold before sunrise.",
+      "mustInclude": [
+        "bud count sheet",
+        "weather model spread",
+        "premium invoice"
+      ],
+      "mustAvoid": [
+        "generic farming risk story"
+      ]
+    },
+    {
+      "domain": "indie game studio deciding whether to launch in early access",
+      "audience": "small creative teams",
+      "stakes": "cash runs out if they wait, reputation suffers if hidden bugs dominate release",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Camille tells the team which bugs are visible, which player reactions remain hidden, and what launch size preserves a chance to learn without pretending the board is complete.",
+      "firstImage": "At 9:18 p.m., Camille watches the bug tracker refresh beside the payroll runway spreadsheet.",
+      "mustInclude": [
+        "bug tracker",
+        "payroll runway",
+        "limited early-access cohort"
+      ],
+      "mustAvoid": [
+        "generic software launch postmortem"
+      ]
+    },
+    {
+      "domain": "emergency department holiday staffing schedule",
+      "audience": "nurse managers",
+      "stakes": "too few staff risks patient waits; too many staff empties a strained budget",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Tell me what we do not know yet,\" Sophie says, then separates booked vacations, flu trend uncertainty, and agency-nurse cost before making the call.",
+      "firstImage": "\"Tell me what we do not know yet,\" Sophie says, tapping the holiday roster.",
+      "mustInclude": [
+        "holiday roster",
+        "flu trend",
+        "agency-nurse rate card"
+      ],
+      "mustAvoid": [
+        "triage-review blame from ch1"
+      ]
+    },
+    {
+      "domain": "museum exhibit attendance forecast before a traveling show opens",
+      "audience": "public programming directors",
+      "stakes": "printing too many catalogs wastes money; printing too few misses revenue",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Pavel states a 60-75 percent range for the catalog order and names the hidden variables instead of giving the board a fake exact number.",
+      "firstImage": "Fresh catalog paper snaps under Pavel’s thumb as the board waits for one clean number.",
+      "mustInclude": [
+        "catalog print quote",
+        "school-tour bookings",
+        "weather-sensitive attendance"
+      ],
+      "mustAvoid": [
+        "lost museum contract from ch1"
+      ]
+    },
+    {
+      "domain": "municipal snowplow route redesign before the first storm",
+      "audience": "operations supervisors",
+      "stakes": "a wrong routing model strands side streets and exposes the city to complaints",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lars moves from defending one perfect route map to showing three route options with assumptions written directly on each map.",
+      "firstImage": "It took Lars one storm season to stop calling a route map finished.",
+      "mustInclude": [
+        "salt depot limit",
+        "route map overlays",
+        "school-zone priority"
+      ],
+      "mustAvoid": [
+        "generic city hall budget vote"
+      ]
+    },
+    {
+      "domain": "student exchange placement choice with incomplete host-family information",
+      "audience": "college advisers and students",
+      "stakes": "a student must choose a placement before every variable about fit can be known",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You help Isabel state what she knows, what remains hidden, and what decision rule she will use if the missing information stays missing.",
+      "firstImage": "You have three host profiles open and none of them answers the question Isabel most wants answered.",
+      "mustInclude": [
+        "host profiles",
+        "language placement score",
+        "deadline email"
+      ],
+      "mustAvoid": [
+        "generic study-abroad excitement"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify hidden-information environments",
+      "distinguish calibrated action from indecision",
+      "separate luck from skill without flattening either",
+      "state confidence as ranges under incomplete information"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Rewrite one yes-or-no decision as three parts: what is known, what is hidden, and the confidence range you can defend anyway.",
+  "readingTimeMinutes": 12
+}

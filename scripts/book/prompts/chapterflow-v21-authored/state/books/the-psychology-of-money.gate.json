@@ -1,0 +1,830 @@
+{
+  "bookId": "the-psychology-of-money",
+  "title": "The Psychology of Money",
+  "author": "Morgan Housel",
+  "promotedAt": "2026-05-13T19:43:00.266Z",
+  "chapterCount": 22,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/4 (75%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That coverage slider is ridiculous,\" the husband says as Maren stands by the flood map pinned above two damp claim folders. His wife touches the folder from the last evacuation and says it is not en…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"nobody is neutral about\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"luck and risk often\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"You know this estimate is light,\" a colleague whispers as Celine rests the numbered bid paddle on the catalog page. She predicts her market knowledge will keep her calm. Before bidding starts, she w…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Laura and her brother one glossy marina rendering to feel embarrassed by the salt-stained repair ledger. Before, the customer list looked ordinary: winter fixes, old boats, names their father…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Compounding rewards duration, consistency, small edges, and an unbroken time hor"
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/5 (60%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The registry boxes smell like dust and paper glue as Kiran carries them to the grant agenda, follow-up rate circled in blue. \"Twelve years is a long setup,\" one reviewer says. Kiran has to decide whe…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Guess year twenty before I show you,\" Julia says, folding the projection sheet so the hidden final column stays covered. The automatic deposit slip shows only a tiny weekly amount, and several teens…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Durable wealth depends on survival, endurance, restraint, and margin because a p"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at Isabelle's translation dashboard, where one client color fills most of the month. Before, last year's growth felt like freedom. After she compares that growth with invoice concentr…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which bill gets paid if three snow nights close the house? Maeve places the sold-out box-office report beside last year's snow cancellation notice and a reserve target the board calls timid. \"We need…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Those reserve crews are idle too often,\" the CFO says as Nora opens the route board with red weather cells moving toward hub cities. The reserve roster looks inefficient beside the fine schedule. Ex…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/5 (60%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Money's deepest return is autonomy: control over time, attention, relationships,"
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/5 (60%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The locker-room bench is cold under Ethan's hand, steel-toe boots below it and the payroll app open beside an overtime text. The safety notice still says the guard rail is pending. \"We need you overn…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Clara three quiet seasons to understand the kiln receipt clipped above shelves of drying bowls. The wholesale order would raise revenue and force a production schedule she no longer wants. Be…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a premium weekend shift\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/5 (60%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Everyone will notice,\" Andrew tells his sister, sliding the shoebox under the bed with the receipt still inside. On the first-day hallway walk, he predicts the shoes will make him feel known. By lun…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are in Yusuf's office with a brass plaque mockup beside a printed waitlist and the gift agreement. The donor keeps adjusting plaque size. Yusuf must decide whether to treat recognition as harmles…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"wedding entrance can be\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Real wealth is often invisible: savings, reserves, restraint, and unspent resour"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/5 (60%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The studio mirror reflects the balloon arch after Chloe's launch party, and the photos look successful. Before, the rented backdrop made the business feel established. After she opens the unpaid quar…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Everyone sees that van,\" the teenager says as David unfolds the dealership brochure beside the old van title. The payment quote looks manageable until his wife writes the rent math underneath it. Da…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Poppy three winters to stop apologizing for the plain storefront. A flour-dusted oven plate is stamped paid in full, and the supplier credit offer sits beside a storefront estimate. A custome…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"months of rent a\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "An online gear cart sits beside Leah's marked-up client contract, where the demands grow sharper with each clause. The new lens would make her feel more legitimate, but her savings target is still th…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Another repair estimate?\" the hygienist asks as Zoe turns her cracked phone screen toward the train-pass price. Before, her savings label was a beach photo she never believed. After the car repair e…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"before you know which\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/5 (60%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which loan is cheaper if the menu changes when rates jump? Nicolas lays a laminated menu beside two loan term sheets and the menu cost sheet. The variable loan wins today. Then he runs the rate scena…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"that question\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a cheaper variable loan\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "hook",
+            "message": "hook opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "The harbor forecast looks calm until you ask which ship, rule, storm, or strike "
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The harbor forecast map is dotted with ships waiting offshore while Ellen checks a berth schedule built on five calm years. Suppose those calm years are removed. She must decide whether the plan stil…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Monica three predictable holiday seasons to trust the spreadsheet too much. The prototype box sits beside a freight quote and holiday calendar, and the team predicts another clean print run. …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Room for error lets budgets, timelines, leverage, and expectations survive volat"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Find one plan with no spare room. Add the most likely delay, cost, or mistake, t"
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/5 (60%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Rowan one load test to make unused capacity visible. The status dashboard turns yellow with the fundraiser clock still hours away. Executives predict normal traffic will be fine. Rowan must d…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which apartment is affordable after real life enters the math? Livia and her roommates place the application beside an irregular cost list: medication, travel, slow-paycheck delays. Before, the broke…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"empty slots are not\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rotation badges clack against Ariana's rank list as she sits after another night shift. One month made her miss procedures, another made her miss long patient relationships, another made her miss…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What does album five sound like when Julian is no longer twenty-two? The contract page has album-five circled in red ink, and the tour calendar already looks full. Julian must decide whether to sign …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Gillian sets a race bib box beside volunteer resignation emails after the fifth annual race. Gillian rereads the original founding speech and hears the word forever differently. In the postmortem, sh…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"contract page with album\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 5 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Good returns charge a fee, often volatility, uncertainty, doubt, regret, or envy"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/5 (60%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which allocation is cheap if the fee is a red drop the size of a year's salary? Vera moves the allocation slider and watches the drawdown simulator fall six figures. She predicts she can handle volat…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The policy packet lies beside Russell's cattle count on a feed-store receipt, both held flat by a coffee mug. The premium is ugly enough to resent. The liquidation estimate is uglier. Russell must de…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The weather bulletin snaps under Malcolm's thumb beside the guide roster and cancellation policy. After canceling the climb, clients want to know why they paid for a day that produced no summit. In t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A planner names the emotional fee of a strategy and decides the fee is too high. What is the right conclusion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants upside, stability, speed, and no complaints from customers, staff, or owners. What should a sober plan do?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is not proof the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Before taking one piece of advice today, write the giver's horizon, incentive, a"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which deadline is hidden inside the offer under the rowhouse door? Heidi reads the purchase offer beside her property tax bill while her brother says, \"They know something we do not.\" Heidi must deci…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the advice may be\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You have a research memo open with fraud headlines clipped to clinical trial trend lines, and a client note due before noon. Bernard can sound sharp by making scandal the whole frame. Before sending,…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Does one bad harvest cancel five years of better soil? Stefan has a soil test report smudged with field dust and a harvest loss sheet that makes his stomach tighten. Before, the program felt like pro…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The conference room is dark except for a breach headline glowing above a hidden control log. Yara asks executives to estimate how many incidents the boring controls prevented last quarter. Before rev…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Adele until the third family dinner to stop using one word for the bankruptcy. The folded notice sits beside a legal pad with four columns: income loss, medical bills, pride, and timing. Befo…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which slide helps the next pilot more: a villain or a map? Catherine opens the investor update and sees the first version blaming one vendor. After reading the pilot data again, she replaces it with …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "hook",
+            "message": "hook opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "The cash reserve, debt cap, dividend rule, and hiring pace finally fit on one wa"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Pick one current money choice. Mark it freedom, resilience, vanity, or patience,"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Approve the dividend first,\" one sibling says as Diana tapes a butcher-paper policy sheet to the warehouse wall. The cash reserve, debt cap, dividend rule, and hiring pace sit in separate boxes. Bef…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Hugo smooths a delivery delay notice curling at the edges where it is taped to a stainless fermenter. After the distributor delay, Hugo traces the week backward: cash reserve too thin, owner salaries…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"cash reserve debt cap\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which number matters if the control clauses take away the reason Saskia started? The term sheet sits open with highlights around board rights and veto language. Before replying, she must decide wheth…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A planner asks a client, \"Where would you not recommend this rule to someone else?\" Why is that useful?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Pick one normal money pressure, such as a mortgage, credit balance, or upgrade. "
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "When did a mortgage become the entrance exam for adulthood? Evelyn places a 1940s loan brochure and a new open-house flyer in the same glass case, then rewrites the policy caption. Visitors must deci…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Charlotte opens a portable file box of store-card statements under fluorescent office light, each folder sorted by year. \"I should have known better,\" the client says. Charlotte must decide to map wh…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The checkout prototype clicks softly as Adam moves payment buttons into a cleaner row. Pay now, pay later, store card, loyalty credit: all look normal. Before launch, the team must decide to label ea…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Irene one community archive day to see the family habit as a timeline. The folding table holds ration books, mortgage papers, and a teen card offer. Before, each document felt separate. After…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"like human nature once\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 76
+  },
+  "bookGate": {
+    "bookId": "the-psychology-of-money",
+    "chapterCount": 22,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        72,
+        64,
+        62
+      ],
+      "answerPositionPctMax": 0.36363636363636365,
+      "totalQuizQuestions": 198,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "the-psychology-of-money",
+        "chapterCount": 22,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "chapterId": "blue-ocean-strategy-ch08",
+  "number": 8,
+  "title": "Build Execution into Strategy",
+  "coreMove": "Earn cooperation by engaging people before the choice, explaining the reasoning after it, and making the new expectations unmistakable.",
+  "sourcePressure": "Use fair process: engagement, explanation, and expectation clarity, so execution commitment is built during strategy formation rather than demanded afterward.",
+  "chapterSpecificMisunderstanding": "Thinking fair process means consensus, endless input, or making everyone happy with the final decision.",
+  "sourceAlignmentTerms": [
+    "fair process",
+    "engagement",
+    "explanation",
+    "expectation clarity",
+    "process legitimacy",
+    "execution commitment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "fair process",
+      "detail": "official support defines fair process around engagement, explanation, and expectation clarity",
+      "useIn": "both",
+      "phrasingHint": "Fair process has three plain tests: people were engaged, the decision was explained, and the expectations are clear enough to act on."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "delivery route redesign and driver engagement",
+      "audience": "a dispatch leader under pressure to cut fuel",
+      "stakes": "whether drivers follow the new route or quietly route around it",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she sees public agreement turn into private workarounds because driver knowledge was never engaged",
+      "firstImage": "The locked route map glows above the dispatch counter while three drivers compare detours",
+      "mustInclude": [
+        "locked route map",
+        "fuel target sheet",
+        "driver detour notes"
+      ],
+      "mustAvoid": [
+        "generic logistics dashboard"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "software architecture decision with explanation and build rules",
+      "audience": "a technical lead choosing under deadline pressure",
+      "stakes": "whether engineers commit to a decision they did not all prefer",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "he must choose one architecture after engaging risks, then explain the tradeoff and write build rules clearly",
+      "firstImage": "You can hear the server fans while Etienne watches two senior engineers wait for the call",
+      "mustInclude": [
+        "architecture sketch",
+        "risk register",
+        "build-rule checklist"
+      ],
+      "mustAvoid": [
+        "generic software agile ceremony"
+      ]
+    },
+    {
+      "protagonistName": "Anders",
+      "domain": "clinic digital check-in shaped by staff and patient trials",
+      "audience": "a healthcare leader replacing paper forms",
+      "stakes": "whether staff and patients cooperate with a required change",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "engagement changes implementation details without reversing the decision to replace paper",
+      "firstImage": "It took Anders one lobby trial to learn the tablet stand was facing the wrong people",
+      "mustInclude": [
+        "tablet stand",
+        "paper form box",
+        "patient trial sticker"
+      ],
+      "mustAvoid": [
+        "generic app rollout"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "retail uniform change tied to service expectations",
+      "audience": "a store manager rolling out a customer-visibility strategy",
+      "stakes": "whether staff see the change as branding whim or service logic",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she gives the reason and exact new behavior instead of issuing only the uniform rule",
+      "firstImage": "\"Are we mannequins now?\" a cashier asks Lin, tugging the blue vest from its sleeve",
+      "mustInclude": [
+        "blue vest rack",
+        "service-zone card",
+        "customer question log"
+      ],
+      "mustAvoid": [
+        "generic dress-code gripe"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "childcare staffing schedule and fake engagement",
+      "audience": "a center director balancing ratios, parents, and staff fatigue",
+      "stakes": "whether staff follow the schedule or trade shifts unofficially",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he sees that fake engagement damaged trust more than a direct decision would have",
+      "firstImage": "At 6:05 p.m., Ryan finds three unofficial shift swaps taped inside a cubby door",
+      "mustInclude": [
+        "ratio chart",
+        "shift swap note",
+        "parent pickup board"
+      ],
+      "mustAvoid": [
+        "generic HR policy story"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "theater stage plot and unclear expectations",
+      "audience": "a production lead trying to speed scene changes",
+      "stakes": "whether crew cooperation survives opening week",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she predicts a walkthrough created buy-in, then missed cues reveal expectations were never clear",
+      "firstImage": "Gaffer tape peels up at center stage as Catarina hears the wrong flat roll in",
+      "mustInclude": [
+        "stage plot",
+        "cue sheet",
+        "tape spike marks"
+      ],
+      "mustAvoid": [
+        "generic creative-team harmony"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply engagement, explanation, and expectation clarity",
+      "distinguish fair process from consensus",
+      "predict execution failure when people were bypassed"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one decision people must execute, write the engagement you owe, the reason you will explain, and the exact expectation.",
+  "readingTimeMinutes": 12
+}

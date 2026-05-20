@@ -1,0 +1,196 @@
+{
+  "chapterId": "ego-is-the-enemy-ch24",
+  "number": 24,
+  "title": "Maintain your own scorecard",
+  "coreMove": "Measure against the standard you can defend when public scores misread the work.",
+  "sourcePressure": "Failure section: self-honest standards replacing external validation. Supported by frozen TOC and book skeleton; no per-chapter source sidecar exists in the latest run.",
+  "chapterSpecificMisunderstanding": "Turning the scorecard into private self-flattery rather than a stricter standard than applause or blame.",
+  "sourceAlignmentTerms": [
+    "scorecard",
+    "standard",
+    "external validation",
+    "self-honesty",
+    "measure",
+    "public score"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "No named person, study, place, or artifact is available in the frozen source sidecar for this chapter; use fictional scenarios only and do not invent source anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of scorecard",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple scorecard is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Matteo",
+      "domain": "art prize rejection review",
+      "audience": "a reader facing art prize rejection review pressure who needs to practice chapter 24's move without turning it into scorecard advice in general",
+      "stakes": "a concrete standard in art prize rejection review will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "builds a private scorecard stricter than the public one and uses it to revise the work in the concrete setting of art prize rejection review; make the lesson visible through action, not explanation",
+      "firstImage": "an exam appeal packet with the scoring standard attached sits between Matteo and the easiest explanation in the art prize rejection review room.",
+      "mustInclude": [
+        "scorecard",
+        "standard",
+        "art prize"
+      ],
+      "mustAvoid": [
+        "do not turn this into scorecard as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Tomas",
+      "domain": "jury deliberation notes",
+      "audience": "a reader facing jury deliberation notes pressure who needs to practice chapter 24's move without turning it into scorecard advice in general",
+      "stakes": "a concrete standard in jury deliberation notes will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "checks the applause against the standard and rejects the easy grade in the concrete setting of jury deliberation notes; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Tomas hears, with a parenting schedule with the angry margin notes removed already on the table.",
+      "mustInclude": [
+        "scorecard",
+        "standard",
+        "jury deliberation"
+      ],
+      "mustAvoid": [
+        "do not turn this into scorecard as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "scientific replication failure",
+      "audience": "a reader facing scientific replication failure pressure who needs to practice chapter 24's move without turning it into scorecard advice in general",
+      "stakes": "a concrete standard in scientific replication failure will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "uses the missed promotion to audit the standard rather than flatter the resentment in the concrete setting of scientific replication failure; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a reopening checklist with the first quiet repair dated makes the pressure in scientific replication failure visible.",
+      "mustInclude": [
+        "scorecard",
+        "standard",
+        "scientific replication"
+      ],
+      "mustAvoid": [
+        "do not turn this into scorecard as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "state exam appeal",
+      "audience": "a reader facing state exam appeal pressure who needs to practice chapter 24's move without turning it into scorecard advice in general",
+      "stakes": "a concrete standard in state exam appeal will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "writes the measure that would still matter if the crowd were wrong in either direction in the concrete setting of state exam appeal; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Pablo's thumb stop over a rejected grant rubric with one blank evidence column before the ego-favoring move happens.",
+      "mustInclude": [
+        "scorecard",
+        "standard",
+        "state exam"
+      ],
+      "mustAvoid": [
+        "do not turn this into scorecard as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "product review backlash",
+      "audience": "a reader facing product review backlash pressure who needs to practice chapter 24's move without turning it into scorecard advice in general",
+      "stakes": "a concrete standard in product review backlash will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "lets the internal scorecard correct him when public blame is too crude in the concrete setting of product review backlash; make the lesson visible through action, not explanation",
+      "firstImage": "It took Javier until the third review of a shipping manifest with the profitable reroute circled to see what ego had protected.",
+      "mustInclude": [
+        "scorecard",
+        "standard",
+        "product review"
+      ],
+      "mustAvoid": [
+        "do not turn this into scorecard as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "missed promotion calibration",
+      "audience": "a reader facing missed promotion calibration pressure who needs to practice chapter 24's move without turning it into scorecard advice in general",
+      "stakes": "a concrete standard in missed promotion calibration will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "chooses the standard that can survive both praise and punishment in the concrete setting of missed promotion calibration; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when a cracked proof tray beside the certification sheet becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "scorecard",
+        "standard",
+        "missed promotion"
+      ],
+      "mustAvoid": [
+        "do not turn this into scorecard as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish scorecard from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Measure against the standard you can defend when public scores misread the work.",
+      "spot when a scenario has drifted into journaling prompts",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves scorecard or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,196 @@
+{
+  "chapterId": "ego-is-the-enemy-ch21",
+  "number": 21,
+  "title": "The effort is enough",
+  "coreMove": "Place the standard inside the effort you control when outcomes refuse to reward you.",
+  "sourcePressure": "Failure section: detaching worth from applause and returning it to disciplined effort. Supported by frozen TOC and book skeleton; no per-chapter source sidecar exists in the latest run.",
+  "chapterSpecificMisunderstanding": "Using effort as an excuse for weak standards rather than as the only honest score when results are unfair.",
+  "sourceAlignmentTerms": [
+    "effort",
+    "enough",
+    "outcome",
+    "standard",
+    "discipline",
+    "reward"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "No named person, study, place, or artifact is available in the frozen source sidecar for this chapter; use fictional scenarios only and do not invent source anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of effort",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple effort is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Ingrid",
+      "domain": "grant rejection review",
+      "audience": "a reader facing grant rejection review pressure who needs to practice chapter 21's move without turning it into effort advice in general",
+      "stakes": "a concrete standard in grant rejection review will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "records the controllable effort standard before the result arrives and judges against that standard after loss in the concrete setting of grant rejection review; make the lesson visible through action, not explanation",
+      "firstImage": "a rejection letter laid beside the next prep sheet sits between Ingrid and the easiest explanation in the grant rejection review room.",
+      "mustInclude": [
+        "effort",
+        "enough",
+        "grant rejection"
+      ],
+      "mustAvoid": [
+        "do not turn this into effort as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Hanna",
+      "domain": "chef de partie trial shift",
+      "audience": "a reader facing chef de partie trial shift pressure who needs to practice chapter 21's move without turning it into effort advice in general",
+      "stakes": "a concrete standard in chef de partie trial shift will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "fixes the part of the work that was hers even though the public outcome went against her in the concrete setting of chef de partie trial shift; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Hanna hears, with a board update deck with the blame slide deleted already on the table.",
+      "mustInclude": [
+        "effort",
+        "enough",
+        "chef de"
+      ],
+      "mustAvoid": [
+        "do not turn this into effort as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "orchestra substitute audition",
+      "audience": "a reader facing orchestra substitute audition pressure who needs to practice chapter 21's move without turning it into effort advice in general",
+      "stakes": "a concrete standard in orchestra substitute audition will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "keeps the standard high while refusing to let applause be the proof of worth in the concrete setting of orchestra substitute audition; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a public statement draft with the retaliatory sentence cut makes the pressure in orchestra substitute audition visible.",
+      "mustInclude": [
+        "effort",
+        "enough",
+        "orchestra substitute"
+      ],
+      "mustAvoid": [
+        "do not turn this into effort as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "soil lab retest",
+      "audience": "a reader facing soil lab retest pressure who needs to practice chapter 21's move without turning it into effort advice in general",
+      "stakes": "a concrete standard in soil lab retest will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "asks whether the effort met the honest bar, not whether the room rewarded it in the concrete setting of soil lab retest; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Astrid's thumb stop over an exam appeal packet with the scoring standard attached before the ego-favoring move happens.",
+      "mustInclude": [
+        "effort",
+        "enough",
+        "soil lab"
+      ],
+      "mustAvoid": [
+        "do not turn this into effort as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "journalist source correction",
+      "audience": "a reader facing journalist source correction pressure who needs to practice chapter 21's move without turning it into effort advice in general",
+      "stakes": "a concrete standard in journalist source correction will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "uses the process record to separate deserved correction from undeserved humiliation in the concrete setting of journalist source correction; make the lesson visible through action, not explanation",
+      "firstImage": "It took Maja until the third review of a parenting schedule with the angry margin notes removed to see what ego had protected.",
+      "mustInclude": [
+        "effort",
+        "enough",
+        "journalist source"
+      ],
+      "mustAvoid": [
+        "do not turn this into effort as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "patent office response",
+      "audience": "a reader facing patent office response pressure who needs to practice chapter 21's move without turning it into effort advice in general",
+      "stakes": "a concrete standard in patent office response will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "chooses the next effort standard before chasing comfort from the result in the concrete setting of patent office response; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when a reopening checklist with the first quiet repair dated becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "effort",
+        "enough",
+        "patent office"
+      ],
+      "mustAvoid": [
+        "do not turn this into effort as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish effort from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Place the standard inside the effort you control when outcomes refuse to reward you.",
+      "spot when a scenario has drifted into participation trophies",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves effort or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

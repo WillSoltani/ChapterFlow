@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch13",
+  "number": 13,
+  "title": "Charisma in a Crisis",
+  "coreMove": "Give people the next steady action while your presence tells them the situation is being held.",
+  "sourcePressure": "The source frames crisis as the highest-pressure application of the same triad: steadiness under urgency, authority plus reassurance, and warmth that preserves human contact without weakening action.",
+  "chapterSpecificMisunderstanding": "The weak version becomes emergency leadership slogans. The useful version shows charisma as visible steadiness, human contact, and clear action when urgency could scatter everyone.",
+  "sourceAlignmentTerms": ["crisis", "urgency", "steadiness", "authority", "reassurance", "presence", "power", "warmth"],
+  "forbiddenFrames": {
+    "hook": ["Crisis reveals charisma", "Stay calm in a crisis", "Leaders are made in emergencies"],
+    "counterintuition": ["Warmth still matters", "Panic is contagious", "Authority needs reassurance"],
+    "tryThisNow": ["Practice a calm voice", "Make a crisis plan", "Take command when things go wrong"],
+    "examples": ["fire evacuation hero", "hospital code scene", "airplane emergency", "natural disaster command center"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a children's theatre matinee after a lighting grid shorts and the house goes dark",
+      "audience": "a stage manager who must calm children, parents, and crew at once",
+      "stakes": "whether the room exits safely without panic",
+      "format": "scene",
+      "requiredBeat": "she steps into the aisle with a battery lantern, gives one exit instruction, and tells the front row exactly who is coming next",
+      "firstImage": "a battery lantern glowing against a dark velvet aisle",
+      "mustInclude": ["usher radio", "aisle tape", "front-row children"],
+      "mustAvoid": ["presentation stagecraft", "heroic rescue"]
+    },
+    {
+      "domain": "a data center cooling failure during a payroll processing window",
+      "audience": "an operations lead whose calm must guide technical and nontechnical staff",
+      "stakes": "whether payroll runs while servers are protected from heat damage",
+      "format": "decision_point",
+      "requiredBeat": "he names the temperature threshold, assigns one person to payroll status and one to cooling vendors, then repeats the next checkpoint time",
+      "firstImage": "a server temperature dashboard flashing amber across a wall monitor",
+      "mustInclude": ["payroll window", "vendor call", "checkpoint time"],
+      "mustAvoid": ["startup outage blame", "technical troubleshooting guide"]
+    },
+    {
+      "domain": "a coastal ferry galley when a passenger has a severe allergic reaction",
+      "audience": "a crew lead who needs authority without spreading fear",
+      "stakes": "whether passengers clear space and the affected person receives help quickly",
+      "format": "dialogue",
+      "requiredBeat": "the crew lead kneels beside the passenger, points one server to the medical kit, and tells the watching passengers the next two actions in a level voice",
+      "firstImage": "a sealed medical kit sliding across a galley counter",
+      "mustInclude": ["captain call", "ingredient card", "aisle space"],
+      "mustAvoid": ["medical emergency protocol manual", "ferry terminal dispute from Chapter 11"]
+    },
+    {
+      "domain": "a sculpture foundry after a cracked mold threatens a hot bronze pour",
+      "audience": "a shop lead balancing physical risk and apprentice fear",
+      "stakes": "whether the pour stops safely before anyone is burned",
+      "format": "vignette",
+      "requiredBeat": "she raises one hand, says stop once, points to the sand bucket and the marked line, then checks the apprentice's eyes before moving",
+      "firstImage": "a hairline crack spreading across a ceramic shell mold",
+      "mustInclude": ["sand bucket", "heat visor", "marked safety line"],
+      "mustAvoid": ["craft workshop repair from Chapter 4", "danger spectacle"]
+    },
+    {
+      "domain": "a food co-op after a refrigeration failure spoils a vaccine clinic's snack supply",
+      "audience": "a shift lead whose embarrassment could make the team scatter",
+      "stakes": "whether volunteers protect guests, discard unsafe food, and keep the clinic moving",
+      "format": "before_after",
+      "requiredBeat": "contrast the first scattered apology with the reset where she gives three calm assignments and personally moves the spoiled trays out of sight",
+      "firstImage": "a refrigerator thermometer resting above a tray of sweating yogurt cups",
+      "mustInclude": ["discard bin", "replacement fruit crate", "clinic sign-in"],
+      "mustAvoid": ["food-safety inspection from Chapter 5", "generic service recovery"]
+    },
+    {
+      "domain": "a mountain hostel after a bus carrying guests fails to arrive before a snow closure",
+      "audience": "a host who must keep stranded travelers informed without false certainty",
+      "stakes": "whether guests conserve phone batteries, share rooms, and wait without rumor",
+      "format": "postmortem",
+      "requiredBeat": "the host realizes her first vague reassurance created rumor, then gathers everyone by the map, states what is known, and assigns the next update time",
+      "firstImage": "a paper road-closure map weighted with a headlamp",
+      "mustInclude": ["battery box", "room key rack", "snowplow update"],
+      "mustAvoid": ["trailhead guide from Chapter 1", "travel inconvenience comedy"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose crisis behavior that combines clear action with reassurance",
+      "distinguish charismatic steadiness from vague calm",
+      "analyze how authority and warmth prevent panic from spreading",
+      "evaluate whether a crisis response gives people a concrete next step"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "When something small goes wrong today, say what is known, give the next action, and name when you will update instead of filling the space with reassurance.",
+  "readingTimeMinutes": 12
+}

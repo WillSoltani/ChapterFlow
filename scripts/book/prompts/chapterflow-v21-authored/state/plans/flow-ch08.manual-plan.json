@@ -1,0 +1,198 @@
+{
+  "chapterId": "flow-ch08",
+  "number": 8,
+  "title": "Enjoying Solitude and Other People",
+  "coreMove": "Handle alone time and social time as skills, choosing the structure that turns isolation or contact into ordered experience.",
+  "sourcePressure": "Solitude and relationship are both skill domains: loneliness, family, friendship, and community become ordered only when attention is actively shaped.",
+  "chapterSpecificMisunderstanding": "Say people just need more connection or more alone time.",
+  "sourceAlignmentTerms": [
+    "solitude",
+    "loneliness",
+    "family",
+    "friends",
+    "community",
+    "social chaos",
+    "attention",
+    "skill"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "taming solitude",
+      "detail": "the frozen contents list taming solitude as a Chapter 8 subheading",
+      "useIn": "both",
+      "phrasingHint": "Solitude has to be tamed because an empty room does not automatically become a quiet mind."
+    },
+    {
+      "kind": "artifact",
+      "name": "the wider community",
+      "detail": "the frozen contents list the wider community as a Chapter 8 subheading",
+      "useIn": "fullRead",
+      "phrasingHint": "The wider community matters when attention gets joined to shared rules, shared care, and work larger than private mood."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic enjoying solitude and other people definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "a new city resident planning her first empty Sunday",
+      "audience": "adults in transition who mistake solitude for failure",
+      "stakes": "the day can become either panic-scrolling or deliberate self-directed attention",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you wake to a silent apartment and must choose between refreshing messages and setting one hard drawing exercise at the table",
+      "firstImage": "You wake up before the city buses start",
+      "mustInclude": [
+        "drawing pad",
+        "message thread",
+        "apartment table"
+      ],
+      "mustAvoid": [
+        "loneliness cure slogan"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "a father changing dinner from logistics to shared challenge",
+      "audience": "parents whose family time is present but scattered",
+      "stakes": "everyone is in the room but attention is split into separate screens",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show the old dinner of reminders beside the night he asks each person to teach one skill from the day and keeps phones in the hallway",
+      "firstImage": "Olivier noticed the family was together only on paper",
+      "mustInclude": [
+        "hallway phone basket",
+        "soup bowls",
+        "one-skill question"
+      ],
+      "mustAvoid": [
+        "family-values sermon"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "a graduate student choosing a friendship ritual over vague catching up",
+      "audience": "students and young professionals whose friendships thin under busyness",
+      "stakes": "the friendship may become nothing but postponed plans",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her friend says they should catch up soon, and Kasia proposes a weekly repair cafe shift with a real task between them",
+      "firstImage": "\"We should catch up soon,\" Nina says from the doorway",
+      "mustInclude": [
+        "broken toaster",
+        "repair cafe table",
+        "weekly sign-up"
+      ],
+      "mustAvoid": [
+        "coffee chat repetition"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "a widower testing whether a community garden gives grief a container",
+      "audience": "older adults facing loneliness after loss",
+      "stakes": "contact alone may feel exposing unless it has shared work",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "the garden gate sticks, and Matthew predicts whether working a plot beside others will feel intrusive or quietly ordered",
+      "firstImage": "The community garden gate sticks after rain",
+      "mustInclude": [
+        "seed packet",
+        "shared hose",
+        "plot marker"
+      ],
+      "mustAvoid": [
+        "romanticizing grief"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "a project lead rescuing a team retreat from forced bonding",
+      "audience": "leaders who confuse social flow with icebreakers",
+      "stakes": "the retreat could deepen trust or create awkward performance",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she reviews why the icebreaker failed, then replaces it with a shared build task where roles, goals, and feedback are visible",
+      "firstImage": "The unused name tags curl at the corners",
+      "mustInclude": [
+        "name tags",
+        "prototype kit",
+        "feedback wall"
+      ],
+      "mustAvoid": [
+        "team-building cliche"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "a nurse protecting ten minutes of solitude between shifts",
+      "audience": "care workers whose alone time is invaded by rumination",
+      "stakes": "without structure the break becomes replaying every patient worry",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "ask what solitude needs so it does not turn into rumination, then show her writing three breath-counts and one handoff note",
+      "firstImage": "What does a quiet room need before it becomes rest?",
+      "mustInclude": [
+        "break-room chair",
+        "handoff note",
+        "paper cup"
+      ],
+      "mustAvoid": [
+        "breathing app advice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguishing contact from skilled connection",
+      "turning solitude from drift into practice",
+      "using family and community without sentimental flattening"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next alone or social hour, write the one shared or solitary task that will give attention a shape.",
+  "readingTimeMinutes": 12
+}

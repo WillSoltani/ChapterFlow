@@ -1,0 +1,194 @@
+{
+  "chapterId": "the-pyramid-principle-ch10",
+  "number": 10,
+  "title": "Putting it into readable words",
+  "coreMove": "Translate the already-earned structure into sentences that preserve its image instead of smoothing it into blur.",
+  "sourcePressure": "Chapter 10 closes by putting structure into readable words: create the image first, then copy the image in words, keeping readability accountable to the structure it carries.",
+  "chapterSpecificMisunderstanding": "Treating readability as pleasant phrasing, simplification, or style polish after the thinking is done.",
+  "sourceAlignmentTerms": [
+    "readable words",
+    "create the image",
+    "copy the image in words",
+    "structure image",
+    "sentence transmission",
+    "sequence",
+    "contrast",
+    "causality"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "create the image",
+      "detail": "the Chapter 10 sidecar lists Create the image as an authorized heading before Copy the image in words",
+      "useIn": "both",
+      "phrasingHint": "The sentence can only copy the image if the writer has first seen what the structure is doing."
+    },
+    {
+      "kind": "artifact",
+      "name": "copy the image in words",
+      "detail": "the sidecar says readable expression is translation of structure rather than a substitute for it",
+      "useIn": "fullRead",
+      "phrasingHint": "Readable words are successful when the reader receives the architecture without having to rebuild it silently."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A reader gets lost because the writer skipped the hard sorting",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "A pyramid is not an outline; it is thinking made visible",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Rewrite one sentence so it sounds sharper",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "family budget conversation around a kitchen table",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "an urban-design studio led by Ada writing a public note about street changes",
+      "audience": "planners turning structural reasoning into readable prose",
+      "stakes": "residents will misunderstand tradeoffs if contrast and sequence blur into planning language",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ada sketches the tradeoff first, then writes one sentence that keeps the before-after street image intact instead of hiding it behind improvement language.",
+      "firstImage": "Ada watches tracing paper curls over a crosswalk sketch and a bus-lane diagram.",
+      "mustInclude": [
+        "crosswalk sketch",
+        "bus-lane diagram",
+        "public notice draft"
+      ],
+      "mustAvoid": [
+        "city climate office from ch1",
+        "permit process from ch9"
+      ]
+    },
+    {
+      "domain": "a materials scientist explaining a battery-test sequence to investors",
+      "audience": "technical founders making complex sequence readable",
+      "stakes": "investors will confuse cause and sequence if the sentence jumps from result to claim without the test path",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Jonas asks what image the sentence must carry, draws test, heat rise, failure threshold, and result, then writes the sequence in that order.",
+      "firstImage": "What has to happen first for the battery result to make sense?",
+      "mustInclude": [
+        "thermal test graph",
+        "failure threshold note",
+        "investor update"
+      ],
+      "mustAvoid": [
+        "renewable procurement from ch5"
+      ]
+    },
+    {
+      "domain": "a classical-music festival explaining ticket-tier changes",
+      "audience": "arts administrators writing public-facing policy",
+      "stakes": "patrons will hear a price grab unless the sentence preserves the relationship between access and seat allocation",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Isabel replaces vague affordability language with a sentence that shows cheaper balcony seats are protected before premium orchestra prices rise.",
+      "firstImage": "It took Isabel three angry draft replies to see the sentence had erased the structure.",
+      "mustInclude": [
+        "seating chart",
+        "ticket-tier table",
+        "patron email draft"
+      ],
+      "mustAvoid": [
+        "film festival scheduler from ch6"
+      ]
+    },
+    {
+      "domain": "a cloud-infrastructure lead named Marco writing outage language for customers",
+      "audience": "technical leaders translating cause and recovery clearly",
+      "stakes": "customers will lose trust if the prose sounds smooth but hides the causal path of the outage",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Do not call it instability if the cause was a failed certificate renewal,\" Marco says, then rewrites the sentence to preserve cause, failure, and recovery order.",
+      "firstImage": "\"Do not call it instability,\" Marco says while the status page clock keeps counting.",
+      "mustInclude": [
+        "status page draft",
+        "certificate renewal log",
+        "recovery timeline"
+      ],
+      "mustAvoid": [
+        "game-studio build failure from ch8"
+      ]
+    },
+    {
+      "domain": "a community legal clinic writing an eviction-rights leaflet",
+      "audience": "public legal educators making structure readable under stress",
+      "stakes": "tenants may miss the action sequence if legal exceptions are smoothed into one dense paragraph",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Chiara draw notice, deadline, response, and hearing as four boxes, then write the leaflet sentence so the boxes stay in order.",
+      "firstImage": "You are holding a draft leaflet beside four boxes drawn on a yellow legal pad.",
+      "mustInclude": [
+        "yellow legal pad",
+        "notice deadline chart",
+        "hearing response form"
+      ],
+      "mustAvoid": [
+        "tax policy rebate from ch5"
+      ]
+    },
+    {
+      "domain": "a specialty cycling shop explaining warranty exclusions",
+      "audience": "retail owners writing customer policies without blurring categories",
+      "stakes": "customers and staff will argue if crash damage, wear, and manufacturer defects are not linguistically separated",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 10:40 a.m., Ryan turns one pleasant warranty paragraph into three category sentences that preserve the structure customers need to compare.",
+      "firstImage": "At 10:40 a.m., Ryan lays a cracked carbon rim beside the warranty card.",
+      "mustInclude": [
+        "cracked carbon rim",
+        "warranty card",
+        "service counter form"
+      ],
+      "mustAvoid": [
+        "bike helmet or generic shop-prop shells"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "preserve structural relationships in sentence wording",
+      "avoid smoothing contrast, sequence, or causality into vague prose",
+      "tell readability from generic polish",
+      "revise a sentence by copying the structure image more faithfully"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one sentence and write its relationship in the margin: sequence, contrast, cause, or category. Revise only to make that relationship visible.",
+  "readingTimeMinutes": 12
+}

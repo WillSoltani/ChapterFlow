@@ -1,0 +1,188 @@
+{
+  "chapterId": "the-like-switch-ch05",
+  "number": 5,
+  "title": "Speaking the Language of Friendship",
+  "coreMove": "Turn conversation toward listening, empathic statements, and responsive follow-up so the other person feels heard rather than handled.",
+  "sourcePressure": "The ch05 source anchors active listening, empathic statements, and responsive follow-up. It warns that empathy fails when it sounds scripted, intrusive, or self-serving.",
+  "chapterSpecificMisunderstanding": "Mistaking active listening for parroting words, instant advice, or technique-heavy empathy.",
+  "sourceAlignmentTerms": [
+    "active listening",
+    "empathic statement",
+    "responsive follow-up",
+    "rapport",
+    "heard",
+    "understood",
+    "canned empathy"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "empathic statements",
+      "detail": "The ch05 sidecar names empathic statements as emotional validation and a rapport-building response pattern.",
+      "useIn": "both",
+      "phrasingHint": "An empathic statement lands when it names the feeling without grabbing the steering wheel of the conversation."
+    },
+    {
+      "kind": "artifact",
+      "name": "active listening",
+      "detail": "The source sidecar says active listening must stay outward-focused rather than performative.",
+      "useIn": "deepRead",
+      "phrasingHint": "Listening stops working the second the other person can hear you performing your listening."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Listen more",
+      "Communication is key",
+      "People want to be heard"
+    ],
+    "counterintuition": [
+      "empathy is not agreement",
+      "listening is not waiting to talk"
+    ],
+    "tryThisNow": [
+      "repeat back what someone said"
+    ],
+    "examples": [
+      "couple at kitchen table",
+      "manager one-on-one with advice",
+      "student office hours"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a veterinary clinic front desk handling a panicked pet owner after surgery delays",
+      "audience": "a receptionist under pressure to explain without escalating",
+      "stakes": "a frightened owner may turn fear into anger at the staff",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"You expected the call an hour ago,\" Claire says before giving logistics, naming the owner pain without pretending the delay is fine",
+      "firstImage": [
+        "surgery board",
+        "carrier towel",
+        "ringing phone"
+      ],
+      "mustInclude": [
+        "generic hospital waiting room"
+      ]
+    },
+    {
+      "domain": "a shipyard apprentice reporting a near miss to a foreman",
+      "audience": "a foreman who usually jumps to fixes too soon",
+      "stakes": "if the apprentice feels brushed off, the safety report will disappear",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the foreman sets down the inspection stamp, names the scare, and asks what happened next before offering any solution",
+      "firstImage": "metal filings sparkle in the groove of the workbench",
+      "mustInclude": [
+        "inspection stamp",
+        "safety tag",
+        "steel-toe boots"
+      ],
+      "mustAvoid": [
+        "parts-stamping press guard repeat"
+      ]
+    },
+    {
+      "domain": "a college financial-aid advisor speaking with a student whose form was rejected",
+      "audience": "an advisor who must use empathy without sounding like a script",
+      "stakes": "the student may leave school over a solvable paperwork issue",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you hear yourself reaching for policy language, then choose one empathic sentence about how trapped the student feels before the checklist",
+      "firstImage": "a rejected-aid notice folded into quarters",
+      "mustInclude": [
+        "aid notice",
+        "campus ID",
+        "highlighter"
+      ],
+      "mustAvoid": [
+        "generic classroom or study group"
+      ]
+    },
+    {
+      "domain": "a restaurant host mediating between kitchen delay and anniversary guests",
+      "audience": "a host who can either defend the kitchen or validate the moment",
+      "stakes": "a special dinner is about to become a public complaint",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 8:37 p.m., Daniel names the disappointment before discussing the kitchen delay, then asks which timing would rescue the evening",
+      "firstImage": "two untouched champagne flutes on table twelve",
+      "mustInclude": [
+        "champagne flutes",
+        "reservation tablet",
+        "dessert card"
+      ],
+      "mustAvoid": [
+        "generic customer service apology"
+      ]
+    },
+    {
+      "domain": "a municipal snowplow dispatcher taking calls after a missed street",
+      "audience": "a dispatcher trying to keep residents engaged while crews are overloaded",
+      "stakes": "bad listening can turn one missed plow into dozens of angry call-backs",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "the dispatcher predicts the caller wants action only, then learns that naming the caller fear about an icy hill lowers the heat enough to gather details",
+      "firstImage": "a wall map dotted with blue plow magnets",
+      "mustInclude": [
+        "wall map",
+        "radio headset",
+        "storm bulletin"
+      ],
+      "mustAvoid": [
+        "bus depot or generic phone support"
+      ]
+    },
+    {
+      "domain": "a theater costume supervisor receiving criticism from an actor before opening night",
+      "audience": "a supervisor whose pride could make the actor stop reporting fit problems",
+      "stakes": "a torn seam under stage lights will distract the audience",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes Marta one defensive reply to see the actor needed acknowledgment before pins and measurements",
+      "firstImage": "a row of labeled garment bags under fluorescent light",
+      "mustInclude": [
+        "garment bags",
+        "pin cushion",
+        "measurement tape"
+      ],
+      "mustAvoid": [
+        "fashion makeover shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose empathic statements that validate without agreeing",
+      "identify performative listening",
+      "decide when advice arrives too early",
+      "use follow-up questions that maintain rapport"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When someone brings you a problem today, make your first sentence name their felt difficulty, then ask one follow-up before offering advice.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

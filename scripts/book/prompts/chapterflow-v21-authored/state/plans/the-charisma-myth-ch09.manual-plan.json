@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch09",
+  "number": 9,
+  "title": "Charismatic Body Language",
+  "coreMove": "Align posture, movement, face, and pace so your body does not contradict the state you mean to send.",
+  "sourcePressure": "The source treats body language as the visible carryover of internal state and a key part of how presence, power, and warmth are read.",
+  "chapterSpecificMisunderstanding": "The weak version becomes pose hacks or gesture decoding. The useful version shows congruent nonverbal behavior that supports the signal already chosen.",
+  "sourceAlignmentTerms": ["body language", "internal state", "congruence", "posture", "movement", "nonverbal", "presence", "warmth"],
+  "forbiddenFrames": {
+    "hook": ["Your body speaks louder than words", "Body language gives you away", "Stand tall to look powerful"],
+    "counterintuition": ["Posture changes everything", "Gestures reveal the truth", "Nonverbal beats verbal"],
+    "tryThisNow": ["Uncross your arms", "Hold eye contact", "Stand with open posture"],
+    "examples": ["TED Talk stage stance", "handshake analysis", "date body-language decoding", "police interrogation posture"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an art auction preview where an appraiser must reassure a nervous consignor",
+      "audience": "a high-status expert whose quick movements can feel dismissive",
+      "stakes": "whether the consignor trusts the estimate before signing the reserve agreement",
+      "format": "scene",
+      "requiredBeat": "the appraiser slows her reach toward the painting, keeps her shoulders open to the owner, and lets her careful handling match her reassuring words",
+      "firstImage": "a varnished landscape tilted under a portable inspection lamp",
+      "mustInclude": ["reserve agreement", "cotton label", "auction paddle"],
+      "mustAvoid": ["rare-book dealer from Chapter 7", "luxury performance"]
+    },
+    {
+      "domain": "a pediatric speech therapy room where a therapist models calm for a frustrated child",
+      "audience": "a helper whose body can either settle or crowd another person",
+      "stakes": "whether the child tries the hard sound again instead of shutting down",
+      "format": "vignette",
+      "requiredBeat": "the therapist lowers to the mat, softens her hands around the picture card, and matches the child's pace before asking for one more try",
+      "firstImage": "a laminated picture card lying on a blue therapy mat",
+      "mustInclude": ["mirror tile", "sound token", "sticker chart"],
+      "mustAvoid": ["classroom learning", "generic patience"]
+    },
+    {
+      "domain": "a shipyard quality check where a supervisor gives a weld correction",
+      "audience": "a technical leader whose body can make correction feel like attack",
+      "stakes": "whether the welder accepts the rework before the hull section moves",
+      "format": "dialogue",
+      "requiredBeat": "the supervisor crouches beside the weld instead of standing over the welder, points to the bead with the gauge, and keeps his voice level",
+      "firstImage": "a fillet weld gauge resting on a chalk-marked steel seam",
+      "mustInclude": ["weld bead", "hull section", "rework tag"],
+      "mustAvoid": ["factory safety stack", "dominance posture"]
+    },
+    {
+      "domain": "a jeweler's appraisal bench where a trainee's fidgeting weakens trust",
+      "audience": "a precise worker whose nervous hands send the wrong signal",
+      "stakes": "whether a client leaves an inherited ring for assessment",
+      "format": "before_after",
+      "requiredBeat": "contrast the first appraisal with tapping fingers against the reset where she places both tools down before explaining the stone setting",
+      "firstImage": "a loose diamond held in spring tweezers above a black pad",
+      "mustInclude": ["loupe", "ring envelope", "appraisal scale"],
+      "mustAvoid": ["watch repair counter from Chapter 8", "wealth glamour"]
+    },
+    {
+      "domain": "a wildlife rehabilitation release where a coordinator addresses volunteers before opening a crate",
+      "audience": "a calm leader whose body must carry urgency without alarm",
+      "stakes": "whether volunteers stay quiet and positioned safely during the release",
+      "format": "decision_point",
+      "requiredBeat": "she notices her hands fluttering over the latch, plants them on the crate edge, and waits until every volunteer stills before speaking",
+      "firstImage": "a canvas-covered transport crate beside a line of flagging tape",
+      "mustInclude": ["release permit", "field radio", "glove cuff"],
+      "mustAvoid": ["adventure rescue", "crisis chapter"]
+    },
+    {
+      "domain": "a wine cellar inventory where a sommelier must correct a collector's mistaken bottle claim",
+      "audience": "a reader who needs nonverbal respect while disagreeing",
+      "stakes": "whether the collector accepts the provenance correction without embarrassment",
+      "format": "postmortem",
+      "requiredBeat": "the sommelier realizes the wince before his correction did more damage than the words, then redoes the moment with slower handling and a neutral face",
+      "firstImage": "a dusty bottle neck resting in a canvas cradle",
+      "mustInclude": ["cellar ledger", "wax capsule", "provenance photo"],
+      "mustAvoid": ["flattery", "elitist manners"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify nonverbal contradictions in presence, power, and warmth",
+      "choose posture and movement that match the intended state",
+      "distinguish congruent body language from pose hacks",
+      "evaluate when speed, angle, hands, or face undercut the verbal message"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "During one exchange today, notice whether your hands, torso, and pace are supporting the message or quietly arguing with it.",
+  "readingTimeMinutes": 12
+}

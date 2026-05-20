@@ -1,0 +1,191 @@
+{
+  "chapterId": "measure-what-matters-ch15",
+  "number": 15,
+  "title": "Continuous Performance Management: OKRs and CFRs",
+  "coreMove": "Add a live support loop around the objective so performance improves while the work can still change.",
+  "sourcePressure": "Part 2 pairs OKRs with continuous performance management and CFRs: conversation, feedback, and recognition around living goals.",
+  "chapterSpecificMisunderstanding": "Do not import the Adobe case yet or turn CFRs into generic kindness.",
+  "sourceAlignmentTerms": [
+    "continuous performance management",
+    "OKRs",
+    "CFRs",
+    "conversation",
+    "feedback",
+    "recognition",
+    "annual review limits"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "CFRs",
+      "detail": "The source pairs OKRs with continuous performance management and defines CFRs as conversation, feedback, and recognition.",
+      "useIn": "both",
+      "phrasingHint": "CFRs put living support around the goal: conversation catches drift, feedback sharpens the work, recognition reinforces the right behavior."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Continuous Performance Management: OKRs and CFRs as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "continuous performance management is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "Adobe specifics",
+      "culture slogans",
+      "static performance scores"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "design agency project coaching",
+      "audience": "creative directors",
+      "stakes": "annual portfolio reviews arrive too late to save client work already in flight",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "James installs weekly conversation, feedback, and recognition around the objective instead of waiting for a final verdict",
+      "firstImage": "printed mockups drying on a table",
+      "mustInclude": [
+        "client brief",
+        "feedback notes",
+        "recognition log"
+      ],
+      "mustAvoid": [
+        "Adobe case detail"
+      ]
+    },
+    {
+      "domain": "regional call-center quality improvement",
+      "audience": "team leads",
+      "stakes": "agents hear scores at month end after bad habits have hardened",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Camille turns one score into a CFR rhythm: a short call review, one usable feedback note, and specific recognition today",
+      "firstImage": "headsets hanging from chair backs",
+      "mustInclude": [
+        "call recording",
+        "feedback card",
+        "recognition board"
+      ],
+      "mustAvoid": [
+        "generic kindness"
+      ]
+    },
+    {
+      "domain": "surgical residency skill development",
+      "audience": "attending physicians",
+      "stakes": "residents need coaching while the rotation is still alive",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Henrik replaces the delayed evaluation talk with a same-day conversation and one observed skill target",
+      "firstImage": "sterile gown cuffs at a scrub sink",
+      "mustInclude": [
+        "case log",
+        "feedback note",
+        "skills checklist"
+      ],
+      "mustAvoid": [
+        "doctor hero story"
+      ]
+    },
+    {
+      "domain": "software customer-onboarding target",
+      "audience": "customer-success managers",
+      "stakes": "the OKR is visible but support around it is too thin to change behavior",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Megan shows how the objective changed when feedback and recognition moved into the weekly workflow",
+      "firstImage": "screen-share thumbnails in a grid",
+      "mustInclude": [
+        "onboarding checklist",
+        "customer note",
+        "weekly review doc"
+      ],
+      "mustAvoid": [
+        "dashboard-only scene"
+      ]
+    },
+    {
+      "domain": "restaurant pastry training",
+      "audience": "head baker and apprentices",
+      "stakes": "end-of-month judgment will not fix croissants baked wrong every morning",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Catarina uses a 90-second bench conversation, one dough-fold correction, and immediate recognition for the next tray",
+      "firstImage": "butter block softening on marble",
+      "mustInclude": [
+        "dough sheet",
+        "timer",
+        "proofing tray"
+      ],
+      "mustAvoid": [
+        "pizza overlap"
+      ]
+    },
+    {
+      "domain": "youth orchestra section practice",
+      "audience": "conductors",
+      "stakes": "players only hear judgment after concerts instead of feedback during preparation",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Yusuf asks what recognition and correction should have surrounded the section before the final rehearsal",
+      "firstImage": "loose bow hair near a chair leg",
+      "mustInclude": [
+        "marked score",
+        "section note",
+        "practice roster"
+      ],
+      "mustAvoid": [
+        "arts inspiration only"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply CFRs around live goals",
+      "choose useful conversation, feedback, and recognition",
+      "distinguish continuous support from annual review logic"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Add one conversation, one feedback note, and one recognition moment around a current objective before the week ends.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

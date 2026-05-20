@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch13",
+  "number": 13,
+  "title": "Availability, Emotion, and Risk",
+  "coreMove": "measure the risk after naming the image or feeling that made it loom larger",
+  "sourcePressure": "shows that vivid emotion amplifies availability and bends judgments about danger and safety",
+  "chapterSpecificMisunderstanding": "telling readers to ignore fear instead of calibrating vivid risk against frequency",
+  "sourceAlignmentTerms": [
+    "availability cascade",
+    "risk perception",
+    "emotion",
+    "vivid image",
+    "fear",
+    "public concern"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Availability, Emotion, and Risk",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just fearlessness coaching"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about fearlessness coaching",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "meteorology desk facing a decision distorted by availability cascade",
+      "audience": "a lead or reviewer who must measure the risk after naming the image or feeling that made it loom larger while others want the quick answer",
+      "stakes": "the visible call will go wrong unless availability cascade is separated from the tempting but weaker cue",
+      "format": "predict_reveal",
+      "requiredBeat": "the operator places the baggage carousel tag labeled availability cascade beside the tempting first answer, covers the answer field with a palm, and speaks the correction: measure the risk after naming the image or feeling that made it loom larger",
+      "firstImage": "The decision station is quiet except for the baggage carousel tag labeled availability cascade beside the unfinished call.",
+      "mustInclude": [
+        "baggage carousel tag labeled availability cascade",
+        "availability cascade",
+        "risk perception"
+      ],
+      "mustAvoid": [
+        "turning the scene into fearlessness coaching",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "museum conservation lab facing a decision distorted by availability cascade",
+      "audience": "a lead or reviewer who must measure the risk after naming the image or feeling that made it loom larger while others want the quick answer",
+      "stakes": "the visible call will go wrong unless availability cascade is separated from the tempting but weaker cue",
+      "format": "postmortem",
+      "requiredBeat": "the specialist draws a red box around the misleading cue on the blood cooler seal labeled risk perception, then writes the missing check in the margin before anyone votes",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the blood cooler seal labeled risk perception between the two choices.",
+      "mustInclude": [
+        "blood cooler seal labeled risk perception",
+        "availability cascade",
+        "emotion"
+      ],
+      "mustAvoid": [
+        "turning the scene into fearlessness coaching",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "freight dispatch room facing a decision distorted by availability cascade",
+      "audience": "a lead or reviewer who must measure the risk after naming the image or feeling that made it loom larger while others want the quick answer",
+      "stakes": "the visible call will go wrong unless availability cascade is separated from the tempting but weaker cue",
+      "format": "before_after",
+      "requiredBeat": "two people disagree over the brass metronome pedal labeled emotion; one points to the fluent story, the other forces the chapter move by asking which evidence would change the call",
+      "firstImage": "The first thing in the room is the texture of the brass metronome pedal labeled emotion, not the person's opinion about it.",
+      "mustInclude": [
+        "brass metronome pedal labeled emotion",
+        "availability cascade",
+        "vivid image"
+      ],
+      "mustAvoid": [
+        "turning the scene into fearlessness coaching",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "pediatric triage desk facing a decision distorted by availability cascade",
+      "audience": "a lead or reviewer who must measure the risk after naming the image or feeling that made it loom larger while others want the quick answer",
+      "stakes": "the visible call will go wrong unless availability cascade is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "at the decision point, the lead slides the pothole call ledger labeled vivid image into the center of the table and refuses to choose until the availability cascade check is visible",
+      "firstImage": "You are looking at the pothole call ledger labeled vivid image while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "pothole call ledger labeled vivid image",
+        "availability cascade",
+        "fear"
+      ],
+      "mustAvoid": [
+        "turning the scene into fearlessness coaching",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "restaurant expo line facing a decision distorted by availability cascade",
+      "audience": "a lead or reviewer who must measure the risk after naming the image or feeling that made it loom larger while others want the quick answer",
+      "stakes": "the visible call will go wrong unless availability cascade is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "the team predicts the answer from the quick impression, records it beside the animal carrier latch labeled fear, then reveals how the chapter correction changes the estimate",
+      "firstImage": "It took three passes before the reviewer saw what the animal carrier latch labeled fear had been making too easy.",
+      "mustInclude": [
+        "animal carrier latch labeled fear",
+        "availability cascade",
+        "public concern"
+      ],
+      "mustAvoid": [
+        "turning the scene into fearlessness coaching",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "public defender intake facing a decision distorted by availability cascade",
+      "audience": "a lead or reviewer who must measure the risk after naming the image or feeling that made it loom larger while others want the quick answer",
+      "stakes": "the visible call will go wrong unless availability cascade is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "after the miss, the reviewer tapes the night audit folio labeled public concern to the postmortem board and traces the exact moment risk perception displaced the better judgment",
+      "firstImage": "What would change if the night audit folio labeled public concern stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "night audit folio labeled public concern",
+        "availability cascade",
+        "public concern"
+      ],
+      "mustAvoid": [
+        "turning the scene into fearlessness coaching",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: measure the risk after naming the image or feeling that made it loom larger",
+      "choose the correction that fits availability cascade rather than a generic careful-thinking answer",
+      "distinguish Availability, Emotion, and Risk from nearby drift into fearlessness coaching",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live availability cascade judgment and write the first answer on paper. Add the one fact that would make you slow or change it. Stop after ninety seconds.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

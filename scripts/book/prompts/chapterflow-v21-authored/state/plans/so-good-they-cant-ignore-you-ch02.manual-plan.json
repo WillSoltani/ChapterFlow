@@ -1,0 +1,209 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch02",
+  "number": 2,
+  "title": "Passion Is Rare",
+  "coreMove": "Test whether an interest is actually career-ready instead of treating any strong preference as a job map.",
+  "sourcePressure": "Roadtrip Nation, Ira Glass, and the Canadian student statistic show messy paths and weak passion-to-work mapping.",
+  "chapterSpecificMisunderstanding": "Reducing the point to never trust interests or pretending hobbies have no career signal.",
+  "sourceAlignmentTerms": [
+    "Roadtrip Nation",
+    "Ira Glass",
+    "Canada",
+    "career-ready passion",
+    "nonlinear path",
+    "student passions",
+    "occupational fit"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Roadtrip Nation",
+      "detail": "Official materials support a large archive of career stories and no single right path.",
+      "useIn": "both",
+      "phrasingHint": "Roadtrip Nation matters because fulfilled people sound messier up close than their job titles suggest."
+    },
+    {
+      "kind": "person",
+      "name": "Ira Glass",
+      "detail": "The official profile supports early weakness and long skill-building rather than instant certainty.",
+      "useIn": "both",
+      "phrasingHint": "Ira Glass being bad for a long time is the useful detail, not the glamour of the finished voice."
+    },
+    {
+      "kind": "study",
+      "name": "The Canadian number",
+      "detail": "Frozen secondary support reports that 84 of 100 students named passions, but only four of those 84 tied directly to work or education.",
+      "useIn": "deepRead",
+      "phrasingHint": "The Canadian number turns a vague hunch into a practical warning: most passions are not job maps."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch02: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch02: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch02: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch02: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "community radio producer training",
+      "audience": "a volunteer deciding whether loving podcasts means quitting for audio work",
+      "stakes": "leaving stability before testing production under deadlines",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "opens the station calendar and marks unglamorous production tasks she has repeated well",
+      "firstImage": "cracked foam on studio headphones",
+      "mustInclude": [
+        "station calendar",
+        "headphones",
+        "late-night edit slot"
+      ],
+      "mustAvoid": [
+        "podcast fandom as job map"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "urban beekeeping supply shop",
+      "audience": "a shop clerk who loves bees and imagines a business",
+      "stakes": "inventory debt without customer evidence",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "uses unsold hive boxes to ask whether passion names a market, a skill, or a private pleasure",
+      "firstImage": "stacked cedar hive boxes by the door",
+      "mustInclude": [
+        "inventory sheet",
+        "cedar boxes",
+        "winter sales report"
+      ],
+      "mustAvoid": [
+        "cute hobby shop fantasy"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "high-school robotics mentorship",
+      "audience": "a senior choosing a major from club identity",
+      "stakes": "choosing from identity instead of skill evidence",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "splits the club into tasks and circles the one he would do without a trophy",
+      "firstImage": "a cracked robot wheel on the pit table",
+      "mustInclude": [
+        "competition pit table",
+        "motor controller",
+        "task list"
+      ],
+      "mustAvoid": [
+        "STEM destiny shortcut"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "bakery recipe development",
+      "audience": "a home baker considering culinary school after weekend sourdough",
+      "stakes": "confusing eating, posting, and production stamina",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "compares Saturday pleasure with the third tray of identical test batches",
+      "firstImage": "flour dust across a steel scale",
+      "mustInclude": [
+        "starter jar",
+        "batch log",
+        "steel scale"
+      ],
+      "mustAvoid": [
+        "cozy kitchen career dream"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "archival genealogy service",
+      "audience": "a retiree asked to turn family history passion into paid research",
+      "stakes": "damaging a loved hobby by skipping the client skill test",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "uses two difficult client calls to separate loving ancestry from sourcing clean evidence for strangers",
+      "firstImage": "a census page magnified on a monitor",
+      "mustInclude": [
+        "census scan",
+        "client brief",
+        "citation template"
+      ],
+      "mustAvoid": [
+        "nostalgia as business proof"
+      ]
+    },
+    {
+      "protagonistName": "Julia",
+      "domain": "college outdoor club leadership",
+      "audience": "a climber reading mountain weekends as a career calling",
+      "stakes": "taking guiding loans before testing teaching frightened beginners",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "asks which part of the mountain day is the signal: climb, people, logistics, or identity",
+      "firstImage": "a damp rope under a trailhead shelter",
+      "mustInclude": [
+        "guide brochure",
+        "wet rope",
+        "incident checklist"
+      ],
+      "mustAvoid": [
+        "adventure lifestyle poster"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate hobby signal from occupational signal",
+      "use rarity as a planning constraint",
+      "read nonlinear career stories without forcing a calling"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one interest, then add the exact paid role, skill, buyer, or institution it would need before becoming career evidence.",
+  "readingTimeMinutes": 12
+}

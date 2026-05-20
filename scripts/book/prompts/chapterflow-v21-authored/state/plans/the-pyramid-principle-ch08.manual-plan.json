@@ -1,0 +1,194 @@
+{
+  "chapterId": "the-pyramid-principle-ch08",
+  "number": 8,
+  "title": "Questioning the problem-solving process",
+  "coreMove": "Separate problem definition, diagnosis, and action, then structure the inquiry before trusting the recommendation.",
+  "sourcePressure": "Chapter 8 moves upstream to problem solving: what the problem is, why it exists, what to do about it, period graph books, structuring analysis of the problem, and the logic-tree concept.",
+  "chapterSpecificMisunderstanding": "Treating the visible symptom or preferred fix as the problem and then organizing a recommendation around that shortcut.",
+  "sourceAlignmentTerms": [
+    "problem-solving process",
+    "what is the problem",
+    "why does it exist",
+    "what should we do about it",
+    "period graph books",
+    "structuring the analysis",
+    "logic-tree concept"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "logic tree",
+      "detail": "the Chapter 8 sidecar states that the logic-tree concept appears as a structural aid inside the analytical process",
+      "useIn": "both",
+      "phrasingHint": "A logic tree earns its keep only when it opens the field of causes before one favorite explanation takes over."
+    },
+    {
+      "kind": "artifact",
+      "name": "What is the problem / why does it exist / what should we do about it",
+      "detail": "the authorized heading map separates problem definition, causal analysis, and action choice",
+      "useIn": "fullRead",
+      "phrasingHint": "Definition, diagnosis, and action are different jobs; when they blur, the outline starts carrying borrowed certainty."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The meeting room waits while a slide tries to explain itself",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "Most people think formatting solves clarity; actually thinking solves clarity",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Circle the main point and improve the structure",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "student reorganizes study notes at a library table",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a public-transit planning unit investigating late evening buses",
+      "audience": "analysts diagnosing service reliability",
+      "stakes": "the city may add buses when the real issue is dispatch gaps or transfer timing",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Megan writes late buses as a symptom, branches the issue into dispatch, traffic, and transfer timing, and refuses to recommend added service until each branch is tested.",
+      "firstImage": "A wall map shows red pins along three late-night routes.",
+      "mustInclude": [
+        "route map",
+        "dispatch log",
+        "transfer timing table"
+      ],
+      "mustAvoid": [
+        "bus depot shells",
+        "railway safety from ch2"
+      ]
+    },
+    {
+      "domain": "a hospital cafeteria team analyzing uneaten patient meals",
+      "audience": "service managers diagnosing operational problems",
+      "stakes": "budget will be spent on new menus if timing, temperature, or dietary mismatches are not separated",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Étienne asks whether taste is the problem, then builds branches for delivery timing, tray temperature, dietary fit, and menu choice before recommending anything.",
+      "firstImage": "Are patients rejecting the food, or is the food arriving too late to be food?",
+      "mustInclude": [
+        "tray return counts",
+        "temperature log",
+        "dietary-order sheet"
+      ],
+      "mustAvoid": [
+        "hospital operations from ch1",
+        "children hospital onboarding from ch7"
+      ]
+    },
+    {
+      "domain": "a university lab investigating failed replication attempts",
+      "audience": "research teams structuring inquiry before corrective action",
+      "stakes": "months of work may be wasted if technique, reagent quality, and sample preparation are not diagnosed separately",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Paula labels the failure as the visible result, then builds a cause tree before choosing whether to retrain staff or replace reagents.",
+      "firstImage": "A tray of cloudy wells sits under the lab hood light.",
+      "mustInclude": [
+        "replication log",
+        "reagent lot sheet",
+        "sample prep checklist"
+      ],
+      "mustAvoid": [
+        "biotech freezer proposal from ch4"
+      ]
+    },
+    {
+      "domain": "a bookshop owner tracing declining weekday sales",
+      "audience": "small-business operators making practical diagnoses",
+      "stakes": "discounting will cut margin if the real cause is nearby construction or inventory mismatch",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chris replaces the blunt problem sales are down with branches for foot traffic, conversion, and basket size, then tests each before choosing an action.",
+      "firstImage": "It took Chris three quiet Tuesdays to stop calling the symptom the problem.",
+      "mustInclude": [
+        "daily sales ledger",
+        "construction notice",
+        "category inventory report"
+      ],
+      "mustAvoid": [
+        "cookbook/sourdough example from ch2"
+      ]
+    },
+    {
+      "domain": "an emergency-management office reviewing slow storm-shelter openings",
+      "audience": "public agencies diagnosing readiness failures",
+      "stakes": "residents could wait outside shelters again if staffing, keys, and alert protocols remain one vague issue",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:05 a.m., Marit refuses to write staff failed, divides the process into alert, access, staffing, and supply branches, and marks which branch lacks evidence.",
+      "firstImage": "At 7:05 a.m., Marit pins a shelter-opening timeline beside the radio log.",
+      "mustInclude": [
+        "shelter timeline",
+        "radio log",
+        "key-control sheet"
+      ],
+      "mustAvoid": [
+        "climate flood sensors from ch1"
+      ]
+    },
+    {
+      "domain": "a game-studio producer diagnosing repeated build failures",
+      "audience": "software production teams separating causes from fixes",
+      "stakes": "the team may buy tooling when build failures stem from asset handoff rules",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"The failed build is not the problem yet,\" Akira says, then draws branches for assets, code merges, tests, and release timing before assigning fixes.",
+      "firstImage": "\"The failed build is not the problem yet,\" Akira says with the error log projected behind him.",
+      "mustInclude": [
+        "build error log",
+        "asset handoff board",
+        "release calendar"
+      ],
+      "mustAvoid": [
+        "software incident handoff from ch4"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate symptoms from problem statements",
+      "hold action until diagnosis has been structured",
+      "use a logic tree to divide the field without overclaiming",
+      "identify when polished structure rests on weak inquiry"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one current issue, write three lines: symptom, possible causes, proposed action. If the first and third lines are the same, stop and define the problem again.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,205 @@
+{
+  "chapterId": "games-people-play-ch02",
+  "number": 2,
+  "title": "What a Transaction Is and Why They Go Wrong",
+  "coreMove": "Map the stimulus and response by ego state so you can see whether the exchange is complementary or crossed.",
+  "sourcePressure": "Covers transaction as the unit of exchange and the complementary/crossed distinction, with ulterior named only as a forward pointer.",
+  "chapterSpecificMisunderstanding": "Reducing communication failure to tone or personality instead of tracing which state was addressed and which one replied.",
+  "sourceAlignmentTerms": [
+    "transaction",
+    "stimulus",
+    "response",
+    "complementary transaction",
+    "crossed transaction",
+    "Adult-to-Adult",
+    "Parent-to-Child"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "complementary transaction",
+      "detail": "the source defines it as a response from the ego state addressed, aimed back at the state that sent the original message, allowing conversation to continue",
+      "useIn": "both",
+      "phrasingHint": "A complementary transaction is why a plain information request can move quickly: Adult asks, Adult answers, and nothing snaps."
+    },
+    {
+      "kind": "artifact",
+      "name": "crossed transaction",
+      "detail": "the source defines it as an unexpected ego-state response that breaks the conversation and makes the exchange go sideways",
+      "useIn": "both",
+      "phrasingHint": "A crossed transaction is the moment a factual question receives a scolding answer and the original subject disappears."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'What a Transaction Is and Why They Go Wrong' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "James",
+      "domain": "remote software incident Slack thread during a payment outage",
+      "audience": "an engineering lead trying to keep a status request Adult-to-Adult",
+      "stakes": "the outage clock is running and shame will slow the fix",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "James answers the blame-tinged reply with the current rollback status and one needed log line rather than defending the team.",
+      "firstImage": "At 10:42 a.m., James sees the red incident banner stretch across three monitors.",
+      "mustInclude": [
+        "incident channel",
+        "rollback checklist",
+        "error-rate graph"
+      ],
+      "mustAvoid": [
+        "generic office Slack tension",
+        "postmortem blame game"
+      ]
+    },
+    {
+      "protagonistName": "Lea",
+      "domain": "bakery counter refund after a wedding cake pickup error",
+      "audience": "a shop owner hearing a customer's complaint arrive as Adult but feeling pulled into Child apology",
+      "stakes": "a refund conversation can become humiliation or repair",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lea notices that the customer asked for a remedy, not a confession, and replies with options and timing.",
+      "firstImage": "\"I need to know what you can do before Saturday,\" the bride says.",
+      "mustInclude": [
+        "receipt roll",
+        "cake box label",
+        "refund terminal"
+      ],
+      "mustAvoid": [
+        "customer-is-always-right moral",
+        "meltdown at counter"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "university lab equipment booking conflict",
+      "audience": "a PhD candidate answering a professor who treats a scheduling question as defiance",
+      "stakes": "access to the microscope and future trust in the lab",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Andrew waits two beats, then restates the booking question without accepting the Parent-to-Child frame.",
+      "firstImage": "The microscope room hums behind a keypad that has locked three students out.",
+      "mustInclude": [
+        "booking spreadsheet",
+        "keypad log",
+        "lab coat sleeve"
+      ],
+      "mustAvoid": [
+        "classroom power struggle",
+        "academic politics essay"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "local council snow-clearing complaint line",
+      "audience": "a city employee handling residents who want reassurance but ask as accusations",
+      "stakes": "a winter storm queue can turn into mutual contempt",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ingrid hears the caller's Child appeal under the angry phrasing and gives a precise plow estimate without parental correction.",
+      "firstImage": "Salt dust marks the cuffs of everyone walking past the service desk.",
+      "mustInclude": [
+        "plow route map",
+        "call queue display",
+        "wet boots tray"
+      ],
+      "mustAvoid": [
+        "bureaucracy satire",
+        "customer service script"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "restaurant kitchen allergy ticket during dinner rush",
+      "audience": "a sous-chef catching a server's panicked request before it crosses into accusation",
+      "stakes": "one crossed reply can endanger the diner and split the line staff",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Marco repeats the allergen list and asks for the table number instead of answering the server's fear as blame.",
+      "firstImage": "You can hear the printer spit another ticket before the server finishes the sentence.",
+      "mustInclude": [
+        "allergy ticket",
+        "red-handled tongs",
+        "expo window bell"
+      ],
+      "mustAvoid": [
+        "food-service chaos montage",
+        "chef temper scene"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "parent-teacher conference about missing assignments",
+      "audience": "a teacher trying to answer a parent's Adult question while the parent's tone invites Parent defense",
+      "stakes": "the student's plan depends on adults not reenacting rank",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Layla sees later that she answered the father's tone instead of his question, then writes the crossed arrows on the conference notes.",
+      "firstImage": "It took Layla until the parking lot to see the cross.",
+      "mustInclude": [
+        "assignment tracker",
+        "conference table name tent",
+        "student planner"
+      ],
+      "mustAvoid": [
+        "teacher-versus-parent morality play",
+        "generic school meeting"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify complementary versus crossed exchanges",
+      "predict why a conversation can continue indefinitely",
+      "choose when to recross or wait",
+      "avoid introducing ulterior motives too early"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Draw two arrows for the last exchange that went sideways: the arrow you sent, and the arrow you got back. Label the ego states only.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

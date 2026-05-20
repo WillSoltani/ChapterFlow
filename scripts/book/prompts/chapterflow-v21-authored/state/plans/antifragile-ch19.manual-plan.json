@@ -1,0 +1,201 @@
+{
+  "chapterId": "antifragile-ch19",
+  "number": 19,
+  "title": "The Philosopher's Stone and Its Inverse",
+  "coreMove": "Invert the desired transformation and ask what hidden response could turn a fix into its opposite.",
+  "sourcePressure": "This chapter focuses on transformation, inversion, and interventions under hidden response structures.",
+  "chapterSpecificMisunderstanding": "Getting lost in mystical metaphor instead of practical reversal.",
+  "sourceAlignmentTerms": [
+    "philosopher's stone",
+    "inverse",
+    "transformation",
+    "inversion",
+    "intervention",
+    "hidden response",
+    "opacity"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the philosopher's stone",
+      "detail": "the title image for transformation and its seductive promise",
+      "useIn": "both",
+      "phrasingHint": "The promise of transformation is dangerous when the response curve is hidden."
+    },
+    {
+      "kind": "artifact",
+      "name": "the inverse",
+      "detail": "the chapter points to reversal: an intervention can create the opposite of what it seeks",
+      "useIn": "fullRead",
+      "phrasingHint": "The inverse asks what the cure becomes when the system answers back."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining The Philosopher's Stone and Its Inverse"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Getting lost in mystical metaphor instead of practical reversal."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pesticide trial plot with Erik as the decision-maker",
+      "audience": "a reader who handles pesticide trial plot under uncertainty",
+      "stakes": "whether Erik avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Erik writes the inverse failure mode on the board before approving the fix.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "pesticide log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic the philosopher's stone and its inverse paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "hedged loan refinance with Nils as the decision-maker",
+      "audience": "a reader who handles hedged loan refinance under uncertainty",
+      "stakes": "whether Nils avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nils writes the inverse failure mode on the board before approving the fix.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "hedged log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic the philosopher's stone and its inverse paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "software hotfix rollout with Soren as the decision-maker",
+      "audience": "a reader who handles software hotfix rollout under uncertainty",
+      "stakes": "whether Soren avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Soren writes the inverse failure mode on the board before approving the fix.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "software log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic the philosopher's stone and its inverse paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "soil amendment test with Bram as the decision-maker",
+      "audience": "a reader who handles soil amendment test under uncertainty",
+      "stakes": "whether Bram avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Bram writes the inverse failure mode on the board before approving the fix.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "soil log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic the philosopher's stone and its inverse paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "contract escape clause with Pieter as the decision-maker",
+      "audience": "a reader who handles contract escape clause under uncertainty",
+      "stakes": "whether Pieter avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Pieter writes the inverse failure mode on the board before approving the fix.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "contract log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic the philosopher's stone and its inverse paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "school discipline policy with Willem as the decision-maker",
+      "audience": "a reader who handles school discipline policy under uncertainty",
+      "stakes": "whether Willem avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Willem writes the inverse failure mode on the board before approving the fix.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "school log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic the philosopher's stone and its inverse paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by invert the desired transformation and ask what hidden response could turn a fix into its opposite.",
+      "distinguish philosopher's stone, inverse, transformation in unfamiliar cases",
+      "choose actions that avoid: Getting lost in mystical metaphor instead of practical reversal."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one fix you like, write the clearest way it could produce the inverse of its intended result.",
+  "readingTimeMinutes": 12
+}

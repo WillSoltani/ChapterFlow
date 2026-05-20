@@ -1,0 +1,198 @@
+{
+  "chapterId": "flow-ch06",
+  "number": 6,
+  "title": "The Flow of Thought",
+  "coreMove": "Give thinking a playable structure: a real question, symbolic rules, visible progress, and a next move that keeps curiosity active.",
+  "sourcePressure": "Thought becomes flow when symbols, rules, language, history, science, philosophy, amateur inquiry, and lifelong learning give the mind structured challenge.",
+  "chapterSpecificMisunderstanding": "Turn intellectual flow into study tips, credential worship, or vague curiosity praise.",
+  "sourceAlignmentTerms": [
+    "rules of the mind",
+    "symbols",
+    "play of words",
+    "Clio",
+    "science",
+    "philosophy",
+    "amateurs",
+    "lifelong learning"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Clio",
+      "detail": "the frozen heading index includes Befriending Clio, invoking the muse of history as a way into historical inquiry",
+      "useIn": "fullRead",
+      "phrasingHint": "To befriend Clio is to treat history less like a shelf of dates and more like a living puzzle about why people chose as they did."
+    },
+    {
+      "kind": "artifact",
+      "name": "the rules of the games of the mind",
+      "detail": "the frozen heading index frames thought as games of the mind with rules",
+      "useIn": "both",
+      "phrasingHint": "A mind gets absorbed when the thinking has rules, the way a game does: moves matter because not every move is allowed."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic the flow of thought definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Thomas",
+      "domain": "a library volunteer turning local history into an inquiry puzzle",
+      "audience": "retirees and volunteers who want mental challenge without formal schooling",
+      "stakes": "the archive project will stay dull unless he finds a question inside it",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "the archive room smells of paper, and Thomas chooses one unanswered migration pattern instead of alphabetizing another box",
+      "firstImage": "The archive room fan clicks above three banker boxes",
+      "mustInclude": [
+        "banker boxes",
+        "town map",
+        "index cards"
+      ],
+      "mustAvoid": [
+        "nostalgic history tour"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "a crossword constructor learning rule-bound wordplay",
+      "audience": "language lovers who consume puzzles but want deeper involvement",
+      "stakes": "her first grid either becomes random cleverness or a game with constraints",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she erases a corner, writes the theme rule at the top, and tests each clue against that rule before filling squares",
+      "firstImage": "Eraser crumbs collect in the corner of the grid",
+      "mustInclude": [
+        "pencil",
+        "blank grid",
+        "theme rule"
+      ],
+      "mustAvoid": [
+        "wordplay as trivia"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "a lab technician keeping science alive after routine work",
+      "audience": "technical workers whose job has become automatic",
+      "stakes": "comfort could freeze his learning just when equipment changes",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he predicts the calibration will stay boring unless he asks why the drift appears, then runs one side test for feedback",
+      "firstImage": "At 3:42 p.m., Andrew watches the calibration line drift",
+      "mustInclude": [
+        "calibration graph",
+        "sample vial",
+        "side test notebook"
+      ],
+      "mustAvoid": [
+        "unsupported science detail"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "a philosophy reading group host avoiding abstract display",
+      "audience": "readers intimidated by philosophy talk",
+      "stakes": "the group will collapse if it becomes status performance",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a member asks what the passage means, and Anke turns it into a lived question each person can answer from one decision that week",
+      "firstImage": "\"Are we supposed to understand this sentence?\" someone asks",
+      "mustInclude": [
+        "marked paperback",
+        "tea tray",
+        "index question"
+      ],
+      "mustAvoid": [
+        "academic jargon"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "a software tester using a bug as a mental game",
+      "audience": "professionals who need fresh challenge inside familiar work",
+      "stakes": "a stubborn defect blocks release and his usual checklist has failed",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "you reconstruct the bug by writing the rule each failed theory broke, then find the one condition the logs keep hiding",
+      "firstImage": "You have run the same failing test eleven times",
+      "mustInclude": [
+        "error log",
+        "sticky notes",
+        "test branch"
+      ],
+      "mustAvoid": [
+        "programming heroics"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "an adult learner building a map of bird calls",
+      "audience": "lifelong learners who need feedback outside school",
+      "stakes": "without structure her new interest will become another abandoned app",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "contrast passive listening walks with the morning she records three calls, checks them against a guide, and marks one improvement",
+      "firstImage": "Aanya thought she liked birds until the calls all blurred together",
+      "mustInclude": [
+        "field guide",
+        "phone recording",
+        "park bench"
+      ],
+      "mustAvoid": [
+        "nature inspiration only"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turning curiosity into structured inquiry",
+      "distinguishing amateur depth from credential seeking",
+      "using words, history, science, or philosophy as flow domains"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Turn one vague curiosity into a playable question, then write the rule for what counts as progress in the next ten minutes.",
+  "readingTimeMinutes": 12
+}

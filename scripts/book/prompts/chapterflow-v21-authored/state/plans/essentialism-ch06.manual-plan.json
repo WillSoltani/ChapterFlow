@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch06",
+  "number": 6,
+  "title": "Look: See What Really Matters",
+  "coreMove": "Stop recording every input and look for the quiet pattern that explains what is really happening.",
+  "sourcePressure": "The chapter turns protected space into disciplined scanning: filter for the fascinating, journal selectively, and find patterns instead of drowning in facts and opinions.",
+  "chapterSpecificMisunderstanding": "A weak run would tell the reader to pay more attention to details without teaching signal selection.",
+  "sourceAlignmentTerms": [
+    "look",
+    "filter",
+    "signal",
+    "journal",
+    "fascinating",
+    "patterns"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic look: see what really matters topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "note-taking volume frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "note-taking volume",
+      "data hoarding",
+      "reacting to the loudest complaint",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "avalanche forecaster reading a morning field board after three storms",
+      "audience": "forecaster distinguishing signal from dramatic reports",
+      "stakes": "too many observations can bury the slab pattern",
+      "format": "decision_point",
+      "requiredBeat": "She stops copying every note and circles the three repeated weak-layer mentions across valleys.",
+      "firstImage": "A field board is crowded with storm notes.",
+      "mustInclude": [
+        "field board",
+        "weak-layer notes",
+        "valley map"
+      ],
+      "mustAvoid": [
+        "data hoarding",
+        "same as ch05 quiet"
+      ]
+    },
+    {
+      "domain": "beekeeper tracing why one apiary keeps losing queens",
+      "audience": "beekeeper sorting anecdotes from repeated clues",
+      "stakes": "random fixes waste the season if the queen-loss pattern is missed",
+      "format": "scene",
+      "requiredBeat": "He ignores the loud pesticide rumor until the hive cards show all losses follow the same shipment date.",
+      "firstImage": "Hive cards are clipped beside a queen cage label.",
+      "mustInclude": [
+        "hive cards",
+        "queen cage label",
+        "shipment log"
+      ],
+      "mustAvoid": [
+        "generic nature observation",
+        "all details equal"
+      ]
+    },
+    {
+      "domain": "regional train dispatcher reviewing near-miss reports at a rail junction",
+      "audience": "dispatcher flooded with incident narratives",
+      "stakes": "the quiet repeated timing clue matters more than dramatic blame",
+      "format": "postmortem",
+      "requiredBeat": "She highlights the same six-minute transfer overlap across reports and stops summarizing every complaint.",
+      "firstImage": "Near-miss reports are marked with six-minute overlaps.",
+      "mustInclude": [
+        "near-miss reports",
+        "transfer chart",
+        "signal log"
+      ],
+      "mustAvoid": [
+        "generic safety memo",
+        "blame story"
+      ]
+    },
+    {
+      "domain": "wildlife camera-trap researcher sorting thousands of night images",
+      "audience": "researcher drowning in images",
+      "stakes": "recording every animal equally hides the movement corridor",
+      "format": "before_after",
+      "requiredBeat": "Before, every image is tagged; after, he tracks only repeated crossings at the dry creek bed.",
+      "firstImage": "Night images spill around a dry-creek map.",
+      "mustInclude": [
+        "night images",
+        "dry-creek map",
+        "tagging sheet"
+      ],
+      "mustAvoid": [
+        "generic photo sorting",
+        "volume equals insight"
+      ]
+    },
+    {
+      "domain": "community theater costume lead after repeated quick-change failures",
+      "audience": "lead looking past excuses to pattern",
+      "stakes": "every complaint is loud, but one costume fastener is the repeated cause",
+      "format": "dialogue",
+      "requiredBeat": "She asks actors to stop explaining and places failed snaps beside the quick-change timing chart.",
+      "firstImage": "Failed snaps sit beside a quick-change chart.",
+      "mustInclude": [
+        "failed snaps",
+        "timing chart",
+        "costume rack tags"
+      ],
+      "mustAvoid": [
+        "generic theater stress",
+        "one-off error"
+      ]
+    },
+    {
+      "domain": "forensic accountant reviewing charity expense receipts after a whistleblower tip",
+      "audience": "accountant filtering signal from suspicion",
+      "stakes": "chasing every odd receipt can miss the repeated vendor path",
+      "format": "decision_point",
+      "requiredBeat": "He stacks receipts by vendor and circles the one reimbursement route that repeats across departments.",
+      "firstImage": "Receipts are stacked by vendor on a green desk pad.",
+      "mustInclude": [
+        "vendor stacks",
+        "reimbursement forms",
+        "department codes"
+      ],
+      "mustAvoid": [
+        "generic fraud drama",
+        "documenting everything"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the Look: See What Really Matters move inside a concrete scenario",
+      "choose the response that applies: Stop recording every input and look for the quiet pattern that explains what is really happening.",
+      "reject the generic drift: A weak run would tell the reader to pay more attention to details without teaching signal selection.",
+      "explain the trade-off using chapter-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one messy stream of notes, reports, or comments. Stop copying after three repeated clues, circle the pattern, and ignore the rest for now.",
+  "readingTimeMinutes": 12
+}

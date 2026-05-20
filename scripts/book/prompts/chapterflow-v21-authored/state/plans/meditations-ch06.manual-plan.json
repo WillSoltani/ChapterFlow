@@ -1,0 +1,190 @@
+{
+  "chapterId": "meditations-ch06",
+  "number": 6,
+  "title": "Book VI",
+  "coreMove": "Keep duty independent of mood, image, and convenience while staying social.",
+  "sourcePressure": "Cosmic order widens self-command into public reason: duty holds in cold, warmth, praise, blame, life, death, and the bee is not separate from the swarm.",
+  "chapterSpecificMisunderstanding": "do your duty by pleasing everyone or seeking public image",
+  "sourceAlignmentTerms": [
+    "governing reason",
+    "cold or warm",
+    "praised or blamed",
+    "strip appearances",
+    "Antoninus not Caesar",
+    "swarm and bee"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Antoninus rather than Caesar",
+      "detail": "Book VI gathers the instruction to imitate Antoninus rather than Caesar.",
+      "useIn": "both",
+      "phrasingHint": "Antoninus becomes the model when public work tempts the soul to dress itself as power."
+    },
+    {
+      "kind": "artifact",
+      "name": "the swarm and the bee",
+      "detail": "Book VI says what is not good for the swarm is not good for the bee.",
+      "useIn": "both",
+      "phrasingHint": "The bee cannot call itself successful while damaging the hive that makes its work possible."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital procurement committee",
+      "audience": "Julien reviewing a cheaper supplier bid",
+      "stakes": "savings could shift hidden risk to nurses and patients",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Julien asks the nurse lead to test the cheaper tubing before the committee votes.",
+      "firstImage": "The sample box sits unopened beside a spreadsheet of savings.",
+      "mustInclude": [
+        "sample tubing",
+        "bid spreadsheet",
+        "committee agenda"
+      ],
+      "mustAvoid": [
+        "procurement jargon"
+      ]
+    },
+    {
+      "domain": "city parks maintenance",
+      "audience": "Anna choosing a shortcut before a public holiday",
+      "stakes": "looking efficient could leave hazards for families",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anna delays the photo-op planting and fixes the loose playground bolt first.",
+      "firstImage": "A swing chain clicks wrong in the empty park.",
+      "mustInclude": [
+        "socket wrench",
+        "planting tray",
+        "inspection tag"
+      ],
+      "mustAvoid": [
+        "civic virtue speech"
+      ]
+    },
+    {
+      "domain": "financial audit team",
+      "audience": "Kiran under pressure to soften a finding",
+      "stakes": "praise from partners conflicts with the larger trust of the report",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Kiran reads the control failure aloud in plain words and leaves it in the report.",
+      "firstImage": "\"If we remove that sentence, the report stops being ours.\"",
+      "mustInclude": [
+        "audit memo",
+        "redline file",
+        "conference phone"
+      ],
+      "mustAvoid": [
+        "corporate courage generic"
+      ]
+    },
+    {
+      "domain": "university lab allocation",
+      "audience": "Astrid deciding who gets scarce microscope time",
+      "stakes": "favoring her own project would injure the shared lab",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What is the bee owed when the swarm owns the microscope?",
+      "firstImage": "Astrid posts a transparent rotation and takes the inconvenient midnight slot herself.",
+      "mustInclude": [
+        "microscope calendar",
+        "keycard log",
+        "sample tray"
+      ],
+      "mustAvoid": [
+        "academic politics"
+      ]
+    },
+    {
+      "domain": "fire station training",
+      "audience": "Michael training in cold rain",
+      "stakes": "weather becomes an excuse to relax a life-saving drill",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:40 p.m., Michael runs the hose-pack drill again because cold fingers are part of the real call.",
+      "firstImage": "At 7:40 p.m., rain beads on the engine bay floor.",
+      "mustInclude": [
+        "hose pack",
+        "turnout gloves",
+        "drill timer"
+      ],
+      "mustAvoid": [
+        "toughness performance"
+      ]
+    },
+    {
+      "domain": "cooperative grocery board",
+      "audience": "Isabel voting on member discounts",
+      "stakes": "a popular discount would undercut staff wages",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Isabel trace the discount through payroll before voting against applause.",
+      "firstImage": "You see the vote tally before anyone sees the payroll gap.",
+      "mustInclude": [
+        "member ballot",
+        "payroll sheet",
+        "chalkboard sign"
+      ],
+      "mustAvoid": [
+        "small business nostalgia"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "hold duty through changing conditions",
+      "strip image from public responsibility",
+      "detect when private advantage harms the swarm"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before choosing the convenient response, ask whether it would still look right if the whole group had to live by it.",
+  "readingTimeMinutes": 12
+}

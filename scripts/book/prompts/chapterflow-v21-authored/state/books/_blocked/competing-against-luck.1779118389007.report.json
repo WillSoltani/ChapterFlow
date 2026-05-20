@@ -1,0 +1,477 @@
+{
+  "bookId": "competing-against-luck",
+  "title": "Competing Against Luck",
+  "author": "Clayton M. Christensen",
+  "promotedAt": "2026-05-18T15:33:09.005Z",
+  "chapterCount": 10,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"in the first place\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"names a movement from\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q02",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": " messaging quality and timing — if emails arrived earlier in"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q03",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "awing it for the wrong reason — retained users engage CLIENT"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q04",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ce to justify building the AI — upvote counts on feature req"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q06",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": " rational lane self-selection — if the fast lane is underuse"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q07",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "avioral data does not support — so the app team's hypothesis"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q09",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "review surface any weaknesses — academic replication by inde"
+          }
+        ],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q01",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ddressed with a policy change — if the store extends the ret"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q02",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": " implementation is incomplete — extended hours need to run f"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q03",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "han five percent of GPS users — if so, the certainty job is "
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q04",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "rn is price-checking behavior — buyers are comparing the sma"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q05",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": " rather than an emotional job — repeated visits to the same "
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q06",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "the observed floor population — the dwell-time observation c"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q07",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "enerated at the moment of use — a user who notices a gap fil"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q08",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "olvable with interview design — trained interviewers using a"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q09",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ertainty on a validated scale — a survey reaching five hundr"
+          }
+        ],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"struggling moment is not\" appears in both fastRead and deepRead — vary one of them"
+          },
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[3]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "Trust the floor observation. Survey responses capture what buyers can articulate after the fact. Dwe"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q02",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "mmunication window is failing — specifically, if the confirm"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q03",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "p is a temporary readjustment — buyers who increased dwell t"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q09",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "petitive positioning response — the habit the client would l"
+          }
+        ],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q04",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "s a positioning dilution risk — if the website describes bot"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q06",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ht test is competitive parity — whether the expansion matche"
+          }
+        ],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"job many similar hires\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q06",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "pe. Revise the SLA definition — the current SLA was set with"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q07",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "nts lack sufficient authority — the departments attend but c"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q09",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ence of organizational health — if every function is meeting"
+          }
+        ],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the moment the subscriber\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q02",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "nd should be weighted heavily — satisfaction predicts comple"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q07",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "test is stakeholder alignment — if other functions and senio"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q08",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": " 60 days of each major launch — teams run a standard debrief"
+          }
+        ],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the job-first\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the job buyers hired\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "example[2]",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "c ask is to move one decision — whether to open renewal call"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q02",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "enewal conversations at scale — new frameworks need repeated"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q03",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "The problem is process design — the committee format invites"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q04",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ndependent of jobs governance — the errors that drove the cl"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q06",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "roblem is a communication gap — the rebrand language was dev"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q08",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ying too demanding a standard — most organizations cannot ac"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q09",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "be extended before any action — the survey captured confusio"
+          }
+        ],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"vocabulary it did not\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q02",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ngthening a qualitative claim — in interpretive research tra"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q03",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "bring in specialist expertise — jobs analysis identifies wha"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q04",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": " rather than a monitoring gap — compliance is a known procur"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q05",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ore than falsification design — investors fund teams that ha"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q06",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": " which acquisitions to reject — if three pending works serve"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q07",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "er is not a meaningful signal — many jobs statements describ"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q08",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "ircumstances are well-defined — in repeat-purchase contexts "
+          }
+        ],
+        "majors": [],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 40,
+    "totalMajors": 0
+  },
+  "bookGate": {
+    "bookId": "competing-against-luck",
+    "chapterCount": 10,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "F4",
+        "severity": "major",
+        "message": "soft-banned phrase \"rather than\" appears 51 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+        "evidence": "rather than"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        30,
+        29,
+        31
+      ],
+      "answerPositionPctMax": 0.34444444444444444,
+      "totalQuizQuestions": 90,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "competing-against-luck",
+        "chapterCount": 10,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

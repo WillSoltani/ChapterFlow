@@ -6,7 +6,7 @@
   "hook": "The future self is a stranger you keep voting against, because the present self is the only one in the room holding a ballot.",
   "counterintuition": "Most readers assume the trick is to picture the future payoff more vividly. It is not. Delayed rewards lose every honest vote against an immediate one, so the fix is not better imagination, it is rigging a small sensory payoff into the present moment itself.",
   "tryThisNow": "Pick one task you've delayed. First choose what feels good to experience when you finish: cold water, chocolate, one song. Do the task. Collect your reward. Did having it waiting actually make you start?",
-  "keyTakeaway": "Behavior that pays off right now repeats; bolt a small, sensory reward onto the habit the moment it ends, and your present self will keep voting for the future you want.",
+  "keyTakeaway": "Behavior that pays now repeats; bolt a small sensory reward onto the habit as it ends, so your present self keeps voting forward.",
   "breakdown": {
     "fastRead": "A nurse moves a paperclip from one scrub pocket to the other each time she finishes a water bottle. Tiny clink. That clink, not the headache she might dodge at four, is what gets her to the next bottle.\n\nHere is the rule. What gets rewarded now gets done again. Healthy habits pay you later, sometimes years later. So bolt a small payoff onto today.\n\nFind the move that says yes on the spot. A red X. A check mark. A coin in a jar. Your tired self will keep voting for the clink.",
     "deepRead": "At 2:14pm, an illustrator gets an $1,800 payment and has five minutes to choose. New tablet, or a same-day transfer to a savings account she has renamed Future Me, April. She picks the transfer. Her banking app shows the new balance the next time she opens it, and that climbing number is the thing she feels. Not April. Not the tax bill.\n\nThis is the cardinal rule. Behavior that pays off right now repeats. Behavior that only pays off later struggles, no matter how badly you want the later thing. Your nervous system is local in time. It learns from what just happened.\n\nThe trouble with most good habits is the gap. The payoff for flossing is twenty years of keeping your teeth. The payoff for saving is one bad month, a decade out, that does not break you. Your body cannot feel those. So it votes for the cookie, the swipe, the snooze, because those pay now.\n\nYou do not need a bigger reason. You need a smaller reward, sooner. A red X on a wall calendar. A balance you can see. A line in a pocket notebook. The reward does not need to be large. It needs to be on time and on your senses. Sound, sight, touch, taste. The smaller the better, as long as it lands the moment the behavior ends.\n\nPick one habit you keep abandoning. Ask what it gives you in the next sixty seconds. If the answer is nothing, you were never weak. The loop was broken.",
@@ -28,7 +28,7 @@
         "format": "vignette",
         "requiredBeat": "she ties each finished water bottle to dropping a paperclip from one scrub pocket to the other, and notices that the small clink is what actually keeps her going, not the distant promise of feeling better"
       },
-      "scenario": "It is 11:14 a.m. in the pediatric ICU. Bishara has just drained her second water bottle behind the supply cart, and her left hand goes into her right scrub pocket, fishes out a paperclip, and drops it into the left pocket. The small clink lands under the ventilator hum. She has been at this for nine days. The 4 p.m. migraine, the one that has cost her two sick days a month for three years, has not arrived once. She notices, refilling at the sink, that she is not walking toward feeling better later. She is walking toward the next clink.",
+      "scenario": "It is 11:14 a.m. in the pediatric ICU. Bishara has just drained her second water bottle behind the supply cart, and her left hand goes into her right scrub pocket, fishes out a paperclip, and drops it into the left pocket. The small clink lands under the ventilator hum. She has been at this for nine days. The 4 p.m. migraine, the one that has cost her two sick days a month for three years, has not arrived once. She notices, refilling at the sink, that she is not walking toward feeling better later. She is walking toward the next clink. Bishara must decide whether the tiny clink is the reward that keeps the next bottle possible.",
       "whatToDo": "Pair the swallow with the clink. Every finished bottle, move one paperclip from the right pocket to the left, and let that small sound be the payoff you actually collect.",
       "whyItMatters": "The headache prevention is hours away and invisible. The clink is now, audible, countable. Behavior repeats on the reward the nervous system can feel today, not the one a calendar promises."
     },
@@ -85,7 +85,7 @@
         "format": "scene",
         "requiredBeat": "she places a single butterscotch candy on the kitchen counter to unwrap only on return, and the unwrapping — the foil, the smell — is what her body learns to walk toward, not the cardiologist's chart"
       },
-      "scenario": "Helka, seventy-one, stands in her kitchen at 7:14 a.m. holding a single butterscotch candy she has not unwrapped in eight months. Her cardiologist's letter is on the counter, warning of a second stent. The corner mailbox is four hundred feet away. She sets the candy on the tile beside the kettle, untouched, the gold foil catching the sun. The rule she has just made for herself is simple: the candy stays wrapped until she comes back through the door. She slides on her late husband's house shoes and reaches for the knob.",
+      "scenario": "Helka, seventy-one, stands in her kitchen at 7:14 a.m. holding a single butterscotch candy she has not unwrapped in eight months. Her cardiologist's letter is on the counter, warning of a second stent. The corner mailbox is four hundred feet away. She sets the candy on the tile beside the kettle, untouched, the gold foil catching the sun. The rule she has just made for herself is simple: the candy stays wrapped until she comes back through the door. She slides on her late husband's house shoes and reaches for the knob. Helka has to decide whether the candy waits for her return or becomes another untouched promise.",
       "whatToDo": "Pin a small sensory reward, foil, smell, taste, to the moment of return, and refuse it on any morning the walk does not happen.",
       "whyItMatters": "The body learns from what it can feel now. A delayed clinical payoff cannot compete with the kitchen, but an unwrapping waiting four hundred feet away can."
     },
@@ -320,9 +320,9 @@
   },
   "memorableLines": [
     {
-      "text": "The future self is a stranger you keep voting against, because the present self is the only one in the room holding a ballot.",
-      "location": "hook",
-      "why": "Opens with a surprising political metaphor that reframes internal time preference as an electoral problem where the present always wins, making the insight immediately quotable."
+      "text": "What gets rewarded now gets done again.",
+      "location": "breakdown.fastRead",
+      "why": "It states the cardinal rule in a sentence short enough to carry into any delayed-payoff habit."
     },
     {
       "text": "The cardiologist's warning about a second stent is not what gets her down the front steps. The foil is. The thin crinkle, the burnt-sugar smell, the wax paper sticking to her thumb.",

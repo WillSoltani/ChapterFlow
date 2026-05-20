@@ -1,0 +1,191 @@
+{
+  "chapterId": "meditations-ch07",
+  "number": 7,
+  "title": "Book VII",
+  "coreMove": "Keep principles alive by renewing the matching thought at the moment pressure returns.",
+  "sourcePressure": "Dense maxims reanimate principles against familiar badness, future fear, pain, fame, death, first appearances, and unused social help.",
+  "chapterSpecificMisunderstanding": "memorize maxims and assume remembering equals living",
+  "sourceAlignmentTerms": [
+    "familiar badness",
+    "principles die",
+    "one law",
+    "common reason",
+    "first appearances",
+    "future fear",
+    "pain"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "badness is familiar",
+      "detail": "Book VII opens by saying badness is familiar, nothing is new, and principles die only if matching thoughts go out.",
+      "useIn": "both",
+      "phrasingHint": "The point of familiar badness is not boredom; it is refusing to be morally dazzled by repetition."
+    },
+    {
+      "kind": "artifact",
+      "name": "one law and one common reason",
+      "detail": "Book VII strengthens social logic through one law, one common reason, and membership in rational life.",
+      "useIn": "fullRead",
+      "phrasingHint": "A living principle has to find the common reason again while pressure is still warm."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "train platform crowding",
+      "audience": "Olivia facing the same commuter shove every Monday",
+      "stakes": "familiar rudeness keeps feeling like a fresh moral emergency",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivia notices the shove, names it as old material, and steps aside without constructing a whole grievance.",
+      "firstImage": "The platform loudspeaker crackles before the crowd surges.",
+      "mustInclude": [
+        "train platform",
+        "canvas tote",
+        "delay screen"
+      ],
+      "mustAvoid": [
+        "commute irritation default"
+      ]
+    },
+    {
+      "domain": "grant review panel",
+      "audience": "Etienne seeing the same flashy proposal bias",
+      "stakes": "the panel keeps forgetting its own criteria",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Etienne reads the criteria aloud before anyone discusses reputation or charisma.",
+      "firstImage": "\"Before we admire the pitch, let us read the rubric.\"",
+      "mustInclude": [
+        "grant rubric",
+        "proposal stack",
+        "name cards"
+      ],
+      "mustAvoid": [
+        "committee meeting shell"
+      ]
+    },
+    {
+      "domain": "youth orchestra audition",
+      "audience": "Maja judging a nervous student",
+      "stakes": "her principle of fairness weakens under the room's impatience",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Maja resets the score sheet after the cracked first note and listens through the full excerpt.",
+      "firstImage": "Rosin dust shines on the edge of the audition table.",
+      "mustInclude": [
+        "score sheet",
+        "violin case",
+        "screen curtain"
+      ],
+      "mustAvoid": [
+        "arts sentimentality"
+      ]
+    },
+    {
+      "domain": "rental inspection",
+      "audience": "Chris finding another tenant dispute over noise",
+      "stakes": "future dread wants to rehearse the whole argument before it begins",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Chris write only the observed decibel reading before calling either tenant.",
+      "firstImage": "You hear the bass through the hallway before you hear either story.",
+      "mustInclude": [
+        "decibel meter",
+        "inspection form",
+        "apartment hallway"
+      ],
+      "mustAvoid": [
+        "landlord stereotype"
+      ]
+    },
+    {
+      "domain": "research peer review",
+      "audience": "Nina reading a hostile reviewer note",
+      "stakes": "the first sting could become a day of imagined contempt",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Nina one paragraph to see she was answering a tone instead of the methodological point.",
+      "firstImage": "It took Nina one paragraph to notice the heat in her face.",
+      "mustInclude": [
+        "review comments",
+        "tracked changes",
+        "lab notebook"
+      ],
+      "mustAvoid": [
+        "academic wounded pride"
+      ]
+    },
+    {
+      "domain": "soccer referee assessment",
+      "audience": "Tomas reviewing a controversial call",
+      "stakes": "crowd anger tries to replace the actual rule",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What remains after the noise leaves the clip?",
+      "firstImage": "Tomas pauses the video at the contact point and grades only position, timing, and law.",
+      "mustInclude": [
+        "video clip",
+        "referee badge",
+        "assessment form"
+      ],
+      "mustAvoid": [
+        "sports outrage"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot dead memorization of principles",
+      "apply present reason to future fear",
+      "separate first appearance from added judgment"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When an old irritation returns, state the principle it usually makes you forget, then act from that sentence once.",
+  "readingTimeMinutes": 12
+}

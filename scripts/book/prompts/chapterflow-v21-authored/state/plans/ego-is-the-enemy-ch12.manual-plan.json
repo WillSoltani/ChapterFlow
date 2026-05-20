@@ -1,0 +1,196 @@
+{
+  "chapterId": "ego-is-the-enemy-ch12",
+  "number": 12,
+  "title": "Don't tell yourself a story",
+  "coreMove": "Interrupt the flattering narrative before it edits facts into proof of specialness.",
+  "sourcePressure": "Success section: resisting self-narration as a success-stage ego distortion. Supported by frozen source sidecar.",
+  "chapterSpecificMisunderstanding": "Making it about storytelling skill rather than the private myth that protects ego from evidence.",
+  "sourceAlignmentTerms": [
+    "story",
+    "self-narration",
+    "facts",
+    "myth",
+    "success",
+    "distortion"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "No named person, study, place, or artifact is available in the frozen source sidecar for this chapter; use fictional scenarios only and do not invent source anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of story",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple story is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Paul",
+      "domain": "app accessibility audit",
+      "audience": "a reader facing app accessibility audit pressure who needs to practice chapter 12's move without turning it into story advice in general",
+      "stakes": "a concrete standard in app accessibility audit will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "cuts the heroic explanation from the memo and lists the plain facts that actually caused the result in the concrete setting of app accessibility audit; make the lesson visible through action, not explanation",
+      "firstImage": "a wildlife intake tag with the first weight crossed out sits between Paul and the easiest explanation in the app accessibility audit room.",
+      "mustInclude": [
+        "story",
+        "self-narration",
+        "app accessibility"
+      ],
+      "mustAvoid": [
+        "do not turn this into story as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Simon",
+      "domain": "bakery rent renegotiation",
+      "audience": "a reader facing bakery rent renegotiation pressure who needs to practice chapter 12's move without turning it into story advice in general",
+      "stakes": "a concrete standard in bakery rent renegotiation will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "writes the flattering story in the margin, then checks each claim against evidence in the concrete setting of bakery rent renegotiation; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Simon hears, with a budget packet with the prestige line boxed in red already on the table.",
+      "mustInclude": [
+        "story",
+        "self-narration",
+        "bakery rent"
+      ],
+      "mustAvoid": [
+        "do not turn this into story as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Nathan",
+      "domain": "college rowing selection",
+      "audience": "a reader facing college rowing selection pressure who needs to practice chapter 12's move without turning it into story advice in general",
+      "stakes": "a concrete standard in college rowing selection will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "asks which fact would make the private legend less convenient and looks for it first in the concrete setting of college rowing selection; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a patient handoff card with the disputed task still unchecked makes the pressure in college rowing selection visible.",
+      "mustInclude": [
+        "story",
+        "self-narration",
+        "college rowing"
+      ],
+      "mustAvoid": [
+        "do not turn this into story as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Alexander",
+      "domain": "housing co-op repair vote",
+      "audience": "a reader facing housing co-op repair vote pressure who needs to practice chapter 12's move without turning it into story advice in general",
+      "stakes": "a concrete standard in housing co-op repair vote will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "replaces the origin myth with a timeline that includes luck, help, and mistakes in the concrete setting of housing co-op repair vote; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Alexander's thumb stop over a catalog lot number written on masking tape before the ego-favoring move happens.",
+      "mustInclude": [
+        "story",
+        "self-narration",
+        "housing co-op"
+      ],
+      "mustAvoid": [
+        "do not turn this into story as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "George",
+      "domain": "fire station drill debrief",
+      "audience": "a reader facing fire station drill debrief pressure who needs to practice chapter 12's move without turning it into story advice in general",
+      "stakes": "a concrete standard in fire station drill debrief will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "lets a contradictory data point survive the narrative instead of editing it away in the concrete setting of fire station drill debrief; make the lesson visible through action, not explanation",
+      "firstImage": "It took George until the third review of a return-to-play form with the pain scale unfinished to see what ego had protected.",
+      "mustInclude": [
+        "story",
+        "self-narration",
+        "fire station"
+      ],
+      "mustAvoid": [
+        "do not turn this into story as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Henry",
+      "domain": "language school placement test",
+      "audience": "a reader facing language school placement test pressure who needs to practice chapter 12's move without turning it into story advice in general",
+      "stakes": "a concrete standard in language school placement test will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "uses the dullest accurate explanation because it keeps correction possible in the concrete setting of language school placement test; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when a planetarium script page under a red desk lamp becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "story",
+        "self-narration",
+        "language school"
+      ],
+      "mustAvoid": [
+        "do not turn this into story as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish story from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Interrupt the flattering narrative before it edits facts into proof of specialness.",
+      "spot when a scenario has drifted into branding advice",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves story or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

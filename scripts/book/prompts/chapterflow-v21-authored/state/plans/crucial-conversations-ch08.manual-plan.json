@@ -1,0 +1,187 @@
+{
+  "chapterId": "crucial-conversations-ch08",
+  "number": 8,
+  "title": "Explore Others' Paths: How to Listen When Others Blow Up or Clam Up",
+  "coreMove": "Invite the other person back into dialogue by making their path speakable before you respond to it.",
+  "sourcePressure": "When the other person is silent or explosive, AMPP draws their path out, then ABC keeps disagreement narrow by agreeing, building, or comparing.",
+  "chapterSpecificMisunderstanding": "Making listening sound like passive empathy or letting the other person dominate.",
+  "sourceAlignmentTerms": [
+    "AMPP",
+    "Ask",
+    "Mirror",
+    "Paraphrase",
+    "Prime",
+    "ABC",
+    "Agree",
+    "Build",
+    "Compare"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first",
+      "listening means agreeing"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pediatric physical therapy clinic where a teenager gives one-word answers after a setback",
+      "audience": "a therapist trying to draw out frustration without forcing cheerfulness",
+      "stakes": "rehab adherence may collapse if the teenager keeps pretending the pain is fine",
+      "format": "dialogue",
+      "requiredBeat": "the therapist asks once, mirrors the mismatch between fine and clenched fists, paraphrases the fear of losing the season, then primes gently about quitting",
+      "firstImage": "A resistance band snaps back against a vinyl therapy mat.",
+      "mustInclude": [
+        "resistance band",
+        "pain scale card",
+        "soccer cleat bag"
+      ],
+      "mustAvoid": [
+        "generic active listening demo"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "independent bookstore owner talking with a bookseller who suddenly stops recommending new releases",
+      "audience": "an owner noticing withdrawal after a buying decision",
+      "stakes": "front-table sales and staff trust are slipping while resentment stays unnamed",
+      "format": "scene",
+      "requiredBeat": "the owner moves from how are you to a mirror about the quieter staff picks, then paraphrases the concern about corporate-looking inventory",
+      "firstImage": "\"Wait,\" someone says, and a stack of untouched staff-pick cards sits beside the register.",
+      "mustInclude": [
+        "staff-pick cards",
+        "front-table display",
+        "sales receipt"
+      ],
+      "mustAvoid": [
+        "generic retail complaint"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "search-and-rescue debrief where a volunteer explodes about radio protocol",
+      "audience": "a team captain who needs the real concern behind the outburst",
+      "stakes": "future callouts may be less safe if the anger hides a trust breach from last night",
+      "format": "postmortem",
+      "requiredBeat": "the captain lets the first burst pass, asks what made the protocol feel unsafe, and compares only after paraphrasing the fear accurately",
+      "firstImage": "The first signal is sensory before it is social: a mud-streaked handheld radio lies on the hood of a rescue truck.",
+      "mustInclude": [
+        "handheld radio",
+        "debrief log",
+        "trail map"
+      ],
+      "mustAvoid": [
+        "generic emergency-services hierarchy"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "tenant legal-aid intake where a client keeps changing the subject from missed rent notices",
+      "audience": "a legal-aid advocate trying to prime without shaming",
+      "stakes": "the eviction defense may fail if the real fear about immigration status stays hidden",
+      "format": "decision_point",
+      "requiredBeat": "after two redirects, the advocate primes as a humble guess that the paperwork may feel risky for reasons beyond rent",
+      "firstImage": "You notice a manila intake folder holds three unopened rent notices before anyone names the problem.",
+      "mustInclude": [
+        "rent notices",
+        "intake folder",
+        "court date card"
+      ],
+      "mustAvoid": [
+        "generic social-service sympathy"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "high-end bicycle repair shop where a mechanic gets defensive about a repeat brake complaint",
+      "audience": "a shop owner trying to preserve craft pride and customer safety",
+      "stakes": "a customer may crash if the team debates blame instead of the brake rub pattern",
+      "format": "before_after",
+      "requiredBeat": "the owner agrees that the parts were within spec, builds with the new squeal report, then compares his view of the test ride data",
+      "firstImage": "Only later does the miss become obvious: a wheel spins upside down in a repair stand, ticking once per rotation.",
+      "mustInclude": [
+        "repair stand",
+        "brake pad gauge",
+        "test ride note"
+      ],
+      "mustAvoid": [
+        "forbidden bike helmet anchor"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "choir nonprofit board where the treasurer shuts down after a budget question",
+      "audience": "a board chair who suspects embarrassment behind silence",
+      "stakes": "the season budget could pass with hidden cash-flow trouble",
+      "format": "reflection",
+      "requiredBeat": "the chair asks, mirrors the sudden quiet, paraphrases concern about deposits, and primes that the question may have sounded like blame",
+      "firstImage": "What changes when a deposit schedule is projected on a church basement wall?",
+      "mustInclude": [
+        "deposit schedule",
+        "folding ledger binder",
+        "season brochure"
+      ],
+      "mustAvoid": [
+        "generic board meeting politeness"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose Ask, Mirror, Paraphrase, or Prime based on the person's resistance",
+      "mirror emotion without accusing",
+      "prime as a tentative guess rather than a diagnosis",
+      "use Agree, Build, Compare to shrink disagreement to its real size"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When someone says fine and the conditions say otherwise, use one clean mirror: You are saying ____, and I am seeing ____. Am I reading that right?",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

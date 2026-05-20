@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch06",
+  "number": 6,
+  "title": "Commanders of Attention 2: The Magnetizers",
+  "coreMove": "Hold attention by opening a personally relevant or unfinished loop that the later message can legitimately close.",
+  "sourcePressure": "The source identifies self-relevant, unfinished, and mysterious cues as magnetizers that hold attention long enough for later association and persuasion.",
+  "chapterSpecificMisunderstanding": "Create suspense or mystery regardless of whether it serves the choice.",
+  "sourceAlignmentTerms": [
+    "magnetizers",
+    "self-relevance",
+    "unfinished",
+    "mystery",
+    "held attention",
+    "open loop"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "insurance renewal letter",
+      "audience": "a policy designer trying to keep homeowners reading",
+      "stakes": "whether self-relevance holds attention past the first paragraph",
+      "format": "before_after",
+      "requiredBeat": "the designer opens with the customer’s street flood-zone change, then reveals the premium options",
+      "firstImage": "a renewal letter with the street name in the first line",
+      "mustInclude": [
+        "flood-zone map",
+        "premium table"
+      ],
+      "mustAvoid": [
+        "generic personalization"
+      ]
+    },
+    {
+      "domain": "architecture critique wall",
+      "audience": "a studio mentor keeping students engaged with unfinished designs",
+      "stakes": "whether an unresolved edge holds attention better than a completed rendering",
+      "format": "reflection",
+      "requiredBeat": "the mentor covers the final rendering and leaves the unresolved stair section visible while students predict the fix",
+      "firstImage": "a half-pinned floor plan curling at one corner",
+      "mustInclude": [
+        "vellum overlay",
+        "stair section"
+      ],
+      "mustAvoid": [
+        "classroom shell"
+      ]
+    },
+    {
+      "domain": "mystery shopper training",
+      "audience": "a retail trainer teaching associates to notice greeting gaps",
+      "stakes": "whether a mystery queue keeps attention through a dull protocol",
+      "format": "predict_reveal",
+      "requiredBeat": "the trainer shows three anonymous receipts and asks which visit lost the shopper before revealing the greeting note",
+      "firstImage": "three receipts clipped to a cork strip",
+      "mustInclude": [
+        "anonymous receipt",
+        "greeting note"
+      ],
+      "mustAvoid": [
+        "sales pep talk"
+      ]
+    },
+    {
+      "domain": "wildlife rescue intake",
+      "audience": "a volunteer coordinator explaining why incomplete records matter",
+      "stakes": "whether unfinished information keeps volunteers tracking the animal past intake",
+      "format": "scene",
+      "requiredBeat": "the coordinator leaves one field blank on a rescued hawk card and asks what treatment becomes impossible",
+      "firstImage": "a hawk intake card beside a taped carrier",
+      "mustInclude": [
+        "intake card",
+        "carrier label"
+      ],
+      "mustAvoid": [
+        "animal story sentimentality"
+      ]
+    },
+    {
+      "domain": "courtroom exhibit sequence",
+      "audience": "a trial consultant helping jurors follow a timeline",
+      "stakes": "whether mystery should be opened only where evidence can close it",
+      "format": "decision_point",
+      "requiredBeat": "the consultant withholds the final timestamp until jurors have marked the unexplained gap themselves",
+      "firstImage": "a timeline board with one empty timestamp slot",
+      "mustInclude": [
+        "timestamp card",
+        "evidence binder"
+      ],
+      "mustAvoid": [
+        "legal drama"
+      ]
+    },
+    {
+      "domain": "subscription cancellation screen",
+      "audience": "a service designer trying to retain users ethically",
+      "stakes": "whether an unfinished setup checklist holds attention without trapping the user",
+      "format": "postmortem",
+      "requiredBeat": "the designer removes the false progress bar and keeps only the real unfinished data export task",
+      "firstImage": "a cancellation screen with one unchecked export box",
+      "mustInclude": [
+        "export checkbox",
+        "cancel button"
+      ],
+      "mustAvoid": [
+        "dark pattern"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "build a legitimate open loop",
+      "use self-relevance without fake personalization",
+      "close mystery with evidence rather than suspense",
+      "notice when held attention becomes manipulative"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Turn one dull request into an honest open loop by naming a personally relevant unanswered question that the request will actually resolve.",
+  "readingTimeMinutes": 12
+}

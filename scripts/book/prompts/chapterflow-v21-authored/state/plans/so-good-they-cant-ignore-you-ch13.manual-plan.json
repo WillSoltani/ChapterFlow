@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch13",
+  "number": 13,
+  "title": "Missions Require Capital",
+  "coreMove": "Earn mission by building enough capital to see and act near a real frontier.",
+  "sourcePressure": "Mission connects to earlier skill, leverage, and career capital, and mission talk without prior support stays weak.",
+  "chapterSpecificMisunderstanding": "Making mission sound like a personal slogan anyone can declare immediately.",
+  "sourceAlignmentTerms": [
+    "mission requires capital",
+    "frontier",
+    "career capital",
+    "leverage",
+    "skill base",
+    "credible direction",
+    "sequence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "You cannot choose a frontier you cannot yet recognize.",
+      "detail": "The locked TOC confirms this as the first requirement after the mission opening.",
+      "useIn": "both",
+      "phrasingHint": "Mission has a price: enough capital to know which direction is real."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch13: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch13: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch13: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch13: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Luke",
+      "domain": "neonatal device engineering",
+      "audience": "a practitioner responsible for neonatal device engineering",
+      "stakes": "neonatal device engineering will either gain a defensible next move or drift into the chapter-specific trap: Making mission sound like a personal slogan anyone can declare immediately.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "turns a mission slogan into a frontier test by naming the hard pattern visible in tiny sensor leads in a tray that only accumulated skill lets the protagonist see",
+      "firstImage": "tiny sensor leads in a tray",
+      "mustInclude": [
+        "tiny sensor leads",
+        "frontier",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Adam",
+      "domain": "open-source tax filing accessibility",
+      "audience": "a practitioner responsible for open-source tax filing accessibility",
+      "stakes": "open-source tax filing accessibility will either gain a defensible next move or drift into the chapter-specific trap: Making mission sound like a personal slogan anyone can declare immediately.",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "turns a mission slogan into a frontier test by naming the hard pattern visible in rejection notice beside a keyboard that only accumulated skill lets the protagonist see",
+      "firstImage": "rejection notice beside a keyboard",
+      "mustInclude": [
+        "rejection notice beside",
+        "frontier",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "George",
+      "domain": "soil-health extension service",
+      "audience": "a practitioner responsible for soil-health extension service",
+      "stakes": "soil-health extension service will either gain a defensible next move or drift into the chapter-specific trap: Making mission sound like a personal slogan anyone can declare immediately.",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "turns a mission slogan into a frontier test by naming the hard pattern visible in soil cores in paper sleeves that only accumulated skill lets the protagonist see",
+      "firstImage": "soil cores in paper sleeves",
+      "mustInclude": [
+        "soil cores in",
+        "frontier",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Peter",
+      "domain": "court-language access software",
+      "audience": "a practitioner responsible for court-language access software",
+      "stakes": "court-language access software will either gain a defensible next move or drift into the chapter-specific trap: Making mission sound like a personal slogan anyone can declare immediately.",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "turns a mission slogan into a frontier test by naming the hard pattern visible in docket screen above a hallway that only accumulated skill lets the protagonist see",
+      "firstImage": "docket screen above a hallway",
+      "mustInclude": [
+        "docket screen above",
+        "frontier",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Paul",
+      "domain": "rare-book preservation training",
+      "audience": "a practitioner responsible for rare-book preservation training",
+      "stakes": "rare-book preservation training will either gain a defensible next move or drift into the chapter-specific trap: Making mission sound like a personal slogan anyone can declare immediately.",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "turns a mission slogan into a frontier test by naming the hard pattern visible in brittle spine in a book cradle that only accumulated skill lets the protagonist see",
+      "firstImage": "brittle spine in a book cradle",
+      "mustInclude": [
+        "brittle spine in",
+        "frontier",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Mark",
+      "domain": "community paramedicine data program",
+      "audience": "a practitioner responsible for community paramedicine data program",
+      "stakes": "community paramedicine data program will either gain a defensible next move or drift into the chapter-specific trap: Making mission sound like a personal slogan anyone can declare immediately.",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "turns a mission slogan into a frontier test by naming the hard pattern visible in call-frequency map beside a radio charger that only accumulated skill lets the protagonist see",
+      "firstImage": "call-frequency map beside a radio charger",
+      "mustInclude": [
+        "call-frequency map beside",
+        "frontier",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "tie mission to frontier knowledge",
+      "detect unsupported purpose claims",
+      "use capital as mission evidence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write a mission idea you like, then list the specific skill frontier you are close enough to understand.",
+  "readingTimeMinutes": 12
+}

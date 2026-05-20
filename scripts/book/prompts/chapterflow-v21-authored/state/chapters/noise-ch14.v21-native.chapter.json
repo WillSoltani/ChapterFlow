@@ -1,0 +1,292 @@
+{
+  "chapterId": "noise-ch14",
+  "number": 14,
+  "title": "Guidelines in Medicine",
+  "readingTimeMinutes": 12,
+  "hook": "Guidelines lower variance when they establish the default. They raise friction when they establish the aspiration.",
+  "counterintuition": "Good doctors often treat guidelines as a floor below which they do not fall. But guidelines are most valuable not to physicians who already exceed them: they are most valuable to patients who would otherwise fall below them. A guideline does not make the top quartile better. It makes the worst outcomes rarer. That is the population argument for guidelines, and it is different from whether any individual doctor needs them.",
+  "tryThisNow": "Treat one professional guideline as the default for your next five decisions of that type. Write a sentence each time you depart from it. Read those sentences at the end. Some will be sound. Others will be habits you had not examined.",
+  "keyTakeaway": "A clinical guideline does not make every physician better. It makes the worst outcomes rarer. The mechanism is default-with-named-departure: treating the guideline as what happens unless there is a reason otherwise.",
+  "breakdown": {
+    "fastRead": "Two time-to-antibiotics distributions for the same ICU, the same physicians, the same emergency presentations. In one period, the sepsis bundle was the default: departures required documented clinical reasons. In the other, it was advisory. Default period: standard deviation of 28 minutes. Advisory period: 71 minutes. The treatment did not change. The framing of the default did. A guideline presented as advice is an optional input. A guideline as the default is the behavior unless stated otherwise. The difference is not in the guideline's content. It is in what a physician must do to not follow it.",
+    "deepRead": "Walk a physician through the same patient presentation twice. In round one, they have a clinical guideline suggesting a specific antibiotic regimen. In round two, they have the same guideline, but it is the default: the regimen is prescribed unless the physician writes a documented clinical reason for a different choice. Same physician, same guideline content. Different rates of adherence. Different rates of variance from the population mean.\n\nThe departure documentation requirement does something the guideline's content cannot do alone. When a physician chooses not to follow a guideline in an advisory system, the choice leaves no trace. Nobody knows how often it happens, for what reasons, or whether the departures cluster in ways that reveal unmeasured preferences. When the same choice happens in a default system, it requires a sentence. That sentence is not primarily a deterrent to departure. It is a mirror: writing it forces the physician to name the clinical reason, and the naming reveals whether the reason is sound clinical judgment or a habit that has never been examined against the guideline. Research on guideline implementation shows that the departure documentation mechanism is often more powerful than the guideline's content at reducing variance. A clinical guideline does not make every doctor better. It makes the worst outcomes rarer. That is a different claim, and it is the one that matters for population health.\n\nThe top quartile of physicians in any specialty does not need guidelines to perform well. The guideline's population-level impact operates primarily on the variation below that quartile, raising the floor of what patients reliably receive.\n\nThe range of prescribing rates for guideline-eligible patients is the signature of unexamined departure.",
+    "fullRead": "At 7:15 on a Tuesday morning, Leopold spreads the sepsis bundle compliance data across the quality review table. Two distributions: the periods when the bundle was the default behavior versus the periods when it was described as a guideline to consult. In the default periods, time-to-antibiotics showed a standard deviation of 28 minutes. In the advisory periods, 71 minutes. The average was also longer in the advisory periods. Leopold notes both findings: not just the variance reduction but the mean improvement. The floor rose. The distribution narrowed. The treatment guidelines for sepsis had not changed between the two periods. The default framing had.\n\nA guideline that raises the floor looks different from inside the top quartile of practitioners and from outside it. Physicians who routinely exceed a clinical guideline may experience it as a constraint that formalizes what they already do instinctively. From the perspective of patients randomly assigned to the distribution of physicians in a health system, the guideline's effect is different: it compresses the left tail of that distribution. A patient who sees a physician in the bottom quartile receives a higher floor of care with the guideline in place. A patient who sees a physician in the top quartile receives approximately the same care they would have received without it. The argument for guidelines at the population level is not about the best doctors. It is about what the worst outcomes look like.\n\n'My statin initiation rate is 62 percent for eligible patients.' Herbert is presenting the quality comparison voluntarily. His colleague Ida's rate is 90 percent for the same population. Herbert does not describe the gap as a problem. He describes his approach as considered: he reviews each eligible patient individually and weighs the statin benefit against the concern about side effects. Ida asks the relevant question: the guideline has already answered that question for eligible patients. What Herbert describes as individual clinical judgment is a systematic departure from the default that has not been named as such. The quality team's note: the problem is not that Herbert's 62 percent rate is wrong. It is that the 28-point gap is unmeasured and unnamed, and cannot be evaluated without being named.\n\nRoberta reviews the hypertension protocol data from the two periods. Before the default protocol, cardiologists used personal treatment target preferences. After the protocol, the guideline blood pressure target was the default and departures required documentation. Prescribing variance for the same patient risk category fell 45 percent. The departure documentation revealed that 80 percent of departures either had sound clinical reasons or were habits that had never been examined against the guideline. The 80 percent figure is the most important result: most of the variance that existed before the default protocol was not considered clinical judgment by the physicians who produced it. It was unexamined habit, made visible for the first time by the requirement to name it.\n\nWhen you treat a professional guideline as advice, you implicitly treat your departure from it as normal. When you treat it as the default, your departure becomes an event that requires a reason. That shift is not about compliance. It is about what your departure becomes visible to. Advice systems produce invisible departures. Default systems produce named ones. Named departures can be examined. Invisible departures accumulate into the variance that makes outcomes depend on which physician happened to be on call.\n\nA 58-point range in colorectal cancer screening referral rates across network physicians treating identically eligible patients is not the signature of complex clinical judgment. It is the signature of unexamined departure that the default framing has not yet required to be named."
+  },
+  "memorableLines": [
+    {
+      "text": "A guideline presented as advice is an optional input. A guideline as the default is the behavior unless stated otherwise.",
+      "location": "breakdown.fastRead",
+      "why": "The parallel sentence structure makes the distinction precise: one names the guideline as input (optional), the other names it as behavior (requires override). The structural difference is the chapter's core argument."
+    },
+    {
+      "text": "A clinical guideline does not make every doctor better. It makes the worst outcomes rarer. That is a different claim, and it is the one that matters for population health.",
+      "location": "breakdown.deepRead",
+      "why": "Three sentences do three jobs: names what guidelines do not do, names what they do do, and frames the why as population-level rather than individual-level."
+    },
+    {
+      "text": "Advice systems produce invisible departures. Default systems produce named ones. Named departures can be examined. Invisible departures accumulate into the variance that makes outcomes depend on which physician happened to be on call.",
+      "location": "breakdown.fullRead",
+      "why": "Four short sentences trace the full causal chain from framing choice (advice vs. default) to population outcome (physician lottery), making the stakes of the distinction concrete."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "noise-ch14-ex01",
+      "title": "28 vs. 71",
+      "tags": ["sepsis bundle", "ICU", "default protocol", "time-to-antibiotics variance"],
+      "planSpec": {
+        "domain": "sepsis treatment: an ICU measuring whether adherence to the sepsis bundle reduces variation in time-to-antibiotics across physicians",
+        "audience": "an ICU medical director conducting a quality review of sepsis bundle compliance",
+        "stakes": "patient mortality — sepsis is time-critical, and variation in time-to-antibiotics is a direct patient harm driver",
+        "format": "scene",
+        "requiredBeat": "the medical director presents the compliance data: default period had 28-minute standard deviation in time-to-antibiotics; advisory period had 71 minutes; the average was also longer in the advisory period"
+      },
+      "scenario": "At 7:15 on a Tuesday, Leopold spreads the sepsis bundle compliance data across the quality review table. The same physicians, the same presentations, two different periods. In the default period, departures from the bundle required a documented clinical reason. In the advisory period, it was presented as a guideline to consult. Default period standard deviation: 28 minutes. Advisory period: 71 minutes. Mean time-to-antibiotics was also longer in the advisory period. The guideline content was identical in both. The framing of whether it was the starting point or the recommendation was not.",
+      "whatToDo": "When implementing a time-critical clinical protocol, distinguish between presenting it as advisory and making it the default. If it is the default, departures require documented reasons. The documentation requirement is the mechanism that produces the variance reduction.",
+      "whyItMatters": "The 43-minute gap in standard deviation between the default and advisory periods, for the same physicians and the same guideline, shows that framing drives adherence more than content."
+    },
+    {
+      "exampleId": "noise-ch14-ex02",
+      "title": "34 to 19",
+      "tags": ["antibiotic stewardship", "primary care", "departure documentation", "inappropriate prescribing"],
+      "planSpec": {
+        "domain": "antibiotic prescribing in primary care: a clinic measuring whether a default-with-justification protocol reduces inappropriate antibiotic use",
+        "audience": "a primary care network quality manager comparing antibiotic prescribing rates before and after protocol introduction",
+        "stakes": "antibiotic stewardship and patient health — inappropriate prescribing varies widely across physicians treating similar presentations",
+        "format": "postmortem",
+        "requiredBeat": "the manager reviews the protocol's first year: inappropriate antibiotic prescribing fell from 34 to 19 percent; the largest drop came from cases where no justification was easy to write; the marginal decline in justified departures was smaller than the large decline in unjustified ones"
+      },
+      "scenario": "Agatha reviews the first year of the default antibiotic protocol. Inappropriate prescribing rate (prescriptions for viral presentations where guidelines recommend watchful waiting) fell from 34 to 19 percent. The departure documentation data tells the more important story: the steepest decline was in cases where physicians had no clinical reason they could easily write down. Justified departure rates fell only marginally. The largest improvement came from a category that had previously been invisible: prescriptions that happened not because of clinical judgment but because the prescription was the path of least resistance.",
+      "whatToDo": "When introducing a default protocol, track the departure documentation reasons separately from the compliance rate. The proportion of departures with documented reasons tells you how much of the prior variation was clinical judgment versus unmeasured habit.",
+      "whyItMatters": "A 15-point prescribing reduction concentrated in cases with no documentable clinical justification shows that most of the prior inappropriate prescribing was not driven by considered clinical reasoning. The documentation requirement made that visible."
+    },
+    {
+      "exampleId": "noise-ch14-ex03",
+      "title": "Named",
+      "tags": ["statin prescribing", "cardiology", "prescribing variation", "guideline-eligible patients"],
+      "planSpec": {
+        "domain": "statin prescribing for cardiovascular risk: a cardiology group comparing prescribing variance before and after a structured shared-decision-making protocol",
+        "audience": "a cardiology quality improvement team studying prescribing consistency for guideline-eligible patients",
+        "stakes": "cardiovascular outcomes — guideline-eligible patients who do not receive statins due to physician preference variation have preventable events",
+        "format": "dialogue",
+        "requiredBeat": "two cardiologists compare prescribing rates for guideline-eligible patients and find a 28-point gap; the lower-rate physician describes the decision as open when the guideline treats it as a default; the quality team frames the problem as unnamed rather than wrong"
+      },
+      "scenario": "'My statin initiation rate is 62 percent for eligible patients,' Herbert says, presenting the quality data. His colleague Ida's rate is 90 percent for the same population. Herbert does not describe the gap as a problem. He describes his approach as considered clinical assessment. Ida notes the relevant frame: for guideline-eligible patients, the guideline has already weighed the benefit-to-risk ratio. Herbert's 62 percent is a systematic departure from the default, but because it is not named as a departure, it cannot be evaluated as one. The quality team's conclusion: the gap is not obviously wrong, but it is unnamed and therefore unexaminable.",
+      "whatToDo": "When two clinicians treating the same patient population show a large gap in guideline adherence, frame the gap as a departure measurement problem before framing it as a performance problem. Named departure rates can be analyzed; unnamed variation cannot.",
+      "whyItMatters": "A 28-point prescribing gap for identically eligible patients, described by the lower-rate physician as individual clinical assessment, shows that unnamed departures from the guideline default are indistinguishable from clinical judgment in an advisory system."
+    },
+    {
+      "exampleId": "noise-ch14-ex04",
+      "title": "39 to 97",
+      "tags": ["colorectal cancer screening", "referral variation", "guideline-eligible patients", "physician belief"],
+      "planSpec": {
+        "domain": "cancer screening referral in primary care: a health system comparing referral rate variance across GPs for the same screening-eligible patient population",
+        "audience": "a primary care network analyzing whether a referral decision-support tool reduces variation",
+        "stakes": "early cancer detection — patients who are not referred for guideline-eligible screening miss early detection opportunities",
+        "format": "thought_experiment",
+        "requiredBeat": "the network director asks what the referral rate range is for guideline-eligible patients; the answer is 39 to 97 percent across network physicians; the variation correlates with physician beliefs about screening benefit rather than patient characteristics"
+      },
+      "scenario": "For patients who meet every guideline criterion for colorectal cancer screening referral, what is the range of referral rates across network physicians? Walter poses the question before revealing the data. The answer: 39 to 97 percent. A 58-point range for patients who, according to guidelines, should be referred uniformly. The variation does not correlate with patient age, comorbidity, or preference documentation. It correlates with individual physician beliefs about whether screening is beneficial. The guideline answered the question. The advisory framing meant physicians were not required to answer it the same way.",
+      "whatToDo": "When a guideline addresses a decision for a defined eligible population, measure the referral or prescribing rate variance across physicians for that population. Variance above a narrow band for identically eligible patients is the fingerprint of unexamined departure that a default framing has not required to be named.",
+      "whyItMatters": "A 58-point referral rate range for patients with identical eligibility profiles shows the direct patient impact of advisory framing: which physician a patient sees changes whether they are referred for a guideline-eligible intervention."
+    },
+    {
+      "exampleId": "noise-ch14-ex05",
+      "title": "45 Percent Less",
+      "tags": ["hypertension management", "treatment target variance", "default protocol", "departure documentation"],
+      "planSpec": {
+        "domain": "hypertension management: a hospital system comparing variance in blood-pressure targets across cardiologists treating the same patient population",
+        "audience": "a hospital quality committee reviewing prescribing consistency for antihypertensive therapy targets",
+        "stakes": "long-term patient cardiovascular outcomes — systematic variation in treatment targets leads to population-level differences in stroke and kidney disease incidence",
+        "format": "before_after",
+        "requiredBeat": "contrast pre-protocol period (cardiologists using personal target preferences) with post-protocol period (guideline BP target as default, departures documented): prescribing variance fell 45 percent; 80 percent of documented departures had either sound clinical reasons or were unexamined habits"
+      },
+      "scenario": "Before the default protocol, cardiologists set blood pressure targets based on personal treatment preferences. Roberta's quality committee review shows the before-and-after distributions for the same patient risk category: the pre-protocol distribution is wide and bimodal, centered around two competing target preferences. The post-protocol distribution is narrower, centered on the guideline target. Variance fell 45 percent. The departure documentation data is the more instructive finding: 80 percent of documented departures had either a sound clinical reason or had never been examined against the guideline before being written down. The habit category is the noise that was invisible before the protocol required a name for it.",
+      "whatToDo": "After introducing a default protocol, analyze the departure documentation distribution. Departures with no recordable clinical reason, or reasons that would not survive scrutiny, identify the baseline noise that the advisory system had been producing invisibly.",
+      "whyItMatters": "The 45 percent variance reduction combined with the 80 percent documented-departure rate shows that most of the prior variation was unexamined habit rather than considered clinical judgment. The default framing made the habits visible by requiring them to be named."
+    },
+    {
+      "exampleId": "noise-ch14-ex06",
+      "title": "Recommendation",
+      "tags": ["stroke triage", "emergency medicine", "protocol framing", "door-to-imaging variance"],
+      "planSpec": {
+        "domain": "stroke triage protocol in an emergency department: a hospital comparing door-to-imaging time variance before and after stroke guideline adoption as default",
+        "audience": "an emergency medicine quality officer studying whether guideline adoption reduces variance in time-critical care",
+        "stakes": "stroke outcomes — the treatment window for stroke is time-critical, and variance in time-to-imaging is a direct driver of patient harm",
+        "format": "vignette",
+        "requiredBeat": "the quality officer reviews the first six months after stroke triage protocol adoption as default: door-to-imaging variance fell from SD of 24 minutes to 9 minutes; the mean also fell; the three departments with smallest improvement were those where the protocol was described as a recommendation rather than a default"
+      },
+      "scenario": "The stroke triage protocol data covers the first six months after adoption. Phyllis reads across the departmental comparisons: in departments where the protocol was presented as the default behavior, door-to-imaging standard deviation fell from 24 to 9 minutes, and the mean also fell. In the three departments where the protocol was described to staff as 'our recommended approach for suspected stroke presentations,' the improvement was marginal. Same protocol. Same content. The framing as a recommendation rather than a default was the only difference that correlated with the variance outcome.",
+      "whatToDo": "When presenting a clinical protocol to staff, use language that establishes the default: 'This is the process unless you document why it does not apply to this patient.' Language that presents the protocol as a recommendation leaves departure as the normal unmarked option.",
+      "whyItMatters": "The departments with 'recommendation' framing showed marginal improvement despite access to the same protocol content, showing that the default framing rather than the guideline content is what drives variance reduction."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch14-q01",
+        "prompt": "What distinguishes treating a clinical guideline as a 'default' from treating it as a 'recommendation'?",
+        "choices": [
+          "A default requires documented justification for departure; a recommendation leaves departure undocumented and optional.",
+          "A default applies to all patients; a recommendation applies only to patients who meet specific eligibility criteria.",
+          "A default is produced by a regulatory body; a recommendation is produced by a professional society."
+        ],
+        "correctIndex": 0,
+        "explanation": "The default framing changes what a physician must do to not follow the guideline. Under advisory framing, departure requires nothing. Under default framing, departure requires a documented reason. That structural difference is the mechanism through which default framing reduces variance.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch14-q02",
+        "prompt": "An ICU's time-to-antibiotics shows a standard deviation of 71 minutes when the sepsis bundle is advisory and 28 minutes when it is the default. Both periods use the same physicians and the same guideline content. What is the direct cause of the variance reduction?",
+        "choices": [
+          "In the default period, more experienced physicians were disproportionately assigned to sepsis cases.",
+          "In the default period, the guideline's content was more specific about what to do and when.",
+          "In the default period, physicians who did not follow the bundle were required to document why, which reduced undocumented departures and compressed the time-to-antibiotics distribution."
+        ],
+        "correctIndex": 2,
+        "explanation": "The same physicians and the same guideline content produced different variance. The only operational difference was the departure documentation requirement. That requirement removed invisible departures from the distribution.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch14-q03",
+        "prompt": "A primary care network reduces inappropriate antibiotic prescribing from 34 to 19 percent after introducing a default protocol. The largest drop came from cases where no justification was easy to write. What does this reveal?",
+        "choices": [
+          "Most of the inappropriate prescribing was not driven by clinical reasons but by habit or inertia, which the documentation requirement made visible because there was no sound reason to record.",
+          "The documentation requirement deterred physicians from prescribing unnecessarily because they feared the documentation would be reviewed by administrators.",
+          "The guideline's clinical content changed when the default protocol was introduced, making the appropriate antibiotic choice clearer than before."
+        ],
+        "correctIndex": 0,
+        "explanation": "The concentration of reduction in cases with no documentable reason shows that those prescriptions were not clinical judgments. They were invisible habits that produced no documentation because there was nothing clinical to document.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch14-q04",
+        "prompt": "Two cardiologists with the same patient population show a 28-point gap in statin initiation rates for guideline-eligible patients. The lower-rate physician describes his approach as individual clinical assessment. Which response most directly applies the default-departure principle?",
+        "choices": [
+          "Require the higher-rate physician to explain why she initiates statins so often, since her departure from median practice also needs examination.",
+          "Require both physicians to document their reason for departing from the guideline default when they do not initiate statins for eligible patients, so the departures become named and examinable.",
+          "Accept the gap as evidence that statin prescribing involves legitimate clinical judgment variation that guidelines cannot resolve for individual patients."
+        ],
+        "correctIndex": 1,
+        "explanation": "The guideline treats statin initiation for eligible patients as the default. The departures need to be named before they can be evaluated. Requiring documentation of non-initiation converts invisible variation into named variation, which is the precondition for examining whether the 28-point gap is justified.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch14-q05",
+        "prompt": "A health system finds that colorectal cancer referral rates for guideline-eligible patients range from 39 to 97 percent across network physicians, with variation correlating with physician beliefs rather than patient characteristics. What does this reveal?",
+        "choices": [
+          "The guideline's eligibility criteria are imprecise and leave substantial room for clinical interpretation, meaning physicians are correctly applying professional judgment to cases that fall in genuinely ambiguous eligibility zones.",
+          "The higher-referring physicians are providing unnecessary or excessive care to patients whose individual risk profiles would not make them likely beneficiaries of colorectal cancer screening under careful clinical assessment.",
+          "The variation represents unexamined departure from the guideline default, driven by physician belief rather than case characteristics, with identically eligible patients receiving different care based on which physician they saw."
+        ],
+        "correctIndex": 2,
+        "explanation": "Variation correlated with physician belief rather than patient characteristics, across an identically eligible population, shows that the guideline's answer is not being applied as the default. The 58-point range is the noise signature of an advisory system.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch14-q06",
+        "prompt": "A hospital describes its new stroke triage protocol to emergency staff as 'our recommended approach for suspected stroke presentations, to be used whenever clinically appropriate.' Is this a default-framing implementation?",
+        "choices": [
+          "No, because 'recommended' and 'whenever clinically appropriate' both signal that the protocol is advisory: departure is normalized and does not require documentation.",
+          "Yes, because distributing a protocol and describing it as a recommended approach creates an expectation of adherence that functions like a default.",
+          "Yes, because the protocol is described as the approach for 'suspected stroke presentations,' which covers the relevant population without leaving ambiguity."
+        ],
+        "correctIndex": 0,
+        "explanation": "The words 'recommended' and 'whenever clinically appropriate' explicitly normalize departure by defining departure as 'when it is not appropriate.' No documentation is required. The framing is advisory, not default.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch14-q07",
+        "prompt": "A pharmaceutical company wants to reduce variation in physician prescribing of a standard first-line treatment. Which implementation most directly applies the default-departure principle?",
+        "choices": [
+          "Distribute educational materials to all physicians explaining why the first-line treatment is effective and the evidence base behind the recommendation.",
+          "Track which physicians do not prescribe the first-line treatment and schedule conversations with outliers to understand their clinical reasoning.",
+          "Implement a prescribing workflow where the first-line treatment is pre-selected and physicians who choose a different treatment are prompted to enter a clinical reason before the prescription is completed."
+        ],
+        "correctIndex": 2,
+        "explanation": "The pre-selection with required departure documentation is the direct application of default-with-named-departure. Educational materials and outlier conversations both operate through motivation and awareness rather than through a structural change in what is required to depart.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch14-q08",
+        "prompt": "You are responsible for reducing variation in patient triage decisions across an emergency department. Which design most directly applies guidelines as a default?",
+        "choices": [
+          "Circulate updated triage guidelines to all emergency department staff and hold a training session explaining when and how to apply them correctly to suspected stroke presentations.",
+          "Redesign the triage decision workflow so the guideline-recommended pathway is the starting point, and deviation from it requires the clinician to select a reason from a structured list or write a brief note before proceeding.",
+          "Monitor triage decisions over the next three months and flag cases where staff deviated from the protocol guideline, then schedule supervisory reviews of those cases to identify where variance is occurring."
+        ],
+        "correctIndex": 1,
+        "explanation": "The redesigned workflow makes the guideline the structural default: deviation requires an action. Training leaves departure as the normal unmarked option. Monitoring flags departures after the fact but does not prevent invisible departures from occurring at the moment of decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch14-q09",
+        "prompt": "A hospital quality committee reports that since introducing departure documentation, 80 percent of documented departures either had sound clinical reasons or were habits physicians had not previously examined. Does this support the default protocol's value?",
+        "choices": [
+          "No, because the majority of departures turned out to have sound reasons, suggesting the guideline was unnecessary for those cases and only marginally useful for the remaining 20 percent.",
+          "Yes, because the 80 percent includes both sound-reason departures (showing documentation supports rather than blocks judgment) and unexamined-habit departures (showing documentation revealed invisible variation). Both categories support the protocol's purpose.",
+          "No, because the documentation requirement burdens clinicians without improving the clinical content of their decisions, and the 80 percent sound-reason rate confirms the protocol is overreaching."
+        ],
+        "correctIndex": 1,
+        "explanation": "The finding actually documents two distinct benefits: the sound-reason departures show that documentation did not obstruct legitimate clinical judgment; the unexamined-habit departures show that documentation revealed variation that was invisible before. Both support the protocol.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "What does it mean to treat a guideline as a default?",
+      "back": "The guideline defines the expected behavior; departure requires a documented clinical reason. This is different from advisory framing, where departure requires nothing. The default is what happens unless the physician states otherwise.",
+      "difficulty": "easy"
+    },
+    {
+      "front": "Why is the departure documentation requirement often more effective than the guideline's content at reducing variance?",
+      "back": "The documentation requirement makes invisible departures visible. When a physician must name the reason for departing, they either identify a sound clinical reason or recognize a habit they had not previously examined. Habits that cannot be named tend not to survive the requirement.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "Why does a clinical guideline matter more at the population level than at the individual level?",
+      "back": "At the individual level, a skilled physician may always exceed the guideline. At the population level, patients are randomly distributed across the full range of physicians. The guideline raises the floor for patients who see the bottom of the distribution. The top quartile's performance does not benefit; the left tail's harm is reduced.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "What does a wide range of prescribing rates for the same guideline-eligible population indicate?",
+      "back": "Unexamined departure: physicians are making different decisions for patients with identical profiles without those differences being named as departures from a default. The range is the noise signature of an advisory system where departure is invisible.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "How does the default-with-named-departure principle apply outside medicine?",
+      "back": "Any professional domain with documented standards of practice can apply the same structure: treat the standard as the default behavior and require a documented reason for departure. The documentation converts invisible variation into named variation, which is the precondition for examining whether the variation is justified.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Implement professional guidelines as structural defaults rather than advisory recommendations. The implementation requires three elements: (1) the guideline is the pre-selected behavior, (2) departure from the guideline requires a documented reason at the moment of decision, and (3) documented departures are reviewed over time to distinguish sound clinical judgment from unexamined habit. The documentation mechanism is the variance-reduction tool; the guideline's content sets the floor.",
+    "ifThenPlans": [
+      {
+        "context": "You are introducing a new clinical or professional guideline to a team and want to minimize the noise it leaves unchanged.",
+        "plan": "Present the guideline as the default, not the recommendation. Use language that names it as the behavior unless otherwise stated, not the aspiration toward which good practitioners aim. Redesign the workflow so that the guideline-consistent choice is the pre-selected option and departure requires an active decision and a documented reason."
+      },
+      {
+        "context": "You observe significant variation across practitioners for the same type of decision where a guideline or standard exists.",
+        "plan": "Measure the departure rate and the departure documentation rate separately. If most practitioners are departing without documentation, the guideline is being applied as advisory. Introduce departure documentation as the first intervention. Analyze the documented reasons after 30 to 60 cases to distinguish sound clinical departures from unexamined habit departures. The habit category is the noise the default framing is designed to reduce."
+      },
+      {
+        "context": "A colleague argues that guidelines constrain expert clinical judgment.",
+        "plan": "Separate the population-level and individual-level arguments. At the individual level, the colleague's argument may be correct: an expert may always exceed the guideline. At the population level, the guideline's benefit operates on the range of practitioners below that expert level. Ask whether the colleague's patients are guaranteed to see only that expert. If not, the population argument is the relevant one."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, identify one professional standard or guideline that applies to a recurring decision you make. Before your next three decisions of that type, treat the guideline as the default and note in writing when you depart from it. At the end of the three cases, read what you wrote. If any note describes a departure you cannot fully justify in clinical terms, that note is evidence of unexamined habit.",
+    "weeklyPractice": "Each week, pull the departure documentation from any clinical or professional decision process you oversee that has a default protocol. Read the documented departure reasons and sort them: sound clinical reason, unexamined habit, or protocol gap (a situation the guideline does not adequately address). After four weeks, you have a departure pattern that tells you where the guideline is working, where habits are producing noise, and where the guideline itself needs revision."
+  }
+}

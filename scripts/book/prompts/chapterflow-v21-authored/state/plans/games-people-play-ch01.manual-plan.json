@@ -1,0 +1,206 @@
+{
+  "chapterId": "games-people-play-ch01",
+  "number": 1,
+  "title": "The Three Voices Inside You",
+  "coreMove": "Hear which ego state is speaking before you answer the content of the sentence.",
+  "sourcePressure": "Teaches Parent, Adult, and Child as observable ego states, including Critical/Nurturing Parent, Free/Adapted Child, contamination, exclusion, and unchosen state shifts.",
+  "chapterSpecificMisunderstanding": "Treating Parent, Adult, and Child as fixed personality types or a pop inner-child metaphor instead of live behavioral states.",
+  "sourceAlignmentTerms": [
+    "Parent",
+    "Adult",
+    "Child",
+    "ego state",
+    "Critical Parent",
+    "Nurturing Parent",
+    "Adapted Child",
+    "contamination"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Parent-Adult-Child ego-state model",
+      "detail": "the source defines three observable behavioral states: Parent from authority figures, Adult as present-tense reality processing, and Child as childhood feeling and adaptation still active in adults",
+      "useIn": "both",
+      "phrasingHint": "Parent, Adult, and Child are not three people inside you; they are three registers a single sentence can wear."
+    },
+    {
+      "kind": "artifact",
+      "name": "contamination and exclusion",
+      "detail": "the source notes that problems arise when one ego state masquerades as another or when a state is cut off from use",
+      "useIn": "fullRead",
+      "phrasingHint": "A prejudice can arrive dressed as an Adult fact, and a fear can arrive dressed as caution."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'The Three Voices Inside You' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "hospital shift handoff after a medication near-miss",
+      "audience": "a charge nurse deciding how to respond to a junior nurse who asks a clean dosage question",
+      "stakes": "patient safety, shame, and whether the room stays factual",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sarah hears her own first reply start as data and end as scolding, stops before the last clause, and restates the dose check in Adult language.",
+      "firstImage": "\"Can I ask why the order changed from 5 to 2.5?\" hangs over the nurses station.",
+      "mustInclude": [
+        "laminated medication chart",
+        "fluorescent task light",
+        "half-filled incident form"
+      ],
+      "mustAvoid": [
+        "generic hospital panic",
+        "heroic calm monologue"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "Paris product design critique for a flawed checkout screen",
+      "audience": "a design lead whose feedback can either teach the interface problem or shame the designer",
+      "stakes": "whether the junior designer learns the pattern or only learns to hide draft work",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Camille points to the abandoned-cart data instead of saying the designer should have known better.",
+      "firstImage": "The projector throws a pale checkout form across the glass wall.",
+      "mustInclude": [
+        "abandoned-cart graph",
+        "prototype click path",
+        "sticky-note cluster"
+      ],
+      "mustAvoid": [
+        "standard performance review scene",
+        "scolding disguised as mentorship"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "family group text about an elderly parent's appointment",
+      "audience": "an adult son pulled between practical scheduling and old sibling rank",
+      "stakes": "a simple appointment can become a childhood argument in six messages",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Thomas notices that his thumbs are answering his sister from the twelve-year-old who hated being corrected, then writes the appointment time only.",
+      "firstImage": "You are holding the phone over the kitchen counter while three gray dots blink.",
+      "mustInclude": [
+        "shared calendar invite",
+        "orange prescription bottle",
+        "muted group chat"
+      ],
+      "mustAvoid": [
+        "therapy-session explanation",
+        "kitchen argument over chores"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "tenant association budget meeting in a cold community room",
+      "audience": "a volunteer treasurer trying to stay in Adult while an older member speaks in Parent rules",
+      "stakes": "a repair fund vote may fail because the tone pulls everyone backward",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anke separates the member's rule-tone from the useful number hidden inside it and asks for the invoice date.",
+      "firstImage": "The room smells of wet coats and copier toner before anyone sits down.",
+      "mustInclude": [
+        "folding chairs",
+        "roof repair invoice",
+        "coffee urn"
+      ],
+      "mustAvoid": [
+        "generic HOA quarrel",
+        "moral victory speech"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "youth football sideline after a missed penalty kick",
+      "audience": "a coach whose comfort can still come from Parent if it tells the player what to feel",
+      "stakes": "whether a child gets present information or a borrowed script about toughness",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Diego sees that his gentle line still commands the child to feel proud, then asks what the player noticed about his plant foot.",
+      "firstImage": "It took Diego until the second missed kick to hear the order inside his kindness.",
+      "mustInclude": [
+        "muddy penalty spot",
+        "substitution card",
+        "team water crate"
+      ],
+      "mustAvoid": [
+        "sports cliche about resilience",
+        "yelling-coach stereotype"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "Toronto immigration clinic intake interview",
+      "audience": "a legal-aid coordinator trying not to let an applicant's panic become her own Parent rescue script",
+      "stakes": "one wrong tone can turn an adult client into someone being managed",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Aanya notices the urge to soothe and instead names the next document needed in present-tense terms.",
+      "firstImage": "What changes when a kind voice starts telling someone how they should feel?",
+      "mustInclude": [
+        "folder of translated documents",
+        "intake checklist",
+        "numbered waiting ticket"
+      ],
+      "mustAvoid": [
+        "generic compassion lesson",
+        "rescuer fantasy"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish ego state from personality type",
+      "identify Adult data-handling versus Parent rule-giving",
+      "spot contamination in a plausible sentence",
+      "recognize that state shifts are usually noticed before they are controlled"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Replay one sentence from a tense exchange today and label only its state: Parent rule, Adult data, or Child reaction. Do not solve it yet.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

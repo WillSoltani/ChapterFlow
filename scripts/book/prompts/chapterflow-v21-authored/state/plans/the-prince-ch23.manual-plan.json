@@ -1,0 +1,177 @@
+{
+  "chapterId": "the-prince-ch23",
+  "number": 23,
+  "title": "How Flatterers Should Be Avoided",
+  "coreMove": "Design counsel so truth is invited from chosen people, heard patiently, and closed by the prince's own steady decision.",
+  "sourcePressure": "The chapter warns that courts are full of flatterers, but letting everyone tell the truth lowers respect. The third course is to choose wise men, let them speak truth only when asked and only on the matters asked, question them broadly, listen patiently, decide personally, and remain steadfast. Maximilian shows the opposite: secretive, pliant, obstructed, changing daily, and therefore contemptible.",
+  "chapterSpecificMisunderstanding": "The wrong version says leaders should listen to feedback. The writer must preserve the design problem: uncontrolled truth lowers majesty, closed secrecy produces bad execution, and wisdom lies in controlled invitation plus final authority.",
+  "sourceAlignmentTerms": [
+    "flatterers",
+    "wise men",
+    "truth",
+    "counsel",
+    "Maximilian",
+    "Fra Luca",
+    "steadfast",
+    "wisdom",
+    "patient listener",
+    "resolutions"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "feedback culture",
+      "always be transparent",
+      "committee decision making",
+      "open-door policy"
+    ],
+    "counterintuition": [
+      "most people assume more advice is better, but actually less is better",
+      "ignore unsolicited advice",
+      "truth tellers are dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and ask for feedback",
+      "make a suggestion box",
+      "listen more actively"
+    ],
+    "examples": [
+      "corporate all-hands Q&A",
+      "product feedback survey",
+      "therapy-style active listening",
+      "school debate club"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a war council where every noble tries to advise the prince in the corridor before the formal question is asked",
+      "audience": "a prince protecting truth from flattery without making every hallway a council chamber",
+      "stakes": "if anyone can advise at any time, respect falls and advice becomes pressure; if no one can answer, snares go unseen",
+      "format": "scene",
+      "requiredBeat": "The prince closes the corridor petitions box, unlocks the small council tablets, and asks the three named captains the river-crossing question in order.",
+      "firstImage": "A corridor petitions box sits locked beside three small council tablets.",
+      "mustInclude": [
+        "petitions box",
+        "council tablets",
+        "river-crossing question"
+      ],
+      "mustAvoid": [
+        "open-door leadership",
+        "chapter 14 terrain quiz",
+        "committee democracy"
+      ]
+    },
+    {
+      "domain": "a mint reform delayed because the ruler reveals his plan only after dies have already been cast",
+      "audience": "a secretive ruler learning why late disclosure invites obstruction and reversal",
+      "stakes": "moneyers object after the design is public, and the ruler keeps changing symbols until nobody trusts tomorrow's coin",
+      "format": "postmortem",
+      "requiredBeat": "The auditor lays three canceled coin dies in a row and marks where the ruler should have asked the assay master before casting the first one.",
+      "firstImage": "Three canceled coin dies sit beside an unopened assay note.",
+      "mustInclude": [
+        "coin dies",
+        "assay note",
+        "moneyers' objection roll"
+      ],
+      "mustAvoid": [
+        "chapter 6 mint foundation",
+        "design feedback",
+        "manufacturing process"
+      ]
+    },
+    {
+      "domain": "a plague quarantine board where physicians flatter the prince by saying every district is healthy",
+      "audience": "a prince choosing which advisers may speak hard truths without general license for panic",
+      "stakes": "comforting reports keep court calm while infection crosses districts; uncontrolled rumor would also destroy order",
+      "format": "decision_point",
+      "requiredBeat": "He sends the smiling health summaries back, names two physicians and one burial clerk to answer only the fever-map questions, then waits through the answer without interrupting.",
+      "firstImage": "Smiling health summaries cover the edge of a fever map.",
+      "mustInclude": [
+        "health summaries",
+        "fever map",
+        "burial clerk"
+      ],
+      "mustAvoid": [
+        "public health PSA",
+        "chapter 15/16 plague border station",
+        "generic expert panel"
+      ]
+    },
+    {
+      "domain": "a dam reservoir court where engineers, millers, and priests all press different counsel before spring thaw",
+      "audience": "a ruler who must question broadly but decide singly",
+      "stakes": "divided advice can either reveal the whole risk or make the ruler pliant and contemptible if he changes with each speaker",
+      "format": "dialogue",
+      "requiredBeat": "After hearing each group separately and together, the ruler puts one spillway marker on the reservoir board and refuses to move it when the last delegation returns.",
+      "firstImage": "A wooden spillway marker sits on a reservoir board wet with thaw maps.",
+      "mustInclude": [
+        "spillway marker",
+        "reservoir board",
+        "returning delegation"
+      ],
+      "mustAvoid": [
+        "committee decision-making praise",
+        "environment policy",
+        "chapter 25 flood barrier"
+      ]
+    },
+    {
+      "domain": "a frontier embassy where courtiers praise a dangerous treaty because they think the prince wants it",
+      "audience": "a prince testing whether advisers tell truth or mirror appetite",
+      "stakes": "a court trained to please will mistake his first leaning for command and leave the frontier exposed",
+      "format": "predict_reveal",
+      "requiredBeat": "The prince places his own draft face down, asks for objections first, and notes which councillor still praises the hidden clause he has not shown.",
+      "firstImage": "A face-down treaty draft lies beside a tray of blank objection slips.",
+      "mustInclude": [
+        "face-down treaty draft",
+        "objection slips",
+        "frontier exposure note"
+      ],
+      "mustAvoid": [
+        "negotiation tactics",
+        "chapter 18 treaty-breaking",
+        "office brainstorming"
+      ]
+    },
+    {
+      "domain": "a canal lock emergency where the prince asks too late and then accepts every new opinion in sequence",
+      "audience": "a secretary documenting how flattery and pliancy turn one decision into several undone decisions",
+      "stakes": "lock crews cannot rely on a ruler whose morning order is reversed by noon and revived by dusk",
+      "format": "before_after",
+      "requiredBeat": "The secretary pins the morning red flag, noon white flag, and dusk red flag to the lockhouse wall until the crews see why no one moved.",
+      "firstImage": "Red and white order flags hang together on a lockhouse wall.",
+      "mustInclude": [
+        "order flags",
+        "lockhouse wall",
+        "crew waiting roster"
+      ],
+      "mustAvoid": [
+        "chapter 7 canal governor",
+        "operations management",
+        "generic indecision"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish controlled invitation of truth from open advice that lowers respect",
+      "apply the sequence ask broadly, listen patiently, decide personally, remain steadfast",
+      "analyze flattery as mirroring appetite rather than telling useful truth",
+      "evaluate whether a ruler's counsel system creates wisdom or produces Maximilian-style secrecy and reversal"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one decision a ruler must make. Name the three people allowed to speak truth, the exact question each may answer, and the point at which advice closes and decision begins.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,179 @@
+{
+  "chapterId": "extreme-ownership-ch08",
+  "number": 8,
+  "title": "Prioritize and Execute",
+  "coreMove": "pause long enough to choose the controlling problem, act on it hard, then look up and choose again",
+  "sourcePressure": "Leaders restore order in chaos by detaching, identifying the highest-priority problem, executing it, then reassessing.",
+  "chapterSpecificMisunderstanding": "make a ranked list faster",
+  "sourceAlignmentTerms": [
+    "prioritize and execute",
+    "detach",
+    "highest priority",
+    "sequence",
+    "restore order",
+    "reassess",
+    "not tunnel vision"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "aquarium life-support pump failure before opening",
+      "audience": "an aquarium operations manager with alarms from three tanks at once",
+      "stakes": "animals and visitors are both at risk if the team scatters",
+      "format": "scene",
+      "requiredBeat": "the manager steps back from the alarm panel, identifies oxygen in the reef tank as first priority, assigns one technician, then delays visitor messaging until life support stabilizes",
+      "firstImage": "an oxygen meter flashes low beside a darkened reef tank window",
+      "mustInclude": [
+        "oxygen meter",
+        "alarm panel",
+        "visitor-message hold"
+      ],
+      "mustAvoid": [
+        "solve every alarm at once"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "alpine rescue after an avalanche beacon signal splits",
+      "audience": "a rescue lead with weather worsening and two possible search zones",
+      "stakes": "searchers can waste minutes chasing every clue",
+      "format": "decision_point",
+      "requiredBeat": "the lead takes one breath, chooses the strongest beacon line, sends one probe team, and keeps a second team staged until the first result returns",
+      "firstImage": "You are close enough to see this: beacon screen blinks two arrows above a field of broken snow.",
+      "mustInclude": [
+        "beacon screen",
+        "probe team",
+        "staged second team"
+      ],
+      "mustAvoid": [
+        "mountain heroics"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "food truck festival power outage at noon",
+      "audience": "a festival operations lead with vendors, guests, and health inspectors calling at once",
+      "stakes": "food safety fails if power restoration competes with crowd appeasement",
+      "format": "before_after",
+      "requiredBeat": "the lead first gets cold storage onto the backup circuit, then posts one guest update, then checks vendor cooking lines in order",
+      "firstImage": "The first thing you register is physical: breaker panel hangs open while a freezer alarm chirps behind the taco truck.",
+      "mustInclude": [
+        "breaker panel",
+        "backup circuit",
+        "freezer alarm"
+      ],
+      "mustAvoid": [
+        "customer-service first as default"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "newsroom election night results system glitch",
+      "audience": "a managing editor with reporters demanding fixes for every race page",
+      "stakes": "a wrong call can publish if the team works every symptom at once",
+      "format": "postmortem",
+      "requiredBeat": "the editor freezes publication for unverified races, assigns one data editor to the source feed, and only then lets page producers fix display errors",
+      "firstImage": "\"Hold there,\" someone says. Precinct dashboard freezes at 68 percent counted under the studio lights.",
+      "mustInclude": [
+        "precinct dashboard",
+        "publication freeze",
+        "source feed"
+      ],
+      "mustAvoid": [
+        "media panic cliché"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "dental office sterilizer failure before a full morning schedule",
+      "audience": "a practice manager juggling patients, hygienists, and instruments",
+      "stakes": "infection-control priority must outrank keeping the schedule intact",
+      "format": "dialogue",
+      "requiredBeat": "the manager cancels the first elective block, routes critical instruments to a partner clinic, and tells the front desk the exact patient sentence to use",
+      "firstImage": "Later, the team will trace the lesson back to this: autoclave tray sits cool with a failed cycle strip beside it.",
+      "mustInclude": [
+        "failed cycle strip",
+        "partner clinic route",
+        "patient sentence"
+      ],
+      "mustAvoid": [
+        "time-management list-making"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "manufacturing plant chemical spill alarm during shift change",
+      "audience": "a plant supervisor with evacuation, containment, and staffing questions colliding",
+      "stakes": "people can move into danger if the first priority is wrong",
+      "format": "vignette",
+      "requiredBeat": "the supervisor chooses personnel accountability first, assigns containment to the trained crew only, then updates production after the headcount closes",
+      "firstImage": "What changes once this is in front of everyone: yellow absorbent sock lies half-unrolled beside the spill threshold?",
+      "mustInclude": [
+        "absorbent sock",
+        "headcount board",
+        "trained containment crew"
+      ],
+      "mustAvoid": [
+        "productivity before safety"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the controlling priority under simultaneous alarms",
+      "use detachment and reassessment as a sequence",
+      "distinguish prioritization from tunnel vision or speed alone"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "List the three active problems in front of you, circle the one that controls the others, and write the first action that moves only that problem.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

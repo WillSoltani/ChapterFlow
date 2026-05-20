@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch11",
+  "number": 11,
+  "title": "Never Eat Alone",
+  "coreMove": "Use an existing routine as a low-friction place for connection.",
+  "sourcePressure": "Ordinary meals and recurring routines can become relationship infrastructure when they create real shared time.",
+  "chapterSpecificMisunderstanding": "Claiming every meal must be social or that solitude has no value.",
+  "sourceAlignmentTerms": [
+    "never eat alone",
+    "meals",
+    "daily routines",
+    "shared time",
+    "relationship infrastructure",
+    "ordinary contact"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "James",
+      "domain": "airport cafe breakfast table",
+      "audience": "a reader facing airport cafe breakfast table where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if airport cafe breakfast table becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James turns an already scheduled meal into a specific relationship moment without making it performative in front of boarding pass, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "boarding pass on the edge of airport cafe breakfast table",
+      "mustInclude": [
+        "boarding pass",
+        "airport cafe breakfast table constraint",
+        "one named next step tied to never eat alone"
+      ],
+      "mustAvoid": [
+        "Claiming every meal must be social or that solitude has no value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "warehouse canteen lunch bench",
+      "audience": "a reader facing warehouse canteen lunch bench where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if warehouse canteen lunch bench becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "David turns an already scheduled meal into a specific relationship moment without making it performative in front of lunch tray, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "lunch tray on the edge of warehouse canteen lunch bench",
+      "mustInclude": [
+        "lunch tray",
+        "warehouse canteen lunch bench constraint",
+        "one named next step tied to never eat alone"
+      ],
+      "mustAvoid": [
+        "Claiming every meal must be social or that solitude has no value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "late-shift hospital cafeteria",
+      "audience": "a reader facing late-shift hospital cafeteria where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if late-shift hospital cafeteria becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Michael turns an already scheduled meal into a specific relationship moment without making it performative in front of cafeteria token, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "cafeteria token on the edge of late-shift hospital cafeteria",
+      "mustInclude": [
+        "cafeteria token",
+        "late-shift hospital cafeteria constraint",
+        "one named next step tied to never eat alone"
+      ],
+      "mustAvoid": [
+        "Claiming every meal must be social or that solitude has no value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "farmers market noodle stall",
+      "audience": "a reader facing farmers market noodle stall where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if farmers market noodle stall becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Thomas turns an already scheduled meal into a specific relationship moment without making it performative in front of paper boat tray, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "paper boat tray on the edge of farmers market noodle stall",
+      "mustInclude": [
+        "paper boat tray",
+        "farmers market noodle stall constraint",
+        "one named next step tied to never eat alone"
+      ],
+      "mustAvoid": [
+        "Claiming every meal must be social or that solitude has no value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "library courtyard sandwich step",
+      "audience": "a reader facing library courtyard sandwich step where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if library courtyard sandwich step becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Olivier turns an already scheduled meal into a specific relationship moment without making it performative in front of book tote, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "book tote on the edge of library courtyard sandwich step",
+      "mustInclude": [
+        "book tote",
+        "library courtyard sandwich step constraint",
+        "one named next step tied to never eat alone"
+      ],
+      "mustAvoid": [
+        "Claiming every meal must be social or that solitude has no value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "construction site food truck line",
+      "audience": "a reader facing construction site food truck line where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if construction site food truck line becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Min turns an already scheduled meal into a specific relationship moment without making it performative in front of hard hat, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "hard hat on the edge of construction site food truck line",
+      "mustInclude": [
+        "hard hat",
+        "construction site food truck line constraint",
+        "one named next step tied to never eat alone"
+      ],
+      "mustAvoid": [
+        "Claiming every meal must be social or that solitude has no value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish never eat alone from Claiming every meal must be social or that solitude has no value.",
+      "choose the visible action that performs: Use an existing routine as a low-friction place for connection.",
+      "diagnose when a scenario drifts into Claiming every meal must be social or that solitude has no value.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real never eat alone moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

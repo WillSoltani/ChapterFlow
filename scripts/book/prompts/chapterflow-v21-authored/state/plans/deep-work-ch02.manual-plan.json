@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch02",
+  "number": 2,
+  "title": "Deep Work Is Valuable",
+  "coreMove": "Identify where rapid learning and high-quality output create the real advantage, then protect attention there first.",
+  "sourcePressure": "The source frame says deep work helps you learn hard things quickly and produce at high quality and quantity.",
+  "chapterSpecificMisunderstanding": "The weak version says focus helps you get more done; the chapter must show value coming from hard learning and excellent output.",
+  "sourceAlignmentTerms": ["learn hard things", "high quality", "high quantity", "valuable", "scarce skill", "output"],
+  "forbiddenFrames": {
+    "hook": ["the inbox is full again", "focus is a superpower", "success belongs to the focused"],
+    "counterintuition": ["less work creates more work", "do fewer things to do more things"],
+    "tryThisNow": ["pick one goal", "work without distraction for ten minutes"],
+    "examples": ["generic programmer learns framework", "student crams exam", "writer finishes manuscript"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a court interpreter learning specialized asylum terminology",
+      "audience": "a bilingual professional facing a harder tier of assignments",
+      "stakes": "one mistranslated phrase can alter a hearing record",
+      "format": "scene",
+      "requiredBeat": "she closes the general vocabulary app and spends ninety protected minutes building a glossary from real hearing transcripts",
+      "firstImage": "three highlighted transcript pages beside a digital recorder",
+      "mustInclude": ["asylum terms", "glossary file", "hearing date"],
+      "mustAvoid": ["generic language learning", "school exam frame"]
+    },
+    {
+      "domain": "a robotics technician mastering a new calibration procedure",
+      "audience": "a shop-floor technician moving from routine maintenance into advanced work",
+      "stakes": "a miscalibrated arm ruins an entire production batch",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts the calibration error, runs the sensor sequence, and revises his procedure until the arm lands within tolerance",
+      "firstImage": "a robotic arm frozen above a tray of scratched aluminum parts",
+      "mustInclude": ["sensor sequence", "tolerance sheet", "scrap bin"],
+      "mustAvoid": ["generic factory efficiency", "safety incident"]
+    },
+    {
+      "domain": "a medical illustrator learning a new 3D anatomy workflow",
+      "audience": "a creative specialist whose value depends on difficult technical fluency",
+      "stakes": "a surgical training module misses its review window if the model is inaccurate",
+      "format": "before_after",
+      "requiredBeat": "she replaces scattered tutorial watching with a protected practice block that produces one accurate nerve pathway render",
+      "firstImage": "a half-finished pelvic nerve model rotating against a gray grid",
+      "mustInclude": ["surgical review", "nerve pathway", "render settings"],
+      "mustAvoid": ["generic design portfolio", "artistic inspiration"]
+    },
+    {
+      "domain": "an energy analyst building a battery-storage forecast",
+      "audience": "an analyst whose shallow reports no longer separate him from peers",
+      "stakes": "a utility investment recommendation depends on the forecast",
+      "format": "decision_point",
+      "requiredBeat": "he cancels a low-value status walkthrough and uses the time to understand the nonlinear demand assumption behind the model",
+      "firstImage": "a demand curve bending sharply on a widescreen monitor",
+      "mustInclude": ["battery-storage model", "utility board packet", "assumption log"],
+      "mustAvoid": ["generic spreadsheet crunching", "startup pitch"]
+    },
+    {
+      "domain": "a pastry chef developing a laminated dough for high altitude",
+      "audience": "a craft professional learning through repeated demanding trials",
+      "stakes": "the bakery's wholesale contract depends on a stable morning batch",
+      "format": "postmortem",
+      "requiredBeat": "after a failed batch, she studies temperature and fold notes instead of rushing to decorate easier items",
+      "firstImage": "butter leaking from a collapsed test croissant on a cooling rack",
+      "mustInclude": ["altitude adjustment", "fold log", "wholesale order"],
+      "mustAvoid": ["foodie atmosphere", "generic restaurant rush"]
+    },
+    {
+      "domain": "a legal-tech product manager learning enough cryptography to spec a secure feature",
+      "audience": "a manager whose output quality depends on learning a hard adjacent domain",
+      "stakes": "a vague spec sends engineers toward a costly security mistake",
+      "format": "dialogue",
+      "requiredBeat": "she pauses the roadmap meeting, admits the shallow version of the spec is unsafe, and schedules a deep study block before rewriting it",
+      "firstImage": "a whiteboard box labeled encrypted export with three question marks underneath",
+      "mustInclude": ["threat model", "engineer review", "revised spec"],
+      "mustAvoid": ["generic product meeting", "buzzword security"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["recognize when deep work creates scarce skill", "choose depth over shallow progress in hard-learning situations", "evaluate whether output quality depends on uninterrupted cognition", "separate valuable production from mere task volume"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one hard thing you must learn this month and write the first protected practice block where shallow tasks cannot enter.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,197 @@
+{
+  "chapterId": "thinking-in-bets-ch03",
+  "number": 3,
+  "title": "Wanna bet?",
+  "coreMove": "Make a belief name its price before treating its confidence as real.",
+  "sourcePressure": "The chapter turns confident claims into priced beliefs so the gap between tone and real conviction becomes visible.",
+  "chapterSpecificMisunderstanding": "The writer must keep bet language as calibration, not social pressure; the stake reveals confidence instead of humiliating the other person.",
+  "sourceAlignmentTerms": [
+    "wanna bet",
+    "priced belief",
+    "stake",
+    "calibration",
+    "verbal certainty",
+    "confidence level",
+    "status performance"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Wanna bet?",
+      "detail": "The source names the question as a calibration move that exposes the difference between confident speech and real willingness to stake.",
+      "useIn": "both",
+      "phrasingHint": "The small question changes the air because the claim has to become a price, not just a posture."
+    },
+    {
+      "kind": "artifact",
+      "name": "priced belief",
+      "detail": "The source treats bet language as a way to make belief measurable through confidence levels, stakes, or probabilities.",
+      "useIn": "fullRead",
+      "phrasingHint": "Once the belief has a price, tone stops doing the work that evidence should do."
+    },
+    {
+      "kind": "event",
+      "name": "confident claim meeting a stake",
+      "detail": "The source highlights how strong declarations often soften once the speaker must say what they would actually risk on them.",
+      "useIn": "deepRead",
+      "phrasingHint": "A claim that sounded certain a minute ago may become a range the moment it has to carry a stake."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Wanna bet is a weapon",
+      "Put your money where your mouth is",
+      "Certainty folds under pressure"
+    ],
+    "counterintuition": [
+      "Every belief needs money attached",
+      "The loudest person should be challenged publicly"
+    ],
+    "tryThisNow": [
+      "Ask someone wanna bet today",
+      "Turn every claim into a wager"
+    ],
+    "examples": [
+      "office whiteboard product forecast",
+      "economics seminar index card",
+      "debate club judging sheets"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "craft brewery seasonal demand forecast",
+      "audience": "founders and operations leads",
+      "stakes": "brewing too much ties up tanks; brewing too little loses summer accounts",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah asks the brewer to turn \"we will sell out\" into a confidence percentage and batch size he would defend before ordering hops.",
+      "firstImage": "The taproom smells like citrus hops while the empty keg labels wait in a stack.",
+      "mustInclude": [
+        "hop contract",
+        "batch size",
+        "wholesale orders"
+      ],
+      "mustAvoid": [
+        "generic sales forecast"
+      ]
+    },
+    {
+      "domain": "wedding photography rain refund policy",
+      "audience": "solo service providers",
+      "stakes": "a photographer is overconfident about weather risk and underprices a refund clause",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What would Tomás actually stake on \"it never rains here in June\"? He checks ten years of venue dates and changes the contract language from certainty to odds.",
+      "firstImage": "What would Tomás actually stake on the sentence he keeps saying to nervous couples?",
+      "mustInclude": [
+        "venue calendar",
+        "refund clause",
+        "weather archive"
+      ],
+      "mustAvoid": [
+        "generic weather anecdote"
+      ]
+    },
+    {
+      "domain": "startup runway estimate before a seed extension",
+      "audience": "finance leads and founders",
+      "stakes": "overstated confidence could push the company into a payroll cliff",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At the board packet review, Anya replaces \"we are fine through November\" with confidence bands tied to three customer-payment dates.",
+      "firstImage": "At 7:42 a.m., Anya deletes the word fine from the runway slide.",
+      "mustInclude": [
+        "runway slide",
+        "customer-payment dates",
+        "payroll cliff"
+      ],
+      "mustAvoid": [
+        "launch forecast from prior chapters"
+      ]
+    },
+    {
+      "domain": "public-health clinic vaccine appointment planning",
+      "audience": "clinic administrators",
+      "stakes": "too many slots wastes staff time; too few leaves vulnerable patients waiting",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Michael asks each planner to write the odds behind their attendance estimate before the signup portal opens, then compares the spread rather than the volume of their voices.",
+      "firstImage": "The waiting room chairs are stacked against the wall while the appointment grid glows on the monitor.",
+      "mustInclude": [
+        "appointment grid",
+        "staffing blocks",
+        "attendance estimate"
+      ],
+      "mustAvoid": [
+        "hospital triage review from ch1"
+      ]
+    },
+    {
+      "domain": "local radio pledge-drive target",
+      "audience": "station managers and volunteers",
+      "stakes": "a boastful target changes ad spend and volunteer shifts",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Olivia sees that the pledge target becomes more honest after every volunteer must write the donation total they would plan staffing around.",
+      "firstImage": "It took one silent pass of the pledge sheet for the room’s confidence to shrink.",
+      "mustInclude": [
+        "pledge sheet",
+        "volunteer shift board",
+        "ad spend cap"
+      ],
+      "mustAvoid": [
+        "generic nonprofit fundraising pep talk"
+      ]
+    },
+    {
+      "domain": "independent bookstore preorder estimate for a visiting novelist",
+      "audience": "booksellers and event coordinators",
+      "stakes": "ordering too many signed copies traps cash in unsold stock",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask Mathieu to compare his confident preorder claim with the number he would have ordered if his own margin had been on the line.",
+      "firstImage": "You are standing behind the register with three cartons of unsigned books at your feet.",
+      "mustInclude": [
+        "preorder list",
+        "signed-copy cartons",
+        "margin sheet"
+      ],
+      "mustAvoid": [
+        "generic retail inventory story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "convert declarations into confidence levels",
+      "detect when wager language becomes status pressure",
+      "use pricing to clarify disagreement",
+      "audit private self-talk for overstatement"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one claim you made strongly this week and write the confidence level you would stand behind if a colleague recorded it before the result arrived.",
+  "readingTimeMinutes": 12
+}

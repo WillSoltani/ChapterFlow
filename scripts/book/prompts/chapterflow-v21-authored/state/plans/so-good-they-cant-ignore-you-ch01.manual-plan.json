@@ -1,0 +1,202 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch01",
+  "number": 1,
+  "title": "The Passion of Steve Jobs",
+  "coreMove": "Separate an inspiring success story from usable evidence before letting it guide a career decision.",
+  "sourcePressure": "Steve Jobs and the Stanford advice open Rule 1 by weakening passion-first career folklore without yet replacing it.",
+  "chapterSpecificMisunderstanding": "Treating the point as a dunk on Steve Jobs or as proof that love for work never matters.",
+  "sourceAlignmentTerms": [
+    "Steve Jobs",
+    "Stanford commencement",
+    "passion hypothesis",
+    "retrospective story",
+    "nonlinear path",
+    "evidence",
+    "Rule 1"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Steve Jobs",
+      "detail": "The Stanford transcript freeze supports the 2005 address, find-work-you-love advice, Reed College, calligraphy, Apple, being fired, and later returning.",
+      "useIn": "both",
+      "phrasingHint": "Steve Jobs sounds clean as a career compass only after the messy route has been edited by success."
+    },
+    {
+      "kind": "place",
+      "name": "Stanford",
+      "detail": "The address was delivered to Stanford graduates on June 12, 2005 and became a cultural pressure point for passion-first advice.",
+      "useIn": "deepRead",
+      "phrasingHint": "The Stanford setting matters because the line traveled farther than the evidence beneath it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch01: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch01: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch01: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch01: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "museum conservation internship selection",
+      "audience": "a graduate applicant comparing a famous curator biography with entry requirements",
+      "stakes": "losing a paid placement by copying a myth instead of reading criteria",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "places the glossy curator profile beside the internship rubric and crosses out every sentence that is admiration rather than evidence",
+      "firstImage": "varnish smell over a half-cleaned frame",
+      "mustInclude": [
+        "conservation rubric",
+        "cotton gloves",
+        "two highlighted sentences"
+      ],
+      "mustAvoid": [
+        "curator destiny script"
+      ]
+    },
+    {
+      "protagonistName": "Emily",
+      "domain": "minor-league baseball analytics role",
+      "audience": "a data intern tempted by a celebrity general manager origin story",
+      "stakes": "wasting a season chasing narrative instead of proof of skill",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "asks which parts of the famous story would count in a hiring review and writes only those on a whiteboard",
+      "firstImage": "player-tracking spreadsheet under stadium lights",
+      "mustInclude": [
+        "tracking spreadsheet",
+        "laminated profile",
+        "whiteboard columns"
+      ],
+      "mustAvoid": [
+        "sports dream montage"
+      ]
+    },
+    {
+      "protagonistName": "Hannah",
+      "domain": "regional theater stage management",
+      "audience": "an assistant stage manager reading a Tony winner profile before touring",
+      "stakes": "mistaking glamour after success for competence-building conditions",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "compares the profile timeline with the call sheet and chooses the job for the reps it gives",
+      "firstImage": "a taped call sheet curling at the corners",
+      "mustInclude": [
+        "tour bus schedule",
+        "prop checklist",
+        "profile printout"
+      ],
+      "mustAvoid": [
+        "backstage destiny"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "public-health fellowship advising",
+      "audience": "an advisor helping a student interpret a famous doctor memoir",
+      "stakes": "a student abandoning fieldwork because certainty looks instant",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "sees that the memoir had an ending before she borrowed its lesson",
+      "firstImage": "a returned library copy with sticky notes",
+      "mustInclude": [
+        "field placement form",
+        "library copy",
+        "red sticky flags"
+      ],
+      "mustAvoid": [
+        "clinical claims about passion"
+      ]
+    },
+    {
+      "protagonistName": "Claire",
+      "domain": "independent game design portfolio",
+      "audience": "a junior designer comparing an indie hit interview with her prototype",
+      "stakes": "shipping nothing because the origin story feels magical",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "uses the playtest table to identify ugly builds survived, not love of games, as the usable lesson",
+      "firstImage": "six controllers in a plastic bin",
+      "mustInclude": [
+        "bug list",
+        "prototype build",
+        "playtest cards"
+      ],
+      "mustAvoid": [
+        "garage genius mythology"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "apprentice electrician union intake",
+      "audience": "an applicant hearing a master tradesperson describe loving the work",
+      "stakes": "missing that affection came after years of competence",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "uses the conduit practice bench to separate love-after-mastery from love-before-entry",
+      "firstImage": "a bent conduit sample on a scratched metal bench",
+      "mustInclude": [
+        "union intake sheet",
+        "conduit bender",
+        "practice offcuts"
+      ],
+      "mustAvoid": [
+        "anti-trade moralizing"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish symbolic force from planning evidence",
+      "spot retrospective coherence in success stories",
+      "avoid demanding early certainty from thin evidence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one career story you admire and mark one sentence as inspiration and one sentence as actual evidence you could use today.",
+  "readingTimeMinutes": 12
+}

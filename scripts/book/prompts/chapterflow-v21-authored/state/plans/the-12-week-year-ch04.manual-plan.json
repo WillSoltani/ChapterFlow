@@ -1,0 +1,213 @@
+{
+  "chapterId": "the-12-week-year-ch04",
+  "number": 4,
+  "title": "Throw Out the Annual Plan",
+  "coreMove": "Cut a bloated annual plan down to the few 12 week goals and actions that can actually govern execution.",
+  "sourcePressure": "The source rejects the annual plan as the execution frame and moves toward selective 12 week planning linked to goals.",
+  "chapterSpecificMisunderstanding": "Hearing this as anti-planning, when the point is to reject the loose annual execution frame.",
+  "sourceAlignmentTerms": [
+    "annual plan",
+    "12 week planning",
+    "setting goals",
+    "plan structure",
+    "selective planning",
+    "execution-linked goals"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "12 Week Planning",
+      "detail": "The source sidecar verifies 12 Week Planning as a chapter-map term.",
+      "useIn": "both",
+      "phrasingHint": "The plan gets smaller because it has to govern real work, not decorate a year."
+    },
+    {
+      "kind": "artifact",
+      "name": "Setting Goals",
+      "detail": "The source sidecar verifies Setting Goals as a chapter-map term.",
+      "useIn": "fullRead",
+      "phrasingHint": "Goal setting matters only when the selected goal forces a clear set of actions."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch04: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch04: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch04: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch04: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "David",
+      "domain": "marketing agency service-line pruning",
+      "audience": "a practitioner in marketing agency service-line pruning who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "David cuts four service lines from the annual plan and leaves two goals.",
+      "firstImage": "a service menu with seven highlighted offers",
+      "mustInclude": [
+        "a service menu with seven",
+        "annual plan",
+        "setting goals"
+      ],
+      "mustAvoid": [
+        "generic throw out the annual plan explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "film post-production delivery plan",
+      "audience": "a decision-maker in film post-production delivery plan choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Grace removes every post task that does not move the release in 12 weeks.",
+      "firstImage": "a color-grade timeline frozen at midnight",
+      "mustInclude": [
+        "a color-grade timeline frozen at",
+        "annual plan",
+        "setting goals"
+      ],
+      "mustAvoid": [
+        "generic throw out the annual plan explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "public works maintenance backlog",
+      "audience": "a team lead in public works maintenance backlog who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Mathieu chooses two maintenance outcomes and shelves the rest.",
+      "firstImage": "orange cones beside an unrepaired curb",
+      "mustInclude": [
+        "orange cones beside an unrepaired",
+        "annual plan",
+        "setting goals"
+      ],
+      "mustAvoid": [
+        "generic throw out the annual plan explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "language school enrollment push",
+      "audience": "a reflective operator in language school enrollment push reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chiara turns enrollment ambition into a short list of calls.",
+      "firstImage": "enrollment forms in three languages",
+      "mustInclude": [
+        "enrollment forms in three languages",
+        "annual plan",
+        "setting goals"
+      ],
+      "mustAvoid": [
+        "generic throw out the annual plan explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "commercial landscaping season launch",
+      "audience": "a reader in commercial landscaping season launch comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ryan drops decorative expansion ideas and writes the spring goal.",
+      "firstImage": "mower blades stacked for spring",
+      "mustInclude": [
+        "mower blades stacked for spring",
+        "annual plan",
+        "setting goals"
+      ],
+      "mustAvoid": [
+        "generic throw out the annual plan explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "rural veterinary clinic growth plan",
+      "audience": "two colleagues in rural veterinary clinic growth plan forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Kiran chooses one clinic result and the actions attached to it.",
+      "firstImage": "lab reports beside a waiting-room phone",
+      "mustInclude": [
+        "lab reports beside a waiting-room",
+        "annual plan",
+        "setting goals"
+      ],
+      "mustAvoid": [
+        "generic throw out the annual plan explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "trim annual-plan sprawl",
+      "link goals to executable actions",
+      "keep planning from becoming avoidance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Circle one goal in your current plan and cross out every listed action that would not matter inside the next 12 weeks.",
+  "readingTimeMinutes": 12
+}

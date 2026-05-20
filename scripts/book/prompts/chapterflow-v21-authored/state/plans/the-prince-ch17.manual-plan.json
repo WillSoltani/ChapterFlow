@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch17",
+  "number": 17,
+  "title": "Concerning Cruelty and Clemency, and Whether It Is Better to Be Loved Than Feared",
+  "coreMove": "Use fear only where it stabilizes order, and keep it from becoming hatred by sparing property, honor, and arbitrary action.",
+  "sourcePressure": "The chapter argues that misused clemency can permit disorders that injure everyone, while limited severity may restore unity and loyalty. Fear is safer than love when one must choose because fear rests more in the prince's control, but fear must avoid hatred by sparing property and honor, proceeding with manifest cause, and disciplining armies when necessary.",
+  "chapterSpecificMisunderstanding": "The wrong version chants better feared than loved or admires bullying. The writer must make the constraints visible: severity must serve unity, not appetite; fear must avoid hatred; and property, honor, manifest cause, and military discipline are the guardrails.",
+  "sourceAlignmentTerms": [
+    "cruelty",
+    "clemency",
+    "Cesare Borgia",
+    "Pistoia",
+    "feared",
+    "loved",
+    "hatred",
+    "Hannibal",
+    "Scipio",
+    "manifest cause"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "better feared than loved slogan",
+      "bully boss toughness",
+      "fear as personal brand"
+    ],
+    "counterintuition": [
+      "most people think kindness is good, but actually cruelty is merciful",
+      "love is useless",
+      "harshness always creates order"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and choose where to be feared",
+      "write a hard conversation script",
+      "practice being intimidating"
+    ],
+    "examples": [
+      "office discipline",
+      "parenting punishment",
+      "school classroom control",
+      "personal boundary enforcement"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a divided wool town where two armed dye factions burn workshops while the governor delays punishment to look clement",
+      "audience": "a governor who wants to avoid the name of cruelty while disorder spreads",
+      "stakes": "each night of delayed severity burns another family shop, so public mercy toward faction leaders becomes cruelty toward everyone else",
+      "format": "scene",
+      "requiredBeat": "After the third workshop fire, the governor pins the faction captains' signed truce breach beside the execution warrant and reads the cause aloud in the square.",
+      "firstImage": "A charred dye frame lies below a signed truce breach.",
+      "mustInclude": [
+        "charred dye frame",
+        "truce breach",
+        "public warrant"
+      ],
+      "mustAvoid": [
+        "chapter 8 repeated cruelty",
+        "chapter 9 textile labor politics",
+        "generic riot policing"
+      ]
+    },
+    {
+      "domain": "a marching army of five languages after a forage theft nearly starts a camp fight",
+      "audience": "a general choosing between popularity with soldiers and discipline across a mixed host",
+      "stakes": "if one theft is excused for affection, the army fragments into race, tongue, and camp revenge before battle",
+      "format": "decision_point",
+      "requiredBeat": "The general returns the stolen grain sack to the marked tent row, names the rule in all five camp tongues, and punishes the thief before the injured cohort can retaliate.",
+      "firstImage": "A stolen grain sack sits between five painted tent-row markers.",
+      "mustInclude": [
+        "grain sack",
+        "five tent-row markers",
+        "translated camp rule"
+      ],
+      "mustAvoid": [
+        "mercenary stipend issue",
+        "diversity lesson",
+        "simple army cruelty"
+      ]
+    },
+    {
+      "domain": "a river police captain deciding whether to seize boatmen's cargo after a smuggling arrest",
+      "audience": "a captain who can inspire fear by law or hatred by profitable confiscation",
+      "stakes": "punishing the smuggler with manifest cause may hold order, but taking unrelated cargo teaches every boatman that fear means robbery",
+      "format": "before_after",
+      "requiredBeat": "Before the sentence is posted, the captain cuts the seal from only the smuggler's crate and pushes the other cargo tags back across the table.",
+      "firstImage": "Cargo tags fan around one sealed smuggler's crate.",
+      "mustInclude": [
+        "smuggler's crate",
+        "cargo tags",
+        "public charge sheet"
+      ],
+      "mustAvoid": [
+        "tax farmer from chapter 8",
+        "property hatred from chapter 19 as main frame",
+        "customs bureaucracy"
+      ]
+    },
+    {
+      "domain": "a new island ruler guarding widows' inheritance after executing a rebel noble with documented cause",
+      "audience": "a ruler learning that taking life and taking patrimony create different memories",
+      "stakes": "the execution may be feared and accepted, but touching the family estate turns fear into generational hatred",
+      "format": "dialogue",
+      "requiredBeat": "The clerk reads the rebel sentence, then reaches for the estate ledger; the ruler closes the ledger and orders the widow's seal returned before the crowd disperses.",
+      "firstImage": "A widow's seal rests on top of a rebel sentence.",
+      "mustInclude": [
+        "widow's seal",
+        "rebel sentence",
+        "estate ledger"
+      ],
+      "mustAvoid": [
+        "inheritance kitchen drama",
+        "chapter 19 conspiracy focus",
+        "sentimental mercy"
+      ]
+    },
+    {
+      "domain": "a frontier city deciding whether to spare a popular gate captain whose negligence let raiders inside",
+      "audience": "councillors worried punishment will make the prince unloved",
+      "stakes": "sparing him protects affection for one man while every family robbed in the raid sees clemency as indifference to their injury",
+      "format": "predict_reveal",
+      "requiredBeat": "The councillors predict unrest if he is punished, then the prince places the opened gate pin beside the raid-loss tally and asks which mercy repairs unity.",
+      "firstImage": "An opened gate pin lies beside a raid-loss tally.",
+      "mustInclude": [
+        "opened gate pin",
+        "raid-loss tally",
+        "captain's pardon draft"
+      ],
+      "mustAvoid": [
+        "chapter 20 fortress device",
+        "tough-on-crime slogan",
+        "popularity polling"
+      ]
+    },
+    {
+      "domain": "a provincial judge correcting a lenient deputy whose softness lets armed retainers terrorize villages",
+      "audience": "a prince comparing the deputy's praised gentleness with the villages' actual injuries",
+      "stakes": "the deputy is loved in court, but his forbearance licenses murders and robberies outside the capital",
+      "format": "postmortem",
+      "requiredBeat": "The prince lays the deputy's mercy petitions beside the village wound lists, then sends a replacement with written limits and named causes for every arrest.",
+      "firstImage": "Mercy petitions are stacked beside village wound lists.",
+      "mustInclude": [
+        "mercy petitions",
+        "village wound lists",
+        "written arrest limits"
+      ],
+      "mustAvoid": [
+        "courtroom melodrama",
+        "chapter 15 mercy dilemma repetition",
+        "general law-and-order lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish clement reputation from clemency that permits wider disorder",
+      "apply the guardrails that keep fear from becoming hatred: property, honor, manifest cause, and no arbitrary appetite",
+      "analyze when military discipline requires severity different from civil popularity",
+      "evaluate whether a proposed harsh act stabilizes unity or merely expresses cruelty"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one case of public severity. Write the disorder it was meant to stop, the manifest cause offered, and whether property or honor was spared enough to keep fear from becoming hatred.",
+  "readingTimeMinutes": 12
+}

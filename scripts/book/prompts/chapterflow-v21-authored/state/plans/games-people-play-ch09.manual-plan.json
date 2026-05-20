@@ -1,0 +1,213 @@
+{
+  "chapterId": "games-people-play-ch09",
+  "number": 9,
+  "title": "Games That Aren't Worth Fighting",
+  "coreMove": "Decide when an ulterior pattern is net positive enough to leave alone and protect the generosity inside it.",
+  "sourcePressure": "Covers Berne's good games: Busman's Holiday, Cavalier, Happy to Help, Homely Sage, and They'll Be Glad They Knew Me. Holds that these are still technically games but socially beneficial.",
+  "chapterSpecificMisunderstanding": "Treating every ulterior motive as contamination and interrupting useful, generous patterns just because they are mixed.",
+  "sourceAlignmentTerms": [
+    "good game",
+    "Busman's Holiday",
+    "Cavalier",
+    "Happy to Help",
+    "Homely Sage",
+    "They'll Be Glad They Knew Me",
+    "net positive",
+    "mixed motive"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Busman's Holiday",
+      "detail": "the source describes taking work expertise into leisure or vacation, with mixed motives but benign effect",
+      "useIn": "both",
+      "phrasingHint": "Busman's Holiday may be mixed, but the clinic still gets a cook and the room still gets fed."
+    },
+    {
+      "kind": "artifact",
+      "name": "Happy to Help",
+      "detail": "the source contrasts sincere help with the trap in I'm Only Trying to Help You because the helper does not need failure",
+      "useIn": "both",
+      "phrasingHint": "Happy to Help does not need the other person to stay stuck for the helper to feel useful."
+    },
+    {
+      "kind": "artifact",
+      "name": "Homely Sage",
+      "detail": "the source describes hard-won wisdom offered to younger people without insisting on being obeyed",
+      "useIn": "deepRead",
+      "phrasingHint": "Homely Sage gives the lesson away and lets the listener decide whether to carry it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'Games That Aren't Worth Fighting' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Michael",
+      "domain": "retired chef volunteering during a rural clinic vaccination day",
+      "audience": "a coordinator deciding whether Busman's Holiday needs correction",
+      "stakes": "mixed identity motives produce real food for tired nurses",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Michael cooks because he misses being needed, and the coordinator lets the good game feed the room without exposing it.",
+      "firstImage": "Onion steam fogs the clinic kitchen window before the first appointment slot.",
+      "mustInclude": [
+        "stockpot",
+        "vaccination clipboard",
+        "paper bowls"
+      ],
+      "mustAvoid": [
+        "hero volunteer profile",
+        "professional helper ch8 drift"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "elderly neighbor giving gardening advice to new renters",
+      "audience": "a renter receiving Homely Sage without making the neighbor prove relevance",
+      "stakes": "knowledge can be a gift or a demand, depending on whether obedience is required",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Manon listens, thanks the neighbor, and watches whether the advice is offered freely or becomes a test.",
+      "firstImage": "\"Tomatoes sulk if you water the leaves,\" Manon hears over the fence.",
+      "mustInclude": [
+        "tomato seedlings",
+        "green watering can",
+        "fence latch"
+      ],
+      "mustAvoid": [
+        "yard nostalgia",
+        "patronizing elder trope"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "weekend hackathon where a burned-out developer fixes the sign-in bug for fun",
+      "audience": "an organizer deciding whether the expert's mixed motive is harmful",
+      "stakes": "the event works because usefulness and identity overlap",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chris lets the developer solve the bug as long as he does not make others dependent on his rescue.",
+      "firstImage": "Sticker-covered laptops glow under a basketball hoop in the school gym.",
+      "mustInclude": [
+        "sign-in QR code",
+        "merge request",
+        "pizza box stack"
+      ],
+      "mustAvoid": [
+        "generic tech savior",
+        "open-source flamewar"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "formal dance class where sincere compliments could become Cavalier",
+      "audience": "a dancer giving admiration without pursuit or claim",
+      "stakes": "pleasure in giving strokes can remain clean if no debt is attached",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Isabel gives one specific compliment and leaves it there, checking that the stroke does not become a hook.",
+      "firstImage": "You can admire the precision of someone's turn without asking for anything afterward.",
+      "mustInclude": [
+        "dance card",
+        "polished floor",
+        "silver shoe buckle"
+      ],
+      "mustAvoid": [
+        "romance subplot",
+        "flirtation manipulation"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "community science fair mentored by a retired engineer",
+      "audience": "a mentor with vanity about future recognition through students",
+      "stakes": "the students benefit even if the motive is not pure",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Mikkel admits he likes being remembered and still lets the students own the soldering decisions.",
+      "firstImage": "Years after leaving the lab, Mikkel still imagines one student saying his name in a speech.",
+      "mustInclude": [
+        "soldering iron stand",
+        "circuit board",
+        "science fair ribbon"
+      ],
+      "mustAvoid": [
+        "legacy manifesto",
+        "teacher-as-hero"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "mutual-aid dispatch during a storm outage",
+      "audience": "a volunteer coordinator deciding whether Happy to Help is slipping into needed failure",
+      "stakes": "neighbors need deliveries, but the helper's payoff must not depend on chaos continuing",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hadiya notices the volunteer is happy when routes shrink too, which separates help from the trap that needs helplessness.",
+      "firstImage": "How can you tell whether help is clean? Watch the helper when help is no longer needed.",
+      "mustInclude": [
+        "delivery route sheet",
+        "portable battery pack",
+        "thermal grocery bag"
+      ],
+      "mustAvoid": [
+        "disaster-drama story",
+        "savior fantasy"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish destructive ulterior payoffs from good games",
+      "recognize when not to interrupt",
+      "spot Happy to Help versus ITHY",
+      "evaluate mixed motives without purity testing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before interrupting a mixed-motive good pattern, ask: who benefits, who is trapped, and does anyone need failure for this to keep working?",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,116 @@
+{
+  "bookId": "make-time",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "make-time-ch01",
+      "title": "Introduction + How Make Time Works",
+      "sourcePressure": "The opening frames the problem as default capture by Busy Bandwagon and Infinity Pools, then introduces Highlight, Laser, Energize, and Reflect as a practical daily redesign.",
+      "coreMove": "Name the default force running the day, then choose which part of the Make Time loop will take command first.",
+      "commonMisread": "The weak version says modern life is distracting and people should try harder to manage time.",
+      "mustUseTerms": [
+        "Busy Bandwagon",
+        "Infinity Pools",
+        "defaults",
+        "Highlight",
+        "Laser",
+        "Energize",
+        "Reflect"
+      ],
+      "mustNotDriftInto": [
+        "generic productivity motivation",
+        "total life control",
+        "phone-only distraction advice"
+      ]
+    },
+    {
+      "number": 2,
+      "chapterId": "make-time-ch02",
+      "title": "Highlight",
+      "sourcePressure": "Highlight asks the reader to choose one priority each day by weighing urgency, satisfaction, and joy, then schedule it as the day's center of gravity.",
+      "coreMove": "Select one daily center before urgent, pleasing, or easy tasks crowd out the thing that would make the day matter.",
+      "commonMisread": "The weak version says write a top priority or make a better to-do list.",
+      "mustUseTerms": [
+        "Highlight",
+        "urgency",
+        "satisfaction",
+        "joy",
+        "schedule",
+        "center of gravity"
+      ],
+      "mustNotDriftInto": [
+        "quarterly goal setting",
+        "task batching",
+        "abstract values reflection"
+      ]
+    },
+    {
+      "number": 3,
+      "chapterId": "make-time-ch03",
+      "title": "Laser",
+      "sourcePressure": "Laser focuses on creating a protected focus block by adding friction to devices, apps, and other distraction routes before attention is tested.",
+      "coreMove": "Prepare the environment so the next distraction has to cross a barrier before it can break the Highlight.",
+      "commonMisread": "The weak version says just turn off notifications and use more willpower.",
+      "mustUseTerms": [
+        "Laser",
+        "flow",
+        "distraction",
+        "devices",
+        "apps",
+        "friction",
+        "focus block"
+      ],
+      "mustNotDriftInto": [
+        "digital minimalism ideology",
+        "deep work as identity",
+        "generic focus tips"
+      ]
+    },
+    {
+      "number": 4,
+      "chapterId": "make-time-ch04",
+      "title": "Energize",
+      "sourcePressure": "Energize treats the body as the support system for attention, using movement, sleep, food, caffeine, and recharge choices without overstating health claims.",
+      "coreMove": "Choose one physical support that makes the next focus block easier to enter and sustain.",
+      "commonMisread": "The weak version turns the chapter into wellness advice or a body-optimization checklist.",
+      "mustUseTerms": [
+        "Energize",
+        "movement",
+        "sleep",
+        "food",
+        "caffeine",
+        "recharge",
+        "body defaults"
+      ],
+      "mustNotDriftInto": [
+        "medical advice",
+        "fitness transformation",
+        "diet rules",
+        "hustle endurance"
+      ]
+    },
+    {
+      "number": 5,
+      "chapterId": "make-time-ch05",
+      "title": "Reflect",
+      "sourcePressure": "Reflect closes the loop by treating each day as a small experiment, using simple notes about what worked and failed to refine, add, or drop tactics.",
+      "coreMove": "Turn today's evidence into one small adjustment for tomorrow instead of judging the whole system by mood.",
+      "commonMisread": "The weak version says journal about productivity or track everything carefully.",
+      "mustUseTerms": [
+        "Reflect",
+        "experiment",
+        "worked",
+        "failed",
+        "refine",
+        "add",
+        "drop"
+      ],
+      "mustNotDriftInto": [
+        "gratitude journaling",
+        "analytics dashboards",
+        "self-scoring rituals",
+        "annual review"
+      ]
+    }
+  ]
+}

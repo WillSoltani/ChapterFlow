@@ -1,0 +1,288 @@
+{
+  "bookId": "extreme-ownership",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "extreme-ownership-ch01",
+      "title": "Leadership: The Single Most Important Factor",
+      "sourcePressure": "The introduction frames leadership quality as the factor that shapes whether teams perform, survive confusion, and adapt under pressure.",
+      "coreMove": "turn uncertainty into a shared next action by naming the purpose, standard, and immediate move before conditions feel ready",
+      "commonMisread": "leadership is important, so be more inspiring",
+      "mustUseTerms": [
+        "leadership factor",
+        "Ramadi frame",
+        "high-stakes call",
+        "confusion",
+        "shared action",
+        "adapt under pressure"
+      ],
+      "mustNotDriftInto": [
+        "generic inspiration",
+        "heroic personality",
+        "war-story color"
+      ]
+    },
+    {
+      "number": 2,
+      "chapterId": "extreme-ownership-ch02",
+      "title": "Extreme Ownership",
+      "sourcePressure": "The namesake chapter uses the Ramadi friendly-fire failure to show a leader refusing excuses and owning the system that produced the failure.",
+      "coreMove": "accept responsibility at the level where repair becomes possible, then change the procedures and communication that shaped the result",
+      "commonMisread": "take the blame publicly and move on",
+      "mustUseTerms": [
+        "friendly fire",
+        "blue-on-blue",
+        "ownership",
+        "responsibility",
+        "procedures",
+        "communication",
+        "trust"
+      ],
+      "mustNotDriftInto": [
+        "self-punishment",
+        "apology theater",
+        "frontline blame"
+      ]
+    },
+    {
+      "number": 3,
+      "chapterId": "extreme-ownership-ch03",
+      "title": "No Bad Teams, Only Bad Leaders",
+      "sourcePressure": "The Hell Week boat-crew leader swap shows the same team performing differently when standards and leadership change.",
+      "coreMove": "test the leader’s standard before judging the team by changing what the leader models, repeats, and accepts",
+      "commonMisread": "bad teams do not exist, so leaders can magically fix anything",
+      "mustUseTerms": [
+        "Hell Week",
+        "boat crew",
+        "leader swap",
+        "standards",
+        "example",
+        "team performance",
+        "not magical"
+      ],
+      "mustNotDriftInto": [
+        "generic motivation",
+        "talent denial",
+        "cheerleading"
+      ]
+    },
+    {
+      "number": 4,
+      "chapterId": "extreme-ownership-ch04",
+      "title": "Believe",
+      "sourcePressure": "Resistance to the Iraqi partner-force mission changes when leaders understand and explain why building partner capability matters.",
+      "coreMove": "earn buy-in by understanding the mission deeply enough to explain its purpose without spin or borrowed language",
+      "commonMisread": "make people believe by sounding confident",
+      "mustUseTerms": [
+        "Iraqi partner forces",
+        "mission purpose",
+        "strategic why",
+        "buy-in",
+        "compliance",
+        "belief",
+        "no spin"
+      ],
+      "mustNotDriftInto": [
+        "salesmanship",
+        "blind loyalty",
+        "fake enthusiasm"
+      ]
+    },
+    {
+      "number": 5,
+      "chapterId": "extreme-ownership-ch05",
+      "title": "Check the Ego",
+      "sourcePressure": "Elite-unit arrogance damages coordination, while humility and cross-unit respect return attention to the mission.",
+      "coreMove": "notice when status protection is blocking help, correction, or cooperation, and put the mission back above looking right",
+      "commonMisread": "be humble and nice",
+      "mustUseTerms": [
+        "ego",
+        "humility",
+        "cross-unit respect",
+        "status",
+        "rivalry",
+        "mission focus",
+        "confidence versus ego"
+      ],
+      "mustNotDriftInto": [
+        "politeness advice",
+        "low confidence",
+        "conflict avoidance"
+      ]
+    },
+    {
+      "number": 6,
+      "chapterId": "extreme-ownership-ch06",
+      "title": "Cover and Move",
+      "sourcePressure": "Siloed units fail unless mutually dependent teams support one another as parts of one mission.",
+      "coreMove": "find the adjacent team’s exposed point and support it while preserving clear ownership of the shared mission",
+      "commonMisread": "teamwork means everyone helps everyone with everything",
+      "mustUseTerms": [
+        "cover and move",
+        "silos",
+        "mutual support",
+        "interdependence",
+        "shared mission",
+        "accountability limit"
+      ],
+      "mustNotDriftInto": [
+        "fuzzy collaboration",
+        "charity help",
+        "blurring roles"
+      ]
+    },
+    {
+      "number": 7,
+      "chapterId": "extreme-ownership-ch07",
+      "title": "Simple",
+      "sourcePressure": "Overcomplicated plans and explanations collapse under pressure; simple plans survive chaos because people can understand and execute them.",
+      "coreMove": "compress the plan until the people under pressure can repeat the intent, sequence, and constraints from memory",
+      "commonMisread": "simple means dumbed down or underplanned",
+      "mustUseTerms": [
+        "simple",
+        "clarity",
+        "pressure test",
+        "explainability",
+        "frontline execution",
+        "not shallow"
+      ],
+      "mustNotDriftInto": [
+        "minimal effort",
+        "vague slogans",
+        "oversimplification"
+      ]
+    },
+    {
+      "number": 8,
+      "chapterId": "extreme-ownership-ch08",
+      "title": "Prioritize and Execute",
+      "sourcePressure": "Leaders restore order in chaos by detaching, identifying the highest-priority problem, executing it, then reassessing.",
+      "coreMove": "pause long enough to choose the controlling problem, act on it hard, then look up and choose again",
+      "commonMisread": "make a ranked list faster",
+      "mustUseTerms": [
+        "prioritize and execute",
+        "detach",
+        "highest priority",
+        "sequence",
+        "restore order",
+        "reassess",
+        "not tunnel vision"
+      ],
+      "mustNotDriftInto": [
+        "time management tips",
+        "multitasking",
+        "reckless speed"
+      ]
+    },
+    {
+      "number": 9,
+      "chapterId": "extreme-ownership-ch09",
+      "title": "Decentralized Command",
+      "sourcePressure": "Leaders must train and trust junior leaders so decisions happen close to the facts instead of bottlenecking at the top.",
+      "coreMove": "give local leaders intent, limits, and standards so they can decide without waiting for permission",
+      "commonMisread": "delegate tasks and hope people figure it out",
+      "mustUseTerms": [
+        "decentralized command",
+        "junior leaders",
+        "trust",
+        "training",
+        "intent",
+        "decision speed",
+        "limits"
+      ],
+      "mustNotDriftInto": [
+        "hands-off management",
+        "abdication",
+        "permission chaos"
+      ]
+    },
+    {
+      "number": 10,
+      "chapterId": "extreme-ownership-ch10",
+      "title": "Plan",
+      "sourcePressure": "Planning, commander’s intent, rehearsal, and contingency thinking improve adaptability under pressure.",
+      "coreMove": "build a plan that gives people shared intent, roles, checks, and contingencies before pressure changes the route",
+      "commonMisread": "make a detailed plan so uncertainty disappears",
+      "mustUseTerms": [
+        "plan",
+        "commander’s intent",
+        "rehearsal",
+        "contingencies",
+        "adaptability",
+        "roles",
+        "checks"
+      ],
+      "mustNotDriftInto": [
+        "rigid planning",
+        "paperwork worship",
+        "certainty seeking"
+      ]
+    },
+    {
+      "number": 11,
+      "chapterId": "extreme-ownership-ch11",
+      "title": "Leading Up and Down the Chain of Command",
+      "sourcePressure": "Leaders must explain purpose down the chain and communicate friction proactively up the chain so aligned initiative can continue.",
+      "coreMove": "move context down and reality up before people act from different maps",
+      "commonMisread": "communicate more and be transparent",
+      "mustUseTerms": [
+        "chain of command",
+        "lead up",
+        "lead down",
+        "purpose downward",
+        "friction upward",
+        "alignment",
+        "initiative"
+      ],
+      "mustNotDriftInto": [
+        "office politics",
+        "complaining upward",
+        "perfect transparency"
+      ]
+    },
+    {
+      "number": 12,
+      "chapterId": "extreme-ownership-ch12",
+      "title": "Decisiveness amid Uncertainty",
+      "sourcePressure": "Leaders must make timely decisions with incomplete information, avoiding both hesitation and reckless speed.",
+      "coreMove": "make a grounded call before perfect clarity arrives, then keep the team ready to revise as facts change",
+      "commonMisread": "decisive leaders are certain and fast",
+      "mustUseTerms": [
+        "uncertainty",
+        "timely decision",
+        "hesitation",
+        "reckless speed",
+        "grounded call",
+        "revise",
+        "ambiguity"
+      ],
+      "mustNotDriftInto": [
+        "bravado",
+        "certainty theater",
+        "analysis paralysis"
+      ]
+    },
+    {
+      "number": 13,
+      "chapterId": "extreme-ownership-ch13",
+      "title": "Discipline Equals Freedom: The Dichotomy of Leadership",
+      "sourcePressure": "Disciplined procedures create freedom of action, and leadership requires balancing tensions rather than choosing one extreme.",
+      "coreMove": "use disciplined basics to free attention for judgment, then balance firmness with humility, speed with care, and control with trust",
+      "commonMisread": "discipline means strictness solves everything",
+      "mustUseTerms": [
+        "discipline equals freedom",
+        "dichotomy",
+        "structured adaptability",
+        "balanced leadership",
+        "standards",
+        "freedom of action",
+        "judgment"
+      ],
+      "mustNotDriftInto": [
+        "self-help discipline slogans",
+        "domination",
+        "rigid control"
+      ]
+    }
+  ]
+}

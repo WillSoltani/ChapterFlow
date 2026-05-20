@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-art-of-war-ch08",
+  "number": 8,
+  "title": "Variation in Tactics",
+  "readingTimeMinutes": 12,
+  "hook": "The police scanner sits beside Laura’s unpublished headline, and the rule suddenly cuts the wrong way.",
+  "counterintuition": "A rule can be loyal to its purpose one hour and betray it the next. Variation is disciplined judgment about when obedience would damage the objective.",
+  "tryThisNow": "Name one rule, route, or instruction you are following by habit. Write the condition under which obeying it would harm the objective.",
+  "keyTakeaway": "Adapt the rule to the real condition, especially when obedience would defeat the purpose it was meant to serve.",
+  "breakdown": {
+    "fastRead": "The police scanner sits beside Laura’s unpublished headline at 11:03 at night. The detail is confirmed. The newsroom rule says confirmed facts can publish. Then the police call: this fact would reveal the position of officers outside a hostage scene.\n\nLaura holds the story. She is not abandoning standards. She is protecting the purpose behind them.\n\nVariation in tactics means knowing when the road, order, target, or temptation should not be followed. Discipline includes principled refusal.",
+    "deepRead": "Good judgment includes knowing when obedience would betray the purpose of the order. Some roads should not be followed. Some positions should not be contested. Some commands should not be obeyed when the condition has changed underneath them.\n\nA tactic often fails because a private fault grabs the steering wheel.\n\nBen feels ice rattling against his visor on the ridge. Command wants the shortest route to a rescue beacon. His slope angle card, wind reading, and the sound under his boots say the ridge is unsafe. He must choose between obeying the route and leading the team through the longer treeline path that keeps rescuers alive.\n\nThe dangerous fault here is not fear. It would be recklessness dressed as obedience. A hasty temper can chase insult. Sensitivity to shame can make retreat feel impossible. Excessive worry can protect people so much that the mission fails. Variation means seeing both advantage and disadvantage in the same order.\n\nRules need judgment to stay useful.\n\nThe commands of the sovereign which must not be obeyed and the five dangerous faults both test whether judgment can resist a rule, order, or temperament that would betray the mission.",
+    "fullRead": "What if the discount is the bait and the lockup is the battlefield? Olivier asks this during a market selloff, with a term sheet open to a red lockup clause. The distressed asset looks cheap. The liquidity schedule is ugly. The redemption queue would trap the fund if clients needed cash. He has to decide whether the price is an opportunity or an attractive road that should not be followed.\n\nVariation is not improvising because you feel restless. It is changing the move because the facts have changed the move’s meaning. A road that is normally efficient can become a trap. A town that looks valuable can cost more than it returns. A command that is normally binding can become destructive if the commander lacks the ground truth.\n\nHere is the hard question: what is the rule for? If the newsroom rule exists to inform the public, publishing a fact that endangers the people inside may betray the rule’s purpose. If a rescue route exists to reach the injured, sending rescuers onto an unstable ridge may create more injured people. If an investment mandate exists to preserve client capital, a cheap asset with a lockup can violate the mandate while seeming to serve it.\n\n\"The plan was correct until the anatomy changed,\" Hanna says in the operating room. A frozen laparoscopic image glows on the monitor. The procedure clock is running, the sterile phone cover is ready, and the imaging order will slow the schedule. She pauses anyway. The original plan was not wrong. It has expired.\n\nTomas sees the same expiration on a signal board during evening peak. One block goes dark. The express slot is prestigious, the platform crowd count is high, and the radio channel is filling with pressure. The manual authority form is the slower path. Tomas cancels the express movement because keeping the timetable could send a train into a blind section. The proud slot is no longer an advantage.\n\nThe five dangerous faults give tactical judgment its spine. Recklessness rushes into damage. Cowardice refuses the necessary move. A hasty temper lets provocation choose the target. Delicate honor cannot bear looking slow or wrong. Over-solicitude protects people from discomfort until the larger danger grows. Each fault turns a tactic into a reflex.\n\nAdaeze learns the honor trap in a test aisle. A viral packaging trend has every executive asking why the team looks slow. The launch photo would be beautiful. The retailer planogram is tight. The drop-test report is bad. It took one toppled display to show her that shame about delay was not a strategy. It was a dangerous fault pushing the wheel.\n\nVariation requires two inputs at once: advantage and disadvantage. The cheap asset offers upside and lockup risk. The faster ridge offers time and avalanche exposure. The viral package offers attention and shelf failure. Weak judgment sees one side and calls it obvious. Strong judgment holds both until the move changes shape.\n\nWhen the condition changes, update the command."
+  },
+  "examples": [
+    {
+      "exampleId": "ch08-ex01-laura-headline",
+      "title": "Laura holds the confirmed headline",
+      "tags": [
+        "newsroom",
+        "safety",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "newsroom deciding whether to publish during an unfolding hostage situation",
+        "audience": "managing editor with a confirmed detail and police request",
+        "stakes": "publishing first could endanger the people inside",
+        "format": "decision_point",
+        "requiredBeat": "At 11:03 p.m., Laura overrides the newsroom rule to publish confirmed facts when the fact itself would reveal police position."
+      },
+      "scenario": "At 11:03 p.m., Laura sits with a police scanner beside an unpublished headline and a confirmation note in the editor. The fact is verified, the publish queue is ready, and the police call says the detail would reveal an officer position outside the hostage scene. Before the night desk moves, she must decide whether the newsroom rule serves the public here or endangers the people inside.",
+      "whatToDo": "Hold the confirmed detail and publish only what does not expose the position. Let the purpose of the rule govern the rule’s use.",
+      "whyItMatters": "Verification usually supports publication, but the condition has changed. Obeying the rule mechanically would betray the safety it should also serve."
+    },
+    {
+      "exampleId": "ch08-ex02-ben-ridge",
+      "title": "Ben refuses the ridge route",
+      "tags": [
+        "rescue",
+        "route",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "mountain rescue team ordered onto an unsafe ridge",
+        "audience": "team leader receiving pressure from command",
+        "stakes": "following the route could create more casualties",
+        "format": "scene",
+        "requiredBeat": "Ice rattles against Ben's visor as he refuses the shortest ridge and chooses the longer treeline route that keeps rescuers alive."
+      },
+      "scenario": "On the ridge above the north bowl, Ben is the rescue lead with ice rattling against his visor while the beacon pulses beyond the cornice. Command is pressing for the shortest route, but his slope angle card and wind reading say the traverse is loaded. Before the team clips in, Ben has to decide whether obedience means taking the ridge or whether the longer treeline route is the only way to reach the victim without making more victims.",
+      "whatToDo": "Refuse the unsafe ridge and state the reason clearly. Take the treeline route, update command, and keep the team alive enough to finish the rescue.",
+      "whyItMatters": "The order’s purpose is rescue, not display. If the route creates more casualties, disobeying the route preserves the mission."
+    },
+    {
+      "exampleId": "ch08-ex03-olivier-lockup",
+      "title": "Olivier reads the lockup clause",
+      "tags": [
+        "investment",
+        "liquidity",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "investment committee rejecting an attractive distressed asset",
+        "audience": "portfolio manager during a market selloff",
+        "stakes": "a cheap price hides liquidity terms that could trap the fund",
+        "format": "predict_reveal",
+        "requiredBeat": "What if the discount is the bait and the lockup is the battlefield?"
+      },
+      "scenario": "In the investment committee room before the noon vote, Olivier is the analyst with a term sheet open to a red lockup clause and the liquidity schedule beside it. The market selloff makes the price look rare. Before the committee votes, he has to decide whether the stressed price is a road to follow or a trap that would freeze client cash.",
+      "whatToDo": "Blend the upside with the liquidity cost. Reject or resize the asset if the lockup would trap the fund when clients need cash.",
+      "whyItMatters": "Cheap is only one side of the condition. The lockup changes the tactic from opportunity to danger if it prevents the fund from serving clients."
+    },
+    {
+      "exampleId": "ch08-ex04-hanna-image",
+      "title": "Hanna pauses for imaging",
+      "tags": [
+        "surgery",
+        "judgment",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "hospital surgeon deciding whether to continue a planned procedure",
+        "audience": "lead surgeon after unexpected anatomy appears",
+        "stakes": "pushing through preserves schedule but raises patient risk",
+        "format": "dialogue",
+        "requiredBeat": "The plan was correct until the anatomy changed, Hanna says, then pauses the procedure for imaging instead of protecting her pride."
+      },
+      "scenario": "\"The plan was correct until the anatomy changed,\" Hanna says as the laparoscopic image freezes on the monitor. The imaging order will slow the procedure clock, and the sterile phone cover is ready. Before the team continues, she must decide whether to protect the schedule or pause for the scan that the unexpected anatomy now requires.",
+      "whatToDo": "Pause and order imaging. Say plainly that the old plan expired when the anatomy changed, then resume only with the new information.",
+      "whyItMatters": "Continuing would defend pride and schedule, not the patient. Variation keeps the objective stable by changing the tactic."
+    },
+    {
+      "exampleId": "ch08-ex05-tomas-signal-board",
+      "title": "Tomas cancels the express slot",
+      "tags": [
+        "rail",
+        "signals",
+        "dispatch"
+      ],
+      "planSpec": {
+        "domain": "railway dispatcher rerouting trains during signal failure",
+        "audience": "dispatcher during evening peak",
+        "stakes": "keeping the timetable could send trains into a blind section",
+        "format": "audit",
+        "requiredBeat": "The signal board goes dark in one block while Tomas cancels the proud express slot to preserve the network."
+      },
+      "scenario": "During evening peak in the rail control room, the signal board goes dark in one block while Tomas watches the platform crowd count climb. The radio channel is crowded, the manual authority form is open, and the express slot is the one everyone wants protected. Before he clears the next movement, he has to decide whether to keep the timetable or cancel the express path through the blind section.",
+      "whatToDo": "Cancel the express slot and move under manual authority. Preserve the network before preserving the timetable.",
+      "whyItMatters": "The timetable is useful only while the signal system can support it. In a blind block, pride in punctuality becomes danger."
+    },
+    {
+      "exampleId": "ch08-ex06-adaeze-display",
+      "title": "Adaeze lets the display fall",
+      "tags": [
+        "packaging",
+        "retail",
+        "trend"
+      ],
+      "planSpec": {
+        "domain": "consumer-products team refusing a viral packaging trend",
+        "audience": "brand lead under executive pressure",
+        "stakes": "a flashy package could break shelf stability and damage returns",
+        "format": "postmortem",
+        "requiredBeat": "It took Adaeze one toppled test display to treat shame about looking slow as a dangerous fault, not a reason to copy the trend."
+      },
+      "scenario": "It took Adaeze one toppled test display to name the fault. The launch photo looked sharp, the retailer planogram was tight, and the drop-test report had warned that the viral package leaned forward. After the display fell in the test aisle, she had to decide what to carry back to executives: shame about looking slow was not evidence that the trend was safe.",
+      "whatToDo": "Bring the failed display, drop-test report, and planogram to the decision. Refuse the trend until the package can stand on the shelf it must survive.",
+      "whyItMatters": "The pressure was social, not structural. Treating shame as evidence would put a fragile package into stores and turn attention into returns."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A newsroom rule says verified facts publish quickly. During an active police operation, one verified detail reveals officer position. What should the editor do?",
+        "choices": [
+          "Publish because verification is complete.",
+          "Hold or narrow the detail because the condition changes the rule’s purpose.",
+          "Publish faster so competitors do not win."
+        ],
+        "correctIndex": 1,
+        "explanation": "The rule serves public information, but this condition adds direct danger. Disciplined variation adapts the rule to preserve its purpose.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A rescue leader is ordered onto the shortest route, but wind and slope data show it may create more casualties. What is principled disobedience?",
+        "choices": [
+          "Take the route and hope speed compensates.",
+          "Refuse the unsafe route, explain the data, and choose the safer path.",
+          "Quit the rescue because command is imperfect."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mission is rescue. Disobeying the route preserves the mission when the route itself becomes destructive.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "An investor sees a distressed asset at a deep discount, but the lockup prevents redemptions during stress. What should be blended?",
+        "choices": [
+          "Price advantage and liquidity disadvantage.",
+          "Brand prestige and office politics.",
+          "How exciting the discount feels today."
+        ],
+        "correctIndex": 0,
+        "explanation": "Variation requires holding advantage and disadvantage together. The discount is not real value if the lockup prevents the fund from meeting client needs.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "In surgery, the plan was correct until unexpected anatomy appeared on the image. The procedure clock is running. What should the surgeon do?",
+        "choices": [
+          "Continue to preserve schedule.",
+          "Pause for imaging because the facts changed the tactic.",
+          "Ignore the image to avoid alarming the team."
+        ],
+        "correctIndex": 1,
+        "explanation": "The objective is patient safety, not loyalty to the original plan. New anatomy changes the conditions and therefore the correct action.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A dispatcher can keep a prestigious express slot only by sending a train through a blind signal block. What should govern the decision?",
+        "choices": [
+          "The public pride attached to the express slot.",
+          "The platform crowd’s impatience.",
+          "The fact that the signal failure changes the timetable’s meaning."
+        ],
+        "correctIndex": 2,
+        "explanation": "The timetable is a tool for safe movement. Once the signal block goes blind, preserving the slot can betray the network.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A manager keeps pursuing a bad plan because critics mocked her last retreat. Which dangerous fault is likely steering her?",
+        "choices": [
+          "Sensitivity to shame.",
+          "Useful discipline.",
+          "Balanced assessment of advantage."
+        ],
+        "correctIndex": 0,
+        "explanation": "The plan is being driven by fear of looking weak, not by conditions. Shame has grabbed the steering wheel.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A director changes route whenever a new idea appears, with no link to conditions. Why is this not variation?",
+        "choices": [
+          "Because variation requires changed facts and a stable objective.",
+          "Because all rule changes are wrong.",
+          "Because speed matters more than judgment."
+        ],
+        "correctIndex": 0,
+        "explanation": "Variation is disciplined adaptation, not restlessness. The objective stays stable while the tactic changes because conditions demand it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A manager keeps obeying a familiar escalation rule even after the facts change and the rule now endangers the goal. What is the better move?",
+        "choices": [
+          "Launch anyway because attention is valuable.",
+          "Reject the trend until the package survives the shelf conditions.",
+          "Skip testing next time to avoid anxiety."
+        ],
+        "correctIndex": 1,
+        "explanation": "Attention is an advantage, but shelf failure is the paired disadvantage. The display test should govern the tactic.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A product team wants to keep a viral package because it photographs well, even after drop tests show it topples forward. What should decide?",
+        "choices": [
+          "Cowardice disguised as prudence.",
+          "Useful variation.",
+          "Advantage blended with disadvantage."
+        ],
+        "correctIndex": 0,
+        "explanation": "Avoiding all hard moves is not adaptation. It may be fear using flexible language to escape necessary action.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A rule points one way, but conditions make that action harmful. What should you retrieve?",
+      "back": "Ask what the rule is for. If obedience would betray that purpose, vary the tactic while preserving the objective.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What makes disobedience principled rather than impulsive?",
+      "back": "It is tied to ground truth, stated clearly, and aimed at protecting the mission. It is not mood, pride, or convenience.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A cheap opportunity carries a lockup, delay, or hidden risk. What should you do?",
+      "back": "Blend advantage with disadvantage. The upside is not real until the cost and trap conditions are measured beside it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Which private faults can distort tactical judgment?",
+      "back": "Recklessness, cowardice, hasty temper, sensitivity to shame, and over-protective worry can each turn a tactic into a reflex.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How do you know flexibility has become drift?",
+      "back": "The objective changes with every mood, and tactics change without new facts. Real variation keeps the purpose stable while adapting the route.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to adapt without drifting. The skill is holding the objective steady while changing the route, rule, or instruction when conditions make obedience harmful.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a policy points to an action that now harms the goal, then state the goal and adapt the policy openly."
+      },
+      {
+        "context": "safety",
+        "plan": "If an order creates new danger, then explain the condition and choose the route that preserves the mission."
+      },
+      {
+        "context": "finance",
+        "plan": "If an opportunity looks cheap, then pair its advantage with the liquidity, timing, or exit disadvantage before voting."
+      },
+      {
+        "context": "leadership",
+        "plan": "If shame, anger, or fear is pushing the decision, then pause and name the fault before choosing."
+      }
+    ],
+    "twentyFourHourChallenge": "Name one rule, route, or instruction you are following by habit. Write the condition under which obeying it would damage the real objective.",
+    "weeklyPractice": "Each week, review one decision where conditions changed. Ask whether you adapted from judgment, from fear, or from pride, then write the correction."
+  },
+  "memorableLines": [
+    {
+      "text": "Discipline includes principled refusal.",
+      "location": "breakdown.fastRead",
+      "why": "It offers a sharp alternative to blind obedience."
+    },
+    {
+      "text": "Rules need judgment to stay useful.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the central idea into a plain sentence."
+    },
+    {
+      "text": "When the condition changes, update the command.",
+      "location": "breakdown.fullRead",
+      "why": "It closes with a clear operational command."
+    }
+  ]
+}

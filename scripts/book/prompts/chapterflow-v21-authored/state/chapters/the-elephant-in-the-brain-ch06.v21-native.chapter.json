@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch06",
+  "number": 6,
+  "title": "Counterfeit Reasons",
+  "readingTimeMinutes": 12,
+  "hook": "Roadmap cards move first; the reason often arrives wearing a clean suit afterward.",
+  "counterintuition": "The odd part is that the best-sounding reason may arrive after the choice. It can be coherent, public-spirited, and still be serving a decision that already had momentum.",
+  "tryThisNow": "Take one decision already made. Before defending it, write what evidence would have changed your mind before the choice became yours.",
+  "keyTakeaway": "A stated reason may be a clean caption pasted under a chosen outcome, so test it against pre-decision evidence.",
+  "breakdown": {
+    "fastRead": "The roadmap card slides into the build lane before anyone opens the support log. Mikkel says customers asked for simplicity, but Emily finds only one thin note. The reason became loud after the team already wanted the feature.\n\nA polished reason can arrive late and still sound honest. The mind is good at making a public story for a private choice. Test the timing. Ask what evidence existed before the decision hardened, and what evidence would have changed it then.",
+    "deepRead": "\"Customers asked for simplicity,\" Mikkel says as the roadmap card moves columns. Emily clicks into the support logs and searches for simplicity before the executive note. The phrase is barely there. It became loud only after the desired feature needed a public reason.\n\nCounterfeit reasons are reasons with good grammar and bad timing. They can sound intelligent because the mind is skilled at explanation. The split-brain and confabulation evidence points toward a disturbing possibility: the reason can arrive after the choice and still feel like it was in charge.\n\nThe ego as press secretary does not run the government; it explains the government after the door closes.\n\nThat image is useful because it changes the inspection point. Do not only ask whether the reason is coherent. A press release is supposed to be coherent. Ask what it was written to justify and whether the evidence existed before the decision hardened. A person can avoid knowing the motive that would make the public story harder to sell.\n\nAman sees the family version beside the quilt and pocket watch. The fairness rule appears only after one sibling has already chosen the watch. So he puts the appraisal sheet on separate placemats and asks which rule existed before anyone touched an object. The answer tells him whether fairness guided the split or arrived to bless it.\n\nThe limit is humility. Post-hoc does not always mean false. A late reason can still be a good reason. It just loses the right to call itself the cause without passing a timing test.",
+    "fullRead": "Scale models cast long shadows across the jury table after the architecture vote. Peter compares the vote order with the jury notes and notices a strange sequence. Margaux’s favored firm led first. The environmental language came later, once the favorite needed a principled explanation. The praise may be valid. The timing makes it suspect.\n\nThis is the press-secretary problem. The mind can generate reasons fluently enough that the reason feels like command rather than commentary. Split-brain and confabulation evidence make the general point uncomfortable: people can explain choices they did not consciously initiate, and the explanation can sound confident. The reason can arrive cleanly after the choice, like a caption pasted under a photograph.\n\nWhen did the reason begin doing work?\n\nThat question is more useful than asking whether the reason sounds smart. Counterfeit reasons are often smart. They know the language of fairness, customers, evidence, taste, prudence, and public good. Their weakness is not always syntax. Their weakness is birth date.\n\nChiara sees it in a city grant session. The blind descriptions make the boring bridge repair look stronger than the downtown plaza project. Once the neighborhood map appears, reviewers begin saying the plaza will create momentum, visibility, and civic pride. Those words may not be nonsense. They simply appeared after downtown became visible. Chiara asks everyone to score blind first, then write any new reason that appears after names return.\n\nThe phrase strategic ignorance about motives explains why the press release is easier to believe. If the mind does not fully inspect the prestige preference, the civic reason can speak with a steadier voice. The person is not necessarily plotting a lie. The person may be protected from knowing the motive that would make the story harder to sell.\n\nYou can test your own reasons the same way. Before defending a decision, ask what evidence would have changed your mind before the choice became yours. If no evidence would have mattered, the reason may be serving the decision instead of guiding it. If the reason appeared only after pride, loyalty, fear, or status was threatened, treat it as a suspect witness.\n\nMargaux learns this through a printer invoice. She said the restaurant menu redesign was about readability. Then the gold foil proof arrived, and only afterward did readability expand to include shimmer, weight, and premium feel. The expensive taste had become customer clarity in nicer clothes. The invoice did not prove the redesign was bad. It revealed which reason had been hired late.\n\nThe goal is not to distrust every explanation. The goal is to put reasons back in chronological order. Reasons that came before the choice deserve one kind of respect. Reasons that came after the choice deserve questions."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-thomas-jury-notes",
+      "title": "Peter Checks the Jury Notes After the Vote",
+      "tags": [
+        "postmortem",
+        "architecture",
+        "jury"
+      ],
+      "planSpec": {
+        "domain": "architecture competition jury",
+        "audience": "a juror explaining a favorite design after the vote",
+        "stakes": "the official reason may be a caption added after faction preference won",
+        "format": "postmortem",
+        "requiredBeat": "Peter compares the juror's praise to the vote order and notices the environmental language appeared only after Margaux's favored firm led."
+      },
+      "scenario": "Scale models cast long shadows across the jury table. Peter, a competition juror, compares the vote order with jury notes after the final ballot. Margaux’s favored firm took the lead before anyone mentioned environmental fit. Only afterward did that language fill the notes. Peter marks the sequence and sees the praise may be a caption added after the faction preference won. The support search gives Emily a timestamped way to test whether the reason led the work or followed it.",
+      "whatToDo": "Compare the reason with the vote order. Keep any environmental claim that existed before the vote, and challenge reasons that appeared only after the favorite was ahead.",
+      "whyItMatters": "The praise may be true, but timing shows whether it guided the vote or decorated it afterward. Counterfeit reasons often reveal themselves by arriving late."
+    },
+    {
+      "exampleId": "ch06-ex02-mikkel-roadmap-card",
+      "title": "Mikkel Says Customers Wanted Simplicity",
+      "tags": [
+        "dialogue",
+        "product",
+        "logs"
+      ],
+      "planSpec": {
+        "domain": "product roadmap prioritization",
+        "audience": "a product manager sorting real constraints from invented rationale",
+        "stakes": "a team may rationalize a feature because an executive already wanted it",
+        "format": "dialogue",
+        "requiredBeat": "\"Customers asked for simplicity,\" Mikkel says, and Emily opens the support logs to test whether simplicity existed before the decision."
+      },
+      "scenario": "\"Customers asked for simplicity,\" Mikkel says as the roadmap card moves columns. Emily, the product manager, has support logs open beside an executive note that praised the feature last week. The card is already in the build lane. Emily has to decide whether simplicity was a real constraint before the decision or a reason invented after the executive wanted it. The appraisal sheet keeps the inheritance rule from changing after the pocket watch becomes desirable.",
+      "whatToDo": "Search the support logs before accepting the reason. If simplicity was not a live customer request before the executive note, label the feature as executive preference.",
+      "whyItMatters": "A polished customer reason can protect a preselected feature. The logs show whether the reason led the decision or followed it."
+    },
+    {
+      "exampleId": "ch06-ex03-aman-watch-quilt",
+      "title": "Aman Places the Keepsakes on Placemats",
+      "tags": [
+        "scene",
+        "estate",
+        "fairness"
+      ],
+      "planSpec": {
+        "domain": "family estate distribution",
+        "audience": "a sibling defending an unequal keepsake split",
+        "stakes": "the spoken fairness rule may appear after desire has already chosen",
+        "format": "scene",
+        "requiredBeat": "Aman sets the watch, quilt, and appraisal sheet on separate placemats and asks which fairness rule existed before anyone picked an object."
+      },
+      "scenario": "The watch ticks loudly on a placemat beside the folded quilt. Aman sets the pocket watch, quilt, and appraisal sheet on separate placemats at the dining table. His sister says the oldest child should choose first, but only after reaching for the watch. Aman has to decide whether that fairness rule existed before desire chose or arrived after the keepsake was already claimed. The blind score gives Chiara a baseline before civic-pride language learns where the project sits.",
+      "whatToDo": "Ask each sibling to write the fairness rule before touching an object. Then compare the written rules with the appraisal sheet and the actual choices.",
+      "whyItMatters": "The rule may sound fair, but timing matters. A rule that appears after the desired object is chosen may be a press release for desire."
+    },
+    {
+      "exampleId": "ch06-ex04-chiara-black-tape",
+      "title": "Chiara Covers the Byline",
+      "tags": [
+        "predict_reveal",
+        "journal-club",
+        "methods"
+      ],
+      "planSpec": {
+        "domain": "journal club paper selection",
+        "audience": "a researcher explaining why one paper deserves discussion",
+        "stakes": "status alignment may be hidden behind methods language",
+        "format": "predict_reveal",
+        "requiredBeat": "What reason survives after the famous author's name is blacked out?"
+      },
+      "scenario": "What reason survives when the byline is hidden under black tape? Chiara, a postdoc, has a paper printout and methods checklist on the lab bench at 7:30 p.m. She predicts her preferred paper will still lead. After the famous name disappears, the methods case weakens. Chiara must decide whether the methods language was guiding the choice or defending status alignment. The covered byline lets Peter hear the claim before fame starts explaining why the paper matters.",
+      "whatToDo": "Score the paper with the byline covered, then restore the name and note which reasons change. Keep only reasons that survive both passes.",
+      "whyItMatters": "Status can borrow the language of methods. Black tape tests whether the reason belongs to the work or to the name attached to it."
+    },
+    {
+      "exampleId": "ch06-ex05-chiara-downtown-map",
+      "title": "Chiara Scores Before the Map Appears",
+      "tags": [
+        "decision_point",
+        "city-grant",
+        "scoring"
+      ],
+      "planSpec": {
+        "domain": "city grant scoring session",
+        "audience": "a reviewer defending a downtown project over a boring repair",
+        "stakes": "post-hoc reasons can make prestige preference sound civic-minded",
+        "format": "decision_point",
+        "requiredBeat": "You ask Chiara to score blind project descriptions before seeing neighborhood names, then compare which reasons appear only after downtown becomes visible."
+      },
+      "scenario": "You watch the downtown name change the temperature of the room. Chiara has blind descriptions, a score sheet, and a neighborhood map on the table during the city grant session. Before the map is uncovered, the bridge repair scores higher. After downtown appears, civic-pride reasons multiply. Chiara has to decide which reasons existed before prestige entered the room. The sticky note preserves the first reason so later taste cannot quietly replace it.",
+      "whatToDo": "Lock the blind scores first. Then list any new reasons that appear after neighborhood names return, and require evidence before those reasons change the grant ranking.",
+      "whyItMatters": "Downtown prestige can dress itself as public benefit. Blind scoring shows which reasons guided judgment before status had a name."
+    },
+    {
+      "exampleId": "ch06-ex06-margaux-gold-foil",
+      "title": "Margaux Finds Readability in Gold Foil",
+      "tags": [
+        "before_after",
+        "restaurant",
+        "invoice"
+      ],
+      "planSpec": {
+        "domain": "restaurant menu redesign",
+        "audience": "an owner justifying an expensive redesign as readability",
+        "stakes": "a taste for prestige may be disguised as customer clarity",
+        "format": "before_after",
+        "requiredBeat": "It took Margaux until the invoice arrived to admit the readability reason never mentioned the gold foil until after she saw it."
+      },
+      "scenario": "It took Margaux until the 9:15 a.m. printer invoice to reread her own brief in the restaurant office. The menu redesign was supposed to improve readability, and the readability test was simple. After the gold foil proof arrived, she had to decide whether clarity had guided the choice or arrived late to bless expensive taste. The invoice makes Margaux compare clarity with shimmer instead of letting both share one polished name.",
+      "whatToDo": "Run the readability test without the gold foil proof in view. If customers read both menus equally well, name the foil as prestige, not clarity.",
+      "whyItMatters": "The invoice exposes the late-arriving reason. Customer clarity may be real, but the gold foil shows prestige trying to borrow that language."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a product room, a team moves a feature into the build lane, then finds a customer-friendly reason after the roadmap card has already moved. What is the first test? with the intake form still on the counter.",
+        "choices": [
+          "Ask whether the reason sounds polished enough for executives.",
+          "Check whether the evidence for the reason existed before the decision.",
+          "Assume the feature is wrong because the reason arrived late."
+        ],
+        "correctIndex": 1,
+        "explanation": "Timing is the test. Late reasons may still be valid, but they need evidence from before the decision rather than polish after it.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A family member announces a fairness rule only after reaching for the valuable keepsake. Which response best catches counterfeit reasoning? while the timeline is pinned to the wall.",
+        "choices": [
+          "Let the rule stand because fairness language is noble.",
+          "Ask everyone to write rules before choosing objects.",
+          "Take the keepsake away as punishment."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pre-choice rules reveal whether fairness guided the split. Noble language can be a caption, while punishment skips the timing test.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "At a city grant session, a reviewer praises civic momentum only after seeing that the project sits downtown. What should the chair do before accepting that reason? before the interview recording is filed.",
+        "choices": [
+          "Let downtown projects receive extra credit automatically.",
+          "Remove neighborhood information forever from every grant.",
+          "Compare blind scores with reasons that appeared after names returned."
+        ],
+        "correctIndex": 2,
+        "explanation": "The comparison separates pre-decision evidence from status-rich explanation. Automatic credit and total removal both avoid the actual test.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "During blind review, a paper looks essential until the famous byline is covered and the score drops. Which conclusion is strongest for the committee? as the dashboard refreshes.",
+        "choices": [
+          "Methods reasons may have been defending status alignment.",
+          "The famous researcher must be untrustworthy.",
+          "Journal clubs should never discuss well-known scholars."
+        ],
+        "correctIndex": 0,
+        "explanation": "The black tape tests whether reasons survive without status. It does not prove bad faith by the researcher or ban famous names.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A restaurant owner calls gold foil a readability feature only after seeing the proof. What should she do before approving the invoice? with three rejected drafts nearby.",
+        "choices": [
+          "Approve it because premium feel helps everything.",
+          "Reject all design changes to avoid self-deception.",
+          "Run a readability test without the prestige proof visible."
+        ],
+        "correctIndex": 2,
+        "explanation": "The test separates clarity from prestige. Approval accepts the late reason, while rejection ignores that some redesign work may truly help.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A juror’s environmental language appears only after his preferred design wins the first vote. What is the strongest reading? before the customer call begins.",
+        "choices": [
+          "The environmental reason may be a post-vote caption.",
+          "Environmental claims are always fake in design contests.",
+          "Vote order never matters once notes are written."
+        ],
+        "correctIndex": 0,
+        "explanation": "The sequence suggests captioning after preference. It does not invalidate all environmental claims or make timing irrelevant.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says, \"My reason is coherent, so it must be the cause of my decision.\" Which reply best fits the press-secretary model? while the clinic whiteboard is erased.",
+        "choices": [
+          "Coherence is enough if the reason sounds professional.",
+          "A press release can be coherent while explaining a decision after the fact.",
+          "A real reason should never be written clearly."
+        ],
+        "correctIndex": 1,
+        "explanation": "The press-secretary model targets timing, not grammar. A polished explanation can still be built after the decision.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A ranking committee wants fewer counterfeit reasons after noticing praise appears late in the process. Which procedure helps most before names and prestige return? as the grant notes are sorted.",
+        "choices": [
+          "Ask members to score first, then write what evidence would have changed the score.",
+          "Let members debate until the best-sounding reason wins.",
+          "Hide all scores permanently so no one can challenge them."
+        ],
+        "correctIndex": 0,
+        "explanation": "Precommitting to evidence ties reasons to judgment before defense begins. Debate can reward polish, and hidden scores prevent accountability.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "After choosing a vendor, a manager cannot name any evidence that would have changed the choice before it became theirs. What does that suggest about the stated reason? before the team writes the memo.",
+        "choices": [
+          "The reason may be serving the decision more than guiding it.",
+          "The decision must be perfectly rational.",
+          "The person should never explain choices again."
+        ],
+        "correctIndex": 0,
+        "explanation": "No possible disconfirming evidence suggests the reason is defensive. That does not prove irrationality, but it makes the explanation weaker.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A reason sounds polished after a decision is already made. What should you test?",
+      "back": "Test timing. Ask whether the evidence for the reason existed before the choice or appeared only after the choice needed defending.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What does the press-secretary image mean for reasons?",
+      "back": "The speaking self may explain decisions after they happen. A clear explanation can be a public caption, not the force that made the choice.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How can you catch a fairness rule that arrived late?",
+      "back": "Ask people to write the rule before choosing the object, seat, score, or benefit. A rule that appears only afterward deserves scrutiny.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why does blacking out a famous name help in a paper discussion?",
+      "back": "It tests whether methods reasons survive without status. Reasons that collapse under black tape may belong to the name, not the work.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What is the difference between a late reason and a false reason?",
+      "back": "A late reason may still be valid, but it cannot claim causal authority until it passes evidence and timing tests.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Treat reasons as claims with timestamps. Before accepting a clean explanation, ask what decision it defends and whether its evidence existed before the choice hardened.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a rationale appears after an executive preference, then search records from before the preference before accepting it."
+      },
+      {
+        "context": "family",
+        "plan": "If a fairness rule appears after someone chooses, then restart with written rules before anyone touches the object."
+      },
+      {
+        "context": "research",
+        "plan": "If a famous name changes your enthusiasm, then score the work once with the name covered and once with it visible."
+      },
+      {
+        "context": "self-audit",
+        "plan": "If you defend a decision quickly, then write what evidence would have changed your mind before it became yours."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, choose one already-made decision. Write the reason you give for it, then write what evidence existed before the decision and what appeared afterward.",
+    "weeklyPractice": "For the next week, timestamp important reasons. Record whether each reason appeared before choosing, during choosing, or after someone challenged the choice."
+  },
+  "memorableLines": [
+    {
+      "text": "The split-brain and confabulation evidence points toward a disturbing possibility: the reason can arrive after the choice and still feel like it was in charge.",
+      "location": "breakdown.deepRead",
+      "why": "It makes post-hoc confabulation concrete without adding unsupported lab detail."
+    },
+    {
+      "text": "The ego as press secretary does not run the government; it explains the government after the door closes.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the ego-as-spokesperson anchor in plain prose."
+    },
+    {
+      "text": "The goal is to put reasons back in chronological order.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the chapter into a practical test readers can use immediately."
+    }
+  ]
+}

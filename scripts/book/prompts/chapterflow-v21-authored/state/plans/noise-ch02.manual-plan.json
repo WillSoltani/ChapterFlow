@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch02",
+  "number": 2,
+  "title": "Crime and Noisy Punishment",
+  "coreMove": "Recognize that inconsistent punishment is an injustice in itself — not merely imprecision in an otherwise fair system.",
+  "sourcePressure": "Judges in the same court give different sentences for comparable crimes. Both between-judge and within-judge variation (the same judge deciding differently in the morning versus afternoon, or before versus after a break) are relevant. The noise in sentencing is a fairness and legitimacy problem, not just a technical process issue.",
+  "chapterSpecificMisunderstanding": "Assuming that legal discretion is inherently legitimate noise, or that disagreement between judges is acceptable because each case has genuinely different details that an expert eye can see.",
+  "sourceAlignmentTerms": ["sentencing", "discretion", "between-judge", "within-judge", "fairness", "comparable cases", "variability"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Courtroom sentencing variability",
+      "detail": "Judges in the same court, hearing comparable cases, routinely impose sentences that differ far more than case details can explain. Both who handles the case and when it is heard contribute to the outcome.",
+      "useIn": "both",
+      "phrasingHint": "Two defendants in the same courthouse, charged with the same offense, with similar records and similar circumstances, can walk out with sentences that differ by years — and neither judge believes they were inconsistent."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["justice is blind — or is it?", "what if the length of your sentence depended on the judge's mood?"],
+    "counterintuition": ["judges are just as human as the rest of us", "the legal system is not as fair as we think"],
+    "tryThisNow": ["think about a time you felt treated unfairly", "imagine you are on trial"],
+    "examples": ["a scene that blames one judge as biased rather than showing both judges as noisy", "a scene set in a country with a known reputation for corrupt courts"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The legal domain risks becoming monotonous — all six examples could feel like 'two similar defendants, different outcomes.' Diversity of format and opening device prevents this."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "drug possession sentencing in a federal district court",
+      "audience": "a public defender who has handled hundreds of drug cases in the same courthouse",
+      "stakes": "a client's freedom — the sentence gap between two comparable cases could be four years versus fourteen months",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the defender compares her client's just-announced sentence against the case from the adjacent courtroom last week: same charge, same quantity, similar record, different judge — and the sentences are separated by more than three years",
+      "firstImage": "two sentencing sheets from the same courthouse, the defendant names redacted, the offense and quantity columns identical, the sentence column showing different numbers",
+      "mustInclude": ["same courthouse and same type of offense", "the defender's reaction as a professional who expected consistency", "no suggestion that either judge is corrupt"],
+      "mustAvoid": ["attributing the gap to racial bias rather than noise", "implying the defender's client was treated correctly"]
+    },
+    {
+      "domain": "bail hearing decisions for similar defendants seen by different judges on the same morning",
+      "audience": "a legal aid attorney who tracks bail outcomes across the courthouse",
+      "stakes": "whether a person who cannot afford bail waits in detention for months before trial, losing their job and housing in the process",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the attorney and a colleague compare the bail amounts set that morning for two defendants with nearly identical profiles — same charges, same employment status, same family situation — and discover one was released on recognizance and one is being held on $50,000 bail",
+      "firstImage": "two case summary cards held side by side in one person's hands, with handwritten bail amounts at the bottom",
+      "mustInclude": ["the comparable risk profiles", "the monetary gap in bail amounts", "neither attorney questioning the individual judges' competence"],
+      "mustAvoid": ["implying deliberate unfairness from either judge", "resolving which outcome was correct"]
+    },
+    {
+      "domain": "parole board decisions on matched cases reviewed by two different panels",
+      "audience": "a parole reform researcher studying decision consistency",
+      "stakes": "years of additional incarceration for people whose cases should produce the same outcome under stated policy",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the researcher maps one year of parole decisions sorted by risk score and finds that the approval rate for the same score range differs by 30 percentage points depending on which panel reviewed the case",
+      "firstImage": "a chart of parole approval rates on the y-axis and risk scores on the x-axis, with two diverging lines for two different panels",
+      "mustInclude": ["matched risk scores", "the 30-point panel-level gap", "the absence of policy differences explaining the divergence"],
+      "mustAvoid": ["implying the higher-approval panel was right", "attributing the gap to one panel's personal bias against a population group"]
+    },
+    {
+      "domain": "traffic enforcement charge decisions at a city traffic court administrative desk",
+      "audience": "a legal aid paralegal who processes traffic court waivers",
+      "stakes": "fines ranging from a warning to $450 for the same documented violation depending on which clerk processes the file",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you are filing the same running-a-red-light documentation for five clients at the same traffic court window on the same day; the first two are handled by the same clerk at different hours and the outcomes differ; you are deciding whether to flag this as a system problem or treat it as a fluke",
+      "firstImage": "a stack of five identical citation forms with the same violation code, waiting at the counter",
+      "mustInclude": ["identical violation documentation", "the within-clerk variation across hours", "your decision about whether to escalate"],
+      "mustAvoid": ["attributing the gap to bribery or corruption", "resolving the decision — the point is the pattern"]
+    },
+    {
+      "domain": "domestic disturbance call charge decisions by two different duty officers reviewing identical incident reports",
+      "audience": "a police supervisor examining charge-rate consistency across her team",
+      "stakes": "the protection of the people in the household and the fairness of the charge decision for the respondent",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast the supervisor's expectation (that two officers reviewing the same written incident report would reach the same charge decision) with the reality: one officer charges, one issues a warning, and when asked to explain, both describe the same facts in different frames",
+      "firstImage": "a patrol station duty room late at night, two incident report forms on separate desks, two officers writing their assessments without speaking to each other",
+      "mustInclude": ["identical written incident report", "the contrasting charge decisions", "the officers' different framing of the same facts"],
+      "mustAvoid": ["implying one officer is correct in their assessment of severity", "a domestic scene that emphasizes the victim's situation rather than the system's inconsistency"]
+    },
+    {
+      "domain": "sentencing in the same court by one judge across a single day, early morning versus after lunch",
+      "audience": "a legal researcher studying within-judge variation in sentencing",
+      "stakes": "the same defendant could receive different sentences depending purely on when their case was scheduled — a form of injustice invisible in any single case",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the researcher poses the question: if the same judge sentenced the same defendant twice — once at 9:00 a.m. and once at 2:30 p.m. on the same day — would the sentences match? The answer, drawn from observed data, is that they would often not, and the gap is larger than any lawyer would predict",
+      "firstImage": "a courthouse clock showing 9:00, a courtroom that is quiet and unhurried; then the same clock at 2:30, the same courtroom after a full docket of cases",
+      "mustInclude": ["the within-judge temporal dimension", "observed patterns rather than a single invented scenario", "the gap between what a lawyer would predict and what the data shows"],
+      "mustAvoid": ["claiming a specific study with invented numbers", "implying the judge is aware of the shift"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify within-judge noise as distinct from between-judge noise in a scenario",
+      "explain why discretion does not justify inconsistency across comparable cases",
+      "apply the noise lens to a non-legal domain with similar high-stakes variation",
+      "analyze why sentencing variability is an injustice even when no individual judge acted badly",
+      "evaluate a proposed fix that increases consistency but reduces judges' ability to respond to unusual circumstances"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick any high-stakes decision your organization makes regularly — performance reviews, funding allocations, disciplinary calls. Find two cases from the last year that were nearly identical in the stated criteria. Look at the outcomes. If you cannot easily find two matching cases with matching outcomes, that gap is noise in action.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentence paragraph unpacking why discretion and noise are not the same thing, at least one one-sentence punch line about what fairness actually requires",
+    "fullReadInterludeRequirement": "at least one direct second-person passage asking the reader to consider how they would feel if their outcome depended on a judge's lunch schedule",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

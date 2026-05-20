@@ -1,0 +1,2171 @@
+{
+  "bookId": "never-eat-alone",
+  "title": "Never Eat Alone",
+  "author": "Keith Ferrazzi",
+  "promotedAt": "2026-05-18T18:07:08.809Z",
+  "chapterCount": 33,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "The outsider mistake is to perform harder until the room grants permission. The better move is to bring one useful act first, so belonging begins as contribution, not audition."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The name card tray sits crooked beside the scholarship dinner doors, with two donors penciled into the same seat. Clara is early, wearing a blazer still creased from the bus ride. The organizer is wh…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Smartness matters, but trust starts faster when your first visible move helps the work in front of e"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "She is still making the exchange about access unless she offers something useful to the work or peop"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Choose one useful introduction, note, or small fix you can offer today, then rem"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are beside Sophie at the neighborhood tool library signup when a borrowed socket wrench comes back late and a new member says, \"My sink is still leaking.\" Sophie knows Mark down the street has th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are beside Sophie at the neighborhood tool library signup when a borrowed socket wrench comes back late and a new member says, \"My sink is still leaking.\" Sophie knows Mark down the street has th…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A resident covers a colleague's clinic hour after a childcare emergency. Which follow-up best preserves trust?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is not to become\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Everyone says I should talk to more curators,\" Laura says, tapping the museum fellowship application checklist. The list beside it has twenty names and no order. Then she writes one line about prese…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are beside Anna after service, with a knife roll open and her career notebook full of famous kitchen names. \"Which one gets me ahead?\" she asks. The sous-chef points at the trim bucket. Anna's ne…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Julia two coalition meetings to admit the strategy wall was mostly decoration. A zoning notice for one threatened block sits under twelve names labeled allies. Some have no power over the hea…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Learn zero-waste butchery well enough to run a prep station in two years."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The names are not tied to an outcome, action, or value the coalition can offer."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Remove them for now and replace them with people tied to the pilot's schools, families, or funding p"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Write a sharper mission, such as keeping teen matinees funded, then identify people who can move tha"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"We always find out too late,\" the ride captain says, holding a reflective vest with a broken clasp. Charlotte is looking at the winter cycling club volunteer roster in October, not January. She must…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are watching Katherine at an early-stage supplier quality visit, inspection caliper open on a metal bench. \"Summer humidity is when these drift,\" the production lead says. No shipment is late tod…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Victoria one vinyl record sleeve from the station archive to notice the alumni list was only used during fundraising week. A former DJ had donated the album in 1989. Her finger rests on his e…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The tower permit form was still unsigned on Kiran's desk when the rural broadband task force lost two months. Later, he saw the miss clearly: he had waited until the vote was urgent to call the count…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Check the vest count in October and contact likely volunteers while schedules are still loose."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Send a short follow-up confirming the risk and asking what data would help before summer."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 2.0× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Send a clear photo of the damaged swing and ask which repair process the district prefers."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The early bug summary, because it creates useful familiarity before the dependency becomes urgent."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are beside Molly after a craft brewery distribution meeting, with a keg tap handle wrapped in a towel and the buyer packing up route sheets. \"We do not carry many small labels,\" he says. Molly ha…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Natalie three night shifts to see what was wrong with the mentor request sitting beside her pager case. The draft said she admired the attending and wanted guidance someday. After rounds, she…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What does a film badge let you ask in a documentary festival greenroom? Manon predicts the answer is nothing; the director is too established and the room is too tight. Then she sees the director alo…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A radio freelancer wants to pitch a producer. Which message best shows respectful audacity?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A resident's mentor email says only, 'I admire your career and would love guidance.' What is the strongest revision?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A startup analyst sends a senior operator a message asking to 'pick your brain sometime.' What is missing?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A concise note linking one local story to a recent segment and asking whether a short tape would hel"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The prepared request, because it risks a real answer without pressuring the receiver."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"the stronger move is\" — Counter payoff template. 48 Laws stubs + others.",
+            "evidence": "Status hunger has a smell. It appears when your eyes keep leaving the person in front of you. It appears when every question is only a ramp toward your pitch. It appears when warmth arrives with a ho…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The place card puts Beth between two founders and one investor at a venture dinner. Her first line is ready: a clever reference to her own hiring needs. Then the founder beside her rubs his temples o…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are beside Abigail at a graduate seminar reception, where a name tent shows the visiting scholar she hoped to meet. \"I should tell her about my thesis,\" Abigail whispers. Then she sees the schola…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Caroline one frozen badge scanner to see how quickly opportunity can turn predatory. The procurement lead she wants to meet is stuck behind her in the trade association breakfast queue. Her s…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What does Etienne hear first in the hotel lobby investor meetup: the opening for his seed pitch or the problem across the espresso saucer? He predicts the investor wants concise founder updates. Then…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Her attention tells the person in front of her that he is only a route to someone else."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Help fix the registration problem, then ask about the buyer's current supply constraint."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The praise is attached to a self-serving ask before any value or curiosity appears."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "She is using questions as a delayed pitch, so the other person is still being handled."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The problem question, because it starts where the other person's attention already is."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the person in front\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The archive printout leaves toner on Diana's thumb as she rereads the city council biography packet outside chamber room B. The council member once fought for late-night bus routes, and Diana is ther…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The archive printout leaves toner on Diana's thumb as she rereads the city council biography packet outside chamber room B. The council member once fought for late-night bus routes, and Diana is ther…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Do not tell her you love every title,\" Fiona's colleague says, sliding a catalog page across the cafe table. Fiona's margin notes show a real shift toward regional essay collections. She is meeting …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are beside Georgia in the hospital lobby, annual report spine cracked at the community health section. \"Just ask for support,\" her teammate says. Georgia points to two postal codes with missed fo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Harriet one spreadsheet tab to see why her conference speaker invitation felt thin. The speaker had returned three times for small-city manufacturing sessions, and the Q&A notes kept mentioni…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which opener survives the grant rubric on Mathieu's desk? He predicts the foundation officer wants a warm relationship first. Then the database shows that recent winners all measured caregiver hours …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"makes the other person\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "Taking names is not collecting people for a private database. The better move is to preserve one useful, appropriate detail so recognition and follow-up feel specific instead of opportunistic."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The guest card curls at one corner under Jessica's hand as the florist asks where Mara's brother should sit. Jessica must decide: write only 'family table' or add the offered note that he needs an ai…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Lauren until the sign-in sheet was half full to see which names mattered. A couple had sketched a studio corner on the floor plan and asked three questions about morning light. The decision h…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Melanie's program booklet open to last year's late-night labor block. Her draft says she admires the festival. The choice is live: ask for general consideration, or connect her nurse document…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Nicole one printed shipping label to notice the sample kit had no reason inside it. The buyer would receive jars and a vague note. Her live decision is to mail charm, or add the spring breakf…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Nicole one printed shipping label to notice the sample kit had no reason inside it. The buyer would receive jars and a vague note. Her live decision is to mail charm, or add the spring breakf…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rural tourism brochure sat under Chidi's laptop while ten broad sponsorship requests went unanswered. Looking back, he can see the missing warmth: he had not connected his guesthouse photos to th…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The plain note, because it makes relevance and response effort clear."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the warmth is not\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that access improves when you stop trying to get around the person guarding it. A clear request gives the intermediary judgment and dignity; a vague urgent ask only hands them risk."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You watch Samantha turn the visitor badge over while the receptionist points to the no-unscheduled-meetings sign. The choice in front of her is direct: press for the director, or ask which official c…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Rebecca one rejected demo pass to understand the assistant's inbox. The assistant could not defend another unknown link. Rebecca must decide: apply pressure for forwarding, or add radio picku…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which request will the concierge trust, the name of a gallery owner or the room key card Julien sets down while explaining budget and taste? Julien predicts the famous name matters most. Then he sees…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which request will the concierge trust, the name of a gallery owner or the room key card Julien sets down while explaining budget and taste? Julien predicts the famous name matters most. Then he sees…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The routed request, because it lets the intermediary use judgment without hidden risk."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the art\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that a useful meal feels less like networking when the purpose is clearer. Shared food helps only when an ordinary routine becomes bounded contact, not when every lunch becomes a socia…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The boarding pass lies under James's coffee cup while a supplier from yesterday's site visit sits two tables away with the same tight connection window. James has already opened email, but the unreso…"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[0].whatToDo",
+            "message": "whatToDo shares 89% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Invite the supplier to join breakfast for one clear topic: the site visit debrief before boarding."
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[3].whatToDo",
+            "message": "whatToDo shares 88% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Offer a practical trade and ask one focused wholesale question over noodles after the rush."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"for ten minutes and\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The hydration pack taps Daniel's chair while a new runner studies the route card. Daniel must decide: talk through race times and gear, or share why the steep loop clears his head and ask what kind o…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Why come back to orchestra now?\" a violist asks as Andrew latches his violin case. He hovers between a safe answer about loving music and a truer answer about the second-violin part teaching him to …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Why come back to orchestra now?\" a violist asks as Andrew latches his violin case. He hovers between a safe answer about loving music and a truer answer about the second-violin part teaching him to …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see Matthew's circuit board blink red, green, red as a visitor asks what it does. The choice is sharp: explain every design decision, or say it helps gardeners avoid bad moisture data and ask whe…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Matthew's circuit board blink red, green, red as a visitor asks what it does. The choice is sharp: explain every design decision, or say it helps gardeners avoid bad moisture data and ask whe…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Ben one recipe card covered in butter stains to see why people stopped listening. Ben must decide: explain fermentation again, or say the dough taught him patience and ask which recipe has ta…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Seed envelopes covered the urban garden table while Hiroshi explained drought tolerance until people drifted away. Later he saw the missing bridge: he had offered data, not the balcony survival story…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "At a trail meetup, a new runner asks why a steep loop matters. Which response best shares passion as a bridge?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A hardware maker explains every technical choice behind a soil sensor until visitors drift. What should he do instead?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Say the climb clears your head after hard weeks, then ask what kind of route makes running worth it "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The second-violin part made me listen again; what part of rehearsal still surprises you?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It offers a specific passion and immediately gives the other person a way in."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The vivid detail plus question, because it turns enthusiasm into shared conversation."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that follow-up gets stronger when it feels less like pursuit. A quick note fails if it only asks to be remembered; a slightly later note can build trust when it carries one useful thre…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The thank-you postcard waits under Chris's podcast notes while the guest's archive comment is circled in blue. The episode went well, and a warm line would be easy to write before the next recording …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see Ryan turn the gallery brochure back to the steel mill series while the stack of opening postcards slides toward the edge of his desk. The artist had described how metal photographs turn cold …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The webinar chat transcript held three unanswered accessibility questions, but Akira sent every attendee the same newsletter because it was already built. Later, the miss is obvious: the people askin…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Attach the relevant table and ask whether it answers the specific small-city issuance question."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Attach the marked photo, part number, and a question about maintenance-note timing."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The messages make the other person manage eagerness instead of receiving value."
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[1].whatToDo",
+            "message": "whatToDo shares 89% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Replay the memo, attach the dataset, and ask whether the table answers the small-city issuance question."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"The easy mistake is\" — Counter opener shell. 27 of 30 Indistractable chapters used this stem before regen. Banned alongside the other 'The [X] mistake is' variants.",
+            "evidence": "Arthur sits at a regional bankers luncheon with the menu folded beside his plate. The room is full of people who could matter: lenders, compliance officers, local development staff, software vendors,…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You watch Arthur fold the luncheon menu while the room fills with bankers, vendors, and local development staff. The choice is visible before the salad arrives: make himself known to every table, or …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Brian one workshop placard to realize his target list was too status-heavy. He came to meet the famous facilitator, but the city designer beside him is naming the same clinic intake problem B…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Choose the district leader, accessibility team, and researcher he can help with real context."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Write three names on the menu with the help, question, or introduction attached to each."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Make a bounded introduction to the sensor technician, then return to the planned route."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Selection tied to generosity, so each planned contact has a reason beyond extraction."
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[4].whatToDo",
+            "message": "whatToDo shares 71% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Make the bounded introduction to the sensor technician, then return to the planned route."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that connectors notice you faster when you stop treating them as the prize. Their scarce attention opens when your first move strengthens the network they already serve."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"The mistake is to\" — Narrower form of 'The mistake is' that captures the counter opener template ('The mistake is to [verb]…') without false-firing on body-prose uses like 'The mistake is at line 47.' Used in The Prince (10/26), Power of Habit (7/9), and others.",
+            "evidence": "A connector's value comes from the network around them. They hear many requests because other people can sense that access flows through them. That makes a needy approach weak from the start. It adds…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The index card bends in Colin's palm as he reads the civic data organizer list. He must decide: ask the best-connected organizer for time, or offer the volunteer who can clean transit-stop data for h…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You watch Dylan scan the cohort roster while the program director answers three questions at once. The choice is plain: request support for his literacy project, or offer the bilingual family-night h…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Eric half a tasting panel to stop chasing the distributor's shelf access. The tasting spoon is still in his hand when two chefs ask for lower-salt staples. At that point he can pitch a produc…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The controller sat on Amina's demo table while she spent the showcase chasing one publisher. Later, the miss is obvious: three solo developers needed localization testers, and she knew a community gr…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "I noticed four rural placements may need bilingual family-night materials; I can adapt a handout if "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It ignores the connector's responsibility to protect and serve the network."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that a circle grows warmer by narrowing the next step. Expansion works when the new group is adjacent enough to trust the bridge, not when reach spreads past any shared reason to care."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The tide chart hung over Catarina's volunteer calendar when she sent the beach cleanup form to every ocean-themed group she could find. The signup sheet looked broad, but the turnout was unreliable b…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Former singers who now run school music programs and can reach parent associations."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 2.0× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Ask a current partner for a bridge to a dairy co-op already moving cold goods on the same roads."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The route-setting group that already coordinates cleanup days."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The adjacent-group plan, because shared practice gives the new circle a warmer reason to act."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[2]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "A group connected by shared place, work, practice, constraint, value, calendar, or recurring problem"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The umbrella stand leaves a small puddle by Ian's chair while another patient shakes rain from her sleeve and laughs at the soaked appointment cards. Ian must decide: say one weather line and retreat…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"At least the rain picked a dramatic time,\" the commuter says under the platform sign as another delay appears in orange letters. Isaac hovers between a stock complaint and a real second question abo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"At least the rain picked a dramatic time,\" the commuter says under the platform sign as another delay appears in orange letters. Isaac hovers between a stock complaint and a real second question abo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You stand beside Jason near the backpack hook as a parent says the new dismissal routine is confusing and keeps glancing at the wrong gate. The choice is simple: agree and check his phone, or ask whe…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Joel one curled price tag to notice the visitor had already opened a door. She said the bowl looked almost too useful to be art, then touched the rim like she owned one at home. He can explai…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Joel one curled price tag to notice the visitor had already opened a door. She said the bowl looked almost too useful to be art, then touched the rim like she owned one at home. He can explai…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which takes more skill, asking another question or letting the elevator panel count upward in silence? Anders predicts more curiosity is always better. Then the neighbor gives a short answer, watches…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which takes more skill, asking another question or letting the elevator panel count upward in silence? Anders predicts more curiosity is always better. Then the neighbor gives a short answer, watches…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The bench rail was still damp after the community cleanup when Bao joked about the mud on everyone's shoes. Later, he saw the missed opening: a volunteer had mentioned the path looked different after…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The person leaped past the doorway and forced intimacy too quickly."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that personal worries deepen trust only when you slow down. Health, money, and family open doors when care arrives first; advice that comes too fast can make the same door slam shut."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "When someone mentions health, money, or family pressure, answer with care first,"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which helps more, asking what the family earns or pointing to the appeal deadline on the aid letter? Lars predicts the father wants detailed advice because the office is built for money questions. Th…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Say the balance sounds hard and mention the private benefits counselor."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The optional resource, because care and permission protect dignity."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"say that sounds like\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You watch Nathan write a translation note beside the collective spreadsheet. The choice is visible: introduce two worthy groups broadly, or name the clinic's two intake forms, the needed languages, a…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Neil one costume tag to see a better introduction than 'you should meet.' The theater needed storage space, and the job-readiness program needed interview jackets. He can celebrate the overla…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Neil one costume tag to see a better introduction than 'you should meet.' The theater needed storage space, and the job-readiness program needed interview jackets. He can celebrate the overla…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which matters more for the dangerous crossing, crash data or resident stories? Mikkel predicts the data will win alone. Then the charrette pin shows him the better match: the cycling advocate's corri…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A clinic needs rides for referrals, and a volunteer driver network has open weekdays. What should the connector avoid?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The specific introduction, because it reduces uncertainty and respects both sides' time."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the point is not\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The article clipping folds under Patrick's thumb while the birthday text is still blank and the cursor blinks after a plain \"happy birthday.\" He must decide: send a generic greeting, or add the rooft…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You watch Robert circle the refrigerated-shelf chart in a market report while his former client prepares a regional grocery expansion. The choice is clear: use the chart as an excuse to request a mee…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Sean one permit notice to remember the baker's prep-kitchen problem from a conversation outside the empty storefront. He can send the notice with a useful deadline, or add three extra lines a…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which is better, the whole episode or the three-minute timestamp in the transcript? Ingrid predicts more context will be helpful. Then she remembers her friend only needs a clean rural-broadband expl…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which is better, the whole episode or the three-minute timestamp in the transcript? Ingrid predicts more context will be helpful. Then she remembers her friend only needs a clean rural-broadband expl…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A two-line congratulations note naming the materials-testing thread and saying no reply is needed."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Send only roles matching her experience and include one clear reason for fit."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "Tim walks beside a senior nurse preceptor during morning rounds. The preceptor badge on her lanyard is faded from years of use, and newer nurses keep glancing toward her before entering patient rooms…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You watch Tim notice the faded preceptor badge before a checklist meeting. The choice is direct: persuade administrators first, or ask the preceptor to mark what would confuse new nurses before the c…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took William one delayed installation to understand the repair invoice differently. The trusted supplier cost more than the discount shop, but kept crews moving. He can keep chasing lower quotes, …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took William one delayed installation to understand the repair invoice differently. The trusted supplier cost more than the discount shop, but kept crews moving. He can keep chasing lower quotes, …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which person keeps the alumni group alive, the famous speaker or the host nametag everyone trusts at the door? Frida predicts the speaker drives growth. Then she watches new graduates relax when the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The photo collage showed the same volunteer setting up chairs, training helpers, and calming sign-in days. Later, Jerome saw the mistake: he recruited new names all season while assuming the stabiliz…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "card[1]",
+            "message": "banned phrase \"the real test is\" — Counter payoff template. Recurs across multiple books. Same family.",
+            "evidence": "A famous title pulls attention away from a reliable stabilizer. Why is status a poor shortcut? Status may matter, but the real test is stabilizing function: what becomes easier, safer, or more credib…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The anchor-focused manager, because stabilizing relationships make the wider network healthier."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the network starts to\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see Alan tap the holiday stamp from a former vendor now working in another sector. The choice is practical: ask for a broad market download, or ask whether packaging changes are being driven more…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Alan tap the holiday stamp from a former vendor now working in another sector. The choice is practical: ask for a broad market download, or ask whether packaging changes are being driven more…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Albert one office key on a cracked tag to realize the adjunct saw students his corporate team never met. He can run another executive survey, or ask what makes night students drop out in week…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which source sees the zoning worry first, the officials or the notebook margin of a reporter hearing from shop owners? Astrid predicts the formal group has enough information. Then she realizes the r…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which source sees the zoning worry first, the officials or the notebook margin of a reporter hearing from shop owners? Astrid predicts the formal group has enough information. Then she realizes the r…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The recording device made Kenji's broad export questions feel heavier than the distant cousin relationship could bear. Later, the repair was clear: ask one email question about the document error tha…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A former vendor now sees packaging decisions in another sector. Which question uses that edge tie well?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team asks an edge contact for a large unpaid research download without explaining fit or limits. Why is this weak?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Are packaging changes driven more by shipping damage or retailer requirements?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The ask ignores the lower trust reserve and lacks a narrow, respectful question."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the edge has real\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The draft headline says five trends to watch while Anthony's manufacturer list needs shipping-rule clarity. He must decide: publish a broad trend roundup, or rewrite the piece around three rule chang…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Bradley's cursor blink inside the annotation box under a trending supply-chain article. The choice is obvious: write a sharp public take, or explain why section three helps small warehouses a…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Brandon one pinned message full of links to see why new volunteers kept asking the same questions. He can add another resource, or reorganize the thread into first meeting script, legal hotli…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Brandon one pinned message full of links to see why new volunteers kept asking the same questions. He can add another resource, or reorganize the thread into first meeting script, legal hotli…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which recap will matter next week, the fast transcript or the edit history that turns the webinar into five decisions with timestamps? Maja predicts speed will win. Then she sees the audience needs a…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which recap will matter next week, the fast transcript or the edit history that turns the webinar into five decisions with timestamps? Maja predicts speed will win. Then she sees the audience needs a…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The table placard sent housing-clinic residents to a wiki page with twenty outdated links. Later, Leila saw the failure: she had posted often, but she had not made the page trustworthy or easy to use…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Explain which section helps small warehouses and name where it does not apply."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A five-decision recap with timestamps for the moments that changed action."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Useful judgment for a specific audience."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"you are not in\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that luck improves when you stop trying to force encounters. Serendipity needs freedom, but it also needs designed crossings where useful people can notice each other without pressure."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Move the common table and noon route so the groups naturally pass through the same area."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The design removes freedom and confuses controlled interaction with serendipity."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "They increased activity without changing circulation, exposure, or overlap."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The environment change, because it creates repeated chances for useful contact."
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[0].whatToDo",
+            "message": "whatToDo shares 100% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Move the common table beside the printer and route the noon walk through the shared area."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to notice each other\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that you become more interesting by trying less to look interesting. Polish can attract a glance, but durable curiosity, range, and lived questions give people something real to meet."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"The mistake is treating\" — WEBIS counter opener template ('The mistake is treating [body part] as [Y]…'). 5 of 10 WEBIS chapters used this construction. Narrow form to avoid false-firing on legitimate 'the mistake is treating it as urgent' body uses, while still catching the templating shell.",
+            "evidence": "Social polish can make a first minute smoother, but it cannot supply substance forever. A person who only knows how to perform charm eventually runs out of room. The conversation becomes slogans, sta…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The archive glove pinches Edward's fingers as he looks from the old Portuguese letters to the language class sign-up sheet. He can keep telling people he is researching local history, but the letters…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"This drawer is mostly streetcar maps,\" the volunteer says, sliding it open while Frank reaches for a notebook. He came looking for a quirky fact to use later, but the maps show one factory closure b…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Gavin one clipped paddle leash to stop worrying about looking awkward during the kayak safety briefing. The guide mentioned wind changing the return route, and everyone else seemed to underst…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which story is more interesting, the perfect bowl or the glaze tile that failed in a useful way? Marit predicts the polished piece will impress people because it looks finished. Then the streaked til…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Ask what the streaked tile reveals about heat and expectation."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "He is treating experience as a costume instead of letting curiosity build substance."
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[3].whatToDo",
+            "message": "whatToDo shares 71% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Ask the route question and notice the pattern it teaches beyond the water."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The bio paragraph calls Graham strategic, creative, and collaborative while his portfolio board shows field interviews turned into product decisions. Graham must decide: keep broad praise, or name th…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see Jacob cross out dynamic voice on innovation in the speaker introduction. The choice is visible: keep a flattering blur, or say he helps public agencies turn failed pilots into repeatable oper…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Jacob cross out dynamic voice on innovation in the speaker introduction. The choice is visible: keep a flattering blur, or say he helps public agencies turn failed pilots into repeatable oper…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Jeremy one candidate summary to see visionary operations leader doing no work. His references all named the same value: fixing handoff problems between sales and fulfillment. He can keep the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which advisory blurb will help founders remember Marco, the polished profile photo beside growth advisor, or the line about rescuing customer success after the first enterprise sale? Marco predicts b…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The newsletter proof called Rafael a broad technology strategist, and the referrals stayed vague. Later, he saw the problem: his trusted pattern was explaining payment-system failure in plain languag…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The person is fabricating image before clarifying reputation."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The trusted pattern, because reputation lasts when signals match real value."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The episode notes are dotted with yellow highlights when Jonathan opens the association newsletter template. He must choose: fill the slot with a broad career update, or turn one procurement lesson i…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see Josh read the intranet tile while the moderator waits for a speaker intro. The choice is visible: list three credentials, or give one repeatable sentence about helping executives understand t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Josh read the intranet tile while the moderator waits for a speaker intro. The choice is visible: list three credentials, or give one repeatable sentence about helping executives understand t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Kenneth two quiet months to notice that the intranet profile drew compliments but no useful requests. With the radio run sheet beside his keyboard, he can keep the credential list or lead wit…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which will land better, four updates or one useful idea? Luca predicts the forum banner will help him mention every project. The recording reveals the strongest moment is the single lease-warning tip…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 28,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"The paradox is that\" — Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too.",
+            "evidence": "The paradox is that power becomes easier to approach when you stop reaching for its glow. Composure grows when you bring a useful burden to reduce, not a hunger to be seen."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "You are outside a university president's office hours with Martin, and the hallway bench is lined with people rehearsing requests. One person wants a photo. Another wants a favor. Martin has an embas…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "You are outside a university president's office hours with Martin, and the hallway bench is lined with people rehearsing requests. One person wants a photo. Another wants a favor. Martin has an embas…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The briefing binder slides against Kyle's wrist as he reads the ministerial reception seating card. He must choose: angle for a visible handshake near the minister, or offer the concise exporter impa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You watch Martin tuck the embassy badge inside his notebook before the president's assistant opens the door. The choice is immediate: mention the badge to sound connected, or present the two-page hou…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Max one wasted reception to see that the embassy cultural event list had turned him into a tracker of important names. With the site-visit helmet still in his bag, he can chase the deputy amb…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which answer helps more, gratitude or the constraint no one has named? Matteo predicts the dinner menu will keep donors comfortable if he praises the visit. Then the site-visit helmet on the chair re…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which answer helps more, gratitude or the constraint no one has named? Matteo predicts the dinner menu will keep donors comfortable if he praises the visit. Then the site-visit helmet on the chair re…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The invitation envelope sat beside Sanaa's place card at the chamber's private dinner. By morning, the valuable part was not the photo wall; it was the apprenticeship paperwork contact she sent to tw…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 29,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.4 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Noah set a salon floor cushion beside a stack of broken classroom stools before parents arrive. The choice is visible: welcome everyone vaguely, or give each table a repair job that lets pare…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Paul one quiet salon to notice that the open-house sign had produced attendance but little return. With the floor cushions stacked by the door, he can lecture again or ask each neighbor to br…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Paul one quiet salon to notice that the open-house sign had produced attendance but little return. With the floor cushions stacked by the door, he can lecture again or ask each neighbor to br…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which event will earn a return visit, a polished preview catalog or a room where buyers solve supplier delays? Tomas predicts the catalog will carry the night. The reveal comes when structured proble…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which event will earn a return visit, a polished preview catalog or a room where buyers solve supplier delays? Tomas predicts the catalog will carry the night. The reveal comes when structured proble…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The green-room mirror caught the crowd behind Tariq after the museum members preview night. Later, the useful feedback did not mention the photo line. New members remembered the longtime volunteers w…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Create short problem rounds around packaging delays, minimum orders, and repair windows."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 30,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The dinner receipt scratches Philip's palm in the award ceremony green room after he waves off the assistant who fixed the seating problem. He must choose: accept praise as if the night ran itself, o…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see Scott beside the donor wall while the announcement thread fills with praise. The choice is visible: dismiss the volunteer's spelling warning, or delay the photo until the donor names are corr…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Scott beside the donor wall while the announcement thread fills with praise. The choice is visible: dismiss the volunteer's spelling warning, or delay the photo until the donor names are corr…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Stanley one weekend to see that the promotion announcement thread praised him while the launch analysts went unnamed. With the club coat-check tag still in his wallet from the celebration, he…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which costs more, waiting five minutes or making the staff absorb his status? Diego predicts the private club lounge will move faster if he presses. The microphone stand being adjusted inside shows h…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which costs more, waiting five minutes or making the staff absorb his status? Diego predicts the private club lounge will move faster if he presses. The microphone stand being adjusted inside shows h…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "At a donor wall unveiling, a volunteer notices misspelled names right before the photo. Which action avoids hubris?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader made a public ego move and now wants to repair it privately to avoid embarrassment. What should they consider?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"in front of the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 31,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Wesley slide a breakfast tab under his notebook before the visiting designer reviews his portfolio. The choice is visible: ask for approval only, or ask what decision each project should help…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Frederick half a breakfast to stop asking the retired founder for a verdict on selling his company. With the observation badge clipped to his jacket, he can chase certainty or ask which signa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which helps more, a script or a thing to watch for? Pablo predicts the community mediation observation will hand him perfect language. The ward chart in his bag from volunteer training later reminds …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A senior professional enjoys giving advice but never seeks guidance anymore. What risk does this create?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Ask which decision signals helped the founder judge timing, then test those signals in context."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Practice watching for the need signal and teach that signal to a volunteer facing a tense meeting."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 32,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "banned phrase \"the stronger move is\" — Counter payoff template. 48 Laws stubs + others.",
+            "evidence": "The place setting is still empty when Gregory opens the split custody calendar. He had called the week balanced because every box had an activity in it. His daughter hears something else: he schedule…"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Julian fold the set list beside his mother's eldercare appointment grid. The choice is visible: promise everyone he can cover it all, or name which appointment needs him, which rehearsal can …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Keith three reminder emails to see that the tax folder was becoming his manager's daily problem. With the rehearsal block circled in blue, he can keep calling the delay creative momentum or s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which hurts more, two late tax nights or a quiet-hours note nobody believes? Javier predicts the household will forgive client messages because the deadline is real. The reveal comes when the broken …"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Identify the must-attend appointment, movable rehearsal, and pickup that should be protected."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Name the unprotected nights, protect other nights with an autoresponder, and stop pretending every e"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Negotiate which Sunday work blocks are real, which stay offline, and how emergencies get approved."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 33,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The video-call tile freezes on Leonard's face while the remote alumni forum thread fills with polished updates. He must choose: post his own generic announcement, or answer the graduate who mentioned…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see Norman compare the group chat poll with a long reply in the creator newsletter queue. The choice is visible: write only for the largest vote, or help the reader adapting the essay for a nonpr…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see Norman compare the group chat poll with a long reply in the creator newsletter queue. The choice is visible: write only for the largest vote, or help the reader adapting the essay for a nonpr…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Oscar one storm thread to see that the digital neighborhood group was repeating the same flood complaint. With the check-in agenda open, he can write a broad preparedness post or connect the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Oscar one storm thread to see that the digital neighborhood group was repeating the same flood complaint. With the check-in agenda open, he can write a broad preparedness post or connect the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which helps the group more, six fast updates or one stuck decision matched to the right person? Giulia predicts the issue tracker should drive the whole virtual check-in. Then a founder's hiring bloc…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "banned phrase \"usable lesson\" — Tic.",
+            "evidence": "Which helps the group more, six fast updates or one stuck decision matched to the right person? Giulia predicts the issue tracker should drive the whole virtual check-in. Then a founder's hiring bloc…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The international issue board was still open after Noor emptied the name card tray from a local meetup. Two weeks later, the contributor who had received her careful accessibility handoff merged his …"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Reply with specific questions, share a relevant archive link, and let the problem shape a future iss"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Connect the three tenants with the same need and divide the temporary shelving pickup list."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A relationship measure, such as whether someone received help or the next exchange became easier."
+          }
+        ],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 253
+  },
+  "bookGate": {
+    "bookId": "never-eat-alone",
+    "chapterCount": 33,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        102,
+        95,
+        100
+      ],
+      "answerPositionPctMax": 0.3434343434343434,
+      "totalQuizQuestions": 297,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "never-eat-alone",
+        "chapterCount": 33,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch26",
+  "number": 26,
+  "title": "The Matching Operation",
+  "coreMove": "Examine the step where a case gets matched to a category or scale level as its own independent source of noise, not just a consequence of the facts or the rater's general tendencies.",
+  "sourcePressure": "Before a judge can assign a value, they must first decide which category the case belongs to. This matching step — does this case belong to category A or category B? — is its own noise-generating operation. Two judges with identical information and identical average severity levels can disagree in their final ratings solely because they categorize the case differently at the matching step, even before any numerical scaling happens.",
+  "chapterSpecificMisunderstanding": "Assuming that if the rater has accurate information and no systematic bias, the matching step will be noise-free — when in fact the boundary between adjacent categories is often ambiguous and the matching is where much judgment noise originates.",
+  "sourceAlignmentTerms": ["matching operation", "case-to-category", "scale level", "response frame", "mapping", "match noise", "classification step"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Category boundary ambiguity as a noise source in professional classification",
+      "detail": "Research in psychiatric diagnosis, insurance risk classification, and regulatory permit determination consistently finds that boundary cases — cases that fall at the threshold between two adjacent categories — produce substantially higher inter-rater disagreement than clear-interior cases with equally complex facts. The disagreement is not about the facts; it is about which side of the boundary the case sits on, and different judges locate the boundary in different places.",
+      "useIn": "deepRead",
+      "phrasingHint": "Two underwriters who agree completely on all the facts of a policy application still disagree on the final tier assignment if they locate the boundary between tier 2 and tier 3 in different places. The case did not change. The facts did not change. The matching changed — and the matching is its own operation with its own noise."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["the hidden step where all the disagreement lives", "judgment happens in two steps and you only think about one of them"],
+    "counterintuition": ["the facts of a case matter less than the categories available to classify it", "raters who agree on everything still disagree because of the matching step"],
+    "tryThisNow": ["identify a decision in your work where you are unsure which category a case belongs to before you even begin evaluating it", "ask two colleagues to classify a borderline case before revealing their reasoning"],
+    "examples": ["a scene where disagreement is resolved by one judge getting more information — the matching problem is structural, not informational", "a scene implying that clearer facts would eliminate category boundary disagreement — that misattributes the source of match noise"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Matching-operation examples risk reading as a series of case-classification failures. The six domains must show the same structural point — that the matching step is an independent noise source — rather than varied illustrations of 'cases are hard to classify.' The distinction between match noise and fact noise must be visible in each example."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "parole supervision tier classification: a probation department studying inter-officer disagreement in supervision level assignment for the same offender profiles",
+      "audience": "a state probation department research director studying where supervision tier disagreement concentrates in a case complexity analysis",
+      "stakes": "public safety and offender rehabilitation — an offender classified to a higher supervision tier faces more intrusive monitoring; a lower tier provides more autonomy; disagreement at the tier boundary determines which set of conditions applies",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the research director presents the tier-boundary analysis: for the 40 percent of offender profiles that fall clearly within a tier's interior — either far from any boundary — inter-officer agreement on tier assignment is 89 percent; for the 60 percent of profiles that fall near a tier boundary, agreement is 61 percent; and the reduction in agreement is not explained by more complex case facts — the boundary cases have the same informational complexity as the interior cases, just different placement relative to the classification boundary",
+      "firstImage": "a horizontal probability distribution of offender profile scores, with the tier boundaries marked as vertical lines — the disagreement rate shown to be highest in the score ranges flanking each boundary, not in any particular fact-complexity zone",
+      "mustInclude": ["the 89 vs. 61 percent agreement comparison by boundary proximity", "the explicit finding that complexity of case facts does not explain the disagreement drop", "the director's framing: the disagreement is about where the boundary falls, not about what the facts mean"],
+      "mustAvoid": ["a specific offender's case or offense type", "implying parole officers are unreliable or poorly trained"]
+    },
+    {
+      "domain": "psychiatric diagnostic classification: two psychiatrists assigning DSM diagnoses to the same anonymized case presentations",
+      "audience": "a hospital psychiatry department quality director studying inter-rater reliability in diagnostic categorization across the diagnostic boundary between adjacent conditions",
+      "stakes": "treatment planning — the difference between one diagnosis and an adjacent one determines which treatment protocol applies, which medications are indicated, and which prognosis is communicated to the patient",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two psychiatrists compare their diagnostic assignments for 50 anonymized case vignettes: for vignettes clearly matching a condition's core presentation, they agree in 91 percent of cases; for vignettes with features that straddle the boundary between two adjacent conditions in the DSM taxonomy, they agree in 54 percent of cases; and examination of the disagreement cases shows that both psychiatrists correctly identified all the case features — they disagreed on which side of the diagnostic boundary those features placed the case",
+      "firstImage": "a scatter plot of case vignette diagnostic assignments from two psychiatrists, with cases located by their symptom-feature profile — near-boundary cases showing wider divergence between the two doctors' diagnoses",
+      "mustInclude": ["the 91 vs. 54 percent agreement comparison", "the key finding that both psychiatrists identified the same case features correctly — the disagreement was purely about boundary location", "the quality director's conclusion: the noise is in the matching step, not in clinical observation skill"],
+      "mustAvoid": ["a specific psychiatric diagnosis or patient outcome", "implying psychiatric diagnosis as a practice is unreliable"]
+    },
+    {
+      "domain": "job candidate quality tier: a talent acquisition team studying inter-recruiter disagreement in assigning candidates to quality tiers after reviewing identical resumes",
+      "audience": "a talent acquisition director studying where in the candidate quality distribution recruiter tier assignments produce the most disagreement",
+      "stakes": "hiring pipeline efficiency and candidate experience — candidates assigned to the 'advance to interview' tier receive different treatment from those assigned to 'hold' or 'reject'; disagreement at the tier boundary determines who advances",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the director asks three experienced recruiters to independently tier 60 identical anonymized resumes into three quality levels: excellent (advance immediately), borderline (review further), and below standard (do not advance); for resumes clearly in the excellent and below-standard tiers, all three recruiters agree in 90 percent of cases; for resumes in the borderline category — where the decision boundary matters most — they agree in only 48 percent of cases; and in the disagreement cases, all three recruiters describe the same resume features, but locate the threshold between 'borderline' and 'advance' differently",
+      "firstImage": "a three-category tier assignment table with recruiter agreement rates in the right column: 90 percent for excellent tier, 48 percent for borderline tier, 90 percent for below-standard tier — the middle tier's low agreement highlighted",
+      "mustInclude": ["the 90 vs. 48 percent agreement split by tier", "the explicit finding that all three recruiters identified the same resume features but located the category boundary differently", "the director's framing: the noise in the borderline category is not about disagreement on candidate quality — it is about where the threshold lives"],
+      "mustAvoid": ["a specific job applicant's case", "implying recruiter tier assignments are generally unreliable across the whole distribution"]
+    },
+    {
+      "domain": "graduate school application decision: an admissions office studying where in the applicant quality distribution inter-reader agreement is lowest",
+      "audience": "a graduate school admissions director studying inter-reader disagreement in admit, waitlist, and reject decisions across the applicant pool",
+      "stakes": "applicant academic and professional opportunity — candidates at the admit-waitlist boundary or the waitlist-reject boundary face completely different outcomes based on how the reader locates that boundary in the quality distribution",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the director reviews four admission cycles of two-reader data: for applicants in the top 15 percent of the pool (clear admits) and the bottom 25 percent (clear rejects), reader agreement exceeds 88 percent; for applicants in the 16th to 75th percentile — the zone where the admit-waitlist-reject boundaries run through — reader agreement falls to 57 percent; readers who reviewed the same application, identified the same strengths and weaknesses, and used the same stated evaluation criteria still disagreed on which decision tier the applicant belonged to",
+      "firstImage": "a stacked bar chart of applicant pool by quality percentile, with inter-reader agreement rate overlaid as a line — the line dipping sharply for the middle percentile range and recovering at both extremes",
+      "mustInclude": ["the 88 vs. 57 percent agreement split across pool zones", "the observation that readers agreed on application strengths and weaknesses but not on tier placement", "the director's conclusion: standardizing readers' location of the tier boundaries — not training on how to evaluate applications — would most reduce noise in this range"],
+      "mustAvoid": ["a specific applicant's outcome", "implying graduate admissions should be purely algorithmic"]
+    },
+    {
+      "domain": "property use classification: a municipal assessor's office studying inter-assessor disagreement in commercial versus residential use classification for mixed-use buildings",
+      "audience": "a city assessor director studying where in the use-type distribution inter-assessor agreement in classification is lowest",
+      "stakes": "property tax rates and owner compliance costs — commercial classification carries a substantially higher tax rate than residential; disagreement on classification for the same building produces different tax obligations",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the assessor director reviews a matched-building audit: for buildings clearly and solely residential (single-family homes, apartment buildings) and clearly and solely commercial (office towers, retail centers), inter-assessor classification agreement is above 94 percent; for buildings that combine residential and commercial uses in proportions near the jurisdictional classification threshold (typically 50 percent commercial use), inter-assessor agreement falls to 53 percent; assessors who reviewed the same building records, the same use schedules, and the same floor plans still disagreed on which side of the classification boundary the building's use profile placed it",
+      "firstImage": "a scatter plot of buildings by their commercial-use percentage, with inter-assessor agreement plotted by zone — near-threshold buildings (40 to 60 percent commercial use) showing the lowest agreement despite identical factual records",
+      "mustInclude": ["the 94 vs. 53 percent agreement split by building use clarity", "the finding that identical building records produced different classifications at the boundary", "the director's conclusion: the noise is in the threshold-location step, not in assessors' ability to read building use schedules"],
+      "mustAvoid": ["a specific taxpayer's dispute", "implying property tax assessors are systematically biased toward higher commercial classification"]
+    },
+    {
+      "domain": "environmental contamination tier: an environmental agency studying inter-assessor disagreement in contamination severity tier classification for industrial site remediation",
+      "audience": "a regional environmental agency quality director studying where in the contamination severity distribution inter-assessor classification disagreement is highest",
+      "stakes": "remediation cost assignment and timeline priority — a site classified as high severity receives mandatory immediate remediation; medium severity allows a longer planning horizon; the boundary classification determines which regulatory pathway applies and who pays first",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the inter-assessor reliability study: for sites with contamination concentrations clearly in the low or high severity range — far from any tier boundary — assessor agreement is 91 percent; for sites with concentrations near the low-medium or medium-high tier thresholds, agreement is 59 percent; the disagreement concentrates not in sites with unusual contaminants or complex hydrogeology, but in sites whose measured concentrations are near the numerical threshold that separates adjacent tiers — a threshold that different assessors locate at slightly different values",
+      "firstImage": "a contamination concentration histogram with tier boundaries as vertical bands — the inter-assessor agreement rate shown to be lowest for sites whose concentration readings fall within the boundary bands, not for those with complex site conditions",
+      "mustInclude": ["the 91 vs. 59 percent agreement split", "the finding that threshold disagreement concentrates near numerical tier boundaries regardless of site complexity", "the implication: sharper regulatory definition of the tier boundaries — not assessor training on contamination science — would most reduce classification noise"],
+      "mustAvoid": ["a specific contaminated industrial site", "implying environmental assessment science is generally unreliable"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain how the matching operation generates noise independently of the rater's accuracy or bias in evaluating case features",
+      "identify where in a described case distribution the matching step is most likely to generate disagreement",
+      "apply the matching-noise concept to diagnose a classification system where raters agree on case facts but disagree on tier assignment",
+      "analyze why defining category boundaries more precisely reduces match noise while leaving other noise sources intact",
+      "evaluate whether a described inter-rater disagreement is primarily attributable to match noise, fact disagreement, or rater-level noise"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find a recurring classification decision in your work — a tier assignment, a category label, a status determination. Take three current borderline cases and ask two qualified colleagues to independently classify them before sharing reasons. If they agree on all the case facts but disagree on the classification, you have found match noise. Now ask them to each draw the boundary they applied. The gap between their drawn boundaries is the match noise you can reduce — not through better observation, but through sharper definition of where the boundary lives.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why the matching step is an independent operation from the evaluation step and generates its own noise, at least one 5+ sentence paragraph on how two raters can agree on every case feature and still disagree on category assignment because they locate the boundary between categories in different places, at least one one-sentence punch line about what you are actually training for when you run a calibration session that focuses only on how to evaluate features rather than where to locate the boundary",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to directly address the reader: in the last decision process you participated in, when did you decide which category to assign before you asked how good or bad the case was? The matching step happens first, often silently, and the noise it generates never shows up in the evaluation reasoning that follows",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

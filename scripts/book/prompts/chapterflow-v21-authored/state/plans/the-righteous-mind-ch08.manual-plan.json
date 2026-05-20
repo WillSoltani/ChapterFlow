@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-righteous-mind-ch08",
+  "number": 8,
+  "title": "The Conservative Advantage",
+  "coreMove": "Separate breadth of moral vocabulary from virtue, truth, or policy quality.",
+  "sourcePressure": "The chapter argues for a politically sensitive conservative advantage in moral-register breadth, not blanket moral superiority.",
+  "chapterSpecificMisunderstanding": "The writer turns the conservative advantage into a team scoreboard.",
+  "sourceAlignmentTerms": [
+    "conservative advantage",
+    "moral registers",
+    "asymmetry",
+    "liberal",
+    "conservative",
+    "rhetorical reach"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the conservative advantage",
+      "detail": "the frozen sidecar defines the claim as broader moral-register reach, not simple moral superiority.",
+      "useIn": "both",
+      "phrasingHint": "The advantage is a bigger moral keyboard in certain public arguments, not a certificate of virtue."
+    },
+    {
+      "kind": "artifact",
+      "name": "moral foundations framework",
+      "detail": "the frozen sidecar says the chapter builds on the political application of multiple moral foundations.",
+      "useIn": "deepRead",
+      "phrasingHint": "Once more foundations are on the board, the winning message may be the one that plays more than two notes."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch08 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "who is better debate"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "polling horse race"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "partisan victory lap"
+    ],
+    "examples": [
+      "who is better debate",
+      "polling horse race",
+      "partisan victory lap"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "progressive housing campaign broadening its message",
+      "audience": "organizers whose case speaks mostly harm and fairness",
+      "stakes": "James adds neighborhood loyalty and order without abandoning tenant protection.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James rewrites one mailer to protect renters and long-time neighbors in the same paragraph.",
+      "firstImage": "Rain has softened the stack of door hangers on the campaign office sill.",
+      "mustInclude": [
+        "door hangers",
+        "tenant photos",
+        "neighborhood map"
+      ],
+      "mustAvoid": [
+        "partisan victory lap"
+      ]
+    },
+    {
+      "domain": "conservative criminal justice reform group speaking to skeptics",
+      "audience": "policy advocates testing moral-register breadth",
+      "stakes": "Chiara keeps authority and loyalty in the reform argument instead of copying liberal language.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chiara asks the sheriff which sentence lets him support reform without betraying order.",
+      "firstImage": "\"Do not make him choose between mercy and order,\" Chiara says.",
+      "mustInclude": [
+        "sheriff badge",
+        "draft op-ed",
+        "recidivism chart"
+      ],
+      "mustAvoid": [
+        "who is morally better debate"
+      ]
+    },
+    {
+      "domain": "public health team improving vaccine outreach in mixed counties",
+      "audience": "health communicators facing trust gaps",
+      "stakes": "Akira adds duty, protection, and local loyalty to a safety message.",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Akira removes a scolding headline and replaces it with a county duty frame.",
+      "firstImage": "County maps and clinic schedules cover the breakroom table.",
+      "mustInclude": [
+        "county map",
+        "clinic schedule",
+        "headline draft"
+      ],
+      "mustAvoid": [
+        "misinformation lecture"
+      ]
+    },
+    {
+      "domain": "labor party candidate trying to reach veterans",
+      "audience": "campaign staff missing moral registers",
+      "stakes": "Lukas sees why fairness-only language misses service, loyalty, and authority.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lukas compares two stump speeches and marks the foundations the losing one never touched.",
+      "firstImage": "It took Lukas one veterans' breakfast to hear the missing notes in the speech.",
+      "mustInclude": [
+        "breakfast program",
+        "stump speech",
+        "service pins"
+      ],
+      "mustAvoid": [
+        "polling horse race"
+      ]
+    },
+    {
+      "domain": "corporate ethics rollout after a supplier scandal",
+      "audience": "executives needing a message beyond compliance",
+      "stakes": "Camille builds a message that speaks purity, loyalty, and fairness without moral grandstanding.",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Camille turn a legal memo into a pledge employees can recognize across foundations.",
+      "firstImage": "You notice the supplier memo folded beside a box of recalled parts.",
+      "mustInclude": [
+        "recalled parts",
+        "legal memo",
+        "employee pledge"
+      ],
+      "mustAvoid": [
+        "generic compliance training"
+      ]
+    },
+    {
+      "domain": "school funding coalition combining tax and tradition appeals",
+      "audience": "coalition writers in a politically mixed town",
+      "stakes": "Andrew tests whether the message plays only fairness or also stewardship and local pride.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which version would Andrew's mixed-town audience repeat at a diner table?",
+      "firstImage": "Which sentence can travel from the PTA meeting to the hardware store?",
+      "mustInclude": [
+        "PTA flyer",
+        "hardware store counter",
+        "tax chart"
+      ],
+      "mustAvoid": [
+        "left-right caricature"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate moral-register breadth from moral goodness",
+      "evaluate a message by how many foundations it can speak to",
+      "avoid caricaturing liberals or conservatives while explaining asymmetry"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take a message you support and add one moral register it currently ignores, without changing the policy claim.",
+  "readingTimeMinutes": 12
+}

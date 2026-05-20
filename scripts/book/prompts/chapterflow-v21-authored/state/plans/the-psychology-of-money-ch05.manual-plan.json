@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch05",
+  "number": 5,
+  "title": "Confounding Compounding",
+  "coreMove": "Protect uninterrupted time so small advantages can become large without drama.",
+  "sourcePressure": "Compounding is hard to grasp because duration matters more than brilliance and results look absurd only after enough time passes.",
+  "chapterSpecificMisunderstanding": "Presenting compounding as a magic trick or a get-rich formula.",
+  "sourceAlignmentTerms": [
+    "compounding",
+    "duration",
+    "time horizon",
+    "consistency",
+    "small edges",
+    "interruption"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Confounding Compounding with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Confounding Compounding to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the compounding move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of compounding and duration"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a piano tuner building referrals one careful appointment at a time",
+      "audience": "a solo tradesperson impatient with slow trust accumulation",
+      "stakes": "rushing into ads may interrupt the reputation engine already working",
+      "format": "vignette",
+      "requiredBeat": "she marks every repeat household on a ten-year calendar and sees the curve bend only after year seven",
+      "firstImage": "a wall calendar full of tiny initials in the same neighborhoods",
+      "mustInclude": [
+        "ten-year calendar",
+        "repeat initials",
+        "referral notes"
+      ],
+      "mustAvoid": [
+        "overnight success story"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a reforestation crew planting slow-growing hardwoods after a wildfire",
+      "audience": "a land manager defending boring early years to impatient donors",
+      "stakes": "pulling funding too soon would kill the result before compounding begins",
+      "format": "scene",
+      "requiredBeat": "the manager lays sapling survival counts over twenty seasons instead of showing this year's empty slope alone",
+      "firstImage": "thin saplings tagged with orange tape across a charred hillside",
+      "mustInclude": [
+        "sapling tags",
+        "twenty-season chart",
+        "donor packet"
+      ],
+      "mustAvoid": [
+        "nature metaphor only"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a specialty coffee roaster aging customer trust through consistent shipments",
+      "audience": "an operations lead resisting flashy seasonal pivots",
+      "stakes": "a viral blend could disrupt the reliability that wholesale accounts value",
+      "format": "decision_point",
+      "requiredBeat": "the lead checks five years of on-time deliveries before approving a risky limited release",
+      "firstImage": "shipping labels stacked beside a cupping spoon and roast log",
+      "mustInclude": [
+        "roast log",
+        "shipping labels",
+        "wholesale calendar"
+      ],
+      "mustAvoid": [
+        "beverage-prop anchor"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a medical researcher maintaining a decades-long patient registry",
+      "audience": "a scientist whose work looks unimpressive until enough years accumulate",
+      "stakes": "grant reviewers may undervalue duration and break the dataset",
+      "format": "dialogue",
+      "requiredBeat": "she asks the committee which discovery would be impossible if year twelve were missing",
+      "firstImage": "archival boxes labeled with patient registry years",
+      "mustInclude": [
+        "registry boxes",
+        "grant agenda",
+        "follow-up rate"
+      ],
+      "mustAvoid": [
+        "lab genius story"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a credit union teaching teens why tiny automatic deposits matter",
+      "audience": "a youth program coordinator trying to make duration visible",
+      "stakes": "students may quit because early balances look trivial",
+      "format": "predict_reveal",
+      "requiredBeat": "the coordinator covers the final column, has teens predict year twenty, then reveals the total from uninterrupted deposits",
+      "firstImage": "a projection sheet folded so the last column is hidden",
+      "mustInclude": [
+        "projection sheet",
+        "automatic deposit slip",
+        "hidden final column"
+      ],
+      "mustAvoid": [
+        "piggy bank lesson"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a marathon race director protecting a volunteer pipeline over fifteen years",
+      "audience": "a director tempted to replace local volunteers with a paid event firm",
+      "stakes": "efficiency now may dissolve the community base that makes the race durable",
+      "format": "postmortem",
+      "requiredBeat": "after a smooth but cold race, she maps which longtime volunteers recruited the next cohort each year",
+      "firstImage": "a volunteer roster marked with arrows from mentor to recruit",
+      "mustInclude": [
+        "volunteer roster",
+        "recruit arrows",
+        "event invoice"
+      ],
+      "mustAvoid": [
+        "generic community building"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: protect uninterrupted time so small advantages can become large without drama",
+      "distinguish compounding from nearby but weaker advice such as hustle tactics",
+      "diagnose when a character is making the common misread: presenting compounding as a magic trick or a get-rich formula.",
+      "evaluate tradeoffs using the chapter-specific pressure around compounding, duration, time horizon"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where compounding is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: protect uninterrupted time so small advantages can become large without drama.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

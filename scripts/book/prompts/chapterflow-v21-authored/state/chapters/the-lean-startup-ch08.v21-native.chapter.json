@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch08",
+  "number": 8,
+  "title": "Pivot (or Persevere)",
+  "readingTimeMinutes": 12,
+  "hook": "The fridge magnet holds two charts, and one of them is asking the founder to stop pretending.",
+  "counterintuition": "Staying the course can backfire when it protects a weak bet. A pivot is disciplined only when it names a sharper hypothesis for the next test.",
+  "tryThisNow": "Choose one struggling project and write: persevere if this metric improves by X, pivot if it does not. Name the new hypothesis before changing anything.",
+  "keyTakeaway": "Use validated learning to choose: persevere when evidence improves, pivot when a specific new hypothesis deserves the next test.",
+  "breakdown": {
+    "fastRead": "Kasia stands in the meal-kit office with a fridge magnet holding two retention charts. Families were the original plan. Single-person users are the group still returning. The pivot agenda is full of opinions until she moves the meeting to the segment chart.\n\nThe meeting is not about whether the old idea feels lovable. It is about whether the evidence has earned another cycle.\n\nA pivot is a structured course correction. It keeps the discipline of testing but changes the hypothesis. Persevering is also a decision. It needs evidence, not loyalty.",
+    "deepRead": "\"We have cash for one semester, but not room for six more guesses,\" Julien says beside a whiteboard of crossed-out tutoring models. The cash balance looks fine. The hypothesis list does not. Only two meaningful changes remain before students stop trusting the project.\n\nRunway is not just money when the last useful test is gone.\n\nA team can persevere when the evidence is improving and the current hypothesis still deserves another test. It can pivot when the evidence shows the current hypothesis is weak but the learning points toward a better one. The key is specificity. A pivot should name what changes: customer segment, channel, pricing, product form, growth mechanism, or value promise. Without that new hypothesis, the team is only wandering with a better vocabulary.\n\nValidated learning protects the decision from mood. Attachment says, we have come too far. Panic says, change everything. Evidence asks what has been learned and what should be tested next.\n\nThe choice should feel sober, not dramatic.\n\nJulien adds one column to the whiteboard before the team votes. Each possible change must name the new hypothesis, the evidence that would support it, and the decision it would unlock. The exercise slows the room down in the useful way. A pivot without that column is just movement. Persevering without it is just attachment with a longer calendar.",
+    "fullRead": "Paula looks at the nurse station monitor showing missed portal bookings. Staff praise the clinic scheduling tool because it saves them steps. Appointment data shows patients are not adopting it. She writes a segment note: maybe the first users should be caregivers booking for older parents, not patients booking for themselves.\n\nThat is a Pivot or persevere decision when the next move becomes a testable hypothesis.\n\nThe course correction has to preserve learning. If Paula simply redesigns everything because adoption is weak, the team loses the thread. If she keeps pushing the same patient portal because staff like it, she protects the old idea from evidence. The disciplined move is narrower: define a customer-segment pivot and run the next test against caregiver bookings.\n\nWhat evidence would make staying the wiser choice?\n\nMatthew faces the opposite pressure at a winter fair. Handmade mugs fill the table, and sellers love the artisan marketplace. The seller survey is warm. Buyer conversion after the price test is poor. He wants to persevere because the sellers are loyal and the story feels good. Before doing that, he compares buyer conversion to seller enthusiasm. If buyers resist the price, seller love alone cannot carry the market.\n\nRunway measured in meaningful pivots changes the math: a team can have months of cash and almost no runway if it has burned through the chances to learn differently. Runway is learning capacity. Money matters because it buys cycles, but a cycle only counts when it tests a meaningful new hypothesis. Spending another month on the same weak bet may consume more runway than the bank account suggests.\n\nLea's compliance app team learns this after a failed outreach list. Direct sales to enterprise buyers barely moved. Partner call notes suggest compliance consultants may carry trust into the room. In the postmortem, she frames a channel pivot as a new hypothesis, not desperation: perhaps partners, not direct outreach, are the path to adoption. The new channel test will prove or weaken that claim.\n\nThere is a cost to pivoting too early. Every hard week can make a new direction feel clean. But changing before the evidence has had time to mature turns strategy into restlessness. The decision needs a threshold. What result would justify another cycle? What result would make the new hypothesis more responsible than the old one?\n\nHugo sees the same threshold in compost pickup. A route map is taped to a bin lid, and the lease deadline for another truck is close. Before, the team expanded routes as if persistence were virtue. After building a route density map and calling building managers, he sees that apartment density may matter more than neighborhood enthusiasm. The next decision is whether to pivot customer segment before signing the lease.\n\nTo pivot well is to keep faith with the evidence, not with the original plan. To persevere well is to keep testing because the evidence still deserves it, not because quitting would hurt."
+  },
+  "examples": [
+    {
+      "exampleId": "ch08-ex01-kasia-meal-kit",
+      "title": "Kasia Moves the Pivot Meeting to Retention",
+      "tags": [
+        "scene",
+        "food",
+        "segment"
+      ],
+      "planSpec": {
+        "domain": "meal-kit subscription pivot review",
+        "audience": "food startup",
+        "stakes": "attachment to the original family plan may outlast evidence from single-person users",
+        "format": "scene",
+        "requiredBeat": "Kasia moves the pivot meeting from opinions to the retention evidence by segment"
+      },
+      "scenario": "At 2:30 p.m. Wednesday, Kasia stands by a fridge magnet holding two retention charts and a runway note. The pivot agenda still says family plan review, but the segment chart shows single-person users returning more often. Before the meeting drifts into opinions, Kasia must choose whether to defend the original family idea or move the room to retention evidence. The retention chart is the only object allowed to decide the next cycle.",
+      "whatToDo": "Put the segment chart at the center of the meeting. Decide whether to persevere with families or test a single-person hypothesis based on retention evidence.",
+      "whyItMatters": "Attachment to the original customer can outlast the data. Segment retention turns the pivot decision into evidence, not a loyalty test."
+    },
+    {
+      "exampleId": "ch08-ex02-julien-tutoring",
+      "title": "Julien Counts Meaningful Pivots",
+      "tags": [
+        "dialogue",
+        "campus",
+        "runway"
+      ],
+      "planSpec": {
+        "domain": "campus tutoring platform model",
+        "audience": "student founders",
+        "stakes": "cash may last but only two hypothesis changes remain",
+        "format": "dialogue",
+        "requiredBeat": "Julien counts remaining meaningful pivots before another semester build"
+      },
+      "scenario": "\"The cash balance says yes, but the semester calendar says no,\" Julien says beside a whiteboard with crossed-out business models. The hypothesis list has only two credible changes left. Another build is about to start. The student founders must choose between spending the semester on the current model and counting how many meaningful pivots remain. The whiteboard forces the founders to count learning chances, not just bank weeks.",
+      "whatToDo": "Count the remaining hypothesis changes before approving another build. Treat runway as learning capacity, not only the cash balance in the account.",
+      "whyItMatters": "The team can have money and still run out of useful ways to learn. Counting meaningful pivots keeps another semester from becoming repetition."
+    },
+    {
+      "exampleId": "ch08-ex03-paula-clinic",
+      "title": "Paula Writes a Caregiver Segment Note",
+      "tags": [
+        "vignette",
+        "healthtech",
+        "segment pivot"
+      ],
+      "planSpec": {
+        "domain": "clinic scheduling tool course correction",
+        "audience": "healthtech team",
+        "stakes": "staff praise may mask weak patient adoption",
+        "format": "vignette",
+        "requiredBeat": "Paula proposes a customer-segment pivot tied to appointment data"
+      },
+      "scenario": "The nurse station monitor shows missed portal bookings while Paula reads appointment data under the night shift lights. Staff praise is strong, but patient adoption is weak. She has a decision to make before the next sprint: keep improving the same patient flow or write a new hypothesis that tests caregivers as the first customer segment. The note on the monitor must become a customer-segment test, not another staff-request ticket.",
+      "whatToDo": "Frame the customer-segment pivot as a testable hypothesis. Use appointment data to design a caregiver booking experiment instead of treating staff praise as enough.",
+      "whyItMatters": "Staff value and patient adoption are different signals. Paula's pivot preserves learning by changing the segment rather than changing everything at once."
+    },
+    {
+      "exampleId": "ch08-ex04-matthew-artisan",
+      "title": "Matthew Compares Buyers With Sellers",
+      "tags": [
+        "decision point",
+        "marketplace",
+        "pricing"
+      ],
+      "planSpec": {
+        "domain": "artisan marketplace pricing pivot",
+        "audience": "craft platform founder",
+        "stakes": "seller loyalty may keep the founder from seeing buyer resistance",
+        "format": "decision_point",
+        "requiredBeat": "Matthew compares buyer conversion to seller enthusiasm before persevering"
+      },
+      "scenario": "You are beside Matthew at a winter fair, where handmade mugs cover the table and the seller survey glows with praise. The price test tells a colder story: buyer conversion is low. Before he books another seller push, Matthew needs to decide whether seller enthusiasm is enough to persevere or whether buyer resistance demands a pricing pivot. The cash box on the table makes the choice concrete because buyer behavior, not seller warmth, decides the next market bet.",
+      "whatToDo": "Compare buyer conversion with seller enthusiasm before committing. Persevere only if buyer evidence improves, or define the pricing hypothesis to test next.",
+      "whyItMatters": "A marketplace needs both sides. Seller loyalty can hide buyer resistance, and buyer behavior decides whether the current pricing idea deserves another cycle."
+    },
+    {
+      "exampleId": "ch08-ex05-lea-compliance",
+      "title": "Lea Turns Partner Interest Into a Channel Hypothesis",
+      "tags": [
+        "postmortem",
+        "B2B",
+        "channel"
+      ],
+      "planSpec": {
+        "domain": "enterprise compliance app channel pivot",
+        "audience": "B2B software team",
+        "stakes": "direct sales effort may fail while partners could carry trust",
+        "format": "postmortem",
+        "requiredBeat": "Lea frames channel pivot as a new hypothesis rather than desperation"
+      },
+      "scenario": "It took Lea a failed outreach list to stop calling every channel change desperation. A partner brochure sits beside the direct sales report, and partner call notes show consultants already carry trust with buyers. In the postmortem, she frames the channel pivot as a new hypothesis: partner-led demos may open doors direct emails cannot. The new channel test gets a date and a success threshold before anyone calls the pivot strategic.",
+      "whatToDo": "Write the partner channel as a hypothesis and run a limited new channel test. Do not call it a pivot unless the next experiment can prove or weaken it.",
+      "whyItMatters": "A pivot is not flailing when it follows learning. Lea keeps the team disciplined by turning channel change into a testable course correction."
+    },
+    {
+      "exampleId": "ch08-ex06-hugo-compost",
+      "title": "Hugo Checks Density Before the Truck Lease",
+      "tags": [
+        "before after",
+        "local service",
+        "segment"
+      ],
+      "planSpec": {
+        "domain": "urban compost pickup service",
+        "audience": "local operations team",
+        "stakes": "route expansion may be persistence when apartment density evidence points elsewhere",
+        "format": "before_after",
+        "requiredBeat": "Hugo chooses whether to pivot customer segment before the next truck lease"
+      },
+      "scenario": "A route map is taped to Hugo's compost bin lid, and the lease deadline for a second truck is circled. Before, Hugo expanded blocks because neighbors sounded supportive. After building a route density map and calling building managers, he sees apartment clusters may carry the service. The next choice is segment pivot or truck lease. The density map has to answer the lease question before another truck turns a guess into fixed cost.",
+      "whatToDo": "Test the apartment-density segment before signing the truck lease. Use building manager calls and route density to decide whether expansion should change direction.",
+      "whyItMatters": "Persistence can look brave while the route evidence points elsewhere. Segment evidence protects Hugo from buying capacity for the wrong customer pattern."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team keeps pushing a patient portal because staff praise it, but appointment data shows patients are not booking through it. In the pivot meeting, what should the team do with that evidence?",
+        "choices": [
+          "A specific new hypothesis that the course correction will test.",
+          "A more dramatic announcement to signal commitment.",
+          "A complete stop to all testing until morale recovers."
+        ],
+        "correctIndex": 0,
+        "explanation": "A pivot is structured around a new hypothesis. Cosmetic change without a testable learning claim is just movement.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A meal-kit team sees stronger retention among single-person users than families, but founders love the family plan. Which move fits best?",
+        "choices": [
+          "Keep the family plan because original vision matters.",
+          "Use segment retention to decide whether to test a single-person customer hypothesis.",
+          "Change every part of the product at once to escape the old idea."
+        ],
+        "correctIndex": 1,
+        "explanation": "The segment evidence points to a specific possible pivot. Keeping the original plan ignores learning, while changing everything destroys the thread.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A student tutoring venture has cash for another semester but only two credible model changes left. How should it understand runway?",
+        "choices": [
+          "As the cash balance only, because money funds time.",
+          "As the number of remaining students on campus.",
+          "As the remaining chances to test meaningful new hypotheses."
+        ],
+        "correctIndex": 2,
+        "explanation": "Money matters because it buys learning cycles. If few meaningful pivots remain, runway is shorter than the account suggests.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A tutoring project has one semester of cash left and a whiteboard full of crossed-out models. The team wants to spend another month on the same weak student-acquisition bet. How should it think about runway?",
+        "choices": [
+          "Test caregivers as the first customer segment using appointment data.",
+          "Rename the tool so patients find it friendlier.",
+          "Scrap the whole product and start a different clinic idea."
+        ],
+        "correctIndex": 0,
+        "explanation": "A caregiver segment test changes one core hypothesis while preserving the learning. Renaming is shallow, and scrapping everything may discard useful evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "An artisan marketplace has loyal sellers but weak buyer conversion after a price test. What should the founder examine before persevering?",
+        "choices": [
+          "Whether seller enthusiasm is strong enough to replace buyer demand.",
+          "Whether buyer conversion supports the current pricing hypothesis.",
+          "Whether the fair booth looked attractive enough."
+        ],
+        "correctIndex": 1,
+        "explanation": "Buyer behavior tests the pricing hypothesis. Seller enthusiasm and booth appeal may matter, but they cannot replace conversion evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A B2B team switches from direct sales to partners because direct outreach failed. What makes this a true channel pivot rather than panic?",
+        "choices": [
+          "The team changes channels quickly enough to feel decisive.",
+          "The team stops measuring direct outreach results because the old channel is embarrassing.",
+          "The team writes a partner-led adoption hypothesis and tests it with a limited partner experiment."
+        ],
+        "correctIndex": 2,
+        "explanation": "The channel change becomes disciplined when it names and tests a new hypothesis. Speed and avoidance are emotional reactions, not pivot logic.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A local service keeps expanding routes because neighbors are supportive, but density data shows apartments may work better. What is the risk of persevering?",
+        "choices": [
+          "The team may mistake emotional encouragement for evidence that the current customer segment works.",
+          "The team may learn too much from building manager calls.",
+          "The team may create too many route maps for operations staff."
+        ],
+        "correctIndex": 0,
+        "explanation": "Supportive comments can protect the existing route idea. Density evidence may justify a segment pivot before capacity is purchased.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team is tired after a hard launch week and wants to change the whole product before the adoption data has had time to settle. What would make that pivot premature?",
+        "choices": [
+          "It should persevere forever once an idea has a clear story.",
+          "It is changing before evidence matures enough to distinguish weak execution from a bad hypothesis.",
+          "It should only use founder instinct because metrics create confusion."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pivoting too early can become restlessness. Evidence needs thresholds so the team knows when staying or changing is justified.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team has declining evidence for the current segment and one clear alternative segment suggested by user behavior. What is the strongest decision?",
+        "choices": [
+          "Persevere to show commitment to the original plan.",
+          "Change the product, channel, pricing, and segment together.",
+          "Pivot to a testable alternative segment while preserving what was learned."
+        ],
+        "correctIndex": 2,
+        "explanation": "The alternative segment is specific and evidence-backed, so a focused pivot is stronger. Blind perseverance and changing everything both weaken learning.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What makes a pivot different from random change?",
+      "back": "A pivot is a structured course correction that tests a new core hypothesis. It changes direction while preserving what the team has learned.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "When should a team persevere?",
+      "back": "When evidence is improving enough that the current hypothesis deserves another learning cycle. Perseverance needs evidence, not attachment.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why can runway be shorter than the cash balance suggests?",
+      "back": "Runway is also the number of meaningful learning cycles left. A team can have money but few credible pivots if it has burned through options.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A team wants to pivot after one bad week. What should you ask?",
+      "back": "Ask what threshold was set in advance and whether the evidence is mature enough. A pivot should answer learning, not panic.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How do you keep a pivot from discarding learning?",
+      "back": "Name exactly what hypothesis changes and what evidence led there. Keep the useful facts from the old path and test the new path cleanly.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to make course correction evidence-led. The skill is setting thresholds, naming the new hypothesis, and treating perseverance as a decision that also needs proof.",
+    "ifThenPlans": [
+      {
+        "context": "strategy review",
+        "plan": "If a team wants to stay the course, then ask which metric has improved enough to earn another cycle."
+      },
+      {
+        "context": "pivot discussion",
+        "plan": "If someone proposes a pivot, then require a clear new hypothesis and a test that can prove or weaken it."
+      },
+      {
+        "context": "runway planning",
+        "plan": "If cash is discussed, then also count how many meaningful hypothesis changes remain."
+      },
+      {
+        "context": "founder attachment",
+        "plan": "If the old customer or channel feels emotionally important, then move the discussion to segment, channel, or conversion evidence."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, pick one active bet and write the evidence threshold for persevering, plus the specific pivot you would test if the threshold is missed.",
+    "weeklyPractice": "Each week, hold one pivot-or-persevere review for a live project. Do not allow stay or change as vibes. Require evidence and a named next hypothesis."
+  },
+  "memorableLines": [
+    {
+      "text": "Persevering is also a decision.",
+      "location": "breakdown.fastRead",
+      "why": "It prevents persistence from being treated as the default."
+    },
+    {
+      "text": "Runway is not just money when the last useful test is gone.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the chapter's wider view of learning capacity."
+    },
+    {
+      "text": "To pivot well is to keep faith with the evidence, not with the original plan.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the pivot decision a principled standard."
+    }
+  ]
+}

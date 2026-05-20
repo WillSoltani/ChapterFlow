@@ -1,0 +1,186 @@
+{
+  "chapterId": "difficult-conversations-ch03",
+  "number": 3,
+  "title": "Don't Assume They Meant It",
+  "coreMove": "Acknowledge the impact as real before explaining what you meant.",
+  "sourcePressure": "The chapter disentangles intent and impact, especially the deliverer-side failure of using good intent to dismiss harm.",
+  "chapterSpecificMisunderstanding": "Assuming good intentions are enough or treating hurt feelings as proof of malice.",
+  "sourceAlignmentTerms": [
+    "intent vs impact",
+    "invented intention",
+    "impact acknowledgment",
+    "intent explanation",
+    "receiver-side failure",
+    "deliverer-side failure",
+    "sequence matters"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "intent vs impact",
+      "detail": "The source separates what someone meant from what their action caused, and warns that intent explanations before impact acknowledgment usually worsen the exchange.",
+      "useIn": "both",
+      "phrasingHint": "Good intent can sit beside real impact; it cannot erase it."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch03 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: dialogue first line; environmental detail before any human; second-person You direct address; timestamp+name+action; sensory detail first; retrospective first line",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "team meeting accent joke repair",
+      "audience": "managers who caused unintentional impact",
+      "stakes": "a junior engineer may stop trusting the manager who thought he was being warm",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Grace deletes the defensive first sentence and writes the impact acknowledgment before any intent explanation",
+      "firstImage": "\"I did not mean it\" sits alone in a draft reply",
+      "mustInclude": [
+        "draft reply",
+        "team-chat notification",
+        "meeting transcript note"
+      ],
+      "mustAvoid": [
+        "apology as legal defense"
+      ]
+    },
+    {
+      "domain": "freelance client left off decision email",
+      "audience": "project volunteers and coordinators handling accidental exclusion",
+      "stakes": "the excluded designer learned about a decision in front of the client",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Lars stops explaining the email mistake and asks what changed for Chiara when she found out publicly",
+      "firstImage": "a conference-room speakerphone blinking red",
+      "mustInclude": [
+        "email thread",
+        "client agenda",
+        "speakerphone"
+      ],
+      "mustAvoid": [
+        "simple email etiquette lesson"
+      ]
+    },
+    {
+      "domain": "partner canceling plans repeatedly",
+      "audience": "couples where overload and hurt collide",
+      "stakes": "three cancellations have started to feel like rejection",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "you separate the fact of canceled dinners from the story about not wanting time together",
+      "firstImage": "an unread restaurant reservation reminder",
+      "mustInclude": [
+        "three calendar cancellations",
+        "restaurant deposit",
+        "late train alert"
+      ],
+      "mustAvoid": [
+        "date-night complaint only"
+      ]
+    },
+    {
+      "domain": "pharmacy shift handoff omission",
+      "audience": "healthcare coworkers in high-stakes routine work",
+      "stakes": "a missed handoff note caused a patient call to go unanswered",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Ben names the impact on the shift before explaining why the note was skipped",
+      "firstImage": "a clipboard hanging from a metal hook",
+      "mustInclude": [
+        "handoff clipboard",
+        "patient callback list",
+        "closing checklist"
+      ],
+      "mustAvoid": [
+        "malice accusation"
+      ]
+    },
+    {
+      "domain": "research group authorship comment",
+      "audience": "graduate peers navigating accidental public slight",
+      "stakes": "one careless phrase made a collaborator feel erased from the work",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "it takes Layla until the bus ride home to see that Etienne was describing impact, not accusing intent",
+      "firstImage": "rain on a bus window after seminar",
+      "mustInclude": [
+        "seminar slide",
+        "authorship footnote",
+        "bus pass"
+      ],
+      "mustAvoid": [
+        "academic ego duel"
+      ]
+    },
+    {
+      "domain": "wedding-planning family text",
+      "audience": "relatives interpreting delays as disrespect",
+      "stakes": "a seating-chart delay has become evidence of not caring",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Etienne replies first to the embarrassment caused by the public follow-up, then explains the vendor delay",
+      "firstImage": "a folded seating chart with names crossed out",
+      "mustInclude": [
+        "seating chart",
+        "vendor email",
+        "family group text"
+      ],
+      "mustAvoid": [
+        "defending logistics only"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs acknowledge the impact as real before explaining what you meant.",
+      "distinguish intent vs impact from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate assuming good intentions are enough or treating hurt feelings as proof of malice."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Draft the first reply to someone you hurt with impact first and intent second. Delete any sentence that tries to make intent settle impact.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

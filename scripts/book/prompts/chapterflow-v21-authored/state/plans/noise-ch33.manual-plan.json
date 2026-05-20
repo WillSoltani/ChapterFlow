@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch33",
+  "number": 33,
+  "title": "Dignity",
+  "coreMove": "Weigh what is lost in human dignity when judgment is automated or standardized alongside what is gained in consistency, rather than treating consistency gains as automatically worth any process cost.",
+  "sourcePressure": "Standardization and automation reduce noise but can also strip individuals of the experience of being seen as unique. When a person's case is processed by an algorithm or a rigid protocol, the judgment may be more consistent but the person may experience a loss of dignity — of being assessed as a whole human rather than as a data point matching a category. Dignity is a genuine stake in how institutions treat the people they serve, not a sentimental obstacle to rational noise reduction.",
+  "chapterSpecificMisunderstanding": "Treating dignity concerns as purely sentimental or irrational obstacles to noise reduction, rather than as a genuine and measurable dimension of how institutions affect the people they serve.",
+  "sourceAlignmentTerms": ["dignity", "standardization", "automation", "individual treatment", "procedural justice", "seen as unique", "human cost"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Procedural justice research and the dignity dimension of institutional decision-making",
+      "detail": "Research on procedural justice consistently finds that people's evaluation of institutional decisions depends substantially on whether they felt heard, seen as individuals, and treated with respect — not only on whether the outcome was favorable. When standardized processes replace individualized assessment, procedural justice satisfaction falls even when outcome accuracy improves, because the experience of individual acknowledgment is a separate and valued dimension of the decision.",
+      "useIn": "deepRead",
+      "phrasingHint": "A person whose benefit application is processed correctly by an algorithm is better off than one whose application was processed incorrectly by a person. But that same person often reports lower trust in the institution, lower willingness to comply with future decisions, and lower sense of being treated fairly — even when the outcome is right. The procedural justice research says: being correct and being respectful are not the same thing, and losing the second while gaining the first is a real cost."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["algorithms lack empathy — and that matters", "the human cost of getting the answer right"],
+    "counterintuition": ["dignity concerns are more important than consistency in most institutional decisions", "any standardization that reduces dignity is too much standardization"],
+    "tryThisNow": ["ask your clients how they feel about being processed by your automated system", "measure the dignity cost of your last noise reduction program"],
+    "examples": ["a scene where a person is grateful for algorithmic processing because it was faster and more accurate — that outcome is possible and does not contradict the chapter's argument about the dignity stake", "a scene where dignity concerns are used to block all standardization — the chapter is about weighing, not about choosing dignity over all other considerations"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Dignity examples risk reading as anti-automation arguments. Each domain must show an organization honestly weighing both what the automation gains (consistency) and what it costs (dignity and procedural justice satisfaction), and using that calculation to make a design decision — not to reject standardization wholesale."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "algorithmic consumer credit denial: a financial institution studying the dignity and procedural justice costs of automated loan denial letters alongside their processing consistency benefits",
+      "audience": "a consumer banking experience director studying whether algorithmic credit denial produces measurable procedural justice costs relative to human-communicated denials with the same decision outcome",
+      "stakes": "customer trust and long-term relationship — a customer whose application is denied consistently (benefit) may still lose trust in the institution if the denial process communicates that no human evaluated their specific situation",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the experience director presents the comparison study to the product team: applicants who received algorithmically generated denial letters with the same outcome as human-communicated denials rated their experience 1.4 points lower on the procedural fairness scale (where 5 is highly fair); 38 percent of algorithmic denial recipients said they felt their specific financial situation had not been considered, versus 12 percent of human-communicated denial recipients; and future banking relationship interest was 22 percent lower in the algorithmic denial group — not because the decision was wrong, but because the process communicated 'you are a data point' rather than 'your situation was reviewed'",
+      "firstImage": "a side-by-side procedural fairness rating comparison for two denial communication formats: algorithmic letter (lower fairness score, higher 'not considered' rate) versus human-communicated denial (higher fairness score, lower 'not considered' rate)",
+      "mustInclude": ["the 1.4-point procedural fairness gap and 38 vs. 12 percent 'not considered' response rates", "the 22 percent future relationship interest gap despite identical decision outcomes", "the experience director's framing: the algorithm produced the right answer more consistently — and also communicated to over a third of applicants that no one had considered their specific situation. Both outcomes are real and both belong in the design decision"],
+      "mustAvoid": ["a specific credit applicant's case", "implying that all algorithmic credit decisions are unfair or that human communication always produces better decisions"]
+    },
+    {
+      "domain": "algorithmic welfare benefits determination: a social services agency studying the dignity costs of automated eligibility determination alongside its consistency benefits for beneficiaries",
+      "audience": "a social services agency program director studying whether automated eligibility determination produces measurable procedural justice effects relative to caseworker-conducted determination with equivalent accuracy",
+      "stakes": "program access consistency (benefit) and the experience of applicants — often in vulnerable situations — of being assessed as a person rather than processed as a category match",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two agency program directors compare caseworker-conducted and automated eligibility determination: both methods produce equivalent accuracy (87 percent correct determination rate) and equivalent processing speed in the study; but applicants in the automated condition report significantly lower scores on 'I felt my situation was fully considered' (3.1 vs. 4.2 on a 5-point scale) and 'I would return to this office if I needed further assistance' (58 vs. 73 percent affirmative); in focus groups, applicants in difficult financial circumstances describe the automated interaction as 'like being scanned, not helped' — a description that surfaces in 34 percent of qualitative responses",
+      "firstImage": "a service experience comparison for the same eligibility determination outcome: automated processing (lower procedural fairness scores, lower return intention) versus caseworker-conducted determination (higher procedural fairness, higher return intention) — outcome accuracy shown as equivalent in both conditions",
+      "mustInclude": ["the equivalent accuracy alongside the procedural fairness gap (3.1 vs. 4.2)", "the 58 vs. 73 percent return intention difference", "the 'scanned, not helped' qualitative theme appearing in 34% of automated condition responses", "the director's framing: the automation achieves consistency — and removes something else that the accuracy metric does not capture"],
+      "mustAvoid": ["a specific beneficiary's case", "implying that all human caseworker judgment is superior to automated processing or that automation should be avoided in social services"]
+    },
+    {
+      "domain": "algorithmic sports performance evaluation: a professional sports organization studying the dignity costs of algorithmic player evaluation for career decisions alongside consistency benefits",
+      "audience": "a professional sports franchise player development director studying whether algorithmic player evaluation for roster decisions produces different dignity and trust responses from players than coach-communicated evaluation with equivalent accuracy",
+      "stakes": "player trust and organizational culture — consistent player evaluation (benefit) and the player's experience of having their athletic development recognized as individualized rather than reduced to a performance metric",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the director asks: if two groups of players receive roster decisions with identical accuracy but through different processes — one through algorithmic performance scoring communicated by data analytics staff, the other through coach-communicated assessment using the same underlying performance data — will their responses to the decision differ even when the decision is the same? The study's answer: yes; players who received algorithm-communicated decisions that kept them on the roster reported lower organizational trust (3.8 vs. 4.4 on a 5-point scale) and lower self-reported development motivation (62 vs. 74 percent reporting high motivation) than players who received coach-communicated decisions with equivalent outcomes",
+      "firstImage": "a player response comparison for identical roster decisions communicated through two channels: algorithm-communicated (lower trust and motivation scores) versus coach-communicated (higher trust and motivation scores) — the decision outcome shown as equivalent",
+      "mustInclude": ["the trust gap (3.8 vs. 4.4) and motivation gap (62 vs. 74 percent) for identical outcomes", "the finding that players kept on the roster — a positive outcome — still report lower trust through the algorithmic channel", "the director's framing: the algorithm communicates 'your metrics qualified you' rather than 'your coach saw what you brought' — that difference matters to how players experience the decision even when the outcome is favorable"],
+      "mustAvoid": ["a specific athlete's career outcome", "implying algorithmic sports performance analysis is inherently demeaning or that coaches always add dignity to their communications"]
+    },
+    {
+      "domain": "automated legal document review: a law firm studying the client experience costs of algorithmic document discovery alongside its consistency and efficiency benefits",
+      "audience": "a law firm client experience director studying whether automated discovery review produces measurable client dignity costs relative to attorney-conducted review with equivalent accuracy",
+      "stakes": "discovery quality consistency (benefit) and client experience of having their case materials treated as individually relevant rather than processed in bulk",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the client experience director presents the research to the firm's practice leadership: clients whose discovery materials were processed through algorithmic review and communicated in aggregate performance metrics rated their experience of case preparation 0.9 points lower on the 'I felt my case was individually understood' measure (where 5 is strongly agree) compared to clients whose discovery was attorney-conducted with equivalent accuracy; 29 percent of the automated-review group spontaneously mentioned in client satisfaction interviews that they were not sure the attorneys had read their documents; the trust gap narrowed when a partner-level attorney communicated the discovery results in a case-specific meeting — suggesting that the dignity cost is in the process experience, not in the outcome",
+      "firstImage": "a client satisfaction comparison for equivalent discovery outcomes: algorithmic-review-communicated (lower 'case individually understood' score, higher unsolicited concern rate) versus attorney-communicated with same algorithmic review (narrowed gap)",
+      "mustInclude": ["the 0.9-point 'individually understood' gap and 29% unsolicited concern rate", "the finding that a partner-level communication meeting narrows the gap — suggesting the dignity cost is addressable by process design rather than requiring elimination of automated review", "the director's framing: the automation does the discovery work — and the human communication step restores the dignity signal the automation removed"],
+      "mustAvoid": ["a specific legal case or client", "implying automated document review is inherently harmful to clients or that attorneys should manually review every document"]
+    },
+    {
+      "domain": "AI-assisted military promotion screening: a service branch studying the dignity costs of algorithmic pre-screening for promotion boards alongside its consistency benefits",
+      "audience": "a military personnel policy director studying whether AI pre-screening of promotion board candidates produces measurable effects on officer trust and organizational identification relative to traditional board review",
+      "stakes": "promotion consistency across the force (benefit) and officer trust and organizational commitment — officers who believe their promotion was determined by an algorithm may experience a different relationship to their career than those who believe a board of senior officers evaluated their service record",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the policy director reviews the pilot program's second-year results: AI pre-screening reduced inter-board promotion recommendation variance by 26 percent and reduced apparent demographic rating disparities by 18 percent (consistency benefits); but officers who learned their promotion had been AI pre-screened before board review reported lower organizational commitment scores (3.6 vs. 4.1 on a 5-point scale) and lower agreement that their leadership qualities had been fully recognized (44 vs. 61 percent); the commitment gap was largest among officers promoted — meaning that successful career outcomes did not protect against the dignity cost of learning that a machine had first evaluated their service",
+      "firstImage": "a pilot program officer response comparison: AI pre-screened group versus traditional board group — with consistency benefits shown in one column and organizational commitment and recognition scores in the other column",
+      "mustInclude": ["the 26% variance reduction and 18% disparity reduction benefits", "the organizational commitment gap (3.6 vs. 4.1) and recognition gap (44 vs. 61 percent)", "the finding that the commitment gap appears even in officers who were promoted — the dignity cost is not explained by disappointment at outcomes", "the director's framing: the AI screening produced more consistent promotions and left promoted officers feeling less seen as individuals — both outcomes need to be in the policy calculation"],
+      "mustAvoid": ["a specific officer's promotion case", "implying AI assistance in promotion processes is inherently incompatible with officer dignity or that traditional promotion boards are free of bias"]
+    },
+    {
+      "domain": "automated software engineer performance review: a technology company studying the dignity costs of algorithmic performance assessment alongside its rating consistency benefits",
+      "audience": "a chief people officer studying whether automated performance metrics-driven annual reviews produce different dignity and engagement effects relative to manager-conducted reviews with equivalent rating accuracy",
+      "stakes": "rating consistency across the engineering organization (benefit) and engineer experience of being seen as a whole contributor rather than a code-contribution metric",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you compare pre- and post-automation review satisfaction data: after implementing automated performance scoring as the primary review input, inter-manager rating variance fell by 31 percent (consistency benefit); but engineer satisfaction with the question 'my performance review accurately reflects my contributions' fell from 68 to 51 percent favorable, and the proportion of engineers who reported 'I felt my unique contributions were recognized' fell from 71 to 48 percent; the engineers with the highest code contribution metrics showed the largest satisfaction decline — suggesting that the automation reduced dignity specifically for contributors whose work is harder to quantify than the metrics captured",
+      "firstImage": "a before-and-after comparison of two metrics: rating variance (decreased) and engineer satisfaction with recognition (decreased) — the cost and the benefit both visible and moving in opposite directions",
+      "mustInclude": ["the 31% variance reduction benefit alongside the satisfaction decline (68 to 51 percent) and recognition decline (71 to 48 percent)", "the finding that high-contribution engineers showed the largest satisfaction decline", "your framing: the automation solved the consistency problem and simultaneously communicated to nearly a quarter of the engineering team that their specific contributions had been replaced by a metric — and those are not the same engineers whose work is best captured by the metric"],
+      "mustAvoid": ["a specific engineer or technology company", "implying automated performance measurement has no place in software engineering organizations"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why procedural justice and dignity are genuine stakes in institutional decision-making rather than sentimental objections to standardization",
+      "identify the conditions under which standardization or automation is most likely to produce dignity costs for affected individuals",
+      "apply a dignity-aware design framework to a described automation proposal, identifying which process elements carry the highest dignity cost",
+      "analyze why positive outcomes do not necessarily protect against dignity costs in automated decision processes",
+      "evaluate whether a described standardization program has adequately weighed the dignity dimension alongside the consistency benefit"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of the most significant decision your institution makes that affects individual people — a loan approval, a benefits determination, a performance evaluation, a licensing decision. If that decision were delivered to the affected person with no human contact, no explanation of how their specific situation was considered, and no ability to ask questions: what percentage of people receiving that decision would feel they had been seen as individuals? That percentage is your starting measure of the dignity cost your current process imposes. Whether that cost is worth the consistency benefit is the calculation the chapter says must be done.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why procedural justice satisfaction — feeling seen as an individual — is a separate and measurable dimension from outcome accuracy, at least one 5+ sentence paragraph on how the same decision outcome can produce very different dignity experiences depending on whether the process communicated individual attention or categorical processing, at least one one-sentence punch line about what it means for an institution when the people it serves are correct in thinking no one actually looked at their case",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: in the most important decision your institution makes for individuals, does the process communicate 'someone reviewed your specific situation' or 'your data matched a category'? The research says these two experiences produce different trust, different compliance, and different long-term relationships with the institution — and that difference is worth measuring before choosing how much of it to trade for consistency",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-lean-startup-ch13",
+  "number": 13,
+  "title": "Epilogue: Waste Not",
+  "coreMove": "Audit where effort is being spent before learning arrives, then pull the truth earlier so insight is not discarded or bought too late.",
+  "sourcePressure": "The closing synthesis frames waste as wasted effort, wasted learning, and wasted opportunity caused by applying old management habits under uncertainty.",
+  "chapterSpecificMisunderstanding": "Reducing the epilogue to thrift, efficiency, or a recap of lean tools.",
+  "sourceAlignmentTerms": [
+    "waste not",
+    "wasted effort",
+    "wasted learning",
+    "wasted opportunity",
+    "management under uncertainty",
+    "disciplined experimentation",
+    "preserve insight"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Waste Not",
+      "detail": "the sidecar says the epilogue compresses the larger anti-waste argument",
+      "useIn": "both",
+      "phrasingHint": "Waste Not means protecting effort from old certainty habits when the work still needs proof."
+    },
+    {
+      "kind": "artifact",
+      "name": "Validated learning and disciplined experimentation",
+      "detail": "the sidecar says the synthesis should stay connected to these ideas",
+      "useIn": "fullRead",
+      "phrasingHint": "The cleanest way to waste less is to make learning arrive before commitment hardens around the wrong answer."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Epilogue: Waste Not.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "software roadmap cleanup",
+      "audience": "product leadership team",
+      "stakes": "months of effort could be spent before the riskiest truth arrives",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Marta marks every roadmap item by whether it buys truth early or late",
+      "firstImage": "a wall roadmap covered with colored tape",
+      "mustInclude": [
+        "roadmap tape",
+        "risk labels",
+        "evidence date"
+      ],
+      "mustAvoid": [
+        "generic epilogue: waste not office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "city grant program redesign",
+      "audience": "civic innovation office",
+      "stakes": "public money may fund polished plans before resident behavior is tested",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Peter moves one resident test before the grant application rewrite",
+      "firstImage": "a grant binder beside a neighborhood survey box",
+      "mustInclude": [
+        "grant binder",
+        "resident test",
+        "budget line"
+      ],
+      "mustAvoid": [
+        "generic epilogue: waste not office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "independent film crowdfunding plan",
+      "audience": "producer team",
+      "stakes": "campaign polish may waste the chance to learn audience demand cheaply",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Nina tests a trailer pledge page before booking locations",
+      "firstImage": "a clapboard leaning against a laptop showing pledge totals",
+      "mustInclude": [
+        "trailer page",
+        "pledge button",
+        "location hold"
+      ],
+      "mustAvoid": [
+        "generic epilogue: waste not office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "warehouse automation proposal",
+      "audience": "operations executive",
+      "stakes": "capital spending may bury a cheap workflow lesson",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Lukas asks for one manual simulation before the machinery quote",
+      "firstImage": "a forklift lane taped with temporary arrows",
+      "mustInclude": [
+        "manual simulation",
+        "machinery quote",
+        "cycle timer"
+      ],
+      "mustAvoid": [
+        "generic epilogue: waste not office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "regional nursing apprenticeship",
+      "audience": "workforce nonprofit",
+      "stakes": "curriculum buildout may discard early insight from candidates",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hadiya interviews and tests one shadow shift before writing the full program",
+      "firstImage": "a scrub top folded beside an application form",
+      "mustInclude": [
+        "shadow shift",
+        "application form",
+        "curriculum outline"
+      ],
+      "mustAvoid": [
+        "generic epilogue: waste not office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "boutique hotel loyalty redesign",
+      "audience": "hospitality marketing team",
+      "stakes": "beautiful loyalty tiers may waste learning about why guests return",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Antoine tests one checkout offer before redesigning the whole program",
+      "firstImage": "a room key sleeve with a handwritten checkout offer",
+      "mustInclude": [
+        "room key sleeve",
+        "checkout offer",
+        "return booking code"
+      ],
+      "mustAvoid": [
+        "generic epilogue: waste not office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Epilogue: Waste Not from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Audit where effort is being spent before learning arrives, then pull the truth earlier so insight is not discarded or bought too late.",
+      "Diagnose when a team is drifting into the misread: Reducing the epilogue to thrift, efficiency, or a recap of lean tools."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Audit where effort is being spent before learning arrives, then pull the truth earlier so insight is not discarded or bought too late. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

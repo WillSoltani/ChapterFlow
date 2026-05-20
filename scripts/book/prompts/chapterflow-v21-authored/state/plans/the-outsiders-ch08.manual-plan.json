@@ -1,0 +1,199 @@
+{
+  "chapterId": "the-outsiders-ch08",
+  "number": 8,
+  "title": "The Investor as CEO",
+  "coreMove": "Let operators run their businesses while the center keeps strict ownership of capital allocation, trust, and long-range value judgment.",
+  "sourcePressure": "Warren Buffett and Berkshire Hathaway show the cleanest fusion of operator and investor logic: decentralized operating trust governed by central capital allocation judgment.",
+  "chapterSpecificMisunderstanding": "Do not drift into Buffett fandom or investment advice; scenes must show central capital judgment strengthening decentralized execution.",
+  "sourceAlignmentTerms": [
+    "Warren Buffett",
+    "Berkshire Hathaway",
+    "investor-operator fusion",
+    "decentralized operations",
+    "holding company",
+    "capital allocation",
+    "central judgment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Warren Buffett",
+      "detail": "The source sidecar pairs Chapter 8 with Warren Buffett and says he is the clearest fusion of operator and investor logic.",
+      "useIn": "both",
+      "phrasingHint": "Warren Buffett matters here because the investor lens is not commentary from outside the business; it is the way the business is run."
+    },
+    {
+      "kind": "place",
+      "name": "Berkshire Hathaway",
+      "detail": "The source sidecar presents Berkshire Hathaway as a diversified holding company shaped by acquisitions and decentralized operating structure.",
+      "useIn": "fullRead",
+      "phrasingHint": "Berkshire Hathaway makes decentralization demanding because local trust still depends on central capital judgment."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Invest like a CEO",
+      "Great leaders trust people",
+      "Capital allocation is the CEO job"
+    ],
+    "counterintuition": [
+      "Decentralization means no center",
+      "Investing is separate from operating",
+      "Trust replaces resource judgment"
+    ],
+    "tryThisNow": [
+      "Delegate more",
+      "Review your budget",
+      "Think like an investor"
+    ],
+    "examples": [
+      "debate squads with central prep budget",
+      "finance club decentralization",
+      "side projects governed from one board",
+      "autonomous teams generic"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Matthew",
+      "domain": "multi-site dental group where clinics run locally but expansion capital is central",
+      "audience": "a CEO deciding which clinic earns the next imaging machine",
+      "stakes": "local autonomy could become politics if capital follows the loudest partner",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Matthew leaves appointment protocols local, then allocates the imaging machine using referral leakage, payback, and operator trust rather than clinic lobbying.",
+      "firstImage": "a panoramic X-ray sleeve beside three clinic capital requests",
+      "mustInclude": [
+        "capital requests",
+        "referral leakage",
+        "payback table"
+      ],
+      "mustAvoid": [
+        "medical authority as the main lesson"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "independent publishing group with autonomous imprints and one central rights budget",
+      "audience": "a managing director protecting editorial freedom while allocating translation advances",
+      "stakes": "a weak rights bet ties up cash that stronger imprints could compound",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Frida tells imprint heads their lists remain theirs, then ranks translation advances centrally by rights value and editor track record.",
+      "firstImage": "foreign-rights catalogs spread beside a red pencil",
+      "mustInclude": [
+        "translation advances",
+        "rights value table",
+        "editor track record"
+      ],
+      "mustAvoid": [
+        "book publishing meta about this source"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "equipment rental holding company with branch managers owning daily operations",
+      "audience": "a holding-company president deciding whether to reinvest in cranes, pumps, or aerial lifts",
+      "stakes": "capital misallocated by branch preference can depress returns for years",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ryan asks branch managers to predict fleet return by category, then centralizes the capital call while leaving dispatch and pricing authority local.",
+      "firstImage": "a crane hook swinging over a yard utilization board",
+      "mustInclude": [
+        "fleet return table",
+        "branch requests",
+        "dispatch autonomy rule"
+      ],
+      "mustAvoid": [
+        "generic logistics allocation"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "restaurant holding company with chefs running kitchens independently",
+      "audience": "an owner deciding whether to fund a bakery commissary or individual dining-room upgrades",
+      "stakes": "chef autonomy could turn into scattered capital unless the center judges the better compounding use",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Margaux refuse to change menus, gather each chef's prep bottleneck, and fund the commissary because it improves returns across restaurants without taking kitchens over.",
+      "firstImage": "flour fingerprints on a prep bottleneck worksheet",
+      "mustInclude": [
+        "prep bottleneck notes",
+        "commissary quote",
+        "dining-room upgrade list"
+      ],
+      "mustAvoid": [
+        "restaurant vibe as main content"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "search-fund acquired group of HVAC service companies",
+      "audience": "an operator-investor overseeing local managers after acquisitions",
+      "stakes": "central meddling could ruin service culture, but loose capital spending could erase returns",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "After one quarter of noisy requests, Chris gives managers control of dispatch and hiring while centralizing truck purchases under a return-on-capital hurdle.",
+      "firstImage": "van keys hanging under branch labels on a peg rail",
+      "mustInclude": [
+        "truck purchase request",
+        "return hurdle",
+        "dispatch autonomy"
+      ],
+      "mustAvoid": [
+        "private equity worship; keep investor-operator fusion"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "distributed childcare centers with local directors and one owner board",
+      "audience": "a board member deciding where renovation capital belongs",
+      "stakes": "director trust is high but capital needs vary wildly across safety, enrollment, and payback",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "How do you trust directors without letting capital drift? Kiran lets centers run daily care while the board allocates renovation funds by safety risk, enrollment demand, and operator reliability.",
+      "firstImage": "a playground inspection tag clipped to a capital request folder",
+      "mustInclude": [
+        "safety score",
+        "enrollment waitlist",
+        "operator reliability notes"
+      ],
+      "mustAvoid": [
+        "childcare sentiment as substitute for allocation"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate decentralized execution from central capital judgment",
+      "detect when autonomy becomes neglect",
+      "apply investor-operator thinking without stock-picking lore",
+      "evaluate trust plus resource allocation as one governance system"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one area where people should keep local control and one resource decision that should stay central; write the measure that decides the central call.",
+  "readingTimeMinutes": 12
+}

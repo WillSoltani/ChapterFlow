@@ -10,7 +10,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
-import { BookBrief, ChapterDesignDoc } from "../types.js";
+import { BookBrief, ChapterDesignDoc, PriorChapterShapes } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -25,6 +25,9 @@ export type BreakdownInput = {
   brief: BookBrief;
   plan: ChapterDesignDoc;
   chapterSource?: string;
+  /** Shapes of every prior chapter in this book. The writer uses this to
+   *  diversify the counterintuition shape away from over-used patterns. */
+  priorChapterShapes?: PriorChapterShapes;
 };
 
 const MAX_BREAKDOWN_RETRIES = 2;
@@ -96,6 +99,15 @@ function buildUserPrompt(input: BreakdownInput): string {
     parts.push("");
     parts.push(`# Chapter source excerpt (reference only — do not quote without attribution, do not narrate the source)`);
     parts.push(input.chapterSource);
+  }
+  if (input.priorChapterShapes && input.priorChapterShapes.priorCounterShapes.length > 0) {
+    parts.push("");
+    parts.push(`# Prior chapter context`);
+    parts.push("If any single counterintuition shape has been used in 40%+ of prior chapters, do NOT use that shape for this counterintuition. Pick a different paradox-signal shape.");
+    parts.push("");
+    parts.push("```json");
+    parts.push(JSON.stringify(input.priorChapterShapes, null, 2));
+    parts.push("```");
   }
   parts.push("");
   parts.push(`Write the BreakdownOutput JSON now (easy, medium, hard).`);

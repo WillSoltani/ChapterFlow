@@ -1,0 +1,124 @@
+{
+  "chapterId": "competing-against-luck-ch10",
+  "number": 10,
+  "title": "Final Observations About the Theory of Jobs",
+  "coreMove": "Use Jobs Theory to sharpen the causal question — not to claim certainty — and mark where the explanation holds and where judgment and evidence still do the work.",
+  "sourcePressure": "Jobs Theory is a causal lens, not a guarantee. It improves explanation by redirecting attention toward the circumstances and forces governing a buyer's choice, moving from product-attribute logic toward progress-in-context logic. Better causal explanation is the gain — not omniscience, not elimination of risk. A well-formed jobs statement is a sharpened hypothesis, not a confirmed finding. Treating it as proof rather than as a starting point for evidence is the final misuse of the theory.",
+  "chapterSpecificMisunderstanding": "Treating a well-formed jobs statement as sufficient evidence of demand — assuming that a clear, plausible jobs analysis means the team understands the market well enough to commit, rather than treating it as a hypothesis that still requires testing against observable behavior and changing circumstances.",
+  "sourceAlignmentTerms": ["causal", "explanation", "uncertainty", "limit", "hypothesis", "evidence", "judgment", "circumstance", "lens"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Jobs Theory is not magic. It is a tool.",
+      "Even the best framework has limits.",
+      "Customer understanding is an ongoing process, not a destination."
+    ],
+    "counterintuition": [
+      "Knowing Jobs Theory can make your failures more sophisticated.",
+      "The more confident you are about the job, the more dangerous your next mistake."
+    ],
+    "tryThisNow": [
+      "Review your jobs analysis and list three things it doesn't explain.",
+      "Ask what would make your jobs statement wrong.",
+      "Build in a regular review of whether the job has changed."
+    ],
+    "examples": [
+      "any example where the jobs analysis is just wrong and the lesson is 'do more research' rather than 'treat the analysis as a hypothesis requiring evidence'",
+      "examples that conclude with a neat jobs fix as proof the theory worked — the beat must show the theory as a causal lens that sharpens questions, not a solution that guarantees answers"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["retrospective", "dialogue_first", "sensory_first", "timestamp_named", "second_person", "question_hook"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "urban mobility startup product hypothesis",
+      "audience": "a co-founder reviewing a stalled product six months after a well-framed jobs launch",
+      "stakes": "whether Anna can distinguish between a failed jobs analysis and a jobs analysis treated as certainty rather than hypothesis",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Anna's team identified a clear job: enable people to travel across a dense city in under 20 minutes without car ownership. The analysis was good. The launch got traction. Six months in, a city permit structure changed and removed the primary route. The team had no evidence-collection habit — they had treated the jobs analysis as proof and stopped testing whether the circumstances that activated the hire were still holding. Jobs Theory gave them a stronger question. It couldn't account for a circumstance the team stopped watching.",
+      "firstImage": "a product launch photo on the wall, a permit-revocation notice pinned below it, the gap between them six months of silence",
+      "mustInclude": ["a jobs analysis that was genuinely well-formed and initially confirmed by market traction", "a city permit change that removed the primary circumstance activating the hire", "the absence of an ongoing evidence-collection habit as the specific failure — not the analysis, but the certainty it was treated with"],
+      "mustAvoid": ["'startups need to be agile' framing — the beat must show Jobs Theory as a strong causal tool that still requires ongoing circumstance testing, not that it failed or was wrong"]
+    },
+    {
+      "domain": "scientific research lab diagnostic tool development",
+      "audience": "a lab director responding to a postdoc's jobs-framed research proposal",
+      "stakes": "whether Javier can show the team the difference between a jobs-framed hypothesis and a jobs-confirmed finding",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "'Clinicians don't need perfect accuracy. They need to reduce decision time.' The postdoc has a plausible jobs statement. Javier's response: 'You've named a testable hypothesis. Now tell me the test that would prove you wrong.' The research team has to distinguish between a jobs-framed hypothesis (a better starting question) and a jobs-confirmed finding (evidence that clinicians actually trade accuracy for speed in this specific decision context). The theory sharpened what to test; it doesn't replace the experiment.",
+      "firstImage": "'Clinicians don't hire diagnostic tools for accuracy,' the postdoc says, advancing the slide to a single jobs statement",
+      "mustInclude": ["a jobs-framed hypothesis (accuracy vs. decision time) as a plausible but unconfirmed claim", "Javier's falsification question as the test of whether the team understands the difference", "a research protocol context that requires evidence, not just a sharper question"],
+      "mustAvoid": ["'science requires hypothesis testing' generality — the beat must show Jobs Theory specifically as the tool that sharpened the hypothesis, and Javier applying the falsification question as the distinction between jobs-as-lens and jobs-as-proof"]
+    },
+    {
+      "domain": "independent film festival distribution",
+      "audience": "a distribution strategist whose jobs-based analysis correctly identified a market but whose plan failed anyway",
+      "stakes": "whether Marta can name what the jobs analysis gave her and what it couldn't give her",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marta identified the job correctly: two adults who want to feel like they made a cultural choice together without leaving home on a weeknight. The streaming distribution plan built on the analysis failed. The job was real. The path from job-identified to job-hired was incomplete — the streaming platform's algorithm doesn't surface films meeting that job description in the browsing moment. The jobs analysis correctly named the demand; it didn't map the causal path from demand to hire. More evidence, not better theory, was what the plan needed.",
+      "firstImage": "festival banners reflected in a rain-wet cobblestone street, a streaming app logo on a phone in the foreground, the two images not quite aligned",
+      "mustInclude": ["a specific and accurate jobs statement for the film distribution context", "a streaming algorithm as the missing causal link between the job and the hire", "a post-launch reflection that distinguishes 'the analysis was right' from 'the analysis was sufficient'"],
+      "mustAvoid": ["'streaming disrupts independent film distribution' framing — the beat must show the jobs analysis as accurate but incomplete, requiring additional causal mapping rather than a better theoretical frame"]
+    },
+    {
+      "domain": "financial acquisition due diligence",
+      "audience": "an investment analyst presenting a jobs-based acquisition thesis and its post-acquisition outcome",
+      "stakes": "whether Vincent can trace the circumstance-stability assumption that the jobs thesis relied on without testing",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:55 p.m., Vincent presents a jobs-based acquisition thesis: the company is hired by procurement managers to reduce approval cycle time, not to cut unit cost. The committee approves. Eighteen months post-acquisition, the company loses its largest client. The new procurement team was hired for compliance, not speed. The jobs thesis was accurate at acquisition. It assumed the circumstance — a specific procurement team composition — was stable. The theory gave a stronger causal diagnosis at the time of purchase. It couldn't make the circumstance stop changing.",
+      "firstImage": "a thesis slide at 4:55 p.m., 'Why customers hire them' as the slide title, a single sentence below it",
+      "mustInclude": ["a procurement manager role change that altered the circumstance activating the hire", "the original jobs thesis as genuinely well-formed and verified at acquisition", "a circumstance-stability assumption that was never explicitly named or tested in the due diligence"],
+      "mustAvoid": ["'due diligence is insufficient in acquisitions' generality — the beat must show Jobs Theory as a strong causal tool that still requires ongoing circumstance testing, and name the specific assumption (stable procurement team) that the analysis didn't monitor"]
+    },
+    {
+      "domain": "product incubator screening process",
+      "audience": "an incubator program director evaluating two pitch teams on the quality of their jobs analysis",
+      "stakes": "whether Léa votes for the sharper jobs statement or the team that has the discipline to test it",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You are screening two pitches. Both have jobs analyses. Team A: a sharp, compelling jobs statement. Team B: a hazier statement but an explicit answer to 'what would make us wrong?' You ask Team A: 'What evidence would change your analysis?' They cite more confirmatory interviews. You vote for Team B — because the theory's value is in the questioning discipline, not the polished statement. A sharper jobs statement with no falsification habit is more dangerous than a hazier one with a test.",
+      "firstImage": "two pitch decks on the table, both open to 'Customer Job' slides — the second-person reader about to vote",
+      "mustInclude": ["a falsification question as the deciding criterion", "Team A's confirmatory-evidence answer as the failure signal", "Team B's test-design answer as the success signal"],
+      "mustAvoid": ["'pitch quality is not just about clarity' generality — the beat must show the falsification discipline as the specific application of Jobs Theory as a causal lens, and make the vote a direct consequence of which team understands that distinction"]
+    },
+    {
+      "domain": "museum acquisition committee",
+      "audience": "a collections curator stopping the acquisition committee with one question they have never been asked",
+      "stakes": "whether Hiroshi's question clarifies the next vote or just adds another layer of deliberation",
+      "format": "question_hook",
+      "openingDevice": "question_hook",
+      "requiredBeat": "'What job are we hiring this artwork to do for the collection?' The committee has provenance criteria, market-value criteria, and aesthetic-alignment criteria. The jobs question stops the room. After fifteen minutes of application, the committee realizes three pending acquisitions all serve the same 'anchor a new gallery' job — while the collection has an unmet job: something that a twelve-year-old visitor hires to stay in the room longer than sixty seconds. The jobs question did not decide the vote. It clarified what vote was actually needed. That is what the theory does: it sharpens the question. Judgment and evidence still do the rest.",
+      "firstImage": "'What job does this piece do for the collection?' — the question before anyone, including Hiroshi, has appeared",
+      "mustInclude": ["three pending acquisitions serving the same gallery-anchor job as the redundancy the question exposes", "a twelve-year-old visitor context as the unmet job the question surfaces", "a clear ending that shows the question sharpening — not answering — what the committee needs to decide"],
+      "mustAvoid": ["'museums need to attract younger visitors' framing — the beat must show Jobs Theory as a question-sharpening tool that clarifies the decision without replacing the judgment, and end on the committee better equipped to decide, not on a jobs-derived answer"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish between a jobs-framed hypothesis and a jobs-confirmed finding in a given scenario",
+      "identify the assumption in a jobs analysis that requires ongoing testing rather than one-time validation",
+      "apply the falsification question to a jobs statement: what observable evidence would change this analysis?",
+      "analyze a failure where the jobs analysis was accurate but was treated as certainty rather than hypothesis",
+      "evaluate whether a team is using Jobs Theory as a causal lens (question-sharpener requiring evidence) or as a certainty-generator (answer that replaces evidence)"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take your clearest jobs statement — the one you are most confident in. Write one sentence naming the circumstance that activates the hire. Write a second sentence naming one change to that circumstance that would make the job evaporate. If you cannot write the second sentence, you have a jobs statement that assumes its own stability. That assumption is what Jobs Theory cannot protect you from.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter that states the limit of Jobs Theory plainly — what it cannot do — without apologizing for it; at least one 5+ sentence paragraph that traces the difference between using the theory as a lens and using it as a guarantee through a single case; at least one one-sentence punch line that names what jobs thinking actually earns teams: a better question, not a certain answer",
+    "fullReadInterludeRequirement": "at least one passage that directly addresses the reader as someone who might be tempted to treat a good jobs analysis as done — and shows in plain terms what the discipline of treating it as a hypothesis actually requires in the next decision",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

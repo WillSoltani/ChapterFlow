@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch07",
+  "number": 7,
+  "title": "Purpose",
+  "coreMove": "Tie the learning task to a reason strong enough to outlast the first wave of discomfort.",
+  "sourcePressure": "The motivation section begins with purpose as the durable reason that makes effort survive beyond mood and shallow urgency.",
+  "chapterSpecificMisunderstanding": "Treating purpose as inspirational slogan or implying everyone already knows theirs.",
+  "sourceAlignmentTerms": [
+    "purpose",
+    "meaning",
+    "durable effort",
+    "chosen direction",
+    "mood",
+    "shallow urgency",
+    "motivation"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Purpose with a generic unlocked potential claim.",
+      "Do not start with a definition of purpose."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "palliative care volunteer training",
+      "audience": "volunteer learning difficult family scripts",
+      "stakes": "a frightened spouse needs steadiness, not performance",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Laura",
+      "requiredBeat": "Laura writes the person she is serving at the top of the practice card before rehearsing the script again.",
+      "firstImage": "a folded practice card beside a tissue box",
+      "mustInclude": [
+        "practice card",
+        "tissue box",
+        "training badge"
+      ],
+      "mustAvoid": [
+        "medical heroism",
+        "vague meaning talk"
+      ]
+    },
+    {
+      "domain": "apprentice electrician night class",
+      "audience": "student exhausted after a full shift",
+      "stakes": "licensing study competes with sleep and overtime",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Mikkel",
+      "requiredBeat": "Mikkel links the next code section to the future job site he wants to sign off safely, then studies one page.",
+      "firstImage": "work boots leaving dust under a classroom desk",
+      "mustInclude": [
+        "code book",
+        "dusty boots",
+        "licensing calendar"
+      ],
+      "mustAvoid": [
+        "grind culture",
+        "money-only motivation"
+      ]
+    },
+    {
+      "domain": "community orchestra audition",
+      "audience": "violinist rebuilding practice after years away",
+      "stakes": "her daughter will watch the audition from the back row",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "protagonistName": "Giulia",
+      "requiredBeat": "Giulia turns practice from proving she still has talent into showing her daughter how adults return to hard things.",
+      "firstImage": "rosin dust on a black violin case",
+      "mustInclude": [
+        "violin case",
+        "audition notice",
+        "rosin cloth"
+      ],
+      "mustAvoid": [
+        "nostalgic comeback",
+        "generic family inspiration"
+      ]
+    },
+    {
+      "domain": "firefighter academy written exam",
+      "audience": "candidate bored by building-code memorization",
+      "stakes": "a future crew will depend on code decisions under smoke",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "protagonistName": "Antoine",
+      "requiredBeat": "Antoine says the real reason for the code aloud before choosing the next ten flashcards.",
+      "firstImage": "flashcards spread beside a turnout coat",
+      "mustInclude": [
+        "flashcards",
+        "turnout coat",
+        "academy roster"
+      ],
+      "mustAvoid": [
+        "hero fantasy",
+        "test prep only"
+      ]
+    },
+    {
+      "domain": "adult literacy tutoring",
+      "audience": "learner wants to read school forms without hiding",
+      "stakes": "a parent-teacher conference is next month",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "protagonistName": "Anna",
+      "requiredBeat": "Anna writes the conference date beside the reading worksheet so each sentence points at a room she wants to enter differently.",
+      "firstImage": "a school form clipped to a blue folder",
+      "mustInclude": [
+        "school form",
+        "blue folder",
+        "conference date"
+      ],
+      "mustAvoid": [
+        "sentimentality",
+        "literacy miracle"
+      ]
+    },
+    {
+      "domain": "software accessibility audit",
+      "audience": "developer learning screen-reader basics",
+      "stakes": "blind users are blocked from booking appointments",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "protagonistName": "Aanya",
+      "requiredBeat": "Aanya runs the booking form through a screen reader and lets the frustrated audio become the reason to learn the labels.",
+      "firstImage": "robotic screen-reader voice filling a quiet office",
+      "mustInclude": [
+        "screen reader",
+        "booking form",
+        "label checklist"
+      ],
+      "mustAvoid": [
+        "tech compliance",
+        "shame-heavy accessibility"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when tie the learning task to a reason strong enough to outlast the first wave of discomfort. is needed in a new scenario.",
+      "Choose the visible action that matches Purpose rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the person, promise, or future room that makes today's learning effort worth discomfort.",
+  "readingTimeMinutes": 12
+}

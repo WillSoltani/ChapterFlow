@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch03",
+  "number": 3,
+  "title": "A Noisy System",
+  "coreMove": "See how systems normalize noise by distributing scatter across many judgment points rather than concentrating it where it would be visible.",
+  "sourcePressure": "The chapter widens from one dramatic example (courts, insurance) to the institutional picture: many judgment points operating without comparison accumulate scatter invisibly. Local judgment may sound reasonable while the distribution across the whole system remains unstable. Accountability becomes harder when spread is dispersed rather than concentrated.",
+  "chapterSpecificMisunderstanding": "Assuming that if no single judgment looks obviously wrong, the system as a whole is working acceptably — treating the absence of visible outliers as proof of system health.",
+  "sourceAlignmentTerms": ["system", "distributed noise", "institutional", "judgment point", "visibility", "accountability", "accumulation"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Multi-point institutional judgment systems",
+      "detail": "Systems across medicine, insurance, housing, and public administration contain many sequential judgment points. When each point looks locally reasonable, the combined spread across the system can be large and hidden.",
+      "useIn": "fullRead",
+      "phrasingHint": "A hospital admissions process has triage, then bed allocation, then initial diagnosis. Each step involves judgment. No single step looks broken. But a patient entering on Monday versus Friday may receive a different set of decisions at each step — and the cumulative spread is invisible because no one ever lines up Monday's patient beside Friday's patient."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["organizations are full of hidden inconsistency", "the system is broken in ways we cannot see"],
+    "counterintuition": ["organizations hide their problems better than individuals do", "the whole can be noisier than the sum of its parts"],
+    "tryThisNow": ["draw your organization's decision flowchart", "list every step in a decision you make regularly"],
+    "examples": ["a scene that implies one department or one manager is the problem", "an example that resolves the system noise with a clear single fix"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "System-level noise is abstract; the examples need varied entry points to stay concrete and prevent the chapter from feeling like a management presentation."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital patient pathway from emergency triage through bed allocation to initial ward assignment",
+      "audience": "a hospital operations manager studying why two patients with the same triage score receive different care pathways",
+      "stakes": "patient outcomes and equitable access to the right level of care — with downstream effects on length of stay and readmission",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the manager traces one patient's path through three sequential judgment points (triage, bed allocation, ward assignment) and identifies that each step introduced independent scatter — and that no single step looked wrong when examined alone",
+      "firstImage": "a hospital corridor at shift change, three whiteboards showing triage scores, bed availability, and ward lists in handwritten numbers that do not visibly connect to each other",
+      "mustInclude": ["three separate judgment points", "each step looks reasonable in isolation", "the accumulated spread is only visible when the full path is drawn"],
+      "mustAvoid": ["implying any individual clinician made a wrong call", "focusing on patient outcomes rather than systemic scatter"]
+    },
+    {
+      "domain": "airline maintenance approval chain across three sign-off stations on the same aircraft",
+      "audience": "a safety investigator reviewing why a fault was flagged by one inspector and cleared by two others",
+      "stakes": "aircraft airworthiness — the discrepancy reveals that the same fault was assessed differently at different stations, not that any inspector was negligent",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two inspectors from different stations compare their sign-off notes and discover that what one marked as a precautionary flag, the other cleared as within tolerance, using the same technical manual",
+      "firstImage": "two maintenance logbooks open on the same workshop table, the fault notation in one and a clear signature in the other for the same aircraft tail number",
+      "mustInclude": ["same fault, same manual, different assessment", "neither inspector unaware of the other's assessment at the time", "the systemic question about how many similar divergences go undetected"],
+      "mustAvoid": ["implying an aviation disaster scenario", "framing one inspector as right and the other as wrong"]
+    },
+    {
+      "domain": "tax audit selection across two regional offices applying the same selection criteria",
+      "audience": "a national tax authority official conducting a cross-regional calibration review",
+      "stakes": "taxpayers in different regions facing very different audit risk for identical financial profiles — an equity problem invisible within any single region",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the official discovers that for a matched set of small-business returns with identical financial profiles, one region selects 18 percent for audit and the other selects 4 percent — and each region's selection team believes it is applying the national criteria correctly",
+      "firstImage": "two stacks of printed taxpayer files, one twice as tall as the other, representing the audit-selected cases from two regions with the same population of returns",
+      "mustInclude": ["identical financial profiles across regions", "both teams believing they are applying the same criteria", "the equity implication for taxpayers"],
+      "mustAvoid": ["implying either region is corrupt or negligent", "a scene that focuses on any individual taxpayer's case"]
+    },
+    {
+      "domain": "social housing allocation across multiple caseworkers in the same municipality",
+      "audience": "a housing authority supervisor reviewing two years of allocation data",
+      "stakes": "families in genuine housing need whose priority score depends partly on which caseworker processed their application",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the supervisor discovers that families with nearly identical need profiles received different priority scores depending on which caseworker processed their case — and that the accumulated difference in waiting times is now measurable in months",
+      "firstImage": "a spreadsheet with anonymous family ID numbers on the left, need-profile columns in the middle showing identical values, and priority scores in the last column showing a range of 40 to 82 for cases that should be within a few points of each other",
+      "mustInclude": ["comparable need profiles", "the caseworker-level spread", "the downstream waiting-time consequence of accumulated scoring noise"],
+      "mustAvoid": ["implying any caseworker intentionally disadvantaged applicants", "a scene focused on one family's specific hardship"]
+    },
+    {
+      "domain": "pharmaceutical regulatory review across two parallel review teams evaluating the same clinical dossier",
+      "audience": "a regulatory agency quality officer who assigned the same dossier to two teams as a calibration exercise",
+      "stakes": "market authorization — if parallel reviews diverge on risk classification, the agency cannot be confident that its single-reviewer decisions are consistent",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you receive the two teams' risk classification reports and find they placed the same drug in different risk categories with different labeling requirements; you must decide whether to treat this as an edge case or as evidence of a systemic calibration problem",
+      "firstImage": "two printed regulatory assessments with different risk tier classifications highlighted in different colors at the top of each document",
+      "mustInclude": ["same dossier, same guidelines, two teams", "the classification divergence", "your decision about whether the divergence is systemic or a one-off"],
+      "mustAvoid": ["implying the drug is dangerous or that either team made a safety error", "resolving the decision — the point is the systemic question it raises"]
+    },
+    {
+      "domain": "environmental permit review across three regional offices of the same agency",
+      "audience": "a national environmental regulator mapping permit approval rates for comparable industrial applications",
+      "stakes": "consistent environmental protection across regions — applications for identical emission levels are being approved in one region and denied in another",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the regulator asks: if the same industrial application — identical declared emissions, identical mitigation plan — were submitted to each of our three regional offices, how many would approve it? The honest answer, drawn from comparing recent decisions, is: probably not all three",
+      "firstImage": "a map of three regions with permit approval rates in small numbers printed in each region's area — the numbers differ substantially for similar types of application",
+      "mustInclude": ["the identical application premise", "the honest answer that approval rates diverge across regions", "the implication that environmental outcomes depend partly on geography rather than emissions alone"],
+      "mustAvoid": ["implying any regional office is corrupt or politically compromised", "a scene that focuses on a specific environmental hazard rather than systemic consistency"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify how distributed judgment points can produce system-level noise without any individual point looking wrong",
+      "apply the systemic noise concept to a non-institutional context (a household, a small team)",
+      "distinguish a noisy system from a biased system in terms of what each looks like from inside and outside",
+      "analyze why accountability is harder when scatter is dispersed across many steps",
+      "evaluate whether a proposed single-point fix adequately addresses noise distributed across multiple judgment steps"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one process in your organization where three or more different people make separate judgment calls before a final decision. Write down whether anyone ever compares the intermediate judgments across comparable cases. If not, that comparison gap is where system-level noise lives.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) crystallizing the distributed-noise concept, at least one longer paragraph (5+ sentences) tracing multiple steps in a single system, at least one one-sentence punch line about what system health actually requires",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a direct question to the reader about whether they can name the judgment points in their own organization's decision pipeline",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

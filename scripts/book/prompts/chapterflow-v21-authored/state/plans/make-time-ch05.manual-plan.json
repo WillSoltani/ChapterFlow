@@ -1,0 +1,183 @@
+{
+  "chapterId": "make-time-ch05",
+  "number": 5,
+  "title": "Reflect",
+  "coreMove": "Turn today's evidence into one small adjustment for tomorrow instead of judging the whole system by mood.",
+  "sourcePressure": "The source sidecar links Reflect to a small scientific-method loop: notice what worked and failed, then refine, add, or drop tactics without turning reflection into formal analytics.",
+  "chapterSpecificMisunderstanding": "The wrong generic version says journal about productivity or track every habit. The specific move is to make one evidence-based adjustment to the next Make Time attempt.",
+  "sourceAlignmentTerms": [
+    "Reflect",
+    "experiment",
+    "worked",
+    "failed",
+    "refine",
+    "add",
+    "drop"
+  ],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "journal before bed",
+      "perfect habit tracker",
+      "weekly review ritual"
+    ],
+    "counterintuition": [
+      "failure is feedback",
+      "what gets measured gets managed"
+    ],
+    "tryThisNow": [
+      "rate your day from one to ten",
+      "write three things that went well"
+    ],
+    "examples": [
+      "generic bullet journal",
+      "spreadsheet habit tracker",
+      "student reviewing grades",
+      "manager doing a weekly retro"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a ceramics kiln technician adjusting glaze-test timing",
+      "audience": "a craft operator who needs evidence rather than self-blame after a failed firing",
+      "stakes": "the next batch clouds again if the failed timing is repeated",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she writes worked, failed, and change beside the test tiles, drops the late-night loading tactic, and refines tomorrow's firing start by thirty minutes",
+      "firstImage": "three cloudy glaze tiles cooling on a wire rack",
+      "mustInclude": [
+        "test tiles",
+        "firing start time",
+        "worked-failed-change note"
+      ],
+      "mustAvoid": [
+        "generic craft reflection",
+        "perfectionist artist spiral"
+      ]
+    },
+    {
+      "domain": "a public defender revising arraignment prep after a chaotic morning",
+      "audience": "a lawyer who needs to learn from a bad setup without redesigning the whole practice",
+      "stakes": "tomorrow's client interview starts late again if the broken prep order is repeated",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "he chooses one adjustment: add a printed docket pull before hallway calls, while keeping the Highlight and Laser tactics that worked",
+      "firstImage": "a folded arraignment docket beside a courthouse security bin receipt",
+      "mustInclude": [
+        "printed docket",
+        "hallway calls",
+        "one adjustment"
+      ],
+      "mustAvoid": [
+        "generic legal productivity",
+        "full life overhaul"
+      ]
+    },
+    {
+      "domain": "a robotics club mentor reviewing a failed sensor calibration session",
+      "audience": "a volunteer coach teaching students to treat tactics as experiments",
+      "stakes": "the team wastes another build night if the calibration setup is blamed vaguely",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she asks the students which Laser barrier worked and which setup failed, then writes add a parts tray as tomorrow's single experiment",
+      "firstImage": "a small distance sensor blinking beside a pile of loose screws",
+      "mustInclude": [
+        "sensor calibration sheet",
+        "parts tray",
+        "tomorrow's experiment"
+      ],
+      "mustAvoid": [
+        "classroom lecture",
+        "generic STEM competition montage"
+      ]
+    },
+    {
+      "domain": "a farmers market gate supervisor testing a new shopper-count routine",
+      "audience": "an operations lead who needs quick learning without a heavy dashboard",
+      "stakes": "the market misprices stall fees again if the count routine is kept only because it sounded efficient",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "before, he keeps the routine because he invented it; after, he checks two notes, drops the clipboard handoff, and adds a click counter at the narrowest entrance",
+      "firstImage": "a click counter resting beside a chalkboard stall map before opening",
+      "mustInclude": [
+        "shopper count note",
+        "clipboard handoff",
+        "chalkboard stall map"
+      ],
+      "mustAvoid": [
+        "transportation terminal",
+        "analytics dashboard"
+      ]
+    },
+    {
+      "domain": "a community radio producer refining a morning interview block",
+      "audience": "a producer who must separate a rough day from a bad method",
+      "stakes": "the next guest gets rushed if the intro prep keeps sliding",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she notes that the Highlight was right but the Laser setup failed, refines the guest-prep cue sheet, and drops the open newsroom chat for tomorrow's first block",
+      "firstImage": "a marked guest-prep cue sheet beside a red on-air light",
+      "mustInclude": [
+        "guest-prep cue sheet",
+        "newsroom chat",
+        "refine note"
+      ],
+      "mustAvoid": [
+        "generic podcasting",
+        "motivational journaling"
+      ]
+    },
+    {
+      "domain": "a printmaking studio lead improving a volunteer open-studio plan",
+      "audience": "a studio coordinator who needs a light feedback loop after mixed results",
+      "stakes": "volunteers spend another Saturday setting up the wrong stations if the lesson is not captured",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he predicts the station staging was the failure, checks the ink-stained sign-in sheet against finished prints, and writes drop extra brayers, add drying labels for next time",
+      "firstImage": "ink-stained gloves lying beside a rack of unfinished prints",
+      "mustInclude": [
+        "sign-in sheet",
+        "drying labels",
+        "drop-add note"
+      ],
+      "mustAvoid": [
+        "generic outdoor teamwork",
+        "long annual debrief"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn a rough day into one refine, add, or drop decision",
+      "distinguish evidence-based reflection from mood-based self-judgment",
+      "analyze which part of the Make Time loop failed under real conditions",
+      "evaluate when tracking has become heavier than the adjustment it is supposed to support"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write three short labels for today: worked, failed, change. Under change, write only one refine, add, or drop decision that would improve tomorrow.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm -- a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch06",
+  "number": 6,
+  "title": "Revealing Intrigue and Building Novelty",
+  "coreMove": "Pace revelation so curiosity stays alive and the room keeps trying to resolve the tension.",
+  "sourcePressure": "Intrigue chapter: novelty and surprise keep the audience mentally active when they sharpen curiosity and consequence without becoming confusion, theater, or empty hype.",
+  "chapterSpecificMisunderstanding": "The writer must make intrigue meaningful and sequenced, not clickbait, confusion, or hype for its own sake.",
+  "sourceAlignmentTerms": [
+    "intrigue",
+    "novelty",
+    "attention",
+    "surprise",
+    "tension",
+    "curiosity",
+    "anticipation"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Curiosity is the currency of attention",
+      "Keep them guessing",
+      "Mystery makes people listen"
+    ],
+    "counterintuition": [
+      "Do not explain too soon",
+      "Confusion is not intrigue",
+      "Novelty must earn its place"
+    ],
+    "tryThisNow": [
+      "Hold one fact back",
+      "Add a surprising detail",
+      "Create curiosity in your opener"
+    ],
+    "examples": [
+      "teaser slide with question mark",
+      "magician-style reveal",
+      "generic suspenseful product launch"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "space-hardware supplier pitching a vibration isolator to satellite integrators",
+      "audience": "a hardware lead whose product looks like a small bracket until consequence is revealed",
+      "stakes": "one launch vibration mode can destroy a payload worth years of work",
+      "format": "predict_reveal",
+      "requiredBeat": "she shows a slow-motion test clip paused one second before failure and asks which part the room thinks breaks first",
+      "firstImage": "a paused vibration-test video above a foam-lined metal case",
+      "mustInclude": [
+        "test clip",
+        "isolator prototype",
+        "failure timestamp"
+      ],
+      "mustAvoid": [
+        "generic engineering demo"
+      ]
+    },
+    {
+      "domain": "opera company development director pitching a youth-access fund to estate lawyers",
+      "audience": "a fundraiser who must create curiosity without sentimental overload",
+      "stakes": "lawyers file the program as ordinary arts outreach unless the hidden demand pattern emerges",
+      "format": "vignette",
+      "requiredBeat": "he begins with the unopened ticket envelope from a student waitlist, then reveals the number of similar requests only after the room guesses",
+      "firstImage": "a cream ticket envelope sealed with a student name tag",
+      "mustInclude": [
+        "ticket envelope",
+        "waitlist count",
+        "estate gift form"
+      ],
+      "mustAvoid": [
+        "generic charity donor story"
+      ]
+    },
+    {
+      "domain": "commercial diving trainer selling a simulator module to offshore safety managers",
+      "audience": "a trainer whose safety record can become a flat compliance recital",
+      "stakes": "managers miss the near-miss pattern the simulator was built to expose",
+      "format": "scene",
+      "requiredBeat": "he lets the first thirty seconds of helmet-camera footage run without explaining what went wrong, then freezes on the missed gauge",
+      "firstImage": "helmet-camera footage glowing on a waterproof monitor",
+      "mustInclude": [
+        "helmet camera",
+        "missed gauge",
+        "simulator console"
+      ],
+      "mustAvoid": [
+        "generic safety training pitch"
+      ]
+    },
+    {
+      "domain": "artisan textile exporter pitching a traceability platform to luxury buyers",
+      "audience": "an exporter who needs novelty tied to provenance, not gimmick packaging",
+      "stakes": "buyers treat the platform as a QR-code accessory instead of margin protection",
+      "format": "before_after",
+      "requiredBeat": "she lets buyers handle two identical scarves, then scans only one tag to reveal the dye-house chain and counterfeit risk",
+      "firstImage": "two indigo scarves laid across a black lacquer table",
+      "mustInclude": [
+        "trace tag",
+        "dye-house chain",
+        "counterfeit photo"
+      ],
+      "mustAvoid": [
+        "generic retail technology pitch"
+      ]
+    },
+    {
+      "domain": "pediatric sleep clinic pitching a remote coaching program to benefits brokers",
+      "audience": "a clinician with outcomes data that can flatten into wellness noise",
+      "stakes": "brokers miss the employer cost of exhausted parents taking leave",
+      "format": "dialogue",
+      "requiredBeat": "she starts with one voicemail transcript stopping before the parent says why she missed work, then reveals the leave total after brokers infer the problem",
+      "firstImage": "a voicemail transcript clipped to a benefits-cost sheet",
+      "mustInclude": [
+        "voicemail transcript",
+        "leave total",
+        "sleep log"
+      ],
+      "mustAvoid": [
+        "generic wellness benefits pitch"
+      ]
+    },
+    {
+      "domain": "ceramic tile manufacturer pitching crack-resistant material to subway maintenance planners",
+      "audience": "a materials rep who must make a small design change feel consequential",
+      "stakes": "planners keep replacing cracked station tile during overnight windows",
+      "format": "decision_point",
+      "requiredBeat": "he drops a cracked sample and an intact sample from the same height, but waits to name the material difference until the planner asks",
+      "firstImage": "two tile squares resting on a rubber mat under fluorescent station lights",
+      "mustInclude": [
+        "tile samples",
+        "overnight repair window",
+        "impact height mark"
+      ],
+      "mustAvoid": [
+        "generic construction materials pitch"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate intrigue from confusion",
+      "choose what to reveal and what to withhold",
+      "analyze whether novelty sharpens consequence",
+      "evaluate when surprise has become empty theater"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one fact you usually explain immediately and write the question or visible test that would make the room want that fact first.",
+  "readingTimeMinutes": 12
+}

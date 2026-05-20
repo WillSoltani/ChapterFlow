@@ -1,0 +1,166 @@
+{
+  "chapterId": "essentialism-ch11",
+  "number": 11,
+  "title": "Dare: The Power of a Graceful \"No\"",
+  "coreMove": "Say no in a way that protects the essential work and preserves respect instead of buying temporary approval with a weak yes.",
+  "sourcePressure": "The chapter makes essentialism real through courageous, clear, relationally graceful refusal that separates the decision from the relationship.",
+  "chapterSpecificMisunderstanding": "A weak run would make this a blunt assertiveness chapter or a list of polite scripts with no trade-off logic.",
+  "sourceAlignmentTerms": [
+    "graceful no",
+    "refusal",
+    "respect",
+    "trade-off",
+    "relationship"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic dare: the power of a graceful \"no\" topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "rudeness frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "rudeness",
+      "people-pleasing scripts",
+      "conflict avoidance",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "midwife asked to speak at a fundraiser during a high-risk clinic week",
+      "audience": "practitioner who values organizer and cause",
+      "stakes": "a public yes would steal preparation from patients needing birth plans",
+      "format": "dialogue",
+      "requiredBeat": "She keeps the fundraiser card on the desk, places three birth-plan folders beside it, and offers a two-minute recording after clinic review.",
+      "firstImage": "A fundraiser card leans against three thick birth-plan folders.",
+      "mustInclude": [
+        "fundraiser card",
+        "birth-plan folders",
+        "two-minute recording offer"
+      ],
+      "mustAvoid": [
+        "medical martyrdom",
+        "generic event decline"
+      ]
+    },
+    {
+      "domain": "independent bookstore owner refusing a celebrity launch that would displace local author night",
+      "audience": "owner wanting publisher relationship while protecting promised small stage",
+      "stakes": "prestige can displace the community program that gives identity",
+      "format": "decision_point",
+      "requiredBeat": "He holds the glossy launch packet beside the handwritten local-author poster and declines the date while offering another month.",
+      "firstImage": "A glossy launch packet covers half of a handwritten local-author poster.",
+      "mustInclude": [
+        "launch packet",
+        "local-author poster",
+        "alternate month note"
+      ],
+      "mustAvoid": [
+        "bookstore return desk",
+        "anti-success posture"
+      ]
+    },
+    {
+      "domain": "software localization lead declining a rush feature translation from a favorite product manager",
+      "audience": "lead who depends on product manager trust",
+      "stakes": "rushed yes would ship inaccurate safety text in four languages",
+      "format": "before_after",
+      "requiredBeat": "Before, she types sorry; after, she highlights the safety-string table and writes no for this release, yes for post-freeze batch.",
+      "firstImage": "A safety-string table is highlighted beside an unfinished apology email.",
+      "mustInclude": [
+        "safety-string table",
+        "post-freeze batch",
+        "apology email"
+      ],
+      "mustAvoid": [
+        "generic backlog",
+        "script without trade-off"
+      ]
+    },
+    {
+      "domain": "neighborhood repair-cafe organizer refusing bicycle tuneups on broken-appliance day",
+      "audience": "organizer who likes the cyclist group and wants future collaboration",
+      "stakes": "one popular category would strand appliance owners already signed up",
+      "format": "scene",
+      "requiredBeat": "She points to toaster parts trays and the full appliance sheet, says not this Saturday, and offers first choice of a June table.",
+      "firstImage": "Toaster parts trays sit beside a full appliance sign-up sheet.",
+      "mustInclude": [
+        "toaster parts trays",
+        "appliance sign-up sheet",
+        "June table offer"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor",
+        "generic volunteer coordination"
+      ]
+    },
+    {
+      "domain": "funeral celebrant asked to shorten preparation for a second service the same morning",
+      "audience": "celebrant under pressure from a respected director",
+      "stakes": "rushed yes would turn two families grief into generic remarks",
+      "format": "reflection",
+      "requiredBeat": "She sets family interview notes beside the service folder and accepts only if another celebrant covers the first preparation call.",
+      "firstImage": "Family interview notes are tucked into an open service folder.",
+      "mustInclude": [
+        "interview notes",
+        "service folder",
+        "covered preparation call"
+      ],
+      "mustAvoid": [
+        "sentimental grief lesson",
+        "heroic overextension"
+      ]
+    },
+    {
+      "domain": "small-town mechanic refusing same-day fleet repair that would bump school bus safety check",
+      "audience": "mechanic whose largest customer expects favors",
+      "stakes": "fleet account matters, but unverified brakes carry higher stakes",
+      "format": "postmortem",
+      "requiredBeat": "He leaves the fleet key envelope unopened, taps the brake-inspection form, and offers tomorrow’s first slot.",
+      "firstImage": "A fleet key envelope lies unopened beside a brake-inspection form.",
+      "mustInclude": [
+        "fleet key envelope",
+        "brake-inspection form",
+        "tomorrow first slot"
+      ],
+      "mustAvoid": [
+        "bus depot shell",
+        "blunt refusal as strength"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify a graceful no inside a concrete scenario",
+      "choose the response that applies: Say no in a way that protects the essential work and preserves respect instead of buying temporary approval with a weak yes.",
+      "reject the generic drift: A weak run would make this a blunt assertiveness chapter or a list of polite scripts with no trade-off logic.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live request and make the trade-off visible. Write the protected essential, then answer with a clear no, a clear yes, or one bounded offer you can keep.",
+  "readingTimeMinutes": 12
+}

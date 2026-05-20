@@ -1,0 +1,105 @@
+{
+  "bookId": "competing-against-luck",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "competing-against-luck-ch01",
+      "title": "The Milk Shake Dilemma",
+      "sourcePressure": "A fast-food chain's team studied the wrong question: what should change about the milkshake? The actual causal question was what job the milkshake got hired to do in specific buying moments. One job was commute survival — filling, one-handed, endurance-worthy. A second distinct job appeared later in the day: a social treat for a parent and child. The same product, two separate demand stories. Feature-tweaking and demographic segmentation missed both because they never asked what circumstance activated the hire.",
+      "coreMove": "Flip from 'what should we change about the product?' to 'what job does this product get hired to do in this specific circumstance?'",
+      "commonMisread": "Treating the milkshake story as a food-industry insight rather than a general diagnostic method applicable to any category.",
+      "mustUseTerms": ["hire", "circumstance", "job", "progress", "substitute", "moment"],
+      "mustNotDriftInto": ["customer personas", "demographic segmentation", "feature improvement as the primary question"]
+    },
+    {
+      "number": 2,
+      "chapterId": "competing-against-luck-ch02",
+      "title": "Progress, Not Products",
+      "sourcePressure": "Progress is the causal target behind every hire. A job is not just a functional task — it includes social and emotional dimensions. Products describe the object exchanged; progress describes the movement the buyer is trying to achieve. Defining demand by product category misses why a buyer chose at all. The same product may be hired for different progress in different circumstances, and very different products may compete for the same progress.",
+      "coreMove": "Define what the buyer is trying to move from and toward — including the functional, social, and emotional components — before any design decision.",
+      "commonMisread": "Treating 'progress' as a vague synonym for 'customer satisfaction' or 'outcome' rather than naming the specific movement from an unsatisfying state to a better one.",
+      "mustUseTerms": ["progress", "functional", "social", "emotional", "circumstance", "unsatisfying state", "competing alternative"],
+      "mustNotDriftInto": ["feature wish-listing", "empathy-first framing without the causal claim", "treating all three dimensions as equal when one dominates the job"]
+    },
+    {
+      "number": 3,
+      "chapterId": "competing-against-luck-ch03",
+      "title": "Jobs in the Wild",
+      "sourcePressure": "Jobs Theory has to prove it travels beyond the opening case. The method is portable because the explanatory structure — circumstance, progress sought, substitutes evaluated — applies across categories. But portability does not mean reusing one famous story everywhere. Each new setting requires fresh reading of the struggling moment, its local substitutes, and what progress is actually at stake.",
+      "coreMove": "Apply the jobs diagnostic — circumstance, progress sought, substitutes — in a domain you have not mapped before, and test whether the lens holds against observable evidence.",
+      "commonMisread": "Thinking Jobs Theory works only in consumer packaged goods or simple low-stakes purchases, rather than applying the same diagnostic wherever a struggling moment exists.",
+      "mustUseTerms": ["circumstance", "substitute", "demand", "struggle", "portable", "diagnostic", "competing alternatives"],
+      "mustNotDriftInto": ["restating the milkshake case", "category-specific frameworks", "treating portability as proof the same answer always applies"]
+    },
+    {
+      "number": 4,
+      "chapterId": "competing-against-luck-ch04",
+      "title": "Job Hunting",
+      "sourcePressure": "Job hunting is deliberate search for struggling moments before any product design begins. Feature requests, surveys, and personas arrive after the underlying struggle has already been translated into solution language. The more useful field is earlier: strained workarounds, improvised substitutes, tolerated compromise, and fallback behavior. Those signals expose not only that someone wants improvement but that the current solution is actively failing to deliver progress.",
+      "coreMove": "Identify the moment where current solutions are failing the buyer's progress — before deciding what to build.",
+      "commonMisread": "Treating customer feature requests or survey responses as job evidence, when those arrive after the job has already been translated into solution language.",
+      "mustUseTerms": ["struggle", "workaround", "substitute", "strained", "fallback", "observation", "struggling moment"],
+      "mustNotDriftInto": ["survey-first research methods", "persona construction", "passive feature collection as discovery"]
+    },
+    {
+      "number": 5,
+      "chapterId": "competing-against-luck-ch05",
+      "title": "How to Hear What Your Customers Don't Say",
+      "sourcePressure": "Customers almost never hand over the job in clean language. They give feature wishes, polite complaints, and post-hoc summaries. The Four Forces explain why behavior and words diverge: push of the situation drives them away from the old arrangement; pull of the new solution attracts them; habit of the present keeps them in place; anxiety of the new solution holds them back even when they are interested. Strong listening maps all four forces instead of transcribing requests.",
+      "coreMove": "Map the four forces behind a customer's behavior — push, pull, habit, anxiety — to decode the real job driving their choice, not just their stated preference.",
+      "commonMisread": "Treating this as a license to invent subconscious motives rather than as a disciplined framework tied to observable evidence — switching behavior, hesitation, fallback choices.",
+      "mustUseTerms": ["push of the situation", "pull of the new solution", "habit of the present", "anxiety of the new solution", "switching", "hesitation", "fallback", "observable"],
+      "mustNotDriftInto": ["psychological storytelling without observable anchors", "treating all four forces as equal when one dominates", "conflating 'listening harder' with the specific four-force framework"]
+    },
+    {
+      "number": 6,
+      "chapterId": "competing-against-luck-ch06",
+      "title": "Building Your Resume",
+      "sourcePressure": "A product's real identity is the record of jobs it repeatedly earns the trust to do. One hire can point the team in a direction; it cannot establish identity. When similar buyers under similar pressures keep rehiring the offering for the same progress, that pattern builds a resume. The resume may confirm the product's intended identity or reveal the market has trusted it with something narrower — or entirely different — than the team believed.",
+      "coreMove": "Test whether the pattern of repeat hires confirms the job you believe you serve, or reveals a narrower or different job the market has actually trusted you with.",
+      "commonMisread": "Treating the product resume as a branding or positioning exercise rather than as evidence-based reading of actual hiring patterns across comparable circumstances.",
+      "mustUseTerms": ["resume", "repeated hiring", "trust", "earned", "circumstance", "pattern", "identity"],
+      "mustNotDriftInto": ["brand strategy", "one-off case studies as identity proof", "collapsing distinct jobs into a flattering narrative"]
+    },
+    {
+      "number": 7,
+      "chapterId": "competing-against-luck-ch07",
+      "title": "Integrating Around a Job",
+      "sourcePressure": "Knowing what job buyers trust the offering to do does not automatically produce a coherent organization. Once the earned job record is clear, every internal function must coordinate around delivering that job consistently. When functions optimize locally — on their own metrics, their own incentives, their own departmental logic — they can each improve their own target while the overall experience breaks apart for the buyer.",
+      "coreMove": "Identify one internal decision where a local optimization is currently damaging the delivery of the job buyers hired.",
+      "commonMisread": "Treating integration as a softer 'customer-first culture' initiative rather than as a specific structural demand — tradeoffs decided by job delivery, not departmental convenience.",
+      "mustUseTerms": ["integrate", "coordinate", "siloed", "delivery", "job record", "tradeoff", "function"],
+      "mustNotDriftInto": ["org-chart redesign", "cross-functional team slogans", "treating coordination as the same as alignment"]
+    },
+    {
+      "number": 8,
+      "chapterId": "competing-against-luck-ch08",
+      "title": "Keeping Your Eye on the Job",
+      "sourcePressure": "Early alignment around the right job does not keep a company safe forever. Drift back to feature thinking, internal metrics, and comfortable categories is the default path. Familiar language returns, local metrics reclaim decision rights, and attractive side goals accumulate. The job has to become an active filter applied to every proposed change — not an announcement made once and trusted to persist.",
+      "coreMove": "Apply the job-first test to a proposed change before approving it, even when the change looks locally harmless.",
+      "commonMisread": "Treating job focus as a one-time alignment exercise or a cultural attitude rather than as an ongoing discipline of filtering every decision through the job question.",
+      "mustUseTerms": ["drift", "habit", "filter", "alignment", "relapse", "feature-first", "discipline"],
+      "mustNotDriftInto": ["\"agile\" or continuous improvement as a substitute for job focus", "treating all incremental changes as safe", "job focus as a value statement rather than a decision test"]
+    },
+    {
+      "number": 9,
+      "chapterId": "competing-against-luck-ch09",
+      "title": "The Jobs-Focused Organization",
+      "sourcePressure": "A company can speak Jobs Theory fluently without becoming a jobs-focused organization. The test is whether recurring decisions — not just intake conversations or strategy decks — are actually governed by the job buyers hired the offering to do. Product-centered reflexes, functional metrics, and internal convenience can coexist with jobs language without changing the actual pattern of decisions.",
+      "coreMove": "Distinguish between an organization that speaks jobs language and one whose recurring decision pattern is actually governed by the job.",
+      "commonMisread": "Assuming that adopting Jobs Theory vocabulary in strategy discussions changes the decision-making logic of the organization, when the governing logic may still be product-centered or function-centered.",
+      "mustUseTerms": ["recurring", "anchored", "product-centered", "jobs language", "decision rights", "vocabulary", "governing"],
+      "mustNotDriftInto": ["cultural transformation framing", "org redesign blueprints", "treating language adoption as behavior change"]
+    },
+    {
+      "number": 10,
+      "chapterId": "competing-against-luck-ch10",
+      "title": "Final Observations About the Theory of Jobs",
+      "sourcePressure": "Jobs Theory is a causal lens that improves how teams explain and predict customer choice — not a formula that removes uncertainty or guarantees innovation success. It redirects attention toward the circumstances and forces governing choice. Better causal explanation is the gain, not omniscience. Treating the theory as proof rather than as a hypothesis discipline is the final failure mode.",
+      "coreMove": "Use Jobs Theory to sharpen the causal question — not to claim certainty — and mark where the explanation holds and where judgment and evidence still do the work.",
+      "commonMisread": "Treating a well-formed jobs statement as sufficient evidence of demand, rather than as a hypothesis that still requires testing against observable behavior and circumstance.",
+      "mustUseTerms": ["causal", "explanation", "uncertainty", "limit", "hypothesis", "evidence", "judgment"],
+      "mustNotDriftInto": ["jobs theory as a guaranteed outcome model", "conflating a sharp jobs statement with confirmed demand", "treating the theory as a replacement for ongoing field evidence"]
+    }
+  ]
+}

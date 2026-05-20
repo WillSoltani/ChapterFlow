@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch07",
+  "number": 7,
+  "title": "Confirmation Bias (Part 1)",
+  "coreMove": "Detect when the confirmation bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+  "sourcePressure": "The source sidecar and official source notes frame Confirmation Bias (Part 1) as a specific decision error around confirmation bias, disconfirming evidence, Wason test. Traceable support includes s Almanack, expanded third edition (Virginia Beach: The Donning Company Publishers, 2006), 462..",
+  "chapterSpecificMisunderstanding": "Treating Confirmation Bias (Part 1) as generic advice to be smarter, instead of forcing this exact move: detect when the confirmation bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+  "sourceAlignmentTerms": [
+    "confirmation bias",
+    "disconfirming evidence",
+    "Wason test",
+    "fixed conclusion",
+    "Darwin",
+    "confirmation",
+    "bias"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Confirmation Bias (Part 1).",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Confirmation Bias (Part 1) sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Confirmation Bias (Part 1)."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a emergency dispatch script applying Confirmation Bias (Part 1) under operational pressure",
+      "audience": "a reader who has to make a live judgment where confirmation bias could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Confirmation Bias (Part 1) is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the incident timeline, names the confirmation bias risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A incident timeline sits at the center of the emergency dispatch script before anyone explains the choice.",
+      "mustInclude": [
+        "incident timeline",
+        "confirmation bias",
+        "a visible before-and-after choice tied to Confirmation Bias (Part 1)"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a travel insurance pricing applying Confirmation Bias (Part 1) under operational pressure",
+      "audience": "a reader who has to make a live judgment where disconfirming evidence could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Confirmation Bias (Part 1) is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the warranty label, names the disconfirming evidence risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A warranty label sits at the center of the travel insurance pricing before anyone explains the choice.",
+      "mustInclude": [
+        "warranty label",
+        "disconfirming evidence",
+        "a visible before-and-after choice tied to Confirmation Bias (Part 1)"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a podcast ad renewal applying Confirmation Bias (Part 1) under operational pressure",
+      "audience": "a reader who has to make a live judgment where Wason test could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Confirmation Bias (Part 1) is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the press clipping, names the Wason test risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A press clipping sits at the center of the podcast ad renewal before anyone explains the choice.",
+      "mustInclude": [
+        "press clipping",
+        "Wason test",
+        "a visible before-and-after choice tied to Confirmation Bias (Part 1)"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a university lab result meeting applying Confirmation Bias (Part 1) under operational pressure",
+      "audience": "a reader who has to make a live judgment where fixed conclusion could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Confirmation Bias (Part 1) is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the voting sheet, names the fixed conclusion risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A voting sheet sits at the center of the university lab result meeting before anyone explains the choice.",
+      "mustInclude": [
+        "voting sheet",
+        "fixed conclusion",
+        "a visible before-and-after choice tied to Confirmation Bias (Part 1)"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a charity donor campaign applying Confirmation Bias (Part 1) under operational pressure",
+      "audience": "a reader who has to make a live judgment where Darwin could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Confirmation Bias (Part 1) is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the permit folder, names the Darwin risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A permit folder sits at the center of the charity donor campaign before anyone explains the choice.",
+      "mustInclude": [
+        "permit folder",
+        "Darwin",
+        "a visible before-and-after choice tied to Confirmation Bias (Part 1)"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a heat-response cooling-center map applying Confirmation Bias (Part 1) under operational pressure",
+      "audience": "a reader who has to make a live judgment where confirmation could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Confirmation Bias (Part 1) is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the inventory scan, names the confirmation risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A inventory scan sits at the center of the heat-response cooling-center map before anyone explains the choice.",
+      "mustInclude": [
+        "inventory scan",
+        "confirmation",
+        "a visible before-and-after choice tied to Confirmation Bias (Part 1)"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Confirmation Bias (Part 1) in a fresh decision scene",
+      "choose the correction that performs this move: detect when the confirmation bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+      "reject a tempting generic answer that ignores confirmation bias",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Confirmation Bias (Part 1)' on a note, list the one confirmation bias cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

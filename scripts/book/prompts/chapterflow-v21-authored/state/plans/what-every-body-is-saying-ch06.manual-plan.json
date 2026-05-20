@@ -1,0 +1,177 @@
+{
+  "chapterId": "what-every-body-is-saying-ch06",
+  "number": 6,
+  "title": "Knowledge Within Reach",
+  "coreMove": "Watch how the arms manage distance: what they block, protect, offer, contain, or reach toward.",
+  "sourcePressure": "The source sidecar says support is thinner here, so claims must stay concrete: arm barriers, reach, tucked arms, folded arms, protective holding, invitation, restraint, and visible distance management. The chapter must not turn folded arms into automatic defensiveness.",
+  "chapterSpecificMisunderstanding": "The weak version treats arms as a generic attitude signal. The writer must make arms specific by showing what they put between the person and the moment, what they hold close, and what they make available.",
+  "sourceAlignmentTerms": [
+    "arms",
+    "barrier",
+    "reach",
+    "distance",
+    "folded arms",
+    "restraint",
+    "invitation",
+    "protective holding",
+    "comfort",
+    "discomfort"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A folded-arms-means-defensive opener.",
+      "A generic office meeting where everyone crosses their arms.",
+      "A hostility frame built from one arm position."
+    ],
+    "counterintuition": [
+      "Most people assume folded arms mean defensiveness, but actually...",
+      "Open arms always mean openness.",
+      "Arm barriers reveal the person's true attitude."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and watch crossed arms.",
+      "Uncross your arms to seem approachable.",
+      "Mirror another person's arms to create trust."
+    ],
+    "examples": [
+      "Job interview folded-arms verdict.",
+      "Romantic attraction or rejection by arm angle.",
+      "Classroom slouching or participation.",
+      "Power-pose posture correction.",
+      "Interrogation-room arm barrier."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport lost-luggage counter during a delayed baggage claim",
+      "audience": "a baggage supervisor deciding whether to press for more forms or create space for a frustrated traveler",
+      "stakes": "the conversation can stay procedural if the supervisor reads the arm barrier before the traveler raises his voice",
+      "format": "scene",
+      "requiredBeat": "The traveler says he is fine filling out the claim, but hugs the garment bag across his chest, pins the baggage tag under one elbow, and keeps the other forearm on the counter edge like a gate.",
+      "firstImage": "A torn baggage tag is trapped beneath a forearm on the claim counter.",
+      "mustInclude": [
+        "garment bag",
+        "baggage tag",
+        "claim counter edge"
+      ],
+      "mustAvoid": [
+        "airport screening false-alarm domain",
+        "folded arms as automatic hostility",
+        "lost luggage rage scene"
+      ]
+    },
+    {
+      "domain": "blood donation intake after a first-time donor sees the needle tray",
+      "audience": "a phlebotomist watching whether the donor needs a slower explanation",
+      "stakes": "pushing too quickly could make the donor withdraw before the screening is complete",
+      "format": "dialogue",
+      "requiredBeat": "The donor keeps saying let's do it, but one arm clamps over the donation packet while the other hand reaches only halfway toward the consent pen, so the phlebotomist moves the needle tray out of the direct line of sight.",
+      "firstImage": "A capped consent pen lies beside a sealed needle tray.",
+      "mustInclude": [
+        "consent pen",
+        "sealed needle tray",
+        "donation packet"
+      ],
+      "mustAvoid": [
+        "hospital discharge scene",
+        "diagnosing fear as fact",
+        "blood-bank freezer crisis"
+      ]
+    },
+    {
+      "domain": "vinyl record store listening booth during a rare-album negotiation",
+      "audience": "a shop owner trying to tell whether a collector is protecting the item or inviting a deal",
+      "stakes": "the wrong read could turn a possible sale into a guarded standoff",
+      "format": "decision_point",
+      "requiredBeat": "When the price comes up, the collector pulls the sleeve tight under both forearms; when the owner mentions a store-credit option, one arm releases and slides the sleeve halfway across the counter.",
+      "firstImage": "A rare blue-label record sleeve rests below a listening-booth speaker.",
+      "mustInclude": [
+        "record sleeve",
+        "store-credit slip",
+        "listening-booth speaker"
+      ],
+      "mustAvoid": [
+        "jewelry appraisal territory",
+        "sales manipulation",
+        "one reach as proof of agreement"
+      ]
+    },
+    {
+      "domain": "community swimming lesson where a parent hands off a toddler",
+      "audience": "a swim instructor judging whether to take the child yet or keep the parent involved",
+      "stakes": "a rushed handoff can make the child cling harder and sour the first lesson",
+      "format": "before_after",
+      "requiredBeat": "Before the handoff, the parent cradles the toddler with both arms locked high; after the instructor offers a floating toy, one arm lowers toward the water and leaves a clear path between child and pool.",
+      "firstImage": "A yellow floating toy bumps against the tiled pool edge.",
+      "mustInclude": [
+        "floating toy",
+        "tiled pool edge",
+        "towel hook"
+      ],
+      "mustAvoid": [
+        "diving certification recovery scene",
+        "parental anxiety lecture",
+        "claiming arm release means trust"
+      ]
+    },
+    {
+      "domain": "bike repair co-op explaining a brake adjustment to a new rider",
+      "audience": "a volunteer mechanic deciding whether to keep demonstrating or hand over the tool",
+      "stakes": "the rider needs enough ownership to ride safely, but too much pressure will make him retreat",
+      "format": "predict_reveal",
+      "requiredBeat": "The mechanic predicts the rider is not ready while both arms stay tucked around the frame; when the rider reaches past the cable housing and rests one forearm on the work stand, the mechanic offers the hex key.",
+      "firstImage": "A loose brake cable arcs above a silver work stand.",
+      "mustInclude": [
+        "hex key",
+        "work stand",
+        "brake cable"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor",
+        "sports coaching",
+        "reach as confidence proof"
+      ]
+    },
+    {
+      "domain": "library makerspace soldering orientation before open lab",
+      "audience": "a librarian watching whether a patron is ready to handle equipment",
+      "stakes": "safety depends on noticing restraint before the iron is placed in someone's hand",
+      "format": "postmortem",
+      "requiredBeat": "On review, the librarian sees the patron kept both elbows pinned to her sides during the heat warning, then extended only one forearm toward the spool after the librarian placed the iron back in its stand.",
+      "firstImage": "A soldering iron rests in a ceramic stand beside a coil of silver wire.",
+      "mustInclude": [
+        "ceramic stand",
+        "wire spool",
+        "safety placard"
+      ],
+      "mustAvoid": [
+        "classroom technology lesson",
+        "calling restraint incompetence",
+        "hand-tremor focus that belongs in chapter 7"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify arms as barriers, invitations, protective holds, restraint, or reach in concrete scenes",
+      "separate arm-based distance management from hostility, deception, attitude, or personality claims",
+      "choose a next move that adjusts space, object placement, or pace based on arm behavior",
+      "evaluate when folded or tucked arms are explained by temperature, task, safety, habit, or object handling"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "During one exchange today, notice what your arms are doing with space: guarding an object, holding yourself in, offering something forward, or keeping a boundary. Name only the distance move.",
+  "readingTimeMinutes": 12
+}

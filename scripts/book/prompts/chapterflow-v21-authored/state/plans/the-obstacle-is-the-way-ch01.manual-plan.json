@@ -1,0 +1,215 @@
+{
+  "chapterId": "the-obstacle-is-the-way-ch01",
+  "number": 1,
+  "title": "Recognize Your Power",
+  "coreMove": "Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.",
+  "sourcePressure": "This chapter belongs to Perception, so it must teach cleaner seeing before it teaches action or endurance. Source sidecar ch01 exists and provides partial-source support only; no full text is frozen. For \"Recognize Your Power\", the pressure is to teach this exact move: Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.",
+  "chapterSpecificMisunderstanding": "The weak version turns the chapter into generic mindset advice instead of a precise discipline of reading the obstacle cleanly. For \"Recognize Your Power\", avoid replacing the chapter move with the whole book thesis.",
+  "sourceAlignmentTerms": [
+    "perception",
+    "agency",
+    "interpretation",
+    "objectivity",
+    "power",
+    "frame"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "John D. Rockefeller",
+      "detail": "Frozen notes place Rockefeller in the Perception section as an anchor for steadiness and objectivity under pressure; no detailed scene is lawfully frozen.",
+      "useIn": "both",
+      "phrasingHint": "Rockefeller belongs here only as a narrow reminder that pressure does not have to own the first reading of events."
+    },
+    {
+      "kind": "person",
+      "name": "Miyamoto Musashi",
+      "detail": "Frozen notes tie Musashi to the distinction between observing what is there and adding interpretation; no fuller anecdote is supported.",
+      "useIn": "fullRead",
+      "phrasingHint": "Musashi sharpens the difference between seeing the thing and adding the mind's extra story to it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic obstacle appears and teaches recognize your power",
+      "The problem is not the problem",
+      "Everything changed when the setback arrived"
+    ],
+    "counterintuition": [
+      "The obstacle is actually a blessing",
+      "The hard part is really your mindset",
+      "Success comes from staying positive"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on adversity",
+      "Write down three things you are grateful for",
+      "Take a breath and choose courage"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "generic kitchen-table family argument",
+      "generic classroom grade disappointment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research-free aside on source limits, a direct second-person passage, or a brief historical reference where sourceAnchors permits it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "hospital triage desk after a burst pipe closes two rooms",
+      "audience": "Readers facing hospital triage desk after a burst pipe closes two rooms who need to practice \"Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into positive thinking.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "openingDeviceNote": "open on a concrete sound, texture, smell, or visual detail before naming the person",
+      "requiredBeat": "Sarah must visibly perform the chapter move by drawing a line between the raw event and the story being added to it before answering, so the lesson happens in action rather than explanation.",
+      "firstImage": "a clipboard bent at one corner under fluorescent light",
+      "mustInclude": [
+        "printed schedule",
+        "one fixed deadline",
+        "one person waiting for a decision"
+      ],
+      "mustAvoid": [
+        "do not turn this into positive thinking",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "customs brokerage team with a rejected shipment at the port",
+      "audience": "Readers facing customs brokerage team with a rejected shipment at the port who need to practice \"Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into positive thinking.",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "openingDeviceNote": "open with one line of spoken dialogue that forces the decision into view",
+      "requiredBeat": "James must visibly perform the chapter move by drawing a line between the raw event and the story being added to it before answering, so the lesson happens in action rather than explanation.",
+      "firstImage": "rainwater beading on a taped paper sign",
+      "mustInclude": [
+        "marked-up form",
+        "visible queue",
+        "one rule that cannot be changed"
+      ],
+      "mustAvoid": [
+        "do not turn this into positive thinking",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "university library desk during a catalog outage",
+      "audience": "Readers facing university library desk during a catalog outage who need to practice \"Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into positive thinking.",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "openingDeviceNote": "open with the room, tool, weather, queue, screen, or workplace layout before any person acts",
+      "requiredBeat": "Camille must visibly perform the chapter move by drawing a line between the raw event and the story being added to it before answering, so the lesson happens in action rather than explanation.",
+      "firstImage": "a red notification badge beside an unopened file",
+      "mustInclude": [
+        "locked door",
+        "backup route",
+        "two-minute choice window"
+      ],
+      "mustAvoid": [
+        "do not turn this into positive thinking",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "municipal arborist facing angry residents after storm damage",
+      "audience": "Readers facing municipal arborist facing angry residents after storm damage who need to practice \"Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into positive thinking.",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "openingDeviceNote": "open by putting the reader directly in the scene with a precise constraint",
+      "requiredBeat": "Hugo must visibly perform the chapter move by drawing a line between the raw event and the story being added to it before answering, so the lesson happens in action rather than explanation.",
+      "firstImage": "chalk dust on the heel of a hand",
+      "mustInclude": [
+        "spreadsheet row",
+        "timestamped note",
+        "one disputed fact"
+      ],
+      "mustAvoid": [
+        "do not turn this into positive thinking",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "independent bookstore owner after a supplier cancels launch stock",
+      "audience": "Readers facing independent bookstore owner after a supplier cancels launch stock who need to practice \"Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into positive thinking.",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "openingDeviceNote": "open after the fact, with the protagonist realizing what the earlier choice meant",
+      "requiredBeat": "Aanya must visibly perform the chapter move by drawing a line between the raw event and the story being added to it before answering, so the lesson happens in action rather than explanation.",
+      "firstImage": "a numbered ticket curling on a counter",
+      "mustInclude": [
+        "weather alert",
+        "supply box",
+        "call list"
+      ],
+      "mustAvoid": [
+        "do not turn this into positive thinking",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "London nonprofit intake team after a grant rejection",
+      "audience": "Readers facing London nonprofit intake team after a grant rejection who need to practice \"Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into positive thinking.",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "openingDeviceNote": "open with a practical question the scene will answer",
+      "requiredBeat": "Lukas must visibly perform the chapter move by drawing a line between the raw event and the story being added to it before answering, so the lesson happens in action rather than explanation.",
+      "firstImage": "a cold loading-dock chain in a gloved hand",
+      "mustInclude": [
+        "practice log",
+        "public result",
+        "private correction"
+      ],
+      "mustAvoid": [
+        "do not turn this into positive thinking",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the exact visible action that performs \"Notice the instant you start treating the obstacle as a verdict, then reclaim the small but real power to name what is happening more accurately.\" in a new scenario",
+      "distinguish \"Recognize Your Power\" from its common weak drift: positive thinking",
+      "choose between two plausible responses where only one preserves the chapter's control boundary",
+      "explain why a concrete beat works without reusing generic resilience language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real obstacle, write one sentence naming the raw fact, one sentence naming the move under your control, and one sentence naming the first visible action for \"Recognize Your Power\"; keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

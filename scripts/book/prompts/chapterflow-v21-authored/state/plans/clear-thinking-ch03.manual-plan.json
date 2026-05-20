@@ -1,0 +1,198 @@
+{
+  "chapterId": "clear-thinking-ch03",
+  "number": 3,
+  "title": "The Ego Default",
+  "coreMove": "Name the self-image threat before it converts feedback into defense.",
+  "sourcePressure": "Ego is the default that protects self-image, status, rank, and identity before truth or learning gets a vote. The source lane is narrow: status threat, territory, hierarchy, self-preservation, and the border with social pressure.",
+  "chapterSpecificMisunderstanding": "Making ego a personality insult instead of a repeatable judgment failure under status pressure.",
+  "sourceAlignmentTerms": [
+    "ego default",
+    "self-image",
+    "status threat",
+    "identity defense",
+    "territory",
+    "hierarchy",
+    "rank",
+    "space before response"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the four-default map",
+      "detail": "the official excerpt-backed bundle names ego as one of the four defaults and ties the early biology frame to territory, hierarchy, and self-preservation",
+      "useIn": "deepRead",
+      "phrasingHint": "Ego turns a bruise to self-image into a problem that feels larger than the facts in front of you."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for ego default",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think ego default is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "David",
+      "domain": "a architecture critique",
+      "audience": "a reader facing ego default in a concrete architecture critique decision",
+      "stakes": "whether David preserves judgment quality before the situation slides into narcissism essay",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "David performs the chapter move by setting the foam model beside the review sheet, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the review sheet in the architecture critique",
+      "mustInclude": [
+        "foam model",
+        "review sheet"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "narcissism essay",
+        "reusing a previous chapter's architecture critique shell"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "a academic peer review",
+      "audience": "a reader facing ego default in a concrete academic peer review decision",
+      "stakes": "whether Michael preserves judgment quality before the situation slides into narcissism essay",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Michael performs the chapter move by setting the annotated manuscript beside the referee note, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the annotated manuscript lying beside the referee note in the academic peer review",
+      "mustInclude": [
+        "annotated manuscript",
+        "referee note"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "narcissism essay",
+        "reusing a previous chapter's academic peer review shell"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "a startup investor update",
+      "audience": "a reader facing ego default in a concrete startup investor update decision",
+      "stakes": "whether Thomas preserves judgment quality before the situation slides into narcissism essay",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Thomas performs the chapter move by setting the burn-rate slide beside the customer email, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the customer email in the startup investor update",
+      "mustInclude": [
+        "burn-rate slide",
+        "customer email"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "narcissism essay",
+        "reusing a previous chapter's startup investor update shell"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "a neighborhood association vote",
+      "audience": "a reader facing ego default in a concrete neighborhood association vote decision",
+      "stakes": "whether Daniel preserves judgment quality before the situation slides into narcissism essay",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Daniel performs the chapter move by setting the sign-in sheet beside the folding chairs, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the folding chairs in the neighborhood association vote",
+      "mustInclude": [
+        "sign-in sheet",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "narcissism essay",
+        "reusing a previous chapter's neighborhood association vote shell"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "a surgical morbidity review",
+      "audience": "a reader facing ego default in a concrete surgical morbidity review decision",
+      "stakes": "whether Andrew preserves judgment quality before the situation slides into narcissism essay",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Andrew performs the chapter move by setting the case notes beside the scan image, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the case notes against the counter in the surgical morbidity review",
+      "mustInclude": [
+        "case notes",
+        "scan image"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "narcissism essay",
+        "reusing a previous chapter's surgical morbidity review shell"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "a choir audition panel",
+      "audience": "a reader facing ego default in a concrete choir audition panel decision",
+      "stakes": "whether Matthew preserves judgment quality before the situation slides into narcissism essay",
+      "format": "thought_experiment",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Matthew performs the chapter move by setting the sheet music beside the audition list, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the choir audition panel as Matthew reaches for the sheet music",
+      "mustInclude": [
+        "sheet music",
+        "audition list"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "narcissism essay",
+        "reusing a previous chapter's choir audition panel shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Name the self-image threat before it converts feedback into defense.",
+      "detect the weak generic version: Making ego a personality insult instead of a repeatable judgment failure under status pressure.",
+      "distinguish ego default from nearby drift into narcissism essay"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where ego default is active, then write the exact next visible move that would perform this chapter's move: name the self-image threat before it converts feedback into defense.",
+  "readingTimeMinutes": 12
+}

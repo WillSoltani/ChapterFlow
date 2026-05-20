@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch08",
+  "number": 8,
+  "title": "Variation in Tactics",
+  "coreMove": "Hold rules loosely enough to disobey a bad route, bad order, or bad temptation when the situation changes.",
+  "sourcePressure": "The source lists roads not to follow, armies not to attack, towns not to besiege, positions not to contest, commands not to obey, then ties tactical variation to blended advantage and disadvantage and five dangerous faults.",
+  "chapterSpecificMisunderstanding": "Using flexibility as an excuse for improvising without discipline.",
+  "sourceAlignmentTerms": [
+    "roads not followed",
+    "armies not attacked",
+    "towns not besieged",
+    "commands not obeyed",
+    "advantage and disadvantage",
+    "five dangerous faults",
+    "recklessness",
+    "delicacy of honour"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "commands of the sovereign which must not be obeyed",
+      "detail": "The source explicitly says some commands should not be obeyed when tactical reality makes them destructive.",
+      "useIn": "both",
+      "phrasingHint": "Good judgment includes knowing when obedience would betray the purpose of the order."
+    },
+    {
+      "kind": "artifact",
+      "name": "the five dangerous faults",
+      "detail": "Recklessness, cowardice, hasty temper, sensitivity to shame, and over-solicitude can each ruin command.",
+      "useIn": "deepRead",
+      "phrasingHint": "A tactic often fails because a private fault grabs the steering wheel."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "newsroom deciding whether to publish during an unfolding hostage situation",
+      "audience": "managing editor with a confirmed detail and police request",
+      "stakes": "publishing first could endanger the people inside",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 11:03 p.m., Laura overrides the newsroom rule to publish confirmed facts when the fact itself would reveal police position.",
+      "firstImage": "a police scanner beside an unpublished headline",
+      "mustInclude": [
+        "confirmation note",
+        "police call",
+        "publish queue"
+      ],
+      "mustAvoid": [
+        "generic ethics lecture"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "mountain rescue team ordered onto an unsafe ridge",
+      "audience": "team leader receiving pressure from command",
+      "stakes": "following the route could create more casualties",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ice rattles against Ben's visor as he refuses the shortest ridge and chooses the longer treeline route that keeps rescuers alive.",
+      "firstImage": "ice rattling against a helmet visor",
+      "mustInclude": [
+        "slope angle card",
+        "rescue beacon",
+        "wind reading"
+      ],
+      "mustAvoid": [
+        "bravery equals obedience"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "investment committee rejecting an attractive distressed asset",
+      "audience": "portfolio manager during a market selloff",
+      "stakes": "a cheap price hides liquidity terms that could trap the fund",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What if the discount is the bait and the lockup is the battlefield?",
+      "firstImage": "a term sheet with a red lockup clause",
+      "mustInclude": [
+        "liquidity schedule",
+        "redemption queue",
+        "stress scenario"
+      ],
+      "mustAvoid": [
+        "generic finance greed story"
+      ]
+    },
+    {
+      "protagonistName": "Hanna",
+      "domain": "hospital surgeon deciding whether to continue a planned procedure",
+      "audience": "lead surgeon after unexpected anatomy appears",
+      "stakes": "pushing through preserves schedule but raises patient risk",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The plan was correct until the anatomy changed, Hanna says, then pauses the procedure for imaging instead of protecting her pride.",
+      "firstImage": "a frozen laparoscopic image on a monitor",
+      "mustInclude": [
+        "imaging order",
+        "sterile phone cover",
+        "procedure clock"
+      ],
+      "mustAvoid": [
+        "generic doctor heroics"
+      ]
+    },
+    {
+      "protagonistName": "Tomas",
+      "domain": "railway dispatcher rerouting trains during signal failure",
+      "audience": "dispatcher during evening peak",
+      "stakes": "keeping the timetable could send trains into a blind section",
+      "format": "audit",
+      "openingDevice": "environmental",
+      "requiredBeat": "The signal board goes dark in one block while Tomas cancels the proud express slot to preserve the network.",
+      "firstImage": "a dark block on a signal board",
+      "mustInclude": [
+        "manual authority form",
+        "radio channel",
+        "platform crowd count"
+      ],
+      "mustAvoid": [
+        "bus depot shell"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "consumer-products team refusing a viral packaging trend",
+      "audience": "brand lead under executive pressure",
+      "stakes": "a flashy package could break shelf stability and damage returns",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Adaeze one toppled test display to treat shame about looking slow as a dangerous fault, not a reason to copy the trend.",
+      "firstImage": "a toppled shelf display in a test aisle",
+      "mustInclude": [
+        "drop-test report",
+        "retailer planogram",
+        "launch photo"
+      ],
+      "mustAvoid": [
+        "generic marketing trend rant"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose principled disobedience under changed conditions",
+      "blend advantage with disadvantage",
+      "diagnose tactical faults in leaders"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one rule, route, or instruction you are following by habit, then write the condition under which obeying it would damage the real objective.",
+  "readingTimeMinutes": 12
+}

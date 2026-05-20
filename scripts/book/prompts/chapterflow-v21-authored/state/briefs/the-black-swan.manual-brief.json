@@ -1,0 +1,96 @@
+{
+  "bookId": "the-black-swan",
+  "title": "The Black Swan",
+  "author": "Nassim N. Taleb",
+  "thesisParagraph": "The Black Swan argues that the events that matter most are often rare, high-impact, and explainable only after they happen, while people keep treating calm samples, elegant models, expert confidence, and survivor stories as if they had made the future legible in advance. The practical lesson is not paralysis. It is disciplined skepticism: know which domains can be averaged safely, expose hidden denominators, distrust polished hindsight, limit ruin, and arrange decisions so surprise can help more than it can destroy.",
+  "coreIdeas": [
+    {
+      "name": "Rare events dominate",
+      "oneSentence": "In scalable domains, one extreme observation can outweigh years of ordinary data.",
+      "mentalMove": "classify the domain before trusting averages or smooth forecasts",
+      "sourceAnchors": [
+        "ch14.source",
+        "ch15.source"
+      ]
+    },
+    {
+      "name": "Hindsight launders surprise",
+      "oneSentence": "After an outcome is visible, stories make it feel more predictable than it was.",
+      "mentalMove": "separate what was visible before the event from what was stitched together after it",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Samples hide what vanished",
+      "oneSentence": "Visible winners and survivors can mislead when the failed comparison set has disappeared.",
+      "mentalMove": "rebuild the denominator before copying a success or drawing a lesson",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Models have jurisdictions",
+      "oneSentence": "A tool that works in bounded settings becomes dangerous when carried into open, fat-tailed worlds.",
+      "mentalMove": "ask whether the model's assumptions belong to the domain before accepting its precision",
+      "sourceAnchors": [
+        "ch09.source",
+        "ch17.source"
+      ]
+    },
+    {
+      "name": "Robustness beats prophecy",
+      "oneSentence": "When prediction is weak, survive error and preserve asymmetric upside.",
+      "mentalMove": "cap downside, keep optionality, and act through probes instead of finished-looking certainty",
+      "sourceAnchors": [
+        "ch11.source",
+        "ch13.source",
+        "ch19.source"
+      ]
+    }
+  ],
+  "targetReader": "Smart professionals, founders, analysts, students, and household decision-makers who are surrounded by forecasts, expert claims, dashboards, and success stories, and need a practical way to act without becoming either gullible or frozen.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make certainty feel physically expensive when it outruns evidence",
+      "turn abstract probability into domain diagnosis and visible stakes"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no anti-math swagger or fatalistic uncertainty slogans"
+    ]
+  },
+  "voiceSpecimens": [
+    "The chart is calm because the storm it fears has not been invited onto the page.",
+    "A survivor can teach you something, but first you have to ask who did not survive the lesson.",
+    "Do not let a number speak louder than the domain that produced it.",
+    "You can act without pretending the map reaches the edge of the world.",
+    "The cheap kind of certainty arrives polished, confident, and far from the bill.",
+    "When one outcome can carry the whole ledger, the average is no longer the adult in the room."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains why uncertainty is important in our lives.",
+    "Taleb argues that people should be more careful about predictions.",
+    "The key takeaway is to embrace uncertainty and make better decisions.",
+    "In today's fast-paced world, we all need to understand risk.",
+    "The concept of Black Swans teaches us that surprises are unpredictable."
+  ],
+  "teachingArc": "The book moves from personal apprenticeship in rupture, through the mental errors that make surprise look knowable, into the institutional machinery of forecasting, authority, and misplaced statistics, then finishes with a constructive posture: scout instead of prophesying, trust exposed competence over insulated prestige, classify domains, cap ruin, and preserve upside.",
+  "forbiddenMoves": [
+    "Do not flatten Black Swans into ordinary surprises or generic risk management.",
+    "Do not make Taleb sound like he hates math, expertise, ambition, or action.",
+    "Do not invent named studies or famous anecdotes where the frozen source only supports conceptual anchors.",
+    "Do not turn every chapter into the same beware certainty sermon; each chapter has a distinct mechanism."
+  ]
+}

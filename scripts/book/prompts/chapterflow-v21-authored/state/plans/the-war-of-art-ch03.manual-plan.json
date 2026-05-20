@@ -1,0 +1,201 @@
+{
+  "chapterId": "the-war-of-art-ch03",
+  "number": 3,
+  "title": "Book Three: Beyond Resistance - The Higher Realm",
+  "coreMove": "Let the work itself, not ego or approval hunger, become the authority that shapes the final choices.",
+  "sourcePressure": "The source sidecar supports a practical, bounded move beyond Resistance and turning pro into a larger creative or spiritual duty: discipline remains necessary, but the worker must treat the work as service, stewardship, or faithful delivery rather than self-display.",
+  "chapterSpecificMisunderstanding": "The wrong version is vague mysticism or chosen-artist theater, where higher purpose flatters the worker and loosens standards instead of making the craft cleaner.",
+  "sourceAlignmentTerms": [
+    "higher realm",
+    "Muse",
+    "service",
+    "stewardship",
+    "faithful delivery",
+    "ego",
+    "vanity",
+    "approval hunger",
+    "craft"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Muse",
+      "detail": "The sidecar permits the term Muse only narrowly and paraphrase-first, tied to the broad arc rather than detailed metaphysics.",
+      "useIn": "fullRead",
+      "phrasingHint": "Treat the Muse as a modest way to say the work is not merely a mirror for the maker."
+    },
+    {
+      "kind": "artifact",
+      "name": "higher realm",
+      "detail": "The sidecar allows the exact short phrase higher realm and requires the frame to remain practical, bounded, and tied to craft.",
+      "useIn": "both",
+      "phrasingHint": "The higher realm has to show up as a cleaner sentence, a truer cut, or a humbler delivery."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Discipline is not enough",
+      "The work is bigger than you",
+      "Ego kills art"
+    ],
+    "counterintuition": [
+      "The final obstacle is success",
+      "Service is not self-erasure",
+      "The Muse does not reward vanity"
+    ],
+    "tryThisNow": [
+      "Ask what the work wants",
+      "Remove one ego choice",
+      "Serve something bigger"
+    ],
+    "examples": [
+      "artist waiting for the Muse",
+      "writer cutting a clever line only",
+      "performer seeking applause",
+      "generic humility lesson"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a legal aid lawyer cutting a clever paragraph that clouds the client's strongest fact",
+      "audience": "professionals whose polished style can start serving reputation more than the person helped",
+      "stakes": "a tenant's emergency motion needs clarity before the hearing tomorrow morning",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia highlights the paragraph she loves, compares it with the client's one decisive fact, deletes the flourish, and moves the fact into the first line.",
+      "firstImage": "a legal brief paragraph circled as clever but confusing",
+      "mustInclude": [
+        "emergency motion",
+        "tenant hearing",
+        "decisive fact"
+      ],
+      "mustAvoid": [
+        "courtroom drama",
+        "lawyer heroism"
+      ]
+    },
+    {
+      "domain": "a conservation officer rewriting a field report around the marsh, not personal credit",
+      "audience": "field professionals who want their work recognized but owe accuracy to the place or people served",
+      "stakes": "a restoration grant depends on a report that must guide crews, not impress reviewers",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Thomas removes the paragraph about his difficult trek, restores the water-level measurements, and lets the marsh's condition govern the report.",
+      "firstImage": "a mud-stained field notebook from the marsh",
+      "mustInclude": [
+        "restoration grant",
+        "water-level measurements",
+        "field notebook"
+      ],
+      "mustAvoid": [
+        "nature reverie",
+        "personal adventure essay"
+      ]
+    },
+    {
+      "domain": "a documentary editor removing a showy sequence that weakens the witness's story",
+      "audience": "media makers whose technical skill can compete with the truth they are supposed to carry",
+      "stakes": "the cut will screen for the witness's family and a legal advocacy group",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Camille admits the sequence will get praise, then mutes it, watches the witness answer in silence, and cuts the beautiful shot that steals the center.",
+      "firstImage": "a timeline with a beautiful shot dragging the testimony off course",
+      "mustInclude": [
+        "witness interview",
+        "screening deadline",
+        "muted timeline"
+      ],
+      "mustAvoid": [
+        "film-school jargon",
+        "art versus commerce debate"
+      ]
+    },
+    {
+      "domain": "a hospice coordinator writing a family letter for accuracy rather than praise",
+      "audience": "care workers whose tenderness can become self-image if the task is not kept central",
+      "stakes": "a grieving family needs a clear care summary before a meeting with the nurse practitioner",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Ingrid replace the lyrical opening with the plain medication and comfort details the family actually needs by noon.",
+      "firstImage": "a half-written condolence letter beside a factual care note",
+      "mustInclude": [
+        "family meeting",
+        "care summary",
+        "comfort details"
+      ],
+      "mustAvoid": [
+        "sentimental grief scene",
+        "medical dosing object"
+      ]
+    },
+    {
+      "domain": "a public health analyst simplifying a dashboard so nurses can act faster",
+      "audience": "data workers whose clever displays can outrun the use case",
+      "stakes": "a vaccination outreach team needs same-day triage, not a portfolio piece",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:25 p.m., Javier removes the animated map, enlarges the three actionable clinic lists, and sends the version that helps nurses decide tonight.",
+      "firstImage": "a triage dashboard with one unnecessary animation removed",
+      "mustInclude": [
+        "vaccination outreach",
+        "clinic lists",
+        "same-day triage"
+      ],
+      "mustAvoid": [
+        "generic data visualization lesson",
+        "tech vanity rant"
+      ]
+    },
+    {
+      "domain": "a community arts director rejecting calling-language that lowers revision standards",
+      "audience": "creative leaders tempted to use vocation language as a shield against criticism",
+      "stakes": "a youth mural grant will be denied if the proposal stays grand and vague",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Aanya reads the rejected draft, underlines every holy-sounding phrase that avoided a concrete deliverable, and rewrites the grant around materials, dates, and youth roles.",
+      "firstImage": "a grant bio that sounds holy but dodges revision",
+      "mustInclude": [
+        "youth mural grant",
+        "materials list",
+        "revision notes"
+      ],
+      "mustAvoid": [
+        "chosen artist monologue",
+        "community center generic scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when disciplined work is still being bent by ego or approval hunger",
+      "choose an edit that serves the task rather than the maker's image",
+      "analyze the difference between service to the work and vague spiritual self-flattery",
+      "evaluate whether higher-purpose language increases humility, precision, and craft standards"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open one active piece of work and remove one choice whose main job is making you look impressive; replace it with the clearer choice the task needs.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a brief historical or craft reference that keeps Muse and higher-realm language bounded by visible workmanship",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,99 @@
+{
+  "bookId": "made-to-stick",
+  "title": "Made to Stick: Why Some Ideas Survive and Others Die",
+  "author": "Chip Heath, Dan Heath",
+  "thesisParagraph": "Sticky ideas survive because they are built for attention, memory, belief, care, and action. The real discipline is not making a message louder or prettier. It is finding the core, making that core compact enough to travel, then giving it surprise, concrete hooks, credible proof, human stakes, and a story shape that lets people retell it without losing the point.",
+  "coreIdeas": [
+    {
+      "name": "Core before polish",
+      "oneSentence": "A message cannot stick until it has one governing point that can survive pressure and tradeoffs.",
+      "mentalMove": "Cut a message until the priority that should guide decisions is unmistakable.",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Attention by broken pattern",
+      "oneSentence": "Surprise earns attention only when it opens a gap tied to the message instead of becoming a stunt.",
+      "mentalMove": "Break the expected frame, then aim curiosity back at the core.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Meaning with handles",
+      "oneSentence": "Concrete details make an idea visible enough for people to remember, compare, and coordinate around.",
+      "mentalMove": "Replace floating abstraction with a shared scene, object, or testable image.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Proof people can judge",
+      "oneSentence": "Credibility grows when evidence moves close enough to be checked, witnessed, or felt at human scale.",
+      "mentalMove": "Turn assertion into proof the reader can inspect without trusting status alone.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Care through human stakes",
+      "oneSentence": "People care when significance becomes personal through one person, identity, dignity, or meaningful consequence.",
+      "mentalMove": "Move from abstract importance to a stake someone can feel without being manipulated.",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Story as carrier",
+      "oneSentence": "A story carries a lesson farther when the point is embedded in what happens, not pasted on afterward.",
+      "mentalMove": "Build the lesson into sequence, choice, and consequence so it can survive retelling.",
+      "sourceAnchors": [
+        "ch06.source"
+      ]
+    }
+  ],
+  "targetReader": "People who need ideas to travel through teams, classrooms, customers, donors, voters, or families and who cannot rely on authority, repetition, or longer explanations to make the point land.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "treat communication as a design problem under real pressure",
+      "show the cost of a weak message in a visible failure"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no empty praise of clarity, storytelling, or persuasion as virtues by themselves"
+    ]
+  },
+  "voiceSpecimens": [
+    "A good message gives the room something to carry after the meeting ends.",
+    "If the point vanishes when the slide closes, the point was never designed to travel.",
+    "The right object on the table can do what another paragraph cannot.",
+    "People do not remember importance. They remember the shape importance took in front of them.",
+    "Cut until the next choice becomes easier, then stop before the truth gets smaller.",
+    "A story works when the lesson is hiding in the turn, the choice, and the cost."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains how communicators can leverage multidimensional persuasion frameworks.",
+    "The author argues that ideas need to be sticky in order to influence stakeholders.",
+    "In conclusion, readers should try to communicate better every day.",
+    "The concept is important because communication is a fundamental leadership capability.",
+    "Use the SUCCESs framework to optimize message retention across audiences."
+  ],
+  "teachingArc": "The book compounds from selection to transmission. First the reader learns to find the core, then to win attention without gimmickry, make the core visible, make it believable, make it matter, and finally package it in narrative so other people can carry it onward.",
+  "forbiddenMoves": [
+    "Do not reduce the book to a checklist of six adjectives without showing the design choice each one forces.",
+    "Do not make sticky mean catchy, viral, clever, or emotionally manipulative.",
+    "Do not reuse one generic meeting, nonprofit, classroom, or pitch scene across chapters with new names.",
+    "Do not invent named studies or famous anecdotes beyond the source sidecars.",
+    "Do not let surprise, emotion, or story drift away from the core message they are supposed to serve."
+  ]
+}

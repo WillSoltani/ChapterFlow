@@ -1,0 +1,186 @@
+{
+  "chapterId": "extreme-ownership-ch03",
+  "number": 3,
+  "title": "No Bad Teams, Only Bad Leaders",
+  "coreMove": "test the leader’s standard before judging the team by changing what the leader models, repeats, and accepts",
+  "sourcePressure": "The Hell Week boat-crew leader swap shows the same team performing differently when standards and leadership change.",
+  "chapterSpecificMisunderstanding": "bad teams do not exist, so leaders can magically fix anything",
+  "sourceAlignmentTerms": [
+    "Hell Week",
+    "boat crew",
+    "leader swap",
+    "standards",
+    "example",
+    "team performance",
+    "not magical"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Hell Week boat-crew story",
+      "detail": "the source says the same crew performs differently when the leader changes",
+      "useIn": "both",
+      "phrasingHint": "The Hell Week boat-crew story works because the people stay the same while the leadership variable changes."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "warehouse pick crew with the lowest accuracy on the night shift",
+      "audience": "a shift supervisor who thinks his crew is lazy",
+      "stakes": "incorrect shipments are threatening a retail contract",
+      "format": "before_after",
+      "requiredBeat": "the supervisor changes his own start-of-shift standard, demonstrates one clean pick path, audits the first ten orders with the crew, and the error pattern changes",
+      "firstImage": "a handheld scanner buzzes red over a bin of identical black cables",
+      "mustInclude": [
+        "handheld scanner",
+        "first-ten audit",
+        "pick path"
+      ],
+      "mustAvoid": [
+        "lazy worker diagnosis"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "high-school debate squad losing every cross-examination round",
+      "audience": "a coach tempted to blame student confidence",
+      "stakes": "the regional qualifier is two weeks away and the team is spiraling",
+      "format": "scene",
+      "requiredBeat": "the coach records his own vague feedback, replaces it with a three-question cross-exam standard, and drills it until students can run it without him",
+      "firstImage": "You are close enough to see this: creased rebuttal cards spill from a debate tub onto the hallway floor.",
+      "mustInclude": [
+        "rebuttal cards",
+        "three-question standard",
+        "practice timer"
+      ],
+      "mustAvoid": [
+        "confidence pep talk"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "ambulance dispatch shift with growing call backlog",
+      "audience": "a dispatch supervisor hearing complaints about slow trainees",
+      "stakes": "delayed ambulance assignment can put callers at risk",
+      "format": "postmortem",
+      "requiredBeat": "the supervisor reviews her training gaps, rewrites the escalation rule in plain language, and shadows the next two calls instead of blaming trainees",
+      "firstImage": "The first thing you register is physical: five pending calls stack yellow on the dispatch console.",
+      "mustInclude": [
+        "dispatch console",
+        "escalation rule",
+        "shadowed calls"
+      ],
+      "mustAvoid": [
+        "generic communication advice"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "hotel housekeeping floor with repeated room-readiness failures",
+      "audience": "an assistant manager blaming one floor team",
+      "stakes": "guests are arriving before rooms are inspected",
+      "format": "predict_reveal",
+      "requiredBeat": "the manager swaps floor leads for one morning, keeps the same attendants, and watches the inspection score change when the standard is demonstrated differently",
+      "firstImage": "\"Hold there,\" someone says. Brass room key envelope waits on the desk while room 814 still shows dirty.",
+      "mustInclude": [
+        "inspection checklist",
+        "floor lead swap",
+        "room-status board"
+      ],
+      "mustAvoid": [
+        "staff morale speech"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "student robotics pit failing safety inspection",
+      "audience": "a robotics mentor who thinks the build team lacks discipline",
+      "stakes": "the robot cannot compete unless wiring and guards pass inspection",
+      "format": "decision_point",
+      "requiredBeat": "the mentor admits he never defined ready, posts a visible inspection standard, demonstrates one compliant wiring run, and assigns peer checks before the next inspection",
+      "firstImage": "Later, the team will trace the lesson back to this: loose battery lead dangles beside a yellow inspection sticker.",
+      "mustInclude": [
+        "inspection sticker",
+        "wiring run",
+        "peer checks"
+      ],
+      "mustAvoid": [
+        "kids these days frame"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "line-cook station missing ticket times during dinner service",
+      "audience": "a sous-chef frustrated with a quiet new station team",
+      "stakes": "the dining room backs up and plates die in the pass",
+      "format": "dialogue",
+      "requiredBeat": "the sous-chef stops blaming speed, calls the standard at the pass, resets the station layout with the cooks watching, and runs the next five tickets beside them",
+      "firstImage": "What changes once this is in front of everyone: ticket rail spits out six chits while sauce skins over under the heat lamp?",
+      "mustInclude": [
+        "ticket rail",
+        "station reset",
+        "next-five-ticket run"
+      ],
+      "mustAvoid": [
+        "angry kitchen stereotype"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose how leader standards shape a team’s performance",
+      "avoid labeling a team before testing leadership inputs",
+      "choose the leader behavior that changes expectations visibly"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one team complaint you have repeated, then write the standard you have modeled, repeated, and allowed that may be teaching it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

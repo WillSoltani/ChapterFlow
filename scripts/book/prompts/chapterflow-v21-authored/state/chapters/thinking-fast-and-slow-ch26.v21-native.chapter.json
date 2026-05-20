@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch26",
+  "number": 26,
+  "title": "Prospect Theory",
+  "readingTimeMinutes": 12,
+  "hook": "A small chance can loom huge, while a sure loss bends the room around it.",
+  "counterintuition": "The better move is not to label every caution as risk aversion. Read the reference point, the steeper pain of loss, and the way small and certain probabilities get overweighted.",
+  "tryThisNow": "For one choice today, mark the reference point and possible loss. Then ask whether a tiny or certain chance is pulling your attention.",
+  "keyTakeaway": "Read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone.",
+  "breakdown": {
+    "fastRead": "A patient accepts an inconvenient pharmacy switch to avoid a $40 copay increase, then ignores a different option that could save $40 with a small chance of delay. The dollars match, but the first feels like preventing a loss and the second feels like chasing a gain.\n\nLosses bend the scale.\n\nProspect theory explains choices by the reference point, the value curve around gains and losses, and the way probabilities are felt. Losses usually hurt more steeply than equal gains please. Certainty has extra force. Tiny chances can feel larger than their math. Final outcome alone misses the shape of the experience.",
+    "deepRead": "An architect surveys a building and sees two repair contracts. One guarantees a modest cost overrun. The other offers a chance to avoid the overrun but carries a small chance of a much larger bill. A final-outcome table helps, but it will not explain the client's tension by itself.\n\nThe client is standing at a reference point.\n\nThe first question is where the person feels neutral. Maybe the approved budget is the line. Maybe the promised move-in date is the line. Outcomes above that line are gains; outcomes below it are losses. The value curve is usually steeper for losses, so falling below the line can dominate a matching gain above it. This is why people may reject a fair gamble when it risks a loss from the current position.\n\nProbability then gets distorted. A sure gain can feel much more attractive than a slightly larger but uncertain gain. A tiny chance of catastrophe can feel larger than its number. A move from 99 percent safe to 100 percent safe may feel bigger than the same numerical move elsewhere. The certainty effect and probability weighting make the decision's emotional shape different from a simple expected-value table.\n\nA fire commander sees it during evacuation. A certain small property loss may be accepted to remove a tiny chance of fatalities. That does not mean the commander is bad at math. The reference point, the loss curve, and the weight placed on small probabilities are doing real psychological work.\n\nThe math is only the map. The value curve is the terrain.",
+    "fullRead": "Prospect theory starts where clean final-state analysis struggles. People do not experience outcomes as points on a calm wealth line. They experience changes from a reference point, with losses biting harder than gains soothe, and with probabilities felt unevenly. This creates patterns that look inconsistent if you ignore the curve.\n\nCarmen stands at a pharmacy verification bench with the tax audit worksheet labeled prospect theory between two medication coverage options. One option gives a guaranteed $30 monthly saving. Another has a 70 percent chance of saving $50 and a 30 percent chance of saving nothing after paperwork. The expected numbers are close, but the certain saving has a pull beyond its dollar value. Carmen must recognize that certainty, not only final cost, is shaping the choice.\n\nAsk three questions before you call a choice irrational.\n\nFirst, what is the reference point? A person's current plan, promise, target, or status quo defines what counts as gain and loss. Second, where is the loss curve steep? A possible loss from that line may matter more than an equal gain. Third, how are probabilities being felt? Certainty can be overvalued; tiny chances can be inflated; moderate probabilities can be underweighted or overweighted depending on the frame.\n\nThis explains why people can be cautious in gains and risk seeking in losses. Someone offered a sure $900 gain may prefer it over a gamble with a higher expected value. The same person facing a sure $900 loss may gamble to avoid it, even when the gamble is worse on average. The reference point has moved the person into gain or loss territory, and the curve changes the appetite for risk.\n\nA submarine simulator makes the certainty effect vivid. Roland's crew can choose a guaranteed slow surfacing route that loses exercise points or a faster route with a small chance of collision penalty. The rare-book cradle strap labeled reference dependence lies between the options. If the crew thinks of the points as already theirs, the guaranteed loss hurts and the gamble tempts. If the crew thinks of safe completion as the target, the same options look different.\n\nThe counter-objection is that this can sound like permission to surrender to feelings. It is not. The point is diagnosis. Once you know the reference point, loss curve, and probability weighting, you can separate real stakes from distorted attention. You may still accept the sure small loss to avoid catastrophe. You may still take a risk to escape a serious loss. But you will know which force is driving the decision.\n\nThe practical method is to redraw the choice. Put a horizontal line for the reference point. Mark gains above it and losses below it. Make losses visually steeper. Then circle any probability that is either tiny or certain, because those are often felt out of proportion. The picture does not decide for you. It stops final-outcome arithmetic from pretending to be the whole story.\n\nA decision becomes clearer when you see where the curve bends."
+  },
+  "examples": [
+    {
+      "exampleId": "ch26-ex01-carmen-pharmacy",
+      "title": "Carmen spots the certainty pull",
+      "tags": [
+        "thought-experiment",
+        "pharmacy",
+        "loss-aversion"
+      ],
+      "planSpec": {
+        "domain": "pharmacy verification bench facing a decision distorted by loss aversion",
+        "audience": "a lead or reviewer who must read reference point, loss curve, and probability weighting",
+        "stakes": "the visible call will go wrong unless loss aversion is separated from the weaker cue",
+        "format": "thought_experiment",
+        "requiredBeat": "the before call appears on the labeled worksheet, then the after call follows once the three-part read is visible"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Carmen says, with the tax audit worksheet labeled prospect theory between two medication coverage choices. Imagine she must decide whether a patient should take a guaranteed $30 saving or a 70 percent chance at $50. The patient fears any paperwork failure. Carmen must decide by naming the reference point, loss aversion, and certainty pull before recommending.",
+      "whatToDo": "Map the current cost as reference point, identify the feared paperwork loss, and explain how certainty is weighting the smaller saving.",
+      "whyItMatters": "Prospect theory shows why the sure option can feel stronger than final-outcome arithmetic suggests."
+    },
+    {
+      "exampleId": "ch26-ex02-neil-site",
+      "title": "Neil draws the steeper loss side",
+      "tags": [
+        "scene",
+        "architecture",
+        "value-function"
+      ],
+      "planSpec": {
+        "domain": "architectural site survey facing a decision distorted by loss aversion",
+        "audience": "a lead or reviewer who must read reference point, loss curve, and probability weighting",
+        "stakes": "the visible call will go wrong unless loss aversion is separated from the weaker cue",
+        "format": "scene",
+        "requiredBeat": "the protagonist names the shortcut and chooses one check that makes it accountable"
+      },
+      "scenario": "The survey desk before the site walk is quiet except for the proofing basket label labeled loss aversion beside Neil's repair estimate. A client prefers a risky contract that could avoid a budget overrun but might create a larger bill. Neil must decide whether the value function is being bent by the approved budget reference point and the steeper pain of losses.",
+      "whatToDo": "Draw the budget as the reference line, place both contracts above or below it, and show how the larger possible loss changes the decision.",
+      "whyItMatters": "A final-cost table can hide the curve. The client is reacting to movement around a reference point."
+    },
+    {
+      "exampleId": "ch26-ex03-audrey-command",
+      "title": "Audrey signs the evacuation choice twice",
+      "tags": [
+        "vignette",
+        "fire",
+        "reference-dependence"
+      ],
+      "planSpec": {
+        "domain": "fire command post facing a decision distorted by loss aversion",
+        "audience": "a lead or reviewer who must read reference point, loss curve, and probability weighting",
+        "stakes": "the visible call will go wrong unless loss aversion is separated from the weaker cue",
+        "format": "vignette",
+        "requiredBeat": "two commitments are compared, one from first impression and one after the three-part read"
+      },
+      "scenario": "What would change if the function snow-pit ruler labeled value function stopped feeling like proof and started looking like a cue at Audrey's command post? She must decide whether to order evacuation that guarantees property damage but removes a tiny chance of fatalities. Her first signature and prospect-theory signature differ once reference dependence and probability weighting are visible.",
+      "whatToDo": "Identify the safety reference point, mark property loss and fatality risk separately, and show how the tiny catastrophic chance is weighted.",
+      "whyItMatters": "The choice is not just risk aversion. It combines loss curve, moral reference point, and the weight placed on a small probability."
+    },
+    {
+      "exampleId": "ch26-ex04-roland-simulator",
+      "title": "Roland separates safe completion from lost points",
+      "tags": [
+        "dialogue",
+        "simulator",
+        "certainty-effect"
+      ],
+      "planSpec": {
+        "domain": "submarine simulator facing a decision distorted by loss aversion",
+        "audience": "a lead or reviewer who must read reference point, loss curve, and probability weighting",
+        "stakes": "the visible call will go wrong unless loss aversion is separated from the weaker cue",
+        "format": "dialogue",
+        "requiredBeat": "quick cue and corrective evidence are separated before the choice"
+      },
+      "scenario": "The worn cloth of the rare-book cradle strap labeled reference dependence slides under Roland's palm as the simulator clock runs. \"The slow route costs points for sure,\" one crew member says. \"The fast route probably clears.\" Roland separates the quick cue from the certainty effect. He must decide whether the crew sees points as already owned or safety as the true reference point.",
+      "whatToDo": "Set the reference point explicitly, then compare the sure point loss with the weighted collision probability.",
+      "whyItMatters": "The same route can look different when the reference point changes. Certainty gives the sure loss unusual force."
+    },
+    {
+      "exampleId": "ch26-ex05-mae-buy",
+      "title": "Mae notices a tiny chance filling the room",
+      "tags": [
+        "decision_point",
+        "bookstore",
+        "probability-weighting"
+      ],
+      "planSpec": {
+        "domain": "independent bookstore buy desk facing a decision distorted by loss aversion",
+        "audience": "a lead or reviewer who must read reference point, loss curve, and probability weighting",
+        "stakes": "the visible call will go wrong unless loss aversion is separated from the weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the trainee moves the labeled tag only after stating the correction"
+      },
+      "scenario": "You are looking at the caliper inspection tag labeled certainty effect while Mae's buy order starts to feel too complete. A rare signed edition has a 3 percent chance of a huge collector sale and a high chance of sitting for months. Mae must decide whether probability weighting has made the small jackpot chance feel larger than the inventory loss below her cash reference point.",
+      "whatToDo": "Mark the cash reference point, inventory loss, and the overweighted small chance before approving the buy.",
+      "whyItMatters": "Prospect theory explains why a tiny upside can dominate attention while the likely loss is underread."
+    },
+    {
+      "exampleId": "ch26-ex06-theresa-frost",
+      "title": "Theresa checks the frost alarm gamble",
+      "tags": [
+        "predict_reveal",
+        "orchard",
+        "probability-weighting"
+      ],
+      "planSpec": {
+        "domain": "orchard frost watch facing a decision distorted by loss aversion",
+        "audience": "a lead or reviewer who must read reference point, loss curve, and probability weighting",
+        "stakes": "the visible call will go wrong unless loss aversion is separated from the weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the supervisor crosses out an alluring detail and asks for the boring comparison first"
+      },
+      "scenario": "It took three passes before Theresa saw what the neon transformer tube labeled probability weighting had been making too easy. A 6 percent frost risk feels huge because crop loss would be brutal. She circles the scary number, crosses it out, and must decide whether heater costs, crop reference point, and overweighted small probability have been separated before the forecast reveal.",
+      "whatToDo": "Compare the weighted frost fear with heater costs and crop-loss reference point, then decide whether the alarm justifies action.",
+      "whyItMatters": "Small probabilities can loom large when losses are severe. The correction makes that weight explicit instead of letting it silently rule."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A patient chooses a guaranteed $30 pharmacy saving over a 70 percent chance to save $50, partly because paperwork failure would feel frustrating. Which analysis best fits prospect theory?",
+        "choices": [
+          "The guaranteed saving has extra pull because certainty and the reference point shape value.",
+          "Only expected dollars matter, so the patient is simply wrong.",
+          "The patient is avoiding all risk, so no further analysis is needed."
+        ],
+        "correctIndex": 0,
+        "explanation": "The choice involves certainty and reference point, not just risk aversion. Expected dollars help, but they do not describe felt value alone.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A client prefers a risky repair contract that might avoid any budget overrun, even though it could create a larger bill. The approved budget is the client's baseline. What should the adviser map first?",
+        "choices": [
+          "Only the final cost if everything goes well.",
+          "The reference point and the steeper loss side below it.",
+          "The adviser's personal risk preference."
+        ],
+        "correctIndex": 1,
+        "explanation": "The decision turns on the budget reference point and the loss curve below it. Personal preference is a distraction unless the client shares it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A fire commander accepts certain property damage to eliminate a tiny chance of fatalities. What does prospect theory add beyond a simple final-outcome table?",
+        "choices": [
+          "It proves tiny probabilities should always be ignored.",
+          "It says property loss and fatality risk are psychologically identical.",
+          "It shows that the reference point, steep loss, and weighted small probability shape the choice."
+        ],
+        "correctIndex": 2,
+        "explanation": "The model explains why a small catastrophic chance can dominate. Ignoring tiny probabilities or equating losses would miss the decision's shape.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A simulator crew sees the slow route as a sure loss of points and the fast route as likely to preserve them. If safe completion is named as the reference point instead, what may change?",
+        "choices": [
+          "The sure point loss may lose some force because the reference line has shifted.",
+          "The probabilities become irrelevant.",
+          "The crew must always take the fast route."
+        ],
+        "correctIndex": 0,
+        "explanation": "Changing the reference point changes what feels like loss. The probabilities still matter, and no route is automatically required.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A bookstore buyer overfocuses on a 3 percent chance that a signed edition becomes a major collector sale, while ignoring the likely inventory drag. Which mechanism is most relevant?",
+        "choices": [
+          "A formula for guaranteed profit.",
+          "Probability weighting of a small chance, combined with the inventory-loss reference point.",
+          "A rule that rare books should never be bought."
+        ],
+        "correctIndex": 1,
+        "explanation": "The tiny upside chance may be overweighted, while the likely loss sits below the cash reference point. The issue is not a ban on rare inventory.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An orchard crew wants to run heaters for a 6 percent frost risk because crop loss would be severe. The heaters are expensive. What should the supervisor make explicit?",
+        "choices": [
+          "Only the crop-loss amount, because heater costs are irrelevant.",
+          "Only the mathematical probability, because feelings are noise.",
+          "The crop reference point, heater cost, loss severity, and possible overweighting of the small probability."
+        ],
+        "correctIndex": 2,
+        "explanation": "The decision needs both economics and psychology. Severe losses and small-probability weighting can both shape the choice.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says prospect theory simply means people dislike risk. Which reply is most accurate?",
+        "choices": [
+          "It is broader: it includes reference dependence, loss aversion, the value function, certainty, and probability weighting.",
+          "It is narrower: it only applies to stock investing.",
+          "It is wrong: people always maximize final wealth."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk aversion is too vague. Prospect theory describes how gains, losses, and probabilities are valued around a reference point.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A worker accepts a sure $900 bonus instead of a gamble with a higher expected value. Later, facing a sure $900 penalty, she chooses a worse gamble to avoid it. What explains the reversal?",
+        "choices": [
+          "A lack of intelligence.",
+          "Different positions on the value curve: caution in gains and risk seeking in losses.",
+          "A stable preference for gambling."
+        ],
+        "correctIndex": 1,
+        "explanation": "The reference point changes the frame. Gains and losses are valued differently, so the same person may show different risk attitudes.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "At a transit agency, a policy team wants to use prospect theory responsibly before announcing a fare change with uncertain gains and losses. Which practice is best?",
+        "choices": [
+          "Ignore probabilities because feelings decide everything.",
+          "Use final outcomes only so the analysis stays objective.",
+          "Draw the reference point, mark gains and losses, and circle probabilities that are tiny or certain."
+        ],
+        "correctIndex": 2,
+        "explanation": "The drawing captures the main mechanisms without surrendering to them. Ignoring probabilities or feelings loses half the model.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A decision seems like simple risk aversion. What three things should you check?",
+      "back": "Check the reference point, the steeper loss side of the value function, and whether probability weighting or certainty is distorting attention.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can the same person avoid risk in gains and seek risk in losses?",
+      "back": "The reference point moves the person onto different parts of the value curve. Losses can make gambles to avoid them more tempting.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What is the certainty effect?",
+      "back": "A sure outcome can receive extra psychological weight compared with a very likely but uncertain outcome.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How can tiny probabilities distort decisions?",
+      "back": "They can be overweighted, especially when the outcome is vivid or severe, making a small chance feel larger than its number.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What does prospect theory add to final-outcome analysis?",
+      "back": "It explains how people value changes from a reference point, feel losses more steeply, and weight probabilities unevenly.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is prospect mapping: locate the reference point, draw the gain-loss curve, and check whether certainty or small probabilities are overweighted.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a team resists a change, then identify the reference point and the loss they feel before arguing final benefits."
+      },
+      {
+        "context": "health",
+        "plan": "If a treatment choice involves a tiny severe risk, then write both the probability and the felt weight of that risk before deciding."
+      },
+      {
+        "context": "money",
+        "plan": "If you prefer a sure smaller gain or a gamble to avoid a loss, then map where the choice sits on the value curve."
+      },
+      {
+        "context": "operations",
+        "plan": "If a safety decision turns on a rare event, then separate expected cost from the overweighted small probability before setting policy."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, draw one prospect map: a reference line, one gain, one loss, and one probability that feels larger or smaller than its number.",
+    "weeklyPractice": "Once a week, review a decision where certainty or a tiny chance dominated attention and write how the prospect map would have changed the discussion."
+  },
+  "memorableLines": [
+    {
+      "text": "Losses bend the scale.",
+      "location": "breakdown.fastRead",
+      "why": "It captures loss aversion in plain language."
+    },
+    {
+      "text": "The math is only the map. The value curve is the terrain.",
+      "location": "breakdown.deepRead",
+      "why": "It separates expected-value arithmetic from lived value."
+    },
+    {
+      "text": "A decision becomes clearer when you see where the curve bends.",
+      "location": "breakdown.fullRead",
+      "why": "It summarizes the practical mapping move."
+    }
+  ]
+}

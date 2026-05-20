@@ -1,0 +1,178 @@
+{
+  "chapterId": "execution-ch08",
+  "number": 8,
+  "title": "How to Conduct a Strategy Review",
+  "coreMove": "Run a strategy review that changes the plan by forcing sharper questions and commitments.",
+  "sourcePressure": "Strategy review: the meeting has to pressure the plan through questions about competition, capability, focus, idea choice, people linkage, operations linkage, and follow-through. No chapter-specific named review case is frozen.",
+  "chapterSpecificMisunderstanding": "Make the review a polite presentation, status meeting, or critique session.",
+  "sourceAlignmentTerms": [
+    "strategy review",
+    "competition knowledge",
+    "organizational capability",
+    "focus",
+    "right ideas",
+    "people linkage",
+    "operations linkage",
+    "following through"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "the how to conduct a strategy review that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional bank reviewing a small-business lending strategy after defaults rise in one sector",
+      "audience": "a credit leader running a review",
+      "stakes": "a polished lending plan can ignore competition and sector risk until losses deepen",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Grace asks how well the team knows the new fintech competitor and the sector defaults, turning the review from presentation into pressure",
+      "firstImage": "\"Which lender is taking the low-risk borrowers from us?\" Grace asks before the first slide changes.",
+      "mustInclude": [
+        "default report",
+        "competitor rate sheet",
+        "review deck"
+      ],
+      "mustAvoid": [
+        "generic bank meeting"
+      ]
+    },
+    {
+      "domain": "a regional theater reviewing a subscription strategy with too many audience initiatives",
+      "audience": "an artistic director and board finance chair",
+      "stakes": "scattered ideas can drain rehearsal budgets and still miss younger subscribers",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ryan marks every initiative on the season wall and makes the room choose which ideas deserve capacity",
+      "firstImage": "Colored sticky notes cover the season wall until the rehearsal budget line nearly disappears.",
+      "mustInclude": [
+        "season wall",
+        "rehearsal budget line",
+        "subscriber age report"
+      ],
+      "mustAvoid": [
+        "generic brainstorming"
+      ]
+    },
+    {
+      "domain": "a university IT office reviewing a cloud migration plan without enough database administrators",
+      "audience": "a CIO",
+      "stakes": "migration dates can look strong while organizational capability is weak",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Vincent must decide whether to let the review proceed before testing capability and people linkage",
+      "firstImage": "At 9:03 a.m., Vincent sees the migration timeline glowing green and the DBA roster showing two vacancies.",
+      "mustInclude": [
+        "migration timeline",
+        "DBA roster",
+        "risk register"
+      ],
+      "mustAvoid": [
+        "generic tech launch"
+      ]
+    },
+    {
+      "domain": "a specialty coffee roaster reviewing expansion into airports while existing cafe quality is uneven",
+      "audience": "a founder leading a strategy review",
+      "stakes": "a new channel can amplify an operating weakness the review is avoiding",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lars traces the airport delay to a review that praised growth but never linked operations to quality capacity",
+      "firstImage": "It took Lars three airport-site visits to admit the cupping defect sheet had belonged in the review.",
+      "mustInclude": [
+        "airport-site notes",
+        "cupping defect sheet",
+        "operations linkage page"
+      ],
+      "mustAvoid": [
+        "generic restaurant expansion"
+      ]
+    },
+    {
+      "domain": "a regional mental-health charity reviewing a telehealth plan with unclear clinician schedules",
+      "audience": "a program director",
+      "stakes": "clients can be offered appointments the staffing pattern cannot sustain",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Catarina asks what changes after the review, then forces a narrower plan with clinician schedules attached",
+      "firstImage": "What should be different on Monday if a strategy review has actually done its job?",
+      "mustInclude": [
+        "telehealth plan",
+        "clinician schedule",
+        "client waitlist"
+      ],
+      "mustAvoid": [
+        "generic nonprofit planning"
+      ]
+    },
+    {
+      "domain": "a Toronto robotics supplier reviewing three attractive product ideas after a competitor undercuts price",
+      "audience": "a business-unit team",
+      "stakes": "choosing the wrong idea can consume scarce engineering hours",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Min changes the review from idea admiration to right-idea selection by tying each option to competition, capability, and follow-through",
+      "firstImage": "You have three prototype photos on the table, and Min has only twelve engineering weeks to spend.",
+      "mustInclude": [
+        "prototype photos",
+        "engineering-week budget",
+        "competitor price sheet"
+      ],
+      "mustAvoid": [
+        "generic product roadmap"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn review questions toward competition, capability, focus, idea choice, linkages, and follow-through",
+      "distinguish presentation protection from plan pressure",
+      "choose the question that changes commitments after the meeting",
+      "evaluate whether review produced sharper action"
+    ]
+  },
+  "tryThisNowSpec": "Before your next review, write one question that could change the plan, not merely explain it.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

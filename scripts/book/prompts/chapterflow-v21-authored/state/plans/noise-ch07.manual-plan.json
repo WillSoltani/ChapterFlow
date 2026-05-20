@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch07",
+  "number": 7,
+  "title": "Measuring Error",
+  "coreMove": "Quantify the spread between judgments on the same case rather than explaining each disagreement away one case at a time.",
+  "sourcePressure": "Error in judgment should be treated as something inspectable and measurable rather than merely sensed, suspected, or explained away by case complexity. Measuring the gap between multiple judgments on the same case gives noise a number rather than a story. Domain uncertainty does not erase the need to measure — it makes measurement more important.",
+  "chapterSpecificMisunderstanding": "Treating domain complexity as sufficient justification for judgment disagreement, or assuming that because perfect accuracy is impossible, measuring error is pointless or misleading.",
+  "sourceAlignmentTerms": ["error", "measurement", "spread", "gap", "disagreement rate", "mean squared error", "inspectable"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Forensic evidence examiner reliability studies",
+      "detail": "Blind studies of fingerprint examiners, questioned-document analysts, and bite-mark specialists have found that expert error rates are higher than the field assumed, and that the measurement itself was resisted for years by practitioners who believed expertise meant near-zero error.",
+      "useIn": "deepRead",
+      "phrasingHint": "A fingerprint examiner who has never been tested does not know their error rate. They know their confidence. Those two numbers are not the same."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["how wrong are experts? more than you think", "the problem with measuring anything is that you might not like the answer"],
+    "counterintuition": ["measuring error is more important than reducing it", "the act of measuring changes what you measure"],
+    "tryThisNow": ["estimate your own error rate in your field", "think about a time you were wrong in a way you could have measured"],
+    "examples": ["a scene where error measurement results in someone being fired or disciplined — conflates measuring noise with punishing people", "an example where measurement immediately produces a remedy — skips the chapter's actual focus on measurement itself"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Measurement examples risk all sounding the same — 'expert discovers their error rate.' The formats and domains need to vary so the chapter feels like it covers the full texture of how measurement works across different professional contexts."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "forensic fingerprint laboratory: a quality study measuring examiner-to-examiner disagreement on a blind print set",
+      "audience": "a forensic lab director running the first systematic accuracy study in the lab's history",
+      "stakes": "the credibility of fingerprint evidence in court, which rests on an assumed accuracy that has never been formally quantified in this lab",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the director reviews the blind-test results: across 100 prints distributed to six examiners, the same print was classified differently by different examiners in 11 percent of cases — a number the director had assumed would be closer to 2 or 3 percent, based on informal professional lore",
+      "firstImage": "a forensic lab analysis room, a printout of test results showing an error rate column with a number the lab director expected to be much lower",
+      "mustInclude": ["the gap between assumed and measured error rate", "the lab director's reaction to seeing a number rather than a story", "the implication for court testimony that has cited expert certainty without this data"],
+      "mustAvoid": ["implying any specific case was wrongly decided", "a crime narrative that distracts from the measurement theme"]
+    },
+    {
+      "domain": "obstetric ultrasound: an OB unit measuring inter-observer variability in gestational age estimation from the same images",
+      "audience": "an obstetrics department running a mandatory annual calibration exercise",
+      "stakes": "scheduling decisions for delivery — a wide spread in gestational age estimates leads to different decisions about timing, and the spread had never been formally quantified",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the department coordinator analyzes the calibration results: across 20 ultrasound images shown to 8 sonographers, the standard deviation in gestational age estimates is 11 days — meaning the same image routinely generates estimates spanning three weeks when the full distribution is examined",
+      "firstImage": "a spreadsheet showing 20 rows (ultrasound images) and 8 columns (sonographers), with gestational age estimates filling the cells and the range per row visible in a final column",
+      "mustInclude": ["the 11-day standard deviation as the key measurement", "the clinical significance of the three-week spread for delivery timing", "the department's prior assumption that trained sonographers would be within a few days of each other"],
+      "mustAvoid": ["a patient case narrative", "implying any specific delivery outcome was compromised"]
+    },
+    {
+      "domain": "weather forecasting accuracy tracking: a meteorology team building a systematic calibration record for 24-hour precipitation forecasts",
+      "audience": "a national weather service quality analyst",
+      "stakes": "public trust in weather warnings and the resource allocations (emergency services, agriculture) that forecasts drive",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the analyst shows a forecaster the calibration chart for her 24-hour precipitation probability forecasts over the past year: when she said 70 percent chance of rain, it actually rained 58 percent of the time — a systematic gap that can only be seen by measuring over time, and that she had not known about because no one had built the measurement system until now",
+      "firstImage": "a calibration chart with 'stated probability' on the x-axis and 'actual frequency' on the y-axis, a diagonal perfect-calibration reference line, and a curve that departs from it in the 60-80 percent range",
+      "mustInclude": ["the gap between stated probability and actual frequency as the measurement", "the forecaster not knowing her own calibration curve", "the measurement system being new rather than the error being new"],
+      "mustAvoid": ["a weather disaster narrative", "implying the forecaster was careless"]
+    },
+    {
+      "domain": "sports analytics: a team physiotherapist building a calibration record for her injury-risk score predictions",
+      "audience": "a sports medicine team that uses risk scores to make training load decisions",
+      "stakes": "player health and competitive performance — scores that are systematically overconfident lead to under-protective training decisions",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you are reviewing your last 18 months of risk scores against actual injury outcomes: when you scored a player at 70-80 percent injury risk, they were actually injured 43 percent of the time — meaning your high-confidence predictions were systematically too confident, and every training load decision built on those scores carried more uncertainty than you communicated",
+      "firstImage": "a training data spreadsheet with player ID numbers, your risk scores, and an actual injury column containing yes or no entries for each player",
+      "mustInclude": ["the gap between stated risk probability and actual injury frequency", "the downstream training load decisions that depended on the scores", "the recognition that measurement changes what the score means rather than making it less useful"],
+      "mustAvoid": ["a specific injury story", "implying the physiotherapist failed in her duty of care"]
+    },
+    {
+      "domain": "academic peer review: a journal editor measuring consistency between two independent reviewers on the same manuscript",
+      "audience": "an editor-in-chief studying inter-reviewer agreement rates for a major methodological journal",
+      "stakes": "the validity of peer review as a quality filter and the fairness of the rejection decisions the journal makes",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the editor asks: across the last three years of double-blind reviews, how often do two independent reviewers of the same manuscript agree on the accept/revise/reject decision? The answer from the journal's own data: 43 percent — barely above chance — and for the papers closest to the acceptance threshold, the agreement drops further",
+      "firstImage": "a database query result showing acceptance recommendation pairs for the same manuscripts, the agree/disagree column showing more disagreement than agreement for borderline cases",
+      "mustInclude": ["the 43 percent agreement rate as the measured spread", "the near-threshold cases as where disagreement is worst", "the implication that the measurement itself is news to the editorial team"],
+      "mustAvoid": ["claiming the 43 percent number is universal for all journals — frame it as this journal's data", "a specific rejected manuscript story"]
+    },
+    {
+      "domain": "credit default risk: a bank comparing loan officer overrides against model predictions on a two-year lookback",
+      "audience": "a credit risk manager auditing the quality of manual override decisions",
+      "stakes": "loan portfolio health and fair lending compliance — the overrides either add value (catching what the model misses) or introduce noise",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the risk manager compares two years of outcomes: on cases where loan officers overrode the model in favor of approval, the default rate was 14 percent — four points higher than the model's accuracy would have predicted — which means measuring the override performance reveals that the overrides reduced rather than improved accuracy on average",
+      "firstImage": "a printed two-year performance comparison: model-only decisions in one column, officer-override decisions in another, default rates at the bottom showing the model-only column performing better",
+      "mustInclude": ["the specific outcome comparison as the measurement", "the discovery that overrides reduced accuracy on average", "the nuance that some overrides were correct and some were not — average performance is what measurement reveals"],
+      "mustAvoid": ["implying individual loan officers should be disciplined", "conflating measurement with a decision to eliminate human judgment entirely"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain the difference between measuring error and explaining individual disagreements",
+      "identify what data needs to be collected to measure judgment error rather than just observe it",
+      "apply error measurement concepts to distinguish a noisy system from an accurate one",
+      "analyze why domain uncertainty increases rather than decreases the value of measuring error",
+      "evaluate a proposed measurement approach for whether it would actually capture judgment noise versus other sources of outcome variation"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Identify one judgment you or your team makes regularly. Write down what data you would need to measure its consistency — not just accuracy, but whether the same case gets the same answer on different days or from different people. If you cannot describe that data collection, you are not yet measuring your judgment; you are trusting it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) stating why measuring beats explaining, at least one longer paragraph on the resistance to measurement in expert domains (they trust expertise over data), at least one one-sentence punch line about the difference between knowing your error rate and believing you have a low one",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule pattern to directly engage the reader with a research-aside on how rarely professional fields build calibration records",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "chapterId": "seven-powers-ch04",
+  "number": 4,
+  "title": "Switching Costs",
+  "coreMove": "Compare the rival offer against the value the customer would lose or rebuild during migration.",
+  "sourcePressure": "Switching costs come from customer value built up with the incumbent that would be destroyed or painfully rebuilt by leaving. The source includes financial, procedural, and relational costs and warns that repeat buying alone is not lock-in.",
+  "chapterSpecificMisunderstanding": "Switching costs mean loyalty, habit, repeat purchase, or disliking change.",
+  "sourceAlignmentTerms": [
+    "switching costs",
+    "lock-in",
+    "continuity value",
+    "migration pain",
+    "financial costs",
+    "procedural costs",
+    "relational costs",
+    "portability"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Addiction",
+      "detail": "the frozen table-of-contents subtitle signal for Switching Costs is Addiction, pointing to lock-in and accumulated continuity value",
+      "useIn": "deepRead",
+      "phrasingHint": "Addiction is useful only as a signal: the customer stays because leaving destroys something already built, not because the old product is loved."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Switching Costs",
+      "A business has power when... repeated opener shell",
+      "any hook that starts with Strategy is... or Power is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter",
+      "generic moat-versus-no-moat contrast without the chapter mechanism"
+    ],
+    "tryThisNow": [
+      "Write down your top three advantages",
+      "Set a timer and reflect on your strategy",
+      "Ask yourself what matters most",
+      "generic benefit/barrier prompt reused without the chapter-specific test"
+    ],
+    "examples": [
+      "founder in a coffee shop reviewing a deck",
+      "generic boardroom whiteboard choice",
+      "classroom project analogy",
+      "spreadsheet-only SaaS pricing scene",
+      "reusing physical anchors from adjacent plans"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "veterinary clinic considering a cheaper patient-records system",
+      "audience": "a reader facing veterinary clinic considering a cheaper patient-records system",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hannah opens a patient file and counts the fields the cheap system cannot carry before she signs the cancellation form.",
+      "firstImage": "Show me where the allergy note goes, Hannah says",
+      "mustInclude": [
+        "patient file",
+        "cancellation form",
+        "dosage notes"
+      ],
+      "mustAvoid": [
+        "generic software switching",
+        "hospital password sticky note"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "commercial print shop moving from one color-calibration workflow to another",
+      "audience": "a reader facing commercial print shop moving from one color-calibration workflow to another",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Nicolas lays two proof sheets under the light booth and writes the lost calibration hours next to the lower ink quote.",
+      "firstImage": "Cyan looks wrong before Nicolas touches the calculator",
+      "mustInclude": [
+        "proof sheets",
+        "light booth",
+        "ink quote"
+      ],
+      "mustAvoid": [
+        "generic printer shopping",
+        "office copier shell"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "regional food distributor changing warehouse management vendors",
+      "audience": "a reader facing regional food distributor changing warehouse management vendors",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Kasia scans the first frozen aisle and marks every barcode rule that would have to be rebuilt before the new vendor goes live.",
+      "firstImage": "The freezer fan rattles above aisle F while the scanner flashes red",
+      "mustInclude": [
+        "barcode scanner",
+        "freezer aisle map",
+        "migration checklist"
+      ],
+      "mustAvoid": [
+        "generic logistics efficiency",
+        "freezer from scale chapter"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "private language school replacing a long-time placement-test provider",
+      "audience": "a reader facing private language school replacing a long-time placement-test provider",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hadiya compares last year placement notes with the new test rubric and underlines the trust she would need to rebuild.",
+      "firstImage": "It took Hadiya one parent call to see the real cost was not the invoice",
+      "mustInclude": [
+        "placement notes",
+        "test rubric",
+        "parent email"
+      ],
+      "mustAvoid": [
+        "generic classroom shell",
+        "brand trust chapter"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "municipal fleet garage switching maintenance parts suppliers",
+      "audience": "a reader facing municipal fleet garage switching maintenance parts suppliers",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "James has you pick the cheaper supplier, then reveals the shelf of unmatched part numbers that appears on day three.",
+      "firstImage": "You notice the savings first and the unlabeled filters second",
+      "mustInclude": [
+        "part-number shelf",
+        "warranty binder",
+        "supplier bid"
+      ],
+      "mustAvoid": [
+        "generic city hall procurement",
+        "bus depot shell"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "architecture firm leaving a proprietary model library",
+      "audience": "a reader facing architecture firm leaving a proprietary model library",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Astrid exports one building model and circles every missing door schedule before comparing license prices.",
+      "firstImage": "What exactly comes with you when you leave?",
+      "mustInclude": [
+        "building model",
+        "door schedule",
+        "license renewal"
+      ],
+      "mustAvoid": [
+        "generic design software",
+        "whiteboard planning shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify financial, procedural, and relational switching costs in a scenario",
+      "separate repeat purchase from true lock-in",
+      "evaluate whether portability or standards weaken the barrier"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before accepting a cheaper alternative, list three things you would have to rebuild, retrain, or re-earn; price the switch after those losses are visible.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "sourceAnchorsNote": "The source sidecar contains no named company or person for this chapter. Use only the traceable Addiction subtitle and the supported financial, procedural, and relational cost terms."
+}

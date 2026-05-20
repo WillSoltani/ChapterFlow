@@ -1,0 +1,223 @@
+{
+  "chapterId": "the-almanack-of-naval-ravikant-ch06",
+  "number": 6,
+  "title": "Naval’s Recommended Reading",
+  "coreMove": "Choose reading by live curiosity and mental-model yield instead of finishing lists for self-improvement status.",
+  "sourcePressure": "The source opens by saying reading is not for self-improvement but for curiosity and interest. Its many recommendations point toward connoisseurship, theory, concepts, nonfiction, philosophy, science fiction, blogs, and sources that reshape how the reader sees reality.",
+  "chapterSpecificMisunderstanding": "The wrong version summarizes famous books or tells readers to read more. This chapter must turn the recommendation list into a reading method: follow appetite, seek explanatory power, abandon prestige reading, and build taste across fields.",
+  "sourceAlignmentTerms": [
+    "curiosity",
+    "interest",
+    "connoisseur",
+    "theory",
+    "concepts",
+    "mental models",
+    "nonfiction",
+    "philosophy",
+    "science fiction",
+    "explanations"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "guilty unread bookshelf",
+      "airport bookstore browsing",
+      "nightstand stack as self-improvement shame"
+    ],
+    "counterintuition": [
+      "the best book is the one you will read",
+      "reading is not about finishing",
+      "curiosity beats discipline"
+    ],
+    "tryThisNow": [
+      "pick any book from your shelf",
+      "read one page right now",
+      "make a reading list"
+    ],
+    "examples": [
+      "classroom syllabus",
+      "speed-reading app",
+      "productivity book tracker",
+      "generic library card nostalgia"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "marine insurance analyst abandoning a trendy business bestseller for a hard book on complex systems",
+      "audience": "a professional who needs better explanations, not another finished title",
+      "stakes": "whether she learns to price cascading port risk or merely completes the popular book everyone cites",
+      "format": "decision_point",
+      "requiredBeat": "she closes the bestseller at chapter two, opens the marked complexity chapter, and writes one question about why small delays become system-wide losses",
+      "firstImage": "A cargo-loss report lies beneath a half-read business hardcover.",
+      "mustInclude": [
+        "cargo-loss report",
+        "complexity chapter",
+        "one written question"
+      ],
+      "mustAvoid": [
+        "shipping logistics from ch01",
+        "book shame",
+        "reading challenge"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "animation director using physics essays to solve a believable falling-cloth problem",
+      "audience": "a creative reader who discovers theory through a live craft problem",
+      "stakes": "whether the scene stays fake because the team keeps guessing from reference footage",
+      "format": "scene",
+      "requiredBeat": "she pauses the render, sketches the force path from the physics essay in the margin, and changes the cloth rig because the explanation finally predicts the motion",
+      "firstImage": "A gray cloth simulation freezes mid-fall on a render monitor.",
+      "mustInclude": [
+        "render monitor",
+        "force-path sketch",
+        "cloth rig"
+      ],
+      "mustAvoid": [
+        "generic creative inspiration",
+        "school physics class",
+        "AI art workflow"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "rural judge reading Stoic letters between hearings to clarify anger rather than to collect quotes",
+      "audience": "a reader under public pressure who needs an operating idea, not literary polish",
+      "stakes": "whether contempt from one hearing bleeds into the next decision",
+      "format": "reflection",
+      "requiredBeat": "he copies one line into the case margin, shuts the book, and uses it to delay a sharp remark when the next attorney begins",
+      "firstImage": "A paperback spine is cracked beside a stack of small-claims files.",
+      "mustInclude": [
+        "case margin",
+        "sharp remark",
+        "hearing clock"
+      ],
+      "mustAvoid": [
+        "philosophy chapter values scene",
+        "quote anthology",
+        "courtroom drama"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "teen robotics captain skipping the assigned leadership book to devour a manual on gear ratios",
+      "audience": "a young builder whose curiosity is more honest than the team's approved development plan",
+      "stakes": "whether reading feeds the machine she is actually trying to build",
+      "format": "before_after",
+      "requiredBeat": "before the team meeting she hides the leadership book, after a failed climb she opens the gear manual to the torque table and fixes the lift ratio",
+      "firstImage": "A stripped aluminum gear lies beside a bookmarked torque table.",
+      "mustInclude": [
+        "torque table",
+        "failed climb",
+        "lift ratio"
+      ],
+      "mustAvoid": [
+        "classroom reading list",
+        "generic STEM motivation",
+        "competition victory lap"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "restaurant fermenter reading microbiology because a batch of miso keeps collapsing",
+      "audience": "a craft worker learning to follow the question rather than the prestige of the title",
+      "stakes": "whether curiosity moves from recipe imitation to causal understanding",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts the salt ratio is wrong, reads the microbial growth curve, tests the next crock, and changes the process because the concept explains the smell",
+      "firstImage": "A ceramic crock is labeled with a salt percentage and a sour smell note.",
+      "mustInclude": [
+        "growth curve",
+        "salt ratio",
+        "test crock"
+      ],
+      "mustAvoid": [
+        "night-market food from ch04",
+        "generic chef creativity",
+        "diet advice"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "civil-rights exhibit designer using science fiction to make visitors feel future institutional choices",
+      "audience": "a curator who normally reads only history but needs sharper imagination about systems",
+      "stakes": "whether the exhibit becomes dates on a wall or a model of how societies choose futures",
+      "format": "vignette",
+      "requiredBeat": "she moves a science-fiction paperback beside the exhibit flowchart, labels the imagined institution that made the story feel plausible, and redesigns one visitor choice around that model",
+      "firstImage": "A worn science-fiction paperback sits open beside an exhibit flowchart.",
+      "mustInclude": [
+        "exhibit flowchart",
+        "visitor choice",
+        "imagined institution"
+      ],
+      "mustAvoid": [
+        "academic canon",
+        "museum object from ch02 or ch03",
+        "generic diversity lesson"
+      ],
+      "openingDevice": "dialogue_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish curiosity-led reading from completion-driven reading",
+      "choose a book by the live problem or question it can illuminate",
+      "recognize when a difficult theory book is worth staying with",
+      "analyze how fiction, science, philosophy, and blogs can build different mental models",
+      "evaluate a reading practice by changed perception rather than number of books finished"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at the last thing you genuinely wondered about today. Pick a source that might explain that one question, read until the question changes shape, and stop before turning it into a completion task.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "David Deutsch",
+      "detail": "the source names The Beginning of Infinity and says it is difficult but made Naval smarter",
+      "useIn": "deepRead",
+      "phrasingHint": "Deutsch is the hard-book test: difficulty earns its place only when the explanations change how you think."
+    },
+    {
+      "kind": "person",
+      "name": "Yuval Noah Harari",
+      "detail": "the source names Sapiens as a dense history of humanity that changes how readers view history and other humans",
+      "useIn": "fullRead",
+      "phrasingHint": "Harari’s Sapiens is useful here because one book can become a new lens on the whole human story."
+    },
+    {
+      "kind": "person",
+      "name": "Randall Munroe",
+      "detail": "the source praises Thing Explainer for explaining complex systems with only the thousand most common English words",
+      "useIn": "both",
+      "phrasingHint": "Munroe proves that simplicity is not the enemy of depth; if the idea is clear, plain words can carry it."
+    },
+    {
+      "kind": "person",
+      "name": "Richard Hamming",
+      "detail": "the source recommends Hamming’s You and Your Research as an old-timer essay on how to do great work",
+      "useIn": "fullRead",
+      "phrasingHint": "Hamming belongs where reading stops being intake and starts becoming a question about the work you are avoiding."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

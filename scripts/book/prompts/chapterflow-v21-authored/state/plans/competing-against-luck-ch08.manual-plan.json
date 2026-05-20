@@ -1,0 +1,124 @@
+{
+  "chapterId": "competing-against-luck-ch08",
+  "number": 8,
+  "title": "Keeping Your Eye on the Job",
+  "coreMove": "Apply the job-first test to a proposed change before approving it, even when the change looks locally harmless.",
+  "sourcePressure": "Early alignment around the right job does not protect a company from drift. Familiar internal language returns gradually: feature roadmaps, local metrics, and attractive side goals accumulate without anyone making a deliberate decision to abandon the job. Drift does not require one obvious betrayal — it happens through routine choices that each seem harmless on their own. The job has to become an active filter on every proposed change, not an announcement made once and trusted to persist.",
+  "chapterSpecificMisunderstanding": "Treating job focus as a one-time alignment exercise or a cultural attitude that persists once achieved, rather than as a recurring discipline of applying the job-first test to every proposed change — including changes that look locally harmless or obviously beneficial.",
+  "sourceAlignmentTerms": ["drift", "habit", "filter", "alignment", "relapse", "feature-first", "discipline", "recurring", "test"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Staying focused on the customer is harder than it looks.",
+      "Complacency is the enemy of great companies.",
+      "The job doesn't take care of itself."
+    ],
+    "counterintuition": [
+      "The faster you grow, the faster you lose sight of the customer.",
+      "Your biggest threat is internal, not external."
+    ],
+    "tryThisNow": [
+      "Schedule a monthly job review with your team.",
+      "Ask your team to describe the customer's job.",
+      "Review last quarter's decisions with the job in mind."
+    ],
+    "examples": [
+      "any example where drift is caused by a single obvious bad decision rather than by accumulated individually-harmless choices",
+      "examples where the fix is a new review meeting or a customer-focus reminder rather than the job-first test applied to a specific proposed change"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["sensory_first", "dialogue_first", "timestamp_named", "retrospective", "second_person", "question_hook"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "architecture firm client presentation workflow",
+      "audience": "a partner at an architecture firm evaluating a new virtual walkthrough tool against a troubling hospital client signal",
+      "stakes": "whether Laura applies the job-first test before deploying the tool on the highest-stakes account or discovers the drift too late",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Laura's firm added a virtual walkthrough tool. Feedback cycles shortened. Internal satisfaction improved. The hospital facilities director said in a brief side conversation: 'The walkthroughs are beautiful. But I don't know what I'm approving anymore.' The tool improved the visualization job while blurring the approval-readiness job the hospital hired the firm for: understand what is being committed before signing. Laura has to apply the job-first test to the proposed 'enhanced walkthrough' before the hospital project advances past schematic design.",
+      "firstImage": "a walkthrough rendering filling a large monitor, the chair across the desk empty — the facilities director left the meeting early",
+      "mustInclude": ["a virtual walkthrough tool whose internal metrics are positive", "a hospital client context with regulatory and budget commitments requiring explicit sign-off", "'I don't know what I'm approving' as the drift signal that must not be passed over"],
+      "mustAvoid": ["'clients prefer familiar processes' framing — the beat must show the drift (tool serving the visualization job while the approval-readiness job degrades) detected through a specific signal, and Laura applying the job-first test before the next deployment decision"]
+    },
+    {
+      "domain": "coding bootcamp curriculum",
+      "audience": "a curriculum director considering adding a machine learning module to improve graduate employment appeal",
+      "stakes": "whether Olivier applies the job-first test before approving the module or discovers its cost after the cohort begins",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "An alumni advisory board member says: 'The ML module takes six weeks from fundamentals. That's six weeks of job-ready time spent on terminology that sounds good to hiring managers who don't actually hire bootcamp grads for ML work.' The job buyers hired: ready to contribute to a working codebase in week one on the job. The drift: optimizing the curriculum for what impresses hiring managers in interviews rather than testing the change against the employment job.",
+      "firstImage": "'Machine learning,' one instructor says, writing it on the whiteboard in block letters",
+      "mustInclude": ["a six-week module tradeoff against fundamentals time", "a week-one contribution framing from the alumni advisory board", "the distinction between 'impresses in interview' and 'delivers the job'"],
+      "mustAvoid": ["'curriculum decisions are always tradeoffs' framing — the beat must show the job-first test being applied by the alumni board member, and Olivier having to decide whether to use it or override it with the marketing logic"]
+    },
+    {
+      "domain": "volunteer fire department dispatch protocol",
+      "audience": "a dispatch coordinator reconstructing a protocol decision that looked locally harmless and caused a downstream failure",
+      "stakes": "whether Tomás can name the job-first test failure in the decision and apply it before the next protocol review",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 11:55 p.m., Tomás implements a new non-emergency routing protocol: send non-duty roster first to reduce overtime costs. Response times stay within acceptable range. Three months later, a kitchen fire escalates because a non-duty responder was delayed by a roster assignment gap. The new protocol optimized an internal job (reducing overtime) and did not apply the job-first test: does this change make the core job — available, reliable emergency response — more or less protected? The drift happened in one protocol decision that looked locally harmless.",
+      "firstImage": "a dispatch log entry at 11:55 p.m., a roster reassignment circled in green marker as a cost-reduction measure",
+      "mustInclude": ["a non-duty roster routing decision framed as an internal cost optimization", "an overtime reduction metric that looked positive", "a kitchen fire escalation that traces directly to the roster gap the protocol created"],
+      "mustAvoid": ["'safety protocols require balance' moralizing — the beat must show the job-first test that was not applied to the protocol decision, and name what applying it would have required the team to give up"]
+    },
+    {
+      "domain": "consulting firm knowledge management system",
+      "audience": "a knowledge management lead reviewing client satisfaction data after a well-received internal case library launch",
+      "stakes": "whether Andrew can name the drift before the next client engagement renewal conversation",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Andrew's firm built a comprehensive case library. Consultants rated it highly in internal surveys. Client satisfaction did not improve. Exit interviews with consultants reveal the drift: the case library is being used to prepare presentations, not to sharpen recommendations. The job the firm is hired for: give clients advice they cannot generate internally. The drift: consultants optimized their own presentation job using the library while the advisory judgment job — the one the client hired — went underserved.",
+      "firstImage": "a case study library screen, perfectly indexed and searchable, a search bar with an auto-complete result visible",
+      "mustInclude": ["a case library that scores positively in internal surveys", "a presentation-prep vs. advisory-judgment contrast visible in how consultants describe their use of the library", "a client satisfaction metric that didn't move despite the internal win"],
+      "mustAvoid": ["'knowledge management has limited ROI' conclusion — the beat must show the job-first test failure (library serving the internal presentation job, not the client advisory job) as the cause of the stagnant satisfaction"]
+    },
+    {
+      "domain": "cooperative grocery store ordering cycle",
+      "audience": "a cooperative grocery operations coordinator deciding whether to switch from weekly to biweekly ordering",
+      "stakes": "whether Nina applies the job-first test before recommending the biweekly model to the board",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You have a model showing a 14% logistics cost reduction from switching to biweekly ordering. You also have this month's member survey. Thirty-eight percent of comments reference 'knowing what will be on the shelf this Sunday' as why they choose the co-op over the chain across the street. The weekly ordering rhythm creates a predictability contract the co-op's members hired it to keep. Biweekly breaks that job even as it improves the operational one. You have to apply the job-first test before presenting the recommendation.",
+      "firstImage": "a weekly ordering calendar and a biweekly ordering calendar side by side, cost figures below each — the second-person reader about to write the recommendation",
+      "mustInclude": ["a 14% cost reduction figure as the internal optimization case", "a member comment about Sunday shopping predictability as the job signal", "the specific tension between the operational efficiency job and the member's predictability job"],
+      "mustAvoid": ["'operational efficiency can reduce member satisfaction' generality — the beat must show the job-first test applied explicitly: does this change make the member's predictability job more protected or less?"]
+    },
+    {
+      "domain": "food truck regular corner schedule",
+      "audience": "a food truck owner evaluating a corporate catering contract offer",
+      "stakes": "whether Chidi names the job he is actually serving before deciding whether to accept the contract",
+      "format": "question_hook",
+      "openingDevice": "question_hook",
+      "requiredBeat": "A friend asks: 'When did you last ask what your regular customers actually hired you for?' The corporate catering contract would take Chidi off his regular corner three days a week. The revenue model says yes. But the regular corner customers aren't hiring lunch. They're hiring the predictable midweek punctuation — the truck being there on Tuesday is part of what makes Tuesday manageable. The contract isn't only a revenue tradeoff. It is a job-abandonment decision. Chidi needs to apply the job-first test before the contract, not after he has signed it.",
+      "firstImage": "What are your regulars actually hiring you for? — the question before Chidi appears with the contract offer in hand",
+      "mustInclude": ["a regular corner context with a Tuesday or midweek predictability pattern", "a corporate catering contract that removes Chidi from the corner three days a week", "the job-first test applied: does this change make the regulars' progress easier or harder to achieve?"],
+      "mustAvoid": ["'regulars are loyal to brands' framing — the beat must show the specific job (midweek routine punctuation) that the contract would abandon, and make the job-first test the decision instrument, not loyalty or revenue"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply the job-first test to a proposed change and name whether it strengthens or weakens job delivery",
+      "recognize drift in its early form — individual decisions that each seem harmless — rather than only after a dramatic failure",
+      "distinguish between 'the job is still our priority' (stated) and 'this proposed change serves the job' (tested)",
+      "analyze a postmortem to identify the specific decision where the job-first test was not applied",
+      "evaluate whether a proposed optimization serves the buyer's job or an internal job that is now masquerading as buyer benefit"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name the last change your team approved without framing it as a job question. Write one sentence on what the change improved internally (a metric, a cost, a process). Write a second sentence on whether it made the buyer's progress more or less protected. If you wrote the second sentence in the same positive direction as the first, check your work — most internal optimizations are neutral or negative for the job.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter that names a specific drift signal and the job-first test question it should have triggered; at least one 5+ sentence paragraph that traces how individually harmless decisions accumulated into a job-delivery failure; at least one one-sentence punch line that names the discipline the job-first test requires in plain terms",
+    "fullReadInterludeRequirement": "at least one passage that shows what applying the job-first test looks like in real time — a decision point where someone asks the question, names the answer, and then accepts a cost to protect the job — not a morality lesson but a concrete moment of organizational discipline",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

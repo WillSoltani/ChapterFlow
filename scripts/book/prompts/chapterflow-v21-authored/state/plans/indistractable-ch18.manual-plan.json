@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch18",
+  "number": 18,
+  "title": "Hack Back Online Articles",
+  "coreMove": "Turn reading into a bounded act by choosing the article, capture path, and stopping point before links choose for you.",
+  "sourcePressure": "The chapter narrows browser drift to article pages where links, sidebars, and recommendations turn bounded reading into wandering.",
+  "chapterSpecificMisunderstanding": "A weak run would become anti-reading advice instead of protecting intentional reading from page-level prompts.",
+  "sourceAlignmentTerms": [
+    "online articles",
+    "browser drift",
+    "links",
+    "sidebars",
+    "bounded reading",
+    "prior intent"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hack Back Online Articles as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "policy analyst reading a housing ordinance explainer",
+      "audience": "analyst who needs one clause answer",
+      "stakes": "sidebars can eat the research block without answering the question",
+      "format": "decision_point",
+      "requiredBeat": "she writes the clause question on a sticky note and sends useful links to a later reading queue",
+      "firstImage": "A zoning clause printout sits beside a handwritten question sticky.",
+      "mustInclude": [
+        "clause printout",
+        "question sticky",
+        "reading queue"
+      ],
+      "mustAvoid": [
+        "research rabbit hole"
+      ]
+    },
+    {
+      "domain": "birding guide checking an article on migration timing",
+      "audience": "guide who follows every species link",
+      "stakes": "tomorrow's tour plan needs one timing decision",
+      "format": "scene",
+      "requiredBeat": "he captures two relevant paragraphs to the tour folder and closes the tab before clicking related species",
+      "firstImage": "A migration chart rests beside a tour folder tab.",
+      "mustInclude": [
+        "migration chart",
+        "tour folder tab",
+        "related species links"
+      ],
+      "mustAvoid": [
+        "hobby browsing"
+      ]
+    },
+    {
+      "domain": "consumer-rights attorney reading a repair-rights update",
+      "audience": "attorney tempted by commentary threads",
+      "stakes": "client advice depends on the statute change, not the argument below",
+      "format": "dialogue",
+      "requiredBeat": "she states the client question aloud, saves the statute excerpt, and skips comments",
+      "firstImage": "A statute excerpt is highlighted beside a muted comments pane.",
+      "mustInclude": [
+        "statute excerpt",
+        "comments pane",
+        "client question"
+      ],
+      "mustAvoid": [
+        "legal news outrage"
+      ]
+    },
+    {
+      "domain": "chef researching a fermentation safety article",
+      "audience": "chef needing one temperature guideline",
+      "stakes": "recipe links can derail prep compliance",
+      "format": "before_after",
+      "requiredBeat": "before, he opens five recipes; after, he saves the temperature line and returns to the prep chart",
+      "firstImage": "A fermentation temperature chart lies beneath a tablet stand.",
+      "mustInclude": [
+        "temperature chart",
+        "tablet stand",
+        "prep chart"
+      ],
+      "mustAvoid": [
+        "food blog wandering"
+      ]
+    },
+    {
+      "domain": "city cyclist reading a road-closure article",
+      "audience": "commuter who only needs tomorrow's detour",
+      "stakes": "the commute plan gets lost in local-news scrolling",
+      "format": "postmortem",
+      "requiredBeat": "she screenshots the detour map and closes the article before opening opinion links",
+      "firstImage": "A detour map glows above a clipped transit card.",
+      "mustInclude": [
+        "detour map",
+        "transit card",
+        "opinion links"
+      ],
+      "mustAvoid": [
+        "commuting complaint"
+      ]
+    },
+    {
+      "domain": "historical novelist checking a textile article",
+      "audience": "writer who reads endlessly instead of drafting one scene",
+      "stakes": "research becomes avoidance if the stopping point is missing",
+      "format": "reflection",
+      "requiredBeat": "he copies one fabric detail into the scene note and returns to the draft paragraph",
+      "firstImage": "A textile weave diagram sits beside a draft scene note.",
+      "mustInclude": [
+        "weave diagram",
+        "scene note",
+        "draft paragraph"
+      ],
+      "mustAvoid": [
+        "writer research cliche"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Turn reading into a bounded act by choosing the article, capture path, and stopping point before links choose for you.",
+      "choose the action that stays inside Hack Back Online Articles's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would become anti-reading advice instead of protecting intentional reading from page-level prompts.",
+      "use chapter-specific terms such as online articles, browser drift, links, sidebars in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before opening one article, write the question it should answer and where you will save it if it is worth returning to.",
+  "readingTimeMinutes": 12
+}

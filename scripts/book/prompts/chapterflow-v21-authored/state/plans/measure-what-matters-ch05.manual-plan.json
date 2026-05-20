@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch05",
+  "number": 5,
+  "title": "Focus: The Remind Story",
+  "coreMove": "Demote respectable extras and defend the few strategic moves that actually lead execution.",
+  "sourcePressure": "Remind is the company case for focus, showing why a smaller number of decisive moves must be protected from overload.",
+  "chapterSpecificMisunderstanding": "Do not invent Remind product metrics or internal scenes; keep it as a focus case.",
+  "sourceAlignmentTerms": [
+    "Remind",
+    "focus",
+    "decisive moves",
+    "overload",
+    "strategic concentration",
+    "protect the winners"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Remind",
+      "detail": "The source stabilizes Remind as the company case for focus, with narrow support for fewer decisive moves and reduced overload.",
+      "useIn": "both",
+      "phrasingHint": "Remind gives focus a company surface: the point is not doing less for style, but defending the few moves that actually lead."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Focus: The Remind Story as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "Remind is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "generic startup pivot story",
+      "commitment audit",
+      "cross-team alignment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "language-learning app retention reboot",
+      "audience": "product leadership",
+      "stakes": "the roadmap has twelve plausible bets and none can get enough force",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "James moves all but three retention bets out of the lead lane and ties staff time to the survivors",
+      "firstImage": "quiet analytics room at dusk",
+      "mustInclude": [
+        "roadmap wall",
+        "cohort chart",
+        "support tickets"
+      ],
+      "mustAvoid": [
+        "invented Remind metrics"
+      ]
+    },
+    {
+      "domain": "regional dental group patient recall system",
+      "audience": "practice managers",
+      "stakes": "marketing, scheduling, and hygienist scripts all compete as first priority",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Juliette asks which two moves will actually reduce missed recalls and cuts the rest from the quarter plan",
+      "firstImage": "sterilizer clicking behind a glass door",
+      "mustInclude": [
+        "recall list",
+        "phone script",
+        "hygiene schedule"
+      ],
+      "mustAvoid": [
+        "doctor hero scene"
+      ]
+    },
+    {
+      "domain": "warehouse robotics pilot",
+      "audience": "operations and engineering",
+      "stakes": "pilot scope creep is making the first deployment weaker",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Anders predicts what breaks if the pilot protects every feature, then limits the launch to the two constraints that prove viability",
+      "firstImage": "yellow safety tape by a test aisle",
+      "mustInclude": [
+        "pilot checklist",
+        "scanner cradle",
+        "safety tape"
+      ],
+      "mustAvoid": [
+        "generic startup pivot"
+      ]
+    },
+    {
+      "domain": "public radio membership drive",
+      "audience": "station staff",
+      "stakes": "every show wants campaign airtime but donor fatigue is rising",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Megan demotes beloved extras and protects the few donor messages that match the drive objective",
+      "firstImage": "headphones warm on a studio console",
+      "mustInclude": [
+        "pledge script",
+        "studio clock",
+        "donor board"
+      ],
+      "mustAvoid": [
+        "fundraising sentimentality"
+      ]
+    },
+    {
+      "domain": "boutique hotel service reset",
+      "audience": "front-desk and housekeeping leads",
+      "stakes": "service quality is slipping because improvement themes multiply weekly",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Pablo asks which guest complaints deserve lead status and which respectable fixes must wait",
+      "firstImage": "key cards spread behind the desk",
+      "mustInclude": [
+        "guest-comment log",
+        "room-turn sheet",
+        "maintenance list"
+      ],
+      "mustAvoid": [
+        "travel review anecdote"
+      ]
+    },
+    {
+      "domain": "urban bike-share maintenance program",
+      "audience": "fleet managers",
+      "stakes": "mechanics are asked to improve availability, cleanliness, battery swaps, and expansion at once",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lin traces how the old stack crawled back and sets a rule that availability leads until the repair queue falls",
+      "firstImage": "mud-streaked dock at sunrise",
+      "mustInclude": [
+        "repair queue",
+        "battery cart",
+        "station map"
+      ],
+      "mustAvoid": [
+        "bike helmet shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "protect chosen strategy from overload crawlback",
+      "demote respectable initiatives without losing the objective",
+      "recognize fake focus in bloated roadmaps"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one strategy stack and move every non-leading initiative into a later column, then note where crawlback is most likely.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

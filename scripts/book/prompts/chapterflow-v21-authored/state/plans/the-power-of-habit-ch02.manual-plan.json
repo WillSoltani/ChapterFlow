@@ -1,0 +1,175 @@
+{
+  "chapterId": "the-power-of-habit-ch02",
+  "number": 2,
+  "title": "The Craving Brain",
+  "coreMove": "Find the reward the cue starts promising before the routine begins.",
+  "sourcePressure": "Claude Hopkins and Pepsodent anchor the chapter's narrower claim: a cue becomes powerful when the reward is expected in advance. Anticipation makes a loop sticky, which is why some new routines catch while others stay as reminders.",
+  "chapterSpecificMisunderstanding": "The weak version repeats cue, routine, reward or turns the chapter into advertising trivia. The writer must isolate craving as the pull of an anticipated payoff, not as a slogan for motivation.",
+  "sourceAlignmentTerms": [
+    "Claude Hopkins",
+    "Pepsodent",
+    "craving",
+    "anticipated reward",
+    "cue",
+    "expected payoff",
+    "sticky loop",
+    "Febreze",
+    "anticipation"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic product-marketing opener about clever ads.",
+      "A person deciding to become motivated overnight.",
+      "A toothbrush or toothpaste scene that simply retells Pepsodent."
+    ],
+    "counterintuition": [
+      "Most people think reminders create habits, but actually cravings do.",
+      "Treating craving as dopamine shorthand with no visible expected reward.",
+      "Making the chapter another cue-routine-reward recap."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and imagine a reward.",
+      "Make the habit fun with no specific expected payoff.",
+      "Add a generic reminder to a routine and call it craving."
+    ],
+    "examples": [
+      "Dental-product marketing example.",
+      "Phone notification addiction shell.",
+      "Generic app streak scene.",
+      "Morning routine reward chart."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "apartment-building compost pilot in a high-rise with contamination fines",
+      "audience": "a resident-council organizer whose reminder signs have failed",
+      "stakes": "the building will lose its compost service if residents keep dropping food scraps into the wrong chute",
+      "format": "before_after",
+      "requiredBeat": "Contrast the ignored rules poster with the new chute-room board showing a clean bin and rent-credit tally; the resident sees the tally, smiles before opening the caddy, and the cue now promises the clean-room reward before the sorting starts.",
+      "firstImage": "A banana peel hovers over a green countertop caddy.",
+      "mustInclude": [
+        "green countertop caddy",
+        "rent-credit tally",
+        "chute-room board"
+      ],
+      "mustAvoid": [
+        "generic recycling lecture",
+        "moral shame about waste",
+        "habit replacement tactics"
+      ]
+    },
+    {
+      "domain": "youth orchestra scale practice with a private recording reward",
+      "audience": "a violin teacher whose eleven-year-old student only practices songs, never scales",
+      "stakes": "the student will keep missing auditions if the dull preparation never feels connected to the sound she wants",
+      "format": "scene",
+      "requiredBeat": "The teacher tapes a QR sticker inside the violin case that plays last week's clean four bars; when the student opens the case and hears the sound, she reaches for the bow before being reminded because the cue has made the reward arrive early.",
+      "firstImage": "Rosin dust freckles the velvet inside a violin case.",
+      "mustInclude": [
+        "QR sticker",
+        "four clean bars",
+        "rosin dust"
+      ],
+      "mustAvoid": [
+        "classroom grades",
+        "generic practice discipline",
+        "stage-fright substitution"
+      ]
+    },
+    {
+      "domain": "climbing gym warm-up wall before first lead route",
+      "audience": "a climbing coach trying to make beginners warm up without nagging",
+      "stakes": "cold shoulders and skipped warm-ups are producing preventable injuries on busy evenings",
+      "format": "predict_reveal",
+      "requiredBeat": "The coach asks whether a reminder sign will change anything, then adds a small bell climbers can ring only after the warm-up circuit; by Friday they touch the easy rungs while looking at the bell because the cue now carries the expected send-day payoff.",
+      "firstImage": "A chalked hand pauses under the easiest rung on the warm-up wall.",
+      "mustInclude": [
+        "small brass bell",
+        "warm-up circuit",
+        "chalked hand"
+      ],
+      "mustAvoid": [
+        "sports-coach grit talk",
+        "injury crisis reform",
+        "random reward unrelated to the routine"
+      ]
+    },
+    {
+      "domain": "public library manga checkout challenge for reluctant teen readers",
+      "audience": "a teen services librarian whose overdue warnings are not bringing books back",
+      "stakes": "a grant-funded reading program will fail if returns feel like punishment instead of a path to the next volume",
+      "format": "dialogue",
+      "requiredBeat": "The librarian slides the next-volume cover into a clear pocket beside the return slot; the teen sees the cover before dropping off the old book and asks for the sequel, showing the cue has begun promising the next-story reward.",
+      "firstImage": "A glossy manga cover peeks from a clear pocket beside the return slot.",
+      "mustInclude": [
+        "clear pocket",
+        "next-volume cover",
+        "return slot"
+      ],
+      "mustAvoid": [
+        "school reading log",
+        "generic teen motivation",
+        "punishment for overdue books"
+      ]
+    },
+    {
+      "domain": "independent film festival volunteer check-in",
+      "audience": "a festival coordinator whose volunteers keep arriving late for second shifts",
+      "stakes": "empty door posts could delay screenings and strand ticket holders outside in the rain",
+      "format": "decision_point",
+      "requiredBeat": "The coordinator can send another scolding email, but instead pins each lanyard under a Polaroid of the full theater the volunteer helped open; the volunteer reaches for the lanyard because the cue previews the applause and full-house reward.",
+      "firstImage": "A red volunteer lanyard hangs below a Polaroid of a packed theater.",
+      "mustInclude": [
+        "red volunteer lanyard",
+        "packed-theater Polaroid",
+        "rain line outside"
+      ],
+      "mustAvoid": [
+        "office attendance policy",
+        "charisma-based movement frame",
+        "generic praise"
+      ]
+    },
+    {
+      "domain": "freelance wedding photographer file-backup ritual after receptions",
+      "audience": "a photographer who knows backups matter but still postpones them after late events",
+      "stakes": "one corrupted memory card could erase a client's only record of the night",
+      "format": "postmortem",
+      "requiredBeat": "After a near loss, she places a printed thank-you note beside the drive dock; when she sees it at 1:12 a.m., the relief of safe delivery arrives before the copy begins, and the backup cue finally pulls the routine forward.",
+      "firstImage": "A silver memory-card wallet sits beside a printed thank-you note.",
+      "mustInclude": [
+        "memory-card wallet",
+        "drive dock",
+        "printed thank-you note"
+      ],
+      "mustAvoid": [
+        "generic app streak",
+        "data privacy chapter",
+        "simple reminder checklist"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the anticipated reward that makes a cue pull before the routine starts",
+      "distinguish a bare reminder from a cue that carries an expected payoff",
+      "choose habit designs where the payoff is made near, specific, and felt in advance",
+      "analyze why a new routine failed when the reward stayed abstract or delayed"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Put one cue for a wanted routine beside a tiny preview of its payoff: a finished line, saved photo, checked card, or first sound. Notice whether the preview makes you reach sooner.",
+  "readingTimeMinutes": 12
+}

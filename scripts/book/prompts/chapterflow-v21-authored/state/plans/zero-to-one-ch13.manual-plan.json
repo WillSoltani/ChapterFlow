@@ -1,0 +1,190 @@
+{
+  "chapterId": "zero-to-one-ch13",
+  "number": 13,
+  "title": "Seeing Green",
+  "coreMove": "Diagnose a technology bet through timing, scale, and business design before admiring its ambition.",
+  "sourcePressure": "The chapter diagnoses why ambitious clean-tech bets can fail when timing, scale, distribution, and business design do not fit the promise.",
+  "chapterSpecificMisunderstanding": "Sneering at clean technology or treating failure as proof that the mission was foolish.",
+  "sourceAlignmentTerms": [
+    "clean-tech",
+    "timing",
+    "scale",
+    "business design",
+    "failure diagnosis",
+    "technology bets"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "clean-tech failure diagnosis",
+      "detail": "the source sidecar frames the chapter around clean-tech failure diagnosis rather than generic anti-technology skepticism",
+      "useIn": "both",
+      "phrasingHint": "A green promise still has to pass the ordinary tests of timing, scale, and a business that can actually carry it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of clean-tech",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nathan",
+      "domain": "solar microgrid startup",
+      "audience": "a founder diagnosing whether the pilot failed from technology, timing, channel, or financing design",
+      "stakes": "whether the next version fixes the business problem rather than blaming the mission",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Nathan labels every failed pilot assumption before touching the panel design",
+      "firstImage": "dust on a boxed inverter in a warehouse aisle",
+      "mustInclude": [
+        "boxed inverter",
+        "pilot contract",
+        "utility email"
+      ],
+      "mustAvoid": [
+        "anti-cleantech sneer"
+      ]
+    },
+    {
+      "protagonistName": "Julia",
+      "domain": "electric ferry retrofit",
+      "audience": "a port planner testing scale and timing before celebrating a green headline",
+      "stakes": "whether the harbor buys a promise it cannot maintain",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Julia asks where the charging window fits into the tide schedule before approving the grant",
+      "firstImage": "a tide chart taped beside a charging schematic",
+      "mustInclude": [
+        "tide chart",
+        "charging schematic",
+        "grant binder"
+      ],
+      "mustAvoid": [
+        "technology nihilism"
+      ]
+    },
+    {
+      "protagonistName": "George",
+      "domain": "compostable packaging manufacturer",
+      "audience": "an operations director discovering that factory throughput, not material science, breaks the business",
+      "stakes": "whether a worthy product fails at industrial scale",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "George moves the argument from biodegradability slides to the jammed forming line",
+      "firstImage": "pulp trays stuck inside a steel forming machine",
+      "mustInclude": [
+        "forming machine",
+        "throughput log",
+        "retailer forecast"
+      ],
+      "mustAvoid": [
+        "green branding"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "heat-pump installer network",
+      "audience": "a founder realizing customer acquisition and trained installers matter as much as hardware efficiency",
+      "stakes": "whether demand exists but cannot be served profitably",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chiara asks who installs unit four hundred before ordering unit four hundred",
+      "firstImage": "copper tubing coiled beside a training calendar",
+      "mustInclude": [
+        "training calendar",
+        "copper tubing",
+        "rebate form"
+      ],
+      "mustAvoid": [
+        "sales chapter repeat"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "urban battery recycling plant",
+      "audience": "a CFO testing whether permitting, feedstock, and buyer contracts align before expansion",
+      "stakes": "whether scale exposes missing business design",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Devon predicts capacity wins, then watches the permit date break the whole model",
+      "firstImage": "shredded battery casings in a sealed sample jar",
+      "mustInclude": [
+        "sample jar",
+        "permit timeline",
+        "buyer contract"
+      ],
+      "mustAvoid": [
+        "finance math swamp"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "green cement procurement",
+      "audience": "a city engineer deciding whether lower-carbon material can meet code, supply, and contractor timing",
+      "stakes": "whether ambition survives contact with procurement constraints",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Petra place the code sheet over the glossy sustainability brochure",
+      "firstImage": "a concrete core sample beside a city code binder",
+      "mustInclude": [
+        "core sample",
+        "code binder",
+        "supplier lead-time chart"
+      ],
+      "mustAvoid": [
+        "civic virtue sermon"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires diagnose a technology bet through timing, scale, and business design before admiring its ambition.",
+      "separate clean-tech from timing in a novel operating case",
+      "diagnose the specific failure mode: sneering at clean technology or treating failure as proof that the mission was foolish.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one ambitious technology bet and score it on timing, scale, distribution, and business design before judging whether the mission is inspiring.",
+  "readingTimeMinutes": 12
+}

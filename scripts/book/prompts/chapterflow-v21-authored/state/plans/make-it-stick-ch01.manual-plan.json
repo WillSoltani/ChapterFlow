@@ -1,0 +1,199 @@
+{
+  "chapterId": "make-it-stick-ch01",
+  "number": 1,
+  "title": "Learning Is Misunderstood",
+  "coreMove": "Replace the feeling of smooth review with a later proof of recall, transfer, and durable use.",
+  "sourcePressure": "The opening chapter separates familiarity from learning: rereading, highlighting, cramming, and massed practice feel effective because recognition is doing the work, while retrieval, spacing, and interleaving create less flattering but more durable evidence.",
+  "chapterSpecificMisunderstanding": "The writer must avoid turning this into a general anti-comfort sermon; the chapter is about misreading fluency as mastery and choosing a better scorecard.",
+  "sourceAlignmentTerms": [
+    "fluency illusion",
+    "rereading",
+    "highlighting",
+    "cramming",
+    "massed practice",
+    "durable recall",
+    "spacing",
+    "interleaving"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Matt Brown",
+      "detail": "Pilot flying a twin-engine Cessna from Harlingen, Texas, who used memorized tolerances and emergency procedures after oil pressure dropped in his right engine at night.",
+      "useIn": "both",
+      "phrasingHint": "Matt Brown could not reread the manual at eleven thousand feet; the tolerances had to be available when the right engine quit cooperating."
+    },
+    {
+      "kind": "artifact",
+      "name": "Cessna 401 fuel-system schematic",
+      "detail": "In jet training, a pilot story about fuel filters icing at 33,000 feet made the schematic and the need for Prist antifreeze concrete.",
+      "useIn": "fullRead",
+      "phrasingHint": "A flat schematic starts to matter when a pilot across the room says what happened when ice clogged the filters."
+    },
+    {
+      "kind": "study",
+      "name": "UCLA Psychology Building fire extinguisher study",
+      "detail": "People who worked in the building struggled to identify the location of a common object they had passed repeatedly, showing exposure is not mastery.",
+      "useIn": "deepRead",
+      "phrasingHint": "You can pass the same object every day and still fail when memory has to produce it without the hallway doing the work."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open by saying learning is harder than it looks",
+      "Do not use a generic desk-and-notes image",
+      "Do not start with a broad claim about students today"
+    ],
+    "counterintuition": [
+      "Do not use the shell easier is not better",
+      "Do not flatten the chapter into struggle is good",
+      "Do not contrast comfort and growth in generic coaching language"
+    ],
+    "tryThisNow": [
+      "Do not write set a timer and reflect",
+      "Do not ask for a vague study audit",
+      "Do not use a reusable close-your-notes prompt without a chapter-specific action"
+    ],
+    "examples": [
+      "No repeated mug, marker, dosing cup, bike helmet, radiator, bus depot, classroom, or narrow-kitchen shells",
+      "No six examples that all start with a timestamp and a named protagonist",
+      "No generic student rereads notes scene unless the visible beat changes the method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Sarah, a pharmacy resident preparing for a sterile-compounding checkoff",
+      "audience": "medical trainees who mistake repeated viewing for readiness",
+      "stakes": "one missed sequence can contaminate a practice batch and delay sign-off",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the resident covers the laminated protocol and rebuilds the order of gowning steps aloud before touching the sealed tray",
+      "firstImage": "A blue sterile wrapper crackles under gloved fingers.",
+      "mustInclude": [
+        "sealed tray",
+        "gowning checklist turned face down",
+        "observer clipboard"
+      ],
+      "mustAvoid": [
+        "another vague exam cram scene"
+      ]
+    },
+    {
+      "domain": "Lucas, a regional aircraft mechanic moving from piston engines to turboprops",
+      "audience": "technical learners in high-risk systems",
+      "stakes": "a simulator alarm will expose whether the fuel-system tolerances are retrievable",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "he predicts the right corrective action before the instructor triggers a low-pressure warning on the simulator panel",
+      "firstImage": "The hangar lights reflect in a dark simulator windshield.",
+      "mustInclude": [
+        "fuel-pressure gauge",
+        "warning tone",
+        "tolerance card in his pocket but not in his hand"
+      ],
+      "mustAvoid": [
+        "copying Matt Brown too literally with a night flight emergency"
+      ]
+    },
+    {
+      "domain": "Camille, a law student reviewing hearsay exceptions for moot court",
+      "audience": "students who equate highlighted casebooks with command",
+      "stakes": "a judge can ask a changed question that the margin notes will not answer",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her partner asks for the exception before she can open the casebook, forcing her to name and apply it from memory",
+      "firstImage": "\"No book,\" her partner says, sliding the casebook away.",
+      "mustInclude": [
+        "closed casebook",
+        "mock bench timer",
+        "sticky tabs"
+      ],
+      "mustAvoid": [
+        "generic flashcard wins scene"
+      ]
+    },
+    {
+      "domain": "Henrik, a ski-patrol trainee learning avalanche beacon search",
+      "audience": "outdoor trainees who drill one visible pattern",
+      "stakes": "a real search will not arrive with flags laid out in practice order",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he leaves the beacon map behind and locates a buried transmitter after a delayed, mixed search route",
+      "firstImage": "At 6:40 a.m., Henrik stares at the untouched snowfield.",
+      "mustInclude": [
+        "buried transmitter",
+        "probe line",
+        "wind crust"
+      ],
+      "mustAvoid": [
+        "heroic rescue melodrama"
+      ]
+    },
+    {
+      "domain": "Sofia, a violin student preparing a jury piece",
+      "audience": "performers who trust smooth starts from measure one",
+      "stakes": "a jury professor may restart her from the bridge where her memory is thin",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show the change from fluent whole-piece run-throughs to random measure starts that reveal weak transitions",
+      "firstImage": "It took Sofia two rehearsals to realize the bridge was not learned.",
+      "mustInclude": [
+        "measure numbers in a bowl",
+        "music stand",
+        "metronome light"
+      ],
+      "mustAvoid": [
+        "generic practice-more advice"
+      ]
+    },
+    {
+      "domain": "Anders, a cybersecurity analyst learning incident runbooks",
+      "audience": "professionals whose notebooks feel reassuring during drills",
+      "stakes": "a live breach will force recall under time pressure",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the postmortem compares a smooth runbook reread with the moment he had to reconstruct the containment sequence after the dashboard froze",
+      "firstImage": "What happens when the runbook tab crashes first?",
+      "mustInclude": [
+        "frozen dashboard",
+        "pager alert",
+        "whiteboard timeline"
+      ],
+      "mustAvoid": [
+        "another student desk scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish fluency from durable recall in a changed situation",
+      "choose a proof of learning that survives delay",
+      "identify when difficulty has a real retrieval or transfer mechanism"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one thing you think you know, hide the source, and write the three facts or steps you would need if the page disappeared for a week.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

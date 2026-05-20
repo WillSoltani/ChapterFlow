@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch07",
+  "number": 7,
+  "title": "Leverage",
+  "coreMove": "Move effort to the fulcrum where a small force changes the largest part of the system.",
+  "sourcePressure": "Leverage is about placement, structure, multipliers, and outsized effect rather than merely pushing harder.",
+  "chapterSpecificMisunderstanding": "using leverage as a vague business synonym for advantage",
+  "sourceAlignmentTerms": [
+    "leverage",
+    "force",
+    "fulcrum",
+    "multiplier",
+    "placement",
+    "structure",
+    "outsized effect"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Leverage",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "using leverage as a vague business synonym for advantage",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "radiology report template",
+      "audience": "readers who face radiology report template decisions where leverage is easy to misread",
+      "stakes": "fewer follow-up calls without extra staffing",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Grace stops spreading effort across the report template, moves the point of force to the callback ledger, and uses the scan queue to show the larger effect. Domain: radiology report template.",
+      "firstImage": "report template visible in the radiology report template",
+      "mustInclude": [
+        "report template",
+        "callback ledger",
+        "scan queue"
+      ],
+      "mustAvoid": [
+        "using leverage as a vague business synonym for advantage",
+        "reusing a generic meeting scene instead of the radiology report template constraints"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "library holds routing rule",
+      "audience": "readers who face library holds routing rule decisions where leverage is easy to misread",
+      "stakes": "holds clearing without more books",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ryan stops spreading effort across the hold shelf tag, moves the point of force to the routing rule, and uses the patron slip to show the larger effect. Domain: library holds routing rule.",
+      "firstImage": "hold shelf tag visible in the library holds routing rule",
+      "mustInclude": [
+        "hold shelf tag",
+        "routing rule",
+        "patron slip"
+      ],
+      "mustAvoid": [
+        "using leverage as a vague business synonym for advantage",
+        "reusing a generic meeting scene instead of the library holds routing rule constraints"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "farm irrigation valve placement",
+      "audience": "readers who face farm irrigation valve placement decisions where leverage is easy to misread",
+      "stakes": "water savings from one valve choice",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Etienne stops spreading effort across the valve handle, moves the point of force to the soil moisture card, and uses the field diagram to show the larger effect. Domain: farm irrigation valve placement.",
+      "firstImage": "valve handle visible in the farm irrigation valve placement",
+      "mustInclude": [
+        "valve handle",
+        "soil moisture card",
+        "field diagram"
+      ],
+      "mustAvoid": [
+        "using leverage as a vague business synonym for advantage",
+        "reusing a generic meeting scene instead of the farm irrigation valve placement constraints"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "podcast distribution partnership",
+      "audience": "readers who face podcast distribution partnership decisions where leverage is easy to misread",
+      "stakes": "audience growth from one distribution node",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Astrid stops spreading effort across the episode feed list, moves the point of force to the partner code, and uses the download chart to show the larger effect. Domain: podcast distribution partnership.",
+      "firstImage": "episode feed list visible in the podcast distribution partnership",
+      "mustInclude": [
+        "episode feed list",
+        "partner code",
+        "download chart"
+      ],
+      "mustAvoid": [
+        "using leverage as a vague business synonym for advantage",
+        "reusing a generic meeting scene instead of the podcast distribution partnership constraints"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "legal clinic intake triage",
+      "audience": "readers who face legal clinic intake triage decisions where leverage is easy to misread",
+      "stakes": "more clients served with the same lawyers",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Lin stops spreading effort across the intake script, moves the point of force to the eligibility stamp, and uses the referral stack to show the larger effect. Domain: legal clinic intake triage.",
+      "firstImage": "intake script visible in the legal clinic intake triage",
+      "mustInclude": [
+        "intake script",
+        "eligibility stamp",
+        "referral stack"
+      ],
+      "mustAvoid": [
+        "using leverage as a vague business synonym for advantage",
+        "reusing a generic meeting scene instead of the legal clinic intake triage constraints"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "hotel housekeeping cart layout",
+      "audience": "readers who face hotel housekeeping cart layout decisions where leverage is easy to misread",
+      "stakes": "rooms turning faster without rushing staff",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Matteo stops spreading effort across the room-turn checklist, moves the point of force to the linen cart map, and uses the key packet to show the larger effect. Domain: hotel housekeeping cart layout.",
+      "firstImage": "room-turn checklist visible in the hotel housekeeping cart layout",
+      "mustInclude": [
+        "room-turn checklist",
+        "linen cart map",
+        "key packet"
+      ],
+      "mustAvoid": [
+        "using leverage as a vague business synonym for advantage",
+        "reusing a generic meeting scene instead of the hotel housekeeping cart layout constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for leverage rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Move effort to the fulcrum where a small force changes the largest part of the system.",
+      "explain why the tempting misread fails: using leverage as a vague business synonym for advantage",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving leverage, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

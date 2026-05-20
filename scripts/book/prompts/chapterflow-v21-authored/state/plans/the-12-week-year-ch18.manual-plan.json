@@ -1,0 +1,213 @@
+{
+  "chapterId": "the-12-week-year-ch18",
+  "number": 18,
+  "title": "Taking Ownership",
+  "coreMove": "Create accountability through actions that claim agency before excuses can explain away the missed work.",
+  "sourcePressure": "The chapter turns ownership into concrete accountability actions that shrink excuse space inside the execution system.",
+  "chapterSpecificMisunderstanding": "Turning ownership into harsh self-talk or pretending every constraint is imaginary.",
+  "sourceAlignmentTerms": [
+    "taking ownership",
+    "Actions to Create Greater Accountability in Your Life",
+    "agency",
+    "excuse space",
+    "Team Application",
+    "Common Pitfalls"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Actions to Create Greater Accountability in Your Life",
+      "detail": "The source sidecar verifies this phrase as a Chapter 18 subhead.",
+      "useIn": "both",
+      "phrasingHint": "Ownership becomes real when it names the next accountable action, not the best explanation."
+    },
+    {
+      "kind": "artifact",
+      "name": "Thinking Shift",
+      "detail": "The source sidecar verifies Thinking Shift as a Chapter 18 subhead.",
+      "useIn": "deepRead",
+      "phrasingHint": "The thinking shift is from explaining the gap to acting on the part still yours."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch18: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch18: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch18: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch18: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Natalie",
+      "domain": "board committee accountability reset",
+      "audience": "a practitioner in board committee accountability reset who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Natalie adds an owner and due proof to every committee action.",
+      "firstImage": "a committee agenda with no owner column",
+      "mustInclude": [
+        "a committee agenda with no",
+        "taking ownership",
+        "agency"
+      ],
+      "mustAvoid": [
+        "generic taking ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Josephine",
+      "domain": "speech therapy practice operations",
+      "audience": "a decision-maker in speech therapy practice operations choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Josephine turns a missed session into an ownership action.",
+      "firstImage": "therapy toys arranged on a low table",
+      "mustInclude": [
+        "therapy toys arranged on a",
+        "taking ownership",
+        "agency"
+      ],
+      "mustAvoid": [
+        "generic taking ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Iris",
+      "domain": "regional bus maintenance backlog",
+      "audience": "a team lead in regional bus maintenance backlog who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Iris claims the inspection backlog before blaming procurement.",
+      "firstImage": "bus parts tagged in yellow",
+      "mustInclude": [
+        "bus parts tagged in yellow",
+        "taking ownership",
+        "agency"
+      ],
+      "mustAvoid": [
+        "generic taking ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Clara",
+      "domain": "university alumni campaign",
+      "audience": "a reflective operator in university alumni campaign reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Clara takes agency for the alumni call list despite bad data.",
+      "firstImage": "donor names on a call sheet",
+      "mustInclude": [
+        "donor names on a call",
+        "taking ownership",
+        "agency"
+      ],
+      "mustAvoid": [
+        "generic taking ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Amelia",
+      "domain": "wedding venue booking calendar",
+      "audience": "a reader in wedding venue booking calendar comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Amelia owns the venue follow-up before weather becomes the excuse.",
+      "firstImage": "linen samples beside booking forms",
+      "mustInclude": [
+        "linen samples beside booking forms",
+        "taking ownership",
+        "agency"
+      ],
+      "mustAvoid": [
+        "generic taking ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Freya",
+      "domain": "Zurich analytics team",
+      "audience": "two colleagues in Zurich analytics team forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Freya names the dashboard correction the team can control.",
+      "firstImage": "dashboard tiles glowing after hours",
+      "mustInclude": [
+        "dashboard tiles glowing after hours",
+        "taking ownership",
+        "agency"
+      ],
+      "mustAvoid": [
+        "generic taking ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "claim agency without denying constraints",
+      "turn excuses into next actions",
+      "apply ownership in team settings without blame"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one missed action, write the constraint, then write the one ownership action you can take without waiting for the constraint to vanish.",
+  "readingTimeMinutes": 12
+}

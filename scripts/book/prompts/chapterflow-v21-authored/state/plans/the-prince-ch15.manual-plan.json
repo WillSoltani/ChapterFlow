@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch15",
+  "number": 15,
+  "title": "Concerning Things for Which Men, and Especially Princes, Are Praised or Blamed",
+  "coreMove": "Judge praised and blamed qualities by whether using or avoiding them preserves the state under real conditions.",
+  "sourcePressure": "Machiavelli turns from imagined republics and principalities to the real truth of how people live. Because a prince who follows every profession of virtue among so many who do not will ruin himself, he must know how to use or avoid vice according to necessity, especially avoiding vices that would lose the state and accepting reproach for those without which the state can scarcely be saved.",
+  "chapterSpecificMisunderstanding": "The wrong version says morality is fake or vice is admirable. The writer must keep the diagnostic distinction: reputation labels matter less than whether a praised quality ruins the state or a blamed quality preserves it under necessity.",
+  "sourceAlignmentTerms": [
+    "real truth",
+    "imagined",
+    "virtue",
+    "vice",
+    "necessity",
+    "praised",
+    "blamed",
+    "state",
+    "preservation",
+    "ruin"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "edgy amorality declaration",
+      "morality versus power debate in the abstract",
+      "generic be realistic leadership advice"
+    ],
+    "counterintuition": [
+      "most people think morality matters, but actually power is what counts",
+      "virtue is weakness",
+      "do whatever it takes"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list your virtues",
+      "decide which rule you would break",
+      "write a personal values statement"
+    ],
+    "examples": [
+      "office politics honesty dilemma",
+      "personal brand authenticity",
+      "family boundary-setting",
+      "villain monologue about necessary evil"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a famine regent choosing whether to keep the praised title of generous distributor after stores fall below winter survival levels",
+      "audience": "a ruler whose court poets praise openhandedness while granary stewards show ruin approaching",
+      "stakes": "continuing the admired distribution wins praise now and destroys the state before thaw",
+      "format": "decision_point",
+      "requiredBeat": "The regent sets the praise scroll under the grain-depth rod and orders the ration cut because the rod, not the compliment, tells whether the city survives.",
+      "firstImage": "A grain-depth rod rests across a court praise scroll.",
+      "mustInclude": [
+        "grain-depth rod",
+        "court praise scroll",
+        "winter ration order"
+      ],
+      "mustAvoid": [
+        "personal budgeting",
+        "chapter 16 liberality details as main lesson",
+        "cruel austerity admiration"
+      ]
+    },
+    {
+      "domain": "a besieged port judge deciding whether strict mercy toward smugglers will collapse the blockade defense",
+      "audience": "a judge praised for compassion who now faces crews selling powder to enemy boats",
+      "stakes": "mercy keeps his reputation clean but lets the harbor guns go silent",
+      "format": "scene",
+      "requiredBeat": "He touches the mercy petition, then opens the powder-bin tally and signs the hard sentence only after the empty bin shows what compassion would cost.",
+      "firstImage": "A mercy petition lies beside an open powder-bin tally.",
+      "mustInclude": [
+        "mercy petition",
+        "powder-bin tally",
+        "hard sentence"
+      ],
+      "mustAvoid": [
+        "chapter 17 fear versus love frame",
+        "courtroom melodrama",
+        "punishment as toughness"
+      ]
+    },
+    {
+      "domain": "a treaty council where a minor prince must decide whether perfect faith with a broken partner will surrender his last river crossing",
+      "audience": "a ruler trained to prize keeping every promise as an absolute virtue",
+      "stakes": "observing the treaty after the other side has already violated it would hand over the crossing that keeps the state alive",
+      "format": "predict_reveal",
+      "requiredBeat": "The prince reads his oath aloud, then places the enemy's broken ferry chain on the treaty clause and asks whether virtue still names the same action.",
+      "firstImage": "A broken ferry chain lies across a treaty clause.",
+      "mustInclude": [
+        "broken ferry chain",
+        "treaty clause",
+        "last river crossing"
+      ],
+      "mustAvoid": [
+        "chapter 18 fox-and-lion imagery",
+        "simple lying advice",
+        "contract law analogy"
+      ]
+    },
+    {
+      "domain": "a frontier city council praised for openness deciding whether to publish patrol routes during infiltration scares",
+      "audience": "councillors who fear being called secretive more than they fear losing the gates",
+      "stakes": "the admired habit of public disclosure can become the road map for enemies inside the city",
+      "format": "before_after",
+      "requiredBeat": "Before the notice is posted, the watch captain lays a captured route sketch over the transparency proclamation and waits until the councillors see the overlap.",
+      "firstImage": "A captured route sketch covers half of a transparency proclamation.",
+      "mustInclude": [
+        "route sketch",
+        "transparency proclamation",
+        "gate watch list"
+      ],
+      "mustAvoid": [
+        "modern privacy debate",
+        "press relations",
+        "generic secrecy is smart"
+      ]
+    },
+    {
+      "domain": "a newly restored ruler deciding whether to preserve a reputation for ease while unpaid soldiers test command",
+      "audience": "a prince who wants to be called gentle after years of exile",
+      "stakes": "ease looks humane in calm days but teaches armed men that orders can be negotiated away",
+      "format": "dialogue",
+      "requiredBeat": "When the captain says the men will like him better if he waives the muster, the ruler taps the empty muster peg and asks which reputation leaves him with a state tomorrow.",
+      "firstImage": "An empty muster peg sticks out from a barracks wall.",
+      "mustInclude": [
+        "empty muster peg",
+        "waived muster request",
+        "returned ruler's cloak"
+      ],
+      "mustAvoid": [
+        "chapter 14 drill study",
+        "popularity contest",
+        "bully leadership"
+      ]
+    },
+    {
+      "domain": "a plague border station where a commander must choose between affability to merchants and hated inspection delays",
+      "audience": "a commander blamed as harsh by traders waiting outside the cordon",
+      "stakes": "pleasant speed would be praised at the gate and may carry disease into the capital",
+      "format": "postmortem",
+      "requiredBeat": "The commander places the merchants' compliment note beside the fever mark on the inspection slate and shows why the blamed delay preserved what the praised shortcut risked.",
+      "firstImage": "A fever mark is circled on an inspection slate beside a merchants' compliment note.",
+      "mustInclude": [
+        "inspection slate",
+        "compliment note",
+        "cordon rope"
+      ],
+      "mustAvoid": [
+        "public health PSA",
+        "customer service politeness",
+        "vice as personality trait"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish imagined virtue from the real truth of a political situation",
+      "apply the test of whether a praised quality would preserve or lose the state",
+      "analyze why some blamed conduct may be tolerated when necessity makes preservation difficult otherwise",
+      "evaluate answers that collapse the chapter into amorality, virtue signaling, or cruelty admiration"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one praised leadership quality in a real political crisis. Write the condition under which using it would preserve the state, and the condition under which insisting on it would help ruin the state.",
+  "readingTimeMinutes": 12
+}

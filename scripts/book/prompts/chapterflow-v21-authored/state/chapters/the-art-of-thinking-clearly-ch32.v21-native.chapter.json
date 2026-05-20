@@ -1,0 +1,327 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch32",
+  "number": 32,
+  "title": "Loss Aversion",
+  "readingTimeMinutes": 12,
+  "slug": "loss-aversion",
+  "hook": "The same stake gets heavier when it is framed as something you might lose.",
+  "coreIdea": "Loss aversion makes possible losses weigh more than similar gains, so the pain of giving up, missing out, or being blamed can distort the tradeoff.",
+  "counterintuition": "Caution can be wise, but the loss frame should not get extra voting power. Reframe the same stake as a gain and ask whether the choice still looks the same.",
+  "tryThisNow": "Pick one choice you are avoiding because of a possible loss. Rewrite the same stake as a possible gain and compare the two reactions.",
+  "keyTakeaway": "Give the loss a fair weight, not a louder voice.",
+  "breakdown": {
+    "fastRead": "The press clipping sits beside the critic panel score sheet after Quinn's festival team loses one sponsor. The panel wants to protect the old score rules because another loss would sting. The gain from better reviews sounds quieter.\n\nLoss aversion appears when a possible loss weighs more than a similar gain. A lost sponsor, missed fee, rejected file, or angry listener can dominate the tradeoff even when the upside is just as real.\n\nA loss can speak in a lower register and still fill the room.\n\nThe correction is to reframe the stake. If this were a gain of the same size, would the decision look different?",
+    "deepRead": "The press clipping in Quinn's folder quotes a sponsor who left after last year's critic panel changed its scoring. Nobody wants a second headline. The safer move is to freeze the score sheet. Quinn understands the worry, but she sees the bias: the loss of one sponsor is vivid, while the possible gain in trust from a clearer panel is abstract.\n\nLoss aversion does not mean losses are imaginary. Losing money, reputation, time, or safety can be serious. The error begins when the loss frame receives more weight than the same-sized gain frame. A committee refuses a useful change because it might lose one familiar donor. A manager avoids a better schedule because two people might complain. A buyer overpays for insurance because the imagined loss hurts more than the saved money helps.\n\nPain can become a measuring stick.\n\nElias sees the same pressure in a court file schedule. A voting sheet shows two calendar options. One option risks losing a half-day buffer; the other gains a half-day for older cases. The same hours are on the table. Elias marks Prospect Theory risk on the sheet and asks the clerks to score the gain and loss versions separately.\n\nThe two scores are not always equal, and they do not have to be. A loss may fall on a more vulnerable person. A gain may be uncertain. But if the only difference is framing, the decision should not swing wildly. Reframing forces the loss to compete with the whole tradeoff.\n\nAsk whether the pain is information or volume.",
+    "fullRead": "The adverse-event log gives off a faint copier smell while Johanna opens a device permit sleeve in a regulatory review room. One rare complaint arrived after the medical-device team changed the labeling sequence. The legal team wants to roll back the change immediately because another complaint would be painful. The clinical team says the new sequence also prevents many small dosage errors that never become dramatic stories.\n\nLoss aversion gives the complaint extra mass. The possible loss is concrete: one harmed patient, one report, one named failure. The possible gain is spread out: fewer small errors across many quiet uses. The mind tends to treat the concentrated loss as heavier than the distributed gain, even when the tradeoff deserves a more careful count.\n\nDaniel Kahneman and Amos Tversky's Prospect Theory made this asymmetry central: people do not simply evaluate final outcomes; they evaluate gains and losses around a reference point, and losses can loom larger than gains. That matters because the reference point often arrives silently. The current label, current rule, current sponsor, current schedule, current budget, or current queue becomes the thing nobody wants to lose.\n\nWhat would you choose if the current state were not treated as owned?\n\nJohanna writes that question on the permit sleeve. Then she separates the review. Loss column: severity, likelihood, and preventability of the reported adverse event. Gain column: number of dosage errors reduced, severity avoided, and confidence in the evidence. Reference point column: what feels like a loss only because the old label already exists.\n\nYou can use the same discipline in a wine harvest comparison. You are holding a barrel inventory scan while Anton debates whether to hold back a small vintage. Selling now avoids the loss of spoilage. Waiting may gain a higher price and better blend. Anton must decide whether losses loom so large that he is undervaluing the upside, or whether the spoilage risk is genuinely dominant.\n\nLosses deserve respect. They do not deserve a private megaphone.\n\nThe practical move is to make the two frames visible. Write the possible loss in one sentence. Write the equivalent possible gain in another. Then add likelihood, size, and who bears the cost. When the loss still dominates after that, respect it. When it dominates only because the word loss made everyone flinch, rebalance the decision.\n\nGive the loss a fair weight, not a louder voice.",
+    "whyItMatters": "Loss aversion can make people overprotect the current state and underweight equivalent gains. Readers need to reframe tradeoffs before the loss side controls the decision."
+  },
+  "examples": [
+    {
+      "exampleId": "ch32-ex01-quinn-press-clipping",
+      "title": "Quinn Reframes the Sponsor Loss",
+      "tags": [
+        "scene",
+        "critic-panel",
+        "score-sheet"
+      ],
+      "planSpec": {
+        "domain": "a critic panel score sheet applying Loss Aversion under operational pressure",
+        "audience": "a reader who has to make a live judgment where loss aversion could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Loss Aversion is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the press clipping, names the loss aversion risk, and changes the next choice in view of another person."
+      },
+      "scenario": "A press clipping is spread over Quinn's 9:45 a.m. critic panel score-sheet meeting in Seattle after one sponsor leaves. The board wants to freeze the old criteria, and Quinn must decide whether loss aversion is drowning out the gain in public trust.",
+      "whatToDo": "Mark loss aversion on the clipping, write the lost-sponsor risk beside the trust-gain case, and change the criteria only after both are weighted.",
+      "whyItMatters": "The sponsor loss is real, but it should not silence the upside of a clearer scoring system."
+    },
+    {
+      "exampleId": "ch32-ex02-jonas-voting-sheet",
+      "title": "Elias Scores Both Calendar Frames",
+      "tags": [
+        "vignette",
+        "court",
+        "schedule"
+      ],
+      "planSpec": {
+        "domain": "a court file schedule applying Loss Aversion under operational pressure",
+        "audience": "a reader who has to make a live judgment where Prospect Theory could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Loss Aversion is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the voting sheet, names the Prospect Theory risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"We cannot lose our buffer,\" the clerk says at the Oslo courthouse's 8:50 a.m. file-scheduling huddle as Elias places a voting sheet beside the calendar. The same change would also gain half a day for older cases. Elias, the docket coordinator, has to choose whether Prospect Theory risk is tilting the vote toward the loss frame.",
+      "whatToDo": "Mark Prospect Theory risk on the sheet, score the half-day as both lost buffer and gained case time, then decide from total impact.",
+      "whyItMatters": "The same hours should not receive different weight just because one sentence says loss."
+    },
+    {
+      "exampleId": "ch32-ex03-johanna-permit-sleeve",
+      "title": "Johanna Balances One Complaint Against Quiet Gains",
+      "tags": [
+        "dialogue",
+        "medical-device",
+        "adverse-event"
+      ],
+      "planSpec": {
+        "domain": "a medical-device adverse-event log applying Loss Aversion under operational pressure",
+        "audience": "a reader who has to make a live judgment where reference point could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Loss Aversion is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the permit folder, names the reference point risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The device permit sleeve clicks shut under Johanna's hand as one adverse-event report is read in a Basel review room. The old label now feels safe because it is familiar. Johanna must decide whether the reference point is making rollback feel wiser than the error-reduction data supports.",
+      "whatToDo": "Mark reference point risk on the sleeve, compare the severe complaint with the quiet dosage errors reduced, and decide from likelihood and severity.",
+      "whyItMatters": "The current label may feel safer because it is current. The review needs both losses and gains on the same scale."
+    },
+    {
+      "exampleId": "ch32-ex04-anton-inventory-scan",
+      "title": "Anton Weighs Spoilage Against Upside",
+      "tags": [
+        "decision",
+        "wine",
+        "harvest"
+      ],
+      "planSpec": {
+        "domain": "a wine harvest comparison applying Loss Aversion under operational pressure",
+        "audience": "a reader who has to make a live judgment where losses loom could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Loss Aversion is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the inventory scan, names the losses loom risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are in a Burgundy cellar at 6:20 p.m., holding an inventory scan while Anton compares selling now with holding a small vintage. Spoilage would hurt. Anton must decide whether losses loom so large that the possible gain in blend quality is being discounted too sharply.",
+      "whatToDo": "Mark losses loom on the scan, write spoilage risk and upside value in matching units, and decide after likelihood and size are visible.",
+      "whyItMatters": "Avoiding loss can be prudent, but it should compete with the real upside instead of ending the analysis."
+    },
+    {
+      "exampleId": "ch32-ex05-cora-pilot-checklist",
+      "title": "Cora Reframes the Playoff Rule",
+      "tags": [
+        "predict",
+        "soccer",
+        "playoff"
+      ],
+      "planSpec": {
+        "domain": "a soccer playoff rule applying Loss Aversion under operational pressure",
+        "audience": "a reader who has to make a live judgment where gain could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Loss Aversion is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the pilot checklist, names the gain risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Cora one federation pilot checklist in Lisbon's match-operations office to notice the playoff rule was framed only as lost tradition. The same rule could gain two fairer qualifying matches. Cora, the competition analyst, must decide whether the gain is being muted by the old format's loss frame.",
+      "whatToDo": "Mark gain risk on the checklist, present the change as both tradition lost and fairness gained, then compare fan, travel, and competition effects.",
+      "whyItMatters": "A rule change should not be rejected only because the current format owns the reference point."
+    },
+    {
+      "exampleId": "ch32-ex06-bastien-training-frame",
+      "title": "Bastien Reviews the News Queue Loss",
+      "tags": [
+        "postmortem",
+        "public-radio",
+        "news"
+      ],
+      "planSpec": {
+        "domain": "a public-radio news queue applying Loss Aversion under operational pressure",
+        "audience": "a reader who has to make a live judgment where loss could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Loss Aversion is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the training still, names the loss risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which story stayed in the public-radio queue because dropping it felt like wasting reporting time? Bastien asks after the broadcast, placing a training frame beside the rundown in Montreal. He marks loss risk, then replaces the next queue review to compare sunk reporting time with listener value.",
+      "whatToDo": "Separate the pain of dropping finished work from the gain of airing a stronger story, then choose the queue from audience value.",
+      "whyItMatters": "Lost effort hurts, but it should not make a weaker story sound more important."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a loss-aversion case, a committee refuses a change because it might lose one sponsor, while the same change could gain wider public trust, what is the loss-aversion risk?",
+        "choices": [
+          "The visible loss may be getting more weight than an equivalent or larger gain.",
+          "Sponsor gain wider makes loss-aversion committee refuses look credible; use change might lose first and revisit public trust what when visible loss getting shifts.",
+          "Getting weight equivalent supports a narrower read of lose sponsor gain; keep wider public trust central and leave what visible loss aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The sponsor loss is real, but it should be weighed against the trust gain. Loss aversion makes the loss side sound louder before comparison.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Loss Aversion makes loss-aversion case feel more decisive than the record supports, and that misprices committee refuses in this scene. The correct move keepss the choice by the visible loss may be getting more weight than an equivalent or larger."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a loss-aversion review, a court team sees one schedule change as losing a half-day buffer, though it also gains a half day for older cases, what should the team do?",
+        "choices": [
+          "Gained time decide fits the immediate pressure around gains half older; hold buffer though also steady and test change losing half-day later.",
+          "Score the same hours as both lost buffer and gained case time, then decide from total impact.",
+          "Losing half-day buffer gives a practical reason for sees schedule change; half older cases belongs after though also gains clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The same stake should be visible in both frames. If the loss frame alone drives the decision, the schedule may be distorted.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Loss Aversion works by letting loss-aversion court crowd out team sees, which can misreads the schedule change decision. Score the same hours as both lost buffer and gained case time, then decide from total impact keeps the practical cost tied."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When loss-aversion pressure appears, a medical-device team wants to roll back a label change after one severe complaint. The change also reduced many small dosage errors. What is the disciplined review?",
+        "choices": [
+          "Loss-aversion pressure appears looks strong enough to guide medical-device team wants; roll back label can wait unless change after severe changes the stakes.",
+          "Label change after gives a practical reason for wants roll back; reduced many small belongs after severe complaint also clarifies the result.",
+          "Compare complaint severity and likelihood with the reduced errors on the same scale."
+        ],
+        "correctIndex": 2,
+        "explanation": "The severe complaint deserves weight, but the quiet gains need to be counted too. The same scale prevents loss framing from ruling alone.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Loss Aversion turns appears medical-device into a shortcut, so the room can overweights team wants while missing roll back. Compare complaint severity and likelihood with the reduced errors on the same scale protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After loss-aversion risk surfaces, a winery can sell a small vintage now to avoid spoilage risk or hold it for a possible quality and price gain, which move best handles loss aversion?",
+        "choices": [
+          "After loss-aversion surfaces looks strong enough to guide winery sell small; vintage avoid spoilage can wait unless hold possible quality changes the stakes.",
+          "Write spoilage risk and upside value in matching units, with likelihood and size for both.",
+          "Possible quality price makes sell small vintage look credible; use avoid spoilage hold first and revisit gain move best when handles loss aversion shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "Loss avoidance may be wise, but it should not end the analysis. Matching units make the gain and loss comparable.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Loss Aversion would push the winery sell case toward small vintage, creating a cost when avoid spoilage stays untested. The useful guardrail is to write spoilage risk and upside value in matching units, with likelihood and size for both."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If loss-aversion reasoning takes over, a soccer federation rejects a playoff change because it would lose tradition. The same change would create two fairer qualifying matches. What should be added to the decision?",
+        "choices": [
+          "A frame that names the fairness gain beside the tradition loss.",
+          "Tradition create fairer gives a practical reason for playoff change lose; added frame names belongs after qualifying matches what clarifies the result.",
+          "Fairer qualifying matches makes rejects playoff change look credible; use lose tradition create first and revisit what added frame when names fairness gain shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The loss of tradition may matter, but it should be compared with the gain in fairness. Naming both frames weakens the bias.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Loss Aversion converts federation rejects into the loudest signal, which can rushes playoff change before lose tradition is checked. The better answer separatess attention on a frame that names the fairness gain beside the tradition loss."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While loss-aversion pressure builds, a radio editor keeps a weaker story because dropping it would waste reporting time already spent, what is the hidden mistake?",
+        "choices": [
+          "Treating the pain of lost effort as more important than current listener value.",
+          "Reporting time already supports a narrower read of pressure builds radio; keep editor keeps weaker central and leave story dropping waste aside.",
+          "Already spent what points toward a quicker call on radio editor keeps; let loss-aversion pressure builds stand until waste reporting time contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The lost effort hurts, but the airtime choice should compare current audience value. Loss aversion can keep weak work alive.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Loss Aversion hides inside the loss-aversion pressure choice because loss-aversion pressure seems sufficient, yet the cost lands in loss-aversion pressure. Treating the pain of lost effort as more important than current listener value brings the loss-aversion pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the loss-aversion call, a board says it is being prudent by avoiding every option with a possible loss, even when the gains are likely and large. What question should challenge the frame?",
+        "choices": [
+          "Would the same stake look acceptable if described as a gain instead of a loss?",
+          "Described gain instead fits the immediate pressure around even gains likely; hold option possible loss steady and test says prudent avoiding later.",
+          "Board says prudent looks strong enough to guide avoiding option possible; loss even gains can wait unless likely large what changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "Reframing tests whether the loss label is doing extra work. Prudence should survive a balanced gain-loss comparison.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Loss Aversion pressures the call board decision toward the easy reading of call board. That can inflates the real cost unless the choice is grounded in would the same stake look acceptable if described as a gain instead of a."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose loss-aversion risk is present: a project team treats the current plan as neutral and every alternative as a loss of something familiar. What reference-point issue is likely present?",
+        "choices": [
+          "Departures like losses fits the immediate pressure around familiar what reference-point; hold alternative loss something steady and test treats current neutral later.",
+          "The current plan has become the reference point, making departures feel like losses before they are compared fairly.",
+          "Current neutral alternative gives a practical reason for project team treats; what reference-point issue belongs after loss something familiar clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "Loss aversion often starts from the current state. Alternatives need to be compared as tradeoffs, not only as losses from what exists.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Loss Aversion is the mechanism here: losses loom larger than gains, so present project can overpower present project. The current plan has become the reference point, making departures feel like losses before they are compared fairly keeps the scenario from."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two loss-aversion signals compete: a pilot group is choosing a rule for decisions where possible losses dominate discussion. You want real caution without letting loss framing control everything. What rule is strongest?",
+        "choices": [
+          "What strongest write fits the immediate pressure around discussion want real; hold possible losses dominate steady and test choosing rule decisions later.",
+          "Group choosing rule looks strong enough to guide decisions possible losses; dominate discussion want can wait unless real caution letting changes the stakes.",
+          "Write the loss frame and gain frame separately, then compare size, likelihood, and who bears each side."
+        ],
+        "correctIndex": 2,
+        "explanation": "This rule keeps caution while forcing a balanced comparison. The other answers either worship loss or erase it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Loss Aversion makes the pilot group evidence look cleaner than it is, risking a pilot group mistake in this setting. The answer protects pilot group by asking for write the loss frame and gain frame separately, then compare size, likelihood."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "A loss dominates the room. What should you write next to it?",
+      "back": "Write the equivalent gain frame and compare size, likelihood, and who bears the tradeoff."
+    },
+    {
+      "front": "Why can the current plan feel safer than it is?",
+      "back": "It becomes the reference point, so changes feel like losses before their gains are weighed."
+    },
+    {
+      "front": "What does loss aversion distort?",
+      "back": "It can give possible losses more emotional weight than similar gains."
+    },
+    {
+      "front": "When is caution still justified?",
+      "back": "When the loss remains large, likely, or unfairly borne after it is compared with the gain."
+    },
+    {
+      "front": "What is the core correction for loss aversion?",
+      "back": "Reframe the same stake as gain and loss, then compare them on one scale."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to rebalance decisions where possible losses have taken over the tradeoff.",
+    "ifThenPlans": [
+      {
+        "context": "meetings",
+        "plan": "If a loss dominates discussion, then I will ask for the matching gain frame before the decision closes."
+      },
+      {
+        "context": "personal choices",
+        "plan": "If I avoid a change because it might hurt, then I will write what I might gain by making it."
+      },
+      {
+        "context": "policy",
+        "plan": "If the current rule feels neutral, then I will name what keeping it costs."
+      },
+      {
+        "context": "editing or prioritizing",
+        "plan": "If dropping finished work hurts, then I will compare lost effort with current audience value."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, take one loss-framed choice and write the gain-framed version before deciding.",
+    "weeklyPractice": "Once this week, build a two-column decision note: loss frame on one side, gain frame on the other, with likelihood and size for both."
+  },
+  "memorableLines": [
+    {
+      "text": "A loss can speak in a lower register and still fill the room.",
+      "location": "breakdown.fastRead",
+      "why": "It captures how loss framing dominates without needing to shout."
+    },
+    {
+      "text": "Ask whether the pain is information or volume.",
+      "location": "breakdown.deepRead",
+      "why": "It gives readers a way to separate signal from emotional weight."
+    },
+    {
+      "text": "Give the loss a fair weight, not a louder voice.",
+      "location": "breakdown.fullRead",
+      "why": "It states the chapter's practical rule."
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-almanack-of-naval-ravikant-ch06",
+  "number": 6,
+  "title": "Naval’s Recommended Reading",
+  "readingTimeMinutes": 12,
+  "hook": "A cargo-loss report sits under a half-read bestseller, and the harder chapter is the one with teeth.",
+  "counterintuition": "The status move is not finishing impressive titles so you can say you finished them, but following the live question and staying with sources that change how you see.",
+  "tryThisNow": "Look at the last thing you genuinely wondered about today. Pick a source that might explain that one question, read until the question changes shape, then stop before it becomes a completion task.",
+  "keyTakeaway": "Reading compounds when curiosity chooses the source, theory sharpens perception, and difficult explanations earn their place by changing the next thing you notice.",
+  "breakdown": {
+    "fastRead": "Emma's cargo-loss report sits under a half-read business hardcover that everyone in the office quotes. The popular title is easy to finish. It is not helping her price cascading marine risk. She closes it early, opens the marked complexity section, and writes one question: why do small delays become system-wide losses? That is the reading move. A source earns attention when it changes the problem in front of you. Completion is a weak scoreboard. Curiosity is stronger because it makes the page answer to reality.",
+    "deepRead": "The gray cloth simulation freezes mid-fall on Nora's render monitor, looking fake in exactly the same way for the fourth review. Reference footage shows what cloth did once. The physics essay explains why it moves that way.\n\nNora pauses the render, sketches the force path in the margin, and changes the cloth rig because the explanation finally predicts the motion. This is what good reading does. It does not merely add information. It gives you a model that reaches forward. If the idea cannot change what you expect to see next, it may still entertain you, but it has not become a tool.\n\nDavid Deutsch is the hard-source test: difficulty earns its place only when the explanations change how you think.\n\nThat test protects you from two errors. One error is quitting every hard page because the first pass feels slow. Some theory takes time because it is rebuilding the frame you use to understand the world. The other error is worshiping difficulty for status. A dense source that never clarifies anything is not noble; it is just dense. The right question is whether your perception improves after wrestling with it.\n\nRandall Munroe proves that simplicity is not the enemy of depth; if the idea is clear, plain words can carry it.\n\nA connoisseur of reading learns both sides. Chase concepts that explain more than the local problem, and prefer clarity when clarity is possible. Physics, evolution, game theory, history, philosophy, science fiction, blogs, manuals, essays, and technical notes all become part of one practice: find the source that makes reality less blurry. You are building taste for explanations, not a shelf for finished titles.",
+    "fullRead": "Julian sits between hearings with a cracked paperback beside the small-claims files and the hearing clock ticking above the door. The last attorney's contempt is still in his chest. He does not need a literary trophy. He needs one idea that will stop contempt from leaking into the next decision.\n\nHe copies a line into the case margin, shuts the paperback, and uses it to delay a sharp remark when the next attorney begins. That is reading as practice. The value is not in owning a polished opinion about Stoicism. The value is in the thirty seconds where a sentence changes conduct. Philosophy, used well, becomes a tool for the next human moment.\n\nYou can read this way across fields. A robotics captain can hide the approved leadership title and open the gear-ratio manual after a failed climb. A fermenter can read a microbial growth curve because the miso smells wrong again. A curator can use science fiction to imagine the institutions a future society might build. These are not distractions from serious reading. They are serious reading because the question is alive.\n\nYuval Noah Harari's Sapiens can become a new lens on the whole human story. You may arrive for history and leave with a model for cooperation, myth, agriculture, trade, violence, or institutions. The gain is not a retained summary. The gain is that ordinary news, workplace conflict, and family stories begin to show patterns you did not see before.\n\nWhat did the page make newly visible?\n\nThat question beats page counts. It also explains why science fiction belongs near nonfiction and philosophy. A strong imagined world is a mental model in motion. It lets you feel how institutions, incentives, technologies, fears, and myths might interact before the real world gets there. The civil-rights exhibit designer who reads only dates may build a wall of chronology. The designer who also reads speculative systems may give visitors a choice that makes institutional design felt in the body.\n\nRichard Hamming belongs where reading stops being intake and starts becoming a question about the work you are avoiding. You and Your Research is not valuable because an old-timer essay sounds serious. It is valuable if it makes you ask which important problem you keep circling without touching. Good reading eventually turns back toward your own work. It asks for a change in attention, courage, taste, or standards.\n\nThe limit is that curiosity can become drift. Dropping an unhelpful source is different from fleeing every hard source when effort begins. The test is honest appetite joined to explanatory yield. If a manual helps you fix the lift ratio, read it. If a hard theory chapter keeps changing how you model cascading risk, stay. If a famous title is only being consumed for status, close it without ceremony. If a silly-looking essay gives you a better question, follow it.\n\nReading is not a race through pages. It is a search for the explanations that make the next part of life more legible."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-emma-complexity-risk",
+      "title": "Emma Closes the Popular Hardcover",
+      "tags": [
+        "decision",
+        "risk",
+        "theory"
+      ],
+      "planSpec": {
+        "domain": "marine insurance analyst abandoning a trendy business bestseller for a hard book on complex systems",
+        "audience": "a professional who needs better explanations, not another finished title",
+        "stakes": "whether she learns to price cascading port risk or merely completes the popular book everyone cites",
+        "format": "decision_point",
+        "requiredBeat": "she closes the bestseller at chapter two, opens the marked complexity chapter, and writes one question about why small delays become system-wide losses"
+      },
+      "scenario": "A cargo-loss report lies beneath a half-read business hardcover on Emma's desk after lunch. The hardcover is the one every executive cites, but it is not helping her understand why three small delays became one insured loss. She must decide whether finishing the popular title matters more than the live question. Emma closes it at chapter two, opens the marked complexity section, and writes one question about system-wide losses.",
+      "whatToDo": "Follow the question, not the office status signal. Use the complexity section to explain cascading risk, and leave the popular hardcover unfinished until it has a job.",
+      "whyItMatters": "Reading should improve the model she uses at work. Completion only proves endurance; the right source changes how Emma prices the next loss."
+    },
+    {
+      "exampleId": "ch06-ex02-nora-cloth-rig",
+      "title": "Nora Draws the Force Path",
+      "tags": [
+        "scene",
+        "animation",
+        "physics"
+      ],
+      "planSpec": {
+        "domain": "animation director using physics essays to solve a believable falling-cloth problem",
+        "audience": "a creative reader who discovers theory through a live craft problem",
+        "stakes": "whether the scene stays fake because the team keeps guessing from reference footage",
+        "format": "scene",
+        "requiredBeat": "she pauses the render, sketches the force path from the physics essay in the margin, and changes the cloth rig because the explanation finally predicts the motion"
+      },
+      "scenario": "On Friday afternoon, the render fan clicks unevenly as a gray cloth simulation freezes mid-fall on Nora's monitor. The reference footage looks right, but every copied pose still feels fake. Before the review, she must decide whether to keep guessing from images or read the explanation. Nora pauses the render, sketches the force path from a physics essay in the margin, and changes the cloth rig because the motion finally predicts itself.",
+      "whatToDo": "Use theory to make the craft problem legible. Sketch the force path, change the rig, and judge the reading by whether it predicts motion better than reference copying.",
+      "whyItMatters": "Curiosity-led reading is practical. The essay matters because it turns a fake-looking scene into a causal problem Nora can solve."
+    },
+    {
+      "exampleId": "ch06-ex03-julian-stoic-margin",
+      "title": "Julian Shuts the Paperback Before the Next Hearing",
+      "tags": [
+        "reflection",
+        "law",
+        "philosophy"
+      ],
+      "planSpec": {
+        "domain": "rural judge reading Stoic letters between hearings to clarify anger rather than to collect quotes",
+        "audience": "a reader under public pressure who needs an operating idea, not literary polish",
+        "stakes": "whether contempt from one hearing bleeds into the next decision",
+        "format": "reflection",
+        "requiredBeat": "he copies one line into the case margin, shuts the book, and uses it to delay a sharp remark when the next attorney begins"
+      },
+      "scenario": "It took Julian three hearings to notice contempt from one case traveling into the next. A cracked paperback spine rests beside small-claims files, and the hearing clock gives him six minutes. He copies one line into the case margin, shuts the paperback, and uses the line to delay a sharp remark when the next attorney begins. The reading works because it changes the next sentence he almost says.",
+      "whatToDo": "Read for the operating idea, then close the source and use it. Let the copied line interrupt the sharp remark before it becomes part of the ruling room.",
+      "whyItMatters": "The value is not quote collection. The idea earns its place only if it changes conduct under pressure."
+    },
+    {
+      "exampleId": "ch06-ex04-aisha-torque-table",
+      "title": "Leila Opens the Torque Table",
+      "tags": [
+        "before_after",
+        "robotics",
+        "manual"
+      ],
+      "planSpec": {
+        "domain": "teen robotics captain skipping the assigned leadership book to devour a manual on gear ratios",
+        "audience": "a young builder whose curiosity is more honest than the team's approved development plan",
+        "stakes": "whether reading feeds the machine she is actually trying to build",
+        "format": "before_after",
+        "requiredBeat": "before the team meeting she hides the leadership book, after a failed climb she opens the gear manual to the torque table and fixes the lift ratio"
+      },
+      "scenario": "At 7:08 p.m. Wednesday, Leila kneels beside a stripped aluminum gear and a bookmarked torque table after the robot's failed climb. Before the team meeting, she hid the assigned leadership title in her backpack because the lift was the real question. After the climb failed, she opens the gear manual, traces the torque table, and changes the lift ratio before anyone gives another speech about teamwork.",
+      "whatToDo": "Let the broken machine choose the reading. Use the torque table to fix the lift ratio, then return to leadership advice only when leadership is the live problem.",
+      "whyItMatters": "Honest curiosity feeds the work in front of her. The manual beats the approved title because it explains the failure she actually has."
+    },
+    {
+      "exampleId": "ch06-ex05-marco-miso-growth",
+      "title": "Marco Tests the Growth Curve",
+      "tags": [
+        "predict_reveal",
+        "fermentation",
+        "concepts"
+      ],
+      "planSpec": {
+        "domain": "restaurant fermenter reading microbiology because a batch of miso keeps collapsing",
+        "audience": "a craft worker learning to follow the question rather than the prestige of the title",
+        "stakes": "whether curiosity moves from recipe imitation to causal understanding",
+        "format": "predict_reveal",
+        "requiredBeat": "he predicts the salt ratio is wrong, reads the microbial growth curve, tests the next crock, and changes the process because the concept explains the smell"
+      },
+      "scenario": "Why does the same miso recipe keep collapsing in Marco's back prep room on Monday? A ceramic crock is labeled with a salt percentage and a sour smell note before the dinner rush. He must decide whether to copy the recipe again or understand the cause. Marco predicts the salt ratio is wrong, reads the microbial growth curve, tests the next crock, and changes the process when the concept explains the smell.",
+      "whatToDo": "Use the microbiology to test a prediction. Change the salt ratio only after the growth curve explains the smell better than recipe imitation does.",
+      "whyItMatters": "The concept gives Marco causal control. Prestige does not matter here; the right reading is the one that makes the crock less mysterious."
+    },
+    {
+      "exampleId": "ch06-ex06-beth-exhibit-flowchart",
+      "title": "Beth Adds the Imagined Institution",
+      "tags": [
+        "vignette",
+        "exhibit",
+        "science fiction"
+      ],
+      "planSpec": {
+        "domain": "civil-rights exhibit designer using science fiction to make visitors feel future institutional choices",
+        "audience": "a curator who normally reads only history but needs sharper imagination about systems",
+        "stakes": "whether the exhibit becomes dates on a wall or a model of how societies choose futures",
+        "format": "vignette",
+        "requiredBeat": "she moves a science-fiction paperback beside the exhibit flowchart, labels the imagined institution that made the story feel plausible, and redesigns one visitor choice around that model"
+      },
+      "scenario": "\"It still feels like dates on a wall,\" Beth says on Wednesday morning as a worn science-fiction paperback sits open beside the exhibit flowchart. The civil-rights timeline is accurate, but the visitor choice has no pressure in it. Before the design review, she must decide whether history alone is giving visitors a model. Beth labels the imagined institution that made the story plausible and redesigns one choice around that system.",
+      "whatToDo": "Use fiction as a systems rehearsal. Move the imagined institution onto the flowchart, then redesign the visitor choice so the exhibit shows how futures get chosen.",
+      "whyItMatters": "Science fiction can build mental models when history alone becomes static. Beth is not escaping facts; she is giving visitors a felt model of institutions."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "An analyst is halfway through a popular business title, but a hard complexity source explains the cargo losses she is pricing this week. Which choice best fits curiosity-led reading?",
+        "choices": [
+          "Close the popular title for now and read the complexity section around her live question.",
+          "Finish the popular title first because completion proves discipline.",
+          "Avoid the harder source because useful reading should feel easy immediately."
+        ],
+        "correctIndex": 0,
+        "explanation": "The live question should choose the source. Completion is a weak scoreboard, and difficulty is acceptable when it gives her a better model for the risk in front of her.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An animation lead keeps copying reference footage, but the falling cloth still looks fake. A physics essay finally explains the force path. What makes the essay worth reading?",
+        "choices": [
+          "It sounds more intellectual than reference footage.",
+          "It predicts the motion well enough to change the cloth rig.",
+          "It lets the team say they used theory even if the render stays wrong."
+        ],
+        "correctIndex": 1,
+        "explanation": "The essay earns attention because it improves prediction and action. Sounding intellectual or name-checking theory would not matter if the cloth still behaved badly.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A judge copies one sentence from a Stoic source and uses it to delay a sharp remark in the next hearing. What is the best measure of that reading?",
+        "choices": [
+          "Whether he can later summarize the whole tradition elegantly.",
+          "Whether the quote sounds impressive to other judges.",
+          "Whether the idea changes his conduct at the moment contempt would leak into judgment."
+        ],
+        "correctIndex": 2,
+        "explanation": "The reading works because it changes behavior under pressure. Summary skill and impressive quotation can become status games if they do not alter the next decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A robotics captain skips an assigned leadership title after the lift fails and opens a gear-ratio manual instead. Which principle supports that choice?",
+        "choices": [
+          "The broken machine has made torque the live question, so the manual is the better source.",
+          "Leadership reading is always useless for builders.",
+          "Approved titles should be hidden because authority is never helpful."
+        ],
+        "correctIndex": 0,
+        "explanation": "The source should answer the active problem. The leadership title may help later, but torque is the current bottleneck; rejecting all authority would be another rigid identity.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A fermenter keeps imitating a recipe and getting a sour smell. A microbiology curve explains how salt changes microbial growth. What is the reading move?",
+        "choices": [
+          "Keep copying the recipe because craft should avoid theory.",
+          "Use the concept to predict and test the next crock's salt ratio.",
+          "Switch to a famous cookbook so the reading looks more respectable."
+        ],
+        "correctIndex": 1,
+        "explanation": "The growth curve gives causal understanding and a testable prediction. Recipe imitation and prestige reading both avoid the concept that explains the smell.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A curator reads science fiction while designing a civil-rights exhibit and labels the imagined institution that made the story plausible. Why can that count as serious reading?",
+        "choices": [
+          "Fiction is useful only when it replaces historical evidence.",
+          "It adds variety so visitors do not get bored by dates.",
+          "It can model systems, incentives, and future choices that make history feel active."
+        ],
+        "correctIndex": 2,
+        "explanation": "Science fiction can train systems imagination without replacing facts. Mere variety is weaker; the real gain is a model visitors can use to feel institutional choices.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A reader stays with a difficult theory source for three evenings. By the fourth, news stories, work problems, and old assumptions look different. How should she judge the effort?",
+        "choices": [
+          "The difficulty earned its place because the explanations changed perception.",
+          "The source was valuable only if she finished every page.",
+          "The source failed because hard reading should never require rereading."
+        ],
+        "correctIndex": 0,
+        "explanation": "Changed perception is the payoff. Finishing every page is not the main test, and rereading can be part of rebuilding a model rather than evidence of failure.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A professional keeps a public list of impressive finished titles, but cannot name one decision, model, or question that changed because of them. What is the likely problem?",
+        "choices": [
+          "The list is too short to create visible expertise.",
+          "Reading has become a status scoreboard instead of a search for explanations.",
+          "The titles should all be replaced by easier sources."
+        ],
+        "correctIndex": 1,
+        "explanation": "A finished list can hide shallow intake. The issue is not length or ease; it is that the reading has not changed perception, prediction, or action.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A reader follows curiosity so loosely that every hard source is abandoned after five pages, even when it addresses the right question. What correction is needed?",
+        "choices": [
+          "Turn every source into a rigid completion task.",
+          "Read only short essays so difficulty never appears.",
+          "Join honest appetite to explanatory yield, staying when difficulty is rebuilding the model."
+        ],
+        "correctIndex": 2,
+        "explanation": "Curiosity is not drift. The right correction is to stay when difficulty is doing useful work, while still dropping sources that are only prestige or confusion.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch06-card01",
+      "front": "A source is famous but does not answer your live question. What should guide the next reading choice?",
+      "back": "Let the live question choose. A source earns attention when it improves your model of the problem in front of you, not when it looks impressive on a list.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-card02",
+      "front": "A hard source feels slow. What test tells you whether to stay with it?",
+      "back": "Stay if the explanations are changing what you notice, predict, or can explain. Drop it if difficulty is only prestige without clearer perception.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch06-card03",
+      "front": "A simple explanation uses plain words for a hard idea. What should you remember?",
+      "back": "Plain words can carry deep concepts when the idea is clear. Simplicity is a strength if it improves understanding without hiding the mechanism.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch06-card04",
+      "front": "A fiction source changes how you see institutions or incentives. Why does it belong in a serious reading practice?",
+      "back": "Fiction can run mental models as lived worlds. It helps you feel possible systems, choices, and consequences before reality provides the test.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-card05",
+      "front": "A reading habit produces many finished titles but no changed decisions. What is missing?",
+      "back": "The reading needs explanatory yield. Ask what the source made visible, what prediction it changed, or what action it improved.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading from live curiosity toward explanatory power. Choose sources because they answer real questions, stay with difficulty when it changes perception, and stop when completion becomes a status task.",
+    "ifThenPlans": [
+      {
+        "context": "choosing a source",
+        "plan": "If two sources compete for attention, then choose the one that best explains the question currently bothering you."
+      },
+      {
+        "context": "difficult reading",
+        "plan": "If a hard source is slow, then ask whether it is changing what you can predict or notice before you quit."
+      },
+      {
+        "context": "completion pressure",
+        "plan": "If you keep reading only to say you finished, then stop and write the question the source was supposed to answer."
+      },
+      {
+        "context": "cross-field reading",
+        "plan": "If your usual field feels stale, then pick one source from science, philosophy, fiction, or a technical manual that models the problem differently."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, write one live question from your work or life, read one source until the question changes shape, and stop before turning the session into a page-count goal.",
+    "weeklyPractice": "Once a week, review one thing you read and record the model it changed: a prediction, a decision, a design, a question, or a pattern you now see."
+  },
+  "memorableLines": [
+    {
+      "text": "Reading is not a race through pages.",
+      "location": "breakdown.fullRead",
+      "why": "It punctures completion pressure in a short, portable line."
+    },
+    {
+      "text": "You are building taste for explanations, not a shelf for finished titles.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the reading practice about taste and explanations, not accumulation."
+    },
+    {
+      "text": "Completion is a weak scoreboard.",
+      "location": "breakdown.fastRead",
+      "why": "It gives a concise contrast between finishing and learning."
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch17",
+  "number": 17,
+  "title": "How an Accountability Partner Can Change Everything",
+  "coreMove": "Make follow-through visible to another person so consequences arrive in the present.",
+  "sourcePressure": "Accountability helps habits stick because another person or agreement makes the consequence of failing more immediate and harder to ignore.",
+  "chapterSpecificMisunderstanding": "Using accountability as embarrassment instead of present consequence and support.",
+  "sourceAlignmentTerms": [
+    "accountability partner",
+    "habit contract",
+    "social consequence",
+    "reputation",
+    "commitment",
+    "outside visibility"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of accountability partner",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift pharmacist sending a photo of closed narcotics logs to a peer",
+      "audience": "a pharmacist tired enough to skip final checks",
+      "stakes": "whether outside visibility makes the consequence immediate",
+      "format": "scene",
+      "requiredBeat": "she texts the stamped log to another pharmacist before leaving, knowing the missing stamp would be seen tonight",
+      "firstImage": "a stamped narcotics log under fluorescent light",
+      "mustInclude": [
+        "stamp pad",
+        "secure text thread"
+      ],
+      "mustAvoid": [
+        "surveillance shame"
+      ]
+    },
+    {
+      "domain": "a choir director making section leaders hear one weekly practice excerpt",
+      "audience": "a singer who practices only when someone can tell",
+      "stakes": "whether reputation turns private reps into present consequence",
+      "format": "vignette",
+      "requiredBeat": "he uploads a thirty-second excerpt by Friday because the tenor leader will hear the breath break",
+      "firstImage": "an audio excerpt uploading beside a choir folder",
+      "mustInclude": [
+        "choir folder",
+        "upload deadline"
+      ],
+      "mustAvoid": [
+        "generic accountability buddy"
+      ]
+    },
+    {
+      "domain": "a climber signing a belay-check contract with a partner",
+      "audience": "a climber prone to rushing familiar knots",
+      "stakes": "whether an agreement makes failure visible before the climb",
+      "format": "dialogue",
+      "requiredBeat": "his partner reads the checklist aloud and both initial the log before tying in",
+      "firstImage": "a belay log clipped near a chalk bag",
+      "mustInclude": [
+        "belay log",
+        "chalk bag"
+      ],
+      "mustAvoid": [
+        "danger drama"
+      ]
+    },
+    {
+      "domain": "a city treasurer using public pledge deposits for budget reports",
+      "audience": "a civic official who misses monthly transparency updates",
+      "stakes": "whether a visible consequence changes the deadline",
+      "format": "decision_point",
+      "requiredBeat": "she authorizes a small donation penalty if the report is late, then posts the pledge where staff can see it",
+      "firstImage": "a pledge form beside a municipal seal stamp",
+      "mustInclude": [
+        "pledge form",
+        "seal stamp"
+      ],
+      "mustAvoid": [
+        "political grandstanding"
+      ]
+    },
+    {
+      "domain": "a personal trainer pairing clients into form-review duos",
+      "audience": "a gym client who skips mobility when alone",
+      "stakes": "whether peer visibility makes the skipped work harder to ignore",
+      "format": "before_after",
+      "requiredBeat": "the duo swaps ten-second form clips and the missing clip is obvious by lunchtime",
+      "firstImage": "a phone tripod facing a mobility mat",
+      "mustInclude": [
+        "phone tripod",
+        "form clip"
+      ],
+      "mustAvoid": [
+        "fitness influencer shell"
+      ]
+    },
+    {
+      "domain": "a novelist mailing a chapter receipt to a retired editor every Sunday",
+      "audience": "a writer who keeps moving deadlines privately",
+      "stakes": "whether another person makes the deadline real today",
+      "format": "postmortem",
+      "requiredBeat": "the empty Sunday email becomes the immediate cost that reveals why the pages stopped",
+      "firstImage": "a stamped envelope resting beside a manuscript page",
+      "mustInclude": [
+        "mailing receipt",
+        "manuscript page"
+      ],
+      "mustAvoid": [
+        "writer cafe shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "design accountable proof without humiliation",
+      "connect social consequence to follow-through",
+      "choose the right partner or contract for the scenario"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Tell one specific person what proof of completion they should expect from you today, and send that proof before the day ends.",
+  "readingTimeMinutes": 12
+}

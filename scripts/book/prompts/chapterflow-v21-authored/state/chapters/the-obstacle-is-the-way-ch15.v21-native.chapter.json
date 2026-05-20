@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-obstacle-is-the-way-ch15",
+  "number": 15,
+  "title": "Do Your Job, Do It Right",
+  "readingTimeMinutes": 12,
+  "hook": "Keycards click uselessly at midnight while Olga rebuilds one reservation with care.",
+  "counterintuition": "Doing the job right is not approval seeking; it is keeping the standard when the task is yours and the room is unfair.",
+  "tryThisNow": "Pick one unglamorous assigned task and define the standard it deserves. Do the next piece to that standard before judging who notices.",
+  "keyTakeaway": "Do your job right by giving full craft and responsibility to the task that is actually yours, especially when the surrounding situation is unfair or ignored.",
+  "breakdown": {
+    "fastRead": "Keycards click uselessly at midnight while Olga studies the reservation screen. The lobby door is locked, the backup room route closes in two minutes because housekeeping is gone, and a tired family waits beside their luggage.\n\nThe booking error was not Olga's fault. The next careful repair is still her job. She checks the rate, calls the sister property, writes the taxi voucher, and notes the correction so the morning desk can trace it.\n\nCraft is responsibility made visible.",
+    "deepRead": "\"Nobody checks that cart,\" Freya hears near the supply room. Rain beads on the taped paper sign above the unit, and the night shift is short again. Before the cleanup, the cart looks harmless: half-used tape rolls, two loose labels, one drawer with mixed gauze. After Freya finishes, every bin is clean, dated, and reachable.\n\nNo one applauds the cart.\n\nThat is the point. A task does not earn its standard from applause. The standard comes from what the task serves. A nurse may need that labeled drawer when no one has time to search. A patient may never know the cart mattered. Freya's job is not to be admired for care. It is to make care available when the next person reaches for it.\n\nYour job is not the whole unfair room; it is the part entrusted to your hands.\n\nThis distinction keeps responsibility clean. You do not excuse bad systems. You do not pretend unfairness is fine. You simply refuse to let unfairness lower the quality of the piece that belongs to you. The task stays small, but the standard stays real. Later, Freya can report the short staffing and ask why the cart keeps reaching night shift in bad shape. Right now, the drawer still needs to be usable.",
+    "fullRead": "The machine shop is loud before sunrise, and a red warning badge flashes beside an unopened parts file. Luc has a replacement part on the bench, a weather alert delaying the courier, a supply box of gauges, and a call list of supervisors who want the line running by noon. The pressure invites a shortcut: check the tolerance once, sign the form, move on.\n\nLuc checks it twice. In reflection later, the second check is the moment that mattered. The first pass was barely inside range. The second showed a burr near the edge, small enough to miss and large enough to damage the assembly. No customer would praise the second check. The part would simply fit.\n\nDo it right even when applause is not part of the assignment.\n\nThis is not perfectionism. Perfectionism often centers the worker's fear: my work must prove I am flawless. Craft centers the task: what does this part, file, cart, case, count, or cable need in order to be trustworthy? The answer may be humble. Count the damaged pallets before blame starts. Label the supply drawer. Prepare the neglected case file. Tape the cable even after the performer ignored the safety note.\n\nYou can ask the standard question in any overlooked job: who will depend on this when I am not in the room? That person may be a patient, guest, client, coworker, judge, driver, or stranger who never learns your name. The work still travels to them.\n\nSimon faces it in the warehouse. You stand beside him with chalk dust from the count board on his hand, a practice log of damaged loads, and a dock crew already arguing about blame. The visible outcome is a row of crushed pallets. The correction he owns is exact counting before accusation. Simon numbers each pallet, photographs the corner damage, and separates wet cardboard from forklift impact. He cannot make the room fair. He can make the count trustworthy.\n\nPeter learns it in court prep. It took one neglected file to show him how easy it was to let overload become a reason for thin work. The printed schedule gives one fixed deadline before arraignment, and a young client waits for a decision through the glass. Peter cannot fix the whole public defense system before morning. He can read the charge, verify the prior address, call the one witness, and write the two questions the hearing needs.\n\nJulia sees the stagehand version under a loading-dock chain. What is your job when the headline performer ignores safety? A marked cable form sits on the road case, the queue of crew is visible in the wings, and one rule cannot change: no loose cable across the downstage path. Julia tapes the line anyway, labels the crossing, and notes the refusal to the production manager. She is not pleasing the performer. She is doing the safety job right.\n\nDoing your job right is a refusal to let the surrounding mess steal the standard from the work in front of you."
+  },
+  "examples": [
+    {
+      "exampleId": "ch15-ex01-olga-reservation-care",
+      "title": "Olga Rebuilds the Reservation",
+      "tags": [
+        "hotel",
+        "craft",
+        "responsibility"
+      ],
+      "planSpec": {
+        "domain": "hotel night auditor fixing a reservation error with full care",
+        "audience": "Readers facing inherited errors who need to own the repair in front of them",
+        "stakes": "An unfair error can become resentment or careful repair.",
+        "format": "postmortem",
+        "requiredBeat": "Olga does the unglamorous assigned task carefully when nobody is rewarding care."
+      },
+      "scenario": "Keycards click uselessly at midnight while Olga checks the reservation error under the desk lamp. The lobby door is locked, the backup property route closes in two minutes, and a family waits with two suitcases. She can prove the error started on day shift, but the family still has nowhere to sleep. In the postmortem, the task that mattered was rebuilding the rate, taxi voucher, sister-property room, and morning note with care.",
+      "whatToDo": "Repair the reservation path completely and leave a traceable note for the morning desk.",
+      "whyItMatters": "The error was inherited, but the repair belonged to Olga once the family stood in front of her."
+    },
+    {
+      "exampleId": "ch15-ex02-freya-supply-cart",
+      "title": "Freya Labels the Drawer",
+      "tags": [
+        "nursing",
+        "supplies",
+        "standard"
+      ],
+      "planSpec": {
+        "domain": "junior nurse cleaning and labeling a supply cart nobody sees",
+        "audience": "Readers facing invisible work who need to keep the task standard",
+        "stakes": "Invisible work can become careless unless the task's purpose sets the standard.",
+        "format": "before_after",
+        "requiredBeat": "Freya does the unglamorous assigned task carefully when nobody is rewarding care."
+      },
+      "scenario": "\"Nobody checks that cart,\" someone says as rain beads on the taped supply-room sign. A timestamped note shows the last restock, and one disputed fact is whether the mixed drawer caused yesterday's delay. Freya is tired enough to accept the shrug. Before she starts, gauze and tape share one bin. After, every drawer is cleaned, dated, and labeled where a rushing nurse can find it.",
+      "whatToDo": "Clean, date, and label the cart to the standard a rushed handoff will need.",
+      "whyItMatters": "The cart may be invisible, but its standard serves the next patient and nurse."
+    },
+    {
+      "exampleId": "ch15-ex03-luc-tolerance-check",
+      "title": "Luc Checks the Burr",
+      "tags": [
+        "machining",
+        "quality",
+        "craft"
+      ],
+      "planSpec": {
+        "domain": "machinist rechecking tolerances on a replacement part",
+        "audience": "Readers facing pressure to shortcut a technical standard",
+        "stakes": "A rushed part can pass once and still fail the assembly.",
+        "format": "reflection",
+        "requiredBeat": "Luc does the unglamorous assigned task carefully when nobody is rewarding care."
+      },
+      "scenario": "The machine shop hums under a red parts alert, with a weather warning on the wall screen, a supply box of gauges open, and the supervisor call list waiting. The courier clock makes a skipped check feel reasonable. In reflection, Luc knows the second tolerance check saved the part. The first pass barely fit. The second found a burr that would have scored the assembly after the courier arrived.",
+      "whatToDo": "Run the second tolerance check and remove the burr before signing the replacement part.",
+      "whyItMatters": "The line needed a trustworthy part, not a hurried signature."
+    },
+    {
+      "exampleId": "ch15-ex04-simon-pallet-count",
+      "title": "Simon Counts Before Blame",
+      "tags": [
+        "warehouse",
+        "count",
+        "responsibility"
+      ],
+      "planSpec": {
+        "domain": "warehouse lead counting damaged pallets before blame starts",
+        "audience": "Readers facing blame pressure who need to own the count",
+        "stakes": "A damaged load can trigger blame before the facts are careful enough to use.",
+        "format": "thought_experiment",
+        "requiredBeat": "Simon does the unglamorous assigned task carefully when nobody is rewarding care."
+      },
+      "scenario": "You stand beside Simon with chalk dust on his hand, a damage log open, and workers already arguing near the dock. The visible outcome is a row of crushed pallets. The private correction is the count: wet cardboard, corner impact, torn wrap. Blame is already louder than the facts. Thought experiment: if the argument keeps growing, what job is still his? Number each pallet and photograph each damage type.",
+      "whatToDo": "Count and document the damaged pallets before assigning cause.",
+      "whyItMatters": "A careful count is not people pleasing. It is the responsibility the next decision depends on."
+    },
+    {
+      "exampleId": "ch15-ex05-peter-neglected-file",
+      "title": "Peter Reads the File",
+      "tags": [
+        "law",
+        "casework",
+        "duty"
+      ],
+      "planSpec": {
+        "domain": "public defender preparing one neglected case file",
+        "audience": "Readers facing overloaded systems who need to serve the task in front of them",
+        "stakes": "A neglected file can become another symbol of unfairness or receive the craft it needs.",
+        "format": "scene",
+        "requiredBeat": "Peter does the unglamorous assigned task carefully when nobody is rewarding care."
+      },
+      "scenario": "It took Peter one arraignment to remember that overload was not a defense against thin work. The printed schedule gives one fixed deadline, and a client waits through the glass for a decision. The caseload is unfair, but this file still belongs to him for the next hour. Peter reads the charge, verifies the prior address, calls the one witness, and writes the two questions the hearing needs before he argues about the system.",
+      "whatToDo": "Prepare the one file to hearing standard: charge, address, witness, and questions.",
+      "whyItMatters": "He cannot repair the whole system overnight, but he can refuse to let this file be careless."
+    },
+    {
+      "exampleId": "ch15-ex06-julia-cable-safety",
+      "title": "Julia Tapes the Cable",
+      "tags": [
+        "stage",
+        "safety",
+        "standard"
+      ],
+      "planSpec": {
+        "domain": "stagehand taping cables after the headline performer ignores safety",
+        "audience": "Readers facing ignored safety work who need to keep the standard",
+        "stakes": "An ignored warning can tempt a worker to match carelessness with carelessness.",
+        "format": "vignette",
+        "requiredBeat": "Julia does the unglamorous assigned task carefully when nobody is rewarding care."
+      },
+      "scenario": "What is Julia's job after the performer waves off the safety warning? A cold loading-dock chain hangs by the road case, the marked cable form is clipped to the lid, and the crew queue is visible in the wings. One rule cannot change: no loose cable across downstage. She can chase approval from the performer, or tape the crossing, label it, and log the refusal.",
+      "whatToDo": "Tape and label the cable path, then document the ignored warning through the proper channel.",
+      "whyItMatters": "The performer may ignore the standard. Julia's assigned safety work still deserves full care."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A hotel night auditor inherits a reservation error at midnight. A family is waiting with two suitcases, and the original mistake was not hers. What action best fits the skill?",
+        "choices": [
+          "Explain repeatedly that another shift caused the error.",
+          "Do the fastest possible handoff and leave details for morning.",
+          "Rebuild the rate, room, voucher, and note with care."
+        ],
+        "correctIndex": 2,
+        "explanation": "The careful repair is now the task in front of her. Blame and a thin handoff may be understandable, but they do not meet the job's standard.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A junior nurse is told nobody checks a supply cart. The drawer is mixed, the shift is short, and a rushed handoff may need it later. What should she do?",
+        "choices": [
+          "Leave it because invisible work should match invisible reward.",
+          "Clean, date, and label the cart to the standard care requires.",
+          "Wait until a supervisor praises the cart work before doing it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The cart's purpose sets the standard, not praise. Leaving it or waiting for recognition makes quality depend on attention rather than duty.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A machinist is pressured to sign a replacement part after one tolerance check. The line and courier are waiting, but the edge looks slightly rough. What is the right move?",
+        "choices": [
+          "Run the second check and remove the burr before signing.",
+          "Sign because pressure proves the standard should be relaxed.",
+          "Refuse the whole job because the timeline is unfair."
+        ],
+        "correctIndex": 0,
+        "explanation": "The part needs trustworthy fit. Pressure and unfair timing do not erase the machinist's responsibility for the tolerance standard.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Warehouse load arrives damaged, and workers start blaming each other before anyone has counted the crushed pallets or photographed the damage. What should the lead do first?",
+        "choices": [
+          "Pick the likely culprit so the argument stops quickly.",
+          "Wait for managers to count because blame has already started.",
+          "Number, photograph, and separate each damage type carefully."
+        ],
+        "correctIndex": 2,
+        "explanation": "A trustworthy count is the lead's job before cause is assigned. Quick blame and waiting both abandon the standard the next decision needs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Public defender has too many cases and one neglected file due for a morning hearing, with a client waiting through the glass. Which response best preserves responsibility?",
+        "choices": [
+          "Prepare the charge, address, witness, and hearing questions for this file.",
+          "Let the file stay thin because the whole system is overloaded.",
+          "Spend the night writing a complaint about caseloads instead of reading the file."
+        ],
+        "correctIndex": 0,
+        "explanation": "The system problem is real, but this file still deserves craft. Letting overload justify thin work passes the cost to the client.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Performer ignores a stagehand's cable warning. The safety rule is clear, the crossing remains on the path, and the crew queue is moving. What should the stagehand do?",
+        "choices": [
+          "Leave the cable loose because the performer dismissed the warning.",
+          "Argue onstage until the performer admits the risk.",
+          "Tape and label the crossing, then document the ignored warning."
+        ],
+        "correctIndex": 2,
+        "explanation": "The stagehand owns the safety work and the record. Leaving the cable loose lowers the standard; arguing onstage may not make the path safer.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Someone says doing a job right under unfair conditions is just people pleasing. Which correction is strongest?",
+        "choices": [
+          "It is people pleasing only if someone sees the work.",
+          "The standard belongs to the task and the people who depend on it, not to approval.",
+          "Quality should drop wherarely the larger situation is unfair."
+        ],
+        "correctIndex": 1,
+        "explanation": "The correction separates craft from approval. The task's purpose sets the standard, even when nobody praises it and the room is unfair.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Lab assistant is asked to label sample vials after a senior researcher dismisses the task as clerical. The labels affect tomorrow's test results. What should happen?",
+        "choices": [
+          "Label them loosely because senior staff made the task sound unimportant.",
+          "Refuse to label anything until the senior researcher apologizes.",
+          "Label and cross-check the vials because the test depends on it."
+        ],
+        "correctIndex": 2,
+        "explanation": "The vials need accuracy regardless of status. Loose labels and refusal both let someone else's attitude lower the task standard.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Bus dispatcher is handed a messy detour sheet after another team failed to update it, and drivers need the first route in fifteen minutes. What fits the move?",
+        "choices": [
+          "Verify the first route, mark the detour clearly, and brief the first driver.",
+          "Send the sheet as-is because the error belongs to another team.",
+          "Spend the fifteen minutes proving who made the mistake."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first route now needs the dispatcher's craft. Sending it as-is or proving fault leaves drivers with a careless handoff.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A task is yours, but the situation around it is unfair. What sets the standard?",
+      "back": "The task's purpose and the people who depend on it set the standard, not fairness or recognition.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "How is doing the job right different from people pleasing?",
+      "back": "People pleasing chases approval. Craft serves the task even when approval is absent.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What question restores craft in ignored work?",
+      "back": "Ask who will depend on this when I am not in the room.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why does unfairness tempt lower standards?",
+      "back": "It makes care feel unrewarded. The discipline is to keep the standard attached to responsibility, not reward.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A mistake was not yours, but the repair is now in front of you. How does standard-keeping operate when the repair belongs to no one in particular?",
+      "back": "Retrieve ownership of the repair: complete the part that is now yours carefully and leave a traceable handoff.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Keeping the Standard Under Pressure",
+    "coreSkill": "The skill is craft under unfairness. You identify the task that is actually yours and perform it to the standard its purpose requires.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a task is ignored or inherited unfairly, then define the standard its next user needs and complete that standard."
+      },
+      {
+        "context": "care",
+        "plan": "If nobody sees the setup work, then perform it as if the next rushed person will depend on it."
+      },
+      {
+        "context": "technical",
+        "plan": "If pressure invites a shortcut, then check the tolerance, label, count, or record that makes the work trustworthy."
+      },
+      {
+        "context": "team",
+        "plan": "If blame starts before facts are ready, then complete the count, file, or safety step before joining the argument."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, choose one overlooked task and define its standard in one sentence. Complete the next piece to that standard before checking who noticed.",
+    "weeklyPractice": "Once this week, review a task you lowered because the situation felt unfair. Name the standard you will keep next time."
+  },
+  "memorableLines": [
+    {
+      "text": "Craft is responsibility made visible.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the chapter's standard a compact form."
+    },
+    {
+      "text": "Your job is not the whole unfair room; it is the part entrusted to your hands.",
+      "location": "breakdown.deepRead",
+      "why": "It separates responsibility from the surrounding unfairness."
+    },
+    {
+      "text": "Do it right even when applause is not part of the assignment.",
+      "location": "breakdown.fullRead",
+      "why": "It blocks the approval-seeking drift."
+    }
+  ]
+}

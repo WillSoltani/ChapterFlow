@@ -1,0 +1,187 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch06",
+  "number": 6,
+  "title": "The Controlled-Chaos Strategy: Segment Your Forces",
+  "coreMove": "Break a brittle monolith into capable semi-autonomous units that can fail locally and recombine around a shared purpose.",
+  "sourcePressure": "One big structure makes one bottleneck, one bad read, or one slow committee contaminate the whole organization.",
+  "chapterSpecificMisunderstanding": "Assume smaller units are automatically stronger even when they lack context or competence.",
+  "sourceAlignmentTerms": [
+    "controlled chaos",
+    "segmentation",
+    "semi-autonomous units",
+    "shared purpose",
+    "local failure",
+    "bounded risks",
+    "competence reversal"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for The Controlled-Chaos Strategy: Segment Your Forces.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Charlotte",
+      "domain": "climate nonprofit campaign pods",
+      "audience": "a reader facing climate nonprofit campaign pods who needs to practice Strategy 6 without reducing it to assume smaller units are automatically stronger even when they lack context or competence.",
+      "stakes": "a concrete decision in climate nonprofit campaign pods where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist moves one live decision out of the central queue, gives a small unit real authority, and preserves one common scoreboard. The visible action must happen inside climate nonprofit campaign pods, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" Charlotte says, with the team charter still unopened.",
+      "mustInclude": [
+        "team charter",
+        "separate demo boards",
+        "one visible deadline tied to controlled chaos"
+      ],
+      "mustAvoid": [
+        "Assume smaller units are automatically stronger even when they lack context or competence.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Amelia",
+      "domain": "enterprise SaaS product squads",
+      "audience": "a reader facing enterprise SaaS product squads who needs to practice Strategy 6 without reducing it to assume smaller units are automatically stronger even when they lack context or competence.",
+      "stakes": "a concrete decision in enterprise SaaS product squads where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist moves one live decision out of the central queue, gives a small unit real authority, and preserves one common scoreboard. The visible action must happen inside enterprise SaaS product squads, not as an abstract reflection.",
+      "firstImage": "The separate demo boards is damp at one corner when Amelia pulls it from the folder.",
+      "mustInclude": [
+        "separate demo boards",
+        "shared incident log",
+        "a named counterparty tied to controlled chaos"
+      ],
+      "mustAvoid": [
+        "Assume smaller units are automatically stronger even when they lack context or competence.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Nicole",
+      "domain": "regional ambulance dispatch pilots",
+      "audience": "a reader facing regional ambulance dispatch pilots who needs to practice Strategy 6 without reducing it to assume smaller units are automatically stronger even when they lack context or competence.",
+      "stakes": "a concrete decision in regional ambulance dispatch pilots where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist moves one live decision out of the central queue, gives a small unit real authority, and preserves one common scoreboard. The visible action must happen inside regional ambulance dispatch pilots, not as an abstract reflection.",
+      "firstImage": "You are beside Nicole as the shared incident log makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "shared incident log",
+        "team charter",
+        "a public consequence tied to controlled chaos"
+      ],
+      "mustAvoid": [
+        "Assume smaller units are automatically stronger even when they lack context or competence.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Eva",
+      "domain": "independent bookstore buying groups",
+      "audience": "a reader facing independent bookstore buying groups who needs to practice Strategy 6 without reducing it to assume smaller units are automatically stronger even when they lack context or competence.",
+      "stakes": "a concrete decision in independent bookstore buying groups where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist moves one live decision out of the central queue, gives a small unit real authority, and preserves one common scoreboard. The visible action must happen inside independent bookstore buying groups, not as an abstract reflection.",
+      "firstImage": "It took Eva three weeks to notice the team charter was the part everyone kept avoiding.",
+      "mustInclude": [
+        "team charter",
+        "separate demo boards",
+        "a resource limit tied to controlled chaos"
+      ],
+      "mustAvoid": [
+        "Assume smaller units are automatically stronger even when they lack context or competence.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Martin",
+      "domain": "festival volunteer crews",
+      "audience": "a reader facing festival volunteer crews who needs to practice Strategy 6 without reducing it to assume smaller units are automatically stronger even when they lack context or competence.",
+      "stakes": "a concrete decision in festival volunteer crews where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist moves one live decision out of the central queue, gives a small unit real authority, and preserves one common scoreboard. The visible action must happen inside festival volunteer crews, not as an abstract reflection.",
+      "firstImage": "What changes when Martin stops arguing and points to the separate demo boards?",
+      "mustInclude": [
+        "separate demo boards",
+        "shared incident log",
+        "a private decision rule tied to controlled chaos"
+      ],
+      "mustAvoid": [
+        "Assume smaller units are automatically stronger even when they lack context or competence.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Tom",
+      "domain": "warehouse process-improvement cells",
+      "audience": "a reader facing warehouse process-improvement cells who needs to practice Strategy 6 without reducing it to assume smaller units are automatically stronger even when they lack context or competence.",
+      "stakes": "a concrete decision in warehouse process-improvement cells where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist moves one live decision out of the central queue, gives a small unit real authority, and preserves one common scoreboard. The visible action must happen inside warehouse process-improvement cells, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the shared incident log before Tom says a word.",
+      "mustInclude": [
+        "shared incident log",
+        "team charter",
+        "a reversal check tied to controlled chaos"
+      ],
+      "mustAvoid": [
+        "Assume smaller units are automatically stronger even when they lack context or competence.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 6 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Break a brittle monolith into capable semi-autonomous units that can fail locally and recombine around a shared purpose.",
+      "explain why the common misread fails: Assume smaller units are automatically stronger even when they lack context or competence.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one bottlenecked decision and assign a small capable unit the authority, boundary, and reporting rhythm to solve it without committee permission.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12,
+  "sourceAnchorNote": "No chapter-specific named person, study, place, artifact, or event is traceable in the frozen source for this strategy; use fictional protagonists and do not invent historical anchors."
+}

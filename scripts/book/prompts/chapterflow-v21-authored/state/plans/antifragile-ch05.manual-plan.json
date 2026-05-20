@@ -1,0 +1,200 @@
+{
+  "chapterId": "antifragile-ch05",
+  "number": 5,
+  "title": "The Souk and the Office Building",
+  "coreMove": "Prefer error-correcting local feedback when central neatness would spread mistakes silently.",
+  "sourcePressure": "This chapter contrasts decentralized local trial-and-error with centralized order that can hide concentrated fragility.",
+  "chapterSpecificMisunderstanding": "Reading the chapter as a simple anti-institution or anti-planning rant.",
+  "sourceAlignmentTerms": [
+    "souk",
+    "office building",
+    "decentralization",
+    "local knowledge",
+    "bottom-up correction",
+    "centralized order"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "the souk",
+      "detail": "the source-note image for decentralized market life and bottom-up error correction",
+      "useIn": "both",
+      "phrasingHint": "In the souk, mistakes stay close enough to be noticed by the person who made them."
+    },
+    {
+      "kind": "place",
+      "name": "the office building",
+      "detail": "the source-note image for centralized order and hidden fragility",
+      "useIn": "fullRead",
+      "phrasingHint": "The office building looks clean because the errors have been moved out of sight."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining The Souk and the Office Building"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Reading the chapter as a simple anti-institution or anti-planning rant."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "farmers-market stall layout with Camille as the decision-maker",
+      "audience": "a reader who handles farmers market stall layout under uncertainty",
+      "stakes": "whether Camille avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Camille moves the decision back to the local operator who can see and correct the error fastest.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "farmers market log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic the souk and the office building paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "airport gate rebooking desk with Lea as the decision-maker",
+      "audience": "a reader who handles airport gate rebooking desk under uncertainty",
+      "stakes": "whether Lea avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lea moves the decision back to the local operator who can see and correct the error fastest.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "airport log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic the souk and the office building paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "emergency-dispatch handoff with Margaux as the decision-maker",
+      "audience": "a reader who handles emergency dispatch handoff under uncertainty",
+      "stakes": "whether Margaux avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Margaux moves the decision back to the local operator who can see and correct the error fastest.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "emergency dispatch log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic the souk and the office building paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "open-source bug triage with Juliette as the decision-maker",
+      "audience": "a reader who handles open source bug triage under uncertainty",
+      "stakes": "whether Juliette avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Juliette moves the decision back to the local operator who can see and correct the error fastest.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "open source log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic the souk and the office building paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "street-food permit queue with Chloe as the decision-maker",
+      "audience": "a reader who handles street food permit queue under uncertainty",
+      "stakes": "whether Chloe avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chloe moves the decision back to the local operator who can see and correct the error fastest.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "street food log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic the souk and the office building paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "hospital ward supply closet with Manon as the decision-maker",
+      "audience": "a reader who handles hospital ward supply closet under uncertainty",
+      "stakes": "whether Manon avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Manon moves the decision back to the local operator who can see and correct the error fastest.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "hospital log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic the souk and the office building paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by prefer error-correcting local feedback when central neatness would spread mistakes silently.",
+      "distinguish souk, office building, decentralization in unfamiliar cases",
+      "choose actions that avoid: Reading the chapter as a simple anti-institution or anti-planning rant."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one decision being centralized for neatness and write where a small local error would be caught faster.",
+  "readingTimeMinutes": 12
+}

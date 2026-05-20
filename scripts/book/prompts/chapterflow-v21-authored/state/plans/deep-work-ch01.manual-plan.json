@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch01",
+  "number": 1,
+  "title": "Introduction",
+  "coreMove": "Separate the tasks that require uninterrupted cognition from the tasks that merely keep you visibly occupied.",
+  "sourcePressure": "The source frame defines deep work and shallow work, then states the deep-work hypothesis without adding unsupported anecdotes.",
+  "chapterSpecificMisunderstanding": "The weak version says fewer distractions are nice; the real point is that different tasks make different demands on cognition and deserve different protection.",
+  "sourceAlignmentTerms": ["deep work", "shallow work", "cognitive demand", "distraction", "deep-work hypothesis", "focused effort"],
+  "forbiddenFrames": {
+    "hook": ["a buzzing phone interrupts breakfast", "the modern world is distracting", "everyone is busy"],
+    "counterintuition": ["productivity is not about doing more", "attention is the new currency"],
+    "tryThisNow": ["turn off notifications for five minutes", "write down your top priority"],
+    "examples": ["generic office inbox", "student at kitchen table", "founder in a coffee shop"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a legal aid attorney preparing a last-minute housing injunction",
+      "audience": "a lawyer deciding which tasks deserve her protected morning",
+      "stakes": "a family may lose an apartment if the argument is thin or late",
+      "format": "decision_point",
+      "requiredBeat": "she moves case-law synthesis onto the protected morning block and pushes docket-label cleanup to the late-afternoon admin slot",
+      "firstImage": "a printed eviction notice clipped to a yellow legal pad at 7:42 a.m.",
+      "mustInclude": ["case-law tabs", "court filing deadline", "admin checklist"],
+      "mustAvoid": ["generic busy lawyer", "email triage as the whole scene"]
+    },
+    {
+      "domain": "a semiconductor layout engineer reviewing a power grid failure",
+      "audience": "a technical specialist sorting deep analysis from routine updates",
+      "stakes": "a tapeout slips if the failure mode is misread",
+      "format": "scene",
+      "requiredBeat": "he labels the voltage-drop diagnosis as deep work and refuses to mix it with status replies until the waveform is understood",
+      "firstImage": "a thermal plot glowing red across the left side of a workstation monitor",
+      "mustInclude": ["waveform capture", "tapeout date", "status queue"],
+      "mustAvoid": ["generic software debugging", "late-night hero scene"]
+    },
+    {
+      "domain": "a museum registrar reconciling provenance records before a loan",
+      "audience": "a cultural worker whose day mixes precision thinking with clerical churn",
+      "stakes": "a disputed artifact cannot travel unless the record is clean",
+      "format": "before_after",
+      "requiredBeat": "she separates the provenance chain reconstruction from label printing and assigns each to a different attention state",
+      "firstImage": "cotton gloves beside three accession folders on a metal cart",
+      "mustInclude": ["accession numbers", "loan form", "label printer"],
+      "mustAvoid": ["generic archive dust", "romantic museum tour"]
+    },
+    {
+      "domain": "a trauma nurse educator rewriting a simulation protocol",
+      "audience": "a trainer who keeps confusing preparation with production",
+      "stakes": "new nurses may miss the airway cue if the simulation script stays vague",
+      "format": "postmortem",
+      "requiredBeat": "after a failed practice run, she marks scenario design as deep work and supply restocking as shallow work",
+      "firstImage": "a laminated code sheet lying beside an unused oxygen mask",
+      "mustInclude": ["simulation script", "airway cue", "supply cart"],
+      "mustAvoid": ["hospital heroics", "generic training meeting"]
+    },
+    {
+      "domain": "an indie game sound designer building an adaptive audio cue",
+      "audience": "a creative worker tempted to treat all production tasks alike",
+      "stakes": "the game feels flat if the boss-fight cue fails to respond to player state",
+      "format": "vignette",
+      "requiredBeat": "she blocks the branching cue logic as deep work and leaves file naming for the end of the day",
+      "firstImage": "six waveform lanes stacked under a flickering boss arena preview",
+      "mustInclude": ["audio middleware", "branching cue", "file export list"],
+      "mustAvoid": ["generic artist inspiration", "headphones as the only anchor"]
+    },
+    {
+      "domain": "a municipal grants analyst drafting a climate-resilience application",
+      "audience": "a public-sector analyst deciding what kind of attention the proposal needs",
+      "stakes": "the town loses matching funds if the risk narrative is weak",
+      "format": "reflection",
+      "requiredBeat": "he writes two columns labeled deep and shallow, placing risk-model interpretation in one and attachment uploads in the other",
+      "firstImage": "a flood map spread beside a half-completed grant portal",
+      "mustInclude": ["matching funds", "risk model", "attachment upload list"],
+      "mustAvoid": ["generic spreadsheet work", "disaster montage"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["classify tasks by cognitive demand in unfamiliar jobs", "choose which work deserves protected attention first", "distinguish shallow usefulness from deep value", "apply the deep-work hypothesis without turning it into anti-distraction advice"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Scan the next three tasks on your actual list and mark exactly one as cognitively demanding enough to require an uninterrupted block.",
+  "readingTimeMinutes": 12
+}

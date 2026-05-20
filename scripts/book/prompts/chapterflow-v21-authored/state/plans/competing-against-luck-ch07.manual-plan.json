@@ -1,0 +1,124 @@
+{
+  "chapterId": "competing-against-luck-ch07",
+  "number": 7,
+  "title": "Integrating Around a Job",
+  "coreMove": "Identify one internal decision where a local optimization is currently damaging the delivery of the job buyers hired.",
+  "sourcePressure": "Knowing what job buyers trust the offering to do does not automatically produce a coherent organization. Once the earned job record is clear, every internal function must coordinate around delivering that job consistently. When functions optimize locally — on their own metrics, their own incentives, their own departmental logic — each can improve its own scorecard while the overall experience breaks apart for the buyer. Integration means making the job the decision-governor across functions, not just the vocabulary of one team.",
+  "chapterSpecificMisunderstanding": "Treating integration as a softer 'customer-first culture' initiative or a cross-functional teamwork message rather than as a specific structural demand — every significant tradeoff gets decided by whether it strengthens or weakens delivery of the job, not by whether it optimizes a department's own measure.",
+  "sourceAlignmentTerms": ["integrate", "coordinate", "siloed", "delivery", "job record", "tradeoff", "function", "optimize", "consistent"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Great companies break down silos.",
+      "Customer experience is everyone's job.",
+      "Integration is the key to organizational effectiveness."
+    ],
+    "counterintuition": [
+      "Your best-performing departments might be your biggest problem.",
+      "Efficiency can destroy the customer experience."
+    ],
+    "tryThisNow": [
+      "Map your customer journey and find the handoff that breaks.",
+      "Ask each department how they define success.",
+      "Hold a cross-functional meeting about the customer."
+    ],
+    "examples": [
+      "any example that resolves the integration failure with better communication or a cross-functional Slack channel",
+      "examples where the problem is 'people don't talk to each other' rather than 'local optimization actively damages the job'"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["dialogue_first", "timestamp_named", "sensory_first", "second_person", "retrospective", "environmental"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional newspaper (print and digital integration)",
+      "audience": "a managing editor in a budget meeting where print and digital are treated as separate profit centers",
+      "stakes": "whether Grace names the job that the internal division is fracturing before the subscriber complaint becomes a departure",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "'Both teams are hitting their numbers,' the publisher says. The subscriber complaint that landed that morning: 'Your Wednesday property section is two weeks old by the time I get the digital version.' Print and digital each optimized independently. The property section now publishes on the weekly print cycle because that's how print is measured, and digital gets the upload whenever it's ready. The integration failure: neither team's metric includes 'property coverage reaches subscribers within 48 hours,' which is the job the subscriber hired.",
+      "firstImage": "'Both teams are hitting their numbers,' the publisher says, clicking past the budget slide without pausing",
+      "mustInclude": ["a timeliness complaint from a subscriber naming a specific section and delay", "a print-vs.-digital P&L split that explains why the delay exists", "Grace's decision moment: name the job that is fractured or accept the current metrics"],
+      "mustAvoid": ["'media organizations need to integrate digital and print' generality — the beat must show the specific job (timely property coverage for subscribers) being broken by the internal optimization, not a general convergence argument"]
+    },
+    {
+      "domain": "bicycle courier dispatch operations",
+      "audience": "a dispatch operations lead reviewing efficiency metrics after a routing algorithm upgrade",
+      "stakes": "whether Antoine's efficiency win is actually a job-delivery loss he hasn't seen yet",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:38 a.m., Antoine reviews the week-one results from the new routing algorithm: delivery efficiency per courier-hour is up 18%. Customer satisfaction scores are down. The algorithm optimized for delivery volume per hour. The job clients hired — time-sensitive document delivery with signature confirmation before 10 a.m. — requires different optimization: confirmed delivery windows, not total package throughput. Two metrics, two jobs. The routing algorithm serves the internal job; the client's job is now losing.",
+      "firstImage": "a dispatch operations screen at 7:38 a.m., green efficiency bars across the top, a red satisfaction-score column below them",
+      "mustInclude": ["an 18% efficiency gain as the specific internal metric", "a 10 a.m. signature-confirmation window as the client's job", "the conflict between the two metrics made explicit — they cannot both be maximized simultaneously"],
+      "mustAvoid": ["'metrics can conflict' generality — the beat must show the integration failure (algorithm optimizing for internal job while client's job degrades) as a predictable consequence of not making the client's job the decision-governor"]
+    },
+    {
+      "domain": "private school lunch program with allergy accommodations",
+      "audience": "a food services director who created a physically separated allergy-safe table and received unexpected complaints",
+      "stakes": "whether Giuliana can see the integration failure before the next student year begins",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The safety protocols are good. The allergy table is clean, labeled, and stocked correctly. Food services did its job. A parent writes: 'My son eats alone every day because none of his friends will sit at the allergy table.' Food services optimized for safety. The school's social environment — eating with peers as part of belonging — was never coordinated. The integration failure: the food function delivered its job while breaking the school's job (a place where students belong and learn together). No one governed the tradeoff between the two jobs.",
+      "firstImage": "allergen-free pasta on a tray at a corner table, the full cafeteria noise behind it, the table empty",
+      "mustInclude": ["an allergen safety protocol that is objectively sound", "a student eating alone as the integration failure's visible outcome", "a food services director who correctly measured her own function's job while missing the school's overarching one"],
+      "mustAvoid": ["'good intentions can have bad outcomes' moralizing — the beat must show the specific integration failure (two jobs uncoordinated: safety and social belonging) and name who owns the coordination gap"]
+    },
+    {
+      "domain": "home renovation contractor handoff (plumbing to tile)",
+      "audience": "a general contractor managing the handoff between a plumber and a tile subcontractor",
+      "stakes": "whether Jack takes the coordination cost or allows an integration failure he can already see coming",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You are holding the plumber's as-built drawing and the homeowner's tile pattern. The drain placement is technically correct per the plumbing spec. The tile pattern the homeowner chose requires the drain to be centered differently. Both contractors delivered their individual scopes on schedule and within budget. Nobody held the whole renovation job: a functional, beautiful bathroom by move-in day. You have to decide whether to absorb the coordination cost now or let the handoff complete and explain it to the homeowner after installation starts.",
+      "firstImage": "a drain-placement as-built drawing and a tile pattern drawing laid side by side on a workbench, a drain circle penciled on one and a tile grid on the other",
+      "mustInclude": ["a drain placement that is correct per spec but wrong for the tile pattern", "a move-in deadline as the constraint that makes the rework catastrophic if discovered late", "the contractor's cost-of-coordination vs. cost-of-rework decision clearly named"],
+      "mustAvoid": ["'coordination is difficult in subcontracting' generality — the beat must show the specific integration failure (both contractors optimized their own job while breaking the homeowner's job) and make the cost of non-integration concrete"]
+    },
+    {
+      "domain": "urban transit multi-modal ticketing integration",
+      "audience": "a transit authority policy lead presenting post-integration ridership data to a joint board",
+      "stakes": "whether Hanna can show the board why a technically successful integration failed the rider's job",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Three transit agencies integrated their payment systems. The technical work was clean. Cross-agency ridership in the integration zone is flat six months later. Exit surveys: riders in the overlap zone are still buying two separate day-passes because neither agency's app shows combined journey time and fare for a multi-modal trip. The payment integration served the agencies' internal job (shared revenue accounting). It did not serve the rider's job (plan and execute an efficient multi-modal trip). Hanna has to present this to a joint board that considers the integration complete.",
+      "firstImage": "a post-integration ridership chart for the overlap zone, a flat line across six months visible in the first row",
+      "mustInclude": ["a two-agency zone where the integration technically worked", "a combined journey time display that does not exist in either agency's app", "a day-pass redundancy that persists because the rider cannot plan across systems"],
+      "mustAvoid": ["'ticketing integration is just one part of transit improvement' framing — the beat must show the specific rider job (plan an efficient multi-modal trip) that the integration never served, despite the technical success"]
+    },
+    {
+      "domain": "corporate IT new employee onboarding",
+      "audience": "an IT onboarding manager reviewing week-two survey results after a clean SLA completion",
+      "stakes": "whether Hadiya can see the integration boundary that broke the new employee's job before the next onboarding cohort",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "IT completed the device setup, credentials, and software licenses within the SLA. 40% of new employees in the week-two survey still couldn't access the key project management tool before their first team meeting. The tool requires a manager approval step that IT doesn't own and no one told the manager. The job — new employee productive in team by week one — was broken at the IT-to-manager boundary, not inside IT's scope. Hadiya's metrics show green. The new employee's job shows red.",
+      "firstImage": "a clean desk, an unopened laptop box, a welcome card propped against it — the new employee's first morning, before anyone arrives",
+      "mustInclude": ["a manager approval step outside IT's scope that nobody assigned", "a first team meeting deadline as the concrete job marker", "IT's SLA completion metrics showing green alongside the week-two survey showing the access failure"],
+      "mustAvoid": ["'onboarding requires cross-functional coordination' generality — the beat must show the specific integration failure (the job broken at the IT/manager boundary) and name which function owns the coordination gap"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which internal function's local optimization is causing the integration failure in a given scenario",
+      "distinguish between 'coordination' (people talking) and 'integration' (tradeoffs decided by the job) as different concepts",
+      "analyze a case where every department is performing well on its own metric but the buyer's job is breaking",
+      "apply the integration test (does this decision strengthen or weaken job delivery?) to a proposed organizational change",
+      "evaluate whether a proposed cross-functional initiative actually changes who governs the tradeoffs or just adds a meeting"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one internal decision made in the last month — a resource allocation, a process change, a timeline adjustment — where one function improved its own metric. Write one sentence on whether that decision made it easier or harder for a buyer to get the progress they hired your product to deliver. If you cannot answer that question, no one was governing the tradeoff.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter that names the integration failure cleanly without softening it; at least one 5+ sentence paragraph that traces the decision chain from local optimization to buyer-job damage; at least one one-sentence punch line that states what the integration standard actually requires teams to give up",
+    "fullReadInterludeRequirement": "at least one passage that shows what 'integrating around the job' looks like as a concrete decision — not a cultural statement but a specific tradeoff that one function absorbed in order to protect the buyer's job — and names what the function gave up to do it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

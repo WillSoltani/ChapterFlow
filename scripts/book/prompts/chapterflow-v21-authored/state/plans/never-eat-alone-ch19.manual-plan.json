@@ -1,0 +1,204 @@
+{
+  "chapterId": "never-eat-alone-ch19",
+  "number": 19,
+  "title": "Social Arbitrage",
+  "coreMove": "Spot a cross-circle match and make the introduction useful to both sides.",
+  "sourcePressure": "Value often comes from seeing useful connections across communities and making introductions others cannot see yet.",
+  "chapterSpecificMisunderstanding": "Making flashy introductions that serve the introducer more than the people connected.",
+  "sourceAlignmentTerms": [
+    "social arbitrage",
+    "patterns",
+    "introductions",
+    "communities",
+    "usefulness",
+    "cross-context"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Vernon Jordan",
+      "detail": "listed in the frozen table of contents as a Connectors' Hall of Fame Profile after chapter 19",
+      "useIn": "fullRead",
+      "phrasingHint": "Vernon Jordan can stand near the social-arbitrage lesson as a profile signal for bridging circles with judgment."
+    }
+  ],
+  "sourceAnchorNote": "Use only these frozen anchors and do not add unsupported named anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Logan",
+      "domain": "food rescue coordinator map",
+      "audience": "a reader facing food rescue coordinator map where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if food rescue coordinator map becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Logan matches two needs across separate circles and states the mutual value plainly in front of routing map, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "routing map on the edge of food rescue coordinator map",
+      "mustInclude": [
+        "routing map",
+        "food rescue coordinator map constraint",
+        "one named next step tied to social arbitrage"
+      ],
+      "mustAvoid": [
+        "Making flashy introductions that serve the introducer more than the people connected.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Mark",
+      "domain": "hardware incubator demo bench",
+      "audience": "a reader facing hardware incubator demo bench where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if hardware incubator demo bench becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mark matches two needs across separate circles and states the mutual value plainly in front of circuit tester, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "circuit tester on the edge of hardware incubator demo bench",
+      "mustInclude": [
+        "circuit tester",
+        "hardware incubator demo bench constraint",
+        "one named next step tied to social arbitrage"
+      ],
+      "mustAvoid": [
+        "Making flashy introductions that serve the introducer more than the people connected.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Nathan",
+      "domain": "translation collective spreadsheet",
+      "audience": "a reader facing translation collective spreadsheet where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if translation collective spreadsheet becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Nathan matches two needs across separate circles and states the mutual value plainly in front of translation note, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "translation note on the edge of translation collective spreadsheet",
+      "mustInclude": [
+        "translation note",
+        "translation collective spreadsheet constraint",
+        "one named next step tied to social arbitrage"
+      ],
+      "mustAvoid": [
+        "Making flashy introductions that serve the introducer more than the people connected.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Neil",
+      "domain": "regional theater costume room",
+      "audience": "a reader facing regional theater costume room where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if regional theater costume room becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Neil matches two needs across separate circles and states the mutual value plainly in front of costume tag, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "costume tag on the edge of regional theater costume room",
+      "mustInclude": [
+        "costume tag",
+        "regional theater costume room constraint",
+        "one named next step tied to social arbitrage"
+      ],
+      "mustAvoid": [
+        "Making flashy introductions that serve the introducer more than the people connected.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "urban planning charrette wall",
+      "audience": "a reader facing urban planning charrette wall where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if urban planning charrette wall becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Mikkel matches two needs across separate circles and states the mutual value plainly in front of charrette pin, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "charrette pin on the edge of urban planning charrette wall",
+      "mustInclude": [
+        "charrette pin",
+        "urban planning charrette wall constraint",
+        "one named next step tied to social arbitrage"
+      ],
+      "mustAvoid": [
+        "Making flashy introductions that serve the introducer more than the people connected.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Farah",
+      "domain": "rural clinic referral list",
+      "audience": "a reader facing rural clinic referral list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if rural clinic referral list becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Farah matches two needs across separate circles and states the mutual value plainly in front of referral form, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "referral form on the edge of rural clinic referral list",
+      "mustInclude": [
+        "referral form",
+        "rural clinic referral list constraint",
+        "one named next step tied to social arbitrage"
+      ],
+      "mustAvoid": [
+        "Making flashy introductions that serve the introducer more than the people connected.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish social arbitrage from Making flashy introductions that serve the introducer more than the people connected.",
+      "choose the visible action that performs: Spot a cross-circle match and make the introduction useful to both sides.",
+      "diagnose when a scenario drifts into Making flashy introductions that serve the introducer more than the people connected.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real social arbitrage moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch04",
+  "number": 4,
+  "title": "Cheating",
+  "readingTimeMinutes": 12,
+  "hook": "The bid envelopes stay sealed while the demo laptop is already warm.",
+  "counterintuition": "Cheating is not hidden by darkness, but by the small excuse that stops a room from becoming sure together. Several people can suspect the same violation and still fail to make it common knowledge.",
+  "tryThisNow": "Find one rule-bending excuse you heard recently. Write the exact cover story and what shared evidence would be needed before anyone could act.",
+  "keyTakeaway": "Look for the fig leaf that turns a visible violation into an accusation nobody wants to make first.",
+  "breakdown": {
+    "fastRead": "The unopened bid envelopes sit beside a demo laptop already plugged in. Michael sees the favored vendor entering before the committee has read the bids. The chair calls it an emergency exception. That phrase is the cover.\n\nCheating often survives in broad daylight because the cover does not need to convince everyone. It only has to slow the room down.\n\nSuspicion is not enough until everyone knows that everyone else saw it too. A fig leaf, a discreet signal, and a ready excuse can keep a violation below the line where people will punish it together.",
+    "deepRead": "The unopened bid envelopes sit beside a demo laptop already plugged in when Michael enters the procurement room. The favored vendor is ready to present. The chair says the timeline forced an emergency exception, but the exception form is blank. Michael does not need a scandal theory. He needs the cover story written down before the laptop becomes the default.\n\nThe pattern of broad-daylight violations with thin cover rarely announces itself as cheating. It asks to be treated as logistics, urgency, tradition, kindness, or common sense. The cover does not need to persuade the whole room. It only has to keep the room from moving together.\n\nSuspicion is not enough until everyone knows that everyone else saw it too. That is why the common knowledge requirement matters. One person may see the violation and still stay quiet because accusation is costly. Two people may see it and wonder whether the rest will back them. The cheater survives in that hesitation.\n\nA side glance and a ready excuse can do more protection than a locked door.\n\nJuliette sees the same pattern in peer marks. Identical praise appears after hallway whispers, but each student can call it coincidence, friendship, or shared standards. Once she replaces open peer scores with blind evidence notes, the fig leaf weakens. Students can still praise each other. They just have to attach evidence before the group accepts the score.\n\nThe limit is overreach. Thin cover is not proof by itself. The answer is not to punish every awkward coincidence. The answer is to lower the cost of shared evidence: write the exception, timestamp the checkout, record the reason, make the hidden channel visible enough that the rule can breathe.",
+    "fullRead": "\"Anders said I could hold them for fit testing,\" Rachel says with the wheel bag already zipped. The premium wheels are supposed to be first-come, first-served through the cycling club checkout desk. Her fit-test note has no time, and the checkout timestamp shows the reservation was never made. The mechanic can see the violation. So can two riders waiting behind her. Nobody wants to be the person who calls it cheating.\n\nThat is the strange power of a fig leaf. It gives everyone a reason to hesitate. Maybe Anders did say something. Maybe fit testing is a real need. Maybe enforcing the rule will look petty. The selfish access stays in broad daylight, protected less by secrecy than by social friction.\n\nThe cover does not need to convince everyone; it only has to keep the room from moving together.\n\nOnce norms exist, cheating becomes a design problem. People want the benefit of breaking the rule without paying the full cost of being seen as rule-breakers. So they build tiny bridges over the accusation gap: discreet communication and ready-made excuses, a vague exception, a side-channel message, a mislabeled ticket, a donor lunch called outreach, a VIP reservation called hospitality. The bridge only has to hold for a minute. Often a minute is enough.\n\nYou can feel the common-knowledge problem in your own body. You see the move. You suspect the motive. Then you scan the room to learn whether anyone else will stand with you. If the evidence is private, messy, or easy to explain away, you swallow the complaint. The violation continues because enforcement feels more expensive than letting it pass.\n\nKiran handles it differently at a nonprofit board table. The donor receipt curls where coffee dried along one edge. Everyone knows the board chair had lunch with the donor before the grant vote, but knowing privately will not carry the policy. Kiran slides the receipt under the conflict-policy line and asks whether the relationship should be recorded before vote cards are opened. The question is not dramatic. It simply removes the fog the violation needs.\n\nGood enforcement attacks the fig leaf, not the person first. Ask for the emergency exception in writing. Point to the checkout timestamp. Require an exception reason on the host stand screen. Open the diff summary behind the bug-fix ticket. These moves turn vague cover into shared evidence. If the exception is legitimate, it survives daylight. If it is cheating, the room can finally see itself seeing.\n\nThe danger is lazy enforcement from the other side. A thin excuse is suspicious, but suspicion alone can become its own form of unfairness. The point is to create a clean path from visible concern to shared proof. When that path exists, people do not have to choose between silent resentment and reckless accusation.\n\nCheating likes the awkward middle. Make the middle narrower."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-michael-demo-laptop",
+      "title": "Michael Freezes the Warm Demo Laptop",
+      "tags": [
+        "decision_point",
+        "procurement",
+        "exception"
+      ],
+      "planSpec": {
+        "domain": "procurement committee vendor demo",
+        "audience": "an operations manager spotting a favored vendor being smuggled through process",
+        "stakes": "the committee may approve a biased deal because the excuse sounds procedural",
+        "format": "decision_point",
+        "requiredBeat": "Michael asks the chair to state the emergency exception in writing before the favored vendor's demo can become the unspoken default."
+      },
+      "scenario": "The unopened bid envelopes sit beside a demo laptop already plugged in. Michael, the operations manager, enters the procurement committee room and sees the favored vendor waiting by the screen. The chair says the schedule requires an emergency exception, but the exception form is blank. Before the demo starts, Michael has to decide whether to let the procedural excuse become the default or ask for it in writing. The blank exception form gives Michael a precise place to ask for daylight before the demo becomes normal.",
+      "whatToDo": "Ask the chair to write the emergency exception before the vendor presents. If the exception is real, it can survive a form; if it is cover, the form exposes the gap.",
+      "whyItMatters": "The warm laptop makes the violation visible, but the procedural phrase protects it. Written common evidence lowers the cost of enforcement."
+    },
+    {
+      "exampleId": "ch04-ex02-juliette-peer-scores",
+      "title": "Juliette Spots the Repeated Praise",
+      "tags": [
+        "postmortem",
+        "seminar",
+        "peer marks"
+      ],
+      "planSpec": {
+        "domain": "university seminar participation grading",
+        "audience": "a teaching fellow noticing quiet collusion around peer marks",
+        "stakes": "the norm is weak because nobody wants to accuse classmates directly",
+        "format": "postmortem",
+        "requiredBeat": "It took Juliette two grade cycles to see that identical praise appeared after hallway whispers, so she replaces open peer scores with blind evidence notes."
+      },
+      "scenario": "It took Juliette two grade cycles to recognize the repeated phrase. The peer score sheet kept praising the same students with identical wording after hallway whispers outside the seminar room. Accusing classmates directly would blow up the section. Juliette replaces open scores with blind evidence notes, so participation marks need examples instead of friendly cover. The timestamp and zipped bag give the mechanic evidence that does not depend on calling Rachel a liar.",
+      "whatToDo": "Remove the channel that lets collusion hide as praise. Require blind notes tied to specific comments before peer marks count.",
+      "whyItMatters": "The identical phrase was suspicious but easy to excuse. Evidence notes make the scoring rule enforceable without forcing Juliette to prosecute a rumor."
+    },
+    {
+      "exampleId": "ch04-ex03-rachel-wheel-bag",
+      "title": "Rachel Points to Anders and the Wheel Bag",
+      "tags": [
+        "dialogue",
+        "cycling",
+        "checkout"
+      ],
+      "planSpec": {
+        "domain": "cycling club equipment checkout",
+        "audience": "a mechanic handling riders who reserve premium wheels through side channels",
+        "stakes": "public excuses make selfish access look like harmless logistics",
+        "format": "dialogue",
+        "requiredBeat": "\"Anders said I could hold them for fit testing,\" Rachel says, and the mechanic points to the checkout timestamp everyone can see."
+      },
+      "scenario": "\"Anders said I could hold them for fit testing,\" Rachel says with the wheel bag already zipped. The club mechanic, Marco, looks at the fit-test note and the checkout timestamp on the counter. Two riders are waiting for the same premium wheels. Marco has to decide whether the side-channel excuse counts or whether the public timestamp rules the checkout. The note field makes the exception visible to everyone waiting for a table, not only to the host who heard the side request.",
+      "whatToDo": "Point to the checkout timestamp and ask Rachel to record any fit-test exception there. Keep the rule on the shared screen, not in private permission.",
+      "whyItMatters": "The excuse turns selfish access into harmless logistics. The timestamp makes the violation common knowledge without accusing Rachel of a hidden plot."
+    },
+    {
+      "exampleId": "ch04-ex04-kiran-donor-receipt",
+      "title": "Kiran Slides the Receipt Under the Policy",
+      "tags": [
+        "scene",
+        "nonprofit",
+        "conflict"
+      ],
+      "planSpec": {
+        "domain": "nonprofit board conflict disclosure",
+        "audience": "a board secretary preventing a donor relationship from becoming invisible influence",
+        "stakes": "the room suspects the conflict but lacks shared proof",
+        "format": "scene",
+        "requiredBeat": "Kiran slides the signed donor lunch receipt under the conflict-policy line and asks whether the board wants it recorded before the vote."
+      },
+      "scenario": "The receipt curls slightly where coffee dried along one edge. Kiran, the board secretary, has the donor receipt, conflict policy, and vote cards lined up on the table. Everyone suspects the chair’s lunch shaped the grant recommendation, but nobody has named it. Before cards are collected, Kiran has to decide whether to slide the receipt under the policy line and ask if the relationship should be recorded. The receipt gives Kiran a shared object to point at before the vote cards make the conflict harder to challenge.",
+      "whatToDo": "Put the receipt beside the policy before the vote. Ask for the conflict to be recorded or waived in public, while the decision can still change.",
+      "whyItMatters": "Suspicion alone leaves each board member isolated. The receipt creates shared proof, so the room can enforce the conflict rule without relying on whispers."
+    },
+    {
+      "exampleId": "ch04-ex05-giulia-waitlist-screen",
+      "title": "Giulia Makes Every Exception Visible",
+      "tags": [
+        "before_after",
+        "restaurant",
+        "waitlist"
+      ],
+      "planSpec": {
+        "domain": "restaurant reservation waitlist",
+        "audience": "a host watching VIP exceptions hollow out a public policy",
+        "stakes": "a small excuse can let status bypass the rule all night",
+        "format": "before_after",
+        "requiredBeat": "You have Giulia mark every exception reason on the host stand screen, making the fig leaf visible enough that managers can no longer pretend it is rare."
+      },
+      "scenario": "You see the waitlist shrinking for names that never stood outside. Giulia, the host, used to hear \"friend of the owner\" and quietly move parties ahead on the waitlist tablet. Now she marks every exception reason on the host stand screen before seating anyone. By closing, managers can no longer pretend the bypass is rare or harmless. The blind evidence note lets Juliette test whether praise survives when whispers no longer carry the score.",
+      "whatToDo": "Record every exception reason on the screen before changing the waitlist. Let the policy survive legitimate cases and expose status bypasses that depend on vagueness.",
+      "whyItMatters": "The excuse works when it is spoken and forgotten. A visible exception trail turns scattered suspicion into a pattern managers can act on."
+    },
+    {
+      "exampleId": "ch04-ex06-lin-settings-page",
+      "title": "Lin Opens the Bug-Fix Diff",
+      "tags": [
+        "predict_reveal",
+        "software",
+        "release"
+      ],
+      "planSpec": {
+        "domain": "software release freeze",
+        "audience": "a release captain stopping a senior engineer from slipping a feature through as a bug fix",
+        "stakes": "a mislabeled ticket can make rule-breaking look like maintenance",
+        "format": "predict_reveal",
+        "requiredBeat": "What happens when the bug-fix label carries a whole new settings page behind it?"
+      },
+      "scenario": "What happens when a bug-fix label opens into a settings page? Lin, the release captain, checks the release freeze board at 5:40 p.m. and sees a senior engineer’s ticket marked urgent fix. The diff summary shows a whole new settings page behind it. Lin has to decide whether the label is maintenance or a feature trying to slip through under cover. The diff summary separates genuine repair from a quiet feature request before the merge button is pressed.",
+      "whatToDo": "Open the diff summary in the release channel and ask which failing behavior the change fixes. If it adds a page, move it out of the freeze.",
+      "whyItMatters": "The label gives the rule-break a harmless name. The diff summary makes the cover testable by everyone who has to defend the freeze."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A committee sees a favored vendor ready to demo before bids are opened. The chair says it is an emergency. What is the best next question? at the partner meeting.",
+        "choices": [
+          "Can the emergency exception be stated in writing before the demo?",
+          "Which vendor seems most confident in the room?",
+          "Should all emergency exceptions be banned forever?"
+        ],
+        "correctIndex": 0,
+        "explanation": "Writing the exception tests the cover story and creates common evidence. Confidence is irrelevant, and banning every exception ignores legitimate urgent cases.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A cycling club member claims private permission to hold premium wheels, but the checkout screen shows no reservation. Which move best lowers enforcement cost? with the shared spreadsheet open.",
+        "choices": [
+          "Let the rider keep the wheels to avoid conflict.",
+          "Point to the timestamp and require the exception on the shared record.",
+          "Accuse the rider of cheating in front of everyone."
+        ],
+        "correctIndex": 1,
+        "explanation": "The shared timestamp attacks the fig leaf without overclaiming motive. Avoiding conflict rewards the bypass, while accusation outruns the clean evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A release ticket is labeled bug fix during a freeze, but the diff adds a whole settings page. What is the strongest interpretation? before the hallway crowd grows.",
+        "choices": [
+          "The freeze should never allow bug fixes.",
+          "Senior engineers should be exempt from freeze rules.",
+          "The bug-fix label may be thin cover for a feature slipping through."
+        ],
+        "correctIndex": 2,
+        "explanation": "The label protects the violation by naming it maintenance. The diff, not the seniority or the existence of bug fixes, is the evidence to inspect.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "At a nonprofit board vote, members suspect a donor lunch influenced the grant decision, but nobody has named it aloud or recorded it. What makes enforcement possible? while the audit folder sits open.",
+        "choices": [
+          "Putting the receipt beside the conflict policy before vote cards are collected.",
+          "Waiting until after the vote to see whether anyone complains.",
+          "Trusting private discomfort because everyone probably knows."
+        ],
+        "correctIndex": 0,
+        "explanation": "The receipt creates shared proof while the decision can still change. Waiting and private discomfort keep suspicion below the enforcement threshold.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "After hallway whispers, a teaching fellow sees identical peer-score praise on several forms before final grades are entered. Which redesign best handles the weak norm? as two witnesses compare notes.",
+        "choices": [
+          "Ban students from speaking before peer scores.",
+          "Ignore the pattern because identical wording is not proof.",
+          "Require blind evidence notes tied to specific seminar contributions."
+        ],
+        "correctIndex": 2,
+        "explanation": "Blind evidence notes weaken the collusion channel without pretending suspicion is proof. A speech ban is crude, and ignoring the pattern leaves the fig leaf intact.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A restaurant waitlist keeps shrinking for people who never stood outside, each with a small VIP excuse. Why does the excuse work? before the room resets.",
+        "choices": [
+          "It keeps each bypass isolated and hard to turn into common knowledge.",
+          "It proves the restaurant has too many tables.",
+          "It makes customers more patient because the policy is flexible."
+        ],
+        "correctIndex": 0,
+        "explanation": "The repeated excuse prevents a pattern from forming in public. Table count and patience miss the mechanism: visible exceptions stay too scattered to punish.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A cycling club wants to stop rule-bending around premium gear without turning every awkward exception into a witch hunt. Which principle is strongest? during the raffle count.",
+        "choices": [
+          "Punish the first suspicious case harshly so nobody tries again.",
+          "Create shared evidence before assigning bad intent.",
+          "Let violations pass unless someone confesses."
+        ],
+        "correctIndex": 1,
+        "explanation": "Shared evidence narrows the space between silence and reckless accusation. Harsh punishment can outrun proof, while waiting for confession leaves thin cover powerful.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A manager keeps approving exceptions through side messages, then says each one was harmless. What should an analyst build? with the compliance inbox visible.",
+        "choices": [
+          "A private folder of suspicions for later.",
+          "A rule that no exceptions can ever be granted.",
+          "A visible exception log with reason, time, and approver."
+        ],
+        "correctIndex": 2,
+        "explanation": "The visible log tests whether exceptions are rare and justified. A private folder lacks common knowledge, and a total ban may block legitimate cases.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A worker sees a colleague bend a rule in plain sight but stays quiet because the excuse is plausible. What is the main barrier? before the committee adjourns.",
+        "choices": [
+          "The worker lacks any moral concern.",
+          "The rule itself must be pointless.",
+          "Suspicion has not become shared proof others will back."
+        ],
+        "correctIndex": 2,
+        "explanation": "The barrier is coordination around proof. Plausible cover makes accusation costly even when people care about the rule.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A violation is visible, but everyone hesitates. What should you look for?",
+      "back": "Look for the fig leaf: the excuse, label, or side-channel permission that makes accusation awkward even when the room can see the violation.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is suspicion weaker than common knowledge?",
+      "back": "Suspicion isolates observers. Common knowledge lets people know that others saw the same thing, which lowers the social cost of enforcement.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A rule-bender has a plausible exception story. What is the first enforcement move?",
+      "back": "Ask for the exception to be recorded in the shared place before the benefit is granted. Legitimate exceptions survive daylight; cover stories often do not.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What makes broad-daylight cheating different from secret cheating?",
+      "back": "The act can be seen, but the cover story keeps observers from moving together. The protection comes from ambiguity and enforcement cost, not darkness.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How do you avoid turning thin-cover detection into unfair accusation?",
+      "back": "Attack the cover, not the person first. Create shared evidence, timestamps, written reasons, or visible logs before assigning intent.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice fig-leaf detection. When a rule is being bent in public, identify the small excuse that keeps people from acting together and create a shared evidence path.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If someone asks for an exception verbally, then ask them to write the reason in the shared record before the exception is granted."
+      },
+      {
+        "context": "software",
+        "plan": "If a freeze-breaking ticket has a harmless label, then open the diff summary and ask what exact failure it fixes."
+      },
+      {
+        "context": "community",
+        "plan": "If VIP exceptions keep appearing, then log the reason, time, and approver where the group can review the pattern."
+      },
+      {
+        "context": "self-audit",
+        "plan": "If you hear yourself using a cover story, then write what rule it bypasses and who would need to see the evidence."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, capture one rule-bending excuse exactly as stated. Write what evidence would make it legitimate and what evidence would reveal it as cover.",
+    "weeklyPractice": "Once this week, replace a whispered complaint with a shared record: timestamp, reason, exception, or visible policy line. Keep the tone factual and make the fig leaf testable."
+  },
+  "memorableLines": [
+    {
+      "text": "Cheating often survives in broad daylight because the cover does not need to convince everyone.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the chapter’s central inversion vivid and precise."
+    },
+    {
+      "text": "A side glance and a ready excuse can do more protection than a locked door.",
+      "location": "breakdown.deepRead",
+      "why": "The line turns subtle social cover into a concrete mechanism."
+    },
+    {
+      "text": "Cheating likes the awkward middle.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a short name for the space between private suspicion and public enforcement."
+    }
+  ]
+}

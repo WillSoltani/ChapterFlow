@@ -1,0 +1,325 @@
+{
+  "chapterId": "talk-like-ted-ch07",
+  "number": 7,
+  "title": "Stick to the 18-Minute Rule",
+  "readingTimeMinutes": 12,
+  "hook": "The grant timer does not ask Camille to rush; it asks her to choose.",
+  "counterintuition": "A short talk is not a time problem; the real lever is hierarchy, protecting the one idea the audience must still carry tomorrow.",
+  "tryThisNow": "Write the one sentence your audience must remember tomorrow. Circle every slide, story, or detail that does not make that sentence easier to keep.",
+  "keyTakeaway": "Use time pressure to force prioritization, remove drift, and make the central message stronger rather than merely shorter.",
+  "breakdown": {
+    "fastRead": "Index cards cover the black-box theatre floor. Camille has twenty minutes to defend a community program and twice that much material. She keeps the three cards that prove attendance changed and cuts the history section.\n\nThe clock is not the enemy. Drift is.\n\nCompression is audience service when it protects the main idea. Cutting is not the same as weakening. The right constraint makes the speaker decide what the talk is truly carrying, then removes anything that asks the audience to carry extra weight.",
+    "deepRead": "The 18-minute rule is less a stopwatch trick than a demand to choose what the talk is truly carrying. A time limit forces hierarchy. Which idea stays? Which proof matters? Which story earns its place? Which detail feels impressive to the speaker but useless to the listener?\n\nShorter is not the goal. Stronger is.\n\nA compressed talk respects attention without insulting intelligence. People can handle complexity when it is organized around a clear path. They struggle when every side trail receives equal time. Cognitive overload often begins when the speaker refuses to choose.\n\nLars sees the point in a vaccine consent briefing. His twelve-point draft is medically careful and impossible to hold. He compares it with three parent questions from last year's clinic, then rebuilds around those questions. The briefing becomes shorter because the hierarchy is clearer, not because risk information disappeared.\n\nThe limit matters. Brevity that cuts the spine is just thinness. Keep the message, the essential evidence, and the next action. Remove the rest. The cut is not a punishment for good material. It is a choice about what the audience can still use when the chairs are stacked and the meeting has moved on.",
+    "fullRead": "Paper clips snap off Frida's thick binder of printed emails. She is rehearsing a closing argument for a small civil trial, and every email feels important because each one took work to find. The jury clock does not care. Jurors need the central breach and the one-page timeline, not the archive of her diligence.\n\nSo she removes seven emails.\n\nCompression hurts most when the material is good. Weak material is easy to cut. Good but secondary material is harder because it gives the speaker a reason to keep drifting. The discipline is to judge material by the audience's load, not by the speaker's affection for it.\n\nWhat must remain in the listener's mind after the talk is over? That question should govern the length. If the answer is one curatorial idea, the donor list may belong in the printed program. If the answer is one delayed feature tradeoff, the platform tour may need to go. If the answer is shelter, debris, and permits after a flood, the agency roster can wait.\n\nTomás faces that exact kind of cut before museum opening remarks. A board member asks him to thank twelve more people. He protects the two-minute object story and moves extra acknowledgments to the printed program. That is not rudeness. It is stewardship of attention. The audience came to enter a gallery, not survive a roll call.\n\nThere is a counter-trap: speed. Some speakers obey the clock by talking faster. That only moves the overload from the script into the listener's head. Real compression changes the material. It removes, orders, and sharpens. The voice can then slow enough for the important parts to land.\n\nYusuf tests the same principle in a product roadmap review. He asks which feature will reduce support tickets fastest, then cuts the platform tour and spends the saved minutes on the tradeoff slide behind one delayed feature. The room does not get less substance. It gets the right substance.\n\nA short talk should feel like a decision, not a diet.\n\nAndrew has to update flood-weary residents from a gymnasium stage. The damp folding chairs face him in rows, and every agency has given him one more detail to mention. He cuts the roster, keeps shelter, debris pickup, and permit sequence, then saves the final minute for where people go next. That last minute is the point. Without it, the update may sound complete and still leave people stranded.\n\nThe clock forces a moral question about attention: what are you asking people to carry, and why? Answer that, and the cut becomes clearer.\n\nIn a short talk, leave room for the audience to think. That may mean fewer facts, slower delivery, and one example carried all the way to its consequence. The speaker is not proving how much is known. The speaker is deciding what deserves the listener's limited working memory.\n\nThe best short talk feels complete because the choice is complete, not because every fact came along."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-camille-story-cards",
+      "title": "Camille Keeps Three Cards",
+      "tags": [
+        "arts",
+        "grant",
+        "compression"
+      ],
+      "planSpec": {
+        "domain": "arts grant committee pitch",
+        "audience": "a theatre director with twenty minutes to defend a community program",
+        "stakes": "whether extra background buries the one proof that the program changes attendance",
+        "format": "decision_point",
+        "requiredBeat": "she lays every story card on the floor, keeps the three that prove the program's effect, and cuts the history section before rehearsal"
+      },
+      "scenario": "Index cards spread across the black-box theatre floor while Camille sets a grant timer for twenty minutes. The attendance proof is on three cards; the history section takes nine. Donors, school partners, and a foundation officer will be in the front row. She must decide whether to defend every good card or protect the one proof the committee needs to remember. The rejected cards remain on the floor so the cut feels deliberate, not careless.",
+      "whatToDo": "Keep the three proof cards and cut the history section. Let the grant timer force hierarchy around the effect the committee must remember.",
+      "whyItMatters": "The pitch gets stronger when it carries one proof cleanly. Extra background may be true, but it burdens the audience before the program's effect lands."
+    },
+    {
+      "exampleId": "ch07-ex02-lars-three-questions",
+      "title": "Lars Rebuilds Around Three Questions",
+      "tags": [
+        "health",
+        "consent",
+        "clarity"
+      ],
+      "planSpec": {
+        "domain": "vaccine consent briefing",
+        "audience": "a public-health doctor briefing parents before a school clinic",
+        "stakes": "whether parents keep the essential risk and consent points without overload",
+        "format": "before_after",
+        "requiredBeat": "he compares a twelve-point draft with three parent questions from last year's clinic and rebuilds the briefing around those questions only"
+      },
+      "scenario": "It took Lars one cafeteria briefing to see parents stop tracking point seven. This year, a consent form sits clipped under a stopwatch on the lunch table. His twelve-point draft is beside three parent questions from last year's clinic. He rebuilds the briefing around those questions only, keeping essential risk and consent points while cutting the expert detours. The consent form stays clipped to the tray, reminding him which questions actually guide the parent decision.",
+      "whatToDo": "Build the briefing around the three parent questions. Keep required risk information, but remove details that do not help parents consent wisely.",
+      "whyItMatters": "Parents need usable clarity, not an expert inventory. Compression protects the decision they have to make without hiding necessary information."
+    },
+    {
+      "exampleId": "ch07-ex03-frida-email-binder",
+      "title": "Frida Removes Seven Emails",
+      "tags": [
+        "legal",
+        "jury",
+        "timeline"
+      ],
+      "planSpec": {
+        "domain": "legal closing argument rehearsal",
+        "audience": "a junior attorney preparing a closing argument for a small civil trial",
+        "stakes": "whether jurors remember the central breach or drown in every email",
+        "format": "scene",
+        "requiredBeat": "she removes seven emails from the binder and keeps the one timeline jurors can hold in working memory"
+      },
+      "scenario": "Paper clips snap off a thick binder of printed emails as Frida rehearses under the jury clock. Every message helped her build the case, but only one-page timeline shows the central breach clearly. She has to decide whether to prove how much work she did or remove seven emails so jurors can hold the sequence that decides the case. The jury clock keeps snapping her attention back to the one document that proves breach.",
+      "whatToDo": "Cut the seven secondary emails and keep the one-page timeline. Use the closing to make the breach easy to follow, not to display the whole archive.",
+      "whyItMatters": "Jurors decide with limited working memory. The timeline preserves the spine of the case while the extra emails create avoidable overload."
+    },
+    {
+      "exampleId": "ch07-ex04-tomas-program-acknowledgments",
+      "title": "Tomás Protects the Object Story",
+      "tags": [
+        "museum",
+        "remarks",
+        "attention"
+      ],
+      "planSpec": {
+        "domain": "museum opening remarks",
+        "audience": "a director introducing a new gallery to members and local press",
+        "stakes": "whether the audience leaves with one curatorial idea instead of a full donor list",
+        "format": "dialogue",
+        "requiredBeat": "after a board member asks to thank twelve more people, he protects the two-minute object story and moves extra acknowledgments to the printed program"
+      },
+      "scenario": "\"Can you thank twelve more people?\" the board member asks during the Friday gallery opening rehearsal while a printed program lies folded beside the velvet rope. Tomás, the museum director, has a two-minute object story that explains the gallery's central idea. He must decide whether to spend audience attention on the extra names or move them to the program and protect the object story. The velvet rope marks where ceremony ends and the core object story has to begin.",
+      "whatToDo": "Move the extra thanks to the printed program and keep the object story in the remarks. Protect the one idea the audience should carry into the gallery.",
+      "whyItMatters": "The opening has a job. A long donor list may be gracious, but it steals the attention needed for the curatorial frame."
+    },
+    {
+      "exampleId": "ch07-ex05-yusuf-roadmap-tradeoff",
+      "title": "Yusuf Cuts the Platform Tour",
+      "tags": [
+        "product",
+        "roadmap",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "product roadmap review",
+        "audience": "a product lead presenting a roadmap to customer-support managers",
+        "stakes": "whether the room understands the tradeoff behind one delayed feature",
+        "format": "predict_reveal",
+        "requiredBeat": "he asks which feature will reduce support tickets fastest, then cuts the platform tour and spends the saved minutes on the tradeoff slide"
+      },
+      "scenario": "Which roadmap bar will cut support tickets fastest? Yusuf asks the support managers while colored roadmap bars crowd the wall monitor in the product war room. The platform tour still takes six minutes, and the tradeoff slide answers the question they came to settle. He must decide whether completeness gets the time or the ticket-volume tradeoff does. The support ticket chart waits below the roadmap bars, forcing the tradeoff into view.",
+      "whatToDo": "Ask the feature question, cut the platform tour, and spend the saved minutes on the tradeoff slide. Let the roadmap serve the support decision.",
+      "whyItMatters": "The room needs the reason behind the delay more than a product inventory. Compression moves time toward the decision that will affect support work."
+    },
+    {
+      "exampleId": "ch07-ex06-andrew-flood-sequence",
+      "title": "Andrew Keeps the Next Three Decisions",
+      "tags": [
+        "flood",
+        "public",
+        "sequence"
+      ],
+      "planSpec": {
+        "domain": "flood recovery update",
+        "audience": "an emergency manager updating residents after a river flood",
+        "stakes": "whether worried residents hear the next three decisions instead of every agency detail",
+        "format": "vignette",
+        "requiredBeat": "you watch him cut the agency roster, keep the shelter, debris, and permit sequence, and use the final minute for where residents go next"
+      },
+      "scenario": "You sit behind a damp folding chair facing a gymnasium stage while Andrew sorts a shelter list, debris pickup map, and permit desk note. The agency roster is twice as long as the residents' patience. Andrew's pen hovers over the roster, with two options left: read every partner aloud, or keep the next three decisions and save the final minute for where people go after the update. The shelter list stays on top of the stack because residents need that decision before agency history.",
+      "whatToDo": "Cut the roster, keep shelter, debris, and permit sequence, and reserve the final minute for next steps. Make the update useful before making it complete.",
+      "whyItMatters": "Worried residents need sequence more than institutional completeness. Compression protects the actions they must take after leaving the gym."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a foundation rehearsal, a grant speaker has twenty minutes, thirty minutes of strong material, and one proof the committee must remember before voting. What should she do first?",
+        "choices": [
+          "Speak faster so all strong material fits.",
+          "Identify the one proof the committee must remember, then cut material that does not support it.",
+          "Remove all stories and keep only a budget table."
+        ],
+        "correctIndex": 1,
+        "explanation": "Compression starts with hierarchy. Speaking faster moves overload to the audience, while cutting all stories may remove the proof that makes the budget meaningful.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A doctor has a twelve-point vaccine briefing and parents usually remember only two points. Which revision fits disciplined compression?",
+        "choices": [
+          "Build the briefing around the three questions parents need answered for consent.",
+          "Remove risk information so the talk feels calmer.",
+          "Keep all twelve points because medicine should be exhaustive."
+        ],
+        "correctIndex": 0,
+        "explanation": "The three questions preserve the decision parents must make. Removing risk hides substance, while exhaustive detail can overload the audience before consent is clear.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A trial lawyer wants jurors to see how many emails support her case. The central breach is clearest on one timeline. What should she prioritize?",
+        "choices": [
+          "Show every email so jurors respect the work.",
+          "Keep the one timeline and use only the emails needed to prove the breach.",
+          "Avoid documents and rely on emotion."
+        ],
+        "correctIndex": 1,
+        "explanation": "Jurors need a clear spine for the decision. Showing every email may display effort but creates load that can blur the central breach.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A museum director is asked to thank twelve extra people during opening remarks. The talk also needs a two-minute object story. What should he do?",
+        "choices": [
+          "Move extra acknowledgments to the program and protect the object story.",
+          "Read every name first because politeness outranks audience attention.",
+          "Cut the object story because visitors can read labels later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The opening should frame the gallery. Printed acknowledgments can carry names, while the object story needs spoken attention to give visitors a lens.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A product lead has a platform tour and one tradeoff slide explaining a delayed feature. Support managers care about ticket volume. What should get the time?",
+        "choices": [
+          "The platform tour, because completeness builds confidence.",
+          "The tradeoff slide, because it answers the decision the audience actually needs to understand.",
+          "Neither; the product lead should keep the meeting informal."
+        ],
+        "correctIndex": 1,
+        "explanation": "Compression allocates time by audience need. The platform tour may be complete, but the tradeoff explains the delayed feature that affects support work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "At a flood-recovery gymnasium briefing, residents hear every agency involved but leave unsure where to sleep tonight or where debris pickup starts. What failed?",
+        "choices": [
+          "Residents cannot understand complex recovery information.",
+          "The speaker should have used more dramatic photos.",
+          "The update valued institutional completeness over the next decisions residents needed."
+        ],
+        "correctIndex": 2,
+        "explanation": "The problem is hierarchy. Agency detail crowded out shelter, debris, permit sequence, or other steps residents needed to carry away.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A speaker cuts a talk from forty minutes to eighteen by removing examples, evidence, and next steps until only slogans remain. How should you evaluate that edit?",
+        "choices": [
+          "It fails because brevity has weakened the message instead of sharpening it.",
+          "It succeeds because shorter is always clearer.",
+          "It succeeds if the slides look less crowded."
+        ],
+        "correctIndex": 0,
+        "explanation": "The constraint should preserve the spine of the talk. Cutting substance until only slogans remain creates thinness, not disciplined compression.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A speaker obeys a time limit by talking faster through the same material. The audience leaves exhausted. What should have changed?",
+        "choices": [
+          "The audience should have taken better notes.",
+          "The talk should have used smaller fonts.",
+          "The speaker should have reordered, removed, and sharpened material instead of compressing only the delivery speed."
+        ],
+        "correctIndex": 2,
+        "explanation": "Speed is not real compression. The material itself needed hierarchy so the audience could process the main idea without being rushed.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A research lead has three impressive side findings and one finding that changes the audience's decision tomorrow. Which belongs in the short talk?",
+        "choices": [
+          "All three side findings, because they prove expertise.",
+          "The decision-changing finding, with enough support to trust it.",
+          "None of the findings; short talks should stay broad."
+        ],
+        "correctIndex": 1,
+        "explanation": "A short talk should carry the finding that changes action and enough proof to make it credible. Side findings may be impressive but can dilute the central message.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A short talk is running long. What should the time limit force you to protect?",
+      "back": "It forces prioritization. The clock asks what the talk is truly carrying and what can be cut so the audience keeps the main idea.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "How is compression different from making a talk shallow?",
+      "back": "Compression preserves the message, essential evidence, and next action while removing drift. Shallow brevity cuts the spine and leaves slogans.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A speaker talks faster to fit the time. What should happen instead?",
+      "back": "Change the material, not just the pace. Remove, order, and sharpen so important moments can still breathe.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What should decide whether a good detail stays?",
+      "back": "Ask whether the detail makes the one remembered sentence easier to keep. Good details still leave if they create avoidable load.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "Why is audience attention a stewardship problem?",
+      "back": "Every extra story or detail asks listeners to carry more. Responsible compression protects their bandwidth for what matters most.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is compressing by hierarchy. You decide what the audience must keep, then remove material that does not strengthen that memory or action.",
+    "ifThenPlans": [
+      {
+        "context": "presentation editing",
+        "plan": "If a slide does not make the remembered sentence clearer, then cut it or move it to backup."
+      },
+      {
+        "context": "public briefing",
+        "plan": "If the audience must act afterward, then protect the final minute for the next step instead of filling it with institutional detail."
+      },
+      {
+        "context": "training",
+        "plan": "If learners need a decision, then organize the talk around their top questions instead of your full inventory."
+      },
+      {
+        "context": "rehearsal",
+        "plan": "If you run over time, then remove material before changing pace. The important sentence should still have room to land."
+      }
+    ],
+    "twentyFourHourChallenge": "Before tomorrow ends, write the sentence your next audience must remember and cut one slide, story, or detail that does not support it.",
+    "weeklyPractice": "Each week, take one message and reduce it by one third without speeding up. Track what the shorter version makes clearer."
+  },
+  "memorableLines": [
+    {
+      "text": "The clock is not the enemy. Drift is.",
+      "location": "breakdown.fastRead",
+      "why": "It reframes the 18-minute constraint as a fight against drift, not length itself."
+    },
+    {
+      "text": "Shorter is not the goal. Stronger is.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the chapter's main distinction in a compact contrast."
+    },
+    {
+      "text": "A short talk should feel like a decision, not a diet.",
+      "location": "breakdown.fullRead",
+      "why": "It makes disciplined compression memorable without reducing it to deletion."
+    }
+  ]
+}

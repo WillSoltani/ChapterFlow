@@ -1,0 +1,201 @@
+{
+  "chapterId": "antifragile-ch13",
+  "number": 13,
+  "title": "Lecturing Birds on How to Fly",
+  "coreMove": "Let reality-tested tinkering produce knowledge before demanding a complete theory.",
+  "sourcePressure": "This chapter argues that practice, tinkering, and contact with reality often precede clean theory in complex domains.",
+  "chapterSpecificMisunderstanding": "Treating theory as useless or practitioners as automatically wise.",
+  "sourceAlignmentTerms": [
+    "tinkering",
+    "practice",
+    "birds",
+    "theory",
+    "trial and error",
+    "reality-tested discovery",
+    "delayed explanation"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "birds flying",
+      "detail": "the chapter title image for competence that precedes lecture and theory",
+      "useIn": "both",
+      "phrasingHint": "The bird does not wait for a lecture before the wing finds air."
+    },
+    {
+      "kind": "event",
+      "name": "reality-tested discovery",
+      "detail": "the source notes stress practice before clean explanation",
+      "useIn": "fullRead",
+      "phrasingHint": "The explanation is useful after the test has met the world."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Lecturing Birds on How to Fly"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Treating theory as useless or practitioners as automatically wise."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bicycle repair bench with Pavel as the decision-maker",
+      "audience": "a reader who handles bicycle repair bench under uncertainty",
+      "stakes": "whether Pavel avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Pavel runs the crude real-world trial before letting the theory committee polish the explanation.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "bicycle log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic lecturing birds on how to fly paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "recipe test kitchen with Mateusz as the decision-maker",
+      "audience": "a reader who handles recipe test kitchen under uncertainty",
+      "stakes": "whether Mateusz avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mateusz runs the crude real-world trial before letting the theory committee polish the explanation.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "recipe log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic lecturing birds on how to fly paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "robotics club prototype with Janek as the decision-maker",
+      "audience": "a reader who handles robotics club prototype under uncertainty",
+      "stakes": "whether Janek avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Janek runs the crude real-world trial before letting the theory committee polish the explanation.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "robotics log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic lecturing birds on how to fly paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "field nurse workaround with Aanya as the decision-maker",
+      "audience": "a reader who handles field nurse workaround under uncertainty",
+      "stakes": "whether Aanya avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aanya runs the crude real-world trial before letting the theory committee polish the explanation.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "field log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic lecturing birds on how to fly paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "shipyard welding jig with Aman as the decision-maker",
+      "audience": "a reader who handles shipyard welding jig under uncertainty",
+      "stakes": "whether Aman avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aman runs the crude real-world trial before letting the theory committee polish the explanation.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "shipyard log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic lecturing birds on how to fly paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "subscription app A/B test with Devon as the decision-maker",
+      "audience": "a reader who handles subscription app A/B test under uncertainty",
+      "stakes": "whether Devon avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Devon runs the crude real-world trial before letting the theory committee polish the explanation.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "subscription log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic lecturing birds on how to fly paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by let reality-tested tinkering produce knowledge before demanding a complete theory.",
+      "distinguish tinkering, practice, birds in unfamiliar cases",
+      "choose actions that avoid: Treating theory as useless or practitioners as automatically wise."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one stuck problem and run the smallest real-world trial before improving the explanation.",
+  "readingTimeMinutes": 12
+}

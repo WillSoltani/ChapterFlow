@@ -1,0 +1,213 @@
+{
+  "chapterId": "the-12-week-year-ch07",
+  "number": 7,
+  "title": "Intentionality",
+  "coreMove": "Turn intention into protected space by deciding what receives time and what must be refused.",
+  "sourcePressure": "The chapter shows that intention needs protection through yes/no decisions and blocked time.",
+  "chapterSpecificMisunderstanding": "Treating intentionality as having a positive attitude rather than protecting execution against competing demands.",
+  "sourceAlignmentTerms": [
+    "intentionality",
+    "yes and no",
+    "blocking your time",
+    "protected execution",
+    "boundaries",
+    "deliberate action"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Importance of Yes and No",
+      "detail": "The source notes identify The Importance of Yes and No as a chapter-map term.",
+      "useIn": "both",
+      "phrasingHint": "Every protected yes creates a visible no somewhere else in the week."
+    },
+    {
+      "kind": "artifact",
+      "name": "Blocking Your Time",
+      "detail": "The source notes identify Blocking Your Time as a chapter-map term.",
+      "useIn": "deepRead",
+      "phrasingHint": "Blocked time is intention with a door on it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch07: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch07: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch07: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch07: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nora",
+      "domain": "industrial design studio time blocks",
+      "audience": "a practitioner in industrial design studio time blocks who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Nora blocks prototype review time and declines a cosmetic request.",
+      "firstImage": "foam models under a desk lamp",
+      "mustInclude": [
+        "foam models under a desk",
+        "intentionality",
+        "blocking your time"
+      ],
+      "mustAvoid": [
+        "generic intentionality explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "community health outreach route",
+      "audience": "a decision-maker in community health outreach route choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Matthew chooses which outreach route gets protected and which waits.",
+      "firstImage": "route cards beside a thermos",
+      "mustInclude": [
+        "route cards beside a thermos",
+        "intentionality",
+        "blocking your time"
+      ],
+      "mustAvoid": [
+        "generic intentionality explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "insurance underwriting queue",
+      "audience": "a team lead in insurance underwriting queue who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chloe says no to a low-risk file so underwriting time stays intact.",
+      "firstImage": "policy files stacked by risk band",
+      "mustInclude": [
+        "policy files stacked by risk",
+        "intentionality",
+        "blocking your time"
+      ],
+      "mustAvoid": [
+        "generic intentionality explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "university lab booking calendar",
+      "audience": "a reflective operator in university lab booking calendar reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Mikkel locks the microscope slot before new requests arrive.",
+      "firstImage": "a reservation grid taped to a microscope cabinet",
+      "mustInclude": [
+        "a reservation grid taped to",
+        "intentionality",
+        "blocking your time"
+      ],
+      "mustAvoid": [
+        "generic intentionality explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "independent podcast production",
+      "audience": "a reader in independent podcast production comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Diego moves editing into a protected block before ads are sold.",
+      "firstImage": "audio tracks open across two monitors",
+      "mustInclude": [
+        "audio tracks open across two",
+        "intentionality",
+        "blocking your time"
+      ],
+      "mustAvoid": [
+        "generic intentionality explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "Manchester rail maintenance office",
+      "audience": "two colleagues in Manchester rail maintenance office forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hadiya refuses a platform meeting during maintenance execution time.",
+      "firstImage": "work orders clipped above a platform map",
+      "mustInclude": [
+        "work orders clipped above a",
+        "intentionality",
+        "blocking your time"
+      ],
+      "mustAvoid": [
+        "generic intentionality explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "make a yes/no tradeoff visible",
+      "protect time before pressure arrives",
+      "identify soft intentions masquerading as plans"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Block one 45-minute execution slot this week and write the specific request you will refuse to keep it intact.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,200 @@
+{
+  "chapterId": "the-obstacle-is-the-way-ch14",
+  "number": 14,
+  "title": "Follow the Process",
+  "coreMove": "Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.",
+  "sourcePressure": "This chapter belongs to Action, so it must move from clear seeing into visible execution under constraint. No source sidecar exists for ch14; this plan is grounded in the frozen TOC title and part placement only, with no named anecdotes invented. For \"Follow the Process\", the pressure is to teach this exact move: Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.",
+  "chapterSpecificMisunderstanding": "The weak version turns the chapter into motivational busyness instead of a precise way to act against resistance. For \"Follow the Process\", avoid replacing the chapter move with the whole book thesis.",
+  "sourceAlignmentTerms": [
+    "process",
+    "step",
+    "sequence",
+    "standard",
+    "execution",
+    "focus"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic obstacle appears and teaches follow the process",
+      "The problem is not the problem",
+      "Everything changed when the setback arrived"
+    ],
+    "counterintuition": [
+      "The obstacle is actually a blessing",
+      "The hard part is really your mindset",
+      "Success comes from staying positive"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on adversity",
+      "Write down three things you are grateful for",
+      "Take a breath and choose courage"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "generic kitchen-table family argument",
+      "generic classroom grade disappointment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research-free aside on source limits, a direct second-person passage, or a brief historical reference where sourceAnchors permits it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Pavel",
+      "domain": "film editor cutting one scene at a time from a tangled documentary",
+      "audience": "Readers facing film editor cutting one scene at a time from a tangled documentary who need to practice \"Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into small steps as comfort.",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "openingDeviceNote": "open on a concrete sound, texture, smell, or visual detail before naming the person",
+      "requiredBeat": "Pavel must visibly perform the chapter move by blocking out the final outcome and executing the next defined step to standard, so the lesson happens in action rather than explanation.",
+      "firstImage": "a cracked plastic folder with forms slipping out",
+      "mustInclude": [
+        "marked-up form",
+        "visible queue",
+        "one rule that cannot be changed"
+      ],
+      "mustAvoid": [
+        "do not turn this into small steps as comfort",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Anya",
+      "domain": "wedding planner rebuilding timeline from vendor confirmations",
+      "audience": "Readers facing wedding planner rebuilding timeline from vendor confirmations who need to practice \"Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into small steps as comfort.",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "openingDeviceNote": "open with one line of spoken dialogue that forces the decision into view",
+      "requiredBeat": "Anya must visibly perform the chapter move by blocking out the final outcome and executing the next defined step to standard, so the lesson happens in action rather than explanation.",
+      "firstImage": "a measuring tape stretched across a taped floor mark",
+      "mustInclude": [
+        "locked door",
+        "backup route",
+        "two-minute choice window"
+      ],
+      "mustAvoid": [
+        "do not turn this into small steps as comfort",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Tomasz",
+      "domain": "paramedic trainee following checklist after a chaotic simulation",
+      "audience": "Readers facing paramedic trainee following checklist after a chaotic simulation who need to practice \"Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into small steps as comfort.",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "openingDeviceNote": "open with the room, tool, weather, queue, screen, or workplace layout before any person acts",
+      "requiredBeat": "Tomasz must visibly perform the chapter move by blocking out the final outcome and executing the next defined step to standard, so the lesson happens in action rather than explanation.",
+      "firstImage": "a phone face-down beside a stamped envelope",
+      "mustInclude": [
+        "spreadsheet row",
+        "timestamped note",
+        "one disputed fact"
+      ],
+      "mustAvoid": [
+        "do not turn this into small steps as comfort",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Mateusz",
+      "domain": "tax clinic processing the next return during backlog",
+      "audience": "Readers facing tax clinic processing the next return during backlog who need to practice \"Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into small steps as comfort.",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "openingDeviceNote": "open by putting the reader directly in the scene with a precise constraint",
+      "requiredBeat": "Mateusz must visibly perform the chapter move by blocking out the final outcome and executing the next defined step to standard, so the lesson happens in action rather than explanation.",
+      "firstImage": "a row of empty chairs after a meeting ends",
+      "mustInclude": [
+        "weather alert",
+        "supply box",
+        "call list"
+      ],
+      "mustAvoid": [
+        "do not turn this into small steps as comfort",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Janek",
+      "domain": "rowing crew practicing one stroke sequence in rough water",
+      "audience": "Readers facing rowing crew practicing one stroke sequence in rough water who need to practice \"Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into small steps as comfort.",
+      "format": "thought_experiment",
+      "openingDevice": "retrospective",
+      "openingDeviceNote": "open after the fact, with the protagonist realizing what the earlier choice meant",
+      "requiredBeat": "Janek must visibly perform the chapter move by blocking out the final outcome and executing the next defined step to standard, so the lesson happens in action rather than explanation.",
+      "firstImage": "a stack of returned envelopes in a mail tray",
+      "mustInclude": [
+        "practice log",
+        "public result",
+        "private correction"
+      ],
+      "mustAvoid": [
+        "do not turn this into small steps as comfort",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Aleksy",
+      "domain": "chef prepping one station before a sold-out service",
+      "audience": "Readers facing chef prepping one station before a sold-out service who need to practice \"Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into small steps as comfort.",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "openingDeviceNote": "open with a practical question the scene will answer",
+      "requiredBeat": "Aleksy must visibly perform the chapter move by blocking out the final outcome and executing the next defined step to standard, so the lesson happens in action rather than explanation.",
+      "firstImage": "a whiteboard corner where the old plan is half erased",
+      "mustInclude": [
+        "printed schedule",
+        "one fixed deadline",
+        "one person waiting for a decision"
+      ],
+      "mustAvoid": [
+        "do not turn this into small steps as comfort",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the exact visible action that performs \"Shrink an overwhelming goal into the next clean process step and do that step without bargaining with the whole mountain.\" in a new scenario",
+      "distinguish \"Follow the Process\" from its common weak drift: small steps as comfort",
+      "choose between two plausible responses where only one preserves the chapter's control boundary",
+      "explain why a concrete beat works without reusing generic resilience language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real obstacle, write one sentence naming the raw fact, one sentence naming the move under your control, and one sentence naming the first visible action for \"Follow the Process\"; keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

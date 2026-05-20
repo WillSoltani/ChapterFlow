@@ -1,0 +1,85 @@
+{
+  "bookId": "the-charisma-myth",
+  "title": "The Charisma Myth",
+  "author": "Olivia Fox Cabane",
+  "thesisParagraph": "Charisma is not treated here as a rare personal glow that some people are born with and others lack. The book's argument is that people read charisma through a changeable combination of attention, internal state, visible ease, perceived ability to affect events, and goodwill toward the person in front of you. The practical work is to stop chasing a bigger personality and start tuning the signals that make others feel seen, reassured, and willing to trust your presence under real conditions.",
+  "coreIdeas": [
+    {
+      "name": "Charisma Is Trainable",
+      "oneSentence": "Charisma behaves like a social effect that can rise or fall, not like a permanent personality verdict.",
+      "mentalMove": "Replace fixed-trait self-talk with observation of the signals your state and behavior are sending.",
+      "sourceAnchors": ["ch01.source"]
+    },
+    {
+      "name": "The Three Signals",
+      "oneSentence": "Presence, power, and warmth create different parts of the charismatic read, and a weak signal changes the whole impression.",
+      "mentalMove": "Diagnose what the room is missing before reaching for louder performance.",
+      "sourceAnchors": ["ch02.source", "ch06.source"]
+    },
+    {
+      "name": "State Leaks Outward",
+      "oneSentence": "Inner discomfort, distraction, or threat shows up in posture, timing, and attention faster than technique can hide it.",
+      "mentalMove": "Treat a social breakdown as a state-and-attention problem before treating it as a script problem.",
+      "sourceAnchors": ["ch03.source", "ch04.source", "ch05.source"]
+    },
+    {
+      "name": "Fit The Situation",
+      "oneSentence": "Different rooms need different balances of authority, friendliness, focus, and reassurance.",
+      "mentalMove": "Choose the charisma style and channel behavior that fits the stakes instead of forcing one signature persona everywhere.",
+      "sourceAnchors": ["ch06.source", "ch07.source", "ch10.source"]
+    },
+    {
+      "name": "Pressure Reveals Congruence",
+      "oneSentence": "Difficult situations, presentations, and crises test whether presence, power, and warmth still hold when the room is tense.",
+      "mentalMove": "Keep visible steadiness and human contact together when pressure tempts you to overcontrol or overcomfort.",
+      "sourceAnchors": ["ch11.source", "ch12.source", "ch13.source"]
+    }
+  ],
+  "targetReader": "A capable reader who is tired of being socially underread: they may be thoughtful but seem absent, competent but cold, warm but not credible, or polished until pressure hits. They care because interviews, leadership moments, conversations, online messages, presentations, and crises all reward the person whose signals make others feel both safe and willing to follow.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make inner state visible through small outward signals",
+      "balance warmth and authority instead of praising either one alone",
+      "keep examples practical, modern, and grounded in moments where a room reads the person quickly"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake neuroscience, percentages, or invented studies",
+      "no celebrity worship or charisma-as-glamour framing"
+    ]
+  },
+  "voiceSpecimens": [
+    "The room reads your attention before it can admire your answer.",
+    "A warm face without weight behind it feels pleasant and easy to ignore.",
+    "Power turns brittle when the person across from you cannot feel your goodwill.",
+    "Presence is the difference between hearing a name and letting the name change what your face does next.",
+    "The goal is not to look relaxed. The goal is to remove enough internal noise that relaxation has a chance to be true.",
+    "Digital warmth has to travel through timing, specificity, and the few words you did not rush.",
+    "In a crisis, charisma is the steady hand that gives people both a next step and a reason to breathe."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains the importance of charisma in modern life.",
+    "Always be confident, authentic, and positive when interacting with others.",
+    "The author argues that presence, power, and warmth are key leadership competencies.",
+    "Try this now: spend one minute reflecting on how charismatic you are.",
+    "In conclusion, charismatic communication is an essential interpersonal skill.",
+    "Use these hacks to make people like you instantly."
+  ],
+  "teachingArc": "The sequence starts by breaking the fixed-charisma myth, then names the three readable ingredients of charisma. It diagnoses what knocks those ingredients offline, teaches repair and mental-state preparation, then moves into choosing a style, shaping first impressions, handling live conversation, aligning body language, adapting to digital channels, and finally keeping the same triad alive in difficult situations, presentations, and crisis pressure.",
+  "forbiddenMoves": [
+    "Do not flatten the whole book into be confident or be authentic.",
+    "Do not make charisma sound like manipulation, seduction, dominance, or personal branding.",
+    "Do not treat presence, power, and warmth as slogans; every chapter must show how one signal changes a concrete room.",
+    "Do not invent scientific mechanisms beyond the frozen source support.",
+    "Do not reuse networking mixers, job interviews, classroom introductions, or generic office meetings as default examples."
+  ]
+}

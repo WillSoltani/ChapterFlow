@@ -1,0 +1,187 @@
+{
+  "chapterId": "difficult-conversations-ch11",
+  "number": 11,
+  "title": "Problem-Solving: Take the Lead",
+  "coreMove": "Lead the process of solving together without taking ownership of the solution away from the other person.",
+  "sourcePressure": "The chapter shifts into design only when ready, avoiding drift and unilateral prescription through joint inquiry, options, standards, and specific agency-matched commitments.",
+  "chapterSpecificMisunderstanding": "Jumping to fix the issue before understanding and expression have happened.",
+  "sourceAlignmentTerms": [
+    "stage shift",
+    "drift",
+    "unilateral prescription",
+    "joint inquiry",
+    "invent options",
+    "mutual standards",
+    "build on proposals",
+    "specific next steps"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "joint inquiry into solutions",
+      "detail": "The source tells the speaker to lead the process by proposing joint inquiry, inventing options, using mutual standards, and specifying next steps.",
+      "useIn": "both",
+      "phrasingHint": "Taking the lead means protecting the process from drift, not grabbing the steering wheel from the other person."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch11 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: sensory detail first; dialogue first line; retrospective first line; environmental detail before any human; timestamp+name+action; second-person You direct address",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "small-business first-hire decision",
+      "audience": "partners ready to move from understanding to design",
+      "stakes": "burnout and payroll risk both have real claims",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia proposes three options before either partner evaluates the first one",
+      "firstImage": "a payroll spreadsheet beside an empty job description",
+      "mustInclude": [
+        "payroll spreadsheet",
+        "job description",
+        "revenue trigger"
+      ],
+      "mustAvoid": [
+        "pick my solution"
+      ]
+    },
+    {
+      "domain": "student organization event bottleneck",
+      "audience": "student leaders whose talk keeps ending in relief without action",
+      "stakes": "a campus event will fail if roles remain vague",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Maja ends the meeting with owners and dates instead of 'we will figure it out'",
+      "firstImage": "\"So who owns the permit by Friday?\"",
+      "mustInclude": [
+        "permit form",
+        "campus room calendar",
+        "task board"
+      ],
+      "mustAvoid": [
+        "meeting as therapy only"
+      ]
+    },
+    {
+      "domain": "cohabiting partners designing quiet hours",
+      "audience": "housemates shifting from grievance to design",
+      "stakes": "sleep loss is turning affection into irritation",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Diego asks for standards they would both accept before picking a rule",
+      "firstImage": "a decibel meter app glowing on a bedside table",
+      "mustInclude": [
+        "decibel app",
+        "work shifts",
+        "apartment lease"
+      ],
+      "mustAvoid": [
+        "my way versus your way"
+      ]
+    },
+    {
+      "domain": "hospital discharge handoff redesign",
+      "audience": "interdisciplinary teams needing agency-matched commitments",
+      "stakes": "patients are getting duplicate calls and missed instructions",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Jack builds on the nurse's proposal before naming the part pharmacy can actually control",
+      "firstImage": "a discharge packet with two phone numbers",
+      "mustInclude": [
+        "discharge packet",
+        "call log",
+        "pharmacy queue"
+      ],
+      "mustAvoid": [
+        "process owner takes over"
+      ]
+    },
+    {
+      "domain": "faculty committee workload plan",
+      "audience": "junior academics under power constraints",
+      "stakes": "a junior lecturer may agree to work they cannot control to end the meeting",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Aman asks which commitments are actually his before the plan is recorded",
+      "firstImage": "a committee minutes document projected on a screen",
+      "mustInclude": [
+        "minutes document",
+        "course roster",
+        "email deadline"
+      ],
+      "mustAvoid": [
+        "false commitment for closure"
+      ]
+    },
+    {
+      "domain": "neighborhood snow-removal rota",
+      "audience": "neighbors turning recurring resentment into next steps",
+      "stakes": "elderly residents need predictable help before the next storm",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Vincent turns three complaints into a rota with names, sidewalks, and first storm date",
+      "firstImage": "a laminated block map on a porch table",
+      "mustInclude": [
+        "block map",
+        "snow shovel",
+        "weather alert"
+      ],
+      "mustAvoid": [
+        "vague community goodwill"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs lead the process of solving together without taking ownership of the solution away from the other person.",
+      "distinguish stage shift from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate jumping to fix the issue before understanding and expression have happened."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before offering a fix, list three possible options and one standard both sides would accept before seeing the options.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

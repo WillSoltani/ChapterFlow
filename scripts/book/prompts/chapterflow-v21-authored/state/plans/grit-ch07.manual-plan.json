@@ -1,0 +1,196 @@
+{
+  "chapterId": "grit-ch07",
+  "number": 7,
+  "title": "Practice",
+  "coreMove": "Choose one weak subskill, stretch it, seek feedback, and repeat until the miss changes.",
+  "sourcePressure": "Distinguish deliberate practice from years of repetition.",
+  "chapterSpecificMisunderstanding": "Thinking practice means time served or mindless repetition.",
+  "sourceAlignmentTerms": [
+    "deliberate practice",
+    "Anders Ericsson",
+    "10,000 hours",
+    "stretch goals",
+    "immediate feedback",
+    "Benjamin Franklin"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Anders Ericsson",
+      "detail": "Ericsson’s work on expertise emphasizes how experts practice differently, with stretch goals, focused feedback, and correction.",
+      "useIn": "both",
+      "phrasingHint": "Ericsson’s lesson is uncomfortable because it removes the comfort of counting hours."
+    },
+    {
+      "kind": "event",
+      "name": "National Spelling Bee",
+      "detail": "Duckworth found high-grit contestants practiced more, and practice helped explain their spelling success.",
+      "useIn": "deepRead",
+      "phrasingHint": "The spelling bee turns practice from a slogan into minutes alone with words that still go wrong."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for Practice",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "spelling bee word study",
+      "audience": "readers facing spelling bee word study where grit could be confused with mood or talent",
+      "stakes": "whether Grace treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist isolates one weak subskill, asks for blunt feedback, and repeats the corrected move",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn spelling bee word study into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "emergency-room ultrasound credential",
+      "audience": "readers facing emergency-room ultrasound credential where grit could be confused with mood or talent",
+      "stakes": "whether Chris treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist isolates one weak subskill, asks for blunt feedback, and repeats the corrected move",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn emergency-room ultrasound credential into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "piano left-hand passage repair",
+      "audience": "readers facing piano left-hand passage repair where grit could be confused with mood or talent",
+      "stakes": "whether Margaux treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist isolates one weak subskill, asks for blunt feedback, and repeats the corrected move",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn piano left-hand passage repair into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "customer support de-escalation drills",
+      "audience": "readers facing customer support de-escalation drills where grit could be confused with mood or talent",
+      "stakes": "whether Niklas treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist isolates one weak subskill, asks for blunt feedback, and repeats the corrected move",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn customer support de-escalation drills into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "magician sleight practice",
+      "audience": "readers facing magician sleight practice where grit could be confused with mood or talent",
+      "stakes": "whether Adaeze treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist isolates one weak subskill, asks for blunt feedback, and repeats the corrected move",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn magician sleight practice into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "rowing start sequence",
+      "audience": "readers facing rowing start sequence where grit could be confused with mood or talent",
+      "stakes": "whether Diego treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the protagonist isolates one weak subskill, asks for blunt feedback, and repeats the corrected move",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn rowing start sequence into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Choose one weak subskill, stretch it, seek feedback, and repeat until the miss changes. from Thinking practice means time served or mindless repetition.",
+      "choose the visible next action in a fresh spelling bee word study scenario",
+      "diagnose when a scene has drifted into practice logs as virtue"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real practice decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch11",
+  "number": 11,
+  "title": "Occam's Razor",
+  "coreMove": "Choose the simplest sufficient explanation first, then add complexity only when the evidence forces it.",
+  "sourcePressure": "Frozen support is moderate and narrow through official model reference and table-of-contents identity. Keep to preferring the simpler sufficient explanation or structure, and state clearly that simplicity is not proof.",
+  "chapterSpecificMisunderstanding": "The weak version says the simplest explanation is automatically true or that complexity is always suspicious.",
+  "sourceAlignmentTerms": ["Occam's razor", "simpler explanation", "sufficient", "unnecessary complexity", "evidence", "not proof"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Occam's razor",
+      "detail": "the frozen source supports Occam's razor as a Volume 1 model and authorizes a narrow paraphrase: prefer the simpler sufficient explanation, not simplicity as automatic proof",
+      "useIn": "both",
+      "phrasingHint": "Start with the lean explanation that fits the evidence, then let the evidence decide whether it deserves more machinery."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["shaving razor pun", "medieval monk history", "minimalist apartment"],
+    "counterintuition": ["simple always wins", "complex people are overthinking", "ignore all nuance"],
+    "tryThisNow": ["simplify your life", "choose the easiest answer", "cut complexity"],
+    "examples": ["murder mystery", "Sherlock Holmes", "IT problem as only example"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "home solar inverter fault",
+      "audience": "a homeowner and installer diagnosing a sudden solar drop",
+      "stakes": "unneeded panel replacements could cost thousands",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Charlotte checks the tripped inverter breaker before accepting a theory about failing roof panels",
+      "firstImage": "a silent inverter box beside a blinking breaker",
+      "mustInclude": ["inverter breaker", "roof panels", "production graph"],
+      "mustAvoid": ["solar sales pitch", "simple means cheap"]
+    },
+    {
+      "domain": "insurance claim review",
+      "audience": "a claims supervisor reviewing a delayed water-damage file",
+      "stakes": "a fraud theory may delay a legitimate payout",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Steven tests the ordinary explanation, a missing plumber invoice, before building a complex fraud narrative",
+      "firstImage": "a damp folder with one empty invoice tab",
+      "mustInclude": ["missing invoice", "claim timeline", "fraud note"],
+      "mustAvoid": ["detective drama", "naive trust"]
+    },
+    {
+      "domain": "aquarium pump noise diagnosis",
+      "audience": "an aquarium technician troubleshooting a loud exhibit pump",
+      "stakes": "the team may order a new pump when a clogged intake explains enough",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Mathieu clears the intake mesh and watches the noise stop before approving the expensive pump replacement",
+      "firstImage": "a low metallic hum vibrating through a wet concrete floor",
+      "mustInclude": ["intake mesh", "replacement quote", "pump noise"],
+      "mustAvoid": ["animal spectacle", "maintenance heroics"]
+    },
+    {
+      "domain": "choir rehearsal attendance",
+      "audience": "a choir director explaining why altos keep missing rehearsal",
+      "stakes": "the director may blame commitment when a calendar conflict explains enough",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Clara checks the school concert calendar before inventing a morale theory about the alto section",
+      "firstImage": "folded sheet music on an empty row of alto chairs",
+      "mustInclude": ["concert calendar", "alto chairs", "attendance sheet"],
+      "mustAvoid": ["arts group melodrama", "commitment sermon"]
+    },
+    {
+      "domain": "printer fleet troubleshooting",
+      "audience": "a facilities lead facing complaints that all office printers are unreliable",
+      "stakes": "a vendor replacement could miss the one network queue causing failures",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hugo compares failure timestamps and tests the single print server queue before replacing hardware",
+      "firstImage": "three jammed printouts cooling beside a server-room badge",
+      "mustInclude": ["failure timestamps", "print server queue", "vendor quote"],
+      "mustAvoid": ["office comedy", "technology always simple"]
+    },
+    {
+      "domain": "campground booking system",
+      "audience": "a park administrator explaining a sudden booking drop",
+      "stakes": "marketing money may be wasted if a broken date filter explains the drop",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Kira test one date filter before accepting a broad theory about changing camper preferences",
+      "firstImage": "an empty campsite calendar with one blocked weekend highlighted",
+      "mustInclude": ["date filter", "booking graph", "marketing proposal"],
+      "mustAvoid": ["vacation nostalgia", "software bug as only lesson"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["choose a simpler sufficient explanation", "know when extra complexity is warranted", "avoid treating simplicity as proof", "test the lean explanation against evidence"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "Take one problem and write the leanest explanation that fits all current evidence. Add one evidence item that would force a more complex story.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch08",
+  "number": 8,
+  "title": "Speaking and Listening with Charisma",
+  "coreMove": "Use each conversational turn to prove attention, carry weight, and make the other person feel met.",
+  "sourcePressure": "The source applies charisma to speaking and listening, with body language and listening behavior carrying more weight than people assume and the triad shaping live interaction.",
+  "chapterSpecificMisunderstanding": "The weak version becomes active listening or clever phrasing. The useful version shows how every turn sends presence, power, and warmth.",
+  "sourceAlignmentTerms": ["speaking", "listening", "presence", "turn-taking", "seen", "valued", "signal balance", "live interaction"],
+  "forbiddenFrames": {
+    "hook": ["Listening is charismatic", "Speak less and listen more", "Words matter"],
+    "counterintuition": ["Good listeners are more powerful", "Silence is the best response", "Questions create charisma"],
+    "tryThisNow": ["Ask one follow-up question", "Repeat the last word", "Listen without interrupting"],
+    "examples": ["coffee chat", "sales discovery call", "therapy-style listening", "generic team meeting"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a dialysis clinic intake where a nurse must hear what a patient is not saying",
+      "audience": "a clinical reader who can confuse efficiency with presence",
+      "stakes": "whether the patient admits he has been skipping sessions before the care plan is adjusted",
+      "format": "scene",
+      "requiredBeat": "the nurse stops typing after his second vague answer, turns the tablet flat on the desk, and asks about the bus route he mentioned once",
+      "firstImage": "a dialysis schedule clipped under a translucent tablet case",
+      "mustInclude": ["arm band", "bus transfer", "fluid log"],
+      "mustAvoid": ["medical handoff from Chapter 2", "generic bedside manner"]
+    },
+    {
+      "domain": "a theatrical costume fitting where a designer must correct an actor without shrinking them",
+      "audience": "a creative professional balancing candor and warmth",
+      "stakes": "whether the actor trusts a difficult alteration before opening night",
+      "format": "dialogue",
+      "requiredBeat": "the designer names what the actor is trying to protect in the role before explaining why the sleeve line works against it",
+      "firstImage": "a row of pearl pins stuck into a velvet pincushion",
+      "mustInclude": ["sleeve chalk", "mirror seam", "opening-night date"],
+      "mustAvoid": ["performance charisma", "flattery scene"]
+    },
+    {
+      "domain": "a forensic accounting interview with a nonprofit treasurer",
+      "audience": "an investigator who needs authority without making the person shut down",
+      "stakes": "whether the treasurer explains the missing transfer instead of lawyer-proofing every sentence",
+      "format": "decision_point",
+      "requiredBeat": "the accountant chooses one precise question, lets the answer finish, and resists filling the silence with accusation",
+      "firstImage": "a highlighted bank transfer on a double-wide spreadsheet printout",
+      "mustInclude": ["receipt pouch", "audit trail", "restricted grant"],
+      "mustAvoid": ["interrogation drama", "negotiation tactics"]
+    },
+    {
+      "domain": "a botanical garden membership desk where a volunteer converts a complaint into useful conversation",
+      "audience": "a warm helper who needs conversational weight",
+      "stakes": "whether an angry member renews after a closed greenhouse week",
+      "format": "before_after",
+      "requiredBeat": "contrast the cheerful deflection with the second pass where she names the closed greenhouse, hears the anniversary plan, and offers the precise alternate date",
+      "firstImage": "a wilted conservatory notice taped beside a membership scanner",
+      "mustInclude": ["orchid-house schedule", "member card", "rain poncho"],
+      "mustAvoid": ["generic customer service", "plant metaphor"]
+    },
+    {
+      "domain": "a watch repair counter where an apprentice explains a failed repair to a collector",
+      "audience": "a novice expert whose overexplaining weakens power",
+      "stakes": "whether the collector leaves the heirloom for a second attempt",
+      "format": "vignette",
+      "requiredBeat": "he stops narrating the whole mechanism and says the one part he can guarantee, then asks what the watch means to the owner",
+      "firstImage": "a cracked watch crystal under a circular magnifier",
+      "mustInclude": ["mainspring tray", "repair ticket", "grandfather engraving"],
+      "mustAvoid": ["craft-market sales from Chapter 6", "luxury status"]
+    },
+    {
+      "domain": "a public transit lost-and-found window where a clerk handles a frantic musician",
+      "audience": "a frontline reader who must listen under a line of impatient people",
+      "stakes": "whether the musician gives the detail that identifies the missing instrument case",
+      "format": "predict_reveal",
+      "requiredBeat": "the clerk predicts a form will fail, asks for the sticker on the case, and repeats the concert hall name before searching",
+      "firstImage": "a numbered claim tag clipped to a stack of black umbrellas",
+      "mustInclude": ["instrument sticker", "route number", "concert hall"],
+      "mustAvoid": ["airport help scene", "bureaucracy complaint"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose conversational turns that prove presence",
+      "maintain credibility while listening warmly",
+      "analyze when overtalking weakens power",
+      "evaluate whether a response makes the other person feel seen and guided"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "In your next conversation, answer one sentence later than you normally would and use the extra beat to name the concrete thing they just said.",
+  "readingTimeMinutes": 12
+}

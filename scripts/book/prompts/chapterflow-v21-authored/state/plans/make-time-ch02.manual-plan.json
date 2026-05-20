@@ -1,0 +1,182 @@
+{
+  "chapterId": "make-time-ch02",
+  "number": 2,
+  "title": "Highlight",
+  "coreMove": "Select one daily center before urgent, satisfying, or joyful options get crowded out by whatever shouts first.",
+  "sourcePressure": "The source sidecar points to the daily-priority mechanism: choose a Highlight using urgency, satisfaction, and joy, then schedule it as the day's center of gravity.",
+  "chapterSpecificMisunderstanding": "The wrong generic version says choose a top task. The specific move is to decide which kind of value should anchor this day and give that Highlight a real place on the calendar.",
+  "sourceAlignmentTerms": [
+    "Highlight",
+    "urgency",
+    "satisfaction",
+    "joy",
+    "schedule",
+    "center of gravity"
+  ],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "blank to-do list",
+      "calendar full of meetings",
+      "three sticky notes on a desk"
+    ],
+    "counterintuition": [
+      "urgent is not important",
+      "one thing matters most"
+    ],
+    "tryThisNow": [
+      "pick one thing for today",
+      "rank your tasks"
+    ],
+    "examples": [
+      "generic project manager prioritizing tasks",
+      "student choosing homework",
+      "household chore list",
+      "CEO with a packed calendar"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "an avalanche forecaster choosing which field report anchors a storm morning",
+      "audience": "a safety analyst pulled between live radio calls, model updates, and field observations",
+      "stakes": "ski patrol opens the wrong slope if the most meaningful observation gets delayed",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "she marks the ridge-crack photo as today's urgent Highlight, blocks the 9:00 forecast window, and lets minor radio replies wait until the report is drafted",
+      "firstImage": "a frost-specked ridge photo clipped beside a snowpack model printout",
+      "mustInclude": [
+        "ridge-crack photo",
+        "radio call sheet",
+        "forecast window"
+      ],
+      "mustAvoid": [
+        "generic weather desk",
+        "heroic rescue scene"
+      ]
+    },
+    {
+      "domain": "a pastry commissary lead testing a filling before bakery rollout",
+      "audience": "a production lead balancing urgent orders with a satisfying product fix",
+      "stakes": "six stores keep selling a pastry with a runny center if the test is postponed again",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he chooses the filling test for satisfaction rather than the loud packing queue, writes it as the Highlight on the batch board, and schedules one uninterrupted oven cycle",
+      "firstImage": "a tray of split pastries cooling beside a stainless batch board",
+      "mustInclude": [
+        "batch board",
+        "filling test",
+        "packing queue"
+      ],
+      "mustAvoid": [
+        "coffee shop owner",
+        "generic kitchen rush"
+      ]
+    },
+    {
+      "domain": "a documentary subtitler preparing one festival cut for a director review",
+      "audience": "a language specialist whose work mixes urgent caption fixes with careful meaning",
+      "stakes": "a mistranslated idiom changes the tone of a survivor interview",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "before, she clears every easy caption typo first; after, she chooses the survivor interview idiom as the day's satisfaction Highlight and gives it the first quiet hour",
+      "firstImage": "a subtitle timeline paused on a speaker's half-smile",
+      "mustInclude": [
+        "subtitle timeline",
+        "caption typo list",
+        "quiet hour"
+      ],
+      "mustAvoid": [
+        "generic video editing",
+        "film-festival programming from chapter 1"
+      ]
+    },
+    {
+      "domain": "a youth soccer tournament director rebuilding the rain-delay bracket",
+      "audience": "an event operator choosing among urgent complaints, satisfying order, and joyful player experience",
+      "stakes": "families drive across town for matches that no longer exist if the bracket stays wrong",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "after one chaotic Saturday, he identifies the bracket rebuild as the next day's Highlight and schedules it before answering parent complaints",
+      "firstImage": "a damp bracket sheet curling at the corner of a folding table",
+      "mustInclude": [
+        "rain-delay bracket",
+        "parent complaint thread",
+        "field assignment list"
+      ],
+      "mustAvoid": [
+        "classroom sports practice",
+        "generic event planning"
+      ]
+    },
+    {
+      "domain": "a specialty print-house buyer resolving one missing paper-stock order",
+      "audience": "a logistics worker tempted to treat all open requests equally",
+      "stakes": "a museum catalog run stalls if the rare paper stock is buried under easy supply approvals",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "he predicts the easy approvals will feel productive but not change the day, then selects the paper-stock order as the urgent Highlight and moves its mill call to the first block",
+      "firstImage": "a torn paper swatch taped beside a stack of purchase approvals",
+      "mustInclude": [
+        "mill call",
+        "paper swatch",
+        "purchase approvals"
+      ],
+      "mustAvoid": [
+        "generic procurement inbox",
+        "marine repair setting"
+      ]
+    },
+    {
+      "domain": "a botanical garden greenhouse manager planning a rare orchid transfer",
+      "audience": "a caretaker deciding whether joy can legitimately anchor the day",
+      "stakes": "a fragile orchid bloom is missed if routine watering rounds always take first claim",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "she chooses the orchid transfer as a joy Highlight, writes the exact 2:30 window on the greenhouse slate, and moves routine watering around it",
+      "firstImage": "a pale orchid spike tied to a bamboo splint under misted glass",
+      "mustInclude": [
+        "greenhouse slate",
+        "orchid transfer",
+        "watering rounds"
+      ],
+      "mustAvoid": [
+        "generic gardening hobby",
+        "wellness nature metaphor"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose a Highlight based on urgency, satisfaction, or joy in mixed-pressure scenarios",
+      "distinguish a Highlight from a task list item or vague goal",
+      "decide where a Highlight belongs on a real schedule",
+      "evaluate when a joyful Highlight is legitimate rather than indulgent drift"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Scan today's remaining commitments and choose one Highlight by naming its reason: urgent, satisfying, or joyful. Put it into the smallest real calendar space you can still protect.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm -- a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  },
+  "readingTimeMinutes": 12
+}

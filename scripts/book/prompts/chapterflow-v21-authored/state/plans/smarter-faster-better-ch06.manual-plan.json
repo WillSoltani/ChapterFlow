@@ -1,0 +1,204 @@
+{
+  "chapterId": "smarter-faster-better-ch06",
+  "number": 6,
+  "title": "Decision Making",
+  "coreMove": "Make the best current bet while keeping uncertainty visible enough to update when evidence changes.",
+  "sourcePressure": "The chapter connects forecasting the future, poker, and Bayesian psychology to decisions under hidden information, probability, and belief-updating.",
+  "chapterSpecificMisunderstanding": "Treating good decisions as confident predictions or judging decision quality only by outcomes.",
+  "sourceAlignmentTerms": [
+    "forecasting the future",
+    "poker",
+    "Bayesian psychology",
+    "hidden information",
+    "belief-updating",
+    "probabilistic judgment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "forecasting the future",
+      "detail": "the subtitle supports forecasting as disciplined judgment about uncertainty",
+      "useIn": "both",
+      "phrasingHint": "A forecast should read as a living estimate, not a promise made for pride to defend."
+    },
+    {
+      "kind": "artifact",
+      "name": "poker",
+      "detail": "the subtitle supports poker as the hidden-information anchor for decisions under odds",
+      "useIn": "both",
+      "phrasingHint": "Poker earns its place because a good bet can still lose and a lucky result can still hide a bad read."
+    },
+    {
+      "kind": "study",
+      "name": "Bayesian psychology",
+      "detail": "the sidecar allows Bayesian psychology as the source term for updating beliefs when evidence changes",
+      "useIn": "both",
+      "phrasingHint": "Bayesian psychology gives the practical discipline: change the estimate when the evidence changes."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Person at a meeting realizes the real lesson",
+      "The day starts with a dashboard",
+      "A simple choice changes everything"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more faster",
+      "The obvious answer is wrong",
+      "The problem is not effort but something deeper"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three priorities",
+      "Pause before your next task"
+    ],
+    "examples": [
+      "generic office stand-up",
+      "kitchen table planning",
+      "classroom marker demonstration",
+      "commuter train epiphany"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "a fisheries analyst deciding whether to close a coastal zone after uncertain sonar readings",
+      "audience": "a public-sector analyst briefing a minister",
+      "stakes": "closing too early hurts boats; closing too late risks a depleted stock",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sophie states the closure estimate as a range and names the next sonar pass that would move the recommendation",
+      "firstImage": "Gray sonar bands ripple across the fisheries laptop",
+      "mustInclude": [
+        "sonar bands",
+        "closure range",
+        "next pass"
+      ],
+      "mustAvoid": [
+        "environmental sermon"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "a venture debt committee reviewing a late-stage borrower",
+      "audience": "a credit officer facing a persuasive founder and partial financials",
+      "stakes": "one charismatic meeting could obscure a deteriorating cash position",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Matteo separates confidence in the founder from evidence in the receivables, then updates the default probability after the new aging report",
+      "firstImage": "\"She sounded completely in control,\" one partner says",
+      "mustInclude": [
+        "receivables aging report",
+        "default probability",
+        "founder meeting"
+      ],
+      "mustAvoid": [
+        "startup founder stereotype"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "a weather-dependent music festival deciding whether to delay gates",
+      "audience": "an operations lead balancing crowd safety and expensive refunds",
+      "stakes": "a wrong call either strands fans in storms or burns cash unnecessarily",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 1:35 p.m., Kiran writes the storm-delay odds on the whiteboard and marks what radar change would trigger a gate delay",
+      "firstImage": "At 1:35 p.m., a green-yellow storm cell curls toward the festival map",
+      "mustInclude": [
+        "radar cell",
+        "gate-delay odds",
+        "refund clock"
+      ],
+      "mustAvoid": [
+        "generic event planning chaos"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "a criminal defense investigator assessing a new alibi tip",
+      "audience": "an investigator trying not to overtrust a dramatic late witness",
+      "stakes": "a weak update could misdirect the defense team before trial",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Michael one bad tip to begin logging prior probability, source reliability, and what the tip actually changed",
+      "firstImage": "It took Michael one courthouse hallway rumor to learn what a false update costs",
+      "mustInclude": [
+        "alibi tip",
+        "source reliability note",
+        "trial calendar"
+      ],
+      "mustAvoid": [
+        "sensational crime narrative"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "a hospital procurement team choosing whether to switch glove suppliers",
+      "audience": "a procurement lead with mixed defect reports and price pressure",
+      "stakes": "a cheaper contract could produce shortages or waste",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Petra revise the supplier recommendation after new defect data changes the odds, while keeping the earlier estimate visible",
+      "firstImage": "You are holding two unopened glove boxes with different lot numbers",
+      "mustInclude": [
+        "defect reports",
+        "lot numbers",
+        "earlier estimate"
+      ],
+      "mustAvoid": [
+        "medical procurement as pure bureaucracy"
+      ]
+    },
+    {
+      "protagonistName": "Anders",
+      "domain": "a neighborhood poker night used to teach a friend about a bad business bet",
+      "audience": "a small-business owner who keeps judging choices by whether the last one paid off",
+      "stakes": "he may double down on a lucky but weak purchasing decision",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anders lays out a poker hand analogy so the owner grades the purchasing decision by visible odds, not the lucky sell-through",
+      "firstImage": "Was the last order smart, or did it just win the hand?",
+      "mustInclude": [
+        "poker hand",
+        "purchase order",
+        "sell-through sheet"
+      ],
+      "mustAvoid": [
+        "letting the question hook replace the visible action beat"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate decision quality from outcome luck",
+      "revise beliefs without treating revision as weakness",
+      "use probability language in hidden-information situations"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one live decision as a percentage estimate, then name the single piece of evidence that would move you ten points either way.",
+  "readingTimeMinutes": 12
+}

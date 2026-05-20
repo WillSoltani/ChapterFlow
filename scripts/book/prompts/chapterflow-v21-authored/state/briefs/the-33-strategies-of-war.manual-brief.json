@@ -1,0 +1,107 @@
+{
+  "bookId": "the-33-strategies-of-war",
+  "title": "The 33 Strategies of War",
+  "author": "Robert Greene",
+  "thesisParagraph": "Conflict is not an exception to ordinary life; it is one of the recurring conditions under which work, status, resources, and attention are allocated. The book teaches readers to stop treating conflict as either shameful or exciting, and to read it structurally instead: who has opposed interests, what ground is being chosen, which resources are finite, where the decisive point sits, and when the most strategic move is restraint. Its best modern use is not ruthlessness. It is disciplined clarity under pressure, with enough ethical control to know when the strategic frame should be put down.",
+  "coreIdeas": [
+    {
+      "name": "Self-command before conflict",
+      "oneSentence": "A person who cannot govern fear, anger, nostalgia, or comfort will use every external strategy badly.",
+      "mentalMove": "Pause before acting and identify whether the pressure comes from reality, emotion, habit, or avoidable comfort.",
+      "sourceAnchors": [
+        "source-freeze/book-source.txt lines 85-186",
+        "ch01.source",
+        "ch02.source",
+        "ch03.source",
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Structure beats impulse",
+      "oneSentence": "Teams, coalitions, and opponents behave according to incentives, information routes, command structures, and visible costs.",
+      "mentalMove": "Map the structure before judging personalities or reaching for a heroic move.",
+      "sourceAnchors": [
+        "source-freeze/book-source.txt lines 189-263",
+        "ch05.source",
+        "ch06.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Spend force economically",
+      "oneSentence": "Most fights are too expensive for what they return, and the strongest operator preserves force for moments that decide the campaign.",
+      "mentalMove": "Price the fight, choose the ground, and treat withdrawal or deterrence as active moves when they preserve future capacity.",
+      "sourceAnchors": [
+        "source-freeze/book-source.txt lines 266-372",
+        "ch08.source",
+        "ch09.source",
+        "ch10.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Aim at the decisive condition",
+      "oneSentence": "Offense works when speed, initiative, intelligence, and targeting combine against the point that actually carries the opponent's position.",
+      "mentalMove": "Move from loud targets to load-bearing targets, then set timing and terms before the opponent does.",
+      "sourceAnchors": [
+        "source-freeze/book-source.txt lines 374-623",
+        "ch12.source through ch22.source"
+      ]
+    },
+    {
+      "name": "The ethical edge is part of the lesson",
+      "oneSentence": "Indirect and unconventional moves can clarify reality or corrupt it, and the reader must know which side of that line they are on.",
+      "mentalMove": "Ask whether the move preserves informed judgment, real consent, and proportionate pressure before using it.",
+      "sourceAnchors": [
+        "source-freeze/book-source.txt lines 626-790",
+        "ch23.source through ch33.source"
+      ]
+    }
+  ],
+  "targetReader": "A working adult in a company, institution, negotiation, public dispute, or career transition who keeps losing leverage because they read conflict too late, too emotionally, or too politely, and who needs a disciplined way to act without becoming cold or theatrical.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "keep the strategic vocabulary cool and unsentimental",
+      "name the reversal before the reader overuses the move"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no glamorized ruthlessness",
+      "no fake historical examples or invented named studies"
+    ]
+  },
+  "voiceSpecimens": [
+    "The room does not need to get louder for the conflict to become real.",
+    "A person whose promotion depends on your silence is not confused about your interests.",
+    "Retreat is useful only when the time you buy has a job to do.",
+    "Speed is not a virtue if it only delivers the wrong decision sooner.",
+    "A coalition usually cracks first where its members already pay different prices.",
+    "The cleanest pressure still needs an honest exit on the other side.",
+    "Some moves are strategic only until they begin damaging judgment, consent, or trust."
+  ],
+  "voiceAntiSpecimens": [
+    "This overview will explore the importance of strategy in modern life.",
+    "The key insight is to optimize your mindset around conflict for maximum success.",
+    "The framework says we should all become warriors in daily life.",
+    "Try setting a timer and reflecting on where you can be more strategic today.",
+    "War is everywhere, so every interaction should be treated as a battlefield.",
+    "The moral of the story is that confidence and clarity are very important."
+  ],
+  "teachingArc": "The sequence begins with self-command because every later strategy can become reckless if the reader is reactive. It then moves outward into team structure, defensive economy, and offensive initiative before arriving at the morally ambiguous indirect strategies. The later chapters should feel sharper, not more ruthless: the reader gains tools while also gaining stronger judgment about when not to use them.",
+  "forbiddenMoves": [
+    "Do not romanticize war, domination, or intimidation as a lifestyle.",
+    "Do not soften every strategy into generic leadership advice.",
+    "Do not fabricate named anecdotes, studies, or historical scenes absent from the frozen source.",
+    "Do not use the dirty-warfare chapters as permission for deception, coercion, or humiliation.",
+    "Do not turn every personal relationship into a strategic contest."
+  ]
+}

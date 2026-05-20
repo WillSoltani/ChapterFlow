@@ -25,6 +25,7 @@ const CONFIG_DIR = resolve(__dirname, "../../config");
 let _rubric: any = null;
 let _bannedPhrases: any = null;
 let _metaPatterns: any = null;
+let _authorVoiceProfiles: any = null;
 
 export function loadRubric() {
   if (!_rubric) {
@@ -45,6 +46,26 @@ export function loadMetaPatterns() {
     _metaPatterns = JSON.parse(readFileSync(resolve(CONFIG_DIR, "meta-patterns.json"), "utf8"));
   }
   return _metaPatterns;
+}
+
+/** Load all per-book author-voice profiles. Returns `null` if the config
+ *  doesn't exist yet (older v21 deploys). Each profile is keyed by bookId. */
+export function loadAuthorVoiceProfiles(): { profiles: Record<string, any> } | null {
+  if (_authorVoiceProfiles !== null) return _authorVoiceProfiles;
+  try {
+    const raw = readFileSync(resolve(CONFIG_DIR, "author-voice-profiles.json"), "utf8");
+    _authorVoiceProfiles = JSON.parse(raw);
+  } catch {
+    _authorVoiceProfiles = { profiles: {} };
+  }
+  return _authorVoiceProfiles;
+}
+
+/** Resolve the author-voice profile for one book. Returns `undefined` if
+ *  there is no profile for this bookId. */
+export function getAuthorVoiceProfile(bookId: string): any | undefined {
+  const all = loadAuthorVoiceProfiles();
+  return all?.profiles?.[bookId];
 }
 
 // ── Text extraction across MaybeToned fields ────────────────────────────────

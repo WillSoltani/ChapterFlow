@@ -1,0 +1,214 @@
+{
+  "chapterId": "the-12-week-year-ch02",
+  "number": 2,
+  "title": "Redefining the Year",
+  "coreMove": "Replace a distant annual horizon with a 12 week execution horizon that makes tradeoffs visible now.",
+  "sourcePressure": "Annualized thinking weakens urgency because a distant deadline lets focus leak until year-end pressure finally appears.",
+  "chapterSpecificMisunderstanding": "Treating 12 weeks as a motivational trick or arbitrary productivity sprint rather than a pressure-producing execution frame.",
+  "sourceAlignmentTerms": [
+    "annualized thinking",
+    "12 weeks",
+    "year-end",
+    "periodization",
+    "urgency",
+    "focus",
+    "execution horizon"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "annualized thinking",
+      "detail": "The source sidecar names annualized thinking as the trap this chapter attacks.",
+      "useIn": "both",
+      "phrasingHint": "Annualized thinking makes January feel spacious enough to waste and December urgent enough to panic."
+    },
+    {
+      "kind": "person",
+      "name": "Henry Ford",
+      "detail": "The source sidecar lists Henry Ford as a proper noun for this chapter, but gives no detailed anecdote.",
+      "useIn": "deepRead",
+      "phrasingHint": "Use Ford only as a brief named reference if it helps contrast old planning assumptions, without inventing a scene."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch02: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch02: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch02: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch02: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "James",
+      "domain": "regional food distributor annual target reset",
+      "audience": "a practitioner in regional food distributor annual target reset who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James crosses out annual milestones that have no 12 week proof.",
+      "firstImage": "a wall calendar still open to January",
+      "mustInclude": [
+        "a wall calendar still open",
+        "annualized thinking",
+        "year-end"
+      ],
+      "mustAvoid": [
+        "generic redefining the year explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "architecture firm bid calendar",
+      "audience": "a decision-maker in architecture firm bid calendar choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sophie turns a year-long bid goal into three 12 week decisions.",
+      "firstImage": "rolled drawings under a bid deadline stamp",
+      "mustInclude": [
+        "rolled drawings under a bid",
+        "annualized thinking",
+        "year-end"
+      ],
+      "mustAvoid": [
+        "generic redefining the year explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "college athletics recruiting plan",
+      "audience": "a team lead in college athletics recruiting plan who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Daniel moves recruiting pressure from spring to the next twelve Fridays.",
+      "firstImage": "recruit names on a whiteboard grid",
+      "mustInclude": [
+        "recruit names on a whiteboard",
+        "annualized thinking",
+        "year-end"
+      ],
+      "mustAvoid": [
+        "generic redefining the year explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "home renovation contractor pipeline",
+      "audience": "a reflective operator in home renovation contractor pipeline reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Camille prices the next 12 weeks of leads instead of the annual dream.",
+      "firstImage": "paint samples beside unpaid invoices",
+      "mustInclude": [
+        "paint samples beside unpaid invoices",
+        "annualized thinking",
+        "year-end"
+      ],
+      "mustAvoid": [
+        "generic redefining the year explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Anders",
+      "domain": "nonprofit donor campaign",
+      "audience": "a reader in nonprofit donor campaign comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anders rebuilds the donor calendar around one 12 week campaign.",
+      "firstImage": "pledge cards sorted by month",
+      "mustInclude": [
+        "pledge cards sorted by month",
+        "annualized thinking",
+        "year-end"
+      ],
+      "mustAvoid": [
+        "generic redefining the year explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "London hospital training cohort",
+      "audience": "two colleagues in London hospital training cohort forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Layla sets the cohort target by the next twelve ward weeks.",
+      "firstImage": "training badges stacked beside a ward rota",
+      "mustInclude": [
+        "training badges stacked beside a",
+        "annualized thinking",
+        "year-end"
+      ],
+      "mustAvoid": [
+        "generic redefining the year explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot annualized delay in a plan",
+      "choose a shorter execution horizon",
+      "explain year-end urgency without magical deadline claims"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one annual goal and rewrite the next proof of progress as something that must be visible within 12 weeks.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch09",
+  "number": 9,
+  "title": "The First Control Trap",
+  "coreMove": "Interpret resistance to your control move as a signal about value at risk, then test whether the move is still sound.",
+  "sourcePressure": "The first control trap is stakeholder resistance when valuable people try to convert leverage into more control.",
+  "chapterSpecificMisunderstanding": "Assuming all pushback proves you are valuable and therefore right.",
+  "sourceAlignmentTerms": [
+    "first control trap",
+    "stakeholder resistance",
+    "value at risk",
+    "control",
+    "leverage",
+    "pushback",
+    "strategic response"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Resistance alone is not a verdict in your favor.",
+      "detail": "The locked TOC confirms the chapter and the sidecar ties it to resistance after value has been created.",
+      "useIn": "both",
+      "phrasingHint": "The first trap begins when your new control would cost someone else something useful."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch09: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch09: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch09: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch09: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Paula",
+      "domain": "specialty veterinary surgery schedule",
+      "audience": "a practitioner responsible for specialty veterinary surgery schedule",
+      "stakes": "specialty veterinary surgery schedule will either gain a defensible next move or drift into the chapter-specific trap: Assuming all pushback proves you are valuable and therefore right.",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "lists the value someone else could lose if the control move succeeds, using sterile packs beside a whiteboard as the evidence, then revises the ask to protect that value",
+      "firstImage": "sterile packs beside a whiteboard",
+      "mustInclude": [
+        "sterile packs beside",
+        "stakeholder resistance",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Anya",
+      "domain": "enterprise cybersecurity incident response",
+      "audience": "a practitioner responsible for enterprise cybersecurity incident response",
+      "stakes": "enterprise cybersecurity incident response will either gain a defensible next move or drift into the chapter-specific trap: Assuming all pushback proves you are valuable and therefore right.",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "lists the value someone else could lose if the control move succeeds, using amber alert queue on a monitor as the evidence, then revises the ask to protect that value",
+      "firstImage": "amber alert queue on a monitor",
+      "mustInclude": [
+        "amber alert queue",
+        "stakeholder resistance",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Nina",
+      "domain": "film festival programming committee",
+      "audience": "a practitioner responsible for film festival programming committee",
+      "stakes": "film festival programming committee will either gain a defensible next move or drift into the chapter-specific trap: Assuming all pushback proves you are valuable and therefore right.",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "lists the value someone else could lose if the control move succeeds, using film stills on foam board as the evidence, then revises the ask to protect that value",
+      "firstImage": "film stills on foam board",
+      "mustInclude": [
+        "film stills on",
+        "stakeholder resistance",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "manufacturing maintenance planning",
+      "audience": "a practitioner responsible for manufacturing maintenance planning",
+      "stakes": "manufacturing maintenance planning will either gain a defensible next move or drift into the chapter-specific trap: Assuming all pushback proves you are valuable and therefore right.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "lists the value someone else could lose if the control move succeeds, using locked conveyor under yellow tags as the evidence, then revises the ask to protect that value",
+      "firstImage": "locked conveyor under yellow tags",
+      "mustInclude": [
+        "locked conveyor under",
+        "stakeholder resistance",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "university advising caseload design",
+      "audience": "a practitioner responsible for university advising caseload design",
+      "stakes": "university advising caseload design will either gain a defensible next move or drift into the chapter-specific trap: Assuming all pushback proves you are valuable and therefore right.",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "lists the value someone else could lose if the control move succeeds, using retention dashboard on a shared screen as the evidence, then revises the ask to protect that value",
+      "firstImage": "retention dashboard on a shared screen",
+      "mustInclude": [
+        "retention dashboard on",
+        "stakeholder resistance",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "specialty coffee roasting profile ownership",
+      "audience": "a practitioner responsible for specialty coffee roasting profile ownership",
+      "stakes": "specialty coffee roasting profile ownership will either gain a defensible next move or drift into the chapter-specific trap: Assuming all pushback proves you are valuable and therefore right.",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "lists the value someone else could lose if the control move succeeds, using green beans in a sample tray as the evidence, then revises the ask to protect that value",
+      "firstImage": "green beans in a sample tray",
+      "mustInclude": [
+        "green beans in",
+        "stakeholder resistance",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose resistance without vanity",
+      "identify value at risk",
+      "separate leverage from entitlement"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one resisted request, write what value the other side is afraid of losing and what evidence shows your move still works.",
+  "readingTimeMinutes": 12
+}

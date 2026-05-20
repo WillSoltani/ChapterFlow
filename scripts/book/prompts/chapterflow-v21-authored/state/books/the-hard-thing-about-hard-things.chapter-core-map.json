@@ -1,0 +1,105 @@
+{
+  "bookId": "the-hard-thing-about-hard-things",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "the-hard-thing-about-hard-things-ch01",
+      "title": "Introduction",
+      "sourcePressure": "Sets the book's standard: management advice is tested after plans fail, information is partial, morale is fragile, and no option is painless.",
+      "coreMove": "Recognize the struggle as a leadership operating condition and keep responsibility with the decision maker.",
+      "commonMisread": "A generic resilience introduction about staying positive when work is difficult.",
+      "mustUseTerms": ["the struggle", "no painless option", "partial information", "responsibility", "framework limits", "operator judgment"],
+      "mustNotDriftInto": ["startup inspiration", "personal grit", "abstract leadership theory"]
+    },
+    {
+      "number": 2,
+      "chapterId": "the-hard-thing-about-hard-things-ch02",
+      "title": "From Communist to Venture Capitalist",
+      "sourcePressure": "Uses biography as formation evidence for how Horowitz reads power, incentives, systems, technical constraints, and founder responsibility.",
+      "coreMove": "Use origin stories as diagnostic context without letting them become proof.",
+      "commonMisread": "A simple career biography that celebrates contradictions as colorful backstory.",
+      "mustUseTerms": ["formation", "authority", "incentives", "engineering discipline", "startup responsibility", "bias"],
+      "mustNotDriftInto": ["political memoir", "venture capital glamour", "self-made founder mythology"]
+    },
+    {
+      "number": 3,
+      "chapterId": "the-hard-thing-about-hard-things-ch03",
+      "title": "I Will Survive",
+      "sourcePressure": "Follows Loudcloud-style collapse pressure where survival replaces growth optics and the leader must buy runway, communicate truth, execute, and reassess.",
+      "coreMove": "Reset success to disciplined continuation when the market invalidates the old plan.",
+      "commonMisread": "A perseverance lesson about never giving up.",
+      "mustUseTerms": ["survival", "runway", "financing", "cash", "rumor", "reassess", "constrained call"],
+      "mustNotDriftInto": ["optimism coaching", "heroic turnaround", "fundraising tips"]
+    },
+    {
+      "number": 4,
+      "chapterId": "the-hard-thing-about-hard-things-ch04",
+      "title": "This Time with Feeling",
+      "sourcePressure": "Shows that a second hard cycle arrives before recovery is complete, so leaders need decision hygiene under recurring strain.",
+      "coreMove": "Turn repeated emotional load into explicit decision hygiene before fatigue distorts the call.",
+      "commonMisread": "A chapter about being more emotionally expressive or more stoic.",
+      "mustUseTerms": ["recurring strain", "decision hygiene", "tradeoff", "ownership", "review signal", "numbness"],
+      "mustNotDriftInto": ["emotional intelligence generalities", "self-care", "crisis recap"]
+    },
+    {
+      "number": 5,
+      "chapterId": "the-hard-thing-about-hard-things-ch05",
+      "title": "When Things Fall Apart",
+      "sourcePressure": "Moves from private CEO burden to direct crisis action: tell the truth, make painful people decisions, avoid rescue fantasies, and reduce total harm from delay.",
+      "coreMove": "Convert private pressure into clear facts, clean people calls, and controlled execution.",
+      "commonMisread": "A toughness chapter about pushing through chaos.",
+      "mustUseTerms": ["candor", "layoffs", "executive misfit", "rumor", "dignity", "delay", "rescue fantasy"],
+      "mustNotDriftInto": ["bluntness as virtue", "generic crisis management", "personal suffering memoir"]
+    },
+    {
+      "number": 6,
+      "chapterId": "the-hard-thing-about-hard-things-ch06",
+      "title": "Take Care of the People, the Products, and the Profits, In That Order",
+      "sourcePressure": "Defines the causal chain from people systems to product reliability to durable profit, with training and accountability as forms of care.",
+      "coreMove": "Trace financial and product weakness back to the people system before treating profit as a separate target.",
+      "commonMisread": "A nice-place-to-work lesson that puts morale above standards.",
+      "mustUseTerms": ["people system", "product reliability", "profit", "training", "management debt", "standards", "accountability"],
+      "mustNotDriftInto": ["employee happiness", "culture perks", "finance-only analysis"]
+    },
+    {
+      "number": 7,
+      "chapterId": "the-hard-thing-about-hard-things-ch07",
+      "title": "Concerning the Going Concern",
+      "sourcePressure": "Scaling exposes founder-led informality as coordination debt; leaders must build mission-linked process, stage-fit executives, and behavior loops.",
+      "coreMove": "Replace inherited informality with operating architecture that clarifies ownership and cadence.",
+      "commonMisread": "A generic scaling chapter about adding more process.",
+      "mustUseTerms": ["going concern", "coordination", "mission-linked process", "ownership", "escalation", "executive fit", "culture loops"],
+      "mustNotDriftInto": ["bureaucracy defense", "org chart tips", "culture slogans"]
+    },
+    {
+      "number": 8,
+      "chapterId": "the-hard-thing-about-hard-things-ch08",
+      "title": "How to Lead Even When You Don't Know Where You Are Going",
+      "sourcePressure": "Ambiguity is normal; leader psychology, accurate boundaries, and a known-unknown-next-move message keep teams functional without fake certainty.",
+      "coreMove": "Give directional clarity while naming uncertainty accurately and assigning the next move.",
+      "commonMisread": "A confidence chapter about sounding calm.",
+      "mustUseTerms": ["ambiguity", "psychological discipline", "known", "unknown", "next move", "fake certainty", "behavioral signal"],
+      "mustNotDriftInto": ["positive thinking", "charismatic confidence", "vision statement writing"]
+    },
+    {
+      "number": 9,
+      "chapterId": "the-hard-thing-about-hard-things-ch09",
+      "title": "First Rule of Entrepreneurship: There Are No Rules",
+      "sourcePressure": "Rejects universal formulas while preserving principles; acquisition pressure and changing facts require live judgment about timing, leverage, trust, and consequence.",
+      "coreMove": "Keep judgment alive by testing whether a rule fits the present facts before applying it.",
+      "commonMisread": "A permission slip to ignore standards or improvise everything.",
+      "mustUseTerms": ["no rules", "principles", "judgment", "context", "leverage", "timing", "tradeoff"],
+      "mustNotDriftInto": ["anti-process rant", "rule-breaking glamor", "entrepreneurial randomness"]
+    },
+    {
+      "number": 10,
+      "chapterId": "the-hard-thing-about-hard-things-ch10",
+      "title": "The End of the Beginning",
+      "sourcePressure": "Separates the outcome of a sale or transition from the interpretation of the hard years, asking which principles travel and which tactics should stop.",
+      "coreMove": "Audit a successful transition so the hard years become durable judgment rather than a clean victory story.",
+      "commonMisread": "A celebratory ending about winning after struggle.",
+      "mustUseTerms": ["closure", "transition", "outcome", "interpretation", "durable principle", "temporary tactic", "identity shift"],
+      "mustNotDriftInto": ["victory lap", "simple lessons learned", "nostalgia"]
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch08",
+  "number": 8,
+  "title": "Soften People's Resistance by Confirming Their Self-Opinion: The Law of Defensiveness",
+  "coreMove": "Lower ego threat by affirming the person's chosen self-image before introducing the change they would otherwise defend against.",
+  "sourcePressure": "This law turns persuasion into ego management: direct identity threat produces resistance, so influence starts by confirming self-opinion before asking for movement.",
+  "chapterSpecificMisunderstanding": "Treating this as flattery or soft wording instead of removing the identity threat that blocks truth.",
+  "sourceAlignmentTerms": [
+    "defensiveness",
+    "self-opinion",
+    "resistance",
+    "influence game",
+    "face-saving",
+    "ego threat"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Soften People's Resistance by Confirming Their Self-Opinion: The Law of Defensiveness",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a fire marshal correcting a beloved diner owner about blocked exits",
+      "audience": "a regulator who needs compliance without triggering pride",
+      "stakes": "whether a safety fix happens before inspection fines",
+      "format": "dialogue",
+      "requiredBeat": "the marshal starts by naming the owner's care for regulars, then points to the blocked exit as the one thing betraying that care",
+      "firstImage": "a red exit sign half-hidden behind stacked syrup boxes",
+      "mustInclude": [
+        "exit sign",
+        "syrup boxes",
+        "inspection clipboard"
+      ],
+      "mustAvoid": [
+        "generic workplace feedback"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a podcast producer telling a famous host to stop interrupting guests",
+      "audience": "a producer managing a talent's identity as generous and sharp",
+      "stakes": "whether interviews keep losing the best answers",
+      "format": "decision_point",
+      "requiredBeat": "she plays the host a clip where his curiosity is visible, then shows the interruption that prevents the guest from rewarding that curiosity",
+      "firstImage": "a waveform on an audio screen with one spike circled",
+      "mustInclude": [
+        "audio waveform",
+        "guest transcript",
+        "episode rundown"
+      ],
+      "mustAvoid": [
+        "generic coaching call"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a synagogue committee asking a longtime treasurer to adopt new controls",
+      "audience": "a committee chair avoiding an insult to trustworthiness",
+      "stakes": "whether financial safeguards pass or stall in wounded pride",
+      "format": "before_after",
+      "requiredBeat": "the chair frames the controls as a way to protect the treasurer's reputation after years of service, not as suspicion",
+      "firstImage": "a locked cashbox beside a typed donation ledger",
+      "mustInclude": [
+        "donation ledger",
+        "cashbox",
+        "dual-signature form"
+      ],
+      "mustAvoid": [
+        "generic committee conflict"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a wildlife rehab trainer correcting a volunteer who handles birds too confidently",
+      "audience": "a trainer turning confidence toward care",
+      "stakes": "whether an injured hawk is stressed by ego-driven handling",
+      "format": "vignette",
+      "requiredBeat": "the trainer praises the volunteer's steadiness, then says true steadiness means moving slower than confidence wants",
+      "firstImage": "a leather falconry glove resting beside a carrier crate",
+      "mustInclude": [
+        "falconry glove",
+        "carrier crate",
+        "handling protocol"
+      ],
+      "mustAvoid": [
+        "generic animal rescue drama"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a coding bootcamp mentor telling an advanced student to write simpler code",
+      "audience": "a mentor whose correction threatens the student's identity as talented",
+      "stakes": "whether the project becomes maintainable",
+      "format": "predict_reveal",
+      "requiredBeat": "the mentor predicts the student will resist simplicity, then frames simple code as the mark of someone ready for teammates",
+      "firstImage": "a pull request page filled with nested functions",
+      "mustInclude": [
+        "pull request",
+        "review comments",
+        "team handoff note"
+      ],
+      "mustAvoid": [
+        "generic classroom critique"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a tenant organizer asking a proud landlord to repair a stairwell",
+      "audience": "an organizer trying to avoid a public shaming spiral",
+      "stakes": "whether repairs happen without hardening both sides",
+      "format": "reflection",
+      "requiredBeat": "she opens by naming the landlord's pride in keeping the building family-run, then connects the loose stair tread to that promise",
+      "firstImage": "a brass apartment number plate beside a loose stair tread",
+      "mustInclude": [
+        "stair tread",
+        "repair estimate",
+        "tenant signatures"
+      ],
+      "mustAvoid": [
+        "generic neighbor dispute"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the self-opinion under resistance",
+      "frame correction without humiliating identity",
+      "separate genuine confirmation from empty praise"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before correcting someone, name the identity they are trying to protect in one clean sentence, then make the request fit that identity.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Lyndon B. Johnson",
+      "detail": "the source uses Johnson to show influence built on reading what people need to feel about themselves before asking them to move",
+      "useIn": "both",
+      "phrasingHint": "Johnson's influence starts with the other person's self-opinion, not with the argument he wants to win."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

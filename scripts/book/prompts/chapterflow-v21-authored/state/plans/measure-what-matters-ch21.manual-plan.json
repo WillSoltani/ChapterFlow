@@ -1,0 +1,191 @@
+{
+  "chapterId": "measure-what-matters-ch21",
+  "number": 21,
+  "title": "The Goals to Come",
+  "coreMove": "Drag the next future goal into an operating system before admiration can decay into drift.",
+  "sourcePressure": "The closing chapter points toward future goals and asks the reader to carry the operating logic forward with structure, measurement, support, and responsibility.",
+  "chapterSpecificMisunderstanding": "Do not close with empty inspiration or introduce unsupported new anecdotes.",
+  "sourceAlignmentTerms": [
+    "goals to come",
+    "future goals",
+    "responsibility",
+    "forward application",
+    "structure",
+    "measurement",
+    "support"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the goals to come",
+      "detail": "The source closes by pointing toward future goals, future responsibility, and forward application of the operating logic.",
+      "useIn": "both",
+      "phrasingHint": "The next goal deserves the same machinery: a target, proof, ownership, review, and support strong enough to survive ordinary pressure."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with The Goals to Come as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "goals to come is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "motivational finale",
+      "new company cases",
+      "life-purpose sermon"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional school-board literacy goal",
+      "audience": "superintendent and principals",
+      "stakes": "a future goal will fade unless it enters review cadence, measures, and support roles immediately",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Michael turns the goal into a visible operating system before the applause ends",
+      "firstImage": "auditorium chairs scraping after a vote",
+      "mustInclude": [
+        "review calendar",
+        "reading measure",
+        "support roster"
+      ],
+      "mustAvoid": [
+        "motivational finale"
+      ]
+    },
+    {
+      "domain": "small manufacturer electrification plan",
+      "audience": "owners and engineers",
+      "stakes": "the five-year target sounds serious but no machinery carries it yet",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Margaux asks what proof, ownership, and support will exist by next Friday",
+      "firstImage": "machine hum under a mezzanine",
+      "mustInclude": [
+        "capital plan",
+        "energy meter",
+        "owner list"
+      ],
+      "mustAvoid": [
+        "green-tech hype"
+      ]
+    },
+    {
+      "domain": "community hospice volunteer expansion",
+      "audience": "program directors",
+      "stakes": "future capacity depends on training, review, and recognition, not goodwill alone",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ingrid attaches the future volunteer goal to training slots, retention measures, and support check-ins",
+      "firstImage": "quiet kettle in a staff room",
+      "mustInclude": [
+        "training calendar",
+        "retention sheet",
+        "visit log"
+      ],
+      "mustAvoid": [
+        "charity sentimentality"
+      ]
+    },
+    {
+      "domain": "independent newsroom membership future",
+      "audience": "editors and publisher",
+      "stakes": "the next objective can sound noble while still lacking a proof line",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ben asks what weekly member signals will prove the newsroom is moving before it announces the campaign",
+      "firstImage": "ink-smudged page proofs",
+      "mustInclude": [
+        "membership chart",
+        "editorial calendar",
+        "reader survey"
+      ],
+      "mustAvoid": [
+        "newspaper crisis repeat"
+      ]
+    },
+    {
+      "domain": "regional housing retrofit coalition",
+      "audience": "builders, lenders, and city staff",
+      "stakes": "the horizon target crosses institutions and will drift without shared machinery",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Tomás shows the difference between a future pledge and a system of owners, proof, review, and support",
+      "firstImage": "sample window frame on a table",
+      "mustInclude": [
+        "owner matrix",
+        "retrofit checklist",
+        "review cadence"
+      ],
+      "mustAvoid": [
+        "generic planning board"
+      ]
+    },
+    {
+      "domain": "personal professional certification plan",
+      "audience": "working parent",
+      "stakes": "the future goal keeps living as admiration rather than architecture",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Kiran Shah writes the exam date, study evidence, review rhythm, and support request onto one page",
+      "firstImage": "open laptop beside a daycare invoice",
+      "mustInclude": [
+        "exam calendar",
+        "practice score",
+        "support text"
+      ],
+      "mustAvoid": [
+        "timer prompt"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn future goals into operating architecture",
+      "choose measures, cadence, owners, and support",
+      "distinguish forward responsibility from closing uplift"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one future goal and write its owner, proof line, review cadence, and support rhythm on a single page.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

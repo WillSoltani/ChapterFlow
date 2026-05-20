@@ -1,0 +1,107 @@
+{
+  "bookId": "the-power-of-habit",
+  "title": "The Power of Habit",
+  "author": "Charles Duhigg",
+  "thesisParagraph": "The Power of Habit argues that behavior changes when you stop treating repeated action as a vague character trait and start reading it as machinery: cue, routine, reward, and the craving that gives the loop force. The book moves from individual routines to organizations and societies, showing that habit knowledge can diagnose, redesign, exploit, and govern behavior. Its practical claim is not that loops make people helpless. It is that once a loop is visible, responsibility shifts to choosing the pressure point: identify the cue, preserve or redirect the reward, rehearse a better routine, pick habits with system spillover, and use social structure when private intention is too weak.",
+  "coreIdeas": [
+    {
+      "name": "Loop Diagnosis",
+      "oneSentence": "A repeated behavior becomes workable when it is separated into cue, routine, and reward.",
+      "mentalMove": "Stop judging the behavior as one blur and label the trigger, action, and payoff.",
+      "sourceAnchors": ["ch01.source"]
+    },
+    {
+      "name": "Anticipated Reward",
+      "oneSentence": "A cue becomes powerful when it makes the reward feel near before the action is finished.",
+      "mentalMove": "Look for the craving that arrives early and pulls the routine forward.",
+      "sourceAnchors": ["ch02.source"]
+    },
+    {
+      "name": "Substitution Under Pressure",
+      "oneSentence": "Durable change usually keeps the cue and reward while replacing the routine in the middle.",
+      "mentalMove": "Design a substitute action that answers the same demand, then support it so stress does not revive the old path.",
+      "sourceAnchors": ["ch03.source"]
+    },
+    {
+      "name": "Keystone Leverage",
+      "oneSentence": "Some habits matter because changing them forces surrounding routines to change too.",
+      "mentalMove": "Choose a target by tracing its spillover through reporting, trust, identity, and coordination.",
+      "sourceAnchors": ["ch04.source"]
+    },
+    {
+      "name": "Willpower Rehearsal",
+      "oneSentence": "Self-control holds better when the hard moment has already been scripted and practiced.",
+      "mentalMove": "Pre-build the first response to a stressful cue so discipline does not have to improvise.",
+      "sourceAnchors": ["ch05.source"]
+    },
+    {
+      "name": "Crisis Plasticity",
+      "oneSentence": "A crisis can make old institutional routines negotiable, but only design turns the opening into reform.",
+      "mentalMove": "Use the exposed breakdown to install a specific reporting, escalation, or accountability habit before the old pattern returns.",
+      "sourceAnchors": ["ch06.source"]
+    },
+    {
+      "name": "Readable Habit Trails",
+      "oneSentence": "Routines leave external patterns that organizations can use to predict and shape behavior.",
+      "mentalMove": "Ask what a repeated action reveals from the outside and where personalization becomes manipulation.",
+      "sourceAnchors": ["ch07.source"]
+    },
+    {
+      "name": "Social Habit Architecture",
+      "oneSentence": "Movements spread when relationships and repeated group expectations make participation normal.",
+      "mentalMove": "Separate the launch work of strong ties from the scaling work of weak ties and shared routines.",
+      "sourceAnchors": ["ch08.source"]
+    },
+    {
+      "name": "Accountability After Awareness",
+      "oneSentence": "Habit explains part of behavior, but awareness and foreseeability bring responsibility back in.",
+      "mentalMove": "Once a risky loop is knowable, name the duty to contain, redesign, or avoid it.",
+      "sourceAnchors": ["ch09.source"]
+    }
+  ],
+  "targetReader": "A reader who already knows habits matter but keeps drifting between moral blame, vague motivation, and quick hacks. They need a diagnostic language for repeated behavior, practical levers for change, and a sharper sense of when habit knowledge becomes an ethical responsibility.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make the loop visible as a pressure system, not a slogan",
+      "show the cost of weak diagnosis before offering the better move"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic self-improvement coaching language",
+      "no treating willpower as the single answer",
+      "no turning every lesson into cue-routine-reward recitation"
+    ]
+  },
+  "voiceSpecimens": [
+    "The first question is not why did I do that again. It is what told me to start.",
+    "A craving is the reward arriving early, before your hand has even reached for the routine.",
+    "If the old cue still rings and the old reward still matters, an empty promise to stop has no middle.",
+    "Pick the habit that changes the meeting, the report, the handoff, and the way people tell the truth.",
+    "A script written before the customer yells is not fake calm. It is calm with rehearsal behind it.",
+    "Once the pattern is visible, you no longer get to call it mysterious."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter will teach you how to unlock your potential through the science of habits.",
+    "Habits are powerful, and if you master them, you can change your life forever.",
+    "Most people think willpower is enough, but the truth is much more complicated.",
+    "As discussed earlier in the book, the habit loop consists of three key components.",
+    "In today's fast-paced world, habit change is more important than ever."
+  ],
+  "teachingArc": "The teaching arc starts with individual diagnosis, then adds force, substitution, and support. It then shifts from private behavior to systems: choosing high-spillover habits, training willpower before stress, and using crises as openings for routine redesign. The final third shows that habit knowledge is socially and commercially powerful: data can read routines, movements can install shared expectations, and responsibility returns once a harmful loop is visible enough to manage.",
+  "forbiddenMoves": [
+    "Do not flatten the book into generic discipline advice or tell readers to try harder.",
+    "Do not make every chapter a new version of identify cue, routine, reward.",
+    "Do not treat craving, keystone habits, crisis, and social ties as interchangeable motivation labels.",
+    "Do not write Target or marketing examples as omniscient surveillance horror without the chapter's narrower point about partial prediction and familiar placement.",
+    "Do not turn the final chapter into a broad free-will essay; keep it tied to awareness, foreseeability, and redesigned loops.",
+    "Do not use the book's famous cases as decorative name-drops without making their mechanism visible."
+  ]
+}

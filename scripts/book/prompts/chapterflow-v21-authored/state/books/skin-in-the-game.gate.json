@@ -1,0 +1,684 @@
+{
+  "bookId": "skin-in-the-game",
+  "title": "Skin in the Game: Hidden Asymmetries in Daily Life",
+  "author": "Nassim Nicholas Taleb",
+  "promotedAt": "2026-05-18T19:00:58.894Z",
+  "chapterCount": 19,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Wet boots line the campus noticeboard after the canceled ski trip. Camille reads the angry refund emails aloud to the club officers, then places the old sign-up sheet beside the deposit receipts. The…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What is a referral fee worth after a client launch fails? Hiroshi holds a sample paper clipped to a quote sheet from a printer he has never used. The printer promises speed and offers a referral fee.…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"serve it to someone\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Coriander rises from the test spoon before Anders reads the supplier certificate again. The halal-compatible sauce tastes almost the same, and the menu card would need only one quiet line. Two buffet…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Aanya one wall map dotted with school pins to see how a local nut-free rule became a district default. The contract map showed three kitchens merging into one delivery route. The nut-free tow…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see the quiet-hours notice reflected in brushed steel while Ben holds the medical letter and the vote tally. Most tenants do not care much whether quiet starts at nine or ten. One tenant's treatm…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the strict option is\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Who pays when a shortcut becomes an incident report? Yusuf studies the crew schedule glowing on a tablet while dispatch asks him to accept a timing change. The fatigue report is unresolved, and his l…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"institutions prefer people with\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "Julien opens the retaining-wall photo on his tablet and sees the crack running through the concrete like a dark thread. His supervisor wants the inspection closed before the contractor meeting. Then …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Let's not make this a formal defect,\" the supervisor says while Julien enlarges the cracked retaining-wall photo. The contractor roster is open beside the witness log, and his brother's name is thre…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You can feel the cotton gloves tug at Michael's fingers as the brass label catches the gallery light. The provenance file points one way, the donor pledge another. Two assistants depend on next year'…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[0]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "Map transferred downside before judging the choice. The issue is not only the speaker's cost; it is "
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at charred fence posts along a gravel evacuation road while Catarina folds the wildfire map against the hood of her car. The risk band looks moderate from the office. The road has one…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "card[3]",
+            "message": "banned phrase \"the sharper move is\" — Counter payoff template. Talk Like Ted / 48 Laws stubs / others.",
+            "evidence": "A team says one messy field case makes all models worthless. How should field evidence correct the model without becoming anti-model theater? The weak misread is attacking models as such. The sharper…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Flour dust coats the signed lease before Henrik opens the payroll sheet. The franchise fee is due this week, and the lease guarantee reaches the owner's house if the location fails after winter foot …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"when reward and downside\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Frost silvered the steel bridge joint before Thomas opened the inspection dashboard. The score was green, but the hammer log sent him to a seam where the crack photo later showed a hairline split. Af…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You can see rosin dust on the black music stand while Diego writes two drills in his practice notebook. One comes from an old method, one from a trend course. The metronome does not care about pedigr…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a bridge dashboard misses a crack that an old hammer-sounding routine catches, what should the engineer infer?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Suppose a manager says, \"If something survived a long time, it must be true.\" What is the best correction?"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[4].whatToDo",
+            "message": "whatToDo shares 71% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Run the old triage question and the app prompt side by side for a week, then keep whichever catches dangerous cases in t"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"keeps being used has\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "\"His CV looks better in the packet,\" the associate says while transcript pages sit under a brass lamp. Anke compares the expert CV, the headshot, and the jury note, then opens three depositions. The …"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Vincent leaves the glossy prospectus on the car seat after the school tour. The parent reception was impressive, and several peers have already signed. His daughter says the shadow day felt lonely an…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Mud flakes below a linen bench while Sofia compares the design board with the boot tray by the side door. The photo mockup is elegant, but every rainy afternoon sends shoes, bags, and dog towels into…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Suppose a buyer says, \"I want this because people like us have it.\" What is the strongest analysis?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"taste it does not\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "When words are cheap, trust the paid action: the test passed, the bus ridden, th"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Diesel smell clings to the winter bus shelter while Niklas checks the route schedule against the arrival log. The candidate's transit speech sounds committed, but the 6:40 bus is late again and the e…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A company says safety comes first but ships while a required safety test is failing. What evidence should matter most?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A candidate praises transit but has never ridden the unreliable morning route. What action best tests commitment?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit leader praises transparency while delaying a public expense ledger. What should a board member request?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a parent tells a teenager to read while scrolling every evening, which behavior makes the claim credible?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the next pickup time\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"the stronger move is\" — Counter payoff template. 48 Laws stubs + others.",
+            "evidence": "\"The selloff is already spreading,\" the client says while Lars holds a market note beside a return chart. Every fact in the note is true: one sector fell, one famous investor sold, one index dropped …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A viral hallway clip shows a shove, but the minutes before and after are missing. What should the principal do first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "At the alert rewrite, a reader says, \"The fact is true, so the story must be fair.\" What is the strongest response?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Devon one public hearing to see the zoning notices taped to the library wall as a ledger. The support statement praised affordable housing; the site objections removed the only building on th…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see receipts spread beside a borrowed paperback while Pablo reads the proposed group rule for snacks. The rule sounds ethical, but one member's grocery receipts show it would double the cost of h…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A brand launches an ethics campaign while suppliers absorb unpaid overtime. What is the first test of the claim?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A restaurant promotes local-food values while throwing away edible surplus. Which action best tests seriousness?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a company reports lower emissions after outsourcing the dirtiest route to contractors, what should an auditor do?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Suppose a leader receives praise for a moral stance while another group pays the full cost, which concept best fits?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"will be paid by\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Find one agreement you rely on. Add the missing trigger, owner, consequence, or "
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"I'm sorry it got this far,\" the neighbor says while the leaning fence throws a crooked shadow across both yards. Jonas holds the apology note, but the broken posts, receipt folder, payment split, an…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Nora three complaints to read the dust footprints across the lobby mat as a failed agreement. The renovation notice promised respect, but contractors entered early, residents missed calls, an…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Interpret lived traditions through practice, risk, repetition, and function befo"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Cotton gloves hover over a carved ritual object while Antoine compares the label draft with a blank practitioner note. The label explains symbol and date, but not when the object is handled or who ma…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Folding chairs stood aligned before a small lectern before Patrick Bell opened his field notebook. His quotation note contained an accurate phrase, but the service order placed it after singing and b…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You hear soft footsteps at the edge of a quiet room while Rafael Ruiz compares survey text with the feature mockup. The mockup satisfies the literal request for space, but it says little about enteri…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"what the practice does\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Refund envelopes line the desk beside Julia Nilsen's laptop while the cash-flow sheet blinks red. The customer promise is ready for the next update, but harmed users are waiting with support tickets …"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[0].whatToDo",
+            "message": "whatToDo shares 91% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Move the captaincy vote until the volunteer shift is served, then let the attendance sheet sit beside any speech about c"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"says elder care matters\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "\"Inclusion is central to our mission,\" the head says while George Weber holds a ramp estimate clipped to the mission poster. The ramp is expensive this month. The budget line for it is empty. George …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A school says inclusion matters but has no line item for a needed ramp. What question tests the statement?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A charity leader prays publicly but resists audit transparency. What evidence should a donor representative request?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You see folding tables stacked after a festival meal while Teresa Silva studies the festival ledger, mutual-aid list, and cleanup rota. The rule costs extra food and time, and it looks inefficient to…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Wind-packed snow cracks under the probe while Simon Martin checks the snowpack test and the turnaround time. The summit bonus is large, and clients are still smiling with cameras clipped to their pac…"
+          }
+        ],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 59
+  },
+  "bookGate": {
+    "bookId": "skin-in-the-game",
+    "chapterCount": 19,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        63,
+        60,
+        48
+      ],
+      "answerPositionPctMax": 0.3684210526315789,
+      "totalQuizQuestions": 171,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "skin-in-the-game",
+        "chapterCount": 19,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

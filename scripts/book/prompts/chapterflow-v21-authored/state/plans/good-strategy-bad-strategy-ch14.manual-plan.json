@@ -1,0 +1,196 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch14",
+  "number": 14,
+  "title": "Inertia and Entropy",
+  "coreMove": "Treat resistance and drift as structural facts to diagnose and counter, not moral failures to scold.",
+  "sourcePressure": "Organizations resist change and decay for structural reasons; inertia is built-in drag and entropy is loss of coherence over time. Frozen source has no chapter-specific named figure, study, place, or event beyond the visible title/support notes; use conceptual source terms only and do not invent anchors.",
+  "chapterSpecificMisunderstanding": "Inertia and entropy mean people do not care enough.",
+  "sourceAlignmentTerms": [
+    "inertia",
+    "entropy",
+    "structural resistance",
+    "drag",
+    "decay",
+    "drift",
+    "coherence loss",
+    "inherited path"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of Inertia and Entropy",
+      "The plan looked impressive because... repeated hook shell",
+      "any hook that starts with Strategy is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter"
+    ],
+    "tryThisNow": [
+      "Write down your top three goals",
+      "Set a timer and reflect",
+      "Ask yourself what matters most"
+    ],
+    "examples": [
+      "conference room deck review",
+      "whiteboard prioritization session",
+      "coffee shop founder scene",
+      "generic classroom group project"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nina",
+      "domain": "legacy insurer facing policy-system drag",
+      "audience": "a reader facing legacy insurer facing policy-system drag",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Nina moves one concrete constraint to the center of the table and crosses out every action that does not address it using policy admin screen so the lesson happens as a visible action.",
+      "firstImage": "The policy admin screen sits where the laptop was supposed to go",
+      "mustInclude": [
+        "policy admin screen",
+        "call-center script",
+        "conversion memo"
+      ],
+      "mustAvoid": [
+        "generic policy-system drag advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "regional hospital watching service quality drift",
+      "audience": "a reader facing regional hospital watching service quality drift",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Antoine asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using incident board so the lesson happens as a visible action.",
+      "firstImage": "\"Show me which part this fixes,\" Antoine says",
+      "mustInclude": [
+        "incident board",
+        "handoff log",
+        "patient comments"
+      ],
+      "mustAvoid": [
+        "generic quality drift advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "university department stuck in inherited course rules",
+      "audience": "a reader facing university department stuck in inherited course rules",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Petra uses the artifact to expose the hidden constraint before anyone proposes another initiative using course catalog so the lesson happens as a visible action.",
+      "firstImage": "The room smells faintly of toner and rain-soaked coats",
+      "mustInclude": [
+        "course catalog",
+        "retirement dates",
+        "room grid"
+      ],
+      "mustAvoid": [
+        "generic course rules advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Janek",
+      "domain": "manufacturing plant losing process discipline over years",
+      "audience": "a reader facing manufacturing plant losing process discipline over years",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Janek turns a vague goal into a visible choice by marking the one place effort will land using calibration sheet so the lesson happens as a visible action.",
+      "firstImage": "You can see the weak spot before anyone names it",
+      "mustInclude": [
+        "calibration sheet",
+        "scrap bin",
+        "shift standard"
+      ],
+      "mustAvoid": [
+        "generic over years advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Leila",
+      "domain": "public broadcaster resisting digital workflow change",
+      "audience": "a reader facing public broadcaster resisting digital workflow change",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Leila tests the proposed move against the object or record that reveals whether it fits the real problem using editing queue so the lesson happens as a visible action.",
+      "firstImage": "It took Leila three weeks to stop trusting the clean version of the plan",
+      "mustInclude": [
+        "editing queue",
+        "broadcast schedule",
+        "platform dashboard"
+      ],
+      "mustAvoid": [
+        "generic workflow change advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "food bank network seeing volunteer scheduling entropy",
+      "audience": "a reader facing food bank network seeing volunteer scheduling entropy",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Matthew stops the meeting and rearranges the sequence of work so the strategic move becomes visible using pickup schedule so the lesson happens as a visible action.",
+      "firstImage": "What changes when the constraint is placed in the open?",
+      "mustInclude": [
+        "pickup schedule",
+        "volunteer texts",
+        "expiry labels"
+      ],
+      "mustAvoid": [
+        "generic scheduling entropy advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish inertia from its generic imitation in a new scenario",
+      "choose the action that performs treat resistance and drift as structural facts to diagnose and counter, not moral failures to scold. rather than merely describing it",
+      "diagnose when lazy employee stories is pulling the scenario off-course"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, write the current decision as one obstacle, one chosen response, and one action that would visibly test inertia in your actual situation.",
+  "readingTimeMinutes": 10,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

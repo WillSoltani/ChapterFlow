@@ -1,0 +1,185 @@
+{
+  "chapterId": "crucial-conversations-ch02",
+  "number": 2,
+  "title": "Mastering Crucial Conversations: The Power of Dialogue",
+  "coreMove": "Diagnose whether the shared pool is filling or whether missing meaning is already shaping the outcome.",
+  "sourcePressure": "Dialogue works by enlarging the Pool of Shared Meaning; silence shrinks the pool, decisions weaken, and later resistance often comes from meaning that never entered the room.",
+  "chapterSpecificMisunderstanding": "Making dialogue sound like polite turn-taking instead of a decision-quality mechanism.",
+  "sourceAlignmentTerms": [
+    "Pool of Shared Meaning",
+    "dialogue",
+    "withheld meaning",
+    "commitment",
+    "safety",
+    "silence",
+    "shared facts"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard",
+      "remote team silence as the only example shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "remote clinical-trial coordination call where rural site nurses stay silent about a recruitment barrier",
+      "audience": "a trial coordinator responsible for patient enrollment across four clinics",
+      "stakes": "the enrollment plan will fail because the sites withhold what patients are refusing to sign",
+      "format": "postmortem",
+      "requiredBeat": "three weeks after cheerful agreement, the coordinator compares zero enrollments with the call transcript and sees the pool had never included the nurses' real concerns",
+      "firstImage": "A red zero sits in the enrollment dashboard beside three clinic names.",
+      "mustInclude": [
+        "call transcript",
+        "consent form packet",
+        "enrollment dashboard"
+      ],
+      "mustAvoid": [
+        "generic hybrid office meeting"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "community theater board choosing a season without hearing from the box-office volunteer",
+      "audience": "a volunteer treasurer who thinks silence means broad approval",
+      "stakes": "the board picks a play that loyal subscribers have been quietly warning against",
+      "format": "scene",
+      "requiredBeat": "the treasurer notices the box-office volunteer keeps touching a folder of refund notes but never speaks, and asks what is not yet in the pool",
+      "firstImage": "\"Wait,\" someone says, and a folder labeled refunds rests under the box-office volunteer's palm.",
+      "mustInclude": [
+        "refund notes",
+        "season ballot",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "general nonprofit consensus"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "factory maintenance shift handoff after a compressor repair",
+      "audience": "a night-shift mechanic whose warning is missing from the day crew plan",
+      "stakes": "a compressor restart could fail because the quietest person held back the odd vibration report",
+      "format": "dialogue",
+      "requiredBeat": "the supervisor asks who has not put a fact into the pool, and the night mechanic taps the gauge log he had kept closed",
+      "firstImage": "The first signal is sensory before it is social: a pressure gauge logbook lies closed beside a dented thermos.",
+      "mustInclude": [
+        "gauge logbook",
+        "compressor tag",
+        "handoff clipboard"
+      ],
+      "mustAvoid": [
+        "generic safety meeting"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "food-truck permit hearing where neighborhood objections are polite but incomplete",
+      "audience": "a city clerk trying to surface the actual concern before a vote",
+      "stakes": "a permit decision may look fair while ignoring a loading-zone conflict everyone knows about",
+      "format": "decision_point",
+      "requiredBeat": "the clerk hears repeated praise for entrepreneurship, notices nobody naming the blocked alley, and asks for the concern not yet said aloud",
+      "firstImage": "You notice a laminated street map curls at the corner on a municipal table before anyone names the problem.",
+      "mustInclude": [
+        "street map",
+        "loading-zone photo",
+        "permit stamp"
+      ],
+      "mustAvoid": [
+        "generic town-hall complaint"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "museum exhibit label review with an outside historian on mute",
+      "audience": "a curator leading a sensitive historical exhibit review",
+      "stakes": "a label could publish with a serious omission because the invited historian feels ornamental",
+      "format": "reflection",
+      "requiredBeat": "the curator pauses when the historian unmutes twice and mutes again, then explicitly invites the missing source note into the shared meaning pool",
+      "firstImage": "Only later does the miss become obvious: a sticky note reading source? clings to the glass of a display case.",
+      "mustInclude": [
+        "display-case mockup",
+        "source note",
+        "muted video tile"
+      ],
+      "mustAvoid": [
+        "generic DEI meeting"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "software incident review where customer support has the clearest pattern but lowest status",
+      "audience": "an incident lead trying to reconstruct why a billing outage lasted eight hours",
+      "stakes": "the fix targets the wrong service if support's ticket pattern stays outside the room",
+      "format": "predict_reveal",
+      "requiredBeat": "before choosing a root cause, the lead asks support to pour in every complaint pattern, then predicts how the first answer changes when that data enters",
+      "firstImage": "What changes when a support queue counter climbs past 300 on a wall monitor?",
+      "mustInclude": [
+        "ticket tags",
+        "incident timeline",
+        "refund spreadsheet"
+      ],
+      "mustAvoid": [
+        "generic agile retrospective"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect agreement that comes from withheld meaning",
+      "ask for missing facts, stories, feelings, and opinions by name",
+      "connect pool size to commitment after the meeting",
+      "notice when safety loss has made silence look like consent"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next group decision, write one sentence: The pool is missing _____. Ask one person who has been quiet to add that specific kind of meaning before the decision closes.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

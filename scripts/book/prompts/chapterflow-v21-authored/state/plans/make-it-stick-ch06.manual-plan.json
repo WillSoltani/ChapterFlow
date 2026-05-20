@@ -1,0 +1,199 @@
+{
+  "chapterId": "make-it-stick-ch06",
+  "number": 6,
+  "title": "Get Beyond Learning Styles",
+  "coreMove": "Choose representations and practice demands from the material, prior knowledge, and task, not from a learner’s preferred style label.",
+  "sourcePressure": "The chapter rejects matching instruction to preferred learning styles while preserving real learner differences: prior knowledge, language fluency, structure building, and active processing matter.",
+  "chapterSpecificMisunderstanding": "The writer must avoid one-size-fits-all teaching; the chapter replaces style labels with evidence about content fit and learner preparation.",
+  "sourceAlignmentTerms": [
+    "learning styles",
+    "prior knowledge",
+    "structure building",
+    "successful intelligence",
+    "representation fit",
+    "rule detection",
+    "active processing",
+    "task demands"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Robert Sternberg",
+      "detail": "Psychologist whose examples include Brazilian orphans doing street-business math and horse-track handicappers building complex betting models while testing average on standard IQ measures.",
+      "useIn": "both",
+      "phrasingHint": "Robert Sternberg’s street sellers and handicappers make the label less useful than the work a mind is being asked to do."
+    },
+    {
+      "kind": "person",
+      "name": "Bruce Hendry",
+      "detail": "The chapter uses Hendry’s early lesson about scarce fireworks and later boxcar reasoning as an example of building richer mental models from prior knowledge.",
+      "useIn": "deepRead",
+      "phrasingHint": "Bruce Hendry did not need a visual label; he needed a supply-and-demand structure he could carry from fireworks to boxcars."
+    },
+    {
+      "kind": "study",
+      "name": "learning-styles empirical reviews",
+      "detail": "The source notes state that matching instruction to a preferred style has not been confirmed by empirical research.",
+      "useIn": "fullRead",
+      "phrasingHint": "A preference can tell you what feels comfortable; it cannot by itself tell you what will be remembered or transferred."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open by saying learning is harder than it looks",
+      "Do not use a generic desk-and-notes image",
+      "Do not start with a broad claim about students today"
+    ],
+    "counterintuition": [
+      "Do not use the shell easier is not better",
+      "Do not flatten the chapter into struggle is good",
+      "Do not contrast comfort and growth in generic coaching language"
+    ],
+    "tryThisNow": [
+      "Do not write set a timer and reflect",
+      "Do not ask for a vague study audit",
+      "Do not use a reusable close-your-notes prompt without a chapter-specific action"
+    ],
+    "examples": [
+      "No repeated mug, marker, dosing cup, bike helmet, radiator, bus depot, classroom, or narrow-kitchen shells",
+      "No six examples that all start with a timestamp and a named protagonist",
+      "No generic student rereads notes scene unless the visible beat changes the method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Emily, a biology lecturer redesigning osmosis instruction",
+      "audience": "teachers tempted to sort students into visual or verbal groups",
+      "stakes": "students must predict membrane behavior on a novel lab question",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "she chooses a diagram, a physical membrane demo, and a retrieval prompt because osmosis requires movement and pressure differences, not because students voted for visuals",
+      "firstImage": "Two beakers sit on a lab bench with a sagging membrane between them.",
+      "mustInclude": [
+        "beakers",
+        "semipermeable membrane",
+        "prediction card"
+      ],
+      "mustAvoid": [
+        "learning-style survey scene"
+      ]
+    },
+    {
+      "domain": "David, a safety trainer teaching lockout-tagout",
+      "audience": "industrial trainers with mixed prior knowledge",
+      "stakes": "a mislabeled energy source can injure someone",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he checks what trainees already know, then pairs a real disconnect box with a recall step instead of offering three style versions",
+      "firstImage": "A red lock hangs from the disconnect switch.",
+      "mustInclude": [
+        "disconnect box",
+        "lock tag",
+        "prior-knowledge checklist"
+      ],
+      "mustAvoid": [
+        "generic compliance slideshow"
+      ]
+    },
+    {
+      "domain": "Chloé, a piano teacher explaining polyrhythm",
+      "audience": "arts instructors deciding when sound, notation, and movement each help",
+      "stakes": "the student can clap it but cannot transfer it to the keyboard",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she asks the student to tap, count, and notate the same rhythm because the material needs multiple representations tied to retrieval",
+      "firstImage": "\"Show me where the three lands against the two,\" Chloé says.",
+      "mustInclude": [
+        "piano bench",
+        "rhythm grid",
+        "metronome pulse"
+      ],
+      "mustAvoid": [
+        "all learners need music differently"
+      ]
+    },
+    {
+      "domain": "Mikkel, a data-science mentor teaching model overfitting",
+      "audience": "technical mentors whose learners prefer videos but need diagnosis skill",
+      "stakes": "the junior analyst must detect overfitting in a new dataset",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "he has the learner predict model behavior on fresh data before showing the graph, making the task demand drive the representation",
+      "firstImage": "Which curve lies when the training score looks perfect?",
+      "mustInclude": [
+        "train-test graph",
+        "fresh dataset",
+        "prediction field"
+      ],
+      "mustAvoid": [
+        "video-vs-text debate"
+      ]
+    },
+    {
+      "domain": "Isabel, a literacy coach supporting multilingual readers",
+      "audience": "educators balancing learner differences without style mythology",
+      "stakes": "students need vocabulary, background knowledge, and retrieval practice before the text will open up",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show the shift from style grouping to a prep routine that builds background knowledge, key terms, and oral retrieval",
+      "firstImage": "It took Isabel three reading groups to stop asking who was visual.",
+      "mustInclude": [
+        "word cards",
+        "map of setting",
+        "oral retell sheet"
+      ],
+      "mustAvoid": [
+        "one-size-fits-all correction"
+      ]
+    },
+    {
+      "domain": "Akira, a climbing instructor teaching route reading",
+      "audience": "coaches whose students prefer watching demonstrations",
+      "stakes": "the climber must choose holds under changed conditions",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he uses a route diagram only after the climber predicts the sequence from the wall, tying representation to discrimination",
+      "firstImage": "At 8:05 p.m., Akira points to the blank wall before the route card.",
+      "mustInclude": [
+        "route card",
+        "colored holds",
+        "chalk line"
+      ],
+      "mustAvoid": [
+        "preference as proof"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "replace style matching with representation fit",
+      "include learner differences through prior knowledge and task demands",
+      "test whether a representation improves transfer rather than comfort"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one lesson you are planning and write: what the material demands, what the learner already knows, and what retrieval check will prove it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

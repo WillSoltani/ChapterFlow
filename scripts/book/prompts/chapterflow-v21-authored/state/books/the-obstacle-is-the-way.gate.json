@@ -1,0 +1,1338 @@
+{
+  "bookId": "the-obstacle-is-the-way",
+  "title": "The Obstacle Is the Way",
+  "author": "Ryan Holiday",
+  "promotedAt": "2026-05-18T19:10:22.709Z",
+  "chapterCount": 28,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "The university library desk is quiet except for the line of students breathing through their noses at 9:17 on Monday morning. The catalog outage has locked the reserve list, and Camille is standing b…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Aanya until noon to notice that the empty launch table was not the whole story. At 8:45 a.m., a numbered delivery ticket curled on the counter and the supplier email said the stock would not …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Before the next pressured reply, place both feet flat, name the bodily surge, an"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are close enough to Mathieu in Toronto clinic reception to see the appointment grid collapse into red blocks. A weather alert explains late arrivals, a supply box of intake forms is nearly empty,…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Kiran until later to see the hinge in the software incident room. The unread alert feed had looked like a verdict, the practice log showed the outage path, and the public result was a failed …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"steady your\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"toward adrenaline as evidence\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"choose the next sentence\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "For one disputed situation, circle only measured facts, underline guesses, and d"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which would you trust first: a furious petition or a traffic counter? Mikkel has both, plus a half-erased school-zone plan on the whiteboard and a locked cabinet with last year's counts. Neighbors sa…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A market analyst sees a rumor drive a stock lower before the open. Which first action best protects objectivity?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "If a museum form appears missing hours before a courier arrives, which move best fits this skill?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A counselor is told a family does not care because a student missed six first periods. Which action is most objective?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "You hear backstage gossip that an actor ignored every note. What should you analyze before changing rehearsal plans?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which plan is weakest when a team wants to practice objectivity under pressure?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Manager says objectivity means being detached from people. Which correction is most accurate?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Warehouse light buzzes over the sealed supply box while a corner crease cuts across Megan's launch sheet. The weather alert has stopped the truck, and her call list is marked only through the first t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Layla until the numbered ticket curled on the counter to notice what the rejection had actually said. The agency door was locked for lunch, the backup route to the legal clinic closed in two …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Team says, \"We just need to reframe every setback as an opportunity.\" What correction keeps the practice reality-based?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Adaeze one paragraph to realize she had left the story for a lawsuit that did not yet exist. A weather alert flashed on mute, a supply box of archive notebooks sat open, and the source call l…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Adaeze one paragraph to realize she had left the story for a lawsuit that did not yet exist. A weather alert flashed on mute, a supply box of archive notebooks sat open, and the source call l…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Manager says living in the present means refusing to think about future risks. Which correction is most accurate?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Name the default method you keep repeating. Change one variable, route, order, o"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "The repair shop counter is empty, but the answering machine is full of late-pickup messages. Paula stands under a wall clock with two keys in her hand. The spreadsheet row says most complaints arrive…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Receipt paper curls beside Laura's register while the same return complaint forms by the first counter. A marked-up form shows the scan rule, and the queue is visible from the door. The rule cannot c…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The repair counter is dark except for the red voicemail light above three tagged devices. A spreadsheet row shows late-pickup complaints peaking after 5:40, and a timestamped note says a customer wai…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You sit with Julien after another polite exit interview, with empty chairs around the table and a supply box of unused forms near the wall. A weather alert has managers leaving early, and the call li…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Lin six weeks to see that the returned exercise pages were hiding the real problem. The public result was a clean grammar score. The private correction in the practice log said she froze when…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What if another meeting is the stale pattern? Frida stands by a whiteboard corner where the agenda is half erased. The printed schedule leaves one fixed deadline before the council hearing, and a qui…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Steam beads on the metal cart lid as security locks the terminal door and points passengers toward the backup route. Anna has a two-minute window before the first crowd reaches the detour. Her choice…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Steam beads on the metal cart lid as security locks the terminal door and points passengers toward the backup route. Anna has a two-minute window before the first crowd reaches the detour. Her choice…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"The projector is dead,\" Chris says as rain dots the paper repair sign taped to the media cart. A spreadsheet row shows six slides planned, and a timestamped note from IT says no repair before noon. …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You stand beside Luca while chalk dust from the exercise board marks his hand and the waiting room grows restless. The visible problem is a forty-minute delay. The private correction in his practice …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Akira until the fifth dry morning to see what the numbered harvest tickets were showing. The printed delivery schedule has one fixed deadline, and a restaurant buyer waits beside the loading …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What can a printer delay give back? Jonas stands near the cold loading-bay chain with a marked-up proof form in his hand while a queue of sales reps asks for the ship date. The printer rule cannot ch…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Team says every setback has a purpose, so they do not need to name a specific use. What is wrong with that response?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "The law library is almost empty when Margaux opens the envelope with her exam grade. Her phone lies face-down beside the stamped appeal instructions. The posted mark hurts. Her private correction is …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Paper clips skitter across Sophie's emergency desk as a timestamped flood note prints beside the radio. A spreadsheet row lists three possible shelters, and the disputed fact is whether the north roa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"No final blocking yet,\" the assistant director says while wind rattles the loading door. The storm alert glows in the lobby, the supply box of tape is open, and the crew call list is half checked. S…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The library carrels are empty except for a stamped appeal envelope and Margaux's marked exam. Her grade is posted. Her practice log gives the correction: she knew rules but started arguments late. \"S…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You stand beside Tomás after the meeting chairs are stacked, with a printed delivery schedule on the folding table. One fixed deadline controls the east route, and a volunteer waits with crate labels…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Hadiya one week to notice that waiting had become her entire job. A marked-up consent form sat beside reception, a visible queue formed in the hallway, and the rule was fixed: no interviews b…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What can be written before morale improves? In Maja's postmortem, the office door was locked, the backup route through HR closed in two minutes, and the shift board was still blank. She had waited fo…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Chain links clatter in the wind as Olivia stops at the closed bridge. The weather alert gives her twenty minutes before gusts worsen, the supply box is strapped to her rack, and the client call list …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The labels are a mess,\" Ryan says while rain dots the paper sign outside the accounting room. The file is not ready for a full close. His error log shows repeated delays when he waits for perfect im…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"The labels are a mess,\" Ryan says while rain dots the paper sign outside the accounting room. The file is not ready for a full close. His error log shows repeated delays when he waits for perfect im…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The pharmacy screen glows red over a quiet counter, with a pickup schedule clipped beside the register. Noon is fixed, and a patient waits near the consultation window for a decision. Chloé can keep …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You sit beside Diego with pencil dust on his hand, a marked revision form on the desk, and a queue of proofs due at four. The rule cannot change. He predicts that opening the worst paragraph will exp…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What can move when the case file is incomplete? Anders stands by a cold intake-room chain with a spreadsheet row of missing documents and a timestamped note about next week's filing window. Before th…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"and calls the first\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The whole batch came back,\" Luke says with the printed schedule spread under the fluorescent strip. The deadline is fixed, and a supervisor waits for a decision by the printer. The rejected forms ar…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The shelter roof drips onto the path while a line of club runners waits near the hill. Nina's marked training form shows the race rule she cannot change: the result stands. She predicts another repea…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Min one failed demo to see that the crash log was more useful than the apology draft. Before, the team blamed the art load. After, a spreadsheet row showed every freeze after a menu transitio…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the first attempt failed\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Solder smoke clings to the rough handle as Lars sets the prototype on a farmers market table. The printed schedule gives him one hour before teardown, and a grocer waits for a decision about next wee…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Another no-show,\" Marta says while rain streaks the taped notice on the clinic door. A marked-up reminder form sits by the queue, and the fixed rule says confirmations go out forty-eight hours ahead…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Niklas three quiet shows to see that changing everything made every lesson disappear. A weather alert delayed the crowd, the merch supply box sat unopened, and the venue call list noted late …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What failed, the loop concept or the exercise wording? Petra stands near the loading-bay door after class with the practice log open. The visible outcome is half the class submitting broken functions…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What failed, the loop concept or the exercise wording? Petra stands near the loading-bay door after class with the practice log open. The visible outcome is half the class submitting broken functions…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The florist changed delivery,\" Anya hears while a measuring tape lies stretched across the ceremony floor. The venue office is locked, the service-hall route closes in two minutes, and the couple ne…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Janek one rough-water practice to see how fast the race could swallow the stroke. The visible outcome was sloppy timing, and the private correction in the practice log was catch rhythm after …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Janek one rough-water practice to see how fast the race could swallow the stroke. The visible outcome was sloppy timing, and the private correction in the practice log was catch rhythm after …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What does a chef do when the board is full before the first order? Aleksy stands by the half-erased prep list, with a printed schedule showing doors at six and a sous-chef waiting for a decision. The…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What does a chef do when the board is full before the first order? Aleksy stands by the half-erased prep list, with a printed schedule showing doors at six and a sous-chef waiting for a decision. The…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You stand beside Simon with chalk dust on his hand, a damage log open, and workers already arguing near the dock. The visible outcome is a row of crushed pallets. The private correction is the count:…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You stand beside Simon with chalk dust on his hand, a damage log open, and workers already arguing near the dock. The visible outcome is a row of crushed pallets. The private correction is the count:…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Peter one arraignment to remember that overload was not a defense against thin work. The printed schedule gives one fixed deadline, and a client waits through the glass for a decision. The ca…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What is Julia's job after the performer waves off the safety warning? A cold loading-dock chain hangs by the road case, the marked cable form is clipped to the lid, and the crew queue is visible in t…"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[4].whatToDo",
+            "message": "whatToDo shares 71% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Prepare the one file to hearing standard: charge, address, witness, and questions."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Waiting-room chair legs scrape the tile as Bruno studies the clinic spreadsheet. A timestamped note shows walk-ins leaving after noon, and one disputed fact remains: full redesign or front-door test?…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"It looks less official,\" Eva says while a measuring tape from the display mockup lies across the floor. The weather alert has slowed the shipment, the advance-copy box is empty, and the store call l…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The cafeteria doors stand open beside a phone face-down and a stamped fire-door notice. The visible complaint is crowding. The correction in Miriam's operations log is that three entrances feed one l…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The cafeteria doors stand open beside a phone face-down and a stamped fire-door notice. The visible complaint is crowding. The correction in Miriam's operations log is that three entrances feed one l…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You sit with Noah in a room of empty chairs, a printed launch schedule on the table, and one investor update fixed for Friday. A customer waits for a decision. The grand launch deck protects his imag…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Iris two lines of guests to admit the lobby plan was only beautiful on paper. Returned badges sat in a mail tray, the marked check-in form worked, and the venue rule was fixed: no table insid…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What works when ninety minutes becomes thirty? Seth stands by the half-erased gym plan, with the locker room door locked and a side-court route closing in two minutes. \"Full scrimmage is gone,\" he te…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What works when ninety minutes becomes thirty? Seth stands by the half-erased gym plan, with the locker room door locked and a side-court route closing in two minutes. \"Full scrimmage is gone,\" he te…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Coach loses most of a gym booking. The team needs closeout footwork more than a full scrimmage. What works here?"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[2].whatToDo",
+            "message": "whatToDo shares 75% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Route one grade through one entrance with hallway monitors and measure the lunch flow for two days."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Procurement won't answer,\" June says while rain beads on a taped repair sign at the plant entrance. The practice log shows twelve unanswered emails. The visible silence hides a correction: maintenan…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The cafeteria hallway is quiet before lunch, with a printed schedule on the bulletin board and one fixed deadline before council presents. A kitchen manager waits by the service door. Cole can submit…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You stand beside Elias near the exhibit queue, chalk dust on his hand and a marked sponsorship form clipped to the donor board. The foundation rule cannot change: no major cycle until next year. He c…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What if literary events are the front door people avoid? Zoe stands by a cold loading-dock chain near the repair cafe table. A spreadsheet row shows weak event sales, and Saturday's note records repa…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Find one pressure inside a current obstacle: rule, complaint, deadline, limit, o"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Headsets glow red while Dana reads six complaints with the same phrase. The visible pain is customer anger, and the easy response is to defend the current help article. The correction in the support …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Headsets glow red while Dana reads six complaints with the same phrase. The visible pain is customer anger, and the easy response is to defend the current help article. The correction in the support …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Late again,\" Reese hears as the homework folders reach the table after lunch. The printed schedule leaves one fixed deadline before grades close, and a parent waits by the door. Reese stops adding w…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The tenant hallway is quiet except for a phone face-down beside a stamped inspection notice. Lila has a marked repair form, a visible queue of neighbors, and one rule that cannot change: the landlord…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You stand beside Hana after the room empties, with the warehouse door locked and a backup loading route closing in two minutes. \"The weight limit kills the old pallet,\" someone says, pointing at the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Adrian one game to see that the press was also making its own weakness. A spreadsheet row shows turnovers near the sideline, and the game note links panic dribbles to rushed passes. At practi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What can a noise limit do besides silence the band? Leila studies the half-erased set list, the weather alert canceling the outdoor stage, and the unopened cable box. The venue call list offers no be…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What can a noise limit do besides silence the band? Leila studies the half-erased set list, the weather alert canceling the outdoor stage, and the unopened cable box. The venue call list offers no be…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"what force is already\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 5 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "When heat rises, name the output before you speak: note, call, repair, log, draf"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Siren static hangs in the ambulance bay while Nora studies the delayed-transfer schedule. One deadline has passed, a transfer form sits open on the desk, and the charge nurse needs to know whether th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"They are yelling again,\" Devin hears while the queue board flickers beside a damp notice curling at one corner. The marked form shows the line agents hate, the wait time is climbing, and the rule is…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The study hall is empty except for a red grade notification beside an unopened exam file. The review room is locked, office hours close in two minutes, and Saffi's pencil is leaving dents in the pape…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You stand beside Pemma at the factory board, chalk dust on her hand and a spreadsheet row of near misses open. A shift note links two injuries to the same unguarded corner, while three workers are re…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Hesper one bad service to hear panic as wasted energy. A weather alert delayed produce, the supply box arrived late, and the reservation call list kept growing while the line spoke over itsel…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What can shame build besides silence? Hadrian's postmortem begins with the outage, the user complaints, and the private correction: a missing alert path. The notes feel as heavy as a cold loading-doc…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Pothole water splashes the curb outside town hall while Loretta holds the marked repair form. A queue is visible at the front desk, and the budget rule cannot change before Monday. Two residents are …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Two defenders down,\" Ulises says as the main-field door stays locked and the side-gate route closes in two minutes. The team is staring at the injured players, and one fullback is already drifting i…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Two defenders down,\" Ulises says as the main-field door stays locked and the side-gate route closes in two minutes. The team is staring at the injured players, and one fullback is already drifting i…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The office is still except for a phone face-down beside a stamped investor letter. One spreadsheet row lists competitor claims, and a product note shows the narrow feature Ruth can deliver by Friday.…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You stand with Frank in a room of empty chairs while a weather alert glows on the office screen and parent calls stack up. A box of interview forms sits by the wall, and the hallway camera access exp…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Trent one bad comment thread to see that silence was not neutral. The forecast was ugly, the volunteer chat had three different answers, and the visible concern was weather. The planning log …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Courtroom doors lock behind Pruitt, and the hallway smells of floor polish after another unpredictable hearing. The backup exit will lock shortly, the docket sheet is folded in his hand, and a client…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The office is dim except for a red notification badge beside the unopened investor file. A weather alert scrolls across Diana's phone, the demo supply box sits by the wall, and the customer call list…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The office is dim except for a red notification badge beside the unopened investor file. A weather alert scrolls across Diana's phone, the demo supply box sits by the wall, and the customer call list…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You stand beside Arthur with chalk dust from the staffing board on his hand and the handoff practice log open. The visible outcome is loss, the corridor is full of whispers, and the next family updat…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"for a decision about\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Zipper teeth rasp on Bianca's expedition duffel while she checks the cargo list. A spreadsheet row shows two prior lost bags, and a dated transfer note flags Reykjavík as tight. The team wants to kee…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Zipper teeth rasp on Bianca's expedition duffel while she checks the cargo list. A spreadsheet row shows two prior lost bags, and a dated transfer note flags Reykjavík as tight. The team wants to kee…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"What if the walk-in fails?\" Ronan asks with a measuring tape stretched across the taped prep floor. The weather alert hangs over the summer schedule, the foil-pan box is open, and the venue call lis…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"What if the walk-in fails?\" Ronan asks with a measuring tape stretched across the taped prep floor. The weather alert hangs over the summer schedule, the foil-pan box is open, and the venue call lis…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Ivy one simulator failure to see that surprise was half the danger. Returned flight forms sat in the tray, a queue of trainees waited outside, and the rule was fixed: checklist before improvi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Which rumor reaches the desk first? Graham studies the half-erased clinic plan before opening, with the front door locked and only a short staff overlap at the side entrance. The volunteers are nervo…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A clipboard bent at one corner glows under fluorescent light while Noelle studies the flood line. The weather alert has passed, the supply box is damp, and the call list is waiting. She hovers betwee…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A clipboard bent at one corner glows under fluorescent light while Noelle studies the flood line. The weather alert has passed, the supply box is damp, and the call list is waiting. She hovers betwee…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The deadline closed yesterday,\" Pascal says while the fellowship portal shows a locked submission page. His practice log shows the public result and the private correction: the file is late, the nex…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Keira the walk back from court to see that the hallway gave her a two-minute choice window before the side door locked. The ruling stood, the main exit was closed, and the backup route was th…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Coach finds the field closed by weather before parents arrive. What response shows acceptance without resignation?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Shipment is delayed past a market deadline, and the vendor will not reverse the timing. Which response uses force well?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Frost snaps under Flora's boots as she carries ruined tomatoes toward the teaching shed. A cracked folder of class forms slips open, and the practice log separates the public result from the private …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"String's gone,\" the stagehand says with the floor tape still measuring the mic position. The printed schedule gives Giselle one fixed deadline, and the sound technician waits. Before, the broken str…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The demo room is silent around a marked-up bug form, a visible queue outside, and the fixed limit: the build cannot be shown as finished. In reflection, Rafael sees the path. He opens with the crash,…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You stand with Stefan outside the museum doors, the lock still down and the bus idling. The backup route is the schoolyard, and the driver is waiting for an answer. Thought experiment: he has to choo…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What can a chef make from a supplier shortage? Quentin studies the half-erased whiteboard, the weather alert explaining the delivery gap, the thin herb supply box, and a full dinner call list. Before…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A musician breaks a string before the doors open, and the repair will not happen in time. What response fits the skill?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Museum field trip is canceled while the class is already on the bus. Which action turns the event into material?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Theater rehearsal loses its main prop, but the absence exposes a stronger movement choice. What is the best response?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The repair room behind the station is dim after midnight, long after public thanks ended. The front door is locked, and the service tunnel is the route back to the damaged control box. Thought experi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Patrick two weeks to understand that losing did not erase the receipts. A weather alert taps the campaign office window, the leftover-sign supply box blocks the aisle, and the vendor call lis…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Care-home worker is understaffed near the end of rounds, and no supervisor is watching. Which response fits the skill?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Campaign treasurer's candidate has lost, but receipts and vendors remain unresolved. What does persistence look like?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Tired team says persistence means never stopping, even if the method is failing. Which correction is strongest?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The freezer failed again,\" Esther hears as the taped floor mark shows where the backup unit should sit. The main storage door is locked, and the service hallway is the remaining route before the cou…"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[5].whatToDo",
+            "message": "whatToDo shares 75% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Use the next ten minutes to coach the athlete most likely to quit."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Fluorescent light hums over a bent clipboard after Jules finishes a terminal diagnosis call. The consultation door is locked, the side corridor is still open, and a colleague waits to continue an arg…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"I kept thinking there would be another month,\" Klara says outside the funeral home. Rain darkens the paper sign, a spreadsheet row names the customer she has avoided, and a timed note records the di…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What story deserves filing after a memorial makes newsroom vanity feel cheap? A cold loading-dock chain swings near the press entrance, a marked correction form sits on the desk, and readers are wait…"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[0].whatToDo",
+            "message": "whatToDo shares 75% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "End the petty argument and do the patient follow-up work."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 28,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Dust falls from Phoebe's cracked project folder while the community center plaque stays blank. A spreadsheet row shows unpaid design hours, a timed note records the disputed site boundary, and credit…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Dust falls from Phoebe's cracked project folder while the community center plaque stays blank. A spreadsheet row shows unpaid design hours, a timed note records the disputed site boundary, and credit…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The server room is narrow, bright, and ignored. Rebecca stands by the maintenance log while the outage graph, cable labels, and backup test sheet wait on the cart. The failing switch is behind a pane…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You stand with Sebastian beside stacked chairs and a box of archived minutes. The printed schedule gives one firm transfer date, and a successor waits for a file-labeling decision before the records …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took the third returned envelope for Sylvia to see that sale could not be the only judge. The marked-up gallery form sits by the sink, unfinished canvases wait in line, and the surface standard is…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What habit is worth building if every player eventually leaves? Tim studies yesterday's drill card, the locked equipment door, and the side-gym route still open before buses arrive. Two seniors are a…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"for none of it\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 145
+  },
+  "bookGate": {
+    "bookId": "the-obstacle-is-the-way",
+    "chapterCount": 28,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        87,
+        85,
+        80
+      ],
+      "answerPositionPctMax": 0.34523809523809523,
+      "totalQuizQuestions": 252,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "the-obstacle-is-the-way",
+        "chapterCount": 28,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

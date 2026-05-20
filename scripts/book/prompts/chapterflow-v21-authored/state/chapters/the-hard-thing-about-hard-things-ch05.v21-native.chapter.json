@@ -1,0 +1,301 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch05",
+  "number": 5,
+  "title": "When Things Fall Apart",
+  "readingTimeMinutes": 12,
+  "hook": "The rumor has already found the hallway; leadership has to catch up with facts.",
+  "counterintuition": "The mistaken move is to confuse toughness with blunt speed. Instead, use clear candor, dignified people calls, and controlled execution before delay multiplies harm.",
+  "tryThisNow": "Find one fact people are likely to learn through rumor. Write the exact plain sentence that states it, the affected group, and the next decision boundary.",
+  "keyTakeaway": "When collapse starts, private pressure has to become shared facts, clean ownership, dignified people decisions, and execution that refuses rescue fantasies.",
+  "breakdown": {
+    "fastRead": "A leader can feel the bad fact before anyone says it. The contract is gone, the defect is real, the role is not working, or the cash does not support the current headcount. Silence feels protective for a few hours. It usually protects only the leader from discomfort.\n\nCrisis action begins with candor that creates one shared map. Say the fact plainly, name who is affected, assign ownership, and move quickly enough that rumor does not become the operating system. Dignity is not delay. It is telling people the truth with care, specificity, and a real next step.",
+    "deepRead": "A manager reads the churn email three times and starts bargaining with the empty space around it. Maybe another customer will sign. Maybe the vendor will wait. Maybe staff do not need to know until there is a better story. Each maybe feels humane until it turns into a plan.\n\nCollapse punishes hidden facts. People can make strong moves with bad news when the bad news is specific. They struggle with fog: vague concern, closed-door meetings, executive optimism that does not match visible behavior. Candor is not a personality trait in this setting. It is how the company builds a common reality fast enough to act. The plain sentence matters: we lost this contract, these two stations are affected, shipments stop until recall ownership is assigned, this role no longer has shutdown authority.\n\nRumor is management done by absence.\n\nPeople decisions carry the same rule. Layoffs done slowly to avoid pain often create more pain: employees spend weeks reading signals, managers improvise half-truths, and the people who remain lose trust. A fast cut is not automatically dignified. Dignity comes from a clean rationale, individual notice, practical support, and no pretend optimism about jobs that no longer exist. Executive misfit works the same way. If a senior leader keeps bypassing a standard, the delay teaches the whole system which standard is optional.\n\nThe limit is that candor is not a license for cruelty. A leader can be direct and still be careless, vague, or self-protective. The useful test is whether the message lets affected people understand the fact, the decision, the next boundary, and who owns execution.",
+    "fullRead": "At 8:10 a.m., the operations chief sees two versions of the company forming. One version sits in his inbox: the lost contract, the cash math, the stations that can no longer stay open. The other version is moving through dispatch, where crews have noticed the budget meeting, the mayor's call, and the blank space on next month's schedule. The second version will not wait for permission.\n\nCrisis leadership is often described as carrying pressure alone. That may be true for a short stretch, but it becomes dangerous when privacy turns into delay. The leader is not paid to suffer silently. He is paid to convert pressure into facts the organization can use. What happened? Who is affected? What decision has been made? What is still undecided? Who owns the next action? What will not be solved by hope?\n\nWhich fact are you currently hoping people will not ask about?\n\nThat question usually points to the first sentence that needs to be written. Not a full explanation, not a speech, not a polished moral frame. A sentence. The contract was not renewed. The defect rate is above our recall threshold. The insurer canceled coverage, and we cannot operate uninsured. The VP has been removed from shutdown decisions. The replacement deal is possible, but it is not the plan. Once the sentence exists, execution can be built around it.\n\nLayoffs and role corrections test whether leaders understand dignity. Dignity does not mean preserving the comfortable illusion for as long as possible. It means refusing to turn people into background damage while leadership searches for a softer story. If the work is gone, tell the affected people directly. If the reduction is real, avoid serial cuts when one clear restructuring would reduce uncertainty. If a senior executive is misfit for the role, name the role expectation and remove authority before the misfit teaches everyone else that standards bend for title.\n\nA rescue fantasy is one of the most expensive forms of delay. The speculative customer, late investor, new quote, friendly lender, or last-minute contract may arrive. Until it is real, building the operating plan around it pushes risk onto people who cannot see the bet. Parents keep enrolling children, crews keep expecting stations to stay open, vendors keep shipping on terms that no longer fit, and employees hear optimism that cannot be converted into payroll.\n\nControlled execution is the antidote. It is not panic. It is not macho decisiveness. It is a short chain of facts and actions: post the number, name the affected group, schedule individual meetings, assign recall ownership, stop enrollment, make the vendor-call list, remove unsafe authority, write the coverage promise that remains. The work is concrete because the damage is concrete.\n\nThere is a counter-risk. Leaders can hide aggression inside candor and call it honesty. They can rush a people decision without preparing support. They can announce bad news so broadly that affected people hear it at the same time as everyone else. Clean execution requires sequence. Tell the people most affected first when possible. Give managers the same facts. Say what has changed and what has not. Leave room for grief without leaving room for confusion.\n\nWhen things fall apart, the private burden is not the product. The product is a shared map and a controlled next move."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-julia-contract-number",
+      "title": "Julia Posts the Lost Contract Number",
+      "tags": ["ambulance", "candor", "stations"],
+      "planSpec": {
+        "domain": "regional ambulance service after a contract loss",
+        "audience": "an operations chief deciding whether to close two stations or quietly hope for replacement funding",
+        "stakes": "crews, response times, town councils, and patient coverage all face real harm",
+        "format": "decision_point",
+        "requiredBeat": "the chief posts the lost-contract number, names the two stations affected, and schedules individual crew meetings before the dispatch rumor channel fills the gap"
+      },
+      "scenario": "The dispatch map shows two station pins covered by orange tape before Julia, the operations manager, has told the crews why. The lost-contract number is already in finance, but the dispatch rumor channel is moving faster than the memo. She has to decide whether to wait for replacement funding whispers or post the number, name the two affected stations, and schedule individual crew meetings before the next shift change.",
+      "whatToDo": "Post the lost-contract number, name the affected stations, and give crews individual meeting times before the rumor channel becomes their only source of reality.",
+      "whyItMatters": "The closure hurts either way. Candor lets crews, town councils, and coverage planners act on the same facts instead of reacting to fragments."
+    },
+    {
+      "exampleId": "ch05-ex02-mathieu-defect-rate",
+      "title": "Mathieu Assigns Recall Ownership",
+      "tags": ["medical device", "recall", "ownership"],
+      "planSpec": {
+        "domain": "medical device startup recalling a faulty sensor batch",
+        "audience": "a CEO whose head of quality keeps minimizing the defect",
+        "stakes": "patients, regulators, and the company's survival depend on fast factual action",
+        "format": "dialogue",
+        "requiredBeat": "the CEO asks the quality head to state the defect rate in front of legal and operations, then removes ambiguity about recall ownership before the next shipment leaves"
+      },
+      "scenario": "\"Mathieu, it is not a pattern yet,\" the quality head says while a tray of returned sensors sits under red quarantine labels. Mathieu, the company director, looks at legal, then operations. \"State the defect rate out loud.\" The number changes the room. Before the next shipment leaves, Mathieu must decide who owns the recall and whether the quality head can keep softening the fact in every meeting.",
+      "whatToDo": "Make the defect rate public inside the decision room, assign recall ownership clearly, and stop shipments until the owner has authority to act.",
+      "whyItMatters": "Minimizing the defect protects comfort while increasing patient and regulatory risk. A named owner turns the fact into execution."
+    },
+    {
+      "exampleId": "ch05-ex03-rachel-coverage-promise",
+      "title": "Rachel Chooses One Clean Reduction",
+      "tags": ["newspaper", "layoffs", "coverage"],
+      "planSpec": {
+        "domain": "regional newspaper after advertising revenue collapses",
+        "audience": "a publisher deciding between serial cuts and one clear restructuring",
+        "stakes": "serial uncertainty could bleed reporters and reduce local coverage further",
+        "format": "postmortem",
+        "requiredBeat": "the publisher compares the three-round cut plan with one decisive plan, then chooses the cleaner reduction and writes the exact coverage promise that remains"
+      },
+      "scenario": "It took Rachel, the newsroom manager, two departures to see what the three-round cut plan was doing to the assignment board, where blank spaces had replaced the ads that funded beats. In the postmortem, she compared serial uncertainty with one clear restructuring, chose the cleaner reduction, prepared individual notices, and wrote the exact coverage promise that would remain for city hall and schools.",
+      "whatToDo": "Compare serial cuts with one decisive plan, choose the reduction that reduces uncertainty, and write the coverage promise that the remaining newsroom can keep.",
+      "whyItMatters": "Serial cuts can look gentle while draining trust and talent. One clean plan gives affected people direct notice and gives readers a truthful promise."
+    },
+    {
+      "exampleId": "ch05-ex04-david-bypass-log",
+      "title": "David Removes Shutdown Authority",
+      "tags": ["plant", "safety", "role fit"],
+      "planSpec": {
+        "domain": "specialty chemicals plant after an executive safety misfit",
+        "audience": "a plant president whose operations VP keeps bypassing shutdown procedures",
+        "stakes": "normalizing the misfit risks injury and teaches supervisors the wrong standard",
+        "format": "scene",
+        "requiredBeat": "the president holds up the bypass log, states the role expectation, and removes the VP from shutdown authority before the next production run"
+      },
+      "scenario": "You can see David's thumb on the bypass log, right beside three supervisor initials in the margin. The operations VP is not a villain; he ships fast and hates idle equipment. He also keeps bypassing shutdown procedures. Before the next production run, David has to decide whether to treat it as style conflict or state the role expectation and remove the VP from shutdown authority.",
+      "whatToDo": "Hold up the bypass log, say the shutdown standard plainly, and remove the VP's authority over that decision before supervisors learn the wrong rule.",
+      "whyItMatters": "Executive misfit becomes organizational instruction when it is tolerated. Correcting authority protects safety and teaches supervisors which standard is real."
+    },
+    {
+      "exampleId": "ch05-ex05-samira-insurance-gap",
+      "title": "Samira Stops Enrollment",
+      "tags": ["childcare", "insurance", "parents"],
+      "planSpec": {
+        "domain": "independent childcare network after an insurer cancellation",
+        "audience": "an executive director tempted to keep accepting enrollments while seeking a last-minute quote",
+        "stakes": "parents need truth, staff need jobs, and operating uninsured is not an option",
+        "format": "before_after",
+        "requiredBeat": "the director stops enrollment, names the insurance gap to site leads, and assigns parent calls instead of building a plan around a quote that has not arrived"
+      },
+      "scenario": "What does Samira call a plan that depends on an insurance quote no one has received? The executive director has the cancellation notice folded under a stack of enrollment forms, and three site leads are asking whether to keep accepting families. Before the afternoon tours, she stops enrollment, names the insurance gap, and assigns parent calls instead of building the week around a last-minute quote.",
+      "whatToDo": "Stop enrollment, tell site leads the coverage gap, and assign parent calls based on the facts in hand, not the quote everyone hopes will arrive.",
+      "whyItMatters": "Parents and staff need truth before convenience. Operating uninsured is not a tolerable bridge, and a speculative quote cannot carry the plan."
+    },
+    {
+      "exampleId": "ch05-ex06-peter-vendor-list",
+      "title": "Peter Refuses the Replacement Fantasy",
+      "tags": ["data center", "churn", "vendors"],
+      "planSpec": {
+        "domain": "data-center operator after a major customer churns",
+        "audience": "a general manager choosing between hiding the churn and renegotiating vendor commitments",
+        "stakes": "if staff hear it sideways, they will slow work and vendors will learn first",
+        "format": "reflection",
+        "requiredBeat": "the manager converts the churn email into a factual internal note, makes the vendor-call list, and refuses to call a speculative replacement deal the plan"
+      },
+      "scenario": "The customer termination email glows beside a rack-power invoice while Peter, the general manager, feels the familiar urge to wait for good news. A speculative replacement account is in talks, but it is not signed. Before vendors hear the churn elsewhere, Peter converts the email into a factual internal note, makes the vendor-call list, and refuses to describe the replacement as the operating plan.",
+      "whatToDo": "Write the factual internal note, make the vendor-call list, and separate possible replacement revenue from the commitments that have to be renegotiated now.",
+      "whyItMatters": "A speculative deal can calm the manager while leaving staff and vendors exposed. The churn is real, so execution has to start from that fact."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch05-q01",
+        "prompt": "A clinic loses a major payer contract. The director wants to wait for a replacement conversation before telling staff which services are affected. Which move best creates shared reality?",
+        "choices": [
+          "Wait because staff will panic if they hear partial information.",
+          "State the lost contract, name the affected services, say what is still undecided, and set the next decision boundary.",
+          "Tell managers to keep morale steady without discussing numbers."
+        ],
+        "correctIndex": 1,
+        "explanation": "Shared reality starts with the real fact and the current boundary. Waiting for a possible replacement lets rumor write the operating map.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q02",
+        "prompt": "A publisher can make small staff cuts over three months or one larger reduction now with individual notices and a clear remaining coverage promise. What is the strongest reason to choose the cleaner reduction?",
+        "choices": [
+          "It may reduce serial uncertainty and let affected people hear the decision directly instead of through signals.",
+          "It proves the publisher is emotionally tough enough to lead.",
+          "It guarantees the remaining newsroom will trust leadership immediately."
+        ],
+        "correctIndex": 0,
+        "explanation": "The cleaner reduction is about dignity and operational clarity, not toughness. It cannot guarantee trust, but serial cuts often bleed it faster.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q03",
+        "prompt": "A VP repeatedly bypasses safety shutdown rules because production targets are tight. The president privately dislikes the behavior but delays action. What is the organizational cost?",
+        "choices": [
+          "The VP may feel unsupported by the president.",
+          "Supervisors learn that the shutdown standard is optional when a senior leader wants speed.",
+          "The plant will become too rigid about every minor procedure."
+        ],
+        "correctIndex": 1,
+        "explanation": "Executive misfit teaches by example. Delay turns one person's role problem into a standard that supervisors may copy under pressure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q04",
+        "prompt": "A CEO receives a defect report before a shipment leaves. The quality head says the sample is too small to discuss broadly. Legal and operations are in the room. What should the CEO do?",
+        "choices": [
+          "Ask for the defect rate to be stated plainly, assign recall ownership, and hold shipment until the owner can act.",
+          "Let the quality head keep investigating quietly so the company avoids overreacting.",
+          "Send a motivational message about product excellence while waiting for more returns."
+        ],
+        "correctIndex": 0,
+        "explanation": "The CEO needs factual action before the shipment creates more exposure. Quiet investigation may be useful, but not as a substitute for ownership.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q05",
+        "prompt": "A childcare network loses insurance and hopes for a last-minute quote. The director considers continuing tours so parents do not worry. Which phrase identifies the trap?",
+        "choices": [
+          "A dignity problem, because parents should never hear operational details.",
+          "A rescue fantasy, because an unconfirmed quote is being treated as the plan.",
+          "A communication problem only, because operations can continue if the message is careful."
+        ],
+        "correctIndex": 1,
+        "explanation": "The missing quote is not operational coverage. Continuing as if it exists transfers hidden risk to parents, staff, and site leads.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q06",
+        "prompt": "A data-center manager loses a customer and has a promising replacement conversation tomorrow. Vendors are due to renew today. What action rejects delay without creating panic?",
+        "choices": [
+          "Tell staff nothing until tomorrow because a better story may be available.",
+          "Announce that the replacement is almost certain so work pace stays normal.",
+          "Write a factual internal note, list vendor calls, and explain that the replacement is possible but not part of the current plan."
+        ],
+        "correctIndex": 2,
+        "explanation": "The action separates a possible rescue from real commitments. It gives staff and vendors facts without pretending uncertainty has disappeared.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q07",
+        "prompt": "An ambulance service may close two stations after a contract loss. Dispatchers are already trading guesses. Which sequence best protects dignity and execution?",
+        "choices": [
+          "Post the lost-contract number, name the affected stations, schedule crew meetings, and brief town councils on coverage changes.",
+          "Hold a general morale meeting and promise to fight for every station.",
+          "Let supervisors answer questions informally until replacement funding is confirmed."
+        ],
+        "correctIndex": 0,
+        "explanation": "The sequence moves from fact to affected people to execution. Informal answers and broad promises let rumor outrun leadership.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q08",
+        "prompt": "A founder says, 'I do not want to hurt people by talking about layoffs until I know every detail.' Which distinction should a mentor press?",
+        "choices": [
+          "Whether silence is preserving dignity or merely delaying facts that people are already reading through signals.",
+          "Whether the founder can make the layoff sound optimistic enough.",
+          "Whether employees deserve to know only after investors have approved the full script."
+        ],
+        "correctIndex": 0,
+        "explanation": "Dignity requires sequence and care, but it does not require pretending visible facts are invisible. Delay can make people learn through worse channels.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q09",
+        "prompt": "A COO prides herself on being direct and wants to announce a restructuring to everyone at once before individual notices are ready. What is the flaw?",
+        "choices": [
+          "Directness is always harmful during a people decision.",
+          "The company should wait until no one will be upset.",
+          "Candor without sequence can become careless; affected people need direct notice, facts, and practical next steps."
+        ],
+        "correctIndex": 2,
+        "explanation": "Candor is not cruelty or speed for its own sake. Clean execution pairs plain facts with a sequence that preserves dignity for affected people.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch05-card01",
+      "front": "A bad fact is already moving through rumor. What sentence should you write first?",
+      "back": "Write the plain fact, the affected group, and the next decision boundary. A shared map begins with one sentence leadership is willing to own.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch05-card02",
+      "front": "A leader delays layoffs to avoid hurting people. What test separates dignity from avoidance?",
+      "back": "Ask whether affected people are getting direct facts and practical next steps, or whether silence is forcing them to read signals and rumors.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-card03",
+      "front": "An executive keeps missing a role expectation. Why is delay dangerous?",
+      "back": "A senior misfit teaches the organization what standards are optional. Correcting authority is not personal punishment; it protects the system.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-card04",
+      "front": "A possible deal could fix the crisis, but it is not signed. How should it appear in the plan?",
+      "back": "Name it as possible, not operational. Build the current plan around confirmed facts so rescue hope does not transfer hidden risk to others.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch05-card05",
+      "front": "A direct message is ready, but individual notices are not. What should you check?",
+      "back": "Check sequence. Candor should give affected people direct notice and practical next steps before broad communication turns their lives into an announcement.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Convert private pressure into usable facts and clean execution. State the fact plainly, name affected people, assign ownership, reject unconfirmed rescue plans, and protect dignity through sequence.",
+    "ifThenPlans": [
+      {
+        "context": "Rumor risk",
+        "plan": "If people are likely to hear a fact sideways, then write the plain sentence and decide who must hear it directly first."
+      },
+      {
+        "context": "Layoffs or restructuring",
+        "plan": "If a people decision is unavoidable, then prepare the rationale, individual notice sequence, and practical support before broad messaging."
+      },
+      {
+        "context": "Executive role-fit issue",
+        "plan": "If a senior leader repeatedly violates a role expectation, then state the expectation and remove the relevant authority before the standard erodes."
+      },
+      {
+        "context": "Possible rescue",
+        "plan": "If a hoped-for deal is not confirmed, then mark it as possible and build the operating plan from facts already in hand."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, identify one fact your team may learn through rumor and write the exact sentence, affected group, owner, and next decision boundary.",
+    "weeklyPractice": "Once a week, review one hard message and ask whether it was direct, sequenced, specific, and free of unconfirmed rescue assumptions."
+  },
+  "memorableLines": [
+    {
+      "text": "Rumor is management done by absence.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the cost of silence hard to ignore."
+    },
+    {
+      "text": "A rescue fantasy is one of the most expensive forms of delay.",
+      "location": "breakdown.fullRead",
+      "why": "It names a common crisis trap in operational terms."
+    },
+    {
+      "text": "When things fall apart, the private burden is not the product.",
+      "location": "breakdown.fullRead",
+      "why": "It turns private pressure into a demand for shared facts and action."
+    }
+  ]
+}

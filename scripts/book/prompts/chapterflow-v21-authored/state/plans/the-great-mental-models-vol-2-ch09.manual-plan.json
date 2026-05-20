@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch09",
+  "number": 9,
+  "title": "Catalysts",
+  "coreMove": "Look for a pathway changer that accelerates the reaction without becoming the fuel.",
+  "sourcePressure": "Catalysts speed reactions without being consumed and can shift the path of progress instead of adding raw force.",
+  "chapterSpecificMisunderstanding": "calling any helpful person a catalyst without showing the pathway change",
+  "sourceAlignmentTerms": [
+    "catalyst",
+    "reaction rate",
+    "pathway",
+    "accelerator",
+    "facilitation",
+    "not consumed",
+    "cleaner progress"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Catalysts",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "calling any helpful person a catalyst without showing the pathway change",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "peer tutor matching network",
+      "audience": "readers who face peer tutor matching network decisions where catalyst is easy to misread",
+      "stakes": "students waiting for scarce tutors",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Laura adds the tutor roster that changes the path, times the question bank, and proves through the waiting-list card that progress accelerated without adding more fuel. Domain: peer tutor matching network.",
+      "firstImage": "tutor roster visible in the peer tutor matching network",
+      "mustInclude": [
+        "tutor roster",
+        "question bank",
+        "waiting-list card"
+      ],
+      "mustAvoid": [
+        "calling any helpful person a catalyst without showing the pathway change",
+        "reusing a generic meeting scene instead of the peer tutor matching network constraints"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "DevOps build cache",
+      "audience": "readers who face DevOps build cache decisions where catalyst is easy to misread",
+      "stakes": "release pipeline wasting developer hours",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Luke adds the cache report that changes the path, times the build timer, and proves through the deploy badge that progress accelerated without adding more fuel. Domain: DevOps build cache.",
+      "firstImage": "cache report visible in the DevOps build cache",
+      "mustInclude": [
+        "cache report",
+        "build timer",
+        "deploy badge"
+      ],
+      "mustAvoid": [
+        "calling any helpful person a catalyst without showing the pathway change",
+        "reusing a generic meeting scene instead of the DevOps build cache constraints"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "hospital interpreter roster",
+      "audience": "readers who face hospital interpreter roster decisions where catalyst is easy to misread",
+      "stakes": "families waiting for language access",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Nicolas adds the language roster that changes the path, times the family intake form, and proves through the call slip that progress accelerated without adding more fuel. Domain: hospital interpreter roster.",
+      "firstImage": "language roster visible in the hospital interpreter roster",
+      "mustInclude": [
+        "language roster",
+        "family intake form",
+        "call slip"
+      ],
+      "mustAvoid": [
+        "calling any helpful person a catalyst without showing the pathway change",
+        "reusing a generic meeting scene instead of the hospital interpreter roster constraints"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "community repair cafe queue",
+      "audience": "readers who face community repair cafe queue decisions where catalyst is easy to misread",
+      "stakes": "volunteers standing idle with broken appliances",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Anke adds the repair ticket that changes the path, times the tool bin, and proves through the appliance tag that progress accelerated without adding more fuel. Domain: community repair cafe queue.",
+      "firstImage": "repair ticket visible in the community repair cafe queue",
+      "mustInclude": [
+        "repair ticket",
+        "tool bin",
+        "appliance tag"
+      ],
+      "mustAvoid": [
+        "calling any helpful person a catalyst without showing the pathway change",
+        "reusing a generic meeting scene instead of the community repair cafe queue constraints"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "conference speaker liaison desk",
+      "audience": "readers who face conference speaker liaison desk decisions where catalyst is easy to misread",
+      "stakes": "speakers missing prep details",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hiroshi adds the speaker brief that changes the path, times the greenroom schedule, and proves through the travel note that progress accelerated without adding more fuel. Domain: conference speaker liaison desk.",
+      "firstImage": "speaker brief visible in the conference speaker liaison desk",
+      "mustInclude": [
+        "speaker brief",
+        "greenroom schedule",
+        "travel note"
+      ],
+      "mustAvoid": [
+        "calling any helpful person a catalyst without showing the pathway change",
+        "reusing a generic meeting scene instead of the conference speaker liaison desk constraints"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "bakery starter handoff",
+      "audience": "readers who face bakery starter handoff decisions where catalyst is easy to misread",
+      "stakes": "new baker losing the living starter",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chiara adds the starter jar that changes the path, times the feeding chart, and proves through the bench timer that progress accelerated without adding more fuel. Domain: bakery starter handoff.",
+      "firstImage": "starter jar visible in the bakery starter handoff",
+      "mustInclude": [
+        "starter jar",
+        "feeding chart",
+        "bench timer"
+      ],
+      "mustAvoid": [
+        "calling any helpful person a catalyst without showing the pathway change",
+        "reusing a generic meeting scene instead of the bakery starter handoff constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for catalyst rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Look for a pathway changer that accelerates the reaction without becoming the fuel.",
+      "explain why the tempting misread fails: calling any helpful person a catalyst without showing the pathway change",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving catalyst, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

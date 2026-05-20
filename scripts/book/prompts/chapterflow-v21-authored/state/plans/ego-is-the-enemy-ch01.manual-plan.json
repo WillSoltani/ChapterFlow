@@ -1,0 +1,210 @@
+{
+  "chapterId": "ego-is-the-enemy-ch01",
+  "number": 1,
+  "title": "Talk, talk, talk",
+  "coreMove": "Replace announcement with protected private labor until the work has earned the right to be seen.",
+  "sourcePressure": "Aspire section: validation talk as false progress. Supported by frozen source sidecar.",
+  "chapterSpecificMisunderstanding": "Treating silence as secrecy or timidness instead of as a way to keep reward attached to actual work.",
+  "sourceAlignmentTerms": [
+    "talk",
+    "validation",
+    "silence",
+    "ambition",
+    "private work",
+    "premature recognition"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Isocrates",
+      "detail": "The frozen opening bundle identifies Isocrates as an anchor for suspicion toward eager self-advertisement before substance exists.",
+      "useIn": "deepRead",
+      "phrasingHint": "Isocrates belongs as a quick pressure point: old teachers distrusted the student whose mouth outran the work."
+    },
+    {
+      "kind": "person",
+      "name": "Sherman",
+      "detail": "The source sidecar uses Sherman as the cleaner anchor for privacy, severity, and doing the work rather than narrating it.",
+      "useIn": "fullRead",
+      "phrasingHint": "Sherman gives the lesson a harder edge: keep the work severe, private, and unadvertised until it has facts behind it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of talk",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple talk is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "municipal grant application review",
+      "audience": "a reader facing municipal grant application review pressure who needs to practice chapter 1's move without turning it into talk advice in general",
+      "stakes": "a concrete standard in municipal grant application review will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "deletes the announcement post and blocks two private work sessions before telling anyone in the concrete setting of municipal grant application review; make the lesson visible through action, not explanation",
+      "firstImage": "a rejected grant rubric with one blank evidence column sits between Sarah and the easiest explanation in the municipal grant application review room.",
+      "mustInclude": [
+        "talk",
+        "validation",
+        "municipal grant"
+      ],
+      "mustAvoid": [
+        "do not turn this into talk as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Emily",
+      "domain": "hospital discharge checklist redesign",
+      "audience": "a reader facing hospital discharge checklist redesign pressure who needs to practice chapter 1's move without turning it into talk advice in general",
+      "stakes": "a concrete standard in hospital discharge checklist redesign will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "changes the team update from promises to completed evidence and leaves the future-tense claims out in the concrete setting of hospital discharge checklist redesign; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Emily hears, with a shipping manifest with the profitable reroute circled already on the table.",
+      "mustInclude": [
+        "talk",
+        "validation",
+        "hospital discharge"
+      ],
+      "mustAvoid": [
+        "do not turn this into talk as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Hannah",
+      "domain": "independent bookstore inventory night",
+      "audience": "a reader facing independent bookstore inventory night pressure who needs to practice chapter 1's move without turning it into talk advice in general",
+      "stakes": "a concrete standard in independent bookstore inventory night will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "puts the launch name card back in the drawer and ships one unglamorous dependency first in the concrete setting of independent bookstore inventory night; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a cracked proof tray beside the certification sheet makes the pressure in independent bookstore inventory night visible.",
+      "mustInclude": [
+        "talk",
+        "validation",
+        "independent bookstore"
+      ],
+      "mustAvoid": [
+        "do not turn this into talk as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "software incident postmortem",
+      "audience": "a reader facing software incident postmortem pressure who needs to practice chapter 1's move without turning it into talk advice in general",
+      "stakes": "a concrete standard in software incident postmortem will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "answers the praise request with a work sample deadline instead of a vision speech in the concrete setting of software incident postmortem; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Megan's thumb stop over a rehearsal call sheet with three missing initials before the ego-favoring move happens.",
+      "mustInclude": [
+        "talk",
+        "validation",
+        "software incident"
+      ],
+      "mustAvoid": [
+        "do not turn this into talk as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Claire",
+      "domain": "university lab equipment handoff",
+      "audience": "a reader facing university lab equipment handoff pressure who needs to practice chapter 1's move without turning it into talk advice in general",
+      "stakes": "a concrete standard in university lab equipment handoff will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "refuses the intro call until the prototype has one result worth showing in the concrete setting of university lab equipment handoff; make the lesson visible through action, not explanation",
+      "firstImage": "It took Claire until the third review of a supplier quote stapled to the wrong invoice to see what ego had protected.",
+      "mustInclude": [
+        "talk",
+        "validation",
+        "university lab"
+      ],
+      "mustAvoid": [
+        "do not turn this into talk as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "youth orchestra audition prep",
+      "audience": "a reader facing youth orchestra audition prep pressure who needs to practice chapter 1's move without turning it into talk advice in general",
+      "stakes": "a concrete standard in youth orchestra audition prep will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "turns the public commitment thread into a private checklist with only verifiable steps in the concrete setting of youth orchestra audition prep; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when a rescue drill map folded to the missed checkpoint becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "talk",
+        "validation",
+        "youth orchestra"
+      ],
+      "mustAvoid": [
+        "do not turn this into talk as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish talk from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Replace announcement with protected private labor until the work has earned the right to be seen.",
+      "spot when a scenario has drifted into social-media detox",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves talk or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

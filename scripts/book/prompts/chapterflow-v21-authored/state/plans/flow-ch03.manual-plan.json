@@ -1,0 +1,198 @@
+{
+  "chapterId": "flow-ch03",
+  "number": 3,
+  "title": "Enjoyment and the Quality of Life",
+  "coreMove": "Convert a merely pleasant activity into an enjoyable one by adding challenge, clear goals, and feedback that make the activity worth doing for itself.",
+  "sourcePressure": "This chapter separates pleasure from enjoyment, then makes flow concrete through challenge-skill balance, goals, feedback, concentration, control, self-loss, altered time, and autotelic experience.",
+  "chapterSpecificMisunderstanding": "Make pleasure the villain or reduce enjoyment to excitement.",
+  "sourceAlignmentTerms": [
+    "pleasure",
+    "enjoyment",
+    "challenge-skill balance",
+    "clear goals",
+    "feedback",
+    "concentration",
+    "control",
+    "autotelic experience"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the autotelic experience",
+      "detail": "the frozen heading index names the autotelic experience as the chapter endpoint",
+      "useIn": "both",
+      "phrasingHint": "An autotelic experience pays from inside the doing: the reward is not waiting at the finish line, it is threaded through the action itself."
+    },
+    {
+      "kind": "artifact",
+      "name": "pleasure and enjoyment",
+      "detail": "the frozen heading index sets pleasure and enjoyment as the opening distinction",
+      "useIn": "deepRead",
+      "phrasingHint": "Pleasure can soothe you without changing you; enjoyment asks more and leaves more behind."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic enjoyment and the quality of life definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "a bakery supervisor choosing between scrolling break time and shaping a difficult pastry batch",
+      "audience": "workers who need richer recovery than passive relief",
+      "stakes": "the afternoon rush depends on whether she comes back dull or alive",
+      "format": "comparison",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she compares the warm phone in her palm with the laminated croissant fold chart and chooses the task that gives immediate feedback",
+      "firstImage": "Butter softens at the edge of the steel table",
+      "mustInclude": [
+        "laminated fold chart",
+        "bench scraper",
+        "phone screen"
+      ],
+      "mustAvoid": [
+        "food scene as comfort only"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "a weekend climber stuck on easy routes",
+      "audience": "hobbyists whose fun has gone flat",
+      "stakes": "he may quit a sport he once loved because the challenge no longer matches skill",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "the climbing wall is nearly empty, and Sam chooses a route with one move beyond his comfort instead of repeating the automatic one",
+      "firstImage": "The orange climbing holds run past the overhang",
+      "mustInclude": [
+        "chalk bag",
+        "orange route tape",
+        "rental harness"
+      ],
+      "mustAvoid": [
+        "fitness motivation"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "a conservatory pianist practicing for tone rather than applause",
+      "audience": "students chasing approval instead of absorption",
+      "stakes": "her jury score matters, but the practice block can either become anxiety or precise listening",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her teacher asks what sound she wants from the left hand, and Juliette sets a goal she can hear within four bars",
+      "firstImage": "\"What should the left hand sound like before you speed it up?\"",
+      "mustInclude": [
+        "upright piano",
+        "metronome",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "performance anxiety cliche"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "a claims adjuster gamifying speed without sacrificing accuracy",
+      "audience": "office workers with repetitive tasks",
+      "stakes": "a dull queue can become careless unless feedback is visible",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he predicts the queue will feel worse if he chases speed alone, then adds an error-free streak card and checks whether time compresses",
+      "firstImage": "At 2:06 p.m., Michael opens the next insurance claim",
+      "mustInclude": [
+        "claim queue",
+        "red pen",
+        "streak card"
+      ],
+      "mustAvoid": [
+        "corporate gamification jargon"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "a city-garden volunteer learning pruning cuts",
+      "audience": "people who think small manual skills are beneath growth",
+      "stakes": "the wrong cut costs the season's first blossoms",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "contrast wandering the garden for pleasant air with the morning she learns three cuts and gets visible feedback from each stem",
+      "firstImage": "Ingrid used to call it helping until the roses proved otherwise",
+      "mustInclude": [
+        "pruning shears",
+        "rose cane",
+        "compost bucket"
+      ],
+      "mustAvoid": [
+        "gardening as relaxation only"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "a hobby chess player shifting from winning to studying one endgame",
+      "audience": "competitive amateurs who have lost intrinsic enjoyment",
+      "stakes": "another online rating chase may drain the game he loves",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "which feels better tomorrow: one more blitz win or finally understanding the rook ending that keeps beating him?",
+      "firstImage": "Which feels better tomorrow: another quick win or one position understood?",
+      "mustInclude": [
+        "rook endgame diagram",
+        "wooden board",
+        "rating graph"
+      ],
+      "mustAvoid": [
+        "chess genius myth"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguishing relief from enlarging enjoyment",
+      "adding goals and feedback without making a rigid formula",
+      "recognizing autotelic value in ordinary activities"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one easy leisure habit and add a clear target, a difficulty notch, and immediate feedback before you do it next.",
+  "readingTimeMinutes": 12
+}

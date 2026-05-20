@@ -1,0 +1,175 @@
+{
+  "chapterId": "the-power-of-habit-ch05",
+  "number": 5,
+  "title": "Starbucks and the Habit of Success",
+  "coreMove": "Rehearse the first response to a stressful cue before self-control has to improvise.",
+  "sourcePressure": "Starbucks training routines show willpower becoming automatic through scripts, scenarios, and stress planning. The chapter does not praise politeness or grit in the abstract; it shows how practiced responses change what happens when pressure hits.",
+  "chapterSpecificMisunderstanding": "The weak version tells readers to be resilient or stay calm with customers. The writer must show a concrete script practiced before the cue, so self-control is a routine rather than a trait.",
+  "sourceAlignmentTerms": [
+    "Starbucks",
+    "willpower",
+    "stress planning",
+    "script",
+    "rehearsal",
+    "automatic response",
+    "pressure",
+    "default behavior",
+    "scenario"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A barista smiles through a rude customer.",
+      "A generic customer-service counter scene.",
+      "A person discovers they simply need more grit."
+    ],
+    "counterintuition": [
+      "Most people think willpower is a trait, but actually...",
+      "Treating stress planning as a motivational mantra.",
+      "Pretending rehearsal makes stress disappear."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and breathe.",
+      "Promise to stay calm next time.",
+      "Write a vague if-then plan without speaking the first line."
+    ],
+    "examples": [
+      "Starbucks or coffee-counter retell.",
+      "Seafood line-cook anger substitution from ch03.",
+      "Generic retail politeness.",
+      "Crisis redesign instead of rehearsed first response."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "independent bookstore holiday return desk",
+      "audience": "a seasonal bookseller who freezes when a customer slams a gift receipt on the counter",
+      "stakes": "one defensive reply can turn a solvable return into a public argument in a packed store",
+      "format": "scene",
+      "requiredBeat": "Before opening, the manager has the bookseller practice the first sentence with a bent gift receipt in hand; when the receipt hits the counter later, the practiced line comes out before the old flinch.",
+      "firstImage": "A bent gift receipt lies under a stack of returned hardcovers.",
+      "mustInclude": [
+        "bent gift receipt",
+        "laminated return card",
+        "practice round before opening"
+      ],
+      "mustAvoid": [
+        "generic customer-service politeness",
+        "coffee shop scene",
+        "replacement routine without rehearsal"
+      ]
+    },
+    {
+      "domain": "medical imaging front desk running two hours behind",
+      "audience": "a receptionist who gets rattled when anxious patients demand exact wait times",
+      "stakes": "a bad first response can make a frightened patient leave before a needed scan",
+      "format": "dialogue",
+      "requiredBeat": "The supervisor rehearses the exact opening line beside the delay board; when a patient points at the clock and raises his voice, the receptionist reads the first sentence from memory and then checks the scanner queue.",
+      "firstImage": "A delay board shows two hours beside a quiet MRI hallway.",
+      "mustInclude": [
+        "delay board",
+        "scanner queue",
+        "first sentence script"
+      ],
+      "mustAvoid": [
+        "bedside diagnosis",
+        "willpower as personality",
+        "pharmacy pickup shell"
+      ]
+    },
+    {
+      "domain": "youth hockey referee facing a parent protest",
+      "audience": "a new referee who loses control when adults crowd the glass after a penalty",
+      "stakes": "one shouted answer can turn a youth game into a bench-clearing mess",
+      "format": "predict_reveal",
+      "requiredBeat": "The referee trainer predicts the shove at the glass will be the cue, then drills whistle, two steps back, and the same penalty explanation until the sequence appears during the actual protest.",
+      "firstImage": "A black puck sits still near a scuffed penalty-box door.",
+      "mustInclude": [
+        "scuffed penalty-box door",
+        "whistle",
+        "two steps back"
+      ],
+      "mustAvoid": [
+        "coach substitution from ch03",
+        "raw courage story",
+        "teamwork slogan"
+      ]
+    },
+    {
+      "domain": "free tax-prep clinic when a refund is smaller than expected",
+      "audience": "a volunteer preparer who tends to overexplain when clients get angry",
+      "stakes": "a confusing answer can make a low-income client mistrust the whole filing and walk out without submitting",
+      "format": "decision_point",
+      "requiredBeat": "The clinic lead chooses role-play over another tax-law handout; the volunteer practices pointing to the refund line, naming the change, and pausing before explanation so the first response is ready when the chair scrapes back.",
+      "firstImage": "A refund line glows on a laptop beside a half-zipped folder.",
+      "mustInclude": [
+        "refund line",
+        "role-play chair",
+        "pause before explanation"
+      ],
+      "mustAvoid": [
+        "public defender courtroom stress",
+        "generic financial advice",
+        "self-control lecture"
+      ]
+    },
+    {
+      "domain": "concert hall usher refusing re-entry during a live recording",
+      "audience": "an usher who caves when late patrons insist they only need ten seconds",
+      "stakes": "one opened door can ruin the recording take and anger the people already seated",
+      "format": "before_after",
+      "requiredBeat": "Before rehearsal, the usher argues and apologizes; after three practiced doorway scripts with the house manager, she holds the velvet rope and gives the same first line when a patron reaches for the handle.",
+      "firstImage": "A velvet rope cuts across a dim concert-hall doorway.",
+      "mustInclude": [
+        "velvet rope",
+        "door handle",
+        "house-manager rehearsal"
+      ],
+      "mustAvoid": [
+        "film festival volunteer lanyard from ch02",
+        "community movement frame",
+        "politeness without boundary"
+      ]
+    },
+    {
+      "domain": "passport office missing-document window",
+      "audience": "a clerk who gets defensive when travelers blame her for an impossible same-day request",
+      "stakes": "one irritated exchange can shut down the only path to a workable appointment",
+      "format": "postmortem",
+      "requiredBeat": "After reviewing the complaint log, the supervisor marks the cue as a traveler tapping the appointment slip and drills the clerk's first two sentences until the next tap triggers the script instead of a snapped answer.",
+      "firstImage": "An appointment slip is tapped against a scratched service window.",
+      "mustInclude": [
+        "appointment slip",
+        "complaint log",
+        "first two sentences"
+      ],
+      "mustAvoid": [
+        "airport checkpoint shell",
+        "generic bureaucracy complaint",
+        "crisis as reform"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the stressful cue that needs a rehearsed first response",
+      "choose scripts that are practiced before pressure instead of invented during pressure",
+      "distinguish trained willpower routines from vague calm-down advice or personality praise",
+      "evaluate whether a scenario plan includes enough rehearsal to change the default response"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one stressful cue you can predict. Write the first sentence you want available, say it out loud twice, then place the cue word beside it so the line is tied to the moment.",
+  "readingTimeMinutes": 12
+}

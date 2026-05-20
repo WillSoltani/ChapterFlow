@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch09",
+  "number": 9,
+  "title": "Change Your Circumstances by Changing Your Attitude: The Law of Self-Sabotage",
+  "coreMove": "Find the constricted attitude that is narrowing your options, then make one expansive action that reveals usable freedom.",
+  "sourcePressure": "This law is about perception and usable freedom: attitude filters what people notice, attempt, and persist with, so constriction quietly sabotages options.",
+  "chapterSpecificMisunderstanding": "Turning the law into positive thinking instead of showing how attitude changes perception, action, and opportunity.",
+  "sourceAlignmentTerms": [
+    "self-sabotage",
+    "constricted attitude",
+    "expansive attitude",
+    "perception",
+    "usable freedom",
+    "ultimate freedom"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Change Your Circumstances by Changing Your Attitude: The Law of Self-Sabotage",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a public library branch losing teens and assuming they do not read",
+      "audience": "a librarian whose cynicism is shrinking programming choices",
+      "stakes": "whether the branch loses funding and relevance",
+      "format": "before_after",
+      "requiredBeat": "she replaces the complaint with a test shelf built from teen requests and watches circulation data contradict her assumption",
+      "firstImage": "a rolling book cart with handwritten request slips clipped to the side",
+      "mustInclude": [
+        "request slips",
+        "circulation report",
+        "test shelf"
+      ],
+      "mustAvoid": [
+        "generic school study scene"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a small claims defendant convinced the judge will ignore him",
+      "audience": "a legal-aid volunteer pushing against fatalism",
+      "stakes": "whether he forfeits a winnable defense",
+      "format": "decision_point",
+      "requiredBeat": "the volunteer has him organize receipts in date order, and the visible stack turns helplessness into one usable argument",
+      "firstImage": "a manila envelope spilling dated receipts onto a courthouse table",
+      "mustInclude": [
+        "dated receipts",
+        "claim notice",
+        "timeline sheet"
+      ],
+      "mustAvoid": [
+        "generic paperwork stress"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a refugee language circle where one learner has stopped speaking after mistakes",
+      "audience": "a facilitator seeing shame masquerade as realism",
+      "stakes": "whether practice disappears before fluency can build",
+      "format": "dialogue",
+      "requiredBeat": "the facilitator asks him to order tea from a patient vendor once, proving the world did not collapse around an accent",
+      "firstImage": "a paper tea menu creased at the corner of a market stall",
+      "mustInclude": [
+        "tea menu",
+        "phrase card",
+        "vendor receipt"
+      ],
+      "mustAvoid": [
+        "generic classroom language lesson"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a theater costume shop after a low-budget production loses its designer",
+      "audience": "a stage manager who assumes scarcity means decline",
+      "stakes": "whether the production becomes smaller or more inventive",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts disaster, then lays fabric scraps by color and discovers a coherent design language inside the constraint",
+      "firstImage": "bolts of mismatched fabric stacked under a cutting table",
+      "mustInclude": [
+        "fabric scraps",
+        "costume sketches",
+        "opening-night calendar"
+      ],
+      "mustAvoid": [
+        "generic positivity talk"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a neighborhood bike-repair collective facing a broken grant promise",
+      "audience": "a coordinator tempted to call the season dead",
+      "stakes": "whether residents lose access to repairs",
+      "format": "postmortem",
+      "requiredBeat": "after the lost grant, he lists donated parts and unused Saturday labor, finding a smaller clinic the old attitude had hidden",
+      "firstImage": "a crate of greasy chains under a tent pole",
+      "mustInclude": [
+        "parts crate",
+        "volunteer roster",
+        "repair tickets"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a hotel night auditor applying for a training program after two rejections",
+      "audience": "a worker deciding if rejection proves ceiling or strategy problem",
+      "stakes": "whether a better path appears",
+      "format": "reflection",
+      "requiredBeat": "she compares the rejected applications, rewrites one skills story, and applies to a smaller certificate instead of declaring the door shut",
+      "firstImage": "a lobby printer glowing beside a stack of application pages",
+      "mustInclude": [
+        "application pages",
+        "skills matrix",
+        "certificate deadline"
+      ],
+      "mustAvoid": [
+        "generic career coaching"
+      ],
+      "openingDevice": "timestamp_named"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize attitude as a perception filter",
+      "distinguish expansive action from naive optimism",
+      "show how cynicism blocks experiments before reality does"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one problem where you have been saying nothing works, then take one small action that assumes one door might still open.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Anton Chekhov",
+      "detail": "the source uses Chekhov as the anchor for resisting bitterness, educating himself, and widening life through attitude",
+      "useIn": "both",
+      "phrasingHint": "Chekhov's freedom begins where a constricted attitude would have made his suffering the whole story."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

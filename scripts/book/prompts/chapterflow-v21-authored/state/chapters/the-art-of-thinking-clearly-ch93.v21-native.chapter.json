@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch93",
+  "number": 93,
+  "title": "Zeigarnik Effect",
+  "readingTimeMinutes": 12,
+  "hook": "An unfinished task can keep tapping the glass long after the meeting has moved on.",
+  "counterintuition": "The task that nags you may not be the task that matters most; name the open loop, then park it visibly before choosing.",
+  "tryThisNow": "Write one unfinished task that keeps returning. Add the next physical action and where it is stored, then return to the current choice.",
+  "keyTakeaway": "The Zeigarnik effect makes unfinished work cling to attention. Close the loop or park the next action before it chooses the agenda.",
+  "breakdown": {
+    "fastRead": "The model card at the referee-rating meeting has one disputed match note left blank. Lucie keeps returning to it while the full rating list waits. The Zeigarnik effect makes the open item feel larger than the whole job. She writes open loop on the card, assigns the match note to a later review slot, and finishes the rating list with the sports director watching.",
+    "deepRead": "Unfinished work has a hook. It keeps returning because the mind wants closure. That can help you remember a real obligation, but it can also make one loose thread dominate the next decision.\n\nThe Zeigarnik effect is the pull of the unfinished task. A dropout table with one missing patient follow-up can pull an oncology team away from the broader loss pattern. An appeal file with one open document can draw more attention than ten complete urgent cases. A complaint script with one unresolved caller can keep rewriting the whole queue.\n\nOpen loops ask to be closed.\n\nThe correction is not to trust the loudest unfinished thing. Name the loop. Decide whether it deserves action now. If not, park it with a next physical action, owner, and place you will see later. The mind calms when it knows the loop is captured.\n\nThis matters because unfinished tasks borrow urgency from being unfinished. They can steal time from larger completed evidence, distort priorities, or make you keep returning to a detail that has already been assigned. A good system closes loops that are small enough to close and stores the rest where they cannot keep choosing.",
+    "fullRead": "The queue ticket on the oncology dropout table has one patient ID written in red. Maura, the trial coordinator, knows the follow-up matters. She also knows the dropout table shows a larger pattern across three clinics. If the red ticket owns the meeting, the team may fix one open loop while missing the system that keeps creating them.\n\nUnfinished work is sticky because it promises relief. The mind says: finish this, and the pressure will stop. Sometimes that is exactly right. Sometimes the pressure is only loud because the task is incomplete, not because it is the most important task in the room.\n\nWhich open loop is asking for attention, and which one deserves it?\n\nBaumeister and Tierney's account of willpower revisits the Zeigarnik story, with the famous restaurant detail: a forgotten scarf, an unfinished errand, and the way open tasks stay active until they are resolved or captured. The exact scarf may matter less than the mechanism. The mind keeps unfinished business available.\n\nThat mechanism can be useful. A waiter remembers unpaid orders. A doctor remembers a test not yet signed. A project lead remembers a permit that could block the launch. The trouble starts when the mind treats unfinished as equal to important.\n\nA captured loop becomes quieter.\n\nA climate fund pitch review shows the business version. Donald sees a warranty label from an unfinished partner agreement and keeps dragging the pitch back to that open item. The fund decision is about carbon data, risk, and governance. The partner agreement matters, but it needs a parked action, not control of the whole pitch. Once he writes the next action and owner on the label, the review can return to the actual decision.\n\nThe practical correction is a loop ledger. For each nagging item, write the unfinished thing, the next physical action, the owner, and the date or place it will reappear. Then ask whether the current decision depends on that item. If yes, act now. If no, park it and continue.\n\nThe limit is that some open loops are alarms. A missing safety test, unsigned consent form, or unresolved legal condition may be the most important fact. Do not park a loop just to feel efficient. The question is dependency. Does the current choice depend on closing this loop? If it does, close it. If it does not, capture it and stop letting it steer.\n\nBefore the choice moves forward, separate nagging from necessity. Give each unfinished task a visible home. The mind does not need every loop closed now. It needs proof that the loop will not be lost."
+  },
+  "examples": [
+    {
+      "exampleId": "ch93-ex01-lucie-model-card",
+      "title": "Lucie parks the disputed match",
+      "scenario": "A model card sits beside the referee-rating list at a sports federation office in Lausanne at 2:15 p.m. Lucie must decide whether one disputed match note should keep delaying the full rating release. She marks Zeigarnik on the card, assigns the match note to a later review slot, and finishes the release list in front of the ratings director.",
+      "whatToDo": "Capture the disputed note with a review owner and time, then finish the rating release that no longer depends on it.",
+      "whyItMatters": "The blank note nags because it is unfinished. It should not hold the whole referee list unless the release depends on it.",
+      "tags": [
+        "model card",
+        "Zeigarnik",
+        "sports federation referee rating"
+      ],
+      "planSpec": {
+        "domain": "a sports federation referee rating applying Zeigarnik Effect under operational pressure",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch93-ex02-maura-queue-ticket",
+      "title": "Maura protects the dropout pattern",
+      "scenario": "\"This one patient is still open,\" the nurse says during an oncology dropout review in Montreal. Maura must decide whether the queue ticket should dominate the table or be assigned while the team studies the broader pattern. She writes unfinished task on the ticket, gives it an owner, and changes the meeting back to the dropout table.",
+      "whatToDo": "Assign the open patient follow-up, then return to the wider dropout pattern.",
+      "whyItMatters": "The open ticket deserves care, but it can pull attention away from the system creating many dropouts.",
+      "tags": [
+        "queue ticket",
+        "unfinished task",
+        "oncology dropout table"
+      ],
+      "planSpec": {
+        "domain": "a oncology dropout table applying Zeigarnik Effect under operational pressure",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch93-ex03-tania-incident-timeline",
+      "title": "Tania closes one appeal loop",
+      "scenario": "The incident timeline smells of toner in the immigration appeal triage room in Toronto at 3:20 p.m. Tania, the case coordinator, must decide whether one missing translation should keep pushing back ten complete urgent appeals. \"Open loop,\" she says, marking the timeline, assigning the translation to a clerk, and changing the triage order while the supervising lawyer listens.",
+      "whatToDo": "Assign the missing translation as a tracked action, then triage the complete urgent appeals separately.",
+      "whyItMatters": "One incomplete appeal can hold attention hostage. Capturing its next action lets the urgent complete cases move.",
+      "tags": [
+        "incident timeline",
+        "open loop",
+        "immigration appeal triage"
+      ],
+      "planSpec": {
+        "domain": "a immigration appeal triage applying Zeigarnik Effect under operational pressure",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch93-ex04-donald-warranty-label",
+      "title": "Donald labels the unfinished partner deal",
+      "scenario": "You are looking at a warranty label in a Vancouver climate fund pitch review, and the unfinished partner agreement keeps dragging every slide off course. Donald must decide whether the restaurant-like open tab belongs in the funding decision now. He writes restaurant on the label, names the next partner action, and changes the pitch review back to carbon data and governance.",
+      "whatToDo": "Park the partner agreement with a next action and owner before returning to the funding criteria.",
+      "whyItMatters": "The unfinished deal nags like an unpaid tab. Unless the fund choice depends on it today, it should not own the pitch.",
+      "tags": [
+        "warranty label",
+        "restaurant",
+        "climate fund pitch review"
+      ],
+      "planSpec": {
+        "domain": "a climate fund pitch review applying Zeigarnik Effect under operational pressure",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch93-ex05-lorenzo-press-clipping",
+      "title": "Lorenzo stops rewriting the queue",
+      "scenario": "It took Lorenzo two weeks in a Lisbon call center to see that one unresolved caller had become the complaint script. At 4:45 p.m. in the quality room, Lorenzo, the script lead, reads a press clipping about a lost scarf and the Zeigarnik lesson feels obvious: unfinished items stay loud. Before the script update, he must decide whether scarf logic means closing that caller's loop or redesigning the whole queue around it.",
+      "whatToDo": "Close or assign the unresolved caller's next action, then judge the script from the whole complaint queue.",
+      "whyItMatters": "The caller's open loop keeps returning. The script should serve the queue, not only the case that has not closed.",
+      "tags": [
+        "press clipping",
+        "scarf",
+        "call-center complaint script"
+      ],
+      "planSpec": {
+        "domain": "a call-center complaint script applying Zeigarnik Effect under operational pressure",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch93-ex06-fabio-voting-sheet",
+      "title": "Fabio's influencer-report reset",
+      "scenario": "Which metric kept winning: the open vote or the campaign outcome? Fabio asks that after an outdoor-gear influencer report in Denver reviews a voting sheet with one undecided ambassador slot. The open slot kept pulling the team away from sales and return data. He marks zeigarnik on the sheet and changes the next review so open votes get owners before performance is discussed.",
+      "whatToDo": "Close unresolved votes with named owners before reading the next data summary.",
+      "whyItMatters": "An undecided slot can feel more urgent than results. Closing or parking it keeps the report focused on campaign performance.",
+      "tags": [
+        "voting sheet",
+        "zeigarnik",
+        "outdoor-gear influencer report"
+      ],
+      "planSpec": {
+        "domain": "a outdoor-gear influencer report applying Zeigarnik Effect under operational pressure",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a zeigarnik-effect case, a team keeps returning to one unfinished item even though a larger completed dataset is waiting, what is the Zeigarnik effect doing?",
+        "choices": [
+          "Making the unfinished item cling to attention because it lacks closure.",
+          "Even though larger makes zeigarnik-effect team keeps look credible; use returning unfinished item first and revisit completed dataset waiting when what zeigarnik effect shifts.",
+          "Effect doing making supports a narrower read of item even though; keep larger completed dataset central and leave waiting what zeigarnik aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The unfinished item stays mentally active. That does not prove it matters more than the wider evidence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Zeigarnik Effect makes zeigarnik-effect case feel more decisive than the record supports, and that misprices team keeps in this scene. The correct move keepss the choice by making the unfinished item cling to attention because it lacks closure."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a zeigarnik-effect review, a referee-rating list is ready except for one disputed match note, the release does not depend on that note. What should the ratings lead do?",
+        "choices": [
+          "Zeigarnik effect signal points toward a quicker call on note release depend; let except disputed match stand until assign slot finish contradicts it.",
+          "Pressure result record fits the immediate pressure around depend what ratings; hold match note release steady and test ready except disputed later.",
+          "Assign the note to a later review slot and finish the release."
+        ],
+        "correctIndex": 2,
+        "explanation": "The note needs a visible home, not control of the release. Capturing it calms the open loop without blocking unrelated work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Zeigarnik Effect works by letting zeigarnik-effect referee-rating crowd out list ready, which can misreads the except disputed decision. Assign the note to a later review slot and finish the release keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When zeigarnik-effect pressure appears, an oncology team keeps focusing on one missing patient follow-up while the dropout table shows a broader clinic pattern. Which correction fits?",
+        "choices": [
+          "Zeigarnik-effect pressure appears looks strong enough to guide oncology team keeps; focusing missing patient can wait unless follow-up dropout table changes the stakes.",
+          "Assign the patient follow-up, then return to the dropout pattern.",
+          "Dropout table shows makes team keeps focusing look credible; use missing patient follow-up first and revisit broader clinic correction when fits assign return shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The open ticket is real and should be assigned. Once captured, the team can study the pattern creating many dropouts.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Zeigarnik Effect turns appears oncology into a shortcut, so the room can overweights team keeps while missing focusing missing. Assign the patient follow-up, then return to the dropout pattern protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After zeigarnik-effect risk surfaces, an immigration triage room has one appeal missing a translation and ten complete urgent appeals ready for review, what should happen?",
+        "choices": [
+          "After zeigarnik-effect surfaces looks strong enough to guide immigration triage room; appeal missing translation can wait unless complete urgent appeals changes the stakes.",
+          "Translation complete urgent gives a practical reason for room appeal missing; happen track next belongs after appeals ready what clarifies the result.",
+          "Track the translation as a next action, then triage the complete urgent cases."
+        ],
+        "correctIndex": 2,
+        "explanation": "The missing translation becomes less distracting when it has an owner. The complete urgent cases should not wait on that loop.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Zeigarnik Effect would push the immigration triage case toward room appeal, creating a cost when missing translation stays untested. The useful guardrail is to track the translation as a next action, then triage the complete urgent cases."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If zeigarnik-effect reasoning takes over, a climate fund pitch keeps returning to one unfinished partner agreement, while the funding decision depends mostly on carbon data and governance. What is the likely error?",
+        "choices": [
+          "Pitch keeps returning gives a practical reason for reasoning climate fund; funding depends mostly belongs after unfinished partner agreement clarifies the result.",
+          "An open loop is steering the pitch more than the decision criteria require.",
+          "Data governance what supports a narrower read of keeps returning unfinished; keep partner agreement funding central and leave depends mostly carbon aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "The partner agreement may matter, but it should be parked unless today's decision depends on it. The open loop is taking too much control.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Zeigarnik Effect converts fund pitch into the loudest signal, which can rushes keeps returning before unfinished partner is checked. The better answer separatess attention on an open loop is steering the pitch more than the decision criteria require."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While zeigarnik-effect pressure builds, a call center keeps rewriting a script around one unresolved caller, the full complaint queue shows a different problem. What should the manager do first?",
+        "choices": [
+          "Close or assign the caller's next action, then judge the script from the full queue.",
+          "Center keeps rewriting looks strong enough to guide script around unresolved; caller full complaint can wait unless queue shows different changes the stakes.",
+          "Rewriting script around gives a practical reason for call center keeps; complaint queue shows belongs after unresolved caller full clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "Closing or assigning the caller's loop reduces its pull. The script should be judged by the wider queue after that.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Zeigarnik Effect hides inside the zeigarnik-effect pressure choice because zeigarnik-effect pressure seems sufficient, yet the cost lands in zeigarnik-effect pressure. Close or assign the caller's next action, then judge the script from the full queue brings the zeigarnik-effect pressure comparison."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the zeigarnik-effect call, an influencer report keeps circling one undecided ambassador slot while sales and return data are ready. Which review rule would help?",
+        "choices": [
+          "Ready rule help supports a narrower read of report keeps circling; keep undecided ambassador slot central and leave sales return data aside.",
+          "Assign owners to open votes before turning to performance data.",
+          "Owners open votes fits the immediate pressure around ambassador slot sales; hold keeps circling undecided steady and test call influencer report later."
+        ],
+        "correctIndex": 1,
+        "explanation": "Assigning owners captures open votes. That lets performance data receive attention instead of being displaced by unfinished slots.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Zeigarnik Effect pressures the call influencer decision toward the easy reading of call influencer. That can inflates the real cost unless the choice is grounded in assign owners to open votes before turning to performance data."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose zeigarnik-effect risk is present: a safety team wants to park an unsigned consent form so the meeting can move on. The current decision depends on that form. What should happen?",
+        "choices": [
+          "Close the consent loop now because the decision depends on it.",
+          "Meeting move current supports a narrower read of zeigarnik-effect present safety; keep team wants park central and leave unsigned consent form aside.",
+          "Current depends what points toward a quicker call on safety team wants; let suppose zeigarnik-effect present stand until form meeting move contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "Some open loops are dependencies. If the choice depends on consent, the loop should be closed instead of merely stored.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Zeigarnik Effect is the mechanism here: unfinished tasks pull attention back, so present safety can overpower present safety. Close the consent loop now because the decision depends on it keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two zeigarnik-effect signals compete: a project lead sees the same unfinished partner agreement hijack three weekly meetings, even though each meeting has a different main decision. Which practice best keeps the open item from taking over again?",
+        "choices": [
+          "Agreement hijack three makes compete project lead look credible; use sees unfinished partner first and revisit weekly meetings even when though meeting different shifts.",
+          "Three weekly meetings supports a narrower read of signals compete project; keep lead sees unfinished central and leave partner agreement hijack aside.",
+          "Write the open item, next physical action, owner, and return date in a loop ledger."
+        ],
+        "correctIndex": 2,
+        "explanation": "A loop ledger captures the unfinished task in a trusted place. Talking endlessly keeps the loop in charge.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Zeigarnik Effect makes the project lead evidence look cleaner than it is, risking a project lead mistake in this setting. The answer protects project lead by asking for write the open item, next physical action, owner, and return date in."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "One unfinished item keeps pulling the meeting back. How should the open loop be captured?",
+      "back": "Capture the unfinished item with an owner, next step, and review time. Closure frees attention without pretending the issue is done.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What calms an open loop that does not need action now?",
+      "back": "A next physical action, owner, and trusted place or date where it will return.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "When should the open loop be handled now?",
+      "back": "When the current decision depends on the loop being closed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "Why does unfinished work feel urgent?",
+      "back": "The mind keeps it active because it lacks closure, not necessarily because it is largest or most important.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "What is a loop ledger?",
+      "back": "A visible place for the unfinished item, next action, owner, and return date.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Close or capture unfinished tasks before they steer the next decision.",
+    "ifThenPlans": [
+      {
+        "context": "Meetings",
+        "plan": "If one open item keeps returning, then I will ask whether today's decision depends on it."
+      },
+      {
+        "context": "Queues",
+        "plan": "If one unresolved case pulls the room, then I will assign its next action before reviewing the queue."
+      },
+      {
+        "context": "Project reviews",
+        "plan": "If an open agreement or vote distracts the team, then I will give it an owner and return date."
+      },
+      {
+        "context": "Safety or consent",
+        "plan": "If the current choice depends on an open loop, then I will close it before moving on."
+      }
+    ],
+    "twentyFourHourChallenge": "Write three open loops that keep returning. For each, add the next physical action, owner, and place it will reappear.",
+    "weeklyPractice": "Once a week, clear your most distracting open loops by closing, assigning, or parking each one."
+  },
+  "memorableLines": [
+    {
+      "text": "Open loops ask to be closed."
+    },
+    {
+      "text": "A captured loop becomes quieter."
+    },
+    {
+      "text": "Before the choice moves forward, separate nagging from necessity."
+    }
+  ]
+}

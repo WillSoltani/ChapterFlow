@@ -1,0 +1,214 @@
+{
+  "chapterId": "the-12-week-year-ch16",
+  "number": 16,
+  "title": "Keeping Score",
+  "coreMove": "Track execution visibly enough that the score tells you what to adjust before the cycle is over.",
+  "sourcePressure": "Scorekeeping makes progress visible, keeps execution honest, and changes behavior without becoming image management.",
+  "chapterSpecificMisunderstanding": "Treating scorekeeping as performance theater, self-worth, or elaborate metric design.",
+  "sourceAlignmentTerms": [
+    "keeping score",
+    "scorekeeping",
+    "visible feedback",
+    "Thinking Shift",
+    "Team Application",
+    "Common Pitfalls",
+    "execution honesty"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Keeping Score",
+      "detail": "The verified chapter title frames scorekeeping as a core execution practice.",
+      "useIn": "both",
+      "phrasingHint": "A score changes behavior because it makes drift visible before drift can become a story."
+    },
+    {
+      "kind": "artifact",
+      "name": "Common Pitfalls and Success Tips",
+      "detail": "The source sidecar verifies this as a Chapter 16 subhead.",
+      "useIn": "fullRead",
+      "phrasingHint": "The pitfall is using the score to look good instead of using it to get honest."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch16: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch16: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch16: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch16: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Erin",
+      "domain": "sales team score huddle",
+      "audience": "a practitioner in sales team score huddle who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Erin posts the lead-action score before talking about revenue.",
+      "firstImage": "a score sheet projected above the huddle",
+      "mustInclude": [
+        "a score sheet projected above",
+        "keeping score",
+        "visible feedback"
+      ],
+      "mustAvoid": [
+        "generic keeping score explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Harriet",
+      "domain": "calligraphy workshop enrollment",
+      "audience": "a decision-maker in calligraphy workshop enrollment choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Harriet tracks enrollment calls instead of how busy the workshop felt.",
+      "firstImage": "ink bottles lined on a workshop table",
+      "mustInclude": [
+        "ink bottles lined on a",
+        "keeping score",
+        "visible feedback"
+      ],
+      "mustAvoid": [
+        "generic keeping score explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "public benefits casework",
+      "audience": "a team lead in public benefits casework who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Isabel marks completed benefit cases against the plan.",
+      "firstImage": "case files beside a ringing phone",
+      "mustInclude": [
+        "case files beside a ringing",
+        "keeping score",
+        "visible feedback"
+      ],
+      "mustAvoid": [
+        "generic keeping score explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Juliet",
+      "domain": "medical lab sample turnaround",
+      "audience": "a reflective operator in medical lab sample turnaround reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Juliet shows sample turnaround by day and changes staffing.",
+      "firstImage": "sample racks under blue lab lights",
+      "mustInclude": [
+        "sample racks under blue lab",
+        "keeping score",
+        "visible feedback"
+      ],
+      "mustAvoid": [
+        "generic keeping score explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Leila",
+      "domain": "park maintenance crew board",
+      "audience": "a reader in park maintenance crew board comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Leila counts completed route checks before praising effort.",
+      "firstImage": "salt bags stacked by a garage door",
+      "mustInclude": [
+        "salt bags stacked by a",
+        "keeping score",
+        "visible feedback"
+      ],
+      "mustAvoid": [
+        "generic keeping score explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Paige",
+      "domain": "Helsinki mobile games studio",
+      "audience": "two colleagues in Helsinki mobile games studio forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Paige scores test builds against the sprint commitment.",
+      "firstImage": "build notes beside a test phone",
+      "mustInclude": [
+        "build notes beside a test",
+        "keeping score",
+        "visible feedback"
+      ],
+      "mustAvoid": [
+        "generic keeping score explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "interpret score as feedback",
+      "separate lead action execution from final results",
+      "avoid vanity measurement"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one lead action and mark a simple weekly score: planned count, completed count, and what must change next week.",
+  "readingTimeMinutes": 12
+}

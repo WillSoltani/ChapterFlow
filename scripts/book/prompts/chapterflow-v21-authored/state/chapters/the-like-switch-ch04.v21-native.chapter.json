@@ -1,0 +1,265 @@
+{
+  "chapterId": "the-like-switch-ch04",
+  "number": 4,
+  "title": "The Laws of Attraction",
+  "readingTimeMinutes": 12,
+  "hook": "Mud on shift cards shows why crossing paths every morning can still leave two crews cold.",
+  "counterintuition": "Attraction is not built by repetition alone but by contact that starts to travel both ways, with reciprocity deciding whether it keeps going.",
+  "tryThisNow": "Choose one developing bond and mark the active force: repeated contact, reciprocity, disclosure, or support. Then name the weakest piece.",
+  "keyTakeaway": "Attraction grows when repeated contact becomes reciprocal, disclosure stays paced, and support makes the other person feel safely understood.",
+  "breakdown": {
+    "fastRead": "Mud dries on laminated shift cards while two flood-cleanup crews pass the radio charger every morning. They know each other's faces. They do not trust each other's handoffs.\n\nTomas, the field coordinator, adds one ritual: each crew states one risk and one need before the shift changes. The contact becomes reciprocal. Now each side gives and receives useful support.\n\nAttraction is broader than romance. It is the pull toward people and groups that feel rewarding, mutual, and safe enough for more contact.",
+    "deepRead": "What changes when Kiran shares one small design tradeoff with a playtest channel and asks testers to share their own constraints? The bug board has been active for weeks. Controller batteries sit beside the private beta link. Fans comment often, but the studio still feels distant.\n\nDisclosure begins to help only when it travels both ways and the relationship has room to hold it; reciprocal self-disclosure is the point where broadcast starts becoming participation. Repeated contact can make people familiar with a project, a team, or a person. Reciprocity changes the temperature. When the studio admits a tradeoff and testers answer with the limits of their own play time, the exchange stops being broadcast and becomes participation.\n\nContact opens the gate. Reciprocity pulls people through.\n\nSupport matters because attraction often grows around the feeling that someone sees your reality and responds to it. That does not require dramatic intimacy. It may be as simple as a project lead asking which concern feels biggest to a client before telling his own renovation story. It may be a running group organizer learning that the newcomer has spoken only about pace and route for four Saturdays.\n\nThe danger is speed. Too much disclosure too early asks the relationship to hold weight it has not earned. Too much support flowing one way turns attraction into obligation.",
+    "fullRead": "It takes Maja four Saturdays to notice the race bib pinned to the cork board has become a symbol of the problem. The newcomer attends every run, wears the reflective sash, follows the same route card, and still leaves before anyone knows why she is training for the charity race. Attendance has been mistaken for attraction.\n\nRepeated contact helps because it gives attraction something to work with. People often grow warmer toward those they cross paths with regularly, but crossing paths is only the beginning. The next test is whether the contact becomes mutual. Does information travel both ways? Does support move in both directions? Does the other person feel understood, or merely observed?\n\nThe research tradition around friendship, including work associated with Beverley Fehr, is useful here for one plain reason: attraction grows best when contact becomes reciprocal, not merely frequent. That point keeps the idea grounded. Attraction is not a lightning strike that either happens or fails. It is also not a quota of hours spent near someone. It is a pattern of rewarding contact that begins to feel safe, mutual, and identity-confirming.\n\nNicolas sees this with an anxious renovation client at a small architecture firm. \"We had the same fear when we opened the west wall,\" he says, with a sample tile beside the floor plan and a load-bearing note under his hand. Then he stops. If he keeps talking, the meeting becomes his story. If he asks what risk feels largest to the client, the small disclosure becomes support rather than performance.\n\nThat is calibrated self-disclosure. You give enough of yourself to make the exchange human, then you leave room for the other person's reality to enter. You do not unload to create instant intimacy. You do not stay polished and unreachable. You let the relationship breathe in both directions.\n\nSupport has the same rule. A parent committee chair can say thank you to exhausted volunteers after a tense year, and the words may be pleasant. The attraction returns when she pairs commitments on the signup grid so each parent both gives and receives visible help. The smell of poster paint in the multipurpose room matters less than the new fairness around the cash box. People are drawn back toward groups where support does not quietly become one person's burden.\n\nOne-sided support is a warning sign disguised as closeness. Late in the afternoon, Chiara looks at a wall calendar marked with referral arrows and sees her photography collective has a leak. Some members share leads. Others only receive them. The group feels attractive to the receivers and draining to the givers. The fix is not warmer branding. It is reciprocal support before the next client inquiry.\n\nAttraction lasts when the exchange gives both people evidence that contact is worth repeating. It weakens when frequency replaces mutuality, disclosure outruns trust, or support becomes a one-way subsidy. Look for the travel pattern. If attention, information, and help move only one direction, the pull will not hold."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-tomas-shift-cards",
+      "title": "Tomas Adds the Handoff Question",
+      "tags": ["relief", "decision", "reciprocity"],
+      "planSpec": {
+        "domain": "a disaster-relief volunteer roster where two crews cross paths every morning but do not trust each other",
+        "audience": "a field coordinator reading why repeated contact has stalled",
+        "stakes": "handoffs are slow during flood cleanup",
+        "format": "decision_point",
+        "requiredBeat": "the coordinator adds a reciprocal handoff ritual where each crew states one risk and one need, turning contact into mutual support"
+      },
+      "scenario": "Mud dries on laminated shift cards beside rubber boots and a radio charger at the flood-cleanup tent. Tomas watches the morning crew and afternoon crew cross paths for the tenth time without trusting a single handoff, even though pump locations and closed roads keep changing by the hour. He has to decide whether to add another shared briefing or require each crew to name one risk and one need before the shift cards change hands.",
+      "whatToDo": "Make the handoff reciprocal. Have each crew give one risk and ask for one need, so contact becomes mutual support instead of parallel traffic.",
+      "whyItMatters": "The crews already have repeated contact. Attraction to the team grows only when each side experiences the other as useful and responsive."
+    },
+    {
+      "exampleId": "ch04-ex02-kiran-beta-link",
+      "title": "Kiran Lets Testers Share Constraints",
+      "tags": ["games", "predict-reveal", "disclosure"],
+      "planSpec": {
+        "domain": "an indie game studio playtest channel with fans who comment often but never feel close to the team",
+        "audience": "a community lead trying to build real attraction to the project",
+        "stakes": "a public beta could lose its core testers",
+        "format": "predict_reveal",
+        "requiredBeat": "What changes when the lead shares a small design tradeoff and asks testers to share their own play constraints?"
+      },
+      "scenario": "What changes when the bug board has two hundred comments and the studio still feels far away? Kiran sees controller batteries scattered beside the private beta link before the Friday test and a Discord thread full of polite bug reports. He predicts another update post will be enough, then has to decide whether to share one small design tradeoff and ask testers what play constraints are shaping their feedback.",
+      "whatToDo": "Share one bounded tradeoff, then ask for the testers' constraints. Turn the channel from broadcast into a reciprocal exchange.",
+      "whyItMatters": "Fans who only receive updates may stay interested without feeling attached. Mutual disclosure makes them part of the work rather than an audience outside it."
+    },
+    {
+      "exampleId": "ch04-ex03-maja-race-bib",
+      "title": "Maja Notices the Silent Runner",
+      "tags": ["running", "postmortem", "contact"],
+      "planSpec": {
+        "domain": "a neighborhood running group where a newcomer attends every week but remains peripheral",
+        "audience": "a group organizer who confuses attendance with attraction",
+        "stakes": "the runner may stop showing up before the charity race",
+        "format": "postmortem",
+        "requiredBeat": "it takes Emily four Saturdays to see that nobody has traded real information with the newcomer beyond pace and route"
+      },
+      "scenario": "It takes Maja four Saturdays and a race bib pinned to the cork board to see the failure. The newcomer wears the reflective sash, follows the route card, and disappears after stretching while the others refill bottles by the park gate. Nobody has traded a real detail beyond pace and distance. Before the charity race, Maja changes the warmup so each runner names what brought them to this event and who can help with the next training gap.",
+      "whatToDo": "Move beyond attendance. Add a small reciprocal exchange tied to the race, so the newcomer can give and receive something real.",
+      "whyItMatters": "Weekly contact created familiarity, not attraction. The runner needs mutual information and support before the group feels worth returning to."
+    },
+    {
+      "exampleId": "ch04-ex04-nicolas-west-wall",
+      "title": "Nicolas Stops Before It Becomes His Story",
+      "tags": ["architecture", "dialogue", "pacing"],
+      "planSpec": {
+        "domain": "a small architecture firm pairing a client and project lead over a home renovation",
+        "audience": "a project lead who needs supportiveness without premature intimacy",
+        "stakes": "the client is anxious about spending savings on a rebuild",
+        "format": "dialogue",
+        "requiredBeat": "\"We had the same fear when we opened the west wall,\" Nicolas says, then stops before turning the meeting into his story and asks what risk feels largest to the client"
+      },
+      "scenario": "\"We had the same fear when we opened the west wall,\" Nicolas says, with a sample tile beside the floor plan and a load-bearing note under his hand. The client has savings tied to the rebuild and keeps touching the estimate. Nicolas is about to tell the whole story. He must decide whether to keep talking or stop and ask which risk feels largest to her.",
+      "whatToDo": "Share just enough to humanize the fear, then turn the attention back to the client's risk. Keep disclosure calibrated and supportive.",
+      "whyItMatters": "Small disclosure can deepen attraction when it opens room for the other person. Too much turns support into self-display."
+    },
+    {
+      "exampleId": "ch04-ex05-frida-poster-paint",
+      "title": "Frida Pairs the Fundraiser Commitments",
+      "tags": ["school", "before-after", "support"],
+      "planSpec": {
+        "domain": "a parent committee planning a school fundraiser after a tense year",
+        "audience": "a committee chair rebuilding attraction among volunteers",
+        "stakes": "one-sided support will leave three parents carrying everything",
+        "format": "before_after",
+        "requiredBeat": "the chair shifts from broad gratitude to paired reciprocal commitments, so each parent gives and receives support visibly"
+      },
+      "scenario": "The smell of poster paint fills the multipurpose room while Frida studies the signup grid beside the cash box. Before, she thanked everyone broadly and watched the same three parents carry the fundraiser. After, she pairs every commitment with a named support partner: ticket table with cash count, poster crew with cleanup, raffle calls with receipt tracking. Help finally moves both ways.",
+      "whatToDo": "Replace broad gratitude with paired commitments. Make support visible and reciprocal so volunteering feels shared rather than extracted.",
+      "whyItMatters": "Groups become attractive when effort returns. If support flows one way, the people carrying the load start feeling used instead of drawn in."
+    },
+    {
+      "exampleId": "ch04-ex06-chiara-referral-calendar",
+      "title": "Chiara Maps the Referral Arrows",
+      "tags": ["photography", "vignette", "fairness"],
+      "planSpec": {
+        "domain": "a freelance photography collective where members trade referrals unevenly",
+        "audience": "a founder diagnosing why the group feels attractive to some and draining to others",
+        "stakes": "unreciprocated leads could break the collective",
+        "format": "vignette",
+        "requiredBeat": "At 4:45 p.m., Chiara maps who shared leads and who only received them, then resets the group around reciprocal support before the next client call"
+      },
+      "scenario": "At 4:45 p.m., Chiara marks referral arrows on a wall calendar while a lens cap rolls under the studio table. The client inquiry email is due before six, and the pattern is blunt: three members share leads, two mostly receive them. Chiara must decide whether to keep the next call friendly or reset the collective around reciprocal support before another lead leaves the same hands.",
+      "whatToDo": "Name the referral pattern and set a reciprocal rule before the client call. Make lead-sharing support visible instead of hoping warmth will cover imbalance.",
+      "whyItMatters": "A collective feels attractive to receivers and draining to givers when support runs one way. Reciprocity protects the pull for everyone."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A community group meets weekly, but new members rarely return after two sessions. They hear updates but never share needs or receive help. What is most likely missing?",
+        "choices": ["Reciprocity", "Repeated contact", "Physical proximity"],
+        "correctIndex": 0,
+        "explanation": "The group already has repeated contact. The missing piece is mutual exchange: people need to give and receive support, not just hear updates.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A project lead sits across from an anxious client with a sample tile, a floor plan, and a savings estimate on the table. The client keeps touching the total cost. Which disclosure is best calibrated?",
+        "choices": ["Tell the full story of his own renovation fear", "Share one similar fear, then ask which risk feels largest to the client", "Avoid all personal disclosure so the meeting stays professional"],
+        "correctIndex": 1,
+        "explanation": "The small disclosure humanizes the moment and then returns attention to the client. The full story takes over, while silence may feel remote.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A volunteer committee thanks everyone often, but the same three parents do most work. Which change best rebuilds attraction to the group?",
+        "choices": ["Send a warmer gratitude email", "Pair every task with visible mutual support", "Ask the busiest parents to model commitment"],
+        "correctIndex": 1,
+        "explanation": "Attraction returns when support becomes reciprocal. Warmer thanks or more modeling can leave the same one-sided burden intact.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A beta-test channel has many comments but little attachment to the studio. Which move turns repeated contact into deeper attraction?",
+        "choices": ["Post more frequent patch notes", "Share a bounded design tradeoff and ask testers for their constraints", "Ask fans to praise the game publicly"],
+        "correctIndex": 1,
+        "explanation": "The tradeoff plus question creates reciprocal disclosure. More notes increase contact, and public praise asks for loyalty before the exchange deepens.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A new runner attends every Saturday, wears the reflective sash, follows the route card, and still leaves before anyone knows why the charity race matters to her. Which diagnosis best fits the attraction model?",
+        "choices": ["The group has frequency without enough mutual information or support", "The newcomer needs a longer route", "The organizer should avoid asking personal questions forever"],
+        "correctIndex": 0,
+        "explanation": "Attendance proves frequency, not attraction. A small reciprocal exchange tied to the race can make the contact feel mutual and worth repeating.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A photography collective feels exciting to members who receive referrals and exhausting to members who send them. What is the warning sign?",
+        "choices": ["The collective lacks a stronger brand", "The members need more meetings", "Support is flowing one way, so attraction is becoming obligation"],
+        "correctIndex": 2,
+        "explanation": "One-sided support makes the group attractive only for receivers. More meetings or branding would not fix the imbalance in what people give and get.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A new friend shares a painful personal history during a second lunch and seems upset when you do not match it. What is the clearest issue?",
+        "choices": ["The disclosure outran the relationship's capacity", "The lunch was too short", "The setting lacked enough proximity"],
+        "correctIndex": 0,
+        "explanation": "Disclosure helps when it is paced and reciprocal. A heavy share too early can feel like pressure rather than attraction.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A manager wants two teams to feel more drawn to collaborating after months of cold handoffs. Which action best fits reciprocal attraction?",
+        "choices": ["Move the teams into the same office", "Hold a longer all-hands meeting", "Create a handoff where each team states one risk and one need"],
+        "correctIndex": 2,
+        "explanation": "The handoff creates reciprocal support. Same office or longer meetings may add exposure without making the relationship mutual.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Which plan best evaluates whether a developing friendship is healthy attraction rather than one-sided pull?",
+        "choices": ["Track whether contact, disclosure, and support move both ways over time", "Notice whether the person responds quickly to every message", "Increase personal disclosure until the bond feels intimate"],
+        "correctIndex": 0,
+        "explanation": "Healthy attraction shows reciprocity across contact, disclosure, and support. Fast replies can mislead, and forced disclosure may create pressure.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Repeated contact has not become attraction. What should you inspect next?",
+      "back": "Inspect reciprocity, disclosure, and support. Contact starts the process, but attraction deepens when exchange travels both ways and feels responsive.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A person shares too much too early and the room tightens. What went wrong?",
+      "back": "The disclosure outran the relationship. Openness helps only when it is paced, mutual, and safe enough for the other person to hold.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A group feels attractive to receivers and draining to givers. What should change?",
+      "back": "Make support reciprocal. Name who gives and who receives, then redesign the exchange so help returns instead of flowing one way.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why can more meetings fail to build attraction between two teams?",
+      "back": "Meetings may add exposure without mutuality. The teams need a shared exchange where each side gives information, names needs, and receives support.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A small disclosure makes the room warmer but starts taking over the exchange. What is the safest test of calibration?",
+      "back": "Ask whether the disclosure opens room for the other person. If it takes over the conversation or demands a matching confession, it is too heavy.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Read attraction as a pattern of mutual exchange. The skill is to notice whether contact, disclosure, and support are becoming reciprocal instead of assuming more exposure will solve everything.",
+    "ifThenPlans": [
+      {
+        "context": "teams",
+        "plan": "If two groups cross paths often but stay cold, then I will add a handoff where each side names one risk and one need."
+      },
+      {
+        "context": "friendship",
+        "plan": "If a developing friendship feels one-sided, then I will check whether disclosure and support have moved both ways."
+      },
+      {
+        "context": "community",
+        "plan": "If volunteers are drifting, then I will pair commitments so everyone gives and receives visible support."
+      },
+      {
+        "context": "client work",
+        "plan": "If I share a personal detail to build trust, then I will stop after one small bridge and ask about the client's reality."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one developing bond and write four labels: contact, reciprocity, disclosure, support. Put a star by the weakest label and change only that part.",
+    "weeklyPractice": "Once a week, review one group or relationship that draws you in. Name what you receive, what you give, and whether disclosure is paced enough to keep trust safe."
+  },
+  "memorableLines": [
+    {
+      "text": "Contact opens the gate. Reciprocity pulls people through.",
+      "location": "breakdown.deepRead",
+      "why": "It distinguishes exposure from the deeper mechanism in two short sentences."
+    },
+    {
+      "text": "One-sided support is a warning sign disguised as closeness.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the chapter's hard edge memorable and practical."
+    },
+    {
+      "text": "Attraction lasts when the exchange gives both people evidence that contact is worth repeating.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a compact diagnostic for reciprocity."
+    }
+  ]
+}

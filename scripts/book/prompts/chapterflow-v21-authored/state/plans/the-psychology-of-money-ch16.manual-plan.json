@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch16",
+  "number": 16,
+  "title": "Nothing's Free",
+  "coreMove": "Name the emotional fee before you buy the return.",
+  "sourcePressure": "Good returns charge a price, often volatility, discomfort, doubt, and regret rather than an explicit invoice.",
+  "chapterSpecificMisunderstanding": "Acting as if fees only mean visible charges or fund expenses.",
+  "sourceAlignmentTerms": [
+    "fee",
+    "volatility",
+    "emotional cost",
+    "uncertainty",
+    "price fluctuation",
+    "holding through"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Nothing's Free with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Nothing's Free to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the fee move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of fee and volatility"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a young investor choosing an equity allocation after watching a drawdown simulation",
+      "audience": "a saver who wants returns without feeling the fee",
+      "stakes": "panic selling would turn a good asset into a bad personal fit",
+      "format": "predict_reveal",
+      "requiredBeat": "she watches a simulated account drop by a year's salary and names whether she can still hold it",
+      "firstImage": "a brokerage simulator showing a red six-figure drop",
+      "mustInclude": [
+        "drawdown simulator",
+        "salary comparison",
+        "allocation slider"
+      ],
+      "mustAvoid": [
+        "stock tip content"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a cattle rancher buying drought insurance with an ugly premium",
+      "audience": "a rancher accepting an explicit cost to avoid a hidden ruin cost",
+      "stakes": "resenting the premium may ignore the price of sleeping through dry months",
+      "format": "scene",
+      "requiredBeat": "he signs the policy after placing the premium beside the cost of forced herd liquidation",
+      "firstImage": "a policy packet beside a cattle count written on a feed-store receipt",
+      "mustInclude": [
+        "policy packet",
+        "herd count",
+        "liquidation estimate"
+      ],
+      "mustAvoid": [
+        "insurance product pitch"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a novelist turning down a guaranteed advance for a riskier royalty deal",
+      "audience": "a writer naming the emotional price of upside",
+      "stakes": "the royalty path includes years of doubt that may be unbearable",
+      "format": "decision_point",
+      "requiredBeat": "she writes the worst plausible royalty statement before choosing the contract",
+      "firstImage": "a contract offer next to a blank royalty projection sheet",
+      "mustInclude": [
+        "contract offer",
+        "royalty projection",
+        "worst-case note"
+      ],
+      "mustAvoid": [
+        "artist gamble romance"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a restaurant owner keeping menu prices flexible despite customer complaints",
+      "audience": "an owner learning that pricing freedom costs discomfort",
+      "stakes": "avoiding complaints may quietly destroy margins",
+      "format": "dialogue",
+      "requiredBeat": "she reads three complaint emails aloud, then compares them with the supplier bill increase they pay for",
+      "firstImage": "a supplier invoice beside printed customer emails",
+      "mustInclude": [
+        "supplier invoice",
+        "complaint emails",
+        "menu margin"
+      ],
+      "mustAvoid": [
+        "customer is wrong rant"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a mountain guide charging clients for weather cancellation reserves",
+      "audience": "a guide explaining that safety margins are part of the fee",
+      "stakes": "clients may resent paying for days when nothing happens",
+      "format": "postmortem",
+      "requiredBeat": "after canceling a climb, he shows the reserve fund that lets guides make the safe call",
+      "firstImage": "a weather bulletin clipped to a guide roster",
+      "mustInclude": [
+        "weather bulletin",
+        "reserve fund",
+        "cancellation policy"
+      ],
+      "mustAvoid": [
+        "adventure bravado"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a family keeping a boring bond ladder while friends celebrate hot returns",
+      "audience": "a household accepting envy as the fee for stability",
+      "stakes": "chasing excitement could destroy the calm the portfolio is meant to buy",
+      "format": "reflection",
+      "requiredBeat": "they write the emotion they are paying with when friends brag at dinner",
+      "firstImage": "a brokerage statement folded beside an invitation to dinner",
+      "mustInclude": [
+        "bond ladder",
+        "dinner invitation",
+        "envy note"
+      ],
+      "mustAvoid": [
+        "safe investing slogan"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: name the emotional fee before you buy the return",
+      "distinguish fee from nearby but weaker advice such as hidden-fee ranting",
+      "diagnose when a character is making the common misread: acting as if fees only mean visible charges or fund expenses.",
+      "evaluate tradeoffs using the chapter-specific pressure around fee, volatility, emotional cost"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where fee is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: name the emotional fee before you buy the return.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

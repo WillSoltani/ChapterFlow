@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch11",
+  "number": 11,
+  "title": "The Boom Before the Bust",
+  "coreMove": "Read a boom for the hidden habits it is teaching before success makes them untouchable.",
+  "sourcePressure": "Warns that successful periods can normalize habits and structures that later become failure mechanisms; strong results can postpone diagnosis.",
+  "chapterSpecificMisunderstanding": "Treating the boom as simple greed, luck, or macroeconomic history instead of cultural training during success.",
+  "sourceAlignmentTerms": [
+    "boom before the bust",
+    "success",
+    "hidden cost",
+    "linear hierarchy",
+    "recognition from above",
+    "diagnosis",
+    "trained habits"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 11 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional cheese creamery expansion",
+      "audience": "creamery owner during booming orders",
+      "stakes": "growth rewards shortcuts that later spoil batches",
+      "format": "postmortem",
+      "requiredBeat": "she compares the record sales month with the first skipped culture-temperature log",
+      "firstImage": "a copper vat beside a missing log sheet",
+      "mustInclude": [
+        "copper vat",
+        "temperature log"
+      ],
+      "mustAvoid": [
+        "financial crisis"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "concert venue booking office",
+      "audience": "promoter after sold-out season",
+      "stakes": "success hides staff exhaustion and unsafe crowd patterns",
+      "format": "scene",
+      "requiredBeat": "the promoter marks which sellouts required unpaid cleanup before booking the next run",
+      "firstImage": "a ticket manifest under a crowd-control diagram",
+      "mustInclude": [
+        "ticket manifest",
+        "barrier diagram"
+      ],
+      "mustAvoid": [
+        "anti-success"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "urban tree nursery grant cycle",
+      "audience": "director flush with funding",
+      "stakes": "fast planting numbers mask poor survival care",
+      "format": "decision_point",
+      "requiredBeat": "the director slows the next planting after matching last year's photo op dates to dead saplings",
+      "firstImage": "a tree tag tied to a brittle sapling",
+      "mustInclude": [
+        "tree tag",
+        "grant calendar"
+      ],
+      "mustAvoid": [
+        "growth bad"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "language school enrollment desk",
+      "audience": "owner celebrating waitlists",
+      "stakes": "booming classes normalize oversized groups",
+      "format": "before_after",
+      "requiredBeat": "she watches a teacher skip speaking turns and caps enrollment before complaints arrive",
+      "firstImage": "a stack of placement cards beside a classroom door",
+      "mustInclude": [
+        "placement cards",
+        "class roster"
+      ],
+      "mustAvoid": [
+        "education scaling"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "indie game studio prototype sprint",
+      "audience": "producer praised for velocity",
+      "stakes": "demo success trains crunch as normal",
+      "format": "dialogue",
+      "requiredBeat": "the producer circles the weekend build notes and asks which habit will break at launch",
+      "firstImage": "a build number written on a whiteboard",
+      "mustInclude": [
+        "build number",
+        "bug list"
+      ],
+      "mustAvoid": [
+        "software feature creep"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "harbor ferry cafe",
+      "audience": "operator seeing tourist surge",
+      "stakes": "busy months hide maintenance deferrals",
+      "format": "reflection",
+      "requiredBeat": "the operator ties each record-sales week to the postponed engine-service tags",
+      "firstImage": "a service tag hanging from an engine-room valve",
+      "mustInclude": [
+        "service tag",
+        "sales ledger"
+      ],
+      "mustAvoid": [
+        "nostalgia boom"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect cultural habits inside success",
+      "question results without dismissing them",
+      "predict bust mechanisms from boom behaviors",
+      "surface hidden costs early"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one practice currently praised because results are good and ask what behavior it is training if pressure changes.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

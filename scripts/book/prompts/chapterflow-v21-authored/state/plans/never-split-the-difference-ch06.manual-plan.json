@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch06",
+  "number": 6,
+  "title": "Bend Their Reality",
+  "coreMove": "Frame the choice around the loss, fairness standard, or anchor that changes how the deal feels.",
+  "sourcePressure": "The source ties this chapter to fairness, loss aversion, anchoring, and perception, while warning that this is a high-risk abstraction zone that must stay concrete and not become careless manipulation.",
+  "chapterSpecificMisunderstanding": "The writer must not drift into generic behavioral economics or make perception-shaping sound like a license to deceive.",
+  "sourceAlignmentTerms": [
+    "fairness",
+    "loss aversion",
+    "anchor",
+    "perception",
+    "reference point",
+    "trust",
+    "concrete stakes"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A casino table proves loss aversion",
+      "A car dealer anchors the buyer",
+      "People hate losing more than winning"
+    ],
+    "counterintuition": [
+      "Reality is negotiable",
+      "Fairness is emotional",
+      "Anchors control the deal"
+    ],
+    "tryThisNow": [
+      "Name what they might lose",
+      "Set an anchor",
+      "Mention fairness carefully"
+    ],
+    "examples": [
+      "behavioral-economics lab",
+      "salary negotiation cliche",
+      "used-car haggle",
+      "real estate bidding war"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional blood bank scheduling mobile drives",
+      "audience": "a coordinator asking a corporate host to keep a low-turnout drive on the calendar",
+      "stakes": "canceled appointments mean a hospital trauma unit starts the weekend short",
+      "format": "scene",
+      "requiredBeat": "the coordinator reframes the request from adding inconvenience to preventing a specific platelet shortfall already scheduled for Friday",
+      "firstImage": "a cooler inventory screen showing two yellow platelet rows near zero",
+      "mustInclude": [
+        "appointment sheet",
+        "platelet count",
+        "Friday trauma schedule"
+      ],
+      "mustAvoid": [
+        "generic charity appeal",
+        "guilt speech"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "hotel group-block dispute before a medical conference",
+      "audience": "an event planner trying to keep a hotel from releasing reserved rooms",
+      "stakes": "doctors may scatter across the city and miss early clinical sessions",
+      "format": "decision_point",
+      "requiredBeat": "the planner uses the hotel's own service-standard language as the fairness reference point before discussing release dates",
+      "firstImage": "a rooming-list spreadsheet open beside a brass key-card encoder",
+      "mustInclude": [
+        "release date",
+        "service standard",
+        "rooming list"
+      ],
+      "mustAvoid": [
+        "generic travel complaint",
+        "conference-center scene"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "print shop rush order for election ballots",
+      "audience": "a county clerk negotiating with a printer after a proofing error",
+      "stakes": "late ballots could force public notice and erode trust in the election process",
+      "format": "vignette",
+      "requiredBeat": "the clerk anchors on the public cost of a missed mailing date rather than the shop's overtime charge",
+      "firstImage": "a proof sheet with one precinct line circled in red pencil",
+      "mustInclude": [
+        "mailing date",
+        "overtime charge",
+        "precinct line"
+      ],
+      "mustAvoid": [
+        "partisan politics",
+        "generic printing rush"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "community solar subscription renegotiation",
+      "audience": "a project lead asking a church board to sign after the rebate changed",
+      "stakes": "the board may walk away if the new price feels like a bait and switch",
+      "format": "before_after",
+      "requiredBeat": "the lead stops defending the higher monthly number and reframes the loss as forfeiting locked winter credits already reserved in the church's name",
+      "firstImage": "a utility bill with the winter credit line highlighted beside a chapel floor plan",
+      "mustInclude": [
+        "winter credit",
+        "rebate change",
+        "subscription slot"
+      ],
+      "mustAvoid": [
+        "generic green-energy pitch",
+        "moralizing"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "specialty tool rental dispute after storm damage",
+      "audience": "a rental manager negotiating with a contractor who resists the damage charge",
+      "stakes": "the contractor may walk from a long account if the charge feels arbitrary",
+      "format": "dialogue",
+      "requiredBeat": "the manager frames the charge against the signed replacement schedule and asks what would feel fair given the cracked torque housing in front of them",
+      "firstImage": "a cracked torque housing resting on a black rubber service mat",
+      "mustInclude": [
+        "replacement schedule",
+        "storm clause",
+        "account history"
+      ],
+      "mustAvoid": [
+        "car mechanic cliche",
+        "punitive fee story"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "small publisher audiobook royalty renegotiation",
+      "audience": "an editor discussing royalty terms with a narrator after production delays",
+      "stakes": "the audiobook may miss a seasonal launch if both sides lock onto hourly rate",
+      "format": "postmortem",
+      "requiredBeat": "the editor reviews how shifting from hourly loss to launch-window upside changed the narrator's perception of a revised royalty split",
+      "firstImage": "a waveform timeline paused at chapter eight on a studio monitor",
+      "mustInclude": [
+        "launch window",
+        "royalty split",
+        "pickup session"
+      ],
+      "mustAvoid": [
+        "generic creative gig",
+        "exposure pitch"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify whether a frame uses loss, fairness, or anchor pressure",
+      "apply a concrete fairness reference without manipulation",
+      "analyze how a reference point changes perceived value",
+      "evaluate when perception-shaping crosses into careless distortion"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one stalled offer, write the number, then write the loss or fairness standard the other side is using to judge that number; revise your next sentence around that reference point.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

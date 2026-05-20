@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch09",
+  "number": 9,
+  "title": "Uncommon Amongst Uncommon",
+  "coreMove": "Let uncommon performance steady the room instead of using it to stand above the room.",
+  "sourcePressure": "The source covers Ranger School in a post-9/11 military setting, deprivation, leadership under fatigue, duty, and the warning against moral superiority inside elite cultures.",
+  "chapterSpecificMisunderstanding": "The writer must not frame uncommon performance as ego display, moral superiority, or tactical military detail.",
+  "sourceAlignmentTerms": ["Ranger School", "post-9/11", "deprivation", "leadership", "duty", "example", "uncommon among uncommon"],
+  "forbiddenFrames": {
+    "hook": ["Be uncommon among uncommon", "Stand out in elite rooms", "Lead by being the toughest"],
+    "counterintuition": ["Greatness earns superiority", "The best lead from above", "Elite standards separate you"],
+    "tryThisNow": ["Set a higher standard", "Outwork the best person", "Be the example"],
+    "examples": ["corporate top-performer flex", "military tactical scene", "generic leadership lesson"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "mountain rescue training cadre after a sleepless search",
+      "audience": "a senior trainee who could show off but sees the rookie shaking",
+      "stakes": "whether the exhausted team regains steadiness for the next grid",
+      "format": "scene",
+      "requiredBeat": "he silently repacks the rookie's beacon harness correctly, then starts the next grid at the agreed pace rather than announcing his own strength",
+      "firstImage": "a beacon harness tangled on a snow-dusted tailgate",
+      "mustInclude": ["beacon harness", "search grid", "tailgate"],
+      "mustAvoid": ["rescue climax", "elite bragging", "generic mentoring"]
+    },
+    {
+      "domain": "ICU night-charge handoff after three emergency admissions",
+      "audience": "a charge nurse who is the most experienced person in the unit",
+      "stakes": "whether the new nurses borrow calm or inherit panic",
+      "format": "dialogue",
+      "requiredBeat": "she lowers her voice, checks the ventilator settings aloud with the newest nurse, and gives the next task without mentioning how long she has been awake",
+      "firstImage": "a ventilator screen pulsing blue in a dim bay",
+      "mustInclude": ["ventilator settings", "handoff sheet", "night-charge badge"],
+      "mustAvoid": ["medical savior", "burnout speech", "generic calm under pressure"]
+    },
+    {
+      "domain": "commercial fishing deck in rough weather after a gear jam",
+      "audience": "a deck boss whose speed could shame the younger crew",
+      "stakes": "whether fear spreads while the nets are still live",
+      "format": "decision_point",
+      "requiredBeat": "he slows his hands just enough for the youngest deckhand to copy the knot, then points him to the next cleat while the boat rolls",
+      "firstImage": "a green deck light shining on a wet cleat",
+      "mustInclude": ["live net", "cleat", "deck light"],
+      "mustAvoid": ["sea disaster", "tough captain speech", "solo competence display"]
+    },
+    {
+      "domain": "elite culinary prep team during a sold-out service",
+      "audience": "a sous-chef who can outwork everyone and knows it",
+      "stakes": "whether the line collapses because excellence becomes contempt",
+      "format": "before_after",
+      "requiredBeat": "after seeing a commis fall behind, he plates one perfect sample at her station and leaves the pacing notes where she can use them",
+      "firstImage": "a chilled tasting spoon lined beside six unfinished plates",
+      "mustInclude": ["pacing notes", "commis station", "sample plate"],
+      "mustAvoid": ["chef tantrum", "restaurant glamour", "generic teamwork"]
+    },
+    {
+      "domain": "forensic lab backlog after a major case surge",
+      "audience": "a senior analyst with the cleanest error record in the lab",
+      "stakes": "whether the backlog tempts juniors into shortcuts",
+      "format": "postmortem",
+      "requiredBeat": "he places his own checklist under the evidence tray and makes the team follow the boring sequence even as the queue grows",
+      "firstImage": "an evidence tray sealed with a white tamper strip",
+      "mustInclude": ["tamper strip", "checklist", "case queue"],
+      "mustAvoid": ["crime-show drama", "genius analyst", "generic standards"]
+    },
+    {
+      "domain": "professional ballet company understudy rehearsal",
+      "audience": "a principal dancer deciding whether to protect status or steady the understudy",
+      "stakes": "whether the understudy steps onstage terrified and unsupported",
+      "format": "reflection",
+      "requiredBeat": "the principal marks the turn sequence beside the understudy, counts the entrance softly, and steps back without making the correction about herself",
+      "firstImage": "a rosin box open beside a scuffed rehearsal floor",
+      "mustInclude": ["turn sequence", "entrance count", "rosin box"],
+      "mustAvoid": ["stage triumph", "jealous-star plot", "generic humility"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish example-setting from superiority display", "choose leadership behaviors under fatigue", "analyze how steadiness transfers to others", "evaluate elite performance that serves duty rather than ego"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "In the next room where you are stronger than someone else, use that edge to make their next step steadier, not to make your status louder.",
+  "readingTimeMinutes": 12
+}

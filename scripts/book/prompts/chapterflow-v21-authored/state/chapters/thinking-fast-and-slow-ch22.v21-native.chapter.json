@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch22",
+  "number": 22,
+  "title": "Expert Intuition: When Can We Trust It?",
+  "readingTimeMinutes": 12,
+  "hook": "The snap call deserves respect only if the world has been teaching it the same lesson for years.",
+  "counterintuition": "The right test is not credentials versus skepticism. Trust intuition when the environment is regular and feedback has trained the pattern; withhold trust when either condition is missing.",
+  "tryThisNow": "Before one obvious choice today, name the cue, then ask: has this setting repeated enough, and did feedback correct me before?",
+  "keyTakeaway": "Grant intuition only when the environment is regular and feedback has trained it.",
+  "breakdown": {
+    "fastRead": "A dentist glances at a crown and says the bite will be high. The comment may sound like a guess, but years of fittings have taught the eye what tiny contact marks mean. A college interviewer feels the same flash about a candidate, but the outcome arrives years later and feedback is muddy.\n\nSkill needs a training ground.\n\nExpert intuition can be trusted when two conditions hold: the environment is regular enough to contain learnable patterns, and feedback is clear enough to train those patterns. Without regularity, there is no pattern to learn. Without feedback, confidence cannot be corrected into skill.",
+    "deepRead": "A cheese affineur taps a wheel, smells the rind, and says it needs four more days. The cellar is not perfectly predictable, but it is regular. Temperature, humidity, rind growth, and texture have repeated thousands of times under close feedback.\n\nThat is what skill feels like from the inside.\n\nThe fast answer is not a trick. It is recognition built from practice. The expert has seen small cues, acted on them, and learned quickly whether the action was right. Over time, the cue becomes familiar before it becomes verbal. A firefighter may sense a dangerous building, a nurse may notice a failing patient, and a lab technician may see a crown that will not seat. The intuition is fast because training made the pattern available fast.\n\nOther domains imitate the feeling without the training. Admissions, stock picking, long-range strategy, and many hiring decisions can produce strong impressions. The environment may be unstable, the outcome delayed, or the feedback contaminated by luck and selection. In those settings, confidence can grow without skill growing beside it.\n\nA marine salvage planner studies tide tables, hull angle, current, and diver reports. If similar wrecks in similar waters have taught the team what those cues predict, the planner's intuition deserves weight. If every salvage job is a one-off under different weather, equipment, and incentives, the same confident tone should count for less. The question is not whether the person is experienced. The question is whether experience had something regular to learn.\n\nNo feedback, no license for certainty.",
+    "fullRead": "Expert intuition is one of the easiest ideas to misuse because it has two enemies. One enemy worships the expert's feeling because the expert has status. The other dismisses all fast judgment because it is not deliberate analysis. Both skip the real test: did the environment let skill form?\n\nKelsey runs marine salvage planning on a cold harbor morning. The amber vial tray labeled expert intuition sits beside diver notes and tide charts. Her senior diver says the hull will roll if they lift from the stern first. That warning deserves attention only if it comes from repeated exposure to similar hulls, currents, rigging angles, and immediate feedback from past lifts. If the diver has that history, the snap call may be compressed knowledge. If the job is unlike anything the crew has seen, confidence should shrink.\n\nAsk two questions before you trust the flash.\n\nIs the environment regular? Regular does not mean simple. It means the same cues tend to have the same consequences often enough to be learned. Chess, firefighting, some medical triage, skilled craft, and many repair tasks contain repeated structure. Political forecasting, venture selection, and long-range social prediction often contain weaker regularity. The cues may look meaningful, but the world keeps changing underneath them.\n\nDid feedback train the judgment? Feedback must be prompt, clear, and tied to the original call. A chess move is punished on the board. A crown fitting shows whether the bite was high. A cheese wheel reveals whether the timing was right. A hiring impression may not receive clean feedback because the hired person changes teams, the rejected person disappears, and the organization remembers only the story it wants.\n\nYou can respect expertise without surrendering to it. Ask the expert to name the domain boundary. Ask what kind of cases trained the intuition. Ask how often the prediction was checked. A good expert will usually welcome those questions because they distinguish real skill from confident theater. A weak expert may treat the questions as disrespect because status is doing the work that feedback should do.\n\nA ballot curing table gives a quieter example. Colette has handled thousands of signature mismatches and receives daily corrections from bipartisan review. Her intuition about a shaky signature may have real validity because the task repeats and feedback is immediate. A visiting official with no such loop may feel equally confident after one afternoon. The feeling is similar. The training history is not.\n\nThe counter-objection is that new situations still require judgment. True. When there is no rule and no training ground, someone must decide. The response is not to freeze. It is to lower confidence, seek outside checks, and avoid dressing an untrained impression in expert clothing. Intuition can advise in weak environments, but it should not command.\n\nA trustworthy hunch has a biography of correction."
+  },
+  "examples": [
+    {
+      "exampleId": "ch22-ex01-kelsey-salvage",
+      "title": "Kelsey checks the diver's hunch",
+      "tags": [
+        "predict_reveal",
+        "salvage",
+        "expert-intuition"
+      ],
+      "planSpec": {
+        "domain": "marine salvage planning facing a decision distorted by regular environment",
+        "audience": "a lead or reviewer who must grant intuition only when regularity and feedback have trained it",
+        "stakes": "the visible call will go wrong unless the training environment is separated from the tempting cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the before call appears on the labeled tray, then the after call follows once regularity and feedback are checked"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Kelsey says, with the amber vial tray labeled expert intuition between the stern-lift plan and the diver's warning. The senior diver feels the hull will roll. Kelsey must decide whether to trust the hunch by checking whether similar wrecks, tides, and rigging choices have given him a regular environment with fast feedback.",
+      "whatToDo": "Ask what past cases trained the warning, then give the intuition weight only if similar lifts produced clear feedback.",
+      "whyItMatters": "Expert intuition is credible when experience met a regular environment. Otherwise the confident warning may be only a strong impression."
+    },
+    {
+      "exampleId": "ch22-ex02-adrian-admissions",
+      "title": "Adrian discounts the admissions flash",
+      "tags": [
+        "postmortem",
+        "admissions",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "college admissions file review facing a decision distorted by regular environment",
+        "audience": "a lead or reviewer who must grant intuition only when regularity and feedback have trained it",
+        "stakes": "the visible call will go wrong unless the training environment is separated from the tempting cue",
+        "format": "postmortem",
+        "requiredBeat": "the reviewer names the shortcut and chooses one check that makes it accountable"
+      },
+      "scenario": "The admissions table after decisions is quiet except for the rolled site blueprint labeled regular environment beside Adrian's unfinished review. A file had given him an instant \"leader\" feeling, but the student's first year was uneven. Adrian names the shortcut silently and checks how often past interview flashes received clean feedback rather than selective stories.",
+      "whatToDo": "Compare the admission flash with tracked outcomes and lower confidence if the feedback loop is delayed, selective, or unclear.",
+      "whyItMatters": "Credentials and experience do not create skill by themselves. The environment must provide learnable patterns and corrective feedback."
+    },
+    {
+      "exampleId": "ch22-ex03-colette-cellar",
+      "title": "Colette trusts the rind only inside its range",
+      "tags": [
+        "before_after",
+        "cheese",
+        "skill"
+      ],
+      "planSpec": {
+        "domain": "cheese aging cellar facing a decision distorted by regular environment",
+        "audience": "a lead or reviewer who must grant intuition only when regularity and feedback have trained it",
+        "stakes": "the visible call will go wrong unless the training environment is separated from the tempting cue",
+        "format": "before_after",
+        "requiredBeat": "two commitments are compared, one from first impression and one after checking feedback"
+      },
+      "scenario": "What would change if the incident command vest labeled feedback stopped feeling like proof and started looking like a cue in Colette's aging cellar? She has to decide whether a washed-rind wheel needs four more days. Her tap and smell are fast, but they came from thousands of wheels, stable cellar conditions, and feedback at cutting. The same intuition would deserve less trust in a new facility.",
+      "whatToDo": "Trust the cellar hunch inside the conditions that trained it, then check logs when humidity, milk source, or room behavior changes.",
+      "whyItMatters": "Skill can be real and bounded. Regular practice creates intuition, but changed conditions weaken its license."
+    },
+    {
+      "exampleId": "ch22-ex04-ben-ballot",
+      "title": "Ben separates signature skill from status",
+      "tags": [
+        "reflection",
+        "elections",
+        "validity"
+      ],
+      "planSpec": {
+        "domain": "election ballot curing table facing a decision distorted by regular environment",
+        "audience": "a lead or reviewer who must grant intuition only when regularity and feedback have trained it",
+        "stakes": "the visible call will go wrong unless the training environment is separated from the tempting cue",
+        "format": "reflection",
+        "requiredBeat": "the quick cue and corrective evidence are physically separated before the choice"
+      },
+      "scenario": "The padded rim of the submarine simulator headset labeled skill presses into Ben's palm as he watches two ballot reviewers disagree. One has cured signatures for five seasons with daily corrections; the visiting official has a louder title. Ben separates the quick cue from the correction record. He must decide whose expert intuition has validity before the table accepts a shaky match.",
+      "whatToDo": "Give more weight to the reviewer whose signature judgments were trained by repeated cases and immediate correction.",
+      "whyItMatters": "Status can imitate expertise. Validity comes from regular practice plus feedback, not from the loudest credential."
+    },
+    {
+      "exampleId": "ch22-ex05-justine-crown",
+      "title": "Justine tests the crown-fitting hunch",
+      "tags": [
+        "thought-experiment",
+        "dental",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "dental lab crown fitting facing a decision distorted by regular environment",
+        "audience": "a lead or reviewer who must grant intuition only when regularity and feedback have trained it",
+        "stakes": "the visible call will go wrong unless the training environment is separated from the tempting cue",
+        "format": "thought_experiment",
+        "requiredBeat": "the trainee moves the labeled object only after stating the correction in one sentence"
+      },
+      "scenario": "You are looking at the returns buyback clipboard labeled validity while Justine's easy answer starts to feel too complete. Imagine she must decide whether a crown will sit high from one glance at the contact mark. If she has fitted hundreds and received immediate bite feedback, the hunch has practice behind it. If she has watched only a few cases, the same confidence is premature.",
+      "whatToDo": "Ask whether immediate fitting feedback trained the cue, then move the case to checked only if the practice history supports the hunch.",
+      "whyItMatters": "The visible mark may be informative, but expert intuition depends on repeated correction, not on how obvious the mark feels."
+    },
+    {
+      "exampleId": "ch22-ex06-lars-referee",
+      "title": "Lars checks whether practice was real",
+      "tags": [
+        "scene",
+        "sports",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "youth soccer referee tent facing a decision distorted by regular environment",
+        "audience": "a lead or reviewer who must grant intuition only when regularity and feedback have trained it",
+        "stakes": "the visible call will go wrong unless the training environment is separated from the tempting cue",
+        "format": "scene",
+        "requiredBeat": "the supervisor circles an alluring detail, crosses it out, and asks for the boring comparison first"
+      },
+      "scenario": "It took three passes before Lars saw what the frost alarm sensor labeled practice had been making too easy. A teenage referee looked confident calling offside from the center circle. Lars circles the confident whistle, crosses it out, and asks for the boring comparison: how many similar calls had been reviewed on video? He must decide whether practice actually trained the intuition.",
+      "whatToDo": "Look for repeated video feedback on similar calls before treating the confident whistle as skilled judgment.",
+      "whyItMatters": "Practice without correction can rehearse error. The referee's intuition deserves trust only if feedback sharpened it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A salvage diver warns that a wreck will roll if lifted from the stern. He has handled many similar hulls in similar currents and received immediate feedback from past lifts. How should the planner treat the warning?",
+        "choices": [
+          "Give it serious weight because regularity and feedback could have trained the intuition.",
+          "Ignore it because fast judgments are always unreliable.",
+          "Accept it only because the diver has senior status."
+        ],
+        "correctIndex": 0,
+        "explanation": "The warning has a credible learning history. Seniority alone is not enough, but repeated similar cases with clear feedback can produce skill.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An admissions reader says she can spot future campus leaders instantly, but her decisions receive delayed and selective feedback, and rejected applicants disappear from view. What should happen to trust in that intuition?",
+        "choices": [
+          "It should rise because admissions work requires experience.",
+          "It should be discounted because the environment gives weak corrective feedback.",
+          "It should be banned because all human judgment is bias."
+        ],
+        "correctIndex": 1,
+        "explanation": "The feedback loop is too weak to fully train the flash. Dismissing all judgment overreacts, while experience without correction does not prove skill.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A cheese affineur judges ripeness by smell and rind texture after years in the same cellar, with cutting feedback every week. The dairy changes milk source and humidity control. What is the best adjustment?",
+        "choices": [
+          "Keep trusting the hunch exactly as before.",
+          "Reject the hunch forever because conditions changed once.",
+          "Trust it less until feedback in the new conditions retrains the cue."
+        ],
+        "correctIndex": 2,
+        "explanation": "The old skill was trained in a regular environment. Changed conditions weaken the match, so confidence should fall until feedback catches up.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Two ballot reviewers disagree on a signature. One has five seasons of reviewed cases with daily corrections; the other has a higher title but little direct feedback. Whose intuition deserves more weight?",
+        "choices": [
+          "The reviewer with repeated corrected practice on the exact task.",
+          "The official with the higher title.",
+          "Neither, because signatures can never be judged by intuition."
+        ],
+        "correctIndex": 0,
+        "explanation": "Task-specific practice with correction is the trust condition. Title can mislead, and rejecting all trained perception ignores a valid learning environment.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A dental technician instantly sees that a crown will sit high. She has fitted hundreds and immediately checked each bite. Which statement best explains why the hunch may be valid?",
+        "choices": [
+          "The hunch is valid because it feels obvious.",
+          "The cue has been trained by repeated cases and prompt feedback.",
+          "The hunch is valid because dental work sounds technical."
+        ],
+        "correctIndex": 1,
+        "explanation": "The source of skill is repeated correction in a regular task. Obviousness and technical vocabulary do not establish validity.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A youth referee confidently calls offside, but most of his games have never been reviewed on video and coaches mainly praise confidence. What is missing for expert intuition?",
+        "choices": [
+          "A louder whistle and more emotional commitment.",
+          "A rule that confidence is never useful in sport.",
+          "A regular environment and corrective feedback on similar calls."
+        ],
+        "correctIndex": 2,
+        "explanation": "Practice without correction can repeat error. The missing piece is feedback that ties the cue to whether the call was right.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A trader has twenty years of experience, but market structure, instruments, and incentives have changed repeatedly, and feedback is tangled with luck. How should a colleague treat his gut forecast?",
+        "choices": [
+          "Discount it because the environment may not be regular enough to train reliable intuition.",
+          "Trust it fully because long experience guarantees skill.",
+          "Assume it is wrong because markets are complicated."
+        ],
+        "correctIndex": 0,
+        "explanation": "Experience helps only when the environment lets patterns repeat and feedback corrects errors. Complexity alone does not make a forecast false.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A nurse senses a patient is deteriorating before the chart looks alarming. Her unit tracks such calls against later vitals and outcomes, and she has years of corrected practice. What is the most balanced response?",
+        "choices": [
+          "Dismiss it until a formal score changes.",
+          "Treat the sense as evidence and check it quickly because the intuition may be trained.",
+          "Treat it as certain and skip all measurement."
+        ],
+        "correctIndex": 1,
+        "explanation": "The intuition has credible training conditions, so it deserves action and verification. The wrong choices either ignore skill or turn it into certainty.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A consultant claims expert intuition should be trusted whenever someone has worked in a field for a decade. Which reply best states the missing test?",
+        "choices": [
+          "A decade is enough if the person sounds confident.",
+          "Only credentials matter because feedback is too hard to measure.",
+          "Experience must come from a regular environment with feedback that corrected the judgment."
+        ],
+        "correctIndex": 2,
+        "explanation": "Time served is not the same as trained skill. The environment and feedback decide whether intuition has learned anything reliable.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A fast expert judgment sounds impressive. What two conditions decide whether to trust it?",
+      "back": "The environment must be regular enough to learn, and feedback must be clear enough to correct the judgment.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why are credentials alone a weak test of intuition?",
+      "back": "Credentials show status or experience, but not whether the person had repeated corrected practice in a learnable environment.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "When should an expert hunch lose confidence even if it was once reliable?",
+      "back": "When the environment changes enough that old cues may no longer predict the same outcomes. New feedback has to retrain the hunch.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What is the difference between practice and skill?",
+      "back": "Practice repeats actions. Skill requires feedback that shows whether those actions were right and adjusts the next judgment.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How should you act when a domain has weak regularity but a decision is still required?",
+      "back": "Use intuition as one input, lower confidence, seek outside checks, and avoid treating the hunch as trained expertise.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is intuition licensing: grant trust only when a regular environment and clear feedback have trained the fast judgment.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If someone offers a strong gut call, then ask what repeated cases and feedback trained that specific cue."
+      },
+      {
+        "context": "health",
+        "plan": "If a clinician senses a pattern, then treat it as evidence when the setting gives repeated outcome feedback, and verify quickly."
+      },
+      {
+        "context": "money",
+        "plan": "If an experienced person makes a market forecast, then check whether the environment stayed regular enough for experience to transfer."
+      },
+      {
+        "context": "operations",
+        "plan": "If a technician makes a snap diagnosis, then ask whether the same equipment and fault pattern have corrected that judgment before."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, ask one person making a confident call: what past feedback trained that feeling?",
+    "weeklyPractice": "Once a week, choose one recurring hunch and write whether it has regularity, feedback, both, or neither."
+  },
+  "memorableLines": [
+    {
+      "text": "Skill needs a training ground.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the two conditions in plain language."
+    },
+    {
+      "text": "No feedback, no license for certainty.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the feedback requirement hard to forget."
+    },
+    {
+      "text": "A trustworthy hunch has a biography of correction.",
+      "location": "breakdown.fullRead",
+      "why": "It ties intuition to repeated corrected practice."
+    }
+  ]
+}

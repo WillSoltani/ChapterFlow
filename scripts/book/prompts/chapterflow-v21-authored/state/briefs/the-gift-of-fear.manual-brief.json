@@ -1,0 +1,110 @@
+{
+  "bookId": "the-gift-of-fear",
+  "title": "The Gift of Fear",
+  "author": "Gavin de Becker",
+  "thesisParagraph": "The Gift of Fear teaches that fear is useful only when it is tied to real signals in the present. Its central argument is not that danger is everywhere or that intuition is magic, but that people often talk themselves out of accurate perception because they want to be polite, fair, calm, or certain. The practical discipline is to notice behavior, pressure, access, recurrence, escalation, and context early enough to act before proof arrives in a socially acceptable form.",
+  "coreIdeas": [
+    {
+      "name": "Fear needs evidence",
+      "oneSentence": "True fear points to a present cue; worry feeds on imagination or memory.",
+      "mentalMove": "Ask what the alarm can point to in the room, then act only as far as that evidence supports.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch15.source"
+      ]
+    },
+    {
+      "name": "Behavior beats labels",
+      "oneSentence": "A person category is weaker than what the person is doing, repeating, pressing, or seeking access to.",
+      "mentalMove": "Move from identity labels to observable behavior, context, and sequence.",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch05.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Refusal is data",
+      "oneSentence": "A no that has to be defended again has already produced useful safety information.",
+      "mentalMove": "Stop explaining the boundary and change the access conditions.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch08.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Patterns predict earlier than proof",
+      "oneSentence": "Repeated signals, escalation, and access conflict can justify narrow action before certainty exists.",
+      "mentalMove": "Build a probabilistic read from sequence and choose a proportionate protective step.",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch06.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Closeness distorts judgment",
+      "oneSentence": "Familiar, intimate, young, or public-facing contexts can make warning behavior look less important than it is.",
+      "mentalMove": "Keep the behavioral read intact even when the story around the person feels sympathetic or socially complicated.",
+      "sourceAnchors": [
+        "ch10.source",
+        "ch12.source",
+        "ch13.source"
+      ]
+    },
+    {
+      "name": "Thin signal calls for margin",
+      "oneSentence": "When danger is severe but prediction is weak, preparation is wiser than forced certainty.",
+      "mentalMove": "Stop trying to know more than the evidence allows and create buffer before the cost rises.",
+      "sourceAnchors": [
+        "ch14.source"
+      ]
+    }
+  ],
+  "targetReader": "Adults who want better judgment around safety, boundaries, and threat signals without becoming paranoid. They care because the hard moments are often ordinary at first: a stairwell, an office lobby, a date, a workplace grievance, a family handoff, a public event, or a late commute.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "separate useful fear from vague worry by asking what the signal can point to",
+      "treat boundary pressure as observable behavior, not as a character diagnosis"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake studies, fake cases, or invented crime details",
+      "no advice that shames victims for delayed action"
+    ]
+  },
+  "voiceSpecimens": [
+    "The second no matters more than the first one, because now you are no longer judging the offer; you are judging the pressure behind it.",
+    "Useful fear is specific. It can point to the door, the question, the repeated step closer, the fact that your answer did not change his behavior.",
+    "Do not ask whether you are being rude. Ask whether the other person is treating your boundary as real.",
+    "A pattern does not need to shout. Sometimes it is three small facts standing too close together.",
+    "When the cost of being late is high, you do not owe the room one more explanation.",
+    "Worry invents a movie. Fear notices the latch."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains why intuition is an important concept for personal safety.",
+    "In today's fast-paced world, everyone needs to learn how to trust their instincts.",
+    "The key takeaway is to set boundaries and be confident in your decision-making process.",
+    "Always remember that fear can be your friend if you use it wisely.",
+    "Gavin de Becker argues that people should listen to fear because it is a gift."
+  ],
+  "teachingArc": "The arc starts with the simplest distinction: fear tied to present danger is different from worry. It then teaches how intuition, prediction, and survival signals work as disciplined cue-reading, not as mysticism. The middle chapters move that skill through strangers, threats, persistence, workplaces, intimate violence, date stalking, youth violence, and public-figure risk, each time sharpening the same behavioral lens in a different setting. The close returns to fear itself, now stripped of panic and fantasy, as a practical signal that helps the reader act sooner and more cleanly.",
+  "forbiddenMoves": [
+    "Do not turn the material into paranoia, stranger-danger slogans, or universal suspicion.",
+    "Do not invent famous cases, crime statistics, neuroscience, or named studies absent from the frozen source notes.",
+    "Do not give legal, therapeutic, or emergency-service doctrine beyond the behavioral lesson.",
+    "Do not imply that a person who stayed polite or delayed action caused the danger.",
+    "Do not use horror-movie suspense; keep the prose practical and grounded."
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch14",
+  "number": 14,
+  "title": "Stretch: The YouTube Story",
+  "coreMove": "Use a second proof case to test whether stretch stays disciplined when the target gets louder.",
+  "sourcePressure": "YouTube is a second company case for stretch, proving ambitious reach has to remain grounded across more than one surface.",
+  "chapterSpecificMisunderstanding": "Do not invent YouTube growth metrics, creator details, or internal product decisions.",
+  "sourceAlignmentTerms": [
+    "YouTube",
+    "stretch",
+    "repeated company proof",
+    "ambitious reach",
+    "grounded effort",
+    "anti-theater discipline"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "YouTube",
+      "detail": "The source stabilizes YouTube as a second company case for stretch and repeated proof, while blocking invented growth metrics or internal operating detail.",
+      "useIn": "both",
+      "phrasingHint": "YouTube keeps stretch from sounding like a one-off stunt: the larger target still has to stay grounded in visible effort."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Stretch: The YouTube Story as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "YouTube is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "creator economy stories",
+      "viral growth advice",
+      "Chrome repeat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "creator-platform moderation backlog",
+      "audience": "trust and safety teams",
+      "stakes": "the stretch target must improve review speed without hiding quality failures",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anna sets the bigger backlog target beside quality review so speed cannot fake success",
+      "firstImage": "blue light over a moderation queue",
+      "mustInclude": [
+        "review queue",
+        "quality sample",
+        "escalation rule"
+      ],
+      "mustAvoid": [
+        "YouTube internal metric invention"
+      ]
+    },
+    {
+      "domain": "regional blood-donor network",
+      "audience": "mobile-clinic coordinators",
+      "stakes": "the donor target has to rise after shortages without becoming pledge theater",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hugo asks which daily proof will show appointments, completed donations, and staff capacity moving together",
+      "firstImage": "red coolers lined by a loading bay",
+      "mustInclude": [
+        "appointment sheet",
+        "donor chairs",
+        "staff calendar"
+      ],
+      "mustAvoid": [
+        "medical melodrama"
+      ]
+    },
+    {
+      "domain": "community college completion initiative",
+      "audience": "advisors",
+      "stakes": "the bigger completion goal needs grounded signs of student support, not a nicer banner",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Daniel rejects a headline target until advising capacity and student contact evidence are attached",
+      "firstImage": "empty advising cubicles at noon",
+      "mustInclude": [
+        "student list",
+        "advisor caseload",
+        "contact log"
+      ],
+      "mustAvoid": [
+        "classroom shell"
+      ]
+    },
+    {
+      "domain": "independent game studio console launch",
+      "audience": "developers",
+      "stakes": "a bold release target could bury certification risk",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marit asks what will prove the stretch date is real before the studio announces it",
+      "firstImage": "controller dev kit under tape",
+      "mustInclude": [
+        "certification checklist",
+        "bug list",
+        "release calendar"
+      ],
+      "mustAvoid": [
+        "generic software sprint"
+      ]
+    },
+    {
+      "domain": "municipal compost pickup expansion",
+      "audience": "waste-services planners",
+      "stakes": "the service can scale only if contamination and route capacity stay visible",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Giulia pairs the expansion target with grounded measures for contamination, route time, and household adoption",
+      "firstImage": "green bins lined along an alley",
+      "mustInclude": [
+        "route sheet",
+        "contamination tags",
+        "household list"
+      ],
+      "mustAvoid": [
+        "trash/recycling sign trope"
+      ]
+    },
+    {
+      "domain": "immigrant legal-aid clinic capacity",
+      "audience": "clinic leadership",
+      "stakes": "need is larger than safe capacity, so stretch must include quality guardrails",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aanya Patel shows the board how a bigger case target fails unless interpreter coverage and filing deadlines move too",
+      "firstImage": "accordion folder of visa forms",
+      "mustInclude": [
+        "case queue",
+        "deadline calendar",
+        "interpreter rota"
+      ],
+      "mustAvoid": [
+        "court drama repeat"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "compare a second stretch case without repeating the first",
+      "test whether ambition remains grounded across contexts",
+      "reject louder goals without effort evidence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Use a second project to test whether your stretch rule still has a proof line, not just louder language.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

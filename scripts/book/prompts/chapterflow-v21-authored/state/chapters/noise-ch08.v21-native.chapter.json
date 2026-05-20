@@ -1,0 +1,301 @@
+{
+  "chapterId": "noise-ch08",
+  "number": 8,
+  "title": "The Analysis of Noise",
+  "readingTimeMinutes": 12,
+  "hook": "Any one outcome looks defensible. The spread across a thousand matched cases does not.",
+  "counterintuition": "What looks fine case by case can be failing systemically. Each individual outcome has an explanation: the case was complex, the evidence was ambiguous, an experienced person made a judgment call. Those explanations do not combine into a picture of the process. Only analysis across a matched sample does, and the picture it shows is often startlingly different from what individual file review implied.",
+  "tryThisNow": "Find 20 recent decisions of the same type. Sort by a case feature that should explain the outcome. Look at how much the outcomes vary within the same feature band. That variation is noise showing up as a pattern.",
+  "keyTakeaway": "Noise studied across matched cases produces a distribution. That distribution reveals what no individual case review can: the systemic spread that each defensible individual outcome was helping to conceal.",
+  "breakdown": {
+    "fastRead": "The chart on the conference room wall organizes one year of resolution decisions by complaint category and handler. Each cell shows one handler's resolution rate for one complaint type. When Gloria reads across a single row, the rate ranges from thirty-one to eighty-seven percent for the same complaint type across forty handlers. She had reviewed each handler's outcomes monthly for six months and flagged nothing. Every individual rate looked defensible. The aggregate showed a spread the case-mix could not explain.\n\nAnalysis converts a sequence of local explanations into a distribution. The local explanation keeps the system invisible. The distribution makes it actionable.\n\nA single disagreement is a curiosity. A hundred disagreements on matched cases are a diagnosis.",
+    "deepRead": "Put twenty matched cases side by side and you have something a single file review cannot produce: a distribution. Without the matched cases, you have individual outcomes, each potentially explained by its own features. With them, you have a spread, a shape, a comparison to what an equivalent process would look like with less scatter. The move from case review to pattern analysis is the move from asking what happened in this case to asking what the full picture looks like when all the same-type cases are assembled together. That shift in question requires a different analytical structure, not a more careful reading of each individual file.\n\nThe case-by-case approach does not produce the wrong answer to that question. It produces no answer at all. The question only becomes answerable when the sample exists.\n\nPut the matched-case findings from insurance underwriting, criminal sentencing, and medical imaging side by side and the same result recurs: within-group noise is larger than the expert population expects and frequently larger than the between-group signal the system's design was intended to produce. Underwriting studies show spreads of 40 to 50 percent on identical case files. Sentencing studies show wider variation within a single courthouse than between courthouses in different jurisdictions. Imaging studies show agreement rates between qualified clinicians on the same films that are substantially higher than chance but substantially lower than the field's self-assessment implies. A single disagreement is a curiosity. A hundred disagreements on matched cases are a diagnosis. None of these diagnoses emerged from individual case review: each emerged when researchers built the aggregate picture from a matched sample.\n\nPattern analysis does not explain why disagreement occurs: it gives the disagreement a number, and that number is what case-by-case explanation was preventing from emerging.",
+    "fullRead": "At 7:45 a.m., Sylvia advances to the slide that silences the committee. A bar chart shows readmission rates by ward for patients matched on acuity, age, and diagnosis. The matching methodology is noted at the bottom of the slide. The bars vary substantially despite it. In every acuity band, the ward-level variation in readmission rates exceeds the patient-type variation. The data tells the committee that where the patient lands in the hospital explains readmission better than what was wrong with the patient, and no one in the room had known this before the analysis existed.\n\nLook for matched-case analyses in any professional judgment domain and you find the same result: within-system scatter is larger than insiders expect and often larger than the between-system differences the organization's design was supposed to produce. An institution can review ten thousand individual cases and find each one defensible without once producing the aggregate picture. Individual case review confirms that each outcome was within acceptable range. It cannot confirm that the distribution of those outcomes is within acceptable range. The distribution requires different data and a different question.\n\nCeleste brings a different version of the same diagram to the litigation research team. The table shows personal injury damages awards organized by severity category, with three columns: mean award, standard deviation, and range. The column the team spends longest studying is the standard deviation. Within each severity category, the spread of awards is larger than the difference in average awards between adjacent severity levels. The noise within each band exceeds the signal between bands that the severity scale was designed to produce. Celeste marks the comparison in the margin.\n\nTake any category-based judgment system: when noise within a category exceeds the signal between categories, the ordering the categories were designed to produce collapses in practice. The category structure exists, the ordering exists in the rules, and the noise exists in the real outcomes. Pattern analysis is what surfaces the third fact and changes how the first two are read.\n\nStart building a matched-case analysis and you encounter the same obstacle in every professional judgment domain: matching cannot be perfect. Two insurance claims, two damages cases, two patients on the same ward with the same diagnosis are never literally identical. The analysis must define which features are the matching variables, how much residual case-feature variation is acceptable before two cases are treated as comparable, and whether the outcome variation substantially exceeds what those residual differences could plausibly explain. These methodological choices matter and can be made badly. But the cost of making them imperfectly is usually lower than the cost of never making them at all. An imperfect matched-sample analysis will still produce a distribution that contains more information about systemic noise than an indefinite continuation of one-case-at-a-time review, provided the outcome variation is large relative to the case-feature residuals.\n\nA single disagreement is a curiosity. A hundred disagreements on matched cases are a diagnosis. The only way to know which kind you have is to build the comparison."
+  },
+  "examples": [
+    {
+      "exampleId": "noise-ch08-ex01",
+      "title": "The Wall Chart",
+      "tags": ["call center", "handler variation", "complaint resolution", "pattern analysis"],
+      "planSpec": {
+        "domain": "call center complaint resolution: mapping resolution decisions across 12 months and 40 handlers for the same complaint types",
+        "audience": "a customer service director building the first cross-handler comparison for her team",
+        "stakes": "customer fairness and consistency — customers with identical complaints receiving different resolutions depending on who answers the phone",
+        "format": "vignette",
+        "requiredBeat": "the director maps one year of resolution decisions by complaint category and handler and discovers that for the same complaint type the resolution rate ranges from 31 percent to 87 percent across handlers — a spread invisible when each handler's outcomes were reviewed individually because each result looked defensible"
+      },
+      "scenario": "The chart on the conference room wall organizes one year of resolution decisions by complaint category and handler. Each cell shows one handler's resolution rate for one complaint type. When Gloria reads across a single row, the rate ranges from thirty-one to eighty-seven percent for the same complaint type across forty handlers. She had reviewed each handler's outcomes monthly for six months and flagged nothing. Every individual rate looked defensible. The aggregate showed a spread the case-mix could not explain. Gloria sets aside the individual handler files and drafts a process review framed around the distribution rather than any individual result.",
+      "whatToDo": "When handler resolution rates for the same complaint type range more than 40 percentage points, treat the spread as a noise signal. Map the full distribution before drawing conclusions from any individual handler's file.",
+      "whyItMatters": "A 31-to-87-percent range in resolution rates for the same complaint type means customer outcomes depend partly on handler assignment. That dependency only became visible when all handlers were compared in the same frame."
+    },
+    {
+      "exampleId": "noise-ch08-ex02",
+      "title": "Within One School",
+      "tags": ["school discipline", "suspension rates", "administrator variation", "equity audit"],
+      "planSpec": {
+        "domain": "school suspension rates by vice-principal: a district comparison across matched incident types over two academic years",
+        "audience": "a school district data officer conducting an equity audit",
+        "stakes": "students' educational continuity and equal treatment under the district's stated disciplinary standards",
+        "format": "dialogue",
+        "requiredBeat": "the data officer and the superintendent compare suspension rate distributions by vice-principal for identical incident categories: one vice-principal's suspension rate for a specific incident type is three times another's, and the difference is larger within a single school than between schools in different areas"
+      },
+      "scenario": "'The within-school variation is larger than the between-school variation,' Derek says, placing the suspension rate chart between them. Each row is an incident category; each column is a vice-principal. For one conflict category, one administrator's suspension rate is three times another's in the same building. Neither had been identified as problematic before. The superintendent studies the chart. The spread across administrators within one school exceeded the spread across schools in different parts of the district. She circles the within-school column of numbers and writes 'present to the board' beside it.",
+      "whatToDo": "When suspension rate variation by administrator within one school exceeds the variation across schools for the same incident type, treat the pattern as a noise signal. Review how incident categorization decisions are being made across the team.",
+      "whyItMatters": "A threefold suspension rate difference for the same incident type within one school means the disciplinary outcome shifts with the assigned administrator, not with the incident category alone. Pattern analysis was the only way to surface it."
+    },
+    {
+      "exampleId": "noise-ch08-ex03",
+      "title": "Where You Landed",
+      "tags": ["hospital readmission", "ward variation", "matched-patient analysis", "quality audit"],
+      "planSpec": {
+        "domain": "hospital readmission rates: a quality team comparing readmission rates for matched-acuity patients across four wards",
+        "audience": "a hospital quality team examining whether ward assignment affects post-discharge outcomes",
+        "stakes": "patient health and hospital resources — if ward-level judgment differences in discharge planning drive readmission, the system is noisier than it appears",
+        "format": "scene",
+        "requiredBeat": "the quality lead presents the analysis at a medical staff meeting: for patients matched on acuity, age, and diagnosis, the ward-level variation in readmission rates is larger than the patient-type variation — where the patient landed in the hospital explains readmission better than what was wrong with the patient"
+      },
+      "scenario": "At 7:45 a.m., Sylvia advances to the slide that silences the committee. A bar chart shows readmission rates by ward for patients matched on acuity, age, and diagnosis. The matching methodology is noted at the bottom of the slide. The bars vary substantially despite it. In every acuity band, the ward-level variation in readmission rates exceeds the patient-type variation. The committee chair asks whether ward assignment is currently tracked as a variable in discharge planning. Sylvia says it is not, and that the analysis suggests it should be.",
+      "whatToDo": "When ward-level readmission rate variation for matched-acuity patients exceeds the variation between acuity groups, track ward assignment as a variable in discharge planning. The ward-level spread is a noise signal, not a neutral administrative fact.",
+      "whyItMatters": "Where the patient lands in the hospital explaining readmission better than the diagnosis is a pattern finding that no individual case review could have produced. It gives the quality team a specific and actionable target."
+    },
+    {
+      "exampleId": "noise-ch08-ex04",
+      "title": "Three Firms, Same Zip Code",
+      "tags": ["real estate appraisal", "inter-firm variation", "lending risk", "aggregate comparison"],
+      "planSpec": {
+        "domain": "real-estate appraisal: a bank auditing a sample of appraisals across three appraisal firms for the same neighborhoods",
+        "audience": "a bank quality officer investigating whether appraiser selection affects loan portfolio quality",
+        "stakes": "lending risk and property market stability — systematic noise in appraisals produces downstream effects on approval decisions near the threshold",
+        "format": "postmortem",
+        "requiredBeat": "the quality officer builds an analysis of 300 appraisals across three firms for the same zip codes and finds that for equivalent properties the inter-firm spread averages 8.9 percent of value — larger than the appraisal methodology's precision claims suggest — and the spread is not explained by any single property feature"
+      },
+      "scenario": "Six months after the lending cycle, Bernard builds the comparison. Three hundred appraisals from three firms covering the same zip codes. The inter-firm spread in appraised value averages 8.9 percent for equivalent properties. The appraisal methodology implied precision well inside that margin. No single property feature accounts for the spread: lot size, year built, and square footage explain portions, and the residual remains large. Individual file review had flagged none of this. The aggregate analysis produced the finding that 300 individual file reviews had not.",
+      "whatToDo": "When inter-firm appraisal variation for equivalent properties averages 8.9 percent, the spread exceeds what the methodology's precision claims justify. Require second appraisals on loans near the approval threshold before committing to a decision.",
+      "whyItMatters": "An 8.9-percent inter-firm spread in appraised value means loan decisions near the approval threshold depend partly on which firm was assigned. That dependency was invisible in individual file review and only appeared in the aggregate comparison."
+    },
+    {
+      "exampleId": "noise-ch08-ex05",
+      "title": "Within the Band",
+      "tags": ["personal injury damages", "severity categories", "within-category noise", "pattern finding"],
+      "planSpec": {
+        "domain": "personal injury lawsuit damages: a legal research project comparing damages awards across 500 matched cases by injury severity",
+        "audience": "a litigation research team studying whether plaintiff outcomes depend on systematic factors beyond case merit",
+        "stakes": "the consistency and legitimacy of the civil justice system — if the same injury produces substantially different awards, the severity structure is producing less ordering than it implies",
+        "format": "decision_point",
+        "requiredBeat": "the research team finds that within the same injury-severity category, the standard deviation of damages awards is larger than the difference in average awards between adjacent severity categories — within-category noise swamps the between-category signal the damage scale was designed to produce"
+      },
+      "scenario": "The research table shows damages awards for 500 personal injury cases organized by severity category, with three columns: mean award, standard deviation, and range. The column with the largest numbers is the standard deviation. In every severity category, the within-category spread of awards is larger than the difference in mean awards between adjacent severity levels. Celeste marks the table. The noise within each band exceeds the signal between bands that the severity scale was designed to produce. She must decide how to frame the finding for the bar association before the team presents next month.",
+      "whatToDo": "When within-category noise in damages awards exceeds between-category signal, treat the severity categories as providing orientation rather than precision. Cases near category boundaries carry the largest exposure to noise in the outcome.",
+      "whyItMatters": "When noise within a severity band exceeds the signal between adjacent bands, the category system is producing less ordering than it implies. Individual case review confirms each award is within range; matched-case analysis reveals the ranges are not working."
+    },
+    {
+      "exampleId": "noise-ch08-ex06",
+      "title": "Five Maps",
+      "tags": ["environmental assessment", "contamination boundary", "inter-expert variation", "remediation cost"],
+      "planSpec": {
+        "domain": "environmental contamination assessment: five soil scientists surveying the same brownfield site and mapping contamination independently",
+        "audience": "a remediation project manager commissioning a pre-development environmental survey",
+        "stakes": "the remediation scope and cost — if the contamination map is noisy, the cleanup specification is unreliable before a single shovel is turned",
+        "format": "thought_experiment",
+        "requiredBeat": "five qualified environmental scientists given the same site data produce contamination boundary maps that differ substantially at the margins — the spread in boundary estimates produces a factor-of-two range in remediation cost, from qualified professional judgment on identical inputs"
+      },
+      "scenario": "What if five qualified scientists mapped the same brownfield independently? Edmund commissioned the test before the formal survey. Each scientist received identical pre-survey data. The five contamination boundary maps agreed on the core contaminated zone and diverged substantially at the margins. The spread in boundary estimates translated to a factor-of-two range in remediation cost: not because any map was wrong, but because the margins were genuinely ambiguous and the analysis revealed how much that ambiguity cost. Edmund must decide how wide a confidence interval to attach to the remediation specification before the project owner commits to a contract value.",
+      "whatToDo": "When independent contamination boundary estimates from qualified scientists diverge enough to produce a factor-of-two cost range, report the spread before accepting a single map as the remediation specification.",
+      "whyItMatters": "A factor-of-two range in remediation cost from identical site data means the specification carries noise before any remediation decision is made. Naming that noise changes what the project owner can responsibly commit to."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch08-q01",
+        "prompt": "What is the key structural feature that distinguishes a noise analysis from reviewing individual cases?",
+        "choices": [
+          "A noise analysis requires a sample of matched cases that produces a distribution: individual case review produces one outcome at a time, each of which can be locally explained, while the distribution reveals the spread across cases that share the same features.",
+          "A noise analysis requires a larger sample than individual case review typically allows, making it applicable only to institutional settings where hundreds of cases accumulate over time.",
+          "A noise analysis is distinguished by its use of statistical methods rather than qualitative judgment, which is why noise findings are more reliable than the conclusions from individual case review."
+        ],
+        "correctIndex": 0,
+        "explanation": "The matched-case sample is the structural requirement. Without it, you have individual outcomes, each of which can be locally explained. The distribution across matched cases is what reveals the spread that individual review cannot show.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch08-q02",
+        "prompt": "A customer service director discovers that for the same complaint type, handler resolution rates range from 31 to 87 percent across 40 handlers. Each individual handler's rate had looked defensible in monthly reviews. What does this finding establish?",
+        "choices": [
+          "The finding indicates that the monthly review process was too lenient: if each individual rate had been compared to a strict performance standard, several handlers would have been flagged sooner.",
+          "The finding is inconclusive without knowing which handlers received the most difficult cases: the 56-point spread might reflect case-mix differences rather than handler variation in the same complaint type.",
+          "The finding establishes a noise pattern: handler assignment produces substantially different outcomes for the same complaint type, and the spread was invisible in individual file review because each individual rate looked locally defensible."
+        ],
+        "correctIndex": 2,
+        "explanation": "The range from 31 to 87 percent for the same complaint type is a noise pattern. The key finding is not that specific handlers underperformed but that the aggregate comparison revealed a spread that individual monthly reviews had completely missed.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch08-q03",
+        "prompt": "A district audit finds that within-school suspension rate variation by vice-principal exceeds between-school variation for the same incident type. What does this pattern establish?",
+        "choices": [
+          "The finding establishes that some administrators are applying the policy incorrectly: administrators with suspension rates three times higher than their colleagues should receive targeted retraining before the next academic year.",
+          "The finding establishes that administrator-level variation is the larger source of outcome differences, exceeding the between-school variation that policy differences between schools might produce: the noise is inside the unit, not between units.",
+          "The finding is not informative about noise because it does not control for student population characteristics, and within-school variation might reflect different populations assigned to different administrators."
+        ],
+        "correctIndex": 1,
+        "explanation": "When within-school variation exceeds between-school variation, the variation source is at the administrator level rather than the institutional level. The noise is internal to the school, which the policy structure was not designed to produce.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch08-q04",
+        "prompt": "A hospital quality team's matched-patient analysis shows that ward-level variation in readmission rates exceeds patient-type variation. Why is the matched-patient methodology essential to this finding?",
+        "choices": [
+          "Without controlling for patient acuity, age, and diagnosis, the ward-level differences could simply reflect which wards treat the sickest patients rather than ward-level variation in discharge planning judgment.",
+          "The matched-patient methodology improves statistical precision but is not essential: the ward-level finding would likely hold without matching because the hospital's patient distribution across wards is roughly similar.",
+          "The matched-patient methodology shifts the finding from a ward performance question to a patient assignment question: controlling for patient type means the finding actually measures noise in patient placement decisions."
+        ],
+        "correctIndex": 0,
+        "explanation": "The matching is what makes the ward comparison valid. Without it, the finding could reflect case-mix differences rather than ward-level judgment variation. The matched-patient design is what produces a claim about noise rather than a claim about patient severity differences.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch08-q05",
+        "prompt": "An inter-firm appraisal spread averages 8.9 percent for equivalent properties. A bank officer argues this falls within acceptable variability for real estate appraisal. What is the problem with that evaluation?",
+        "choices": [
+          "The 8.9 percent average spread is not within acceptable variability because the bank's appraisal standard requires inter-firm agreement within 5 percent, and this finding directly violates that stated standard.",
+          "The officer is focusing on average spread rather than the maximum spread: individual appraisal pairs at the high end of the distribution represent unacceptable concentration of lending risk.",
+          "The spread is being evaluated against a methodological precision claim rather than against the decision it feeds: an average spread of 8.9 percent of property value can flip loan approval outcomes for cases near the decision threshold, which is the operationally relevant test."
+        ],
+        "correctIndex": 2,
+        "explanation": "Whether 8.9 percent is 'acceptable variability' depends on what the appraisal is used for. Near the loan approval threshold, an 8.9-percent spread means approval decisions can go either way depending on which firm conducted the appraisal. That threshold consequence is what makes the spread a noise problem.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch08-q06",
+        "prompt": "A research team finds that within a personal injury severity category, the standard deviation of damages awards is larger than the average award difference between adjacent severity levels. What does this represent?",
+        "choices": [
+          "The finding represents a within-category noise problem: the ordering the severity categories were designed to produce collapses in practice when the scatter within each category is larger than the signal between them.",
+          "The finding represents a data quality problem: the severity categories were not properly defined during case coding, and the within-category variance reflects inconsistent categorization rather than true damages variation.",
+          "The finding represents a legitimate feature of tort law: damages awards are intentionally individualized, and within-category variation is expected and desirable rather than a noise problem."
+        ],
+        "correctIndex": 0,
+        "explanation": "When noise within a severity band exceeds the signal between bands, the ordering the severity scale was designed to produce does not hold in practice. Cases near the top of one category and the bottom of the next are indistinguishable by outcome, which is the structural failure pattern analysis was designed to reveal.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch08-q07",
+        "prompt": "Why does explaining a specific disagreement fail to reveal the same thing as measuring the pattern across a matched sample?",
+        "choices": [
+          "Explaining a specific disagreement produces a local narrative that accounts for that case and leaves each subsequent disagreement equally available for its own narrative: the explanations do not accumulate into data about the system. Measuring the pattern across a matched sample produces a distribution that gives noise a cumulative number the explanations cannot provide.",
+          "Explaining a specific disagreement is necessarily less accurate than measuring patterns because individual case explanations are speculative while pattern analysis produces verifiable statistical data.",
+          "The difference is primarily one of scale: explaining a single disagreement and measuring a pattern both reveal the same type of information, but measurement is more informative because it covers more cases."
+        ],
+        "correctIndex": 0,
+        "explanation": "Each case-level explanation is self-contained: it accounts for that case without adding to knowledge about the system's noise level. The distribution across a matched sample is what converts individually explainable outcomes into a systemic finding.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch08-q08",
+        "prompt": "A contamination boundary analysis finds that five qualified scientists produced estimates with a factor-of-two remediation cost range from the same site data. A project manager argues this simply reflects legitimate scientific uncertainty. How should this response be evaluated?",
+        "choices": [
+          "The manager is correct: a factor-of-two range from qualified scientists working on a complex site reflects genuine domain complexity rather than noise, and no better precision should be expected.",
+          "The manager is partly right but misses the operationally critical point: legitimate scientific uncertainty and noise are both real, but the factor-of-two cost range is the number that must be reported to the project owner before contract commitments are made, regardless of its source.",
+          "The manager is wrong: a factor-of-two range from five scientists working on the same inputs is too large to be explained by legitimate scientific uncertainty and indicates that at least some of the maps contain methodological errors."
+        ],
+        "correctIndex": 1,
+        "explanation": "Legitimate scientific uncertainty does not make the spread irrelevant to the project owner's decision. The spread is the information, whether it comes from noise, genuine complexity, or both. A project owner who commits to a contract value without knowing the factor-of-two cost range has made a decision on incomplete information.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch08-q09",
+        "prompt": "A team proposes a noise analysis comparing damages awards across judges who handled similar personal injury cases. A critic argues the cases are not truly comparable because no two lawsuits are identical, so the comparison is invalid. How should this objection be evaluated?",
+        "choices": [
+          "The critic identifies a real methodological challenge but overstates its implication: matched-case analysis rarely achieves perfect comparability, and the relevant question is whether the outcome variation substantially exceeds what the residual case-feature differences could plausibly explain. If it does, the residual is noise.",
+          "The critic is correct: any difference in case circumstances, however small, invalidates a noise analysis in the legal domain. Valid noise comparisons require controlled experimental conditions that court proceedings cannot provide.",
+          "The critic is wrong: similarity ratings are sufficient to establish comparability in legal noise analysis, and objections based on imperfect matching are motivated defenses of the status quo rather than substantive methodological concerns."
+        ],
+        "correctIndex": 0,
+        "explanation": "Perfect case matching is impossible in professional judgment domains. The objection identifies a real challenge but does not answer the operational question: does the outcome variation substantially exceed what the case-feature differences could explain? That is the test, not perfect comparability.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "noise-ch08-rc01",
+      "front": "What is the one structural feature that distinguishes noise analysis from reviewing individual cases?",
+      "back": "A noise analysis requires a sample of matched cases that produces a distribution. Individual case review produces one outcome at a time, each with a local explanation available. The distribution reveals whether the scatter across matched cases is large relative to case differences, which is the only way to measure systemic noise.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "noise-ch08-rc02",
+      "front": "What happens when within-category noise exceeds between-category signal in a severity-based judgment system?",
+      "back": "The ordering the categories were designed to produce collapses in practice. A case near the top of one category and a case near the bottom of the adjacent category cannot be reliably distinguished by outcome. The category structure implies a precision that the actual distribution of outcomes does not deliver.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "noise-ch08-rc03",
+      "front": "Why does individual case review not reveal systemic noise even when noise is large?",
+      "back": "Individual case review evaluates whether each outcome falls within an acceptable range for that case. It does not evaluate whether the distribution of outcomes across all same-type cases is consistent. Each outcome can be locally defensible while the pattern of outcomes reveals a spread that no single file indicated.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "noise-ch08-rc04",
+      "front": "What is the matched-case requirement in noise analysis, and why is perfect matching impossible?",
+      "back": "Matched cases share the features that should drive the outcome. Perfect matching is impossible in professional judgment domains because no two cases are literally identical. The analysis must define the matching variables and then evaluate whether the outcome variation substantially exceeds what the residual case-feature differences could plausibly explain. If it does, the residual is noise.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "noise-ch08-rc05",
+      "front": "Why does within-system scatter often exceed between-system scatter in matched-case analyses of professional judgment?",
+      "back": "Within-system scatter reflects variation between individual practitioners applying the same rules in the same institutional context. Between-system scatter reflects genuine institutional differences. When within-system scatter exceeds between-system scatter, the variation is not a property of institutional differences but of individual judgment variation inside the same institution, which is noise rather than a difference in institutional approach.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Build matched-case comparisons to study noise as a pattern across a sample rather than explaining each disagreement individually. A distribution across matched cases reveals the systemic scatter that each locally defensible outcome was helping to conceal.",
+    "ifThenPlans": [
+      {
+        "context": "Two people in the same role are producing different outcomes for cases that appear similar",
+        "plan": "Pull 20 or more similar cases, define matching variables, and compare the outcome distributions before attributing the difference to the individuals. Individual review can confirm each outcome was defensible without revealing whether the pattern of outcomes shows more scatter than the case differences justify. Build the aggregate picture first."
+      },
+      {
+        "context": "A single-case review produces no finding because the outcome looks locally defensible",
+        "plan": "Shift the question from whether this outcome was reasonable to whether the distribution of outcomes for similar cases shows more scatter than the feature differences between them can explain. Local defensibility is not evidence of systemic low noise: it is what systemic noise looks like from inside the individual case."
+      },
+      {
+        "context": "A category-based system is producing variable outcomes for cases within the same category",
+        "plan": "Measure the within-category standard deviation and compare it to the between-category difference in average outcomes. If the within-category spread is larger than the between-category signal, the categories are not producing the ordering they imply. Report both numbers before adjusting category boundaries."
+      },
+      {
+        "context": "A matched-case analysis is proposed but someone argues the cases are not truly comparable",
+        "plan": "Estimate how much the residual case-feature differences could plausibly explain in outcome variation. If the actual outcome variation substantially exceeds that estimate, the residual is noise and the analysis is informative even with imperfect matching. Complete case identity is impossible in professional judgment domains: imperfect matching is the standard condition, not a disqualification."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, identify one recurring decision type in your work. Find the last 20 decisions of that type and organize them by the feature most likely to drive the outcome. Write down how much the outcomes vary within the same feature band. Record that within-group spread as your first noise measurement.",
+    "weeklyPractice": "Each week, identify one outcome category in your team's decisions and track the standard deviation of outcomes within it. After four weeks, compare the within-category standard deviation to the difference in average outcomes between adjacent categories. If the within-category spread is larger, you have found a place where noise is outrunning the signal your category structure was designed to produce."
+  },
+  "memorableLines": [
+    {
+      "text": "A single disagreement is a curiosity. A hundred disagreements on matched cases are a diagnosis.",
+      "location": "breakdown.fastRead",
+      "why": "Crystallizes the core move of the chapter in one sentence pair: individual disagreement stays at the level of curiosity, aggregate pattern becomes a diagnosis, and the contrast names what analysis does that explanation does not."
+    },
+    {
+      "text": "The case-by-case approach does not produce the wrong answer to that question. It produces no answer at all. The question only becomes answerable when the sample exists.",
+      "location": "breakdown.deepRead",
+      "why": "States the structural limitation of individual case review without blame: it is not that case-by-case review reaches the wrong conclusion, but that the question it is being asked to answer cannot be answered at the case level."
+    },
+    {
+      "text": "A single disagreement is a curiosity. A hundred disagreements on matched cases are a diagnosis. The only way to know which kind you have is to build the comparison.",
+      "location": "breakdown.fullRead",
+      "why": "Extends the fastRead punch line with an action directive, anchoring the chapter's practical instruction in the same memorable contrast and closing the fullRead with a call to build rather than wait."
+    }
+  ]
+}

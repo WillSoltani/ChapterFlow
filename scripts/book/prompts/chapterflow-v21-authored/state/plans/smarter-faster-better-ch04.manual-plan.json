@@ -1,0 +1,204 @@
+{
+  "chapterId": "smarter-faster-better-ch04",
+  "number": 4,
+  "title": "Goal Setting",
+  "coreMove": "Pair specific targets with stretch and reality checks so the metric steers the mission without replacing it.",
+  "sourcePressure": "The chapter uses SMART goals, stretch goals, and the Yom Kippur War to show that targets shape action, ambition, and strategic judgment, sometimes helpfully and sometimes dangerously.",
+  "chapterSpecificMisunderstanding": "Treating any clear metric or any big ambition as automatically good.",
+  "sourceAlignmentTerms": [
+    "SMART goals",
+    "stretch goals",
+    "Yom Kippur War",
+    "targets",
+    "strategic judgment",
+    "reality contact"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "SMART goals",
+      "detail": "the sidecar supports SMART goals as a chapter anchor for usable concrete targets",
+      "useIn": "both",
+      "phrasingHint": "SMART goals should feel like a handle, not a shrine: they make the next move visible but cannot decide what matters by themselves."
+    },
+    {
+      "kind": "artifact",
+      "name": "stretch goals",
+      "detail": "the sidecar supports stretch goals as the ambition counterweight to concrete specificity",
+      "useIn": "both",
+      "phrasingHint": "A stretch goal earns its place only when it pulls new behavior out of the room instead of becoming theater."
+    },
+    {
+      "kind": "event",
+      "name": "Yom Kippur War",
+      "detail": "the subtitle directly supports the Yom Kippur War as the cautionary historical anchor but not detailed chronology",
+      "useIn": "fullRead",
+      "phrasingHint": "The Yom Kippur War belongs here as a warning that planning frames can sharpen judgment or blind it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Person at a meeting realizes the real lesson",
+      "The day starts with a dashboard",
+      "A simple choice changes everything"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more faster",
+      "The obvious answer is wrong",
+      "The problem is not effort but something deeper"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three priorities",
+      "Pause before your next task"
+    ],
+    "examples": [
+      "generic office stand-up",
+      "kitchen table planning",
+      "classroom marker demonstration",
+      "commuter train epiphany"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "a community health clinic trying to reduce missed diabetes follow-ups",
+      "audience": "a clinic director revising a vague improvement aim",
+      "stakes": "patients keep falling through the cracks while the team celebrates activity counts",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel rewrites the goal from more outreach to a dated follow-up target, then adds a mission check: patients seen, not calls logged",
+      "firstImage": "A stack of callback sheets sits beside an untouched glucose meter box",
+      "mustInclude": [
+        "callback sheets",
+        "glucose meter box",
+        "missed follow-ups"
+      ],
+      "mustAvoid": [
+        "generic healthcare metric rant"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "an amateur orchestra preparing for a regional competition",
+      "audience": "a conductor deciding whether to chase a perfect tempo score",
+      "stakes": "musicians may hit the metronome and lose the piece's emotional lift",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Luca keeps the tempo target but adds a listening test after rehearsal so the measurable goal serves the musical aim",
+      "firstImage": "\"We can play it clean and still make it dead,\" the first violin says",
+      "mustInclude": [
+        "metronome app",
+        "regional competition",
+        "listening test"
+      ],
+      "mustAvoid": [
+        "art versus business cliche"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "a warehouse safety team after a quarter with too many near misses",
+      "audience": "a safety lead under pressure to produce a bold turnaround goal",
+      "stakes": "a dramatic zero-incident poster could drive underreporting",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Camille two underreported near misses to see that the stretch goal needed a paired reporting target",
+      "firstImage": "It took Camille two quiet Fridays to realize the zero-incident poster had worked too well",
+      "mustInclude": [
+        "near-miss forms",
+        "zero-incident poster",
+        "reporting target"
+      ],
+      "mustAvoid": [
+        "blame workers for hiding data"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "a high-school debate squad choosing goals for nationals",
+      "audience": "a coach balancing ambition with weekly practice design",
+      "stakes": "students may choose a trophy dream with no practice path",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Daniel turns the trophy aim into specific drills while keeping one stretch practice that forces new argument styles",
+      "firstImage": "How does a goal get big enough to pull effort without floating away from Tuesday practice?",
+      "mustInclude": [
+        "nationals bracket",
+        "practice drills",
+        "argument-style rotation"
+      ],
+      "mustAvoid": [
+        "letting the question hook replace the visible action beat"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "a climate nonprofit setting donor targets before a legislative season",
+      "audience": "a campaign manager caught between fundraising numbers and policy change",
+      "stakes": "the team could hit the donation goal while missing the vote window",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:05 p.m., Kasia ties the donor target to one legislative milestone so the metric cannot outrank the mission",
+      "firstImage": "At 4:05 p.m., the donor thermometer graphic is already full and the vote count is not",
+      "mustInclude": [
+        "donor thermometer",
+        "vote count sheet",
+        "legislative calendar"
+      ],
+      "mustAvoid": [
+        "fundraising as pure greed"
+      ]
+    },
+    {
+      "protagonistName": "Tomas",
+      "domain": "a small craft brewery deciding whether to double production",
+      "audience": "a founder using growth targets without losing quality control",
+      "stakes": "a stretch production goal could overload fermentation capacity and ruin a release",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Tomas asks the team to predict what will break first under doubled output, then adjusts the target around the bottleneck instead of the vanity number",
+      "firstImage": "The new fermenter smells faintly of steel and citrus sanitizer",
+      "mustInclude": [
+        "new fermenter",
+        "release calendar",
+        "bottleneck prediction"
+      ],
+      "mustAvoid": [
+        "startup hypergrowth shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose when a SMART target has become narrow scorekeeping",
+      "add stretch without losing operational grip",
+      "evaluate goals by whether they preserve contact with the mission"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one current goal and add the missing half: if it is vague, define the next measurable step; if it is narrow, write the larger mission it must not betray.",
+  "readingTimeMinutes": 12
+}

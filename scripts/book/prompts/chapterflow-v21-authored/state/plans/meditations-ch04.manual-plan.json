@@ -1,0 +1,191 @@
+{
+  "chapterId": "meditations-ch04",
+  "number": 4,
+  "title": "Book IV",
+  "coreMove": "Convert opposition and complaint into material for reasoned action.",
+  "sourcePressure": "The ruling part retreats inward, adapts to opposition like fire, examines complaint, and sees the world as a shared political community under change.",
+  "chapterSpecificMisunderstanding": "obstacles are automatically good or retreat means escape",
+  "sourceAlignmentTerms": [
+    "ruling part",
+    "fire image",
+    "inward retreat",
+    "common reason",
+    "common law",
+    "world city",
+    "complaint"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "fire using what falls into it",
+      "detail": "Book IV says the ruling part adapts to what is possible and uses opposition like fire using what falls into it.",
+      "useIn": "both",
+      "phrasingHint": "The fire image matters because resistance becomes fuel only when purpose is already burning."
+    },
+    {
+      "kind": "place",
+      "name": "world as a political community",
+      "detail": "Book IV argues from common reason to common law, fellow citizenship, and the world as a political community.",
+      "useIn": "fullRead",
+      "phrasingHint": "Inward retreat has to return to the world city, or it becomes only hiding."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "rail maintenance dispatch",
+      "audience": "Megan rerouting crews after a track washout",
+      "stakes": "complaint could consume the hour needed for a safe detour",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Megan circles the closed segment and turns the stranded crew into a bridge-inspection team.",
+      "firstImage": "The dispatch wall shows one red line cutting the route in half.",
+      "mustInclude": [
+        "route board",
+        "crew radio",
+        "inspection list"
+      ],
+      "mustAvoid": [
+        "transport delay rant"
+      ]
+    },
+    {
+      "domain": "community theatre lighting",
+      "audience": "Olivier losing the main dimmer before opening night",
+      "stakes": "panic could make the production smaller than necessary",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivier rewrites the lighting cues around handheld lamps and makes the failure part of the staging.",
+      "firstImage": "The booth smells of hot dust when the dimmer rack goes black.",
+      "mustInclude": [
+        "cue sheet",
+        "handheld lamps",
+        "gaffer tape"
+      ],
+      "mustAvoid": [
+        "show must go on cliche"
+      ]
+    },
+    {
+      "domain": "immigration clinic intake",
+      "audience": "Aanya facing a missing document on filing day",
+      "stakes": "the missing paper could become blame instead of a new path",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Aanya uses the missing certificate to build a sworn timeline and assign retrieval tasks before the client leaves.",
+      "firstImage": "\"We do not have the certificate,\" Aanya says, \"so we start with the timeline.\"",
+      "mustInclude": [
+        "sworn statement",
+        "scanner",
+        "document checklist"
+      ],
+      "mustAvoid": [
+        "paperwork frustration generic"
+      ]
+    },
+    {
+      "domain": "marine biology fieldwork",
+      "audience": "Henrik losing a sensor in rough water",
+      "stakes": "the ruined instrument can still produce a usable observation window",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What can a broken sensor still tell you if you stop asking it for the old data?",
+      "firstImage": "Henrik logs the failure time against tide movement and salvages a current pattern from the loss.",
+      "mustInclude": [
+        "sensor housing",
+        "tide table",
+        "wet notebook"
+      ],
+      "mustAvoid": [
+        "science heroics"
+      ]
+    },
+    {
+      "domain": "small claims mediation",
+      "audience": "Paula handling a party who refuses every proposal",
+      "stakes": "opposition may reveal the only acceptable term",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Paula write down each refusal until the pattern shows the one nonnegotiable issue.",
+      "firstImage": "You see the mediator turn the word no into a map.",
+      "mustInclude": [
+        "legal pad",
+        "settlement draft",
+        "folding table"
+      ],
+      "mustAvoid": [
+        "generic negotiation"
+      ]
+    },
+    {
+      "domain": "warehouse safety audit",
+      "audience": "James discovering a blocked fire exit during a supplier visit",
+      "stakes": "embarrassment could lead to concealment instead of correction",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 2:18 p.m., James stops the tour, moves the pallets, and turns the failed inspection into the first corrected standard.",
+      "firstImage": "At 2:18 p.m., James sees the exit sign glowing over stacked pallets.",
+      "mustInclude": [
+        "exit sign",
+        "pallet jack",
+        "audit tablet"
+      ],
+      "mustAvoid": [
+        "corporate compliance boilerplate"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "convert obstacles without pretending they are pleasant",
+      "distinguish inward retreat from withdrawal",
+      "remove complaint by testing the opinion of harm"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one obstruction in front of you and write the useful action it now makes possible, not the action it ruined.",
+  "readingTimeMinutes": 12
+}

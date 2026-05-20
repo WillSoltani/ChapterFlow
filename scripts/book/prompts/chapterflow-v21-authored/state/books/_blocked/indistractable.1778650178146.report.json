@@ -1,0 +1,1037 @@
+{
+  "bookId": "indistractable",
+  "title": "Indistractable",
+  "author": "Nir Eyal",
+  "promotedAt": "2026-05-13T05:29:38.142Z",
+  "chapterCount": 30,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The blue departure screen flashes CANCELLED above gate B17 while Claire stands with a carry-on tag curling from her bag handle. Her hotel app, client thread, and a shopping app all sit on the same ph…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "“Still loose?” the catcher asks as rain ticks on the dugout roof and the tarp shines across the infield. Daniel presses two fingers into the resin bag. The highlight reel on his phone would make the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The aquarium bubbles make a soft plastic rattle beside Hugo’s chair in the radiology waiting area. His insurance card is still in his hand, though reception gave it back ten minutes ago. The news sit…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which feels more urgent during extension week: the email ding or the green file folder under the lamp? Marta finds out after a long evening of “quick replies” beside a curling strip of calculator tap…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the phone is not\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Mathieu can trace immigration clinic intake back to stack of passport copies at the side office. Mathieu, paralegal doing easy scans instead of a hard affidavit, compares passport copies with …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of city pool maintenance is yellow lane ropes coiled dry trying to hide? Anya, supervisor delaying a drain inspection with chemical logs, compares chemical log with drain hatch. The pressu…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to plan time\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to pause long\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Adam can trace stormwater call center back to map grid on dual monitors at the corner table. Adam, operator feeling irritation at repeated flood calls, compares incident map with headset cord.…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of ceramics kiln room is kiln latch cooling in the corner trying to hide? Nora, potter anxious before opening a glaze firing, compares kiln log with heat gloves. The pressure is specific: …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to change the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Claire can trace community orchestra practice back to folding chair under stage lights at the front counter. Before the change, Claire, cellist avoiding scales because setup is clumsy, kept sh…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of warehouse label station is thermal label printer blinking trying to hide? James, clerk fleeing inventory because labels print slowly, compares bin ticket with label roll. The pressure i…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to make the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to drop fixed\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Kiran can trace community garden board back to plot map clipped to fence at the copy room. Before the change, Kiran, volunteer valuing neighborhood food access but drifting into chat, kept plo…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to turn stated\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Catarina can trace tenant hotline shift back to call queue screen at the quiet alcove. Catarina, advocate cannot solve every eviction, compares referral form with resource binder. The pressure…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to judge the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of touring theater marriage is mirror bulbs backstage trying to hide? Before the change, Marta, actor tries to connect only after shows, kept call sheet and makeup sponge where touring the…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to reserve real\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Sofia can trace software localization sprint back to translation memory grid at the north hallway. Sofia, translator juggling product pings, compares string list with review window. The pressu…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of construction permit desk is rolled site plan trying to hide? Luca, planner needs quiet review and contractors need status, compares permit tray with counter sign. The pressure is specif…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to share your\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of animal shelter intake is row of kennel cards trying to hide? Camille, volunteer pulled by barking from paperwork, compares intake form with leash hook. The pressure is specific: adoptio…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to ask whether\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Sarah can trace airport operations desk back to gate map with magnetic strips at the practice room. Sarah, dispatchers interrupt each other for nonurgent gate changes, compares stand card with…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of veterinary surgery prep is sterile pack opened on tray trying to hide? Ryan, techs tap the surgeon for supply questions, compares supply checklist with prep cap. The pressure is specifi…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to make interruption\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of estate law inbox is sealed court envelope tray trying to hide? Hannah, paralegal opens every email while drafting filings, compares filing checklist with email folder. The pressure is s…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"into chosen windows and\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Lin can trace film location scout back to county permit folder at the ticket window. Lin, crew treats chat presence as proof of work, compares channel chart with location map. The pressure is …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to turn chat\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of public housing repair council is folding chairs in a community room trying to hide? Tomasz, residents asked to attend vague session, compares vote card with repair list. The pressure is…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to require a\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Marco can trace real estate showing day back to lockbox hanging on porch rail at the supply closet. Marco, agent loses route flow to unrelated alerts, compares route map with lockbox code. The…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of night-shift lab courier is cooler case on passenger floor trying to hide? Petra, scrolling fills quiet route stops, compares route pouch with specimen manifest. The pressure is specific…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to remove the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of warehouse route planning is loading dock dashboard trying to hide? Mathieu, dispatcher keeps switching among dashboards, compares route board with dock sequence. The pressure is specifi…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to shape the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Thomas can trace sports physiotherapist research update back to rehab table with resistance bands at the loading bay. Thomas, injury article becomes equipment shopping, compares article clippe…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of classical music critic review is concert program on velvet seat trying to hide? Lea, program note search turns into composer biography drift, compares program note with link list. The p…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to save reading\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Grace can trace municipal emergency feed back to official alert dashboard at the corner table. Grace, PIO opens updates without a stopping rule, compares release draft with feed filter. The pr…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of independent fashion buyer trend feed is fabric swatch book open trying to hide? Adam, novel images replace purchase plan, compares buying budget with image cap note. The pressure is spe…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to remove endless\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to make the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Anders can trace farmers market inventory back to blank price cards at the basement shelf. Before the change, Anders, vendor forgets price signs after late scrolling, kept stall agreement and …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to attach a\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to use a chosen\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at work as a\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of manufacturing maintenance crew is maintenance cage shelves trying to hide? Before the change, Antoine, crew uses daily planning to protect repair windows, kept job queue and triage clip…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to build shared\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to help a\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to plan family\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to teach children\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 28,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to help children\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 29,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of neighborhood skate crew is skate wax on curb trying to hide? Lin, friends avoid filming every attempt, compares camera pouch with trick list. The pressure is specific: learning new tric…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to make focus\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 30,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Later, Luca can trace retired couple morning routine back to two plates at a breakfast table at the west entrance. Before the change, Luca, news feed displaces shared breakfast, kept newspaper band a…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is to give the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 32
+  },
+  "bookGate": {
+    "bookId": "indistractable",
+    "chapterCount": 30,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "30 protagonist name(s) appear as named characters in multiple chapters: Sarah(ch2,7,12,17,22,27), Ryan(ch2,7,12,17,22,27), Giulia(ch2,7,12,17,22), Mathieu(ch2,7,12,17,22,27), Anya(ch2,7,12,17,22,27), …. Regenerate affected examples with distinct names."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        91,
+        89,
+        90
+      ],
+      "answerPositionPctMax": 0.337037037037037,
+      "totalQuizQuestions": 270,
+      "duplicatedNames": [
+        {
+          "name": "Sarah",
+          "chapters": [
+            2,
+            7,
+            12,
+            17,
+            22,
+            27
+          ]
+        },
+        {
+          "name": "Ryan",
+          "chapters": [
+            2,
+            7,
+            12,
+            17,
+            22,
+            27
+          ]
+        },
+        {
+          "name": "Giulia",
+          "chapters": [
+            2,
+            7,
+            12,
+            17,
+            22
+          ]
+        },
+        {
+          "name": "Mathieu",
+          "chapters": [
+            2,
+            7,
+            12,
+            17,
+            22,
+            27
+          ]
+        },
+        {
+          "name": "Anya",
+          "chapters": [
+            2,
+            7,
+            12,
+            17,
+            22,
+            27
+          ]
+        },
+        {
+          "name": "Kiran",
+          "chapters": [
+            2,
+            7,
+            12,
+            17,
+            22,
+            27
+          ]
+        },
+        {
+          "name": "Hannah",
+          "chapters": [
+            3,
+            8,
+            13,
+            18,
+            23,
+            28
+          ]
+        },
+        {
+          "name": "Thomas",
+          "chapters": [
+            3,
+            8,
+            13,
+            18,
+            23,
+            28
+          ]
+        },
+        {
+          "name": "Lea",
+          "chapters": [
+            3,
+            8,
+            13,
+            18,
+            23,
+            28
+          ]
+        },
+        {
+          "name": "Diego",
+          "chapters": [
+            3,
+            8,
+            13,
+            18,
+            23
+          ]
+        },
+        {
+          "name": "Catarina",
+          "chapters": [
+            3,
+            8,
+            13,
+            18,
+            23,
+            28
+          ]
+        },
+        {
+          "name": "Yusuf",
+          "chapters": [
+            3,
+            8,
+            13,
+            18,
+            23,
+            28
+          ]
+        },
+        {
+          "name": "Grace",
+          "chapters": [
+            4,
+            9,
+            14,
+            19,
+            24,
+            29
+          ]
+        },
+        {
+          "name": "Adam",
+          "chapters": [
+            4,
+            9,
+            14,
+            19,
+            24,
+            29
+          ]
+        },
+        {
+          "name": "Nora",
+          "chapters": [
+            4,
+            9,
+            14,
+            19,
+            24,
+            29
+          ]
+        },
+        {
+          "name": "Antoine",
+          "chapters": [
+            4,
+            9,
+            14,
+            19,
+            29
+          ]
+        },
+        {
+          "name": "Marta",
+          "chapters": [
+            4,
+            19,
+            24,
+            29
+          ]
+        },
+        {
+          "name": "Lin",
+          "chapters": [
+            4,
+            9,
+            14,
+            19,
+            24,
+            29
+          ]
+        },
+        {
+          "name": "Claire",
+          "chapters": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "name": "James",
+          "chapters": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "name": "Sofia",
+          "chapters": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "name": "Luca",
+          "chapters": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "name": "Ingrid",
+          "chapters": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "name": "Tomasz",
+          "chapters": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "name": "Emily",
+          "chapters": [
+            6,
+            11,
+            16,
+            21,
+            26
+          ]
+        },
+        {
+          "name": "Daniel",
+          "chapters": [
+            6,
+            11,
+            16,
+            21,
+            26
+          ]
+        },
+        {
+          "name": "Camille",
+          "chapters": [
+            6,
+            11,
+            16,
+            21,
+            26
+          ]
+        },
+        {
+          "name": "Marco",
+          "chapters": [
+            6,
+            11,
+            16,
+            21,
+            26
+          ]
+        },
+        {
+          "name": "Petra",
+          "chapters": [
+            6,
+            11,
+            16,
+            21,
+            26
+          ]
+        },
+        {
+          "name": "Anders",
+          "chapters": [
+            6,
+            11,
+            16,
+            21,
+            26
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "indistractable",
+        "chapterCount": 30,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch80",
+  "number": 80,
+  "title": "Ambiguity Aversion",
+  "coreMove": "Use Ambiguity Aversion as the warning label, then make the specific correction before the choice moves forward.",
+  "sourcePressure": "The frozen TOC and official source notes frame Ambiguity Aversion as a specific decision error around ambiguity aversion, Knightian uncertainty, Ellsberg. Traceable support includes Knightian.",
+  "chapterSpecificMisunderstanding": "Treating Ambiguity Aversion as generic advice to be smarter, instead of forcing this exact move: use ambiguity aversion as the warning label, then make the specific correction before the choice moves forward.",
+  "sourceAlignmentTerms": [
+    "ambiguity aversion",
+    "Knightian uncertainty",
+    "Ellsberg",
+    "known risk",
+    "unclear odds",
+    "ambiguity",
+    "aversion"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Knightian",
+      "detail": "Knightian uncertainty is named after University of Chicago economist Frank Knight (1885 - 1972), who distinguished risk and uncertainty in his work: Frank H. Knight, Risk, Uncertainty, and Profit (Boston, MA: Hart, Schaffner & Marx; Houghton Mifflin Company, 1921). The Ellsberg p",
+      "useIn": "fullRead",
+      "phrasingHint": "Knightian can appear as a factual pressure point: the reader sees ambiguity aversion through evidence, not a decorative citation."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Ambiguity Aversion.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Ambiguity Aversion sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Ambiguity Aversion."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a critic panel score sheet applying Ambiguity Aversion under operational pressure",
+      "audience": "a reader who has to make a live judgment where ambiguity aversion could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Ambiguity Aversion is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the menu proof, names the ambiguity aversion risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A menu proof sits at the center of the critic panel score sheet before anyone explains the choice.",
+      "mustInclude": [
+        "menu proof",
+        "ambiguity aversion",
+        "a visible before-and-after choice tied to Ambiguity Aversion"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a court file schedule applying Ambiguity Aversion under operational pressure",
+      "audience": "a reader who has to make a live judgment where Knightian uncertainty could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Ambiguity Aversion is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the case file, names the Knightian uncertainty risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A case file sits at the center of the court file schedule before anyone explains the choice.",
+      "mustInclude": [
+        "case file",
+        "Knightian uncertainty",
+        "a visible before-and-after choice tied to Ambiguity Aversion"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a medical-device adverse-event log applying Ambiguity Aversion under operational pressure",
+      "audience": "a reader who has to make a live judgment where Ellsberg could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Ambiguity Aversion is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the sensor graph, names the Ellsberg risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A sensor graph sits at the center of the medical-device adverse-event log before anyone explains the choice.",
+      "mustInclude": [
+        "sensor graph",
+        "Ellsberg",
+        "a visible before-and-after choice tied to Ambiguity Aversion"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a wine harvest comparison applying Ambiguity Aversion under operational pressure",
+      "audience": "a reader who has to make a live judgment where known risk could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Ambiguity Aversion is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the water sample, names the known risk risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A water sample sits at the center of the wine harvest comparison before anyone explains the choice.",
+      "mustInclude": [
+        "water sample",
+        "known risk",
+        "a visible before-and-after choice tied to Ambiguity Aversion"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a soccer playoff rule applying Ambiguity Aversion under operational pressure",
+      "audience": "a reader who has to make a live judgment where unclear odds could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Ambiguity Aversion is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the model card, names the unclear odds risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A model card sits at the center of the soccer playoff rule before anyone explains the choice.",
+      "mustInclude": [
+        "model card",
+        "unclear odds",
+        "a visible before-and-after choice tied to Ambiguity Aversion"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a public-radio news queue applying Ambiguity Aversion under operational pressure",
+      "audience": "a reader who has to make a live judgment where ambiguity could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Ambiguity Aversion is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the queue ticket, names the ambiguity risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A queue ticket sits at the center of the public-radio news queue before anyone explains the choice.",
+      "mustInclude": [
+        "queue ticket",
+        "ambiguity",
+        "a visible before-and-after choice tied to Ambiguity Aversion"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Ambiguity Aversion in a fresh decision scene",
+      "choose the correction that performs this move: use ambiguity aversion as the warning label, then make the specific correction before the choice moves forward.",
+      "reject a tempting generic answer that ignores ambiguity aversion",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Ambiguity Aversion' on a note, list the one ambiguity aversion cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

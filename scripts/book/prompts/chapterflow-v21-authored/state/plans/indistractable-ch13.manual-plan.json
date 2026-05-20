@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch13",
+  "number": 13,
+  "title": "Hack Back Email",
+  "coreMove": "Turn email from a constant cue into a batched commitment with clear next handling rules.",
+  "sourcePressure": "The chapter narrows work-interruption logic into the inbox, treating email as a repeat trigger system that needs bounded handling and norms.",
+  "chapterSpecificMisunderstanding": "A weak run would chase inbox zero prestige or declare email evil instead of building bounded response paths.",
+  "sourceAlignmentTerms": [
+    "email",
+    "external triggers",
+    "batching",
+    "response path",
+    "inbox",
+    "work norms"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hack Back Email as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rural clinic administrator sorting lab-supply emails",
+      "audience": "administrator whose inbox steals vaccine inventory time",
+      "stakes": "orders need accuracy more than instant vendor replies",
+      "format": "decision_point",
+      "requiredBeat": "she moves vendor promos to a Friday buying batch and handles only the expiring reagent notice now",
+      "firstImage": "A reagent expiry sheet lies beside a filtered vendor email.",
+      "mustInclude": [
+        "reagent sheet",
+        "vendor email",
+        "Friday batch"
+      ],
+      "mustAvoid": [
+        "healthcare overwhelm"
+      ]
+    },
+    {
+      "domain": "independent game composer receiving revision emails",
+      "audience": "composer who lets each note pull him out of scoring",
+      "stakes": "fragmented attention makes the cue list worse",
+      "format": "scene",
+      "requiredBeat": "he creates two revision windows and parks nonblocking notes in the score-change folder",
+      "firstImage": "A MIDI controller sits beside a score-change folder.",
+      "mustInclude": [
+        "MIDI controller",
+        "change folder",
+        "revision window"
+      ],
+      "mustAvoid": [
+        "creative inbox"
+      ]
+    },
+    {
+      "domain": "university lab manager handling equipment requests",
+      "audience": "manager copied on every supply question",
+      "stakes": "urgent repairs and routine requests need different paths",
+      "format": "dialogue",
+      "requiredBeat": "she replies with two routing labels, repair-now and next-order, then closes the inbox until the batch",
+      "firstImage": "A pipette rack stands beside two printed routing labels.",
+      "mustInclude": [
+        "pipette rack",
+        "routing labels",
+        "batch clock"
+      ],
+      "mustAvoid": [
+        "academic generic"
+      ]
+    },
+    {
+      "domain": "property claims adjuster after a hailstorm",
+      "audience": "adjuster buried under claimant messages",
+      "stakes": "real emergencies hide when every email is treated equally",
+      "format": "postmortem",
+      "requiredBeat": "he defines an emergency subject prefix and batches estimate clarifications",
+      "firstImage": "A hail-damage photo packet sits under an email filter note.",
+      "mustInclude": [
+        "photo packet",
+        "filter note",
+        "estimate queue"
+      ],
+      "mustAvoid": [
+        "disaster melodrama"
+      ]
+    },
+    {
+      "domain": "farm co-op buyer receiving harvest updates",
+      "audience": "buyer who checks every farm email during price planning",
+      "stakes": "price commitments wobble when inbox becomes the boss",
+      "format": "before_after",
+      "requiredBeat": "before, every update opens; after, harvest updates land in a noon review folder",
+      "firstImage": "A grain-price sheet sits beside a noon review folder.",
+      "mustInclude": [
+        "grain-price sheet",
+        "review folder",
+        "harvest update"
+      ],
+      "mustAvoid": [
+        "market speculation"
+      ]
+    },
+    {
+      "domain": "city arts grant panelist managing applicant questions",
+      "audience": "panelist trying to read proposals without constant replies",
+      "stakes": "fair review suffers when questions fragment scoring",
+      "format": "reflection",
+      "requiredBeat": "she sets a public question cutoff and answers in one posted digest",
+      "firstImage": "A scoring rubric rests beneath a public-question digest.",
+      "mustInclude": [
+        "scoring rubric",
+        "question digest",
+        "cutoff note"
+      ],
+      "mustAvoid": [
+        "bureaucratic annoyance"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Turn email from a constant cue into a batched commitment with clear next handling rules.",
+      "choose the action that stays inside Hack Back Email's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would chase inbox zero prestige or declare email evil instead of building bounded response paths.",
+      "use chapter-specific terms such as email, external triggers, batching, response path in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open your inbox once, choose the next email batch window, and move one nonurgent message into that window instead of answering now.",
+  "readingTimeMinutes": 12
+}

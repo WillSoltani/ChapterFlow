@@ -1,0 +1,78 @@
+{
+  "bookId": "deep-work",
+  "title": "Deep Work",
+  "author": "Cal Newport",
+  "thesisParagraph": "Deep Work argues that the ability to focus without distraction on cognitively demanding work has become both more valuable and less common. The reader learns to separate high-value depth from low-value busyness, then build a work life that protects concentration through schedules, rituals, boredom training, selective technology use, and deliberate limits on shallow obligations.",
+  "coreIdeas": [
+    {
+      "name": "Depth is an economic skill",
+      "oneSentence": "The people who can learn hard things quickly and produce excellent work have an advantage in a noisy economy.",
+      "mentalMove": "spot the work that compounds only when attention stays intact",
+      "sourceAnchors": ["ch01.source", "ch02.source"]
+    },
+    {
+      "name": "Busyness is a false signal",
+      "oneSentence": "Constant connectivity can look productive while quietly pushing out the work that matters most.",
+      "mentalMove": "stop using responsiveness as a proxy for contribution",
+      "sourceAnchors": ["ch03.source", "ch08.source"]
+    },
+    {
+      "name": "Depth must be engineered",
+      "oneSentence": "Focus does not appear on command; it is protected by calendars, rituals, and shutdown boundaries.",
+      "mentalMove": "turn a vague intention to focus into a repeatable operating system",
+      "sourceAnchors": ["ch05.source", "ch08.source"]
+    },
+    {
+      "name": "Attention can be trained",
+      "oneSentence": "A mind trained to flee boredom will not stay with hard work when hard work becomes uncomfortable.",
+      "mentalMove": "practice staying with a chosen problem instead of reaching for relief",
+      "sourceAnchors": ["ch06.source"]
+    },
+    {
+      "name": "Tools must earn their keep",
+      "oneSentence": "A digital tool deserves a place only when it substantially supports the outcomes and values that matter.",
+      "mentalMove": "judge tools by net contribution instead of possible usefulness",
+      "sourceAnchors": ["ch07.source"]
+    }
+  ],
+  "targetReader": "Knowledge workers, students, creators, operators, and professionals who feel busy all day but know their most important work needs longer stretches of protected attention.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language"
+    ]
+  },
+  "voiceSpecimens": [
+    "The important tab is already open, but your hand keeps moving toward the easier one.",
+    "A full calendar can hide an empty day if none of its blocks asked much from your mind.",
+    "You do not need a better mood to begin; you need a room, a rule, and a first hard sentence.",
+    "The phone feels urgent because it is bright, close, and trained to interrupt you at the exact point where thinking starts to hurt.",
+    "Depth is not a personality trait. It is what remains after you remove the exits.",
+    "Shallow work often arrives wearing a useful badge, which is why you have to measure it by what it displaces."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, readers will explore how focus can transform their productivity journey.",
+    "Deep work is really about unlocking your best self through intentional concentration habits.",
+    "As Cal Newport explains, the modern workplace contains many challenges and opportunities.",
+    "Take five minutes right now to reflect on your relationship with distraction and write down your thoughts.",
+    "The key insight is that productivity systems should be optimized for success in a holistic way."
+  ],
+  "teachingArc": "The book starts by defining the scarce skill and proving why it matters, then shows why modern work often pushes against it. It reframes depth as meaningful work, not just output, before moving into four rules: schedule and ritualize depth, train concentration by resisting boredom, evaluate social tools by real contribution, and reduce shallow obligations so the system has room to work. The conclusion pulls those moves into a whole life organized around deliberate depth.",
+  "forbiddenMoves": [
+    "Do not turn deep work into generic time management or hustle advice.",
+    "Do not invent neuroscience, productivity statistics, or full-book anecdotes outside the frozen source notes.",
+    "Do not make social media the villain in every chapter; several chapters are about work design, meaning, and shallow obligations.",
+    "Do not treat boredom training as mindfulness relaxation; it is concentration conditioning under discomfort.",
+    "Do not make the conclusion a victory lap about famous people beyond the supported Bill Gates closing case."
+  ]
+}

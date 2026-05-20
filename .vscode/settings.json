@@ -1,4 +1,28 @@
 {
     "claudeCode.allowDangerouslySkipPermissions": true,
-    "claudeCode.initialPermissionMode": "bypassPermissions"
-}
+    "claudeCode.initialPermissionMode": "bypassPermissions",
+  
+    "files.watcherExclude": {
+      "**/.next/**": true,
+      "**/node_modules/**": true,
+      "**/.turbo/**": true,
+      "**/dist/**": true,
+      "**/build/**": true,
+      "**/coverage/**": true,
+      "**/cdk.out/**": true,
+      "**/infra/cdk.out/**": true
+    },
+  
+    "search.exclude": {
+      "**/.next": true,
+      "**/node_modules": true,
+      "**/.turbo": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/coverage": true,
+      "**/cdk.out": true,
+      "**/infra/cdk.out": true
+    },
+  
+    "typescript.tsserver.maxTsServerMemory": 4096
+  }

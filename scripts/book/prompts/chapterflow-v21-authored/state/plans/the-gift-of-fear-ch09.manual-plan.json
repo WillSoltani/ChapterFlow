@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch09",
+  "number": 9,
+  "title": "Occupational hazards (violence in the workplace)",
+  "coreMove": "Make workplace process capture repeated grievance and access pressure before one decisive incident appears.",
+  "sourcePressure": "Workplaces can normalize grievance, access conflict, and escalation through routine process; institutions need processes that preserve behavioral signal instead of burying it.",
+  "chapterSpecificMisunderstanding": "Treating workplace violence as a sudden HR surprise or reducing it to disgruntlement.",
+  "sourceAlignmentTerms": [
+    "workplace",
+    "grievance",
+    "access conflict",
+    "routine process",
+    "warning pattern",
+    "repeated signals",
+    "institution"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch09",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "municipal permits counter after a denial",
+      "audience": "a supervisor seeing grievance become access pressure",
+      "stakes": "whether routine paperwork is hiding risk",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "links repeated appeals, staff-name collection, and building-route questions before changing coverage",
+      "firstImage": "a stamped denial form drying on the counter",
+      "mustInclude": [
+        "denial stamp",
+        "counter camera",
+        "staff rota"
+      ],
+      "mustAvoid": [
+        "generic HR compliance",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "warehouse shift change",
+      "audience": "an operations lead after a disciplinary meeting",
+      "stakes": "whether to treat threats as personal drama",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "keeps signal alive through handoff notes, exit timing, and badge restrictions",
+      "firstImage": "a pallet jack parked across a yellow line",
+      "mustInclude": [
+        "badge reader",
+        "handoff log",
+        "loading ramp"
+      ],
+      "mustAvoid": [
+        "generic HR compliance",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "hospital parking office",
+      "audience": "a manager tracking an ex-employee grievance",
+      "stakes": "whether process is burying the pattern",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "connects complaints, car sightings, and requests for nurse schedules across departments",
+      "firstImage": "a parking decal scraped from a windshield",
+      "mustInclude": [
+        "parking decal",
+        "incident folder",
+        "staff lot map"
+      ],
+      "mustAvoid": [
+        "generic HR compliance",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "software support floor after termination",
+      "audience": "a team lead managing access conflict",
+      "stakes": "whether IT deactivation alone is enough",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "pairs account shutdown with desk access, client-contact attempts, and building entry logs",
+      "firstImage": "a laptop dock with one cable still warm",
+      "mustInclude": [
+        "access log",
+        "laptop dock",
+        "client list"
+      ],
+      "mustAvoid": [
+        "generic HR compliance",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "restaurant kitchen before dinner rush",
+      "audience": "a chef after a cook is sent home",
+      "stakes": "whether a grievance is normal shift heat",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "acts when knife-roll return, alley waiting, and payroll accusations become a sequence",
+      "firstImage": "a knife roll strapped shut on the prep table",
+      "mustInclude": [
+        "knife roll",
+        "alley door",
+        "shift board"
+      ],
+      "mustAvoid": [
+        "generic HR compliance",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "university registrar office",
+      "audience": "a deputy registrar handling a dismissed student worker",
+      "stakes": "whether policy checkboxes caught the risk",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "creates a signal handoff when grievance emails and office loitering cross departments",
+      "firstImage": "a stack of transcript envelopes under a glass divider",
+      "mustInclude": [
+        "transcript envelope",
+        "office map",
+        "student badge"
+      ],
+      "mustAvoid": [
+        "generic HR compliance",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish workplace from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits make workplace process capture repeated grievance and access pressure before one decisive incident appears.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: treating workplace violence as a sudden hr surprise or reducing it to disgruntlement."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one workplace concern and write the pattern across departments, shifts, or handoffs so the signal cannot die in routine process.",
+  "readingTimeMinutes": 12
+}

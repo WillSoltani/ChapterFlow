@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch53",
+  "number": 53,
+  "title": "Decision Fatigue",
+  "coreMove": "Use Decision Fatigue as the warning label, then make the specific correction before the choice moves forward.",
+  "sourcePressure": "The frozen TOC and official source notes frame Decision Fatigue as a specific decision error around decision fatigue, judges, ego depletion. Traceable support includes Extraneous factors in judicial decisions.",
+  "chapterSpecificMisunderstanding": "Treating Decision Fatigue as generic advice to be smarter, instead of forcing this exact move: use decision fatigue as the warning label, then make the specific correction before the choice moves forward.",
+  "sourceAlignmentTerms": [
+    "decision fatigue",
+    "judges",
+    "ego depletion",
+    "supermarket",
+    "blood sugar",
+    "decision",
+    "fatigue"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Decision Fatigue.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Decision Fatigue sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Decision Fatigue."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a drilling safety huddle applying Decision Fatigue under operational pressure",
+      "audience": "a reader who has to make a live judgment where decision fatigue could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Decision Fatigue is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the ticket stub, names the decision fatigue risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A ticket stub sits at the center of the drilling safety huddle before anyone explains the choice.",
+      "mustInclude": [
+        "ticket stub",
+        "decision fatigue",
+        "a visible before-and-after choice tied to Decision Fatigue"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a orchestra audition panel applying Decision Fatigue under operational pressure",
+      "audience": "a reader who has to make a live judgment where judges could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Decision Fatigue is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the thermometer, names the judges risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A thermometer sits at the center of the orchestra audition panel before anyone explains the choice.",
+      "mustInclude": [
+        "thermometer",
+        "judges",
+        "a visible before-and-after choice tied to Decision Fatigue"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a water district bid review applying Decision Fatigue under operational pressure",
+      "audience": "a reader who has to make a live judgment where ego depletion could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Decision Fatigue is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the price card, names the ego depletion risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A price card sits at the center of the water district bid review before anyone explains the choice.",
+      "mustInclude": [
+        "price card",
+        "ego depletion",
+        "a visible before-and-after choice tied to Decision Fatigue"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a game studio retention board applying Decision Fatigue under operational pressure",
+      "audience": "a reader who has to make a live judgment where supermarket could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Decision Fatigue is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the trial binder, names the supermarket risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A trial binder sits at the center of the game studio retention board before anyone explains the choice.",
+      "mustInclude": [
+        "trial binder",
+        "supermarket",
+        "a visible before-and-after choice tied to Decision Fatigue"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a pharmacy flu-shot layout applying Decision Fatigue under operational pressure",
+      "audience": "a reader who has to make a live judgment where blood sugar could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Decision Fatigue is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the maintenance tag, names the blood sugar risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A maintenance tag sits at the center of the pharmacy flu-shot layout before anyone explains the choice.",
+      "mustInclude": [
+        "maintenance tag",
+        "blood sugar",
+        "a visible before-and-after choice tied to Decision Fatigue"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a fashion fabric waitlist applying Decision Fatigue under operational pressure",
+      "audience": "a reader who has to make a live judgment where decision could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Decision Fatigue is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the auction paddle, names the decision risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A auction paddle sits at the center of the fashion fabric waitlist before anyone explains the choice.",
+      "mustInclude": [
+        "auction paddle",
+        "decision",
+        "a visible before-and-after choice tied to Decision Fatigue"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Decision Fatigue in a fresh decision scene",
+      "choose the correction that performs this move: use decision fatigue as the warning label, then make the specific correction before the choice moves forward.",
+      "reject a tempting generic answer that ignores decision fatigue",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Decision Fatigue' on a note, list the one decision fatigue cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

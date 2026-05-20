@@ -1,0 +1,175 @@
+{
+  "chapterId": "leaders-eat-last-ch18",
+  "number": 18,
+  "title": "Leadership Lesson 2: So Goes the Leader, So Goes the Culture",
+  "coreMove": "Treat your visible reaction under pressure as the lesson the culture will copy.",
+  "sourcePressure": "Shows leader behavior as upstream cultural instruction: what authority models, protects, excuses, and punishes teaches the group how the place works.",
+  "chapterSpecificMisunderstanding": "Making the lesson about personality, inspiration, or speeches instead of observed conduct.",
+  "sourceAlignmentTerms": [
+    "leader",
+    "culture",
+    "models",
+    "protects",
+    "excuses",
+    "punishes",
+    "observed conduct",
+    "authority"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 18 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "newspaper correction desk",
+      "audience": "editor-in-chief receiving a reporter error",
+      "stakes": "leader reaction teaches whether corrections are safe",
+      "format": "decision_point",
+      "requiredBeat": "she writes the correction herself first and asks the reporter for the source trail in private",
+      "firstImage": "a red correction stamp beside a marked proof",
+      "mustInclude": [
+        "correction stamp",
+        "proof page"
+      ],
+      "mustAvoid": [
+        "speech about transparency"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "restaurant expo station",
+      "audience": "chef after a wrong allergy plate",
+      "stakes": "staff watch whether authority blames or protects truth",
+      "format": "scene",
+      "requiredBeat": "the chef kills the ticket, thanks the runner for stopping it, and only then reviews the miss",
+      "firstImage": "an allergy ticket clipped above the pass",
+      "mustInclude": [
+        "allergy ticket",
+        "ticket rail"
+      ],
+      "mustAvoid": [
+        "kitchen yelling"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "mountaineering guide hut",
+      "audience": "lead guide hearing a junior call off summit",
+      "stakes": "guides learn from what the lead protects under pressure",
+      "format": "dialogue",
+      "requiredBeat": "the lead backs the call in front of clients before discussing route judgment",
+      "firstImage": "a summit forecast taped to a bunk wall",
+      "mustInclude": [
+        "forecast sheet",
+        "ice axe"
+      ],
+      "mustAvoid": [
+        "heroic adventure"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "community newspaper board",
+      "audience": "publisher tolerating a star columnist's insult",
+      "stakes": "what leaders excuse becomes permission",
+      "format": "postmortem",
+      "requiredBeat": "the publisher maps three past exceptions before issuing the same standard to the star",
+      "firstImage": "a column draft beside an apology letter",
+      "mustInclude": [
+        "column draft",
+        "apology letter"
+      ],
+      "mustAvoid": [
+        "HR scandal"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "prosthetics clinic workshop",
+      "audience": "clinic director modeling patient patience",
+      "stakes": "technicians copy the director's treatment of frustration",
+      "format": "before_after",
+      "requiredBeat": "the director kneels to adjust the socket strap instead of rushing the next appointment",
+      "firstImage": "a socket strap beside a fitting stool",
+      "mustInclude": [
+        "socket strap",
+        "appointment card"
+      ],
+      "mustAvoid": [
+        "generic role model"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "harbor master radio desk",
+      "audience": "harbor master during a Mayday false alarm",
+      "stakes": "first reaction teaches whether people report uncertainty",
+      "format": "reflection",
+      "requiredBeat": "he thanks the caller for the early report before logging the false alarm",
+      "firstImage": "a radio log under a channel marker chart",
+      "mustInclude": [
+        "radio log",
+        "marker chart"
+      ],
+      "mustAvoid": [
+        "communications advice"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "predict cultural lessons from leader behavior",
+      "align reaction with desired norm",
+      "identify tolerated behavior as instruction",
+      "evaluate authority signals"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before responding to bad news, write what your first visible reaction will teach everyone watching.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

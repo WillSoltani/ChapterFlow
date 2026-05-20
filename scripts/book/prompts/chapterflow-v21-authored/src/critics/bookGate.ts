@@ -11,6 +11,12 @@
 
 import { ChapterV21 } from "../types.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
+import { BookPatternAuditReport, runBookPatternAudit } from "./bookPatternAudit.js";
+import {
+  checkBookQuizCrossChapterDuplicates,
+  checkBookQuizNgramTemplates,
+} from "./quizQuality.js";
+import { loadBannedPhrases } from "./shared.js";
 
 export type BookGateFinding = {
   catalogId: string;            // F1, F3, etc. (from FAILURE-MODES.md)
@@ -31,6 +37,7 @@ export type BookGateReport = {
     duplicatedNames: Array<{ name: string; chapters: number[] }>;
     duplicatedHookOpeners: Array<{ opener: string; chapters: number[] }>;
     schemaInconsistencies: Array<{ field: string; presentInChapters: number[]; missingInChapters: number[] }>;
+    patternAudit: BookPatternAuditReport;
   };
 };
 
@@ -194,6 +201,60 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
     }
   }
 
+  // ── Cross-chapter pattern audit (book-level C8) ───────────────────────
+  // Per-chapter C8 catches templates inside one chapter. This catches the
+  // Codex-session failure mode: hooks, counters, tryThisNow fields, quiz
+  // explanations, and example shells repeated across many chapters.
+  const patternAudit = runBookPatternAudit({ bookId, chapters });
+  for (const f of patternAudit.findings) {
+    findings.push({
+      catalogId: f.code,
+      severity: f.severity,
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
+
+  // ── BP20 — book-wide quiz n-gram template repeats. ─────────────────────
+  // Catches the catastrophic generation failure mode where a fixed phrase
+  // appears in distractors across many chapters. The 86-book audit found:
+  //   execution.v21: "Keep the old message…" × 80 in 10 chapters
+  //   the-12-week-year.v21: "until the team feels more certain…" × 102 in 21
+  //   deep-work.v21: "Answer every visible request first…" × 9 in 9
+  // None of these were caught by any existing critic.
+  for (const f of checkBookQuizNgramTemplates(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
+  // ── BP21 — cross-chapter duplicate distractors. ─────────────────────────
+  // A wrong choice copied verbatim across chapters (e.g., the-one-thing.v21
+  // shipping "Ranking would make action impossible" in 6 chapters) is a
+  // generation artifact, not authored content.
+  for (const f of checkBookQuizCrossChapterDuplicates(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
+
+  // ── F4 — soft-banned phrase budget. ──────────────────────────────────────
+  // banned-phrases.json declares a `softBanned` list with `perBookBudget` per
+  // phrase. The per-text register check collected occurrences but no caller
+  // ever counted them against the budget — the feature was fictional. Without
+  // this, a phrase like "That matters because" can appear 517 times in 62 of
+  // 73 books (the actual observed count) while the writer system "thinks" it
+  // is soft-capped at 10. Now: count occurrences across every reader-facing
+  // text field in every chapter; fire MAJOR when a phrase exceeds its budget.
+  for (const f of checkSoftBannedBudgets(chapters)) {
+    findings.push(f);
+  }
+
   const blockers = findings.filter((f) => f.severity === "blocker");
   return {
     bookId,
@@ -207,8 +268,94 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
       duplicatedNames,
       duplicatedHookOpeners,
       schemaInconsistencies,
+      patternAudit,
     },
   };
+}
+
+/**
+ * F4 — count soft-banned phrase occurrences across every reader-facing text
+ * field in every chapter. Fire MAJOR when count exceeds `perBookBudget`
+ * declared in banned-phrases.json. Case-insensitive substring match — same
+ * matching rule the per-text register check uses, so the count is consistent
+ * with the writer's own detection.
+ *
+ * Why MAJOR not BLOCKER: these are phrases the writer *can* legitimately use,
+ * they just shouldn't be the dominant rhetorical shape. A book that ships
+ * with one or two budget overruns is still acceptable; the gate flag forces
+ * the operator to see the count and decide.
+ */
+function checkSoftBannedBudgets(chapters: ChapterV21[]): BookGateFinding[] {
+  const cfg = loadBannedPhrases();
+  const softBanned: Array<{ phrase: string; perBookBudget: number; reason?: string }> =
+    cfg.softBanned ?? [];
+  if (softBanned.length === 0) return [];
+
+  // Concatenate every reader-facing text field across all chapters into one
+  // lowercase haystack. We count occurrences book-wide, not per-chapter,
+  // because `perBookBudget` is a book-level allowance.
+  const buf: string[] = [];
+  for (const ch of chapters) {
+    if (ch.hook) buf.push(ch.hook);
+    if (ch.counterintuition) buf.push(ch.counterintuition);
+    if (ch.keyTakeaway) buf.push(ch.keyTakeaway);
+    if (ch.tryThisNow) buf.push(ch.tryThisNow);
+    if (ch.breakdown?.fastRead) buf.push(ch.breakdown.fastRead);
+    if (ch.breakdown?.deepRead) buf.push(ch.breakdown.deepRead);
+    if (ch.breakdown?.fullRead) buf.push(ch.breakdown.fullRead);
+    for (const ex of ch.examples ?? []) {
+      if (ex.scenario) buf.push(ex.scenario);
+      if (ex.whatToDo) buf.push(ex.whatToDo);
+      if (ex.whyItMatters) buf.push(ex.whyItMatters);
+      if (ex.title) buf.push(ex.title);
+    }
+    for (const q of ch.quiz?.questions ?? []) {
+      if (q.prompt) buf.push(q.prompt);
+      if (Array.isArray(q.choices)) buf.push(q.choices.join(" "));
+      if (q.explanation) buf.push(q.explanation);
+    }
+    for (const c of ch.reviewCards ?? []) {
+      if (c.front) buf.push(c.front);
+      if (c.back) buf.push(c.back);
+    }
+    for (const line of ch.memorableLines ?? []) {
+      if (line.text) buf.push(line.text);
+    }
+    const ip = ch.implementationPlan;
+    if (ip) {
+      if (ip.coreSkill) buf.push(ip.coreSkill);
+      if (ip.twentyFourHourChallenge) buf.push(ip.twentyFourHourChallenge);
+      if (ip.weeklyPractice) buf.push(ip.weeklyPractice);
+      for (const it of ip.ifThenPlans ?? []) {
+        if (it.plan) buf.push(it.plan);
+      }
+    }
+  }
+  const haystack = buf.join("\n").toLowerCase();
+
+  const findings: BookGateFinding[] = [];
+  for (const entry of softBanned) {
+    const needle = (entry.phrase ?? "").toLowerCase().trim();
+    if (!needle) continue;
+    const budget = Number.isFinite(entry.perBookBudget) ? entry.perBookBudget : 0;
+
+    let count = 0;
+    let from = 0;
+    while ((from = haystack.indexOf(needle, from)) !== -1) {
+      count += 1;
+      from += needle.length;
+    }
+
+    if (count > budget) {
+      findings.push({
+        catalogId: "F4",
+        severity: "major",
+        message: `soft-banned phrase "${entry.phrase}" appears ${count} times (budget ${budget}). ${entry.reason ?? ""}`.trim(),
+        evidence: entry.phrase,
+      });
+    }
+  }
+  return findings;
 }
 
 export function formatBookGateReport(rep: BookGateReport): string {
@@ -217,6 +364,11 @@ export function formatBookGateReport(rep: BookGateReport): string {
   lines.push(`  Quiz answer positions: ${rep.stats.answerPositionCounts.join(" / ")} (max ${(rep.stats.answerPositionPctMax * 100).toFixed(1)}%)`);
   lines.push(`  Cross-chapter name duplications: ${rep.stats.duplicatedNames.length}`);
   lines.push(`  Hook-opener duplications: ${rep.stats.duplicatedHookOpeners.length}`);
+  if (rep.stats.patternAudit) {
+    const patternBlockers = rep.stats.patternAudit.findings.filter((f) => f.severity === "blocker").length;
+    const patternMajors = rep.stats.patternAudit.findings.filter((f) => f.severity === "major").length;
+    lines.push(`  Pattern audit: ${rep.stats.patternAudit.passed ? "PASS" : "BLOCK"} (${patternBlockers} blocker(s), ${patternMajors} major(s))`);
+  }
   if (rep.findings.length === 0) {
     lines.push(`  No findings.`);
   } else {

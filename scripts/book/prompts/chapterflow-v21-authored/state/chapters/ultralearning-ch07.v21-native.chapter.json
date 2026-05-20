@@ -1,0 +1,325 @@
+{
+  "chapterId": "ultralearning-ch07",
+  "number": 7,
+  "title": "Principle 4: Drill: attack your weakest point",
+  "readingTimeMinutes": 12,
+  "hook": "One boxed paragraph can explain why the whole memo keeps arriving late.",
+  "counterintuition": "Drill is not extra repetition of the whole task, but a short attack on the part that limits performance before returning to the full skill.",
+  "tryThisNow": "After your next full attempt, circle the one step that slowed everything else and design five minutes of isolated practice for it.",
+  "keyTakeaway": "Drill the rate-determining weakness, not the easiest fragment, and always reconnect the isolated piece to the larger skill it is supposed to improve.",
+  "breakdown": {
+    "fastRead": "Anna boxes one paragraph in red pencil. Her policy briefs are not slow because every section is weak. The opening is fine, the evidence is organized, and the recommendations are clear. The causal paragraph keeps turning foggy.\n\nSo she stops rewriting the whole memo and drills the evidence-to-claim turn by itself. Ten short repetitions show where the sentence bends. Then she puts the turn back into the brief.\n\nA drill is useful only when it attacks the bottleneck.",
+    "deepRead": "David stands at a chalkboard where the minus sign flips twice in the same algebra transformation. Every longer calculus problem collapses at that step. More full problems would give him more chances to fail in the same place.\n\nHe isolates the move.\n\nThat is the point of drill. Whole-task practice is necessary, but it can be too coarse when one rate-determining weakness controls the result. The learner needs to pull the weak piece out, repeat it with attention, and make the error visible enough to correct.\n\nIsolation is temporary.\n\nNicolas proves the limit with a guitar pick taped above four measures of syncopation. He loops the bar until the timing lands, then records the whole blues chorus. If the chorus still drags, the drill has not yet fed back into the song. Clean fragments can become a new hiding place if they never return to performance.\n\nThe sequence is diagnose, isolate, attack, reintegrate. Skip diagnosis and you polish the wrong part. Skip reintegration and you build a small skill that looks good alone and disappears when the real task returns.\n\nAnna sees the value when the boxed paragraph keeps failing. Ten isolated evidence-to-claim sentences feel smaller than a full memo, but they hit the exact joint that keeps breaking. Once the joint moves cleanly, she returns to the memo so the drill has to prove it can travel.",
+    "fullRead": "Pablo tapes one sentence to the meeting-room door: \"Can we pause on the decision point?\" He freezes whenever a stand-up runs past the issue and into side talk. Afterward, he can explain what he should have said. In the room, the phrase vanishes.\n\n\"Say it now,\" his teammate says.\n\nPablo says it badly the first time. Then again. Then once more while walking into the room. The drill is tiny, almost silly, and exactly aimed at the weak point.\n\nA good drill begins with diagnosis. The question is not what part of the skill would be pleasant to repeat. The question is what part is setting the speed of the whole performance. Anna's memo is limited by the causal turn. David's solution path is limited by one algebra transformation. Pablo's meetings are limited by one interruption phrase. Each drill is narrow because the bottleneck is narrow.\n\nWhere does the whole task keep slowing, distorting, or breaking?\n\nThat question keeps drills from becoming busywork. Learners often choose fragments that are easy to isolate: scales, vocabulary lists, clean sketches, formula sets, polite scripts. Those fragments may help, but they deserve drill time only if they are actually limiting the real performance. The weakest point is not always the part that feels worst. It is the part that controls the result.\n\nLin hears the difference in the language lab. At 5:15 p.m., a mouth-position sketch sits beside the microphone. One vowel keeps warping the entire dialogue. Lin drills the vowel alone, then records the full exchange. The second recording matters more than the drill itself, because the goal is not a clean vowel in isolation. The goal is speech that survives the conversation.\n\nReintegration is not a closing ceremony. It is the test that tells you whether the drill touched the real skill. If the whole task still breaks in the same place, the drill needs a different shape or a sharper diagnosis.\n\nIngrid learns the same lesson on tracing paper. Her thumbnail sketches are neat, and that neatness is misleading. The full garden plan keeps warping at one pergola corner. In the postmortem, she stops polishing thumbnails, drills that perspective corner, then redraws the full site. The correction has to travel back into the larger drawing.\n\nThere is a danger in drill work. It can make you feel precise while narrowing your attention too far. A learner who drills forever never discovers whether the isolated fix changes the real task. That is why the loop must close. Pull the weak piece out. Work it hard. Put it back. Watch what changes.\n\nAttack the bottleneck, then return to the whole.\n\nFalling in love with the fragment creates the next trap. A drill earns its keep only when the repaired part changes the whole performance. If the guitar bar improves but the chorus still drags, the loop is not done. If the algebra step works alone but fails inside the calculus problem, the drill has found the next bridge. Isolation is temporary because the full skill is still the judge."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-anna-causal-paragraph",
+      "title": "Anna Boxes the Causal Paragraph",
+      "tags": [
+        "scene",
+        "policy",
+        "bottleneck"
+      ],
+      "planSpec": {
+        "domain": "Anna, a policy analyst isolating the weak causal paragraph in briefs",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether the next month produces visible evidence or another private feeling of effort",
+        "format": "scene",
+        "requiredBeat": "Anna circles the causal paragraph that stalls every policy brief and drills only the evidence-to-claim turn before rewriting the whole memo."
+      },
+      "scenario": "A policy memo lies under Anna's red pencil with one paragraph boxed hard enough to dent the page. The evidence is clean, the recommendation is clear, and the causal turn still dissolves. Her next revision can restart the whole memo, or she can drill ten evidence-to-claim sentences before touching the draft again. Anna's review slot is 8:08 a.m. Anna must decide to drill the evidence-to-claim turn by itself, then return to the memo and rewrite only after the weak sentence shape improves.",
+      "whatToDo": "Drill the evidence-to-claim turn by itself, then return to the memo and rewrite only after the weak sentence shape improves.",
+      "whyItMatters": "The boxed paragraph is the rate-determining weakness. Reworking the whole memo would spend effort on sections that are not slowing the result."
+    },
+    {
+      "exampleId": "ch07-ex02-david-minus-sign",
+      "title": "David Repeats the Step That Breaks Calculus",
+      "tags": [
+        "decision",
+        "math",
+        "isolation"
+      ],
+      "planSpec": {
+        "domain": "David, a calculus student drilling one recurring algebra transformation",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether a deadline exposes the weakness early enough to adjust",
+        "format": "decision_point",
+        "requiredBeat": "David practices the single algebra transformation that breaks every longer solution, then returns it to a full problem."
+      },
+      "scenario": "You are beside David at the chalkboard, where the same minus sign flips twice in a longer calculus solution. The exam is Friday. Another full problem would feel more legitimate, but the failure keeps happening at one transformation. His chalk rests under the broken line, ready for five isolated repetitions before one full problem returns. David must decide to practice the algebra transformation alone until the sign change is stable, then place it back inside a full calculus problem immediately.",
+      "whatToDo": "Practice the algebra transformation alone until the sign change is stable, then place it back inside a full calculus problem immediately.",
+      "whyItMatters": "The isolated step controls the longer solution. Drill gives the weak move enough repetitions without pretending the fragment is the final goal."
+    },
+    {
+      "exampleId": "ch07-ex03-nicolas-syncopated-bar",
+      "title": "Nicolas Loops the Bar and Checks the Chorus",
+      "tags": [
+        "vignette",
+        "music",
+        "reintegration"
+      ],
+      "planSpec": {
+        "domain": "Nicolas, a blues guitarist testing whether the timing drill fixes the whole song",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
+        "format": "vignette",
+        "requiredBeat": "Nicolas loops the syncopated bar that throws off the whole blues chorus and checks it against a full-song recording."
+      },
+      "scenario": "The basement amp hums while a guitar pick is taped above four measures of syncopation. Nicolas can keep playing the whole chorus and hoping the drag disappears, or he can loop the crooked bar, record the full song afterward, and hear whether the isolated timing actually returns to the chorus. Nicolas's review slot is 11:25 p.m. Nicolas must decide to loop the syncopated bar, then record the full chorus before calling the drill successful.",
+      "whatToDo": "Loop the syncopated bar, then record the full chorus before calling the drill successful.",
+      "whyItMatters": "The timing problem lives in a fragment but matters in the song. Reintegration prevents a clean drill from becoming a disconnected trick."
+    },
+    {
+      "exampleId": "ch07-ex04-pablo-interruption-phrase",
+      "title": "Pablo Practices the Sentence He Loses",
+      "tags": [
+        "dialogue",
+        "meeting",
+        "phrase"
+      ],
+      "planSpec": {
+        "domain": "Pablo, a project manager practicing one meeting interruption move",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether the project survives contact with a real schedule and real standards",
+        "format": "dialogue",
+        "requiredBeat": "Pablo isolates the one meeting interruption phrase he freezes on, drills it aloud, then uses it in the next live stand-up."
+      },
+      "scenario": "\"Say the line before we go in,\" Marta says. Pablo looks at the sticky note on the meeting-room door: Can we pause on the decision point? In stand-ups, he freezes when the group wanders. The live meeting starts in four minutes, and the next move is five spoken repetitions before he uses the phrase for real.",
+      "whatToDo": "Say the interruption phrase aloud five times, then use that exact sentence in the stand-up when side talk starts.",
+      "whyItMatters": "Pablo's bottleneck is not meeting theory. It is retrieving one sentence under social pressure, so the drill has to hit that sentence."
+    },
+    {
+      "exampleId": "ch07-ex05-lin-vowel-dialogue",
+      "title": "Lin Tests the Vowel Inside the Dialogue",
+      "tags": [
+        "predict",
+        "speech",
+        "vowel"
+      ],
+      "planSpec": {
+        "domain": "Lin, a speech learner targeting one vowel that distorts the whole dialogue",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether comfort keeps protecting the exact skill gap that matters",
+        "format": "predict_reveal",
+        "requiredBeat": "Lin drills the vowel that keeps distorting the entire dialogue, then records the whole exchange to test reintegration."
+      },
+      "scenario": "At 5:15 p.m., Lin studies a mouth-position sketch beside the language-lab microphone. She predicts ten clean vowel repetitions will fix the exchange. The first full recording still bends in the same sentence. She circles the vowel, drills it alone, then records the whole dialogue again to see whether the repair travels. Lin must decide to drill the vowel briefly, then test it inside the full dialogue recording before adding more repetitions.",
+      "whatToDo": "Drill the vowel briefly, then test it inside the full dialogue recording before adding more repetitions.",
+      "whyItMatters": "The vowel is only worth drilling because it distorts the conversation. The full exchange shows whether the isolated fix transfers."
+    },
+    {
+      "exampleId": "ch07-ex06-ingrid-perspective-corner",
+      "title": "Ingrid Stops Polishing Easy Thumbnails",
+      "tags": [
+        "postmortem",
+        "design",
+        "perspective"
+      ],
+      "planSpec": {
+        "domain": "Ingrid, a landscape designer reintegrating perspective drills into full site sketches",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether the next attempt changes the skill instead of decorating the plan",
+        "format": "postmortem",
+        "requiredBeat": "Ingrid stops polishing clean thumbnail sketches and drills the perspective corner that keeps warping the full garden plan."
+      },
+      "scenario": "It took Ingrid three neat thumbnail pages to notice the tracing-paper site sketch still warped at one pergola corner. The clean thumbnails were easier to admire. In the postmortem, she marks the crooked corner, drills that perspective angle on scrap paper, and redraws the full garden plan before polishing anything else.",
+      "whatToDo": "Drill the warped perspective corner, then redraw the full site sketch to prove the correction belongs in the plan.",
+      "whyItMatters": "The thumbnail practice was not hitting the rate-limiting weakness. The corner drill matters only when it changes the full garden drawing."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A policy analyst rewrites whole memos, but the same causal paragraph slows every draft. What is the best drill? The next choice will decide whether today's work produces evidence or only another round of comfort.",
+        "choices": [
+          "Isolate the evidence-to-claim turn, repeat it, then return it to the memo.",
+          "Rewrite the memo from the beginning each time.",
+          "Read more policy examples without touching the paragraph."
+        ],
+        "correctIndex": 0,
+        "explanation": "The paragraph is the bottleneck, so it deserves isolated practice. Whole rewrites and passive examples spread effort away from the weak point.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A calculus student loses full problems at one algebra transformation. Which plan uses drilling correctly? A reviewer will see the result tomorrow, so the answer must choose an action rather than a preference.",
+        "choices": [
+          "Practice only full problems for variety.",
+          "Repeat the transformation alone, then solve a full problem containing it.",
+          "Skip algebra and review conceptual notes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The isolated transformation gets the repetitions it needs, and the full problem checks reintegration. The other choices avoid the exact failure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A guitarist loops a hard bar until it sounds clean but never plays the full song afterward. What is missing? The deadline is close enough that extra preparation would hide the weakness instead of testing it.",
+        "choices": [
+          "More isolated repetitions before any song attempt",
+          "A different song with easier timing",
+          "Reintegration into the whole chorus"
+        ],
+        "correctIndex": 2,
+        "explanation": "A drill must feed back into performance. Clean looping alone can become a disconnected skill that never fixes the song.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A project manager freezes on one interruption phrase in meetings. What should he drill? A real artifact is waiting on the table, and the learner needs a move that changes the next attempt.",
+        "choices": [
+          "The exact sentence aloud under mild meeting pressure",
+          "A full book on meeting leadership",
+          "The slide deck he already presents well"
+        ],
+        "correctIndex": 0,
+        "explanation": "The bottleneck is retrieving one phrase under pressure. Broad leadership reading and polished slides miss the rate-limiting move.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A learner enjoys practicing a clean fragment, but full performance does not improve. What should she ask? Limited time remains before review, so the best option should expose the skill gap quickly.",
+        "choices": [
+          "Can I make the fragment even cleaner?",
+          "Is this fragment actually limiting the whole task?",
+          "Would a longer warm-up make practice feel better?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Drill time belongs to the rate-determining weakness. Clean fragments are tempting, but they matter only if they change the whole task.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A speech learner drills a vowel because it distorts a dialogue. What proves the drill worked? Yesterday's visible miss is still on the page, so the response should use that evidence.",
+        "choices": [
+          "Ten isolated repetitions that feel comfortable",
+          "A new mouth-position sketch",
+          "A recording of the full dialogue with the vowel improved"
+        ],
+        "correctIndex": 2,
+        "explanation": "The goal is speech inside the dialogue. Isolated comfort and sketches support the work, but the full recording tests transfer.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A designer keeps polishing small thumbnails while the full site sketch warps at one corner. Which diagnosis is strongest? The learner can protect the old habit or make the next attempt more honest under pressure.",
+        "choices": [
+          "The drill targets an easy fragment instead of the bottleneck.",
+          "The designer needs less feedback on the full sketch.",
+          "The full sketch should wait until every thumbnail is perfect."
+        ],
+        "correctIndex": 0,
+        "explanation": "The warped corner is controlling the result. Polishing thumbnails feels productive but does not attack the weakness that matters.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A swimmer's whole stroke is slow because one turn is poor. What is the best use of drill time? One session remains before feedback, and the answer should choose the useful constraint.",
+        "choices": [
+          "Swim only full laps and hope the turn improves.",
+          "Isolate the turn for short repetitions, then swim laps to test it.",
+          "Avoid turns and build endurance instead."
+        ],
+        "correctIndex": 1,
+        "explanation": "The turn limits the lap, so it deserves focused repetitions and then a whole-lap test. Endurance and full laps alone leave the bottleneck undertrained.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two learners drill. One chooses the easiest piece to repeat; the other chooses the piece that slows the whole performance. Which is better? The choice matters because the next attempt will be judged by output, not by how effortful it felt.",
+        "choices": [
+          "The easiest piece, because enjoyable repetition lasts longer.",
+          "Neither, because drills should never isolate fragments.",
+          "The limiting piece, because it controls the result of the whole task."
+        ],
+        "correctIndex": 2,
+        "explanation": "The purpose of drill is to attack the rate-determining weakness. Enjoyable fragments may help motivation, but they do not necessarily move performance.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What makes a weakness worth drilling?",
+      "back": "It limits the whole performance. The drill should target the part that slows, distorts, or breaks the larger task.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is whole-task practice sometimes too coarse?",
+      "back": "It may give the weak part too few clear repetitions. Isolation lets the learner see and correct the bottleneck directly.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What must happen after an isolated drill?",
+      "back": "The fragment must return to the full task. Reintegration proves whether the drill changed performance or only created a clean fragment.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A learner drills the fragment that already feels smooth. What danger is hiding there?",
+      "back": "It can feel precise while avoiding the rate-determining weakness. Drill time should follow diagnosis, not comfort.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A weak step improves in isolation. What should the learner do before calling the drill successful?",
+      "back": "Diagnose the bottleneck, isolate it, attack it with targeted repetitions, then reintegrate it into the whole performance.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is bottleneck practice. You locate the weak step that controls the larger task, isolate it briefly, and return it to the full performance before calling the drill useful.",
+    "ifThenPlans": [
+      {
+        "context": "writing",
+        "plan": "If one paragraph stalls every draft, then drill that sentence move before rewriting the whole piece."
+      },
+      {
+        "context": "math",
+        "plan": "If one transformation breaks full problems, then practice that move alone and immediately solve a problem containing it."
+      },
+      {
+        "context": "music",
+        "plan": "If one bar distorts the song, then loop the bar and record the full song afterward."
+      },
+      {
+        "context": "meetings",
+        "plan": "If one phrase disappears under pressure, then rehearse that sentence aloud before the live meeting."
+      }
+    ],
+    "twentyFourHourChallenge": "After your next full attempt, circle the one step that slowed everything else and design five minutes of isolated practice for it.",
+    "weeklyPractice": "Once a week, choose one bottleneck from real performance, drill it briefly, and test it again inside the whole task before adding more repetitions."
+  },
+  "memorableLines": [
+    {
+      "text": "A drill is useful only when it attacks the bottleneck.",
+      "location": "breakdown.fastRead",
+      "why": "It states the chapter's selection rule in one plain sentence."
+    },
+    {
+      "text": "Isolation is temporary because the full skill is still the judge.",
+      "location": "breakdown.deepRead",
+      "why": "It prevents the reader from mistaking drills for the final performance."
+    },
+    {
+      "text": "Attack the bottleneck, then return to the whole.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the complete drill loop in a memorable command."
+    }
+  ]
+}

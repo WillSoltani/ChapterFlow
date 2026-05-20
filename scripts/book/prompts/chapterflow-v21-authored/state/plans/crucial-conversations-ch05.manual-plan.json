@@ -1,0 +1,187 @@
+{
+  "chapterId": "crucial-conversations-ch05",
+  "number": 5,
+  "title": "Learn to Look: Watch for When the Conversation Turns Crucial",
+  "coreMove": "Shift attention from the topic to the conditions and name the exact silence or violence move as it starts.",
+  "sourcePressure": "The reader must watch content and conditions at once, catching safety loss through silence or violence before the conversation is already flooded.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into a checklist of body-language clues.",
+  "sourceAlignmentTerms": [
+    "content",
+    "conditions",
+    "silence",
+    "violence",
+    "masking",
+    "avoiding",
+    "withdrawing",
+    "controlling",
+    "labeling",
+    "attacking"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "telehealth therapy platform escalation chat between clinician support and engineering",
+      "audience": "a support lead tracking both bug content and emotional conditions in text",
+      "stakes": "a clinician outage may widen because masking in chat hides urgency until after clinics close",
+      "format": "scene",
+      "requiredBeat": "the support lead sees three polite qualifiers in a row, labels masking in the side notes, and asks for the direct severity before engineering closes the ticket",
+      "firstImage": "A chat window shows three typing bubbles and a red patient portal alert.",
+      "mustInclude": [
+        "chat transcript",
+        "severity field",
+        "clinic closing time"
+      ],
+      "mustAvoid": [
+        "generic Slack misunderstanding"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "commercial fishing boat crew debating whether to return before fog thickens",
+      "audience": "a deckhand watching the captain and mechanic trade short phrases",
+      "stakes": "weather risk grows while the crew avoids naming a faulty radar screen",
+      "format": "vignette",
+      "requiredBeat": "the deckhand notices everyone talking bait counts while looking at the blank radar, then names avoiding as the condition problem",
+      "firstImage": "\"Wait,\" someone says, and a blank radar screen reflects a wet orange rain jacket.",
+      "mustInclude": [
+        "radar screen",
+        "fog horn log",
+        "bait crate"
+      ],
+      "mustAvoid": [
+        "generic teamwork on a boat"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "county library desk after a patron complaint about a banned display",
+      "audience": "a branch manager trying to see when concern turns into labeling",
+      "stakes": "staff may stop contributing because one patron gets reduced to a type instead of a concern",
+      "format": "dialogue",
+      "requiredBeat": "the manager hears a staffer say those people, marks it as labeling, and redirects to the actual request on the complaint card",
+      "firstImage": "The first signal is sensory before it is social: a complaint card sits under the barcode scanner beside a stack of returned novels.",
+      "mustInclude": [
+        "complaint card",
+        "display shelf photo",
+        "barcode scanner"
+      ],
+      "mustAvoid": [
+        "generic culture-war debate"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "vascular clinic morning huddle where a medical assistant stops reporting delays",
+      "audience": "a clinic lead watching a usually precise assistant become too brief",
+      "stakes": "patients may miss ultrasound slots because withdrawal hides the scheduling bottleneck",
+      "format": "before_after",
+      "requiredBeat": "the lead contrasts the assistant's normal detailed handoff with today's one-word answers and names withdrawal before the huddle moves on",
+      "firstImage": "You notice a row of printed ultrasound labels curls in a plastic tray before anyone names the problem.",
+      "mustInclude": [
+        "ultrasound labels",
+        "handoff sheet",
+        "exam-room clock"
+      ],
+      "mustAvoid": [
+        "generic hospital hierarchy scene"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "indie game studio bug triage where a designer starts controlling the room",
+      "audience": "a producer trying to keep bug severity discussion open",
+      "stakes": "the team may ship a broken tutorial because one loud voice forces meaning into the pool",
+      "format": "decision_point",
+      "requiredBeat": "the producer catches the designer cutting off QA twice, names controlling as a condition issue, and pauses the content debate",
+      "firstImage": "Only later does the miss become obvious: a build number glows in the corner of a tutorial screen capture.",
+      "mustInclude": [
+        "bug triage list",
+        "QA capture",
+        "build number"
+      ],
+      "mustAvoid": [
+        "generic product roadmap meeting"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "farmers market vendor association deciding stall locations by email thread",
+      "audience": "an association chair reading for violence and silence in asynchronous messages",
+      "stakes": "a vendor may quit because sarcasm and avoidance distort the actual stall-access issue",
+      "format": "postmortem",
+      "requiredBeat": "the chair reviews the thread and highlights where masking became sarcasm and where two vendors withdrew completely",
+      "firstImage": "What changes when a printed email thread is clipped to a clipboard beside a cash box?",
+      "mustInclude": [
+        "email thread",
+        "stall map",
+        "cash box"
+      ],
+      "mustAvoid": [
+        "generic neighborhood email dispute"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "track content and conditions at the same time",
+      "detect silence behaviors before they become full withdrawal",
+      "detect violence behaviors without counterattacking",
+      "adapt the safety read to video, text, and in-person settings"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "During your next tense exchange, stop tracking the topic for ten seconds. Name the condition you see: masking, avoiding, withdrawing, controlling, labeling, or attacking.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

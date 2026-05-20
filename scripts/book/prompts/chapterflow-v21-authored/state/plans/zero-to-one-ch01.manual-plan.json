@@ -1,0 +1,197 @@
+{
+  "chapterId": "zero-to-one-ch01",
+  "number": 1,
+  "title": "The Challenge of the Future",
+  "coreMove": "Distinguish creation from replication before judging whether a project can change the future.",
+  "sourcePressure": "The opening chapter separates horizontal progress that copies known things from vertical progress that creates something new, then turns that split into a demand for definite future-building and reality-based contrarian truth.",
+  "chapterSpecificMisunderstanding": "Treating the chapter as a motivational slogan about innovation or as permission to sound contrarian.",
+  "sourceAlignmentTerms": [
+    "0 to 1",
+    "1 to n",
+    "technology",
+    "globalization",
+    "definite future",
+    "contrarian truth"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Google Books metadata distinction between 1 to n and 0 to 1",
+      "detail": "the frozen source records official metadata support for creating something new rather than copying what is known",
+      "useIn": "both",
+      "phrasingHint": "The first test is simple: are you spreading a known answer, or making one the world did not have?"
+    },
+    {
+      "kind": "artifact",
+      "name": "the contrarian truth question",
+      "detail": "the source sidecar verifies the question about an important truth that very few people agree with",
+      "useIn": "deepRead",
+      "phrasingHint": "A serious new thing usually begins where a true answer still feels too lonely to say out loud."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of 0 to 1",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "medical device triage workflow",
+      "audience": "a hospital innovation lead deciding whether to clone a rival dashboard or solve one unowned intake bottleneck",
+      "stakes": "whether nurses keep losing fifteen minutes per patient in duplicate screening",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Claire erases the comparison column and circles the one task no vendor owns yet",
+      "firstImage": "a laminated triage sheet under fluorescent light",
+      "mustInclude": [
+        "triage cart",
+        "two competing vendor decks",
+        "shift-change clock"
+      ],
+      "mustAvoid": [
+        "feature parity roadmap"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "municipal transit planning",
+      "audience": "a city mobility analyst choosing between another bus-route copy and a new on-demand transfer model",
+      "stakes": "whether an underserved suburb gets real access or another cosmetic route extension",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Julien separates copied route coverage from a genuinely new transfer pattern on the wall map",
+      "firstImage": "colored pins clustered around one empty transfer hub",
+      "mustInclude": [
+        "wall map",
+        "ridership printout",
+        "green pushpins"
+      ],
+      "mustAvoid": [
+        "generic public-sector innovation"
+      ]
+    },
+    {
+      "protagonistName": "Hannah",
+      "domain": "university lab commercialization",
+      "audience": "a postdoc weighing a safer replication study against a new assay platform",
+      "stakes": "whether the lab spends grant money extending known work or opening a new research tool",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hannah writes origin, not spread in the margin before choosing the assay prototype",
+      "firstImage": "a grant draft with one sentence boxed in red pencil",
+      "mustInclude": [
+        "grant draft",
+        "bench notebook",
+        "prototype tray"
+      ],
+      "mustAvoid": [
+        "classroom debate shell"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "independent bookstore operations",
+      "audience": "an owner deciding between copying a chain loyalty app and inventing a local preorder club",
+      "stakes": "whether the shop becomes a weaker version of a chain or creates a behavior the chain cannot copy easily",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Marco asks which option makes customers do something unavailable yesterday",
+      "firstImage": "rain on the front window beside a stack of unsigned preorders",
+      "mustInclude": [
+        "preorder cards",
+        "rain-streaked window",
+        "old barcode scanner"
+      ],
+      "mustAvoid": [
+        "small business pep talk"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "agricultural sensor startup",
+      "audience": "a farm-tech founder comparing a standard moisture dashboard with a sensor that predicts frost pockets",
+      "stakes": "whether growers get another graph or a new warning they can act on before dawn",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Maja hides the dashboard mockup and tests whether the frost alert changes the grower call",
+      "firstImage": "blue frost on a vineyard row before sunrise",
+      "mustInclude": [
+        "vineyard row",
+        "sensor stake",
+        "phone alert"
+      ],
+      "mustAvoid": [
+        "generic app launch"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "museum accessibility design",
+      "audience": "a curator deciding between copying audio guides and building tactile route planning for blind visitors",
+      "stakes": "whether access means another version of the same tour or a new way to navigate the building",
+      "format": "second_person",
+      "openingDevice": "question_hook",
+      "requiredBeat": "You watch Sam move the tactile floor plan from side feature to core product decision",
+      "firstImage": "raised lines on a black tactile map",
+      "mustInclude": [
+        "tactile map",
+        "braille labeler",
+        "gallery bench"
+      ],
+      "mustAvoid": [
+        "inclusion slogan without product choice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires distinguish creation from replication before judging whether a project can change the future.",
+      "separate 0 to 1 from 1 to n in a novel operating case",
+      "diagnose the specific failure mode: treating the chapter as a motivational slogan about innovation or as permission to sound contrarian.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live project and label it 0-to-1 creation or 1-to-n replication; write the one fact that would have to be true for the harder label to hold.",
+  "readingTimeMinutes": 12
+}

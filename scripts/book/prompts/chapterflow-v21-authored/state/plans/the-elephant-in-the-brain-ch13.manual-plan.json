@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch13",
+  "number": 13,
+  "title": "Education",
+  "coreMove": "Read schooling as instruction plus certification of intelligence, discipline, and institutional fit.",
+  "sourcePressure": "The source argues that education signals intelligence, conscientiousness, and conformity while also serving babysitting, networking, indoctrination, and domestication functions.",
+  "chapterSpecificMisunderstanding": "The writer argues school is useless and ignores real learning plus the broader signaling bundle.",
+  "sourceAlignmentTerms": [
+    "education",
+    "intelligence",
+    "conscientiousness",
+    "conformity",
+    "networking",
+    "babysitting",
+    "domestication"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "school signaling intelligence",
+      "detail": "The source says school may signal intelligence.",
+      "useIn": "both",
+      "phrasingHint": "The credential says the person could handle the cognitive load, whether or not every fact remains."
+    },
+    {
+      "kind": "event",
+      "name": "school signaling conscientiousness and conformity",
+      "detail": "The source says school can signal conscientiousness and conformity.",
+      "useIn": "both",
+      "phrasingHint": "Attendance, deadlines, and rule-following can be part of the certificate."
+    },
+    {
+      "kind": "artifact",
+      "name": "babysitting, networking, indoctrination, and domestication functions",
+      "detail": "The source adds these broader functions to the education account.",
+      "useIn": "deepRead",
+      "phrasingHint": "School can teach algebra while also organizing time, peers, loyalties, and habits."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch13: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch13: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch13: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch13: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch13: no generic timer reflection",
+      "the-elephant-in-the-brain-ch13: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch13: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch13: no coffee shop conversation as the default social proof",
+      "no invented wage premium numbers",
+      "no classroom as generic inspiration"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "apprenticeship hiring panel",
+      "audience": "a shop owner comparing diploma and work sample",
+      "stakes": "a credential may signal follow-through more than specific skill",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James sets the weld sample beside Lea's attendance record and asks which part predicts Monday reliability.",
+      "firstImage": "Hot metal smell lingers on the sample cart after the welding test.",
+      "mustInclude": [
+        "weld sample",
+        "attendance record",
+        "hiring rubric"
+      ],
+      "mustAvoid": [
+        "education is worthless claim"
+      ]
+    },
+    {
+      "domain": "coding bootcamp admissions review",
+      "audience": "an admissions lead reading persistence signals",
+      "stakes": "a completed prep course may certify discipline as much as knowledge",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Niklas three dropouts to notice that the boring weekly submissions predicted survival better than the flashiest entrance project.",
+      "firstImage": "It took Niklas three dropouts to trust the boring submissions.",
+      "mustInclude": [
+        "weekly submissions",
+        "entrance project",
+        "cohort tracker"
+      ],
+      "mustAvoid": [
+        "tech hiring cliche"
+      ]
+    },
+    {
+      "domain": "public library adult literacy program",
+      "audience": "a librarian protecting real learning inside a credential push",
+      "stakes": "students need skill but also a socially legible certificate",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"I need the certificate for work,\" Rebecca says, and Chidi designs practice that earns the paper without pretending the paper is the whole gain.",
+      "firstImage": "\"I need the certificate for work,\" Rebecca says with the workbook still closed.",
+      "mustInclude": [
+        "workbook",
+        "certificate form",
+        "shift schedule"
+      ],
+      "mustAvoid": [
+        "generic adult learning uplift"
+      ]
+    },
+    {
+      "domain": "boarding school orientation week",
+      "audience": "a dean noticing domestication hidden inside tradition",
+      "stakes": "rituals teach institutional fit before classes start",
+      "format": "reflection",
+      "openingDevice": "environmental",
+      "requiredBeat": "Tomas watches new students learn hallway silence and meal timing before math placement, then names those habits as part of what the school certifies.",
+      "firstImage": "The dinner bell rings before any syllabus is handed out.",
+      "mustInclude": [
+        "dinner bell",
+        "hallway rule card",
+        "placement test"
+      ],
+      "mustAvoid": [
+        "private school status satire"
+      ]
+    },
+    {
+      "domain": "university alumni networking night",
+      "audience": "a first-generation student deciding what school is selling",
+      "stakes": "networking can be a real function rather than corruption of learning",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You help Lea prepare two questions for the alumni badge line, treating the network as a function to use rather than a betrayal of study.",
+      "firstImage": "You see the alumni badges before the lecture hall opens.",
+      "mustInclude": [
+        "alumni badges",
+        "question card",
+        "lecture hall"
+      ],
+      "mustAvoid": [
+        "conversation chapter knowledge display"
+      ]
+    },
+    {
+      "domain": "municipal daycare-school partnership",
+      "audience": "a policy analyst explaining school as time structure",
+      "stakes": "babysitting is not an insult when families depend on coordinated hours",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What breaks first when the school day ends two hours before the bus shift?",
+      "firstImage": "What breaks when the bell and the bus schedule stop matching?",
+      "mustInclude": [
+        "bus schedule",
+        "school bell",
+        "shift roster"
+      ],
+      "mustAvoid": [
+        "policy statistics invention"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish learning from signaling in education",
+      "identify intelligence, conscientiousness, and conformity signals",
+      "evaluate education functions without collapsing into pro- or anti-school ideology"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one credential you hold or want. Write the skill it proves, then the trait it signals, then the network or time structure it provides.",
+  "readingTimeMinutes": 12
+}

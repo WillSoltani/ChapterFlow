@@ -1,0 +1,129 @@
+{
+  "chapterId": "playing-to-win-ch08",
+  "number": 8,
+  "title": "Shorten Your Odds",
+  "coreMove": "Surface the specific conditions that must hold for each strategic option to succeed, then test the most uncertain conditions first rather than defending the most comfortable option.",
+  "sourcePressure": "Strategy should improve the odds under uncertainty rather than pretend certainty is available. Reverse engineering works backward from a desired strategic result to the conditions that would need to hold — 'what would have to be true' — turning debate about which option is right into testable propositions. Barriers and uncertainties should be surfaced directly rather than hidden in optimism.",
+  "chapterSpecificMisunderstanding": "Reduce risk by choosing the safest option and running more scenarios — with enough analysis, you can eventually achieve enough certainty to act confidently.",
+  "sourceAlignmentTerms": ["what would have to be true", "reverse engineering", "conditions", "uncertainty", "barriers", "odds", "testable", "shorten"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "what-would-have-to-be-true approach",
+      "detail": "The chapter teaches reverse engineering: rather than asking 'which option is right?' ask 'what would have to be true for this option to work?' for each option. This turns strategic debate into a set of testable propositions — conditions that can be investigated, not positions to defend. The most uncertain conditions get tested first.",
+      "useIn": "both",
+      "phrasingHint": "Instead of spending a meeting arguing whether option A or option B is the right strategy, ask: what would have to be true for A to work, and what would have to be true for B to work? The conditions that both sides least agree on are the ones worth testing before committing to either."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Uncertainty is the only certainty in business — generic uncertainty opener",
+      "The best strategists are comfortable with ambiguity — leadership-quality opener"
+    ],
+    "counterintuition": [
+      "You can never really know if a strategy will work — fatalism-of-uncertainty frame",
+      "Speed matters more than confidence in fast-moving markets — bias-for-action generalization"
+    ],
+    "tryThisNow": [
+      "Run a pre-mortem on your current plan — pre-mortem is a related but different technique, not this chapter's move",
+      "Identify your top three risks and rate their likelihood — generic risk assessment"
+    ],
+    "examples": [
+      "A startup pivots after failing — generic pivot story",
+      "A company runs a focus group before launching a product — generic market research story"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Avoid the timestamp-protagonist-prop shell across more than two examples"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "an early-stage startup deciding between two product directions at a funding inflection point",
+      "audience": "two co-founders who disagree on whether to build a B2B tool or a B2C consumer app and are about to split the team over it",
+      "stakes": "the team will spend the next twelve months building one of these, and the other co-founder's buy-in depends on feeling like the choice was made on evidence, not politics",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sarah asks: 'What would have to be true for the B2C path to win?' — not as a dismissal but as a genuine question. Her co-founder starts listing the conditions: high organic word-of-mouth, low customer acquisition cost, fast conversion from free to paid. Sarah then asks which of those conditions they can test in the next six weeks, and which require committing to the full build before they know. The argument stops being about who is right and becomes about what is testable.",
+      "firstImage": "a whiteboard with 'B2B' on one side and 'B2C' on the other, and a month of unresolved debate about which path is safer",
+      "mustInclude": ["the specific conditions for each option that are testable before full commitment", "the moment where the argument about which option is right is replaced by the question of which conditions are most uncertain"],
+      "mustAvoid": ["startup team conflict as the main story", "B2B vs B2C market structure tutorial"]
+    },
+    {
+      "domain": "a city infrastructure committee deciding between repairing an aging bridge and building a new crossing route",
+      "audience": "a public works director presenting a recommendation to a city council that is split between the repair and new-build options",
+      "stakes": "the repair option is cheaper and faster but depends on the assumption that the bridge can be made safe for twenty more years; the new-build option is expensive and slower but avoids that assumption — the debate is stuck because neither side can prove their assumption without testing it",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Matt presents the committee report and a council member asks: 'What would have to be true for the repair option to be the right choice?' Matt lists the conditions — the structural assessment must show twenty-year life, the foundation is sound, the repair contractor can hold the budget — and then the council member asks which of those conditions they actually know versus assume. That is the list that needs testing before the vote.",
+      "firstImage": "a city council chamber with two cost estimates on the projection screen — repair at four million, new build at twenty-two million — and a structural assessment that says 'significant uncertainty' in the footnotes",
+      "mustInclude": ["the specific condition for each option that is currently assumed rather than tested", "the council member question that converts the debate into a set of testable propositions"],
+      "mustAvoid": ["municipal budget politics", "engineering detail as the main frame"]
+    },
+    {
+      "domain": "a consumer product company evaluating two possible launch markets for a new product",
+      "audience": "a marketing director choosing between launching first in a large urban market and launching first in a smaller, more concentrated regional market",
+      "stakes": "the urban launch offers faster volume but requires a marketing budget the company does not have to support it; the regional launch offers lower cost but requires the assumption that the product will win enough word-of-mouth to grow without the large market's network effects",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Julien asks his team to list what would have to be true for each launch path to succeed — and finds that the urban launch requires three conditions his company has never met before, while the regional launch requires two conditions his company has evidence for from a similar product. The reverse engineering turns a debate about market size into a question about which conditions are already supported by evidence.",
+      "firstImage": "a launch planning spreadsheet with budget scenarios for two markets and no column tracking the conditions that must hold for each budget scenario to deliver its projected return",
+      "mustInclude": ["the specific conditions for each launch path and the evidence quality for each one", "the moment where the team shifts from arguing about which market is bigger to asking which conditions they already have evidence for"],
+      "mustAvoid": ["marketing channel comparison tutorial", "consumer product launch checklist"]
+    },
+    {
+      "domain": "a clinical research team evaluating two study designs for a new therapeutic approach",
+      "audience": "a research director choosing between a large randomized controlled trial and a smaller adaptive trial design",
+      "stakes": "the large RCT takes three years and a full budget but produces clean evidence; the adaptive trial is faster and cheaper but depends on the assumption that early signals will be robust enough to adjust the protocol without introducing bias",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "before: Diego brings the two designs to the research committee as a budget choice — the RCT is expensive, the adaptive trial is faster; after: he reframes each design as a set of conditions, asks which conditions for the adaptive trial are most uncertain, and finds that the single most uncertain condition is whether the early signal will be clean enough — which the team can test with a small pilot before committing to either full design",
+      "firstImage": "two study design proposals on the research committee table, labeled by timeline and cost with no shared framework for evaluating the conditions each depends on",
+      "mustInclude": ["the specific condition for the faster design that is the single most uncertain and most testable", "the pilot that the reverse engineering reveals as the right next step rather than a choice between the two full designs"],
+      "mustAvoid": ["clinical trial methodology lecture", "regulatory pathway detail"]
+    },
+    {
+      "domain": "an independent publisher choosing between two manuscript acquisitions with limited budget for one",
+      "audience": "a senior editor who must recommend one of two strong manuscripts to the acquisitions committee, knowing the other will be declined",
+      "stakes": "manuscript A is from an established author with a reliable audience; manuscript B is from a debut novelist whose early reader response was exceptional but whose audience is untested — the committee debate is stuck because both have merits",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Petra reviews previous debut acquisitions and reframes the question: instead of asking 'which manuscript is better,' she asks 'what would have to be true for the debut to hit its target?' The conditions are: the reader response holds across a broader test group, the social media reach is genuine and not inflated, and the category has room for a new voice this season. She can verify two of the three conditions with available data before the committee meeting.",
+      "firstImage": "a two-manuscript comparison document that ranks each on prose quality, marketability, and category fit — all evaluative, none of the criteria testable before the commitment",
+      "mustInclude": ["the specific conditions for the debut acquisition that are testable before the committee decision", "the moment where Petra shifts the committee discussion from evaluation of the manuscripts to verification of conditions"],
+      "mustAvoid": ["publishing industry economics lecture", "author platform debate as a general topic"]
+    },
+    {
+      "domain": "a real estate development team evaluating two sites for a mixed-use project",
+      "audience": "a development director whose team has built strong business cases for both sites but whose investment committee needs a clearer basis for choice",
+      "stakes": "site A is in a denser neighborhood with higher land cost but established foot traffic; site B is in a transitional neighborhood with lower land cost but uncertain demand growth — both cases look good on paper but depend on different assumptions about future conditions",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Frida imagines presenting both sites to the investment committee and being asked: 'What would have to be true for Site B to be the right choice?' She lists the conditions — neighborhood demand growth continues at current pace, zoning approval goes through in the projected timeline, anchor tenant commits before construction. The investment committee's real question is not which site has the better pro forma; it is which conditions are most uncertain and what it would cost to test them.",
+      "firstImage": "two pro forma spreadsheets side by side, each with a strong projected return and a different set of assumptions about demand and approval timeline buried in the footnotes",
+      "mustInclude": ["the specific conditions that drive the outcome for each site and their evidence quality", "the committee question that reframes the choice as a test of conditions rather than a comparison of financial projections"],
+      "mustAvoid": ["real estate market commentary", "zoning law detail"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply the 'what would have to be true' question to generate a list of conditions for a specific strategic option",
+      "distinguish conditions that are currently assumed from conditions that are supported by evidence",
+      "analyze why reverse engineering from desired outcomes is more useful than forward-projection analysis under uncertainty",
+      "evaluate a set of conditions to identify which are most uncertain and therefore most worth testing before committing"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For the strategic option you are most committed to right now, ask: what would have to be true for the one you are least convinced of to be the better choice? List three conditions. Check each one — evidence in hand, or assumption? The condition you cannot support is the first thing to investigate, not the last.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that uses the 'what would have to be true' framing directly in second person — asking the reader to try it on a current decision rather than observing a protagonist do it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

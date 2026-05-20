@@ -1,0 +1,126 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch05",
+  "number": 5,
+  "title": "Thought Experiment",
+  "coreMove": "Run a constrained mental simulation to expose hidden assumptions before reality charges the full price.",
+  "sourcePressure": "The source frames thought experiments as structured mental simulations for impossible, costly, or not-yet-testable situations. It names Zeno, Descartes, Galileo, Laplace, Einstein, Plato, Wittgenstein, Ernst Mach, and the trolley problem lineage, but the plan should keep the method practical.",
+  "chapterSpecificMisunderstanding": "The weak version treats any imaginative scenario as useful thinking.",
+  "sourceAlignmentTerms": ["thought experiment", "mental simulation", "constraint", "implication", "unintended consequence", "Ernst Mach", "Einstein"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Ernst Mach",
+      "detail": "the source uses Mach to frame thought experiments as low-cost experimentation that often precedes physical experimentation",
+      "useIn": "both",
+      "phrasingHint": "Mach's point gives imagination a job: spend a few minutes in the mind before spending money in the world."
+    },
+    {
+      "kind": "person",
+      "name": "Einstein",
+      "detail": "the source lists Einstein among historical anchors for thought experiments",
+      "useIn": "deepRead",
+      "phrasingHint": "Einstein belongs here as a reminder that the best mental simulation is not loose fantasy; it is imagination held inside rules."
+    },
+    {
+      "kind": "artifact",
+      "name": "The trolley problem lineage",
+      "detail": "the frozen source includes the trolley problem as an example of thought experiments in ethics",
+      "useIn": "fullRead",
+      "phrasingHint": "The trolley problem lasts because a stripped-down scene can make a hidden moral rule show itself."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["daydreaming on a couch", "time machine fantasy", "trolley problem as only scene"],
+    "counterintuition": ["imagination is as good as evidence", "reality is optional", "smart people just visualize"],
+    "tryThisNow": ["imagine your ideal outcome", "close your eyes and picture success", "brainstorm possibilities"],
+    "examples": ["generic product launch what-if", "sci-fi fantasy with no constraints", "ethics lecture"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "ethics board triage exercise",
+      "audience": "a hospital ethics chair preparing for a scarce-bed protocol",
+      "stakes": "the first real crisis will arrive too fast for untested moral rules",
+      "format": "thought_experiment",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ryan removes all patient names from three hypothetical cases and forces the board to choose by stated criteria before any real patient is waiting",
+      "firstImage": "three blank case cards under a harsh meeting-room lamp",
+      "mustInclude": ["blank case cards", "scarce-bed protocol", "stated criteria"],
+      "mustAvoid": ["medical melodrama", "trolley copy"]
+    },
+    {
+      "domain": "satellite launch delay simulation",
+      "audience": "a mission planner weighing whether to delay a small satellite launch",
+      "stakes": "a rushed launch could waste years of lab work",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Manon asks the team to simulate the launch with the sensor fault unresolved and name the first irreversible loss before voting",
+      "firstImage": "a red sensor flag blinking over a launch-window countdown",
+      "mustInclude": ["sensor fault", "launch window", "irreversible loss"],
+      "mustAvoid": ["space hero drama", "technical formula detour"]
+    },
+    {
+      "domain": "food truck festival rain plan",
+      "audience": "a festival organizer considering a rain-or-shine policy",
+      "stakes": "vendors could lose inventory and customers could crowd unsafe tents",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Tomas walks the planned festival in his mind during a thunderstorm and moves the ticket queue after noticing where wet people will bottleneck",
+      "firstImage": "rainwater pooling in the chalk marks for the ticket line",
+      "mustInclude": ["ticket queue", "vendor coolers", "weather map"],
+      "mustAvoid": ["generic event planning", "weather as random inconvenience"]
+    },
+    {
+      "domain": "hospital discharge thought experiment",
+      "audience": "a ward manager redesigning discharge paperwork",
+      "stakes": "patients may misunderstand medication instructions after leaving",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Anke pretend she is a tired patient with one bus transfer and test whether the new packet survives that path",
+      "firstImage": "a discharge packet folded under a plastic pharmacy bag",
+      "mustInclude": ["bus transfer", "medication list", "phone number card"],
+      "mustAvoid": ["patient education sermon", "paperwork complaint"]
+    },
+    {
+      "domain": "arctic field camp fuel plan",
+      "audience": "a field researcher planning a remote sampling season",
+      "stakes": "a miscounted fuel cache could strand the team",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Akira writes a postmortem from the future where the camp runs short, then identifies the hidden assumption about generator hours",
+      "firstImage": "frost on a fuel drum stencil at the edge of camp",
+      "mustInclude": ["fuel cache", "generator hours", "future postmortem"],
+      "mustAvoid": ["survival thriller", "heroic expedition"]
+    },
+    {
+      "domain": "music conservatory audition rule",
+      "audience": "a conservatory dean testing blind audition procedures",
+      "stakes": "a rule meant to increase fairness may create a new hidden advantage",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Isabel mentally runs the audition from the hallway, the sign-in desk, and the screen, then spots that accompanist access still reveals privilege",
+      "firstImage": "numbered audition cards fanned beside a piano bench",
+      "mustInclude": ["audition screen", "accompanist access", "numbered cards"],
+      "mustAvoid": ["music genius trope", "fairness as slogan"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["build a constrained mental simulation", "separate useful simplification from fantasy", "detect hidden assumptions in a hypothetical", "know when thought experiment must yield to real evidence"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "Choose one risky action. Run it once in your head with one fixed constraint, then write the first hidden assumption that appears.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

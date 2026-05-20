@@ -1,0 +1,197 @@
+{
+  "chapterId": "thinking-in-bets-ch06",
+  "number": 6,
+  "title": "Dissent to win",
+  "coreMove": "Give the strongest objection a protected place before the group locks its choice.",
+  "sourcePressure": "The chapter scales truth-seeking from one buddy to group culture, using dissent and CUDOS-style norms to keep consensus from impersonating evidence.",
+  "chapterSpecificMisunderstanding": "The writer must make dissent procedural and evidence-seeking, not a personality trait of the bravest person in the room.",
+  "sourceAlignmentTerms": [
+    "dissent",
+    "consensus risk",
+    "CUDOS",
+    "organized skepticism",
+    "evidence conflict",
+    "ego conflict",
+    "counterargument"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "CUDOS",
+      "detail": "The frozen source bundle lists CUDOS as the group-culture framework: communism, universalism, disinterestedness, and organized skepticism.",
+      "useIn": "fullRead",
+      "phrasingHint": "CUDOS gives dissent a job description, so challenge belongs to the work instead of to the loudest personality."
+    },
+    {
+      "kind": "artifact",
+      "name": "organized skepticism",
+      "detail": "The source describes organized skepticism as civil, active, structurally welcomed dissent.",
+      "useIn": "both",
+      "phrasingHint": "Organized skepticism means the objection gets a chair before the decision leaves the room."
+    },
+    {
+      "kind": "event",
+      "name": "withheld uncomfortable facts",
+      "detail": "The frozen source says an uncomfortable omitted fact often signals that the omitted fact matters most.",
+      "useIn": "deepRead",
+      "phrasingHint": "The fact everyone avoids may be the one carrying the most information."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Speak truth to power",
+      "Consensus is dangerous",
+      "Disagreement makes teams smarter"
+    ],
+    "counterintuition": [
+      "Conflict is good",
+      "Harmony is bad"
+    ],
+    "tryThisNow": [
+      "Invite dissent in your next meeting",
+      "Ask for one objection"
+    ],
+    "examples": [
+      "launch holdout raises risk",
+      "seminar silence around weak answer",
+      "debate team requires pushback"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "aerospace parts safety review before supplier approval",
+      "audience": "quality engineers and review boards",
+      "stakes": "a small tolerance concern could become a costly recall or safety incident",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Thomas gives the dissenting tolerance note a formal slot on the approval agenda before the supplier vote can close.",
+      "firstImage": "A tray of machined brackets sits under a magnifying lamp at the end of the conference table.",
+      "mustInclude": [
+        "tolerance note",
+        "supplier vote",
+        "magnifying lamp"
+      ],
+      "mustAvoid": [
+        "generic manufacturing floor complaint"
+      ]
+    },
+    {
+      "domain": "neighborhood flood committee choosing a levee design",
+      "audience": "civic volunteers and local engineers",
+      "stakes": "polite consensus may hide that one street absorbs most of the overflow risk",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Whose street disappears from the map if everyone nods? Ingrid asks each design supporter to name the strongest objection before the vote.",
+      "firstImage": "Whose street disappears from the map if everyone nods?",
+      "mustInclude": [
+        "overflow map",
+        "levee option labels",
+        "public-comment timer"
+      ],
+      "mustAvoid": [
+        "city budget water-jar style demonstration"
+      ]
+    },
+    {
+      "domain": "orchestra programming council selecting a risky season opener",
+      "audience": "arts administrators",
+      "stakes": "a consensus favorite may be artistically exciting but financially fragile",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Paula assigns one council member to argue the ticket-risk case from subscription data, then makes the room answer it before applause decides.",
+      "firstImage": "Violin cases click shut outside the rehearsal hall while the program list waits on the piano.",
+      "mustInclude": [
+        "subscription data",
+        "program list",
+        "ticket-risk case"
+      ],
+      "mustAvoid": [
+        "community choir selection from ch5"
+      ]
+    },
+    {
+      "domain": "university ethics board reviewing a data-sharing proposal",
+      "audience": "research administrators",
+      "stakes": "source prestige could silence the junior member who sees a consent problem",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chidi shows how the ignored consent question should have been judged by the same standard as the senior researcher’s claim.",
+      "firstImage": "It took the complaint letter to reveal which objection the board had treated as impolite.",
+      "mustInclude": [
+        "consent form",
+        "complaint letter",
+        "senior researcher"
+      ],
+      "mustAvoid": [
+        "generic academic seminar debate"
+      ]
+    },
+    {
+      "domain": "restaurant opening crew deciding whether the kitchen is ready",
+      "audience": "hospitality managers",
+      "stakes": "opening on schedule could burn first reviews if the line cooks are not ready",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Anna move the objection from hallway whisper to prep-meeting agenda item, then require the team to test the weakest station before opening night.",
+      "firstImage": "You can hear the ticket printer test from the empty dining room.",
+      "mustInclude": [
+        "prep-meeting agenda",
+        "weakest station",
+        "opening-night review risk"
+      ],
+      "mustAvoid": [
+        "cafe menu trial from ch4"
+      ]
+    },
+    {
+      "domain": "cybersecurity incident table before a breach disclosure decision",
+      "audience": "security leads and executives",
+      "stakes": "withholding an uncomfortable log entry could delay notification and increase legal exposure",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 1:27 a.m., Lukas asks why the log entry no one wants in the summary is not first on the evidence list.",
+      "firstImage": "At 1:27 a.m., Lukas stares at the access log glowing blue on the war-room screen.",
+      "mustInclude": [
+        "access log",
+        "disclosure clock",
+        "evidence list"
+      ],
+      "mustAvoid": [
+        "startup or product launch room"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate evidence conflict from ego conflict",
+      "protect dissent without rewarding hostility",
+      "use CUDOS norms in scenario choices",
+      "spot false confidence created by consensus"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next group decision, write the strongest objection as a numbered agenda item before anyone votes, and require the room to answer it in evidence terms.",
+  "readingTimeMinutes": 12
+}

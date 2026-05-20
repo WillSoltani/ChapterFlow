@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-psychology-of-money-ch02",
+  "number": 2,
+  "title": "No One's Crazy",
+  "readingTimeMinutes": 12,
+  "hook": "Two people can stare at the same loan offer and see different weather because they survived different storms.",
+  "counterintuition": "The paradox is that a money choice can look irrational until you see the memory that made it feel like protection.",
+  "tryThisNow": "Take one money choice you recently judged. Write the life event that might make it sensible, then ask one question you would use before giving advice.",
+  "keyTakeaway": "Money behavior makes more sense when you read it through money history, inflation memory, boom years, layoffs, risk feeling, and personal experience before judging it.",
+  "breakdown": {
+    "fastRead": "A flood map can make one family buy every coverage rider and another family refuse the same policy because the deductible feels like surrender. From outside, one looks fearful and the other reckless. From inside, both may be obeying what the last storm taught them.\n\nThe useful move is translation. Before calling a money choice stupid, ask what personal experience made it feel reasonable. Inflation memory, boom years, layoffs, scarce shelves, easy credit, and one lucky break can all train risk feeling. People do not stand in the same financial weather.",
+    "deepRead": "A student folds an award letter into quarters and keeps touching the crease instead of the loan amount. The counselor can explain interest rates all afternoon, but the family's old story is louder: a van repossessed in a winter parking lot, a parent who still says debt with their shoulders tight, a group text where relatives treat borrowing as a trap. The loan may be wise. The fear is not random.\n\nNobody is neutral about money.\n\nThe mechanism is personal sampling. Each person learns from a tiny slice of financial history, then treats that slice as a map. Someone who came of age in boom years may experience investing as patience rewarded. Someone whose first adult memory was a layoff may experience cash as oxygen. Someone raised through inflation may read a full pantry as security, not hoarding. Each reaction has limits, but none is explained by intelligence alone.\n\nThis is why advice travels badly across households. A sentence that sounds calm in one kitchen sounds dangerous in another. \"Take the loan\" may mean opportunity to the person who watched education pay off and humiliation to the person who watched debt collectors call after dinner. The better question is not who is rational. The better question is what evidence their life gave them.\n\nThe limit matters. Understanding a history does not make every choice wise. A fear can protect you from one danger and expose you to another. A boom-year confidence can build wealth or hide fragility. Translation is not permission. It is the step before judgment, so judgment has a chance to be accurate.",
+    "fullRead": "Maren watches her husband slide the insurance coverage slider all the way to the right. The premium jumps. The deductible shrinks. She wants to call it overkill until she sees him glance at the claim folders still curled from the last evacuation. He is not comparing only probabilities. He is remembering the motel smell, the wet cardboard, and the three days when every phone call sounded like bad news.\n\nNobody is neutral about money, because every balance sheet is read through a private weather report. Money history turns numbers into feelings. It tells people what safety should look like, what debt smells like, whether markets feel generous or rigged, whether a low price is a bargain or a warning, whether cash on hand is lazy or sacred. The same offer lands on different ground because the ground was made by different years.\n\nAsk yourself a sharper question: what financial decade lives in your first reflex? Did you learn money in a house where layoffs arrived without warning. Did you learn it during rising home prices, easy hiring, falling rates, inflation spikes, medical bills, or a parent who never opened envelopes until Sunday night. Your reflex may be intelligent, but it is not universal.\n\nThat is the trap in calling someone crazy. The label usually means their sample of life does not match yours. One person under-insures because no claim ever paid when it mattered. Another over-insures because the last storm turned paperwork into shelter. One investor sells early because their first crash happened before they had savings. Another holds through chaos because their first market lesson was recovery. Both are carrying evidence.\n\nThe practical skill is to separate explanation from endorsement. You can say, \"I see why that feels safe,\" without saying, \"That is the best choice.\" You can ask, \"What happened the last time you borrowed?\" before showing the rate table. You can ask a board member what fines meant in their first library before asking them to vote on fines today. The point is not to surrender analysis. It is to make analysis less blind.\n\nA strange choice often becomes legible when you find the year that taught it. The first recession, the first big raise, the first overdraft, the first missed rent, the first lucky stock, the first grocery bill that changed while the cart stayed the same. That year can stay in a person long after the current facts have changed.\n\nThe counter-objection is that some choices really are bad. Yes. Personal experience can become a stale map. A fear learned in one economy can cost too much in another. Confidence learned in easy markets can become arrogance. But you will correct the map better if you first know where it came from. Advice that begins with contempt usually makes the other person defend the old map harder.\n\nStart with the life that made the choice feel sensible. Then decide what to do next."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-maren-storm-coverage",
+      "title": "Maren asks which storm taught safe",
+      "tags": [
+        "dialogue",
+        "insurance",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "a coastal town insurance office after three storm evacuations in five years",
+        "audience": "an agent explaining why one family over-insures while another gambles",
+        "stakes": "misjudging clients as irrational will lose both policies and trust",
+        "format": "dialogue",
+        "requiredBeat": "the agent asks each spouse to point to the storm that taught them what safe means before recommending coverage"
+      },
+      "scenario": "\"That coverage slider is ridiculous,\" the husband says as Maren stands by the flood map pinned above two damp claim folders. His wife touches the folder from the last evacuation and says it is not enough. Maren has to decide whether to sell the middle policy or ask each spouse to point to the storm that taught them what safe means. The better sale begins when each folder is treated as evidence, not stubbornness.",
+      "whatToDo": "Pause the coverage recommendation and ask each person which storm trained their sense of safety. Then use the answer to explain tradeoffs in terms their money history can hear.",
+      "whyItMatters": "The disagreement is not only about price. One spouse is reading the policy through loss, the other through distrust or cost. Coverage advice works better after those histories are visible."
+    },
+    {
+      "exampleId": "ch02-ex02-ryan-award-letter",
+      "title": "Ryan stops explaining the interest rate",
+      "tags": [
+        "scene",
+        "student debt",
+        "family memory"
+      ],
+      "planSpec": {
+        "domain": "a first-generation college financial aid desk during award-letter week",
+        "audience": "a counselor hearing why debt feels different across households",
+        "stakes": "one student may decline a good loan because family memory treats debt as danger",
+        "format": "scene",
+        "requiredBeat": "the counselor stops explaining interest rates and asks who in the family still talks about the repossessed van"
+      },
+      "scenario": "The award letter is folded into quarters inside a backpack pocket, soft at the edges from being opened all week. Ryan points to the loan amount while the family text thread keeps buzzing on the student's phone. He is about to explain subsidized interest again, then must decide whether to ask who still talks about the repossessed van. The rate table can wait until the repossession memory has a place on the page.",
+      "whatToDo": "Stop the rate lecture and ask about the family memory attached to borrowing. Once the debt story is named, separate the specific loan terms from the older fear they resemble.",
+      "whyItMatters": "The student may not be rejecting education or math. They may be rejecting the family image of debt as danger, and that image has to be addressed before the loan can be judged fairly."
+    },
+    {
+      "exampleId": "ch02-ex03-luca-camera-trade",
+      "title": "Luca writes the first paid camera year",
+      "tags": [
+        "vignette",
+        "retail",
+        "experience"
+      ],
+      "planSpec": {
+        "domain": "a used camera shop negotiating trade-ins with retired newspaper photographers and teen creators",
+        "audience": "a shop owner managing two groups who value equipment differently",
+        "stakes": "the same price feels insulting or generous depending on the era that trained the buyer",
+        "format": "vignette",
+        "requiredBeat": "the owner writes each customer's first paid camera year on the appraisal sheet before discussing value"
+      },
+      "scenario": "You can see the old Nikon reflected beside a phone rig in Luca's glass case. A retired photographer taps the trade-in tag like an insult while a teen creator calls the same price generous. Before discussing value, Luca must decide to write each customer's first paid camera year on the appraisal sheet and hear the market that trained them. The appraisal becomes calmer once both customers can name the market that trained them.",
+      "whatToDo": "Record the first paid camera year before negotiating. Use it to explain why the same trade-in value can feel like respect to one customer and erasure to another.",
+      "whyItMatters": "Value is filtered through the era that formed the buyer. The shop owner can still hold the price, but the conversation changes when the old reference point is named."
+    },
+    {
+      "exampleId": "ch02-ex04-marta-rice-limits",
+      "title": "Marta reads the pantry memory first",
+      "tags": [
+        "decision_point",
+        "grocery co-op",
+        "inflation"
+      ],
+      "planSpec": {
+        "domain": "a neighborhood grocery co-op debating bulk-buy rules after inflation spikes",
+        "audience": "a board chair trying to decode hoarding without shaming members",
+        "stakes": "strict limits may punish members whose childhood scarcity makes shelves feel unsafe",
+        "format": "decision_point",
+        "requiredBeat": "the chair asks members to mark which price jump changed their pantry habits before setting limits"
+      },
+      "scenario": "A pallet of rice sacks leans beside handwritten purchase-limit signs while Marta opens the price log from the inflation spike. Two members want strict limits by tonight; another says full shelves are the only thing that lets her sleep. Marta must decide whether to shame bulk buying or ask members to mark which price jump changed their pantry habits. The purchase limit will land better after the price log explains why full shelves feel like sleep.",
+      "whatToDo": "Ask members to mark the price jump that changed their behavior before setting limits. Then design rules that protect shared supply without mocking the memory behind full carts.",
+      "whyItMatters": "Bulk buying may be scarcity memory, not selfishness. A rule that understands the risk feeling can protect inventory while keeping members from feeling judged out of the co-op."
+    },
+    {
+      "exampleId": "ch02-ex05-peter-library-fines",
+      "title": "Peter maps library memories after turnout fails",
+      "tags": [
+        "postmortem",
+        "library policy",
+        "access"
+      ],
+      "planSpec": {
+        "domain": "a public library fine-forgiveness program meeting resistance from older trustees",
+        "audience": "a library director explaining that fines mean responsibility to one generation and exclusion to another",
+        "stakes": "a policy vote could close access for families the library wants back",
+        "format": "postmortem",
+        "requiredBeat": "after low turnout, the director maps trustees' first library memories against patrons' current bus costs"
+      },
+      "scenario": "It took Peter one empty Saturday to understand the expired cards in the checkout desk drawer. The fine-forgiveness event drew almost no families, even after flyers went home. In the postmortem, he pins a bus fare note beside the fine ledger and maps trustees' first library memories against what patrons pay just to reach the building. The failed event stops looking mysterious once the trip cost and the fine memory sit together.",
+      "whatToDo": "Compare the trustees' memory of fines as responsibility with patrons' current cost of access. Use that map before asking for another vote on forgiveness.",
+      "whyItMatters": "One group sees fines as a lesson that worked in their youth. Another sees them as one more barrier. The policy debate improves when both money histories are on the table."
+    },
+    {
+      "exampleId": "ch02-ex06-camille-theater-revenue",
+      "title": "Camille asks what a paid gig meant",
+      "tags": [
+        "dialogue",
+        "theater",
+        "markets"
+      ],
+      "planSpec": {
+        "domain": "a community theater splitting ticket revenue between veteran actors and new livestream crew",
+        "audience": "a producer mediating people shaped by different career markets",
+        "stakes": "a fair formula collapses if each side thinks the other is playing the same game",
+        "format": "dialogue",
+        "requiredBeat": "the producer has each side state what a paid gig meant in their first working year before numbers are negotiated"
+      },
+      "scenario": "Which number is fair when the rehearsal hall floor is taped for blocking and the livestream laptop is already recording? Camille sets the revenue worksheet between veteran actors and the new crew. \"We built this stage,\" one actor says. \"We built the audience online,\" the technician replies. Camille must decide whether to negotiate percentages or first ask what a paid gig meant in each side's first working year. The revenue split needs those first working years on the table before anyone calls the other side greedy.",
+      "whatToDo": "Have each side state what paid work meant when they started. Then negotiate the split with those career markets visible, so the formula does not pretend everyone learned value the same way.",
+      "whyItMatters": "A fair-looking formula can fail when each side reads it through a different labor market. Naming the first working year turns accusation into context before the numbers harden."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "ch02-q01",
+        "prompt": "A couple argues over flood insurance after two evacuations. One wants maximum coverage, the other says the insurer never helped neighbors anyway. What should the agent do before recommending a policy?",
+        "choices": [
+          "Ask each person which storm or claim experience taught them what safety means.",
+          "Average their preferred coverage levels and present that as the rational compromise.",
+          "Tell the cautious spouse that fear is making the premium too high."
+        ],
+        "correctIndex": 0,
+        "explanation": "The right move translates the disagreement into money history. Averaging may look fair, but it skips the memories that are driving both risk feelings.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q02",
+        "prompt": "A student declines a subsidized loan that would make school possible. Her family still talks about losing a car to debt collectors. Which interpretation is strongest?",
+        "choices": [
+          "She lacks ambition and should be pushed harder toward the opportunity.",
+          "Debt carries a family memory, so the loan must be separated from that older danger.",
+          "The loan is automatically a bad idea because all fear contains accurate advice."
+        ],
+        "correctIndex": 1,
+        "explanation": "The family story makes the refusal coherent without proving the loan is wrong. The ambition answer moralizes, while the fear answer treats history as infallible.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q03",
+        "prompt": "A co-op board sees members buying too much rice after several price jumps. Some directors call it selfish hoarding. What should the chair ask first?",
+        "choices": [
+          "Which members can be publicly warned so others stop copying them?",
+          "How quickly can the store install stricter checkout software?",
+          "Which price change or scarcity memory altered each member's pantry habits?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The chair should locate the inflation memory behind the behavior. Public warning may enforce a rule, but it does not reveal why full shelves started feeling necessary.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch02-q04",
+        "prompt": "Two employees choose opposite retirement allocations after the same seminar. One started work in a long bull market; the other started during layoffs and a crash. What is the best explanation?",
+        "choices": [
+          "Their personal samples of history trained different risk feelings.",
+          "One of them understood the seminar and the other did not.",
+          "Retirement choices cannot be discussed across generations."
+        ],
+        "correctIndex": 0,
+        "explanation": "Different starting eras can make the same lesson feel different. Calling one person ignorant misses how boom years and layoffs become emotional evidence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch02-q05",
+        "prompt": "A library trustee says fines teach responsibility because they taught him responsibility in childhood. Patrons now skip the library because fines plus bus fare feel too costly. What should the director compare?",
+        "choices": [
+          "The trustee's memory of fines with patrons' current access costs.",
+          "The number of books checked out by responsible families and irresponsible families.",
+          "The trustee's age with the average age of patrons who owe money."
+        ],
+        "correctIndex": 0,
+        "explanation": "The useful comparison is between two money histories. Labeling families responsible or irresponsible repeats the shallow judgment the move is meant to avoid.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q06",
+        "prompt": "A shop owner offers the same trade-in price for similar camera gear. Retired photographers feel insulted, while teen creators feel relieved. What should the owner add to the appraisal conversation?",
+        "choices": [
+          "A lecture explaining that the current resale market is the only reality that matters.",
+          "A loyalty bonus for older customers so nobody has to discuss past markets.",
+          "A question about the first year each customer earned money with a camera."
+        ],
+        "correctIndex": 2,
+        "explanation": "The first paid year reveals the market that shaped the customer's reference point. A market lecture may be accurate and still miss why the price feels insulting.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q07",
+        "prompt": "A manager says an employee is foolish for keeping too much cash after a layoff. The employee watched a parent miss rent during a recession. Which advice would be most useful?",
+        "choices": [
+          "Identify what safety the cash buys, then discuss the cost of that safety.",
+          "Tell the employee that past recessions are irrelevant to the current plan.",
+          "Praise the employee for avoiding all market risk because fear is always protective."
+        ],
+        "correctIndex": 0,
+        "explanation": "This respects the layoff memory while still allowing tradeoffs. Dismissing the past creates defensiveness, and praising all fear ignores the cost of stale maps.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch02-q08",
+        "prompt": "A producer mediates between stage actors and a livestream crew over revenue. Each side thinks the other's demand is greedy because their first paid work came from different markets. What should happen before percentages are negotiated?",
+        "choices": [
+          "The producer should pick the group with the longer history in the theater.",
+          "Each side should state what paid work meant in their first working year.",
+          "The newer crew should accept less because tradition deserves the first claim."
+        ],
+        "correctIndex": 1,
+        "explanation": "The first working year exposes the career market behind each demand. Tradition or novelty may matter later, but neither explains the different sense of fairness by itself.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q09",
+        "prompt": "A planner sees older residents resist adjustable-rate loans after living through rate spikes, while younger residents see low initial payments as normal. What is the mistake to avoid?",
+        "choices": [
+          "Treating both reactions as products of lived financial eras rather than character.",
+          "Calling one group irrational because the current rate table favors a different choice.",
+          "Explaining the tradeoff after asking what rate history each group remembers."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mistake is turning different history into character judgment. The other choices point toward translation: ask what each group remembers before weighing the current table.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch02-card01",
+      "front": "Someone refuses a good loan because debt sounds dangerous in their family. What should you ask before advising?",
+      "back": "Ask what happened the last time debt hurt the family or someone close to them. The goal is to separate the current terms from the older memory that gives debt its emotional force.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch02-card02",
+      "front": "Two people see the same insurance policy as overkill and minimum safety. What explains the split?",
+      "back": "They may have different money histories. Evacuations, denied claims, or quiet years can train different risk feelings, so the same policy enters two emotional worlds.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch02-card03",
+      "front": "A behavior looks irrational from outside. What is the translation move?",
+      "back": "Translate the behavior back into the life that made it feel sensible. Look for inflation memory, layoffs, boom years, family stories, or personal experience before judging the choice.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch02-card04",
+      "front": "Why is understanding history not the same as endorsing the choice?",
+      "back": "A money history can explain a reaction and still be outdated or costly. Understanding shows where the map came from; judgment decides whether the map still fits the terrain.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch02-card05",
+      "front": "A board calls bulk buying selfish after inflation. What detail would change the conversation?",
+      "back": "Ask which price jump or scarcity episode changed pantry habits. The answer may reveal fear of empty shelves rather than simple selfishness, allowing limits without humiliation.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "When a money choice looks strange, pause before judging the person. Ask what money history, inflation memory, boom years, layoffs, or personal experience trained that risk feeling, then separate explanation from endorsement.",
+    "ifThenPlans": [
+      {
+        "context": "giving advice",
+        "plan": "If someone's choice looks reckless or fearful, then I will ask what experience made that choice feel safe before I offer a better option."
+      },
+      {
+        "context": "family disagreement",
+        "plan": "If relatives argue about borrowing, then I will ask what debt meant in each household before discussing the rate or payment."
+      },
+      {
+        "context": "work policy",
+        "plan": "If a rule meets resistance, then I will map which past shocks or boom years might make the rule feel unfair to different groups."
+      },
+      {
+        "context": "self-review",
+        "plan": "If I feel unusually tense about a financial decision, then I will identify the year or event my body seems to be remembering."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, notice one money opinion you strongly disagree with. Write one sentence beginning, \"This could make sense if they lived through...\" and fill in a specific experience.",
+    "weeklyPractice": "Once a week, review a money disagreement without using the words foolish, lazy, or irrational. Replace the label with the personal experience that might be shaping the choice."
+  },
+  "memorableLines": [
+    {
+      "text": "People do not stand in the same financial weather.",
+      "location": "breakdown.fastRead",
+      "why": "It makes different money histories easy to picture without excusing every choice."
+    },
+    {
+      "text": "Nobody is neutral about money, because every balance sheet is read through a private weather report.",
+      "location": "breakdown.deepRead",
+      "why": "It explains why identical facts can produce different choices."
+    },
+    {
+      "text": "Start with the life that made the choice feel sensible.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the chapter's mental move into a practical first step."
+    }
+  ]
+}

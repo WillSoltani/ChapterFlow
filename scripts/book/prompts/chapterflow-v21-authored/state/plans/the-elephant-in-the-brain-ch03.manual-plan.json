@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch03",
+  "number": 3,
+  "title": "Norms",
+  "coreMove": "Treat a norm as a rule backed by group enforcement, then ask what visible selfishness it makes costly.",
+  "sourcePressure": "The source explains norms as collectively enforced rules that let groups suppress visible selfishness through coalition pressure, gossip, and reputation.",
+  "chapterSpecificMisunderstanding": "The writer treats norms as polite values instead of enforced social technology.",
+  "sourceAlignmentTerms": [
+    "norms",
+    "collective enforcement",
+    "egalitarian",
+    "gossip",
+    "reputation",
+    "selfish motives",
+    "bragging"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "nomadic egalitarian groups of 20-50 members",
+      "detail": "The source uses small hunter-gatherer groups of roughly 20-50 members to explain collective norm enforcement.",
+      "useIn": "both",
+      "phrasingHint": "In a band of 20 to 50 people, reputation is not background noise; it is the court."
+    },
+    {
+      "kind": "artifact",
+      "name": "weapons as coalition equalizers",
+      "detail": "The source says weapons helped coalitions of weaker members enforce norms against stronger individuals.",
+      "useIn": "deepRead",
+      "phrasingHint": "A spear changes the politics of selfish strength when weaker people can stand together."
+    },
+    {
+      "kind": "event",
+      "name": "gossip and reputation enforcement",
+      "detail": "The source names gossip and reputation as tools that help enforce norms.",
+      "useIn": "both",
+      "phrasingHint": "The punishment often starts as talk before it becomes anything formal."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch03: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch03: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch03: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch03: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch03: no generic timer reflection",
+      "the-elephant-in-the-brain-ch03: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch03: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch03: no coffee shop conversation as the default social proof",
+      "no etiquette dinner scene",
+      "no generic rules are important lesson"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "volunteer search-and-rescue gear room",
+      "audience": "a team lead stopping one strong member from taking extra equipment",
+      "stakes": "the norm protects the whole team only if visible grabbing becomes costly",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire places the sign-out tags on the table and asks every rescuer to read the missing harness numbers aloud before anyone confronts the strongest climber.",
+      "firstImage": "Mud flakes from the rope bag onto the gear-room floor.",
+      "mustInclude": [
+        "harness tags",
+        "rope bag",
+        "sign-out sheet"
+      ],
+      "mustAvoid": [
+        "personal courage sermon"
+      ]
+    },
+    {
+      "domain": "cooperative housing laundry schedule",
+      "audience": "a tenant board dealing with a charming rule-bender",
+      "stakes": "silent resentment is replacing enforceable standards",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"He only takes Sundays because nobody uses them,\" Henrik says, and Paula turns the private complaints into a posted rotation everyone can verify.",
+      "firstImage": "\"He only takes Sundays because nobody uses them,\" Henrik says at the tenant table.",
+      "mustInclude": [
+        "laundry rota",
+        "magnetic name strips",
+        "complaint log"
+      ],
+      "mustAvoid": [
+        "roommate cleanliness cliche"
+      ]
+    },
+    {
+      "domain": "local running club race bib allocation",
+      "audience": "a club treasurer protecting fair access to a scarce marathon entry",
+      "stakes": "favor-currying could quietly decide who gets the entry",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Who gets the bib when the fastest runner also brought the sponsor?",
+      "firstImage": "Who gets the bib when the sponsor is standing beside the fastest runner?",
+      "mustInclude": [
+        "race bib",
+        "sponsor envelope",
+        "club bylaws"
+      ],
+      "mustAvoid": [
+        "sports merit story only"
+      ]
+    },
+    {
+      "domain": "rural fire brigade training slots",
+      "audience": "a captain preventing status from capturing scarce training",
+      "stakes": "bragging and subgroup politics can split the brigade before fire season",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sam moves the training list from the captain's truck window to a public board and requires two signatures for every swap.",
+      "firstImage": "The empty hook for the thermal camera sits above the training board.",
+      "mustInclude": [
+        "thermal camera hook",
+        "training list",
+        "swap signatures"
+      ],
+      "mustAvoid": [
+        "hero firefighter narrative"
+      ]
+    },
+    {
+      "domain": "academic peer-review committee",
+      "audience": "a chair stopping reputation deals from shaping grant rankings",
+      "stakes": "review norms fail if whispered bargains stay below common knowledge",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Aanya one leaked ranking to see that private praise had become currency, so she makes conflicts and prior favors visible before scoring begins.",
+      "firstImage": "It took Aanya one leaked ranking to reread every friendly email.",
+      "mustInclude": [
+        "grant rubric",
+        "conflict form",
+        "review packets"
+      ],
+      "mustAvoid": [
+        "corruption scandal inflation"
+      ]
+    },
+    {
+      "domain": "children's soccer parent sideline",
+      "audience": "a coach enforcing anti-bragging norms around ten-year-olds",
+      "stakes": "a parent's visible self-promotion is teaching the team what the group tolerates",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask Nicolas to hand the player-of-the-week patch to the quiet defender he ignored, making the group reward the norm instead of the boast.",
+      "firstImage": "You hear the parent narrating his child's goal before the kids reach halftime.",
+      "mustInclude": [
+        "sideline rope",
+        "player patch",
+        "orange cones"
+      ],
+      "mustAvoid": [
+        "parenting advice without norm enforcement"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which group sanction makes a norm real",
+      "distinguish a value statement from enforceable collective pressure",
+      "choose interventions that turn private irritation into shared enforcement without mobbing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one rule your group claims to hold. Write the actual sanction beside it: gossip, lost trust, exclusion, formal penalty, or nothing.",
+  "readingTimeMinutes": 12
+}

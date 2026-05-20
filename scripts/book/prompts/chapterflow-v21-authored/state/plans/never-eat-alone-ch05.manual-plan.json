@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch05",
+  "number": 5,
+  "title": "The Genius of Audacity",
+  "coreMove": "Make the respectful first move that fear is trying to delay.",
+  "sourcePressure": "Thoughtful boldness opens doors that timidity leaves untouched, but it has to be prepared, respectful, and specific.",
+  "chapterSpecificMisunderstanding": "Confusing audacity with volume, entitlement, or theatrical confidence.",
+  "sourceAlignmentTerms": [
+    "audacity",
+    "ask for help",
+    "introductions",
+    "thoughtful first move",
+    "prepared ask",
+    "respectful boldness"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Alice",
+      "domain": "architecture firm partner introduction",
+      "audience": "a reader facing architecture firm partner introduction where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if architecture firm partner introduction becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Alice sends the braver request only after making it specific enough to be easy to receive in front of vellum portfolio, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "vellum portfolio on the edge of architecture firm partner introduction",
+      "mustInclude": [
+        "vellum portfolio",
+        "architecture firm partner introduction constraint",
+        "one named next step tied to audacity"
+      ],
+      "mustAvoid": [
+        "Confusing audacity with volume, entitlement, or theatrical confidence.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Lucy",
+      "domain": "public radio pitch inbox",
+      "audience": "a reader facing public radio pitch inbox where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if public radio pitch inbox becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lucy sends the braver request only after making it specific enough to be easy to receive in front of studio microphone, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "studio microphone on the edge of public radio pitch inbox",
+      "mustInclude": [
+        "studio microphone",
+        "public radio pitch inbox constraint",
+        "one named next step tied to audacity"
+      ],
+      "mustAvoid": [
+        "Confusing audacity with volume, entitlement, or theatrical confidence.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Molly",
+      "domain": "craft brewery distribution meeting",
+      "audience": "a reader facing craft brewery distribution meeting where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if craft brewery distribution meeting becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Molly sends the braver request only after making it specific enough to be easy to receive in front of keg tap handle, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "keg tap handle on the edge of craft brewery distribution meeting",
+      "mustInclude": [
+        "keg tap handle",
+        "craft brewery distribution meeting constraint",
+        "one named next step tied to audacity"
+      ],
+      "mustAvoid": [
+        "Confusing audacity with volume, entitlement, or theatrical confidence.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Natalie",
+      "domain": "medical residency mentor request",
+      "audience": "a reader facing medical residency mentor request where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if medical residency mentor request becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Natalie sends the braver request only after making it specific enough to be easy to receive in front of pager case, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "pager case on the edge of medical residency mentor request",
+      "mustInclude": [
+        "pager case",
+        "medical residency mentor request constraint",
+        "one named next step tied to audacity"
+      ],
+      "mustAvoid": [
+        "Confusing audacity with volume, entitlement, or theatrical confidence.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "documentary festival greenroom",
+      "audience": "a reader facing documentary festival greenroom where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if documentary festival greenroom becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Manon sends the braver request only after making it specific enough to be easy to receive in front of film badge, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "film badge on the edge of documentary festival greenroom",
+      "mustInclude": [
+        "film badge",
+        "documentary festival greenroom constraint",
+        "one named next step tied to audacity"
+      ],
+      "mustAvoid": [
+        "Confusing audacity with volume, entitlement, or theatrical confidence.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "apprenticeship union hall",
+      "audience": "a reader facing apprenticeship union hall where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if apprenticeship union hall becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Layla sends the braver request only after making it specific enough to be easy to receive in front of membership ledger, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "membership ledger on the edge of apprenticeship union hall",
+      "mustInclude": [
+        "membership ledger",
+        "apprenticeship union hall constraint",
+        "one named next step tied to audacity"
+      ],
+      "mustAvoid": [
+        "Confusing audacity with volume, entitlement, or theatrical confidence.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish audacity from Confusing audacity with volume, entitlement, or theatrical confidence.",
+      "choose the visible action that performs: Make the respectful first move that fear is trying to delay.",
+      "diagnose when a scenario drifts into Confusing audacity with volume, entitlement, or theatrical confidence.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real audacity moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

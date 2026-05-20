@@ -1,0 +1,136 @@
+{
+  "chapterId": "superforecasting-ch11",
+  "number": 11,
+  "title": "Are They Really So Super?",
+  "coreMove": "Accept what forecasting cannot do, then use that boundary to clarify what it can still do — preparation, conditional planning, and better questions before events arrive.",
+  "sourcePressure": "Kahneman and Taleb press on the limits: black swans show that some high-impact surprises resist prediction; long-range forecasting grows fragile because more time allows more structural change and more room for cascading shocks. The defense is not that superforecasters control the future — it is that disciplined forecasting still improves conditional preparation and helps people ask better questions before events arrive. The chapter narrows the claim honestly without abandoning it.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'forecasting is limited, so stay humble about it.' The active lesson requires the positive claim as well: within honest limits, careful forecasting is still more useful than either overconfident prediction or resigned uncertainty. Planning for surprise — conditional preparation rather than point prediction — is what survives when long-range precision fails.",
+  "sourceAlignmentTerms": ["black swan", "limits", "planning for surprise", "long-range fragility", "robustness", "conditional preparation", "Kahneman", "Taleb"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Daniel Kahneman",
+      "detail": "Nobel laureate psychologist and author of Thinking, Fast and Slow who pressed Tetlock and Gardner on the limits of forecasting — arguing that human judgment under uncertainty is systematically biased and that the conditions required for valid forecasting are more restrictive than practitioners often acknowledge",
+      "useIn": "deepRead",
+      "phrasingHint": "Kahneman's question to Tetlock was not rhetorical: if the conditions for valid forecasting are as narrow as his research suggests, how much of what looks like superforecasting skill is really just operating in unusually favorable epistemic terrain?"
+    },
+    {
+      "kind": "person",
+      "name": "Nassim Taleb",
+      "detail": "Author of The Black Swan who argued that the most consequential events are precisely the ones that probability models systematically underestimate — the rare, high-impact, hard-to-predict events that fall outside historical base rates and standard forecasting frameworks",
+      "useIn": "deepRead",
+      "phrasingHint": "Taleb's challenge to forecasting is not that forecasters are careless — it is that the events that matter most are the ones that break the frame the forecaster built to understand them."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with 'No one can predict the future' — too pessimistic, undermines the chapter's positive claim",
+      "opening with a Taleb reference as an intellectual name-drop without the substantive argument"
+    ],
+    "counterintuition": [
+      "'Admitting you can't predict something is itself a prediction' — clever but misses the practical lesson about conditional preparation"
+    ],
+    "tryThisNow": [
+      "any prompt about 'accepting uncertainty' without the conditional preparation mechanism",
+      "'Think of a time when an unexpected event changed your plans' — generic reflection prompt"
+    ],
+    "examples": [
+      "any example that just shows forecasting failing without the positive claim about conditional preparation",
+      "any domain from ch01–10"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Black swans and genuine limits appear in every domain — variety of openings signals that the lesson is about the nature of certain problems, not a specific industry failure"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "insurance catastrophe modeler acknowledging irreducible tail risk in a coastal property portfolio",
+      "audience": "a catastrophe modeling analyst presenting limits of her model to an underwriting committee",
+      "stakes": "the committee needs to price a $300M coastal property book; the model can characterize most of the risk but not the tail",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the analyst presents the model's expected loss and confidence interval, then explicitly names what the model cannot do: it cannot estimate the probability of a compound event (multiple correlated perils in the same quarter) because there are too few historical examples; instead of pretending the tail is 0%, she recommends the committee set a separate tail reserve using a scenario approach — conditional preparation rather than a probability estimate",
+      "firstImage": "a catastrophe model output with a loss distribution curve that ends at a confidence interval and then trails off into a dotted line labeled 'tail not modeled'",
+      "mustInclude": ["the explicit naming of what the model cannot estimate", "the separate tail reserve recommendation", "the committee's decision to accept the conditional preparation approach"],
+      "mustAvoid": ["actuarial jargon overload", "insurance regulation content"]
+    },
+    {
+      "domain": "national park emergency planner running scenarios for rare but high-impact events",
+      "audience": "an emergency preparedness coordinator for a national park with 3 million annual visitors",
+      "stakes": "mass evacuation capability for events with probability too low to forecast precisely but consequences too large to ignore",
+      "format": "dialogue_first",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "when asked for the probability of a simultaneous main road closure and wildfire during peak season, the planner answers honestly: 'I cannot give you a reliable probability — it has happened twice in 80 years, which is not enough to calibrate a model'; instead she recommends running two conditional scenarios (if both roads close, what happens?) rather than trying to price the probability, and the planning committee builds the evacuation protocol for the scenario rather than the statistic",
+      "firstImage": "a planning committee meeting where someone has asked for a probability and the coordinator is resisting giving a number she does not have",
+      "mustInclude": ["the honest refusal to fabricate a probability", "the two conditional scenarios", "the protocol built for the scenario rather than the statistic"],
+      "mustAvoid": ["emergency management technical content", "any domain overlap with previous chapters"]
+    },
+    {
+      "domain": "technology product manager building failsafes for a low-probability infrastructure failure",
+      "audience": "a PM who is being asked by engineering to justify the cost of building a failsafe for a 3–5% probability event",
+      "stakes": "eight weeks of engineering time and the question of whether the cost is proportionate to an uncertain risk",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "the PM cannot make the probability more precise than 3–5% without data that does not exist; instead of either dismissing the event ('too unlikely to spend on') or fabricating confidence ('it's really 4.2%'), she reframes the question: given the event, what is the cost of not having the failsafe versus the cost of building it? The conditional analysis justifies the eight weeks regardless of whether the probability is 3% or 5%",
+      "firstImage": "an engineering planning document with a line item for the failsafe and a question mark in the probability column",
+      "mustInclude": ["the honest probability range (3–5%)", "the reframe from probability to conditional cost analysis", "the eight-week engineering decision made on conditional grounds"],
+      "mustAvoid": ["software architecture content", "any product domain specifics that overwhelm the lesson"]
+    },
+    {
+      "domain": "central bank economist presenting the limits of a macroeconomic forecasting model during a policy meeting",
+      "audience": "an economist presenting a two-year inflation forecast to a monetary policy committee",
+      "stakes": "interest rate decisions that affect millions of households; overstating model confidence would give the committee false precision",
+      "format": "retrospective",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the economist presents the model's two-year forecast range and then explicitly flags three structural factors the model cannot capture: a potential trade policy shift, an energy supply shock, and a debt restructuring in a large emerging economy — each of which, if it materialized, would break the model's assumptions; she recommends the committee make its rate decision in a way that would be defensible under any of three conditional scenarios, not just the central forecast",
+      "firstImage": "a policy committee briefing with a two-year forecast chart and three sticky-note scenarios posted beside it by the economist",
+      "mustInclude": ["the three structural factors the model cannot capture", "the recommendation for conditional scenario robustness", "the committee's acceptance of the approach"],
+      "mustAvoid": ["macroeconomic theory content", "central bank policy jargon"]
+    },
+    {
+      "domain": "nuclear plant safety engineer designing for beyond-design-basis events",
+      "audience": "a safety engineer presenting to a facility safety review board",
+      "stakes": "plant licensing renewal; the engineer has identified a scenario outside the original design basis whose probability cannot be reliably estimated",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the engineer presents a combined seismic and flooding scenario that the original design envelope did not include; when asked for the probability, she states clearly: 'historical data is insufficient to calibrate this — we have fewer than three comparable events globally in 60 years of nuclear operation'; she recommends a physical mitigation (passive cooling backup) that reduces consequence regardless of probability rather than continuing to debate the probability estimate",
+      "firstImage": "a safety review board room with a scenario diagram on a projector showing a scenario outside the red-bordered design envelope",
+      "mustInclude": ["the honest probability admission (insufficient data)", "the consequence-reduction recommendation that doesn't require the probability", "the board's decision to implement the passive mitigation"],
+      "mustAvoid": ["nuclear engineering technical detail", "any policy commentary on nuclear power"]
+    },
+    {
+      "domain": "supply chain director preparing contingency protocols for low-probability disruptions",
+      "audience": "a global supply chain director running a resilience review across 12 supplier categories",
+      "stakes": "business continuity for a company with $800M in annual revenue dependent on three critical single-source suppliers",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the director cannot put precise probabilities on disruption scenarios for each supplier (geopolitical events, natural disasters) — the events are too rare and too varied; instead of demanding probability estimates from the team, she reframes the exercise: for each critical single-source supplier, ask 'if this supplier went to zero for 90 days, what would we do?' — the conditional planning exercise reveals three actions the company should take regardless of probability",
+      "firstImage": "a supply chain risk register with probability columns left blank next to consequence columns that are full",
+      "mustInclude": ["the honest refusal to fill in the probability column", "the 'if zero for 90 days' reframe", "the three probability-agnostic actions identified"],
+      "mustAvoid": ["supply chain logistics jargon", "any domain overlap with previous chapters"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a probability estimate is being fabricated because there is insufficient base rate data",
+      "apply the conditional preparation approach — make decisions robust to scenarios when probability cannot be reliably estimated",
+      "distinguish long-range forecasting fragility from short-range forecasting weakness",
+      "analyze what Kahneman's and Taleb's critiques preserve vs. what they discard about forecasting",
+      "evaluate when 'we cannot put a reliable probability on this' is an honest limit vs. a cop-out"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find one risk or uncertain outcome in your work or life that you have been trying to put a probability on and cannot — because there are too few comparable historical cases. Instead of forcing a number, ask a conditional question: if this outcome happened, what would you do? What would you need to have in place? Write the conditional preparation steps. Those steps are what forecasting delivers when the probability is genuinely unknowable.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one analytical passage explaining why Taleb and Kahneman's critiques do not erase the value of forecasting — they narrow its honest scope, and narrowing scope honestly is the same discipline the book has been teaching from chapter one",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

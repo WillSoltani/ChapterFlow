@@ -1,0 +1,205 @@
+{
+  "chapterId": "smarter-faster-better-ch07",
+  "number": 7,
+  "title": "Innovation",
+  "coreMove": "Import useful patterns from elsewhere, recombine them under pressure, and cut until the new fit is real.",
+  "sourcePressure": "The chapter uses idea brokers, creative desperation, and Disney's Frozen to argue that innovation is transfer plus hard revision, not isolated originality.",
+  "chapterSpecificMisunderstanding": "Treating innovation as pure originality, brainstorming volume, or deadline magic.",
+  "sourceAlignmentTerms": [
+    "idea brokers",
+    "creative desperation",
+    "Frozen",
+    "Disney",
+    "cross-domain borrowing",
+    "deadline pressure",
+    "revision"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "idea brokers",
+      "detail": "the sidecar allows idea brokers as the chapter mechanism for moving patterns across contexts",
+      "useIn": "both",
+      "phrasingHint": "Idea brokers matter because they carry a working pattern out of one room and make it available to another problem."
+    },
+    {
+      "kind": "event",
+      "name": "creative desperation",
+      "detail": "the source bundle permits creative desperation as deadline pressure that can force revision without guaranteeing creativity",
+      "useIn": "both",
+      "phrasingHint": "Creative desperation should feel like the moment the draft can no longer be protected by someday."
+    },
+    {
+      "kind": "artifact",
+      "name": "Disney's Frozen",
+      "detail": "Frozen is named in the official source bundle as the innovation example, without support for detailed production chronology",
+      "useIn": "fullRead",
+      "phrasingHint": "Frozen belongs as a narrow example of a creative work that needed borrowed patterns and hard revision to become coherent."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Person at a meeting realizes the real lesson",
+      "The day starts with a dashboard",
+      "A simple choice changes everything"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more faster",
+      "The obvious answer is wrong",
+      "The problem is not effort but something deeper"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three priorities",
+      "Pause before your next task"
+    ],
+    "examples": [
+      "generic office stand-up",
+      "kitchen table planning",
+      "classroom marker demonstration",
+      "commuter train epiphany"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "a pediatric rehab clinic redesigning a boring home-exercise plan",
+      "audience": "a therapist trying to keep children practicing between visits",
+      "stakes": "patients stop doing exercises and recovery slows",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia borrows progress-loop mechanics from a language-learning app and cuts every feature that does not help the child repeat the movement safely",
+      "firstImage": "A foam balance pad squeaks under a child's sock",
+      "mustInclude": [
+        "balance pad",
+        "language-app progress loop",
+        "safe repetition"
+      ],
+      "mustAvoid": [
+        "app gimmick solves healthcare"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "a regional rail maintenance team reducing overnight inspection misses",
+      "audience": "an engineer looking outside rail for inspection patterns",
+      "stakes": "a missed coupling defect can cancel the morning schedule",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Etienne imports a pre-flight checklist pattern from aviation, then revises it around track access limits instead of copying it whole",
+      "firstImage": "An empty platform hums under sodium lights after the last train leaves",
+      "mustInclude": [
+        "pre-flight checklist pattern",
+        "track access window",
+        "coupling defect"
+      ],
+      "mustAvoid": [
+        "train station as atmosphere only"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "a food-truck owner rebuilding a lunch menu after sales stall",
+      "audience": "an owner who confuses originality with refusing outside influence",
+      "stakes": "another weak month could close the truck",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chidi accepts a queue-management idea from a pharmacy line and reshapes the menu board around faster choices",
+      "firstImage": "\"That line moves faster than ours,\" his sister says outside the pharmacy",
+      "mustInclude": [
+        "menu board",
+        "pharmacy queue",
+        "lunch rush"
+      ],
+      "mustAvoid": [
+        "foodie trend montage"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "a city housing nonprofit revising an intake process under grant deadline pressure",
+      "audience": "a program director whose team is protecting a clumsy draft",
+      "stakes": "families will keep repeating the same story to three offices",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Laura until the grant deadline to stop defending the intake script and recombine a library reference-desk model with legal triage",
+      "firstImage": "It took Laura two weeks of duplicate intake forms to admit the draft was not almost done",
+      "mustInclude": [
+        "intake forms",
+        "library reference-desk model",
+        "legal triage"
+      ],
+      "mustAvoid": [
+        "bureaucracy rant"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "an independent game studio trying to fix a tutorial that players skip",
+      "audience": "a narrative designer under a demo deadline",
+      "stakes": "players quit before learning the core mechanic",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marit tests a museum exhibit pattern, then cuts the clever narration that keeps players from touching the mechanic",
+      "firstImage": "What if the best tutorial pattern is hiding in a children's museum exhibit?",
+      "mustInclude": [
+        "museum exhibit pattern",
+        "demo deadline",
+        "core mechanic"
+      ],
+      "mustAvoid": [
+        "copying the museum format without revision"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "a public defender office improving witness preparation without coaching testimony",
+      "audience": "a training lead borrowing from sports practice design",
+      "stakes": "witnesses either freeze or sound rehearsed in court",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Diego keep only the borrowed practice structure that preserves truthful recall, cutting anything that would make testimony sound scripted",
+      "firstImage": "You are in a windowless interview room with a legal pad turned sideways",
+      "mustInclude": [
+        "practice structure",
+        "truthful recall",
+        "legal pad"
+      ],
+      "mustAvoid": [
+        "courtroom drama spectacle"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish recombination from copying",
+      "identify when pressure enables revision rather than panic",
+      "choose outside patterns that fit the constraint instead of flattering novelty"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one stuck problem, borrow one working pattern from a different field, and write the first constraint it must survive before you trust it.",
+  "readingTimeMinutes": 12
+}

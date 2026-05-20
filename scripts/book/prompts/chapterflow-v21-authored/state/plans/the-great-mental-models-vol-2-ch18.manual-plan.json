@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch18",
+  "number": 18,
+  "title": "Hierarchical Organization",
+  "coreMove": "Build layers that preserve coordination at scale without smothering local judgment.",
+  "sourcePressure": "Hierarchical Organization concerns nested levels, role layers, scale, and coordination through structure.",
+  "chapterSpecificMisunderstanding": "assuming hierarchy is either always oppressive or always efficient",
+  "sourceAlignmentTerms": [
+    "hierarchical organization",
+    "layers",
+    "scale",
+    "nested roles",
+    "coordination",
+    "levels",
+    "control"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Hierarchical Organization",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "assuming hierarchy is either always oppressive or always efficient",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Julia",
+      "domain": "warehouse shift layers",
+      "audience": "readers who face warehouse shift layers decisions where hierarchical organization is easy to misread",
+      "stakes": "orders delayed between supervisors",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Julia adds one layer to the pick list, routes the decision through the zone board, and keeps the handoff scanner local so scale does not erase judgment. Domain: warehouse shift layers.",
+      "firstImage": "pick list visible in the warehouse shift layers",
+      "mustInclude": [
+        "pick list",
+        "zone board",
+        "handoff scanner"
+      ],
+      "mustAvoid": [
+        "assuming hierarchy is either always oppressive or always efficient",
+        "reusing a generic meeting scene instead of the warehouse shift layers constraints"
+      ]
+    },
+    {
+      "protagonistName": "Patrick",
+      "domain": "orchestra rehearsal sections",
+      "audience": "readers who face orchestra rehearsal sections decisions where hierarchical organization is easy to misread",
+      "stakes": "conductor losing detail across sections",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Patrick adds one layer to the section seating chart, routes the decision through the bowing note, and keeps the rehearsal clock local so scale does not erase judgment. Domain: orchestra rehearsal sections.",
+      "firstImage": "section seating chart visible in the orchestra rehearsal sections",
+      "mustInclude": [
+        "section seating chart",
+        "bowing note",
+        "rehearsal clock"
+      ],
+      "mustAvoid": [
+        "assuming hierarchy is either always oppressive or always efficient",
+        "reusing a generic meeting scene instead of the orchestra rehearsal sections constraints"
+      ]
+    },
+    {
+      "protagonistName": "Luc",
+      "domain": "hospital incident command drill",
+      "audience": "readers who face hospital incident command drill decisions where hierarchical organization is easy to misread",
+      "stakes": "authority unclear during a drill",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Luc adds one layer to the incident vest, routes the decision through the command board, and keeps the radio call sign local so scale does not erase judgment. Domain: hospital incident command drill.",
+      "firstImage": "incident vest visible in the hospital incident command drill",
+      "mustInclude": [
+        "incident vest",
+        "command board",
+        "radio call sign"
+      ],
+      "mustAvoid": [
+        "assuming hierarchy is either always oppressive or always efficient",
+        "reusing a generic meeting scene instead of the hospital incident command drill constraints"
+      ]
+    },
+    {
+      "protagonistName": "Signe",
+      "domain": "software permissions tree",
+      "audience": "readers who face software permissions tree decisions where hierarchical organization is easy to misread",
+      "stakes": "support staff blocked by wrong access",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Signe adds one layer to the permission tree, routes the decision through the admin ticket, and keeps the access badge local so scale does not erase judgment. Domain: software permissions tree.",
+      "firstImage": "permission tree visible in the software permissions tree",
+      "mustInclude": [
+        "permission tree",
+        "admin ticket",
+        "access badge"
+      ],
+      "mustAvoid": [
+        "assuming hierarchy is either always oppressive or always efficient",
+        "reusing a generic meeting scene instead of the software permissions tree constraints"
+      ]
+    },
+    {
+      "protagonistName": "Beatrice",
+      "domain": "school trip chaperone chain",
+      "audience": "readers who face school trip chaperone chain decisions where hierarchical organization is easy to misread",
+      "stakes": "students lost during a museum visit",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Beatrice adds one layer to the bus roster, routes the decision through the museum wristband, and keeps the headcount sheet local so scale does not erase judgment. Domain: school trip chaperone chain.",
+      "firstImage": "bus roster visible in the school trip chaperone chain",
+      "mustInclude": [
+        "bus roster",
+        "museum wristband",
+        "headcount sheet"
+      ],
+      "mustAvoid": [
+        "assuming hierarchy is either always oppressive or always efficient",
+        "reusing a generic meeting scene instead of the school trip chaperone chain constraints"
+      ]
+    },
+    {
+      "protagonistName": "Manuel",
+      "domain": "construction foreperson ladder",
+      "audience": "readers who face construction foreperson ladder decisions where hierarchical organization is easy to misread",
+      "stakes": "safety misses between subcontractors",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Manuel adds one layer to the lift plan, routes the decision through the safety harness log, and keeps the foreperson phone local so scale does not erase judgment. Domain: construction foreperson ladder.",
+      "firstImage": "lift plan visible in the construction foreperson ladder",
+      "mustInclude": [
+        "lift plan",
+        "safety harness log",
+        "foreperson phone"
+      ],
+      "mustAvoid": [
+        "assuming hierarchy is either always oppressive or always efficient",
+        "reusing a generic meeting scene instead of the construction foreperson ladder constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for hierarchical organization rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Build layers that preserve coordination at scale without smothering local judgment.",
+      "explain why the tempting misread fails: assuming hierarchy is either always oppressive or always efficient",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving hierarchical organization, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

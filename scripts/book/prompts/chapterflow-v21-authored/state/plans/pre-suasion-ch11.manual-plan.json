@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch11",
+  "number": 11,
+  "title": "Unity 1: Being Together",
+  "coreMove": "Bring a legitimate shared identity to consciousness before asking for cooperation.",
+  "sourcePressure": "The source adds unity as a seventh principle and narrows this route to We relationships based on identity, family, genetic commonality, and place.",
+  "chapterSpecificMisunderstanding": "Unity means being likable, warm, or team-spirited.",
+  "sourceAlignmentTerms": [
+    "unity",
+    "We relationship",
+    "shared identity",
+    "family cue",
+    "place cue",
+    "togetherness"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "diaspora archive project",
+      "audience": "an archivist asking families to loan fragile letters",
+      "stakes": "whether shared origin is brought forward before the trust request",
+      "format": "scene",
+      "requiredBeat": "the archivist opens with the street name both families left behind before presenting the loan agreement",
+      "firstImage": "a yellowed envelope with an old neighborhood postmark",
+      "mustInclude": [
+        "loan agreement",
+        "postmark"
+      ],
+      "mustAvoid": [
+        "nostalgia alone"
+      ]
+    },
+    {
+      "domain": "rural clinic recruitment",
+      "audience": "a doctor asking nurses to return to their home county",
+      "stakes": "whether place identity makes the request feel like serving one’s own",
+      "format": "vignette",
+      "requiredBeat": "the doctor points to the county birth registry where three applicants’ families appear before discussing shifts",
+      "firstImage": "a county registry open under a clinic lamp",
+      "mustInclude": [
+        "birth registry",
+        "shift roster"
+      ],
+      "mustAvoid": [
+        "staffing pitch"
+      ]
+    },
+    {
+      "domain": "family-owned fishery succession",
+      "audience": "an adviser mediating siblings on boat investment",
+      "stakes": "whether family unity is active before the capital decision",
+      "format": "dialogue",
+      "requiredBeat": "the adviser has each sibling identify the net-mending mark taught by their grandfather before opening the budget",
+      "firstImage": "a repaired net laid across a dock crate",
+      "mustInclude": [
+        "budget sheet",
+        "net repair mark"
+      ],
+      "mustAvoid": [
+        "family drama"
+      ]
+    },
+    {
+      "domain": "tribal language app rollout",
+      "audience": "a developer asking elders to record pronunciations",
+      "stakes": "whether shared identity precedes technology concerns",
+      "format": "decision_point",
+      "requiredBeat": "the developer plays a child saying the clan greeting before showing the recording consent form",
+      "firstImage": "a small recorder beside a handwritten greeting card",
+      "mustInclude": [
+        "consent form",
+        "recorder"
+      ],
+      "mustAvoid": [
+        "technology adoption generic"
+      ]
+    },
+    {
+      "domain": "alumni disaster fund",
+      "audience": "a college officer asking graduates to support flood repairs",
+      "stakes": "whether campus place cues create We before the donation page",
+      "format": "before_after",
+      "requiredBeat": "the officer shows the flooded doorway everyone used as freshmen before the gift field",
+      "firstImage": "a photo of a stone campus doorway under floodwater",
+      "mustInclude": [
+        "gift field",
+        "freshman directory"
+      ],
+      "mustAvoid": [
+        "generic alumni pride"
+      ]
+    },
+    {
+      "domain": "immigrant legal workshop",
+      "audience": "a coordinator asking attendees to share sensitive documents",
+      "stakes": "whether a shared journey cue makes trust legitimate before intake",
+      "format": "reflection",
+      "requiredBeat": "the coordinator starts with a map pin exercise of first arrival cities before the document checklist",
+      "firstImage": "a paper map dotted with small colored pins",
+      "mustInclude": [
+        "document checklist",
+        "map pin"
+      ],
+      "mustAvoid": [
+        "identity exploitation"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "tell unity from liking",
+      "surface legitimate shared identity",
+      "use family or place cues without exploitation",
+      "recognize when We language is false"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before asking for cooperation, write the legitimate We that already exists, then remove any language that would sound like borrowed intimacy.",
+  "readingTimeMinutes": 12
+}

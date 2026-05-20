@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch16",
+  "number": 16,
+  "title": "How to Stick with Good Habits Every Day",
+  "coreMove": "Use visible tracking to return quickly after a miss instead of worshiping the streak.",
+  "sourcePressure": "Visible evidence and habit tracking can make repetition satisfying across days, but the practical recovery rule is to avoid missing twice in a row.",
+  "chapterSpecificMisunderstanding": "Turning tracking into perfectionism, shame, or streak worship.",
+  "sourceAlignmentTerms": [
+    "habit tracking",
+    "streak",
+    "visual measurement",
+    "never miss twice",
+    "recovery",
+    "evidence"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of habit tracking",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a beekeeper tracking hive inspections with colored pins and returning after one missed day",
+      "audience": "a hobbyist tempted to abandon the log after travel",
+      "stakes": "whether visible tracking creates return rather than shame",
+      "format": "scene",
+      "requiredBeat": "she places a yellow pin for the missed inspection and schedules the next check instead of ripping down the board",
+      "firstImage": "colored pins on a hive map board",
+      "mustInclude": [
+        "hive map",
+        "yellow pin"
+      ],
+      "mustAvoid": [
+        "perfectionist streak worship"
+      ]
+    },
+    {
+      "domain": "a public-radio producer marking daily tape reviews with cassette stickers",
+      "audience": "a producer learning to hear cleaner edits",
+      "stakes": "whether the tracker makes quiet reps satisfying",
+      "format": "vignette",
+      "requiredBeat": "after ten minutes of tape review, he adds a cassette sticker and stops before inflating the task",
+      "firstImage": "a cassette sticker sheet beside a waveform screen",
+      "mustInclude": [
+        "cassette sticker",
+        "edit log"
+      ],
+      "mustAvoid": [
+        "generic calendar X marks"
+      ]
+    },
+    {
+      "domain": "a dialysis patient recovering after a skipped weight log",
+      "audience": "a patient who spirals when tracking breaks",
+      "stakes": "whether never miss twice guides repair",
+      "format": "dialogue",
+      "requiredBeat": "the nurse circles the blank square once and asks what will make tomorrow easy, not why yesterday failed",
+      "firstImage": "a weight log with one circled blank square",
+      "mustInclude": [
+        "weight log",
+        "clinic pencil"
+      ],
+      "mustAvoid": [
+        "shame dashboard"
+      ]
+    },
+    {
+      "domain": "a ceramic kiln technician checking cone readings after a broken streak",
+      "audience": "a technician with safety-critical repetition",
+      "stakes": "whether tracking helps re-entry after disruption",
+      "format": "postmortem",
+      "requiredBeat": "he reviews the missed firing log, adds the next cone reading, and protects the second day",
+      "firstImage": "a kiln cone chart clipped to a warm brick wall",
+      "mustInclude": [
+        "cone chart",
+        "firing log"
+      ],
+      "mustAvoid": [
+        "craft perfectionism"
+      ]
+    },
+    {
+      "domain": "a high-school debate coach using a visible return mark after missed speech drills",
+      "audience": "a coach helping students recover from tournament fatigue",
+      "stakes": "whether the tracker signals come back today",
+      "format": "before_after",
+      "requiredBeat": "the student places a green return tab beside yesterday empty slot before giving one timed rebuttal",
+      "firstImage": "green tabs on a debate drill board",
+      "mustInclude": [
+        "return tab",
+        "rebuttal timer"
+      ],
+      "mustAvoid": [
+        "classroom grade shell"
+      ]
+    },
+    {
+      "domain": "a fisheries officer tracking patrol reports through weather delays",
+      "audience": "a field officer whose route breaks in storms",
+      "stakes": "whether visible continuity survives missed patrol days",
+      "format": "decision_point",
+      "requiredBeat": "after the storm blank, she files the next report by noon instead of waiting for a perfect week",
+      "firstImage": "a rain-specked patrol map under a clear sleeve",
+      "mustInclude": [
+        "patrol map",
+        "report sleeve"
+      ],
+      "mustAvoid": [
+        "generic habit tracker app"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use tracking as visible evidence",
+      "recover after one miss before it becomes two",
+      "avoid perfectionist streak interpretations"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Mark one completed rep in a visible tracker. If yesterday is blank, mark today as the return instead of explaining the miss.",
+  "readingTimeMinutes": 12
+}

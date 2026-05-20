@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch12",
+  "number": 12,
+  "title": "Evolution Part Two: Adaptation Rate and the Red Queen Effect",
+  "readingTimeMinutes": 12,
+  "hook": "The threat matrix made Caroline's controls look older than the calendar said they were.",
+  "counterintuition": "Hard work can still be standing still. Adaptation rate is judged against the moving baseline, not against how busy your own system feels.",
+  "tryThisNow": "Pick one metric that looks better than last month. Add the outside baseline beside it, then cut one churn task that does not close the gap.",
+  "keyTakeaway": "Adaptation rate matters because environments and rivals move too; judge change by relative fit, not by your own prior version.",
+  "breakdown": {
+    "fastRead": "Caroline's incident note said the team had patched faster than last quarter. The threat matrix said attackers had changed faster still. The patch window was cleaner, but the baseline had moved.\n\nShe stopped celebrating the internal improvement alone and overlaid it against the new threat pattern. One maintenance task looked productive until she saw it did not improve relative fit.\n\nAdaptation rate is change measured against a shifting environment. The Red Queen effect warns that standing still can happen while you are working hard.",
+    "deepRead": "\"Classes are packed,\" George said, pointing at the waitlist. The trend board across town showed a rival studio filling earlier slots with shorter classes and different instructors. George was improving against his own past and losing against the new baseline.\n\nThe support is narrow and practical: adaptation rate means how quickly a system changes relative to a shifting environment, while the Red Queen effect marks the need to keep adapting because the landscape and competitors also move. George did not need panic. He needed comparison. The instructor roster had churn tasks that looked busy, but the real question was whether any change matched the pace of what customers had started choosing elsewhere. The baseline moves too, and your comparison has to move with it.\n\nMore motion is not the same as adaptation.\n\nJulien saw the same issue in a bus redesign. The ridership heat map showed commuters shifting toward a new hospital entrance, but the stop poster still explained a route designed for last year's habits. The transfer receipts showed longer detours even after the agency improved signage. Better signs helped only if the route changed quickly enough for the moving commute pattern.\n\nThe limit is frenzy. The Red Queen effect does not mean chase every signal. Some churn is just noise with a calendar attached. Adaptation rate asks which outside pressure has moved enough to change fit, then funds the response that closes that specific gap.",
+    "fullRead": "At 3:15 p.m., Inga held the admissions rubric revision beside a portfolio sample that would have won two cycles earlier. Applicants had learned the old criteria. Prep programs had learned them too. The deadline grid looked orderly, but the signal the committee wanted had become easier to imitate.\n\nThis is the trap of measuring only your own progress. Internal dashboards are comforting because they make motion visible, but selection does not grade your effort against your old self. It grades fit against the current environment.\n\nThis is the trap of measuring only your own progress. You can revise a rubric, patch a system, improve a route, or refresh a class schedule and still fall behind. The environment is revising itself while you work. Competitors copy. Applicants adapt. Customers compare. Pests arrive earlier. A moving baseline turns yesterday's improvement into today's maintenance.\n\nWhat changed outside your scoreboard?\n\nThat question keeps the model from becoming generic urgency. Running harder is not the move. Matching adaptation rate to a shifting environment is the move. Caroline should not fund every security task; she should fund the patch cadence that meets the threat pattern. George should not copy every trend; he should compare class changes with the choices customers are actually making. Inga should not rewrite every admissions sentence; she should change the signal that the environment has learned to fake.\n\nYou can feel it in a greenhouse. Kiran reads the sticky trap card and sees pest pressure arriving earlier than the old spray log expects. Last year's plan was careful. This year's row tags tell another story. If Kiran improves recordkeeping but keeps the same response timing, the greenhouse still loses relative ground. The crop does not compare the plan with last season's binder. It meets the moving pest pressure now.\n\nMarta learned the lesson after grocery customers had already switched. Her delivery map improved by six minutes over the quarter, and that looked good in isolation. The competitor flyer promised narrower windows and substitutions approved by text. Basket receipts showed customers leaving before her dashboard caught the change. In the postmortem, she crossed out three internal churn tasks and funded the one adaptation that matched the new baseline: tighter delivery windows on the routes most exposed to switching.\n\nAdaptation rate has a cost. If you treat every outside movement as an emergency, you become unstable. You exhaust people, abandon compounding work, and mistake novelty for survival. The model is comparative, not frantic. It asks whether your rate of change matches the rate at which fit is being redefined. The discipline is to name the outside pressure before you fund the response. A threat pattern, commuter route, pest season, applicant pool, or customer expectation can move at a different pace. Each one deserves a different adaptation rate.\n\nPut your progress beside the landscape. If both moved, measure the gap between them. A team can work hard and still stand still relative to the world that selects it."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-caroline-patch-cadence",
+      "title": "Caroline Overlays the Threat Matrix",
+      "tags": [
+        "scene",
+        "security",
+        "moving-baseline"
+      ],
+      "planSpec": {
+        "domain": "cybersecurity patch cadence",
+        "audience": "readers who face cybersecurity patch cadence decisions where adaptation rate is easy to misread",
+        "stakes": "strong controls aging faster than threats",
+        "format": "scene",
+        "requiredBeat": "Caroline overlays the threat matrix on the moving patch window, crosses out one churn task on the incident note, and funds the adaptation that matches the new baseline. Domain: cybersecurity patch cadence."
+      },
+      "scenario": "The threat matrix glows red beside Caroline's incident note while the patch window chart shows a cleaner process than last quarter. Patch times improved, but the exploit window moved faster and attackers changed targets before the maintenance sprint closed. Before approving the next sprint, Caroline has to decide whether to celebrate internal progress or fund the patch change that matches the new threat baseline.",
+      "whatToDo": "Overlay patch cadence against the current threat matrix and cut one maintenance task that does not close the relative gap.",
+      "whyItMatters": "The team improved and still lost ground. Adaptation rate is judged against the moving environment, not last quarter alone."
+    },
+    {
+      "exampleId": "ch12-ex02-george-class-trend",
+      "title": "George Checks the Trend Board",
+      "tags": [
+        "vignette",
+        "fitness",
+        "relative-improvement"
+      ],
+      "planSpec": {
+        "domain": "fitness studio class trend",
+        "audience": "readers who face fitness studio class trend decisions where adaptation rate is easy to misread",
+        "stakes": "packed classes losing ground to a rival",
+        "format": "vignette",
+        "requiredBeat": "George overlays the class waitlist on the moving trend board, crosses out one churn task on the instructor roster, and funds the adaptation that matches the new baseline. Domain: fitness studio class trend."
+      },
+      "scenario": "\"We still have waitlists,\" George says, tapping the class sheet while the front desk phone rings with cancellation requests for long evening sessions. The trend board shows a rival filling shorter noon classes while his instructor roster churns through old formats. George must decide whether a packed legacy class is enough or whether the schedule needs to adapt to the baseline customers now compare against.",
+      "whatToDo": "Compare waitlists with competitor timing and customer choices. Fund the class change that closes the relative gap, not every trend.",
+      "whyItMatters": "Internal demand can hide relative decline. The Red Queen effect shows up when the outside standard moves faster than your improvement."
+    },
+    {
+      "exampleId": "ch12-ex03-julien-ridership-map",
+      "title": "Julien Moves the Stop Poster",
+      "tags": [
+        "dialogue",
+        "transit",
+        "pace-mismatch"
+      ],
+      "planSpec": {
+        "domain": "bus ridership redesign",
+        "audience": "readers who face bus ridership redesign decisions where adaptation rate is easy to misread",
+        "stakes": "route change lagging commuter habits",
+        "format": "dialogue",
+        "requiredBeat": "Julien overlays the ridership heat map on the moving stop poster, crosses out one churn task on the transfer receipt, and funds the adaptation that matches the new baseline. Domain: bus ridership redesign."
+      },
+      "scenario": "The depot wall is covered with stop posters while Julien studies a ridership heat map marked around the new hospital entrance. \"The entrance moved the commute,\" a driver says, holding a transfer receipt with an extra detour. Julien has to choose between printing clearer posters for the old path or funding the route change that meets the new commuter pattern.",
+      "whatToDo": "Overlay the heat map on the actual stop pattern and remove signage churn that preserves the wrong route.",
+      "whyItMatters": "Clearer communication cannot fix a pace mismatch. The route has to adapt at the speed commuter habits changed."
+    },
+    {
+      "exampleId": "ch12-ex04-inga-rubric-update",
+      "title": "Inga Revises the Signal",
+      "tags": [
+        "decision_point",
+        "admissions",
+        "churn"
+      ],
+      "planSpec": {
+        "domain": "admissions rubric update",
+        "audience": "readers who face admissions rubric update decisions where adaptation rate is easy to misread",
+        "stakes": "applicants chasing yesterday's criteria",
+        "format": "decision_point",
+        "requiredBeat": "Inga overlays the rubric revision on the moving portfolio sample, crosses out one churn task on the deadline grid, and funds the adaptation that matches the new baseline. Domain: admissions rubric update."
+      },
+      "scenario": "At 3:15 p.m., Inga lays the rubric revision beside a portfolio sample polished to match last year's criteria and a prep-program checklist that names every signal. The deadline grid is neat, but the signal has been copied. She must decide whether to tidy the process again or adapt the rubric to the new applicant baseline.",
+      "whatToDo": "Identify which signal the environment has learned to imitate and revise that part of the rubric. Stop improving the deadline grid as a substitute.",
+      "whyItMatters": "The process can look better while the signal decays. Adaptation rate depends on how fast the baseline is moving."
+    },
+    {
+      "exampleId": "ch12-ex05-kiran-greenhouse-pressure",
+      "title": "Kiran Reads the Trap Card",
+      "tags": [
+        "predict_reveal",
+        "greenhouse",
+        "environment"
+      ],
+      "planSpec": {
+        "domain": "greenhouse pest pressure plan",
+        "audience": "readers who face greenhouse pest pressure plan decisions where adaptation rate is easy to misread",
+        "stakes": "crop plan outpaced by pest timing",
+        "format": "predict_reveal",
+        "requiredBeat": "Kiran overlays the sticky trap card on the moving greenhouse row tag, crosses out one churn task on the spray log, and funds the adaptation that matches the new baseline. Domain: greenhouse pest pressure plan."
+      },
+      "scenario": "You hold Kiran's sticky trap card up to the greenhouse row tag and see insects two weeks earlier than the spray log expects. The crop rows look orderly, and Kiran predicts last year's plan will still hold because the log is cleaner now. He has to decide whether better records are enough or whether timing must adapt to the new pest baseline.",
+      "whatToDo": "Move the response timing to match the trap data and cross out recordkeeping churn that does not change protection.",
+      "whyItMatters": "The crop faces current pest pressure, not last year's calendar. Cleaner logs matter only if the adaptation keeps pace."
+    },
+    {
+      "exampleId": "ch12-ex06-marta-delivery-map",
+      "title": "Marta Funds the Exposed Routes",
+      "tags": [
+        "postmortem",
+        "grocery",
+        "baseline"
+      ],
+      "planSpec": {
+        "domain": "grocery delivery competitor response",
+        "audience": "readers who face grocery delivery competitor response decisions where adaptation rate is easy to misread",
+        "stakes": "customers switching before metrics catch up",
+        "format": "postmortem",
+        "requiredBeat": "Marta overlays the competitor flyer on the moving delivery map, crosses out one churn task on the basket receipt, and funds the adaptation that matches the new baseline. Domain: grocery delivery competitor response."
+      },
+      "scenario": "It took Marta one lost neighborhood to trust the basket receipts more than the dashboard. Her delivery map had improved by six minutes, but the competitor flyer set a narrower window customers now expected and text approvals made substitutions easier. In the postmortem, she has to decide whether to keep polishing internal metrics or fund tighter routes where switching has already begun.",
+      "whatToDo": "Compare route performance with the competitor promise and customer receipts. Invest where the baseline changed fastest.",
+      "whyItMatters": "Improvement against old delivery standards did not protect exposed customers. The relevant race was relative."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A security team patches faster than last quarter, but attackers exploit new weaknesses even faster and the exploit window keeps shrinking. What should they measure?",
+        "choices": [
+          "Patch cadence relative to the current threat baseline.",
+          "Only their own quarterly improvement.",
+          "How many meetings discuss security."
+        ],
+        "correctIndex": 0,
+        "explanation": "Adaptation rate is relative to a moving environment. Internal improvement is insufficient if the threat baseline moves faster.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A fitness studio has waitlists, but a rival is taking customers with shorter noon classes and a different instructor mix. Which response fits the Red Queen effect?",
+        "choices": [
+          "Ignore the rival because current classes still fill.",
+          "Compare customer choices against the new class baseline and test the schedule gap.",
+          "Add random new formats every week."
+        ],
+        "correctIndex": 1,
+        "explanation": "The issue is relative fit, not blind speed. The studio should adapt to the moved baseline without chasing every trend.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A transit agency improves stop posters, but commuters have shifted toward a new hospital entrance, transfers remain high, and detours grow. What is the best diagnosis?",
+        "choices": [
+          "The posters are clearer, so adaptation is complete.",
+          "Commuters are too impatient to understand routes.",
+          "The route is adapting too slowly to the changed commute pattern."
+        ],
+        "correctIndex": 2,
+        "explanation": "The agency improved communication, but the baseline moved in route demand. Clear posters for the wrong path do not close the relative gap.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "An admissions rubric is revised every year, but prep programs quickly learn the criteria and portfolio samples become harder to distinguish. What should change?",
+        "choices": [
+          "Revise the signal that applicants have learned to imitate.",
+          "Keep the rubric because revision itself proves adaptation.",
+          "Move the deadline earlier without changing criteria."
+        ],
+        "correctIndex": 0,
+        "explanation": "Adaptation must match the moving baseline. Process churn does not help if the signal being selected has already been copied.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A greenhouse has cleaner spray logs than last year, but sticky traps show pests arriving earlier and row tags show pressure spreading sooner. What does the model suggest?",
+        "choices": [
+          "The cleaner log is the only adaptation needed.",
+          "Response timing must move with pest pressure, while recordkeeping churn should be cut.",
+          "Ignore trap data until crop loss confirms it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The relevant baseline is current pest timing. Cleaner logs help only if they support an adaptation that keeps pace.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A grocery delivery team improves average speed, but a competitor changes customer expectations with narrower delivery windows and text substitutions. What failed?",
+        "choices": [
+          "The team measured improvement against its own past rather than the new customer baseline.",
+          "Customers stopped caring about delivery windows.",
+          "The competitor flyer should be ignored as noise."
+        ],
+        "correctIndex": 0,
+        "explanation": "The team improved internally while losing relative fit. The Red Queen effect appears when the comparison standard moves.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A company reacts to every competitor announcement, changes priorities weekly, and exhausts staff without proving which baseline moved. Which correction best honors adaptation rate?",
+        "choices": [
+          "Stop watching the market entirely.",
+          "Treat every outside move as urgent.",
+          "Identify which external changes actually redefine fit and fund only those responses."
+        ],
+        "correctIndex": 2,
+        "explanation": "The model is comparative, not frantic. Adaptation should match meaningful baseline movement, not every noisy signal.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A language app has improved lessons, but users now compare it with tools that give instant pronunciation feedback during practice. How should the team evaluate progress?",
+        "choices": [
+          "By asking whether lesson quality improved relative to last year only.",
+          "By comparing its rate of improvement with the new feedback baseline users experience elsewhere.",
+          "By shipping unrelated features to look active."
+        ],
+        "correctIndex": 1,
+        "explanation": "User expectations moved. The app may be better than before and still behind the current environment.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A local newspaper improves print layout while readers move to mobile alerts for storm updates and road closures. Which action transfers the model?",
+        "choices": [
+          "Double down on print layout because it improved.",
+          "Blame readers for changing habits.",
+          "Compare the newsroom's adaptation rate with the mobile-alert baseline and fund the gap."
+        ],
+        "correctIndex": 2,
+        "explanation": "The outside environment shifted toward mobile alerts. The model asks whether adaptation matches that new baseline, not whether print improved.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Your metrics improved, but your position worsened. What should you retrieve?",
+      "back": "Retrieve adaptation rate: compare your change with the moving environment, not only your past version.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A team is improving but its market position is flat. What is the Red Queen warning in practical terms?",
+      "back": "The baseline moves too. You may need to adapt just to maintain relative fit.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How do you avoid turning the model into frantic urgency?",
+      "back": "Separate meaningful baseline shifts from noise. Fund adaptation that closes a real relative gap.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A task looks productive but does not close the outside gap. What is it likely to be?",
+      "back": "Churn. It creates motion without improving relative fit against the moving environment.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What comparison should sit beside any internal improvement metric?",
+      "back": "The external baseline: competitors, customer expectations, threats, or conditions that are changing fit.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to measure change against a moving baseline. The skill is cutting churn and funding adaptation that preserves relative fit.",
+    "ifThenPlans": [
+      {
+        "context": "metrics review",
+        "plan": "If a metric improves, then I will place the outside baseline beside it before calling it progress."
+      },
+      {
+        "context": "competitive response",
+        "plan": "If a competitor moves, then I will ask whether that move redefines customer expectations before reacting."
+      },
+      {
+        "context": "risk management",
+        "plan": "If a threat pattern changes faster than our controls, then I will shift funding from churn to the adaptation that closes the timing gap."
+      },
+      {
+        "context": "personal learning",
+        "plan": "If my skill improves slowly, then I will compare it with the environment where that skill must perform."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, take one improving metric and write the moving baseline next to it. Cut one activity that does not close the relative gap.",
+    "weeklyPractice": "Each week, review one area where you feel busy. Mark whether the environment has moved and whether your adaptation rate is enough."
+  },
+  "memorableLines": [
+    {
+      "text": "The baseline moves too, and your comparison has to move with it.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the Red Queen effect into a practical comparison."
+    },
+    {
+      "text": "More motion is not the same as adaptation.",
+      "location": "breakdown.deepRead",
+      "why": "It distinguishes useful response from churn."
+    },
+    {
+      "text": "A team can work hard and still stand still relative to the world that selects it.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the core danger of measuring only internal progress."
+    }
+  ]
+}

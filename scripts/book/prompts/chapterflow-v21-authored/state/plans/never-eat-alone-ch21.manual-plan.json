@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch21",
+  "number": 21,
+  "title": "Find Anchor Tenants and Feed Them",
+  "coreMove": "Identify the relationships that stabilize the wider network and feed them with sustained value.",
+  "sourcePressure": "A few stabilizing relationships carry disproportionate weight and deserve deliberate care that is not just status favoritism.",
+  "chapterSpecificMisunderstanding": "Assuming only elite people count as anchors or overinvesting in status.",
+  "sourceAlignmentTerms": [
+    "anchor tenants",
+    "stabilizing ties",
+    "feed them",
+    "sustained care",
+    "network stability",
+    "high-value relationships"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Simon",
+      "domain": "regional anchor customer lunch",
+      "audience": "a reader facing regional anchor customer lunch where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if regional anchor customer lunch becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Simon chooses one stabilizing relationship and invests in it before chasing new reach in front of customer scorecard, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "customer scorecard on the edge of regional anchor customer lunch",
+      "mustInclude": [
+        "customer scorecard",
+        "regional anchor customer lunch constraint",
+        "one named next step tied to anchor tenants"
+      ],
+      "mustAvoid": [
+        "Assuming only elite people count as anchors or overinvesting in status.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Stephen",
+      "domain": "founding donor stewardship call",
+      "audience": "a reader facing founding donor stewardship call where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if founding donor stewardship call becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Stephen chooses one stabilizing relationship and invests in it before chasing new reach in front of donor call sheet, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "donor call sheet on the edge of founding donor stewardship call",
+      "mustInclude": [
+        "donor call sheet",
+        "founding donor stewardship call constraint",
+        "one named next step tied to anchor tenants"
+      ],
+      "mustAvoid": [
+        "Assuming only elite people count as anchors or overinvesting in status.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Tim",
+      "domain": "senior nurse preceptor round",
+      "audience": "a reader facing senior nurse preceptor round where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if senior nurse preceptor round becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Tim chooses one stabilizing relationship and invests in it before chasing new reach in front of preceptor badge, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "preceptor badge on the edge of senior nurse preceptor round",
+      "mustInclude": [
+        "preceptor badge",
+        "senior nurse preceptor round constraint",
+        "one named next step tied to anchor tenants"
+      ],
+      "mustAvoid": [
+        "Assuming only elite people count as anchors or overinvesting in status.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "William",
+      "domain": "trusted supplier repair bay",
+      "audience": "a reader facing trusted supplier repair bay where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if trusted supplier repair bay becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "William chooses one stabilizing relationship and invests in it before chasing new reach in front of repair invoice, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "repair invoice on the edge of trusted supplier repair bay",
+      "mustInclude": [
+        "repair invoice",
+        "trusted supplier repair bay constraint",
+        "one named next step tied to anchor tenants"
+      ],
+      "mustAvoid": [
+        "Assuming only elite people count as anchors or overinvesting in status.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "alumni chapter host list",
+      "audience": "a reader facing alumni chapter host list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if alumni chapter host list becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Frida chooses one stabilizing relationship and invests in it before chasing new reach in front of host nametag, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "host nametag on the edge of alumni chapter host list",
+      "mustInclude": [
+        "host nametag",
+        "alumni chapter host list constraint",
+        "one named next step tied to anchor tenants"
+      ],
+      "mustAvoid": [
+        "Assuming only elite people count as anchors or overinvesting in status.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Jamal",
+      "domain": "longtime volunteer appreciation table",
+      "audience": "a reader facing longtime volunteer appreciation table where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if longtime volunteer appreciation table becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Jamal chooses one stabilizing relationship and invests in it before chasing new reach in front of photo collage, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "photo collage on the edge of longtime volunteer appreciation table",
+      "mustInclude": [
+        "photo collage",
+        "longtime volunteer appreciation table constraint",
+        "one named next step tied to anchor tenants"
+      ],
+      "mustAvoid": [
+        "Assuming only elite people count as anchors or overinvesting in status.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish anchor tenants from Assuming only elite people count as anchors or overinvesting in status.",
+      "choose the visible action that performs: Identify the relationships that stabilize the wider network and feed them with sustained value.",
+      "diagnose when a scenario drifts into Assuming only elite people count as anchors or overinvesting in status.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real anchor tenants moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

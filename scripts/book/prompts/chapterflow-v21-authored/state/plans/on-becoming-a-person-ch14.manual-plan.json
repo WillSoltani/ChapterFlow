@@ -1,0 +1,190 @@
+{
+  "chapterId": "on-becoming-a-person-ch14",
+  "number": 14,
+  "title": "Significant Learning: In Therapy and in Education",
+  "coreMove": "Design learning around personal significance rather than mere coverage.",
+  "sourcePressure": "The chapter connects therapy and education by treating significant learning as inwardly engaged change, not information transfer. No split source sidecar exists for ch14; frozen TOC and book skeleton support the heading, part placement, and broad intent only, with no chapter-local named anecdotes, studies, or places.",
+  "chapterSpecificMisunderstanding": "Calling any engaging lesson significant or turning learning into entertainment.",
+  "sourceAlignmentTerms": [
+    "significant learning",
+    "therapy and education",
+    "personal meaning",
+    "inward engagement",
+    "change in the learner",
+    "coverage"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source exposes no usable chapter-local named person, study, institution, place, date, or anecdotal artifact from Rogers here. Use fictional protagonists only; do not invent named Rogers cases or studies.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of significant learning",
+      "therapist office at the window",
+      "reader-you-are-stuck generic opener"
+    ],
+    "counterintuition": [
+      "Most people think X, but Y",
+      "It is not about being nice",
+      "The paradox is that acceptance changes everything"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you noticed",
+      "pause and breathe before replying"
+    ],
+    "examples": [
+      "fun lesson design",
+      "information transfer",
+      "generic engagement talk",
+      "reused classroom worksheet shell",
+      "coffee mug office feedback shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hadiya",
+      "domain": "nurse educator simulation lab",
+      "audience": "readers who face nurse educator simulation lab and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around significant learning; specifically, the outcome turns on whether Hadiya can make significant learning visible without sliding into calling any engaging lesson significant or turning learning into entertainment.",
+      "format": "reflection",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "In the nurse educator simulation lab, Hadiya connects the lesson to a real decision so learning becomes personally significant rather than merely covered, with the simulation mannequin chart and the project rubric making the choice visible instead of merely stated.",
+      "firstImage": "the simulation mannequin chart beside Hadiya's hand; the opening begins with one line of speech that exposes the relational pressure before the narrator explains it",
+      "mustInclude": [
+        "simulation mannequin chart",
+        "project rubric"
+      ],
+      "mustAvoid": [
+        "do not turn nurse educator simulation lab into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Hadiya lecture"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "high-school project critique",
+      "audience": "readers who face high-school project critique and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around significant learning; specifically, the outcome turns on whether Yusuf can make significant learning visible without sliding into calling any engaging lesson significant or turning learning into entertainment.",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "In the high-school project critique, Yusuf connects the lesson to a real decision so learning becomes personally significant rather than merely covered, with the project rubric and the homework notebook making the choice visible instead of merely stated.",
+      "firstImage": "a half-finished note on Yusuf's desk; the opening lets the room or setting carry the first signal before any person is named",
+      "mustInclude": [
+        "project rubric",
+        "homework notebook"
+      ],
+      "mustAvoid": [
+        "do not turn high-school project critique into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Yusuf lecture"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "parent-child homework table",
+      "audience": "readers who face parent-child homework table and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around significant learning; specifically, the outcome turns on whether Adaeze can make significant learning visible without sliding into calling any engaging lesson significant or turning learning into entertainment.",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "In the parent-child homework table, Adaeze connects the lesson to a real decision so learning becomes personally significant rather than merely covered, with the homework notebook and the simulation mannequin chart making the choice visible instead of merely stated.",
+      "firstImage": "the open doorway before Adaeze speaks; the opening uses one clock-time opening only if the time pressure matters",
+      "mustInclude": [
+        "homework notebook",
+        "simulation mannequin chart"
+      ],
+      "mustAvoid": [
+        "do not turn parent-child homework table into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Adaeze lecture"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "apprenticeship welding bay",
+      "audience": "readers who face apprenticeship welding bay and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around significant learning; specifically, the outcome turns on whether Chidi can make significant learning visible without sliding into calling any engaging lesson significant or turning learning into entertainment.",
+      "format": "dilemma",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "In the apprenticeship welding bay, Chidi connects the lesson to a real decision so learning becomes personally significant rather than merely covered, with the simulation mannequin chart and the project rubric making the choice visible instead of merely stated.",
+      "firstImage": "a line on the form that Chidi cannot ignore; the opening opens from the texture, sound, or physical pressure of the object before anyone explains it",
+      "mustInclude": [
+        "simulation mannequin chart",
+        "project rubric"
+      ],
+      "mustAvoid": [
+        "do not turn apprenticeship welding bay into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Chidi lecture"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "language exchange meetup",
+      "audience": "readers who face language exchange meetup and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around significant learning; specifically, the outcome turns on whether Lin can make significant learning visible without sliding into calling any engaging lesson significant or turning learning into entertainment.",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "In the language exchange meetup, Lin connects the lesson to a real decision so learning becomes personally significant rather than merely covered, with the project rubric and the homework notebook making the choice visible instead of merely stated.",
+      "firstImage": "the quiet after Lin stops explaining; the opening starts after the cost is visible, then backs into the choice that created it",
+      "mustInclude": [
+        "project rubric",
+        "homework notebook"
+      ],
+      "mustAvoid": [
+        "do not turn language exchange meetup into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Lin lecture"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "financial literacy workshop",
+      "audience": "readers who face financial literacy workshop and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around significant learning; specifically, the outcome turns on whether Min can make significant learning visible without sliding into calling any engaging lesson significant or turning learning into entertainment.",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "In the financial literacy workshop, Min connects the lesson to a real decision so learning becomes personally significant rather than merely covered, with the homework notebook and the simulation mannequin chart making the choice visible instead of merely stated.",
+      "firstImage": "two chairs pulled out from the table; the opening puts the reader directly in the moment before naming the choice",
+      "mustInclude": [
+        "homework notebook",
+        "simulation mannequin chart"
+      ],
+      "mustAvoid": [
+        "do not turn financial literacy workshop into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Min lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify personal significance",
+      "separate engagement from entertainment",
+      "transfer therapy logic into learning design"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one lesson or explanation and add the moment where the learner must connect it to a real decision they face.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside where supported, a direct second-person passage, or a brief historical reference to the frozen chapter placement",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "chapterId": "built-to-last-ch01",
+  "number": 1,
+  "title": "The Best of the Best",
+  "coreMove": "Judge admired companies through matched comparison, long time horizons, and surviving systems instead of founder glow or product nostalgia.",
+  "sourcePressure": "The source frames the book as a six-year Stanford Graduate School of Business research project comparing eighteen exceptional long-lasting companies against top competitors, not as a celebration of charisma or hot products.",
+  "chapterSpecificMisunderstanding": "Treating visionary companies as a list of famous brands to admire, rather than as comparison-tested institutions whose durability has to be explained.",
+  "sourceAlignmentTerms": [
+    "visionary companies",
+    "comparison companies",
+    "six-year research project",
+    "Stanford Graduate School of Business",
+    "eighteen companies",
+    "long-lasting institutions",
+    "stock market outperformance"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Stanford Graduate School of Business",
+      "detail": "the source sidecar says the work drew on a six-year research project there",
+      "useIn": "both",
+      "phrasingHint": "The useful question starts in a research room at Stanford, where admiration had to survive comparison."
+    },
+    {
+      "kind": "artifact",
+      "name": "eighteen exceptional long-lasting companies",
+      "detail": "the source sidecar says the research set compared eighteen exceptional long-lasting companies against top competitors",
+      "useIn": "both",
+      "phrasingHint": "A company earns attention only when it is set beside a rival and still looks unusual after decades."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a founder standing on a stage changes everything",
+      "a famous brand proves greatness by being famous"
+    ],
+    "counterintuition": [
+      "success is not about profit but about purpose",
+      "the best companies are not the biggest companies"
+    ],
+    "tryThisNow": [
+      "pick a company you admire and write why",
+      "set a timer and list values"
+    ],
+    "examples": [
+      "generic startup pitch deck admiration",
+      "garage founder myth",
+      "boardroom with a coffee mug and a heroic CEO"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "municipal transit procurement comparing two bus operators across fifteen winter seasons",
+      "audience": "Sarah, a city procurement analyst defending a renewal recommendation",
+      "stakes": "a ten-year contract could go to the familiar incumbent because everyone remembers one heroic storm response",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah lays two maintenance logs beside the bid sheets and circles the years after each founding director left, forcing the committee to judge system survival rather than lore",
+      "firstImage": "salt-streaked maintenance binders spread across a council table",
+      "mustInclude": [
+        "fifteen winter seasons",
+        "maintenance logs",
+        "director turnover dates"
+      ],
+      "mustAvoid": [
+        "single storm anecdote decides the contract"
+      ]
+    },
+    {
+      "domain": "regional hospital selecting a sterile-processing vendor after a famous salesperson dazzles the executive team",
+      "audience": "James, the operations chief who has to slow the room down",
+      "stakes": "one missed sterilization cycle could shut down an operating list",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "James asks each vendor to show defect rates before and after manager changes, then lets the favored vendor fall behind on continuity",
+      "firstImage": "\"Before we vote, show me the years after your plant manager left,\" James says",
+      "mustInclude": [
+        "defect-rate chart",
+        "manager-change column",
+        "operating list"
+      ],
+      "mustAvoid": [
+        "charismatic sales demo as proof"
+      ]
+    },
+    {
+      "domain": "independent bookstore chain deciding whether a beloved flagship should define the whole company",
+      "audience": "Camille, a second-generation owner comparing three shops",
+      "stakes": "expansion money may be spent copying the prettiest store instead of the strongest operating pattern",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Camille compares staff-retention ledgers and customer returns from the plain branch against the beautiful flagship, then changes what the expansion plan copies",
+      "firstImage": "the flagship smells of cedar shelves and new paper while the ledgers sit unopened",
+      "mustInclude": [
+        "retention ledger",
+        "customer-return slips",
+        "plain branch"
+      ],
+      "mustAvoid": [
+        "romantic bookstore atmosphere as the whole lesson"
+      ]
+    },
+    {
+      "domain": "software security team evaluating two incident-response groups after both had one public save",
+      "audience": "Lukas, a director asked which team should become the template",
+      "stakes": "a future breach will test the repeatability of the process, not the memory of one engineer",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lukas removes the hero engineer from both timelines and checks which checklist still produced clean handoffs",
+      "firstImage": "What remains after the famous engineer is erased from the incident timeline?",
+      "mustInclude": [
+        "incident timeline",
+        "handoff checklist",
+        "public save"
+      ],
+      "mustAvoid": [
+        "one genius responder saves the day"
+      ]
+    },
+    {
+      "domain": "public library system choosing a literacy partner by matched neighborhood outcomes",
+      "audience": "Sofia, a grants officer under pressure to pick the recognizable nonprofit",
+      "stakes": "three low-income branches could lose a program that actually compounds over years",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Sofia two grant cycles to see that the lesser-known partner kept outcomes after its founder retired, while the famous one dropped when media attention moved on",
+      "firstImage": "two grant folders with identical stickers but different second-year attendance lines",
+      "mustInclude": [
+        "matched branches",
+        "founder retirement",
+        "second-year attendance"
+      ],
+      "mustAvoid": [
+        "nonprofit brand glow"
+      ]
+    },
+    {
+      "domain": "craft manufacturing cooperative comparing two tool suppliers after a production surge",
+      "audience": "Andrew, a cooperative board member choosing a supplier contract",
+      "stakes": "the cooperative could lock itself to a supplier whose quality depends on one veteran machinist",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Andrew test whether the supplier can explain its tolerances without the veteran machinist in the room, then mark the weaker system despite the better sample part",
+      "firstImage": "a caliper, two sample parts, and one empty chair at the supplier visit",
+      "mustInclude": [
+        "caliper",
+        "sample parts",
+        "empty chair"
+      ],
+      "mustAvoid": [
+        "best sample part wins without process comparison"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate admiration from comparison evidence",
+      "identify when a case depends on a person rather than a system",
+      "test durability claims using matched rivals and time"
+    ]
+  },
+  "tryThisNowSpec": "Choose one organization you admire and write the matched comparison you would need before trusting the lesson: rival, time span, leadership change, and one survival measure.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch03",
+  "number": 3,
+  "title": "The Counterbalance Strategy: Do Not Lose Your Presence of Mind",
+  "coreMove": "Build a repeatable counterweight that restores width before stress chooses the next move for you.",
+  "sourcePressure": "Anger, fear, and embarrassment narrow time horizon and make bad decisions feel clear while they are happening.",
+  "chapterSpecificMisunderstanding": "Confuse presence of mind with being emotionless or with delaying every urgent decision.",
+  "sourceAlignmentTerms": [
+    "presence of mind",
+    "emotional urgency",
+    "narrow state",
+    "counterbalance",
+    "second reader",
+    "delay rule",
+    "real urgency"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for The Counterbalance Strategy: Do Not Lose Your Presence of Mind.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "David",
+      "domain": "cloud outage response channel",
+      "audience": "a reader facing cloud outage response channel who needs to practice Strategy 3 without reducing it to confuse presence of mind with being emotionless or with delaying every urgent decision.",
+      "stakes": "a concrete decision in cloud outage response channel where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist stops a pressure-driven action, uses a practiced reset, and returns with a wider option that was invisible in the narrow state. The visible action must happen inside cloud outage response channel, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" David says, with the unsent email still unopened.",
+      "mustInclude": [
+        "unsent email",
+        "running shoes",
+        "one visible deadline tied to presence of mind"
+      ],
+      "mustAvoid": [
+        "Confuse presence of mind with being emotionless or with delaying every urgent decision.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "family estate mediation",
+      "audience": "a reader facing family estate mediation who needs to practice Strategy 3 without reducing it to confuse presence of mind with being emotionless or with delaying every urgent decision.",
+      "stakes": "a concrete decision in family estate mediation where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist stops a pressure-driven action, uses a practiced reset, and returns with a wider option that was invisible in the narrow state. The visible action must happen inside family estate mediation, not as an abstract reflection.",
+      "firstImage": "The running shoes is damp at one corner when Michael pulls it from the folder.",
+      "mustInclude": [
+        "running shoes",
+        "folded legal pad",
+        "a named counterparty tied to presence of mind"
+      ],
+      "mustAvoid": [
+        "Confuse presence of mind with being emotionless or with delaying every urgent decision.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "emergency department staffing call",
+      "audience": "a reader facing emergency department staffing call who needs to practice Strategy 3 without reducing it to confuse presence of mind with being emotionless or with delaying every urgent decision.",
+      "stakes": "a concrete decision in emergency department staffing call where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist stops a pressure-driven action, uses a practiced reset, and returns with a wider option that was invisible in the narrow state. The visible action must happen inside emergency department staffing call, not as an abstract reflection.",
+      "firstImage": "You are beside Thomas as the folded legal pad makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "folded legal pad",
+        "unsent email",
+        "a public consequence tied to presence of mind"
+      ],
+      "mustAvoid": [
+        "Confuse presence of mind with being emotionless or with delaying every urgent decision.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "school principal after a parent accusation",
+      "audience": "a reader facing school principal after a parent accusation who needs to practice Strategy 3 without reducing it to confuse presence of mind with being emotionless or with delaying every urgent decision.",
+      "stakes": "a concrete decision in school principal after a parent accusation where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist stops a pressure-driven action, uses a practiced reset, and returns with a wider option that was invisible in the narrow state. The visible action must happen inside school principal after a parent accusation, not as an abstract reflection.",
+      "firstImage": "It took Daniel three weeks to notice the unsent email was the part everyone kept avoiding.",
+      "mustInclude": [
+        "unsent email",
+        "running shoes",
+        "a resource limit tied to presence of mind"
+      ],
+      "mustAvoid": [
+        "Confuse presence of mind with being emotionless or with delaying every urgent decision.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "architectural bid protest",
+      "audience": "a reader facing architectural bid protest who needs to practice Strategy 3 without reducing it to confuse presence of mind with being emotionless or with delaying every urgent decision.",
+      "stakes": "a concrete decision in architectural bid protest where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist stops a pressure-driven action, uses a practiced reset, and returns with a wider option that was invisible in the narrow state. The visible action must happen inside architectural bid protest, not as an abstract reflection.",
+      "firstImage": "What changes when Andrew stops arguing and points to the running shoes?",
+      "mustInclude": [
+        "running shoes",
+        "folded legal pad",
+        "a private decision rule tied to presence of mind"
+      ],
+      "mustAvoid": [
+        "Confuse presence of mind with being emotionless or with delaying every urgent decision.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "tenant association safety complaint",
+      "audience": "a reader facing tenant association safety complaint who needs to practice Strategy 3 without reducing it to confuse presence of mind with being emotionless or with delaying every urgent decision.",
+      "stakes": "a concrete decision in tenant association safety complaint where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist stops a pressure-driven action, uses a practiced reset, and returns with a wider option that was invisible in the narrow state. The visible action must happen inside tenant association safety complaint, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the folded legal pad before Matthew says a word.",
+      "mustInclude": [
+        "folded legal pad",
+        "unsent email",
+        "a reversal check tied to presence of mind"
+      ],
+      "mustAvoid": [
+        "Confuse presence of mind with being emotionless or with delaying every urgent decision.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 3 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Build a repeatable counterweight that restores width before stress chooses the next move for you.",
+      "explain why the common misread fails: Confuse presence of mind with being emotionless or with delaying every urgent decision.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before sending the loaded message, write the decision in one sentence, walk away for five minutes, and ask what fact will still matter tomorrow.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12,
+  "sourceAnchorNote": "No chapter-specific named person, study, place, artifact, or event is traceable in the frozen source for this strategy; use fictional protagonists and do not invent historical anchors."
+}

@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch11",
+  "number": 11,
+  "title": "Art",
+  "coreMove": "Ask how difficulty, waste, and external validation make artistic value legible as a costly signal.",
+  "sourcePressure": "The source reads art through costly signaling and the handicap principle, where impracticality and extrinsic features help signal value.",
+  "chapterSpecificMisunderstanding": "The writer turns art into personal expression or taste debate and misses costly signaling.",
+  "sourceAlignmentTerms": [
+    "art",
+    "costly signaling",
+    "handicap principle",
+    "impracticality",
+    "extrinsic features",
+    "value"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "costly signaling",
+      "detail": "The source says art can be understood through costly signaling.",
+      "useIn": "both",
+      "phrasingHint": "The useless effort can be exactly what makes the signal credible."
+    },
+    {
+      "kind": "artifact",
+      "name": "the handicap principle",
+      "detail": "The source names the handicap principle as part of the art account.",
+      "useIn": "both",
+      "phrasingHint": "A hard-to-fake burden can make value easier to believe."
+    },
+    {
+      "kind": "event",
+      "name": "impracticality and extrinsic features signaling value",
+      "detail": "The source says impracticality and extrinsic features help explain how art signals value.",
+      "useIn": "deepRead",
+      "phrasingHint": "The frame, venue, and waste of effort can speak before the image does."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch11: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch11: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch11: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch11: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch11: no generic timer reflection",
+      "the-elephant-in-the-brain-ch11: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch11: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch11: no coffee shop conversation as the default social proof",
+      "no named artist invented",
+      "no this painting means whatever you feel"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "independent film festival programming",
+      "audience": "a programmer choosing between competent and difficult films",
+      "stakes": "difficulty may signal seriousness but can crowd out audience clarity",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Andrew places the one-take film beside audience notes and asks whether its impracticality proves discipline or merely flatters the jury.",
+      "firstImage": "A stack of screeners leans against the projector case.",
+      "mustInclude": [
+        "screeners",
+        "jury notes",
+        "one-take cue sheet"
+      ],
+      "mustAvoid": [
+        "movie review prose"
+      ]
+    },
+    {
+      "domain": "community gallery opening",
+      "audience": "a curator explaining why installation labor matters",
+      "stakes": "viewers may read effort before meaning",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Manon leaves the rigging photos visible near the wall label so the hanging stones signal cost without needing a lecture.",
+      "firstImage": "Steel cable hums faintly above the gallery floor.",
+      "mustInclude": [
+        "rigging photos",
+        "wall label",
+        "hanging stones"
+      ],
+      "mustAvoid": [
+        "museum snob cliche"
+      ]
+    },
+    {
+      "domain": "craft fair ceramic pricing",
+      "audience": "a potter deciding whether to display failed test pieces",
+      "stakes": "visible waste can make mastery legible",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Show the warped ones,\" Jonas says, and Marta sees customers understand the price only after touching the failed glaze tiles.",
+      "firstImage": "\"Show the warped ones,\" Jonas says while Marta unwraps the perfect bowl.",
+      "mustInclude": [
+        "failed glaze tiles",
+        "price card",
+        "linen wrap"
+      ],
+      "mustAvoid": [
+        "consumption price signaling only"
+      ]
+    },
+    {
+      "domain": "architecture school final review",
+      "audience": "a student deciding how much process to reveal",
+      "stakes": "process can signal costly skill rather than hide weak concept",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You have Diego pin the discarded models beside the final one, making the jury see the search cost before debating taste.",
+      "firstImage": "You see balsa scraps under the final white model.",
+      "mustInclude": [
+        "discarded models",
+        "pin board",
+        "jury table"
+      ],
+      "mustAvoid": [
+        "education credential focus"
+      ]
+    },
+    {
+      "domain": "symphony commission pitch",
+      "audience": "a conductor assessing a score full of impossible passages",
+      "stakes": "technical burden may signal value or vanity",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Does the passage sound impossible because it earns the moment or because it asks the orchestra to applaud the composer?",
+      "firstImage": "Does the impossible bar earn its difficulty after the rehearsal stops?",
+      "mustInclude": [
+        "marked score",
+        "bassoon part",
+        "rehearsal pencil"
+      ],
+      "mustAvoid": [
+        "pure talent worship"
+      ]
+    },
+    {
+      "domain": "street mural permit hearing",
+      "audience": "an organizer making extrinsic value visible without faking prestige",
+      "stakes": "the site, process, and community signatures alter how the work is read",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Hiroshi one denied permit to realize the council never saw the scaffolding plan, school sketches, and signed maintenance pledge that made the mural costly.",
+      "firstImage": "It took Hiroshi one denied permit to understand what the council had not seen.",
+      "mustInclude": [
+        "scaffolding plan",
+        "student sketches",
+        "maintenance pledge"
+      ],
+      "mustAvoid": [
+        "politics protest art debate"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply costly signaling to artistic value",
+      "distinguish impractical value signals from empty difficulty",
+      "explain the role of extrinsic features without reducing art to status only"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one artwork or creative object near you. List what is costly or impractical about it, then ask what that cost makes credible.",
+  "readingTimeMinutes": 12
+}

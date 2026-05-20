@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch03",
+  "number": 3,
+  "title": "Thermodynamics",
+  "coreMove": "Price the maintenance energy a system needs before treating visible order as stable.",
+  "sourcePressure": "Thermodynamics is about order, energy, entropy, drift, maintenance, and displaced disorder, kept practical rather than scientific.",
+  "chapterSpecificMisunderstanding": "using entropy as a loose metaphor for messiness or complaining about decline",
+  "sourceAlignmentTerms": [
+    "order",
+    "energy",
+    "maintenance",
+    "drift",
+    "entropy",
+    "hidden cost",
+    "local order"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Thermodynamics",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "using entropy as a loose metaphor for messiness or complaining about decline",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "county archive climate control",
+      "audience": "readers who face county archive climate control decisions where order is easy to misread",
+      "stakes": "mold risk in paper records",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Megan adds the humidity strip and archive box label to the visible output, then moves the vent log into the cost column before approving the system. Domain: county archive climate control.",
+      "firstImage": "humidity strip visible in the county archive climate control",
+      "mustInclude": [
+        "humidity strip",
+        "archive box label",
+        "vent log"
+      ],
+      "mustAvoid": [
+        "using entropy as a loose metaphor for messiness or complaining about decline",
+        "reusing a generic meeting scene instead of the county archive climate control constraints"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "regional theater costume stockroom",
+      "audience": "readers who face regional theater costume stockroom decisions where order is easy to misread",
+      "stakes": "lost costumes before opening night",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Michael adds the costume rack tag and opening-night checklist to the visible output, then moves the repair ticket into the cost column before approving the system. Domain: regional theater costume stockroom.",
+      "firstImage": "costume rack tag visible in the regional theater costume stockroom",
+      "mustInclude": [
+        "costume rack tag",
+        "opening-night checklist",
+        "repair ticket"
+      ],
+      "mustAvoid": [
+        "using entropy as a loose metaphor for messiness or complaining about decline",
+        "reusing a generic meeting scene instead of the regional theater costume stockroom constraints"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "CRM data hygiene cleanup",
+      "audience": "readers who face CRM data hygiene cleanup decisions where order is easy to misread",
+      "stakes": "sales forecasts built on dirty fields",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Margaux adds the duplicate-account list and forecast sheet to the visible output, then moves the merge rule into the cost column before approving the system. Domain: CRM data hygiene cleanup.",
+      "firstImage": "duplicate-account list visible in the CRM data hygiene cleanup",
+      "mustInclude": [
+        "duplicate-account list",
+        "forecast sheet",
+        "merge rule"
+      ],
+      "mustAvoid": [
+        "using entropy as a loose metaphor for messiness or complaining about decline",
+        "reusing a generic meeting scene instead of the CRM data hygiene cleanup constraints"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "community garden compost system",
+      "audience": "readers who face community garden compost system decisions where order is easy to misread",
+      "stakes": "neighbors quitting after fruit flies",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Niklas adds the compost thermometer and plot map to the visible output, then moves the volunteer signup into the cost column before approving the system. Domain: community garden compost system.",
+      "firstImage": "compost thermometer visible in the community garden compost system",
+      "mustInclude": [
+        "compost thermometer",
+        "plot map",
+        "volunteer signup"
+      ],
+      "mustAvoid": [
+        "using entropy as a loose metaphor for messiness or complaining about decline",
+        "reusing a generic meeting scene instead of the community garden compost system constraints"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "clinic vaccine inventory fridge",
+      "audience": "readers who face clinic vaccine inventory fridge decisions where order is easy to misread",
+      "stakes": "spoiled doses and patient callbacks",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Layla adds the fridge temperature card and vial tray to the visible output, then moves the recall slip into the cost column before approving the system. Domain: clinic vaccine inventory fridge.",
+      "firstImage": "fridge temperature card visible in the clinic vaccine inventory fridge",
+      "mustInclude": [
+        "fridge temperature card",
+        "vial tray",
+        "recall slip"
+      ],
+      "mustAvoid": [
+        "using entropy as a loose metaphor for messiness or complaining about decline",
+        "reusing a generic meeting scene instead of the clinic vaccine inventory fridge constraints"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "server log retention policy",
+      "audience": "readers who face server log retention policy decisions where order is easy to misread",
+      "stakes": "storage bills hiding future audit pain",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Paula adds the retention schedule and storage invoice to the visible output, then moves the audit ticket into the cost column before approving the system. Domain: server log retention policy.",
+      "firstImage": "retention schedule visible in the server log retention policy",
+      "mustInclude": [
+        "retention schedule",
+        "storage invoice",
+        "audit ticket"
+      ],
+      "mustAvoid": [
+        "using entropy as a loose metaphor for messiness or complaining about decline",
+        "reusing a generic meeting scene instead of the server log retention policy constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for order rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Price the maintenance energy a system needs before treating visible order as stable.",
+      "explain why the tempting misread fails: using entropy as a loose metaphor for messiness or complaining about decline",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving order, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,202 @@
+{
+  "chapterId": "the-lean-startup-ch02",
+  "number": 2,
+  "title": "Define",
+  "coreMove": "Classify work by uncertainty rather than by the organization's costume, then choose a management system that fits that condition.",
+  "sourcePressure": "Entrepreneurship is defined by creating something new under uncertainty, whether the team is in a startup, corporation, nonprofit, government office, or school.",
+  "chapterSpecificMisunderstanding": "Assuming startup means small company, founder identity, venture funding, or loosened discipline.",
+  "sourceAlignmentTerms": [
+    "entrepreneurs are everywhere",
+    "startup condition",
+    "uncertainty",
+    "stable environments",
+    "validated learning",
+    "management fit"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Entrepreneurs are everywhere",
+      "detail": "the sidecar lists this as an allowed paraphrase anchor for the definitional reset",
+      "useIn": "deepRead",
+      "phrasingHint": "The useful test is not whether someone looks entrepreneurial, but whether the facts around the work are still unsettled."
+    },
+    {
+      "kind": "artifact",
+      "name": "Validated learning",
+      "detail": "the sidecar says it remains the progress metric in uncertain settings",
+      "useIn": "both",
+      "phrasingHint": "Once the work is uncertain, the scorecard has to ask what became less unknown."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Define.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "insurance claims chatbot inside a large carrier",
+      "audience": "corporate innovation managers",
+      "stakes": "routine delivery metrics could punish discovery work",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Anna relabels the project from rollout to uncertainty map before the steering review",
+      "firstImage": "a glass conference room with a claims script on the screen",
+      "mustInclude": [
+        "claims script",
+        "risk register",
+        "pilot boundary"
+      ],
+      "mustAvoid": [
+        "generic define office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "county library digital lending pilot",
+      "audience": "public-sector program team",
+      "stakes": "a stable institution may hide unsettled user behavior",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ben asks whether patrons have a known problem or whether the team is still discovering it",
+      "firstImage": "a returns cart beside a tablet checkout stand",
+      "mustInclude": [
+        "library cards",
+        "tablet stand",
+        "patron notes"
+      ],
+      "mustAvoid": [
+        "generic define office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "food-bank routing tool",
+      "audience": "nonprofit operations director",
+      "stakes": "donor pressure could force fixed plans before demand patterns are understood",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Celine separates known logistics from unknown volunteer adoption on the wall",
+      "firstImage": "a warehouse map pinned over crates of canned tomatoes",
+      "mustInclude": [
+        "route map",
+        "volunteer signup sheet",
+        "two depot limit"
+      ],
+      "mustAvoid": [
+        "generic define office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "medical device compliance group",
+      "audience": "regulated-company team",
+      "stakes": "process discipline might mask that clinicians do not yet value the workflow",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Andrew marks which parts are compliance execution and which parts are startup uncertainty",
+      "firstImage": "a binder of procedures next to a blank ward map",
+      "mustInclude": [
+        "procedure binder",
+        "ward map",
+        "clinician interview notes"
+      ],
+      "mustAvoid": [
+        "generic define office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "school district attendance app",
+      "audience": "education administrators",
+      "stakes": "the project may be managed like procurement when family behavior is unknown",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hanna stops the agenda until the room names what no one knows about parent use",
+      "firstImage": "a projector showing a procurement timeline",
+      "mustInclude": [
+        "attendance letters",
+        "parent SMS draft",
+        "pilot school list"
+      ],
+      "mustAvoid": [
+        "generic define office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "museum membership experiment",
+      "audience": "cultural institution staff",
+      "stakes": "a respected brand may still be guessing about why visitors return",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Luca replaces the launch checklist with an uncertainty checklist for repeat visits",
+      "firstImage": "a membership desk with unused lanyards",
+      "mustInclude": [
+        "visitor stamp",
+        "member card",
+        "return-offer sign"
+      ],
+      "mustAvoid": [
+        "generic define office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Define from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Classify work by uncertainty rather than by the organization's costume, then choose a management system that fits that condition.",
+      "Diagnose when a team is drifting into the misread: Assuming startup means small company, founder identity, venture funding, or loosened discipline."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Classify work by uncertainty rather than by the organization's costume, then choose a management system that fits that condition. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

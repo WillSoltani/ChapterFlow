@@ -1,0 +1,117 @@
+{
+  "bookId": "indistractable",
+  "title": "Indistractable",
+  "author": "Nir Eyal",
+  "thesisParagraph": "Indistractable argues that attention is not won by blaming devices or worshiping willpower. Distraction begins when discomfort looks easier to escape than to face, then gets amplified by external triggers, weak calendars, vague expectations, and social systems that reward instant response. The reader learns to master internal triggers, turn values into scheduled traction, hack back the cues that pull attention away, and use precommitments only after the right path is clear. The practical promise is not a perfectly quiet life. It is the ability to do what you said you would do, with your time, your work, your children, and the people you love.",
+  "coreIdeas": [
+    {
+      "name": "Discomfort drives distraction",
+      "oneSentence": "Most distraction is a move away from an uncomfortable internal state before it is a move toward a device.",
+      "mentalMove": "Name the feeling underneath the reach before changing the tool.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch03.source",
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Traction needs a calendar",
+      "oneSentence": "A value does not guide attention until it has a place in time.",
+      "mentalMove": "Convert important intentions into visible timeboxes with controllable inputs.",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch08.source",
+        "ch09.source",
+        "ch10.source"
+      ]
+    },
+    {
+      "name": "External triggers need judgment",
+      "oneSentence": "A cue is only useful when it serves prior intent or a real obligation.",
+      "mentalMove": "Ask what the cue is doing to the current plan, then redesign the channel or environment.",
+      "sourceAnchors": [
+        "ch11.source",
+        "ch12.source",
+        "ch13.source",
+        "ch14.source",
+        "ch15.source",
+        "ch16.source",
+        "ch17.source",
+        "ch18.source",
+        "ch19.source"
+      ]
+    },
+    {
+      "name": "Pacts protect the future self",
+      "oneSentence": "A pact works when it is set before temptation and supports a path that has already been made possible.",
+      "mentalMove": "Precommit to the desired action while calm, using cost or identity only when the plan is clear.",
+      "sourceAnchors": [
+        "ch20.source",
+        "ch21.source",
+        "ch22.source"
+      ]
+    },
+    {
+      "name": "Attention is social",
+      "oneSentence": "Workplaces, families, friends, and lovers either protect attention through shared norms or erode it through hidden pressure.",
+      "mentalMove": "Turn attention into a shared practice instead of a private willpower contest.",
+      "sourceAnchors": [
+        "ch23.source",
+        "ch24.source",
+        "ch25.source",
+        "ch26.source",
+        "ch27.source",
+        "ch28.source",
+        "ch29.source",
+        "ch30.source"
+      ]
+    }
+  ],
+  "targetReader": "A competent, overconnected reader who keeps losing planned time to discomfort, digital cues, workplace pressure, family conflict, or social expectations, and who wants a practical system for keeping promises to themselves and to the people who depend on their attention.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "locate the uncomfortable feeling before adjusting the tool",
+      "make attention a promise kept in time, not a personality trait"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no phone-blame as the whole explanation",
+      "no pretending structure can replace care in relationships"
+    ]
+  },
+  "voiceSpecimens": [
+    "The phone is only loud because the feeling underneath it has already raised its hand.",
+    "You do not fix an urge by insulting it. You watch it long enough to see what it wants from you.",
+    "A value that never reaches the calendar is still only a wish with good manners.",
+    "Some alerts are useful. The question is whether this one is helping the thing you came here to do.",
+    "A pact is not a trap for a weak person. It is a favor your calm self does for your tired self.",
+    "Children learn attention better when they help build the plan they are being asked to keep.",
+    "Presence is not proven by a speech about love. It is proven by what you remove from the room."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains how readers can overcome distraction and improve their productivity.",
+    "In today's digital world, everyone struggles with focus and needs better habits.",
+    "The author argues that technology is hijacking your brain and ruining your life.",
+    "Try setting a timer, making a list, and being more mindful whenever you feel distracted.",
+    "The key takeaway is to optimize your schedule so you can achieve your goals faster.",
+    "If you use these hacks consistently, you will become focused in every area of life."
+  ],
+  "teachingArc": "The teaching arc starts inside the reader: discomfort, urges, task friction, and identity stories explain why distraction is attractive. It then moves into traction, where values must become time and work expectations must be synchronized. The middle section teaches judgment and design for external triggers, from interruptions and email to devices, articles, and feeds. Pacts come only after the desired path is clear, adding future constraints through cost or identity. The final section expands attention into culture, children, friends, and love, showing that attention is sustained by shared norms and protected presence, not private grit alone.",
+  "forbiddenMoves": [
+    "Do not flatten the book into phone cleanup; the phone is often the channel, not the root cause.",
+    "Do not make every plan a calendar lesson; internal triggers, external cues, pacts, culture, children, friends, and love each need their own pressure.",
+    "Do not turn pacts into punishment; they come after traction has been made possible.",
+    "Do not write parenting chapters as control chapters; the source pressure is guided ownership and cue awareness.",
+    "Do not reuse the existing v21 package's repeated hooks about a random object at a timestamp and a distraction asking to be called necessary."
+  ]
+}

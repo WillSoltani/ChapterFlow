@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch15",
+  "number": 15,
+  "title": "Missions Require Marketing",
+  "coreMove": "Give a clarified mission enough visibility that the right people can notice, test, and amplify it.",
+  "sourcePressure": "Marketing is the final mission ingredient after support and discovery; visibility gives a mission public force.",
+  "chapterSpecificMisunderstanding": "Confusing marketing with self-promotion, virality, or empty personal branding.",
+  "sourceAlignmentTerms": [
+    "missions require marketing",
+    "visibility",
+    "reach",
+    "public force",
+    "mission support",
+    "audience",
+    "amplify"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Marketing is the work of making useful proof findable",
+      "detail": "The locked TOC and Google Books metadata confirm this chapter heading in Rule 4.",
+      "useIn": "both",
+      "phrasingHint": "A mission that stays invisible cannot gather the allies, pressure, or proof that make it larger than private intent."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch15: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch15: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch15: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch15: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Graham",
+      "domain": "open lab notebook for rare-disease tooling",
+      "audience": "a practitioner responsible for open lab notebook for rare-disease tooling",
+      "stakes": "open lab notebook for rare-disease tooling will either gain a defensible next move or drift into the chapter-specific trap: Confusing marketing with self-promotion, virality, or empty personal branding.",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "turns the proven work behind terminal window with clean output into one public artifact for a specific audience and tracks who can now act on the mission",
+      "firstImage": "terminal window with clean output",
+      "mustInclude": [
+        "terminal window with",
+        "visibility",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Ian",
+      "domain": "local food rescue routing pilot",
+      "audience": "a practitioner responsible for local food rescue routing pilot",
+      "stakes": "local food rescue routing pilot will either gain a defensible next move or drift into the chapter-specific trap: Confusing marketing with self-promotion, virality, or empty personal branding.",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "turns the proven work behind bakery crates before dawn into one public artifact for a specific audience and tracks who can now act on the mission",
+      "firstImage": "bakery crates before dawn",
+      "mustInclude": [
+        "bakery crates before",
+        "visibility",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Neil",
+      "domain": "independent accessibility plugin",
+      "audience": "a practitioner responsible for independent accessibility plugin",
+      "stakes": "independent accessibility plugin will either gain a defensible next move or drift into the chapter-specific trap: Confusing marketing with self-promotion, virality, or empty personal branding.",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "turns the proven work behind demo video timeline on a laptop into one public artifact for a specific audience and tracks who can now act on the mission",
+      "firstImage": "demo video timeline on a laptop",
+      "mustInclude": [
+        "demo video timeline",
+        "visibility",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Brian",
+      "domain": "community heat-risk alert system",
+      "audience": "a practitioner responsible for community heat-risk alert system",
+      "stakes": "community heat-risk alert system will either gain a defensible next move or drift into the chapter-specific trap: Confusing marketing with self-promotion, virality, or empty personal branding.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "turns the proven work behind red heat map beside fan list into one public artifact for a specific audience and tracks who can now act on the mission",
+      "firstImage": "red heat map beside fan list",
+      "mustInclude": [
+        "red heat map",
+        "visibility",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Adrian",
+      "domain": "craft apprenticeship portfolio",
+      "audience": "a practitioner responsible for craft apprenticeship portfolio",
+      "stakes": "craft apprenticeship portfolio will either gain a defensible next move or drift into the chapter-specific trap: Confusing marketing with self-promotion, virality, or empty personal branding.",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "turns the proven work behind metal shavings around a fixture into one public artifact for a specific audience and tracks who can now act on the mission",
+      "firstImage": "metal shavings around a fixture",
+      "mustInclude": [
+        "metal shavings around",
+        "visibility",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Aaron",
+      "domain": "tenant legal-rights explainer",
+      "audience": "a practitioner responsible for tenant legal-rights explainer",
+      "stakes": "tenant legal-rights explainer will either gain a defensible next move or drift into the chapter-specific trap: Confusing marketing with self-promotion, virality, or empty personal branding.",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "turns the proven work behind eviction notice under a scanner lid into one public artifact for a specific audience and tracks who can now act on the mission",
+      "firstImage": "eviction notice under a scanner lid",
+      "mustInclude": [
+        "eviction notice under",
+        "visibility",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish visibility from vanity",
+      "choose audience-specific artifacts",
+      "make mission legible after evidence exists"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the smallest public artifact your mission needs next: a demo, memo, field note, talk, page, or invitation to one real audience.",
+  "readingTimeMinutes": 12
+}

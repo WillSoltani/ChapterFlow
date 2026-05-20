@@ -1,0 +1,188 @@
+{
+  "chapterId": "the-denial-of-death-ch01",
+  "number": 1,
+  "title": "Human Nature and the Heroic",
+  "coreMove": "read heroism as the ordinary need to matter, not as rare public greatness",
+  "sourcePressure": "Introduces heroism as a basic human motive tied to narcissism, modern disillusion, and the need for vital concepts.",
+  "chapterSpecificMisunderstanding": "Heroism just means confidence, ambition, or inspirational courage.",
+  "sourceAlignmentTerms": [
+    "heroism",
+    "narcissism",
+    "significance",
+    "symbolic systems",
+    "modern disillusion",
+    "need to matter"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first mortality hook",
+      "generic fear controls your life opener",
+      "chapter 1 as essay preview"
+    ],
+    "counterintuition": [
+      "what looks like X is actually Y",
+      "you think this is about fear but it is about meaning",
+      "not weakness but strength correction shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on death",
+      "write three things you fear",
+      "generic notice your reaction prompt"
+    ],
+    "examples": [
+      "office meeting with mug scene shell",
+      "kitchen-table epiphany",
+      "classroom whiteboard morality tale",
+      "timestamp plus name plus prop opener"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "airport operations during weather diversion",
+      "audience": "ops lead at a gate cluster",
+      "stakes": "admit the terminal needs a story larger than schedule control",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah stops refreshing the delay board and walks the concourse to hear which passengers are trying to matter through anger or command",
+      "firstImage": "blue glare of delayed flights on a polished floor",
+      "mustInclude": [
+        "delay board",
+        "gate PA microphone",
+        "cot vouchers"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "generic heroism lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "family hardware store succession meeting",
+      "audience": "sibling asked to justify invisible labor",
+      "stakes": "name the need for significance without turning it into a power grab",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "James says he wants the family to stop treating twenty years of repairs as errands",
+      "firstImage": "cracked brass key on a conference table",
+      "mustInclude": [
+        "ledger binder",
+        "storefront keys",
+        "old service bell"
+      ],
+      "mustAvoid": [
+        "celebrity success stories",
+        "generic heroism lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "volunteer fire brigade awards night",
+      "audience": "captain choosing who gets honored",
+      "stakes": "separate real heroism from applause hunger",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Camille rewrites the award order so the smoke-alarm volunteer is named before the dramatic rescue",
+      "firstImage": "folding chairs under a station banner",
+      "mustInclude": [
+        "call sheet",
+        "brass plaque",
+        "coffee urn"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "generic heroism lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "university lab authorship negotiation",
+      "audience": "postdoc facing a credit fight",
+      "stakes": "show why a name line feels existential",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lukas points to the author order and asks what each person needs the line to prove",
+      "firstImage": "manuscript page with six highlighted names",
+      "mustInclude": [
+        "author draft",
+        "lab notebook",
+        "review deadline"
+      ],
+      "mustAvoid": [
+        "celebrity success stories",
+        "generic heroism lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "youth sports club budget meeting",
+      "audience": "treasurer resisting trophy culture",
+      "stakes": "protect recognition without feeding every parent status hunger",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sofia compares the trophy budget with the empty scholarship fund and makes the board choose what meaning it rewards",
+      "firstImage": "box of unused medals",
+      "mustInclude": [
+        "budget sheet",
+        "plastic medals",
+        "scholarship envelope"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "generic heroism lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "local newspaper final issue",
+      "audience": "editor choosing what the last front page preserves",
+      "stakes": "give the town an honest symbolic container without lying about decline",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Daniel replaces a farewell editorial with ordinary names and places the town used to feel real",
+      "firstImage": "paste-up board with blank white space",
+      "mustInclude": [
+        "front page proof",
+        "photo sleeves",
+        "deadline clock"
+      ],
+      "mustAvoid": [
+        "celebrity success stories",
+        "generic heroism lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply read heroism as the ordinary need to matter, not as rare public greatness in a fresh scenario",
+      "avoid the weak version: Heroism just means confidence, ambition, or inspirational courage.",
+      "explain choices using heroism, narcissism, significance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one place today where you wanted to be seen as important, then ask what finite need was under it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

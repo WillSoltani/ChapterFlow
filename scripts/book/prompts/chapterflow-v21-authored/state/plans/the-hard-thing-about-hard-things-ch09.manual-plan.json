@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch09",
+  "number": 9,
+  "title": "First Rule of Entrepreneurship: There Are No Rules",
+  "coreMove": "Keep judgment alive by testing whether a rule fits the present facts before applying it.",
+  "sourcePressure": "The chapter rejects universal formulas while preserving principles; timing, leverage, trust, creativity, accountability, and changing facts determine whether a rule still fits.",
+  "chapterSpecificMisunderstanding": "The weak version is rules do not matter, so entrepreneurs should improvise boldly.",
+  "sourceAlignmentTerms": [
+    "no rules",
+    "principles",
+    "judgment",
+    "context",
+    "leverage",
+    "timing",
+    "tradeoff"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "rules are made to be broken",
+      "entrepreneurship has no playbook",
+      "the best founders improvise"
+    ],
+    "counterintuition": [
+      "principles still matter",
+      "the rule can be wrong",
+      "context beats consistency"
+    ],
+    "tryThisNow": [
+      "break one rule",
+      "question a policy",
+      "list your assumptions"
+    ],
+    "examples": [
+      "generic startup pivot",
+      "negotiation table drama",
+      "maverick founder story"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "pharmaceutical cold-chain courier negotiating a hospital exception",
+      "audience": "a dispatch director deciding whether to violate the standard route rule",
+      "stakes": "the usual route protects efficiency, but a transplant shipment needs a different risk calculation",
+      "format": "decision_point",
+      "requiredBeat": "the director writes the principle behind the route rule, compares it with the transplant deadline, and approves a one-time escort with extra temperature checks",
+      "firstImage": "a sealed transplant medication case beside a printed route matrix",
+      "mustInclude": [
+        "route rule",
+        "temperature checks",
+        "one-time exception"
+      ],
+      "mustAvoid": [
+        "lawless urgency"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "independent game studio deciding whether to delay a creative milestone",
+      "audience": "a studio head balancing creative space against publisher accountability",
+      "stakes": "strict milestone enforcement may kill the mechanic that could save the game",
+      "format": "dialogue",
+      "requiredBeat": "the studio head separates the accountability principle from the calendar rule and trades a two-week delay for a playable mechanic proof",
+      "firstImage": "a build screen paused on an unfinished combat mechanic",
+      "mustInclude": [
+        "publisher milestone",
+        "playable proof",
+        "calendar rule"
+      ],
+      "mustAvoid": [
+        "artist versus manager cliche"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "community bank deciding whether to keep a loan policy during flood recovery",
+      "audience": "a lending officer whose standard collateral rule blocks otherwise viable local businesses",
+      "stakes": "rigid policy could harm the town, but loose lending could damage the bank",
+      "format": "before_after",
+      "requiredBeat": "the officer names the risk principle, designs a temporary flood-recovery covenant, and schedules review dates instead of simply waiving policy",
+      "firstImage": "mud-stained loan files drying on a plastic folding table",
+      "mustInclude": [
+        "risk principle",
+        "temporary covenant",
+        "review dates"
+      ],
+      "mustAvoid": [
+        "small-town sentimentality"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "airline maintenance hangar after a rare parts shortage",
+      "audience": "a maintenance chief deciding whether the no-cannibalization rule still fits",
+      "stakes": "grounded aircraft and safety standards collide under a shortage",
+      "format": "postmortem",
+      "requiredBeat": "the chief records why the rule exists, authorizes one documented parts transfer, and adds a return-to-standard trigger",
+      "firstImage": "a grounded aircraft with a missing access panel tagged in orange",
+      "mustInclude": [
+        "parts transfer",
+        "return-to-standard trigger",
+        "rule purpose"
+      ],
+      "mustAvoid": [
+        "cutting corners story"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "publishing house handling a surprise rights auction",
+      "audience": "an editor deciding whether to break the imprint's normal bid ceiling",
+      "stakes": "the rule protects margin, but the author could reshape the list if timing and trust are read correctly",
+      "format": "predict_reveal",
+      "requiredBeat": "the editor predicts what the ceiling rule protects, tests the current leverage with the agent, and raises the bid only after naming the new constraint",
+      "firstImage": "a rights auction email open beside a marked-up acquisition P&L",
+      "mustInclude": [
+        "bid ceiling",
+        "agent leverage",
+        "new constraint"
+      ],
+      "mustAvoid": [
+        "book industry glamour"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "industrial design firm choosing whether to bypass its client signoff sequence",
+      "audience": "a project lead whose medical device prototype must hit a regulatory demo",
+      "stakes": "standard signoff prevents rework, but the demo window will close before the usual sequence ends",
+      "format": "reflection",
+      "requiredBeat": "the lead states the principle behind signoff, creates a narrower prototype-only approval path, and logs what cannot ship under that exception",
+      "firstImage": "a foam medical-device prototype sitting beside an unsigned approval packet",
+      "mustInclude": [
+        "prototype-only approval",
+        "signoff principle",
+        "cannot-ship list"
+      ],
+      "mustAvoid": [
+        "design sprint enthusiasm"
+      ],
+      "openingDevice": "sensory_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate principle from rule",
+      "judge whether current context changes application",
+      "avoid using policy as shelter from tradeoff",
+      "evaluate exceptions with boundaries and return triggers"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one rule you are about to enforce. Write the principle it protects, the current fact that may change its fit, and the boundary that would make an exception legitimate.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "chapterId": "crucial-conversations-ch03",
+  "number": 3,
+  "title": "Start with Heart: Focus on What You Really Want",
+  "coreMove": "Reset your aim mid-heat by asking what you really want for yourself, the other person, and the relationship.",
+  "sourcePressure": "Before speaking, the reader must notice how pressure quietly changes their goal from solving the problem to saving face, punishing, escaping, or proving a point.",
+  "chapterSpecificMisunderstanding": "Reducing the skill to staying calm or being nice.",
+  "sourceAlignmentTerms": [
+    "Start with Heart",
+    "what I really want",
+    "Fool's Choice",
+    "honest and respectful",
+    "goal shift",
+    "motive check"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "first-time engineering manager preparing feedback about harsh code reviews",
+      "audience": "a new manager afraid of damaging trust with a brilliant senior developer",
+      "stakes": "the team is avoiding reviews and defects are reaching production",
+      "format": "before_after",
+      "requiredBeat": "the manager writes the first angry opening, catches the goal shift toward proving authority, and rewrites the aim around better reviews and preserved trust",
+      "firstImage": "A pull-request comment thread fills a laptop screen at 11:38 p.m.",
+      "mustInclude": [
+        "pull-request thread",
+        "bug report",
+        "one-on-one agenda"
+      ],
+      "mustAvoid": [
+        "generic performance review"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "youth soccer referee supervisor addressing a parent who films teenage referees",
+      "audience": "a volunteer supervisor who wants safety without humiliating the parent publicly",
+      "stakes": "teen referees may quit if the filming continues, but public confrontation could inflame the sideline",
+      "format": "decision_point",
+      "requiredBeat": "the supervisor starts toward the parent to shut him down, stops at the touchline, and asks what outcome he wants for the kids, the parent, and the league",
+      "firstImage": "\"Wait,\" someone says, and a phone on a monopod points across the sideline at a sixteen-year-old referee.",
+      "mustInclude": [
+        "phone monopod",
+        "sideline rope",
+        "referee schedule"
+      ],
+      "mustAvoid": [
+        "generic sportsmanship lecture"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "craft bakery co-owners arguing over a late wholesale order",
+      "audience": "a co-owner who feels accused of laziness after a delivery miss",
+      "stakes": "a key cafe account may leave and the partners are sliding into blame",
+      "format": "dialogue",
+      "requiredBeat": "one owner hears herself reaching for a blame sentence, names that she wants the account saved and the partnership intact, then asks how to get both",
+      "firstImage": "The first signal is sensory before it is social: a tray of almond croissants cools beside an unopened delivery invoice.",
+      "mustInclude": [
+        "delivery invoice",
+        "cooling rack",
+        "cafe order text"
+      ],
+      "mustAvoid": [
+        "repeated kitchen-counter spouse argument"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "public defender deciding how to confront an investigator who missed a witness deadline",
+      "audience": "an attorney under trial pressure who wants accountability without losing the investigator's cooperation",
+      "stakes": "a client's plea decision depends on facts that may now be late",
+      "format": "scene",
+      "requiredBeat": "the defender grips the missed subpoena receipt, notices the urge to punish, and asks how she would speak if she wanted both the truth and the investigator still engaged",
+      "firstImage": "You notice a courthouse elevator door opens on a hallway of plastic file bins before anyone names the problem.",
+      "mustInclude": [
+        "subpoena receipt",
+        "plea deadline",
+        "case file bin"
+      ],
+      "mustAvoid": [
+        "generic legal drama confrontation"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "choir director correcting a soloist who keeps changing tempo",
+      "audience": "a director who wants musical precision and wants the singer to stay brave",
+      "stakes": "the concert is two days away and the pianist is losing confidence in the cue",
+      "format": "vignette",
+      "requiredBeat": "the director rejects the false choice between blunt correction and empty praise, then sings the entry once and asks for one measurable adjustment",
+      "firstImage": "Only later does the miss become obvious: a pencil rests across measure 42 of a marked-up choral score.",
+      "mustInclude": [
+        "marked score",
+        "piano cue",
+        "rehearsal clock"
+      ],
+      "mustAvoid": [
+        "generic arts encouragement"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "apartment building resident confronting a neighbor about late-night power tools",
+      "audience": "a tenant who wants sleep without becoming the building scold",
+      "stakes": "a neighbor relationship and a newborn's sleep schedule are both on the line",
+      "format": "thought_experiment",
+      "requiredBeat": "the resident compares two drafts of the first sentence, one built to shame and one built to solve the noise pattern, then chooses the honest and respectful version",
+      "firstImage": "What changes when fine sawdust collects in the hallway outside apartment 3B?",
+      "mustInclude": [
+        "sawdust trail",
+        "quiet-hours notice",
+        "baby monitor light"
+      ],
+      "mustAvoid": [
+        "generic roommate complaint"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "catch goal drift while emotion is rising",
+      "refuse the false binary between honesty and respect",
+      "translate a defensive impulse into a mutual outcome",
+      "choose a first sentence that serves the real goal"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the sentence What do I really want? Then answer it three times: for me, for them, for the relationship. Cross out any answer that is secretly about revenge, escape, or looking right.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

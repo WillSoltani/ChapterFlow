@@ -1,0 +1,198 @@
+{
+  "chapterId": "peak-ch01",
+  "number": 1,
+  "title": "The Power of Purposeful Practice",
+  "coreMove": "Replace broad repetition with one narrow, feedback-rich target that forces the next attempt to change.",
+  "sourcePressure": "The opening chapter introduces purposeful practice through Steve Faloon digit-memory training and contrasts naive repetition with specific goals, focus, feedback, stretch, and method changes after plateaus.",
+  "chapterSpecificMisunderstanding": "The weak version says more repetitions plus consistency equals improvement.",
+  "sourceAlignmentTerms": [
+    "purposeful practice",
+    "naive practice",
+    "specific goal",
+    "feedback",
+    "comfort zone",
+    "plateau",
+    "method change"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Steve Faloon",
+      "detail": "the frozen sidecar ties chapter 1 to Faloon digit-memory training as the concrete case for purposeful practice, specific goals, feedback, stretch, and method changes after plateaus",
+      "useIn": "both",
+      "phrasingHint": "Steve Faloon did not improve by admiring memory in general; the digit string got longer because each miss told the next attempt where to work."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "another musician replaying a whole piece",
+      "practice makes perfect opener",
+      "hours logged scoreboard"
+    ],
+    "counterintuition": [
+      "more practice is always better",
+      "hard work beats talent in a generic way",
+      "you just need consistency"
+    ],
+    "tryThisNow": [
+      "practice for five minutes",
+      "write down a goal",
+      "repeat the skill until it feels better"
+    ],
+    "examples": [
+      "violin weak bar from old Peak draft",
+      "sales pitch pricing objection from old modern package",
+      "generic student studies harder",
+      "treadmill plateau shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "amateur archery sight adjustment at an indoor range",
+      "audience": "a learner who keeps shooting full rounds and calling every miss random",
+      "stakes": "a qualifying score keeps slipping because the same leftward miss survives every practice night",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah stops the full round, tapes a palm-sized target over the left edge, shoots only five arrows, and writes the sight correction before the next five arrows leave the bow",
+      "firstImage": "paper target faces clipped in a row under buzzing range lights",
+      "mustInclude": [
+        "five-arrow set",
+        "sight dial",
+        "left-edge tape"
+      ],
+      "mustAvoid": [
+        "generic sports grind",
+        "full-round repetition"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "trial paralegal exhibit labeling before a hearing",
+      "audience": "a detail-oriented worker who keeps rereading the whole packet",
+      "stakes": "one mislabeled exhibit could slow a judge during a short motion window",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Thomas finds that every returned packet failed at the date stamp, covers the rest of the binder, and drills only the stamp check until the next packet changes",
+      "firstImage": "three rejected exhibit tabs lined beside a blue date stamp",
+      "mustInclude": [
+        "exhibit tabs",
+        "date stamp",
+        "returned packet note"
+      ],
+      "mustAvoid": [
+        "generic office proofreading",
+        "just be more careful"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "espresso bar milk texture training during a quiet prep hour",
+      "audience": "a barista promoted too soon who keeps making passable drinks",
+      "stakes": "the cafe loses regulars when every cappuccino looks acceptable but tastes thin",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Camille pours three ounces into a marked tasting cup, listens for the hiss pitch, and compares the foam line before steaming the next pitcher",
+      "firstImage": "steam fog curling around a row of stainless tasting cups",
+      "mustInclude": [
+        "marked tasting cup",
+        "steam wand hiss",
+        "foam line"
+      ],
+      "mustAvoid": [
+        "coffee lifestyle scene",
+        "practice as repetition"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "museum docent practicing one transition between galleries",
+      "audience": "a volunteer who thinks a full tour run is the responsible way to prepare",
+      "stakes": "visitors keep drifting away at the same gallery doorway",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Jonas asks a senior docent to interrupt the exact sentence where visitors drift, rewrites only that doorway transition, and walks it twice before touching the rest of the tour",
+      "firstImage": "a security rope brushing the floor between two gallery rooms",
+      "mustInclude": [
+        "doorway transition",
+        "senior docent interruption",
+        "floor map"
+      ],
+      "mustAvoid": [
+        "generic public speaking tips",
+        "whole-tour rehearsal"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "rowing coxswain call timing on a cold practice launch",
+      "audience": "a team leader whose commands are energetic but late",
+      "stakes": "the crew loses rhythm before race weekend because corrections arrive after the stroke has already passed",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:18 a.m., Giulia records ten strokes, marks the late calls with pencil ticks, and repeats only the call before the catch until the next set lands earlier",
+      "firstImage": "pencil ticks beside stroke numbers on a damp clipboard",
+      "mustInclude": [
+        "ten-stroke recording",
+        "catch timing",
+        "damp clipboard"
+      ],
+      "mustAvoid": [
+        "generic team motivation",
+        "rowing as toughness"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "software debugger learning one failing unit test",
+      "audience": "a junior developer who keeps scanning the whole repository",
+      "stakes": "a release branch stays blocked while the same edge case fails",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lin hides every passing test, prints the failing input on a sticky note, changes one parser branch, and reruns only that unit before touching the rest of the suite",
+      "firstImage": "one red test name glowing above a stack of green checks",
+      "mustInclude": [
+        "failing input",
+        "parser branch",
+        "single-test rerun"
+      ],
+      "mustAvoid": [
+        "generic coding productivity",
+        "late-night heroics"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify purposeful practice rather than naive repetition",
+      "choose a narrow target after a plateau",
+      "explain why feedback must change the next attempt",
+      "use Steve Faloon as a practice-loop example without overclaiming memory genius"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one skill you planned to rehearse broadly. Name the exact miss from the last attempt, choose the next three reps that expose only that miss, and decide what signal will make rep four different.",
+  "readingTimeMinutes": 12
+}

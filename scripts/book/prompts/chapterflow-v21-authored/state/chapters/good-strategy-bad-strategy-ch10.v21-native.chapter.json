@@ -1,0 +1,325 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch10",
+  "number": 10,
+  "title": "Design",
+  "readingTimeMinutes": 10,
+  "hook": "Fit is visible when one choice makes the next choice stronger.",
+  "counterintuition": "A clean plan looks like design while the actual test is whether the pieces fit the constraint and make tradeoffs visible.",
+  "tryThisNow": "Pick three choices in one plan. Draw arrows between them only where one strengthens another. Any choice with no arrow needs a defense or a cut.",
+  "keyTakeaway": "Design strategy as a mutually reinforcing whole: arrange choices around structural limits so each action strengthens the next instead of standing alone.",
+  "breakdown": {
+    "fastRead": "Manon sets a repair bench between warranty tags and a floor display. The outdoor gear brand wants a prettier retail wall. The broken jacket on the bench says the opportunity is larger: retail, repair, and warranty can be designed as one promise. Manon crosses out a display-only plan and links repair intake to warranty trust and product selection.\n\nDesign means arranging choices so they strengthen one another.\n\nIsolated improvements can be good and still fail to add force. A designed whole makes fit visible. Retail teaches repair, repair builds warranty trust, and warranty changes what customers believe about the display.",
+    "deepRead": "Lars holds a bus stop sign while a fare card and route map sit on the transit office table. The app team wants a cleaner interface. Riders are confused because the sign, fare rule, and route label use different names for the same trip. Lars asks whether the app should be improved alone or whether the whole ride should be made coherent.\n\nFit is the point when design choices strain each other.\n\nA designed strategy does not merely collect best practices. It arranges choices so they help one another. If the app says Zone B, the sign says Airport Express, and the fare card says Premium Route, the rider experiences three systems. No single improvement solves that. The design problem is the relationship among the pieces.\n\nSofia learns it after a telehealth clinic loses patients between intake and follow-up. The intake form asks one set of questions, the triage script uses another, and the follow-up text refers to a third. In the postmortem, she stops improving each artifact separately and redesigns the chain so intake feeds triage and triage feeds follow-up.\n\nCoherence is built, not announced.\n\nDesign also asks what the pieces will refuse. A real design makes some attractive actions awkward because they do not fit the chosen way the system must work.",
+    "fullRead": "Tomasz stands beside a farmers market stall layout with a token box and vendor list. The market wants more customer flow, but vendors have been arranged by seniority, not by how shoppers move. The bakery creates a queue that blocks the vegetable stalls. The coffee cart pulls people past the tokens before they buy them. Tomasz points to the layout and asks what would happen if the whole market were designed around first purchase, flow, and return visits.\n\nDesign begins after the structural limit is accepted. The limit may be space, sequence, attention, trust, cost, or a weak link. Once the limit is visible, the question changes from “which improvement is good?” to “which arrangement makes the whole stronger?” That is a harder question because attractive pieces may have to move, shrink, or disappear.\n\nMin sees this in enterprise software. The onboarding checklist says customers need guided setup. The pricing page charges extra for the very support that makes setup succeed. The usage dashboard shows accounts that skip setup never reach adoption. Min predicts that lowering onboarding friction will increase paid expansion more than protecting the support fee. The test is not onboarding alone or pricing alone. It is their fit.\n\nA common mistake is to treat fit as elegance. Neat plans can have poor design. A clean org chart, a sharp interface, or a tidy sequence may still place actions beside one another without reinforcement. Strategic design asks what each choice does to the next choice. Does pricing help onboarding succeed? Does onboarding create usage? Does usage make expansion credible? If the links do not strengthen, the design is only orderly.\n\nJack faces the issue in a bike-share program. Before the change, docks are planned by political district, repairs are scheduled by complaint volume, and commuter routes are studied separately. After he places the dock map beside broken pedals and a commuter survey, he stops the meeting. The program is redesigned around morning reliability on three commuter corridors: docks where riders start, repair vans before peak time, and survey prompts at return stations.\n\nThis is why design follows chain-link thinking. Once a weak link is found, the surrounding choices must be arranged around it. Fixing a link in isolation can leave the rest of the system pulling against it. A repair bench with no warranty policy becomes a cost center. A transit app with mismatched signs becomes a prettier confusion. A bike dock with no repair rhythm becomes a broken promise.\n\nGood design makes the strategy harder to copy because the advantage lives in the fit among choices. A competitor can copy one visible piece. Copying a mutually reinforcing whole is harder because each piece depends on the others.\n\nDesigned strategy is coherence you can touch."
+  },
+  "examples": [
+    {
+      "exampleId": "ch10-ex01-manon-repair-bench",
+      "title": "Manon Connects Repair to the Sales Floor",
+      "tags": [
+        "retail",
+        "repair",
+        "warranty"
+      ],
+      "planSpec": {
+        "domain": "outdoor gear brand designing retail, repair, and warranty as one whole",
+        "audience": "a reader facing outdoor gear brand designing retail, repair, and warranty as one whole",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "scene",
+        "requiredBeat": "Manon moves one concrete constraint to the center of the table and crosses out every action that does not address it using repair bench so the lesson happens as a visible action."
+      },
+      "scenario": "The repair bench sits at the edge of the retail floor on a Saturday morning, with warranty tags and a half-built floor display beside it. Manon, the store director, hears a proposal for a cleaner display wall. A torn jacket waits on the bench. She has to decide whether to polish the wall or connect repair intake, warranty trust, and product choice into one customer promise.",
+      "whatToDo": "Design retail, repair, and warranty together: show repaired gear, tag products by repair promise, and make the bench part of the sales path.",
+      "whyItMatters": "The pieces gain force only when they reinforce one another. A prettier display alone cannot prove the brand will stand behind the gear."
+    },
+    {
+      "exampleId": "ch10-ex02-lars-transit-names",
+      "title": "Lars Aligns the Sign, Fare, and Route",
+      "tags": [
+        "transit",
+        "app",
+        "fit"
+      ],
+      "planSpec": {
+        "domain": "regional transit app aligning signage, fare rules, and routes",
+        "audience": "a reader facing regional transit app aligning signage, fare rules, and routes",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "decision_point",
+        "requiredBeat": "Lars asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using bus stop sign so the lesson happens as a visible action."
+      },
+      "scenario": "\"Which name does the rider see first?\" Lars asks at the transit office table, holding a bus stop sign beside a fare card and route map. The app team wants a cleaner screen; operations wants new route labels. Riders see three names for the same trip. Lars must decide before the sprint starts whether to beautify the app or align sign, fare, and route as one system. The prototype is due for the Friday clinic walk-through, so the layout choice has to fit the nurse route before anyone argues about finishes.",
+      "whatToDo": "Align the route name across the sign, fare card, map, and app before polishing the interface.",
+      "whyItMatters": "The rider experiences the whole trip, not one screen. Design has to make the pieces reinforce the same decision."
+    },
+    {
+      "exampleId": "ch10-ex03-sofia-telehealth-chain",
+      "title": "Sofia Rebuilds Intake Through Follow-Up",
+      "tags": [
+        "telehealth",
+        "intake",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "telehealth clinic designing intake, triage, and follow-up together",
+        "audience": "a reader facing telehealth clinic designing intake, triage, and follow-up together",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "postmortem",
+        "requiredBeat": "Sofia uses the artifact to expose the hidden constraint before anyone proposes another initiative using intake form so the lesson happens as a visible action."
+      },
+      "scenario": "The telehealth office smells of printer ink after another missed follow-up batch. Sofia lays the intake form beside the triage script and follow-up text. The postmortem shows intake asks about pain duration, triage asks about medication, and follow-up mentions neither. Each artifact looked fine alone. Together, they lost the patient story before the nurse could act.",
+      "whatToDo": "Redesign the form, triage script, and follow-up text as one sequence so each answer feeds the next action.",
+      "whyItMatters": "Separate improvements created gaps. The clinic needs fit across the chain, not better-looking pieces in isolation."
+    },
+    {
+      "exampleId": "ch10-ex04-tomasz-market-flow",
+      "title": "Tomasz Moves the Token Box Upstream",
+      "tags": [
+        "farmers market",
+        "flow",
+        "layout"
+      ],
+      "planSpec": {
+        "domain": "farmers market redesigning vendor mix and customer flow",
+        "audience": "a reader facing farmers market redesigning vendor mix and customer flow",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "dialogue",
+        "requiredBeat": "Tomasz turns a vague goal into a visible choice by marking the one place effort will land using stall layout so the lesson happens as a visible action."
+      },
+      "scenario": "You can see the weak spot in the stall layout before the first shopper arrives. Tomasz has the token box and vendor list on a folding table. \"We need better flow,\" a board member says. Tomasz points to the coffee cart pulling shoppers past the tokens. \"Then the token box moves before coffee, or the whole loop breaks.\" The market must choose before vendor setup starts.",
+      "whatToDo": "Place tokens before the first high-traffic stall and arrange vendors so first purchase, browsing, and return visits support one another.",
+      "whyItMatters": "Customer flow depends on the relationship among stalls, tokens, and traffic. Moving one piece changes the value of the others."
+    },
+    {
+      "exampleId": "ch10-ex05-min-onboarding-pricing",
+      "title": "Min Tests Onboarding Against Pricing",
+      "tags": [
+        "enterprise software",
+        "pricing",
+        "adoption"
+      ],
+      "planSpec": {
+        "domain": "enterprise software company aligning onboarding and pricing",
+        "audience": "a reader facing enterprise software company aligning onboarding and pricing",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "predict_reveal",
+        "requiredBeat": "Min tests the proposed move against the object or record that reveals whether it fits the real problem using onboarding checklist so the lesson happens as a visible action."
+      },
+      "scenario": "After three expansion losses, Min stops trusting the neat pricing page. The onboarding checklist sits beside the usage dashboard in the product office. The team predicts that keeping guided setup as a paid add-on protects margin. Min has to decide whether to defend the fee or test whether included setup creates adoption that later makes expansion possible. The supplier quote expires before the next production meeting, which makes the material choice a test of the whole operating design.",
+      "whatToDo": "Make guided setup part of the core offer, then align pricing with adoption milestones shown in the dashboard.",
+      "whyItMatters": "Onboarding and pricing are linked. Charging for the step that creates usage can weaken the expansion the company wants."
+    },
+    {
+      "exampleId": "ch10-ex06-jack-bike-share",
+      "title": "Jack Designs Around the Morning Corridor",
+      "tags": [
+        "bike-share",
+        "repairs",
+        "routes"
+      ],
+      "planSpec": {
+        "domain": "city bike-share program fitting docks, repairs, and commuter routes",
+        "audience": "a reader facing city bike-share program fitting docks, repairs, and commuter routes",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "before_after",
+        "requiredBeat": "Jack stops the meeting and rearranges the sequence of work so the strategic move becomes visible using dock map so the lesson happens as a visible action."
+      },
+      "scenario": "Where does a bike have to be before 8:00 without failing? Before the review, Jack’s team plans docks by district and repairs by complaint volume. After he places the dock map beside broken pedals and a commuter survey, he stops the meeting. Before the council update, he rearranges the system around three commuter corridors: docks, repair vans, and return surveys now fit one morning promise.",
+      "whatToDo": "Design docks, repairs, and surveys around the commuter corridors instead of treating each workstream separately.",
+      "whyItMatters": "Bike-share reliability comes from fit among location, repair timing, and rider flow. Separate improvements can still leave commuters stranded."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "An outdoor gear brand improves its store display but keeps repair and warranty separate. Customers still doubt durability. Which design move fits the strategy?",
+        "choices": [
+          "Make repair, warranty tags, and product display reinforce the same trust promise.",
+          "Redesign the display with more dramatic lighting.",
+          "Move warranty information to the website so the store stays clean."
+        ],
+        "correctIndex": 0,
+        "explanation": "The trust promise depends on fit among repair, warranty, and retail. Lighting and website cleanup improve pieces without creating reinforcement.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A transit app uses one route name, bus stop signs use another, and fare cards use a third. What should the team do first?",
+        "choices": [
+          "Polish the app interface before changing field signage.",
+          "Add a tutorial explaining the three naming systems.",
+          "Align the route name across sign, fare, map, and app."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rider needs one coherent system. A cleaner interface or tutorial leaves mismatched pieces fighting each other.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A telehealth clinic improves its intake form, triage script, and follow-up text separately. Patients still fall through. What is missing?",
+        "choices": [
+          "More visual polish on each document.",
+          "A single sequence where intake feeds triage and triage feeds follow-up.",
+          "A longer intake form to collect every possible detail."
+        ],
+        "correctIndex": 1,
+        "explanation": "The problem is fit across the chain. Better individual artifacts can still lose the patient story if they do not connect.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A farmers market wants better customer flow. The token box sits after the busiest stall, so shoppers pass it before they can buy. What is the design response?",
+        "choices": [
+          "Move the token box upstream and arrange stalls around the first purchase path.",
+          "Recruit more vendors so shoppers have more choices.",
+          "Print larger signs explaining token rules."
+        ],
+        "correctIndex": 0,
+        "explanation": "The token box and stall order must reinforce the buying path. More vendors or signs do not fix the broken arrangement.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "An enterprise software company charges extra for guided setup, but accounts without setup never reach usage levels that support expansion. Which choice shows design thinking?",
+        "choices": [
+          "Keep setup paid because it has clear cost.",
+          "Include guided setup and align pricing with adoption milestones.",
+          "Remove setup entirely so onboarding feels simpler."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pricing and onboarding affect each other. Including setup may strengthen usage, which supports later expansion.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A bike-share program places docks by district, repairs by complaint volume, and surveys by marketing interest. Commuters still find broken bikes. What is the flaw?",
+        "choices": [
+          "Each workstream is improved alone instead of designed around commuter reliability.",
+          "The program needs a more colorful app icon.",
+          "Commuters are too unpredictable for strategic design."
+        ],
+        "correctIndex": 0,
+        "explanation": "The pieces do not reinforce one morning promise. Design should arrange docks, repair timing, and rider feedback together.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A division leader says the strategy is well designed because the document is clean, visually consistent, and easy to present at the quarterly review. What should you ask before trusting the design?",
+        "choices": [
+          "Whether the font choices match the brand.",
+          "Whether each choice strengthens another choice around the structural limit.",
+          "Whether the document has enough diagrams."
+        ],
+        "correctIndex": 1,
+        "explanation": "Strategic design is about fit among choices, not document polish. The test is reinforcement around a real constraint.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A competitor copies one visible part of a designed system, but not the supporting choices around it. Why may the copy fail?",
+        "choices": [
+          "Copying one piece does not recreate the mutual reinforcement among choices.",
+          "Customers dislike all copied ideas.",
+          "The copied piece automatically becomes illegal."
+        ],
+        "correctIndex": 0,
+        "explanation": "The advantage may live in the fit among pieces. A single copied element lacks the support that made it powerful.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A school improves tutoring, parent texts, and bus coordination separately. Attendance does not move because each team uses different student lists. What design fix matters?",
+        "choices": [
+          "Add another tutoring slot.",
+          "Create one shared list that connects tutoring, family contact, and bus coordination.",
+          "Send a motivational message to every student."
+        ],
+        "correctIndex": 1,
+        "explanation": "The separate improvements are not reinforcing. A shared list lets the choices fit around the attendance constraint.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A plan looks clean on slides. What proves it is actually designed?",
+      "back": "It means arranging choices so they reinforce one another around structural limits, not making the plan look elegant.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can isolated improvements fail?",
+      "back": "They may improve parts that do not fit together. Strategic design asks how one choice strengthens the next.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A team improves parts that do not fit together. What test should it apply?",
+      "back": "Ask whether pricing, staffing, sequence, tools, and promises make one another stronger around the same constraint.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why is a designed strategy harder to copy?",
+      "back": "Because the advantage lives in relationships among choices. Copying one visible piece does not recreate the whole system.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How does design follow chain-link thinking?",
+      "back": "After the weak link is found, surrounding choices must be arranged so the repaired link is supported instead of pulled out of shape.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice seeing strategy as arrangement. Identify the structural limit, then choose actions that make one another stronger around that limit.",
+    "ifThenPlans": [
+      {
+        "context": "product strategy",
+        "plan": "If a product fix touches pricing or onboarding, then map how all three choices reinforce or weaken each other before approving it."
+      },
+      {
+        "context": "operations",
+        "plan": "If teams improve separate workstreams, then ask what customer promise ties the workstreams together."
+      },
+      {
+        "context": "service design",
+        "plan": "If a user sees several artifacts, then align their terms, timing, and sequence before polishing any one artifact."
+      },
+      {
+        "context": "personal projects",
+        "plan": "If your tasks feel disconnected, then group them around one constraint and cut tasks that do not strengthen the group."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, draw three arrows among choices in one plan. Strengthen one weak arrow or remove the choice that sits alone.",
+    "weeklyPractice": "Each week, audit one system for fit. Pick one customer or user path and check whether each choice makes the next choice easier, clearer, or stronger."
+  },
+  "memorableLines": [
+    {
+      "text": "Fit is the point when design choices strain each other.",
+      "location": "deepRead",
+      "why": "A short sentence makes design concrete."
+    },
+    {
+      "text": "Coherence is built, not announced.",
+      "location": "deepRead",
+      "why": "It separates real arrangement from planning language."
+    },
+    {
+      "text": "Designed strategy is coherence you can touch.",
+      "location": "fullRead",
+      "why": "The closing phrase ties design to visible fit."
+    }
+  ]
+}

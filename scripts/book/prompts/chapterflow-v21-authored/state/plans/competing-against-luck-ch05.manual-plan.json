@@ -1,0 +1,132 @@
+{
+  "chapterId": "competing-against-luck-ch05",
+  "number": 5,
+  "title": "How to Hear What Your Customers Don't Say",
+  "coreMove": "Map the four forces behind a customer's behavior — push, pull, habit, anxiety — to decode the real job driving their choice, not just their stated preference.",
+  "sourcePressure": "Customers almost never hand over the job in clean language. They give feature wishes, polite complaints, and retrospective summaries that have already been cleaned up. The Four Forces of Progress explain why behavior and words diverge: push of the situation drives them away from the old arrangement; pull of the new solution attracts them; habit of the present keeps them using what they have even when it fails; anxiety of the new solution holds them back even when they want to switch. Strong listening maps all four forces using observable evidence — switching behavior, hesitation, fallback choices — rather than transcribing stated preferences.",
+  "chapterSpecificMisunderstanding": "Treating the four forces as a license to invent subconscious motives or read psychological depth into behavior without observable anchors — rather than as a disciplined framework tied to specific evidence: what pushed, what pulled, what held, and what blocked.",
+  "sourceAlignmentTerms": ["push of the situation", "pull of the new solution", "habit of the present", "anxiety of the new solution", "switching", "hesitation", "fallback", "observable", "forces"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the Four Forces of Progress",
+      "detail": "push of the situation, pull of the new solution, habit of the present, and anxiety of the new solution — the four forces that explain why buyer behavior and buyer words diverge during a hiring or non-hiring moment",
+      "useIn": "both",
+      "phrasingHint": "A buyer who praised the new tool and still rescheduled four times is not confused — push and pull are real, but so are habit and anxiety, and the pair on the holding side can outweigh the pair on the switching side."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "What your customers tell you is only half the story.",
+      "Listen harder and you'll hear the truth.",
+      "The real insight is always hiding between the lines."
+    ],
+    "counterintuition": [
+      "Your customers are lying to you.",
+      "Feedback is just noise."
+    ],
+    "tryThisNow": [
+      "Ask a customer one question and really listen.",
+      "Read between the lines in your next user interview.",
+      "Write down what a customer didn't say in your last meeting."
+    ],
+    "examples": [
+      "any example that resolves the four forces by simply 'listening more empathetically'",
+      "examples where the anxiety force is glossed over as 'just nervousness' without naming the specific risk the buyer fears"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["retrospective", "timestamp_named", "environmental", "dialogue_first", "second_person", "sensory_first"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "corporate IT helpdesk ticketing system",
+      "audience": "an IT manager reviewing adoption data for a new self-serve portal after a plateau at 37%",
+      "stakes": "whether Rachel's fix is a UX improvement or whether she needs to address a force she hasn't named yet",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rachel assumed the portal was too technical. Exit interviews reveal the anxiety force: employees don't submit tickets because a written record feels like evidence that they caused the problem. They call because verbal resolution feels undocumented. Habit (calling IT) plus anxiety (self-incrimination in writing) outweigh the pull of the portal's convenience. Rachel's UX improvement addresses none of the holding forces.",
+      "firstImage": "a support call volume chart and portal adoption chart side by side, the gap unchanged from month three to month six",
+      "mustInclude": ["a written ticket log as the anxiety trigger (employees fear the record)", "a verbal-vs.-written comparison that reveals why calling persists despite inconvenience", "Rachel's original diagnosis (UX too complex) visible before the four-force reveal"],
+      "mustAvoid": ["'change management failure' framing — the beat must name the specific anxiety force (fear of documented self-incrimination) blocking adoption, not generic resistance to change"]
+    },
+    {
+      "domain": "online therapy session booking platform",
+      "audience": "a digital health product manager reviewing session booking data expecting to see pull-driven adoption",
+      "stakes": "whether Mathieu's retention investment addresses the actual forces or just the visible symptom",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:14 a.m., Mathieu reviews first-session attendance rates. Bookings are high. Attendance at first sessions is at 22%. Exit interviews reveal the habit force: patients book because deciding to get help relieves the anxiety of not having sought help yet. The booking itself is the hired product — it resolves the pre-therapy distress. The habit of feeling better after deciding (without acting) delays the first session indefinitely. The product was hired to resolve the decision anxiety, not to deliver therapy.",
+      "firstImage": "a rescheduling timeline on a dashboard at 6:14 a.m., bookings clustering at week one then rolling forward week by week",
+      "mustInclude": ["a 'felt better after booking' quote or clear implication from exit interviews", "a first-session attendance rate significantly lower than booking rate", "a rescheduling pattern that shows the booking being moved forward but never converted"],
+      "mustAvoid": ["'scheduling friction' or 'fear of therapy' generality — the beat must show the specific habit force (anxiety-relief through decision rather than action) as the dominant blocker"]
+    },
+    {
+      "domain": "outdoor gear outfitter sleeping bag display",
+      "audience": "a store floor manager who added a warmth-rating comparison board and is trying to understand why conversion dropped",
+      "stakes": "whether Paula redesigns the display or addresses an anxiety force the comparison board amplified",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Paula adds a warmth-rating comparison board. Customers spend more time at the display and buy less. Floor observation and brief conversations reveal all four forces at work: push (current bag too cold), pull (new bag's ratings), habit (current bag 'mostly' works), anxiety ('what if I overbuy and waste money on a bag for trips I haven't taken yet'). The comparison board increased pull but also amplified anxiety by making the cost-of-overbuy comparison explicit. The display fix is not a design improvement — it is an anxiety mitigation.",
+      "firstImage": "a warmth-rating comparison board mounted on the wall, no customer present, sleeping bag samples hanging below it in the early morning store light",
+      "mustInclude": ["a warmth-rating chart as the anxiety amplifier", "a 'mostly works' qualifier from a customer who lingered and left without buying", "a before-and-after conversion rate to show the counter-intuitive effect of more information"],
+      "mustAvoid": ["'decision paralysis from too much information' framing — the beat must explicitly map all four forces and name anxiety as the dominant blocker the chart made worse"]
+    },
+    {
+      "domain": "nonprofit financial literacy coaching intake",
+      "audience": "a financial coach conducting a new-client intake conversation",
+      "stakes": "whether Luke helps the right job or the one that was stated first",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "'I don't actually need a budget. I need my husband to stop looking at me like I don't understand money.' The functional job (budgeting) is masking a social job (regaining household credibility). Luke is taking notes on what she said. He has to decide whether his next question pursues the stated task or the job that just appeared. The four forces here: push (shame in the household), pull (competence in a partner's eyes), habit (avoiding the money conversation entirely), anxiety (budget reveals how bad it actually is).",
+      "firstImage": "'I need a budget,' she says, then looks at the window behind Luke's shoulder",
+      "mustInclude": ["a household credibility framing that names a specific relational audience (spouse or partner)", "a note-taking decision moment for Luke (what to record)", "at least two forces named explicitly in the prose, not just implied"],
+      "mustAvoid": ["'financial coaching is really about emotions' generality — the beat must show the specific social progress job (credibility with a specific person) and at least two of the four forces operating in this intake"]
+    },
+    {
+      "domain": "corporate cafeteria special-diet station",
+      "audience": "a facilities director deciding whether to expand the allergy-friendly station or add a hot breakfast bar — through second-person",
+      "stakes": "whether Petra addresses the actual force blocking adoption before spending on expansion",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You are reviewing allergy-friendly station usage data. Employees with dietary restrictions are your target group. Usage is below 30% of that group. Interviews reveal the anxiety force: using the designated station marks them as 'different' in front of their team during the one casual social period of the work day. Push (dietary need) is real. Pull (safe food) is real. But habit (eating with colleagues at the regular line) plus anxiety (being marked as special) block the hire. Expanding the station does not address either holding force.",
+      "firstImage": "a special-diet station with clean trays and no queue, the main cafeteria line behind it full — the second-person reader looking at both",
+      "mustInclude": ["a dietary restriction vs. social identity tension that the station's design creates", "a lunch-time peer observation context (the only casual social time of the work day)", "the four forces named or clearly implied for this specific scenario"],
+      "mustAvoid": ["'employees don't know the station exists' or 'insufficient outreach' framing — the beat must show the anxiety force (social marking) as the dominant blocker, not awareness or access"]
+    },
+    {
+      "domain": "notary appointment scheduling at a legal services office",
+      "audience": "a legal services manager who opened walk-in notary hours and is seeing low usage despite high area demand",
+      "stakes": "whether Aman changes his service model or addresses the force that is holding clients away from walk-in",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Walk-in hours are open and well-located. Competitors with appointment-only models are fuller. Listening to clients who chose appointments reveals the anxiety force: 'What if I fill it in wrong and have to come back?' The appointment is hired not for the notarization but for the certainty that the document will be valid. Walk-in implies improvisation; appointment implies the notary has been briefed and will catch errors before the stamp. The job includes a pre-visit protocol, not just a stamp at the end.",
+      "firstImage": "the smell of paper and rubber-stamp ink, a row of notary seals by the window, the walk-in sign lit and the office empty at 10:18 a.m.",
+      "mustInclude": ["a document-validity anxiety quote or strong implication from clients", "a walk-in vs. appointment comparison that exposes the anxiety force", "a pre-visit briefing or review protocol as the actual value the appointment delivers"],
+      "mustAvoid": ["'customers prefer scheduled appointments generally' framing — the beat must show the specific anxiety force (fear of an invalid document and the cost of returning) as what the appointment is hired to resolve"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply all four forces to a given behavioral scenario and identify which forces are operating",
+      "recognize when habit and anxiety are stronger than push and pull (explaining non-switching despite dissatisfaction)",
+      "distinguish between listening that captures the four forces vs. listening that only transcribes stated preferences",
+      "analyze a case where words and behavior diverge and name the force causing the gap",
+      "evaluate whether a proposed product change addresses the dominant force or the wrong one"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of a customer or user who said something positive about your product and then didn't renew, didn't finish the onboarding, or went back to their old solution. Write one sentence for each of the four forces: what pushed them toward trying something new, what pulled them toward your product, what habit kept their old solution alive, and what anxiety made your product feel risky. If you cannot write the anxiety sentence, that is the force you have not listened for yet.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter naming only the dominant force in a given scenario; at least one 5+ sentence paragraph showing all four forces at work in a single case; at least one one-sentence punch line showing what changes when the anxiety force is finally named",
+    "fullReadInterludeRequirement": "at least one passage that explicitly asks the reader to identify which of the four forces is operating in a scenario the chapter has not explained yet — a brief thought-experiment embedded in prose before the chapter provides the answer",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

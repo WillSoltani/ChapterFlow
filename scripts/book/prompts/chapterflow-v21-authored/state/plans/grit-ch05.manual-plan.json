@@ -1,0 +1,196 @@
+{
+  "chapterId": "grit-ch05",
+  "number": 5,
+  "title": "Grit Grows",
+  "coreMove": "Move from asking whether you have grit to asking which conditions are growing or shrinking it.",
+  "sourcePressure": "Argue that grit is partly inherited but substantially shaped by experience.",
+  "chapterSpecificMisunderstanding": "Treating grit as either pure genetics or pure choice.",
+  "sourceAlignmentTerms": [
+    "heritability",
+    "UK twin study",
+    "Dan Chambliss",
+    "nature and nurture",
+    "environmental influence",
+    "150 years of height change"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "UK twin study",
+      "detail": "Researchers using the Grit Scale with thousands of twins found heritability mattered, but environment still explained much of the difference.",
+      "useIn": "both",
+      "phrasingHint": "The twin data narrows the claim: grit is influenced by inheritance, but it is not locked shut by it."
+    },
+    {
+      "kind": "person",
+      "name": "Dan Chambliss",
+      "detail": "His own swimming career was limited by physical factors and poor coaching, showing nature and environment both matter.",
+      "useIn": "deepRead",
+      "phrasingHint": "Chambliss’s toes and coaches make the point cleaner than ideology can."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for Grit Grows",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "rehab clinic return-to-running program",
+      "audience": "readers facing rehab clinic return-to-running program where grit could be confused with mood or talent",
+      "stakes": "whether Emily treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist changes one condition around the work and watches persistence become easier to repeat",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn rehab clinic return-to-running program into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "municipal apprenticeship rotation",
+      "audience": "readers facing municipal apprenticeship rotation where grit could be confused with mood or talent",
+      "stakes": "whether Sam treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist changes one condition around the work and watches persistence become easier to repeat",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn municipal apprenticeship rotation into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "university lab technician training",
+      "audience": "readers facing university lab technician training where grit could be confused with mood or talent",
+      "stakes": "whether Juliette treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist changes one condition around the work and watches persistence become easier to repeat",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn university lab technician training into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "community choir development year",
+      "audience": "readers facing community choir development year where grit could be confused with mood or talent",
+      "stakes": "whether Anders treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist changes one condition around the work and watches persistence become easier to repeat",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn community choir development year into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "immigrant entrepreneur licensing path",
+      "audience": "readers facing immigrant entrepreneur licensing path where grit could be confused with mood or talent",
+      "stakes": "whether Layla treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist changes one condition around the work and watches persistence become easier to repeat",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn immigrant entrepreneur licensing path into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "amateur boxing gym membership",
+      "audience": "readers facing amateur boxing gym membership where grit could be confused with mood or talent",
+      "stakes": "whether Tomasz treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the protagonist changes one condition around the work and watches persistence become easier to repeat",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn amateur boxing gym membership into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Move from asking whether you have grit to asking which conditions are growing or shrinking it. from Treating grit as either pure genetics or pure choice.",
+      "choose the visible next action in a fresh rehab clinic return-to-running program scenario",
+      "diagnose when a scene has drifted into gene fatalism"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real grit grows decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

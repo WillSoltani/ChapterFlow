@@ -1,0 +1,1736 @@
+{
+  "bookId": "the-33-strategies-of-war",
+  "title": "The 33 Strategies of War",
+  "author": "Robert Greene",
+  "promotedAt": "2026-05-14T07:12:22.672Z",
+  "chapterCount": 33,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the sharper move is\" — Counter payoff template. Talk Like Ted / 48 Laws stubs / others.",
+            "evidence": "Politeness can become a leak. The sharper move is not hostility, it is classification: name whose gain depends on your loss, then change access before the damage arrives."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the answer is yes\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "Experience can become a costume. The better move is to read the present first, then decide which parts of the old playbook still fit."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What actually changed after the first AI-essay cycle? Anna asks the admissions team in the postmortem room, with the new compliance checklist on the projector and last year's reading rubric printed i…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The carpet in the mediator's office smells like rain when Michael presses both feet flat and opens the folded legal pad. His sister's lawyer has just implied he hid account statements. The sentence i…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The hallway outside the tenant meeting smells of wet coats and floor cleaner. Before, Matthew answered every landlord dismissal with a speech about years of neglect. After writing one line on his fol…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nurse manager is challenged on a staffing call and feels insulted. Which response best shows presence of mind?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a trusted second reader\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The canceled fallback contract is pinned beside Chris's one-page scope freeze, but the apartment is silent except for the laptop fan. His indie game milestone is late after two layoff interviews and …"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to people who expected\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A launch team silently approves a weak plan because the senior sponsor likes the date. What is the strongest diagnosis?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the people closest to\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The separate demo boards flicker on Amelia's monitor while the product council agenda grows by another seven dashboard requests. Enterprise customers are waiting for fixes that map to three different…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A regional ambulance service wants counties to adjust routing after storms. Which design best fits controlled chaos?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A software leader creates squads but leaves all release approval with the same product council. What has not changed?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A warehouse manager wants to test a new pick path. Which plan uses segmentation well?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit campaign gives each local pod full independence but no shared scoreboard. What risk does that create?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A hospital creates semi-autonomous discharge teams. Which condition must be true before this is wise?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"We cannot keep pretending this is neutral,\" Julia says, with the repair backlog still unopened beside the customer photo wall. The transit team must decide whether to keep calling the delays optimiz…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Katherine stops arguing and points to the customer photo wall? In the campaign postmortem, she admits that literacy growth never moved the staff, but children avoiding books because…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"she points to the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Kate three weeks to notice the budget tracker was the part everyone kept avoiding. Before the curriculum vote, she has to choose whether to correct every side comment or reserve her credibili…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Mary stops arguing and points to the meeting agenda? In the postmortem, the team sees that the angry refund thread was visible but not decisive, while the payment processor review c…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"and the audience is\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "George loses a morning to a restaurant review that calls his kitchen unsafe. The first draft of his reply is sharp, personal, and fast. Then he reads the accusation again and sees the overreach: the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The evidence folder is still zipped when Victoria hears the recruiter name a salary below the role's published range. She has to choose between immediate objection and one calm question that lets the…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took George three hours to notice the accusation memo was not about pasta anymore. Before posting, he has to choose whether to attack the reviewer's taste or answer the health-inspection claim aft…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Edward stops arguing and points to the evidence folder? The procurement postmortem shows that the rival's broad protest became vulnerable only after it claimed excluded suppliers th…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Neil three weeks to notice the service-level dashboard was the part everyone kept avoiding. Before issuing another harassment warning, he has to decide whether to publish consistent enforceme…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Graham stops arguing and points to the enforcement log? The warranty postmortem shows that distributors kept probing because every exception lived in private email instead of a sign…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the signed escalation policy\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The deferred exhibition calendar has paint fingerprints on one corner when Adam reads the gallery's commission terms. He has to choose between accepting a prestigious deadline that will swallow his y…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You stand with Brian beside a half-packed crate of advance reader copies while the cash runway sheet sits under his thumb. He has to choose between matching a larger house's advances or pausing the c…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Connor three weeks to notice the market map was the part everyone kept avoiding. Before the renewal deadline, he has to choose whether to keep the national chain or leave the account and spen…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Evan stops arguing and points to the deferred product roadmap? The RFP postmortem shows that the public bid was written for an incumbent, while his proposal team lost two weeks it n…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Fluorescent light catches the edge of the volunteer roster before Gavin says a word. Before, the group fought every permit; after, he yields one unwinnable hearing and moves the saved evenings to a z…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A publisher cannot match a larger house's advances in a crowded imprint. Which move best trades space for time?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader says retreat is smart because it always frustrates stronger opponents. Which evaluation is more precise?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"space is useful only\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The three-year option list lies under a scratched aluminum prototype when Jason reads the retailer's custom-feature request. He has to choose between an impressive quarterly order and the core sensor…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are standing with Keith outside a lecture hall while the declined invitation glows on his phone. He has to choose between a visible conference talk and the quiet month required to finish the pape…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Kevin three weeks to notice the repertory map was the part everyone kept avoiding. Before announcing the season, he has to choose whether to book three safe titles or protect two slots for th…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Liam stops arguing and points to the three-year option list? The succession postmortem shows that taking the title immediately would have preserved old supplier habits and delayed t…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Morning light catches the edge of the mayor's declined invitation before Mark says a word. Before, he chased visible bridge repairs; after, he tests each project against the five-year drainage and wi…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"grand strategy\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"across the threeyear option\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Before the next move, fill five lines on the other side: wants, fears, resources"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took William two days to notice the procurement filings were making the donor look simpler than he was. Before the board vote, he has to choose whether to reject the gift outright or interview two…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Camille stops arguing and points to the relationship map? The vendor review postmortem shows that two overlooked sources turned the question from price manipulation to weak implemen…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the relationship map changes\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The decision log is smudged with rainwater when Juliette gets the third road-closure update. She has to choose between routing every truck through central approval and giving dispatchers a fuel-and-s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Manon one results drop to see the old election desk was too slow. Before the network posts its first full analysis, she has to decide whether to wait for a package or publish verified ward no…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Etienne stops arguing and points to the decision log? The recall postmortem shows that two matching lot reports should trigger a regional hold before the full legal summary arrives."
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Control the dynamic by setting time, place, sequence, pace, and frame so the oth"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Before the next meeting, decide the first question, the order of issues, and the"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Olivier stops arguing and points to the room seating map? The demo postmortem shows that prospects drove the old sequence into feature trivia before the failing workflow ever appear…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "banned phrase \"the real lever is\" — Counter opener template phrase. 8 of 9 Talk Like Ted chapters used this verbatim before regen. Banned to prevent the same model-voice convergence in future generations.",
+            "evidence": "A manager says controlling the dynamic means interrupting more often and speaking louder. What is the better analysis? Interruptions are the only reliable form of initiative. Dynamic control usually …"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"that is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the room seating map\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The ad is loud because the renewal list is weak,\" Clara says, with the dependency diagram open beside the customer renewal list. She must decide whether to attack the rival's boastful campaign or ex…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The customer renewal list sits under Adrien's thumb when he finds the same grant name behind six small-business testimonials. He has to choose between attacking the spokesperson or questioning the fu…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Celine three volunteer shifts to notice the debate clips were not the point. Before the weekend canvass, she has to decide whether to share jokes or question the healthcare timeline that keep…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Lucie stops arguing and points to the customer renewal list? The retail postmortem shows that public pricing was secondary; the exclusive supplier agreement was holding the shelf po…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A damages chart glows under Noelle's desk lamp before she circles the single failing assumption. Before, the team chased every contradiction; after, she narrows discovery to the expert whose model su…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the center of gravity\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The bloc is paying different prices,\" Amelie says, with the coalition vote sheet open beside a private concern list. She must decide whether to denounce the whole council group or speak privately wi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Niklas stops arguing and points to the private concern list? The senate postmortem shows that lab faculty feared grant delays while humanities faculty feared governance precedent, b…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A two-column issue map lies under Henrik's draft speech before he crosses out the opening paragraph. Before, he planned to attack the association; after, he invites the compliance-exposed members int…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team says divide-and-conquer means creating conflict wherever possible. What is the better interpretation?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the private concern list\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "List the opponent's three defended strengths, then ask which customer, issue, or"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"We are fighting their brochure, not their blind spot,\" Anders says, with the incumbent feature matrix open beside the customer workaround log. He must decide whether to copy loyalty tiers or test ho…"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "\"We are fighting their brochure, not their blind spot,\" Anders says, with the in"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Ingrid three onboarding calls to notice the incumbent feature matrix was a distraction. Before the campaign launches, she has to decide whether to fight on rates or build a guided path for ne…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Hanna stops arguing and points to the customer workaround log? The publishing postmortem shows that librarians were building classroom audio playlists by hand because the big publis…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Blue light from a screen-reader test reflects off Frida's unserved segment notes before she opens the feature matrix. Before, the team compared dashboards; after, she pilots accessibility-first repor…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team says the indirect approach means avoiding every hard confrontation. What is wrong with that?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the incumbent feature matrix\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Marit three hiring cycles to notice the fellowship route was the part everyone kept avoiding. Before launching offers, she has to decide whether to capture two recruiting channels or wait unt…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A coverage map glows on Soren's tablet before he crosses out one weak claim family. Before, the team wanted filings everywhere; after, he narrows to the patents that close the rival's real product ro…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is a closing move\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Do not ask for the concession yet,\" Nils says, with the deal timeline open beside the option tree. He must decide whether to demand a price reduction now or request a zoning clarification that makes…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You stand with Karl beside a delayed signature page while the deal timeline shows three clean exits. He has to choose between pushing the broad license price today and offering a limited pilot with a…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Otto three committee calls to notice the deal timeline was the real instrument. Before forcing a vote, he has to decide whether to split the proposals into public test tracks that make delay …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Klara stops arguing and points to the option tree? The settlement postmortem shows that the independent inspection and the insurer's written estimate should have come before the fin…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Stage dust clings to the delayed signature page before Britta closes the sponsor folder. Before, she asked for renewal at first interest; after, she sends an audience report and asks the sponsor to c…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A negotiator wants to use this strategy. Which planning artifact is most useful before the first move?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 78% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"is not decorative\" — 68 hits across 31 books — same rhetorical move.",
+            "evidence": "Linnea watches the university protest harden after every public statement. The administration threatens discipline, the student group replies with louder demands, and each side privately admits that …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The public pressure calendar is marked in red when Solveig opens a private call slot for the contractor's counsel. She has to choose between filing first and offering a repair schedule that fixes the…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Maike stops arguing and points to the public pressure calendar? The royalty postmortem shows the audit pressure worked, but the settlement failed because it demanded a public admiss…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A private call slot sits above Marco's writer campaign calendar before he rewrites the term sheet. Before, he demanded a blame statement; after, he keeps public pressure active but offers reversion o…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A labor negotiator plans a strike-vote deadline and a private wage term sheet. What makes the combination effective?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the public pressure calendar\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The burn-rate chart is tucked under Matteo's thumb when the referral report arrives. He has to choose between keeping the grant program alive because it once mattered and following the sunset memo af…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Diego three missed milestones to notice the exit criteria card was the part everyone kept avoiding. Before another joint update, he has to decide whether to open the wind-down while clients c…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Pablo stops arguing and points to the burn-rate chart? The conference postmortem shows sponsor renewals fell below the written threshold before the venue deadline, but pride kept th…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A conference series falls below its sponsor threshold before the venue deadline. What does the exit strategy protect?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader names one person who can remind her of the exit condition when pride resists. Why is that useful?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the exit criteria card\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That sentence makes the delay look voluntary,\" Sofia says, with the launch narrative board beside the fact-check sheet. She must decide whether to keep the cleaner story or add the deadline constrai…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The fact-check sheet is creased beside Giulia's laptop when the investor update draft opens on enterprise growth. She has to choose whether to bury small-business churn or put it near the growth stor…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Paula three drafts to notice the launch narrative board was hiding the newest delays. Before publishing, she has to decide whether to keep the five-year improvement chart alone or add the rec…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Isabel stops arguing and points to the fact-check sheet? The migration postmortem shows that new features were true, but customers needed the forced deadline before the benefits."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Morning light catches the ethics red line on Catarina's report draft before she moves the graduation chart. Before, outcomes led alone; after, scale appears first, outcomes second, and funding constr…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A strategist says any use of sequencing and emphasis is propaganda. What is the best evaluation?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A message would fail if the audience saw the narrative board and fact-check sheet side by side. What does that suggest?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the launch narrative board\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The ordinary request sits on Andrea's lectern when the moderator announces the debate topic. She has to choose between the expected attack and a quiet concession on one local concern before moving to…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Bianca three interviews to notice the pattern board was describing her own performance. Before the panel begins, she has to decide whether to tell another polished story or ask one plain hand…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Rosa stops arguing and points to the ordinary request? The presentation postmortem shows the board expected a bold ask and long defense, but one small decision first left that resis…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Whiteboard magnets mark the compact shape before Marta crosses out the usual high press. Before, the team attacked at once; after, it waits six minutes and changes pressure only when the prepared out…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A debate opponent has rehearsed against your expected attack mode. Which move uses ordinary-extraordinary logic?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A counterpart expects drama from you. Why might an ordinary move be more surprising than an extraordinary one?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants to vary its external rhythm. What must remain clear internally?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 78% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"side still needs to\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The conduct log is clipped to Miguel's clipboard when he sees the unanswered mediation offer. He has to choose between saying tenants tried every channel and replying to the offer before the campaign…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You stand with Carlos beside a watching audience list that includes employees, regulators, and journalists. He must decide whether to publish a sweeping bad-faith accusation or a narrower statement t…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Luis three drafts to notice the public statement was hiding the clinic's late reports. Before sending it, he has to decide whether to admit the correction and keep the bridge-funding demand t…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Ana stops arguing and points to the conduct log? The permit postmortem shows that a secrecy accusation would backfire because organizers had withheld one water-test update themselve…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A maintainer dashboard glows beside Anya's watching audience list before she deletes the bad-faith paragraph. Before, the project hid messy review rules; after, she publishes the timeline and demands…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader says third parties only judge language, not conduct. Which response is more accurate?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"moral high ground is\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rotating spokesperson schedule is clipped to Kasia's tote when the chain's lawyer names one shop owner again. She has to choose between centering the same owner in every reply and spreading publi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Aleksy stops arguing and points to the rotating spokesperson schedule? The aid-network postmortem shows one volunteer controlled both supply approvals and public contact, so pressur…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Terminal light reflects off Pavel's encrypted archive before he changes the release permissions. Before, one maintainer held keys and answered every dispute; after, keys split by module and each rele…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A group decentralizes so far that no one can approve, answer, publish, or move money. What reversal has appeared?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A stronger opponent wants to discredit one public face. What question best starts the defense?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the distributed contact list\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Zofia three agency calls to notice the sponsor incentive map was the missing document. Before sending the pilot, she has to decide whether to pitch innovation or tie the work to unresolved st…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Magda stops arguing and points to the pilot proposal? The retail postmortem shows the chain praised the product, but no one tied it to margin, shrink, or a costly store test."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Afternoon sun catches Katya's shared win metric before she rewrites the grant request. Before, she led with mission; after, she shows rural completion data the program officer needs before the board …"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is architecture not warmth\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 28,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Before attacking, write how your blow might help the rival: unity, sympathy, cla"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"If we attack now, we become his excuse,\" Daria says, with the board update packet beside the rival overreach log. She must decide whether to criticize the impossible milestones publicly or let the n…"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "\"If we attack now, we become his excuse,\" Daria says, with the board update pack"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rival overreach log is open on Roman's laptop when another hiring announcement appears. He has to choose between mocking the burn rate and preparing a customer message for the moment the rival's …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You stand with Marek beside an unlaunched attack ad while the latest interview clip loads. He must decide whether to run the ad or keep documenting the opponent's media spiral until reporters ask for…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Anton three late service reports to notice the board update packet was the part everyone kept avoiding. Before launching discounts, he has to decide whether to let the rival's fourth opening …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Boris stops arguing and points to the rival overreach log? The faculty postmortem shows that attacking the committee grab would have helped the rival claim she was defending departm…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A succession checklist sits beside Viktorija's alternate supplier file before the vendor call starts. Before, procurement challenged every promise; after, she asks for the impossible delivery date in…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A restaurant rival expands too fast and service delays are appearing. What is the strongest use of one-upmanship?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A rival is not overreaching or divided; they are gaining ground while you wait. What reversal has appeared?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 78% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the board update packet\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 29,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"We cannot keep pretending this is neutral,\" Lidia says, with the approval tracker still unopened. She must decide whether to request one more badge-rule approval or add the whole sequence into a sin…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The threshold chart is damp at one corner when Aanya pulls it from the folder. She has to choose whether to approve a weekend guest rule after three earlier access changes have already narrowed resid…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are beside Aman as the permissions dashboard shows the last unchecked migration box. He must decide whether to ship deletion-access changes as routine cleanup or move the material shift into the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Kiran stops arguing and points to the threshold chart? The board sees that four harmless-looking vendor exceptions together would replace the local-produce promise they approved in …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Fluorescent light catches the edge of the cumulative-change ledger before Layla says a word. Before the vote, she has to choose whether to treat quorum, proxy, and nomination edits separately or forc…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"make the total visible\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 30,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the stronger move is\" — Counter payoff template. 48 Laws stubs + others.",
+            "evidence": "Sharper language can make a message weaker if it flatters the speaker. The stronger move is to enter the receiver's question and remove pressure that works only while hidden."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"We cannot keep pretending this is neutral,\" Hadiya says, with the audience worry list still unopened. She must decide whether to send a polished memo about efficiency or rewrite the first page aroun…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Fluorescent light catches the edge of the plain-language headline before Min says a word. Before sending the proposal, he has to choose whether a scarcity line informs the buyer or pressures them wit…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"has to decide whether\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 31,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the sharper move is\" — Counter payoff template. Talk Like Ted / 48 Laws stubs / others.",
+            "evidence": "A frontal attack can heal the target by giving its factions one enemy. The sharper move is to expose a real fault line without manufacturing mistrust."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"We cannot keep pretending this is neutral,\" Hiroshi says, with the faction map still unopened. He must decide whether to attack the coalition's platform or ask why its budget wing and expansion wing…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The leaked contradiction file crackles in Akira's sleeve as rain hits the office window. She has to choose whether to circulate every rumor or strip the file down to the two board promises that canno…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Fatima three weeks to notice the faction map was the part everyone kept avoiding. Before nomination day, she must decide whether to attack the process or force the committee to rank promises …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Yasmin stops arguing and points to the leaked contradiction file? The delivery calendar and private discount letters show the alliance has already violated its equal-treatment promi…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the leaked contradiction file\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 32,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 6 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"We cannot keep pretending this is neutral,\" Nia says, with the quiet network map still unopened. Her choice is explicit: challenge the punitive deadline in the meeting or comply visibly while findin…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The skills inventory sits beside a platform compliance checklist when Zain unlocks the office door. He has to choose whether to announce a challenge to the incumbent or keep rules clean while buildin…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Amara three weeks to notice the quiet network map was the part everyone kept avoiding. Before the lobby meeting, Amara has to choose between confronting the landlord publicly and first identi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Kojo stops arguing and points to the skills inventory? The postmortem shows that every newsroom fight made him easier to dismiss, while data clips and a backup offer letter made neg…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Fluorescent light catches the edge of the backup offer letter before Noura says a word. She has to choose whether to keep quietly absorbing impossible promises or use her lateral option to confront t…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the quiet network map\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 33,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Use bounded surprise to force recalibration, never panic, humiliation, or threat"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"We cannot keep pretending this is neutral,\" Hana says, with the surprise option sheet still unopened. She must decide whether to reveal the signed backup distributor calmly or frame it as a threat m…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are beside Mei as the posture reset agenda rests below the debate lectern. She must decide whether to reveal the verified document as a calm correction or make the reveal a spectacle of humiliati…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Tariq three weeks to notice the surprise option sheet was the part everyone kept avoiding. Before the regulator meeting, Tariq faces the choice: present the pilot category as shared relief or…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It took Tariq three weeks to notice the surprise option sheet was the part everyone kept avoiding. Before the regulator meeting, Tariq faces the choice: present the pilot category as shared relief or…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Fluorescent light catches the edge of the posture reset agenda before Ibrahim says a word. Ibrahim must decide whether to send a splashy threat-style launch or one small city launch with a real servi…"
+          }
+        ],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 177
+  },
+  "bookGate": {
+    "bookId": "the-33-strategies-of-war",
+    "chapterCount": 33,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F3",
+        "severity": "major",
+        "message": "Book-wide answer position drift: idx 0 wins 58% of 297 questions (ceiling 45%). Quiz balance fix needed."
+      },
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "1 protagonist name(s) appear as named characters in multiple chapters: Martin(ch1,6). Regenerate affected examples with distinct names."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        171,
+        82,
+        44
+      ],
+      "answerPositionPctMax": 0.5757575757575758,
+      "totalQuizQuestions": 297,
+      "duplicatedNames": [
+        {
+          "name": "Martin",
+          "chapters": [
+            1,
+            6
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "the-33-strategies-of-war",
+        "chapterCount": 33,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

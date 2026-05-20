@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch24",
+  "number": 24,
+  "title": "The Indistractable Workplace",
+  "coreMove": "Turn attention-friendly culture into shared routines that make focused work, responsiveness, and recovery predictable.",
+  "sourcePressure": "The chapter describes operational habits of a healthier workplace built from explicit coordination, routines, and permission across channels.",
+  "chapterSpecificMisunderstanding": "A weak run would imagine a utopian quiet office instead of concrete shared practices people can rely on.",
+  "sourceAlignmentTerms": [
+    "indistractable workplace",
+    "shared practices",
+    "routines",
+    "permission",
+    "coordination",
+    "focus"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The Indistractable Workplace as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional pathology lab building a specimen-review routine",
+      "audience": "lab manager turning culture diagnosis into daily practice",
+      "stakes": "specimen accuracy depends on predictable quiet and escalation",
+      "format": "scene",
+      "requiredBeat": "she posts review hours, escalation codes, and a handoff ritual on the specimen bench",
+      "firstImage": "A specimen cassette rack sits beside an escalation code card.",
+      "mustInclude": [
+        "cassette rack",
+        "code card",
+        "handoff ritual"
+      ],
+      "mustAvoid": [
+        "silence-at-all-costs"
+      ]
+    },
+    {
+      "domain": "newspaper copy desk coordinating print close",
+      "audience": "copy chief balancing focus and urgent corrections",
+      "stakes": "front-page errors and late changes both need rules",
+      "format": "decision_point",
+      "requiredBeat": "he creates a close-window rule where only named corrections break the copy block",
+      "firstImage": "A page proof lies under a close-window rule strip.",
+      "mustInclude": [
+        "page proof",
+        "rule strip",
+        "correction queue"
+      ],
+      "mustAvoid": [
+        "media nostalgia"
+      ]
+    },
+    {
+      "domain": "solar installation crew planning roof days",
+      "audience": "crew lead making attention routines survive field work",
+      "stakes": "falls and wiring mistakes rise with unclear channels",
+      "format": "dialogue",
+      "requiredBeat": "the crew names the radio phrase that stops work and the tablet queue that can wait",
+      "firstImage": "A roof harness tag hangs beside a radio phrase card.",
+      "mustInclude": [
+        "harness tag",
+        "phrase card",
+        "tablet queue"
+      ],
+      "mustAvoid": [
+        "safety poster"
+      ]
+    },
+    {
+      "domain": "public library reference team covering deep research requests",
+      "audience": "reference manager building focus without abandoning patrons",
+      "stakes": "patrons need both availability and serious research",
+      "format": "before_after",
+      "requiredBeat": "before, every desk ping breaks research; after, one librarian covers walkups while another gets a protected archive block",
+      "firstImage": "An archive request slip sits beside a desk-coverage token.",
+      "mustInclude": [
+        "request slip",
+        "coverage token",
+        "archive block"
+      ],
+      "mustAvoid": [
+        "library quiet fantasy"
+      ]
+    },
+    {
+      "domain": "manufacturing maintenance team after too many hallway asks",
+      "audience": "maintenance supervisor creating request rituals",
+      "stakes": "urgent breakdowns and routine fixes need different handling",
+      "format": "postmortem",
+      "requiredBeat": "he replaces hallway requests with a triage board and a genuine breakdown alarm",
+      "firstImage": "A triage board magnet rests beside a breakdown alarm key.",
+      "mustInclude": [
+        "triage magnet",
+        "alarm key",
+        "request ritual"
+      ],
+      "mustAvoid": [
+        "factory command"
+      ]
+    },
+    {
+      "domain": "remote nonprofit fundraising team planning donor outreach",
+      "audience": "director making remote norms explicit",
+      "stakes": "donor calls need focus while crisis exceptions remain possible",
+      "format": "reflection",
+      "requiredBeat": "she sets call blocks, response windows, and one crisis channel in the team handbook",
+      "firstImage": "A donor call sheet sits under a response-window bookmark.",
+      "mustInclude": [
+        "donor call sheet",
+        "bookmark",
+        "crisis channel"
+      ],
+      "mustAvoid": [
+        "remote flexibility sermon"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Turn attention-friendly culture into shared routines that make focused work, responsiveness, and recovery predictable.",
+      "choose the action that stays inside The Indistractable Workplace's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would imagine a utopian quiet office instead of concrete shared practices people can rely on.",
+      "use chapter-specific terms such as indistractable workplace, shared practices, routines, permission in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one team routine and define when focus is protected, when response is expected, and how exceptions are raised.",
+  "readingTimeMinutes": 12
+}

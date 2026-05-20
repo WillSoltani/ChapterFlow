@@ -1,0 +1,200 @@
+{
+  "chapterId": "blue-ocean-strategy-ch01",
+  "number": 1,
+  "title": "Creating Blue Oceans",
+  "coreMove": "Shift the strategic question from how to beat rivals to what value leap could make the old comparison less relevant.",
+  "sourcePressure": "Establish the red-ocean versus blue-ocean contrast, the strategic move as the unit of analysis, and value innovation as the way to create new demand rather than fight over shrinking profit pools.",
+  "chapterSpecificMisunderstanding": "Treating blue ocean strategy as a slogan for being creative, disruptive, or nicer than competitors.",
+  "sourceAlignmentTerms": [
+    "red ocean",
+    "blue ocean",
+    "strategic move",
+    "value innovation",
+    "new demand",
+    "buyer utility",
+    "differentiation and low cost"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "150 strategic moves across more than 100 years and 30 industries",
+      "detail": "the official book page frames the argument as a study of 150 strategic moves spanning more than a century and 30 industries",
+      "useIn": "deepRead",
+      "phrasingHint": "The pattern is not a pep talk about originality; it comes from looking at 150 strategic moves across more than a century of industries."
+    },
+    {
+      "kind": "person",
+      "name": "Cirque du Soleil",
+      "detail": "the official FAQ lists Cirque du Soleil as a blue-ocean example not driven mainly by new technology",
+      "useIn": "both",
+      "phrasingHint": "Cirque du Soleil matters because it changed the value mix of circus and theater, not because it owned a secret technology."
+    },
+    {
+      "kind": "artifact",
+      "name": "Canon copier buyer-group shift",
+      "detail": "the official Canon example supports a move from office purchasing managers toward office users in the copier market",
+      "useIn": "fullRead",
+      "phrasingHint": "Canon found leverage by asking who actually used the machine, not only who signed the purchase order."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "coffee shop access for parents with strollers",
+      "audience": "a cafe owner losing families to a larger rival across the street",
+      "stakes": "whether the next spend goes to a faster espresso machine or a doorway-and-seating redesign that opens demand",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she watches a stroller wedge in the doorway, then crosses out rival speed and marks access, table spacing, and one-handed ordering as the neglected value factors",
+      "firstImage": "A stroller jammed between a brass door handle and a pastry case",
+      "mustInclude": [
+        "door width measurement",
+        "folding high chair stack",
+        "one-handed payment tray"
+      ],
+      "mustAvoid": [
+        "another cafe-price comparison scene"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "late-night print rescue between cheap chains and design studios",
+      "audience": "a copy-shop operator facing chain-store price pressure",
+      "stakes": "whether students and small firms see him as expensive or as the only safe rescue after hours",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a student asks for a thesis repair after closing and he must decide whether the market is copying pages or saving deadlines",
+      "firstImage": "\"Are you still open?\" from a student holding a torn thesis binding",
+      "mustInclude": [
+        "locked front grate",
+        "rush shelf",
+        "after-hours pickup code"
+      ],
+      "mustAvoid": [
+        "generic customer-service turnaround"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "grocery dinner bundles for exhausted commuters",
+      "audience": "an independent grocer beside a polished chain",
+      "stakes": "whether shoppers keep treating the store as smaller and pricier or as the easiest route to dinner",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the smell of rotisserie chicken and the sight of a half-built basket push her to ask a customer what would make dinner possible tonight",
+      "firstImage": "Steam fogging the plastic lid on an unsold chicken",
+      "mustInclude": [
+        "recipe band",
+        "precut vegetable tubs",
+        "commuter checkout lane"
+      ],
+      "mustAvoid": [
+        "another checkout-speed story"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "adult beginner swim lessons redesigned around privacy",
+      "audience": "a swim-school director whose lanes are full of children but empty of embarrassed adults",
+      "stakes": "whether adults who cannot swim ever enter the market at all",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "he compares the old public-lane schedule with a screened, named-goggles format that treats privacy as core value",
+      "firstImage": "It took Luca two registration cycles to notice adults never asked twice",
+      "mustInclude": [
+        "privacy screen",
+        "plain black goggles",
+        "side-door arrival"
+      ],
+      "mustAvoid": [
+        "generic fitness confidence arc"
+      ]
+    },
+    {
+      "protagonistName": "Anya",
+      "domain": "museum family visits versus unused digital guides",
+      "audience": "a public-programs lead under pressure to raise attendance",
+      "stakes": "whether the next budget buys technology or removes the friction that keeps families away",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the tablet launch gets praise but families still leave early, forcing her to separate novelty from a real value leap",
+      "firstImage": "What good is a perfect audio guide if a parent cannot find a quiet place to feed a toddler?",
+      "mustInclude": [
+        "loaner tablet cart",
+        "folding nursing screen",
+        "family map sticker"
+      ],
+      "mustAvoid": [
+        "technology adoption pep talk"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "bike shop serving nervous first-time commuters",
+      "audience": "a mechanic whose shop is built for enthusiasts",
+      "stakes": "whether he keeps selling performance upgrades or opens demand among people afraid of riding to work",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he predicts speed parts will drive growth, then a first-timer chooses route confidence, tire lessons, and theft help instead",
+      "firstImage": "At 6:40 p.m., Daniel lines up three carbon stems under the service light",
+      "mustInclude": [
+        "laminated route card",
+        "flat-tire demo wheel",
+        "lock comparison rail"
+      ],
+      "mustAvoid": [
+        "generic bike-helmet scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish blue-ocean value innovation from rivalry, novelty, or technology-first moves",
+      "spot excluded demand in a concrete operating scene",
+      "choose a value-leap move over feature copying"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write down the competitor you most want to beat, then list one buyer frustration that competitor comparisons never mention.",
+  "readingTimeMinutes": 12
+}

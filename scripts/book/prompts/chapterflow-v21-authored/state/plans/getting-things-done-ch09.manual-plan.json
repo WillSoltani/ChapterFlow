@@ -1,0 +1,198 @@
+{
+  "chapterId": "getting-things-done-ch09",
+  "number": 9,
+  "title": "Doing: Making the Best Action Choices",
+  "coreMove": "Choose the next action by filtering the trusted list through where you are, how much time you have, your energy, and real priority.",
+  "sourcePressure": "Once the system is current, action choice depends on context, time, energy, and priority, with the six horizons available as higher-level framing.",
+  "chapterSpecificMisunderstanding": "Assuming the most important item always comes first, regardless of context, available time, or energy.",
+  "sourceAlignmentTerms": [
+    "doing",
+    "action choices",
+    "context",
+    "time available",
+    "energy available",
+    "priority",
+    "six horizons"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "context, time, energy, and priority",
+      "detail": "The source sidecar names these as the chapter’s main filters for action choice.",
+      "useIn": "both",
+      "phrasingHint": "A good list still needs a live filter: where you are, how long you have, what you can bring to it, and what matters now."
+    },
+    {
+      "kind": "artifact",
+      "name": "six horizons",
+      "detail": "The source sidecar permits acknowledging the six horizons as higher-level context above the ground level.",
+      "useIn": "both",
+      "phrasingHint": "The six horizons can steady the background, but the next choice still happens at the runway."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "a trial transcript editor with twenty minutes before daycare pickup",
+      "audience": "an editor choosing from a current action list under a hard stop",
+      "stakes": "a filing correction matters, but the time window cannot hold deep review",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 5:07 p.m., Grace filters the list by pickup time and chooses the clerk email instead of opening the full transcript.",
+      "firstImage": "a transcript page beside a car-seat reminder",
+      "mustInclude": [
+        "transcript page",
+        "pickup alarm",
+        "clerk email"
+      ],
+      "mustAvoid": [
+        "family logistics as generic stress"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "a ferry terminal supervisor during a fog delay",
+      "audience": "a supervisor with calls, forms, and safety checks available",
+      "stakes": "fogbound passengers need movement without pretending every task fits the moment",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Fog presses against the terminal glass while Sam chooses the radio call his context allows and leaves spreadsheet work for later.",
+      "firstImage": "fog on terminal glass above a radio handset",
+      "mustInclude": [
+        "radio handset",
+        "delay board",
+        "maintenance form"
+      ],
+      "mustAvoid": [
+        "transport chaos without action filters"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "a ceramics studio owner after a kiln misfire",
+      "audience": "a maker-business owner with low energy and a real order deadline",
+      "stakes": "choosing the wrong task could ruin a delivery or waste a tired evening",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What can Antoine do well with clay dust on his sleeves and forty tired minutes left?",
+      "firstImage": "a cracked test tile beside the kiln log",
+      "mustInclude": [
+        "test tile",
+        "kiln log",
+        "order deadline"
+      ],
+      "mustAvoid": [
+        "making it about artistry"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "a cybersecurity analyst after a night incident response shift",
+      "audience": "an analyst choosing work while mentally depleted",
+      "stakes": "a deep root-cause memo could be botched if she ignores energy",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Maja one bad memo to stop treating low energy as laziness and start using it as a real action-choice filter.",
+      "firstImage": "a cold incident-room monitor glow",
+      "mustInclude": [
+        "incident monitor",
+        "handoff note",
+        "root-cause memo"
+      ],
+      "mustAvoid": [
+        "inventing breach details"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "a public health outreach coordinator between neighborhood visits",
+      "audience": "a coordinator with a phone, ten minutes, and a current list",
+      "stakes": "a clinic partner callback could unlock more than polishing a flyer",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Min scan only the calls possible from the parked car and choose the partner who blocks three later actions.",
+      "firstImage": "a clinic flyer tucked under a windshield wiper",
+      "mustInclude": [
+        "clinic flyer",
+        "parked car",
+        "partner callback"
+      ],
+      "mustAvoid": [
+        "using car as repeated capture inbox"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "a hotel events manager choosing work during a linen delivery delay",
+      "audience": "an events manager with multiple current next actions",
+      "stakes": "tomorrow’s wedding setup depends on matching the action to the interruption",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"I have twelve minutes and no quiet,\" Isabel says, choosing the vendor text over the seating-plan rewrite.",
+      "firstImage": "a stack of folded linen carts outside a ballroom",
+      "mustInclude": [
+        "linen carts",
+        "vendor text",
+        "seating plan"
+      ],
+      "mustAvoid": [
+        "generic hospitality politeness"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply context-time-energy-priority filters",
+      "avoid choosing by loudest anxiety",
+      "distinguish runway action from horizon review"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at your next-action list and cross out anything impossible in your current context, time, and energy; choose only from what remains.",
+  "readingTimeMinutes": 12
+}

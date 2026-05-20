@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch12",
+  "number": 12,
+  "title": "The Boomers All Grown Up",
+  "coreMove": "Trace a leadership norm back to the era that rewarded it before treating resistance as attitude.",
+  "sourcePressure": "Shows how boom-era institutional training becomes adult leadership expectation, making inherited rules feel timeless and personal clashes look like character problems.",
+  "chapterSpecificMisunderstanding": "Blaming a generation or defending another generation instead of seeing historical training inside institutions.",
+  "sourceAlignmentTerms": [
+    "Boomers",
+    "grown up",
+    "historical training",
+    "old rules",
+    "linear hierarchies",
+    "recognition",
+    "generational friction"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 12 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional bank promotion panel",
+      "audience": "HR partner reviewing seniority norms",
+      "stakes": "old career scripts shape current leadership pipeline",
+      "format": "decision_point",
+      "requiredBeat": "she asks which promotion rule came from branch growth in 1988 before applying it to remote teams",
+      "firstImage": "a promotion rubric beside an old branch photo",
+      "mustInclude": [
+        "promotion rubric",
+        "branch photo"
+      ],
+      "mustAvoid": [
+        "generation bashing"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "family-owned print shop",
+      "audience": "daughter inheriting press rules",
+      "stakes": "authority habits from boom years feel like loyalty tests",
+      "format": "dialogue",
+      "requiredBeat": "she points to the rush-order wall and asks which rule protected quality and which protected control",
+      "firstImage": "a metal type drawer under a rush-order tag",
+      "mustInclude": [
+        "type drawer",
+        "rush tag"
+      ],
+      "mustAvoid": [
+        "family business cliché"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "hospital residency call schedule",
+      "audience": "program director facing younger doctors' objections",
+      "stakes": "old endurance norms may be inherited training, not timeless medicine",
+      "format": "postmortem",
+      "requiredBeat": "he compares the call schedule to the error log instead of calling the complaints soft",
+      "firstImage": "a pager beside a call schedule",
+      "mustInclude": [
+        "pager",
+        "error log"
+      ],
+      "mustAvoid": [
+        "age stereotype"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "city planning archive room",
+      "audience": "new planner questioning parking minimums",
+      "stakes": "legacy standards were learned as prosperity signals",
+      "format": "reflection",
+      "requiredBeat": "she lays the 1974 zoning map beside current bus ridership before the hearing",
+      "firstImage": "a zoning map weighted by a tape measure",
+      "mustInclude": [
+        "zoning map",
+        "ridership chart"
+      ],
+      "mustAvoid": [
+        "policy nostalgia"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "manufacturing apprenticeship test",
+      "audience": "trainer using an old gatekeeping exam",
+      "stakes": "the exam may preserve status more than skill",
+      "format": "predict_reveal",
+      "requiredBeat": "the trainer asks which failed task predicts shop safety, then removes the irrelevant timed drill",
+      "firstImage": "a micrometer on a scored test sheet",
+      "mustInclude": [
+        "micrometer",
+        "test sheet"
+      ],
+      "mustAvoid": [
+        "discipline nostalgia"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "college alumni board",
+      "audience": "board chair reviewing donor expectations",
+      "stakes": "older leadership scripts frame engagement as obedience",
+      "format": "before_after",
+      "requiredBeat": "the chair separates traditions that build belonging from those that only reward deference",
+      "firstImage": "a brass nameplate beside a donor seating chart",
+      "mustInclude": [
+        "nameplate",
+        "seating chart"
+      ],
+      "mustAvoid": [
+        "millennial rant"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate generation stereotype from formation",
+      "identify inherited institutional rules",
+      "translate friction into expectations",
+      "adapt norms without contempt"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When a rule feels obvious to one age group and absurd to another, write what each group was trained to expect before choosing a response.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

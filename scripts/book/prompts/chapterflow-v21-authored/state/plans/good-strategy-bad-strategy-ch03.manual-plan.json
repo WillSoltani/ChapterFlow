@@ -1,0 +1,195 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch03",
+  "number": 3,
+  "title": "Bad Strategy",
+  "coreMove": "Spot when strategic language is covering an absent diagnosis and no real choice.",
+  "sourcePressure": "This chapter isolates recurring failure patterns: plans that sound energetic while missing diagnosis, dodging tradeoffs, piling initiatives, or failing to use leverage already present in the situation. Frozen source has no chapter-specific named figure, study, place, or event beyond the visible title/support notes; use conceptual source terms only and do not invent anchors.",
+  "chapterSpecificMisunderstanding": "Bad strategy is merely a weak plan, poor execution, or low morale.",
+  "sourceAlignmentTerms": [
+    "missing diagnosis",
+    "initiative pile",
+    "refusal to choose",
+    "fluff",
+    "leverage blindness",
+    "strategy-free activity",
+    "goals without policy"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of Bad Strategy",
+      "The plan looked impressive because... repeated hook shell",
+      "any hook that starts with Strategy is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter"
+    ],
+    "tryThisNow": [
+      "Write down your top three goals",
+      "Set a timer and reflect",
+      "Ask yourself what matters most"
+    ],
+    "examples": [
+      "conference room deck review",
+      "whiteboard prioritization session",
+      "coffee shop founder scene",
+      "generic classroom group project"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "student government annual plan full of slogans",
+      "audience": "a reader facing student government annual plan full of slogans",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anna moves one concrete constraint to the center of the table and crosses out every action that does not address it using poster mockup so the lesson happens as a visible action.",
+      "firstImage": "The poster mockup sits where the laptop was supposed to go",
+      "mustInclude": [
+        "poster mockup",
+        "budget spreadsheet",
+        "empty petition sheet"
+      ],
+      "mustAvoid": [
+        "generic of slogans advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Martin",
+      "domain": "museum membership team with twelve disconnected initiatives",
+      "audience": "a reader facing museum membership team with twelve disconnected initiatives",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Martin asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using membership wall chart so the lesson happens as a visible action.",
+      "firstImage": "\"Show me which part this fixes,\" Martin says",
+      "mustInclude": [
+        "membership wall chart",
+        "donor call list",
+        "gallery floor plan"
+      ],
+      "mustAvoid": [
+        "generic disconnected initiatives advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "regional bank transformation deck with no obstacle named",
+      "audience": "a reader facing regional bank transformation deck with no obstacle named",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sophie uses the artifact to expose the hidden constraint before anyone proposes another initiative using slide deck so the lesson happens as a visible action.",
+      "firstImage": "The room smells faintly of toner and rain-soaked coats",
+      "mustInclude": [
+        "slide deck",
+        "branch heat map",
+        "risk register"
+      ],
+      "mustAvoid": [
+        "generic obstacle named advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "nonprofit housing coalition avoiding tradeoffs",
+      "audience": "a reader facing nonprofit housing coalition avoiding tradeoffs",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Jonas turns a vague goal into a visible choice by marking the one place effort will land using tenant map so the lesson happens as a visible action.",
+      "firstImage": "You can see the weak spot before anyone names it",
+      "mustInclude": [
+        "tenant map",
+        "grant deadline",
+        "eviction notices"
+      ],
+      "mustAvoid": [
+        "generic avoiding tradeoffs advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "product team mistaking feature pile for strategy",
+      "audience": "a reader facing product team mistaking feature pile for strategy",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Layla tests the proposed move against the object or record that reveals whether it fits the real problem using roadmap board so the lesson happens as a visible action.",
+      "firstImage": "It took Layla three weeks to stop trusting the clean version of the plan",
+      "mustInclude": [
+        "roadmap board",
+        "bug queue",
+        "launch calendar"
+      ],
+      "mustAvoid": [
+        "generic for strategy advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "airport food vendor chasing every passenger segment",
+      "audience": "a reader facing airport food vendor chasing every passenger segment",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ben stops the meeting and rearranges the sequence of work so the strategic move becomes visible using terminal lease so the lesson happens as a visible action.",
+      "firstImage": "What changes when the constraint is placed in the open?",
+      "mustInclude": [
+        "terminal lease",
+        "passenger counts",
+        "menu mockups"
+      ],
+      "mustAvoid": [
+        "generic passenger segment advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish missing diagnosis from its generic imitation in a new scenario",
+      "choose the action that performs spot when strategic language is covering an absent diagnosis and no real choice. rather than merely describing it",
+      "diagnose when execution pep talk is pulling the scenario off-course"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, write the current decision as one obstacle, one chosen response, and one action that would visibly test missing diagnosis in your actual situation.",
+  "readingTimeMinutes": 11,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

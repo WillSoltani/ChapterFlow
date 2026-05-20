@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch12",
+  "number": 12,
+  "title": "Innovate",
+  "readingTimeMinutes": 12,
+  "hook": "The tiny pilot scorecard looks weak until it keeps the bank from judging a seedling like a branch.",
+  "counterintuition": "Protection looks like support. In fact, it fails when it becomes escape from proof; a sandbox needs autonomy and evidence gates together.",
+  "tryThisNow": "For one internal experiment, write its sandbox boundary: decision rights, protected resources, evidence gates, and the mature metric it should not face yet.",
+  "keyTakeaway": "Build a bounded sandbox so new ideas get autonomy, protected resources, incentives, and evidence gates before mature standards judge them.",
+  "breakdown": {
+    "fastRead": "Kiran sits at a mahogany boardroom table with a tiny pilot scorecard. The bank wants the internal savings tool judged by mature revenue KPIs. The service has not yet learned whether customers value the new habit.\n\nA sandbox is not a toy room; it is a work boundary. It is a boundary that keeps the core business from judging a question before it has evidence.\n\nKiran negotiates protected test accounts and an evidence gate. The team gets room to learn, and leadership gets accountability about what proof must arrive next.",
+    "deepRead": "\"Autonomy inside the fence,\" Petra says, with patent forms in a blue folder on the lab bench. The technology-transfer office wants committee approval for every customer conversation. Petra writes a narrow sandbox charter instead: a spending cap, defined customer calls, and clear review points.\n\nProtected resources buy time for learning, not immunity from proof.\n\nInternal innovation needs both protection and accountability. Without protection, the core business applies mature standards too soon and crushes fragile learning. Without accountability, the sandbox becomes a hobby room where ideas consume resources without evidence. The structure has to give the team enough autonomy to make fast decisions and enough evidence gates to keep the work honest.\n\nEncouragement is not structure. Budget is not structure. A slogan about innovation is not structure.\n\nThe question is whether the organization has designed a place where uncertainty can be tested without being mistaken for failure.\n\nPetra adds the missing line to the charter before anyone leaves the lab. The team may run ten customer calls without committee review, but each call must feed a decision log by Friday. That one line keeps the sandbox from drifting. Freedom exists so evidence can arrive faster.",
+    "fullRead": "Samuel spreads a floor-plan printout over shelf tags. The retail chain wants three stores to test a new format, but standard store KPIs would punish layout disruption before the team learns anything. He protects three stores from standard comparison for one learning cycle and writes a waiver that names the layout test, not a permanent exemption.\n\nThat is the difference between shelter and escape.\n\nAn Innovation sandbox needs boundaries. It should say who can decide, what resources are protected, which customers or stores are inside the test, which metrics matter now, and when the work faces a harder review. Too little boundary and the core business smothers the experiment. Too much freedom and the experiment loses contact with evidence.\n\nWhat would this team be allowed to do without asking permission, and what would prove it deserved more room?\n\nLayla faces that in a public transit agency. A fare validator carries a pilot sticker on one route, and procurement rules normally slow every fare experiment. She secures bounded autonomy for one route and one fare product. The fare data will decide the next step. The pilot is protected from system-wide procurement drag, but not protected from evidence.\n\nIncentives matter too. Mikkel's enterprise AI incubator had been rewarding demos while legal reviews blocked real workflow learning. A demo laptop sat beside an access-permission spreadsheet, and every team learned to perform instead of adopt. In the postmortem, Mikkel ties incentives to tested workflow adoption inside a guarded sandbox: permission sheet, adoption metric, legal limits, and real users.\n\nThe core business is not the villain. It has to protect customers, cash, quality, and reputation. Mature standards exist for reasons. The mistake is applying those standards before a new idea has had a fair chance to discover whether it can become mature. Internal entrepreneurship requires a bridge between fragile discovery and responsible scale.\n\nClaire sees this bridge in a hospital home-monitoring venture. A remote blood-pressure cuff sits in a plastic bin while clinical operations asks for staffing efficiency. Before, the project was squeezed by the nurse schedule before patient evidence developed. After redesigning the sandbox, Claire protects nurse time for a small patient cohort and makes readmission evidence mandatory. The venture gets room, but not a blank check.\n\nInnovation inside a large system is an organizational design problem. Give the team no room, and the idea suffocates. Give it no accountability, and the organization learns not to trust experiments. The right sandbox protects learning until evidence is strong enough to face the wider business.\n\nThe test is simple. If the sandbox gives a team room but no standard for learning, it is escape. If it gives standards but no room, it is theater. The useful design gives both at once, so the idea can become real enough to be judged fairly."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-kiran-bank",
+      "title": "Kiran Negotiates the Savings Sandbox",
+      "tags": [
+        "scene",
+        "bank",
+        "sandbox"
+      ],
+      "planSpec": {
+        "domain": "bank internal savings tool",
+        "audience": "corporate venture lead",
+        "stakes": "mature revenue KPIs could kill a learning-stage service",
+        "format": "scene",
+        "requiredBeat": "Kiran negotiates a sandbox with protected test accounts and clear evidence gates"
+      },
+      "scenario": "At 8:45 a.m. Tuesday, Kiran places a tiny pilot scorecard on a mahogany boardroom table beside the request for protected accounts. Finance wants mature revenue KPIs by quarter end. Before the review begins, Kiran must choose whether to accept that standard or negotiate a sandbox with evidence gates for the savings habit. The scorecard must name the habit evidence before finance can fairly judge revenue.",
+      "whatToDo": "Negotiate protected test accounts and evidence gates for the pilot. Keep leadership accountable to learning-stage measures before mature revenue standards apply.",
+      "whyItMatters": "A learning-stage service can be killed by adult metrics too soon. The sandbox gives the idea room to prove value without escaping accountability."
+    },
+    {
+      "exampleId": "ch12-ex02-petra-lab",
+      "title": "Petra Defines Autonomy Inside the Lab Fence",
+      "tags": [
+        "dialogue",
+        "university",
+        "commercialization"
+      ],
+      "planSpec": {
+        "domain": "university research commercialization lab",
+        "audience": "technology-transfer office",
+        "stakes": "committee approvals may smother experiments before customers respond",
+        "format": "dialogue",
+        "requiredBeat": "Petra defines autonomy inside a narrow commercialization sandbox"
+      },
+      "scenario": "\"Give us a fence, not a leash,\" Petra says beside a lab bench with patent forms in a blue folder. The technology-transfer office wants committee approval for every customer call. The sandbox charter has a spending cap and review date. The office must choose between blanket approvals and narrow autonomy for the first commercialization tests. The charter turns permission into a testable boundary instead of a plea for special treatment.",
+      "whatToDo": "Define the sandbox boundary: spending cap, customer-call rights, and review date. Let the team learn inside that fence without asking permission for every move.",
+      "whyItMatters": "Committee approvals can smother experiments before customers answer. Narrow autonomy protects learning while keeping the office responsible for scope."
+    },
+    {
+      "exampleId": "ch12-ex03-samuel-retail",
+      "title": "Samuel Shields Three Test Stores",
+      "tags": [
+        "vignette",
+        "retail",
+        "layout"
+      ],
+      "planSpec": {
+        "domain": "retail chain store-format experiment",
+        "audience": "innovation director",
+        "stakes": "core-store efficiency metrics may punish exploratory layout tests",
+        "format": "vignette",
+        "requiredBeat": "Samuel protects three stores from standard comparison for one learning cycle"
+      },
+      "scenario": "The floor-plan printout is spread over shelf tags while Samuel circles three stores for a layout test. The standard KPI waiver is short, and the regional manager is uneasy. He has a decision to make before the test starts: let core-store efficiency metrics punish the disruption, or protect three stores for one learning cycle. The waiver gives the layout enough room to teach without granting permanent exemption.",
+      "whatToDo": "Protect the three stores from standard comparison for one cycle and define the layout evidence that will end the waiver.",
+      "whyItMatters": "Exploratory layouts can look inefficient before they teach. A bounded waiver keeps mature KPIs from crushing the test too early."
+    },
+    {
+      "exampleId": "ch12-ex04-layla-transit",
+      "title": "Layla Narrows the Fare Pilot",
+      "tags": [
+        "decision point",
+        "transit",
+        "autonomy"
+      ],
+      "planSpec": {
+        "domain": "public transit mobile ticket pilot",
+        "audience": "agency product team",
+        "stakes": "procurement controls may block fast fare experiments",
+        "format": "decision_point",
+        "requiredBeat": "Layla secures bounded autonomy for one route and one fare product"
+      },
+      "scenario": "You are with Layla at 10:05 a.m. in the transit agency pilot room beside a fare validator taped with a route-12 sticker. The product team wants fare data from one route, but procurement controls could delay the test for months. Before the board packet is final, Layla needs to decide whether to seek system-wide approval or secure bounded autonomy for one route and one fare product. The route-12 sticker makes the boundary visible: one route, one fare product, one evidence gate.",
+      "whatToDo": "Ask for autonomy on one route and one fare product with a clear fare-data review. Keep the pilot narrow enough to move and accountable enough to trust.",
+      "whyItMatters": "Fast fare learning needs room inside the agency. Bounded autonomy prevents procurement drag without turning the pilot into an unmanaged exception."
+    },
+    {
+      "exampleId": "ch12-ex05-mikkel-ai",
+      "title": "Mikkel Ties Rewards to Workflow Adoption",
+      "tags": [
+        "postmortem",
+        "AI",
+        "incentives"
+      ],
+      "planSpec": {
+        "domain": "enterprise AI assistant incubator",
+        "audience": "IT strategy group",
+        "stakes": "incentives may reward demos while legal reviews block real learning",
+        "format": "postmortem",
+        "requiredBeat": "Mikkel ties incentives to tested workflow adoption inside a guarded sandbox"
+      },
+      "scenario": "It took Mikkel three polished demos to see the incubator was rewarding performance. A demo laptop sat beside an access-permission spreadsheet, while the permission sheet blocked real workflow use. In the postmortem, he changes incentives: teams earn support when adoption metrics move inside a guarded sandbox, not when the demo looks clever. The incentive change tells teams that real workflow use matters more than a polished room performance.",
+      "whatToDo": "Tie incentives to tested workflow adoption and define permission rules inside the sandbox. Reward evidence from real use, not demo polish.",
+      "whyItMatters": "Demos can win applause while legal limits block learning. Incentives have to point teams toward adoption evidence inside safe boundaries."
+    },
+    {
+      "exampleId": "ch12-ex06-claire-hospital",
+      "title": "Claire Protects Nurse Time for Patient Evidence",
+      "tags": [
+        "before after",
+        "health system",
+        "resources"
+      ],
+      "planSpec": {
+        "domain": "hospital home-monitoring venture",
+        "audience": "health-system innovation team",
+        "stakes": "clinical operations may crush a fragile model before patient evidence develops",
+        "format": "before_after",
+        "requiredBeat": "Claire protects nurse time while making readmission evidence mandatory"
+      },
+      "scenario": "Claire checks a remote blood-pressure cuff sitting in a plastic bin beside the nurse schedule. Before, Claire's home-monitoring venture lost nurse time whenever clinical operations got tight. After redesigning the sandbox, she protects a small patient cohort and makes the readmission measure mandatory before the venture asks for scale. The protected nurse time is the condition that lets the readmission measure become fair evidence.",
+      "whatToDo": "Protect nurse time for the patient cohort and require readmission evidence at the review gate. Give the venture room and a hard proof standard.",
+      "whyItMatters": "Clinical operations can crush a fragile model before evidence develops. Protected resources matter only when paired with accountability for patient outcomes."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A large company funds an internal venture, gives it a small team, and then judges it immediately by mature division revenue before customers have tested the new habit. What is the likely problem?",
+        "choices": [
+          "The company is applying mature standards before the venture has evidence.",
+          "The venture should never face revenue questions.",
+          "Internal ventures cannot work inside large organizations."
+        ],
+        "correctIndex": 0,
+        "explanation": "New ideas need learning-stage evidence gates before mature standards. Revenue may matter later, but premature grading can crush discovery.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A bank wants to test a savings tool with a small group of protected accounts, while finance asks for mature branch revenue KPIs from the first week. Which structure best supports innovation without losing accountability?",
+        "choices": [
+          "Unlimited budget until the idea feels ready.",
+          "Protected test accounts and clear evidence gates for the pilot.",
+          "Normal branch revenue KPIs from the first week."
+        ],
+        "correctIndex": 1,
+        "explanation": "The sandbox gives room to learn and defines proof. Unlimited budget loses accountability, while branch KPIs judge the idea too early.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A university commercialization lab needs customer conversations, but committee approval is required for every call. What should the office design?",
+        "choices": [
+          "A total ban on customer calls until patents are complete.",
+          "A public demo day before any outside contact.",
+          "A narrow sandbox with a spending cap, customer-call rights, and review date."
+        ],
+        "correctIndex": 2,
+        "explanation": "Narrow autonomy lets the team learn inside boundaries. Bans and demos delay the customer evidence commercialization needs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A retail chain tests a new store layout, but standard store KPIs punish the disruption immediately. Which move fits the sandbox idea?",
+        "choices": [
+          "Protect a small set of stores from standard comparison for one learning cycle.",
+          "Remove all performance measurement from the stores permanently.",
+          "Cancel the layout test because mature KPIs are more objective."
+        ],
+        "correctIndex": 0,
+        "explanation": "A bounded waiver protects learning without abandoning evidence. Permanent exemption and cancellation both miss the balance of protection and accountability.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A transit agency wants fare data from one route, but normal procurement would delay the pilot for months. What should the product lead request?",
+        "choices": [
+          "System-wide autonomy with no fare-data review.",
+          "Bounded autonomy for one route and one fare product with a clear evidence gate.",
+          "A larger procurement process so the pilot feels official."
+        ],
+        "correctIndex": 1,
+        "explanation": "Bounded autonomy creates room for fast learning while keeping scope and evidence clear. Both no review and larger procurement fail the balance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An AI incubator rewards impressive demos, but legal permissions block real workflow use. What incentive change would improve learning?",
+        "choices": [
+          "Reward teams for more polished demo scripts.",
+          "Remove legal limits from all experiments.",
+          "Reward teams for tested workflow adoption inside a guarded sandbox."
+        ],
+        "correctIndex": 2,
+        "explanation": "Adoption evidence inside safe boundaries aligns incentives with learning. Demo polish and removing all limits both avoid the real structure problem.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A hospital venture loses nurse time whenever operations gets busy, then gets judged for weak patient evidence. What is wrong with the setup?",
+        "choices": [
+          "The venture lacks protected resources needed to produce the evidence it is judged by.",
+          "The venture should not have to produce patient evidence.",
+          "The nurses should volunteer extra time outside the schedule."
+        ],
+        "correctIndex": 0,
+        "explanation": "A team cannot be accountable for evidence if the organization removes the resources needed to create it. Protection and proof must be paired.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A corporate innovation lab has protected budget and autonomy, but no review asks whether customers used, paid, returned, or changed behavior. What risk does it face?",
+        "choices": [
+          "It will learn too quickly for the core business.",
+          "It may become a hobby room that consumes resources without proving anything.",
+          "It will be judged too harshly by mature metrics."
+        ],
+        "correctIndex": 1,
+        "explanation": "Protection without accountability can drift. A good sandbox includes review points and evidence gates, not only resources and freedom.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A leadership team can either give a new internal venture normal KPIs, total freedom, or a bounded sandbox with proof gates. Which is best?",
+        "choices": [
+          "Normal KPIs, because they keep the team serious.",
+          "Total freedom, because innovation cannot be measured early.",
+          "A bounded sandbox, because it protects learning while requiring evidence."
+        ],
+        "correctIndex": 2,
+        "explanation": "The bounded sandbox balances autonomy and accountability. Normal KPIs can crush discovery, while total freedom can lose evidence discipline.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A new venture is being crushed by mature KPIs before evidence exists. What is an innovation sandbox for?",
+      "back": "It gives a new idea enough boundary, autonomy, and protection to learn before mature-business standards judge it, while still requiring evidence.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why are protected resources not a blank check?",
+      "back": "Protected resources buy time for learning. They should be paired with evidence gates, review points, and accountability for what the venture proves.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A company praises new ideas but grades them by old-business rules in week one. What kills internal innovation besides lack of budget?",
+      "back": "Mature KPIs, committee approvals, weak autonomy, bad incentives, and unprotected time can all crush a fragile idea before evidence develops.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What should a sandbox boundary include?",
+      "back": "Decision rights, scope, protected resources, spending limits, users or locations inside the test, evidence gates, and the review point for scaling or stopping.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "An incubator rewards polished demos while real adoption is blocked. How do incentives distort innovation?",
+      "back": "If incentives reward demos, teams perform. If they reward tested adoption or validated learning, teams seek evidence from real users inside safe boundaries.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to design a protected but accountable space for internal entrepreneurship. The skill is setting boundaries that keep the core business from crushing learning while making evidence mandatory.",
+    "ifThenPlans": [
+      {
+        "context": "internal venture",
+        "plan": "If a new idea is judged by mature KPIs, then propose a sandbox scorecard with evidence gates tied to learning-stage proof."
+      },
+      {
+        "context": "resource planning",
+        "plan": "If a team is accountable for evidence, then protect the time, accounts, stores, users, or budget needed to produce that evidence."
+      },
+      {
+        "context": "governance",
+        "plan": "If approvals slow every experiment, then define bounded autonomy with a spending cap and scheduled review."
+      },
+      {
+        "context": "incentives",
+        "plan": "If teams are rewarded for demos, then shift rewards toward tested adoption or validated learning inside the sandbox."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, draft a one-page sandbox for an uncertain internal idea: scope, autonomy, protected resources, evidence gate, and review date.",
+    "weeklyPractice": "Each week, inspect one innovation effort and ask whether it has both room and proof. Add protection if it is being crushed, or an evidence gate if it is drifting."
+  },
+  "memorableLines": [
+    {
+      "text": "A sandbox is not a toy room; it is a work boundary.",
+      "location": "breakdown.fastRead",
+      "why": "It blocks the easy misunderstanding that sandboxes are unserious play spaces."
+    },
+    {
+      "text": "Protected resources buy time for learning, not immunity from proof.",
+      "location": "breakdown.deepRead",
+      "why": "It balances protection with accountability in one sentence."
+    },
+    {
+      "text": "That is the difference between shelter and escape.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the balance between protecting a venture and letting it drift."
+    }
+  ]
+}

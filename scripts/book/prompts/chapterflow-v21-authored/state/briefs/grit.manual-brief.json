@@ -1,0 +1,97 @@
+{
+  "bookId": "grit",
+  "title": "Grit: The Power of Passion and Perseverance",
+  "author": "Angela Duckworth",
+  "thesisParagraph": "Grit argues that outstanding achievement is less a story of dazzling talent than of sustained direction. The useful unit is not a burst of effort, a high test score, or a hard week, but the combination of a durable interest and the willingness to keep improving through boredom, setback, feedback, and slow compounding. The book teaches readers to stop asking whether they are naturally gifted and start asking whether their environment, practice, purpose, hope, parenting, activities, and culture make long commitment more likely.",
+  "coreIdeas": [
+    {
+      "name": "Passion plus perseverance",
+      "oneSentence": "Grit is enduring commitment to a long-term aim, not just working hard today.",
+      "mentalMove": "separate durable direction from intensity",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch04.external"
+      ]
+    },
+    {
+      "name": "Talent bias",
+      "oneSentence": "Fast aptitude seduces observers into missing the person who keeps improving.",
+      "mentalMove": "look for repeated return rather than early shine",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch03.external"
+      ]
+    },
+    {
+      "name": "Effort counts twice",
+      "oneSentence": "Effort builds skill and then turns skill into achievement.",
+      "mentalMove": "trace outcomes through both stages of effort",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch07.external"
+      ]
+    },
+    {
+      "name": "Grit grows from inside out",
+      "oneSentence": "Interest, practice, purpose, and hope can be cultivated deliberately.",
+      "mentalMove": "choose the weakest internal asset and design one condition to strengthen it",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source",
+        "ch07.external",
+        "ch08.external",
+        "ch09.external"
+      ]
+    },
+    {
+      "name": "Grit grows from outside in",
+      "oneSentence": "Parents, activities, and cultures shape whether persistence becomes normal.",
+      "mentalMove": "build support, challenge, follow-through, and group identity around effort",
+      "sourceAnchors": [
+        "ch10.external",
+        "ch11.external",
+        "ch12.external"
+      ]
+    }
+  ],
+  "targetReader": "Adults, parents, teachers, managers, coaches, and students who suspect talent has been overvalued and want practical ways to sustain difficult work without turning persistence into punishment.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language"
+    ]
+  },
+  "voiceSpecimens": [
+    "The first test is not whether the work feels inspiring. It is whether you come back after it embarrasses you.",
+    "A score can start the conversation, but your calendar tells the cleaner truth.",
+    "Talent makes people look twice. Grit makes them still be looking years later.",
+    "The useful question is smaller than destiny: what would make one more honest attempt likely tomorrow?",
+    "A hard thing chosen freely teaches a different lesson from a hard thing imposed for display.",
+    "Culture is the voice in the room that answers before your excuses do."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, the author explains why grit is important for success.",
+    "Unlock your limitless potential by persevering with passion every single day.",
+    "The key takeaway is that readers should cultivate a growth mindset around resilience.",
+    "Imagine a world where talent no longer matters and effort always wins.",
+    "You simply need to push harder, dream bigger, and never give up."
+  ],
+  "teachingArc": "The book starts by breaking the spell of talent, then defines grit as measurable long-term passion and perseverance. It turns inward through interest, practice, purpose, and hope, then outward through parents, activities, and culture, ending with a proportional view: grit is powerful, developable, and incomplete without judgment and character.",
+  "forbiddenMoves": [
+    "do not turn grit into never-quit absolutism",
+    "do not imply talent is irrelevant",
+    "do not invent studies or named exemplars absent from the source support",
+    "do not flatten interest, practice, purpose, and hope into one generic persistence lesson",
+    "do not use boot-camp or sports scenes as the default example shell"
+  ]
+}

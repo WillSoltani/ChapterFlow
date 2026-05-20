@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch13",
+  "number": 13,
+  "title": "Follow Up or Fail",
+  "coreMove": "Convert a good first exchange into a next useful contact before the warmth fades.",
+  "sourcePressure": "First contact decays unless relevant follow-up turns interest into continuity and trust.",
+  "chapterSpecificMisunderstanding": "Equating follow-up with empty check-ins, calendar nags, or pressure.",
+  "sourceAlignmentTerms": [
+    "follow up",
+    "continuity",
+    "momentum",
+    "relevance",
+    "first interaction",
+    "trust"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Chris",
+      "domain": "podcast guest thank-you note",
+      "audience": "a reader facing podcast guest thank-you note where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if podcast guest thank-you note becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chris sends one specific follow-up tied to what was actually said, not a generic check-in in front of thank-you postcard, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "thank-you postcard on the edge of podcast guest thank-you note",
+      "mustInclude": [
+        "thank-you postcard",
+        "podcast guest thank-you note constraint",
+        "one named next step tied to follow up"
+      ],
+      "mustAvoid": [
+        "Equating follow-up with empty check-ins, calendar nags, or pressure.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "conference hallway voice memo",
+      "audience": "a reader facing conference hallway voice memo where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if conference hallway voice memo becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sam sends one specific follow-up tied to what was actually said, not a generic check-in in front of voice memo waveform, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "voice memo waveform on the edge of conference hallway voice memo",
+      "mustInclude": [
+        "voice memo waveform",
+        "conference hallway voice memo constraint",
+        "one named next step tied to follow up"
+      ],
+      "mustAvoid": [
+        "Equating follow-up with empty check-ins, calendar nags, or pressure.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "gallery opening postcard stack",
+      "audience": "a reader facing gallery opening postcard stack where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if gallery opening postcard stack becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ryan sends one specific follow-up tied to what was actually said, not a generic check-in in front of gallery brochure, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "gallery brochure on the edge of gallery opening postcard stack",
+      "mustInclude": [
+        "gallery brochure",
+        "gallery opening postcard stack constraint",
+        "one named next step tied to follow up"
+      ],
+      "mustAvoid": [
+        "Equating follow-up with empty check-ins, calendar nags, or pressure.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "supplier tour photo folder",
+      "audience": "a reader facing supplier tour photo folder where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if supplier tour photo folder becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Jack sends one specific follow-up tied to what was actually said, not a generic check-in in front of photo contact sheet, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "photo contact sheet on the edge of supplier tour photo folder",
+      "mustInclude": [
+        "photo contact sheet",
+        "supplier tour photo folder constraint",
+        "one named next step tied to follow up"
+      ],
+      "mustAvoid": [
+        "Equating follow-up with empty check-ins, calendar nags, or pressure.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "mentor coffee receipt",
+      "audience": "a reader facing mentor coffee receipt where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if mentor coffee receipt becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lukas sends one specific follow-up tied to what was actually said, not a generic check-in in front of receipt stamp, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "receipt stamp on the edge of mentor coffee receipt",
+      "mustInclude": [
+        "receipt stamp",
+        "mentor coffee receipt constraint",
+        "one named next step tied to follow up"
+      ],
+      "mustAvoid": [
+        "Equating follow-up with empty check-ins, calendar nags, or pressure.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "webinar attendee question list",
+      "audience": "a reader facing webinar attendee question list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if webinar attendee question list becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Akira sends one specific follow-up tied to what was actually said, not a generic check-in in front of chat transcript, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "chat transcript on the edge of webinar attendee question list",
+      "mustInclude": [
+        "chat transcript",
+        "webinar attendee question list constraint",
+        "one named next step tied to follow up"
+      ],
+      "mustAvoid": [
+        "Equating follow-up with empty check-ins, calendar nags, or pressure.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish follow up from Equating follow-up with empty check-ins, calendar nags, or pressure.",
+      "choose the visible action that performs: Convert a good first exchange into a next useful contact before the warmth fades.",
+      "diagnose when a scenario drifts into Equating follow-up with empty check-ins, calendar nags, or pressure.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real follow up moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

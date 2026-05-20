@@ -1,0 +1,196 @@
+{
+  "chapterId": "ego-is-the-enemy-ch23",
+  "number": 23,
+  "title": "Draw the line",
+  "coreMove": "Choose the boundary that protects character when failure tempts you to explain, retaliate, or bargain.",
+  "sourcePressure": "Failure section: boundaries against self-betrayal, resentment, and egoic overreaction. Supported by frozen TOC and book skeleton; no per-chapter source sidecar exists in the latest run.",
+  "chapterSpecificMisunderstanding": "Making it about arbitrary toughness instead of a clear moral line under pressure.",
+  "sourceAlignmentTerms": [
+    "draw the line",
+    "boundary",
+    "self-betrayal",
+    "resentment",
+    "retaliation",
+    "character"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "No named person, study, place, or artifact is available in the frozen source sidecar for this chapter; use fictional scenarios only and do not invent source anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of draw the line",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple draw the line is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Britta",
+      "domain": "public apology drafting room",
+      "audience": "a reader facing public apology drafting room pressure who needs to practice chapter 23's move without turning it into draw the line advice in general",
+      "stakes": "a concrete standard in public apology drafting room will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "draws the line before resentment gets to choose the next move in the concrete setting of public apology drafting room; make the lesson visible through action, not explanation",
+      "firstImage": "a public statement draft with the retaliatory sentence cut sits between Britta and the easiest explanation in the public apology drafting room room.",
+      "mustInclude": [
+        "draw the line",
+        "boundary",
+        "public apology"
+      ],
+      "mustAvoid": [
+        "do not turn this into draw the line as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Linnea",
+      "domain": "tenant eviction mediation",
+      "audience": "a reader facing tenant eviction mediation pressure who needs to practice chapter 23's move without turning it into draw the line advice in general",
+      "stakes": "a concrete standard in tenant eviction mediation will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "writes the boundary as a behavior she will not do, not as a speech about who is wrong in the concrete setting of tenant eviction mediation; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Linnea hears, with an exam appeal packet with the scoring standard attached already on the table.",
+      "mustInclude": [
+        "draw the line",
+        "boundary",
+        "tenant eviction"
+      ],
+      "mustAvoid": [
+        "do not turn this into draw the line as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Freya",
+      "domain": "family business buyout meeting",
+      "audience": "a reader facing family business buyout meeting pressure who needs to practice chapter 23's move without turning it into draw the line advice in general",
+      "stakes": "a concrete standard in family business buyout meeting will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "refuses the retaliatory shortcut because it would cost the character the setback already threatened in the concrete setting of family business buyout meeting; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a parenting schedule with the angry margin notes removed makes the pressure in family business buyout meeting visible.",
+      "mustInclude": [
+        "draw the line",
+        "boundary",
+        "family business"
+      ],
+      "mustAvoid": [
+        "do not turn this into draw the line as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Nils",
+      "domain": "sports tribunal ruling",
+      "audience": "a reader facing sports tribunal ruling pressure who needs to practice chapter 23's move without turning it into draw the line advice in general",
+      "stakes": "a concrete standard in sports tribunal ruling will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "names the point where adaptation becomes self-betrayal and stops there in the concrete setting of sports tribunal ruling; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Nils's thumb stop over a reopening checklist with the first quiet repair dated before the ego-favoring move happens.",
+      "mustInclude": [
+        "draw the line",
+        "boundary",
+        "sports tribunal"
+      ],
+      "mustAvoid": [
+        "do not turn this into draw the line as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "co-op board resignation",
+      "audience": "a reader facing co-op board resignation pressure who needs to practice chapter 23's move without turning it into draw the line advice in general",
+      "stakes": "a concrete standard in co-op board resignation will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "chooses the line that preserves standards without turning pain into vengeance in the concrete setting of co-op board resignation; make the lesson visible through action, not explanation",
+      "firstImage": "It took Marco until the third review of a rejected grant rubric with one blank evidence column to see what ego had protected.",
+      "mustInclude": [
+        "draw the line",
+        "boundary",
+        "co-op board"
+      ],
+      "mustAvoid": [
+        "do not turn this into draw the line as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "charity fraud discovery",
+      "audience": "a reader facing charity fraud discovery pressure who needs to practice chapter 23's move without turning it into draw the line advice in general",
+      "stakes": "a concrete standard in charity fraud discovery will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "keeps the boundary tied to conduct, not ego's need to win the argument in the concrete setting of charity fraud discovery; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when a shipping manifest with the profitable reroute circled becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "draw the line",
+        "boundary",
+        "charity fraud"
+      ],
+      "mustAvoid": [
+        "do not turn this into draw the line as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish draw the line from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Choose the boundary that protects character when failure tempts you to explain, retaliate, or bargain.",
+      "spot when a scenario has drifted into personal boundaries generic",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves draw the line or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

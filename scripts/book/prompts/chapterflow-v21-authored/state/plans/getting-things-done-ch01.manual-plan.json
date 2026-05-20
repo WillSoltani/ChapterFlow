@@ -1,0 +1,197 @@
+{
+  "chapterId": "getting-things-done-ch01",
+  "number": 1,
+  "title": "A New Practice for a New Reality",
+  "coreMove": "Spot overload as undefined open loops and move one live commitment into a trusted place with a next physical action.",
+  "sourcePressure": "Modern knowledge work creates boundaryless overload because unfinished commitments stay mentally active as open loops until they are captured, clarified, and held in a trusted system.",
+  "chapterSpecificMisunderstanding": "Treating GTD as a calmer to-do list or generic stress advice instead of a specific handoff from memory to trusted external control.",
+  "sourceAlignmentTerms": [
+    "open loops",
+    "mind like water",
+    "next physical action",
+    "trusted system",
+    "knowledge work",
+    "bottom-up control"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "mind like water",
+      "detail": "Chapter 1 introduces this as appropriately responsive attention once loose commitments stop living in memory.",
+      "useIn": "both",
+      "phrasingHint": "Mind like water is not a spa mood; it is what attention feels like after the next action is safely parked."
+    },
+    {
+      "kind": "artifact",
+      "name": "2015 revised Penguin edition",
+      "detail": "The official source bundle locks the revised and updated Penguin Books edition published March 17, 2015.",
+      "useIn": "both",
+      "phrasingHint": "The 2015 revision matters because the overload is email-shaped and boundaryless, not only a paper-desk problem."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "an immigration clinic paralegal clearing voicemail promises after intake night",
+      "audience": "a paralegal with twenty-seven callers waiting for status updates",
+      "stakes": "a missed document request could cost a client a filing window",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The locked clinic door clicks behind Sarah before she empties every voicemail promise onto a legal pad, then circles the first call that needs a physical action.",
+      "firstImage": "a dark clinic hallway with the voicemail light blinking red",
+      "mustInclude": [
+        "voicemail light",
+        "legal pad",
+        "filing deadline"
+      ],
+      "mustAvoid": [
+        "turning the scene into general anxiety about helping people"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "a municipal snow desk after an overnight storm",
+      "audience": "an operations coordinator whose radio, email, and map all create commitments",
+      "stakes": "a blocked ambulance route may stay unresolved because it is only in his head",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At the dispatch console, James stops rereading the storm inbox and writes each live road promise into one capture sheet before choosing any route fix.",
+      "firstImage": "a wall map dotted with blue plow magnets",
+      "mustInclude": [
+        "dispatch console",
+        "blue plow magnets",
+        "ambulance route"
+      ],
+      "mustAvoid": [
+        "making it about emergency heroics instead of capture"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "a museum registrar handling loan forms during a donor reception",
+      "audience": "an arts administrator whose precision work is interrupted by hallway requests",
+      "stakes": "insurance dates and crate dimensions could drift across attention",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Can you also check the crate humidity?\" makes Camille pause with the loan form half-signed and place the request into the intake tray before she answers.",
+      "firstImage": "a white cotton glove lying beside a half-signed loan form",
+      "mustInclude": [
+        "cotton glove",
+        "loan form",
+        "intake tray"
+      ],
+      "mustAvoid": [
+        "reusing a generic office inbox scene"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "a bicycle courier managing repair notes and delivery promises during a wet shift",
+      "audience": "a mobile worker who keeps commitments away from a desk",
+      "stakes": "one forgotten brake repair note could turn into an unsafe morning route",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rain beads on the cracked phone screen as Lukas records each loose promise before pedaling away from the repair shop.",
+      "firstImage": "rain on a cracked phone screen",
+      "mustInclude": [
+        "cracked phone",
+        "repair tag",
+        "wet gloves"
+      ],
+      "mustAvoid": [
+        "bike helmet as repeated physical anchor"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "a graduate lab coordinator after a freezer alarm weekend",
+      "audience": "a research assistant with samples, emails, and faculty requests arriving together",
+      "stakes": "a thawed sample or unlogged maintenance call could compromise a study",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Aanya three failed searches to see that the real failure was not workload; no open loop had crossed into a trusted capture point.",
+      "firstImage": "a freezer alarm printout curled on the lab bench",
+      "mustInclude": [
+        "freezer alarm printout",
+        "sample rack",
+        "maintenance ticket"
+      ],
+      "mustAvoid": [
+        "inventing a named study"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "a neighborhood bakery owner before a holiday order rush",
+      "audience": "a small-business owner whose commitments arrive from customers, suppliers, and staff",
+      "stakes": "a wedding cake change could disappear into memory during the rush",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What is actually making Marco tired: the number of orders, or the fact that three promised changes are still floating above the mixer?",
+      "firstImage": "a flour-dusted order clipboard beside the mixer",
+      "mustInclude": [
+        "order clipboard",
+        "mixer bowl",
+        "supplier text"
+      ],
+      "mustAvoid": [
+        "making the bakery about time management only"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose open loops in concrete scenes",
+      "separate mental storage from trusted capture",
+      "choose next physical action over vague project labels"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one nagging commitment on paper, add the first visible physical action, and name the place where that reminder will live.",
+  "readingTimeMinutes": 12
+}

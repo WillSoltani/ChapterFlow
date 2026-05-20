@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch15",
+  "number": 15,
+  "title": "Self-Preservation",
+  "coreMove": "Protect the conditions that keep the system viable before chasing expansion or approval.",
+  "sourcePressure": "Self-Preservation concerns survival, integrity, protective behavior, and defending essential conditions under pressure.",
+  "chapterSpecificMisunderstanding": "treating self-preservation as selfishness or fear of change",
+  "sourceAlignmentTerms": [
+    "self-preservation",
+    "survival",
+    "protection",
+    "threat",
+    "viability",
+    "integrity",
+    "defensive structure"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Self-Preservation",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "treating self-preservation as selfishness or fear of change",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rebecca",
+      "domain": "nonprofit cash reserve rule",
+      "audience": "readers who face nonprofit cash reserve rule decisions where self-preservation is easy to misread",
+      "stakes": "payroll survival after a late grant",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rebecca protects the condition named on the cash-flow sheet, refuses the expansion hidden in the grant receivable, and updates the board minutes so survival comes before approval. Domain: nonprofit cash reserve rule.",
+      "firstImage": "cash-flow sheet visible in the nonprofit cash reserve rule",
+      "mustInclude": [
+        "cash-flow sheet",
+        "grant receivable",
+        "board minutes"
+      ],
+      "mustAvoid": [
+        "treating self-preservation as selfishness or fear of change",
+        "reusing a generic meeting scene instead of the nonprofit cash reserve rule constraints"
+      ]
+    },
+    {
+      "protagonistName": "Steven",
+      "domain": "privacy data-retention review",
+      "audience": "readers who face privacy data-retention review decisions where self-preservation is easy to misread",
+      "stakes": "damage from keeping data too long",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Steven protects the condition named on the retention schedule, refuses the expansion hidden in the old export drive, and updates the deletion ticket so survival comes before approval. Domain: privacy data-retention review.",
+      "firstImage": "retention schedule visible in the privacy data-retention review",
+      "mustInclude": [
+        "retention schedule",
+        "old export drive",
+        "deletion ticket"
+      ],
+      "mustAvoid": [
+        "treating self-preservation as selfishness or fear of change",
+        "reusing a generic meeting scene instead of the privacy data-retention review constraints"
+      ]
+    },
+    {
+      "protagonistName": "Adrien",
+      "domain": "storm kit maintenance shelf",
+      "audience": "readers who face storm kit maintenance shelf decisions where self-preservation is easy to misread",
+      "stakes": "first storm after years of calm",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Adrien protects the condition named on the battery pack, refuses the expansion hidden in the water pouch, and updates the weather radio so survival comes before approval. Domain: storm kit maintenance shelf.",
+      "firstImage": "battery pack visible in the storm kit maintenance shelf",
+      "mustInclude": [
+        "battery pack",
+        "water pouch",
+        "weather radio"
+      ],
+      "mustAvoid": [
+        "treating self-preservation as selfishness or fear of change",
+        "reusing a generic meeting scene instead of the storm kit maintenance shelf constraints"
+      ]
+    },
+    {
+      "protagonistName": "Niels",
+      "domain": "freelance contract boundary",
+      "audience": "readers who face freelance contract boundary decisions where self-preservation is easy to misread",
+      "stakes": "scope creep threatening rent money",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Niels protects the condition named on the scope clause, refuses the expansion hidden in the change-order email, and updates the invoice draft so survival comes before approval. Domain: freelance contract boundary.",
+      "firstImage": "scope clause visible in the freelance contract boundary",
+      "mustInclude": [
+        "scope clause",
+        "change-order email",
+        "invoice draft"
+      ],
+      "mustAvoid": [
+        "treating self-preservation as selfishness or fear of change",
+        "reusing a generic meeting scene instead of the freelance contract boundary constraints"
+      ]
+    },
+    {
+      "protagonistName": "Aaron",
+      "domain": "school club sponsor backup",
+      "audience": "readers who face school club sponsor backup decisions where self-preservation is easy to misread",
+      "stakes": "club disappearing when one teacher leaves",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aaron protects the condition named on the teacher key, refuses the expansion hidden in the room booking, and updates the permission slip so survival comes before approval. Domain: school club sponsor backup.",
+      "firstImage": "teacher key visible in the school club sponsor backup",
+      "mustInclude": [
+        "teacher key",
+        "room booking",
+        "permission slip"
+      ],
+      "mustAvoid": [
+        "treating self-preservation as selfishness or fear of change",
+        "reusing a generic meeting scene instead of the school club sponsor backup constraints"
+      ]
+    },
+    {
+      "protagonistName": "Bruno",
+      "domain": "restaurant allergen protocol",
+      "audience": "readers who face restaurant allergen protocol decisions where self-preservation is easy to misread",
+      "stakes": "one mistake risking a severe reaction",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Bruno protects the condition named on the allergen matrix, refuses the expansion hidden in the order ticket, and updates the prep spoon so survival comes before approval. Domain: restaurant allergen protocol.",
+      "firstImage": "allergen matrix visible in the restaurant allergen protocol",
+      "mustInclude": [
+        "allergen matrix",
+        "order ticket",
+        "prep spoon"
+      ],
+      "mustAvoid": [
+        "treating self-preservation as selfishness or fear of change",
+        "reusing a generic meeting scene instead of the restaurant allergen protocol constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for self-preservation rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Protect the conditions that keep the system viable before chasing expansion or approval.",
+      "explain why the tempting misread fails: treating self-preservation as selfishness or fear of change",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving self-preservation, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

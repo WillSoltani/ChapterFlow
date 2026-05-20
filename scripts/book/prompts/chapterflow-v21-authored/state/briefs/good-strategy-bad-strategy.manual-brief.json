@@ -1,0 +1,108 @@
+{
+  "bookId": "good-strategy-bad-strategy",
+  "title": "Good Strategy / Bad Strategy",
+  "author": "Richard Rumelt",
+  "thesisParagraph": "Good Strategy / Bad Strategy teaches that strategy is not ambition, vision, targets, or a long list of initiatives. A good strategy starts by facing the real obstacle, finding where power or leverage actually sits, choosing a guiding policy, and coordinating actions so they reinforce one another. Bad strategy hides from the hard part: it uses lofty language, consensus, and activity to avoid diagnosis and tradeoffs. The reader learns to ask what problem governs the situation, what source of power can be used, and what coherent action would make the response real.",
+  "coreIdeas": [
+    {
+      "name": "Diagnosis before ambition",
+      "oneSentence": "A strategy earns the name only when it names the real obstacle instead of decorating hope with goals.",
+      "mentalMove": "force every plan to state what problem it is built to overcome",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source",
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Hidden power",
+      "oneSentence": "Strategic force often comes from changing the terms of the contest rather than trying harder on inherited terms.",
+      "mentalMove": "look for asymmetry, system advantage, or a pivot point before choosing action",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch06.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "The kernel",
+      "oneSentence": "Diagnosis, guiding policy, and coherent action work as one structure, not three separate planning slogans.",
+      "mentalMove": "connect the obstacle, the chosen response, and the concrete actions into a chain",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Coherence beats initiative piles",
+      "oneSentence": "A pile of good-sounding actions can still be bad strategy if the actions do not reinforce one another.",
+      "mentalMove": "remove actions that do not serve the governing response",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source",
+        "ch10.source"
+      ]
+    },
+    {
+      "name": "Constraints create focus",
+      "oneSentence": "Weak links, proximate objectives, and focus turn vague intent into a near target where effort can matter.",
+      "mentalMove": "choose the limiting link or near objective that deserves concentrated force now",
+      "sourceAnchors": [
+        "ch08.source",
+        "ch09.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Strategic judgment stays active",
+      "oneSentence": "Dynamics, inertia, entropy, and analogy risk mean strategy must be reasoned through rather than copied.",
+      "mentalMove": "test causal stories against movement over time and resist easy comparisons",
+      "sourceAnchors": [
+        "ch13.source",
+        "ch14.source",
+        "ch16.source",
+        "ch17.source"
+      ]
+    }
+  ],
+  "targetReader": "Managers, founders, operators, civic leaders, consultants, and ambitious individual contributors who are tired of plans that sound impressive but do not change outcomes. They care because the book gives them a way to distinguish real strategic work from activity, consensus, and slogans.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make tradeoffs visible instead of abstract"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake case studies or invented source anchors"
+    ]
+  },
+  "voiceSpecimens": [
+    "The plan looked serious because every department had a line in it. That was the warning sign.",
+    "A real diagnosis makes someone uncomfortable because it closes doors.",
+    "You can call it focus only after you name what will not be funded.",
+    "The weak link does not care how strong the rest of the chain feels in the meeting.",
+    "A strategy is not a mood of confidence. It is a response to a problem that has teeth.",
+    "When the source of power is hidden, copying the visible move gives you the costume without the engine."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, readers will learn the importance of strategic alignment.",
+    "Leaders should leverage holistic frameworks to optimize competitive advantage.",
+    "The key takeaway is that good strategy is very important in modern organizations.",
+    "Try to be more focused and intentional about your goals.",
+    "Strategy is a journey of discovering your best self."
+  ],
+  "teachingArc": "The book starts by separating real strategy from ambition and activity. It then teaches the reader to find power, recognize bad strategy, and build the kernel. The middle chapters turn that kernel into operating judgment: leverage, proximate objectives, weak links, design, focus, growth, and dynamics. The final stretch teaches structural resistance and disciplined thinking so strategy becomes a practice of causal judgment under pressure rather than a document.",
+  "forbiddenMoves": [
+    "Do not turn the book into generic leadership advice about vision, alignment, or execution.",
+    "Do not treat every chapter as a synonym for focus; leverage, proximate objectives, design, growth, dynamics, and disciplined thinking each need their own move.",
+    "Do not invent detailed Rumelt anecdotes for thin-source chapters.",
+    "Do not make examples default to boardrooms, whiteboards, coffee cups, classrooms, or spreadsheet scenes."
+  ]
+}

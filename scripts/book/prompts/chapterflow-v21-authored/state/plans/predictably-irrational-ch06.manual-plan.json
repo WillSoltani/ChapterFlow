@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch06",
+  "number": 6,
+  "title": "The Problem of Procrastination and Self-Control",
+  "coreMove": "Turn a distant intention into staged commitments that create consequences before the final deadline.",
+  "sourcePressure": "The source uses deadlines and commitment devices to show that people often need constraints set in advance to protect long-term goals from present bias.",
+  "chapterSpecificMisunderstanding": "The weak version says use better calendars; the real lesson is that self-control improves when future failure has earlier, visible costs.",
+  "sourceAlignmentTerms": ["procrastination", "self-control", "deadline", "commitment device", "precommitment", "interim constraint"],
+  "forbiddenFrames": {
+    "hook": ["The deadline is too late", "Motivation arrives last", "Your future self needs help"],
+    "counterintuition": ["Freedom helps you finish", "Flexibility protects quality", "Good intentions scale"],
+    "tryThisNow": ["Break work into chunks", "Set a reminder", "Use a calendar"],
+    "examples": ["term paper", "presentation checkpoints", "automatic savings"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "historic theater fire-inspection repairs",
+      "audience": "a facilities director with one annual inspection date",
+      "stakes": "discovering too late that exit lights and door hardware were left until inspection week",
+      "format": "decision_point",
+      "requiredBeat": "the director schedules three signed walkthroughs with the fire marshal before the final inspection can become the first real consequence",
+      "firstImage": "a clipboard hanging from an exit door with a cracked push bar",
+      "mustInclude": ["signed walkthroughs", "exit lights", "fire marshal"],
+      "mustAvoid": ["office compliance project", "calendar cleanup", "generic maintenance"]
+    },
+    {
+      "domain": "community radio pledge-drive script production",
+      "audience": "a volunteer producer coordinating scripts before pledge week",
+      "stakes": "going on air with rushed copy because every draft felt optional until broadcast",
+      "format": "before_after",
+      "requiredBeat": "after one failed drive, the producer requires each host to record a thirty-second script test two weeks before pledge week",
+      "firstImage": "a studio clock above a stack of blank pledge scripts",
+      "mustInclude": ["script test", "broadcast week", "host deadline"],
+      "mustAvoid": ["student essay", "presentation plan", "generic work project"]
+    },
+    {
+      "domain": "dental lab preparing custom crowns",
+      "audience": "a lab manager whose technicians postpone quality checks",
+      "stakes": "shipping crowns late because defects are found only at final polish",
+      "format": "postmortem",
+      "requiredBeat": "the manager pins rejection photos beside each interim station and requires sign-off before a case moves down the bench",
+      "firstImage": "porcelain crowns resting in foam slots under a magnifying lamp",
+      "mustInclude": ["interim sign-off", "rejection photos", "case tray"],
+      "mustAvoid": ["medical advice", "factory safety", "generic checklist"]
+    },
+    {
+      "domain": "immigration clinic filing renewal packets",
+      "audience": "a legal-aid coordinator managing clients with distant filing deadlines",
+      "stakes": "missing evidence because the real deadline does not create urgency soon enough",
+      "format": "vignette",
+      "requiredBeat": "the coordinator stamps three colored due dates on the packet cover so each evidence category has an earlier consequence",
+      "firstImage": "a manila renewal packet stamped with three colored dates",
+      "mustInclude": ["colored due dates", "evidence category", "packet cover"],
+      "mustAvoid": ["court anger", "school citations", "office form honesty"]
+    },
+    {
+      "domain": "marathon relay team training for a charity race",
+      "audience": "a team captain whose runners keep promising future mileage",
+      "stakes": "arriving undertrained and letting down the charity spot",
+      "format": "dialogue",
+      "requiredBeat": "the captain changes the group chat from weekly promises to posted route screenshots every Tuesday and Saturday",
+      "firstImage": "a charity race bib pinned to a cork strip beside blank route slots",
+      "mustInclude": ["route screenshots", "charity bib", "Tuesday and Saturday"],
+      "mustAvoid": ["generic exercise routine", "weekend precommitment", "fitness motivation"]
+    },
+    {
+      "domain": "archive digitization grant with monthly deliverables",
+      "audience": "a curator digitizing fragile letters before a grant report",
+      "stakes": "losing grant renewal because scanning is invisible until the quarter ends",
+      "format": "reflection",
+      "requiredBeat": "the curator places a public progress shelf in the reading room where each finished box moves forward every Friday",
+      "firstImage": "acid-free letter boxes lined on a reading-room cart",
+      "mustInclude": ["public progress shelf", "Friday move", "grant report"],
+      "mustAvoid": ["school project", "software roadmap", "generic dashboard"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify when the final deadline is too distant to shape behavior", "design interim commitments with real consequences", "separate flexible planning from unprotected intention", "evaluate whether a commitment device is visible and binding"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take one deadline more than a week away and create a public or external checkpoint within forty-eight hours that proves real progress, not just intention.",
+  "readingTimeMinutes": 12
+}

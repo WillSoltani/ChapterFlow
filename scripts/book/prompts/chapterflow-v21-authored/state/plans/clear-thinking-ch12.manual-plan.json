@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch12",
+  "number": 12,
+  "title": "Setting the Standards",
+  "coreMove": "Set the rule before pressure starts negotiating exceptions.",
+  "sourcePressure": "Standards protect repeated good behavior across time and pressure. The chapter is about rules, thresholds, decision quality, and self-command that reduce avoidable improvisation.",
+  "chapterSpecificMisunderstanding": "Treating standards as slogans, perfectionism, or rigid identity claims.",
+  "sourceAlignmentTerms": [
+    "standards",
+    "rules",
+    "thresholds",
+    "decision quality",
+    "self-command",
+    "avoid improvisation",
+    "drift"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "rules and standards",
+      "detail": "the heading index supports the chapter through rules, standards, decision quality, and self-command",
+      "useIn": "deepRead",
+      "phrasingHint": "A real standard is a decision made while you can still think, waiting for the moment when you cannot."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for standards",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think standards is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nina",
+      "domain": "a firehouse equipment wall",
+      "audience": "a reader facing standards in a concrete firehouse equipment wall decision",
+      "stakes": "whether Nina preserves judgment quality before the situation slides into discipline slogans",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nina performs the chapter move by setting the foam model beside the review sheet, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the review sheet in the firehouse equipment wall",
+      "mustInclude": [
+        "foam model",
+        "review sheet"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "discipline slogans",
+        "reusing a previous chapter's firehouse equipment wall shell"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "a charity gift-acceptance committee",
+      "audience": "a reader facing standards in a concrete charity gift-acceptance committee decision",
+      "stakes": "whether Kasia preserves judgment quality before the situation slides into discipline slogans",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Kasia performs the chapter move by setting the annotated manuscript beside the referee note, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the annotated manuscript against the counter in the charity gift-acceptance committee",
+      "mustInclude": [
+        "annotated manuscript",
+        "referee note"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "discipline slogans",
+        "reusing a previous chapter's charity gift-acceptance committee shell"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "a software release calendar",
+      "audience": "a reader facing standards in a concrete software release calendar decision",
+      "stakes": "whether Marta preserves judgment quality before the situation slides into discipline slogans",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marta performs the chapter move by setting the burn-rate slide beside the customer email, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the burn-rate slide in the software release calendar",
+      "mustInclude": [
+        "burn-rate slide",
+        "customer email"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "discipline slogans",
+        "reusing a previous chapter's software release calendar shell"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "a restaurant reservation policy",
+      "audience": "a reader facing standards in a concrete restaurant reservation policy decision",
+      "stakes": "whether Petra preserves judgment quality before the situation slides into discipline slogans",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Petra performs the chapter move by setting the sign-in sheet beside the folding chairs, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the sign-in sheet lying beside the folding chairs in the restaurant reservation policy",
+      "mustInclude": [
+        "sign-in sheet",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "discipline slogans",
+        "reusing a previous chapter's restaurant reservation policy shell"
+      ]
+    },
+    {
+      "protagonistName": "Tomasz",
+      "domain": "a river guide weather cutoff",
+      "audience": "a reader facing standards in a concrete river guide weather cutoff decision",
+      "stakes": "whether Tomasz preserves judgment quality before the situation slides into discipline slogans",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Tomasz performs the chapter move by setting the case notes beside the scan image, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the scan image in the river guide weather cutoff",
+      "mustInclude": [
+        "case notes",
+        "scan image"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "discipline slogans",
+        "reusing a previous chapter's river guide weather cutoff shell"
+      ]
+    },
+    {
+      "protagonistName": "Aleksy",
+      "domain": "a private music studio",
+      "audience": "a reader facing standards in a concrete private music studio decision",
+      "stakes": "whether Aleksy preserves judgment quality before the situation slides into discipline slogans",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aleksy performs the chapter move by setting the sheet music beside the audition list, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the audition list in the private music studio",
+      "mustInclude": [
+        "sheet music",
+        "audition list"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "discipline slogans",
+        "reusing a previous chapter's private music studio shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Set the rule before pressure starts negotiating exceptions.",
+      "detect the weak generic version: Treating standards as slogans, perfectionism, or rigid identity claims.",
+      "distinguish standards from nearby drift into discipline slogans"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where standards is active, then write the exact next visible move that would perform this chapter's move: set the rule before pressure starts negotiating exceptions.",
+  "readingTimeMinutes": 12
+}

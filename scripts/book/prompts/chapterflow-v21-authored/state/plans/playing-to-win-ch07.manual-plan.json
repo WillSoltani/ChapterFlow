@@ -1,0 +1,129 @@
+{
+  "chapterId": "playing-to-win-ch07",
+  "number": 7,
+  "title": "Think Through Strategy",
+  "coreMove": "Generate a set of genuinely different strategic possibilities before analyzing any of them — analysis can only evaluate what imagination first created, and a single default option dressed as a strategy will survive any analysis.",
+  "sourcePressure": "Strategic thinking is iterative rather than linear certainty-seeking. The chapter focuses on generating genuine strategic possibilities before analyzing them, rather than waiting for perfect information. The strategy logic flow matters because the five questions inform each other — analysis is only useful when tied to live possibilities. Analysis used before possibilities are generated becomes rationalization of the default.",
+  "chapterSpecificMisunderstanding": "Do thorough analysis first — gather enough data and the right strategy will emerge from it. The more rigorous the analysis, the better the resulting strategy.",
+  "sourceAlignmentTerms": ["possibilities", "strategy logic flow", "iterative", "analysis", "conditions", "strategic thinking", "generate", "possibilities before analysis"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "strategy logic flow",
+      "detail": "The five strategic questions (winning aspiration, where to play, how to win, capabilities, management systems) inform each other iteratively — a change in one changes what is required of the others. The logic flow is not a linear checklist but a set of mutually constraining questions. Analysis that does not tie to specific possibilities is detached abstraction.",
+      "useIn": "deepRead",
+      "phrasingHint": "The five questions are not a pipeline where you answer the first and move to the second. Answering the third question may reopen the first. The logic flows in both directions, which is why generating multiple coherent options — each one a full cascade — is more useful than perfecting one."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Strategy is more art than science — creativity-vs-rigor cliche opener",
+      "The best strategists ask better questions — generic insight opener"
+    ],
+    "counterintuition": [
+      "Analysis is the enemy of creativity — anti-analytics generalization",
+      "Trust your gut over the data — intuition-first oversimplification"
+    ],
+    "tryThisNow": [
+      "Run a SWOT analysis on your current strategy — generic framework prompt",
+      "Schedule a brainstorming session with your team — generic ideation suggestion"
+    ],
+    "examples": [
+      "A team does a strategy offsite and generates a long list of ideas — too generic, no real constraint",
+      "A consultant presents analysis and the leadership team picks option B — passive selection story"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Avoid the timestamp-protagonist-prop shell across more than two examples"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a city government transportation committee developing options for a new transit corridor",
+      "audience": "a planning director preparing options for a council vote on a ten-year transit investment",
+      "stakes": "the committee has commissioned twelve studies but generated only one real option — the politically safest route — and the analysis was designed to justify that option rather than evaluate competing ones",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anna reviews the twelve studies before the council presentation and realizes that every study was commissioned to answer a question about the preferred route — not to generate information about alternative routes that might be strategically superior. The analysis is thorough and the possibility set is empty. She must generate at least two genuine alternatives before the committee can make a real strategic choice.",
+      "firstImage": "a map with one highlighted transit route and twelve study reports stacked beside it, each examining the same route from a different technical angle",
+      "mustInclude": ["the moment where the difference between analyzing an option and generating options is named explicitly", "the constraint that forces Anna to generate genuinely different alternatives before bringing analysis to bear"],
+      "mustAvoid": ["urban transit policy debate", "community opposition as the main obstacle"]
+    },
+    {
+      "domain": "a media company considering a rebrand for a legacy print magazine entering digital distribution",
+      "audience": "a publisher who has commissioned a brand equity study on the current magazine title before deciding whether to keep or change it",
+      "stakes": "the brand study will tell the publisher whether the current brand has recognition, but not whether a different digital positioning would win a larger audience — the analysis answers a question about the present, not about strategic options for the future",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sam reviews the brand equity study results — high recognition among current readers, low appeal among non-readers under forty — and realizes he has analysis on one option (keep the brand) but no articulated options for the alternative paths (rebuild, spin off, rebrand). He cannot choose without first generating genuine alternatives, each with its own logic.",
+      "firstImage": "a brand equity study with a strong recognition score among over-fifty readers and a flat score among under-forty non-readers, followed by a blank slide where the options were supposed to be",
+      "mustInclude": ["the specific thing the analysis answers and the specific thing it cannot answer", "the moment where the publisher realizes he must generate real strategic alternatives before analysis can be useful"],
+      "mustAvoid": ["media industry disruption narrative", "print vs digital values debate"]
+    },
+    {
+      "domain": "a hospital system evaluating options for a satellite clinic in an underserved district",
+      "audience": "a strategy director whose team has developed one option — a full-service primary care clinic — and is preparing to analyze its feasibility",
+      "stakes": "the feasibility analysis will tell the team whether the full-service clinic is financially viable, but if it is not, the team has no alternative to bring to the board — the analysis will either validate the single option or kill the project entirely",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "before: Lars brings the feasibility analysis to the strategy meeting — the numbers are borderline, the recommendation is inconclusive, and the board has no other option to consider; after: he adds two genuine alternative models (a mobile clinic and a partnership with an independent practice) before the next board meeting, so the analysis can compare three real options with different strategic logic",
+      "firstImage": "a feasibility report cover page with 'Option A: Full-Service Clinic' as the only header and no mention of alternative models",
+      "mustInclude": ["the specific strategic logic each alternative option offers that the single default does not", "the concrete difference between analyzing a single option's feasibility and choosing between genuinely different strategic possibilities"],
+      "mustAvoid": ["healthcare access policy lecture", "hospital system bureaucracy as the main obstacle"]
+    },
+    {
+      "domain": "a school district evaluating curriculum options for a new secondary school",
+      "audience": "a superintendent who has assembled a committee to analyze a proposed STEM-focused curriculum before presenting to the board",
+      "stakes": "the committee was formed after the STEM decision was informally made — their analysis will confirm or complicate that decision, but no alternative curriculum philosophy is on the table for comparison",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Isabel presents the committee's analysis at the board meeting, and a board member asks: 'What would the analysis look like if we had designed a different kind of school?' Isabel does not have an answer. The analysis was excellent and the strategic thinking had not started yet — no genuine alternatives had been generated, so the committee had optimized a default rather than evaluated a strategy.",
+      "firstImage": "a committee report with a detailed STEM implementation plan and a blank appendix where 'alternative curriculum models' was supposed to appear",
+      "mustInclude": ["the board member question that surfaces the missing possibilities", "the moment where the difference between analysis of a plan and strategic choice between possibilities is made visible"],
+      "mustAvoid": ["education policy debate", "parent or community politics as the main tension"]
+    },
+    {
+      "domain": "a climate technology startup preparing for a Series A fundraising decision",
+      "audience": "a founder trying to choose between a hardware product path, a software-only licensing model, and a services-and-data model",
+      "stakes": "the founder has been running analysis on the hardware model — market size, manufacturing cost, go-to-market — but has never built the same analysis for the alternatives; the investors will ask which path was chosen and why the others were rejected",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The lead investor asks Marta: 'What would the company look like if you took the software-only path? Walk me through it.' Marta realizes she cannot answer — she analyzed the hardware path deeply but never generated a comparable view of the other options. She chose by default, not by comparison. The investor is not impressed by the analysis; she is looking for evidence of strategic thinking.",
+      "firstImage": "a pitch deck with forty slides on the hardware path and a one-sentence footnote that says 'software-only model not pursued due to scale limitations'",
+      "mustInclude": ["the investor question that reveals the gap between analysis depth and strategic thinking", "the specific content a genuine strategic possibility requires that Marta's footnote does not provide"],
+      "mustAvoid": ["startup fundraising tutorial", "climate technology market sizing"]
+    },
+    {
+      "domain": "a product team building a roadmap for the next year of a mid-stage SaaS product",
+      "audience": "a product lead whose team has generated an analysis of the top-requested features but has not yet identified the different strategic options for where the product could go",
+      "stakes": "building the most-requested features is one strategic path — deepen the current use case; adding an integration marketplace is another — expand the ecosystem; launching a lighter adjacent product is a third — extend the buyer. The feature analysis answers a question about one path without naming the other two.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Jack reviews the previous year's roadmap and finds that every quarter delivered the most-requested features, the product grew slowly, and two competitors launched adjacent products that captured new buyers the team had never considered — the analysis was rigorous and the strategic options were never generated. The team had optimized for known preferences and missed the questions they had not yet asked.",
+      "firstImage": "a year of roadmap sprints where every feature delivered matched the top-ten request list, and a competitor announcement from Q3 that launched an adjacent product the team had discussed once and shelved",
+      "mustInclude": ["the strategic option that was never generated and later appeared as a competitor move", "the contrast between thorough feature-request analysis and genuine strategic option generation"],
+      "mustAvoid": ["product management methodology debate", "feature prioritization framework tutorial"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish analysis of a single option from strategic thinking across multiple genuine possibilities",
+      "apply the 'how many real alternatives exist' test to a proposed strategy process",
+      "analyze why analysis that precedes possibility-generation becomes rationalization of the default",
+      "evaluate whether a set of options presented for analysis are genuinely different strategic paths or variants of the same default"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before your next strategic decision, write down three genuinely different options — not the main option and two alternatives that are clearly weaker. If you cannot name three options that each have a real argument in their favor, you have not yet done strategic thinking. Start with the one option you almost never consider.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that directly addresses the reader about a decision they are currently facing — asking whether the options on their table are genuinely different or whether one of them is the default dressed as analysis",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "chapterId": "the-48-laws-of-power-ch02",
+  "number": 2,
+  "title": "Never Put Too Much Trust in Friends, Learn How to Use Enemies",
+  "coreMove": "Replace sentimental trust with incentive clarity when power puts loyalty under strain",
+  "sourcePressure": "why friendship can blur incentives, why former enemies can behave more predictably under pressure, and where that argument becomes too cynical.",
+  "chapterSpecificMisunderstanding": "never trust friends and only trust enemies",
+  "sourceAlignmentTerms": [
+    "friendship blur",
+    "enemy incentive",
+    "envy",
+    "entitlement",
+    "boundaries",
+    "performance",
+    "Basilius",
+    "Fouche"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Michael III",
+      "detail": "elevated Basilius and was later overthrown by him",
+      "useIn": "both",
+      "phrasingHint": "Michael III trusted the emotional comfort of friendship and missed the appetite growing beside him."
+    },
+    {
+      "kind": "person",
+      "name": "Basilius",
+      "detail": "the trusted friend whose rise under Michael III turned into betrayal",
+      "useIn": "deepRead",
+      "phrasingHint": "Basilius is the warning that affection can hide entitlement until power gives it a door."
+    },
+    {
+      "kind": "person",
+      "name": "Talleyrand and Fouche",
+      "detail": "former enemies used each other because clear incentives made the alliance more legible than friendship",
+      "useIn": "fullRead",
+      "phrasingHint": "Talleyrand and Fouche worked from the clarity of mutual caution, not the fog of sentiment."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "ch02 abstract law-title opener",
+      "cold definition of power",
+      "generic boardroom pressure first line"
+    ],
+    "counterintuition": [
+      "not X but Y negation shell for the-48-laws-of-power-ch02",
+      "most people assume opener",
+      "simple reversal without concrete cost"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three bullet points about the law",
+      "ask yourself what power means"
+    ],
+    "examples": [
+      "timestamp plus named protagonist plus prop plus decision repeated six times",
+      "work/home/school rotation",
+      "nameless office stakeholder shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "film festival volunteer crew after a founding friend misses three load-ins",
+      "audience": "a reader handling film festival volunteer crew after a founding friend misses three load-ins",
+      "stakes": "whether the reader can apply replace sentimental trust with incentive clarity when power puts loyalty under strain before the situation hardens",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sophie changes the first visible artifact in film festival volunteer crew after a founding friend misses three load-ins so the room sees friendship blur before any explanation begins",
+      "firstImage": "film festival sheet with one corner folded in film festival volunteer crew after a founding friend misses three load-ins",
+      "mustInclude": [
+        "film-festival artifact specific to this scene",
+        "volunteer constraint that makes friendship blur visible",
+        "one named threshold, deadline, or status cue from film festival volunteer crew after a founding friend misses three load-ins"
+      ],
+      "mustAvoid": [
+        "do not turn this into never trust friends and only trust enemies",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "microbrewery partnership replacing a childhood friend in the accounts role",
+      "audience": "a reader handling microbrewery partnership replacing a childhood friend in the accounts role",
+      "stakes": "whether the reader can apply replace sentimental trust with incentive clarity when power puts loyalty under strain before the situation hardens",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "A challenge lands in microbrewery partnership replacing a childhood friend in the accounts role, and Grace answers by moving a concrete object, name, or option into a new position that enacts: replace sentimental trust with incentive clarity when power puts loyalty under strain",
+      "firstImage": "partnership replacing log clipped to a thin board in microbrewery partnership replacing a childhood friend in the accounts role",
+      "mustInclude": [
+        "microbrewery-partnership artifact specific to this scene",
+        "replacing constraint that makes friendship blur visible",
+        "one named threshold, deadline, or status cue from microbrewery partnership replacing a childhood friend in the accounts role"
+      ],
+      "mustAvoid": [
+        "do not turn this into never trust friends and only trust enemies",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "community legal clinic using a former opponent on a zoning appeal",
+      "audience": "a reader handling community legal clinic using a former opponent on a zoning appeal",
+      "stakes": "whether the reader can apply replace sentimental trust with incentive clarity when power puts loyalty under strain before the situation hardens",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "The scene turns when Rachel withholds the obvious speech and alters the setup in community legal clinic using a former opponent on a zoning appeal so the other side has to react to the new field",
+      "firstImage": "community clinic sample under a strip of tape in community legal clinic using a former opponent on a zoning appeal",
+      "mustInclude": [
+        "community-legal artifact specific to this scene",
+        "clinic constraint that makes friendship blur visible",
+        "one named threshold, deadline, or status cue from community legal clinic using a former opponent on a zoning appeal"
+      ],
+      "mustAvoid": [
+        "do not turn this into never trust friends and only trust enemies",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "ski patrol assigning avalanche checks after a friendship dispute",
+      "audience": "a reader handling ski patrol assigning avalanche checks after a friendship dispute",
+      "stakes": "whether the reader can apply replace sentimental trust with incentive clarity when power puts loyalty under strain before the situation hardens",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Laura makes one public choice in ski patrol assigning avalanche checks after a friendship dispute that converts enemy incentive from an abstract idea into a visible constraint",
+      "firstImage": "assigning list marked with a single pencil circle in ski patrol assigning avalanche checks after a friendship dispute",
+      "mustInclude": [
+        "ski-patrol artifact specific to this scene",
+        "assigning constraint that makes friendship blur visible",
+        "one named threshold, deadline, or status cue from ski patrol assigning avalanche checks after a friendship dispute"
+      ],
+      "mustAvoid": [
+        "do not turn this into never trust friends and only trust enemies",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "independent bookstore hiring an ex-rival buyer for holiday stock",
+      "audience": "a reader handling independent bookstore hiring an ex-rival buyer for holiday stock",
+      "stakes": "whether the reader can apply replace sentimental trust with incentive clarity when power puts loyalty under strain before the situation hardens",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The reveal comes when Anna lets the first prediction fail against the physical setup in independent bookstore hiring an ex-rival buyer for holiday stock, then uses that failure to practice: replace sentimental trust with incentive clarity when power puts loyalty under strain",
+      "firstImage": "independent folder opened beside a named seat card in independent bookstore hiring an ex-rival buyer for holiday stock",
+      "mustInclude": [
+        "independent-bookstore artifact specific to this scene",
+        "hiring constraint that makes friendship blur visible",
+        "one named threshold, deadline, or status cue from independent bookstore hiring an ex-rival buyer for holiday stock"
+      ],
+      "mustAvoid": [
+        "do not turn this into never trust friends and only trust enemies",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "local election campaign bringing in a former critic as debate coach",
+      "audience": "a reader handling local election campaign bringing in a former critic as debate coach",
+      "stakes": "whether the reader can apply replace sentimental trust with incentive clarity when power puts loyalty under strain before the situation hardens",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "In the debrief, James points to the concrete trace left in local election campaign bringing in a former critic as debate coach and separates the law's real move from its common misread",
+      "firstImage": "election receipt pinned above a narrow work surface in local election campaign bringing in a former critic as debate coach",
+      "mustInclude": [
+        "local-election artifact specific to this scene",
+        "campaign constraint that makes friendship blur visible",
+        "one named threshold, deadline, or status cue from local election campaign bringing in a former critic as debate coach"
+      ],
+      "mustAvoid": [
+        "do not turn this into never trust friends and only trust enemies",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario requires replace sentimental trust with incentive clarity when power puts loyalty under strain",
+      "distinguish never trust friends and only trust enemies from the chapter's actual move",
+      "choose the visible action that preserves the law's limit instead of overplaying it"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real situation where friendship blur is present, spend 60 seconds naming the visible move that would replace sentimental trust with incentive clarity when power puts loyalty under strain without using a reusable reflection prompt.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference when supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

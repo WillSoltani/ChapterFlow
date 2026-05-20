@@ -1,0 +1,197 @@
+{
+  "chapterId": "the-denial-of-death-ch05",
+  "number": 5,
+  "title": "The Psychoanalyst Kierkegaard",
+  "coreMove": "read anxiety and despair as problems of selfhood before dependence and finitude, not merely symptoms to suppress",
+  "sourcePressure": "Turns to Kierkegaard as a deeper psychologist of anxiety, inwardness, dependence, finitude, and meaning.",
+  "chapterSpecificMisunderstanding": "The point is simply to be spiritual or to stop overthinking.",
+  "sourceAlignmentTerms": [
+    "Kierkegaard",
+    "anxiety",
+    "despair",
+    "selfhood",
+    "inwardness",
+    "dependence",
+    "finitude"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Soren Kierkegaard",
+      "detail": "the source sidecar identifies Kierkegaard as the deeper psychologist of anxiety, inwardness, and selfhood before dependence, finitude, and meaning",
+      "useIn": "both",
+      "phrasingHint": "Kierkegaard matters here because anxiety is not just a symptom to quiet; it is a signal that the self is standing before its limits."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first mortality hook",
+      "generic fear controls your life opener",
+      "chapter 5 as essay preview"
+    ],
+    "counterintuition": [
+      "what looks like X is actually Y",
+      "you think this is about fear but it is about meaning",
+      "not weakness but strength correction shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on death",
+      "write three things you fear",
+      "generic notice your reaction prompt"
+    ],
+    "examples": [
+      "office meeting with mug scene shell",
+      "kitchen-table epiphany",
+      "classroom whiteboard morality tale",
+      "timestamp plus name plus prop opener"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "chaplaincy training practicum",
+      "audience": "trainee rushing to comfort despair",
+      "stakes": "let anxiety reveal selfhood before solving it",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel repeats the patient question back instead of answering it",
+      "firstImage": "plastic chair beside a privacy curtain",
+      "mustInclude": [
+        "visitor badge",
+        "pocket notebook",
+        "curtain"
+      ],
+      "mustAvoid": [
+        "generic spirituality",
+        "generic Kierkegaard lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "law school oral argument prep",
+      "audience": "student panicking under judgment",
+      "stakes": "face dependence on judgment without hiding in more notes",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Andrew closes the extra casebook and practices one answer while a classmate listens",
+      "firstImage": "highlighter dust on a casebook",
+      "mustInclude": [
+        "casebook stack",
+        "moot timer",
+        "index cards"
+      ],
+      "mustAvoid": [
+        "clinical symptom management",
+        "generic Kierkegaard lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "immigrant language exam office",
+      "audience": "applicant between old and new identity",
+      "stakes": "treat despair as a self standing between worlds",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Manon leaves one untranslated sentence and names what fluency will cost and give",
+      "firstImage": "rain on a consulate window",
+      "mustInclude": [
+        "passport folder",
+        "practice recording",
+        "exam ticket"
+      ],
+      "mustAvoid": [
+        "generic spirituality",
+        "generic Kierkegaard lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "retired surgeon volunteer clinic",
+      "audience": "former expert needed less",
+      "stakes": "see anxiety as the self losing old ground",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Mikkel reviews the sharp correction and writes the dependence he refused to feel",
+      "firstImage": "retired ID badge in a drawer",
+      "mustInclude": [
+        "clinic rota",
+        "blood pressure cuff",
+        "apology note"
+      ],
+      "mustAvoid": [
+        "clinical symptom management",
+        "generic Kierkegaard lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "parent teacher conference after suspension",
+      "audience": "parent defending identity through a child",
+      "stakes": "keep the conversation on truth rather than self-protection",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chiara asks whether the story protects the child or the parent, then names one avoided fact",
+      "firstImage": "two small chairs beside a teacher desk",
+      "mustInclude": [
+        "behavior report",
+        "school lanyard",
+        "homework"
+      ],
+      "mustAvoid": [
+        "generic spirituality",
+        "generic Kierkegaard lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "startup board resignation",
+      "audience": "founder admitting the company outgrew him",
+      "stakes": "choose inward truth over heroic self-inflation",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Yusuf removes his name from the transition slide and says the avoided sentence",
+      "firstImage": "projector fan in a glass boardroom",
+      "mustInclude": [
+        "transition deck",
+        "equity schedule",
+        "resignation letter"
+      ],
+      "mustAvoid": [
+        "clinical symptom management",
+        "generic Kierkegaard lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply read anxiety and despair as problems of selfhood before dependence and finitude, not merely symptoms to suppress in a fresh scenario",
+      "avoid the weak version: The point is simply to be spiritual or to stop overthinking.",
+      "explain choices using Kierkegaard, anxiety, despair"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before answering anxiety with reassurance, ask what dependence or finitude it is forcing into view.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

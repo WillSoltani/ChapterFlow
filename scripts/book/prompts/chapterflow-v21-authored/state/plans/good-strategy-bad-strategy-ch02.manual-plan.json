@@ -1,0 +1,218 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch02",
+  "number": 2,
+  "title": "Discovering Power",
+  "coreMove": "Look beneath the obvious contest for the hidden asymmetry that changes what strength means.",
+  "sourcePressure": "David and Goliath, Wal-Mart, and Marshall and Roche point to hidden power: change the terms of contest, find the reinforcing system, or impose asymmetric costs instead of matching the visible fight.",
+  "chapterSpecificMisunderstanding": "Power means being bigger, louder, better funded, or more determined.",
+  "sourceAlignmentTerms": [
+    "hidden power",
+    "David and Goliath",
+    "Wal-Mart network",
+    "asymmetric costs",
+    "Marshall and Roche",
+    "Soviet Union",
+    "changed contest terms",
+    "reinforcing system"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "David and Goliath",
+      "detail": "the chapter-map snippets list David and Goliath as a basic strategy story where the contest changes when one side refuses the opponent's preferred terms",
+      "useIn": "both",
+      "phrasingHint": "David wins strategic power by refusing to play the giant's game on the giant's terms."
+    },
+    {
+      "kind": "artifact",
+      "name": "Wal-Mart network",
+      "detail": "secondary support says Wal-Mart's advantage came from the network rather than isolated visible store practices",
+      "useIn": "both",
+      "phrasingHint": "Wal-Mart's secret was not a store trick to copy; the power sat in the reinforcing network behind the store."
+    },
+    {
+      "kind": "event",
+      "name": "Marshall and Roche strategy against the Soviet Union",
+      "detail": "chapter-map support names Marshall and Roche using U.S. technological strengths to impose higher Soviet response costs instead of matching weapon systems directly",
+      "useIn": "fullRead",
+      "phrasingHint": "Marshall and Roche looked for the response that made the other side pay more to keep up."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of Discovering Power",
+      "The plan looked impressive because... repeated hook shell",
+      "any hook that starts with Strategy is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter"
+    ],
+    "tryThisNow": [
+      "Write down your top three goals",
+      "Set a timer and reflect",
+      "Ask yourself what matters most"
+    ],
+    "examples": [
+      "conference room deck review",
+      "whiteboard prioritization session",
+      "coffee shop founder scene",
+      "generic classroom group project"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "youth fencing coach changing bout conditions",
+      "audience": "a reader facing youth fencing coach changing bout conditions",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Megan moves one concrete constraint to the center of the table and crosses out every action that does not address it using scoring strip so the lesson happens as a visible action.",
+      "firstImage": "The scoring strip sits where the laptop was supposed to go",
+      "mustInclude": [
+        "scoring strip",
+        "foil mask",
+        "bout bracket"
+      ],
+      "mustAvoid": [
+        "generic bout conditions advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "rural broadband cooperative mapping the real cost driver",
+      "audience": "a reader facing rural broadband cooperative mapping the real cost driver",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Julien asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using pole map so the lesson happens as a visible action.",
+      "firstImage": "\"Show me which part this fixes,\" Julien says",
+      "mustInclude": [
+        "pole map",
+        "trenching invoice",
+        "weather window"
+      ],
+      "mustAvoid": [
+        "generic cost driver advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "university newspaper competing with campus rumor channels",
+      "audience": "a reader facing university newspaper competing with campus rumor channels",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Astrid uses the artifact to expose the hidden constraint before anyone proposes another initiative using anonymous tip inbox so the lesson happens as a visible action.",
+      "firstImage": "The room smells faintly of toner and rain-soaked coats",
+      "mustInclude": [
+        "anonymous tip inbox",
+        "print deadline board",
+        "campus map"
+      ],
+      "mustAvoid": [
+        "generic rumor channels advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "defense contractor bid team using testing speed as leverage",
+      "audience": "a reader facing defense contractor bid team using testing speed as leverage",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Diego turns a vague goal into a visible choice by marking the one place effort will land using test range slot so the lesson happens as a visible action.",
+      "firstImage": "You can see the weak spot before anyone names it",
+      "mustInclude": [
+        "test range slot",
+        "prototype casing",
+        "cost-response chart"
+      ],
+      "mustAvoid": [
+        "generic as leverage advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "independent pharmacy network coordinating delivery routes",
+      "audience": "a reader facing independent pharmacy network coordinating delivery routes",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Kiran tests the proposed move against the object or record that reveals whether it fits the real problem using delivery bins so the lesson happens as a visible action.",
+      "firstImage": "It took Kiran three weeks to stop trusting the clean version of the plan",
+      "mustInclude": [
+        "delivery bins",
+        "route magnets",
+        "prescription bags"
+      ],
+      "mustAvoid": [
+        "generic delivery routes advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Claire",
+      "domain": "public defender office finding the docket choke point",
+      "audience": "a reader facing public defender office finding the docket choke point",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Claire stops the meeting and rearranges the sequence of work so the strategic move becomes visible using court docket so the lesson happens as a visible action.",
+      "firstImage": "What changes when the constraint is placed in the open?",
+      "mustInclude": [
+        "court docket",
+        "case folders",
+        "intake timestamp"
+      ],
+      "mustAvoid": [
+        "generic choke point advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish hidden power from its generic imitation in a new scenario",
+      "choose the action that performs look beneath the obvious contest for the hidden asymmetry that changes what strength means. rather than merely describing it",
+      "diagnose when underdog inspiration is pulling the scenario off-course"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, write the current decision as one obstacle, one chosen response, and one action that would visibly test hidden power in your actual situation.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

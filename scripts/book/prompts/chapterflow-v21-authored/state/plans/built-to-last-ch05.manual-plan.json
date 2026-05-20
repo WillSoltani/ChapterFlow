@@ -1,0 +1,182 @@
+{
+  "chapterId": "built-to-last-ch05",
+  "number": 5,
+  "title": "Big Hairy Audacious Goals",
+  "coreMove": "Set a goal big enough to concentrate progress, but test whether its size serves the core instead of ego, spectacle, or panic.",
+  "sourcePressure": "The sidecar supports the chapter title, the BHAG label, and the book-wide logic that visionary companies preserve a core while stimulating progress through ambition.",
+  "chapterSpecificMisunderstanding": "Treating any huge target as visionary, when a BHAG must focus institutional effort around the core rather than inflate a leader's self-image.",
+  "sourceAlignmentTerms": [
+    "Big Hairy Audacious Goals",
+    "BHAG",
+    "audacious goals",
+    "concentrate progress",
+    "preserve core",
+    "stimulate progress",
+    "institutional ambition"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "BHAG",
+      "detail": "the source sidecar says the preview common terms include Audacious Goals and BHAG",
+      "useIn": "both",
+      "phrasingHint": "A BHAG is not a large wish; it is a target that turns scattered progress into organized movement."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a moonshot changes everything",
+      "think bigger than fear"
+    ],
+    "counterintuition": [
+      "big goals are not about size",
+      "audacity is not recklessness"
+    ],
+    "tryThisNow": [
+      "write one impossible goal",
+      "10x your target"
+    ],
+    "examples": [
+      "space-race knockoff",
+      "startup announces a huge user number",
+      "plant manager with a press-line clock"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional blood bank committing to same-day emergency supply across remote hospitals",
+      "audience": "Megan, logistics director facing scattered improvement projects",
+      "stakes": "trauma teams keep improvising because no single target forces the system to change",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 5:55 a.m., Megan writes the same-day target on the route board, then cancels three vanity projects that do not shorten emergency delivery",
+      "firstImage": "a route board with red magnets for remote hospitals",
+      "mustInclude": [
+        "route board",
+        "remote hospitals",
+        "canceled vanity projects"
+      ],
+      "mustAvoid": [
+        "big goal as motivational poster"
+      ]
+    },
+    {
+      "domain": "regional theatre pledging every youth ticket under ten dollars within three seasons",
+      "audience": "Etienne, executive director balancing access and solvency",
+      "stakes": "audience renewal will fail if access remains a donation slogan",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Etienne pins the ten-dollar target above the season budget and makes programming, fundraising, and seating decisions answer to it",
+      "firstImage": "colored seat maps spread below a handwritten ten-dollar note",
+      "mustInclude": [
+        "seat maps",
+        "three-season horizon",
+        "fundraising line"
+      ],
+      "mustAvoid": [
+        "arts access language without operating choices"
+      ]
+    },
+    {
+      "domain": "industrial laundry aiming for zero rewash loads for hospital linens in one year",
+      "audience": "Paula, quality supervisor whose team is tired of minor fixes",
+      "stakes": "rewash delays can leave wards short and hide infection-control risk",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Paula asks which machines, shifts, and inspection steps would have to change if zero rewash were real, then turns answers into the year plan",
+      "firstImage": "What would break first if the rewash cart had to stay empty?",
+      "mustInclude": [
+        "rewash cart",
+        "inspection steps",
+        "one-year target"
+      ],
+      "mustAvoid": [
+        "zero as perfectionist scolding"
+      ]
+    },
+    {
+      "domain": "open-source mapping nonprofit setting a goal to map every rural clinic in a province before flood season",
+      "audience": "Chris, volunteer coordinator with scattered contributors",
+      "stakes": "emergency crews may lack accurate clinic locations during floods",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chris draws the flood-season deadline across the map wall and assigns volunteers by unmapped clinic clusters, not by enthusiasm alone",
+      "firstImage": "pushpins missing from a damp paper map of river towns",
+      "mustInclude": [
+        "map wall",
+        "flood-season deadline",
+        "clinic clusters"
+      ],
+      "mustAvoid": [
+        "volunteer enthusiasm substitutes for target architecture"
+      ]
+    },
+    {
+      "domain": "hotel group promising every room ready by 3 p.m. for a peak-season month",
+      "audience": "Isabel, housekeeping director confronting chronic late check-ins",
+      "stakes": "guest trust and staff morale collapse when the promise is always almost met",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Isabel three Saturdays to see that the 3 p.m. promise forced laundry timing, inspection routes, and front-desk holds into one system",
+      "firstImage": "key cards lined in rows beside a 2:47 p.m. lobby clock",
+      "mustInclude": [
+        "3 p.m. promise",
+        "laundry timing",
+        "inspection routes"
+      ],
+      "mustAvoid": [
+        "housekeeping hustle as heroic endurance"
+      ]
+    },
+    {
+      "domain": "urban tree nursery targeting enough native saplings for every heat-island block in five years",
+      "audience": "Aman, nursery planner coordinating city crews and schools",
+      "stakes": "a climate pledge stays symbolic unless the nursery capacity changes now",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Aman count seed trays backward from the five-year block map, then reject a prettier campaign that would not grow enough roots",
+      "firstImage": "seed trays numbered against a wall map of red heat blocks",
+      "mustInclude": [
+        "native saplings",
+        "five-year block map",
+        "seed trays"
+      ],
+      "mustAvoid": [
+        "environmental aspiration with no capacity math"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test whether a large goal organizes real work",
+      "distinguish core-serving ambition from ego targets",
+      "choose operational consequences that make audacity credible"
+    ]
+  },
+  "tryThisNowSpec": "Write one large target, then list the three projects it would force you to stop. If it stops nothing, it is probably a slogan.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

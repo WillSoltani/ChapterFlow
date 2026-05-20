@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch08",
+  "number": 8,
+  "title": "The Analysis of Noise",
+  "coreMove": "Study noise as a repeating pattern across a sample of matched cases rather than explaining away each individual disagreement.",
+  "sourcePressure": "Noise is most useful as a pattern-level concept. When studied across a sample, scattered inconsistencies become a distribution that can be characterized, compared, and targeted. Explaining disagreements one at a time — 'this case was unusual,' 'that judge was in a bad mood' — prevents the pattern from becoming visible. Analysis is the move from surprise to diagnosis.",
+  "chapterSpecificMisunderstanding": "Treating each instance of disagreement as a unique event that has its own local explanation, which prevents seeing the distribution that reveals a systemic problem.",
+  "sourceAlignmentTerms": ["pattern", "sample", "distribution", "matched cases", "systemic", "scatter", "analysis"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Cross-domain noise analysis in professional judgment systems",
+      "detail": "Studies of noise in insurance, medicine, and criminal justice consistently show that the within-system scatter is larger than insiders predict, and that the scatter only becomes visible when cases are compared in aggregate rather than examined one at a time.",
+      "useIn": "fullRead",
+      "phrasingHint": "A single disagreement is a curiosity. A hundred disagreements on matched cases are a diagnosis."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["data can reveal patterns your gut cannot", "noise looks like randomness until you measure it"],
+    "counterintuition": ["the best way to understand a problem is to look at many examples at once", "individual anecdotes are unreliable guides to systemic problems"],
+    "tryThisNow": ["collect data on your last ten decisions", "draw a distribution of your recent judgment outcomes"],
+    "examples": ["a scene where analysis immediately produces a clear solution — this skips the chapter's purpose of establishing analysis as its own discipline", "an example where pattern analysis is used to identify and punish a specific individual"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Pattern analysis examples risk all reading as 'someone builds a spreadsheet and finds something surprising.' The examples need varied analytical contexts and entry points to show how analysis works across different institutional settings."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "call center complaint resolution: mapping resolution decisions across 12 months and 40 handlers for the same complaint types",
+      "audience": "a customer service director building the first cross-handler comparison for her team",
+      "stakes": "customer fairness and consistency — customers with identical complaints receiving different resolutions depending on who answers the phone",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the director maps one year of resolution decisions by complaint category and handler, and discovers that for the same complaint type the resolution rate ranges from 31 percent to 87 percent across handlers — a spread that had been invisible when each handler's outcomes were reviewed individually because each individual result looked defensible",
+      "firstImage": "a large wall-mounted chart in a conference room, each row a complaint category, each column a handler, the cells showing resolution rates — the range within each row visible as a color gradient from light to dark",
+      "mustInclude": ["the invisibility of pattern in individual review versus aggregate analysis", "the 31-to-87 percent range as the key finding", "no individual handler standing out as obviously wrong in isolation"],
+      "mustAvoid": ["naming a single handler as the problem", "a scene focused on a specific customer complaint"]
+    },
+    {
+      "domain": "school suspension rates by vice-principal: a district comparison across matched incident types over two academic years",
+      "audience": "a school district data officer conducting an equity audit",
+      "stakes": "students' educational continuity and equal treatment under the district's stated disciplinary standards",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the data officer and the superintendent compare the suspension rate distributions by vice-principal for identical incident categories: one vice-principal's suspension rate for a specific incident type is three times another's, and the difference is larger within a single school than between schools in different socioeconomic areas",
+      "firstImage": "two people at a whiteboard covered in numbers — suspension rates by incident type and by administrator, the within-school variation larger than the across-school variation visible in the chart structure",
+      "mustInclude": ["the within-school spread exceeding the between-school spread as the key finding", "the pattern analysis as what makes the difference visible", "neither administrator having been identified as problematic before the analysis"],
+      "mustAvoid": ["attributing the disparity to racial bias (that is a bias problem, not a noise problem)", "a scene focused on any specific student"]
+    },
+    {
+      "domain": "hospital readmission rates: a quality team comparing readmission rates for matched-acuity patients across four wards",
+      "audience": "a hospital quality team examining whether ward assignment affects post-discharge outcomes",
+      "stakes": "patient health and hospital resources — if ward-level judgment differences in discharge planning drive readmission, the system is noisier than it appears",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the quality lead presents the analysis at a medical staff meeting: for patients matched on acuity, age, and diagnosis, the ward-level variation in readmission rates is larger than the patient-type variation — meaning where the patient landed in the hospital explains readmission better than what was wrong with the patient",
+      "firstImage": "a slide projected at a morning medical staff meeting showing a bar chart of readmission rates by ward, the bars varying substantially despite the patient-matching methodology noted at the bottom",
+      "mustInclude": ["the matched-patient methodology as the foundation of the analysis", "the ward-level variation exceeding patient-type variation", "the medical staff's visible surprise at the chart"],
+      "mustAvoid": ["identifying specific clinical practices on any ward as wrong", "a patient outcome narrative"]
+    },
+    {
+      "domain": "real-estate appraisal: a bank auditing a sample of appraisals across three appraisal firms for the same neighborhoods",
+      "audience": "a bank quality officer investigating whether appraiser selection affects loan portfolio quality",
+      "stakes": "lending risk and property market stability — systematic overvaluation or noise in appraisals both have downstream effects",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality officer builds an analysis of 300 appraisals across three firms for the same zip codes and finds that for equivalent properties the inter-firm spread averages 8.9 percent of value — larger than the appraisal methodology's precision claims suggest — and that the spread is not explained by any single property feature",
+      "firstImage": "three overlapping distribution curves on a graph, one for each appraisal firm's valuations for the same property type in the same zip code — the curves broadly overlapping but with different centers",
+      "mustInclude": ["the 8.9 percent inter-firm spread as the key finding", "the failure of any single property feature to explain the spread", "the analysis as revealing what individual file review would not have shown"],
+      "mustAvoid": ["implying any appraisal firm committed fraud", "a scene focused on any specific property's value"]
+    },
+    {
+      "domain": "personal injury lawsuit damages: a legal research project comparing damages awards across 500 matched cases by injury severity",
+      "audience": "a litigation research team studying whether plaintiff outcomes depend on systematic factors beyond case merit",
+      "stakes": "the consistency and legitimacy of the civil justice system — if the same injury produces wildly different awards, the system is noisy rather than principled",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the team's finding: within the same injury-severity category, the standard deviation of damages awards is larger than the difference in average awards between adjacent severity categories — meaning noise within a category swamps the signal between categories that the damage scale was designed to produce",
+      "firstImage": "a research output table showing injury severity categories in rows and statistical columns: mean, standard deviation, and range — the standard deviation column numbers being larger than the between-category mean differences",
+      "mustInclude": ["the within-category noise exceeding between-category signal as the key finding", "the implication for the severity-based damage structure", "framing this as a pattern finding, not an individual case injustice"],
+      "mustAvoid": ["a specific plaintiff's case", "a legal reform agenda that goes beyond the analysis"]
+    },
+    {
+      "domain": "environmental contamination assessment: five soil scientists surveying the same brownfield site and mapping contamination independently",
+      "audience": "a remediation project manager commissioning a pre-development environmental survey",
+      "stakes": "the remediation scope and cost — if the contamination map is noisy, the cleanup specification is unreliable before a single shovel is turned",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the project manager asks the research team: if we gave the same site data to five qualified environmental scientists and asked them to produce independent contamination maps, how different would the maps look? The answer, from a comparison exercise actually run on the pre-survey data, is: substantially — the estimated contamination boundaries differed enough to change the remediation cost estimate by a factor of two",
+      "firstImage": "five outline maps of the same brownfield site, each showing a different contamination boundary drawn by a different scientist, overlaid in different colors to show the spread",
+      "mustInclude": ["the factor-of-two cost implication of the boundary spread", "the five-map overlay as the analytical output", "the recognition that the noise is in the site assessment, not in the site itself"],
+      "mustAvoid": ["implying any scientist used incorrect methods", "an environmental disaster narrative"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why analyzing noise across a sample reveals what single-case review cannot",
+      "identify the design features of a matched-case comparison that make it a valid noise analysis",
+      "apply pattern-analysis thinking to identify where to look for noise in an unfamiliar institution",
+      "analyze the difference between a pattern finding and an explanation of that finding",
+      "evaluate whether a proposed data collection approach would actually reveal noise or just measure outcome variance"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Identify one recurring decision type in your work. Pull the last 20 decisions of that type and sort them by a case-feature column that should explain the outcome (client size, risk level, complexity score). Then look at the outcome column for cases with the same case-feature value. If the outcomes vary more than you expected, you are looking at noise expressed as a pattern.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) stating the analysis-over-explanation principle directly, at least one longer paragraph (5+ sentences) walking through what a proper noise analysis design looks like, at least one one-sentence punch line about what patterns show that individual case review hides",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm — a brief research-aside noting that the same pattern (within-category noise exceeds between-category signal) appears across multiple domains wherever someone has bothered to do the analysis",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "chapterId": "difficult-conversations-ch08",
+  "number": 8,
+  "title": "Begin from the Third Story",
+  "coreMove": "Start from a neutral description of the gap between views and invite comparison rather than defense.",
+  "sourcePressure": "The chapter has one main move: replace first-story openers with a third-story opener plus genuine invitation.",
+  "chapterSpecificMisunderstanding": "Softening an accusation while leaving your story as the baseline.",
+  "sourceAlignmentTerms": [
+    "first story",
+    "third story",
+    "neutral observer",
+    "joint inquiry",
+    "identity stakes",
+    "invitation not summons",
+    "learning stance"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "third story opener",
+      "detail": "The source defines the third story as a neutral-observer account that names the disagreement without making either side the defendant.",
+      "useIn": "both",
+      "phrasingHint": "A third-story opener gives both people a view of the gap before either one has to defend a character."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch08 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: second-person You direct address; sensory detail first; timestamp+name+action; dialogue first line; environmental detail before any human; retrospective first line",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "co-parent discipline disagreement",
+      "audience": "separated parents trying not to make the other a defendant",
+      "stakes": "their child is hearing contradictory responses after tantrums",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Emily rewrites 'you are undermining me' into a sentence about different ideas of what the tantrum needs",
+      "firstImage": "a child's rain boots by the front door",
+      "mustInclude": [
+        "rain boots",
+        "pickup calendar",
+        "bedtime note"
+      ],
+      "mustAvoid": [
+        "accusation with softer tone"
+      ]
+    },
+    {
+      "domain": "client handoff between agencies",
+      "audience": "consultants with competing versions of a failed transfer",
+      "stakes": "a client renewal depends on stopping the defensive spiral early",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lukas opens with two teams working from different handoff assumptions, then invites notes comparison",
+      "firstImage": "a conference badge lanyard on a hotel table",
+      "mustInclude": [
+        "handoff checklist",
+        "client renewal email",
+        "call recording"
+      ],
+      "mustAvoid": [
+        "first-story case delivery"
+      ]
+    },
+    {
+      "domain": "graduate student approaching advisor about delayed feedback",
+      "audience": "students under authority pressure",
+      "stakes": "a thesis timeline is slipping and the power gap makes a summons risky",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Marta writes an opener the advisor could recognize without accepting all of it",
+      "firstImage": "\"I think we may be using different timelines,\" she says",
+      "mustInclude": [
+        "thesis calendar",
+        "commented draft",
+        "office-hours sign-up"
+      ],
+      "mustAvoid": [
+        "professor as villain"
+      ]
+    },
+    {
+      "domain": "restaurant partners disagreeing on tip pooling",
+      "audience": "small business partners with identity and fairness stakes",
+      "stakes": "staff trust could break if the policy change starts as an accusation",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chris names the gap between fairness assumptions before proposing a policy debate",
+      "firstImage": "a tip envelope sealed with blue tape",
+      "mustInclude": [
+        "tip envelopes",
+        "shift schedule",
+        "staff note"
+      ],
+      "mustAvoid": [
+        "policy speech as opener"
+      ]
+    },
+    {
+      "domain": "siblings discussing inherited house repairs",
+      "audience": "families where history sits under logistics",
+      "stakes": "a roof repair decision could reopen old roles if the opener blames one sibling",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Adaeze tests whether Antoine would recognize the third-story version before calling",
+      "firstImage": "a roofer's estimate folded in thirds",
+      "mustInclude": [
+        "roof estimate",
+        "probate letter",
+        "group text"
+      ],
+      "mustAvoid": [
+        "you never help frame"
+      ]
+    },
+    {
+      "domain": "open-source maintainers reviewing a rejected pull request",
+      "audience": "online collaborators with public defensiveness risk",
+      "stakes": "the contributor may leave if the opening frames them as careless",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Antoine begins with different assumptions about review readiness rather than with the rejection itself",
+      "firstImage": "a pull request page with failing checks",
+      "mustInclude": [
+        "pull request",
+        "CI check",
+        "maintainer note"
+      ],
+      "mustAvoid": [
+        "internet scolding"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs start from a neutral description of the gap between views and invite comparison rather than defense.",
+      "distinguish first story from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate softening an accusation while leaving your story as the baseline."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Draft a third-story opener that the other person could recognize as plausible even while disagreeing with your view.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

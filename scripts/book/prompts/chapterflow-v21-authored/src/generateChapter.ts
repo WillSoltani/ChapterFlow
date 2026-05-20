@@ -20,7 +20,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { runEditorInChief } from "./agents/editor-in-chief.js";
+import { runEditorInChief, applyAuthorVoiceProfile } from "./agents/editor-in-chief.js";
 import { runCurriculumPlanner } from "./agents/curriculum-planner.js";
 import { runWriterBreakdown } from "./agents/writer-breakdown.js";
 import { runWriterExample, ExampleOutput } from "./agents/writer-example.js";
@@ -44,7 +44,7 @@ import {
 import { callClaude } from "./claudeClient.js";
 import { assembleChapterV21, V21_SCHEMA_VERSION } from "./assembler.js";
 import { sanitizeBriefForWriter } from "./lib/brief-sanitizer.js";
-import { BookBrief, BookPackageV21, ChapterDesignDoc, ChapterV21 } from "./types.js";
+import { BookBrief, BookPackageV21, ChapterDesignDoc, ChapterV21, PriorChapterShapes } from "./types.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -74,6 +74,11 @@ export type GenerateChapterOptions = {
   logger?: (msg: string) => void;
   candidatesPerSlot?: number;
   voicePassMaxIterations?: number;
+  /** Hook first-words + counter shapes of every prior chapter in this book.
+   *  Used by the hook/breakdown writers to diversify away from over-used
+   *  templates. Passed through by generateBook from in-memory state plus
+   *  any resumed cached chapters. */
+  priorChapterShapes?: PriorChapterShapes;
 };
 
 async function loadOrBuild<T>(
@@ -144,12 +149,16 @@ export async function generateChapter(
     return cached;
   }
 
-  const briefRaw = await loadOrBuild<BookBrief>(
+  const briefFromDisk = await loadOrBuild<BookBrief>(
     resolve(STATE, "briefs", `${book.bookId}.brief.json`),
     () => runEditorInChief(book),
     `brief[${book.bookId}]`,
     log,
   );
+  // Always re-apply the author-voice profile to the loaded brief. If the
+  // brief was cached before the profile was updated (or before the profile
+  // existed at all), this merges any new `avoidFrames` deterministically.
+  const briefRaw = applyAuthorVoiceProfile(briefFromDisk, book.bookId);
 
   // Sanitize before passing to writers. The on-disk brief lists forbidden
   // phrases verbatim ("the chapter", "the book", banned phrases) so the
@@ -177,9 +186,19 @@ export async function generateChapter(
   }
 
   log(`hook + breakdown: generating in parallel…`);
+  if (options.priorChapterShapes && (options.priorChapterShapes.priorHookFirstWords.length > 0 || options.priorChapterShapes.priorCounterShapes.length > 0)) {
+    const fw = options.priorChapterShapes.priorHookFirstWords;
+    const cs = options.priorChapterShapes.priorCounterShapes;
+    log(`prior shapes: ${fw.length} hooks, ${cs.length} counters (writer will steer away from over-used)`);
+  }
   const [hook, draftBreakdown] = await Promise.all([
-    runWriterHook({ brief, plan }),
-    runWriterBreakdown({ brief, plan, chapterSource: source.chapterSource ?? undefined }),
+    runWriterHook({ brief, plan, priorChapterShapes: options.priorChapterShapes }),
+    runWriterBreakdown({
+      brief,
+      plan,
+      chapterSource: source.chapterSource ?? undefined,
+      priorChapterShapes: options.priorChapterShapes,
+    }),
   ]);
   log(`hook: "${hook.hook}"`);
   log(`draft breakdown: fastRead=${draftBreakdown.fastRead.length}c, deepRead=${draftBreakdown.deepRead.length}c, fullRead=${draftBreakdown.fullRead.length}c`);

@@ -53,3 +53,6 @@ node_modules/
 .next/
 .next-chapterflow/
 .open-next/
+
+# Claude Code local working state — worktrees, agent cache, todos, MCP config
+.claude/

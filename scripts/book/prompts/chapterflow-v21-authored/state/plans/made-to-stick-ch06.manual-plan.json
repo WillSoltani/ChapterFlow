@@ -1,0 +1,189 @@
+{
+  "chapterId": "made-to-stick-ch06",
+  "number": 6,
+  "title": "Stories",
+  "coreMove": "Embed the lesson in a sequence of choice and consequence so it can be retold without losing its action cue.",
+  "sourcePressure": "The source is narrower here: stories carry lessons and practical meaning when the lesson is embedded in narrative, with challenge, connection, and creativity plots as supported labels.",
+  "chapterSpecificMisunderstanding": "Treating any anecdote as useful simply because it is a story.",
+  "sourceAlignmentTerms": [
+    "stories",
+    "embedded lesson",
+    "narrative carrier",
+    "challenge plot",
+    "connection plot",
+    "creativity plot",
+    "retelling"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "challenge, connection, and creativity plots",
+      "detail": "the sidecar says challenge, connection, and creativity plots appear in the books story taxonomy",
+      "useIn": "both",
+      "phrasingHint": "Challenge, connection, and creativity plots give story power three different engines instead of one vague praise of narrative."
+    },
+    {
+      "kind": "artifact",
+      "name": "embedded narrative lesson",
+      "detail": "the sidecar says a story works best when the message is embedded in the narrative rather than stapled onto it",
+      "useIn": "both",
+      "phrasingHint": "The lesson should live in what happens, not in a label pasted after the last sentence."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a story travels after you leave repeated literally",
+      "plot carries the lesson as generic opener"
+    ],
+    "counterintuition": [
+      "stories are not entertainment repeated without a test",
+      "story beats explanation always"
+    ],
+    "tryThisNow": [
+      "tell a story about your idea",
+      "add a beginning middle and end"
+    ],
+    "examples": [
+      "customer-service story from old package",
+      "assembly story from old package",
+      "values poster replaced by team legend"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "mountain-rescue avalanche briefing",
+      "audience": "a rescue trainer teaching new volunteers probe-line spacing",
+      "stakes": "a search pattern fails if the rule stays a number",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily tells the story of one search where a skipped arm length changed the outcome, with the spacing lesson embedded in the sequence of moves",
+      "firstImage": "Snow squeaks under the probe tips in the training field",
+      "mustInclude": [
+        "probe poles",
+        "orange flags",
+        "avalanche beacon"
+      ],
+      "mustAvoid": [
+        "heroic rescue fantasy from ch5"
+      ]
+    },
+    {
+      "domain": "bakery sourdough apprenticeship",
+      "audience": "a head baker teaching patience to new apprentices",
+      "stakes": "rushed fermentation ruins a weekend batch",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Nicolas builds the patience rule into the story of two loaves, one cut by the clock and one cut by the doughs signs",
+      "firstImage": "At 3:18 a.m., Nicolas taps two proofing baskets dusted with rice flour",
+      "mustInclude": [
+        "proofing baskets",
+        "bench knife",
+        "oven spring photo"
+      ],
+      "mustAvoid": [
+        "generic food quality demo"
+      ]
+    },
+    {
+      "domain": "neonatal ward handoff training",
+      "audience": "a nurse educator teaching calm escalation to new staff",
+      "stakes": "tiny changes get missed if the protocol is just recited",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Listen to what her mother noticed first,\" Frida says, then tells a handoff story where family observation and nurse action fit together",
+      "firstImage": "\"Listen to what her mother noticed first,\" Frida says beside the isolette",
+      "mustInclude": [
+        "handoff sheet",
+        "isolette monitor",
+        "knitted cap"
+      ],
+      "mustAvoid": [
+        "credential lecture"
+      ]
+    },
+    {
+      "domain": "bike-share repair shop training",
+      "audience": "a mechanic teaching apprentices to diagnose recurring brake failures",
+      "stakes": "bad repairs return to the street as safety risks",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ben reconstructs one returned bike from first squeak to final test ride so the diagnostic rule is recoverable from the sequence",
+      "firstImage": "Rain ticks on the repair-bay skylight while one orange bike hangs from the stand",
+      "mustInclude": [
+        "brake cable",
+        "work order tag",
+        "test-ride loop map"
+      ],
+      "mustAvoid": [
+        "bike helmet shell"
+      ]
+    },
+    {
+      "domain": "tenant-organizing meeting",
+      "audience": "an organizer teaching new volunteers how trust builds",
+      "stakes": "volunteers lose tenants if they lead with demands before listening",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Tomas chooses a connection plot where a quiet hallway conversation changes the order of action, and the lesson is never stated as a moral at the end",
+      "firstImage": "It took Tomas one failed door-knocking night to notice who the tenants already trusted",
+      "mustInclude": [
+        "clipboard route sheet",
+        "hallway bulletin board",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "political rally speech"
+      ]
+    },
+    {
+      "domain": "industrial-design lab constraint exercise",
+      "audience": "a professor teaching creativity under material limits",
+      "stakes": "students treat constraints as unfair unless the plot shows breakthrough through limits",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Adaeze tell a redesign story where the missing material forces the student to invent a better hinge, embedding the creativity lesson in the turn",
+      "firstImage": "You can hear the prototype hinge click wrong from across the lab",
+      "mustInclude": [
+        "foam-core model",
+        "brass hinge",
+        "material-ration card"
+      ],
+      "mustAvoid": [
+        "generic innovation keynote"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose a story shape that matches the lesson",
+      "distinguish embedded lessons from pasted-on morals",
+      "diagnose when retelling mutates the intended meaning",
+      "design a sequence that carries an action cue"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one rule you keep explaining and write the three beats of a true or fictional scene where a choice, a turn, and a consequence teach it without a pasted-on moral.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

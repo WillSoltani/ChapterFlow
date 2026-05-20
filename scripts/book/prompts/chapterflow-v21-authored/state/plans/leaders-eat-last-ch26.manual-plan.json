@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch26",
+  "number": 26,
+  "title": "Shared Struggle",
+  "coreMove": "Enter the burden with others so the cost becomes mutual instead of displaced.",
+  "sourcePressure": "Shows that difficulty deepens trust when burden is mutual, visible, and protected, while rejecting abuse, arbitrary harshness, and outsourced strain.",
+  "chapterSpecificMisunderstanding": "Romanticizing suffering, hazing, or hardship as inherently bonding.",
+  "sourceAlignmentTerms": [
+    "shared struggle",
+    "mutual burden",
+    "reciprocity",
+    "visible cost",
+    "protected group",
+    "outsourced burden",
+    "solidarity"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 26 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "data-center overnight migration",
+      "audience": "engineering manager joining the floor",
+      "stakes": "trust grows because the leader shares the hard cutover",
+      "format": "decision_point",
+      "requiredBeat": "she takes the 2 a.m. cable-label shift beside the newest technician",
+      "firstImage": "a cable label printer under server-room lights",
+      "mustInclude": [
+        "label printer",
+        "server rack"
+      ],
+      "mustAvoid": [
+        "martyrdom"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "community kiln firing weekend",
+      "audience": "pottery guild sharing watch shifts",
+      "stakes": "mutual burden builds commitment when everyone carries real risk",
+      "format": "scene",
+      "requiredBeat": "members initial the firing log every two hours, including the guild president",
+      "firstImage": "a firing log beside a pyrometer",
+      "mustInclude": [
+        "firing log",
+        "pyrometer"
+      ],
+      "mustAvoid": [
+        "hobby hardship"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "rural hospice meal train",
+      "audience": "neighbors caring for a family",
+      "stakes": "shared struggle works because burden is visible and mutual",
+      "format": "dialogue",
+      "requiredBeat": "the organizer moves herself onto the hardest delivery slot before asking for volunteers",
+      "firstImage": "a meal roster beside a gravel-road map",
+      "mustInclude": [
+        "meal roster",
+        "road map"
+      ],
+      "mustAvoid": [
+        "charity sentiment"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "search-dog training rain day",
+      "audience": "trainer distinguishing hard practice from abuse",
+      "stakes": "difficulty must serve skill and protection",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks what the cold rain teaches, then cancels when it only risks the dog's paws",
+      "firstImage": "a wet tracking harness beside a paw-check towel",
+      "mustInclude": [
+        "tracking harness",
+        "paw towel"
+      ],
+      "mustAvoid": [
+        "pain worship"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "newspaper strike fund table",
+      "audience": "union committee reviewing contributions",
+      "stakes": "solidarity fails if cost is quietly displaced",
+      "format": "postmortem",
+      "requiredBeat": "the committee compares who picketed and who covered childcare before calling the vote united",
+      "firstImage": "a strike fund envelope beside a childcare list",
+      "mustInclude": [
+        "fund envelope",
+        "childcare list"
+      ],
+      "mustAvoid": [
+        "political cliché"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "multi-family well repair",
+      "audience": "neighbors digging a frozen line",
+      "stakes": "comfort alone never built the same bond as shared visible work",
+      "format": "before_after",
+      "requiredBeat": "the neighbor who owns the tools climbs into the trench with everyone else before deciding fees",
+      "firstImage": "a pipe wrench beside a frost-crusted trench board",
+      "mustInclude": [
+        "pipe wrench",
+        "trench board"
+      ],
+      "mustAvoid": [
+        "home repair generic"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate meaningful shared hardship from needless suffering",
+      "spot outsourced burden",
+      "use reciprocity to build trust",
+      "evaluate whether leaders enter the cost"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In one hard task, identify the part of the burden you have been watching from above and take a visible share of it.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

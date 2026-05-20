@@ -1,0 +1,204 @@
+{
+  "chapterId": "the-first-20-hours-ch07",
+  "number": 7,
+  "title": "Go",
+  "coreMove": "Enter a complex strategic field by reading one local pattern and one pressure instead of waiting to understand the whole board.",
+  "sourcePressure": "The source frames Go as strategic complexity made approachable through pattern recognition, local attack and defense pressures, and the decision not to wait for total mastery before beginning.",
+  "chapterSpecificMisunderstanding": "Reducing strategic complexity to simple tips, rather than using patterns to make one local fight readable while staying humble about the full board.",
+  "sourceAlignmentTerms": [
+    "Go",
+    "strategic complexity",
+    "pattern recognition",
+    "attack and defense",
+    "local pressure",
+    "selective competence",
+    "total mastery"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Go",
+      "detail": "the frozen support names Go as the chapter case and frames it through pattern recognition, attack/defense, and not needing total mastery",
+      "useIn": "both",
+      "phrasingHint": "A Go board looks endless until one small fight starts asking a sharper question: which stones are alive, which are thin, and what pressure matters now?"
+    },
+    {
+      "kind": "artifact",
+      "name": "attack and defense",
+      "detail": "the source supports local attack and defense pressures as part of making Go learnable",
+      "useIn": "deepRead",
+      "phrasingHint": "Attack and defense turn the blur into a local conversation, not a promise that the rest of the board has become simple."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "ancient game mystique opener",
+      "chess comparison opener",
+      "life is strategy slogan"
+    ],
+    "counterintuition": [
+      "patterns replace thinking",
+      "complexity is an illusion",
+      "always attack first"
+    ],
+    "tryThisNow": [
+      "play any game for one minute",
+      "look for patterns generally",
+      "make a strategy checklist"
+    ],
+    "examples": [
+      "generic chess board",
+      "office politics as war",
+      "classroom debate"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Michael",
+      "domain": "emergency-room bed allocation during flu surge",
+      "audience": "a reader facing strategic complexity with scarce resources",
+      "stakes": "one wrong local decision blocks isolation rooms for incoming patients",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Michael stops trying to optimize the whole shift, marks one local pressure cluster on the bed board, and decides which room must be defended for respiratory cases",
+      "firstImage": "colored magnets crowded around two isolation-room slots",
+      "mustInclude": [
+        "bed board",
+        "isolation room",
+        "pressure cluster"
+      ],
+      "mustAvoid": [
+        "hero doctor drama",
+        "generic prioritization"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "urban planning review of a contested bus stop relocation",
+      "audience": "a reader who needs pattern recognition without claiming total certainty",
+      "stakes": "moving one stop changes school access, shop deliveries, and traffic pinch points",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Frida names the recurring curb-conflict pattern, then reads the one block where defense of school access matters more than attacking congestion",
+      "firstImage": "a laminated curb map with delivery arrows in three colors",
+      "mustInclude": [
+        "curb map",
+        "school access",
+        "delivery arrows"
+      ],
+      "mustAvoid": [
+        "bike lane shell",
+        "generic public meeting"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "cybersecurity analyst triaging suspicious login clusters",
+      "audience": "a technical reader working inside an overwhelming signal field",
+      "stakes": "a real account takeover can hide among harmless travel alerts",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Jack predicts the dashboard is too broad, then spots one repeated login pattern and defends the payroll account before chasing every alert",
+      "firstImage": "three red login dots stacked beside a payroll-account label",
+      "mustInclude": [
+        "login pattern",
+        "payroll account",
+        "alert queue"
+      ],
+      "mustAvoid": [
+        "hacker movie language",
+        "full incident response guide"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "youth soccer coach reading one flank overload",
+      "audience": "a learner translating pattern recognition into bounded action",
+      "stakes": "the team keeps conceding from the same side and halftime is almost over",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Manon stops giving whole-field advice, points to the repeated two-on-one on the left flank, and assigns one defender to hold rather than chase",
+      "firstImage": "muddy cones knocked sideways near the left touchline",
+      "mustInclude": [
+        "two-on-one",
+        "left flank",
+        "halftime board"
+      ],
+      "mustAvoid": [
+        "generic sports motivation",
+        "attack more slogan"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "antique-book dealer bidding at a regional auction",
+      "audience": "a reader who needs selective competence in a high-information market",
+      "stakes": "one misread lot can consume the entire buying budget",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Andrew sees that the winning move was not knowing every lot, but recognizing one binding-damage pattern and defending his budget against a flashy rare title",
+      "firstImage": "a cracked leather spine under a small auction lamp",
+      "mustInclude": [
+        "binding damage",
+        "bid ceiling",
+        "rare title"
+      ],
+      "mustAvoid": [
+        "generic negotiation lesson",
+        "collector romance"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "public-health team choosing one outreach neighborhood",
+      "audience": "a reader navigating complex social data without total mastery",
+      "stakes": "limited vaccine staff can cover only one Saturday clinic route",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Sofia reads one local pattern in missed appointments, defends the high-trust church lot, and declines a broader citywide campaign for this week",
+      "firstImage": "your finger stopping on a missed-appointment heat map beside a church parking lot",
+      "mustInclude": [
+        "heat map",
+        "church lot",
+        "Saturday clinic"
+      ],
+      "mustAvoid": [
+        "generic health campaign",
+        "statistics lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use pattern recognition without overclaiming mastery",
+      "distinguish local pressure from total-system control",
+      "choose attack or defense based on a bounded position",
+      "recognize strategic entry points in non-game domains"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one complex situation and mark the smallest local fight: what pattern repeats, what is under attack, and what must be defended first?",
+  "readingTimeMinutes": 12
+}

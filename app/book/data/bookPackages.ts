@@ -1,11 +1,11 @@
-import thePowerOfHabitPackageJson from "@/book-packages/the-power-of-habit.modern.json";
+import thePowerOfHabitPackageJson from "@/book-packages/the-power-of-habit.v21.json";
 import makeTimePackageJson from "@/book-packages/make-time.v21.json";
 import makeItStickPackageJson from "@/book-packages/make-it-stick.v21.json";
 import madeToStickPackageJson from "@/book-packages/made-to-stick.v21.json";
 import crucialConversationsPackageJson from "@/book-packages/crucial-conversations.v21.json";
 import difficultConversationsPackageJson from "@/book-packages/difficult-conversations.v21.json";
-import whatEveryBodyIsSayingPackageJson from "@/book-packages/what-every-body-is-saying.modern.json";
-import thePrincePackageJson from "@/book-packages/the-prince.modern.json";
+import whatEveryBodyIsSayingPackageJson from "@/book-packages/what-every-body-is-saying.v21.json";
+import thePrincePackageJson from "@/book-packages/the-prince.v21.json";
 import tinyHabitsPackageJson from "@/book-packages/tiny-habits.v21.json";
 import howToWinFriendsAndInfluencePeoplePackageJson from "@/book-packages/how-to-win-friends-and-influence-people.v21.json";
 import gamesPeoplePlayPackageJson from "@/book-packages/games-people-play.v21.json";
@@ -20,12 +20,12 @@ import essentialismPackageJson from "@/book-packages/essentialism.v21.json";
 import deepWorkPackageJson from "@/book-packages/deep-work.v21.json";
 import soGoodTheyCantIgnoreYouPackageJson from "@/book-packages/so-good-they-cant-ignore-you.v21.json";
 import predictablyIrrationalPackageJson from "@/book-packages/predictably-irrational.v21.json";
-import thinkingFastAndSlowPackageJson from "@/book-packages/thinking-fast-and-slow.modern.json";
+import thinkingFastAndSlowPackageJson from "@/book-packages/thinking-fast-and-slow.v21.json";
 import thinkingInBetsPackageJson from "@/book-packages/thinking-in-bets.modern.json";
-import thePsychologyOfMoneyPackageJson from "@/book-packages/the-psychology-of-money.modern.json";
-import theLawsOfHumanNaturePackageJson from "@/book-packages/the-laws-of-human-nature.modern.json";
-import theAlmanackOfNavalRavikantPackageJson from "@/book-packages/the-almanack-of-naval-ravikant.modern.json";
-import theHardThingAboutHardThingsPackageJson from "@/book-packages/the-hard-thing-about-hard-things.modern.json";
+import thePsychologyOfMoneyPackageJson from "@/book-packages/the-psychology-of-money.v21.json";
+import theLawsOfHumanNaturePackageJson from "@/book-packages/the-laws-of-human-nature.v21.json";
+import theAlmanackOfNavalRavikantPackageJson from "@/book-packages/the-almanack-of-naval-ravikant.v21.json";
+import theHardThingAboutHardThingsPackageJson from "@/book-packages/the-hard-thing-about-hard-things.v21.json";
 import influencePackageJson from "@/book-packages/influence.v21.json";
 import theInnovatorsDilemmaPackageJson from "@/book-packages/the-innovators-dilemma.modern.json";
 import builtToLastPackageJson from "@/book-packages/built-to-last.v21.json";
@@ -34,8 +34,8 @@ import leadersEatLastPackageJson from "@/book-packages/leaders-eat-last.v21.json
 import limitlessPackageJson from "@/book-packages/limitless.v21.json";
 import peakPackageJson from "@/book-packages/peak.v21.json";
 import playingToWinPackageJson from "@/book-packages/playing-to-win.v21.json";
-import theOneThingPackageJson from "@/book-packages/the-one-thing.modern.json";
-import theCharismaMythPackageJson from "@/book-packages/the-charisma-myth.modern.json";
+import theOneThingPackageJson from "@/book-packages/the-one-thing.v21.json";
+import theCharismaMythPackageJson from "@/book-packages/the-charisma-myth.v21.json";
 import theLikeSwitchPackageJson from "@/book-packages/the-like-switch.modern.json";
 import goodToGreatPackageJson from "@/book-packages/good-to-great.v21.json";
 import howToTalkToAnyonePackageJson from "@/book-packages/how-to-talk-to-anyone.v21.json";
@@ -833,7 +833,7 @@ export function getCompetingAgainstLuckPackageForTone(tone: ToneKey): BookPackag
   return normalizeAnyPackage(competingAgainstLuckPackageJson, tone);
 }
 
-export const LEADERS_EAT_LAST_PACKAGE = normalizeAnyPackage(
+export const LEADERS_EAT_LAST_PACKAGE = normalizeNstdPackage(
   leadersEatLastPackageJson,
   "direct"
 );
@@ -842,7 +842,7 @@ export const LEADERS_EAT_LAST_PACKAGE = normalizeAnyPackage(
 export const LEADERS_EAT_LAST_RAW_CHAPTERS = getRawChapters(leadersEatLastPackageJson);
 
 export function getLeadersEatLastPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeAnyPackage(leadersEatLastPackageJson, tone);
+  return normalizeNstdPackage(leadersEatLastPackageJson, tone);
 }
 
 export const LIMITLESS_PACKAGE = normalizeAnyPackage(limitlessPackageJson, "direct");

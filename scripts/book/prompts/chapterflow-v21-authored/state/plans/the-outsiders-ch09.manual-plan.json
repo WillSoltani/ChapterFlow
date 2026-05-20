@@ -1,0 +1,199 @@
+{
+  "chapterId": "the-outsiders-ch09",
+  "number": 9,
+  "title": "Radical Rationality",
+  "coreMove": "Carry the value scorecard across contexts while forcing every admired tactic to re-earn its place under current facts.",
+  "sourcePressure": "The synthesis chapter distills the outsider mind-set across Murphy, Singleton, Anders, Malone, Graham, Stiritz, Smith, and Buffett without flattening them into one tactic.",
+  "chapterSpecificMisunderstanding": "Do not create a generic outsider manifesto; every transfer must test whether the principle, not the visible tactic, fits the local constraints.",
+  "sourceAlignmentTerms": [
+    "radical rationality",
+    "outsider mind-set",
+    "capital allocation",
+    "decentralization",
+    "long-range value",
+    "anti-empire discipline",
+    "tactic versus principle"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Tom Murphy, Henry Singleton, Bill Anders, John Malone, Katharine Graham, Bill Stiritz, Dick Smith, and Warren Buffett",
+      "detail": "The source sidecar says the synthesis must preserve the recurring operating logic of the earlier cases while keeping their differences alive.",
+      "useIn": "both",
+      "phrasingHint": "Put the eight names beside each other and the sameness is not a tactic; it is a scorecard that keeps changing tools."
+    },
+    {
+      "kind": "artifact",
+      "name": "The Outsider's Mind-Set",
+      "detail": "The source sidecar identifies Chapter 9 as Radical Rationality and pairs it with The Outsider's Mind-Set.",
+      "useIn": "fullRead",
+      "phrasingHint": "The outsider mind-set is not a costume; it is the habit of making every tool prove its economics again."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Think like an outsider",
+      "Copy principles, not tactics",
+      "Radical rationality changes everything"
+    ],
+    "counterintuition": [
+      "Contrarian choices are usually right",
+      "One CEO playbook works everywhere",
+      "Capital allocation means finance only"
+    ],
+    "tryThisNow": [
+      "Make a scorecard",
+      "Question one tactic",
+      "Be rational for one decision"
+    ],
+    "examples": [
+      "team copies winning system",
+      "finance club buzzwords",
+      "decentralization without scorecard",
+      "personal productivity system copied from elsewhere"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "regional library system copying a no-branches digital strategy from a different city",
+      "audience": "a library director under pressure to imitate a famous turnaround",
+      "stakes": "closing small branches could harm the very patrons the system exists to serve",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Emily writes the borrowed tactic on one side of the table and the local patron-access scorecard on the other, then keeps only the digital scheduling principle and rejects branch closures.",
+      "firstImage": "library card renewal forms stacked beside a tablet checkout dock",
+      "mustInclude": [
+        "patron-access data",
+        "borrowed strategy memo",
+        "branch usage map"
+      ],
+      "mustAvoid": [
+        "libraries as cozy backdrop"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "manufacturing apprenticeship program tempted to copy decentralization from a larger plant",
+      "audience": "a training director with new supervisors not ready for full local authority",
+      "stakes": "badly copied autonomy could put apprentices near unsafe machines",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Julien asks supervisors to predict which decisions they can own safely, then keeps decentralization only for tool ordering while centralizing machine-access rules.",
+      "firstImage": "a lockout tag hanging from a lathe handle",
+      "mustInclude": [
+        "machine-access rules",
+        "tool-order budget",
+        "supervisor readiness notes"
+      ],
+      "mustAvoid": [
+        "generic training empowerment"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "craft brewery copying buyback-like owner distributions while tanks need maintenance",
+      "audience": "a minority owner who admires capital discipline but faces different constraints",
+      "stakes": "cash returned too early could leave the cellar unable to meet demand",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Kasia compares the admired distribution tactic with tank-maintenance and demand data, then keeps the value scorecard but sends cash to the cellar because the local facts demand it.",
+      "firstImage": "condensation running down a fermenter beside a maintenance tag",
+      "mustInclude": [
+        "owner distribution proposal",
+        "tank maintenance list",
+        "demand forecast"
+      ],
+      "mustAvoid": [
+        "beer culture as color only"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "city procurement office adopting a private-company pruning rule",
+      "audience": "a procurement lead deciding whether to cut supplier categories",
+      "stakes": "copying private-sector focus could reduce resilience during emergency repairs",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Luke one emergency repair miss to see that the copied pruning rule had killed supplier redundancy without improving value, so he rebuilds the scorecard around resilience and cost.",
+      "firstImage": "an emergency repair ticket stamped beside a deleted supplier list",
+      "mustInclude": [
+        "supplier list",
+        "repair miss",
+        "resilience score"
+      ],
+      "mustAvoid": [
+        "bureaucracy-bashing"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "boutique investment office importing Berkshire-style autonomy for outside managers",
+      "audience": "a family office COO mistaking trust language for governance",
+      "stakes": "manager freedom without capital review can compound unnoticed risk",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Manon keep the long-term trust principle but add a quarterly capital review because local managers do not get to borrow the language of autonomy without the discipline.",
+      "firstImage": "manager letters marked with colored risk tabs",
+      "mustInclude": [
+        "manager letters",
+        "capital review calendar",
+        "risk tabs"
+      ],
+      "mustAvoid": [
+        "Buffett quote collage"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "university athletics department copying a corporate scorecard for team funding",
+      "audience": "an athletic director under pressure to become more businesslike",
+      "stakes": "one imported metric would starve low-revenue teams that carry scholarship and compliance value",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What survives if the metric changes but the value question stays? Devon separates revenue, athlete welfare, and compliance before adapting the scorecard instead of copying the corporate one whole.",
+      "firstImage": "scholarship forms tucked under a practice-court rental report",
+      "mustInclude": [
+        "revenue report",
+        "athlete welfare measure",
+        "compliance requirement"
+      ],
+      "mustAvoid": [
+        "sports management pep talk"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate principle from visible tactic across cases",
+      "test borrowed management tools against local constraints",
+      "identify fake outsider traits detached from value logic",
+      "evaluate whether capital allocation means resources, authority, and attention beyond finance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one borrowed tactic you admire and write the original problem it solved, your current problem, and the condition that would make the tactic fail here.",
+  "readingTimeMinutes": 12
+}

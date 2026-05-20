@@ -1,0 +1,184 @@
+{
+  "chapterId": "limitless-ch05",
+  "number": 5,
+  "title": "The Spell of Belief Systems",
+  "coreMove": "Catch a borrowed belief at the moment it shrinks effort before ability is tested.",
+  "sourcePressure": "The mindset section begins by showing how beliefs act as hidden ceilings on what effort, persistence, and learning methods feel reasonable.",
+  "chapterSpecificMisunderstanding": "Claiming belief alone removes every real constraint.",
+  "sourceAlignmentTerms": [
+    "belief system",
+    "limiting belief",
+    "interpretive filter",
+    "hidden ceiling",
+    "borrowed assumption",
+    "tested reality"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open The Spell of Belief Systems with a generic unlocked potential claim.",
+      "Do not start with a definition of the spell of belief systems."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "independent bookstore ordering desk",
+      "audience": "owner believes she is bad at numbers",
+      "stakes": "a wrong seasonal order can tie up cash for months",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "protagonistName": "Olivia",
+      "requiredBeat": "Olivia catches the old belief when it tells her not to open the sales sheet, then tests one column with last year's receipts.",
+      "firstImage": "paperback stacks leaning beside a sales spreadsheet",
+      "mustInclude": [
+        "sales spreadsheet",
+        "receipt envelope",
+        "seasonal order form"
+      ],
+      "mustAvoid": [
+        "small business pep talk",
+        "math anxiety only"
+      ]
+    },
+    {
+      "domain": "youth soccer referee course",
+      "audience": "new official told he is too quiet to control games",
+      "stakes": "weekend tournament assignments depend on certification",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Nicolas",
+      "requiredBeat": "Nicolas separates quiet voice from unclear signal and practices the whistle-hand sequence in front of two peers.",
+      "firstImage": "a silver whistle resting on a rulebook",
+      "mustInclude": [
+        "whistle",
+        "rulebook",
+        "assignment email"
+      ],
+      "mustAvoid": [
+        "sports confidence",
+        "loudness equals leadership"
+      ]
+    },
+    {
+      "domain": "ceramics studio glaze class",
+      "audience": "student convinced she has no artistic eye",
+      "stakes": "kiln space is scarce and test tiles cost money",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "protagonistName": "Astrid",
+      "requiredBeat": "Astrid labels the inherited belief, then lines up three glaze tests to see what the clay actually shows.",
+      "firstImage": "test tiles drying on a wire rack",
+      "mustInclude": [
+        "test tiles",
+        "glaze jars",
+        "kiln sign-up"
+      ],
+      "mustAvoid": [
+        "creative destiny",
+        "studio aesthetic only"
+      ]
+    },
+    {
+      "domain": "nonprofit grant budget",
+      "audience": "program lead avoids finance language",
+      "stakes": "funding for after-school meals depends on the budget narrative",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Marco",
+      "requiredBeat": "Marco asks which budget term is blocking him and writes one plain translation beside it instead of repeating that he is not a finance person.",
+      "firstImage": "a grant budget printed with one red circle",
+      "mustInclude": [
+        "grant budget",
+        "red circle",
+        "meal count sheet"
+      ],
+      "mustAvoid": [
+        "nonprofit sentiment",
+        "jargon complaint"
+      ]
+    },
+    {
+      "domain": "ferry navigation training",
+      "audience": "deckhand raised on the belief she lacks spatial sense",
+      "stakes": "fog drills decide whether she advances to mate training",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "protagonistName": "Marta",
+      "requiredBeat": "Marta pauses before surrendering the chart and plots the buoy sequence one mark at a time.",
+      "firstImage": "a grease pencil dot on a laminated harbor chart",
+      "mustInclude": [
+        "harbor chart",
+        "grease pencil",
+        "fog drill schedule"
+      ],
+      "mustAvoid": [
+        "boat adventure",
+        "fixed talent debate"
+      ]
+    },
+    {
+      "domain": "Toronto startup sales demo",
+      "audience": "engineer believes persuasive people are born that way",
+      "stakes": "a product pilot depends on explaining the prototype clearly",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "protagonistName": "Yusuf",
+      "requiredBeat": "Yusuf records two demo openings, compares where prospects got lost, and treats persuasion as a tested behavior.",
+      "firstImage": "prototype board beside a laptop webcam",
+      "mustInclude": [
+        "prototype board",
+        "webcam recording",
+        "pilot call"
+      ],
+      "mustAvoid": [
+        "startup hustle",
+        "charisma myth"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when catch a borrowed belief at the moment it shrinks effort before ability is tested. is needed in a new scenario.",
+      "Choose the visible action that matches The Spell of Belief Systems rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Catch one belief sentence that starts with I am not the kind of person who, then write what evidence would actually test it.",
+  "readingTimeMinutes": 12
+}

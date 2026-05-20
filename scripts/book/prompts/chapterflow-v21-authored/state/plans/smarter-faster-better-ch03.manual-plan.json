@@ -1,0 +1,204 @@
+{
+  "chapterId": "smarter-faster-better-ch03",
+  "number": 3,
+  "title": "Focus",
+  "coreMove": "Use a mental model to keep scanning for context when pressure tries to shrink attention to one cue.",
+  "sourcePressure": "The chapter ties focus to cognitive tunneling, Air France Flight 447, and the power of mental models; it treats narrowed pressure-attention as the danger and prebuilt models as the corrective.",
+  "chapterSpecificMisunderstanding": "Equating intense attention with good attention.",
+  "sourceAlignmentTerms": [
+    "cognitive tunneling",
+    "mental models",
+    "Air France Flight 447",
+    "pressure",
+    "narrowed attention",
+    "internal model"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Air France Flight 447",
+      "detail": "the source bundle identifies this flight as the focus and mental-models anchor without supporting cockpit detail",
+      "useIn": "both",
+      "phrasingHint": "Air France Flight 447 should stand as the high-stakes warning: pressure can make attention feel strong while the field of vision collapses."
+    },
+    {
+      "kind": "study",
+      "name": "cognitive tunneling",
+      "detail": "the sidecar allows the exact term as the chapter mechanism for pressure-narrowed attention",
+      "useIn": "both",
+      "phrasingHint": "Cognitive tunneling is the mind grabbing one bright signal and treating the rest of the scene as background noise."
+    },
+    {
+      "kind": "artifact",
+      "name": "mental models",
+      "detail": "the subtitle directly supports mental models as the chapter corrective",
+      "useIn": "both",
+      "phrasingHint": "A mental model gives the mind a checklist of what else should still be true before the first cue gets to rule the room."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Person at a meeting realizes the real lesson",
+      "The day starts with a dashboard",
+      "A simple choice changes everything"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more faster",
+      "The obvious answer is wrong",
+      "The problem is not effort but something deeper"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three priorities",
+      "Pause before your next task"
+    ],
+    "examples": [
+      "generic office stand-up",
+      "kitchen table planning",
+      "classroom marker demonstration",
+      "commuter train epiphany"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "a neonatal unit alarm response during a false-code scare",
+      "audience": "a nurse leading a cramped response team",
+      "stakes": "one flashing monitor could hide the real breathing problem",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Megan uses her pre-briefed assessment sequence to check the baby, the line, and the monitor instead of letting the loudest alarm own her attention",
+      "firstImage": "The monitor chirps in a pitch sharp enough to silence the room",
+      "mustInclude": [
+        "flashing monitor",
+        "assessment sequence",
+        "crowded isolette bay"
+      ],
+      "mustAvoid": [
+        "unsupported medical heroics"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "a cybersecurity incident room during a suspected credential breach",
+      "audience": "an incident commander watching analysts chase the first red alert",
+      "stakes": "the real intrusion path may sit outside the obvious dashboard tile",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 11:18 p.m., Julien pauses the alert chase and makes the team map expected attacker steps before touching the next alert",
+      "firstImage": "At 11:18 p.m., a red tile pulses on the security wall",
+      "mustInclude": [
+        "red alert tile",
+        "attacker-step map",
+        "VPN logs"
+      ],
+      "mustAvoid": [
+        "generic dashboard panic"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "a search-and-rescue shoreline sweep after a kayak is found empty",
+      "audience": "a volunteer team lead under pressure from waiting relatives",
+      "stakes": "searchers may over-focus on the kayak and miss wind and tide signals",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Akira asks the team to predict the drift path from wind, tide, and launch point before sending boats toward the visible kayak",
+      "firstImage": "Rain beads on an overturned yellow kayak near the reeds",
+      "mustInclude": [
+        "yellow kayak",
+        "tide chart",
+        "launch point"
+      ],
+      "mustAvoid": [
+        "rescue miracle ending"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "a trial lawyer hearing a surprise witness answer",
+      "audience": "a defense attorney who feels the case turning on one dramatic sentence",
+      "stakes": "overreacting to one answer could miss a contradiction in the record",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Andrew writes the model question at the top of his pad and checks the prior timeline before launching cross-examination",
+      "firstImage": "\"I saw the van at nine,\" the witness says, and the gallery goes still",
+      "mustInclude": [
+        "legal pad",
+        "prior timeline",
+        "surprise witness"
+      ],
+      "mustAvoid": [
+        "courtroom theatrics without mechanism"
+      ]
+    },
+    {
+      "protagonistName": "Anya",
+      "domain": "a wilderness first-aid course where a trainee fixates on visible blood",
+      "audience": "an instructor teaching new guides to scan before acting",
+      "stakes": "a fixation on the obvious wound could miss airway or temperature risks",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Anya turn a trainee from the bleeding hand to the full scene by making him narrate the model: airway, heat, bleeding, exit route",
+      "firstImage": "You are kneeling beside pine needles and a red bandana tied too tightly",
+      "mustInclude": [
+        "red bandana",
+        "airway-heat-bleeding model",
+        "exit route"
+      ],
+      "mustAvoid": [
+        "graphic injury detail"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "a chess youth final where a player sees only the tempting capture",
+      "audience": "a coach reviewing a position with a talented thirteen-year-old",
+      "stakes": "one flashy move loses the match if the back rank is ignored",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Mikkel covers the attacking piece with a spare score sheet so the player must scan threats, king safety, and tempo",
+      "firstImage": "What would you look at if the capture were not on the board?",
+      "mustInclude": [
+        "spare score sheet",
+        "back rank",
+        "match clock"
+      ],
+      "mustAvoid": [
+        "letting the question hook replace the visible action beat"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot cognitive tunneling when someone is intensely focused but under-scanning",
+      "choose a mental-model prompt that broadens context",
+      "distinguish useful focus from cue fixation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next pressured choice, say out loud: the cue I see is one signal; the two signals I still need are __ and __.",
+  "readingTimeMinutes": 12
+}

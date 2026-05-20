@@ -1,0 +1,205 @@
+{
+  "chapterId": "the-outsiders-ch02",
+  "number": 2,
+  "title": "An Unconventional Conglomerateur",
+  "coreMove": "Separate the permanent scorecard from the temporary instrument, then change instruments when facts and valuation change.",
+  "sourcePressure": "Henry Singleton and Teledyne demonstrate fixed loyalty to per-share value while tactics shift from equity-funded acquisitions to large repurchases as valuation and market conditions change.",
+  "chapterSpecificMisunderstanding": "Do not treat Singleton as randomly contrarian; every example must show a stable value standard and a changed tool under changed facts.",
+  "sourceAlignmentTerms": [
+    "Henry Singleton",
+    "Teledyne",
+    "per-share value",
+    "share repurchases",
+    "equity-funded acquisitions",
+    "institutional imperative",
+    "facts change"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Henry Singleton",
+      "detail": "The source sidecar identifies Chapter 2 as Henry Singleton and Teledyne and says he should be judged by per-share value rather than size or earnings growth.",
+      "useIn": "both",
+      "phrasingHint": "Henry Singleton looks strange only until per-share value becomes the ruler on the table."
+    },
+    {
+      "kind": "artifact",
+      "name": "I change my mind when the facts change. What do you do?",
+      "detail": "The source sidecar says the visible chapter header includes this exact quote.",
+      "useIn": "deepRead",
+      "phrasingHint": "The line about changing his mind when facts change is not a shrug; it is the discipline of moving the tool while keeping the ruler."
+    },
+    {
+      "kind": "artifact",
+      "name": "institutional imperative",
+      "detail": "The source sidecar names the institutional imperative as the tendency of managers to favor scale and convention over unconventional value creation.",
+      "useIn": "both",
+      "phrasingHint": "The institutional imperative is the room pressure that makes a bad respectable choice feel safer than a good odd one."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The odd choice is often right",
+      "Change your mind more often",
+      "Contrarians see what others miss"
+    ],
+    "counterintuition": [
+      "Consistency means never changing tactics",
+      "Buybacks are always smarter than acquisitions",
+      "Convention is always wrong"
+    ],
+    "tryThisNow": [
+      "Ask what changed",
+      "List three options",
+      "Be more flexible"
+    ],
+    "examples": [
+      "investment club using last semester rule",
+      "family savings plan from legacy draft",
+      "any scene where buybacks become personal budgeting literally"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "David",
+      "domain": "farm-equipment rental cooperative revising purchase rules after used prices spike",
+      "audience": "a cooperative treasurer loyal to last year's fleet expansion rule",
+      "stakes": "members need harvest reliability but resale prices now make repair capacity more valuable than new units",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "David writes last year's rule and this year's auction prices on the same maintenance bay door, then shifts capital from buying tractors to rebuilding engines because the per-member uptime math changed.",
+      "firstImage": "mud drying on the tire of a rental tractor beside chalked auction prices",
+      "mustInclude": [
+        "auction prices",
+        "engine rebuild quote",
+        "uptime log"
+      ],
+      "mustAvoid": [
+        "generic budget pivot"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "Paris subscription news app deciding between user growth and churn reduction",
+      "audience": "a product lead pressured to keep chasing headline subscriber counts",
+      "stakes": "new signups look good while paid retention erodes",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Camille asks the room to predict value per paying user after the discount campaign, then reveals the cohort table and kills the growth tactic that now dilutes the scorecard.",
+      "firstImage": "a cohort-retention table reflected in a dark conference screen",
+      "mustInclude": [
+        "cohort table",
+        "discount campaign",
+        "value per paying user"
+      ],
+      "mustAvoid": [
+        "startup growth cliche without per-share logic"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "regional hospital foundation shifting donor strategy after tax law changes",
+      "audience": "a foundation director who used to favor gala sponsorships",
+      "stakes": "funding a pediatric ultrasound suite before the fiscal year closes",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Jonas places the old gala return sheet beside the new planned-giving memo and changes the fundraising instrument while keeping the same equipment target.",
+      "firstImage": "silver name badges left in a tray after the donor gala",
+      "mustInclude": [
+        "planned-giving memo",
+        "ultrasound quote",
+        "old gala return sheet"
+      ],
+      "mustAvoid": [
+        "generic charity emotion play"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "artisan furniture workshop choosing wholesale channels after lumber costs reverse",
+      "audience": "a shop owner proud of last year's direct-to-consumer rule",
+      "stakes": "cash tied in inventory while margins shift underneath the old doctrine",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Three inventory counts later, Chiara separates the margin target from the sales-channel rule and moves selected pieces through wholesale because facts made the old channel weaker.",
+      "firstImage": "walnut boards stacked under a handwritten cost tag",
+      "mustInclude": [
+        "lumber invoice",
+        "margin target",
+        "wholesale offer"
+      ],
+      "mustAvoid": [
+        "craft passion versus business discipline trope"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "university lab deciding whether to lease or buy specialized imaging equipment",
+      "audience": "a principal investigator defending the lab's old ownership rule",
+      "stakes": "grant money expires while machine utilization drops",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Andrew mark the utilization hours against lease rates and admit the ownership rule once made sense, then switch to leasing without treating the old rule as a betrayal.",
+      "firstImage": "a calibration slide glowing under a microscope lamp",
+      "mustInclude": [
+        "grant deadline",
+        "utilization hours",
+        "lease rate sheet"
+      ],
+      "mustAvoid": [
+        "school club example from legacy draft"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "London food importer deciding between warehouse expansion and supplier prepayments",
+      "audience": "a finance head under board pressure to look decisive after a strong year",
+      "stakes": "currency swings can erase the margin before shipments arrive",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which move still serves gross margin after sterling moves? Layla walks the board from warehouse expansion to supplier prepayments because the facts changed while the margin standard did not.",
+      "firstImage": "a currency hedge confirmation beside a dock arrival notice",
+      "mustInclude": [
+        "sterling rate",
+        "supplier prepayment terms",
+        "warehouse lease"
+      ],
+      "mustAvoid": [
+        "contrarian choice for style"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish changing methods from abandoning the standard",
+      "identify institutional pressure toward respectable but weaker choices",
+      "apply per-unit or per-owner value logic outside public-company finance",
+      "evaluate when a former rule has become ritual consistency"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one tactic you are still defending, then write the unchanged scorecard it was meant to serve and one fact that would justify replacing the tactic.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,582 @@
+{
+  "bookId": "thinking-in-bets",
+  "updatedAt": "2026-05-18T14:20:01.670Z",
+  "usedProtagonistNames": [
+    "Grace",
+    "Étienne",
+    "Hannah",
+    "Luca",
+    "Marta",
+    "James",
+    "Daniel",
+    "Camille",
+    "Sophie",
+    "Pavel",
+    "Lars",
+    "Isabel",
+    "Sarah",
+    "Tomás",
+    "Anya",
+    "Michael",
+    "Mathieu",
+    "Claire",
+    "Anders",
+    "Manon",
+    "Chris",
+    "Frida",
+    "Javier",
+    "Rachel",
+    "Mikkel",
+    "Laura",
+    "Henrik",
+    "Aanya",
+    "David",
+    "Thomas",
+    "Ingrid",
+    "Paula",
+    "Chidi",
+    "Anna",
+    "Lukas",
+    "Megan",
+    "Julien",
+    "Kasia",
+    "Ben",
+    "Astrid",
+    "Diego",
+    "Olivia"
+  ],
+  "usedExampleDomains": [
+    "hospital triage review after a missed sepsis warning",
+    "architecture bid review after a lost museum contract",
+    "charity gala rain plan after an outdoor dinner loses money",
+    "youth soccer final after a goalkeeper pass is intercepted",
+    "university lab grant review after a rejected equipment proposal",
+    "tenant screening decision after a quiet applicant later damages an apartment",
+    "orchard frost insurance purchase before blossom season",
+    "indie game studio deciding whether to launch in early access",
+    "emergency department holiday staffing schedule",
+    "museum exhibit attendance forecast before a traveling show opens",
+    "municipal snowplow route redesign before the first storm",
+    "student exchange placement choice with incomplete host-family information",
+    "craft brewery seasonal demand forecast",
+    "wedding photography rain refund policy",
+    "startup runway estimate before a seed extension",
+    "public-health clinic vaccine appointment planning",
+    "local radio pledge-drive target",
+    "independent bookstore preorder estimate for a visiting novelist",
+    "coastal ferry ridership pilot after two foggy weekends",
+    "marathon injury rehab after one painful training run",
+    "neighborhood cafe menu trial after the first lunch rush",
+    "nonprofit donor email subject-line test",
+    "urban garden seed trial after uneven germination",
+    "robotics team sensor calibration after one failed scrimmage",
+    "documentary edit room deciding whether a scene is fair",
+    "freelance tax estimate before quarterly filing",
+    "surgical resident preparing for a difficult procedure simulation",
+    "patent pitch practice before investor due diligence",
+    "mountain rescue route plan before a winter training exercise",
+    "community choir audition selection after a favorite singer stumbles",
+    "aerospace parts safety review before supplier approval",
+    "neighborhood flood committee choosing a levee design",
+    "orchestra programming council selecting a risky season opener",
+    "university ethics board reviewing a data-sharing proposal",
+    "restaurant opening crew deciding whether the kitchen is ready",
+    "cybersecurity incident table before a breach disclosure decision",
+    "home renovation contract before signing a change order",
+    "city marathon permit decision during a heat-warning week",
+    "startup acquisition term sheet with a fast deadline",
+    "college major selection before a scholarship deadline",
+    "elder-care move decision after one frightening fall",
+    "film festival jury choosing a controversial prize winner"
+  ],
+  "usedExampleAnchors": [
+    "Pete Carroll",
+    "Super Bowl XLIX goal-line pass",
+    "poker versus chess",
+    "chess board",
+    "poker hand",
+    "I'm not sure",
+    "Wanna bet?",
+    "priced belief",
+    "confident claim meeting a stake",
+    "the unfolding future",
+    "short-run outcomes mixing signal and noise",
+    "proportional updating",
+    "the buddy system",
+    "outside challenge of self-serving narration",
+    "truth-seeking correction",
+    "CUDOS",
+    "organized skepticism",
+    "withheld uncomfortable facts",
+    "10-10-10 thinking",
+    "premortems and backcasting",
+    "regret moved before the decision"
+  ],
+  "usedHookFrames": [
+    "A red number on a dashboard can bully a whole room into forgetting what anyone knew before it arrived.",
+    "Closed apple buds at dawn force Daniel to choose before the weather has shown its cards.",
+    "The hop contract waits for a signature while Sarah asks what sell out really means.",
+    "Fog beads on the ferry windows, and one bad weekend starts asking for too much authority.",
+    "A paused frame on a woman's face asks Rachel whether her favorite cut is fair or merely dramatic.",
+    "Machined brackets under a magnifying lamp make silence look more expensive than disagreement.",
+    "Drywall dust on the counter makes Megan's shortcut feel urgent until final inspection gets a vote."
+  ],
+  "usedCounterFrames": [
+    "A failed ending feels like a verdict because it is loud, recent, and easy to retell. Fair judgment starts earlier, with the facts, odds, and blind spots that existed before the ending spoke.",
+    "Waiting for a complete board can look responsible while quietly becoming avoidance. Strong judgment commits with a range, names what is hidden, and still owns the call.",
+    "A stake can clarify belief or corrupt it. The useful version makes confidence measurable; the rotten version turns uncertainty into a contest for status.",
+    "Fresh feedback feels more important because it just happened. Better learning gives the new result weight, then asks how much weight it actually earned.",
+    "Relief can feel like help while leaving the story untouched. The partner who serves your judgment is trusted enough to hear the truth and sharp enough to test it.",
+    "A quiet room can feel aligned while hiding the one fact that would change the decision. Useful dissent gives that fact a protected job before agreement hardens.",
+    "Future perspective widens the frame without turning imagination into evidence. Its value is to make today's pressure answer questions it would rather skip."
+  ],
+  "usedTryThisNowFrames": [
+    "Draw a line down a page for one recent win or loss. Put only pre-outcome facts on the left, then put what the ending added on the right.",
+    "Rewrite one yes-or-no decision as three lines: facts you know, facts still hidden, and the confidence range you can defend anyway.",
+    "Pick one strong claim you made this week. Write the confidence level you would stand behind if someone recorded it before the result arrived.",
+    "Take one new result and write one sentence: my confidence moved from X to Y because this evidence showed Z.",
+    "Write the one assumption carrying your next consequential call. Send that single assumption to a trusted challenger and ask what would make it false.",
+    "In your next group decision, write the strongest objection as a numbered agenda item and require an evidence-based answer before any vote.",
+    "Before one choice today, write three review questions: ten minutes after, ten months after, and when the first hard evidence arrives."
+  ],
+  "usedQuizExplanationFrames": [
+    "ch01 judge the decision by pre-outcome evidence rather than the ending",
+    "ch02 make an incomplete-information call with a defensible range",
+    "ch03 price a claim so confidence becomes testable",
+    "ch04 update proportionally instead of obeying the latest result",
+    "ch05 use a truth-seeking partner to challenge the story before comfort sets",
+    "ch06 protect dissent before consensus hardens",
+    "ch07 pull future review questions into the present decision"
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "hook",
+      "frame": "A scoreboard lies"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "hook",
+      "frame": "One bad result proves nothing"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "hook",
+      "frame": "Everyone thinks failure means foolishness"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "counterintuition",
+      "frame": "Uncertainty means nobody can judge"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "counterintuition",
+      "frame": "Bad outcomes are secretly good decisions"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "tryThisNow",
+      "frame": "Think of one time luck affected you"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "tryThisNow",
+      "frame": "Set a timer and reflect on a bad result"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "examples",
+      "frame": "generic failed product launch postmortem"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "examples",
+      "frame": "debate-team loss with ballots"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch01",
+      "kind": "examples",
+      "frame": "relationship breakup regret by text"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "hook",
+      "frame": "Life is not chess"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "hook",
+      "frame": "The board is never complete"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "hook",
+      "frame": "Hidden cards are everywhere"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "counterintuition",
+      "frame": "Certainty is always bad"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "counterintuition",
+      "frame": "Decisiveness requires total information"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "tryThisNow",
+      "frame": "Say I am not sure today"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "tryThisNow",
+      "frame": "Make a pros and cons list"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "examples",
+      "frame": "product launch with partial market data"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "examples",
+      "frame": "student investment club lucky win"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch02",
+      "kind": "examples",
+      "frame": "seminar forecast under professor pressure"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "hook",
+      "frame": "Wanna bet is a weapon"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "hook",
+      "frame": "Put your money where your mouth is"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "hook",
+      "frame": "Certainty folds under pressure"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "counterintuition",
+      "frame": "Every belief needs money attached"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "counterintuition",
+      "frame": "The loudest person should be challenged publicly"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "tryThisNow",
+      "frame": "Ask someone wanna bet today"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "tryThisNow",
+      "frame": "Turn every claim into a wager"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "examples",
+      "frame": "office whiteboard product forecast"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "examples",
+      "frame": "economics seminar index card"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch03",
+      "kind": "examples",
+      "frame": "debate club judging sheets"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "hook",
+      "frame": "The future whispers"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "hook",
+      "frame": "Every result teaches"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "hook",
+      "frame": "Do not overreact to noise"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "counterintuition",
+      "frame": "Never change after one result"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "counterintuition",
+      "frame": "Always trust the latest data"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "tryThisNow",
+      "frame": "Review your last result"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "tryThisNow",
+      "frame": "Ask if it is signal or noise"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "examples",
+      "frame": "rollout dashboard with mixed metrics"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "examples",
+      "frame": "bad week in a notebook"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch04",
+      "kind": "examples",
+      "frame": "finance-class spreadsheet alarm"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "hook",
+      "frame": "Find someone honest"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "hook",
+      "frame": "You need accountability"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "hook",
+      "frame": "A friend tells the truth"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "counterintuition",
+      "frame": "Support means criticism"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "counterintuition",
+      "frame": "Comfort is useless"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "tryThisNow",
+      "frame": "Call a trusted friend"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "tryThisNow",
+      "frame": "Ask someone for feedback"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "examples",
+      "frame": "forecast slide challenged before vote"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "examples",
+      "frame": "kitchen-table notebook rewrite"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch05",
+      "kind": "examples",
+      "frame": "practice partner for competition"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "hook",
+      "frame": "Speak truth to power"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "hook",
+      "frame": "Consensus is dangerous"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "hook",
+      "frame": "Disagreement makes teams smarter"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "counterintuition",
+      "frame": "Conflict is good"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "counterintuition",
+      "frame": "Harmony is bad"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "tryThisNow",
+      "frame": "Invite dissent in your next meeting"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "tryThisNow",
+      "frame": "Ask for one objection"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "examples",
+      "frame": "launch holdout raises risk"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "examples",
+      "frame": "seminar silence around weak answer"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch06",
+      "kind": "examples",
+      "frame": "debate team requires pushback"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "hook",
+      "frame": "Imagine your future self"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "hook",
+      "frame": "Travel to tomorrow"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "hook",
+      "frame": "The future can advise you"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "counterintuition",
+      "frame": "Visualization predicts better"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "counterintuition",
+      "frame": "Regret should drive the decision"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "tryThisNow",
+      "frame": "Picture yourself in ten years"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "tryThisNow",
+      "frame": "Do a quick premortem"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "examples",
+      "frame": "six-month work meeting check"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "examples",
+      "frame": "journal entry split then and now"
+    },
+    {
+      "chapterId": "thinking-in-bets-ch07",
+      "kind": "examples",
+      "frame": "future review column worksheet"
+    }
+  ],
+  "chapterStatuses": {
+    "thinking-in-bets-ch01": {
+      "status": "checkpoint-passed",
+      "step1PlannedAt": "2026-05-16T06:42:12.751Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-18T14:19:57.346Z"
+    },
+    "thinking-in-bets-ch02": {
+      "status": "checkpoint-passed",
+      "step1PlannedAt": "2026-05-16T06:42:12.751Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-18T14:19:58.097Z"
+    },
+    "thinking-in-bets-ch03": {
+      "status": "checkpoint-passed",
+      "step1PlannedAt": "2026-05-16T06:42:12.751Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-18T14:19:58.857Z"
+    },
+    "thinking-in-bets-ch04": {
+      "status": "checkpoint-passed",
+      "step1PlannedAt": "2026-05-16T06:42:12.751Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-18T14:19:59.586Z"
+    },
+    "thinking-in-bets-ch05": {
+      "status": "checkpoint-passed",
+      "step1PlannedAt": "2026-05-16T06:42:12.751Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-18T14:20:00.279Z"
+    },
+    "thinking-in-bets-ch06": {
+      "status": "checkpoint-passed",
+      "step1PlannedAt": "2026-05-16T06:42:12.751Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-18T14:20:00.977Z"
+    },
+    "thinking-in-bets-ch07": {
+      "status": "checkpoint-passed",
+      "step1PlannedAt": "2026-05-16T06:42:12.751Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-18T14:20:01.670Z"
+    }
+  }
+}

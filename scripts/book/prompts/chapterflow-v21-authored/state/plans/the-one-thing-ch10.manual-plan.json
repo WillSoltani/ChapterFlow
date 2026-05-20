@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch10",
+  "number": 10,
+  "title": "The Focusing Question",
+  "coreMove": "Use one leverage question to narrow from many possible moves to the next move that changes the rest.",
+  "sourcePressure": "Part 2 introduces the Focusing Question as the operational tool for leverage: narrow toward the next consequential move without pretending certainty is guaranteed.",
+  "chapterSpecificMisunderstanding": "Quoting a slogan and treating it as a magic answer generator.",
+  "sourceAlignmentTerms": [
+    "Focusing Question",
+    "leverage",
+    "next move",
+    "narrowing",
+    "consequential",
+    "easier or unnecessary"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "The Focusing Question as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "busy dermatology practice reducing biopsy delays",
+      "audience": "clinic lead",
+      "stakes": "abnormal results are waiting too long for callbacks",
+      "format": "decision_point",
+      "requiredBeat": "she asks which one fix makes callbacks easier and chooses specimen-label routing before patient scripts or portal redesign",
+      "firstImage": "a biopsy label tray beside a phone log with red circles",
+      "mustInclude": [
+        "label tray",
+        "phone log",
+        "portal mockup"
+      ],
+      "mustAvoid": [
+        "generic clinic improvement"
+      ]
+    },
+    {
+      "domain": "boatyard repair schedule before launch season",
+      "audience": "yard manager",
+      "stakes": "owners threaten refunds if hull work slips",
+      "format": "scene",
+      "requiredBeat": "he asks which repair unlocks the most launches and moves the shared lift to the cracked keel job first",
+      "firstImage": "a boat lift chain hanging over a hull with chalked crack lines",
+      "mustInclude": [
+        "boat lift",
+        "chalk lines",
+        "launch calendar"
+      ],
+      "mustAvoid": [
+        "generic prioritization list"
+      ]
+    },
+    {
+      "domain": "adult literacy nonprofit intake process",
+      "audience": "program manager",
+      "stakes": "volunteers are free but learners keep dropping off",
+      "format": "dialogue",
+      "requiredBeat": "she asks which one change makes attendance easier and chooses evening childcare sign-up before new worksheets",
+      "firstImage": "a child's backpack leaning against an intake desk with blank forms",
+      "mustInclude": [
+        "backpack",
+        "intake forms",
+        "childcare roster"
+      ],
+      "mustAvoid": [
+        "generic nonprofit outreach"
+      ]
+    },
+    {
+      "domain": "film festival volunteer check-in",
+      "audience": "festival coordinator",
+      "stakes": "opening night lines will block fire exits",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts signage is the answer, asks the focusing question, and instead opens one badge pickup lane that absorbs the whole queue",
+      "firstImage": "laminated badges stacked beside a taped fire-exit line",
+      "mustInclude": [
+        "badges",
+        "fire-exit tape",
+        "queue map"
+      ],
+      "mustAvoid": [
+        "generic event chaos"
+      ]
+    },
+    {
+      "domain": "veterinary shelter adoption bottleneck",
+      "audience": "shelter director",
+      "stakes": "healthy animals stay too long in kennels",
+      "format": "before_after",
+      "requiredBeat": "she uses the question to see that photo intake, not lobby posters, makes every later adoption easier",
+      "firstImage": "a camera battery charging beside three empty kennel cards",
+      "mustInclude": [
+        "camera battery",
+        "kennel cards",
+        "adoption board"
+      ],
+      "mustAvoid": [
+        "generic animal rescue sentiment"
+      ]
+    },
+    {
+      "domain": "regional chess tournament pairings failure",
+      "audience": "tournament arbiter",
+      "stakes": "round two cannot start until one table issue is fixed",
+      "format": "postmortem",
+      "requiredBeat": "he sees the one move was correcting a single mis-entered rating before printing every pairing sheet",
+      "firstImage": "a pairing sheet with one rating boxed in pencil",
+      "mustInclude": [
+        "pairing sheet",
+        "rating list",
+        "printer queue"
+      ],
+      "mustAvoid": [
+        "generic competition scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "formulate a leverage question",
+      "narrow without overclaiming certainty",
+      "choose the next move instead of every move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Ask which one action would make the next visible obstacle easier, then write only the first physical step of that action.",
+  "readingTimeMinutes": 12
+}

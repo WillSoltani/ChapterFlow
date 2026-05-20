@@ -1,0 +1,204 @@
+{
+  "chapterId": "never-eat-alone-ch15",
+  "number": 15,
+  "title": "Connecting with Connectors",
+  "coreMove": "Approach a connector with value for their network before asking for their attention.",
+  "sourcePressure": "High-leverage people are best approached through contribution and relevance, not needy pursuit of access.",
+  "chapterSpecificMisunderstanding": "Treating connectors as status trophies or shortcuts around doing useful work.",
+  "sourceAlignmentTerms": [
+    "connectors",
+    "high-leverage people",
+    "contribution",
+    "relevance",
+    "scarce attention",
+    "useful approach"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Paul Revere",
+      "detail": "listed in the frozen table of contents as a Connectors' Hall of Fame Profile after chapter 15",
+      "useIn": "both",
+      "phrasingHint": "Paul Revere can be used as the named connector marker, with no invented ride details beyond the profile title."
+    }
+  ],
+  "sourceAnchorNote": "Use only these frozen anchors and do not add unsupported named anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Colin",
+      "domain": "civic data meetup organizer list",
+      "audience": "a reader facing civic data meetup organizer list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if civic data meetup organizer list becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Colin brings a connector a relevant person, pattern, or resource before making any ask in front of index card, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "index card on the edge of civic data meetup organizer list",
+      "mustInclude": [
+        "index card",
+        "civic data meetup organizer list constraint",
+        "one named next step tied to connectors"
+      ],
+      "mustAvoid": [
+        "Treating connectors as status trophies or shortcuts around doing useful work.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Connor",
+      "domain": "angel investor office hours sheet",
+      "audience": "a reader facing angel investor office hours sheet where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if angel investor office hours sheet becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Connor brings a connector a relevant person, pattern, or resource before making any ask in front of office-hours clipboard, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "office-hours clipboard on the edge of angel investor office hours sheet",
+      "mustInclude": [
+        "office-hours clipboard",
+        "angel investor office hours sheet constraint",
+        "one named next step tied to connectors"
+      ],
+      "mustAvoid": [
+        "Treating connectors as status trophies or shortcuts around doing useful work.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Dylan",
+      "domain": "teacher training cohort roster",
+      "audience": "a reader facing teacher training cohort roster where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if teacher training cohort roster becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Dylan brings a connector a relevant person, pattern, or resource before making any ask in front of cohort roster, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "cohort roster on the edge of teacher training cohort roster",
+      "mustInclude": [
+        "cohort roster",
+        "teacher training cohort roster constraint",
+        "one named next step tied to connectors"
+      ],
+      "mustAvoid": [
+        "Treating connectors as status trophies or shortcuts around doing useful work.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Eric",
+      "domain": "restaurant supplier tasting panel",
+      "audience": "a reader facing restaurant supplier tasting panel where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if restaurant supplier tasting panel becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Eric brings a connector a relevant person, pattern, or resource before making any ask in front of tasting spoon, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "tasting spoon on the edge of restaurant supplier tasting panel",
+      "mustInclude": [
+        "tasting spoon",
+        "restaurant supplier tasting panel constraint",
+        "one named next step tied to connectors"
+      ],
+      "mustAvoid": [
+        "Treating connectors as status trophies or shortcuts around doing useful work.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "philanthropy roundtable name cards",
+      "audience": "a reader facing philanthropy roundtable name cards where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if philanthropy roundtable name cards becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Niklas brings a connector a relevant person, pattern, or resource before making any ask in front of roundtable placard, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "roundtable placard on the edge of philanthropy roundtable name cards",
+      "mustInclude": [
+        "roundtable placard",
+        "philanthropy roundtable name cards constraint",
+        "one named next step tied to connectors"
+      ],
+      "mustAvoid": [
+        "Treating connectors as status trophies or shortcuts around doing useful work.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Amina",
+      "domain": "indie game developer showcase",
+      "audience": "a reader facing indie game developer showcase where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if indie game developer showcase becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Amina brings a connector a relevant person, pattern, or resource before making any ask in front of game controller, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "game controller on the edge of indie game developer showcase",
+      "mustInclude": [
+        "game controller",
+        "indie game developer showcase constraint",
+        "one named next step tied to connectors"
+      ],
+      "mustAvoid": [
+        "Treating connectors as status trophies or shortcuts around doing useful work.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish connectors from Treating connectors as status trophies or shortcuts around doing useful work.",
+      "choose the visible action that performs: Approach a connector with value for their network before asking for their attention.",
+      "diagnose when a scenario drifts into Treating connectors as status trophies or shortcuts around doing useful work.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real connectors moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

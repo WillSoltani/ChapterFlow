@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch14",
+  "number": 14,
+  "title": "Niches",
+  "coreMove": "Find the role where fit improves because overlap decreases and specialization matters.",
+  "sourcePressure": "Niches follows Ecosystem and supports differentiated roles, position, specialization, and fit inside a shared environment.",
+  "chapterSpecificMisunderstanding": "making niche mean personal branding or a narrow marketing segment",
+  "sourceAlignmentTerms": [
+    "niche",
+    "role",
+    "fit",
+    "specialization",
+    "overlap",
+    "position",
+    "environment"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Niches",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "making niche mean personal branding or a narrow marketing segment",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Fiona",
+      "domain": "specialty coffee kiosk lane",
+      "audience": "readers who face specialty coffee kiosk lane decisions where niche is easy to misread",
+      "stakes": "survival beside larger cafes",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Fiona narrows the role on the espresso menu, moves away from overlap shown on the rent notice, and uses the bean invoice to test whether fit improves. Domain: specialty coffee kiosk lane.",
+      "firstImage": "espresso menu visible in the specialty coffee kiosk lane",
+      "mustInclude": [
+        "espresso menu",
+        "rent notice",
+        "bean invoice"
+      ],
+      "mustAvoid": [
+        "making niche mean personal branding or a narrow marketing segment",
+        "reusing a generic meeting scene instead of the specialty coffee kiosk lane constraints"
+      ]
+    },
+    {
+      "protagonistName": "Martin",
+      "domain": "rural telehealth appointment model",
+      "audience": "readers who face rural telehealth appointment model decisions where niche is easy to misread",
+      "stakes": "patients too remote for the old model",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Martin narrows the role on the telehealth intake form, moves away from overlap shown on the cell-signal map, and uses the appointment card to test whether fit improves. Domain: rural telehealth appointment model.",
+      "firstImage": "telehealth intake form visible in the rural telehealth appointment model",
+      "mustInclude": [
+        "telehealth intake form",
+        "cell-signal map",
+        "appointment card"
+      ],
+      "mustAvoid": [
+        "making niche mean personal branding or a narrow marketing segment",
+        "reusing a generic meeting scene instead of the rural telehealth appointment model constraints"
+      ]
+    },
+    {
+      "protagonistName": "Benoit",
+      "domain": "rare-map bookstore corner",
+      "audience": "readers who face rare-map bookstore corner decisions where niche is easy to misread",
+      "stakes": "rare buyers finding the right shelf",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Benoit narrows the role on the rare-map drawer label, moves away from overlap shown on the collector request, and uses the catalog slip to test whether fit improves. Domain: rare-map bookstore corner.",
+      "firstImage": "rare-map drawer label visible in the rare-map bookstore corner",
+      "mustInclude": [
+        "rare-map drawer label",
+        "collector request",
+        "catalog slip"
+      ],
+      "mustAvoid": [
+        "making niche mean personal branding or a narrow marketing segment",
+        "reusing a generic meeting scene instead of the rare-map bookstore corner constraints"
+      ]
+    },
+    {
+      "protagonistName": "Joost",
+      "domain": "language school exam track",
+      "audience": "readers who face language school exam track decisions where niche is easy to misread",
+      "stakes": "students sorted by real exam need",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Joost narrows the role on the exam track card, moves away from overlap shown on the placement result, and uses the study folder to test whether fit improves. Domain: language school exam track.",
+      "firstImage": "exam track card visible in the language school exam track",
+      "mustInclude": [
+        "exam track card",
+        "placement result",
+        "study folder"
+      ],
+      "mustAvoid": [
+        "making niche mean personal branding or a narrow marketing segment",
+        "reusing a generic meeting scene instead of the language school exam track constraints"
+      ]
+    },
+    {
+      "protagonistName": "Andrea",
+      "domain": "compliance SaaS wedge",
+      "audience": "readers who face compliance SaaS wedge decisions where niche is easy to misread",
+      "stakes": "small market avoided by big platforms",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Andrea narrows the role on the compliance checklist, moves away from overlap shown on the audit log, and uses the pricing page to test whether fit improves. Domain: compliance SaaS wedge.",
+      "firstImage": "compliance checklist visible in the compliance SaaS wedge",
+      "mustInclude": [
+        "compliance checklist",
+        "audit log",
+        "pricing page"
+      ],
+      "mustAvoid": [
+        "making niche mean personal branding or a narrow marketing segment",
+        "reusing a generic meeting scene instead of the compliance SaaS wedge constraints"
+      ]
+    },
+    {
+      "protagonistName": "Leonor",
+      "domain": "community choir voice sections",
+      "audience": "readers who face community choir voice sections decisions where niche is easy to misread",
+      "stakes": "voices placed where overlap drops",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Leonor narrows the role on the section chart, moves away from overlap shown on the pitch pipe, and uses the concert program to test whether fit improves. Domain: community choir voice sections.",
+      "firstImage": "section chart visible in the community choir voice sections",
+      "mustInclude": [
+        "section chart",
+        "pitch pipe",
+        "concert program"
+      ],
+      "mustAvoid": [
+        "making niche mean personal branding or a narrow marketing segment",
+        "reusing a generic meeting scene instead of the community choir voice sections constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for niche rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Find the role where fit improves because overlap decreases and specialization matters.",
+      "explain why the tempting misread fails: making niche mean personal branding or a narrow marketing segment",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving niche, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

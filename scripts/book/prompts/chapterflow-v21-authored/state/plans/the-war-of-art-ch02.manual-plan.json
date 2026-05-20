@@ -1,0 +1,193 @@
+{
+  "chapterId": "the-war-of-art-ch02",
+  "number": 2,
+  "title": "Book Two: Combating Resistance - Turning Pro",
+  "coreMove": "Transfer authority from mood to a kept work appointment so Resistance cannot renegotiate the labor each day.",
+  "sourcePressure": "The source sidecar supports the professional-versus-amateur arc and a routine-based answer to Resistance: turning pro means practicing the war through schedule, standards, patience, and impersonal return to the work.",
+  "chapterSpecificMisunderstanding": "The wrong version is hustle rhetoric, as if turning pro meant harsher self-talk or more hours rather than a steadier relationship to the work.",
+  "sourceAlignmentTerms": [
+    "turning pro",
+    "professional",
+    "amateur",
+    "routine",
+    "standards",
+    "patience",
+    "schedule",
+    "calling"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "turning pro",
+      "detail": "The sidecar identifies turning pro as the governing move and supports the professional-versus-amateur arc.",
+      "useIn": "deepRead",
+      "phrasingHint": "The fight changes when the worker stops studying the enemy and starts practicing a professional posture."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The amateur waits, the professional works",
+      "Show up every day",
+      "Discipline beats inspiration"
+    ],
+    "counterintuition": [
+      "Turning pro is not about working harder",
+      "Routine is freedom",
+      "Mood cannot be trusted"
+    ],
+    "tryThisNow": [
+      "Schedule a work block",
+      "Set a timer and begin",
+      "Write down your routine"
+    ],
+    "examples": [
+      "writer at desk at dawn",
+      "athlete doing extra reps",
+      "generic office worker blocking calendar",
+      "morning coffee ritual"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "an emergency department registrar keeping a discharge-summary hour before inbox triage",
+      "audience": "medical administrators whose urgent surroundings constantly invite renegotiation",
+      "stakes": "delayed summaries are slowing beds and making the next shift inherit avoidable confusion",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:10 a.m., Claire opens the discharge queue before the inbox, completes the first summary, and only then checks the overnight messages.",
+      "firstImage": "a discharge-summary queue before the message inbox",
+      "mustInclude": [
+        "handoff deadline",
+        "discharge queue",
+        "locked first hour"
+      ],
+      "mustAvoid": [
+        "heroic hospital chaos",
+        "generic inbox zero advice"
+      ]
+    },
+    {
+      "domain": "an architecture apprentice returning to model work after a harsh critique",
+      "audience": "early-career craft workers who let wounded pride cancel the next session",
+      "stakes": "the model review is in four days and skipping tonight would turn critique into drift",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Daniel says he is too embarrassed to touch the model, then sets a repair floor of two clean corner joints and starts before judging the whole project.",
+      "firstImage": "a basswood model split at the corner after critique",
+      "mustInclude": [
+        "basswood model",
+        "critique notes",
+        "two corner joints"
+      ],
+      "mustAvoid": [
+        "genius architecture myth",
+        "mentor rescue speech"
+      ]
+    },
+    {
+      "domain": "a civil-service candidate using a fixed exam block instead of readiness checks",
+      "audience": "career changers who keep taking their emotional temperature before serious study",
+      "stakes": "one retake window remains before the hiring list closes",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sophie breaks the seal on the practice packet at the planned minute, answers the first ten questions, and postpones confidence talk until after the block.",
+      "firstImage": "a sealed practice exam packet on a library desk",
+      "mustInclude": [
+        "retake window",
+        "practice packet",
+        "library desk"
+      ],
+      "mustAvoid": [
+        "school classroom scene",
+        "study aesthetic montage"
+      ]
+    },
+    {
+      "domain": "a bakery owner running sourdough tests on schedule despite uneven batches",
+      "audience": "small business owners whose craft experiments keep being postponed by daily service work",
+      "stakes": "a wholesale buyer needs a consistent loaf before signing the account",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anders labels three dough tubs, starts the test at the appointed hydration, and refuses to change the plan when the first batch looks weak.",
+      "firstImage": "three labeled dough tubs under a proofing shelf",
+      "mustInclude": [
+        "wholesale buyer",
+        "hydration test",
+        "proofing shelf"
+      ],
+      "mustAvoid": [
+        "warm kitchen comfort scene",
+        "food as generic passion"
+      ]
+    },
+    {
+      "domain": "a theatre understudy protecting vocal warmups after a missed cue",
+      "audience": "performers who turn one mistake into permission to abandon the next practice block",
+      "stakes": "the lead may be out on Saturday and the understudy has one clean week to prepare",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Catarina stop replaying the missed cue, start the first scale on the app, and complete the warmup before discussing whether she feels ready.",
+      "firstImage": "a piano app counting the first vocal scale",
+      "mustInclude": [
+        "missed cue",
+        "Saturday performance",
+        "vocal scale app"
+      ],
+      "mustAvoid": [
+        "stage-fright-only lesson",
+        "applause as the reward"
+      ]
+    },
+    {
+      "domain": "a software maintainer shipping the small patch before debating confidence",
+      "audience": "technical workers whose standards can become a courtroom before contact with the task",
+      "stakes": "a bug is affecting invoice exports for twenty customers and the safe patch is already reviewed",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Michael a month of logs to see that his longest delays came after review approval, so he merges the small patch inside the maintenance window.",
+      "firstImage": "a failing unit test beside the release checklist",
+      "mustInclude": [
+        "invoice exports",
+        "review approval",
+        "maintenance window"
+      ],
+      "mustAvoid": [
+        "startup crunch",
+        "hero coder scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the professional response when mood, shame, or readiness tries to cancel the work appointment",
+      "distinguish routine that protects the calling from routine that becomes empty performance",
+      "analyze when an amateur posture is hiding inside sophisticated reasons",
+      "evaluate whether a proposed standard is impersonal craft discipline or self-punishing grind"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose the next work appointment you are likely to renegotiate; write the first artifact-producing action on the calendar event and make that action happen before any mood check.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a research-like aside on why routine lowers daily negotiation without praising grind",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,199 @@
+{
+  "chapterId": "the-outsiders-ch05",
+  "number": 5,
+  "title": "The Widow Takes the Helm",
+  "coreMove": "Convert inherited authority into earned stewardship by making clearer decisions before confidence fully arrives.",
+  "sourcePressure": "Katharine Graham and The Washington Post Company show reluctant succession turning into disciplined capital allocation and stewardship under public scrutiny.",
+  "chapterSpecificMisunderstanding": "Do not make this a sentimental confidence arc; every scene must show authority becoming real through disciplined stewardship of an enterprise or responsibility.",
+  "sourceAlignmentTerms": [
+    "Katharine Graham",
+    "The Washington Post Company",
+    "reluctant successor",
+    "inherited authority",
+    "stewardship",
+    "public scrutiny",
+    "earned authority"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Katharine Graham",
+      "detail": "The source sidecar pairs Chapter 5 with Katharine Graham and says she grew from reluctant successor into a disciplined capital allocator.",
+      "useIn": "both",
+      "phrasingHint": "Katharine Graham matters because the title arrived before the confidence, and the judgment had to be built in public."
+    },
+    {
+      "kind": "place",
+      "name": "The Washington Post Company",
+      "detail": "The source sidecar says Graham took over leadership after her husband's death and grew into the role despite feeling unprepared.",
+      "useIn": "fullRead",
+      "phrasingHint": "The Washington Post Company is not a symbol to inherit; it is an enterprise that has to be stewarded decision by decision."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "You can grow into leadership",
+      "Confidence is overrated",
+      "Titles do not make leaders"
+    ],
+    "counterintuition": [
+      "Hesitation is wisdom by itself",
+      "Inherited roles are illegitimate",
+      "Listening means avoiding decisions"
+    ],
+    "tryThisNow": [
+      "Act more confident",
+      "Ask for advice",
+      "Write your leadership values"
+    ],
+    "examples": [
+      "student paper takeover from legacy draft",
+      "family responsibility inheritance",
+      "team budget inheritance",
+      "quiet leader wins trust"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "family-owned regional pharmacy chain after the operations chief dies suddenly",
+      "audience": "a new president with pharmacists waiting for clear purchasing calls",
+      "stakes": "stockouts and supplier terms worsening while everyone watches whether she belongs",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace opens the supplier binder, asks store managers for fill-rate data, and makes the first purchasing change on evidence rather than on the family name stitched above the door.",
+      "firstImage": "a pharmacy key ring on top of a supplier binder",
+      "mustInclude": [
+        "fill-rate data",
+        "supplier binder",
+        "store manager notes"
+      ],
+      "mustAvoid": [
+        "family drama conversation"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "regional newspaper group after a publisher succession",
+      "audience": "a publisher who inherited the role before mastering ad sales or printing costs",
+      "stakes": "staff needs decisions on print frequency while advertisers question stability",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Antoine says he does not know yet, asks the press manager for cost per run, then decides the print schedule on unit economics instead of pretending instant certainty.",
+      "firstImage": "fresh ink on a press proof beside an advertising contract",
+      "mustInclude": [
+        "cost per run",
+        "ad contract list",
+        "print schedule"
+      ],
+      "mustAvoid": [
+        "Watergate or journalism mythology"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "community credit union board chair stepping in after her father's resignation",
+      "audience": "a chair who has the surname but not yet the lending committee's trust",
+      "stakes": "a bad small-business loan policy could drain member capital",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marta reads the delinquency report aloud, delays the popular expansion vote, and earns authority by protecting member capital under scrutiny.",
+      "firstImage": "a green-shaded banker's lamp over a delinquency report",
+      "mustInclude": [
+        "delinquency report",
+        "expansion vote",
+        "member capital"
+      ],
+      "mustAvoid": [
+        "generic boardroom courage"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "orchestra nonprofit after the founder conductor retires",
+      "audience": "an interim executive director with donors doubting his authority",
+      "stakes": "season deposits due before the new conductor contract is signed",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Ben two donor calls to stop sounding ceremonial, publish the cash calendar, and decide which concerts could be contracted without risking payroll.",
+      "firstImage": "a cello case leaning against a stack of donor pledge cards",
+      "mustInclude": [
+        "cash calendar",
+        "conductor contract",
+        "payroll date"
+      ],
+      "mustAvoid": [
+        "artistic inspiration speech"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "specialty manufacturing plant after a founder's widow inherits majority control",
+      "audience": "a controlling owner whose managers expect either passivity or a symbolic speech",
+      "stakes": "capital press replacement decision could determine two years of output",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Juliette reject both deference and theater, tour the broken press line, and approve the replacement only after tying it to order backlog and maintenance records.",
+      "firstImage": "metal shavings gathered below a stopped stamping press",
+      "mustInclude": [
+        "order backlog",
+        "maintenance records",
+        "press replacement quote"
+      ],
+      "mustAvoid": [
+        "widow melodrama"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "London design agency when a quiet partner becomes managing director",
+      "audience": "a partner promoted after the charismatic founder leaves",
+      "stakes": "two major retainers at risk because project margins are unclear",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What does authority look like before the room believes in it? Akira rebuilds the margin dashboard with project leads and uses it to choose which retainer terms to renegotiate.",
+      "firstImage": "a wall of client mood boards with margin notes taped below",
+      "mustInclude": [
+        "margin dashboard",
+        "retainer terms",
+        "project lead notes"
+      ],
+      "mustAvoid": [
+        "confidence coaching language"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish inherited authority from earned stewardship",
+      "choose evidence-seeking without surrendering decision responsibility",
+      "spot confidence theater in succession settings",
+      "apply stewardship under public scrutiny without leaning on biography or title"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one role you hold by title, write the next decision that would make the system more governable even if nobody praised your confidence.",
+  "readingTimeMinutes": 12
+}

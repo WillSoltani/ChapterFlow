@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch19",
+  "number": 19,
+  "title": "Incentives",
+  "coreMove": "Read the behavior the incentive actually buys, not the behavior the designer hoped it would buy.",
+  "sourcePressure": "Incentives steer behavior through reward, penalty, signal, and consequence inside systems.",
+  "chapterSpecificMisunderstanding": "treating incentives as bribes or simple motivation",
+  "sourceAlignmentTerms": [
+    "incentives",
+    "reward",
+    "penalty",
+    "signal",
+    "consequence",
+    "behavior",
+    "tradeoff"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Incentives",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "treating incentives as bribes or simple motivation",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Isabelle",
+      "domain": "call center quality score",
+      "audience": "readers who face call center quality score decisions where incentives is easy to misread",
+      "stakes": "agents optimizing score over service",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Isabelle compares the rewarded behavior on the scorecard screen with the hoped-for behavior in the call transcript, then changes the refund note to buy the action that matters. Domain: call center quality score.",
+      "firstImage": "scorecard screen visible in the call center quality score",
+      "mustInclude": [
+        "scorecard screen",
+        "call transcript",
+        "refund note"
+      ],
+      "mustAvoid": [
+        "treating incentives as bribes or simple motivation",
+        "reusing a generic meeting scene instead of the call center quality score constraints"
+      ]
+    },
+    {
+      "protagonistName": "Colin",
+      "domain": "bottle deposit return program",
+      "audience": "readers who face bottle deposit return program decisions where incentives is easy to misread",
+      "stakes": "containers tossed because deposit is invisible",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Colin compares the rewarded behavior on the deposit label with the hoped-for behavior in the return kiosk receipt, then changes the crate tag to buy the action that matters. Domain: bottle deposit return program.",
+      "firstImage": "deposit label visible in the bottle deposit return program",
+      "mustInclude": [
+        "deposit label",
+        "return kiosk receipt",
+        "crate tag"
+      ],
+      "mustAvoid": [
+        "treating incentives as bribes or simple motivation",
+        "reusing a generic meeting scene instead of the bottle deposit return program constraints"
+      ]
+    },
+    {
+      "protagonistName": "Marcel",
+      "domain": "seminar participation grade",
+      "audience": "readers who face seminar participation grade decisions where incentives is easy to misread",
+      "stakes": "students speaking for points only",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Marcel compares the rewarded behavior on the participation grid with the hoped-for behavior in the seminar card, then changes the attendance ping to buy the action that matters. Domain: seminar participation grade.",
+      "firstImage": "participation grid visible in the seminar participation grade",
+      "mustInclude": [
+        "participation grid",
+        "seminar card",
+        "attendance ping"
+      ],
+      "mustAvoid": [
+        "treating incentives as bribes or simple motivation",
+        "reusing a generic meeting scene instead of the seminar participation grade constraints"
+      ]
+    },
+    {
+      "protagonistName": "Alba",
+      "domain": "sales commission redesign",
+      "audience": "readers who face sales commission redesign decisions where incentives is easy to misread",
+      "stakes": "reps discounting bad-fit accounts",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Alba compares the rewarded behavior on the commission sheet with the hoped-for behavior in the discount approval, then changes the account fit note to buy the action that matters. Domain: sales commission redesign.",
+      "firstImage": "commission sheet visible in the sales commission redesign",
+      "mustInclude": [
+        "commission sheet",
+        "discount approval",
+        "account fit note"
+      ],
+      "mustAvoid": [
+        "treating incentives as bribes or simple motivation",
+        "reusing a generic meeting scene instead of the sales commission redesign constraints"
+      ]
+    },
+    {
+      "protagonistName": "Henry",
+      "domain": "clinic no-show fee",
+      "audience": "readers who face clinic no-show fee decisions where incentives is easy to misread",
+      "stakes": "patients booking casually then skipping",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Henry compares the rewarded behavior on the appointment reminder with the hoped-for behavior in the missed-slot bill, then changes the waiting list to buy the action that matters. Domain: clinic no-show fee.",
+      "firstImage": "appointment reminder visible in the clinic no-show fee",
+      "mustInclude": [
+        "appointment reminder",
+        "missed-slot bill",
+        "waiting list"
+      ],
+      "mustAvoid": [
+        "treating incentives as bribes or simple motivation",
+        "reusing a generic meeting scene instead of the clinic no-show fee constraints"
+      ]
+    },
+    {
+      "protagonistName": "Nuria",
+      "domain": "bug bounty reward table",
+      "audience": "readers who face bug bounty reward table decisions where incentives is easy to misread",
+      "stakes": "researchers chasing easy bugs",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Nuria compares the rewarded behavior on the bounty table with the hoped-for behavior in the bug report, then changes the severity label to buy the action that matters. Domain: bug bounty reward table.",
+      "firstImage": "bounty table visible in the bug bounty reward table",
+      "mustInclude": [
+        "bounty table",
+        "bug report",
+        "severity label"
+      ],
+      "mustAvoid": [
+        "treating incentives as bribes or simple motivation",
+        "reusing a generic meeting scene instead of the bug bounty reward table constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for incentives rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Read the behavior the incentive actually buys, not the behavior the designer hoped it would buy.",
+      "explain why the tempting misread fails: treating incentives as bribes or simple motivation",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving incentives, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,182 @@
+{
+  "chapterId": "zero-to-one-ch07",
+  "number": 7,
+  "title": "Follow the Money",
+  "coreMove": "Read a field by the weight of its outliers instead of the comfort of its averages.",
+  "sourcePressure": "The chapter introduces venture and power-law logic: a small number of outcomes dominate the economics, so averaging can hide what matters most. The frozen source for this chapter contains no chapter-specific named anecdote beyond author/editor metadata, so examples should use fictional protagonists and stay anchored to verified terms.",
+  "chapterSpecificMisunderstanding": "Using power-law language as an excuse for reckless extreme bets.",
+  "sourceAlignmentTerms": [
+    "power law",
+    "returns",
+    "portfolio",
+    "outliers",
+    "asymmetry",
+    "concentrated value"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of power law",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "angel investment committee",
+      "audience": "a small fund partner realizing equal attention to every deal is hiding the one possible fund-returner",
+      "stakes": "whether polite diversification makes the portfolio blind to its actual economics",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sophie weights the memo by possible return rather than calendar order",
+      "firstImage": "twelve pitch memos fanned across a glass table",
+      "mustInclude": [
+        "pitch memos",
+        "return model",
+        "red sticky note"
+      ],
+      "mustAvoid": [
+        "reckless moonshot talk"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "pharmaceutical research pipeline",
+      "audience": "a research director seeing that one molecule could outweigh ten minor reformulations",
+      "stakes": "whether budget allocation follows average progress or asymmetric upside",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Nicolas asks the team to rank projects by total possible company impact, not probability comfort",
+      "firstImage": "vials in a locked lab refrigerator",
+      "mustInclude": [
+        "lab refrigerator",
+        "pipeline grid",
+        "trial-cost estimate"
+      ],
+      "mustAvoid": [
+        "technical venture math"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "music label artist roster",
+      "audience": "an A&R lead deciding whether evenly supporting every act ignores where returns concentrate",
+      "stakes": "whether one unusual artist gets the resources needed to break through",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Frida moves the tour budget from equal slices to the artist with rare audience pull",
+      "firstImage": "a rehearsal room floor covered in set lists",
+      "mustInclude": [
+        "set lists",
+        "streaming dashboard",
+        "tour budget"
+      ],
+      "mustAvoid": [
+        "fame lottery"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "specialty export business",
+      "audience": "an owner discovering that one product line carries almost all profit despite many busy SKUs",
+      "stakes": "whether activity volume keeps hiding profit concentration",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chris marks every low-margin SKU gray until the outlier product is impossible to ignore",
+      "firstImage": "warehouse labels curling on stacked cartons",
+      "mustInclude": [
+        "SKU labels",
+        "margin report",
+        "forklift lane"
+      ],
+      "mustAvoid": [
+        "generic Pareto advice"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "scholarship foundation allocation",
+      "audience": "a director deciding whether equal grant sizes blunt the one program with transformative outcomes",
+      "stakes": "whether fairness optics suppress concentrated impact",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Isabel asks the board to separate equal treatment from equal contribution",
+      "firstImage": "grant folders arranged in identical blue binders",
+      "mustInclude": [
+        "grant folders",
+        "impact dashboard",
+        "board placards"
+      ],
+      "mustAvoid": [
+        "charity inspiration"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "urban logistics routing software",
+      "audience": "a product analyst noticing that three enterprise customers drive nearly all retention learning",
+      "stakes": "whether roadmap votes get averaged into mediocrity",
+      "format": "second_person",
+      "openingDevice": "retrospective",
+      "requiredBeat": "You watch Jack stop counting customers and start weighing which accounts teach the decisive pattern",
+      "firstImage": "delivery routes pulsing on a dispatch monitor",
+      "mustInclude": [
+        "dispatch monitor",
+        "customer cohort sheet",
+        "route exceptions"
+      ],
+      "mustAvoid": [
+        "customer democracy slogan"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires read a field by the weight of its outliers instead of the comfort of its averages.",
+      "separate power law from returns in a novel operating case",
+      "diagnose the specific failure mode: using power-law language as an excuse for reckless extreme bets.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "List five active opportunities and put a weight beside each one for possible upside, not comfort or busyness; circle the one whose weight changes the portfolio.",
+  "readingTimeMinutes": 12
+}

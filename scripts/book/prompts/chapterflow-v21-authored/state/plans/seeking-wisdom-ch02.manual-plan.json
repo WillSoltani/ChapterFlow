@@ -1,0 +1,186 @@
+{
+  "chapterId": "seeking-wisdom-ch02",
+  "number": 2,
+  "title": "Read Human Nature Through Incentives",
+  "coreMove": "Read the stated reason and the payoff structure together before trusting either alone.",
+  "sourcePressure": "The source says people often act from self-interest but also from reputation, reciprocity, fairness, approval, fear of humiliation, obedience, imitation, similarity, praise, familiarity, and status pressure. One-shot encounters make selfish behavior easier.",
+  "chapterSpecificMisunderstanding": "The weak version is cynical motive-reading where every explanation is a lie. The real move is to see mixed motives and the payoff structure that makes some behavior predictable.",
+  "sourceAlignmentTerms": [
+    "self-interest",
+    "reputation",
+    "reciprocity",
+    "fairness",
+    "one-shot encounter",
+    "approval",
+    "humiliation",
+    "authority",
+    "imitation"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Everyone is selfish underneath",
+      "Follow the money",
+      "People do what they are paid to do"
+    ],
+    "counterintuition": [
+      "The stated reason is always false",
+      "Incentives explain everything",
+      "Kindness is hidden selfishness"
+    ],
+    "tryThisNow": [
+      "Ask what everyone wants",
+      "Find the incentive",
+      "Be less naive"
+    ],
+    "examples": [
+      "sales commission cliche",
+      "generic bonus plan",
+      "employee wants promotion",
+      "friend asks for a favor with no texture"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "independent restaurant changing a tip-pooling rule before summer patio season",
+      "audience": "Claire, a general manager hearing servers defend fairness in opposite directions",
+      "stakes": "whether a rushed policy turns good servers against hosts during the busiest month",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Claire writes each role's visible payoff beside its fairness claim before deciding which complaint is principle and which is pressure from the new split",
+      "firstImage": "\"So fairness means the bar keeps the patio tips?\" on a receipt-strewn service station",
+      "mustInclude": [
+        "Claire",
+        "tip-out sheet",
+        "patio section"
+      ],
+      "mustAvoid": [
+        "generic commission plan",
+        "restaurant morale speech"
+      ]
+    },
+    {
+      "domain": "open-source maintainer deciding whether to accept a sponsor's roadmap request",
+      "audience": "Lukas, a volunteer maintainer praised by a company that now wants priority work",
+      "stakes": "whether praise and funding quietly move the project away from user need",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Lukas pins the sponsor email next to the issue backlog and labels which request serves the project and which serves the sponsor's release date",
+      "firstImage": "a GitHub issue list glowing beside a sponsor email with too many compliments",
+      "mustInclude": [
+        "Lukas",
+        "sponsor email",
+        "issue backlog"
+      ],
+      "mustAvoid": [
+        "generic tech workplace",
+        "bribe framing"
+      ]
+    },
+    {
+      "domain": "community theatre casting committee after a donor's nephew auditions",
+      "audience": "Isabel, a stage manager watching compliments change after the donor enters the lobby",
+      "stakes": "whether reputation and local approval distort a casting choice the audience will notice",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Isabel asks the committee to score the audition sheets before discussing the donor connection, keeping approval pressure from rewriting memory",
+      "firstImage": "dust from the stage curtain hanging in a warm rehearsal room",
+      "mustInclude": [
+        "Isabel",
+        "audition sheets",
+        "donor name on playbill draft"
+      ],
+      "mustAvoid": [
+        "generic nepotism complaint",
+        "Hollywood casting scene"
+      ]
+    },
+    {
+      "domain": "hospital nurse shift swap that looks generous but hides burnout risk",
+      "audience": "Hadiya, a charge nurse asked to approve a fourth swap between the same two nurses",
+      "stakes": "whether reciprocity pressure creates unsafe fatigue on a night shift",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hadiya maps the last four swaps on the staffing board and notices the favor debt is overriding rest rules",
+      "firstImage": "colored magnets crowded around a night-shift staffing board",
+      "mustInclude": [
+        "Hadiya",
+        "staffing board",
+        "fourth shift swap"
+      ],
+      "mustAvoid": [
+        "generic hospital heroics",
+        "simple kindness story"
+      ]
+    },
+    {
+      "domain": "real estate referral where a friend recommends an inspector",
+      "audience": "Jack, a first-time buyer who trusts the friend but sees the referral fee disclosure",
+      "stakes": "whether similarity and friendship make a conflicted recommendation feel safer than it is",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "requiredBeat": "Jack places the disclosure form beside the inspection quote and calls two unaffiliated inspectors before accepting the friendly recommendation",
+      "firstImage": "You see the referral disclosure folded under a house key on the cafe table",
+      "mustInclude": [
+        "Jack",
+        "referral disclosure",
+        "inspection quote"
+      ],
+      "mustAvoid": [
+        "generic house-buying anxiety",
+        "villainous friend"
+      ]
+    },
+    {
+      "domain": "student engineering society choosing an award winner after one team helped everyone else",
+      "audience": "Marta, a treasurer trying to separate gratitude from merit scoring",
+      "stakes": "whether reciprocity turns a technical award into a thank-you note",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marta asks judges to predict their winner before seeing the peer-favor log, then compares how gratitude changes their rankings",
+      "firstImage": "a peer-favor log with names highlighted in yellow",
+      "mustInclude": [
+        "Marta",
+        "scoring rubric",
+        "peer-favor log"
+      ],
+      "mustAvoid": [
+        "generic classroom popularity contest",
+        "sports trophy scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish cynical motive-reading from incentive analysis",
+      "identify mixed motives in a scene",
+      "spot reciprocity and status pressure without assuming bad faith",
+      "test one-shot versus repeated-relationship behavior"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before one request or explanation today, write the stated reason, the material payoff, and the reputational payoff on three separate lines.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "chapterId": "antifragile-ch02",
+  "number": 2,
+  "title": "Overcompensation and Overreaction Everywhere",
+  "coreMove": "Recognize when spare capacity and rebound are adaptive reserves rather than waste.",
+  "sourcePressure": "This chapter treats rebound, redundancy, and suppression backfire as cases where stress produces extra capacity or attention.",
+  "chapterSpecificMisunderstanding": "Assuming every overreaction is wise or every redundant layer is inefficiency.",
+  "sourceAlignmentTerms": [
+    "overcompensation",
+    "overreaction",
+    "redundancy",
+    "reserve",
+    "suppression",
+    "backfire",
+    "spare capacity"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "redundancy",
+      "detail": "source notes frame abundance and spare capacity as protection and adaptive capacity, not waste",
+      "useIn": "both",
+      "phrasingHint": "The spare part looks lazy until the day it becomes the reason the system learns instead of folds."
+    },
+    {
+      "kind": "event",
+      "name": "information suppression",
+      "detail": "attempts to ban or suppress information can increase attention to it",
+      "useIn": "fullRead",
+      "phrasingHint": "The ban can become the billboard when pressure turns curiosity into spread."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Overcompensation and Overreaction Everywhere"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Assuming every overreaction is wise or every redundant layer is inefficiency."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bakery spare-oven schedule with Sophie as the decision-maker",
+      "audience": "a reader who handles bakery spare oven schedule under uncertainty",
+      "stakes": "whether Sophie avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Sophie keeps the spare capacity in place after showing how the last disruption turned reserve into learning.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "bakery log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic overcompensation and overreaction everywhere paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "call-center overflow script with Grace as the decision-maker",
+      "audience": "a reader who handles call center overflow script under uncertainty",
+      "stakes": "whether Grace avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Grace keeps the spare capacity in place after showing how the last disruption turned reserve into learning.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "call center log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic overcompensation and overreaction everywhere paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "library banned-book display with Rachel as the decision-maker",
+      "audience": "a reader who handles library banned book display under uncertainty",
+      "stakes": "whether Rachel avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel keeps the spare capacity in place after showing how the last disruption turned reserve into learning.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "library log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic overcompensation and overreaction everywhere paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "warehouse scanner reserve with Laura as the decision-maker",
+      "audience": "a reader who handles warehouse scanner reserve under uncertainty",
+      "stakes": "whether Laura avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Laura keeps the spare capacity in place after showing how the last disruption turned reserve into learning.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "warehouse log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic overcompensation and overreaction everywhere paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "reef-tank backup pump with Anna as the decision-maker",
+      "audience": "a reader who handles reef tank backup pump under uncertainty",
+      "stakes": "whether Anna avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Anna keeps the spare capacity in place after showing how the last disruption turned reserve into learning.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "reef tank log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic overcompensation and overreaction everywhere paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "network cache failover with James as the decision-maker",
+      "audience": "a reader who handles network cache failover under uncertainty",
+      "stakes": "whether James avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "James keeps the spare capacity in place after showing how the last disruption turned reserve into learning.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "network log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic overcompensation and overreaction everywhere paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by recognize when spare capacity and rebound are adaptive reserves rather than waste.",
+      "distinguish overcompensation, overreaction, redundancy in unfamiliar cases",
+      "choose actions that avoid: Assuming every overreaction is wise or every redundant layer is inefficiency."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one reserve you have been tempted to cut and write the specific disruption it would help you survive long enough to learn from.",
+  "readingTimeMinutes": 12
+}

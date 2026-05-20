@@ -1,0 +1,188 @@
+{
+  "chapterId": "the-like-switch-ch02",
+  "number": 2,
+  "title": "Getting Noticed Before a Word Is Spoken",
+  "coreMove": "Use low-threat nonverbal cues to make the first seconds of contact feel safe enough for conversation to begin.",
+  "sourcePressure": "The ch02 source centers first impressions and friend signals: eyebrow flash, head tilt, smile, and open posture reduce perceived threat before words can help. It also warns that signals open the door but do not create lasting trust alone.",
+  "chapterSpecificMisunderstanding": "Treating friend signals as charisma tricks that guarantee rapport without later substance.",
+  "sourceAlignmentTerms": [
+    "first impression",
+    "friend signals",
+    "eyebrow flash",
+    "head tilt",
+    "smile",
+    "open posture",
+    "perceived threat"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "eyebrow flash",
+      "detail": "The ch02 sidecar identifies eyebrow flash as a rapid nonthreat signal.",
+      "useIn": "both",
+      "phrasingHint": "A quick eyebrow flash can tell a stranger you recognize them without making them feel cornered."
+    },
+    {
+      "kind": "artifact",
+      "name": "head tilt",
+      "detail": "The source sidecar says a head tilt reads as vulnerable and trusting rather than guarded.",
+      "useIn": "deepRead",
+      "phrasingHint": "A small head tilt softens the opening because guarded bodies rarely expose the neck by accident."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Your body speaks before you do",
+      "First impressions happen fast",
+      "Smile more"
+    ],
+    "counterintuition": [
+      "words do not matter",
+      "body language is everything"
+    ],
+    "tryThisNow": [
+      "practice smiling in a mirror for one minute"
+    ],
+    "examples": [
+      "networking cocktail party opener",
+      "job interview handshake only",
+      "airport stranger chat"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a hospital wayfinding volunteer approaching worried visitors at a cardiac wing elevator",
+      "audience": "a volunteer whose first move can calm or crowd a family",
+      "stakes": "the family is already scared and may snap at help that feels intrusive",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the volunteer stops walking straight into their path, uses an eyebrow flash from two steps away, tilts his head, and points to the desk before speaking",
+      "firstImage": "the elevator doors open onto a blue cardiac-wing sign",
+      "mustInclude": [
+        "visitor badges",
+        "blue sign",
+        "folded ward map"
+      ],
+      "mustAvoid": [
+        "generic front-desk greeting"
+      ]
+    },
+    {
+      "domain": "a farmers market stall owner trying to invite browsing without pouncing",
+      "audience": "a first-time vendor in a crowded Saturday market",
+      "stakes": "too much eagerness sends shoppers past the table",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the vendor compares crossed-arm watching with an open posture and brief smile, then sees browsers slow when the signal says safe rather than sales trap",
+      "firstImage": "steam rising from a crate of apple-cider samples",
+      "mustInclude": [
+        "sample cups",
+        "chalk price board",
+        "awning rope"
+      ],
+      "mustAvoid": [
+        "coffee shop counter scene"
+      ]
+    },
+    {
+      "domain": "a probation office receptionist greeting a tense client arriving late",
+      "audience": "a receptionist who controls the first emotional temperature of the room",
+      "stakes": "one sharp opening could turn delay into confrontation",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:04 a.m., Thomas chooses a visible open palm and low-threat nod before asking for the appointment card",
+      "firstImage": "a laminated appointment card bent at one corner",
+      "mustInclude": [
+        "appointment card",
+        "security window",
+        "plastic chair"
+      ],
+      "mustAvoid": [
+        "police interrogation or FBI anecdote"
+      ]
+    },
+    {
+      "domain": "a university lab partner joining an established research bench",
+      "audience": "a student entering a group that already has routines",
+      "stakes": "if the first approach feels presumptuous, collaboration starts cold",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Is this the pipette rack everyone fights over?\" Camille asks after a small smile and head tilt soften the joke",
+      "firstImage": [
+        "pipette rack",
+        "nitrile gloves",
+        "bench tape"
+      ],
+      "mustInclude": [
+        "classroom lecture shell"
+      ]
+    },
+    {
+      "domain": "a cycling repair shop owner handling a customer embarrassed about a broken commuter bike",
+      "audience": "a shop owner who needs approachability before advice",
+      "stakes": "the customer may leave rather than admit what happened",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "you notice the customer scanning for judgment, so you lower the tool, uncross your stance, and let the first cue say there is no threat here",
+      "firstImage": "a bent derailleur hanging above a rubber shop mat",
+      "mustInclude": [
+        "derailleur",
+        "repair ticket",
+        "oil-stained rag"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor"
+      ]
+    },
+    {
+      "domain": "a local election canvasser approaching a porch with a wary homeowner",
+      "audience": "a canvasser learning that distance and posture decide whether the door stays open",
+      "stakes": "a rushed pitch will get the door closed before policy is heard",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes three slammed doors for the canvasser to see that stepping back, flashing recognition, and angling his body matters before the script",
+      "firstImage": "three crossed-out addresses on a clipboard",
+      "mustInclude": [
+        "clipboard",
+        "porch light",
+        "campaign badge"
+      ],
+      "mustAvoid": [
+        "generic sales pitch"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "select a low-threat cue for a tense first contact",
+      "tell when friend signals are contradicted by later behavior",
+      "separate approachability from submission or fakery",
+      "evaluate recovery from a poor first impression"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next doorway or meeting entry, pause at two steps away, uncross your posture, give brief recognition, and let the other person respond before you close distance.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

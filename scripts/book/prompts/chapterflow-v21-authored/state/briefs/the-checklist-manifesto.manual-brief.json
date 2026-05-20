@@ -1,0 +1,83 @@
+{
+  "bookId": "the-checklist-manifesto",
+  "title": "The Checklist Manifesto: How to Get Things Right",
+  "author": "Atul Gawande",
+  "thesisParagraph": "The book argues that modern failure often comes from a gap between what experts know and what complex systems reliably get done. Medicine, aviation, construction, disaster response, and investing all show the same pressure: skilled people work inside crowded chains of steps, handoffs, timing, and judgment calls. A good checklist is not a script for amateurs. It is a small discipline that protects the minimum critical actions, forces communication at the right moment, and leaves experts freer to think about the problem that is actually in front of them.",
+  "coreIdeas": [
+    {
+      "name": "Extreme complexity beats memory",
+      "oneSentence": "When a task has too many vital moving parts, skill alone cannot guarantee that the basics will happen.",
+      "mentalMove": "Stop treating repeated misses as personal weakness first; inspect where the system outruns recall and coordination.",
+      "sourceAnchors": ["ch01.source"]
+    },
+    {
+      "name": "Checklists guard the vital minimum",
+      "oneSentence": "A useful checklist protects a few non-negotiable steps from omission or casual skipping.",
+      "mentalMove": "Separate the minimum checks that must happen every time from the larger body of professional knowledge.",
+      "sourceAnchors": ["ch02.source", "ch06.source"]
+    },
+    {
+      "name": "Distributed work needs visible coordination",
+      "oneSentence": "Complex work cannot be commanded from one head; it needs clear handoffs and communication points.",
+      "mentalMove": "Replace the master-controller reflex with a structure that lets local actors act and stay aligned.",
+      "sourceAnchors": ["ch03.source", "ch04.source"]
+    },
+    {
+      "name": "Design must survive the room",
+      "oneSentence": "A checklist becomes serious only after resistance, timing friction, and field testing have forced it into a usable form.",
+      "mentalMove": "Treat first-version complaints as design data, then shorten, retime, and test the tool against live pressure.",
+      "sourceAnchors": ["ch05.source", "ch07.source"]
+    },
+    {
+      "name": "Reliability changes the picture of expertise",
+      "oneSentence": "Professional excellence includes disciplined teamwork and routine verification, not just independent command.",
+      "mentalMove": "Redefine competence as the willingness to use support that makes good judgment more reliable.",
+      "sourceAnchors": ["ch08.source", "ch09.source"]
+    }
+  ],
+  "targetReader": "A capable professional, manager, clinician, operator, builder, founder, teacher, or team lead who already cares about doing good work and needs a sharper way to prevent repeatable errors under pressure.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "respect expertise while showing where pride and memory leak",
+      "make the checklist feel like disciplined support, not office paperwork"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no checklist cheerleading that ignores design quality or local fit"
+    ]
+  },
+  "voiceSpecimens": [
+    "The tray is not dangerous because the team is careless. It is dangerous because six people each remember a different part of the same minute.",
+    "A good checklist does not ask the surgeon to stop thinking. It asks the room to stop pretending memory is a sterile instrument.",
+    "The skipped step usually looks too small to matter until it becomes the only thing anyone can see.",
+    "You do not fix a crowded system by finding one grander mind. You give the right people a way to meet at the right point.",
+    "The first draft of the list is usually too long, too polite, and too late. The room teaches you what it can actually carry.",
+    "Professional pride is useful until it makes help feel like insult.",
+    "The point is not to love checklists. The point is to hate preventable harm enough to use one well."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explores the importance of using checklists in complex domains.",
+    "At the end of the day, everyone should just follow a process to avoid mistakes.",
+    "Gawande argues that checklists are universally beneficial tools for improving outcomes.",
+    "In a fast-paced world, success depends on embracing systems and accountability.",
+    "The key takeaway is that checklists help people be more productive and organized.",
+    "Readers should leverage operational excellence to optimize performance."
+  ],
+  "teachingArc": "The book starts by diagnosing why skilled people still miss basics in complex systems, then introduces checklists as narrow anti-omission tools. It widens from single checks to distributed coordination, shows how first drafts fail in real rooms, turns checklist design into craft, tests the tool across varied hospitals, confronts professional resistance, and finally transfers the discipline beyond surgery without pretending one form fits every field.",
+  "forbiddenMoves": [
+    "Do not make the book sound like a generic productivity system about getting organized.",
+    "Do not treat checklists as replacements for judgment or expertise.",
+    "Do not flatten aviation, surgery, construction, disaster response, and investing into interchangeable office examples.",
+    "Do not invent named studies, hospitals, pilots, or medical statistics beyond the frozen source support.",
+    "Do not make resistance look like stupidity when the sharper issue is professional identity and tool design."
+  ]
+}

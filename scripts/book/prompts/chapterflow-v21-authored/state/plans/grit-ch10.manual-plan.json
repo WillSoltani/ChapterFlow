@@ -1,0 +1,196 @@
+{
+  "chapterId": "grit-ch10",
+  "number": 10,
+  "title": "Parenting for Grit",
+  "coreMove": "Hold the line while making it clear the person is not alone at the line.",
+  "sourcePressure": "Balance high standards with deep support when helping others grow grit.",
+  "chapterSpecificMisunderstanding": "Thinking grit is produced by harshness, neglect, or unconditional ease.",
+  "sourceAlignmentTerms": [
+    "wise parenting",
+    "John Watson",
+    "Steve Young",
+    "Francesca Martinez",
+    "high standards",
+    "supportive parenting"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Steve Young",
+      "detail": "Young credited strict but loving parents, including a father nicknamed Grit, for helping him persist when he wanted to quit football.",
+      "useIn": "both",
+      "phrasingHint": "Steve Young’s father held the line, but the line sat inside a home where the child knew he mattered."
+    },
+    {
+      "kind": "person",
+      "name": "Francesca Martinez",
+      "detail": "The comedian built a career with cerebral palsy and credits a supportive family that encouraged her calling without spoiling her.",
+      "useIn": "deepRead",
+      "phrasingHint": "Martinez shows the other half of wise parenting: warmth that still expects follow-through."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for Parenting for Grit",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "youth football quitting moment",
+      "audience": "readers facing youth football quitting moment where grit could be confused with mood or talent",
+      "stakes": "whether Olivia treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the adult combines a non-negotiable standard with visible support at the exact moment the child wants out",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn youth football quitting moment into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "teen comedy open-mic path",
+      "audience": "readers facing teen comedy open-mic path where grit could be confused with mood or talent",
+      "stakes": "whether James treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the adult combines a non-negotiable standard with visible support at the exact moment the child wants out",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn teen comedy open-mic path into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "ballet teacher parent conference",
+      "audience": "readers facing ballet teacher parent conference where grit could be confused with mood or talent",
+      "stakes": "whether Frida treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the adult combines a non-negotiable standard with visible support at the exact moment the child wants out",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn ballet teacher parent conference into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "military cadet mentoring call",
+      "audience": "readers facing military cadet mentoring call where grit could be confused with mood or talent",
+      "stakes": "whether Antoine treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the adult combines a non-negotiable standard with visible support at the exact moment the child wants out",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn military cadet mentoring call into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "music teacher recital standard",
+      "audience": "readers facing music teacher recital standard where grit could be confused with mood or talent",
+      "stakes": "whether Aman treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the adult combines a non-negotiable standard with visible support at the exact moment the child wants out",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn music teacher recital standard into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "startup manager intern support",
+      "audience": "readers facing startup manager intern support where grit could be confused with mood or talent",
+      "stakes": "whether Isabel treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "the adult combines a non-negotiable standard with visible support at the exact moment the child wants out",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn startup manager intern support into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Hold the line while making it clear the person is not alone at the line. from Thinking grit is produced by harshness, neglect, or unconditional ease.",
+      "choose the visible next action in a fresh youth football quitting moment scenario",
+      "diagnose when a scene has drifted into tough love cruelty"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real parenting for grit decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

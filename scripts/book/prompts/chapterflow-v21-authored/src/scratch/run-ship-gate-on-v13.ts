@@ -75,6 +75,7 @@ const projected: ChapterV21 = {
     difficulty: c.difficulty ?? "medium",
   })),
   implementationPlan: {
+    title: v13ch.implementationPlan?.title ?? "",
     coreSkill: direct(v13ch.implementationPlan?.coreSkill),
     ifThenPlans: (v13ch.implementationPlan?.ifThenPlans ?? []).map((it: any) => ({
       context: it.context,

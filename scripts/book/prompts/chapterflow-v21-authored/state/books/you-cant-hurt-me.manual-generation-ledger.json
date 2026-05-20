@@ -1,0 +1,1019 @@
+{
+  "bookId": "you-cant-hurt-me",
+  "updatedAt": "2026-05-13T20:36:05.488Z",
+  "usedProtagonistNames": [
+    "Sarah",
+    "Daniel",
+    "Claire",
+    "Martin",
+    "James",
+    "Petra",
+    "Graham",
+    "Nora",
+    "Aisha",
+    "Thomas",
+    "Reed",
+    "Carmen",
+    "Blake",
+    "Sofia",
+    "Luca",
+    "Anders",
+    "Isabelle",
+    "Kiran",
+    "Morgan",
+    "Hannah",
+    "Ryan",
+    "Greta",
+    "Tomasz",
+    "Celia",
+    "Emily",
+    "Patrick",
+    "Adrian",
+    "Giulia",
+    "Derek",
+    "Benoit",
+    "Rachel",
+    "Colin",
+    "Amelie",
+    "Mark",
+    "Julia",
+    "Diego",
+    "Olivia",
+    "Ethan",
+    "Marie",
+    "Henrik",
+    "Beatrice",
+    "Sean",
+    "Natalie",
+    "Peter",
+    "Lin",
+    "Marta",
+    "Robert",
+    "Clara",
+    "Andrew",
+    "Sophie",
+    "Nolan",
+    "Francesca",
+    "George",
+    "Ingrid",
+    "Camille",
+    "Maxwell",
+    "Rowan",
+    "Stefan",
+    "Lucia",
+    "Antoine",
+    "Arthur",
+    "Helen",
+    "Kate",
+    "Malcolm",
+    "Theresa",
+    "Simon"
+  ],
+  "usedExampleDomains": [
+    "county survivor benefits office processing an old violence file",
+    "night janitorial crew orientation at an airport terminal",
+    "public library adult literacy desk after a housing move",
+    "community boxing gym first weigh-in for a young fighter",
+    "tenant legal clinic preparing a move-out packet",
+    "rural apprentice mechanic rebuilding after foster placement",
+    "fire academy written-test remediation after a failed entrance score",
+    "hospital unit medication-error review",
+    "community college placement exam retake",
+    "public defender arraignment prep after a missed deadline",
+    "youth boxing weigh-in after hidden diet slips",
+    "recovery sponsor call after a hidden relapse trigger",
+    "commercial pest-control route with a certification deadline",
+    "merchant marine swim qualification",
+    "restaurant line cook trying to pass a sous-chef knife trial",
+    "rail signal apprentice license exam",
+    "county search-and-rescue pack test",
+    "court interpreter oral exam preparation",
+    "storm-damaged marina salvage crew hauling soaked dock sections",
+    "hospital disaster drill moving patients down dead elevators",
+    "rowing club dawn seat race against a favored crew",
+    "warehouse freezer inventory during a broken loading schedule",
+    "wildland trail crew clearing blowdowns for a medical evacuation route",
+    "competitive debate team elimination round prep under sleep loss",
+    "concert pianist recovering after a tendon strain",
+    "apprentice electrician after failing a live-panel simulation",
+    "competitive swimmer after shoulder pain ends a heat",
+    "pastry apprentice whose laminated dough fails during a trial week",
+    "probationary paramedic after a botched radio report",
+    "glassblower returning after a cracked commission",
+    "overnight bridge inspection after a fatal collapse anniversary",
+    "blood bank courier during a snow closure",
+    "long-haul interpreter relay for a disaster hotline",
+    "animal rescue transport after a kennel fire",
+    "public defender weekend bail review backlog",
+    "shelter kitchen final meal service after a power outage",
+    "flight simulator engine-out certification",
+    "deep-sea research dive ascent with low air anxiety",
+    "court stenographer speed test at the fatigue mark",
+    "alpine rescue pulley drill on a steep snowfield",
+    "voice actor recording a damaged-voice audiobook deadline",
+    "urban mail carrier heat-route adjustment",
+    "mobile vaccination clinic missing rural stops",
+    "independent theater opening night with a failed cue sequence",
+    "search-engineering outage response after an all-night scramble",
+    "beekeeping co-op losing hives during a cold snap",
+    "museum installation crew missing a crate sequence",
+    "community orchestra failing a difficult entrance despite practice hours",
+    "mountain rescue training cadre after a sleepless search",
+    "ICU night-charge handoff after three emergency admissions",
+    "commercial fishing deck in rough weather after a gear jam",
+    "elite culinary prep team during a sold-out service",
+    "forensic lab backlog after a major case surge",
+    "professional ballet company understudy rehearsal",
+    "international pastry certification failed by one technique score",
+    "cybersecurity red-team exercise lost through a missed log",
+    "civil-service oral board rejection",
+    "open-water relay team disqualified for an exchange violation",
+    "architecture bid rejected for weak cost assumptions",
+    "laboratory grant rejected for a flawed methods section",
+    "retired shipyard welder relearning movement after a nerve condition",
+    "former prosecutor rebuilding a relationship with an estranged sister",
+    "ultrarunner sidelined into pool therapy after endocrine diagnosis",
+    "burned-out orchestra conductor stepping down from a youth program",
+    "veteran emergency manager learning slow recovery after burnout leave",
+    "estranged brothers sorting a late parent's storage unit"
+  ],
+  "usedExampleAnchors": [
+    "torn manila file",
+    "yellow gate log",
+    "blue library card",
+    "photocopied emergency order",
+    "torque chart",
+    "red failed-score sheet",
+    "placement printout",
+    "digital scale",
+    "crumpled receipt",
+    "roach trap invoice",
+    "bin of uneven onion dice",
+    "practice circuit diagram",
+    "canvas sandbag",
+    "splintered dock plank",
+    "evacuation sled",
+    "stroke rate",
+    "barcode scanner",
+    "evidence tub with bent tabs",
+    "recital notice",
+    "breaker board",
+    "training handset",
+    "green glass shard",
+    "bridge inspection binder",
+    "red transport seal",
+    "scorched crate tag",
+    "release order",
+    "steam table pan",
+    "simulator warning light",
+    "ascent slate",
+    "snow anchor",
+    "waveform",
+    "county route map",
+    "cue sheet",
+    "hive-loss ledger",
+    "crate manifest",
+    "beacon harness",
+    "ventilator screen",
+    "green deck light",
+    "chilled tasting spoon",
+    "evidence tray",
+    "rosin box",
+    "score sheet dusted with flour",
+    "practice recording",
+    "disqualification notice",
+    "rejection letter",
+    "reviewer note",
+    "welding hood",
+    "race bib",
+    "annotated score bound with a frayed black ribbon",
+    "leave letter",
+    "old tackle box"
+  ],
+  "usedHookFrames": [
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "hook": "A childhood file can explain the wound without earning the right to command the next move."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "hook": "A fogged mirror becomes useful only when the lie on it is replaced by a task."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "hook": "A deadline sharp enough to scare you can turn a wish into a bill that comes due tomorrow."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "hook": "A soaked plank lifted in silence can change the whole crew's idea of who is breaking first."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "hook": "A cracked metronome beside a rehab chart tells a harder truth than a comeback speech."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "hook": "A chilled blood cooler at a closed ramp asks for a reason bigger than finishing first."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "hook": "A warning light in a simulator can be panic, danger, or a checklist asking to be finished."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "hook": "A route map under cooler logs can prove that harder work is not the missing piece."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "hook": "A tangled beacon harness is a better leadership test than another display of strength."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "hook": "A failed score sheet dusted with flour has no wisdom until the weak line is circled."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "hook": "A dusty welding hood beside a mobility card asks a question force cannot answer."
+    }
+  ],
+  "usedCounterFrames": [
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "counterintuition": "The trap is not admitting how bad it was. The trap is letting the damage keep voting after the danger has changed shape."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "counterintuition": "The mirror is not there to make you feel better. It is there to make the private dodge visible enough that you have to answer it with work."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "counterintuition": "The impossible task is not valuable because it is extreme. It is valuable when the deadline exposes every bargain your old life was hiding."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "counterintuition": "The point is not to humiliate people. The point is to answer shared suffering so visibly that the room's doubt has to move somewhere else."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "counterintuition": "Mental armor is not the fantasy that nothing gets through. It is the practiced return after something gets through and exposes the weak spot."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "counterintuition": "Purpose does not make pain noble or painless. It gives the next step a duty that survives after pride and applause stop working."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "counterintuition": "The first stop signal is not always truth and not always a lie. Treat it as a signal to inspect, pace, and test before you surrender or surge."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "counterintuition": "The mistake is not caring too much about effort. The mistake is adding effort before fixing the route, fuel, timing, or handoff that keeps wasting it."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "counterintuition": "Being exceptional in a hard room does not give you permission to float above it. It gives you a chance to steady the person beside you."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "counterintuition": "Failure does not empower you by hurting. It becomes useful only after the story protecting your ego is removed and the correction is rehearsed."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "counterintuition": "The final edge is not another proof of toughness. It is the discipline to repair, recover, and ask what remains possible when force stops working."
+    }
+  ],
+  "usedTryThisNowFrames": [
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "tryThisNow": "Write one hard fact from your past as evidence, then write the next present action beside it that the fact does not get to cancel."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "tryThisNow": "Write the one fact you keep softening, then add a deadline and a proof of work that another person could check."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "tryThisNow": "Name one goal you keep admiring from a distance, then write the first deadline, first cost, and first thing you must cancel."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "tryThisNow": "In the next shared hard task, choose one visible next action that answers the room's doubt without a speech, then do it first."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "tryThisNow": "Pick one setback you keep treating as a verdict, then design the smallest return drill that touches the exposed point honestly."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "tryThisNow": "Write one proof that you have endured something hard before, then tie today's next hard action to a duty beyond your own credit."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "tryThisNow": "When the first stop signal shows up today, name it as danger, bad pacing, or bargaining, then choose one measured next step."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "tryThisNow": "Before adding effort to one stuck goal, write the missing route, fuel, timing, or handoff that would make effort land."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "tryThisNow": "In the next room where you are stronger than someone else, use that edge to make their next step steadier, not your status louder."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "tryThisNow": "Take one recent miss and write the failed standard, the factual cause, and the correction you will rehearse before retrying."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "tryThisNow": "Ask one hard what if about the part of your life that no longer responds to force, then write the smallest truthful repair action."
+    }
+  ],
+  "usedQuizExplanationFrames": [
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q01",
+      "explanationLead": "The first choice keeps both truths: the fear has a source, and the housing action still has to happen."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q02",
+      "explanationLead": "The makeup session respects the hardship while keeping the standard alive."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q03",
+      "explanationLead": "The circled appointment marks the shift from immediate safety to rebuilding."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q04",
+      "explanationLead": "Repeating the safety step to spec keeps compassion tied to capability."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q05",
+      "explanationLead": "The Tuesday session keeps the past visible but gives the next action the room."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q06",
+      "explanationLead": "The problem is not kindness itself."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q07",
+      "explanationLead": "The hardship may belong in the application, but the blank checklist shows the story has not been converted into action."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q08",
+      "explanationLead": "The move starts with honest inventory, not erasure."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch01",
+      "questionId": "q09",
+      "explanationLead": "The second mentor captures the double edge: full truth plus limited authority."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q01",
+      "explanationLead": "The useful part is the conversion from fact to task."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q02",
+      "explanationLead": "The alert answers the exact missed behavior while still leaving room to address staffing."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q03",
+      "explanationLead": "The failed domains and study block turn the complaint into a work plan."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q04",
+      "explanationLead": "Prediction, reveal, and written correction make the lie visible and actionable."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q05",
+      "explanationLead": "The copied subscore turns embarrassment into a targeted appointment."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q06",
+      "explanationLead": "The docket context helps explain the miss, but it does not create a correction."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q07",
+      "explanationLead": "The exact receipt makes the trigger concrete enough to plan around."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q08",
+      "explanationLead": "The missing standard is the problem."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch02",
+      "questionId": "q09",
+      "explanationLead": "The first uses the score as a task generator."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q01",
+      "explanationLead": "The key test is whether the goal has begun charging time, comfort, or money now."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q02",
+      "explanationLead": "Cancelling the shift prices the mission immediately and protects the first study block."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q03",
+      "explanationLead": "The training card, timed attempt, and cancelled commitments expose the cost."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q04",
+      "explanationLead": "The trial date and waste check put a price on the promotion in the exact place the skill fails."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q05",
+      "explanationLead": "The weighed pack and hill repeats address the actual gate."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q06",
+      "explanationLead": "The unchanged weekend shows the old life is still protected."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q07",
+      "explanationLead": "The useful part is priced clarity, not extremity for its own sake."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q08",
+      "explanationLead": "The cancelled side jobs buy time for the exposed wiring gap."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch03",
+      "questionId": "q09",
+      "explanationLead": "The first candidate pays a real cost, so the mission has entered the day."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q01",
+      "explanationLead": "The action gives the group new evidence about the load."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q02",
+      "explanationLead": "Starting the descent creates a visible signal that the drill is still alive."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q03",
+      "explanationLead": "The power sequence applies visible effort inside the shared race standard."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q04",
+      "explanationLead": "Keeping count makes the rival's certainty less believable."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q05",
+      "explanationLead": "The fuel can and next cut give the group a physical cue."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q06",
+      "explanationLead": "The useful signal serves the work and the team."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q07",
+      "explanationLead": "The move is about changing morale through visible effort, not degrading people."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q08",
+      "explanationLead": "The timed drill changes the room's behavior right away."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch04",
+      "questionId": "q09",
+      "explanationLead": "The second lead uses visible effort to change the shared story."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q01",
+      "explanationLead": "The important piece is accurate, controlled contact with the exposed point."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q02",
+      "explanationLead": "The slow pattern returns to the skill without letting pride set the dose."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q03",
+      "explanationLead": "The frozen step is the map."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q04",
+      "explanationLead": "The lap log and kick-only return separate real pain from a verdict on the season."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q05",
+      "explanationLead": "The cut-open piece makes the failure teach the next roll."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q06",
+      "explanationLead": "The missed sequence should become practice material, not identity."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q07",
+      "explanationLead": "Pretending nothing happened skips the accurate return."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q08",
+      "explanationLead": "The small gather returns to the cause at a controllable size."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch05",
+      "questionId": "q09",
+      "explanationLead": "The drill is stronger because it respects the setback and trains the precise point of failure."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q01",
+      "explanationLead": "The surgical window gives the task a duty beyond recognition."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q02",
+      "explanationLead": "The photo reconnects the plate to public safety and the next check."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q03",
+      "explanationLead": "The saved line is stored proof tied to the next handoff."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q04",
+      "explanationLead": "The crate tags reconnect the work to the clinic, and asking for help respects the body."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q05",
+      "explanationLead": "The release order is proof that one review matters, and the affidavit serves the client now."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q06",
+      "explanationLead": "The larger reason must stay attached to judgment."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q07",
+      "explanationLead": "The tally redirects attention from credit to service."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q08",
+      "explanationLead": "Stored proof should challenge the first bargain, not erase reality."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch06",
+      "questionId": "q09",
+      "explanationLead": "The second response does not deny fatigue; it gives the next step a service reason and keeps it bounded."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q01",
+      "explanationLead": "The signal needs sorting."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q02",
+      "explanationLead": "The callout tests the signal with procedure."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q03",
+      "explanationLead": "The gauge and slate convert panic into procedure."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q04",
+      "explanationLead": "The marked interval contains the error and gathers new evidence."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q05",
+      "explanationLead": "The anchor check and measured pulls create controlled overreach."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q06",
+      "explanationLead": "The slow paragraph respects the warning while gathering information."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q07",
+      "explanationLead": "The useful frame challenges early quitting, but it does not erase danger or planning."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q08",
+      "explanationLead": "The route adjustment treats heat as data."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch07",
+      "questionId": "q09",
+      "explanationLead": "The measured segment keeps judgment active."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q01",
+      "explanationLead": "The effort is not dismissed; it is protected from waste by better logistics."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q02",
+      "explanationLead": "The map and logs reveal the actual leak in fuel, cold storage, and timing."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q03",
+      "explanationLead": "The cue sheet addresses the sequence that failed."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q04",
+      "explanationLead": "The timeline points to sequence defects that can be fixed."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q05",
+      "explanationLead": "The manifest fixes the sequence before force touches glass."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q06",
+      "explanationLead": "Replacement without review repeats the logistics failure."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q07",
+      "explanationLead": "Volume is the wrong variable if the count-in fails."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q08",
+      "explanationLead": "Effort does not validate the plan."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch08",
+      "questionId": "q09",
+      "explanationLead": "The second team respects effort by stopping the leak first."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q01",
+      "explanationLead": "The senior trainee preserves the standard and transfers steadiness."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q02",
+      "explanationLead": "The calm sequence lets the new nurse borrow competence."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q03",
+      "explanationLead": "Slowing the knot keeps the standard high and makes it usable."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q04",
+      "explanationLead": "The sample and notes transfer the pace."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q05",
+      "explanationLead": "Following the checklist visibly shows that high standards are built from sequence, not genius."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q06",
+      "explanationLead": "The issue is not correction itself."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q07",
+      "explanationLead": "Fear may produce compliance, but it does not necessarily build usable courage or skill."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q08",
+      "explanationLead": "The line makes the leader's status the center."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch09",
+      "questionId": "q09",
+      "explanationLead": "The second turns excellence into leadership."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q01",
+      "explanationLead": "Pain alone does not teach."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q02",
+      "explanationLead": "The circled line and tests turn the miss into correction."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q03",
+      "explanationLead": "The timestamp and rule target the actual gap."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q04",
+      "explanationLead": "The minute mark gives him a trainable correction."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q05",
+      "explanationLead": "The diagram and slow tag turn the failure into a correction."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q06",
+      "explanationLead": "The rejection points to a process flaw, not a rejection of beauty."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q07",
+      "explanationLead": "The missing control is the standard violation."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q08",
+      "explanationLead": "Humility may be real, but without a changed tactic the standard has not been answered."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch10",
+      "questionId": "q09",
+      "explanationLead": "The corrected retry has a changed tactic tied to the standard."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q01",
+      "explanationLead": "The discipline continues, but the form changes."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q02",
+      "explanationLead": "The card turns stillness into disciplined recovery."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q03",
+      "explanationLead": "Crossing out the notes removes the win-the-case reflex."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q04",
+      "explanationLead": "The pool set respects the current body and keeps practice alive."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q05",
+      "explanationLead": "Sitting through one rough entrance tests transfer without abandoning the standard."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q06",
+      "explanationLead": "The extra drill answers the old identity, not the recovery standard."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q07",
+      "explanationLead": "The keep-pile question creates one shared action without pretending the past is small."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q08",
+      "explanationLead": "The question matters only when it changes the next act."
+    },
+    {
+      "chapterId": "you-cant-hurt-me-ch11",
+      "questionId": "q09",
+      "explanationLead": "The repair action does not deny the loss."
+    }
+  ],
+  "rejectedFrames": [
+    "Opening with a childhood statistic and then generalizing into resilience.",
+    "Mirror scene as affirmation or self-esteem exercise.",
+    "Impossible task as a generic big goal or fitness challenge.",
+    "Taking souls as bullying, trash talk, or cruelty.",
+    "Armored mind as numbness or macho pain denial.",
+    "Cookie jar as magical confidence jar.",
+    "40% rule as exact science or blanket permission to ignore harm.",
+    "Talent not required as talent does not matter.",
+    "Uncommon among uncommon as superiority theater.",
+    "Failure as inspirational quote instead of forensic review.",
+    "What if as sentimental life-purpose close.",
+    "Chapter 1: hardship-to-resilience origin montage instead of pain inventory with next action.",
+    "Chapter 2: mirror-as-affirmation or confidence ritual.",
+    "Chapter 3: impossible task as generic big-goal inspiration.",
+    "Chapter 4: taking souls as cruelty, humiliation, or dominance display.",
+    "Chapter 5: armored mind as numbness or pain denial.",
+    "Chapter 6: service motive as collapse worship or magical memory.",
+    "Chapter 7: 40% rule as exact science or injury denial.",
+    "Chapter 8: planning lesson as anti-grit backlash.",
+    "Chapter 9: uncommon performance as superiority theater.",
+    "Chapter 10: failure as inherently empowering without correction.",
+    "Chapter 11: reflective ending as sentimental closure or victory lap."
+  ],
+  "chapterStatuses": {
+    "you-cant-hurt-me-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 1,
+      "checkedAt": "2026-05-13T19:37:28.128Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 2,
+      "checkedAt": "2026-05-13T19:40:06.732Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-13T19:42:31.195Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 4,
+      "checkedAt": "2026-05-13T19:45:11.433Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 5,
+      "checkedAt": "2026-05-13T19:47:45.696Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-13T19:50:19.115Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-13T19:54:24.466Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-13T19:56:52.119Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-13T19:59:16.979Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch10": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-13T20:01:42.610Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "you-cant-hurt-me-ch11": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 11,
+      "checkedAt": "2026-05-13T20:04:15.816Z",
+      "manuallyWritten": true,
+      "finalCheckpointPassed": true,
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    }
+  }
+}

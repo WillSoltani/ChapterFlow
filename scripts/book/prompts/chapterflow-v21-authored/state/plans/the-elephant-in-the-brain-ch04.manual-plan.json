@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch04",
+  "number": 4,
+  "title": "Cheating",
+  "coreMove": "Look for the thin cover that keeps a visible violation below the threshold for coordinated punishment.",
+  "sourcePressure": "The source shows cheating as norm-breaking that survives under thin cover when accusation, proof, and common knowledge are hard to assemble.",
+  "chapterSpecificMisunderstanding": "The writer treats cheating as secret villainy instead of public ambiguity protected by enforcement costs.",
+  "sourceAlignmentTerms": [
+    "cheating",
+    "broad daylight",
+    "fig leaf",
+    "common knowledge",
+    "discreet communication",
+    "excuses",
+    "lazy enforcement"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "broad-daylight violations with thin cover",
+      "detail": "The source says interesting cheating often happens in public under a thin fig leaf.",
+      "useIn": "both",
+      "phrasingHint": "The cover does not need to convince everyone; it only has to keep the room from moving together."
+    },
+    {
+      "kind": "artifact",
+      "name": "common knowledge requirement",
+      "detail": "The source says weak norms often need common knowledge before punishment can proceed.",
+      "useIn": "both",
+      "phrasingHint": "Suspicion is not enough until everyone knows that everyone else saw it too."
+    },
+    {
+      "kind": "event",
+      "name": "discreet communication and ready-made excuses",
+      "detail": "The source names discreet communication and excuses as ways violations evade enforcement.",
+      "useIn": "deepRead",
+      "phrasingHint": "A side glance and a ready excuse can do more protection than a locked door."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch04: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch04: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch04: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch04: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch04: no generic timer reflection",
+      "the-elephant-in-the-brain-ch04: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch04: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch04: no coffee shop conversation as the default social proof",
+      "no exam answer-copying scene",
+      "no cartoon liar caught red-handed"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "procurement committee vendor demo",
+      "audience": "an operations manager spotting a favored vendor being smuggled through process",
+      "stakes": "the committee may approve a biased deal because the excuse sounds procedural",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Michael asks the chair to state the emergency exception in writing before the favored vendor's demo can become the unspoken default.",
+      "firstImage": "The unopened bid envelopes sit beside a demo laptop already plugged in.",
+      "mustInclude": [
+        "bid envelopes",
+        "demo laptop",
+        "exception form"
+      ],
+      "mustAvoid": [
+        "generic bribery accusation"
+      ]
+    },
+    {
+      "domain": "university seminar participation grading",
+      "audience": "a teaching fellow noticing quiet collusion around peer marks",
+      "stakes": "the norm is weak because nobody wants to accuse classmates directly",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Juliette two grade cycles to see that identical praise appeared after hallway whispers, so she replaces open peer scores with blind evidence notes.",
+      "firstImage": "It took Juliette two grade cycles to recognize the repeated phrase.",
+      "mustInclude": [
+        "peer score sheet",
+        "hallway whispers",
+        "evidence notes"
+      ],
+      "mustAvoid": [
+        "exam cheating cliche"
+      ]
+    },
+    {
+      "domain": "cycling club equipment checkout",
+      "audience": "a mechanic handling riders who reserve premium wheels through side channels",
+      "stakes": "public excuses make selfish access look like harmless logistics",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Anders said I could hold them for fit testing,\" Rachel says, and the mechanic points to the checkout timestamp everyone can see.",
+      "firstImage": "\"Anders said I could hold them for fit testing,\" Rachel says with the wheel bag already zipped.",
+      "mustInclude": [
+        "wheel bag",
+        "checkout timestamp",
+        "fit-test note"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor repeated elsewhere"
+      ]
+    },
+    {
+      "domain": "nonprofit board conflict disclosure",
+      "audience": "a board secretary preventing a donor relationship from becoming invisible influence",
+      "stakes": "the room suspects the conflict but lacks shared proof",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Kiran slides the signed donor lunch receipt under the conflict-policy line and asks whether the board wants it recorded before the vote.",
+      "firstImage": "The receipt curls slightly where coffee dried along one edge.",
+      "mustInclude": [
+        "donor receipt",
+        "conflict policy",
+        "vote card"
+      ],
+      "mustAvoid": [
+        "charity virtue tale"
+      ]
+    },
+    {
+      "domain": "restaurant reservation waitlist",
+      "audience": "a host watching VIP exceptions hollow out a public policy",
+      "stakes": "a small excuse can let status bypass the rule all night",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You have Giulia mark every exception reason on the host stand screen, making the fig leaf visible enough that managers can no longer pretend it is rare.",
+      "firstImage": "You see the waitlist shrinking for names that never stood outside.",
+      "mustInclude": [
+        "host stand screen",
+        "exception reason",
+        "waitlist tablet"
+      ],
+      "mustAvoid": [
+        "hospitality customer-is-always-right story"
+      ]
+    },
+    {
+      "domain": "software release freeze",
+      "audience": "a release captain stopping a senior engineer from slipping a feature through as a bug fix",
+      "stakes": "a mislabeled ticket can make rule-breaking look like maintenance",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What happens when the bug-fix label carries a whole new settings page behind it?",
+      "firstImage": "What happens when a bug-fix label opens into a settings page?",
+      "mustInclude": [
+        "release freeze board",
+        "ticket label",
+        "diff summary"
+      ],
+      "mustAvoid": [
+        "generic deadline pressure"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot thin fig leaves in public violations",
+      "explain why suspicion fails without common knowledge",
+      "choose enforcement moves that lower accusation cost without overclaiming"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one rule-bending excuse you heard recently. Write the exact cover story and what shared evidence would be needed before anyone could act.",
+  "readingTimeMinutes": 12
+}

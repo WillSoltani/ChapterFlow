@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch10",
+  "number": 10,
+  "title": "Sync with Stakeholders at Work",
+  "coreMove": "Make your planned work visible to stakeholders before silence gets misread as neglect or availability.",
+  "sourcePressure": "The chapter closes traction by protecting work time through explicit alignment with people whose expectations can otherwise become interruptions.",
+  "chapterSpecificMisunderstanding": "A weak run would preach focus at work without negotiating the expectations that make focus possible.",
+  "sourceAlignmentTerms": [
+    "stakeholders",
+    "sync",
+    "work",
+    "expectations",
+    "traction",
+    "responsiveness"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Sync with Stakeholders at Work as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional blood-bank scheduler coordinating hospital calls",
+      "audience": "scheduler whose quiet planning block looks like nonresponse",
+      "stakes": "hospitals need clarity without constant interruption",
+      "format": "dialogue",
+      "requiredBeat": "she sends the triage window and emergency channel before starting the allocation board",
+      "firstImage": "A blood-type allocation board sits beside a red emergency line card.",
+      "mustInclude": [
+        "allocation board",
+        "emergency line card",
+        "triage window"
+      ],
+      "mustAvoid": [
+        "availability martyrdom"
+      ]
+    },
+    {
+      "domain": "animation producer aligning directors before a render review",
+      "audience": "producer who gets pinged for every tiny status question",
+      "stakes": "render time is wasted by unclear review expectations",
+      "format": "scene",
+      "requiredBeat": "he posts the review order, silence window, and escalation rule before locking the render queue",
+      "firstImage": "A storyboard strip sits beside a render-queue dashboard.",
+      "mustInclude": [
+        "storyboard strip",
+        "render queue",
+        "escalation rule"
+      ],
+      "mustAvoid": [
+        "creative chaos"
+      ]
+    },
+    {
+      "domain": "public-health analyst preparing a county dashboard",
+      "audience": "analyst whose commissioners expect instant revisions",
+      "stakes": "bad numbers spread if draft time is continually broken",
+      "format": "decision_point",
+      "requiredBeat": "she shares a two-hour validation block and a noon correction cutoff with the commissioners",
+      "firstImage": "A county heat map is pinned under a correction cutoff note.",
+      "mustInclude": [
+        "county heat map",
+        "cutoff note",
+        "validation block"
+      ],
+      "mustAvoid": [
+        "data dashboard generic"
+      ]
+    },
+    {
+      "domain": "ship repair estimator working across foremen and owners",
+      "audience": "estimator caught between yard questions and client pressure",
+      "stakes": "bid accuracy fails when every party assumes immediate answers",
+      "format": "postmortem",
+      "requiredBeat": "he creates one visible estimate window and one urgent-damage channel before measuring hull plates",
+      "firstImage": "A hull-plate gauge lies beside an estimate window sheet.",
+      "mustInclude": [
+        "hull-plate gauge",
+        "estimate sheet",
+        "urgent-damage channel"
+      ],
+      "mustAvoid": [
+        "meeting-more advice"
+      ]
+    },
+    {
+      "domain": "literary agent reading a contract for a debut novelist",
+      "audience": "agent whose client worries silence means bad news",
+      "stakes": "rushed reading can miss rights language",
+      "format": "before_after",
+      "requiredBeat": "before, the client sends anxious nudges; after, the agent sets a read block and update time",
+      "firstImage": "A rights clause is highlighted beside a fountain-pen cap.",
+      "mustInclude": [
+        "rights clause",
+        "fountain-pen cap",
+        "update time"
+      ],
+      "mustAvoid": [
+        "publishing glamour"
+      ]
+    },
+    {
+      "domain": "construction safety officer planning a crane lift review",
+      "audience": "officer whose radio keeps pulling him off the lift plan",
+      "stakes": "crew risk rises if stakeholder needs are not routed",
+      "format": "vignette",
+      "requiredBeat": "he tells the superintendent when he is unreachable and who handles non-lift questions",
+      "firstImage": "A crane lift diagram is clipped beneath a radio channel card.",
+      "mustInclude": [
+        "lift diagram",
+        "radio channel card",
+        "superintendent note"
+      ],
+      "mustAvoid": [
+        "safety heroics"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Make your planned work visible to stakeholders before silence gets misread as neglect or availability.",
+      "choose the action that stays inside Sync with Stakeholders at Work's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would preach focus at work without negotiating the expectations that make focus possible.",
+      "use chapter-specific terms such as stakeholders, sync, work, expectations in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Send one stakeholder a short plan that states your focus block, response window, and what counts as urgent today.",
+  "readingTimeMinutes": 12
+}

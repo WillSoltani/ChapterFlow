@@ -1,0 +1,168 @@
+{
+  "chapterId": "essentialism-ch17",
+  "number": 17,
+  "title": "Progress: The Power of Small Wins",
+  "coreMove": "Shrink the next step until it creates visible movement on meaningful work, then let momentum compound.",
+  "sourcePressure": "The chapter uses progress research, minimum viable progress, and minimum viable preparation to show why small visible wins sustain motivation.",
+  "chapterSpecificMisunderstanding": "A weak run would make small wins sound like lowering ambition or celebrating trivial activity.",
+  "sourceAlignmentTerms": [
+    "small wins",
+    "minimum viable progress",
+    "momentum",
+    "motivation",
+    "preparation",
+    "Amabile",
+    "Kramer"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic progress: the power of small wins topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "busywork frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "busywork",
+      "tiny goals without meaning",
+      "cheerleading",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "city tree-planting crew seeking minimum viable progress after grant delay",
+      "audience": "crew lead needing visible momentum",
+      "stakes": "small verified blocks keep mission alive without fake scale",
+      "format": "scene",
+      "requiredBeat": "She plants and maps the first ten heat-island trees instead of waiting for the full grant release.",
+      "firstImage": "Ten saplings stand beside a heat map.",
+      "mustInclude": [
+        "saplings",
+        "heat map",
+        "grant email"
+      ],
+      "mustAvoid": [
+        "busywork",
+        "celebration-only"
+      ]
+    },
+    {
+      "domain": "medical illustrator beginning a patient guide with one usable diagram",
+      "audience": "artist frozen by full guide ambition",
+      "stakes": "one finished diagram helps real explanation now",
+      "format": "decision_point",
+      "requiredBeat": "He sketches the single injection-site diagram patients need tomorrow before designing the whole booklet.",
+      "firstImage": "An injection-site sketch sits beside a blank booklet grid.",
+      "mustInclude": [
+        "injection sketch",
+        "booklet grid",
+        "clinic note"
+      ],
+      "mustAvoid": [
+        "perfectionism",
+        "generic art task"
+      ]
+    },
+    {
+      "domain": "community choir rebuilding confidence after a failed performance",
+      "audience": "director using visible progress, not pep talk",
+      "stakes": "one clean entrance can restore shared momentum",
+      "format": "before_after",
+      "requiredBeat": "Before, they rerun the whole piece badly; after, she practices the first eight bars until the entrance lands.",
+      "firstImage": "A score is clipped open to eight marked bars.",
+      "mustInclude": [
+        "score bars",
+        "entrance mark",
+        "rehearsal pencil"
+      ],
+      "mustAvoid": [
+        "cheerleading",
+        "music overlap as abstract"
+      ]
+    },
+    {
+      "domain": "open-data volunteer releasing one cleaned bus-stop file",
+      "audience": "maintainer tempted by whole portal scope",
+      "stakes": "small public release proves movement and invites correction",
+      "format": "postmortem",
+      "requiredBeat": "She publishes one accessible bus-stop file and logs the next cleanup instead of waiting for every route.",
+      "firstImage": "A cleaned bus-stop CSV sits beside a route backlog.",
+      "mustInclude": [
+        "bus-stop CSV",
+        "route backlog",
+        "release note"
+      ],
+      "mustAvoid": [
+        "bus depot shell",
+        "trivial tiny goal"
+      ]
+    },
+    {
+      "domain": "apprentice mason restoring one doorway after flood damage",
+      "audience": "craft apprentice needing confidence through progress",
+      "stakes": "one visible repair teaches the next step better than planning the whole wall",
+      "format": "reflection",
+      "requiredBeat": "He cleans one doorway joint, photographs the result, and uses it as the pattern for tomorrow.",
+      "firstImage": "A repaired doorway joint is dusted beside a chalk line.",
+      "mustInclude": [
+        "doorway joint",
+        "chalk line",
+        "photo card"
+      ],
+      "mustAvoid": [
+        "generic DIY",
+        "lowering ambition"
+      ]
+    },
+    {
+      "domain": "public radio newsroom drafting one verified wildfire update",
+      "audience": "editor preventing overwhelm during crisis",
+      "stakes": "minimum viable progress is the next useful public fact",
+      "format": "dialogue",
+      "requiredBeat": "She asks for one verified road closure update now, not the perfect explainer by midnight.",
+      "firstImage": "A road-closure note sits beside a broadcast clock.",
+      "mustInclude": [
+        "road-closure note",
+        "broadcast clock",
+        "verification log"
+      ],
+      "mustAvoid": [
+        "generic news stress",
+        "doing anything small"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify minimum viable progress inside a concrete scenario",
+      "choose the response that creates visible movement on meaningful work before motivation collapses",
+      "reject the generic drift: A weak run would make small wins sound like lowering ambition or celebrating trivial activity.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one essential task that feels too large. Define the smallest useful progress someone could see today, then do only that next visible piece.",
+  "readingTimeMinutes": 12
+}

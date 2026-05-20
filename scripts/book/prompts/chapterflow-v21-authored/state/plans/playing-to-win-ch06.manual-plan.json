@@ -1,0 +1,129 @@
+{
+  "chapterId": "playing-to-win-ch06",
+  "number": 6,
+  "title": "Manage What Matters",
+  "coreMove": "Redesign your reviews, metrics, and accountability to reinforce the strategy's actual choices — systems that measure and reward old behavior will quietly kill the strategy no matter how well the choices were made.",
+  "sourcePressure": "Management systems are the fifth strategic choice — reviews, measures, routines, and accountability must be aligned to reinforce the first four choices. The chapter distinguishes strategy reviews that create real dialogue from those that become corporate theater: checking whether the strategy is working versus performing compliance. Strategy fails when systems reward old behavior instead of the chosen field, edge, and capabilities.",
+  "chapterSpecificMisunderstanding": "Track your KPIs and hold people accountable — any rigorous performance management system will keep a strategy on track because accountability creates alignment.",
+  "sourceAlignmentTerms": ["management systems", "strategy review", "measures", "accountability", "dialogue", "corporate theater", "reinforce", "reward old behavior"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "corporate theater",
+      "detail": "The chapter distinguishes between strategy reviews that genuinely test whether the strategy is working — creating real dialogue about evidence, gaps, and pivots — and reviews that become corporate theater, where participants perform compliance rather than question assumptions. The distinction is whether the review could actually change a decision.",
+      "useIn": "deepRead",
+      "phrasingHint": "A review that cannot change a decision is not a strategy review. It is a briefing. The difference shows up in whether the questions being asked are 'is this working and why?' or 'are we on track to the plan we already committed to?'"
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "What gets measured gets managed — generic management cliche opener",
+      "Most teams have great strategies that fail in execution — strategy-vs-execution framing"
+    ],
+    "counterintuition": [
+      "Less measurement leads to better outcomes — minimalist-management generalization",
+      "Trust your team and get out of the way — empowerment-only frame"
+    ],
+    "tryThisNow": [
+      "Review your weekly metrics and see what they tell you — generic dashboard check",
+      "Schedule a strategy offsite to realign the team — generic offsite recommendation"
+    ],
+    "examples": [
+      "A company tracks the wrong metrics and misses a trend — generic measurement mistake",
+      "A manager micromanages their team and kills morale — micromanagement story"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Avoid the timestamp-protagonist-prop shell across more than two examples"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a software product team redesigning its weekly sprint review after the strategy shifted from feature velocity to retention depth",
+      "audience": "a product manager whose team still reports ticket throughput in every review even though the strategic choice shifted to engagement quality six months ago",
+      "stakes": "the review format creates invisible pressure to keep building features — which is what the old strategy required — while the new strategy requires slowing down and investing in depth of use, something the current metrics cannot measure",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rachel reviews six months of sprint reports and sees that every review celebrated a green velocity number while the retention metric — never on the review slide — has been declining for four of those months. The team was accountable for the wrong behavior. The system reinforced the old strategy.",
+      "firstImage": "six months of sprint review decks, each with a green velocity bar and a retention chart that was never shown to the room",
+      "mustInclude": ["the specific metric the current system rewards that contradicts the strategic choice", "the moment where the invisible misalignment between system and strategy becomes undeniable"],
+      "mustAvoid": ["agile methodology debate", "product team dynamics as the main story"]
+    },
+    {
+      "domain": "a hospital department restructuring its monthly leadership review after shifting strategic emphasis to preventive care",
+      "audience": "a department chief whose monthly review was designed when the department's strategic priority was acute treatment volume",
+      "stakes": "the review agenda runs through bed occupancy, procedure counts, and average length of stay — all measures of the old acute-treatment strategy — while the new preventive care strategy requires different signals: early-intervention referrals, screening completion rates, and patient re-enrollment in wellness programs",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Luke walks into the monthly review and sees the standard agenda: occupancy rates, procedure counts, length of stay. He asks the group which of those three numbers would change if the department's preventive care initiative were working. Nobody answers. The systems are reporting on the old strategy, and the new one is invisible.",
+      "firstImage": "a meeting agenda printed on recycled hospital stationery, three bullet points unchanged from the version used when the department's strategic priority was acute volume",
+      "mustInclude": ["the specific measure that would surface the new strategy's progress if it were on the agenda", "the moment where the gap between the review agenda and the new strategic choice is named aloud"],
+      "mustAvoid": ["hospital administration politics", "physician versus administrator conflict"]
+    },
+    {
+      "domain": "a sales organization redesigning compensation after shifting from volume-based to customer-success-based strategy",
+      "audience": "a sales director whose team is compensated on new deals closed but whose strategy now emphasizes expansion revenue and renewal rates",
+      "stakes": "the commission structure rewards hunting for new accounts, which is what the old strategy required — the new strategy requires the same reps to invest time in existing accounts, which earns them nothing under the current system",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Niklas's top rep tells him, privately, that she is spending seventy percent of her time on renewal calls but getting paid for zero percent of that time in commission — and she is about to start job-searching. The accountability system is actively pushing the best people away from the new strategy and toward the behavior the old strategy rewarded.",
+      "firstImage": "a commission report where the top-earning rep has the lowest renewal-rate contribution, and the rep with the highest renewal rate has the lowest commission check of the quarter",
+      "mustInclude": ["the specific compensation behavior the system rewards that directly contradicts the new strategic choice", "the moment where the management system is seen as actively working against the strategy it is supposed to support"],
+      "mustAvoid": ["sales team culture debate", "generic compensation philosophy lecture"]
+    },
+    {
+      "domain": "a creative agency restructuring its client success review after pivoting from output quantity to campaign effectiveness",
+      "audience": "a managing director whose client reviews measure deliverable completion rates and budget adherence, not campaign performance",
+      "stakes": "the review format was built for an agency that sold outputs — ads, assets, content volume — while the new positioning sells campaign effectiveness; a client asking 'did it work?' has no answer in the current system",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "before: Paula runs a client review showing on-time delivery rates and budget variance — both green — while the client asks for the third time whether the campaign moved any actual customer behavior; after: she rebuilds the review around two leading indicators of effectiveness that she can report monthly and that the client cares about, making the system reinforce the new strategic position",
+      "firstImage": "a client review deck that is nine slides of on-time delivery and one slide of 'campaign results: data collection ongoing'",
+      "mustInclude": ["the specific measure the new strategic position requires that the old review format cannot show", "the rebuilt review structure that makes the new strategy visible and accountable"],
+      "mustAvoid": ["advertising industry trend commentary", "client relationship drama as the main tension"]
+    },
+    {
+      "domain": "a university department restructuring its annual faculty review after shifting emphasis from research publications to industry partnership outcomes",
+      "audience": "a department head whose annual review process was designed for a research-ranking strategy and cannot assess industry partnership work",
+      "stakes": "faculty who invest in industry partnerships and applied projects receive no credit in the current promotion and review system, which was calibrated for citation counts and journal rankings — the system is reinforcing the old research-first strategy while the leadership has formally committed to the new one",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Janek reviews three years of promotion decisions and finds that every faculty member promoted to associate professor had a strong publications record and weak industry involvement, while two faculty members with strong industry partnerships and moderate publication records were denied. The system promoted the old strategy. The new one was invisible in every decision.",
+      "firstImage": "three years of promotion committee notes where the main evaluation criteria are citation count and journal tier, with no column or rubric for industry partnership outcomes",
+      "mustInclude": ["the specific activity the new strategic choice requires that the promotion system assigns zero weight to", "the systemic pattern across multiple decisions that shows the misalignment, not just one edge case"],
+      "mustAvoid": ["academic freedom debate", "tenure process generalization"]
+    },
+    {
+      "domain": "a family business restructuring its monthly review after adding a second product line with a different margin and growth profile",
+      "audience": "an operations director whose review format was built around the original product line and cannot distinguish the performance drivers for the new one",
+      "stakes": "the original product line is mature with high margins and slow growth; the new product line is early-stage with low margins and high growth potential — reviewing them with the same metrics makes the new line look like a problem every month, suppressing investment in it",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Camille imagines presenting the month-end numbers to her father (the founder) using only the combined P&L — and sees that the new line's low margin will trigger a cost-cutting conversation that kills the growth investment it needs. The review system does not distinguish strategies. It treats both as one. That is the management system failure.",
+      "firstImage": "a combined P&L report where the two product lines are presented as one number, and the mature line's margin subsidizes the new line's losses in a way that makes both look mediocre",
+      "mustInclude": ["the specific review structure that would separate the two lines' performance and allow different strategic decisions about each", "the moment where the combined reporting is recognized as the source of systematically wrong resource decisions"],
+      "mustAvoid": ["family business succession drama", "generic profit margin improvement advice"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish a strategy-reinforcing review from a compliance review or corporate theater",
+      "apply the 'what behavior does this system reward' question to identify misalignment between a management system and a strategic choice",
+      "analyze why a well-designed strategy can be undone by a management system that measures the previous strategy's priorities",
+      "evaluate whether a proposed metric reinforces the stated strategy or measures something adjacent or historical"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "After your next review meeting, list the three things that were measured or reported. Ask: if the strategy were actually working, which of those numbers would look different? If none would change, the system is reporting on the past — not reinforcing the strategy. Name one decision the review should have forced and did not.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that directly addresses the reader about their own review cadence — not a general observation about organizations but a specific question about the last review they participated in",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

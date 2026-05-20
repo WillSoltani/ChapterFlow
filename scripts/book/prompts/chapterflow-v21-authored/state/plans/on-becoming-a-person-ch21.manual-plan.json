@@ -1,0 +1,191 @@
+{
+  "chapterId": "on-becoming-a-person-ch21",
+  "number": 21,
+  "title": "The Place of the Individual in the New World of the Behavioral Sciences",
+  "coreMove": "Judge any human system by whether it protects the individual's capacity to become a person.",
+  "sourcePressure": "The closing chapter defends the individual person inside a world increasingly shaped by scientific systems, prediction, and control. No split source sidecar exists for ch21; frozen TOC and book skeleton support the heading, part placement, and broad intent only, with no chapter-local named anecdotes, studies, or places.",
+  "chapterSpecificMisunderstanding": "Ending with anti-science alarm or vague celebration of individuality.",
+  "sourceAlignmentTerms": [
+    "individual",
+    "new world",
+    "behavioral sciences",
+    "personhood",
+    "freedom",
+    "systems",
+    "responsibility"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source exposes no usable chapter-local named person, study, institution, place, date, or anecdotal artifact from Rogers here. Use fictional protagonists only; do not invent named Rogers cases or studies.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of individual",
+      "therapist office at the window",
+      "reader-you-are-stuck generic opener"
+    ],
+    "counterintuition": [
+      "Most people think X, but Y",
+      "It is not about being nice",
+      "The paradox is that acceptance changes everything"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you noticed",
+      "pause and breathe before replying"
+    ],
+    "examples": [
+      "individualism slogans",
+      "anti-system polemic",
+      "future-of-humanity abstraction",
+      "reused classroom worksheet shell",
+      "coffee mug office feedback shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Joseph",
+      "domain": "student data privacy hearing",
+      "audience": "readers who face student data privacy hearing and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around individual; specifically, the outcome turns on whether Joseph can make individual visible without sliding into ending with anti-science alarm or vague celebration of individuality.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "In the student data privacy hearing, Joseph tests the system by whether it treats the individual as a becoming person or as a unit to steer, with the privacy notice and the flow map making the choice visible instead of merely stated.",
+      "firstImage": "the privacy notice beside Joseph's hand; the opening opens from the texture, sound, or physical pressure of the object before anyone explains it",
+      "mustInclude": [
+        "privacy notice",
+        "flow map"
+      ],
+      "mustAvoid": [
+        "do not turn student data privacy hearing into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Joseph lecture"
+      ]
+    },
+    {
+      "protagonistName": "Simon",
+      "domain": "hospital patient-flow command center",
+      "audience": "readers who face hospital patient-flow command center and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around individual; specifically, the outcome turns on whether Simon can make individual visible without sliding into ending with anti-science alarm or vague celebration of individuality.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "In the hospital patient-flow command center, Simon tests the system by whether it treats the individual as a becoming person or as a unit to steer, with the flow map and the eligibility letter making the choice visible instead of merely stated.",
+      "firstImage": "a half-finished note on Simon's desk; the opening begins with one line of speech that exposes the relational pressure before the narrator explains it",
+      "mustInclude": [
+        "flow map",
+        "eligibility letter"
+      ],
+      "mustAvoid": [
+        "do not turn hospital patient-flow command center into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Simon lecture"
+      ]
+    },
+    {
+      "protagonistName": "Alex",
+      "domain": "workplace wellbeing platform review",
+      "audience": "readers who face workplace wellbeing platform review and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around individual; specifically, the outcome turns on whether Alex can make individual visible without sliding into ending with anti-science alarm or vague celebration of individuality.",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "In the workplace wellbeing platform review, Alex tests the system by whether it treats the individual as a becoming person or as a unit to steer, with the eligibility letter and the privacy notice making the choice visible instead of merely stated.",
+      "firstImage": "the open doorway before Alex speaks; the opening puts the reader directly in the moment before naming the choice",
+      "mustInclude": [
+        "eligibility letter",
+        "privacy notice"
+      ],
+      "mustAvoid": [
+        "do not turn workplace wellbeing platform review into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Alex lecture"
+      ]
+    },
+    {
+      "protagonistName": "Charles",
+      "domain": "city benefits eligibility automation",
+      "audience": "readers who face city benefits eligibility automation and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around individual; specifically, the outcome turns on whether Charles can make individual visible without sliding into ending with anti-science alarm or vague celebration of individuality.",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "In the city benefits eligibility automation, Charles tests the system by whether it treats the individual as a becoming person or as a unit to steer, with the privacy notice and the flow map making the choice visible instead of merely stated.",
+      "firstImage": "a line on the form that Charles cannot ignore; the opening starts after the cost is visible, then backs into the choice that created it",
+      "mustInclude": [
+        "privacy notice",
+        "flow map"
+      ],
+      "mustAvoid": [
+        "do not turn city benefits eligibility automation into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Charles lecture"
+      ]
+    },
+    {
+      "protagonistName": "Edward",
+      "domain": "university conduct analytics meeting",
+      "audience": "readers who face university conduct analytics meeting and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around individual; specifically, the outcome turns on whether Edward can make individual visible without sliding into ending with anti-science alarm or vague celebration of individuality.",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "In the university conduct analytics meeting, Edward tests the system by whether it treats the individual as a becoming person or as a unit to steer, with the flow map and the eligibility letter making the choice visible instead of merely stated.",
+      "firstImage": "the quiet after Edward stops explaining; the opening lets the room or setting carry the first signal before any person is named",
+      "mustInclude": [
+        "flow map",
+        "eligibility letter"
+      ],
+      "mustAvoid": [
+        "do not turn university conduct analytics meeting into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Edward lecture"
+      ]
+    },
+    {
+      "protagonistName": "Martin",
+      "domain": "national service program design",
+      "audience": "readers who face national service program design and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around individual; specifically, the outcome turns on whether Martin can make individual visible without sliding into ending with anti-science alarm or vague celebration of individuality.",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "In the national service program design, Martin tests the system by whether it treats the individual as a becoming person or as a unit to steer, with the eligibility letter and the privacy notice making the choice visible instead of merely stated.",
+      "firstImage": "two chairs pulled out from the table; the opening opens with the practical question the scene has to answer",
+      "mustInclude": [
+        "eligibility letter",
+        "privacy notice"
+      ],
+      "mustAvoid": [
+        "do not turn national service program design into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Martin lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "evaluate systems by personhood",
+      "defend individuality without rejecting science",
+      "connect freedom to responsibility"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one policy, platform, or institution and ask whether it treats people as becoming persons or as units to steer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside where supported, a direct second-person passage, or a brief historical reference to the frozen chapter placement",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

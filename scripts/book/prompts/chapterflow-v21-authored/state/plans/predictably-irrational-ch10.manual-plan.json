@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch10",
+  "number": 10,
+  "title": "The Power of Price",
+  "coreMove": "Separate the price signal from the result before letting expensive become synonymous with effective.",
+  "sourcePressure": "The source shows that price can change expected and even experienced effectiveness, as with placebo-like responses to discounted versus full-price products.",
+  "chapterSpecificMisunderstanding": "The weak version says expensive is not always better; the precise lesson is that price can become an active expectation that alters perceived results.",
+  "sourceAlignmentTerms": ["price signal", "placebo effect", "quality inference", "expectancy", "discount", "effectiveness"],
+  "forbiddenFrames": {
+    "hook": ["Price can feel like medicine", "The expensive one works before it works", "A discount can weaken belief"],
+    "counterintuition": ["Price only measures value", "Discounts are pure gains", "Placebo means fake"],
+    "tryThisNow": ["Hide the price", "Compare results", "Do not assume expensive works"],
+    "examples": ["pain patch", "energy drink", "premium training"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "running-store insole fitting with covered prices",
+      "audience": "a recreational runner choosing between insoles before a half marathon",
+      "stakes": "buying the most expensive pair because the price makes support feel stronger",
+      "format": "decision_point",
+      "requiredBeat": "the fitter covers the price stickers and has the runner jog the hallway before ranking knee comfort",
+      "firstImage": "three insole pairs lined on a rubber mat with tape over the price stickers",
+      "mustInclude": ["covered stickers", "hallway jog", "knee comfort rank"],
+      "mustAvoid": ["medical treatment advice", "energy supplement", "shoe status"]
+    },
+    {
+      "domain": "music producer testing budget and premium plug-ins",
+      "audience": "a producer mixing a vocal track under deadline",
+      "stakes": "hearing quality because the premium plug-in window looks expensive",
+      "format": "predict_reveal",
+      "requiredBeat": "a collaborator renames the plug-ins A and B, bounces both mixes, and asks the producer to choose before seeing the price",
+      "firstImage": "two audio tracks labeled A and B on a glowing mix screen",
+      "mustInclude": ["renamed plug-ins", "bounced mixes", "deadline"],
+      "mustAvoid": ["software pricing decoy", "expectation beta label", "generic tech tool"]
+    },
+    {
+      "domain": "pet owner comparing flea treatments after a coupon",
+      "audience": "a dog owner doubting a discounted treatment before the vet visit",
+      "stakes": "misreading ordinary scratching as product failure because discount lowered confidence",
+      "format": "dialogue",
+      "requiredBeat": "the vet covers the receipt total and asks the owner to track actual flea counts on the comb before judging effectiveness",
+      "firstImage": "a flea comb on a paper exam-table sheet beside a folded receipt",
+      "mustInclude": ["folded receipt", "flea count", "vet instruction"],
+      "mustAvoid": ["human medical claims", "free vitamin coupon", "price bargain hunting"]
+    },
+    {
+      "domain": "language-learning app offered through an employer discount",
+      "audience": "an employee deciding whether the discounted app is weaker than the full-price competitor",
+      "stakes": "abandoning useful practice because lower price feels like lower learning power",
+      "format": "reflection",
+      "requiredBeat": "the employee hides subscription prices and compares two weeks of completed speaking drills instead of prestige",
+      "firstImage": "a phone showing completed speaking drills beside a benefits enrollment page",
+      "mustInclude": ["employer discount", "speaking drills", "two-week log"],
+      "mustAvoid": ["wellness app expectation", "training premium", "free trial"]
+    },
+    {
+      "domain": "barber shop testing house-made hair product",
+      "audience": "a barber deciding whether clients believe the unlabeled jar works",
+      "stakes": "mistaking packaging price cues for hold and shine",
+      "format": "vignette",
+      "requiredBeat": "the barber fills identical tins from premium and house batches, marks them only by color dots, and checks which style holds by closing time",
+      "firstImage": "identical silver tins lined below a mirror with tiny color dots",
+      "mustInclude": ["color dots", "closing-time hold", "premium batch"],
+      "mustAvoid": ["brand taste test", "cosmetic luxury critique", "social image"]
+    },
+    {
+      "domain": "public library ergonomic chair trial",
+      "audience": "a library director choosing chairs for staff workstations",
+      "stakes": "assuming the expensive chair reduces pain before staff try unlabeled models",
+      "format": "before_after",
+      "requiredBeat": "after a week of covered labels and rotation logs, the director compares reported back comfort to chair codes rather than catalog prices",
+      "firstImage": "chair catalog pages tucked under a checkout-desk keyboard tray",
+      "mustInclude": ["covered labels", "rotation log", "catalog price"],
+      "mustAvoid": ["medical device", "office procurement anchor", "generic furniture"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify price as an expectancy cue", "design price-blinded result checks", "distinguish true quality differences from price-induced confidence", "evaluate discount effects on perceived effectiveness"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before judging whether a paid tool or product worked, hide the price and write one observable result you can compare without knowing what it cost.",
+  "readingTimeMinutes": 12
+}

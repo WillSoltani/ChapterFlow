@@ -1,0 +1,136 @@
+{
+  "chapterId": "superforecasting-ch05",
+  "number": 5,
+  "title": "Supersmart?",
+  "coreMove": "Break the problem into parts small enough to estimate, anchor each part on a base rate before adjusting for what you know specifically, then recombine — decomposition plus outside view beats a powerful but undisciplined mind.",
+  "sourcePressure": "The chapter cuts the genius myth: the biggest IQ jump is from general public to forecasters, not from forecasters to superforecasters. Enrico Fermi's piano-tuner decomposition turns impossible-seeming questions into estimable components. Bill Flack's Arafat polonium case shows base-rate and outside-view reasoning overriding a compelling narrative. Need for cognition, openness to experience, and self-critical thinking explain why some smart people sustain improvement while others become prisoners of their first elegant theory.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'be curious and open-minded.' The specific mechanism is mechanical and sequential: decompose the question into components, consult the reference class (what happens in cases like this?), adjust only then for what you know specifically, then recombine. It is a procedure, not a personality trait.",
+  "sourceAlignmentTerms": ["Fermi decomposition", "outside view", "base rate", "need for cognition", "openness to experience", "self-critical thinking", "intelligence versus genius"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Enrico Fermi",
+      "detail": "Italian physicist who pioneered the estimation technique now called Fermi problems — breaking apparently unanswerable questions into component estimates (e.g., 'how many piano tuners are in Chicago?') by decomposing into household count, piano ownership rate, tuning frequency, and tuning time per visit; used in the book as the model for how superforecasters approach large uncertain questions",
+      "useIn": "both",
+      "phrasingHint": "Fermi did not guess at the number of piano tuners in Chicago. He built the number from smaller guesses that could each be checked separately — and the product was usually close."
+    },
+    {
+      "kind": "event",
+      "name": "Bill Flack's Arafat polonium case",
+      "detail": "Bill Flack's forecasting approach when Yasser Arafat's death was being linked to polonium poisoning — rather than treating the narrative (secret assassination by sophisticated actor) as the explanation, Flack started with base rates for the circumstances, considered multiple alternative explanations, and arrived at a calibrated probability rather than riding the compelling story to high confidence",
+      "useIn": "deepRead",
+      "phrasingHint": "When the polonium story broke, the inside-view answer was almost already written. Flack went to the outside view first — how often do leaders in comparable situations die this way versus that way — and the probability he landed on was lower than the headline implied."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with IQ or intelligence testing content — wrong frame for this chapter",
+      "opening with 'You don't need to be a genius to predict the future' — too coaching-register"
+    ],
+    "counterintuition": [
+      "'Smart people make worse forecasters because they rationalize too well' — oversimplification; the chapter says self-critical thinking is what separates good from bad smart forecasters"
+    ],
+    "tryThisNow": [
+      "'Estimate how many X are in your city' as a party game — trivializes the discipline",
+      "any prompt about 'staying curious' without the decomposition mechanism"
+    ],
+    "examples": [
+      "any example where the protagonist simply 'thinks harder' and gets the right answer — misses the decomposition structure",
+      "any domain from ch01–04 (no hospital, winery, structural engineering, VC, weather, pharma safety, hiring, insurance, credit, journalism)"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Decomposition is a tool that enters from many directions — the variety of openings should signal that the move works across very different starting conditions"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "startup founder estimating addressable market for a niche B2B compliance software product",
+      "audience": "a founder preparing a board deck whose market size claim is currently a guess",
+      "stakes": "Series A term sheet discussion where the investor's first question will be 'how did you get to that number?'",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "instead of picking a TAM number that feels right, the founder breaks the market into: number of companies in the target sector (publicly available), fraction facing the specific regulatory pressure (industry report), fraction currently using any software to manage it (analyst estimate), and willingness-to-pay range (three customer interviews) — the decomposed estimate is 40% lower than her gut number, which she uses anyway because it is defensible",
+      "firstImage": "a whiteboard covered in variables with arrows between them, the founder's bold initial number circled and then questioned",
+      "mustInclude": ["the four-component decomposition", "the 40% gap between gut and decomposed estimate", "the decision to use the lower defensible number"],
+      "mustAvoid": ["startup pitch advice", "making the investor the obstacle"]
+    },
+    {
+      "domain": "orthopedic surgeon estimating operative time for a complex revision hip replacement she has not done in this exact configuration before",
+      "audience": "a surgeon scheduling a surgery list whose time estimate determines whether a second case can be added to the afternoon",
+      "stakes": "OR scheduling efficiency and a second patient's surgery possibly being postponed",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the surgeon resists giving a single gut number and instead decomposes: standard revision time from her last 12 cases, additional time for the specific complication pattern in this CT, time for the hardware removal, and a buffer for unexpected findings — the estimate is 25 minutes longer than her initial feeling, and the second case is moved to a later date rather than squeezed in",
+      "firstImage": "a CT scan printout pinned to an OR scheduling board with a handwritten time estimate that is currently a question mark",
+      "mustInclude": ["the four-component decomposition", "the 25-minute gap from initial gut estimate", "the scheduling decision it changes"],
+      "mustAvoid": ["medical procedure detail that overwhelms the decomposition beat", "any domain overlap with ch02's physician content"]
+    },
+    {
+      "domain": "city planner estimating cost for a new cycling infrastructure project using analogous projects from other cities",
+      "audience": "a senior planner presenting a budget estimate to a council committee",
+      "stakes": "a $4M budget line item in a capital plan; the estimate will be treated as a commitment",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "the planner finds four analogous projects in comparable cities, decomposes cost into surface preparation, signage, paint, and installation labor, anchors each on the reference class average, then adjusts for one local factor (higher union labor rate) — the estimate comes in 18% above the initial figure the director had already communicated, requiring an uncomfortable conversation before the council meeting",
+      "firstImage": "a city transportation office with four project case files spread on a desk, each from a different comparable municipality",
+      "mustInclude": ["the four analogous projects as reference class", "the four-component cost decomposition", "the 18% upward adjustment from the initial figure"],
+      "mustAvoid": ["urban planning policy content", "any infrastructure domain shared with other chapters"]
+    },
+    {
+      "domain": "event management company estimating attendance for a corporate industry conference with no prior history",
+      "audience": "a conference director proposing a venue contract to a corporate client",
+      "stakes": "a venue deposit commitment based on a minimum attendance guarantee; overestimate means wasted spend, underestimate means turnaway and poor experience",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the director decomposes: total registrants in the client's industry association email list, historical open rate for similar conference invites, conversion from open to registration, expected no-show rate from three comparable events — the Fermi estimate is 340 attendees, versus the client's hope of 500; the director presents 340 with confidence intervals and the client resets their expectations",
+      "firstImage": "a venue floor plan with a capacity of 600 and a client expectation number written in pencil next to it",
+      "mustInclude": ["all four decomposition components with specific numbers", "the 340 vs. 500 gap", "the confident presentation of the estimate with its basis"],
+      "mustAvoid": ["event planning logistics content", "making the client adversarial"]
+    },
+    {
+      "domain": "community pharmacist calculating whether a rural clinic's medication supply will cover a projected surge period",
+      "audience": "a head pharmacist at a remote clinic preparing for a six-week rural health surge",
+      "stakes": "whether to place an emergency order now or wait, given limited cold-storage capacity",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the pharmacist decomposes: current census, expected surge multiplier from last two years' seasonal data, average doses per patient per day for the three highest-demand medications, days of supply on hand — the answer is 11 days of buffer under surge conditions, below the safe threshold; the emergency order is placed rather than waiting",
+      "firstImage": "a storage room clipboard showing current stock counts and a surge forecast written on a sticky note",
+      "mustInclude": ["four-component decomposition", "the 11-day buffer figure", "the threshold comparison that drives the order decision"],
+      "mustAvoid": ["pharmaceutical supply chain jargon", "any domain repeat from ch01–04"]
+    },
+    {
+      "domain": "residential architect estimating renovation cost for a client whose prior architect gave a ballpark without decomposing",
+      "audience": "an architect who must give a realistic estimate before the client commits to a full design phase fee",
+      "stakes": "the client's construction budget decision and whether they proceed with the full project or scale it back",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the prior architect said '$180K to $220K — hard to know at this stage'; the current architect decomposes by trade (structural, plumbing, electrical, finishes, contingency) using reference costs from her last six comparable renovations and adjusts for this project's one distinguishing feature (load-bearing wall removal) — the estimate is $247K with explicit uncertainty bounds, and the client decides to scale back one scope item before committing",
+      "firstImage": "two estimates side by side — a one-line ballpark from the prior architect and a spreadsheet from the current one",
+      "mustInclude": ["the prior ballpark vs. decomposed estimate contrast", "the five-trade decomposition", "the scope-reduction decision the number enables"],
+      "mustAvoid": ["architecture or construction methodology content", "making the prior architect incompetent"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply Fermi decomposition to a novel estimation problem",
+      "identify when inside-view reasoning is dominating over outside-view base rates",
+      "distinguish the correct sequence: reference class first, specific adjustment second",
+      "analyze why decomposition helps even when component estimates are uncertain",
+      "evaluate whether a given estimate has been anchored on a reference class or derived purely from intuition"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find one number you need to estimate this week — a project cost, a timeline, an audience size, a conversion rate. Before guessing, write three components the total is made of. Look up or estimate each component separately. Multiply or add them. Compare that number to your gut estimate. The gap between them is what decomposition is for.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one direct analytical passage explaining why the outside view feels unsatisfying — it strips away the specificity that makes inside-view reasoning feel intelligent — and why that discomfort is a signal the move is working",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

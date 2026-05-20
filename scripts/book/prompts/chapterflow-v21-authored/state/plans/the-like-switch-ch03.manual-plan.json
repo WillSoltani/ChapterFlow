@@ -1,0 +1,187 @@
+{
+  "chapterId": "the-like-switch-ch03",
+  "number": 3,
+  "title": "The Golden Rule of Friendship",
+  "coreMove": "Shift attention outward so the other person leaves the interaction feeling better about themselves, not impressed by you.",
+  "sourcePressure": "The ch03 source states the Golden Rule of Friendship: if you want people to like you, make them feel good about themselves. It warns against ego, flattery, and obvious performance.",
+  "chapterSpecificMisunderstanding": "Reducing the rule to compliments, agreement, or self-erasure.",
+  "sourceAlignmentTerms": [
+    "Golden Rule of Friendship",
+    "feel good about themselves",
+    "ego",
+    "outward attention",
+    "positive feelings",
+    "sincerity"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Golden Rule of Friendship",
+      "detail": "The ch03 sidecar names the rule: if you want people to like you, make them feel good about themselves.",
+      "useIn": "both",
+      "phrasingHint": "The rule works when the good feeling belongs to them, not when your compliment calls attention to your own cleverness."
+    },
+    {
+      "kind": "event",
+      "name": "ego override",
+      "detail": "The source sidecar says most people fail because ego keeps attention on themselves.",
+      "useIn": "fullRead",
+      "phrasingHint": "The hard part is not finding praise; it is getting your own need to shine out of the center of the room."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Make people feel good",
+      "Everyone likes compliments",
+      "Stop talking about yourself"
+    ],
+    "counterintuition": [
+      "liking is about them, not you",
+      "flattery is bad"
+    ],
+    "tryThisNow": [
+      "give someone a compliment today"
+    ],
+    "examples": [
+      "generic dinner party praise",
+      "manager says great job",
+      "student asks about weekend"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a paramedic preceptor debriefing a new EMT after a messy call",
+      "audience": "a senior medic who wants confidence without false praise",
+      "stakes": "a shaky trainee may either learn or shut down",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the preceptor names the exact patient-care decision the trainee handled well before discussing the miss, so the trainee feels competent enough to hear correction",
+      "firstImage": "the ambulance floor smells faintly of antiseptic and rainwater",
+      "mustInclude": [
+        "glove wrapper",
+        "run sheet",
+        "oxygen key"
+      ],
+      "mustAvoid": [
+        "empty praise or heroic rescue scene"
+      ]
+    },
+    {
+      "domain": "a public library branch manager welcoming a retired engineer to a volunteer tech-help desk",
+      "audience": "a manager who needs the volunteer to feel useful without being patronized",
+      "stakes": "the volunteer may quit if treated like a mascot instead of skilled help",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"You caught what our form misses,\" Rachel says, pointing to his note before asking for help redesigning the sign-up sheet",
+      "firstImage": [
+        "sign-up sheet",
+        "library lanyard",
+        "magnifier lamp"
+      ],
+      "mustInclude": [
+        "generic workplace compliment"
+      ]
+    },
+    {
+      "domain": "a climbing gym instructor handling a nervous adult beginner",
+      "audience": "an instructor who must keep attention on the beginner instead of performing expertise",
+      "stakes": "one humiliating moment could make the beginner leave the sport",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:18 p.m., James chooses to notice the beginner checking her knot correctly instead of showing off a harder move",
+      "firstImage": "a figure-eight knot held in chalky fingers",
+      "mustInclude": [
+        "belay card",
+        "chalk bag",
+        "top-rope lane"
+      ],
+      "mustAvoid": [
+        "bike helmet or sports pep talk shell"
+      ]
+    },
+    {
+      "domain": "a city planning facilitator listening to residents angry about a bus-lane proposal",
+      "audience": "a facilitator whose credibility depends on making opponents feel heard",
+      "stakes": "a public meeting can turn hostile before the maps are discussed",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the facilitator repeats the resident concerns as practical local knowledge and asks where the map is blind, making critics feel respected without surrendering the proposal",
+      "firstImage": "a roll of traffic maps curling at the corners",
+      "mustInclude": [
+        "traffic maps",
+        "name placards",
+        "microphone stand"
+      ],
+      "mustAvoid": [
+        "bus depot anchor"
+      ]
+    },
+    {
+      "domain": "a software mentor reviewing a junior developer pull request",
+      "audience": "a mentor who must correct without stealing ownership",
+      "stakes": "the junior dev may learn the habit or start hiding mistakes",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you can either showcase your own elegant fix or ask what tradeoff the junior developer was protecting, then name the sound instinct underneath it",
+      "firstImage": "a red test failure beside a small green diff",
+      "mustInclude": [
+        "pull request",
+        "test log",
+        "review comment"
+      ],
+      "mustAvoid": [
+        "generic code review praise"
+      ]
+    },
+    {
+      "domain": "a neighborhood choir director keeping an alto from quitting after missed entrances",
+      "audience": "a director balancing correction with belonging",
+      "stakes": "losing one singer will thin the section before a memorial concert",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes two rehearsals for Juliette to realize the alto returns when feedback starts with the blend she adds, not the mistake she made",
+      "firstImage": "a pencil mark beside measure 42",
+      "mustInclude": [
+        "sheet music",
+        "folding riser",
+        "water bottle with choir sticker"
+      ],
+      "mustAvoid": [
+        "performance trophy or classroom shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish sincere outward attention from flattery",
+      "choose responses that leave another person feeling competent or seen",
+      "detect ego-centered conversation turns",
+      "evaluate when validation becomes performance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In your next conversation, ask one follow-up that helps the other person feel competent, useful, or understood, then do not pivot back to your own story.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

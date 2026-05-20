@@ -1,0 +1,191 @@
+{
+  "chapterId": "the-black-swan-ch01",
+  "number": 1,
+  "title": "The Apprenticeship of an Empirical Skeptic",
+  "coreMove": "Separate recent calm from earned knowledge before treating any system as understood.",
+  "sourcePressure": "Lebanon teaches that visible normality can sit beside unreadable fragility, and that later observers make rupture look more legible than it was.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into a generic reminder that bad things can happen.",
+  "sourceAlignmentTerms": [
+    "empirical skeptic",
+    "Lebanon",
+    "civil-war discontinuity",
+    "black box history",
+    "retrospective tidying",
+    "untested calm",
+    "local patterns"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "Lebanon",
+      "detail": "the civil-war discontinuity is the source-sidecar anchor for Taleb learning empirical skepticism from rupture rather than theory",
+      "useIn": "both",
+      "phrasingHint": "Lebanon matters here because ordinary days did not announce the break before it arrived."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional hospital backup-power planning",
+      "audience": "operations leaders trusting years of clean generator tests",
+      "stakes": "patients losing ventilator support during an ice storm",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the facilities lead circles the missing full-load test on the outage plan before approving the budget",
+      "firstImage": "At 8:17 a.m., Sarah faces a laminated generator log beside an unopened fuel contract.",
+      "mustInclude": [
+        "Sarah",
+        "a laminated generator log beside an unopened fuel contract",
+        "empirical skeptic"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into a generic reminder that bad things can happen.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "coastal condo insurance underwriting",
+      "audience": "an underwriter reviewing ten quiet hurricane seasons",
+      "stakes": "a low premium wiping out reserves after one surge",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the underwriter moves the map layer from past claims to untested storm paths and refuses the discount",
+      "firstImage": "A first line of dialogue lands before the reader sees a flood map glowing on a second monitor.",
+      "mustInclude": [
+        "Emily",
+        "a flood map glowing on a second monitor",
+        "Lebanon"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into a generic reminder that bad things can happen.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "cloud-infrastructure incident review",
+      "audience": "a reliability engineer with a green uptime dashboard",
+      "stakes": "a regional failover that has never been exercised",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the engineer deletes the word proven from the slide and schedules a live cutover drill",
+      "firstImage": "Open on the texture, sound, or light of a wall display full of green status tiles.",
+      "mustInclude": [
+        "Hannah",
+        "a wall display full of green status tiles",
+        "civil-war discontinuity"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into a generic reminder that bad things can happen.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "municipal bridge maintenance",
+      "audience": "a city analyst seeing no failures in forty years",
+      "stakes": "a weight restriction being lifted without inspection",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the analyst places the last structural audit date beside the new traffic proposal",
+      "firstImage": "You are looking at rust flakes in a clear evidence sleeve before the choice becomes abstract.",
+      "mustInclude": [
+        "Megan",
+        "rust flakes in a clear evidence sleeve",
+        "black box history"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into a generic reminder that bad things can happen.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "family emergency reserve planning",
+      "audience": "a household tempted to spend savings after a smooth year",
+      "stakes": "a single job loss turning comfort into debt",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the parent writes what has not happened yet under the clean budget column",
+      "firstImage": "It takes Claire several weeks to understand what an untouched envelope marked insurance deductible was really showing.",
+      "mustInclude": [
+        "Claire",
+        "an untouched envelope marked insurance deductible",
+        "retrospective tidying"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into a generic reminder that bad things can happen.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "food distributor cold-chain audit",
+      "audience": "a logistics manager trusting flawless monthly summaries",
+      "stakes": "a sensor outage hiding a thawed vaccine shipment",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the manager asks which lane has been stress-tested after midnight, not which lane looks tidy",
+      "firstImage": "a row of temperature stickers on a steel door appears before any human enters the sentence.",
+      "mustInclude": [
+        "Olivia",
+        "a row of temperature stickers on a steel door",
+        "untested calm"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into a generic reminder that bad things can happen.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish stability evidence from resilience evidence",
+      "spot hindsight that makes rupture look obvious",
+      "preserve uncertainty while still acting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one calm trend you currently trust, then add the stress it has not yet faced.",
+  "readingTimeMinutes": 12
+}

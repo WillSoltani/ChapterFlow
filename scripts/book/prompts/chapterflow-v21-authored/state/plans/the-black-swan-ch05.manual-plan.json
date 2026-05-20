@@ -1,0 +1,191 @@
+{
+  "chapterId": "the-black-swan-ch05",
+  "number": 5,
+  "title": "Confirmation Shmonfirmation!",
+  "coreMove": "Make disconfirming evidence enter the room before support gets to declare victory.",
+  "sourcePressure": "Beliefs protect themselves by filtering for support, manufacturing confidence that feels like knowledge because hostile evidence never got a fair hearing.",
+  "chapterSpecificMisunderstanding": "Reducing the lesson to be open-minded or look at both sides.",
+  "sourceAlignmentTerms": [
+    "confirmation",
+    "disconfirmation",
+    "burden of proof",
+    "filtered evidence",
+    "hostile evidence",
+    "false confidence",
+    "support search"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Confirmation Shmonfirmation!",
+      "detail": "the chapter title and frozen source stress Taleb's mockery of easy confirmation and support-seeking belief protection",
+      "useIn": "both",
+      "phrasingHint": "Support is cheap when the search party was told which door not to open."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "marketing attribution review",
+      "audience": "a growth manager defending a campaign with friendly dashboards",
+      "stakes": "wasting another quarter on noise mistaken for lift",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the manager asks the analyst to show the segment where the campaign should have failed",
+      "firstImage": "At 8:17 a.m., Camille faces a conversion dashboard with one hidden filter opened.",
+      "mustInclude": [
+        "Camille",
+        "a conversion dashboard with one hidden filter opened",
+        "confirmation"
+      ],
+      "mustAvoid": [
+        "Reducing the lesson to be open-minded or look at both sides.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "thesis literature search",
+      "audience": "a graduate student collecting only supportive papers",
+      "stakes": "a weak defense collapsing under the first examiner question",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the student creates a folder named strongest objection before drafting",
+      "firstImage": "A first line of dialogue lands before the reader sees library dust on a stack of journal volumes.",
+      "mustInclude": [
+        "Lea",
+        "library dust on a stack of journal volumes",
+        "disconfirmation"
+      ],
+      "mustAvoid": [
+        "Reducing the lesson to be open-minded or look at both sides.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "medical second opinion",
+      "audience": "a surgeon favoring the scan that supports intervention",
+      "stakes": "an avoidable operation proceeding on curated evidence",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the surgeon asks the radiologist what finding would argue against surgery",
+      "firstImage": "Open on the texture, sound, or light of a backlit scan clipped beside lab results.",
+      "mustInclude": [
+        "Margaux",
+        "a backlit scan clipped beside lab results",
+        "burden of proof"
+      ],
+      "mustAvoid": [
+        "Reducing the lesson to be open-minded or look at both sides.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "nonprofit donor report",
+      "audience": "a director highlighting stories that validate a program",
+      "stakes": "renewing a grant without learning why outcomes stalled",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the director reads the dropout interviews before the success quotes",
+      "firstImage": "You are looking at voice-recorder files lined up by participant number before the choice becomes abstract.",
+      "mustInclude": [
+        "Juliette",
+        "voice-recorder files lined up by participant number",
+        "filtered evidence"
+      ],
+      "mustAvoid": [
+        "Reducing the lesson to be open-minded or look at both sides.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "procurement vendor selection",
+      "audience": "a buyer wanting the familiar supplier to win",
+      "stakes": "locking in a costly contract after ignoring failure reports",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the buyer gives the complaint log equal time with the glossy proposal",
+      "firstImage": "It takes Chloe several weeks to understand what three sealed bid folders on a metal cart was really showing.",
+      "mustInclude": [
+        "Chloe",
+        "three sealed bid folders on a metal cart",
+        "hostile evidence"
+      ],
+      "mustAvoid": [
+        "Reducing the lesson to be open-minded or look at both sides.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "personal investment club",
+      "audience": "a member pitching a stock with only bullish notes",
+      "stakes": "group savings concentrating around a comforting narrative",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the member must present the strongest short thesis before anyone votes",
+      "firstImage": "a printed 10-K covered with yellow tabs appears before any human enters the sentence.",
+      "mustInclude": [
+        "Manon",
+        "a printed 10-K covered with yellow tabs",
+        "false confidence"
+      ],
+      "mustAvoid": [
+        "Reducing the lesson to be open-minded or look at both sides.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "invite hostile evidence",
+      "separate support quantity from test severity",
+      "notice self-protective evidence filters"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the sentence that would make your current favorite claim lose, then look for that evidence first.",
+  "readingTimeMinutes": 12
+}

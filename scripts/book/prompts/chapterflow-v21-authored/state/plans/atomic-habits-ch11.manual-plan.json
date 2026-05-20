@@ -1,0 +1,153 @@
+{
+  "chapterId": "atomic-habits-ch11",
+  "number": 11,
+  "title": "Walk Slowly, but Never Backward",
+  "coreMove": "Move from planning into repeated reps before judging the habit by quality.",
+  "sourcePressure": "Progress comes from repeated action and accumulated reps, not from waiting for a flawless beginning.",
+  "chapterSpecificMisunderstanding": "Equating motion with progress or using preparation to avoid the first imperfect rep.",
+  "sourceAlignmentTerms": [
+    "motion",
+    "action",
+    "repetition",
+    "reps",
+    "practice",
+    "automaticity",
+    "frequency"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of motion",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a glassblower learning through fifty uneven practice gathers",
+      "audience": "an apprentice waiting to plan the perfect vase",
+      "stakes": "whether reps teach heat timing faster than sketches",
+      "format": "scene",
+      "requiredBeat": "he ruins the forty-first gather, writes one note, and returns to the furnace before redesigning the whole piece",
+      "firstImage": "orange glass glowing at the end of a blowpipe",
+      "mustInclude": [
+        "blowpipe",
+        "annealing chart"
+      ],
+      "mustAvoid": [
+        "artist inspiration shell"
+      ]
+    },
+    {
+      "domain": "a court mediator practicing opening statements with real timers",
+      "audience": "a mediator hiding in article reading",
+      "stakes": "whether action replaces motion before the first live case",
+      "format": "dialogue",
+      "requiredBeat": "her mentor stops the research pile and starts a three-minute mock opening with the stopwatch running",
+      "firstImage": "a stopwatch beside a stack of mediation articles",
+      "mustInclude": [
+        "stopwatch",
+        "mock brief"
+      ],
+      "mustAvoid": [
+        "generic studying"
+      ]
+    },
+    {
+      "domain": "a canoe guide tying knots badly for ten mornings before guests arrive",
+      "audience": "a seasonal guide embarrassed by clumsy hands",
+      "stakes": "whether repetition beats more knot diagrams",
+      "format": "before_after",
+      "requiredBeat": "he ties the bowline each morning on the dock cleat until his hands stop searching",
+      "firstImage": "a wet rope looped around a dock cleat",
+      "mustInclude": [
+        "dock cleat",
+        "bowline rope"
+      ],
+      "mustAvoid": [
+        "outdoor adventure cliche"
+      ]
+    },
+    {
+      "domain": "a podcast producer publishing rough internal pilots instead of buying more gear",
+      "audience": "a producer stuck in setup mode",
+      "stakes": "whether bad first episodes produce feedback planning cannot",
+      "format": "decision_point",
+      "requiredBeat": "she exports the third rough cut to the private feed before opening another microphone review",
+      "firstImage": "an audio waveform paused beside unopened gear boxes",
+      "mustInclude": [
+        "private feed",
+        "waveform marker"
+      ],
+      "mustAvoid": [
+        "creator hustle advice"
+      ]
+    },
+    {
+      "domain": "a pharmacy tech learning compounding labels through repeated practice batches",
+      "audience": "a trainee worried about first-pass perfection",
+      "stakes": "whether safe reps reveal spacing errors before real prescriptions",
+      "format": "postmortem",
+      "requiredBeat": "the supervisor lines up ten practice labels and shows the spacing mistake shrinking across attempts",
+      "firstImage": "practice labels spread beside an empty amber vial tray",
+      "mustInclude": [
+        "practice labels",
+        "amber vial tray"
+      ],
+      "mustAvoid": [
+        "medical hero scene"
+      ]
+    },
+    {
+      "domain": "a trail-maintenance volunteer swinging a Pulaski through awkward first cuts",
+      "audience": "a volunteer reading manuals to avoid looking foolish",
+      "stakes": "whether the first poor cuts create the skill map",
+      "format": "vignette",
+      "requiredBeat": "he makes six ugly notches, then adjusts grip because the trail boss points at the chips, not the manual",
+      "firstImage": "wood chips scattered around a trail log",
+      "mustInclude": [
+        "Pulaski tool",
+        "trail log"
+      ],
+      "mustAvoid": [
+        "fitness repetition shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish motion from action",
+      "choose reps that generate feedback",
+      "avoid using preparation as avoidance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Do one imperfect rep of a habit you have been preparing for. Stop after the rep and note what practice taught that planning did not.",
+  "readingTimeMinutes": 12
+}

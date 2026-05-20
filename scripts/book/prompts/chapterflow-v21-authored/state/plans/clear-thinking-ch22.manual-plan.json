@@ -1,0 +1,198 @@
+{
+  "chapterId": "clear-thinking-ch22",
+  "number": 22,
+  "title": "Learn from Your Decisions",
+  "coreMove": "Separate decision process from outcome noise before updating your rules.",
+  "sourcePressure": "Protected action becomes improvement only when outcomes are interpreted carefully: feedback, postmortem, reflection, process, result, and noise.",
+  "chapterSpecificMisunderstanding": "Treating any good result as proof or any bad result as failure.",
+  "sourceAlignmentTerms": [
+    "learn from decisions",
+    "feedback",
+    "postmortem",
+    "reflection",
+    "process",
+    "result",
+    "noise",
+    "improvement"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "feedback, postmortem, reflection, and improvement",
+      "detail": "the heading index supports the chapter through feedback, postmortem, reflection, and improvement",
+      "useIn": "deepRead",
+      "phrasingHint": "The result tells you what happened; the postmortem asks whether the process deserved that result."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for learn from decisions",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think learn from decisions is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Teresa",
+      "domain": "a investment club review",
+      "audience": "a reader facing learn from decisions in a concrete investment club review decision",
+      "stakes": "whether Teresa preserves judgment quality before the situation slides into analytics dashboards",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Teresa performs the chapter move by setting the call bell beside the triage tag, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the call bell against the counter in the investment club review",
+      "mustInclude": [
+        "call bell",
+        "triage tag"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "analytics dashboards",
+        "reusing a previous chapter's investment club review shell"
+      ]
+    },
+    {
+      "protagonistName": "Rosa",
+      "domain": "a surgery scheduling audit",
+      "audience": "a reader facing learn from decisions in a concrete surgery scheduling audit decision",
+      "stakes": "whether Rosa preserves judgment quality before the situation slides into analytics dashboards",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Rosa performs the chapter move by setting the track diagram beside the delay code, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the surgery scheduling audit as Rosa reaches for the track diagram",
+      "mustInclude": [
+        "track diagram",
+        "delay code"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "analytics dashboards",
+        "reusing a previous chapter's surgery scheduling audit shell"
+      ]
+    },
+    {
+      "protagonistName": "Ines",
+      "domain": "a grant-funded pilot review",
+      "audience": "a reader facing learn from decisions in a concrete grant-funded pilot review decision",
+      "stakes": "whether Ines preserves judgment quality before the situation slides into analytics dashboards",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ines performs the chapter move by setting the return slips beside the price stickers, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the price stickers in the grant-funded pilot review",
+      "mustInclude": [
+        "return slips",
+        "price stickers"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "analytics dashboards",
+        "reusing a previous chapter's grant-funded pilot review shell"
+      ]
+    },
+    {
+      "protagonistName": "Vera",
+      "domain": "a youth orchestra audition recap",
+      "audience": "a reader facing learn from decisions in a concrete youth orchestra audition recap decision",
+      "stakes": "whether Vera preserves judgment quality before the situation slides into analytics dashboards",
+      "format": "reflection",
+      "openingDevice": "environmental",
+      "requiredBeat": "Vera performs the chapter move by setting the lineup card beside the ice shavings, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the lineup card lying beside the ice shavings in the youth orchestra audition recap",
+      "mustInclude": [
+        "lineup card",
+        "ice shavings"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "analytics dashboards",
+        "reusing a previous chapter's youth orchestra audition recap shell"
+      ]
+    },
+    {
+      "protagonistName": "Joana",
+      "domain": "a product launch retrospective",
+      "audience": "a reader facing learn from decisions in a concrete product launch retrospective decision",
+      "stakes": "whether Joana preserves judgment quality before the situation slides into analytics dashboards",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Joana performs the chapter move by setting the permit packet beside the cracked tile, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the cracked tile in the product launch retrospective",
+      "mustInclude": [
+        "permit packet",
+        "cracked tile"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "analytics dashboards",
+        "reusing a previous chapter's product launch retrospective shell"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "a property purchase postmortem",
+      "audience": "a reader facing learn from decisions in a concrete property purchase postmortem decision",
+      "stakes": "whether Isabel preserves judgment quality before the situation slides into analytics dashboards",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Isabel performs the chapter move by setting the speakerphone beside the probate folder, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the speakerphone in the property purchase postmortem",
+      "mustInclude": [
+        "speakerphone",
+        "probate folder"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "analytics dashboards",
+        "reusing a previous chapter's property purchase postmortem shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Separate decision process from outcome noise before updating your rules.",
+      "detect the weak generic version: Treating any good result as proof or any bad result as failure.",
+      "distinguish learn from decisions from nearby drift into analytics dashboards"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where learn from decisions is active, then write the exact next visible move that would perform this chapter's move: separate decision process from outcome noise before updating your rules.",
+  "readingTimeMinutes": 12
+}

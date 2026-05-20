@@ -1,0 +1,199 @@
+{
+  "chapterId": "execution-ch02",
+  "number": 2,
+  "title": "The Execution Difference",
+  "coreMove": "Read execution quality from early truth-flow signals instead of waiting for the scoreboard.",
+  "sourcePressure": "Contrast chapter: Xerox and Lucent mark execution loss, EDS marks stronger execution, and the useful lesson is how operating truth travels before final results collapse.",
+  "chapterSpecificMisunderstanding": "Turn named companies into unsupported case-study theater or business trivia.",
+  "sourceAlignmentTerms": [
+    "Xerox",
+    "Lucent",
+    "EDS",
+    "execution difference",
+    "operating truth",
+    "leader engagement",
+    "drift"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Xerox",
+      "detail": "the source sidecar names The Execution Gap At Xerox as a failure-side contrast anchor, without enough detail for timeline reconstruction",
+      "useIn": "fullRead",
+      "phrasingHint": "Xerox belongs here as a warning about executive distance, not as a courtroom exhibit with invented numbers."
+    },
+    {
+      "kind": "event",
+      "name": "Lucent",
+      "detail": "the source sidecar names Out Of Touch At Lucent as a failure-side contrast anchor, without detailed reconstruction support",
+      "useIn": "fullRead",
+      "phrasingHint": "Lucent can sit beside Xerox as a sign of what happens when reassuring reports travel faster than operating truth."
+    },
+    {
+      "kind": "event",
+      "name": "EDS",
+      "detail": "the source sidecar names Executing At EDS as the stronger-side contrast anchor for execution discipline",
+      "useIn": "deepRead",
+      "phrasingHint": "EDS marks the other habit: keep reality close enough to change the work before drift becomes the result."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the execution difference that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional airline maintenance desk tracking repeat hydraulic warnings before a route disruption",
+      "audience": "an operations director reading clean weekly summaries",
+      "stakes": "a softened warning can become a canceled morning bank of flights",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily compares the tidy weekly summary with the raw maintenance log and sees that the truth was softened three layers before it reached leadership",
+      "firstImage": "The hydraulic warning code appears in red for the fourth time, but the weekly summary still says monitoring.",
+      "mustInclude": [
+        "raw maintenance log",
+        "weekly summary",
+        "hydraulic warning code"
+      ],
+      "mustAvoid": [
+        "generic project status report"
+      ]
+    },
+    {
+      "domain": "a hospital imaging department whose MRI backlog is hidden by average wait-time reporting",
+      "audience": "a service-line administrator",
+      "stakes": "urgent oncology scans are being pushed behind routine appointments",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "David asks for the longest wait instead of the average wait and forces the hidden backlog into the room",
+      "firstImage": "\"Show me the longest wait, not the average,\" David says, and the scheduler stops tapping her pen.",
+      "mustInclude": [
+        "MRI schedule",
+        "average wait chart",
+        "oncology referral stack"
+      ],
+      "mustAvoid": [
+        "generic healthcare staffing"
+      ]
+    },
+    {
+      "domain": "a national museum ticketing system showing strong sales while member renewals are silently falling",
+      "audience": "a deputy director reviewing visitor dashboards",
+      "stakes": "public attendance masks a weakening member base that funds exhibitions",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Juliette must decide whether to accept the strong sales dashboard or ask for renewal cohorts that reveal drift",
+      "firstImage": "At 4:12 p.m. Friday, Juliette sees green sales bars while a thin renewal report sits unopened beside the keyboard.",
+      "mustInclude": [
+        "sales dashboard",
+        "renewal report",
+        "exhibition calendar"
+      ],
+      "mustAvoid": [
+        "retail sales scene"
+      ]
+    },
+    {
+      "domain": "a renewable-energy construction site where subcontractor delays are renamed as weather variance",
+      "audience": "a project sponsor who rarely visits the site",
+      "stakes": "grid-connection penalties start if the switchyard is late",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Andrew walks the switchyard and sees idle conduit reels, then makes site truth outrank the sanitized variance memo",
+      "firstImage": "The switchyard gravel is dry, the conduit reels are still wrapped, and the weather memo no longer explains the delay.",
+      "mustInclude": [
+        "conduit reels",
+        "variance memo",
+        "grid-connection penalty date"
+      ],
+      "mustAvoid": [
+        "generic construction timeline"
+      ]
+    },
+    {
+      "domain": "a university admissions office whose application volume looks healthy while accepted-student yield is weakening",
+      "audience": "an enrollment dean",
+      "stakes": "the next class can miss tuition targets despite a full funnel",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lukas changes the review from volume updates to yield warnings and shortens the time between signal and correction",
+      "firstImage": "It took Lukas one enrollment cycle to learn that a full funnel could still hide an emptying class.",
+      "mustInclude": [
+        "yield tracker",
+        "admit packet",
+        "tuition target"
+      ],
+      "mustAvoid": [
+        "student team readiness"
+      ]
+    },
+    {
+      "domain": "a London payments startup where customer-support escalations are summarized away before the founders see them",
+      "audience": "a founder deciding whether the launch is stable",
+      "stakes": "enterprise customers can churn if payment failures stay hidden as service noise",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "You compare three escalated tickets with the executive launch update and predict which failure would have stayed invisible under the old reporting chain",
+      "firstImage": "You open the launch update and three escalated tickets; only one of them tells the truth about the payment failure.",
+      "mustInclude": [
+        "escalated tickets",
+        "launch update",
+        "enterprise renewal date"
+      ],
+      "mustAvoid": [
+        "generic startup growth story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use Xerox, Lucent, and EDS only as high-level contrast anchors",
+      "identify early signs of filtered operating truth",
+      "choose leader behavior that keeps friction close to decision-making",
+      "separate useful warning signals from hindsight case-study storytelling"
+    ]
+  },
+  "tryThisNowSpec": "Compare one polished status update with one raw operating artifact and circle the fact that disappears between them.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

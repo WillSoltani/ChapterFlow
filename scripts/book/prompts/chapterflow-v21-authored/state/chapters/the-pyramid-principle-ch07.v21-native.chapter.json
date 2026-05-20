@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-pyramid-principle-ch07",
+  "number": 7,
+  "title": "Questioning the order of a grouping",
+  "readingTimeMinutes": 12,
+  "hook": "The aircraft is on jacks, and Andrew’s list is about to choose the wrong first repair.",
+  "counterintuition": "A group can be visible and still be ordered under the wrong law. The writer has to name the rule of order and the class of the members before the list deserves trust.",
+  "tryThisNow": "Write the ordering rule above one group in five words or fewer: time, structure, rank, or cause. If none fits, the order is probably imposed.",
+  "keyTakeaway": "A group earns trust when its members belong to one class and its order follows a rule the material can honestly support.",
+  "breakdown": {
+    "fastRead": "The hangar floor gleams under the belly of an aircraft on jacks. Andrew's inspection list starts with the most visible defects, not the most serious ones. He labels each finding by safety severity, removes items that are not findings, and rebuilds the list under one ranking standard.\n\nA group needs more than visibility. It needs a lawful order: time, structure, rank, or cause. It also needs a real class. If the writer cannot name the ordering rule and the member class, the group may be a tidy false grouping.",
+    "deepRead": "At 11:25 a.m., Giulia points to a badge form dated after a volunteer training slot. The children's hospital onboarding checklist puts training before background clearance because that is when the room is available. Convenience order is not real time order. A volunteer could reach a patient floor before clearance is complete.\n\nGiulia rebuilds the group in the order the process actually requires: clearance, badge, training, supervised floor access.\n\nA group earns trust when the writer can name the law that orders it and the class that makes its members belong. The heading map names the traps directly: time order, confused logic, false grouping, structural order, describing a structure, imposing a structure, ranking order, improper class groupings.\n\nRanking is honest only when one ruler measures the whole list. If Andrew ranks defects by safety severity, cost cannot suddenly take over halfway down. If Kiran ranks jar defects by frequency, a rare high-cost issue cannot stay in the same ranked group unless frequency still governs its place.\n\nOne ruler. One class. One order.\n\nWhen the rule changes silently, the reader feels certainty the material has not earned.\n\nGrouping order asks the writer to name the law that makes the members belong together before choosing the sequence. Ranking order works only when one ruler measures the whole list.\n\nThe phrase grouping order is a reminder that sequence has to follow the kind of group being built.",
+    "fullRead": "Pablo used to write roof reports in ladder order. North side flashing, west gutter, attic beam, south decking. That was how he moved around the property, so it felt natural. Then a buyer misunderstood which defects belonged to flashing, decking, or drainage, and the repair estimate went sideways.\n\nHe replaced the walk-around sequence with roof-system order. The roof sketch came first. Flashing defects sat under flashing. Decking defects sat under decking. Drainage issues sat under drainage. He marked where he was describing actual structure instead of imposing a tidy tour.\n\nThat distinction matters. Describing a structure means the material already has parts and relations the writer can report. Imposing a structure means the writer chooses a clean order because it looks helpful, then pressures mixed material to fit. The first clarifies. The second can deceive.\n\nAsk the group a blunt question: what makes these items family, and what law puts them in this order?\n\nAstrid hears the same defect in listener complaints at a public-radio station. A waveform pulses green while she reads tags aloud: muffled reception, too many pledge breaks, boring guest, dropped signal, more local history. The old parent heading says program complaints. But transmission faults and editorial preferences are not one class. She separates them and deletes the false parent heading.\n\nKiran's cracked-jar investigation adds the ranking problem. A shipping report makes transport look dramatic because the broken pallets are expensive. The defect-frequency chart says the most common cause is a cap-pressure issue. If the ranking ruler is frequency, the high-cost rare issue moves out of the ranked group. It may still need attention, but not under that list.\n\nThe lesson is not that every list needs a fancy taxonomy. It is that every list should survive a plain-language challenge. Is this time order, structural order, ranking order, or causal order? Are the members stages, parts, causes, examples, actions, or effects? If you cannot answer, the order may be decorative.\n\nSofia catches improper class grouping at a community theater board meeting. A sponsor list, a donor segment note, and volunteer tasks are all called fundraising options. They are not options of the same kind. She separates audiences, channels, and actions, then ranks only the actions. The board stops comparing a donor segment with a raffle night as if both were events.\n\nA group is strongest when its order feels inevitable after the rule is named. The reader can see why this comes before that, why these items belong together, and why another tempting item was kept out. That is the difference between a real group and a neat arrangement."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-andrew-aircraft-findings",
+      "title": "Andrew Chooses One Severity Ruler",
+      "tags": [
+        "scene",
+        "airline",
+        "maintenance"
+      ],
+      "planSpec": {
+        "domain": "an airline maintenance planner ordering inspection findings",
+        "audience": "technical operations readers deciding work sequence",
+        "stakes": "maintenance crews may address visible defects before safety-critical dependencies if ranking standards shift",
+        "format": "scene",
+        "requiredBeat": "Andrew labels each finding by safety severity, removes items that are not findings, and rebuilds the list under one ranking standard."
+      },
+      "scenario": "The hangar floor gleams under the belly of an aircraft on jacks while Andrew reviews inspection findings at 5:50 a.m. The maintenance bay schedule is tight, and a severity scale sits beside the list. A cosmetic panel scratch is first because everyone saw it. A sensor fault sits fourth. Andrew faces a choice: keep visibility order or rank only true findings by safety severity. He removes non-findings and rebuilds the list under one ruler.",
+      "whatToDo": "Label each item by safety severity, remove anything that is not a finding, and order the remaining findings by one ranking standard.",
+      "whyItMatters": "Maintenance crews act from the order they receive. A shifting ruler can send attention to visible defects before safety-critical dependencies."
+    },
+    {
+      "exampleId": "ch07-ex02-giulia-clearance-order",
+      "title": "Giulia Moves Clearance Before Training",
+      "tags": [
+        "decision_point",
+        "hospital",
+        "onboarding"
+      ],
+      "planSpec": {
+        "domain": "a children's hospital volunteer coordinator arranging onboarding steps",
+        "audience": "coordinators building process documents",
+        "stakes": "volunteers could reach patient floors before background clearance if time order is wrong",
+        "format": "decision_point",
+        "requiredBeat": "At 11:25 a.m., Giulia catches a training task listed before clearance, then rebuilds the group in real time order rather than convenience order."
+      },
+      "scenario": "At 11:25 a.m., Giulia points to a badge form dated after the training slot on the children’s hospital volunteer checklist. The background clearance form is stapled behind the training calendar because that room was booked first. She must decide before the coordinator meeting whether to keep convenience order or rebuild the process in real time order. Clearance moves before badge, and badge before floor training.",
+      "whatToDo": "Order the onboarding steps by the process that must happen, not by room availability. Put clearance before any task that grants access.",
+      "whyItMatters": "Time order is valid only when it reflects the real process. Convenience order can put volunteers near patients before clearance has happened."
+    },
+    {
+      "exampleId": "ch07-ex03-pablo-roof-system",
+      "title": "Pablo Stops Following the Ladder Route",
+      "tags": [
+        "before_after",
+        "inspection",
+        "roof"
+      ],
+      "planSpec": {
+        "domain": "a home-inspection company describing a roof system",
+        "audience": "inspectors writing reports with structural order",
+        "stakes": "buyers may misunderstand which defects belong to flashing, decking, or drainage if the list follows discovery order",
+        "format": "before_after",
+        "requiredBeat": "Pablo replaces the walk-around sequence with roof-system order and marks where he is describing actual structure instead of imposing a tidy tour."
+      },
+      "scenario": "As the property analyst at the inspection desk, Pablo needed one wet attic beam to stop ordering the report by his ladder route. The roof sketch showed flashing, decking, and drainage, but his first report followed north, west, attic, south. Buyers thought the defects belonged together because he saw them together. Pablo revised the report in roof-system order and marked where he was describing actual structure, not imposing a tidy tour.",
+      "whatToDo": "Replace walk-around order with roof-system order. Group defects under flashing, decking, or drainage so buyers see the actual structure.",
+      "whyItMatters": "Discovery order can mislead when the object has its own structure. Buyers need to know which system each defect belongs to before estimating repairs."
+    },
+    {
+      "exampleId": "ch07-ex04-astrid-voicemail-tags",
+      "title": "Astrid Deletes the False Complaint Heading",
+      "tags": [
+        "postmortem",
+        "radio",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "a public-radio editor grouping listener complaints",
+        "audience": "media managers summarizing audience feedback",
+        "stakes": "program changes will be distorted if tone complaints, reception problems, and topic preferences are treated as one class",
+        "format": "postmortem",
+        "requiredBeat": "Astrid reads each voicemail tag aloud, separates transmission faults from editorial preferences, and deletes the false parent heading."
+      },
+      "scenario": "A voicemail waveform pulses green on the studio screen while Astrid reviews last month’s listener tags. In the postmortem, she reads each tag aloud: dropped signal, too many pledge breaks, muffled reception, boring guest, more local history. The transmission log and editorial calendar sit side by side. Program complaints had been the parent heading. Astrid separates transmission faults from editorial preferences and deletes the false heading.",
+      "whatToDo": "Separate reception problems from editorial preferences before summarizing feedback. Give each class its own parent line and action path.",
+      "whyItMatters": "Media managers make different changes for signal faults and content preferences. One broad complaint class distorts the response."
+    },
+    {
+      "exampleId": "ch07-ex05-kiran-cracked-jars",
+      "title": "Kiran Picks Frequency as the Ruler",
+      "tags": [
+        "predict_reveal",
+        "packaging",
+        "root-cause"
+      ],
+      "planSpec": {
+        "domain": "a consumer-goods packaging lead ordering causes of cracked jars",
+        "audience": "manufacturing teams ranking root causes",
+        "stakes": "a recall fix may target transport if the ranking mixes frequency, cost, and severity",
+        "format": "predict_reveal",
+        "requiredBeat": "Kiran asks what single ruler will rank the causes, chooses defect frequency, and moves high-cost but rare issues out of the ranked group."
+      },
+      "scenario": "Which cracked jar belongs at the top if frequency is the ruler? Kiran asks beside cracked jar samples, a defect-frequency chart, and a shipping report. The costly transport breaks look dramatic, so the team predicts shipping will lead. Kiran chooses frequency as the single ruler and must decide what to do with rare high-cost issues. She moves them out of the ranked group and puts cap pressure first.",
+      "whatToDo": "Choose one ranking ruler before ordering causes. If frequency governs the list, move rare high-cost issues into a separate note instead of mixing standards.",
+      "whyItMatters": "A ranking that switches from frequency to cost sends manufacturing toward the wrong root cause. One ruler makes the order honest."
+    },
+    {
+      "exampleId": "ch07-ex06-sofia-fundraising-options",
+      "title": "Sofia Separates Audiences From Actions",
+      "tags": [
+        "dialogue",
+        "theater",
+        "fundraising"
+      ],
+      "planSpec": {
+        "domain": "a community theater board classifying fundraising options",
+        "audience": "volunteer boards deciding what alternatives are truly comparable",
+        "stakes": "the board may compare sponsorships, volunteer tasks, and donor segments as if all were fundraising options",
+        "format": "dialogue",
+        "requiredBeat": "\"A donor segment is not an event,\" Sofia says, then separates audiences, channels, and actions before ranking only the actions."
+      },
+      "scenario": "\"A donor segment is not an event,\" Sofia says as raffle tickets scatter across the community theater table. The sponsor list, donor segment note, and volunteer task sheet have all been placed under fundraising options. The board is about to rank them before the season vote. Sofia faces a choice: compare unlike items or separate audiences, channels, and actions. Only the actions get ranked.",
+      "whatToDo": "Separate audiences, channels, and actions before ranking. Compare only true alternatives, such as events or sponsorship approaches, under one standard.",
+      "whyItMatters": "Volunteer boards cannot choose between a donor segment and a raffle night as if they were the same kind. Ranking requires comparable options."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A list is easy to see on the page but nobody can explain why item two follows item one. What is the first ordering question?",
+        "choices": [
+          "What rule orders this group: time, structure, rank, or cause?",
+          "Can the bullets be made shorter?",
+          "Would a chart make the page look cleaner?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The problem is the ordering law. Shorter bullets or charts may improve surface display, but they do not explain why one item follows another.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A hospital volunteer checklist puts training before background clearance because the room was booked first. What is the flaw?",
+        "choices": [
+          "The checklist needs friendlier wording.",
+          "The list follows convenience order rather than real time order.",
+          "The clearance form should be optional."
+        ],
+        "correctIndex": 1,
+        "explanation": "The process requires clearance before access. Convenience order hides that dependency and can create unsafe onboarding.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A roof report follows the inspector’s ladder route, but buyers need to know whether defects belong to flashing, decking, or drainage. What order fits best?",
+        "choices": [
+          "Discovery order, because it is honest about the inspection route.",
+          "Random order, because all defects matter.",
+          "Structural order by roof system."
+        ],
+        "correctIndex": 2,
+        "explanation": "The roof has a structure the report should describe. Ladder route is discovery order; it does not show which system each defect belongs to.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A radio editor groups dropped-signal complaints and boring-guest complaints under one heading. What defect is most likely?",
+        "choices": [
+          "Too much time order in the list.",
+          "A ranking ruler that is too strict.",
+          "False grouping by broad topic rather than real class."
+        ],
+        "correctIndex": 2,
+        "explanation": "Both are listener complaints, but they are not the same class. Transmission faults and editorial preferences need different groups and responses.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A manufacturing team ranks cracked-jar causes by frequency, then places a rare but expensive shipping issue first. What should change?",
+        "choices": [
+          "Use one ranking ruler or split the rare high-cost issue into a separate note.",
+          "Keep the high-cost item first to signal strategic importance to leadership, while operations staff can review frequency later.",
+          "Rank by combined risk score, using frequency multiplied by cost to resolve the conflict inside one ordered list."
+        ],
+        "correctIndex": 0,
+        "explanation": "Ranking needs one ruler. If frequency governs the list, cost cannot silently take over. The rare issue can be important in a separate frame.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A theater board compares donor segments, raffle nights, sponsor packages, and volunteer calls as fundraising options. What is the best repair?",
+        "choices": [
+          "Rank the list by which item sounds most exciting.",
+          "Separate audiences, channels, and actions before ranking alternatives.",
+          "Keep the mixed list because all items involve fundraising."
+        ],
+        "correctIndex": 1,
+        "explanation": "Shared topic is not enough. A donor segment is not the same kind of option as an event or action, so the board needs clean classes first.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A writer has three real stages in a process but ranks them by importance instead of presenting the sequence. What reader problem follows?",
+        "choices": [
+          "Readers will dislike the word importance.",
+          "Readers may miss what has to happen before what.",
+          "Readers will need more examples of every stage."
+        ],
+        "correctIndex": 1,
+        "explanation": "When the material is process-based, sequence carries meaning. Ranking by importance can hide dependencies among stages.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A group contains two causes, one example, and one recommendation. The writer cannot name a single class for the members. What does that signal?",
+        "choices": [
+          "The writer should switch to alphabetical order.",
+          "Use the recommendation as the parent line because it is the main point and can govern the causes and example beneath it.",
+          "The group is not ready and may be an improper class grouping."
+        ],
+        "correctIndex": 2,
+        "explanation": "If no shared class can be named, the group likely mixes jobs. Ordering cannot rescue a set whose members do not belong together.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A report describes an actual machine with intake, filter, pump, and outlet. The writer orders the section by those parts. What kind of order is this?",
+        "choices": [
+          "Structural order describing a real arrangement.",
+          "False grouping imposed on unrelated items.",
+          "Ranking order based on preference."
+        ],
+        "correctIndex": 0,
+        "explanation": "The machine already has parts and relationships. Ordering by those parts describes real structure rather than imposing a convenient sequence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What are the main ordering rules to test for a group?",
+      "back": "Time, structure, rank, and cause. The order should make the relationship among the points visible, not merely look tidy.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "When is ranking order honest?",
+      "back": "When one ruler measures the whole list. If the standard shifts from frequency to cost to severity, the ranking starts to mislead.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How do you spot improper class grouping?",
+      "back": "Try to name what every member is: cause, stage, action, example, part, or effect. If the names differ, the group probably needs splitting.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What is the difference between describing and imposing structure?",
+      "back": "Describing structure reports relationships the material already has. Imposing structure presses mixed material into a clean order the material cannot support.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A list follows discovery order, but the object has real parts. What should you consider?",
+      "back": "Use structural order if the reader needs to understand the object by its parts. Discovery order belongs only when the route of discovery matters.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Name the Ordering Rule",
+    "coreSkill": "You learn to make every group answer two questions: what kind of things are these, and what rule orders them? The skill is rejecting tidy sequences when the material does not support them.",
+    "ifThenPlans": [
+      {
+        "context": "process document",
+        "plan": "If steps depend on earlier steps, then use real time order even if another sequence is more convenient."
+      },
+      {
+        "context": "technical report",
+        "plan": "If the object has parts, then consider structural order instead of discovery order."
+      },
+      {
+        "context": "root-cause analysis",
+        "plan": "If you rank causes, then write the ruler above the list and remove items that require another ruler."
+      },
+      {
+        "context": "board discussion",
+        "plan": "If alternatives feel hard to compare, then test whether they are the same kind before ranking them."
+      }
+    ],
+    "twentyFourHourChallenge": "Write the ordering rule above one group in five words or fewer: time, structure, rank, or cause. If none fits, split or rebuild the group.",
+    "weeklyPractice": "Each week, audit one list you sent or received. Name its class and ordering rule, then rewrite the list if either answer is vague."
+  },
+  "memorableLines": [
+    {
+      "text": "One ruler. One class. One order.",
+      "location": "breakdown.deepRead",
+      "why": "It gives ranking and grouping discipline in a tight form."
+    },
+    {
+      "text": "The first clarifies. The second can deceive.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the difference between describing and imposing structure memorable."
+    },
+    {
+      "text": "A group is strongest when its order feels inevitable after the rule is named.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the goal of the whole skill."
+    }
+  ]
+}

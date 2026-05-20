@@ -1,0 +1,186 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch77",
+  "number": 77,
+  "title": "False-Consensus Effect",
+  "coreMove": "Name the false consensus effect in the room, then redesign the next choice so it cannot choose for you.",
+  "sourcePressure": "The frozen TOC and official source notes frame False-Consensus Effect as a specific decision error around false consensus, projection, survey. Traceable support includes The False Consensus Effect: An egocentric bias in social perception and attribution processes.",
+  "chapterSpecificMisunderstanding": "Treating False-Consensus Effect as generic advice to be smarter, instead of forcing this exact move: name the false consensus effect in the room, then redesign the next choice so it cannot choose for you.",
+  "sourceAlignmentTerms": [
+    "false consensus",
+    "projection",
+    "survey",
+    "circle",
+    "majority",
+    "false",
+    "consensus",
+    "effect"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of False-Consensus Effect.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make False-Consensus Effect sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of False-Consensus Effect."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a sports federation referee rating applying False-Consensus Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where false consensus could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if False-Consensus Effect is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the consent form, names the false consensus risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A consent form sits at the center of the sports federation referee rating before anyone explains the choice.",
+      "mustInclude": [
+        "consent form",
+        "false consensus",
+        "a visible before-and-after choice tied to False-Consensus Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a oncology dropout table applying False-Consensus Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where projection could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if False-Consensus Effect is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the shipment seal, names the projection risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A shipment seal sits at the center of the oncology dropout table before anyone explains the choice.",
+      "mustInclude": [
+        "shipment seal",
+        "projection",
+        "a visible before-and-after choice tied to False-Consensus Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a immigration appeal triage applying False-Consensus Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where survey could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if False-Consensus Effect is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the parking ticket, names the survey risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A parking ticket sits at the center of the immigration appeal triage before anyone explains the choice.",
+      "mustInclude": [
+        "parking ticket",
+        "survey",
+        "a visible before-and-after choice tied to False-Consensus Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a climate fund pitch review applying False-Consensus Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where circle could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if False-Consensus Effect is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the safety glove, names the circle risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A safety glove sits at the center of the climate fund pitch review before anyone explains the choice.",
+      "mustInclude": [
+        "safety glove",
+        "circle",
+        "a visible before-and-after choice tied to False-Consensus Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a call-center complaint script applying False-Consensus Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where majority could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if False-Consensus Effect is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the ticket stub, names the majority risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A ticket stub sits at the center of the call-center complaint script before anyone explains the choice.",
+      "mustInclude": [
+        "ticket stub",
+        "majority",
+        "a visible before-and-after choice tied to False-Consensus Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a outdoor-gear influencer report applying False-Consensus Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where false could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if False-Consensus Effect is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the thermometer, names the false risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A thermometer sits at the center of the outdoor-gear influencer report before anyone explains the choice.",
+      "mustInclude": [
+        "thermometer",
+        "false",
+        "a visible before-and-after choice tied to False-Consensus Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot False-Consensus Effect in a fresh decision scene",
+      "choose the correction that performs this move: name the false consensus effect in the room, then redesign the next choice so it cannot choose for you.",
+      "reject a tempting generic answer that ignores false consensus",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'False-Consensus Effect' on a note, list the one false consensus cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

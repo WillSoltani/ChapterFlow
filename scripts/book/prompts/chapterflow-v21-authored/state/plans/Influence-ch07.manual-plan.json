@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch07",
+  "number": 7,
+  "title": "Commitment and Consistency: Hobgoblins of the Mind",
+  "coreMove": "Treat consistency as evidence to inspect, not a command to continue.",
+  "sourcePressure": "The source supports prior choices, public stands, visible commitments, statements, identities, self-alignment pressure, and lock-in that can stabilize action or trap people in bad continuance.",
+  "chapterSpecificMisunderstanding": "Do not write this as simple perseverance advice; the danger is obedience to an earlier self-signal that no longer fits.",
+  "sourceAlignmentTerms": ["commitment", "consistency", "prior choice", "public stand", "identity alignment", "visible commitment", "lock-in"],
+  "forbiddenFrames": {
+    "hook": ["Your past self can trap you", "Consistency is a cage", "The first yes wants a second"],
+    "counterintuition": ["Always change your mind", "Persistence is foolish", "Identity is fake"],
+    "tryThisNow": ["Break one old commitment", "Review your goals", "Ask if you still agree"],
+    "examples": ["gym membership after New Year's", "public diet pledge", "generic political yard sign"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "amateur astronomy club telescope purchase",
+      "audience": "a new member who publicly called herself serious",
+      "stakes": "buying costly equipment to match a declared identity",
+      "format": "scene",
+      "requiredBeat": "she hears members repeat her serious observer label and checks nights actually spent outside before ordering",
+      "firstImage": "a star chart folded under a red flashlight",
+      "mustInclude": ["observer label", "purchase form", "night log"],
+      "mustAvoid": ["scarcity limited inventory"]
+    },
+    {
+      "domain": "restaurant menu redesign after a chef's public promise",
+      "audience": "a chef-owner who announced a no-fried-food direction",
+      "stakes": "keeping a failing menu because reversing feels humiliating",
+      "format": "postmortem",
+      "requiredBeat": "the chef compares sales slips to the old interview quote and decides the quote is not a business plan",
+      "firstImage": "grease pencil marks across a laminated menu proof",
+      "mustInclude": ["interview quote", "sales slips", "menu proof"],
+      "mustAvoid": ["authority critic review"]
+    },
+    {
+      "domain": "tenant association petition strategy",
+      "audience": "an organizer who gathered signatures on one demand",
+      "stakes": "refusing a better repair sequence because the petition named a different first step",
+      "format": "decision_point",
+      "requiredBeat": "the organizer reads the signed demand aloud, then asks whether consistency with the petition or solving leaks should govern the next move",
+      "firstImage": "a clipboard of signatures under a leaking hallway ceiling stain",
+      "mustInclude": ["petition text", "repair sequence", "ceiling stain"],
+      "mustAvoid": ["social proof signature count"]
+    },
+    {
+      "domain": "indie game studio feature roadmap",
+      "audience": "a producer attached to a promised crafting system",
+      "stakes": "spending six months on a feature because early backers heard the promise",
+      "format": "before_after",
+      "requiredBeat": "the producer places the old campaign promise beside playtest notes showing the feature harms the game loop",
+      "firstImage": "sticky notes clustered around a paper prototype map",
+      "mustInclude": ["campaign promise", "playtest notes", "roadmap"],
+      "mustAvoid": ["crowd pleasing social proof"]
+    },
+    {
+      "domain": "medical residency specialty choice",
+      "audience": "a resident known by classmates as future surgeon",
+      "stakes": "ranking a specialty for identity consistency rather than fit",
+      "format": "reflection",
+      "requiredBeat": "the resident lists what the future surgeon label gives her and what the current rotation data says",
+      "firstImage": "a call-room locker with wrinkled scrub caps on the shelf",
+      "mustInclude": ["rank list", "rotation notes", "classmate label"],
+      "mustAvoid": ["authority attending advice"]
+    },
+    {
+      "domain": "historic church restoration committee",
+      "audience": "a donor chair who backed a costly steeple repair first",
+      "stakes": "defending the first pledge while the roof worsens",
+      "format": "dialogue",
+      "requiredBeat": "the chair says my first pledge was public, then moves the roof invoice beside it and names the current need",
+      "firstImage": "a cracked slate tile on a green felt meeting table",
+      "mustInclude": ["pledge card", "roof invoice", "steeple plan"],
+      "mustAvoid": ["reciprocation donor favor"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["detect when a public stand is driving later behavior", "separate useful continuity from lock-in", "choose language that updates a commitment without self-attack", "evaluate whether identity alignment fits present evidence"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Choose one old commitment on your calendar and say what present evidence, not pride, would justify keeping it.",
+  "readingTimeMinutes": 12
+}

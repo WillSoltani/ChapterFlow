@@ -1,0 +1,207 @@
+{
+  "chapterId": "the-outsiders-ch01",
+  "number": 1,
+  "title": "A Perpetual Motion Machine for Returns",
+  "coreMove": "Treat overhead, local authority, and capital reserves as one compounding system instead of three separate management choices.",
+  "sourcePressure": "Tom Murphy and Capital Cities Broadcasting show how a smaller broadcaster compounded by joining lean headquarters, local operating responsibility, disciplined capital allocation, and patience for the rare major bet such as ABC.",
+  "chapterSpecificMisunderstanding": "Do not turn Murphy into a generic lean-management hero; force every scene to show central cost, local authority, and capital optionality working together.",
+  "sourceAlignmentTerms": [
+    "Capital Cities",
+    "Tom Murphy",
+    "Dan Burke",
+    "lean headquarters",
+    "local operators",
+    "capital allocation",
+    "ABC acquisition",
+    "radically rational"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Tom Murphy",
+      "detail": "The source sidecar identifies Chapter 1 as Tom Murphy and Capital Cities Broadcasting, with disciplined capital allocation, lean headquarters, decentralization, and patience around major bets.",
+      "useIn": "both",
+      "phrasingHint": "Tom Murphy made a smaller broadcaster dangerous by keeping the center light enough that cash and judgment could keep moving."
+    },
+    {
+      "kind": "person",
+      "name": "Dan Burke",
+      "detail": "The source sidecar says reputable support confirms Capital Cities developed a reputation for efficient management under Murphy and Dan Burke.",
+      "useIn": "fullRead",
+      "phrasingHint": "Murphy and Dan Burke made efficiency feel less like trimming and more like a whole operating posture."
+    },
+    {
+      "kind": "event",
+      "name": "Capital Cities acquisition of ABC",
+      "detail": "The source sidecar supports the later Capital Cities acquisition of ABC as a surprising scale reversal and visible payoff to management quality.",
+      "useIn": "fullRead",
+      "phrasingHint": "The ABC acquisition lands as the visible end of a long compounding machine, not as a lucky lunge."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A small company can beat a big one",
+      "Lean teams always win",
+      "Discipline beats size"
+    ],
+    "counterintuition": [
+      "Cost cutting creates value by itself",
+      "Decentralization means hands-off management",
+      "Smallness is automatically an advantage"
+    ],
+    "tryThisNow": [
+      "Cut one cost today",
+      "Delegate something small",
+      "Write down your priorities"
+    ],
+    "examples": [
+      "generic startup budget meeting",
+      "student newspaper bottleneck reused from legacy draft",
+      "family chores as decentralization",
+      "any scene built around a coffee mug or whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "regional ambulance dispatch authority redesigning approval thresholds",
+      "audience": "an operations director whose station chiefs wait for headquarters on routine equipment swaps",
+      "stakes": "ambulance downtime rising before the winter call spike",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah circles three routine approvals on the maintenance log, removes headquarters signoff below a fixed dollar threshold, and reserves her own review for exceptions that change safety or capital risk.",
+      "firstImage": "a laminated ambulance maintenance log clipped to a metal dispatch desk",
+      "mustInclude": [
+        "maintenance log",
+        "dollar threshold",
+        "station chief initials"
+      ],
+      "mustAvoid": [
+        "generic office budget trimming"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "independent radio network merging three local ad-sales teams",
+      "audience": "a station manager with too many central scripts slowing local sellers",
+      "stakes": "losing local sponsors to a larger national chain",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu tells the central sales lead to keep only the rate floor and brand limits, then lets local managers write sponsor packages around their own market knowledge.",
+      "firstImage": "a torn sponsor rate card beside a mute studio microphone",
+      "mustInclude": [
+        "rate floor",
+        "local sponsor list",
+        "brand limit"
+      ],
+      "mustAvoid": [
+        "media nostalgia without capital logic"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "municipal snow-removal fleet deciding between new supervisors and plow upgrades",
+      "audience": "a public works deputy trying to explain why headquarters roles will not clear roads faster",
+      "stakes": "overtime overruns and delayed plow routes after the first storm",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ingrid lays the route-delay map beside the supervisor hiring proposal and redirects the money to blade sensors that local crews can act on without another approval layer.",
+      "firstImage": "salt crystals melting on the edge of a folded route map",
+      "mustInclude": [
+        "route-delay map",
+        "hiring proposal",
+        "blade sensor quote"
+      ],
+      "mustAvoid": [
+        "generic government waste rant"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "specialty bakery group choosing one oven investment over five storefront refreshes",
+      "audience": "an owner with store managers pushing visible upgrades",
+      "stakes": "morning wholesale orders missed because the old oven limits batch size",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Marco two missed wholesale mornings to reject the cosmetic refresh list and fund the single oven that changes throughput across all shops.",
+      "firstImage": "a rack of half-proofed rolls waiting beside a cold oven door",
+      "mustInclude": [
+        "oven quote",
+        "refresh list",
+        "wholesale order sheet"
+      ],
+      "mustAvoid": [
+        "status purchase without operating throughput"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "community theater cooperative deciding how much authority stage managers own",
+      "audience": "a board chair trying to reduce chaos without centralizing every prop decision",
+      "stakes": "opening night delays and a drained contingency fund",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Anna separate safety-critical approvals from routine backstage purchases, giving stage managers spending cards while keeping the board focused on the two risks that can sink the production.",
+      "firstImage": "gaffer tape stuck to a clipboard under the backstage work light",
+      "mustInclude": [
+        "spending cards",
+        "safety list",
+        "contingency fund"
+      ],
+      "mustAvoid": [
+        "classroom or household responsibility shell"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "Toronto lab-services startup choosing between a new executive layer and courier-routing software",
+      "audience": "a founder whose investors want adult supervision at headquarters",
+      "stakes": "sample pickups arriving late while cash runway tightens",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What if the grown-up move is not a new vice president? Yusuf compares missed-pickup data with the VP salary and funds routing software plus local dispatch authority instead.",
+      "firstImage": "a specimen cooler with a cracked barcode label",
+      "mustInclude": [
+        "missed-pickup report",
+        "VP salary",
+        "routing software quote"
+      ],
+      "mustAvoid": [
+        "generic tech startup efficiency story"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when overhead is consuming capital while pretending to control it",
+      "decide when local authority improves accountability rather than loosening standards",
+      "choose a high-return operating investment over scattered visible spending",
+      "connect lean headquarters to future optionality rather than mere savings"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one routine decision now routed upward and write the exact threshold that would let the closest responsible person own it while preserving one exception rule.",
+  "readingTimeMinutes": 12
+}

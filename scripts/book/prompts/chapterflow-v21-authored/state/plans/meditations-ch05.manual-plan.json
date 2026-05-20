@@ -1,0 +1,190 @@
+{
+  "chapterId": "meditations-ch05",
+  "number": 5,
+  "title": "Book V",
+  "coreMove": "Rise from comfort into the human work that belongs to your nature.",
+  "sourcePressure": "Morning reluctance is answered by human function, social labor, quick resets, action without scorekeeping, bitter prescriptions from common nature, and repeated return.",
+  "chapterSpecificMisunderstanding": "get up earlier and work harder for status",
+  "sourceAlignmentTerms": [
+    "warm bedclothes",
+    "human work",
+    "ants",
+    "spiders",
+    "bees",
+    "troublesome impressions",
+    "return"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "warm bedclothes",
+      "detail": "Book V opens by attacking morning reluctance: a human being rises for human work, not for warm bedclothes.",
+      "useIn": "both",
+      "phrasingHint": "Warm bedclothes are persuasive because they ask for nothing except one more surrender."
+    },
+    {
+      "kind": "event",
+      "name": "plants, birds, ants, spiders, and bees doing their part",
+      "detail": "Book V compares human duty to creatures and plants doing their part in the order of the world.",
+      "useIn": "fullRead",
+      "phrasingHint": "The bees and ants are not productivity mascots; they shame reason when reason only defends delay."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "winter road plowing",
+      "audience": "David deciding whether to start the depot early",
+      "stakes": "a school route depends on his crew moving before sunrise",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:36 a.m., David sits up, calls the first driver, and treats the route map as the reason to leave the warm room.",
+      "firstImage": "At 4:36 a.m., David hears sleet ticking against the bedroom window.",
+      "mustInclude": [
+        "route map",
+        "salt log",
+        "thermal socks"
+      ],
+      "mustAvoid": [
+        "heroic labor montage"
+      ]
+    },
+    {
+      "domain": "newborn ICU rounds",
+      "audience": "Sofia arriving after a sleepless night",
+      "stakes": "fatigue is real but the babies still need the first check",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sofia accepts the coffee, then checks the incubator alarms before discussing how tired she is.",
+      "firstImage": "Blue monitor light trembles on the plastic incubator walls.",
+      "mustInclude": [
+        "incubator alarm",
+        "coffee cup",
+        "rounding sheet"
+      ],
+      "mustAvoid": [
+        "medical martyrdom"
+      ]
+    },
+    {
+      "domain": "court interpreter shift",
+      "audience": "Chiara tempted to call in sick after a hard week",
+      "stakes": "one missed interpreter can delay a protective order",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Chiara put on the headset and start with the frightened witness rather than her own resentment.",
+      "firstImage": "You feel the foam headset warm against one ear.",
+      "mustInclude": [
+        "court headset",
+        "protective order file",
+        "bench clock"
+      ],
+      "mustAvoid": [
+        "duty means no limits"
+      ]
+    },
+    {
+      "domain": "bakery opening routine",
+      "audience": "Luke responsible for the first bake after a staff shortage",
+      "stakes": "the neighborhood orders fail if he negotiates with comfort",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Luke turns on the deck oven before checking messages, so the work begins before excuses assemble.",
+      "firstImage": "The proofing racks stand in the dark like a quiet accusation.",
+      "mustInclude": [
+        "deck oven",
+        "proofing racks",
+        "flour scoop"
+      ],
+      "mustAvoid": [
+        "startup grind"
+      ]
+    },
+    {
+      "domain": "rural pharmacy snow day",
+      "audience": "Manon opening when roads are bad",
+      "stakes": "patients need prescriptions more than she needs a perfect mood",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Open at nine,\" Manon tells the delivery driver, then shovels the door clear herself.",
+      "firstImage": [
+        "shovel",
+        "prescription bins",
+        "delivery crate"
+      ],
+      "mustInclude": [
+        "pharmacist saint story"
+      ]
+    },
+    {
+      "domain": "orchestra rehearsal logistics",
+      "audience": "Peter resetting chairs after a cancellation",
+      "stakes": "the unglamorous setup is the social work that lets music happen",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Peter one cancelled rehearsal to see that chair rows were not beneath the music.",
+      "firstImage": "It took Peter one cancelled rehearsal to stop calling setup invisible work.",
+      "mustInclude": [
+        "chair cart",
+        "stage tape",
+        "conductor stand"
+      ],
+      "mustAvoid": [
+        "arts admin gripe"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate bounded rest from comfort as rival end",
+      "apply human function to reluctance",
+      "return after failure without self-disgust"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When comfort argues for delay, answer with the first duty your role was made to perform, then stand up and do it.",
+  "readingTimeMinutes": 12
+}

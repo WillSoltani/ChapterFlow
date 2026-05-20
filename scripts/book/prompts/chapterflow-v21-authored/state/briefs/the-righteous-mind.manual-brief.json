@@ -1,0 +1,83 @@
+{
+  "bookId": "the-righteous-mind",
+  "title": "The Righteous Mind",
+  "author": "Jonathan Haidt",
+  "thesisParagraph": "Moral judgment usually begins before conscious reasoning can explain it. People feel approval, disgust, loyalty, threat, fairness, sanctity, or betrayal, and then reasoning often arrives as a lawyer for the verdict, a recruiter for allies, or a shield for reputation. The book teaches readers to stop treating their own moral matrix as the whole world: moral life is intuitive, plural, and group-binding, which is why politics and religion divide good people so fiercely and why better disagreement starts with understanding the moral machinery that moved first.",
+  "coreIdeas": [
+    {
+      "name": "Intuition first",
+      "oneSentence": "Moral reasons often explain a verdict that intuition has already reached.",
+      "mentalMove": "pause after a judgment and ask which intuitive alarm fired before the reason appeared",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch03.source",
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Plural moral receptors",
+      "oneSentence": "Harm and fairness matter, but they do not exhaust the human moral range.",
+      "mentalMove": "listen for loyalty, authority, sanctity, care, and fairness as different receptors rather than one moral scale",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source",
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Morality binds and blinds",
+      "oneSentence": "The same moral systems that make cooperation possible can narrow perception and harden group conflict.",
+      "mentalMove": "ask what team, ritual, institution, or sacred concern a moral claim is protecting",
+      "sourceAnchors": [
+        "ch09.source",
+        "ch10.source",
+        "ch11.source",
+        "ch12.source"
+      ]
+    }
+  ],
+  "targetReader": "A thoughtful general reader who is tired of political and religious contempt, recognizes their own side's certainty, and wants a practical mental model for understanding why sincere people reach clashing moral conclusions.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "treat opponents as morally serious before challenging their frame",
+      "make psychological mechanisms visible in ordinary rooms"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no partisan scorekeeping or sneering at religious belief"
+    ]
+  },
+  "voiceSpecimens": [
+    "The reason feels clean because it arrived wearing a suit, but the verdict had already walked into the room.",
+    "You do not have to excuse a reaction to understand the alarm it came from.",
+    "A political slogan is often a small moral machine: press one word and a whole team wakes up.",
+    "The harder move is not winning the argument in your head; it is hearing the sacred thing the other person thinks you are about to break.",
+    "When the elephant leans, the rider can still help, but it should stop pretending it chose the slope.",
+    "Some disagreements stay real after you understand them. That is not failure. That is adulthood with better eyesight."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter will explain why moral foundations are important in today's polarized society.",
+    "In conclusion, people should be more open-minded and respectful of other perspectives.",
+    "Jonathan Haidt argues that conservatives have a broader moral palette than liberals.",
+    "The key takeaway is that morality is complex and everyone has biases.",
+    "To apply this concept, set a timer and reflect on your values."
+  ],
+  "teachingArc": "The arc starts inside the individual mind, where intuition outruns explanation and the rider learns humility. It then widens the moral field so the reader can hear more than harm and fairness in other people's reactions. The final movement shows why moral concerns bind people into teams, rituals, religions, and political camps, ending with a practical discipline of disagreement that preserves real conflict while reducing contempt.",
+  "forbiddenMoves": [
+    "Do not turn the book into generic civility advice; every chapter must preserve the machinery of intuition, foundations, and group binding.",
+    "Do not make the politics chapters a partisan scoreboard; the teaching point is moral translation, not team victory.",
+    "Do not invent named experiments, field studies, or anecdotes beyond the frozen source sidecars.",
+    "Do not make religion merely false belief or merely social glue; keep the coordination frame narrow and non-reductive."
+  ]
+}

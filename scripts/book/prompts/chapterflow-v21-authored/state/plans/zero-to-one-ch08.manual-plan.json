@@ -1,0 +1,182 @@
+{
+  "chapterId": "zero-to-one-ch08",
+  "number": 8,
+  "title": "Secrets",
+  "coreMove": "Search for a hidden truth that reality supports before consensus is ready to reward it.",
+  "sourcePressure": "The chapter argues that valuable opportunities often begin as real truths that remain undiscovered, ignored, or underbelieved by consensus. The frozen source for this chapter contains no chapter-specific named anecdote beyond author/editor metadata, so examples should use fictional protagonists and stay anchored to verified terms.",
+  "chapterSpecificMisunderstanding": "Confusing secrets with conspiracy, edginess, or contrarian performance.",
+  "sourceAlignmentTerms": [
+    "secrets",
+    "hidden truth",
+    "contrarian",
+    "discovery",
+    "non-obvious",
+    "underbelieved"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of secrets",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "geriatric home-care coordination",
+      "audience": "a founder looking for the hidden truth in missed family handoffs that everyone treats as normal",
+      "stakes": "whether an unglamorous coordination gap becomes the company insight",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Emily follows one discharge folder through three phone calls until the secret is visible",
+      "firstImage": "a discharge folder left beside a hospital phone",
+      "mustInclude": [
+        "discharge folder",
+        "family voicemail list",
+        "medication chart"
+      ],
+      "mustAvoid": [
+        "conspiracy language"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "construction materials waste",
+      "audience": "a site manager noticing that discarded offcuts follow a pattern no estimator wants to discuss",
+      "stakes": "whether the ignored waste pile points to a new procurement model",
+      "format": "sensory_first",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Dust rises as Lars measures the offcut pile instead of arguing about waste percentages",
+      "firstImage": "sawdust on a loading bay floor",
+      "mustInclude": [
+        "offcut pile",
+        "measuring tape",
+        "supplier invoice"
+      ],
+      "mustAvoid": [
+        "green chapter drift"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "academic advising software",
+      "audience": "a student-services analyst seeing that course failure starts with schedule friction nobody tracks",
+      "stakes": "whether a hidden administrative truth becomes product focus",
+      "format": "retrospective",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "It takes Marta three weeks of late-drop forms to see the same timetable conflict behind them",
+      "firstImage": "late-drop forms clipped under a cracked plastic tray",
+      "mustInclude": [
+        "late-drop forms",
+        "timetable printout",
+        "advisor notes"
+      ],
+      "mustAvoid": [
+        "education generic"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "specialty food importing",
+      "audience": "an importer discovering that chefs care more about delivery predictability than rare ingredients",
+      "stakes": "whether the obvious prestige story hides the real buying truth",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Luca stops pitching rarity and asks why chefs reorder the plain staple",
+      "firstImage": "olive tins stacked beside a restaurant back door",
+      "mustInclude": [
+        "olive tins",
+        "delivery ledger",
+        "chef texts"
+      ],
+      "mustAvoid": [
+        "foodie detail without insight"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "public library digital access",
+      "audience": "a systems librarian noticing patrons fail at login recovery, not content discovery",
+      "stakes": "whether the boring bottleneck becomes the real secret",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Astrid predicts demand from catalog searches, then watches password-reset slips dominate the desk",
+      "firstImage": "password-reset slips in a clear acrylic holder",
+      "mustInclude": [
+        "reset slips",
+        "catalog terminal",
+        "library card stack"
+      ],
+      "mustAvoid": [
+        "public-service platitudes"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "industrial safety training",
+      "audience": "a trainer seeing that near misses cluster around tool handoffs nobody names",
+      "stakes": "whether an overlooked ritual becomes the safer process",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Yusuf pauses the incident review and has workers reenact the handoff everyone skipped in the report",
+      "firstImage": "gloves laid palm-up on a steel workbench",
+      "mustInclude": [
+        "gloves",
+        "incident forms",
+        "torque wrench"
+      ],
+      "mustAvoid": [
+        "generic safety lesson"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires search for a hidden truth that reality supports before consensus is ready to reward it.",
+      "separate secrets from hidden truth in a novel operating case",
+      "diagnose the specific failure mode: confusing secrets with conspiracy, edginess, or contrarian performance.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one repeated behavior customers or colleagues show but do not explain well; turn it into a candidate hidden truth and one test that could disprove it.",
+  "readingTimeMinutes": 12
+}

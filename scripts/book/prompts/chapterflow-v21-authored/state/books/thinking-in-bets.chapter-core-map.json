@@ -1,0 +1,159 @@
+{
+  "bookId": "thinking-in-bets",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "thinking-in-bets-ch01",
+      "title": "Introduction: Why this isn't a poker book",
+      "sourcePressure": "The opening contract uses Pete Carroll's Super Bowl XLIX pass and the poker-versus-chess contrast to separate process quality from outcome quality under uncertainty, luck, and hidden information.",
+      "coreMove": "Reconstruct the live decision before letting the final outcome judge it.",
+      "commonMisread": "Treating uncertainty as an excuse for failed choices instead of a demand for better process reconstruction.",
+      "mustUseTerms": [
+        "resulting",
+        "outcome quality",
+        "decision quality",
+        "hidden information",
+        "luck",
+        "poker versus chess",
+        "calibrated confidence"
+      ],
+      "mustNotDriftInto": [
+        "generic uncertainty sermon",
+        "football hindsight debate",
+        "excusing bad process because luck exists"
+      ]
+    },
+    {
+      "number": 2,
+      "chapterId": "thinking-in-bets-ch02",
+      "title": "Life is poker, not chess",
+      "sourcePressure": "The chapter makes poker the governing model for real decisions because information stays hidden and luck can separate a sound process from a single result.",
+      "coreMove": "Commit under incomplete information while describing confidence as a range, not a verdict.",
+      "commonMisread": "Assuming poker means randomness dominates, so judgment and accountability become softer.",
+      "mustUseTerms": [
+        "hidden information",
+        "incomplete board",
+        "variance",
+        "skill and luck",
+        "calibrated confidence",
+        "I'm not sure",
+        "process quality"
+      ],
+      "mustNotDriftInto": [
+        "repeating the Pete Carroll opener",
+        "indecision advice",
+        "poker glamour"
+      ]
+    },
+    {
+      "number": 3,
+      "chapterId": "thinking-in-bets-ch03",
+      "title": "Wanna bet?",
+      "sourcePressure": "The chapter turns confident claims into priced beliefs so the gap between tone and real conviction becomes visible.",
+      "coreMove": "Make a belief name its price before treating its confidence as real.",
+      "commonMisread": "Turning bet language into a dare, dominance move, or literal gambling recommendation.",
+      "mustUseTerms": [
+        "wanna bet",
+        "priced belief",
+        "stake",
+        "calibration",
+        "verbal certainty",
+        "confidence level",
+        "status performance"
+      ],
+      "mustNotDriftInto": [
+        "generic communication advice",
+        "casino language",
+        "taunting skeptics"
+      ]
+    },
+    {
+      "number": 4,
+      "chapterId": "thinking-in-bets-ch04",
+      "title": "Bet to learn: fielding the unfolding future",
+      "sourcePressure": "The chapter treats outcomes as staged feedback from an unfolding future, requiring proportional updates rather than snap verdicts or reactive swings.",
+      "coreMove": "Move confidence only as far as the new evidence earns.",
+      "commonMisread": "Calling every new result a lesson and wobbling with each noisy data point.",
+      "mustUseTerms": [
+        "unfolding future",
+        "noisy feedback",
+        "signal and noise",
+        "proportional updating",
+        "short-run outcome",
+        "process review",
+        "revision"
+      ],
+      "mustNotDriftInto": [
+        "trust-the-process slogans",
+        "generic flexibility",
+        "outcome minimization"
+      ]
+    },
+    {
+      "number": 5,
+      "chapterId": "thinking-in-bets-ch05",
+      "title": "The buddy system",
+      "sourcePressure": "The chapter shows why solo review bends around ego and why a trusted challenger can test assumptions, confidence, and after-the-fact rewrites.",
+      "coreMove": "Invite a trusted challenger to audit the story before ego edits it clean.",
+      "commonMisread": "Treating the buddy as a comfort provider, mentor, or automatic cheerleader.",
+      "mustUseTerms": [
+        "buddy system",
+        "truth-seeking correction",
+        "reassurance",
+        "self-serving story",
+        "outside challenge",
+        "assumptions",
+        "postmortem honesty"
+      ],
+      "mustNotDriftInto": [
+        "friendship advice",
+        "therapy language",
+        "generic teamwork"
+      ]
+    },
+    {
+      "number": 6,
+      "chapterId": "thinking-in-bets-ch06",
+      "title": "Dissent to win",
+      "sourcePressure": "The chapter scales truth-seeking from one buddy to group culture, using dissent and CUDOS-style norms to keep consensus from impersonating evidence.",
+      "coreMove": "Give the strongest objection a protected place before the group locks its choice.",
+      "commonMisread": "Equating useful dissent with loud contrarianism, combat, or endless objection.",
+      "mustUseTerms": [
+        "dissent",
+        "consensus risk",
+        "CUDOS",
+        "organized skepticism",
+        "evidence conflict",
+        "ego conflict",
+        "counterargument"
+      ],
+      "mustNotDriftInto": [
+        "speak-up slogans",
+        "conflict worship",
+        "abrasive hero stories"
+      ]
+    },
+    {
+      "number": 7,
+      "chapterId": "thinking-in-bets-ch07",
+      "title": "Adventures in mental time travel",
+      "sourcePressure": "The source support is thinner here, so the plan stays narrow: mental time travel widens present judgment through future review, 10-10-10 thinking, premortems, backcasting, and regret placed before commitment.",
+      "coreMove": "Let a future review point inspect today before the present mood spends the chips.",
+      "commonMisread": "Treating future perspective as prediction, manifestation, or clean foresight.",
+      "mustUseTerms": [
+        "mental time travel",
+        "present bias",
+        "future review point",
+        "10-10-10",
+        "premortem",
+        "backcasting",
+        "regret rehearsal"
+      ],
+      "mustNotDriftInto": [
+        "generic visualization",
+        "optimism advice",
+        "faux neuroscience"
+      ]
+    }
+  ]
+}

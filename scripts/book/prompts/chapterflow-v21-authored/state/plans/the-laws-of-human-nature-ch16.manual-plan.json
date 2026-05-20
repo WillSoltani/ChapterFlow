@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch16",
+  "number": 16,
+  "title": "Make Them Want to Follow You: The Law of Fickleness",
+  "coreMove": "Establish authority through steadiness, fairness, and inner authority while follower demands shift and test you.",
+  "sourcePressure": "This law studies the emotional contract between leader and followers: people want direction, resent dependence, test power, and withdraw respect when authority looks needy or unfair.",
+  "chapterSpecificMisunderstanding": "Making leadership a popularity lesson or command style instead of the unstable emotional contract authority must manage.",
+  "sourceAlignmentTerms": [
+    "fickleness",
+    "authority",
+    "entitlement curse",
+    "followers",
+    "fairness",
+    "inner authority"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Make Them Want to Follow You: The Law of Fickleness",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a community theater director assigning roles after donors pressure casting",
+      "audience": "a leader tested by favoritism and popularity",
+      "stakes": "whether the cast trusts the production",
+      "format": "decision_point",
+      "requiredBeat": "the director posts the audition criteria and keeps the donor's favorite in ensemble because the principle must be visible",
+      "firstImage": "a cast list pinned beside numbered audition forms",
+      "mustInclude": [
+        "cast list",
+        "audition forms",
+        "donor email"
+      ],
+      "mustAvoid": [
+        "generic school leadership"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a paramedic station captain changing overtime rules after complaints",
+      "audience": "a captain balancing care with authority",
+      "stakes": "whether the crew sees fairness or weakness",
+      "format": "dialogue",
+      "requiredBeat": "she explains the rule from fatigue data, then refuses the loudest exception while offering the same swap process to everyone",
+      "firstImage": "an overtime board with color-coded shift magnets",
+      "mustInclude": [
+        "shift magnets",
+        "fatigue report",
+        "swap request form"
+      ],
+      "mustAvoid": [
+        "generic committee work"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a restaurant general manager taking over after a beloved manager leaves",
+      "audience": "a leader facing nostalgia and tests",
+      "stakes": "whether staff follow standards or wait for collapse",
+      "format": "before_after",
+      "requiredBeat": "before, she tries to win everyone individually; after, she enforces one seating rule consistently and the room steadies",
+      "firstImage": "a host stand screen showing a backed-up reservation grid",
+      "mustInclude": [
+        "reservation grid",
+        "seating rule",
+        "server rotation"
+      ],
+      "mustAvoid": [
+        "generic restaurant pep talk"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a student robotics captain deciding whether to let the best coder ignore documentation",
+      "audience": "a young leader tempted to protect talent from rules",
+      "stakes": "whether the team learns fairness or favoritism",
+      "format": "postmortem",
+      "requiredBeat": "after a build failure, he traces it to undocumented code and applies the same rule to the star as to novices",
+      "firstImage": "a tangled wiring harness beside an open laptop",
+      "mustInclude": [
+        "wiring harness",
+        "documentation checklist",
+        "build log"
+      ],
+      "mustAvoid": [
+        "generic school club drama"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a tenants' union spokesperson facing members angry about slow negotiations",
+      "audience": "a representative whose authority depends on steadiness under disappointment",
+      "stakes": "whether the group splinters into rumor and accusation",
+      "format": "vignette",
+      "requiredBeat": "she reads the negotiation facts, names what cannot be promised, and refuses to buy applause with false certainty",
+      "firstImage": "a stack of lease copies on a metal folding chair",
+      "mustInclude": [
+        "lease copies",
+        "negotiation timeline",
+        "member questions"
+      ],
+      "mustAvoid": [
+        "generic political rally"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a software incident commander during a payment outage",
+      "audience": "a technical leader watched by anxious executives and engineers",
+      "stakes": "whether people trust the response or start freelancing",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts demands for constant updates, then sets a fifteen-minute cadence and declines side-channel requests",
+      "firstImage": "a status dashboard with one red payment tile",
+      "mustInclude": [
+        "status dashboard",
+        "incident channel",
+        "update cadence"
+      ],
+      "mustAvoid": [
+        "generic startup leadership"
+      ],
+      "openingDevice": "timestamp_named"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "hold authority without neediness",
+      "spot follower tests and entitlement pressure",
+      "use fairness as visible structure rather than mood"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When a group pushes for an exception, state the principle you are protecting before deciding whether the exception fits it.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Queen Elizabeth I",
+      "detail": "the source uses Elizabeth as the central authority anchor, preserving symbolic weight and distance amid unstable public feeling",
+      "useIn": "both",
+      "phrasingHint": "Elizabeth keeps authority from becoming cheap by refusing to let the court fully possess her."
+    },
+    {
+      "kind": "person",
+      "name": "William Cecil and Mary Queen of Scots",
+      "detail": "the source uses Cecil as a support for preserved form and Mary as the contrast of exposed, entangled authority",
+      "useIn": "fullRead",
+      "phrasingHint": "Cecil protects the form of power while Mary shows how exposed dependence makes authority easier to test."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

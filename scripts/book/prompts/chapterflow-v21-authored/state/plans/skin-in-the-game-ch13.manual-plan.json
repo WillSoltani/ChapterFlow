@@ -1,0 +1,184 @@
+{
+  "chapterId": "skin-in-the-game-ch13",
+  "number": 13,
+  "title": "The Merchandising of Virtue",
+  "coreMove": "Test moral claims by tracing who pays, who is praised, and who receives the transferred downside.",
+  "sourcePressure": "Virtue display becomes suspect when the speaker gains reputation while someone else bears the cost of the moral position.",
+  "chapterSpecificMisunderstanding": "Writing a broad hypocrisy complaint instead of reputational arbitrage under moral cover.",
+  "sourceAlignmentTerms": [
+    "virtue display",
+    "cost-bearing action",
+    "reputational upside",
+    "moral posturing",
+    "transferred risk",
+    "ethical exposure"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Merchandising of Virtue",
+      "detail": "The sidecar supports a focus on virtue displays that keep upside with the speaker and externalize cost or risk.",
+      "useIn": "both",
+      "phrasingHint": "The merchandising appears when the moral label is sold for applause and the invoice is mailed to someone else."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "fashion brand launching a public ethics campaign while suppliers absorb cost",
+      "audience": "sourcing manager tracing who pays for virtue",
+      "stakes": "factory workers may carry the brand's reputational bargain",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Juliette adds supplier wage impact to the campaign approval page before signoff.",
+      "firstImage": "fabric samples beside a campaign mockup",
+      "mustInclude": [
+        "supplier invoice",
+        "campaign mockup",
+        "wage impact"
+      ],
+      "mustAvoid": [
+        "brand activism rant"
+      ]
+    },
+    {
+      "domain": "university divesting symbolically while increasing student fees",
+      "audience": "student trustee testing moral display against transferred cost",
+      "stakes": "students may pay for reputational purity they did not choose",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mikkel asks whose bill rises after the moral announcement and records the answer in the minutes.",
+      "firstImage": "tuition tables under a projector beam",
+      "mustInclude": [
+        "divestment motion",
+        "tuition table",
+        "meeting minutes"
+      ],
+      "mustAvoid": [
+        "campus politics"
+      ]
+    },
+    {
+      "domain": "restaurant posting local-food virtue while wasting edible surplus",
+      "audience": "chef measuring cost-bearing action against display",
+      "stakes": "community benefit is claimed while avoidable waste continues",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Nina weighs the surplus bin before approving another window decal.",
+      "firstImage": "tomato skins in a stainless bin",
+      "mustInclude": [
+        "surplus bin",
+        "window decal",
+        "donation schedule"
+      ],
+      "mustAvoid": [
+        "food waste sermon"
+      ]
+    },
+    {
+      "domain": "corporate executive condemning emissions while outsourcing dirty work",
+      "audience": "auditor tracing outsourced downside",
+      "stakes": "the company buys praise while contractors carry the mess",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Luke moves contractor emissions back onto the executive dashboard.",
+      "firstImage": "diesel haze at a loading bay",
+      "mustInclude": [
+        "contractor report",
+        "executive dashboard",
+        "emissions line"
+      ],
+      "mustAvoid": [
+        "climate flamewar"
+      ]
+    },
+    {
+      "domain": "neighborhood group demanding affordable housing but opposing one building nearby",
+      "audience": "planner watching moral language meet local cost",
+      "stakes": "families needing units lose to cost-free virtue",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Devon maps every supportive statement against the objections filed for the actual site.",
+      "firstImage": "zoning notices taped to a library wall",
+      "mustInclude": [
+        "support statement",
+        "site objection",
+        "unit count"
+      ],
+      "mustAvoid": [
+        "NIMBY shorthand"
+      ]
+    },
+    {
+      "domain": "book club choosing ethical consumption rules that burden one low-income member",
+      "audience": "organizer checking whether virtue became someone else's bill",
+      "stakes": "belonging can be taxed by group moral display",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Pablo prices the new rule against each member's budget before calling it ethical.",
+      "firstImage": "receipts spread beside a borrowed paperback",
+      "mustInclude": [
+        "group rule",
+        "grocery receipts",
+        "member budget"
+      ],
+      "mustAvoid": [
+        "moralizing lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify virtue display in a new concrete scenario",
+      "choose the action that performs the chapter move: Test moral claims by tracing who pays, who is praised, and who receives the transferred downside.",
+      "separate the chapter's mechanism from the weak misread: Writing a broad hypocrisy complaint instead of reputational arbitrage under moral cover.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for The Merchandising of Virtue.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

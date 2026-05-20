@@ -1,0 +1,204 @@
+{
+  "chapterId": "never-eat-alone-ch03",
+  "number": 3,
+  "title": "What's Your Mission?",
+  "coreMove": "Use a mission to decide which relationships deserve pursuit and what value you can bring.",
+  "sourcePressure": "Mission narrows relationship-building from random accumulation to a direction: know the work, impact, and people that make outreach meaningful.",
+  "chapterSpecificMisunderstanding": "Turning mission into vague purpose talk or a motivational poster.",
+  "sourceAlignmentTerms": [
+    "mission",
+    "goals",
+    "right rooms",
+    "impact",
+    "meaningful direction",
+    "identify people"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Bill Clinton",
+      "detail": "listed in the frozen table of contents as a Connectors' Hall of Fame Profile after chapter 3",
+      "useIn": "fullRead",
+      "phrasingHint": "Bill Clinton can appear only as a light profile marker for mission-driven relational reach, not as an invented biography."
+    }
+  ],
+  "sourceAnchorNote": "Use only these frozen anchors and do not add unsupported named anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "climate startup advisory map",
+      "audience": "a reader facing climate startup advisory map where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if climate startup advisory map becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel rewrites a vague outreach list around one concrete mission and removes names that do not fit in front of sticky-note map, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "sticky-note map on the edge of climate startup advisory map",
+      "mustInclude": [
+        "sticky-note map",
+        "climate startup advisory map constraint",
+        "one named next step tied to mission"
+      ],
+      "mustAvoid": [
+        "Turning mission into vague purpose talk or a motivational poster.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "museum fellowship application plan",
+      "audience": "a reader facing museum fellowship application plan where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if museum fellowship application plan becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Laura rewrites a vague outreach list around one concrete mission and removes names that do not fit in front of application checklist, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "application checklist on the edge of museum fellowship application plan",
+      "mustInclude": [
+        "application checklist",
+        "museum fellowship application plan constraint",
+        "one named next step tied to mission"
+      ],
+      "mustAvoid": [
+        "Turning mission into vague purpose talk or a motivational poster.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "apprentice chef career notebook",
+      "audience": "a reader facing apprentice chef career notebook where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if apprentice chef career notebook becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Anna rewrites a vague outreach list around one concrete mission and removes names that do not fit in front of knife roll, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "knife roll on the edge of apprentice chef career notebook",
+      "mustInclude": [
+        "knife roll",
+        "apprentice chef career notebook constraint",
+        "one named next step tied to mission"
+      ],
+      "mustAvoid": [
+        "Turning mission into vague purpose talk or a motivational poster.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Julia",
+      "domain": "city housing coalition strategy wall",
+      "audience": "a reader facing city housing coalition strategy wall where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if city housing coalition strategy wall becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Julia rewrites a vague outreach list around one concrete mission and removes names that do not fit in front of zoning notice, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "zoning notice on the edge of city housing coalition strategy wall",
+      "mustInclude": [
+        "zoning notice",
+        "city housing coalition strategy wall constraint",
+        "one named next step tied to mission"
+      ],
+      "mustAvoid": [
+        "Turning mission into vague purpose talk or a motivational poster.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "graduate lab collaboration list",
+      "audience": "a reader facing graduate lab collaboration list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if graduate lab collaboration list becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Juliette rewrites a vague outreach list around one concrete mission and removes names that do not fit in front of lab freezer label, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "lab freezer label on the edge of graduate lab collaboration list",
+      "mustInclude": [
+        "lab freezer label",
+        "graduate lab collaboration list constraint",
+        "one named next step tied to mission"
+      ],
+      "mustAvoid": [
+        "Turning mission into vague purpose talk or a motivational poster.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "regional theater donor map",
+      "audience": "a reader facing regional theater donor map where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if regional theater donor map becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Devon rewrites a vague outreach list around one concrete mission and removes names that do not fit in front of stage light gel, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "stage light gel on the edge of regional theater donor map",
+      "mustInclude": [
+        "stage light gel",
+        "regional theater donor map constraint",
+        "one named next step tied to mission"
+      ],
+      "mustAvoid": [
+        "Turning mission into vague purpose talk or a motivational poster.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish mission from Turning mission into vague purpose talk or a motivational poster.",
+      "choose the visible action that performs: Use a mission to decide which relationships deserve pursuit and what value you can bring.",
+      "diagnose when a scenario drifts into Turning mission into vague purpose talk or a motivational poster.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real mission moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-psychology-of-money-ch13",
+  "number": 13,
+  "title": "Surprise!",
+  "readingTimeMinutes": 12,
+  "hook": "The harbor forecast looks calm until you ask which ship, rule, storm, or strike is missing from the model.",
+  "counterintuition": "The paradox is that history becomes more useful when it stops pretending to be a script and starts warning you that the next surprise may not resemble the last one.",
+  "tryThisNow": "Choose one forecast you trust. Add a blank surprise line and write what would still work if the next shock is unlike the last one.",
+  "keyTakeaway": "Good planning uses history with humility, widens the range of outcomes, and leaves room for shocks that recent evidence does not contain.",
+  "breakdown": {
+    "fastRead": "A berth schedule can look precise after five steady years. Ships arrive, cranes work, cargo clears, and the city forgets how quickly a port can become a bottleneck. The missing line is the shock no one has named yet.\n\nSurprise is not an exception to history. It is one of history's main forces. Recent bias makes calm feel normal and familiar shocks feel like the only shocks possible. The useful move is to widen the plan: add slack, revision points, and range so tomorrow does not have to resemble the last clean chart.",
+    "deepRead": "A university treasurer sees a decade of rising markets on the trustee room screen. The spending rate looks safe, and the tuition grant list depends on it. Then he adds one blank column labeled surprise. The column does not predict the event. It forces the committee to ask how much of the plan depends on no strange event arriving.\n\nThe future is allowed to be new, which is why the blank space in a plan may be more honest than another precise line item.\n\nThe mechanism is recency dressed as evidence. We study what has happened because history is the best record available. Then we quietly shrink the future to the part of history we remember most clearly. A quiet flu season becomes proof that supplies can be cut. Three predictable holidays make inventory feel easy. A family arrangement that works today becomes a will that assumes no illness, remarriage, distance, or conflict will change the map.\n\nPlanning with surprise is not doom thinking. It does not require naming every disaster. It requires humility about the range. Ask what breaks if the next shock differs from the last one. Ask which assumption is comfortable only because it has not been tested recently. Ask where a revision clause, extra supply, wider price range, or slower commitment would keep choices open.\n\nThe limit is that range can become paralysis. You cannot prepare for every possible future. The point is to make plans less brittle, not to wait for certainty that will never arrive.",
+    "fullRead": "Fiona lays the transparent wind map over the county burn map and sees the old pattern stop being enough. Recent burn history says one thing. New wind corridors suggest another. If she prices coverage by the last familiar map alone, households may be protected for the fire they remember and exposed to the fire that arrives differently.\n\nThat is the trap in using history as a script. History is essential, but it does not repeat with stage directions. The most important events often arrive as combinations people did not model: a new route, a different weather pattern, a policy change, a technology break, a behavior shift, a cluster of small failures that becomes one big one. The evidence can be true and still too narrow.\n\nWhat would you build differently if the next disruption refused to look like the last one?\n\nA port authority might remove the last five calm years from the forecast and ask what still works. A publisher might ask what surprise is absent from the print-quantity spreadsheet before ordering inventory. A clinic might review the supply that ran out during the last unlike surge before cutting stock after one quiet season. An estate lawyer might ask which relationship change would make today's document unfair before drafting it as if harmony were permanent.\n\nThe point is not pessimism. Pessimism says bad things will happen and often enjoys sounding certain. Surprise planning says certainty is the problem. Good plans have humility built into them: wider ranges, review dates, buffers, alternate suppliers, flexible clauses, and decisions sized so being wrong is survivable. They do not know the future. They respect that they do not know it.\n\nThe counter-objection is practical. If every plan includes every surprise, plans become expensive and vague. True. A useful surprise margin should target the assumptions that would hurt most if wrong. You do not need infinite inventory. You need to know which stockout would shut the clinic. You do not need a will for every imagined conflict. You need a revision clause and a conversation about the relationships most likely to change.\n\nA university endowment learns this when a model includes a column called surprise instead of squeezing every risk into last decade's categories. A wildfire insurer learns it when wind corridors no one priced correctly turn quiet maps into claims. A clinic learns it when supplies that looked unnecessary in calm months become essential after a policy change no one modeled.\n\nA forecast is strongest when it admits where it cannot see. The counter-objection is that blank lines can become lazy planning. They can. A person cannot write surprise on every row and avoid doing the work of estimating ordinary costs. The discipline is to forecast what can be forecast, then keep enough room for what cannot yet be named.\n\nThe blank line is not weakness. It is a reminder that the next stress may come from outside the evidence you trust most. It is where humility enters the model."
+  },
+  "examples": [
+    {
+      "exampleId": "ch13-ex01-ellen-harbor-forecast",
+      "title": "Ellen removes the calm years",
+      "tags": [
+        "thought_experiment",
+        "logistics",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "a port authority planning for cargo shocks after years of steady volume",
+        "audience": "a logistics planner resisting the comfort of recent stability",
+        "stakes": "one unseen disruption can freeze a city's supply chain",
+        "format": "thought_experiment",
+        "requiredBeat": "she removes the last five calm years from the forecast and asks what would still work if the next shock is unlike the last one"
+      },
+      "scenario": "The harbor forecast map is dotted with ships waiting offshore while Ellen checks a berth schedule built on five calm years. Suppose those calm years are removed. She must decide whether the plan still works if the shock scenario is unlike the last disruption, not just a larger version of it. The berth schedule now includes a blank disruption row, not because Ellen can predict the next shock, but because she can stop pretending the old calm years named every danger.",
+      "whatToDo": "Remove the comfort of recent stability and test the berth plan against an unnamed shock. Keep the parts that still work when the next disruption is different.",
+      "whyItMatters": "Recent calm can make capacity look stronger than it is. A plan that only handles familiar trouble may freeze when the city meets a new kind of cargo shock."
+    },
+    {
+      "exampleId": "ch13-ex02-graham-surprise-column",
+      "title": "Graham adds the blank column",
+      "tags": [
+        "decision_point",
+        "endowment",
+        "range"
+      ],
+      "planSpec": {
+        "domain": "a university endowment committee revising assumptions after a decade of rising markets",
+        "audience": "a treasurer widening expected ranges",
+        "stakes": "tuition support becomes fragile if calm markets are treated as law",
+        "format": "decision_point",
+        "requiredBeat": "he adds a surprise column to the model before approving the spending rate"
+      },
+      "scenario": "\"The decade supports this rate,\" a trustee says as Graham's projection model fills the screen beside the tuition grant list. The spending rate passes every calm-market test. Before approval, Graham must decide whether to add a surprise column to the model and ask which grants survive if the next decade refuses to look like the last one. The added column does not forecast disaster; it forces the trustees to see which commitments depend on the past repeating politely.",
+      "whatToDo": "Add the surprise column before voting on the spending rate. Widen the range so tuition support is not built on calm markets pretending to be law.",
+      "whyItMatters": "The grant list depends on the plan surviving the unfamiliar. Recent returns are evidence, but they are not a guarantee that the next shock fits the model."
+    },
+    {
+      "exampleId": "ch13-ex03-fiona-wind-map",
+      "title": "Fiona overlays the new wind corridors",
+      "tags": [
+        "scene",
+        "insurance",
+        "surprise"
+      ],
+      "planSpec": {
+        "domain": "a wildfire insurance analyst refusing to model only recent burn maps",
+        "audience": "an analyst whose data underweights new climate patterns",
+        "stakes": "premiums and coverage may fail households in the next unlike event",
+        "format": "scene",
+        "requiredBeat": "she overlays old fire maps with new wind corridors before signing the pricing memo"
+      },
+      "scenario": "The transparent wind corridor map crackles as Fiona lays it over the county burn map. The pricing memo is ready, and the coverage limits fit recent fires. Before signing, she must decide whether old burn history is enough or whether new wind corridors show a future event the old evidence cannot name. The memo becomes stronger when Fiona marks the old maps as useful evidence and the wind corridor as the sign that evidence can expire.",
+      "whatToDo": "Overlay new exposure data before signing the memo. Price and limit coverage for a wider range than recent burn maps alone can show.",
+      "whyItMatters": "History is useful but narrow. Households can be underprotected when the next fire follows a pattern that did not dominate the recent record."
+    },
+    {
+      "exampleId": "ch13-ex04-monica-print-quantity",
+      "title": "Monica names the absent surprise",
+      "tags": [
+        "predict_reveal",
+        "publishing",
+        "inventory"
+      ],
+      "planSpec": {
+        "domain": "a board game publisher ordering inventory after three predictable holiday seasons",
+        "audience": "a production manager planning for surprises in demand and shipping",
+        "stakes": "a rigid order can strand cash or miss sales",
+        "format": "predict_reveal",
+        "requiredBeat": "she asks the team to name the surprise that is absent from the spreadsheet before choosing print quantity"
+      },
+      "scenario": "It took Monica three predictable holiday seasons to trust the spreadsheet too much. The prototype box sits beside a freight quote and holiday calendar, and the team predicts another clean print run. Before choosing print quantity, Monica asks them to name the surprise absent from the sheet. The reveal is silence, which is exactly why the order needs flexibility. The smaller order irritates sales, but it buys time for the surprise the team cannot describe until it arrives.",
+      "whatToDo": "Name the missing surprise before locking print quantity. Use smaller batches, option dates, or supplier flexibility where the forecast is most brittle.",
+      "whyItMatters": "Predictable seasons can make a rigid order feel safe. The blank surprise exposes where demand or shipping could strand cash or miss sales."
+    },
+    {
+      "exampleId": "ch13-ex05-nadine-supply-shelf",
+      "title": "Nadine checks the unlike surge",
+      "tags": [
+        "postmortem",
+        "clinic",
+        "recency"
+      ],
+      "planSpec": {
+        "domain": "a public health clinic stocking supplies after a quiet flu season",
+        "audience": "a clinic director avoiding recency bias",
+        "stakes": "low recent use may tempt cuts just before a different outbreak",
+        "format": "postmortem",
+        "requiredBeat": "she reviews which supply ran out during the last unlike surge before reducing anything"
+      },
+      "scenario": "Which shelf is safe to cut after a quiet season? Nadine reads a supply shelf tag with last year's low usage count, then opens the surge log beside the order form. In the postmortem, she must decide whether low recent use is enough evidence or whether the item that ran out during the last unlike surge deserves protection. The shelf tag stops being a verdict once Nadine compares ordinary use with the one surge that made the item matter.",
+      "whatToDo": "Review the unlike surge before reducing stock. Cut only where low use stays low across different stress patterns, not just one quiet season.",
+      "whyItMatters": "Recency bias makes unused supplies look wasteful. A different outbreak can reveal that the quiet year was a poor guide to the next need."
+    },
+    {
+      "exampleId": "ch13-ex06-marc-beneficiary-form",
+      "title": "Marc asks which relationship could change",
+      "tags": [
+        "dialogue",
+        "estate planning",
+        "revision"
+      ],
+      "planSpec": {
+        "domain": "an estate lawyer helping a client plan beyond the family arrangement that currently feels permanent",
+        "audience": "a lawyer making room for future conflict without predicting it",
+        "stakes": "a will based on today's harmony can fail after remarriage, illness, or distance",
+        "format": "dialogue",
+        "requiredBeat": "she asks which relationship change would make the current document unfair before drafting"
+      },
+      "scenario": "You are at Marc's desk with a blank beneficiary form under the lamp, a family tree note, and a revision clause waiting in the margin. \"Everyone agrees now,\" the client says. Marc must decide whether to draft for today's harmony or ask which relationship change would make the current document unfair. The revision clause turns agreement from a frozen assumption into a plan that can survive people changing.",
+      "whatToDo": "Ask about the relationship changes that could make the document unfair, then include revision points. Do not predict conflict; leave room for life to change.",
+      "whyItMatters": "A will based only on today's arrangement can fail after illness, remarriage, distance, or conflict. Flexibility protects the plan without inventing a fear story."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "ch13-q01",
+        "prompt": "A port forecast is built from recent cargo patterns, but the harbor map shows a new offshore route that could change traffic suddenly. What should the planner add?",
+        "choices": [
+          "Trust the calm years because recent data is always the best script.",
+          "Remove recent calm from the comfort case and test what still works under an unnamed shock.",
+          "Prepare only for the exact disruption that happened last time."
+        ],
+        "correctIndex": 1,
+        "explanation": "The move widens the range without pretending to predict the shock. The wrong answers turn history into a script.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch13-q02",
+        "prompt": "An endowment model has precise return and spending assumptions, but trustees know past categories missed several shocks. What makes the model more honest?",
+        "choices": [
+          "A rule that ignores history entirely.",
+          "A higher spending rate because calm markets proved the future.",
+          "A surprise column that asks which grants survive unfamiliar stress."
+        ],
+        "correctIndex": 2,
+        "explanation": "The surprise column adds humility. It does not discard history; it prevents the recent decade from becoming a guarantee.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch13-q03",
+        "prompt": "A wildfire insurer prices risk from old burn maps, but a new wind corridor changes how fires move. What is the danger of relying only on history?",
+        "choices": [
+          "Only last year's low usage count.",
+          "A policy of never cutting any supply.",
+          "The surge log across unlike events before reducing stock."
+        ],
+        "correctIndex": 2,
+        "explanation": "The surge log widens evidence beyond recent calm. Keeping everything forever is not the point; cutting from one quiet year is too narrow.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch13-q04",
+        "prompt": "A publisher orders inventory after three predictable holidays. The spreadsheet has no line for freight disruption or demand surprise. What is the risk?",
+        "choices": [
+          "The team is using recent predictability as if it were a law.",
+          "The team is thinking too much about uncertainty.",
+          "The team should abandon holiday planning altogether."
+        ],
+        "correctIndex": 0,
+        "explanation": "Recent predictability can hide brittle assumptions. The correction is flexible ordering, not no planning.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch13-q05",
+        "prompt": "An estate plan assumes today's family harmony will last. The lawyer wants the plan to survive illness, remarriage, or distance. What should she ask?",
+        "choices": [
+          "Which relationship change would make this document unfair?",
+          "Which relative is most likely to behave badly?",
+          "How can we avoid ever revising the document?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The question makes room for change without accusing anyone. The other choices either create a fear story or deny revision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch13-q06",
+        "prompt": "An analyst prices wildfire coverage using only recent burn maps, but new wind patterns change exposure. What is the stronger forecast move?",
+        "choices": [
+          "Keep the old model because it has the cleanest historical data.",
+          "Stop pricing coverage because surprises make analysis useless.",
+          "Overlay new exposure data and widen coverage assumptions before signing."
+        ],
+        "correctIndex": 2,
+        "explanation": "The move respects history while widening it. Surprise does not make analysis useless; it makes narrow analysis dangerous.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch13-q07",
+        "prompt": "A team says no shocks have happened recently, so shocks are unlikely, even though their records cover only two calm operating years and one narrow market. Which bias is showing?",
+        "choices": [
+          "Recent calm is being mistaken for a full range of possible outcomes.",
+          "The team is too pessimistic about the future.",
+          "The team is refusing to use any evidence at all."
+        ],
+        "correctIndex": 0,
+        "explanation": "The team is overweighting recent visibility. Evidence matters, but absence of recent shock is not proof the range is small.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch13-q08",
+        "prompt": "A manager wants every plan to include every imaginable surprise, adding so many backup paths that the project cannot start by the grant deadline. What is the balanced correction?",
+        "choices": [
+          "Target the assumptions that would hurt most if wrong, and add margin there.",
+          "Remove all surprise planning because it slows decisions.",
+          "Wait until the future is certain."
+        ],
+        "correctIndex": 0,
+        "explanation": "Useful surprise planning focuses on high-impact brittleness. Infinite preparation becomes paralysis, while no margin is fragile.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch13-q09",
+        "prompt": "A forecast includes a precise revenue number for next spring but no range, no review point, and no plan for being wrong if demand or supply shifts suddenly. What is missing?",
+        "choices": [
+          "A more confident story about why the number is right.",
+          "Humility: range, revision, and survivable error.",
+          "A decision to ignore the forecast completely."
+        ],
+        "correctIndex": 1,
+        "explanation": "The forecast needs room for surprise. Confidence without revision makes the precise number brittle.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch13-card01",
+      "front": "A forecast uses only the last calm decade. What should you remember about surprise?",
+      "back": "Add a surprise line or wider range. Ask what still works if the next shock differs from the last known one.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch13-card02",
+      "front": "A planner copies the last crisis exactly. Why can history mislead when used as a script?",
+      "back": "History shows what happened, not all that can happen. Recent events can shrink imagination and make the future look too familiar.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch13-card03",
+      "front": "What is the difference between surprise planning and doom thinking?",
+      "back": "Surprise planning adds range, margin, and revision without pretending to know the disaster. Doom thinking often replaces one certainty with another.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch13-card04",
+      "front": "How do you keep surprise planning from becoming paralysis?",
+      "back": "Focus on assumptions that would hurt most if wrong. Add margin or revision there, rather than trying to prepare for everything.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch13-card05",
+      "front": "What does a blank surprise column do?",
+      "back": "It forces humility into the model. It asks how much of the plan depends on an unfamiliar shock not arriving.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Use history as evidence, not as a script. Add range, margin, and revision points where a plan would be brittle if the future arrives differently than the recent past.",
+    "ifThenPlans": [
+      {
+        "context": "forecasting",
+        "plan": "If a model depends on recent calm, then I will add a blank surprise line before approving it."
+      },
+      {
+        "context": "inventory or supplies",
+        "plan": "If usage was low recently, then I will check unlike surges before cutting the item."
+      },
+      {
+        "context": "contracts or estate plans",
+        "plan": "If today's arrangement feels permanent, then I will add revision points for relationship or condition changes."
+      },
+      {
+        "context": "budget commitments",
+        "plan": "If one assumption would hurt badly if wrong, then I will add margin there first."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one forecast you rely on and add one blank line labeled unknown shock. Write what part of the plan still works if that line turns real.",
+    "weeklyPractice": "Once a week, review one plan for recent bias. Ask whether calm, familiar data has made the range too narrow."
+  },
+  "memorableLines": [
+    {
+      "text": "The future is allowed to be new, which is why the blank space in a plan may be more honest than another precise line item.",
+      "location": "breakdown.deepRead",
+      "why": "It makes humility about surprise concrete."
+    },
+    {
+      "text": "A forecast is strongest when it admits where it cannot see.",
+      "location": "breakdown.fullRead",
+      "why": "It turns humility into a planning strength."
+    },
+    {
+      "text": "The blank line is not weakness. It is a reminder that the next stress may come from outside the evidence you trust most.",
+      "location": "breakdown.fullRead",
+      "why": "It turns uncertainty into a planning feature."
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-lean-startup-ch11",
+  "number": 11,
+  "title": "Adapt",
+  "coreMove": "Trace repeated failures past the visible incident into the human system that keeps producing them, then change the system without freezing the work.",
+  "sourcePressure": "Adaptive organizations use feedback loops and Five Whys to improve quality and process without smothering learning speed, especially when recurring technical problems trace to human systems.",
+  "chapterSpecificMisunderstanding": "Adding process after every mistake until the organization becomes slower but no wiser.",
+  "sourceAlignmentTerms": [
+    "adaptive organization",
+    "feedback loops",
+    "Five Whys",
+    "root cause",
+    "human systems",
+    "technical problems",
+    "learning speed"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Five Whys",
+      "detail": "the sidecar says Five Whys appears here as root-cause and organizational learning tool",
+      "useIn": "both",
+      "phrasingHint": "Five Whys keeps the room from stopping at the first person who touched the problem."
+    },
+    {
+      "kind": "artifact",
+      "name": "Adaptive organization",
+      "detail": "the sidecar says adaptive organizations improve process and quality without slowing learning to a halt",
+      "useIn": "fullRead",
+      "phrasingHint": "Adaptation should make the next mistake less likely without turning every decision into paperwork."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Adapt.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "payment outage postmortem",
+      "audience": "platform engineering team",
+      "stakes": "quick fixes keep repeating because escalation ownership is unclear",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Lin uses Five Whys until the outage points to handoff design, not one engineer",
+      "firstImage": "a status page frozen beside a pager log",
+      "mustInclude": [
+        "pager log",
+        "handoff chart",
+        "Five Whys notes"
+      ],
+      "mustAvoid": [
+        "generic adapt office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "hotel housekeeping checklist",
+      "audience": "operations manager",
+      "stakes": "room defects recur because the checklist hides ownership gaps",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Margaux traces repeated towel shortages to a restock timing system",
+      "firstImage": "a linen cart stopped outside room 412",
+      "mustInclude": [
+        "linen cart",
+        "checklist",
+        "restock time"
+      ],
+      "mustAvoid": [
+        "generic adapt office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "pharmacy refill queue",
+      "audience": "clinic administrator",
+      "stakes": "same-day stress returns because requests enter through three channels",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anders maps the human system behind recurring refill errors",
+      "firstImage": "a fax tray overflowing beside an online queue",
+      "mustInclude": [
+        "fax tray",
+        "online queue",
+        "ownership map"
+      ],
+      "mustAvoid": [
+        "generic adapt office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "youth soccer registration errors",
+      "audience": "club volunteer board",
+      "stakes": "blaming parents masks a confusing form sequence",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Sofia asks why five times until the board sees its own form design",
+      "firstImage": "a folding table covered in registration envelopes",
+      "mustInclude": [
+        "registration form",
+        "envelope stack",
+        "question chain"
+      ],
+      "mustAvoid": [
+        "generic adapt office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "data-center access badge failures",
+      "audience": "facilities security lead",
+      "stakes": "technical badge resets miss the training gap causing repeated lockouts",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Devon changes the onboarding system rather than the badge reader alone",
+      "firstImage": "a badge reader blinking red at a glass door",
+      "mustInclude": [
+        "badge reader",
+        "onboarding checklist",
+        "incident log"
+      ],
+      "mustAvoid": [
+        "generic adapt office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "bakery production handoff",
+      "audience": "morning shift lead",
+      "stakes": "burned batches continue because shift notes omit oven calibration changes",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Giulia rewrites the handoff loop without adding a heavy approval process",
+      "firstImage": "a tray of dark rolls cooling under a timer",
+      "mustInclude": [
+        "oven timer",
+        "handoff note",
+        "calibration mark"
+      ],
+      "mustAvoid": [
+        "generic adapt office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Adapt from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Trace repeated failures past the visible incident into the human system that keeps producing them, then change the system without freezing the work.",
+      "Diagnose when a team is drifting into the misread: Adding process after every mistake until the organization becomes slower but no wiser."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Trace repeated failures past the visible incident into the human system that keeps producing them, then change the system without freezing the work. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

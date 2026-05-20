@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch02",
+  "number": 2,
+  "title": "The Domino Effect",
+  "coreMove": "Find the first small action whose completion knocks the next necessary action into reach.",
+  "sourcePressure": "Chapter 2 adds sequence to leverage: large outcomes grow through cumulative domino actions where one right move creates conditions for the next.",
+  "chapterSpecificMisunderstanding": "Treating success as a single heroic leap or a generic list of baby steps.",
+  "sourceAlignmentTerms": [
+    "domino effect",
+    "sequence",
+    "incremental",
+    "cumulative",
+    "long-term purpose",
+    "next move"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "The Domino Effect as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "historic theater grant restoration",
+      "audience": "grant coordinator",
+      "stakes": "matching funds disappear unless inspection happens first",
+      "format": "decision_point",
+      "requiredBeat": "she books the structural inspection before drafting the glossy donor packet because the report unlocks every later ask",
+      "firstImage": "a cracked plaster balcony photographed under a contractor's flashlight",
+      "mustInclude": [
+        "inspection calendar",
+        "donor packet",
+        "balcony photo"
+      ],
+      "mustAvoid": [
+        "generic fundraising checklist"
+      ]
+    },
+    {
+      "domain": "harbor cleanup after a fuel spill",
+      "audience": "port operations deputy",
+      "stakes": "fines rise while crews argue about the full cleanup map",
+      "format": "scene",
+      "requiredBeat": "he orders the first containment boom across the narrow inlet, making the skimmer route and crew staging obvious",
+      "firstImage": "orange containment boom unspooling across black water at daybreak",
+      "mustInclude": [
+        "containment boom",
+        "skimmer boat",
+        "tide chart"
+      ],
+      "mustAvoid": [
+        "generic environmental awareness"
+      ]
+    },
+    {
+      "domain": "language interpreter certification path",
+      "audience": "medical interpreter trainee",
+      "stakes": "certification exam feels too large to start",
+      "format": "before_after",
+      "requiredBeat": "she records one ten-minute medication-history drill, then uses the transcript errors to choose tomorrow's vocabulary work",
+      "firstImage": "a phone recording waveform beside a printed medication list",
+      "mustInclude": [
+        "phone recorder",
+        "medication list",
+        "exam handbook"
+      ],
+      "mustAvoid": [
+        "generic study plan"
+      ]
+    },
+    {
+      "domain": "urban tree planting permit process",
+      "audience": "neighborhood organizer",
+      "stakes": "planting season closes before permits are approved",
+      "format": "vignette",
+      "requiredBeat": "he gets one utility-marking request filed, which frees the block map, sponsor forms, and Saturday crew plan to move",
+      "firstImage": "spray-painted utility flags lined along an empty curb strip",
+      "mustInclude": [
+        "utility flags",
+        "block map",
+        "permit portal"
+      ],
+      "mustAvoid": [
+        "generic civic volunteer scene"
+      ]
+    },
+    {
+      "domain": "independent film sound edit",
+      "audience": "sound designer",
+      "stakes": "festival submission locks in five days",
+      "format": "predict_reveal",
+      "requiredBeat": "she fixes one corrupted room-tone file first and reveals that three dialogue edits now snap into place",
+      "firstImage": "headphones resting beside a waveform with one red missing-file warning",
+      "mustInclude": [
+        "headphones",
+        "room-tone file",
+        "festival deadline"
+      ],
+      "mustAvoid": [
+        "generic creative project overwhelm"
+      ]
+    },
+    {
+      "domain": "school cafeteria allergen rollout",
+      "audience": "nutrition director",
+      "stakes": "one mistake could send a child to the hospital",
+      "format": "postmortem",
+      "requiredBeat": "the director realizes the label printer calibration had to fall first because every menu, tray card, and staff script depended on it",
+      "firstImage": "a label strip with one allergen icon printed half off the edge",
+      "mustInclude": [
+        "label printer",
+        "tray cards",
+        "allergen icon"
+      ],
+      "mustAvoid": [
+        "generic policy rollout"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot the first enabling action",
+      "connect today's move to a longer chain",
+      "avoid jumping to the final outcome too early"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one goal and draw three boxes: first move, what it unlocks, and what becomes possible after that.",
+  "readingTimeMinutes": 12
+}

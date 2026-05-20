@@ -1,0 +1,191 @@
+{
+  "chapterId": "good-to-great-ch01",
+  "number": 1,
+  "title": "Good Is the Enemy of Great",
+  "coreMove": "Expose comfortable adequacy as a decision to stop investigating what greatness would require.",
+  "sourcePressure": "The source frames good results as the trap that prevents a leap and grounds the argument in comparative research: 11 good-to-great companies, matched comparisons, and sustained results over a long horizon.",
+  "chapterSpecificMisunderstanding": "The weak version says greatness comes from a dramatic breakthrough, a charismatic push, or wanting excellence harder.",
+  "sourceAlignmentTerms": [
+    "good is the enemy of great",
+    "comparative study",
+    "11 good-to-great companies",
+    "matched comparisons",
+    "sustained results",
+    "cumulative momentum"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a motivational alarm clock",
+      "a sports trophy cabinet",
+      "a generic company offsite deciding to be great"
+    ],
+    "counterintuition": [
+      "failure is good for you",
+      "comfort zones are bad",
+      "dream bigger"
+    ],
+    "tryThisNow": [
+      "rate your life from one to ten",
+      "write down where you want excellence",
+      "make a generic improvement list"
+    ],
+    "examples": [
+      "classroom grade comparison",
+      "kitchen cleanup habit",
+      "bus stop impatience",
+      "dramatic founder speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional hospital imaging turnaround review",
+      "audience": "a radiology director whose department meets the published wait-time benchmark",
+      "stakes": "patients with suspicious scans are still waiting long enough for surgeons to lose treatment options",
+      "format": "decision_point",
+      "requiredBeat": "the director places the benchmark report beside a handwritten list of delayed cancer follow-ups and circles the gap between acceptable and great care",
+      "firstImage": "a stack of MRI request forms under the green glow of the scanner console",
+      "mustInclude": [
+        "benchmark report",
+        "delayed follow-up list",
+        "green scanner console"
+      ],
+      "mustAvoid": [
+        "generic hospital efficiency story",
+        "hero doctor rescue"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "independent bookstore front-table economics",
+      "audience": "a store owner proud of steady monthly revenue",
+      "stakes": "steady sales hide the loss of browsing traffic that used to create loyal customers",
+      "format": "before_after",
+      "requiredBeat": "the owner pins last year's receipt roll beside this year's door-counter tape and sees that the same dollars now come from fewer, less curious buyers",
+      "firstImage": "a receipt roll curling over the edge of a crowded checkout drawer",
+      "mustInclude": [
+        "receipt roll",
+        "door-counter tape",
+        "front display gap"
+      ],
+      "mustAvoid": [
+        "generic small business survival",
+        "online retailer complaint"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "minor league stadium concession flow",
+      "audience": "an operations manager whose food stands score well on postgame surveys",
+      "stakes": "fans abandon long lines during the third inning and never show up in satisfaction averages",
+      "format": "scene",
+      "requiredBeat": "the manager stands behind the pretzel warmer and marks every fan who leaves the line before ordering, then compares that count with the cheerful survey score",
+      "firstImage": "steam fogging the glass of a pretzel warmer while the home team comes to bat",
+      "mustInclude": [
+        "pretzel warmer",
+        "abandoned-line tally",
+        "third-inning horn"
+      ],
+      "mustAvoid": [
+        "generic customer service example",
+        "championship sports analogy"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "county library digital access rollout",
+      "audience": "a library director whose e-card launch met its signup target",
+      "stakes": "rural patrons remain absent even though the rollout is being celebrated as successful",
+      "format": "postmortem",
+      "requiredBeat": "the director lays a zip-code heat map over the signup target sheet and sees the empty towns the target allowed everyone to ignore",
+      "firstImage": "a laminated county map spread across the reference desk before opening",
+      "mustInclude": [
+        "zip-code heat map",
+        "signup target sheet",
+        "rural branch pins"
+      ],
+      "mustAvoid": [
+        "generic digital divide speech",
+        "classroom technology scene"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "river outfitter safety review",
+      "audience": "an outfitter owner proud of a season with no reportable injuries",
+      "stakes": "near misses on one rapid show that no-injury status is hiding a fragile operation",
+      "format": "predict_reveal",
+      "requiredBeat": "the owner asks guides to sort wet incident cards by rapid and watches one rock garden form a pile that the official injury log never showed",
+      "firstImage": "damp incident cards drying on a paddleboard rack",
+      "mustInclude": [
+        "wet incident cards",
+        "rock-garden rapid",
+        "injury log"
+      ],
+      "mustAvoid": [
+        "generic outdoor adventure lesson",
+        "near-death drama"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "airport gate boarding reliability",
+      "audience": "a gate supervisor whose flights depart within the airline's accepted window",
+      "stakes": "families with tight connections still miss flights while the station reports on-time success",
+      "format": "reflection",
+      "requiredBeat": "the supervisor replays the scanner timestamps for one family and watches the acceptable departure metric erase their missed connection",
+      "firstImage": "a boarding scanner blinking amber beside a stroller tag",
+      "mustInclude": [
+        "scanner timestamps",
+        "stroller tag",
+        "connection window"
+      ],
+      "mustAvoid": [
+        "generic travel frustration",
+        "technology failure as the main point"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot metrics that certify good while hiding greatness gaps",
+      "distinguish cumulative evidence from breakthrough mythology",
+      "choose comparison groups that reveal complacency",
+      "identify when adequate performance has become a ceiling"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one result you call good. Put its official metric beside one ignored consequence from the same work, then write the question that comparison forces you to ask.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Collins comparative study",
+      "detail": "the source says Collins and his team identified organizations that made a durable leap and compared them with similar firms that did not",
+      "useIn": "both",
+      "phrasingHint": "The claim has weight because the leap is held against companies close enough to make comfort look costly."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch08",
+  "number": 8,
+  "title": "Energy",
+  "coreMove": "Diagnose a motivation failure as an energy constraint before blaming character.",
+  "sourcePressure": "Motivation is grounded in available energy, showing that cognitive performance and follow-through collapse when fuel is ignored.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into medical advice or a prescriptive health protocol.",
+  "sourceAlignmentTerms": [
+    "energy",
+    "fuel",
+    "sustained effort",
+    "attention",
+    "exhaustion",
+    "daily friction",
+    "cognitive performance"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Energy with a generic unlocked potential claim.",
+      "Do not start with a definition of energy."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bakery opening shift",
+      "audience": "owner mistakes fatigue for laziness during recipe training",
+      "stakes": "the morning batch is failing before customers arrive",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "protagonistName": "Megan",
+      "requiredBeat": "Megan checks sleep, food, and shift timing before rewriting herself as undisciplined, then moves the new recipe drill to a fueled hour.",
+      "firstImage": "flour fingerprints on a stainless table",
+      "mustInclude": [
+        "proofing baskets",
+        "shift clock",
+        "recipe card"
+      ],
+      "mustAvoid": [
+        "diet advice",
+        "bakery nostalgia"
+      ]
+    },
+    {
+      "domain": "paramedic continuing education",
+      "audience": "medic trying to learn protocols after overnight calls",
+      "stakes": "recertification depends on clean recall",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Anders",
+      "requiredBeat": "Anders compares the failed recall session with the empty dinner wrapper and moves study to before the shift, not after collapse.",
+      "firstImage": "a cold foil wrapper under a protocol binder",
+      "mustInclude": [
+        "protocol binder",
+        "foil wrapper",
+        "recertification notice"
+      ],
+      "mustAvoid": [
+        "medical protocol detail",
+        "heroic exhaustion"
+      ]
+    },
+    {
+      "domain": "court interpreter exam prep",
+      "audience": "candidate losing accuracy late at night",
+      "stakes": "a language exam requires precision under pressure",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "protagonistName": "Chloe",
+      "requiredBeat": "Chloe stops the third error set and schedules a rested recall block instead of proving commitment through fatigue.",
+      "firstImage": "headphones pressing a crease into a notebook page",
+      "mustInclude": [
+        "headphones",
+        "error log",
+        "exam window"
+      ],
+      "mustAvoid": [
+        "language talent",
+        "all-nighter glory"
+      ]
+    },
+    {
+      "domain": "urban farm volunteer crew",
+      "audience": "coordinator training new harvest leads",
+      "stakes": "heat and skipped breaks are causing mistakes with produce counts",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "protagonistName": "Javier",
+      "requiredBeat": "Javier changes the training plan by adding shade, water, and shorter recall checks, then watches count errors drop.",
+      "firstImage": "lettuce crates sweating in the sun",
+      "mustInclude": [
+        "lettuce crates",
+        "shade tarp",
+        "count sheet"
+      ],
+      "mustAvoid": [
+        "willpower lecture",
+        "farm lifestyle"
+      ]
+    },
+    {
+      "domain": "insurance claims desk",
+      "audience": "analyst learning a new policy system",
+      "stakes": "wrong claim coding delays payments for families",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Frida",
+      "requiredBeat": "Frida names the energy problem before blaming intelligence and blocks a morning review when her attention is clean.",
+      "firstImage": "a claims queue glowing orange on the monitor",
+      "mustInclude": [
+        "claims queue",
+        "policy binder",
+        "morning review slot"
+      ],
+      "mustAvoid": [
+        "generic office fatigue",
+        "software complaint"
+      ]
+    },
+    {
+      "domain": "community college welding booth",
+      "audience": "student whose hands shake during evening practice",
+      "stakes": "certification welds need steady attention and fuel",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "protagonistName": "Aman",
+      "requiredBeat": "Aman predicts another poor bead, eats before the next session, and compares the steadiness of the first weld line.",
+      "firstImage": "a blue arc reflecting in a dark face shield",
+      "mustInclude": [
+        "face shield",
+        "test coupon",
+        "vending-machine receipt"
+      ],
+      "mustAvoid": [
+        "medical advice",
+        "machismo endurance"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when diagnose a motivation failure as an energy constraint before blaming character. is needed in a new scenario.",
+      "Choose the visible action that matches Energy rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before blaming discipline, check the last fuel point: sleep, food, movement, or timing, then adjust one.",
+  "readingTimeMinutes": 12
+}

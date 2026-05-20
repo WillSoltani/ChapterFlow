@@ -1,0 +1,193 @@
+{
+  "chapterId": "blue-ocean-strategy-ch06",
+  "number": 6,
+  "title": "Get the Strategic Sequence Right",
+  "coreMove": "Run a promising idea through utility, price, cost, and adoption in sequence before excitement turns it into a launch.",
+  "sourcePressure": "Test promising ideas in order: buyer utility, strategic price, target cost, and adoption, so novelty becomes commercially viable value innovation.",
+  "chapterSpecificMisunderstanding": "Assuming buyer enthusiasm or originality is enough to prove a blue-ocean move is ready.",
+  "sourceAlignmentTerms": [
+    "strategic sequence",
+    "buyer utility",
+    "strategic price",
+    "target cost",
+    "adoption hurdles",
+    "commercial viability",
+    "value innovation"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "buyer utility, price, cost, and adoption sequence",
+      "detail": "official invention-versus-innovation support summarizes the idea-index sequence including adoption",
+      "useIn": "both",
+      "phrasingHint": "The sequence is unforgiving: first utility, then price, then cost, then adoption, with each gate able to stop a beautiful idea."
+    },
+    {
+      "kind": "artifact",
+      "name": "value innovation",
+      "detail": "official support says value innovation happens only when buyer utility, price, and cost line up",
+      "useIn": "deepRead",
+      "phrasingHint": "Value innovation is the point where usefulness, price, and cost stop fighting one another."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "school-safety hardware tested through sequence gates",
+      "audience": "a founder excited by parent reactions at a school fair",
+      "stakes": "whether a useful prototype becomes a viable broad-market offer",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she sees that parent praise proves utility but says nothing yet about price, cost, or adoption by schools",
+      "firstImage": "A bright plastic lock prototype sits on a folding table beside a sign-in sheet",
+      "mustInclude": [
+        "prototype latch",
+        "parent comment slips",
+        "school procurement form"
+      ],
+      "mustAvoid": [
+        "generic safety scare scene"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "medicine-sorting service for family caregivers",
+      "audience": "a local pharmacist serving overwhelmed family caregivers",
+      "stakes": "whether caregivers adopt the service or admire it from a distance",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "he hears relief from caregivers but must set a price and workflow they will actually accept",
+      "firstImage": "\"I would sleep again,\" a daughter tells Olivier, then asks the monthly price",
+      "mustInclude": [
+        "pill-sort tray",
+        "pickup calendar",
+        "caregiver phone list"
+      ],
+      "mustAvoid": [
+        "dosing cup anchor"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "allergy-safe classroom party boxes and target cost",
+      "audience": "a founder balancing parent trust, ingredient cost, and school budgets",
+      "stakes": "whether the kit remains safe, affordable, and profitable",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "she cuts boutique ingredients to meet target cost without harming the utility parents and teachers need",
+      "firstImage": "It took Marta one rejected school quote to stop treating premium snacks as sacred",
+      "mustInclude": [
+        "ingredient cost sheet",
+        "sealed classroom kit",
+        "allergen label strip"
+      ],
+      "mustAvoid": [
+        "generic food subscription example"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "digital permit portal adoption by contractors and clerks",
+      "audience": "a public-sector product lead with a promising digital service",
+      "stakes": "whether contractors, clerks, and inspectors use the process or route around it",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he asks about clerks and inspectors before declaring the portal ready, surfacing adoption resistance",
+      "firstImage": "At 3:12 p.m., Kiran watches a contractor slide a paper permit under the glass",
+      "mustInclude": [
+        "permit window slot",
+        "login reset card",
+        "inspection tablet"
+      ],
+      "mustAvoid": [
+        "generic software rollout"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "school bus safety route praised before cost reality",
+      "audience": "an operations manager praised for a safer route idea",
+      "stakes": "whether a safer route survives driver hours and fuel costs",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he reconstructs how applause for utility hid a broken target-cost structure",
+      "firstImage": "Diesel fumes hang in the yard while Sam adds twelve minutes to each run",
+      "mustInclude": [
+        "route sheet",
+        "driver-hour cap",
+        "fuel receipt stack"
+      ],
+      "mustAvoid": [
+        "bus depot shell"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "warehouse VR safety simulator adoption by supervisors",
+      "audience": "a training lead introducing a safety simulator",
+      "stakes": "whether the simulator changes practice or sits unused after launch",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she predicts trainee excitement is enough, then supervisors reveal adoption resistance around shift coverage",
+      "firstImage": "Who signs out the headset when the line is already short two people?",
+      "mustInclude": [
+        "VR headset case",
+        "shift coverage board",
+        "supervisor sign-out key"
+      ],
+      "mustAvoid": [
+        "generic training excitement story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "order utility, price, cost, and adoption checks",
+      "detect when buyer excitement hides a failed later gate",
+      "evaluate commercial viability without killing useful novelty too early"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one idea you like and write four words in order: utility, price, cost, adoption. Put the weakest gate in a box.",
+  "readingTimeMinutes": 12
+}

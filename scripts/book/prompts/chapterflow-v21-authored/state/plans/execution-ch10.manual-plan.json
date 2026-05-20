@@ -1,0 +1,177 @@
+{
+  "chapterId": "execution-ch10",
+  "number": 10,
+  "title": "Conclusion: Letter to a New Leader",
+  "coreMove": "Carry the execution discipline as a daily leadership obligation after the first declaration fades.",
+  "sourcePressure": "Conclusion framed as direct counsel to a new leader: keep realism, people, strategy, operations, and follow-through linked without adding new doctrine. Support is intentionally thin; use only earlier confirmed motifs and no new anecdotes.",
+  "chapterSpecificMisunderstanding": "Close with inspirational leadership generalities or sentimental advice.",
+  "sourceAlignmentTerms": [
+    "new leader",
+    "realism",
+    "discipline",
+    "people",
+    "strategy",
+    "operations",
+    "follow-through"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "the conclusion: letter to a new leader that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a first-time plant manager after the welcome lunch at a precision-parts factory",
+      "audience": "a newly promoted operations leader",
+      "stakes": "first impressions can pull attention away from the truth of people, strategy, and operations",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Laura leaves the welcome lunch and walks to the scrap bin, schedule board, and staffing roster before making any speech about priorities",
+      "firstImage": "The welcome cake is still on a paper plate when Laura hears reject parts clatter into the scrap bin.",
+      "mustInclude": [
+        "scrap bin",
+        "schedule board",
+        "staffing roster"
+      ],
+      "mustAvoid": [
+        "generic first day as manager"
+      ]
+    },
+    {
+      "domain": "a newly elected student-union president taking over after a campaign built on broad promises",
+      "audience": "a young leader with public expectations",
+      "stakes": "campaign language can outrun the capacity to deliver services",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Anna asks which promise links to people, strategy, and operations before accepting applause as progress",
+      "firstImage": "\"Which promise has an owner by Friday?\" Anna asks while the campaign banner is still folded on the chair.",
+      "mustInclude": [
+        "campaign banner",
+        "promise list",
+        "service calendar"
+      ],
+      "mustAvoid": [
+        "generic student leadership pep talk"
+      ]
+    },
+    {
+      "domain": "a regional hospice director inheriting a team that protects comforting stories about missed visits",
+      "audience": "a new healthcare leader",
+      "stakes": "families need reliable care more than a leader needs early popularity",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Olivier chooses realism over the better story by reading missed-visit notes before rewriting the first weekly review",
+      "firstImage": "You want the team to feel steady, but Olivier has the missed-visit notes in his hand.",
+      "mustInclude": [
+        "missed-visit notes",
+        "weekly review agenda",
+        "family callback log"
+      ],
+      "mustAvoid": [
+        "generic inspirational care scene"
+      ]
+    },
+    {
+      "domain": "a first-time head chef taking over a hotel kitchen before a conference week",
+      "audience": "a new leader in a pressure-heavy service role",
+      "stakes": "style and mood will not keep prep, purchasing, and station leads linked",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hugo decides whether to start with a rousing talk or with the prep list, purchase order, and station-lead gaps that make follow-through real",
+      "firstImage": "At 6:22 a.m., Hugo stands between the prep list and the walk-in order sheet while the conference menu waits.",
+      "mustInclude": [
+        "prep list",
+        "walk-in order sheet",
+        "station-lead chart"
+      ],
+      "mustAvoid": [
+        "generic restaurant culture scene"
+      ]
+    },
+    {
+      "domain": "a newly appointed museum conservation head integrating donor deadlines, conservator skills, and climate-control limits",
+      "audience": "a technical leader in a mission-driven institution",
+      "stakes": "a prestigious exhibition can damage artifacts if the systems are not kept linked",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Tomasz predicts which link will fail first and uses that to keep people, strategy, and operations visible together",
+      "firstImage": "Which breaks first: the donor date, the textile team capacity, or the gallery humidity limit?",
+      "mustInclude": [
+        "donor deadline",
+        "textile capacity note",
+        "humidity log"
+      ],
+      "mustAvoid": [
+        "generic museum strategy scene"
+      ]
+    },
+    {
+      "domain": "a Chicago community-finance nonprofit naming a new branch director after rapid expansion",
+      "audience": "a leader inheriting fast growth",
+      "stakes": "the branch can mistake opening energy for recurring responsibility",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Adaeze turns the first branch week from celebration into a recurring cadence of reality checks, linked decisions, and follow-through",
+      "firstImage": "The new branch still smells of fresh paint while Adaeze pins three columns to the back-office cork strip.",
+      "mustInclude": [
+        "fresh-paint branch",
+        "back-office cork strip",
+        "client intake sheet"
+      ],
+      "mustAvoid": [
+        "generic nonprofit launch"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "compress execution into daily leadership duties",
+      "choose realism over comforting first impressions",
+      "keep people, strategy, and operations linked in decisions",
+      "evaluate follow-through as recurring responsibility rather than mood"
+    ]
+  },
+  "tryThisNowSpec": "Write one decision as three linked questions: what is real, who carries it, and what follow-through proves it tomorrow.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

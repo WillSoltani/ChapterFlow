@@ -1,0 +1,182 @@
+{
+  "chapterId": "ultralearning-ch02",
+  "number": 2,
+  "title": "Why ultralearning matters",
+  "coreMove": "Decide when a hard skill deserves protected intensity instead of being left as casual exploration.",
+  "sourcePressure": "The chapter contrasts ultralearning with dabbling and frames rapid adaptation, focused effort, and weakness-first work as a response to changing conditions. The source sidecar contains no named people, studies, institutions, places, dates, or artifacts for this chapter, so named source anchors must be omitted rather than invented.",
+  "chapterSpecificMisunderstanding": "Saying every interest should become a high-pressure project or that intensity alone beats thoughtful exploration.",
+  "sourceAlignmentTerms": [
+    "ultralearning",
+    "dabbling",
+    "protected time",
+    "hard things",
+    "adaptation",
+    "results-driven work",
+    "weakness-first"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Ch2: learner stares at browser tabs and realizes motivation is not enough",
+      "Ch2: broad modern world pressure opener"
+    ],
+    "counterintuition": [
+      "The obvious move is not the real move",
+      "Most people think more effort is enough",
+      "This is not about working harder"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three goals",
+      "Spend one minute thinking about your learning journey"
+    ],
+    "examples": [
+      "desk plus laptop plus vague course collection",
+      "generic student in a classroom",
+      "manager in a recurring meeting with no concrete artifact",
+      "kitchen-table life overhaul"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Emily, a payroll coordinator reskilling before automation changes her role",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the next month produces visible evidence or another private feeling of effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily marks payroll automation as a project, not an interest, by blocking two protected evenings and naming the reconciliation report she must produce.",
+      "firstImage": "a payroll exception report with two red cells under a fluorescent office light",
+      "mustInclude": [
+        "printed standard",
+        "deadline box",
+        "proof artifact"
+      ],
+      "mustAvoid": [
+        "generic motivation speech",
+        "anti-school rant"
+      ]
+    },
+    {
+      "domain": "Thomas, a paramedic learning ultrasound for rural transfers",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether a deadline exposes the weakness early enough to adjust",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Thomas decides rural ultrasound deserves intensity because the next transfer shift will ask for the skill before he feels ready.",
+      "firstImage": "an ambulance bay training probe coiled beside a clipboard",
+      "mustInclude": [
+        "calendar conflict",
+        "single constraint",
+        "revised first session"
+      ],
+      "mustAvoid": [
+        "heroic schedule fantasy",
+        "all-night grind"
+      ]
+    },
+    {
+      "domain": "Camille, a public library worker deciding whether coding should become a serious project",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Camille keeps coding as exploration after one makerspace session reveals curiosity but no real stakes yet.",
+      "firstImage": "a public library 3D printer humming behind a sign-up binder",
+      "mustInclude": [
+        "closed source",
+        "blank page",
+        "visible answer"
+      ],
+      "mustAvoid": [
+        "passive rereading",
+        "smooth familiarity"
+      ]
+    },
+    {
+      "domain": "Javier, a chef keeping sourdough as a pleasurable hobby instead of a campaign",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the project survives contact with a real schedule and real standards",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Javier leaves sourdough as a pleasure by refusing to turn Saturday loaves into a production schedule.",
+      "firstImage": "a banneton dusted with flour on a bakery prep table",
+      "mustInclude": [
+        "review note",
+        "circled weak step",
+        "one narrow prompt"
+      ],
+      "mustAvoid": [
+        "broad self-improvement chat",
+        "vague weakness label"
+      ]
+    },
+    {
+      "domain": "Layla, a junior architect facing new energy-modeling demands",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether comfort keeps protecting the exact skill gap that matters",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Layla chooses energy modeling as the one serious architecture skill because the next project bid depends on it.",
+      "firstImage": "a wall-section drawing with the insulation values still blank",
+      "mustInclude": [
+        "before-and-after attempt",
+        "small test condition",
+        "written prediction"
+      ],
+      "mustAvoid": [
+        "novelty for novelty's sake",
+        "unsupported science claim"
+      ]
+    },
+    {
+      "domain": "Mikkel, a policy aide choosing one data skill instead of three scattered interests",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the next attempt changes the skill instead of decorating the plan",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Mikkel closes two notebooks and protects one data block so his policy work stops spreading across three shallow ambitions.",
+      "firstImage": "three color-coded policy notebooks stacked beside a parliament pass",
+      "mustInclude": [
+        "old plan",
+        "new evidence",
+        "one crossed-out escape"
+      ],
+      "mustAvoid": [
+        "desk-laptop-browser-tabs shell",
+        "fake named study"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "decide when to intensify a skill project and when to keep dabbling",
+      "protect time for adaptation without treating every interest as urgent",
+      "spot passive busywork inside a supposed project"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one current interest and mark it dabble or project, then block or remove one protected hour accordingly.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

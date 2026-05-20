@@ -1,0 +1,179 @@
+{
+  "chapterId": "extreme-ownership-ch10",
+  "number": 10,
+  "title": "Plan",
+  "coreMove": "build a plan that gives people shared intent, roles, checks, and contingencies before pressure changes the route",
+  "sourcePressure": "Planning, commander’s intent, rehearsal, and contingency thinking improve adaptability under pressure.",
+  "chapterSpecificMisunderstanding": "make a detailed plan so uncertainty disappears",
+  "sourceAlignmentTerms": [
+    "plan",
+    "commander’s intent",
+    "rehearsal",
+    "contingencies",
+    "adaptability",
+    "roles",
+    "checks"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital generator transfer drill before hurricane season",
+      "audience": "a facilities director coordinating nurses, security, and electricians",
+      "stakes": "backup power can fail in practice if every group rehearses alone",
+      "format": "scene",
+      "requiredBeat": "the director states the intent, rehearses the transfer path with each role present, and names what changes if the east switchgear fails",
+      "firstImage": "a brass generator key tag swings from a hook beside the transfer cabinet",
+      "mustInclude": [
+        "generator key tag",
+        "transfer path rehearsal",
+        "east switchgear contingency"
+      ],
+      "mustAvoid": [
+        "planning as paperwork checklist only"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "school bus evacuation plan for a steep rural route",
+      "audience": "a transportation supervisor responsible for drivers and substitute monitors",
+      "stakes": "a stalled bus on the hill needs practiced roles, not a binder nobody opens",
+      "format": "vignette",
+      "requiredBeat": "the supervisor walks drivers through who leads children uphill, who places triangles, and what changes if the rear door is blocked",
+      "firstImage": "You are close enough to see this: three reflective triangles lean against the bus steps during the yard drill.",
+      "mustInclude": [
+        "reflective triangles",
+        "rear-door contingency",
+        "driver roles"
+      ],
+      "mustAvoid": [
+        "generic emergency preparedness"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "product launch rollback rehearsal for a subscription billing change",
+      "audience": "a product lead with engineering, support, and finance dependencies",
+      "stakes": "a failed launch can double-bill customers if rollback is improvised",
+      "format": "decision_point",
+      "requiredBeat": "the lead writes commander’s intent in customer terms, rehearses the rollback button owner, and defines the billing-stop trigger before launch morning",
+      "firstImage": "The first thing you register is physical: sandbox invoice shows duplicate charges in the rehearsal account.",
+      "mustInclude": [
+        "customer-term intent",
+        "rollback owner",
+        "billing-stop trigger"
+      ],
+      "mustAvoid": [
+        "launch excitement frame"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "mountain hut resupply before a late-spring storm",
+      "audience": "a hut manager coordinating packers, cook, and weather volunteer",
+      "stakes": "missed contingencies can strand guests without fuel or staple food",
+      "format": "before_after",
+      "requiredBeat": "the manager plans the main route, cache point, and storm hold rule, then rehearses who calls the turn-back before anyone loads packs",
+      "firstImage": "\"Hold there,\" someone says. Blue fuel canisters line the mudroom floor beside a storm bulletin.",
+      "mustInclude": [
+        "fuel canisters",
+        "cache point",
+        "turn-back rule"
+      ],
+      "mustAvoid": [
+        "adventure logistics as romance"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "courtroom evidence handoff for a complex fraud trial",
+      "audience": "a paralegal lead coordinating lawyers, clerk, and expert witnesses",
+      "stakes": "one missed exhibit handoff can derail testimony in front of the jury",
+      "format": "postmortem",
+      "requiredBeat": "after a rehearsal exposes a gap, the lead labels each exhibit seal, assigns a handoff owner, and prepares a backup order if the expert is called early",
+      "firstImage": "Later, the team will trace the lesson back to this: green exhibit seals line up beside a witness schedule with arrows drawn in pencil.",
+      "mustInclude": [
+        "exhibit seals",
+        "handoff owner",
+        "backup witness order"
+      ],
+      "mustAvoid": [
+        "legal drama theatrics"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "farmers market cold-rain setup for fragile spring seedlings",
+      "audience": "a market manager with vendors arriving before sunrise",
+      "stakes": "vendors can lose inventory and block aisles if weather contingencies are vague",
+      "format": "dialogue",
+      "requiredBeat": "the manager briefs intent, assigns canopy-weight checks, defines the rain-route for customers, and rehearses what happens if the north lot floods",
+      "firstImage": "What changes once this is in front of everyone: canvas canopy weights thud onto wet asphalt beside trays of basil seedlings?",
+      "mustInclude": [
+        "canopy weights",
+        "rain-route",
+        "north-lot flood contingency"
+      ],
+      "mustAvoid": [
+        "weather complaint scene"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "build plans around intent, roles, rehearsal, and contingencies",
+      "distinguish adaptable planning from rigid prediction",
+      "choose the missing contingency before pressure arrives"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For an upcoming handoff, write intent, roles, one rehearsal question, and the most likely contingency before anyone starts work.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

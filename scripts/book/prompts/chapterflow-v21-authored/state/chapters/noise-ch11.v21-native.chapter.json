@@ -1,0 +1,292 @@
+{
+  "chapterId": "noise-ch11",
+  "number": 11,
+  "title": "Debiasing and Decision Hygiene",
+  "readingTimeMinutes": 12,
+  "hook": "A process that requires the judge to try harder will fail whenever the judge does not. Structure never forgets to try.",
+  "counterintuition": "Decision hygiene is often mistaken for motivation: tell people to think more carefully, remind them of their biases, build a culture of deliberation. Those things produce different intentions. But spread does not come from insufficient intention. It comes from the conditions under which judgments are made: whether assessments are recorded before they are shared, whether information arrives in a fixed sequence, whether a scale has anchored examples. Changing those conditions reduces noise whether or not the judge is trying hard.",
+  "tryThisNow": "Ask everyone on your next evaluation panel to submit their rating before seeing any other panelist's. Run the meeting as usual. Compare submitted to final scores. That gap is what the hygiene step prevented.",
+  "keyTakeaway": "Decision hygiene reduces noise by changing when assessments are committed and how information arrives, not by changing the judge's attitude. The structure does the work. The judge's effort is not the variable.",
+  "breakdown": {
+    "fastRead": "Put two identical grant applications in front of two reviewers. Give them the same criteria, the same time, the same goals. If one reads the cover letter before the technical proposal and the other reads the technical proposal first, their assessments will not agree as well as they would if both read in the same order. The content is identical. The sequence is not. That sequence difference is a process condition, not a quality gap. Decision hygiene controls those conditions: when assessments are committed, how information is sequenced, whether scales are anchored before use. Decision hygiene does not ask the judge to do better. It changes what the judge walks into.",
+    "deepRead": "Follow a judgment through two versions of the same process. In version one, a committee meets to evaluate candidates. The chair opens the discussion, offers an initial impression, and others respond. By the end, the group has reached a rating. In version two, each committee member rates the candidate independently before the meeting, submits the rating in writing, and the discussion begins from the distribution of submitted scores rather than from the chair's first impression. The final ratings in version two are consistently closer together. Nothing about the candidates changed. Nothing about the committee's expertise changed. The process changed.\n\nWatch what the first number does in an open deliberation. When a group begins discussing a judgment openly, the first specific position offered becomes a reference point. Subsequent contributions move toward or away from it, but they move in relation to it. This is the anchoring effect operating inside deliberation: the person who speaks first does not set the correct answer, but they set the range within which the discussion operates. Pre-estimation eliminates the condition that produces this effect. By requiring each evaluator to commit a rating before hearing anyone else, the process removes the first voice's ability to serve as an anchor. The ratings that arrive at the discussion are already independent. The deliberation that follows can adjust them, but it begins from a distribution rather than from a single point. A process that requires the judge to try harder will fail whenever the judge does not. Structure never forgets to try.\n\nPut a rater under both conditions and the difference is not in how hard they tried. Decision hygiene and debiasing are related but distinct responses to judgment error. Debiasing asks judges to correct for known tendencies. Hygiene changes the conditions under which judgments are made, so the tendencies have less room to operate.\n\nTrying harder is not a process condition.",
+    "fullRead": "At 9:15 on a Tuesday, Theodore sets two stacks of mock-jury summary sheets side by side on a conference room table. His client needs to understand whether deliberation format affects how consistent damage awards are across juries. Both stacks document sessions that heard an identical case: the evidence, the arguments, the instructions were the same in every session. One stack comes from juries that wrote individual damage estimates before any deliberation began. The other comes from juries that opened with group discussion. The numbers at the bottom of each sheet tell different stories. The pre-estimation group's awards fall within a tight band. The discussion-first group's awards spread across nearly twice the range.\n\nIgnaz Semmelweis showed in the 1840s that requiring physicians to wash hands between patients reduced mortality in obstetric wards. Germ theory was not understood for another twenty years. The protocol worked before anyone knew why. A surgeon who washes hands between patients is not making a heroic effort. The protocol works whether they feel like it or not. Decision hygiene works the same way: the structure does the work, not the intention. The conditions under which a judgment is made change what comes out of it independently of whether the judge was trying.\n\nWalk through a credit evaluation in sequence. A team that receives loan purpose statements before financial data will show more spread in assessments than a team that receives financial data first, because early information anchors all subsequent evaluation. An environmental review process that exposes reviewers to a sponsor's narrative before technical impact data produces more inter-reviewer variance than a data-first process for the same reason. The conditions are different in each case, but the mechanism is the same: early information anchors the judgment that follows. Standardizing what information arrives first is a process condition, and controlling it reduces noise.\n\nMarion encountered resistance when she proposed the pre-score recording protocol at the hospital. The surgeons' objection was that their clinical judgment should not be pre-constrained by a form they filled out before the full team assembled. The objection is coherent: clinical judgment should incorporate team information. But the protocol did not remove team deliberation. It moved the score commitment to before the deliberation began, so that each surgeon's initial position was formed without the group's influence. The scores could still be updated in discussion. What changed was that no single voice could anchor the distribution before independent positions existed. Variance in matched-patient risk classifications fell by half.\n\nWhen your group rates something, the first number offered is not necessarily the best estimate. But it is the reference point. Requiring independent assessment before group discussion operates without asking participants to think differently or try harder. The step works when they are tired. It works when they are confident. It works when they have not read the research. That is what makes it hygiene rather than advice.\n\nThe remaining noise after decision hygiene is applied is not a reason to abandon it. It is a map of what to standardize next."
+  },
+  "memorableLines": [
+    {
+      "text": "Decision hygiene does not ask the judge to do better. It changes what the judge walks into.",
+      "location": "breakdown.fastRead",
+      "why": "Captures the process-not-person distinction in a single reversible sentence (first half names what hygiene does not ask; second half names what it does instead)."
+    },
+    {
+      "text": "A process that requires the judge to try harder will fail whenever the judge does not. Structure never forgets to try.",
+      "location": "breakdown.deepRead",
+      "why": "Names the reliability asymmetry between motivation and structure: motivation is intermittent, structure is invariant."
+    },
+    {
+      "text": "A surgeon who washes hands between patients is not making a heroic effort. The protocol works whether they feel like it or not. Decision hygiene works the same way: the structure does the work, not the intention.",
+      "location": "breakdown.fullRead",
+      "why": "The handwashing analogy grounds the abstract mechanism in a domain where the lesson has already been accepted, making the transfer to judgment contexts harder to resist."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "noise-ch11-ex01",
+      "title": "Two Stacks",
+      "tags": ["jury deliberation", "civil liability", "pre-estimation", "deliberation format"],
+      "planSpec": {
+        "domain": "jury deliberation in a civil liability case: a litigation consultant comparing deliberation formats for a client's research project",
+        "audience": "a litigation consultant hired to study whether deliberation format affects damage award consistency",
+        "stakes": "plaintiff fairness and defendant predictability — if process format drives award amounts more than case merit, the system is noisy",
+        "format": "scene",
+        "requiredBeat": "the consultant presents the finding: mock juries that wrote individual damage estimates before deliberation showed 40 percent less variance in final awards than juries that began with open discussion; the case content was identical across both conditions"
+      },
+      "scenario": "At 9:15 on a Tuesday, Theodore lays two stacks of mock-jury summary sheets on a conference table. His civil defense client hired him to study whether deliberation format affects the consistency of damage awards. Both stacks document sessions that heard the same case. One stack has individual damage estimates written at the top before group discussion. The other has blank top lines. The award distributions at the bottom of each stack are visibly different: the pre-estimation group's numbers cluster tightly. The other group's spread covers nearly twice the range. The case content was identical. The format was not.",
+      "whatToDo": "Before any group rating or evaluation session, require each participant to submit a written assessment independently and collect it before group discussion begins.",
+      "whyItMatters": "The first voice in open deliberation anchors everyone else. Pre-estimation prevents any single voice from becoming the reference point, which reduces variance across final results."
+    },
+    {
+      "exampleId": "noise-ch11-ex02",
+      "title": "When the Score Is Committed",
+      "tags": ["surgical risk classification", "pre-operative briefing", "variance reduction", "protocol introduction"],
+      "planSpec": {
+        "domain": "surgical case review: a hospital introducing a structured pre-operative briefing protocol to reduce variance in patient risk classification",
+        "audience": "a patient safety officer comparing risk classification consistency before and after protocol introduction",
+        "stakes": "appropriate pre-operative preparation and resource allocation — risk misclassification leads to under- or over-preparation for surgery",
+        "format": "before_after",
+        "requiredBeat": "contrast pre-protocol (surgeons classified patient risk before any individual score was committed to writing) with post-protocol (each surgeon records a risk score before the meeting begins); variance in matched-patient risk classifications fell by half"
+      },
+      "scenario": "The pre-operative briefing room looks the same as it did before the protocol. Marion, the patient safety officer, is comparing two sets of matched-patient risk classifications: those made before the new protocol, when surgeons discussed patients before any individual score was recorded, and those made after, when each surgeon records a risk score before the meeting begins. The variance in classifications fell by half after the protocol was introduced. The whiteboard is still there. The difference is only when the score is committed to paper.",
+      "whatToDo": "Require each evaluator to record their assessment before any group discussion begins. The recording, not the discussion, is the hygiene step.",
+      "whyItMatters": "When scores are committed before group interaction, no single voice pulls others toward it before they have formed their own positions. The variance reduction comes from the timing change, not the quality of discussion."
+    },
+    {
+      "exampleId": "noise-ch11-ex03",
+      "title": "Same Files",
+      "tags": ["loan officer evaluation", "information sequence", "credit assessment", "anchoring"],
+      "planSpec": {
+        "domain": "loan officer evaluation: a bank introducing a standardized information sequence for credit evaluation to reduce spread",
+        "audience": "a credit risk manager comparing assessments from officers who received information in different sequences",
+        "stakes": "consistent credit decisions and regulatory compliance — officers who see the loan purpose before financial data may weight purpose more than financials warrant",
+        "format": "dialogue",
+        "requiredBeat": "two groups receive identical loan files in different sequences: purpose-first versus financial-data-first; purpose-first assessments cluster around the stated purpose's implied quality regardless of the financial data; financial-first assessments track the numbers"
+      },
+      "scenario": "\"Why does it matter which order we give them the information?\" Audrey's credit risk team has just completed an exercise. Half received applicant purpose statements before financial data; the other half received financial data first. For identical loan files, purpose-first assessments clustered around the implied quality of the stated purpose: restaurant ventures rated riskier, technology ventures rated stronger, regardless of the financials. Financial-first assessments tracked the numbers. Same files, different sequences, different distributions.",
+      "whatToDo": "Standardize the sequence in which evaluators receive information. When the sequence is fixed, early information cannot anchor assessment in ways that vary from evaluator to evaluator.",
+      "whyItMatters": "Early information anchors all subsequent evaluation. When different evaluators receive information in different orders, the sequence becomes an uncontrolled variable that adds noise independently of case quality."
+    },
+    {
+      "exampleId": "noise-ch11-ex04",
+      "title": "Which Piece Arrived First",
+      "tags": ["environmental impact evaluation", "data-first review", "narrative framing", "inter-reviewer agreement"],
+      "planSpec": {
+        "domain": "environmental impact evaluation: a regulatory team introducing a blind first-stage review to reduce contamination from the sponsor's narrative",
+        "audience": "an environmental review coordinator comparing evaluation quality before and after a blind first-stage protocol",
+        "stakes": "fair and consistent environmental approval decisions — reviewers who see the sponsor's narrative before the technical data may weight the narrative's framing",
+        "format": "postmortem",
+        "requiredBeat": "the coordinator reviews the protocol's first year: reviewers who examined technical impact data before the sponsor narrative produced risk classifications with greater inter-reviewer agreement than reviewers who read the narrative first"
+      },
+      "scenario": "Franklin reviews the first year of a new protocol: reviewers on his environmental assessment team now examine technical impact data before reading the sponsor's narrative. The prior year's data tells the opposite story: narrative-first reviewers clustered around the sponsor's implied risk framing; data-first reviewers showed greater inter-reviewer agreement. Two overlaid distributions on his screen make the mechanism visible. The protocol did not change the information available. It changed which piece arrived first.",
+      "whatToDo": "When evaluating any application or proposal, determine which information is highest quality and require evaluators to examine it before reading framing documents. Sequence is a hygiene variable.",
+      "whyItMatters": "Narrative framing anchors risk perception when it arrives first. Examining data before narrative forces evaluators to form an initial position from the data, which reduces the narrative's ability to pull assessments toward its framing."
+    },
+    {
+      "exampleId": "noise-ch11-ex05",
+      "title": "58 to 74",
+      "tags": ["social work risk assessment", "structured data entry", "narrative-first versus data-first", "inter-worker consistency"],
+      "planSpec": {
+        "domain": "social work risk assessment: a child services agency introducing an assessment tool that forces structured data entry before narrative is written",
+        "audience": "a child services agency quality manager measuring the effect of a structured data-entry tool on assessment consistency",
+        "stakes": "child safety and family fairness — inconsistent risk assessments lead to some families receiving unnecessary interventions and others being under-monitored",
+        "format": "thought_experiment",
+        "requiredBeat": "the quality manager asks whether requiring the structured risk factor checklist before the narrative assessment would improve consistency; the pilot data says yes: inter-worker consistency on matched cases rose from 58 to 74 percent after the tool introduction"
+      },
+      "scenario": "What would happen if social workers had to complete a structured risk factor checklist before writing their narrative assessment? Estelle, a child services quality manager, ran the pilot. Inter-worker consistency on matched cases rose from 58 to 74 percent. The tool did not make workers more careful. It forced each worker to encounter the same data points in the same order before composing a narrative frame. The data arrived before the framing did.",
+      "whatToDo": "Require structured data entry before any narrative is written or verbal assessment is given. The structured form is a sequence constraint, not a quality filter.",
+      "whyItMatters": "When workers construct a narrative before examining structured data, the narrative frames which data feels relevant. Reversing the order prevents the narrative frame from selecting the data, which is the source of inter-worker inconsistency."
+    },
+    {
+      "exampleId": "noise-ch11-ex06",
+      "title": "Category-First",
+      "tags": ["baseball scouting", "structured report form", "narrative-first versus category-first", "variance reduction"],
+      "planSpec": {
+        "domain": "baseball scouting: a major league team introducing a structured pre-scouting report form to reduce scout-to-scout variance in player ratings",
+        "audience": "a scouting director studying whether format changes reduce assessment inconsistency",
+        "stakes": "draft pick quality and player development investment — inconsistent scouting ratings mean the team cannot trust the aggregated rankings that drive pick decisions",
+        "format": "vignette",
+        "requiredBeat": "the scouting director reviews the variance data after the first year: scouts who completed individual category ratings before writing their overall evaluation showed 25 percent lower variance in overall ratings for comparable players than scouts who wrote narrative first"
+      },
+      "scenario": "The scouting reports on Vincent's desk have never told a consistent story. After his team introduced a structured form requiring scouts to rate individual categories before writing narrative evaluations, the variance data for the first draft cycle arrives: scouts using category-first forms showed 25 percent lower variance in overall ratings for comparable players than scouts who wrote narrative first. The form did not change what they saw. It changed what was already on paper before the overall rating.",
+      "whatToDo": "Before any holistic rating, require evaluators to rate component dimensions independently. The component ratings constrain the holistic rating and prevent global impression from contaminating all dimensions.",
+      "whyItMatters": "When evaluators write narrative first, their global impression anchors all subsequent specific ratings. Specific-first forms prevent that impression from becoming an uncontrolled anchor, which is why inter-evaluator variance falls."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch11-q01",
+        "prompt": "A hospital requires surgeons to record their patient risk classification before any group discussion begins. What makes this a decision hygiene intervention rather than a debiasing one?",
+        "choices": [
+          "It changes the structure of the judgment process regardless of what any individual surgeon thinks or intends.",
+          "It corrects for the tendency of senior surgeons to anchor junior surgeons' assessments through social influence.",
+          "It requires surgeons to consult a calibration checklist before classifying each patient."
+        ],
+        "correctIndex": 0,
+        "explanation": "Hygiene operates through structural process constraints, not through correcting a specific cognitive tendency. Recording before discussion changes a timing condition that applies regardless of any surgeon's intent or awareness.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch11-q02",
+        "prompt": "A credit evaluation team receives loan files in which the applicant's stated purpose is presented before financial data. Assessments cluster around the purpose's implied quality more than the financials warrant. Which change directly addresses the source of the noise?",
+        "choices": [
+          "Requiring evaluators to complete a bias awareness module before reviewing loan files.",
+          "Standardizing the information sequence so financial data is always reviewed before the purpose statement.",
+          "Requiring evaluators to write a justification paragraph for each assessment."
+        ],
+        "correctIndex": 1,
+        "explanation": "The noise comes from early information anchoring evaluation. Standardizing the sequence to financial data first removes the anchoring condition. Bias awareness leaves the anchoring condition unchanged.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch11-q03",
+        "prompt": "An environmental review team that reads sponsor narratives before technical data produces more inter-reviewer variance than a team that reads technical data first. What does this reveal about the source of the variance?",
+        "choices": [
+          "The narrative-first team is less qualified and less experienced with technical impact assessment.",
+          "The sponsor narratives in this process contain inaccurate information that misleads reviewers.",
+          "The sequence in which information arrives generates variance independently of reviewer expertise or content quality."
+        ],
+        "correctIndex": 2,
+        "explanation": "Both teams have the same expertise and see the same information content. The sequence is the only variable. When changing only the sequence changes the variance, the sequence is the source.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch11-q04",
+        "prompt": "A social services agency introduces a structured risk factor checklist that workers must complete before writing their narrative assessment. Inter-worker consistency rises from 58 to 74 percent. What is the direct mechanism?",
+        "choices": [
+          "Workers encounter the same data points in the same order before composing their narrative frame, which prevents the narrative from selecting which data feels relevant.",
+          "Workers have been reminded of the importance of consistency and are now trying harder to agree with colleagues.",
+          "The checklist contains higher-quality information than the narrative format did, improving overall accuracy."
+        ],
+        "correctIndex": 0,
+        "explanation": "The mechanism is sequence: data before framing forces all workers through the same information path. The checklist does not improve the data or increase motivation. It constrains the order in which information enters the judgment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch11-q05",
+        "prompt": "Mock juries that write individual damage estimates before open discussion produce 40 percent less variance in final awards than juries that begin with open discussion. What does the variance reduction isolate as a noise source?",
+        "choices": [
+          "Individual jurors' inconsistent knowledge of comparable damage awards in prior cases.",
+          "The lawyers' presentations, which differ between the individual-first and discussion-first conditions.",
+          "The anchoring effect of the first voice in open deliberation, which pulls subsequent estimates toward the first number offered."
+        ],
+        "correctIndex": 2,
+        "explanation": "The case content, the lawyers, and the jurors are identical across conditions. The only difference is whether deliberation began from a group discussion or from submitted individual estimates. The variance reduction locates the first-voice anchor as the source.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch11-q06",
+        "prompt": "A manager tells their team: 'Before our next performance review, I want everyone to think carefully about their ratings and make sure they are not being influenced by recent events.' Is this decision hygiene?",
+        "choices": [
+          "Yes, because it introduces a deliberate constraint on when assessments are formally committed.",
+          "No, because it asks evaluators to change their intentions but does not change any structural condition of the judgment process.",
+          "Yes, because it reduces the anchoring effect of recent performance data on annual ratings."
+        ],
+        "correctIndex": 1,
+        "explanation": "The manager's instruction is motivational: it asks people to try to resist an influence. Hygiene changes process conditions. Nothing about when assessments are committed, in what sequence information arrives, or how scales are anchored has changed.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch11-q07",
+        "prompt": "A scouting organization finds that scouts who rate individual categories before writing their overall narrative evaluation show 25 percent lower variance in overall ratings than scouts who write narrative first. Which concept best explains this result?",
+        "choices": [
+          "Category-first scouts have received more rigorous training in objective criteria for each category.",
+          "Narrative-first scouts have stronger prior opinions from experience that resist revision during the evaluation.",
+          "The global impression formed during narrative composition anchors all subsequent specific ratings, creating variance that category-first forms prevent."
+        ],
+        "correctIndex": 2,
+        "explanation": "The scouts' experience and training levels are comparable. The form sequence is the variable. When overall narrative is written first, the global impression formed during that process anchors every specific category rating that follows. Category-first eliminates this anchor.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch11-q08",
+        "prompt": "You are designing an evaluation process for grant applications and want to reduce noise in reviewer ratings. Which structural change is most directly a decision hygiene intervention?",
+        "choices": [
+          "Requiring each reviewer to submit an independent rating before seeing any other reviewer's score.",
+          "Providing reviewers with additional training on how to apply the evaluation criteria consistently.",
+          "Selecting reviewers with stronger domain expertise in the grant's subject area."
+        ],
+        "correctIndex": 0,
+        "explanation": "Requiring independent submission before seeing others' ratings is a structural process condition: it changes when assessments are committed. Training and expertise selection may improve quality but do not change any structural condition of the judgment process.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch11-q09",
+        "prompt": "A calibration workshop asks raters to compare their independently submitted scores before any discussion begins, then discuss divergences. After the program, inter-rater agreement increases. Which component is decision hygiene?",
+        "choices": [
+          "The discussion component, because it allows raters to articulate and reconcile their reasoning.",
+          "The requirement to commit individual scores before seeing others' scores, because this changes a structural condition that reduces first-voice anchoring during discussion.",
+          "The expertise of the calibration facilitator, who sets the standard that raters converge toward."
+        ],
+        "correctIndex": 1,
+        "explanation": "The independent-commitment requirement is the structural change: it creates a process condition in which each rater's score is formed before any social reference point exists. The discussion and the facilitator may improve accuracy but do not constitute hygiene.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "What is decision hygiene?",
+      "back": "A set of process constraints on the conditions of judgment: when assessments are committed, how information is sequenced, and whether scales are anchored. Hygiene reduces noise by changing the structure the judge works within, not the judge's effort or motivation.",
+      "difficulty": "easy"
+    },
+    {
+      "front": "What is the first-voice anchoring effect in group deliberation?",
+      "back": "When a group begins rating openly, the first estimate offered becomes a reference point that subsequent estimates move toward or away from. Pre-estimation eliminates this effect by requiring individual ratings before any voice is heard.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "How does information sequencing generate noise?",
+      "back": "When evaluators receive information in different orders, early information anchors evaluation differently for each person. Standardizing the sequence removes a source of variance that operates independently of case quality or evaluator expertise.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "What distinguishes decision hygiene from debiasing?",
+      "back": "Debiasing targets the directional lean in a judgment and asks evaluators to correct for known tendencies. Hygiene targets the conditions that generate scatter regardless of direction. Both work through process, but they address different properties of judgment error.",
+      "difficulty": "hard"
+    },
+    {
+      "front": "Why does decision hygiene reduce noise without requiring effort?",
+      "back": "Process constraints change the conditions under which judgment is made. Those conditions apply whether the judge is attentive or distracted, motivated or indifferent. The structure does the work that motivation cannot reliably be counted on to do.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Apply decision hygiene by changing the structural conditions of judgment processes, not by asking judges to try harder. The three main conditions to control are: when assessments are committed (before or after exposure to others' views), how information is sequenced (what arrives first anchors everything that follows), and whether scales are anchored before use. Each condition can be changed through a specific process rule that operates independently of the judge's motivation.",
+    "ifThenPlans": [
+      {
+        "context": "You are preparing a group evaluation session where multiple raters will assess the same candidates or cases.",
+        "plan": "Send each rater a form and require them to submit their independent scores before the meeting begins. Collect all scores before anyone sees any other score. Open the meeting by displaying the distribution of submitted scores rather than beginning with discussion."
+      },
+      {
+        "context": "You notice that evaluators in a process receive a framing document (cover letter, sponsor narrative, purpose statement) before the underlying data.",
+        "plan": "Identify the highest-quality data input and redesign the packet so evaluators receive it first. Remove the framing document from the first-review packet entirely and deliver it only after the data-based rating is committed in writing."
+      },
+      {
+        "context": "You want to test whether a specific process condition is generating noise in your judgment workflow.",
+        "plan": "Run a split: give a matched sample of cases to two groups using different conditions (sequence A vs. sequence B, or pre-commitment vs. open discussion). Compare the variance in outcomes across the two groups for matched cases. The variance difference is the size of the condition's contribution to noise."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, pick one upcoming group rating or evaluation in your work. Before the session, email everyone a form and ask each person to submit their rating privately before the meeting starts. Then run the meeting normally. At the end, compare the submitted ratings to the final ratings. The shift tells you how much the hygiene step was doing.",
+    "weeklyPractice": "Each week, identify one information packet that evaluators in your domain receive and check whether the sequencing of that packet is standardized. If it is not, or if framing content arrives before data content, redesign the sequence. After four weeks, you will have mapped the main sequencing conditions in your judgment process and have a specific change target for each one."
+  }
+}

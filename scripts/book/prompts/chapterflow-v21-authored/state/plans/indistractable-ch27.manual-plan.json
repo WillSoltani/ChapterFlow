@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch27",
+  "number": 27,
+  "title": "Help Them with External Triggers",
+  "coreMove": "Help a child spot the cue that pulls them off plan and change the environment with them instead of policing every lapse.",
+  "sourcePressure": "The child section applies external-trigger shaping with adult scaffolding, helping children notice and change cues in their environment.",
+  "chapterSpecificMisunderstanding": "A weak run would hide every device or blame platforms without teaching cue awareness.",
+  "sourceAlignmentTerms": [
+    "children",
+    "external triggers",
+    "cues",
+    "environment",
+    "scaffolding",
+    "defaults"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Help Them with External Triggers as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "young gymnast distracted by trophy-shelf videos during homework",
+      "audience": "parent helping identify visible cues",
+      "stakes": "homework starts with comparison if the cue stays in view",
+      "format": "scene",
+      "requiredBeat": "the child points to the tablet stand under the trophy shelf and moves it to the practice bag",
+      "firstImage": "A silver meet medal hangs above an empty tablet stand.",
+      "mustInclude": [
+        "meet medal",
+        "tablet stand",
+        "practice bag"
+      ],
+      "mustAvoid": [
+        "achievement pressure"
+      ]
+    },
+    {
+      "domain": "teen drummer pulled by band-chat pings during study",
+      "audience": "caregiver teaching channel cues",
+      "stakes": "practice coordination matters, but pings during study do not",
+      "format": "dialogue",
+      "requiredBeat": "they create a band-chat focus rule and choose the drum keychain as the after-study cue",
+      "firstImage": "A drum keychain sits beside a muted band-chat screen.",
+      "mustInclude": [
+        "drum keychain",
+        "muted screen",
+        "study cue"
+      ],
+      "mustAvoid": [
+        "mute everything"
+      ]
+    },
+    {
+      "domain": "child reader abandoning books when game cartridges sit beside the bed",
+      "audience": "parent shaping the room with the child",
+      "stakes": "reading time needs fewer visual bids",
+      "format": "before_after",
+      "requiredBeat": "before, cartridges sit in reach; after, the child puts a library bookmark where the cartridges were",
+      "firstImage": "A library bookmark lies where a cartridge case used to sit.",
+      "mustInclude": [
+        "library bookmark",
+        "cartridge case",
+        "bedside shelf"
+      ],
+      "mustAvoid": [
+        "anti-game moralizing"
+      ]
+    },
+    {
+      "domain": "young baker distracted by recipe video suggestions",
+      "audience": "grandparent helping keep one recipe visible",
+      "stakes": "the child can learn cooking without wandering into videos",
+      "format": "decision_point",
+      "requiredBeat": "they print the recipe card and close the video site before measuring flour",
+      "firstImage": "A printed muffin recipe is clipped above a flour scale.",
+      "mustInclude": [
+        "recipe card",
+        "flour scale",
+        "video site"
+      ],
+      "mustAvoid": [
+        "kitchen command"
+      ]
+    },
+    {
+      "domain": "teen lifeguard trainee checking messages during CPR study",
+      "audience": "instructor helping the teen identify cues",
+      "stakes": "certification practice requires hands-on attention",
+      "format": "postmortem",
+      "requiredBeat": "the teen notices buzzes from the towel pocket and places the phone in a locker before the next drill",
+      "firstImage": "A CPR manikin face shield rests beside a locker tag.",
+      "mustInclude": [
+        "face shield",
+        "locker tag",
+        "towel pocket"
+      ],
+      "mustAvoid": [
+        "lifeguard heroics"
+      ]
+    },
+    {
+      "domain": "child drawing comics while notifications pop on a shared tablet",
+      "audience": "parent helping preserve creative time",
+      "stakes": "the drawing block loses flow when app badges stay visible",
+      "format": "reflection",
+      "requiredBeat": "the child chooses drawing-only mode and covers the home screen with the sketch app",
+      "firstImage": "A panel sketch page sits beneath a drawing-only tablet screen.",
+      "mustInclude": [
+        "panel sketch",
+        "drawing screen",
+        "badge row"
+      ],
+      "mustAvoid": [
+        "art productivity"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Help a child spot the cue that pulls them off plan and change the environment with them instead of policing every lapse.",
+      "choose the action that stays inside Help Them with External Triggers's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would hide every device or blame platforms without teaching cue awareness.",
+      "use chapter-specific terms such as children, external triggers, cues, environment in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Ask the child to point to one cue that pulls them away, then change that cue together before the next planned block.",
+  "readingTimeMinutes": 12
+}

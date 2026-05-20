@@ -1,0 +1,193 @@
+{
+  "chapterId": "blue-ocean-strategy-ch11",
+  "number": 11,
+  "title": "Avoid Red Ocean Traps",
+  "coreMove": "Spot when a strategic move has become competitor-first or existing-demand-first, then pull the question back to buyer value and new demand.",
+  "sourcePressure": "Close by warning against relapse into red-ocean logic: benchmarking rivals, fighting over existing demand, technology-first moves, niche-only thinking, and imitation disguised as strategy.",
+  "chapterSpecificMisunderstanding": "Treating red-ocean traps as a list of bad tactics rather than a mindset that turns useful tools into imitation.",
+  "sourceAlignmentTerms": [
+    "red ocean strategy",
+    "benchmarking",
+    "imitation",
+    "existing demand",
+    "competition-first thinking",
+    "buyer value",
+    "new demand"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "red ocean strategy",
+      "detail": "official support defines red ocean strategy as competition for existing demand in known market space",
+      "useIn": "both",
+      "phrasingHint": "Red ocean strategy begins when the known market and existing demand quietly become the edge of imagination."
+    },
+    {
+      "kind": "artifact",
+      "name": "strategist mindset support",
+      "detail": "official support warns that benchmarking rivals and fighting over existing customers pull leaders back toward red-ocean logic",
+      "useIn": "fullRead",
+      "phrasingHint": "Benchmarking is useful as information and dangerous as imagination; the trap is letting rivals choose the question."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "David",
+      "domain": "competitor dashboard framing versus buyer-value search",
+      "audience": "a leader whose team benchmarks itself into imitation",
+      "stakes": "whether the review starts with buyer value or rival reaction",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he keeps competitor data in the room but refuses to let it set the opening frame",
+      "firstImage": "The competitor dashboard refreshes in blue light across David's face",
+      "mustInclude": [
+        "competitor dashboard",
+        "buyer complaint reel",
+        "meeting agenda card"
+      ],
+      "mustAvoid": [
+        "generic data-dashboard discipline"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "ticket kiosk biometric payment versus refund recovery",
+      "audience": "a product lead tempted by face-scan payment",
+      "stakes": "whether innovation solves the real user pain or decorates it",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she sees that biometric payment does not solve the refund problem buyers care about",
+      "firstImage": "At 10:18 a.m., Margaux watches a traveler tap the refund button six times",
+      "mustInclude": [
+        "refund receipt",
+        "face-scan mockup",
+        "support queue screen"
+      ],
+      "mustAvoid": [
+        "generic airport kiosk scene from chapter 4"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "specialty travel niche narrowing and stalled demand",
+      "audience": "a founder serving expert birders while missing broader family demand",
+      "stakes": "whether the company grows or fights over a tiny expert pool",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "he reconstructs how finer segmentation shrank demand instead of opening it",
+      "firstImage": "It took Niklas four perfect birding itineraries to see the same twelve names booking again",
+      "mustInclude": [
+        "field checklist",
+        "family inquiry email",
+        "small-group roster"
+      ],
+      "mustAvoid": [
+        "generic travel inspiration story"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "campus marketplace speed without utility change",
+      "audience": "a student entrepreneur racing a rival team",
+      "stakes": "whether speed creates value or only an early launch",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "his early launch wins attention but students return to old behavior because utility gaps remain",
+      "firstImage": "\"We launched first,\" Chidi says, then watches three students exchange textbooks in the hallway anyway",
+      "mustInclude": [
+        "launch poster",
+        "textbook stack",
+        "unused app QR code"
+      ],
+      "mustAvoid": [
+        "generic startup hustle arc"
+      ]
+    },
+    {
+      "protagonistName": "Tomas",
+      "domain": "premium luggage details that raise cost without utility",
+      "audience": "a product designer pressured to make a suitcase stand out",
+      "stakes": "whether added features raise buyer value or only cost",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the costly detail looks different but does not help the buyer's airport job",
+      "firstImage": "The sample room smells like new nylon and cut foam around Tomas's open suitcase shell",
+      "mustInclude": [
+        "sample shell",
+        "zipper prototype",
+        "airport stair photo"
+      ],
+      "mustAvoid": [
+        "generic luxury-brand scene"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "clinic wound-care tray cost cuts that harm utility",
+      "audience": "an operator trying to lower supply cost without harming care",
+      "stakes": "whether low cost supports value or hollows it out",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she predicts the cheaper tray works, then a nurse loses time rebuilding missing pieces",
+      "firstImage": "What if the cheaper tray saves four dollars and costs seven minutes at the bedside?",
+      "mustInclude": [
+        "wound tray",
+        "missing gauze slot",
+        "nurse stopwatch note"
+      ],
+      "mustAvoid": [
+        "generic procurement savings example"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize competitor-first and existing-demand-first traps",
+      "separate useful benchmarking from imitation",
+      "evaluate technology, niche, speed, and cost moves by buyer value and new demand"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one current initiative and ask whether the first sentence names a rival, a technology, or a buyer pain.",
+  "readingTimeMinutes": 12
+}

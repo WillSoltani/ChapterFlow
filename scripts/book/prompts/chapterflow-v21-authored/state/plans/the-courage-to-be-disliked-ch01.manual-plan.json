@@ -1,0 +1,205 @@
+{
+  "chapterId": "the-courage-to-be-disliked-ch01",
+  "number": 1,
+  "title": "The First Night: Deny Trauma",
+  "coreMove": "Treat a painful backstory as context, then ask what the present pattern still accomplishes before granting it authority.",
+  "sourcePressure": "The source supports the first night as an anti-fatalism opener: people can change, anger may be purposive, self-dislike can be protective, and denying trauma means denying destiny, not denying pain.",
+  "chapterSpecificMisunderstanding": "The weak version says trauma is fake or that hurt people should simply choose better; the correct version respects pain while refusing to let history become the final explanation.",
+  "sourceAlignmentTerms": [
+    "past experience",
+    "purpose",
+    "fabricated anger",
+    "self-dislike",
+    "change",
+    "pain versus destiny",
+    "present pattern"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Alfred Adler",
+      "detail": "The frozen source identifies the book as drawing on Adlerian psychology and includes the visible first-night heading 'Socrates and Adler'.",
+      "useIn": "both",
+      "phrasingHint": "Adlerian freedom starts to bite when the old wound is no longer allowed to be the whole trial, judge, and sentence."
+    },
+    {
+      "kind": "person",
+      "name": "Socrates",
+      "detail": "The authorized preview headings include 'Socrates and Adler' inside the first night.",
+      "useIn": "fullRead",
+      "phrasingHint": "The Socratic pressure is not comfort; it is the steady refusal to stop at the first explanation that makes you feel finished."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Your past is not your prison",
+      "The wound does not define you",
+      "Everything changes when you realize trauma is a choice"
+    ],
+    "counterintuition": [
+      "Pain is real but...",
+      "Most people think the past controls them",
+      "The opposite of trauma is choice"
+    ],
+    "tryThisNow": [
+      "Spend five minutes journaling about your past",
+      "Name one limiting belief",
+      "Set a timer and choose a new story"
+    ],
+    "examples": [
+      "therapy-office breakthrough",
+      "childhood bully flashback",
+      "generic boardroom outburst",
+      "coach telling someone to toughen up"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital charge-nurse apology after a snapped handoff",
+      "audience": "a clinical lead who keeps excusing sharpness as the inevitable residue of a brutal residency",
+      "stakes": "a new nurse may stop asking questions during medication handoff if the old excuse keeps ending the conversation",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Camille starts to say the residency made her this way, stops, and writes down what the snap accomplished in the room: silence from the junior nurse and protection from embarrassment.",
+      "firstImage": "\"I learned this in residency,\" Camille says with the narcotics log still open between them.",
+      "mustInclude": [
+        "narcotics log",
+        "handoff question",
+        "break-room sink"
+      ],
+      "mustAvoid": [
+        "trauma denial",
+        "managerial anger coaching",
+        "instant apology redemption"
+      ]
+    },
+    {
+      "domain": "conservatory audition avoidance after an old humiliation",
+      "audience": "a trained musician who has turned one failed teenage audition into a permanent rule against trying",
+      "stakes": "a chamber ensemble slot closes tonight and the self-protective identity may cost him the only opening this year",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James places the unsubmitted audition recording beside the old rejection letter and admits the old story now protects him from hearing a fresh no.",
+      "firstImage": "Rosin dust hangs over the black violin case.",
+      "mustInclude": [
+        "unsubmitted recording",
+        "old rejection letter",
+        "application deadline"
+      ],
+      "mustAvoid": [
+        "practice harder moral",
+        "childhood genius arc",
+        "stage fright as simple fear"
+      ]
+    },
+    {
+      "domain": "tenant association chair using anger to stop a budget question",
+      "audience": "a volunteer leader who calls every raised voice a natural response to being disrespected",
+      "stakes": "a leaking roof vote will fail if budget questions keep getting shut down by intimidation",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Hanna three meetings to see that her anger arrives exactly when someone asks for receipts, and that the outburst ends scrutiny every time.",
+      "firstImage": "Three sets of meeting minutes are spread across Hanna's dining table.",
+      "mustInclude": [
+        "roof estimate",
+        "receipt folder",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "generic condo politics",
+        "anger as purely bad",
+        "past trauma monologue"
+      ]
+    },
+    {
+      "domain": "junior hockey referee protecting pride after a missed call",
+      "audience": "a young official who hides inside the story that he grew up being challenged by loud adults",
+      "stakes": "one avoidable ejection may cost him a playoff assignment and teach the rink that his whistle is about pride",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Diego watches the video with the sound off, marks the exact second he ejects the coach, and sees that the anger protected him from admitting the missed offside.",
+      "firstImage": "The rink camera shows only fogged glass and a red circle around the blue line.",
+      "mustInclude": [
+        "muted rink video",
+        "missed offside",
+        "assignment email"
+      ],
+      "mustAvoid": [
+        "sports toughness lesson",
+        "coach villain scene",
+        "referee perfectionism"
+      ]
+    },
+    {
+      "domain": "ceramics studio owner clinging to a small identity after a failed shop",
+      "audience": "a craft entrepreneur who calls herself bad with money to avoid reopening in a smaller, safer format",
+      "stakes": "a low-rent shared kiln slot expires while the protective identity keeps her from trying again",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marta asks what the phrase 'I am hopeless with money' has saved her from doing this month and circles the unanswered email about the shared kiln.",
+      "firstImage": "What has the sentence saved you from this week?",
+      "mustInclude": [
+        "shared kiln email",
+        "cracked glaze samples",
+        "rent spreadsheet"
+      ],
+      "mustAvoid": [
+        "startup comeback",
+        "money mindset slogans",
+        "creative block cliche"
+      ]
+    },
+    {
+      "domain": "adult language learner using family history to avoid speaking practice",
+      "audience": "a newcomer who has a real history of being mocked for pronunciation and now treats silence as fixed identity",
+      "stakes": "a licensing interview is six weeks away and every skipped conversation makes the old protection stronger",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Akira leave the community-center conversation table early, then make him name what silence protected today: not from pain in general, but from one visible mistake in front of strangers.",
+      "firstImage": "You hear the plastic chair legs scrape before the practice round is over.",
+      "mustInclude": [
+        "conversation table",
+        "licensing interview date",
+        "pronunciation note card"
+      ],
+      "mustAvoid": [
+        "immigrant hardship simplification",
+        "confidence pep talk",
+        "fake teacher breakthrough"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish respecting pain from granting pain final authority",
+      "identify what anger or self-dislike accomplishes in a concrete situation",
+      "choose a response that asks present-purpose questions without blaming suffering",
+      "separate cause-based explanation from purpose-based analysis"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one behavior you usually explain with a backstory and write one sentence naming what it protected in the last 24 hours.",
+  "readingTimeMinutes": 12
+}

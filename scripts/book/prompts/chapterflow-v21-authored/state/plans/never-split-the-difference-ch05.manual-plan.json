@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch05",
+  "number": 5,
+  "title": "Trigger the Two Words That Immediately Transform Any Negotiation",
+  "coreMove": "Summarize the other side so accurately that they feel understood enough to let persuasion begin.",
+  "sourcePressure": "The source ties this chapter to that's right, summarizing, alignment, and permission to persuade, building on prior recognition and autonomy rather than treating the phrase as magic.",
+  "chapterSpecificMisunderstanding": "The writer must not make that's right a verbal hack, flattery line, or shortcut around accurate understanding.",
+  "sourceAlignmentTerms": [
+    "that's right",
+    "summary",
+    "alignment",
+    "permission to persuade",
+    "recognition",
+    "autonomy",
+    "accuracy"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Someone says the magic words and the deal unlocks",
+      "A clever recap impresses a boss",
+      "A compliment creates agreement"
+    ],
+    "counterintuition": [
+      "Agreement starts after summary",
+      "Persuasion begins with their words",
+      "Accuracy beats eloquence"
+    ],
+    "tryThisNow": [
+      "Summarize someone before persuading",
+      "Try to get a that's right",
+      "Repeat their view"
+    ],
+    "examples": [
+      "generic mediation room",
+      "team meeting recap",
+      "customer says exactly yes",
+      "relationship apology"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "specialty coffee roaster negotiating green-bean delivery terms",
+      "audience": "a roaster trying to move an importer after weeks of argument about late shipments",
+      "stakes": "a seasonal roast launch may fail if the importer sees only blame",
+      "format": "scene",
+      "requiredBeat": "the roaster summarizes the importer's cash-flow, port-delay, and reputation pressures until the importer says that's right and offers a split-container schedule",
+      "firstImage": "a burlap sample bag cut open beside a roast-profile printout",
+      "mustInclude": [
+        "port delay",
+        "container schedule",
+        "sample bag"
+      ],
+      "mustAvoid": [
+        "generic vendor apology",
+        "price-only coffee deal"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "youth soccer league field allocation after rain closures",
+      "audience": "a league director facing coaches who accuse her of favoritism",
+      "stakes": "the season schedule may break if coaches reject the revised field grid",
+      "format": "dialogue",
+      "requiredBeat": "the director summarizes each coach's lost practice nights, parent pressure, and tournament deadline before asking for options, waiting for the first that's right before proposing the grid",
+      "firstImage": "a soaked field-closure sign leaning against a chain-link fence",
+      "mustInclude": [
+        "field grid",
+        "tournament deadline",
+        "practice lights"
+      ],
+      "mustAvoid": [
+        "generic youth sports argument",
+        "school gym scene"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "estate auction reserve-price disagreement",
+      "audience": "an auctioneer working with heirs who reject a realistic reserve",
+      "stakes": "a valuable collection may fail to sell because grief is hidden under price demands",
+      "format": "reflection",
+      "requiredBeat": "the auctioneer summarizes that the reserve is carrying grief, family fairness, and fear of disrespect, and the heirs say that's right before discussing separate lots",
+      "firstImage": "a porcelain appraisal tag tied with cotton string to a cabinet handle",
+      "mustInclude": [
+        "reserve price",
+        "family fairness",
+        "lot sheet"
+      ],
+      "mustAvoid": [
+        "generic inheritance fight",
+        "antique-shop nostalgia"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "regional newspaper subscription dispute with a printing partner",
+      "audience": "a publisher trying to renegotiate print deadlines after missed rural deliveries",
+      "stakes": "cancellations will spike if the partner sees the complaint as one-sided",
+      "format": "before_after",
+      "requiredBeat": "after a failed demand, the publisher summarizes the printer's labor shortage, press maintenance, and carrier handoff constraints until the printer says that's right and reveals a viable earlier handoff",
+      "firstImage": "a stack of unsold papers banded in blue plastic at the depot door",
+      "mustInclude": [
+        "press maintenance",
+        "carrier handoff",
+        "cancellation report"
+      ],
+      "mustAvoid": [
+        "generic media business decline",
+        "delivery rant"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "aquarium animal-transport permit with state regulators",
+      "audience": "a curator seeking approval for a transfer that regulators keep slowing",
+      "stakes": "a fragile animal may miss the safe transport window if trust does not form",
+      "format": "decision_point",
+      "requiredBeat": "the curator decides to summarize the regulator's disease-control, public scrutiny, and contingency fears before presenting the revised transport plan",
+      "firstImage": "a sealed transport crate checklist clipped above a quarantine tank",
+      "mustInclude": [
+        "quarantine tank",
+        "disease-control protocol",
+        "transport window"
+      ],
+      "mustAvoid": [
+        "generic zoo story",
+        "emotional animal rescue"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "independent hardware store negotiating a landlord repair contribution",
+      "audience": "a store owner who needs the landlord to share roof-repair costs",
+      "stakes": "inventory will be damaged during the rainy season if both sides stay positional",
+      "format": "postmortem",
+      "requiredBeat": "the store owner reviews how accurately summarizing the landlord's insurance deductible, tenant precedent, and vacancy fear produced that's right and opened a repair-credit option",
+      "firstImage": "a rain-darkened ceiling tile propped beside a stack of inventory invoices",
+      "mustInclude": [
+        "insurance deductible",
+        "repair credit",
+        "lease clause"
+      ],
+      "mustAvoid": [
+        "generic rent negotiation",
+        "blame-the-landlord frame"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify what an accurate summary must include before persuasion",
+      "distinguish that's right from you're right or polite agreement",
+      "analyze whether a proposed summary preserves autonomy",
+      "evaluate when the writer is treating the phrase as magic instead of evidence of alignment"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before making one ask, write a three-part summary of the other side's pressure, constraint, and fear; do not make the ask until the summary could stand on its own.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

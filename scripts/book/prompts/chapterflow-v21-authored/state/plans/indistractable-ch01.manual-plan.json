@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch01",
+  "number": 1,
+  "title": "What Motivates Us Really?",
+  "coreMove": "Trace the impulse to the uncomfortable feeling it is trying to quiet before blaming the nearest device.",
+  "sourcePressure": "The opening move says distraction usually starts with internal discomfort, while devices and apps are downstream channels for relief.",
+  "chapterSpecificMisunderstanding": "A weak run would make the phone the villain and skip the boredom, anxiety, or uncertainty that made the phone attractive.",
+  "sourceAlignmentTerms": [
+    "internal triggers",
+    "traction",
+    "distraction",
+    "discomfort",
+    "relief loop",
+    "urge"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "What Motivates Us Really? as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "night-shift emergency dispatch after a long quiet stretch",
+      "audience": "dispatcher who mistakes unease for a need to refresh news",
+      "stakes": "a missed rest window becomes another brittle hour on console",
+      "format": "scene",
+      "requiredBeat": "she writes 'restless silence' on the incident pad before touching the news tab",
+      "firstImage": "An amber call light glows beside an untouched incident pad.",
+      "mustInclude": [
+        "amber call light",
+        "incident pad",
+        "news tab"
+      ],
+      "mustAvoid": [
+        "phone-is-the-problem shell"
+      ]
+    },
+    {
+      "domain": "pastry kitchen during a slow dough proof",
+      "audience": "baker tempted to scroll while waiting for dough to rise",
+      "stakes": "the batch timer loses authority when boredom is unnamed",
+      "format": "vignette",
+      "requiredBeat": "he circles 'waiting itch' in the proofing log and leaves the tablet face down",
+      "firstImage": "A proofing log lies beside a tray of pale croissants.",
+      "mustInclude": [
+        "proofing log",
+        "croissant tray",
+        "face-down tablet"
+      ],
+      "mustAvoid": [
+        "generic kitchen productivity"
+      ]
+    },
+    {
+      "domain": "probate paralegal opening a difficult estate file",
+      "audience": "paralegal who calls legal research productive while avoiding grief-heavy paperwork",
+      "stakes": "a family deadline slips because the hard emotion hides inside a respectable task",
+      "format": "decision_point",
+      "requiredBeat": "she touches the sealed estate envelope, says 'sadness first,' and opens the inventory instead of a case-law search",
+      "firstImage": "A sealed estate envelope rests under a brass letter opener.",
+      "mustInclude": [
+        "estate envelope",
+        "brass letter opener",
+        "case-law tab"
+      ],
+      "mustAvoid": [
+        "to-do list cleanup"
+      ]
+    },
+    {
+      "domain": "amateur cellist starting a metronome session",
+      "audience": "adult learner who checks messages whenever practice sounds rough",
+      "stakes": "the practice hour turns into proof that talent is fixed",
+      "format": "reflection",
+      "requiredBeat": "he names embarrassment when the bow squeaks, then restarts the metronome without checking messages",
+      "firstImage": "A rosin cloth is folded beside a ticking metronome.",
+      "mustInclude": [
+        "rosin cloth",
+        "metronome",
+        "practice chair"
+      ],
+      "mustAvoid": [
+        "discipline pep talk"
+      ]
+    },
+    {
+      "domain": "farmers market stall after a slow first hour",
+      "audience": "vendor reaching for social media to escape the sting of no buyers",
+      "stakes": "fresh inventory wilts while attention leaks into comparison",
+      "format": "before_after",
+      "requiredBeat": "before, she refreshes another vendor's photos; after, she labels the sting as comparison and rearranges the plum baskets",
+      "firstImage": "Purple plums sit in shallow wooden baskets under a price slate.",
+      "mustInclude": [
+        "plum baskets",
+        "price slate",
+        "vendor apron"
+      ],
+      "mustAvoid": [
+        "marketing advice"
+      ]
+    },
+    {
+      "domain": "medical lab bench waiting on a centrifuge cycle",
+      "audience": "technician who opens a gossip thread whenever the machine hums",
+      "stakes": "chain-of-custody focus weakens during dead minutes",
+      "format": "postmortem",
+      "requiredBeat": "he identifies the trigger as empty waiting time and writes the next sample label before the rotor stops",
+      "firstImage": "A centrifuge rotor hums beneath a row of blank sample labels.",
+      "mustInclude": [
+        "centrifuge rotor",
+        "sample labels",
+        "nitrile sleeve"
+      ],
+      "mustAvoid": [
+        "medical drama"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Trace the impulse to the uncomfortable feeling it is trying to quiet before blaming the nearest device.",
+      "choose the action that stays inside What Motivates Us Really?'s source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would make the phone the villain and skip the boredom, anxiety, or uncertainty that made the phone attractive.",
+      "use chapter-specific terms such as internal triggers, traction, distraction, discomfort in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When you reach for an unplanned screen, stop with your hand on the device and name the feeling the reach is trying to soften.",
+  "readingTimeMinutes": 12
+}

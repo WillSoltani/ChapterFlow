@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch11",
+  "number": 11,
+  "title": "The Context of Our Character, Part 1",
+  "coreMove": "Move the honesty cue to the moment before rationalization starts.",
+  "sourcePressure": "The source focuses on small dishonesty, self-concept maintenance, and the way timely moral reminders such as honor codes reduce cheating before temptation is rationalized.",
+  "chapterSpecificMisunderstanding": "The weak version says people cheat when they can; the exact lesson is that context changes how much cheating still feels compatible with being honest.",
+  "sourceAlignmentTerms": ["honesty", "self-concept", "rationalization", "honor code", "moral reminder", "small cheating"],
+  "forbiddenFrames": {
+    "hook": ["Character changes with context", "Honesty needs a cue", "Small lies keep a clean mirror"],
+    "counterintuition": ["Bad people cheat", "Rules alone stop cheating", "Punishment is the main lever"],
+    "tryThisNow": ["Make a pledge", "Be honest", "Read the rule first"],
+    "examples": ["expense report padding", "self-graded quiz", "signature at top"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "charity raffle ticket counting after a fundraiser",
+      "audience": "a volunteer treasurer reconciling cash and unsold ticket stubs",
+      "stakes": "rounding in her own favor while still feeling like a good volunteer",
+      "format": "decision_point",
+      "requiredBeat": "before counting cash, the treasurer reads the posted donor pledge aloud and initials the count sheet beside another volunteer",
+      "firstImage": "raffle stubs spread across a folding table after the hall lights come up",
+      "mustInclude": ["donor pledge", "count sheet", "second initials"],
+      "mustAvoid": ["expense report", "student quiz", "office compliance form"]
+    },
+    {
+      "domain": "farmers market honor jar for flower bouquets",
+      "audience": "a stall owner testing a payment setup when she steps away",
+      "stakes": "customers shaving a dollar while still seeing themselves as honest neighbors",
+      "format": "predict_reveal",
+      "requiredBeat": "the owner moves a simple honesty note from behind the jar to eye level before the first customer takes a bouquet",
+      "firstImage": "an honor jar beside wrapped flower bouquets under a striped awning",
+      "mustInclude": ["eye-level note", "honor jar", "bouquet price"],
+      "mustAvoid": ["supply closet", "arcade tokens", "generic theft"]
+    },
+    {
+      "domain": "library self-checkout for rare local-history folders",
+      "audience": "an archivist worried about patrons skipping sign-out steps",
+      "stakes": "folders going missing because the act feels too minor to count as dishonesty",
+      "format": "vignette",
+      "requiredBeat": "the archivist places the handling oath on top of the folder box, so patrons touch it before removing a folder",
+      "firstImage": "cream-colored archive folders in a gray box beneath a cotton handling sheet",
+      "mustInclude": ["handling oath", "folder sign-out", "cotton sheet"],
+      "mustAvoid": ["archive digitization deadlines", "library free atlas", "cash token distance"]
+    },
+    {
+      "domain": "youth soccer referee assigning final score reports",
+      "audience": "a volunteer referee entering scores after a disputed match",
+      "stakes": "softening a yellow-card report because one team is local and the lie feels small",
+      "format": "dialogue",
+      "requiredBeat": "the referee reads the fairness line at the top of the score form before filling in the card count",
+      "firstImage": "a damp score form clipped to a fence after a muddy match",
+      "mustInclude": ["fairness line", "card count", "local team"],
+      "mustAvoid": ["sports ticket ownership", "public performance", "anger response"]
+    },
+    {
+      "domain": "makerspace tool-time log",
+      "audience": "a member logging laser-cutter minutes after a late session",
+      "stakes": "underreporting use because nobody was watching and the extra minutes feel harmless",
+      "format": "postmortem",
+      "requiredBeat": "after discrepancies appear, the shop moves the member agreement above the time keypad and asks members to tap it before entering minutes",
+      "firstImage": "a laser-cutter keypad glowing beside a stack of acrylic offcuts",
+      "mustInclude": ["member agreement", "time keypad", "extra minutes"],
+      "mustAvoid": ["market norms payment", "software logs", "workplace inventory"]
+    },
+    {
+      "domain": "medical conference continuing-education attendance sheet",
+      "audience": "a conference organizer preventing inflated attendance claims",
+      "stakes": "attendees claiming credit for sessions they left early while preserving a professional self-image",
+      "format": "before_after",
+      "requiredBeat": "after moving the professional attestation above the session checklist, claimed credits drop without extra policing",
+      "firstImage": "a badge lanyard lying across a continuing-education checklist",
+      "mustInclude": ["attestation", "session checklist", "claimed credits"],
+      "mustAvoid": ["medical advice", "price placebo", "generic compliance"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["spot rationalized small cheating", "place moral reminders before the decision", "distinguish character labels from context design", "evaluate whether a cue protects self-concept at the right moment"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Move one rule, pledge, or standard from after-the-fact review to the exact place where the questionable choice begins.",
+  "readingTimeMinutes": 12
+}

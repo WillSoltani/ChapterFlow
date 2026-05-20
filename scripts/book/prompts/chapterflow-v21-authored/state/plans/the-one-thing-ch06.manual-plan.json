@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch06",
+  "number": 6,
+  "title": "A Disciplined Life",
+  "coreMove": "Trade the fantasy of total self-control for one narrow discipline repeated until it becomes dependable.",
+  "sourcePressure": "This lie chapter rejects the fantasy of a universally disciplined life and points toward selective consistency around the one behavior that matters most.",
+  "chapterSpecificMisunderstanding": "Preaching stricter character, universal toughness, or a perfect lifestyle.",
+  "sourceAlignmentTerms": [
+    "disciplined life",
+    "selective discipline",
+    "chosen behavior",
+    "consistency",
+    "routine",
+    "habit"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "A Disciplined Life as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "court translator building terminology accuracy",
+      "audience": "freelance interpreter",
+      "stakes": "one mistranslated term could alter a deposition",
+      "format": "before_after",
+      "requiredBeat": "she abandons the plan to overhaul her life and repeats a twelve-minute terminology drill before each assignment",
+      "firstImage": "index cards with legal terms clipped to a courthouse badge",
+      "mustInclude": [
+        "index cards",
+        "courthouse badge",
+        "timer"
+      ],
+      "mustAvoid": [
+        "generic self-discipline pep talk"
+      ]
+    },
+    {
+      "domain": "aquaponics greenhouse crop testing",
+      "audience": "greenhouse manager",
+      "stakes": "small pH drift can wipe out seedlings",
+      "format": "scene",
+      "requiredBeat": "he stops trying to become disciplined about everything and records pH at the same valve every dawn for thirty days",
+      "firstImage": "a glass pH probe dripping over a trough of basil starts",
+      "mustInclude": [
+        "pH probe",
+        "basil starts",
+        "greenhouse log"
+      ],
+      "mustAvoid": [
+        "generic farming routine"
+      ]
+    },
+    {
+      "domain": "children's choir sight-reading",
+      "audience": "choir director",
+      "stakes": "a regional audition is six weeks away",
+      "format": "vignette",
+      "requiredBeat": "she drops the big practice makeover and has singers mark only the first interval of each new piece every rehearsal",
+      "firstImage": "sheet music with first intervals circled in purple pencil",
+      "mustInclude": [
+        "sheet music",
+        "purple pencil",
+        "audition notice"
+      ],
+      "mustAvoid": [
+        "generic music practice"
+      ]
+    },
+    {
+      "domain": "municipal pool lifeguard readiness",
+      "audience": "aquatics supervisor",
+      "stakes": "a rescue response must be automatic",
+      "format": "decision_point",
+      "requiredBeat": "he chooses one daily rescue-board drill over a binder of ideal habits and makes every guard run it before opening",
+      "firstImage": "a rescue board leaning against a locked pool gate at sunrise",
+      "mustInclude": [
+        "rescue board",
+        "gate lock",
+        "opening checklist"
+      ],
+      "mustAvoid": [
+        "generic safety training"
+      ]
+    },
+    {
+      "domain": "rare-book conservation bench",
+      "audience": "paper conservator",
+      "stakes": "one careless humidity reading can warp a manuscript",
+      "format": "postmortem",
+      "requiredBeat": "she sees the project improved only after she made the humidity check nonnegotiable, not after she bought a new planner",
+      "firstImage": "a hygrometer reading beside a curled manuscript corner",
+      "mustInclude": [
+        "hygrometer",
+        "manuscript cradle",
+        "planner"
+      ],
+      "mustAvoid": [
+        "generic craft discipline"
+      ]
+    },
+    {
+      "domain": "independent tax preparer in filing season",
+      "audience": "tax preparer",
+      "stakes": "errors compound when receipts arrive late",
+      "format": "reflection",
+      "requiredBeat": "he stops chasing perfect office order and repeats one closing scan that catches missing documents before clients leave",
+      "firstImage": "a scanner light moving across a receipt packet at 6:55 p.m.",
+      "mustInclude": [
+        "receipt scanner",
+        "receipt packet",
+        "client checklist"
+      ],
+      "mustAvoid": [
+        "generic productivity system"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the discipline that matters most",
+      "shrink discipline to a repeatable behavior",
+      "stop demanding excellence everywhere"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one behavior that would change your work if repeated daily, then make the first repeat so small that it can survive an imperfect day.",
+  "readingTimeMinutes": 12
+}

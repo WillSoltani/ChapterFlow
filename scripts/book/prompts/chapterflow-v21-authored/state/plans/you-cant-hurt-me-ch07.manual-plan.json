@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch07",
+  "number": 7,
+  "title": "The Most Powerful Weapon",
+  "coreMove": "Interrogate the first stop signal as a negotiation, then test it with pacing and judgment.",
+  "sourcePressure": "The source grows from post-San Diego endurance work, the 40% rule, governor framing, protective signals, pacing, planning, and controlled overreach.",
+  "chapterSpecificMisunderstanding": "The writer must not state the 40% rule as exact science or tell readers to ignore injury.",
+  "sourceAlignmentTerms": ["40% rule", "governor", "protective signal", "negotiated limit", "pacing", "planning", "controlled overreach"],
+  "forbiddenFrames": {
+    "hook": ["You are only at 40 percent", "Your mind quits first", "Push past your limits"],
+    "counterintuition": ["The body lies", "Limits are fake", "More pain means more growth"],
+    "tryThisNow": ["Do one more minute", "Push past comfort", "Ask if you are really done"],
+    "examples": ["generic marathon wall", "injured athlete keeps going", "gym trainer challenge"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "flight simulator engine-out certification",
+      "audience": "a pilot candidate whose panic signal arrives before the checklist is complete",
+      "stakes": "whether fear stops a controlled procedure that still has steps left",
+      "format": "decision_point",
+      "requiredBeat": "when her hands shake after the warning tone, she touches the laminated emergency checklist, slows the descent rate, and completes the next callout before deciding anything is unrecoverable",
+      "firstImage": "a simulator warning light reflected in a scratched throttle knob",
+      "mustInclude": ["emergency checklist", "descent rate", "callout"],
+      "mustAvoid": ["real crash", "reckless bravery", "generic fear control"]
+    },
+    {
+      "domain": "deep-sea research dive ascent with low air anxiety",
+      "audience": "a trainee diver who wants to bolt upward at the first pressure spike",
+      "stakes": "whether panic creates more danger than the remaining air calculation",
+      "format": "predict_reveal",
+      "requiredBeat": "the dive lead has him read the gauge, compare it to the ascent slate, and make the next slow fin kick rather than sprinting upward",
+      "firstImage": "an ascent slate clipped to a buoy line in green water",
+      "mustInclude": ["air gauge", "ascent slate", "buoy line"],
+      "mustAvoid": ["near drowning", "ocean adventure", "ignore safety signal"]
+    },
+    {
+      "domain": "court stenographer speed test at the fatigue mark",
+      "audience": "a candidate whose fingers freeze when the dictation accelerates",
+      "stakes": "whether the first error cascade becomes proof she is finished",
+      "format": "before_after",
+      "requiredBeat": "after missing three words, she marks the minute stamp, resets posture, and holds accuracy for the next thirty seconds before judging the whole attempt",
+      "firstImage": "a stenotype paper strip curling onto a metal tray",
+      "mustInclude": ["minute stamp", "accuracy score", "posture reset"],
+      "mustAvoid": ["courtroom drama", "talent debate", "generic exam anxiety"]
+    },
+    {
+      "domain": "alpine rescue pulley drill on a steep snowfield",
+      "audience": "a rescuer whose lungs are burning before the loaded sled moves",
+      "stakes": "whether the team quits the haul because the first strain feels final",
+      "format": "scene",
+      "requiredBeat": "the lead calls a slower haul rhythm, checks the anchor, and has each rescuer take five measured pulls before reassessing the load",
+      "firstImage": "a snow anchor half buried beside a red haul rope",
+      "mustInclude": ["haul rope", "anchor check", "five-pull rhythm"],
+      "mustAvoid": ["summit conquest", "rescue melodrama", "unsafe overpulling"]
+    },
+    {
+      "domain": "voice actor recording a damaged-voice audiobook deadline",
+      "audience": "a narrator tempted to quit at the first hoarse take",
+      "stakes": "whether the deadline is met without turning strain into injury",
+      "format": "reflection",
+      "requiredBeat": "she listens to the cracked take, lowers the session pace, marks hydration breaks, and records one clean paragraph before deciding the voice is done",
+      "firstImage": "a waveform frozen on a studio monitor beside a glass straw",
+      "mustInclude": ["waveform", "hydration breaks", "paragraph mark"],
+      "mustAvoid": ["artist suffering", "ignore medical warning", "generic creative block"]
+    },
+    {
+      "domain": "urban mail carrier heat-route adjustment",
+      "audience": "a carrier who wants to abandon the route when heat turns loud in his head",
+      "stakes": "whether he can tell true danger from a pacing problem before calling out",
+      "format": "dialogue",
+      "requiredBeat": "he reads the heat index, shifts the route order to shaded blocks, takes the measured water stop, and completes the next segment before reassessing",
+      "firstImage": "a scanner pouch darkened by sweat against a mail satchel",
+      "mustInclude": ["heat index", "shaded blocks", "water stop"],
+      "mustAvoid": ["heatstroke heroics", "productivity pressure", "generic tough-it-out"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish negotiated discomfort from true danger", "choose a paced test before stopping", "analyze the governor as a protective signal rather than a lie", "evaluate controlled overreach against reckless denial"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "When the first stop signal shows up today, pause long enough to name whether it is danger, bad pacing, or bargaining, then choose the next measured step.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,239 @@
+{
+  "bookId": "good-to-great",
+  "updatedAt": "2026-05-13T05:29:08Z",
+  "usedProtagonistNames": [
+    "Daniel", "Claire", "Lukas", "Aanya", "Camille", "Marta",
+    "Emily", "James", "Ingrid", "Antoine", "Sofia", "Kiran",
+    "Nathan", "Beatrice", "Tomasz", "Julia", "Lin", "Rafael",
+    "Grace", "Martin", "Petra", "Henry", "Alice", "Diego",
+    "Olivia", "Marco", "Freya", "Julien", "Catarina", "Samuel",
+    "Laura", "Ben", "Nora", "Erik", "Isabelle", "Paola",
+    "Ethan", "Vera", "Chloe", "Amir", "Giulia", "Peter",
+    "Megan", "Andrea", "Helene", "David", "Yusuf", "Robert",
+    "Graham", "Fiona", "Thomas", "Alma", "Niamh", "Aaron"
+  ],
+  "usedExampleDomains": [
+    "regional hospital imaging turnaround review",
+    "independent bookstore front-table economics",
+    "minor league stadium concession flow",
+    "county library digital access rollout",
+    "river outfitter safety review",
+    "airport gate boarding reliability",
+    "pediatric surgery morbidity review",
+    "harbor rescue crew after-action",
+    "architecture firm public bid debrief",
+    "community college budget reset",
+    "wildfire incident command handoff",
+    "symphony season rescue",
+    "polar research station winter crew selection",
+    "farm cooperative packing shed leadership",
+    "newspaper investigative desk formation",
+    "ambulance service shift redesign",
+    "museum conservation lab exhibition planning",
+    "community legal clinic intake expansion",
+    "neonatal infection-control huddle",
+    "rural bank loan portfolio review",
+    "avalanche patrol snowpack briefing",
+    "regional theater subscription decline",
+    "food pantry waitlist mechanism",
+    "aircraft maintenance torque-error review",
+    "specialty veterinary rehabilitation clinic",
+    "ceramics studio architectural tile commissions",
+    "seed cooperative regenerative trial plots",
+    "documentary festival programming",
+    "marine battery corrosion diagnostics shop",
+    "hospice volunteer bereavement program",
+    "sterile compounding pharmacy clean-room practice",
+    "jazz festival stage-change crews",
+    "trail restoration nonprofit project calendar",
+    "ferry maintenance tide-window planning",
+    "medical-device packaging line",
+    "pro bono legal clinic intake boundaries",
+    "orthodontic lab same-day retainer workflow",
+    "dairy herd-health sensor rollout",
+    "county archive OCR access project",
+    "emergency dispatch map procurement",
+    "climbing gym route-progression app",
+    "textile mill laser-cut sailcloth patches",
+    "regional blood bank mobile-drive scheduling",
+    "subscription roaster wholesale account growth",
+    "adult language school retention system",
+    "city bike-lane maintenance cadence",
+    "legal aid eviction-defense referral loop",
+    "indie game studio build stability",
+    "family-owned precision foundry succession",
+    "public radio newsroom after an investigative award",
+    "regional credit union post-growth member discipline",
+    "medical research institute debate routines",
+    "botanical garden seed-bank operating rhythm",
+    "children's hospital foundation after a record campaign"
+  ],
+  "usedExampleAnchors": [
+    "green scanner console benchmark versus delayed follow-up list",
+    "commendation letter and error board",
+    "field-route binder before crew choice",
+    "red card and line-access timestamp truth mechanisms",
+    "three-circle economic denominator tests",
+    "laminar hood boundary and stop-doing list",
+    "tool adoption measured against concept-linked acceleration",
+    "flywheel pushes versus doom-loop resets",
+    "win converted into routine, review, boundary, or training"
+  ],
+  "usedHookFrames": [
+    "ch01 green scanner and acceptable wait-list tension",
+    "ch02 commendation letter versus error-board ownership",
+    "ch03 field-route binder waiting on people fit",
+    "ch04 red-card truth mechanism embarrassing the leader first",
+    "ch05 urgent-care lease tested by rehab engine",
+    "ch06 missing signoff boxes as safer discipline",
+    "ch07 smaller printer speeding an existing promise",
+    "ch08 billboard mockup interrupting repeat-site momentum",
+    "ch09 plaque delayed by rejected-casting ritual"
+  ],
+  "usedCounterFrames": [
+    "ch01 good benchmarks can end inquiry too early",
+    "ch02 humility and will are a paired leadership force",
+    "ch03 route should not be locked before people fit",
+    "ch04 candor and faith fail when separated",
+    "ch05 focus requires all three circles, not passion or branding alone",
+    "ch06 added control can signal weak discipline",
+    "ch07 tool novelty is weaker than acceleration of concept",
+    "ch08 breakthrough is often delayed visibility of aligned pushes",
+    "ch09 success can decay unless converted into practice"
+  ],
+  "usedTryThisNowFrames": [
+    "ch01 compare one good result with one ignored consequence",
+    "ch02 map outward credit and owned responsibility",
+    "ch03 name two seats before finalizing a plan",
+    "ch04 write a bad-news question and resolve sentence",
+    "ch05 test one opportunity against capability, denominator, commitment",
+    "ch06 write boundary, delegated decision, and stopped activity",
+    "ch07 name tool acceleration discipline and thirty-day measure",
+    "ch08 trace three aligned pushes and one next push",
+    "ch09 convert a win into a six-month routine, review, or boundary"
+  ],
+  "usedQuizExplanationFrames": [
+    "chapter-specific scenario explanations rewritten across all nine chapters with no repeated boilerplate groups"
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "good-to-great-ch01",
+      "frames": [
+        "wake-up-call opening",
+        "good versus great sports trophy scene",
+        "try rating your life from one to ten"
+      ]
+    },
+    {
+      "chapterId": "good-to-great-ch02",
+      "frames": [
+        "quiet hero profile",
+        "humility as niceness",
+        "leader gives a stirring speech"
+      ]
+    },
+    {
+      "chapterId": "good-to-great-ch03",
+      "frames": [
+        "generic hiring interview",
+        "hire slow fire fast slogan",
+        "bus metaphor repeated literally in every surface"
+      ]
+    },
+    {
+      "chapterId": "good-to-great-ch04",
+      "frames": [
+        "bad news meeting with yelling",
+        "face the facts as pessimism",
+        "wartime pep talk"
+      ]
+    },
+    {
+      "chapterId": "good-to-great-ch05",
+      "frames": [
+        "find your passion exercise",
+        "brand positioning workshop",
+        "three circles drawn on a whiteboard as the main scene"
+      ]
+    },
+    {
+      "chapterId": "good-to-great-ch06",
+      "frames": [
+        "morning routine productivity",
+        "stricter rules fix everything",
+        "discipline as punishment"
+      ]
+    },
+    {
+      "chapterId": "good-to-great-ch07",
+      "frames": [
+        "new app saves the company",
+        "technology is bad",
+        "fear of missing out demo day"
+      ]
+    },
+    {
+      "chapterId": "good-to-great-ch08",
+      "frames": [
+        "overnight success montage",
+        "just keep pushing motivational frame",
+        "leader announces transformation slogan"
+      ]
+    },
+    {
+      "chapterId": "good-to-great-ch09",
+      "frames": [
+        "legacy speech at retirement dinner",
+        "winning is everything",
+        "import Built to Last details not in source"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "good-to-great-ch01": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate passed after removing meta-references; pattern blockers remained only in later chapters at that point."
+    },
+    "good-to-great-ch02": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate passed; Level 5 source anchor and window-and-mirror behavior landed."
+    },
+    "good-to-great-ch03": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate passed; first who then what source anchor landed."
+    },
+    "good-to-great-ch04": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate passed; Stockdale paradox source anchor landed."
+    },
+    "good-to-great-ch05": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate passed; Hedgehog Concept and fox-versus-hedgehog anchors landed."
+    },
+    "good-to-great-ch06": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate passed; culture of discipline anchor landed."
+    },
+    "good-to-great-ch07": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate passed after removing a meta-reference from the final quiz prompt."
+    },
+    "good-to-great-ch08": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate and book pattern audit passed."
+    },
+    "good-to-great-ch09": {
+      "checkpoint": "PASS",
+      "rewritten": true,
+      "notes": "Ship gate and book pattern audit passed after full durability rewrite."
+    }
+  }
+}

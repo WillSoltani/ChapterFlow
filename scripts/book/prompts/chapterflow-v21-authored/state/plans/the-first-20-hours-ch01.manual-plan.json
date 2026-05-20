@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-first-20-hours-ch01",
+  "number": 1,
+  "title": "A Portrait of the Author as a Learning Junkie",
+  "coreMove": "Reprice a postponed skill by defining the first honest competence threshold instead of measuring the first hour against mastery.",
+  "sourcePressure": "The source opens on overloaded modern life, challenges the misuse of a 10,000-hour mastery benchmark, and separates practical competence from elite performance while naming early frustration as the reason many learners quit.",
+  "chapterSpecificMisunderstanding": "Treating the chapter as a promise that twenty hours creates expertise instead of a scope correction for usable entry-level competence.",
+  "sourceAlignmentTerms": [
+    "overloaded modern life",
+    "10,000-hour benchmark",
+    "usable competence",
+    "elite performance",
+    "rapid skill acquisition",
+    "frustration barrier"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "10,000-hour benchmark",
+      "detail": "the frozen support says the opening chapter questions whether it really takes 10,000 hours to become good at something and distinguishes expert performance from basic practical competence",
+      "useIn": "both",
+      "phrasingHint": "The 10,000-hour number can make a Tuesday evening practice session feel as if it has already failed a championship standard."
+    },
+    {
+      "kind": "artifact",
+      "name": "first twenty hours",
+      "detail": "the source positions the method around moving from knowing almost nothing to performing noticeably well through a focused early practice commitment",
+      "useIn": "fullRead",
+      "phrasingHint": "The first twenty hours are not a trophy; they are the bridge from helpless to useful."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "calendar panic opener",
+      "genius versus ordinary people opener",
+      "wake-up-and-chase-your-dreams opener"
+    ],
+    "counterintuition": [
+      "talent does not matter",
+      "mastery is fake",
+      "the only problem is mindset"
+    ],
+    "tryThisNow": [
+      "write down any dream skill",
+      "set a timer and reflect on goals",
+      "commit to twenty hours with no threshold"
+    ],
+    "examples": [
+      "generic busy parent wanting guitar",
+      "office worker watching tutorial at midnight",
+      "kitchen table notebook and coffee"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "hospital triage nurse learning basic medical Spanish for intake",
+      "audience": "a reader with a high-value skill postponed because fluency feels impossible",
+      "stakes": "Spanish-speaking patients wait while questions pass through a coworker",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah circles five intake questions on a laminated shift card and decides that clear pain-location questions will count as the first competence line",
+      "firstImage": "alcohol wipes drying beside a laminated intake card",
+      "mustInclude": [
+        "laminated intake card",
+        "five phrases",
+        "night-shift handoff"
+      ],
+      "mustAvoid": [
+        "language mastery fantasy",
+        "generic travel Spanish scene"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "small-town baker learning enough bookkeeping to catch cash leaks",
+      "audience": "a reader avoiding numbers because accounting expertise feels too large",
+      "stakes": "weekly ingredient costs are rising and nobody can explain the margin drop",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lukas stops pricing himself against a certified accountant and marks one threshold: reconcile flour invoices against Friday deposits without help",
+      "firstImage": "flour-dusted invoices clipped under a brass till key",
+      "mustInclude": [
+        "flour invoices",
+        "Friday deposits",
+        "calculator tape"
+      ],
+      "mustAvoid": [
+        "startup finance dashboard",
+        "generic budgeting advice"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "museum docent learning basic sign language greetings",
+      "audience": "a reader who wants inclusion without pretending instant fluency",
+      "stakes": "a deaf school group arrives next month and the museum has no interpreter for the welcome station",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Camille asks a local tutor to test whether she can greet, point to the map, and explain the coatroom before adding any new signs",
+      "firstImage": "a folded gallery map held between two nervous hands",
+      "mustInclude": [
+        "gallery map",
+        "coatroom sign",
+        "three visitor questions"
+      ],
+      "mustAvoid": [
+        "inspirational accessibility speech",
+        "full interpreter claim"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "community radio host learning audio editing basics",
+      "audience": "a creator stuck because professional production standards make starting look absurd",
+      "stakes": "a local interview sits unreleased because the raw file has two long mistakes",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "James predicts he needs full production training, then proves the useful threshold by cutting one cough, one dead pause, and exporting a clean two-minute segment",
+      "firstImage": "a red waveform spike beside a sticky note that says cough",
+      "mustInclude": [
+        "waveform",
+        "dead pause",
+        "export button"
+      ],
+      "mustAvoid": [
+        "podcast empire scene",
+        "gear-buying montage"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "park volunteer learning basic chainsaw safety vocabulary without operating the saw",
+      "audience": "a cautious reader who needs bounded competence around a risky tool",
+      "stakes": "storm cleanup briefings are confusing and unsafe when she cannot name parts or hazards",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anke writes her threshold as identifying chain brake, kickback zone, and stop command during safety briefing, not cutting wood herself",
+      "firstImage": "orange safety chaps hanging from a wet park-service hook",
+      "mustInclude": [
+        "chain brake",
+        "kickback zone",
+        "storm cleanup roster"
+      ],
+      "mustAvoid": [
+        "unsafe tool instruction",
+        "heroic disaster response"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "Toronto apartment gardener learning seed-starting for one balcony crop",
+      "audience": "a reader whose hobby remains imaginary because expert growers look unreachable",
+      "stakes": "her spring seedlings die every year before the first transplant",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aanya defines competence as getting six basil seedlings from tray to balcony planter, then removes every advanced gardening goal from the first month",
+      "firstImage": "condensation on a clear seed-tray lid above six labeled cells",
+      "mustInclude": [
+        "seed tray",
+        "six basil cells",
+        "balcony planter"
+      ],
+      "mustAvoid": [
+        "farm-to-table fantasy",
+        "generic plant-care scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate competence targets from mastery targets",
+      "spot when the 10,000-hour frame is being misapplied",
+      "judge whether a threshold is testable and useful",
+      "recognize early frustration as entry cost rather than verdict"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one skill you keep pricing at mastery level, then write the smallest live task that would prove you were no longer helpless at it.",
+  "readingTimeMinutes": 12
+}

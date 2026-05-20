@@ -1,0 +1,1085 @@
+{
+  "bookId": "difficult-conversations",
+  "updatedAt": "2026-05-14T06:59:23.620Z",
+  "usedProtagonistNames": [
+    "Sarah",
+    "Mathieu",
+    "Ingrid",
+    "Luca",
+    "Aanya",
+    "David",
+    "Claire",
+    "Jonas",
+    "Sofia",
+    "Andrew",
+    "Kiran",
+    "Margaux",
+    "Grace",
+    "Lars",
+    "Chiara",
+    "Ben",
+    "Layla",
+    "Etienne",
+    "Hannah",
+    "Mikkel",
+    "Giulia",
+    "Thomas",
+    "Yusuf",
+    "Camille",
+    "Rachel",
+    "Niklas",
+    "Catarina",
+    "James",
+    "Hadiya",
+    "Chloe",
+    "Laura",
+    "Henrik",
+    "Isabel",
+    "Daniel",
+    "Lin",
+    "Juliette",
+    "Anna",
+    "Anders",
+    "Paula",
+    "Michael",
+    "Akira",
+    "Nicolas",
+    "Emily",
+    "Lukas",
+    "Marta",
+    "Chris",
+    "Adaeze",
+    "Antoine",
+    "Megan",
+    "Frida",
+    "Javier",
+    "Sam",
+    "Hiroshi",
+    "Manon",
+    "Sophie",
+    "Marit",
+    "Marco",
+    "Ryan",
+    "Chidi",
+    "Olivier",
+    "Olivia",
+    "Maja",
+    "Diego",
+    "Jack",
+    "Aman",
+    "Vincent",
+    "Beatrice",
+    "Anke",
+    "Pablo",
+    "Luke",
+    "Min",
+    "Hugo"
+  ],
+  "usedExampleDomains": [
+    "regional hospital performance review",
+    "adult siblings coordinating dementia care",
+    "software co-founders debating a vendor renewal",
+    "tenant association meeting about elevator outages",
+    "university lab authorship dispute",
+    "community choir solo assignment",
+    "startup product roadmap review",
+    "museum exhibit label dispute",
+    "couple dividing night-shift care for a newborn",
+    "nonprofit board deciding grant priorities",
+    "architecture studio critique",
+    "parents choosing a high school program",
+    "team meeting accent joke repair",
+    "freelance client left off decision email",
+    "partner canceling plans repeatedly",
+    "pharmacy shift handoff omission",
+    "research group authorship comment",
+    "wedding-planning family text",
+    "remote engineering check-in cycle",
+    "sibling holiday planning roles",
+    "design handoff style clash",
+    "community theater rehearsal pattern",
+    "shared apartment cleaning standoff",
+    "medical clinic scheduling backlog",
+    "creative project cancellation meeting",
+    "friend group cheerful performance",
+    "manager accepting the 'I'm fine' answer",
+    "immigration clinic volunteer burnout",
+    "partner discussing a quiet resentment about money",
+    "school counselor after parent complaint",
+    "senior analyst receiving model criticism",
+    "parent hearing impact from a teenager",
+    "long-term partner fearing relationship trouble means unlovable",
+    "academic peer review on a weak article section",
+    "founder told a team ritual is hurting morale",
+    "friendship boundary after repeated cancellations",
+    "product handoff frustration",
+    "old college friendship slight",
+    "community garden allocation dispute",
+    "employee considering feedback to a powerful director",
+    "sibling apology never received",
+    "team lead bothered by meeting interruptions",
+    "co-parent discipline disagreement",
+    "client handoff between agencies",
+    "graduate student approaching advisor about delayed feedback",
+    "restaurant partners disagreeing on tip pooling",
+    "siblings discussing inherited house repairs",
+    "open-source maintainers reviewing a rejected pull request",
+    "reorg 1:1 with unhappy direct report",
+    "medical resident receiving patient-family anger",
+    "partner explaining loneliness after a busy season",
+    "teacher hearing student complaint about grading",
+    "software incident postmortem with angry customer-success lead",
+    "friend returning after months of silence",
+    "promotion visibility conversation",
+    "friendship resentment after repeated hosting",
+    "graduate seminar critique exchange",
+    "task-force omission at city hall",
+    "designer responding to harsh client edits",
+    "adult child speaking to parent about old pattern",
+    "small-business first-hire decision",
+    "student organization event bottleneck",
+    "cohabiting partners designing quiet hours",
+    "hospital discharge handoff redesign",
+    "faculty committee workload plan",
+    "neighborhood snow-removal rota",
+    "full arc for a strained team-lead conversation",
+    "lab group old issue resurfacing",
+    "partner conversation across text and in person",
+    "employee facing non-engagement from a senior leader",
+    "friendship with large power gap in arts collective",
+    "reader preparing the avoided conversation"
+  ],
+  "usedExampleAnchors": [
+    "incident log",
+    "empty preparation sheet",
+    "14-year tenure gap",
+    "47-message text chain",
+    "father's pill organizer",
+    "Sunday train timetable",
+    "renewal spreadsheet",
+    "Friday cutoff",
+    "vendor outage notes",
+    "elevator outage calendar",
+    "blue tape",
+    "lobby sign-in sheet",
+    "poster draft",
+    "shared-drive comments",
+    "conference deadline",
+    "marked score",
+    "email printout",
+    "rehearsal schedule",
+    "pilot contract",
+    "feature spreadsheet",
+    "customer-call notes",
+    "gallery mockup",
+    "red pencil marks",
+    "preview invitation",
+    "feeding log",
+    "dim nursery lamp",
+    "phone alarm",
+    "grant rubric",
+    "two budget columns",
+    "community hearing notes",
+    "foam-core model",
+    "pin-up board",
+    "site wind diagram",
+    "program brochures",
+    "commute map",
+    "tuition worksheet",
+    "draft reply",
+    "team-chat notification",
+    "meeting transcript note",
+    "email thread",
+    "client agenda",
+    "speakerphone",
+    "three calendar cancellations",
+    "restaurant deposit",
+    "late train alert",
+    "handoff clipboard",
+    "patient callback list",
+    "closing checklist",
+    "seminar slide",
+    "authorship footnote",
+    "bus pass",
+    "seating chart",
+    "vendor email",
+    "family group text",
+    "status dashboard",
+    "Slack thread",
+    "calendar invite",
+    "holiday train tickets",
+    "shared grocery list",
+    "folding table plan",
+    "prototype file",
+    "QA checklist",
+    "launch countdown",
+    "marked script",
+    "folding chairs",
+    "rehearsal call sheet",
+    "lease renewal form",
+    "sink photo",
+    "chore app history",
+    "cancellation list",
+    "triage phone",
+    "staff-room whiteboard",
+    "mood board",
+    "budget email",
+    "notecard",
+    "cake box",
+    "group chat",
+    "unopened gift bag",
+    "1:1 agenda",
+    "reorg FAQ",
+    "muted video tile",
+    "intake folders",
+    "translation headset",
+    "waiting-room ticket",
+    "bank app",
+    "envelopes",
+    "rent reminder",
+    "parent email",
+    "policy binder",
+    "school bell",
+    "forecast deck",
+    "review notes",
+    "red cell",
+    "laundry basket",
+    "school backpack",
+    "closed door",
+    "anniversary card",
+    "shared calendar",
+    "couch blanket",
+    "reviewer PDF",
+    "desk lamp",
+    "citation manager",
+    "anonymous survey",
+    "team badges",
+    "Friday ritual calendar",
+    "draft text",
+    "train ticket refund",
+    "voice memo",
+    "release checklist",
+    "handoff doc",
+    "notes app",
+    "old postcard",
+    "missed-call log",
+    "draft email",
+    "plot map",
+    "seed packets",
+    "committee rules",
+    "access badge",
+    "draft agenda",
+    "HR policy link",
+    "journal",
+    "old voicemail",
+    "family photo envelope",
+    "meeting timer",
+    "decision log",
+    "whiteboard agenda",
+    "rain boots",
+    "pickup calendar",
+    "bedtime note",
+    "handoff checklist",
+    "client renewal email",
+    "call recording",
+    "thesis calendar",
+    "commented draft",
+    "office-hours sign-up",
+    "tip envelopes",
+    "shift schedule",
+    "staff note",
+    "roof estimate",
+    "probate letter",
+    "group text",
+    "pull request",
+    "CI check",
+    "maintainer note",
+    "1:1 doc",
+    "mute icon",
+    "visitor chairs",
+    "patient chart",
+    "tissue box",
+    "work calendar",
+    "half-folded laundry",
+    "phone face down",
+    "grading rubric",
+    "essay stack",
+    "office-hours chair",
+    "status page",
+    "incident timeline",
+    "support tickets",
+    "voicemail",
+    "park bench",
+    "coffee receipt",
+    "announcement email",
+    "resume",
+    "performance notes",
+    "wine glasses",
+    "group chat poll",
+    "spare bedding",
+    "seminar table",
+    "marked article",
+    "recorder app",
+    "committee agenda",
+    "department memo",
+    "tracked-changes PDF",
+    "invoice draft",
+    "brand board",
+    "kettle",
+    "family photo",
+    "folded note",
+    "payroll spreadsheet",
+    "job description",
+    "revenue trigger",
+    "permit form",
+    "campus room calendar",
+    "task board",
+    "decibel app",
+    "work shifts",
+    "apartment lease",
+    "discharge packet",
+    "call log",
+    "pharmacy queue",
+    "minutes document",
+    "course roster",
+    "email deadline",
+    "block map",
+    "snow shovel",
+    "weather alert",
+    "preparation notes",
+    "retention-risk email",
+    "conference room clock",
+    "lab freezer",
+    "authorship spreadsheet",
+    "meeting agenda",
+    "text thread",
+    "phone charger",
+    "front steps",
+    "declined invite",
+    "notes file",
+    "HR contact",
+    "ally text",
+    "handwritten plan",
+    "phone",
+    "half-finished tea"
+  ],
+  "usedHookFrames": [
+    "ch01 must open from sensory_first texture, not a definition",
+    "ch02 must open from question_hook texture, not a definition",
+    "ch03 must open from dialogue_first texture, not a definition",
+    "ch04 must open from retrospective texture, not a definition",
+    "ch05 must open from sensory_first texture, not a definition",
+    "ch06 must open from question_hook texture, not a definition",
+    "ch07 must open from environmental texture, not a definition",
+    "ch08 must open from second_person texture, not a definition",
+    "ch09 must open from dialogue_first texture, not a definition",
+    "ch10 must open from retrospective texture, not a definition",
+    "ch11 must open from sensory_first texture, not a definition",
+    "ch12 must open from question_hook texture, not a definition"
+  ],
+  "usedCounterFrames": [
+    "ch01 counter must contrast Treating the three conversations as a tidy checklist or as the solution itself. with Separate a recent hard exchange into its facts, feelings, and identity layers before choosing any response.",
+    "ch02 counter must contrast Being nicer while still trying to deliver a verdict. with Hold your story as one coherent version and ask what the other person sees that your position cannot see.",
+    "ch03 counter must contrast Assuming good intentions are enough or treating hurt feelings as proof of malice. with Acknowledge the impact as real before explaining what you meant.",
+    "ch04 counter must contrast False parity, self-blame, or using contribution language to excuse the person with more power. with Map the repeating contribution system and identify one move of yours that keeps it alive.",
+    "ch05 counter must contrast Dumping emotion or suppressing it in the name of professionalism. with Translate a vague or disguised feeling into a direct report you can own.",
+    "ch06 counter must contrast Using AND/BOTH as self-soothing language that prevents feedback from leaving a mark. with Ground the threatened identity belief before the conversation by making it complex enough to hold bad news.",
+    "ch07 counter must contrast Raising every grievance because honesty sounds virtuous. with Choose a conversation only when its honest purpose is something that conversation can actually produce.",
+    "ch08 counter must contrast Softening an accusation while leaving your story as the baseline. with Start from a neutral description of the gap between views and invite comparison rather than defense.",
+    "ch09 counter must contrast Equating listening with silence, eye contact, or scripted paraphrase. with Set down the internal voice long enough for the other person's meaning to arrive.",
+    "ch10 counter must contrast Generic assertiveness or softer accusations labeled as I-statements. with Report your experience as discussable material without turning your interpretation into a verdict.",
+    "ch11 counter must contrast Jumping to fix the issue before understanding and expression have happened. with Lead the process of solving together without taking ownership of the solution away from the other person.",
+    "ch12 counter must contrast Recapping a checklist or performing the framework mechanically. with Compose the right move for the live situation while staying genuinely open to what may change."
+  ],
+  "usedTryThisNowFrames": [
+    "Take one avoided conversation and write three labels: what happened, feelings, identity. Put one concrete stake under each label before planning any words.",
+    "Rewrite the sentence you most want to deliver as one question whose answer could genuinely alter your view.",
+    "Draft the first reply to someone you hurt with impact first and intent second. Delete any sentence that tries to make intent settle impact.",
+    "Draw the repeating loop in one stuck conflict and put a small star beside the move you personally keep making.",
+    "Replace one vague feeling word with three more exact feelings, then turn one into a direct self-report without the phrase 'like you.'",
+    "Name the identity belief most threatened by one conversation and write its AND/BOTH version before you rehearse the talk.",
+    "Write the purpose of one possible conversation, then cross out any part aimed at winning, punishment, or changing who they are.",
+    "Draft a third-story opener that the other person could recognize as plausible even while disagreeing with your view.",
+    "In the next tense exchange, silently label your internal voice as counterargument, judgment, or identity before asking one real question.",
+    "Turn one accusation into three owned parts: observable event, internal response, and the story you started telling yourself.",
+    "Before offering a fix, list three possible options and one standard both sides would accept before seeing the options.",
+    "Pick the avoided conversation and sketch the sequence: raise or let go, prepare, open, listen, speak, solve, close."
+  ],
+  "usedQuizExplanationFrames": [],
+  "rejectedFrames": [
+    {
+      "chapterId": "difficult-conversations-ch01",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch01 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch01",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch01",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch01",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch01",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch01: sensory_first, dialogue_first, timestamp_named, second_person, retrospective, environmental"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch02",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch02 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch02",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch02",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch02",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch02",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch02: question_hook, sensory_first, dialogue_first, timestamp_named, environmental, retrospective"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch03",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch03 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch03",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch03",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch03",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch03",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch03: dialogue_first, environmental, second_person, timestamp_named, sensory_first, retrospective"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch04",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch04 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch04",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch04",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch04",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch04",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch04: retrospective, dialogue_first, environmental, sensory_first, timestamp_named, question_hook"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch05",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch05 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch05",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch05",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch05",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch05",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch05: sensory_first, second_person, dialogue_first, environmental, retrospective, timestamp_named"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch06",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch06 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch06",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch06",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch06",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch06",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch06: question_hook, environmental, sensory_first, dialogue_first, second_person, retrospective"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch07",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch07 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch07",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch07",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch07",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch07",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch07: environmental, retrospective, dialogue_first, question_hook, sensory_first, timestamp_named"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch08",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch08 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch08",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch08",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch08",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch08",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch08: second_person, sensory_first, timestamp_named, dialogue_first, environmental, retrospective"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch09",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch09 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch09",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch09",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch09",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch09",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch09: dialogue_first, question_hook, environmental, sensory_first, retrospective, timestamp_named"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch10",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch10 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch10",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch10",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch10",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch10",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch10: retrospective, second_person, sensory_first, dialogue_first, environmental, question_hook"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch11",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch11 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch11",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch11",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch11",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch11",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch11: sensory_first, dialogue_first, retrospective, environmental, timestamp_named, second_person"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch12",
+      "surface": "hook",
+      "rejected": [
+        "Do not open ch12 with a generic dread-before-meeting frame",
+        "Do not begin with a definition of the chapter term",
+        "Do not use a negotiation-table abstraction as the first image"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch12",
+      "surface": "counterintuition",
+      "rejected": [
+        "Avoid the shell 'you think X, but actually Y'",
+        "Avoid claiming the idea is simply counterintuitive",
+        "Avoid treating compassion as the surprising twist"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch12",
+      "surface": "tryThisNow",
+      "rejected": [
+        "No reusable timer prompt",
+        "No generic write-three-things exercise",
+        "No 'pause and reflect on your communication style' action"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch12",
+      "surface": "examples",
+      "rejected": [
+        "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+        "Avoid six workplace meetings with changed names",
+        "Avoid making every case a manager feedback scene"
+      ]
+    },
+    {
+      "chapterId": "difficult-conversations-ch12",
+      "surface": "openingDevices",
+      "rejected": [
+        "Do not repeat the exact opening-device mix outside ch12: question_hook, environmental, dialogue_first, sensory_first, retrospective, timestamp_named"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "difficult-conversations-ch01": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch01.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 1,
+      "checkedAt": "2026-05-14T05:34:20.061Z"
+    },
+    "difficult-conversations-ch02": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch02.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 2,
+      "checkedAt": "2026-05-14T05:37:05.319Z"
+    },
+    "difficult-conversations-ch03": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch03.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 7,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-14T05:39:39.540Z"
+    },
+    "difficult-conversations-ch04": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch04.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 4,
+      "checkedAt": "2026-05-14T05:43:26.510Z"
+    },
+    "difficult-conversations-ch05": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch05.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T06:49:49.158Z"
+    },
+    "difficult-conversations-ch06": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch06.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-14T05:47:36.692Z"
+    },
+    "difficult-conversations-ch07": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch07.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-14T05:49:41.295Z"
+    },
+    "difficult-conversations-ch08": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch08.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T06:49:49.193Z"
+    },
+    "difficult-conversations-ch09": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch09.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-14T05:53:28.375Z"
+    },
+    "difficult-conversations-ch10": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch10.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T06:59:23.621Z"
+    },
+    "difficult-conversations-ch11": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch11.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T06:49:49.160Z"
+    },
+    "difficult-conversations-ch12": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/difficult-conversations-ch12.manual-plan.json",
+      "plannedAt": "2026-05-14T05:23:53.809Z",
+      "notes": "Step 1 manual plan only; no chapter JSON written.",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T06:52:16.520Z"
+    }
+  }
+}

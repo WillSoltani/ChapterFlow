@@ -1,0 +1,201 @@
+{
+  "chapterId": "blue-ocean-strategy-ch02",
+  "number": 2,
+  "title": "Analytical Tools and Frameworks",
+  "coreMove": "Make the industry value curve visible, then redesign it by eliminating, reducing, raising, and creating factors as one coherent move.",
+  "sourcePressure": "Turn the blue-ocean idea into visible tools: strategy canvas, value curve, four actions framework, and ERRC grid for challenging inherited industry factors.",
+  "chapterSpecificMisunderstanding": "Using the tools as brainstorming worksheets that add features without changing the curve.",
+  "sourceAlignmentTerms": [
+    "strategy canvas",
+    "value curve",
+    "four actions framework",
+    "ERRC grid",
+    "eliminate",
+    "reduce",
+    "raise",
+    "create"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "strategy canvas",
+      "detail": "official support defines it as a one-page visual analytic for seeing the current state of play and a possible future value curve",
+      "useIn": "both",
+      "phrasingHint": "A strategy canvas earns its keep when the current value curve is so visible that the team can no longer hide sameness behind polished words."
+    },
+    {
+      "kind": "artifact",
+      "name": "four actions framework",
+      "detail": "official support frames it around eliminating, reducing, raising, and creating factors the industry takes for granted",
+      "useIn": "deepRead",
+      "phrasingHint": "The four actions force the awkward questions: what disappears, what shrinks, what rises, and what appears for the first time."
+    },
+    {
+      "kind": "artifact",
+      "name": "ERRC grid",
+      "detail": "official support says the grid turns those questions into action and helps produce a new value curve",
+      "useIn": "fullRead",
+      "phrasingHint": "The ERRC grid matters only when the boxes change work, budget, and buyer experience, not when they become decoration."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "boutique hotel value curve versus chain sameness",
+      "audience": "a hotel manager convinced her service already stands apart",
+      "stakes": "whether the renovation budget funds more amenities or a different value curve",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she pins guest complaints beside a hand-drawn canvas and sees her curve shadow the chain hotel almost point for point",
+      "firstImage": "The laundry chute rattles while six guest cards slide across a folding table",
+      "mustInclude": [
+        "guest complaint cards",
+        "linen-cost sheet",
+        "lobby floor plan"
+      ],
+      "mustAvoid": [
+        "another sticky-note wall exercise"
+      ]
+    },
+    {
+      "protagonistName": "Martin",
+      "domain": "dental lab rush fees and clinic trust",
+      "audience": "a dental lab owner competing with a national chain",
+      "stakes": "whether small clinics keep leaving after unpredictable charges",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he marks rush fees as an irritant on the curve and must decide whether to eliminate them instead of polishing turnaround promises",
+      "firstImage": "At 7:25 a.m., Martin circles three rush-fee complaints on pink invoices",
+      "mustInclude": [
+        "invoice folder",
+        "pickup calendar",
+        "shade-matching tray"
+      ],
+      "mustAvoid": [
+        "generic pricing discount story"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "tutoring center ERRC grid that became an add-on list",
+      "audience": "an education operator with limited staff and anxious parents",
+      "stakes": "whether a new program becomes focused or unaffordable",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her assistant points to the crowded grid and she reconstructs how every box became one more promise instead of a tradeoff",
+      "firstImage": "\"We created everything,\" Sophie hears from the scheduler before the phones open",
+      "mustInclude": [
+        "parent intake form",
+        "tutor rota",
+        "unfinished ERRC sheet"
+      ],
+      "mustAvoid": [
+        "school classroom scene"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "neighborhood grocer factor list for office lunch",
+      "audience": "a small grocer trying to serve office workers at lunch",
+      "stakes": "whether the store competes on speed alone or creates lunch-planning value",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "a cashier challenges the factor list after watching office workers abandon baskets at the soup counter",
+      "firstImage": "The lunch aisle is quiet except for soup ladles tapping stainless wells",
+      "mustInclude": [
+        "soup label rail",
+        "basket return stack",
+        "two-meal bundle card"
+      ],
+      "mustAvoid": [
+        "repeated grocery dinner-bundle beat from chapter 1"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "salon service curve for sensory-sensitive clients",
+      "audience": "a salon owner who has copied luxury cues for years",
+      "stakes": "whether clients avoid appointments because the experience feels intense",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the old curve over-raised music, fragrance, and chatter before he creates quiet-first appointment blocks",
+      "firstImage": "It took Javier four no-shows to connect the perfume diffuser with the cancellation log",
+      "mustInclude": [
+        "scent diffuser switch",
+        "quiet appointment card",
+        "low-noise dryer"
+      ],
+      "mustAvoid": [
+        "generic wellness spa scene"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "hardware store tagline tested against a redesigned curve",
+      "audience": "a store manager surrounded by big-box price pressure",
+      "stakes": "whether the redesigned offer is simple enough for buyers to repeat",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she predicts price will be named first, then hears buyers repeat project certainty after the curve changes",
+      "firstImage": "Which phrase would a buyer say in the parking lot without seeing the flyer?",
+      "mustInclude": [
+        "project bin",
+        "cut-list clipboard",
+        "checkout stamp"
+      ],
+      "mustAvoid": [
+        "marketing tagline workshop"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "read a value curve for strategic sameness",
+      "apply eliminate-reduce-raise-create as tradeoffs",
+      "reject add-on lists that do not change the curve"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Draw one crude value curve for your current offer and put a dot beside the factor that mostly copies rivals.",
+  "readingTimeMinutes": 12
+}

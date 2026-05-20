@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch23",
+  "number": 23,
+  "title": "The Valley of the Normal",
+  "coreMove": "Resist treating a borderline case as easy simply because it falls close to the statistical center of the distribution; normal-range cases generate noise precisely because they sit where categories blur.",
+  "sourcePressure": "Cases that fall near the center of a distribution — the statistically ordinary ones — still create disagreement because classification there is genuinely harder than at the extremes. Being statistically typical does not make a case easy to categorize; it often makes it the hardest case because the decision boundaries of adjacent categories run through the center, not through the tails.",
+  "chapterSpecificMisunderstanding": "Assuming that easy cases are those that look average and hard cases are those that look extreme, when in fact borderline disagreement concentrates in the middle of most distributions.",
+  "sourceAlignmentTerms": ["valley of the normal", "borderline", "normal range", "category boundary", "classification difficulty", "central distribution cases", "disagreement concentration"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Borderline case disagreement concentration in professional assessment",
+      "detail": "In psychiatric diagnosis, criminal sentencing, grant scoring, and performance rating, empirical studies consistently find that disagreement between assessors is highest for cases near the decision boundary — the normal-range or borderline cases — not for the clear extreme cases that anchored training examples.",
+      "useIn": "deepRead",
+      "phrasingHint": "A grade-A student and a failing student are easy to identify. The student in the middle — the one who should get a B or a C — is where two teachers most often disagree. The center is not where the cases are clear. It is where the categories blur."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["the hardest cases are not the ones you think", "normal does not mean easy"],
+    "counterintuition": ["average cases are harder to classify than extreme ones", "the middle of the distribution is where most disagreement hides"],
+    "tryThisNow": ["think of a borderline case from your work that was difficult to classify", "rate a middle-of-the-road example and notice how much uncertainty you feel"],
+    "examples": ["a scene where an extreme case (clearly guilty, clearly excellent) is shown to be difficult — that contradicts the chapter's premise", "a scene where a borderline case is described as easy by everyone — that undercuts the problem being demonstrated"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Valley-of-the-normal examples risk all reading as 'someone is hard to classify.' The different domains and formats must show how borderline disagreement appears in custody decisions, credit ratings, asylum classification, school assessment, sentencing, and refugee priority — each with a distinct flavor of 'looks normal, produces highest noise.'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "child custody determination in family law: a family court researcher studying where judicial disagreement is highest in a matched case sample",
+      "audience": "a family law reform researcher mapping inter-judge disagreement to case complexity scores",
+      "stakes": "children's welfare and parental rights — disagreement at the custody determination level means a child's living arrangement depends on which judge heard the case",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the researcher presents the disagreement map: for cases at the extremes (clearly unsafe parent or clearly optimal parent), inter-judge agreement is above 90 percent; for cases near the center of the capability distribution — parents who are functional but imperfect in average ways — inter-judge agreement falls to 55 percent; the borderline parent category has twice the disagreement rate of the clear-extreme categories",
+      "firstImage": "a bar chart of inter-judge agreement rates by case complexity tier, with the highest bars at both extreme tiers and the lowest bar at the central-range tier",
+      "mustInclude": ["the 90 percent extreme-case agreement vs. 55 percent central-case agreement", "the framing that borderline cases are not harder because of missing information — they are harder because the category boundary runs through the center of the distribution", "the researcher's implication for case assignment practices"],
+      "mustAvoid": ["a specific custody case", "implying extreme-case agreement means extreme cases are well-handled"]
+    },
+    {
+      "domain": "investment-grade credit rating: a credit rating analyst studying where inter-rater disagreement is highest in a matched issuer sample",
+      "audience": "a rating agency quality officer mapping analyst disagreement across the rating scale",
+      "stakes": "investor decisions and issuer borrowing costs — at the investment-grade/sub-investment-grade boundary, a one-notch disagreement has large financial consequences",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two quality officers compare their inter-rater agreement data: for AAA-rated and below-B-rated issuers, agreement between two analysts is above 85 percent; for issuers in the BBB range — the most common investment-grade category and the one that sits closest to the sub-investment-grade boundary — agreement falls to 62 percent; the normal-range issuer produces the most disagreement because it sits closest to the boundary that matters most",
+      "firstImage": "a credit rating scale with inter-rater agreement percentages printed beside each rating tier — the BBB tier showing the lowest agreement despite being the most common classification",
+      "mustInclude": ["the 85 vs. 62 percent agreement comparison", "the BBB tier as the most common category with the lowest agreement", "the mechanism: the BBB boundary is where category definitions blur and analyst interpretation diverges most"],
+      "mustAvoid": ["a specific corporate credit crisis", "implying credit rating agencies are generally unreliable"]
+    },
+    {
+      "domain": "refugee resettlement priority: a resettlement agency comparing assessment agreement across vulnerability tiers",
+      "audience": "a resettlement agency policy director studying inter-assessor consistency in vulnerability classification",
+      "stakes": "who receives resettlement support first — at the medium-vulnerability tier, classification disagreement produces wait-time differences of months",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the director reviews the consistency data: for high-vulnerability and low-vulnerability cases, inter-assessor agreement is above 80 percent; for medium-vulnerability cases — the largest category and the one representing the 'statistically normal' refugee profile — inter-assessor agreement is 58 percent; and within the medium tier, cases that are most typical in their profile are the hardest to classify because they are equidistant from the boundaries with both higher and lower tiers",
+      "firstImage": "a vulnerability tier bar chart with inter-assessor agreement on the y-axis, the medium tier bar shorter than both the high and low tier bars",
+      "mustInclude": ["the 80 vs. 58 percent agreement split", "the most typical medium-vulnerability cases being the hardest to classify", "the director's framing: the problem is structural — the decision boundary for medium tier passes through the most common case profiles"],
+      "mustAvoid": ["a specific refugee's case", "a political framing of refugee policy"]
+    },
+    {
+      "domain": "school special-needs assessment: two educational psychologists classifying the same student profile for support eligibility",
+      "audience": "a school district special education director studying inter-assessor reliability in borderline eligibility decisions",
+      "stakes": "a student's access to specialized support services — borderline cases receive or do not receive support based on which assessor reviewed the profile",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the director asks two educational psychologists to classify the same anonymized student profiles across the full eligibility range: for profiles at the clearly-eligible and clearly-ineligible ends of the distribution, both psychologists agree in 88 percent of cases; for profiles in the borderline range — moderate support needs with mixed behavioral and academic indicators — agreement falls to 51 percent, barely above chance",
+      "firstImage": "a calibration comparison table showing two psychologists' classifications for 40 profiles, with agreement rates calculated separately for the three distribution zones: clear-eligible, borderline, and clear-ineligible",
+      "mustInclude": ["the 88 vs. 51 percent agreement split", "the borderline profiles being the most common type of referral", "the director's framing: the problem is not that the psychologists are poorly trained; it is that the eligibility criteria draw their boundaries through the center of the most common case type"],
+      "mustAvoid": ["a specific student's diagnosis or educational outcome", "implying educational psychology assessments are unreliable across the board"]
+    },
+    {
+      "domain": "borderline criminal sentencing: a sentencing guidelines commission studying where judge-to-judge variance is highest in a matched sentencing analysis",
+      "audience": "a sentencing guidelines commission researcher mapping variance to offense severity tiers",
+      "stakes": "consistent justice — defendants whose cases fall in the mid-range severity tier face much higher outcome variance than those with clearly extreme cases",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the variance analysis: for cases in the lowest and highest severity tiers, inter-judge sentencing variance is 8 months; for cases in the mid-range tier — the tier that encompasses most of the actual case volume — inter-judge variance is 22 months; and for cases within the mid-range that score precisely at the midpoint of that tier's range, variance is highest of all",
+      "firstImage": "a sentencing variance chart with severity tier on the x-axis and inter-judge variance on the y-axis, the curve showing a peak at the center tier rather than monotonically increasing or decreasing",
+      "mustInclude": ["the 8 vs. 22 month variance comparison", "the peak variance at the midpoint of the center tier", "the framing: the most contested sentencing territory is not the dramatic or unusual case — it is the ordinary moderate-severity case"],
+      "mustAvoid": ["a specific crime type or sentencing controversy", "implying the sentencing guidelines are inherently flawed"]
+    },
+    {
+      "domain": "academic grant scoring: a funding agency studying where inter-reviewer score variance is highest in a proposal quality distribution",
+      "audience": "a research funding agency quality officer mapping reviewer agreement rates across the scored proposal distribution",
+      "stakes": "fair allocation of limited research funding — proposals near the funding threshold have the highest outcome sensitivity to any score variance",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the quality officer maps the inter-reviewer standard deviation by proposal quality decile: it is lowest for the top and bottom deciles and highest — nearly twice as large — for the middle three deciles; the proposals most likely to be funded or unfunded on the basis of reviewer disagreement rather than actual merit are exactly the ones in the middle of the quality distribution, which is also where most proposals are",
+      "firstImage": "a U-shaped inter-reviewer variance curve plotted by proposal quality decile — the curve highest in the center three deciles and lower at both ends",
+      "mustInclude": ["the U-shape of the variance curve", "the center deciles having highest variance despite being the most common proposal quality", "the quality officer's framing: the reviewers agree about exceptional and poor proposals; the borderline-promising proposals in the middle are where the selection process is noisiest"],
+      "mustAvoid": ["a specific research grant or field", "implying peer review is generally invalid"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why classification difficulty concentrates at the center rather than the extremes of most distributions",
+      "identify which cases in a described assessment system are likely to show the highest inter-rater disagreement",
+      "apply valley-of-the-normal awareness to calibration study design for a described professional assessment",
+      "analyze why the most common case types are often the hardest to classify consistently",
+      "evaluate whether a described calibration or training program is targeting the right part of the distribution"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Look at the last 20 judgment decisions you made in a recurring decision type. Group them into three categories: clearly one outcome, clearly the other, and genuinely borderline. Now estimate: which category had the widest variation in what reasonable colleagues would have decided? If your answer is 'the borderline category' you have located your valley of the normal. That is where calibration effort should go.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) crystallizing the valley-of-the-normal concept directly, at least one 5+ sentence paragraph on why the highest-volume category is also typically the highest-noise category in most professional assessment systems, at least one one-sentence punch line about where reliable classification ends and judgment noise begins",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to present the empirical pattern — that disagreement concentrates at the center — as a general finding across many domains, framing it as a structural property of classification systems, not a domain-specific quirk",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

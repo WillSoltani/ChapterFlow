@@ -1,0 +1,115 @@
+{
+  "bookId": "the-innovators-dilemma",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "the-innovators-dilemma-ch01",
+      "title": "How Can Great Firms Fail? Insights from the Hard Disk Drive Industry",
+      "sourcePressure": "Christensen uses the hard disk drive industry to show that established firms repeatedly lose market leadership not because they stop improving, but because their improvement logic is tied to current customers — who reward sustaining innovation and reject disruptive options before those options are ready to matter.",
+      "coreMove": "Recognize that serving your best customers well is narrowing your view of what the next wave looks like.",
+      "commonMisread": "Treating incumbent failure as a story about complacency, slow R&D, or bad leadership rather than a structural trap built from rational management decisions.",
+      "mustUseTerms": ["sustaining innovation", "disruptive innovation", "incumbent", "current customers", "resource allocation", "entrant"],
+      "mustNotDriftInto": ["generic change-management advice", "startup culture celebration", "individual executive blame"]
+    },
+    {
+      "number": 2,
+      "chapterId": "the-innovators-dilemma-ch02",
+      "title": "Value Networks and the Impetus to Innovate",
+      "sourcePressure": "Value networks shape which performance improvements matter, which customers deserve attention, and which projects look too small to fund. An incumbent can evaluate correctly within its network and still misread an entrant that is gaining strength in another network where the rules are different.",
+      "coreMove": "Judge a new product by whether it solves a real problem in some real market, not by whether it measures up to your current network's standards.",
+      "commonMisread": "Treating value networks as a synonym for customer segments rather than the full market system that sets priorities, rewards, and improvement criteria.",
+      "mustUseTerms": ["value network", "profit logic", "performance standards", "resource allocation", "disruptive trajectory", "alternate network"],
+      "mustNotDriftInto": ["simple market segmentation advice", "customer-persona analysis", "platform strategy"]
+    },
+    {
+      "number": 3,
+      "chapterId": "the-innovators-dilemma-ch03",
+      "title": "Disruptive Technological Change in the Mechanical Excavator Industry",
+      "sourcePressure": "Christensen extends the disk-drive pattern to the excavator industry: hydraulic machines found a foothold in residential sewage where cable-machine standards mattered less, then climbed upmarket. Incumbents could engage the new technology and still stay late if they tried to sell it through the old network's expectations.",
+      "coreMove": "Find the first market where your product's weaknesses are tolerable and its advantages are genuine, instead of trying to win the mainstream on day one.",
+      "commonMisread": "Thinking a disruptive product needs to compete on the mainstream's terms from the start, or that owning the technology is the same as finding the right first market.",
+      "mustUseTerms": ["foothold market", "alternate use case", "hydraulic", "cable", "performance trajectory", "incumbent response"],
+      "mustNotDriftInto": ["product launch strategy", "MVP thinking", "lean startup methodology"]
+    },
+    {
+      "number": 4,
+      "chapterId": "the-innovators-dilemma-ch04",
+      "title": "What Goes Up, Can't Go Down",
+      "sourcePressure": "Incumbents can justify upmarket moves with clear margin logic and credible customers. Downmarket moves look smaller, fuzzier, and harder to defend. That asymmetry is structural, not a failure of imagination. The minimill rebar case shows how a segment too thin for an integrated producer can be the entrant's first real ladder.",
+      "coreMove": "Distinguish 'too small for us' from 'too small to matter' — an entrant's foothold market is strategically real even when it is economically unattractive to the current leader.",
+      "commonMisread": "Reading the chapter as advice to defend every low-end segment, or as a warning that upmarket moves are always wrong.",
+      "mustUseTerms": ["upmarket migration", "low-end foothold", "cost structure", "margin logic", "rebar", "minimill", "integrated producer"],
+      "mustNotDriftInto": ["price-war strategy", "cost-cutting advice", "generic underdog narrative"]
+    },
+    {
+      "number": 5,
+      "chapterId": "the-innovators-dilemma-ch05",
+      "title": "Managing Disruptive Technological Change",
+      "sourcePressure": "Once disruption is understood as structural, a new management problem appears: how to evaluate an early disruptive effort when it cannot yet satisfy the same tests that a mature market would pass. The wrong proof demand can kill a real opportunity before it can demonstrate what the market is.",
+      "coreMove": "Apply a different standard of rigor to an early disruptive effort — judge learning progress and first-market fit, not mature-market metrics.",
+      "commonMisread": "Treating this chapter as an argument to abandon discipline or forecasting, when it is an argument to redirect discipline toward the right kind of evidence for the stage.",
+      "mustUseTerms": ["learning progress", "immature market", "proof demand", "mature-business standards", "resource allocation", "disruptive effort"],
+      "mustNotDriftInto": ["agile methodology", "OKRs or KPIs", "stage-gate process", "general R&D management"]
+    },
+    {
+      "number": 6,
+      "chapterId": "the-innovators-dilemma-ch06",
+      "title": "Give Responsibility for Disruptive Technologies to Organizations Whose Customers Need Them",
+      "sourcePressure": "Organizations answer to the customers that fund their legitimacy. If a disruptive effort lives inside a unit whose customers don't need it, that unit will keep prioritizing what those customers reward — even with strong executive support. Placement changes which customers generate urgency.",
+      "coreMove": "Place a disruptive effort with the team whose customers actually create pull toward it, not just the team with the relevant technical expertise.",
+      "commonMisread": "Treating this chapter as advice to always spin out every new effort into a separate company, when the rule is about customer fit, not corporate structure.",
+      "mustUseTerms": ["customer pull", "organizational placement", "autonomous responsibility", "disruptive effort", "incumbent unit", "legitimacy"],
+      "mustNotDriftInto": ["startup culture", "intrapreneurship advice", "general org design"]
+    },
+    {
+      "number": 7,
+      "chapterId": "the-innovators-dilemma-ch07",
+      "title": "Match the Size of the Organization to the Size of the Market",
+      "sourcePressure": "Large organizations evaluate opportunities against growth thresholds that small emerging markets cannot yet satisfy. The same opportunity can be trivial to a large unit and commercially real to a smaller one. The error is treating 'too small for this organization' as equivalent to 'too small to matter at all.'",
+      "coreMove": "Evaluate an emerging market by whether it is large enough for this team, not whether it is large enough for the entire organization.",
+      "commonMisread": "Treating this chapter as a celebration of small markets or a warning against large organizations, when the point is relative materiality — fit between organization size and market size.",
+      "mustUseTerms": ["relative materiality", "growth threshold", "emerging market", "organizational scale", "small-market fit", "priority setting"],
+      "mustNotDriftInto": ["startup vs. corporate debate", "market-sizing process", "venture funding logic"]
+    },
+    {
+      "number": 8,
+      "chapterId": "the-innovators-dilemma-ch08",
+      "title": "Discovering New and Emerging Markets",
+      "sourcePressure": "New and emerging markets cannot be fully mapped before entry because demand patterns, first users, and use contexts are underdefined at the start. Demanding a complete forecast before acting can block the learning that would make the market clearer. Discovery requires real contact, not only detached analysis.",
+      "coreMove": "Treat the first stage of market entry as learning under real conditions, not as a forecasting exercise that must be completed before contact begins.",
+      "commonMisread": "Reading this chapter as anti-planning or pro-experimentation without discipline, when the argument is for disciplined discovery — learning organized around what the team needs to find out.",
+      "mustUseTerms": ["discovery", "emerging market", "forecast-first", "first users", "learning under uncertainty", "real contact"],
+      "mustNotDriftInto": ["design thinking", "user research methodology", "lean startup build-measure-learn loop"]
+    },
+    {
+      "number": 9,
+      "chapterId": "the-innovators-dilemma-ch09",
+      "title": "How to Appraise Your Organization's Capabilities and Disabilities",
+      "sourcePressure": "Capabilities are context-dependent. A process or routine that drives success in one market can become an obstacle in another because it embeds assumptions about what matters. The self-appraisal problem is not whether the organization is capable in the abstract, but whether its specific strengths fit the new task.",
+      "coreMove": "Assess organizational strengths against the specific requirements of the new market, not against the abstract idea of organizational quality.",
+      "commonMisread": "Treating this chapter as a general argument that routines and processes are bad, when the point is that the same routine can be a strength or a disability depending on context.",
+      "mustUseTerms": ["capabilities", "disabilities", "routines", "context-dependent", "embedded assumptions", "fit appraisal"],
+      "mustNotDriftInto": ["HR competency mapping", "SWOT analysis", "general culture change advice"]
+    },
+    {
+      "number": 10,
+      "chapterId": "the-innovators-dilemma-ch10",
+      "title": "Managing the Strategy Development Process",
+      "sourcePressure": "Strategy in disruptive settings must be treated as a development process, not a fixed initial design. If the strategy hardens before critical market learning arrives, the plan can filter out the evidence that should reshape it. Rigor is still required, but it cannot mean rigid fidelity to the first plan.",
+      "coreMove": "Build a strategy process that can absorb market learning rather than filtering it out — set direction and limits, then let real evidence change what needs to change.",
+      "commonMisread": "Reading this chapter as permission to drift or abandon planning, when the argument is that leaders must guide strategy development seriously while allowing learning to revise what needs revision.",
+      "mustUseTerms": ["strategy development process", "emergent strategy", "market learning", "direction-setting", "revision under evidence", "rigid plan"],
+      "mustNotDriftInto": ["OKR systems", "agile sprint planning", "pivoting as a general principle"]
+    },
+    {
+      "number": 11,
+      "chapterId": "the-innovators-dilemma-ch11",
+      "title": "The Dilemmas of Innovation: A Summary",
+      "sourcePressure": "The final chapter gathers the book's recurring tensions into a pattern of interacting dilemmas. No single mechanism explains incumbent failure. Customer dependence, value-network filtering, upmarket gravity, organizational mismatch, capability context-dependence, and strategy-process rigidity all interact. The conclusion is a diagnostic map, not a guarantee.",
+      "coreMove": "See disruption as a pattern of interacting dilemmas rather than a single mistake to fix — the full picture matters more than any one lever.",
+      "commonMisread": "Reading the summary as a checklist where checking each box prevents disruption, when the book's point is that these pressures interact and compound in ways that resist single-factor solutions.",
+      "mustUseTerms": ["dilemma", "value network", "customer dependence", "organizational fit", "capability", "strategy process", "rational incumbent behavior"],
+      "mustNotDriftInto": ["disruption-proofing checklist", "transformation roadmap", "generic change management"]
+    }
+  ]
+}

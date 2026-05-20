@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-lean-startup-ch01",
+  "number": 1,
+  "title": "Start",
+  "coreMove": "Replace output theater with a build-measure-learn loop that reduces one real uncertainty about customers or viability.",
+  "sourcePressure": "Startup progress is redefined as learning how to build a sustainable business under extreme uncertainty, not as shipping features or looking busy.",
+  "chapterSpecificMisunderstanding": "Treating lean startup as permission to move fast, be scrappy, or celebrate productivity without asking what was learned.",
+  "sourceAlignmentTerms": [
+    "human institution",
+    "extreme uncertainty",
+    "continuous innovation",
+    "build-measure-learn",
+    "lean manufacturing",
+    "sustainable business",
+    "output theater"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Eric Ries",
+      "detail": "the sidecar says Ries reframes entrepreneurship as management under extreme uncertainty",
+      "useIn": "both",
+      "phrasingHint": "Eric Ries puts management back into the startup room because uncertainty still has to be steered."
+    },
+    {
+      "kind": "artifact",
+      "name": "Build-measure-learn loop",
+      "detail": "the sidecar names it as the steering loop that ties building, feedback, and learning",
+      "useIn": "both",
+      "phrasingHint": "The loop earns its keep only when the next build is changed by what the last measure exposed."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Start.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional grocery ordering pilot",
+      "audience": "ops leaders",
+      "stakes": "a seasonal rollout could burn shelf space on an untested demand signal",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Sarah places one preorder page beside yesterday's pickup log and asks which assumption the next build should test",
+      "firstImage": "a folded produce order sheet under fluorescent stockroom lights",
+      "mustInclude": [
+        "pickup log",
+        "preorder sheet",
+        "three-store cap"
+      ],
+      "mustAvoid": [
+        "generic start office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "municipal permit portal prototype",
+      "audience": "public-service product team",
+      "stakes": "residents may still call the desk after a costly portal launch",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "James points to one permit type and asks the team to build only enough to see if applicants can finish without calling",
+      "firstImage": "a stack of paper permits beside an empty tablet stand",
+      "mustInclude": [
+        "permit forms",
+        "tablet kiosk",
+        "call log"
+      ],
+      "mustAvoid": [
+        "generic start office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "freelance bookkeeping app",
+      "audience": "solo founder",
+      "stakes": "three months of polish may hide that freelancers will not return weekly",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Camille deletes four roadmap cards and keeps only the retention question for Friday's test",
+      "firstImage": "a laptop showing a crowded roadmap board",
+      "mustInclude": [
+        "trial accounts",
+        "weekly reminder email",
+        "retention note"
+      ],
+      "mustAvoid": [
+        "generic start office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "hospital discharge instruction redesign",
+      "audience": "quality-improvement nurses",
+      "stakes": "readmission work may produce prettier pamphlets without patient understanding",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Daniel turns the sprint review from pages completed to which patient confusion was reduced",
+      "firstImage": "a discharge folder with colored tabs spread on a nurse station",
+      "mustInclude": [
+        "patient callback list",
+        "draft folder",
+        "one question checklist"
+      ],
+      "mustAvoid": [
+        "generic start office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "university meal-plan marketplace",
+      "audience": "student venture team",
+      "stakes": "demo-day enthusiasm may not prove repeat use",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sophie watches signups pile up and asks what will show whether students come back next week",
+      "firstImage": "a cafeteria table with untouched signup stickers",
+      "mustInclude": [
+        "signup stickers",
+        "meal credit code",
+        "return-date card"
+      ],
+      "mustAvoid": [
+        "generic start office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "independent hardware repair service",
+      "audience": "local owner",
+      "stakes": "adding services may increase activity without proving a sustainable business",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Guillaume circles the repair type that can reveal whether customers return before buying new tools",
+      "firstImage": "a wall pegboard half-filled with repair tags",
+      "mustInclude": [
+        "repair tags",
+        "cash drawer tally",
+        "repeat-customer list"
+      ],
+      "mustAvoid": [
+        "generic start office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Start from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Replace output theater with a build-measure-learn loop that reduces one real uncertainty about customers or viability.",
+      "Diagnose when a team is drifting into the misread: Treating lean startup as permission to move fast, be scrappy, or celebrate productivity without asking what was learned."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Replace output theater with a build-measure-learn loop that reduces one real uncertainty about customers or viability. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

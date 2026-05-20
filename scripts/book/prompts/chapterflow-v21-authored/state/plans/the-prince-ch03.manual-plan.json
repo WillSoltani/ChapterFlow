@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch03",
+  "number": 3,
+  "title": "Concerning Mixed Principalities",
+  "coreMove": "Stabilize an annexation by limiting new injuries, staying near disorders, and blocking stronger outsiders before resentment matures.",
+  "sourcePressure": "The source treats mixed principalities as transition systems full of injured locals, disappointed helpers, language and law differences, absent rulers, garrisons, colonies, minor powers, foreign entrants, and deferred wars. Louis XII loses Milan because he strengthens larger powers, admits Spain, fails to reside, fails to plant colonies, and mishandles regional balance.",
+  "chapterSpecificMisunderstanding": "The wrong version says people hate change. The writer must preserve the specific machinery: new subjects suffer burdens, old allies are disappointed, residence sees trouble early, colonies injure fewer than garrisons, minor powers must be protected without strengthening them, and a foreign power must not be invited in.",
+  "sourceAlignmentTerms": [
+    "mixed principality",
+    "Louis XII",
+    "Milan",
+    "colonies",
+    "reside there",
+    "laws and taxes",
+    "minor powers",
+    "foreign power",
+    "Venetians",
+    "Spain"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a company merger town hall",
+      "a generic leader promising change will be hard",
+      "a conqueror celebrating victory as if the problem is over"
+    ],
+    "counterintuition": [
+      "most people assume conquest ends the problem, but actually transition begins it",
+      "change management is really about empathy",
+      "war should always be avoided because time heals tensions"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list people who dislike change",
+      "ask who your stakeholders are",
+      "write a generic transition plan"
+    ],
+    "examples": [
+      "office merger advice",
+      "software migration rollout",
+      "new school principal changing policies",
+      "restaurant under new ownership"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a postwar civilian authority annexing a port district with a different language and tax code",
+      "audience": "an administrator deciding between governing from the capital or moving into the port",
+      "stakes": "dockworkers who opened the gates expect relief, warehouse owners fear confiscation, and distant officials will hear of riots only after they are organized",
+      "format": "scene",
+      "requiredBeat": "She folds the capital-office lease, pins a desk tag inside the port customs house, and watches the first tax protest form while it is still three men at a counter.",
+      "firstImage": "A customs-house desk tag lies beside a bilingual tax ledger.",
+      "mustInclude": [
+        "bilingual tax ledger",
+        "capital-office lease",
+        "dockworkers' petition"
+      ],
+      "mustAvoid": [
+        "generic occupation cruelty",
+        "battle aftermath",
+        "remote management lesson"
+      ]
+    },
+    {
+      "domain": "a rail authority absorbing an independent mountain line after its board invited help",
+      "audience": "a transport commissioner tempted to fill every station with armed fare inspectors",
+      "stakes": "the old board expected investment, riders expected lower fares, and a roaming enforcement force would make every village feel conquered",
+      "format": "decision_point",
+      "requiredBeat": "The commissioner moves six brass station keys from the garrison request onto two permanent depot posts, showing the choice to plant small local presence instead of sending inspectors up and down the line.",
+      "firstImage": "Six brass station keys sit on top of an enforcement requisition.",
+      "mustInclude": [
+        "station keys",
+        "enforcement requisition",
+        "fare chart"
+      ],
+      "mustAvoid": [
+        "commuter inconvenience story",
+        "efficiency consulting",
+        "generic transit politics"
+      ]
+    },
+    {
+      "domain": "a river-delta protectorate managing minor chiefs after a neighboring empire offers them troops",
+      "audience": "a resident envoy balancing local allies against a stronger outside power",
+      "stakes": "weak chiefs can help hold the delta only if they are protected without being enlarged enough to challenge the protectorate",
+      "format": "predict_reveal",
+      "requiredBeat": "The envoy asks which chief should receive the seized patrol boats, then turns the boats' nameplates face down and instead assigns escort schedules that protect each chief without adding territory.",
+      "firstImage": "Patrol-boat nameplates are stacked beside a river-delta chart.",
+      "mustInclude": [
+        "patrol-boat nameplates",
+        "delta chart",
+        "foreign troop offer"
+      ],
+      "mustAvoid": [
+        "naval adventure",
+        "simple alliance warning",
+        "one loyal ally solves it"
+      ]
+    },
+    {
+      "domain": "a provincial health ministry taking over a border hospital network that kept its own hiring rules",
+      "audience": "a minister deciding whether to replace local rules immediately after acquisition",
+      "stakes": "patients want better supplies, nurses fear lost seniority, and altering pay tables before trust forms could turn a welcomed takeover into a hostile one",
+      "format": "before_after",
+      "requiredBeat": "Before issuing the standard pay grid, the minister sets the old seniority cards beside the provincial salary sheet and stamps only the medicine-supply order for the first week.",
+      "firstImage": "Old seniority cards fan out beside a provincial salary sheet.",
+      "mustInclude": [
+        "seniority cards",
+        "salary sheet",
+        "medicine-supply order"
+      ],
+      "mustAvoid": [
+        "generic hospital administration",
+        "hero doctor",
+        "staff morale sermon"
+      ]
+    },
+    {
+      "domain": "a desert oasis district added to an old kingdom after local merchants funded the campaign",
+      "audience": "a tax governor trying to satisfy merchants who helped him enter the district",
+      "stakes": "the merchants want monopoly privileges, farmers fear new levies, and the governor cannot crush allies he still depends on",
+      "format": "dialogue",
+      "requiredBeat": "When the merchants slide a monopoly charter across the date table, the governor places it beside the farmers' water-tax tablets and marks both as injuries that would create enemies if granted whole.",
+      "firstImage": "A folded monopoly charter rests beside clay water-tax tablets.",
+      "mustInclude": [
+        "monopoly charter",
+        "water-tax tablets",
+        "date-market gate"
+      ],
+      "mustAvoid": [
+        "bazaar color without mechanism",
+        "simple corruption tale",
+        "friendship loyalty lesson"
+      ]
+    },
+    {
+      "domain": "a league of city-states deciding whether to invite a distant kingdom to counter a rival after annexing a valley",
+      "audience": "councillors tempted to divide the valley question with a powerful outsider to avoid immediate war",
+      "stakes": "sharing control may postpone fighting but gives every malcontent a stronger patron and may make the outsider master of the whole region",
+      "format": "postmortem",
+      "requiredBeat": "The clerk draws arrows from the valley rebels to the distant king's seal, then writes deferred war on the margin where the council had written avoided war.",
+      "firstImage": "A distant king's seal is pressed into the corner of a valley map.",
+      "mustInclude": [
+        "valley map",
+        "king's seal",
+        "deferred war margin note"
+      ],
+      "mustAvoid": [
+        "abstract diplomacy",
+        "peace at any price",
+        "generic coalition-building"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose the two early enemy groups in a mixed principality: injured locals and disappointed helpers",
+      "choose between residence, colonies, garrisons, preserving laws and taxes, and regional balance in scenario terms",
+      "analyze how helping a greater power or admitting a foreign power weakens the new holder",
+      "evaluate whether avoiding a present war merely defers it to another power's advantage"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick a recent annexation, takeover, or occupation from public affairs. Write the first four pressures: who was injured, which helpers expected reward, which local rules are dangerous to touch, and what outside power could be invited in.",
+  "readingTimeMinutes": 12
+}

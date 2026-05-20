@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch08",
+  "number": 8,
+  "title": "Why We Have Leaders",
+  "coreMove": "Use rank as a burden-bearing function before claiming any privilege attached to it.",
+  "sourcePressure": "Answers why groups need leaders: authority exists to preserve safety, trusted networks, and steadiness when strain rises, with burden before privilege.",
+  "chapterSpecificMisunderstanding": "Making leadership a title, charisma trait, or meal-time symbol instead of a protective function.",
+  "sourceAlignmentTerms": [
+    "why we have leaders",
+    "leadership is a choice",
+    "rank",
+    "burden before privilege",
+    "look out for others",
+    "leaders eat last",
+    "safety"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 8 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "commercial fishing deck",
+      "audience": "captain during a gear snag",
+      "stakes": "crew need the captain to take burden before privilege",
+      "format": "decision_point",
+      "requiredBeat": "the captain clips into the stern line first before sending anyone near the winch",
+      "firstImage": "a wet winch drum under deck lights",
+      "mustInclude": [
+        "winch drum",
+        "safety tether"
+      ],
+      "mustAvoid": [
+        "launch accountability"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "hotel evacuation stairwell",
+      "audience": "night manager during power outage",
+      "stakes": "guests and staff look for someone to preserve order",
+      "format": "scene",
+      "requiredBeat": "the manager sends staff down first with flashlights and stays by the landing count sheet",
+      "firstImage": "a glow stick taped to a stair rail",
+      "mustInclude": [
+        "glow stick",
+        "count sheet"
+      ],
+      "mustAvoid": [
+        "family crisis"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "archaeology field camp",
+      "audience": "dig leader after water truck delay",
+      "stakes": "scarcity exposes whether rank eats first",
+      "format": "before_after",
+      "requiredBeat": "the leader fills student canteens before taking her own ration and explains the work plan after",
+      "firstImage": "a dusty canteen line beside a shade tarp",
+      "mustInclude": [
+        "canteen line",
+        "shade tarp"
+      ],
+      "mustAvoid": [
+        "meal symbolism only"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "ski patrol morning sweep",
+      "audience": "patrol director facing icy lift opening",
+      "stakes": "authority must choose safety over revenue pressure",
+      "format": "dialogue",
+      "requiredBeat": "the director holds the lift while walking the first icy tower himself",
+      "firstImage": "a lift key on a frost-covered control panel",
+      "mustInclude": [
+        "lift key",
+        "ice report"
+      ],
+      "mustAvoid": [
+        "sports captain"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "public library closing shift",
+      "audience": "branch manager with an aggressive patron",
+      "stakes": "staff need protection to keep serving others",
+      "format": "postmortem",
+      "requiredBeat": "the manager steps between the desk and patron, then reviews the boundary with staff after closing",
+      "firstImage": "a return cart parked beside the service desk",
+      "mustInclude": [
+        "return cart",
+        "incident card"
+      ],
+      "mustAvoid": [
+        "generic manager care"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "hurricane shelter intake",
+      "audience": "shelter lead assigning cots",
+      "stakes": "vulnerable guests need ordered protection under stress",
+      "format": "reflection",
+      "requiredBeat": "the lead gives the driest corner to medical equipment before sitting down herself",
+      "firstImage": "a cot tag tied with blue string",
+      "mustInclude": [
+        "cot tag",
+        "medical power strip"
+      ],
+      "mustAvoid": [
+        "charity scene"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "define leadership by protective function",
+      "match privilege to burden",
+      "spot rank without sacrifice",
+      "choose first-cost behavior in a strained group"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one privilege your role gives you and the matching burden you will take first when pressure rises.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

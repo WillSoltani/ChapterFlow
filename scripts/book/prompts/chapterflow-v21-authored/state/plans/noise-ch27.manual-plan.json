@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch27",
+  "number": 27,
+  "title": "Scales",
+  "coreMove": "Design a rating scale so that each level is anchored in behaviorally specific, observable descriptions rather than numbers or generic adjectives that each rater interprets privately.",
+  "sourcePressure": "Poor scale design is a noise generator that operates before a rater evaluates a single case. When rating levels are defined only by number (1 through 5) or by vague adjectives (poor, fair, good, excellent), each rater supplies their own implicit definition of each level, and those private definitions differ. Better scale design provides behaviorally specific, observable descriptions at each level — removing the scale-interpretation step as a noise source.",
+  "chapterSpecificMisunderstanding": "Assuming that adding more scale points improves rating precision, when in fact more points on an unanchored scale produce more disagreement because there are more ambiguous positions for raters to interpret privately.",
+  "sourceAlignmentTerms": ["scale design", "behavioral anchor", "rating level", "vague adjective", "calibration", "scale noise", "anchor descriptor"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Behaviorally anchored rating scales research and inter-rater reliability",
+      "detail": "Research on behaviorally anchored rating scales (BARS) consistently shows that replacing numeric-only or adjective-only rating levels with observable behavioral descriptions substantially reduces inter-rater variance. The improvement occurs not because raters become better evaluators but because the scale stops requiring each rater to privately define what 'good' means.",
+      "useIn": "deepRead",
+      "phrasingHint": "A scale that says '4 — Exceeds expectations' leaves the definition of 'exceeds' to each rater. One rater's 4 is another's 3. The scale is not measuring performance; it is measuring the rater's private definition of the word 'exceeds.' A scale that says '4 — Proactively identifies problems before they are raised by others and proposes solutions without being asked' removes the private definition. Both raters now know what they are looking for."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["your rating scale is lying to you", "the simple fix that eliminates most of your performance rating noise"],
+    "counterintuition": ["more scale points make ratings more accurate", "raters who use the same scale automatically mean the same thing by each level"],
+    "tryThisNow": ["redesign your current performance rating scale with behavioral anchors at each level", "ask two colleagues what they mean by a '3' on your current scale and compare their answers"],
+    "examples": ["a scene where the only problem is rater bias rather than scale design — misattributes scale noise to rater character", "a scene where any scale design eliminates inter-rater disagreement — scale design reduces but does not eliminate noise"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Scale-design examples risk all reading as 'here is a better rating form.' The domains should show how scale noise behaves differently when the thing being rated is qualitative (military readiness), probabilistic (climate risk), technical (software code quality), relational (child welfare), and reputational (bond analyst ratings) — so the reader sees scale design as a principle, not a form-redesign task."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bond credit quality scale: a rating agency studying inter-analyst agreement rates on adjective-defined versus behaviorally described rating level criteria",
+      "audience": "a fixed-income research quality director studying whether replacing adjective-only rating descriptors with quantitative behavioral criteria reduces inter-analyst assignment spread",
+      "stakes": "investor pricing accuracy and issuer borrowing costs — inter-analyst spread in quality ratings for the same issuer creates inconsistent credit pricing and potential investor harm",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two quality directors compare the pre-revision and post-revision inter-analyst agreement rates: under the adjective-only scale (ratings described as 'strong,' 'adequate,' 'marginal'), inter-analyst agreement on tier assignment for matched issuers was 63 percent; after replacing adjective descriptors with quantitative behavioral criteria (specific debt-coverage ratios, liquidity ratios, and cash flow stability thresholds at each rating level), inter-analyst agreement rose to 82 percent; the issuers' financial characteristics did not change — the scale redefinition alone drove the improvement",
+      "firstImage": "a before-and-after inter-analyst agreement rate comparison for the same issuer sample: adjective-scale era on the left (63%), criteria-defined scale era on the right (82%)",
+      "mustInclude": ["the 63 to 82 percent agreement improvement", "the explicit point that the improvement is attributable to scale redesign, not to analyst retraining or issuer changes", "the quality director's framing: the adjective scale was requiring analysts to privately define 'adequate' — the new scale removes that translation step"],
+      "mustAvoid": ["a specific company credit rating story", "implying that scale redesign alone eliminates all rating disagreement or that analyst judgment is no longer needed"]
+    },
+    {
+      "domain": "child welfare risk assessment scale: a child welfare agency comparing inter-assessor reliability before and after introducing behaviorally anchored risk level descriptions",
+      "audience": "a child welfare agency quality director studying whether behaviorally anchored risk level descriptors reduce inter-assessor disagreement in family risk classification",
+      "stakes": "child safety and family services allocation — assessors who rate the same family as different risk tiers trigger different intervention intensities, potentially leaving a high-risk child with minimal services or burdening a low-risk family with intensive supervision",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the quality director presents the agency's two-year comparison: under the prior numeric-only risk scale (1 through 5 with no behavioral descriptors), inter-assessor agreement on matched family profiles was 58 percent; after implementing a scale where each level described specific observable behavioral indicators (level 3 now defined as 'caregiver demonstrates inconsistent supervision with documented lapses in two or more areas of daily child care'), inter-assessor agreement on the same case type rose to 77 percent; the families being assessed did not change — the scale did",
+      "firstImage": "two inter-assessor agreement matrices for the same matched family profiles: the first using the numeric-only scale (58% agreement), the second using the behaviorally anchored scale (77% agreement) — the diagonal of the second matrix visibly denser",
+      "mustInclude": ["the 58 to 77 percent agreement improvement", "the specific example of a level-3 behavioral descriptor as an illustration of what anchoring looks like in practice", "the director's framing: assessors who saw the same family used the old scale to express different private definitions of 'moderate risk' — the new scale gives them a shared definition"],
+      "mustAvoid": ["a specific child's case or family outcome", "implying behaviorally anchored scales remove the need for professional judgment in child welfare"]
+    },
+    {
+      "domain": "climate risk probability scale: a reinsurance company studying inter-underwriter agreement in catastrophic risk tier assignment before and after scale anchor revisions",
+      "audience": "a reinsurance quality director studying whether descriptive probability anchors reduce inter-underwriter disagreement in catastrophe exposure tier assignment",
+      "stakes": "premium pricing accuracy and capital reserve adequacy — underwriters who place the same risk exposure in different tiers produce different pricing for the same underlying risk, creating either underpriced portfolios or uncompetitive bids",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality director reviews the underwriting calibration study: under the prior scale where risk tiers were labeled 'low,' 'moderate,' 'elevated,' and 'severe' with no probability definitions, inter-underwriter agreement for the same exposure was 55 percent; after revising the scale to attach specific return-period probability ranges to each tier ('elevated: 1-in-50 to 1-in-100 year event probability'), agreement rose to 74 percent; the calibration study confirmed the improvement was attributable to scale definition rather than underwriter retraining because the same underwriters produced higher agreement on the same cases after the scale revision",
+      "firstImage": "a calibration study summary comparing pre- and post-scale-revision agreement rates for the same underwriter cohort on the same matched risk exposures — the agreement rate line rising at the point of scale revision",
+      "mustInclude": ["the 55 to 74 percent agreement improvement from the same underwriters on the same cases", "the return-period probability example as an illustration of what specific anchoring means in this domain", "the director's framing: 'elevated' meant different things to different underwriters — a probability definition means the same thing to everyone"],
+      "mustAvoid": ["a specific natural disaster or insurance loss", "implying that quantitative probability anchors eliminate underwriting judgment in all cases"]
+    },
+    {
+      "domain": "forensic injury severity scale: a medical examiner's office studying inter-examiner agreement in blunt-force injury severity classification before and after scale descriptor revision",
+      "audience": "a medical examiner quality director studying whether behavioral descriptors at each severity level reduce inter-examiner disagreement in injury classification for legal proceedings",
+      "stakes": "criminal charging decisions — injury severity classification determines the applicable charge tier; examiners who classify the same injury in different severity categories produce different recommended charges from the same physical evidence",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you compare two years of injury classification data: under the prior scale, which defined severity levels as 'minor,' 'moderate,' 'serious,' and 'critical' with no observable descriptor, inter-examiner agreement on matched case photographs was 61 percent; after revising each level to specify observable tissue characteristics and involvement criteria, agreement on the same type of photographic evidence rose to 80 percent; reviewing examiners' explanations in the disagreement cases under the old scale, the most common theme was 'where moderate ends and serious begins' — a threshold question that the new behavioral descriptors resolved by specifying observable tissue involvement",
+      "firstImage": "two inter-examiner agreement charts for injury classification: before revision (61% agreement) and after revision (80% agreement) for the same type of photographic evidence reviewed by the same examiner group",
+      "mustInclude": ["the 61 to 80 percent agreement improvement", "the old scale's 'moderate-versus-serious' threshold problem as the source of disagreement", "the new scale's observable tissue-involvement criteria as the resolution", "the framing: both examiners looked at the same photograph — they differed on where in their private severity vocabulary to place it"],
+      "mustAvoid": ["a specific criminal case or victim", "implying forensic injury classification is generally unreliable in legal proceedings"]
+    },
+    {
+      "domain": "military unit readiness rating: a service branch studying inter-rater agreement in unit readiness assessment before and after replacing adjective-defined levels with operational capability criteria",
+      "audience": "a military readiness reporting quality officer studying whether operationally specific readiness criteria reduce inter-rater disagreement in unit readiness designation",
+      "stakes": "force deployment planning — a unit designated as fully ready is considered deployable; one designated as partially ready is not; inter-rater disagreement on the same unit produces different deployability assessments with direct operational consequences",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the quality officer presents the revision study: under the prior readiness scale, which described levels as 'ready,' 'substantially ready,' 'marginally ready,' and 'not ready,' inter-rater agreement for the same unit assessment package was 64 percent; after replacing the adjective labels with operational capability criteria at each level (personnel fill percentage, equipment serviceability rate, and training certification status thresholds for each designation), inter-rater agreement rose to 85 percent; the improvement held even for the same raters reassessing the same packages — the scale, not the raters' experience, had been the noise source",
+      "firstImage": "a two-column comparison of inter-rater agreement rates: adjective-only scale era (64%) versus operational-criteria scale era (85%) for the same unit assessment packages reviewed by the same rater group",
+      "mustInclude": ["the 64 to 85 percent improvement", "the specific operational criteria example (personnel fill, equipment serviceability, training certification) as an illustration of behavioral anchoring in a military context", "the quality officer's framing: 'substantially ready' was a private vocabulary item — the criteria define a shared measurement"],
+      "mustAvoid": ["a specific military operation or unit designation", "implying military readiness designations should be fully automated"]
+    },
+    {
+      "domain": "software code quality review: a development organization studying inter-reviewer agreement in code quality tier assignment before and after introducing observable quality criteria at each rating level",
+      "audience": "a software engineering quality director studying whether explicit code quality criteria at each review tier reduce inter-reviewer disagreement in code assessment",
+      "stakes": "code acceptance and remediation decisions — reviewers who rate the same code as different quality tiers produce different approval-versus-revision recommendations, creating inconsistent release gates",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the quality director asks four senior engineers to rate the same 20 code samples independently on a 5-point quality scale with adjective labels (poor, fair, adequate, good, excellent): inter-reviewer agreement is 51 percent; the director then provides a revised scale where each level specifies observable code characteristics (test coverage percentage, cyclomatic complexity ceiling, documentation completeness criteria), and asks the same four engineers to rate the same 20 samples: agreement rises to 79 percent; the code samples are identical in both conditions — the scale definition accounts for the 28-percentage-point improvement",
+      "firstImage": "two side-by-side inter-reviewer agreement matrices for the same 20 code samples — adjective scale (51% agreement, visibly scattered off-diagonal) and criteria scale (79% agreement, denser diagonal)",
+      "mustInclude": ["the 51 to 79 percent agreement improvement from the same reviewers on the same code", "the specific criteria example (test coverage, cyclomatic complexity, documentation) as an illustration of observable behavioral anchoring", "the quality director's conclusion: 'excellent' meant something different to each engineer — the criteria make it the same thing for everyone"],
+      "mustAvoid": ["implying code quality can be fully specified without human engineering judgment", "a specific software project or codebase"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why vague adjective labels at rating scale levels generate noise independently of rater expertise or evaluation accuracy",
+      "identify which elements of a described rating scale are likely to produce private interpretation divergence across raters",
+      "apply behavioral anchoring principles to revise a described rating scale that currently uses adjective-only level definitions",
+      "analyze why adding more scale points to an unanchored scale increases rather than decreases inter-rater spread",
+      "evaluate whether a described scale revision would primarily reduce scale-interpretation noise or primarily require rater retraining to be effective"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take your current rating scale — performance reviews, quality assessments, risk classification, whatever your team uses most often. Pick the middle two levels and write down in one sentence what you mean by each, in terms of observable behavior or measurable outcomes. Then ask two colleagues to do the same, independently, without seeing your definition. If your three sentences do not describe the same things, your scale is running on private vocabularies — and that divergence is producing noise every time anyone uses it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why each rater must privately define every level when scale anchors are absent — and why those private definitions diverge, at least one 5+ sentence paragraph on what behaviorally anchored rating looks like in practice across a specific domain, showing that the discipline is in the scale design rather than the rater's judgment, at least one one-sentence punch line about how many calibration sessions you can run without ever asking what each level means",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to present the behavioral anchoring principle as a general design rule for any evaluation system — not specific to performance appraisal or any one domain — framing it as an engineering choice about where the translation work happens: in the scale or in the rater",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

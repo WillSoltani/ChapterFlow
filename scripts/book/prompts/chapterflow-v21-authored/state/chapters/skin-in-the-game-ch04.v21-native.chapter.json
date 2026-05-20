@@ -1,0 +1,326 @@
+{
+  "chapterId": "skin-in-the-game-ch04",
+  "number": 4,
+  "title": "The Skin of Others in Your Game",
+  "readingTimeMinutes": 12,
+  "hook": "The benefits card sits beside the safety report because courage can spend a family's money first.",
+  "counterintuition": "Truth can look like a private choice until the bill reaches a spouse, a grant team, a brother's job, or a child's insurance. The first task is to find those hidden passengers.",
+  "tryThisNow": "Take one live objection you are delaying and write three names or groups that would pay first if you spoke. Add the one protection they need before you decide.",
+  "keyTakeaway": "Before you judge silence or courage, map the people nearby who would absorb retaliation; truth-telling is cleaner when its hidden passengers are protected.",
+  "breakdown": {
+    "fastRead": "Hannah places her benefits card next to the deviation report and sees the problem change shape. The bad batch may hurt patients, but reporting it could cost the insurance her daughter uses every month. The whistleblower is not alone in the room.\n\nThis is the hidden transfer. Retaliation often reaches for softer targets: a mortgage, a spouse's coverage, a brother's job, a team's grant, a volunteer season, a department's donor. Before praising courage or condemning silence, ask who else is being put into the game. A clean decision may require protecting the people who did not choose the risk.",
+    "deepRead": "The protected-channel form is only one page, but Hannah reads it as if it were a family budget. The deviation report says one thing: the line failed and patients could be exposed. The benefits card says another: retaliation would not stop at her desk. Her spouse, her daughter, and the mortgage are quiet parties to a technical decision.\n\nThat is why whistleblower stories are rarely as clean as they look from outside. The person who speaks may be brave, but the price can be collected from people who never entered the room. A hostile institution does not need to win the argument. It can make the truth expensive for a household, a lab group, a contractor's brother, or a small department that depends on the wrong donor.\n\nPrivate obligations can become public leverage.\n\nA person with fewer hostage points is harder to own, which is why private obligations can become public leverage. The paired shield of celibacy and financial independence can look like personal lifestyle detail, but it also changes bargaining power. Someone without school fees, debt, or dependents may absorb pressure that would crush a person carrying four other lives inside the decision.\n\nThe lesson is not to mock attachment. A family is not a weakness. A mortgage is not cowardice. The practical move is to map the second-order victims before the confrontation begins. If the truth must be told, protect the people around the teller with documentation, witnesses, outside channels, replacement income, or a timing choice that keeps retaliation from landing on whoever is easiest to hurt.",
+    "fullRead": "Julien opens the retaining-wall photo on his tablet and sees the crack running through the concrete like a dark thread. His supervisor wants the inspection closed before the contractor meeting. Then Julien notices his brother's name on the same contractor roster. If he files the defect bluntly, the city may be safer, but his brother may be the first person punished.\n\nThis is where a cheap moral story fails. It is easy to say, \"Just tell the truth,\" when your own pay, family, and reputation are not attached to the sentence. It is also easy to excuse silence by pointing at obligations. Neither answer is sharp enough. The real work is to locate every soft target before the institution does, including the suicide terrorist deterrence logic at the far edge where ordinary penalties no longer bite.\n\nWho loses first if the sentence is spoken? Not in theory, and not eventually. First. The spouse whose health insurance is tied to the job. The junior researcher whose grant renewal depends on a softened adverse-event form. The youth players whose season ends when a winning volunteer is reported. The museum assistants whose jobs rely on a donor whose artifact should be returned. The public hears one person's courage. The structure often bills a crowd.\n\nThe whistleblower dilemma is not only about fear. It is about transferred downside. If a person exposes hidden harm, the people around that person may pay in school fees, future income, references, or social standing. That does not make the hidden harm acceptable. It means courage without design can be wasteful. A protected channel, a witness log, an outside review, or a delayed disclosure with a patch ready can move the cost closer to the actor who created the harm.\n\nLayla learns this after the cancelled season. She reports the volunteer, and the children are protected, but she also reconstructs the week she stayed quiet. She had been afraid of parents blaming her for the tournament loss. The mistake was not caring about the team. The mistake was letting team fallout outrank the reporting trigger. Once the policy named the trigger, the private pressure lost its power to decide.\n\nThe extreme case is narrower and colder. Deterrence fails when the actor has removed ordinary downside from himself. A suicide terrorist is not restrained by the penalties that discipline ordinary actors, because the usual future costs no longer bite. The answer cannot be simple outrage. The design question is how to place real downside where it can still change behavior, without punishing random people who were merely nearby.\n\nThat distinction matters in ordinary life too. If the institution threatens the teller's family, the institution has outsourced its downside. If the donor can injure a whole museum staff while keeping the tainted prestige, the donor has outsourced its downside. If the software maintainer publishes a vulnerability without warning anyone who can patch it, users carry the blast while the maintainer carries the virtue.\n\nThe better move is not silence. It is targeted exposure. Put the evidence where it cannot be quietly buried. Warn the people who can reduce harm before public release. Remove relatives from the decision line. Separate payroll survival from provenance evidence. Write the adverse event in plain language and require the gatekeeper's signature beside it. Courage becomes cleaner when the bill lands closer to the person who earned it."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-hannah-deviation",
+      "title": "Hannah names the household cost",
+      "tags": [
+        "pharma",
+        "whistleblower",
+        "benefits"
+      ],
+      "planSpec": {
+        "domain": "pharmaceutical quality analyst considering a safety disclosure",
+        "audience": "employee whose spouse and children depend on her benefits",
+        "stakes": "patients are exposed, but her family would absorb retaliation first",
+        "format": "decision_point",
+        "requiredBeat": "Hannah names each dependent cost on a notepad before deciding how to disclose through a protected channel."
+      },
+      "scenario": "At 7:18 a.m. Wednesday, Hannah sets the benefits card beside the deviation report and the protected channel form. The batch record is wrong, and patients may be exposed if she stays quiet. Her daughter has an appointment next week under the same insurance. Hannah must decide whether to send the report now or first build a disclosure path that shields her family from retaliation.",
+      "whatToDo": "Write the family costs on a separate page, attach the deviation report, and use the protected channel with copies stored outside the company system.",
+      "whyItMatters": "The safety truth does not disappear because her family is exposed. Naming the dependent costs keeps the institution from turning insurance into silent control."
+    },
+    {
+      "exampleId": "ch04-ex02-julien-wall",
+      "title": "Julien removes his brother",
+      "tags": [
+        "inspection",
+        "family",
+        "public safety"
+      ],
+      "planSpec": {
+        "domain": "city inspector pressured to overlook a contractor defect",
+        "audience": "official whose brother works for the contractor",
+        "stakes": "family employment becomes a lever against public duty",
+        "format": "dialogue",
+        "requiredBeat": "Julien tells his supervisor to remove his brother from the call and files the defect with a witness present."
+      },
+      "scenario": "\"Let's not make this a formal defect,\" the supervisor says while Julien enlarges the cracked retaining-wall photo. The contractor roster is open beside the witness log, and his brother's name is three lines from the top. Julien has to choose whether to let family employment soften a safety finding or make the conflict visible before the call begins.",
+      "whatToDo": "Ask for his brother to be removed from the meeting, add a witness to the log, and file the defect as a public-safety issue, not a family dispute.",
+      "whyItMatters": "The brother's job is the pressure point. Moving that relationship into the record stops the contractor from using family downside to buy a quiet inspection."
+    },
+    {
+      "exampleId": "ch04-ex03-astrid-adverse-event",
+      "title": "Astrid keeps the hard wording",
+      "tags": [
+        "clinical research",
+        "grant pressure",
+        "patients"
+      ],
+      "planSpec": {
+        "domain": "research nurse asked to soften adverse-event language",
+        "audience": "clinical worker whose team would lose funding after a blunt report",
+        "stakes": "the truth protects patients but injures colleagues nearby",
+        "format": "scene",
+        "requiredBeat": "Astrid writes the adverse-event term in plain language and asks the principal investigator to sign the exact wording."
+      },
+      "scenario": "Cold vinyl presses under the patient's arm while Astrid rereads the adverse-event form. The grant renewal folder sits under the clipboard, and the principal investigator has suggested a gentler phrase. The signature line waits at the bottom. Astrid must decide whether to protect the team budget or put the clinical fact where future patients can see it.",
+      "whatToDo": "Use the plain adverse-event term, keep the grant renewal folder out of the wording decision, and ask the investigator to sign the exact sentence.",
+      "whyItMatters": "Funding pressure can turn colleagues into hostages. A clear signature line forces the person with authority to carry the wording instead of hiding behind team anxiety."
+    },
+    {
+      "exampleId": "ch04-ex04-michael-provenance",
+      "title": "Michael separates evidence from payroll",
+      "tags": [
+        "museum",
+        "donor",
+        "provenance"
+      ],
+      "planSpec": {
+        "domain": "museum curator deciding whether to return a donor-tainted artifact",
+        "audience": "curator whose small department depends on the donor's next gift",
+        "stakes": "truth could cost jobs for people who made no decision",
+        "format": "reflection",
+        "requiredBeat": "Michael drafts a return memo that separates departmental survival from provenance evidence."
+      },
+      "scenario": "You can feel the cotton gloves tug at Michael's fingers as the brass label catches the gallery light. The provenance file points one way, the donor pledge another. Two assistants depend on next year's gift. Michael is not choosing between purity and payroll; he is deciding whether evidence will be allowed to stand without being buried under department survival.",
+      "whatToDo": "Draft the return memo with the provenance evidence first, then add a separate staffing-risk note so donor leverage cannot rewrite the artifact's history.",
+      "whyItMatters": "A donor can make innocent employees carry the cost of a bad acquisition. Separating evidence from payroll keeps the wrong people from becoming cover."
+    },
+    {
+      "exampleId": "ch04-ex05-layla-policy",
+      "title": "Layla reconstructs the missed trigger",
+      "tags": [
+        "youth sport",
+        "reporting",
+        "retaliation"
+      ],
+      "planSpec": {
+        "domain": "youth coach reporting abuse by a winning volunteer",
+        "audience": "coach who knows families will blame the messenger for a canceled season",
+        "stakes": "children need protection while teammates bear disruption",
+        "format": "postmortem",
+        "requiredBeat": "Layla reconstructs the week she stayed quiet, then writes the reporting trigger that should have overridden team fallout."
+      },
+      "scenario": "It took Layla four practices to see the mud drying on the folded sideline jacket as evidence, not inconvenience. Her incident note was dated before the season schedule was changed, but she had waited because the volunteer was the reason the team kept winning. After the report, she rereads the policy and marks the exact trigger she had allowed parents' anger to outrank.",
+      "whatToDo": "Rebuild the timeline from incident note to report, mark the policy trigger, and make the trigger automatic for future cases no matter what the schedule loses.",
+      "whyItMatters": "Team disruption is real, but it cannot become a veto over child safety. A written trigger protects the people who need protection before the crowd reacts."
+    },
+    {
+      "exampleId": "ch04-ex06-pavel-cve",
+      "title": "Pavel gives the patch a head start",
+      "tags": [
+        "software",
+        "disclosure",
+        "security"
+      ],
+      "planSpec": {
+        "domain": "software maintainer exposing a security hole in a popular library",
+        "audience": "volunteer whose employer and users may all face backlash",
+        "stakes": "public disclosure protects strangers but harms attached people first",
+        "format": "predict_reveal",
+        "requiredBeat": "Pavel delays the blog post long enough to notify maintainers, then publishes with the patch link visible."
+      },
+      "scenario": "Terminal text reflects in the dark window while the CVE draft waits beside a patch link and an employer approval email. Pavel knows public disclosure will protect strangers, but it may also flood maintainers and customers before they can respond. He is about to decide whether the first public sentence should be a warning alone or a warning with repair already reachable.",
+      "whatToDo": "Notify the maintainers, wait for the patch link to be ready, confirm employer approval, and publish the disclosure with the fix visible from the first paragraph.",
+      "whyItMatters": "A warning can still transfer downside to users if repair is hidden or late. Targeted exposure makes the harm visible without making bystanders pay extra."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A lab analyst finds a safety defect, but the company insurance covers her child's treatment. What is the first exposure map she should draw before filing?",
+        "choices": [
+          "Which family costs could retaliation reach first.",
+          "Which colleague would praise her courage most.",
+          "Which public headline would sound most dramatic."
+        ],
+        "correctIndex": 0,
+        "explanation": "The move is to find transferred downside before acting. Praise and headlines miss the family security that can be used as leverage.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A city inspector's brother works for the contractor whose wall has failed inspection. Which action best keeps the defect from becoming a family-pressure problem?",
+        "choices": [
+          "Call the brother privately and ask what the contractor prefers.",
+          "Record the conflict, add a witness, and file the defect formally.",
+          "Delay the inspection until a different defect appears elsewhere."
+        ],
+        "correctIndex": 1,
+        "explanation": "The conflict must be made visible so family employment cannot soften the finding. Private calls and delay let the pressure keep working.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A research nurse is urged to replace blunt adverse-event language because a grant renewal is pending. What is the strongest analysis of the pressure?",
+        "choices": [
+          "The grant has turned colleagues' funding into leverage over patient evidence.",
+          "The budget framing crowds out clinical judgment where downside lands on the patient, not the administrator.",
+          "The softer phrase is safer because it protects the team's morale."
+        ],
+        "correctIndex": 0,
+        "explanation": "The issue is not that budgets never matter. It is that the team budget is being used to bend language patients and reviewers need.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a curator finds provenance evidence that points toward returning an artifact, but the donor's pledge funds two jobs, what should the memo do first?",
+        "choices": [
+          "Hide the provenance file until a replacement donor is secured.",
+          "Ask the donor how the gallery label should describe the artifact.",
+          "State the provenance evidence separately from the staffing risk."
+        ],
+        "correctIndex": 2,
+        "explanation": "The memo should keep evidence from being rewritten by payroll fear. Hiding the file or asking the donor lets transferred downside govern truth.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "The coach waits to report a volunteer because the team will lose its winning season. Which distinction matters most after she reviews the policy?",
+        "choices": [
+          "Whether parents will forgive the schedule disruption soon.",
+          "Whether the reporting trigger should override team fallout.",
+          "Whether the volunteer has helped the club in past years."
+        ],
+        "correctIndex": 1,
+        "explanation": "The trigger exists to stop crowd cost from deciding a child-safety issue. Past help and parent anger are real but cannot outrank the policy threshold.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Inside the clinical disclosure meeting, a security maintainer wants to disclose a vulnerability immediately, but a patch is nearly ready and users cannot protect themselves yet. Which response fits the lesson?",
+        "choices": [
+          "Publish only after every user has personally approved the timing.",
+          "Use selective silence because disclosure to specific people creates obligations the speaker cannot meet.",
+          "Warn maintainers first, then publish with the patch link visible."
+        ],
+        "correctIndex": 2,
+        "explanation": "Targeted exposure reduces bystander harm while still making the danger visible. Silence protects the defect, while instant disclosure may dump cost on users.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Suppose a manager says an employee lacks courage for not opposing a false public statement. The employee's spouse has a visa tied to the job, what should the manager notice?",
+        "choices": [
+          "The visa makes the statement more likely to be true.",
+          "The spouse is carrying downside that the employee did not choose alone.",
+          "The employee can be judged exactly like someone with no dependents."
+        ],
+        "correctIndex": 1,
+        "explanation": "The spouse's visa is a hostage point. It does not excuse falsehood automatically, but it changes how cleanly outsiders can judge silence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Inside the disclosure decision, a wealthy director with no dependents and large savings is harder to pressure than a junior worker with debt and children. What explains the difference?",
+        "choices": [
+          "Financial independence and fewer attachments reduce hostage points.",
+          "People with families are less ethical than independent people.",
+          "Savings remove all duties to coworkers and customers."
+        ],
+        "correctIndex": 0,
+        "explanation": "The difference is leverage, not moral worth. Fewer exposed obligations make pressure harder to apply, while duties to others can still remain.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "During the deterrence review, a policy designer asks how to deter an actor who does not fear prison, job loss, or death. Which evaluation best matches transferred-downside logic?",
+        "choices": [
+          "Ordinary penalties may fail if the actor has removed ordinary downside.",
+          "All penalties should be shifted to nearby relatives and neighbors.",
+          "Deterrence is weakened because personal cost has been decoupled from the organizational cost being targeted."
+        ],
+        "correctIndex": 0,
+        "explanation": "The narrow point is that penalties must bite where behavior can change. Punishing random nearby people repeats the transferred-downside problem.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A worker can tell the truth, but her family insurance is exposed. What transferred downside is shaping the choice before she speaks?",
+      "back": "Map transferred downside before judging the choice. The issue is not only the speaker's cost; it is who nearby will be punished first if the truth is spoken.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can a mortgage or school-fee bill become part of someone else's game?",
+      "back": "Private obligations become leverage when an institution can threaten them. A person may still choose freely in law while dependents carry the practical risk.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A donor's money funds innocent staff while the provenance file points toward return. What is the move?",
+      "back": "Separate the evidence from the payroll risk. The staff cost should be named and handled, but it should not be allowed to rewrite the artifact's history.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What is the danger in praising whistleblowing without design?",
+      "back": "It can turn courage into a bill for bystanders. Protected channels, witnesses, timing, and repair paths help move the cost toward the actor who created the harm.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "Why does ordinary deterrence fail for someone with no ordinary future cost?",
+      "back": "Deterrence needs a downside the actor still values. If prison, status loss, or death no longer bite, penalties must be redesigned without randomly punishing people nearby.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Mapping Downside Transferred to Outsiders",
+    "coreSkill": "Before calling a choice brave or cowardly, identify the people who would pay first. The skill is to move pressure into the open, then design the action so retaliation lands closer to the person who created the harm.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If you are about to raise a serious objection, then list whose job, insurance, visa, or reputation could be hit before yours."
+      },
+      {
+        "context": "public service",
+        "plan": "If a family relationship touches a decision, then put the conflict in the record and add a witness before the finding is softened."
+      },
+      {
+        "context": "research",
+        "plan": "If funding pressure starts changing safety language, then separate the grant risk from the clinical fact and require a named signature."
+      },
+      {
+        "context": "security disclosure",
+        "plan": "If warning the public would harm users before they can act, then notify repair owners first and publish with the fix path visible."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one postponed objection. In five lines, name the hidden passengers, the evidence, the retaliation path, the protection needed, and the first person to notify.",
+    "weeklyPractice": "Once a week, review one hard truth you avoided or delivered. Ask whether the people around the teller were protected or quietly drafted into the cost."
+  },
+  "memorableLines": [
+    {
+      "text": "The whistleblower is not alone in the room.",
+      "location": "breakdown.fastRead",
+      "why": "It makes transferred downside visible in one concrete image."
+    },
+    {
+      "text": "Private obligations can become public leverage.",
+      "location": "breakdown.deepRead",
+      "why": "It captures how ordinary family and money ties become tools of control."
+    },
+    {
+      "text": "Deterrence fails when the actor has removed ordinary downside from himself.",
+      "location": "breakdown.fullRead",
+      "why": "It preserves the extreme source anchor without turning it into a policy digression."
+    }
+  ]
+}

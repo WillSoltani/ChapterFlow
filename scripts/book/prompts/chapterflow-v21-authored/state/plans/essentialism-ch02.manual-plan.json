@@ -1,0 +1,166 @@
+{
+  "chapterId": "essentialism-ch02",
+  "number": 2,
+  "title": "Choose: The Invincible Power of Choice",
+  "coreMove": "Convert a pressured obligation into an owned choice so the next yes or no is deliberate instead of automatic.",
+  "sourcePressure": "The chapter restores agency by treating choice as an action, warning that forgotten agency can become learned helplessness, and teaching the reader to choose to choose under constraint.",
+  "chapterSpecificMisunderstanding": "A weak run would pretend all constraints disappear if the reader has a better attitude.",
+  "sourceAlignmentTerms": [
+    "choice",
+    "agency",
+    "learned helplessness",
+    "choose to choose",
+    "constraints"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic choose: the invincible power of choice topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "limitless freedom frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "limitless freedom",
+      "positive thinking",
+      "privileged option shopping",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "tenant council choosing a repair strategy after a boiler outage",
+      "audience": "resident leader under pressure from angry neighbors",
+      "stakes": "complaint can become learned helplessness or owned negotiation",
+      "format": "decision_point",
+      "requiredBeat": "She rewrites we have to wait as we choose to demand inspection records before signing the landlord timeline.",
+      "firstImage": "A repair notice is taped beside a marked lease clause.",
+      "mustInclude": [
+        "repair notice",
+        "lease clause",
+        "inspection request"
+      ],
+      "mustAvoid": [
+        "generic tenant complaint",
+        "radiator anchor"
+      ]
+    },
+    {
+      "domain": "scholarship swimmer assigned an impossible training and lab schedule",
+      "audience": "student-athlete facing real constraints",
+      "stakes": "automatic compliance risks both scholarship and research standing",
+      "format": "reflection",
+      "requiredBeat": "He writes the two nonnegotiables on a pool-lane card and chooses which appointment to renegotiate.",
+      "firstImage": "A pool-lane card lies beside a lab access badge.",
+      "mustInclude": [
+        "pool-lane card",
+        "lab badge",
+        "advisor email"
+      ],
+      "mustAvoid": [
+        "generic student stress",
+        "positive thinking"
+      ]
+    },
+    {
+      "domain": "food-truck owner facing a city permit change before a weekend festival",
+      "audience": "small operator squeezed by rules and revenue",
+      "stakes": "the permit change can trigger helpless anger or a deliberate menu choice",
+      "format": "scene",
+      "requiredBeat": "She marks the permit boundary on the prep board and chooses the smaller menu that can legally serve the festival.",
+      "firstImage": "A permit map is clipped to a prep board.",
+      "mustInclude": [
+        "permit map",
+        "prep board",
+        "festival ticket roll"
+      ],
+      "mustAvoid": [
+        "generic food truck hustle",
+        "having no constraints"
+      ]
+    },
+    {
+      "domain": "home hospice nurse covering a sudden staffing gap",
+      "audience": "clinician with duties she cannot simply refuse",
+      "stakes": "agency means choosing the care sequence inside constraint",
+      "format": "dialogue",
+      "requiredBeat": "She names the gap, ranks the comfort visits by risk, and asks dispatch to move the low-risk supply drop.",
+      "firstImage": "A visit route sheet sits beside a comfort-kit bag.",
+      "mustInclude": [
+        "route sheet",
+        "comfort-kit bag",
+        "dispatch phone"
+      ],
+      "mustAvoid": [
+        "medical martyrdom",
+        "constraint denial"
+      ]
+    },
+    {
+      "domain": "immigration clinic interpreter asked to translate beyond her certified language pair",
+      "audience": "interpreter under moral and institutional pressure",
+      "stakes": "helpfulness could create dangerous false precision",
+      "format": "before_after",
+      "requiredBeat": "Before, she says I have to help; after, she chooses to stay present but refuses certification she does not hold.",
+      "firstImage": "A certification card sits beside an unfamiliar intake form.",
+      "mustInclude": [
+        "certification card",
+        "intake form",
+        "phone interpreter number"
+      ],
+      "mustAvoid": [
+        "generic language help",
+        "heroic improvisation"
+      ]
+    },
+    {
+      "domain": "warehouse night-shift picker offered mandatory overtime after childcare closes",
+      "audience": "worker with limited leverage and real dependency",
+      "stakes": "agency appears through negotiation rather than fantasy freedom",
+      "format": "postmortem",
+      "requiredBeat": "He compares the childcare pickup slip to the overtime notice and chooses to request split coverage instead of silent noncompliance.",
+      "firstImage": "A childcare pickup slip lies under an overtime notice.",
+      "mustInclude": [
+        "pickup slip",
+        "overtime notice",
+        "supervisor form"
+      ],
+      "mustAvoid": [
+        "limitless freedom",
+        "generic work-life balance"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the Choose: The Invincible Power of Choice move inside a concrete scenario",
+      "choose the response that applies: Convert a pressured obligation into an owned choice so the next yes or no is deliberate instead of automatic.",
+      "reject the generic drift: A weak run would pretend all constraints disappear if the reader has a better attitude.",
+      "explain the trade-off using chapter-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one sentence that starts with I have to. Rewrite it as I choose to, I choose not to, or I choose to negotiate, then name the next move.",
+  "readingTimeMinutes": 12
+}

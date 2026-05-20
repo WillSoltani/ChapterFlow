@@ -1,0 +1,301 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch07",
+  "number": 7,
+  "title": "Concerning the Going Concern",
+  "readingTimeMinutes": 12,
+  "hook": "The founder's open door becomes a traffic jam once twelve teams need the same answer.",
+  "counterintuition": "The mistaken move is to add process because headcount grew. Instead, replace personal access with mission-linked ownership, cadence, and escalation rules.",
+  "tryThisNow": "Name one recurring escalation that still depends on personal access. Write the owner, cadence, and exception rule that would let the organization handle it without you.",
+  "keyTakeaway": "A going concern needs operating architecture: clear owners, useful cadence, escalation paths, stage-fit leaders, and behavior loops that carry the mission.",
+  "breakdown": {
+    "fastRead": "A founder can align three teams by walking the room. At twelve teams, the same habit becomes a queue. Decisions wait for personal access, strong voices win exceptions, and the company starts calling delay collaboration.\n\nScale asks for a working decision system. The goal is not more process in the abstract. The goal is clear owners, a cadence that surfaces choices on time, escalation rules that preserve speed, and culture loops that turn mission into repeated behavior. Informality worked when the founder was the system. A going concern needs a system that still works when she is not in the hallway.",
+    "deepRead": "A clinic founder gets eight staffing texts before 9 a.m. None is foolish. Each site lead is trying to protect patients, nurses, and wait times. The problem is that all of them still believe the founder is the staffing process.\n\nCoordination debt grows when old access patterns survive new scale. Early informality feels fast because the founder can see enough of the whole company to resolve conflict personally. Later, the same path creates politics. People learn which door to knock on, which exception language works, and which decision can be reopened by finding the founder at the right moment. The company has not stayed agile. It has hidden a weak operating system inside relationships.\n\nA queue is not a culture.\n\nUseful process starts from the mission and the decision. If patient wait time and nurse retention matter, staffing needs a site-capacity cadence, named owners, and an exception threshold. If crop-season outages cost farmers survey windows, support needs a severity ladder tied to crop windows. If scholarship access defines the nonprofit, regional directors need behavior reviews and grant ties, not only a mission banner. Process earns its place when it turns values into decisions people can repeat without private lobbying.\n\nThe limit is that architecture can become decoration. An org chart, meeting, or escalation path that does not change behavior only adds vocabulary. The test is whether decisions move to the right owner at the right time with fewer secret exceptions.",
+    "fullRead": "At a small company, the founder's judgment can cover a surprising amount of missing structure. She knows which customer is fragile, which manager is overwhelmed, which promise matters most, and which exception is worth granting. People call that culture because it feels personal and alive. Then the company grows, and the same culture starts depending on access to one nervous system.\n\nThe going concern problem is not bigness by itself. It is the moment when the organization must keep making mission-consistent decisions after the founder, first engineer, or original executive is no longer close enough to every tradeoff. Scaling exposes which decisions were never designed. Staffing, support severity, product acceptance, grant allocation, sponsor review, pickup promises, executive authority: each one needs a place to live.\n\nWhere does a decision go when the person who used to know everything is in another meeting?\n\nThat question is more useful than asking whether the company needs more process. Process is only good when it moves a decision to the right place. A cadence should reveal the decision before the deadline bites. An owner should have authority, not just responsibility for explaining why nothing moved. An exception rule should protect rare judgment without turning influence into the real workflow. An escalation path should make urgency visible without rewarding whoever shouts first.\n\nExecutive fit changes too. The early engineer who saved the first customers may still be brilliant and still be wrong for the current role. The question is not loyalty versus betrayal. The question is stage fit. Does the role now require building managers, acceptance checklists, escalation paths, and predictable delivery across teams? If the answer is yes, reputation from the early stage cannot be the whole evaluation. The company should redesign the role, add support, or move authority to match the stage it is actually in.\n\nCulture also changes from story to loop. A mission poster can remind people what the organization claims to value, but it cannot enforce a scholarship decision, service priority, safety standard, or customer promise. Behavior loops do that. Review these two behaviors monthly. Tie grants to them. Ask which outage escalates first. Mark one owner for pickup promise changes. Put sponsor commitments through a review gate. The loop tells people what the mission means when choices collide.\n\nYou do not need to make the company colder to make it larger. You need to remove the hidden dependency on personal access. Good architecture lets people make the same kind of judgment without begging for a private audience. It preserves speed by making common decisions easier and rare exceptions visible.\n\nPoor process has a smell. It creates meetings that collect updates but do not move decisions. It creates owners who cannot say no. It creates dashboards nobody uses until blame is needed. It creates escalation channels that every team can bypass by finding the old hero. When that happens, the answer is not to reject architecture. It is to redesign it around the actual decision that keeps failing.\n\nA company becomes a going concern when its mission can survive distance from its founders. Ownership, cadence, escalation, and culture loops are how distance stops becoming drift."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-beth-site-cadence",
+      "title": "Beth Moves Staffing Out of the Hallway",
+      "tags": ["clinics", "ownership", "cadence"],
+      "planSpec": {
+        "domain": "chain of urgent-care clinics expanding from three sites to twelve",
+        "audience": "a founder whose site leads keep escalating staffing decisions directly to her",
+        "stakes": "patient wait times and nurse turnover rise because ownership is unclear",
+        "format": "decision_point",
+        "requiredBeat": "the founder moves staffing authority from hallway escalation to a weekly site-capacity cadence with named owners and an exception threshold"
+      },
+      "scenario": "Which staffing decision should still need Beth when twelve clinic schedules are spread across a conference table with sticky flags? Site leads keep texting her directly, patient wait times are rising, and nurses are quitting after surprise swaps. Beth must decide whether to keep being the hallway court of appeal or move staffing authority to a weekly site-capacity cadence with named owners and an exception threshold.",
+      "whatToDo": "Move routine staffing into a site-capacity cadence, name owners by site, and define the exception threshold that still reaches the founder.",
+      "whyItMatters": "Founder access once sped decisions. At twelve sites it creates a queue, uneven exceptions, and unclear accountability for wait times and turnover."
+    },
+    {
+      "exampleId": "ch07-ex02-henrik-stage-fit",
+      "title": "Henrik Redesigns the Hero Role",
+      "tags": ["robotics", "executive fit", "escalation"],
+      "planSpec": {
+        "domain": "robotics warehouse integrator adding enterprise customers",
+        "audience": "a COO whose best early engineer is failing as a multi-team executive",
+        "stakes": "installation teams wait for heroic fixes instead of predictable escalation",
+        "format": "postmortem",
+        "requiredBeat": "the COO compares the engineer's early-stage strengths with current enterprise bottlenecks, then redesigns the role instead of honoring reputation"
+      },
+      "scenario": "The stalled robot arm clicks every six seconds beside an enterprise acceptance checklist. In the postmortem, Henrik can see why the early engineer became legendary: she fixed impossible pilots. He can also see installation teams waiting for heroic fixes because no escalation path exists. Henrik compares her early-stage strengths with current bottlenecks and chooses a stage-fit role redesign instead of honoring reputation alone.",
+      "whatToDo": "Name what the engineer still does uniquely well, separate it from the current executive bottleneck, and redesign the role around enterprise escalation and acceptance ownership.",
+      "whyItMatters": "Reputation from the pilot stage can hide a scale problem. Enterprise customers need predictable escalation, not a company waiting for one hero."
+    },
+    {
+      "exampleId": "ch07-ex03-laura-catch-cadence",
+      "title": "Laura Names the Pickup Owner",
+      "tags": ["seafood", "coordination", "cadence"],
+      "planSpec": {
+        "domain": "regional seafood processor coordinating boats, plant, and distributors",
+        "audience": "a general manager whose informal dock conversations no longer align the plant",
+        "stakes": "fresh product spoils when catch timing and distributor pickups conflict",
+        "format": "scene",
+        "requiredBeat": "the manager replaces dockside favors with a daily catch-to-dispatch meeting and marks one person accountable for changing pickup promises"
+      },
+      "scenario": "A crate of unsold scallops sweats beside a pickup manifest while Laura watches the plant manager and dock lead trade blame. Her old dockside favors no longer align boats, plant capacity, and distributor pickups. Before the afternoon catch lands, she has to decide whether to keep negotiating one promise at a time or start a daily catch-to-dispatch cadence with one accountable owner for pickup changes.",
+      "whatToDo": "Create the daily cadence, put catch timing and pickup promises in the same room, and name one owner who can change distributor commitments.",
+      "whyItMatters": "Fresh product spoils in the gap between informal conversations. A cadence turns scattered favors into visible coordination around the mission: sell product while it is good."
+    },
+    {
+      "exampleId": "ch07-ex04-antoine-behavior-review",
+      "title": "Antoine Reviews the Scholarship Behaviors",
+      "tags": ["nonprofit", "culture loops", "grants"],
+      "planSpec": {
+        "domain": "national youth soccer nonprofit adding regional directors",
+        "audience": "an executive director seeing local chapters interpret values differently",
+        "stakes": "scholarship access varies by region while the mission statement stays unchanged",
+        "format": "before_after",
+        "requiredBeat": "the director chooses two behaviors to review monthly, ties grants to those behaviors, and stops treating the mission poster as culture enforcement"
+      },
+      "scenario": "\"We all believe in access,\" a regional director says while Antoine sets a scholarship approval folder beside a rolled-up mission banner. Before, he answered values questions with the banner. After three regions applied different rules, he chose two behaviors to review monthly, tied grants to those behaviors, and stopped pretending the poster could enforce culture across regional directors.",
+      "whatToDo": "Translate access into two reviewable behaviors, tie grants to those behaviors, and make regional directors show the loop monthly.",
+      "whyItMatters": "Culture travels through repeated behavior, not slogans. Scholarship access varies until the mission is connected to funding and review."
+    },
+    {
+      "exampleId": "ch07-ex05-sophie-severity-ladder",
+      "title": "Sophie Builds the Crop-Window Ladder",
+      "tags": ["agriculture", "support", "escalation"],
+      "planSpec": {
+        "domain": "precision agriculture drone company moving from pilots to support contracts",
+        "audience": "a CEO whose customer-success team lacks escalation rules for crop-season outages",
+        "stakes": "farmers lose survey windows when support improvises priorities",
+        "format": "dialogue",
+        "requiredBeat": "the CEO asks which outage gets escalated first, hears three answers, and creates a severity ladder tied to crop windows"
+      },
+      "scenario": "It took Sophie, the support director, one missed soybean survey window to learn that support contracts were different from pilots. A drone case lies open beside a crop-stage calendar when she asks the customer-success team, \"Which outage escalates first?\" She hears three answers. Before the next storm front, Sophie must decide whether to keep improvising or create a severity ladder tied to crop windows.",
+      "whatToDo": "Ask the team to rank outages, expose the conflicting rules, and build a severity ladder that escalates by crop window and customer impact.",
+      "whyItMatters": "Support at scale cannot depend on who sounds urgent. Farmers lose narrow survey windows when escalation rules are private or improvised."
+    },
+    {
+      "exampleId": "ch07-ex06-yusuf-sponsor-gate",
+      "title": "Yusuf Converts the Review Habit",
+      "tags": ["research", "contract lab", "review"],
+      "planSpec": {
+        "domain": "university research center turning into a contract lab",
+        "audience": "a lab director whose academic norms clash with delivery commitments",
+        "stakes": "sponsor deadlines require different review loops than grant-driven research",
+        "format": "reflection",
+        "requiredBeat": "the director identifies one inherited academic habit that now creates decision latency and converts it into a sponsor-review gate"
+      },
+      "scenario": "You can see the sponsor milestone chart pinned over an old grant-review calendar in Yusuf's office. The lab director's inherited habit is generous review: everyone gets another week to refine the memo. In a contract lab, that creates decision latency and missed sponsor deadlines. Yusuf has to decide which academic norm to preserve and which one to convert into a sponsor-review gate.",
+      "whatToDo": "Name the inherited habit, keep the scientific review that protects quality, and convert open-ended consensus into a sponsor-review gate with a deadline.",
+      "whyItMatters": "The lab's mission has changed from grant exploration alone to delivery commitments. Review loops must change before old norms become sponsor drift."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch07-q01",
+        "prompt": "A founder of twelve clinics still approves staffing swaps through texts. Patient wait times vary by site, and nurse turnover is rising. Which move best addresses the scaling problem?",
+        "choices": [
+          "Keep the texts because personal access preserves the original culture.",
+          "Create a site-capacity cadence with named owners and an exception threshold for founder escalation.",
+          "Hire more nurses before changing who owns staffing decisions."
+        ],
+        "correctIndex": 1,
+        "explanation": "The issue is coordination debt, not only staffing volume. A cadence, owners, and exception rule move routine decisions out of founder access.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q02",
+        "prompt": "A company's best early engineer saved pilot customers but now blocks enterprise delivery because every escalation waits for her. What should the COO evaluate?",
+        "choices": [
+          "Whether early-stage strengths still fit the current role's need for managers, escalation paths, and predictable acceptance.",
+          "Whether employees are grateful enough for the engineer's history.",
+          "Whether enterprise customers can be taught to accept slower heroic fixes."
+        ],
+        "correctIndex": 0,
+        "explanation": "Executive fit changes by stage. The COO should respect the history while testing whether the current role needs different architecture.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q03",
+        "prompt": "A nonprofit's regions all display the same mission statement, but scholarship access varies widely. Which action programs culture instead of reciting it?",
+        "choices": [
+          "Send a stronger values memo to every regional director.",
+          "Ask each region to explain its local interpretation in a staff meeting.",
+          "Choose reviewable access behaviors, tie grants to them, and inspect those behaviors monthly."
+        ],
+        "correctIndex": 2,
+        "explanation": "Culture changes through loops that connect behavior to resources and review. A memo or discussion can name values without changing decisions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q04",
+        "prompt": "A seafood processor keeps losing fresh product because boats, plant capacity, and distributor pickups are coordinated through favors at the dock. What is the strongest process test?",
+        "choices": [
+          "Does a daily catch-to-dispatch meeting put the timing conflict in one room with one owner for pickup promises?",
+          "Does the process make the company look more professional to distributors?",
+          "Does the general manager still personally approve every exception?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The test is whether the process moves the recurring decision to the right owner and cadence. Appearance and personal approval keep the old dependency alive.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q05",
+        "prompt": "A support team for farm drones gives three different answers about which outage escalates first during crop season. What does this reveal?",
+        "choices": [
+          "The team lacks a mission-linked escalation rule tied to crop windows.",
+          "The customers are too demanding for a support organization.",
+          "The CEO needs to personally choose every urgent ticket."
+        ],
+        "correctIndex": 0,
+        "explanation": "Conflicting answers show the escalation path is not designed. A severity ladder tied to crop windows lets support act without private lobbying.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q06",
+        "prompt": "A research center becomes a contract lab but still uses open-ended academic review for sponsor deliverables. Deadlines slip. Which move fits the core idea?",
+        "choices": [
+          "Keep the old review norm because changing it would betray academic culture.",
+          "Remove peer review entirely so delivery becomes faster.",
+          "Identify which review habit creates latency and convert it into a sponsor-review gate with a deadline."
+        ],
+        "correctIndex": 2,
+        "explanation": "The move preserves the principle of quality while changing the loop that no longer fits. Removing review or freezing old norms both miss the stage change.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q07",
+        "prompt": "A growing company adds a weekly meeting, but decisions still get reopened by whoever catches the founder after lunch. What is wrong with the meeting?",
+        "choices": [
+          "It is not real architecture because ownership and exception rules still live in personal access.",
+          "Weekly cadence is always too slow for a growing company.",
+          "The founder should attend more meetings so fewer hallway conversations are needed."
+        ],
+        "correctIndex": 0,
+        "explanation": "A meeting that does not move authority only adds vocabulary. The real workflow is still the founder's hallway exception path.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q08",
+        "prompt": "A CEO says, 'We need process now that we are bigger,' after three departments reopen the same customer-priority decision through private conversations. Which response best prevents process theater?",
+        "choices": [
+          "Start with an org chart and assign every box a meeting.",
+          "Ask which recurring decision is failing, who should own it, what cadence exposes it, and what exception rule protects judgment.",
+          "Avoid process because informal culture is always faster."
+        ],
+        "correctIndex": 1,
+        "explanation": "The response designs around a failing decision. Org charts and blanket informality both skip the actual coordination problem.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q09",
+        "prompt": "A regional director keeps bypassing grant rules by calling the executive director directly. Other regions follow written rules and lose funding. What needs fixing?",
+        "choices": [
+          "The grant rules should be removed so every region can negotiate equally.",
+          "The executive director should take more calls to preserve local nuance.",
+          "The exception path should be explicit, owned, and reviewed so influence does not become the real process."
+        ],
+        "correctIndex": 2,
+        "explanation": "Unwritten exceptions create politics. Explicit ownership and review preserve judgment while preventing personal access from overriding the culture loop.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch07-card01",
+      "front": "A recurring escalation still depends on catching the founder. What should you design?",
+      "back": "Design the owner, cadence, and exception rule. The goal is to move routine decisions into the organization without killing rare judgment.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch07-card02",
+      "front": "A process exists, but people still reopen decisions through personal access. What does that reveal?",
+      "back": "The formal process is not the real workflow. Ownership and exception authority still live in relationships, so coordination debt remains.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-card03",
+      "front": "An early hero struggles as the company scales. What question matters?",
+      "back": "Ask whether the current stage needs the same strengths or a different role design: manager building, escalation paths, cadence, and predictable delivery.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-card04",
+      "front": "A mission statement is clear, but local behavior varies. What programs culture?",
+      "back": "Behavior loops program culture: reviewable actions, resource ties, escalation rules, and repeated checks that translate mission into decisions.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch07-card05",
+      "front": "A meeting adds updates but decisions still stall. What should you inspect?",
+      "back": "Inspect whether the cadence exposes decisions before deadlines and whether the owner has authority to decide. Updates alone are not architecture.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice designing around recurring decisions, not around abstract size. For each escalation, define the owner, cadence, exception threshold, and behavior loop that keeps the mission visible.",
+    "ifThenPlans": [
+      {
+        "context": "Founder bottleneck",
+        "plan": "If the same decision comes to you repeatedly, then move it to a named owner and cadence with an exception threshold."
+      },
+      {
+        "context": "Executive fit",
+        "plan": "If an early hero slows scale, then compare their strengths with the current role and redesign authority before reputation becomes a bottleneck."
+      },
+      {
+        "context": "Culture drift",
+        "plan": "If teams interpret values differently, then choose two observable behaviors and tie review, funding, or promotion to them."
+      },
+      {
+        "context": "Escalation confusion",
+        "plan": "If teams answer urgency questions differently, then create a severity ladder tied to the mission-critical window or customer impact."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, pick one decision that still reaches you by personal access and write its owner, cadence, exception rule, and first review date.",
+    "weeklyPractice": "Once a week, audit one process and ask whether it moved a real decision or merely added a meeting around the old informal path."
+  },
+  "memorableLines": [
+    {
+      "text": "Coordination debt grows when old access patterns survive new scale.",
+      "location": "breakdown.deepRead",
+      "why": "It names why founder-dependent informality stops scaling."
+    },
+    {
+      "text": "Where does a decision go when the person who used to know everything is in another meeting?",
+      "location": "breakdown.fullRead",
+      "why": "It turns scaling into a concrete ownership test."
+    },
+    {
+      "text": "A company becomes a going concern when its mission can survive distance from its founders.",
+      "location": "breakdown.fullRead",
+      "why": "It connects the chapter's title to the operating architecture."
+    }
+  ]
+}

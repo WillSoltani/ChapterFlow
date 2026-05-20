@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch04",
+  "number": 4,
+  "title": "Superpower #1: Focus and Commit to Priorities",
+  "coreMove": "Make worthy alternatives lose so the surviving priorities can command time, resources, and buy-in.",
+  "sourcePressure": "The first superpower makes focus and commitment explicit: choose what matters most and win enough participation that chosen priorities govern action.",
+  "chapterSpecificMisunderstanding": "Do not make focus sound like personal minimalism or commitment like verbal agreement.",
+  "sourceAlignmentTerms": [
+    "focus",
+    "commitment",
+    "priorities",
+    "stakeholder buy-in",
+    "chosen priorities",
+    "narrowing attention"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "focus and commitment",
+      "detail": "The source frames focus and commitment as the first OKR superpower: choosing what matters most and earning stakeholder buy-in.",
+      "useIn": "both",
+      "phrasingHint": "Focus cuts the list; commitment makes the shortened list strong enough to change calendars and tradeoffs."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Superpower #1: Focus and Commit to Priorities as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "focus is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "time management hacks",
+      "vision statements",
+      "alignment mechanics"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "specialty coffee roaster capacity plan",
+      "audience": "operations team",
+      "stakes": "six good growth bets are crowding the same roasting week",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily removes two attractive wholesale tests from the calendar so the subscription-retention objective actually controls production",
+      "firstImage": "warm burlap sacks near the roaster",
+      "mustInclude": [
+        "green-bean sacks",
+        "roast schedule",
+        "subscription churn sheet"
+      ],
+      "mustAvoid": [
+        "kitchen-table prioritizing"
+      ]
+    },
+    {
+      "domain": "city parks summer-program planning",
+      "audience": "program directors",
+      "stakes": "every neighborhood proposal has a champion but staffing cannot cover all of them",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lukas makes the directors name which programs lose lead status and asks each stakeholder to accept the tradeoff on the staffing grid",
+      "firstImage": "laminated pool schedule",
+      "mustInclude": [
+        "staffing grid",
+        "pool keys",
+        "permit binder"
+      ],
+      "mustAvoid": [
+        "generic budget meeting"
+      ]
+    },
+    {
+      "domain": "medical-device design freeze",
+      "audience": "engineering leads",
+      "stakes": "feature requests keep returning after the priority list was supposedly settled",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chloe moves three features into an explicit later column and locks testing resources to the two safety-critical priorities",
+      "firstImage": "sterile test bench humming",
+      "mustInclude": [
+        "prototype tray",
+        "risk register",
+        "test fixture"
+      ],
+      "mustAvoid": [
+        "productivity minimalism"
+      ]
+    },
+    {
+      "domain": "film festival programming slate",
+      "audience": "festival directors",
+      "stakes": "too many excellent films are being treated as centerpieces",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Daniel shows how the slate changed once only three themes could lead and everyone saw what got demoted",
+      "firstImage": "folded seat maps",
+      "mustInclude": [
+        "screening grid",
+        "press badge list",
+        "program notes"
+      ],
+      "mustAvoid": [
+        "arts inspiration speech"
+      ]
+    },
+    {
+      "domain": "regional ambulance response project",
+      "audience": "paramedic supervisors",
+      "stakes": "buy-in is claimed but crews still protect old shift habits",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Marta compares the signed priority with the roster changes that never happened and forces commitment to show in coverage",
+      "firstImage": "fluorescent bay lights",
+      "mustInclude": [
+        "crew roster",
+        "response map",
+        "radio charger"
+      ],
+      "mustAvoid": [
+        "punishment framing"
+      ]
+    },
+    {
+      "domain": "open-source security release",
+      "audience": "maintainers",
+      "stakes": "contributors agree on urgency while still merging cosmetic work",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Yusuf asks what pull requests must lose so the security release can truly lead",
+      "firstImage": "terminal window with failing tests",
+      "mustInclude": [
+        "pull-request queue",
+        "release checklist",
+        "CVE note"
+      ],
+      "mustAvoid": [
+        "generic software sprint"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify real sacrifice behind focus",
+      "test buy-in through changed behavior",
+      "reject priority lists where nothing loses"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open one crowded priority list and mark the items that lose time or resources because the top priority is real.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

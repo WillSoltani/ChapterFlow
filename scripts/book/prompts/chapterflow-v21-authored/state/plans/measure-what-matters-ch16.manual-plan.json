@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch16",
+  "number": 16,
+  "title": "Ditching Annual Performance Reviews: The Adobe Story",
+  "coreMove": "Move the performance signal forward from delayed ritual to live support around the work.",
+  "sourcePressure": "Adobe is the named case for moving beyond annual performance reviews toward ongoing conversation, feedback, and recognition.",
+  "chapterSpecificMisunderstanding": "Do not invent Adobe policy mechanics, metrics, or leadership biography.",
+  "sourceAlignmentTerms": [
+    "Adobe",
+    "annual performance reviews",
+    "ongoing conversation",
+    "feedback",
+    "recognition",
+    "continuous management"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Adobe",
+      "detail": "The source stabilizes Adobe as the company case for moving beyond annual performance reviews toward ongoing conversation, feedback, and recognition.",
+      "useIn": "both",
+      "phrasingHint": "Adobe matters as a proof point because the old annual ritual loses its monopoly without lowering the standard for performance."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Ditching Annual Performance Reviews: The Adobe Story as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "Adobe is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "HR softness",
+      "one-off check-ins",
+      "Zume improvement loop"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "financial-services compliance team",
+      "audience": "managers",
+      "stakes": "the annual review ritual misses problems while work is still changing",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Sarah moves one serious performance discussion into the current project week with specific feedback and recognition",
+      "firstImage": "compliance binders stacked by a monitor",
+      "mustInclude": [
+        "review form",
+        "project tracker",
+        "feedback note"
+      ],
+      "mustAvoid": [
+        "invented Adobe policy"
+      ]
+    },
+    {
+      "domain": "architecture internship program",
+      "audience": "firm mentors",
+      "stakes": "interns learn too late what quality standard they missed",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Antoine replaces the year-end surprise with recurring portfolio conversations tied to live drawings",
+      "firstImage": "trace paper over a model",
+      "mustInclude": [
+        "portfolio folder",
+        "redline sheet",
+        "mentor calendar"
+      ],
+      "mustAvoid": [
+        "generic HR softness"
+      ]
+    },
+    {
+      "domain": "hospital revenue-cycle backlog",
+      "audience": "billing supervisors",
+      "stakes": "staff get rated annually while claim errors repeat monthly",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Jonas builds earlier coaching around the live claim queue and removes the surprise from review season",
+      "firstImage": "printer warming beside claim forms",
+      "mustInclude": [
+        "claim queue",
+        "coaching note",
+        "denial list"
+      ],
+      "mustAvoid": [
+        "hospital doctor scene"
+      ]
+    },
+    {
+      "domain": "university career-services redesign",
+      "audience": "staff managers",
+      "stakes": "a final evaluation cannot fix missed student appointments from months ago",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace shifts the discussion to monthly service conversations and recognition for repaired bottlenecks",
+      "firstImage": "rows of empty interview rooms",
+      "mustInclude": [
+        "appointment report",
+        "student survey",
+        "recognition note"
+      ],
+      "mustAvoid": [
+        "classroom shell"
+      ]
+    },
+    {
+      "domain": "manufacturing apprentice assessment",
+      "audience": "shop-floor supervisors",
+      "stakes": "apprentices need correction on the machine before the yearly score lands",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sofia Mendes shows how earlier feedback on one setup step changed the next shift",
+      "firstImage": "metal shavings in a tray",
+      "mustInclude": [
+        "setup gauge",
+        "shift log",
+        "feedback card"
+      ],
+      "mustAvoid": [
+        "punishment story"
+      ]
+    },
+    {
+      "domain": "public-radio newsroom editing cadence",
+      "audience": "editors and reporters",
+      "stakes": "annual performance notes cannot improve stories that already aired",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lin Chen asks which editing conversation should happen before the piece goes live, not after the review cycle",
+      "firstImage": "waveform open on a laptop",
+      "mustInclude": [
+        "audio waveform",
+        "edit memo",
+        "broadcast schedule"
+      ],
+      "mustAvoid": [
+        "newspaper crisis repeat"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "move performance signals earlier",
+      "separate continuous management from HR theater",
+      "identify delayed-review failure modes"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Move one performance conversation from a later review date into the current work cycle while change is still possible.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

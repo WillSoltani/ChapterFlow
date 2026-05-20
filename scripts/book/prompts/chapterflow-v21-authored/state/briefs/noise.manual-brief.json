@@ -1,0 +1,89 @@
+{
+  "bookId": "noise",
+  "title": "Noise: A Flaw in Human Judgment",
+  "author": "Daniel Kahneman, Olivier Sibony, Cass R. Sunstein",
+  "thesisParagraph": "Noise is the hidden flaw in human judgment: not the bias that pushes decisions in one direction, but the variability that scatters identical cases in every direction. Two doctors examining the same patient, two judges hearing the same case, two underwriters pricing the same risk will often land far apart — not because one is prejudiced but because judgment itself is an unreliable instrument. The authors demonstrate this with a concrete opening case: an insurance company tested 48 underwriters on the same set of cases and found roughly 55 percent variability where it expected around 10 percent. Most institutions tolerate this scatter at enormous cost, mistaking noise for acceptable discretion. The book argues that diagnosing and reducing noise requires a distinct toolkit: noise audits that make variability visible, sequencing discipline that protects early judgment from contamination, aggregation of independent assessments rather than group convergence, structured scales anchored in behaviorally specific descriptions, and a frank reckoning with the tradeoffs that any serious noise-reduction program creates.",
+  "coreIdeas": [
+    {
+      "name": "Noise vs. Bias",
+      "oneSentence": "Noise is variability in judgment across matched cases; bias is the average lean of those judgments — they are different problems that require different fixes.",
+      "mentalMove": "The reader learns to distinguish whether a judgment system is systematically wrong (bias) or inconsistently wrong (noise), because the remedies for each look completely different.",
+      "sourceAnchors": ["ch01.source", "ch25.source"]
+    },
+    {
+      "name": "The Mind as Measuring Instrument",
+      "oneSentence": "A judge's reliability matters as much as the facts of the case, because an unreliable instrument produces spread even when each judge believes they are acting rationally.",
+      "mentalMove": "The reader learns to treat their own judgment as a tool that needs calibration, not merely a vehicle for good intentions.",
+      "sourceAnchors": ["ch05.source", "ch07.source"]
+    },
+    {
+      "name": "Noise Audit",
+      "oneSentence": "Measuring the spread of judgments across matched cases is the necessary first step before any reduction strategy is credible.",
+      "mentalMove": "The reader learns to run or interpret a comparison exercise rather than trusting institutional averages or individual reputations.",
+      "sourceAnchors": ["ch01.source", "ch37.source"]
+    },
+    {
+      "name": "Decision Hygiene",
+      "oneSentence": "Process discipline — sequencing information correctly, aggregating independently, anchoring scales — reduces noise without requiring people to become better thinkers.",
+      "mentalMove": "The reader learns to fix the pipeline rather than the people, targeting the conditions under which judgment is formed.",
+      "sourceAnchors": ["ch11.source", "ch12.source", "ch30.source"]
+    },
+    {
+      "name": "Aggregation over Convergence",
+      "oneSentence": "Combining multiple independent judgments beats letting a group discuss until it agrees on one number, because discussion replaces independent information with social influence.",
+      "mentalMove": "The reader learns to gather individual assessments before any group meeting and aggregate them rather than letting discussion collapse the distribution.",
+      "sourceAnchors": ["ch13.source", "ch18.source"]
+    },
+    {
+      "name": "The Tradeoffs of Noise Reduction",
+      "oneSentence": "Every serious noise-reduction measure — rules, guidelines, algorithms — costs something in flexibility, dignity, or the capacity to serve unusual cases well.",
+      "mentalMove": "The reader learns to weigh the gains in consistency against the costs in discretion, rather than treating noise reduction as a cost-free good.",
+      "sourceAnchors": ["ch31.source", "ch32.source", "ch33.source", "ch34.source"]
+    }
+  ],
+  "targetReader": "Professionals who make or influence high-stakes assessments — hiring managers, clinicians, judges, underwriters, analysts, executives, policy designers — and who assume their expertise makes their judgment reliable without realizing that reliability requires measurement.",
+  "voiceCharter": {
+    "register": "plainspoken-precise",
+    "person": "second",
+    "cadence": "medium-short",
+    "signatureMoves": [
+      "open on a concrete institutional moment before naming the principle",
+      "use a sharp comparison between two matched cases to expose the scatter",
+      "state distinctions cleanly: this is X, not Y, and here is what that difference costs",
+      "let the numbers speak: quantities and proportions rather than adjectives like 'large' or 'significant'",
+      "close a section with one sentence that reframes what the reader thought they already understood"
+    ],
+    "avoidMoves": [
+      "no chapter, book, or author meta-references in prose",
+      "no em dashes",
+      "no reusable hook, counter, or tryThisNow stems across chapters",
+      "no coaching language (try to, it is important to, keep in mind)",
+      "no passive constructions that hide the judging human (decisions were made, variability was found)"
+    ]
+  },
+  "voiceSpecimens": [
+    "Two underwriters pricing the same policy should not land forty points apart. They did.",
+    "Your judgment on Tuesday is not the same instrument as your judgment on Friday afternoon. The case has not changed. You have.",
+    "Bias is a lean. Noise is a scatter. A team that leans together can still scatter individually, and no amount of diversity training fixes a scatter.",
+    "The measure of a good judgment system is not whether one expert gets it right. It is whether any expert gets the same answer twice.",
+    "Replacing a noisy judge with a consistent rule feels like a loss of human touch. The math suggests it is often a gain in human fairness.",
+    "You cannot correct for noise by subtracting the average. You can only correct for it by reducing the spread.",
+    "Agreement in a group is not accuracy in a group. It is frequently the quieter voice conceding to the louder one."
+  ],
+  "voiceAntiSpecimens": [
+    "This section explores how noise and bias are important concepts that affect decision-making in many areas of life.",
+    "When we think about the issue of noise, we can see that it's really quite surprising how much it affects us all.",
+    "The authors want us to take away a powerful insight: our judgment isn't always as reliable as we might hope.",
+    "By embracing the ideas in this book, we can transform the way we approach important decisions.",
+    "It's worth reflecting on how noise shows up in your own life and what you might do about it."
+  ],
+  "teachingArc": "The book moves through five distinct stages. Chapters 1 through 4 reveal the problem: noise exists, it is costly, and it hides inside institutions that focus on bias and miss the scatter. Chapters 5 through 8 explain the mechanism: the judging mind is an unreliable instrument whose reliability must be measured, not assumed. Chapters 9 through 16 prescribe process remedies for specific institutional domains — improvement principles, better calibration of judges, decision hygiene, information sequencing, forecast aggregation, clinical guidelines, rating scale design, and hiring structure. Chapters 17 through 29 deepen the diagnosis: occasion noise, group amplification, predictive judgment, the contrast with models, the allure of noiseless rules, objective ignorance, the difficulty of normal-range cases, and the full mechanism landscape including heuristics, matching, scales, and stable personal patterns. Chapters 30 through 36 confront the philosophy of reduction: the mediating assessments protocol, optimal rather than zero noise, the real costs of standardization, dignity, the rules-versus-standards tradeoff, and what serious institutional commitment to noise reduction actually requires. Chapters 37 through 39 hand the reader practitioner tools: how to run a noise audit, how to observe live judgment with a structured checklist, and how to correct a single-point prediction using base rates.",
+  "forbiddenMoves": [
+    "opening a chapter with an abstract definition of noise before anchoring in a concrete institutional moment",
+    "treating bias and noise as the same problem or using the words interchangeably",
+    "implying that noise can be fully eliminated rather than meaningfully reduced",
+    "equating less noise with better judgment in all contexts without acknowledging tradeoffs",
+    "using individual moral failure as the explanation for noise rather than systemic process conditions",
+    "framing disagreement between experts as one expert being right and one being wrong, rather than both being noisy"
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "chapterId": "noise-ch24",
+  "number": 24,
+  "title": "How Noise Happens",
+  "readingTimeMinutes": 12,
+  "hook": "Calibrating judges to the same average level removes one noise component. The other two keep running.",
+  "counterintuition": "Three sources of noise in any judgment, systematic between-judge severity differences, stable idiosyncratic patterns on specific case types, and day-to-day within-judge variation, operate simultaneously in every assessment. Removing any single source leaves the others producing spread at full strength. A reform that addresses only the most visible component is not a partial solution. It is a near-miss.",
+  "tryThisNow": "For a recent judgment, note: your alertness level at the time, your typical lean on this specific case type, and your general strictness relative to colleagues. Variation in any of these is noise operating.",
+  "keyTakeaway": "Level noise, pattern noise, and occasion noise operate simultaneously. Addressing only the most visible component leaves the others producing spread at full strength. All three require distinct interventions.",
+  "breakdown": {
+    "fastRead": "When two judges produce different outcomes on the same case, the disagreement probably has three simultaneous sources: a stable severity difference between them overall (level noise), a divergent pattern on this specific case type (pattern noise), and within-each-judge variation since they last assessed an equivalent case (occasion noise).\n\nA reform that eliminates one component leaves the other two running. Calibrate judges to the same average severity, and pattern noise continues generating case-type-specific spread. Standardize the case type, and within-judge temporal variation persists. Each component requires a distinct measurement and a distinct intervention. Fixing one is not a partial fix. It is addressing a minority while reporting success.",
+    "deepRead": "Consider a disagreement between two sentencing judges on a mid-range offense. Part of the disagreement comes from a difference in their baseline severity levels: Judge A gives longer sentences on average than Judge B across all case types. Part comes from a stable case-type pattern: Judge A weighs criminal history indicators more heavily than Judge B for this specific offense class; their divergence is not general but concentrated in this pattern. And part comes from occasion variation: Judge A is handling this case mid-session after eleven prior decisions; Judge B handled it first of the day. Three distinct sources, all operating in the same disagreement at the same moment.\n\nYou can calibrate every judge to the same average severity level and still have noise, because their patterns on specific case types diverge. You can then address those patterns and still have noise, because occasion variation within each judge persists. The three components are not alternatives. They are layers.\n\nEmpirical studies of noise in judicial sentencing, clinical diagnosis, and performance appraisal consistently find that all three components contribute measurably to total spread, and that removing any single component leaves the others operating at full strength. The practical implication is that a noise reduction strategy must decompose the spread into its components before prescribing any remedy, because the appropriate interventions differ: level noise responds to aggregate calibration; pattern noise responds to case-type-specific calibration training; occasion noise responds to structural changes to when and under what conditions judgments are made.\n\nEliminating the component you can measure most easily is not the same as eliminating the noise.\n\nThe most common failure in noise reduction programs is addressing the most salient component, usually level noise because average severity differences are the most directly visible, and reporting the improvement as resolution. The remaining pattern and occasion components continue producing spread, but they are now less likely to be investigated because the program was declared successful.",
+    "fullRead": "The classification committee room had a three-panel chart on the projector. Albrecht walked through each panel. Level noise: Officer A's average security tier rating was 0.6 points higher than Officer B's across all case types on a 5-point scale. Pattern noise: the two officers diverged by 0.4 points specifically on cases involving gang affiliation, but agreed closely on cases with no affiliation. Occasion noise: each officer's ratings on equivalent cases varied by 0.3 points depending on where the case fell in their weekly batch. Total spread: the compound of all three. The committee had planned to address the level difference. Albrecht showed them that doing so would leave 0.7 points of spread untouched.\n\nEach component is a distinct source requiring a distinct intervention. Level differences respond to aggregate calibration: if Officer A is always higher, you can identify and adjust for that offset. Pattern differences require case-type-specific calibration: the gang-affiliation divergence requires the two officers to calibrate specifically on those cases, not on cases where they already agree. Occasion variation requires structural change: batch-sequencing controls, mandatory breaks, or re-evaluation protocols for cases at high-depletion points in the session.\n\n\"Rater A is systematically 5 percentage points higher than Rater B across all case types,\" Lorraine said, reviewing the inter-rater data at the audit session. \"But that's not where the case-specific disagreement comes from.\" She put up the second panel: for musculoskeletal cases, Rater A was 8 points higher than Rater B. For neurological cases, nearly identical. \"Pattern noise accounts for more of the spread in musculoskeletal claims than level noise does. If you calibrate only leniency levels, you fix the smallest component.\" The third panel: within-rater variation when the same case was reassessed three weeks later was 4 points for both raters. \"Occasion noise is also there. All three, every case.\"\n\nGenevieve's research team had analyzed 300 matched employee-manager pairs. Managers' average rating generosity varied by 0.6 points on a 5-point scale (level noise), their idiosyncratic tendencies on technical versus relational performance produced 0.3 points of spread (pattern noise), and their ratings of the same employee varied by 0.25 points between mid-year and year-end when verifiable performance had not changed (occasion noise). A level-only calibration would address 0.6 points of the total spread. It would leave 0.55 points untouched.\n\nThe three-component structure does not vary by domain. It varies by which component is most visible in that domain. In judicial sentencing, level noise is most visible because average judge severity differences are easy to tabulate. In medical necessity review, pattern noise is most visible because procedure-type disagreements surface directly in denial rates. In performance appraisal, occasion noise is most visible because mid-year-to-year-end rating shifts are straightforwardly measurable. The component you can see most easily is not the component that dominates. Every domain has all three.\n\nIf three inspectors rate the same 30 buildings independently, how much of the observed spread is attributable to each component? The audit data answers: 40 percent level, 35 percent pattern, 25 percent occasion. A level-only calibration reform would leave 60 percent of total spread unaddressed. Pattern noise, driven by domain-specific inspector tendencies on electrical versus structural deficiencies, is actually larger than occasion noise in this context. The reform targeting the component everyone could name would miss the component that was doing more work.\n\nYou are reviewing the medical necessity inter-reviewer analysis. Level noise accounts for 30 percent of spread: some reviewers deny at higher rates for all procedure categories. Pattern noise accounts for 45 percent: reviewers disagree most on the specific procedure categories where evidence standards are genuinely ambiguous. Occasion noise accounts for 25 percent: the same reviewer reaches different decisions on the same case presented two months apart with no new clinical information. The largest noise source is pattern noise concentrated in clinically complex categories. The most common proposed remedy is training reviewers on overall denial-rate consistency. That addresses the smallest component.\n\nAt the panel training, Celestine projected a dot plot of 12 panelists' severity ratings across 20 anonymized cases. Color-coded by panelist, the collaborative-work cases showed the widest spread; the solo-plagiarism cases showed the tightest. The variance decomposition: 38 percent level (three panelists consistently recommended the most severe outcomes; two consistently the mildest), 42 percent pattern (concentrated in the collaborative-work category), 20 percent occasion (panelists shifted 0.4 severity points when re-evaluating the same cases six weeks later). Pattern noise, the disagreement over how to handle shared authorship cases, accounted for the most spread. The training program had been spending most of its time on severity calibration exercises using clear-cut plagiarism cases. Those exercises addressed 38 percent of the problem while leaving 62 percent in place.\n\nThe appropriate intervention for each component is different precisely because each component has a different source. Aggregate calibration does not address idiosyncratic case-type patterns. Case-type pattern training does not address temporal variation in each judge's alertness and decision state. And no training intervention addresses the structural conditions, batch sequencing, case load, and session timing, that produce occasion noise. A noise reduction program that does not decompose the spread first will prescribe the wrong intervention for most of the problem."
+  },
+  "memorableLines": [
+    {
+      "text": "Fixing one is not a partial fix. It is addressing a minority while reporting success.",
+      "location": "breakdown.fastRead",
+      "why": "Strips the false comfort from single-component interventions by naming both what they are (a minority fix) and the error they enable (reporting success on incomplete work)."
+    },
+    {
+      "text": "Eliminating the component you can measure most easily is not the same as eliminating the noise.",
+      "location": "breakdown.deepRead",
+      "why": "Names the specific error that makes noise reduction programs fail: measuring success against the most visible component while leaving the others to run."
+    },
+    {
+      "text": "The three-component structure does not vary by domain. It varies by which component is most visible in that domain.",
+      "location": "breakdown.fullRead",
+      "why": "Reframes domain-specific disagreement patterns not as unique features of each field but as variations in which component is easiest to see, unifying the examples without flattening them."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "noise-ch24-ex01",
+      "title": "0.6, 0.4, 0.3",
+      "tags": ["security classification", "variance decomposition", "three noise components", "compound reform"],
+      "planSpec": {
+        "domain": "prison security classification: a corrections department researcher decomposing inter-officer agreement rates in inmate security tier assignment",
+        "audience": "a corrections department research director mapping noise sources in security classification decisions across a state prison system",
+        "stakes": "inmate safety and rehabilitation access — a tier assigned too high restricts program eligibility; too low creates documented safety risk",
+        "format": "scene",
+        "requiredBeat": "level 0.6 points, pattern 0.4 points on gang-affiliation cases, occasion 0.3 points by batch position; total spread is the compound of all three; addressing any single component leaves the other two intact"
+      },
+      "scenario": "The classification committee room had a three-panel chart on the projector. Albrecht walked through each panel. Level noise: Officer A's average security tier rating was 0.6 points higher than Officer B's across all case types. Pattern noise: the two officers diverged by 0.4 points specifically on cases involving gang affiliation, but agreed closely on cases with no affiliation. Occasion noise: each officer's ratings on equivalent cases varied by 0.3 points depending on where the case fell in their weekly batch. The committee had planned to address the level difference. Albrecht showed them that doing so would leave 0.7 points of spread untouched.",
+      "whatToDo": "Design a noise reduction program targeting all three components: aggregate calibration for the level difference, gang-affiliation-specific calibration training for the pattern divergence, and batch-sequencing controls for the occasion variation; report improvement in total spread, not improvement in any single component.",
+      "whyItMatters": "A security tier assigned too high restricts a person's rehabilitation program access for the duration of a classification period; a compound noise source requires a compound remedy if the assignment is to reflect case facts rather than officer-specific noise at the moment of review."
+    },
+    {
+      "exampleId": "noise-ch24-ex02",
+      "title": "5, 8, 4",
+      "tags": ["disability rating", "inter-rater variance", "musculoskeletal pattern", "workers compensation"],
+      "planSpec": {
+        "domain": "workers compensation disability rating: a state authority comparing two raters' disability percentage assessments across a matched case sample",
+        "audience": "a workers compensation medical director auditing inter-rater reliability in permanent disability determination",
+        "stakes": "benefit payment amounts — a 10-percentage-point disagreement produces substantial income replacement differences over the course of a claim",
+        "format": "dialogue",
+        "requiredBeat": "5-point level difference, 8-point pattern difference for musculoskeletal cases, 4-point occasion difference at 3-week retest; all three compound to 90 percent of observed spread; level-only calibration addresses the smallest component"
+      },
+      "scenario": "\"Rater A is 5 percentage points higher than Rater B across all case types,\" Lorraine said at the audit session. \"But that's not where the case-specific disagreement comes from.\" The second panel: for musculoskeletal cases, the divergence was 8 points. For neurological cases, nearly identical. \"Pattern noise accounts for more spread in musculoskeletal claims than the level difference does. If you calibrate only leniency levels, you fix the smallest component.\" The third panel showed within-rater retest variation of 4 points for both raters when the same case was reassessed three weeks later. \"Occasion noise is also present. The three components together account for 90 percent of observed spread. All three, every case.\"",
+      "whatToDo": "Address all three components: calibrate aggregate leniency levels (level), conduct musculoskeletal-specific inter-rater calibration sessions (pattern), and implement structured re-evaluation protocols for complex cases to reduce within-rater temporal variation (occasion).",
+      "whyItMatters": "An 8-percentage-point divergence on musculoskeletal cases produces large income-replacement differences for injured workers in the most common workers compensation claim category; calibrating only overall leniency rates leaves the dominant noise source fully intact."
+    },
+    {
+      "exampleId": "noise-ch24-ex03",
+      "title": "0.6, 0.3, 0.25",
+      "tags": ["performance review", "inter-manager variance", "pattern noise", "technical vs. relational ratings"],
+      "planSpec": {
+        "domain": "annual performance review: a talent management research team decomposing inter-manager rating variance in a matched employee sample",
+        "audience": "a head of talent management studying why matched employees in equivalent roles receive different performance ratings depending on their manager",
+        "stakes": "compensation, promotion eligibility, and retention — rating variance attributable to noise creates inequitable pay and advancement outcomes at scale",
+        "format": "postmortem",
+        "requiredBeat": "0.6 level, 0.3 pattern (technical vs. relational), 0.25 occasion (mid-year vs. year-end without performance change); level-only calibration leaves 55 percent of noise structure untouched"
+      },
+      "scenario": "Genevieve's research team had analyzed 300 matched employee-manager pairs. Managers' average rating generosity varied by 0.6 points on a 5-point scale (level noise). Each manager had idiosyncratic tendencies in rating technical versus relational performance, accounting for 0.3 points of spread (pattern noise). Managers' ratings of the same employee varied by 0.25 points between mid-year check-in and year-end review when verifiable performance had not changed (occasion noise). A level-only calibration program would address 0.6 points of the total spread. It would leave 0.55 points untouched, or 55 percent of the noise structure.",
+      "whatToDo": "Target all three components: calibrate aggregate rating generosity across managers (level), conduct category-specific manager calibration on technical versus relational performance criteria (pattern), and introduce a structured anchoring protocol for year-end reviews that references mid-year records (occasion).",
+      "whyItMatters": "When 55 percent of the noise structure remains after level-only calibration, matched employees in equivalent roles still face substantially different compensation and promotion outcomes based on which manager happened to review them rather than on their actual performance."
+    },
+    {
+      "exampleId": "noise-ch24-ex04",
+      "title": "40, 35, 25",
+      "tags": ["building inspection", "deficiency rating", "domain-specific pattern", "variance decomposition"],
+      "planSpec": {
+        "domain": "structural building inspection: a municipal building department studying inter-inspector variance in structural deficiency ratings for the same buildings",
+        "audience": "a city building department director studying why comparable buildings receive different deficiency severity ratings from different inspectors",
+        "stakes": "building safety and owner remediation costs — buildings rated above the mandatory remediation threshold face costly required repairs; noise means similar buildings face different outcomes based on which inspector arrived",
+        "format": "thought_experiment",
+        "requiredBeat": "40 percent level, 35 percent pattern (electrical vs. structural domain preferences), 25 percent occasion; level-only calibration reform leaves 60 percent of spread unaddressed; pattern noise is larger than occasion noise in this context"
+      },
+      "scenario": "If three inspectors rate the same 30 buildings independently, how much of the observed spread is attributable to each inspector's general severity level, how much to their domain-specific patterns, and how much to day-to-day within-inspector variation? The audit data answers: 40 percent level, 35 percent pattern, 25 percent occasion. One inspector consistently rates electrical deficiencies higher; another rates structural deficiencies higher; a third is consistent across domains. A reform targeting only general inspector severity would leave 60 percent of total spread unaddressed. Pattern noise, concentrated in domain-specific tendencies, is actually larger than occasion noise in this context.",
+      "whatToDo": "Calibrate general inspector severity levels (level), conduct domain-specific calibration sessions for electrical and structural deficiency rating separately (pattern), and implement session-timing controls to reduce within-inspector variation across long inspection days (occasion).",
+      "whyItMatters": "When 60 percent of the spread is left unaddressed by level-only calibration, comparable buildings continue receiving different mandatory-remediation outcomes based on which inspector's domain-specific tendencies apply to their deficiency type."
+    },
+    {
+      "exampleId": "noise-ch24-ex05",
+      "title": "30, 45, 25",
+      "tags": ["medical necessity review", "prior authorization", "pattern noise dominant", "procedure category ambiguity"],
+      "planSpec": {
+        "domain": "health insurance medical necessity review: a health plan comparing medical reviewers' prior authorization decisions on matched cases",
+        "audience": "a health plan medical director studying inter-reviewer variance in medical necessity determinations for the same types of procedures",
+        "stakes": "patient access to care — prior authorization denials based on noisy reviewer judgment delay or prevent necessary treatments for comparable patients",
+        "format": "before_after",
+        "requiredBeat": "30 percent level, 45 percent pattern (concentrated in clinically ambiguous procedure categories), 25 percent occasion; pattern noise is dominant; level-only calibration misses the largest component"
+      },
+      "scenario": "You are reviewing the medical necessity inter-reviewer analysis. Level noise accounts for 30 percent of spread: some reviewers deny at higher rates for all procedure categories. Pattern noise accounts for 45 percent: reviewers disagree most on the specific procedure categories where evidence standards are genuinely ambiguous. Occasion noise accounts for 25 percent: the same reviewer reaches different decisions on the same case presented two months apart with no new clinical information. The largest noise source is pattern noise concentrated in clinically complex categories. The most common proposed remedy is training reviewers on overall denial-rate consistency, which addresses the smallest component.",
+      "whatToDo": "Address pattern noise first by developing more specific evidence-standard criteria for the ambiguous procedure categories driving the most disagreement, conduct category-specific reviewer calibration on those procedures, and then layer in overall leniency calibration and structured case re-evaluation protocols.",
+      "whyItMatters": "When 45 percent of spread comes from procedure-category pattern noise and the intervention calibrates only overall denial rates, the patients whose access to care depends on consistent review of ambiguous-category procedures continue to receive outcomes driven by which reviewer happened to see their case."
+    },
+    {
+      "exampleId": "noise-ch24-ex06",
+      "title": "38, 42, 20",
+      "tags": ["academic misconduct", "panel variance", "collaborative work pattern", "vignette study"],
+      "planSpec": {
+        "domain": "academic misconduct panel: a university honor code office studying inter-panel-member decision variance on matched case vignettes",
+        "audience": "a university dean of students studying why panel members reach different outcomes on comparable honor code cases presented in identical written form",
+        "stakes": "a student's academic record and standing — expulsion, suspension, or academic probation depending on which panel members reviewed the case",
+        "format": "vignette",
+        "requiredBeat": "38 percent level, 42 percent pattern (concentrated in collaborative-work cases), 20 percent occasion; pattern noise is dominant; training has been using clear-cut plagiarism cases and missing the main noise source"
+      },
+      "scenario": "At the panel training, Celestine projected a dot plot of 12 panelists' severity ratings across 20 anonymized cases. The collaborative-work cases showed the widest spread; the solo-plagiarism cases showed the tightest. The variance decomposition: 38 percent level, 42 percent pattern (concentrated in collaborative-work and shared-authorship cases), 20 percent occasion (panelists shifted 0.4 severity points when re-evaluating the same cases six weeks later). Pattern noise in the ambiguous collaborative category accounted for the most spread. The training program had been spending most of its time on severity calibration exercises using clear-cut plagiarism cases. Those exercises addressed 38 percent of the problem while leaving 62 percent in place.",
+      "whatToDo": "Redesign panel training to concentrate calibration exercises on collaborative-work and shared-authorship cases, where pattern noise is highest; use clear plagiarism cases only to establish baseline agreement before moving to the ambiguous categories where calibration is actually needed.",
+      "whyItMatters": "When 42 percent of the spread in student misconduct outcomes comes from panelist divergence on collaborative cases and training is calibrating only on clear-cut cases, a student's expulsion or probation in a shared-authorship case is still substantially determined by which panelists happen to review it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch24-q01",
+        "prompt": "A corrections researcher finds that inter-officer security tier disagreement decomposes into a stable between-officer severity difference, a divergence pattern specific to gang-affiliation cases, and within-officer variation by batch position. Which concept best describes this structure?",
+        "choices": [
+          "A measurement error in the security classification instrument: instruments that produce three distinct error types are not reliable enough for high-stakes classification decisions and should be replaced.",
+          "An information problem: the three-component structure indicates that officers are working with insufficient case information, and providing more complete information would reduce all three components simultaneously.",
+          "A three-component noise structure in which level noise, pattern noise, and occasion noise operate simultaneously, each requiring a distinct intervention to reduce, and none of which is eliminated by addressing the others."
+        ],
+        "correctIndex": 2,
+        "explanation": "Option A misidentifies the three-component structure as a measurement instrument problem; the structure is a property of human judgment, not of the classification instrument, and is found across assessment systems using different instruments. Option B proposes that more information would resolve all three components, but occasion variation and level differences are not caused by information gaps; they persist even when information is identical across cases. Option C correctly identifies the structure: three simultaneous contributors that each require distinct interventions.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch24-q02",
+        "prompt": "A workers compensation audit finds that two raters disagree by 5 percentage points overall (level noise), 8 percentage points on musculoskeletal cases specifically (pattern noise), and 4 percentage points on retest (occasion noise). The proposed reform trains raters on achieving consistent denial rates across case types. What component does this address?",
+        "choices": [
+          "Primarily the level component, since training on consistent denial rates across case types reduces the stable between-rater leniency difference but leaves the musculoskeletal-specific pattern divergence and the within-rater retest variation largely intact.",
+          "Primarily the occasion component, since training raters on consistent denial rates reduces the temporal variability in how each rater applies criteria across different sessions.",
+          "All three components simultaneously, since rater training that improves overall consistency necessarily reduces both the case-type-specific divergences and the within-rater temporal variation."
+        ],
+        "correctIndex": 0,
+        "explanation": "Option B incorrectly identifies the mechanism; training raters on overall denial rates does not specifically address the cognitive and fatigue-driven sources of within-rater temporal variation, which require structural interventions such as re-evaluation protocols. Option C assumes that overall consistency training addresses pattern and occasion noise, but the musculoskeletal-specific pattern divergence is a stable preference difference that is not corrected by overall leniency calibration, and temporal variation persists regardless of average-rate training. Option A correctly identifies that denial-rate consistency training directly targets leniency-level differences but leaves the pattern and occasion components operating.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch24-q03",
+        "prompt": "Why does successfully calibrating the level component of noise in a professional assessment system typically leave most of the total noise intact?",
+        "choices": [
+          "Because level calibration increases assessor awareness of their biases, which produces compensating over-correction in the pattern and occasion components, shifting noise from one component to another without reducing total spread.",
+          "Because level noise, the stable between-assessor severity difference, is typically the smallest of the three components in most professional assessment contexts; pattern and occasion noise contribute more to total spread, and calibration targeting only the average severity difference does not reach them.",
+          "Because level calibration requires sustained feedback over many sessions to take effect, and until the calibration is fully internalized, pattern and occasion noise continue contributing to spread at rates that exceed any gains from level calibration."
+        ],
+        "correctIndex": 1,
+        "explanation": "Option A describes a compensatory mechanism for which there is no evidence in the research; calibrating average severity does not reliably produce compensating increases in other noise components. Option C identifies a temporal dynamics argument but does not explain why pattern and occasion noise would persist even after level calibration is fully internalized. Option B identifies the structural reason: in empirical decompositions of professional assessment noise, pattern and occasion components often contribute more to total spread than level differences, so targeting level noise reaches only a minority of the problem.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch24-q04",
+        "prompt": "A talent management team finds that inter-manager performance rating spread decomposes into 0.6 points of level noise, 0.3 points of pattern noise on technical-versus-relational ratings, and 0.25 points of occasion noise. What is the correct noise reduction approach?",
+        "choices": [
+          "Calibrate manager rating generosity to a common standard (level), conduct category-specific calibration sessions distinguishing technical from relational performance criteria (pattern), and introduce a structured anchoring protocol comparing mid-year and year-end records for the same employee (occasion).",
+          "Calibrate manager rating generosity to a common standard only, since the pattern and occasion components are too small to affect promotion and compensation decisions meaningfully and the administrative cost of targeting them exceeds the benefit.",
+          "Implement a forced-ranking system for all managers to eliminate the level component by construction, which will automatically reduce pattern and occasion noise by standardizing the distribution of ratings across all employees."
+        ],
+        "correctIndex": 0,
+        "explanation": "Option B dismisses the pattern and occasion components as too small, but 0.55 points of residual noise on a 5-point scale is substantial when it determines promotion and compensation eligibility; the 55 percent residual from level-only calibration is not negligible. Option C uses forced ranking to eliminate level differences by construction but does not address pattern noise in how managers distinguish technical from relational performance, nor occasion noise in how ratings drift between mid-year and year-end. Option A correctly matches a distinct intervention to each component.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch24-q05",
+        "prompt": "Why does pattern noise in professional assessment often concentrate in specific case types rather than distributing evenly across all cases?",
+        "choices": [
+          "Because assessors are more likely to be distracted or fatigued when reviewing unfamiliar case types, producing higher occasion noise that registers as pattern noise in aggregate analyses.",
+          "Because the criteria defining different case type sub-categories are typically more ambiguous for specific types than for others; assessors develop divergent stable interpretations precisely in the zones where the criteria are least specified, producing stable inter-assessor divergences in those zones.",
+          "Because assessors receive different training on different case types, and pattern noise is a measure of training quality differences rather than stable inter-assessor interpretive preferences."
+        ],
+        "correctIndex": 1,
+        "explanation": "Option A conflates occasion noise (within-assessor temporal variation from fatigue or distraction) with pattern noise (stable inter-assessor divergence on specific case types); they are produced by different mechanisms and are distinguishable in decomposition studies. Option C attributes pattern noise to training differences, but pattern noise is observed even among equally-trained assessors; it reflects stable interpretive preferences that develop regardless of training quality. Option B identifies the structural mechanism: criteria ambiguity for specific case types produces the stable divergent interpretations that define pattern noise.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch24-q06",
+        "prompt": "A building inspection audit finds that inter-inspector variance decomposes as 40 percent level, 35 percent pattern, and 25 percent occasion. A proposed reform calibrates general inspector severity only. What fraction of the noise structure does this address?",
+        "choices": [
+          "40 percent, since level calibration directly targets the between-inspector severity difference that accounts for 40 percent of total spread, leaving pattern and occasion components at full strength.",
+          "65 percent, since level calibration eliminates the 40 percent level component and partially reduces the 25 percent occasion component by making inspectors more aware of their own variability.",
+          "100 percent, since calibrating general severity is the foundational intervention; once inspectors are aligned at the average level, pattern and occasion noise self-correct through the same calibration process."
+        ],
+        "correctIndex": 0,
+        "explanation": "Option B assumes level calibration also partially reduces occasion noise through awareness effects; but occasion noise is produced by structural conditions, batch sequencing, session length, and fatigue, that awareness training does not address. Option C assumes that calibrating the average level self-corrects the other components; but pattern noise is a stable interpretive preference that persists regardless of whether average severity is aligned, and occasion noise is driven by structural conditions that average-level calibration does not change. Option A correctly identifies that level calibration addresses only the level component, accounting for 40 percent of total spread.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch24-q07",
+        "prompt": "A health plan proposes addressing medical necessity review noise by training reviewers to achieve consistent overall denial rates across all procedure categories. Given that the audit found 30 percent level noise, 45 percent pattern noise, and 25 percent occasion noise, should this intervention be adopted as the primary noise reduction strategy?",
+        "choices": [
+          "Yes; consistent overall denial rates directly address the level component, and level calibration is the appropriate first step in any three-component noise reduction program before addressing pattern and occasion components.",
+          "Partially; the training addresses the level component and may incidentally reduce some pattern noise through increased category awareness, but should be supplemented with procedure-category-specific calibration sessions.",
+          "No as the primary strategy; pattern noise at 45 percent is the largest component, and a program calibrating only overall denial rates addresses 30 percent of the noise structure while leaving the dominant source intact; procedure-category-specific calibration should be the primary intervention."
+        ],
+        "correctIndex": 2,
+        "explanation": "Option A accepts the level-first ordering without considering that level noise is the smallest component in this context; the ordering should be driven by component size, not by conventional sequencing. Option B credits the training with incidentally reducing pattern noise through awareness, but pattern noise is a stable inter-reviewer interpretive difference that awareness of overall denial rates does not address. Option C correctly identifies that a 45 percent pattern noise component is the dominant source, and a primary intervention targeting the 30 percent level component misallocates the calibration effort.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch24-q08",
+        "prompt": "An honor code panel training program uses only clear-cut solo-plagiarism cases for calibration exercises and reports high post-training inter-panelist agreement. What does this success rate actually tell the dean of students?",
+        "choices": [
+          "That panelists now share a consistent understanding of the clearest plagiarism criteria, but nothing about whether they agree on the collaborative-work and shared-authorship cases that account for the largest share of pattern noise.",
+          "That the training successfully eliminated the level and pattern components of noise; occasion noise remains but is addressed by having panelists re-evaluate borderline cases at a second session.",
+          "That the panel training achieved full calibration across all case types; high agreement on training cases reliably predicts high agreement on the case types not included in the training set."
+        ],
+        "correctIndex": 0,
+        "explanation": "Option B credits the training with eliminating pattern noise, but the training used only clear-cut cases; stable inter-panelist divergences on collaborative-work cases are not addressed by calibration on cases where everyone already agrees. Option C assumes that high agreement on training cases predicts agreement on untrained case types; but pattern noise is specifically concentrated in the case types with the most ambiguous criteria, which are not represented in a clear-case calibration set. Option A correctly identifies what the agreement rate on clear cases tells you: that panelists agree on the clear cases, which was already true before training.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch24-q09",
+        "prompt": "Why does occasion noise persist in a professional assessment system even after level noise and pattern noise have been substantially reduced through calibration programs?",
+        "choices": [
+          "Because occasion noise is produced by within-assessor variation in alertness, fatigue, and decision state driven by structural conditions, session sequencing, caseload volume, and timing, that calibration training does not change; structural interventions to the conditions of judgment are required to reduce it.",
+          "Because reducing level and pattern noise increases assessor awareness of their own ratings, which paradoxically produces more variability as assessors second-guess their automatic responses and become more sensitive to contextual cues.",
+          "Because occasion noise is actually re-measurement error in the calibration instruments rather than within-assessor variation; reducing level and pattern noise makes the measurement error more visible rather than leaving genuine within-assessor variation intact."
+        ],
+        "correctIndex": 0,
+        "explanation": "Option B describes a plausible cognitive mechanism but is not the structural explanation for why occasion noise persists across professional assessment domains; empirical retest studies find within-assessor variation regardless of whether calibration training was received. Option C misattributes occasion noise to measurement error in calibration instruments; but it is observed in retest designs using identical cases presented to the same assessor without any calibration measurement, confirming it is genuine within-assessor variation rather than instrument error. Option A identifies the structural source: occasion noise comes from the conditions of judgment, which training does not change.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "What are the three components of noise in professional judgment, and what distinguishes them?",
+      "back": "Level noise is the stable between-assessor difference in overall severity: Judge A is systematically more lenient than Judge B across all case types. Pattern noise is the stable inter-assessor divergence on specific case types: Judge A weighs certain case features more heavily than Judge B specifically for those cases. Occasion noise is within-assessor temporal variation: the same judge reaches different conclusions on equivalent cases depending on time of day, session position, and decision state.",
+      "difficulty": "easy"
+    },
+    {
+      "front": "Why do level, pattern, and occasion noise require distinct interventions?",
+      "back": "Each component has a different source: level differences come from stable overall severity calibration gaps and respond to aggregate leniency calibration. Pattern differences come from stable idiosyncratic interpretive preferences on specific case types and respond to case-type-specific calibration training. Occasion variation comes from structural conditions of judgment (session sequencing, fatigue, load) and responds to structural changes rather than to training. An intervention designed for one source does not address the others.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "What is the error in addressing only the most visible noise component in a judgment system?",
+      "back": "The most visible component, often level noise because leniency differences are easy to tabulate, is typically not the largest contributor to total spread. Addressing it leaves pattern and occasion noise producing spread at full strength, and reporting the level-component improvement as success misrepresents how much of the noise structure remains. The majority of the noise can remain intact after a level-only intervention that declares success.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "Why does occasion noise persist after calibration training for level and pattern noise?",
+      "back": "Occasion noise is produced by the structural conditions of judgment: session length, caseload volume, case sequencing, and assessor state at the time of decision. Calibration training improves the criteria assessors apply but does not change the conditions under which they apply them. Reducing occasion noise requires structural interventions such as session-length limits, mandatory review breaks, or re-evaluation protocols for cases at high-depletion session points.",
+      "difficulty": "hard"
+    },
+    {
+      "front": "How should the component size distribution guide the order of interventions in a noise reduction program?",
+      "back": "The intervention order should follow the component magnitudes rather than any conventional ordering. If pattern noise is the largest contributor (as in medical necessity review or academic misconduct panels), pattern-specific calibration should be the primary intervention, not a supplement to level calibration. Calibrating the smallest component first and reporting the improvement leaves most of the noise structure untouched and misallocates the calibration investment.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "For any recurring judgment process with observed outcome variability, decompose the spread into its level, pattern, and occasion components before prescribing any intervention. Ask: Is the disagreement stable across all case types (level)? Is it concentrated in specific case types (pattern)? Does it vary within the same assessor over time on equivalent cases (occasion)? Each yes answer points to a component that requires a distinct intervention. Addressing any single component without the others leaves the majority of noise intact.",
+    "ifThenPlans": [
+      {
+        "context": "When a noise reduction program calibrates assessors to a common average severity level and reports improved agreement",
+        "plan": "Test whether the improvement holds on case-type-specific subgroups (pattern) and on the same cases assessed at a later date (occasion). If subgroup agreement and retest stability have not improved, the program addressed the level component only. Map the remaining pattern and occasion contributions and design targeted interventions for each."
+      },
+      {
+        "context": "When a specific case type produces unusually high inter-assessor disagreement relative to other case types",
+        "plan": "Diagnose whether the disagreement is pattern noise (stable between-assessor divergence concentrated in this case type) or occasion noise (within-assessor variation that happens to be high for this case type). Pattern noise responds to case-type-specific calibration. Occasion noise responds to structural changes at the judgment conditions. Treating them with the same intervention will underperform."
+      }
+    ],
+    "twentyFourHourChallenge": "For three judgment decisions you made in the last two weeks, ask: Was your usual alertness and decision state present at the time (occasion)? Do you have a consistent lean on this specific case type relative to your colleagues (pattern)? Are you generally stricter or more lenient than those colleagues on this decision category overall (level)? If you can answer yes to at least one question for each judgment, all three components were operating in those assessments. That is the compound structure you were not accounting for.",
+    "weeklyPractice": "For one recurring judgment process each week, conduct a minimal three-component audit: compare your outcomes against a colleague's on the same case type (level), compare your outcomes on your highest-disagreement case type against your outcomes on your lowest-disagreement case type (pattern), and compare your outcomes on equivalent cases at the beginning and end of your typical work session (occasion). Track the three components separately over several weeks to identify which is contributing most to your outcome variability."
+  }
+}

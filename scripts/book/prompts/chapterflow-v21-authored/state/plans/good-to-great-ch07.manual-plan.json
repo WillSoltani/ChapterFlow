@@ -1,0 +1,190 @@
+{
+  "chapterId": "good-to-great-ch07",
+  "number": 7,
+  "title": "Technology Accelerators",
+  "coreMove": "Judge a tool by whether it accelerates the concept, not by its novelty or status.",
+  "sourcePressure": "The source treats technology as an amplifier of momentum, tied to disciplined adoption and the Hedgehog Concept, while rejecting fear-driven or prestige-driven technology frenzy.",
+  "chapterSpecificMisunderstanding": "The weak version turns the chapter into anti-technology rhetoric or generic innovation advice.",
+  "sourceAlignmentTerms": [
+    "technology accelerators",
+    "amplifier",
+    "momentum",
+    "disciplined adoption",
+    "technology frenzy",
+    "Hedgehog Concept"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "new app saves the company",
+      "robots replace everyone",
+      "leader chases shiny tool"
+    ],
+    "counterintuition": [
+      "technology does not matter",
+      "old ways are always better",
+      "innovation is hype"
+    ],
+    "tryThisNow": [
+      "delete an app",
+      "try a new tool",
+      "make a tech stack list"
+    ],
+    "examples": [
+      "generic AI adoption",
+      "software demo day",
+      "fear of missing out procurement"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "orthodontic lab same-day retainer workflow",
+      "audience": "a lab owner already known for rapid retainer repairs",
+      "stakes": "a 3D printer helps only if it accelerates the lab's existing promise instead of becoming a showpiece",
+      "format": "decision_point",
+      "requiredBeat": "the owner rejects a showroom printer and buys the smaller unit only after timing how it cuts same-day retainer remakes inside the existing workflow",
+      "firstImage": "clear resin dripping from a retainer model under violet curing light",
+      "mustInclude": [
+        "3D printer",
+        "same-day remake timer",
+        "showroom quote"
+      ],
+      "mustAvoid": [
+        "technology as magic",
+        "anti-modern craft nostalgia"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "dairy herd-health sensor rollout",
+      "audience": "a herd manager with a proven fresh-cow protocol",
+      "stakes": "sensor tags should speed early illness detection, not replace stockmanship the farm already relies on",
+      "format": "predict_reveal",
+      "requiredBeat": "the manager compares sensor alerts against the existing fresh-cow notebook for two weeks before expanding, proving the tags accelerate a discipline already working",
+      "firstImage": "yellow sensor tags clicking against a feed rail before sunrise",
+      "mustInclude": [
+        "sensor tags",
+        "fresh-cow notebook",
+        "two-week comparison"
+      ],
+      "mustAvoid": [
+        "farm tech hype",
+        "data replaces judgment"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "county archive OCR access project",
+      "audience": "an archivist whose concept is fast family-history access for local residents",
+      "stakes": "OCR matters only if it shortens the path from a surname question to a usable record",
+      "format": "scene",
+      "requiredBeat": "the archivist times one patron's search through handwritten deed indexes, then repeats it with OCR and approves only the pages that serve the access concept",
+      "firstImage": "powdery deed books open under a foam cradle",
+      "mustInclude": [
+        "OCR batch",
+        "surname search",
+        "foam cradle"
+      ],
+      "mustAvoid": [
+        "digitize everything slogan",
+        "archive romance"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "emergency dispatch map procurement",
+      "audience": "a dispatch director pitched a predictive heat-map system",
+      "stakes": "a prestigious map could distract from the center's proven strength in call-triage speed",
+      "format": "dialogue",
+      "requiredBeat": "the director asks the vendor to show seconds saved in triage handoff, not map beauty, and stops the purchase when the tool cannot move that measure",
+      "firstImage": "a glowing heat map reflected in a dark dispatch console",
+      "mustInclude": [
+        "triage handoff seconds",
+        "vendor demo",
+        "purchase pause"
+      ],
+      "mustAvoid": [
+        "tech vendor villain",
+        "innovation equals waste"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "climbing gym route-progression app",
+      "audience": "a gym owner whose concept is measurable skill progression for intermediate climbers",
+      "stakes": "the app should deepen member progression instead of becoming a novelty leaderboard",
+      "format": "before_after",
+      "requiredBeat": "the owner hides global rankings and keeps only route-attempt notes after seeing which feature helps coaches move climbers through the skill ladder",
+      "firstImage": "colored route tags snapped onto a plywood overhang",
+      "mustInclude": [
+        "route-attempt notes",
+        "hidden rankings",
+        "skill ladder"
+      ],
+      "mustAvoid": [
+        "fitness app generic",
+        "competition as the point"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "textile mill laser-cut sailcloth patches",
+      "audience": "a mill manager serving custom repair shops",
+      "stakes": "a laser cutter accelerates precision patch work only if it supports the mill's best-at repair niche",
+      "format": "postmortem",
+      "requiredBeat": "the manager lays rejected hand-cut patches beside laser-cut samples and approves the tool only after repair callbacks drop for the niche job",
+      "firstImage": "white sailcloth triangles weighted under brass pattern slugs",
+      "mustInclude": [
+        "laser-cut samples",
+        "repair callbacks",
+        "brass pattern slugs"
+      ],
+      "mustAvoid": [
+        "factory automation hype",
+        "tool purchase as strategy"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test whether a tool accelerates an existing concept",
+      "separate disciplined adoption from technology frenzy",
+      "spot prestige-driven technology choices",
+      "identify when technology exposes weak conceptual clarity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one tool you want. Write the existing discipline it would accelerate and the one measure that should move within thirty days. If neither is clear, wait.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "technology accelerators",
+      "detail": "the source says technology amplifies a clear concept already in motion and cannot create greatness from weak people, weak truth, or weak strategy",
+      "useIn": "both",
+      "phrasingHint": "Technology accelerators deserve force only after the engine they amplify has already been named."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

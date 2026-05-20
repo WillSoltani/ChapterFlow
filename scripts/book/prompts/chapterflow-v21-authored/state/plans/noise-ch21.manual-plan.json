@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch21",
+  "number": 21,
+  "title": "Noiseless Rules",
+  "coreMove": "Recognize when replacing discretion with a noiseless rule produces better aggregate outcomes despite providing a worse fit for some individual cases.",
+  "sourcePressure": "Noiseless rules gain consistency by removing discretion entirely. Research shows this produces better aggregate outcomes than leaving room for expert judgment in many contexts — not because every individual case is handled optimally, but because the worst outcomes under discretion are prevented. The tradeoffs are real: some cases are handled worse by the rule than they would have been by the ideal judge. The question is whether the gain in consistency outweighs the loss in individual fit.",
+  "chapterSpecificMisunderstanding": "Treating rule-based consistency as automatically inferior to expert judgment in every case, or assuming a rule is only acceptable when it would have produced the same outcome as a thoughtful expert in every case.",
+  "sourceAlignmentTerms": ["noiseless rule", "bright-line", "mandatory", "discretion removal", "aggregate outcomes", "individual fit", "consistency gain"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Mandatory protocol effects on outcome variance in medicine and aviation",
+      "detail": "Mandatory protocols in aviation safety, sepsis treatment, and surgical checklists consistently show that removing discretion at specific high-stakes steps reduces adverse outcomes at the population level, even though any single mandated step will occasionally misfire on an unusual case.",
+      "useIn": "deepRead",
+      "phrasingHint": "The surgical checklist does not trust the surgeon's memory. It treats every surgeon as equally likely to forget the routine step, and it is correct. The rule works not because surgeons are unreliable people but because reliable people forget things when they are tired and busy."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["rules exist for a reason — do you follow them?", "when is a rule better than judgment?"],
+    "counterintuition": ["the best decision-makers follow rules more than they use judgment", "removing discretion actually improves outcomes"],
+    "tryThisNow": ["identify one decision in your work where a bright-line rule might outperform your current judgment", "write down the three cases where your current rule fails and ask if the aggregate still favors the rule"],
+    "examples": ["a scene where a rule fails in a specific case and the failure is held up as proof that the rule is wrong — the chapter's argument is about aggregate outcomes, not about individual case fit", "a scene where the expert successfully argues for discretion and wins — implies discretion always wins the argument"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Noiseless-rule examples risk all reading as 'rule is introduced, outcomes improve.' The examples should show the full tension: rules that work in aggregate despite failing in individual cases, and experts who resist rules correctly (the broken-leg exception) and incorrectly (habit masquerading as expertise)."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "mandatory minimum drug sentencing: a federal public defender analyzing aggregate sentencing outcomes before and after mandatory sentencing guidelines for the same offense type",
+      "audience": "a legal researcher studying whether mandatory sentencing guidelines reduce variance without producing unacceptable case-level injustice",
+      "stakes": "consistent justice and the individual's right to have their unique circumstances considered",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the researcher compares two five-year periods: under discretionary sentencing, the inter-judge variance for the same offense type is 18 months; under mandatory guidelines, it falls to 4 months; but the researcher documents 12 percent of cases where the mandatory guideline produced a sentence that every reviewer agreed was disproportionately harsh for the case's specific circumstances — and the chapter's question is: does the 78 percent improvement in consistency justify the 12 percent of individually unjust outcomes?",
+      "firstImage": "two sentencing distribution charts: the discretionary-period chart wide and variable, the mandatory-guideline chart tight and centered — with a red zone in the right tail of the mandatory chart showing the disproportionate cases",
+      "mustInclude": ["the 18-to-4 month variance reduction", "the 12 percent disproportionate-case documentation", "the chapter's question framed as a genuine tradeoff, not a resolved answer"],
+      "mustAvoid": ["a specific criminal case", "presenting mandatory sentencing as either always right or always wrong"]
+    },
+    {
+      "domain": "airline crew checklist compliance: a safety culture researcher comparing accident and incident rates before and after mandatory checklist protocols in commercial aviation",
+      "audience": "a aviation safety researcher presenting to a regulatory symposium",
+      "stakes": "passenger and crew safety — discretionary safety checks produce noise at exactly the moments when consistency matters most",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two aviation safety researchers discuss the checklist adoption evidence: before mandatory pre-departure checklists, crew discretion about sequence and completeness contributed to 34 percent of a studied set of taxiway incidents; after mandatory checklists, that percentage fell to 9 percent — but three documented cases show experienced captains who skipped a checklist step appropriately (a genuine emergency prevented following the checklist) and whose deviation was correct and life-saving",
+      "firstImage": "two incident rate trend lines over time: one declining sharply at the point mandatory checklists were introduced, one showing the three justified-deviation incidents as small upward blips",
+      "mustInclude": ["the 34-to-9 percent incident rate reduction", "the three justified deviations as evidence for the broken-leg exception", "the researchers' framing: the rule works in aggregate; the exceptions are genuinely exceptional, not a reason to restore discretion across the board"],
+      "mustAvoid": ["an aviation disaster narrative", "implying crews should always skip checklists when under time pressure"]
+    },
+    {
+      "domain": "pharmaceutical dosing protocol: a hospital comparing patient outcomes when nurses use standard weight-based dosing protocols versus clinical judgment for a high-risk medication",
+      "audience": "a hospital medication safety officer comparing dosing error rates across two ICU units — one with mandatory weight-based protocol, one with clinical discretion",
+      "stakes": "patient safety — dosing errors for the specific medication class can cause serious harm; noise in dosing is directly harmful",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the safety officer presents the unit comparison: the mandatory-protocol ICU had a dosing variance of 8 percent from optimal for matched patients; the discretionary-judgment ICU had a variance of 23 percent; and the four cases where discretion produced a better outcome than the protocol would have were all documented unusual cases that the protocol already had an exception pathway for",
+      "firstImage": "a medication administration record comparison for the same drug class across two ICU units, the dosing variance column showing 8 percent and 23 percent respectively",
+      "mustInclude": ["the 8 vs. 23 percent dosing variance", "the four protocol-exception cases that had better outcomes under discretion", "the safety officer's framing: the exception pathway already existed; the 'discretion advantage' was actually protocol compliance in a different form"],
+      "mustAvoid": ["a patient overdose story", "implying discretion should be eliminated from all dosing decisions"]
+    },
+    {
+      "domain": "building code enforcement: a municipal inspection department comparing appeal rates before and after bright-line enforcement rules replaced inspector discretion for common violations",
+      "audience": "a building department manager analyzing whether bright-line rules reduce the number of enforcement disputes",
+      "stakes": "public safety and equitable enforcement — discretionary enforcement of the same code produces different outcomes for similar properties, creating both safety gaps and legal exposure",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the manager asks: if we replaced inspector discretion on the 12 most common code violations with bright-line enforcement rules (violation present: cite; violation absent: pass), would appeal rates go up or down? The pilot data says down by 40 percent — because discretionary cites were subject to negotiation that bright-line cites were not; but the pilot also produced 8 percent of cases where experienced inspectors had previously exercised discretion correctly for genuinely unusual building configurations that the bright-line rule mishandled",
+      "firstImage": "a pie chart of code enforcement disputes by type: discretionary-cite appeals in a large slice, bright-line-cite appeals in a smaller slice",
+      "mustInclude": ["the 40 percent appeal reduction", "the 8 percent unusual-configuration cases where the rule mishandled the situation", "the manager's framing: the appeal reduction justifies the rule change; the 8 percent should be addressed through exception pathways, not by restoring general discretion"],
+      "mustAvoid": ["a building collapse story", "implying bright-line rules make enforcement corrupt"]
+    },
+    {
+      "domain": "income tax bracket application: a national tax authority comparing automated bracket assignment versus officer-adjusted assessments for self-employed income",
+      "audience": "a tax authority operations director studying whether algorithmic bracket assignment reduces appeal rates and processing time for self-employed filers",
+      "stakes": "taxpayer equity and administrative efficiency — officer discretion in bracket assignment produces inconsistent tax burdens for similar self-employed income profiles",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast the pre-algorithmic period (officers applying bracket rules with judgment on edge cases: variance in final assessed tax for matched income profiles was 11 percent) with the algorithmic period (automated bracket assignment: variance fell to 2 percent, appeal rate fell by 28 percent, but 4 percent of cases were mis-categorized by the algorithm for unusual income structures that required manual correction)",
+      "firstImage": "a national tax processing report: two columns of statistics for the pre- and post-algorithmic periods, variance and appeal rates visible in each row",
+      "mustInclude": ["the 11-to-2 percent variance reduction", "the 28 percent appeal rate drop", "the 4 percent mis-categorization rate requiring manual correction as the exception cost"],
+      "mustAvoid": ["a specific taxpayer's case", "implying tax algorithms are infallible or should replace all human review"]
+    },
+    {
+      "domain": "workplace safety lockout/tagout procedure: a manufacturing plant comparing injury rates with and without mandatory lockout/tagout protocol compliance",
+      "audience": "a plant safety manager who introduced mandatory lockout/tagout after a near-miss incident",
+      "stakes": "worker physical safety — worker judgment about when a machine is safe to work on produces fatal variance; mandatory lockout removes that judgment",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the safety manager reviews three years of data: before mandatory lockout/tagout, the plant averaged 2.4 near-miss incidents per year involving energized equipment; after mandatory lockout/tagout (removal of worker discretion on whether to lock out), the rate fell to 0.3 per year; and the two cases where workers argued mandatory lockout was unnecessary (routine tasks they had done safely thousands of times) were both followed by protocol audits that identified concealed energy sources the workers had not detected",
+      "firstImage": "a safety trend chart showing near-miss incidents per year declining sharply after the mandatory lockout line, with two circled incidents in the post-mandatory period labeled 'discretion argument cases'",
+      "mustInclude": ["the 2.4-to-0.3 near-miss reduction", "the two discretion-argument cases and the hidden energy sources discovered in their audits", "the safety manager's framing: experience did not make those workers safer; the rule did"],
+      "mustAvoid": ["a fatal accident story", "implying all safety procedures should be mandatory regardless of context"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain the aggregate-outcome logic that justifies a noiseless rule even when individual case fit is imperfect",
+      "identify the conditions under which a noiseless rule produces better aggregate outcomes than discretionary judgment",
+      "apply the noiseless-rule framework to evaluate whether a described professional process should be rule-bound or judgment-based",
+      "analyze why the cases where rules fail are remembered more vividly than the cases where discretion fails",
+      "evaluate whether a proposed rule would reduce noise effectively or whether the exception rate makes the rule unattractive on aggregate"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find one recurring decision in your work that is currently left to individual judgment. List the last five cases where that judgment was applied and note whether the outcomes were consistent. Then ask: if a bright-line rule had been applied instead, in how many of those five cases would the outcome have been worse? If the answer is one or fewer, the rule is probably worth it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why aggregate improvement and individual case imperfection can coexist, at least one 5+ sentence paragraph on the resistance to rules from people whose best performance exceeds the rule's performance, at least one one-sentence punch line about what the worst outcomes under discretion look like compared to the worst outcomes under the rule",
+    "fullReadInterludeRequirement": "at least one paragraph acknowledging the real cost of individual misfit as part of the chapter's honest accounting — not dismissing the 12 percent or the 8 percent cases but framing the question as whether exception pathways can address them without restoring general discretion",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

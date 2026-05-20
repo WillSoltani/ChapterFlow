@@ -1,0 +1,191 @@
+{
+  "chapterId": "measure-what-matters-ch18",
+  "number": 18,
+  "title": "Culture",
+  "coreMove": "Read culture from the signals people repeatedly experience, not from the values language they hear.",
+  "sourcePressure": "The culture chapter widens Part 2 from company cases into the environment made by repeated signals, reinforcement, accountability, conversation, feedback, and recognition.",
+  "chapterSpecificMisunderstanding": "Do not make culture a vibe, perk package, or slogan exercise.",
+  "sourceAlignmentTerms": [
+    "culture",
+    "repeated signals",
+    "reinforcement",
+    "accountability",
+    "conversation",
+    "feedback",
+    "recognition"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "culture",
+      "detail": "The source widens Part 2 into culture as repeated signals, reinforcement, accountability, conversation, feedback, and recognition.",
+      "useIn": "both",
+      "phrasingHint": "Culture is the pattern people keep experiencing after the slogan has stopped echoing."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Culture as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "culture is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "Lumeris specifics",
+      "mission campaigns",
+      "employee happiness tips"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional bank risk culture audit",
+      "audience": "branch leaders",
+      "stakes": "the value statement says prudence while incentives reward rushed approvals",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivia maps the repeated signals employees actually feel: praise, exceptions, corrections, and ignored warnings",
+      "firstImage": "quiet vault door ajar",
+      "mustInclude": [
+        "approval queue",
+        "exception memo",
+        "recognition email"
+      ],
+      "mustAvoid": [
+        "culture vibe talk"
+      ]
+    },
+    {
+      "domain": "university research lab norms",
+      "audience": "faculty and graduate students",
+      "stakes": "the lab claims collaboration but rewards lone-star behavior",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu asks what gets praised after seminars and what gets ignored when people share data early",
+      "firstImage": "pipette tips in a waste bin",
+      "mustInclude": [
+        "seminar notes",
+        "data folder",
+        "authorship draft"
+      ],
+      "mustAvoid": [
+        "generic school culture"
+      ]
+    },
+    {
+      "domain": "restaurant group service standards",
+      "audience": "managers",
+      "stakes": "posters say hospitality while schedules punish staff who help other sections",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Mikkel compares the slogan with the actual shift signals and changes what supervisors recognize",
+      "firstImage": "lemon wedges drying at the service station",
+      "mustInclude": [
+        "shift schedule",
+        "guest note",
+        "recognition slip"
+      ],
+      "mustAvoid": [
+        "kitchen shell repeat"
+      ]
+    },
+    {
+      "domain": "software reliability organization",
+      "audience": "engineers",
+      "stakes": "leaders claim quality matters but celebrate only feature speed",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rachel traces how the culture changed when incident learning, not heroics, began getting attention",
+      "firstImage": "pager reflected in a dark window",
+      "mustInclude": [
+        "incident review",
+        "deployment log",
+        "praise note"
+      ],
+      "mustAvoid": [
+        "dashboard-only scene"
+      ]
+    },
+    {
+      "domain": "community arts collective",
+      "audience": "volunteer coordinators",
+      "stakes": "belonging language is strong but quiet members get no signal that their work matters",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anya asks which repeated signals teach whose contributions count",
+      "firstImage": "paint-splattered folding tables",
+      "mustInclude": [
+        "volunteer rota",
+        "thank-you card",
+        "supply shelf"
+      ],
+      "mustAvoid": [
+        "feel-good volunteerism"
+      ]
+    },
+    {
+      "domain": "Paris logistics startup",
+      "audience": "team leads",
+      "stakes": "speed is praised so strongly that careful handoffs look like weakness",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hadiya Khan shows how the climate was trained by what leaders noticed every Friday",
+      "firstImage": "courier bags under a glass wall",
+      "mustInclude": [
+        "handoff log",
+        "Friday demo notes",
+        "customer escalation"
+      ],
+      "mustAvoid": [
+        "startup culture cliche"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "read culture from repeated signals",
+      "separate slogans from reinforcement patterns",
+      "diagnose climate through accountability and recognition"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "List the three repeated signals a team actually experiences and compare them with the culture it claims to want.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

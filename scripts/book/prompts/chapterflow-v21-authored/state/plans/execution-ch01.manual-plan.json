@@ -1,0 +1,180 @@
+{
+  "chapterId": "execution-ch01",
+  "number": 1,
+  "title": "The Gap Nobody Knows",
+  "coreMove": "Turn a declared ambition into a reality-tested operating path before treating it as a real plan.",
+  "sourcePressure": "Diagnostic opening: execution is the missing link between aspirations and results, belongs to leaders, and has to live in culture through what is inspected, rewarded, and tolerated. No named company case or study is frozen for this chapter.",
+  "chapterSpecificMisunderstanding": "Make execution sound like generic accountability or post-strategy effort.",
+  "sourceAlignmentTerms": [
+    "aspiration",
+    "results",
+    "execution discipline",
+    "leader ownership",
+    "culture",
+    "realism",
+    "follow-through"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "the execution gap that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional medical-device launch whose regulatory packet has cleared but installation owners are unnamed",
+      "audience": "a launch lead in a midsize manufacturer",
+      "stakes": "hospitals expect delivery dates that the field team cannot yet support",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah stops the launch approval when the rollout board has dates but no named owner beside the hospital installation dependency",
+      "firstImage": "A laminated launch board hangs beside three unopened calibration kits while Sarah reads the blank owner column.",
+      "mustInclude": [
+        "laminated launch board",
+        "calibration kits",
+        "blank owner column"
+      ],
+      "mustAvoid": [
+        "generic product kickoff",
+        "slide deck agreement"
+      ]
+    },
+    {
+      "domain": "a city library renovation grant moving from council approval into construction sequencing",
+      "audience": "a public-sector department head",
+      "stakes": "the grant can be clawed back if accessible entrances are not finished by winter",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "James asks who owns the accessibility ramp permit and lets the silence expose that approval was mistaken for readiness",
+      "firstImage": "\"Who owns the ramp permit?\" James asks while the contractor folder stays closed on the table.",
+      "mustInclude": [
+        "contractor folder",
+        "ramp permit",
+        "winter grant deadline"
+      ],
+      "mustAvoid": [
+        "budget speech",
+        "generic municipal meeting"
+      ]
+    },
+    {
+      "domain": "a university lab transferring a successful prototype into a shared clinical trial workflow",
+      "audience": "a principal investigator with a grant milestone",
+      "stakes": "a promising device can lose trial access because intake steps are unowned",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Camille traces the missed trial window back to the week everyone celebrated the prototype without assigning patient-intake ownership",
+      "firstImage": "It took Camille nine days after the missed trial window to notice the patient-intake line in the binder had no initials.",
+      "mustInclude": [
+        "trial binder",
+        "patient-intake line",
+        "grant milestone"
+      ],
+      "mustAvoid": [
+        "student group project",
+        "generic lab deadline"
+      ]
+    },
+    {
+      "domain": "a specialty bakery adding wholesale accounts before oven capacity and delivery routes are tested",
+      "audience": "a founder moving from retail into wholesale",
+      "stakes": "new cafe accounts can sour if first-week deliveries fail",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Thomas asks the team to predict the first failed delivery route, then maps oven batches and van slots until the hidden gap is visible",
+      "firstImage": "Which promise breaks first: the almond croissants or the 6:30 a.m. van slot?",
+      "mustInclude": [
+        "batch schedule",
+        "van slots",
+        "wholesale order sheet"
+      ],
+      "mustAvoid": [
+        "generic restaurant staffing problem"
+      ]
+    },
+    {
+      "domain": "a community theater announcing a summer festival before volunteer crew leads are confirmed",
+      "audience": "a volunteer board chair",
+      "stakes": "ticket sales create public commitments the crew cannot yet carry",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anya replaces the celebratory poster review with a crew-lead board that shows which stages have no accountable person",
+      "firstImage": "Fresh ink from the festival posters fills the room before anyone looks at the empty crew-lead board.",
+      "mustInclude": [
+        "festival posters",
+        "crew-lead board",
+        "ticket-sale date"
+      ],
+      "mustAvoid": [
+        "school play rehearsal shell"
+      ]
+    },
+    {
+      "domain": "a Toronto cybersecurity team promising a migration window before rollback responsibility is assigned",
+      "audience": "a technical program lead",
+      "stakes": "a failed migration could lock out payroll and customer support on Monday",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Kiran turns the migration promise into a row of named owners, rollback triggers, and tested assumptions before the window is approved",
+      "firstImage": "You have the migration email ready, but the rollback column on Kiran has no owner yet.",
+      "mustInclude": [
+        "migration email",
+        "rollback column",
+        "payroll login test"
+      ],
+      "mustAvoid": [
+        "generic SaaS launch"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot the gap between verbal alignment and operating readiness",
+      "choose the question that forces ownership into a plan",
+      "distinguish commitment from untested aspiration",
+      "judge when culture is rewarding launch theater instead of follow-through"
+    ]
+  },
+  "tryThisNowSpec": "Pick one live promise and write the next owner, the untested assumption, and the first follow-through check on the same line.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

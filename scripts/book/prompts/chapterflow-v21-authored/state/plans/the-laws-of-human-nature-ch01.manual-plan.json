@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch01",
+  "number": 1,
+  "title": "Introduction",
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "coreMove": "Separate observable behavior, motive story, and repeated pattern before judging anyone, starting with your own blindness.",
+  "sourcePressure": "The frame chapter argues that motives hide beneath stories, self-love distorts self-knowledge, social life rewards masks, and the first honest subject is yourself.",
+  "chapterSpecificMisunderstanding": "Turning the opening into a generic warning that people are complicated instead of a disciplined method for reading motives while auditing yourself.",
+  "sourceAlignmentTerms": [
+    "motive",
+    "appearance",
+    "self-love",
+    "masks",
+    "patterns",
+    "declarations"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Introduction",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a city permit counter where a new inspector is judging a charming contractor",
+      "audience": "a public employee learning to read motive without cynicism",
+      "stakes": "whether a rushed approval creates a costly zoning mess",
+      "format": "decision_point",
+      "requiredBeat": "the inspector lays the contractor's three prior resubmission dates beside today's polished packet, then delays approval until the pattern speaks louder than the smile",
+      "firstImage": "a stamped permit packet fanned across a scratched service counter",
+      "mustInclude": [
+        "permit packet",
+        "three resubmission dates",
+        "numbered queue ticket"
+      ],
+      "mustAvoid": [
+        "generic office small talk"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a community choir audition where a director mistakes nervous stiffness for arrogance",
+      "audience": "a volunteer leader sorting talent from first impressions",
+      "stakes": "whether the best alto gets dismissed before anyone hears her second song",
+      "format": "before_after",
+      "requiredBeat": "the director records first impression notes, then crosses them against callback behavior and catches the original motive story shrinking",
+      "firstImage": "a folding music stand with one penciled score clipped open",
+      "mustInclude": [
+        "penciled score",
+        "audition sign-in sheet",
+        "second-song callback"
+      ],
+      "mustAvoid": [
+        "school presentation scene"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a hospital discharge desk where siblings argue over a parent's care plan",
+      "audience": "a mediator trying to keep family history from swallowing current facts",
+      "stakes": "whether old resentment derails a safe discharge",
+      "format": "dialogue",
+      "requiredBeat": "the mediator repeats only the observable request, then asks each sibling what pattern would prove neglect rather than fear",
+      "firstImage": "a plastic folder of discharge papers under fluorescent light",
+      "mustInclude": [
+        "discharge folder",
+        "visitor badges",
+        "home-care checklist"
+      ],
+      "mustAvoid": [
+        "generic family dinner argument"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a minor-league scouting meeting after one bad at-bat",
+      "audience": "a scout under pressure to decide if a prospect lacks discipline",
+      "stakes": "whether a player is written off because one ugly swing felt decisive",
+      "format": "postmortem",
+      "requiredBeat": "the scout replays six plate appearances on a tablet and marks the pattern before naming the player's character",
+      "firstImage": "a tablet paused on a third-strike swing",
+      "mustInclude": [
+        "spray chart",
+        "six at-bat clips",
+        "scouting notebook"
+      ],
+      "mustAvoid": [
+        "sports pep talk"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a neighborhood mutual-aid intake call with a caller who sounds evasive",
+      "audience": "a coordinator deciding whether caution has become contempt",
+      "stakes": "whether a household loses help because tone is mistaken for motive",
+      "format": "reflection",
+      "requiredBeat": "the coordinator writes down the exact evasions, then lists two noncharacter explanations before deciding what to ask next",
+      "firstImage": "a headset coiled beside an intake form",
+      "mustInclude": [
+        "intake form",
+        "blocked caller ID",
+        "delivery route map"
+      ],
+      "mustAvoid": [
+        "generic customer-service complaint"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a boutique hiring panel seduced by a polished portfolio",
+      "audience": "a founder who tends to confuse presentation with reliability",
+      "stakes": "whether the first hire becomes a chronic execution problem",
+      "format": "predict_reveal",
+      "requiredBeat": "the founder predicts the portfolio star will be strongest, then checks reference behavior under missed deadlines and watches charm lose authority",
+      "firstImage": "a glossy portfolio sleeve beside a plain reference transcript",
+      "mustInclude": [
+        "portfolio sleeve",
+        "reference transcript",
+        "trial assignment clock"
+      ],
+      "mustAvoid": [
+        "standard hiring interview shell"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate behavior from assigned motive in ambiguous interactions",
+      "use repeated patterns rather than first impressions",
+      "apply the lens to the reader before diagnosing another person"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one judgment you made today and write three columns: what you actually saw, the story you added, and the pattern you would need before trusting it.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "chapterId": "clear-thinking-ch02",
+  "number": 2,
+  "title": "The Emotion Default",
+  "coreMove": "Treat hot emotion and vulnerable body states as hazard conditions before choosing the next move.",
+  "sourcePressure": "Emotion is the first fast default: anger, fear, outrage, urgency, hunger, fatigue, stress, distraction, and unfamiliar settings can possess the moment before facts or goals stabilize it. The Godfather contrast and Steve story show both strategic and irreversible costs.",
+  "chapterSpecificMisunderstanding": "Turning emotion into a villain or advising suppression instead of diagnosing when feeling has taken command.",
+  "sourceAlignmentTerms": [
+    "emotion default",
+    "Vito Corleone",
+    "Sonny Corleone",
+    "Steve story",
+    "possessed by the moment",
+    "hunger",
+    "fatigue",
+    "stress"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Vito Corleone and Sonny Corleone",
+      "detail": "the official excerpt contrasts Vito Corleone's patience and discipline with Sonny's quick temper and downfall in The Godfather",
+      "useIn": "both",
+      "phrasingHint": "Sonny's speed looks powerful until Vito's patience shows what discipline can protect."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for emotion default",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think emotion default is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "a film production office",
+      "audience": "a reader facing emotion default in a concrete film production office decision",
+      "stakes": "whether Sophie preserves judgment quality before the situation slides into therapy advice",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sophie performs the chapter move by setting the call sheet beside the red pencil, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the call sheet against the counter in the film production office",
+      "mustInclude": [
+        "call sheet",
+        "red pencil"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy advice",
+        "reusing a previous chapter's film production office shell"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "a paramedic station",
+      "audience": "a reader facing emotion default in a concrete paramedic station decision",
+      "stakes": "whether Grace preserves judgment quality before the situation slides into therapy advice",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Grace performs the chapter move by setting the oxygen bag beside the shift board, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the paramedic station as Grace reaches for the oxygen bag",
+      "mustInclude": [
+        "oxygen bag",
+        "shift board"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy advice",
+        "reusing a previous chapter's paramedic station shell"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "a airport customer desk",
+      "audience": "a reader facing emotion default in a concrete airport customer desk decision",
+      "stakes": "whether Rachel preserves judgment quality before the situation slides into therapy advice",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Rachel performs the chapter move by setting the boarding pass beside the complaint card, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the complaint card in the airport customer desk",
+      "mustInclude": [
+        "boarding pass",
+        "complaint card"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy advice",
+        "reusing a previous chapter's airport customer desk shell"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "a family probate meeting",
+      "audience": "a reader facing emotion default in a concrete family probate meeting decision",
+      "stakes": "whether Laura preserves judgment quality before the situation slides into therapy advice",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Laura performs the chapter move by setting the will copy beside the notepad, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the will copy lying beside the notepad in the family probate meeting",
+      "mustInclude": [
+        "will copy",
+        "notepad"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy advice",
+        "reusing a previous chapter's family probate meeting shell"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "a restaurant expo line",
+      "audience": "a reader facing emotion default in a concrete restaurant expo line decision",
+      "stakes": "whether Anna preserves judgment quality before the situation slides into therapy advice",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Anna performs the chapter move by setting the order rail beside the ticket spike, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the ticket spike in the restaurant expo line",
+      "mustInclude": [
+        "order rail",
+        "ticket spike"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy advice",
+        "reusing a previous chapter's restaurant expo line shell"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "a trail rescue dispatch",
+      "audience": "a reader facing emotion default in a concrete trail rescue dispatch decision",
+      "stakes": "whether James preserves judgment quality before the situation slides into therapy advice",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "James performs the chapter move by setting the satellite phone beside the route map, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the satellite phone in the trail rescue dispatch",
+      "mustInclude": [
+        "satellite phone",
+        "route map"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy advice",
+        "reusing a previous chapter's trail rescue dispatch shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Treat hot emotion and vulnerable body states as hazard conditions before choosing the next move.",
+      "detect the weak generic version: Turning emotion into a villain or advising suppression instead of diagnosing when feeling has taken command.",
+      "distinguish emotion default from nearby drift into therapy advice"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where emotion default is active, then write the exact next visible move that would perform this chapter's move: treat hot emotion and vulnerable body states as hazard conditions before choosing the next move.",
+  "readingTimeMinutes": 12
+}

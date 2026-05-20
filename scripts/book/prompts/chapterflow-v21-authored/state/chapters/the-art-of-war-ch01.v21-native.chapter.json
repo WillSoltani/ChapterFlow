@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-art-of-war-ch01",
+  "number": 1,
+  "title": "Laying Plans",
+  "readingTimeMinutes": 12,
+  "hook": "The glove dispenser is empty before the bed map asks Sarah to open four more rooms.",
+  "counterintuition": "The trap is planning from the factor that flatters you. Demand, courage, or speed may look decisive while weather, trust, authority, roads, and discipline quietly veto the move.",
+  "tryThisNow": "Draw five boxes labeled alignment plus timing plus ground plus command plus discipline. Put one current decision inside them. Circle the box that can break it.",
+  "keyTakeaway": "Before committing, compare the real conditions around the move, then adapt the plan to the factor that can defeat it.",
+  "breakdown": {
+    "fastRead": "Sarah stands in the emergency department at six eighteen in the morning with a bed map in one hand and an empty glove dispenser in front of her. Three nurses have called in sick. The snow forecast has closed the agency pool. The director wants four extra flu beds open by noon.\n\nShe writes five headings on the glass board: alignment, timing, ground, command, and discipline. The plan looks brave until the supply route and nurse cap fail in the last two columns. Sarah cancels the opening and moves two patients differently instead.\n\nA plan is not a wish with a deadline. It is a comparison against the conditions that can carry it.",
+    "deepRead": "Before the first move, lay the five factors side by side until the ground itself starts arguing for or against the plan. Moral Law asks whether people will follow because the purpose feels legitimate. Heaven asks about timing, season, fatigue, and weather. Earth asks about distance, danger, access, and exits. The Commander asks whether judgment and authority are sound. Method and discipline ask whether the system can execute after the first confident sentence.\n\nThe battle is often decided in the quiet room where the calculations happen before anyone moves.\n\nCamille sees this at the river gauge behind city hall. The amber light is blinking above the wet steps, and the spring melt is moving faster than the briefing predicted. She has to decide before noon whether to approve an evacuation drill through the north road. The mayor wants visible readiness. The radio map shows a dead pocket near the senior center. The sandbag depot is on the wrong side of the likely closure. Trust in the district is thin after last year's false alarm.\n\nThe five-factor comparison keeps Camille from treating one favorable sign as permission for the whole plan. Good timing does not fix a broken route. Public trust does not replace radio coverage. A strong commander cannot make a flooded road passable.\n\nCalculation is not delay. It is how you find the part of the plan reality has already refused.\n\nThe old discipline calls these the five constant factors, and the temple calculations exist so desire has to face them before action begins.",
+    "fullRead": "Henrik opens a cracked reefer container and cold vapor rolls over his shoes. A port strike has made the northern route look attractive. The salmon is packed, the customs cutoff is still possible, and the customer is already asking for a new arrival time. His first memo says the reroute is favorable. Then he walks to the container and reads the temperature logger.\n\nThe logger changes the plan. The alternate port has space, but no reliable cold transfer after midnight. The customs office can clear the load, but the road out of the port adds six hours. The receiving warehouse has one dock that can take the trailers, and that dock is already booked for dairy. Henrik has to decide whether the attractive route is a real route or only a shape on a map.\n\nThis is the discipline of laying plans. You do not ask whether the move sounds decisive. You ask whether each condition can bear its weight. A plan can fail because the people do not trust the purpose. It can fail because the season is wrong. It can fail because the path is narrow, the commander lacks authority, or the routine controls cannot survive pressure.\n\nWhat if all five factors are imperfect? They usually are. The point is not to wait for a clean board. The point is to know which flaw is tolerable and which one is fatal. A weak schedule can sometimes be repaired with more authority. A weak supply route can sometimes be repaired with a different ground. A weak purpose cannot be repaired by shouting. A missing discipline system cannot be repaired by a heroic opening day.\n\nSofia faces the same test in a museum hallway. The donor gala is Friday, and the director wants a seventeenth-century cabinet moved into the marble foyer. Sofia sets a tape measure across the doorway. The humidity crate fits. The freight elevator key is missing. The turn by the stairwell is two inches tighter than the cabinet frame. She must decide before the gala schedule locks whether to promise the move or change the exhibit plan. The guest list has prestige. The corridor has the vote.\n\nDeception belongs here too, but not as cheap lying. Once you understand the conditions, you can shape what others see. If you are strong, you may not show the full strength yet. If you are far, you may let the other side believe you are near enough to matter. You do not reveal every calculation before the move, because the calculation is part of the position.\n\nAanya has a redacted vendor breach email open on her laptop in Toronto. The patch window is tonight. The client notice draft is ready. Legal wants silence until the facts are complete. Her security team must decide whether early disclosure protects clients or creates panic. The useful question is not whether transparency sounds noble. It is whether the adversary already knows the gap while the clients do not. That single condition changes the whole board.\n\nPlanning is not the enemy of action. Thin planning is. The losing move is to make one calculation, like speed or courage or public approval, and pretend it speaks for the rest. The better move is to make many calculations while the room is still quiet, then adapt before the cost becomes public.\n\nCount before you commit."
+  },
+  "examples": [
+    {
+      "exampleId": "ch01-ex01-sarah-bed-map",
+      "title": "Sarah cancels the unsafe bed opening",
+      "tags": [
+        "hospital",
+        "staffing",
+        "triage"
+      ],
+      "planSpec": {
+        "domain": "hospital winter staffing triage after three nurses call in sick",
+        "audience": "operations lead in a regional hospital",
+        "stakes": "whether the emergency department opens four beds safely during a flu spike",
+        "format": "decision_point",
+        "requiredBeat": "Sarah writes five headings on the glass board, puts staffing, weather, patient flow, charge nurse authority, and supply routes under them, then cancels the bed-opening plan when Earth and Method fail."
+      },
+      "scenario": "At 6:18 a.m., Sarah stands beside a glove dispenser marked OUT and a bed map with four empty rooms circled in red. Three nurses have called in sick, the snow forecast has frozen the agency cap, and the charge nurse is already covering triage. Before the director arrives, Sarah must decide whether to open the flu beds or write five headings on the glass board and test whether ground and method can hold.",
+      "whatToDo": "Write the five headings first. Staff, timing, patient flow, authority, and supplies have to pass before the rooms open. If one fatal column fails, cancel the opening and move patients another way.",
+      "whyItMatters": "The empty rooms are only one favorable factor. The failed nurse cap and supply route mean the plan cannot execute safely, so courage would only hide a preventable failure."
+    },
+    {
+      "exampleId": "ch01-ex02-thomas-loading-bay",
+      "title": "Thomas counts the rejected pallet",
+      "tags": [
+        "bakery",
+        "capacity",
+        "delivery"
+      ],
+      "planSpec": {
+        "domain": "commercial bakery deciding whether to accept a supermarket rush order",
+        "audience": "owner of a thirty-person bakery",
+        "stakes": "a contract could double revenue but break delivery reliability",
+        "format": "postmortem",
+        "requiredBeat": "It took Thomas one rejected pallet to see that he had counted ovens and ignored loading-bay distance."
+      },
+      "scenario": "It took Thomas one rejected pallet to see the mistake. Six cracked baguette trays sit beside the loading door on Thursday afternoon, with two delivery vans blocked behind cooling racks and a contract penalty clause on his desk. He had counted oven capacity and staff hours before accepting the supermarket rush order. He had not counted the loading-bay distance that made the bread arrive late and broken.",
+      "whatToDo": "Rebuild the order test from the missed factor. Count loading distance, van turns, cooling time, and penalty exposure before accepting another rush contract.",
+      "whyItMatters": "The ovens made the order look possible, but the route out of the building defeated it. Planning by the strongest factor lets the weakest factor choose the result."
+    },
+    {
+      "exampleId": "ch01-ex03-camille-river-gauge",
+      "title": "Camille follows the amber river gauge",
+      "tags": [
+        "municipal",
+        "flood",
+        "drill"
+      ],
+      "planSpec": {
+        "domain": "municipal flood-response drill before spring melt",
+        "audience": "deputy emergency planner",
+        "stakes": "a riverside district may need evacuation within six hours",
+        "format": "scene",
+        "requiredBeat": "The river gauge blinks amber while Camille compares road access, night temperature, radio coverage, public trust, and command authority before approving the drill route."
+      },
+      "scenario": "The river gauge behind city hall blinks amber above wet concrete steps. Camille has a sandbag depot list, a radio repeater map, and the senior center roster spread across the hood of her car. Before the mayor announces the spring-melt drill route, she must decide whether the north road is usable after dark, whether the radio dead pocket can be covered, and whether last year's false alarm has damaged public trust.",
+      "whatToDo": "Compare the route against timing, ground, communications, trust, and authority. Approve only the drill path that can still work after dark and under pressure.",
+      "whyItMatters": "A drill that looks organized at noon can fail at night if the radio pocket and road closure are ignored. The comparison exposes the failure while it is still cheap."
+    },
+    {
+      "exampleId": "ch01-ex04-henrik-reefer-route",
+      "title": "Henrik tests the cold route",
+      "tags": [
+        "shipping",
+        "reroute",
+        "cold chain"
+      ],
+      "planSpec": {
+        "domain": "shipping-line reroute around a port strike",
+        "audience": "logistics director for refrigerated freight",
+        "stakes": "salmon containers will spoil if the alternate route lacks cold-chain discipline",
+        "format": "decision_memo",
+        "requiredBeat": "Cold vapor rolls from a cracked reefer door as Henrik separates favorable opportunity from missing method and discipline."
+      },
+      "scenario": "Cold vapor rolls from a cracked reefer door while Henrik reads the temperature logger on the dock. The port strike notice makes the northern route look clean, the customs cutoff is close, and sales wants an answer before lunch. He has to decide whether the alternate port is real capacity or only a line on a map, because the transfer crew after midnight is not confirmed.",
+      "whatToDo": "Separate opportunity from execution. Check the temperature handoff, customs timing, dock booking, and night crew before telling sales the reroute can carry refrigerated freight.",
+      "whyItMatters": "The strike creates a tempting opening, but missing cold-chain discipline can ruin the cargo. A plan is only favorable if the method can protect what matters."
+    },
+    {
+      "exampleId": "ch01-ex05-sofia-marble-doorway",
+      "title": "Sofia measures the marble doorway",
+      "tags": [
+        "museum",
+        "collections",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "museum deciding whether to move a fragile exhibit before a donor gala",
+        "audience": "collections manager",
+        "stakes": "a rushed move could damage a seventeenth-century cabinet",
+        "format": "dialogue",
+        "requiredBeat": "Show me the route, not the guest list, Sofia says, then walks the corridor measuring door widths before approving any promise to the director."
+      },
+      "scenario": "In the museum's marble hallway, Sofia stretches a tape measure across the doorway after saying, \"Show me the route instead of the guest list.\" The humidity crate is ready, the freight elevator key is missing, and the donor schedule is printed. Before the director promises the cabinet for Friday, Sofia must decide whether the corridor, elevator, and stairwell turn can carry the move without damage.",
+      "whatToDo": "Walk the route before approving the promise. Measure the doorway, confirm the elevator key, test the stairwell turn, and let the route decide the exhibit plan.",
+      "whyItMatters": "Prestige is not a condition of movement. The cabinet survives only if Earth and Method support the promise that leadership wants to make."
+    },
+    {
+      "exampleId": "ch01-ex06-aanya-vendor-email",
+      "title": "Aanya tests the breach notice",
+      "tags": [
+        "cybersecurity",
+        "disclosure",
+        "clients"
+      ],
+      "planSpec": {
+        "domain": "cybersecurity team weighing public disclosure after a vendor breach",
+        "audience": "security lead at a Toronto software firm",
+        "stakes": "early disclosure could protect clients or trigger avoidable panic",
+        "format": "predict_reveal",
+        "requiredBeat": "What changes if the adversary already knows the gap and the clients do not?"
+      },
+      "scenario": "What changes if the adversary already knows the gap and the clients do not? Aanya has a redacted vendor incident email open on her laptop, a client notice draft in review, and a patch window that closes at midnight. Legal wants one more day. Before the standup ends, she has to decide whether silence is caution or whether it leaves clients exposed while attackers already have the map.",
+      "whatToDo": "Test disclosure against the real conditions. Compare attacker knowledge, client exposure, patch timing, and legal risk, then disclose enough for clients to protect themselves if the gap is already exposed.",
+      "whyItMatters": "Disclosure is not automatically brave or reckless. The deciding factor is the board as it stands: who knows, who can act, and what delay gives away."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A clinic director wants to add Saturday flu shots after seeing a long waitlist, but the pharmacy delivery, nurse roster, and parking plan are still uncertain. What should she do first?",
+        "choices": [
+          "Announce the clinic and solve the gaps during the week.",
+          "Compare demand, timing, site flow, authority, and supply before committing.",
+          "Ask staff to volunteer overtime so the public sees urgency."
+        ],
+        "correctIndex": 1,
+        "explanation": "The waitlist is only one favorable sign. The comparison tests whether the conditions can carry the clinic. Overtime may show urgency while hiding pharmacy or parking failure.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A contractor can start a roof job two days early, but the weather is unstable and the permit inspector is away until Monday. Which move best fits disciplined planning?",
+        "choices": [
+          "Delay the start until weather, inspection, crew authority, and materials can be checked together.",
+          "Start early because schedule advantage is the main factor.",
+          "Ask the crew to work faster before the storm arrives."
+        ],
+        "correctIndex": 0,
+        "explanation": "The early start helps only if the rest of the field supports it. Weather and inspection are not details. They are conditions that can defeat the job after it begins.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A nonprofit has donor enthusiasm for a new food pantry, but the storage lease is unsigned and volunteer training is incomplete. What is the planning mistake?",
+        "choices": [
+          "It is refusing to act because not every detail is perfect.",
+          "It is treating moral support as if it also solved ground and discipline.",
+          "It is spending too much time on public trust before fundraising."
+        ],
+        "correctIndex": 1,
+        "explanation": "Donor enthusiasm speaks to alignment, not storage or execution. The weak lease and training system are separate factors, and either one can break the pantry.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A school principal wants to open a second entrance to reduce morning congestion. The door works, but no adult can supervise it and buses unload beside it. What should decide the move?",
+        "choices": [
+          "Whether parents will praise the faster drop-off.",
+          "Whether the entrance has been unused long enough to need publicity.",
+          "Whether the staffing, traffic pattern, authority, and timing make the entrance safe."
+        ],
+        "correctIndex": 2,
+        "explanation": "The working door is not the whole plan. Supervision and bus flow are ground and method problems. Praise from parents cannot make the entrance safe.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A product team wants to announce a launch date because engineering says the feature is finished. Support has no script and billing has not tested the new plan. What is the strongest response?",
+        "choices": [
+          "Use the engineering finish as the launch signal.",
+          "Set a launch date but call it tentative in case support struggles.",
+          "Hold the announcement until execution groups pass the same readiness comparison."
+        ],
+        "correctIndex": 2,
+        "explanation": "Engineering readiness is one factor. Support and billing are method and discipline. A tentative announcement still creates a promise the system may not be able to keep.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A city manager says the flood drill should proceed because the weather is clear. The radio map shows dead zones in the evacuation route. Why is clear weather not enough?",
+        "choices": [
+          "Weather affects mood more than operations.",
+          "Heaven can be favorable while Earth and Method still fail.",
+          "Radio maps are usually less reliable than forecasts."
+        ],
+        "correctIndex": 1,
+        "explanation": "Clear weather helps timing, but a dead communication zone can still defeat the route. The point is to compare factors, not crown the first favorable one.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A founder plans to tell competitors the firm is still testing, even though the product is ready, while quietly preparing a narrow launch. When is that deception strategic rather than theatrical?",
+        "choices": [
+          "When it comes after real readiness and protects the timing of the move.",
+          "When it makes the founder feel more confident.",
+          "When it creates a dramatic story for investors."
+        ],
+        "correctIndex": 0,
+        "explanation": "Concealment has value only when the underlying position is sound. If readiness is missing, the appearance is theater, not strategy.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A museum director wants a fragile cabinet moved for a gala. The collections manager finds the elevator key missing and the doorway too tight. Which choice best evaluates the situation?",
+        "choices": [
+          "Move it anyway because the gala stakes are public.",
+          "Cancel the gala entirely because movement has any risk.",
+          "Change the exhibit plan because prestige cannot override the route."
+        ],
+        "correctIndex": 2,
+        "explanation": "The gala creates pressure, but the route is part of the field. Changing the exhibit protects the object and respects the condition that actually governs movement.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A security lead learns attackers may know a vendor flaw, while clients have no patch instructions. Legal asks for silence until every fact is complete. What question should drive the decision?",
+        "choices": [
+          "Which choice makes the company look most transparent?",
+          "Who knows the gap now, who can act, and what delay changes?",
+          "Can the team write a notice that avoids all blame?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The useful comparison is about the current board: attacker knowledge, client exposure, patch timing, and legal risk. Image and blame are secondary to conditions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You have one strong reason to act and four uncertain conditions. What should you retrieve?",
+      "back": "Run the five-factor comparison before you commit. One favorable factor, like demand or courage, does not prove the plan can survive timing, ground, command, and method.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A route looks open on the map, but the supply handoff is untested. What kind of planning failure is this?",
+      "back": "It is treating opportunity as execution. The map may show Earth, but Method and discipline still have to carry the move under pressure.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A leader wants to appear decisive before checking the weather, authority, and public trust. What is the better move?",
+      "back": "Count quietly before the visible move. Decisiveness is useful only after the conditions have been compared and the fatal weakness has been found or removed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "When does concealment become part of a sound plan instead of empty theater?",
+      "back": "When the real conditions are already prepared and concealment protects timing or position. Hiding weakness without fixing it only postpones the same failure.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A team says the plan is bold. What question exposes whether it is merely thin?",
+      "back": "Ask which factor would defeat it if nobody worked harder than planned. If one column fails under normal pressure, the plan is depending on rescue, not strategy.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to compare conditions before commitment. The skill is not making a larger plan; it is finding the one factor that can make the plan false.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a project feels urgent because one signal is favorable, then write the five-factor comparison before agreeing to the date."
+      },
+      {
+        "context": "operations",
+        "plan": "If a route or schedule looks easy on paper, then walk the handoffs and name the place where Method could fail."
+      },
+      {
+        "context": "leadership",
+        "plan": "If people are aligned but execution is unclear, then protect the purpose by delaying the promise until discipline catches up."
+      },
+      {
+        "context": "security",
+        "plan": "If disclosure or concealment is on the table, then compare who knows, who can act, and what timing changes before choosing."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one decision due in the next day. Draw five boxes for alignment, timing, ground, command, and discipline, then circle the box that could defeat the whole plan.",
+    "weeklyPractice": "Each Friday, review one decision you made. Mark which factor you over-weighted and which one you under-checked. Carry that correction into the next Monday decision."
+  },
+  "memorableLines": [
+    {
+      "text": "A plan is not a wish with a deadline.",
+      "location": "breakdown.fastRead",
+      "why": "It separates planning from optimism in a sentence short enough to remember under pressure."
+    },
+    {
+      "text": "Calculation is not delay.",
+      "location": "breakdown.deepRead",
+      "why": "It reframes slow-looking preparation as active protection against thin action."
+    },
+    {
+      "text": "Count before you commit.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the whole chapter a compact operational command."
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch08",
+  "number": 8,
+  "title": "Persistence, persistence (dealing with people who refuse to let go)",
+  "coreMove": "Stop rewarding pursuit with negotiation once refusal has already been given.",
+  "sourcePressure": "Repeated pursuit after refusal is meaningful data; ambiguity and ongoing negotiation can feed a pattern that clear refusal and reduced access interrupt.",
+  "chapterSpecificMisunderstanding": "Romanticizing persistence as sincerity or treating all repeated contact as identical danger.",
+  "sourceAlignmentTerms": [
+    "persistence",
+    "refusal",
+    "access-seeking",
+    "ambiguity",
+    "negotiation",
+    "clear refusal",
+    "reduced access"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch08",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "independent bookstore after a breakup at work",
+      "audience": "a manager dealing with unwanted visits",
+      "stakes": "whether kindness will quiet persistence",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "sets one clear refusal and stops private replies after the third appearance",
+      "firstImage": "a handwritten staff-pick shelf card trembling in a hand",
+      "mustInclude": [
+        "staff card",
+        "back-room door",
+        "message thread"
+      ],
+      "mustAvoid": [
+        "dating etiquette",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "community choir rehearsal",
+      "audience": "a singer being pursued by another member",
+      "stakes": "whether repeated gifts are sincerity or pressure",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "returns the gift through leadership and changes seating instead of negotiating meaning",
+      "firstImage": "a wrapped scarf left on a piano bench",
+      "mustInclude": [
+        "scarf box",
+        "choir folder",
+        "rehearsal roster"
+      ],
+      "mustAvoid": [
+        "dating etiquette",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "tenant association email list",
+      "audience": "a chair managing a member who will not let go",
+      "stakes": "whether explaining better will end the pursuit",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "sends one clear boundary through the board, then blocks off-list replies",
+      "firstImage": "an inbox search showing twelve subject lines",
+      "mustInclude": [
+        "email thread",
+        "board minutes",
+        "mailing list"
+      ],
+      "mustAvoid": [
+        "dating etiquette",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "rock-climbing gym membership desk",
+      "audience": "a staff member handling a banned climber",
+      "stakes": "whether a calm tone makes persistence harmless",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "moves from conversation to access control after repeated returns after refusal",
+      "firstImage": "chalk dust on a locked membership card",
+      "mustInclude": [
+        "membership card",
+        "waiver tablet",
+        "turnstile"
+      ],
+      "mustAvoid": [
+        "dating etiquette",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "artist residency studio building",
+      "audience": "a resident receiving repeated hallway waits",
+      "stakes": "whether to keep softening no for community harmony",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "logs the waits and asks staff to change access instead of giving another explanation",
+      "firstImage": "a drying canvas facing the corridor",
+      "mustInclude": [
+        "studio key",
+        "visitor book",
+        "corridor camera"
+      ],
+      "mustAvoid": [
+        "dating etiquette",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "dog park volunteer committee",
+      "audience": "a volunteer after repeated unwanted contact",
+      "stakes": "whether the person just needs closure",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "stops closure talks and uses public handoff only after refusal has been given",
+      "firstImage": "a leash clipped to an empty fence ring",
+      "mustInclude": [
+        "committee chat",
+        "gate latch",
+        "schedule sheet"
+      ],
+      "mustAvoid": [
+        "dating etiquette",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish persistence from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits stop rewarding pursuit with negotiation once refusal has already been given.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: romanticizing persistence as sincerity or treating all repeated contact as identical danger."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one ongoing negotiation after a no. Draft the single refusal sentence and the access change that ends the loop.",
+  "readingTimeMinutes": 12
+}

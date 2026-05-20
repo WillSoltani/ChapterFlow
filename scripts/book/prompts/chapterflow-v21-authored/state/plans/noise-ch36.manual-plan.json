@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch36",
+  "number": 36,
+  "title": "A Less Noisy World",
+  "coreMove": "Pursue meaningful reduction in avoidable judgment scatter as a tractable engineering and governance goal rather than waiting for a perfect solution.",
+  "sourcePressure": "A less noisy world is a practical direction of improvement, not a utopian promise. Meaningful reductions in judgment scatter are achievable through deliberate systems design, and those reductions have real consequences for fairness, efficiency, and institutional trust. The argument for imperfect but achievable improvement is the chapter's closing position: not that noise can be eliminated, but that the gap between current noise levels and achievable noise levels is large enough to be worth closing.",
+  "chapterSpecificMisunderstanding": "Treating noise reduction as either a solved problem (once you know about noise, you fix it) or an impossible problem (human judgment is irreducibly messy and cannot be improved at scale), when in fact it is a tractable engineering and governance problem that requires deliberate institutional effort.",
+  "sourceAlignmentTerms": ["less noisy world", "practical improvement", "tractable goal", "deliberate design", "fairness", "achievable reduction", "incremental"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Documented noise reduction outcomes across implemented judgment improvement programs",
+      "detail": "Programs that have implemented structured noise reduction — including BARS-based performance appraisal reforms, structured interview adoption, forensic laboratory inter-examiner calibration, and clinical guideline implementation — consistently document meaningful spread reductions ranging from 25 to 50 percent in the first implementation cycle. These reductions have not required perfect consistency; they have required deliberate institutional commitment to the tools the book describes.",
+      "useIn": "deepRead",
+      "phrasingHint": "A world with 40 percent less avoidable sentencing variance is not a perfect world. But it is a world where fewer people serve dramatically different sentences for comparable crimes. A world with 35 percent less noise in asylum determination is not a perfect world. But it is a world where more people's cases are decided on the facts of their situation rather than on the mood of the assessor who happened to review their file. The improvement is real. It is achievable. And it has not been fully captured."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["imagine a world without judgment noise — it is closer than you think", "the future of noise-free institutions"],
+    "counterintuition": ["noise reduction is nearly complete once organizations understand the problem", "human judgment can eventually be fully replaced by consistent algorithms"],
+    "tryThisNow": ["commit to eliminating noise from your organization this year", "pick one judgment process and make it noise-free this quarter"],
+    "examples": ["a scene where noise reduction has produced perfect consistency — that is not the chapter's claim", "a scene where noise reduction is shown to be impossible in any real institution — that contradicts the chapter's evidence and argument"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Less-noisy-world examples risk reading as a utopian epilogue or a victory lap. Each domain must show concrete, documented, imperfect improvement — making the point that meaningful progress is real and achievable without claiming that the noise problem is solved or that human judgment has been fully tamed."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "criminal sentencing reform outcomes: a jurisdiction documenting concrete sentencing variance reductions achieved through structured guideline implementation alongside the residual noise that remains",
+      "audience": "a sentencing reform organization reviewing a five-year program impact assessment to document both what has been achieved and what remains achievable",
+      "stakes": "justice system fairness — the assessment must be honest about both the achieved improvements and the remaining gaps to support continued reform effort rather than premature satisfaction",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the five-year assessment documents concrete improvement: inter-judge sentencing variance for comparable offenses fell from 16 months to 9 months after structured guideline implementation — a 44 percent reduction; the proportion of matched-case pairs with sentences differing by more than 12 months fell from 31 to 17 percent; and in the jurisdiction's most consistent court district, inter-judge variance fell to 6 months; but 9 months of variance remains well above the jurisdiction's stated 4-month target, and pattern noise from judge-specific case-type tendencies accounts for most of the residual; the assessment names both the achievement and the remaining work without conflating the two",
+      "firstImage": "a five-year sentencing variance trend chart showing the 16-to-9-month decline, with the 4-month target shown as a dotted line — the achieved improvement and the remaining gap both visible",
+      "mustInclude": ["the 44% variance reduction (16 to 9 months) as a concrete documented achievement", "the 31-to-17 percent reduction in large matched-case differences as a fairness-specific metric", "the 9 months versus 4-month target as honest accounting of what remains", "the framing: a less noisy world is being built, not promised — and the building is incomplete"],
+      "mustAvoid": ["a specific criminal case or individual sentence", "implying the sentencing reform has achieved its target or that the remaining variance is acceptable"]
+    },
+    {
+      "domain": "clinical decision support adoption outcomes: a hospital network documenting concrete care variance reductions from clinical decision support tool adoption alongside remaining provider variability",
+      "audience": "a hospital network chief medical officer reviewing a three-year clinical decision support impact report to document both achieved improvements and remaining variability",
+      "stakes": "patient care consistency — the report must acknowledge both the achieved variance reductions and the remaining provider variability to guide continued program investment rather than producing false satisfaction",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two network CMOs review the three-year report: for the six clinical conditions where decision support alerts were fully implemented, inter-provider treatment variance fell by an average of 38 percent and 30-day readmission rates improved by 9 percentage points; for three conditions where decision support was partially implemented (alerts present but not mandatory), variance fell by only 11 percent; for four conditions not yet covered, variance is unchanged; the CMOs' framing: the network is demonstrably less noisy for six conditions than it was three years ago — and the remaining variability in twelve conditions shows the scope of achievable improvement still on the table",
+      "firstImage": "a clinical condition-by-condition noise reduction scorecard: fully implemented conditions (38% average reduction), partial conditions (11% reduction), not-yet-covered conditions (no change) — the pattern showing that achievable improvement is proportional to implementation depth",
+      "mustInclude": ["the 38% versus 11% versus 0% reduction by implementation depth", "the 30-day readmission improvement as a patient-outcome translation of the variance reduction", "the CMOs' framing: the network has a concrete picture of what has been achieved and a concrete picture of what is available through further implementation"],
+      "mustAvoid": ["a specific patient's clinical outcome", "implying clinical decision support eliminates the need for physician judgment or that full implementation is always appropriate"]
+    },
+    {
+      "domain": "structured interview adoption outcomes: a large employer documenting concrete hiring decision consistency improvements from structured interview adoption alongside remaining hiring manager variability",
+      "audience": "a chief people officer reviewing a four-year structured interview program impact report to document concrete consistency improvements and remaining noise for use in the next program investment decision",
+      "stakes": "talent quality and hiring equity — the report must honestly represent both the consistency gains and the residual noise to support continued program refinement rather than terminating investment prematurely",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the chief people officer presents the four-year impact data to the talent strategy board: inter-hiring-manager rating variance for matched candidate profiles fell from 0.9 to 0.5 points (a 44 percent reduction) in functions where structured interviews were fully adopted; within-function demographic representation variance (a proxy for noise-driven equity disparity) fell by 27 percent in fully adopted functions; but in functions with partial adoption (structured criteria used but without mandatory pre-discussion independent scoring), variance fell only 18 percent; and in functions without adoption, variance is unchanged at 0.9 points; the board's framing: the organization has built evidence for what structured interviews achieve — and that evidence is an argument for deepening adoption, not for claiming the problem is solved",
+      "firstImage": "a hiring variance reduction chart by adoption level: full adoption (44% reduction), partial adoption (18% reduction), no adoption (unchanged) — three bars showing the measurable relationship between adoption depth and noise reduction",
+      "mustInclude": ["the 44% versus 18% versus 0% reduction by adoption level", "the 27% demographic representation variance reduction as an equity-specific metric", "the chief people officer's framing: the data shows what has been built and what more could be built — not that the hiring noise problem is solved"],
+      "mustAvoid": ["a specific candidate's hiring outcome", "implying structured interviews eliminate all hiring noise or that unstructured interviews produce uniformly poor results"]
+    },
+    {
+      "domain": "grading rubric adoption outcomes: a school district documenting concrete inter-teacher grading consistency improvements from behaviorally anchored rubric adoption alongside remaining assessment variability",
+      "audience": "a district assessment director reviewing a two-year grading rubric impact report to document concrete inter-teacher consistency improvements and remaining variability for the next curriculum council meeting",
+      "stakes": "grade fairness and student assessment accuracy — the report must honestly document both what rubric adoption has achieved and what remains to allow informed decisions about continued adoption investment",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the assessment director asks the curriculum council: after two years of behaviorally anchored rubric adoption in grades 6 through 8, what can we show parents and teachers about improved grade consistency, and what is the honest picture of remaining variability? The impact data answers: inter-teacher grade variance on matched student work fell from 0.7 to 0.4 points (a 43 percent reduction) in subjects with fully implemented rubrics; the proportion of matched student pairs receiving the same final grade from different teachers rose from 61 to 78 percent; but in subjects with rubrics adopted but without teacher calibration training, variance fell only 12 percent — suggesting that rubric design and teacher calibration are both necessary and neither is sufficient alone",
+      "firstImage": "a two-year grading consistency impact chart comparing fully implemented rubrics (43% variance reduction), rubrics without calibration training (12% reduction), and no rubrics (unchanged variance) — with the matched-student grade agreement rate as a parallel metric",
+      "mustInclude": ["the 43% variance reduction for full implementation versus 12% for rubrics without calibration", "the 61-to-78 percent matched-student grade agreement improvement", "the director's framing: the district has built concrete evidence that rubrics work when combined with calibration training — and that neither alone is sufficient"],
+      "mustAvoid": ["a specific student's grade or academic outcome", "implying behaviorally anchored rubrics eliminate teacher judgment from assessment"]
+    },
+    {
+      "domain": "real estate appraisal reform outcomes: a residential mortgage industry program documenting concrete inter-appraiser consistency improvements from structured appraisal methodology adoption alongside remaining appraisal variability",
+      "audience": "a mortgage industry quality improvement council reviewing a three-year structured appraisal methodology impact report to document concrete improvements and remaining variability",
+      "stakes": "mortgage lending accuracy and property market stability — the council report must honestly document both the achieved improvements and the remaining variability to guide continued program investment and regulatory engagement",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the council director presents the three-year impact summary: inter-appraiser variance for matched residential properties fell from 8.2 to 5.4 percent of assessed value (a 34 percent reduction) in markets where structured comparable selection methodology was fully adopted; the proportion of matched property pairs with appraisal gap greater than 10 percent fell from 22 to 13 percent; and the mortgage default rate for loans originated on the basis of structured appraisals was 18 percent lower than for loans using traditional unstructured appraisals, suggesting the variance reduction translated to more accurate collateral valuation; but in markets with partial adoption, inter-appraiser variance fell only 12 percent, confirming that partial commitment produces partial improvement",
+      "firstImage": "a three-market appraisal variance comparison: full adoption (34% reduction), partial adoption (12% reduction), no adoption (unchanged) — with the default rate improvement shown as a separate metric aligned with the full-adoption results",
+      "mustInclude": ["the 34% variance reduction and 18% default rate improvement for full adoption", "the 22-to-13 percent large-gap reduction as a specific fairness metric", "the partial adoption comparison showing 12% improvement as evidence of the adoption-depth relationship"],
+      "mustAvoid": ["a specific property or mortgage case", "implying appraisal reform eliminates the need for appraiser judgment or that structured methodology produces the correct value for every property"]
+    },
+    {
+      "domain": "environmental permit streamlining outcomes: a regulatory agency documenting concrete inter-reviewer consistency improvements from standardized permit review methodology alongside remaining reviewer variability",
+      "audience": "a state environmental agency director reviewing a two-year standardized permit review impact assessment to document concrete improvements for the next legislative budget cycle",
+      "stakes": "regulatory consistency and environmental protection quality — the assessment must honestly represent both the achieved improvements and the remaining variability to support informed budget and policy decisions",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you present the two-year impact data to the legislative environmental committee: inter-reviewer variance in permit condition stringency fell from 1.1 to 0.65 points (a 41 percent reduction) in permit categories with fully standardized review checklists; the permit appeal rate for conditions challenged as inconsistent with comparable permits fell from 31 to 18 percent; and permit review cycle time fell from 47 to 38 days on average as standardized checklists reduced the time reviewers spent constructing condition language from scratch; but for four permit categories with complex site-specific features where standardization was not yet complete, variance is unchanged at 1.1 points — representing both the scope of remaining work and the evidence that standardization works where it has been applied",
+      "firstImage": "a before-and-after permit review impact chart: standardized categories (41% variance reduction, 31-to-18 percent appeal reduction, 47-to-38 day cycle time) versus non-standardized categories (unchanged variance) — the two tracks showing the concrete relationship between standardization and improvement",
+      "mustInclude": ["the 41% variance reduction and appeal rate reduction for standardized categories", "the 47-to-38 day cycle time improvement as an efficiency co-benefit", "the unchanged variance in non-standardized categories as honest accounting of what remains and what is achievable"],
+      "mustAvoid": ["a specific facility or permit dispute", "implying standardized permit review eliminates reviewer judgment or that all environmental permits can be processed algorithmically"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why 'a less noisy world' is a meaningful practical target rather than a utopian aspiration, using the documented achievability of meaningful noise reduction as evidence",
+      "identify the conditions under which noise reduction has produced documented improvements and what those conditions have in common",
+      "apply the documented improvement patterns across multiple domains to estimate the potential noise reduction in a described judgment system if equivalent interventions were implemented",
+      "analyze why partial implementation produces substantially smaller noise reductions than full implementation, and what that pattern implies for how noise reduction programs should be designed",
+      "evaluate whether a described noise reduction program has been implemented with sufficient depth to produce the improvements documented in analogous programs"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find the most important judgment process in your organization. Ask: if this process achieved the noise reduction that comparable processes in other organizations have achieved through deliberate standardization — roughly 30 to 40 percent — what would that change for the people whose cases are decided here? Think about the person who currently gets a worse outcome because of which judge or assessor happened to review their case. How many fewer of those people would there be in a world where your process was 35 percent less noisy? That number is the argument for the work.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) anchoring the 'less noisy world' claim in concrete documented improvement ranges rather than in principle or aspiration, at least one 5+ sentence paragraph on what the difference between current noise levels and achievable noise levels means for the people whose lives are affected by judgment decisions — making the fairness argument concrete rather than abstract, at least one one-sentence punch line about what the gap between current and achievable noise means for any organization that has read this book and not yet acted on it",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: the book's argument is not that noise will be eliminated — it is that the gap between where your organization's noise level is now and where deliberate design could take it is real, measurable, and worth closing. The only question is whether your organization will treat that gap as an engineering problem or continue treating it as a background condition",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

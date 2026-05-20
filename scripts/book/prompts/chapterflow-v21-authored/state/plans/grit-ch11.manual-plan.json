@@ -1,0 +1,196 @@
+{
+  "chapterId": "grit-ch11",
+  "number": 11,
+  "title": "The Playing Fields of Grit",
+  "coreMove": "Choose a hard thing you care about, finish the season, and let follow-through become identity.",
+  "sourcePressure": "Use structured hard activities as training grounds for interest plus perseverance.",
+  "chapterSpecificMisunderstanding": "Thinking any busy extracurricular or forced activity builds grit.",
+  "sourceAlignmentTerms": [
+    "Hard Thing Rule",
+    "Lucy and the raisins box",
+    "Margo Gardner",
+    "Warren Willingham",
+    "Geoffrey Canada",
+    "Robert Eisenberger"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Hard Thing Rule",
+      "detail": "Duckworth’s family rule requires everyone to choose a hard activity, finish the season or semester, and choose their own hard thing.",
+      "useIn": "both",
+      "phrasingHint": "The rule works because the door is chosen freely but not opened early."
+    },
+    {
+      "kind": "study",
+      "name": "Warren Willingham follow-through study",
+      "detail": "Willingham tracked students and found follow-through in extracurriculars strongly predicted later college and achievement outcomes.",
+      "useIn": "fullRead",
+      "phrasingHint": "Willingham treated the after-school record as evidence of a habit: staying with something when novelty is gone."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for The Playing Fields of Grit",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "after-school robotics season",
+      "audience": "readers facing after-school robotics season where grit could be confused with mood or talent",
+      "stakes": "whether Nina treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist chooses a hard activity freely, records the season end date, and refuses a midstream quit",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn after-school robotics season into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "ballet class semester commitment",
+      "audience": "readers facing ballet class semester commitment where grit could be confused with mood or talent",
+      "stakes": "whether Julien treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist chooses a hard activity freely, records the season end date, and refuses a midstream quit",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn ballet class semester commitment into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "community rowing club",
+      "audience": "readers facing community rowing club where grit could be confused with mood or talent",
+      "stakes": "whether Chidi treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist chooses a hard activity freely, records the season end date, and refuses a midstream quit",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn community rowing club into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "high-school debate team",
+      "audience": "readers facing high-school debate team where grit could be confused with mood or talent",
+      "stakes": "whether Hugo treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist chooses a hard activity freely, records the season end date, and refuses a midstream quit",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn high-school debate team into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "neighborhood chess program",
+      "audience": "readers facing neighborhood chess program where grit could be confused with mood or talent",
+      "stakes": "whether Catarina treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the protagonist chooses a hard activity freely, records the season end date, and refuses a midstream quit",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn neighborhood chess program into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "summer theater production",
+      "audience": "readers facing summer theater production where grit could be confused with mood or talent",
+      "stakes": "whether Janek treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist chooses a hard activity freely, records the season end date, and refuses a midstream quit",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn summer theater production into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Choose a hard thing you care about, finish the season, and let follow-through become identity. from Thinking any busy extracurricular or forced activity builds grit.",
+      "choose the visible next action in a fresh after-school robotics season scenario",
+      "diagnose when a scene has drifted into over-scheduling"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real the playing fields of grit decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

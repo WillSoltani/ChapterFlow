@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch14",
+  "number": 14,
+  "title": "Live By Priority",
+  "coreMove": "Translate purpose into one ordered first claim that tells every other worthy claim to wait.",
+  "sourcePressure": "Part 3 turns purpose into priority, the ordered first claim that prevents many worthy items from remaining equally active.",
+  "chapterSpecificMisunderstanding": "Sorting a to-do list while keeping many priorities equally alive.",
+  "sourceAlignmentTerms": [
+    "priority",
+    "ordered focus",
+    "purpose",
+    "first claim",
+    "worthy items",
+    "real narrowing"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "Live By Priority as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "conservation crew restoring a salmon stream",
+      "audience": "field crew chief",
+      "stakes": "grant inspectors arrive in six weeks",
+      "format": "decision_point",
+      "requiredBeat": "she chooses culvert clearing before signage because fish passage serves the restoration purpose first",
+      "firstImage": "muddy waders beside a culvert blocked with branches",
+      "mustInclude": [
+        "waders",
+        "blocked culvert",
+        "grant checklist"
+      ],
+      "mustAvoid": [
+        "generic environmental work"
+      ]
+    },
+    {
+      "domain": "independent bookstore rebuilding community events",
+      "audience": "store owner",
+      "stakes": "sales, displays, and clubs all demand attention",
+      "format": "scene",
+      "requiredBeat": "he puts the teen book club first because the store's purpose is neighborhood reading habit, not prettier tables",
+      "firstImage": "a folding chair circle between half-filled display shelves",
+      "mustInclude": [
+        "folding chairs",
+        "display shelves",
+        "event calendar"
+      ],
+      "mustAvoid": [
+        "generic retail prioritization"
+      ]
+    },
+    {
+      "domain": "hospice volunteer coordinator",
+      "audience": "volunteer lead",
+      "stakes": "training, newsletters, and family calls compete",
+      "format": "dialogue",
+      "requiredBeat": "she names family presence as the purpose and moves call coverage ahead of the newsletter everyone likes",
+      "firstImage": "a volunteer phone tree pinned over a half-designed newsletter",
+      "mustInclude": [
+        "phone tree",
+        "newsletter draft",
+        "family call log"
+      ],
+      "mustAvoid": [
+        "generic nonprofit admin"
+      ]
+    },
+    {
+      "domain": "robotics team before regional competition",
+      "audience": "student captain",
+      "stakes": "the robot can be made prettier or made reliable",
+      "format": "before_after",
+      "requiredBeat": "she orders drive-train repair before sponsor decals because the purpose is a robot that completes the task",
+      "firstImage": "a loose drive belt hanging beside glossy sponsor decals",
+      "mustInclude": [
+        "drive belt",
+        "sponsor decals",
+        "inspection sheet"
+      ],
+      "mustAvoid": [
+        "generic student project"
+      ]
+    },
+    {
+      "domain": "specialty coffee roaster subscription launch",
+      "audience": "roaster",
+      "stakes": "packaging design and roast consistency both need work",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts packaging will drive launch buzz, then lets the quality purpose put roast calibration first",
+      "firstImage": "green coffee samples beside a matte black label mockup",
+      "mustInclude": [
+        "green coffee samples",
+        "label mockup",
+        "roast log"
+      ],
+      "mustAvoid": [
+        "generic branding choice"
+      ]
+    },
+    {
+      "domain": "elder-law clinic resource day",
+      "audience": "clinic organizer",
+      "stakes": "booths, flyers, and appointment slots all seem important",
+      "format": "postmortem",
+      "requiredBeat": "she sees priority meant reserving attorney slots first because unanswered legal questions were the event's reason to exist",
+      "firstImage": "appointment cards clipped to a folding table with untouched flyers",
+      "mustInclude": [
+        "appointment cards",
+        "flyers",
+        "folding table"
+      ],
+      "mustAvoid": [
+        "generic event planning"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "make purpose choose an order",
+      "tell worthy work to wait",
+      "use priority as a first claim rather than a label"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Put your purpose sentence above your task list and move one item into the first position because it serves that sentence best.",
+  "readingTimeMinutes": 12
+}

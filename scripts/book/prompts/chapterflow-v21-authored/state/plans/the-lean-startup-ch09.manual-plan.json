@@ -1,0 +1,202 @@
+{
+  "chapterId": "the-lean-startup-ch09",
+  "number": 9,
+  "title": "Batch",
+  "coreMove": "Shrink the unit of work until problems surface while they are still cheap enough to fix.",
+  "sourcePressure": "Small batches shorten feedback distance, while large batches hide defects, create inventory-like waste, and delay correction; continuous deployment is one expression of this learning-speed logic.",
+  "chapterSpecificMisunderstanding": "Reducing batch size as a productivity hack instead of a way to expose reality earlier.",
+  "sourceAlignmentTerms": [
+    "small batches",
+    "large batches",
+    "faster feedback",
+    "inventory-like waste",
+    "continuous deployment",
+    "delayed problem detection"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Small batches",
+      "detail": "the sidecar says small batches accelerate learning by shortening action-to-feedback time",
+      "useIn": "both",
+      "phrasingHint": "A smaller batch puts the mistake close enough to the hand that made it."
+    },
+    {
+      "kind": "artifact",
+      "name": "Continuous deployment",
+      "detail": "the sidecar names continuous deployment as a shorter learning distance",
+      "useIn": "deepRead",
+      "phrasingHint": "Continuous deployment matters when each release tightens the distance between a change and the truth it produces."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Batch.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "medical lab sample labeling",
+      "audience": "lab operations supervisor",
+      "stakes": "large end-of-day batches hide labeling errors until retesting is costly",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Aanya splits the labeling run into ten-sample checks before the courier arrives",
+      "firstImage": "a tray of capped vials under barcode light",
+      "mustInclude": [
+        "barcode scanner",
+        "ten-sample tray",
+        "courier cutoff"
+      ],
+      "mustAvoid": [
+        "generic batch office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "software feature flag release",
+      "audience": "SaaS engineering team",
+      "stakes": "a monthly release buries which change broke onboarding",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chris ships one flagged change to one cohort and watches the support queue",
+      "firstImage": "a feature-flag panel beside support tickets",
+      "mustInclude": [
+        "feature flag",
+        "one cohort",
+        "support queue"
+      ],
+      "mustAvoid": [
+        "generic batch office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "wedding invitation print shop",
+      "audience": "print operator",
+      "stakes": "batching all envelopes delays discovery of color drift",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chiara prints twenty envelopes first and checks ink against the proof",
+      "firstImage": "a stack of cream envelopes beside a color proof",
+      "mustInclude": [
+        "twenty-envelope run",
+        "color proof",
+        "ink note"
+      ],
+      "mustAvoid": [
+        "generic batch office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "school cafeteria menu test",
+      "audience": "nutrition director",
+      "stakes": "district-wide rollout would hide which lunch item failed",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Mathieu tests one lunch line at one school before ordering pallets",
+      "firstImage": "a stainless-steel lunch tray with two sample portions",
+      "mustInclude": [
+        "one school",
+        "order sheet",
+        "waste bin tally"
+      ],
+      "mustAvoid": [
+        "generic batch office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "factory sensor calibration",
+      "audience": "process engineer",
+      "stakes": "calibrating all sensors before feedback creates inventory-like rework",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Niklas calibrates one machine and runs a short control batch before touching the rest",
+      "firstImage": "a calibration wrench beside a blinking sensor panel",
+      "mustInclude": [
+        "one machine",
+        "control batch",
+        "calibration log"
+      ],
+      "mustAvoid": [
+        "generic batch office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "newsletter subject-line system",
+      "audience": "media growth team",
+      "stakes": "writing a month of emails before testing open behavior delays learning",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Isabel sends two subject lines to small lists before filling the calendar",
+      "firstImage": "a draft calendar with thirty empty email slots",
+      "mustInclude": [
+        "two subject lines",
+        "small list",
+        "open-rate window"
+      ],
+      "mustAvoid": [
+        "generic batch office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Batch from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Shrink the unit of work until problems surface while they are still cheap enough to fix.",
+      "Diagnose when a team is drifting into the misread: Reducing batch size as a productivity hack instead of a way to expose reality earlier."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Shrink the unit of work until problems surface while they are still cheap enough to fix. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

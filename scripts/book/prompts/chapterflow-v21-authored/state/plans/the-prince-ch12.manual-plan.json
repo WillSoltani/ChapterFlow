@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch12",
+  "number": 12,
+  "title": "How Many Kinds of Soldiery There Are, and Concerning Mercenaries",
+  "coreMove": "Reject hired arms as a foundation because their pay, discipline, courage, and ambition are detached from the state.",
+  "sourcePressure": "The source makes good arms the foundation of all states and attacks mercenaries as disunited, ambitious, undisciplined, unfaithful, brave among friends and cowardly before enemies. Capable captains threaten their employers; incapable ones ruin them. Italy falls because princes rely on stipend soldiers, cavalry display, and rules that avoid fatigue and danger.",
+  "chapterSpecificMisunderstanding": "The wrong version turns this into generic outsourcing advice. The writer must keep the military mechanics: stipend courage, mercenary captains, cavalry bias, lack of infantry, no winter campaign, no night attack, no stockade or ditch, and sudden ruin when real enemies arrive.",
+  "sourceAlignmentTerms": [
+    "good arms",
+    "mercenaries",
+    "stipend",
+    "captains",
+    "Sforza",
+    "Carmignuola",
+    "Vaila",
+    "Italy",
+    "infantry",
+    "cavalry"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "outsourcing your core competency",
+      "consultants who do not care",
+      "generic contractor loyalty problem"
+    ],
+    "counterintuition": [
+      "most people assume hired experts solve capacity, but actually they create dependence",
+      "money cannot buy loyalty",
+      "outsourcing is always bad"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list contractors",
+      "ask what work you should bring in-house",
+      "write a generic dependency audit"
+    ],
+    "examples": [
+      "software vendor failure",
+      "gig workers replacing employees",
+      "consulting firm slide deck",
+      "temporary office staff"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a lagoon republic hiring a mounted condottiere company for its first mainland campaign",
+      "audience": "senators who mistake the captain's display for a state foundation",
+      "stakes": "if the captain wins he can bargain against them, and if he hesitates the republic has no infantry of its own to hold the field",
+      "format": "scene",
+      "requiredBeat": "The captain bows beside his pay purse, then keeps his horsemen outside the muddy infantry ditch while the senators notice the field is being defended by men who own no part of it.",
+      "firstImage": "A velvet pay purse hangs from a saddle horn above a muddy infantry ditch.",
+      "mustInclude": [
+        "velvet pay purse",
+        "muddy infantry ditch",
+        "senate war order"
+      ],
+      "mustAvoid": [
+        "business outsourcing",
+        "chapter 13 foreign royal army",
+        "romantic cavalry charge"
+      ]
+    },
+    {
+      "domain": "a hill republic whose hired captain captures a bridge and immediately negotiates with the enemy duke",
+      "audience": "a council that thought a capable mercenary was safer than training citizens",
+      "stakes": "the very skill that won the bridge now gives the captain leverage to oppress his employer or sell the victory elsewhere",
+      "format": "postmortem",
+      "requiredBeat": "The council messenger finds the bridge pennon still wet, but the captain has placed the enemy duke's wax offer on top of the republic's pay schedule.",
+      "firstImage": "A wet bridge pennon drips beside an enemy duke's wax offer.",
+      "mustInclude": [
+        "bridge pennon",
+        "enemy duke offer",
+        "pay schedule"
+      ],
+      "mustAvoid": [
+        "chapter 4 baron betrayal",
+        "generic betrayal drama",
+        "victory celebration"
+      ]
+    },
+    {
+      "domain": "a coastal queen hiring crossbow companies who refuse a winter assault on a raider camp",
+      "audience": "a queen learning why stipend soldiers avoid the exact hardship the state requires",
+      "stakes": "the raiders will return if the camp is not struck in winter, but the hired companies have written their rules to avoid cold, night, and danger",
+      "format": "dialogue",
+      "requiredBeat": "When she points to the snow tide, the captain taps the winter clause in his contract and leaves the night ladders stacked by the fire.",
+      "firstImage": "Night ladders lean by a fire beside a contract winter clause.",
+      "mustInclude": [
+        "night ladders",
+        "winter clause",
+        "snow tide marker"
+      ],
+      "mustAvoid": [
+        "weather hardship only",
+        "naval adventure",
+        "employee morale"
+      ]
+    },
+    {
+      "domain": "a city league paying a cavalry band that keeps taking prisoners instead of breaking enemy camps",
+      "audience": "magistrates wondering why campaigns look honorable and produce no security",
+      "stakes": "prisoner exchanges preserve the mercenary market, while enemy camps and towns remain intact",
+      "format": "predict_reveal",
+      "requiredBeat": "The magistrate predicts the dawn camp attack, then watches the cavalry captain chalk ransom marks on prisoners while the enemy stockade stands untouched.",
+      "firstImage": "Ransom chalk marks cover prisoners' sleeves below an untouched stockade.",
+      "mustInclude": [
+        "ransom chalk marks",
+        "untouched stockade",
+        "dawn attack order"
+      ],
+      "mustAvoid": [
+        "humanitarian mercy frame",
+        "legal prisoner treatment",
+        "sportsmanship analogy"
+      ]
+    },
+    {
+      "domain": "a river duchy replacing citizen pikes with a famous hired lance school",
+      "audience": "a duke comparing parade brilliance with actual defense when foreign infantry arrives",
+      "stakes": "the hired lances look valiant among friends but scatter before disciplined infantry, leaving laws without arms beneath them",
+      "format": "before_after",
+      "requiredBeat": "Before the foreign infantry crosses, the duke admires polished lance pennants; after the first drumline, those pennants lie in the reeds while the old citizen pike rack is empty.",
+      "firstImage": "Polished lance pennants shine above an empty citizen pike rack.",
+      "mustInclude": [
+        "lance pennants",
+        "citizen pike rack",
+        "foreign drumline"
+      ],
+      "mustAvoid": [
+        "generic training issue",
+        "parade spectacle only",
+        "chapter 10 strength measurement"
+      ]
+    },
+    {
+      "domain": "a republic recalling a failing hired general but discovering no law can bind his private company",
+      "audience": "lawmakers who confused paying a captain with commanding an army",
+      "stakes": "citizen captains can be recalled by law, but a mercenary head leaves with the force or turns it against the state",
+      "format": "decision_point",
+      "requiredBeat": "The recall tablet is read aloud, and the hired general lifts his private company drum from the assembly floor before any soldier obeys the republic's clerk.",
+      "firstImage": "A private company drum sits in front of a clay recall tablet.",
+      "mustInclude": [
+        "private company drum",
+        "clay recall tablet",
+        "republic clerk"
+      ],
+      "mustAvoid": [
+        "employment law analogy",
+        "committee governance",
+        "chapter 9 magistrate authority"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify mercenary arms and explain why stipend does not bind courage to the state",
+      "distinguish the danger of a capable mercenary captain from an incapable one",
+      "analyze cavalry bias, avoided fatigue, weak infantry, and prisoner-market rules as military mechanics",
+      "evaluate whether a state has good arms as a foundation or merely hired display"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one army or security force in history that was paid but not rooted in the state. Mark who paid it, what danger it avoided, and whether its captain was more dangerous if skillful or unskillful.",
+  "readingTimeMinutes": 12
+}

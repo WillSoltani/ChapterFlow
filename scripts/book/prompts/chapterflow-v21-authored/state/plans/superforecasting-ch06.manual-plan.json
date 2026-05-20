@@ -1,0 +1,143 @@
+{
+  "chapterId": "superforecasting-ch06",
+  "number": 6,
+  "title": "Superquants?",
+  "coreMove": "Express your uncertainty as a calibrated range that stays honest about what kind of unknown you face — the kind that better evidence could shrink, and the kind that will not shrink no matter what.",
+  "sourcePressure": "The bin Laden estimate spread shows serious decision-makers facing coexisting probability ranges, not one clean answer. Probability is counterintuitive because any estimate for one outcome leaves real probability mass on alternatives. Epistemic uncertainty can shrink with better information; aleatory uncertainty cannot — confusing the two leads either to false precision or to wasted research effort. Barbara Mellers on granularity and Tim Minto on small updates show that finer discrimination and smaller revisions beat blunt numerical swagger.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'use math for predictions' or 'you need advanced quantitative skills.' The real edge is probabilistic honesty: expressing uncertainty as a range that distinguishes what you know from what you don't, and using granularity (fine-grained probability distinctions) as a tool for tracking real differences in evidentiary weight rather than performing false precision.",
+  "sourceAlignmentTerms": ["probabilistic thinking", "epistemic uncertainty", "aleatory uncertainty", "granularity", "calibrated openness", "update size", "probability range"],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Leon Panetta and the bin Laden probability spread",
+      "detail": "When CIA Director Leon Panetta presented the bin Laden raid assessment to President Obama, the probability estimates from different senior analysts ranged from 40% to 95% that bin Laden was in the Abbottabad compound — the range itself was the honest answer, showing that serious decision-makers must reason with a spread of probabilities rather than demand false certainty",
+      "useIn": "deepRead",
+      "phrasingHint": "Panetta did not smooth the analysts' estimates into one number before taking them to the President — the spread from 40% to 95% was itself the real state of knowledge, and pretending otherwise would have lied about the uncertainty."
+    },
+    {
+      "kind": "person",
+      "name": "Barbara Mellers",
+      "detail": "Psychologist at the University of Pennsylvania who studied the Good Judgment Project and found that better forecasters used finer probability distinctions — expressing 63% rather than 60%, for instance — not as fake precision but because they were tracking real changes in evidentiary force that coarser categories would have blurred",
+      "useIn": "fullRead",
+      "phrasingHint": "Barbara Mellers found that the precision was real — the forecasters who used 63% instead of 65% were tracking something, not performing. The finer number reflected a finer reading of the evidence."
+    },
+    {
+      "kind": "person",
+      "name": "Tim Minto",
+      "detail": "A superforecaster in the Good Judgment Project known for making many small, proportionate updates rather than holding an estimate steady and then revising it dramatically — his pattern showed that frequent small adjustments kept forecasts more accurate than infrequent large ones",
+      "useIn": "fullRead",
+      "phrasingHint": "Tim Minto moved his estimates in increments of 2 or 3 percentage points at a time — not because he lacked conviction, but because that was what the new evidence actually warranted."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a statistics or probability tutorial — this is about epistemic honesty, not calculation",
+      "opening with 'Numbers don't lie' — the chapter argues the opposite, that bad numbers lie more effectively than bad words"
+    ],
+    "counterintuition": [
+      "'More precision means less accuracy' — close but imprecise itself; the chapter says granularity is good when it tracks real evidentiary differences, not when it performs false exactness"
+    ],
+    "tryThisNow": [
+      "any prompt that just says 'use a more specific number' without the epistemic/aleatory distinction",
+      "'Calculate the probability of three events using Bayes' theorem' — overly technical, not the chapter's register"
+    ],
+    "examples": [
+      "any example that reduces to 'use math instead of intuition' without the probability-as-calibrated-openness beat",
+      "any domain used in ch01–05"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Epistemic vs. aleatory uncertainty appears in very different practical forms — the variety of openings should signal that the distinction is universal"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "clinical trial data safety monitoring board reviewing interim efficacy data",
+      "audience": "a biostatistician presenting to a monitoring board deciding whether to stop a trial early for benefit",
+      "stakes": "stopping early captures benefit for current patients but reduces the precision of the final dataset; stopping late means more patients receive placebo",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the biostatistician distinguishes two types of uncertainty in the interim data: the epistemic uncertainty (which could be resolved by running the trial to completion) and the aleatory uncertainty (patient-to-patient variation that will never disappear regardless of sample size) — presenting them separately rather than collapsing them into one error bar changes how the board weighs the stop/continue decision",
+      "firstImage": "a Kaplan-Meier curve projected on a screen with two confidence intervals, one tighter than expected and one wider",
+      "mustInclude": ["the epistemic/aleatory distinction made explicitly to the board", "the stop/continue decision hinging on which type of uncertainty dominates", "the board's changed framing after the distinction is made"],
+      "mustAvoid": ["clinical trial regulatory content", "statistics methodology lecture"]
+    },
+    {
+      "domain": "commercial aviation meteorologist issuing approach probability guidance for a major hub airport",
+      "audience": "a meteorologist whose probability guidance determines whether airlines begin diverting flights three hours before a potential weather event",
+      "stakes": "diversion decisions for 40+ flights; too early means unnecessary cost, too late means aircraft trapped in deteriorating conditions",
+      "format": "dialogue_first",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the meteorologist expresses the approach probability as a range — 55–70% safe for instrument approaches in the next four hours — rather than a point estimate, and explains to the operations center which component of uncertainty is epistemic (the storm track could be refined with another radar sweep) and which is aleatory (the microburst probability within the storm, which cannot be predicted regardless of more data)",
+      "firstImage": "an operations center where a dispatcher is asking for a single yes/no on diversion and the meteorologist is refusing to give one",
+      "mustInclude": ["the 55–70% range", "the epistemic component that radar could resolve", "the aleatory component that cannot be resolved", "the dispatcher's response to the range"],
+      "mustAvoid": ["aviation operations jargon overload", "any domain overlap with ch01–05"]
+    },
+    {
+      "domain": "corporate bond analyst at a fixed income fund expressing default risk on a high-yield issuer",
+      "audience": "a bond analyst presenting a credit opinion to a portfolio committee considering a new position",
+      "stakes": "a $20M position in a BB-rated bond with ambiguous covenant language",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "rather than giving a single default probability, the analyst presents a range (8–17% over 3 years) and separates it: the 8% base is from sector default history (epistemic — resolvable with more financial data), the upper bound reflects aleatory factors (refinancing market conditions that will only be known when they happen); the committee's decision becomes conditional on which component they are most exposed to",
+      "firstImage": "a credit committee presentation with a one-line 'default risk: moderate' on the cover slide that the analyst is about to replace",
+      "mustInclude": ["the 8–17% range", "the two-component explanation", "the committee's conditional decision framing"],
+      "mustAvoid": ["fixed income jargon", "credit rating methodology detail"]
+    },
+    {
+      "domain": "public health epidemiologist estimating local outbreak size at the onset of a seasonal respiratory illness surge",
+      "audience": "an epidemiologist advising a municipal health department on hospital surge preparation",
+      "stakes": "pre-positioning of ICU beds, staff call-up decisions, and pharmacy stock orders — all made two weeks before peak",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "requiredBeat": "the epidemiologist gives a range (1,400–2,200 hospitalizations) and separates what makes it wide: the epistemic component (testing rates in the community are currently low — more testing would narrow it) and the aleatory component (individual severity variation that cannot be predicted at a population level); the health department takes the 2,200 figure for bed pre-positioning but uses the epistemic uncertainty to justify a second estimate in five days when testing improves",
+      "firstImage": "a health department briefing with a surge model on screen showing a confidence interval that looks uncomfortably wide to the department director",
+      "mustInclude": ["the 1,400–2,200 range", "the two-component explanation", "the staged decision — pre-position on high end, revisit in 5 days"],
+      "mustAvoid": ["COVID-specific content or reference to any named pandemic", "any domain overlap with ch01–05"]
+    },
+    {
+      "domain": "urban traffic engineer estimating accident probability at a redesigned intersection",
+      "audience": "a traffic engineer presenting a safety case to a city council subcommittee",
+      "stakes": "approval for a $600K intersection redesign; the committee wants a safety probability number before voting",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the engineer expresses the accident reduction probability as a range (32–48% reduction from baseline) and distinguishes what the range means: the epistemic part (traffic volume growth is an assumption that could be refined with better count data — a 10-day count would narrow it) and the aleatory part (driver behavior variation that cannot be engineered away regardless of design); the committee asks for the count data before voting",
+      "firstImage": "a council chamber overhead projector showing a single percentage that the engineer has already mentally flagged as misleadingly precise",
+      "mustInclude": ["the 32–48% range", "the two-component explanation", "the committee's request for the epistemic evidence that could narrow it"],
+      "mustAvoid": ["traffic engineering methodology", "any domain overlap with previous chapters"]
+    },
+    {
+      "domain": "sports physiotherapist giving a return-to-play timeline for an elite cyclist with a soft tissue injury",
+      "audience": "a physiotherapist whose estimate will determine whether the athlete competes in a major event seven weeks away",
+      "stakes": "the athlete's race calendar and the coaching staff's tactical preparation",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the physiotherapist gives a range (5–9 weeks) rather than the '6 weeks' the coaching staff wants, separates the epistemic uncertainty (MRI in 5 days will clarify whether the tendon is involved) from the aleatory uncertainty (individual healing variation that no imaging will remove), and explains that the coaching staff should plan two scenarios rather than treating any single number as a commitment",
+      "firstImage": "a physiotherapy report form with a blank 'return-to-competition estimate' field being questioned by a coach who wants a date",
+      "mustInclude": ["the 5–9 week range", "the MRI that could narrow the epistemic component", "the two-scenario planning recommendation for the coaching staff"],
+      "mustAvoid": ["sports medicine clinical detail", "any domain overlap with previous chapters"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish epistemic from aleatory uncertainty in a new domain",
+      "apply the granularity principle — express probability at the level of discrimination the evidence supports",
+      "identify when a point estimate is hiding uncertainty that should be expressed as a range",
+      "analyze what action a decision-maker should take when uncertainty is primarily epistemic vs. primarily aleatory",
+      "evaluate whether a given probability range is calibrated to the evidence or performing false precision"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take a probability you have stated recently — for a project, a decision, an outcome. Ask yourself: if I gathered 10x more data, would this probability narrow significantly? If yes, it is partly epistemic — name the data that would resolve it. If no, it is partly aleatory — your range is already as narrow as honest evidence allows. Restate the probability as a range rather than a point, and write next to it which component is which.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one direct analytical passage explaining why expressing a range feels weaker than expressing a point — decision-makers want a number, not a hedge — and why that social pressure to narrow is what produces miscalibrated point estimates",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

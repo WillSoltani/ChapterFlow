@@ -1,0 +1,129 @@
+{
+  "chapterId": "playing-to-win-ch04",
+  "number": 4,
+  "title": "How to Win",
+  "coreMove": "Design an advantage route that beats alternatives on the chosen field through a different value equation — not by competing harder at the same thing the competitor already does well.",
+  "sourcePressure": "How to win is the choice about what kind of advantage or value equation will beat alternatives on the chosen field. Glad ForceFlex found a different route — solving a problem rivals were not optimizing for (bag strength for heavy loads) rather than matching them on price or count. The chapter distinguishes head-to-head competition on the same terms from finding an alternate path that creates a more compelling offer logic.",
+  "chapterSpecificMisunderstanding": "Invest more in quality, speed, or price until you are clearly superior at what the competition already does — differentiation is about being better at the same things, not different things.",
+  "sourceAlignmentTerms": ["how to win", "value equation", "advantage", "head-to-head", "alternate path", "Glad ForceFlex", "offer logic", "competing on different terms"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Glad ForceFlex",
+      "detail": "Rather than competing on price or bag count in the trash-bag market, Glad ForceFlex found a different route by solving a problem rivals were not optimizing for: bag strength under heavy load. The value equation was not 'more bags for less money' but 'a bag that does not fail when it matters.' This alternate win path did not require beating the competitor at what the competitor was already doing.",
+      "useIn": "both",
+      "phrasingHint": "Glad ForceFlex did not win by making a cheaper bag or counting more bags in the box. It won by solving a failure mode the competitor had not named — which is a different game entirely, and a game the competitor could not immediately copy without changing its own value equation."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The best product always wins — generic quality-wins opener",
+      "You can't beat a market leader by playing their game — generic differentiation advice"
+    ],
+    "counterintuition": [
+      "Competing on price is a losing strategy — commodity-trap generalization",
+      "You should always focus on your strengths rather than fix your weaknesses — generic strengths advice"
+    ],
+    "tryThisNow": [
+      "List your top three competitive advantages — generic competitive analysis prompt",
+      "Ask customers why they chose you over the alternative — standard customer interview framing"
+    ],
+    "examples": [
+      "A startup underprice a market leader — generic disruption story",
+      "A company invests in better customer service to beat a competitor — too generic and already used in other books"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Avoid the timestamp-protagonist-prop shell across more than two examples"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional accounting firm deciding how to compete against large national tax practices",
+      "audience": "a managing partner trying to explain to a new associate why the firm does not compete on turnaround speed or software credentials",
+      "stakes": "if the firm tries to beat the national competitor on its own terms — price, tech stack, processing volume — it will always lose; the alternate win path requires a different value equation built around something the national firm structurally cannot offer",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Grace traces the last five clients who left and sees that four of them went to a national firm for faster digital filing — she had been trying to compete on speed, losing. She looks at the one client who stayed and who brought two referrals, and sees that what they valued was that someone at the firm knew their industry regulations well enough to catch something the software had not flagged. That is the different value equation.",
+      "firstImage": "a list of five departed clients with their forwarding-to firms, and one retained client with two referral notes clipped to the file",
+      "mustInclude": ["the specific value the competitor is optimizing for that the firm cannot match at scale", "the specific alternate advantage the firm has that the national competitor structurally cannot deliver"],
+      "mustAvoid": ["accounting software brand comparison", "price-competition race-to-the-bottom framing"]
+    },
+    {
+      "domain": "a youth soccer club competing for players against a regional academy program",
+      "audience": "a club director who has been losing players to a more expensive, higher-status regional academy",
+      "stakes": "trying to match the academy on elite coaching credentials and travel tournament access requires investment the club cannot make — but matching those terms concedes the game before it starts",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Daniel must present the club's new player development philosophy to the parent group, and he realizes that his instinct to promise 'we will get your child recruited' puts him in direct competition with the academy's stronger credential — he must choose a different value equation (consistent development, no burnout, a path for every player) that the academy cannot offer without changing what the academy is",
+      "firstImage": "a room full of parents whose older children had played for the regional academy and transferred out mid-season, sitting in plastic chairs waiting to hear the club director's pitch",
+      "mustInclude": ["the specific player outcome the academy optimizes for that creates a real cost for many players", "the alternate value equation the club can credibly build that the academy structurally cannot adopt"],
+      "mustAvoid": ["youth sports specialization debate", "parent pressure as the main obstacle"]
+    },
+    {
+      "domain": "a specialty coffee shop in a neighborhood with two established chain locations",
+      "audience": "a new owner trying to build regular morning foot traffic without a loyalty app, a drive-through, or the price subsidies a chain can run",
+      "stakes": "competing on convenience or price against a chain means competing at the chain's strongest point; the only path forward requires a different value equation the chains cannot replicate in that neighborhood",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "before: Henrik tries to match the chain's speed by hiring a second barista for peak hours — costs rise, margins shrink, traffic stays flat; after: he stops trying to match the chain's throughput and instead builds a value equation around knowing regulars' orders before they ask and hosting small morning events that make the shop a destination rather than a pit stop",
+      "firstImage": "a stopwatch comparison between Henrik's shop (four minutes average to door) and the chain across the street (ninety seconds), taped above the register",
+      "mustInclude": ["the specific customer behavior that the chain's format cannot accommodate but Henrik's can", "the clear moment where trying to compete on speed is recognized as the wrong game"],
+      "mustAvoid": ["third-wave coffee culture lecture", "artisan vs corporate values framing"]
+    },
+    {
+      "domain": "a community health clinic trying to serve uninsured adult patients in competition with an urgent care chain",
+      "audience": "a clinic director deciding whether to invest in weekend hours (matching the urgent care competitor) or in longer appointment times (which the competitor cannot offer)",
+      "stakes": "matching the urgent care competitor on availability requires hiring more staff than the grant budget allows; investing in longer appointments instead means a different value equation that the competitor has structurally no incentive to match",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Chiara presents the two options to her staff — expand weekend hours or extend weekday appointment slots — and a nurse says: 'The urgent care will always have more hours. What they will never have is an hour.' That sentence locates the alternate win path: depth of care per visit, not coverage per week.",
+      "firstImage": "a clinic schedule with thirty-minute appointments and a twenty-minute competitor visit time posted on a nearby billboard",
+      "mustInclude": ["the specific patient need that a time-pressed competitor cannot meet without changing its entire operating model", "the nurse's or staff member's observation that locates the alternate value equation"],
+      "mustAvoid": ["healthcare policy debate", "insurance coverage as the main strategic constraint"]
+    },
+    {
+      "domain": "an independent bookshop differentiating from online retail",
+      "audience": "an owner who has tried and failed to match online prices and is being advised to add a coffee bar",
+      "stakes": "competing on price or convenience against an online platform is a structural loss; adding a coffee bar addresses convenience without creating an advantage a customer would choose the bookshop specifically for",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Kasia's advisor suggests adding a coffee bar to bring foot traffic; Kasia asks whether anyone will walk past the chain coffee shop to buy a latte from a bookshop — the question surfaces that the coffee bar is a me-too addition, not an alternate win path. The real value equation she can build is one the platform structurally cannot: a staff that has read the books and can route a browser to exactly the right one in under ninety seconds.",
+      "firstImage": "a bookshop floor plan with a circled corner marked 'coffee bar option' and a sticky note that says 'will this actually make us different?'",
+      "mustInclude": ["the specific browsing behavior that the online platform's algorithm cannot replicate in a physical store", "the moment where the coffee bar idea is recognized as competing on someone else's terms rather than an alternate path"],
+      "mustAvoid": ["indie bookshop nostalgia", "Amazon villain framing"]
+    },
+    {
+      "domain": "a trade apprenticeship program competing with a university degree pathway for technical talent",
+      "audience": "a program director trying to attract strong candidates who are choosing between a two-year apprenticeship and a four-year engineering degree",
+      "stakes": "trying to match the university's academic credentials or graduate school pathway is impossible; the apprenticeship must win on a different value equation or it will keep attracting only candidates who could not get into the degree program",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chris reviews five years of placement data and finds that every apprenticeship graduate who was hired at the top employer in the region had one characteristic in common: they had worked on live production systems for twelve months before graduating, while the employer had to retrain university graduates for six months. The value equation was never credentials — it was readiness, and the program had not yet named that as its advantage.",
+      "firstImage": "a placement report comparing time-to-full-productivity for apprenticeship graduates versus university hires at the same employer, across five cohorts",
+      "mustInclude": ["the specific employer behavior that reveals the alternate value equation the program already delivers but has not claimed", "the decision to stop competing on credential comparison and name the real advantage"],
+      "mustAvoid": ["higher education policy debate", "class or access framing as the main story"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish head-to-head competition from an alternate-path value equation in a scenario",
+      "apply the 'which problem is the competitor not optimizing for' question to a real case",
+      "analyze why matching a stronger competitor on their own strongest dimension leads to structural disadvantage",
+      "evaluate whether a proposed advantage route is genuinely different or a better-version-of-the-same offer"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name the strongest thing your closest competitor does. Now ask: are you currently trying to beat them at that same thing, or are you solving a problem they are not even optimizing for? Write down the problem you could own that they are structurally unable to own without becoming something different.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that uses the Glad ForceFlex anchor briefly — one or two sentences grounding the principle in the real case — without becoming a product history",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

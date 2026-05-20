@@ -1,0 +1,201 @@
+{
+  "chapterId": "antifragile-ch23",
+  "number": 23,
+  "title": "Skin in the Game: Antifragility and Optionality at the Expense of Others",
+  "coreMove": "Reject decisions where the actor keeps upside and transfers the tail risk to someone else.",
+  "sourcePressure": "This chapter moves into ethics: people should not keep optional upside while exporting downside onto others.",
+  "chapterSpecificMisunderstanding": "Treating skin in the game as a macho slogan about taking risks.",
+  "sourceAlignmentTerms": [
+    "skin in the game",
+    "ethics",
+    "optionality",
+    "exported downside",
+    "accountability",
+    "shared risk",
+    "tail risk"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "skin in the game",
+      "detail": "the aligning principle that decision-makers should share the risks they impose",
+      "useIn": "both",
+      "phrasingHint": "Skin in the game starts where the person choosing cannot send the bill elsewhere."
+    },
+    {
+      "kind": "event",
+      "name": "optionality at others' expense",
+      "detail": "the source notes name the ethical problem of keeping upside while exporting downside",
+      "useIn": "fullRead",
+      "phrasingHint": "The option turns ugly when your win is private and the loss lands on strangers."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Skin in the Game: Antifragility and Optionality at the Expense of Others"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Treating skin in the game as a macho slogan about taking risks."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "architect balcony signoff with Helena as the decision-maker",
+      "audience": "a reader who handles architect balcony signoff under uncertainty",
+      "stakes": "whether Helena avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Helena rewrites the decision so the person with upside also carries meaningful downside.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "architect log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic skin in the game: antifragility and optionality at the expense of others paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "school policy pilot with Magda as the decision-maker",
+      "audience": "a reader who handles school policy pilot under uncertainty",
+      "stakes": "whether Magda avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Magda rewrites the decision so the person with upside also carries meaningful downside.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "school log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic skin in the game: antifragility and optionality at the expense of others paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "trading-desk clawback with Irena as the decision-maker",
+      "audience": "a reader who handles trading desk clawback under uncertainty",
+      "stakes": "whether Irena avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Irena rewrites the decision so the person with upside also carries meaningful downside.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "trading desk log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic skin in the game: antifragility and optionality at the expense of others paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "surgeon consent form with Zofia as the decision-maker",
+      "audience": "a reader who handles surgeon consent form under uncertainty",
+      "stakes": "whether Zofia avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Zofia rewrites the decision so the person with upside also carries meaningful downside.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "surgeon log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic skin in the game: antifragility and optionality at the expense of others paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "city flood-map approval with Ewa as the decision-maker",
+      "audience": "a reader who handles city flood map approval under uncertainty",
+      "stakes": "whether Ewa avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ewa rewrites the decision so the person with upside also carries meaningful downside.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "city log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic skin in the game: antifragility and optionality at the expense of others paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "product rollback switch with Klara as the decision-maker",
+      "audience": "a reader who handles product rollback switch under uncertainty",
+      "stakes": "whether Klara avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Klara rewrites the decision so the person with upside also carries meaningful downside.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "product log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic skin in the game: antifragility and optionality at the expense of others paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by reject decisions where the actor keeps upside and transfers the tail risk to someone else.",
+      "distinguish skin in the game, ethics, optionality in unfamiliar cases",
+      "choose actions that avoid: Treating skin in the game as a macho slogan about taking risks."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one decision you influence, name who gets the upside, who carries the downside, and what would align them.",
+  "readingTimeMinutes": 12
+}

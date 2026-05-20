@@ -1,0 +1,131 @@
+{
+  "chapterId": "the-innovators-dilemma-ch02",
+  "number": 2,
+  "title": "Value Networks and the Impetus to Innovate",
+  "coreMove": "Judge a new product by whether it solves a real problem in some real market, not by whether it measures up to your current network's performance standards.",
+  "sourcePressure": "Value networks define what quality means, which margins matter, and which projects deserve funding. An incumbent evaluating a new product through its existing network's standards can rationally reject it — and be wrong about its strategic significance in another network where different things matter.",
+  "chapterSpecificMisunderstanding": "Treating value networks as just another name for customer segments, when they are the full market system — customers, suppliers, competitors, improvement criteria, and margin logic — that together define what is worth doing.",
+  "sourceAlignmentTerms": [
+    "value network",
+    "profit logic",
+    "performance standards",
+    "resource allocation",
+    "disruptive trajectory",
+    "alternate network",
+    "customer pull",
+    "improvement criteria"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'beauty is in the eye of the beholder' framing",
+      "generic 'what your customers don't tell you' framing"
+    ],
+    "counterintuition": [
+      "generic 'the market is always right' counter",
+      "generic 'listen harder to customers' counter"
+    ],
+    "tryThisNow": [
+      "generic 'map your customer journey' prompt",
+      "generic 'ask three customers what they really want' prompt"
+    ],
+    "examples": [
+      "any scene that names a real tech company as a named disruptor",
+      "any scene that frames the incumbent as oblivious rather than rationally constrained"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Value network examples work best when readers see the same product rated differently in two different rooms."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "engineering simulation software company evaluating a free simplified version gaining traction in the maker community",
+      "audience": "a product director whose core customers are aerospace engineering teams who need simulation precision above all else",
+      "stakes": "the simplified version scores poorly on every benchmark the engineering team uses — but the maker community has entirely different benchmarks",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Claire presents the simplified product's failure on precision metrics to justify shelving it, while the forum where hobbyists are sharing screenshots of what they built with it doesn't appear in the presentation at all",
+      "firstImage": "a benchmark comparison table with the simplified product in the bottom row",
+      "mustInclude": ["precision benchmark", "aerospace customer expectations", "hobbyist forum not on the dashboard"],
+      "mustAvoid": ["any implication that the aerospace standard is wrong in context"]
+    },
+    {
+      "domain": "specialty bakery ingredients distributor evaluating a small-batch home-baker product line",
+      "audience": "a sales director whose revenue comes from restaurant accounts that order in large quantities and expect professional-grade consistency",
+      "stakes": "the home-baker product needs smaller pack sizes, different labeling, and a lower price point — none of which fit the restaurant account model",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Thomas runs the unit economics on the home-baker line through the restaurant account model — cost per unit, minimum order, delivery margin — and the product fails every measure. It passes every measure that a different kind of customer would apply.",
+      "firstImage": "a warehouse shelf of large-format ingredient sacks beside a small home-baker sample kit",
+      "mustInclude": ["unit economics from the restaurant model", "pack-size mismatch", "the different customer model never in the room"],
+      "mustAvoid": ["any frame that makes Thomas look like a poor analyst"]
+    },
+    {
+      "domain": "aviation maintenance documentation software company evaluating a tablet-based checklist app made for independent mechanics",
+      "audience": "a product manager whose enterprise customers are commercial airlines requiring regulatory-grade documentation, audit trails, and legal defensibility",
+      "stakes": "the checklist app is lightweight and quick but cannot pass the compliance audit that every airline requires — it is rated irrelevant by the only customers the company knows",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Étienne decides not to acquire the checklist app because no airline would accept it. The small-aircraft MRO shops using it are not in his customer database. He is right about his customers and wrong about the market.",
+      "firstImage": "a compliance audit checklist with twelve required fields the app does not have",
+      "mustInclude": ["compliance audit requirements", "small-aircraft MRO shops absent from the customer list", "the acquisition decision against"],
+      "mustAvoid": ["any implication that Étienne made an irrational choice"]
+    },
+    {
+      "domain": "municipal transit authority evaluating a real-time bus tracking app built for a smaller regional system",
+      "audience": "a technology director whose system runs hundreds of routes and whose riders expect integration with payment cards and accessibility features",
+      "stakes": "the regional app handles 12 routes and has no payment integration — it fails the city's minimum requirements immediately",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ingrid's team predicts the regional app will never scale to the city system's requirements — and the prediction is technically accurate. What it misses is that the regional system's riders are in a different performance context, and the app is winning there for exactly the reasons it fails here.",
+      "firstImage": "a route comparison slide showing 12 routes vs. the city's 340",
+      "mustInclude": ["payment integration gap", "minimum requirements failure", "the regional success not visible in the city's scorecard"],
+      "mustAvoid": ["implying transit tech is uniquely resistant to disruption"]
+    },
+    {
+      "domain": "retail bank evaluating a small credit union's digital lending product for first-time small-business borrowers",
+      "audience": "a commercial lending director whose portfolio is mid-market business clients requiring underwriting sophistication",
+      "stakes": "the credit union's approval criteria are simpler and the loan size is too small to justify the bank's underwriting overhead",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sophie's team reviews why they passed on licensing the credit union's tool and concludes every decision was correct inside the bank's current model — the postmortem cannot easily explain why the credit union's small-business portfolio has grown faster than the bank's over the same period",
+      "firstImage": "a side-by-side lending portfolio growth chart",
+      "mustInclude": ["underwriting overhead calculation", "loan size below threshold", "portfolio growth comparison"],
+      "mustAvoid": ["any implication that the bank should have simply changed its underwriting standards"]
+    },
+    {
+      "domain": "medical imaging equipment company evaluating a portable ultrasound device entering rural clinic markets",
+      "audience": "a product director whose flagship equipment serves hospital radiology departments requiring full diagnostic capability",
+      "stakes": "the portable unit's image resolution is below diagnostic standards for most of the conditions the hospital equipment handles",
+      "format": "before_after",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Before: Kiran evaluates the portable unit against hospital imaging standards — it fails on image resolution, regulatory pathway, and reimbursement model. After: the unit has been in rural clinic use for two years, and the clinics that adopted it have added a capability they never had before, not a substitute for a capability they already had.",
+      "firstImage": "a hospital radiology suite with a ceiling-mounted imaging arm beside a photo of a portable unit on a clinic examination table",
+      "mustInclude": ["resolution comparison", "reimbursement model mismatch", "rural clinic capability gain in the after"],
+      "mustAvoid": ["any frame that makes the hospital imaging standard seem arbitrary or wrong"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the value network standards being applied in a described evaluation",
+      "recognize when a rejection is locally rational but strategically incomplete",
+      "distinguish evaluation-within-network from strategic assessment across networks",
+      "apply the value-network concept to explain why two groups rate the same product differently",
+      "evaluate whether a product rejection reveals a blind spot or a correct assessment"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one product or service you recently rejected or deprioritized because it didn't meet your current standards. Write one sentence describing what a different kind of customer — one you don't currently serve — would find useful about it at exactly this level of quality.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph in second person asking the reader to name the alternate network they are not measuring against",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

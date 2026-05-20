@@ -1,0 +1,2504 @@
+{
+  "bookId": "the-48-laws-of-power",
+  "title": "The 48 Laws of Power",
+  "author": "Robert Greene",
+  "promotedAt": "2026-05-14T03:48:42.460Z",
+  "chapterCount": 48,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, sets down a form beside the desk as the last "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a radio waits while Alex, the director, slides the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, sorts a ballot as the phone stays face "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, signs a chart while the wall clock ti"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, copies a dashboard beside the desk as "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a invoice waits while Alex, the manager, holds the"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the person above you\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a case file waits while Alex, the founder, marks the ed"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, pins a desk as the hallway noise "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, folds a folder while the whiteboa"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, files a worksheet beside the desk a"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a report waits while Alex, the principal, checks the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, opens a camera as the phone st"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, turns over a binder as the agenda"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, lifts a headset while the clock hand j"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, circles a note beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a slide waits while Alex, the analyst, locks the edge of"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, sets down a laptop as the hallw"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, slides a screen while the whiteboard is s"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, sorts a email while two people stop t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, signs a spreadsheet beside the desk as"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a whiteboard waits while Alex, the trainer, copies the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, holds a table as the agenda si"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, marks a proposal while the clock hand "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, pins a map beside the desk as the last pa"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, folds a memo beside the desk as the"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a clipboard waits while Alex, the doctor, files the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, checks a draft as the coffee cool"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, opens a plan while two people stop tal"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, turns over a calendar beside the desk as the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a contract waits while Alex, the director, lifts the ed"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a invoice waits while Alex, the designer, circles the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, locks a form as the phone stays face dow"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, sets down a radio while the wall cloc"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, slides a ballot beside the desk as the cou"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a chart waits while Alex, the founder, sorts the edge o"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, signs a dashboard as the coffee c"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, copies a camera as the hallway noise dr"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, holds a case file while the whiteboar"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, marks a desk beside the desk as the la"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a folder waits while Alex, the manager, pins the e"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, folds a worksheet as the phone st"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, files a report while the wall clock ti"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, checks a screen while the clock h"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, opens a binder beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a headset waits while Alex, the principal, turns over the"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, lifts a note as the hallway no"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, circles a slide while the whiteboard "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, locks a laptop beside the desk as the "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, sets down a map beside the desk as "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a email waits while Alex, the analyst, slides the edge o"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, sorts a spreadsheet as the agen"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, signs a whiteboard while the clock hand j"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, copies a table beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a proposal waits while Alex, the doctor, holds the edge "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a contract waits while Alex, the trainer, marks the edge of"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, pins a memo as the coffee cool"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, folds a clipboard while two people sto"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, files a draft beside the desk as the fold"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a plan waits while Alex, the designer, checks the edge of "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, opens a calendar as the agenda sits unsi"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, turns over a dashboard as the pho"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, lifts a invoice while the wall clock t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, circles a form beside the desk as the learn n"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a radio waits while Alex, the director, locks the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, sets down a ballot as the coffee cools."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, slides a chart while two people stop "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, sorts a report while the whiteboard i"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, signs a camera beside the desk as the last"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a case file waits while Alex, the founder, copies the e"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, holds a desk as the phone stays f"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, marks a folder while the wall clo"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, pins a worksheet beside the desk as"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, folds a laptop beside the desk as the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a screen waits while Alex, the manager, files the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, checks a binder as the hallway no"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, opens a headset while the whiteboard i"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, turns over a note beside the desk a"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a slide waits while Alex, the analyst, lifts the edge of"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a proposal waits while Alex, the principal, circles the e"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, locks a map as the agenda sits"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, sets down a email while the clock han"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, slides a spreadsheet beside the desk a"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a whiteboard waits while Alex, the trainer, sorts the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, signs a table as the hallway n"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, copies a calendar as the coffee"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, holds a contract while two people stop ta"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, marks a memo beside the desk as the"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a clipboard waits while Alex, the doctor, pins the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, folds a draft as the agenda sits "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, files a plan while the clock hand jump"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, checks a chart while the wall clock ti"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, opens a dashboard beside the desk as the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a invoice waits while Alex, the designer, turns over the e"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, lifts a form as the coffee cools. You op"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, circles a radio while two people stop"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, locks a ballot beside the desk as the fold"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, sets down a worksheet beside the desk as the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a report waits while Alex, the director, slides the edg"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, sorts a camera as the phone stays face "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, signs a case file while the wall cloc"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, copies a desk beside the desk as the k"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a folder waits while Alex, the manager, holds the "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a slide waits while Alex, the founder, marks the edge o"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, pins a laptop as the hallway nois"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, folds a screen while the whiteboa"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, files a binder beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a headset waits while Alex, the principal, checks the edg"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, opens a note as the phone stay"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, turns over a table as the agenda "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, lifts a proposal while the clock hand "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, circles a map beside the desk as th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a email waits while Alex, the analyst, locks the edge of"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, sets down a spreadsheet as the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, slides a whiteboard while the whiteboard "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, sorts a plan while two people stop ta"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, signs a calendar beside the desk as th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a contract waits while Alex, the trainer, copies the edge o"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, holds a memo as the agenda sit"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, marks a clipboard while the clock hand"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, pins a draft beside the desk as the last "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, folds a ballot beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a chart waits while Alex, the doctor, files the edge of "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, checks a dashboard as the coffee "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, opens a invoice while two people stop "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, turns over a form beside the desk as the fold"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a radio waits while Alex, the director, lifts the edge "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a folder waits while Alex, the designer, circles the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, locks a worksheet as the phone stays fac"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, sets down a report while the wall clo"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, slides a camera beside the desk as the use"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a case file waits while Alex, the founder, sorts the ed"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, signs a desk as the coffee cools."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, copies a note as the hallway noise drop"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, holds a slide while the whiteboard is"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, marks a laptop beside the desk as the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a screen waits while Alex, the manager, pins the e"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, folds a binder as the phone stays"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, files a headset while the wall clock t"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, checks a whiteboard while the clo"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, opens a table beside the desk as th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a proposal waits while Alex, the principal, turns over th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, lifts a map as the hallway noi"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, circles a email while the whiteboard "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, locks a spreadsheet beside the desk as"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, sets down a draft beside the desk a"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a plan waits while Alex, the analyst, slides the edge of"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, sorts a calendar as the agenda "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, signs a contract while the clock hand jum"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, copies a memo beside the desk as th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a clipboard waits while Alex, the doctor, holds the edge"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a radio waits while Alex, the trainer, marks the edge of th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, pins a ballot as the coffee co"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, folds a chart while two people stop ta"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, files a dashboard beside the desk as the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a invoice waits while Alex, the designer, checks the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, opens a form as the agenda sits unsigned"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, turns over a desk as the phone st"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, lifts a folder while the wall clock ti"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, circles a worksheet beside the desk as the pl"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a report waits while Alex, the director, locks the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, sets down a camera as the coffee cools."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, slides a case file while two people s"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 28,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, sorts a headset while the whiteboard "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, signs a note beside the desk as the last c"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a slide waits while Alex, the founder, copies the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, holds a laptop as the phone stays"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, marks a screen while the wall clo"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, pins a binder beside the desk as th"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 29,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, folds a spreadsheet beside the desk as"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a whiteboard waits while Alex, the manager, files "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, checks a table as the hallway noi"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, opens a proposal while the whiteboard "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, turns over a map beside the desk as"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a email waits while Alex, the analyst, lifts the edge of"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 30,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a clipboard waits while Alex, the principal, circles the "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, locks a draft as the agenda si"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, sets down a plan while the clock hand"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, slides a calendar beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a contract waits while Alex, the trainer, sorts the edge of"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, signs a memo as the hallway no"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 31,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, copies a form as the coffee coo"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, holds a radio while two people stop talki"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, marks a ballot beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a chart waits while Alex, the doctor, pins the edge of t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, folds a dashboard as the agenda s"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, files a invoice while the clock hand j"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 32,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, checks a case file while the wall cloc"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, opens a desk beside the desk as the play "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a folder waits while Alex, the designer, turns over the ed"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, lifts a worksheet as the coffee cools. T"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, circles a report while two people sto"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, locks a camera beside the desk as the fold"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 33,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, sets down a binder beside the desk as the las"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a headset waits while Alex, the director, slides the ed"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, sorts a note as the phone stays face do"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, signs a slide while the wall clock ti"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, copies a laptop beside the desk as the"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a screen waits while Alex, the manager, holds the "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 34,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a email waits while Alex, the founder, marks the edge o"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, pins a spreadsheet as the hallway"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, folds a whiteboard while the whit"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, files a table beside the desk as th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a proposal waits while Alex, the principal, checks the ed"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, opens a map as the phone stays"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 35,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, turns over a memo as the agenda s"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, lifts a clipboard while the clock hand"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, circles a draft beside the desk as "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a plan waits while Alex, the analyst, locks the edge of "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, sets down a calendar as the hal"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, slides a contract while the whiteboard is"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 36,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, sorts a invoice while two people stop"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, signs a form beside the desk as the fo"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a radio waits while Alex, the trainer, copies the edge of t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, holds a ballot as the agenda s"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, marks a chart while the clock hand jum"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, pins a dashboard beside the desk as the l"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 37,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, folds a camera beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a case file waits while Alex, the doctor, files the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, checks a desk as the coffee cools"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, opens a folder while two people stop t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, turns over a worksheet beside the desk as the"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a report waits while Alex, the director, lifts the edge"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 38,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a screen waits while Alex, the designer, circles the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, locks a binder as the phone stays face d"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, sets down a headset while the wall cl"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, slides a note beside the desk as the think"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a slide waits while Alex, the founder, sorts the edge o"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, signs a laptop as the coffee cool"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 39,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, copies a map as the hallway noise drops"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, holds a email while the whiteboard is"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, marks a spreadsheet beside the desk as"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a whiteboard waits while Alex, the manager, pins t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, folds a table as the phone stays "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, files a proposal while the wall clock "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 40,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, checks a contract while the clock"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, opens a memo beside the desk as the"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a clipboard waits while Alex, the principal, turns over t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, lifts a draft as the hallway n"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, circles a plan while the whiteboard i"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, locks a calendar beside the desk as th"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 41,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, sets down a dashboard beside the de"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a invoice waits while Alex, the analyst, slides the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, sorts a form as the agenda sits"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, signs a radio while the clock hand jumps."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, copies a ballot beside the desk as "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a chart waits while Alex, the doctor, holds the edge of "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 42,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a report waits while Alex, the trainer, marks the edge of t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, pins a camera as the coffee co"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, folds a case file while two people sto"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, files a desk beside the desk as the folde"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a folder waits while Alex, the designer, checks the edge o"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, opens a worksheet as the agenda sits uns"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 43,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, turns over a laptop as the phone "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, lifts a screen while the wall clock ti"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the lab, Alex, the teacher, circles a binder beside the desk as the work "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the break room table, a headset waits while Alex, the director, locks the edg"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the clinic desk, Alex, the nurse, sets down a note as the coffee cools. A"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the shop floor desk, Alex, the trainer, slides a slide while two people stop "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 44,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, sorts a proposal while the whiteboard"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, signs a map beside the desk as the last ch"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the shop floor table, a email waits while Alex, the founder, copies the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the courtroom desk, Alex, the engineer, holds a spreadsheet as the phone "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the conference room desk, Alex, the doctor, marks a whiteboard while the wall"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the waiting room, Alex, the attorney, pins a table beside the desk as the"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 45,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the courtroom, Alex, the producer, folds a calendar beside the desk as th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the conference room table, a contract waits while Alex, the manager, files th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the waiting room desk, Alex, the coach, checks a memo as the hallway nois"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the hospital desk, Alex, the designer, opens a clipboard while the whiteboard"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the practice room, Alex, the partner, turns over a draft beside the desk "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the warehouse table, a plan waits while Alex, the analyst, lifts the edge of "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 46,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the hospital table, a chart waits while Alex, the principal, circles the edge"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the practice room desk, Alex, the teacher, locks a dashboard as the agend"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the warehouse desk, Alex, the director, sets down a invoice while the clock h"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the control room, Alex, the nurse, slides a form beside the desk as the l"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the studio table, a radio waits while Alex, the trainer, sorts the edge of th"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the hearing room desk, Alex, the producer, signs a ballot as the hallway "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 47,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the control room desk, Alex, the student, copies a worksheet as the coffe"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the studio desk, Alex, the founder, holds a report while two people stop talk"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the hearing room, Alex, the engineer, marks a camera beside the desk as t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the boardroom table, a case file waits while Alex, the doctor, pins the edge "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the classroom desk, Alex, the attorney, folds a desk as the agenda sits u"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the kitchen desk, Alex, the principal, files a folder while the clock hand ju"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 48,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the boardroom desk, Alex, the manager, checks a slide while the wall clock ti"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the classroom, Alex, the coach, opens a laptop beside the desk as the ass"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "On the kitchen table, a screen waits while Alex, the designer, turns over the ed"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Behind the lab desk, Alex, the partner, lifts a binder as the coffee cools. Alex"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the break room desk, Alex, the analyst, circles a headset while two people st"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Inside the clinic, Alex, the student, locks a note beside the desk as the folder"
+          }
+        ],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 288
+  },
+  "bookGate": {
+    "bookId": "the-48-laws-of-power",
+    "chapterCount": 48,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "1 protagonist name(s) appear as named characters in multiple chapters: Alex(ch3,4,5,6,7,9,10,13,14,15,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,38,40,41,43,44,45,46,47,48). Regenerate affected examples with distinct names."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        144,
+        144,
+        144
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 432,
+      "duplicatedNames": [
+        {
+          "name": "Alex",
+          "chapters": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            13,
+            14,
+            15,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            38,
+            40,
+            41,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "the-48-laws-of-power",
+        "chapterCount": 48,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

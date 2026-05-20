@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch17",
+  "number": 17,
+  "title": "Hack Back Your Desktop",
+  "coreMove": "Arrange the desktop so the next intended action is visible and competing paths require deliberate effort.",
+  "sourcePressure": "The chapter extends trigger redesign to the larger digital workspace, focusing on defaults, visibility, and switching paths.",
+  "chapterSpecificMisunderstanding": "A weak run would confuse a clean desktop with a governed desktop.",
+  "sourceAlignmentTerms": [
+    "desktop",
+    "external triggers",
+    "defaults",
+    "visibility",
+    "switching",
+    "workspace"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hack Back Your Desktop as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "civil engineer reviewing bridge inspection photos",
+      "audience": "engineer whose desktop opens into old bid folders",
+      "stakes": "defect review loses focus when file paths invite switching",
+      "format": "scene",
+      "requiredBeat": "she docks only the inspection viewer and load table, then hides the bid archive",
+      "firstImage": "A bridge bearing photo fills one monitor beside a load table.",
+      "mustInclude": [
+        "bearing photo",
+        "load table",
+        "hidden archive"
+      ],
+      "mustAvoid": [
+        "clean-desk aesthetics"
+      ]
+    },
+    {
+      "domain": "podcast editor cutting a witness interview",
+      "audience": "editor pulled by waveform, chat, and analytics windows",
+      "stakes": "the narrative cut suffers if analytics become a lure",
+      "format": "decision_point",
+      "requiredBeat": "he saves a session layout with transcript and waveform only before touching the edit",
+      "firstImage": "A waveform timeline stretches beside a printed transcript scan.",
+      "mustInclude": [
+        "waveform timeline",
+        "transcript scan",
+        "analytics window"
+      ],
+      "mustAvoid": [
+        "creative software tour"
+      ]
+    },
+    {
+      "domain": "estate jewelry appraiser writing certificate notes",
+      "audience": "appraiser tempted by auction-price tabs",
+      "stakes": "certificate accuracy needs the item in front, not endless comparison",
+      "format": "before_after",
+      "requiredBeat": "before, five auction tabs stay open; after, she pins the loupe photo and one grading sheet",
+      "firstImage": "A loupe photo is magnified beside a grading sheet.",
+      "mustInclude": [
+        "loupe photo",
+        "grading sheet",
+        "auction tabs"
+      ],
+      "mustAvoid": [
+        "shopping rabbit hole"
+      ]
+    },
+    {
+      "domain": "public defender triaging body-camera footage",
+      "audience": "attorney whose desktop mixes messaging and footage",
+      "stakes": "timeline notes can miss a key second",
+      "format": "postmortem",
+      "requiredBeat": "he creates a footage-only workspace and moves messaging to the next timed review",
+      "firstImage": "A timestamped body-camera frame sits above a case timeline.",
+      "mustInclude": [
+        "camera frame",
+        "case timeline",
+        "message panel"
+      ],
+      "mustAvoid": [
+        "legal drama"
+      ]
+    },
+    {
+      "domain": "genealogy researcher verifying a ship manifest",
+      "audience": "researcher who keeps wandering into family-history forums",
+      "stakes": "one record gets confused with another if tabs sprawl",
+      "format": "reflection",
+      "requiredBeat": "she leaves only the manifest scan and citation template, then writes the source line first",
+      "firstImage": "A ship manifest scan sits beside a citation template.",
+      "mustInclude": [
+        "manifest scan",
+        "citation template",
+        "forum tab"
+      ],
+      "mustAvoid": [
+        "nostalgia browsing"
+      ]
+    },
+    {
+      "domain": "municipal accountant preparing bond schedules",
+      "audience": "accountant whose desktop carries every prior spreadsheet",
+      "stakes": "bond figures need one clean calculation path",
+      "format": "vignette",
+      "requiredBeat": "he opens a single bond workbook and moves old sheets into a closed reference folder",
+      "firstImage": "A bond amortization table fills the screen beside a sealed reference folder.",
+      "mustInclude": [
+        "amortization table",
+        "reference folder",
+        "old sheets"
+      ],
+      "mustAvoid": [
+        "spreadsheet clutter joke"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Arrange the desktop so the next intended action is visible and competing paths require deliberate effort.",
+      "choose the action that stays inside Hack Back Your Desktop's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would confuse a clean desktop with a governed desktop.",
+      "use chapter-specific terms such as desktop, external triggers, defaults, visibility in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Close every window except the one required for the next block, then place the support file beside it before starting.",
+  "readingTimeMinutes": 12
+}

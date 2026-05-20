@@ -1,0 +1,153 @@
+{
+  "chapterId": "atomic-habits-ch10",
+  "number": 10,
+  "title": "How to Find and Fix the Causes of Your Bad Habits",
+  "coreMove": "Name the real relief a bad habit is buying before choosing a better response.",
+  "sourcePressure": "Bad habits often persist because they appear to solve a problem or relieve a feeling, and better change starts by naming that underlying cause accurately.",
+  "chapterSpecificMisunderstanding": "Calling the bad habit irrational before identifying the problem it seems to solve.",
+  "sourceAlignmentTerms": [
+    "bad habit",
+    "craving",
+    "underlying cause",
+    "reframe",
+    "problem solving",
+    "relief",
+    "prediction"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of bad habit",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a newsroom copy editor diagnosing why she raids the vending machine after corrections",
+      "audience": "an editor ashamed of late-night sugar runs",
+      "stakes": "whether the snack is named as relief from humiliation rather than hunger",
+      "format": "reflection",
+      "requiredBeat": "she writes the exact feeling after the redline call and chooses a different decompression before leaving the desk",
+      "firstImage": "red correction marks glowing on a newsroom monitor",
+      "mustInclude": [
+        "redline call",
+        "vending receipt"
+      ],
+      "mustAvoid": [
+        "diet advice"
+      ]
+    },
+    {
+      "domain": "a public defender identifying why she checks messages during client interviews",
+      "audience": "a lawyer whose attention keeps breaking",
+      "stakes": "whether the phone habit solves anxiety about missed court updates",
+      "format": "decision_point",
+      "requiredBeat": "she places the docket alert on a clerk channel and names the craving as certainty, not distraction",
+      "firstImage": "a docket sheet clipped under a phone face down",
+      "mustInclude": [
+        "docket sheet",
+        "clerk channel"
+      ],
+      "mustAvoid": [
+        "generic phone addiction"
+      ]
+    },
+    {
+      "domain": "a boat mechanic replacing angry tool tossing with a fault tag",
+      "audience": "a mechanic whose outburst slows repairs",
+      "stakes": "whether the bad habit is seen as a flawed answer to confusion",
+      "format": "scene",
+      "requiredBeat": "when the bolt strips, he ties a red fault tag to the part instead of throwing the wrench",
+      "firstImage": "a stripped bolt under a dangling red tag",
+      "mustInclude": [
+        "fault tag",
+        "socket wrench"
+      ],
+      "mustAvoid": [
+        "anger-management sermon"
+      ]
+    },
+    {
+      "domain": "a hospice volunteer noticing why she jokes after difficult visits",
+      "audience": "a volunteer worried her humor is disrespectful",
+      "stakes": "whether the habit is understood as relief from helplessness",
+      "format": "dialogue",
+      "requiredBeat": "her supervisor asks what problem the joke solves, and she names the silence she is trying to escape",
+      "firstImage": "a volunteer badge lying on a quiet nurses station counter",
+      "mustInclude": [
+        "visitor log",
+        "volunteer badge"
+      ],
+      "mustAvoid": [
+        "therapy overreach"
+      ]
+    },
+    {
+      "domain": "a seed-company salesperson reframing discount overpromising",
+      "audience": "a rep who keeps promising deals finance rejects",
+      "stakes": "whether the bad habit solves fear of disappointing growers",
+      "format": "postmortem",
+      "requiredBeat": "he traces each overpromise to the moment a grower goes quiet and scripts an honest pause instead",
+      "firstImage": "a seed order form with a circled discount field",
+      "mustInclude": [
+        "order form",
+        "pricing sheet"
+      ],
+      "mustAvoid": [
+        "generic sales pressure"
+      ]
+    },
+    {
+      "domain": "a college resident assistant diagnosing why she avoids conflict rounds",
+      "audience": "an RA whose floor rules keep slipping",
+      "stakes": "whether avoidance is named as buying temporary peace",
+      "format": "before_after",
+      "requiredBeat": "she marks the feeling before skipping a knock and replaces the escape with a prepared first sentence",
+      "firstImage": "a dorm hallway quiet under blue exit signs",
+      "mustInclude": [
+        "round sheet",
+        "door tag"
+      ],
+      "mustAvoid": [
+        "school discipline lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "infer the real problem a bad habit seems to solve",
+      "reframe cravings without moralizing them",
+      "choose replacement responses matched to the underlying need"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When a bad habit urge appears, write the problem it is trying to solve in seven words or fewer before choosing your response.",
+  "readingTimeMinutes": 12
+}

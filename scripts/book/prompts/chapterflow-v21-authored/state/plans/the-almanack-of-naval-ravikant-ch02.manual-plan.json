@@ -1,0 +1,216 @@
+{
+  "chapterId": "the-almanack-of-naval-ravikant-ch02",
+  "number": 2,
+  "title": "Building Judgment",
+  "coreMove": "Strip identity and desire away from a decision until the basic reality can be seen and reasoned from.",
+  "sourcePressure": "The source defines judgment as wisdom applied to external problems and says direction matters more than force when leverage is high. It emphasizes clear thinking from basics, empty calendar space, public honesty, identity shedding, mental models, inversion, falsifiability, and reading to rederive rather than memorize.",
+  "chapterSpecificMisunderstanding": "The wrong version praises intelligence, models, and contrarian opinions as status markers. This chapter must teach the reader to remove ego and desire from a decision so the facts become usable.",
+  "sourceAlignmentTerms": [
+    "judgment",
+    "wisdom",
+    "clear thinker",
+    "reality",
+    "identity",
+    "mental models",
+    "inversion",
+    "principal-agent problem",
+    "falsifiability",
+    "empty space"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a smart executive winning an argument in a conference room",
+      "a bookshelf of mental-model titles",
+      "a person deleting meetings from a calendar as productivity advice"
+    ],
+    "counterintuition": [
+      "being smart is less important than being wise",
+      "mental models make better decisions",
+      "contrarians are always right"
+    ],
+    "tryThisNow": [
+      "list your biases",
+      "write the opposite of your opinion",
+      "block thinking time on your calendar"
+    ],
+    "examples": [
+      "social media political argument",
+      "generic investment committee",
+      "school debate",
+      "whiteboard strategy meeting"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital transplant allocation review where a surgeon wants his own patient moved up the list",
+      "audience": "a review chair who respects the surgeon but must separate advocacy from truth",
+      "stakes": "whether scarce organ access is distorted by a persuasive identity and personal attachment",
+      "format": "dialogue",
+      "requiredBeat": "the chair covers the patient names, reads only the lab values and time-on-list, and asks the surgeon to argue from the anonymized criteria before emotion reenters the room",
+      "firstImage": "Two sealed transplant files sit under a transparent plastic name cover.",
+      "mustInclude": [
+        "anonymized lab values",
+        "time-on-list column",
+        "allocation criteria"
+      ],
+      "mustAvoid": [
+        "generic medical ethics lecture",
+        "courtroom drama",
+        "hero doctor framing"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "wildfire incident commander deciding whether to defend a beloved historic lodge",
+      "audience": "a commander whose crew has emotional ties to the town landmark",
+      "stakes": "whether identity and nostalgia pull firefighters into a bad wind pattern",
+      "format": "decision_point",
+      "requiredBeat": "she turns the lodge photo face down, traces the wind shift and escape route on the topo sheet, and cancels the defense because the map no longer supports the story",
+      "firstImage": "A laminated topo sheet curls at the edge under a strip of ash.",
+      "mustInclude": [
+        "wind shift arrow",
+        "escape route",
+        "lodge photo"
+      ],
+      "mustAvoid": [
+        "generic crisis leadership",
+        "bravery speech",
+        "weather-as-fate story"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "museum acquisitions team evaluating a donor's forged-looking manuscript",
+      "audience": "a curator tempted by prestige and donor pressure",
+      "stakes": "whether the museum buys status and ignores provenance gaps",
+      "format": "postmortem",
+      "requiredBeat": "the curator reads the provenance chain backward from the newest receipt, circles the first unverifiable owner, and removes the donor's name from the scoring sheet",
+      "firstImage": "A brittle receipt is clipped to a manuscript sleeve with blue conservation tape.",
+      "mustInclude": [
+        "provenance chain",
+        "unverifiable owner",
+        "scoring sheet"
+      ],
+      "mustAvoid": [
+        "treasure-hunt mystery",
+        "generic art-world gossip",
+        "rich donor villain"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "semiconductor yield engineer checking whether a favored process change actually improved output",
+      "audience": "an engineer whose reputation is attached to the new etch recipe",
+      "stakes": "whether a factory keeps amplifying a noisy improvement across millions of wafers",
+      "format": "predict_reveal",
+      "requiredBeat": "before seeing the latest batch label, he writes the falsifiable yield prediction, opens the blind wafer map, and accepts that the pattern is random clusters rather than his recipe working",
+      "firstImage": "A wafer map glows with scattered red die failures on a dark inspection screen.",
+      "mustInclude": [
+        "blind batch label",
+        "falsifiable prediction",
+        "etch recipe"
+      ],
+      "mustAvoid": [
+        "generic tech optimism",
+        "data-science dashboard",
+        "startup metrics"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "public defender deciding whether a plea deal feels safe because it avoids trial or because it is actually just",
+      "audience": "a lawyer under docket pressure who wants relief from uncertainty",
+      "stakes": "whether a client accepts a life-altering plea because the attorney's anxiety masquerades as judgment",
+      "format": "reflection",
+      "requiredBeat": "she writes two columns labeled client facts and my relief, moves every sentence about docket pressure out of the recommendation, and rereads the evidence timeline alone",
+      "firstImage": "A plea offer rests beside a courthouse vending-machine receipt.",
+      "mustInclude": [
+        "evidence timeline",
+        "two-column note",
+        "plea offer"
+      ],
+      "mustAvoid": [
+        "legal thriller",
+        "generic overwork scene",
+        "moral grandstanding"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "archaeological field lead deciding whether a rare shard supports the team's pet migration theory",
+      "audience": "a researcher whose grant narrative depends on a clean story",
+      "stakes": "whether desire for an elegant finding overrides a messy excavation layer",
+      "format": "before_after",
+      "requiredBeat": "before announcing the find, he places the shard back beside the soil-depth tags, notices the mixed layer, and rewrites the field note from discovery to contamination risk",
+      "firstImage": "A painted ceramic shard rests beside three soil-depth tags in a shallow tray.",
+      "mustInclude": [
+        "soil-depth tags",
+        "field note",
+        "mixed layer"
+      ],
+      "mustAvoid": [
+        "Indiana Jones tone",
+        "academic rivalry",
+        "generic research integrity"
+      ],
+      "openingDevice": "dialogue_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate desire for an outcome from evidence about the outcome",
+      "choose a falsifiable test over a comforting explanation",
+      "recognize identity-protective reasoning in high-stakes decisions",
+      "apply inversion and base principles to an ambiguous choice",
+      "evaluate when empty space for thinking is decision infrastructure rather than leisure"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one decision you want to go a certain way. Write the sentence you most hope is true, then write what would prove it false if you had no name, pride, money, or tribe attached to the answer.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Richard Feynman",
+      "detail": "the source points to Six Easy Pieces as an example of building mathematics from counting through an unbroken chain of logic without hiding behind definitions",
+      "useIn": "both",
+      "phrasingHint": "Feynman makes clear thinking look almost plain: start with the number line and keep every step visible."
+    },
+    {
+      "kind": "person",
+      "name": "Warren Buffett",
+      "detail": "the source cites Buffett’s rule to praise specifically and criticize generally as part of radical honesty without needless personal attack",
+      "useIn": "deepRead",
+      "phrasingHint": "Buffett’s rule keeps honesty aimed at reality instead of turning it into a private weapon."
+    },
+    {
+      "kind": "person",
+      "name": "Nassim Taleb",
+      "detail": "the source names Taleb in connection with black swans and tail events as mental models for extreme probabilities",
+      "useIn": "fullRead",
+      "phrasingHint": "Taleb’s black swan frame matters when the average case is the wrong place to look."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

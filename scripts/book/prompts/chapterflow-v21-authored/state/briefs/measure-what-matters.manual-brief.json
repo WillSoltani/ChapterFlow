@@ -1,0 +1,116 @@
+{
+  "bookId": "measure-what-matters",
+  "title": "Measure What Matters",
+  "author": "John Doerr",
+  "thesisParagraph": "Measure What Matters argues that ambitious organizations do not fail mainly because they lack desire. They fail because desire stays vague, private, overstuffed, or reviewed too late. OKRs force a team to choose a small number of meaningful objectives, define visible key results, and expose progress so people can align, track, stretch, and correct while the work is still alive. In the second half, CFRs extend that discipline into performance and culture: conversation, feedback, and recognition turn goals from static scorecards into a living operating system.",
+  "coreIdeas": [
+    {
+      "name": "Objectives need proof",
+      "oneSentence": "A serious objective names the desired outcome, while key results name the visible evidence that movement is real.",
+      "mentalMove": "separate aspiration from proof before calling a goal clear",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Choose until something loses",
+      "oneSentence": "Focus only matters when attractive alternatives lose time, resources, or lead status.",
+      "mentalMove": "look for what got displaced, not what got endorsed",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Make work mutually visible",
+      "oneSentence": "Alignment and connection happen when teams can see shared priorities, dependencies, and handoffs.",
+      "mentalMove": "draw the cross-team map before local work collides",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Track early enough to correct",
+      "oneSentence": "Accountability is useful when progress becomes visible while there is still time to adjust.",
+      "mentalMove": "move review from postmortem explanation to live correction",
+      "sourceAnchors": [
+        "ch10.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Stretch with a tether",
+      "oneSentence": "Ambitious goals raise the ceiling only when they remain tied to visible effort and honest measures.",
+      "mentalMove": "raise the target while preserving the evidence line",
+      "sourceAnchors": [
+        "ch12.source",
+        "ch13.source",
+        "ch14.source"
+      ]
+    },
+    {
+      "name": "Support the goal while it is alive",
+      "oneSentence": "Conversation, feedback, and recognition keep performance management close enough to improve the work.",
+      "mentalMove": "add live support around an OKR instead of waiting for the annual verdict",
+      "sourceAnchors": [
+        "ch15.source",
+        "ch16.source",
+        "ch17.source"
+      ]
+    },
+    {
+      "name": "Culture follows repeated signals",
+      "oneSentence": "Culture changes when reinforcement, expectations, and accountability patterns change repeatedly enough to become normal.",
+      "mentalMove": "read the climate from what the system keeps rewarding and correcting",
+      "sourceAnchors": [
+        "ch18.source",
+        "ch19.source",
+        "ch20.source"
+      ]
+    }
+  ],
+  "targetReader": "Managers, founders, operators, program leads, and ambitious individual contributors who already care about results but need a sharper way to choose priorities, measure progress, align teams, and keep goals alive after the planning meeting ends.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "treat measurement as an operating pressure, not a productivity slogan"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no invented company metrics or internal scenes for thin-source case chapters"
+    ]
+  },
+  "voiceSpecimens": [
+    "A priority earns its name only after something else loses the calendar slot.",
+    "The goal on the wall is not the system. The system is the proof you agree to look at when the week gets noisy.",
+    "If three teams can all say yes while steering by private maps, you do not have alignment yet.",
+    "Tracking should make correction possible, not make excuses prettier after the quarter closes.",
+    "Stretch is useful when it pulls the team past comfort and still leaves a rope tied to reality.",
+    "Culture is what people learn from the signal that repeats, not from the sentence that sounds best."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter will show you how OKRs can transform your entire life and business.",
+    "In today’s fast-paced world, every leader must learn to align around measurable outcomes.",
+    "The author argues that measurement is important because teams need to know what success looks like.",
+    "Simply set better goals, believe in them, and watch accountability flourish.",
+    "The key takeaway is that goals are not just goals, they are a framework for success."
+  ],
+  "teachingArc": "The book starts with the basic operating unit: objective plus measurable proof. It then shows where that unit came from, how it survives crisis, and why focus requires sacrifice and commitment. The middle chapters move outward from one team to many teams: alignment, connection, tracking, and stretch. The final third adds the human support system around the goals, then widens into culture and culture change before returning the responsibility to the reader’s next goal.",
+  "forbiddenMoves": [
+    "Do not turn OKRs into generic SMART-goal advice; preserve the operating pressure of visibility, ownership, and tradeoffs.",
+    "Do not invent internal details for thin-source company chapters; use named companies as anchors and keep claims narrow.",
+    "Do not make measurement punitive or surveillance-flavored unless the plan is explicitly warning against that misread.",
+    "Do not let every chapter use a meeting, roadmap, dashboard, or executive room as its example shell."
+  ]
+}

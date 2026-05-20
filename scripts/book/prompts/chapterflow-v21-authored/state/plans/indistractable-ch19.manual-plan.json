@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch19",
+  "number": 19,
+  "title": "Hack Back Feeds",
+  "coreMove": "Convert feed use from an endless default into a chosen visit with a purpose, boundary, and exit cue.",
+  "sourcePressure": "The chapter intensifies browser drift by focusing on feeds as endless sequences with weak stopping cues and novelty-driven next items.",
+  "chapterSpecificMisunderstanding": "A weak run would scold social media or blame algorithms instead of building a stopping structure.",
+  "sourceAlignmentTerms": [
+    "feeds",
+    "novelty",
+    "refresh loop",
+    "stopping cues",
+    "prior intent",
+    "sequence"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hack Back Feeds as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "independent ceramicist checking a makers marketplace feed",
+      "audience": "seller looking for one kiln-shelf supplier update",
+      "stakes": "a supply check becomes comparison and lost studio time",
+      "format": "decision_point",
+      "requiredBeat": "she writes 'find shelf restock only,' checks the supplier account, and exits at the first answer",
+      "firstImage": "A kiln-shelf invoice sits beside a marketplace search field.",
+      "mustInclude": [
+        "kiln-shelf invoice",
+        "search field",
+        "exit cue"
+      ],
+      "mustAvoid": [
+        "creative envy"
+      ]
+    },
+    {
+      "domain": "local journalist monitoring storm updates",
+      "audience": "reporter who needs verified county posts",
+      "stakes": "scrolling unverified chatter slows accurate reporting",
+      "format": "scene",
+      "requiredBeat": "he opens only the county emergency feed and leaves after three verified posts",
+      "firstImage": "A county alert badge appears next to a reporter notebook.",
+      "mustInclude": [
+        "alert badge",
+        "reporter notebook",
+        "verified posts"
+      ],
+      "mustAvoid": [
+        "breaking-news addiction"
+      ]
+    },
+    {
+      "domain": "college rowing captain checking team announcements",
+      "audience": "captain who drifts from team posts into athlete highlights",
+      "stakes": "practice logistics are the purpose, not comparison",
+      "format": "before_after",
+      "requiredBeat": "before, she watches race clips; after, she confirms dock time and closes on the posted lineup",
+      "firstImage": "A dock-time notice sits beside a lineup screenshot.",
+      "mustInclude": [
+        "dock-time notice",
+        "lineup screenshot",
+        "race clips"
+      ],
+      "mustAvoid": [
+        "sports feed hype"
+      ]
+    },
+    {
+      "domain": "tenant organizer reviewing neighborhood updates",
+      "audience": "organizer who enters the feed for one hearing date",
+      "stakes": "outrage posts can replace turnout work",
+      "format": "dialogue",
+      "requiredBeat": "she names the exit as finding the hearing time and texts volunteers before scrolling further",
+      "firstImage": "A hearing flyer is pinned beside a volunteer text draft.",
+      "mustInclude": [
+        "hearing flyer",
+        "text draft",
+        "outrage posts"
+      ],
+      "mustAvoid": [
+        "activism doomscroll"
+      ]
+    },
+    {
+      "domain": "rare-plant nursery owner checking pest alerts",
+      "audience": "owner needing one regional pest report",
+      "stakes": "new plant photos pull attention away from greenhouse checks",
+      "format": "postmortem",
+      "requiredBeat": "he saves the pest alert and closes the feed when the greenhouse alarm chimes",
+      "firstImage": "A pest-alert screenshot lies beside a greenhouse alarm panel.",
+      "mustInclude": [
+        "pest alert",
+        "alarm panel",
+        "plant photos"
+      ],
+      "mustAvoid": [
+        "plant hobby browsing"
+      ]
+    },
+    {
+      "domain": "classical radio host checking listener reactions",
+      "audience": "host who wants one correction but gets pulled into praise and criticism",
+      "stakes": "show prep suffers when reaction sequence has no exit",
+      "format": "reflection",
+      "requiredBeat": "she searches the track-title correction, logs it, and leaves before reading applause threads",
+      "firstImage": "A track log sheet sits beneath a listener correction post.",
+      "mustInclude": [
+        "track log sheet",
+        "correction post",
+        "applause threads"
+      ],
+      "mustAvoid": [
+        "validation seeking"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Convert feed use from an endless default into a chosen visit with a purpose, boundary, and exit cue.",
+      "choose the action that stays inside Hack Back Feeds's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would scold social media or blame algorithms instead of building a stopping structure.",
+      "use chapter-specific terms such as feeds, novelty, refresh loop, stopping cues in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before opening a feed, state the purpose and exit cue, then leave when that cue happens even if there is more to see.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,184 @@
+{
+  "chapterId": "make-time-ch03",
+  "number": 3,
+  "title": "Laser",
+  "coreMove": "Prepare the environment so the next distraction has to cross a barrier before it can break the Highlight.",
+  "sourcePressure": "The source sidecar identifies Laser as the practical work of fighting distraction from devices, apps, and other pulls so a focus block can hold.",
+  "chapterSpecificMisunderstanding": "The wrong generic version says focus harder or turn off notifications. The specific move is to build friction before attention is under attack, so flow has a protected route.",
+  "sourceAlignmentTerms": [
+    "Laser",
+    "flow",
+    "distraction",
+    "devices",
+    "apps",
+    "friction",
+    "focus block"
+  ],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "phone buzzing on a desk",
+      "browser tabs multiplying",
+      "open-plan office noise"
+    ],
+    "counterintuition": [
+      "willpower is not enough",
+      "distraction is designed"
+    ],
+    "tryThisNow": [
+      "turn off notifications",
+      "close extra tabs",
+      "set a timer"
+    ],
+    "examples": [
+      "generic software engineer with Slack",
+      "writer blocking social media",
+      "student using airplane mode",
+      "remote worker with noisy chat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a hospital radiology scheduler protecting a tumor-board prep block",
+      "audience": "a coordinator whose devices create constant openings for interruption",
+      "stakes": "the oncology team starts with missing scans if prep is fragmented",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she forwards nonurgent calls to the backup line, places the scan list on the left monitor, and removes the messaging app from view before starting the focus block",
+      "firstImage": "a tumor-board scan list glowing beside a muted call console",
+      "mustInclude": [
+        "backup line",
+        "scan list",
+        "muted call console"
+      ],
+      "mustAvoid": [
+        "generic hospital emergency",
+        "simple notification toggle"
+      ]
+    },
+    {
+      "domain": "a conservation cartographer tracing illegal logging boundaries",
+      "audience": "a map specialist who loses flow to satellite-feed alerts and chat requests",
+      "stakes": "the enforcement report fails if the boundary line is sloppy",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "he exports the needed imagery first, disconnects the live alert feed, and starts Laser only after the mapping tools are open and the chat route is blocked",
+      "firstImage": "a jagged logging scar visible across a satellite tile",
+      "mustInclude": [
+        "satellite tile",
+        "live alert feed",
+        "boundary layer"
+      ],
+      "mustAvoid": [
+        "generic data analysis",
+        "office inbox scene"
+      ]
+    },
+    {
+      "domain": "a theater lighting designer programming cues before tech rehearsal",
+      "audience": "a creative technician whose focus gets broken by app pings and hallway requests",
+      "stakes": "actors hit a blackout if the cue stack remains half programmed",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "before, she programs while answering every production ping; after, she posts the cue-range target on the console and hands the stage manager a written interruption rule",
+      "firstImage": "blue wash light spilling over a lighting console with cue 47 selected",
+      "mustInclude": [
+        "cue stack",
+        "production ping channel",
+        "interruption rule"
+      ],
+      "mustAvoid": [
+        "generic creative flow",
+        "headphones solve everything"
+      ]
+    },
+    {
+      "domain": "a forensic accountant reviewing a charity fraud ledger",
+      "audience": "an investigator needing sustained pattern recognition rather than scattered checking",
+      "stakes": "a hidden transfer chain is missed if focus resets every few minutes",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "after missing the transfer pattern, she rebuilds the next session by printing the ledger slice, locking the case chat until noon, and keeping only the bank-reference file open",
+      "firstImage": "a highlighted transfer column running down a printed ledger page",
+      "mustInclude": [
+        "ledger slice",
+        "case chat",
+        "bank-reference file"
+      ],
+      "mustAvoid": [
+        "generic spreadsheet work",
+        "detective mystery tone"
+      ]
+    },
+    {
+      "domain": "a marine mechanic diagnosing an intermittent ferry engine fault",
+      "audience": "a tradesperson whose attention gets broken by dockside questions",
+      "stakes": "the fault returns during the afternoon crossing if the diagnostic sequence is interrupted",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "he tells the deckhand the next forty minutes are Laser time, clips a laminated do-not-route card to the engine-room rail, and follows the diagnostic sequence without answering dock questions",
+      "firstImage": "a grease-marked diagnostic sheet clipped under a vibrating engine-room gauge",
+      "mustInclude": [
+        "diagnostic sequence",
+        "do-not-route card",
+        "engine-room gauge"
+      ],
+      "mustAvoid": [
+        "generic garage repair",
+        "heroic breakdown rescue"
+      ]
+    },
+    {
+      "domain": "a grant illustrator finishing anatomical plates for a medical textbook",
+      "audience": "a visual specialist who needs flow for precision work",
+      "stakes": "a mislabeled nerve path survives proofing if attention keeps snapping away",
+      "format": "reflection",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she notes the exact app that broke flow yesterday, removes the tablet's social dock before drawing, and begins with the nerve plate already open at full screen",
+      "firstImage": "a half-rendered brachial plexus plate enlarged on a drawing tablet",
+      "mustInclude": [
+        "drawing tablet",
+        "social dock",
+        "nerve label layer"
+      ],
+      "mustAvoid": [
+        "generic artist procrastination",
+        "coffee shop illustration"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which distraction route must be blocked before a focus block starts",
+      "choose friction that fits the task rather than a symbolic digital cleanse",
+      "analyze why a focus attempt failed by locating the unblocked route",
+      "evaluate whether a proposed Laser tactic protects the Highlight or merely signals seriousness"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next focus block, name the one distraction route most likely to break it and add one barrier that requires a physical or procedural step to cross.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm -- a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  },
+  "readingTimeMinutes": 12
+}

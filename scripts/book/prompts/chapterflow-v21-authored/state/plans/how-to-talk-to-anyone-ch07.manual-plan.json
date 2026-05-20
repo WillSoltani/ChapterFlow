@@ -1,0 +1,186 @@
+{
+  "chapterId": "how-to-talk-to-anyone-ch07",
+  "number": 7,
+  "title": "How to Direct Dial Their Hearts",
+  "coreMove": "Replace missing face-to-face cues on the phone with warmer voice timing, name use, respectful openings, and message shape.",
+  "sourcePressure": "Phone-presence unit covering techniques 60 through 70: vocal warmth, using the other person name, honoring interruptions and context, voicemail, openings, pacing, and replacing missing visual cues.",
+  "chapterSpecificMisunderstanding": "The weak version is phone etiquette. The useful version is engineering presence when the other person cannot see your face, hands, or patience.",
+  "sourceAlignmentTerms": [
+    "phone presence",
+    "vocal warmth",
+    "using names",
+    "timing",
+    "voicemail",
+    "openings",
+    "missing visual cues",
+    "message craft"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Your voice is your handshake",
+      "Phone calls are still human",
+      "Use their name on the call"
+    ],
+    "counterintuition": [
+      "The phone is more intimate than face to face",
+      "Voicemail is a performance",
+      "A good opening solves the call"
+    ],
+    "tryThisNow": [
+      "Smile before dialing",
+      "Use someone name twice",
+      "Leave a shorter voicemail"
+    ],
+    "examples": [
+      "generic sales cold call",
+      "customer service complaint line",
+      "doctor appointment reminder",
+      "teen phone anxiety"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a marine radio dispatcher coordinating with a harbor pilot during dense fog",
+      "audience": "a dispatcher whose clipped voice can raise risk under pressure",
+      "stakes": "whether a pilot hears respect and precision while visibility drops",
+      "format": "scene",
+      "requiredBeat": "before giving the channel change, she says the pilot vessel name slowly, waits for the static to clear, and lowers her pace on the bearing number",
+      "firstImage": "a green radio display flickering beside a fogged harbor window",
+      "mustInclude": [
+        "vessel name",
+        "channel log",
+        "bearing number"
+      ],
+      "mustAvoid": [
+        "office phone etiquette",
+        "emergency-drama shouting"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a hospice volunteer leaving a voicemail for a family caregiver",
+      "audience": "a volunteer who must sound human without demanding a callback",
+      "stakes": "whether a drained caregiver feels supported rather than tasked",
+      "format": "vignette",
+      "requiredBeat": "she rewrites the voicemail to start with the caregiver immediate context, offers one concrete drop-off window, and removes the guilt-laden call me back",
+      "firstImage": "a voicemail script written on the back of a pharmacy receipt",
+      "mustInclude": [
+        "callback number",
+        "drop-off window",
+        "pill organizer"
+      ],
+      "mustAvoid": [
+        "generic compassion call",
+        "medical advice"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a court clerk calling jurors about a postponed reporting time",
+      "audience": "a clerk making repetitive calls that still need individual respect",
+      "stakes": "whether jurors understand the change and stop flooding the office with repeat calls",
+      "format": "before_after",
+      "requiredBeat": "contrast the rushed first call with the revised one where she confirms the juror name, pauses after the new time, and gives the parking instruction only after comprehension",
+      "firstImage": "a stack of juror postcards beside a blinking phone console",
+      "mustInclude": [
+        "reporting time",
+        "juror postcard",
+        "parking gate code"
+      ],
+      "mustAvoid": [
+        "legal procedural explainer",
+        "customer support script"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a radio pledge-drive producer calling a major donor between live segments",
+      "audience": "a producer who has twelve minutes and cannot sound transactional",
+      "stakes": "whether a donor renews because the station remembers why he gives",
+      "format": "decision_point",
+      "requiredBeat": "with the countdown clock running, she chooses to open with the donor favorite late-night jazz block before naming the pledge amount",
+      "firstImage": "a red on-air light glowing above a donor card",
+      "mustInclude": [
+        "countdown clock",
+        "donor card",
+        "jazz block"
+      ],
+      "mustAvoid": [
+        "fundraising pressure",
+        "generic thank-you call"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a rural veterinary triage line handling a lambing-season call",
+      "audience": "a technician replacing visual reassurance with pace and sequence",
+      "stakes": "whether a panicked farmer follows instructions before the vet arrives",
+      "format": "dialogue",
+      "requiredBeat": "the technician says the farmer name, repeats the one observable sign, and breaks the next action into a single sentence before asking for more details",
+      "firstImage": "a mud-smeared triage notebook open beside a wall phone",
+      "mustInclude": [
+        "lambing chart",
+        "thermometer",
+        "arrival estimate"
+      ],
+      "mustAvoid": [
+        "medical heroics",
+        "generic crisis calm"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a piano tuner calling a concert hall manager about a last-minute schedule change",
+      "audience": "a contractor whose request interrupts a packed rehearsal day",
+      "stakes": "whether he preserves trust while asking for access to the stage",
+      "format": "postmortem",
+      "requiredBeat": "after one abrupt failed call, he opens the second by naming the rehearsal block he is trying not to disturb, then gives two access windows",
+      "firstImage": "a tuning fork lying on a printed rehearsal grid",
+      "mustInclude": [
+        "stage access code",
+        "rehearsal grid",
+        "tuning fork"
+      ],
+      "mustAvoid": [
+        "generic contractor scheduling",
+        "artist temperament story"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose openings that honor phone interruption context",
+      "use names and pacing without sounding scripted",
+      "shape voicemail so it recognizes the recipient burden",
+      "diagnose what visual cue must be replaced by voice or structure"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next call or voicemail, write the other person current context in five words, then open with a sentence that proves you know you are entering that context.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

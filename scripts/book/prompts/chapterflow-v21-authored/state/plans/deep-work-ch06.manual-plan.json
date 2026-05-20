@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch06",
+  "number": 6,
+  "title": "Embrace Boredom",
+  "coreMove": "Train the mind to stay with a chosen problem by deciding when distraction is allowed before the urge arrives.",
+  "sourcePressure": "The source frame says concentration must be trained and distraction should be scheduled instead of waiting for focus to appear.",
+  "chapterSpecificMisunderstanding": "The weak version says take breaks from your phone; the real move is rehearsing resistance to distraction while the urge is active.",
+  "sourceAlignmentTerms": ["concentration", "train", "boredom", "schedule distraction", "urge", "focus"],
+  "forbiddenFrames": {
+    "hook": ["delete the app", "boredom is healthy", "sit quietly and breathe"],
+    "counterintuition": ["restlessness is the gym", "boredom builds focus"],
+    "tryThisNow": ["wait five minutes before checking your phone", "put your phone across the room"],
+    "examples": ["commuter scrolling", "student studying with phone", "parent in checkout line"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a chess arbiter studying endgame rulings between tournament rounds",
+      "audience": "a rules expert whose mind wants relief from dense positions",
+      "stakes": "a contested ruling later that afternoon depends on precise recall",
+      "format": "scene",
+      "requiredBeat": "when the urge to check scores hits, she points to the scheduled break time and returns to the same rook-pawn diagram",
+      "firstImage": "a printed rook-pawn endgame diagram under a tournament pairing sheet",
+      "mustInclude": ["scheduled break time", "ruling manual", "rook-pawn diagram"],
+      "mustAvoid": ["generic board game focus", "school study hall"]
+    },
+    {
+      "domain": "a field ecologist waiting through a silent bird count",
+      "audience": "a scientist whose data quality depends on not filling quiet gaps",
+      "stakes": "one premature movement ruins the survey window",
+      "format": "reflection",
+      "requiredBeat": "she writes the next allowed radio-check time on her wrist card and stays still through the restless minute",
+      "firstImage": "a damp wrist card clipped to a binocular strap before sunrise",
+      "mustInclude": ["survey window", "radio-check time", "binocular strap"],
+      "mustAvoid": ["nature meditation", "generic fieldwork romance"]
+    },
+    {
+      "domain": "a trial consultant reading jury questionnaires for contradiction patterns",
+      "audience": "a consultant who keeps escaping difficult ambiguity",
+      "stakes": "a strike recommendation becomes shallow if she scans instead of analyzes",
+      "format": "decision_point",
+      "requiredBeat": "she notices the browser impulse, writes the exact time for the next allowed check, and returns to the same contradictory answer pair",
+      "firstImage": "two questionnaire answers highlighted in different colors on a tablet",
+      "mustInclude": ["answer pair", "allowed check time", "strike recommendation"],
+      "mustAvoid": ["generic legal prep", "email distraction"]
+    },
+    {
+      "domain": "a jazz pianist practicing a difficult left-hand pattern",
+      "audience": "a musician whose practice breaks when discomfort appears",
+      "stakes": "the ensemble rehearsal exposes the weak passage if he keeps skipping it",
+      "format": "before_after",
+      "requiredBeat": "he schedules phone checks between repetitions and repeats the same four bars until the hand stops searching for escape",
+      "firstImage": "four measures circled on a chart beside a silent metronome light",
+      "mustInclude": ["left-hand pattern", "scheduled checks", "four bars"],
+      "mustAvoid": ["generic practice montage", "inspiration through music"]
+    },
+    {
+      "domain": "a cybersecurity analyst reverse-engineering a malware sample",
+      "audience": "a technical analyst facing long stretches of uncertainty",
+      "stakes": "a false classification leaves a client exposed",
+      "format": "postmortem",
+      "requiredBeat": "after a shallow first pass, he schedules message checks and stays with one suspicious function until the behavior is clear",
+      "firstImage": "a disassembler window paused at a function with a strange loop",
+      "mustInclude": ["message-check schedule", "suspicious function", "classification note"],
+      "mustAvoid": ["generic hacker scene", "late-night energy drink"]
+    },
+    {
+      "domain": "a textile conservator removing adhesive from a fragile banner",
+      "audience": "a conservator whose patience is part of the skill",
+      "stakes": "one rushed pull tears a historic fabric edge",
+      "format": "vignette",
+      "requiredBeat": "she waits through the urge to switch tasks, keeps the tool at the same angle, and logs the next break rather than taking one early",
+      "firstImage": "a linen banner edge held flat under a cool inspection lamp",
+      "mustInclude": ["adhesive line", "break log", "tool angle"],
+      "mustAvoid": ["generic museum craft", "slow work as relaxation"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify scheduled distraction in action", "choose responses to urges during hard focus", "distinguish concentration training from relaxation", "evaluate whether a break pattern trains or weakens attention"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Choose the next moment you are allowed to check a distraction, write the time down, and return to the same hard sentence or problem until that time arrives.",
+  "readingTimeMinutes": 12
+}

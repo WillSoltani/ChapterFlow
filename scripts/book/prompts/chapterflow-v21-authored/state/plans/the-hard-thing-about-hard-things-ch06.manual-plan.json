@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch06",
+  "number": 6,
+  "title": "Take Care of the People, the Products, and the Profits, In That Order",
+  "coreMove": "Trace financial and product weakness back to the people system before treating profit as a separate target.",
+  "sourcePressure": "The chapter teaches a causal chain: standards, feedback, training, role clarity, and management quality produce product reliability, which makes profit durable.",
+  "chapterSpecificMisunderstanding": "The weak version is people-first kindness or morale perks instead of accountable management.",
+  "sourceAlignmentTerms": [
+    "people system",
+    "product reliability",
+    "profit",
+    "training",
+    "management debt",
+    "standards",
+    "accountability"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "people are your greatest asset",
+      "culture eats strategy",
+      "happy employees make happy customers"
+    ],
+    "counterintuition": [
+      "care means accountability",
+      "profits come last",
+      "training is not overhead"
+    ],
+    "tryThisNow": [
+      "thank one employee",
+      "write your company values",
+      "schedule a feedback meeting"
+    ],
+    "examples": [
+      "perk-filled office",
+      "generic performance review",
+      "founder skipping HR paperwork"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "specialty bakery expanding wholesale pastry production",
+      "audience": "an owner whose croissant returns look like a flour or oven problem",
+      "stakes": "profit on wholesale accounts is disappearing because shift leads use different proofing standards",
+      "format": "before_after",
+      "requiredBeat": "the owner stops blaming the oven, watches two shift leads proof dough differently, and writes one training standard before repricing accounts",
+      "firstImage": "a rack of collapsed croissants beside two conflicting proofing notes",
+      "mustInclude": [
+        "proofing standard",
+        "shift leads",
+        "wholesale returns"
+      ],
+      "mustAvoid": [
+        "customer service anecdote"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "marine electronics repair shop with repeat sonar warranty claims",
+      "audience": "a shop manager tempted to pressure technicians for faster throughput",
+      "stakes": "rushing repairs increases warranty loss and damages dealer trust",
+      "format": "scene",
+      "requiredBeat": "the manager traces three failed units to the same untrained calibration step and pulls the throughput bonus until every tech passes the bench test",
+      "firstImage": "three returned sonar heads lined up next to a calibration gauge",
+      "mustInclude": [
+        "bench test",
+        "calibration step",
+        "throughput bonus"
+      ],
+      "mustAvoid": [
+        "speed versus quality cliche"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "veterinary lab processing biopsy samples across two shifts",
+      "audience": "a lab director seeing late reports and blaming software",
+      "stakes": "delayed diagnoses and lost clinic contracts trace to inconsistent handoff standards",
+      "format": "postmortem",
+      "requiredBeat": "the director follows one sample's path, finds the missing handoff rule between shifts, and retrains supervisors before buying new software",
+      "firstImage": "a biopsy cassette sitting beside a timestamped handoff tray",
+      "mustInclude": [
+        "handoff rule",
+        "supervisor retraining",
+        "late reports"
+      ],
+      "mustAvoid": [
+        "medical lab technology fix"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "custom furniture manufacturer with margin erosion",
+      "audience": "a founder who thinks profits fell because lumber costs rose",
+      "stakes": "untrained project leads are approving change orders inconsistently",
+      "format": "decision_point",
+      "requiredBeat": "the founder audits five change orders, finds three different approval rules, and pauses new bids until project leads use one margin gate",
+      "firstImage": "a stack of walnut change orders under a calculator tape",
+      "mustInclude": [
+        "margin gate",
+        "project leads",
+        "change orders"
+      ],
+      "mustAvoid": [
+        "craftsmanship nostalgia"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "regional laboratory instrument sales team missing renewal targets",
+      "audience": "a VP considering commission cuts before checking manager coaching",
+      "stakes": "customers leave because reps cannot explain service intervals clearly",
+      "format": "dialogue",
+      "requiredBeat": "the VP asks two managers to role-play the renewal explanation, hears the gap, and builds manager certification before changing commissions",
+      "firstImage": "a renewal spreadsheet open beside a service-interval card",
+      "mustInclude": [
+        "manager certification",
+        "service intervals",
+        "renewal targets"
+      ],
+      "mustAvoid": [
+        "sales hustle lesson"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "municipal recycling facility with contamination penalties",
+      "audience": "a plant superintendent blaming residents before checking floor training",
+      "stakes": "penalties rise because sort-line leads apply different rejection calls",
+      "format": "reflection",
+      "requiredBeat": "the superintendent stands at two sort lines, records conflicting rejection calls, and creates a lead-training checklist before asking the city for new bins",
+      "firstImage": "a rejected bundle of mixed paper tagged with two different reason codes",
+      "mustInclude": [
+        "reason codes",
+        "lead-training checklist",
+        "contamination penalty"
+      ],
+      "mustAvoid": [
+        "public education campaign"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "trace output problems upstream to management systems",
+      "distinguish care from comfort",
+      "identify management debt before product or profit damage",
+      "choose training and standards over superficial morale fixes"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one recurring product or financial miss and name the manager behavior, training gap, or unclear standard that could be producing it upstream.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

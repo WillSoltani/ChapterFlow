@@ -1,0 +1,199 @@
+{
+  "chapterId": "skin-in-the-game-ch02",
+  "number": 2,
+  "title": "The Most Intolerant Wins: The Dominance of the Stubborn Minority",
+  "coreMove": "Separate head-count power from tolerance asymmetry, then look for the local threshold where the strict preference becomes the whole system default.",
+  "sourcePressure": "A tiny intransigent minority can set a default for everyone when the majority is flexible enough to accept the stricter option.",
+  "chapterSpecificMisunderstanding": "Treating the lesson as simple praise for stubbornness or as a majority-versus-minority politics slogan.",
+  "sourceAlignmentTerms": [
+    "intransigent minority",
+    "flexible majority",
+    "minority rule",
+    "kosher",
+    "halal",
+    "renormalization",
+    "decentralization"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "kosher lemonade",
+      "detail": "The source uses kosher drinks to show how a strict minority can set a production default that non-kosher consumers can also accept.",
+      "useIn": "both",
+      "phrasingHint": "The small kosher mark on a bottle is the quiet evidence: the stricter rule wins because the looser side can drink it too."
+    },
+    {
+      "kind": "artifact",
+      "name": "New England Complex Systems Institute",
+      "detail": "The sidecar lists the institute among visibly supported proper nouns in the chapter-linked excerpt on minority dynamics.",
+      "useIn": "deepRead",
+      "phrasingHint": "A complex-systems frame helps the reader see the move as scaling pressure, not moral magic."
+    },
+    {
+      "kind": "person",
+      "name": "Margaret Mead",
+      "detail": "The sidecar lists Margaret Mead among visibly supported proper nouns for the chapter's small-group-change pressure.",
+      "useIn": "fullRead",
+      "phrasingHint": "The familiar Mead pressure belongs only as a light bridge: small groups matter when the system gives their constraint a path to scale."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital cafeteria menu planning around one strict allergy requirement",
+      "audience": "operations manager who thinks majority preference should decide every tray",
+      "stakes": "one unsafe ingredient could force separate kitchens or a universal safe default",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "James swaps the whole dessert line after seeing that everyone can eat the allergen-safe version but one patient cannot eat the ordinary one.",
+      "firstImage": "ingredient labels beside a tray rail",
+      "mustInclude": [
+        "allergy card",
+        "dessert tray",
+        "supplier label"
+      ],
+      "mustAvoid": [
+        "generic inclusion sermon"
+      ]
+    },
+    {
+      "domain": "European sales team choosing a meeting language after one non-native speaker joins",
+      "audience": "team lead balancing speed against the strict communication constraint",
+      "stakes": "a product launch decision could exclude the one person with regulatory knowledge",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sophie changes the meeting default to English because the native speakers can adapt and the regulatory analyst cannot follow the side chatter.",
+      "firstImage": "headsets coiled beside name placards",
+      "mustInclude": [
+        "meeting agenda",
+        "language setting",
+        "regulatory note"
+      ],
+      "mustAvoid": [
+        "politeness lesson"
+      ]
+    },
+    {
+      "domain": "wedding caterer deciding whether to make the whole buffet halal-compatible",
+      "audience": "couple trying to avoid separate food lines without making guests feel managed",
+      "stakes": "one strict dietary rule could quietly reshape the entire menu",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anders tastes the replacement sauce, sees it works for everyone, and chooses the stricter default instead of maintaining two buffets.",
+      "firstImage": "coriander scent from a test spoon",
+      "mustInclude": [
+        "menu card",
+        "supplier certificate",
+        "sauce sample"
+      ],
+      "mustAvoid": [
+        "religious generalization"
+      ]
+    },
+    {
+      "domain": "hardware retailer stocking low-VOC paint after a few contractors demand it",
+      "audience": "buyer watching a niche constraint spread through shelf space",
+      "stakes": "inventory choices could move before survey demand appears",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chiara relabels the aisle when the strict customers will not buy ordinary paint and ordinary customers accept the low-VOC can.",
+      "firstImage": "paint-can lids under fluorescent light",
+      "mustInclude": [
+        "shelf tags",
+        "VOC label",
+        "purchase order"
+      ],
+      "mustAvoid": [
+        "green marketing cliché"
+      ]
+    },
+    {
+      "domain": "school district merging lunch contracts across towns",
+      "audience": "nutrition director who sees a local rule become system-wide",
+      "stakes": "one merged contract can amplify a small constraint into a default",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aanya maps how one town's nut-free rule becomes the cheapest district-wide contract after procurement merges kitchens.",
+      "firstImage": "a wall map dotted with school pins",
+      "mustInclude": [
+        "contract map",
+        "nut-free rule",
+        "delivery route"
+      ],
+      "mustAvoid": [
+        "majority vote lesson"
+      ]
+    },
+    {
+      "domain": "apartment building quiet-hours rule driven by one tenant with a medical constraint",
+      "audience": "tenant board learning why flexibility makes the strict rule spread",
+      "stakes": "a building norm changes although most residents were indifferent",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ben asks which side can tolerate the other default, then rewrites the vote question around the asymmetry.",
+      "firstImage": "elevator notice reflected in brushed steel",
+      "mustInclude": [
+        "quiet-hours notice",
+        "medical letter",
+        "vote tally"
+      ],
+      "mustAvoid": [
+        "generic neighbor conflict"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify intransigent minority in a new concrete scenario",
+      "choose the action that performs the chapter move: Separate head-count power from tolerance asymmetry, then look for the local threshold where the strict preference becomes the whole system default.",
+      "separate the chapter's mechanism from the weak misread: Treating the lesson as simple praise for stubbornness or as a majority-versus-minority politics slogan.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for The Most Intolerant Wins: The Dominance of the Stubborn Minority.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

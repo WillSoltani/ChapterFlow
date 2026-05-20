@@ -1,0 +1,153 @@
+{
+  "chapterId": "atomic-habits-ch03",
+  "number": 3,
+  "title": "How to Build Better Habits in 4 Simple Steps",
+  "coreMove": "Diagnose a habit by locating the weak link in cue, craving, response, or reward.",
+  "sourcePressure": "Habits run through a practical loop of cue, craving, response, and reward, and the Four Laws are direct interventions on that loop.",
+  "chapterSpecificMisunderstanding": "Reducing the habit loop to a memorized diagram rather than a troubleshooting tool.",
+  "sourceAlignmentTerms": [
+    "cue",
+    "craving",
+    "response",
+    "reward",
+    "habit loop",
+    "Four Laws",
+    "make it obvious"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of cue",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a ferry dispatcher diagnosing why deckhands skip the safety scan",
+      "audience": "an operations lead with a recurring near-miss",
+      "stakes": "whether she fixes the cue instead of blaming attention",
+      "format": "postmortem",
+      "requiredBeat": "she maps cue, craving, response, reward and discovers the scan clipboard is hidden after the rush starts",
+      "firstImage": "a clipboard wedged behind orange life rings",
+      "mustInclude": [
+        "life rings",
+        "scan clipboard"
+      ],
+      "mustAvoid": [
+        "generic safety meeting"
+      ]
+    },
+    {
+      "domain": "a language learner stuck on evening vocabulary practice",
+      "audience": "an adult learner who assumes she lacks discipline",
+      "stakes": "whether the weak link is craving rather than schedule",
+      "format": "decision_point",
+      "requiredBeat": "she marks cue and response as strong, then pairs the flashcards with a favorite podcast intro to repair craving",
+      "firstImage": "flashcards rubber-banded beside wireless earbuds",
+      "mustInclude": [
+        "flashcards",
+        "podcast queue"
+      ],
+      "mustAvoid": [
+        "school homework shell"
+      ]
+    },
+    {
+      "domain": "a veterinary clinic trying to stop missed cage-disinfection steps",
+      "audience": "a head technician seeing infections rise",
+      "stakes": "whether staff identify reward ambiguity rather than training failure",
+      "format": "scene",
+      "requiredBeat": "the team adds a visible clean tag so the response has a satisfying endpoint",
+      "firstImage": "a stainless kennel door with a blank tag hook",
+      "mustInclude": [
+        "clean tag",
+        "disinfectant sprayer"
+      ],
+      "mustAvoid": [
+        "hospital generic"
+      ]
+    },
+    {
+      "domain": "a commuter diagnosing why she buys a pastry every train transfer",
+      "audience": "a reader who thinks the habit is just hunger",
+      "stakes": "whether she separates cue from craving and chooses a new response",
+      "format": "reflection",
+      "requiredBeat": "she writes the loop on the back of her ticket and sees the craving is relief during the seven-minute wait",
+      "firstImage": "a train ticket creased beside a bakery receipt",
+      "mustInclude": [
+        "transfer ticket",
+        "bakery receipt"
+      ],
+      "mustAvoid": [
+        "willpower lecture"
+      ]
+    },
+    {
+      "domain": "a climbing gym owner increasing waiver completion before belay checks",
+      "audience": "a small-business operator with bottlenecked check-ins",
+      "stakes": "whether the habit loop guides redesign instead of nagging",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts response is weak, then sees the real failure is the missing cue before shoe rental",
+      "firstImage": "a waiver tablet dim beside rental climbing shoes",
+      "mustInclude": [
+        "waiver tablet",
+        "shoe cubbies"
+      ],
+      "mustAvoid": [
+        "fitness resolution shell"
+      ]
+    },
+    {
+      "domain": "a museum conservator establishing a glove-use routine for interns",
+      "audience": "a specialist training seasonal help",
+      "stakes": "whether a four-step loop prevents fragile prints from being touched barehanded",
+      "format": "vignette",
+      "requiredBeat": "she places cotton gloves on top of the print box so cue and response sit in the same line of sight",
+      "firstImage": "white gloves resting on a gray archive box",
+      "mustInclude": [
+        "cotton gloves",
+        "archive box"
+      ],
+      "mustAvoid": [
+        "generic office onboarding"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose failed habits by loop component",
+      "choose the right Four Laws lever for a scenario",
+      "distinguish cue problems from reward problems"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one stuck habit and label its cue, craving, response, and reward. Circle the step that is weakest before changing anything.",
+  "readingTimeMinutes": 12
+}

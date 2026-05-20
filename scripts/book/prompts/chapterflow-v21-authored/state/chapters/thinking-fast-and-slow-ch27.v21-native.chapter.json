@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch27",
+  "number": 27,
+  "title": "The Endowment Effect",
+  "readingTimeMinutes": 12,
+  "hook": "The mug is ordinary on the shelf and strangely expensive once it is yours.",
+  "counterintuition": "The endowment effect is not only greed or nostalgia. Ownership turns giving something up into a loss, so the selling price can jump above the buying price.",
+  "tryThisNow": "Choose one thing you own and name the price you would pay to buy it today, then the price you would accept to give it up.",
+  "keyTakeaway": "Notice when ownership has turned a neutral trade into a felt loss.",
+  "breakdown": {
+    "fastRead": "A hotel has two identical corner rooms. A guest who has already been assigned one refuses a room swap unless the hotel adds a large credit. Ten minutes earlier, he would not have paid that much to choose the room. Ownership changed the trade.\n\nPossession creates the loss line.\n\nThe endowment effect appears when people demand more to give up something than they would have paid to acquire it. The object did not transform. The reference point did. Once the room, mug, shift, route, or ticket is mine, losing it hurts more than acquiring it would have pleased me.",
+    "deepRead": "A bandleader owns the late rehearsal slot. Another band offers an earlier slot that most people would rate as equally good. The trade looks neutral from the hallway. From the bandleader's side, it feels like losing the slot already held.\n\nOwnership makes the status quo sticky.\n\nThe bandleader is not just being sentimental. Ownership changes the reference point. Before an item is owned, the question is willingness to pay: how much would I give to get it? After ownership, the question becomes willingness to accept: how much would I need to give it up? Loss aversion widens the gap. Giving up what is already held feels like a loss, and losses loom larger than matching gains.\n\nThe effect shows up outside markets. A dispatcher resists giving up a favored route. A hospital unit resists losing a bed block. A city crew resists moving equipment from its usual district. The trade may improve the whole system, but the local owner experiences the change as a loss from the status quo. Calling it greed misses the mechanism and usually makes negotiation worse.\n\nA better move is to name ownership directly. Ask what the person would have paid to get the item before owning it. Ask what they now demand to give it up. The gap is the signal. Then decide whether the loss is legitimate, whether compensation is needed, or whether a neutral rule should override private attachment.\n\nThe owned thing carries a shadow price.",
+    "fullRead": "The endowment effect turns a simple exchange into a loss problem. Before ownership, a person weighs the gain of acquiring. After ownership, the same object becomes part of the reference point, and giving it up feels like moving below that line. The object can be a mug, a work shift, a room, a parking space, a patient slot, or a software feature. The psychology is the same: what I have becomes harder to trade away.\n\nLaurel works airport baggage control during a weather disruption. The effect storm-cell acetate labeled endowment effect lies beside three gate carts. Her team has held the closest cart all afternoon, and another crew now needs it more urgently. From the terminal's view, the cart should move. From Laurel's team view, giving it up feels like losing capacity they already own. The right decision begins by separating system value from the ownership loss.\n\nWould you pay that much to acquire it if you did not already have it?\n\nThat question punctures the illusion. If Laurel would not spend much to obtain the cart but demands a large concession to release it, ownership is setting the price. The gap between willingness to pay and willingness to accept is not automatically irrational, but it is diagnostic. Some possessions are costly to replace, hard to trust, or tied to real plans. Others simply became precious because they crossed the ownership line.\n\nThe endowment effect complicates policy and management. A new scheduling system may improve fairness, but employees who lose preferred shifts feel a real loss. A city may reassign equipment for better coverage, but a district that had the equipment experiences deprivation. A hotel may ask a guest to swap rooms for operational reasons, but the guest is not choosing between two rooms from scratch; he is being asked to surrender the room that already feels his.\n\nThe practical mistake is to argue only from objective equivalence. \"The rooms are identical\" may be true and useless. The owner is not comparing two neutral rooms. The owner is comparing keeping mine with losing mine. If the trade matters, acknowledge that loss frame, then decide whether to compensate, rotate ownership by rule, or make the assignment temporary from the start so no one treats it as permanent property.\n\nA wildlife rescue intake desk shows the status quo version. Rosalie's team always uses the front treatment bay for urgent cases. A new protocol moves that bay to overnight stabilization because it improves flow. The ticket rail spike labeled loss aversion sits beside the intake chart. The team predicts outrage and then sees why: the bay was not just space; it was owned operating capacity. The fix is not to abandon the protocol. It is to make the loss visible and design the transition.\n\nThe counter-objection is that ownership sometimes reflects real value. True. If a tool is customized, a route is familiar, or a slot has hidden coordination value, the owner may know something outsiders miss. The endowment check should not erase that information. It should ask whether the demanded price reflects actual replacement value or the pain of giving up the status quo.\n\nA fair trade often starts by admitting it is not felt as neutral."
+  },
+  "examples": [
+    {
+      "exampleId": "ch27-ex01-laurel-baggage",
+      "title": "Laurel prices the cart as if she did not own it",
+      "tags": [
+        "scene",
+        "airport",
+        "ownership"
+      ],
+      "planSpec": {
+        "domain": "airport baggage control facing a decision distorted by ownership",
+        "audience": "a lead or reviewer who must notice when ownership turns a trade into a loss",
+        "stakes": "the visible call will go wrong unless ownership is separated from the weaker cue",
+        "format": "scene",
+        "requiredBeat": "the operator places the labeled acetate beside the tempting answer and states the ownership correction"
+      },
+      "scenario": "The slick edge of the effect storm-cell acetate labeled endowment effect rests under Laurel's radio as two baggage crews argue over a gate cart. Her crew has used it all afternoon and now demands a major concession to release it. Laurel must decide whether ownership has turned a neutral equipment move into a felt loss before the delayed bags stack up.",
+      "whatToDo": "Ask what the crew would have paid to acquire the cart before owning it, then compare that with the concession demanded to give it up.",
+      "whyItMatters": "The cart's system value may not match the owner's selling price. Ownership can widen that gap through loss aversion."
+    },
+    {
+      "exampleId": "ch27-ex02-damian-blood",
+      "title": "Damian spots the reserved-slot price jump",
+      "tags": [
+        "vignette",
+        "blood-bank",
+        "willingness-to-accept"
+      ],
+      "planSpec": {
+        "domain": "blood bank scheduling facing a decision distorted by ownership",
+        "audience": "a lead or reviewer who must notice when ownership turns a trade into a loss",
+        "stakes": "the visible call will go wrong unless ownership is separated from the weaker cue",
+        "format": "vignette",
+        "requiredBeat": "the specialist boxes the misleading cue and writes the missing check before voting"
+      },
+      "scenario": "It took three passes before Damian saw what the pigment swatch folder labeled ownership had been making too easy. A surgical team had reserved the first thaw slot and now demands special approval to trade it, even though it would not have paid much to buy that slot earlier. Damian boxes \"reserved\" and must decide whether willingness to accept has jumped because the slot feels owned.",
+      "whatToDo": "Compare the team's willingness to pay for the slot before assignment with its willingness to accept a swap afterward.",
+      "whyItMatters": "The slot may matter, but the ownership gap reveals how much of the demand comes from losing the status quo."
+    },
+    {
+      "exampleId": "ch27-ex03-alice-rehearsal",
+      "title": "Alice asks what the late slot was worth before",
+      "tags": [
+        "dialogue",
+        "music",
+        "willingness-to-pay"
+      ],
+      "planSpec": {
+        "domain": "jazz rehearsal room facing a decision distorted by ownership",
+        "audience": "a lead or reviewer who must notice when ownership turns a trade into a loss",
+        "stakes": "the visible call will go wrong unless ownership is separated from the weaker cue",
+        "format": "dialogue",
+        "requiredBeat": "two people disagree over the labeled placard and ask what evidence would change the call"
+      },
+      "scenario": "The rehearsal room after dinner is quiet except for the accept loading-bay placard labeled willingness to accept beside Alice's calendar. \"We earned the late slot,\" the drummer says. Another band offers an equally useful early slot. Alice must decide which evidence would change the call: what the band would have paid to get late rehearsal, or what it now demands to give it up.",
+      "whatToDo": "Separate willingness to pay from willingness to accept, then decide whether the late-slot premium reflects real coordination value or ownership.",
+      "whyItMatters": "The endowment effect can make an equal trade feel like a loss after the slot becomes theirs."
+    },
+    {
+      "exampleId": "ch27-ex04-george-potholes",
+      "title": "George names the equipment loss frame",
+      "tags": [
+        "decision_point",
+        "city-services",
+        "loss-aversion"
+      ],
+      "planSpec": {
+        "domain": "city pothole hotline facing a decision distorted by ownership",
+        "audience": "a lead or reviewer who must notice when ownership turns a trade into a loss",
+        "stakes": "the visible call will go wrong unless ownership is separated from the weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the lead places the labeled sticker at the decision point and waits for the endowment check"
+      },
+      "scenario": "\"That cannot be the whole answer,\" George says, with the oxygen saturation sticker labeled willingness to pay between two district equipment requests. One district has kept the patching trailer for years and now treats reassignment as a cut. George must decide whether loss aversion from ownership should be acknowledged before applying the citywide repair priority rule.",
+      "whatToDo": "Name the trailer as owned status quo for one district, then apply the priority rule with any explicit transition support.",
+      "whyItMatters": "The reassignment may be right, but it will be felt as a loss. Ignoring that frame creates resistance and poor implementation."
+    },
+    {
+      "exampleId": "ch27-ex05-rosalie-rescue",
+      "title": "Rosalie predicts the bay protocol backlash",
+      "tags": [
+        "predict_reveal",
+        "rescue",
+        "status-quo"
+      ],
+      "planSpec": {
+        "domain": "wildlife rescue intake facing a decision distorted by ownership",
+        "audience": "a lead or reviewer who must notice when ownership turns a trade into a loss",
+        "stakes": "the visible call will go wrong unless ownership is separated from the weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the team records the quick impression, then reveals how the ownership correction changes the estimate"
+      },
+      "scenario": "Which prediction belongs beside the ticket rail spike labeled loss aversion: Rosalie's claim that the new bay protocol is obviously efficient, or the estimate after naming the front bay as owned capacity? The intake team has always used it for urgent cases. Rosalie must decide whether the endowment effect explains why the status quo feels hard to surrender.",
+      "whatToDo": "Record the efficiency case, then forecast resistance after marking the front bay as an owned operating resource.",
+      "whyItMatters": "The protocol may improve flow, but ownership turns the bay change into a loss that needs transition design."
+    },
+    {
+      "exampleId": "ch27-ex06-finn-night-audit",
+      "title": "Finn traces the room-swap miss",
+      "tags": [
+        "postmortem",
+        "hotel",
+        "status-quo"
+      ],
+      "planSpec": {
+        "domain": "hotel night audit facing a decision distorted by ownership",
+        "audience": "a lead or reviewer who must notice when ownership turns a trade into a loss",
+        "stakes": "the visible call will go wrong unless ownership is separated from the weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "after the miss, the reviewer tapes the labeled tab to the board and traces where ownership displaced judgment"
+      },
+      "scenario": "You are looking at the plea calendar tab labeled status quo while Finn's room-swap failure starts to sound too simple. A guest refused to move from one corner room to an identical corner room unless given a large credit. After the miss, Finn must decide where ownership displaced the better judgment: the guest was not choosing between rooms, but losing the assigned one.",
+      "whatToDo": "Treat the assigned room as part of the guest's reference point, then offer compensation or avoid early ownership when swaps are likely.",
+      "whyItMatters": "Identical features do not make the trade feel identical. The owned room carries a loss frame."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A baggage crew demands a large concession to give up a cart it has used all afternoon, though it would not have paid much to reserve that cart earlier. What is the best diagnosis?",
+        "choices": [
+          "Ownership has turned the cart transfer into a felt loss.",
+          "The crew is simply greedy, so no analysis is needed.",
+          "The cart must objectively be worth the concession."
+        ],
+        "correctIndex": 0,
+        "explanation": "The willingness-to-accept price has likely risen because the cart became part of the status quo. Greed may be too blunt a label.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A surgical team would not have paid much to get the first thaw slot, but after receiving it, demands special approval to trade away from it. Which comparison reveals the endowment effect?",
+        "choices": [
+          "The team's current mood and the weather.",
+          "Willingness to pay before ownership versus willingness to accept after ownership.",
+          "The number of people on the team."
+        ],
+        "correctIndex": 1,
+        "explanation": "The gap between buying and selling values shows ownership's effect. Team size and mood may matter, but they do not isolate the mechanism.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A band resists trading its late rehearsal slot for an equally useful early slot. Members insist the late slot is worth more now that it is theirs. What should the bandleader ask?",
+        "choices": [
+          "Whether every musician likes late rehearsals in general.",
+          "Whether trading is always unfair.",
+          "Whether the band would have paid the same premium to acquire the late slot before owning it."
+        ],
+        "correctIndex": 2,
+        "explanation": "The acquire-versus-give-up comparison separates real coordination value from ownership-driven loss aversion.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A city district has used a repair trailer for years. A new priority rule sends it elsewhere, and the district reacts as if budget was cut. What should implementation recognize?",
+        "choices": [
+          "The district is experiencing the trailer reassignment as a loss from the status quo.",
+          "The priority rule must be abandoned immediately.",
+          "The district's reaction proves the trailer belongs there forever."
+        ],
+        "correctIndex": 0,
+        "explanation": "The loss frame should be acknowledged even if the reassignment is still correct. The reaction does not automatically veto the rule.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A rescue intake team resists moving a treatment bay to a new protocol, even though the new flow improves overall timing. The bay has always been theirs for urgent cases. What is the likely psychological force?",
+        "choices": [
+          "The team dislikes efficiency.",
+          "Ownership and loss aversion around an operating resource.",
+          "A preference for random scheduling."
+        ],
+        "correctIndex": 1,
+        "explanation": "The bay is not just space; it is owned capacity in the team's reference point. Efficiency arguments alone miss that loss.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A hotel guest refuses to swap between identical rooms after one has been assigned. The guest asks for a large credit. Why does saying 'the rooms are identical' fail to solve the issue?",
+        "choices": [
+          "Because identical rooms can never be swapped.",
+          "Because credits should always be large.",
+          "Because the guest is comparing keeping mine with losing mine, not choosing neutrally between two rooms."
+        ],
+        "correctIndex": 2,
+        "explanation": "Assignment created ownership. The guest's reference point is the current room, so the swap feels like a loss even if features match.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says the endowment effect is just sentimentality about personal objects. Which reply is most accurate?",
+        "choices": [
+          "It can apply to any owned resource, slot, route, room, or entitlement that becomes part of the status quo.",
+          "It applies only to antiques.",
+          "It applies only when people are intentionally dishonest."
+        ],
+        "correctIndex": 0,
+        "explanation": "The mechanism is ownership and loss aversion, not sentiment alone. Work resources and assignments can trigger it too.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "In a hospital staffing office, a company wants to reduce endowment-effect resistance when rotating premium shifts that nurses feel they already own. Which design would help most?",
+        "choices": [
+          "Tell employees the shifts are all the same and ignore complaints.",
+          "Make assignments explicitly temporary from the start and use a visible rotation rule.",
+          "Let the first group keep premium shifts forever."
+        ],
+        "correctIndex": 1,
+        "explanation": "Temporary assignment prevents ownership from hardening into entitlement. Ignoring loss frames and permanent possession both worsen the problem.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A tool has been customized by the current team, and they demand more to give it up than another team would pay to acquire it. What is the fairest analysis?",
+        "choices": [
+          "Assume the whole premium is irrational.",
+          "Assume the owner is always right about price.",
+          "Separate real replacement or customization value from the ownership loss premium."
+        ],
+        "correctIndex": 2,
+        "explanation": "Ownership can inflate value, but customization may be real. The best analysis separates actual replacement cost from felt loss.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Someone demands more to give up an item than they would pay to get it. What should you suspect?",
+      "back": "The endowment effect: ownership has turned the exchange into a loss from the person's reference point.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What comparison reveals the ownership gap?",
+      "back": "Compare willingness to pay before ownership with willingness to accept after ownership.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why can identical options fail to feel identical?",
+      "back": "Once one option is owned, trading away from it is experienced as losing mine, not as choosing neutrally.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How can systems reduce endowment-effect resistance?",
+      "back": "Make assignments temporary, rotate by visible rule, and avoid letting scarce resources become silent property.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "When should you not dismiss a high selling price as pure endowment effect?",
+      "back": "When the owner has real replacement costs, customization value, hidden coordination value, or risks outsiders do not see.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is ownership detection: check whether a trade feels costly because the item has become part of someone's reference point.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a team resists giving up a slot, tool, or territory, then compare what they would pay to get it with what they demand to give it up."
+      },
+      {
+        "context": "money",
+        "plan": "If you price something you own, then write the price you would pay to acquire it today before setting the selling price."
+      },
+      {
+        "context": "operations",
+        "plan": "If a resource must rotate, then state its temporary status before assignment so ownership does not harden silently."
+      },
+      {
+        "context": "negotiation",
+        "plan": "If an exchange seems fair but is rejected, then ask what the other side feels it is losing from the status quo."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, pick one owned object, slot, or privilege and write both your willingness to pay and willingness to accept.",
+    "weeklyPractice": "Once a week, review one resisted trade and decide whether the gap came from real replacement value, ownership loss, or both."
+  },
+  "memorableLines": [
+    {
+      "text": "Possession creates the loss line.",
+      "location": "breakdown.fastRead",
+      "why": "It captures how ownership changes the reference point."
+    },
+    {
+      "text": "The owned thing carries a shadow price.",
+      "location": "breakdown.deepRead",
+      "why": "It makes willingness to accept memorable."
+    },
+    {
+      "text": "A fair trade often starts by admitting it is not felt as neutral.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the mechanism into a practical negotiation move."
+    }
+  ]
+}

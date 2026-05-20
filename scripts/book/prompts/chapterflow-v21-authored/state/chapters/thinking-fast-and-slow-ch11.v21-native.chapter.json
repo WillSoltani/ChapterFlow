@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch11",
+  "number": 11,
+  "title": "Anchors",
+  "readingTimeMinutes": 12,
+  "hook": "The first damage number lands in the jury room, and every later estimate bends toward it.",
+  "counterintuition": "The anchor does not need to be relevant or fair. A starting point can pull judgment even when everyone knows it is only a number in the room.",
+  "tryThisNow": "Before your next estimate, hide or write down the first number you saw. Build your own estimate from facts, then compare how far the anchor tried to pull it.",
+  "keyTakeaway": "Strip out the first number before estimating, because adjustment from an anchor is usually too small.",
+  "breakdown": {
+    "fastRead": "A juror hears a demand of 900,000 dollars. Later, asked for fair damages, she knows that number came from one side. It still becomes the starting point.\n\nAnchors pull before they persuade.\n\nAn anchor is a first number that bends a later guess. The mind shifts away from it, but not far enough. The fix is to make your own guess before the first number, or set that number aside and rebuild from facts: past cases, rates, measures, or hard limits.",
+    "deepRead": "A water-quality technician sees yesterday's ammonia reading written in marker above the aquarium tank. Today she must estimate whether the new sample is safe before the machine finishes calibration. The old number should not decide the new estimate, yet it has already narrowed the range in her mind.\n\nThe first number is sticky.\n\nAnchoring works because estimates need starting points. When a starting point is available, the mind tests values near it and moves away only as evidence forces movement. The adjustment usually stops too soon. A high first number makes later estimates higher; a low first number makes them lower. The anchor may come from a demand, a prior reading, a list price, a budget, a forecast, or even a number that was never meant to be evidence.\n\nThis is why anchoring is broader than bargaining. Price negotiation is only the obvious case. A rail signal team estimating repair time can be pulled by the first crew's casual guess. A physician estimating discharge capacity can be pulled by the morning bed-board count. A colorist estimating exposure can be pulled by the reference number typed into yesterday's grade.\n\nA rail maintenance shed makes the mechanism visible. The freight seal manifest labeled starting point has 45 minutes scribbled in the corner from the first tech who looked at a signal fault. The actual repair may take 20 or 90. But every later estimate starts by bending around 45, even when the estimator believes he is being independent.\n\nBuild from the evidence, not from the first number.",
+    "fullRead": "Anchors are powerful because estimates rarely begin from nowhere. The mind wants a place to start. Once a number is present, it becomes a reference frame. You can know it is arbitrary, strategic, stale, or irrelevant and still adjust from it too little.\n\nA courtroom jury pool gives the cleanest image. A lawyer names a large damages figure. Jurors may reject it as advocacy, but when they later think about a fair award, the number remains available. It defines a neighborhood. Their adjustment may feel reasonable because they move away from it. But the movement starts from a contaminated point.\n\nWhat estimate would you make if that number had never appeared?\n\nThat question is the practical defense. You cannot always avoid anchors, but you can force a separate estimate. Start with base rates, comparables, quantities, constraints, and independent measurements. If you must respond to an anchor, write your own number first, then ask how the anchor tried to move it.\n\nA tea import tasting room shows that anchors are not only money. The estimate triage wristband labeled estimate sits by a blind-cupping sheet because the buyer heard 40 dollars per kilo before tasting. The tea now tastes more premium than it did in practice rounds. The anchor is not on the tongue. It is on the valuation scale that interprets the tongue. A blind taste and a prewritten quality rubric protect the estimate better than a promise to be fair.\n\nA hospital bed board carries higher stakes. The night shift says 18 beds will open by noon. That reference number sits in the morning huddle. The day team adjusts down to 14 after seeing delays, but maybe the independent evidence supports nine. The original 18 has done its work by making 14 feel cautious. Strip out the reference number and build from discharge orders, transport readiness, isolation needs, and staffing.\n\nDo not confuse adjustment with correction. Moving away from the anchor feels like resistance, but the question is whether you moved far enough. Often you did not, because each step away requires evidence and effort while the anchor remains easy to hold.\n\nThe limit is that some anchors are legitimate inputs. Yesterday's lab value, last year's budget, and a seller's list price can contain information. The problem is not using prior numbers. The problem is letting them set the starting point before asking how much weight they deserve. Treat the first number as one possible datum, not as the floorplan for your estimate.\n\nThe first number in the room is already working. Make your estimate before it gets hired."
+  },
+  "examples": [
+    {
+      "exampleId": "ch11-ex01-jeremy-jury",
+      "title": "Jeremy brackets the jury demand",
+      "tags": [
+        "dialogue",
+        "legal",
+        "damages"
+      ],
+      "planSpec": {
+        "domain": "courtroom jury pool facing a decision distorted by adjustment",
+        "audience": "a lead or reviewer who must strip out the first number in the room before you make your own estimate while others want the quick answer",
+        "stakes": "the visible call will go wrong unless adjustment is separated from the tempting but weaker cue",
+        "format": "dialogue",
+        "requiredBeat": "the operator places the anchor barograph strip labeled anchor beside the tempting first answer, covers the answer field with a palm, and speaks the correction"
+      },
+      "scenario": "The paper edge of the anchor barograph strip labeled anchor scrapes Jeremy's thumb as the jury consultant writes 900,000 on the board. \"That is their demand,\" she says. \"What is fair?\" Jeremy starts at 900,000 and adjusts down. Another consultant covers the number with her palm. He must decide whether to rebuild from medical bills, lost wages, and comparable verdicts before the first number owns the room.",
+      "whatToDo": "Hide the demand, build a damages estimate from independent components, then compare it with the anchor only after the estimate is written.",
+      "whyItMatters": "Adjustment from a demand feels independent because it moves. The problem is that it moves from a starting point chosen by someone else."
+    },
+    {
+      "exampleId": "ch11-ex02-rosa-ammonia",
+      "title": "Rosa boxes yesterday's aquarium reading",
+      "tags": [
+        "decision_point",
+        "lab",
+        "water"
+      ],
+      "planSpec": {
+        "domain": "aquarium water-quality lab facing a decision distorted by adjustment",
+        "audience": "a lead or reviewer who must strip out the first number in the room before you make your own estimate while others want the quick answer",
+        "stakes": "the visible call will go wrong unless adjustment is separated from the tempting but weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the specialist draws a red box around the misleading cue on the gilded frame label labeled adjustment, then writes the missing check in the margin before anyone votes"
+      },
+      "scenario": "Rosa needed three passes to see how the gilded frame label labeled adjustment, taped as a joke above the aquarium bench, was pointing at yesterday's ammonia number. Today's sample looked slightly cloudy, and yesterday's 0.30 had become her starting point. She boxes the old number in red and must decide whether to estimate from current reagent color, calibration, and tank load instead.",
+      "whatToDo": "Cover yesterday's number, score the current sample against calibration and tank conditions, then reopen the prior reading only as context.",
+      "whyItMatters": "The prior number may matter, but it should not set the starting point. Independent current evidence must create the estimate first."
+    },
+    {
+      "exampleId": "ch11-ex03-ian-signal",
+      "title": "Ian rejects the first repair-time guess",
+      "tags": [
+        "predict_reveal",
+        "rail",
+        "maintenance"
+      ],
+      "planSpec": {
+        "domain": "rail signal maintenance facing a decision distorted by adjustment",
+        "audience": "a lead or reviewer who must strip out the first number in the room before you make your own estimate while others want the quick answer",
+        "stakes": "the visible call will go wrong unless adjustment is separated from the tempting but weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "two people disagree over the freight seal manifest labeled starting point; one points to the fluent story, the other forces the chapter move by asking which evidence would change the call"
+      },
+      "scenario": "The signal shed is quiet except for a freight seal manifest labeled starting point with 45 minutes scribbled in the corner. Ian predicts a 40-minute repair because the prior tech sounded confident. Keiko asks what evidence would make it 90 or 20. Cable access, replacement part, and track window change the reveal. Ian must decide whether his estimate came from the fault or from 45.",
+      "whatToDo": "Ignore the scribbled time until cable access, part availability, and track window are estimated separately.",
+      "whyItMatters": "The first repair guess narrows later thinking. Building from work components prevents insufficient adjustment around a casual number."
+    },
+    {
+      "exampleId": "ch11-ex04-jun-tea",
+      "title": "Jun re-tastes after the price anchor",
+      "tags": [
+        "postmortem",
+        "tea",
+        "buying"
+      ],
+      "planSpec": {
+        "domain": "tea import tasting room facing a decision distorted by adjustment",
+        "audience": "a lead or reviewer who must strip out the first number in the room before you make your own estimate while others want the quick answer",
+        "stakes": "the visible call will go wrong unless adjustment is separated from the tempting but weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "at the decision point, the lead slides the estimate triage wristband labeled estimate into the center of the table and refuses to choose until the anchor check is visible"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Jun says, sliding the estimate triage wristband labeled estimate beside the cupping bowls. The supplier mentioned 40 dollars per kilo before tasting, and the sample suddenly seemed refined. After the buy went poorly, Jun reconstructs the miss. He must decide whether future tastings get a blind quality score before any price reference enters.",
+      "whatToDo": "Taste blind and score aroma, body, finish, and defect notes before viewing or discussing price.",
+      "whyItMatters": "The price anchor changes the quality estimate. A blind rubric creates a valuation before the reference number can pull it."
+    },
+    {
+      "exampleId": "ch11-ex05-sylvie-beds",
+      "title": "Sylvie rebuilds the noon bed count",
+      "tags": [
+        "before_after",
+        "hospital",
+        "capacity"
+      ],
+      "planSpec": {
+        "domain": "hospital bed board facing a decision distorted by adjustment",
+        "audience": "a lead or reviewer who must strip out the first number in the room before you make your own estimate while others want the quick answer",
+        "stakes": "the visible call will go wrong unless adjustment is separated from the tempting but weaker cue",
+        "format": "before_after",
+        "requiredBeat": "the team predicts the answer from the quick impression, records it beside the sauce-stained order rail labeled insufficient adjustment, then reveals how the chapter correction changes the estimate"
+      },
+      "scenario": "What happens when the sauce-stained order rail labeled insufficient adjustment is used as a reminder on Sylvie's bed board? Night shift predicts 18 noon discharges. By 8 a.m., Sylvie adjusts to 14 and feels conservative. Then she rebuilds from signed orders, transport, isolation rooms, and staffing. The independent count is nine. She must decide which number enters the capacity call.",
+      "whatToDo": "Build the bed estimate from discharge readiness factors before looking at the night-shift reference number.",
+      "whyItMatters": "Fourteen feels cautious only because 18 anchored the room. Component estimates reveal whether the adjustment moved far enough."
+    },
+    {
+      "exampleId": "ch11-ex06-ethan-color",
+      "title": "Ethan removes the reference grade",
+      "tags": [
+        "reflection",
+        "film",
+        "color"
+      ],
+      "planSpec": {
+        "domain": "film color-grading suite facing a decision distorted by adjustment",
+        "audience": "a lead or reviewer who must strip out the first number in the room before you make your own estimate while others want the quick answer",
+        "stakes": "the visible call will go wrong unless adjustment is separated from the tempting but weaker cue",
+        "format": "reflection",
+        "requiredBeat": "after the miss, the reviewer tapes the arraignment intake sheet labeled reference number to the postmortem board and traces the exact moment adjustment displaced the better judgment"
+      },
+      "scenario": "You are Ethan in a dark color-grading suite, staring at an arraignment intake sheet labeled reference number taped to the monitor as a warning from yesterday's mistake. The prior colorist typed 62 into the exposure note, and every correction Ethan made drifted around 62. He must decide whether to blank the reference field and grade from skin tone, waveform, and shot match before reopening the old number.",
+      "whatToDo": "Hide the previous exposure value, grade from waveform, skin tone, and shot continuity, then compare the result with the reference number afterward.",
+      "whyItMatters": "The prior grade is a starting point, not a verdict. If it stays visible, later corrections may be insufficient adjustments around it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A juror hears a plaintiff request 900,000 dollars and later thinks 400,000 sounds reasonable, though she has not built the award from components. What should she do?",
+        "choices": [
+          "Build an independent estimate from medical bills, lost wages, and comparables before considering the demand.",
+          "Use 400,000 because it is far below the demand.",
+          "Reject any award because the demand contaminated the room."
+        ],
+        "correctIndex": 0,
+        "explanation": "Moving down from 900,000 may still be insufficient adjustment. A component estimate creates a separate starting point. Rejecting all awards overreacts to the anchor instead of correcting it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An aquarium technician sees yesterday's ammonia reading before judging today's sample. Today's machine is still calibrating. What is the anchoring risk?",
+        "choices": [
+          "Prior readings are always irrelevant in water quality work.",
+          "Yesterday's number may become the starting point for today's estimate before current evidence is weighed.",
+          "The technician will intentionally copy yesterday's number."
+        ],
+        "correctIndex": 1,
+        "explanation": "The old reading can anchor the estimate even if it contains some information. The correction is not to ban prior values, but to build today's reading from current calibration and sample evidence first.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A rail team estimates a repair at 40 minutes after seeing 45 scribbled by the first technician. Cable access and part availability are uncertain. What should happen?",
+        "choices": [
+          "Accept 40 because it adjusts downward from the first estimate.",
+          "Double the first estimate to counteract anchoring.",
+          "Estimate cable access, part availability, and track window independently before using the scribbled number."
+        ],
+        "correctIndex": 2,
+        "explanation": "The repair estimate should come from work components, not from adjustment around 45. Doubling is arbitrary and still anchor-driven. A small downward adjustment may feel careful while staying too close.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A tea buyer hears 40 dollars per kilo before tasting and then rates the tea as premium. What procedure best protects the quality judgment?",
+        "choices": [
+          "Taste blind and score quality dimensions before any price discussion.",
+          "Ask the supplier to justify the price more fully.",
+          "Subtract a fixed amount from whatever quality score first appears."
+        ],
+        "correctIndex": 0,
+        "explanation": "Blind scoring keeps the price from setting the starting point. Supplier justification may deepen the anchor. A fixed subtraction is arbitrary and still begins from the contaminated estimate.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A hospital team hears 18 beds will open by noon and revises the estimate to 14 after delays. Independent discharge readiness suggests nine. Which reading is best?",
+        "choices": [
+          "Fourteen is conservative because it adjusts down from 18.",
+          "The team may still be anchored; readiness factors should set the count.",
+          "The night-shift estimate should be ignored forever because anchors are harmful."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fourteen feels conservative only relative to 18. Component evidence points to nine. The night estimate may be useful context later, but it should not set the starting point.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "In a film lab at 7:20 p.m., a colorist sees the prior exposure value 62 on a sticky note and makes every correction around that number. What is the best move?",
+        "choices": [
+          "Average the prior value with the current impression.",
+          "Trust the prior value because another professional chose it.",
+          "Hide the prior value and grade from waveform, skin tone, and shot continuity first."
+        ],
+        "correctIndex": 2,
+        "explanation": "The prior value is a reference number that can pull every adjustment. Waveform, skin tone, and continuity create an independent estimate. Averaging and trusting both leave 62 in control.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says anchoring only matters in salary and price negotiations. Which example best refutes that?",
+        "choices": [
+          "A hospital bed estimate pulled by a morning reference count.",
+          "A buyer negotiating a lower price after a seller's high ask.",
+          "A customer asking for a discount at checkout."
+        ],
+        "correctIndex": 0,
+        "explanation": "The bed estimate shows anchoring in operational forecasting, not bargaining. The other examples are price negotiation and do not refute the narrow view.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A planner sees last year's event budget before estimating this year's staffing need. The event format has changed. Which question should she ask?",
+        "choices": [
+          "How can I adjust last year's number enough?",
+          "What staffing estimate emerges from this year's agenda, attendance, rooms, and service model before looking at last year?",
+          "Should I raise last year's number by a standard inflation rate?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The changed format means the anchor may be a poor starting point. Building from current drivers prevents insufficient adjustment. Inflation is another adjustment around the old number.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Before a city budget review, an analyst wants each department to reduce anchoring in cost estimates after last year's numbers are shown. Which instruction is most defensible?",
+        "choices": [
+          "Always ignore prior numbers permanently.",
+          "Average everyone's first estimate after the anchor has been shown.",
+          "Write an independent estimate from evidence before viewing or discussing the first number."
+        ],
+        "correctIndex": 2,
+        "explanation": "An independent estimate creates a clean starting point. Prior numbers can be useful later, so permanent ignorance is too broad. Averaging anchored estimates can simply average the bias.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You see a number before making an estimate. What is the first protective move?",
+      "back": "Build your own estimate from independent facts before using the first number. The anchor can pull even when you know it is biased or arbitrary.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is adjusting away from an anchor not enough?",
+      "back": "Adjustment usually stops too soon. Moving away from a contaminated starting point can feel independent while the starting point still controls the neighborhood of estimates.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A prior lab value, budget, or count may be relevant. How should it be used?",
+      "back": "Use it as context after an independent current estimate, not as the first starting point. Relevant anchors still need assigned weight rather than automatic control.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How can anchoring distort a non-price decision?",
+      "back": "Any first number can become a reference: repair time, discharge count, lab value, exposure grade, staffing need, or risk estimate. The pull is not limited to bargaining.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A team says its revised estimate is cautious because it moved down from the first number. What should you ask?",
+      "back": "Ask what estimate would emerge if the first number had never appeared. Caution relative to an anchor may still be too high or too low relative to the evidence.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is creating an independent starting point. Before the first number becomes a reference frame, build your own estimate from evidence, components, or comparables.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting opens with a number, then write it in an anchor box and build your own estimate from components before discussing adjustments."
+      },
+      {
+        "context": "health",
+        "plan": "If a prior reading is visible before a current judgment, then assess the current signs or measurement first and reopen the prior value as context afterward."
+      },
+      {
+        "context": "money",
+        "plan": "If a seller, vendor, or budget owner names a number first, then calculate your walk-away or fair value from comparables before responding."
+      },
+      {
+        "context": "operations",
+        "plan": "If a time, capacity, or staffing estimate appears early, then rebuild from task parts, constraints, and current resources before accepting it."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, catch one estimate after a first number appears. Hide the number, build an estimate from facts, and write how far the anchor tried to pull you.",
+    "weeklyPractice": "Once a week, audit an estimate. Record first number seen, independent estimate, final estimate, and whether adjustment stopped too close to the anchor."
+  },
+  "memorableLines": [
+    {
+      "text": "Anchors pull before they persuade.",
+      "location": "breakdown.fastRead",
+      "why": "It explains why relevance is not required."
+    },
+    {
+      "text": "The first number is sticky.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the mechanism easy to remember."
+    },
+    {
+      "text": "Do not confuse adjustment with correction.",
+      "location": "breakdown.fullRead",
+      "why": "It warns against the most common false fix."
+    }
+  ]
+}

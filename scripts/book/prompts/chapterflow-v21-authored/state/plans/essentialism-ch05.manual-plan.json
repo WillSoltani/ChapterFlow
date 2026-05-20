@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch05",
+  "number": 5,
+  "title": "Escape: The Perks of Being Unavailable",
+  "coreMove": "Create protected unavailability so judgment can hear something other than the loudest incoming request.",
+  "sourcePressure": "The chapter opens exploration by defending solitude, reading, and reflective distance as conditions for seeing what matters.",
+  "chapterSpecificMisunderstanding": "A weak run would write about taking breaks, resting more, or ignoring messages as a lifestyle hack.",
+  "sourceAlignmentTerms": [
+    "solitude",
+    "space",
+    "unavailable",
+    "concentration",
+    "reflection",
+    "Pablo Picasso"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic escape: the perks of being unavailable topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "digital detox frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "digital detox",
+      "vacation advice",
+      "antisocial withdrawal",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "avalanche forecaster before a holiday weekend resort opening",
+      "audience": "forecaster under commercial pressure and weather noise",
+      "stakes": "without protected quiet, resort urgency may drown mountain signal",
+      "format": "decision_point",
+      "requiredBeat": "She moves the resort call sheet outside the desk light and reads the snow-pit layers before answering.",
+      "firstImage": "A resort call sheet lies outside the desk lamp.",
+      "mustInclude": [
+        "resort call sheet",
+        "snow-pit layers",
+        "weather radio"
+      ],
+      "mustAvoid": [
+        "vacation advice",
+        "generic silence"
+      ]
+    },
+    {
+      "domain": "municipal water chemist after a burst of brown-water complaint calls",
+      "audience": "chemist flooded with public pressure",
+      "stakes": "reactive answering can prevent careful pattern reading",
+      "format": "scene",
+      "requiredBeat": "He turns the complaint dashboard away for fifteen minutes and studies the valve-change log for the quieter clue.",
+      "firstImage": "A valve-change log sits beside a flashing complaint dashboard.",
+      "mustInclude": [
+        "valve-change log",
+        "complaint dashboard",
+        "sample bottles"
+      ],
+      "mustAvoid": [
+        "digital detox",
+        "ignoring citizens"
+      ]
+    },
+    {
+      "domain": "children’s theater director after a chaotic rehearsal week",
+      "audience": "director needing distance from noise",
+      "stakes": "constant corrections may hide the one scene that needs rethinking",
+      "format": "before_after",
+      "requiredBeat": "Before, she replies to every parent note; after, she sits alone with the stage map and finds the blocked entrance.",
+      "firstImage": "A stage map is spread under unanswered parent notes.",
+      "mustInclude": [
+        "stage map",
+        "parent notes",
+        "rehearsal tape"
+      ],
+      "mustAvoid": [
+        "generic taking breaks",
+        "classroom shell"
+      ]
+    },
+    {
+      "domain": "harbor pilot preparing for a fogbound cargo arrival",
+      "audience": "pilot needing reflective distance before high-stakes navigation",
+      "stakes": "radio chatter can crowd out tide and visibility judgment",
+      "format": "dialogue",
+      "requiredBeat": "He asks the room for five quiet minutes, marks the tide window, then answers the captain’s pressure call.",
+      "firstImage": "A tide chart is clipped beside a muted radio.",
+      "mustInclude": [
+        "tide chart",
+        "muted radio",
+        "harbor light sheet"
+      ],
+      "mustAvoid": [
+        "antisocial withdrawal",
+        "generic boat scene"
+      ]
+    },
+    {
+      "domain": "public-interest architect reviewing school safety codes before a renovation charrette",
+      "audience": "architect protecting thinking time from stakeholder demands",
+      "stakes": "without code reading, the charrette rewards preferences over safety",
+      "format": "postmortem",
+      "requiredBeat": "She reconstructs the failed meeting and blocks code-reading space before the next charrette begins.",
+      "firstImage": "Safety-code tabs cover a renovation sketch.",
+      "mustInclude": [
+        "code tabs",
+        "renovation sketch",
+        "charrette agenda"
+      ],
+      "mustAvoid": [
+        "generic design brainstorm",
+        "busywork"
+      ]
+    },
+    {
+      "domain": "fisheries biologist reading old tide notebooks before a public hatchery meeting",
+      "audience": "biologist needing old evidence before public debate",
+      "stakes": "availability to every question may hide the long-cycle pattern",
+      "format": "vignette",
+      "requiredBeat": "Old tide notebooks lie open while the public-comment binder stays closed until the repeated hatchery pattern appears.",
+      "firstImage": "Old tide notebooks lie open beside a closed comment binder.",
+      "mustInclude": [
+        "tide notebooks",
+        "comment binder",
+        "hatchery chart"
+      ],
+      "mustAvoid": [
+        "data hoarding",
+        "retreat fantasy"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the Escape: The Perks of Being Unavailable move inside a concrete scenario",
+      "choose the response that applies: Create protected unavailability so judgment can hear something other than the loudest incoming request.",
+      "reject the generic drift: A weak run would write about taking breaks, resting more, or ignoring messages as a lifestyle hack.",
+      "explain the trade-off using chapter-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one noisy decision. Move the loudest input out of reach for ten minutes, read the quieter evidence, then answer from what you see.",
+  "readingTimeMinutes": 12
+}

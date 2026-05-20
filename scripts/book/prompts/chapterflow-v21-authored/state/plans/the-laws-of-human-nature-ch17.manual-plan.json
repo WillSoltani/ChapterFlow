@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch17",
+  "number": 17,
+  "title": "See the Hostility Behind the Friendly Facade: The Law of Aggression",
+  "coreMove": "Treat friendly obstruction as an aggression pattern and answer with clear boundaries, documentation, and controlled force.",
+  "sourcePressure": "This law studies hostile force wearing civilized clothing: delay, ambiguity, moral pose, and passive resistance can preserve plausible deniability while causing damage.",
+  "chapterSpecificMisunderstanding": "Calling every difficult person aggressive instead of identifying repeated damage hidden behind politeness or ambiguity.",
+  "sourceAlignmentTerms": [
+    "aggression",
+    "friendly facade",
+    "passive aggression",
+    "sophisticated aggressor",
+    "plausible deniability",
+    "controlled aggression"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for See the Hostility Behind the Friendly Facade: The Law of Aggression",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a university grant office where a colleague keeps submitting forms one hour late",
+      "audience": "a researcher whose project is being stalled politely",
+      "stakes": "whether funding dies while everyone stays civil",
+      "format": "postmortem",
+      "requiredBeat": "she lines up the timestamped submissions and shows the late pattern before asking for a new owner",
+      "firstImage": "a portal receipt page showing 11:59 p.m. beside a deadline notice",
+      "mustInclude": [
+        "portal receipts",
+        "deadline notice",
+        "handoff email"
+      ],
+      "mustAvoid": [
+        "generic office rivalry"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a neighborhood co-op board member who praises every idea then buries action items",
+      "audience": "a chair detecting obstruction masked as warmth",
+      "stakes": "whether repairs and trust decay under soft sabotage",
+      "format": "dialogue",
+      "requiredBeat": "the chair reads back the last three praised motions and asks for a named owner and date before accepting another supportive comment",
+      "firstImage": "a maintenance request binder open to three unsigned tabs",
+      "mustInclude": [
+        "maintenance binder",
+        "motion list",
+        "owner/date grid"
+      ],
+      "mustAvoid": [
+        "generic committee delay"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a competitive research lab where a senior technician withholds calibration details",
+      "audience": "a postdoc seeing helpfulness turn selective",
+      "stakes": "whether experiments fail while blame stays diffuse",
+      "format": "decision_point",
+      "requiredBeat": "the postdoc requests the calibration steps in writing and moves shared equipment access behind a sign-off log",
+      "firstImage": "a calibration certificate taped above a humming centrifuge",
+      "mustInclude": [
+        "calibration certificate",
+        "sign-off log",
+        "failed run notes"
+      ],
+      "mustAvoid": [
+        "generic lab mistake"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a bridal shop consultant steering clients away from one seamstress with sweet warnings",
+      "audience": "a shop owner sorting care from disguised rivalry",
+      "stakes": "whether a skilled worker is quietly starved of work",
+      "format": "predict_reveal",
+      "requiredBeat": "the owner predicts genuine concern, then compares warnings to commission splits and sees the pattern track money",
+      "firstImage": "a rack of garment bags tagged with client names",
+      "mustInclude": [
+        "garment bags",
+        "commission sheet",
+        "alteration schedule"
+      ],
+      "mustAvoid": [
+        "generic workplace gossip"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a youth sports parent group where one parent volunteers for tasks and never completes them",
+      "audience": "a coach protecting the season from covert control",
+      "stakes": "whether logistics fail while the parent stays beloved",
+      "format": "before_after",
+      "requiredBeat": "after three missed tasks, the coach moves signups to a public tracker and reassigns any task not confirmed by noon",
+      "firstImage": "a snack rotation clipboard clipped to a chain-link fence",
+      "mustInclude": [
+        "snack clipboard",
+        "public tracker",
+        "deadline note"
+      ],
+      "mustAvoid": [
+        "generic sideline drama"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "a product standards committee where a member keeps asking innocent questions that reopen settled issues",
+      "audience": "a chair recognizing delay as force",
+      "stakes": "whether a safety standard misses its publication window",
+      "format": "reflection",
+      "requiredBeat": "the chair counts reopened items by member, then limits questions to new evidence and records each reopen request",
+      "firstImage": "a standards draft with blue tabs down one side",
+      "mustInclude": [
+        "standards draft",
+        "reopen log",
+        "publication calendar"
+      ],
+      "mustAvoid": [
+        "generic meeting confusion"
+      ],
+      "openingDevice": "environmental"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish discomfort from covert aggression",
+      "document repeated damage beneath friendly tone",
+      "respond proportionately without waiting for perfect proof"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one recurring obstruction, write the pattern as dates and effects, then set one boundary tied to the next repeat.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "John D. Rockefeller",
+      "detail": "the source uses Rockefeller as the anchor for controlled aggression, power, and pressure without theatrical rage",
+      "useIn": "both",
+      "phrasingHint": "Rockefeller makes aggression colder and more useful to study because the force does not need to raise its voice."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

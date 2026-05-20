@@ -1,0 +1,139 @@
+{
+  "bookId": "thinking-fast-and-slow",
+  "title": "Thinking, Fast and Slow",
+  "author": "Daniel Kahneman",
+  "thesisParagraph": "Human judgment is not a single clear voice weighing evidence from scratch. It is a sequence in which fast impressions, associative coherence, memory fluency, stories, reference points, losses, and remembered endings often arrive before deliberate checking has done real work. The practical argument is not that intuition is worthless or that reason is pure. It is that better judgment starts when you can see which mental operation is currently in charge, what shortcut it is using, and what correction the situation demands.",
+  "coreIdeas": [
+    {
+      "name": "Fast proposal, slow endorsement",
+      "oneSentence": "A first answer can feel complete before it has been checked.",
+      "mentalMove": "treat fluency as a candidate answer, not a verdict",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Coherence is not evidence",
+      "oneSentence": "The mind builds a tidy story from what is available and often forgets what is missing.",
+      "mentalMove": "look for absent evidence and alternative explanations before committing",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch06.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Substitution hides inside judgment",
+      "oneSentence": "Hard questions are often replaced by easier ones that feel close enough.",
+      "mentalMove": "compare the question answered with the question asked",
+      "sourceAnchors": [
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Memory fluency distorts probability",
+      "oneSentence": "What comes to mind easily can masquerade as what happens often.",
+      "mentalMove": "check frequency against recall ease and emotional vividness",
+      "sourceAnchors": [
+        "ch10.source",
+        "ch12.source",
+        "ch13.source"
+      ]
+    },
+    {
+      "name": "Stories beat statistics unless resisted",
+      "oneSentence": "Descriptions, stereotypes, causes, and neat narratives can overwhelm base rates.",
+      "mentalMove": "restore the base rate before letting a story explain the case",
+      "sourceAnchors": [
+        "ch14.source",
+        "ch15.source",
+        "ch16.source",
+        "ch19.source"
+      ]
+    },
+    {
+      "name": "Confidence needs validity",
+      "oneSentence": "Strong conviction is useful only when the environment and feedback can train it.",
+      "mentalMove": "ask whether the task gives regular patterns, repeated practice, and clear feedback",
+      "sourceAnchors": [
+        "ch20.source",
+        "ch21.source",
+        "ch22.source",
+        "ch23.source"
+      ]
+    },
+    {
+      "name": "Choices are reference-dependent",
+      "oneSentence": "People react to gains and losses from a felt starting point, not just final outcomes.",
+      "mentalMove": "identify the reference point, loss, and frame shaping the decision",
+      "sourceAnchors": [
+        "ch25.source",
+        "ch26.source",
+        "ch27.source",
+        "ch28.source",
+        "ch29.source",
+        "ch34.source"
+      ]
+    },
+    {
+      "name": "Life has two judges",
+      "oneSentence": "Moment-by-moment experience and remembered evaluation can disagree about what was good.",
+      "mentalMove": "separate lived time from the story memory later tells about it",
+      "sourceAnchors": [
+        "ch35.source",
+        "ch36.source",
+        "ch37.source",
+        "ch38.source"
+      ]
+    }
+  ],
+  "targetReader": "A thoughtful professional, student, or decision maker who wants to become harder to fool by their own certainty, especially when judging people, forecasts, risks, money, projects, and happiness.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "show the mental handoff from impression to check",
+      "keep technical terms tied to visible decisions",
+      "land examples with protagonist names that read naturally to Canadian, American, and European readers — 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no brain-as-computer gimmicks",
+      "no treating bias as stupidity"
+    ]
+  },
+  "voiceSpecimens": [
+    "The number on the first line is already pulling your estimate before you have begun to think.",
+    "A story can feel complete because every piece fits, even when the missing pieces are the ones that matter.",
+    "If the answer arrived too easily, slow down long enough to ask what question it actually answered.",
+    "The loss is not sitting in the spreadsheet. It is sitting at the reference point you have quietly chosen.",
+    "A memory keeps the peak and the ending, then speaks as if it kept the whole afternoon.",
+    "When confidence feels clean, check whether the world ever gave that confidence a fair test."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches us that we should all be more mindful about cognitive bias.",
+    "Kahneman argues that the brain has many fascinating quirks that impact decisions.",
+    "In today's fast-paced world, better thinking is the key to success.",
+    "Try taking five minutes to reflect on how this concept applies to your life.",
+    "The takeaway is to think critically and avoid jumping to conclusions.",
+    "As discussed above, this principle can be used in many areas of work and home."
+  ],
+  "teachingArc": "The book starts by teaching the reader to see the machinery of fast and slow thought, then shows the main shortcuts that distort probability and evidence. It moves from everyday judgments into overconfidence, where stories and confident experts outrun validity. It then shifts into choice, showing how reference points, losses, frames, and narrow accounts reshape risk. The final movement makes the same lesson personal by separating lived experience from remembered life satisfaction.",
+  "forbiddenMoves": [
+    "do not turn System 1 and System 2 into literal characters arguing inside the skull",
+    "do not write every chapter as a warning to slow down and think harder",
+    "do not flatten prospect theory into generic risk aversion",
+    "do not end the book as vague happiness advice",
+    "do not repeat the same courtroom, classroom, kitchen, or meeting-room examples"
+  ]
+}

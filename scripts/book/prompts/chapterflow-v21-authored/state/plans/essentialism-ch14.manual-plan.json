@@ -1,0 +1,166 @@
+{
+  "chapterId": "essentialism-ch14",
+  "number": 14,
+  "title": "Limit: The Freedom of Setting Boundaries",
+  "coreMove": "Set visible limits early enough that other people can plan around them and the essential is no longer endlessly available.",
+  "sourcePressure": "The chapter shows that boundaries protect time from being hijacked and reduce the need to renegotiate every request from scratch.",
+  "chapterSpecificMisunderstanding": "A weak run would write about personal boundaries as generic self-care without connecting them to protected contribution.",
+  "sourceAlignmentTerms": [
+    "boundaries",
+    "limits",
+    "freedom",
+    "protection",
+    "hijacked time"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic limit: the freedom of setting boundaries topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "resentful walls frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "resentful walls",
+      "self-care cliches",
+      "late-stage irritation",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "public library setting visible study-room booking limits during exam week",
+      "audience": "library manager tired of daily renegotiation",
+      "stakes": "unclear limits let a few groups capture shared space",
+      "format": "scene",
+      "requiredBeat": "She posts a two-hour booking rule and waitlist path beside the room keys before the first complaint arrives.",
+      "firstImage": "Study-room keys hang below a new booking rule.",
+      "mustInclude": [
+        "study-room keys",
+        "booking rule",
+        "waitlist card"
+      ],
+      "mustAvoid": [
+        "resentful walls",
+        "generic self-care"
+      ]
+    },
+    {
+      "domain": "community clinic protecting walk-in vaccine hours from sales reps",
+      "audience": "clinic lead whose time is hijacked politely",
+      "stakes": "patients lose access when no visible limit exists",
+      "format": "dialogue",
+      "requiredBeat": "She points to the posted vendor window and keeps the vaccine line moving instead of negotiating in the hall.",
+      "firstImage": "A posted vendor window sits beside vaccine tickets.",
+      "mustInclude": [
+        "vendor window",
+        "vaccine tickets",
+        "hallway clipboard"
+      ],
+      "mustAvoid": [
+        "medical gatekeeping",
+        "late irritation"
+      ]
+    },
+    {
+      "domain": "youth soccer league limiting parent sideline coaching",
+      "audience": "league director protecting players and coaches",
+      "stakes": "without boundary, every match becomes another negotiation",
+      "format": "before_after",
+      "requiredBeat": "Before, coaches argue every weekend; after, a sideline line and one appeal table change the match rhythm.",
+      "firstImage": "A sideline line is painted beside an appeal table.",
+      "mustInclude": [
+        "sideline line",
+        "appeal table",
+        "coach lanyards"
+      ],
+      "mustAvoid": [
+        "generic parenting",
+        "rude enforcement"
+      ]
+    },
+    {
+      "domain": "shared ceramics studio reserving kiln access for finished glazes only",
+      "audience": "studio manager protecting scarce kiln time",
+      "stakes": "unbounded exceptions spoil firings for everyone",
+      "format": "decision_point",
+      "requiredBeat": "She tapes the glaze-test rule to the kiln log and refuses a wet exception before loading.",
+      "firstImage": "A kiln log hangs beside a glaze-test tile.",
+      "mustInclude": [
+        "kiln log",
+        "glaze-test tile",
+        "wet pot"
+      ],
+      "mustAvoid": [
+        "craft elitism",
+        "random rule-making"
+      ]
+    },
+    {
+      "domain": "court clerk setting document-review cutoff before daily filing deadline",
+      "audience": "clerk reducing repeated urgent asks",
+      "stakes": "boundary protects fair access instead of personal comfort",
+      "format": "postmortem",
+      "requiredBeat": "He reviews the missed filing stack and adds a visible cutoff stamp to the intake tray.",
+      "firstImage": "A cutoff stamp sits on the intake tray.",
+      "mustInclude": [
+        "cutoff stamp",
+        "intake tray",
+        "filing stack"
+      ],
+      "mustAvoid": [
+        "bureaucratic laziness",
+        "office self-care"
+      ]
+    },
+    {
+      "domain": "neighborhood tool library defining late-return consequences",
+      "audience": "volunteer coordinator protecting shared access",
+      "stakes": "friendliness without limits makes tools unavailable to others",
+      "format": "reflection",
+      "requiredBeat": "She places the overdue saw beside the loan board and writes the late-return rule before texting a friend.",
+      "firstImage": "An overdue saw lies under a loan board.",
+      "mustInclude": [
+        "overdue saw",
+        "loan board",
+        "late-return text"
+      ],
+      "mustAvoid": [
+        "punitive boundary",
+        "generic neighbor favor"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify visible limits that prevent repeated renegotiation inside a concrete scenario",
+      "choose the response that applies: Set visible limits early enough that other people can plan around them and the essential is no longer endlessly available.",
+      "reject the generic drift: A weak run would write about personal boundaries as generic self-care without connecting them to protected contribution.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one recurring request and make the limit visible before the next ask: time window, rule, queue, cutoff, or consequence.",
+  "readingTimeMinutes": 12
+}

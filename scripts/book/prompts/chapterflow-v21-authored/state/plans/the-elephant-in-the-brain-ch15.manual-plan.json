@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch15",
+  "number": 15,
+  "title": "Religion",
+  "coreMove": "Look at religious practice as belief plus visible loyalty, shared rhythm, and norm enforcement.",
+  "sourcePressure": "The source frames religion as group bonding, loyalty display, and norm enforcement through sacrifice, ritual synchrony, badges, sermons, and supernatural enforcement.",
+  "chapterSpecificMisunderstanding": "The writer reduces religion to false belief or manipulative control and loses sincere bonding.",
+  "sourceAlignmentTerms": [
+    "religion",
+    "loyalty",
+    "ritual synchrony",
+    "badges",
+    "sermons",
+    "supernatural enforcement",
+    "sacrifice"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "ritual synchrony",
+      "detail": "The source says ritual synchrony helps groups bond.",
+      "useIn": "both",
+      "phrasingHint": "Moving together can make belonging feel less like an opinion and more like a body fact."
+    },
+    {
+      "kind": "artifact",
+      "name": "badges and sermons",
+      "detail": "The source names badges and sermons as visible tools of loyalty and norm enforcement.",
+      "useIn": "both",
+      "phrasingHint": "The badge marks who stands inside; the sermon reminds everyone what standing inside requires."
+    },
+    {
+      "kind": "artifact",
+      "name": "supernatural enforcement",
+      "detail": "The source says supernatural enforcement can matter for norm maintenance.",
+      "useIn": "deepRead",
+      "phrasingHint": "A watched norm does not need another person in the room to feel backed."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch15: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch15: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch15: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch15: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch15: no generic timer reflection",
+      "the-elephant-in-the-brain-ch15: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch15: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch15: no coffee shop conversation as the default social proof",
+      "no sneering at believers",
+      "no invented denomination case study"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "interfaith hospital chaplain rota",
+      "audience": "a coordinator seeing ritual as group support under stress",
+      "stakes": "families need belonging and obligation made visible at bedside",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Eleanor watches the family sing the same quiet line and schedules chaplain coverage around shared practice rather than private belief alone.",
+      "firstImage": "Low singing reaches the nurses' station before the chart does.",
+      "mustInclude": [
+        "chaplain rota",
+        "bedside chairs",
+        "song sheet"
+      ],
+      "mustAvoid": [
+        "medicine care signal repeat"
+      ]
+    },
+    {
+      "domain": "youth service trip preparation",
+      "audience": "a leader distinguishing sacrifice from resume padding",
+      "stakes": "visible hardship can bind the group and signal loyalty",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Do we have to wear the shirts?\" Vincent asks, and Petra explains the badge as a public promise to the group, not decoration.",
+      "firstImage": "\"Do we have to wear the shirts?\" Vincent asks with the supply boxes still open.",
+      "mustInclude": [
+        "service shirts",
+        "supply boxes",
+        "promise card"
+      ],
+      "mustAvoid": [
+        "charity display only"
+      ]
+    },
+    {
+      "domain": "secular choir memorial ritual",
+      "audience": "a director borrowing synchrony without belief claims",
+      "stakes": "shared rhythm can enforce care norms even outside doctrine",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You have Hugo begin with one repeated note everyone can hold, turning scattered grief into a shared obligation to listen.",
+      "firstImage": "You hear the first note steady the room before anyone speaks.",
+      "mustInclude": [
+        "single-note score",
+        "memorial program",
+        "choir risers"
+      ],
+      "mustAvoid": [
+        "art performance focus"
+      ]
+    },
+    {
+      "domain": "congregation finance meeting",
+      "audience": "a treasurer using sermon norms to prevent factional spending",
+      "stakes": "religious language can enforce group obligations around money",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Aisha reads the benevolence rule aloud before the vote, making generosity a shared norm rather than one faction's preference.",
+      "firstImage": "The offering envelopes sit unopened beside the budget binder.",
+      "mustInclude": [
+        "budget binder",
+        "offering envelopes",
+        "benevolence rule"
+      ],
+      "mustAvoid": [
+        "budget politics only"
+      ]
+    },
+    {
+      "domain": "pilgrimage packing list",
+      "audience": "a participant realizing cost makes commitment legible",
+      "stakes": "sacrifice separates spectators from committed members",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Janek until the third blister to understand why the walk mattered: the cost made loyalty visible to himself and the group.",
+      "firstImage": "It took Janek until the third blister to reread the packing list.",
+      "mustInclude": [
+        "walking staff",
+        "blister pads",
+        "pilgrimage card"
+      ],
+      "mustAvoid": [
+        "travel adventure story"
+      ]
+    },
+    {
+      "domain": "online prayer group moderation",
+      "audience": "a moderator enforcing norms when no one shares a building",
+      "stakes": "supernatural and social enforcement can overlap in digital practice",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Who keeps the promise when the camera turns off?",
+      "firstImage": "Who keeps the rule after the video tiles disappear?",
+      "mustInclude": [
+        "video tiles",
+        "prayer list",
+        "moderator note"
+      ],
+      "mustAvoid": [
+        "generic online community rules"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify loyalty display and norm enforcement in religious practice",
+      "explain ritual synchrony without dismissing belief",
+      "evaluate costly sacrifice as commitment signal"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Watch one repeated group ritual, religious or not. Name the belief it expresses, the loyalty it displays, and the norm it reinforces.",
+  "readingTimeMinutes": 12
+}

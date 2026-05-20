@@ -1,0 +1,100 @@
+{
+  "bookId": "atomic-habits",
+  "title": "Atomic Habits",
+  "author": "James Clear",
+  "thesisParagraph": "The book argues that lasting behavior change comes from redesigning the small loops that quietly run a life. Big goals matter less than the system that makes the next action obvious, attractive, easy, and satisfying. A habit is not just a task to repeat; it is evidence for the kind of person you believe you are becoming. The practical demand is narrow and concrete: change the cue, shape the craving, reduce the friction, add a satisfying signal, and keep refining after the routine becomes automatic.",
+  "coreIdeas": [
+    {
+      "name": "compound systems",
+      "oneSentence": "Small actions matter because repeated systems bend the long-run curve before results are visible.",
+      "mentalMove": "Track leading evidence and protect the system while outcomes lag.",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "identity votes",
+      "oneSentence": "Every repeated action supplies evidence for a self-concept.",
+      "mentalMove": "Ask what identity the next small action votes for.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "habit loop diagnosis",
+      "oneSentence": "A habit changes when the weakest part of cue, craving, response, or reward is deliberately redesigned.",
+      "mentalMove": "Map the loop before choosing the intervention.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "environment before effort",
+      "oneSentence": "Behavior follows what the environment makes visible and easy before motivation gets a vote.",
+      "mentalMove": "Move cues and friction before blaming discipline.",
+      "sourceAnchors": [
+        "ch06.source",
+        "ch07.source",
+        "ch12.source",
+        "ch14.source"
+      ]
+    },
+    {
+      "name": "present-tense reinforcement",
+      "oneSentence": "Good habits need immediate evidence or satisfaction because their largest rewards often arrive late.",
+      "mentalMove": "Create a small visible payoff that keeps the habit alive until the larger payoff catches up.",
+      "sourceAnchors": [
+        "ch15.source",
+        "ch16.source",
+        "ch17.source"
+      ]
+    }
+  ],
+  "targetReader": "A capable adult who keeps failing at changes they sincerely want and is tired of being told to try harder. They care because this frame removes moral drama and gives them a way to redesign the next thirty seconds.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make abstractions earn their place by tying them to a visible cue, object, or repeated action",
+      "state the practical move before widening to the principle"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no neuroscience name-dropping used as decoration",
+      "no moralizing about failed habits"
+    ]
+  },
+  "voiceSpecimens": [
+    "The room will usually beat the resolution, so start with the room.",
+    "A tiny action is not tiny when it repeats without asking permission.",
+    "The cue you see first gets to make the first offer.",
+    "You do not need a louder promise. You need a clearer next move.",
+    "A missed day is information. The second missed day is the habit turning around.",
+    "Make the good choice close enough that your tired hand can still find it.",
+    "Identity changes when the evidence gets boring enough to trust."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explores the profound implications of incremental behavioral optimization.",
+    "Unlock your limitless potential by hacking your habits in minutes a day.",
+    "One might argue that identity and repetition interact in fascinating ways.",
+    "The author now turns to the mechanics of cue-based behavior change.",
+    "If you just believe harder, the habit will become effortless.",
+    "In conclusion, habits are important for success and personal growth."
+  ],
+  "teachingArc": "Start by making smallness credible through compounding, then move deeper into identity so the reader sees repetition as evidence. The middle teaches the Four Laws as a diagnostic sequence: make the cue visible, make the craving attractive, make the response easy, and make the reward satisfying. The final stretch handles advanced practice: tracking, accountability, fit, calibrated challenge, and review after automaticity. The arc moves from starting a habit to maintaining, adapting, and refining it without turning the method into superstition.",
+  "forbiddenMoves": [
+    "Do not turn tiny habits into permission for tiny ambition; the small move matters because it compounds.",
+    "Do not treat identity as affirmation language; it must be earned through evidence.",
+    "Do not collapse every chapter into motivation versus systems.",
+    "Do not reuse the same tracker, checklist, kitchen, classroom, or meeting-room scene across the book.",
+    "Do not make bad habits a character flaw; show the design or relief they are responding to.",
+    "Do not end the book with generic consistency advice; final material must stay on review and refinement."
+  ]
+}

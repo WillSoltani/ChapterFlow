@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch10",
+  "number": 10,
+  "title": "What the Perfect Pitch Looks Like",
+  "coreMove": "Run the full sequence with rhythm so no stage crowds out or weakens the next.",
+  "sourcePressure": "Integration chapter: the full pitch works as a controlled sequence of frame, story, intrigue, prize, hookpoint, and decision, with brevity and pacing protecting each handoff.",
+  "chapterSpecificMisunderstanding": "The writer must make this chapter about integration, rhythm, and brevity, not fake transcript detail or a universal script.",
+  "sourceAlignmentTerms": [
+    "full pitch",
+    "integration",
+    "rhythm",
+    "brevity",
+    "pacing",
+    "sequence",
+    "handoff"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A perfect pitch has no wasted motion",
+      "Watch the pieces click together",
+      "The whole method becomes one flow"
+    ],
+    "counterintuition": [
+      "Perfect does not mean polished longer",
+      "Each move must hand off",
+      "Brevity creates control"
+    ],
+    "tryThisNow": [
+      "Time your whole pitch",
+      "Run the six steps out loud",
+      "Practice until it flows"
+    ],
+    "examples": [
+      "full investor pitch transcript",
+      "stage performance metaphor",
+      "generic rehearsal montage"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "urban freight startup pitching night-delivery permits to a mayor's transportation cabinet",
+      "audience": "a founder who must integrate politics, noise, commerce, and decision in one short room",
+      "stakes": "the cabinet delays the pilot if any stage becomes a policy lecture",
+      "format": "scene",
+      "requiredBeat": "she moves from neighborhood frame to delivery story to noise intrigue to limited pilot prize to one decision slot without returning to earlier slides",
+      "firstImage": "a night-delivery route card beside a city hall visitor badge",
+      "mustInclude": [
+        "route card",
+        "noise reading",
+        "pilot permit slot"
+      ],
+      "mustAvoid": [
+        "generic civic tech pitch"
+      ]
+    },
+    {
+      "domain": "specialty insurer pitching parametric hurricane coverage to marina owners",
+      "audience": "an insurance lead whose product needs frame, story, trigger novelty, scarce capacity, and decision in order",
+      "stakes": "owners mistake the policy for ordinary claims coverage and postpone until storm season",
+      "format": "before_after",
+      "requiredBeat": "contrast the old rambling quote meeting with a second run that reaches the trigger map exactly before capacity and signoff",
+      "firstImage": "a hurricane trigger map clipped under a marina gate access card",
+      "mustInclude": [
+        "trigger map",
+        "capacity cap",
+        "storm-season date"
+      ],
+      "mustAvoid": [
+        "generic insurance walkthrough"
+      ]
+    },
+    {
+      "domain": "medical robotics distributor pitching a surgical-navigation pilot to a regional hospital CEO",
+      "audience": "a distributor who must pace clinical credibility and executive consequence together",
+      "stakes": "the CEO loses the thread if the pitch lingers in device mechanics",
+      "format": "postmortem",
+      "requiredBeat": "he notes that the successful meeting spent ninety seconds on mechanics and used the rest to move cleanly toward pilot ownership",
+      "firstImage": "a sterile navigation pointer beside a CEO briefing card",
+      "mustInclude": [
+        "navigation pointer",
+        "pilot owner",
+        "ninety-second mechanics limit"
+      ],
+      "mustAvoid": [
+        "generic medtech sales pitch"
+      ]
+    },
+    {
+      "domain": "independent record label pitching catalog placement to a streaming editorial team",
+      "audience": "a label head who needs rhythm across taste, data, scarcity, and release timing",
+      "stakes": "the team likes the artist but never commits to playlist placement",
+      "format": "dialogue",
+      "requiredBeat": "after one track clip, he stops the music before the chorus and asks whether the editorial slot fits the release-week window",
+      "firstImage": "a playback waveform frozen before the chorus on a studio monitor",
+      "mustInclude": [
+        "track clip",
+        "release-week window",
+        "editorial slot"
+      ],
+      "mustAvoid": [
+        "generic music marketing pitch"
+      ]
+    },
+    {
+      "domain": "advanced ceramics supplier pitching heat shields to a drone manufacturer",
+      "audience": "a materials seller integrating technical proof and program urgency",
+      "stakes": "the manufacturer delays material selection and misses thermal-test booking",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts the point where the old shield fails, reveals the test image, then moves immediately to the booking decision",
+      "firstImage": "a thermal-test image beside a white ceramic coupon",
+      "mustInclude": [
+        "ceramic coupon",
+        "thermal-test booking",
+        "old shield failure point"
+      ],
+      "mustAvoid": [
+        "generic engineering sales sequence"
+      ]
+    },
+    {
+      "domain": "regional blood center pitching mobile collection partnership to a concert venue operator",
+      "audience": "a nonprofit operator who must make the pitch tight enough for a venue schedule meeting",
+      "stakes": "the partnership dies if public-good story crowds out operational fit and decision timing",
+      "format": "reflection",
+      "requiredBeat": "she trims the donor story to one minute so the prize and event-date decision still arrive before the venue manager's next appointment",
+      "firstImage": "a mobile collection route sheet tucked under a backstage pass",
+      "mustInclude": [
+        "route sheet",
+        "event-date decision",
+        "one-minute donor story"
+      ],
+      "mustAvoid": [
+        "generic nonprofit collaboration pitch"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "sequence all STRONG stages in an integrated room",
+      "diagnose where one stage crowds out another",
+      "choose pacing corrections under time pressure",
+      "evaluate whether a pitch is integrated or merely complete"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Run your pitch as six timed beats on one page, then cut the longest beat until the next handoff can happen without a reset.",
+  "readingTimeMinutes": 12
+}

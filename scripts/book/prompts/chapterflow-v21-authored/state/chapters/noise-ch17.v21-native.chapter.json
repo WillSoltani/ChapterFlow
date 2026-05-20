@@ -1,0 +1,288 @@
+{
+  "chapterId": "noise-ch17",
+  "number": 17,
+  "title": "Occasion Noise",
+  "readingTimeMinutes": 12,
+  "hook": "The robe did not change. The caseload did. The sentence did.",
+  "counterintuition": "Occasion noise operates below the judge's awareness. The judge who is more lenient after a break has not decided to be more lenient. The instrument is different in state, not in design. Process improvement targets the judge's reasoning. Occasion noise is in the instrument's condition at the moment of judgment, which reasoning does not reach.",
+  "tryThisNow": "For one week, note the time of day next to each significant judgment at work. Write the position in the day's queue. At the end of the week, check whether your scores cluster by time or queue position.",
+  "keyTakeaway": "Occasion noise is within-judge variation that the judge does not notice. The same judge, the same case facts, a different position in the queue: often a different judgment. Debiasing the judge does not reach this layer.",
+  "breakdown": {
+    "fastRead": "A judge hears twelve cases before the lunch break. The first case of the afternoon is sentenced 11 percent more leniently than the last case before lunch. The case files did not change across the break. The sentences did.\n\nEach of the twelve cases received a judgment from the judge who was available at that moment in the queue. The judge in the tenth-case slot was not the same instrument as the judge in the first-case slot, even though the name, the training, the legal standard, and the bench were identical. What varies is not the case and not the expert's knowledge. It is the instrument's state at the moment the judgment runs through it.",
+    "deepRead": "Twelve cases proceed through a judge's morning session. The first case after the lunch break receives a lighter average sentence than the last case before the break. Not because the post-break case was less serious: the pattern holds across crime types. The instrument running those twelve judgments varied with session position, not with case facts.\n\nResearch on judicial sentencing has found that the same judge sentences more leniently early in a session and more harshly as the session progresses, with a partial reset after breaks. The pattern holds across crime types, which means case-type differences across time slots do not explain it. The mechanism is not a change in the judge's opinion about appropriate sentences. It is the depletion of the judgment resource that repeated decisions consume. Cases just before a break receive a depleted instrument; cases just after receive a restored one. The judge does not notice.\n\nPhysicians show the same pattern in prescribing rates across morning appointment slots. Auditors show it in finding rates across long review days. Arbitrators show it in the anchoring of sequential awards. The common element is not domain: it is the judge experiencing depletion below awareness while continuing to reason correctly.\n\nThe person who heard the first case and the person who heard the twelfth were the same judge in every credential. They were not the same instrument.",
+    "fullRead": "Thaddeus had spent three months building the dataset before he trusted what he was seeing. One year of sentencing records for a single judge, 847 cases, sorted first by date and then by docket position. The first case after each session break was sentenced an average of 11 percent shorter than the last case before it. The pattern was consistent across misdemeanor, felony, and white-collar cases. Whatever was producing the variation, it was not the crime type. It was the case's position in the queue.\n\nResearch on judicial decision-making has found this pattern across multiple jurisdictions: the same judge sentences more leniently early in a session and more punitively as the session lengthens, with a partial reset after each break. The post-break leniency effect is not about fatigue in the colloquial sense. It is about the depletion of a cognitive resource that repeated decision-making consumes, and the partial restoration of that resource by a pause. The judge who heard the twelfth case before lunch was not in the same instrument state as the judge who heard the first case after it. Both were fully competent. Only one was depleted.\n\nAt quarter to nine, Miriam set the prescribing chart on the conference table. Antibiotic prescription rates for guideline-ambiguous respiratory presentations: 22 percent in the first morning appointment hour, 34 percent in the last pre-lunch hour, 18 percent in the first post-lunch hour. The physicians with the widest temporal variation had comparable guideline training and annual compliance scores. Patient populations across time slots were matched for presenting symptoms. The instrument, not the patients, explained the temporal arc.\n\n\"We see it in complex files more than routine ones,\" Ottavia said, setting down the findings-rate chart. \"First two hours: the teams find at full rate. Last two hours: 28 percent fewer material findings per file. And it is not the same two hours in absolute clock time. It is the last two hours of their review day, wherever that falls.\" Horatio nodded. \"The auditors are not slacking. They are working. The instrument is degrading while they work, and neither they nor we can see it happening from inside the session.\"\n\nConsider a financial advisory firm where clients' stated risk tolerance scores on a standard assessment vary by 0.4 points on average between sunny-day sessions and overcast-day sessions, after controlling for client age, wealth, and investment experience. The client did not change their risk appetite between Tuesday and Wednesday. The ambient mood condition under which the assessment ran changed. The portfolio built from the sunnier session is not the same portfolio that would have been built from the overcast one. Both scores came from the same client. Neither score was the client.\n\nThe sequence, the time, the weather, the prior case: none of these are the case facts. All of them shape the judgment. The judge who heard your case first in the session and the judge who heard it last were, in a measurable sense, different judges. The robe did not change. The caseload did."
+  },
+  "memorableLines": [
+    {
+      "text": "What varies is not the case and not the expert's knowledge. It is the instrument's state at the moment the judgment runs through it.",
+      "location": "breakdown.fastRead",
+      "why": "Names the mechanism precisely in two sentences: eliminates the obvious explanations (case, knowledge) before pointing to the actual variable (instrument state), making the distinction concrete rather than abstract."
+    },
+    {
+      "text": "The person who heard the first case and the person who heard the twelfth were the same judge in every credential. They were not the same instrument.",
+      "location": "breakdown.deepRead",
+      "why": "The two-sentence structure separates credential from instrument state, making the occasion noise concept viscerally recognizable rather than abstract."
+    },
+    {
+      "text": "The judge who heard your case first in the session and the judge who heard it last were, in a measurable sense, different judges. The robe did not change. The caseload did.",
+      "location": "breakdown.fullRead",
+      "why": "The second-person framing makes the reader the party whose fate depended on queue position, and the three-sentence rhythm lands the mechanism as a fact rather than a hypothesis."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "noise-ch17-ex01",
+      "title": "847 Cases",
+      "tags": ["judicial sentencing", "docket position", "session depletion", "within-judge variation"],
+      "planSpec": {
+        "domain": "judicial sentencing: a researcher analyzing whether the same judge's sentence lengths correlate with position in the daily docket",
+        "audience": "a judicial research team studying within-judge sentencing variation across a full year of case records",
+        "stakes": "the integrity of sentence-length decisions: if case position in the docket predicts sentence length independently of case facts, the system is noisier than it appears",
+        "format": "postmortem",
+        "requiredBeat": "the researcher maps one year of sentencing data for a single judge: first case after each session break is sentenced an average of 11 percent shorter than the last case before the break; the pattern holds across crime types"
+      },
+      "scenario": "Thaddeus spent three months building the sentencing dataset before he trusted the pattern. One year of records for a single judge, 847 cases sorted by docket position within each session. The first case after each break was sentenced an average of 11 percent shorter than the last case before it. The variation held across misdemeanor, felony, and white-collar classifications. The case that needed leniency most did not arrive after the break. It arrived in the wrong position in the queue.",
+      "whatToDo": "When reviewing evaluative outcomes across a docket, control for session-position before attributing variation to case content. Sort outcomes by queue position and look for reset patterns after breaks.",
+      "whyItMatters": "An 11 percent sentencing difference driven by session position rather than case facts means defendants' outcomes depend on when their case was called. Queue position is not a legally relevant factor. The instrument's condition is."
+    },
+    {
+      "exampleId": "noise-ch17-ex02",
+      "title": "22 Percent, 34 Percent, 18 Percent",
+      "tags": ["physician antibiotic prescribing", "time-of-day effect", "session depletion", "prescribing rate variation"],
+      "planSpec": {
+        "domain": "physician antibiotic prescribing: a primary care clinic measuring whether prescription rates shift across the morning and afternoon appointment slots",
+        "audience": "a clinic medical director analyzing prescribing patterns by time of day",
+        "stakes": "antibiotic stewardship: if prescription rate varies by appointment slot rather than patient need, that is occasion noise, and patients in the wrong slot receive unnecessary antibiotics",
+        "format": "scene",
+        "requiredBeat": "antibiotic prescription rate for guideline-ambiguous presentations: 22 percent in the first morning hour, 34 percent in the last pre-lunch hour, 18 percent in the first post-lunch hour; a reset pattern that cannot be explained by patient population differences"
+      },
+      "scenario": "At quarter to nine, Miriam projected the prescribing chart. Antibiotic prescription rates for guideline-ambiguous respiratory presentations: 22 percent in the first morning hour, 34 percent in the last pre-lunch hour, 18 percent in the first post-lunch hour. The physicians with the widest temporal variation had comparable guideline training and annual compliance scores. Patient populations across time slots were matched for presenting symptoms. The instrument, not the patients, explained the temporal arc.",
+      "whatToDo": "When reviewing clinical decision data for variation, segment by appointment-slot position before testing other explanations. A post-break reset pattern that persists across providers is a signal of occasion noise, not case mix.",
+      "whyItMatters": "A prescription rate that rises through the morning and resets at lunch, with matched patient populations, is the signature of a depleted instrument rather than a case-mix difference. The guidelines did not change. The session state did."
+    },
+    {
+      "exampleId": "noise-ch17-ex03",
+      "title": "The Last Two Hours",
+      "tags": ["financial audit quality", "findings rate", "session depletion", "complex file review"],
+      "planSpec": {
+        "domain": "financial auditor vigilance: an audit firm studying whether the quality of findings correlates with position in a long-day review schedule",
+        "audience": "a quality review partner studying whether auditor finding rates decline across a 10-hour review day",
+        "stakes": "audit quality and the firms that depend on accurate audit findings to manage risk exposure",
+        "format": "dialogue",
+        "requiredBeat": "material findings per file drop 28 percent in the last two hours of long review days compared to the first two, with identical checklist completion rates; the gap is larger in complex files"
+      },
+      "scenario": "\"The gap is largest in the complex files,\" Ottavia said, setting down the findings-rate chart. The quality review covered the same file types reviewed by the same teams across three time blocks in long audit days. Material findings per file dropped 28 percent in the last two hours compared to the first two. Checklist completion rates were identical across all three blocks. The instrument was completing its work. It was finding less of what was there.",
+      "whatToDo": "When reviewing audit finding rates, segment by time block in the review day. If finding rates fall in the final segment while checklist completion stays constant, the instrument is depleting, not the process.",
+      "whyItMatters": "A 28 percent finding-rate decline in the last time block, with identical checklist completion, shows the auditors are not skipping work. They are losing the instrument's sensitivity. The misses belong to the session's last hour."
+    },
+    {
+      "exampleId": "noise-ch17-ex04",
+      "title": "First vs. Last 90 Minutes",
+      "tags": ["customs border screening", "shift-end depletion", "secondary referral rate", "inspection thoroughness"],
+      "planSpec": {
+        "domain": "customs officer screening: a border agency analyzing whether screening inspection thoroughness varies by position in the shift",
+        "audience": "a border agency operations analyst measuring inspection consistency across shift timing",
+        "stakes": "security and fair treatment: inconsistent inspection thoroughness means some travelers face more scrutiny than others based on when they arrive, not on risk factors",
+        "format": "thought_experiment",
+        "requiredBeat": "secondary referral rates are 18 percent lower in the last 90 minutes of a shift than in the first 90 minutes for matched passenger profiles; inspection duration is also shorter"
+      },
+      "scenario": "If the same passenger profile arrived at the start versus the end of an eight-hour border shift, would the inspection produce the same secondary referral rate? Agency data from matched profiles answers: secondary referral rates in the last 90 minutes of a shift were 18 percent lower than in the first 90 minutes, and inspection duration was shorter. Travelers' risk profiles were comparable across both segments. The officer's criteria had not changed. The instrument's state had.",
+      "whatToDo": "When analyzing inspection data, include shift-position as a variable alongside case risk profiles. A drop in referral rates near shift-end, with comparable risk profiles, signals depletion rather than lower actual risk.",
+      "whyItMatters": "An 18 percent lower referral rate in the last shift segment, with matched risk profiles, means arrival timing is partially determining treatment. Arrival time is not a risk factor. It is shaping the outcome."
+    },
+    {
+      "exampleId": "noise-ch17-ex05",
+      "title": "The Sunnier Session",
+      "tags": ["investment risk tolerance", "ambient mood effect", "weather variation", "assessment instrument"],
+      "planSpec": {
+        "domain": "investment risk tolerance assessment: a financial advisor discovering that clients' stated risk tolerance varies depending on whether the meeting is on a sunny versus overcast day",
+        "audience": "a behavioral finance researcher analyzing client assessment data for a retail advisory firm",
+        "stakes": "portfolio construction: risk tolerance assessments that vary with ambient weather rather than actual preference lead to mismatched portfolios and client dissatisfaction",
+        "format": "before_after",
+        "requiredBeat": "sunny-day client cohort scores 0.4 points higher on the risk tolerance scale than overcast-day cohort using matched client profiles; the effect persists after controlling for age, wealth, and investment experience"
+      },
+      "scenario": "Two windows face the client meeting room. Isadora's research found that the same clients scored 0.4 points higher on the firm's risk tolerance assessment on sunny days than on overcast days, after controlling for age, wealth, and investment experience. Advisory session content and protocol were matched. The ambient mood condition the assessment ran under was correlated with the score it produced. The portfolio built from the sunnier session was not the same as the portfolio from the overcast one.",
+      "whatToDo": "When comparing assessment scores across client sessions, check whether scores correlate with time of day or weather after controlling for client attributes. Systematic correlation with ambient conditions is occasion noise.",
+      "whyItMatters": "A 0.4 point weather effect, persistent after controlling for client characteristics, means the assessment is measuring something about the day as well as the client. The portfolio inherits the weather."
+    },
+    {
+      "exampleId": "noise-ch17-ex06",
+      "title": "The Prior Award",
+      "tags": ["commercial arbitration", "sequence anchoring", "prior award effect", "within-arbitrator variation"],
+      "planSpec": {
+        "domain": "arbitration award amounts: a legal researcher analyzing whether the size of awards correlates with the arbitrator's prior award in the same session",
+        "audience": "a dispute resolution researcher studying sequence effects in commercial arbitration",
+        "stakes": "commercial dispute fairness: if the prior award anchors subsequent awards, parties whose cases are heard after a large award face different conditions than parties heard after a small one",
+        "format": "vignette",
+        "requiredBeat": "after controlling for claim size, industry, and contractual terms, an arbitrator's prior award in the same session predicts the next award; the effect dissipates after breaks; the arbitrator has no awareness of the pattern"
+      },
+      "scenario": "The case files for two commercial arbitration hearings sit stacked on the table. Phineas reviewed the sequence analysis: after controlling for claim size, industry, and contractual terms, the prior award in a session predicted the subsequent award. A session opening with a $500,000 award produced a higher next award than one opening with $50,000. The effect dissipated after breaks. The arbitrators reported no awareness of any prior award's influence when asked.",
+      "whatToDo": "When reviewing sequential decisions from the same evaluator, test whether each judgment predicts the next after controlling for case content. Correlation that dissipates after breaks is occasion noise from anchoring.",
+      "whyItMatters": "A prior award that predicts the next after controlling for case characteristics, and dissipates after breaks, means parties are evaluated partly in sequence with whoever came before them, not only on the case's own merits."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch17-q01",
+        "prompt": "Which statement correctly describes occasion noise and distinguishes it from level noise?",
+        "choices": [
+          "Occasion noise is systematic between-judge differences in average strictness or leniency; level noise is variation within the same judge across different points in time.",
+          "Occasion noise and level noise both describe between-judge variation, but occasion noise focuses on case-type interactions while level noise focuses on overall average scores.",
+          "Occasion noise is within-judge variation across occasions, driven by factors like session position, depletion, and ambient conditions; level noise is the stable between-judge difference in average assessment tendency."
+        ],
+        "correctIndex": 2,
+        "explanation": "Occasion noise is within-judge variation: the same person producing different outcomes for the same or similar cases at different times or in different session positions. Level noise is the stable tendency for some judges to be consistently stricter or more lenient than others overall.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch17-q02",
+        "prompt": "A judge sentences 11 percent more leniently in the first case after each session break than in the last case before the break. The pattern holds across crime types. Which conclusion is most directly supported?",
+        "choices": [
+          "The sentencing variation is driven by session position rather than case content, because the pattern holds regardless of crime type and resets with each break.",
+          "The judge is consciously adjusting sentencing after breaks to compensate for end-of-session strictness, producing a deliberate correction effect.",
+          "The crime types scheduled in the last pre-break slot are systematically more serious than those in the first post-break slot, producing a selection artifact."
+        ],
+        "correctIndex": 0,
+        "explanation": "If the pattern held only for specific crime types, case-content differences might explain it. Because it holds across crime types and resets predictably with breaks, session position rather than case content is the variable producing the variation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch17-q03",
+        "prompt": "Antibiotic prescription rates rise through the morning and reset after lunch across multiple physicians, with matched patient populations across time slots. What type of noise best characterizes this pattern?",
+        "choices": [
+          "Level noise: some physicians are systematically higher prescribers than others, and the time-of-day variation reflects that stable between-physician difference.",
+          "Pattern noise: different physicians respond differently to the same time-of-day condition, so some rise more steeply through the morning than others.",
+          "Occasion noise: the same physicians prescribe at different rates at different times despite matched patients, because the judgment instrument varies with session load and resets with breaks."
+        ],
+        "correctIndex": 2,
+        "explanation": "Level noise would be a stable between-physician difference, not a within-physician temporal pattern. Pattern noise would show divergence across physicians in their response to time-of-day, not a shared depletion-and-reset cycle. The morning-rise-and-lunch-reset pattern across physicians with matched patients describes occasion noise: within-judge variation across the session.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch17-q04",
+        "prompt": "An audit team's material findings rate drops 28 percent in the last two hours of long review days. Checklist completion is identical across time blocks. Which intervention most directly reduces this occasion noise?",
+        "choices": [
+          "Require senior auditors to review all files in the first two hours and restrict complex files to the morning block.",
+          "Redesign review schedules to include mandatory breaks before the final time block, partially restoring the instrument's state before the lowest-vigilance period.",
+          "Increase review team size so findings are distributed across more auditors, reducing per-person file load in each time block."
+        ],
+        "correctIndex": 1,
+        "explanation": "Restricting complex files to the morning addresses scheduling but does not restore the instrument's state for whatever files do land in the final block. Increasing team size reduces per-person load but does not address the within-session depletion mechanism. Breaks that partially restore the instrument before the depleted period directly target the occasion noise source.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch17-q05",
+        "prompt": "Clients score 0.4 points higher on risk tolerance assessments on sunny days than overcast days, with matched client profiles. How should this finding be interpreted in the context of occasion noise?",
+        "choices": [
+          "The 0.4 point score difference is occasion noise: the same client profile assessed on different occasions with different ambient conditions produces different results because the instrument's output varies with contextual state.",
+          "The weather effect is a form of bias rather than occasion noise, because it consistently inflates scores in one direction on sunny days, making it directional rather than random within-session variation.",
+          "The 0.4 point effect is measurement error rather than occasion noise, because client risk tolerance genuinely changes with ambient mood and the assessment is correctly capturing that real preference shift."
+        ],
+        "correctIndex": 0,
+        "explanation": "Occasion noise includes variation driven by ambient conditions at the time of assessment. The weather effect is not a stable directional bias in the instrument's design; it is variation in the instrument's output based on the occasion's contextual state. That matches the definition of occasion noise.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch17-q06",
+        "prompt": "An arbitrator's prior award in the same session predicts the next award after controlling for case characteristics, and the effect dissipates after breaks. What mechanism best explains this finding?",
+        "choices": [
+          "The arbitrator applies a deliberate anchoring heuristic, using the prior award as a reference point to ensure consecutive awards within a session are proportionate.",
+          "The arbitrator's fatigue accumulates with each case, causing them to increase award amounts because larger awards require less additional deliberation.",
+          "The prior award creates an ambient anchor in the arbitrator's working context; when a break clears that context, the effect dissipates, showing the pattern is driven by session state rather than case characteristics."
+        ],
+        "correctIndex": 2,
+        "explanation": "A deliberate heuristic would not dissipate after breaks: the arbitrator would continue applying proportionality reasoning. Fatigue-induced escalation would predict a monotonic rise, not a post-break dissipation. The anchor-that-clears-with-context model correctly explains both the inter-award correlation and the break-induced reset.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch17-q07",
+        "prompt": "Border screening data shows secondary referral rates 18 percent lower in the last 90 minutes of a shift than the first 90 minutes, with comparable passenger risk profiles. Which process change most directly addresses this?",
+        "choices": [
+          "Provide end-of-shift refresher training on secondary referral criteria to maintain officer vigilance as the shift progresses.",
+          "Redesign shift structures to include a mandatory break before the final segment, partially restoring the instrument before the lowest-vigilance period.",
+          "Reassign the most experienced officers to the final shift segment to compensate for depletion effects with higher expertise."
+        ],
+        "correctIndex": 1,
+        "explanation": "Refresher training addresses awareness of the criteria but not the instrument's depleted state. Reassigning experienced officers substitutes a different instrument without restoring it. A break before the final segment directly targets the depletion mechanism, partially restoring the instrument's state before the period where the decline is measured.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch17-q08",
+        "prompt": "A court administrator proposes mandatory breaks every two hours to address occasion noise in judicial sentencing. Would this fully eliminate occasion noise?",
+        "choices": [
+          "No. Mandatory breaks partially restore the judgment instrument after depletion, reducing session-position noise, but other occasion noise sources such as ambient mood, prior case anchoring, and sequence effects would persist.",
+          "Yes, because session depletion is the primary mechanism of occasion noise in judicial sentencing, and mandatory breaks that restore the instrument at regular intervals would remove the depletion source.",
+          "No, because mandatory breaks would redistribute occasion noise rather than reduce it: the break resets to a lenient state, shifting the leniency effect to a predictable post-break pattern rather than eliminating variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Occasion noise has multiple sources: session depletion, ambient mood, prior case anchoring, and other contextual factors. Mandatory breaks address the depletion component but do not eliminate the other sources. The intervention reduces, but does not eliminate, occasion noise.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch17-q09",
+        "prompt": "An organization wants to reduce occasion noise in annual performance reviews. Which change most directly addresses the mechanism of occasion noise rather than other noise sources?",
+        "choices": [
+          "Implement a structured review rubric with behavioral anchors for each rating level to ensure all reviewers apply the same criteria.",
+          "Space review sessions across multiple days with explicit breaks between each session segment, and avoid scheduling reviews in the last 90 minutes before a scheduled break.",
+          "Require all reviewers to submit independent scores before a panel discussion to prevent social anchoring from early raters."
+        ],
+        "correctIndex": 1,
+        "explanation": "A structured rubric addresses definitional noise from undefined criteria. Pre-discussion independent scoring addresses herding and social influence. Spacing sessions with breaks and avoiding session-end placement directly targets the session-position and depletion mechanisms through which occasion noise operates.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "What is occasion noise, and how is it different from level noise?",
+      "back": "Occasion noise is within-judge variation across occasions: the same person producing different outcomes for similar cases at different times, due to session position, depletion, ambient mood, or context. Level noise is the stable between-judge difference in average tendency: some judges are consistently stricter or more lenient than others overall.",
+      "difficulty": "easy"
+    },
+    {
+      "front": "Why does occasion noise persist even after debiasing training and process improvement?",
+      "back": "Debiasing training and process improvement target the judge's reasoning and criteria. Occasion noise operates in the instrument's condition at the moment of judgment: depletion, ambient state, and prior case context. The judge reasons correctly throughout; the instrument's state varies below their awareness, which training does not reach.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "What does the post-break leniency reset in judicial sentencing reveal about the mechanism of occasion noise?",
+      "back": "It reveals that the judgment instrument is depleted by repeated decision-making and partially restored by a pause. The reset is evidence that the variation tracks the instrument's state, not case content: cases requiring leniency most did not arrive after the break; they simply arrived in the wrong queue position.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "How can you distinguish occasion noise from level noise when analyzing evaluator data?",
+      "back": "Level noise shows up as stable differences between judges across all cases. Occasion noise shows up as variation within the same judge across time or session position. If the same judge's scores or rates shift with session position and reset with breaks, that is occasion noise. If different judges consistently score differently regardless of timing, that is level noise.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "What makes occasion noise particularly difficult to address compared to other types of noise?",
+      "back": "It is invisible to the judge experiencing it. The judge does not know they are operating in a depleted state, does not perceive the prior case as an anchor, and cannot introspect the instrument's condition at the moment of judgment. Most process improvements that increase awareness or structure do not change the instrument's state.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Track the time and session-queue position of your significant judgments for one week. After collecting data, test whether your assessments vary systematically with position in the day or week rather than with the content of what you were assessing. If they do, redesign your scheduling to place high-stakes judgments early in fresh sessions, build mandatory breaks before the final segment of long decision blocks, and avoid consecutive high-load judgment sequences without restoration pauses.",
+    "ifThenPlans": [
+      {
+        "context": "When you are about to make a significant evaluative judgment late in a long decision session",
+        "plan": "If you have flexibility, defer the judgment to the start of a fresh session or immediately after a break. If deferral is not possible, note the session position and apply extra scrutiny to the judgment before it is final, specifically testing whether your assessment would change if you had encountered the case first in the session."
+      },
+      {
+        "context": "When reviewing evaluative data across a team's decision records and finding unexplained variance in outcomes",
+        "plan": "Add session timing and queue position to your analysis before attributing variation to case content or evaluator differences. Sort outcomes by time of day and session position and test whether a reset pattern after breaks is present. If it is, the variance is partially occasion noise rather than differences in case severity or evaluator quality."
+      }
+    ],
+    "twentyFourHourChallenge": "At the end of today, list every significant judgment you made: a hire decision, a performance rating, a risk call, a clinical or financial assessment. Write the approximate time of day and the position in your day's sequence next to each one. Examine whether there is any pattern. If you see higher or lower scores clustering in a time block, you have found the footprint of occasion noise in your own data.",
+    "weeklyPractice": "For each week, before beginning any long sequence of evaluative judgments, schedule a mandatory break at the midpoint. After the week ends, compare outcomes from the first half of each session against the second half, holding case type constant. Track whether the break narrowed the within-session spread. Over four weeks, you will have data on whether session structure is contributing to your occasion noise, and by how much."
+  }
+}

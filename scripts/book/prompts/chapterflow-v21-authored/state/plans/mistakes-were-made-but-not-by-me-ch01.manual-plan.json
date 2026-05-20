@@ -1,0 +1,192 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+  "number": 1,
+  "title": "Knaves, Fools, Villains, and Hypocrites: How Do They Live with Themselves?",
+  "coreMove": "Hear the sentence where ownership disappears, then restore the actor before the story protects the self too well.",
+  "sourcePressure": "The opening puzzle is how people can acknowledge damage while protecting a decent self-image; the source centers on passive non-apology language, self-justification versus lying, and the way agency disappears when ownership feels dangerous.",
+  "chapterSpecificMisunderstanding": "Treating self-justification as obvious lying by bad people, instead of a sincere identity defense ordinary people use after harm.",
+  "sourceAlignmentTerms": [
+    "self-justification",
+    "non-apology",
+    "passive language",
+    "agency",
+    "self-image",
+    "ownership",
+    "lying versus self-protection"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the phrase \"mistakes were made\"",
+      "detail": "the source treats passive public apology language as a canonical way to acknowledge damage while removing the actor from the sentence",
+      "useIn": "both",
+      "phrasingHint": "The phrase looks responsible until you notice that the person who acted has slipped out of the sentence."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a celebrity scandal or a generic apology speech.",
+      "Avoid the shell where a public figure stands at a podium and dodges blame."
+    ],
+    "counterintuition": [
+      "Do not frame it as people lie because they are selfish.",
+      "Avoid simple hypocrisy language without the identity cost."
+    ],
+    "tryThisNow": [
+      "Do not ask for a broad apology audit.",
+      "Avoid a reusable journaling timer."
+    ],
+    "examples": [
+      "No boardroom crisis statement as the default scene.",
+      "No courtroom confession preview."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "a hospital medication-incident review where a nurse manager is tempted to write that a dose was delayed",
+      "audience": "clinicians who have to learn from an error without turning the report into self-protection",
+      "stakes": "whether a dosing delay becomes a usable safety lesson or a bland incident note nobody can fix",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace stops with the incident form open, circles the verb phrase, and replaces \"was delayed\" with the exact handoff choice that caused the missed dose",
+      "firstImage": "a laminated medication badge lying beside an unsigned incident form",
+      "mustInclude": [
+        "incident form",
+        "shift handoff",
+        "delayed dose"
+      ],
+      "mustAvoid": [
+        "malpractice drama",
+        "hero nurse rescue"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "a seed-stage startup postmortem after a failed enterprise pilot",
+      "audience": "founders and operators who want a real lesson instead of a face-saving retrospective",
+      "stakes": "a second pilot will fail the same way if nobody names the choice to skip onboarding",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Camille interrupts \"the rollout got confused\" and writes the exact decision, no customer onboarding call, on the shared screen",
+      "firstImage": "a frozen video-call grid reflected in a dark laptop screen",
+      "mustInclude": [
+        "shared screen",
+        "pilot customer",
+        "onboarding call"
+      ],
+      "mustAvoid": [
+        "generic project management",
+        "blame-heavy firing scene"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "a youth soccer club email after a coach berated a referee",
+      "audience": "volunteer leaders who need accountability without turning it into punishment theater",
+      "stakes": "parents will read the apology as protection of the coach unless the action is named",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James rewrites \"tempers ran high\" into a sentence that keeps the coach, the referee, and the shouted words in view",
+      "firstImage": "mud flecks drying on a red assistant-referee flag",
+      "mustInclude": [
+        "club email draft",
+        "sideline",
+        "assistant referee"
+      ],
+      "mustAvoid": [
+        "professional sports scandal",
+        "anger-management lecture"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "a university chemistry lab spill review after a graduate student left a reagent uncapped",
+      "audience": "lab supervisors who need precision without humiliating a junior researcher",
+      "stakes": "the lab either learns the handling failure or files it as vague equipment trouble",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Ingrid three minutes to notice every draft sentence names the spill but not the uncapped bottle; she inserts the missing action before discussing fixes",
+      "firstImage": "a yellow spill cone beside a fume hood sash",
+      "mustInclude": [
+        "uncapped reagent bottle",
+        "spill log",
+        "graduate bench"
+      ],
+      "mustAvoid": [
+        "criminal negligence",
+        "abstract safety culture"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "a municipal snow-removal memo after two blocks were missed during an overnight storm",
+      "audience": "public works supervisors who write to angry residents",
+      "stakes": "the memo either teaches dispatch what went wrong or hides behind weather",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Luca asks which sentence names snow and which sentence names the route reassignment, then deletes the weather-only version",
+      "firstImage": "a plow-route map speckled with road salt",
+      "mustInclude": [
+        "route reassignment",
+        "resident complaints",
+        "salt-stained map"
+      ],
+      "mustAvoid": [
+        "mayoral press conference",
+        "climate or budget digression"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "a family care rota after an adult daughter misses a pharmacy pickup for her father",
+      "audience": "readers managing family obligations where blame can swallow repair",
+      "stakes": "a missed prescription becomes either a repairable commitment failure or a foggy family quarrel",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Hadiya cross out \"there was confusion\" in the family chat and type the missed pickup, the pharmacy closing time, and her repair step",
+      "firstImage": "a paper pharmacy receipt folded under a fridge magnet shaped like a lemon",
+      "mustInclude": [
+        "family chat",
+        "pharmacy closing time",
+        "repair step"
+      ],
+      "mustAvoid": [
+        "general caregiving guilt",
+        "sentimental reconciliation"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot passive damage language that hides agency",
+      "distinguish sincere self-justification from deliberate lying",
+      "choose a rewrite that names action without turning into self-attack"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one explanation you gave this week and underline every verb; rewrite the one sentence where the actor vanished so the action and repair step are visible.",
+  "readingTimeMinutes": 12
+}

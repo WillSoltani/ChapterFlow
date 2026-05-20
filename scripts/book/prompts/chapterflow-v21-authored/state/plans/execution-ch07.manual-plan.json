@@ -1,0 +1,178 @@
+{
+  "chapterId": "execution-ch07",
+  "number": 7,
+  "title": "The Strategy Process",
+  "coreMove": "Cross-examine a strategy until the how, capability, milestones, and economics are visible.",
+  "sourcePressure": "Core process two: strategy has to explain the hows and test external environment, customers, markets, competition, executable capability, milestones, time balance, critical issues, and sustainable economics. No chapter-specific named company case is frozen.",
+  "chapterSpecificMisunderstanding": "Treat strategy as a polished destination statement or framework exercise.",
+  "sourceAlignmentTerms": [
+    "the hows",
+    "strategic plan",
+    "external environment",
+    "customers",
+    "competition",
+    "capability to execute",
+    "milestones",
+    "sustainable basis"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "the the strategy process that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional grocery co-op planning online pickup in towns where customers still shop by weekly flyer",
+      "audience": "a general manager building a growth plan",
+      "stakes": "the co-op can spend on software before proving customer behavior and profitable route density",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Sophie refuses to approve the pickup strategy until the plan answers customers, competition, route economics, capability, and milestones",
+      "firstImage": "Who is the strategy for if the weekly flyer still decides Thursday shopping?",
+      "mustInclude": [
+        "weekly flyer",
+        "pickup route map",
+        "profitability worksheet"
+      ],
+      "mustAvoid": [
+        "generic e-commerce launch"
+      ]
+    },
+    {
+      "domain": "a regional soccer academy expanding into winter futsal while rival clubs own the gym slots",
+      "audience": "an academy director",
+      "stakes": "growth stalls if competition and capacity are not part of the plan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Daniel turns a growth slogan into a strategic plan by writing the rival gym slots and coach availability beside the target",
+      "firstImage": "The indoor gym schedule is already full of rival club names when Daniel opens the expansion plan.",
+      "mustInclude": [
+        "gym schedule",
+        "coach availability grid",
+        "futsal enrollment target"
+      ],
+      "mustAvoid": [
+        "generic sports ambition"
+      ]
+    },
+    {
+      "domain": "a medical publisher deciding whether to launch a continuing-education subscription",
+      "audience": "a product director",
+      "stakes": "the subscription can attract users but fail sustainable economics after accreditation costs",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Antoine asks how the offer makes money on a sustainable basis before the launch team celebrates subscriber interest",
+      "firstImage": "At 2:34 p.m., Antoine sees a strong survey result beside an accreditation invoice estimate.",
+      "mustInclude": [
+        "survey result",
+        "accreditation invoice",
+        "subscriber model"
+      ],
+      "mustAvoid": [
+        "generic product-market fit"
+      ]
+    },
+    {
+      "domain": "a coastal ferry authority balancing short-term schedule fixes against long-term vessel replacement",
+      "audience": "a public operator",
+      "stakes": "passenger reliability can improve briefly while the capital issue worsens",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Henrik forces the plan to name the short-term and long-term balance instead of hiding replacement risk under service tweaks",
+      "firstImage": "\"Show me where the old hull appears in this plan,\" Henrik says, tapping the timetable.",
+      "mustInclude": [
+        "timetable",
+        "vessel age report",
+        "capital plan"
+      ],
+      "mustAvoid": [
+        "generic transit budget"
+      ]
+    },
+    {
+      "domain": "a small cosmetics manufacturer entering pharmacies while its batch testing lab is already at capacity",
+      "audience": "a founder choosing a channel strategy",
+      "stakes": "new accounts can outstrip testing capability and damage retailer trust",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Paula traces a failed pharmacy pitch to a strategy that never asked whether the business could execute the channel shift",
+      "firstImage": "It took Paula one returned pharmacy contract to notice the batch-testing queue buried in the appendix.",
+      "mustInclude": [
+        "pharmacy contract",
+        "batch-testing queue",
+        "channel plan appendix"
+      ],
+      "mustAvoid": [
+        "generic retail growth"
+      ]
+    },
+    {
+      "domain": "a nonprofit refugee-services agency adding job-placement programs without employer partnerships",
+      "audience": "an executive director",
+      "stakes": "clients can be promised outcomes the agency has no partner network to deliver",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chidi rewrites the strategic plan around employer partnerships, milestones, and capability instead of mission language alone",
+      "firstImage": "You read the mission paragraph and Chidi reads the empty employer-partnership list underneath it.",
+      "mustInclude": [
+        "employer-partnership list",
+        "client intake forecast",
+        "milestone calendar"
+      ],
+      "mustAvoid": [
+        "generic nonprofit mission"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test whether a strategy names the hows",
+      "identify missing customer, competition, capability, and economics questions",
+      "choose milestones that prove progress instead of decorate it",
+      "evaluate short-term and long-term balance"
+    ]
+  },
+  "tryThisNowSpec": "Take one strategy sentence and add the missing how: customer, competition, capability, milestone, or sustainable economics.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

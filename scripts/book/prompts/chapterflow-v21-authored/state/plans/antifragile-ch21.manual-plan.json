@@ -1,0 +1,201 @@
+{
+  "chapterId": "antifragile-ch21",
+  "number": 21,
+  "title": "Medicine, Convexity, and Opacity",
+  "coreMove": "Intervene more readily when upside is convex and downside limited, and hesitate when hidden harm dominates.",
+  "sourcePressure": "This chapter applies asymmetry and opacity to intervention-heavy domains, especially medicine-like systems.",
+  "chapterSpecificMisunderstanding": "Reading the chapter as crude anti-medicine or anti-treatment rhetoric.",
+  "sourceAlignmentTerms": [
+    "medicine",
+    "convexity",
+    "opacity",
+    "intervention",
+    "hidden downside",
+    "asymmetry",
+    "iatrogenics"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "medicine-like systems",
+      "detail": "the source notes point to opaque domains where intervention risk can be hidden",
+      "useIn": "both",
+      "phrasingHint": "In an opaque body, the visible fix may not be the largest effect."
+    },
+    {
+      "kind": "artifact",
+      "name": "convexity",
+      "detail": "the chapter asks whether response structure makes intervention favorable or dangerous",
+      "useIn": "fullRead",
+      "phrasingHint": "Convexity tells you whether a small intervention can buy large upside without equal ruin."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Medicine, Convexity, and Opacity"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Reading the chapter as crude anti-medicine or anti-treatment rhetoric."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "cardiology treatment choice with Lucia as the decision-maker",
+      "audience": "a reader who handles cardiology treatment choice under uncertainty",
+      "stakes": "whether Lucia avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Lucia maps visible benefit against hidden harm and acts only where the asymmetry is favorable.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "cardiology log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic medicine, convexity, and opacity paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "antibiotic stewardship round with Bianca as the decision-maker",
+      "audience": "a reader who handles antibiotic stewardship round under uncertainty",
+      "stakes": "whether Bianca avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Bianca maps visible benefit against hidden harm and acts only where the asymmetry is favorable.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "antibiotic log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic medicine, convexity, and opacity paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "physical-therapy scan request with Valeria as the decision-maker",
+      "audience": "a reader who handles physical therapy scan request under uncertainty",
+      "stakes": "whether Valeria avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Valeria maps visible benefit against hidden harm and acts only where the asymmetry is favorable.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "physical therapy log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic medicine, convexity, and opacity paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "supplement shelf review with Carla as the decision-maker",
+      "audience": "a reader who handles supplement shelf review under uncertainty",
+      "stakes": "whether Carla avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Carla maps visible benefit against hidden harm and acts only where the asymmetry is favorable.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "supplement log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic medicine, convexity, and opacity paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "hospital procurement committee with Rosa as the decision-maker",
+      "audience": "a reader who handles hospital procurement committee under uncertainty",
+      "stakes": "whether Rosa avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rosa maps visible benefit against hidden harm and acts only where the asymmetry is favorable.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "hospital log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic medicine, convexity, and opacity paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "veterinary treatment plan with Bruna as the decision-maker",
+      "audience": "a reader who handles veterinary treatment plan under uncertainty",
+      "stakes": "whether Bruna avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Bruna maps visible benefit against hidden harm and acts only where the asymmetry is favorable.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "veterinary log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic medicine, convexity, and opacity paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by intervene more readily when upside is convex and downside limited, and hesitate when hidden harm dominates.",
+      "distinguish medicine, convexity, opacity in unfamiliar cases",
+      "choose actions that avoid: Reading the chapter as crude anti-medicine or anti-treatment rhetoric."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one intervention, write the visible benefit, the hidden downside, and whether the payoff is convex or concave.",
+  "readingTimeMinutes": 12
+}

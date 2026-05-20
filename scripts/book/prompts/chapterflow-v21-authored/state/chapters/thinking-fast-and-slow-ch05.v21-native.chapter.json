@@ -5,7 +5,8 @@
   "readingTimeMinutes": 14,
   "hook": "A trial judge gives warmer sentences to defendants whose memos arrive in clean type, and she cannot feel herself doing it.",
   "counterintuition": "Most readers assume they correct for clear writing: they know a legible memo is easier to read and believe they factor that out. They do not. Fluency binds silently to judgments of truth, competence, and character, and knowing the effect exists barely dents it.",
-  "keyTakeaway": "When a claim reads smoothly, rhymes, or looks crisp, I register it as likelier true; the fluency is a cheap proxy for truth, so treat ease itself as a question, not an answer.",
+  "tryThisNow": "Pick one claim that feels easy to accept today. Before agreeing, name the fluency cue, then check one fact that does not depend on ease.",
+  "keyTakeaway": "A smooth claim can feel true before evidence arrives; fluency is only a cue about ease, so test it with facts that do not depend on polish.",
   "breakdown": {
     "fastRead": "A line cook tastes two stocks on a Tuesday afternoon. The house stock lands right. The new one feels off. She is about to write it up and move on.\n\nThen she stops. The house stock is what her tongue knows. Knowing is not the same as better.\n\nCall it cognitive ease. When a thing reads smooth, tastes familiar, fits, the mind treats that feeling as a hint about truth. It is a hint about familiarity. The effect is real and the effect is modest; a tendency, not a certainty.\n\nHere is what is worth keeping. When a claim feels obviously right, the feeling is about recognition, not accuracy. It arrives before the evidence, and leaves before anyone checks.",
     "deepRead": "A zoning commissioner sits through two developer pitches on a Thursday night. The first rhymes a little. The second does not. An hour later, asked which proposal felt more trustworthy, she names the first without hesitation.\n\nShe is not foolish. She has no planning background, which is precisely why she has listened carefully all evening. The rhyming pitch slipped past her carefulness anyway. It landed easy, and easy felt like true.\n\nThat substitution is the effect. When a claim reads smoothly, looks crisp on the page, repeats a phrase already in the air, or rhymes, it registers as more likely to be correct. I fall for it too, reliably, in settings where I should know better. I catch myself nodding at the well-formatted memo and frowning at the smudged one before I have read either for content. The signal I am using is not the content. It is the feel.\n\nThe mechanism is unglamorous. Effort is expensive, so the mind uses ease as a cheap proxy for several things at once: safety, familiarity, truth, competence. When the proxy lines up with reality, nothing goes wrong and nobody notices the substitution. When it does not, the error is invisible, because it was made before anyone thought they were thinking.\n\nWatch for it where the stakes are real and the feel is doing the work. A cardiac nurse on the back half of a twelve-hour shift picks up two handoff notes, one laser-printed and one a smudged carbon. The clean one reads as more credible. It may be. It may not be, and a dose written in the wrong column does not care which note looked tidier. A wrong dose can cost a patient the night.\n\nEase is a question the mind presents as an answer. Treat it as the question.",
@@ -103,7 +104,7 @@
         "format": "dilemma",
         "requiredBeat": "the director recognizes that the student who plays the familiar warm-up excerpt sounds 'more musical' partly because the excerpt is familiar to the director's ear, and redesigns the audition so repertoire novelty is equalized"
       },
-      "scenario": "Saskia is grading two clarinetists in practice room 3 after school Thursday, brass players waiting in the hall. Jiya just played the Weber opening Saskia has taught for eleven years; Corrin played a Finzi bagatelle Saskia has not heard since college. Jiya sounded more musical. Then Saskia catches it: she has heard that Weber so often it lands pre-parsed, and she is grading her own familiarity. Finish the audition, or send both students home and re-run Monday on a passage neither has drilled.",
+      "scenario": "Saskia is grading two clarinetists in practice room 3 after school Thursday, brass players waiting in the hall. Jiya just played the Weber opening Saskia has taught for eleven years; Corrin played a Finzi bagatelle Saskia has not heard since college. Jiya sounded more musical. Then Saskia catches it: she has heard that Weber so often it lands pre-parsed, and she is grading her own familiarity. Saskia must decide whether to finish the audition or send both students home and re-run Monday on a passage neither has drilled.",
       "whatToDo": "Stop the audition. Pick a sight-readable passage neither clarinetist has rehearsed, hand each the same part, and score only that. Do not trust the 'more musical' read when one player chose the passage you have memorized.",
       "whyItMatters": "A passage you have heard for years arrives in your ear pre-parsed. Expressiveness blurs into recognition. Equalize the novelty and the comparison measures playing; leave it unequal and it measures your familiarity with the score."
     },
@@ -251,11 +252,11 @@
         "questionId": "q10",
         "prompt": "A senior fraud auditor is briefing a junior colleague on the basic premise of the cognitive ease effect before a document review. Which statement most accurately captures the core claim?",
         "choices": [
+          "Feelings of familiarity and fluency shift how true or credible a claim seems, independent of its actual support.",
           "Fluent processing tracks factual accuracy reliably, so ease can be used as a trustworthy shortcut.",
-          "Effort and accuracy are unrelated, so deliberation adds no value beyond snap judgment.",
-          "Feelings of familiarity and fluency shift how true or credible a claim seems, independent of its actual support."
+          "Effort and accuracy are unrelated, so deliberation adds no value beyond snap judgment."
         ],
-        "correctIndex": 2,
+        "correctIndex": 0,
         "explanation": "Ease is a cue the mind confuses with truth; it is not a reliable proxy for accuracy. Treating ease as trustworthy endorses the bias. Denying any value to deliberation overstates the effect into a nihilism the evidence does not support.",
         "bloomsLevel": "remember",
         "depthLevel": "simple"
@@ -316,5 +317,22 @@
     ],
     "twentyFourHourChallenge": "Tonight, pick one document on your desk that you have been treating as credible because it looks clean, a memo, a report, a proposal, and retype its main argument into plain sentences with no formatting. Notice whether the argument still persuades you once the typography is gone.",
     "weeklyPractice": "Once a week, run a fluency audit on a decision you made in the last seven days. Write the claim you acted on, then write what you actually verified, then write what you assumed because it read well. Keep the list; patterns will show up within a month."
-  }
+  },
+  "memorableLines": [
+    {
+      "text": "Knowing is not the same as better.",
+      "location": "breakdown.fastRead",
+      "why": "It separates familiar ease from evidence of quality."
+    },
+    {
+      "text": "Ease is a question the mind presents as an answer.",
+      "location": "breakdown.deepRead",
+      "why": "It turns the chapter's warning into a compact diagnostic."
+    },
+    {
+      "text": "When a claim feels obviously right, the feeling is data about you.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers the correction in a sentence they can reuse."
+    }
+  ]
 }

@@ -1,0 +1,326 @@
+{
+  "chapterId": "skin-in-the-game-ch02",
+  "number": 2,
+  "title": "The Most Intolerant Wins: The Dominance of the Stubborn Minority",
+  "readingTimeMinutes": 12,
+  "hook": "One tiny mark on a lemonade bottle can move an entire shelf without asking the crowd to care.",
+  "counterintuition": "The strict side does not need to persuade the flexible side. It only needs a default the flexible side can tolerate while the strict side cannot tolerate the alternative.",
+  "tryThisNow": "Pick one group choice near you and mark which side can accept both options, which side can accept only one, and where a local rule becomes the default.",
+  "keyTakeaway": "A small minority can rule when its constraint is hard and the majority can live with the stricter option.",
+  "breakdown": {
+    "fastRead": "The cafeteria dessert tray looks like a vote. Most patients do not have the allergy card. One patient does. James sees that everyone can eat the safer dessert, while one person cannot eat the ordinary one at all. He swaps the whole line.\n\nThat is minority rule without a speech. The strict side does not win by being numerous. It wins because its refusal is harder than the majority's preference. A flexible majority can adapt to the strict default, so the strict default quietly becomes everyone's world.",
+    "deepRead": "The small kosher mark on a bottle is the quiet evidence: the stricter rule wins because the looser side can drink it too. A shopper who requires kosher cannot drink the ordinary version. A shopper who does not care can still drink the kosher version. The factory does not need a moral debate. It needs one production line that offends nobody enough to lose the sale.\n\nThat is the whole asymmetry.\n\nJames sees the same pattern beside the hospital tray rail. The allergy-safe dessert is acceptable to almost everyone and necessary for one patient. The ordinary dessert is preferred by many and forbidden to one. Once kitchen complexity, liability, and tray errors enter the picture, the strict option is no longer a minority request. It becomes the easiest stable default.\n\nA complex-systems frame helps the reader see the move as scaling pressure, not moral magic. New England Complex Systems Institute belongs near this point because the mechanism is about how a local constraint travels. A rule that starts inside one tray, one household, one procurement shelf, or one meeting can spread outward when adjacent units merge and the flexible side keeps absorbing the stricter rule.\n\nThe limit matters. The strict option must be tolerable enough for the flexible side to accept. If the majority finds it disgusting, costly, or identity-threatening, the spread stalls. Decentralization can also hold the line because local units can keep different defaults. Minority rule is powerful, but only through a path the system can actually carry.",
+    "fullRead": "Sophie looks at the meeting agenda in Brussels and hears three side conversations in French before the regulatory analyst has finished reading the product note. The analyst can work in English. She cannot follow fast side chatter. The native speakers can switch. They dislike it, but they can do it. The launch decision moves into English before anyone votes on language.\n\nThat is how the intransigent minority often wins. It does not always seize power. It changes the available default. The flexible majority keeps thinking it is being polite, efficient, or practical. Then, after enough small accommodations, the strict preference has become the environment.\n\nThe kosher lemonade example makes the mechanism plain because the product does not become a sermon. The mark on the bottle simply allows one group to buy without preventing the rest from buying. The same logic appears with halal food, peanut allergies, accessible bathrooms, smoke-free rooms, and many other cases where one side treats the looser option as impossible while the other side treats the stricter option as acceptable. The numbers matter less than the direction of tolerance.\n\nDo not ask first who has more people. Ask who can move.\n\nRenormalization gives the pattern its scale. A household adapts to one strict member. A dinner party adapts to the household. A store adapts to enough dinner parties. A supplier adapts to the store. The rule grows by passing through units that want one workable default. The flexible side rarely experiences a dramatic defeat. It experiences a thousand tiny adjustments that feel cheaper than maintaining parallel systems.\n\nThe familiar Margaret Mead pressure belongs only as a light bridge: small groups matter when the system gives their constraint a path to scale. A stubborn few do not change everything by purity alone. They change what everyone else does when the cost of serving them separately is higher than making the strict version standard. That distinction keeps the lesson from becoming romance about courage.\n\nThere are brakes. If the strict option is expensive, stigmatized, disgusting to the flexible side, or blocked by local separation, it may stay local. Decentralization matters because it prevents one merged default from swallowing every unit. A town, school, or state can keep its own rule when it is not forced into one shared supply chain. Once units merge, the small strict rule can travel farther than its head count suggests.\n\nThis is why polls can mislead. A survey may show that almost nobody actively prefers the strict version. The shelf, menu, meeting language, or building rule may still shift because active refusal beats passive preference. Social change sometimes arrives this way: not through consensus, not through mass conversion, but through asymmetric tolerance finding a channel."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-james-dessert",
+      "title": "James swaps the dessert tray",
+      "tags": [
+        "hospital",
+        "allergy",
+        "menu"
+      ],
+      "planSpec": {
+        "domain": "hospital cafeteria menu planning around one strict allergy requirement",
+        "audience": "operations manager who thinks majority preference should decide every tray",
+        "stakes": "one unsafe ingredient could force separate kitchens or a universal safe default",
+        "format": "scene",
+        "requiredBeat": "James swaps the whole dessert line after seeing that everyone can eat the allergen-safe version but one patient cannot eat the ordinary one."
+      },
+      "scenario": "At 10:12 a.m., James stands beside ingredient labels clipped to the hospital tray rail. The supplier label on the mousse lists almond paste, and one allergy card sits on the stack for lunch service. The fruit cup is less popular but safe for every tray. He must decide whether to run two dessert lines or swap the whole line before carts leave the kitchen.",
+      "whatToDo": "Choose the dessert everyone can eat, remove the almond mousse from the line, and treat the allergy card as a hard constraint, not a vote.",
+      "whyItMatters": "The safe dessert becomes the stable default because the non-allergic patients can accept it and the allergic patient cannot accept the ordinary option."
+    },
+    {
+      "exampleId": "ch02-ex02-sophie-language",
+      "title": "Sophie changes the language default",
+      "tags": [
+        "sales",
+        "language",
+        "launch"
+      ],
+      "planSpec": {
+        "domain": "European sales team choosing a meeting language after one non-native speaker joins",
+        "audience": "team lead balancing speed against the strict communication constraint",
+        "stakes": "a product launch decision could exclude the one person with regulatory knowledge",
+        "format": "dialogue",
+        "requiredBeat": "Sophie changes the meeting default to English because the native speakers can adapt and the regulatory analyst cannot follow the side chatter."
+      },
+      "scenario": "\"We can finish faster in French,\" Marc says while headsets sit coiled beside name placards. Sophie looks at the meeting agenda, then at the regulatory note from Anke, the only person who cannot follow the side chatter. The launch vote is ten minutes away. Sophie has to decide whether speed for five people outweighs one analyst's hard language constraint.",
+      "whatToDo": "Move the meeting to English, name the regulatory note as the reason, and stop side discussions that exclude the one person with non-substitutable knowledge.",
+      "whyItMatters": "Native speakers can tolerate English. The analyst cannot tolerate missing the language of the decision, so the strict constraint should set the default."
+    },
+    {
+      "exampleId": "ch02-ex03-anders-halal",
+      "title": "Anders chooses one buffet",
+      "tags": [
+        "wedding",
+        "halal",
+        "catering"
+      ],
+      "planSpec": {
+        "domain": "wedding caterer deciding whether to make the whole buffet halal-compatible",
+        "audience": "couple trying to avoid separate food lines without making guests feel managed",
+        "stakes": "one strict dietary rule could quietly reshape the entire menu",
+        "format": "decision_point",
+        "requiredBeat": "Anders tastes the replacement sauce, sees it works for everyone, and chooses the stricter default instead of maintaining two buffets."
+      },
+      "scenario": "Coriander rises from the test spoon before Anders reads the supplier certificate again. The halal-compatible sauce tastes almost the same, and the menu card would need only one quiet line. Two buffets would split the room and double service errors. He is about to decide whether to keep separate food lines or make the whole buffet compatible.",
+      "whatToDo": "Use the halal-compatible sauce across the buffet, keep one clear menu card, and avoid creating a separate line for guests with the strict rule.",
+      "whyItMatters": "The replacement works for the flexible guests and is required by the strict guests. One acceptable default beats two fragile systems."
+    },
+    {
+      "exampleId": "ch02-ex04-chiara-paint",
+      "title": "Chiara relabels the paint aisle",
+      "tags": [
+        "retail",
+        "paint",
+        "inventory"
+      ],
+      "planSpec": {
+        "domain": "hardware retailer stocking low-VOC paint after a few contractors demand it",
+        "audience": "buyer watching a niche constraint spread through shelf space",
+        "stakes": "inventory choices could move before survey demand appears",
+        "format": "before_after",
+        "requiredBeat": "Chiara relabels the aisle when the strict customers will not buy ordinary paint and ordinary customers accept the low-VOC can."
+      },
+      "scenario": "Paint-can lids shine under fluorescent light after Chiara compares the shelf tags with the purchase order. Three contractors will not buy ordinary interior paint because of VOC limits. Weekend customers buy either can when the price is close. By Friday, she has relabeled the aisle around the low-VOC line and reduced the ordinary stock.",
+      "whatToDo": "Stock the low-VOC can as the default, update the shelf tags, and let the purchase order follow the customers who refuse the ordinary option.",
+      "whyItMatters": "Inventory shifts before a majority asks for it because the strict buyers are lost without the label and the flexible buyers still buy the stricter can."
+    },
+    {
+      "exampleId": "ch02-ex05-aanya-contract",
+      "title": "Aanya maps the nut-free contract",
+      "tags": [
+        "schools",
+        "contracts",
+        "lunch"
+      ],
+      "planSpec": {
+        "domain": "school district merging lunch contracts across towns",
+        "audience": "nutrition director who sees a local rule become system-wide",
+        "stakes": "one merged contract can amplify a small constraint into a default",
+        "format": "postmortem",
+        "requiredBeat": "Aanya maps how one town's nut-free rule becomes the cheapest district-wide contract after procurement merges kitchens."
+      },
+      "scenario": "It took Aanya one wall map dotted with school pins to see how a local nut-free rule became a district default. The contract map showed three kitchens merging into one delivery route. The nut-free town could not accept the ordinary menu, while the other towns could accept the nut-free one. The cheapest bid made the strict rule system-wide.",
+      "whatToDo": "Map the contract route, mark which town cannot accept the ordinary menu, and explain that the merged kitchen turns a local constraint into the district default.",
+      "whyItMatters": "Merging units removes local separation. Once one kitchen serves everyone, the rule that one town cannot bend can travel through the whole contract."
+    },
+    {
+      "exampleId": "ch02-ex06-ben-quiet",
+      "title": "Ben rewrites the quiet-hours vote",
+      "tags": [
+        "housing",
+        "medical",
+        "default"
+      ],
+      "planSpec": {
+        "domain": "apartment building quiet-hours rule driven by one tenant with a medical constraint",
+        "audience": "tenant board learning why flexibility makes the strict rule spread",
+        "stakes": "a building norm changes although most residents were indifferent",
+        "format": "reflection",
+        "requiredBeat": "Ben asks which side can tolerate the other default, then rewrites the vote question around the asymmetry."
+      },
+      "scenario": "You see the quiet-hours notice reflected in brushed steel while Ben holds the medical letter and the vote tally. Most tenants do not care much whether quiet starts at nine or ten. One tenant's treatment schedule makes ten impossible. Ben pauses before the board meeting and has to decide whether the vote is about preference counts or tolerance.",
+      "whatToDo": "Rewrite the vote question around tolerance: who can live with nine, who cannot live with ten, and what default prevents a hard loss.",
+      "whyItMatters": "An indifferent majority does not carry the same weight as a strict constraint. The earlier quiet hour spreads because most residents can absorb it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A cafe discovers that three regular customers require a nut-free pastry, while other customers buy either pastry when the price is the same. What is the mechanism if the cafe switches the whole pastry case?",
+        "choices": [
+          "The strict customers persuade everyone else that nut-free food is morally better.",
+          "The flexible customers can accept the strict option, while strict customers cannot accept the loose one.",
+          "The cafe is optimizing for the strictest constraint to keep the small group's regular visits."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mechanism is asymmetric tolerance. The flexible customers do not need conversion; they only need to tolerate the stricter default that strict customers require.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A project team has one analyst who cannot read the local language and six members who can use English. The team lead wants a fair default. What should she ask first?",
+        "choices": [
+          "Use the majority language because six members can work faster in English without extra translation.",
+          "Choose the most polished professional process, even if the analyst remains unable to read it.",
+          "Set the default around the analyst's readable language or add translation, because the strict constraint governs participation."
+        ],
+        "correctIndex": 2,
+        "explanation": "The right question is tolerance asymmetry. A majority vote may hide the fact that one side can adapt and the other side is excluded from the decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A supermarket stocks one type of certified product because strict buyers refuse ordinary goods and ordinary buyers still buy certified goods. What would make minority rule fail?",
+        "choices": [
+          "The certified version costs much more and ordinary buyers strongly avoid it.",
+          "The strict buyers talk less loudly about their needs.",
+          "The ordinary buyers outnumber the strict buyers by twenty to one."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strict default spreads only when flexible buyers can absorb it. High cost or strong rejection blocks the path, while head count alone does not decide the default.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a city merges two procurement systems. One district requires a stricter safety standard, and the other district can use either standard, what is likely after the merger?",
+        "choices": [
+          "The stricter standard may become the shared default because one system is cheaper than parallel rules.",
+          "The looser standard will win because more people used it before the merger.",
+          "Both standards will disappear because merged systems need neutrality."
+        ],
+        "correctIndex": 0,
+        "explanation": "Merging units can amplify a local constraint. If one shared system is cheaper and the flexible district accepts the stricter rule, the small constraint travels.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "The manager says one stubborn employee should not shape the entire office schedule. The employee has a medical constraint, while others only mildly prefer the later meeting. What should the manager compare?",
+        "choices": [
+          "The number of people who prefer each time.",
+          "Count the larger side because numbers feel democratic, though the smaller strict group can defect.",
+          "Defer to seniority because veterans know the office, though seniority does not reveal refusal power."
+        ],
+        "correctIndex": 1,
+        "explanation": "The useful comparison is hard constraint versus mild preference. Seniority and head count can distract from the asymmetry in what each side can tolerate.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "When the cafeteria default is chosen, a school keeps separate lunch menus for years. After kitchens merge, one town's allergy rule becomes the district menu. What changed?",
+        "choices": [
+          "The allergy rule became more popular with families.",
+          "The district stopped caring about student preference.",
+          "Decentralization ended, so the local strict rule gained a path to scale."
+        ],
+        "correctIndex": 2,
+        "explanation": "The key change is structural. Separate kitchens contained the rule locally; merged kitchens made one strict constraint cheaper to apply everywhere.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Suppose a wedding couple considers one halal-compatible buffet instead of two lines. The substitute dish tastes fine to all guests, what is the best reason to choose it?",
+        "choices": [
+          "One compatible default avoids separating guests because flexible diners can eat it and strict diners need it.",
+          "Prioritize strict diners because losing them seems worse, though the plan still misreads the venue.",
+          "Make it easy for the caterer because execution matters, though convenience ignores constraint asymmetry."
+        ],
+        "correctIndex": 0,
+        "explanation": "The compatible default works because it satisfies the hard constraint without harming flexible diners. Symbolic priority and ease are not the core mechanism.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "When the dinner plan is reviewed, a building has one tenant who cannot sleep if noise continues past nine, while most tenants weakly prefer ten. Which policy analysis fits minority rule?",
+        "choices": [
+          "Nine can become the default if most tenants can tolerate it and one tenant cannot tolerate ten.",
+          "Ten should win because weak preferences add up across many tenants.",
+          "The board should ignore medical letters to avoid minority control."
+        ],
+        "correctIndex": 0,
+        "explanation": "The policy turns on asymmetric tolerance. Many weak preferences do not equal a hard constraint when the majority can live with the stricter rule.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "When the menu default is set, a few developers demand a secure coding standard. Others find it slower but acceptable. The repository adopts it everywhere. What is the shallow misread?",
+        "choices": [
+          "Security rules can spread through default settings.",
+          "A small strict group can change a system if others can tolerate the stricter rule.",
+          "The developers won because stubbornness itself is always powerful."
+        ],
+        "correctIndex": 2,
+        "explanation": "Stubbornness alone is the shallow reading. The real mechanism is that the stricter rule was tolerable for others and had a path through the shared repository.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A tiny group changes a default everyone uses. What should you retrieve before blaming persuasion?",
+      "back": "Ask whether the majority can tolerate the minority-compatible option while the minority cannot tolerate the looser one. That tolerance asymmetry, not persuasion, often carries the change.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can a kosher or halal-compatible product dominate a shelf without most shoppers caring?",
+      "back": "The strict buyer requires it, and the non-strict buyer can still use it. One production line that serves both sides can beat separate lines, so the strict default spreads quietly.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What does decentralization do to minority rule?",
+      "back": "It can contain the strict rule locally. When units stay separate, different defaults can coexist. When units merge, a local strict rule can travel through the whole system.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A majority weakly prefers one option, but a minority cannot accept it. What is the key distinction?",
+      "back": "Weak preference is not the same as hard refusal. The decision should compare what each side can tolerate, not only how many people prefer each option.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "When does the strict default fail to spread?",
+      "back": "It fails when the flexible side no longer finds it tolerable, when the cost is too high, or when local separation prevents the rule from scaling into a shared default.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Finding Tolerance Asymmetry Between Sides",
+    "coreSkill": "Learn to read group choices by tolerance, not only preference counts. The strict side gains leverage when its acceptable set is smaller and the flexible side can absorb the stricter default. Your job is to find the hard constraint and the channel that lets it scale.",
+    "ifThenPlans": [
+      {
+        "context": "team decisions",
+        "plan": "If a small group blocks an option, then ask whether the larger group can live with the alternative before calling it obstruction."
+      },
+      {
+        "context": "operations",
+        "plan": "If one customer requirement seems to reshape inventory, then compare the cost of one compatible default with the cost of parallel systems."
+      },
+      {
+        "context": "housing",
+        "plan": "If a building rule changes after one request, then map which residents face impossibility and which face mild inconvenience."
+      },
+      {
+        "context": "policy",
+        "plan": "If local units merge, then check whether one unit's strict rule will become cheaper to apply everywhere."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one default near you, menu, meeting language, software setting, or building rule. Mark who strictly needs it and who merely tolerates it.",
+    "weeklyPractice": "Once a week, take one group decision and draw two columns: can accept both, can accept only one. Then note whether merger, procurement, or habit lets the stricter column scale."
+  },
+  "memorableLines": [
+    {
+      "text": "That is minority rule without a speech.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the mechanism vivid without turning it into politics or persuasion."
+    },
+    {
+      "text": "That is the whole asymmetry.",
+      "location": "breakdown.deepRead",
+      "why": "It punctures the complexity and gives the reader the clean structural test."
+    },
+    {
+      "text": "Do not ask first who has more people.",
+      "location": "breakdown.fullRead",
+      "why": "It redirects the reader from head count to tolerance, the real chapter skill."
+    }
+  ]
+}

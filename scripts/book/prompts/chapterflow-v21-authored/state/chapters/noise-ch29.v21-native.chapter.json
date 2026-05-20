@@ -1,0 +1,280 @@
+{
+  "chapterId": "noise-ch29",
+  "number": 29,
+  "title": "The Sources of Noise",
+  "readingTimeMinutes": 12,
+  "hook": "The calibration fixed level noise. Pattern and occasion noise were still running. Two-thirds of the problem was untouched.",
+  "counterintuition": "Finding the dominant noise source in a judgment system does not resolve the others. Level, pattern, and occasion noise operate independently: eliminating one leaves the other two at full strength. A calibration program that equalizes overall averages addresses the level component only. If pattern noise is the larger source, that program spent its budget on the smaller problem.",
+  "tryThisNow": "For a recurring judgment disagreement: note whether it is always the same person regardless of case type (level), always the same case sub-type (pattern), or the same person at different times on equivalent cases (occasion). Each yes is a separate noise source requiring its own fix.",
+  "keyTakeaway": "The three noise sources operate simultaneously and independently. Addressing one without measuring the others produces incomplete improvement and leaves the dominant source potentially untouched.",
+  "breakdown": {
+    "fastRead": "The investment committee's calibration program reduced inter-analyst spread by eighteen percent. At the post-program review, the chair ran a source decomposition. Level noise had accounted for thirty-three percent of total variance. The calibration had addressed one-third of the problem.\n\nLevel, pattern, and occasion noise each operate independently. Calibrating overall averages removes level noise. Structuring when assessments are committed removes occasion noise. Defining case-type criteria removes pattern noise. None of these remedies affects the other two components.\n\nThe organization that fixes only level noise still operates with sixty-seven percent of its original spread intact.",
+    "deepRead": "An asylum assessor calibrated to the same overall approval rate as peers still brings two other sources of disagreement to every case. That is the central diagnostic fact about multi-source noise: level calibration addresses one layer and leaves the others unchanged. Knowing which layer the calibration reached is not the same as knowing which layers still need work.\n\nTwo assessors who review the same asylum claim and produce different determinations may be separated by any of the three sources, or by all of them simultaneously. If one assessor consistently approves at a higher rate regardless of case type, that is level noise. If they agree on overall approval rates but diverge on claims involving persecution type versus documentation completeness, that is pattern noise. If the same assessor reaches a different determination on the same claim seen two months later, that is occasion noise. A training program that teaches assessors to calibrate their approval rates will reduce the level component and leave the pattern and occasion components completely unaffected. If the audit shows level noise at twenty-eight percent of total spread and pattern noise at forty-five percent, a successful level calibration will leave sixty-six percent of the original spread running.\n\nThere is no single-ingredient noise problem. A judge who is level-calibrated to the same average as peers still brings their pattern noise: their private weighting of specific case features. That same calibrated judge still brings their occasion noise: the variation in their own judgments across days. Each source is a separate layer. Addressing all three is not redundancy. It is the complete work.\n\nAfter correctly naming all three noise sources in its judgment system, an organization has a diagnostic map. It has not yet done the work.",
+    "fullRead": "The refugee agency's quality director had run calibration sessions for three years before commissioning a source decomposition. The training had equalized assessors' overall approval rates across offices, and by that metric it had worked. But the matched-case audit told a different story.\n\nThe decomposition divided the total inter-assessor spread into three components. Level noise, the stable tendency of some assessors to approve at higher rates across all case types, accounted for twenty-eight percent of variance. Pattern noise, stable assessor-level differences in how persecution type versus documentation completeness was weighted, accounted for forty-five percent. Occasion noise, within-assessor variation on the same claim seen two months apart, accounted for the remaining twenty-seven percent. The three-year calibration program had addressed twenty-eight percent of the problem.\n\nIn your organization, has anyone ever measured all three noise sources simultaneously? If the answer is no, then every intervention decision has been made without a map. You know the total spread because you see the disagreement in case reviews and debriefs. But knowing the total does not tell you which tool to reach for. Pattern noise and occasion noise require entirely different remedies from each other and from level noise. Treating one as a proxy for the others is like prescribing a drug without knowing which of three conditions is causing the symptoms.\n\nThe asylum agency's calibration program had been designed to address level noise. That is a real problem, and the program solved it. But the multi-year investment had left forty-five percent of the total spread running, because pattern noise, the dominant component, had never been measured and had no intervention aimed at it. The calibration was not inadequate as a tool; it was aimed at the wrong target.\n\nEach noise source has its own natural lever. Level noise responds to overall average equalization across assessors. Occasion noise responds to structural changes: when assessments are committed relative to when information arrives, how much information is shared before commitment, how decision sequences are organized. Pattern noise responds to case-type-specific criteria: defining more precisely what the agreed standard looks like for each major case sub-category, so that assessors stop applying private weightings to dimensions the official framework leaves underspecified.\n\nThree sources do not require three simultaneous interventions. They require measurement first. An organization that knows its dominant source is pattern noise should target case-type criteria before investing in assessor-level calibration. An organization that finds occasion noise dominant should restructure decision timing before running calibration sessions. The intervention that matches the measurement is the one that produces the largest reduction in spread per unit of effort. The intervention that does not match the measurement produces a smaller reduction and leaves the dominant source intact."
+  },
+  "memorableLines": [
+    {
+      "text": "The organization that fixes only level noise still operates with sixty-seven percent of its original spread intact.",
+      "location": "fastRead",
+      "why": "Converts an abstract claim about noise source independence into a concrete accounting of what any single-target intervention leaves running — the number makes the oversight visible."
+    },
+    {
+      "text": "There is no single-ingredient noise problem. A judge who is level-calibrated to the same average as peers still brings their pattern noise: their private weighting of specific case features. That same calibrated judge still brings their occasion noise: the variation in their own judgments across days. Each source is a separate layer. Addressing all three is not redundancy. It is the complete work.",
+      "location": "deepRead",
+      "why": "The sharpest possible statement that noise source independence is not a theoretical nuance but an operational fact: calibration produces a calibrated judge, not a consistent one."
+    },
+    {
+      "text": "The intervention that matches the measurement is the one that produces the largest reduction in spread per unit of effort. The intervention that does not match the measurement produces a smaller reduction and leaves the dominant source intact.",
+      "location": "fullRead",
+      "why": "Frames source decomposition as a prerequisite for prioritization, not a theoretical exercise: without it, intervention choices are arbitrary and their cost-benefit ratio is unknowable."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "noise-ch29-ex01",
+      "title": "Three Sectors, One Spread",
+      "tags": ["noise-decomposition", "investment-committee", "level-pattern-occasion", "calibration-limits", "source-audit"],
+      "planSpec": {
+        "domain": "investment committee portfolio thesis review",
+        "format": "scene",
+        "openingDevice": "environmental"
+      },
+      "scenario": "The noise audit printout ran seven pages. Cressida had asked the analytics team to decompose eighteen months of investment thesis assessments by source component, and the pages were divided into three sections: one for level noise, one for pattern noise, one for occasion noise.\n\nShe read them in reverse order.\n\nOccasion noise first: the same analyst rating the same thesis deck six weeks apart showed an average variation of 0.3 points. That component accounted for twenty-six percent of total inter-analyst spread. Manageable, but not small.\n\nPattern noise second: after removing each analyst's overall average severity, a stable directional pattern emerged. Some analysts rated early-stage technology theses more favorably than late-stage consumer theses. Others showed the opposite preference. This component accounted for forty-one percent of total variance.\n\nLevel noise last: two senior analysts consistently rated thesis strength 0.5 points above the firm average across all deal types. That component accounted for thirty-three percent.\n\n\"The calibration sessions we've been running address level noise,\" Cressida said, setting the pages down. \"We've been solving thirty-three percent of the problem. Pattern and occasion noise have been running untouched for three years.\"\n\nNo single source was small enough to ignore. No single intervention addressed more than one of them.",
+      "whatToDo": "Before designing any noise reduction intervention for a judgment system, commission a source decomposition that separately estimates the level, pattern, and occasion components. Use the largest component to prioritize which intervention to deploy first. Report the decomposition alongside the intervention design so that the gap between what the intervention addresses and what remains is explicit from the start.",
+      "whyItMatters": "Capital allocation decisions in the committee depended on which analyst's noise profile dominated on a given day. Without a source decomposition, three years of calibration had produced a well-calibrated committee that still disagreed substantially on specific deal types at specific times."
+    },
+    {
+      "exampleId": "noise-ch29-ex02",
+      "title": "The Smallest Calibration",
+      "tags": ["noise-decomposition", "asylum-assessment", "three-source", "calibration-mismatch", "intervention-targeting"],
+      "planSpec": {
+        "domain": "immigration asylum claim assessment",
+        "format": "dialogue",
+        "openingDevice": "dialogue_first"
+      },
+      "scenario": "\"The training program is working,\" Winsome said. \"Approval rates across offices are within four percentage points of each other. Three years ago the spread was twenty-two points.\"\n\nBartholomew turned to page three of the audit. \"The training is addressing level noise. Look at what it didn't address.\"\n\nThe matched-case audit had decomposed inter-assessor spread from 200 cases where two assessors had independently reviewed identical files. Level noise, stable differences in overall approval tendency, accounted for twenty-eight percent of total spread. Pattern noise, stable assessor-level differences in how persecution type and documentation completeness were weighted relative to each other, accounted for forty-five percent. Occasion noise, within-assessor variation on the same case reviewed two months apart, accounted for twenty-seven percent.\n\n\"So the training fixed twenty-eight percent of the problem,\" Winsome said.\n\n\"And left forty-five percent running,\" Bartholomew said. \"The pattern component is the dominant source. If assessors disagree on how to weight persecution type relative to documentation, calibrating their overall approval rates doesn't help. They need guidance on what a strong documentation record looks like versus a compelling persecution narrative; not on what their overall average should be.\"\n\nThe training had been carefully designed and correctly implemented. It had been aimed at the wrong source.",
+      "whatToDo": "When evaluating a calibration program's effectiveness, measure the decomposed components before and after, not just overall spread. A program that reduces total spread by thirty percent may have addressed the level component entirely while leaving pattern and occasion components unchanged. Reporting only total spread obscures whether the intervention matched the dominant source.",
+      "whyItMatters": "Applicants whose claims fall into the pattern-noise-sensitive zone, cases where assessors weight persecution type and documentation differently, received different determinations based on which assessor's private weighting applied. That source of inequity was untouched by the level calibration and invisible to any metric that only tracked overall approval rates."
+    },
+    {
+      "exampleId": "noise-ch29-ex03",
+      "title": "Speed Versus Football IQ",
+      "tags": ["noise-decomposition", "sports-scouting", "dimensional-weighting", "pattern-dominant", "draft-selection"],
+      "planSpec": {
+        "domain": "sports talent scouting evaluation",
+        "format": "thought_experiment",
+        "openingDevice": "question_hook"
+      },
+      "scenario": "Drummond posed the question to his analytics team before the decomposition results came in: how much of the inter-scout spread in prospect ratings was about scouts being generally generous or conservative, and how much was about scouts valuing different things?\n\nThe answer from three drafts of data: mostly the second.\n\nLevel noise, the stable tendency of some scouts to rate all prospects more conservatively than peers, accounted for twenty-two percent of total inter-scout variance. Pattern noise, stable scout-level differences in how speed, strength, and football IQ were weighted against each other for prospects with mixed skill profiles, accounted for fifty-two percent. Occasion noise, within-scout variation on the same film package reviewed six weeks apart, accounted for twenty-six percent.\n\nThe dominant source was not about scouts being easy or hard in general. It was about scouts having different mental models for how to weight competing dimensions. When a prospect was elite at one dimension and below average at another, scouts who prioritized speed produced a very different rating than scouts who prioritized football IQ. Both groups were internally consistent. Neither was systematically wrong. But their dimensional weighting preferences accounted for more than half of all inter-scout spread.\n\n\"Calibrating scouts to the same overall average,\" Drummond noted, \"would address twenty-two percent of this. The biggest opportunity is getting scouts to agree on how they weight the dimensions against each other.\"",
+      "whatToDo": "When inter-rater spread in a judgment system is dominated by pattern noise, the intervention target is criteria definition rather than overall average calibration. Identify the specific case sub-types or dimensional combinations where disagreement concentrates and design the calibration around those, not around average severity.",
+      "whyItMatters": "Draft selection decisions for mixed-profile prospects depended on which scout's dimensional weighting appeared in the room. That is not random variation and will not average out across a draft class."
+    },
+    {
+      "exampleId": "noise-ch29-ex04",
+      "title": "Trace Evidence, Biological Evidence",
+      "tags": ["noise-decomposition", "forensic-laboratory", "evidence-significance", "pattern-dominant", "quality-review"],
+      "planSpec": {
+        "domain": "forensic evidence evaluation",
+        "format": "postmortem",
+        "openingDevice": "retrospective"
+      },
+      "scenario": "Osbourne had initiated the two-year blind re-evaluation study after noticing that the laboratory's proficiency testing program produced consistent scores but did not account for why different examiners reached different significance ratings on the same physical evidence. The proficiency program tested accuracy on known-answer cases. It did not measure what happened when examiners rated ambiguous evidence independently.\n\nThe source decomposition from the blind re-evaluation told a more complete story.\n\nLevel noise, stable tendencies of two examiners to rate all evidence types more conservatively than peers, accounted for thirty-one percent of total inter-examiner spread. Pattern noise, stable examiner-level differences in confidence when interpreting trace evidence like fiber and glass compared to fingerprint and DNA evidence, accounted for forty-three percent. Occasion noise, the same examiner's rating of the same evidence sample reviewed three months apart, accounted for twenty-six percent.\n\nThe pattern component's driver was examiner confidence in trace evidence interpretation. Some examiners applied high significance ratings to fiber evidence; others applied moderate ratings to the same sample and reserved high ratings for DNA evidence. Both groups produced the same average significance across evidence types. The divergence was trace versus biological, specifically.\n\n\"The proficiency program measures whether examiners can identify known-answer patterns,\" Osbourne noted in the post-study review. \"That is a different question from whether examiners apply the same significance standards to the same types of ambiguous evidence. We have been measuring skill. We have not been measuring calibration to evidence type.\"",
+      "whatToDo": "Proficiency testing and noise source decomposition answer different questions. Proficiency testing tells you whether examiners can identify correct answers on known-answer cases. Source decomposition tells you whether they apply consistent criteria on ambiguous cases. Both are needed; neither substitutes for the other.",
+      "whyItMatters": "Case disposition depended on which examiner's pattern toward trace evidence applied. A significance rating from a trace-evidence-generous examiner and one from a trace-evidence-conservative examiner produced different forensic report conclusions for the same physical sample."
+    },
+    {
+      "exampleId": "noise-ch29-ex05",
+      "title": "Foreign Contact Weight",
+      "tags": ["noise-decomposition", "security-clearance", "pattern-dominant", "adjudication", "foreign-contact"],
+      "planSpec": {
+        "domain": "military security clearance adjudication",
+        "format": "vignette",
+        "openingDevice": "sensory_first"
+      },
+      "scenario": "The hearing room was quiet and fluorescent, the kind of lighting that flattened everything into the same gray bureaucratic tone. Millard spread the adjudication noise audit across the table and let the review board read for two minutes before speaking.\n\nThe total inter-adjudicator spread decomposed into three components. Level noise, some adjudicators approving applicants at a systematically lower rate across all case types, accounted for twenty-nine percent of variance. Pattern noise, adjudicator-level divergence in how foreign contact cases were assessed specifically, accounted for forty-eight percent. Occasion noise, within-adjudicator re-classification of the same case six months later, accounted for twenty-three percent.\n\nThe pattern component's driver was explicit in the data: adjudicators disagreed most on cases involving a single foreign-national contact. Some treated a single documented contact as elevated risk; others required a pattern of contacts before applying the same risk weight. Both groups produced the same overall approval rates. The divergence was foreign-contact cases specifically.\n\n\"Our calibration program addresses overall approval rates,\" Millard said. \"That is the twenty-nine percent. The largest component, forty-eight percent, is about how adjudicators define what a meaningful foreign contact is. That is the question we have never put on the calibration agenda.\"\n\nThe board's existing training had produced adjudicators who agreed on their averages and disagreed, substantially, on the case type that generated nearly half of all inter-adjudicator spread.",
+      "whatToDo": "When a noise audit reveals that pattern noise is concentrated in a specific case sub-type, focus the next calibration session explicitly on that sub-type. For the security clearance context, that means convening adjudicators to define what constitutes a meaningful foreign contact and what evidence threshold changes the risk assessment. General approval-rate calibration will not reach this.",
+      "whyItMatters": "Applicants with a single foreign contact received materially different clearance outcomes based on which adjudicator's definition of meaningful contact applied to their case, independently of the contact's actual characteristics."
+    },
+    {
+      "exampleId": "noise-ch29-ex06",
+      "title": "Web App, Infrastructure",
+      "tags": ["noise-decomposition", "cybersecurity", "vulnerability-triage", "pattern-dominant", "exploitability-model"],
+      "planSpec": {
+        "domain": "cybersecurity vulnerability triage",
+        "format": "before_after",
+        "openingDevice": "second_person"
+      },
+      "scenario": "You have been using overall analyst agreement rates as your triage quality metric. When two analysts rate the same vulnerability differently, you log the disagreement but do not decompose where it came from. The metric has been stable for two years.\n\nYou commission a source decomposition.\n\nBefore: you assumed the disagreements were distributed across vulnerability types roughly evenly, with some random variation and some systematic severity differences between analysts. After: you can see the structure. Level noise, some analysts rating all vulnerabilities more severely than others, accounts for twenty-five percent of total inter-analyst spread. Pattern noise, stable analyst-level differences in how web application vulnerabilities are rated compared to network infrastructure vulnerabilities, accounts for forty-nine percent. Occasion noise, within-analyst re-rating of the same vulnerability one month later, accounts for twenty-six percent.\n\nThe pattern driver is an exploitability model disagreement. Analysts who believe web application environments have higher base-rate exploitability than network infrastructure give higher severity ratings to web application vulnerabilities relative to peers who hold the reverse belief. Both groups produce the same overall average severity rating across all vulnerability types. The divergence is environment-specific.\n\n\"Our team calibration sessions target overall severity averages,\" the decomposition notes. \"The dominant source, forty-nine percent, is a disagreement about attacker behavior models in different environments. We have been calibrating the wrong thing.\"\n\nRemediation priorities for web application versus infrastructure vulnerabilities still depend on which analyst's exploitability model is applied.",
+      "whatToDo": "When pattern noise is the dominant component in a triage system, the calibration agenda should address the specific model or assumption that drives the pattern divergence. For vulnerability triage, that means convening analysts to articulate their exploitability assumptions for each environment type and building shared criteria for what constitutes high, medium, and low exploitability in each context.",
+      "whyItMatters": "Remediation timing for web application vulnerabilities is set by which analyst's exploitability model is applied to that vulnerability class. A vulnerability rated critical by one analyst and high by another receives a different patching timeline, independently of its actual exploitability characteristics."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch29-q01",
+        "prompt": "Three distinct noise sources are identified in a professional judgment system: level, pattern, and occasion. An organization successfully reduces level noise through calibration. Which statement best describes the effect on total spread?",
+        "choices": [
+          "Total spread decreases only by the proportion attributable to level noise; pattern and occasion noise remain at their original levels.",
+          "Total spread decreases substantially because reducing level noise creates conditions that also reduce pattern and occasion noise.",
+          "Total spread is unaffected because level noise is always the smallest component and reducing it produces negligible change."
+        ],
+        "correctIndex": 0,
+        "explanation": "Level, pattern, and occasion noise operate independently. Eliminating one component leaves the others unchanged. If level noise is thirty-three percent of total spread, a successful level calibration reduces total spread by thirty-three percent and leaves sixty-seven percent running from the other two sources.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch29-q02",
+        "prompt": "An asylum agency's source decomposition shows: level noise 28%, pattern noise 45%, occasion noise 27%. The agency then invests in a calibration program that successfully equalizes all assessors' overall approval rates. What fraction of total spread remains after this intervention?",
+        "choices": [
+          "Approximately 55 percent remains, from the occasion and level components that the calibration partially addressed.",
+          "Approximately 28 percent remains, because the calibration addressed level noise and the other components are smaller.",
+          "Approximately 72 percent remains, from pattern and occasion noise, which the calibration did not address."
+        ],
+        "correctIndex": 2,
+        "explanation": "Overall approval rate calibration addresses level noise only. Level noise is twenty-eight percent of total spread. Pattern noise (45%) and occasion noise (27%) are unaffected, leaving seventy-two percent of original spread intact after the calibration.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch29-q03",
+        "prompt": "A sports franchise's scout noise decomposition shows pattern noise at 52% of total spread, driven by scouts weighting speed versus football IQ differently on mixed-profile prospects. Which intervention is most directly targeted at the dominant noise source?",
+        "choices": [
+          "Running a calibration session to equalize scouts' overall average prospect ratings across all prospect types.",
+          "Convening scouts to develop explicit, shared criteria for how to weight speed and football IQ when a prospect is strong at one and weak at the other.",
+          "Increasing the number of scouts who evaluate each prospect to average out individual variation."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pattern noise driven by dimensional weighting differences requires criteria definition at the level of the specific dimension combination that generates divergence. Equalizing overall averages addresses level noise, not pattern noise. Increasing rater count without addressing the divergence source spreads rather than resolves the pattern disagreement.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch29-q04",
+        "prompt": "A forensic laboratory's proficiency testing shows high examiner accuracy on known-answer cases. A separate noise audit finds that forty-three percent of inter-examiner spread comes from pattern noise in how trace evidence versus biological evidence is rated. What does this combination tell us?",
+        "choices": [
+          "The proficiency results are invalid because the noise audit contradicts them; accurate examiners should not show pattern noise.",
+          "Proficiency testing and noise source decomposition measure different things; accuracy on known-answer cases is compatible with substantial pattern noise on ambiguous evidence.",
+          "The noise audit is unreliable because examiners who perform well on proficiency tests should not have large pattern components in their disagreement."
+        ],
+        "correctIndex": 1,
+        "explanation": "Proficiency testing measures whether examiners can identify correct answers on cases with known ground truth. Noise source decomposition measures whether examiners apply consistent criteria on ambiguous cases where no ground truth exists. An examiner can be highly accurate on proficiency cases while showing substantial pattern noise on significance ratings, because the two tasks are asking different questions.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch29-q05",
+        "prompt": "A cybersecurity team's noise decomposition shows level noise 25%, pattern noise 49%, occasion noise 26%. The team director decides to run calibration sessions targeting overall severity rating averages. Which assessment of this decision is most accurate?",
+        "choices": [
+          "The intervention is mismatched to the dominant source: overall severity calibration addresses level noise, which accounts for twenty-five percent of spread, while the dominant source at forty-nine percent is pattern noise from exploitability model differences.",
+          "The intervention is appropriately targeted because overall severity calibration is the standard first step in any noise reduction program regardless of source decomposition results.",
+          "The intervention is correctly matched because occasion noise at twenty-six percent is approximately equal to pattern noise, making average calibration an efficient choice for addressing multiple components simultaneously."
+        ],
+        "correctIndex": 0,
+        "explanation": "The decomposition shows pattern noise as the dominant source at forty-nine percent. Overall severity calibration addresses level noise at twenty-five percent. Choosing the lower-value target when the decomposition explicitly identifies a larger one is a mismatch between measurement and intervention.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch29-q06",
+        "prompt": "An organization's noise decomposition shows level noise at 40%, pattern noise at 35%, occasion noise at 25%. The level component is dominant. What is the appropriate interpretation of this finding for intervention prioritization?",
+        "choices": [
+          "Pattern and occasion noise are negligible and can be ignored once level noise is addressed.",
+          "Level noise should be addressed first, but a plan for subsequently addressing the pattern and occasion components should be designed in parallel, since reducing level noise will not reduce the other two.",
+          "The three sources are correlated, so reducing level noise first will automatically reduce pattern and occasion noise proportionally."
+        ],
+        "correctIndex": 1,
+        "explanation": "Even when level noise is the dominant source, pattern and occasion noise remain at their original levels after level calibration. They account for sixty percent of total spread and require separate interventions. Addressing the dominant source first is correct prioritization; ignoring the others would leave most of the problem intact.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch29-q07",
+        "prompt": "A refugee agency runs annual calibration sessions and successfully equalizes assessor approval rates. A new quality director commissions a source decomposition and finds pattern noise still accounts for 45% of total spread. What is the most appropriate next step?",
+        "choices": [
+          "Run a case-type-specific calibration on persecution-type versus documentation weighting, since that pattern-noise driver was not addressed by level calibration.",
+          "Run additional cycles of the same level calibration program, since continued practice with overall approval rate alignment will eventually reduce pattern noise as a secondary effect.",
+          "Accept the remaining forty-five percent as irreducible variation in asylum assessment, since assessors will always weight persecution type and documentation differently based on professional experience."
+        ],
+        "correctIndex": 0,
+        "explanation": "Level calibration addressed level noise only. Pattern noise concentrated in how assessors weight persecution type versus documentation completeness requires case-type-specific calibration, not overall approval rate alignment. Running more level calibration cycles will not change the pattern-noise component.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch29-q08",
+        "prompt": "Which feature most clearly distinguishes a judgment system where source decomposition would change the intervention choice from one where it would not?",
+        "choices": [
+          "Total inter-judge spread is above a threshold of thirty percent.",
+          "The organization has already run at least one calibration program.",
+          "The dominant noise source is different from the source the organization's current interventions are designed to address."
+        ],
+        "correctIndex": 2,
+        "explanation": "Source decomposition changes the intervention choice only when the dominant source differs from what the current program targets. If calibration is already aimed at the dominant source, decomposition confirms the choice. The value of decomposition is revealing cases where the intervention is aimed at a smaller source while the larger one runs unaddressed.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch29-q09",
+        "prompt": "An investment committee has successfully calibrated analysts' overall thesis-strength averages over three years. The committee chair argues that this demonstrates the noise problem has been addressed. A noise audit shows pattern noise still accounts for forty-one percent of total spread. Which evaluation of the chair's argument is most accurate?",
+        "choices": [
+          "The chair's argument is correct because overall average calibration is the standard measure of noise reduction.",
+          "The chair's argument is partially correct: level noise has been addressed, but pattern noise at forty-one percent is a separate component that remains unaddressed and requires its own intervention.",
+          "The chair's argument is incorrect in all respects because the calibration program has had no measurable effect on total inter-analyst spread."
+        ],
+        "correctIndex": 1,
+        "explanation": "The chair is correct that level noise has been addressed and that this represents real progress. The argument is incomplete because pattern noise at forty-one percent of total spread is a separate component that level calibration does not reach. The noise problem has been partially addressed; the dominant component remains.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "Why does eliminating one noise source fail to reduce the others?",
+      "back": "Level, pattern, and occasion noise arise from different conditions and respond to different interventions. A calibrated judge has the same overall average as peers but still brings their pattern weighting and their within-day variation. Each source is a separate layer with a separate remedy.",
+      "difficulty": 2
+    },
+    {
+      "front": "What does a source decomposition tell you that total spread does not?",
+      "back": "Total spread shows how much disagreement exists. Source decomposition shows which component is largest and which intervention will produce the greatest reduction per unit of effort. Without decomposition, intervention choices are made without a map.",
+      "difficulty": 2
+    },
+    {
+      "front": "What is the correct sequence for addressing multi-source noise?",
+      "back": "Measure first, then intervene. Identify which of level, pattern, and occasion noise is dominant. Target that source with the matched intervention. Then measure again to determine whether the remaining components warrant further action.",
+      "difficulty": 3
+    },
+    {
+      "front": "If a calibration program successfully reduces total spread by 28%, what does that reveal?",
+      "back": "That the calibrated source accounted for 28% of total spread, and the remaining 72% comes from other sources the program did not reach. Progress on one component does not imply progress on the others.",
+      "difficulty": 2
+    },
+    {
+      "front": "What kind of intervention addresses pattern noise specifically?",
+      "back": "Case-type-specific criteria definition: specifying what the agreed standard looks like for each major case sub-category, so assessors stop applying private weightings to dimensions the official framework leaves underspecified. Overall average calibration does not reach pattern noise.",
+      "difficulty": 3
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Diagnosing which noise source dominates in a judgment system before choosing an intervention, rather than defaulting to the most visible or most common remedy",
+    "ifThenPlans": [
+      {
+        "context": "When designing a noise reduction program for a professional judgment system and the dominant source has not been measured",
+        "plan": "Commission a source decomposition before finalizing the intervention design. Estimate level, pattern, and occasion components separately by comparing within-judge across-time variation against between-judge across-case-type variation. The dominant component determines which intervention to prioritize."
+      },
+      {
+        "context": "When a calibration program has run for multiple cycles but inter-judge spread remains high",
+        "plan": "Run a source decomposition to determine which component the calibration addressed and which components remain. If pattern or occasion noise accounts for more than forty percent of remaining spread, redesign the intervention to target those sources specifically rather than continuing to refine overall average calibration."
+      },
+      {
+        "context": "When evaluating whether a completed noise reduction program succeeded",
+        "plan": "Report the decomposed components before and after, not just overall spread. An intervention that reduced total spread by thirty percent may have fully eliminated the level component while leaving pattern and occasion components at their original levels. Knowing this tells you where the next intervention should focus."
+      }
+    ],
+    "twentyFourHourChallenge": "For one recurring judgment disagreement in your work: identify whether it is always the same person regardless of case type (level), always the same case sub-type (pattern), or the same person at different times on equivalent cases (occasion). Write a sentence naming which source you found. That sentence is the beginning of intervention design.",
+    "weeklyPractice": "Once a week, when reviewing disagreements from a recurring judgment process, classify each disagreement by likely source: between-judge general tendency, between-judge case-type-specific tendency, or within-judge temporal variation. After four weeks, check whether one source appears more often than the others. That pattern is your dominant source."
+  }
+}

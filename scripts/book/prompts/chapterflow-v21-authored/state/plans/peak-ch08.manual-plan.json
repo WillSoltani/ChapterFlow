@@ -1,0 +1,189 @@
+{
+  "chapterId": "peak-ch08",
+  "number": 8,
+  "title": "But What About Natural Talent?",
+  "coreMove": "Turn a talent claim into an investigation of training history, access, selection, and response before accepting a fixed ceiling.",
+  "sourcePressure": "The chapter handles the strongest objection: talent and biology matter, but high performance cannot be explained by talent alone because training history, selection effects, support, and response variation distort the story. Frozen sidecar for chapter 8 contains no traceable named figure, study, place, date, or artifact beyond the authors and chapter mechanism; sourceAnchors stays empty rather than inventing one.",
+  "chapterSpecificMisunderstanding": "The weak version either denies talent completely or treats talent as the final explanation.",
+  "sourceAlignmentTerms": [
+    "natural talent",
+    "biology",
+    "training history",
+    "selection effects",
+    "survivorship",
+    "response variation",
+    "ceiling"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "violin prodigy hallway from old Peak draft",
+      "born talented vs hard worker debate opener",
+      "everyone can do anything slogan"
+    ],
+    "counterintuition": [
+      "talent is fake",
+      "biology decides everything",
+      "practice erases all differences"
+    ],
+    "tryThisNow": [
+      "list three talents you admire",
+      "believe the gap is trainable",
+      "stop using talent as an excuse"
+    ],
+    "examples": [
+      "poster prize ribbon from old draft",
+      "young violinist hears prodigy",
+      "height in youth sport as the whole argument"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "junior data analyst compared with a spreadsheet prodigy",
+      "audience": "a worker tempted to make one colleague's speed a fixed verdict",
+      "stakes": "envy can end the search for the templates, macros, and review history behind the gap",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivia asks to see the analyst's revision history, finds years of macro notebooks and peer corrections, and chooses one trainable cause before calling the gap talent",
+      "firstImage": "a spreadsheet revision panel open beside a stack of macro notes",
+      "mustInclude": [
+        "revision history",
+        "macro notebook",
+        "peer corrections"
+      ],
+      "mustAvoid": [
+        "generic office comparison",
+        "talent denial"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "youth soccer tryout selection after early puberty",
+      "audience": "a coach separating current size from future skill",
+      "stakes": "selection effects could give bigger players more coaching and create the talent story later",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ben reviews tryout notes, separates speed from first-touch decisions, and reserves two training slots for smaller players whose cues improve under coaching",
+      "firstImage": "tryout bibs piled beside a clipboard with height marks",
+      "mustInclude": [
+        "height marks",
+        "first-touch decisions",
+        "training slots"
+      ],
+      "mustAvoid": [
+        "generic sports fairness",
+        "biology ignored"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "music-school entrance auditions and family access",
+      "audience": "an admissions teacher noticing that polish often reflects years of support",
+      "stakes": "a raw student may be denied the coaching that would reveal real response to training",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Etienne compares audition polish with lesson history, adds a callback teaching test, and watches which students improve after one correction",
+      "firstImage": "audition forms stacked beside a practice-room key ring",
+      "mustInclude": [
+        "lesson history",
+        "callback teaching test",
+        "one correction"
+      ],
+      "mustAvoid": [
+        "violin prodigy hallway",
+        "access as excuse for no standards"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "software bootcamp admissions using take-home puzzle scores",
+      "audience": "an instructor wary of confusing prior exposure with raw aptitude",
+      "stakes": "selection can reward people who saw the puzzle type before and starve others of training",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Frida groups score sheets by prior coding exposure, adds a taught mini-lesson, and compares improvement rate instead of first score alone",
+      "firstImage": "take-home score sheets warm from a copier tray",
+      "mustInclude": [
+        "prior exposure",
+        "mini-lesson",
+        "improvement rate"
+      ],
+      "mustAvoid": [
+        "tech meritocracy rant",
+        "everyone identical"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "language accent coaching for adult pronunciation",
+      "audience": "an adult learner who thinks a bad ear is permanent",
+      "stakes": "the label can stop him before testing whether targeted feedback changes one sound",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 12:24 p.m., Diego predicts he cannot hear the vowel difference, then uses a spectrogram and coach cue to see whether three corrected attempts narrow the gap",
+      "firstImage": "two colored vowel bands on a laptop spectrogram",
+      "mustInclude": [
+        "spectrogram",
+        "coach cue",
+        "three corrected attempts"
+      ],
+      "mustAvoid": [
+        "generic language confidence",
+        "talent as excuse"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "math circle puzzle performance after home enrichment",
+      "audience": "a teacher deciding how to interpret one child's quick answers",
+      "stakes": "calling one child gifted too soon can change who gets harder problems and feedback",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Aanya solve quickly, then the teacher asks about puzzle exposure at home and gives the group a new puzzle type to compare learning from first feedback",
+      "firstImage": "wooden tangram pieces scattered beside a sign-up sheet",
+      "mustInclude": [
+        "home puzzle exposure",
+        "new puzzle type",
+        "first feedback comparison"
+      ],
+      "mustAvoid": [
+        "gifted-child sentiment",
+        "anti-talent slogan"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "investigate talent claims without denying biology",
+      "spot selection and survivorship effects",
+      "separate starting advantage from training history",
+      "choose fair tests of response to instruction"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one person you have labeled talented. List one biological possibility, one training-history possibility, one access possibility, and one feedback test that would tell you more.",
+  "readingTimeMinutes": 12
+}

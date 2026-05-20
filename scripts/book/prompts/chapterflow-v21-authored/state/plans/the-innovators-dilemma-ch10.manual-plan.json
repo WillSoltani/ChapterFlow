@@ -1,0 +1,131 @@
+{
+  "chapterId": "the-innovators-dilemma-ch10",
+  "number": 10,
+  "title": "Managing the Strategy Development Process",
+  "coreMove": "Build a strategy process that can absorb market learning rather than filtering it out — set direction and limits, then let real evidence change what needs to change.",
+  "sourcePressure": "Strategy in disruptive settings must be treated as a development process, not a fixed initial design. If the strategy hardens before critical market learning arrives, the plan filters out the evidence that should reshape it. Rigor is still required — but it cannot mean rigid fidelity to the first plan under conditions where important lessons only arrive during action.",
+  "chapterSpecificMisunderstanding": "Reading this chapter as permission to drift or abandon strategic commitments, when the argument is that leaders must guide strategy seriously while allowing the process to absorb real evidence — not as a concession but as a discipline.",
+  "sourceAlignmentTerms": [
+    "strategy development process",
+    "emergent strategy",
+    "market learning",
+    "direction-setting",
+    "revision under evidence",
+    "rigid plan",
+    "deliberate strategy",
+    "learning-driven revision"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'strategy is dead, execution is everything' framing",
+      "generic 'plans are useless, planning is essential' framing"
+    ],
+    "counterintuition": [
+      "generic 'pivot faster' counter",
+      "generic 'be comfortable with uncertainty' counter"
+    ],
+    "tryThisNow": [
+      "generic 'review your quarterly OKRs' prompt",
+      "generic 'schedule a strategy retrospective' prompt"
+    ],
+    "examples": [
+      "any scene that equates strategy revision with failure",
+      "any scene that celebrates a pivot without showing what the learning was that drove it"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Strategy-process examples should show the moment when evidence arrives and the choice is made about whether to absorb or filter it."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "health tech startup discovering mid-clinical trial that the primary endpoint is performing but a secondary use case is generating more physician interest",
+      "audience": "a CEO whose board has approved a strategy built entirely around the primary endpoint indication",
+      "stakes": "the secondary use case isn't in the approved strategy, the board presentation, or the regulatory pathway — but physicians in the trial are raising it unsolicited",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Beth has to decide whether to document the secondary use case formally — which would require going back to the board with a strategy revision — or to continue the primary strategy and treat the physician interest as a future option. The moment is about whether the strategy process has a mechanism for absorbing the signal.",
+      "firstImage": "a clinical trial dashboard with the primary endpoint meeting target and physician feedback notes about a secondary use case attached at the bottom",
+      "mustInclude": ["primary endpoint meeting target", "secondary use case signal", "the choice of whether to document or filter it"],
+      "mustAvoid": ["suggesting that mid-trial pivots are standard clinical practice"]
+    },
+    {
+      "domain": "craft brewery discovering during a new regional distribution expansion that a different product than the flagship is generating the most repeat orders",
+      "audience": "a founder-CEO whose distribution expansion strategy was built around the flagship lager",
+      "stakes": "the expansion plan, marketing spend, and distributor relationships all support the flagship — but reorder data from the new territory shows a seasonal ale outperforming it",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Luke's reorder data from week six of the expansion doesn't match the strategy. The seasonal ale wasn't supposed to lead. His distribution plan, marketing commitment, and distributor conversations are all built around the flagship. He has to decide what the data is telling him and whether the strategy process can hold it.",
+      "firstImage": "a reorder spreadsheet from a new regional distributor with the seasonal ale in the top row and the flagship in fourth",
+      "mustInclude": ["flagship as the strategy anchor", "seasonal ale as the unexpected reorder leader", "the strategy process as the mechanism for holding or ignoring the signal"],
+      "mustAvoid": ["treating craft brewery as a stand-in for startup culture generally"]
+    },
+    {
+      "domain": "regional airline rerouting when demand data from a new market shows different origin-destination pairs than the strategy modeled",
+      "audience": "a network planning director whose approved route expansion was based on origin-destination demand models built before market entry",
+      "stakes": "the approved routes are not producing the load factors the model predicted, and passenger booking data shows a demand corridor the model missed",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Mathieu has to decide whether to adjust the route network based on six weeks of real booking data — which contradicts the model — or to hold the approved strategy through the first full season. The decision is about whether the strategy process has a mechanism for letting real evidence revise the plan.",
+      "firstImage": "a network map with approved routes in solid lines and an observed demand corridor in a dotted line not currently served",
+      "mustInclude": ["load factor below model prediction", "unmodeled demand corridor", "the choice between holding and revising"],
+      "mustAvoid": ["implying that demand modeling is generally unreliable"]
+    },
+    {
+      "domain": "climate-focused VC discovering mid-portfolio review that a grid-storage investment is generating unexpected interest from industrial operators outside the target market",
+      "audience": "a managing partner whose fund thesis is built around utility-scale renewable energy storage",
+      "stakes": "the industrial operators are not in the fund thesis, not in the LP reporting metrics, and not in the investment committee's mental model — but they represent a real demand signal from outside the original target market",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Catarina predicts the industrial operator interest is an edge case that will not produce a fundable market at the fund's check size. The reveal: eighteen months later, industrial storage has attracted two dedicated sector funds and the grid-storage company is generating revenue from industrial clients that the VC's original model did not model.",
+      "firstImage": "a portfolio company CRM showing industrial operator inbound inquiries filed under 'out-of-scope leads'",
+      "mustInclude": ["utility-scale thesis as strategy anchor", "industrial operator inbound as out-of-scope", "the two dedicated funds in the reveal"],
+      "mustAvoid": ["implying that VC fund theses should constantly be revised"]
+    },
+    {
+      "domain": "social enterprise in microfinance discovering that its urban borrowers are using loans differently than the rural model they were trained on",
+      "audience": "a program director whose impact reporting and lending methodology were both designed for rural smallholder borrowers",
+      "stakes": "urban borrowers are using loans for inventory cycles, sub-contracting, and gig-income smoothing — use cases the rural methodology doesn't recognize as on-model, but which are financially real",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Niklas's postmortem on the urban pilot shows that off-model loan uses were flagged for follow-up rather than studied. The methodology treated unfamiliar use as a compliance risk rather than a discovery signal. The strategy process had no mechanism for the urban context to teach the organization anything.",
+      "firstImage": "a loan use classification report with urban borrower uses in a grey 'non-standard' category",
+      "mustInclude": ["rural methodology as the strategy anchor", "urban use flagged as non-standard", "no mechanism for learning in the postmortem finding"],
+      "mustAvoid": ["suggesting that rural microfinance methodology is irrelevant to urban lending"]
+    },
+    {
+      "domain": "edtech platform broadening from K-12 to adult learners and discovering that adult engagement patterns require revising the content architecture",
+      "audience": "a product director whose K-12 learning architecture was designed for curriculum-aligned, teacher-assigned content",
+      "stakes": "adult learners are self-directed, skip non-relevant modules, set their own completion timelines, and disengage when content feels school-like — all behaviors the K-12 architecture did not design for",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Before: Adaeze launches the adult learner product using the K-12 platform architecture, because it is proven and the content library already exists. After: three months of engagement data show module abandonment at three times the K-12 rate, self-directed path creation at four times what the architecture was built to support. The after shows the strategy process either learning from the data or not.",
+      "firstImage": "an engagement dashboard with K-12 module completion rates in green and adult learner module abandonment in red",
+      "mustInclude": ["K-12 architecture as the strategy anchor", "adult engagement abandonment rate", "the strategy process choice in the after"],
+      "mustAvoid": ["treating adult learners as a less important market than K-12 students"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a strategy process is filtering evidence rather than absorbing it",
+      "distinguish deliberate strategy revision from undisciplined drift",
+      "recognize what a learning signal looks like in a non-technology organizational context",
+      "apply emergent-strategy reasoning to a described strategic decision point",
+      "evaluate whether a described strategy process has a mechanism for revision"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of the last time your organization received information that contradicted the current plan. Write down whether that information was absorbed into the strategy or filed as an exception. Name one change to your review process that would make the next signal harder to file away.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one direct second-person paragraph asking the reader to name the last piece of evidence that their strategy process turned into an exception",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

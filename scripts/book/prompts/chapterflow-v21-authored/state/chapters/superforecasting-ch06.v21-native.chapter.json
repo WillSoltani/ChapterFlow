@@ -3,317 +3,305 @@
   "number": 6,
   "title": "Superquants?",
   "readingTimeMinutes": 12,
-  "hook": "The power is not fancy math. It is the courage to say fifty-six when sixty feels cleaner.",
-  "counterintuition": "Ibbie assumes numbers make people rigid. Used well, numbers keep doubt honest by showing small differences and small updates instead of fake certainty.",
-  "tryThisNow": "Open a note, write one forecast you already believe about a probability estimate, add a percent and a check date, then write what would make you move the number down.",
-  "keyTakeaway": "Use numbers to express uncertainty clearly: choose a probability, make finer distinctions when they matter, and update in proportion to the evidence.",
+  "hook": "Leon Panetta did not smooth the analysts' estimates into one number before taking them to the President. The probability that bin Laden was in the Abbottabad compound ranged from 40% to 95% across the senior analysts who had studied the same evidence. That spread was not a failure of analysis. It was the honest state of knowledge.",
+  "counterintuition": "A probability range looks weaker than a single number. Decision-makers often press for the point estimate. But collapsing a range into a point does not reduce the uncertainty; it hides it. A calibrated range that separates what evidence has settled from what it has not yet reached is more useful to a decision-maker than a single number wearing false confidence.",
+  "tryThisNow": "Take a probability you have stated recently: for a project, a decision, an outcome. Ask yourself: if you gathered ten times more data, would this probability narrow significantly? If yes, it is partly epistemic; name the data that would resolve it. If no, it is partly aleatory; your range is already as narrow as honest evidence allows. Restate the probability as a range rather than a point, and write next to it which component is which.",
+  "keyTakeaway": "Probabilistic honesty means distinguishing what evidence has settled from what it has not. Epistemic uncertainty shrinks with more data. Aleatory uncertainty does not, no matter how much you collect.",
   "breakdown": {
-    "fastRead": "At 1:15 p.m., Ibbie changes the risk cell from medium to fifty-six. The label hid the disagreement. The number makes it visible. He wants the clean answer now. The paper in front of him will not give it.\n\nWrite the odds where the room can see them. Add the date, the question, and the sign that would make you change your mind. A good number does not kill doubt. It gives doubt a shape.\n\nA forecast gets useful when it can be checked later. Confidence without a receipt is only weather in someone else's voice. Keep the receipt.",
-    "deepRead": "At 7:40 a.m., Mahir, a ferry planner, weighs a wind update against the morning cancellation odds. The forecast moves from 30 to 38, not from 30 to panic. The easy move is to pick the story that feels whole. The better move is to slow down long enough to ask what the record says before this case arrived.\n\nA number is not a costume for certainty. It is a handle. You can move it when the facts move. You can also leave it alone when the new fact is only loud. Granularity is useful when the extra digit changes a real choice.\n\nPicture Odelia rating grant risks in five-point bins until the bins prove too blunt for real choices. The choice is not between swagger and silence. The choice is between a claim that can learn and a claim that can only defend itself.\n\nUse the smallest clean question you can write. Put a date on it. Start from the outside view, the rate for cases like this one, then adjust for what is truly different here. Stop when you can explain the move in plain words.\n\nA limit stays in view. Some events are too tangled, too far out, or too hidden for a sharp answer. The skill is not pretending fog is glass. The skill is knowing when the glass is only dirty enough to wipe.",
-    "fullRead": "At 5:23 p.m., Zhen, a lab manager, watches two test-failure rates differ by three points. The small difference matters because the batch size is huge. Everyone at the table can feel the pull of a clean story. It lowers stress. It gives the next meeting a script. It also hides the weak joint in the forecast, the part nobody will remember to test unless someone writes it down now.\n\nHand the room a sharper question. Do not ask whether the whole future will go well. Ask whether a named event will happen by a named date. Ask what would count as yes. Ask what rate similar cases have shown before. The room may groan, because the work feels smaller. The smaller work is the point. It gives reality a place to answer.\n\nA forecaster earns trust by leaving tracks. The first track is the base rate. Before you explain why this case is special, look at how often cases like it have turned out that way. The second track is the update. If a new fact arrives, move the odds by the strength of that fact, not by the size of the feeling it creates. The third track is the review. When the result lands, save the old number and ask which assumption broke.\n\nAt 10:02 a.m., Danya, a soccer analyst, refuses to round every player-risk forecast to a neat ten. Her messy numbers keep the coach from treating unlike risks as the same. This is where the craft starts to feel almost physical. The pen pauses. The number changes from 60 to 55, not from 60 to 10, because the new fact is real but not huge. The team can see the move. Nobody has to pretend the old answer was perfect.\n\nFalse precision is a costume; honest precision is a tool. It keeps judgment from turning into a costume. A person can sound brave while hiding from the record. A quieter person with dates, odds, and reviews may be doing the harder thing.\n\nThe limit matters. Long-range shocks, hidden incentives, and fragile systems can make even careful work miss. A good forecaster does not use that as an excuse to blur every claim. She uses it to sort questions. Some deserve a wide range. Some deserve a backup plan. Some deserve no forecast stronger than a shrug.\n\nTry the move on a live claim today. Take one future sentence you hear at work, at home, or in the news. Cut it into a smaller question. Put a probability on it. Write why you chose that number. Then mark the date when you will look again. The act takes two minutes. The habit changes the room because it makes confidence answerable."
+    "fastRead": "James laid the interim efficacy curves on the conference table. One confidence interval was narrower than the model predicted. One was wider. He did not combine them into a single error bar.\n\nThe narrower interval surrounded the treatment effect. More data would shrink it further. Another 200 patients would bring it to roughly half its current width. That gap was the kind more sampling can close. The wider interval surrounded patient-to-patient response spread. No extra sample would narrow it. The spread was real. Different patients responded in different ways. That range was a trait of the patient group, not a flaw in the measure. That gap was fixed regardless of sample size.\n\nThe board's decision turned on which type of gap was larger. Stopping early made sense if the epistemic gap was big relative to the fixed spread. Staying to full enrollment was better if the aleatory spread ruled. Two intervals made that visible. One combined bar would have erased it.\n\nA range is not a hedge. It is a measurement: the distance between what the evidence has settled and what it has not yet reached.",
+    "deepRead": "Leon Panetta and the bin Laden probability spread illustrate what it means to preserve analytical disagreement in a briefing. Panetta did not smooth the analysts' estimates into one number before taking them to the President. The spread from 40% to 95% was itself the real state of knowledge.\n\nThe spread did not represent analytical failure. Each analyst had reviewed the same photographs, the same intercepts, the same behavioral patterns around the compound. They drew different conclusions from identical evidence. That disagreement was not a problem to resolve before the briefing; it was information. Collapsing it into one estimate would have implied certainty the analysis did not support.\n\nThe distance between 40% and 95% told the President something the midpoint alone could not. It showed that equally informed analysts reading the same evidence had landed very far apart. That is a signal about the evidence itself. It was ambiguous at a specific point, for a specific reason.\n\nSome of the spread was epistemic. Better intelligence would have narrowed it. A confirmed identification, a second corroborating source, a direct photo: any of these would have pushed the lower end upward. Some of it was aleatory. Reading intent from behavior carries irreducible ambiguity. There is noise in signals work that no extra collection can remove.\n\nShowing the spread was the honest move. Compressing it into a single number would have hidden the disagreement inside a false point estimate. The spread kept that disagreement visible where it could inform the decision rather than vanish into the briefing format.",
+    "fullRead": "Barbara Mellers studied the forecasters who performed best in the Good Judgment Project and found something unexpected about their precision. The best performers did not round to convenient numbers. They wrote 63% when 65% would have been simpler, 47% when 50% would have been easier. The numbers came from a judgment about how much evidence had moved the estimate.\n\nThe granularity was real. When Mellers's best forecasters wrote 63% instead of 65%, they were tracking something. The finer number reflected a finer reading of the evidence.\n\nThis is what separates calibrated granularity from spurious precision. A move from 65% to 63% looks trivial. But if a new piece of evidence warranted roughly 2 percentage points of movement, and the forecaster moved by exactly 2 percentage points rather than rounding to the nearest convenient number, the granularity is load-bearing. It reflects actual evidentiary weight rather than a performance of rigor.\n\nTim Minto updated his estimates in increments of 2 or 3 percentage points at a time. Not because he lacked conviction, but because that was what each new piece of evidence actually warranted. He moved by exactly that amount rather than waiting for certainty before revising or overcorrecting in response to a vivid signal.\n\nThe pattern matters. A forecaster who holds an estimate steady through accumulating evidence and then revises sharply when overwhelmed is running two failure modes in sequence: anchoring and then overcorrection. Minto's small, proportionate updates kept his estimates close to the true probability across the full life of a question rather than only at the moment of resolution.\n\nDecision-makers press for a single number. The social pressure to narrow a range into a point is real and persistent. A committee receiving '55% to 70%' asks: what is your best estimate? The questioner is not irrational; they need an action point. But treating the range as a communication failure rather than as a calibration finding is what turns that social pressure into a source of error.\n\nThe honest response is to give the center of the range while keeping the structure visible. Saying '62%, but the lower bound reflects aleatory variation that more data cannot resolve, and the upper bound is where we land if the storm track confirms' is a complete statement. The single number serves the decision-maker who needs to act. The range structure prevents that action point from being mistaken for certainty it does not have.\n\nThis is also why chronically miscalibrated estimates share a common root. When a point estimate is rewarded and a range is treated as indecision, analysts learn to suppress the range. The range does not disappear. It becomes implicit, unexamined, invisible to the people who most need to see it."
   },
   "examples": [
     {
-      "exampleId": "ch06-ex01-ibbie-risk-cell",
-      "title": "Ibbie changes medium to fifty-six percent",
-      "tags": [
-        "scene",
-        "cybersecurity",
-        "forecasting"
-      ],
+      "exampleId": "ch06-ex01-james-clinical",
+      "title": "James separates two types of uncertainty in interim trial data and the monitoring board reframes the stop decision",
+      "tags": ["decision_point", "clinical-trial-monitoring", "epistemic-aleatory"],
       "planSpec": {
-        "domain": "cybersecurity",
-        "audience": "a risk lead replacing labels with probabilities",
-        "stakes": "whether a security risk label hides real disagreement",
-        "format": "scene",
-        "requiredBeat": "she turns a vague label into a probability and date"
-      },
-      "scenario": "Ibbie pinches the bridge of her nose at 1:15 p.m. in the security war room, where the risk dashboard glows green, amber, red. The vendor breach is marked medium. Half the engineers read medium as 30 percent, half as 70. The renewal vote is in forty minutes. Ibbie clicks into the cell and types 56 percent chance of material exposure by June 1. The room goes quiet because the label can no longer do everyone's work.",
-      "whatToDo": "Replace the label with a dated probability. Ask who would move it up or down and why before the renewal vote.",
-      "whyItMatters": "Medium hides disagreement. A number makes people argue about evidence, which is the argument the decision actually needs."
-    },
-    {
-      "exampleId": "ch06-ex02-mahir-ferry-map",
-      "title": "Mahir moves the ferry odds eight points",
-      "tags": [
-        "decision_point",
-        "marine",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "marine transit",
-        "audience": "a ferry planner updating cancellation odds",
-        "stakes": "whether a new wind report causes overreaction",
+        "domain": "clinical trial data safety monitoring board reviewing interim efficacy data",
+        "audience": "a biostatistician presenting to a monitoring board deciding whether to stop a trial early for benefit",
+        "stakes": "stopping early captures benefit for current patients but reduces precision of the final dataset; stopping late means more patients receive placebo",
         "format": "decision_point",
-        "requiredBeat": "he sizes the update to the strength of the signal"
+        "openingDevice": "sensory_first",
+        "requiredBeat": "the biostatistician separates epistemic uncertainty from aleatory uncertainty; the board reframes the stop decision as a result"
       },
-      "scenario": "Mahir holds a damp wind map at 7:40 a.m. in the ferry terminal office, salt water dripping from his jacket cuff. The 9:10 crossing sits at 30 percent cancellation on the dispatch board. A fresh gust report comes in higher, but only at the outer buoy. Passengers are already lining up near the coffee kiosk. Mahir's finger hovers over the board. He has to decide whether the update deserves panic or eight clean points.",
-      "whatToDo": "Move the cancellation forecast to 38 percent and note the outer-buoy source. Wait for the harbor reading before making a larger change.",
-      "whyItMatters": "The new signal is real but partial. A modest update keeps the forecast responsive without letting one noisy buoy run the terminal."
+      "scenario": "Two Kaplan-Meier curves are projected on the screen at the far end of the conference room, and several board members are already leaning toward the conclusion the first curve suggests. The treatment arm is pulling ahead faster than the model predicted. The confidence interval around the treatment effect has come in narrower than the 18-month endpoint projected.\n\nJames has two intervals to show, not one. He asks the room to look at the second before drawing any conclusion from the first.\n\nThe first interval surrounds the treatment effect estimate. It is narrow because enrollment reached 340 of a planned 480 participants and the signal is clear. Run the trial to its planned endpoint and this interval shrinks by roughly half. That uncertainty is epistemic: more data will resolve it.\n\nThe second interval surrounds patient-to-patient variation in response time. Some participants responded in six weeks; others in sixteen. This interval is wide and will not narrow with more enrollment. The variation is real and biological. That uncertainty is aleatory: no sample size can eliminate it because it is a property of the population, not a measurement problem.\n\nThe board originally framed the stop decision as a single question: is the evidence strong enough? After James presents the two intervals separately, they reframe it. If the epistemic interval shrinks as expected by full enrollment, the final estimate will be considerably more precise for regulatory submissions. If the aleatory variation is the dominant source of uncertainty for treatment planning, continued enrollment will not help with that component.\n\nThe board asks James directly: given this two-component structure, what is his recommendation? He must choose between recommending an early stop that captures current benefit or continuing to full enrollment for a more precise regulatory submission. He recommends continuing. The board votes accordingly.",
+      "whatToDo": "When presenting uncertainty data to a decision-making group, separate the uncertainty into its epistemic component (what additional evidence would reduce) and its aleatory component (what cannot be reduced regardless of additional evidence). Present each separately rather than combining them into a single error bar.",
+      "whyItMatters": "A single combined uncertainty measure collapses two different types of information into one number. Decision-makers who see the two components separately can ask a more precise question: which type of uncertainty is driving the decision? If the epistemic component dominates, gathering more data is the right move. If the aleatory component dominates, more data will not help and the decision should be made on current information."
     },
     {
-      "exampleId": "ch06-ex03-odelia-grant-bins",
-      "title": "Odelia quits forcing every grant into five bins",
-      "tags": [
-        "before_after",
-        "foundation",
-        "forecasting"
-      ],
+      "exampleId": "ch06-ex02-manon-meteorologist",
+      "title": "Manon refuses to give a yes/no on diversion and labels the two components in a 55-70% approach range",
+      "tags": ["dialogue_first", "aviation-weather", "epistemic-aleatory"],
       "planSpec": {
-        "domain": "foundation grants",
-        "audience": "a program officer ranking project risks",
-        "stakes": "whether blunt categories treat unlike risks as equal",
+        "domain": "commercial aviation meteorologist issuing approach probability guidance for a major hub airport",
+        "audience": "a meteorologist whose guidance determines whether airlines begin diverting flights three hours before a potential weather event",
+        "stakes": "diversion decisions for 40+ flights; too early means unnecessary cost, too late means aircraft trapped in deteriorating conditions",
+        "format": "dialogue_first",
+        "openingDevice": "dialogue_first",
+        "requiredBeat": "meteorologist expresses approach probability as 55-70% range with both components labeled; dispatcher makes a partial decision on current information"
+      },
+      "scenario": "It is 6:45 a.m. at a regional aviation weather center. Manon, the duty meteorologist, is forty minutes into a fast-moving storm watch when the operations line rings. 'Give me a yes or a no,' the dispatcher says. 'Forty flights. Eight minutes.'\n\nManon is looking at two radar products simultaneously: the wide view showing the storm track and the high-resolution showing internal convective structure. The storm track is uncertain in one way. The microburst probability within the storm is uncertain in another.\n\n'Instrument approaches are 55% to 70% viable in the next four hours,' she says. 'I can give you a tighter number in ninety minutes when the next radar sweep lands.'\n\n'That's not a yes or a no.'\n\n'The storm track uncertainty is epistemic. Another sweep will narrow it. I would say the track resolves the lower end of the range; you get closer to 70% if the storm jogs northeast as the model is suggesting.' She pauses. 'The microburst probability inside the storm is different. Individual downdraft cells are not predictable at the resolution you need to guarantee approach safety. That part of the range does not close with more data.'\n\nThe dispatcher is quiet for four seconds. 'So the 55% floor is from the microburst problem.'\n\n'Yes. You can close the gap between 55% and 70% with a better track. You cannot close the 55% floor without the storm moving away entirely.'\n\nThe dispatcher begins diverting 12 of the 40 flights: the long-haul aircraft with the least fuel margin. The short-haul fleet waits 90 minutes for the updated track data. Instrument approaches proceed without incident for 27 of the remaining 28 aircraft.",
+      "whatToDo": "When asked for a go/no-go probability under time pressure, separate the range into what additional data could improve and what is irreducible regardless of more information. Give the range, label each component, and state what would need to happen to close the epistemic gap. This allows a partial decision to be made on current information while waiting for the epistemic uncertainty to resolve.",
+      "whyItMatters": "A single point estimate under time pressure feels decisive but collapses two types of uncertainty into one. The decision-maker who knows which component of a probability range could improve in 90 minutes can make a calibrated partial decision rather than waiting for false certainty or acting on a misleadingly narrow number."
+    },
+    {
+      "exampleId": "ch06-ex03-niklas-bonds",
+      "title": "Niklas replaces a vague credit cover slide with a two-component default range and the committee sizes accordingly",
+      "tags": ["vignette", "fixed-income-credit", "epistemic-aleatory"],
+      "planSpec": {
+        "domain": "corporate bond analyst at a fixed income fund expressing default risk on a high-yield issuer",
+        "audience": "a bond analyst presenting a credit opinion to a portfolio committee considering a new position",
+        "stakes": "a $20M position in a BB-rated bond with ambiguous covenant language",
+        "format": "vignette",
+        "openingDevice": "retrospective",
+        "requiredBeat": "the 8-17% default range with two components leads the committee to size at $12M rather than $20M, citing the aleatory tail"
+      },
+      "scenario": "The cover slide had read 'default risk: moderate.' Niklas had submitted the committee brief the previous afternoon, and by morning he had already decided to redo it.\n\n'Moderate' was a word that meant something different to everyone in the room. To the senior portfolio manager it probably meant below 10%. To the risk officer it might mean below 20%. The word was doing no work except signaling that Niklas had formed an opinion.\n\nNiklas needs to decide: leave 'moderate' as shorthand or rebuild the slide with a precise two-component range. He pulls up the slide and rebuilds it. The committee brief goes out again at 7 a.m. with a revised cover: 8% to 17%, with a three-sentence note explaining the two-component structure. The three-year default probability for the issuer, from sector default history for comparable BB-rated credits in the current rate environment, was 8%. That was the base rate: epistemic, derivable from data, improvable if he gathered more issuer-specific financials. The upper bound of 17% reflected the aleatory uncertainty he could not eliminate: refinancing market conditions at the bond's three-year maturity would only be known when they arrived, and no amount of analysis would predict them accurately three years in advance.\n\nHe presented 8% to 17% with the two-component structure. The committee's first question was not 'which number should we use?' It was: how exposed are we to the aleatory component? Their position sizing in similar credits historically assumed roughly 12% default probability in the base case. If the aleatory spread was the dominant risk, they needed to consider what happens if the refinancing environment at year three looks like 2009 rather than 2019.\n\nThe committee took a $12M position rather than $20M, citing the aleatory tail rather than the point estimate.",
+      "whatToDo": "Replace vague verbal risk categories with a probability range that separates the historically grounded base rate from the irreducible uncertainty that analysis cannot resolve. Present the two components separately so the committee can see which one is driving their exposure.",
+      "whyItMatters": "A word like 'moderate' transfers the quantification burden to whoever receives it. A two-component range transfers real information: the base rate shows where comparable situations have landed, and the aleatory bound shows what cannot be improved with more research. Those are two different inputs to a position-sizing decision."
+    },
+    {
+      "exampleId": "ch06-ex04-laura-epidemiologist",
+      "title": "Laura's 1,400-to-2,200 hospitalization projection separates resolvable testing uncertainty from irreducible severity variation",
+      "tags": ["second_person", "public-health", "epistemic-aleatory"],
+      "planSpec": {
+        "domain": "public health epidemiologist estimating local outbreak size at the onset of a seasonal respiratory illness surge",
+        "audience": "an epidemiologist advising a municipal health department on hospital surge preparation",
+        "stakes": "pre-positioning of ICU beds, staff call-up decisions, and pharmacy stock orders made two weeks before peak",
+        "format": "second_person",
+        "openingDevice": "second_person",
+        "requiredBeat": "the 1400-2200 range with two components leads to pre-positioning on the high end and a second estimate in five days"
+      },
+      "scenario": "You are an epidemiologist presenting to the municipal health department two weeks before an expected surge peak. The model on the screen shows 1,400 to 2,200 hospitalizations over the surge period. The director wants a single planning number.\n\nYou explain the structure of the range before giving any action recommendation.\n\nThe lower end, 1,400, is where the model lands with current testing data. Community testing rates are at 23% of estimated true prevalence. When testing coverage is low, the case count understates actual spread. If testing rates improve to 60% in the next five days, the model recalibrates and the lower bound will move upward. That uncertainty is epistemic: five days of better data will narrow it.\n\nThe upper end, 2,200, reflects individual severity variation across the population. Even with perfect community prevalence data, person-to-person differences in immune response, age, and comorbidity mean that the same number of infections can produce significantly more hospitalizations in some years than others. That variation cannot be predicted at the population level regardless of how much surveillance improves. That uncertainty is aleatory.\n\nThe director asks the correct question: what should we pre-position for?\n\nYou recommend pre-positioning for 2,200 on beds and pharmacy stock, because the aleatory tail on severity is the risk that does not resolve with more information. You also recommend requesting another estimate in five days when testing coverage improves, because the epistemic component can narrow the lower bound before the peak arrives. The director approves both.",
+      "whatToDo": "When presenting a projection range to a decision-maker who needs a planning number, explain the structure of the range before giving an action recommendation. Separate what additional data would improve from what data cannot resolve, and make the pre-positioning recommendation conditional on which type of uncertainty dominates the upper bound.",
+      "whyItMatters": "A single planning number that collapses the range also collapses the decision. The health department pre-positioned for 2,200 because they understood that the upper bound came from aleatory severity variation, not from a data gap. If they had been given only 1,800 as a midpoint, they might have pre-positioned at 1,800 and been caught by the severity tail. Seeing the range with its components changed what they pre-positioned for and when they planned to look again."
+    },
+    {
+      "exampleId": "ch06-ex05-mateusz-traffic",
+      "title": "Mateusz presents 32-to-48 percent accident reduction with a driver-behavior floor the committee cannot vote away",
+      "tags": ["thought_experiment", "traffic-engineering", "epistemic-aleatory"],
+      "planSpec": {
+        "domain": "urban traffic engineer estimating accident probability at a redesigned intersection",
+        "audience": "a traffic engineer presenting a safety case to a city council subcommittee",
+        "stakes": "approval for a $600K intersection redesign; the committee wants a safety number before voting",
+        "format": "thought_experiment",
+        "openingDevice": "question_hook",
+        "requiredBeat": "the 32-48% range with two components leads the committee to request the traffic count before voting"
+      },
+      "scenario": "What does a single safety percentage tell a city council about an intersection redesign?\n\nConsider what Mateusz faces. The committee chairperson has asked for a number representing the probability of accident reduction from the proposed redesign. Mateusz has modeled the intersection at 32% to 48% reduction from the five-year baseline: a range, not a point, because the model's inputs include two genuinely different kinds of uncertainty.\n\nThe first kind is in the traffic volume projections. The count data is from a seven-day study done two years ago. A 10-day current count would update the model's peak-hour assumptions and narrow the estimate by roughly 8 percentage points. That uncertainty is epistemic: a decision to gather more data would resolve it.\n\nThe second kind is in driver behavior. The redesign removes the left-turn conflict that causes the majority of accidents at this intersection. But driver response to changed geometry varies. Drivers who have used the intersection for years sometimes revert to old patterns during the first weeks after a redesign, and that reversion rate varies enough across comparable intersections that the model cannot eliminate it as a source of range. That uncertainty is aleatory: it reflects genuine variation in behavior, not a gap in the model's inputs.\n\nMateusz presents 32% to 48% with both components labeled. The committee asks one question before voting: can the traffic count be done before the approval vote? A 10-day count takes 10 days. The vote is in three weeks. They table the approval for two weeks to allow the count, which narrows the estimate to 38% to 44%. The redesign passes with committee support.",
+      "whatToDo": "When presenting an engineering or planning probability estimate to a decision-making body, express the estimate as a range and label which component could be improved with additional study and which reflects irreducible variability. If the committee can wait for the epistemic evidence to arrive, ask whether waiting is feasible.",
+      "whyItMatters": "A single safety percentage collapses the two types of uncertainty into a number the committee cannot interrogate. A range with components lets the committee ask the right question: which part of this can we improve before we vote? The answer to that question determines whether delay is worth it."
+    },
+    {
+      "exampleId": "ch06-ex06-hadiya-physio",
+      "title": "Hadiya's 5-to-9 week recovery estimate separates what the MRI will resolve from what no imaging can predict",
+      "tags": ["before_after", "sports-physiotherapy", "epistemic-aleatory"],
+      "planSpec": {
+        "domain": "sports physiotherapist giving a return-to-play timeline for an elite cyclist with a soft tissue injury",
+        "audience": "a physiotherapist whose estimate determines whether the athlete competes in a major event seven weeks away",
+        "stakes": "the athlete's race calendar and the coaching staff's tactical preparation",
         "format": "before_after",
-        "requiredBeat": "she moves from coarse bins to probabilities where choices differ"
+        "openingDevice": "timestamp_named",
+        "requiredBeat": "the 5-9 week range with two labeled components leads to two-scenario planning; MRI resolves the epistemic component and the athlete competes at six weeks"
       },
-      "scenario": "Before lunch, Odelia had thirty grant proposals sorted into five risk bins, the neat stacks squared on her office rug. At 1:52 p.m., she notices two projects in bin three: one has a 42 percent chance of missing its permit, the other 64 percent. Same bin, different bet. She opens a spreadsheet and writes the probabilities beside the folders. By the board call, the stacks look messier, but the funding order finally makes sense.",
-      "whatToDo": "Use bins only when they are enough for the choice. When two items in the same bin would lead to different actions, write the probabilities.",
-      "whyItMatters": "Coarse labels are fast, but they can flatten important differences. Finer numbers help only when they change what you do."
-    },
-    {
-      "exampleId": "ch06-ex04-zhen-batch-rate",
-      "title": "Zhen refuses to round away three percentage points",
-      "tags": [
-        "dialogue",
-        "manufacturing",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "manufacturing lab",
-        "audience": "a lab manager comparing test-failure rates",
-        "stakes": "whether a small difference matters at scale",
-        "format": "dialogue",
-        "requiredBeat": "she keeps a small percentage difference because volume makes it costly"
-      },
-      "scenario": "Zhen stands by the centrifuge at 5:23 p.m., latex gloves snapped at her wrist, while two failure rates sit on the lab monitor. \"Seven and ten are basically the same,\" the plant manager says. Zhen points through the glass at the pallets waiting for release. \"At this batch size, three points is twelve thousand units.\" The manager looks back at the screen. Zhen has to decide whether to round for peace or keep the awkward precision.",
-      "whatToDo": "Keep the exact rates and translate the difference into units. Let the scale decide whether the extra precision matters.",
-      "whyItMatters": "A small percentage can be a large pile of product. Precision earns its keep when it changes the cost of being wrong."
-    },
-    {
-      "exampleId": "ch06-ex05-danya-player-card",
-      "title": "Danya writes sixty-three on the player card",
-      "tags": [
-        "reflection",
-        "sports",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "sports analytics",
-        "audience": "an analyst estimating injury risk",
-        "stakes": "whether neat tens erase useful differences",
-        "format": "reflection",
-        "requiredBeat": "she resists rounding because the coach will use the number"
-      },
-      "scenario": "Danya writes 63 on a laminated player card at 10:02 a.m. in the soccer training room, the smell of turf pellets stuck to her shoes. The coach likes numbers ending in zero. They feel honest enough and easier to say. But the winger at 63 percent is not the midfielder at 70, and only one can start on Sunday. Danya caps the marker and leaves the ugly number where it is.",
-      "whatToDo": "Do not round away a difference the coach will act on. Explain the factors behind 63, then compare it with the other player's risk.",
-      "whyItMatters": "Neat numbers can make unlike risks look equal. The less pretty number protects the choice from a false tie."
-    },
-    {
-      "exampleId": "ch06-ex06-perse-audit-sheet",
-      "title": "Perse audits the number that looked too exact",
-      "tags": [
-        "postmortem",
-        "municipal",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "municipal audit",
-        "audience": "an auditor reviewing a false-precision budget forecast",
-        "stakes": "whether precision came from data or decoration",
-        "format": "postmortem",
-        "requiredBeat": "she traces a decimal back to a guess and changes the rule"
-      },
-      "scenario": "Perse sits at the audit table at 8:49 p.m., calculator tape curling beside a cold falafel wrap. The parks budget forecast had said 14.7 percent overrun. It missed badly. She follows the decimal back through the workbook and finds a guessed permit delay dressed up by a formula. The decimal looked careful because the spreadsheet printed it that way. Perse has to decide what precision rule the next forecast must pass.",
-      "whatToDo": "Trace each precise number to its source. If a decimal comes from a guess, round it and label the uncertainty instead of letting the sheet look smarter than the evidence.",
-      "whyItMatters": "False precision borrows trust from arithmetic. Auditing the source keeps numbers honest about what they know and what they are merely guessing."
+      "scenario": "At nine in the morning on a Thursday, Hadiya sets the physiotherapy report beside the coaching staff's training calendar. The blank 'return-to-competition estimate' field is circled in red. The target event is seven weeks away.\n\nThe coaching staff has been operating on an informal assumption of six weeks. Hadiya has a range: five to nine weeks.\n\nShe explains the structure before the room pushes back on the width.\n\nThe lower bound, five weeks, is where the athlete lands if the MRI in four days confirms no tendon involvement and the soft tissue responds to the current protocol within the standard pattern for this injury class. The MRI result will close that uncertainty. It is epistemic: additional imaging data will narrow the lower end.\n\nThe upper bound, nine weeks, reflects individual variation in healing rate that the MRI cannot predict. Athletes with identical presentations on MRI heal at meaningfully different rates, driven by factors such as vascular supply variation, training load history, and individual inflammatory response that imaging does not capture. That variation is aleatory. It will not disappear regardless of what the MRI shows.\n\nBefore the MRI result arrives, the coaching staff operates on two options. Option one: MRI shows no tendon involvement. Planning horizon is five to seven weeks. The athlete's target event is within range. Reserve entry and continue targeted rehabilitation. Option two: MRI shows tendon involvement. Planning horizon shifts to eight to ten weeks. Withdraw from the target event and redirect preparation toward the secondary calendar.\n\nThe MRI result arrives on the fourth day: no tendon involvement. Planning shifts to option one. The athlete competes six weeks after the initial assessment.",
+      "whatToDo": "When giving a recovery timeline estimate, separate the range into the component that additional imaging or testing would resolve and the component that reflects genuine biological variability that no additional test will eliminate. Ask the coaching or management team to plan against two scenarios until the epistemic component resolves.",
+      "whyItMatters": "A single date estimate commits the coaching staff to one scenario before the evidence that could resolve the epistemic uncertainty is available. A range with components tells them which piece of information to wait for and what decision changes when it arrives. The two-scenario plan is not hedging; it is rational preparation for a genuinely uncertain timeline."
     }
   ],
   "quiz": {
-    "passingScorePercent": 80,
+    "passingScorePercent": 70,
     "questions": [
       {
         "questionId": "ch06-q01",
-        "prompt": "A manager at 8:10 a.m. hears a polished forecast for a probability estimate but sees no written odds or date. Which move best fits the skill of using numbers honestly?",
+        "prompt": "A biostatistician presents two confidence intervals for an interim trial dataset: one surrounding the treatment effect estimate that would narrow significantly with more enrollment, and another surrounding patient-to-patient response variation that would remain wide regardless of additional participants. A monitoring board member asks why both intervals are not combined into one measure. What key distinction is the biostatistician preserving by keeping them separate?",
         "choices": [
-          "Write a dated probability and ask what result would count as a miss.",
-          "Trust the confident speaker because clear delivery usually means better judgment.",
-          "Wait for perfect proof and refuse to act until uncertainty disappears."
-        ],
-        "correctIndex": 0,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "apply",
-        "depthLevel": "simple"
-      },
-      {
-        "questionId": "ch06-q02",
-        "prompt": "An analyst at 2:35 p.m. finds one vivid story pushing the team toward a probability estimate. Which response keeps the estimate tied to evidence?",
-        "choices": [
-          "Collect more fresh stories until one of them feels complete enough to use.",
-          "Start with the base rate, then list what this case adds or subtracts.",
-          "Ignore the story completely because single cases never teach anything."
-        ],
-        "correctIndex": 1,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "analyze",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch06-q03",
-        "prompt": "A parent at the kitchen table has to choose after hearing two confident claims about a probability estimate. Which question should come first?",
-        "choices": [
-          "Pick the claim that makes the next step feel least awkward.",
-          "Ask which claim is more inspiring and use that as the guide.",
-          "Ask what record, sample, or past rate each claim can point to."
+          "Epistemic uncertainty is inherently random and fundamentally unpredictable; aleatory uncertainty is systematic in nature and can be corrected with better analytical methods.",
+          "Epistemic uncertainty arises specifically from measurement error in data collection; aleatory uncertainty arises from flawed assumptions embedded in the model being used.",
+          "Epistemic uncertainty can be reduced with more or better evidence; aleatory uncertainty reflects genuine variability in the world that additional information cannot eliminate."
         ],
         "correctIndex": 2,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "evaluate",
-        "depthLevel": "deep"
-      },
-      {
-        "questionId": "ch06-q04",
-        "prompt": "A coach before practice is tempted to treat last week's surprise as proof that a probability estimate has changed for good. Which move improves the forecast?",
-        "choices": [
-          "Compare the surprise with a longer record before moving the odds.",
-          "Treat the surprise as a new trend and rewrite the whole forecast around it.",
-          "Hold the old forecast unchanged so the record looks steady."
-        ],
-        "correctIndex": 0,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "create",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch06-q05",
-        "prompt": "A founder on a Monday investor call wants to sound certain about a probability estimate, but the record is thin. Which line is strongest?",
-        "choices": [
-          "Use firm language so the room feels less anxious about the unknowns.",
-          "Give a range, name the unknowns, and promise a date for checking it.",
-          "Hide the range inside a slogan that sounds more decisive."
-        ],
-        "correctIndex": 1,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "Reducibility is the key. Epistemic uncertainty is a function of available information: better data or more observations would narrow it. Aleatory uncertainty reflects actual variability in outcomes, such as patient-to-patient healing differences or driver behavior variation, that cannot be predicted even with perfect population-level information. A decision-maker who confuses the two may invest in more data to resolve uncertainty that more data cannot touch.",
         "bloomsLevel": "understand",
         "depthLevel": "simple"
       },
       {
-        "questionId": "ch06-q06",
-        "prompt": "An emergency planner at 6:20 a.m. gets a new signal about a probability estimate. Which update is sized best?",
+        "questionId": "ch06-q02",
+        "prompt": "A biostatistician presents interim trial data with two separate confidence intervals: one for the treatment effect (epistemic) and one for patient-to-patient response variation (aleatory). The monitoring board originally planned to decide on stopping based on a single combined uncertainty measure. How does separating the two components change the decision framing?",
         "choices": [
-          "Jump to the new extreme so nobody can accuse the plan of being slow.",
-          "Move nothing because any update before the final outcome is premature.",
-          "Move the number a little unless the new signal is strong and direct."
+          "It makes the statistical analysis more complex and harder for non-statisticians on the board to interpret.",
+          "It allows the board to ask whether additional enrollment would reduce the relevant uncertainty rather than treating all uncertainty as reducible with more data.",
+          "It converts the stop/continue decision into a purely quantitative calculation that removes judgment from the process."
+        ],
+        "correctIndex": 1,
+        "explanation": "When the two uncertainty types are combined, the board cannot ask which type is driving the range or whether more enrollment would help. Separating them reveals that the treatment effect estimate will narrow with more data (epistemic) while patient response variation will not (aleatory). If the aleatory component dominates the total uncertainty, the argument for continuing to full enrollment weakens considerably: more participants will not produce the precision gain the board was expecting.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q03",
+        "prompt": "Why did Leon Panetta present the bin Laden probability spread (40% to 95%) to the President rather than smoothing the analysts' estimates into a single number?",
+        "choices": [
+          "Because the spread itself carried decision-relevant information about the evidential quality that a single point estimate would have hidden.",
+          "Because CIA protocol requires presenting individual analyst opinions separately to prevent groupthink.",
+          "Because the analysts disagreed so widely that no meaningful average could be calculated from their estimates."
+        ],
+        "correctIndex": 0,
+        "explanation": "The 55-percentage-point spread showed that equally informed analysts reading identical evidence had reached very different conclusions. That disagreement was itself informative: it revealed that the evidence was ambiguous in a specific way at a specific point. A smoothed midpoint of roughly 70% would have implied that analysts were clustered near that estimate rather than spread across the full range. The spread told the President something a single number could not: this is a case where the evidence genuinely does not resolve to a clean answer.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q04",
+        "prompt": "A meteorologist expresses diversion probability as 55% to 70% for instrument approaches and explains that 90 minutes of additional radar data would resolve the upper portion of the range. The dispatcher asks for a yes or no instead. What is the most useful response?",
+        "choices": [
+          "Round the range to the midpoint and present approximately 62% as the best single estimate, acknowledging that the value may shift once the 90-minute radar update arrives.",
+          "Give the range with the two components labeled, offer the 90-minute update window as a decision-support option, and let the dispatcher make a partial decision using the current lower bound for the highest-risk flights.",
+          "Defer the diversion recommendation entirely until the 90-minute radar update arrives and resolves the epistemic uncertainty in the icing probability estimate."
+        ],
+        "correctIndex": 1,
+        "explanation": "The range contains real information the dispatcher needs. Rounding to a midpoint hides that the lower bound and upper bound have different origins: one could improve in 90 minutes and one could not. Deferring the entire decision forfeits the partial information that exists right now, which the dispatcher can use for the most fuel-constrained flights. The correct move is to give the range structure, identify what 90 minutes could resolve, and let the dispatcher decide how much of the fleet to move now versus later.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q05",
+        "prompt": "Barbara Mellers found that top forecasters in the Good Judgment Project used finer probability distinctions (63% rather than 65%) than less accurate forecasters. What does this pattern indicate about the relationship between granularity and accuracy?",
+        "choices": [
+          "That top forecasters have systematically stronger mathematical calculation skills that allow them to produce more precise numerical outputs than their peers.",
+          "That fine-grained probability estimates appear more analytically credible to evaluators and tend to score higher regardless of whether they are actually more accurate.",
+          "That the finer distinctions tracked real differences in evidentiary weight that coarser numbers would have blurred, reflecting genuine calibration rather than performed precision."
         ],
         "correctIndex": 2,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "The key finding was not that top forecasters used finer numbers, but that their finer numbers were more accurate. The move from 65% to 63% was not cosmetic; it reflected an actual shift in the forecaster's reading of the evidence. Less accurate forecasters rounded to convenient numbers, collapsing small evidential differences into the same point estimate. The granularity of the top forecasters was load-bearing, not decorative.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q06",
+        "prompt": "A bond analyst presents a 3-year default probability as 8% to 17%, explaining that the 8% base comes from sector default history and the 17% upper bound reflects refinancing market conditions at maturity that cannot be predicted three years in advance. The committee asks which component they are most exposed to. What is the most accurate response?",
+        "choices": [
+          "That their exposure depends on position size relative to the aleatory component, which more research will not reduce, and that sizing should reflect how much of the upper bound is irreducible.",
+          "That both the epistemic and aleatory components are equally important and the committee should simply use the midpoint of 12.5% for all position-sizing decisions.",
+          "That gathering additional issuer-specific financial data will close the full range to below 10%, making the position straightforwardly viable for the committee."
+        ],
+        "correctIndex": 0,
+        "explanation": "The aleatory component, refinancing market conditions at year three, is the part of the range that additional research cannot reduce. If the committee takes a large position, their exposure to the aleatory tail is real regardless of how much more financial analysis they do on the issuer. Pointing them toward more research to close a gap that research cannot close would be a disservice. The correct answer identifies which component survives further analysis: the irreducible one.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "ch06-q07",
-        "prompt": "A student reviewing a missed prediction about a probability estimate wants to learn without protecting ego. Which action helps most?",
+        "prompt": "Tim Minto updated his probability estimates in increments of 2 to 3 percentage points at a time rather than holding estimates steady and then revising sharply. Why does this pattern produce better accuracy over the full life of a question?",
         "choices": [
-          "Save the old forecast, mark the missed assumption, and write one rule for next time.",
-          "Rewrite the old prediction in softer words before saving it.",
-          "Blame the outcome on luck and skip the written review."
+          "Because small incremental updates significantly reduce the cognitive burden on the forecaster and allow a larger number of open questions to be tracked at the same time.",
+          "Because small proportionate updates keep the estimate close to the true probability throughout the question's life, while large delayed revisions leave the estimate systematically wrong during the period between anchor and correction.",
+          "Because 2 to 3 percentage point increments are statistically indistinguishable from zero, meaning the forecaster appears stable and consistent without actually committing to a revised position."
         ],
-        "correctIndex": 0,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "correctIndex": 1,
+        "explanation": "A forecaster who anchors and then corrects is systematically miscalibrated during the long period between signals. If a question is live for 90 days and the estimate is wrong for 75 of them before a sharp revision brings it to accuracy, the track record across the full period is poor even if the final estimate is right. Minto's small proportionate updates kept his estimates calibrated at each step rather than only at the moment of a major signal, which is why the pattern outperformed over the full question lifecycle.",
         "bloomsLevel": "analyze",
         "depthLevel": "deep"
       },
       {
         "questionId": "ch06-q08",
-        "prompt": "A team is split over a probability estimate, and the loudest person has the cleanest story. Which process makes the group smarter?",
+        "prompt": "An epidemiologist presents a hospitalization estimate as 1,400 to 2,200, explaining that the lower bound is driven by current low testing rates (resolvable with five more days of data) and the upper bound reflects individual severity variation (which more surveillance cannot predict). The health director asks for a single planning number. What is the most useful response?",
         "choices": [
-          "Let the senior person speak last and call that alignment.",
-          "Have each person write private odds first, then compare reasons aloud.",
-          "Vote immediately so disagreement does not slow the meeting."
+          "Pre-position for 2,200 because the upper bound reflects irreducible severity variation, and schedule a second estimate in five days when the epistemic component can narrow the lower bound.",
+          "Use the midpoint of 1,800 as a practical compromise figure that neither significantly over-prepares nor under-prepares the health system for the expected range.",
+          "Wait the full five days for improved testing data to arrive before making any pre-positioning recommendation, so the estimate is as accurate as possible."
         ],
-        "correctIndex": 1,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "evaluate",
+        "correctIndex": 0,
+        "explanation": "The upper bound is driven by aleatory severity variation that will not narrow with better testing data. Pre-positioning for the upper bound protects against the risk that does not resolve. The lower bound is epistemic and will improve in five days, which is worth knowing for a second estimate update. Using the midpoint means accepting under-preparation for the upper bound that additional data cannot resolve. Waiting five days forfeits the capacity to pre-position before the improved estimate arrives.",
+        "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "ch06-q09",
-        "prompt": "Someone making a three-month plan for a probability estimate wants to avoid confident blur. Which plan creates the best feedback?",
+        "prompt": "A committee consistently rewards analysts who give single point estimates and treats probability ranges as signs of analytical weakness. Over time, what effect does this institutional norm have on forecast quality?",
         "choices": [
-          "Keep the plan broad so later outcomes cannot embarrass anyone.",
-          "Make one large forecast and check it only after the whole period ends.",
-          "Split the plan into smaller forecasts with dates for checking each one."
+          "It improves forecast quality over time by forcing analysts to commit to a specific defensible position rather than relying on vague hedging language.",
+          "It has no meaningful effect on accuracy, because the underlying true probability is identical whether it is expressed as a range or collapsed into a single point estimate.",
+          "It degrades forecast quality because analysts suppress the range rather than eliminating the underlying uncertainty, making the implicit uncertainty invisible to decision-makers who need to see it."
         ],
         "correctIndex": 2,
-        "explanation": "Numbers help when they make uncertainty clearer and updates smaller. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "create",
+        "explanation": "Rewarding point estimates and penalizing ranges does not reduce the uncertainty; it removes it from view. Analysts learn to present a number without the accompanying structure that would show where it came from and how much it could move. The decision-makers who receive those point estimates make choices based on implied certainty that does not exist. The range was always there; the institutional norm made it invisible. Over time, this produces a culture of performed confidence where the aleatory tail has no way to appear in the briefings where it matters most.",
+        "bloomsLevel": "evaluate",
         "depthLevel": "deep"
       }
     ]
   },
   "reviewCards": [
     {
-      "cardId": "ch06-rc01",
-      "front": "You hear a confident claim about a probability estimate. What do you ask before trusting it?",
-      "back": "Ask for the dated probability, the base rate, and the outcome that would count as a miss. Forecasts improve when they can be checked, not when they sound smooth.",
+      "cardId": "ch06-card01",
+      "front": "What is the difference between epistemic and aleatory uncertainty, and why does it matter for decision-making?",
+      "back": "Epistemic uncertainty can be reduced with better information: more data, better measurement, additional observations. Aleatory uncertainty reflects actual variability in the world that additional information cannot eliminate. The distinction matters because the right response to each is different: gather more data for epistemic uncertainty, and make a decision using the current range for aleatory uncertainty.",
       "difficulty": "easy"
     },
     {
-      "cardId": "ch06-rc02",
-      "front": "A fresh story makes your estimate feel wrong. How should you update?",
-      "back": "Move the odds by the strength of the new evidence. A vivid story can matter, but it should not erase the older record unless it directly changes the facts.",
+      "cardId": "ch06-card02",
+      "front": "Why did Leon Panetta present the bin Laden probability spread (40% to 95%) rather than a smoothed single estimate?",
+      "back": "The spread was itself decision-relevant information. It showed that equally informed analysts reading identical evidence had reached very different conclusions, a signal about the evidential quality rather than analytical failure. Smoothing the spread into a point estimate would have implied certainty the analysis did not support and hidden the actual state of knowledge from the President.",
       "difficulty": "medium"
     },
     {
-      "cardId": "ch06-rc03",
-      "front": "A team wants one bold answer. What smaller move protects learning?",
-      "back": "Break the issue into dated subquestions. Smaller forecasts show which assumption failed, so the next estimate can improve instead of becoming a blame session.",
+      "cardId": "ch06-card03",
+      "front": "What did Barbara Mellers find about granularity among the best Good Judgment Project forecasters?",
+      "back": "The best forecasters used finer probability distinctions, such as 63% rather than 65%, and their finer numbers were more accurate. The granularity tracked real changes in evidentiary weight rather than performing rigor. Less accurate forecasters rounded to convenient numbers, collapsing small evidential differences into the same estimate.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch06-card04",
+      "front": "What is the problem with institutional pressure to give a single number instead of a probability range?",
+      "back": "The pressure does not eliminate the uncertainty; it removes the range from view. Analysts learn to suppress the range while the uncertainty remains implicit and invisible to decision-makers. Over time, this produces systematically miscalibrated estimates and decision-makers who cannot see the aleatory tail that more research will not resolve.",
       "difficulty": "medium"
     },
     {
-      "cardId": "ch06-rc04",
-      "front": "A miss is embarrassing. What should the review preserve?",
-      "back": "Keep the original wording and number. Then mark which assumption failed. The record has to sting a little or it will not teach.",
+      "cardId": "ch06-card05",
+      "front": "What distinguished Tim Minto's forecasting pattern from anchoring-and-revision forecasters?",
+      "back": "Minto made many small updates of 2 to 3 percentage points at a time, each proportionate to what the new evidence actually warranted. This kept his estimates calibrated throughout the full life of a question rather than only at the moment of a major signal. Forecasters who anchored and then corrected sharply were systematically wrong during the long period between signals.",
       "difficulty": "hard"
     }
   ],
   "implementationPlan": {
-    "coreSkill": "The core skill is using numbers as honest handles for doubt, not as decoration for certainty. Practice means writing the claim before the outcome arrives, then updating it in small, visible steps. The point is not to look cautious. The point is to give reality a way to train you.",
+    "coreSkill": "When stating any probability, identify whether the uncertainty is epistemic (reducible with more evidence) or aleatory (irreducible regardless of more evidence). Express the estimate as a range that keeps both components visible rather than collapsing them into a single point that hides where the uncertainty comes from.",
     "ifThenPlans": [
       {
-        "context": "work",
-        "plan": "If a work meeting turns on a probability estimate, then write one dated probability on the agenda and name the result that would prove it wrong."
+        "context": "Before presenting a probability or likelihood estimate to a group or committee",
+        "plan": "If your estimate is currently a single number, then identify what additional data would improve it (epistemic component) and what variability would remain even with that data (aleatory component). Present the range with both components labeled rather than the single number alone."
       },
       {
-        "context": "health",
-        "plan": "If you are choosing a health step under uncertainty, then write the base rate you know, the personal fact that changes it, and the next check-in date."
+        "context": "When a decision-maker asks for a single number rather than a range",
+        "plan": "If you are being pressed to collapse a range into a point, then give the center of the range as the action number while keeping the component structure visible. State what would have to be true for the estimate to land at the lower versus the upper bound."
       },
       {
-        "context": "personal",
-        "plan": "If a personal plan depends on a guess, then split the guess into one small forecast you can check within seven days."
+        "context": "When new evidence arrives and you need to update a probability estimate",
+        "plan": "If the new evidence is relevant, then move the estimate by the amount the evidence warrants rather than holding the position until certainty arrives or overcorrecting to the new signal. Small proportionate updates keep the estimate calibrated throughout the question's life."
       },
       {
-        "context": "relationships",
-        "plan": "If someone you care about sounds certain about the future, then ask what evidence would make both of you lower the odds by ten points."
+        "context": "When a group is deciding whether to gather more information before acting",
+        "plan": "If the uncertainty driving the range is primarily epistemic, then gathering more information is likely to narrow it and the delay may be worthwhile. If the uncertainty is primarily aleatory, then more information will not help and acting on the current range is the rational choice."
       }
     ],
-    "twentyFourHourChallenge": "Before tomorrow night, write one live forecast about a probability estimate with a date, a probability, and two reasons for the number. Put a reminder on the date to check it without rewriting the original line.",
-    "weeklyPractice": "Once this week, review one old forecast before you know the outcome. Move the number only if new evidence deserves it, and write the reason in one sentence."
+    "twentyFourHourChallenge": "Find one probability estimate you have made or heard in the past week. Ask: which part of the uncertainty would narrow with more information, and which part would remain regardless? Write the estimate as a range with the two components labeled. Notice whether the range changes what action you would recommend.",
+    "weeklyPractice": "Once a week, when you make a prediction or estimate, write down whether the uncertainty is primarily epistemic, primarily aleatory, or both. When the outcome is known, check whether the component you identified as aleatory actually stayed wide while the epistemic component narrowed as expected. Over time, this calibrates your ability to distinguish the two types in real situations."
   },
   "memorableLines": [
     {
-      "text": "A good number does not kill doubt. It gives doubt a shape.",
+      "text": "A range is not a hedge. It is a measurement: the distance between what the evidence has settled and what it has not yet reached.",
       "location": "breakdown.fastRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It reframes the range as an epistemic measurement rather than a sign of weakness. The distinction between settled evidence and unsettled evidence is the core move of the chapter."
     },
     {
-      "text": "Granularity is useful when the extra digit changes a real choice.",
+      "text": "Panetta did not smooth the analysts' estimates into one number before taking them to the President. The spread from 40% to 95% was itself the real state of knowledge.",
       "location": "breakdown.deepRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It names the concrete case and the specific move in one sentence, showing why the spread was the honest answer rather than a failure of synthesis."
     },
     {
-      "text": "False precision is a costume; honest precision is a tool.",
+      "text": "The granularity was real. When Mellers's best forecasters wrote 63% instead of 65%, they were tracking something. The finer number reflected a finer reading of the evidence.",
       "location": "breakdown.fullRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It distinguishes calibrated granularity from spurious precision and makes the point concrete with a specific number rather than an abstract principle."
     }
   ]
 }

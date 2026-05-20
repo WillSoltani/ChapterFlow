@@ -1,0 +1,213 @@
+{
+  "chapterId": "talk-like-ted-ch01",
+  "number": 1,
+  "title": "Unleash the Master Within",
+  "coreMove": "Find the living stake under the visible topic before shaping any presentation choice.",
+  "sourcePressure": "The source uses Aimee Mullins, Cameron Russell, Matthieu Ricard, Larry Smith, Melissa Cardon, and Howard Friedman to argue that speaking power starts beneath role or subject, where personal conviction becomes audience-facing energy.",
+  "chapterSpecificMisunderstanding": "The weak version says to be passionate, inspirational, or louder. The useful version asks what the topic means deeply enough that the audience can feel a real stake.",
+  "sourceAlignmentTerms": [
+    "visible topic",
+    "deeper stake",
+    "passion",
+    "motivation",
+    "identity",
+    "contagious energy",
+    "audience connection",
+    "what makes your heart sing"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Aimee Mullins",
+      "detail": "the source says her speaking power comes from a larger commitment to human potential, not from prosthetics as a topic by itself",
+      "useIn": "both",
+      "phrasingHint": "Aimee Mullins did not let prosthetics stay a subject; she made them a doorway into possibility and identity."
+    },
+    {
+      "kind": "person",
+      "name": "Cameron Russell",
+      "detail": "the source says her visible profession gives credibility, but the talk lands because she cares about beauty standards and girls' self-esteem",
+      "useIn": "fullRead",
+      "phrasingHint": "Cameron Russell's platform got attention, but her concern about beauty myths gave the attention somewhere serious to go."
+    },
+    {
+      "kind": "study",
+      "name": "Melissa Cardon's passion research",
+      "detail": "the source cites Cardon's work as support for perceived passion and its effect on audience response",
+      "useIn": "deepRead",
+      "phrasingHint": "Passion is not a decorative mood; Cardon's research helps explain why a room reads genuine energy as information."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "speaker discovers passion while staring at a blank slide",
+      "inspirational stage-light opening",
+      "generic follow-your-dreams opener"
+    ],
+    "counterintuition": [
+      "passion matters more than technique",
+      "confidence is the real secret",
+      "audiences only care if you care"
+    ],
+    "tryThisNow": [
+      "write down what you are passionate about",
+      "take one minute to find your why",
+      "practice saying the topic with enthusiasm"
+    ],
+    "examples": [
+      "startup founder origin story",
+      "teacher discovers love of teaching",
+      "generic charity speech",
+      "conference room pitch deck"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "cleantech investor demo",
+      "audience": "a founder whose prototype numbers are solid but whose opening sounds like a market-size memo",
+      "stakes": "whether investors hear another battery dashboard or the reason outages became personal to her",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "she moves the first slide after the outage map and opens with the nursing-home hallway where the backup power failed before showing the prototype metrics",
+      "firstImage": "a projector washing a blue outage map across a conference room wall",
+      "mustInclude": [
+        "outage map",
+        "battery prototype",
+        "nursing-home hallway"
+      ],
+      "mustAvoid": [
+        "generic founder origin",
+        "market-size-first pitch"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "museum accessibility exhibit",
+      "audience": "a curator preparing donor remarks about tactile exhibit design",
+      "stakes": "whether donors see ramps and labels as compliance or as access to wonder",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he places a bronze replica in a donor's hand and rewrites the talk around the visitor who could finally feel the sculpture's face",
+      "firstImage": "cool bronze edges resting in a white cotton glove",
+      "mustInclude": [
+        "tactile replica",
+        "donor preview",
+        "audio-label remote"
+      ],
+      "mustAvoid": [
+        "museum trivia",
+        "accessibility as compliance"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "coastal town climate hearing",
+      "audience": "a town engineer presenting seawall options to residents tired of projections",
+      "stakes": "whether the room hears cost estimates or the memory of a street that now floods at noon",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "she crosses out the technical opener and begins with the tide mark on her father's shop door, then uses the cost table as the answer to that lived stake",
+      "firstImage": "a pale salt line across a green shop door",
+      "mustInclude": [
+        "tide mark",
+        "seawall cost table",
+        "public microphone"
+      ],
+      "mustAvoid": [
+        "generic climate alarm",
+        "data-free testimony"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "medical-device training",
+      "audience": "a clinical trainer launching a new infusion pump protocol",
+      "stakes": "whether nurses hear another device rollout or a way to prevent one frightening medication delay",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "after a nurse asks why this pump matters, he answers with the night a dosage alarm gave a team ninety extra seconds, then teaches the buttons",
+      "firstImage": "a plastic pump screen blinking amber beside a coiled IV line",
+      "mustInclude": [
+        "infusion pump",
+        "dosage alarm",
+        "training checklist"
+      ],
+      "mustAvoid": [
+        "device specs as the whole point",
+        "medical heroics"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "student documentary festival",
+      "audience": "a film student introducing a short documentary about cafeteria workers",
+      "stakes": "whether classmates see a class project or a reason to notice invisible labor on campus",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she cuts the resume-style introduction and starts with the hand-written break schedule that made her realize whose day her film was really about",
+      "firstImage": "a grease-spotted break schedule taped beside a steel serving hatch",
+      "mustInclude": [
+        "break schedule",
+        "festival podium",
+        "lunch trays"
+      ],
+      "mustAvoid": [
+        "student inspiration speech",
+        "film technique lecture"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "rural broadband grant pitch",
+      "audience": "a county official asking a state panel for broadband funds",
+      "stakes": "whether the panel hears a connectivity project or the isolation of students doing homework in parked cars",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he moves the speed-test chart to slide three and opens with two headlights outside the library after closing, then connects that image to the grant ask",
+      "firstImage": "headlights glowing in the library parking lot after the doors are locked",
+      "mustInclude": [
+        "speed-test chart",
+        "library parking lot",
+        "grant form"
+      ],
+      "mustAvoid": [
+        "generic rural hardship",
+        "technology optimism"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate visible topic from deeper stake",
+      "choose an opening that reveals motive without self-display",
+      "distinguish genuine passion from volume or theatrics",
+      "evaluate whether personal stake has been translated into audience value"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write your next talk topic in five words, then write the human stake beneath it in one sentence that contains no job title, product name, or credential.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

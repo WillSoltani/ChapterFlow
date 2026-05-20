@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch09",
+  "number": 9,
+  "title": "Big Is Bad",
+  "coreMove": "Question the reflex that shrinks goals for comfort, then test whether a larger aim is legitimate and actionable.",
+  "sourcePressure": "This lie chapter challenges suspicion toward large aims while keeping scale tied to legitimacy rather than fantasy or dream-big rhetoric.",
+  "chapterSpecificMisunderstanding": "Pumping the reader up to dream big without standards or limits.",
+  "sourceAlignmentTerms": [
+    "big is bad",
+    "scale",
+    "comfort",
+    "large aim",
+    "fear",
+    "legitimate ambition"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "Big Is Bad as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "mobile dental clinic expansion",
+      "audience": "clinic founder",
+      "stakes": "three rural counties have no pediatric appointments",
+      "format": "reflection",
+      "requiredBeat": "she stops calling the second van unrealistic and checks whether staffing, route density, and school demand make the larger goal responsible",
+      "firstImage": "a county map with three school nurse pins and one blank van route",
+      "mustInclude": [
+        "county map",
+        "school nurse pins",
+        "van quote"
+      ],
+      "mustAvoid": [
+        "generic startup ambition"
+      ]
+    },
+    {
+      "domain": "regional wheelchair basketball league",
+      "audience": "league organizer",
+      "stakes": "players age out because only one city has games",
+      "format": "decision_point",
+      "requiredBeat": "he refuses the safe single-tournament plan and drafts a three-city pilot with equipment sharing constraints visible",
+      "firstImage": "three gym reservation forms lined beside a stack of wheel rims",
+      "mustInclude": [
+        "gym forms",
+        "wheel rims",
+        "travel budget"
+      ],
+      "mustAvoid": [
+        "generic sports inspiration"
+      ]
+    },
+    {
+      "domain": "sea wall redesign after repeated flooding",
+      "audience": "civil engineer",
+      "stakes": "the town wants a patch that will fail in five years",
+      "format": "dialogue",
+      "requiredBeat": "she asks the council to compare the larger redesign to repeated emergency repairs instead of labeling it too big",
+      "firstImage": "a flood line drawn across a brick wall in the council chamber lobby",
+      "mustInclude": [
+        "flood line",
+        "repair invoices",
+        "design sketch"
+      ],
+      "mustAvoid": [
+        "generic infrastructure debate"
+      ]
+    },
+    {
+      "domain": "braille textbook production cooperative",
+      "audience": "nonprofit director",
+      "stakes": "students wait months for advanced math materials",
+      "format": "vignette",
+      "requiredBeat": "she tests whether a statewide production hub is bold enough to solve the delay rather than merely improving one school's queue",
+      "firstImage": "raised braille pages stacked beside a half-empty shipping shelf",
+      "mustInclude": [
+        "braille pages",
+        "shipping shelf",
+        "statewide request list"
+      ],
+      "mustAvoid": [
+        "generic charity scale"
+      ]
+    },
+    {
+      "domain": "independent clinic adopting same-day addiction treatment",
+      "audience": "medical director",
+      "stakes": "people are lost between referral and appointment",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts same-day intake is too big, then maps the missed handoffs and sees the larger move is the only one that removes them",
+      "firstImage": "a referral sheet with three missed-call marks beside an empty exam room",
+      "mustInclude": [
+        "referral sheet",
+        "missed-call marks",
+        "exam room"
+      ],
+      "mustAvoid": [
+        "generic healthcare ambition"
+      ]
+    },
+    {
+      "domain": "regional maker fair moving from hobby booths to apprenticeship pipeline",
+      "audience": "organizer",
+      "stakes": "local manufacturers cannot fill trainee roles",
+      "format": "postmortem",
+      "requiredBeat": "the organizer sees booth attendance was not the big enough measure and builds a pilot matching students to shop mentors",
+      "firstImage": "a soldering station beside a manufacturer's unsigned apprenticeship form",
+      "mustInclude": [
+        "soldering station",
+        "apprenticeship form",
+        "mentor list"
+      ],
+      "mustAvoid": [
+        "generic dream bigger speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot comfort-based shrinking",
+      "separate big from vague",
+      "make scale answerable to evidence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one goal you have quietly downsized and write what evidence would make the larger version responsible rather than reckless.",
+  "readingTimeMinutes": 12
+}

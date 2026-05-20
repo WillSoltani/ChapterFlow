@@ -1,0 +1,182 @@
+{
+  "chapterId": "ultralearning-ch10",
+  "number": 10,
+  "title": "Principle 7: Retention: Don't fill a leaky bucket",
+  "coreMove": "Protect important gains with planned returns before fluent work quietly leaks away.",
+  "sourcePressure": "Retention addresses fast forgetting and the need to revisit important material after one successful encounter. The source sidecar contains no named people, studies, institutions, places, dates, or artifacts for this chapter, so named source anchors must be omitted rather than invented.",
+  "chapterSpecificMisunderstanding": "Trying to preserve everything forever or assuming one good session locks a skill in place.",
+  "sourceAlignmentTerms": [
+    "retention",
+    "leaky bucket",
+    "forgetting",
+    "revisit",
+    "durable hold",
+    "slipping gains",
+    "maintenance"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Ch10: learner stares at browser tabs and realizes motivation is not enough",
+      "Ch10: broad modern world pressure opener"
+    ],
+    "counterintuition": [
+      "The obvious move is not the real move",
+      "Most people think more effort is enough",
+      "This is not about working harder"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three goals",
+      "Spend one minute thinking about your learning journey"
+    ],
+    "examples": [
+      "desk plus laptop plus vague course collection",
+      "generic student in a classroom",
+      "manager in a recurring meeting with no concrete artifact",
+      "kitchen-table life overhaul"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Olivia, a clinic receptionist revisiting a referral workflow before the monthly rush",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the next month produces visible evidence or another private feeling of effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia rehearses the referral workflow before the monthly clinic rush and notices the step that has already gone soft.",
+      "firstImage": "a referral stamp beside a half-filled clinic form",
+      "mustInclude": [
+        "printed standard",
+        "deadline box",
+        "proof artifact"
+      ],
+      "mustAvoid": [
+        "generic motivation speech",
+        "anti-school rant"
+      ]
+    },
+    {
+      "domain": "Jack, a physics student rebuilding yesterday's method at the board",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether a deadline exposes the weakness early enough to adjust",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Jack rebuilds yesterday's physics method at the board without notes and writes the missing step into a revisit slot.",
+      "firstImage": "a dusty eraser ledge under an unfinished force diagram",
+      "mustInclude": [
+        "calendar conflict",
+        "single constraint",
+        "revised first session"
+      ],
+      "mustAvoid": [
+        "heroic schedule fantasy",
+        "all-night grind"
+      ]
+    },
+    {
+      "domain": "Olivier, a language learner choosing which phrases deserve scheduled returns",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivier chooses ten field phrases that must survive next month and leaves the decorative vocabulary alone.",
+      "firstImage": "a pocket phrase card clipped to a train ticket",
+      "mustInclude": [
+        "closed source",
+        "blank page",
+        "visible answer"
+      ],
+      "mustAvoid": [
+        "passive rereading",
+        "smooth familiarity"
+      ]
+    },
+    {
+      "domain": "Tomasz, a pianist hearing fluency leak from a passage she thought was secure",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the project survives contact with a real schedule and real standards",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Tomasz hears the piano passage leak at bar seventeen and schedules a return before adding new repertoire.",
+      "firstImage": "a penciled bar number circled above a piano keyboard",
+      "mustInclude": [
+        "review note",
+        "circled weak step",
+        "one narrow prompt"
+      ],
+      "mustAvoid": [
+        "broad self-improvement chat",
+        "vague weakness label"
+      ]
+    },
+    {
+      "domain": "Min, a firefighter refreshing a rarely used equipment sequence",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether comfort keeps protecting the exact skill gap that matters",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Min refreshes the equipment sequence that rarely appears but cannot fail when the fire call comes.",
+      "firstImage": "a breathing-apparatus strap laid beside a station checklist",
+      "mustInclude": [
+        "before-and-after attempt",
+        "small test condition",
+        "written prediction"
+      ],
+      "mustAvoid": [
+        "novelty for novelty's sake",
+        "unsupported science claim"
+      ]
+    },
+    {
+      "domain": "Frida, a procurement analyst repairing a plan that treated one clean run as permanent",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the next attempt changes the skill instead of decorating the plan",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Frida changes a procurement plan after one clean run fades, adding a spaced return before the next vendor cycle.",
+      "firstImage": "a vendor-comparison sheet with a future date stamped on it",
+      "mustInclude": [
+        "old plan",
+        "new evidence",
+        "one crossed-out escape"
+      ],
+      "mustAvoid": [
+        "desk-laptop-browser-tabs shell",
+        "fake named study"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose what deserves maintenance",
+      "schedule returns before important gains leak",
+      "avoid reviewing everything equally"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "List three gains you cannot afford to lose and schedule the next return for only the most important one.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

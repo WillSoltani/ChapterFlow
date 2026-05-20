@@ -1,0 +1,199 @@
+{
+  "chapterId": "the-outsiders-ch04",
+  "number": 4,
+  "title": "Value Creation in a Fast-Moving Stream",
+  "coreMove": "Judge complexity by retained value after financing, tax, and industry structure rather than by whether the plan looks clean.",
+  "sourcePressure": "John Malone and TCI show value creation in cable through structural intelligence, leverage, acquisition-shaped growth, and tax-aware design in a messy fast-changing industry.",
+  "chapterSpecificMisunderstanding": "Do not make complexity sound clever by default; every case must expose the economics underneath financing, tax, timing, or structure.",
+  "sourceAlignmentTerms": [
+    "John Malone",
+    "TCI",
+    "cable economics",
+    "leverage",
+    "tax-aware value creation",
+    "acquisition",
+    "retained value"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "John Malone",
+      "detail": "The source sidecar pairs Chapter 4 with John Malone and TCI, emphasizing cable economics, leverage, and tax-aware value creation.",
+      "useIn": "both",
+      "phrasingHint": "John Malone makes complexity pass a plain test: does the structure leave owners with more real value?"
+    },
+    {
+      "kind": "place",
+      "name": "Tele-Communications, Inc.",
+      "detail": "The source sidecar describes TCI as a cable company that expanded through acquisition, carried substantial debt, and operated in a rapidly evolving industry.",
+      "useIn": "fullRead",
+      "phrasingHint": "TCI is the fast-moving stream: acquisitions, debt, and cable economics all moving at once."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Complexity can be smart",
+      "The messy plan may win",
+      "Simple is not always better"
+    ],
+    "counterintuition": [
+      "Debt proves sophistication",
+      "Tax structure is a trick",
+      "Hard to explain means high value"
+    ],
+    "tryThisNow": [
+      "Find a more complex option",
+      "Check the numbers",
+      "Ask what value remains"
+    ],
+    "examples": [
+      "mortgage refinance from legacy draft",
+      "debate prep structure",
+      "family budget complexity",
+      "flashy structure hiding weak economics"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "wind-farm maintenance consortium choosing between simple vendor contracts and a pooled parts structure",
+      "audience": "a CFO facing turbine downtime and tax-credit timing",
+      "stakes": "a simple contract leaves credits and uptime value stranded across three owners",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel maps parts ownership, downtime penalties, and tax-credit timing on one sheet, then chooses the pooled structure only after each owner can trace the retained value.",
+      "firstImage": "a turbine blade inspection photo clipped to a parts ledger",
+      "mustInclude": [
+        "tax-credit calendar",
+        "parts ledger",
+        "downtime penalty"
+      ],
+      "mustAvoid": [
+        "renewable-energy virtue story"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "minor-league stadium concessions negotiating revenue share across vendors",
+      "audience": "a general manager tempted by the clean flat-fee offer",
+      "stakes": "missing the upside from weekend attendance spikes would underfund field repairs",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nicolas asks the board to predict cash after rainouts and sellouts under both structures, then reveals the revenue-share table that keeps more value in the club without hiding risk.",
+      "firstImage": "a nacho tray receipt stuck to a rainout attendance report",
+      "mustInclude": [
+        "flat-fee offer",
+        "sellout scenario",
+        "field repair invoice"
+      ],
+      "mustAvoid": [
+        "sports comeback plot"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "specialty chemicals distributor weighing inventory financing against supplier discounts",
+      "audience": "a controller who dislikes the extra financing layer",
+      "stakes": "a clean cash purchase plan loses more in missed discounts than it saves in simplicity",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia lines up the financing term sheet, supplier discount schedule, and spoilage dates, then approves the layered plan because the after-cost economics stay visible.",
+      "firstImage": "a hazard label peeling from a sealed drum",
+      "mustInclude": [
+        "term sheet",
+        "discount schedule",
+        "spoilage date"
+      ],
+      "mustAvoid": [
+        "finance jargon without visible goods"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "regional broadband cooperative building fiber through grant deadlines",
+      "audience": "a cooperative chair deciding whether to combine debt, member prepayments, and grants",
+      "stakes": "one missed filing window delays rural connections for another year",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Four filing drafts later, Pavel keeps the layered financing plan because every piece points to lower member cost per connected home, not because the structure looks impressive.",
+      "firstImage": "a coil of orange fiber cable beside a grant checklist",
+      "mustInclude": [
+        "grant checklist",
+        "member prepayment ledger",
+        "cost per connected home"
+      ],
+      "mustAvoid": [
+        "generic rural broadband mission"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "museum storage expansion structured through donors, lease terms, and conservation grants",
+      "audience": "a museum director who fears the board will prefer the cleaner building purchase",
+      "stakes": "collections deteriorate if the funding stack collapses under its own complexity",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Laura remove one clever donor condition that made the plan opaque, keeping only the grant and lease pieces that improve conservation capacity per dollar.",
+      "firstImage": "a humidity card tucked inside a painting crate",
+      "mustInclude": [
+        "lease term sheet",
+        "donor condition",
+        "conservation grant"
+      ],
+      "mustAvoid": [
+        "art-world prestige"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "Manchester bus electrification program comparing battery leases with full vehicle purchases",
+      "audience": "a transit analyst under pressure to present the simplest fleet plan",
+      "stakes": "wrong structure locks the city into higher lifetime depot costs",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which plan leaves the city with more service hours after battery replacement, depot work, and grants? Hadiya walks the council through lifetime cash instead of purchase-price optics.",
+      "firstImage": "a charging cable lying across a painted depot bay number",
+      "mustInclude": [
+        "battery lease",
+        "depot upgrade quote",
+        "service-hour model"
+      ],
+      "mustAvoid": [
+        "public transit politics as main point"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "judge leverage or structure by economics rather than simplicity",
+      "identify when complexity clarifies retained value versus hiding weakness",
+      "apply after-tax or after-cost thinking in non-finance settings",
+      "evaluate whether a structured plan remains auditable"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one decision with a cleaner option and a structured option; write the after-cost value each leaves behind, then cross out any structure you cannot explain in two plain sentences.",
+  "readingTimeMinutes": 12
+}

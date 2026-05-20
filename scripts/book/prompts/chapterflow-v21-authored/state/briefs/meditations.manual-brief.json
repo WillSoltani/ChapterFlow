@@ -1,0 +1,106 @@
+{
+  "bookId": "meditations",
+  "title": "Meditations",
+  "author": "Marcus Aurelius",
+  "thesisParagraph": "Meditations teaches that a human life is governed from the ruling faculty outward: meet other people as kin, judge impressions before they become passions, do useful work without display, accept mortality and change as the scale that shrinks vanity, and keep returning to justice, truth, temperance, courage, and common good in the present act. Its argument is not withdrawal from life. It is disciplined participation in life without letting praise, insult, comfort, fear, or another person's vice take command of the inner government.",
+  "coreIdeas": [
+    {
+      "name": "Ruling faculty",
+      "oneSentence": "Your freedom begins where you separate the event from the judgment you add to it.",
+      "mentalMove": "pause at the first impression and ask what part of the trouble belongs to your opinion",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch04.source",
+        "ch07.source",
+        "ch12.source"
+      ]
+    },
+    {
+      "name": "Human work",
+      "oneSentence": "You are not made for private comfort alone but for rational, social action.",
+      "mentalMove": "turn reluctance into the next useful act that serves the common life",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source",
+        "ch10.source"
+      ]
+    },
+    {
+      "name": "Common nature",
+      "oneSentence": "Other people are difficult and still belong to the same rational community as you.",
+      "mentalMove": "correct where possible, bear where necessary, and refuse hatred as a second wrong",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch06.source",
+        "ch09.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Mortality as scale",
+      "oneSentence": "Life is short enough that vanity, delay, and scorekeeping become absurd.",
+      "mentalMove": "bring the present choice under the fact of death without panic or melodrama",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch07.source",
+        "ch10.source",
+        "ch12.source"
+      ]
+    },
+    {
+      "name": "Return without theater",
+      "oneSentence": "Failure is answered by returning to principles, not by performing self-disgust.",
+      "mentalMove": "drop the dramatic story about the lapse and resume the right act cleanly",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch08.source",
+        "ch12.source"
+      ]
+    }
+  ],
+  "targetReader": "A thoughtful adult under ordinary pressure: work conflict, family irritation, civic duty, ambition, fatigue, aging, and the steady pull of other people's opinions. They care because the book gives them a way to stay useful and inwardly governed when circumstances are noisy, unfair, or short-lived.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "let mortality shorten the sentence rather than darken it",
+      "keep duty social, not self-improving in a private mirror"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no treating Stoicism as cold detachment or productivity branding"
+    ]
+  },
+  "voiceSpecimens": [
+    "The insult is already small. Your rehearsal is what gives it furniture.",
+    "Before you answer, strip the scene down to what happened, who was harmed, and what justice asks next.",
+    "The bed is warm, but warmth is not a reason to hand the morning your name.",
+    "A difficult person can be wrong without becoming your permission to be worse.",
+    "Death does not have to frighten you for it to clarify the work in front of your hands.",
+    "Do the useful act cleanly, then let it leave you.",
+    "If the thought would shame you in public, do not let it govern you in private."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter shows that Stoicism is basically a mindset hack for modern productivity.",
+    "Marcus Aurelius argues that you should optimize your responses and become your best self.",
+    "The key concept here is resilience, which readers can apply in a wide variety of contexts.",
+    "Try taking a deep breath and remembering that everything happens for a reason.",
+    "In today's fast-paced world, we all need better boundaries and stronger habits.",
+    "The big idea is to focus on what you can control and ignore the rest."
+  ],
+  "teachingArc": "The sequence moves from inherited standards to daily self-command, then into urgency, inner retreat, work, public reason, repeated principle, anti-complaint action, justice, appearance-testing, social forgiveness, and final compression. Each book tightens the same discipline under a different pressure until the reader can move from irritation or fear back to truthful present action without needing applause or perfect conditions.",
+  "forbiddenMoves": [
+    "do not flatten Stoicism into numbness, hustle, or generic resilience",
+    "do not turn providence and nature into sentimental reassurance",
+    "do not invent modern studies, Roman scenes, or biographical details not present in the source sidecars",
+    "do not treat social duty as pleasing everyone or absorbing every demand",
+    "do not use Marcus as a quoted authority inside reader-facing prose"
+  ]
+}

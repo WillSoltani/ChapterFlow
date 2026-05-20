@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch86",
+  "number": 86,
+  "title": "Envy",
+  "coreMove": "Use Envy as the warning label, then make the specific correction before the choice moves forward.",
+  "sourcePressure": "The frozen TOC and official source notes frame Envy as a specific decision error around envy, Cain and Abel, Snow White. Traceable support includes . In the story, Snow White.",
+  "chapterSpecificMisunderstanding": "Treating Envy as generic advice to be smarter, instead of forcing this exact move: use envy as the warning label, then make the specific correction before the choice moves forward.",
+  "sourceAlignmentTerms": [
+    "envy",
+    "Cain and Abel",
+    "Snow White",
+    "comparison pain",
+    "Munger"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Envy.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Envy sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Envy."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a family court calendar applying Envy under operational pressure",
+      "audience": "a reader who has to make a live judgment where envy could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Envy is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the control chart, names the envy risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A control chart sits at the center of the family court calendar before anyone explains the choice.",
+      "mustInclude": [
+        "control chart",
+        "envy",
+        "a visible before-and-after choice tied to Envy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a auto-parts defect review applying Envy under operational pressure",
+      "audience": "a reader who has to make a live judgment where Cain and Abel could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Envy is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the exam sheet, names the Cain and Abel risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A exam sheet sits at the center of the auto-parts defect review before anyone explains the choice.",
+      "mustInclude": [
+        "exam sheet",
+        "Cain and Abel",
+        "a visible before-and-after choice tied to Envy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a warehouse lease choice applying Envy under operational pressure",
+      "audience": "a reader who has to make a live judgment where Snow White could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Envy is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the market memo, names the Snow White risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A market memo sits at the center of the warehouse lease choice before anyone explains the choice.",
+      "mustInclude": [
+        "market memo",
+        "Snow White",
+        "a visible before-and-after choice tied to Envy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a cybersecurity breach room applying Envy under operational pressure",
+      "audience": "a reader who has to make a live judgment where comparison pain could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Envy is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the closed-door list, names the comparison pain risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A closed-door list sits at the center of the cybersecurity breach room before anyone explains the choice.",
+      "mustInclude": [
+        "closed-door list",
+        "comparison pain",
+        "a visible before-and-after choice tied to Envy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a urban farm volunteer plan applying Envy under operational pressure",
+      "audience": "a reader who has to make a live judgment where Munger could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Envy is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the postmortem note, names the Munger risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A postmortem note sits at the center of the urban farm volunteer plan before anyone explains the choice.",
+      "mustInclude": [
+        "postmortem note",
+        "Munger",
+        "a visible before-and-after choice tied to Envy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a appliance warranty desk applying Envy under operational pressure",
+      "audience": "a reader who has to make a live judgment where envy could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Envy is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the commitment card, names the envy risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A commitment card sits at the center of the appliance warranty desk before anyone explains the choice.",
+      "mustInclude": [
+        "commitment card",
+        "envy",
+        "a visible before-and-after choice tied to Envy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Envy in a fresh decision scene",
+      "choose the correction that performs this move: use envy as the warning label, then make the specific correction before the choice moves forward.",
+      "reject a tempting generic answer that ignores envy",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Envy' on a note, list the one envy cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

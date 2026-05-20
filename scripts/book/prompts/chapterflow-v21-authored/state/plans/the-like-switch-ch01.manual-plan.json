@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-like-switch-ch01",
+  "number": 1,
+  "title": "The Friendship Formula",
+  "coreMove": "Diagnose a relationship by separating proximity, frequency, duration, and intensity before deciding what to strengthen or reduce.",
+  "sourcePressure": "The source sidecar frames friendship as a four-part model: proximity, frequency, duration, and intensity. It stresses nonthreatening proximity, intensity as emotional glue, and the ethical edge that the same levers can deepen unhealthy influence.",
+  "chapterSpecificMisunderstanding": "Treating the formula as a magic closeness recipe or assuming more contact always improves a bond.",
+  "sourceAlignmentTerms": [
+    "friendship formula",
+    "proximity",
+    "frequency",
+    "duration",
+    "intensity",
+    "nonthreatening setting",
+    "emotional glue"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Friendship = Proximity x (Frequency + Duration) x Intensity",
+      "detail": "The ch01 source sidecar names this formula as the central required anchor and treats intensity as the glue that gives the other variables force.",
+      "useIn": "both",
+      "phrasingHint": "The formula is useful because it makes a vague bond visible: you can see whether the missing piece is access, repetition, time, or emotional weight."
+    },
+    {
+      "kind": "event",
+      "name": "nonthreatening proximity",
+      "detail": "The ch01 sidecar says proximity matters only when exposure happens in a setting that does not feel threatening.",
+      "useIn": "fullRead",
+      "phrasingHint": "Standing near someone does not help if the room makes them brace; safety is what lets proximity begin to count."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Chemistry is not magic",
+      "Friendship is a formula",
+      "Some bonds just click"
+    ],
+    "counterintuition": [
+      "more time always means more closeness",
+      "relationships are not luck, they are math"
+    ],
+    "tryThisNow": [
+      "set a timer and think of a friend",
+      "text someone right now without diagnosing the missing variable"
+    ],
+    "examples": [
+      "generic office coffee chats",
+      "classroom seatmate becomes friend",
+      "neighbor hallway small talk"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a museum volunteer coordinator trying to revive a thin docent pairing",
+      "audience": "a coordinator who sees two capable volunteers never become a team",
+      "stakes": "a tour launch will fail if they keep trading only logistics",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the coordinator moves the pair from rushed sign-in contact to a shared 20-minute object-handling prep and watches warmth appear only after intensity enters",
+      "firstImage": "white cotton gloves beside a tray of Roman coins",
+      "mustInclude": [
+        "cotton gloves",
+        "visitor-flow sheet",
+        "quiet conservation room"
+      ],
+      "mustAvoid": [
+        "break-room small talk or generic team bonding"
+      ]
+    },
+    {
+      "domain": "a youth hockey assistant coach managing a quiet goalie and a new defender",
+      "audience": "a coach who wants trust without forcing friendship",
+      "stakes": "one blown tournament game could harden the pair into blame",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the coach changes short locker-room proximity into repeated five-minute post-drill reviews where the defender asks the goalie what he saw",
+      "firstImage": "skate guards lined under a rink bench",
+      "mustInclude": [
+        "crease map",
+        "wet rink glass",
+        "five-minute review"
+      ],
+      "mustAvoid": [
+        "helmet or bus-depot shells"
+      ]
+    },
+    {
+      "domain": "a hospice volunteer lead pairing a new visitor with a guarded family caregiver",
+      "audience": "a volunteer lead handling fragile trust",
+      "stakes": "too much intensity too early could feel intrusive, too little will make visits useless",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes three visits for the lead to see that shorter, steadier visits beat one long emotional first visit",
+      "firstImage": "a sign-in clipboard with three short visit notes",
+      "mustInclude": [
+        "visit log",
+        "folding chair",
+        "muted phone"
+      ],
+      "mustAvoid": [
+        "dramatic bedside confession"
+      ]
+    },
+    {
+      "domain": "a community theater stage manager blending two backstage crews",
+      "audience": "a stage manager before opening night",
+      "stakes": "missed cues will look like incompetence to the audience",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the stage manager stops counting rehearsal attendance as closeness and adds one shared cue-reset ritual that gives the contact intensity",
+      "firstImage": "\"Reset from the blackout,\" Grace says into the headset",
+      "mustInclude": [
+        "headset",
+        "cue light",
+        "gaffer tape"
+      ],
+      "mustAvoid": [
+        "generic work project meeting"
+      ]
+    },
+    {
+      "domain": "a tenant association treasurer cooling an exhausting relationship with an overbearing member",
+      "audience": "a volunteer treasurer who needs distance without a fight",
+      "stakes": "the member is turning every repair email into a two-hour call",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the treasurer reviews which variable she fed by answering instantly and begins reducing frequency and duration without hostility",
+      "firstImage": "What made one repair request become a nightly phone call?",
+      "mustInclude": [
+        "repair inbox",
+        "call log",
+        "building notice"
+      ],
+      "mustAvoid": [
+        "friendship breakup melodrama"
+      ]
+    },
+    {
+      "domain": "a rowing club captain integrating a shy novice into a crew",
+      "audience": "a captain who mistakes shared practice for attachment",
+      "stakes": "the novice may quit before regatta season starts",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:12 a.m., Sarah predicts that shared water time is enough, then sees the novice bond only after a small recovery task carries emotional weight",
+      "firstImage": "two oars resting on wet dock planks",
+      "mustInclude": [
+        "dock planks",
+        "seat wrench",
+        "fogged sunglasses"
+      ],
+      "mustAvoid": [
+        "bike helmet, narrow kitchen, classroom desk"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which of the four variables is missing in a stalled relationship",
+      "distinguish frequency from duration in concrete scenes",
+      "judge when intensity is unhealthy rather than bonding",
+      "choose how to cool a relationship by reducing variables without drama"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one real relationship and label the weakest variable in one sentence; choose one small adjustment that changes only that variable.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

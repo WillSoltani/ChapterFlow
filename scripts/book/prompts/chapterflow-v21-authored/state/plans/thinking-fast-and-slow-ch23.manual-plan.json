@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch23",
+  "number": 23,
+  "title": "The Outside View",
+  "coreMove": "anchor a plan in comparable completed cases before adjusting for your own details",
+  "sourcePressure": "shows that planning improves when you use reference classes instead of relying on the inside view",
+  "chapterSpecificMisunderstanding": "treating the outside view as pessimism rather than reference-class discipline",
+  "sourceAlignmentTerms": [
+    "outside view",
+    "inside view",
+    "reference class",
+    "planning fallacy",
+    "forecast",
+    "comparable cases"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for The Outside View",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just generic project management"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about generic project management",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "courtroom jury pool facing a decision distorted by inside view",
+      "audience": "a lead or reviewer who must anchor a plan in comparable completed cases before adjusting for your own details while others want the quick answer",
+      "stakes": "the visible call will go wrong unless inside view is separated from the tempting but weaker cue",
+      "format": "postmortem",
+      "requiredBeat": "the operator places the baggage carousel tag labeled outside view beside the tempting first answer, covers the answer field with a palm, and speaks the correction: anchor a plan in comparable completed cases before adjusting for your own details",
+      "firstImage": "The first thing in the room is the texture of the baggage carousel tag labeled outside view, not the person's opinion about it.",
+      "mustInclude": [
+        "baggage carousel tag labeled outside view",
+        "outside view",
+        "inside view"
+      ],
+      "mustAvoid": [
+        "turning the scene into generic project management",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "aquarium water-quality lab facing a decision distorted by inside view",
+      "audience": "a lead or reviewer who must anchor a plan in comparable completed cases before adjusting for your own details while others want the quick answer",
+      "stakes": "the visible call will go wrong unless inside view is separated from the tempting but weaker cue",
+      "format": "before_after",
+      "requiredBeat": "the specialist draws a red box around the misleading cue on the blood cooler seal labeled inside view, then writes the missing check in the margin before anyone votes",
+      "firstImage": "It took three passes before the reviewer saw what the blood cooler seal labeled inside view had been making too easy.",
+      "mustInclude": [
+        "blood cooler seal labeled inside view",
+        "outside view",
+        "reference class"
+      ],
+      "mustAvoid": [
+        "turning the scene into generic project management",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "rail signal maintenance facing a decision distorted by inside view",
+      "audience": "a lead or reviewer who must anchor a plan in comparable completed cases before adjusting for your own details while others want the quick answer",
+      "stakes": "the visible call will go wrong unless inside view is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "two people disagree over the brass metronome pedal labeled reference class; one points to the fluent story, the other forces the chapter move by asking which evidence would change the call",
+      "firstImage": "The decision station is quiet except for the brass metronome pedal labeled reference class beside the unfinished call.",
+      "mustInclude": [
+        "brass metronome pedal labeled reference class",
+        "outside view",
+        "planning fallacy"
+      ],
+      "mustAvoid": [
+        "turning the scene into generic project management",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "tea import tasting room facing a decision distorted by inside view",
+      "audience": "a lead or reviewer who must anchor a plan in comparable completed cases before adjusting for your own details while others want the quick answer",
+      "stakes": "the visible call will go wrong unless inside view is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "at the decision point, the lead slides the pothole call ledger labeled planning fallacy into the center of the table and refuses to choose until the outside view check is visible",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the pothole call ledger labeled planning fallacy between the two choices.",
+      "mustInclude": [
+        "pothole call ledger labeled planning fallacy",
+        "outside view",
+        "forecast"
+      ],
+      "mustAvoid": [
+        "turning the scene into generic project management",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "hospital bed board facing a decision distorted by inside view",
+      "audience": "a lead or reviewer who must anchor a plan in comparable completed cases before adjusting for your own details while others want the quick answer",
+      "stakes": "the visible call will go wrong unless inside view is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "the team predicts the answer from the quick impression, records it beside the animal carrier latch labeled forecast, then reveals how the chapter correction changes the estimate",
+      "firstImage": "What would change if the animal carrier latch labeled forecast stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "animal carrier latch labeled forecast",
+        "outside view",
+        "comparable cases"
+      ],
+      "mustAvoid": [
+        "turning the scene into generic project management",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "film color-grading suite facing a decision distorted by inside view",
+      "audience": "a lead or reviewer who must anchor a plan in comparable completed cases before adjusting for your own details while others want the quick answer",
+      "stakes": "the visible call will go wrong unless inside view is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "after the miss, the reviewer tapes the night audit folio labeled comparable cases to the postmortem board and traces the exact moment inside view displaced the better judgment",
+      "firstImage": "You are looking at the night audit folio labeled comparable cases while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "night audit folio labeled comparable cases",
+        "outside view",
+        "comparable cases"
+      ],
+      "mustAvoid": [
+        "turning the scene into generic project management",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: anchor a plan in comparable completed cases before adjusting for your own details",
+      "choose the correction that fits outside view rather than a generic careful-thinking answer",
+      "distinguish The Outside View from nearby drift into generic project management",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick a decision from today and draw two boxes: fast impression and required check. Put one concrete item in each box, then decide which box has earned more weight.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

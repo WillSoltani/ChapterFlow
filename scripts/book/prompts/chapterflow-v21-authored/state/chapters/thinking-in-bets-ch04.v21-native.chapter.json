@@ -1,0 +1,326 @@
+{
+  "chapterId": "thinking-in-bets-ch04",
+  "number": 4,
+  "title": "Bet to learn: fielding the unfolding future",
+  "readingTimeMinutes": 12,
+  "hook": "Fog beads on the ferry windows, and one bad weekend starts asking for too much authority.",
+  "counterintuition": "Fresh feedback feels like the sharpest truth. In fact, it is only a new piece of evidence, and better learning asks how much weight that piece earned.",
+  "tryThisNow": "Take one new result and write one sentence: my confidence moved from X to Y because this evidence showed Z.",
+  "keyTakeaway": "Let feedback update your confidence in proportion to its signal, without letting one vivid result rewrite the whole decision.",
+  "breakdown": {
+    "fastRead": "Fog beads on the ferry terminal windows while the ridership chart loads. Claire sees two weak weekend runs and a steady weekday commuter count. Canceling the pilot would please the budget committee. Expanding it would please the island council.\n\nThe chart is not a verdict yet. It is a piece of evidence.\n\nThe future does not hand over a verdict; it leaks evidence in pieces. Some pieces are signal. Some are noise. Some are both. Learning means moving confidence only as far as the evidence earns, then keeping the review open for the next piece.",
+    "deepRead": "You are looking at a training watch that seems angrier than Anders's knee feels. One painful run flashes red after months of rehab markers moving in the right direction. The watch says the pace dropped. The knee says something is wrong. Anders must choose between quitting the marathon plan, pushing through, or making a two-day adjustment.\n\nOne early result can deserve attention without deserving the judge's chair.\n\nThat is the difference between updating and flinching. Updating asks what the result actually tells you. Flinching lets vividness do the math. Anders checks the last three rehab markers, the pain location, and the next physical-therapy appointment. The answer is not full retreat or blind persistence. It is a smaller move: pause speed work for two days, keep easy walking, and see whether the same signal repeats.\n\nThe signal gets a vote. It does not get the whole room.\n\nThis is harder than it sounds because early feedback arrives with emotion attached. A bad number can feel like proof. A good number can feel like permission. But partial evidence is still partial. The discipline is to update your confidence, not your identity. You are learning from the unfolding future, one imperfect reveal at a time.",
+    "fullRead": "\"How much did the soup teach us?\" Manon asks, holding the prep clipboard after the cafe's first lunch rush. The new lentil soup sold poorly. The chalkboard sign was half-hidden behind the espresso machine. The weather was hot. Prep took longer than expected, so the second batch arrived late. The owner wants to bury the item. The cook wants to defend it because regulars complimented the taste.\n\nManon separates the evidence before she changes the menu. Sales count in one column. Signage in another. Weather in another. Prep time in another. Then she changes only the serving size and sign placement for tomorrow. The update should be no bigger than the evidence earned.\n\nThat sentence is the center of the skill. New results matter. They just do not all matter equally. A first lunch rush can show that placement failed, that weather hurt demand, that price was off, or that nobody wants the soup. It cannot prove all four at once. If Manon reacts to the emotional size of disappointment, she will either kill a promising item too soon or defend it past the evidence. That is proportional updating: it sits between those mistakes.\n\nAsk a direct question of your last result: what exactly did you learn, and what are you merely feeling because the result is fresh?\n\nChris faces that split in a donor email test. Late in the afternoon, the open-rate graph jumps on a new subject line before the donation conversion column moves. The communications team wants to rewrite the year-end campaign around the spike. Chris labels the spike as early evidence, waits for donation conversion, and moves the campaign estimate by five points. He is not ignoring the result. He is refusing to let the fastest number become the most powerful one.\n\nThis protects process review too. If every new result becomes a final verdict, the original reasoning keeps getting erased. If no new result can change anything, the original reasoning becomes a bunker, a case of short-run outcomes mixing signal and noise needing a live decision file, not a courtroom verdict. Both habits stop learning. One wobbles. The other freezes. The point is to keep the decision file alive while the evidence arrives.\n\nFrida learns that in an urban garden seed trial. Wet soil sticks to her gloves as half the seed row stays bare. The supplier looks guilty at first glance. Then she kneels by the patch map and codes shade, watering, and seed batch separately. The bare row sits under a maple shadow and received less water during a hose repair. The supplier estimate moves down a little, not all the way to fired. The watering procedure moves down more. The shade note gets added for next season.\n\nThat is what it means to field the future. You receive the ball where it actually lands, not where your fear or pride says it landed. You ask whether the evidence is broad, repeated, and tied to the decision you are reviewing. You move confidence accordingly.\n\nJavier sees the opposite mistake in robotics. It took three replays to see the same bad bounce in different light. After one failed scrimmage, his team wanted to replace the sensor setup. He changed the review from the sensor failed to a three-run evidence table. The threshold was wrong only on one surface color, so he adjusted that calibration before the regional qualifier. The result mattered. The size of the revision matched the repeated error.\n\nNoisy feedback is not an insult and not a command. It is a message with uncertain signal strength. Read it carefully, move the estimate, and leave enough room for the next message to teach you more."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-claire-ferry-fog",
+      "title": "Claire Weighs the Fog Weekends",
+      "tags": [
+        "predict_reveal",
+        "transport",
+        "pilot"
+      ],
+      "planSpec": {
+        "domain": "coastal ferry ridership pilot after two foggy weekends",
+        "audience": "transport planners",
+        "stakes": "canceling too early strands island commuters; expanding too fast wastes public funds",
+        "format": "predict_reveal",
+        "requiredBeat": "Claire weights the fog cancellations separately from weekday commuter counts before moving the ridership forecast only a small amount."
+      },
+      "scenario": "Fog beads on the ferry terminal windows while the ridership chart loads on Monday morning. Claire, the transport planner, sees two weak weekend runs, a fog cancellation log, and a steady weekday commuter count from the harbor workers. Before the budget memo goes out at noon, she must decide whether the pilot is failing. She weights fog cancellations separately, then moves the ridership forecast down only a small amount.",
+      "whatToDo": "Split the fog cancellations from weekday commuter demand. Update the ridership forecast slightly and keep the pilot under review until cleaner weekend data arrives.",
+      "whyItMatters": "The weak weekends contain feedback, but fog distorts the signal. Claire learns more by sizing the update than by canceling or expanding from one noisy slice."
+    },
+    {
+      "exampleId": "ch04-ex02-anders-training-watch",
+      "title": "Anders Makes a Two-Day Adjustment",
+      "tags": [
+        "decision_point",
+        "rehab",
+        "running"
+      ],
+      "planSpec": {
+        "domain": "marathon injury rehab after one painful training run",
+        "audience": "adult athletes and physical therapists",
+        "stakes": "quitting wastes months of recovery; pushing ignores a real warning sign",
+        "format": "decision_point",
+        "requiredBeat": "You ask Anders to compare one painful run with the prior three rehab markers and choose a two-day adjustment rather than a total verdict."
+      },
+      "scenario": "You are looking at a training watch that seems angrier than Anders's knee feels on Thursday evening. One painful run sits beside three rehab markers that had improved for a month, and the coach's race-plan email is still unanswered. Before he emails the marathon coach, Anders must choose between quitting, pushing through, or adjusting. You ask him to compare the single red run with the prior markers and choose a two-day change.",
+      "whatToDo": "Compare the painful run with the last three rehab markers. Pause speed work for two days and watch for repeated pain before changing the whole plan.",
+      "whyItMatters": "One painful run may be a warning, but it is not automatically a verdict. A proportional adjustment respects the signal without surrendering months of evidence."
+    },
+    {
+      "exampleId": "ch04-ex03-manon-soup-trial",
+      "title": "Manon Measures the Soup Lesson",
+      "tags": [
+        "dialogue",
+        "cafe",
+        "menu"
+      ],
+      "planSpec": {
+        "domain": "neighborhood cafe menu trial after the first lunch rush",
+        "audience": "small restaurant owners",
+        "stakes": "a new menu item may need revision, not burial or blind faith",
+        "format": "dialogue",
+        "requiredBeat": "\"How much did the soup teach us?\" Manon asks, then separates weather, signage, and prep time before changing only the serving size."
+      },
+      "scenario": "\"How much did the soup teach us?\" Manon asks, holding the prep clipboard after Tuesday lunch. The lentil soup sold slowly, the chalkboard sign hid behind the espresso machine, and hot weather kept customers on iced drinks near the patio door. Before tomorrow's prep starts, she must decide whether to kill the item. She separates weather, signage, and prep time, then changes only serving size.",
+      "whatToDo": "Separate the low sales into possible causes before changing the menu. Adjust serving size and sign placement, then wait for a cleaner second reading.",
+      "whyItMatters": "A poor first rush can point to several causes. Manon learns more by revising the piece with the clearest signal than by burying the soup outright."
+    },
+    {
+      "exampleId": "ch04-ex04-chris-email-spike",
+      "title": "Chris Waits for Conversion",
+      "tags": [
+        "vignette",
+        "nonprofit",
+        "email"
+      ],
+      "planSpec": {
+        "domain": "nonprofit donor email subject-line test",
+        "audience": "communications managers",
+        "stakes": "one early open-rate spike could distort a year-end campaign",
+        "format": "vignette",
+        "requiredBeat": "At 4:06 p.m., Chris labels the first spike as early evidence, waits for donation conversion, and updates the campaign estimate by five points instead of rewriting the plan."
+      },
+      "scenario": "At 4:06 p.m., Chris watches the open-rate graph jump before the donation conversion column moves. The year-end campaign calendar is open beside the subject-line test, and the communications director wants to rewrite the plan immediately. Before the team meeting, Chris must decide how much the spike deserves. He labels it early evidence, waits for conversion, and updates the estimate by five points.",
+      "whatToDo": "Identify which funnel metric sits closest to the outcome you care about. A top-of-funnel open-rate spike earns only a small estimate move; let conversion data justify any larger campaign revision.",
+      "whyItMatters": "The first number is vivid because it arrived first. Waiting for conversion keeps the update tied to donation signal, not the excitement of a fast graph."
+    },
+    {
+      "exampleId": "ch04-ex05-frida-seed-map",
+      "title": "Frida Codes the Bare Row",
+      "tags": [
+        "postmortem",
+        "garden",
+        "trial"
+      ],
+      "planSpec": {
+        "domain": "urban garden seed trial after uneven germination",
+        "audience": "community garden coordinators",
+        "stakes": "abandoning a seed supplier may be premature if shade and watering differed by plot",
+        "format": "postmortem",
+        "requiredBeat": "Frida kneels by the patch map and codes shade, watering, and seed batch separately before revising the supplier estimate."
+      },
+      "scenario": "Wet soil sticks to Frida's gloves as half the seed row stays bare in the Saturday garden. The supplier's seed batch label looks guilty until she opens the patch map, shade sketch, and watering log beside the hose reel. Frida kneels beside the row, codes shade, watering, and seed batch separately, and revises the supplier estimate only after the maple shadow and hose repair show how uneven the trial was.",
+      "whatToDo": "Code each possible cause on the patch map before blaming the supplier. Revise the supplier estimate only by the portion the seed evidence earns.",
+      "whyItMatters": "Uneven germination is feedback, but the plot conditions changed too. Separating causes prevents one bare row from becoming a total supplier verdict."
+    },
+    {
+      "exampleId": "ch04-ex06-javier-sensor-table",
+      "title": "Javier Builds the Three-Run Table",
+      "tags": [
+        "before_after",
+        "robotics",
+        "calibration"
+      ],
+      "planSpec": {
+        "domain": "robotics team sensor calibration after one failed scrimmage",
+        "audience": "student engineering teams",
+        "stakes": "overreacting could replace a sound sensor setup; denial could cost the regional qualifier",
+        "format": "before_after",
+        "requiredBeat": "Javier changes the review from \"the sensor failed\" to a three-run evidence table and adjusts the calibration threshold only where repeated errors appear."
+      },
+      "scenario": "It took Javier three replays to see the same bad bounce in different light. After Saturday's failed scrimmage, the robotics team wanted to replace the sensor before the regional qualifier, and the spare-parts bin was already open. Javier changed the review from the sensor failed to a three-run evidence table, then adjusted the calibration threshold only on the surface color where repeated errors appeared.",
+      "whatToDo": "Build the three-run table before replacing hardware. Adjust only the calibration threshold tied to repeated errors, then test again before the qualifier.",
+      "whyItMatters": "One failed scrimmage can hide a narrow calibration issue. The table keeps the team from overreacting while still acting on the repeated signal."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In the third week of a coastal ferry pilot, weekend ridership drops during heavy fog while weekday commuter counts stay steady and the fuel budget remains inside range. At the Monday review, what is the best first update?",
+        "choices": [
+          "Cancel the pilot because weak weekends reveal true demand.",
+          "Expand the pilot because weekday demand proves the service works.",
+          "Lower the forecast modestly while separating fog effects from commuter counts."
+        ],
+        "correctIndex": 2,
+        "explanation": "The weak weekends matter, but fog distorts them. A modest update uses the evidence without letting one noisy slice become the whole verdict.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During one hot lunch with poor signage, a cafe's new soup sells badly. The cook wants to kill it; the owner wants to keep everything unchanged. What should happen?",
+        "choices": [
+          "Separate the factors, then adjust the clearest one before the next test.",
+          "Remove the soup from tomorrow's menu while gathering more customer comments.",
+          "Run the same setup again tomorrow so the comparison stays clean."
+        ],
+        "correctIndex": 0,
+        "explanation": "The lunch result contains mixed evidence. Adjusting the clearest factor learns from it, while killing the soup or ignoring the result gives the data too much or too little power.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "After three improving rehab markers, a runner feels sharp pain during one wet training run and has a physical-therapy appointment already scheduled. Which response best shows proportional updating?",
+        "choices": [
+          "Quit the race plan because pain has settled the case.",
+          "Pause speed work briefly and see whether the pain repeats.",
+          "Ignore the pain because the prior markers were positive."
+        ],
+        "correctIndex": 1,
+        "explanation": "A short adjustment respects the pain signal without erasing the prior trend. Quitting overreacts, and ignoring the pain refuses to update.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "In the first hour, an email subject line gets a huge open-rate jump while donation conversion has not moved. What should the campaign manager do?",
+        "choices": [
+          "Rewrite the entire campaign around the open rate.",
+          "Treat the open rate as early evidence and hold revision until conversion data arrives.",
+          "Pause the campaign while conversion data matures, to avoid moving too fast on a noisy signal."
+        ],
+        "correctIndex": 1,
+        "explanation": "The open rate deserves a small update, but conversion is the stronger signal for fundraising. Rewriting now overweights speed; discarding the test wastes evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Uneven germination shows up in a seed trial where shade and watering differed by plot. Why is blaming the seed supplier too fast?",
+        "choices": [
+          "Because supplier quality is only one possible cause inside a mixed trial.",
+          "Because the result mixes seed signal with plot-condition noise.",
+          "Because garden results often need several comparable plots before a supplier change is justified."
+        ],
+        "correctIndex": 1,
+        "explanation": "The bare row may contain supplier signal, but shade and watering also changed. The review should separate causes before moving the supplier estimate.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A robotics team fails one scrimmage and wants to replace its whole sensor setup. Replays show repeated errors only on one surface color. What is the strongest revision?",
+        "choices": [
+          "Replace all sensors in the affected zone because the scrimmage result proves the hardware is unreliable.",
+          "Make no changes now, since a single scrimmage is too small a sample to justify any adjustment.",
+          "Adjust the threshold for that surface color and retest before replacing hardware."
+        ],
+        "correctIndex": 2,
+        "explanation": "The repeated surface-color error earns a targeted calibration update. Full replacement overreacts, while doing nothing ignores a repeated signal.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says, 'The first customer complaint proves the new support process is broken.' What is the clearest analysis?",
+        "choices": [
+          "The complaint is evidence, but its weight depends on pattern, severity, and fit with other signals.",
+          "The complaint should be ignored until at least ten customers complain.",
+          "The complaint fully decides the process quality because customers are the judge."
+        ],
+        "correctIndex": 0,
+        "explanation": "A complaint is feedback, not a complete verdict. Its weight depends on context and repetition; ignoring it or letting it decide everything misses proportional updating.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A sales team beats target in week one after a discount campaign. The lead wants to double the discount next week. Which question best protects learning?",
+        "choices": [
+          "Whether the discount created new demand or pulled forward purchases that were coming regardless.",
+          "Whether the team should take time to celebrate the result before making any further decisions.",
+          "Which salesperson executed the campaign most confidently, since that predicts who should lead the next push."
+        ],
+        "correctIndex": 0,
+        "explanation": "The question tests the signal inside the win. Celebration and confidence do not reveal whether the result deserves a bigger discount.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A product team changes pricing on Monday, messaging on Tuesday, and onboarding on Wednesday because each daily metric moves in a different direction. What failure pattern is most likely?",
+        "choices": [
+          "They are refusing to update their model at all, treating every result as irrelevant noise.",
+          "They are treating each fresh result as more decisive than its signal supports.",
+          "They are correctly patient with signal, but applying the right principle too slowly to be useful."
+        ],
+        "correctIndex": 1,
+        "explanation": "Daily swings may contain signal, but strategy changes after each one suggest wobbling. The team is updating by vividness instead of evidence weight.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A new result arrives. What should decide how far your confidence moves?",
+      "back": "The weight of the evidence, not the emotional force of the result. Ask how broad, repeated, and relevant the signal is before revising.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A new result feels dramatic. How do you tell updating from flinching?",
+      "back": "Updating sizes the revision to the evidence. Flinching lets a vivid or painful result move the whole belief more than the signal deserves.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A first result looks bad but has obvious noise around it. What should you do?",
+      "back": "Separate the likely signal from the noise, make a small revision if the evidence earns it, and keep watching for repetition before making a larger change.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why can both stubbornness and wobbling block learning?",
+      "back": "Stubbornness refuses to let evidence move the estimate. Wobbling lets every result move it too far. Learning needs proportional revision.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What does the unfolding future give you?",
+      "back": "It gives partial evidence in pieces. Each piece can refine the estimate, but no single piece should automatically become the final answer.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Sizing Updates to Signal Strength",
+    "coreSkill": "You learn to size your updates. The skill is treating every new result as evidence with a weight, not as a verdict with total authority.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a new metric spikes or drops, then write the likely signal and likely noise before changing the plan."
+      },
+      {
+        "context": "health",
+        "plan": "If one symptom or workout result alarms you, then compare it with the last three relevant markers before deciding the size of the adjustment."
+      },
+      {
+        "context": "money",
+        "plan": "If one investment result surprises you, then update your thesis by the specific evidence it revealed, not by the size of the emotion."
+      },
+      {
+        "context": "learning",
+        "plan": "If a practice attempt goes badly, then name one targeted change and one thing you will leave unchanged until the pattern repeats."
+      }
+    ],
+    "twentyFourHourChallenge": "Use the sentence: my confidence moved from X to Y because Z. Fill it out for one result you received today.",
+    "weeklyPractice": "Each week, pick one fresh result and one older pattern. Compare how much each should move your confidence and write the reason for the difference."
+  },
+  "memorableLines": [
+    {
+      "text": "The chart is not a verdict yet. It is a piece of evidence.",
+      "location": "breakdown.fastRead",
+      "why": "It captures proportional updating in a plain scene."
+    },
+    {
+      "text": "The signal gets a vote. It does not get the whole room.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a memorable rule for noisy feedback."
+    },
+    {
+      "text": "The update should be no bigger than the evidence earned.",
+      "location": "breakdown.fullRead",
+      "why": "It states the chapter's central standard in one durable sentence."
+    }
+  ]
+}

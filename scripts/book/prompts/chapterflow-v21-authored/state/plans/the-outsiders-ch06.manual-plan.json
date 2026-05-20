@@ -1,0 +1,200 @@
+{
+  "chapterId": "the-outsiders-ch06",
+  "number": 6,
+  "title": "A Public LBO",
+  "coreMove": "Make a public company answer owner-like economic tests by forcing sprawl, side bets, and operating softness to justify their capital.",
+  "sourcePressure": "Bill Stiritz and Ralston Purina show public-market management run with private-owner discipline, pruning unrelated operations and tightening focus around sharper economics.",
+  "chapterSpecificMisunderstanding": "Do not write PE worship or generic austerity; show public-company sprawl being forced through an owner-like scorecard with operating rigor after the pruning.",
+  "sourceAlignmentTerms": [
+    "Bill Stiritz",
+    "Ralston Purina",
+    "public LBO",
+    "operating rigor",
+    "deal discipline",
+    "unrelated businesses",
+    "focus",
+    "owner-like economics"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Bill Stiritz",
+      "detail": "The source sidecar pairs Chapter 6 with Bill Stiritz and Ralston Purina and says he created private-equity-like economics inside a public company.",
+      "useIn": "both",
+      "phrasingHint": "Bill Stiritz makes public ownership feel less like a permission slip for softness and more like a place to impose owner standards."
+    },
+    {
+      "kind": "place",
+      "name": "Ralston Purina",
+      "detail": "The source sidecar says Ralston Purina had accumulated unrelated businesses and that Stiritz tightened focus by selling operations that did not fit the core.",
+      "useIn": "fullRead",
+      "phrasingHint": "Ralston Purina gives the public LBO idea its bite because sprawl had to stop receiving automatic subsidy."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Run public like private",
+      "Focus beats sprawl",
+      "Hard standards create value"
+    ],
+    "counterintuition": [
+      "Public companies must be soft",
+      "Harsh meetings equal discipline",
+      "Selling units always creates focus"
+    ],
+    "tryThisNow": [
+      "Cut a side project",
+      "Find your core",
+      "Be stricter today"
+    ],
+    "examples": [
+      "club entered too many competitions",
+      "family budget core needs",
+      "flashy feature in software build",
+      "generic weekly review theater"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Michael",
+      "domain": "publicly funded housing nonprofit with unrelated pilot programs",
+      "audience": "an executive director accountable to a broad board and city funders",
+      "stakes": "core repair backlog growing while pilots absorb grant staff",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Michael pins each pilot to a repair-backlog dollar and closes the popular rooftop-garden expansion because it does not strengthen the core housing economics.",
+      "firstImage": "a cracked window work order under a city grant folder",
+      "mustInclude": [
+        "repair backlog",
+        "pilot list",
+        "grant staff hours"
+      ],
+      "mustAvoid": [
+        "charity virtue versus business discipline"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "listed specialty food company deciding whether to sell a pet-snack sideline",
+      "audience": "a CFO whose board likes the appearance of category breadth",
+      "stakes": "cash trapped in the sideline could fund automation in the profitable sauce plant",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Catarina walks from the pet-snack inventory racks to the sauce bottling line and marks which asset earns automation capital under the owner scorecard.",
+      "firstImage": "sealed pet-snack cartons stacked beside a sauce-line repair tag",
+      "mustInclude": [
+        "inventory racks",
+        "automation quote",
+        "board category memo"
+      ],
+      "mustAvoid": [
+        "Ralston mimicry beyond supported context"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "software company after years of buying small tools that never integrate",
+      "audience": "a public-company product chief with six underused acquisitions",
+      "stakes": "engineering attention split while the flagship product misses enterprise renewals",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sam asks which acquired tool changes renewal economics, sunsets two vanity acquisitions, and moves engineers back to the core platform reliability work.",
+      "firstImage": "an integration dashboard with six red warning triangles",
+      "mustInclude": [
+        "renewal report",
+        "integration dashboard",
+        "engineer allocation sheet"
+      ],
+      "mustAvoid": [
+        "generic tech debt story"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "regional fitness chain pruning boutique class brands after expansion",
+      "audience": "an operations VP facing franchisees who like the wider menu",
+      "stakes": "trainer utilization and equipment maintenance are weakening the core gym model",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "After three utilization audits, Anke closes two low-return class brands and installs a stricter weekly operating dashboard for the core gyms.",
+      "firstImage": "unused reformer machines lined against a studio mirror",
+      "mustInclude": [
+        "utilization audit",
+        "maintenance log",
+        "weekly dashboard"
+      ],
+      "mustAvoid": [
+        "fitness motivation arc"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "airport services contractor reviewing lounge, cleaning, and baggage add-ons",
+      "audience": "a division manager whose public parent company rewards revenue breadth",
+      "stakes": "margin leakage in side contracts threatens the core baggage-handling renewal",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "You expect the newest lounge contract to be the growth engine; Pablo reveals the working-capital schedule and cuts it because the core baggage renewal has better owner economics.",
+      "firstImage": "a baggage tug parked below a lounge-service invoice",
+      "mustInclude": [
+        "working-capital schedule",
+        "baggage renewal",
+        "lounge invoice"
+      ],
+      "mustAvoid": [
+        "airport delay complaint"
+      ]
+    },
+    {
+      "protagonistName": "Hannah",
+      "domain": "regional veterinary group centralizing procurement after scattered clinic acquisitions",
+      "audience": "a CEO who wants scale benefits without smothering clinic medicine",
+      "stakes": "drug costs and local autonomy both at risk after acquisitions",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What would an owner keep strict and what would she leave local? Hannah centralizes supplier terms and kills weak side ventures while leaving medical protocols with clinic leads.",
+      "firstImage": "a vaccine refrigerator temperature strip beside a supplier rebate sheet",
+      "mustInclude": [
+        "supplier rebate sheet",
+        "clinic autonomy rule",
+        "side venture list"
+      ],
+      "mustAvoid": [
+        "pet-care anecdote as emotional filler"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify public-company softness hiding in sprawl",
+      "choose pruning that clarifies economics rather than merely shrinking",
+      "test whether operating rigor follows portfolio action",
+      "separate owner-like standards from harsh style"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one active side bet and write the core economic measure it must improve; if it cannot improve that measure, write the first resource you would stop feeding it.",
+  "readingTimeMinutes": 12
+}

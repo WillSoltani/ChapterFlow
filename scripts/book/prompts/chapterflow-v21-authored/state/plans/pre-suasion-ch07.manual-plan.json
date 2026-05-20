@@ -1,0 +1,154 @@
+{
+  "chapterId": "pre-suasion-ch07",
+  "number": 7,
+  "title": "The Primacy of Associations: I Link, Therefore I Think",
+  "coreMove": "Attach the target idea to a true favorable association already alive in the audience.",
+  "sourcePressure": "The source says a focal concept can become more important and attractive when linked to favorable meanings already present in the audience.",
+  "chapterSpecificMisunderstanding": "Any positive vibe near a request will transfer to the request.",
+  "sourceAlignmentTerms": [
+    "association",
+    "focal concept",
+    "linked meaning",
+    "favorable association",
+    "I link, therefore I think"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital handoff ritual",
+      "audience": "a charge nurse linking a new checklist to patient dignity",
+      "stakes": "whether the checklist borrows meaning from a value nurses already defend",
+      "format": "scene",
+      "requiredBeat": "the nurse places the checklist beside a family photo release form before the shift huddle",
+      "firstImage": "a laminated checklist next to a family photo consent form",
+      "mustInclude": [
+        "handoff sheet",
+        "photo consent"
+      ],
+      "mustAvoid": [
+        "generic compliance"
+      ]
+    },
+    {
+      "domain": "farmers market compost booth",
+      "audience": "a vendor linking compost pickup to pride in local soil",
+      "stakes": "whether the service feels like waste disposal or care for the market’s own ground",
+      "format": "vignette",
+      "requiredBeat": "the vendor weighs a compost pail beside a crate labeled with the farm that will receive it",
+      "firstImage": "a hanging scale with onion skins in a green pail",
+      "mustInclude": [
+        "farm crate label",
+        "hanging scale"
+      ],
+      "mustAvoid": [
+        "eco virtue speech"
+      ]
+    },
+    {
+      "domain": "theater season renewal",
+      "audience": "a box-office manager tying renewal to preserving opening night energy",
+      "stakes": "whether the subscription links to belonging instead of price",
+      "format": "dialogue",
+      "requiredBeat": "the manager places the patron’s old ticket stub beside the renewal form before mentioning the seat hold",
+      "firstImage": "an old ticket stub under the box-office glass",
+      "mustInclude": [
+        "ticket stub",
+        "seat map"
+      ],
+      "mustAvoid": [
+        "nostalgia alone"
+      ]
+    },
+    {
+      "domain": "cybersecurity password rollout",
+      "audience": "an IT lead linking password changes to protecting client trust",
+      "stakes": "whether the rule borrows meaning from professional duty already valued",
+      "format": "decision_point",
+      "requiredBeat": "the lead opens with one redacted client thank-you note before showing the reset screen",
+      "firstImage": "a redacted thank-you note projected over a login prompt",
+      "mustInclude": [
+        "reset screen",
+        "client note"
+      ],
+      "mustAvoid": [
+        "security fear appeal"
+      ]
+    },
+    {
+      "domain": "youth swim-team fundraiser",
+      "audience": "a coach linking lane fees to early-morning discipline",
+      "stakes": "whether donations attach to effort already visible to parents",
+      "format": "before_after",
+      "requiredBeat": "the coach shows the 5:30 a.m. attendance sheet before passing the fundraiser envelope",
+      "firstImage": "a wet attendance sheet clipped to a pool gate",
+      "mustInclude": [
+        "attendance sheet",
+        "lane invoice"
+      ],
+      "mustAvoid": [
+        "sports booster generic"
+      ]
+    },
+    {
+      "domain": "artisan tool warranty",
+      "audience": "a manufacturer linking repair registration to craft pride",
+      "stakes": "whether registration feels like bureaucracy or respect for a tool’s working life",
+      "format": "reflection",
+      "requiredBeat": "the maker asks owners to write the first project the tool will touch before the warranty checkbox",
+      "firstImage": "a chisel resting on a blank registration card",
+      "mustInclude": [
+        "registration card",
+        "sharpening slip"
+      ],
+      "mustAvoid": [
+        "brand sentimentality"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "link the target to an existing favorable meaning",
+      "avoid borrowing an unrelated pleasant mood",
+      "identify the audience value that can carry the request",
+      "explain how association changes reception without proving truth"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name the favorable meaning your audience already values, then write how your target idea genuinely connects to it without decoration.",
+  "readingTimeMinutes": 12
+}

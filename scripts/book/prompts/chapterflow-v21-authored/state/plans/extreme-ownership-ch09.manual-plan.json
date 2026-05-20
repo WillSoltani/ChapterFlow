@@ -1,0 +1,179 @@
+{
+  "chapterId": "extreme-ownership-ch09",
+  "number": 9,
+  "title": "Decentralized Command",
+  "coreMove": "give local leaders intent, limits, and standards so they can decide without waiting for permission",
+  "sourcePressure": "Leaders must train and trust junior leaders so decisions happen close to the facts instead of bottlenecking at the top.",
+  "chapterSpecificMisunderstanding": "delegate tasks and hope people figure it out",
+  "sourceAlignmentTerms": [
+    "decentralized command",
+    "junior leaders",
+    "trust",
+    "training",
+    "intent",
+    "decision speed",
+    "limits"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "orchard harvest as frost forms before dawn",
+      "audience": "an orchard manager who cannot be in every block at once",
+      "stakes": "waiting for central permission can lose fruit across the lower rows",
+      "format": "scene",
+      "requiredBeat": "the manager gives block leads the frost threshold, fan-start limits, and quality standard the night before, then lets the north-block lead start fans without a call",
+      "firstImage": "white frost beads on a low apple branch beside a sensor stake",
+      "mustInclude": [
+        "sensor stake",
+        "fan-start threshold",
+        "block lead"
+      ],
+      "mustAvoid": [
+        "manager disappears and hopes"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "marathon medical coverage along a city route",
+      "audience": "an EMS coordinator with aid stations spread over twenty-six miles",
+      "stakes": "central approval delays care when runners collapse far from command",
+      "format": "vignette",
+      "requiredBeat": "the coordinator gives station captains treatment limits, transport triggers, and radio escalation rules before the race, then backs the mile-eight captain’s call",
+      "firstImage": "You are close enough to see this: mile-eight banner snaps above a folding cot near the curb.",
+      "mustInclude": [
+        "treatment limits",
+        "transport trigger",
+        "mile-eight captain"
+      ],
+      "mustAvoid": [
+        "free-for-all field decisions"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "SaaS outage where support leads see customer patterns first",
+      "audience": "a customer operations director above regional support leads",
+      "stakes": "customer harm grows if every concession waits for executive approval",
+      "format": "decision_point",
+      "requiredBeat": "the director gives support leads a credit limit, message intent, and escalation boundary, then lets the Brazil lead handle a key account live",
+      "firstImage": "The first thing you register is physical: priority customer chat turns purple in the regional support queue.",
+      "mustInclude": [
+        "credit limit",
+        "message intent",
+        "escalation boundary"
+      ],
+      "mustAvoid": [
+        "delegating only small tasks"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "touring concert crew facing a weather delay at an outdoor venue",
+      "audience": "a production director with rigging, sound, and security teams spread across the site",
+      "stakes": "a storm cell can make waiting for one command channel unsafe",
+      "format": "dialogue",
+      "requiredBeat": "the director briefs team leads on go/no-go criteria, protected equipment priorities, and stop-work authority, then lets rigging call a pause from the roofline",
+      "firstImage": "\"Hold there,\" someone says. Wind meter clicks against the truss while tarps flap below.",
+      "mustInclude": [
+        "go/no-go criteria",
+        "stop-work authority",
+        "protected equipment priorities"
+      ],
+      "mustAvoid": [
+        "concert-chaos spectacle"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "field archaeology dig when a trench exposes unexpected human remains",
+      "audience": "a site director supervising crews across several trenches",
+      "stakes": "legal and ethical handling can fail if junior trench leads wait too long",
+      "format": "postmortem",
+      "requiredBeat": "the director had already trained trench leads on stop-work signs and reporting limits, so the junior lead covers the find, halts the trench, and calls the designated authority without asking first",
+      "firstImage": "Later, the team will trace the lesson back to this: square trowel pauses above a pale curved fragment in the trench wall.",
+      "mustInclude": [
+        "stop-work signs",
+        "designated authority",
+        "covered find"
+      ],
+      "mustAvoid": [
+        "adventure excavation tone"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "concrete pour for a hospital foundation",
+      "audience": "a site superintendent with inspectors at separate pour zones",
+      "stakes": "a bad slump test in one zone can compromise a critical foundation",
+      "format": "predict_reveal",
+      "requiredBeat": "the superintendent gives inspectors reject authority and the project intent, then the east-zone inspector stops one truck before the superintendent arrives",
+      "firstImage": "What changes once this is in front of everyone: wet concrete slumps over a cone beside the east-zone formwork?",
+      "mustInclude": [
+        "slump cone",
+        "reject authority",
+        "east-zone inspector"
+      ],
+      "mustAvoid": [
+        "top-down command as control"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "set intent, limits, and standards before decentralizing authority",
+      "identify abdication disguised as empowerment",
+      "choose when to back a local leader’s bounded call"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one decision you still centralize, then write the intent, limit, and standard someone else would need to make it without you.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

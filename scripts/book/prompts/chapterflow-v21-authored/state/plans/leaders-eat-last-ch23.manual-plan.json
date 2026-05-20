@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch23",
+  "number": 23,
+  "title": "At Any Expense",
+  "coreMove": "Refuse to call a win clean until you have found who pays the hidden bill.",
+  "sourcePressure": "Warns that visible success becomes morally thin when the human bill is hidden, delayed, or displaced onto less visible people.",
+  "chapterSpecificMisunderstanding": "Making this anti-performance or ignoring hard tradeoffs instead of exposing displaced cost.",
+  "sourceAlignmentTerms": [
+    "at any expense",
+    "human bill",
+    "hidden burden",
+    "displaced cost",
+    "visible gain",
+    "collateral",
+    "trust erosion"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 23 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "catering company wedding season",
+      "audience": "operations lead celebrating record revenue",
+      "stakes": "the win depends on unpaid prep hours hidden in the kitchen",
+      "format": "decision_point",
+      "requiredBeat": "she adds prep-hour cards to the profit review before accepting the next wedding",
+      "firstImage": "a stack of prep cards beside a plated tasting spoon",
+      "mustInclude": [
+        "prep cards",
+        "tasting spoon"
+      ],
+      "mustAvoid": [
+        "anti-ambition"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "mobile app moderation queue",
+      "audience": "product manager shipping a growth feature",
+      "stakes": "growth moves abuse cleanup to moderators offscreen",
+      "format": "scene",
+      "requiredBeat": "he opens the moderator backlog before signing the launch checklist",
+      "firstImage": "a moderation queue beside a launch checklist",
+      "mustInclude": [
+        "moderation queue",
+        "checklist"
+      ],
+      "mustAvoid": [
+        "software hidden cost"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "hospital laundry contractor",
+      "audience": "procurement officer choosing lowest bid",
+      "stakes": "savings may displace injury and speed pressure onto workers",
+      "format": "dialogue",
+      "requiredBeat": "she asks to see the fold-rate injury log before awarding the contract",
+      "firstImage": "a bid sheet beside a linen cart tag",
+      "mustInclude": [
+        "bid sheet",
+        "cart tag"
+      ],
+      "mustAvoid": [
+        "procurement cliché"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "youth orchestra tour planning",
+      "audience": "director praising cheap travel",
+      "stakes": "low cost hides chaperone exhaustion and student risk",
+      "format": "postmortem",
+      "requiredBeat": "the director matches the saved dollars to missed medication checks on the bus",
+      "firstImage": "a tour invoice beside a medication roster",
+      "mustInclude": [
+        "tour invoice",
+        "medication roster"
+      ],
+      "mustAvoid": [
+        "school trip"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "meal-kit warehouse promotion",
+      "audience": "marketing lead touting faster delivery",
+      "stakes": "speed gain hides picker strain and spoiled returns",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts the cost per box, then adds the injury log and spoilage bin to the same page",
+      "firstImage": "a thermal label beside a spoilage bin tag",
+      "mustInclude": [
+        "thermal label",
+        "spoilage tag"
+      ],
+      "mustAvoid": [
+        "warehouse metrics"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "shared apartment energy bill",
+      "audience": "roommate proud of lower costs",
+      "stakes": "savings came from one person living cold and silent",
+      "format": "before_after",
+      "requiredBeat": "the group puts the thermostat log beside each person's room temperature notes",
+      "firstImage": "a thermostat log beside a quilt on a chair",
+      "mustInclude": [
+        "thermostat log",
+        "temperature note"
+      ],
+      "mustAvoid": [
+        "household chores"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "trace hidden costs behind success",
+      "distinguish hard tradeoff from displaced burden",
+      "evaluate contaminated wins",
+      "restore visibility to cost carriers"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one recent win, write the receipt: who got credit, who carried cleanup, and whose cost stayed offscreen.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

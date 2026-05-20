@@ -1,0 +1,179 @@
+{
+  "chapterId": "extreme-ownership-ch05",
+  "number": 5,
+  "title": "Check the Ego",
+  "coreMove": "notice when status protection is blocking help, correction, or cooperation, and put the mission back above looking right",
+  "sourcePressure": "Elite-unit arrogance damages coordination, while humility and cross-unit respect return attention to the mission.",
+  "chapterSpecificMisunderstanding": "be humble and nice",
+  "sourceAlignmentTerms": [
+    "ego",
+    "humility",
+    "cross-unit respect",
+    "status",
+    "rivalry",
+    "mission focus",
+    "confidence versus ego"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "aircraft maintenance bay where an apprentice catches a senior tech’s missed cotter pin",
+      "audience": "a lead mechanic known for being the best in the hangar",
+      "stakes": "status pride can turn a real safety catch into silence next time",
+      "format": "dialogue",
+      "requiredBeat": "the lead mechanic repeats the apprentice’s concern aloud, checks the assembly in front of the crew, and thanks him before touching the tool cart",
+      "firstImage": "a bent cotter pin sits half-seated under the landing-gear light",
+      "mustInclude": [
+        "cotter pin",
+        "landing-gear assembly",
+        "tool cart"
+      ],
+      "mustAvoid": [
+        "humility as soft niceness"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "surgical suite where a scrub nurse challenges the attending’s count",
+      "audience": "a senior surgeon under schedule pressure",
+      "stakes": "ego can push past a safety stop that exists for a reason",
+      "format": "decision_point",
+      "requiredBeat": "the surgeon feels the room waiting, lowers the instrument, asks for the count again, and treats the pause as protecting the patient rather than challenging his authority",
+      "firstImage": "You are close enough to see this: blue sponge-count board shows one blank square beside the OR clock.",
+      "mustInclude": [
+        "sponge-count board",
+        "instrument pause",
+        "OR clock"
+      ],
+      "mustAvoid": [
+        "hospital hierarchy caricature"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "fine-dining kitchen corrected by a health inspector",
+      "audience": "a chef-owner whose reputation is built on precision",
+      "stakes": "defensiveness can keep a temperature problem alive after the inspector leaves",
+      "format": "postmortem",
+      "requiredBeat": "the chef stops arguing about his record, checks the inspector’s probe reading against his own log, and changes the holding process before dinner service",
+      "firstImage": "The first thing you register is physical: probe thermometer rests in a pan of duck confit reading four degrees too warm.",
+      "mustInclude": [
+        "probe thermometer",
+        "holding log",
+        "dinner service change"
+      ],
+      "mustAvoid": [
+        "food-service anger scene"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "elite cycling training camp where support staff flags a brake issue",
+      "audience": "a team captain who dismisses slower riders and mechanics",
+      "stakes": "status rivalry can turn a preventable crash into a team failure",
+      "format": "vignette",
+      "requiredBeat": "the captain hands the bike to the mechanic, asks the support rider what she felt on descent, and makes the squad inspect brakes before the next climb",
+      "firstImage": "\"Hold there,\" someone says. Carbon brake pad leaves a gray smear across a mechanic’s glove.",
+      "mustInclude": [
+        "carbon brake pad",
+        "descent report",
+        "brake inspection"
+      ],
+      "mustAvoid": [
+        "bike-helmet anchor or toughness speech"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "venture-backed startup founder reading support tickets after a botched release",
+      "audience": "a founder convinced customers just resist change",
+      "stakes": "ego can convert useful feedback into noise while churn accelerates",
+      "format": "before_after",
+      "requiredBeat": "the founder reads three refund transcripts out loud, removes his defensive wording from the release note, and asks support to mark the confusing step in the product",
+      "firstImage": "Later, the team will trace the lesson back to this: refund transcript prints with the same sentence highlighted three times.",
+      "mustInclude": [
+        "refund transcript",
+        "release note",
+        "confusing product step"
+      ],
+      "mustAvoid": [
+        "founder visionary trope"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "bridge repair review where a welder spots a crack the engineer missed",
+      "audience": "a licensed engineer overseeing an overnight lane closure",
+      "stakes": "credential pride can bury field knowledge that protects the structure",
+      "format": "scene",
+      "requiredBeat": "the engineer kneels beside the welder, looks at the dye mark, revises the repair sequence, and names the welder’s catch in the shift briefing",
+      "firstImage": "What changes once this is in front of everyone: red dye bleeds from a hairline crack under a portable work light?",
+      "mustInclude": [
+        "red dye mark",
+        "repair sequence",
+        "shift briefing"
+      ],
+      "mustAvoid": [
+        "expert versus labor cliché"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot status protection inside conflict",
+      "distinguish confidence from ego in a concrete decision",
+      "choose the mission-first response to correction or outside help"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one correction you disliked this week and write the mission value inside it before you defend yourself.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

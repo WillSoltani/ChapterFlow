@@ -1,0 +1,196 @@
+{
+  "chapterId": "made-to-stick-ch05",
+  "number": 5,
+  "title": "Emotional",
+  "coreMove": "Make the consequence matter by tying it to one human stake, identity, dignity, or meaningful cost.",
+  "sourcePressure": "The source treats emotion as making people care through one person, identity, dignity, self-interest, and meaning, with Floyd Lees Iraq dining example grounding morale and dignity.",
+  "chapterSpecificMisunderstanding": "Equating emotion with sadness, hype, guilt, or inspirational language.",
+  "sourceAlignmentTerms": [
+    "emotional",
+    "one person",
+    "analytical framing",
+    "identity",
+    "self-interest",
+    "dignity",
+    "Floyd Lee"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "one-person-versus-many framing",
+      "detail": "the sidecar says one-person-versus-many framing supports the idea that abstract scale often fails to move feeling",
+      "useIn": "both",
+      "phrasingHint": "One person can make the stake visible when the crowd has become too large to feel."
+    },
+    {
+      "kind": "study",
+      "name": "analytical framing",
+      "detail": "the sidecar says analytical framing can reduce giving or emotional response compared with a humanized case",
+      "useIn": "deepRead",
+      "phrasingHint": "Analysis can cool the very concern a message needs, especially when the person has disappeared into the numbers."
+    },
+    {
+      "kind": "person",
+      "name": "Floyd Lee",
+      "detail": "the sidecar says Floyd Lees dining-in-Iraq example supports meaning, morale, and dignity as emotionally powerful stakes",
+      "useIn": "fullRead",
+      "phrasingHint": "Floyd Lees dining room in Iraq points to dignity, not sentimentality, as the emotional engine."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "one sad person replaces a statistic every time",
+      "make them care as generic command"
+    ],
+    "counterintuition": [
+      "emotion is not manipulation stated abstractly",
+      "identity beats facts as a blanket rule"
+    ],
+    "tryThisNow": [
+      "add a human face",
+      "ask why it matters"
+    ],
+    "examples": [
+      "generic fundraiser with one child",
+      "morale poster speech",
+      "family values dinner table"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "factory hearing-protection campaign",
+      "audience": "a safety lead addressing machinists who ignore decibel charts",
+      "stakes": "workers risk permanent hearing loss while seeing earplugs as nuisance gear",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Grace plays a recording of one retired machinists muffled grandchild conversation, then ties protection to keeping family voices clear",
+      "firstImage": "The recording sounds like it is playing through a wall",
+      "mustInclude": [
+        "earplug dispenser",
+        "audio recorder",
+        "decibel card"
+      ],
+      "mustAvoid": [
+        "injury scare poster"
+      ]
+    },
+    {
+      "domain": "regional blood-donor recruitment",
+      "audience": "a hospital volunteer coordinator writing a campaign for first-time donors",
+      "stakes": "summer shortages cancel planned surgeries",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hugo replaces regional shortage totals with one surgery slot held open for a named patient status board entry without inventing private details",
+      "firstImage": "At 7:20 a.m., Hugo reads the blank donor column beside Tuesday surgery prep",
+      "mustInclude": [
+        "status board",
+        "donor appointment cards",
+        "cooler labels"
+      ],
+      "mustAvoid": [
+        "pity-driven patient biography"
+      ]
+    },
+    {
+      "domain": "apprentice electrician retention talk",
+      "audience": "a training director trying to keep first-year apprentices from quitting",
+      "stakes": "the region loses skilled workers if the program feels like hazing",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"This is not about toughness,\" Kasia says, then reframes the program as becoming the person trusted near live wires",
+      "firstImage": "\"This is not about toughness,\" Kasia says while the practice panel hums",
+      "mustInclude": [
+        "practice panel",
+        "rubber gloves",
+        "signed logbook"
+      ],
+      "mustAvoid": [
+        "generic grit speech"
+      ]
+    },
+    {
+      "domain": "urban tree-canopy vote",
+      "audience": "a neighborhood organizer persuading renters and homeowners together",
+      "stakes": "heat risk stays abstract until tied to one bus stop people use",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Sam move from citywide canopy percentages to the noon temperature at the uncovered bus stop where parents wait with strollers",
+      "firstImage": "You can feel the heat coming off the bus shelter bench through your jeans",
+      "mustInclude": [
+        "infrared thermometer",
+        "bus stop bench",
+        "shade map"
+      ],
+      "mustAvoid": [
+        "climate doom monologue"
+      ]
+    },
+    {
+      "domain": "university financial-aid appeal",
+      "audience": "an advisor helping students see why paperwork matters",
+      "stakes": "missed forms can cost a semester, but reminders feel bureaucratic",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Layla connects the form to keeping a students lab coat and campus job, not to compliance language",
+      "firstImage": "It took Layla four unopened reminder emails to see the word deadline was the wrong stake",
+      "mustInclude": [
+        "lab coat",
+        "aid portal screenshot",
+        "campus job schedule"
+      ],
+      "mustAvoid": [
+        "abstract future success framing"
+      ]
+    },
+    {
+      "domain": "search-and-rescue volunteer onboarding",
+      "audience": "a team lead explaining radio discipline to new volunteers",
+      "stakes": "a casual missed call can delay a real rescue",
+      "format": "reflection",
+      "openingDevice": "environmental",
+      "requiredBeat": "Luca frames radio checks as belonging to the kind of team that brings someone home, then shows the empty map square that depends on one clear reply",
+      "firstImage": "Fog presses against the windows of the volunteer hall before dawn",
+      "mustInclude": [
+        "radio handset",
+        "grid map",
+        "orange vest"
+      ],
+      "mustAvoid": [
+        "heroic rescue fantasy"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the human stake that makes an idea matter",
+      "distinguish dignity and identity from manipulation",
+      "repair analytical framing that cools care",
+      "evaluate when one-person focus stays honest to scale"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name the person, identity, or dignity stake hidden inside one abstract message, then rewrite the message so that stake appears before the statistic.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

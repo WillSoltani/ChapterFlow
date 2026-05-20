@@ -1,0 +1,139 @@
+{
+  "chapterId": "the-innovators-dilemma-ch01",
+  "number": 1,
+  "title": "How Can Great Firms Fail? Insights from the Hard Disk Drive Industry",
+  "coreMove": "Recognize that serving your best customers well is narrowing your view of what the next wave looks like.",
+  "sourcePressure": "Christensen uses the hard disk drive industry as a pressure chamber: strong firms kept losing leadership across multiple product generations not because they stopped improving, but because their improvement logic followed current customers who had no use for disruptive options at the moment those options appeared.",
+  "chapterSpecificMisunderstanding": "Assuming incumbent failure means complacency, slow R&D, or weak leadership — when the book's point is that the failure emerged from competent management applied to the current business.",
+  "sourceAlignmentTerms": [
+    "sustaining innovation",
+    "disruptive innovation",
+    "incumbent",
+    "current customers",
+    "resource allocation",
+    "entrant",
+    "leadership turnover",
+    "performance trajectory"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "industry",
+      "name": "hard disk drive industry",
+      "detail": "Christensen uses disk drives as his main empirical case because the industry cycles through generations rapidly, making the repeated pattern of incumbent displacement highly visible. He describes it as a 'fruit-fly' equivalent for business research — fast enough that the researcher can observe full cycles.",
+      "useIn": "deepRead",
+      "phrasingHint": "The disk drive market was the closest thing to a controlled lab that business research had found — generations turned fast enough that you could watch a leader vanish in real time."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'the world is changing faster than ever' opening",
+      "rhetorical 'what if I told you that success leads to failure?' framing"
+    ],
+    "counterintuition": [
+      "generic 'working harder is not the answer' counter",
+      "generic 'change is the only constant' counter"
+    ],
+    "tryThisNow": [
+      "generic 'write down three areas where you feel disrupted' prompt",
+      "generic 'ask yourself when you last took a risk' prompt"
+    ],
+    "examples": [
+      "any scene featuring a startup founder celebrating disrupting the market",
+      "a scene where an executive is simply described as lazy or uninformed"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Ch1 sets the pattern for the whole book; opening diversity here signals that the writer has range."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "newspaper publisher debating whether to expand digital classifieds alongside the print edition",
+      "audience": "a publisher whose print classified revenue still pays most of the salaries",
+      "stakes": "the online classifieds look weak and niche while the print edition still dominates, but the trend line is clear to anyone who looks",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sarah hears from her best advertisers that the online product is too thin to bother with — and she uses that feedback to justify not investing more in it, not to notice that those advertisers are not the ones who will define the next decade",
+      "firstImage": "the weekly advertiser review, a thick printout, with the online numbers in a small column at the far right",
+      "mustInclude": ["advertiser feedback", "print revenue figure", "the thin online column"],
+      "mustAvoid": ["any implication that Sarah is lazy or uninformed", "startup triumph framing"]
+    },
+    {
+      "domain": "travel agency chain evaluating whether to integrate an online booking tool its mid-tier franchisees don't want",
+      "audience": "a regional VP whose strongest franchisees are the ones most satisfied with the current model",
+      "stakes": "the strongest franchisees are loud, profitable, and dismissive of online booking — and their dismissal sounds like data",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James takes the franchisee satisfaction scores to the investment committee and the online tool is voted down because it doesn't serve the customers who most clearly generate revenue right now",
+      "firstImage": "a conference room with printed franchise performance reports fanned out across the table",
+      "mustInclude": ["franchise satisfaction scores", "investment committee vote", "the online tool's low performance in the current customer base"],
+      "mustAvoid": ["any implication that the decision was obviously wrong at the time"]
+    },
+    {
+      "domain": "film camera manufacturer reviewing quarterly financials as the first consumer digital cameras arrive",
+      "audience": "a product manager whose core market is professional and serious-amateur photographers who actively prefer film",
+      "stakes": "the digital cameras on the market look worse by every measure the product team uses to evaluate cameras — grain, color range, cost per image",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "David presents the digital camera market analysis and concludes it is not yet a real threat because no professional photographer in their survey finds it acceptable — a conclusion that is technically correct and structurally misleading",
+      "firstImage": "a slide showing digital camera resolution vs. film grain, with film winning clearly",
+      "mustInclude": ["quality comparison matrix", "professional photographer survey", "the conclusion that the new product fails the firm's standards"],
+      "mustAvoid": ["hindsight framing that makes the decision look foolish in the moment"]
+    },
+    {
+      "domain": "video rental chain opening new locations in markets where rental revenue is still growing",
+      "audience": "a strategy director whose expansion model has worked reliably for six years",
+      "stakes": "the expansion signals look solid because the best existing customers are in new markets, even as a different kind of viewing is beginning at the edges",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Camille's expansion plan is approved because the metrics it uses — revenue per location, renewal rate, customer satisfaction — are all strong. The metrics that would catch what is happening outside the current value network are simply not on the dashboard.",
+      "firstImage": "a map of new store openings, each marked with projected revenue in a tight typeface",
+      "mustInclude": ["dashboard metrics", "location expansion approval", "absence of any signal from outside the current customer base"],
+      "mustAvoid": ["streaming as a named villain", "any scene set in the current decade"]
+    },
+    {
+      "domain": "taxi dispatch firm renewing a city airport contract on the strength of its enterprise account relationship",
+      "audience": "a dispatch director whose business is defined by its relationship with corporate accounts and hotel concierges",
+      "stakes": "the corporate accounts are delighted and the contract renewal feels secure — but the customers who don't use corporate accounts are not in the room",
+      "format": "postmortem",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Henrik explains to the board why the renewal made sense using every metric that mattered inside the current business — and the postmortem shows that all of those metrics were real and all of them described a network that was already shrinking",
+      "firstImage": "an empty taxi queue at the airport departures level at 11 p.m.",
+      "mustInclude": ["corporate account satisfaction data", "contract renewal terms", "the non-customers who never appear in the data"],
+      "mustAvoid": ["ride-hailing as a named company", "personal tech framing"]
+    },
+    {
+      "domain": "print encyclopedia publisher approving a new edition after a record-breaking sales year",
+      "audience": "an editorial director whose product has just had its strongest year in a decade",
+      "stakes": "a record year makes the investment in a new edition look clearly justified — and makes the threat from digital reference look like a niche problem for librarians, not a mainstream concern",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "The before shows Yusuf approving the edition based on sales data that is entirely real. The after shows what the sales data could not show: that the customers buying the record year were schools and libraries upgrading aging sets, and that the market that would replace them was forming in a different channel entirely.",
+      "firstImage": "a pallet of encyclopedia sets being loaded for a school district shipment",
+      "mustInclude": ["sales record", "school district customer", "the different channel where replacement demand is forming"],
+      "mustAvoid": ["any named tech company or product"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish sustaining from disruptive innovation in a described scenario",
+      "identify when customer feedback is reinforcing a structural blind spot",
+      "evaluate whether a management decision is rational inside its current value network",
+      "recognize an entrant foothold that incumbents are not tracking",
+      "explain why a firm can fail while following good management practice"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of one product or service your organization offers that your best customers rate highly. Write down one type of buyer who would never rate it — because it costs too much, asks for more than they need, or doesn't exist in their world. That non-customer is where the next relevant signal lives.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a direct second-person passage about what the reader's own dashboard might be missing, or a brief historical note on how the disk drive generation cycle worked",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

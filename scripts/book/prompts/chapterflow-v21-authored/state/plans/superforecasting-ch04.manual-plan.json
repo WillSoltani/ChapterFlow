@@ -1,0 +1,143 @@
+{
+  "chapterId": "superforecasting-ch04",
+  "number": 4,
+  "title": "Superforecasters",
+  "coreMove": "Stay on the hard forecasting question and resist the slide to an easier proxy — the substituted question feels answerable but costs you the accuracy the harder question would have delivered.",
+  "sourcePressure": "The Iraq WMD case shows question substitution in action: the hard question (does he actually have WMDs?) was replaced by the easier proxy (does his behavior resemble someone who is concealing them?). Robert Jervis shows the judgment could be understandable and still overconfident. IARPA and the Good Judgment Project demonstrate that volunteers using probabilities and aggregation beat intelligence professionals once the scoreboard was real. Doug Lorch makes the skill-vs-luck argument concrete through sustained superior performance.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'use better processes generically.' The precise move is catching and refusing the substitution — naming which question you are actually answering versus which one you were supposed to answer, and noticing when the easier one has already taken over without permission.",
+  "sourceAlignmentTerms": ["question substitution", "bait-and-switch", "Good Judgment Project", "IARPA", "Doug Lorch", "regression to the mean", "skill versus luck"],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Iraq WMD intelligence failure",
+      "detail": "The 2003 intelligence consensus that Saddam Hussein possessed WMDs rested partly on a substituted question — analysts had strong evidence that his behavior resembled concealment, and answered the proxy question (does he look like he's hiding something?) rather than the target question (does he actually have them?). Robert Jervis's analysis notes the judgment was understandable but still overconfident, and that lower confidence might have altered the political pathway.",
+      "useIn": "deepRead",
+      "phrasingHint": "The question on paper was whether he had the weapons. The question that actually got answered was whether he was acting like someone who did — and those two questions have very different track records."
+    },
+    {
+      "kind": "person",
+      "name": "Doug Lorch",
+      "detail": "A volunteer superforecaster in Tetlock's Good Judgment Project who sustained high predictive accuracy across many forecasts over multiple years — used in the book to show that forecasting skill can be real and durable, and that regression to the mean did not erase the edge of the best performers",
+      "useIn": "fullRead",
+      "phrasingHint": "Doug Lorch kept outperforming not because of one brilliant insight but because each forecast met an outcome and his process kept improving — repeated exposure under real stakes."
+    },
+    {
+      "kind": "person",
+      "name": "Robert Jervis",
+      "detail": "Political scientist and intelligence expert who analyzed the Iraq WMD case and argued that the intelligence failure was not simple negligence — the judgment was understandable given available signals — but that different confidence levels (lower probability, not zero) could have changed the political pathway toward the war decision",
+      "useIn": "deepRead",
+      "phrasingHint": "Robert Jervis's point was not that the analysts were stupid. It was that expressing 70% instead of 95% would have been honest, and honesty at that scale moves policy."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with the Iraq war as a political commentary — the chapter uses it as a case study in substitution, not a war debate",
+      "opening with 'smart people can still be wrong' — too generic"
+    ],
+    "counterintuition": [
+      "'Intelligence professionals do worse than volunteers because they are too confident' — misses the mechanism; it is question substitution and the lack of a scoreboard, not confidence per se"
+    ],
+    "tryThisNow": [
+      "'Write down a prediction you've been avoiding making' — not chapter-specific enough",
+      "any prompt that just says 'use probabilities' without the substitution-checking mechanism"
+    ],
+    "examples": [
+      "any example where the protagonist simply makes a bad prediction without the specific substitution beat",
+      "Iraq war history as the main scene — use the principle in fresh domains"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Question substitution happens in many different decision contexts — the variety of openings should signal that the error is universal"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pharmaceutical company safety committee reviewing a new drug's adverse event signal",
+      "audience": "a safety scientist who is the first reviewer of a flagged liver enzyme signal in a Phase III trial",
+      "stakes": "whether to pause the trial and report to regulators, or classify the signal as within expected range",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the scientist realizes she has been answering 'does this pattern look familiar from other liver-affecting drugs?' (easy proxy) instead of 'what is the actual causal mechanism linking this compound to these enzymes?' (the hard question) — the substitution feels invisible until she writes both questions side by side",
+      "firstImage": "a liver enzyme chart printout with three flagged datapoints circled in red marker on a conference table",
+      "mustInclude": ["the two questions written side by side", "the scientist's recognition that she has been answering the proxy", "the trial pause decision hanging on which question she was really answering"],
+      "mustAvoid": ["pharmaceutical regulatory detail that overwhelms the substitution beat", "villainizing the committee"]
+    },
+    {
+      "domain": "corporate hiring committee evaluating a director-level candidate",
+      "audience": "a VP of People at a mid-size tech company running the final panel discussion on a senior hire",
+      "stakes": "a director role with four direct reports and a $400K budget",
+      "format": "dialogue_first",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a panel member says 'she reminds me a lot of Damien — same energy' and no one challenges it; the VP realizes the committee has been answering 'does this person resemble our best people?' instead of 'what does her measurable outcome record show for the specific skill set this role requires?'",
+      "firstImage": "a hiring debrief room where the whiteboard has personality descriptors written on it instead of outcome metrics",
+      "mustInclude": ["the 'reminds me of Damien' trigger moment", "the VP's recognition of the substitution", "the contrast between the proxy question and the actual target question"],
+      "mustAvoid": ["HR jargon", "making the committee look incompetent — they are experienced people making a common substitution"]
+    },
+    {
+      "domain": "insurance fraud investigation unit reviewing a property damage claim",
+      "audience": "a senior investigator deciding whether to refer a large water-damage claim to the special investigations unit",
+      "stakes": "a $280K claim and a referral decision that, if wrong, costs the company time and the claimant unnecessary scrutiny",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the investigator has been asking 'does this claimant seem like the type who files fraudulent claims?' — the substituted question — rather than 'what is the fraud rate for this claim type, geography, and damage category?' (the base rate question); the base rate turns out to be 3%, and his impression-based referral rate has been running at 18%",
+      "firstImage": "a manila folder of claim photos with sticky notes attached — the investigator's 'read' of the claimant already scrawled in one corner",
+      "mustInclude": ["the fraud rate vs. impression-rate gap", "the specific substitution named explicitly", "the referral decision being recalibrated"],
+      "mustAvoid": ["insurance industry jargon", "framing this as a fraud-prevention guide"]
+    },
+    {
+      "domain": "credit analyst at a regional bank evaluating a small business loan application",
+      "audience": "a credit analyst reviewing a restaurant group's expansion loan request",
+      "stakes": "a $1.2M loan decision at a bank where the analyst's recommendation carries significant weight",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "requiredBeat": "the analyst notices she is answering 'does this feel like a strong restaurant group?' — proxy — rather than 'what is the default rate for restaurant expansion loans of this size and vintage in this metro market?' — the base rate; she looks up the base rate and finds it is 22%, which changes her debt-coverage calculation",
+      "firstImage": "a loan application spread across two monitors, with a well-designed menu and glossy interior photos in one window",
+      "mustInclude": ["the 22% base rate", "the 'feels like a strong group' proxy", "the shift in debt-coverage assessment once the base rate is applied"],
+      "mustAvoid": ["banking regulation content", "making this a case study in restaurant industry risk"]
+    },
+    {
+      "domain": "product manager at a software company deciding whether to build a feature based on two customer interviews",
+      "audience": "a PM who has just run two user research calls and is writing the feature brief",
+      "stakes": "six weeks of engineering time and a Q3 roadmap slot",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the PM is answering 'would I personally use this feature?' and 'did these two customers sound enthusiastic?' — both proxies — rather than 'what proportion of the 4,000 users in this segment are blocked by the problem this feature solves?'; when she runs a 5-minute survey to get the answer, it is 6%, which is below her threshold",
+      "firstImage": "a feature brief half-drafted with 'customers love this' written at the top based on two calls",
+      "mustInclude": ["the two proxy questions named explicitly", "the 5-minute survey result (6%)", "the threshold comparison"],
+      "mustAvoid": ["product management methodology lecture", "dismissing qualitative research broadly"]
+    },
+    {
+      "domain": "investigative journalist evaluating whether to name a source on a document that contradicts official statements",
+      "audience": "a journalist deciding how much weight to give a source whose testimony aligns with what the journalist already suspects is true",
+      "stakes": "whether a story runs as presented or undergoes another month of verification",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the journalist has been asking 'does this source seem credible — does she have motive to lie?' — proxy — rather than 'how often have sources in comparable institutional positions who agree with a reporter's prior hypothesis turned out to be accurate vs. motivated?' — the reference class; she can't answer the reference-class question easily, which tells her she has been relying almost entirely on the proxy",
+      "firstImage": "a reporter's notebook page from the interview, with 'credible — genuine grievance' underlined twice",
+      "mustInclude": ["the two questions named side by side", "the reporter's recognition she cannot answer the reference-class question", "the effect on publication timeline"],
+      "mustAvoid": ["media ethics lecture", "political commentary on specific journalism topics"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the substituted question and the target question in a new scenario",
+      "apply the skill-vs-luck distinction to a prediction track record",
+      "analyze when base rate versus inside-view information is being used",
+      "evaluate whether a forecaster's confidence level is calibrated to the hard or the easy version of the question",
+      "apply the Good Judgment Project finding — aggregation beats prestige — to a team decision context"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one decision you are currently tracking — a project timeline, a negotiation outcome, a business forecast. Write down the exact question you are trying to answer, then write down the question you have actually been spending most time on. If they are different, you have already substituted. Rewrite your most recent estimate as an answer to the original question.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one analytical aside explaining why question substitution happens to smart people — the easier question generates the same feeling of working hard as the harder one, which is what makes the substitution invisible",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

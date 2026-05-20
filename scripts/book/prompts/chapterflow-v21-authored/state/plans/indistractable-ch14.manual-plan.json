@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch14",
+  "number": 14,
+  "title": "Hack Back Group Chat",
+  "coreMove": "Separate chat's coordination value from its ambient presence pressure by naming channels, urgency, and expected response speed.",
+  "sourcePressure": "The chapter distinguishes group chat by its speed and visible-presence pressure, focusing on norms and urgency rules rather than blaming the app.",
+  "chapterSpecificMisunderstanding": "A weak run would mute everything or blame chatty people without defining what the room is for.",
+  "sourceAlignmentTerms": [
+    "group chat",
+    "presence pressure",
+    "urgency rules",
+    "channels",
+    "response speed",
+    "norms"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hack Back Group Chat as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "community disaster-volunteer chat before a flood watch",
+      "audience": "volunteer coordinator with one channel full of jokes and road reports",
+      "stakes": "urgent sandbag requests can disappear in chatter",
+      "format": "dialogue",
+      "requiredBeat": "she splits flood operations from social check-ins and pins the urgent radio call sign",
+      "firstImage": "A flood-watch map is taped above a pinned radio call sign.",
+      "mustInclude": [
+        "flood-watch map",
+        "radio call sign",
+        "operations channel"
+      ],
+      "mustAvoid": [
+        "emergency panic"
+      ]
+    },
+    {
+      "domain": "restaurant opening team coordinating final inspections",
+      "audience": "manager whose chat mixes jokes, vendors, and fire-marshal tasks",
+      "stakes": "opening day slips if inspection asks scatter",
+      "format": "scene",
+      "requiredBeat": "he labels one thread 'inspection blockers only' and moves menu chatter elsewhere",
+      "firstImage": "A fire-marshal checklist sits beside a taped thread label.",
+      "mustInclude": [
+        "fire checklist",
+        "thread label",
+        "menu chatter"
+      ],
+      "mustAvoid": [
+        "restaurant bustle"
+      ]
+    },
+    {
+      "domain": "distributed translation team handling subtitle fixes",
+      "audience": "lead translator pulled by every ping during timing review",
+      "stakes": "a subtitle release gets inconsistent if fixes lack channel rules",
+      "format": "decision_point",
+      "requiredBeat": "she creates timing-critical and wording-later channels before opening the review reel",
+      "firstImage": "A subtitle timeline glows beneath a two-channel rule card.",
+      "mustInclude": [
+        "subtitle timeline",
+        "rule card",
+        "review reel"
+      ],
+      "mustAvoid": [
+        "generic remote work"
+      ]
+    },
+    {
+      "domain": "minor-league equipment staff during away-game packing",
+      "audience": "clubhouse manager whose chat mixes requests with travel jokes",
+      "stakes": "missing gear costs the team warmup time",
+      "format": "postmortem",
+      "requiredBeat": "he pins a gear-only list and tells players reactions are not confirmations",
+      "firstImage": "A cleat inventory tag lies beside a pinned gear-only list.",
+      "mustInclude": [
+        "inventory tag",
+        "gear-only list",
+        "travel joke thread"
+      ],
+      "mustAvoid": [
+        "sports banter"
+      ]
+    },
+    {
+      "domain": "nonprofit legal hotline volunteers sharing shift updates",
+      "audience": "shift lead seeing every message as immediate",
+      "stakes": "clients wait while volunteers react to side commentary",
+      "format": "before_after",
+      "requiredBeat": "before, side comments trigger everyone; after, only case-number pings require same-hour response",
+      "firstImage": "A hotline case card rests under a same-hour response note.",
+      "mustInclude": [
+        "case card",
+        "response note",
+        "side thread"
+      ],
+      "mustAvoid": [
+        "charity urgency"
+      ]
+    },
+    {
+      "domain": "film festival projection team handling screening changes",
+      "audience": "projectionist juggling booth prep and chat alerts",
+      "stakes": "wrong version files can screen if urgency is not explicit",
+      "format": "vignette",
+      "requiredBeat": "she marks file-change pings with one code and moves applause photos to a later channel",
+      "firstImage": "A DCP drive case sits beside a file-change code card.",
+      "mustInclude": [
+        "DCP drive case",
+        "code card",
+        "photo channel"
+      ],
+      "mustAvoid": [
+        "film glamour"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Separate chat's coordination value from its ambient presence pressure by naming channels, urgency, and expected response speed.",
+      "choose the action that stays inside Hack Back Group Chat's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would mute everything or blame chatty people without defining what the room is for.",
+      "use chapter-specific terms such as group chat, presence pressure, urgency rules, channels in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one busy chat and propose its purpose, response expectation, and urgent alternative in three short lines.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch14",
+  "number": 14,
+  "title": "Niches",
+  "readingTimeMinutes": 12,
+  "hook": "The espresso menu got shorter, and Fiona's tiny kiosk finally stopped fighting the cafes next door.",
+  "counterintuition": "Smaller can be broader when it removes the wrong fight. A niche works when specialization improves fit by reducing overlap with stronger neighbors.",
+  "tryThisNow": "Name one place you compete head-on. Remove one overlapping promise, then sharpen the role where your constraint becomes useful.",
+  "keyTakeaway": "A niche is a specialized position inside a shared environment; fit improves when a role reduces overlap and serves a distinct pressure well.",
+  "breakdown": {
+    "fastRead": "Fiona's rent notice made the cafe comparison painful. The larger shops had more seats, bigger pastry cases, and longer hours. Her kiosk had a tight espresso menu, a small bean invoice, and a rush-hour lane nobody else served well.\n\nShe stopped copying full cafes and narrowed the kiosk's role: fast, excellent espresso for commuters who would not sit down.\n\nA niche is fit through position. Specialization matters because it reduces direct overlap inside the same environment.",
+    "deepRead": "\"These patients cannot drive two hours for ten minutes,\" Martin said while the telehealth intake form sat beside a cell-signal map. The old clinic model overlapped with city practices it could never beat. Rural patients needed a different role.\n\nThe support is narrow: niches are differentiated roles or positions inside a shared environment, where specialization and reduced overlap improve fit. Martin was not building a smaller version of a hospital visit. He was choosing a role that matched remote patients, weak signal areas, and appointment cards that had to work around travel. A niche is a role, not a slogan.\n\nFit improves when overlap drops.\n\nBenoit learned the same lesson in a rare-map bookstore corner. The general history shelf buried the maps among everything else, and collector requests kept slipping into ordinary catalog work. He narrowed the drawer label, built catalog slips around region and period, and stopped making rare buyers hunt through broad shelves. The store did not need to be bigger. It needed a position that matched a specific search.\n\nThe limit is fragility. A niche can be too narrow, too dependent on one buyer, or too hidden to sustain itself. Specialization helps when it improves fit in the environment, not when it becomes a decorative corner nobody can find.",
+    "fullRead": "At 6:50 p.m., Joost looked at the exam track card after another student failed the wrong practice test. The placement result had put strong conversational speakers into a course built for casual travel. Their study folders filled with phrases they did not need. The language school was not failing because it taught badly. It was asking different students to share one role.\n\nA niche separates roles inside a shared environment. The travel learner, the exam candidate, and the heritage speaker may all want the same language school, but they do not face the same pressure. Treating them as one market creates overlap. Differentiating the track creates fit.\n\nWhere does specialization make the role more useful instead of merely smaller?\n\nThat question keeps niche from becoming personal branding. A niche is not a clever label, a mood, or a narrow slogan. It is a position that works because the environment has room for a distinct role. Fiona's kiosk fit a commuter lane. Martin's telehealth model fit rural constraints. Benoit's rare-map corner fit collectors who searched differently. Joost's exam track fit students measured by a specific test.\n\nThe useful niche has evidence. Someone finds the role faster. A constraint becomes an advantage. A buyer, patient, student, or singer gets a better match because the offering stops pretending to serve every adjacent need. Without that evidence, narrowness is just a smaller sign on the same crowded street.\n\nYou can see the same pattern in software. Andrea reviews a compliance checklist while an audit log exposes a problem big platforms keep ignoring. Broad tools serve many teams and leave one regulated workflow awkward. Her pricing page will only work if the product owns that narrow role clearly: not general project management, not all compliance, but the recurring audit trail a small team must prove every month.\n\nLeonor found it in a choir. The section chart kept placing singers where voices overlapped, so stronger voices swallowed quieter ones. A pitch pipe and a concert program made the role clearer: one singer did not need to be louder; she needed the part where her tone added color without fighting the same range. The niche was not status. It was fit.\n\nNiches also create blind spots. A role that fits today can become trapped if the environment changes or if overlap returns from a new neighbor. The answer is not to cling to smallness. The answer is to keep testing fit: role, pressure, overlap, and environment. If the role stops reducing overlap, the niche has become a hiding place.\n\nFind the pressure others serve poorly. Choose the position where your constraints become strengths. Then make the role clear enough that the right people can find it and the wrong overlap can fall away."
+  },
+  "examples": [
+    {
+      "exampleId": "ch14-ex01-fiona-coffee-kiosk",
+      "title": "Fiona Shortens the Espresso Menu",
+      "tags": [
+        "dialogue",
+        "coffee",
+        "position"
+      ],
+      "planSpec": {
+        "domain": "specialty coffee kiosk lane",
+        "audience": "readers who face specialty coffee kiosk lane decisions where niche is easy to misread",
+        "stakes": "survival beside larger cafes",
+        "format": "dialogue",
+        "requiredBeat": "Fiona narrows the role on the espresso menu, moves away from overlap shown on the rent notice, and uses the bean invoice to test whether fit improves. Domain: specialty coffee kiosk lane."
+      },
+      "scenario": "The espresso menu smells of fresh ink while Fiona reads the rent notice beside a bean invoice. \"We cannot out-seat them,\" her barista says, nodding toward the cafe next door. Fiona faces a choice: copy pastry cases, or narrow the kiosk around fast commuter espresso.",
+      "whatToDo": "Cut the overlapping cafe promises and test a smaller espresso role against rush-hour sales and bean use.",
+      "whyItMatters": "The niche works because overlap drops. Fiona's constraint becomes useful only when the role fits the commuter lane."
+    },
+    {
+      "exampleId": "ch14-ex02-martin-telehealth",
+      "title": "Martin Reads the Signal Map",
+      "tags": [
+        "decision_point",
+        "healthcare",
+        "fit"
+      ],
+      "planSpec": {
+        "domain": "rural telehealth appointment model",
+        "audience": "readers who face rural telehealth appointment model decisions where niche is easy to misread",
+        "stakes": "patients too remote for the old model",
+        "format": "decision_point",
+        "requiredBeat": "Martin narrows the role on the telehealth intake form, moves away from overlap shown on the cell-signal map, and uses the appointment card to test whether fit improves. Domain: rural telehealth appointment model."
+      },
+      "scenario": "\"The drive is longer than the visit,\" a patient says while Martin holds the telehealth intake form. The cell-signal map shows weak zones, and the appointment card still assumes an old clinic rhythm. Martin must decide whether to mimic city appointments online or specialize around short visits that work despite travel and signal limits.",
+      "whatToDo": "Design the intake and appointment card around rural constraints, then test whether patients complete the visit more reliably.",
+      "whyItMatters": "A niche is not a smaller clinic. It is a role shaped to fit an environment the broad model serves poorly."
+    },
+    {
+      "exampleId": "ch14-ex03-benoit-map-corner",
+      "title": "Benoit Labels the Drawer",
+      "tags": [
+        "predict_reveal",
+        "bookstore",
+        "specialization"
+      ],
+      "planSpec": {
+        "domain": "rare-map bookstore corner",
+        "audience": "readers who face rare-map bookstore corner decisions where niche is easy to misread",
+        "stakes": "rare buyers finding the right shelf",
+        "format": "predict_reveal",
+        "requiredBeat": "Benoit narrows the role on the rare-map drawer label, moves away from overlap shown on the collector request, and uses the catalog slip to test whether fit improves. Domain: rare-map bookstore corner."
+      },
+      "scenario": "The rare-map drawer label sits crooked under the bookstore mezzanine. Benoit predicts collectors will browse the general history shelf, but the collector request asks for region, period, and paper type. Before closing, he must choose between the broad shelf and a specialized corner with catalog slips that match how buyers search.",
+      "whatToDo": "Create a drawer label and catalog slip for the map role, then track whether requests become easier to satisfy.",
+      "whyItMatters": "The rare-map corner improves fit by reducing overlap with general history browsing. Specialized search needs a specialized position."
+    },
+    {
+      "exampleId": "ch14-ex04-joost-exam-track",
+      "title": "Joost Separates the Exam Track",
+      "tags": [
+        "postmortem",
+        "language",
+        "overlap"
+      ],
+      "planSpec": {
+        "domain": "language school exam track",
+        "audience": "readers who face language school exam track decisions where niche is easy to misread",
+        "stakes": "students sorted by real exam need",
+        "format": "postmortem",
+        "requiredBeat": "Joost narrows the role on the exam track card, moves away from overlap shown on the placement result, and uses the study folder to test whether fit improves. Domain: language school exam track."
+      },
+      "scenario": "At 6:50 p.m., Joost opens a study folder full of travel phrases after a student fails an exam section. The placement result had mixed exam candidates with casual learners. In the postmortem, he must decide whether the school needs one broad level or a separate exam track card for a different role.",
+      "whatToDo": "Separate the exam track and match study folders to the test pressure. Use placement results to reduce role overlap.",
+      "whyItMatters": "The students did not need a narrower brand. They needed a role where specialization matched the pressure they faced."
+    },
+    {
+      "exampleId": "ch14-ex05-andrea-compliance-wedge",
+      "title": "Andrea Chooses the Audit Trail",
+      "tags": [
+        "scene",
+        "saas",
+        "role"
+      ],
+      "planSpec": {
+        "domain": "compliance SaaS wedge",
+        "audience": "readers who face compliance SaaS wedge decisions where niche is easy to misread",
+        "stakes": "small market avoided by big platforms",
+        "format": "scene",
+        "requiredBeat": "Andrea narrows the role on the compliance checklist, moves away from overlap shown on the audit log, and uses the pricing page to test whether fit improves. Domain: compliance SaaS wedge."
+      },
+      "scenario": "You watch Andrea scroll through a compliance checklist while the audit log shows the same proof task missed by broad platforms. The pricing page still sounds like generic project software. Andrea hovers over two paths: compete everywhere, or own the recurring audit-trail role that regulated teams cannot ignore.",
+      "whatToDo": "Narrow the product promise to the audit-trail proof and price around that role. Remove generic features that create overlap with broad tools.",
+      "whyItMatters": "The niche is the specialized fit inside a crowded environment, not a smaller version of every platform."
+    },
+    {
+      "exampleId": "ch14-ex06-leonor-choir-sections",
+      "title": "Leonor Finds the Voice Part",
+      "tags": [
+        "vignette",
+        "choir",
+        "environment"
+      ],
+      "planSpec": {
+        "domain": "community choir voice sections",
+        "audience": "readers who face community choir voice sections decisions where niche is easy to misread",
+        "stakes": "voices placed where overlap drops",
+        "format": "vignette",
+        "requiredBeat": "Leonor narrows the role on the section chart, moves away from overlap shown on the pitch pipe, and uses the concert program to test whether fit improves. Domain: community choir voice sections."
+      },
+      "scenario": "It took Leonor two rehearsals to hear the overlap. The pitch pipe was right, but the section chart placed three similar voices in one range while the concert program needed contrast. She must decide whether to reward volume or place each singer where a distinct tone fits the choir.",
+      "whatToDo": "Move singers by role and range, then test the section chart against the concert sound. Let specialization create fit.",
+      "whyItMatters": "The niche is not status or narrow identity. It is the role where a voice contributes because overlap falls."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A coffee kiosk sits between larger cafes with more seats, pastries, and longer hours, but commuters want fast espresso. Which move best uses niche thinking?",
+        "choices": [
+          "Specialize around fast commuter espresso where overlap with cafes drops.",
+          "Copy every cafe feature at smaller scale.",
+          "Use niche as a slogan while keeping the same menu."
+        ],
+        "correctIndex": 0,
+        "explanation": "The kiosk improves fit by choosing a distinct role. Copying cafes increases overlap with stronger neighbors.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A rural telehealth service tries to mimic city clinic appointments, but patients struggle with long drives, weak signal, and timing. What should change?",
+        "choices": [
+          "Make online visits as long and rigid as in-person visits.",
+          "Design the intake and appointment role around rural constraints.",
+          "Stop serving remote patients because the broad model fails."
+        ],
+        "correctIndex": 1,
+        "explanation": "The niche is a role fitted to rural conditions. Mimicking the broad model preserves the overlap that causes failure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A bookstore's rare maps disappear in the general history shelf, while collectors search by region, period, and paper type. Which action fits the model?",
+        "choices": [
+          "Hide rare maps deeper in the general section.",
+          "Tell collectors to browse longer.",
+          "Create a specialized drawer and catalog slip matching collector search behavior."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rare-map role improves fit by reducing overlap with general browsing. The catalog slip matches the pressure of specialized search.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A language school mixes exam candidates with casual travel learners, and both groups leave frustrated after using the wrong study folders. What is the niche move?",
+        "choices": [
+          "Make every student use the same travel folder.",
+          "Separate an exam track with materials matched to the test pressure.",
+          "Advertise the school as niche without changing classes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The exam track creates role fit and reduces overlap. Branding alone does not change the position students occupy.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A small SaaS product competes with broad platforms but has one recurring audit-trail workflow those platforms serve badly. What should the team test?",
+        "choices": [
+          "A generic project-management promise.",
+          "A focused compliance role priced and designed around recurring audit proof.",
+          "A larger feature list to look less narrow."
+        ],
+        "correctIndex": 1,
+        "explanation": "The audit trail is the specialized role where fit improves. More generic features increase overlap with better-resourced platforms.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A choir places similar voices together, and the concert sound becomes muddy even though every singer is capable. What does niche thinking suggest?",
+        "choices": [
+          "Reward only the loudest singers.",
+          "Keep the chart unchanged because all singers are capable.",
+          "Place voices where role and range create contrast, not overlap."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fit improves when each voice occupies a useful role. Loudness alone misses the environment of the full choir sound.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A consultant says her niche is creativity, but she takes any project and overlaps with every agency in town on scope and promise. What is missing?",
+        "choices": [
+          "A clear role where specialization reduces overlap and improves fit.",
+          "A more abstract personal brand phrase.",
+          "A promise to serve every possible client."
+        ],
+        "correctIndex": 0,
+        "explanation": "A niche is a position, not a label. Without a distinct role and reduced overlap, the word does no work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A repair shop specializes in vintage radios, draws the right customers, and avoids direct competition with general electronics chains nearby. How should you evaluate it?",
+        "choices": [
+          "It may be a strong niche if specialization improves fit in the local environment.",
+          "It is automatically too small because narrow roles always fail.",
+          "It should add phone repairs to look broader."
+        ],
+        "correctIndex": 0,
+        "explanation": "The role reduces overlap and serves a specific pressure. Narrowness is useful when it creates fit, not when it is decorative.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A training program tries to serve executives, new managers, and interns with one curriculum. Completion falls because their needs diverge. What response transfers the model?",
+        "choices": [
+          "Market the same course as specialized.",
+          "Force every group through the same lessons.",
+          "Separate tracks around the distinct pressures each role faces."
+        ],
+        "correctIndex": 2,
+        "explanation": "Different pressures call for different roles. Separating tracks reduces overlap and improves fit for each group.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A small player keeps losing by copying larger neighbors. What should you retrieve?",
+      "back": "Retrieve niche: find the specialized role where overlap drops and fit improves.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A product claims a small audience but keeps the same broad role. Why is a niche more than a narrow audience?",
+      "back": "It is a role in an environment. The role must create better fit through specialization and reduced overlap.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A niche becomes too narrow to sustain. What does that reveal?",
+      "back": "Specialization is useful only when the environment has enough demand and the role can be found.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A team wants to claim a niche before changing the offering. What should you test first?",
+      "back": "Test whether the role serves a real pressure better than broad alternatives and avoids direct overlap.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How does niche thinking differ from personal branding?",
+      "back": "Branding labels the promise. Niche thinking tests whether the role fits the environment and reduces overlap.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to find specialized roles inside shared environments. The skill is reducing overlap and testing whether fit improves.",
+    "ifThenPlans": [
+      {
+        "context": "business positioning",
+        "plan": "If I compete head-on with stronger neighbors, then I will name the role they serve poorly and test a narrower position there."
+      },
+      {
+        "context": "program design",
+        "plan": "If one curriculum serves groups with different pressures, then I will separate tracks by role before adding more content."
+      },
+      {
+        "context": "product strategy",
+        "plan": "If a broad platform ignores one workflow, then I will test whether owning that workflow creates enough fit to sustain a product."
+      },
+      {
+        "context": "team roles",
+        "plan": "If people overlap and weaken each other, then I will place each person where specialization adds contrast."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, find one direct-overlap situation. Remove one broad promise and write the sharper role where your constraints may become strengths.",
+    "weeklyPractice": "Each week, review one niche claim. Identify the environment, the role, the overlap reduced, and the evidence that fit improved."
+  },
+  "memorableLines": [
+    {
+      "text": "A niche is a role, not a slogan.",
+      "location": "breakdown.deepRead",
+      "why": "It blocks the personal-branding misread."
+    },
+    {
+      "text": "Fit improves when overlap drops.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism of useful specialization."
+    },
+    {
+      "text": "The niche was not status. It was fit.",
+      "location": "breakdown.fullRead",
+      "why": "It keeps specialized roles grounded in contribution."
+    }
+  ]
+}

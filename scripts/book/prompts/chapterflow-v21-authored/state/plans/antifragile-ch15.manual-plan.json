@@ -1,0 +1,200 @@
+{
+  "chapterId": "antifragile-ch15",
+  "number": 15,
+  "title": "History Written by the Losers",
+  "coreMove": "Distrust neat after-the-fact explanations and recover the practitioner logic that produced the result.",
+  "sourcePressure": "This chapter argues that retrospective stories often miss what practitioners actually built and why it worked.",
+  "chapterSpecificMisunderstanding": "Making this a broad anti-history complaint.",
+  "sourceAlignmentTerms": [
+    "history",
+    "losers",
+    "retrospective storytelling",
+    "practitioner logic",
+    "observer mismatch",
+    "after-the-fact narrative"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "history written by the losers",
+      "detail": "the title pressure: retrospective narratives can flatten why working practices worked",
+      "useIn": "both",
+      "phrasingHint": "The tidy record can miss the dirty little adjustment that kept the thing alive."
+    },
+    {
+      "kind": "artifact",
+      "name": "practitioner logic",
+      "detail": "source notes emphasize what builders actually built and why it worked",
+      "useIn": "fullRead",
+      "phrasingHint": "The person with the wrench may know the reason the archive lost."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining History Written by the Losers"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Making this a broad anti-history complaint."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "maintenance log archive with Lin as the decision-maker",
+      "audience": "a reader who handles maintenance log archive under uncertainty",
+      "stakes": "whether Lin avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Lin opens the old working record and finds the practical adjustment the official story omitted.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "maintenance log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic history written by the losers paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "failed startup postmortem with Min as the decision-maker",
+      "audience": "a reader who handles failed startup postmortem under uncertainty",
+      "stakes": "whether Min avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Min opens the old working record and finds the practical adjustment the official story omitted.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "failed log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic history written by the losers paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "local museum exhibit with Hiroshi as the decision-maker",
+      "audience": "a reader who handles local museum exhibit under uncertainty",
+      "stakes": "whether Hiroshi avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hiroshi opens the old working record and finds the practical adjustment the official story omitted.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "local log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic history written by the losers paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "family bakery recipe origin with Akira as the decision-maker",
+      "audience": "a reader who handles family bakery recipe origin under uncertainty",
+      "stakes": "whether Akira avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Akira opens the old working record and finds the practical adjustment the official story omitted.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "family log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic history written by the losers paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "fishery quota records with Nora as the decision-maker",
+      "audience": "a reader who handles fishery quota records under uncertainty",
+      "stakes": "whether Nora avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Nora opens the old working record and finds the practical adjustment the official story omitted.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "fishery log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic history written by the losers paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "factory oral-history interview with Iris as the decision-maker",
+      "audience": "a reader who handles factory oral history interview under uncertainty",
+      "stakes": "whether Iris avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Iris opens the old working record and finds the practical adjustment the official story omitted.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "factory log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic history written by the losers paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by distrust neat after-the-fact explanations and recover the practitioner logic that produced the result.",
+      "distinguish history, losers, retrospective storytelling in unfamiliar cases",
+      "choose actions that avoid: Making this a broad anti-history complaint."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one success story and write what the official explanation may have ignored from the people doing the work.",
+  "readingTimeMinutes": 12
+}

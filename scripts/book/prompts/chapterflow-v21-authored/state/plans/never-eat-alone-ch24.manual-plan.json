@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch24",
+  "number": 24,
+  "title": "Engineering Serendipity",
+  "coreMove": "Change the environment so good accidental contact has more chances to happen.",
+  "sourcePressure": "You cannot control luck, but you can design overlap, circulation, and exposure so useful chance encounters become more likely.",
+  "chapterSpecificMisunderstanding": "Pretending luck can be scripted or that more events automatically help.",
+  "sourceAlignmentTerms": [
+    "serendipity",
+    "overlap",
+    "circulation",
+    "exposure",
+    "chance encounters",
+    "environment design"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Cameron",
+      "domain": "coworking common table layout",
+      "audience": "a reader facing coworking common table layout where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if coworking common table layout becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Cameron alters the room, route, or schedule so two useful circles can actually cross in front of walking route card, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "walking route card on the edge of coworking common table layout",
+      "mustInclude": [
+        "walking route card",
+        "coworking common table layout constraint",
+        "one named next step tied to serendipity"
+      ],
+      "mustAvoid": [
+        "Pretending luck can be scripted or that more events automatically help.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Charles",
+      "domain": "walking meeting route change",
+      "audience": "a reader facing walking meeting route change where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if walking meeting route change becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Charles alters the room, route, or schedule so two useful circles can actually cross in front of salon chair tag, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "salon chair tag on the edge of walking meeting route change",
+      "mustInclude": [
+        "salon chair tag",
+        "walking meeting route change constraint",
+        "one named next step tied to serendipity"
+      ],
+      "mustAvoid": [
+        "Pretending luck can be scripted or that more events automatically help.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Christian",
+      "domain": "small salon waiting area",
+      "audience": "a reader facing small salon waiting area where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if small salon waiting area becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Christian alters the room, route, or schedule so two useful circles can actually cross in front of referral card, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "referral card on the edge of small salon waiting area",
+      "mustInclude": [
+        "referral card",
+        "small salon waiting area constraint",
+        "one named next step tied to serendipity"
+      ],
+      "mustAvoid": [
+        "Pretending luck can be scripted or that more events automatically help.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Dominic",
+      "domain": "clinic referral roundtable",
+      "audience": "a reader facing clinic referral roundtable where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if clinic referral roundtable becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Dominic alters the room, route, or schedule so two useful circles can actually cross in front of booth number, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "booth number on the edge of clinic referral roundtable",
+      "mustInclude": [
+        "booth number",
+        "clinic referral roundtable constraint",
+        "one named next step tied to serendipity"
+      ],
+      "mustAvoid": [
+        "Pretending luck can be scripted or that more events automatically help.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "maker fair booth placement",
+      "audience": "a reader facing maker fair booth placement where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if maker fair booth placement becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anke alters the room, route, or schedule so two useful circles can actually cross in front of library lectern, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "library lectern on the edge of maker fair booth placement",
+      "mustInclude": [
+        "library lectern",
+        "maker fair booth placement constraint",
+        "one named next step tied to serendipity"
+      ],
+      "mustAvoid": [
+        "Pretending luck can be scripted or that more events automatically help.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Mei",
+      "domain": "public library lecture series",
+      "audience": "a reader facing public library lecture series where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if public library lecture series becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mei alters the room, route, or schedule so two useful circles can actually cross in front of vocabulary card, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "vocabulary card on the edge of public library lecture series",
+      "mustInclude": [
+        "vocabulary card",
+        "public library lecture series constraint",
+        "one named next step tied to serendipity"
+      ],
+      "mustAvoid": [
+        "Pretending luck can be scripted or that more events automatically help.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish serendipity from Pretending luck can be scripted or that more events automatically help.",
+      "choose the visible action that performs: Change the environment so good accidental contact has more chances to happen.",
+      "diagnose when a scenario drifts into Pretending luck can be scripted or that more events automatically help.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real serendipity moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

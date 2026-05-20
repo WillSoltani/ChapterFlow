@@ -1,0 +1,580 @@
+{
+  "bookId": "the-first-20-hours",
+  "updatedAt": "2026-05-16T08:24:43.987Z",
+  "usedProtagonistNames": [
+    "Lukas",
+    "Camille",
+    "James",
+    "Anke",
+    "Aanya",
+    "Emily",
+    "Mikkel",
+    "Grace",
+    "Hugo",
+    "Rachel",
+    "Lin",
+    "Daniel",
+    "Sophie",
+    "Etienne",
+    "Laura",
+    "Pavel",
+    "Hadiya",
+    "Claire",
+    "Nicolas",
+    "Anna",
+    "Marco",
+    "Juliette",
+    "Devon",
+    "Thomas",
+    "Ingrid",
+    "David",
+    "Paula",
+    "Ben",
+    "Kiran",
+    "Anders",
+    "Megan",
+    "Matteo",
+    "Astrid",
+    "Julien",
+    "Michael",
+    "Frida",
+    "Jack",
+    "Manon",
+    "Andrew",
+    "Sofia",
+    "Olivia",
+    "Luca",
+    "Marta",
+    "Chris",
+    "Chiara",
+    "Akira",
+    "Margaux",
+    "Ryan",
+    "Catarina",
+    "Luke",
+    "Adaeze",
+    "Marit",
+    "Jonas",
+    "Maja"
+  ],
+  "usedExampleDomains": [
+    "hospital triage nurse learning basic medical Spanish for intake",
+    "small-town baker learning enough bookkeeping to catch cash leaks",
+    "museum docent learning basic sign language greetings",
+    "community radio host learning audio editing basics",
+    "park volunteer learning basic chainsaw safety vocabulary without operating the saw",
+    "Toronto apartment gardener learning seed-starting for one balcony crop",
+    "paramedic trainee practicing radio handoff clarity",
+    "craft brewery quality tech learning yeast-cell counting",
+    "legal clinic volunteer learning intake triage questions",
+    "cycling mechanic learning derailleur indexing",
+    "wedding officiant learning one bilingual ceremony segment",
+    "library staff member learning 3D printer first-layer setup",
+    "architectural intern learning site-measure sketches",
+    "community choir member learning sight-singing intervals",
+    "restaurant expeditor learning allergy-ticket checks",
+    "field ecologist learning bird-call identification",
+    "apprentice electrician learning breaker-panel labeling",
+    "municipal clerk learning emergency-call routing software",
+    "adult beginner climbing footwork class",
+    "community tai chi class for balance basics",
+    "violin shoulder-rest setup for a returning adult player",
+    "rowing club novice learning the catch position",
+    "pottery wheel centering lesson",
+    "physical theatre workshop learning a neutral walk",
+    "pharmacy inventory spreadsheet automation",
+    "university lab sensor-data cleanup",
+    "community theatre ticket CSV import",
+    "wildlife rescue volunteer building a feeding-reminder SMS rule",
+    "local newspaper archive search cleanup",
+    "airport baggage desk macro for damage-form IDs",
+    "court stenography student repairing finger placement",
+    "piano student relearning a faulty left-hand fingering",
+    "warehouse scanner keypad entry repair",
+    "espresso bar milk-steaming grip correction",
+    "surgical knot-tying practice board",
+    "guitar chord-change repair for a busker permit audition",
+    "emergency-room bed allocation during flu surge",
+    "urban planning review of a contested bus stop relocation",
+    "cybersecurity analyst triaging suspicious login clusters",
+    "youth soccer coach reading one flank overload",
+    "antique-book dealer bidding at a regional auction",
+    "public-health team choosing one outreach neighborhood",
+    "wedding toast speaker learning one short harmonica phrase",
+    "museum educator learning a short puppet manipulation sequence",
+    "amateur magician preparing one coin vanish for a family party",
+    "language meetup participant preparing a two-minute story in French",
+    "line cook learning one plated dessert finish",
+    "community radio producer learning one live sound-bed fade",
+    "kayak rescue-club edging drill in a sheltered cove",
+    "drone pilot learning crosswind landing in a marked field",
+    "ski patrol trainee practicing loaded sled turns on a low slope",
+    "outdoor photographer learning manual exposure in changing cloud cover",
+    "outdoor market vendor learning canopy setup in wind",
+    "field archaeologist learning total-station setup on uneven ground"
+  ],
+  "usedExampleAnchors": [
+    "10,000-hour benchmark",
+    "first twenty hours",
+    "10 principles of rapid skill acquisition",
+    "target performance level",
+    "research but not too much",
+    "predictions and tests",
+    "yoga",
+    "working with an instructor",
+    "programming",
+    "real-problem iteration",
+    "touch typing",
+    "sleep-linked motor consolidation",
+    "Go",
+    "attack and defense",
+    "ukulele",
+    "public performance readiness",
+    "windsurfing",
+    "staged isolation of subskills"
+  ],
+  "usedHookFrames": [
+    {
+      "chapterId": "the-first-20-hours-ch01",
+      "frame": "first hour carrying inflated mastery price"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch02",
+      "frame": "scuffed practice object plus feedback tools teach faster than perfect plan"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch03",
+      "frame": "cold field object teaches when learner predicts before checking"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch04",
+      "frame": "body-skill object shows false difficulty should be removed first"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch05",
+      "frame": "technical workflow object makes programming smaller than word sounds"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch06",
+      "frame": "practice paper beside covered metric makes old shortcut lose defense"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch07",
+      "frame": "local pressure object teaches first strategic complexity lesson"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch08",
+      "frame": "small performance object asks whether piece holds for one listener"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch09",
+      "frame": "bounded live water object teaches more than dry explanation"
+    }
+  ],
+  "usedCounterFrames": [
+    {
+      "chapterId": "the-first-20-hours-ch01",
+      "frame": "first hour breaks under faraway finish line; price by useful threshold"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch02",
+      "frame": "effort speeds up after loop shrinks and corrections return"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch03",
+      "frame": "preparation earns keep when it changes the next attempt"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch04",
+      "frame": "harder hides body lesson; simplify until instructor reaches failing movement"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch05",
+      "frame": "code teaches after it runs; tiny output with error beats abstract confidence"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch06",
+      "frame": "faster old motion is rival; slow corrected rep until it survives comfort"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch07",
+      "frame": "huge board becomes playable through one readable pressure"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch08",
+      "frame": "small repertoire gets stricter when another person hears it"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch09",
+      "frame": "shelter helps when real condition remains and tests subskill safely"
+    }
+  ],
+  "usedTryThisNowFrames": [
+    {
+      "chapterId": "the-first-20-hours-ch01",
+      "frame": "fill in one usable competence sentence for a postponed skill"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch02",
+      "frame": "fill target, first subskill, biggest barrier, fastest feedback boxes"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch03",
+      "frame": "write one prediction and one test before next practice block"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch04",
+      "frame": "cross out one mostly-costume physical difficulty and name next correction"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch05",
+      "frame": "name smallest technical output and first likely failure"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch06",
+      "frame": "slow one familiar bad motion and name old shortcut refused"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch07",
+      "frame": "mark smallest local fight: repeated pattern, attack, defense"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch08",
+      "frame": "write smallest performance piece to show one real listener"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch09",
+      "frame": "define smallest live subskill facing low-risk real environment"
+    }
+  ],
+  "usedQuizExplanationFrames": [
+    {
+      "chapterId": "the-first-20-hours-ch01",
+      "frame": "correct choice names a useful testable threshold; wrong choices stay too broad or vague"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch02",
+      "frame": "correct choice builds tight feedback loop; wrong choices add breadth, delay, or uncorrected reps"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch03",
+      "frame": "correct choice ties preparation to prediction/test; wrong choices preserve passive study or delay"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch04",
+      "frame": "correct choice removes false difficulty for live correction; wrong choices add noise or remove safety"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch05",
+      "frame": "correct choice runs small real output; wrong choices remain broad research or design"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch06",
+      "frame": "correct choice protects slowed corrected reps; wrong choices preserve old speed or sloppy consolidation"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch07",
+      "frame": "correct choice reads local pressure; wrong choices wait for total mastery or overclaim"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch08",
+      "frame": "correct choice tests narrow subset with listener; wrong choices stay broad or private"
+    },
+    {
+      "chapterId": "the-first-20-hours-ch09",
+      "frame": "correct choice tests staged subskill under condition; wrong choices avoid condition or jump to chaos"
+    }
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "the-first-20-hours-ch01",
+      "hook": [
+        "calendar panic opener",
+        "genius versus ordinary people opener",
+        "wake-up-and-chase-your-dreams opener"
+      ],
+      "counterintuition": [
+        "talent does not matter",
+        "mastery is fake",
+        "the only problem is mindset"
+      ],
+      "tryThisNow": [
+        "write down any dream skill",
+        "set a timer and reflect on goals",
+        "commit to twenty hours with no threshold"
+      ],
+      "examples": [
+        "generic busy parent wanting guitar",
+        "office worker watching tutorial at midnight",
+        "kitchen table notebook and coffee"
+      ]
+    },
+    {
+      "chapterId": "the-first-20-hours-ch02",
+      "hook": [
+        "toolbox metaphor opener",
+        "ten simple rules promise",
+        "morning routine montage"
+      ],
+      "counterintuition": [
+        "discipline is all you need",
+        "practice longer to learn faster",
+        "principles replace effort"
+      ],
+      "tryThisNow": [
+        "pick a goal and practice now",
+        "make a generic checklist",
+        "remove distractions with no named barrier"
+      ],
+      "examples": [
+        "generic gym routine",
+        "language app streak",
+        "whiteboard in conference room"
+      ]
+    },
+    {
+      "chapterId": "the-first-20-hours-ch03",
+      "hook": [
+        "browser tab pile opener",
+        "student highlighting textbook opener",
+        "study smarter slogan"
+      ],
+      "counterintuition": [
+        "reading is procrastination",
+        "biology explains everything",
+        "distraction is the only enemy"
+      ],
+      "tryThisNow": [
+        "close all tabs",
+        "take a break",
+        "write three facts you learned"
+      ],
+      "examples": [
+        "generic exam cramming",
+        "coffee-shop laptop scene",
+        "study app streak"
+      ]
+    },
+    {
+      "chapterId": "the-first-20-hours-ch04",
+      "hook": [
+        "candlelit studio lifestyle opener",
+        "yoga fixes stress opener",
+        "flexible people versus stiff people opener"
+      ],
+      "counterintuition": [
+        "harder poses prove progress",
+        "comfort is the goal",
+        "any instructor will solve it"
+      ],
+      "tryThisNow": [
+        "take a deep breath",
+        "stretch for one minute",
+        "watch a yoga video"
+      ],
+      "examples": [
+        "mat on bedroom floor with tea",
+        "generic gym class",
+        "medical recovery claim"
+      ]
+    },
+    {
+      "chapterId": "the-first-20-hours-ch05",
+      "hook": [
+        "dark terminal genius opener",
+        "startup founder building app at midnight",
+        "learn Python in a weekend promise"
+      ],
+      "counterintuition": [
+        "tutorials are useless",
+        "concepts do not matter",
+        "debugging is failure"
+      ],
+      "tryThisNow": [
+        "install a code editor",
+        "watch one tutorial",
+        "write hello world with no problem"
+      ],
+      "examples": [
+        "generic to-do app",
+        "web landing page",
+        "coffee-fueled hackathon"
+      ]
+    },
+    {
+      "chapterId": "the-first-20-hours-ch06",
+      "hook": [
+        "typing speed leaderboard opener",
+        "keyboard warrior joke",
+        "new habit in 21 days claim"
+      ],
+      "counterintuition": [
+        "go slower forever",
+        "sleep solves practice",
+        "frustration proves talent"
+      ],
+      "tryThisNow": [
+        "type anything for one minute",
+        "download a typing app",
+        "set a words-per-minute goal only"
+      ],
+      "examples": [
+        "generic laptop at kitchen table",
+        "office email pile",
+        "school essay panic"
+      ]
+    },
+    {
+      "chapterId": "the-first-20-hours-ch07",
+      "hook": [
+        "ancient game mystique opener",
+        "chess comparison opener",
+        "life is strategy slogan"
+      ],
+      "counterintuition": [
+        "patterns replace thinking",
+        "complexity is an illusion",
+        "always attack first"
+      ],
+      "tryThisNow": [
+        "play any game for one minute",
+        "look for patterns generally",
+        "make a strategy checklist"
+      ],
+      "examples": [
+        "generic chess board",
+        "office politics as war",
+        "classroom debate"
+      ]
+    },
+    {
+      "chapterId": "the-first-20-hours-ch08",
+      "hook": [
+        "campfire song opener",
+        "music heals the soul opener",
+        "tiny instrument is easy opener"
+      ],
+      "counterintuition": [
+        "small goals mean low standards",
+        "performance is only confidence",
+        "repetition alone solves music"
+      ],
+      "tryThisNow": [
+        "practice a chord for a minute",
+        "choose a favorite song",
+        "hum a tune"
+      ],
+      "examples": [
+        "bedroom guitar practice",
+        "school recital nerves",
+        "open mic coffee shop"
+      ]
+    },
+    {
+      "chapterId": "the-first-20-hours-ch09",
+      "hook": [
+        "stormy-water bravery opener",
+        "extreme sport lifestyle opener",
+        "perfect conditions fantasy"
+      ],
+      "counterintuition": [
+        "risk is the teacher",
+        "gear choice matters most",
+        "drills replace water"
+      ],
+      "tryThisNow": [
+        "go outside and try something risky",
+        "check the weather and practice",
+        "visualize the skill"
+      ],
+      "examples": [
+        "generic sailing club scene",
+        "ski slope courage story",
+        "helmet/bike safety shell"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "the-first-20-hours-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:27.577Z"
+    },
+    "the-first-20-hours-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:29.192Z"
+    },
+    "the-first-20-hours-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:30.770Z"
+    },
+    "the-first-20-hours-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:31.763Z"
+    },
+    "the-first-20-hours-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:32.748Z"
+    },
+    "the-first-20-hours-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:33.698Z"
+    },
+    "the-first-20-hours-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:34.647Z"
+    },
+    "the-first-20-hours-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:35.583Z"
+    },
+    "the-first-20-hours-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:18:36.546Z"
+    }
+  }
+}

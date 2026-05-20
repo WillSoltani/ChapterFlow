@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch05",
+  "number": 5,
+  "title": "Career Capital",
+  "coreMove": "Price desirable work traits as things bought with rare and valuable skill, not requested as entitlements.",
+  "sourcePressure": "Career capital is rare and valuable skill that functions like currency for later control, creativity, and compelling work.",
+  "chapterSpecificMisunderstanding": "Treating career capital as salary status or moral worth.",
+  "sourceAlignmentTerms": [
+    "career capital",
+    "rare and valuable",
+    "currency",
+    "leverage",
+    "compelling traits",
+    "skill",
+    "exchangeable value"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Career capital is the bill",
+      "detail": "The frozen source defines career capital as rare and valuable skills accumulated through disciplined craft.",
+      "useIn": "both",
+      "phrasingHint": "Career capital is the bill you pay with skill when you ask work to give you better terms."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch05: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch05: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch05: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch05: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Natalie",
+      "domain": "clinical data management promotion",
+      "audience": "a practitioner responsible for clinical data management promotion",
+      "stakes": "clinical data management promotion will either gain a defensible next move or drift into the chapter-specific trap: Treating career capital as salary status or moral worth.",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "sets the desired work trait beside validation report with red flags, writes the rare skill or output that would pay for it, and leaves the request unsent until the proof is visible",
+      "firstImage": "validation report with red flags",
+      "mustInclude": [
+        "validation report with",
+        "rare and valuable",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Beatrice",
+      "domain": "boutique hotel pastry station",
+      "audience": "a practitioner responsible for boutique hotel pastry station",
+      "stakes": "boutique hotel pastry station will either gain a defensible next move or drift into the chapter-specific trap: Treating career capital as salary status or moral worth.",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "sets the desired work trait beside butter sheets on parchment, writes the rare skill or output that would pay for it, and leaves the request unsent until the proof is visible",
+      "firstImage": "butter sheets on parchment",
+      "mustInclude": [
+        "butter sheets on",
+        "rare and valuable",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Audrey",
+      "domain": "wildfire GIS mapping team",
+      "audience": "a practitioner responsible for wildfire GIS mapping team",
+      "stakes": "wildfire GIS mapping team will either gain a defensible next move or drift into the chapter-specific trap: Treating career capital as salary status or moral worth.",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "sets the desired work trait beside incident map on a tailgate, writes the rare skill or output that would pay for it, and leaves the request unsent until the proof is visible",
+      "firstImage": "incident map on a tailgate",
+      "mustInclude": [
+        "incident map on",
+        "rare and valuable",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Caroline",
+      "domain": "university lab equipment scheduling",
+      "audience": "a practitioner responsible for university lab equipment scheduling",
+      "stakes": "university lab equipment scheduling will either gain a defensible next move or drift into the chapter-specific trap: Treating career capital as salary status or moral worth.",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "sets the desired work trait beside microscope reservation grid, writes the rare skill or output that would pay for it, and leaves the request unsent until the proof is visible",
+      "firstImage": "microscope reservation grid",
+      "mustInclude": [
+        "microscope reservation grid",
+        "rare and valuable",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Diana",
+      "domain": "insurance claims negotiation",
+      "audience": "a practitioner responsible for insurance claims negotiation",
+      "stakes": "insurance claims negotiation will either gain a defensible next move or drift into the chapter-specific trap: Treating career capital as salary status or moral worth.",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "sets the desired work trait beside storm-damage file with wet photos, writes the rare skill or output that would pay for it, and leaves the request unsent until the proof is visible",
+      "firstImage": "storm-damage file with wet photos",
+      "mustInclude": [
+        "storm-damage file with",
+        "rare and valuable",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Georgia",
+      "domain": "independent bookstore events",
+      "audience": "a practitioner responsible for independent bookstore events",
+      "stakes": "independent bookstore events will either gain a defensible next move or drift into the chapter-specific trap: Treating career capital as salary status or moral worth.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "sets the desired work trait beside folding chairs beside an event shelf, writes the rare skill or output that would pay for it, and leaves the request unsent until the proof is visible",
+      "firstImage": "folding chairs beside an event shelf",
+      "mustInclude": [
+        "folding chairs beside",
+        "rare and valuable",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "translate preferences into exchange terms",
+      "identify rare and valuable skill",
+      "distinguish hard work from leverage"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one work trait you want, then write the rare skill or output someone would trade for it.",
+  "readingTimeMinutes": 12
+}

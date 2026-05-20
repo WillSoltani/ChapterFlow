@@ -1,0 +1,199 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+  "number": 3,
+  "title": "Pride and Prejudice . . . and Other Blind Spots",
+  "coreMove": "Treat your own certainty as one perspective to inspect, not the neutral place from which everyone else is judged.",
+  "sourcePressure": "The chapter moves from dissonance into naive realism, bias blind spots, and prejudice; the source stresses that people experience their own view as reality while seeing the opponent as distorted.",
+  "chapterSpecificMisunderstanding": "Turning blind spots into a lecture about other people's prejudice rather than the felt innocence of one's own perception.",
+  "sourceAlignmentTerms": [
+    "naive realism",
+    "bias blind spot",
+    "prejudice",
+    "fair-minded self-image",
+    "selective interpretation",
+    "mutual certainty",
+    "objectivity feeling"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "bias blind spot",
+      "detail": "the source names the habit of noticing bias in others more readily than in oneself",
+      "useIn": "both",
+      "phrasingHint": "The bias blind spot is most dangerous when you feel unusually fair, because that feeling becomes part of the shield."
+    },
+    {
+      "kind": "study",
+      "name": "naive realism",
+      "detail": "the source supports the claim that one's own perception can feel like direct reality rather than an interpretation",
+      "useIn": "deepRead",
+      "phrasingHint": "Naive realism is the quiet conviction that you are not interpreting the scene; you are simply seeing it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not start with red-team versus blue-team politics.",
+      "Avoid a generic argument at Thanksgiving."
+    ],
+    "counterintuition": [
+      "Do not make the lesson \"everyone is biased\" and stop there.",
+      "Avoid scolding language about prejudice."
+    ],
+    "tryThisNow": [
+      "No vague empathy prompt.",
+      "No broad perspective-taking exercise without evidence."
+    ],
+    "examples": [
+      "No social-media feed as default shell.",
+      "No classroom debate as the main repeated setting."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "a hiring panel reviewing two candidates after a structured interview",
+      "audience": "managers who believe their gut read is unusually objective",
+      "stakes": "a qualified candidate gets discounted because the panel treats confidence as neutrality",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Claire writes each panelist's first impression beside the scorecard criterion before anyone can call their favorite simply \"a better fit\"",
+      "firstImage": "two clipped scorecards under a glass conference-room nameplate",
+      "mustInclude": [
+        "structured scorecard",
+        "first impression",
+        "fit language"
+      ],
+      "mustAvoid": [
+        "generic HR compliance",
+        "token diversity scene"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "a condo board noise dispute between an upstairs pianist and a downstairs shift worker",
+      "audience": "neighbors whose own inconvenience feels like the whole truth",
+      "stakes": "the board may punish one resident while never testing its own assumptions",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Julien asks both residents to mark the same week on a sound log before labeling either person unreasonable",
+      "firstImage": "a decibel meter case beside a stack of condo bylaws",
+      "mustInclude": [
+        "sound log",
+        "shift schedule",
+        "board vote"
+      ],
+      "mustAvoid": [
+        "landlord-tenant legal lecture",
+        "cartoon bad neighbor"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "a newsroom correction meeting after a local profile framed a neighborhood group as obstructionist",
+      "audience": "editors who treat their framing as facts",
+      "stakes": "the paper repeats a stereotype while insisting it is simply being realistic",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Anke reading the unused interview notes aloud to show how the article selected only the quotes that fit the obstruction frame",
+      "firstImage": "a stack of annotated interview transcripts under a blue copy desk lamp",
+      "mustInclude": [
+        "unused notes",
+        "correction meeting",
+        "framing label"
+      ],
+      "mustAvoid": [
+        "national politics",
+        "media-bias sermon"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "a youth rugby referee committee reviewing parent complaints after a regional final",
+      "audience": "volunteers sorting disputed calls under loyalty pressure",
+      "stakes": "the committee may protect its own club by calling the rival parents biased",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "David predicts which complaints came from his club, then opens the anonymized clips and sees his accuracy collapse",
+      "firstImage": "a whistle cord tangled around a tablet showing paused match footage",
+      "mustInclude": [
+        "anonymized clips",
+        "club loyalty",
+        "complaint sheet"
+      ],
+      "mustAvoid": [
+        "professional sports replay debate",
+        "referee abuse PSA"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "a scholarship committee reading essays from urban and rural applicants",
+      "audience": "reviewers who see themselves as fair but carry a narrow picture of promise",
+      "stakes": "the committee may reward familiarity while calling it merit",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Isabel cover names and schools, then list which details she had been treating as ambition rather than mere familiarity",
+      "firstImage": "a pile of anonymized essays held by a brass binder clip",
+      "mustInclude": [
+        "anonymized essays",
+        "rubric",
+        "familiarity test"
+      ],
+      "mustAvoid": [
+        "college admissions scandal",
+        "abstract meritocracy essay"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "a product design review for a banking app used by elderly customers",
+      "audience": "designers who confuse their own fluent use with obvious use",
+      "stakes": "older users keep abandoning bill pay while the team blames resistance to change",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Chidi watches a recorded session with the interface labels blurred, then changes the team's claim from \"users are confused\" to \"our path hides the next step\"",
+      "firstImage": "a tablet on a stand with oversized checkout text taped over the screen edge",
+      "mustInclude": [
+        "recorded session",
+        "blurred labels",
+        "bill pay path"
+      ],
+      "mustAvoid": [
+        "age stereotype",
+        "generic UX best practice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when objectivity feels like proof but is only perspective",
+      "choose tests that expose the observer's own filtering",
+      "analyze how prejudice can survive inside a fair self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next disagreement, write one sentence beginning \"My read may be shaped by...\" and fill it with a concrete loyalty, fear, or prior commitment.",
+  "readingTimeMinutes": 12
+}

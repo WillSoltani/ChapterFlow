@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch11",
+  "number": 11,
+  "title": "Evolution Part One: Natural Selection and Extinction",
+  "readingTimeMinutes": 12,
+  "hook": "The lease notice did not care how beloved James's window display had been ten years earlier.",
+  "counterintuition": "Yesterday's strength can become today's liability. Selection judges fit against the environment applying pressure now, not against reputation.",
+  "tryThisNow": "Name one pressure that changed around a choice you still defend. Compare the old strength against that pressure, then retire one mismatched variant.",
+  "keyTakeaway": "Natural selection teaches you to judge fitness by current environmental pressure, not by past success, status, or sentimental attachment.",
+  "breakdown": {
+    "fastRead": "James kept the window display tag because customers used to stop for it. The lease notice said rent had doubled. The foot-traffic count said fewer people walked that block after work. The display was still beautiful, but the environment no longer selected for it.\n\nIn the postmortem, he stopped asking whether the old store had been good. It had. The better question was whether its traits fit the pressure now.\n\nSelection is differential persistence under pressure. Extinction is the same logic in reverse: what no longer fits disappears, even if it once worked.",
+    "deepRead": "\"Fastest erg wins, right?\" Ben asked as the rowing seat chart sat beside the score sheet. The trial timer made one athlete look unbeatable alone. In the boat, that same athlete broke rhythm and slowed the crew.\n\nNatural selection stays inside a practical frame: variants persist differently under environmental pressure, and extinction follows when fit collapses after pressures change. Ben could not select by abstract power. He had to select for the environment that mattered: the seat, the crew rhythm, the race water, and the role each rower had to fill. Strength outside the selecting environment can become irrelevant inside it.\n\nFitness belongs to a place, a pressure, and a moment.\n\nVincent faced the same logic during a seasonal menu review. The sales ticket for a favorite dish looked respectable, but the prep station card showed it trapped the kitchen during the lunch rush. The waste log showed ingredients spoiling when weather changed demand. The dish had fans. It no longer fit the pressure on the kitchen.\n\nThe limit is cruelty. Selection is not a license to admire harshness. It is a way to notice what the environment is actually rewarding or eliminating. You still choose values, guardrails, and timing. The model simply prevents you from defending a variant because it was strong somewhere else.",
+    "fullRead": "The usage graph for Frida's app feature still had a loyal tail. A few customers loved it. The support backlog told a harsher story: every update broke the feature, confused new users, and forced engineers to maintain a path almost nobody entered. The deprecation notice felt like betrayal until Frida compared affection with pressure.\n\nA feature can be beloved and unfit. A store can have history and still lose its environment. A dish can have regulars and still clog the kitchen. Selection does not ask whether a thing has merit in the abstract. It asks whether a trait persists under the pressures now acting on it.\n\nWhat environment is doing the selecting?\n\nThat question prevents the common error. People turn selection into a story about toughness, winners, or ruthless competition. The sharper move is quieter. Identify the pressure. Identify the variant. Watch which traits survive contact with the real constraint. Extinction is not always dramatic. Sometimes it is a feature sunset, a menu removal, a radio format change, or a scholarship rubric that stops rewarding the wrong signal.\n\nYou can feel the model in a scholarship room. Devon reads a scoring sheet that favors polished essays, then opens a recommendation letter describing a student who worked nights, cared for siblings, and still built a record of persistence. If the award's environment is meant to select for promise under constraint, the old rubric may be unfit. Devon has to decide whether the scoring sheet measures the pressure that matters or merely selects for students with more help.\n\nNina learned it with a local radio format. The playlist log showed more national hits because they were easier to sell around. Listener emails showed people leaving because the station no longer sounded local. Nina predicted that broader songs would attract broader reach. The reveal was the opposite: the format had shed the trait the local environment selected for.\n\nThe hard part is emotional. A trait that once fit often carries identity with it: the founder's favorite feature, the chef's favorite dish, the station's old sound, the admissions rule everyone knows how to defend. Selection asks you to separate affection from persistence. You can honor what worked without pretending the same trait still fits the pressure now.\n\nSelection has a moral hazard. Persistence is not the same as worth. Harmful habits can survive in broken environments. Bad incentives can select bad behavior. The model tells you which traits fit the pressure; judgment decides whether the pressure itself deserves to remain.\n\nStart by naming the environment, not the favorite. Then test the trait against present pressure. If the fit is gone, adaptation or extinction is already in motion. Your choice is whether to see it early enough to act."
+  },
+  "examples": [
+    {
+      "exampleId": "ch11-ex01-james-retail-shift",
+      "title": "James Reads the Foot Count",
+      "tags": [
+        "postmortem",
+        "retail",
+        "environment"
+      ],
+      "planSpec": {
+        "domain": "main street retail shift",
+        "audience": "readers who face main street retail shift decisions where selection is easy to misread",
+        "stakes": "old store strengths failing under new rent",
+        "format": "postmortem",
+        "requiredBeat": "James compares the lease notice against the pressure shown in the foot-traffic count, then retires the window display tag when the environment no longer selects for it. Domain: main street retail shift."
+      },
+      "scenario": "The lease notice lands under James's hand while dust gathers on the window display tag. The foot-traffic count shows the evening crowd moved two blocks away. In the postmortem, he stops praising the old display and marks the pressure that changed: rent rose while walk-in discovery fell.",
+      "whatToDo": "Compare the display against current rent and traffic, then retire or redesign the trait that no longer earns its keep.",
+      "whyItMatters": "The display was not weak in general. It was unfit for the environment now selecting the store's survival."
+    },
+    {
+      "exampleId": "ch11-ex02-ben-rowing-seat",
+      "title": "Ben Tests the Boat",
+      "tags": [
+        "scene",
+        "rowing",
+        "fit"
+      ],
+      "planSpec": {
+        "domain": "rowing roster tryout",
+        "audience": "readers who face rowing roster tryout decisions where selection is easy to misread",
+        "stakes": "athletes selected by current fit",
+        "format": "scene",
+        "requiredBeat": "Ben compares the erg score sheet against the pressure shown in the seat chart, then retires the trial timer when the environment no longer selects for it. Domain: rowing roster tryout."
+      },
+      "scenario": "\"Fastest erg wins,\" Ben says, but the seat chart tells a different story after the trial timer stops. One athlete pulls hard alone and breaks crew rhythm in seat six. Before naming the roster, Ben has to decide whether the score sheet or the boat environment should do the selecting.",
+      "whatToDo": "Test athletes in the seat and crew rhythm they must actually occupy. Use the erg score as information, not the whole environment.",
+      "whyItMatters": "Fitness is relative to pressure. A strong isolated score can fail when the selecting environment is a coordinated boat."
+    },
+    {
+      "exampleId": "ch11-ex03-vincent-menu-review",
+      "title": "Vincent Removes the Favorite",
+      "tags": [
+        "vignette",
+        "restaurant",
+        "pressure"
+      ],
+      "planSpec": {
+        "domain": "seasonal menu review",
+        "audience": "readers who face seasonal menu review decisions where selection is easy to misread",
+        "stakes": "favorite item tying up kitchen capacity",
+        "format": "vignette",
+        "requiredBeat": "Vincent compares the sales ticket against the pressure shown in the prep station card, then retires the waste log when the environment no longer selects for it. Domain: seasonal menu review."
+      },
+      "scenario": "The prep station card is streaked with sauce when Vincent checks the lunch rush. A favorite dish still has a solid sales ticket, yet the waste log shows spoiled ingredients after warm weather changed orders. He must decide whether nostalgia or the current kitchen pressure should select the seasonal menu.",
+      "whatToDo": "Judge the dish against prep capacity, waste, and present demand. Retire or adapt the item if the environment has stopped selecting for it.",
+      "whyItMatters": "Popularity from the old season is not enough. The current environment decides whether the variant persists."
+    },
+    {
+      "exampleId": "ch11-ex04-frida-feature-sunset",
+      "title": "Frida Weighs the Backlog",
+      "tags": [
+        "dialogue",
+        "product",
+        "extinction"
+      ],
+      "planSpec": {
+        "domain": "app feature sunset",
+        "audience": "readers who face app feature sunset decisions where selection is easy to misread",
+        "stakes": "beloved feature draining maintenance",
+        "format": "dialogue",
+        "requiredBeat": "Frida compares the usage graph against the pressure shown in the support backlog, then retires the deprecation notice when the environment no longer selects for it. Domain: app feature sunset."
+      },
+      "scenario": "At 4:25 p.m., Frida points to the usage graph and says, \"A few customers still love it.\" The support backlog shows every release breaking the same feature. She has to choose between honoring affection forever or sending the deprecation notice because the maintenance environment no longer selects for the feature.",
+      "whatToDo": "Compare loyal use with maintenance pressure, support cost, and user confusion. Sunset the feature if its fit has disappeared.",
+      "whyItMatters": "Selection is not a popularity contest. A small loyal tail can still be unfit under the pressure of maintenance and product clarity."
+    },
+    {
+      "exampleId": "ch11-ex05-devon-scholarship-screen",
+      "title": "Devon Rechecks the Rubric",
+      "tags": [
+        "decision_point",
+        "scholarship",
+        "variant"
+      ],
+      "planSpec": {
+        "domain": "scholarship applicant screen",
+        "audience": "readers who face scholarship applicant screen decisions where selection is easy to misread",
+        "stakes": "awards missing the selection pressure",
+        "format": "decision_point",
+        "requiredBeat": "Devon compares the scoring sheet against the pressure shown in the recommendation letter, then retires the rubric note when the environment no longer selects for it. Domain: scholarship applicant screen."
+      },
+      "scenario": "You read Devon's scoring sheet beside a recommendation letter that describes night shifts, sibling care, and steady grades. The rubric note rewards polish more than persistence under constraint. Devon must decide whether the award environment is selecting for promise or for applicants with more editing help.",
+      "whatToDo": "Align the scoring sheet with the pressure the award claims to value. Remove rubric notes that select for the wrong trait.",
+      "whyItMatters": "Selection depends on the environment you build. A scholarship can accidentally select polish while claiming to select resilience."
+    },
+    {
+      "exampleId": "ch11-ex06-nina-radio-format",
+      "title": "Nina Hears the Drift",
+      "tags": [
+        "predict_reveal",
+        "radio",
+        "survival"
+      ],
+      "planSpec": {
+        "domain": "local radio format change",
+        "audience": "readers who face local radio format change decisions where selection is easy to misread",
+        "stakes": "listeners leaving after format drift",
+        "format": "predict_reveal",
+        "requiredBeat": "Nina compares the playlist log against the pressure shown in the listener email, then retires the ad slot sheet when the environment no longer selects for it. Domain: local radio format change."
+      },
+      "scenario": "It took Nina one fundraiser to notice the empty phones. The playlist log had drifted toward national hits, and the listener email said the station no longer sounded like town. She has to decide whether broader format reach will save ad slots or whether local fit is the pressure that selects survival.",
+      "whatToDo": "Compare the playlist with listener evidence and ad response. Keep the traits that fit the local environment instead of chasing generic reach.",
+      "whyItMatters": "The station's survival pressure was local identity. A broad format looked stronger in theory but weaker in that environment."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A store owner defends a window display that once drew crowds, but rent has doubled and after-work foot traffic has moved two blocks away. What does natural selection ask first?",
+        "choices": [
+          "Whether the display fits the current environment and pressure.",
+          "Whether the display was ever admired.",
+          "Whether competitors are less sentimental."
+        ],
+        "correctIndex": 0,
+        "explanation": "Selection tests present fit. Past admiration matters less than whether the trait persists under current rent and traffic pressure.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A rower has the fastest individual score on the trial timer but disrupts rhythm in a specific boat seat during crew practice. Which selection move is strongest?",
+        "choices": [
+          "Reward the fastest isolated score because strength is universal.",
+          "Test the athlete in the seat and crew rhythm that will actually select performance.",
+          "Ignore all measurements because fit is impossible to judge."
+        ],
+        "correctIndex": 1,
+        "explanation": "The selecting environment is the boat, not the isolated machine. The tempting wrong choice treats strength as abstract.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A restaurant favorite sells moderately but ties up the prep station and creates waste after warm weather shifts lunch demand. What should the owner do?",
+        "choices": [
+          "Keep it forever because regulars remember it.",
+          "Promote it harder so the kitchen pressure disappears.",
+          "Judge it against current prep capacity, waste, and demand before keeping it."
+        ],
+        "correctIndex": 2,
+        "explanation": "The item must fit the present kitchen environment. Promotion avoids the actual pressure shown by prep capacity and waste.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A product feature has loyal users but breaks often, confuses new customers, and fills support queues after each release. What does extinction mean here?",
+        "choices": [
+          "The loyal users are wrong to like it.",
+          "The feature may disappear because it no longer fits the maintenance environment.",
+          "Every old feature should always be removed."
+        ],
+        "correctIndex": 1,
+        "explanation": "Extinction is the failure to persist under pressure. Loyal use is real, but support and maintenance pressure may select against the feature.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A scholarship rubric rewards polished essays, but the award claims to value promise under constraint shown in recommendation letters. Which action best applies selection?",
+        "choices": [
+          "Give all weight to grammar because it is easiest to compare.",
+          "Align scoring with the pressure the award is meant to select for.",
+          "Ignore recommendation letters because they add complexity."
+        ],
+        "correctIndex": 1,
+        "explanation": "The environment you create selects traits. If the rubric rewards polish, it may select the wrong variant for the award's stated pressure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A local radio station broadens its playlist to sound bigger, but listener emails say it no longer feels local and donations fall during fundraiser week. What is the best diagnosis?",
+        "choices": [
+          "Local listeners dislike all change.",
+          "National songs are always unfit.",
+          "The station lost fit with the environment that selected it."
+        ],
+        "correctIndex": 2,
+        "explanation": "The issue is fit with local pressure, not a universal rule about songs. The broader playlist may be strong elsewhere and weak here.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A startup keeps a process because it helped in year one, though new compliance rules now make it slow, risky, and hard to audit. What selection error is happening?",
+        "choices": [
+          "They are judging fitness by past success instead of current environmental pressure.",
+          "They are adapting too quickly to the new rules.",
+          "They should ignore compliance because old traits prove strength."
+        ],
+        "correctIndex": 0,
+        "explanation": "Past fit is not present fit. The compliance environment now selects different traits, so defending the old process can invite extinction.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A hiring process selects people who perform well in polished interviews, but the role requires calm judgment during messy customer calls. How should you evaluate the process?",
+        "choices": [
+          "It is selecting for the wrong environment and should be tested against messy call pressure.",
+          "It is fair because polished interviews are traditional.",
+          "It should hire only the most aggressive candidates."
+        ],
+        "correctIndex": 0,
+        "explanation": "The selection environment should match the role pressure. Traditional polish may persist in interviews while failing on messy calls.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A newsletter format once worked, but inbox filters and reader habits changed. Open rates fall despite strong writing and loyal old readers. What response transfers the model?",
+        "choices": [
+          "Insist the old format is strong because it used to win.",
+          "Blame readers for lacking attention.",
+          "Test variants against the new inbox environment and retire the format that no longer fits."
+        ],
+        "correctIndex": 2,
+        "explanation": "The selecting environment changed. Testing variants against current inbox pressure is the selection move; blame preserves an unfit trait.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A trait once worked and now fails. What should you retrieve?",
+      "back": "Retrieve the selecting environment. Fitness is judged by current pressure, not past success.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A once-strong feature no longer fits its release environment. Why can a strong variant disappear?",
+      "back": "Strength is relative to environment. If pressures change, a formerly useful trait may no longer persist.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A process survives because incentives are broken. What caution applies?",
+      "back": "Persistence is not the same as worth. Selection shows what pressure rewards, not what should be valued.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A menu item stops fitting demand and capacity. What is extinction in practical decision terms?",
+      "back": "It is what happens when a variant stops fitting the pressure well enough to continue.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A team starts talking about toughness and winners. How do you avoid selection slogans?",
+      "back": "Name the environment, the pressure, and the trait being selected. Avoid abstract claims about toughness.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to test fit against the current selecting environment. The skill is separating old strength from present pressure.",
+    "ifThenPlans": [
+      {
+        "context": "strategy",
+        "plan": "If I defend an old strength, then I will name the pressure it used to fit and the pressure it faces now."
+      },
+      {
+        "context": "product",
+        "plan": "If a feature has loyal users but rising maintenance drag, then I will compare affection with current support pressure."
+      },
+      {
+        "context": "hiring or awards",
+        "plan": "If a rubric selects clean signals, then I will check whether those signals match the environment the role or award actually values."
+      },
+      {
+        "context": "operations",
+        "plan": "If a process survives by habit, then I will test one variant against the current constraint before preserving it."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one old habit, feature, or rule today. Name the current pressure selecting for or against it, then decide whether to adapt, keep, or retire it.",
+    "weeklyPractice": "Each week, review one thing you keep because it used to work. Write the old environment, the new pressure, and the trait that must change."
+  },
+  "memorableLines": [
+    {
+      "text": "Fitness belongs to a place, a pressure, and a moment.",
+      "location": "breakdown.deepRead",
+      "why": "It turns selection away from abstract strength and toward environment."
+    },
+    {
+      "text": "Selection does not ask whether a thing has merit in the abstract.",
+      "location": "breakdown.fullRead",
+      "why": "It clarifies why past value can coexist with present unfitness."
+    },
+    {
+      "text": "Persistence is not the same as worth.",
+      "location": "breakdown.fullRead",
+      "why": "It preserves moral judgment while using the selection model."
+    }
+  ]
+}

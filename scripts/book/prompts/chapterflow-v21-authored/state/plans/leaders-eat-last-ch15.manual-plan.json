@@ -1,0 +1,175 @@
+{
+  "chapterId": "leaders-eat-last-ch15",
+  "number": 15,
+  "title": "Managing the Abstraction",
+  "coreMove": "Pause the process at the point where it would close and reopen contact with the human consequence underneath.",
+  "sourcePressure": "Turns abstraction into discipline: reports, rules, and categories remain useful only when leaders reconnect them to lived human consequence before judgment hardens.",
+  "chapterSpecificMisunderstanding": "Making this a generic balanced leadership chapter, or rejecting processes rather than keeping them subordinate to judgment.",
+  "sourceAlignmentTerms": [
+    "managing abstraction",
+    "reports",
+    "rules",
+    "categories",
+    "human return path",
+    "judgment",
+    "process",
+    "lived consequence"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 15 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "public housing maintenance queue",
+      "audience": "maintenance director reviewing priority codes",
+      "stakes": "rules rank tickets but miss the resident consequence",
+      "format": "decision_point",
+      "requiredBeat": "she calls the tenant behind a low-priority leak code before closing the weekly list",
+      "firstImage": "a work-order code beside a damp ceiling photo",
+      "mustInclude": [
+        "work-order code",
+        "ceiling photo"
+      ],
+      "mustAvoid": [
+        "process bashing"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "airline bereavement fare desk",
+      "audience": "policy supervisor handling denied exception",
+      "stakes": "category rules may erase a real human case",
+      "format": "dialogue",
+      "requiredBeat": "he reads the itinerary and funeral notice before applying the fare rule",
+      "firstImage": "a boarding pass beside a funeral notice",
+      "mustInclude": [
+        "boarding pass",
+        "notice"
+      ],
+      "mustAvoid": [
+        "generic compassion"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "school lunch debt report",
+      "audience": "district finance officer seeing balances",
+      "stakes": "a clean report can shame children unseen",
+      "format": "postmortem",
+      "requiredBeat": "the officer visits one cafeteria line before approving the collection letter",
+      "firstImage": "a lunch account printout beside a tray rail",
+      "mustInclude": [
+        "account printout",
+        "tray rail"
+      ],
+      "mustAvoid": [
+        "school finance cliché"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "fisheries license portal",
+      "audience": "permit manager enforcing deadline cutoff",
+      "stakes": "portal categories hide weather and harbor access realities",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks which applicant missed by hours and checks the harbor closure log",
+      "firstImage": "a permit timestamp next to a harbor closure notice",
+      "mustInclude": [
+        "permit timestamp",
+        "closure notice"
+      ],
+      "mustAvoid": [
+        "bureaucratic rant"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "hospital discharge checklist",
+      "audience": "case manager using a readiness score",
+      "stakes": "checklist says ready while home conditions say risk",
+      "format": "before_after",
+      "requiredBeat": "the case manager adds a phone call to the neighbor with the spare key before discharge",
+      "firstImage": "a discharge score sheet beside a key tag",
+      "mustInclude": [
+        "score sheet",
+        "key tag"
+      ],
+      "mustAvoid": [
+        "healthcare empathy repeat"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "museum membership renewal system",
+      "audience": "membership lead interpreting churn codes",
+      "stakes": "cancellation codes hide members who felt unseen",
+      "format": "reflection",
+      "requiredBeat": "she reads three handwritten notes before changing the renewal script",
+      "firstImage": "a renewal code beside a handwritten note",
+      "mustInclude": [
+        "renewal code",
+        "note card"
+      ],
+      "mustAvoid": [
+        "customer-service generic"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "keep abstraction subordinate to judgment",
+      "identify closure points in process",
+      "seek human facts before final action",
+      "explain why efficiency alone does not prove care"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before approving one process-driven decision, ask what human fact would change your mind and go get that fact.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

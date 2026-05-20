@@ -1,0 +1,197 @@
+{
+  "chapterId": "the-denial-of-death-ch11",
+  "number": 11,
+  "title": "Psychology and Religion: What Is the Heroic Individual?",
+  "coreMove": "choose a humbler heroism that faces limitation without pretending psychology or religion offers a neat escape",
+  "sourcePressure": "Closes with psychology and religion as a final tension around courage, humility, limitation, transcendence, and the heroic individual.",
+  "chapterSpecificMisunderstanding": "The ending offers a simple cure for death anxiety.",
+  "sourceAlignmentTerms": [
+    "heroic individual",
+    "psychology",
+    "religion",
+    "courage",
+    "humility",
+    "limitation",
+    "transcendence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Psychology and Religion: What Is the Heroic Individual?",
+      "detail": "the source sidecar frames the closing question around psychology, religion, courage, humility, limitation, and transcendence without a neat cure",
+      "useIn": "both",
+      "phrasingHint": "The heroic individual is not someone who has escaped finitude, but someone who can act without pretending the escape has been found."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first mortality hook",
+      "generic fear controls your life opener",
+      "chapter 11 as essay preview"
+    ],
+    "counterintuition": [
+      "what looks like X is actually Y",
+      "you think this is about fear but it is about meaning",
+      "not weakness but strength correction shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on death",
+      "write three things you fear",
+      "generic notice your reaction prompt"
+    ],
+    "examples": [
+      "office meeting with mug scene shell",
+      "kitchen-table epiphany",
+      "classroom whiteboard morality tale",
+      "timestamp plus name plus prop opener"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "palliative care ethics round",
+      "audience": "doctor tempted by rescue fantasy",
+      "stakes": "act without pretending medicine defeats finitude",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Megan changes the question from what else can we do to what care still serves this person",
+      "firstImage": "muted monitor beside a family photo",
+      "mustInclude": [
+        "care plan",
+        "family photo",
+        "ethics pager"
+      ],
+      "mustAvoid": [
+        "doctrinal certainty",
+        "generic heroic individual lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "civil rights archive exhibit",
+      "audience": "curator resisting martyr simplification",
+      "stakes": "honor heroic action at human size",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Luke places a grocery receipt beside the arrest record so courage keeps its ordinary body",
+      "firstImage": "cotton gloves lifting a receipt",
+      "mustInclude": [
+        "arrest record",
+        "grocery receipt",
+        "display label"
+      ],
+      "mustAvoid": [
+        "motivational fearlessness",
+        "generic heroic individual lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "monastery guesthouse weekend",
+      "audience": "executive hoping retreat will erase dread",
+      "stakes": "hear religious practice as discipline rather than cure",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hugo admits he wants silence to make him invulnerable, then follows the bell anyway",
+      "firstImage": "bell vibrating in cold air",
+      "mustInclude": [
+        "guesthouse key",
+        "plain bowl",
+        "walking path"
+      ],
+      "mustAvoid": [
+        "doctrinal certainty",
+        "generic heroic individual lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "climate adaptation council",
+      "audience": "mayor facing limits without heroic denial",
+      "stakes": "choose finite responsibility without total control",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Astrid approves the managed retreat map and speaks the loss plainly before naming the next duty",
+      "firstImage": "flood map over two tables",
+      "mustInclude": [
+        "flood map",
+        "property list",
+        "comment cards"
+      ],
+      "mustAvoid": [
+        "motivational fearlessness",
+        "generic heroic individual lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "birthday letter after diagnosis",
+      "audience": "father refusing despair and false permanence",
+      "stakes": "give love without becoming immortal through the child",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Javier removes the line asking his daughter to remember him always and writes one concrete blessing",
+      "firstImage": "fountain pen beside medicine",
+      "mustInclude": [
+        "birthday card",
+        "medicine box",
+        "photo sleeve"
+      ],
+      "mustAvoid": [
+        "doctrinal certainty",
+        "generic heroic individual lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "community college graduation speech",
+      "audience": "speaker choosing humble heroism",
+      "stakes": "offer transcendence as service and limitation rather than escape",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Adaeze cuts the triumphant ending and closes with the next ordinary duty each graduate can carry",
+      "firstImage": "lectern light on a marked-up speech",
+      "mustInclude": [
+        "marked speech",
+        "program stack",
+        "borrowed gown"
+      ],
+      "mustAvoid": [
+        "motivational fearlessness",
+        "generic heroic individual lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply choose a humbler heroism that faces limitation without pretending psychology or religion offers a neat escape in a fresh scenario",
+      "avoid the weak version: The ending offers a simple cure for death anxiety.",
+      "explain choices using heroic individual, psychology, religion"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one finite duty you can do today without pretending it solves death, fear, or the whole self.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

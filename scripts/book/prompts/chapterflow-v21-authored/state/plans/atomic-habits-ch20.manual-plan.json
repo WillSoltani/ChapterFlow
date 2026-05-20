@@ -1,0 +1,153 @@
+{
+  "chapterId": "atomic-habits-ch20",
+  "number": 20,
+  "title": "The Downside of Creating Good Habits",
+  "coreMove": "Interrupt automatic competence with review so repetition keeps improving rather than concealing drift.",
+  "sourcePressure": "Good habits create efficiency, but automatic repetition can hide mistakes, drift, and stagnation unless the person pauses to review and refine the routine deliberately.",
+  "chapterSpecificMisunderstanding": "Ending with a generic recap instead of showing how automaticity can hide mistakes.",
+  "sourceAlignmentTerms": [
+    "automaticity",
+    "mastery",
+    "review",
+    "reflection",
+    "deliberate practice",
+    "blind spots",
+    "refinement"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of automaticity",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a seasoned paramedic reviewing routine handoffs after one missed allergy note",
+      "audience": "a veteran who trusts automatic competence",
+      "stakes": "whether review reveals drift hidden by speed",
+      "format": "postmortem",
+      "requiredBeat": "he replays three handoffs and finds the skipped allergy question had become invisible",
+      "firstImage": "an ambulance handoff card clipped to a jump bag",
+      "mustInclude": [
+        "handoff card",
+        "allergy line"
+      ],
+      "mustAvoid": [
+        "anti-habit conclusion"
+      ]
+    },
+    {
+      "domain": "a sushi chef filming knife cuts after years of automatic prep",
+      "audience": "a skilled craftsperson whose speed masks imprecision",
+      "stakes": "whether deliberate review turns routine into improvement again",
+      "format": "scene",
+      "requiredBeat": "she slows the footage and sees the blade angle drift on every sixth cut",
+      "firstImage": "a phone tripod aimed at a wet cutting board",
+      "mustInclude": [
+        "blade angle",
+        "slow-motion clip"
+      ],
+      "mustAvoid": [
+        "food artistry fluff"
+      ]
+    },
+    {
+      "domain": "a customs officer auditing stamp decisions after the process feels effortless",
+      "audience": "an officer whose fluency may hide pattern errors",
+      "stakes": "whether automatic decisions need periodic inspection",
+      "format": "reflection",
+      "requiredBeat": "he samples twenty stamped forms and notices one country code he has been waving through too quickly",
+      "firstImage": "passport stamps aligned beside a sample tray",
+      "mustInclude": [
+        "sample tray",
+        "country code"
+      ],
+      "mustAvoid": [
+        "bureaucracy generic"
+      ]
+    },
+    {
+      "domain": "a ballet teacher revisiting barre basics after students plateau",
+      "audience": "a teacher who has made warmups automatic",
+      "stakes": "whether mastery requires returning attention to the routine",
+      "format": "dialogue",
+      "requiredBeat": "she asks students to describe exactly where weight sits during plie and hears the autopilot fail",
+      "firstImage": "a barre reflected in a scuffed studio mirror",
+      "mustInclude": [
+        "barre",
+        "plie count"
+      ],
+      "mustAvoid": [
+        "fitness warmup shell"
+      ]
+    },
+    {
+      "domain": "a cybersecurity analyst reviewing an automated alert filter every quarter",
+      "audience": "an analyst whose good system now hides misses",
+      "stakes": "whether efficiency is checked for blind spots",
+      "format": "decision_point",
+      "requiredBeat": "she opens the filter rules before renewing them and catches a new vendor domain being suppressed",
+      "firstImage": "filter rules projected beside a quarterly review sheet",
+      "mustInclude": [
+        "filter rules",
+        "vendor domain"
+      ],
+      "mustAvoid": [
+        "generic dashboard review"
+      ]
+    },
+    {
+      "domain": "a master gardener rotating pruning habits after old routines weaken fruit yield",
+      "audience": "an expert whose reliable method has stopped fitting the trees",
+      "stakes": "whether review updates a habit that once worked",
+      "format": "before_after",
+      "requiredBeat": "he compares last season cuts with fruiting spurs and changes the pruning sequence for the first time in years",
+      "firstImage": "pruning cuts marked with colored twine on an apple branch",
+      "mustInclude": [
+        "colored twine",
+        "pruning log"
+      ],
+      "mustAvoid": [
+        "garden metaphor recap"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot drift hidden by automaticity",
+      "use review to refine a mature habit",
+      "distinguish repetition from mastery"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one automatic routine you are proud of and inspect the last three reps for one small drift you would miss on autopilot.",
+  "readingTimeMinutes": 12
+}

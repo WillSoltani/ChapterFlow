@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch21",
+  "number": 21,
+  "title": "Leadership Lesson 5: Lead the People, Not the Numbers",
+  "coreMove": "Use the number to find the people, then let human context govern the decision.",
+  "sourcePressure": "Attacks the substitution error in abstraction: numbers are clues, not commanders, and should direct leaders toward people and context beneath the signal.",
+  "chapterSpecificMisunderstanding": "Rejecting metrics or worshiping empathy while ignoring that numbers can reveal real pressure.",
+  "sourceAlignmentTerms": [
+    "lead the people",
+    "numbers",
+    "dashboard",
+    "metric",
+    "clue not commander",
+    "source reality",
+    "people beneath"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 21 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "aquaculture hatchery dashboard",
+      "audience": "hatchery director seeing survival percentages",
+      "stakes": "numbers should point to tanks and caretakers underneath",
+      "format": "decision_point",
+      "requiredBeat": "she leaves the dashboard and checks the low-oxygen tank with the technician before changing targets",
+      "firstImage": "an oxygen probe beside a larval tank",
+      "mustInclude": [
+        "oxygen probe",
+        "tank chart"
+      ],
+      "mustAvoid": [
+        "anti-dashboard"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "city call-center abandon-rate report",
+      "audience": "service manager with a green metric",
+      "stakes": "good numbers hide rushed callers and burned-out agents",
+      "format": "scene",
+      "requiredBeat": "he listens to five short calls before celebrating the improved rate",
+      "firstImage": "a call timer beside a headset stand",
+      "mustInclude": [
+        "call timer",
+        "headset stand"
+      ],
+      "mustAvoid": [
+        "call center cliché"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "youth swim qualifying times",
+      "audience": "coach reviewing time cuts",
+      "stakes": "times are clues, not the swimmer's whole reality",
+      "format": "dialogue",
+      "requiredBeat": "the coach asks about sleep and shoulder pain before changing the race lineup",
+      "firstImage": "a lap counter beside a lane assignment sheet",
+      "mustInclude": [
+        "lap counter",
+        "lane sheet"
+      ],
+      "mustAvoid": [
+        "sports score obsession"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "food-truck health score",
+      "audience": "owner proud of inspection rating",
+      "stakes": "score can hide kitchen relationships thinning out",
+      "format": "postmortem",
+      "requiredBeat": "she compares the perfect score with the prep cook turnover notes",
+      "firstImage": "an inspection placard beside an exit interview note",
+      "mustInclude": [
+        "inspection placard",
+        "exit note"
+      ],
+      "mustAvoid": [
+        "restaurant metrics"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "public works pothole map",
+      "audience": "director allocating crews by complaint count",
+      "stakes": "complaint numbers miss neighborhoods that stopped reporting",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts the quiet zone is fine, then visits the road with no reports and finds axle-deep holes",
+      "firstImage": "a pothole map beside a cracked hubcap photo",
+      "mustInclude": [
+        "pothole map",
+        "hubcap photo"
+      ],
+      "mustAvoid": [
+        "municipal dashboard"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "college advising GPA alert",
+      "audience": "advisor seeing red-risk flags",
+      "stakes": "GPA points to a person, not a verdict",
+      "format": "reflection",
+      "requiredBeat": "she calls the student before sending the automated probation email",
+      "firstImage": "a GPA alert beside an advising calendar",
+      "mustInclude": [
+        "GPA alert",
+        "calendar invite"
+      ],
+      "mustAvoid": [
+        "grades identity repeat"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use metrics as prompts for inquiry",
+      "avoid reducing people to scores",
+      "interpret numbers through context",
+      "evaluate when a score is feeding itself"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one red or green metric and identify the human conversation it should trigger before any decision is made.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

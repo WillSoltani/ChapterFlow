@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch10",
+  "number": 10,
+  "title": "The End of the Beginning",
+  "coreMove": "Audit a successful transition so the hard years become durable judgment rather than a clean victory story.",
+  "sourcePressure": "The ending separates outcome from interpretation, asks which crisis tactics should stop, which principles travel, and what identity shift remains after success.",
+  "chapterSpecificMisunderstanding": "The weak version is closure as celebration, relief, or lessons learned after victory.",
+  "sourceAlignmentTerms": [
+    "closure",
+    "transition",
+    "outcome",
+    "interpretation",
+    "durable principle",
+    "temporary tactic",
+    "identity shift"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the deal finally closes",
+      "success is not the end",
+      "after the struggle comes wisdom"
+    ],
+    "counterintuition": [
+      "winning does not settle meaning",
+      "closure is work",
+      "success can flatten memory"
+    ],
+    "tryThisNow": [
+      "write what you learned",
+      "celebrate the win",
+      "make a lessons learned list"
+    ],
+    "examples": [
+      "acquisition champagne",
+      "founder leaving the office",
+      "retirement speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "family-owned medical imaging center sold to a regional health system",
+      "audience": "a former owner deciding which crisis habits to carry into an integration role",
+      "stakes": "the sale solved capital pressure but left staff distrust from the survival period",
+      "format": "reflection",
+      "requiredBeat": "the owner separates the outcome line from the cost line on the integration plan, then marks which emergency habits must stop before meeting staff",
+      "firstImage": "a signed purchase agreement lying beside a staff retention list",
+      "mustInclude": [
+        "cost line",
+        "emergency habits",
+        "staff retention"
+      ],
+      "mustAvoid": [
+        "deal celebration"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "software tools company after a successful open-source foundation transfer",
+      "audience": "a project founder no longer controlling every release decision",
+      "stakes": "continuing crisis control could weaken the community the transfer was meant to protect",
+      "format": "before_after",
+      "requiredBeat": "the founder writes which release controls were necessary during survival and removes two controls now that foundation governance exists",
+      "firstImage": "a governance charter open beside an old emergency release checklist",
+      "mustInclude": [
+        "governance charter",
+        "controls removed",
+        "survival rationale"
+      ],
+      "mustAvoid": [
+        "open-source idealism"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "regional apparel manufacturer emerging from bankruptcy protection",
+      "audience": "a plant owner whose creditors approved the plan but whose supervisors still act like every week is existential",
+      "stakes": "old urgency preserves discipline but may keep breaking normal planning",
+      "format": "postmortem",
+      "requiredBeat": "the owner lists which bankruptcy tactics saved cash, which now distort planning, and which operating principle deserves to remain",
+      "firstImage": "a bankruptcy exit order beside a new production calendar",
+      "mustInclude": [
+        "bankruptcy tactics",
+        "production calendar",
+        "principle to keep"
+      ],
+      "mustAvoid": [
+        "comeback story"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "public library system after passing a rescue levy",
+      "audience": "a library director whose advocacy campaign won but left staff exhausted",
+      "stakes": "relief could hide the damage done by months of emergency campaigning",
+      "format": "dialogue",
+      "requiredBeat": "the director tells branch managers the levy result, names the exhaustion cost, and asks which emergency communication cadence should end immediately",
+      "firstImage": "a certified election result taped beside a branch staffing chart",
+      "mustInclude": [
+        "exhaustion cost",
+        "communication cadence",
+        "branch managers"
+      ],
+      "mustAvoid": [
+        "civic victory lap"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "biotech contract research lab after landing a stabilizing master-service agreement",
+      "audience": "a CEO whose team wants to treat the contract as proof every prior shortcut was wise",
+      "stakes": "the lab may keep unsafe shortcuts because success made them look validated",
+      "format": "decision_point",
+      "requiredBeat": "the CEO draws a line between shortcuts that bought survival and standards that must return before the next audit",
+      "firstImage": "a master-service agreement clipped over a deviation log",
+      "mustInclude": [
+        "deviation log",
+        "standards to return",
+        "audit date"
+      ],
+      "mustAvoid": [
+        "science startup triumph"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "regional bus manufacturer after winning a large municipal order",
+      "audience": "an operations chief who survived layoffs and now must rebuild normal capacity",
+      "stakes": "the new order looks like proof, but the company still carries skill gaps from the cutbacks",
+      "format": "scene",
+      "requiredBeat": "the chief walks past empty training bays, refuses to call the order the lesson, and writes the three capabilities that must be rebuilt before production ramps",
+      "firstImage": "an empty training bay beside a newly signed municipal purchase order",
+      "mustInclude": [
+        "capabilities to rebuild",
+        "production ramp",
+        "purchase order"
+      ],
+      "mustAvoid": [
+        "manufacturing win headline"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate outcome from interpretation",
+      "distinguish durable principles from temporary tactics",
+      "identify success stories that erase cost",
+      "choose what to carry forward after a transition"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one completed hard period, draw three columns: outcome, cost, and principle to carry. Put one item in each without letting the outcome explain the other two.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch05",
+  "number": 5,
+  "title": "Work Deeply",
+  "coreMove": "Convert a wish to focus into a calendar, ritual, and shutdown rule that make depth repeatable.",
+  "sourcePressure": "The source frame names scheduling philosophies, rituals, and shutdown routines as the way to create regular depth.",
+  "chapterSpecificMisunderstanding": "The weak version says block time; the chapter must show how an operating system reduces reliance on mood.",
+  "sourceAlignmentTerms": ["schedule", "ritual", "shutdown", "regular depth", "work deeply", "focus block"],
+  "forbiddenFrames": {
+    "hook": ["wake before sunrise", "perfect morning routine", "monk mode fantasy"],
+    "counterintuition": ["freedom comes from structure", "discipline beats motivation"],
+    "tryThisNow": ["block two hours tomorrow", "close your laptop at five"],
+    "examples": ["writer cabin", "student library", "CEO time block"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a pediatric oncology pharmacist verifying a chemotherapy protocol",
+      "audience": "a clinician whose deep work cannot depend on leftover attention",
+      "stakes": "a dose schedule must be exact before the treatment window opens",
+      "format": "scene",
+      "requiredBeat": "she starts the same verification ritual every morning: locked workstation, printed protocol, silent double-check, then documented shutdown",
+      "firstImage": "a chemo protocol sheet under a clear plastic cover at 6:55 a.m.",
+      "mustInclude": ["verification ritual", "treatment window", "shutdown note"],
+      "mustAvoid": ["dosing cup", "generic medical caution"]
+    },
+    {
+      "domain": "a documentary editor cutting an interview sequence",
+      "audience": "a creative professional whose output suffers when deep sessions start differently every day",
+      "stakes": "the film loses its emotional line if the sequence is assembled between interruptions",
+      "format": "before_after",
+      "requiredBeat": "he creates a start ritual with transcript pages, source clips, and a no-export rule until the argument of the sequence is clear",
+      "firstImage": "a timeline filled with purple interview clips and two marked transcript pages",
+      "mustInclude": ["transcript pages", "source clips", "export rule"],
+      "mustAvoid": ["generic filmmaker inspiration", "headphones-only anchor"]
+    },
+    {
+      "domain": "a patent examiner reviewing a dense biomedical claim set",
+      "audience": "a specialist who needs repeatable entry into hard reading",
+      "stakes": "a poor review either blocks a valid claim or lets a weak one pass",
+      "format": "decision_point",
+      "requiredBeat": "she chooses a bimodal day: claim analysis before noon, correspondence after lunch, and records the shutdown question that closes the file",
+      "firstImage": "a claim chart with five dependent claims circled in red",
+      "mustInclude": ["bimodal day", "claim chart", "shutdown question"],
+      "mustAvoid": ["generic government paperwork", "email catch-up"]
+    },
+    {
+      "domain": "a high-school robotics mentor preparing competition strategy",
+      "audience": "a mentor balancing student access with planning depth",
+      "stakes": "the team wastes build time if the autonomous route is not designed carefully",
+      "format": "dialogue",
+      "requiredBeat": "he tells students the door reopens after the strategy block, then writes the route assumptions before answering build questions",
+      "firstImage": "a field map taped to a folding table with colored path lines",
+      "mustInclude": ["autonomous route", "door sign", "assumption list"],
+      "mustAvoid": ["classroom shell", "generic coach speech"]
+    },
+    {
+      "domain": "a tax attorney preparing a complex cross-border memo",
+      "audience": "a professional whose deep work must coexist with client demands",
+      "stakes": "the client makes a costly filing decision if the memo is thin",
+      "format": "postmortem",
+      "requiredBeat": "after losing a morning to calls, she builds a ritual: statute book open, call window posted, memo question written before the first paragraph",
+      "firstImage": "a treaty article printed beside a blank memo heading",
+      "mustInclude": ["call window", "memo question", "filing decision"],
+      "mustAvoid": ["generic lawyer email", "busy executive calendar"]
+    },
+    {
+      "domain": "a prosthetics designer refining socket fit for a runner",
+      "audience": "a design specialist whose depth needs a physical setup and end condition",
+      "stakes": "a poorly shaped socket causes pain during training",
+      "format": "vignette",
+      "requiredBeat": "she begins with the same measurement layout and ends by writing the next physical test, preventing the design from leaking into the evening",
+      "firstImage": "a plaster positive marked with pressure points in blue pencil",
+      "mustInclude": ["measurement layout", "pressure points", "next test note"],
+      "mustAvoid": ["generic sports triumph", "inspirational patient frame"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["choose an appropriate depth scheduling structure", "design rituals that reduce startup friction", "identify shutdown rules that protect recovery and resumption", "distinguish repeatable systems from willpower slogans"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Write the exact first three objects, screens, or documents that must be in place before your next deep block starts, plus the sentence that will close it.",
+  "readingTimeMinutes": 12
+}

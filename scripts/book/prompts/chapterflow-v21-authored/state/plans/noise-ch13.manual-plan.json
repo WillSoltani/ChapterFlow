@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch13",
+  "number": 13,
+  "title": "Selection and Aggregation in Forecasting",
+  "coreMove": "Aggregate independent forecasts rather than letting a group discuss until it converges on one number, because group discussion replaces information diversity with social influence.",
+  "sourcePressure": "Combining multiple independent forecasts reduces noise better than group deliberation that collapses toward consensus. Selection of forecasters (who is in the pool) still matters because the pool's composition shapes the combined result. The mechanism for aggregation success is the preservation of independence: aggregation only works if the inputs are genuinely independent before they are combined.",
+  "chapterSpecificMisunderstanding": "Assuming that any group involvement improves forecast accuracy, or that the average of a group's post-discussion consensus is the same as the average of its pre-discussion individual forecasts.",
+  "sourceAlignmentTerms": ["aggregation", "independent forecasts", "selection", "pool composition", "group discussion", "convergence", "diversity of judgment"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Superforecasting and Good Judgment Project research",
+      "detail": "The research on forecasting competitions (associated with Philip Tetlock and Barbara Mellers) has demonstrated that aggregating independent probabilistic forecasts from a diverse pool outperforms both expert consensus and group deliberation, and that the accuracy gains depend on preserving the independence of the inputs before aggregation.",
+      "useIn": "deepRead",
+      "phrasingHint": "The wisdom of crowds works when the crowd's members have not been talking to each other. The moment the group discusses, the wisdom becomes the loudest voice, and the crowd becomes an echo."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["two heads are better than one — unless they're talking", "the best forecast isn't the smartest person's guess"],
+    "counterintuition": ["group discussion makes forecasts worse", "experts in a room are worse than amateurs online"],
+    "tryThisNow": ["ask five colleagues their independent estimates of a project outcome", "run a forecasting experiment with your team"],
+    "examples": ["a scene that implies discussion is always worse than aggregation (it often is, but the mechanism is about independence, not discussion per se)", "a scene that treats superforecasters as a named group needing citation — reference the concept, not the brand name"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Aggregation examples risk all reading as 'group talks, accuracy drops; aggregation wins.' The varied domains and formats must show how the selection-then-aggregate logic applies across commodity markets, clinical teams, project delivery, and intelligence analysis."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "commodity price forecasting: a trading firm comparing aggregated analyst forecasts versus committee consensus on quarterly oil price",
+      "audience": "a trading desk manager studying whether analyst meetings before forecast submission harm accuracy",
+      "stakes": "hedging decisions worth tens of millions — the difference between an aggregated forecast and a committee consensus forecast translates directly into position sizing error",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the desk manager compares the tracking error of two forecast methods over 12 quarters: the pre-meeting aggregated individual estimates have 30 percent lower tracking error than the post-meeting committee consensus, and a post-meeting analyst survey reveals that 6 of 8 analysts adjusted their estimates toward the person who spoke first in the meeting",
+      "firstImage": "a 12-quarter tracking-error comparison chart on a trading desk screen, the aggregated-individual line running closer to actuals than the committee-consensus line",
+      "mustInclude": ["the 30 percent tracking-error reduction in the aggregated condition", "the 6-of-8 adjustment toward the first speaker", "the mechanism: post-meeting consensus is first-speaker anchored, not information-aggregated"],
+      "mustAvoid": ["specific oil price numbers that could be misread as real forecasts", "a market loss narrative"]
+    },
+    {
+      "domain": "geopolitical event probability forecasting: an intelligence assessment team comparing aggregated analyst estimates versus a roundtable consensus",
+      "audience": "an intelligence unit quality officer comparing two assessment methods for the same event across a historical set",
+      "stakes": "policy decisions based on probability estimates — systematically overconfident or anchored estimates lead to policy options being mispriced",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality officer analyzes historical data: for 40 geopolitical events where both methods produced estimates, the aggregated individual estimates were better calibrated than the roundtable consensus estimates in 28 of 40 cases, and in the 12 cases where consensus was better, the margin was smaller than in the 28 where aggregation was better",
+      "firstImage": "a calibration chart comparing two estimation methods across 40 historical events, the aggregated-individual curve closer to the diagonal than the roundtable curve",
+      "mustInclude": ["the 28-of-40 aggregation advantage", "the margin asymmetry (wins larger than losses)", "the mechanism: roundtables collapse toward the senior or loudest voice; aggregation preserves the distribution"],
+      "mustAvoid": ["naming specific geopolitical events or countries", "implying intelligence analysts are poorly trained"]
+    },
+    {
+      "domain": "product demand forecasting: a consumer goods company comparing sales forecast accuracy when regional managers submit independently versus after a joint planning call",
+      "audience": "a supply chain planning director who has run both methods across consecutive forecast cycles",
+      "stakes": "inventory levels and customer service rates — over- or under-production driven by poor forecasts directly affects cash flow and fill rates",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the planning director and a regional manager compare forecast error rates from the two cycles: in the independent-submission cycle, the mean absolute percentage error was 14 percent; in the joint-planning-call cycle, it was 19 percent — and an analysis of the call transcripts shows that forecast estimates clustered toward the first regional manager who spoke",
+      "firstImage": "two forecast error reports for consecutive planning cycles, identical categories down the left column but different error percentage columns — the independent-submission cycle showing lower errors",
+      "mustInclude": ["the 14 vs. 19 percent MAPE comparison", "the clustering toward the first speaker from transcript analysis", "the planning director's proposed fix: submit forecasts before the call, discuss gaps only"],
+      "mustAvoid": ["a stockout or excess inventory disaster story", "product-specific forecasting jargon that makes the example opaque"]
+    },
+    {
+      "domain": "startup exit probability forecasting: a venture capital firm comparing aggregated associate estimates versus partner committee vote on a portfolio company's exit probability",
+      "audience": "a VC firm investment committee advisor comparing both methods' historical accuracy",
+      "stakes": "portfolio valuation and fund return projections — systematically optimistic committee estimates lead to fund IRR misrepresentation",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the advisor asks the partners: when your associates submitted independent exit probability estimates before last year's committee review meetings, and those estimates were aggregated, were they more or less accurate than the exit probabilities the committee converged on in the meeting? The answer from the historical data is: less accurate — because the partners' optimism in the room consistently pulled the committee above the aggregated associate mean",
+      "firstImage": "a comparison table showing aggregate associate estimates in one column and committee consensus probabilities in another for 20 portfolio companies, with actual outcomes in a third column — the committee column consistently higher",
+      "mustInclude": ["the aggregated associate estimate being more accurate than committee consensus on average", "the consistent upward pull of the partners' optimism in meetings", "the advisor's proposal: committee decisions should be anchored to the aggregated pre-meeting estimate"],
+      "mustAvoid": ["naming specific portfolio companies", "a fund failure narrative"]
+    },
+    {
+      "domain": "clinical trial outcome probability: a pharmaceutical team comparing aggregated investigator estimates versus a steering committee consensus on trial success probability",
+      "audience": "a clinical development program manager comparing two probability-elicitation methods for the same historical trial set",
+      "stakes": "go/no-go investment decisions — overconfident committee consensus probabilities lead to under-resourced contingency planning",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you introduce a new protocol requiring investigators to submit individual probability estimates before each steering committee meeting; six months in, you compare the aggregated pre-meeting estimates against the committee consensus estimates for the same trials: the aggregated estimates correlate 0.72 with actual outcomes; the committee consensus estimates correlate 0.58 with actual outcomes",
+      "firstImage": "two forecast accuracy reports on your desk: one for the aggregated individual estimates, one for the committee consensus — the correlation coefficients visible at the bottom of each",
+      "mustInclude": ["the 0.72 vs. 0.58 outcome correlation", "the specific mechanism: committee meetings replaced independent information with discussion anchoring", "your confidence in the new protocol based on the six-month data"],
+      "mustAvoid": ["a drug approval or failure narrative", "specific disease areas or drug types"]
+    },
+    {
+      "domain": "championship prediction: a sports analytics team comparing aggregated analyst probability estimates versus editorial committee consensus before a tournament",
+      "audience": "a sports analytics platform manager studying whether pre-publication editorial review distorts aggregated model outputs",
+      "stakes": "platform credibility — if editorial review systematically adjusts aggregated outputs toward popular favorites, the platform's advertised independence is compromised",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the platform manager reviews three years of pre-tournament predictions: the aggregated analyst estimates had a Brier score of 0.21; the post-editorial-review published estimates had a Brier score of 0.24 — and a manual comparison shows that editorial review consistently moved predictions toward teams with large fan bases, replacing analytical aggregation with anticipated reader preference",
+      "firstImage": "a spreadsheet with team win-probability estimates in two columns: 'aggregated pre-review' and 'published post-review' — several cells showing the adjustments in a direction that matches team popularity, not model output",
+      "mustInclude": ["the 0.21 vs. 0.24 Brier score comparison", "the pattern of adjustments toward popular teams", "the manager's framing: the editorial review was replacing aggregation with audience-serving selection"],
+      "mustAvoid": ["naming specific sports teams or leagues", "a betting or gambling context"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why independence is the precondition for aggregation to improve on individual judgment",
+      "identify when a group process produces information aggregation versus social conformity",
+      "apply selection-and-aggregation thinking to design a forecasting process that preserves independence",
+      "analyze why aggregated estimates often outperform expert consensus even when the aggregated forecasters are less expert individually",
+      "evaluate whether a described group forecasting process preserves the conditions required for aggregation to work"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before your next meeting where the group will form a consensus estimate — a project timeline, a budget number, a probability of an outcome — ask everyone to write their individual number on paper before anyone speaks. Collect the papers, calculate the mean, and put that number on the whiteboard as the starting point. Notice what happens to the conversation when the aggregate, not the first speaker, sets the anchor.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) stating the independence-before-aggregation requirement directly, at least one 5+ sentence paragraph explaining why group discussion replaces information with social influence, at least one one-sentence punch line about what the average of a group's post-discussion consensus actually measures",
+    "fullReadInterludeRequirement": "at least one paragraph on the forecasting research tradition — framing the aggregation advantage as a robust empirical finding across many domains, not a statistical trick that requires special conditions",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

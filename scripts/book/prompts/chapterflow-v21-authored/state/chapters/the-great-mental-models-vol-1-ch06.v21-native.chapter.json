@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch06",
+  "number": 6,
+  "title": "Necessity and Sufficiency",
+  "readingTimeMinutes": 12,
+  "hook": "The allergy diary has every dinner listed, but only one combination brings the red welts back.",
+  "counterintuition": "Important is not the same as decisive, but necessary and sufficient are different jobs. Better reasoning starts when helpful conditions stop masquerading as producing levers.",
+  "tryThisNow": "For one desired outcome, write two lines: what must be present, and what would be enough to make it happen. Cross out anything merely helpful.",
+  "keyTakeaway": "Separate what must be present from what is enough to produce the result, or you will chase helpful factors while missing the actual lever.",
+  "breakdown": {
+    "fastRead": "Red welts are circled in pen on a clinic diary page. Emma sees berries, shellfish, sleep, weather, and pill timing scattered across the entries. Several things were present. Only one food plus pill pattern brings the rash back.\n\nThat is the distinction. A necessary condition must be there for an outcome. A condition can also be enough to produce it. A helpful condition may matter without being either one.\n\nDo not ask only what matters; ask how it matters.",
+    "deepRead": "Louis has a tide chart taped beside a stack of unsigned permits. The harbor crew is ready, the contractor is available, and the equipment can arrive by Monday. None of that starts the dredging work if the missing approval is required. Helpful conditions can pile up around a blocked project and still leave it blocked.\n\nA necessary condition is a gate. Without it, the result cannot happen. A condition that is enough to produce the result works more like a trigger. Once it is present, the result happens or becomes safe enough to start. Confusing the two wastes effort.\n\nThe label changes the action you take.\n\nNina sees the same thing with a soccer tournament. Orange corner flags are bundled beside an empty referee sign-in table. A field permit matters. Snack tents help. Extra volunteers help. But the first match cannot begin safely without the required referee count. Once the permit, referee count, and field setup are all present, that set is enough to start.\n\nThe limit is that real outcomes often have several necessary conditions and no single magic trigger. The point is not to find one heroic cause. It is to stop mixing blockers, enablers, and nice-to-have improvements in the same bucket. If the gate is missing, support does not open it. If the trigger is present, extra decoration may not matter.",
+    "fullRead": "Condensation streaks down Hiroshi's stainless fermenter after the sour batch is dumped. The sanitation checklist is clean, so the first meeting circles around cleaning anyway. Hiroshi stops the loop. Sanitation is necessary for good beer, but the clean checklist is not sufficient to explain this fault. The temperature log shows a spike during the seasonal tank's first warm night. For this batch, that spike is enough to account for the sour turn.\n\nNecessity and Sufficiency gives the useful distinction its shape: some things must be there, and some things are enough to make the result happen.\n\nWhat are you calling important when you really mean necessary, sufficient, or merely helpful?\n\nMaja learns it in the community garden. The seedling tray is dying, and volunteers keep adding mulch. Sunlight is necessary. Soil is necessary. Mulch helps. Then she points to the cracked pressure gauge zip-tied to the raised bed. Without water pressure, sunlight and soil cannot become enough. The garden does not need more helpful effort until the missing condition is restored.\n\nThis is where many decisions go sideways. People build long lists of factors and treat the list as reasoning. More training, more reminders, better tools, stronger motivation, clearer forms, another meeting. Some items are gates. Some are triggers. Some are decoration. Until the roles are separated, action becomes noisy.\n\nLuca sees the stakes in a legal clinic intake screen. A stamped eviction notice sits half-covered by sticky notes. Income, notice date, county, and hearing date all matter. But not all of them matter the same way. Some are necessary for eligibility. Some are sufficient to trigger urgent intake. Some are helpful context for the attorney later. If volunteers confuse those roles, eligible tenants wait while staff collect nice-to-have details.\n\nThe same distinction keeps diagnosis honest. A clean sanitation checklist is required, yet it may not explain the sour batch. A permit is required, yet another contractor will not replace it. A referee count is required, while the snack tent only makes the day nicer. When the condition type changes, the next action changes with it.\n\nThe model stays narrow because it needs to stay useful. You do not need formal proof language to use it. You need two questions. What must be present for the outcome at all? What set of conditions would be enough to act, decide, or explain the result?\n\nThere is a humility built into those questions. They keep you from turning every problem into a hunt for one grand cause. Many results need a set, and many faults can be explained by a specific enough trigger inside that set.\n\nWhen those questions are clear, effort gets cleaner. You stop watering seedlings without pressure, chasing paperwork that cannot start the project, or blaming sanitation for a temperature fault.\n\nFind the gate. Find the trigger. Then decide what merely helps."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-emma-allergy-diary",
+      "title": "Emma Separates Presence From Trigger",
+      "tags": [
+        "clinic",
+        "allergy",
+        "conditions"
+      ],
+      "planSpec": {
+        "domain": "allergy clinic trigger investigation",
+        "audience": "a clinic nurse helping a patient identify what produces hives",
+        "stakes": "the patient may cut foods randomly while missing the sufficient trigger combination",
+        "format": "scene",
+        "requiredBeat": "Emma separates foods that were present during every reaction from the one food-medication combination that is enough to reproduce the rash"
+      },
+      "scenario": "Emma, the clinic nurse, circles red welts in pen on an allergy diary page while the patient asks which foods to cut. Strawberries, shellfish, late dinners, and poor sleep appear often, but the rash returns only when one medication follows one food. Before the appointment ends, Emma has to decide which conditions were merely present and which combination is enough to reproduce the hives.",
+      "whatToDo": "Separate repeated presence from sufficient trigger. Keep foods on the suspect list only when the timing pattern shows they help produce the rash.",
+      "whyItMatters": "Randomly cutting every present food confuses association with condition type. The useful lever is the combination that is enough to bring the outcome back."
+    },
+    {
+      "exampleId": "ch06-ex02-louis-permit-checklist",
+      "title": "Louis Finds the Missing Gate",
+      "tags": [
+        "harbor",
+        "permit",
+        "project"
+      ],
+      "planSpec": {
+        "domain": "harbor dredging permit",
+        "audience": "a port coordinator trying to restart a delayed dredging project",
+        "stakes": "the crew may chase optional paperwork while the missing permit blocks everything",
+        "format": "decision_point",
+        "requiredBeat": "Louis sorts the checklist into must-be-present approvals and enough-to-start approvals before calling another contractor"
+      },
+      "scenario": "Louis, the port coordinator, stands under a tide chart taped beside unsigned permits in the harbor office. A contractor is ready and a crew is waiting for dredging work. The checklist mixes optional reports with approvals that must be present. His phone is already open to call another contractor, but he must decide whether the real blocker is labor or the one missing permit that no crew can work around.",
+      "whatToDo": "Sort the checklist into must-be-present approvals and enough-to-start approvals before making another contractor call. Clear the gate first.",
+      "whyItMatters": "More ready resources cannot overcome a missing necessary condition. The project starts only when the required approval is present."
+    },
+    {
+      "exampleId": "ch06-ex03-nina-referee-table",
+      "title": "Nina Counts the Referees First",
+      "tags": [
+        "soccer",
+        "schedule",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "youth soccer tournament scheduling",
+        "audience": "a volunteer coordinator assembling a weekend tournament",
+        "stakes": "games cannot start if one required referee condition is absent",
+        "format": "predict_reveal",
+        "requiredBeat": "Nina asks which conditions are nice, which are required, and which set is enough to begin the first match safely"
+      },
+      "scenario": "Which condition actually starts the tournament? Nina stands beside bundled orange corner flags and an empty referee sign-in table. The field permit has arrived, the snack tent is ready, and parents are texting about kickoff. She predicts the checklist is complete, then sees the referee count is short. Before the first match, she must decide which conditions are nice, which are required, and which set is enough to begin safely.",
+      "whatToDo": "Name the required set: field, referee count, and setup. Delay the match until that set is present, even if every nice-to-have item is ready.",
+      "whyItMatters": "A tournament can look prepared while missing the one condition that makes play safe. Helpful extras cannot substitute for a required gate."
+    },
+    {
+      "exampleId": "ch06-ex04-hiroshi-temperature-spike",
+      "title": "Hiroshi Stops Blaming Sanitation",
+      "tags": [
+        "brewing",
+        "fermentation",
+        "fault"
+      ],
+      "planSpec": {
+        "domain": "microbrewery fermentation fault",
+        "audience": "a head brewer diagnosing a sour batch",
+        "stakes": "another ruined batch will waste tanks during a seasonal release",
+        "format": "postmortem",
+        "requiredBeat": "Hiroshi marks sanitation as necessary for good beer but not sufficient, then finds the temperature spike that is enough to explain this fault"
+      },
+      "scenario": "It took Hiroshi, the brewery manager, one dumped seasonal tank to stop treating sanitation as the whole answer. Condensation streaked down the stainless fermenter, and the sanitation checklist was clean. In the postmortem, he marks sanitation as necessary for good beer but not sufficient to explain this fault. The temperature log shows the warm-night spike that is enough to account for the sour batch.",
+      "whatToDo": "Keep sanitation on the necessary list, then look for the condition that is enough to explain this batch. Follow the temperature log to the actual fault.",
+      "whyItMatters": "A necessary condition can be clean and still fail to explain the outcome. Diagnosis improves when each condition gets the right role."
+    },
+    {
+      "exampleId": "ch06-ex05-maja-pressure-gauge",
+      "title": "Maja Points to the Pressure Gauge",
+      "tags": [
+        "garden",
+        "water",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "community garden irrigation repair",
+        "audience": "a garden board deciding why seedlings keep dying",
+        "stakes": "volunteers may keep adding mulch when water pressure is the missing condition",
+        "format": "before_after",
+        "requiredBeat": "Maja names sunlight and soil as necessary but shows the dry pressure gauge that prevents either from being enough"
+      },
+      "scenario": "Maja, the garden board lead, points past the mulch pile to the cracked pressure gauge zip-tied to a raised bed. Before, volunteers kept adding compost, shade cloth, and cheerful signs while seedling trays curled dry. After the gauge reads empty again, Maja names sunlight and soil as necessary, then shows why neither is enough without water pressure.",
+      "whatToDo": "Stop adding helpful extras until the missing water-pressure condition is restored. Keep sunlight and soil on the list, but repair the gate.",
+      "whyItMatters": "Necessary conditions can sit uselessly beside a missing blocker. The seedlings do not need more effort until the condition that lets the others work is present."
+    },
+    {
+      "exampleId": "ch06-ex06-luca-eligibility-screen",
+      "title": "Luca Sorts the Intake Fields",
+      "tags": [
+        "legal",
+        "intake",
+        "eligibility"
+      ],
+      "planSpec": {
+        "domain": "legal clinic eligibility screen",
+        "audience": "a clinic intake lead designing criteria for eviction help",
+        "stakes": "eligible tenants could be turned away because helpful signals are confused with required ones",
+        "format": "reflection",
+        "requiredBeat": "You watch Luca move income, notice date, county, and hearing date into necessary or sufficient groups before training volunteers"
+      },
+      "scenario": "You watch Luca, the intake lead, spread a stamped eviction notice under sticky notes at the legal clinic while two volunteers wait for the training script. Income, notice date, county, and hearing date all matter, but they do not matter the same way. Before training volunteers, Luca moves each field into necessary, sufficient for urgent intake, or helpful later, so eligible tenants are not delayed by optional details.",
+      "whatToDo": "Sort each intake field by condition type before training volunteers. Do not let helpful context masquerade as required eligibility.",
+      "whyItMatters": "When volunteers confuse helpful signals with necessary ones, people who qualify can wait. Clear condition roles make the screen faster and fairer."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a community garden, volunteers keep adding mulch to sunny beds with good soil, but seedlings still die because the irrigation line has no pressure. Which distinction matters most?",
+        "choices": [
+          "Sunlight and soil can be necessary without being enough to produce growth.",
+          "Water pressure is helpful but not necessary when the soil is healthy.",
+          "The gardeners should focus on the most visible condition first."
+        ],
+        "correctIndex": 0,
+        "explanation": "Sunlight and soil may be required, but they are not sufficient without water. The missing pressure is a blocker, not a cosmetic improvement.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A harbor project has equipment staged, a crew scheduled, and contractor availability, but one required dredging permit is still unsigned. What should the coordinator do first?",
+        "choices": [
+          "Call more contractors to increase readiness.",
+          "Treat the permit as the necessary gate and clear it before chasing optional readiness.",
+          "Start work because enough helpful conditions are present."
+        ],
+        "correctIndex": 1,
+        "explanation": "The missing permit is necessary. More crews or equipment cannot start the project if the required approval is absent.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A brewer has a clean sanitation checklist after a sour seasonal batch, but the tank temperature log shows one warm-night spike. What is the cleanest diagnosis?",
+        "choices": [
+          "Sanitation cannot matter because the checklist was clean.",
+          "The temperature spike is enough to explain this fault while sanitation remains necessary for good beer.",
+          "Both sanitation and temperature should be treated as equally sufficient causes."
+        ],
+        "correctIndex": 1,
+        "explanation": "A necessary condition can be satisfied and still not explain the outcome. The warm spike is sufficient for this fault; sanitation remains required in general.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A youth soccer tournament has fields, snacks, corner flags, and volunteers ready, but not enough certified referees have signed in. Which action follows the model?",
+        "choices": [
+          "Start because most conditions are ready.",
+          "Replace referees with extra volunteers because they are also helpful.",
+          "Delay until the required referee count joins the field and setup conditions."
+        ],
+        "correctIndex": 2,
+        "explanation": "The referee count is part of the necessary set for safe play. Nice-to-have readiness cannot substitute for a required condition.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A clinic wants fewer missed appointments and lists text reminders, bus timing, shift schedules, and clearer intake forms as possible fixes. What is the best next move?",
+        "choices": [
+          "Sort which conditions are necessary, sufficient, or merely helpful before choosing a fix.",
+          "Pick the easiest condition to change because all improvements compound.",
+          "Treat reminders as sufficient because missed appointments are usually forgetfulness."
+        ],
+        "correctIndex": 0,
+        "explanation": "The list mixes condition types. Sorting them prevents the clinic from improving a helpful factor while missing the blocker or trigger.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A tenant is eligible for urgent legal help only if county and hearing date match clinic rules. Income details help later but are not required for triage. What should the intake screen do?",
+        "choices": [
+          "Collect every helpful detail before triage to avoid missing context.",
+          "Remove income questions forever because they are not necessary for urgency.",
+          "Separate required triage fields from helpful later fields so eligible tenants are not delayed."
+        ],
+        "correctIndex": 2,
+        "explanation": "The screen should reflect condition roles. Helpful context can still be collected later, but it should not block the sufficient urgent-intake set.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A project team says motivation, training, equipment, and manager approval are all important for a launch result. What question cuts through the list?",
+        "choices": [
+          "Which item is easiest to improve this week?",
+          "Which items must be present, and which set would be enough to produce the result?",
+          "Which item gets mentioned most often by senior staff?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Importance is too broad. The useful question assigns roles: gates, triggers, and helpful supports. Ease and senior attention do not reveal condition type.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A patient has hives after several meals in the diary, but only one food-medication timing pattern reproduces the reaction. What should the nurse avoid?",
+        "choices": [
+          "Treating every food that appeared in the diary as an equal necessary condition.",
+          "Looking for a condition set that is enough to reproduce the rash.",
+          "Distinguishing repeated presence from a producing combination."
+        ],
+        "correctIndex": 0,
+        "explanation": "Repeated presence is not the same as necessity. The nurse should avoid cutting every present food when the sufficient pattern may be narrower.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A manager can fix one of three issues before launch: a missing required approval, a helpful training update, or a nicer dashboard. Which choice is best?",
+        "choices": [
+          "The training update, because people execute better when prepared.",
+          "The dashboard, because it will reveal whether the launch works.",
+          "The missing approval, because a necessary condition blocks all other readiness."
+        ],
+        "correctIndex": 2,
+        "explanation": "A necessary condition has priority because the outcome cannot happen without it. Training may help and the dashboard may inform, but neither opens the gate.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A result needs several things, and one is missing. What distinction should you retrieve?",
+      "back": "Ask whether the missing thing is necessary, sufficient, or merely helpful. A necessary condition blocks the result even if many helpful conditions are present.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is important too vague when diagnosing an outcome?",
+      "back": "Important can mean must be present, enough to produce, or helpful support. Decisions improve when those roles are separated.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A process has every support in place but still cannot start. What should you look for?",
+      "back": "Look for the missing necessary condition, the gate without which the supports cannot produce the result.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A fault happened even though one required condition was satisfied. What should you remember?",
+      "back": "A necessary condition being present does not make it the sufficient explanation. Look for the condition or set of conditions enough to produce the fault.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How does this model prevent wasted effort?",
+      "back": "It keeps you from improving helpful factors while a required gate is missing or while the sufficient trigger sits elsewhere.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to classify conditions before acting. The skill is asking whether each factor must be present, is enough to produce the result, or only helps around the edges.",
+    "ifThenPlans": [
+      {
+        "context": "project work",
+        "plan": "If a project is stalled despite many ready pieces, then identify the missing necessary condition before adding more support."
+      },
+      {
+        "context": "health decisions",
+        "plan": "If several triggers appear near a symptom, then separate repeated presence from the combination enough to reproduce the result."
+      },
+      {
+        "context": "operations",
+        "plan": "If a team lists many important factors, then sort them into gates, triggers, and helpful extras before assigning work."
+      },
+      {
+        "context": "screening",
+        "plan": "If an intake process is slow, then distinguish required eligibility fields from helpful context that can wait."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one desired outcome. Write what must be present, what would be enough to make it happen, and what is merely helpful. Act on the missing gate first.",
+    "weeklyPractice": "Each week, review one stuck outcome. Mark every listed factor as necessary, sufficient, or helpful, then remove one action that only improves a nonblocking detail."
+  },
+  "memorableLines": [
+    {
+      "text": "Do not ask only what matters; ask how it matters.",
+      "location": "breakdown.fastRead",
+      "why": "It redirects the reader from vague importance to condition roles."
+    },
+    {
+      "text": "The label changes the action you take.",
+      "location": "breakdown.deepRead",
+      "why": "The sentence makes the distinction practical rather than academic."
+    },
+    {
+      "text": "Find the gate. Find the trigger.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the chapter's reasoning tool a memorable two-step phrase."
+    }
+  ]
+}

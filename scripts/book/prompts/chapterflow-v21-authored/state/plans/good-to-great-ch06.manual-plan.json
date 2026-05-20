@@ -1,0 +1,190 @@
+{
+  "chapterId": "good-to-great-ch06",
+  "number": 6,
+  "title": "A Culture of Discipline",
+  "coreMove": "Replace control-heavy management with disciplined freedom inside a clear concept.",
+  "sourcePressure": "The source pairs disciplined people with freedom inside a clear framework, contrasts self-discipline with bureaucracy, connects discipline to the Hedgehog Concept, and emphasizes stop-doing choices.",
+  "chapterSpecificMisunderstanding": "The weak version treats discipline as more supervision, stricter rules, or generic productivity.",
+  "sourceAlignmentTerms": [
+    "culture of discipline",
+    "freedom within a framework",
+    "self-discipline",
+    "bureaucracy",
+    "stop-doing list",
+    "Hedgehog Concept"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "wake up earlier routine",
+      "manager adds stricter policy",
+      "discipline equals punishment"
+    ],
+    "counterintuition": [
+      "freedom means no rules",
+      "rules are always bad",
+      "discipline is willpower"
+    ],
+    "tryThisNow": [
+      "make a to-do list",
+      "block your calendar",
+      "set a timer"
+    ],
+    "examples": [
+      "home cleaning schedule",
+      "classroom discipline",
+      "generic office productivity"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "sterile compounding pharmacy clean-room practice",
+      "audience": "a pharmacy director tempted to add approval steps after one contamination scare",
+      "stakes": "extra bureaucracy could slow urgent medications while failing to improve disciplined technique",
+      "format": "decision_point",
+      "requiredBeat": "the director removes two signoff boxes but makes the laminar-hood boundary nonnegotiable, then watches a senior tech stop a batch without asking permission",
+      "firstImage": "blue gloves hovering at the taped edge of a laminar hood",
+      "mustInclude": [
+        "laminar hood",
+        "removed signoff boxes",
+        "stopped batch"
+      ],
+      "mustAvoid": [
+        "control as safety",
+        "pharmacy hero correction"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "jazz festival stage-change crews",
+      "audience": "a festival producer managing five stages with volunteer crews",
+      "stakes": "late changeovers will wreck the day unless crews know exactly where freedom begins and ends",
+      "format": "scene",
+      "requiredBeat": "the producer gives crews full authority to solve cable routing inside a fixed twelve-minute changeover window and cancels side-stage decoration work",
+      "firstImage": "coiled XLR cables lined along a plywood stage lip before noon",
+      "mustInclude": [
+        "twelve-minute window",
+        "cable routing",
+        "cancelled decoration work"
+      ],
+      "mustAvoid": [
+        "music festival vibe piece",
+        "chaos solved by yelling"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "trail restoration nonprofit project calendar",
+      "audience": "a field director whose volunteers keep adding attractive side projects",
+      "stakes": "erosion repairs will miss the rainy season if energy scatters",
+      "format": "before_after",
+      "requiredBeat": "the director posts a stop-doing list on the tool trailer and lets crew leads choose methods only inside the watershed-priority map",
+      "firstImage": "orange trail flags tucked into the latch of a muddy tool trailer",
+      "mustInclude": [
+        "stop-doing list",
+        "watershed-priority map",
+        "tool trailer"
+      ],
+      "mustAvoid": [
+        "generic volunteer enthusiasm",
+        "nature appreciation scene"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "ferry maintenance tide-window planning",
+      "audience": "a maintenance superintendent balancing crew judgment and tide constraints",
+      "stakes": "over-approval will miss low-tide repair windows, but loose work will strand commuters",
+      "format": "dialogue",
+      "requiredBeat": "the superintendent states the fixed tide window and safety boundary, then lets the hull crew choose the patch sequence without calling the office",
+      "firstImage": "barnacle scrape marks below a ferry hull at low tide",
+      "mustInclude": [
+        "tide window",
+        "safety boundary",
+        "patch sequence"
+      ],
+      "mustAvoid": [
+        "generic transportation delay",
+        "rule-free autonomy"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "medical-device packaging line",
+      "audience": "a plant manager deciding whether to add inspectors after label rework",
+      "stakes": "inspection layers may hide the real need for disciplined operators at the source",
+      "format": "postmortem",
+      "requiredBeat": "the manager traces a mislabeled tray back to a confusing SKU rack, fixes the framework, and gives operators authority to stop the conveyor",
+      "firstImage": "foil-sealed trays clicking under a barcode reader",
+      "mustInclude": [
+        "SKU rack",
+        "barcode reader",
+        "stop authority"
+      ],
+      "mustAvoid": [
+        "generic factory efficiency",
+        "surveillance as discipline"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "pro bono legal clinic intake boundaries",
+      "audience": "a clinic coordinator flooded with urgent requests beyond the clinic's concept",
+      "stakes": "saying yes to everything will dilute the cases the clinic can actually win",
+      "format": "reflection",
+      "requiredBeat": "the coordinator locks the intake script to eviction-defense criteria and empowers volunteers to decline off-concept cases without supervisor approval",
+      "firstImage": "colored case tabs fanned beside a courthouse deadline calendar",
+      "mustInclude": [
+        "intake script",
+        "eviction-defense criteria",
+        "decline authority"
+      ],
+      "mustAvoid": [
+        "generic compassion versus limits",
+        "law office paperwork tedium"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish disciplined freedom from control",
+      "identify bureaucracy as compensation for weak fit or unclear concept",
+      "design stop-doing choices",
+      "set frameworks that allow judgment without permission seeking"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one recurring decision. Write the nonnegotiable boundary, one decision people can make without you, and one activity to stop doing this week.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "culture of discipline",
+      "detail": "the source separates self-discipline and freedom within a framework from bureaucracy and externally imposed control",
+      "useIn": "both",
+      "phrasingHint": "A culture of discipline is visible when the framework is clear enough that permission stops being the bottleneck."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

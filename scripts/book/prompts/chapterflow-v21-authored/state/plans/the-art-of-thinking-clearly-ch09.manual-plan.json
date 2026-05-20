@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch09",
+  "number": 9,
+  "title": "Authority Bias",
+  "coreMove": "Detect when the authority bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+  "sourcePressure": "The source sidecar and official source notes frame Authority Bias as a specific decision error around authority bias, Milgram, credentials. Traceable support includes Iatrogenic.",
+  "chapterSpecificMisunderstanding": "Treating Authority Bias as generic advice to be smarter, instead of forcing this exact move: detect when the authority bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+  "sourceAlignmentTerms": [
+    "authority bias",
+    "Milgram",
+    "credentials",
+    "experts",
+    "doctors",
+    "authority",
+    "bias"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Authority Bias.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Authority Bias sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Authority Bias."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a hotel guest-review dashboard applying Authority Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where authority bias could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Authority Bias is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the policy draft, names the authority bias risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A policy draft sits at the center of the hotel guest-review dashboard before anyone explains the choice.",
+      "mustInclude": [
+        "policy draft",
+        "authority bias",
+        "a visible before-and-after choice tied to Authority Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a climate NGO image test applying Authority Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where Milgram could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Authority Bias is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the floor sticker, names the Milgram risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A floor sticker sits at the center of the climate NGO image test before anyone explains the choice.",
+      "mustInclude": [
+        "floor sticker",
+        "Milgram",
+        "a visible before-and-after choice tied to Authority Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a art fair sales readout applying Authority Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where credentials could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Authority Bias is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the site photo, names the credentials risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A site photo sits at the center of the art fair sales readout before anyone explains the choice.",
+      "mustInclude": [
+        "site photo",
+        "credentials",
+        "a visible before-and-after choice tied to Authority Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a shipping claim run applying Authority Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where experts could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Authority Bias is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the blood-test panel, names the experts risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A blood-test panel sits at the center of the shipping claim run before anyone explains the choice.",
+      "mustInclude": [
+        "blood-test panel",
+        "experts",
+        "a visible before-and-after choice tied to Authority Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a admissions applicant-pool review applying Authority Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where doctors could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Authority Bias is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the airport board, names the doctors risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A airport board sits at the center of the admissions applicant-pool review before anyone explains the choice.",
+      "mustInclude": [
+        "airport board",
+        "doctors",
+        "a visible before-and-after choice tied to Authority Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a rugby form debate applying Authority Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where authority could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Authority Bias is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the loan worksheet, names the authority risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A loan worksheet sits at the center of the rugby form debate before anyone explains the choice.",
+      "mustInclude": [
+        "loan worksheet",
+        "authority",
+        "a visible before-and-after choice tied to Authority Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Authority Bias in a fresh decision scene",
+      "choose the correction that performs this move: detect when the authority bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+      "reject a tempting generic answer that ignores authority bias",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Authority Bias' on a note, list the one authority bias cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch09",
+  "number": 9,
+  "title": "Bargain Hard",
+  "coreMove": "Hold the price conversation firmly without collapsing into a split-the-difference compromise.",
+  "sourcePressure": "The source ties this chapter to price negotiation, haggling, non-round numbers, strategic umbrage, and resisting simple compromise after agreement has survived execution pressure.",
+  "chapterSpecificMisunderstanding": "The writer must not turn bargaining hard into aggression, bravado, or a guaranteed formula based on precise numbers.",
+  "sourceAlignmentTerms": [
+    "price negotiation",
+    "haggling",
+    "non-round numbers",
+    "strategic umbrage",
+    "split the difference",
+    "pressure",
+    "terms"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A flea-market haggle",
+      "A car lot showdown",
+      "A closer pounds the table"
+    ],
+    "counterintuition": [
+      "Precise numbers win",
+      "Never split the difference",
+      "Being offended is strategy"
+    ],
+    "tryThisNow": [
+      "Use a non-round number",
+      "Refuse the midpoint",
+      "Show strategic umbrage"
+    ],
+    "examples": [
+      "used-car dealership",
+      "salary negotiation",
+      "garage sale",
+      "real-estate bidding war"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "marine salvage contract after a disabled research vessel",
+      "audience": "a university procurement officer bargaining with a salvage firm under time pressure",
+      "stakes": "equipment losses grow each tide, but accepting the first midpoint would erase the lab's repair budget",
+      "format": "decision_point",
+      "requiredBeat": "the officer anchors with a specific mobilization number tied to tug hours and refuses the simple midpoint until the firm separates standby fees from lift fees",
+      "firstImage": "a wet salvage estimate clipped to a chart table beside tide notes",
+      "mustInclude": [
+        "tug hours",
+        "standby fee",
+        "lift fee"
+      ],
+      "mustAvoid": [
+        "generic emergency rescue",
+        "insurance lecture"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "boutique textile mill negotiating a loom repair invoice",
+      "audience": "a mill owner challenging a repair vendor's bundled charge",
+      "stakes": "paying the full invoice may consume cash needed for next month's wool purchase",
+      "format": "dialogue",
+      "requiredBeat": "the owner shows calibrated umbrage at the bundled total, then offers a non-round number based on parts actually logged",
+      "firstImage": "a broken heddle frame resting on a canvas drop cloth near a silent loom",
+      "mustInclude": [
+        "parts log",
+        "non-round offer",
+        "wool purchase"
+      ],
+      "mustAvoid": [
+        "generic contractor dispute",
+        "angry shouting"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "regional ambulance service fuel surcharge negotiation",
+      "audience": "a county contract officer bargaining with a private ambulance provider",
+      "stakes": "a vague surcharge could drain funds from rural coverage hours",
+      "format": "postmortem",
+      "requiredBeat": "the officer reviews how refusing the rounded surcharge and presenting a cents-per-mile counter forced the provider to reveal idle-time assumptions",
+      "firstImage": "a fuel receipt taped to a route-mileage sheet beside a dispatch radio",
+      "mustInclude": [
+        "cents-per-mile counter",
+        "idle-time assumption",
+        "coverage hours"
+      ],
+      "mustAvoid": [
+        "generic public budget fight",
+        "medical drama"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "translation-rights auction for a niche technical manual",
+      "audience": "a small publisher bargaining with an overseas rights agent",
+      "stakes": "a careless split could give away rights that matter more than the advance",
+      "format": "vignette",
+      "requiredBeat": "the publisher reacts to the agent's bundle as unacceptable, then separates territory, term length, and glossary ownership instead of meeting at the middle advance",
+      "firstImage": "a rights grid printed beside a marked-up glossary page",
+      "mustInclude": [
+        "territory",
+        "term length",
+        "glossary ownership"
+      ],
+      "mustAvoid": [
+        "generic creative contract",
+        "auction glamour"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "catering equipment lease after a venue policy change",
+      "audience": "a caterer renegotiating refrigeration fees with an event venue",
+      "stakes": "absorbing the new fee would wipe out profit on three booked weddings",
+      "format": "before_after",
+      "requiredBeat": "the caterer moves from arguing fairness to a precise counter tied to actual compressor hours and refuses a round halfway concession",
+      "firstImage": "a compressor-hour meter glowing inside a walk-in trailer",
+      "mustInclude": [
+        "compressor hours",
+        "walk-in trailer",
+        "booked weddings"
+      ],
+      "mustAvoid": [
+        "generic wedding planning",
+        "vendor complaint"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "regional theater musicians' contract renewal",
+      "audience": "an artistic director bargaining with a musicians' representative over rehearsal pay",
+      "stakes": "splitting the difference may still leave the orchestra unwilling to cover added tech rehearsals",
+      "format": "reflection",
+      "requiredBeat": "the director refuses the midpoint frame and counters with a non-round package that trades rehearsal blocks, meal penalties, and matinee call times",
+      "firstImage": "a marked rehearsal schedule tucked under a bass bow on the pit rail",
+      "mustInclude": [
+        "meal penalty",
+        "matinee call",
+        "rehearsal block"
+      ],
+      "mustAvoid": [
+        "generic arts funding",
+        "labor-war melodrama"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish firm bargaining from aggression",
+      "apply non-round numbers as evidence of calculation rather than magic",
+      "analyze why midpoint compromise can destroy key terms",
+      "evaluate when strategic umbrage is warranted or performative"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before accepting any midpoint, list the separate terms hidden inside the price, calculate one non-round counter from a real cost, and decide which term you will not average away.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

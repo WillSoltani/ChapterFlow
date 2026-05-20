@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch11",
+  "number": 11,
+  "title": "Ask the Critical Question",
+  "coreMove": "Interrogate each external cue by asking whether it serves the thing you meant to do right now.",
+  "sourcePressure": "The chapter opens the external-trigger section with a fast filter: does this cue serve prior intent or pull the reader away from it.",
+  "chapterSpecificMisunderstanding": "A weak run would treat all alerts as bad instead of judging each cue against prior intent and real obligations.",
+  "sourceAlignmentTerms": [
+    "external triggers",
+    "critical question",
+    "cue",
+    "traction",
+    "distraction",
+    "prior intent"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Ask the Critical Question as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "air-quality inspector receiving a sensor alert during report writing",
+      "audience": "inspector deciding whether an alert deserves immediate action",
+      "stakes": "a real hazard must not be ignored, but routine noise must not own the day",
+      "format": "decision_point",
+      "requiredBeat": "she checks whether the alert protects today's inspection intent or belongs in the afternoon review batch",
+      "firstImage": "A particulate sensor alert flashes beside an inspection report draft.",
+      "mustInclude": [
+        "sensor alert",
+        "report draft",
+        "review batch"
+      ],
+      "mustAvoid": [
+        "all notifications bad"
+      ]
+    },
+    {
+      "domain": "violin repair apprentice hearing the shop bell during varnish work",
+      "audience": "apprentice with delicate wet varnish on the bench",
+      "stakes": "one interruption can ruin a finish or serve a waiting customer",
+      "format": "scene",
+      "requiredBeat": "he asks whether the bell serves the varnish block or whether the front-desk sign already covers it",
+      "firstImage": "A wet varnish brush rests over a violin rib form.",
+      "mustInclude": [
+        "varnish brush",
+        "rib form",
+        "front-desk sign"
+      ],
+      "mustAvoid": [
+        "craft hermit"
+      ]
+    },
+    {
+      "domain": "social worker receiving a group text during case notes",
+      "audience": "caseworker sorting urgency from social pull",
+      "stakes": "documentation quality and client safety both matter",
+      "format": "dialogue",
+      "requiredBeat": "she reads the first line only, names it as logistics not crisis, and returns to the case note",
+      "firstImage": "A case note draft sits under a purple agency lanyard.",
+      "mustInclude": [
+        "case note draft",
+        "agency lanyard",
+        "group text"
+      ],
+      "mustAvoid": [
+        "ignore people"
+      ]
+    },
+    {
+      "domain": "bird-survey volunteer hearing a rare-sighting ping",
+      "audience": "volunteer who scheduled a transect count",
+      "stakes": "data integrity suffers if novelty beats the planned count",
+      "format": "postmortem",
+      "requiredBeat": "he asks if chasing the sighting serves the transect goal, then logs the current count first",
+      "firstImage": "A transect tally card is tucked beneath binocular straps.",
+      "mustInclude": [
+        "transect tally",
+        "binocular straps",
+        "rare ping"
+      ],
+      "mustAvoid": [
+        "hobby impulse"
+      ]
+    },
+    {
+      "domain": "restaurant bookkeeper receiving supplier sale emails",
+      "audience": "bookkeeper finishing payroll",
+      "stakes": "cheap inventory distracts from wage accuracy",
+      "format": "before_after",
+      "requiredBeat": "before, she opens every sale; after, she routes purchase cues to the buying block",
+      "firstImage": "A payroll register sits next to a seafood price bulletin.",
+      "mustInclude": [
+        "payroll register",
+        "price bulletin",
+        "buying block"
+      ],
+      "mustAvoid": [
+        "inbox zero"
+      ]
+    },
+    {
+      "domain": "court-reporter trainee seeing a software-update prompt",
+      "audience": "trainee practicing live transcription",
+      "stakes": "the update may matter later but destroys the timed drill now",
+      "format": "reflection",
+      "requiredBeat": "she asks the question, defers the prompt, and restarts the transcript timer",
+      "firstImage": "A stenotype paper strip curls beside an update prompt.",
+      "mustInclude": [
+        "stenotype strip",
+        "update prompt",
+        "transcript timer"
+      ],
+      "mustAvoid": [
+        "tech cleanup"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Interrogate each external cue by asking whether it serves the thing you meant to do right now.",
+      "choose the action that stays inside Ask the Critical Question's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would treat all alerts as bad instead of judging each cue against prior intent and real obligations.",
+      "use chapter-specific terms such as external triggers, critical question, cue, traction in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When the next cue arrives, ask whether it moves the scheduled block forward; answer yes, no, or real obligation before acting.",
+  "readingTimeMinutes": 12
+}

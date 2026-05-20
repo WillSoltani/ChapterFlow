@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch06",
+  "number": 6,
+  "title": "Norms, Surprises, and Causes",
+  "coreMove": "pause after surprise and separate the violated expectation from the cause you are tempted to invent",
+  "sourcePressure": "shows that the mind notices broken norms quickly and rushes to causal stories that restore order",
+  "chapterSpecificMisunderstanding": "treating surprise as curiosity only, rather than a trigger for causal overreach",
+  "sourceAlignmentTerms": [
+    "norms",
+    "surprise",
+    "cause",
+    "expectation",
+    "violation",
+    "intentionality"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Norms, Surprises, and Causes",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just mystery solving"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about mystery solving",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "tax fraud review unit facing a decision distorted by expectation",
+      "audience": "a lead or reviewer who must pause after surprise and separate the violated expectation from the cause you are tempted to invent while others want the quick answer",
+      "stakes": "the visible call will go wrong unless expectation is separated from the tempting but weaker cue",
+      "format": "before_after",
+      "requiredBeat": "the scene shows the before call written on the tax audit worksheet labeled norms, then the after call once the person performs the chapter move instead of trusting the original feeling",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the tax audit worksheet labeled norms between the two choices.",
+      "mustInclude": [
+        "tax audit worksheet labeled norms",
+        "norms",
+        "surprise"
+      ],
+      "mustAvoid": [
+        "turning the scene into mystery solving",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "commercial bakery proofing area facing a decision distorted by expectation",
+      "audience": "a lead or reviewer who must pause after surprise and separate the violated expectation from the cause you are tempted to invent while others want the quick answer",
+      "stakes": "the visible call will go wrong unless expectation is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "the protagonist pauses with the proofing basket label labeled surprise in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable",
+      "firstImage": "The decision station is quiet except for the proofing basket label labeled surprise beside the unfinished call.",
+      "mustInclude": [
+        "proofing basket label labeled surprise",
+        "norms",
+        "cause"
+      ],
+      "mustAvoid": [
+        "turning the scene into mystery solving",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "avalanche forecasting hut facing a decision distorted by expectation",
+      "audience": "a lead or reviewer who must pause after surprise and separate the violated expectation from the cause you are tempted to invent while others want the quick answer",
+      "stakes": "the visible call will go wrong unless expectation is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "the reader is asked to imagine signing the cause snow-pit ruler labeled cause twice, once from the first impression and once after applying norms, then compare the two commitments",
+      "firstImage": "What would change if the cause snow-pit ruler labeled cause stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "cause snow-pit ruler labeled cause",
+        "norms",
+        "expectation"
+      ],
+      "mustAvoid": [
+        "turning the scene into mystery solving",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "library rare-books desk facing a decision distorted by expectation",
+      "audience": "a lead or reviewer who must pause after surprise and separate the violated expectation from the cause you are tempted to invent while others want the quick answer",
+      "stakes": "the visible call will go wrong unless expectation is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the rare-book cradle strap labeled expectation, then chooses only after both are visible",
+      "firstImage": "The first thing in the room is the texture of the rare-book cradle strap labeled expectation, not the person's opinion about it.",
+      "mustInclude": [
+        "rare-book cradle strap labeled expectation",
+        "norms",
+        "violation"
+      ],
+      "mustAvoid": [
+        "turning the scene into mystery solving",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "factory quality cage facing a decision distorted by expectation",
+      "audience": "a lead or reviewer who must pause after surprise and separate the violated expectation from the cause you are tempted to invent while others want the quick answer",
+      "stakes": "the visible call will go wrong unless expectation is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "the trainee must move the caliper inspection tag labeled violation from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence",
+      "firstImage": "You are looking at the caliper inspection tag labeled violation while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "caliper inspection tag labeled violation",
+        "norms",
+        "intentionality"
+      ],
+      "mustAvoid": [
+        "turning the scene into mystery solving",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "neon sign repair shop facing a decision distorted by expectation",
+      "audience": "a lead or reviewer who must pause after surprise and separate the violated expectation from the cause you are tempted to invent while others want the quick answer",
+      "stakes": "the visible call will go wrong unless expectation is separated from the tempting but weaker cue",
+      "format": "dialogue",
+      "requiredBeat": "the supervisor circles the alluring detail on the neon transformer tube labeled intentionality, crosses it out, and asks for the boring comparison that the chapter says must come first",
+      "firstImage": "It took three passes before the reviewer saw what the neon transformer tube labeled intentionality had been making too easy.",
+      "mustInclude": [
+        "neon transformer tube labeled intentionality",
+        "norms",
+        "intentionality"
+      ],
+      "mustAvoid": [
+        "turning the scene into mystery solving",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: pause after surprise and separate the violated expectation from the cause you are tempted to invent",
+      "choose the correction that fits norms rather than a generic careful-thinking answer",
+      "distinguish Norms, Surprises, and Causes from nearby drift into mystery solving",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next choice that feels obvious, name the cue making it easy. Then perform the chapter move in one sentence: pause after surprise and separate the violated expectation from the cause you are tempted to invent.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

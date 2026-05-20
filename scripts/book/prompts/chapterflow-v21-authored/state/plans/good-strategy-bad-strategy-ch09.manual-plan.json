@@ -1,0 +1,195 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch09",
+  "number": 9,
+  "title": "Chain-Link Systems",
+  "coreMove": "Find the indispensable weak link that caps the whole system and repair it systemically.",
+  "sourcePressure": "Some systems are governed by their weakest indispensable link, so strengthening a strong link cannot compensate for a broken necessary one. Frozen source has no chapter-specific named figure, study, place, or event beyond the visible title/support notes; use conceptual source terms only and do not invent anchors.",
+  "chapterSpecificMisunderstanding": "Improve the average performance of the system and the weak part will matter less.",
+  "sourceAlignmentTerms": [
+    "chain-link system",
+    "weakest link",
+    "indispensable step",
+    "system cap",
+    "compensation error",
+    "systemic repair",
+    "bottleneck"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of Chain-Link Systems",
+      "The plan looked impressive because... repeated hook shell",
+      "any hook that starts with Strategy is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter"
+    ],
+    "tryThisNow": [
+      "Write down your top three goals",
+      "Set a timer and reflect",
+      "Ask yourself what matters most"
+    ],
+    "examples": [
+      "conference room deck review",
+      "whiteboard prioritization session",
+      "coffee shop founder scene",
+      "generic classroom group project"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Chloe",
+      "domain": "surgical sterilization process with one unreliable handoff",
+      "audience": "a reader facing surgical sterilization process with one unreliable handoff",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chloe moves one concrete constraint to the center of the table and crosses out every action that does not address it using autoclave tape so the lesson happens as a visible action.",
+      "firstImage": "The autoclave tape sits where the laptop was supposed to go",
+      "mustInclude": [
+        "autoclave tape",
+        "tray label",
+        "handoff clipboard"
+      ],
+      "mustAvoid": [
+        "generic unreliable handoff advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "ecommerce returns operation capped by inspection backlog",
+      "audience": "a reader facing ecommerce returns operation capped by inspection backlog",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mikkel asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using return labels so the lesson happens as a visible action.",
+      "firstImage": "\"Show me which part this fixes,\" Mikkel says",
+      "mustInclude": [
+        "return labels",
+        "inspection lamps",
+        "refund clock"
+      ],
+      "mustAvoid": [
+        "generic inspection backlog advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "concert venue entry flow limited by bag check",
+      "audience": "a reader facing concert venue entry flow limited by bag check",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Giulia uses the artifact to expose the hidden constraint before anyone proposes another initiative using bag-size frame so the lesson happens as a visible action.",
+      "firstImage": "The room smells faintly of toner and rain-soaked coats",
+      "mustInclude": [
+        "bag-size frame",
+        "ticket scanners",
+        "queue rope"
+      ],
+      "mustAvoid": [
+        "generic bag check advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "solar installer project timeline with a permit weak link",
+      "audience": "a reader facing solar installer project timeline with a permit weak link",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Catarina turns a vague goal into a visible choice by marking the one place effort will land using permit portal screenshot so the lesson happens as a visible action.",
+      "firstImage": "You can see the weak spot before anyone names it",
+      "mustInclude": [
+        "permit portal screenshot",
+        "roof plan",
+        "crew calendar"
+      ],
+      "mustAvoid": [
+        "generic weak link advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "hotel breakfast service dependent on dishwashing turnover",
+      "audience": "a reader facing hotel breakfast service dependent on dishwashing turnover",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chidi tests the proposed move against the object or record that reveals whether it fits the real problem using dish rack so the lesson happens as a visible action.",
+      "firstImage": "It took Chidi three weeks to stop trusting the clean version of the plan",
+      "mustInclude": [
+        "dish rack",
+        "warming pan",
+        "guest flow tally"
+      ],
+      "mustAvoid": [
+        "generic dishwashing turnover advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "university admissions funnel blocked by transcript verification",
+      "audience": "a reader facing university admissions funnel blocked by transcript verification",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ryan stops the meeting and rearranges the sequence of work so the strategic move becomes visible using transcript envelope so the lesson happens as a visible action.",
+      "firstImage": "What changes when the constraint is placed in the open?",
+      "mustInclude": [
+        "transcript envelope",
+        "upload queue",
+        "decision calendar"
+      ],
+      "mustAvoid": [
+        "generic transcript verification advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish chain-link system from its generic imitation in a new scenario",
+      "choose the action that performs find the indispensable weak link that caps the whole system and repair it systemically. rather than merely describing it",
+      "diagnose when generic teamwork is pulling the scenario off-course"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, write the current decision as one obstacle, one chosen response, and one action that would visibly test chain-link system in your actual situation.",
+  "readingTimeMinutes": 10,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

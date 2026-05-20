@@ -1,0 +1,182 @@
+{
+  "chapterId": "built-to-last-ch08",
+  "number": 8,
+  "title": "Home-Grown Management",
+  "coreMove": "Build internal leadership capacity so authority carries institutional memory and values, while still testing competence instead of rewarding tenure.",
+  "sourcePressure": "The sidecar supports internal leadership development, continuity, institutional design, and avoiding dependence on imported saviors.",
+  "chapterSpecificMisunderstanding": "Treating home-grown management as promotion-from-within sentimentality or anti-outsider bias, rather than a deliberate pipeline for values plus judgment.",
+  "sourceAlignmentTerms": [
+    "home-grown management",
+    "internal leadership development",
+    "continuity",
+    "institutional memory",
+    "values",
+    "pipeline",
+    "imported saviors"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Home-grown management",
+      "detail": "the source sidecar supports internal leadership development as a chapter-level concept and warns against dependence on imported saviors",
+      "useIn": "both",
+      "phrasingHint": "The next leader should not arrive as a rescue mission; the institution should have been teaching its future for years."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "promote from within always wins",
+      "outsiders cannot understand the culture"
+    ],
+    "counterintuition": [
+      "succession starts long before the vacancy",
+      "loyalty is not enough"
+    ],
+    "tryThisNow": [
+      "make a succession list",
+      "mentor someone this week"
+    ],
+    "examples": [
+      "loading dock clock and outside rescuer",
+      "family business automatically promotes child",
+      "sports team captain succession"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional dialysis network preparing clinic managers before a retirement wave",
+      "audience": "Ryan, operations director with six senior nurses nearing retirement",
+      "stakes": "patients need consistent care standards across clinics after experienced managers leave",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ryan maps which charge nurses have run budget, staffing, and values-pressure drills, then starts rotations before the retirements become emergencies",
+      "firstImage": "six retirement dates marked on a clinic coverage map",
+      "mustInclude": [
+        "charge nurse rotations",
+        "budget drill",
+        "values-pressure drill"
+      ],
+      "mustAvoid": [
+        "seniority automatically equals readiness"
+      ]
+    },
+    {
+      "domain": "family-owned logistics firm choosing a depot manager after an outside candidate impresses investors",
+      "audience": "Pavel, COO balancing investor pressure and route knowledge",
+      "stakes": "a depot can hit metrics while destroying the dispatch trust that keeps drivers honest",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Who has handled a storm closure at 3 a.m.?\" Pavel asks, then evaluates internal candidates on tested judgment rather than tenure alone",
+      "firstImage": "route maps and storm-closure logs on a depot table",
+      "mustInclude": [
+        "storm closure log",
+        "internal candidates",
+        "investor favorite"
+      ],
+      "mustAvoid": [
+        "outsider villain caricature"
+      ]
+    },
+    {
+      "domain": "independent school building department chairs through observed parent-conference practice",
+      "audience": "Margaux, head of school after two failed external hires",
+      "stakes": "academic standards and parent trust suffer when chairs learn the culture after appointment",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Margaux watches teacher candidates handle a simulated angry parent conference before naming a chair, making cultural judgment visible",
+      "firstImage": "empty parent chairs arranged under student art",
+      "mustInclude": [
+        "simulated conference",
+        "department chair role",
+        "observed judgment"
+      ],
+      "mustAvoid": [
+        "teacher popularity as promotion case"
+      ]
+    },
+    {
+      "domain": "cybersecurity firm creating incident commanders from inside rotating response cells",
+      "audience": "Akira, practice lead whose founder still gets every crisis call",
+      "stakes": "clients wait during incidents because command authority has not been grown",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Akira predicts who can command without the founder, then runs a live-fire drill that gives authority to the internal cell lead",
+      "firstImage": "Who gives the order when the founder's phone is off?",
+      "mustInclude": [
+        "live-fire drill",
+        "response cell",
+        "founder absent"
+      ],
+      "mustAvoid": [
+        "technical brilliance substituted for command readiness"
+      ]
+    },
+    {
+      "domain": "regional food bank developing warehouse leads through donor, safety, and volunteer rotations",
+      "audience": "Hannah, executive director facing growth in demand",
+      "stakes": "a new warehouse head must protect dignity with donors, volunteers, and clients at once",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Hannah one chaotic distribution day to see that the best forklift operator had never been tested with donor pressure, so she builds rotations before promotion",
+      "firstImage": "pallet tags curling on a warehouse door after a long distribution shift",
+      "mustInclude": [
+        "donor rotation",
+        "safety rotation",
+        "volunteer rotation"
+      ],
+      "mustAvoid": [
+        "best operator automatically becomes manager"
+      ]
+    },
+    {
+      "domain": "city parks department grooming district supervisors through winter, festival, and budget assignments",
+      "audience": "Olivier, deputy commissioner replacing three retiring supervisors",
+      "stakes": "parks can look fine in summer while leadership gaps appear in storms and budget cuts",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Olivier move promising crew leads through winter storm duty and festival cleanup before promotion, so continuity includes tested range",
+      "firstImage": "snowplow keys, festival permits, and a budget binder on one desk",
+      "mustInclude": [
+        "winter storm duty",
+        "festival cleanup",
+        "budget binder"
+      ],
+      "mustAvoid": [
+        "civil-service tenure as the lesson"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "evaluate internal leadership pipelines",
+      "distinguish memory plus values from mere tenure",
+      "spot when external rescue hides weak institution-building"
+    ]
+  },
+  "tryThisNowSpec": "Choose one role that would hurt if vacant tomorrow. Write the three experiences someone inside must complete before they can inherit it.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

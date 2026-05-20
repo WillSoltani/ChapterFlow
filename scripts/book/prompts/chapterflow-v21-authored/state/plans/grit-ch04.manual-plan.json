@@ -1,0 +1,196 @@
+{
+  "chapterId": "grit-ch04",
+  "number": 4,
+  "title": "How Gritty Are You?",
+  "coreMove": "Audit whether a commitment has lasted long enough to count as direction instead of intensity.",
+  "sourcePressure": "Make grit observable as consistency of passion plus perseverance, not short-term strain.",
+  "chapterSpecificMisunderstanding": "Thinking a hard week, a startup sprint, or a high score proves grit.",
+  "sourceAlignmentTerms": [
+    "Grit Scale",
+    "passion score",
+    "perseverance score",
+    "young entrepreneur",
+    "Jeffrey Gettleman",
+    "compass"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Grit Scale",
+      "detail": "The scale asks people to rate ten statements and separates passion from perseverance while reminding readers that self-report is imperfect.",
+      "useIn": "both",
+      "phrasingHint": "A score can start the conversation, but it cannot replace the slower evidence of what someone keeps choosing."
+    },
+    {
+      "kind": "person",
+      "name": "Jeffrey Gettleman",
+      "detail": "Gettleman’s path to East Africa took about a decade and illustrates passion as a compass rather than a flash.",
+      "useIn": "fullRead",
+      "phrasingHint": "Gettleman did not need fireworks; he needed a compass that kept pointing toward East Africa."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for How Gritty Are You?",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "startup founder quarterly review",
+      "audience": "readers facing startup founder quarterly review where grit could be confused with mood or talent",
+      "stakes": "whether Anna treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the protagonist tests whether the commitment has endured across months, not whether today feels intense",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn startup founder quarterly review into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "museum fellowship application",
+      "audience": "readers facing museum fellowship application where grit could be confused with mood or talent",
+      "stakes": "whether David treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist tests whether the commitment has endured across months, not whether today feels intense",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn museum fellowship application into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "paramedic recertification log",
+      "audience": "readers facing paramedic recertification log where grit could be confused with mood or talent",
+      "stakes": "whether Chloe treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist tests whether the commitment has endured across months, not whether today feels intense",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn paramedic recertification log into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "architecture portfolio year plan",
+      "audience": "readers facing architecture portfolio year plan where grit could be confused with mood or talent",
+      "stakes": "whether Mikkel treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist tests whether the commitment has endured across months, not whether today feels intense",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn architecture portfolio year plan into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "documentary reporter field notebook",
+      "audience": "readers facing documentary reporter field notebook where grit could be confused with mood or talent",
+      "stakes": "whether Akira treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist tests whether the commitment has endured across months, not whether today feels intense",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn documentary reporter field notebook into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "adult language exam prep",
+      "audience": "readers facing adult language exam prep where grit could be confused with mood or talent",
+      "stakes": "whether Marco treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist tests whether the commitment has endured across months, not whether today feels intense",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn adult language exam prep into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Audit whether a commitment has lasted long enough to count as direction instead of intensity. from Thinking a hard week, a startup sprint, or a high score proves grit.",
+      "choose the visible next action in a fresh startup founder quarterly review scenario",
+      "diagnose when a scene has drifted into personality typing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real how gritty are you? decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

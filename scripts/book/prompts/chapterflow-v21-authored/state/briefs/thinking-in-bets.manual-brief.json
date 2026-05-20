@@ -1,0 +1,102 @@
+{
+  "bookId": "thinking-in-bets",
+  "title": "Thinking in Bets",
+  "author": "Annie Duke",
+  "thesisParagraph": "Thinking in Bets teaches the reader to make and review decisions in a world that refuses to show all the cards. A result is evidence, not a final moral verdict. Strong judgment means separating decision quality from outcome quality, pricing beliefs honestly, updating proportionally as feedback arrives, and using other people plus future perspective to keep ego, certainty, and group comfort from rewriting the record.",
+  "coreIdeas": [
+    {
+      "name": "Process before outcome",
+      "oneSentence": "A good result can come from a weak choice and a bad result can come from a sound one.",
+      "mentalMove": "Rebuild what was knowable at decision time before judging the call.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Poker, not chess",
+      "oneSentence": "Most consequential choices contain hidden information, luck, and incomplete boards.",
+      "mentalMove": "Act with calibrated confidence while naming what remains uncertain.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Price the belief",
+      "oneSentence": "A claim becomes more honest when the speaker must attach a confidence level or stake to it.",
+      "mentalMove": "Convert flat declarations into probabilities, ranges, or conditions.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Update proportionally",
+      "oneSentence": "New outcomes should move confidence by the weight of their evidence, not by the force of emotion.",
+      "mentalMove": "Sort signal from noise before changing the estimate.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Truth-seeking company",
+      "oneSentence": "Judgment improves when trusted people and groups challenge the evidence before ego cleans it up.",
+      "mentalMove": "Invite correction, dissent, and organized skepticism before the decision locks.",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Future review now",
+      "oneSentence": "A later vantage point can expose present bias without pretending to predict the future.",
+      "mentalMove": "Let future accountability question the current impulse before commitment.",
+      "sourceAnchors": [
+        "ch07.source"
+      ]
+    }
+  ],
+  "targetReader": "Professionals, students, leaders, and thoughtful adults who make choices with incomplete information and then punish themselves or others too quickly when the ending arrives. They care because their careers, relationships, forecasts, and group decisions all depend on learning from noisy feedback without hiding behind luck.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make uncertainty feel exact rather than vague",
+      "hold humility and accountability in the same paragraph"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no casino swagger or motivational certainty talk"
+    ]
+  },
+  "voiceSpecimens": [
+    "The invoice came after the decision, so it cannot be allowed to pretend it was in the room before the decision.",
+    "You do not need a louder opinion. You need a cleaner price on the opinion you already have.",
+    "A bad ending can teach you something without earning the right to rewrite the whole story.",
+    "The useful friend is not the one who makes your explanation prettier. It is the one who asks where the missing evidence went.",
+    "A group that cannot hold an objection before the vote will usually meet the objection afterward in a more expensive form.",
+    "The future does not become visible because you imagine it. The present becomes less bossy."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains that decision-making is important in uncertain environments.",
+    "Annie Duke argues that readers should think in probabilities and avoid making mistakes.",
+    "To become your best self, embrace uncertainty and unlock better outcomes.",
+    "In today’s fast-paced world, people need a framework for smarter decisions.",
+    "The key insight is to leverage feedback loops and optimize your mental model."
+  ],
+  "teachingArc": "The arc starts by breaking outcome worship, then teaches the reader to describe uncertainty accurately. It moves from individual judgment to priced belief, from priced belief to disciplined updating, from solo updating to outside correction, from one trusted partner to group dissent, and finally from present-bound judgment to future-facing review. Each step adds one more guardrail against certainty theater and self-serving hindsight.",
+  "forbiddenMoves": [
+    "Do not turn probabilistic judgment into excuse-making for bad process.",
+    "Do not glamorize gambling or make literal wagers feel required.",
+    "Do not repeat the poker-versus-chess contrast as filler once the chapter has a narrower job.",
+    "Do not invent named studies, researchers, or anecdotes beyond the frozen source bundle.",
+    "Do not let mental time travel become manifestation, prophecy, or generic visualization."
+  ]
+}

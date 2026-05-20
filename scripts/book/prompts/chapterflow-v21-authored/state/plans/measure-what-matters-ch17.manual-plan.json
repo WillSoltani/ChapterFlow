@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch17",
+  "number": 17,
+  "title": "Baking Better Every Day: The Zume Pizza Story",
+  "coreMove": "Pull feedback close enough to execution that the work gets better before rescue is required.",
+  "sourcePressure": "Zume Pizza is the named case for better-every-day logic: repeated betterment, live feedback, and ongoing adjustment.",
+  "chapterSpecificMisunderstanding": "Do not invent Zume robotics, logistics, pizza operations, or metrics.",
+  "sourceAlignmentTerms": [
+    "Zume Pizza",
+    "better every day",
+    "live feedback",
+    "repeated adjustment",
+    "continuous improvement",
+    "ongoing betterment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Zume Pizza",
+      "detail": "The source stabilizes Zume Pizza as the company case for better-every-day logic and repeated adjustment.",
+      "useIn": "both",
+      "phrasingHint": "Zume Pizza should carry the everyday rhythm: feedback has to reach the work while the work can still get better."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Baking Better Every Day: The Zume Pizza Story as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "Zume Pizza is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "Adobe review replacement",
+      "culture change",
+      "motivational rhetoric"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "specialty bakery morning production",
+      "audience": "bakery crew",
+      "stakes": "quality improves too late if problems are discovered after the batch sells",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Thomas moves feedback to the bench while dough temperature and shaping can still change",
+      "firstImage": "steam on the proofing cabinet door",
+      "mustInclude": [
+        "dough thermometer",
+        "batch sheet",
+        "bench scraper"
+      ],
+      "mustAvoid": [
+        "Zume product invention"
+      ]
+    },
+    {
+      "domain": "mobile car-repair dispatch",
+      "audience": "operations coordinators",
+      "stakes": "late customer complaints trigger rescue work instead of live adjustment",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Juliette creates a mid-route feedback signal so dispatch can change the next appointment, not apologize tomorrow",
+      "firstImage": "oil smudges on a tablet case",
+      "mustInclude": [
+        "route app",
+        "parts bin",
+        "customer text"
+      ],
+      "mustAvoid": [
+        "generic startup ops"
+      ]
+    },
+    {
+      "domain": "medical imaging scheduling",
+      "audience": "radiology administrators",
+      "stakes": "same mistakes recur because review waits until the weekly report",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Lars pulls cancellation feedback into the morning huddle and changes slots before noon",
+      "firstImage": "MRI suite door buzzing",
+      "mustInclude": [
+        "slot list",
+        "cancellation note",
+        "scheduler headset"
+      ],
+      "mustAvoid": [
+        "doctor hero story"
+      ]
+    },
+    {
+      "domain": "translation agency quality loop",
+      "audience": "project managers",
+      "stakes": "errors are caught after delivery when revision costs are highest",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hannah predicts which job will fail unless terminology feedback reaches translators before final proof",
+      "firstImage": "marked glossary on a tablet",
+      "mustInclude": [
+        "glossary",
+        "proof file",
+        "translator queue"
+      ],
+      "mustAvoid": [
+        "software bug repeat"
+      ]
+    },
+    {
+      "domain": "parks trail-maintenance crew",
+      "audience": "field supervisors",
+      "stakes": "complaint photos arrive after weekend hikers have already had a bad experience",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Pavel moves trail-condition feedback into the morning dispatch so crews can reroute before complaints stack up",
+      "firstImage": "wet gravel at a trailhead",
+      "mustInclude": [
+        "trail photo",
+        "crew radio",
+        "maintenance map"
+      ],
+      "mustAvoid": [
+        "nature mood piece"
+      ]
+    },
+    {
+      "domain": "after-school tutoring program",
+      "audience": "site coordinators",
+      "stakes": "student support improves only after end-of-term scores reveal misses",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Adaeze Okafor adds a same-week comprehension signal and adjusts tutor pairings before the next session",
+      "firstImage": "pencil shavings beside flash cards",
+      "mustInclude": [
+        "exit ticket",
+        "tutor roster",
+        "student folder"
+      ],
+      "mustAvoid": [
+        "generic classroom"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "pull feedback close to execution",
+      "distinguish live betterment from late rescue",
+      "choose adjustment points before work hardens"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one workflow that improves too late and pull one feedback signal into the next live work session.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

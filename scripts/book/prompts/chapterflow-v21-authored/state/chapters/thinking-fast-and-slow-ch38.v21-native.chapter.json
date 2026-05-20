@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch38",
+  "number": 38,
+  "title": "Thinking About Life",
+  "readingTimeMinutes": 12,
+  "hook": "Ask about the commute, and suddenly the whole life seems to be sitting in traffic.",
+  "counterintuition": "Life satisfaction is not a pure reading of life. The judgment can be pulled by whatever attention has made salient: money, weather, health, status, memory, or meaning.",
+  "tryThisNow": "Before answering how life is going, name the one fact currently in focus and list three parts of life it leaves out.",
+  "keyTakeaway": "Defuse the focusing illusion before one salient fact stands in for your whole life.",
+  "breakdown": {
+    "fastRead": "A pharmacist has a good week, then answers a life-satisfaction survey right after a licensing error scares the team. Suddenly life feels worse. The error matters, but it is not the whole life.\n\nAttention can impersonate reality.\n\nThe focusing illusion starts when one vivid fact grows too large in a broad judgment. A life rating can be pulled by what is in view now: commute, pay, pain, weather, love, work, status, or a recent memory. A better answer widens attention before one fact speaks for the whole.",
+    "deepRead": "A homeowner studies a foundation crack and imagines life after moving. The crack becomes the center of the whole future: safety, money, pride, family, sleep. For a moment, everything else shrinks.\n\nNothing in life is as important as it feels while attention is locked on it.\n\nThat sentence does not mean the crack is unimportant. It means attention magnifies. When one feature is focal, people predict or judge life as if that feature will remain central. A better house, a worse commute, a raise, a diagnosis, a promotion, a winter climate, a school ranking: each can temporarily stand in for well-being as a whole.\n\nLife satisfaction also mixes several judges. The experiencing self asks how time feels. The remembering self asks what story the life tells. Meaning asks whether the life serves values and commitments. A single salient fact may pull one judge strongly while leaving the others partly unchanged. More money may improve comfort, status, or options, but it may not fix lonely time. A demanding role may reduce daily ease while increasing meaning.\n\nA fire command post shows the everyday version. After one terrifying incident, the whole career feels broken. After one honored rescue, the same career feels radiant. Both memories matter. Neither should be allowed to answer for every hour, relationship, value, and ordinary day.\n\nWiden the frame before you rate the life.",
+    "fullRead": "Thinking about life is hard because the mind cannot hold the whole life at once. It reaches for what is available. The current worry, recent success, public comparison, painful symptom, or vivid dream becomes the handle. The handle is real. It is just not the whole object.\n\nKendra works at a pharmacy verification bench with the illusion controlled-substance log labeled focusing illusion between a licensing scare and a staff survey. The scare was serious. When staff are asked about life and work immediately afterward, the whole world narrows to safety and fear. Kendra must slow the judgment: What else is in the week? What did ordinary time feel like? What meaning does the work still have? What memory will remain after the scare fades?\n\nWhat is attention making too big right now?\n\nThat question is the defense against the focusing illusion. If the answer is income, ask about time use. If the answer is commute, ask about relationships, health, work meaning, and ordinary evenings. If the answer is a diagnosis, ask about pain, support, autonomy, and days that still function. If the answer is a promotion, ask what the new schedule will feel like after the announcement is old.\n\nThis does not flatten all concerns into bland balance. Some facts really do change life widely: chronic pain, unsafe housing, caregiving strain, debt, isolation, meaningful work, secure love. The focusing illusion is not the claim that nothing matters. It is the warning that attention can exaggerate one factor's share of the whole verdict.\n\nA retail buy desk gives a small, sharp case. Lillian's shop loses a major supplier, and the publisher return slip labeled remembering self sits beside the reorder list. For two days, the loss feels like the entire business and the entire life. Then the larger picture returns: loyal customers, exhausting hours, creative pride, cash pressure, family dinners missed, and the meaning she still finds in the work. The supplier loss matters. It should not answer every question.\n\nThe counter-objection is that widening the frame can sound like minimizing pain. It should not. The point is to make judgment more accurate, not more cheerful. If the focused fact is severe, the wider view may confirm that life needs major change. If it is salient but narrow, the wider view may prevent a dramatic verdict based on one loud detail.\n\nA careful life judgment uses several lenses: experienced well-being, remembered story, values, relationships, health, autonomy, security, and attention's current spotlight. No single lens sees everything. The task is to notice which one is pretending to.\n\nA life is larger than the fact currently under the lamp."
+  },
+  "examples": [
+    {
+      "exampleId": "ch38-ex01-kendra-pharmacy",
+      "title": "Kendra widens the survey after the licensing scare",
+      "tags": [
+        "dialogue",
+        "pharmacy",
+        "life-satisfaction"
+      ],
+      "planSpec": {
+        "domain": "pharmacy verification bench facing a decision distorted by focusing illusion",
+        "audience": "a lead or reviewer who must defuse the focusing illusion before one salient fact stands in for life",
+        "stakes": "the visible call will go wrong unless focusing illusion is separated from the weaker cue",
+        "format": "dialogue",
+        "requiredBeat": "the before call appears on the labeled log, then the after call follows once attention is widened"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Kendra says, with the illusion controlled-substance log labeled focusing illusion between a licensing scare and the staff survey. The scare makes life satisfaction at work plunge. Kendra must decide whether the salient fear is standing in for the whole week before changing the retention plan.",
+      "whatToDo": "Name the scare, then sample ordinary time, support, fatigue, meaning, and safety before interpreting the rating.",
+      "whyItMatters": "The licensing error matters, but attention may be letting it answer for more of life than it owns."
+    },
+    {
+      "exampleId": "ch38-ex02-matthias-site",
+      "title": "Matthias keeps the crack from becoming the whole future",
+      "tags": [
+        "decision_point",
+        "housing",
+        "well-being"
+      ],
+      "planSpec": {
+        "domain": "architectural site survey facing a decision distorted by focusing illusion",
+        "audience": "a lead or reviewer who must defuse the focusing illusion before one salient fact stands in for life",
+        "stakes": "the visible call will go wrong unless focusing illusion is separated from the weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist names the shortcut and chooses one check that makes it accountable"
+      },
+      "scenario": "The survey desk before the site visit is quiet except for the foundation crack gauge labeled life satisfaction beside Matthias's moving estimate. The crack has become the entire future in the homeowner's mind. Matthias has to decide, before advising a move, whether to test whether one repair risk is being asked to judge safety, status, sleep, money, and family life.",
+      "whatToDo": "Separate the repair facts from the wider well-being map: safety, cost, disruption, relationships, sleep, and alternatives.",
+      "whyItMatters": "A focal defect may be serious, but it should not silently stand in for every part of life."
+    },
+    {
+      "exampleId": "ch38-ex03-cora-command",
+      "title": "Cora compares the heroic rescue with ordinary days",
+      "tags": [
+        "predict-reveal",
+        "fire",
+        "attention"
+      ],
+      "planSpec": {
+        "domain": "fire command post facing a decision distorted by focusing illusion",
+        "audience": "a lead or reviewer who must defuse the focusing illusion before one salient fact stands in for life",
+        "stakes": "the visible call will go wrong unless focusing illusion is separated from the weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "two commitments are compared, one from first impression and one after defusing the focus"
+      },
+      "scenario": "Which signature on the evacuation floor map labeled well-being should Cora trust after a public rescue: the one written while the honor still glows, or the one after ordinary shifts return? The rescue makes the career feel perfect. Cora must decide whether attention has made one peak stand in for fatigue, risk, relationships, and meaning.",
+      "whatToDo": "Honor the rescue, then compare it with time use, stress, recovery, relationships, and long-run meaning before judging the career.",
+      "whyItMatters": "A positive focus can distort life satisfaction too. One radiant memory is not the whole life."
+    },
+    {
+      "exampleId": "ch38-ex04-yves-simulator",
+      "title": "Yves separates one failed exercise from the whole career",
+      "tags": [
+        "postmortem",
+        "simulator",
+        "remembering-self"
+      ],
+      "planSpec": {
+        "domain": "submarine simulator facing a decision distorted by focusing illusion",
+        "audience": "a lead or reviewer who must defuse the focusing illusion before one salient fact stands in for life",
+        "stakes": "the visible call will go wrong unless focusing illusion is separated from the weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "quick cue and corrective evidence are separated before choosing"
+      },
+      "scenario": "The rubber edge of the periscope drill card labeled attention presses into Yves's palm after a failed simulator exercise. The miss feels like proof he chose the wrong profession. In the postmortem, Yves has to separate one remembered failure from skill, purpose, colleagues, and years of learning.",
+      "whatToDo": "Separate the failed exercise from broader evidence about competence, values, support, stress, and future training.",
+      "whyItMatters": "The remembering self can seize a painful event and overextend it into a life verdict."
+    },
+    {
+      "exampleId": "ch38-ex05-lillian-retail",
+      "title": "Lillian stops the supplier loss from answering everything",
+      "tags": [
+        "before-after",
+        "retail",
+        "meaning"
+      ],
+      "planSpec": {
+        "domain": "independent retail buy desk facing a decision distorted by focusing illusion",
+        "audience": "a lead or reviewer who must defuse the focusing illusion before one salient fact stands in for life",
+        "stakes": "the visible call will go wrong unless focusing illusion is separated from the weaker cue",
+        "format": "before_after",
+        "requiredBeat": "the trainee moves the labeled slip only after showing the correction"
+      },
+      "scenario": "You are looking at the publisher return slip labeled remembering self while Lillian's supplier loss starts to feel like the whole business and the whole life. Before the loss, the shop also held loyal customers, creative pride, missed dinners, cash strain, and meaning. Lillian has to widen the verdict before the supplier problem answers for every domain.",
+      "whatToDo": "Name the supplier loss, then list the other lived and remembered parts of the work before deciding what life verdict it supports.",
+      "whyItMatters": "One severe business fact may need action, but it should not replace the full well-being map."
+    },
+    {
+      "exampleId": "ch38-ex06-andre-orchard",
+      "title": "Andre crosses out the perfect-harvest fantasy",
+      "tags": [
+        "reflection",
+        "orchard",
+        "meaning"
+      ],
+      "planSpec": {
+        "domain": "orchard frost watch facing a decision distorted by focusing illusion",
+        "audience": "a lead or reviewer who must defuse the focusing illusion before one salient fact stands in for life",
+        "stakes": "the visible call will go wrong unless focusing illusion is separated from the weaker cue",
+        "format": "reflection",
+        "requiredBeat": "the supervisor crosses out the alluring detail and asks for the broader comparison first"
+      },
+      "scenario": "It took three passes before Andre saw what the orchard wind vane labeled meaning had been making too easy. A perfect harvest made him say the whole year was wonderful, despite months of strained sleep and family absence. Andre circles the harvest, crosses it out, and must decide whether attention has turned one success into the whole life rating.",
+      "whatToDo": "Keep the harvest pride, then add sleep, relationships, stress, money, and purpose before judging the year.",
+      "whyItMatters": "Meaningful success can dominate attention. A wider frame respects the success without letting it erase the costs."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A pharmacy team answers a life-at-work survey right after a licensing scare. Ratings plunge, and leadership wants to overhaul retention immediately. What should they do first?",
+        "choices": [
+          "Identify the scare as the current focus and sample broader work time, support, fatigue, and meaning.",
+          "Ignore the ratings because scares never matter.",
+          "Treat the scare as a complete measure of work life."
+        ],
+        "correctIndex": 0,
+        "explanation": "The scare is real but salient. The focusing illusion check widens attention before one event becomes the whole verdict.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A homeowner sees a foundation crack and concludes life in the house is ruined. The repair may be serious, but other parts of life are stable. What is the best response?",
+        "choices": [
+          "Tell the homeowner the crack is meaningless.",
+          "Separate repair facts from wider well-being factors before making a life-level judgment.",
+          "Let the crack decide every housing and life question."
+        ],
+        "correctIndex": 1,
+        "explanation": "The crack may need action, but attention can magnify it into a total life verdict. The broader map prevents overreach.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "After a heroic rescue, a firefighter says the career is perfect. A month later, fatigue and family strain return. Which interpretation fits best?",
+        "choices": [
+          "The rescue did not matter.",
+          "Fatigue is the only real measure.",
+          "A positive focusing illusion may have let one peak stand in for the whole career."
+        ],
+        "correctIndex": 2,
+        "explanation": "Positive events can focus attention too. The rescue matters, but it should be integrated with ordinary time and costs.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A failed simulator exercise makes a trainee conclude he chose the wrong profession. Other evidence shows growth, support, and fit. What should he examine?",
+        "choices": [
+          "Whether the remembered failure is speaking for too many dimensions of life and work.",
+          "Whether one failure proves everything.",
+          "Whether all negative memories should be deleted."
+        ],
+        "correctIndex": 0,
+        "explanation": "The remembering self may overextend one painful event. A broader evidence check defuses the focusing illusion.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A shop loses a major supplier, and the owner says the whole business and life are failures. The shop still has loyal customers, meaning, cash strain, and missed family time. What is the core correction?",
+        "choices": [
+          "Pretend the supplier loss is good news.",
+          "List the full well-being map before letting the supplier loss define the verdict.",
+          "Use only customer loyalty to judge life."
+        ],
+        "correctIndex": 1,
+        "explanation": "The loss is one salient factor. The broader map includes other positives and costs before making a life-level judgment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A perfect harvest makes an orchard owner rate the year wonderful, though the season included poor sleep and family absence. What should he add to the judgment?",
+        "choices": [
+          "Only the harvest result.",
+          "Only the worst nights.",
+          "Sleep, relationships, stress, money, and purpose alongside harvest pride."
+        ],
+        "correctIndex": 2,
+        "explanation": "The harvest is meaningful, but it should not erase the lived costs. The focusing illusion can work through success.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Someone says moving to a sunnier city will make life much better because weather is all they can think about in February. What should they check?",
+        "choices": [
+          "How much attention is currently locked on weather and what other life domains the move would affect.",
+          "Whether weather has no effect on anyone.",
+          "Only average temperature."
+        ],
+        "correctIndex": 0,
+        "explanation": "Weather may matter, but attention can make it too central. Housing, relationships, work, routines, and meaning also need room.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A raise makes an employee predict total life improvement, but the new role will add commute time and reduce evenings with friends. What does the focusing illusion warn?",
+        "choices": [
+          "Raises never improve life.",
+          "Income may be too salient, so time use and relationships need equal attention.",
+          "Only income should be measured."
+        ],
+        "correctIndex": 1,
+        "explanation": "Money can matter while still being overweighted in the moment of judgment. The wider life map should include time and relationships.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Before giving a global life rating after a vivid promotion, breakup, or health scare, a survey respondent wants to defuse the focusing illusion. Which practice works best?",
+        "choices": [
+          "Answer immediately while the feeling is strongest.",
+          "Ignore the vivid event entirely.",
+          "Name the salient fact, then list several life domains it leaves out before rating."
+        ],
+        "correctIndex": 2,
+        "explanation": "The vivid event should be included, not erased. Naming it and widening attention keeps it from becoming the whole answer.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "One salient fact is driving a whole-life judgment. What should you ask?",
+      "back": "What is attention making too big right now, and which life domains does it leave out?",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What is the focusing illusion?",
+      "back": "The tendency for the thing currently in focus to seem more important to life satisfaction than it is in the full picture.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Can positive events create focusing illusions?",
+      "back": "Yes. A raise, award, rescue, harvest, or move can become too large in the life verdict while other domains shrink.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How do happiness, memory, and meaning complicate life satisfaction?",
+      "back": "Experienced happiness, remembered story, and valued meaning can point in different directions, so one salient fact may move only one judge.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What is the practical defocusing move?",
+      "back": "Name the focal fact, then list time use, health, relationships, autonomy, security, memory, and meaning before judging life as a whole.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is defocusing: widen attention before one salient fact becomes a whole-life verdict.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a recent win or failure makes the whole job seem wonderful or terrible, then list ordinary time, relationships, growth, stress, and meaning."
+      },
+      {
+        "context": "money",
+        "plan": "If income or price is dominating a life decision, then add commute, time use, social life, health, and autonomy before deciding."
+      },
+      {
+        "context": "health",
+        "plan": "If a symptom or diagnosis absorbs attention, then map pain, support, function, fear, meaning, and treatment options separately."
+      },
+      {
+        "context": "personal",
+        "plan": "If one vivid event makes life feel settled, then wait until ordinary routines return before making a global verdict."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, before one global judgment, write the focal fact and five omitted life domains.",
+    "weeklyPractice": "Once a week, review a major judgment and identify which fact was under the lamp when you made it."
+  },
+  "memorableLines": [
+    {
+      "text": "Attention can impersonate reality.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the focusing illusion in plain language."
+    },
+    {
+      "text": "Widen the frame before you rate the life.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the correction as an action."
+    },
+    {
+      "text": "A life is larger than the fact currently under the lamp.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the final move memorable."
+    }
+  ]
+}

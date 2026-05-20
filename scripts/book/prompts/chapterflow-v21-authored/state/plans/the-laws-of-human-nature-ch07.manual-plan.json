@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch07",
+  "number": 7,
+  "title": "Elevate Your Perspective: The Law of Shortsightedness",
+  "coreMove": "Step outside immediate emotional reward and price the decision against its delayed cost and future position.",
+  "sourcePressure": "This law makes time horizon the issue: anger, vanity, panic, revenge, and excitement collapse the future into the present moment.",
+  "chapterSpecificMisunderstanding": "Calling this patience or long-term thinking in general rather than catching the exact present-moment force that shrinks perspective.",
+  "sourceAlignmentTerms": [
+    "shortsightedness",
+    "moment of madness",
+    "time horizon",
+    "farsighted human",
+    "future cost",
+    "perspective"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Elevate Your Perspective: The Law of Shortsightedness",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a marina manager deciding whether to ignore a minor storm warning to satisfy impatient boaters",
+      "audience": "an operator under customer pressure",
+      "stakes": "whether one crowded afternoon damages boats and reputation",
+      "format": "decision_point",
+      "requiredBeat": "she points to the tide model, closes two slips early, and absorbs complaints instead of letting today's revenue outrank tomorrow's damage",
+      "firstImage": "a laminated harbor map speckled with rain at the dock office",
+      "mustInclude": [
+        "harbor map",
+        "storm alert",
+        "slip reservation list"
+      ],
+      "mustAvoid": [
+        "generic planning app"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "a college newspaper editor tempted to publish an unverified rumor before rival outlets",
+      "audience": "a student journalist feeling status panic",
+      "stakes": "whether a scoop becomes a retraction that follows her for years",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts the traffic spike, then reads the correction policy aloud and watches the future cost outgrow the present thrill",
+      "firstImage": "a headline draft blinking on a newsroom monitor",
+      "mustInclude": [
+        "headline draft",
+        "correction policy",
+        "source call log"
+      ],
+      "mustAvoid": [
+        "generic classroom media"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a family-owned orchard deciding whether to overpick immature fruit for a holiday weekend",
+      "audience": "a farmer balancing cash and long-term trust",
+      "stakes": "whether buyers stop trusting the farm stand",
+      "format": "postmortem",
+      "requiredBeat": "after one bad weekend of hard peaches, the owner compares receipts with refund notes and sees immediate cash damage future demand",
+      "firstImage": "a crate of pale peaches tagged with yesterday's date",
+      "mustInclude": [
+        "fruit crate",
+        "refund notes",
+        "harvest calendar"
+      ],
+      "mustAvoid": [
+        "generic family business"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a cybersecurity analyst deciding whether to patch quietly or announce blame",
+      "audience": "a specialist angry at another team's shortcut",
+      "stakes": "whether revenge language delays the fix",
+      "format": "dialogue",
+      "requiredBeat": "the analyst strips the blame paragraph from the incident note and moves the patch window before the status fight",
+      "firstImage": "a server rack status light reflected in a glass door",
+      "mustInclude": [
+        "incident note",
+        "patch window",
+        "access log"
+      ],
+      "mustAvoid": [
+        "generic client escalation"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a scholarship athlete choosing between playing through pain and reporting it",
+      "audience": "a competitor afraid of losing rank",
+      "stakes": "whether one weekend costs a season",
+      "format": "before_after",
+      "requiredBeat": "before the injury log, she treats pain as weakness; after seeing repeated flare-ups, she sits out one meet to protect the season",
+      "firstImage": "a taped ankle resting on a metal training table",
+      "mustInclude": [
+        "injury log",
+        "meet schedule",
+        "training tape"
+      ],
+      "mustAvoid": [
+        "generic sports grit speech"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a city council budget analyst watching a popular tax holiday drain maintenance funds",
+      "audience": "a civic staffer who can see delayed infrastructure costs",
+      "stakes": "whether applause this month creates emergency repairs next year",
+      "format": "reflection",
+      "requiredBeat": "she converts the applause-heavy proposal into a three-year maintenance shortfall chart before recommending a limit",
+      "firstImage": "a spreadsheet printout beside a cracked sidewalk photo",
+      "mustInclude": [
+        "shortfall chart",
+        "sidewalk photo",
+        "tax proposal"
+      ],
+      "mustAvoid": [
+        "generic financial advice"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot present pressure that collapses perspective",
+      "compare immediate payoff with delayed cost",
+      "choose a response that protects future position"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before one tempting reaction, write the cost at ten minutes, ten days, and ten months, then choose from the longest view you can honestly hold.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "South Sea Bubble",
+      "detail": "the source uses the South Sea Bubble to show crowds losing perspective when greed and urgency collapse the time horizon",
+      "useIn": "both",
+      "phrasingHint": "The South Sea Bubble turns shortsightedness into a public mood, with greed borrowing the voice of foresight."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

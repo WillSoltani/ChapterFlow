@@ -1,0 +1,201 @@
+{
+  "chapterId": "antifragile-ch25",
+  "number": 25,
+  "title": "Conclusion",
+  "coreMove": "Classify what should be protected, what can be stressed, and where asymmetry or exported downside changes the decision.",
+  "sourcePressure": "The conclusion synthesizes fragility, antifragility, time, optionality, subtraction, and skin in the game through asymmetry and consequence.",
+  "chapterSpecificMisunderstanding": "Ending with chaos worship or a universal formula for every system.",
+  "sourceAlignmentTerms": [
+    "fragility",
+    "antifragility",
+    "time",
+    "optionality",
+    "subtraction",
+    "skin in the game",
+    "asymmetry"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "final synthesis",
+      "detail": "source notes warn against adding a new system and instead reconnect the book's main filters",
+      "useIn": "both",
+      "phrasingHint": "The ending is a sorting discipline, not a fresh slogan."
+    },
+    {
+      "kind": "artifact",
+      "name": "asymmetry",
+      "detail": "the practical filter connecting volatility, optionality, time, subtraction, and consequence",
+      "useIn": "fullRead",
+      "phrasingHint": "Asymmetry asks where the tail lands before admiring any plan."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Conclusion"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Ending with chaos worship or a universal formula for every system."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "family budget stress test with Anton as the decision-maker",
+      "audience": "a reader who handles family budget stress test under uncertainty",
+      "stakes": "whether Anton avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Anton sorts the commitment into protect, stress, or stop based on volatility response and asymmetry.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "family log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic conclusion paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "municipal resilience plan with Sara as the decision-maker",
+      "audience": "a reader who handles municipal resilience plan under uncertainty",
+      "stakes": "whether Sara avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sara sorts the commitment into protect, stress, or stop based on volatility response and asymmetry.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "municipal log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic conclusion paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "startup roadmap review with Adele as the decision-maker",
+      "audience": "a reader who handles startup roadmap review under uncertainty",
+      "stakes": "whether Adele avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Adele sorts the commitment into protect, stress, or stop based on volatility response and asymmetry.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "startup log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic conclusion paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "athlete training calendar with Phoebe as the decision-maker",
+      "audience": "a reader who handles athlete training calendar under uncertainty",
+      "stakes": "whether Phoebe avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Phoebe sorts the commitment into protect, stress, or stop based on volatility response and asymmetry.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "athlete log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic conclusion paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "clinic triage protocol with Harriet as the decision-maker",
+      "audience": "a reader who handles clinic triage protocol under uncertainty",
+      "stakes": "whether Harriet avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Harriet sorts the commitment into protect, stress, or stop based on volatility response and asymmetry.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "clinic log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic conclusion paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "supplier diversification board with Fiona as the decision-maker",
+      "audience": "a reader who handles supplier diversification board under uncertainty",
+      "stakes": "whether Fiona avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Fiona sorts the commitment into protect, stress, or stop based on volatility response and asymmetry.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "supplier log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic conclusion paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by classify what should be protected, what can be stressed, and where asymmetry or exported downside changes the decision.",
+      "distinguish fragility, antifragility, time in unfamiliar cases",
+      "choose actions that avoid: Ending with chaos worship or a universal formula for every system."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Sort three current commitments into protect from volatility, expose to bounded variation, or stop because the downside is exported.",
+  "readingTimeMinutes": 12
+}

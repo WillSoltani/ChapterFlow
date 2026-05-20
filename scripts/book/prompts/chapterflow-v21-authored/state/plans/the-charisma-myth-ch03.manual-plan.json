@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch03",
+  "number": 3,
+  "title": "The Obstacles to Presence, Power, and Warmth",
+  "coreMove": "Diagnose the specific inner obstacle that is leaking into your outward signal.",
+  "sourcePressure": "The source positions this chapter as diagnostic: obstacles interrupt presence, power, and warmth because internal state shows up in body language and social read.",
+  "chapterSpecificMisunderstanding": "The weak version labels every problem as nerves. The useful version separates distraction, discomfort, self-attack, irritation, and threat so each can be handled later.",
+  "sourceAlignmentTerms": ["obstacles", "presence", "power", "warmth", "internal state", "attention", "discomfort", "outward read"],
+  "forbiddenFrames": {
+    "hook": ["Anxiety ruins charisma", "Your body gives you away", "Obstacles are internal"],
+    "counterintuition": ["Technique cannot save you", "Nerves are the enemy", "Just get out of your head"],
+    "tryThisNow": ["Take a deep breath", "Name your feeling", "Relax your shoulders"],
+    "examples": ["public speaking anxiety", "first date nerves", "office meeting distraction", "class presentation"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an animal shelter adoption consult where a coordinator feels judged by a prospective owner",
+      "audience": "a caring reader whose defensiveness blocks warmth",
+      "stakes": "whether a cautious adopter trusts the shelter's recommendation",
+      "format": "scene",
+      "requiredBeat": "she notices her jaw tightening after the adopter questions the fee, then labels the obstacle as defensiveness before it turns into clipped answers",
+      "firstImage": "a microchip scanner lying beside a leash hook",
+      "mustInclude": ["adoption folder", "vaccination sticker", "kennel card"],
+      "mustAvoid": ["pet rescue sentimentality", "generic customer service"]
+    },
+    {
+      "domain": "a patent review panel where an inventor loses presence while waiting for a hostile question",
+      "audience": "a technical reader who mistakes anticipation for preparation",
+      "stakes": "whether the panel hears the actual claim or only sees bracing",
+      "format": "postmortem",
+      "requiredBeat": "he watches the recording and circles the moment his eyes left the questioner to scan the room for attack",
+      "firstImage": "a patent diagram projected beside a silent lapel mic",
+      "mustInclude": ["claim chart", "panel clock", "prototype casing"],
+      "mustAvoid": ["legal thriller", "presentation delivery tips"]
+    },
+    {
+      "domain": "a luxury hotel concierge desk during a lost-passport complaint",
+      "audience": "a service professional whose irritation reads as lack of goodwill",
+      "stakes": "whether the guest accepts the embassy process without escalating",
+      "format": "decision_point",
+      "requiredBeat": "the concierge feels the unfair accusation land, notices his smile flatten, and chooses to identify irritation as the obstacle before replying",
+      "firstImage": "a brass room key tag beside an embassy phone number",
+      "mustInclude": ["passport photocopy", "night manager note", "taxi voucher"],
+      "mustAvoid": ["travel meltdown comedy", "scripted apology"]
+    },
+    {
+      "domain": "a marine biology field debrief after a failed reef sample dive",
+      "audience": "a leader whose embarrassment weakens power",
+      "stakes": "whether the crew trusts the next dive plan",
+      "format": "vignette",
+      "requiredBeat": "she identifies shame, not lack of knowledge, as the reason she keeps overexplaining the failed sample grid",
+      "firstImage": "a salt-stiff dive slate drying beside a cracked sample vial",
+      "mustInclude": ["reef grid", "air log", "cooler latch"],
+      "mustAvoid": ["ocean adventure", "science hero scene"]
+    },
+    {
+      "domain": "an immigration clinic intake where a volunteer is distracted by the line forming behind the client",
+      "audience": "a helper who loses presence while trying to be efficient",
+      "stakes": "whether the client shares the detail that changes the filing deadline",
+      "format": "before_after",
+      "requiredBeat": "contrast the rushed intake with the moment she names divided attention as the obstacle and turns the queue number screen away from her sightline",
+      "firstImage": "a numbered intake ticket curled beside a passport photo",
+      "mustInclude": ["filing deadline", "translation headset", "queue screen"],
+      "mustAvoid": ["bureaucracy rant", "generic listening advice"]
+    },
+    {
+      "domain": "a fencing bout corner where a coach's own panic makes a cadet more frantic",
+      "audience": "a mentor whose urgent care leaks as alarm",
+      "stakes": "whether the cadet can hear one tactical correction before the final touch",
+      "format": "dialogue",
+      "requiredBeat": "the coach hears his voice speed up, recognizes threat contagion as the obstacle, and stops adding three corrections at once",
+      "firstImage": "a red scoring light reflected on a bent foil guard",
+      "mustInclude": ["mask strap", "score box", "towel roll"],
+      "mustAvoid": ["sports pep talk", "winner mindset"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose which obstacle is weakening presence, power, or warmth",
+      "separate internal obstacle from outward symptom",
+      "avoid solving before naming the obstacle",
+      "analyze how distraction, defensiveness, and threat leak into social read"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "In one live exchange today, catch the first sign of a charisma break and name the obstacle privately in three words or fewer.",
+  "readingTimeMinutes": 12
+}

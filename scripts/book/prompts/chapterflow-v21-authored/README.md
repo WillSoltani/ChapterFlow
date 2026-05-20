@@ -150,14 +150,59 @@ chapterflow-v21-authored/
 - **Phase 4 — Librarian.** Name ledger, phrase budget, answer-position balancer.
 - **Phase 5 — Backfill.** Green/Yellow/Red tiering of existing 73 books.
 
-## Usage (planned)
+## Usage
+
+### Inline-operator mode (no API or subscription quota)
+
+Every model call replaced by the Claude session running this CLI: read the playbook, produce the artifact, save to the printed path, run the validator. The deterministic critics + ship gate + book gate enforce S-tier quality.
 
 ```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts critic book-packages/atomic-habits.modern.json
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts critic --all
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate "The Prince" "Niccolò Machiavelli"
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts repair --book atomic-habits
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts ledger status
+CLI=scripts/book/prompts/chapterflow-v21-authored/src/cli.ts
+
+# 1. Ask the helper what to produce next; loop until "all done"
+npx tsx $CLI next-task atomic-habits
+
+# Stages the helper drives you through, in order:
+#   research-bibliography  → produce .chapterflow/runs/<id>/<run>/source-freeze/toc.json
+#   research-chapter × N   → produce sidecars/source/chNN.source.json (+ .txt)
+#   chapter-index          → produce state/indexes/<id>.json
+#   write-chapter × N      → produce state/chapters/<id>-chNN.v21-native.chapter.json
+#                            then validate: npx tsx $CLI gate-chapter <path>
+#   derive-artifacts       → npx tsx $CLI derive-artifacts <id>
+#   finalize               → npx tsx $CLI generate-book <id> --title X --author Y \
+#                              --no-categorizer --categories A,B --tags x,y,z
+
+# 2. Source-coherence check (after writing bibliography + all chapter sources)
+npx tsx $CLI check-source atomic-habits
+
+# 3. Per-chapter ship-gate (after writing each ChapterV21 JSON)
+npx tsx $CLI gate-chapter scripts/.../state/chapters/atomic-habits-ch01.v21-native.chapter.json
+
+# 4. Final assembly + book gate + promote (after every chapter ship-gates clean)
+npx tsx $CLI generate-book atomic-habits --title "Atomic Habits" --author "James Clear" \
+  --no-categorizer --categories "Productivity,Habits" --tags "habits,systems,compounding,identity"
+```
+
+Playbooks for the model-driven steps:
+- [prompts/PLAYBOOK-OPERATOR-RESEARCH.md](prompts/PLAYBOOK-OPERATOR-RESEARCH.md)
+- [prompts/PLAYBOOK-OPERATOR-CHAPTER.md](prompts/PLAYBOOK-OPERATOR-CHAPTER.md)
+- [prompts/PLAYBOOK-OPERATOR-FINALIZE.md](prompts/PLAYBOOK-OPERATOR-FINALIZE.md)
+
+State persists between sessions — pause anywhere, resume by running `next-task` again. Smoke-tested end-to-end on The War of Art Ch 1; package shipped at [book-packages/war-of-art-smoke.v21.json](../../../../book-packages/war-of-art-smoke.v21.json).
+
+### Subprocess mode (counts against Max subscription)
+
+```bash
+# Audit existing books
+npx tsx $CLI critic book-packages/atomic-habits.modern.json
+npx tsx $CLI critic --all
+
+# Run the model-driven pipeline end-to-end via claude -p subprocess calls
+npx tsx $CLI research "Atomic Habits" "James Clear"
+npx tsx $CLI generate "Atomic Habits" "James Clear"
+
+# Library ledger
+npx tsx $CLI ledger status
 ```
 
 ## Relationship to v13

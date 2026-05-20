@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-art-of-war-ch11",
+  "number": 11,
+  "title": "The Nine Situations",
+  "coreMove": "Change conduct as the human pressure of the ground changes, especially when danger can create unity or panic.",
+  "sourcePressure": "The source names nine grounds, prescribes different actions for each, emphasizes solidarity deeper in hostile country, seized valuables, desperate ground, shuai-jan responsiveness, Wu and Yueh cooperating in a storm, and Marquis Wu mourning his troops.",
+  "chapterSpecificMisunderstanding": "Turning the nine situations into a static taxonomy instead of pressure-sensitive leadership.",
+  "sourceAlignmentTerms": [
+    "dispersive ground",
+    "facile ground",
+    "contentious ground",
+    "intersecting highways",
+    "serious ground",
+    "hemmed-in ground",
+    "desperate ground",
+    "shuai-jan"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "the Ch'ang mountains",
+      "detail": "The shuai-jan is described as a creature from the Ch'ang mountains whose head, tail, and middle answer attacks as one body.",
+      "useIn": "both",
+      "phrasingHint": "A team under pressure should answer like the shuai-jan: touch one part and the whole body knows."
+    },
+    {
+      "kind": "event",
+      "name": "the men of Wu and Yueh in the same boat",
+      "detail": "Enemies from Wu and Yueh are said to help each other when caught together crossing a river in a storm.",
+      "useIn": "fullRead",
+      "phrasingHint": "Shared danger can turn old rivals into two hands on the same oar."
+    },
+    {
+      "kind": "person",
+      "name": "Marquis Wu",
+      "detail": "After his troops were annihilated, he is found in his chariot with sword drawn and weeping for men who did not return.",
+      "useIn": "deepRead",
+      "phrasingHint": "Marquis Wu's tears belong beside his error: leadership has to count the lives that pay for bad ground."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "hospital merger team integrating two rival wards",
+      "audience": "nursing director after a merger announcement",
+      "stakes": "old loyalties could fracture patient handoffs",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "They do not need another speech; they need the same storm, Sophie says, then pairs rival charge nurses on the one handoff neither ward can manage alone.",
+      "firstImage": "two ward boards with different color codes",
+      "mustInclude": [
+        "handoff checklist",
+        "merger notice",
+        "patient transfer log"
+      ],
+      "mustAvoid": [
+        "generic team-building exercise"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "startup running out of runway before a regulatory deadline",
+      "audience": "founder with six weeks of cash",
+      "stakes": "panic could scatter engineers into pet fixes",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 1:30 a.m., Sam removes side projects from the board and makes the deadline visible enough that the team stops bargaining with dispersive ground.",
+      "firstImage": "a runway chart taped over a whiteboard",
+      "mustInclude": [
+        "cash balance",
+        "regulatory checklist",
+        "feature freeze"
+      ],
+      "mustAvoid": [
+        "generic startup sprint"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "fire crew entering a warehouse with one exit route",
+      "audience": "incident commander at a chemical storage fire",
+      "stakes": "wrong pressure could trap firefighters inside",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "When does closing the escape path create focus, and when does it create a body count?",
+      "firstImage": "chemical placards beside a roll-up door",
+      "mustInclude": [
+        "entry tag board",
+        "thermal camera",
+        "exit rope"
+      ],
+      "mustAvoid": [
+        "firefighter heroics"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "peacekeeping logistics team negotiating a mountain checkpoint",
+      "audience": "convoy lead moving medical supplies",
+      "stakes": "a blocked road could isolate clinics for days",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Loose gravel slides under the lead truck as Marit treats the checkpoint as intersecting ground and calls allies before anyone argues at the barrier.",
+      "firstImage": "loose gravel beneath a convoy tire",
+      "mustInclude": [
+        "clinic manifest",
+        "checkpoint radio",
+        "ally contact list"
+      ],
+      "mustAvoid": [
+        "generic diplomacy talk"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "professional kitchen after a freezer failure before service",
+      "audience": "executive chef with two rival sous-chefs",
+      "stakes": "the team can save service only if rivalry collapses into one response",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Warm air rolls from the walk-in as Javier gives each rival half the salvage plan so head and tail answer together.",
+      "firstImage": "warm air from a walk-in freezer",
+      "mustInclude": [
+        "fish inventory",
+        "ice delivery",
+        "service clock"
+      ],
+      "mustAvoid": [
+        "generic restaurant shouting"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "research vessel caught between storm and equipment failure",
+      "audience": "chief scientist leading a mixed crew",
+      "stakes": "scientists and deck crew must cooperate or lose the whole expedition",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Hiroshi one snapped sampling cable to stop managing departments and start managing the single boat they were all inside.",
+      "firstImage": "a snapped cable across a wet deck",
+      "mustInclude": [
+        "storm track",
+        "sample freezer",
+        "winch manual"
+      ],
+      "mustAvoid": [
+        "generic lab politics"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "match behavior to ground type",
+      "use shared danger to create unity without manipulation",
+      "diagnose when pressure produces courage or panic"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Classify your team's current ground, then change one leadership behavior to match it: do not use home-ground persuasion on desperate-ground pressure.",
+  "readingTimeMinutes": 12
+}

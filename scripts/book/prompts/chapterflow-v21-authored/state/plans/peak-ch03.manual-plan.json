@@ -1,0 +1,189 @@
+{
+  "chapterId": "peak-ch03",
+  "number": 3,
+  "title": "Mental Representations",
+  "coreMove": "Turn practice into the construction and testing of a better inner model of the task.",
+  "sourcePressure": "The chapter claims experts perform better because rich domain-specific mental representations change what they notice, remember, predict, and correct. Frozen sidecar for chapter 3 contains no traceable named figure, study, place, date, or artifact beyond the authors and chapter mechanism; sourceAnchors stays empty rather than inventing one.",
+  "chapterSpecificMisunderstanding": "The weak version treats expert speed as more facts, magic intuition, or general intelligence.",
+  "sourceAlignmentTerms": [
+    "mental representations",
+    "pattern",
+    "prediction",
+    "chunking",
+    "memory",
+    "self-correction",
+    "domain-specific"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "radiologist scan from old Peak draft",
+      "chess clock fork from old draft",
+      "expert sees patterns generic opener"
+    ],
+    "counterintuition": [
+      "experts just know more",
+      "intuition is mystical",
+      "memory is storage"
+    ],
+    "tryThisNow": [
+      "visualize success",
+      "make a mental map in vague terms",
+      "notice patterns today"
+    ],
+    "examples": [
+      "clinic diagnostic team from old package",
+      "biology lecture contrast from old package",
+      "serve reading from old package"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "aircraft maintenance troubleshooting a recurring cabin pressure alert",
+      "audience": "a technician learning to organize signals instead of chasing parts",
+      "stakes": "one wrong replacement keeps an aircraft grounded through another rotation",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel draws the alert sequence on a maintenance cart, predicts the valve check before opening the panel, and updates the diagram when the gauge proves her model incomplete",
+      "firstImage": "a pressure gauge clipped to a silver maintenance cart",
+      "mustInclude": [
+        "alert sequence",
+        "valve check",
+        "diagram update"
+      ],
+      "mustAvoid": [
+        "generic mechanic hunch",
+        "expert magic"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "sourdough bakery crumb diagnosis after overnight fermentation",
+      "audience": "a baker whose recipes work until temperature changes",
+      "stakes": "a wholesale order could fail because he sees loaves as recipes rather than cues",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Andrew sketches what a good crumb should show, slices two test loaves, and changes his fermentation model when the tunnels reveal overproofing",
+      "firstImage": "a serrated knife opening a loaf with tunnels under the crust",
+      "mustInclude": [
+        "crumb sketch",
+        "test loaves",
+        "fermentation temperature"
+      ],
+      "mustAvoid": [
+        "foodie lifestyle",
+        "recipe memorization"
+      ]
+    },
+    {
+      "protagonistName": "Lea",
+      "domain": "fire-dispatch map reading during a multi-unit response drill",
+      "audience": "a dispatcher who knows street names but not movement patterns",
+      "stakes": "units lose minutes when she cannot predict which route will jam next",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lea pauses before assigning a unit, marks likely traffic choke points on acetate, and checks the prediction against radio reports before the next assignment",
+      "firstImage": "clear acetate sliding over a city response map",
+      "mustInclude": [
+        "traffic choke points",
+        "radio reports",
+        "unit assignment"
+      ],
+      "mustAvoid": [
+        "ambulance bay replay from old draft",
+        "mere memorized streets"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "wildlife photographer reading bird movement before a shot",
+      "audience": "a self-taught photographer who keeps reacting after the bird leaves",
+      "stakes": "a rare migration window closes before he learns to anticipate behavior",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Niklas reviews six missed frames, groups wing tilt with perch choice, predicts the next takeoff, and records whether the pattern holds",
+      "firstImage": "six blurred frames pinned above a muddy boot tray",
+      "mustInclude": [
+        "wing tilt",
+        "perch choice",
+        "missed frames"
+      ],
+      "mustAvoid": [
+        "camera gear review",
+        "nature mysticism"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "litigation associate structuring a deposition outline",
+      "audience": "a young lawyer who has facts but no case map",
+      "stakes": "a witness can bury the key admission if questions stay in chronological order",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Chiara move facts from a timeline into a causation map, predict the evasive answer, and rewrite the next question around the missing link",
+      "firstImage": "colored tabs migrating from a timeline to a blank causation chart",
+      "mustInclude": [
+        "timeline tabs",
+        "causation map",
+        "evasive answer"
+      ],
+      "mustAvoid": [
+        "generic legal prep",
+        "memorizing facts"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "orchestra librarian spotting score-part mismatches before rehearsal",
+      "audience": "a behind-the-scenes music worker who wants faster error detection",
+      "stakes": "a wrong part wastes rehearsal minutes across seventy players",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Akira compares the conductor score with one marked part, predicts where transposition errors cluster, and builds a checklist from the mismatch pattern",
+      "firstImage": "a bassoon part opened beside a conductor score with colored flags",
+      "mustInclude": [
+        "transposition errors",
+        "colored flags",
+        "mismatch checklist"
+      ],
+      "mustAvoid": [
+        "performer practice shell",
+        "photographic memory"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "define mental representations as working models",
+      "choose practice that improves prediction and cue selection",
+      "distinguish organized structure from memorized fragments",
+      "analyze when an expert model needs correction"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next practice rep, write what good should look like in three cues. After the rep, mark which cue failed and revise the model in one sentence.",
+  "readingTimeMinutes": 12
+}

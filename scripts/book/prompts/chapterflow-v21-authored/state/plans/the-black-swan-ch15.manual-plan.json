@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch15",
+  "number": 15,
+  "title": "The Bell Curve, That Great Intellectual Fraud",
+  "coreMove": "Deny the bell curve jurisdiction when tail events can dominate the outcome.",
+  "sourcePressure": "The bell curve becomes dangerous when Gaussian confidence is carried from bounded domains into fat-tailed settings where excluded outliers dominate harm.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into an anti-math rant instead of a domain-fit warning.",
+  "sourceAlignmentTerms": [
+    "bell curve",
+    "Gaussian",
+    "fat tails",
+    "outliers",
+    "jurisdiction",
+    "tail blindness",
+    "false serenity",
+    "distributional assumptions"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the bell curve",
+      "detail": "the frozen source says it becomes intellectually fraudulent when carried from bounded domains into Extremistan",
+      "useIn": "both",
+      "phrasingHint": "The curve looks calm because the damage has been pushed into the part it barely lets you see."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "catastrophe reinsurance pricing",
+      "audience": "an analyst accepting a smooth loss model",
+      "stakes": "one mega-event wiping out years of premiums",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the analyst asks whether the excluded tail can dominate the book",
+      "firstImage": "At 8:17 a.m., Lin faces storm tracks layered over a loss histogram.",
+      "mustInclude": [
+        "Lin",
+        "storm tracks layered over a loss histogram",
+        "bell curve"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into an anti-math rant instead of a domain-fit warning.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "social-media moderation staffing",
+      "audience": "a manager planning from average report volume",
+      "stakes": "one viral crisis overwhelming the team",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the manager builds surge capacity instead of trusting the normal week",
+      "firstImage": "A first line of dialogue lands before the reader sees notification counters climbing across a dashboard.",
+      "mustInclude": [
+        "Min",
+        "notification counters climbing across a dashboard",
+        "Gaussian"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into an anti-math rant instead of a domain-fit warning.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "rare-disease trial safety",
+      "audience": "a statistician smoothing adverse events",
+      "stakes": "one extreme reaction changing the ethical picture",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the statistician reviews tail cases separately before final recommendation",
+      "firstImage": "Open on the texture, sound, or light of sealed adverse-event forms under a red tab.",
+      "mustInclude": [
+        "Hiroshi",
+        "sealed adverse-event forms under a red tab",
+        "fat tails"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into an anti-math rant instead of a domain-fit warning.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "supply-chain delivery guarantees",
+      "audience": "a retailer modeling late shipments as mild variation",
+      "stakes": "one port closure destroying the season",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the planner prices extreme delay as a category, not a point on the curve",
+      "firstImage": "You are looking at containers stacked beyond a locked gate before the choice becomes abstract.",
+      "mustInclude": [
+        "Akira",
+        "containers stacked beyond a locked gate",
+        "outliers"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into an anti-math rant instead of a domain-fit warning.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "financial risk committee VaR review",
+      "audience": "a bank executive comforted by a tidy percentile",
+      "stakes": "losses outside the percentile threatening survival",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the executive asks what happens past the reported threshold",
+      "firstImage": "It takes Rebecca several weeks to understand what risk reports beside a muted trading screen was really showing.",
+      "mustInclude": [
+        "Rebecca",
+        "risk reports beside a muted trading screen",
+        "jurisdiction"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into an anti-math rant instead of a domain-fit warning.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "concert-ticket demand forecast",
+      "audience": "a venue using average sales velocity",
+      "stakes": "one celebrity announcement crashing the system",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the ticketing lead plans for concentration before launch hour",
+      "firstImage": "queue counters reflected in a dark control room appears before any human enters the sentence.",
+      "mustInclude": [
+        "Julia",
+        "queue counters reflected in a dark control room",
+        "tail blindness"
+      ],
+      "mustAvoid": [
+        "Turning the chapter into an anti-math rant instead of a domain-fit warning.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "challenge Gaussian assumptions in fat-tailed domains",
+      "spot tail blindness disguised as safety",
+      "separate tool elegance from domain jurisdiction"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one risk model, write the outcome it treats as negligible and ask whether that outcome could dominate the loss.",
+  "readingTimeMinutes": 12
+}

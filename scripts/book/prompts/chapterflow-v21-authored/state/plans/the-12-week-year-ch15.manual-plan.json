@@ -1,0 +1,213 @@
+{
+  "chapterId": "the-12-week-year-ch15",
+  "number": 15,
+  "title": "Installing Process Control",
+  "coreMove": "Install a weekly operating routine that turns the plan into reviewed, scheduled, socially supported action.",
+  "sourcePressure": "The chapter installs weekly routines and control mechanisms that keep the 12 week plan alive after it is written.",
+  "chapterSpecificMisunderstanding": "Thinking a written plan controls execution by itself, without weekly process control.",
+  "sourceAlignmentTerms": [
+    "process control",
+    "Making Sure Things Get Done",
+    "Weekly Plans",
+    "Don't Go It Alone",
+    "The Weekly Routine",
+    "Team Application"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Weekly Routine",
+      "detail": "The source sidecar verifies The Weekly Routine as a Chapter 15 subhead.",
+      "useIn": "both",
+      "phrasingHint": "The weekly routine is the meeting where the plan either gets control of the week or loses it."
+    },
+    {
+      "kind": "artifact",
+      "name": "Don't Go It Alone",
+      "detail": "The source sidecar verifies Don't Go It Alone as a Chapter 15 subhead.",
+      "useIn": "fullRead",
+      "phrasingHint": "Keeping the plan private makes it too easy to soften when the week gets crowded."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch15: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch15: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch15: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch15: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Molly",
+      "domain": "regional manufacturing control room",
+      "audience": "a practitioner in regional manufacturing control room who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Molly schedules the weekly routine and brings the production board to it.",
+      "firstImage": "a production board with blank score columns",
+      "mustInclude": [
+        "a production board with blank",
+        "process control",
+        "Weekly Plans"
+      ],
+      "mustAvoid": [
+        "generic installing process control explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "home health care scheduling",
+      "audience": "a decision-maker in home health care scheduling choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hugo creates a review rhythm that keeps patient visits from drifting.",
+      "firstImage": "route sheets on a passenger seat",
+      "mustInclude": [
+        "route sheets on a passenger",
+        "process control",
+        "Weekly Plans"
+      ],
+      "mustAvoid": [
+        "generic installing process control explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Diana",
+      "domain": "edtech pilot classroom",
+      "audience": "a team lead in edtech pilot classroom who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Diana uses the classroom pilot plan in the weekly teacher huddle.",
+      "firstImage": "student tablets stacked after class",
+      "mustInclude": [
+        "student tablets stacked after class",
+        "process control",
+        "Weekly Plans"
+      ],
+      "mustAvoid": [
+        "generic installing process control explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "immigration clinic volunteer roster",
+      "audience": "a reflective operator in immigration clinic volunteer roster reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Javier pairs each volunteer with the week's process-control action.",
+      "firstImage": "volunteer lanyards on a peg rail",
+      "mustInclude": [
+        "volunteer lanyards on a peg",
+        "process control",
+        "Weekly Plans"
+      ],
+      "mustAvoid": [
+        "generic installing process control explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "professional services account review",
+      "audience": "a reader in professional services account review comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Petra makes the account review visible before Friday.",
+      "firstImage": "account notes printed before a review",
+      "mustInclude": [
+        "account notes printed before a",
+        "process control",
+        "Weekly Plans"
+      ],
+      "mustAvoid": [
+        "generic installing process control explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Georgia",
+      "domain": "Oslo renewable energy team",
+      "audience": "two colleagues in Oslo renewable energy team forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Georgia sets a weekly team check that keeps turbine work moving.",
+      "firstImage": "turbine drawings rolled beside coffee cups",
+      "mustInclude": [
+        "turbine drawings rolled beside coffee",
+        "process control",
+        "Weekly Plans"
+      ],
+      "mustAvoid": [
+        "generic installing process control explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "install a weekly routine",
+      "turn a written plan into process control",
+      "use support without outsourcing ownership"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Schedule a 20-minute weekly review for this week and invite one person who should know what you are committing to execute.",
+  "readingTimeMinutes": 12
+}

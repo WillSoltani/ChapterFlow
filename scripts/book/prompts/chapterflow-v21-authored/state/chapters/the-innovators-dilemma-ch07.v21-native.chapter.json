@@ -1,0 +1,374 @@
+{
+  "chapterId": "the-innovators-dilemma-ch07",
+  "number": 7,
+  "title": "Match the Size of the Organization to the Size of the Market",
+  "readingTimeMinutes": 12,
+  "hook": "Your growth threshold is not a property of the market. It is a property of your organization.",
+  "counterintuition": "The problem with size filters is not that large organizations apply them. They need to apply them. The problem is treating the filter's output as a verdict on the market itself. A $10 million opportunity rejected because it doesn't move the needle is in fact still a $10 million opportunity. Someone with different economics will find it.",
+  "tryThisNow": "Think of one market opportunity your organization has evaluated and passed on because the size was too small. Write down the revenue or impact threshold that ruled it out. Then write one sentence describing what size of organization would find that exact number meaningful.",
+  "keyTakeaway": "Growth thresholds measure fit with your current scale, not the market's absolute viability. A market too small for one organization can be genuinely real for a smaller team.",
+  "breakdown": {
+    "fastRead": "Large organizations evaluate market opportunities against thresholds that make their growth logic work. A market that adds less than two percent to revenue is a distraction at the current scale, even if the underlying opportunity is real. The threshold is not wrong. It is calibrated to the organization that applies it, and it performs exactly as designed.\n\nThe error is not in applying the threshold. The error is treating the threshold's output as a verdict on the opportunity rather than a verdict on the fit between the opportunity and the organization's current size. A market that is too small to move a large unit's numbers can be commercially real for a team with different economics and a lower floor for what counts as meaningful.\n\nThe filter is calibrated to your organization, not to the opportunity.",
+    "deepRead": "Growth thresholds are built from the inside out. They reflect what the organization needs a market to contribute to make investment worth the operational overhead. A unit that requires thirty percent annual volume growth to satisfy its board has a real reason to require that from every opportunity it evaluates. Applying a lower standard to emerging markets would mean accepting opportunities that distract from the performance goals the organization actually needs to meet. The threshold is doing exactly what it was designed to do. The problem is not the threshold. The problem is treating the threshold's output as a verdict on the market rather than a verdict on the fit between the market and the organization's current scale.\n\nToo small for us is not the same claim as too small.\n\nAn emerging market that generates $8 million in year three looks negligible against a $50 million pipeline threshold. The same $8 million is a real business to an operator whose overhead is different and whose growth requirement is calibrated to a smaller base. The market did not change between those two evaluations. The lens did.\n\nThis is the relative materiality problem. Market size is not an absolute number. It is a ratio between the opportunity's size and the evaluating organization's requirements. A large organization applying its own ratio to every market it sees will correctly identify many markets as too small for it. That list is not a list of markets that are too small. It is a list of markets that are too small for that organization at its current scale.",
+    "fullRead": "What is your organization's growth threshold? Not the aspiration: the floor. The number a market opportunity has to clear before it earns a resource allocation discussion. Most organizations have one, even when it is not written down. It shows up in conversations about minimum viable deal size, minimum addressable market, minimum return on investment. The threshold is real and it functions as a filter. It keeps the organization focused on opportunities that can actually move its economics. It also keeps the organization blind to opportunities that cannot.\n\nNow think about what that threshold makes invisible. Any market that clears a smaller competitor's threshold but not yours. Any opportunity that would be meaningful to a team operating at a lower cost base. Any emerging market that is commercially real but not yet large enough to matter at your organization's scale. Your growth threshold filters all of those out. It does so accurately, from your organization's perspective. From a different position, those markets look different.\n\nThe management challenge is knowing when to trust the filter and when to suspect it. Trusting the filter is appropriate when you are allocating your current organization's resources to markets that will actually move your current performance. Suspecting the filter is appropriate when you are making a judgment about whether a market matters at all, rather than whether it matters to you at your current size. Those are different questions, and the threshold is designed to answer only one of them.\n\nMegan's IoT platform review illustrates the second case. The $8 million year-three projection was correctly rejected by the innovation lab's $50 million pipeline threshold. The lab was right that $8 million would not move the corporate needle. What the lab's filter could not show was whether $8 million was a real number in an absolute sense. It was. A building maintenance cooperative found the same number meaningful and licensed the technology. The market did not fail. The threshold generated the wrong question: not 'is this a real market?' but 'does this market meet our bar?'\n\nJonas's postmortem found the dental SaaS decision correct inside the consultancy's billing model. $180,000 in annual recurring revenue cannot justify partner attention at $800,000 per engagement. The decision was locally rational. The three-person team that built the same product without that billing overhead found the same $180,000 a real starting point. The consultancy did not fail to see the opportunity. It evaluated it correctly against its own scale.\n\nYour growth threshold is not a verdict on the opportunity. It is a verdict on the fit between the opportunity and your organization's current size."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-megan-iot",
+      "title": "Megan's Pipeline Review Flags the IoT Platform at the Bottom",
+      "tags": [
+        "scene",
+        "corporate-innovation",
+        "iot"
+      ],
+      "planSpec": {
+        "domain": "corporate innovation lab evaluating a small IoT platform for building maintenance in independent commercial properties",
+        "audience": "an innovation lab director whose pipeline review requires each opportunity to show $50M revenue potential within three years",
+        "stakes": "the IoT platform has credible data from twelve small commercial buildings but the addressable market at the current price point is estimated at $8M in year three",
+        "format": "scene",
+        "openingDevice": "dialogue_first",
+        "requiredBeat": "Megan presents the IoT platform and the pipeline review rejects it on market size. The building maintenance cooperative that later licenses the same technology considers $8M a meaningful business.",
+        "mustInclude": [
+          "$50M revenue threshold",
+          "$8M projection",
+          "the cooperative that finds the same number meaningful"
+        ],
+        "mustAvoid": [
+          "implying the $50M threshold is unreasonable for the corporate innovation lab to apply"
+        ]
+      },
+      "scenario": "\"Does it hit fifty million in year three?\" someone at the back of the room asks. Megan looks at the projection. Year three revenue for the IoT platform across the twelve pilot buildings: $8 million. The innovation lab's pipeline threshold is $50 million. The sensor data is credible, the building performance results are real, and the maintenance cost reduction is documented. The $8 million estimate is also real. Megan must decide whether to present the full technical case or to note the threshold gap and recommend moving on.",
+      "whatToDo": "Present the technical case and the $8 million projection separately from the pipeline threshold verdict. The threshold correctly filters by lab economics. It should not be the only conclusion recorded about the market.",
+      "whyItMatters": "A market rejected at the $50 million gate has not been shown to be commercially non-viable. It is a market that does not meet one organization's scale requirement. Those are different findings."
+    },
+    {
+      "exampleId": "ch07-ex02-jack-brewery",
+      "title": "Jack's Distribution Model Shows 4 Percent and the Board Moves On",
+      "tags": [
+        "vignette",
+        "food-beverage",
+        "distribution"
+      ],
+      "planSpec": {
+        "domain": "regional craft brewery evaluating a national distribution pilot for its seasonal specialty line",
+        "audience": "a regional brewery director whose board expects 30% annual volume growth and whose main revenue comes from core lager lines",
+        "stakes": "the specialty line sells out regionally but a national pilot would add only 4% volume — not enough to justify the distribution investment at the brewery's current scale",
+        "format": "vignette",
+        "openingDevice": "sensory_first",
+        "requiredBeat": "Jack's distribution model shows that the specialty line adds 4% volume nationally, which the board does not consider meaningful enough to invest in. A smaller craft operation, looking at the same 4% as its entire product line, enters the national market the brewery passed on.",
+        "mustInclude": [
+          "4% volume addition",
+          "board growth threshold",
+          "the smaller operation finding the same number meaningful"
+        ],
+        "mustAvoid": [
+          "any implication that the board's 30% threshold is unreasonable for the brewery's existing model"
+        ]
+      },
+      "scenario": "The seasonal specialty run is a single batch cooling in the tank beside eight lager rows. Jack's distribution model shows the specialty line adding 4% volume nationally at full distribution. The board's growth requirement is 30% per year. The 4% figure reflects real sellout data from the regional market and it is not going to move the number the board tracks. Jack must decide whether to propose the national pilot or to acknowledge that the 4% does not satisfy the investment threshold and recommend focusing on the core lager lines.",
+      "whatToDo": "Present the 4% projection alongside a note on what kind of operation would find that number meaningful before closing the evaluation. The board's threshold is correct for the brewery's economics. It is not a verdict on the market.",
+      "whyItMatters": "A 4% volume addition that the brewery correctly rejects can represent an entire product line for a smaller operation. The rejection reveals scale fit, not market viability."
+    },
+    {
+      "exampleId": "ch07-ex03-antoine-veterinary",
+      "title": "Antoine's Market Size Chart Puts Veterinary at 2.5 Percent",
+      "tags": [
+        "decision_point",
+        "medical-devices",
+        "market-entry"
+      ],
+      "planSpec": {
+        "domain": "specialty medical device manufacturer evaluating a veterinary market entry for its diagnostic imaging technology",
+        "audience": "a commercial VP whose revenue targets are built on hospital radiology department deals that close at $200K and above",
+        "stakes": "the veterinary market for the same imaging technology has a total addressable market of $12M annually — too small to justify the sales force the company deploys for hospital deals",
+        "format": "decision_point",
+        "openingDevice": "timestamp_named",
+        "requiredBeat": "Antoine has to decide whether to develop a veterinary sales channel for a $12M market. His existing sales force costs more to redeploy than the market would return. A veterinary equipment distributor, for whom $12M is a significant line, is watching the decision.",
+        "mustInclude": [
+          "sales force deployment cost vs. market return",
+          "$12M total market",
+          "the veterinary distributor as alternate entrant"
+        ],
+        "mustAvoid": [
+          "suggesting that the medical device company made an obviously wrong decision"
+        ]
+      },
+      "scenario": "At 2:00 p.m., Antoine reviews the veterinary market entry analysis. Total addressable market for the imaging technology in veterinary clinics: $12 million annually. The company's hospital radiology deals close at $200,000 each. Redeploying the sales force from hospital deals to veterinary clinics would cost more than the market returns at the company's current cost structure. Antoine logs the analysis as a pass on the veterinary channel. The report reads: too small for the current sales model. A veterinary equipment distributor for whom $12 million is a significant line is reading the same number differently.",
+      "whatToDo": "Document the $12 million market finding separately from the verdict that the current sales model cannot serve it efficiently. A veterinary distributor operating at lower cost may enter the market the company declines.",
+      "whyItMatters": "A market the company's sales force cannot serve profitably is still a real market. A distributor with lower overhead and a different scale requirement can enter and serve it. The company's rejection does not clear the market."
+    },
+    {
+      "exampleId": "ch07-ex04-chiara-arthouse",
+      "title": "Chiara Predicts the Slate Fails Threshold and Recommends Passing",
+      "tags": [
+        "predict_reveal",
+        "film-distribution",
+        "portfolio"
+      ],
+      "planSpec": {
+        "domain": "independent specialty film distributor evaluating a streaming rights deal for international arthouse titles",
+        "audience": "a distribution director at a mid-size studio whose minimum revenue threshold per title is $2M in domestic theatrical",
+        "stakes": "the arthouse titles under consideration peak at $600K domestic theatrical — below the studio's minimum, but meaningful to a smaller distributor with lower overhead",
+        "format": "predict_reveal",
+        "openingDevice": "question_hook",
+        "requiredBeat": "Chiara predicts the arthouse slate will not meet the studio's minimum return threshold and recommends passing. A boutique distributor acquires the same slate and builds an audience segment the studio later spends marketing dollars to reach.",
+        "mustInclude": [
+          "$2M domestic minimum",
+          "$600K actual for the titles",
+          "boutique distributor's hybrid model in the reveal"
+        ],
+        "mustAvoid": [
+          "treating arthouse film as inherently more culturally valuable than commercial film"
+        ]
+      },
+      "scenario": "Can arthouse titles averaging $600,000 in domestic theatrical justify a distribution investment at a studio with a $2 million per-title minimum? Chiara's evaluation gives the same answer each time: no. The films are critically regarded, the audience is identifiable, and the numbers are still below threshold. Chiara predicts the slate fails the minimum and recommends passing. Two years later, a boutique distributor acquires the same slate, builds a theatrical-and-streaming hybrid release, and the audience becomes a subscriber base the studio later pays to reach.",
+      "whatToDo": "Record what kind of distributor would find $600,000 per title viable before closing the evaluation. The studio's minimum is correct for its overhead. It is not a statement about the audience's value to someone with different economics.",
+      "whyItMatters": "An audience the studio passed on for scale reasons does not disappear from the market. A boutique distributor with lower overhead acquires it. The studio's threshold correctly measured fit for its economics, not for the market."
+    },
+    {
+      "exampleId": "ch07-ex05-jonas-dental-saas",
+      "title": "Jonas's Postmortem Confirms the Decision Was Correct Inside the Billing Model",
+      "tags": [
+        "postmortem",
+        "software",
+        "professional-services"
+      ],
+      "planSpec": {
+        "domain": "regional software consultancy evaluating a niche SaaS product for small dental practice management",
+        "audience": "a partners group at a consultancy whose existing client engagements average $800K and who measures expansion by partner billable hour utilization",
+        "stakes": "the dental SaaS product would generate $180K in annual recurring revenue — too small to justify partner attention at the consultancy's current pricing structure",
+        "format": "postmortem",
+        "openingDevice": "retrospective",
+        "requiredBeat": "Jonas's postmortem on the dental SaaS decision shows it was correctly rejected by the consultancy's financial model. A three-person software team, working on the same problem without billing-hour overhead, built a product that now manages 400 dental offices.",
+        "mustInclude": [
+          "$180K ARR vs. $800K average engagement",
+          "partner billable overhead",
+          "the three-person team's eventual 400-office scale"
+        ],
+        "mustAvoid": [
+          "suggesting that the consultancy's billing model was poorly designed"
+        ]
+      },
+      "scenario": "Looking back at the dental SaaS decision, Jonas's postmortem confirms the logic: $180,000 in annual recurring revenue cannot justify partner time at $800,000 per engagement. The calculation was sound. The postmortem also notes that a three-person team, operating without billing-hour overhead, built the same product and now manages 400 dental offices. The decision log reads: 'insufficient return for partner time.' It does not address what the same number looked like to a team with different economics.",
+      "whatToDo": "Add a line to the decision log describing the cost structure that would make $180,000 ARR viable. The consultancy's rejection was correct for its own model. It should not be recorded as a verdict on the market.",
+      "whyItMatters": "A revenue figure that cannot justify partner time at one firm can be the starting point for a team operating at a fraction of that overhead. Recording only the internal verdict loses the distinction between scale fit and market viability."
+    },
+    {
+      "exampleId": "ch07-ex06-hadiya-tinyhome",
+      "title": "Hadiya's Site Plan Shows 14 Units Beside an 80-Unit Annual Goal",
+      "tags": [
+        "before_after",
+        "housing",
+        "community-development"
+      ],
+      "planSpec": {
+        "domain": "urban land trust developer evaluating a tiny-home pilot for transitional housing",
+        "audience": "a development director at a land trust whose board measures impact by number of permanently affordable units created per year",
+        "stakes": "the tiny-home pilot would create 14 transitional units — too few to justify the board's attention under current impact metrics",
+        "format": "before_after",
+        "openingDevice": "environmental_first",
+        "requiredBeat": "Before: Hadiya presents the tiny-home pilot and the board defers it — 14 units is below the threshold of projects that earn dedicated development resources. After: a separate community land trust, using the same model, scales from 14 to 140 units across four pilots.",
+        "mustInclude": [
+          "14-unit pilot vs. 80-unit annual goal",
+          "board resource threshold",
+          "140-unit result in the after from a different organization"
+        ],
+        "mustAvoid": [
+          "romanticizing tiny homes or treating them as a universal housing solution"
+        ]
+      },
+      "scenario": "The meeting room projector shows a site plan: fourteen small structures on an undeveloped lot. On the right side is the land trust's annual goal: eighty permanently affordable units. Hadiya presents the tiny-home pilot. The board's resource allocation process is built around projects that contribute meaningfully to the eighty-unit goal. Fourteen does not. Before: the board defers the pilot. After: a separate community land trust, using the same model, scales from fourteen units to one hundred forty across four pilots.",
+      "whatToDo": "Record the board's threshold separately from any conclusion about the model's scale potential. The 14-unit pilot does not meet the 80-unit annual requirement. That is not the same finding as the model cannot scale.",
+      "whyItMatters": "A pilot size that does not meet one organization's annual threshold can be the starting point for a different organization with different resource constraints. The threshold belongs to the land trust, not to the model."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A large organization evaluates a $10 million market opportunity and rejects it because it does not clear the growth threshold. What does this rejection reveal about the market?",
+        "choices": [
+          "The market is not commercially viable and should be ignored by all potential entrants.",
+          "The market is too small to generate meaningful revenue under any business model.",
+          "The market does not meet the evaluating organization's threshold. That reveals something about scale fit, not about the market's viability in absolute terms."
+        ],
+        "correctIndex": 2,
+        "explanation": "A growth threshold is calibrated to the organization that applies it. Failing the threshold reveals a mismatch between the opportunity's size and the organization's requirements. It does not tell you whether the opportunity is real for a differently sized organization.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A craft brewery's board applies a 30% annual volume growth requirement to all investments. A seasonal specialty line adds only 4% volume nationally. The board passes. A smaller craft operation is interested in the same 4%. What is the most accurate description of the situation?",
+        "choices": [
+          "The 4% is too small for the brewery's economics and potentially meaningful for the smaller operation's different economics. Both evaluations are correct relative to their own scale.",
+          "The brewery's board made a strategic error by applying a 30% annual volume threshold too rigidly to a specialty product with a different growth profile.",
+          "The smaller operation is taking an unacceptable risk by pursuing a market the larger brewery rejected."
+        ],
+        "correctIndex": 0,
+        "explanation": "The same market can be too small for one organization's growth threshold and genuinely meaningful for another organization operating at a smaller scale. Both assessments are accurate within their own frame of reference.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A medical device company's VP evaluates the veterinary market for its imaging technology. The market totals $12M annually. The company's sales force costs more to redeploy than $12M would return. The VP passes. Which outcome is most likely for the veterinary market?",
+        "choices": [
+          "The veterinary market will remain untapped because no operator can justify entering it.",
+          "A veterinary equipment distributor for whom $12M is a significant line will enter the market that the device company passed on.",
+          "The device company will re-enter the veterinary market once it reaches $50M."
+        ],
+        "correctIndex": 1,
+        "explanation": "A market rejected by a large organization for scale reasons does not disappear. An entrant with lower overhead and a lower floor for what counts as meaningful can find the same market attractive and enter it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A mid-size film studio applies a $2M domestic theatrical minimum per title. An arthouse slate peaks at $600K. The studio passes. A boutique distributor acquires the same slate. What explains why the boutique distributor can find the slate viable?",
+        "choices": [
+          "The boutique distributor has a higher risk tolerance than the mid-size studio.",
+          "The boutique distributor has better relationships with arthouse theaters.",
+          "The boutique distributor's overhead is lower, so $600K represents a meaningful return relative to its own cost structure and growth requirements."
+        ],
+        "correctIndex": 2,
+        "explanation": "The same title that cannot clear a mid-size studio's minimum is potentially viable for a boutique distributor with lower overhead. The opportunity did not change. The organizational scale evaluating it did.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A land trust's board passes on a 14-unit tiny-home pilot because it does not meet the 80-unit annual impact threshold. A smaller community land trust, using the same model, scales from 14 to 140 units across four pilots. What does this outcome reveal about the original board's decision?",
+        "choices": [
+          "The board made a strategic error by not pursuing the tiny-home model itself and should have allocated a small-scale development budget to test the model separately.",
+          "The board correctly applied its own threshold but incorrectly treated the threshold's verdict as evidence that the model could not scale, rather than evidence that 14 units did not meet their specific requirement.",
+          "The 14-unit threshold is universally too low for any land trust to consider worth pursuing, regardless of the model's potential for replication at other sites."
+        ],
+        "correctIndex": 1,
+        "explanation": "The board's rejection was locally correct: 14 units does not meet an 80-unit annual goal. The error would be concluding from that rejection that the model itself has no scale potential. A different organization demonstrated that it does.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Why do large organizations repeatedly pass on emerging markets that later become meaningful, even when they have thorough evaluation processes?",
+        "choices": [
+          "Because their evaluation processes are designed to match opportunities to their current scale requirements, which emerging markets cannot yet meet. The process is correctly excluding what it was built to exclude.",
+          "Because their evaluation processes are poorly designed and do not reliably identify real market opportunities that fall outside their primary revenue categories.",
+          "Because emerging markets are inherently unpredictable and no evaluation process can identify them reliably."
+        ],
+        "correctIndex": 0,
+        "explanation": "A large organization's evaluation process is designed to find markets that match its current economics. Emerging markets are, by definition, too small to match those economics at first. The process is not broken. It is correctly filtering out markets that are too small for its scale, which is exactly what it was designed to do.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A software consultancy's partners group rejects a $180K ARR dental SaaS product. Their average engagement is $800K. A three-person team later builds the same product and serves 400 dental offices. What does this pattern reveal?",
+        "choices": [
+          "The consultancy's billing overhead made the $180K genuinely unviable for them. The three-person team's lower overhead made the same $180K a real starting point. Both assessments were correct for their respective cost structures.",
+          "The consultancy missed a substantial opportunity that its existing technical capabilities would have allowed it to pursue, if it had been willing to develop a lower-overhead delivery structure.",
+          "The consultancy's billing model was poorly designed for the software market and reflects an outdated approach to pricing professional services."
+        ],
+        "correctIndex": 0,
+        "explanation": "The consultancy correctly evaluated $180K ARR as insufficient to justify partner time at $800K per engagement. The three-person team's economics were different. The same number the consultancy correctly rejected as too small was the right starting point for a team with different overhead.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A corporate innovation lab's $50M pipeline threshold correctly filters out an $8M IoT platform. A building maintenance cooperative later licenses the same technology and finds $8M meaningful. What is the diagnostic significance of this outcome for the innovation lab's process?",
+        "choices": [
+          "The innovation lab's pipeline threshold is set too high and should be revised downward to expand the range of opportunities it considers.",
+          "The innovation lab should have partnered with the cooperative to pursue the opportunity jointly.",
+          "The innovation lab's threshold correctly measured fit for the lab's scale. The cooperative's entry reveals that the threshold was filtering by organizational fit, not by market viability."
+        ],
+        "correctIndex": 2,
+        "explanation": "The innovation lab's filter did its job: $8M is not a meaningful number for a unit requiring $50M. The cooperative's entry reveals that the filter was measuring something specific to the lab's scale requirements. The market was real. The filter was scale-specific. Conflating the two would have produced a wrong conclusion about the market.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A strategy director argues that if an opportunity is too small for the organization's current threshold, it should not be pursued by anyone in the organization, not by a subsidiary, not by a spin-out, not by a partner. How should this position be assessed?",
+        "choices": [
+          "The position is correct: if an opportunity cannot meet the organization's current threshold, it should not receive organizational attention in any form, including through subsidiaries, spin-outs, or partner relationships.",
+          "The position conflates 'too small for the current unit's economics' with 'too small to matter.' A smaller team, subsidiary, or partner with different economics may find the same market genuinely viable, and passing on it entirely means ceding the market to an external entrant.",
+          "The position is incorrect: every organization should pursue every market regardless of size in order to maintain market presence and prevent external entrants from establishing footholds."
+        ],
+        "correctIndex": 1,
+        "explanation": "A growth threshold measures fit with the current organization's scale. It does not reveal whether the market is worth pursuing by a differently structured entity. Applying the same threshold to a subsidiary or spin-out ignores that the threshold is calibrated to the parent's economics, not to the subsidiary's.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "An emerging market does not meet your organization's growth threshold. Before passing, what question should you ask?",
+      "back": "Ask whether the threshold reflects your organization's scale requirements or whether it reveals something absolute about the market. If the market is real but too small for your current economics, a differently sized team may find it meaningful.",
+      "difficulty": "basic"
+    },
+    {
+      "front": "What does relative materiality mean in the context of market size evaluation?",
+      "back": "Relative materiality means that the same market can be too small to matter to a large organization and genuinely significant to a smaller team with lower overhead and lower growth requirements. Market viability is always relative to the evaluating organization's scale.",
+      "difficulty": "basic"
+    },
+    {
+      "front": "A competitor with lower overhead enters a market your organization passed on for being too small. What does this reveal about the original rejection?",
+      "back": "It reveals that the rejection correctly measured scale fit but may have incorrectly treated scale fit as a verdict on the market. The competitor's entry shows the market was real. Your threshold was calibrated to your organization, not to the market.",
+      "difficulty": "intermediate"
+    },
+    {
+      "front": "An emerging market fails your organization's growth threshold. A smaller competitor enters it profitably. What is being confused when the threshold is treated as a verdict on the market itself?",
+      "back": "'Too small for us' is a comparison between the opportunity's size and your organization's scale requirements. 'Too small' would be a universal claim about the market itself. The first is usually supportable. The second requires a different kind of evidence.",
+      "difficulty": "intermediate"
+    },
+    {
+      "front": "Why must growth thresholds be applied carefully when evaluating emerging markets?",
+      "back": "Because emerging markets start small by definition. A threshold calibrated to the current organization's mature-market economics will correctly reject many emerging markets as too small at their current stage, even if they would become significant over time.",
+      "difficulty": "advanced"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to distinguish between 'this market is too small for our organization's economics' and 'this market is too small to be commercially viable,' and to apply size evaluations relative to organizational scale rather than as absolute verdicts on the market.",
+    "ifThenPlans": [
+      {
+        "context": "evaluating an emerging market against the organization's growth threshold",
+        "plan": "If the market fails the threshold, then explicitly record whether the verdict reflects a scale mismatch or a genuine market problem. Those are different findings and should be documented as such."
+      },
+      {
+        "context": "recommending that an organization pass on a market for being too small",
+        "plan": "If the recommendation is to pass, then name the size of organization that would find the market meaningful and assess whether passing cedes a market position to a potential entrant with different economics."
+      },
+      {
+        "context": "a smaller subsidiary or partner is considering entering a market the parent passed on",
+        "plan": "If the subsidiary or partner has lower overhead and lower growth requirements, then evaluate the market against their scale, not the parent's threshold. The market may be viable at one scale and not viable at another."
+      },
+      {
+        "context": "reviewing past rejections of markets that have since grown",
+        "plan": "If a market your organization passed on has grown and an entrant is now established there, then identify what the entrant's economics were at entry. The market's growth does not mean the original rejection was wrong. It means the entrant had a scale fit your organization did not."
+      }
+    ],
+    "twentyFourHourChallenge": "Think of one market opportunity your organization has evaluated and passed on because the size was too small. Write down the revenue or impact threshold that ruled it out. Then write one sentence describing what size of organization would find that exact number meaningful.",
+    "weeklyPractice": "Once a week, when a market or opportunity is rejected for being too small, write one sentence about what size of organization would find the same number meaningful. Over time, this builds a habit of separating scale-fit verdicts from market-viability verdicts."
+  },
+  "memorableLines": [
+    {
+      "text": "The filter is calibrated to your organization, not to the opportunity.",
+      "location": "breakdown.fastRead",
+      "why": "Names the direction of the error without blaming the filter itself — the filter is correct, the claim it is being used to support is not."
+    },
+    {
+      "text": "Too small for us is not the same claim as too small.",
+      "location": "breakdown.deepRead",
+      "why": "The shortest possible version of the relative materiality argument."
+    },
+    {
+      "text": "Your growth threshold is not a verdict on the opportunity. It is a verdict on the fit between the opportunity and your organization's current size.",
+      "location": "breakdown.fullRead",
+      "why": "Converts the chapter's diagnostic into a reusable test a reader can apply to any rejection decision."
+    }
+  ]
+}

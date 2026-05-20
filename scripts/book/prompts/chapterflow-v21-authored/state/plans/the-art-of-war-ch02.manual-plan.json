@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch02",
+  "number": 2,
+  "title": "Waging War",
+  "coreMove": "Price delay in real resources so you stop confusing drawn-out effort with disciplined pursuit of victory.",
+  "sourcePressure": "The source counts the cost of campaigns in chariots, armor, silver, exhausted weapons, drained households, supply wagons, forage, rewards, and the danger of prolonged war.",
+  "chapterSpecificMisunderstanding": "Turning the lesson into move fast at all costs or generic efficiency advice.",
+  "sourceAlignmentTerms": [
+    "thousand ounces of silver",
+    "prolonged warfare",
+    "second levy",
+    "supply-waggons",
+    "forage",
+    "exchequer",
+    "captured chariots",
+    "victory not lengthy campaigns"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "a thousand swift chariots",
+      "detail": "The campaign cost is introduced through swift chariots, heavy chariots, mail-clad soldiers, provisions, armor, and silver per day.",
+      "useIn": "both",
+      "phrasingHint": "Count the chariots before you admire the campaign; delay always sends a bill."
+    },
+    {
+      "kind": "artifact",
+      "name": "one cartload of enemy provisions",
+      "detail": "One cartload taken near the enemy is treated as worth twenty cartloads hauled from home.",
+      "useIn": "fullRead",
+      "phrasingHint": "The best supply line is sometimes the one you no longer have to drag behind you."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "James",
+      "domain": "regional theater extending rehearsals for a troubled opening night",
+      "audience": "artistic director with a fixed payroll",
+      "stakes": "extra rehearsal weeks could save the show or bankrupt the season",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The empty ticket window at noon forces James to price each extra rehearsal day against the cash needed to keep the cast paid through closing weekend.",
+      "firstImage": "an empty ticket window under a faded poster",
+      "mustInclude": [
+        "payroll sheet",
+        "costume rental invoice",
+        "opening-night clock"
+      ],
+      "mustAvoid": [
+        "romantic artist suffering scene"
+      ]
+    },
+    {
+      "protagonistName": "Claire",
+      "domain": "medical-device recall held open while committees debate wording",
+      "audience": "quality lead at a manufacturer",
+      "stakes": "every delayed day leaves clinics using questionable equipment",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:40 a.m., Claire totals courier fees, call-center shifts, and replacement stock before forcing a recall decision that stops the daily bleed.",
+      "firstImage": "a pallet of sealed replacement devices",
+      "mustInclude": [
+        "recall script",
+        "courier manifest",
+        "clinic hotline roster"
+      ],
+      "mustAvoid": [
+        "generic compliance meeting"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "farm co-op choosing whether to repair a broken grain dryer or rent one now",
+      "audience": "co-op treasurer in Quebec",
+      "stakes": "wet grain loses value every day while members argue about capital expense",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "How expensive is the cheap delay if every truckload loses grade by Friday?",
+      "firstImage": "kernels stuck to a damp sample bag",
+      "mustInclude": [
+        "moisture meter",
+        "rental quote",
+        "harvest calendar"
+      ],
+      "mustAvoid": [
+        "farmer stoicism cliche"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "university lab stuck in a months-long equipment procurement dispute",
+      "audience": "principal investigator running grant-funded experiments",
+      "stakes": "the grant clock is burning while the team waits for perfect terms",
+      "format": "audit",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The freezer alarm chirps while Ingrid marks each lost week against expiring samples and chooses a shorter lease that preserves the experiment.",
+      "firstImage": "a flashing freezer alarm",
+      "mustInclude": [
+        "grant deadline",
+        "cell culture log",
+        "lease agreement"
+      ],
+      "mustAvoid": [
+        "generic research patience lesson"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "independent restaurant keeping a failing lunch service alive",
+      "audience": "chef-owner with thin cash reserves",
+      "stakes": "staff hours and food waste are draining the profitable dinner business",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Marco twelve trays of unsold focaccia to see that pride in the lunch menu was consuming the dinner engine.",
+      "firstImage": "twelve trays of unsold focaccia",
+      "mustInclude": [
+        "prep schedule",
+        "supplier minimum",
+        "server rota"
+      ],
+      "mustAvoid": [
+        "coffee shop turnaround shell"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "software migration where parallel systems run too long",
+      "audience": "program manager at a pension administrator",
+      "stakes": "dual operations double error checks and exhaust the support team",
+      "format": "decision_memo",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Name the shutdown date before we approve another bridge, Layla tells the steering group, then lists every duplicate control running because nobody will end the campaign.",
+      "firstImage": "two identical reconciliation dashboards",
+      "mustInclude": [
+        "legacy server invoice",
+        "support queue",
+        "cutover checklist"
+      ],
+      "mustAvoid": [
+        "generic tech debt lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot hidden carrying costs in delay",
+      "separate haste from decisive closure",
+      "choose resource capture over repeated resupply"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the weekly cost of one delayed project in people, money, attention, and trust, then name the smallest victory condition that ends the drain.",
+  "readingTimeMinutes": 12
+}

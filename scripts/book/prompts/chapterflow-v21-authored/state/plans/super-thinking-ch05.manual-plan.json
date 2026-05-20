@@ -1,0 +1,192 @@
+{
+  "number": 5,
+  "title": "Lies, Damned Lies, and Statistics",
+  "coreMove": "Before trusting a vivid number, pull in the base rate and comparison frame that decide whether the number is large, small, normal, or misleading.",
+  "sourcePressure": "The source support is narrow: the base rate fallacy and the need for statistical skepticism that stays usable rather than cynical.",
+  "chapterSpecificMisunderstanding": "Believing the lesson is to reject statistics because they can be framed, rather than to demand the background frequency and context that make them interpretable.",
+  "sourceAlignmentTerms": [
+    "base rate fallacy",
+    "background frequency",
+    "comparison context",
+    "vivid case",
+    "broader rate",
+    "statistical skepticism",
+    "frame"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "base rate fallacy",
+      "detail": "the source confirms the chapter anchor as starting from background frequency instead of vivid single-case stories",
+      "useIn": "both",
+      "phrasingHint": "The striking case gets quieter once the background rate enters the room."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Numbers can lie",
+      "Statistics are everywhere",
+      "Ask compared with what"
+    ],
+    "counterintuition": [
+      "A true number can mislead",
+      "Skepticism is not cynicism",
+      "Context matters"
+    ],
+    "tryThisNow": [
+      "Find a statistic and ask compared with what",
+      "Look up the base rate",
+      "Question a number"
+    ],
+    "examples": [
+      "medical test false positive",
+      "polling error",
+      "dashboard conversion spike with banned name",
+      "headline panic without concrete scale"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Olivia, a city-bike safety analyst reviewing a spike in reported crashes after a new reporting app launches",
+      "audience": "public analysts and citizens reading civic numbers",
+      "stakes": "the city could cancel a safer lane based on a measurement artifact",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivia compares crash reports with ridership and pre-app reporting rates before calling the lane dangerous",
+      "firstImage": "rain dots the laminated crash map outside the transport committee room",
+      "mustInclude": [
+        "crash map",
+        "ridership count",
+        "new reporting app"
+      ],
+      "mustAvoid": [
+        "generic dashboard spike",
+        "medical probability"
+      ]
+    },
+    {
+      "domain": "Julien, a school counselor interpreting one alarming scholarship rejection statistic for first-generation applicants",
+      "audience": "educators and students facing discouraging figures",
+      "stakes": "students may self-select out if the number lacks application-rate context",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Julien asks for the applicant pool, completion rates, and comparable schools before advising students",
+      "firstImage": "“Out of how many completed applications?”",
+      "mustInclude": [
+        "scholarship report",
+        "application checklist",
+        "comparable-school column"
+      ],
+      "mustAvoid": [
+        "standardized testing from chapter 2",
+        "generic college rankings"
+      ]
+    },
+    {
+      "domain": "Anya, a theater producer deciding whether a bad preview survey means the whole show should be rewritten",
+      "audience": "creative leaders reacting to small samples",
+      "stakes": "a rewrite could erase the strongest material two weeks before opening",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anya counts the sample size, compares it with prior preview volatility, and changes one scene instead of panicking over the loudest comments",
+      "firstImage": "red pencil marks bleed through the top sheet of the preview survey stack",
+      "mustInclude": [
+        "preview surveys",
+        "sample size note",
+        "prior-preview binder"
+      ],
+      "mustAvoid": [
+        "generic customer review panic",
+        "product redesign from chapter 1"
+      ]
+    },
+    {
+      "domain": "David, a fisheries officer reading a 40 percent drop in dockside sightings after a storm changed where boats unload",
+      "audience": "field professionals using imperfect data",
+      "stakes": "a closure decision could harm crews if the count reflects changed reporting location",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "David overlays landing sites and weather changes before deciding whether the population signal is real",
+      "firstImage": "It took David one foggy week to notice the boats had moved, not just the fish",
+      "mustInclude": [
+        "dockside log",
+        "storm record",
+        "landing-site map"
+      ],
+      "mustAvoid": [
+        "environmental lecture",
+        "climate speculation"
+      ]
+    },
+    {
+      "domain": "Min, a security lead evaluating “twice as many incidents” after the company starts logging minor badge errors",
+      "audience": "managers reading operational metrics",
+      "stakes": "leadership may overbuy security tools if the baseline changed",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Min splits major incidents from newly logged minor badge errors and shows the true comparison before the budget meeting",
+      "firstImage": "At 8:20 a.m., Min sorts the incident export by severity before opening the slide deck",
+      "mustInclude": [
+        "incident export",
+        "badge-error category",
+        "budget slide"
+      ],
+      "mustAvoid": [
+        "breach lookup demonstration",
+        "generic IT scare"
+      ]
+    },
+    {
+      "domain": "Chiara, a parent reading a viral claim about playground injuries in a neighborhood forum",
+      "audience": "ordinary readers facing fear-framed numbers",
+      "stakes": "parents could lobby to remove equipment that is not actually unusually risky",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chiara checks injuries per thousand visits and comparable parks before replying to the forum",
+      "firstImage": "You see the word “tripled” before you see what was counted",
+      "mustInclude": [
+        "forum post",
+        "park visit count",
+        "comparable parks"
+      ],
+      "mustAvoid": [
+        "headline panic shell",
+        "generic parenting anxiety"
+      ]
+    }
+  ],
+  "tryThisNowSpec": "Take one number you saw today and add two missing labels beside it: the base rate and the comparison group. Do not decide what it means until both labels are present.",
+  "chapterId": "super-thinking-ch05",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the chapter-specific model in a fresh scenario for Lies, Damned Lies, and Statistics",
+      "choose the visible action that performs the core move rather than naming the concept",
+      "explain the failure mode that appears when the model is used generically",
+      "evaluate tradeoffs and limits without sliding into certainty, cynicism, or manipulation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

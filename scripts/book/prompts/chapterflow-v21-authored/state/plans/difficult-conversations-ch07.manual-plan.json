@@ -1,0 +1,188 @@
+{
+  "chapterId": "difficult-conversations-ch07",
+  "number": 7,
+  "title": "What's Your Purpose? When to Raise It, When to Let Go",
+  "coreMove": "Choose a conversation only when its honest purpose is something that conversation can actually produce.",
+  "sourcePressure": "The chapter asks whether to raise the conversation at all by sorting legitimate purposes from warning-sign purposes and distinguishing letting go from suppression.",
+  "chapterSpecificMisunderstanding": "Raising every grievance because honesty sounds virtuous.",
+  "sourceAlignmentTerms": [
+    "purpose check",
+    "learning and understanding",
+    "expressing",
+    "problem-solving",
+    "making them suffer",
+    "winning",
+    "changing character",
+    "honest inventory",
+    "letting go"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the three legitimate purposes and three warning-sign purposes",
+      "detail": "The source sorts learning, expressing, and problem-solving from making the other person suffer, winning, and changing character.",
+      "useIn": "both",
+      "phrasingHint": "A purpose that a conversation cannot produce should not be allowed to design the conversation."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch07 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: environmental detail before any human; retrospective first line; dialogue first line; question-as-hook; sensory detail first; timestamp+name+action",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "product handoff frustration",
+      "audience": "product managers deciding whether to raise a recurring issue",
+      "stakes": "the next release will repeat the same mistakes if the purpose is unclear",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anna separates the useful process goal from the part of her that wants an apology",
+      "firstImage": "a release checklist beside a private notes app",
+      "mustInclude": [
+        "release checklist",
+        "handoff doc",
+        "notes app"
+      ],
+      "mustAvoid": [
+        "venting disguised as problem-solving"
+      ]
+    },
+    {
+      "domain": "old college friendship slight",
+      "audience": "friends choosing between expression and release",
+      "stakes": "a ten-year friendship could absorb honesty or be damaged by score-settling",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Anders asks whether saying it would complete something or only make Paula hurt too",
+      "firstImage": "a postcard pinned beside a laptop",
+      "mustInclude": [
+        "old postcard",
+        "missed-call log",
+        "draft email"
+      ],
+      "mustAvoid": [
+        "confession as punishment"
+      ]
+    },
+    {
+      "domain": "community garden allocation dispute",
+      "audience": "neighbors deciding whether a conversation can produce change",
+      "stakes": "plot assignments feel unfair but the committee may not be able to alter them this season",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Paula tests whether learning, expression, or problem-solving is actually available before confronting the coordinator",
+      "firstImage": "a muddy plot map on a clipboard",
+      "mustInclude": [
+        "plot map",
+        "seed packets",
+        "committee rules"
+      ],
+      "mustAvoid": [
+        "winning the fairness argument"
+      ]
+    },
+    {
+      "domain": "employee considering feedback to a powerful director",
+      "audience": "junior staff weighing purpose against risk",
+      "stakes": "a conversation might expose the employee without changing anything",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Michael writes what each possible purpose would require and which audience can safely receive it",
+      "firstImage": "a badge scanner flashing green at an executive floor",
+      "mustInclude": [
+        "access badge",
+        "draft agenda",
+        "HR policy link"
+      ],
+      "mustAvoid": [
+        "courage equals raising it"
+      ]
+    },
+    {
+      "domain": "sibling apology never received",
+      "audience": "adult children processing a grievance elsewhere",
+      "stakes": "waiting for the exact apology has kept the relationship frozen",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "it takes Akira two journal pages to see the conversation he wants cannot produce the childhood acknowledgment he wants",
+      "firstImage": "a notebook open at the same sentence twice",
+      "mustInclude": [
+        "journal",
+        "old voicemail",
+        "family photo envelope"
+      ],
+      "mustAvoid": [
+        "letting go as pretending"
+      ]
+    },
+    {
+      "domain": "team lead bothered by meeting interruptions",
+      "audience": "leaders choosing a clean purpose before raising a pattern",
+      "stakes": "interruptions are harming decisions but irritation wants to make the interrupter feel it",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Nicolas designs the meeting around shared decision quality, not around making the colleague squirm",
+      "firstImage": "a meeting timer paused at seven minutes",
+      "mustInclude": [
+        "meeting timer",
+        "decision log",
+        "whiteboard agenda"
+      ],
+      "mustAvoid": [
+        "public callout as honesty"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs choose a conversation only when its honest purpose is something that conversation can actually produce.",
+      "distinguish purpose check from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate raising every grievance because honesty sounds virtuous."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the purpose of one possible conversation, then cross out any part aimed at winning, punishment, or changing who they are.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

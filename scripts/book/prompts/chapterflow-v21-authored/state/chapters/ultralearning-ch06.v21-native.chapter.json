@@ -1,0 +1,325 @@
+{
+  "chapterId": "ultralearning-ch06",
+  "number": 6,
+  "title": "Principle 3: Directness: go straight ahead",
+  "readingTimeMinutes": 12,
+  "hook": "Client objections teach faster when they interrupt the rehearsal instead of staying on paper.",
+  "counterintuition": "Preparation can become a shelter from performance. Directness moves practice toward the real context, keeping supports only when they lead into the target arena.",
+  "tryThisNow": "Name the real arena where the skill must work, then replace one proxy exercise with a smaller version of that arena.",
+  "keyTakeaway": "Practice transfers best when it increasingly resembles the real performance, so reduce comfortable proxies and keep scaffolding pointed toward the target arena.",
+  "breakdown": {
+    "fastRead": "Laura clips a mock client brief to the conference-room lectern and closes her framework notes. The old rehearsal let her explain objections in a clean order. The real sales call will not.\n\nShe asks a colleague to interrupt, change constraints, and push back like the buyer. The room gets less comfortable and more useful. Directness means practicing closer to the place where the skill must work, not polishing a safe version beside it.\n\nA proxy can help you start. It should not become where you live.",
+    "deepRead": "Michael sits between two plastic visitor chairs facing a social-work intake form. He has practiced the questions in his bedroom, where silence feels harmless and the chair placement does not matter. In the actual interview room, a ten-second pause feels different. The doorway, the form, and the second chair all change the task.\n\nThe room is part of the skill.\n\nIndirect practice often feels efficient because it removes the messy parts. Notes remove interruption. Tutorials remove blank screens. Bedroom rehearsals remove the podium. Scale practice removes the audition excerpt. Those removals can be useful at the beginning, but they also weaken transfer if they stay too far from performance.\n\nDirectness does not demand that every beginner jump into the hardest version on day one. Scaffolding has a job. It makes contact possible, then gradually gives the real context more control. A mock client can interrupt before the real buyer does. An interview room can host rehearsal before an actual client arrives. A blank ticket can replace the guided example before production code is due.\n\nThe question is simple: what part of the real arena is missing from today's practice?",
+    "fullRead": "Manon projects a bug ticket beside an empty code editor. The target behavior is written at the top: show an error message when a payment field is blank. For two weeks she has been completing guided examples that explain each step. The examples feel clean. The production ticket feels rude.\n\nShe opens the blank file anyway.\n\nDirectness is uncomfortable because it removes the cushions that made practice feel fluent. The learner discovers not only what they know, but what the old practice had been hiding. In Manon's case, the missing piece is not syntax from a tutorial. It is deciding what to try first when the next line is not provided.\n\nWhere will the skill actually have to survive?\n\nAsk that before choosing the next practice block. A sales engineer needs buyer interruption. A social-work student needs the interview room. A developer needs the blank ticket. A flight dispatcher needs weather ambiguity, time pressure, and the radio call. A violinist needs the audition excerpt at tempo, not only scales that make the hands feel clean.\n\nDiego learns this in dispatch training. A storm radar printout lies beside the headset while his instructor asks, \"What happens if tower changes the departure slot?\" Diego's route plan was correct in the calm exercise. Add time pressure and a radio call, and his sequence gets shaky. That is not a reason to retreat. It is the missing context announcing itself.\n\nThere are two limits. First, directness can be increased progressively. A full real-world performance may be too much at the start, so you build a smaller version that keeps the important conditions. Second, not every support is bad. A checklist, script, or guided example can help if it leads toward independent performance. It becomes a problem only when it keeps the learner safe from the target.\n\nYusuf sees the trap with violin practice. His scales are clean. The marked audition excerpt still collapses at tempo. At 6:30 p.m., he predicts ten more minutes of scales will settle his bow hand. Then he plays the excerpt and hears the same shift fail. The scale was not useless. It was just no longer direct enough to carry the audition.\n\nMarit reaches the same point in the brewery lab. After two supported quality tests, she removes the checklist and works from the actual batch sheet. The test slows down at first. That slowdown is information. The skill is finally meeting the place where it has to work.\n\nMove closer to the arena. Keep only the supports that move with you."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-laura-client-objections",
+      "title": "Laura Lets the Buyer Interrupt",
+      "tags": [
+        "scene",
+        "sales",
+        "directness"
+      ],
+      "planSpec": {
+        "domain": "Laura, a sales engineer practicing with real client objections",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether the next month produces visible evidence or another private feeling of effort",
+        "format": "scene",
+        "requiredBeat": "Laura replaces framework notes with a live client-objection rehearsal where the buyer can interrupt and change constraints."
+      },
+      "scenario": "A mock client brief is clipped to the conference-room lectern while Laura's framework notes sit closed beside it. Her colleague has a buyer script and permission to interrupt. The old rehearsal would let Laura explain each objection in order. Today she points to the brief and chooses the messier run: changing constraints, live pushback, and no return to the notes until the first round ends. Laura has to choose the interrupted client run before opening her framework notes again. Her review slot is 1:34 p.m.",
+      "whatToDo": "Run the objection rehearsal with interruptions and changing constraints. Use the framework afterward to repair misses, not as the place where practice stays.",
+      "whyItMatters": "The real call will not serve objections in textbook order. Laura needs practice that contains the buyer's interruptions before the buyer supplies them."
+    },
+    {
+      "exampleId": "ch06-ex02-michael-interview-room",
+      "title": "Michael Rehearses in the Intake Room",
+      "tags": [
+        "decision",
+        "social-work",
+        "context"
+      ],
+      "planSpec": {
+        "domain": "Michael, a social-work student rehearsing in the actual interview room",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether a deadline exposes the weakness early enough to adjust",
+        "format": "decision_point",
+        "requiredBeat": "Michael practices the intake conversation in the actual interview room where silence and chair placement change the task."
+      },
+      "scenario": "You are standing with Michael in the intake room, where two plastic visitor chairs face a social-work form on a clipboard. His bedroom practice sounded smooth last night. Here, a ten-second silence feels heavier and the chairs make eye contact harder. The next rehearsal can happen in the safe room at home, or here, with the awkward pause and the form between them. Keep the rehearsal small, but let the real setting shape it. Keep the rehearsal small, but let the real setting shape it. Michael must decide to practice in the intake room and include the silence, chair placement, and form. Keep the rehearsal small, but let the real setting shape it.",
+      "whatToDo": "Practice in the intake room and include the silence, chair placement, and form. Keep the rehearsal small, but let the real setting shape it.",
+      "whyItMatters": "The room changes the performance. If Michael only practices where the task feels clean, the interview will expose problems he never rehearsed."
+    },
+    {
+      "exampleId": "ch06-ex03-manon-blank-ticket",
+      "title": "Manon Opens the Blank Production Ticket",
+      "tags": [
+        "vignette",
+        "code",
+        "transfer"
+      ],
+      "planSpec": {
+        "domain": "Manon, a front-end developer leaving guided tutorials for a blank production ticket",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
+        "format": "vignette",
+        "requiredBeat": "Manon leaves guided examples and opens a blank production ticket with only the target behavior written at the top."
+      },
+      "scenario": "The engineering room is quiet except for a bug ticket projected beside Manon's empty code editor. The target behavior is written at the top, and no tutorial step is waiting underneath. She can open another guided example, or she can start with the production ticket and let the blank file show what the tutorials have not transferred. Write the first failing case, then use tutorials only to solve the specific block the blank editor reveals. Write the first failing case, then use tutorials only to solve the specific block the blank editor reveals. Manon must decide to start from the production ticket. Write the first failing case, then use tutorials only to solve the specific block the blank editor reveals.",
+      "whatToDo": "Start from the production ticket. Write the first failing case, then use tutorials only to solve the specific block the blank editor reveals.",
+      "whyItMatters": "Guided examples can hide the missing decision. The blank ticket brings practice closer to the work Manon must actually do."
+    },
+    {
+      "exampleId": "ch06-ex04-diego-dispatch-pressure",
+      "title": "Diego Adds Weather and the Radio Call",
+      "tags": [
+        "dialogue",
+        "dispatch",
+        "pressure"
+      ],
+      "planSpec": {
+        "domain": "Diego, a flight-dispatch trainee adding time pressure to route planning",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether the project survives contact with a real schedule and real standards",
+        "format": "dialogue",
+        "requiredBeat": "Diego adds dispatch time pressure, weather ambiguity, and a radio call so route planning resembles the real shift."
+      },
+      "scenario": "\"Now add weather,\" the trainer says, sliding a storm radar printout beside Diego's dispatch headset. \"And tower just moved your slot.\" The calm route plan was correct five minutes ago. Diego reaches for the old worksheet, then stops. He faces a sharper rehearsal now: time pressure, ambiguous radar, and a radio call before the plan is comfortable. Diego has to choose the route rehearsal with weather, slot change, and radio call included.",
+      "whatToDo": "Run the route plan with weather, slot change, and radio call included. Use the rehearsal look like the shift instead of the worksheet.",
+      "whyItMatters": "The dispatch skill depends on pressure and ambiguity. Removing them creates a proxy that may not transfer when the headset is live."
+    },
+    {
+      "exampleId": "ch06-ex05-yusuf-audition-excerpt",
+      "title": "Yusuf Leaves the Clean Scales",
+      "tags": [
+        "predict",
+        "violin",
+        "audition"
+      ],
+      "planSpec": {
+        "domain": "Yusuf, a violinist moving from scales to the audition excerpt",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether comfort keeps protecting the exact skill gap that matters",
+        "format": "predict_reveal",
+        "requiredBeat": "Yusuf moves from clean scales to the exact audition excerpt that keeps collapsing under tempo."
+      },
+      "scenario": "At 6:30 p.m., Yusuf clips the marked violin excerpt above his shoulder rest. He predicts ten more minutes of clean scales will settle the shift that keeps failing. Then he plays the excerpt at tempo and hears the same collapse. His bow drops for a second before he turns away from the scale book and puts the audition line back on the stand.",
+      "whatToDo": "Practice the audition excerpt at the tempo that exposes the collapse. Use scales afterward only for the exact motion the excerpt revealed.",
+      "whyItMatters": "Scales support the skill, but the audition will judge the excerpt. Yusuf needs the practice to move toward the performance that counts."
+    },
+    {
+      "exampleId": "ch06-ex06-marit-batch-sheet",
+      "title": "Marit Removes the Lab Checklist",
+      "tags": [
+        "postmortem",
+        "brewery",
+        "scaffold"
+      ],
+      "planSpec": {
+        "domain": "Marit, a brewery quality lead cutting supports from a lab test",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether the next attempt changes the skill instead of decorating the plan",
+        "format": "postmortem",
+        "requiredBeat": "Marit removes the lab checklist after two supported runs and performs the brewery quality test from the actual batch sheet."
+      },
+      "scenario": "It took Marit two clean supported runs to notice the hydrometer floating beside the yeast-stained batch log was not the real test. The laminated checklist had been carrying half the decisions. In the postmortem, she removes it, works from the actual batch sheet, and marks where the quality test slows without the scaffold. Marit's review slot is 4:51 p.m.",
+      "whatToDo": "Run the next quality test from the batch sheet, with the checklist closed nearby for review only after the attempt.",
+      "whyItMatters": "A scaffold helps only if it leads toward independent performance. Marit needs to learn which decisions disappear when the support is removed."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A sales engineer can explain objection-handling frameworks but freezes when buyers interrupt. What change would make practice more direct? The next choice will decide whether today's work produces evidence or only another round of comfort.",
+        "choices": [
+          "Add a live rehearsal where a colleague interrupts and changes constraints.",
+          "Read a second framework so the concepts feel clearer.",
+          "Practice the framework alone until every category is memorized."
+        ],
+        "correctIndex": 0,
+        "explanation": "The interruption is part of the real performance, so practice must include it. More reading and solo memorizing preserve a proxy that misses the buyer's behavior.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A social-work student rehearses intake questions smoothly at home but loses confidence in the actual room. What should the next rehearsal include? A reviewer will see the result tomorrow, so the answer must choose an action rather than a preference.",
+        "choices": [
+          "More home rehearsal until the wording feels automatic.",
+          "The intake room, chair placement, form, and a practice pause.",
+          "A written script that can be read during the live interview."
+        ],
+        "correctIndex": 1,
+        "explanation": "The room and silence are part of the target context. Home rehearsal can support wording, but it does not train the conditions that are causing failure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A developer completes guided examples but stalls on blank production tickets. Which practice step has the strongest transfer? The deadline is close enough that extra preparation would hide the weakness instead of testing it.",
+        "choices": [
+          "Complete more guided examples before trying another ticket.",
+          "Read documentation from start to finish so nothing is missing.",
+          "Open a real ticket, write the first failing case, and use help only after the block appears."
+        ],
+        "correctIndex": 2,
+        "explanation": "The blank ticket contains the missing decision-making step. More examples and broad documentation can help, but they keep the learner away from the target arena.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A flight-dispatch trainee performs well on calm worksheets but struggles during live shifts. Which added condition matters most? A real artifact is waiting on the table, and the learner needs a move that changes the next attempt.",
+        "choices": [
+          "Time pressure, weather ambiguity, and a radio call in the rehearsal",
+          "More route-planning worksheets with cleaner examples",
+          "A longer explanation of dispatch terminology"
+        ],
+        "correctIndex": 0,
+        "explanation": "The live shift includes pressure, ambiguity, and communication. Clean worksheets remove the conditions that shape the actual performance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A violinist plays scales beautifully but the audition excerpt falls apart at tempo. What is the directness problem? Limited time remains before review, so the best option should expose the skill gap quickly.",
+        "choices": [
+          "The violinist should avoid the excerpt until confidence is higher.",
+          "The scales are a support that no longer resembles the performance enough.",
+          "The audition excerpt is too specific to be useful practice."
+        ],
+        "correctIndex": 1,
+        "explanation": "The audition will judge the excerpt, not clean scales. Avoiding the excerpt protects comfort and delays the performance conditions.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A brewery lead performs a lab test well with a checklist but cannot remember the next move from the batch sheet. What should she do? Yesterday's visible miss is still on the page, so the response should use that evidence.",
+        "choices": [
+          "Keep the checklist open permanently so mistakes stay low.",
+          "Switch to a different lab test that feels more natural.",
+          "Remove the checklist for one attempt and review it only afterward."
+        ],
+        "correctIndex": 2,
+        "explanation": "The checklist has become a scaffold that hides missing decisions. Closing it for one attempt reveals what still needs practice.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A learner says directness means throwing beginners into the hardest real situation immediately. What correction is most accurate? The learner can protect the old habit or make the next attempt more honest under pressure.",
+        "choices": [
+          "Directness can increase progressively when scaffolding leads toward the target context.",
+          "Directness means avoiding all support, scripts, or guided practice from the start.",
+          "Directness is unnecessary if the learner has enough background knowledge."
+        ],
+        "correctIndex": 0,
+        "explanation": "Support is useful when it points toward the real context. The mistake is keeping support permanent or staying too far from performance.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A public speaker practices in a bedroom but always rushes on stage. Which smaller direct practice would help most? One session remains before feedback, and the answer should choose the useful constraint.",
+        "choices": [
+          "Read another book on stage presence.",
+          "Record the speech in the actual room or a similar room with a timer and empty seats.",
+          "Practice only the opening sentence until it feels polished."
+        ],
+        "correctIndex": 1,
+        "explanation": "The room, timer, and empty seats add performance conditions that the bedroom lacks. Reading and polishing can support but do not solve the transfer gap.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two language learners study pronunciation. One repeats isolated sounds; the other uses those sounds in a live conversation drill after five minutes. Which approach is stronger?",
+        "choices": [
+          "The isolated sounds, because clean fragments always transfer automatically.",
+          "Neither, because pronunciation cannot be practiced outside real travel.",
+          "The conversation drill, because it reconnects the fragment to the target arena."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fragments can help, but transfer improves when they return to the context where the skill must work. Travel is not required for a more direct practice.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What does directness ask you to move practice toward?",
+      "back": "Toward the real context where the skill must work: the room, task, pressure, blank page, audience, tools, or constraints that will judge performance.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A practice method feels smooth but fails in real use. What should you inspect?",
+      "back": "Look for missing performance conditions. The practice may have removed interruption, ambiguity, blank starts, timing, or other parts of the target arena.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "When is scaffolding useful?",
+      "back": "Scaffolding helps when it makes contact with the skill possible and then leads toward independent performance. It becomes a problem when it keeps you safe from the target.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A musician practices support exercises but fails the audition excerpt. What is the direct move?",
+      "back": "Practice the excerpt under audition-like conditions, then use support exercises only for the specific motion the excerpt exposes.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How can a beginner practice directly without being overwhelmed?",
+      "back": "Use a smaller version of the real arena. Keep the important conditions, but reduce scale, stakes, or complexity enough to begin.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is moving practice toward performance. You identify the real arena, spot the proxy that feels safe but transfers weakly, and replace it with a smaller target-like attempt.",
+    "ifThenPlans": [
+      {
+        "context": "client work",
+        "plan": "If practice stays in notes, then add one interruption or constraint that a real client would bring."
+      },
+      {
+        "context": "school placement",
+        "plan": "If rehearsal changes in the real room, then practice in that room before the assessed encounter."
+      },
+      {
+        "context": "technical work",
+        "plan": "If guided examples feel smooth but blank work stalls, then start from a real ticket and use examples only after the first block."
+      },
+      {
+        "context": "performance",
+        "plan": "If support exercises are clean but the target piece fails, then move the next session to the target piece under its real constraints."
+      }
+    ],
+    "twentyFourHourChallenge": "Name the arena where one skill must work, then replace one proxy exercise with a smaller version of that arena before the next practice session.",
+    "weeklyPractice": "Each week, ask what real condition your practice has been removing. Add one of those conditions back in a small, controlled way."
+  },
+  "memorableLines": [
+    {
+      "text": "A proxy can help you start. It should not become where you live.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the useful limit on indirect practice without rejecting scaffolding."
+    },
+    {
+      "text": "The room is part of the skill.",
+      "location": "breakdown.deepRead",
+      "why": "It makes directness concrete by showing context as part of performance."
+    },
+    {
+      "text": "Move closer to the arena. Keep only the supports that move with you.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader a concise rule for increasing directness without abandoning all support."
+    }
+  ]
+}

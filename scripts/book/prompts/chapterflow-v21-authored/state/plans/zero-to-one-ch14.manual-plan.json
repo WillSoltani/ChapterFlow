@@ -1,0 +1,190 @@
+{
+  "chapterId": "zero-to-one-ch14",
+  "number": 14,
+  "title": "The Founder's Paradox",
+  "coreMove": "Evaluate founder intensity as both a creative asset and an organizational risk.",
+  "sourcePressure": "The chapter holds founder upside and founder instability together, showing how unusual intensity can create force and distort judgment at the same time.",
+  "chapterSpecificMisunderstanding": "Turning the founder into either a hero, villain, or pop-psychology type.",
+  "sourceAlignmentTerms": [
+    "founder paradox",
+    "intensity",
+    "instability",
+    "leadership tension",
+    "creative force",
+    "volatility"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "the founder paradox",
+      "detail": "the source sidecar frames the chapter around the founder paradox and keeps founder upside and instability in view",
+      "useIn": "both",
+      "phrasingHint": "The same force that gives a company nerve can also bend its judgment out of shape."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of founder paradox",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rebecca",
+      "domain": "founder-led medical startup",
+      "audience": "a board member weighing a founder’s rare urgency against the way he shuts down correction",
+      "stakes": "whether intensity gives the company speed while making judgment brittle",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rebecca praises the breakthrough and still insists the safety review stay independent",
+      "firstImage": "a prototype injector locked in a glass cabinet",
+      "mustInclude": [
+        "injector prototype",
+        "safety memo",
+        "board agenda"
+      ],
+      "mustAvoid": [
+        "founder worship"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "fashion marketplace turnaround",
+      "audience": "a COO managing a charismatic founder whose taste built the brand and now destabilizes operations",
+      "stakes": "whether creative force keeps creating or starts whipsawing the team",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Vincent charts the week’s reversals next to the sales lift only the founder saw first",
+      "firstImage": "fabric swatches scattered across a finance printout",
+      "mustInclude": [
+        "fabric swatches",
+        "finance printout",
+        "launch calendar"
+      ],
+      "mustAvoid": [
+        "founder bashing"
+      ]
+    },
+    {
+      "protagonistName": "Hanna",
+      "domain": "scientific instrument company",
+      "audience": "a lead engineer protecting the founder’s impossible standard without accepting midnight redesign chaos",
+      "stakes": "whether exacting vision becomes execution volatility",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hanna freezes the design change log until the founder chooses one nonnegotiable",
+      "firstImage": "a precision lens under a dust cover",
+      "mustInclude": [
+        "precision lens",
+        "change log",
+        "calibration bench"
+      ],
+      "mustAvoid": [
+        "pop psychology"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "neighborhood grocery chain",
+      "audience": "a successor deciding how much founder instinct to preserve after a brilliant but volatile expansion",
+      "stakes": "whether inherited intensity becomes discipline or family myth",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Aman separates the founder’s true customer insight from the habits that exhausted every manager",
+      "firstImage": "old store-opening photos in a metal archive box",
+      "mustInclude": [
+        "archive box",
+        "manager exit notes",
+        "store map"
+      ],
+      "mustAvoid": [
+        "leadership advice generic"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "climate analytics firm",
+      "audience": "an investor evaluating a founder who sees the market early but treats dissent as betrayal",
+      "stakes": "whether the same conviction that found the secret now blocks learning",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Margaux asks for the dissent memo before approving the next funding tranche",
+      "firstImage": "a dissent memo folded under a term sheet",
+      "mustInclude": [
+        "term sheet",
+        "dissent memo",
+        "market forecast"
+      ],
+      "mustAvoid": [
+        "VC caricature"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "restaurant technology company",
+      "audience": "a chief of staff creating operating guardrails around a founder’s brilliant product instincts",
+      "stakes": "whether sharp product taste can scale without burning the organization",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Pablo turns the founder’s late-night voice notes into a weekly decision forum with limits",
+      "firstImage": "voice-note transcripts taped beside a sprint board",
+      "mustInclude": [
+        "voice-note transcripts",
+        "sprint board",
+        "decision log"
+      ],
+      "mustAvoid": [
+        "startup mythology"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires evaluate founder intensity as both a creative asset and an organizational risk.",
+      "separate founder paradox from intensity in a novel operating case",
+      "diagnose the specific failure mode: turning the founder into either a hero, villain, or pop-psychology type.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the founder strength you rely on most, then write the organizational distortion it can create; add one guardrail that preserves the strength without worshiping it.",
+  "readingTimeMinutes": 12
+}

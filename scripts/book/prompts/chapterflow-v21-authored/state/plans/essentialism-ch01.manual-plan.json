@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch01",
+  "number": 1,
+  "title": "The Essentialist",
+  "coreMove": "Make the hidden cost of capable overcommitment visible, then replace scattered availability with a filter for highest contribution.",
+  "sourcePressure": "The chapter introduces the Essentialist versus Nonessentialist contrast, the paradox that success creates options that erode clarity, and the three truths: choice, few things matter, and doing anything is not doing everything.",
+  "chapterSpecificMisunderstanding": "A weak run would write a generic introduction about being productive, simplifying life, or trying harder to prioritize.",
+  "sourceAlignmentTerms": [
+    "Essentialist",
+    "Nonessentialist",
+    "paradox of success",
+    "less but better",
+    "vital few",
+    "trivial many"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic the essentialist topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "calendar cleanup frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "calendar cleanup",
+      "minimalist aesthetics",
+      "generic productivity habits",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rural trauma surgeon after a regional award brings three new committees",
+      "audience": "surgeon whose success has attracted civic requests",
+      "stakes": "patient readiness and teaching rounds are displaced by prestige invitations",
+      "format": "decision_point",
+      "requiredBeat": "She places the award plaque beside the trauma-call board and circles the one committee that directly improves rural response time.",
+      "firstImage": "An award plaque leans against a trauma-call board.",
+      "mustInclude": [
+        "award plaque",
+        "trauma-call board",
+        "committee letters"
+      ],
+      "mustAvoid": [
+        "generic busy doctor",
+        "calendar cleanup"
+      ]
+    },
+    {
+      "domain": "regional bird-rescue director after a viral release video triples volunteer offers",
+      "audience": "nonprofit leader whose success has created attractive noise",
+      "stakes": "new volunteer energy can either protect injured birds or become tour management",
+      "format": "scene",
+      "requiredBeat": "He pins the intake chart above the media request stack and redirects volunteers to transport shifts before accepting interviews.",
+      "firstImage": "A feather intake chart sits on a stack of interview requests.",
+      "mustInclude": [
+        "intake chart",
+        "media request stack",
+        "transport shift roster"
+      ],
+      "mustAvoid": [
+        "generic viral fame",
+        "animal sentimentality"
+      ]
+    },
+    {
+      "domain": "independent board-game designer after a convention hit attracts licensing requests",
+      "audience": "creator tempted to chase every post-success opportunity",
+      "stakes": "the next prototype may die under meetings that look like growth",
+      "format": "dialogue",
+      "requiredBeat": "She sets the prototype deck beside three licensing envelopes and says yes only to the partner who can improve playtesting.",
+      "firstImage": "A prototype deck sits beside three licensing envelopes.",
+      "mustInclude": [
+        "prototype deck",
+        "licensing envelopes",
+        "playtest notes"
+      ],
+      "mustAvoid": [
+        "generic startup pitch",
+        "money-is-bad frame"
+      ]
+    },
+    {
+      "domain": "public defender invited onto every courthouse reform task force",
+      "audience": "advocate whose competence makes every reform group want her",
+      "stakes": "case preparation for current clients can vanish under worthy committees",
+      "format": "before_after",
+      "requiredBeat": "Before, every task force gets a yes; after, she marks only the bail-hearing group that changes next week’s docket.",
+      "firstImage": "A docket calendar is covered by task-force badges.",
+      "mustInclude": [
+        "docket calendar",
+        "task-force badges",
+        "bail-hearing agenda"
+      ],
+      "mustAvoid": [
+        "generic public service heroism",
+        "rude refusal"
+      ]
+    },
+    {
+      "domain": "community radio engineer after the station wins a local journalism prize",
+      "audience": "technical lead whose prize attracts expansion requests",
+      "stakes": "the transmitter maintenance that earned trust may be neglected",
+      "format": "postmortem",
+      "requiredBeat": "He finds the dead-air log under the award program and writes the filter: protect signal reliability before new shows.",
+      "firstImage": "A dead-air log is tucked under an award program.",
+      "mustInclude": [
+        "dead-air log",
+        "award program",
+        "transmitter checklist"
+      ],
+      "mustAvoid": [
+        "generic media success",
+        "platform growth cliché"
+      ]
+    },
+    {
+      "domain": "artisan bakery whose croissants made a national list",
+      "audience": "owner pulled from craft into wholesale offers",
+      "stakes": "the signature bake may weaken under sudden scale",
+      "format": "predict_reveal",
+      "requiredBeat": "She predicts wholesale will prove success, then checks the laminated bake schedule and rejects orders that would change the morning mix.",
+      "firstImage": "A laminated bake schedule rests under wholesale order forms.",
+      "mustInclude": [
+        "bake schedule",
+        "wholesale order forms",
+        "proofing rack labels"
+      ],
+      "mustAvoid": [
+        "generic cafe rush",
+        "narrow kitchen shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the The Essentialist move inside a concrete scenario",
+      "choose the response that applies: Make the hidden cost of capable overcommitment visible, then replace scattered availability with a filter for highest contribution.",
+      "reject the generic drift: A weak run would write a generic introduction about being productive, simplifying life, or trying harder to prioritize.",
+      "explain the trade-off using chapter-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one request that arrived because you have succeeded. Put it beside the work success should protect, then write the filter that decides whether it belongs.",
+  "readingTimeMinutes": 12
+}

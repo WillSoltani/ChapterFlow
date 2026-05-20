@@ -1,0 +1,319 @@
+{
+  "chapterId": "peak-ch05",
+  "number": 5,
+  "title": "Principles of Deliberate Practice on the Job",
+  "readingTimeMinutes": 11,
+  "hook": "A dispatcher rewinds one radio call while the next ambulance idles outside bay three.",
+  "counterintuition": "Most people assume the job itself is practice because the stakes are real, but real work often rewards speed over learning. Skill improves when one repeated move is paused, corrected, and carried back into the next live attempt.",
+  "tryThisNow": "After your next work task, pick one moment that felt rough. Replay or rewrite only that moment for five minutes, then ask one person for a specific correction.",
+  "keyTakeaway": "To practice on the job, do not wait for spare time: isolate one repeated move inside real work, add fast feedback, and make the next live attempt different.",
+  "breakdown": {
+    "fastRead": "At 8:47 a.m., Stefan sits in the ambulance bay with a radio handset warm in his palm. The last dispatch call got muddy when he gave the cross street. The next unit is already waiting. His supervisor rewinds the recording and plays only the twelve seconds that broke.\n\nWork is not practice until one piece of it gets corrected. A busy job gives many reps, but it rarely gives clean feedback. Pull one repeated move out of the shift, fix it fast, and carry the fix into the next live call.",
+    "deepRead": "At 8:47 a.m., Stefan wants to forget the bad call and clear the queue. The ambulance outside bay three is idling. His supervisor points to the waveform on the tablet and plays the twelve seconds where his street name blurred.\n\nWork is not practice until one piece of it gets corrected. Stefan already has real pressure. What he lacks is a pause short enough to fit the job and sharp enough to change the next call. The replay gives him both.\n\nYou can build this into almost any job. A teacher reviews only the first minute of class. A mechanic checks only the handoff note that keeps causing rework. A nurse rehearses one discharge sentence. The piece must be small enough to fix before work swallows it.\n\nThe limit is that the job still has to run. Do not turn every task into a seminar. Pick high-repeat moves, make the feedback brief, and protect the next customer, patient, or teammate from becoming your unpaid practice tool.\n\nStefan's supervisor does not need an hour. She needs twelve seconds and a standard for a clear street name. The short pause respects the work while refusing to waste the error.\n\nA workplace practice loop should feel almost too small. That is its strength. People can accept it during a shift, and the next customer or teammate gets the benefit right away.",
+    "fullRead": "At 8:47 a.m., Stefan drops into the cracked vinyl chair in the ambulance bay. The radio handset is still warm. Outside bay three, a unit idles with its rear doors open. He wants to clear the next call and let the last one disappear into the morning.\n\nHis supervisor has other plans. She rewinds the dispatch recording and plays twelve seconds. Stefan hears the cross street smear under his own breath. He hears the medic ask twice. The mistake is small, but it costs time on a call where time is the product.\n\nA job gives repetition, pressure, and stakes. Those are not enough. Most jobs reward getting the work done, not stopping to rebuild the move that made the work worse. Deliberate practice on the job has to carve out one repeated action and give it feedback while the memory is still warm.\n\nA barista can practice one milk pour before the line forms again. A case manager can rewrite one intake question after a client goes quiet. A warehouse lead can review one forklift turn from the floor camera. These are not retreats from work. They are small repairs inside work.\n\nThe manager's job is to make the repair normal. If every correction feels like blame, people will hide the miss. If every correction becomes a meeting, the shift will rebel. The sweet spot is a short pause, a clear signal, and one next attempt that proves the feedback changed something.\n\nStefan says the cross street three times, slower on the first syllable, then takes the next call. The shift keeps moving, but the lesson cannot move with it unless someone catches it. Job learning is not years served. It is the quality of the correction between one live rep and the next.\n\nThe hard part is cultural. If Stefan thinks replay means shame, he will avoid it. If the supervisor saves feedback for a monthly review, the street-name problem will keep traveling from call to call.\n\nGood job practice treats common errors as design material. Which handoff line keeps failing? Which question shuts clients down? Which machine setup creates scrap? Pick the repeated move, not the whole job identity.\n\nThe feedback also has to be close to the work. A note three weeks later may be fair, but it is rarely practice. A replay, a sample, a camera still, or a quick peer mark can change the next attempt while the body still remembers the last one.\n\nStefan takes the next call with the corrected street name in his mouth. That is the promise of practice at work. The workplace does not have to stop learning in order to keep running.\n\nA workplace that does this well feels calmer, not softer. Errors are still taken seriously. They are also turned into drills before they harden into habits.\n\nStefan's queue will fill again before noon. The small replay is not extra work for a perfect day. It is the way a crowded day teaches without waiting for a quiet one."
+  },
+  "examples": [
+    {
+      "exampleId": "peak-ch05-ex01-stefan-radio-rewind",
+      "title": "Stefan rewinds twelve seconds of radio static",
+      "tags": [
+        "work",
+        "replay",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "emergency dispatch",
+        "audience": "new dispatcher",
+        "stakes": "response time",
+        "format": "decision_point",
+        "requiredBeat": "he drills one muddy phrase before the next call"
+      },
+      "scenario": "At 8:47 a.m., Stefan sits in bay three with the radio handset warm in his palm and diesel fumes drifting through the open ambulance doors. His last cross street came out muddy, and the medic asked twice. The next unit is waiting. His supervisor has the recording cued to twelve seconds of static and street names. Stefan has to decide whether to clear the queue or replay the exact phrase before another driver hears it live.",
+      "whatToDo": "Replay the twelve seconds, say the cross street three times with the supervisor listening, then take the next call using the corrected pace.",
+      "whyItMatters": "The job already gives pressure. The replay gives feedback. Fixing the phrase between calls turns the next live dispatch into a better rep, not another blind attempt."
+    },
+    {
+      "exampleId": "peak-ch05-ex02-lakshmi-first-minute",
+      "title": "Lakshmi marks the first minute of class",
+      "tags": [
+        "teaching",
+        "video",
+        "classroom"
+      ],
+      "planSpec": {
+        "domain": "teaching",
+        "audience": "new science teacher",
+        "stakes": "classroom control",
+        "format": "postmortem",
+        "requiredBeat": "she studies the exact opening that lost the room"
+      },
+      "scenario": "Tuesday, 3:18 p.m., Lakshmi sits alone in room 214 with two broken pencils on the floor and the class tablet propped against a beaker rack. Period four went sideways before the lab even started. She plays the video and stops at the first minute, where she turned to write the date while three students opened the supply drawer. Lakshmi must decide what to practice tomorrow morning: a whole new lesson plan or the first sixty seconds of entry.",
+      "whatToDo": "Practice the first minute only: greet at the door, give the supply cue, and wait to turn to the board until the drawer routine is done.",
+      "whyItMatters": "The class failed before the content began. A one-minute entry drill targets the repeatable move that shapes the rest of the period."
+    },
+    {
+      "exampleId": "peak-ch05-ex03-mirek-forklift-camera",
+      "title": "Mirek watches the forklift turn on camera",
+      "tags": [
+        "warehouse",
+        "camera",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "warehouse",
+        "audience": "forklift trainer",
+        "stakes": "damage reduction",
+        "format": "vignette",
+        "requiredBeat": "he uses floor camera feedback after a near miss"
+      },
+      "scenario": "At 11:06 a.m., Mirek stands under the warehouse mezzanine with a paper cup of burnt coffee and the floor camera frozen on aisle K. The new driver clipped a pallet because his rear wheel drifted wide at the same yellow post twice. Mirek does not lecture from memory. He drags the video back to the wheel, points to the post, and has the driver walk the turn on foot before climbing back into the forklift.",
+      "whatToDo": "Use the camera still as feedback, then rehearse the turn path on foot before another loaded drive. Keep the correction tied to the yellow post.",
+      "whyItMatters": "The video makes the hidden rear-wheel path visible. Walking it once gives the driver a body cue he can use when the forklift moves again."
+    },
+    {
+      "exampleId": "peak-ch05-ex04-odette-intake-question",
+      "title": "Odette rewrites one intake question at the copier",
+      "tags": [
+        "casework",
+        "language",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "social services",
+        "audience": "case manager",
+        "stakes": "client trust",
+        "format": "before_after",
+        "requiredBeat": "she repairs one question after a client shuts down"
+      },
+      "scenario": "At 4:02 p.m., Odette stands by the county office copier with a warm intake form curling in her hand. Before lunch, a father shut down when she asked why he failed to keep housing. After the meeting, she writes the question three ways on a sticky note: What got in the way of staying housed? What happened last month? What support was missing? The lobby bell rings, and she must choose whether to use the old form or test the softer line.",
+      "whatToDo": "Replace the blaming question for the next intake and ask a colleague to listen for the client's first response. Keep the version that keeps facts coming.",
+      "whyItMatters": "A job phrase can become a practice unit. Changing one question and watching the response gives feedback without redesigning the whole process."
+    },
+    {
+      "exampleId": "peak-ch05-ex05-thando-espresso-pour",
+      "title": "Thando weighs the espresso after the rush",
+      "tags": [
+        "service",
+        "measurement",
+        "craft"
+      ],
+      "planSpec": {
+        "domain": "coffee shop",
+        "audience": "shift lead",
+        "stakes": "drink quality",
+        "format": "dialogue",
+        "requiredBeat": "he turns a rushed mistake into a short drill"
+      },
+      "scenario": "At 1:36 p.m., Thando sets a sticky portafilter on the rubber mat while the lunch line thins to two customers. The last three lattes tasted sharp. Grind again? the new barista asks. Thando points to the scale. One shot, twenty-eight grams, then taste. The grinder is still whining, the tip jar smells like wet coins, and Thando must decide whether to keep serving or stop for one measured pour.",
+      "whatToDo": "Pull one measured shot, taste it, adjust the grind, and pull one more before the next wave. Keep the feedback in the cup and on the scale.",
+      "whyItMatters": "The rush hides drift. A single measured pour catches the error while the barista can still connect taste, weight, and grind."
+    },
+    {
+      "exampleId": "peak-ch05-ex06-noelia-handoff-note",
+      "title": "Noelia circles the missing handoff line",
+      "tags": [
+        "support",
+        "handoff",
+        "writing"
+      ],
+      "planSpec": {
+        "domain": "software support",
+        "audience": "support lead",
+        "stakes": "customer escalation",
+        "format": "reflection",
+        "requiredBeat": "she practices one handoff sentence after escalation"
+      },
+      "scenario": "At 6:21 p.m., Noelia sits at her kitchen counter with her laptop open and a cold tortilla on a plate beside the trackpad. A customer escalation came from the missing line in her handoff: billing workaround expires Friday. She has written twenty tickets today and wants to close the laptop. Instead, she circles the blank spot in the template and has to decide whether to practice one clear handoff sentence before tomorrow's queue.",
+      "whatToDo": "Write the missing sentence in three versions, pick the clearest one, and add it to tomorrow's first ticket. Ask the receiving teammate whether it changed the handoff.",
+      "whyItMatters": "The work failed at a repeatable line. Practicing that line once tonight protects many tickets tomorrow."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 78,
+    "questions": [
+      {
+        "questionId": "peak-ch05-q01",
+        "prompt": "A manager is learning principles of deliberate practice on the job and keeps choosing drills that feel smooth. Which action best uses the edge of adaptation?",
+        "choices": [
+          "Raise one demand just enough that the current habit fails in a visible way, then rest before the next attempt.",
+          "Add several new demands at once so the practice feels intense.",
+          "Stay with the easy version until confidence is high."
+        ],
+        "correctIndex": 0,
+        "explanation": "Useful adaptation starts at a clear edge. The demand must be hard enough to teach and narrow enough to read.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "peak-ch05-q02",
+        "prompt": "An analyst tries to improve principles of deliberate practice on the job by working late, but after an hour every miss looks the same. What should she change?",
+        "choices": [
+          "She should push through because fatigue proves the work is serious.",
+          "The strain has become too blurry, so she should narrow the task and recover before another focused block.",
+          "She should remove feedback so she can trust her instincts."
+        ],
+        "correctIndex": 1,
+        "explanation": "When fatigue hides the signal, more effort stops teaching. A smaller drill and rest bring the signal back.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "peak-ch05-q03",
+        "prompt": "A coach wants a player to adapt to faster play without panic. Which plan fits best?",
+        "choices": [
+          "Scrimmage at full chaos and let the player learn from losing.",
+          "Give a long talk about toughness before normal practice.",
+          "Speed up one cue, keep the rest stable, and check whether the player's first move changes."
+        ],
+        "correctIndex": 2,
+        "explanation": "One raised demand gives the player a readable problem. Full chaos can overwhelm the feedback loop.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "peak-ch05-q04",
+        "prompt": "A parent practices principles of deliberate practice on the job with a child and sees form collapse after five good reps. Which move is best?",
+        "choices": [
+          "Stop the set, name the cue that stayed clean, and return after a short break.",
+          "Demand ten more reps so the child learns discipline.",
+          "Switch to a different skill to keep the child entertained."
+        ],
+        "correctIndex": 0,
+        "explanation": "Stopping preserves the correct signal. Pushing after form fails risks training the wrong pattern.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "peak-ch05-q05",
+        "prompt": "A designer says her current drill is boring because she can do it perfectly. What does that show?",
+        "choices": [
+          "The skill is finished and needs no further practice.",
+          "The drill no longer creates a useful demand and needs one clear step of added difficulty.",
+          "The feedback is too direct and should be removed."
+        ],
+        "correctIndex": 1,
+        "explanation": "Perfect ease means the old demand has been absorbed. Growth needs the next controlled edge.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "peak-ch05-q06",
+        "prompt": "A team lead is creating a practice block for principles of deliberate practice on the job. Which plan should she write?",
+        "choices": [
+          "Ask everyone to try harder during normal work and discuss it at the end of the month.",
+          "Run the hardest possible version until weak people drop out.",
+          "Pick one pressure to raise, one signal to watch, and one recovery point before the next rep."
+        ],
+        "correctIndex": 2,
+        "explanation": "A useful plan names the demand, the feedback, and the rest point. That turns strain into training.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "peak-ch05-q07",
+        "prompt": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?",
+        "choices": [
+          "He changed too many demands at once, so the feedback can no longer point to one cause.",
+          "He did not add enough total stress to force change.",
+          "He should ignore pain unless it ends the workout."
+        ],
+        "correctIndex": 0,
+        "explanation": "Adaptation needs a clean signal. Multiple new pressures make the result hard to read and risky to repeat.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "peak-ch05-q08",
+        "prompt": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?",
+        "choices": [
+          "Avoid the passage until her general skill catches up.",
+          "Choose a short passage that sounds bad for a known reason and repeat it with feedback until the sound changes.",
+          "Play only polished pieces so motivation stays high."
+        ],
+        "correctIndex": 1,
+        "explanation": "The bad sound marks the edge. If the reason is known, it can guide the next focused rep.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "peak-ch05-q09",
+        "prompt": "A founder schedules practice after a draining investor call. Which adjustment best protects learning?",
+        "choices": [
+          "Extend the session to prove commitment after the call.",
+          "Skip feedback because he already knows what went wrong.",
+          "Use a shorter drill with one clear cue, then stop before tired choices become the lesson."
+        ],
+        "correctIndex": 2,
+        "explanation": "A tired session can still teach if it is narrow. It becomes harmful when fatigue writes the pattern.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "peak-ch05-card-01",
+      "front": "You repeat a skill for an hour and feel busy, but the same miss keeps returning. What do you retrieve?",
+      "back": "Name the one part that breaks, make the next rep small enough to see it, and add feedback before you repeat. Practice starts when the miss becomes visible.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "peak-ch05-card-02",
+      "front": "A coach gives you a correction that feels too narrow. What should you ask before moving on?",
+      "back": "Ask what signal will prove the correction worked. A good drill has a target, a cue, and a way to know whether the next rep was better.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "peak-ch05-card-03",
+      "front": "You are stuck on a plateau after weeks of honest effort. What is the next useful move?",
+      "back": "Change the drill, not the dream. Find a stronger model, raise one demand, slow the rep, or get sharper feedback so your current habits cannot coast.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "peak-ch05-card-04",
+      "front": "A teammate says talent explains the gap. How do you answer in practice terms?",
+      "back": "Look for hours of focused reps, quality of coaching, feedback speed, and the mental picture the expert uses. Those are trainable causes you can act on.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Turn improvement into a short loop: choose one target, make the next rep hard enough to teach, get feedback, and adjust before the next try. For this idea, the shift itself becomes useful only when one piece of it is pulled aside and corrected.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If I notice the same work mistake twice before lunch, then I will stop the broad task and run a ten-minute drill on that exact step with one visible success mark."
+      },
+      {
+        "context": "health",
+        "plan": "If I finish a workout and cannot say what improved, then I will write one measurable target for the next session and ask for one cue or record one rep."
+      },
+      {
+        "context": "personal",
+        "plan": "If I am learning at home and drift into easy repeats, then I will set a timer for twelve minutes and practice only the part that still feels awkward."
+      },
+      {
+        "context": "relationships",
+        "plan": "If a hard conversation goes poorly, then I will replay one sentence, rewrite it in plain words, and practice saying it once before the next talk."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, pick one skill you claim to be improving and cut it down to a single weak move. Do three focused reps, get one outside signal if possible, and write the correction before you do the fourth rep.",
+    "weeklyPractice": "Once this week, schedule three twenty-minute practice blocks for the same skill. Keep the target small, record the miss after each block, and raise only one demand next week."
+  },
+  "memorableLines": [
+    {
+      "text": "Work is not practice until one piece of it gets corrected.",
+      "location": "breakdown.deepRead",
+      "why": "It states the central workplace distinction in plain words."
+    },
+    {
+      "text": "To practice on the job, do not wait for spare time: isolate one repeated move inside real work, add fast feedback, and make the next live attempt different.",
+      "location": "keyTakeaway",
+      "why": "It gives the operational move without jargon."
+    },
+    {
+      "text": "The shift keeps moving, but the lesson cannot move with it unless someone catches it.",
+      "location": "breakdown.fullRead",
+      "why": "It makes workplace learning feel urgent and concrete."
+    }
+  ]
+}

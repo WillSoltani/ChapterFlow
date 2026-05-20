@@ -1,0 +1,154 @@
+{
+  "chapterId": "atomic-habits-ch01",
+  "number": 1,
+  "title": "The Surprising Power of Atomic Habits",
+  "coreMove": "Treat invisible progress as banked evidence and keep improving the system while results lag.",
+  "sourcePressure": "Tiny improvements compound, systems govern trajectory, and results often lag behind habit structure.",
+  "chapterSpecificMisunderstanding": "Thinking tiny habits are motivational slogans or that small effort deserves immediate visible payoff.",
+  "sourceAlignmentTerms": [
+    "1 percent better",
+    "compound interest",
+    "systems",
+    "goals",
+    "plateau of latent potential",
+    "British Cycling",
+    "lagging results"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of 1 percent better",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a velodrome mechanic logging tiny bearing adjustments for a junior cycling squad",
+      "audience": "a coach whose riders are still losing by a wheel length",
+      "stakes": "whether he scraps marginal gains before race-day speed appears",
+      "format": "postmortem",
+      "requiredBeat": "he overlays the torque logs with lap times and sees the tenth-second gains arrive only after eight quiet weeks",
+      "firstImage": "a spreadsheet of tire-pressure notes beside a stripped hub",
+      "mustInclude": [
+        "torque wrench",
+        "lap timer"
+      ],
+      "mustAvoid": [
+        "instant victory scene",
+        "generic sports pep talk"
+      ]
+    },
+    {
+      "domain": "a sourdough bakery shaving seconds from the morning scoring line",
+      "audience": "a baker fighting a 5 a.m. production bottleneck",
+      "stakes": "whether tiny prep changes prevent the Saturday queue from backing out the door",
+      "format": "scene",
+      "requiredBeat": "she totals eight seconds saved per loaf across ninety loaves and keeps the new blade layout another month",
+      "firstImage": "a razor blade set beside flour-dusted proofing baskets",
+      "mustInclude": [
+        "lame blade",
+        "proofing baskets"
+      ],
+      "mustAvoid": [
+        "coffee shop productivity shell"
+      ]
+    },
+    {
+      "domain": "a municipal water lab calibrating a sensor one decimal point at a time",
+      "audience": "a technician under pressure to replace equipment",
+      "stakes": "whether small calibration records prevent a false contamination alarm",
+      "format": "decision_point",
+      "requiredBeat": "he points to six minor drift corrections and chooses another calibration cycle instead of buying a new unit",
+      "firstImage": "a chlorine sensor blinking beside a laminated log",
+      "mustInclude": [
+        "calibration log",
+        "sample vial"
+      ],
+      "mustAvoid": [
+        "generic lab breakthrough"
+      ]
+    },
+    {
+      "domain": "a novice cellist raising bow speed by two metronome clicks per practice",
+      "audience": "an adult beginner embarrassed by slow progress",
+      "stakes": "whether she quits before tone quality changes",
+      "format": "before_after",
+      "requiredBeat": "the teacher plays week-one and week-nine recordings back to back so the hidden gains become audible",
+      "firstImage": "a phone recorder glowing on a black music stand",
+      "mustInclude": [
+        "rosin block",
+        "metronome app"
+      ],
+      "mustAvoid": [
+        "school classroom shell"
+      ]
+    },
+    {
+      "domain": "a credit-union borrower sending tiny extra payments against principal",
+      "audience": "a teller coaching a member who feels the balance is frozen",
+      "stakes": "whether the member stops autopay because the statement looks unchanged",
+      "format": "dialogue",
+      "requiredBeat": "the teller circles the month where interest drops below principal and asks the member to protect the boring stretch",
+      "firstImage": "a loan statement folded under a plastic desk shield",
+      "mustInclude": [
+        "amortization table",
+        "autopay receipt"
+      ],
+      "mustAvoid": [
+        "generic budget app scene"
+      ]
+    },
+    {
+      "domain": "a soil-restoration crew measuring organic matter after cover-crop cycles",
+      "audience": "a farm manager tempted to abandon the field trial",
+      "stakes": "whether invisible soil gains are respected before yield rises",
+      "format": "thought_experiment",
+      "requiredBeat": "the crew compares soil tests from three seasons and names the threshold that was not visible from the road",
+      "firstImage": "dark soil crumbling through a sieve at the edge of a test plot",
+      "mustInclude": [
+        "soil sieve",
+        "cover-crop tag"
+      ],
+      "mustAvoid": [
+        "garden habit metaphor"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate lagging outcomes from leading habit evidence",
+      "choose system repairs over goal resets",
+      "detect when small gains are being dismissed too early"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one habit with no visible payoff yet. Name one leading measure you can bank today, such as one logged rep, one setup action, or one tiny reduction in friction.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,124 @@
+{
+  "bookId": "extreme-ownership",
+  "title": "Extreme Ownership",
+  "author": "Jocko Willink, Leif Babin",
+  "thesisParagraph": "Extreme Ownership argues that leadership is not a title or a motivational style; it is the decision to own every condition that affects the mission. The leader does not hide behind weak subordinates, unclear orders, bad timing, or incomplete information. The leader accepts responsibility, builds belief in the purpose, checks ego, links teams, keeps plans simple, chooses priorities under pressure, pushes authority to trained people, communicates context both ways, decides with partial facts, and uses discipline to create room for action. The book teaches the reader to stop treating leadership problems as personality problems and start changing the system, standard, and clarity that shape the next result.",
+  "coreIdeas": [
+    {
+      "name": "Own the system",
+      "oneSentence": "Real accountability reaches past personal blame into the conditions that made the result likely.",
+      "mentalMove": "move from finding fault to repairing the system you lead",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Set the standard",
+      "oneSentence": "A team usually rises or falls to what its leader models, repeats, and allows.",
+      "mentalMove": "look first at the leader behavior shaping the team before labeling the team",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Explain the why",
+      "oneSentence": "People sustain hard work when the leader understands the purpose deeply enough to make it clear.",
+      "mentalMove": "turn compliance into belief by carrying strategic context into the task",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Put mission over ego",
+      "oneSentence": "Skill helps only while pride stays small enough to hear correction and cooperate.",
+      "mentalMove": "treat criticism, outside help, and rival teams as mission assets instead of status threats",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Link the lanes",
+      "oneSentence": "Local success can damage the mission when teams optimize alone instead of covering each other.",
+      "mentalMove": "spot where another team is exposed and support them without stealing their ownership",
+      "sourceAnchors": [
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Make pressure executable",
+      "oneSentence": "Simplicity and priority turn chaos into actions people can remember and perform.",
+      "mentalMove": "strip the plan to what must be understood, then sequence the next controlling problem",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Push intent to the edge",
+      "oneSentence": "Fast decisions happen when trained people close to the facts know the purpose, limits, and standard.",
+      "mentalMove": "replace top-down permission seeking with clear intent and bounded authority",
+      "sourceAnchors": [
+        "ch09.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Use discipline for adaptability",
+      "oneSentence": "Planning, timely decisions, and disciplined habits create freedom to adjust when reality changes.",
+      "mentalMove": "prepare enough structure that uncertainty does not freeze the team",
+      "sourceAnchors": [
+        "ch10.source",
+        "ch12.source",
+        "ch13.source"
+      ]
+    }
+  ],
+  "targetReader": "A manager, founder, operator, team lead, coach, or senior individual contributor who is responsible for outcomes through other people and needs a sterner, more practical way to handle pressure, excuses, unclear missions, and uneven teams.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make responsibility feel operational rather than moralistic",
+      "pair hard standards with specific limits",
+      "land examples with protagonist names that read naturally to Canadian, American, and European readers — 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no macho battlefield imitation",
+      "no motivational slogans about toughness"
+    ]
+  },
+  "voiceSpecimens": [
+    "The first move is not to find who failed. It is to find what you allowed to stay unclear.",
+    "Pressure does not create a new team. It reveals the standard the team has been practicing.",
+    "If your people cannot explain the purpose without you in the room, the purpose has not reached them yet.",
+    "Ego turns a useful correction into a personal insult. The mission pays the bill for that delay.",
+    "A simple plan is not a small plan. It is a plan that still works when the room gets loud.",
+    "You do not need perfect information to lead. You need enough truth to move, and enough humility to update.",
+    "Discipline earns freedom by removing decisions that should not need fresh courage every morning."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, the authors explain that leaders should be accountable in a variety of situations.",
+    "Leadership is a journey of self-actualization where every obstacle becomes an empowering lesson.",
+    "To unlock your team’s potential, simply embrace ownership and communicate more effectively.",
+    "The core principle is important because it is important for leaders to understand it.",
+    "Try this now: take thirty seconds to reflect on where you could be a better leader.",
+    "Great leaders always inspire excellence through authentic vulnerability and high-performance mindsets."
+  ],
+  "teachingArc": "The arc starts by forcing responsibility inward: leadership matters most, ownership replaces excuse, standards come from the leader, belief must be carried, and ego must be checked. It then turns responsibility outward into team mechanics: cover adjacent teams, simplify the plan, sequence priorities, and push authority to trained people. The closing movement teaches leaders how to operate under uncertainty: plan with intent and contingencies, move information up and down the chain, decide before certainty arrives, and use disciplined systems to balance competing leadership demands.",
+  "forbiddenMoves": [
+    "turning ownership into public blame-taking instead of system repair",
+    "using combat color as decoration beyond the frozen source support",
+    "flattening every chapter into be accountable and communicate better",
+    "confusing discipline with domination or emotionless toughness",
+    "using business-office examples as the default shell for every lesson"
+  ]
+}

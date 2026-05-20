@@ -1,0 +1,213 @@
+{
+  "chapterId": "the-12-week-year-ch17",
+  "number": 17,
+  "title": "Take Back Control of Your Day",
+  "coreMove": "Design the day and week around protected performance time instead of letting reaction spend the calendar first.",
+  "sourcePressure": "The chapter gives deliberate control over daily time so important work is protected from reactive demands.",
+  "chapterSpecificMisunderstanding": "Treating day control as calendar tidiness rather than protection for the work the score depends on.",
+  "sourceAlignmentTerms": [
+    "Performance Time",
+    "Model Work Week",
+    "day control",
+    "reactive demands",
+    "protected time",
+    "Thinking Shift"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Performance Time",
+      "detail": "The source sidecar verifies Performance Time as a Chapter 17 subhead.",
+      "useIn": "both",
+      "phrasingHint": "Performance Time is the part of the calendar where the result gets a fighting chance."
+    },
+    {
+      "kind": "artifact",
+      "name": "Model Work Week",
+      "detail": "The source sidecar verifies Model Work Week as a Chapter 17 subhead.",
+      "useIn": "fullRead",
+      "phrasingHint": "A Model Work Week gives important work a repeatable home before other people fill the day."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch17: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch17: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch17: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch17: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Fiona",
+      "domain": "consulting partner calendar redesign",
+      "audience": "a practitioner in consulting partner calendar redesign who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Fiona protects Performance Time from a partner meeting.",
+      "firstImage": "a calendar packed with gray meeting blocks",
+      "mustInclude": [
+        "a calendar packed with gray",
+        "Performance Time",
+        "day control"
+      ],
+      "mustAvoid": [
+        "generic take back control of your day explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Felicity",
+      "domain": "hospital outpatient referral queue",
+      "audience": "a decision-maker in hospital outpatient referral queue choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Felicity moves referral processing into a model week block.",
+      "firstImage": "referral faxes in a tray",
+      "mustInclude": [
+        "referral faxes in a tray",
+        "Performance Time",
+        "day control"
+      ],
+      "mustAvoid": [
+        "generic take back control of your day explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Ruth",
+      "domain": "film school editing lab",
+      "audience": "a team lead in film school editing lab who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ruth reserves editing-lab work before student emergencies fill the day.",
+      "firstImage": "editing bays booked with sticky notes",
+      "mustInclude": [
+        "editing bays booked with sticky",
+        "Performance Time",
+        "day control"
+      ],
+      "mustAvoid": [
+        "generic take back control of your day explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Celia",
+      "domain": "municipal snow-response planning",
+      "audience": "a reflective operator in municipal snow-response planning reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Celia places snow-route planning before the first storm call.",
+      "firstImage": "snow-route maps on a depot table",
+      "mustInclude": [
+        "snow-route maps on a depot",
+        "Performance Time",
+        "day control"
+      ],
+      "mustAvoid": [
+        "generic take back control of your day explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Rosie",
+      "domain": "accounting firm deep-work block",
+      "audience": "a reader in accounting firm deep-work block comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rosie blocks audit analysis where email cannot reach it.",
+      "firstImage": "audit files beside a blocked calendar",
+      "mustInclude": [
+        "audit files beside a blocked",
+        "Performance Time",
+        "day control"
+      ],
+      "mustAvoid": [
+        "generic take back control of your day explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Eve",
+      "domain": "Bristol ecommerce fulfillment",
+      "audience": "two colleagues in Bristol ecommerce fulfillment forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Eve builds fulfillment work into the week before orders spike.",
+      "firstImage": "shipping bins under mezzanine lights",
+      "mustInclude": [
+        "shipping bins under mezzanine lights",
+        "Performance Time",
+        "day control"
+      ],
+      "mustAvoid": [
+        "generic take back control of your day explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "protect important work from reactive capture",
+      "use a model week without over-prescribing",
+      "connect time design to scorekeeping"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Place one Performance Time block on tomorrow's calendar and move one reactive task outside it before the day begins.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch07",
+  "number": 7,
+  "title": "Charismatic First Impressions",
+  "coreMove": "Set the first visible cues so the room can place your presence, credibility, and belonging before content does the work.",
+  "sourcePressure": "The source frames first impressions as quick and consequential, with appearance, demeanor, and tribe-matching cues shaping early reads without making them destiny.",
+  "chapterSpecificMisunderstanding": "The weak version becomes shallow image advice. The useful version treats early cues as orientation signals that help people know how to receive you.",
+  "sourceAlignmentTerms": ["first impressions", "appearance", "demeanor", "tribe-matching", "early read", "opening cues", "presence"],
+  "forbiddenFrames": {
+    "hook": ["First impressions happen fast", "People judge you instantly", "Dress for success"],
+    "counterintuition": ["Appearance matters more than you think", "You cannot undo first impressions", "Image is everything"],
+    "tryThisNow": ["Check your outfit", "Practice your handshake", "Make eye contact at the door"],
+    "examples": ["job interview lobby", "networking mixer", "first day of class", "date introduction"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a salvage-architecture walk-through where a preservation consultant meets demolition contractors",
+      "audience": "a specialist entering a tribe that distrusts outside experts",
+      "stakes": "whether the crew lets her inspect the old factory before the wall comes down",
+      "format": "scene",
+      "requiredBeat": "she swaps the glossy portfolio for a field notebook, keeps her boots visible, and uses the crew's site term before asking for access",
+      "firstImage": "a hard hat with a taped paper permit tucked under the brim",
+      "mustInclude": ["field notebook", "brick sample", "demolition schedule"],
+      "mustAvoid": ["fashion makeover", "construction macho scene"]
+    },
+    {
+      "domain": "a rare-book fair where a young dealer approaches senior collectors",
+      "audience": "a knowledgeable newcomer who looks too casual for the room",
+      "stakes": "whether collectors trust her with a provenance question",
+      "format": "vignette",
+      "requiredBeat": "she closes the tote, sets out the condition report first, and lets careful handling signal that she belongs before she speaks",
+      "firstImage": "a vellum-bound volume resting on a foam cradle",
+      "mustInclude": ["condition report", "pencil note", "dealer badge"],
+      "mustAvoid": ["library reference scene", "elitist manners"]
+    },
+    {
+      "domain": "a rural veterinary supply auction where a software founder pitches inventory tools",
+      "audience": "an outsider whose first read could kill credibility",
+      "stakes": "whether clinic owners hear him as useful or as another tech tourist",
+      "format": "decision_point",
+      "requiredBeat": "he decides to open with the vaccine-fridge failure he learned about that morning instead of his company origin story",
+      "firstImage": "a numbered auction paddle beside a catalog of cold-chain units",
+      "mustInclude": ["vaccine-fridge note", "muddy floor mat", "inventory scanner"],
+      "mustAvoid": ["startup pitch", "sales hack"]
+    },
+    {
+      "domain": "a customs broker arriving at a flower import warehouse before dawn",
+      "audience": "a paperwork expert entering a fast physical operation",
+      "stakes": "whether warehouse leads treat her clearance warning as practical rather than bureaucratic",
+      "format": "before_after",
+      "requiredBeat": "contrast her first clipboard-forward entrance with the reset where she puts on a thermal vest, waits by the pallet scale, and names the delayed orchid lot",
+      "firstImage": "plastic-wrapped orchid trays sweating in cold air",
+      "mustInclude": ["pallet scale", "phytosanitary form", "thermal vest"],
+      "mustAvoid": ["freight customs inspection from Chapter 4", "airport scene"]
+    },
+    {
+      "domain": "a community choir audition where a new accompanist meets singers who have worked together for years",
+      "audience": "a skilled support player who needs quick belonging without overclaiming",
+      "stakes": "whether the singers relax enough for the audition tempo",
+      "format": "dialogue",
+      "requiredBeat": "she names the choir's marked breath cue, adjusts the bench quietly, and asks the director where the group likes the tempo to sit",
+      "firstImage": "a penciled breath mark above the first measure of sheet music",
+      "mustInclude": ["bench knob", "audition slate", "choir folder"],
+      "mustAvoid": ["music conservatory audition from Chapter 1", "performance anxiety"]
+    },
+    {
+      "domain": "a fisheries co-op dock where a new marine insurer meets captains at unload time",
+      "audience": "a professional whose polished look could read as distance",
+      "stakes": "whether captains tell him about actual deck risks before renewal quotes",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts a suit will create distance, arrives in clean workwear, waits until the ice bins are clear, and starts with the winch injury log",
+      "firstImage": "a waterproof notebook clipped beside a crate of crushed ice",
+      "mustInclude": ["winch log", "rubber bibs", "renewal sheet"],
+      "mustAvoid": ["boat lending from Chapter 2", "folksy costume"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose early cues that help a room place you accurately",
+      "distinguish tribe-matching from costume",
+      "analyze how demeanor changes first read",
+      "evaluate when appearance choices support credibility rather than vanity"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before entering one new setting, choose one cue that says I understand this room without pretending to be someone you are not.",
+  "readingTimeMinutes": 12
+}

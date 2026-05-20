@@ -1,0 +1,119 @@
+{
+  "chapterId": "the-checklist-manifesto-ch03",
+  "number": 3,
+  "title": "The End of the Master Builder",
+  "coreMove": "Replace the master-controller reflex with distributed coordination and explicit handoffs.",
+  "sourcePressure": "The source distinguishes simple, complicated, and complex problems, then uses Russia Wharf to show work too distributed for one expert to command alone.",
+  "chapterSpecificMisunderstanding": "The weak version says teamwork is good. The real chapter asks what kind of control fits work that no single mind can command.",
+  "sourceAlignmentTerms": ["simple problems", "complicated problems", "complex problems", "Russia Wharf", "master builder", "distributed expertise"],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "Russia Wharf",
+      "detail": "The source sidecar identifies Russia Wharf as the construction example of a project too distributed for one expert to command alone.",
+      "useIn": "both",
+      "phrasingHint": "Russia Wharf makes the old master-builder fantasy feel physically too small for the project around it."
+    },
+    {
+      "kind": "event",
+      "name": "simple, complicated, and complex problems",
+      "detail": "The source sidecar says the chapter uses this distinction to show that different work needs different forms of control.",
+      "useIn": "deepRead",
+      "phrasingHint": "A cake recipe, a rocket, and a city block do not ask for the same kind of command."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["The master builder is dead", "No one can do it alone anymore"],
+    "counterintuition": ["Control comes from letting go", "Complex work needs teamwork"],
+    "tryThisNow": ["Make a list of stakeholders", "Ask who owns each task"],
+    "examples": ["generic construction meeting", "conference room org chart", "architect with rolled plans"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Thomas, a harbor redevelopment coordinator",
+      "audience": "civic project leads managing engineers, tenants, and utilities",
+      "stakes": "a seawall pour collides with tenant access and utility shutdowns",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Thomas replaces the single master schedule with a dependency board where each trade marks the handoff it needs from another crew",
+      "firstImage": "tidewater slapping below temporary plywood stairs",
+      "mustInclude": ["seawall form", "tenant access gate", "utility shutdown notice"],
+      "mustAvoid": ["Russia Wharf copy", "generic construction boss"]
+    },
+    {
+      "domain": "Maja, a university field expedition planner",
+      "audience": "academic teams coordinating science, transport, permits, and safety",
+      "stakes": "a remote geology trip stalls because permits, satellite phones, and sample custody are owned separately",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Maja stops asking one professor to approve everything and makes each role state its handoff trigger before departure",
+      "firstImage": "\"The permit is not the plan,\" Maja says beside a stack of sample tubes",
+      "mustInclude": ["satellite phone", "permit packet", "sample custody labels"],
+      "mustAvoid": ["classroom lecture", "simple packing checklist"]
+    },
+    {
+      "domain": "Ben, a telecom outage restoration lead",
+      "audience": "technical incident leads tempted to centralize every decision",
+      "stakes": "a hospital circuit remains dark while fiber, power, and access teams wait for central permission",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ben asks which decisions can be local and which must be escalated, then moves the access crew without waiting for a full-command call",
+      "firstImage": "What if the bottleneck is the person trying to be helpful?",
+      "mustInclude": ["fiber map", "substation access badge", "hospital circuit ticket"],
+      "mustAvoid": ["software dashboard incident", "hero engineer fixes cable"]
+    },
+    {
+      "domain": "Juliette, an opera stage manager in technical rehearsal",
+      "audience": "creative production leads coordinating artists and safety crews",
+      "stakes": "a flying set piece depends on lighting, rigging, conductor timing, and stage clearance",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Juliette calls a cross-role cue pause where rigging, lights, and music each confirm the next dependency before the set piece moves",
+      "firstImage": "dust drifting through a cone of blue stage light",
+      "mustInclude": ["fly rail", "conductor monitor", "stage spike tape"],
+      "mustAvoid": ["school play", "one genius director"]
+    },
+    {
+      "domain": "Anders, an offshore wind maintenance scheduler",
+      "audience": "operations planners working around weather windows and specialist crews",
+      "stakes": "a turbine repair misses its weather window if vessel, blade tech, and grid operator act from separate plans",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Anders traces the missed window to three locally correct plans that never exposed their dependencies to one another",
+      "firstImage": "It took Anders one cancelled vessel to see that every plan had been right in isolation",
+      "mustInclude": ["weather window", "crew transfer vessel", "grid dispatch notice"],
+      "mustAvoid": ["generic renewable-energy praise", "central command solves all"]
+    },
+    {
+      "domain": "Lin, a public library renovation permit coordinator",
+      "audience": "public-sector staff balancing contractors, public access, and inspectors",
+      "stakes": "the children's wing reopens late if fire inspection and shelving installation are sequenced by one overloaded manager",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Lin turns the overloaded manager's private plan into a shared handoff calendar with inspector, shelving vendor, and librarian signoffs",
+      "firstImage": "You stand between bare carpet squares and boxed picture books while the inspector's voicemail plays",
+      "mustInclude": ["fire inspection form", "shelving pallets", "public reopening sign"],
+      "mustAvoid": ["school classroom", "generic office renovation"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["classify simple versus complicated versus complex work", "identify when central control is a bottleneck", "design visible handoffs", "evaluate coordination structures"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take one project with more than three roles and mark the next handoff each role needs, not the task each role owns.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

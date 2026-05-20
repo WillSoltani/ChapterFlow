@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-checklist-manifesto-ch05",
+  "number": 5,
+  "title": "The First Try",
+  "readingTimeMinutes": 12,
+  "hook": "Gloved hands frozen over a blue drape can tell you more than a perfect draft ever will.",
+  "counterintuition": "A complaint feels like resistance; in fact, it may reveal bad timing, bad wording, too much length, or a missing owner.",
+  "tryThisNow": "Pick one checklist or routine that irritates people and mark whether the irritation comes from timing, wording, length, or a missing owner.",
+  "keyTakeaway": "A checklist becomes usable when first-use friction is studied, not dismissed, and the vital pause survives the revision.",
+  "breakdown": {
+    "fastRead": "At 6:52 a.m., Olivia watches two gloved hands freeze over a blue sterile drape. The first checklist pause has landed at the worst moment. The identity check matters. The antibiotic check matters. The timing is wrong.\n\nOlivia marks the exact spot where the room jammed and moves that item later without cutting the safety checks that caught real risk.\n\nIn the first WHO pilot, the room had to reshape the list before it could trust the pause. A first try is a test, not a verdict.",
+    "deepRead": "Olivia has two bad options if she misreads the room. She can defend the first draft because the idea is good, or she can abandon the tool because the first use felt awkward. Both reactions waste information.\n\nFriction is data with an attitude.\n\nUnder operating lights, the first try exposes what planning cannot. A line may be clear on paper and clumsy aloud. A pause may protect the patient but hit at the moment when hands are already sterile. A question may sound respectful in a conference room and foolish under operating lights. The work is to keep the purpose while changing the shape.\n\nIn the early WHO surgical-checklist pilot, first resistance and later refinement are not separate phases. Resistance is not only a wall; sometimes it is the room telling you where the tool still does not fit. The early WHO surgical-checklist pilot belongs here because refinement was part of making the idea real. The list became credible only after first-use strain showed what had to move, shrink, or be said differently.\n\nAt the revision table, the limit is simple. Do not let every complaint cut the heart out. Revision protects the safety purpose; it does not protect everyone from inconvenience or pride.",
+    "fullRead": "It took Etienne six ignored laminated cards to admit the first version was too slow. In the dental clinic, assistants turned over chairs between patients with one eye on the clock and one hand already reaching for the next tray sleeve. The sterilizer indicator check mattered, but the card asked for duplicate tray items, supply counts, and wording nobody used. By the third week, signatures were appearing after the fact.\n\nEtienne times the routine instead of scolding the assistants. The old card takes too long at exactly the point where the room is trying to move. He cuts the visible tray items, keeps the sterilizer indicator, and places the check at chair turnover where it can still catch a bad cycle before the next patient sits.\n\nThe weak reaction would be to call the staff resistant. The equally weak reaction would be to throw away the check. A first try deserves a better reading. It asks what part of the tool is protecting the work and what part is merely interrupting it.\n\nWhere, exactly, does the room push back?\n\nThat question is more useful than asking whether people like the checklist. A room may push back on length, timing, words, authority, or missing ownership. Each kind of friction calls for a different edit. Shorten a list that is too long. Retie a pause that lands too late. Reword a line that people cannot say naturally. Assign the owner when everyone is waiting for someone else to speak.\n\nThe early WHO pilot sits inside that discipline. The first version did not earn trust by existing. It had to meet the operating room. The first WHO pilot matters because the list had to be changed by the room before the room could trust it. The work of initial resistance and refinement was not a side issue. It was the path from admirable idea to usable practice.\n\nMarta sees the same path on a factory line. Metal shavings glitter beneath a stopped press while operators reject a line-start list that asks for confirmations after the guard has already closed. She moves two checks to before the guard latch, deletes items operators can see without help, and keeps the caliper setting and first-part bin where they can prevent a bad run. The checklist becomes shorter, but the core pause becomes stronger.\n\nGood revision has a spine strong enough to keep the vital pause. It does not bow to every complaint. If a team dislikes saying the patient identity aloud because it feels awkward, the awkwardness may be the price of safety. If a team dislikes a repeated supply count because the item is visible and low-risk, the count may be waste. The editor's job is to tell those apart.\n\nChiara hears the difference on a film set. \"You are asking after I am already wired,\" the stunt lead says while rain bars tick against the floor. The harness tug test matters. The pause is late. Chiara moves it before camera lock and keeps the tug visible. The complaint does not kill the check. It locates the right moment.\n\nA first try is therefore not proof that the idea works or fails. It is a rough contact with reality. The room tells you where it jams, where it rushes, where it forgets, where it resents a line that still needs to stay. Listen closely enough, and the checklist stops being an argument and starts becoming a tool."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-olivia-drape-pause",
+      "title": "Olivia Marks the Drape Pause",
+      "tags": [
+        "surgery",
+        "pilot",
+        "timing"
+      ],
+      "planSpec": {
+        "domain": "Olivia, a surgical educator rehearsing a first checklist pause",
+        "audience": "clinical leaders introducing a safety pause to skeptical teams",
+        "stakes": "the team performs the pause once, finds it awkward, and may abandon the whole tool",
+        "format": "scene",
+        "requiredBeat": "Olivia marks the exact moment the pause interrupts sterile setup and moves that item later without removing the identity and antibiotic checks"
+      },
+      "scenario": "At 6:52 a.m., Olivia watches two gloved hands freeze over a blue sterile drape while the new pause is read aloud. The identity band and antibiotic check both matter, but one question arrives after the sterile setup has already begun. The surgeon sighs, and a nurse looks away. Olivia has to decide whether to defend the draft as written or mark the exact interruption and move that item later.",
+      "whatToDo": "Mark the moment that jammed the room, move the late item, and keep the identity and antibiotic checks intact. Revise timing without cutting the vital pause.",
+      "whyItMatters": "The first use shows both value and bad fit. Treating every complaint as defiance would waste the information the room just gave you."
+    },
+    {
+      "exampleId": "ch05-ex02-etienne-sterilizer-card",
+      "title": "Etienne Times the Sterilizer Card",
+      "tags": [
+        "dental",
+        "postmortem",
+        "workflow"
+      ],
+      "planSpec": {
+        "domain": "Etienne, a dental clinic manager testing sterilization workflow",
+        "audience": "clinic managers refining a routine with assistants and dentists",
+        "stakes": "a too-long checklist makes assistants skip it between patients",
+        "format": "postmortem",
+        "requiredBeat": "Etienne times the failed first version, cuts the duplicate tray items, and keeps the sterilizer indicator check at the chair turnover point"
+      },
+      "scenario": "It took Etienne six ignored laminated cards in Room 3 at the 4:40 p.m. chair turnover to admit the first version was too slow. Assistants were signing after the patient was already seated. The sterilizer indicator mattered, but duplicate tray items and supply counts buried it. Etienne times the failed routine, cuts the visible tray checks, and keeps the sterilizer indicator at the moment before the next tray sleeve opens.",
+      "whatToDo": "Time the failed first version, cut duplicate tray items, and keep the sterilizer indicator at chair turnover. Preserve the check that prevents real harm.",
+      "whyItMatters": "The skipped card is not just attitude. Its length and timing make the vital indicator harder to use at the only moment it can still help."
+    },
+    {
+      "exampleId": "ch05-ex03-marta-guard-latch",
+      "title": "Marta Moves the Guard Latch Check",
+      "tags": [
+        "factory",
+        "changeover",
+        "revision"
+      ],
+      "planSpec": {
+        "domain": "Marta, a factory changeover pilot lead",
+        "audience": "manufacturing supervisors trialing a line-start checklist",
+        "stakes": "operators reject a list that asks for confirmations after the machine is already running",
+        "format": "before_after",
+        "requiredBeat": "Marta moves two checks to before the guard closes and deletes the items operators can see without help"
+      },
+      "scenario": "Metal shavings glitter beneath the stopped Line 4 press during the 6:15 a.m. changeover as Marta watches the first line-start list fail. Operators are asked to confirm the guard latch and caliper setting after the guard has already closed. They rush the marks once the press starts. By the next trial, Marta has moved those checks before the guard closes, kept the first-part bin check, and deleted items operators can see without help.",
+      "whatToDo": "Move the guard and caliper checks before the point of no return, then cut the obvious items. Make the list fit the physical sequence of the line.",
+      "whyItMatters": "A correct item in the wrong place becomes theater. Revision has to put the check where it can still affect the work."
+    },
+    {
+      "exampleId": "ch05-ex04-jack-bus-medication",
+      "title": "Jack Rewrites the Bus Handoff",
+      "tags": [
+        "school trip",
+        "medication",
+        "handoff"
+      ],
+      "planSpec": {
+        "domain": "Jack, a school trip coordinator handling medication handoff",
+        "audience": "teachers piloting a student safety routine outside school",
+        "stakes": "a trip checklist is so long that the inhaler handoff gets lost in paperwork",
+        "format": "decision_point",
+        "requiredBeat": "Jack rewrites the first try so the bus lead, nurse, and teacher confirm only medication owner, emergency contact, and return count before departure"
+      },
+      "scenario": "Which part of the form would actually save a child on the bus? Jack stands at the curb with the bus roster, inhaler pouch, and emergency contact cards while parents wave from the sidewalk. The first draft asks for lunch counts, permission slips, and weather notes before the medication handoff. He must decide whether to keep the complete form or rewrite the departure pause around medication owner, emergency contact, and return count.",
+      "whatToDo": "Rewrite the departure pause around medication owner, emergency contact, and return count. Move the rest of the form out of the moment before the bus leaves.",
+      "whyItMatters": "The first draft hides the inhaler inside paperwork. The revision protects the few facts that would matter if trouble starts on the road."
+    },
+    {
+      "exampleId": "ch05-ex05-chiara-harness-tug",
+      "title": "Chiara Retimes the Harness Tug",
+      "tags": [
+        "film set",
+        "stunt",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "Chiara, a film set stunt safety coordinator",
+        "audience": "creative crews that dislike pauses which break momentum",
+        "stakes": "the first stunt checklist irritates the director and misses the actual harness risk",
+        "format": "dialogue",
+        "requiredBeat": "Chiara listens to the stunt lead's complaint, moves the pause to before camera lock, and keeps the harness tug test visible"
+      },
+      "scenario": "\"You are asking after I am already wired,\" the stunt lead says while the rain bar ticks across the concrete floor. Chiara can hear the director calling for camera lock. The first checklist has irritated everyone and still missed the harness risk because the tug test comes too late. Chiara must decide whether to treat the complaint as resistance or move the pause before camera lock while keeping the harness tug visible.",
+      "whatToDo": "Move the stunt pause before camera lock and keep the harness tug test in the open. Let the complaint fix timing, not erase the check.",
+      "whyItMatters": "The crew is not objecting to safety itself. The first draft asks for proof after the body is already committed to the setup."
+    },
+    {
+      "exampleId": "ch05-ex06-yusuf-intake-pause",
+      "title": "Yusuf Revises the Intake Pause",
+      "tags": [
+        "clinic",
+        "intake",
+        "reflection"
+      ],
+      "planSpec": {
+        "domain": "Yusuf, a refugee clinic intake desk lead",
+        "audience": "frontline service teams adding structure without slowing urgent help",
+        "stakes": "a first draft intake list delays interpreters but still misses consent for document sharing",
+        "format": "reflection",
+        "requiredBeat": "Yusuf watches the line stall, then revises the pause to occur only when interpreter, consent, and urgent medical flag can be confirmed together"
+      },
+      "scenario": "You hear three languages in the waiting room and see the interpreter sheet slipping behind the consent stamp. Yusuf watches the line stall while the first draft asks every applicant the same long sequence. Worse, the urgent medical flag is still being missed. He revises the pause so it happens only when interpreter, consent, and medical flag can be confirmed together at the intake desk.",
+      "whatToDo": "Move the pause to the point where interpreter, consent, and medical flag can be confirmed together. Cut the questions that slow urgent routing without protecting it.",
+      "whyItMatters": "The first draft created delay without catching the true risk. A better pause protects the handoff while respecting the pressure in the waiting room."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A first checklist trial makes the operating team pause awkwardly at the wrong moment, but it also catches a missing antibiotic. What should the leader conclude?",
+        "choices": [
+          "The idea should be abandoned because the room resisted it.",
+          "The timing needs revision while the safety check stays.",
+          "The team should be forced to use the draft exactly as written."
+        ],
+        "correctIndex": 1,
+        "explanation": "The first use revealed bad timing and real value. The right move is to revise the fit without cutting the check that caught risk.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A dental clinic's sterilization card is signed after patients sit down because it is too long for chair turnover. Which action best reads the friction as design data?",
+        "choices": [
+          "Cut duplicate tray items and keep the sterilizer indicator at turnover.",
+          "Tell assistants they are resisting patient safety.",
+          "Move the card to the end of the day so it does not slow turnover."
+        ],
+        "correctIndex": 0,
+        "explanation": "The useful complaint points to length and timing. Cutting duplicate items while keeping the indicator preserves the safety purpose.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A factory pilot checklist asks operators to verify a guard latch after the guard has closed. Operators keep rushing the mark. What is the best revision?",
+        "choices": [
+          "Add a supervisor signature after the machine starts.",
+          "Move the latch check before the guard closes and remove obvious items.",
+          "Cancel the checklist because operators dislike it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The check must move before the point where it can still change action. Supervisor signatures and cancellation both miss the timing lesson.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A school trip form includes every administrative detail, and the inhaler handoff keeps getting missed at departure. Which revision is strongest?",
+        "choices": [
+          "Keep the full form and ask teachers to read slower.",
+          "Move permission slips, lunch counts, and weather notes to a separate packet.",
+          "Create a departure pause for medication owner, emergency contact, and return count only."
+        ],
+        "correctIndex": 2,
+        "explanation": "The departure pause should protect the few facts that matter on the bus. The full form hides the inhaler handoff inside low-risk material.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A film crew complains that the stunt checklist breaks momentum because the harness check happens after camera lock. Which interpretation is most useful?",
+        "choices": [
+          "The complaint may be showing that the pause is too late, not that the check is worthless.",
+          "Creative crews should be exempt from checklists.",
+          "The director should demand compliance without changing the order."
+        ],
+        "correctIndex": 0,
+        "explanation": "The complaint identifies a timing flaw. Moving the harness check earlier keeps the real safety protection while reducing needless disruption.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A clinic intake checklist slows interpreters and still misses consent for document sharing. What should the intake lead change first?",
+        "choices": [
+          "Make every applicant complete the full draft before seeing staff.",
+          "Move the pause to the point where interpreter, consent, and urgent medical flag can be confirmed together.",
+          "Drop consent checks because the line is too long."
+        ],
+        "correctIndex": 1,
+        "explanation": "The first draft is failing both speed and protection. A combined pause at the real handoff preserves the vital checks and reduces useless delay.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says, \"The pilot was awkward, so the team is not ready for checklists.\" Which response best evaluates that claim?",
+        "choices": [
+          "Awkward first use proves the tool should be abandoned.",
+          "Awkward first use proves the team needs punishment.",
+          "Awkward first use may reveal what needs retiming, shortening, or clearer ownership."
+        ],
+        "correctIndex": 2,
+        "explanation": "Awkwardness is too broad to diagnose by itself. The useful response is to identify whether timing, length, wording, or ownership caused the jam.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A checklist item is awkward because it asks nurses to say patient identity aloud, and a near miss shows the identity check caught a real risk. What should revision do?",
+        "choices": [
+          "Keep the identity check and improve how it is introduced or timed.",
+          "Cut the identity check because awkwardness means poor fit.",
+          "Replace it with a private memory reminder."
+        ],
+        "correctIndex": 0,
+        "explanation": "Some awkwardness protects the vital pause. Revision should improve use without removing the check that caught a real risk.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A warehouse checklist pilot gets three complaints: the list is too long, one line uses jargon, and the dock-door check has no owner. Which next step best fits the lesson?",
+        "choices": [
+          "Treat all complaints as resistance and relaunch unchanged.",
+          "Turn the complaints into edits: shorten, reword, and assign the dock-door check.",
+          "Drop the pilot and wait until workers request a checklist."
+        ],
+        "correctIndex": 1,
+        "explanation": "The complaints identify design faults. The revision should preserve the purpose while fixing length, wording, and ownership.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A first checklist trial feels awkward but catches a real miss. What should you retrieve?",
+      "back": "Treat the friction as design data. Keep the vital check, then revise timing, wording, length, or ownership so the pause can survive real use.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A team complains during the first run. What are the four causes to sort before reacting?",
+      "back": "Sort whether the friction comes from timing, wording, length, or missing ownership. Each cause needs a different edit, and none automatically means the checklist is bad.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A checklist line feels annoying and still prevents a near miss. What is the right editing rule?",
+      "back": "Improve the way the line lands, but do not cut the check that protects the vital pause. Revision serves the purpose, not comfort by itself.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A first draft is being signed after the fact. What does that usually signal?",
+      "back": "The list is probably too long, too late, or placed away from the real action. Time the workflow and move the check to where it can still change behavior.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A leader says resistance proves the team needs more persuasion. What should you test first?",
+      "back": "Test whether the resistance is pointing to a bad fit. The room may be telling you that the list is poorly timed, awkwardly worded, too long, or missing an owner.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Learn to read first-use friction without flinching. The goal is not to win an argument about the first draft. The goal is to revise the tool until the vital pause fits the workflow well enough to be used.",
+    "ifThenPlans": [
+      {
+        "context": "pilot rehearsal",
+        "plan": "If the first run jams, then mark the exact sentence, time, or owner where the jam happened before you discuss attitudes."
+      },
+      {
+        "context": "workflow revision",
+        "plan": "If people skip the list, then time the routine and cut anything that does not protect a live risk."
+      },
+      {
+        "context": "team complaint",
+        "plan": "If a complaint names timing or wording, then revise that fit while preserving the check that prevents real harm."
+      },
+      {
+        "context": "safety review",
+        "plan": "If an awkward check caught a near miss, then improve its placement rather than deleting it for comfort."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one routine people dislike and label the irritation: timing, wording, length, or owner. Make one edit that preserves the core check.",
+    "weeklyPractice": "This week, run one small pilot and watch the room instead of defending the draft. Capture three friction points and revise one before the next use."
+  },
+  "memorableLines": [
+    {
+      "text": "A first try is a test, not a verdict.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a clean way to handle awkward first use."
+    },
+    {
+      "text": "Friction is data with an attitude.",
+      "location": "breakdown.deepRead",
+      "why": "The line is memorable because it respects resistance without obeying it blindly."
+    },
+    {
+      "text": "Good revision has a spine strong enough to keep the vital pause.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the need to edit without surrendering the safety purpose."
+    }
+  ]
+}

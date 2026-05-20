@@ -1,0 +1,594 @@
+/**
+ * Deterministic book-level pattern audit for v21 packages.
+ *
+ * Purpose: catch the failure mode that single Codex sessions create most
+ * easily: a whole book made from a small set of reusable frames. Per-chapter
+ * C8 catches templates inside one chapter; this file catches templates across
+ * chapters: repeated hook/counter/try stems, repeated quiz explanations,
+ * repeated example scene shells, missing planning artifacts, and rough source
+ * drift.
+ *
+ * This does not change the v21 package schema. It only strengthens promotion,
+ * scoring, and manual QA.
+ */
+
+import { existsSync, readFileSync } from "fs";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+
+import { ChapterV21 } from "../types.js";
+import { loadChapterSource } from "../source-loader.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DEFAULT_STATE_DIR = resolve(__dirname, "../../state");
+
+export type PatternSeverity = "blocker" | "major" | "minor";
+
+export type BookPatternAuditFinding = {
+  code: string;
+  severity: PatternSeverity;
+  message: string;
+  chapters?: number[];
+  unit?: string;
+  evidence?: string;
+  count?: number;
+  maxScoreCap?: number;
+};
+
+export type PatternOccurrence = {
+  chapter: number;
+  unit: string;
+  evidence: string;
+};
+
+export type BookPatternAuditReport = {
+  bookId: string;
+  chapterCount: number;
+  passed: boolean;
+  findings: BookPatternAuditFinding[];
+  stats: {
+    repeatedQuizExplanationGroups: number;
+    repeatedSurfaceFrameGroups: number;
+    repeatedExampleFrameGroups: number;
+    repeatedConcreteAnchors: number;
+    missingPlanChapters: number[];
+    missingBrief: boolean;
+    sourceAlignmentWarnings: number;
+  };
+};
+
+export type BookPatternAuditOptions = {
+  bookId: string;
+  chapters: ChapterV21[];
+  /** Defaults to chapterflow-v21-authored/state. */
+  stateDir?: string;
+  /** If true, require a manual or generated brief and plan artifacts. Default true. */
+  requirePlanArtifacts?: boolean;
+  /** If false, skip source sidecar alignment warnings. Default true. */
+  checkSourceAlignment?: boolean;
+};
+
+const STOPWORDS = new Set([
+  "a", "an", "and", "are", "as", "at", "be", "been", "being", "but", "by", "can",
+  "could", "did", "do", "does", "doing", "for", "from", "had", "has", "have", "he",
+  "her", "hers", "him", "his", "how", "if", "in", "into", "is", "it", "its", "just",
+  "more", "most", "not", "of", "on", "or", "our", "out", "over", "she", "so", "that",
+  "the", "their", "them", "then", "there", "these", "they", "this", "those", "to", "too",
+  "up", "use", "used", "using", "was", "we", "what", "when", "where", "which", "who",
+  "why", "will", "with", "without", "you", "your", "chapter", "book", "author",
+]);
+
+const GENERIC_SOURCE_WORDS = new Set([
+  "chapter", "section", "author", "reader", "readers", "book", "idea", "ideas", "lesson",
+  "practice", "example", "examples", "people", "person", "move", "moves", "work", "life",
+  "choice", "choices", "decision", "decisions", "problem", "problems", "better", "think",
+  "thinking", "action", "actions", "make", "makes", "making", "feel", "feels", "source",
+]);
+
+function compact(value: unknown): string {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function stripLeadingLabel(raw: string): string {
+  const colon = raw.indexOf(":");
+  if (colon > 0 && colon <= 75 && raw.length - colon > 25) return raw.slice(colon + 1);
+  return raw;
+}
+
+function titleTokens(title?: string): Set<string> {
+  return new Set(tokenize(title ?? "", { keepStopwords: false }));
+}
+
+function tokenize(
+  value: string,
+  opts: { keepStopwords?: boolean; keepShort?: boolean } = {},
+): string[] {
+  return compact(value)
+    .replace(/[’']/g, "")
+    .replace(/\b\d{1,2}:\d{2}\s*(a\.m\.|p\.m\.|am|pm)\b/gi, " TIME ")
+    .replace(/\b\d+(?:\.\d+)?\b/g, " NUM ")
+    .replace(/[^A-Za-z0-9\s]/g, " ")
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((t) => opts.keepShort || t.length >= 3)
+    .filter((t) => opts.keepStopwords || !STOPWORDS.has(t));
+}
+
+function normalizeSurfaceFrame(text: string, chapterTitle?: string): string[] {
+  let raw = stripLeadingLabel(compact(text));
+  if (chapterTitle) {
+    raw = raw.replace(new RegExp(escapeRegExp(chapterTitle), "ig"), " ");
+  }
+  // Names are often the only thing an LLM varies. Remove them before skeleton checks.
+  raw = raw.replace(/\b[A-Z][a-z]{2,}\b/g, " NAME ");
+  const tTokens = titleTokens(chapterTitle);
+  return tokenize(raw).filter((t) => !tTokens.has(t) && t !== "name" && t !== "time" && t !== "num");
+}
+
+function normalizeExact(text: string): string {
+  return tokenize(text, { keepStopwords: true, keepShort: true }).join(" ");
+}
+
+function ngrams(tokens: string[], n: number): string[] {
+  const out: string[] = [];
+  for (let i = 0; i + n <= tokens.length; i++) {
+    const gram = tokens.slice(i, i + n).join(" ");
+    if (gram.replace(/\s/g, "").length >= n * 4) out.push(gram);
+  }
+  return out;
+}
+
+function pushOccurrence(
+  map: Map<string, PatternOccurrence[]>,
+  key: string,
+  occurrence: PatternOccurrence,
+): void {
+  const list = map.get(key) ?? [];
+  // One occurrence per chapter+unit+key is enough.
+  if (!list.some((o) => o.chapter === occurrence.chapter && o.unit === occurrence.unit)) {
+    list.push(occurrence);
+    map.set(key, list);
+  }
+}
+
+function chapterThreshold(chapterCount: number): number {
+  if (chapterCount <= 1) return 2;
+  if (chapterCount <= 5) return 2;
+  return Math.max(3, Math.floor(chapterCount * 0.2) + 1);
+}
+
+function uniqueChapters(occurrences: PatternOccurrence[]): number[] {
+  return Array.from(new Set(occurrences.map((o) => o.chapter))).sort((a, b) => a - b);
+}
+
+function firstEvidence(occurrences: PatternOccurrence[]): string | undefined {
+  return occurrences.find((o) => o.evidence)?.evidence;
+}
+
+function chapterText(ch: ChapterV21): string {
+  return [
+    ch.title,
+    ch.hook,
+    ch.counterintuition,
+    ch.tryThisNow,
+    ch.keyTakeaway,
+    ch.breakdown?.fastRead,
+    ch.breakdown?.deepRead,
+    ch.breakdown?.fullRead,
+    ...(ch.examples ?? []).flatMap((ex) => [ex.title, ex.scenario, ex.whatToDo, ex.whyItMatters]),
+    ...(ch.quiz?.questions ?? []).flatMap((q) => [q.prompt, ...(q.choices ?? []), q.explanation]),
+    ...(ch.reviewCards ?? []).flatMap((c) => [c.front, c.back]),
+    ch.implementationPlan?.coreSkill,
+    ch.implementationPlan?.twentyFourHourChallenge,
+    ch.implementationPlan?.weeklyPractice,
+    ...(ch.implementationPlan?.ifThenPlans ?? []).map((p) => p.plan),
+  ].map(compact).join("\n");
+}
+
+function distinctiveKeywords(text: string, limit = 18): string[] {
+  const counts = new Map<string, number>();
+  for (const token of tokenize(text)) {
+    if (GENERIC_SOURCE_WORDS.has(token)) continue;
+    if (token.length < 4) continue;
+    counts.set(token, (counts.get(token) ?? 0) + 1);
+  }
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([token]) => token);
+}
+
+function planPaths(stateDir: string, chapterId: string): string[] {
+  return [
+    resolve(stateDir, "plans", `${chapterId}.manual-plan.json`),
+    resolve(stateDir, "plans", `${chapterId}.plan.json`),
+  ];
+}
+
+function briefPaths(stateDir: string, bookId: string): string[] {
+  return [
+    resolve(stateDir, "briefs", `${bookId}.manual-brief.json`),
+    resolve(stateDir, "briefs", `${bookId}.brief.json`),
+  ];
+}
+
+function readPlanCoreMove(stateDir: string, chapterId: string): string | null {
+  for (const path of planPaths(stateDir, chapterId)) {
+    if (!existsSync(path)) continue;
+    try {
+      const plan = JSON.parse(readFileSync(path, "utf8"));
+      if (typeof plan.coreMove === "string") return plan.coreMove;
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
+function anchorKeyFromScenario(scenario: string, chapterTitle?: string): string | null {
+  const tokens = normalizeSurfaceFrame(scenario, chapterTitle);
+  if (tokens.length < 7) return null;
+  return tokens.slice(0, 10).join(" ");
+}
+
+function timePlaceKey(scenario: string): string | null {
+  const text = compact(scenario);
+  const time = text.match(/\b\d{1,2}:\d{2}\s*(?:a\.m\.|p\.m\.|am|pm)\b/i)?.[0]?.toLowerCase();
+  if (!time) return null;
+
+  const placeMatches = Array.from(text.matchAll(/\b(?:in|at|beside|inside|outside|on)\s+([^,.]{8,90})/gi));
+  for (const match of placeMatches) {
+    const place = match[1]
+      ?.toLowerCase()
+      ?.replace(/\b\d{1,2}:\d{2}\s*(?:a\.m\.|p\.m\.|am|pm)\b/gi, "")
+      ?.replace(/\b(?:a\.m\.|p\.m\.|am|pm)\b/gi, "")
+      ?.replace(/\s+/g, " ")
+      ?.trim();
+    if (!place || place.length < 8) continue;
+    if (/^\d/.test(place)) continue;
+    return `${time}|${place}`;
+  }
+  return null;
+}
+
+export function runBookPatternAudit(options: BookPatternAuditOptions): BookPatternAuditReport {
+  const bookId = options.bookId;
+  const chapters = [...options.chapters].sort((a, b) => a.number - b.number);
+  const stateDir = options.stateDir ?? DEFAULT_STATE_DIR;
+  const requirePlanArtifacts = options.requirePlanArtifacts !== false;
+  const checkSourceAlignment = options.checkSourceAlignment !== false;
+  const findings: BookPatternAuditFinding[] = [];
+
+  // BP7: durable planning artifacts. Allows either manual Codex artifacts or
+  // generated pipeline artifacts so the real provider pipeline still passes.
+  let missingBrief = false;
+  const missingPlanChapters: number[] = [];
+  if (requirePlanArtifacts) {
+    missingBrief = !briefPaths(stateDir, bookId).some((p) => existsSync(p));
+    if (missingBrief) {
+      findings.push({
+        code: "BP7",
+        severity: "blocker",
+        message: `Missing book brief artifact for ${bookId}. Expected ${bookId}.manual-brief.json or ${bookId}.brief.json under state/briefs/. Whole-book Codex runs without a durable brief are not promotable.`,
+        maxScoreCap: 85,
+      });
+    }
+    for (const ch of chapters) {
+      if (!planPaths(stateDir, ch.chapterId).some((p) => existsSync(p))) {
+        missingPlanChapters.push(ch.number);
+      }
+    }
+    if (missingPlanChapters.length > 0) {
+      findings.push({
+        code: "BP7",
+        severity: "blocker",
+        chapters: missingPlanChapters,
+        count: missingPlanChapters.length,
+        message: `Missing per-chapter plan artifacts for chapters ${missingPlanChapters.join(", ")}. Expected <chapterId>.manual-plan.json or <chapterId>.plan.json under state/plans/.`,
+        maxScoreCap: 85,
+      });
+    }
+  }
+
+  // BP1: repeated quiz explanations, exact after whitespace/punctuation normalization.
+  const quizExplanationMap = new Map<string, PatternOccurrence[]>();
+  for (const ch of chapters) {
+    for (const [i, q] of (ch.quiz?.questions ?? []).entries()) {
+      const explanation = compact(q.explanation);
+      if (!explanation) continue;
+      const key = normalizeExact(explanation);
+      if (key.length < 40) continue;
+      pushOccurrence(quizExplanationMap, key, {
+        chapter: ch.number,
+        unit: `quiz.q${String(i + 1).padStart(2, "0")}.explanation`,
+        evidence: explanation.slice(0, 220),
+      });
+    }
+  }
+  let repeatedQuizExplanationGroups = 0;
+  for (const [key, occurrences] of quizExplanationMap) {
+    const chs = uniqueChapters(occurrences);
+    if (occurrences.length >= 3 || chs.length >= 2) {
+      repeatedQuizExplanationGroups += 1;
+      findings.push({
+        code: "BP1",
+        severity: "blocker",
+        chapters: chs,
+        count: occurrences.length,
+        unit: "quiz.explanation",
+        evidence: firstEvidence(occurrences) ?? key,
+        message: `Repeated quiz explanation appears ${occurrences.length} times across chapter(s) ${chs.join(", ")}. Quiz explanations must be specific to each prompt and answer choice, not reusable boilerplate.`,
+        maxScoreCap: 70,
+      });
+    }
+  }
+
+  // BP3: repeated surface frames in hooks, counters, and tryThisNow.
+  const surfaceFrameMap = new Map<string, PatternOccurrence[]>();
+  const surfaceFields: Array<["hook" | "counterintuition" | "tryThisNow", string]> = [
+    ["hook", "hook"],
+    ["counterintuition", "counterintuition"],
+    ["tryThisNow", "tryThisNow"],
+  ];
+  for (const ch of chapters) {
+    for (const [field, label] of surfaceFields) {
+      const value = compact((ch as any)[field]);
+      if (!value) continue;
+      const tokens = normalizeSurfaceFrame(value, ch.title);
+      for (const gram of ngrams(tokens, 5)) {
+        pushOccurrence(surfaceFrameMap, `${label}|${gram}`, {
+          chapter: ch.number,
+          unit: label,
+          evidence: value.slice(0, 220),
+        });
+      }
+    }
+  }
+  let repeatedSurfaceFrameGroups = 0;
+  const threshold = chapterThreshold(chapters.length);
+  for (const [key, occurrences] of surfaceFrameMap) {
+    const chs = uniqueChapters(occurrences);
+    if (chs.length >= threshold) {
+      repeatedSurfaceFrameGroups += 1;
+      const [field, gram] = key.split("|");
+      findings.push({
+        code: "BP3",
+        severity: "blocker",
+        chapters: chs,
+        count: chs.length,
+        unit: field,
+        evidence: gram,
+        message: `Repeated ${field} frame across chapters ${chs.join(", ")}: "${gram}". This is cross-chapter template collapse.`,
+        maxScoreCap: 80,
+      });
+    }
+  }
+
+  // BP2: repeated example scene shells across chapters.
+  const exampleNgramMap = new Map<string, PatternOccurrence[]>();
+  const exampleAnchorMap = new Map<string, PatternOccurrence[]>();
+  const timePlaceMap = new Map<string, PatternOccurrence[]>();
+  for (const ch of chapters) {
+    for (const [i, ex] of (ch.examples ?? []).entries()) {
+      const scenario = compact(ex.scenario);
+      if (!scenario) continue;
+      const unit = `example[${i}]`;
+      const tokens = normalizeSurfaceFrame(scenario, ch.title);
+      for (const gram of ngrams(tokens, 6)) {
+        pushOccurrence(exampleNgramMap, gram, {
+          chapter: ch.number,
+          unit,
+          evidence: scenario.slice(0, 220),
+        });
+      }
+      const anchor = anchorKeyFromScenario(scenario, ch.title);
+      if (anchor) {
+        pushOccurrence(exampleAnchorMap, anchor, {
+          chapter: ch.number,
+          unit,
+          evidence: scenario.slice(0, 180),
+        });
+      }
+      const timePlace = timePlaceKey(scenario);
+      if (timePlace) {
+        pushOccurrence(timePlaceMap, timePlace, {
+          chapter: ch.number,
+          unit,
+          evidence: scenario.slice(0, 180),
+        });
+      }
+    }
+  }
+  let repeatedExampleFrameGroups = 0;
+  const exampleThreshold = chapterThreshold(chapters.length);
+  for (const [gram, occurrences] of exampleNgramMap) {
+    const chs = uniqueChapters(occurrences);
+    if (chs.length >= exampleThreshold) {
+      repeatedExampleFrameGroups += 1;
+      findings.push({
+        code: "BP2",
+        severity: "blocker",
+        chapters: chs,
+        count: chs.length,
+        unit: "examples.scenario",
+        evidence: gram,
+        message: `Repeated example scene wording across chapters ${chs.join(", ")}: "${gram}". Cross-chapter C8 requires a structural rewrite, not renaming.`,
+        maxScoreCap: 75,
+      });
+    }
+  }
+  for (const [anchor, occurrences] of exampleAnchorMap) {
+    const chs = uniqueChapters(occurrences);
+    if (chs.length >= exampleThreshold) {
+      repeatedExampleFrameGroups += 1;
+      findings.push({
+        code: "BP2",
+        severity: "blocker",
+        chapters: chs,
+        count: chs.length,
+        unit: "examples.scenario.opening",
+        evidence: anchor,
+        message: `Repeated example opening skeleton across chapters ${chs.join(", ")}: "${anchor}". The first-scene choreography is being reused.`,
+        maxScoreCap: 75,
+      });
+    }
+  }
+
+  // BP5: concrete time/place reuse. Two may be a warning; three or more blocks.
+  let repeatedConcreteAnchors = 0;
+  for (const [anchor, occurrences] of timePlaceMap) {
+    const chs = uniqueChapters(occurrences);
+    if (chs.length >= 3) {
+      repeatedConcreteAnchors += 1;
+      findings.push({
+        code: "BP5",
+        severity: "blocker",
+        chapters: chs,
+        count: occurrences.length,
+        unit: "examples.scenario.anchor",
+        evidence: anchor,
+        message: `Same time/place anchor appears in examples across chapters ${chs.join(", ")}: "${anchor}". This is a reusable scene shell.`,
+        maxScoreCap: 75,
+      });
+    } else if (chs.length === 2) {
+      repeatedConcreteAnchors += 1;
+      findings.push({
+        code: "BP5",
+        severity: "major",
+        chapters: chs,
+        count: occurrences.length,
+        unit: "examples.scenario.anchor",
+        evidence: anchor,
+        message: `Same time/place anchor appears in two chapters (${chs.join(", ")}). Check whether this is intentional continuity or a repeated shell.`,
+        maxScoreCap: 88,
+      });
+    }
+  }
+
+  // BP6: source and plan-core alignment. This is deliberately rough, but it
+  // catches chapters that drift from a specific source pressure into generic
+  // advice. Major, not blocker, because some source sidecars are sparse.
+  let sourceAlignmentWarnings = 0;
+  if (checkSourceAlignment) {
+    for (const ch of chapters) {
+      const generatedTokens = new Set(tokenize(chapterText(ch)));
+      const source = loadChapterSource(bookId, ch.number);
+      if (source) {
+        const keywords = distinctiveKeywords(source, 18);
+        const matched = keywords.filter((k) => generatedTokens.has(k));
+        const expected = Math.min(8, keywords.length);
+        if (keywords.length >= 8 && matched.length < Math.max(2, Math.floor(expected * 0.35))) {
+          sourceAlignmentWarnings += 1;
+          findings.push({
+            code: "BP6",
+            severity: "major",
+            chapters: [ch.number],
+            unit: "source-alignment",
+            evidence: `source terms: ${keywords.slice(0, 12).join(", ")} | matched: ${matched.join(", ") || "none"}`,
+            message: `Chapter ${ch.number} has weak lexical alignment with its source sidecar. This often means a chapter-specific topic drifted into generic book-theme prose.`,
+            maxScoreCap: 88,
+          });
+        }
+      }
+      const coreMove = readPlanCoreMove(stateDir, ch.chapterId);
+      if (coreMove) {
+        const coreTerms = distinctiveKeywords(coreMove, 10);
+        const matched = coreTerms.filter((k) => generatedTokens.has(k));
+        if (coreTerms.length >= 4 && matched.length < 2) {
+          sourceAlignmentWarnings += 1;
+          findings.push({
+            code: "BP6",
+            severity: "major",
+            chapters: [ch.number],
+            unit: "plan-coreMove",
+            evidence: `coreMove terms: ${coreTerms.join(", ")} | matched: ${matched.join(", ") || "none"}`,
+            message: `Chapter ${ch.number} appears weakly aligned with its stored coreMove. Check whether the chapter teaches the planned move, not a nearby generic theme.`,
+            maxScoreCap: 88,
+          });
+        }
+      }
+    }
+  }
+
+  // Deduplicate noisy findings: one finding per code/unit/evidence/chapter set.
+  const deduped: BookPatternAuditFinding[] = [];
+  const seen = new Set<string>();
+  for (const f of findings) {
+    const key = `${f.code}|${f.unit ?? ""}|${(f.chapters ?? []).join(",")}|${f.evidence ?? ""}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(f);
+  }
+
+  const blockers = deduped.filter((f) => f.severity === "blocker");
+  return {
+    bookId,
+    chapterCount: chapters.length,
+    passed: blockers.length === 0,
+    findings: deduped,
+    stats: {
+      repeatedQuizExplanationGroups,
+      repeatedSurfaceFrameGroups,
+      repeatedExampleFrameGroups,
+      repeatedConcreteAnchors,
+      missingPlanChapters,
+      missingBrief,
+      sourceAlignmentWarnings,
+    },
+  };
+}
+
+export function formatBookPatternAuditReport(report: BookPatternAuditReport): string {
+  const blockers = report.findings.filter((f) => f.severity === "blocker");
+  const majors = report.findings.filter((f) => f.severity === "major");
+  const minors = report.findings.filter((f) => f.severity === "minor");
+  const lines: string[] = [];
+  lines.push(`Book pattern audit: ${report.passed ? "PASS" : "BLOCK"} (${report.bookId}, ${report.chapterCount} chapter(s))`);
+  lines.push(`  blockers: ${blockers.length}`);
+  lines.push(`  majors: ${majors.length}`);
+  lines.push(`  minors: ${minors.length}`);
+  lines.push(`  repeated quiz explanation groups: ${report.stats.repeatedQuizExplanationGroups}`);
+  lines.push(`  repeated hook/counter/try frame groups: ${report.stats.repeatedSurfaceFrameGroups}`);
+  lines.push(`  repeated example frame groups: ${report.stats.repeatedExampleFrameGroups}`);
+  lines.push(`  repeated concrete anchors: ${report.stats.repeatedConcreteAnchors}`);
+  if (report.stats.missingBrief) lines.push(`  missing brief artifact: yes`);
+  if (report.stats.missingPlanChapters.length) {
+    lines.push(`  missing plan chapters: ${report.stats.missingPlanChapters.join(", ")}`);
+  }
+  if (report.findings.length > 0) {
+    lines.push("  Findings:");
+    for (const f of report.findings.slice(0, 80)) {
+      const ch = f.chapters?.length ? ` ch${f.chapters.join(",")}` : "";
+      const cap = f.maxScoreCap ? ` cap<=${f.maxScoreCap}` : "";
+      lines.push(`    [${f.code} ${f.severity}${cap}]${ch} ${f.message}`);
+      if (f.evidence) lines.push(`      evidence: ${f.evidence.slice(0, 240)}`);
+    }
+    if (report.findings.length > 80) {
+      lines.push(`    ... ${report.findings.length - 80} more finding(s)`);
+    }
+  }
+  return lines.join("\n");
+}
+
+export function maxScoreCapsByChapter(report: BookPatternAuditReport): Map<number, number> {
+  const caps = new Map<number, number>();
+  const applyCap = (chapter: number, cap: number) => {
+    const current = caps.get(chapter) ?? 100;
+    caps.set(chapter, Math.min(current, cap));
+  };
+  for (const f of report.findings) {
+    if (!f.maxScoreCap) continue;
+    if (f.chapters?.length) {
+      for (const chapter of f.chapters) applyCap(chapter, f.maxScoreCap);
+    } else {
+      // Book-wide missing brief affects every generated chapter.
+      for (let chapter = 1; chapter <= report.chapterCount; chapter++) applyCap(chapter, f.maxScoreCap);
+    }
+  }
+  return caps;
+}

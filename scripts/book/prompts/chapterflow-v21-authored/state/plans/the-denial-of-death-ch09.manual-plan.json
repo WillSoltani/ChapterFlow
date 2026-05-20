@@ -1,0 +1,197 @@
+{
+  "chapterId": "the-denial-of-death-ch09",
+  "number": 9,
+  "title": "The Present Outcome of Psychoanalysis",
+  "coreMove": "see insight without a convincing world-picture as diagnosis that may expose defense without healing failed heroism",
+  "sourcePressure": "Judges psychoanalysis as insightful about repression and conflict but insufficient as a cure because it lacks a strong world-picture.",
+  "chapterSpecificMisunderstanding": "More self insight is automatically enough.",
+  "sourceAlignmentTerms": [
+    "psychoanalysis",
+    "failed heroism",
+    "world-picture",
+    "repression",
+    "conflict",
+    "cure",
+    "pathology"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "convincing world-picture",
+      "detail": "the source sidecar gives narrow support for the phrase as the concern that psychoanalysis lacks a framework strong enough to heal failed heroism",
+      "useIn": "fullRead",
+      "phrasingHint": "Insight can expose the hiding place without giving a person a world strong enough to live in afterward."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first mortality hook",
+      "generic fear controls your life opener",
+      "chapter 9 as essay preview"
+    ],
+    "counterintuition": [
+      "what looks like X is actually Y",
+      "you think this is about fear but it is about meaning",
+      "not weakness but strength correction shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on death",
+      "write three things you fear",
+      "generic notice your reaction prompt"
+    ],
+    "examples": [
+      "office meeting with mug scene shell",
+      "kitchen-table epiphany",
+      "classroom whiteboard morality tale",
+      "timestamp plus name plus prop opener"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "probation reentry program",
+      "audience": "counselor after a clear insight",
+      "stakes": "show why analysis alone can leave a client stranded",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia names the pattern, then asks what community and obligation can hold the truth tomorrow",
+      "firstImage": "intake chair under fluorescent light",
+      "mustInclude": [
+        "intake form",
+        "bus voucher",
+        "job roster"
+      ],
+      "mustAvoid": [
+        "therapy consumer advice",
+        "generic psychoanalysis lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "corporate burnout workshop",
+      "audience": "facilitator exposing defenses without purpose",
+      "stakes": "avoid turning insight into thin performance",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ryan tears up the clever slide and builds around one real obligation people can return to",
+      "firstImage": "blank projector wall",
+      "mustInclude": [
+        "burnout survey",
+        "slide remote",
+        "team charter"
+      ],
+      "mustAvoid": [
+        "anti-therapy polemic",
+        "generic psychoanalysis lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "prison philosophy group",
+      "audience": "teacher seeing failed heroism under bravado",
+      "stakes": "connect self-insight to a livable world inside constraints",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Vincent asks each man what respect can be earned this week rather than what story explains the past",
+      "firstImage": "bolted metal chairs",
+      "mustInclude": [
+        "library cart",
+        "pencil stub",
+        "visitation schedule"
+      ],
+      "mustAvoid": [
+        "therapy consumer advice",
+        "generic psychoanalysis lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "post-layoff clinic",
+      "audience": "engineer with insight and no role",
+      "stakes": "make the missing world-picture visible",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Maja asks which role would still be worth serving if status did not return for a year",
+      "firstImage": "badge lanyard cut in half",
+      "mustInclude": [
+        "severance packet",
+        "skills grid",
+        "childcare bill"
+      ],
+      "mustAvoid": [
+        "anti-therapy polemic",
+        "generic psychoanalysis lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "recovery house meeting",
+      "audience": "resident fluent in explanations",
+      "stakes": "distinguish insight from shelter against action",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Kasia lets the explanation stand, then asks for the repair he will make before dinner",
+      "firstImage": "folding chairs in a basement",
+      "mustInclude": [
+        "coffee urn",
+        "phone list",
+        "apology card"
+      ],
+      "mustAvoid": [
+        "therapy consumer advice",
+        "generic psychoanalysis lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "urban planning hearing",
+      "audience": "analyst with facts but no trust",
+      "stakes": "show that data exposes conflict but cannot supply belonging",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chidi adds a listening session after the displacement map proves the wound without creating trust",
+      "firstImage": "zoning map on an easel",
+      "mustInclude": [
+        "zoning map",
+        "microphone queue",
+        "translation headset"
+      ],
+      "mustAvoid": [
+        "anti-therapy polemic",
+        "generic psychoanalysis lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply see insight without a convincing world-picture as diagnosis that may expose defense without healing failed heroism in a fresh scenario",
+      "avoid the weak version: More self insight is automatically enough.",
+      "explain choices using psychoanalysis, failed heroism, world-picture"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "After one useful self-insight, write the community, duty, or practice that will hold it tomorrow.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

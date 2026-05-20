@@ -1,0 +1,100 @@
+{
+  "bookId": "talk-like-ted",
+  "title": "Talk Like TED: The 9 Public-Speaking Secrets of the World's Top Minds",
+  "author": "Carmine Gallo",
+  "thesisParagraph": "The book argues that memorable public speaking is not a bag of stage tricks. A strong talk starts with a real stake under the topic, gives that stake a story shape, delivers it in a rehearsed conversational voice, and keeps attention through novelty, surprise, warmth, disciplined compression, sensory clarity, and authentic fit. The point is not to imitate TED style as a costume. The point is to make an idea easier to feel, understand, remember, and repeat without losing the speaker's own conviction.",
+  "coreIdeas": [
+    {
+      "name": "Inner Stake First",
+      "oneSentence": "A talk gains force when the speaker knows the deeper reason the topic matters before polishing delivery.",
+      "mentalMove": "Separate the visible subject from the living stake underneath it.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Story Carries Evidence",
+      "oneSentence": "Facts persuade better when they are placed inside human movement, tension, and consequence.",
+      "mentalMove": "Choose the story that makes the data morally and emotionally legible without replacing the data.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Practice Until Natural",
+      "oneSentence": "Conversational delivery is earned through rehearsal, not improvised by hoping to sound casual.",
+      "mentalMove": "Rehearse voice, pace, pause, gesture, and movement until the message can sound like one person talking to one person.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Give The Room Freshness",
+      "oneSentence": "Attention rises when the audience receives a useful new fact, frame, picture, or demonstration.",
+      "mentalMove": "Find the unfamiliar angle that clarifies the idea instead of decorating it.",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch05.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Design For Memory",
+      "oneSentence": "People remember peaks, vivid images, concise structure, and emotional release more than a long complete inventory.",
+      "mentalMove": "Cut, stage, and sequence the talk so one strong idea survives after the room leaves.",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source",
+        "ch07.source"
+      ]
+    }
+  ],
+  "targetReader": "A founder, student, manager, expert, teacher, organizer, or professional who has to make other people care about an idea in a room. They already know content matters; they need to turn knowledge into a talk that feels alive, clear, human, memorable, and their own.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "keep speaking craft tied to audience transfer rather than stage vanity",
+      "make the speaker's decision visible before naming the technique",
+      "land examples with protagonist names that read naturally to Canadian, American, and European readers"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake neuroscience or unsupported memory claims",
+      "no turning TED into a brand costume"
+    ]
+  },
+  "voiceSpecimens": [
+    "The slide title is not the message; the message is the reason your voice changes when you reach it.",
+    "A story gives the audience a person to follow before it asks them to accept a claim.",
+    "Natural delivery is what practice looks like after the scaffolding has been taken down.",
+    "A new frame does not have to be clever. It has to make the familiar thing visible again.",
+    "The surprise works only if it hands the idea back to the room sharper than before.",
+    "Brevity is not a race. It is the discipline of refusing to make the audience carry everything you know.",
+    "Your own lane is not the safest version of you. It is the truest version that can still serve the audience."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains how to become a better public speaker using proven TED techniques.",
+    "Carmine Gallo argues that everyone should be passionate, authentic, and memorable.",
+    "In today's fast-paced world, presentations must be engaging and impactful.",
+    "Try this now: take a minute to reflect on your communication style.",
+    "The takeaway is to tell stories, use humor, and keep things short.",
+    "As discussed above, successful speakers leverage several powerful tools."
+  ],
+  "teachingArc": "The sequence starts by finding the living reason under the topic, then teaches how to give that reason story form and conversational delivery. It then widens into attention and memory: novelty, surprise, humor, compression, and sensory imagery. The final move returns to identity, so the reader does not copy a famous speaker's surface but builds a talk from real conviction, real expertise, and a voice that fits.",
+  "forbiddenMoves": [
+    "Do not reduce every lesson to be passionate and tell stories.",
+    "Do not make TED itself the hero; the reader needs transferable speaking moves.",
+    "Do not invent named talks, studies, props, or neuroscience beyond the frozen source notes.",
+    "Do not confuse surprise, humor, or imagery with entertainment detached from the idea.",
+    "Do not let every example become a startup pitch, classroom presentation, or generic conference room."
+  ]
+}

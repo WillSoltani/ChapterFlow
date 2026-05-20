@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch21",
+  "number": 21,
+  "title": "Intuitions vs. Formulas",
+  "readingTimeMinutes": 12,
+  "hook": "The expert sees nuance; the rule quietly avoids having a different mood every Tuesday.",
+  "counterintuition": "A formula is not a spell, and expertise is not useless. In stable prediction tasks, a simple consistent rule can beat judgment because it removes noise that nuance keeps reintroducing.",
+  "tryThisNow": "Pick one recurring prediction and write a three-factor rule for it. Use the same weights once before adding any personal adjustment.",
+  "keyTakeaway": "Use a consistent rule when prediction conditions are stable enough for noise to hurt more than nuance helps.",
+  "breakdown": {
+    "fastRead": "A night auditor decides which unpaid reservations will become no-shows. After years at the desk, he reads tone, room type, arrival city, and weather. Some of that judgment is real. Some is fatigue, irritation, and the last guest who lied.\n\nConsistency is a prediction advantage.\n\nSimple formulas often win in stable settings because they apply the same cues the same way every time. Expert judgment may notice useful information, but it also changes with mood, memory, and recent stories. When the task repeats and outcomes can be checked, a modest rule can remove more error than it loses in nuance.",
+    "deepRead": "A rescue intake worker sees an injured bird and feels the case is urgent. The wing angle looks wrong, the bird is quiet, and the caller sounds frightened. Another worker might rate the same case lower after a stressful morning. A third might overreact because the last quiet bird died.\n\nThe rule does not get tired.\n\nThe value of a formula is not that it understands the bird better than a person. It is that it uses the same inputs in the same order. Weight, bleeding, breathing, exposure, and species can be scored consistently. If those inputs have predicted outcomes in past cases, the rule protects the rescue desk from private noise. The person still gathers the facts, notices exceptions, and acts when something falls outside the rule's range.\n\nStable prediction is the boundary. A formula works best when the same cues keep meaning roughly the same thing, the outcome is definable, and enough past cases show which cues matter. If the world has changed, the data are poor, or the case is truly novel, blind obedience becomes its own error. A rule is strongest when it converts reliable regularities into consistent action.\n\nA blood bank scheduler knows the temptation. A surgeon's name, a holiday weekend, and a difficult case create a strong feeling that extra units will be needed. The formula may use procedure, patient factors, and historical transfusion rates. It may miss a special note, so staff can add an override. But if every scheduler gets to inflate the order based on a fresh story, the system becomes expensive and uneven.\n\nA good rule is a floor for judgment, not a muzzle.",
+    "fullRead": "Experts often resist formulas because formulas look crude. A person can see context, motive, hesitation, and texture. A rule appears to flatten the situation into a few inputs. That complaint is sometimes right. The overlooked fact is that human judgment also flattens reality, just less consistently. It drops facts when rushed, overweights recent cases, and changes thresholds without noticing.\n\nAn airport baggage control desk gives the rule a fair test. Megan has to decide which delayed bags should be hand-routed before the evening bank of flights. The formula barograph strip labeled formula sits beside the queue. Her first instinct favors the angry passenger with a tight connection. The rule weighs connection time, bag location, scan age, aircraft door time, and misroute history. It is not compassionate. It is consistent across passengers whose stories vary in volume.\n\nWhat would make a rule worse than judgment?\n\nThree conditions matter. First, the rule must fit a stable task. If a new baggage system changes scan reliability, the old formula can fail. Second, the inputs must be available and meaningful. A formula built from sloppy measures will be consistently sloppy. Third, the rule must leave room for real exceptions, not personal vibes. A medical emergency tag or security hold may override the baggage rule; a passenger's anger should not.\n\nThe deepest advantage is noise reduction. One expert may rate a candidate at 8 on Monday and 6 on Thursday. Two experts may weigh the same cue differently without realizing it. A formula applies the same weight each time. It can be simple: add points for three proven predictors, subtract for one risk factor, set a threshold. The precision may look humble. The consistency is the power.\n\nThis does not make experts decorative. Experts choose which variables deserve testing, notice when the domain has shifted, and inspect cases that fall outside the formula's intended range. The problem begins when experts take a coherent impression in a repeatable prediction task and treat their private weighting as superior by default. If the outcome record favors the rule, pride should not get a veto.\n\nA jazz rehearsal room shows the same distinction in a strange setting. A bandleader wants to predict which substitute players will hold tempo under pressure. Russell remembers confidence, banter, and one brilliant warm-up. The freight seal manifest labeled expert judgment lies on the piano as a reminder from the last failed booking. A simple score using prior live sets, missed rehearsal count, and click-track drift would have beaten the story. The rule did not hear soul. It noticed the variables that kept predicting the gig.\n\nThe counter-objection is that formulas can become bureaucratic shields. True. A bad rule can harden old errors, ignore changing conditions, or hide responsibility behind a number. The answer is to audit the rule against outcomes, not to replace it with every new impression. When prediction conditions are stable, consistency deserves a presumption. When conditions shift, the rule earns revision.\n\nLet intuition gather the facts; let the rule keep the weights from wandering."
+  },
+  "examples": [
+    {
+      "exampleId": "ch21-ex01-megan-bags",
+      "title": "Megan lets the baggage rule speak first",
+      "tags": [
+        "decision_point",
+        "airport",
+        "formula"
+      ],
+      "planSpec": {
+        "domain": "airport baggage control facing a decision distorted by algorithm",
+        "audience": "a lead or reviewer who must use a consistent rule when conditions are stable enough",
+        "stakes": "the visible call will go wrong unless the rule is separated from the tempting cue",
+        "format": "decision_point",
+        "requiredBeat": "the operator places the labeled strip beside the tempting first answer and covers the answer field before stating the correction"
+      },
+      "scenario": "The baggage control desk after the last inbound wave is quiet except for the formula barograph strip labeled formula beside Megan's unfinished call. An angry passenger with a tight connection pulls her attention, but three bags have worse scan-age scores. Megan must decide whether to hand-route by sympathy or use the algorithm first because this stable task punishes noisy judgment.",
+      "whatToDo": "Run the baggage formula before any override, then allow only documented exceptions such as security holds or medical tags.",
+      "whyItMatters": "The formula applies proven cues consistently. Megan's sympathy is human, but it should not outweigh a stable prediction rule."
+    },
+    {
+      "exampleId": "ch21-ex02-olivier-blood",
+      "title": "Olivier boxes the surgeon's reputation",
+      "tags": [
+        "predict_reveal",
+        "blood-bank",
+        "expert-judgment"
+      ],
+      "planSpec": {
+        "domain": "blood bank scheduling facing a decision distorted by algorithm",
+        "audience": "a lead or reviewer who must use a consistent rule when conditions are stable enough",
+        "stakes": "the visible call will go wrong unless the rule is separated from the tempting cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the specialist boxes the misleading cue and writes the missing check before a vote"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Olivier says, with the gilded frame label labeled algorithm between the surgeon's reputation and the blood-order screen. The case sounds difficult, and everyone expects extra units. Olivier must decide whether expert judgment should override the formula or whether procedure type, patient factors, and historical transfusion rates get checked first.",
+      "whatToDo": "Draw a box around reputation, then compare the order with the formula based on verified transfusion predictors before approving extra units.",
+      "whyItMatters": "The surgeon's story may contain information, but the formula protects supply from mood, status, and recent anecdotes."
+    },
+    {
+      "exampleId": "ch21-ex03-russell-sub",
+      "title": "Russell stops booking from one brilliant warm-up",
+      "tags": [
+        "postmortem",
+        "music",
+        "consistency"
+      ],
+      "planSpec": {
+        "domain": "jazz rehearsal room facing a decision distorted by algorithm",
+        "audience": "a lead or reviewer who must use a consistent rule when conditions are stable enough",
+        "stakes": "the visible call will go wrong unless the rule is separated from the tempting cue",
+        "format": "postmortem",
+        "requiredBeat": "two people disagree over the labeled manifest, one pointing to the story and one asking what would change the call"
+      },
+      "scenario": "The stiff paper edge of the freight seal manifest labeled expert judgment sits under Russell's hand while the band reviews a ruined Friday set. The substitute had played a gorgeous warm-up, so Russell booked him over the steadier choice. Fiona points to prior live sets, missed rehearsals, and click-track drift. Russell must decide what evidence would change the next call before another fluent story wins.",
+      "whatToDo": "Use a small score for prior live reliability, rehearsal attendance, and tempo drift before letting a warm-up impression adjust the choice.",
+      "whyItMatters": "The formula cannot hear everything, but it can keep one vivid rehearsal from overruling consistent predictors."
+    },
+    {
+      "exampleId": "ch21-ex04-fiona-potholes",
+      "title": "Fiona moves potholes by rule, then exception",
+      "tags": [
+        "before_after",
+        "city-services",
+        "noise"
+      ],
+      "planSpec": {
+        "domain": "city pothole hotline facing a decision distorted by algorithm",
+        "audience": "a lead or reviewer who must use a consistent rule when conditions are stable enough",
+        "stakes": "the visible call will go wrong unless the rule is separated from the tempting cue",
+        "format": "before_after",
+        "requiredBeat": "the lead slides the labeled wristband into view and refuses to choose until the formula check is visible"
+      },
+      "scenario": "You are looking at the consistency triage wristband labeled consistency while Fiona's hotline screen makes the easiest complaint feel too complete. A council member's street has three angry calls. Another route has one call but higher crash history, bus exposure, and depth estimate. Fiona must decide whether noise from status and volume beats the formula that was built for this repeated repair queue.",
+      "whatToDo": "Apply the pothole priority score first, then add only written overrides for safety or access exceptions.",
+      "whyItMatters": "Complaint volume is noisy. A consistent formula keeps repair order tied to stable predictors instead of social pressure."
+    },
+    {
+      "exampleId": "ch21-ex05-peter-rescue",
+      "title": "Peter checks the rescue score before the panic",
+      "tags": [
+        "reflection",
+        "wildlife",
+        "prediction-rule"
+      ],
+      "planSpec": {
+        "domain": "wildlife rescue intake facing a decision distorted by algorithm",
+        "audience": "a lead or reviewer who must use a consistent rule when conditions are stable enough",
+        "stakes": "the visible call will go wrong unless the rule is separated from the tempting cue",
+        "format": "reflection",
+        "requiredBeat": "the team records the quick impression, then reveals how the correction changes the estimate"
+      },
+      "scenario": "It took three passes before Peter saw what the sauce-stained order rail labeled noise had been making too easy. The caller sounded panicked, so the young owl felt like the top rescue priority. The intake score used breathing, bleeding, exposure, species, and travel time. Peter must decide whether the prediction rule changes the dispatch order after the first emotional estimate is written down.",
+      "whatToDo": "Record the panic-based rank, run the intake score, and dispatch from the score unless a defined exception applies.",
+      "whyItMatters": "Caller emotion varies more than injury severity. The formula reduces noise in a repeated intake problem."
+    },
+    {
+      "exampleId": "ch21-ex06-liv-night-audit",
+      "title": "Liv tests the no-show thought experiment",
+      "tags": [
+        "thought-experiment",
+        "hotel",
+        "prediction-rule"
+      ],
+      "planSpec": {
+        "domain": "hotel night audit facing a decision distorted by algorithm",
+        "audience": "a lead or reviewer who must use a consistent rule when conditions are stable enough",
+        "stakes": "the visible call will go wrong unless the rule is separated from the tempting cue",
+        "format": "thought_experiment",
+        "requiredBeat": "after the miss, the reviewer tapes the labeled sheet to the board and traces where the rule should have displaced judgment"
+      },
+      "scenario": "What would change if the arraignment intake sheet labeled prediction rule stopped feeling like proof and started looking like a cue on Liv's hotel desk? Imagine she has to decide which unpaid reservations to release before midnight. Her gut trusts polite callers and doubts one-line emails. The no-show formula uses deposit status, booking channel, arrival distance, and past cancellation rate.",
+      "whatToDo": "Compare Liv's gut list with the rule list, then release rooms by the rule unless a verifiable exception is present.",
+      "whyItMatters": "The thought experiment shows where personal texture adds noise. The prediction rule keeps a stable decision from changing with caller style."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "An airport team prioritizes delayed bags. One passenger is angry and memorable, but a simple score using scan age, door time, connection length, and misroute history has performed well. What should the lead do?",
+        "choices": [
+          "Use the score first, then allow only defined exceptions.",
+          "Prioritize the angry passenger because emotion reveals urgency.",
+          "Ignore the score because formulas cannot understand travel stress."
+        ],
+        "correctIndex": 0,
+        "explanation": "The task is repeated and stable enough for a rule to reduce noise. Passenger emotion may matter for service, but it should not replace proven predictors.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A blood bank scheduler wants to increase units for a case because the surgeon has a dramatic reputation. A formula based on procedure and patient factors predicts lower need. Which move best fits the rule-versus-judgment correction?",
+        "choices": [
+          "Always ignore surgeon reputation because all expertise is useless.",
+          "Check the formula first and require a documented reason for any override.",
+          "Let reputation decide because experts know what formulas miss."
+        ],
+        "correctIndex": 1,
+        "explanation": "The formula gets first weight in a stable prediction task. Expertise can override only with specific evidence, not with status or a vivid story.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A bandleader chooses substitutes by warm-up brilliance, but records show prior live reliability and missed rehearsals predict gig quality better. What would a simple formula improve?",
+        "choices": [
+          "It would make the band less musical by banning judgment.",
+          "It would guarantee every substitute performs perfectly.",
+          "It would apply the strongest predictors consistently instead of chasing a vivid rehearsal."
+        ],
+        "correctIndex": 2,
+        "explanation": "The formula is useful because it reduces noisy overreaction to one scene. It does not guarantee perfection or eliminate expert listening.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A city hotline gets three calls from a politically important street and one call from a road with higher crash history and bus exposure. The repair score was built from past safety outcomes. Which choice is best?",
+        "choices": [
+          "Follow the repair score unless a defined emergency override exists.",
+          "Follow the politically important street because three calls beat one.",
+          "Split crews evenly because formulas and judgment cancel out."
+        ],
+        "correctIndex": 0,
+        "explanation": "The score protects a repeated decision from social pressure and call noise. Splitting crews ignores the priority signal; call volume alone can mislead.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A wildlife intake worker hears a frightened caller and wants to dispatch immediately. The intake rule uses breathing, bleeding, exposure, species, and travel time. Past outcomes support the rule. What should happen?",
+        "choices": [
+          "Use caller fear as the full priority score.",
+          "Run the intake rule and override only for a defined exception.",
+          "Delay all rescue until every case can be personally inspected."
+        ],
+        "correctIndex": 1,
+        "explanation": "Caller fear is a noisy cue. The intake formula uses stable predictors and still leaves room for explicit exceptions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A hotel night auditor trusts polite callers and doubts short emails when predicting no-shows. A rule using deposit status, booking channel, distance, and cancellation history is well tested. What is the strongest reason to use the rule?",
+        "choices": [
+          "It proves guest tone has no meaning in any setting.",
+          "It makes the outcome morally fair regardless of accuracy.",
+          "It removes personal noise from a recurring prediction task."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rule's advantage is consistency in a repeated forecast. It does not prove tone is always meaningless or settle fairness by itself.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says formulas should replace experts in every decision because formulas often beat intuition. Which reply is most accurate?",
+        "choices": [
+          "Wrong; formulas help most when the task is stable, outcomes are checkable, and inputs are meaningful.",
+          "Correct; formulas are always better because people are noisy.",
+          "Wrong; experts should never use formulas because context matters."
+        ],
+        "correctIndex": 0,
+        "explanation": "The correction is conditional. Formulas shine in stable, trackable prediction tasks, while changing domains and poor inputs require expert oversight.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A loan officer uses a scoring rule, but a case has a verified fraud alert that the rule does not include. What is the best way to treat the exception?",
+        "choices": [
+          "Ignore the alert because formulas cannot be questioned.",
+          "Use the alert as a documented override, then audit whether the rule should be revised.",
+          "Discard the scoring rule permanently because one exception appeared."
+        ],
+        "correctIndex": 1,
+        "explanation": "A real exception can override a rule without destroying the rule. The next step is to audit whether the input belongs in the formula.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team has a formula built from sloppy, inconsistent inputs, and outcomes have shifted since the data were collected. What should they avoid?",
+        "choices": [
+          "Any attempt to make judgment more consistent.",
+          "Checking whether outcomes can be measured better.",
+          "Blind obedience to the rule just because it is mechanical."
+        ],
+        "correctIndex": 2,
+        "explanation": "Mechanical consistency helps only when the inputs and environment are good enough. Improving measurement is useful; rejecting all consistency overreacts.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A recurring prediction has proven inputs. Why might a simple formula beat expert judgment?",
+      "back": "The formula applies the same weights every time, while expert judgment can drift with mood, recent cases, status, and memory.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "When is a formula most useful?",
+      "back": "When the task is stable, the outcome is definable, the inputs are meaningful, and enough past cases show which cues predict.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What is the role of expertise when a formula exists?",
+      "back": "Experts choose variables, gather facts, notice domain shifts, and handle real exceptions. They should not override the rule with private vibes.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A rule misses a true exception. What should happen next?",
+      "back": "Use a documented override for the case, then audit whether the formula needs revision. Do not abandon consistency because one exception occurred.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What error does a formula reduce in stable prediction?",
+      "back": "Noise: different weights from different people or from the same person at different moments. Consistency can outperform flexible but wandering judgment.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is rule-first prediction: when a repeated task is stable, apply the same simple formula before adding expert overrides.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a recurring forecast has a known outcome history, then write a small rule and use it before the meeting debate begins."
+      },
+      {
+        "context": "health",
+        "plan": "If a triage or risk decision repeats, then start with the validated checklist before letting a vivid case story change priority."
+      },
+      {
+        "context": "money",
+        "plan": "If you size repeated purchases or investments, then use a fixed scoring rule before adding a documented exception."
+      },
+      {
+        "context": "operations",
+        "plan": "If a queue must be prioritized, then rank by stable predictors first and write down any override separately."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, create one three-factor rule for a repeated decision and use it once before making any personal adjustment.",
+    "weeklyPractice": "Once a week, compare your rule-based calls with your gut calls and check which one better matched later outcomes."
+  },
+  "memorableLines": [
+    {
+      "text": "Consistency is a prediction advantage.",
+      "location": "breakdown.fastRead",
+      "why": "It states why formulas can beat shifting judgment."
+    },
+    {
+      "text": "A good rule is a floor for judgment, not a muzzle.",
+      "location": "breakdown.deepRead",
+      "why": "It keeps the chapter from sounding anti-expert."
+    },
+    {
+      "text": "Let intuition gather the facts; let the rule keep the weights from wandering.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the division of labor between expertise and formula."
+    }
+  ]
+}

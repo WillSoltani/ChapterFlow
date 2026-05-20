@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch04",
+  "number": 4,
+  "title": "Tactical Dispositions",
+  "coreMove": "Make defeat hard before you look for the moment that makes victory easy.",
+  "sourcePressure": "The source separates protection from attack, teaches that opportunity comes from the opponent, praises winning by making no mistakes, and links measurement through calculation to victory.",
+  "chapterSpecificMisunderstanding": "Treating defense as passivity or waiting for luck.",
+  "sourceAlignmentTerms": [
+    "beyond the possibility of defeat",
+    "defensive tactics",
+    "opportunity",
+    "winning with ease",
+    "making no mistakes",
+    "Measurement",
+    "Balancing of chances",
+    "pent-up waters"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Measurement to Victory",
+      "detail": "The source lists Measurement, Estimation of quantity, Calculation, Balancing of chances, and Victory as a chain.",
+      "useIn": "both",
+      "phrasingHint": "Victory starts as measurement long before it looks like force."
+    },
+    {
+      "kind": "artifact",
+      "name": "the pound weight and single grain",
+      "detail": "A victorious army against a routed one is compared to a heavy weight against a single grain.",
+      "useIn": "fullRead",
+      "phrasingHint": "The win should feel heavy before it moves, like the scale already knows which side will drop."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "architectural firm preparing a public design review",
+      "audience": "project architect defending a controversial housing design",
+      "stakes": "one missing code answer could sink the whole approval",
+      "format": "audit",
+      "openingDevice": "environmental",
+      "requiredBeat": "The scale model sits under fluorescent light while Hannah removes every avoidable defect from the submission before planning her strongest argument.",
+      "firstImage": "a scale model under fluorescent light",
+      "mustInclude": [
+        "fire-code memo",
+        "shadow study",
+        "zoning binder"
+      ],
+      "mustAvoid": [
+        "heroic presentation save"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "pharmacy chain preventing dispensing errors during a software change",
+      "audience": "regional pharmacy operations lead",
+      "stakes": "a preventable medication error would outweigh any launch speed",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:22 a.m., Michael locks the old and new label flows side by side and refuses to launch until the error path is blocked.",
+      "firstImage": "two prescription labels with different warning colors",
+      "mustInclude": [
+        "barcode scanner",
+        "override log",
+        "launch checklist"
+      ],
+      "mustAvoid": [
+        "generic healthcare caution"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "documentary producer entering a hostile interview",
+      "audience": "producer preparing a corruption interview",
+      "stakes": "a factual slip would let the subject dismiss the whole film",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "He only needs one crack, Juliette tells the team, then cuts the clever questions until every remaining one is backed by a document.",
+      "firstImage": "a stack of stamped invoices",
+      "mustInclude": [
+        "release form",
+        "timeline board",
+        "source transcript"
+      ],
+      "mustAvoid": [
+        "gotcha journalism scene"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "ski patrol deciding whether to open an avalanche-prone bowl",
+      "audience": "patrol lead after overnight snow",
+      "stakes": "opening too early could put guests below an unstable slope",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Wind-packed snow squeaks under Lukas's skis as he tests the slope until not opening becomes the victory condition.",
+      "firstImage": "wind-packed snow under a probe",
+      "mustInclude": [
+        "avalanche report",
+        "rope line",
+        "radio call"
+      ],
+      "mustAvoid": [
+        "outdoor bravery trope"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "manufacturer qualifying a new supplier before peak season",
+      "audience": "procurement manager under pressure to cut cost",
+      "stakes": "a cheap part could shut down assembly after contracts are signed",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took one brittle gasket from a test batch for Diego to see that the supplier had to lose before the purchase order won.",
+      "firstImage": "a cracked black gasket on a caliper",
+      "mustInclude": [
+        "test batch",
+        "supplier audit",
+        "peak-season forecast"
+      ],
+      "mustAvoid": [
+        "generic vendor negotiation"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "dance company preparing an opening-night lift sequence",
+      "audience": "rehearsal director responsible for dancer safety",
+      "stakes": "a missed grip could injure the lead and cancel the run",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Lin lower the music volume, slow the lift, and make the fall path impossible before she lets the dancers chase speed.",
+      "firstImage": "rosin dust across a studio floor",
+      "mustInclude": [
+        "mat edge",
+        "lighting cue",
+        "understudy chart"
+      ],
+      "mustAvoid": [
+        "classroom or gym drill shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish securing against defeat from attacking",
+      "recognize opportunity supplied by the opponent",
+      "apply measurement before commitment"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before pushing for a win today, name the mistake that would make you beatable and remove that mistake first.",
+  "readingTimeMinutes": 12
+}

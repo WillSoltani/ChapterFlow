@@ -1,0 +1,419 @@
+{
+  "bookId": "the-great-mental-models-vol-1",
+  "updatedAt": "2026-05-14T03:52:33.325Z",
+  "usedProtagonistNames": [
+    "Claire",
+    "Michael",
+    "Rachel",
+    "Olivier",
+    "Aman",
+    "Marit",
+    "Andrew",
+    "Sophie",
+    "Nicolas",
+    "Mikkel",
+    "Layla",
+    "Janek",
+    "Chris",
+    "Margaux",
+    "Henrik",
+    "Kasia",
+    "Devon",
+    "Jack",
+    "Matthew",
+    "Juliette",
+    "Lars",
+    "Chiara",
+    "Hadiya",
+    "Pavel",
+    "Ryan",
+    "Manon",
+    "Tomas",
+    "Anke",
+    "Akira",
+    "Isabel",
+    "Emma",
+    "Louis",
+    "Nina",
+    "Hiroshi",
+    "Maja",
+    "Luca",
+    "Amelia",
+    "Aidan",
+    "Astrid",
+    "Frida",
+    "Chidi",
+    "Javier",
+    "Rebecca",
+    "Patrick",
+    "Paula",
+    "Min",
+    "Matteo",
+    "Soren",
+    "Luke",
+    "Eva",
+    "Vincent",
+    "Adaeze",
+    "Tom",
+    "Anya",
+    "Anna",
+    "Anders",
+    "Pablo",
+    "Rita",
+    "Nicole",
+    "Martin",
+    "Charlotte",
+    "Steven",
+    "Mathieu",
+    "Clara",
+    "Hugo",
+    "Kira",
+    "Natalie",
+    "Sean",
+    "Valeria",
+    "Nils",
+    "Ada",
+    "Zoe"
+  ],
+  "usedExampleDomains": [
+    "customer-service dashboard audit",
+    "grant-funded river restoration survey",
+    "resume screen for tool-and-die apprentice",
+    "city playground redesign walk-through",
+    "farmers market vendor fee review",
+    "software uptime incident log",
+    "specialty cheese shop product expansion",
+    "emergency-room ultrasound shift",
+    "chess club coach asked about poker",
+    "furniture warehouse lease negotiation",
+    "indie documentary distribution rights",
+    "ski guide avalanche forecast handoff",
+    "nutrition supplement trial claim",
+    "museum attendance hypothesis",
+    "youth swim training plan",
+    "fundraising email subject-line test",
+    "farm seed germination batch",
+    "after-school tutoring promise",
+    "municipal battery-cart procurement",
+    "bakery packaging redesign",
+    "hotel housekeeping staffing model",
+    "robotics club bridge build",
+    "dental clinic reminder system",
+    "community theater lighting rig",
+    "ethics board triage exercise",
+    "satellite launch delay simulation",
+    "food truck festival rain plan",
+    "hospital discharge thought experiment",
+    "arctic field camp fuel plan",
+    "music conservatory audition rule",
+    "allergy clinic trigger investigation",
+    "harbor dredging permit",
+    "youth soccer tournament scheduling",
+    "microbrewery fermentation fault",
+    "community garden irrigation repair",
+    "legal clinic eligibility screen",
+    "coastal town parking-fee change",
+    "restaurant delivery packaging",
+    "university lab safety shortcut",
+    "mobile blood-drive incentives",
+    "subscription news trial offer",
+    "public pool chemical ordering",
+    "regional wildfire evacuation notice",
+    "pharmacy stockout planning",
+    "orchard frost forecast",
+    "venture debt covenant review",
+    "charity gala weather insurance",
+    "cybersecurity incident response",
+    "sleep-tracker productivity claim",
+    "bike-share helmet pickup",
+    "coffee roaster loyalty campaign",
+    "wildflower planting and bees",
+    "app retention dashboard",
+    "clinic no-show reminder",
+    "mountain race safety plan",
+    "airport baggage meltdown premortem",
+    "restaurant food-poisoning prevention",
+    "film shoot data backup",
+    "ferry winter timetable",
+    "neighborhood festival crowd control",
+    "home solar inverter fault",
+    "insurance claim review",
+    "aquarium pump noise diagnosis",
+    "choir rehearsal attendance",
+    "printer fleet troubleshooting",
+    "campground booking system",
+    "shared driveway complaint",
+    "hospital medication label mix-up",
+    "delayed invoice dispute",
+    "apartment smoke alarm issue",
+    "community soccer roster error",
+    "partner's missed pickup explanation"
+  ],
+  "usedExampleAnchors": [
+    "Bezos phone call against dashboard wait-time metric",
+    "Jane Jacobs city-planning caution",
+    "Rose Blumkin furniture competence versus stocks",
+    "Popper risky prediction and Wason confirmation trap",
+    "Lego house disassembly and Musk battery cost rethink",
+    "Ernst Mach low-cost thought experimentation",
+    "And then what consequence-chain prompt",
+    "Bayesian update, fat-tailed curves, and asymmetries",
+    "association versus mechanism warning",
+    "inversion as avoiding stupidity",
+    "Occam simplicity under sufficiency",
+    "Hanlon ordinary error before malice"
+  ],
+  "usedHookFrames": [
+    "ch01 metric says green while direct contact says no",
+    "ch02 expert enters nearby game where edge disappears",
+    "ch03 beloved claim forced to name its losing result",
+    "ch04 object taken apart to reveal inherited assumptions",
+    "ch05 impossible rehearsal finds the hidden cost",
+    "ch06 missing necessary condition blocks many helpful actions",
+    "ch07 attractive first result creates later damage",
+    "ch08 single forecast replaced by weighted futures",
+    "ch09 two lines rise together while mechanism is absent",
+    "ch10 premortem removes failure causes before launch",
+    "ch11 ornate explanation collapses under sufficient simple account",
+    "ch12 hostile story revised after ordinary error explains enough"
+  ],
+  "usedCounterFrames": [
+    "ch01 clean representations become risky when they stop answering to ground truth",
+    "ch02 confidence travels faster than competence",
+    "ch03 a claim that explains every outcome has weakened itself",
+    "ch04 analogy feels efficient because assumptions stay hidden",
+    "ch05 imagination becomes useful only under constraint",
+    "ch06 many helpful factors are not the same kind of condition",
+    "ch07 the obvious win may be the first link in a bad chain",
+    "ch08 certainty feels decisive but probability is often more honest",
+    "ch09 synchronized movement is a clue, not a cause",
+    "ch10 avoiding obvious failure can beat chasing clever success",
+    "ch11 simple is a starting preference, not a truth stamp",
+    "ch12 charity is a diagnostic step, not a free pass"
+  ],
+  "usedTryThisNowFrames": [
+    "ch01 compare one trusted representation with one direct territory check",
+    "ch02 draw one decision perimeter and label learn, defer, or play",
+    "ch03 write the observation that would make a live belief false",
+    "ch04 list facts versus inherited assumptions before choosing",
+    "ch05 run a constrained what-if through one real constraint",
+    "ch06 mark necessary versus sufficient conditions for one outcome",
+    "ch07 ask And then what three times for one attractive move",
+    "ch08 assign rough odds and downside to three futures",
+    "ch09 write one plausible mechanism and one confounder",
+    "ch10 list three ways the plan fails and remove one cause",
+    "ch11 delete one explanation layer unless it explains evidence",
+    "ch12 write two ordinary-error accounts before malice"
+  ],
+  "usedQuizExplanationFrames": [
+    "chapter plans require scenario-specific explanations with no repeated stock explanation sentence"
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch01",
+      "frames": [
+        "map versus territory as travel-map cliche",
+        "all data is bad",
+        "dashboard in generic quarterly meeting"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch02",
+      "frames": [
+        "comfort zone advice",
+        "genius discovers passion",
+        "generic investor stock-picking scene"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch03",
+      "frames": [
+        "prove me wrong debate club",
+        "scientist in lab coat cliche",
+        "confirmation bias as mere stubbornness"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch04",
+      "frames": [
+        "disruption hype",
+        "whiteboard innovation workshop",
+        "start from scratch without facts"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch05",
+      "frames": [
+        "daydreaming as strategy",
+        "trolley problem as only example",
+        "fantasy future with no constraints"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch06",
+      "frames": [
+        "formal logic symbols",
+        "root cause as single magic lever",
+        "everything important is necessary"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch07",
+      "frames": [
+        "generic long-term thinking",
+        "butterfly-effect sprawl",
+        "three-column pros and cons"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch08",
+      "frames": [
+        "weather forecast only",
+        "fake precision percentages",
+        "uncertainty as excuse to wait"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch09",
+      "frames": [
+        "ice cream and drowning imported example",
+        "correlation is meaningless",
+        "statistics lecture"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch10",
+      "frames": [
+        "pessimism as wisdom",
+        "generic risk register",
+        "catastrophe montage"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch11",
+      "frames": [
+        "minimalism lifestyle",
+        "simplest means true",
+        "medieval biography detour"
+      ]
+    },
+    {
+      "chapterId": "the-great-mental-models-vol-1-ch12",
+      "frames": [
+        "forgive everyone",
+        "never suspect harm",
+        "proverb authorship dispute"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "the-great-mental-models-vol-1-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T03:39:45.202Z"
+    },
+    "the-great-mental-models-vol-1-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T03:39:47.538Z"
+    },
+    "the-great-mental-models-vol-1-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-14T02:31:32.614Z"
+    },
+    "the-great-mental-models-vol-1-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T03:48:33.539Z"
+    },
+    "the-great-mental-models-vol-1-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 5,
+      "checkedAt": "2026-05-14T02:41:08.931Z"
+    },
+    "the-great-mental-models-vol-1-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T03:44:01.138Z"
+    },
+    "the-great-mental-models-vol-1-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-14T02:49:59.561Z"
+    },
+    "the-great-mental-models-vol-1-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T03:50:46.993Z"
+    },
+    "the-great-mental-models-vol-1-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-14T02:56:13.336Z"
+    },
+    "the-great-mental-models-vol-1-ch10": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T03:44:29.573Z"
+    },
+    "the-great-mental-models-vol-1-ch11": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T03:52:31.567Z"
+    },
+    "the-great-mental-models-vol-1-ch12": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-14T03:52:33.326Z"
+    }
+  }
+}

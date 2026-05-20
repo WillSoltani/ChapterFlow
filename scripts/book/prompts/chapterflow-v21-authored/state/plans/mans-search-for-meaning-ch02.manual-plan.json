@@ -1,0 +1,208 @@
+{
+  "chapterId": "mans-search-for-meaning-ch02",
+  "number": 2,
+  "title": "Part One: Induction and Adjustments",
+  "coreMove": "Name shock as survival narrowing before you mistake its first bargain for truth.",
+  "sourcePressure": "The early camp material centers on arrival at Auschwitz, shock, selection, delusion of reprieve, filth, mass bunks, beatings, suicidal thinking, and the first brutal adjustments.",
+  "chapterSpecificMisunderstanding": "Do not make this a lesson about adapting to change. The point is that shock compresses perception and produces desperate bargaining stories that may protect a person briefly while distorting judgment.",
+  "sourceAlignmentTerms": [
+    "Auschwitz",
+    "arrival",
+    "selection",
+    "shock",
+    "delusion of reprieve",
+    "suicidal thinking",
+    "survival narrowing"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "Auschwitz",
+      "detail": "The frozen source says the first phase begins with the crowded train ride to Auschwitz, where many arrivals are immediately sent to the gas chambers.",
+      "useIn": "both",
+      "phrasingHint": "Auschwitz marks the collapse of ordinary expectation before any later lesson can be spoken."
+    },
+    {
+      "kind": "event",
+      "name": "delusion of reprieve",
+      "detail": "The source sidecar identifies the delusion of reprieve as part of early camp psychology.",
+      "useIn": "both",
+      "phrasingHint": "The mind may tell a safer story for a few minutes because the true one is too large to hold."
+    },
+    {
+      "kind": "event",
+      "name": "selection",
+      "detail": "The frozen support notes that arrival and selection destroy ordinary expectations quickly.",
+      "useIn": "deepRead",
+      "phrasingHint": "Selection should be treated as the visible moment when ordinary planning loses authority."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Shock is where resilience begins",
+      "Crisis reveals who you really are"
+    ],
+    "counterintuition": [
+      "The first reaction is not the true reaction",
+      "Adaptation is not weakness"
+    ],
+    "tryThisNow": [
+      "Pause and breathe before reacting",
+      "Notice your emotions for sixty seconds"
+    ],
+    "examples": [
+      "corporate reorg as camp analogy",
+      "student exam panic",
+      "missed train inconvenience"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "wildfire evacuation center intake when families arrive without addresses, medicine, or certainty",
+      "audience": "a Red Cross intake lead trying to triage needs while everyone keeps asking whether the town is still standing",
+      "stakes": "the first stories people tell themselves may determine whether insulin, pets, or missing relatives are recorded accurately",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she separates rumor from record by taping three columns to the folding table: confirmed, feared, unknown, then makes each family place its sentence in one column",
+      "firstImage": "Ash falls from a jacket sleeve onto the intake form.",
+      "mustInclude": [
+        "folding table",
+        "insulin cooler",
+        "three taped columns"
+      ],
+      "mustAvoid": [
+        "heroic disaster montage",
+        "coffee urn shelter scene"
+      ],
+      "protagonistName": "Rachel"
+    },
+    {
+      "domain": "financial fraud hotline after retirees discover accounts were emptied overnight",
+      "audience": "a caseworker hearing callers bargain with impossible explanations",
+      "stakes": "wrong first actions can erase records or expose people to a second scam",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "he stops one caller from wiring recovery fees by asking her to read the bank timestamp aloud and label the hope as shock, not evidence",
+      "firstImage": "\"Maybe the bank can reverse it if I pay the recovery fee,\" she says.",
+      "mustInclude": [
+        "bank timestamp",
+        "fraud case number",
+        "wire-transfer form"
+      ],
+      "mustAvoid": [
+        "generic scam awareness talk",
+        "police procedural"
+      ],
+      "protagonistName": "Michael"
+    },
+    {
+      "domain": "factory layoff gate where workers are told their badges no longer open the turnstile",
+      "audience": "an operations manager responsible for the first thirty minutes after an abrupt closure notice",
+      "stakes": "people may sign bad paperwork while stunned because the familiar building no longer recognizes them",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "the manager moves the severance forms away from the turnstile and gives workers a separate room before signatures begin",
+      "firstImage": "The turnstile clicks red for the third badge in a row.",
+      "mustInclude": [
+        "badge reader",
+        "severance packet",
+        "folding privacy screen"
+      ],
+      "mustAvoid": [
+        "villainous HR caricature",
+        "generic change-management workshop"
+      ],
+      "protagonistName": "Thomas"
+    },
+    {
+      "domain": "oncology clinic first diagnosis visit when a family hears only one word after the scan result",
+      "audience": "a nurse navigator watching a family nod while absorbing almost nothing",
+      "stakes": "treatment consent can become theater if shock has blocked comprehension",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes one failed teach-back for her to replace the packet with a single card: diagnosis, next appointment, who to call tonight",
+      "firstImage": "It took Lea one silent elevator ride to see the packet had become a wall.",
+      "mustInclude": [
+        "scan result folder",
+        "single contact card",
+        "teach-back question"
+      ],
+      "mustAvoid": [
+        "miracle cure framing",
+        "hospital cafeteria scene"
+      ],
+      "protagonistName": "Lea"
+    },
+    {
+      "domain": "airport repatriation desk after a sudden border closure leaves exchange students stranded",
+      "audience": "a consular volunteer sorting panic from actionable information",
+      "stakes": "students repeating hopeful rumors may miss the one bus that is actually confirmed",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "he asks each student to predict which rumor will still be true in two hours, then pins only confirmed transport to the board",
+      "firstImage": "Which sentence will still be true when the battery dies?",
+      "mustInclude": [
+        "low-battery phones",
+        "bus manifest",
+        "confirmed board"
+      ],
+      "mustAvoid": [
+        "travel inconvenience comedy",
+        "airport lounge generic"
+      ],
+      "protagonistName": "Juliette"
+    },
+    {
+      "domain": "search-and-rescue cold-water training when a trainee freezes after entering the lake",
+      "audience": "an instructor teaching that shock is a body event before it is a character verdict",
+      "stakes": "a trainee may misread panic as cowardice and quit the skill that could save someone later",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch the instructor replay the first ninety seconds on a waterproof slate and mark each automatic gasp before discussing choices",
+      "firstImage": "You hear the gasp before anyone says the water is cold.",
+      "mustInclude": [
+        "waterproof slate",
+        "rescue rope",
+        "thermal blanket"
+      ],
+      "mustAvoid": [
+        "toughness speech",
+        "sports comeback beat"
+      ],
+      "protagonistName": "Antoine"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify shock-bargaining instead of treating it as reliable evidence",
+      "protect decisions from first-phase narrowing",
+      "separate temporary adaptation from moral judgment",
+      "choose stabilizing actions that preserve facts under crisis"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write three columns on paper: confirmed, feared, unknown. Put one current worry into the right column before making the next decision.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

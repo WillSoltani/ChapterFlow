@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch19",
+  "number": 19,
+  "title": "Culture Change: The Lumeris Story",
+  "coreMove": "Prove culture change by tracing which repeated signals retrain expectations in practice.",
+  "sourcePressure": "Lumeris is the company case for culture change, focused on changed norms, expectations, reinforcement, and accountability over time.",
+  "chapterSpecificMisunderstanding": "Do not invent Lumeris policies, product details, metrics, or leaders.",
+  "sourceAlignmentTerms": [
+    "Lumeris",
+    "culture change",
+    "changed norms",
+    "expectations",
+    "reinforcement",
+    "accountability"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Lumeris",
+      "detail": "The source stabilizes Lumeris as the named company case for culture change through changed norms, expectations, and reinforcement over time.",
+      "useIn": "both",
+      "phrasingHint": "Lumeris should make culture change feel operational: the signal pattern has to retrain what people expect from one another."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Culture Change: The Lumeris Story as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "Lumeris is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "rebranding",
+      "values workshops",
+      "ONE Campaign transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "clinic network patient-access reset",
+      "audience": "regional managers",
+      "stakes": "new values language will fail if scheduling signals remain unchanged",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "David compares the new promise with the old reinforcement pattern and changes what gets reviewed every week",
+      "firstImage": "patient callback list under a desk lamp",
+      "mustInclude": [
+        "callback list",
+        "review agenda",
+        "recognition note"
+      ],
+      "mustAvoid": [
+        "invented Lumeris policy"
+      ]
+    },
+    {
+      "domain": "insurance brokerage ethics turnaround",
+      "audience": "partners and account managers",
+      "stakes": "the firm says client trust leads but still rewards volume first",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Léa asks which bonus conversation and account review will retrain expectations rather than rename them",
+      "firstImage": "binders of renewal packets",
+      "mustInclude": [
+        "bonus memo",
+        "account review",
+        "client complaint"
+      ],
+      "mustAvoid": [
+        "generic values workshop"
+      ]
+    },
+    {
+      "domain": "city permitting office service change",
+      "audience": "clerks and inspectors",
+      "stakes": "the public-facing pledge is new but internal queues still teach delay",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anders makes the changed norm visible by reviewing stuck permits and recognizing cleared blockers",
+      "firstImage": "public counter bell beside forms",
+      "mustInclude": [
+        "permit tray",
+        "queue report",
+        "recognition board"
+      ],
+      "mustAvoid": [
+        "bureaucracy satire"
+      ]
+    },
+    {
+      "domain": "manufacturing quality turnaround",
+      "audience": "line leads",
+      "stakes": "old norms reward shipping fast and hiding defects",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire shows the culture shifting only when defect surfacing gets protected and praised repeatedly",
+      "firstImage": "red reject tags on metal parts",
+      "mustInclude": [
+        "reject tag",
+        "shift board",
+        "quality huddle"
+      ],
+      "mustAvoid": [
+        "punishment framing"
+      ]
+    },
+    {
+      "domain": "sports club safeguarding reform",
+      "audience": "coaches and trustees",
+      "stakes": "the policy language changed faster than sideline behavior",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Javier tracks which repeated corrections and recognitions prove expectations have moved",
+      "firstImage": "mud on a sideline clipboard",
+      "mustInclude": [
+        "safeguarding policy",
+        "coach roster",
+        "incident note"
+      ],
+      "mustAvoid": [
+        "sports triumph"
+      ]
+    },
+    {
+      "domain": "software sales conduct rebuild",
+      "audience": "sales directors",
+      "stakes": "new integrity language is meaningless if leaderboard habits stay old",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Chidi Nwosu asks what the team still celebrates and what it now refuses to reward",
+      "firstImage": "muted leaderboard on a wall screen",
+      "mustInclude": [
+        "leaderboard",
+        "deal review",
+        "manager note"
+      ],
+      "mustAvoid": [
+        "generic sales hustle"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test culture change through changed norms",
+      "recognize rebranding without signal change",
+      "trace expectation shifts over time"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one culture-change promise and identify the repeated reinforcement pattern that must change for the promise to be real.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

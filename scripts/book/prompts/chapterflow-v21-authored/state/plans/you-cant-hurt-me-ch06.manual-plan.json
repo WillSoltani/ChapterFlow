@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch06",
+  "number": 6,
+  "title": "It's Not About a Trophy",
+  "coreMove": "Use a duty larger than winning to keep moving when the body starts asking for a smaller reason.",
+  "sourcePressure": "The source centers on the San Diego 100, limited race-specific preparation, qualifying for Badwater, raising money for families of fallen servicemen, bodily breakdown, and the cookie jar as stored proof.",
+  "chapterSpecificMisunderstanding": "The writer must not glamorize collapse or make the cookie jar sound like magical thinking.",
+  "sourceAlignmentTerms": ["San Diego 100", "Badwater", "fallen servicemen's families", "bodily toll", "service", "cookie jar", "stored proof"],
+  "forbiddenFrames": {
+    "hook": ["It was never about the medal", "Run for something bigger", "Remember your wins"],
+    "counterintuition": ["Purpose makes pain disappear", "Memory is motivation", "Service fixes suffering"],
+    "tryThisNow": ["List your wins", "Find your why", "Do it for someone else"],
+    "examples": ["charity race cliche", "medal ceremony", "generic purpose story"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "overnight bridge inspection after a fatal collapse anniversary",
+      "audience": "a civil engineer whose team is cold, behind, and tired of checking bolts",
+      "stakes": "whether the work stays tied to public duty when nobody will applaud it",
+      "format": "scene",
+      "requiredBeat": "she pulls a photo of the closed memorial span from the inspection binder, then checks the next gusset plate instead of ending the shift early",
+      "firstImage": "a bridge inspection binder spotted with river mist",
+      "mustInclude": ["gusset plate", "headlamp", "memorial photo"],
+      "mustAvoid": ["disaster spectacle", "award ceremony", "generic public service"]
+    },
+    {
+      "domain": "blood bank courier during a snow closure",
+      "audience": "a courier whose route has become painful and slow",
+      "stakes": "whether the hospital delivery happens before the surgical window closes",
+      "format": "decision_point",
+      "requiredBeat": "at the closed highway ramp, he touches the red transport seal, recalls the last completed emergency run, and chooses the plowed county detour",
+      "firstImage": "a red transport seal looped through a chilled blood cooler",
+      "mustInclude": ["transport seal", "county detour", "surgical window"],
+      "mustAvoid": ["ambulance chase", "reckless driving", "generic hero courier"]
+    },
+    {
+      "domain": "long-haul interpreter relay for a disaster hotline",
+      "audience": "a volunteer translator fighting fatigue after hours of calls",
+      "stakes": "whether a displaced family reaches shelter instructions in their language",
+      "format": "reflection",
+      "requiredBeat": "she opens a saved thank-you transcript from an earlier call, reads one line, and takes the next headset handoff",
+      "firstImage": "a headset resting beside a printed shelter map",
+      "mustInclude": ["thank-you transcript", "shelter map", "call queue"],
+      "mustAvoid": ["generic call-center burnout", "savior narrative", "language talent"]
+    },
+    {
+      "domain": "animal rescue transport after a kennel fire",
+      "audience": "a driver whose back is spasming from loading crates",
+      "stakes": "whether the final group of animals reaches the overflow clinic",
+      "format": "before_after",
+      "requiredBeat": "before quitting, he reads the crate tags from the first successful load, then moves one more carrier onto the ramp with help",
+      "firstImage": "a scorched crate tag clipped to a wire carrier",
+      "mustInclude": ["crate tags", "overflow clinic", "loading ramp"],
+      "mustAvoid": ["cute-animal sentiment", "solo lifting heroics", "collapse worship"]
+    },
+    {
+      "domain": "public defender weekend bail review backlog",
+      "audience": "an attorney exhausted by cases no one sees",
+      "stakes": "whether a client sits in jail another day because the work has no trophy",
+      "format": "postmortem",
+      "requiredBeat": "she opens the prior release order that proved one review mattered, then finishes the next affidavit instead of polishing her complaint email",
+      "firstImage": "a release order tucked under a half-empty staple strip",
+      "mustInclude": ["release order", "affidavit", "case queue"],
+      "mustAvoid": ["courtroom victory", "legal martyrdom", "generic paperwork grind"]
+    },
+    {
+      "domain": "shelter kitchen final meal service after a power outage",
+      "audience": "a cook whose feet hurt and who will not be thanked by name",
+      "stakes": "whether families get hot food before the generator fuel runs out",
+      "format": "dialogue",
+      "requiredBeat": "the cook points to the tally of meals already served, calls for the last rice pan, and plates the next tray while the generator coughs",
+      "firstImage": "a steam table pan dented at one corner under emergency lights",
+      "mustInclude": ["meal tally", "generator fuel", "rice pan"],
+      "mustAvoid": ["charity-photo scene", "kitchen pep talk", "generic service virtue"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify duty that survives when recognition disappears", "use stored proof without treating memory as magic", "choose a service-linked next action under bodily strain", "evaluate when purpose is being used to romanticize collapse"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Write one proof that you have endured something hard before, then connect today's next hard action to a person or duty beyond your own credit.",
+  "readingTimeMinutes": 12
+}

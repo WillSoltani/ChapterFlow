@@ -1,0 +1,186 @@
+{
+  "chapterId": "blue-ocean-strategy-ch05",
+  "number": 5,
+  "title": "Reach Beyond Existing Demand",
+  "coreMove": "Listen to the people near, against, and far outside the market until the common blocker to broader demand becomes visible.",
+  "sourcePressure": "Move beyond serving current customers by examining the three tiers of noncustomers: soon-to-be, refusing, and unexplored outsiders who reveal common barriers to demand.",
+  "chapterSpecificMisunderstanding": "Treating noncustomers as another target segment to market at with louder acquisition tactics.",
+  "sourceAlignmentTerms": [
+    "existing demand",
+    "three tiers of noncustomers",
+    "soon-to-be noncustomers",
+    "refusing noncustomers",
+    "unexplored noncustomers",
+    "common barrier",
+    "demand expansion"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "three tiers of noncustomers",
+      "detail": "official support names soon-to-be, refusing, and unexplored noncustomers as the framework for reaching beyond existing demand",
+      "useIn": "both",
+      "phrasingHint": "The three tiers keep the team from staring only at fans: people about to leave, people refusing, and people never invited each carry a different clue."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "ceramics studio hallway watchers as soon-to-be noncustomers",
+      "audience": "a studio owner whose classes sell out but membership stalls",
+      "stakes": "whether the studio serves insiders or opens a path for curious outsiders",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she reads the empty chairs outside the studio as noncustomer evidence, not harmless overflow",
+      "firstImage": "Three coats hang outside the pottery room while every wheel inside is taken",
+      "mustInclude": [
+        "waiting bench",
+        "clay-dust apron rack",
+        "trial-session card"
+      ],
+      "mustAvoid": [
+        "generic art-class enthusiasm"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "clinic families refusing appointments because of surprise bills",
+      "audience": "a healthcare operator serving current patients well but missing nonpatients",
+      "stakes": "whether families seek care early or wait until problems grow",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he sees refusal around bill uncertainty and chooses transparent visit bundles over nicer reminder texts",
+      "firstImage": "At 9:05 a.m., Antoine hears the third parent ask for the price before the appointment",
+      "mustInclude": [
+        "price card",
+        "insurance call script",
+        "visit bundle sheet"
+      ],
+      "mustAvoid": [
+        "generic patient-satisfaction survey"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "tax help for people ashamed of messy records",
+      "audience": "a solo practitioner tired of competing on credentials",
+      "stakes": "whether informal earners and retirees seek help before deadlines",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a caller reveals shared shame across different outsiders, and she creates a first-box appointment instead of an expertise pitch",
+      "firstImage": "\"What if I bring it in a shoebox?\" the caller asks Frida before giving his name",
+      "mustInclude": [
+        "first-box checklist",
+        "receipt envelope",
+        "plain intake label"
+      ],
+      "mustAvoid": [
+        "generic financial-planning example"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "fitness demand among shift workers outside studio schedules",
+      "audience": "a trainer whose studio serves committed members but misses shift workers",
+      "stakes": "whether exercise feels possible for people outside normal class times",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "he observes a night-shift worker choosing sleep over a 6 p.m. class and sees timing as the blocker",
+      "firstImage": "You unlock the studio at dusk while Pavel watches warehouse badges move the other way",
+      "mustInclude": [
+        "badge rack",
+        "split-shift calendar",
+        "portable band kit"
+      ],
+      "mustAvoid": [
+        "generic gym motivation arc"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "school lunch reform for students rejecting the line",
+      "audience": "a nutrition director asking only current healthy eaters what they want",
+      "stakes": "whether better food reaches students who avoid the lunch line",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "she traces refusal to social risk and slow lines rather than flavor alone",
+      "firstImage": "It took Layla five tasting panels to realize the absent students were the evidence",
+      "mustInclude": [
+        "lunch-line stopwatch",
+        "side-door pickup slip",
+        "student comment box"
+      ],
+      "mustAvoid": [
+        "classroom or cafeteria behavior lecture"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "mobile banking refusal among older credit-union members",
+      "audience": "a financial-services manager trying to move service online",
+      "stakes": "whether digital access expands or excludes",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he predicts font size is the issue, then hears fraud fear as the common barrier among refusers",
+      "firstImage": "The tablet glass reflects James beside a member who keeps both hands on her paper passbook",
+      "mustInclude": [
+        "paper passbook",
+        "fraud guarantee card",
+        "demo tablet stand"
+      ],
+      "mustAvoid": [
+        "generic app onboarding story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify soon-to-be, refusing, and unexplored noncustomers",
+      "find shared barriers outside the current customer base",
+      "avoid acquisition tactics that ignore why outsiders stay out"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one soon-to-be, one refusing, and one unexplored noncustomer, then write the blocker each one would say out loud.",
+  "readingTimeMinutes": 12
+}

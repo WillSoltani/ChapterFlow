@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch16",
+  "number": 16,
+  "title": "The Three Commitments",
+  "coreMove": "Protect the chosen path with commitments that keep learning, ownership, and accountability attached to focused work.",
+  "sourcePressure": "Part 3 frames the three commitments as protections for sustained focus over time, not blind stubbornness or intensity theater.",
+  "chapterSpecificMisunderstanding": "Confusing commitment with stubborn intensity or inventing unsupported rigid rules.",
+  "sourceAlignmentTerms": [
+    "three commitments",
+    "commitment",
+    "chosen path",
+    "productive effort",
+    "ownership",
+    "accountability"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "The Three Commitments as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rural clinic diabetes registry cleanup",
+      "audience": "nurse practitioner",
+      "stakes": "uncontrolled patients are disappearing between visits",
+      "format": "dialogue",
+      "requiredBeat": "she commits to mastering the registry query, owning the callback gaps, and reviewing misses weekly with the physician lead",
+      "firstImage": "a diabetes registry export beside a phone headset and audit calendar",
+      "mustInclude": [
+        "registry export",
+        "headset",
+        "audit calendar"
+      ],
+      "mustAvoid": [
+        "generic accountability sermon"
+      ]
+    },
+    {
+      "domain": "violin repair apprenticeship",
+      "audience": "apprentice luthier",
+      "stakes": "a cracked top repair exceeds his current skill",
+      "format": "scene",
+      "requiredBeat": "he chooses to study the repair, own the slow pace with the customer, and let the master inspect each glue stage",
+      "firstImage": "a violin top clamped in a cradle beside fresh hide glue",
+      "mustInclude": [
+        "violin cradle",
+        "hide glue",
+        "inspection notes"
+      ],
+      "mustAvoid": [
+        "generic persistence story"
+      ]
+    },
+    {
+      "domain": "city snowplow route redesign",
+      "audience": "public works planner",
+      "stakes": "bus routes keep opening late after storms",
+      "format": "decision_point",
+      "requiredBeat": "she commits to learning route software, owning resident complaints, and measuring first-pass times after each storm",
+      "firstImage": "a plow route map with bus stops circled in blue grease pencil",
+      "mustInclude": [
+        "route map",
+        "bus stops",
+        "storm log"
+      ],
+      "mustAvoid": [
+        "generic public service scene"
+      ]
+    },
+    {
+      "domain": "food truck commissary expansion",
+      "audience": "owner",
+      "stakes": "growth will fail without a reliable prep standard",
+      "format": "before_after",
+      "requiredBeat": "he stops blaming staff and commits to writing the prep standard, training it himself, and checking waste numbers every Friday",
+      "firstImage": "stainless prep tubs stacked beside a handwritten waste sheet",
+      "mustInclude": [
+        "prep tubs",
+        "waste sheet",
+        "commissary lease"
+      ],
+      "mustAvoid": [
+        "generic small business grit"
+      ]
+    },
+    {
+      "domain": "college rowing team technique rebuild",
+      "audience": "assistant coach",
+      "stakes": "the boat is strong but inefficient",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts harder workouts will fix it, then commits to technique study, video review, and measurable stroke changes instead",
+      "firstImage": "an oar blade dripping beside a tablet paused on stroke footage",
+      "mustInclude": [
+        "oar blade",
+        "stroke footage",
+        "erg chart"
+      ],
+      "mustAvoid": [
+        "generic sports discipline"
+      ]
+    },
+    {
+      "domain": "disaster relief warehouse inventory system",
+      "audience": "logistics volunteer",
+      "stakes": "supply pallets keep going missing",
+      "format": "postmortem",
+      "requiredBeat": "he sees commitment means learning the scanner system, owning bad counts, and inviting an audit before the next truck arrives",
+      "firstImage": "a handheld scanner on a pallet of tarps with mismatched labels",
+      "mustInclude": [
+        "handheld barcode reader",
+        "tarps pallet",
+        "audit sheet"
+      ],
+      "mustAvoid": [
+        "generic warehouse cleanup"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn focus into durable commitment",
+      "keep commitment tied to learning",
+      "distinguish persistence from stubbornness"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the priority you named, write one commitment to learn the craft, one to own the result, and one to accept feedback before quitting.",
+  "readingTimeMinutes": 12
+}

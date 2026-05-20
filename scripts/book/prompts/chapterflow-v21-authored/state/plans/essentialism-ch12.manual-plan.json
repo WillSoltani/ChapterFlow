@@ -1,0 +1,166 @@
+{
+  "chapterId": "essentialism-ch12",
+  "number": 12,
+  "title": "Uncommit: Win Big by Cutting Your Losses",
+  "coreMove": "Ask whether you would choose the commitment again from scratch, then withdraw cleanly when the honest answer is no.",
+  "sourcePressure": "The chapter confronts sunk-cost bias, status quo bias, zero-based thinking, reverse pilots, and slower commitments so yesterday's investments stop governing tomorrow.",
+  "chapterSpecificMisunderstanding": "A weak run would say quit things that are hard or boring without distinguishing sunk cost from worthwhile persistence.",
+  "sourceAlignmentTerms": [
+    "sunk-cost bias",
+    "zero-based budgeting",
+    "reverse pilot",
+    "uncommit",
+    "status quo bias"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic uncommit: win big by cutting your losses topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "quitting too easily frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "quitting too easily",
+      "anti-commitment",
+      "ignoring obligations",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional theater canceling a half-built rotating stage after safety costs double",
+      "audience": "artistic director facing sunk-cost shame",
+      "stakes": "past spending can keep endangering cast and budget",
+      "format": "postmortem",
+      "requiredBeat": "She covers the sunk-cost column, asks whether she would choose the stage today, and orders a reverse pilot with a fixed platform.",
+      "firstImage": "A rotating-stage invoice sits beneath a safety report.",
+      "mustInclude": [
+        "stage invoice",
+        "safety report",
+        "reverse pilot sketch"
+      ],
+      "mustAvoid": [
+        "quit when hard",
+        "theater overlap with ch07 costume"
+      ]
+    },
+    {
+      "domain": "wildlife corridor nonprofit withdrawing from a prestige gala partnership",
+      "audience": "director embarrassed by prior public announcement",
+      "stakes": "brand investment can trap staff away from corridor permits",
+      "format": "decision_point",
+      "requiredBeat": "He places the signed gala banner beside permit maps and drafts the clean withdrawal before another deposit is due.",
+      "firstImage": "A signed gala banner lies across corridor permit maps.",
+      "mustInclude": [
+        "gala banner",
+        "permit maps",
+        "deposit deadline"
+      ],
+      "mustAvoid": [
+        "anti-commitment",
+        "generic fundraiser"
+      ]
+    },
+    {
+      "domain": "university robotics team retiring a beloved contest robot midseason",
+      "audience": "team captain attached to old work",
+      "stakes": "nostalgia can keep the team repairing what no longer fits scoring rules",
+      "format": "dialogue",
+      "requiredBeat": "She asks if they would build this robot again under the new rubric, then removes its battery for a two-week reverse pilot.",
+      "firstImage": "A scratched robot chassis rests beside a new scoring rubric.",
+      "mustInclude": [
+        "robot chassis",
+        "scoring rubric",
+        "battery tag"
+      ],
+      "mustAvoid": [
+        "sentimental gadget",
+        "perfectionism"
+      ]
+    },
+    {
+      "domain": "municipal compost program ending a low-use drop site",
+      "audience": "sustainability officer fearing public criticism",
+      "stakes": "keeping a failing site can starve higher-impact collection routes",
+      "format": "before_after",
+      "requiredBeat": "Before, she defends the empty bins; after, she masks last year’s cost and asks which site she would open today.",
+      "firstImage": "Empty compost bins stand beside a route-cost sheet.",
+      "mustInclude": [
+        "compost bins",
+        "route-cost sheet",
+        "usage map"
+      ],
+      "mustAvoid": [
+        "anti-community",
+        "random cuts"
+      ]
+    },
+    {
+      "domain": "ceramic artist stopping a wholesale line that warps in firing",
+      "audience": "artist caught by prepaid molds and promises",
+      "stakes": "continuing because molds exist creates worse losses",
+      "format": "reflection",
+      "requiredBeat": "She turns the prepaid mold receipt face down and writes the customer-exit note before firing another warped batch.",
+      "firstImage": "A warped bowl sits beside a prepaid mold receipt.",
+      "mustInclude": [
+        "warped bowl",
+        "mold receipt",
+        "customer-exit note"
+      ],
+      "mustAvoid": [
+        "quit artistry",
+        "waste shame"
+      ]
+    },
+    {
+      "domain": "rural clinic reversing a pilot text-reminder system that increases missed appointments",
+      "audience": "clinic manager reluctant to admit pilot failure",
+      "stakes": "status quo bias can protect a tool that harms patients",
+      "format": "predict_reveal",
+      "requiredBeat": "The pilot dashboard looks modern, then reveals missed rides rising; she pauses rollout and returns to call-tree testing.",
+      "firstImage": "A text-reminder dashboard sits beside missed-ride notes.",
+      "mustInclude": [
+        "pilot dashboard",
+        "missed-ride notes",
+        "call-tree sheet"
+      ],
+      "mustAvoid": [
+        "tech rejection",
+        "ignoring obligations"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify sunk-cost and status quo pressure inside a concrete scenario",
+      "choose the response that applies: Ask whether you would choose the commitment again from scratch, then withdraw cleanly when the honest answer is no.",
+      "reject the generic drift: A weak run would say quit things that are hard or boring without distinguishing sunk cost from worthwhile persistence.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one stale commitment and ask whether you would choose it from scratch today. If not, write the smallest clean withdrawal or reverse pilot.",
+  "readingTimeMinutes": 12
+}

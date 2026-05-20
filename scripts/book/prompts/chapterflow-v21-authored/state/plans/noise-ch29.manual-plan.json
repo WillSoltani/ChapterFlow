@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch29",
+  "number": 29,
+  "title": "The Sources of Noise",
+  "coreMove": "Map all contributing sources of noise in a judgment system simultaneously before choosing which layer to target first, because targeting only one source while ignoring the others produces incomplete improvement.",
+  "sourcePressure": "The full taxonomy of noise sources — level noise (stable between-judge differences), pattern noise (stable personal tendencies about specific case types), and occasion noise (within-judge temporal variation) — interact rather than operate independently. Each source requires its own diagnostic approach and its own remedy. No single-cause explanation is adequate for any real judgment system, and no single intervention addresses all three simultaneously.",
+  "chapterSpecificMisunderstanding": "Assuming that finding the dominant source of noise in a system means the other sources are negligible, or that a remedy successfully targeting one source transfers its benefits to the others.",
+  "sourceAlignmentTerms": ["level noise", "pattern noise", "occasion noise", "taxonomy", "sources", "interaction", "compound", "target"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Multi-source noise decomposition in professional judgment research",
+      "detail": "Research on noise in professional judgment — including judicial sentencing variance studies, clinical assessment reliability studies, and performance appraisal research — consistently finds that total inter-judge spread decomposes into level, pattern, and occasion components that each require separate measurement and separate treatment. Studies that target only one component while leaving others untouched typically achieve 30 to 50 percent noise reduction; studies addressing all three components achieve substantially greater reductions.",
+      "useIn": "deepRead",
+      "phrasingHint": "There is no single-ingredient noise problem. A judge who is level-calibrated to the same average as peers still brings their pattern noise — their private weighting of specific case features. That same calibrated judge still brings their occasion noise — the variation in their own judgments across days. Each source is a separate layer. Addressing all three is not redundancy. It is the complete work."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["noise has three causes and here they all are", "the final word on where judgment scatter comes from"],
+    "counterintuition": ["fixing the biggest noise source fixes the noise problem", "level noise is the most important source to fix first in any organization"],
+    "tryThisNow": ["identify all three noise sources in your judgment system", "rank the three noise sources in your organization by size and fix the largest one first"],
+    "examples": ["a scene where one noise source is eliminated and the judgment system becomes reliable — that contradicts the chapter's premise that the sources are independent", "a scene implying that the three-part taxonomy is exhaustive and complete — the framing should be that it is a useful working model, not a closed catalog"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Sources-of-noise examples risk reading as a final taxonomy lecture. Each example must show a real judgment system being examined for all three noise sources simultaneously — not illustrating each source in a separate domain — so the reader sees the diagnostic process rather than the taxonomy."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "investment committee portfolio thesis review: a private equity fund studying inter-analyst noise in thesis quality assessment across the three source components",
+      "audience": "a private equity fund investment committee chair studying why investment thesis assessments diverge across analysts even when the same due diligence materials are provided",
+      "stakes": "capital allocation decisions — investment thesis assessments that diverge across analysts produce different go-no-go recommendations for the same deal, meaning capital decisions depend on which analyst is in the room",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the committee chair commissions a noise audit of thesis assessments across the past 18 months: the total inter-analyst spread decomposes into three identified components — a level component (two senior analysts consistently rate thesis strength 0.5 points higher than the firm average across all deal types, accounting for 33 percent of total variance), a pattern component (analysts diverge most on early-stage technology deals versus late-stage consumer deals, with different analysts favoring different stages — accounting for 41 percent of variance), and an occasion component (the same analyst's assessment of the same thesis deck varies by 0.3 points when presented six weeks apart — 26 percent of variance); no single source dominates, and each requires a different diagnostic approach",
+      "firstImage": "a noise decomposition wheel for the investment committee's thesis assessment spread, divided into three sectors: level (33%), pattern (41%), and occasion (26%)",
+      "mustInclude": ["the three-source decomposition with percentages (33/41/26 or similar)", "the explicit framing that no single source is dominant and each requires its own approach", "the chair's conclusion: the firm's calibration sessions address level noise but have not touched pattern or occasion noise, leaving 67 percent of the spread intact"],
+      "mustAvoid": ["a specific investment deal or portfolio outcome", "implying that investment thesis assessment should be algorithmic rather than human"]
+    },
+    {
+      "domain": "immigration asylum claim assessment: a refugee agency studying the three-source decomposition of inter-assessor spread in vulnerability classification",
+      "audience": "a refugee agency quality director conducting a multi-source noise audit of asylum claim processing to identify which noise layers are largest and which interventions are warranted",
+      "stakes": "asylum determination outcomes — applicants whose claims are assessed by different assessors face different determinations based on noise-driven variation, not case-feature differences; understanding which noise source dominates determines which intervention to deploy first",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two quality directors review the three-source decomposition from a matched-case audit of 200 asylum determinations: level noise (between-assessor average severity differences) accounts for 28 percent of total spread; pattern noise (stable assessor-level differences in how they weight persecution type versus documentation completeness versus country conditions) accounts for 45 percent; occasion noise (within-assessor variation across the same case seen two months apart) accounts for 27 percent; the quality director's immediate implication: the training program targeting only assessor calibration to overall approval rates is addressing the smallest of the three noise sources",
+      "firstImage": "a stacked bar chart of total asylum assessment variance decomposed into three segments: level, pattern, and occasion — the pattern segment visibly the tallest, the level segment the shortest",
+      "mustInclude": ["the 28/45/27 decomposition (level/pattern/occasion)", "the explicit finding that the existing training addresses only the smallest component", "the director's framing: understanding which source dominates determines which intervention is most valuable — and the answer here is not the one the organization assumed"],
+      "mustAvoid": ["a specific asylum applicant's case", "a political framing of refugee or immigration policy"]
+    },
+    {
+      "domain": "sports talent scouting evaluation: a professional sports franchise studying inter-scout noise decomposition in athlete prospect assessments",
+      "audience": "a professional sports franchise director of player personnel studying where in the scout evaluation process inter-scout spread is generated and which component is largest",
+      "stakes": "draft selection and player acquisition decisions — scouts who assess the same prospects differently produce divergent draft board rankings, meaning selection depends on which scout's noise pattern dominates in the room",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the director asks the analytics team to decompose the inter-scout spread for the last three drafts: the total spread in prospect ratings breaks into level noise (some scouts rate all prospects more conservatively than peers — 22 percent of variance), pattern noise (scouts diverge most on prospects whose skill profile is strong in one dimension but weak in another, with different scouts weighting different dimensions more heavily — 52 percent of variance), and occasion noise (the same scout rates the same film package differently six weeks later — 26 percent of variance); pattern noise — how each scout personally weights speed versus strength versus football IQ — is the dominant source by a wide margin",
+      "firstImage": "a three-panel variance decomposition for scout prospect ratings: level (22%), pattern (52%), occasion (26%) — the pattern panel the largest",
+      "mustInclude": ["the 22/52/26 decomposition with pattern noise dominant", "the specific driver of pattern noise (dimensional weighting preferences)", "the director's framing: this means the biggest noise reduction opportunity is not calibrating scouts' overall generosity — it is getting them to agree on how to weight competing skill dimensions"],
+      "mustAvoid": ["naming a specific athlete or sports organization", "implying professional scouting is unreliable as a practice"]
+    },
+    {
+      "domain": "forensic evidence evaluation: a crime laboratory studying inter-examiner noise decomposition in physical evidence significance assessment",
+      "audience": "a forensic laboratory quality director studying the three-source noise decomposition in physical evidence significance ratings across examiner teams",
+      "stakes": "criminal case disposition — evidence assessed as highly significant supports prosecution; evidence assessed as minimally significant supports defense; inter-examiner disagreement on significance determines which narrative the forensic report supports",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality director reviews a two-year blind re-evaluation study: the total inter-examiner spread in evidence significance ratings decomposes into a level component (two examiners consistently rate all evidence types more conservatively than peers — 31 percent of variance), a pattern component (examiners diverge most on trace evidence like fiber and glass relative to fingerprint and DNA evidence, with different examiners having different confidence in trace evidence interpretation — 43 percent of variance), and an occasion component (within-examiner variation on the same evidence reviewed three months apart — 26 percent of variance); the laboratory's current proficiency testing program focuses only on technical accuracy, not on source decomposition, and therefore leaves pattern and occasion components unaddressed",
+      "firstImage": "a noise source decomposition chart for forensic evidence significance ratings, showing three components in a stacked horizontal bar: level (31%), pattern (43%), occasion (26%)",
+      "mustInclude": ["the 31/43/26 decomposition", "the specific driver of pattern noise (examiner confidence levels in trace versus biological evidence)", "the quality director's conclusion: proficiency testing addresses examiner skill but not the pattern differences in how examiners weight different evidence types — that is a separate calibration problem"],
+      "mustAvoid": ["a specific criminal case or wrongful conviction story", "implying forensic science as a practice is fundamentally unreliable"]
+    },
+    {
+      "domain": "military security clearance adjudication: a clearance authority studying inter-adjudicator noise decomposition in security clearance determination",
+      "audience": "a defense clearance authority quality director studying where in the adjudication process inter-adjudicator spread is generated across the three noise source components",
+      "stakes": "national security access and individual career outcomes — applicants who are cleared by one adjudicator but not another based on noise-driven differences face different career trajectories and different national security exposures",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the quality director presents the adjudication noise audit to the review board: the total inter-adjudicator spread decomposes into a level component (some adjudicators approve applicants at a systematically lower rate across all case types — 29 percent of variance), a pattern component (adjudicators diverge most on cases with foreign contacts — some weight a single foreign-national contact as high risk; others require a pattern of contacts — 48 percent of variance), and an occasion component (within-adjudicator re-review of the same case six months later shows 23 percent of cases differently classified — 23 percent of variance); pattern noise in foreign-contact case adjudication is the dominant source",
+      "firstImage": "a security clearance adjudication noise decomposition showing three components: level (29%), pattern (48%), occasion (23%) — the pattern component annotated as 'foreign contact weighting divergence'",
+      "mustInclude": ["the 29/48/23 decomposition with pattern noise dominant", "the foreign-contact weighting divergence as the specific driver of pattern noise", "the implication: the largest noise reduction opportunity is getting adjudicators to apply the same standard for what constitutes a meaningful foreign contact — not calibrating their overall approval rates"],
+      "mustAvoid": ["a specific security clearance case or individual", "implying security clearance adjudication as a practice is compromised"]
+    },
+    {
+      "domain": "cybersecurity vulnerability triage: an information security team studying inter-analyst noise decomposition in severity rating of reported vulnerabilities",
+      "audience": "a chief information security officer studying where in the vulnerability triage process inter-analyst spread is generated and which noise source is largest",
+      "stakes": "remediation prioritization — vulnerabilities rated as critical receive immediate patching priority; high or medium ratings receive different timelines; analyst noise in severity rating directly determines which systems are patched first and which wait",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the triage noise audit: total inter-analyst spread in vulnerability severity ratings decomposes into level noise (some analysts rate all vulnerabilities more severely than others on average — 25 percent of variance), pattern noise (analysts diverge most on web application vulnerabilities versus network infrastructure vulnerabilities, with different analysts having different base-rate expectations for exploitability in each context — 49 percent of variance), and occasion noise (within-analyst re-rating of the same vulnerability one month later — 26 percent of variance); pattern noise in the web application versus infrastructure distinction is the dominant source, driven by different analysts' models of attacker behavior in each environment",
+      "firstImage": "a vulnerability triage noise decomposition showing three components as segments of total spread: level (25%), pattern (49%), occasion (26%) — the pattern segment annotated with 'web app vs. infrastructure exploitability model divergence'",
+      "mustInclude": ["the 25/49/26 decomposition with pattern noise dominant", "the web application versus infrastructure exploitability model difference as the specific driver", "the implication: team calibration sessions should focus on building a shared exploitability model for the two environment types — not just calibrating overall severity rating averages"],
+      "mustAvoid": ["a specific cyberattack or security breach story", "implying cybersecurity vulnerability rating is inherently too subjective to be reliable"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why addressing one noise source in a judgment system does not automatically reduce the other noise sources",
+      "identify which noise source components are likely contributing to a described pattern of inter-judge disagreement",
+      "apply the three-source decomposition framework to design a noise audit that separately measures level, pattern, and occasion components",
+      "analyze why an organization whose calibration program successfully reduces level noise may still have high total spread",
+      "evaluate whether a described noise reduction intervention is targeting the largest noise source or the most visible one"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of the most common judgment disagreement in your organization — the type that comes up most often in debriefs and case reviews. Ask three questions about it: Does one person always disagree with the others regardless of case type? (level) Does disagreement concentrate on specific case sub-types? (pattern) Does the same person disagree differently at different times on equivalent cases? (occasion) If you can answer yes to more than one of these questions, you have more than one noise source operating. The intervention that addresses only one of them is solving a fraction of the problem.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) presenting the three-source taxonomy as a diagnostic map rather than a theoretical model — the goal is knowing which layer to address first, not naming the layers, at least one 5+ sentence paragraph on why a noise reduction program that successfully addresses one source can leave total spread almost unchanged if the other two sources are larger, at least one one-sentence punch line about what an organization knows after it has correctly named all three noise sources in its judgment system",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: in your organization, has anyone ever measured all three sources simultaneously? If the answer is no, you have been making intervention choices without a map — and the chapter's argument is that the map is not optional; it is the prerequisite",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

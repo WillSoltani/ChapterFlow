@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch07",
+  "number": 7,
+  "title": "Concerning New Principalities Which Are Acquired Either by the Arms of Others or by Good Fortune",
+  "coreMove": "Replace the patron, army, and luck that lifted you with foundations that remain when they vanish.",
+  "sourcePressure": "The source contrasts rapid ascent by fortune or another's arms with the hard work of holding afterward. Cesare Borgia is the central case because he tries to convert papal favor, French arms, factional troops, Romagna disorder, and papal succession risk into his own soldiers, allies, courts, reputation, and Roman influence before Alexander VI dies.",
+  "chapterSpecificMisunderstanding": "The wrong version either idolizes or condemns Cesare Borgia. The writer must track dependencies being replaced: patron, borrowed soldiers, hostile factions, public disorder, and succession hazard.",
+  "sourceAlignmentTerms": [
+    "good fortune",
+    "arms of others",
+    "Cesare Borgia",
+    "Alexander VI",
+    "Orsini",
+    "Romagna",
+    "Ramiro d'Orco",
+    "Julius II",
+    "foundations",
+    "papal succession"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "villain biography of Cesare Borgia",
+      "lucky break as success story",
+      "networking lesson about knowing powerful people"
+    ],
+    "counterintuition": [
+      "most people assume luck is enough, but actually you need hard work",
+      "patrons are bad in every case",
+      "all rapid success is fragile for the same reason"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list who helped you",
+      "thank your mentors",
+      "make a generic independence plan"
+    ],
+    "examples": [
+      "celebrity career launched by a famous sponsor",
+      "startup funded by one investor",
+      "generic political appointee",
+      "office promotion after favoritism"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a newly appointed canal governor installed by a foreign engineering corps",
+      "audience": "a governor whose authority rests on foreign surveyors, imported guards, and the minister who appointed him",
+      "stakes": "the canal runs only while outsiders staff locks and local pilots obey for pay, so the first flood or ministerial death could strip him of command",
+      "format": "scene",
+      "requiredBeat": "He removes the foreign corps schedule from the lockhouse wall and pins a local pilot oath roster over it, beginning the slow replacement of borrowed operation with his own crews.",
+      "firstImage": "A foreign corps schedule is tacked above a canal lock wheel.",
+      "mustInclude": [
+        "lock wheel",
+        "local pilot oath roster",
+        "ministerial appointment letter"
+      ],
+      "mustAvoid": [
+        "infrastructure efficiency",
+        "generic expatriate management",
+        "chapter 6 founder from scratch"
+      ]
+    },
+    {
+      "domain": "a palace favorite given a border province after the queen suppresses its rebellion",
+      "audience": "a court favorite who inherits troops loyal to the queen and nobles loyal to old houses",
+      "stakes": "if the queen's favor turns or the palace guard leaves, the province returns to the families he displaced",
+      "format": "decision_point",
+      "requiredBeat": "Before riding in the victory carriage, he breaks the old noble hunting badges from the province board and issues command pins to officers paid from his own treasury.",
+      "firstImage": "Old noble hunting badges glitter on a province board beside a victory carriage ribbon.",
+      "mustInclude": [
+        "hunting badges",
+        "command pins",
+        "private treasury roll"
+      ],
+      "mustAvoid": [
+        "palace intrigue glamour",
+        "romance of favoritism",
+        "simple loyalty speech"
+      ]
+    },
+    {
+      "domain": "a relief mayor swept into office after a hurricane destroyed the old city machines",
+      "audience": "a mayor whose rise came from emergency luck and federal crews still controlling pumps and shelters",
+      "stakes": "public gratitude will fade when federal crews leave, and neighborhood bosses can reclaim the city unless local maintenance and courts become his own",
+      "format": "before_after",
+      "requiredBeat": "He stands beside the last federal pump truck, then signs the city maintenance crew badges and opens a claims desk where each ward has an advocate.",
+      "firstImage": "A federal pump truck idles beside a table of blank city crew badges.",
+      "mustInclude": [
+        "pump truck",
+        "city crew badges",
+        "claims desk"
+      ],
+      "mustAvoid": [
+        "disaster inspiration",
+        "campaign popularity",
+        "generic crisis leadership"
+      ]
+    },
+    {
+      "domain": "a privateer captain granted an island governorship by an admiral after a surprise naval victory",
+      "audience": "a captain who has ships but no island institutions of his own",
+      "stakes": "the admiral's fleet won the harbor, but the island's warehouses, courts, and harbor guns must stop depending on that fleet",
+      "format": "postmortem",
+      "requiredBeat": "The captain marks every warehouse key with a red thread if it still answers to the admiral, then replaces the harbor-gun crews before the fleet sails.",
+      "firstImage": "Warehouse keys with red thread lie beside a harbor-gun roster.",
+      "mustInclude": [
+        "warehouse keys",
+        "red thread",
+        "harbor-gun roster"
+      ],
+      "mustAvoid": [
+        "pirate adventure",
+        "battle victory",
+        "chapter 3 annexed port transition"
+      ]
+    },
+    {
+      "domain": "a university emergency president appointed by trustees after a scandal removes the old administration",
+      "audience": "an interim president with legal authority but no independent faculty, student, or donor base",
+      "stakes": "trustees can elevate her overnight and abandon her at the first backlash unless she builds institutions that are not trustee theater",
+      "format": "predict_reveal",
+      "requiredBeat": "She asks which signatures still matter after the trustees leave, then slides the trustee resolution under three new faculty hearing calendars and donor escrow rules.",
+      "firstImage": "A trustee resolution sits under blank faculty hearing calendars.",
+      "mustInclude": [
+        "trustee resolution",
+        "faculty hearing calendars",
+        "donor escrow rules"
+      ],
+      "mustAvoid": [
+        "campus culture war",
+        "HR reform",
+        "generic appointee advice"
+      ]
+    },
+    {
+      "domain": "a trading-post ruler raised by a charter company that owns the only armed caravan",
+      "audience": "a clerk suddenly made magistrate because company directors want a loyal local face",
+      "stakes": "losing with company protection would ruin him, but winning while the company's caravan remains sole force leaves him captive",
+      "format": "dialogue",
+      "requiredBeat": "When the caravan captain offers to stand behind every judgment, the magistrate lays the company rifle receipt beside a new town watch roll and says the first verdict waits until the watch is sworn.",
+      "firstImage": "A company rifle receipt lies across a blank town watch roll.",
+      "mustInclude": [
+        "company rifle receipt",
+        "town watch roll",
+        "first verdict slip"
+      ],
+      "mustAvoid": [
+        "commercial negotiation only",
+        "generic colonial color",
+        "mercenary versus auxiliary blur"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which parts of a new ruler's position came from fortune, patron favor, or another power's arms",
+      "trace the sequence by which a ruler replaces borrowed troops, factional allies, and public disorder with owned foundations",
+      "analyze succession or patron-death hazards in scenario form",
+      "evaluate whether new benefits can erase old injuries among powerful people who fear or hate the new ruler"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one person or institution elevated quickly by a sponsor or crisis. List what the sponsor supplied, what could disappear overnight, and the first three foundations the new holder would need to build for themselves.",
+  "readingTimeMinutes": 12
+}

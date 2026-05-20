@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-righteous-mind-ch05",
+  "number": 5,
+  "title": "Beyond WEIRD Morality",
+  "coreMove": "Before judging a moral reaction as irrational, ask whether a non-WEIRD moral concern is doing the work.",
+  "sourcePressure": "The chapter turns from WEIRD moral assumptions toward a broader cross-cultural moral range beyond harm and fairness.",
+  "chapterSpecificMisunderstanding": "The writer makes WEIRD a sneer instead of a sampling warning about narrow moral assumptions.",
+  "sourceAlignmentTerms": [
+    "WEIRD",
+    "harm",
+    "fairness",
+    "cross-cultural",
+    "moral range",
+    "universalize"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "WEIRD morality",
+      "detail": "the frozen sidecar identifies the chapter's turn away from treating Western, educated, industrialized, rich, democratic samples as universal.",
+      "useIn": "both",
+      "phrasingHint": "WEIRD morality can feel like common sense until the reader notices how much of the human moral range it leaves offstage."
+    },
+    {
+      "kind": "artifact",
+      "name": "harm and fairness",
+      "detail": "the frozen sidecar says the chapter turns away from treating harm and fairness as the whole of morality.",
+      "useIn": "deepRead",
+      "phrasingHint": "Harm and fairness are real moral alarms, but the mistake is assuming they are the only alarms in the building."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch05 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "world cultures montage"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "anti-Western lecture"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "tourist market scene"
+    ],
+    "examples": [
+      "world cultures montage",
+      "anti-Western lecture",
+      "tourist market scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "international HR team revising a global gifts policy",
+      "audience": "managers applying one office's ethics rules worldwide",
+      "stakes": "Sophie catches the team treating a WEIRD discomfort as universal corruption risk.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sophie lays three regional gift cases on the table and asks which concern each culture is protecting.",
+      "firstImage": "Three sealed gift boxes sit under the video screen, each with a different regional office label.",
+      "mustInclude": [
+        "gift boxes",
+        "policy grid",
+        "video screen"
+      ],
+      "mustAvoid": [
+        "bribery scandal generic"
+      ]
+    },
+    {
+      "domain": "urban animal shelter mediating a dispute about ritual slaughter language",
+      "audience": "nonprofit staff in moral conflict",
+      "stakes": "Marco separates harm concerns from sanctity concerns without mocking either.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Marco asks each side to name the protected value before proposing wording.",
+      "firstImage": "\"You keep saying humane, but she keeps saying sacred,\" Marco says.",
+      "mustInclude": [
+        "draft brochure",
+        "steel intake table",
+        "translation note"
+      ],
+      "mustAvoid": [
+        "culture-war caricature"
+      ]
+    },
+    {
+      "domain": "university dining committee debating meatless defaults",
+      "audience": "students who assume harm/fairness covers every objection",
+      "stakes": "Chidi adds loyalty and tradition to the map before the vote.",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chidi draws a second column for tradition and watches the opposition stop looking irrational.",
+      "firstImage": "Steam clouds the dining hall windows while the ballot box waits by the salad bar.",
+      "mustInclude": [
+        "ballot box",
+        "menu placard",
+        "tradition column"
+      ],
+      "mustAvoid": [
+        "generic vegan debate"
+      ]
+    },
+    {
+      "domain": "public library setting rules for a controversial display",
+      "audience": "librarians balancing inclusion, offense, and local norms",
+      "stakes": "Hanna notices that the complaint is not only harm but community boundary.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hanna rereads the complaint letters and tags the moral concern each one assumes.",
+      "firstImage": "It took Hanna the third handwritten letter to stop calling every objection censorship.",
+      "mustInclude": [
+        "display case",
+        "handwritten letters",
+        "catalog cart"
+      ],
+      "mustAvoid": [
+        "free-speech lecture"
+      ]
+    },
+    {
+      "domain": "wedding planner navigating family expectations across cultures",
+      "audience": "readers managing family rituals",
+      "stakes": "Juliette sees that one side hears a seating chart as fairness and the other hears it as respect.",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Juliette move name cards only after naming which value each family is defending.",
+      "firstImage": "You notice the gold name cards arranged like small verdicts on the hotel table.",
+      "mustInclude": [
+        "name cards",
+        "floor plan",
+        "aunt's voicemail"
+      ],
+      "mustAvoid": [
+        "generic family drama"
+      ]
+    },
+    {
+      "domain": "consumer app team designing privacy prompts for multiple countries",
+      "audience": "product teams universalizing one market's moral assumptions",
+      "stakes": "Tomasz tests whether consent, dignity, and authority concerns vary by market.",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 3:45, Tomasz asks the team to predict which privacy phrase will calm each market before showing interviews.",
+      "firstImage": "At 3:45, Tomasz pins three translated prompts beneath the same red tracking icon.",
+      "mustInclude": [
+        "translated prompts",
+        "tracking icon",
+        "interview clips"
+      ],
+      "mustAvoid": [
+        "abstract localization talk"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "notice WEIRD sampling assumptions in moral claims",
+      "widen a harm-and-fairness frame without endorsing every alternative norm",
+      "keep cross-cultural humility distinct from relativism"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one moral reaction you dislike and ask whether it is protecting sanctity, authority, loyalty, or order rather than harm alone.",
+  "readingTimeMinutes": 12
+}

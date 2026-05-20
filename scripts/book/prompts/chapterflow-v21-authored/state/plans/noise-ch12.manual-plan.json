@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch12",
+  "number": 12,
+  "title": "Sequencing Information in Forensic Science",
+  "coreMove": "Protect later judgment from earlier information by deliberately sequencing which evidence arrives first and which arrives after an independent assessment is recorded.",
+  "sourcePressure": "In forensic science, early information anchors later interpretation: a fingerprint examiner who is told the suspect was arrested and has a prior record before examining the print will reach different conclusions than one who examines the print first. Sequencing is a concrete process lever that reduces contamination without requiring the examiner to be less expert, less motivated, or more aware.",
+  "chapterSpecificMisunderstanding": "Treating sequencing as a cosmetic presentation preference rather than a structural constraint on how one piece of information anchors the next.",
+  "sourceAlignmentTerms": ["sequencing", "contamination", "anchoring", "information order", "blind evaluation", "independent assessment", "forensic"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Forensic examiner contextual bias research",
+      "detail": "Research on contextual bias in fingerprint examination has shown that examiners who are given case context (suspect arrested, victim is a child) before examining a print produce different conclusions than the same examiners working without that context on the same print. The information order effect is a structural noise source that sequencing addresses.",
+      "useIn": "both",
+      "phrasingHint": "The same fingerprint looks more incriminating when the examiner knows the suspect was arrested. Not because the print changed. Because the context arrived first and the print arrived second — and the examiner's brain had already begun deciding."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["what you learn first changes what you see next", "evidence is only objective if you encounter it objectively"],
+    "counterintuition": ["context makes experts less reliable, not more", "the order of evidence is as important as the evidence itself"],
+    "tryThisNow": ["try making a decision without reading the background first", "notice how your first impression affects your final judgment"],
+    "examples": ["a scene that implies the forensic examiner was deliberately influenced or biased rather than structurally contaminated", "a scene set in a fictional crime narrative that overshadows the process theme"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Forensic sequencing examples risk all reading as 'examiner sees context before evidence and reaches wrong conclusion.' The chapter's examples must span different evidence types and show the sequencing principle in non-forensic contexts too."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "latent fingerprint examination: a fingerprint examiner working with and without arrest context on the same prints",
+      "audience": "a forensic quality officer designing a new case-file sequencing protocol for the lab",
+      "stakes": "the integrity of fingerprint evidence in criminal proceedings — contaminated assessments cannot be identified or corrected after the fact",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the quality officer presents the split-condition results: the same examiner who reviewed ten prints with full case context (suspect arrested, prior record noted) reached different conclusions on three of them than when they reviewed the same ten prints under blind conditions six months earlier — and the conclusions under context were consistently more incriminating",
+      "firstImage": "two columns of fingerprint case files, identical cases sorted into two groups: one with cover sheets containing arrest and suspect details, one with only a case number and the print image",
+      "mustInclude": ["the same examiner, same prints, different context conditions", "the three conclusion changes, all in the direction of incrimination", "the quality officer's framing: this is structural, not intentional — the examiner did not choose to be influenced"],
+      "mustAvoid": ["a criminal case narrative", "implying any fingerprint examiner deliberately biased their conclusions"]
+    },
+    {
+      "domain": "bite-mark comparison in a dental forensics review: two examiners comparing the same bite mark with and without knowing the defendant's record",
+      "audience": "a dental forensics quality committee reviewing sequencing guidelines for bite-mark analysis",
+      "stakes": "the reliability of bite-mark testimony in court — a historically contested form of forensic evidence that additional sequencing discipline could partly rehabilitate",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two committee members discuss the comparison test results: one examiner who knew the defendant had a prior assault conviction said the bite mark was 'highly consistent'; the second examiner, using the same comparison methodology but without case context, said 'possibly consistent, further analysis required' — and neither can identify any analytical difference in their methods that would explain the divergence",
+      "firstImage": "two forensic reports for the same bite mark comparison, filed in the same case folder but with different conclusions at the top of each",
+      "mustInclude": ["the context-informed vs. blind condition as the only difference", "the conclusion divergence despite identical methods", "the committee's framing: the problem is the sequence, not the methodology"],
+      "mustAvoid": ["a rape or murder trial narrative", "implying the case's defendant was guilty or innocent"]
+    },
+    {
+      "domain": "blood-spatter pattern reconstruction: crime scene analysts reviewing the same spatter evidence with and without initial police narrative",
+      "audience": "a forensic science trainer using a case study to teach sequencing discipline",
+      "stakes": "accurate crime scene reconstruction for a homicide investigation — the reconstruction determines whether the evidence supports self-defense or deliberate action",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the trainer asks the class: if two analysts examined the same spatter pattern — one with the initial police theory already in mind, one without — what would their reconstruction drawings look like? The trainer then shows the two reconstructions from a real training case: the analyst who knew the police theory drew an impact sequence consistent with it; the blind analyst drew a different impact sequence that is equally consistent with the physical evidence",
+      "firstImage": "two reconstruction diagrams of the same room: the same measurement marks on the floor, the same spatter marks on the wall, two different arrow-sequences showing how the analysts think the events unfolded",
+      "mustInclude": ["the same physical evidence, same room, two reconstruction sequences", "the police theory being the only thing different between the two analysts' conditions", "the trainer's framing: neither reconstruction is wrong given the evidence alone; the divergence reveals that interpretation, not physics, drives the difference"],
+      "mustAvoid": ["a specific murder case", "a classroom scene that names a real forensic method in a technically incorrect way"]
+    },
+    {
+      "domain": "digital forensics chain: a cybersecurity investigator examining the same device image with and without knowing the initial security alert reason",
+      "audience": "a digital forensics team lead studying whether alert context affects what examiners find on device images",
+      "stakes": "disciplinary or legal action against an employee — the investigator's conclusions determine whether the case proceeds",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the team lead reviews a paired study: examiners given the reason for the initial security alert (suspected data exfiltration) found and flagged 40 percent more file access events as suspicious than examiners given the same device image without the alert context; the additional flags were on events that the blind examiners rated as normal activity",
+      "firstImage": "two forensic investigation reports for the same device image, one with a longer suspicious-activity list — the team lead highlighting the added items and comparing them against the blind team's classification",
+      "mustInclude": ["the 40 percent more suspicious-flag finding in the context-informed group", "the blind group's classification of those same events as normal", "the team lead's protocol change: device examination before alert context is revealed"],
+      "mustAvoid": ["a corporate espionage narrative", "implying either examiner was negligent"]
+    },
+    {
+      "domain": "questioned document analysis: a document examiner assessing handwriting authenticity with and without knowing which party submitted the document for analysis",
+      "audience": "a legal case coordinator building new evidence-handling procedures for the firm's forensic experts",
+      "stakes": "the fairness of the authentication testimony — if which party submitted the document influences the examiner's conclusion, the adversarial process is compromised",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you discover that your forensic handwriting expert's analysis report mentions that the document was 'submitted by the defense' in the second sentence — before the analysis section begins — and you realize the examiner saw that attribution before examining the handwriting; you must decide whether to request a re-examination under blind conditions or proceed with the contaminated report",
+      "firstImage": "a forensic analysis report with the attribution sentence circled in red: 'Document submitted by defense counsel on behalf of the defendant' appearing before the first analysis paragraph",
+      "mustInclude": ["the attribution appearing before the analysis as the contamination sequence", "your decision about whether to request a blind re-examination", "the cost of requesting re-examination versus the cost of proceeding with contaminated evidence"],
+      "mustAvoid": ["a specific legal case detail", "implying the examiner's conclusion was wrong — only that the conditions for contamination were present"]
+    },
+    {
+      "domain": "facial recognition from witness description: two sketch artists working the same witness interview under different information conditions",
+      "audience": "a police procedural trainer comparing sketch quality and convergence with suspect imagery under two conditions",
+      "stakes": "the reliability of composite sketches as investigative tools — sketches contaminated by suspect images already in circulation are less reliable as independent evidence",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast two sketch conditions: in one, the artist is shown a list of suspects already in custody before conducting the witness interview; in the other, the artist conducts the interview without any suspect context; the context-first sketches converge toward the custody list more often than the blind sketches — even when the witness later says neither sketch looks like who they saw",
+      "firstImage": "two composite sketches derived from the same witness description of the same event: one drawn by the artist who saw the suspect list first, one drawn without context — the first sketch recognizably similar to a face on the custody list",
+      "mustInclude": ["the context-first condition producing convergence toward the custody list", "the blind condition's sketches showing more variation and less convergence", "the trainer's framing: the sequence change does not improve sketch accuracy; it prevents contamination of whatever accuracy the interview can produce"],
+      "mustAvoid": ["a crime victim narrative", "implying the suspect in the custody list was guilty or innocent"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain the mechanism through which early contextual information contaminates later evidence assessment",
+      "identify which element of an evidence-handling process is the sequence contamination point",
+      "apply sequencing discipline to design a blind evaluation protocol for a non-forensic domain",
+      "analyze why sequencing discipline does not require the examiner to change their methods — only the order of information delivery",
+      "evaluate whether a proposed evidence-handling protocol preserves independence or allows context to arrive before assessment"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before your next review of someone's work — a draft, a candidate file, a proposal — write down your own independent assessment of the relevant criteria before reading anyone else's written opinion or knowing how the piece was received. The constraint of recording your view first is the sequencing principle applied to your own workflow.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why information order matters even when evidence quality does not change, at least one 5+ sentence paragraph tracing the contamination mechanism step by step through a forensic examination, at least one one-sentence punch line about what 'independent evaluation' actually requires that most procedures do not provide",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to present research on contextual bias in forensic science as a brief aside — framing it as a finding that the forensic science community resisted for years before accepting",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

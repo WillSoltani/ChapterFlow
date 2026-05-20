@@ -1,0 +1,101 @@
+{
+  "bookId": "the-art-of-war",
+  "title": "The Art of War",
+  "author": "Sunzi",
+  "thesisParagraph": "The Art of War teaches that victory is less a burst of force than a disciplined relation among knowledge, timing, terrain, deception, resources, command, and human pressure. A good leader measures conditions before acting, refuses fights that waste strength, shapes the field so resistance breaks before collision, and treats intelligence as a moral duty because ignorance spends lives. The modern lesson is not to make ordinary life sound like battle; it is to see consequential action as a problem of position, cost, timing, and restraint before it becomes a problem of effort.",
+  "coreIdeas": [
+    {
+      "name": "Calculate Before Contact",
+      "oneSentence": "The decisive work often happens before the visible contest begins.",
+      "mentalMove": "Compare moral alignment, timing, terrain, leadership, discipline, resources, and likely response before committing.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "End the Drain",
+      "oneSentence": "Delay has a daily cost that can destroy the thing victory was supposed to protect.",
+      "mentalMove": "Price the campaign in real resources and define the shortest honorable path to closure.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch13.source"
+      ]
+    },
+    {
+      "name": "Win Intact",
+      "oneSentence": "The best outcome preserves useful people, assets, trust, and options instead of proving dominance through destruction.",
+      "mentalMove": "Disrupt plans, alliances, incentives, or supply before choosing direct collision.",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Fit the Ground",
+      "oneSentence": "A sound move in one terrain becomes ruinous in another.",
+      "mentalMove": "Classify the ground and adapt route, pace, posture, signals, and command to that ground.",
+      "sourceAnchors": [
+        "ch06.source",
+        "ch07.source",
+        "ch09.source",
+        "ch10.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Use Irreversible Force Carefully",
+      "oneSentence": "Some moves cannot be recalled, so they require timing, preparation, intelligence, and emotional restraint.",
+      "mentalMove": "Check conditions and foreknowledge before escalation, exposure, public action, or final commitment.",
+      "sourceAnchors": [
+        "ch08.source",
+        "ch12.source",
+        "ch13.source"
+      ]
+    }
+  ],
+  "targetReader": "A manager, founder, civic operator, professional, or student who makes high-stakes choices with limited information and too much pressure to confuse motion with strategy. The reader cares because wasted conflict, late intelligence, unclear command, and badly chosen terrain cost money, trust, time, and sometimes safety.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "translate ancient military terms into modern stakes without flattening their severity",
+      "let restraint feel active rather than timid"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no glamorizing war, violence, domination, or manipulation",
+      "no fake named studies, fake battles, or invented historical anecdotes"
+    ]
+  },
+  "voiceSpecimens": [
+    "The wrong fight usually announces itself as urgency.",
+    "Before you move, count what has to arrive with you.",
+    "A plan that cannot survive the ground is not bold. It is unfinished.",
+    "You do not need to push harder at the locked gate if another pressure makes the guard open it.",
+    "Some victories look quiet because the losing move was removed before anyone saw it.",
+    "When a choice can burn trust, check the wind before you strike the match."
+  ],
+  "voiceAntiSpecimens": [
+    "This timeless classic reminds us that strategy is important in every area of life.",
+    "In today's fast-paced world, leaders must leverage tactics to maximize success.",
+    "Be like a warrior and crush every obstacle that stands in your way.",
+    "The key takeaway is to think outside the box and stay flexible.",
+    "A modern entrepreneur should simply disrupt competitors with superior tactics."
+  ],
+  "teachingArc": "The book begins with disciplined calculation, then prices the cost of prolonged action, then moves from avoiding destructive collision into building invulnerable position, combined energy, pressure against weak points, and careful maneuver. The middle chapters teach variation, observation, and terrain. The final movement deals with extreme situations, irreversible force, and intelligence, so the reader ends with a mature rule: act decisively only after the ground, the cost, the timing, the people, and the information all justify action.",
+  "forbiddenMoves": [
+    "Do not turn every lesson into corporate conquest or competitive aggression.",
+    "Do not invent modern case studies, neuroscience, or named battles that are not in the source.",
+    "Do not quote the Lionel Giles translation as reader-facing prose unless a later approved quote ledger explicitly allows it.",
+    "Do not soften life-and-death stakes into generic productivity slogans.",
+    "Do not reuse the same modern domain shell across adjacent chapters."
+  ]
+}

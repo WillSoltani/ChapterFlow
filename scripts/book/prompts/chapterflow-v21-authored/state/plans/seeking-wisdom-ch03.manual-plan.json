@@ -1,0 +1,185 @@
+{
+  "chapterId": "seeking-wisdom-ch03",
+  "number": 3,
+  "title": "Use Probability to Resist Overconfidence",
+  "coreMove": "Anchor a forecast in base rates and margin of safety before vivid case evidence inflates confidence.",
+  "sourcePressure": "The source highlights overestimated control, overestimated desired outcomes, neglected prior probability, ignored base rates, overweighted individual case evidence, coincidence, misleading patterns, margin of safety, and failure through many paths.",
+  "chapterSpecificMisunderstanding": "The weak version is telling people to be less confident. The chapter should make the reader change the order of thinking: base rate first, vivid case second, margin of safety before commitment.",
+  "sourceAlignmentTerms": [
+    "prior probability",
+    "base rate",
+    "case evidence",
+    "coincidence",
+    "misleading pattern",
+    "margin of safety",
+    "desired outcome",
+    "many paths to failure"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Confidence is not evidence",
+      "The numbers do not care how you feel",
+      "Hope is not a strategy"
+    ],
+    "counterintuition": [
+      "More information always helps",
+      "A spreadsheet makes you objective",
+      "The unlikely event cannot happen twice"
+    ],
+    "tryThisNow": [
+      "Check the numbers",
+      "Think probabilistically",
+      "Add a safety margin"
+    ],
+    "examples": [
+      "startup hockey-stick forecast",
+      "casino gambler",
+      "generic stock pick",
+      "weather app picnic"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "wildfire insurance underwriting for cabins near a newly thinned forest edge",
+      "audience": "Emily, an underwriter tempted by fresh mitigation photos",
+      "stakes": "whether one neat property file overrides regional burn frequencies in the premium decision",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily writes the county burn base rate at the top of the file before opening the glossy mitigation photos",
+      "firstImage": "the faint smoke smell in a courier envelope of cabin photos",
+      "mustInclude": [
+        "Emily",
+        "county burn table",
+        "mitigation photos"
+      ],
+      "mustAvoid": [
+        "generic insurance office",
+        "climate sermon"
+      ]
+    },
+    {
+      "domain": "minor-league basketball scouting after one 38-point game",
+      "audience": "Henrik, a scout whose coach wants to sign the player by Monday",
+      "stakes": "whether a single hot night beats three seasons of ordinary shooting percentages",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Henrik covers the player's name, asks the room to predict next-season shooting from the three-year line, then reveals the highlight game last",
+      "firstImage": "At 10:12 p.m., Henrik pauses the highlight reel on a corner three",
+      "mustInclude": [
+        "Henrik",
+        "three-year shooting chart",
+        "highlight reel"
+      ],
+      "mustAvoid": [
+        "generic sports pep talk",
+        "Moneyball imitation"
+      ]
+    },
+    {
+      "domain": "medical clinic interpreting a positive screening result for a rare condition",
+      "audience": "Sofia, a physician assistant explaining why the scary test is not a diagnosis yet",
+      "stakes": "whether a patient leaves panicked because case evidence outran prior probability",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sofia draws 1,000 small boxes on the exam-table paper and shades the base-rate group before discussing the positive result",
+      "firstImage": "\"Before we talk about your result, I want to draw the whole room,\" beside crinkled exam paper",
+      "mustInclude": [
+        "Sofia",
+        "exam-table paper",
+        "1,000 boxes"
+      ],
+      "mustAvoid": [
+        "fake named study",
+        "technical Bayes lecture"
+      ]
+    },
+    {
+      "domain": "product team reading an A/B test that barely cleared significance during a holiday spike",
+      "audience": "Devon, a growth lead who wants to ship the winning button color",
+      "stakes": "whether coincidence and seasonal traffic masquerade as a durable product improvement",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Devon reruns the test excluding the holiday campaign traffic before letting the green lift number into the launch deck",
+      "firstImage": "a dashboard tile glowing green under a calendar full of holiday campaign blocks",
+      "mustInclude": [
+        "Devon",
+        "A/B dashboard",
+        "holiday campaign filter"
+      ],
+      "mustAvoid": [
+        "generic dashboard celebration",
+        "button-color joke"
+      ]
+    },
+    {
+      "domain": "avalanche guide deciding whether blue sky overrides the snowpack bulletin",
+      "audience": "Thomas, a backcountry guide with clients staring at perfect morning light",
+      "stakes": "whether visible calm erases low-frequency but lethal risk",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Thomas reads the persistent weak-layer bulletin aloud, sets a turnaround line on the map, and cuts the route despite the clear sky",
+      "firstImage": "You can hear ski skins rip in the blue morning while the bulletin sits in Thomas's glove",
+      "mustInclude": [
+        "Thomas",
+        "snowpack bulletin",
+        "turnaround line"
+      ],
+      "mustAvoid": [
+        "generic mountain adventure",
+        "reckless tourist stereotype"
+      ]
+    },
+    {
+      "domain": "museum curator authenticating a painting after one exciting provenance letter",
+      "audience": "Kasia, a curator whose donor wants the find announced at the gala",
+      "stakes": "whether one vivid artifact beats the prior odds of a real lost masterwork",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Kasia tapes the known forgery-rate estimate beside the provenance letter and delays the gala announcement until pigment testing returns",
+      "firstImage": "a cream-colored provenance letter under the cold lamp of a conservation table",
+      "mustInclude": [
+        "Kasia",
+        "provenance letter",
+        "pigment test request"
+      ],
+      "mustAvoid": [
+        "detective-mystery tone",
+        "fake famous artist detail"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply base rates before case evidence",
+      "recognize coincidence in apparently meaningful clusters",
+      "choose a margin of safety under known unknowns",
+      "separate desired probability from actual probability"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one forecast you care about, write the base rate first, then the case detail that tempts you to ignore it, then one margin of safety.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

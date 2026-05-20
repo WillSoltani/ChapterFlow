@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch12",
+  "number": 12,
+  "title": "Hack Back Work Interruptions",
+  "coreMove": "Make focus and interruptibility legible at work so people know when to wait, reroute, or interrupt for true urgency.",
+  "sourcePressure": "The chapter converts trigger judgment into negotiated work norms, treating interruptions as shared-system events rather than coworker flaws.",
+  "chapterSpecificMisunderstanding": "A weak run would blame coworkers instead of designing visible norms for shared attention.",
+  "sourceAlignmentTerms": [
+    "work interruptions",
+    "external triggers",
+    "norms",
+    "urgency",
+    "legibility",
+    "coordination"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hack Back Work Interruptions as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital sterile-processing team handling instrument questions",
+      "audience": "technician whose checks get broken by hallway questions",
+      "stakes": "sterile tray errors can delay surgery",
+      "format": "dialogue",
+      "requiredBeat": "the team agrees that blue cart tags mean wait unless a missing tray is already in the operating room",
+      "firstImage": "A blue cart tag hangs from a sealed instrument tray.",
+      "mustInclude": [
+        "blue cart tag",
+        "instrument tray",
+        "urgency exception"
+      ],
+      "mustAvoid": [
+        "medical savior"
+      ]
+    },
+    {
+      "domain": "architecture model shop protecting laser-cutter setup",
+      "audience": "model maker interrupted during measurements",
+      "stakes": "one casual question can ruin scale accuracy",
+      "format": "scene",
+      "requiredBeat": "she places a red acrylic block on the cutter bench and posts the two times she will answer design questions",
+      "firstImage": "A red acrylic block sits beside a scale model base.",
+      "mustInclude": [
+        "red acrylic block",
+        "model base",
+        "question window"
+      ],
+      "mustAvoid": [
+        "creative isolation"
+      ]
+    },
+    {
+      "domain": "municipal snowplow dispatch during route planning",
+      "audience": "dispatcher pulled into side requests before a storm",
+      "stakes": "routes get patched badly if every request sounds immediate",
+      "format": "decision_point",
+      "requiredBeat": "he creates a storm-board column for true hazards and a second column for later complaints",
+      "firstImage": "A snow route board is divided with black magnetic strips.",
+      "mustInclude": [
+        "snow route board",
+        "magnetic strips",
+        "hazard column"
+      ],
+      "mustAvoid": [
+        "weather drama"
+      ]
+    },
+    {
+      "domain": "textile mill quality team reducing floor interruptions",
+      "audience": "inspector who gets stopped mid-defect count",
+      "stakes": "counts lose reliability when every loom issue interrupts",
+      "format": "postmortem",
+      "requiredBeat": "they install a defect-card drop box and reserve immediate calls for snapped warp threads",
+      "firstImage": "A defect-card box is bolted beside a loom counter.",
+      "mustInclude": [
+        "defect-card box",
+        "loom counter",
+        "warp thread card"
+      ],
+      "mustAvoid": [
+        "factory nostalgia"
+      ]
+    },
+    {
+      "domain": "radio newsroom producer protecting edit time",
+      "audience": "producer interrupted by every possible segment idea",
+      "stakes": "the lead story misses air if edit time stays invisible",
+      "format": "before_after",
+      "requiredBeat": "before, ideas arrive at the booth door; after, a rundown slot and emergency phrase govern interruptions",
+      "firstImage": "A rundown sheet is clipped to a studio booth window.",
+      "mustInclude": [
+        "rundown sheet",
+        "booth window",
+        "emergency phrase"
+      ],
+      "mustAvoid": [
+        "media chaos"
+      ]
+    },
+    {
+      "domain": "veterinary surgery desk routing nonurgent questions",
+      "audience": "surgical nurse whose prep is interrupted by front-desk questions",
+      "stakes": "anesthesia prep needs undivided checks",
+      "format": "vignette",
+      "requiredBeat": "she posts a prep-in-progress sign and names the one question that still comes through",
+      "firstImage": "An anesthesia checklist rests beside a prep-in-progress sign.",
+      "mustInclude": [
+        "anesthesia checklist",
+        "prep sign",
+        "routing card"
+      ],
+      "mustAvoid": [
+        "pet sentiment"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Make focus and interruptibility legible at work so people know when to wait, reroute, or interrupt for true urgency.",
+      "choose the action that stays inside Hack Back Work Interruptions's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would blame coworkers instead of designing visible norms for shared attention.",
+      "use chapter-specific terms such as work interruptions, external triggers, norms, urgency in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one recurring interruption and write the visible signal, alternate route, and true urgency exception you will propose.",
+  "readingTimeMinutes": 12
+}

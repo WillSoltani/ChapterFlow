@@ -1,0 +1,182 @@
+{
+  "chapterId": "ultralearning-ch14",
+  "number": 14,
+  "title": "An unconventional education",
+  "coreMove": "Take responsibility for building learning structures without pretending conventional institutions have no value.",
+  "sourcePressure": "The closing widens ultralearning into learner-built education grounded in projects, adaptation, and responsibility. The source sidecar contains no named people, studies, institutions, places, dates, or artifacts for this chapter, so named source anchors must be omitted rather than invented.",
+  "chapterSpecificMisunderstanding": "Turning the ending into anti-school manifesto, pure freedom, or career certainty.",
+  "sourceAlignmentTerms": [
+    "unconventional education",
+    "self-directed projects",
+    "adaptation",
+    "learner-built structure",
+    "responsibility",
+    "standard routes",
+    "continuity"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Ch14: learner stares at browser tabs and realizes motivation is not enough",
+      "Ch14: broad modern world pressure opener"
+    ],
+    "counterintuition": [
+      "The obvious move is not the real move",
+      "Most people think more effort is enough",
+      "This is not about working harder"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three goals",
+      "Spend one minute thinking about your learning journey"
+    ],
+    "examples": [
+      "desk plus laptop plus vague course collection",
+      "generic student in a classroom",
+      "manager in a recurring meeting with no concrete artifact",
+      "kitchen-table life overhaul"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Alice, a mid-career teacher building yearly projects alongside formal PD",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the next month produces visible evidence or another private feeling of effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Alice uses a finished classroom project to design the next year of teacher learning instead of waiting for formal PD.",
+      "firstImage": "a student project rubric tucked inside a teacher planner",
+      "mustInclude": [
+        "printed standard",
+        "deadline box",
+        "proof artifact"
+      ],
+      "mustAvoid": [
+        "generic motivation speech",
+        "anti-school rant"
+      ]
+    },
+    {
+      "domain": "George, a graduate assistant keeping self-direction structured beside university work",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether a deadline exposes the weakness early enough to adjust",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "George keeps a self-directed research path structured beside university work by setting outside standards for each term.",
+      "firstImage": "a graduate office corkboard with three term cards pinned in a row",
+      "mustInclude": [
+        "calendar conflict",
+        "single constraint",
+        "revised first session"
+      ],
+      "mustAvoid": [
+        "heroic schedule fantasy",
+        "all-night grind"
+      ]
+    },
+    {
+      "domain": "Julien, a carpenter designing an education path through certifications and projects",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Julien combines certifications, shop projects, and mentor review into a carpenter's education path.",
+      "firstImage": "a dovetail sample beside a trade certification brochure",
+      "mustInclude": [
+        "closed source",
+        "blank page",
+        "visible answer"
+      ],
+      "mustAvoid": [
+        "passive rereading",
+        "smooth familiarity"
+      ]
+    },
+    {
+      "domain": "Giulia, a parent returning to study without waiting for a perfect program",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the project survives contact with a real schedule and real standards",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Giulia stops waiting for a perfect program and builds one serious evening project around the study time she actually has.",
+      "firstImage": "a child's lunchbox beside an open enrollment form",
+      "mustInclude": [
+        "review note",
+        "circled weak step",
+        "one narrow prompt"
+      ],
+      "mustAvoid": [
+        "broad self-improvement chat",
+        "vague weakness label"
+      ]
+    },
+    {
+      "domain": "Aisha, a public-health analyst connecting one finished project to a wider learning path",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether comfort keeps protecting the exact skill gap that matters",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Aisha connects one public-health project to the next adaptation she must learn, without claiming the credential question is gone.",
+      "firstImage": "an outbreak dashboard printout beside a continuing-education catalog",
+      "mustInclude": [
+        "before-and-after attempt",
+        "small test condition",
+        "written prediction"
+      ],
+      "mustAvoid": [
+        "novelty for novelty's sake",
+        "unsupported science claim"
+      ]
+    },
+    {
+      "domain": "Niklas, a musician resisting structure-free freedom after a successful project",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the next attempt changes the skill instead of decorating the plan",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Niklas sees that freedom without structure made the last project drift, so he writes continuity rules for the next musical skill.",
+      "firstImage": "a set list clipped to a keyboard stand after the final rehearsal",
+      "mustInclude": [
+        "old plan",
+        "new evidence",
+        "one crossed-out escape"
+      ],
+      "mustAvoid": [
+        "desk-laptop-browser-tabs shell",
+        "fake named study"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "build self-directed education with structure",
+      "combine personal projects with formal routes",
+      "avoid mistaking unconventional learning for drift"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one way you can build structure for learning without waiting for a course, credential, or perfect program.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

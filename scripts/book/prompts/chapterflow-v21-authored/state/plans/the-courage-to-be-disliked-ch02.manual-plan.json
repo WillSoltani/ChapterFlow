@@ -1,0 +1,206 @@
+{
+  "chapterId": "the-courage-to-be-disliked-ch02",
+  "number": 2,
+  "title": "The Second Night: All Problems Are Interpersonal Relationship Problems",
+  "coreMove": "Notice when another person's movement has been converted into your rank, then return attention to the task instead of the scoreboard.",
+  "sourcePressure": "The source supports the second night as the rivalry chapter: inferiority as subjective assumption, bragging as linked to inferiority, life not as competition, escalation into power struggle and revenge, and life tasks as the exit.",
+  "chapterSpecificMisunderstanding": "The weak version says stop comparing yourself and build self-esteem; the real move exposes the rank logic that turns other people into threats and tasks into scoreboards.",
+  "sourceAlignmentTerms": [
+    "inferiority",
+    "subjective assumption",
+    "bragging",
+    "competition",
+    "power struggle",
+    "revenge",
+    "life tasks",
+    "rank"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Feelings of Inferiority Are Subjective Assumptions",
+      "detail": "The frozen source lists this as a visible heading in the second night.",
+      "useIn": "both",
+      "phrasingHint": "The promotion did not shrink you; the rank story you attached to it did."
+    },
+    {
+      "kind": "artifact",
+      "name": "From Power Struggle to Revenge",
+      "detail": "The frozen source lists this heading in the second night, supporting an escalation from competition into retaliation.",
+      "useIn": "fullRead",
+      "phrasingHint": "A scoreboard does not stay harmless for long; when pride loses, it starts looking for a way to collect."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Comparison is the thief of joy",
+      "Someone else's success is not your failure",
+      "Life is not a race"
+    ],
+    "counterintuition": [
+      "Inferiority is all in your head",
+      "Competition seems motivating but...",
+      "Bragging is secretly insecurity"
+    ],
+    "tryThisNow": [
+      "Unfollow someone who makes you feel bad",
+      "Write down three strengths",
+      "Celebrate someone else's win"
+    ],
+    "examples": [
+      "social media envy scroll",
+      "promotion jealousy in a generic office",
+      "sibling rivalry at dinner",
+      "athlete learns teamwork"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "architecture studio promotion comparison",
+      "audience": "a project architect who turns a peer's promotion into proof that her own portfolio is worthless",
+      "stakes": "the museum proposal needs clear judgment, but the rank story is making every design review feel like a trial",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sophie draws a line down her notebook separating the actual proposal revision from the private rank verdict she added when the promotion was announced.",
+      "firstImage": "Graphite dust smears across the corner of a museum elevation.",
+      "mustInclude": [
+        "museum elevation",
+        "promotion email",
+        "redline notebook"
+      ],
+      "mustAvoid": [
+        "generic office jealousy",
+        "portfolio pep talk",
+        "social media comparison"
+      ]
+    },
+    {
+      "domain": "marathon club pace-board rivalry",
+      "audience": "a recreational runner whose training collapses whenever a clubmate posts a faster split",
+      "stakes": "a spring marathon plan is turning into punishment instead of preparation",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:18 a.m., Lukas erases his planned easy pace after seeing the club board, then has to restore it because the task is recovery, not beating the name above his.",
+      "firstImage": "At 6:18 a.m., Lukas stands in front of the laminated pace board with a wet glove in one hand.",
+      "mustInclude": [
+        "laminated pace board",
+        "recovery run",
+        "spring marathon plan"
+      ],
+      "mustAvoid": [
+        "elite sports montage",
+        "discipline versus laziness",
+        "body image comparison"
+      ]
+    },
+    {
+      "domain": "academic lab authorship display",
+      "audience": "a postdoctoral researcher who brags about methods knowledge whenever another lab member gets credit",
+      "stakes": "a collaboration may fracture before a grant resubmission if superiority theater keeps replacing shared work",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Claire hears herself naming every technique she knows, then stops and asks what the grant revision actually needs from her instead of what status she wants restored.",
+      "firstImage": "\"I ran that assay before anyone here knew the protocol,\" Claire says, and the pipette box clicks shut.",
+      "mustInclude": [
+        "grant resubmission",
+        "assay protocol",
+        "shared figures"
+      ],
+      "mustAvoid": [
+        "scientist villain",
+        "imposter syndrome only",
+        "generic teamwork moral"
+      ]
+    },
+    {
+      "domain": "independent bookstore award jealousy",
+      "audience": "a bookseller who quietly wants a neighboring shop to fail after it wins a local prize",
+      "stakes": "a joint literacy festival will collapse if rivalry turns into strategic withholding",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ben catches the satisfaction he feels when the rival shop's shipment is delayed and names it as revenge rather than business realism.",
+      "firstImage": "What do you call the small pleasure when the other shop's boxes do not arrive?",
+      "mustInclude": [
+        "literacy festival",
+        "delayed shipment",
+        "window-prize sticker"
+      ],
+      "mustAvoid": [
+        "retail competition cliche",
+        "money envy",
+        "friendly rival banter"
+      ]
+    },
+    {
+      "domain": "public radio pledge-drive leaderboard",
+      "audience": "a producer who lets donor numbers turn colleagues into enemies during a campaign week",
+      "stakes": "the final drive segment needs cooperation, but leaderboard rank has made every script note feel like humiliation",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ingrid covers the leaderboard with the rundown sheet and asks what the next hour of radio requires if nobody's donor total counts as a verdict.",
+      "firstImage": "The studio light is still red, and the donor leaderboard glows behind the glass.",
+      "mustInclude": [
+        "donor leaderboard",
+        "segment rundown",
+        "headphones"
+      ],
+      "mustAvoid": [
+        "corporate sales leaderboard",
+        "public speaking anxiety",
+        "team morale speech"
+      ]
+    },
+    {
+      "domain": "community choir solo audition",
+      "audience": "an amateur singer who treats another tenor's solo as public demotion",
+      "stakes": "a memorial performance risks becoming a private status wound rather than a shared act of care",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Yusuf move from rehearsing revenge in his head to marking the exact entrances he owes the choir behind the soloist.",
+      "firstImage": "You see the pencil stop over the word 'solo' in the choral score.",
+      "mustInclude": [
+        "memorial performance",
+        "choral score",
+        "tenor entrance"
+      ],
+      "mustAvoid": [
+        "talent show plot",
+        "jealous best friend",
+        "self-esteem affirmation"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the status interpretation added to a neutral event",
+      "distinguish real task seriousness from rank hunger",
+      "spot superiority display as dependence on audience rather than confidence",
+      "analyze when power struggle has hardened into revenge"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one comparison from today and write two columns: what actually happened, and the rank verdict you added to it.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,199 @@
+{
+  "chapterId": "make-it-stick-ch05",
+  "number": 5,
+  "title": "Avoid Illusions of Knowing",
+  "coreMove": "Make confidence answer to a cue-free check before treating it as knowledge.",
+  "sourcePressure": "The chapter focuses on calibration: familiarity, rereading, and fluent recognition inflate confidence unless learners use tests, explanations, delayed recall, and external feedback.",
+  "chapterSpecificMisunderstanding": "The writer must avoid making confidence the enemy; the problem is untested confidence that borrows support from visible cues.",
+  "sourceAlignmentTerms": [
+    "illusion of knowing",
+    "calibration",
+    "fluency",
+    "metacognition",
+    "recognition",
+    "cue-free check",
+    "hindsight bias",
+    "feedback"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Catherine Johnson",
+      "detail": "Minneapolis Police Department lieutenant describing simulations, including a traffic stop where a trunk popped open and a shotgun appeared, and a gun-disarming routine that once trained an officer to hand the gun back.",
+      "useIn": "both",
+      "phrasingHint": "Catherine Johnson’s officers learned that practice can teach exactly the wrong automatic move if nobody checks what the drill is really installing."
+    },
+    {
+      "kind": "study",
+      "name": "Loftus car-crash wording study",
+      "detail": "People estimated a higher speed when asked how fast cars were going when they smashed into each other than when asked when they contacted each other.",
+      "useIn": "deepRead",
+      "phrasingHint": "One verb can tilt memory enough to make certainty feel cleaner than it deserves."
+    },
+    {
+      "kind": "event",
+      "name": "China Airlines spatial-disorientation incident",
+      "detail": "The index and notes place the China Airlines incident in the chapter as an example of trained judgment being hijacked by a wrong mental model.",
+      "useIn": "fullRead",
+      "phrasingHint": "A cockpit can punish certainty that has not been checked against the instruments."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open by saying learning is harder than it looks",
+      "Do not use a generic desk-and-notes image",
+      "Do not start with a broad claim about students today"
+    ],
+    "counterintuition": [
+      "Do not use the shell easier is not better",
+      "Do not flatten the chapter into struggle is good",
+      "Do not contrast comfort and growth in generic coaching language"
+    ],
+    "tryThisNow": [
+      "Do not write set a timer and reflect",
+      "Do not ask for a vague study audit",
+      "Do not use a reusable close-your-notes prompt without a chapter-specific action"
+    ],
+    "examples": [
+      "No repeated mug, marker, dosing cup, bike helmet, radiator, bus depot, classroom, or narrow-kitchen shells",
+      "No six examples that all start with a timestamp and a named protagonist",
+      "No generic student rereads notes scene unless the visible beat changes the method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Grace, a radiology resident reviewing chest films",
+      "audience": "advanced learners who feel sure because a pattern looks familiar",
+      "stakes": "an overconfident first read could miss a subtle pneumothorax",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she writes the diagnosis, then covers it and forces herself to name the disconfirming signs before checking the attending note",
+      "firstImage": "A pale crescent hides near the top of the lung field.",
+      "mustInclude": [
+        "chest film",
+        "attending note sealed",
+        "lightbox"
+      ],
+      "mustAvoid": [
+        "generic confidence speech"
+      ]
+    },
+    {
+      "domain": "Ben, a climber checking knot knowledge after months off",
+      "audience": "hobbyists who mistake recognition of a knot diagram for competence",
+      "stakes": "a partner will trust the knot on a real route",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he ties the knot without the guide, stress-tests it, finds the wrong tail length, and reties before leaving the gym floor",
+      "firstImage": "At 7:48 p.m., Ben pulls the rope through his harness in silence.",
+      "mustInclude": [
+        "climbing rope",
+        "belay check card",
+        "rubber gym floor"
+      ],
+      "mustAvoid": [
+        "outdoor heroics"
+      ]
+    },
+    {
+      "domain": "Margaux, a tax preparer auditing new deduction rules",
+      "audience": "professionals who remember where the rule sits on a page but not what it means",
+      "stakes": "a client return could be filed on borrowed certainty",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her senior asks her to explain the rule for a changed client case before she can search the PDF",
+      "firstImage": "\"Explain it without the PDF,\" the senior says.",
+      "mustInclude": [
+        "client worksheet",
+        "search box disabled",
+        "yellow legal pad"
+      ],
+      "mustAvoid": [
+        "rereading alone as villain"
+      ]
+    },
+    {
+      "domain": "Lars, a flight-sim trainee after a smooth autopilot lesson",
+      "audience": "trainees whose confidence comes from ideal conditions",
+      "stakes": "instrument failure will reveal whether the procedure is independent",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "the instructor blanks one display and asks Lars to state the cross-check before touching the controls",
+      "firstImage": "The simulator horizon goes black.",
+      "mustInclude": [
+        "blanked display",
+        "backup gauge",
+        "trim wheel"
+      ],
+      "mustAvoid": [
+        "copying Matt Brown plot"
+      ]
+    },
+    {
+      "domain": "Paula, a museum conservator identifying varnish damage",
+      "audience": "specialists who trust the first familiar label",
+      "stakes": "wrong treatment can damage the painting surface",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the postmortem shows how a delayed peer check caught that her confident identification came from one familiar stain pattern",
+      "firstImage": "It took Paula a second lamp angle to lose her certainty.",
+      "mustInclude": [
+        "raking light",
+        "varnish swab",
+        "condition report"
+      ],
+      "mustAvoid": [
+        "generic peer review"
+      ]
+    },
+    {
+      "domain": "Hadiya, a policy analyst preparing briefing numbers",
+      "audience": "knowledge workers who feel numbers are learned because the spreadsheet is open",
+      "stakes": "a minister may ask for the logic behind the figures without the file",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch her close the sheet, reconstruct the three assumptions, then reopen it to find which one was only recognition",
+      "firstImage": "You see the spreadsheet vanish and the room get quieter.",
+      "mustInclude": [
+        "closed laptop",
+        "briefing folder",
+        "assumption list"
+      ],
+      "mustAvoid": [
+        "spreadsheet as magic object"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose cue-free checks that expose borrowed confidence",
+      "interpret fluency as a weak calibration signal",
+      "use feedback without turning every hesitation into failure"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before rereading a marked page, close it and explain the point in three sentences; then reopen it and mark only what your explanation missed.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

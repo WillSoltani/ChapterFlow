@@ -1,0 +1,204 @@
+{
+  "chapterId": "the-gift-of-fear-ch01",
+  "number": 1,
+  "title": "In the Presence of Danger",
+  "coreMove": "Treat a refused boundary being pressed again as information and move before social proof catches up.",
+  "sourcePressure": "A real present cue deserves more authority than the social pressure to seem agreeable; Kelly carrying groceries upstairs is the frozen source case for how insistence after refusal can turn politeness into danger.",
+  "chapterSpecificMisunderstanding": "Reducing fear to general anxiety or teaching readers to be suspicious of everyone.",
+  "sourceAlignmentTerms": [
+    "present cue",
+    "true fear",
+    "worry",
+    "refusal",
+    "insistence",
+    "social pressure",
+    "politeness",
+    "immediate danger"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Kelly",
+      "detail": "Frozen notes identify Kelly as the opening case: she is carrying groceries upstairs when a man insists on helping after she has already refused, and later realizes she is in immediate danger.",
+      "useIn": "both",
+      "phrasingHint": "Kelly had already said no to help with the groceries; the danger began when that no had to keep defending itself."
+    }
+  ],
+  "sourceAnchorNote": "Only the listed source anchors are traceable in the frozen notes; do not add unlisted studies, public cases, or named experts.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch01",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "late-night apartment stairwell after a grocery run",
+      "audience": "a renter coming home alone",
+      "stakes": "whether to accept unwanted help after a first no",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "sets one bag down, steps back onto the landing, and calls a neighbor instead of defending the refusal again",
+      "firstImage": "a torn paper grocery handle on concrete",
+      "mustInclude": [
+        "paper grocery bag",
+        "stairwell light",
+        "phone screen"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "hotel elevator after a professional dinner",
+      "audience": "a conference attendee managing a client who keeps entering private space",
+      "stakes": "whether business politeness will override a clean exit",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "says one final no, lets the doors close, and walks to the front desk instead of laughing it off",
+      "firstImage": "the elevator button glowing under a thumb",
+      "mustInclude": [
+        "key card",
+        "lobby desk",
+        "rolling suitcase"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "suburban pickup line after winter practice",
+      "audience": "a parent watching another adult press a teenager to wait in his car",
+      "stakes": "whether to treat repeated offers as kindness or pressure",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "moves the teenager beside staff after the second ignored refusal",
+      "firstImage": "wet snow hissing on a school awning",
+      "mustInclude": [
+        "team bag",
+        "orange cones",
+        "office window"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "city parking garage pay station",
+      "audience": "a nurse leaving a late shift",
+      "stakes": "whether to keep chatting with a man who keeps asking where she parked",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "turns back to the staffed booth after he mirrors her pace twice",
+      "firstImage": "fluorescent stripes across parked windshields",
+      "mustInclude": [
+        "ticket stub",
+        "lanyard",
+        "security booth"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "short-term rental hallway after a delayed check-in",
+      "audience": "a traveler whose host keeps pushing past doorway boundaries",
+      "stakes": "whether to preserve politeness or regain access control",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "reviews the moment the host stepped inside after being asked to wait outside",
+      "firstImage": "a brass door chain stretched tight",
+      "mustInclude": [
+        "door chain",
+        "carry-on bag",
+        "entry code"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "ferry terminal at the last sailing",
+      "audience": "a commuter being followed through a quiet terminal",
+      "stakes": "whether a helpful stranger has become a boundary test",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "crosses to the ticket agent and names the repeated ignored no",
+      "firstImage": "the empty ticket windows reflecting dark water",
+      "mustInclude": [
+        "paper ticket",
+        "bench row",
+        "agent counter"
+      ],
+      "mustAvoid": [
+        "generic confidence advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish present cue from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits treat a refused boundary being pressed again as information and move before social proof catches up.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: reducing fear to general anxiety or teaching readers to be suspicious of everyone."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Recall one recent moment where a no was pressed again. Name the second pressure behavior in one sentence, then name the exit or support you would use next time.",
+  "readingTimeMinutes": 12
+}

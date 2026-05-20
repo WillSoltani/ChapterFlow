@@ -1,0 +1,202 @@
+{
+  "chapterId": "seven-powers-ch07",
+  "number": 7,
+  "title": "Process Power",
+  "coreMove": "Look for an interlocking activity system that rivals cannot copy one routine at a time.",
+  "sourcePressure": "Process power is rare. It appears when deeply embedded, interlocking activities produce lower cost or better product and rivals would need prolonged commitment to match the whole system. Operational excellence alone does not qualify.",
+  "chapterSpecificMisunderstanding": "Process power means being efficient, disciplined, lean, or having good standard operating procedures.",
+  "sourceAlignmentTerms": [
+    "process power",
+    "rare",
+    "interlocking activities",
+    "embedded process",
+    "lower cost",
+    "better product",
+    "prolonged commitment",
+    "operational excellence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "operational excellence",
+      "detail": "the source sidecar explicitly says operational excellence alone does not qualify as process power",
+      "useIn": "both",
+      "phrasingHint": "A clean checklist is not process power until it is tied into a system that a rival cannot lift out and install next week."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Process Power",
+      "A business has power when... repeated opener shell",
+      "any hook that starts with Strategy is... or Power is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter",
+      "generic moat-versus-no-moat contrast without the chapter mechanism"
+    ],
+    "tryThisNow": [
+      "Write down your top three advantages",
+      "Set a timer and reflect on your strategy",
+      "Ask yourself what matters most",
+      "generic benefit/barrier prompt reused without the chapter-specific test"
+    ],
+    "examples": [
+      "founder in a coffee shop reviewing a deck",
+      "generic boardroom whiteboard choice",
+      "classroom project analogy",
+      "spreadsheet-only SaaS pricing scene",
+      "reusing physical anchors from adjacent plans"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "custom orthotics lab linking scans, milling, fitting feedback, and reorder data",
+      "audience": "a reader facing custom orthotics lab linking scans, milling, fitting feedback, and reorder data",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Emily threads a rejected insole note back through the scan, mill settings, and reorder file to show the process as one loop.",
+      "firstImage": "Plaster dust lies in a crescent around the milling machine",
+      "mustInclude": [
+        "rejected insole note",
+        "scan file",
+        "mill settings"
+      ],
+      "mustAvoid": [
+        "generic manufacturing efficiency",
+        "medical device brand"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "fresh-pasta wholesaler coordinating dough humidity, delivery windows, and chef feedback",
+      "audience": "a reader facing fresh-pasta wholesaler coordinating dough humidity, delivery windows, and chef feedback",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Matteo moves the humidity card beside the delivery route and the chef complaint log, then refuses a shortcut that would break the chain.",
+      "firstImage": "The dough feels tacky before the morning route has left the loading bay",
+      "mustInclude": [
+        "humidity card",
+        "delivery route",
+        "chef complaint log"
+      ],
+      "mustAvoid": [
+        "generic restaurant operations",
+        "kitchen shell"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "repair depot for hospital imaging probes with shared diagnostics and technician memory",
+      "audience": "a reader facing repair depot for hospital imaging probes with shared diagnostics and technician memory",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Frida traces one returned probe through five handoffs and shows why no single step explains the fast repair.",
+      "firstImage": "At 4:11 p.m., Frida traces the returned probe label with a gloved finger",
+      "mustInclude": [
+        "returned probe label",
+        "diagnostic log",
+        "parts drawer"
+      ],
+      "mustAvoid": [
+        "generic hospital setting",
+        "password sticky note"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "heritage tile maker using kiln placement, glaze mixing, and installer callbacks",
+      "audience": "a reader facing heritage tile maker using kiln placement, glaze mixing, and installer callbacks",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chloe reads an installer callback aloud, adjusts the glaze card, and moves the tile to a different kiln shelf before the next batch.",
+      "firstImage": "This crack starts before delivery, Chloe says",
+      "mustInclude": [
+        "glaze card",
+        "kiln shelf map",
+        "installer callback"
+      ],
+      "mustAvoid": [
+        "generic artisan brand",
+        "teacup luxury cue"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "regional blood-sample logistics service with routing, labeling, and lab feedback loops",
+      "audience": "a reader facing regional blood-sample logistics service with routing, labeling, and lab feedback loops",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hiroshi has you remove one labeling feedback step and predict the error rate before he opens last month exception report.",
+      "firstImage": "You think the courier route is the trick until the exception report lands open",
+      "mustInclude": [
+        "label printer",
+        "exception report",
+        "lab feedback sheet"
+      ],
+      "mustAvoid": [
+        "generic courier network economies",
+        "bus depot shell"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "outdoor-gear warranty shop turning failure data into design changes",
+      "audience": "a reader facing outdoor-gear warranty shop turning failure data into design changes",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Andrew tapes a torn seam to the design file and writes the supplier change that prevents the next claim.",
+      "firstImage": "When does a warranty bench become part of the product?",
+      "mustInclude": [
+        "torn seam",
+        "design file",
+        "supplier spec"
+      ],
+      "mustAvoid": [
+        "generic customer service excellence",
+        "spreadsheet dashboard shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate process power from operational excellence",
+      "identify interlocking activity systems in concrete operations",
+      "judge whether rivals need prolonged commitment or just a copied routine"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one process you admire and draw three linked activities; if copying one would capture most of the gain, it is not process power yet.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "sourceAnchorsNote": "The source contains no named process-power case. Do not import Toyota, Amazon, or airline examples from memory."
+}

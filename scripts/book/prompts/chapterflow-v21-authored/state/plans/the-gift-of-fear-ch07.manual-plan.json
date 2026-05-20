@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-gift-of-fear-ch07",
+  "number": 7,
+  "title": "Promises to kill (understanding threats)",
+  "coreMove": "Read a threat by what it is trying to accomplish and what behavior surrounds it.",
+  "sourcePressure": "Threats are data to interpret by function, context, and sequence; words alone are weaker than words embedded in a behavioral pattern.",
+  "chapterSpecificMisunderstanding": "Either dismissing threats as talk or treating any ugly sentence as certain violence.",
+  "sourceAlignmentTerms": [
+    "threat",
+    "function",
+    "context",
+    "sequence",
+    "signaling",
+    "pattern",
+    "escalation",
+    "words alone"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch07",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "apartment management office after an eviction notice",
+      "audience": "a property manager receiving a threat",
+      "stakes": "whether the sentence or surrounding behavior matters more",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "compares the threat with lock tampering, hallway waiting, and access attempts before deciding next steps",
+      "firstImage": "a bent mailbox key on a blotter",
+      "mustInclude": [
+        "mailbox key",
+        "notice envelope",
+        "camera still"
+      ],
+      "mustAvoid": [
+        "melodrama",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "local newspaper newsroom",
+      "audience": "an editor assessing an angry caller",
+      "stakes": "whether ugly words alone settle the risk",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "asks what the caller wants the threat to do and checks prior visits before changing procedures",
+      "firstImage": "a voicemail light blinking on an old desk phone",
+      "mustInclude": [
+        "voicemail transcript",
+        "press pass",
+        "front buzzer"
+      ],
+      "mustAvoid": [
+        "melodrama",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "college athletics office",
+      "audience": "a coach after a benched player threatens staff",
+      "stakes": "whether to ignore heat-of-the-moment language",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "looks at function: restoring status, intimidating access, and prior equipment-room confrontations",
+      "firstImage": "a pair of cleats left outside the office door",
+      "mustInclude": [
+        "roster sheet",
+        "equipment key",
+        "practice schedule"
+      ],
+      "mustAvoid": [
+        "melodrama",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "small-town council chamber",
+      "audience": "a clerk hearing a threat during public comment",
+      "stakes": "whether theatrical language means harmlessness",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "records the words and checks them against repeated approach behavior after meetings",
+      "firstImage": "a microphone still live after the gavel",
+      "mustInclude": [
+        "speaker card",
+        "meeting agenda",
+        "side exit"
+      ],
+      "mustAvoid": [
+        "melodrama",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "medical billing call center",
+      "audience": "a supervisor evaluating a caller threat",
+      "stakes": "whether the safest response is alarm or dismissal",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "separates venting from access-seeking by tracking callbacks, staff names, and facility questions",
+      "firstImage": "a headset resting beside a red call timer",
+      "mustInclude": [
+        "call timer",
+        "account notes",
+        "badge door"
+      ],
+      "mustAvoid": [
+        "melodrama",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "craft brewery taproom after a firing",
+      "audience": "a general manager receiving a revenge message",
+      "stakes": "whether anger without access is the same as anger with access",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "acts because the words arrive with keys not returned and repeated loading-bay drive-bys",
+      "firstImage": "a returned uniform shirt folded beside the register",
+      "mustInclude": [
+        "uniform shirt",
+        "key log",
+        "loading bay"
+      ],
+      "mustAvoid": [
+        "melodrama",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish threat from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits read a threat by what it is trying to accomplish and what behavior surrounds it.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: either dismissing threats as talk or treating any ugly sentence as certain violence."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take a threatening or ugly sentence and ask: what is it trying to get, what behavior came before it, and what access does it seek?",
+  "readingTimeMinutes": 12
+}

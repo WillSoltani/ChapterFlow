@@ -1,0 +1,571 @@
+{
+  "bookId": "seeking-wisdom",
+  "updatedAt": "2026-05-14T02:53:35.340Z",
+  "usedProtagonistNames": [
+    "Mathieu",
+    "Anke",
+    "Diego",
+    "Aanya",
+    "Claire",
+    "Lukas",
+    "Isabel",
+    "Hadiya",
+    "Jack",
+    "Marta",
+    "Emily",
+    "Henrik",
+    "Sofia",
+    "Devon",
+    "Thomas",
+    "Kasia",
+    "Olivia",
+    "Nicolas",
+    "Chiara",
+    "Yusuf",
+    "Daniel",
+    "Ingrid",
+    "Grace",
+    "Julien",
+    "Frida",
+    "Chidi",
+    "Michael",
+    "Paula",
+    "Rachel",
+    "Mikkel",
+    "Catarina",
+    "Layla",
+    "Andrew",
+    "Janek",
+    "Laura",
+    "Nathan"
+  ],
+  "usedExampleDomains": [
+    "hospital device purchasing committee reviewing a monitor recall",
+    "municipal flood-risk update after a popular levee promise",
+    "seed-stage venture memo where one charismatic founder dominates the evidence",
+    "eldercare scheduling text thread after three repeated sibling fights",
+    "university replication lab deciding whether to publish a surprising pilot result",
+    "nonprofit emergency grant panel after one emotional applicant video",
+    "independent restaurant changing a tip-pooling rule before summer patio season",
+    "open-source maintainer deciding whether to accept a sponsor's roadmap request",
+    "community theatre casting committee after a donor's nephew auditions",
+    "hospital nurse shift swap that looks generous but hides burnout risk",
+    "real estate referral where a friend recommends an inspector",
+    "student engineering society choosing an award winner after one team helped everyone else",
+    "wildfire insurance underwriting for cabins near a newly thinned forest edge",
+    "minor-league basketball scouting after one 38-point game",
+    "medical clinic interpreting a positive screening result for a rare condition",
+    "product team reading an A/B test that barely cleared significance during a holiday spike",
+    "avalanche guide deciding whether blue sky overrides the snowpack bulletin",
+    "museum curator authenticating a painting after one exciting provenance letter",
+    "city scooter parking policy near a commuter rail station",
+    "fisheries co-op negotiating a higher catch quota after a good season",
+    "SaaS sales team offering an aggressive annual discount to close quarter",
+    "middle school cafeteria replacing hot lunch with faster grab-and-go meals",
+    "warehouse automation rollout that speeds picking but jams packing",
+    "airline boarding experiment that boards window seats first",
+    "sterile processing team preparing orthopedic instrument trays",
+    "climbing gym opening inspection after a belay-device recall",
+    "local newspaper correction workflow after two misspelled names reach print",
+    "wedding caterer managing allergy labels during a rushed venue flip",
+    "data center migration where the rollback step keeps being assumed",
+    "daycare pickup authorization after a substitute teacher joins midweek",
+    "emergency department handoff after a senior physician snaps at a resident",
+    "family estate meeting where one sibling frames revision as betrayal",
+    "commodity trading desk after a loss breaches the prewritten limit",
+    "immigration interview prep when a client panics and wants to embellish",
+    "startup outage response where the founder wants to blame a vendor publicly",
+    "orchestra audition feedback after a conductor dismisses a musician too sharply"
+  ],
+  "usedExampleAnchors": [
+    "seeking-wisdom-ch01: Charlie Munger",
+    "seeking-wisdom-ch01: The Pilot's Checklist to Avoid Fooling Ourselves",
+    "seeking-wisdom-ch05: checklist framing",
+    "seeking-wisdom-ch06: Charlie Munger commencement speech"
+  ],
+  "usedHookFrames": [
+    "special-case mistake opener",
+    "incentive cynicism opener",
+    "confidence-versus-evidence opener",
+    "first-win-hides-cost opener",
+    "checklist-saves-day opener",
+    "calm-under-pressure opener"
+  ],
+  "usedCounterFrames": [
+    "not intelligence but pressure",
+    "not stated reason but incentive",
+    "not confidence but base rate",
+    "not first consequence but system reaction",
+    "not memory but omission protection",
+    "not calm but access to judgment"
+  ],
+  "usedTryThisNowFrames": [
+    "Take one live decision and draw two columns: interests in the situation and pressures in your own judgment. Put one concrete item in each column before you act.",
+    "Before one request or explanation today, write the stated reason, the material payoff, and the reputational payoff on three separate lines.",
+    "For one forecast you care about, write the base rate first, then the case detail that tempts you to ignore it, then one margin of safety.",
+    "For one planned move, write the first result, the likely reaction from someone else, and the quiet cost that appears one week later.",
+    "Find one recurring miss and write a three-item checklist that must be completed at the moment the miss usually happens.",
+    "Write one sentence you will use when pride or fear starts talking first: I need ten minutes before I turn this reaction into a decision."
+  ],
+  "usedQuizExplanationFrames": [],
+  "rejectedFrames": [
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "hook",
+      "frame": "A bad decision looks unique until..."
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "hook",
+      "frame": "Most people think mistakes are random..."
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "hook",
+      "frame": "You are biased and do not know it"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "counterintuition",
+      "frame": "Bias labels make you smarter"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "counterintuition",
+      "frame": "The mistake is not the mistake, it is..."
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "counterintuition",
+      "frame": "The real problem is not intelligence"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "tryThisNow",
+      "frame": "List three biases you have"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "tryThisNow",
+      "frame": "Pause for 60 seconds and think carefully"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "tryThisNow",
+      "frame": "Ask yourself if you are biased"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "examples",
+      "frame": "generic boardroom forecast"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "examples",
+      "frame": "investment club hype"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "examples",
+      "frame": "family kitchen argument"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch01",
+      "kind": "examples",
+      "frame": "student copies the class answer"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "hook",
+      "frame": "Everyone is selfish underneath"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "hook",
+      "frame": "Follow the money"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "hook",
+      "frame": "People do what they are paid to do"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "counterintuition",
+      "frame": "The stated reason is always false"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "counterintuition",
+      "frame": "Incentives explain everything"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "counterintuition",
+      "frame": "Kindness is hidden selfishness"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "tryThisNow",
+      "frame": "Ask what everyone wants"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "tryThisNow",
+      "frame": "Find the incentive"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "tryThisNow",
+      "frame": "Be less naive"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "examples",
+      "frame": "sales commission cliche"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "examples",
+      "frame": "generic bonus plan"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "examples",
+      "frame": "employee wants promotion"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch02",
+      "kind": "examples",
+      "frame": "friend asks for a favor with no texture"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "hook",
+      "frame": "Confidence is not evidence"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "hook",
+      "frame": "The numbers do not care how you feel"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "hook",
+      "frame": "Hope is not a strategy"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "counterintuition",
+      "frame": "More information always helps"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "counterintuition",
+      "frame": "A spreadsheet makes you objective"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "counterintuition",
+      "frame": "The unlikely event cannot happen twice"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "tryThisNow",
+      "frame": "Check the numbers"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "tryThisNow",
+      "frame": "Think probabilistically"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "tryThisNow",
+      "frame": "Add a safety margin"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "examples",
+      "frame": "startup hockey-stick forecast"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "examples",
+      "frame": "casino gambler"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "examples",
+      "frame": "generic stock pick"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch03",
+      "kind": "examples",
+      "frame": "weather app picnic"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "hook",
+      "frame": "Think long term"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "hook",
+      "frame": "Every action has consequences"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "hook",
+      "frame": "The first win can hide the real loss"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "counterintuition",
+      "frame": "More speed is always better"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "counterintuition",
+      "frame": "Solving one problem creates another"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "counterintuition",
+      "frame": "Short term versus long term generic contrast"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "tryThisNow",
+      "frame": "Think of second-order effects"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "tryThisNow",
+      "frame": "Ask what happens next"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "tryThisNow",
+      "frame": "Map consequences"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "examples",
+      "frame": "generic product discount"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "examples",
+      "frame": "generic policy backfire"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "examples",
+      "frame": "office reorg"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch04",
+      "kind": "examples",
+      "frame": "family budget shortcut"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "hook",
+      "frame": "Make a checklist"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "hook",
+      "frame": "Checklists save lives"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "hook",
+      "frame": "Do not trust your memory"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "counterintuition",
+      "frame": "A checklist makes you less human"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "counterintuition",
+      "frame": "Process beats judgment"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "counterintuition",
+      "frame": "The checklist does the thinking"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "tryThisNow",
+      "frame": "Write a checklist for your day"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "tryThisNow",
+      "frame": "Set a reminder"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "tryThisNow",
+      "frame": "Use a to-do list"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "examples",
+      "frame": "generic morning routine"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "examples",
+      "frame": "pilot preflight cliche unless grounded in omission"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "examples",
+      "frame": "grocery list"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch05",
+      "kind": "examples",
+      "frame": "habit tracker"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "hook",
+      "frame": "Stay calm under pressure"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "hook",
+      "frame": "Emotion ruins judgment"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "hook",
+      "frame": "Temperament is everything"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "counterintuition",
+      "frame": "The best thinker is unemotional"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "counterintuition",
+      "frame": "The problem is feelings"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "counterintuition",
+      "frame": "Discipline means no reaction"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "tryThisNow",
+      "frame": "Take a deep breath"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "tryThisNow",
+      "frame": "Pause for 60 seconds"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "tryThisNow",
+      "frame": "Control your emotions"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "examples",
+      "frame": "generic angry email"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "examples",
+      "frame": "trader loses money cliche"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "examples",
+      "frame": "family argument at dinner table"
+    },
+    {
+      "chapterId": "seeking-wisdom-ch06",
+      "kind": "examples",
+      "frame": "coach yells at team"
+    }
+  ],
+  "chapterStatuses": {
+    "seeking-wisdom-ch01": {
+      "status": "written",
+      "step": 2,
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 1,
+      "checkedAt": "2026-05-14T02:19:22.921Z"
+    },
+    "seeking-wisdom-ch02": {
+      "status": "written",
+      "step": 2,
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 2,
+      "checkedAt": "2026-05-14T02:21:47.663Z"
+    },
+    "seeking-wisdom-ch03": {
+      "status": "written",
+      "step": 2,
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-14T02:23:48.215Z"
+    },
+    "seeking-wisdom-ch04": {
+      "status": "written",
+      "step": 2,
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-14T02:49:22.015Z"
+    },
+    "seeking-wisdom-ch05": {
+      "status": "written",
+      "step": 2,
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-14T02:53:35.343Z"
+    },
+    "seeking-wisdom-ch06": {
+      "status": "written",
+      "step": 2,
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-14T02:30:12.382Z"
+    }
+  }
+}

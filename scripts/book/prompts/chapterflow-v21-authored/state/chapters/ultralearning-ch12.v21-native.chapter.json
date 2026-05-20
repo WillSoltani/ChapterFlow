@@ -1,0 +1,319 @@
+{
+  "chapterId": "ultralearning-ch12",
+  "number": 12,
+  "title": "Principle 9: Experimentation: Explore outside your comfort zone",
+  "readingTimeMinutes": 12,
+  "hook": "Marked proofs can show when a trusted workflow has stopped catching new errors.",
+  "counterintuition": "Experimentation is not random novelty, but a bounded test of an alternative when the comfortable default has stopped revealing useful information.",
+  "tryThisNow": "Change one practice variable for the next session and write what result would make you keep or reject the change.",
+  "keyTakeaway": "Use experimentation to test a meaningful alternative against the real skill, keeping discomfort when it reveals better fit and rejecting novelty that teaches nothing.",
+  "breakdown": {
+    "fastRead": "Lucy lays a marked-up article proof beside a red fact-check stamp. The newsroom default catches familiar errors, but two recent corrections slipped through. She tests a new workflow on one article and compares catches against the old method.\n\nExperimentation begins when comfort stops teaching. The point is not to change everything. Change one practice variable, define the result that would make it worth keeping, and tie the test to the real skill.\n\nNovelty is cheap. A useful test has a target.",
+    "deepRead": "Luke studies the same anatomy block with two methods separated by a folded index card. The old method feels easier, which is exactly why he distrusts it. He lets recall score choose tomorrow's plan instead of comfort.\n\nDiscomfort can be evidence, but it is not proof.\n\nThe default method often survives because it is familiar. It may still be good. It may also be hiding a plateau. Experimentation gives the learner a small comparison: same target, one changed variable, a result that can decide the next step.\n\nHugo sees the plateau at the pool. A damp lap card hangs on the lane rope. His swimmer has repeated the same cue for two weeks with no faster turns. Hugo tests one stroke cue for three timed laps, then compares the split instead of arguing from habit.\n\nKeep the experiment tied to performance. Random changes produce noise. Bounded changes produce information. The smaller the test, the easier it is to read the result. Same target, one changed variable, and one result rule give the learner a clean comparison instead of a pile of impressions.\n\nLucy keeps the test small for a reason. If she changes the whole newsroom workflow, any gain or loss can hide inside the noise. One article gives her a cleaner comparison: same deadline pressure, same error standard, different fact-check path. The discomfort matters only if it catches errors the default missed.",
+    "fullRead": "Paula sets two labeled sample trays on opposite sides of the lab bench. The familiar method will fill the week if she lets it. A colleague asks, \"What would count as better?\"\n\nPaula writes one comparison: same sample type, two preparation methods, error rate checked Friday. The lab feels less comfortable because the default no longer owns the whole week. It also becomes more honest.\n\nWhat assumption is your current method no longer testing?\n\nThat question keeps experimentation from becoming novelty theater. A learner who changes everything at once cannot tell what worked. A learner who changes methods every day confuses restlessness with discovery. A useful experiment is smaller and stricter. It names the default, names the alternative, holds the target steady, and watches one result.\n\nAman hears the same lesson in a call-center training room. At 10:25 a.m., a headset rests on a printed script. Script drills feel safe, and the trainees sound fine while reading. Then live calls reveal that they freeze when a caller interrupts. Aman predicts one more script drill will help, but tries an uncomfortable live-call practice instead. The discomfort is useful because it exposes the real weakness.\n\nExperimentation also needs a stopping rule. If the alternative improves the target, keep it long enough to learn. If it only feels fresh, reject it. If the result is unclear, narrow the test. Comfort is not the enemy, and novelty is not the hero. The enemy is an unexamined method that keeps producing the same plateau.\n\nKasia learns this after a messy game prototype. A playtest note sits beside a controller with a loose thumbstick. She had changed art style, tutorial timing, and scoring all in one week, then learned almost nothing. In the postmortem, she ties the next test to one measurable playability problem: players miss the jump cue in room two. One variable changes. One result decides.\n\nThe discomfort itself needs interpretation. Sometimes it means the alternative is touching a weakness. Sometimes it only means the method is awkward and costly. Results decide which is which, not the emotion of the session.\n\nA useful experiment also has permission to end. If the alternative fails the result rule, drop it without drama. If it works, keep it long enough to learn its cost as well as its benefit. If the signal is muddy, make the next test smaller.\n\nExplore outside comfort, but bring a measuring stick.\n\nA useful experiment begins with a keep-or-reject rule. Before Paula compares the two lab methods, she names the result that would justify changing the routine. Before Aman moves trainees into live-call practice, he names the interruption behavior he wants to see. Without that rule, discomfort can flatter itself. With it, the learner can say whether the new method served the skill or merely felt brave."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-lucy-fact-check",
+      "title": "Lucy Tests One Article Two Ways",
+      "tags": [
+        "experiment",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "Lucy, a newsroom editor testing a new fact-checking workflow",
+        "audience": "a learner testing a bounded alternative",
+        "stakes": "whether comfort keeps hiding a better fit",
+        "format": "scene",
+        "requiredBeat": "A marked-up article proof sits beside Lucy’s red fact-check stamp at 6:05 p.m. The newsroom default feels fast, but two recent cor"
+      },
+      "scenario": "A marked-up article proof sits beside Lucy’s red fact-check stamp at 6:05 p.m. The newsroom default feels fast, but two recent corrections slipped through. She tests one article with a new checklist and compares errors caught against the old workflow before changing the whole desk. Lucy has to choose the one-article workflow comparison before changing the whole desk.",
+      "whatToDo": "Run the new workflow on one article and compare caught errors against the default.",
+      "whyItMatters": "A bounded test reveals whether discomfort improves the real editing task or only adds process."
+    },
+    {
+      "exampleId": "ch12-ex02-luke-anatomy-method",
+      "title": "Luke Lets Recall Choose the Method",
+      "tags": [
+        "experiment",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "Luke, a medical student comparing two study methods on the same anatomy block",
+        "audience": "a learner testing a bounded alternative",
+        "stakes": "whether comfort keeps hiding a better fit",
+        "format": "scene",
+        "requiredBeat": "You are beside Luke with two anatomy diagrams separated by a folded index card. The familiar method feels easier. The alternative "
+      },
+      "scenario": "You are beside Luke with two anatomy diagrams separated by a folded index card. The familiar method feels easier. The alternative feels clumsy. He studies the same block both ways and lets tomorrow’s closed recall score choose the plan, not comfort. Luke's review slot is 4:58 a.m. Luke must decide to compare two methods on the same anatomy block and use recall score as the decision rule.",
+      "whatToDo": "Compare two methods on the same anatomy block and use recall score as the decision rule.",
+      "whyItMatters": "The same target keeps the test fair. Comfort alone would protect the old method from scrutiny."
+    },
+    {
+      "exampleId": "ch12-ex03-hugo-stroke-cue",
+      "title": "Hugo Tests One Stroke Cue",
+      "tags": [
+        "experiment",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "Hugo, a swimming coach using a plateau to test a different stroke cue",
+        "audience": "a learner testing a bounded alternative",
+        "stakes": "whether comfort keeps hiding a better fit",
+        "format": "scene",
+        "requiredBeat": "The pool deck smells of chlorine, and a damp lap card is clipped to the lane rope. Hugo’s swimmer has plateaued with the old cue. "
+      },
+      "scenario": "The pool deck smells of chlorine, and a damp lap card is clipped to the lane rope. Hugo’s swimmer has plateaued with the old cue. He tests one different stroke cue for three timed laps and records the split before deciding whether the cue stays. Hugo's review slot is 8:15 p.m. Hugo must decide to change one cue for three timed laps and let the split decide the next practice block.",
+      "whatToDo": "Change one cue for three timed laps and let the split decide the next practice block.",
+      "whyItMatters": "A plateau is a signal to test, not proof that random novelty will help. The timed laps keep the experiment honest."
+    },
+    {
+      "exampleId": "ch12-ex04-paula-method-comparison",
+      "title": "Paula Names the Result First",
+      "tags": [
+        "experiment",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "Paula, a researcher scheduling one serious method comparison",
+        "audience": "a learner testing a bounded alternative",
+        "stakes": "whether comfort keeps hiding a better fit",
+        "format": "scene",
+        "requiredBeat": "\"What would count as better?\" Nora asks, pointing at two sample trays on the lab bench. Paula has filled weeks with the familiar p"
+      },
+      "scenario": "\"What would count as better?\" Nora asks, pointing at two sample trays on the lab bench. Paula has filled weeks with the familiar preparation method. She schedules one comparison, same sample type and Friday error rate, instead of repeating the comfortable run again. Paula must decide to define the comparison result before the lab week fills with the default method.",
+      "whatToDo": "Define the comparison result before the lab week fills with the default method.",
+      "whyItMatters": "The result rule prevents the alternative from becoming a vague preference contest."
+    },
+    {
+      "exampleId": "ch12-ex05-aman-live-call",
+      "title": "Aman Leaves the Script Drill",
+      "tags": [
+        "experiment",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "Aman, a call-center trainer trying an uncomfortable live-call practice",
+        "audience": "a learner testing a bounded alternative",
+        "stakes": "whether comfort keeps hiding a better fit",
+        "format": "scene",
+        "requiredBeat": "At 10:25 a.m., Aman rests a headset on a printed script and predicts another script drill will help. Then a trainee freezes on a l"
+      },
+      "scenario": "At 10:25 a.m., Aman rests a headset on a printed script and predicts another script drill will help. Then a trainee freezes on a live interruption. He moves to a controlled live-call practice because the safe drill has stopped showing the real weakness. Aman must decide to use the live-call practice and watch the interruption point, then decide whether script drills still deserve time.",
+      "whatToDo": "Use the live-call practice and watch the interruption point, then decide whether script drills still deserve time.",
+      "whyItMatters": "Useful discomfort reveals what comfort hid. The live call keeps experimentation tied to the skill."
+    },
+    {
+      "exampleId": "ch12-ex06-kasia-playtest",
+      "title": "Kasia Stops Changing Everything",
+      "tags": [
+        "experiment",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "Kasia, a game designer stopping random method changes and tying tests to playability",
+        "audience": "a learner testing a bounded alternative",
+        "stakes": "whether comfort keeps hiding a better fit",
+        "format": "scene",
+        "requiredBeat": "It took Kasia one useless playtest to see the note beside the loose controller: too many variables changed. In the postmortem, she"
+      },
+      "scenario": "It took Kasia one useless playtest to see the note beside the loose controller: too many variables changed. In the postmortem, she chooses one playability problem, the missed jump cue in room two, and changes only tutorial timing for the next test. Kasia must decide to tie the next experiment to one playability problem and change one variable.",
+      "whatToDo": "Tie the next experiment to one playability problem and change one variable.",
+      "whyItMatters": "Random changes create noise. A single-variable test tells Kasia whether the game improved."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A newsroom workflow is comfortable but missing errors. What is the best experiment? The next choice will decide whether today's work produces evidence or only another round of comfort.",
+        "choices": [
+          "Test one article with an alternative workflow and compare caught errors.",
+          "Change every desk process at once.",
+          "Keep the default because speed feels good."
+        ],
+        "correctIndex": 0,
+        "explanation": "The one-article comparison tests a real result. Changing everything creates noise, and comfort alone cannot judge accuracy.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A student compares two anatomy methods on the same block. What should choose tomorrow’s plan? A reviewer will see the result tomorrow, so the answer must choose an action rather than a preference.",
+        "choices": [
+          "Which method felt easiest.",
+          "The closed recall score.",
+          "Which method used more colors."
+        ],
+        "correctIndex": 1,
+        "explanation": "Recall score ties the comparison to learning. Ease and color can feel better while hiding weak retention.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A swim coach sees a plateau. What separates useful experimentation from novelty? The deadline is close enough that extra preparation would hide the weakness instead of testing it.",
+        "choices": [
+          "A new cue every length.",
+          "Changing drills because boredom appeared.",
+          "A bounded cue change with timed laps."
+        ],
+        "correctIndex": 2,
+        "explanation": "The bounded cue test produces information against the plateau. Constant change and boredom-driven novelty do not isolate a cause.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A researcher wants to compare two lab methods. What must be named before the test? A real artifact is waiting on the table, and the learner needs a move that changes the next attempt.",
+        "choices": [
+          "The result that would count as better.",
+          "The method that feels newer.",
+          "A broad plan to try several things."
+        ],
+        "correctIndex": 0,
+        "explanation": "A result rule keeps the comparison honest. Newness and broad trying cannot decide whether the method improved the target.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A call-center script drill feels safe but live interruptions break trainees. What experiment fits? Limited time remains before review, so the best option should expose the skill gap quickly.",
+        "choices": [
+          "More script reading until confidence rises.",
+          "Controlled live-call practice focused on the interruption point.",
+          "A random new sales framework."
+        ],
+        "correctIndex": 1,
+        "explanation": "The live-call practice changes the condition that matters. More script reading preserves comfort, and a random framework may miss the weakness.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A game designer changes art, scoring, and tutorial timing at once. Why is the result unhelpful? Yesterday's visible miss is still on the page, so the response should use that evidence.",
+        "choices": [
+          "The test was not novel enough.",
+          "Playability cannot be measured.",
+          "Too many variables changed to know what mattered."
+        ],
+        "correctIndex": 2,
+        "explanation": "Multiple simultaneous changes destroy the signal. A single playability variable would produce a cleaner lesson.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "When should a default method be challenged? The learner can protect the old habit or make the next attempt more honest under pressure.",
+        "choices": [
+          "When progress plateaus or comfort stops revealing information.",
+          "Whenever a new method sounds exciting.",
+          "Only after every old method is abandoned."
+        ],
+        "correctIndex": 0,
+        "explanation": "A plateau gives a reason to test. Excitement alone is novelty, and abandoning everything prevents comparison.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "An alternative method feels uncomfortable. How should the learner judge it? One session remains before feedback, and the answer should choose the useful constraint.",
+        "choices": [
+          "By discomfort alone.",
+          "By whether it improves the target result.",
+          "By how different it looks from the default."
+        ],
+        "correctIndex": 1,
+        "explanation": "Discomfort can reveal hidden options, but the target result decides. Difference alone is not evidence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Which experiment design is strongest? The choice matters because the next attempt will be judged by output, not by how effortful it felt.",
+        "choices": [
+          "New target, new method, new schedule.",
+          "Whatever makes practice feel fresh.",
+          "Same target, one changed variable, clear keep-or-reject result."
+        ],
+        "correctIndex": 2,
+        "explanation": "Controlling the target and variable lets the learner interpret the result. Freshness and total change create noise.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A default method has stopped revealing new errors. What is experimentation for here?",
+      "back": "Testing a meaningful alternative when the default method stops producing useful information.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What makes an experiment bounded?",
+      "back": "Same target, one changed variable, and a clear result that decides whether to keep the change.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why is random novelty weak?",
+      "back": "It changes too much or too often, so the learner cannot tell what caused the result.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "When is discomfort useful?",
+      "back": "When it exposes a real weakness or better fit that comfort was hiding.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What should happen after an unclear result?",
+      "back": "Narrow the test. Keep the target steady and change fewer variables.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is bounded experimentation. You challenge a comfortable default with one meaningful alternative, define the result that matters, and keep or reject the change based on the target skill.",
+    "ifThenPlans": [
+      {
+        "context": "study",
+        "plan": "If a method feels easy but progress stalls, then test one alternative on the same material."
+      },
+      {
+        "context": "work",
+        "plan": "If a workflow misses errors, then compare it against one revised workflow on a small real sample."
+      },
+      {
+        "context": "practice",
+        "plan": "If a plateau persists, then change one cue or condition and measure the next attempt."
+      },
+      {
+        "context": "design",
+        "plan": "If playtest results are confusing, then reduce the next test to one variable and one playability result."
+      }
+    ],
+    "twentyFourHourChallenge": "Change one practice variable for the next session and write what result would make you keep or reject the change.",
+    "weeklyPractice": "Each week, run one bounded experiment on a method that has become comfortable and record the keep-or-reject result."
+  },
+  "memorableLines": [
+    {
+      "text": "Novelty is cheap. A useful test has a target.",
+      "location": "breakdown.fastRead",
+      "why": "It separates experimentation from random change."
+    },
+    {
+      "text": "Discomfort can be evidence, but it is not proof.",
+      "location": "breakdown.deepRead",
+      "why": "It keeps useful discomfort tied to results."
+    },
+    {
+      "text": "Explore outside comfort, but bring a measuring stick.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the chapter into a memorable rule."
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch03",
+  "number": 3,
+  "title": "The STRONG Method",
+  "coreMove": "Organize pitch control into the STRONG sequence and see how each move sets up the next.",
+  "sourcePressure": "Bridge chapter: the first two problem chapters become a controllable six-step operating sequence rather than a diagnosis with no method.",
+  "chapterSpecificMisunderstanding": "The writer must avoid making STRONG a flat mnemonic summary; the point is sequence dependence after the audience-filter problem.",
+  "sourceAlignmentTerms": [
+    "STRONG method",
+    "set the frame",
+    "tell the story",
+    "reveal intrigue",
+    "offer the prize",
+    "nail the hookpoint",
+    "get a decision"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Six steps can fix every pitch",
+      "A method beats chaos",
+      "Here is the sales checklist"
+    ],
+    "counterintuition": [
+      "Structure gives freedom",
+      "Order matters more than content",
+      "A framework is not a script"
+    ],
+    "tryThisNow": [
+      "Memorize the acronym",
+      "Rate your pitch on six steps",
+      "Write STRONG down the page"
+    ],
+    "examples": [
+      "whiteboard acronym in training room",
+      "generic entrepreneur practicing pitch",
+      "consultant checklist audit"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "offshore wind developer preparing a port-authority lease pitch",
+      "audience": "a project lead with engineering, finance, and political risk all competing for airtime",
+      "stakes": "the lease vote stalls if the pitch opens with turbines before control of the room is set",
+      "format": "decision_point",
+      "requiredBeat": "she rearranges six index cards on the ferry terminal bench until frame comes before megawatt output and decision comes last",
+      "firstImage": "six colored index cards weighted by a ferry token",
+      "mustInclude": [
+        "lease vote date",
+        "megawatt output card",
+        "ferry terminal bench"
+      ],
+      "mustAvoid": [
+        "generic energy board presentation"
+      ]
+    },
+    {
+      "domain": "minor-league baseball sponsorship director selling a naming package to a regional bank",
+      "audience": "a sponsorship director who usually starts with attendance numbers",
+      "stakes": "the bank treats the offer as logo inventory unless the sequence builds status and desire first",
+      "format": "before_after",
+      "requiredBeat": "he crosses out the old attendance-first order and places the community-story card before the premium-access card",
+      "firstImage": "a stadium seating chart folded beside a stack of sponsor lanyards",
+      "mustInclude": [
+        "seating chart",
+        "sponsor lanyards",
+        "bank branch opening"
+      ],
+      "mustAvoid": [
+        "generic sports sales deck"
+      ]
+    },
+    {
+      "domain": "telemedicine compliance lead pitching a remote-triage rollout to emergency physicians",
+      "audience": "a clinician-administrator who must win a room that distrusts workflow tools",
+      "stakes": "the rollout dies if physicians hear software before status and patient-flow stakes",
+      "format": "postmortem",
+      "requiredBeat": "after a failed pilot meeting, she labels where she skipped intrigue and jumped from story straight to decision",
+      "firstImage": "a printed pilot agenda with two coffee rings and red checkmarks",
+      "mustInclude": [
+        "pilot agenda",
+        "patient-flow metric",
+        "physician objection log"
+      ],
+      "mustAvoid": [
+        "generic healthcare software rollout"
+      ]
+    },
+    {
+      "domain": "boutique hotel owner seeking a construction loan for a fire-damaged inn",
+      "audience": "an owner whose emotional story needs order to become financeable",
+      "stakes": "the lender hears sentimental restoration instead of controlled demand and repayment logic",
+      "format": "reflection",
+      "requiredBeat": "he lays loan documents in sequence and notices the hookpoint only works after the occupancy rebound story",
+      "firstImage": "charred porch baluster beside a clean loan term sheet",
+      "mustInclude": [
+        "loan term sheet",
+        "occupancy graph",
+        "charred baluster"
+      ],
+      "mustAvoid": [
+        "generic small business loan pitch"
+      ]
+    },
+    {
+      "domain": "ocean-cleanup robotics team pitching a marina pilot to harbor commissioners",
+      "audience": "engineers who tend to demo the machine before defining the room's frame",
+      "stakes": "commissioners dismiss the robot as a gadget before seeing the debris cost",
+      "format": "vignette",
+      "requiredBeat": "the team lead shuts the demo case and starts instead with who controls the marina's reputation after holiday trash weekends",
+      "firstImage": "a sealed robot case beside a bucket of tangled fishing line",
+      "mustInclude": [
+        "robot case",
+        "holiday trash log",
+        "pilot permit"
+      ],
+      "mustAvoid": [
+        "generic robotics demo day"
+      ]
+    },
+    {
+      "domain": "university licensing officer pitching a battery patent to a materials manufacturer",
+      "audience": "a licensing officer who has the data but no live sequence",
+      "stakes": "the manufacturer files the patent as speculative unless intrigue and prize build before terms",
+      "format": "thought_experiment",
+      "requiredBeat": "she asks the room to imagine the competitor signing first, then moves the terms sheet to the end of the packet",
+      "firstImage": "a patent diagram clipped to a graphite sample pouch",
+      "mustInclude": [
+        "patent diagram",
+        "graphite sample pouch",
+        "terms sheet"
+      ],
+      "mustAvoid": [
+        "generic university tech transfer pitch"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "order STRONG moves in live scenarios",
+      "diagnose which stage was skipped",
+      "explain why one stage cannot carry the whole pitch",
+      "evaluate sequence changes without turning them into rigid scripts"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the six STRONG moves as six one-line beats for your current pitch, then put a slash where you usually rush or skip.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch14",
+  "number": 14,
+  "title": "Join the Movement",
+  "readingTimeMinutes": 12,
+  "hook": "The blank evidence column on the planning agenda is where admiration either becomes practice or evaporates.",
+  "counterintuition": "Movement language sounds like adoption. In fact, proof is a routine that asks for evidence sooner.",
+  "tryThisNow": "Choose one recurring meeting and add one required line: riskiest assumption, first test, evidence owner, or pivot threshold. Put it on the next agenda.",
+  "keyTakeaway": "Adopt the discipline by changing one real routine so uncertain decisions ask for evidence earlier and spread through practice.",
+  "breakdown": {
+    "fastRead": "Monica opens the quarterly planning agenda and adds one blank evidence column beside the owner list. The leadership team already admires experiments. The calendar does not show it.\n\nJoining the movement starts when one real meeting asks for evidence sooner than it did last week.\n\nA discipline spreads through adopted routines. If the agenda still rewards confident roadmaps without evidence, admiration has not changed the work. One column can make the method visible: what assumption is at risk, who owns the test, and when the evidence will arrive.",
+    "deepRead": "\"Test logs outrank slide elegance now,\" Amelie says as the classroom projector shows the old pitch rubric. Students can repeat the vocabulary and still learn to chase polished plans. She changes the rubric so tested learning weighs more than deck polish.\n\nJoin the Movement is adoption, not inspiration.\n\nThe point is not to add a new technical framework. The point is to carry disciplined learning into places where uncertain work already happens: classrooms, civic offices, nonprofit portfolios, procurement policies, planning rituals, peer groups. The language matters less than the routine it changes.\n\nIf the routine stays the same, the belief has not traveled.\n\nA broader innovation practice begins when teams make evidence easier to ask for and harder to avoid. The next memo names the riskiest assumption. The next class grades the test log. The next funding review asks what changed because of learning. The next policy allows a small learning buy before a large purchase.\n\nAmelie writes the new score weights while the students are still in the room. A pitch can still matter, but it no longer outranks a test log that changed a decision. The class now teaches the habit it claims to value. That is how a closing invitation becomes a practice instead of a slogan.",
+    "fullRead": "Graham stands beside a council chamber side table covered with pilot notes. One city ran a useful experiment, but the lesson could stay trapped in that office. He turns the pilot notes into a shared decision template for a two-city trial: assumption, test, evidence, next decision.\n\nBroader innovation practice spreads only when ordinary teams change the way they test uncertain work.\n\nThis is the concrete version of continuation. Not banners. Not admiration. Not people saying the right words at the end of a meeting. The discipline has to enter the tools by which work is chosen, funded, reviewed, and stopped. Otherwise it remains a story people enjoy while making decisions the old way.\n\nWhere does your organization make uncertain decisions without requiring evidence?\n\nAman sees the answer in a health nonprofit's program portfolio. Grant memos with yellow tabs stack up before the funding review. Everyone agrees that learning matters, but the memo template has no assumption line and no first-test field. He adds both. Each new program now has to name its riskiest assumption before money moves. The change is small enough to use and strong enough to alter behavior.\n\nThe invitation is also social. Klara runs a founder peer group at a cafe table crowded with laptops and empty espresso cups. The conversation is sharp and energizing. In the postmortem, she notices nothing on the calendar changed. She ends the next session by scheduling one build-measure-learn review for each member, with a review date, member list, and test commitment. Inspiration becomes cadence.\n\nThere is a risk in movement language. It can turn a practical discipline into identity. People start signaling that they are modern, innovative, experimental, or entrepreneurial while the actual approval paths remain untouched. The cure is to keep asking for the adopted practice. What meeting changed? What metric changed? What memo changed? What permission changed?\n\nPascal finds the policy version. A procurement page has one clause highlighted, and internal teams keep admiring experimentation while purchasing rules block small tests. Before, every tool buy had to follow the same heavy approval path. After rewriting one rule, teams can make bounded learning buys under a cap, with a clear approval path and evidence requirement. The policy now lets the behavior exist.\n\nA movement is not proved by how many people agree. It is proved by how many decisions get made differently. When one routine asks for evidence earlier, another team can copy it. When one policy protects a small test, another department can use it. When one rubric rewards tested learning, another class can inherit the standard.\n\nContinuation is practice made portable. Start there.\n\nThe same standard travels to any team that wants to join the movement. Choose one recurring surface where uncertain work passes through: the agenda, the rubric, the memo, the policy, the budget line. Change that surface so evidence has to appear before confidence does. Then another team can copy the practice without copying the speech."
+  },
+  "examples": [
+    {
+      "exampleId": "ch14-ex01-monica-planning",
+      "title": "Monica Adds the Evidence Column",
+      "tags": [
+        "scene",
+        "SaaS",
+        "planning"
+      ],
+      "planSpec": {
+        "domain": "product team quarterly ritual",
+        "audience": "SaaS leadership team",
+        "stakes": "the method may remain admired but absent from calendar decisions",
+        "format": "scene",
+        "requiredBeat": "Monica adds one evidence review to the quarterly planning rhythm"
+      },
+      "scenario": "At 8:55 a.m. Tuesday, Monica opens the quarterly planning agenda and sees one blank evidence column beside the owner list. The SaaS leadership team talks about experiments but still approves roadmap themes without test dates. Before the meeting starts, she must choose between leaving admiration off-calendar and adding one evidence review to the quarterly rhythm. The agenda change gives every leader a place to ask for proof before the roadmap hardens.",
+      "whatToDo": "Add the evidence column and assign an owner for each assumption review. Make the planning rhythm ask for proof before roadmap confidence hardens.",
+      "whyItMatters": "The method stays decorative if the calendar does not change. One evidence review turns agreement into a routine the team can repeat."
+    },
+    {
+      "exampleId": "ch14-ex02-amelie-rubric",
+      "title": "Amelie Changes the Pitch Rubric",
+      "tags": [
+        "dialogue",
+        "classroom",
+        "rubric"
+      ],
+      "planSpec": {
+        "domain": "regional entrepreneurship class",
+        "audience": "business-school instructor",
+        "stakes": "students may repeat vocabulary while still grading polished plans",
+        "format": "dialogue",
+        "requiredBeat": "Amelie changes the rubric so tested learning outranks slide elegance"
+      },
+      "scenario": "\"A beautiful pitch deck is not the assignment anymore,\" Amelie says as the classroom projector shows the old rubric. The test log column is empty, and students know how to polish slides. Before the next cohort starts, she has to choose between grading elegance again and changing the rubric so tested learning outranks deck performance. The projector now shows students that evidence can beat polish in the grade that matters.",
+      "whatToDo": "Rewrite the rubric so test logs and learning decisions carry more weight than slide elegance. Make students prove what changed because of evidence.",
+      "whyItMatters": "Students can repeat the language while practicing the old behavior. The rubric decides what the class truly values."
+    },
+    {
+      "exampleId": "ch14-ex03-graham-cities",
+      "title": "Graham Turns Pilot Notes Into a Template",
+      "tags": [
+        "vignette",
+        "municipal",
+        "template"
+      ],
+      "planSpec": {
+        "domain": "municipal innovation network",
+        "audience": "city managers",
+        "stakes": "pilot wins may stay isolated instead of spreading practice",
+        "format": "vignette",
+        "requiredBeat": "Graham turns one successful experiment into a shared decision template"
+      },
+      "scenario": "Graham stands at 2:45 p.m. in the county council chamber beside pilot notes from a waste-route experiment. He circles the decision that mattered and opens a blank decision template. The two-city trial is waiting. He has a decision to make: let the pilot win stay local, or turn assumption, test, evidence, and next decision into a shared template. The template is the object that lets another city copy the discipline without copying the original pilot.",
+      "whatToDo": "Turn the pilot notes into a decision template and use it in the two-city trial. Spread the practice, not just the success story.",
+      "whyItMatters": "A pilot win can stay isolated if no routine travels with it. A template gives other city managers a way to make uncertain decisions differently."
+    },
+    {
+      "exampleId": "ch14-ex04-aman-memos",
+      "title": "Aman Adds the First-Test Field",
+      "tags": [
+        "decision point",
+        "nonprofit",
+        "funding"
+      ],
+      "planSpec": {
+        "domain": "health nonprofit program portfolio",
+        "audience": "executive director",
+        "stakes": "agreement with lean language may not change funding reviews",
+        "format": "decision_point",
+        "requiredBeat": "Aman asks every new program memo to name its riskiest assumption and first test"
+      },
+      "scenario": "You are beside Aman at 9:10 a.m. in a health nonprofit boardroom as a stack of grant memos with yellow tabs waits for portfolio review. Everyone agrees that learning matters, but the memo template has no assumption line and no first-test field. Before funding decisions begin, Aman needs to decide whether to praise the language or require every new program memo to name the riskiest assumption. The yellow tabs now point to a test field that funding reviewers can use before expanding a program.",
+      "whatToDo": "Add an assumption line and first-test field to the memo template. Require each program to name what must be learned before funding grows.",
+      "whyItMatters": "Agreement does not change funding reviews. The memo field makes evidence part of how the portfolio chooses programs."
+    },
+    {
+      "exampleId": "ch14-ex05-klara-peer",
+      "title": "Klara Schedules the Review Dates",
+      "tags": [
+        "postmortem",
+        "mentors",
+        "cadence"
+      ],
+      "planSpec": {
+        "domain": "founder peer group operating cadence",
+        "audience": "startup mentors",
+        "stakes": "discussion may become inspiration without adopted routines",
+        "format": "postmortem",
+        "requiredBeat": "Klara ends the session by scheduling one build-measure-learn review for each member"
+      },
+      "scenario": "It took Klara one cafe-table postmortem to notice the empty espresso cups had outlasted the commitments. The member list was full, the discussion was sharp, and no review date existed. At the next session, she ends by scheduling one build-measure-learn review for each member with a test commitment attached. The review date turns a good conversation into a calendar habit the members can be held to.",
+      "whatToDo": "Put review dates and test commitments on the member list before the session ends. Turn the peer-group energy into an operating cadence.",
+      "whyItMatters": "Discussion can feel like adoption while leaving routines untouched. Scheduled reviews make the learning loop survive after the cafe clears."
+    },
+    {
+      "exampleId": "ch14-ex06-pascal-procurement",
+      "title": "Pascal Rewrites One Procurement Clause",
+      "tags": [
+        "before after",
+        "policy",
+        "learning buys"
+      ],
+      "planSpec": {
+        "domain": "corporate procurement innovation policy",
+        "audience": "large-company sponsor",
+        "stakes": "internal teams may admire experimentation while purchasing rules block it",
+        "format": "before_after",
+        "requiredBeat": "Pascal rewrites one procurement rule to allow bounded learning buys"
+      },
+      "scenario": "Pascal highlights one clause at 3:35 p.m. in a corporate procurement office. He has watched internal teams admire experimentation and then abandon tests because the approval path treated every buy the same. After adding a learning buy cap and a clear approval path, small experiments can purchase what they need without pretending to be full rollouts. The clause gives teams permission to learn in small purchases before a full rollout is requested.",
+      "whatToDo": "Rewrite the policy clause to allow bounded learning buys with a cap and evidence requirement. Keep control while making small tests possible.",
+      "whyItMatters": "Purchasing rules can block the practice everyone praises. One clause turns admiration for experimentation into permission to run it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A leadership team says it believes in experimentation, but its planning agenda has no place for assumptions, tests, or evidence. What is missing?",
+        "choices": [
+          "An adopted routine that changes how decisions are made.",
+          "A more inspiring statement about innovation.",
+          "A separate vocabulary guide for the team."
+        ],
+        "correctIndex": 0,
+        "explanation": "Belief has not become practice until a routine changes. Agenda fields, review dates, or evidence gates matter more than inspiration or vocabulary.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A SaaS team admires evidence-led work but approves quarterly plans without test owners. Which change best turns agreement into practice?",
+        "choices": [
+          "Open the meeting with a quote about experimentation.",
+          "Add an evidence review column and assign owners for assumptions.",
+          "Ask each team to describe its roadmap more confidently."
+        ],
+        "correctIndex": 1,
+        "explanation": "The evidence column changes the planning ritual. Quotes and confidence may sound aligned while leaving decisions unchanged.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A business-school class talks about tested learning but grades polished pitch decks most heavily. What should the instructor change?",
+        "choices": [
+          "Remove presentations entirely from the class.",
+          "Give students more time to rehearse the same pitch deck.",
+          "Make test logs and learning decisions count more than slide elegance."
+        ],
+        "correctIndex": 2,
+        "explanation": "The grading rubric defines practice. If tested learning is valued, it has to outweigh deck polish in the evaluation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A city runs one useful waste-route pilot, but other departments only hear a success story during a regional meeting. No one receives the assumption, test, evidence, and next-decision format that made the pilot useful. What would help the practice spread?",
+        "choices": [
+          "A shared decision template capturing assumption, test, evidence, and next decision.",
+          "A celebratory article about the pilot team.",
+          "A larger closing event for everyone involved."
+        ],
+        "correctIndex": 0,
+        "explanation": "The template carries the decision practice to other teams. Celebration can raise interest, but it may not change how new pilots are run.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A nonprofit agrees with lean language, but program memos still request funding without naming assumptions. What should the executive director add?",
+        "choices": [
+          "A longer summary of why innovation matters.",
+          "An assumption line and first-test field for every new program.",
+          "A rule that small programs cannot request funding."
+        ],
+        "correctIndex": 1,
+        "explanation": "The memo fields change the funding review. A longer summary preserves language without forcing evidence into the decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A founder peer group leaves every session energized, but no one schedules follow-up tests. What is the failure?",
+        "choices": [
+          "The group needs fewer members before testing.",
+          "Mentors should avoid discussing evidence in peer settings.",
+          "Inspiration is replacing an adopted operating cadence."
+        ],
+        "correctIndex": 2,
+        "explanation": "Energy fades unless a routine carries it forward. Review dates and test commitments turn discussion into practice.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A company praises experimentation, but procurement rules make every small tool test follow the same heavy approval path as a rollout. What blocks adoption?",
+        "choices": [
+          "A policy routine that prevents bounded learning buys.",
+          "A lack of enthusiasm from internal teams.",
+          "Too many employees knowing the method's vocabulary."
+        ],
+        "correctIndex": 0,
+        "explanation": "The purchasing rule blocks the behavior, even if enthusiasm exists. Rewriting the clause can make small tests possible.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team says it has joined the movement because everyone can explain build-measure-learn, yet approval meetings still ask only for polished plans. What should you conclude?",
+        "choices": [
+          "The team should stop using shared vocabulary.",
+          "The vocabulary has spread, but the decision practice has not.",
+          "Polished plans automatically prove adoption."
+        ],
+        "correctIndex": 1,
+        "explanation": "Adoption is visible in decisions, not vocabulary alone. If approval meetings still reward old behavior, the practice has not traveled.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A department wants one concrete way to spread disciplined learning next week, but the team is tempted to make posters and host an inspiration session. Which option is strongest if the goal is adopted practice?",
+        "choices": [
+          "Create a poster listing the method's core terms.",
+          "Host an inspiration session with no change to reviews.",
+          "Add a required assumption-and-first-test line to the next decision memo."
+        ],
+        "correctIndex": 2,
+        "explanation": "The memo line changes a real decision routine. Posters and inspiration may create awareness without altering how uncertain work is approved.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A team says it agrees with the method, but no meeting or memo changed. What is the difference between agreeing and adopting?",
+      "back": "Agreement lives in language. Adoption changes a routine: a meeting, rubric, memo, policy, review date, or funding rule starts asking for evidence earlier.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "One city pilot worked, but the practice stayed local. How does the practice spread beyond one team?",
+      "back": "It spreads when ordinary teams copy decision routines that work: templates, evidence columns, first-test fields, review cadences, and bounded learning policies.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A group likes movement language but keeps the old approval path. Why is movement language risky?",
+      "back": "It can become identity signaling. People sound innovative while approval paths, funding memos, and planning rituals keep rewarding old behavior.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A roadmap meeting adds one evidence column before approval. What is one small sign of real adoption?",
+      "back": "A recurring decision surface asks for a riskiest assumption, first test, evidence owner, or pivot threshold before commitment grows.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A procurement rule blocks small tests until a sponsor changes the path. How can policy help spread experimentation?",
+      "back": "It can make bounded learning buys possible, define a cap and approval path, and require evidence before a small purchase becomes a rollout.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to turn agreement into operating practice. The skill is choosing one routine where uncertain decisions happen and adding a required evidence step that others can copy.",
+    "ifThenPlans": [
+      {
+        "context": "planning meetings",
+        "plan": "If a roadmap is approved without evidence timing, then add an assumption, test owner, and evidence date to the agenda."
+      },
+      {
+        "context": "education",
+        "plan": "If learners repeat the terms but chase polish, then change the rubric so tested learning affects the grade."
+      },
+      {
+        "context": "funding reviews",
+        "plan": "If memos request money for uncertain programs, then require a riskiest-assumption line and first-test field."
+      },
+      {
+        "context": "policy",
+        "plan": "If rules block small tests, then create a bounded learning path with a cap, approval route, and evidence requirement."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, add one evidence field to a real agenda, memo, rubric, or policy you control. Use it in the next decision, not as a note for later.",
+    "weeklyPractice": "Each week, choose one routine and ask whether it makes uncertainty visible earlier. Keep changing routines until evidence is requested before commitment, not after."
+  },
+  "memorableLines": [
+    {
+      "text": "Joining the movement starts when one real meeting asks for evidence sooner than it did last week.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the closing invitation operational rather than inspirational."
+    },
+    {
+      "text": "If the routine stays the same, the belief has not traveled.",
+      "location": "breakdown.deepRead",
+      "why": "It distinguishes admiration from adoption in a sharp test."
+    },
+    {
+      "text": "Continuation is practice made portable.",
+      "location": "breakdown.fullRead",
+      "why": "It closes the book's arc with a compact standard for spreading the method."
+    }
+  ]
+}

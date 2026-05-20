@@ -1,0 +1,209 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch15",
+  "number": 15,
+  "title": "Linda: Less Is More",
+  "coreMove": "prefer the broader category when added detail makes a story sound better but mathematically narrower",
+  "sourcePressure": "uses the conjunction fallacy to show that richer stories can feel more probable than broader truths",
+  "chapterSpecificMisunderstanding": "making this about gullibility instead of the probability cost of extra detail",
+  "sourceAlignmentTerms": [
+    "Linda",
+    "conjunction fallacy",
+    "less is more",
+    "probability",
+    "plausibility",
+    "detail"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Linda: Less Is More",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just storytelling advice"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about storytelling advice",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport baggage control facing a decision distorted by conjunction fallacy",
+      "audience": "a lead or reviewer who must prefer the broader category when added detail makes a story sound better but mathematically narrower while others want the quick answer",
+      "stakes": "the visible call will go wrong unless conjunction fallacy is separated from the tempting but weaker cue",
+      "format": "before_after",
+      "requiredBeat": "the operator places the jury questionnaire stack labeled Linda beside the tempting first answer, covers the answer field with a palm, and speaks the correction: prefer the broader category when added detail makes a story sound better but mathematically narrower",
+      "firstImage": "The first thing in the room is the texture of the jury questionnaire stack labeled Linda, not the person's opinion about it.",
+      "mustInclude": [
+        "jury questionnaire stack labeled Linda",
+        "Linda",
+        "conjunction fallacy"
+      ],
+      "mustAvoid": [
+        "turning the scene into storytelling advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "blood bank scheduling facing a decision distorted by conjunction fallacy",
+      "audience": "a lead or reviewer who must prefer the broader category when added detail makes a story sound better but mathematically narrower while others want the quick answer",
+      "stakes": "the visible call will go wrong unless conjunction fallacy is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "the specialist draws a red box around the misleading cue on the salinity test ampoule labeled conjunction fallacy, then writes the missing check in the margin before anyone votes",
+      "firstImage": "It took three passes before the reviewer saw what the salinity test ampoule labeled conjunction fallacy had been making too easy.",
+      "mustInclude": [
+        "salinity test ampoule labeled conjunction fallacy",
+        "Linda",
+        "less is more"
+      ],
+      "mustAvoid": [
+        "turning the scene into storytelling advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "jazz rehearsal room facing a decision distorted by conjunction fallacy",
+      "audience": "a lead or reviewer who must prefer the broader category when added detail makes a story sound better but mathematically narrower while others want the quick answer",
+      "stakes": "the visible call will go wrong unless conjunction fallacy is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "two people disagree over the signal relay casing labeled less is more; one points to the fluent story, the other forces the chapter move by asking which evidence would change the call",
+      "firstImage": "The decision station is quiet except for the signal relay casing labeled less is more beside the unfinished call.",
+      "mustInclude": [
+        "signal relay casing labeled less is more",
+        "Linda",
+        "probability"
+      ],
+      "mustAvoid": [
+        "turning the scene into storytelling advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "city pothole hotline facing a decision distorted by conjunction fallacy",
+      "audience": "a lead or reviewer who must prefer the broader category when added detail makes a story sound better but mathematically narrower while others want the quick answer",
+      "stakes": "the visible call will go wrong unless conjunction fallacy is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "at the decision point, the lead slides the cupping spoon tray labeled probability into the center of the table and refuses to choose until the Linda check is visible",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the cupping spoon tray labeled probability between the two choices.",
+      "mustInclude": [
+        "cupping spoon tray labeled probability",
+        "Linda",
+        "plausibility"
+      ],
+      "mustAvoid": [
+        "turning the scene into storytelling advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "wildlife rescue intake facing a decision distorted by conjunction fallacy",
+      "audience": "a lead or reviewer who must prefer the broader category when added detail makes a story sound better but mathematically narrower while others want the quick answer",
+      "stakes": "the visible call will go wrong unless conjunction fallacy is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "the team predicts the answer from the quick impression, records it beside the plausibility bed-board magnet labeled plausibility, then reveals how the chapter correction changes the estimate",
+      "firstImage": "What would change if the plausibility bed-board magnet labeled plausibility stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "plausibility bed-board magnet labeled plausibility",
+        "Linda",
+        "detail"
+      ],
+      "mustAvoid": [
+        "turning the scene into storytelling advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "hotel night audit facing a decision distorted by conjunction fallacy",
+      "audience": "a lead or reviewer who must prefer the broader category when added detail makes a story sound better but mathematically narrower while others want the quick answer",
+      "stakes": "the visible call will go wrong unless conjunction fallacy is separated from the tempting but weaker cue",
+      "format": "dialogue",
+      "requiredBeat": "after the miss, the reviewer tapes the color-grading reference card labeled detail to the postmortem board and traces the exact moment conjunction fallacy displaced the better judgment",
+      "firstImage": "You are looking at the color-grading reference card labeled detail while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "color-grading reference card labeled detail",
+        "Linda",
+        "detail"
+      ],
+      "mustAvoid": [
+        "turning the scene into storytelling advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: prefer the broader category when added detail makes a story sound better but mathematically narrower",
+      "choose the correction that fits Linda rather than a generic careful-thinking answer",
+      "distinguish Linda: Less Is More from nearby drift into storytelling advice",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick a decision from today and draw two boxes: fast impression and required check. Put one concrete item in each box, then decide which box has earned more weight.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Linda",
+      "detail": "the source identifies Linda: Less Is More as the conjunction-fallacy chapter where richer detail can feel more probable than a broader truth",
+      "useIn": "both",
+      "phrasingHint": "Linda should land as the compact example of a detailed story becoming more plausible while becoming mathematically narrower."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

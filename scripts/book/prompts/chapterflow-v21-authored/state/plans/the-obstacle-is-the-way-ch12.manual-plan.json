@@ -1,0 +1,200 @@
+{
+  "chapterId": "the-obstacle-is-the-way-ch12",
+  "number": 12,
+  "title": "Practice Persistence",
+  "coreMove": "Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.",
+  "sourcePressure": "This chapter belongs to Action, so it must move from clear seeing into visible execution under constraint. No source sidecar exists for ch12; this plan is grounded in the frozen TOC title and part placement only, with no named anecdotes invented. For \"Practice Persistence\", the pressure is to teach this exact move: Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.",
+  "chapterSpecificMisunderstanding": "The weak version turns the chapter into motivational busyness instead of a precise way to act against resistance. For \"Practice Persistence\", avoid replacing the chapter move with the whole book thesis.",
+  "sourceAlignmentTerms": [
+    "persistence",
+    "attempt",
+    "failure",
+    "learning",
+    "effort",
+    "repeat"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic obstacle appears and teaches practice persistence",
+      "The problem is not the problem",
+      "Everything changed when the setback arrived"
+    ],
+    "counterintuition": [
+      "The obstacle is actually a blessing",
+      "The hard part is really your mindset",
+      "Success comes from staying positive"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on adversity",
+      "Write down three things you are grateful for",
+      "Take a breath and choose courage"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "generic kitchen-table family argument",
+      "generic classroom grade disappointment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research-free aside on source limits, a direct second-person passage, or a brief historical reference where sourceAnchors permits it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Jack",
+      "domain": "community theater troupe rehearsing after a sponsor withdraws",
+      "audience": "Readers facing community theater troupe rehearsing after a sponsor withdraws who need to practice \"Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into stubborn repetition.",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "openingDeviceNote": "open on a concrete sound, texture, smell, or visual detail before naming the person",
+      "requiredBeat": "Jack must visibly perform the chapter move by making the next attempt after recording what the failed attempt taught, so the lesson happens in action rather than explanation.",
+      "firstImage": "a cracked plastic folder with forms slipping out",
+      "mustInclude": [
+        "practice log",
+        "public result",
+        "private correction"
+      ],
+      "mustAvoid": [
+        "do not turn this into stubborn repetition",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "claims team reworking a denied batch one case at a time",
+      "audience": "Readers facing claims team reworking a denied batch one case at a time who need to practice \"Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into stubborn repetition.",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "openingDeviceNote": "open with one line of spoken dialogue that forces the decision into view",
+      "requiredBeat": "Luke must visibly perform the chapter move by making the next attempt after recording what the failed attempt taught, so the lesson happens in action rather than explanation.",
+      "firstImage": "a measuring tape stretched across a taped floor mark",
+      "mustInclude": [
+        "printed schedule",
+        "one fixed deadline",
+        "one person waiting for a decision"
+      ],
+      "mustAvoid": [
+        "do not turn this into stubborn repetition",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Nina",
+      "domain": "distance runner returning to hill repeats after a bad race",
+      "audience": "Readers facing distance runner returning to hill repeats after a bad race who need to practice \"Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into stubborn repetition.",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "openingDeviceNote": "open with the room, tool, weather, queue, screen, or workplace layout before any person acts",
+      "requiredBeat": "Nina must visibly perform the chapter move by making the next attempt after recording what the failed attempt taught, so the lesson happens in action rather than explanation.",
+      "firstImage": "a phone face-down beside a stamped envelope",
+      "mustInclude": [
+        "marked-up form",
+        "visible queue",
+        "one rule that cannot be changed"
+      ],
+      "mustAvoid": [
+        "do not turn this into stubborn repetition",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "library campaign gathering signatures after a council no",
+      "audience": "Readers facing library campaign gathering signatures after a council no who need to practice \"Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into stubborn repetition.",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "openingDeviceNote": "open by putting the reader directly in the scene with a precise constraint",
+      "requiredBeat": "Pablo must visibly perform the chapter move by making the next attempt after recording what the failed attempt taught, so the lesson happens in action rather than explanation.",
+      "firstImage": "a row of empty chairs after a meeting ends",
+      "mustInclude": [
+        "locked door",
+        "backup route",
+        "two-minute choice window"
+      ],
+      "mustAvoid": [
+        "do not turn this into stubborn repetition",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "game studio fixing one crash after a failed demo",
+      "audience": "Readers facing game studio fixing one crash after a failed demo who need to practice \"Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into stubborn repetition.",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "openingDeviceNote": "open after the fact, with the protagonist realizing what the earlier choice meant",
+      "requiredBeat": "Min must visibly perform the chapter move by making the next attempt after recording what the failed attempt taught, so the lesson happens in action rather than explanation.",
+      "firstImage": "a stack of returned envelopes in a mail tray",
+      "mustInclude": [
+        "spreadsheet row",
+        "timestamped note",
+        "one disputed fact"
+      ],
+      "mustAvoid": [
+        "do not turn this into stubborn repetition",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "language school rebuilding enrollment after a snow-day cancellation",
+      "audience": "Readers facing language school rebuilding enrollment after a snow-day cancellation who need to practice \"Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into stubborn repetition.",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "openingDeviceNote": "open with a practical question the scene will answer",
+      "requiredBeat": "Kasia must visibly perform the chapter move by making the next attempt after recording what the failed attempt taught, so the lesson happens in action rather than explanation.",
+      "firstImage": "a whiteboard corner where the old plan is half erased",
+      "mustInclude": [
+        "weather alert",
+        "supply box",
+        "call list"
+      ],
+      "mustAvoid": [
+        "do not turn this into stubborn repetition",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the exact visible action that performs \"Keep applying effort after the first attempt fails, while preserving enough attention to notice what the failure teaches.\" in a new scenario",
+      "distinguish \"Practice Persistence\" from its common weak drift: stubborn repetition",
+      "choose between two plausible responses where only one preserves the chapter's control boundary",
+      "explain why a concrete beat works without reusing generic resilience language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real obstacle, write one sentence naming the raw fact, one sentence naming the move under your control, and one sentence naming the first visible action for \"Practice Persistence\"; keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

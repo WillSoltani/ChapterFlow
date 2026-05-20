@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch07",
+  "number": 7,
+  "title": "Willpower Is Always on Will-Call",
+  "coreMove": "Schedule the most important work for the part of the day when restraint and freshness are actually available.",
+  "sourcePressure": "This lie chapter rejects the idea that willpower is always available and teaches the reader to place high-value work where energy and freshness are strongest.",
+  "chapterSpecificMisunderstanding": "Treating willpower as a personality trait or making claims about biology the source does not support.",
+  "sourceAlignmentTerms": [
+    "willpower",
+    "will-call",
+    "energy",
+    "freshness",
+    "timing",
+    "high-value work"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "Willpower Is Always on Will-Call as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "immigration clinic intake review",
+      "audience": "case manager",
+      "stakes": "one asylum deadline depends on exact dates",
+      "format": "decision_point",
+      "requiredBeat": "she moves the date reconciliation to 8:00 a.m. and postpones supply ordering until after lunch",
+      "firstImage": "a visa stamp photocopy under a morning desk lamp",
+      "mustInclude": [
+        "visa photocopy",
+        "deadline calendar",
+        "supply list"
+      ],
+      "mustAvoid": [
+        "generic morning routine"
+      ]
+    },
+    {
+      "domain": "precision watch repair counter",
+      "audience": "watchmaker",
+      "stakes": "a vintage balance spring can be ruined by shaky attention",
+      "format": "scene",
+      "requiredBeat": "he closes the walk-in counter for the first hour and seats the balance spring under magnification before customer chatter starts",
+      "firstImage": "a balance spring floating under a loupe in clean morning light",
+      "mustInclude": [
+        "loupe",
+        "balance spring",
+        "counter sign"
+      ],
+      "mustAvoid": [
+        "generic craft focus"
+      ]
+    },
+    {
+      "domain": "high school debate tournament",
+      "audience": "coach",
+      "stakes": "argument blocks must be sorted before rounds begin",
+      "format": "vignette",
+      "requiredBeat": "she uses the quiet bus ride to order rebuttal cards instead of saving it for the noisy cafeteria break",
+      "firstImage": "rebuttal cards spread across a vinyl bus seat before sunrise",
+      "mustInclude": [
+        "rebuttal cards",
+        "bus seat",
+        "tournament schedule"
+      ],
+      "mustAvoid": [
+        "generic school studying"
+      ]
+    },
+    {
+      "domain": "search-and-rescue map planning",
+      "audience": "volunteer search lead",
+      "stakes": "wrong grid assignment wastes the first daylight hour",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts he can handle maps after volunteer check-in, then catches the risk and redraws grids before the room fills",
+      "firstImage": "topographic maps pinned under a thermos before volunteers arrive",
+      "mustInclude": [
+        "topographic maps",
+        "grid pins",
+        "thermos"
+      ],
+      "mustAvoid": [
+        "generic emergency scene"
+      ]
+    },
+    {
+      "domain": "ceramics kiln firing decision",
+      "audience": "studio potter",
+      "stakes": "opening the kiln too early ruins a commissioned set",
+      "format": "reflection",
+      "requiredBeat": "she leaves email until later and makes the firing note while her judgment is calm enough to wait",
+      "firstImage": "a kiln peep plug resting beside a cooling log",
+      "mustInclude": [
+        "kiln log",
+        "peep plug",
+        "commission card"
+      ],
+      "mustAvoid": [
+        "generic artist discipline"
+      ]
+    },
+    {
+      "domain": "county budget spreadsheet audit",
+      "audience": "finance analyst",
+      "stakes": "one formula error changes a public vote",
+      "format": "postmortem",
+      "requiredBeat": "the analyst sees the formula check failed because he saved it for 4:45 p.m. after public calls, then moves it to the first hour",
+      "firstImage": "a spreadsheet cell highlighted yellow next to a cold public-meeting agenda",
+      "mustInclude": [
+        "spreadsheet cell",
+        "agenda",
+        "call log"
+      ],
+      "mustAvoid": [
+        "generic office prioritization"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "respect energy timing",
+      "place difficult work before depletion",
+      "stop planning as if strength is flat all day"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Move tomorrow's highest-value task to the earliest realistic fresh slot and protect it before adding favors or errands.",
+  "readingTimeMinutes": 12
+}

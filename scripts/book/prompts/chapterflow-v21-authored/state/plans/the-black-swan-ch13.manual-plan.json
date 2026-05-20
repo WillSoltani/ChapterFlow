@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch13",
+  "number": 13,
+  "title": "Appelles the Painter, or What Do You Do if You Cannot Predict?",
+  "coreMove": "Design the position so being wrong stays survivable and being lucky can still matter.",
+  "sourcePressure": "Once prediction prestige collapses, the practical answer is to build robust, asymmetric positions that survive error and remain open to favorable surprise.",
+  "chapterSpecificMisunderstanding": "Calling every hedge wise or treating robustness as timid safety.",
+  "sourceAlignmentTerms": [
+    "Appelles the Painter",
+    "robustness",
+    "optionality",
+    "asymmetry",
+    "limited downside",
+    "favorable deviation",
+    "survivable loss",
+    "uncertainty as design"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Appelles the Painter",
+      "detail": "the chapter title frames the practical question of what to do if reliable prediction is unavailable",
+      "useIn": "both",
+      "phrasingHint": "Appelles belongs here as the reminder that craft continues even when foresight refuses to cooperate."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "independent bookstore event planning",
+      "audience": "an owner unsure which author night will draw",
+      "stakes": "losing money on a large guaranteed crowd setup",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the owner uses refundable chairs and preorder thresholds before committing",
+      "firstImage": "At 8:17 a.m., Pavel faces folding chairs stacked beside signed stock.",
+      "mustInclude": [
+        "Pavel",
+        "folding chairs stacked beside signed stock",
+        "Appelles the Painter"
+      ],
+      "mustAvoid": [
+        "Calling every hedge wise or treating robustness as timid safety.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "renewable-energy pilot",
+      "audience": "a plant manager testing a storage technology",
+      "stakes": "one full-site bet damaging operations",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the manager creates a contained pilot with expansion rights if performance surprises",
+      "firstImage": "A first line of dialogue lands before the reader sees battery modules humming behind a safety fence.",
+      "mustInclude": [
+        "Mateusz",
+        "battery modules humming behind a safety fence",
+        "robustness"
+      ],
+      "mustAvoid": [
+        "Calling every hedge wise or treating robustness as timid safety.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "language-learning app roadmap",
+      "audience": "a product lead unsure which feature will catch",
+      "stakes": "six months spent on one predicted winner",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the lead builds three small tests with kill criteria and upside triggers",
+      "firstImage": "Open on the texture, sound, or light of prototype screens taped around a usability room.",
+      "mustInclude": [
+        "Janek",
+        "prototype screens taped around a usability room",
+        "optionality"
+      ],
+      "mustAvoid": [
+        "Calling every hedge wise or treating robustness as timid safety.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "specialty farm crop choice",
+      "audience": "a farmer facing uncertain restaurant demand",
+      "stakes": "planting all acreage in one fashionable crop",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the farmer reserves a small plot with buyer options and keeps staple acreage",
+      "firstImage": "You are looking at seed packets weighed on a wooden scale before the choice becomes abstract.",
+      "mustInclude": [
+        "Aanya",
+        "seed packets weighed on a wooden scale",
+        "asymmetry"
+      ],
+      "mustAvoid": [
+        "Calling every hedge wise or treating robustness as timid safety.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "legal clinic service launch",
+      "audience": "a director unsure which immigrant services will spike",
+      "stakes": "hiring permanent staff before demand appears",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the director uses part-time clinics and referral options until signals strengthen",
+      "firstImage": "It takes Aman several weeks to understand what clipboards lined across a folding table was really showing.",
+      "mustInclude": [
+        "Aman",
+        "clipboards lined across a folding table",
+        "limited downside"
+      ],
+      "mustAvoid": [
+        "Calling every hedge wise or treating robustness as timid safety.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "hardware startup manufacturing",
+      "audience": "a founder forecasting demand for a new device",
+      "stakes": "ordering a full production run too early",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the founder pays for tooling options, not finished inventory, before launch data",
+      "firstImage": "machined aluminum shells in a foam tray appears before any human enters the sentence.",
+      "mustInclude": [
+        "Devon",
+        "machined aluminum shells in a foam tray",
+        "favorable deviation"
+      ],
+      "mustAvoid": [
+        "Calling every hedge wise or treating robustness as timid safety.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn uncertainty into design constraints",
+      "cap downside while preserving upside",
+      "choose structural robustness over eloquent prediction"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one plan and cap its worst loss before you try to improve its forecast.",
+  "readingTimeMinutes": 12
+}

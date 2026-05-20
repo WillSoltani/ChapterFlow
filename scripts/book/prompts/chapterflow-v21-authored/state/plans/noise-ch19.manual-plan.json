@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch19",
+  "number": 19,
+  "title": "Noise in Predictive Judgments",
+  "coreMove": "Separate the range of plausible outcomes from the single point estimate the judge delivers, and ask whether the point chosen is consistent across judges.",
+  "sourcePressure": "Predictive judgments carry noise in their own right. Different predictors working from the same evidence will choose different points from the plausible range, producing spread that compounds with the underlying uncertainty of the predicted event itself. Confident single-number predictions feel precise but often hide the fact that many other numbers would have been equally defensible.",
+  "chapterSpecificMisunderstanding": "Treating a confident single-number prediction as if its precision reduces the underlying uncertainty, or assuming predictive disagreement only reflects genuine ambiguity in the domain rather than judgment variability.",
+  "sourceAlignmentTerms": ["predictive judgment", "point estimate", "range", "outcome uncertainty", "forecast consistency", "prediction noise", "plausible interval"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Prediction noise in clinical prognosis and professional forecasting",
+      "detail": "Research in clinical prognosis and expert forecasting shows that different experts given the same case routinely select different point estimates from a plausible range, and that the spread of their selections often exceeds the improvement the best individual predictor achieves over a simple base rate.",
+      "useIn": "deepRead",
+      "phrasingHint": "Two oncologists given the same survival probability study will produce different survival estimates for the same patient. Not because they read different numbers. Because a plausible range exists and they chose different points in it — and both choices felt like professional judgment rather than arbitrary selection."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["nobody can predict the future — and some people are worse at it than others", "every confident forecast is hiding a range"],
+    "counterintuition": ["precision in a prediction is not the same as accuracy", "the most confident predictions are often the noisiest"],
+    "tryThisNow": ["write a range instead of a single number for your next forecast", "ask a colleague for their prediction before sharing yours"],
+    "examples": ["a scene where the single-number prediction turns out to be dramatically wrong — prediction failure is different from prediction noise", "a scene that implies all forecasters should give ranges rather than point estimates — the chapter is about measuring and reducing noise, not about output format"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Predictive-noise examples risk all reading as 'two forecasters give different predictions.' The domains must vary enough (clinical, criminal justice, project delivery, financial, academic, operational) to show the same issue appearing in very different prediction contexts."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "oncology survival prognosis: two oncologists estimating 5-year survival probability for the same patient from the same case summary",
+      "audience": "a palliative care researcher studying predictive consistency across oncologists",
+      "stakes": "patient and family planning decisions — a 35 percent versus 65 percent survival estimate produces completely different conversations about treatment intensity and end-of-life planning",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two oncologists, both senior, present their independent 5-year survival estimates for the same case at a multidisciplinary conference: one says 40 percent, one says 65 percent; neither finds the other's estimate unreasonable given the same case summary; the gap is not about different information — it is about different points chosen within the plausible range that the information supports",
+      "firstImage": "two Post-it notes on a meeting whiteboard, each with a survival probability percentage, the gap between them visible but each number individually credible",
+      "mustInclude": ["the 40 vs. 65 percent gap", "both estimates being individually defensible from the same case information", "the framing: the case summary does not specify the correct point; it specifies a plausible range, and both doctors chose different points in it"],
+      "mustAvoid": ["a patient outcome story", "implying one estimate was clinically incorrect"]
+    },
+    {
+      "domain": "recidivism risk assessment: two criminologists estimating recidivism probability for a parolee from the same case profile",
+      "audience": "a parole board research team studying prediction consistency across criminologists",
+      "stakes": "the parole decision that determines whether the person is released or continues to be incarcerated",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the research team presents the assessment comparison: for 50 matched case profiles shown to two criminologists each, the correlation between the two assessors' risk probabilities is 0.58 — meaning the same case profile produces substantially different probability estimates from different experts, and the spread is not explained by any single case feature",
+      "firstImage": "a scatter plot of criminologist A's estimates on the x-axis versus criminologist B's estimates on the y-axis — a positive correlation visible but with substantial scatter around the diagonal",
+      "mustInclude": ["the 0.58 correlation as the key finding", "no single case feature explaining the residual spread", "the research team's framing: the estimates are not measuring the parolee's recidivism probability; they are measuring where each expert chooses to land within the plausible range"],
+      "mustAvoid": ["a recidivism incident story", "implying either criminologist had the correct estimate"]
+    },
+    {
+      "domain": "employment tenure prediction: three HR managers predicting tenure length for the same new hire from identical onboarding assessment data",
+      "audience": "a talent analytics team comparing predictive consistency across HR managers",
+      "stakes": "workforce planning and onboarding investment decisions — tenure predictions that vary widely across managers produce inconsistent high-potential designation and development spending",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the analytics team reviews the three-manager prediction comparison: for 30 new hires assessed independently, the three managers' 18-month tenure predictions have a standard deviation per hire of 3.2 months — meaning the same hire from the same data could be predicted to stay for 12 months or 18 months depending on which manager made the prediction",
+      "firstImage": "a three-column prediction table with each manager's tenure estimates per hire, the standard deviation column at the right showing that even at the individual hire level the spread is substantial",
+      "mustInclude": ["the 3.2-month standard deviation per hire", "the plausible range interpretation (same data, different expert, different point in the range)", "the analytics team's conclusion: the predictions are not measuring hires' tenure probability; they are measuring the manager's personal selection from a plausible window"],
+      "mustAvoid": ["a specific employee turnover story", "implying any HR manager's predictions were professionally inadequate"]
+    },
+    {
+      "domain": "project timeline prediction: two project managers estimating delivery time for the same software project from the same scope document",
+      "audience": "a portfolio manager studying project estimation consistency",
+      "stakes": "resource allocation and client commitment — timeline estimates that vary by months across PMs produce inconsistent commitments and planning failures",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the portfolio manager asks: if I gave the same detailed scope document to two of our most experienced project managers and asked them to estimate delivery time, how far apart would they be? The answer from the estimation comparison exercise is: on average 6.4 weeks apart on projects that end up taking 20 to 30 weeks — a spread that is not explained by different interpretations of scope or different assumptions about team size",
+      "firstImage": "a scope document and two independent timeline estimates — one showing 22 weeks, one showing 28 weeks — for the same project specification",
+      "mustInclude": ["the 6.4-week average gap", "no scope interpretation difference explaining the gap", "the portfolio manager's framing: both are defensible; the document defines a plausible range and both PMs selected different points in it"],
+      "mustAvoid": ["a project failure narrative", "attributing the gap to different team quality assumptions"]
+    },
+    {
+      "domain": "bankruptcy prediction: two financial analysts estimating 24-month bankruptcy probability for the same company from the same financial statements",
+      "audience": "a credit research team studying inter-analyst prediction consistency",
+      "stakes": "credit ratings and lending decisions — probability estimates that vary by 20 percentage points for the same company produce different investment-grade classifications",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast the unstructured prediction phase (two analysts reading the same financial statements independently and submitting their probability estimates: 18 percent and 38 percent) with the structured-anchor phase (both analysts complete a structured pre-analysis checklist of specific financial ratios before submitting a probability): the structured phase narrows the gap to 7 percentage points for the same company",
+      "firstImage": "two financial analysis workpapers for the same company — one analyst's showing a 38 percent bankruptcy probability and one showing 18 percent — the same financial data visible in each",
+      "mustInclude": ["the 18 vs. 38 percent unstructured gap", "the narrowing to 7 percentage points under the structured pre-analysis", "the interpretation: the structure reduced the number of free variables in selecting a point from the plausible range"],
+      "mustAvoid": ["naming a specific company or industry", "a corporate bankruptcy story"]
+    },
+    {
+      "domain": "educational attainment prediction: two school counselors predicting college graduation probability for the same student from the same academic and support record",
+      "audience": "a school district analytics team studying prediction consistency for college readiness counseling",
+      "stakes": "counseling resource allocation — students whose graduation probability is over-estimated receive less intensive support; those whose probability is under-estimated may be discouraged from opportunities they would succeed in",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the analytics team presents the comparison: two counselors assessed the same 40 student profiles; the correlation between their graduation probability estimates is 0.61, and the students near the 50 percent probability threshold show the widest prediction spread — exactly the students where accurate prediction would most influence counseling support allocation",
+      "firstImage": "a counselor's desk with two folders for the same student: two handwritten probability estimates visible on separate assessment forms, the numbers different",
+      "mustInclude": ["the 0.61 correlation across 40 profiles", "the threshold students showing the widest spread", "the framing: threshold students are where noise matters most and where it is also highest — a double problem"],
+      "mustAvoid": ["a student academic failure story", "implying counselors should not make predictions at all"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain how prediction noise differs from prediction error",
+      "identify the mechanism through which the same information produces different point estimates from different predictors",
+      "apply prediction-noise awareness to diagnose a forecasting system that appears accurate on average but is noisy at the case level",
+      "analyze why threshold cases show the highest prediction noise in most prediction domains",
+      "evaluate whether a proposed prediction consistency measure captures noise or only captures average accuracy"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find a prediction you or someone on your team has made recently — project duration, risk probability, expected revenue. Ask a qualified colleague who has not seen the original estimate to make the same prediction from the same available information. The gap between your number and theirs is a lower bound on the prediction noise in your domain. Do this for five predictions and see if the gap is larger or smaller than you expected.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on the difference between a plausible range and a correct point, at least one 5+ sentence paragraph on why confident prediction feels precise but hides the selector's arbitrary choice of point within a range, at least one one-sentence punch line about what happens to decisions built on a single confident number that could have been a different number from the same data",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to directly address the reader: have you ever received two forecasts for the same outcome from different experts and had to choose between them? The discomfort of that choice is the noise made visible for a moment.",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

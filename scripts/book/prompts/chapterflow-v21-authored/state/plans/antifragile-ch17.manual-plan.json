@@ -1,0 +1,201 @@
+{
+  "chapterId": "antifragile-ch17",
+  "number": 17,
+  "title": "Fat Tony Debates Socrates",
+  "coreMove": "Resolve a reasoning dispute by returning to exposure, consequence, and the payoff of being wrong.",
+  "sourcePressure": "This chapter closes the optionality section by sharpening payoff-grounded practical judgment against abstract interrogation.",
+  "chapterSpecificMisunderstanding": "Treating Socrates as the villain or practical judgment as anti-thinking.",
+  "sourceAlignmentTerms": [
+    "Fat Tony",
+    "Socrates",
+    "practical judgment",
+    "payoff",
+    "exposure",
+    "consequence",
+    "optionality"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Fat Tony",
+      "detail": "the practical judge who keeps returning abstract claims to payoff and exposure",
+      "useIn": "both",
+      "phrasingHint": "Fat Tony does not end the argument; he asks what the argument costs."
+    },
+    {
+      "kind": "person",
+      "name": "Socrates",
+      "detail": "the named counterweight for abstract interrogation in the chapter title",
+      "useIn": "fullRead",
+      "phrasingHint": "Socrates can sharpen a question, but the answer still has to meet consequence."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Fat Tony Debates Socrates"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Treating Socrates as the villain or practical judgment as anti-thinking."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "courtroom settlement talk with Celine as the decision-maker",
+      "audience": "a reader who handles courtroom settlement talk under uncertainty",
+      "stakes": "whether Celine avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Celine turns the debate into a consequence-bearing test instead of another clean definition.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "courtroom log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic fat tony debates socrates paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "street vendor rain plan with Amelie as the decision-maker",
+      "audience": "a reader who handles street vendor rain plan under uncertainty",
+      "stakes": "whether Amelie avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Amelie turns the debate into a consequence-bearing test instead of another clean definition.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "street log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic fat tony debates socrates paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "emergency plumber quote with Lucie as the decision-maker",
+      "audience": "a reader who handles emergency plumber quote under uncertainty",
+      "stakes": "whether Lucie avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lucie turns the debate into a consequence-bearing test instead of another clean definition.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "emergency log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic fat tony debates socrates paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "chess-club endgame lesson with Noemie as the decision-maker",
+      "audience": "a reader who handles chess club endgame lesson under uncertainty",
+      "stakes": "whether Noemie avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Noemie turns the debate into a consequence-bearing test instead of another clean definition.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "chess club log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic fat tony debates socrates paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "customs broker shipment call with Maelle as the decision-maker",
+      "audience": "a reader who handles customs broker shipment call under uncertainty",
+      "stakes": "whether Maelle avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Maelle turns the debate into a consequence-bearing test instead of another clean definition.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "customs log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic fat tony debates socrates paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "hospice bed-allocation meeting with Clara as the decision-maker",
+      "audience": "a reader who handles hospice bed allocation meeting under uncertainty",
+      "stakes": "whether Clara avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Clara turns the debate into a consequence-bearing test instead of another clean definition.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "hospice log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic fat tony debates socrates paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by resolve a reasoning dispute by returning to exposure, consequence, and the payoff of being wrong.",
+      "distinguish Fat Tony, Socrates, practical judgment in unfamiliar cases",
+      "choose actions that avoid: Treating Socrates as the villain or practical judgment as anti-thinking."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one debate that has become abstract and write the smallest real consequence that would settle part of it.",
+  "readingTimeMinutes": 12
+}

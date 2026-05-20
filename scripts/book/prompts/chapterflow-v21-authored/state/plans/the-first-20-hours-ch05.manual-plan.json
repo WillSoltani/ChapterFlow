@@ -1,0 +1,204 @@
+{
+  "chapterId": "the-first-20-hours-ch05",
+  "number": 5,
+  "title": "Programming",
+  "coreMove": "Force a technical skill into a runnable slice where output, error, and debugging can teach the next move.",
+  "sourcePressure": "The source frames programming as a cognitively dense domain where breakdown, real-problem iteration, and avoidance of endless research matter more than abstract study hoarding.",
+  "chapterSpecificMisunderstanding": "Treating programming as either pure concept study or random hacking, instead of a small build-test-fix loop on a real problem.",
+  "sourceAlignmentTerms": [
+    "programming",
+    "breakdown-heavy skill",
+    "real-problem iteration",
+    "endless research",
+    "runnable slice",
+    "debugging",
+    "output"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "programming",
+      "detail": "the frozen support names programming as the case chapter and frames it through breakdown, real-problem iteration, and avoiding endless research",
+      "useIn": "both",
+      "phrasingHint": "Programming starts teaching when the idea becomes a small thing that runs, breaks, and points to the next fix."
+    },
+    {
+      "kind": "artifact",
+      "name": "real-problem iteration",
+      "detail": "the source says real working problems teach more than endless abstract study in this chapter",
+      "useIn": "fullRead",
+      "phrasingHint": "A real problem gives the lesson teeth because the code either changes the output or it does not."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "dark terminal genius opener",
+      "startup founder building app at midnight",
+      "learn Python in a weekend promise"
+    ],
+    "counterintuition": [
+      "tutorials are useless",
+      "concepts do not matter",
+      "debugging is failure"
+    ],
+    "tryThisNow": [
+      "install a code editor",
+      "watch one tutorial",
+      "write hello world with no problem"
+    ],
+    "examples": [
+      "generic to-do app",
+      "web landing page",
+      "coffee-fueled hackathon"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Thomas",
+      "domain": "pharmacy inventory spreadsheet automation",
+      "audience": "a workplace learner with one repetitive technical problem",
+      "stakes": "expired stock counts are being copied by hand every Friday",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Thomas reduces the project to one script that flags dates older than today, runs it on a copied sheet, reads the first error, and fixes only that input format",
+      "firstImage": "orange expiry stickers stacked beside a duplicated inventory sheet",
+      "mustInclude": [
+        "copied sheet",
+        "date flag",
+        "first error"
+      ],
+      "mustAvoid": [
+        "full app build",
+        "generic office automation"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "university lab sensor-data cleanup",
+      "audience": "a research assistant who keeps reading libraries instead of testing data",
+      "stakes": "a grant report depends on removing impossible temperature readings",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ingrid sees that progress began when she stopped comparing libraries and wrote a tiny filter against ten ugly sensor rows",
+      "firstImage": "ten sensor rows printed with one impossible minus sign circled",
+      "mustInclude": [
+        "ten rows",
+        "temperature filter",
+        "grant report"
+      ],
+      "mustAvoid": [
+        "abstract data science career advice",
+        "dashboard polish"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "community theatre ticket CSV import",
+      "audience": "a volunteer solving a real event problem under a deadline",
+      "stakes": "opening night check-in fails if the ticket list cannot load",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "David asks what one field must import first, writes the smallest parser for seat number, and lets the rejected comma line reveal the next bug",
+      "firstImage": "a box-office laptop balanced on a stack of playbills",
+      "mustInclude": [
+        "seat number",
+        "rejected comma line",
+        "opening night"
+      ],
+      "mustAvoid": [
+        "generic arts nonprofit perseverance",
+        "full database design"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "wildlife rescue volunteer building a feeding-reminder SMS rule",
+      "audience": "a reader who needs code tied to a visible service result",
+      "stakes": "orphaned animals miss interval checks when paper notes get buried",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Paula chooses one reminder rule for one enclosure, sends a test message to herself, and debugs the wrong time zone before adding any other feature",
+      "firstImage": "a laminated feeding chart clipped to a wire enclosure door",
+      "mustInclude": [
+        "one enclosure",
+        "test message",
+        "time zone bug"
+      ],
+      "mustAvoid": [
+        "animal sentimentality",
+        "platform-specific tutorial"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "local newspaper archive search cleanup",
+      "audience": "a learner turning curiosity into one executable tool",
+      "stakes": "reporters waste hours because scanned article dates sort incorrectly",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ben predicts more regex reading will solve it, then learns faster by running one date-normalizer against twelve bad archive filenames",
+      "firstImage": "twelve scanned filenames glowing in a narrow search pane",
+      "mustInclude": [
+        "date-normalizer",
+        "twelve filenames",
+        "sort check"
+      ],
+      "mustAvoid": [
+        "AI search hype",
+        "generic journalism montage"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "airport baggage desk macro for damage-form IDs",
+      "audience": "a reader whose technical problem is small but costly",
+      "stakes": "duplicate claim IDs create angry passenger calls by noon",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Kiran stops studying macro syntax broadly, builds one ID-check function, runs it on yesterday's forms, and fixes the one duplicate case it misses",
+      "firstImage": "a torn suitcase handle resting beside a stack of damage forms",
+      "mustInclude": [
+        "ID-check function",
+        "yesterday's forms",
+        "duplicate case"
+      ],
+      "mustAvoid": [
+        "travel chaos comedy",
+        "enterprise software architecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose runnable slices over abstract technical sprawl",
+      "use errors as feedback without glamorizing failure",
+      "detect research hoarding in programming practice",
+      "map breakdown to a real output and next debug step"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the smallest technical output your current learning project could produce today, plus the first thing that could fail when you run it.",
+  "readingTimeMinutes": 12
+}

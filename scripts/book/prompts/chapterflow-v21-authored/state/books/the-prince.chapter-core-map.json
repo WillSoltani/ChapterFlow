@@ -1,0 +1,265 @@
+{
+  "bookId": "the-prince",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "the-prince-ch01",
+      "title": "How Many Kinds of Principalities There Are, and by What Means They Are Acquired",
+      "sourcePressure": "The opening taxonomy sorts states into republics and principalities, then divides principalities by inheritance, new acquisition, annexation, prior habits of obedience or freedom, and the arms, fortune, or ability by which they are won.",
+      "coreMove": "Classify the state before prescribing action.",
+      "commonMisread": "A weak run would write a generic introduction to power or leadership instead of treating this chapter as the decision tree that governs every later rule.",
+      "mustUseTerms": ["republics", "principalities", "hereditary", "new", "annexed", "freedom", "arms", "fortune"],
+      "mustNotDriftInto": ["general Machiavellian reputation", "modern leadership traits", "chapter-by-chapter preview"]
+    },
+    {
+      "number": 2,
+      "chapterId": "the-prince-ch02",
+      "title": "Concerning Hereditary Principalities",
+      "sourcePressure": "Hereditary rule is easier because subjects are accustomed to the family, old motives for change have faded, and preservation usually requires respecting ancestral customs while adapting prudently to circumstances.",
+      "coreMove": "Preserve inherited legitimacy by disturbing as little as possible.",
+      "commonMisread": "A weak run would treat hereditary rule as automatic privilege, missing the narrower discipline of not creating fresh reasons for people to hate a familiar house.",
+      "mustUseTerms": ["hereditary", "customs", "ancestors", "Duke of Ferrara", "extraordinary force", "usurper", "duration"],
+      "mustNotDriftInto": ["dynastic romance", "generic tradition praise", "new-prince strategy"]
+    },
+    {
+      "number": 3,
+      "chapterId": "the-prince-ch03",
+      "title": "Concerning Mixed Principalities",
+      "sourcePressure": "Mixed principalities bring the hardest transition pressures: injured locals, disappointed allies, language and law differences, absent rulers, garrisons, colonies, neighboring powers, foreign entrants, and Louis XII's errors in Italy.",
+      "coreMove": "Stabilize a new annexation by reducing transition injuries and controlling the regional balance before trouble matures.",
+      "commonMisread": "A weak run would reduce the chapter to people hate change, losing the specific prescriptions about residence, colonies, laws, taxes, minor powers, foreign powers, and deferred war.",
+      "mustUseTerms": ["mixed principality", "Louis XII", "Milan", "colonies", "reside there", "laws and taxes", "minor powers", "foreign power"],
+      "mustNotDriftInto": ["generic change management", "office merger advice", "simple conquer fast lesson"]
+    },
+    {
+      "number": 4,
+      "chapterId": "the-prince-ch04",
+      "title": "Why the Kingdom of Darius, Conquered by Alexander, Did Not Rebel Against the Successors of Alexander at His Death",
+      "sourcePressure": "Machiavelli contrasts centralized kingdoms ruled through servants with baronial kingdoms ruled through hereditary lords, explaining why Darius's empire was hard to enter but easy to hold after the prince's family fell.",
+      "coreMove": "Judge conquest and retention by the target state's internal structure.",
+      "commonMisread": "A weak run would make this a story about Alexander's greatness, missing the institutional contrast between the Turk and France.",
+      "mustUseTerms": ["Darius", "Alexander", "Turk", "France", "servants", "barons", "family of the prince"],
+      "mustNotDriftInto": ["great man biography", "battlefield tactics", "generic empire management"]
+    },
+    {
+      "number": 5,
+      "chapterId": "the-prince-ch05",
+      "title": "Concerning the Way to Govern Cities or Principalities Which Lived Under Their Own Laws Before They Were Annexed",
+      "sourcePressure": "Cities used to freedom retain the memory of liberty and ancient privileges, making them harder to hold than places accustomed to a prince; the options are ruin, residence, or tribute through a dependent oligarchy.",
+      "coreMove": "Treat remembered liberty as a living political force, not a past condition.",
+      "commonMisread": "A weak run would turn the chapter into a broad anti-democracy claim, missing the operational problem of governing annexed free cities.",
+      "mustUseTerms": ["free cities", "own laws", "liberty", "ancient privileges", "Spartans", "Romans", "Pisa", "oligarchy"],
+      "mustNotDriftInto": ["modern anti-republican commentary", "generic cultural integration", "simple repression advice"]
+    },
+    {
+      "number": 6,
+      "chapterId": "the-prince-ch06",
+      "title": "Concerning New Principalities Which Are Acquired by One's Own Arms and Ability",
+      "sourcePressure": "Founders who rise by ability use opportunity as raw material, face enemies of the old order and lukewarm beneficiaries of the new, and survive only when they can rely on their own arms rather than prayers.",
+      "coreMove": "Turn opportunity into a new order backed by owned force.",
+      "commonMisread": "A weak run would celebrate visionary leadership without the chapter's harsher test: whether the innovator can compel belief after persuasion fades.",
+      "mustUseTerms": ["Moses", "Cyrus", "Romulus", "Theseus", "new order", "armed prophets", "Savonarola", "Hiero"],
+      "mustNotDriftInto": ["inspirational founder story", "innovation slogans", "luck versus hard work"]
+    },
+    {
+      "number": 7,
+      "chapterId": "the-prince-ch07",
+      "title": "Concerning New Principalities Which Are Acquired Either by the Arms of Others or by Good Fortune",
+      "sourcePressure": "Fortune and another ruler's arms can lift a private person quickly, but the new prince must lay foundations afterward; Cesare Borgia becomes the detailed case of converting borrowed power into his own base, then failing at the papal succession hazard.",
+      "coreMove": "Convert borrowed ascent into independent foundations before the patron or luck disappears.",
+      "commonMisread": "A weak run would either idolize Cesare Borgia or condemn him generally, instead of tracking the sequence of dependencies he tried to replace.",
+      "mustUseTerms": ["good fortune", "arms of others", "Cesare Borgia", "Alexander VI", "Orsini", "Romagna", "Ramiro d'Orco", "Julius II"],
+      "mustNotDriftInto": ["villain biography", "generic networking", "success through luck alone"]
+    },
+    {
+      "number": 8,
+      "chapterId": "the-prince-ch08",
+      "title": "Concerning Those Who Have Obtained a Principality by Wickedness",
+      "sourcePressure": "Agathocles and Oliverotto show that violent seizure can gain and hold power without glory; the chapter's key distinction is between severities used once for security and cruelties that multiply daily.",
+      "coreMove": "Distinguish consolidating violence from repeated insecurity that keeps the knife in hand.",
+      "commonMisread": "A weak run would say cruelty works, missing Machiavelli's limit that wickedness may gain empire but not glory and that repeated injuries destroy attachment.",
+      "mustUseTerms": ["Agathocles", "Syracuse", "Oliverotto da Fermo", "severities", "one stroke", "benefits", "glory"],
+      "mustNotDriftInto": ["admiring brutality", "true crime narration", "generic ends justify means"]
+    },
+    {
+      "number": 9,
+      "chapterId": "the-prince-ch09",
+      "title": "Concerning a Civil Principality",
+      "sourcePressure": "A leading citizen can become prince through the people or nobles, but nobles want to oppress and see themselves as equals while the people mainly ask not to be oppressed, making popular foundations safer in adversity.",
+      "coreMove": "Build civil power on the group whose demands can actually be satisfied.",
+      "commonMisread": "A weak run would write about popularity or democracy in general, missing the strategic difference between nobles who compete and people who need protection.",
+      "mustUseTerms": ["civil principality", "people", "nobles", "oppression", "Nabis", "magistrates", "adversity"],
+      "mustNotDriftInto": ["campaign popularity", "servant leadership", "class politics without statecraft"]
+    },
+    {
+      "number": 10,
+      "chapterId": "the-prince-ch10",
+      "title": "Concerning the Way in Which the Strength of All Principalities Ought to Be Measured",
+      "sourcePressure": "Strength is measured by whether a prince can meet an attacker in the field or must shelter behind walls; for the weaker case, fortified towns, provisions, public labor, and not being hated become the defense.",
+      "coreMove": "Measure power by what the state can actually sustain under attack.",
+      "commonMisread": "A weak run would treat this as a generic resilience chapter, not a concrete test of field armies, walls, supplies, morale, and siege endurance.",
+      "mustUseTerms": ["own resources", "field", "walls", "German cities", "provisions", "artillery", "not hated"],
+      "mustNotDriftInto": ["personal resilience", "castle imagery without logistics", "abstract strength"]
+    },
+    {
+      "number": 11,
+      "chapterId": "the-prince-ch11",
+      "title": "Concerning Ecclesiastical Principalities",
+      "sourcePressure": "Ecclesiastical states are unusually secure because religious ordinances sustain them, yet the Church's temporal power grew through money, arms, faction management, Alexander VI, Cesare Borgia, and Julius II.",
+      "coreMove": "Separate institutional sacred authority from the temporal tactics that expanded it.",
+      "commonMisread": "A weak run would either skip the chapter as religion-only or write pious abstraction, missing the practical account of how the papacy became a territorial power.",
+      "mustUseTerms": ["ecclesiastical principalities", "religion", "Church", "Alexander VI", "Duke Valentino", "Julius II", "Orsini", "Colonnesi"],
+      "mustNotDriftInto": ["theology lesson", "generic institutional trust", "anti-religious rant"]
+    },
+    {
+      "number": 12,
+      "chapterId": "the-prince-ch12",
+      "title": "How Many Kinds of Soldiery There Are, and Concerning Mercenaries",
+      "sourcePressure": "The chapter names arms as the foundation of all states and attacks mercenaries as disunited, ambitious, undisciplined, cowardly in danger, and responsible for Italy's military collapse.",
+      "coreMove": "Reject hired force as a foundation because its incentives detach courage from the state.",
+      "commonMisread": "A weak run would write about outsourcing generally, losing the military mechanics of mercenary captains, stipend courage, cavalry bias, and Italy's fall.",
+      "mustUseTerms": ["good arms", "mercenaries", "stipend", "captains", "Sforza", "Carmignuola", "Vaila", "Italy"],
+      "mustNotDriftInto": ["generic outsourcing", "team loyalty slogans", "modern contractor analogy only"]
+    },
+    {
+      "number": 13,
+      "chapterId": "the-prince-ch13",
+      "title": "Concerning Auxiliaries, Mixed Soldiery, and One's Own",
+      "sourcePressure": "Auxiliary troops are more dangerous than mercenaries because they obey another power; losing ruins you and winning makes you captive, while one's own forces provide the only secure foundation.",
+      "coreMove": "Prefer losing with owned arms to winning as another power's dependent.",
+      "commonMisread": "A weak run would merge auxiliaries with mercenaries, missing the distinct danger that capable helpers remain someone else's united instrument.",
+      "mustUseTerms": ["auxiliaries", "Pope Julius", "Ferdinand", "French soldiers", "one's own forces", "David", "Saul's arms", "Goths"],
+      "mustNotDriftInto": ["mercenary repetition", "simple alliance warning", "generic independence"]
+    },
+    {
+      "number": 14,
+      "chapterId": "the-prince-ch14",
+      "title": "That Which Concerns a Prince on the Subject of War Study",
+      "sourcePressure": "War is the prince's central art, to be practiced in peace through drilling, hardship, terrain knowledge, historical study, and scenario reasoning, as Philopoemen did with friends in the countryside.",
+      "coreMove": "Study war in peace until geography, precedent, and surprise have already been rehearsed.",
+      "commonMisread": "A weak run would make this about being tough or always aggressive, missing the routine of physical exercise, terrain reading, and historical imitation.",
+      "mustUseTerms": ["art of war", "peace", "chase", "terrain", "Philopoemen", "histories", "Scipio", "Cyrus"],
+      "mustNotDriftInto": ["warmongering", "fitness advice", "generic lifelong learning"]
+    },
+    {
+      "number": 15,
+      "chapterId": "the-prince-ch15",
+      "title": "Concerning Things for Which Men, and Especially Princes, Are Praised or Blamed",
+      "sourcePressure": "Machiavelli announces his departure from imagined republics and principalities, choosing the real truth of how people live and arguing that a prince must know how to use or avoid vice according to necessity.",
+      "coreMove": "Judge virtues by whether they preserve the state under real conditions.",
+      "commonMisread": "A weak run would frame this as morality is fake, missing the sharper distinction between imagined virtue and traits that actually lose or save a state.",
+      "mustUseTerms": ["real truth", "imagined", "virtue", "vice", "necessity", "praised", "blamed", "state"],
+      "mustNotDriftInto": ["edgy amorality", "generic realism", "all ethics are weakness"]
+    },
+    {
+      "number": 16,
+      "chapterId": "the-prince-ch16",
+      "title": "Concerning Liberality and Meanness",
+      "sourcePressure": "A prince who tries to maintain a reputation for liberality exhausts his resources, taxes the people, becomes rapacious and hated, while thrift can fund defense and enterprises without burdening subjects.",
+      "coreMove": "Choose fiscal durability over expensive generosity that turns into predation.",
+      "commonMisread": "A weak run would turn this into personal frugality advice, missing the political chain from public generosity to taxation, hatred, poverty, and military weakness.",
+      "mustUseTerms": ["liberality", "meanness", "tax", "rapacity", "Pope Julius II", "King of Spain", "subjects", "defense"],
+      "mustNotDriftInto": ["budgeting tips", "anti-charity moralizing", "generic scarcity mindset"]
+    },
+    {
+      "number": 17,
+      "chapterId": "the-prince-ch17",
+      "title": "Concerning Cruelty and Clemency, and Whether It Is Better to Be Loved Than Feared",
+      "sourcePressure": "Clemency can permit disorders that injure everyone, while controlled severity may restore unity; fear is safer than love when one must choose, but fear must avoid hatred by sparing property and honor.",
+      "coreMove": "Use severity only as a stabilizing instrument and keep fear separate from hatred.",
+      "commonMisread": "A weak run would chant better feared than loved, missing the constraints about unity, property, women, manifest cause, armies, Hannibal, and Scipio.",
+      "mustUseTerms": ["cruelty", "clemency", "Cesare Borgia", "Pistoia", "feared", "loved", "hatred", "Hannibal"],
+      "mustNotDriftInto": ["bully leadership", "fear as brand", "generic toughness"]
+    },
+    {
+      "number": 18,
+      "chapterId": "the-prince-ch18",
+      "title": "Concerning the Way in Which Princes Should Keep Faith",
+      "sourcePressure": "The chapter argues that law and force, man and beast, fox and lion, appearance and non-observance all matter because rulers face opponents who break faith and publics who judge by seeming and result.",
+      "coreMove": "Maintain the appearance of virtue while retaining the capacity to change conduct when faith would destroy the state.",
+      "commonMisread": "A weak run would write lying is smart, missing the specific blend of law and force, fox and lion, public judgment, and necessity.",
+      "mustUseTerms": ["keep faith", "law", "force", "fox", "lion", "appearance", "Alexander VI", "result"],
+      "mustNotDriftInto": ["simple lying advice", "brand management only", "cynical slogan"]
+    },
+    {
+      "number": 19,
+      "chapterId": "the-prince-ch19",
+      "title": "That One Should Avoid Being Despised and Hated",
+      "sourcePressure": "The longest conduct chapter explains that rapacity and violations of honor create hatred, fickleness and irresolution create contempt, and conspiracy becomes unlikely when people esteem the prince and institutions manage hard tasks.",
+      "coreMove": "Manage the two fatal reputational failures: hatred from injury and contempt from weakness.",
+      "commonMisread": "A weak run would treat this as reputation management, missing the concrete conspiracy logic, property rule, Roman emperor cases, and balancing of people, nobles, and soldiers.",
+      "mustUseTerms": ["hated", "contemptible", "property", "honor", "conspiracy", "Bentivogli", "France", "Severus"],
+      "mustNotDriftInto": ["public relations", "likability advice", "generic confidence"]
+    },
+    {
+      "number": 20,
+      "chapterId": "the-prince-ch20",
+      "title": "Are Fortresses, and Many Other Things to Which Princes Often Resort, Advantageous or Hurtful?",
+      "sourcePressure": "Machiavelli reviews tactical devices such as arming or disarming subjects, factions, distrusted men, enemies, and fortresses, concluding that circumstances govern but no fortress saves a hated prince.",
+      "coreMove": "Evaluate security devices by whether they build dependence or expose hatred.",
+      "commonMisread": "A weak run would answer yes or no on fortresses, missing the chapter's conditional treatment of arms, factions, former enemies, secret supporters, and popular hatred.",
+      "mustUseTerms": ["fortresses", "disarm", "subjects", "factions", "Pandolfo Petrucci", "Citta di Castello", "Urbino", "Countess of Forli"],
+      "mustNotDriftInto": ["physical security only", "simple trust people advice", "fortress metaphor overuse"]
+    },
+    {
+      "number": 21,
+      "chapterId": "the-prince-ch21",
+      "title": "How a Prince Should Conduct Himself So As to Gain Renown",
+      "sourcePressure": "Renown comes from great enterprises, striking internal examples, open friendship or enmity instead of neutrality, prudent alliance choices, patronage of ability, civic commerce, festivals, and maintained majesty.",
+      "coreMove": "Earn esteem through visible enterprises, decisive alignment, and public encouragement without surrendering rank.",
+      "commonMisread": "A weak run would make this about personal branding, missing the specific strategic functions of wars, alliances, punishments, rewards, guilds, commerce, and festivals.",
+      "mustUseTerms": ["renown", "Ferdinand of Aragon", "Granada", "neutrality", "alliance", "lesser evil", "patron of ability", "guilds"],
+      "mustNotDriftInto": ["personal brand", "networking", "generic visibility"]
+    },
+    {
+      "number": 22,
+      "chapterId": "the-prince-ch22",
+      "title": "Concerning the Secretaries of Princes",
+      "sourcePressure": "A prince's first reputation for judgment comes from the people around him; good ministers are capable and faithful, while servants who think first of their own profit cannot safely hold another's state.",
+      "coreMove": "Use minister choice as both a signal of judgment and a control system for delegated power.",
+      "commonMisread": "A weak run would write generic hiring advice, missing the chapter's test of servant self-interest and the prince's duty to bind capable ministers through honor, riches, and shared cares.",
+      "mustUseTerms": ["secretaries", "servants", "Pandolfo Petrucci", "Antonio da Venafro", "three classes of intellects", "own interests", "honour", "cares"],
+      "mustNotDriftInto": ["HR best practices", "team culture", "delegation slogans"]
+    },
+    {
+      "number": 23,
+      "chapterId": "the-prince-ch23",
+      "title": "How Flatterers Should Be Avoided",
+      "sourcePressure": "A prince must invite truth without letting everyone advise him; the third course is to choose wise councillors, ask them broadly, listen patiently, decide himself, and then remain steady.",
+      "coreMove": "Design counsel so truth is permitted by invitation and authority closes the decision.",
+      "commonMisread": "A weak run would tell leaders to listen to feedback, missing the equal danger of open advice lowering respect and secretiveness producing irresolution.",
+      "mustUseTerms": ["flatterers", "wise men", "truth", "counsel", "Maximilian", "Fra Luca", "steadfast", "wisdom"],
+      "mustNotDriftInto": ["feedback culture", "always be transparent", "committee decision making"]
+    },
+    {
+      "number": 24,
+      "chapterId": "the-prince-ch24",
+      "title": "Why the Princes of Italy Have Lost Their States",
+      "sourcePressure": "Italian rulers lost states because of defects already named: bad arms, hostile people, unsecured nobles, and sloth in quiet times, then blaming fortune and hoping restoration would come from others.",
+      "coreMove": "Treat loss as the result of neglected foundations, not bad luck.",
+      "commonMisread": "A weak run would write about failure or resilience in general, missing the indictment of arms, people, nobles, quiet-time sloth, flight, and dependence on restoration.",
+      "mustUseTerms": ["Italian princes", "King of Naples", "Duke of Milan", "arms", "people", "nobles", "sloth", "fortune"],
+      "mustNotDriftInto": ["failure memoir", "motivation after loss", "luck versus effort cliche"]
+    },
+    {
+      "number": 25,
+      "chapterId": "the-prince-ch25",
+      "title": "What Fortune Can Effect in Human Affairs and How to Withstand Her",
+      "sourcePressure": "Fortune controls part of events like a flood, but preparation builds barriers, and success depends on matching one's mode of action to the times rather than remaining trapped in a temperament that used to work.",
+      "coreMove": "Prepare against chance and change style when the times change.",
+      "commonMisread": "A weak run would write either fatalism or hustle optimism, missing the dual lesson of barriers before flood and method fitted to circumstances.",
+      "mustUseTerms": ["fortune", "free will", "raging river", "barriers", "times", "caution", "impetuous", "Pope Julius II"],
+      "mustNotDriftInto": ["manifesting luck", "stoicism", "adaptability slogan"]
+    },
+    {
+      "number": 26,
+      "chapterId": "the-prince-ch26",
+      "title": "An Exhortation to Liberate Italy from the Barbarians",
+      "sourcePressure": "The closing exhortation argues that Italy's humiliation has created the opportunity for a Medici prince to found a new order, raise native arms, exploit the defects of foreign infantry, and become liberator.",
+      "coreMove": "Recognize a national crisis as the founding opportunity that requires owned arms and a new order.",
+      "commonMisread": "A weak run would write patriotic uplift, missing the concrete return of earlier mechanisms: opportunity, own forces, military design, leadership, and Italy's fragmented suffering.",
+      "mustUseTerms": ["Italy", "Medici", "new order", "Moses", "Cyrus", "own forces", "foreign infantry", "Petrarch"],
+      "mustNotDriftInto": ["generic nationalism", "inspirational finale", "abstract hope without arms"]
+    }
+  ]
+}

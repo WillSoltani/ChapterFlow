@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch36",
+  "number": 36,
+  "title": "Life as a Story",
+  "coreMove": "design and judge experiences knowing the remembered story will overweight peaks and endings",
+  "sourcePressure": "shows that remembered lives are shaped by peaks and endings more than by duration",
+  "chapterSpecificMisunderstanding": "telling readers memories are false instead of showing narrative compression",
+  "sourceAlignmentTerms": [
+    "peak-end rule",
+    "duration neglect",
+    "remembered utility",
+    "story",
+    "ending",
+    "peak"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Life as a Story",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just scrapbooking nostalgia"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about scrapbooking nostalgia",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "tax fraud review unit facing a decision distorted by peak-end rule",
+      "audience": "a lead or reviewer who must design and judge experiences knowing the remembered story will overweight peaks and endings while others want the quick answer",
+      "stakes": "the visible call will go wrong unless peak-end rule is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "the scene shows the before call written on the tax audit worksheet labeled peak-end rule, then the after call once the person performs the chapter move instead of trusting the original feeling",
+      "firstImage": "You are looking at the tax audit worksheet labeled peak-end rule while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "tax audit worksheet labeled peak-end rule",
+        "peak-end rule",
+        "duration neglect"
+      ],
+      "mustAvoid": [
+        "turning the scene into scrapbooking nostalgia",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "commercial bakery proofing area facing a decision distorted by peak-end rule",
+      "audience": "a lead or reviewer who must design and judge experiences knowing the remembered story will overweight peaks and endings while others want the quick answer",
+      "stakes": "the visible call will go wrong unless peak-end rule is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "the protagonist pauses with the proofing basket label labeled duration neglect in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable",
+      "firstImage": "What would change if the proofing basket label labeled duration neglect stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "proofing basket label labeled duration neglect",
+        "peak-end rule",
+        "remembered utility"
+      ],
+      "mustAvoid": [
+        "turning the scene into scrapbooking nostalgia",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "avalanche forecasting hut facing a decision distorted by peak-end rule",
+      "audience": "a lead or reviewer who must design and judge experiences knowing the remembered story will overweight peaks and endings while others want the quick answer",
+      "stakes": "the visible call will go wrong unless peak-end rule is separated from the tempting but weaker cue",
+      "format": "dialogue",
+      "requiredBeat": "the reader is asked to imagine signing the utility snow-pit ruler labeled remembered utility twice, once from the first impression and once after applying peak-end rule, then compare the two commitments",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the utility snow-pit ruler labeled remembered utility between the two choices.",
+      "mustInclude": [
+        "utility snow-pit ruler labeled remembered utility",
+        "peak-end rule",
+        "story"
+      ],
+      "mustAvoid": [
+        "turning the scene into scrapbooking nostalgia",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "library rare-books desk facing a decision distorted by peak-end rule",
+      "audience": "a lead or reviewer who must design and judge experiences knowing the remembered story will overweight peaks and endings while others want the quick answer",
+      "stakes": "the visible call will go wrong unless peak-end rule is separated from the tempting but weaker cue",
+      "format": "decision_point",
+      "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the rare-book cradle strap labeled story, then chooses only after both are visible",
+      "firstImage": "It took three passes before the reviewer saw what the rare-book cradle strap labeled story had been making too easy.",
+      "mustInclude": [
+        "rare-book cradle strap labeled story",
+        "peak-end rule",
+        "ending"
+      ],
+      "mustAvoid": [
+        "turning the scene into scrapbooking nostalgia",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "factory quality cage facing a decision distorted by peak-end rule",
+      "audience": "a lead or reviewer who must design and judge experiences knowing the remembered story will overweight peaks and endings while others want the quick answer",
+      "stakes": "the visible call will go wrong unless peak-end rule is separated from the tempting but weaker cue",
+      "format": "predict_reveal",
+      "requiredBeat": "the trainee must move the caliper inspection tag labeled ending from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence",
+      "firstImage": "The decision station is quiet except for the caliper inspection tag labeled ending beside the unfinished call.",
+      "mustInclude": [
+        "caliper inspection tag labeled ending",
+        "peak-end rule",
+        "peak"
+      ],
+      "mustAvoid": [
+        "turning the scene into scrapbooking nostalgia",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "neon sign repair shop facing a decision distorted by peak-end rule",
+      "audience": "a lead or reviewer who must design and judge experiences knowing the remembered story will overweight peaks and endings while others want the quick answer",
+      "stakes": "the visible call will go wrong unless peak-end rule is separated from the tempting but weaker cue",
+      "format": "postmortem",
+      "requiredBeat": "the supervisor circles the alluring detail on the neon transformer tube labeled peak, crosses it out, and asks for the boring comparison that the chapter says must come first",
+      "firstImage": "The first thing in the room is the texture of the neon transformer tube labeled peak, not the person's opinion about it.",
+      "mustInclude": [
+        "neon transformer tube labeled peak",
+        "peak-end rule",
+        "peak"
+      ],
+      "mustAvoid": [
+        "turning the scene into scrapbooking nostalgia",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: design and judge experiences knowing the remembered story will overweight peaks and endings",
+      "choose the correction that fits peak-end rule rather than a generic careful-thinking answer",
+      "distinguish Life as a Story from nearby drift into scrapbooking nostalgia",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When a number, story, or feeling pulls your answer today, write what it is pulling you toward and the chapter-specific correction that should pull back.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

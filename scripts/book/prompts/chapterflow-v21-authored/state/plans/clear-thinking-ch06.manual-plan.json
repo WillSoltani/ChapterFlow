@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch06",
+  "number": 6,
+  "title": "Default to Clarity",
+  "coreMove": "Design the next clear response before the next pressured moment asks for it.",
+  "sourcePressure": "The pivot from diagnosis to design: build conditions before pressure arrives so space, environment, positioning, and deliberate defaults make clear action easier than reactive action.",
+  "chapterSpecificMisunderstanding": "Treating clarity as a mood, value, or motivational preference rather than an engineered default.",
+  "sourceAlignmentTerms": [
+    "default to clarity",
+    "environment",
+    "positioning",
+    "deliberate defaults",
+    "space before response",
+    "options",
+    "willpower"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "environment shapes choices more than willpower alone",
+      "detail": "Farnam Street podcast support says environment shapes choices more than willpower alone and positioning widens options",
+      "useIn": "both",
+      "phrasingHint": "A good environment makes the clear move easier to find before willpower has to bargain for it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for default to clarity",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think default to clarity is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Etienne",
+      "domain": "a freight brokerage night shift",
+      "audience": "a reader facing default to clarity in a concrete freight brokerage night shift decision",
+      "stakes": "whether Etienne preserves judgment quality before the situation slides into vision statements",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Etienne performs the chapter move by setting the foam model beside the review sheet, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the foam model against the counter in the freight brokerage night shift",
+      "mustInclude": [
+        "foam model",
+        "review sheet"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "vision statements",
+        "reusing a previous chapter's freight brokerage night shift shell"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "a home health medication route",
+      "audience": "a reader facing default to clarity in a concrete home health medication route decision",
+      "stakes": "whether Mathieu preserves judgment quality before the situation slides into vision statements",
+      "format": "reflection",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Mathieu performs the chapter move by setting the annotated manuscript beside the referee note, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the home health medication route as Mathieu reaches for the annotated manuscript",
+      "mustInclude": [
+        "annotated manuscript",
+        "referee note"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "vision statements",
+        "reusing a previous chapter's home health medication route shell"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "a rowing club launch dock",
+      "audience": "a reader facing default to clarity in a concrete rowing club launch dock decision",
+      "stakes": "whether Nicolas preserves judgment quality before the situation slides into vision statements",
+      "format": "thought_experiment",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nicolas performs the chapter move by setting the burn-rate slide beside the customer email, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the customer email in the rowing club launch dock",
+      "mustInclude": [
+        "burn-rate slide",
+        "customer email"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "vision statements",
+        "reusing a previous chapter's rowing club launch dock shell"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "a tax office intake table",
+      "audience": "a reader facing default to clarity in a concrete tax office intake table decision",
+      "stakes": "whether Antoine preserves judgment quality before the situation slides into vision statements",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Antoine performs the chapter move by setting the sign-in sheet beside the folding chairs, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the sign-in sheet lying beside the folding chairs in the tax office intake table",
+      "mustInclude": [
+        "sign-in sheet",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "vision statements",
+        "reusing a previous chapter's tax office intake table shell"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "a hotel housekeeping board",
+      "audience": "a reader facing default to clarity in a concrete hotel housekeeping board decision",
+      "stakes": "whether Vincent preserves judgment quality before the situation slides into vision statements",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Vincent performs the chapter move by setting the case notes beside the scan image, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the scan image in the hotel housekeeping board",
+      "mustInclude": [
+        "case notes",
+        "scan image"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "vision statements",
+        "reusing a previous chapter's hotel housekeeping board shell"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "a library holds shelf",
+      "audience": "a reader facing default to clarity in a concrete library holds shelf decision",
+      "stakes": "whether Julien preserves judgment quality before the situation slides into vision statements",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Julien performs the chapter move by setting the sheet music beside the audition list, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the sheet music in the library holds shelf",
+      "mustInclude": [
+        "sheet music",
+        "audition list"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "vision statements",
+        "reusing a previous chapter's library holds shelf shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Design the next clear response before the next pressured moment asks for it.",
+      "detect the weak generic version: Treating clarity as a mood, value, or motivational preference rather than an engineered default.",
+      "distinguish default to clarity from nearby drift into vision statements"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where default to clarity is active, then write the exact next visible move that would perform this chapter's move: design the next clear response before the next pressured moment asks for it.",
+  "readingTimeMinutes": 12
+}

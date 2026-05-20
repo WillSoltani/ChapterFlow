@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch10",
+  "number": 10,
+  "title": "Grow",
+  "readingTimeMinutes": 12,
+  "hook": "The streak counter stuck at day two is not asking for more ads.",
+  "counterintuition": "Growth is not one scoreboard, but three machines. The team wastes effort when it tunes referrals, retention, or paid acquisition without knowing which engine is weak.",
+  "tryThisNow": "Name your current growth engine as sticky, viral, or paid. Then write the one variable that would prove that engine is getting stronger this week.",
+  "keyTakeaway": "Diagnose the growth engine first, then tune the variable that makes retention, referral, or paid acquisition sustainable.",
+  "breakdown": {
+    "fastRead": "Hannah sees a streak counter stuck at day two. The language app team wants more acquisition spend. The retention cohort says learners leave before the habit forms.\n\nThis is a sticky engine problem, not an ad problem.\n\nGrowth stops being a wish once the team can say whether retention, referral, or paid acquisition is the machine. A sticky engine needs return behavior. A viral engine needs users to bring users. A paid engine needs subscriber value to exceed acquisition cost. Without the engine, growth talk is just weather.",
+    "deepRead": "\"One guest pass after class,\" Diego says, standing near a basket of cards and sweaty towels. The fitness studio dreams about referrals. The referral tally is blank. A viral engine does not exist because members are happy; it exists when the product gives members a reason and a moment to bring someone else.\n\nA growth number without a mechanism is just weather reported after the fact.\n\nEach engine has a different variable. Sticky growth asks whether people stay, return, renew, or build a habit. Viral growth asks whether one user reliably creates another. Paid growth asks whether the value of a customer can support the cost of acquiring that customer. The team wastes effort when it tunes the wrong variable.\n\nMore users can make a weak engine look alive for a while. The leak is still there.\n\nThe practical question is not how do we grow. It is which machine are we tuning, and what number shows that it is getting stronger?\n\nMaren sees the same split in a meal-kit retention review. The freezer inventory is full, the coupon report looks healthy, and a referral script is ready. She stops the team before it launches all three moves. If families try once and leave, retention is the engine to inspect. If loyal families never invite neighbors, referral is the weak gear. If ads cost more than repeat orders can repay, paid growth is the problem. One engine gets the next test, not every hopeful tactic at once.",
+    "fullRead": "Marit's ad dashboard sits next to a subscriber revenue sheet. The solo newsletter has a clever campaign ready, and the ad spend is tempting. She calculates the paid engine first: cost per subscriber, subscriber value, and the payback window. If the value cannot support the spend, more campaigns only buy a larger problem.\n\nThat calculation turns growth from hope into mechanism.\n\nSticky, viral, and paid growth engines hide three different jobs. Sticky growth depends on keeping people long enough that each new user adds to a durable base. Viral growth depends on users pulling others in as part of normal use. Paid growth depends on buying attention at a cost the business can recover. A team cannot optimize all three at once with the same tactics. It has to diagnose the engine before tuning variables.\n\nWhich variable, if it moved, would make growth more sustainable instead of merely larger?\n\nOlivier faces this in B2B inventory software. A sales pipeline board is covered with sticky notes, and the room keeps saying expansion. He asks whether the bottleneck is demos booked or implementation success. If customers book demos but fail implementation, the engine is not helped by more leads. If implementation succeeds but demos are scarce, the variable is different. Growth talk becomes useful only when the bottleneck is named.\n\nThis is where generic marketing advice does damage. It treats growth as a demand for more: more users, more traffic, more campaigns, more reach. But Sustainable growth is not just an upward line. It is an engine whose inputs and outputs can be tuned. If churn is high, acquisition may feed a leaking bucket. If referrals are weak, delight alone may not create sharing. If paid acquisition costs too much, spending more only accelerates the loss.\n\nAdaeze learns that after a car-share campaign. The key locker holds unused fobs, and the poster budget looks easy to spend. In the postmortem, she studies repeat bookings by cohort before printing more posters. Membership growth may depend on retention, not awareness. A sticky engine asks whether members come back to book again.\n\nThere are hybrids, of course. A business may eventually use more than one engine. Early on, though, diagnosis matters because focus matters. The team needs to know which variable deserves attention now. The wrong variable can improve while the business stays fragile.\n\nMartin sees the split in a children's dental subscription. A toothbrush sample bag sits beside a membership form, and an offer code brings parents in. Before, the clinic group celebrated paid acquisition. After the visit cohort showed families leaving after the first appointment, he separated acquisition from sticky visit behavior. The paid offer could fill the front door while the back door stayed open.\n\nGrowth is a machine before it is a number. Find the machine, then tune the part that actually turns."
+  },
+  "examples": [
+    {
+      "exampleId": "ch10-ex01-thomas-language",
+      "title": "Thomas Tunes the Day-Three Return",
+      "tags": [
+        "scene",
+        "subscription",
+        "retention"
+      ],
+      "planSpec": {
+        "domain": "language app retention engine",
+        "audience": "consumer subscription team",
+        "stakes": "acquisition spend is waste if learners churn after day three",
+        "format": "scene",
+        "requiredBeat": "Hannah identifies sticky growth and tunes the day-three return loop"
+      },
+      "scenario": "At 9:50 a.m. Thursday, Thomas watches a streak counter stuck at day two while the retention cohort sits open beside a draft streak reminder. The team wants to raise acquisition spend after a strong download week. Before the budget call, she must choose between buying more learners and tuning the day-three return loop with a lesson unlock. The streak chart tells Thomas whether the sticky engine is leaking before any new download budget is approved.",
+      "whatToDo": "Name sticky growth as the engine and tune the day-three return loop. Test whether a streak reminder and lesson unlock improve retention before buying more users.",
+      "whyItMatters": "Acquisition spend is waste if learners churn before day three. Sticky growth depends on return behavior, not download volume."
+    },
+    {
+      "exampleId": "ch10-ex02-mathieu-fitness",
+      "title": "Mathieu Tests One Guest-Pass Moment",
+      "tags": [
+        "dialogue",
+        "fitness",
+        "referral"
+      ],
+      "planSpec": {
+        "domain": "community fitness referral loop",
+        "audience": "studio owner",
+        "stakes": "referral dreams fail if members lack a reason to bring friends",
+        "format": "dialogue",
+        "requiredBeat": "Diego tests a viral engine with one guest-pass moment after class"
+      },
+      "scenario": "At 7:15 p.m. after class, Mathieu stands near the fitness studio towel cart with a basket of guest-pass cards and the referral tally open on the front desk tablet. As studio manager, he hears members say they love the class, but no guest names have appeared. Before printing more cards, he has to choose between celebrating satisfaction and testing whether one guest pass after class creates another member. The guest-pass basket is useful only if the tally shows members creating other members in a repeatable moment.",
+      "whatToDo": "Hand guest passes at class checkout and track the referral tally. Test the viral engine at the moment members are most likely to invite someone.",
+      "whyItMatters": "Happy members do not automatically create referrals. The guest-pass moment tests whether the studio has a mechanism for one member to bring another."
+    },
+    {
+      "exampleId": "ch10-ex03-marit-newsletter",
+      "title": "Marit Calculates the Paid Engine",
+      "tags": [
+        "vignette",
+        "media",
+        "paid growth"
+      ],
+      "planSpec": {
+        "domain": "paid newsletter acquisition math",
+        "audience": "solo media founder",
+        "stakes": "paid ads can scale only if subscriber value exceeds acquisition cost",
+        "format": "vignette",
+        "requiredBeat": "Marit calculates the paid engine before buying another campaign"
+      },
+      "scenario": "Marit studies the ad dashboard beside a subscriber revenue sheet while the payback window glows in the spreadsheet. The last campaign brought attention, and another ad spend line is ready. Her cursor pauses over buy. She has to decide whether to purchase the campaign now or calculate whether subscriber value can support the cost. The revenue sheet has to prove paid growth can repay itself before attention becomes an expensive habit.",
+      "whatToDo": "Calculate acquisition cost, subscriber value, and payback window before buying the campaign. Spend only if the paid engine can recover the cost.",
+      "whyItMatters": "Paid ads scale only when customer value supports the spend. Otherwise growth is just a larger bill attached to a weak engine."
+    },
+    {
+      "exampleId": "ch10-ex04-olivier-inventory",
+      "title": "Olivier Names the Sales Bottleneck",
+      "tags": [
+        "decision point",
+        "B2B",
+        "sales"
+      ],
+      "planSpec": {
+        "domain": "B2B inventory software expansion",
+        "audience": "sales leadership team",
+        "stakes": "growth talk is useless until the sales cycle variable is named",
+        "format": "decision_point",
+        "requiredBeat": "Olivier chooses whether demos booked or implementation success is the engine bottleneck"
+      },
+      "scenario": "You are with Olivier beside a sales pipeline board covered in sticky notes. The demo metric looks strong, but the implementation metric has three red flags. Leadership wants a bigger sales push. Before the expansion plan is approved, Olivier needs to decide whether demos booked or implementation success is the bottleneck in the growth engine. The implementation flags show Olivier that more demos may feed a broken handoff instead of fixing growth.",
+      "whatToDo": "Name the bottleneck before expanding sales. Compare demos booked with implementation success, then tune the variable that actually limits growth.",
+      "whyItMatters": "Growth talk is useless until the engine variable is named. More demos will not help if failed implementation is what stops expansion."
+    },
+    {
+      "exampleId": "ch10-ex05-adaeze-car-share",
+      "title": "Adaeze Studies Repeat Bookings First",
+      "tags": [
+        "postmortem",
+        "mobility",
+        "retention"
+      ],
+      "planSpec": {
+        "domain": "neighborhood car-share service",
+        "audience": "mobility cooperative",
+        "stakes": "membership growth may depend on retention, not flyers",
+        "format": "postmortem",
+        "requiredBeat": "Adaeze studies repeat bookings before printing more posters"
+      },
+      "scenario": "It took Adaeze one quiet key locker to question the poster budget. Unused fobs hung in rows, the booking cohort report was late, and the key locker log showed members trying the service once. In the postmortem, she studies repeat bookings before printing more posters for the car-share campaign. The repeat-booking cohort decides whether posters are solving awareness or hiding a retention leak.",
+      "whatToDo": "Check repeat bookings by cohort before spending the poster budget. Treat retention as the engine until members prove they return.",
+      "whyItMatters": "Membership growth may depend on habit, not awareness. More flyers can fill the top while unused fobs reveal the sticky engine is weak."
+    },
+    {
+      "exampleId": "ch10-ex06-martin-dental",
+      "title": "Martin Separates Offer Codes From Visit Habits",
+      "tags": [
+        "before after",
+        "dental",
+        "subscription"
+      ],
+      "planSpec": {
+        "domain": "children's dental subscription",
+        "audience": "clinic group",
+        "stakes": "parents may join through paid offers but leave without appointment habit",
+        "format": "before_after",
+        "requiredBeat": "Vincent separates paid acquisition from sticky visit behavior"
+      },
+      "scenario": "Martin sets a toothbrush sample bag beside a membership form and a bright offer code. Before, Martin's clinic group celebrated paid signups from the promotion. After the visit cohort shows families missing second appointments, he separates paid acquisition from sticky visit behavior and changes the next test toward appointment habit. The second-visit cohort tells Martin whether acquisition is filling a front door while the back door stays open.",
+      "whatToDo": "Track the visit cohort separately from offer-code signups. Tune the reminder and scheduling loop before treating paid acquisition as sustainable growth.",
+      "whyItMatters": "Parents can join through an offer and still leave after one visit. The engine is not sustainable unless the visit habit forms."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team says it needs more growth but cannot say whether retention, referral, or paid acquisition drives the business. What is the first problem?",
+        "choices": [
+          "It has not diagnosed the growth engine it is trying to tune.",
+          "It has not spent enough on marketing.",
+          "It has not made the growth chart visible enough."
+        ],
+        "correctIndex": 0,
+        "explanation": "Growth becomes manageable only after the engine is named. More marketing or better charts can distract from the missing mechanism.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A fitness studio has high class ratings and a basket of guest passes, but the referral tally is blank after two weeks. The owner wants to buy more ads anyway. Which growth engine should be tested first?",
+        "choices": [
+          "Paid engine, cost per click.",
+          "Sticky engine, day-three return behavior.",
+          "Viral engine, social share count."
+        ],
+        "correctIndex": 1,
+        "explanation": "The leak is retention, so the sticky engine is the first diagnosis. Paid acquisition and sharing do not solve a habit that fails by day three.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A newsletter founder can buy subscribers through ads, but her revenue sheet shows each subscriber may be worth less than the acquisition cost. Before increasing spend, what should she calculate?",
+        "choices": [
+          "Buy more local ads for the same class schedule.",
+          "Ask staff to mention community more often.",
+          "Run a guest-pass moment after class and track invitations."
+        ],
+        "correctIndex": 2,
+        "explanation": "A guest-pass moment tests whether one member creates another. Ads are paid acquisition, and staff language is too indirect.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A car-share service sees new memberships rise after a poster campaign, while repeat bookings by new members stay weak. Which engine problem is most likely being hidden by the top-line growth?",
+        "choices": [
+          "Whether subscriber value exceeds acquisition cost within a reasonable payback window.",
+          "Whether the ad headline sounds more polished than last month.",
+          "Whether social followers liked the campaign preview."
+        ],
+        "correctIndex": 0,
+        "explanation": "Paid growth works only when customer value can carry acquisition cost. Polish and social preview reactions do not prove the paid engine.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A B2B software team says it needs more leads, but implementation data shows most customers fail to complete setup after the demo. What should the team diagnose before expanding outreach?",
+        "choices": [
+          "Demo volume, because more demos produce more chances.",
+          "Implementation success, because it is the bottleneck after demos.",
+          "Website traffic, because awareness starts the sales cycle."
+        ],
+        "correctIndex": 1,
+        "explanation": "The engine is blocked after demos, so adding demos may only create more failed handoffs. Implementation success is the limiting variable.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A car-share cooperative wants to print more posters, but members rarely book a second ride. Why might posters be the wrong next lever?",
+        "choices": [
+          "Printed posters never work for local services.",
+          "The cooperative should avoid growth until every car is new.",
+          "The growth problem appears to be retention, not awareness."
+        ],
+        "correctIndex": 2,
+        "explanation": "The repeat-booking data points to a sticky engine issue. Posters can bring awareness, but they do not fix members leaving after one use.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A dental subscription campaign brings parents in with an offer code, but visit cohorts show families leave after the first appointment. Which conclusion best fits the growth-engine lens?",
+        "choices": [
+          "Paid acquisition is working while sticky visit behavior may be failing.",
+          "The clinic should stop all paid offers forever.",
+          "Parents only care about free toothbrush samples."
+        ],
+        "correctIndex": 0,
+        "explanation": "Offer-code signups and repeat visits are different variables. The team must separate paid acquisition from the sticky habit that sustains the subscription.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team improves referral invites while churn is rising and paid acquisition is unprofitable. What is the analysis problem?",
+        "choices": [
+          "It should always tune referral first because viral growth is cheapest.",
+          "It may be tuning one engine variable while the actual bottleneck sits in another engine.",
+          "It should ignore churn until referral growth is stable."
+        ],
+        "correctIndex": 1,
+        "explanation": "The team needs engine diagnosis before optimization. Referral improvements may be real but irrelevant if retention or paid economics are the binding constraint.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team has budget for one growth experiment: reduce churn after first use, add a share button, or buy ads. Current data shows users love the first use but never return. Which experiment is best?",
+        "choices": [
+          "Buy ads to increase the top of the funnel.",
+          "Add the share button to create viral lift.",
+          "Reduce churn after first use because the sticky engine is leaking."
+        ],
+        "correctIndex": 2,
+        "explanation": "The data shows a retention leak, so sticky growth is the engine to tune. Ads and sharing add more users to a system that fails to keep them.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What are the three growth engines named here?",
+      "back": "Sticky growth keeps users returning. Viral growth turns users into a source of new users. Paid growth buys customers at a cost the business can recover.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is more marketing not always the answer to growth?",
+      "back": "The engine may be retention, referral, or paid economics. Marketing spend can worsen waste if the real leak is churn, failed implementation, or weak unit economics.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How do you spot a sticky engine problem?",
+      "back": "Look for users who try once and fail to return, renew, complete the next visit, or build a habit. The key variable is repeat behavior.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What has to be true for paid growth to scale?",
+      "back": "Customer value has to exceed acquisition cost within a payback window the business can survive. Otherwise paid growth buys losses.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A team says growth is up. What should you ask next?",
+      "back": "Ask which engine is improving and which variable moved. A general upward graph is less useful than knowing whether retention, referral, or paid acquisition got stronger.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to diagnose growth before optimizing it. The skill is naming the engine and tuning the variable that makes growth sustainable rather than merely larger.",
+    "ifThenPlans": [
+      {
+        "context": "growth planning",
+        "plan": "If someone asks for more users, then first name whether the engine is sticky, viral, or paid."
+      },
+      {
+        "context": "subscription product",
+        "plan": "If churn is high after the first use, then pause acquisition spend and test the return behavior, reminder, or core habit before buying more users."
+      },
+      {
+        "context": "referral program",
+        "plan": "If the team expects users to invite others, then create one specific referral moment and track completed invitations."
+      },
+      {
+        "context": "paid campaigns",
+        "plan": "If ad spend is proposed, then calculate customer value, acquisition cost, and payback before approving the campaign."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, write the growth engine for one project and the single variable that would prove it is getting stronger this week.",
+    "weeklyPractice": "Each week, review one growth metric and ask which engine it belongs to. Stop tuning variables that do not match the engine currently limiting the business."
+  },
+  "memorableLines": [
+    {
+      "text": "This is a sticky engine problem, not an ad problem.",
+      "location": "breakdown.fastRead",
+      "why": "It shows how engine diagnosis changes the next move."
+    },
+    {
+      "text": "More users can make a weak engine look alive for a while.",
+      "location": "breakdown.deepRead",
+      "why": "It warns against acquisition masking retention weakness."
+    },
+    {
+      "text": "Growth is a machine before it is a number.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the source's mechanism-first view of growth."
+    }
+  ]
+}

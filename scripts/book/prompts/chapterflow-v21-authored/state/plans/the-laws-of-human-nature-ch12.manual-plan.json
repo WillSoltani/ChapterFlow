@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch12",
+  "number": 12,
+  "title": "Know Your Limits: The Law of Grandiosity",
+  "coreMove": "Deflate success-driven fantasy by forcing ambition through feedback, constraint, and scale tests before expansion.",
+  "sourcePressure": "This law keeps ambition and delusion in tension: success, praise, and insulation from feedback swell self-image until proportion fails.",
+  "chapterSpecificMisunderstanding": "Attacking confidence or ambition instead of showing how lost proportion turns vision reckless.",
+  "sourceAlignmentTerms": [
+    "grandiosity",
+    "success delusion",
+    "limits",
+    "feedback",
+    "proportion",
+    "practical grandiosity"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Know Your Limits: The Law of Grandiosity",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a food-truck owner trying to open three locations after one viral month",
+      "audience": "an operator intoxicated by sudden demand",
+      "stakes": "whether expansion breaks quality and cash",
+      "format": "decision_point",
+      "requiredBeat": "she places the viral sales chart beside prep-capacity numbers and removes two locations from the plan",
+      "firstImage": "a laminated truck menu beside a white cash-flow printout",
+      "mustInclude": [
+        "sales chart",
+        "prep-capacity sheet",
+        "lease proposal"
+      ],
+      "mustAvoid": [
+        "generic startup scaling"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a university esports captain overruling coaches after a tournament win",
+      "audience": "a young leader confusing momentum with invulnerability",
+      "stakes": "whether the team loses discipline before playoffs",
+      "format": "postmortem",
+      "requiredBeat": "after a loss, he maps every ignored scrim warning against the praise he kept rereading",
+      "firstImage": "a headset on top of a keyboard with worn WASD keys",
+      "mustInclude": [
+        "scrim notes",
+        "tournament clip",
+        "coach messages"
+      ],
+      "mustAvoid": [
+        "generic student leadership"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a boutique hotelier adding luxury amenities without fixing plumbing complaints",
+      "audience": "a business owner seduced by image upgrades",
+      "stakes": "whether reputation collapses under basic failures",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts guests will praise the rooftop lounge, then reads reviews that mention water pressure before decor",
+      "firstImage": "a brass room key beside a printed plumbing complaint",
+      "mustInclude": [
+        "guest reviews",
+        "plumbing ticket",
+        "amenity budget"
+      ],
+      "mustAvoid": [
+        "generic renovation story"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "a medical resident praised for speed who starts skipping checklists",
+      "audience": "a trainee whose identity outruns the system",
+      "stakes": "whether competence becomes dangerous",
+      "format": "dialogue",
+      "requiredBeat": "the attending asks her to read the missed checklist item aloud before discussing talent",
+      "firstImage": "a surgical checklist clipped to a blue clipboard",
+      "mustInclude": [
+        "checklist",
+        "case timer",
+        "attending note"
+      ],
+      "mustAvoid": [
+        "generic healthcare hero scene"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a local theater director staging an impossible production after one hit",
+      "audience": "an artist who mistakes applause for infinite capacity",
+      "stakes": "whether volunteers burn out and the production fails",
+      "format": "before_after",
+      "requiredBeat": "after seeing the build schedule, he cuts the rotating set and keeps the emotional center of the play",
+      "firstImage": "a scale model of a rotating set stuck halfway around",
+      "mustInclude": [
+        "scale model",
+        "build schedule",
+        "volunteer roster"
+      ],
+      "mustAvoid": [
+        "generic theater ambition"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a nonprofit founder invited onto panels after a successful pilot",
+      "audience": "a mission leader risking drift into self-mythology",
+      "stakes": "whether the organization serves clients or the founder's image",
+      "format": "reflection",
+      "requiredBeat": "she compares panel travel days with client waitlist numbers and cancels the trip that feeds reputation more than mission",
+      "firstImage": "a conference lanyard lying across a waitlist spreadsheet",
+      "mustInclude": [
+        "conference lanyard",
+        "waitlist spreadsheet",
+        "pilot results"
+      ],
+      "mustAvoid": [
+        "generic public speaking"
+      ],
+      "openingDevice": "sensory_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish ambition from inflated self-image",
+      "use feedback as a proportion test",
+      "notice insulation after success"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before expanding one plan, ask the most skeptical qualified person to name the limit you are currently refusing to price.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Michael Eisner",
+      "detail": "the source uses Eisner as the central success-to-overreach anchor, showing early success feeding inflated special insight and control",
+      "useIn": "both",
+      "phrasingHint": "Michael Eisner shows how success can stop feeling like evidence and start feeling like exemption."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

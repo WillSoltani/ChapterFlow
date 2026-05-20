@@ -1,0 +1,204 @@
+{
+  "chapterId": "the-lean-startup-ch07",
+  "number": 7,
+  "title": "Measure",
+  "coreMove": "Convert impressive numbers into decision-ready measurements that show whether a specific engine is improving.",
+  "sourcePressure": "Innovation accounting replaces vanity metrics with actionable, accessible, auditable evidence built from baselines, cohorts, and tuning the engine before pivot-or-persevere decisions.",
+  "chapterSpecificMisunderstanding": "Using bigger dashboards, totals, or celebratory growth charts as proof of progress.",
+  "sourceAlignmentTerms": [
+    "innovation accounting",
+    "vanity metrics",
+    "actionable metrics",
+    "accessible metrics",
+    "auditable metrics",
+    "baseline",
+    "cohort analysis",
+    "tuning the engine"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Innovation accounting",
+      "detail": "the sidecar says it replaces vanity metrics with actionable, accessible, auditable measurement",
+      "useIn": "both",
+      "phrasingHint": "Innovation accounting makes the number answerable: what decision can this metric improve, and could someone trace how it was made?"
+    },
+    {
+      "kind": "artifact",
+      "name": "Cohort analysis",
+      "detail": "the sidecar names cohort analysis as part of baseline measurement",
+      "useIn": "deepRead",
+      "phrasingHint": "A cohort line can reveal that yesterday's users behave differently from last month's, even while the total keeps rising."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Measure.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "mobile banking onboarding cohorts",
+      "audience": "fintech analytics team",
+      "stakes": "total signups could hide whether new users activate better",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Megan splits users by signup week before accepting the launch metric",
+      "firstImage": "a dashboard with one steep total line",
+      "mustInclude": [
+        "cohort table",
+        "activation event",
+        "baseline week"
+      ],
+      "mustAvoid": [
+        "generic measure office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "online course completion dashboard",
+      "audience": "education platform",
+      "stakes": "enrollment growth may conceal falling completion",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Henrik replaces the vanity chart with cohort completion curves",
+      "firstImage": "a projector showing a full enrollment bar",
+      "mustInclude": [
+        "completion cohorts",
+        "first lesson event",
+        "refund note"
+      ],
+      "mustAvoid": [
+        "generic measure office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "clinic portal adoption report",
+      "audience": "hospital IT group",
+      "stakes": "login totals may not show whether patients complete the intended task",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anke traces one patient cohort from signup to lab-result viewing",
+      "firstImage": "a lab-result icon on a patient portal screen",
+      "mustInclude": [
+        "login logs",
+        "lab-result event",
+        "audit trail"
+      ],
+      "mustAvoid": [
+        "generic measure office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "marketplace seller retention",
+      "audience": "recommerce startup",
+      "stakes": "listing counts may rise while first-time sellers never return",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ryan builds an auditable baseline for second listings",
+      "firstImage": "a garment rack with handwritten seller tags",
+      "mustInclude": [
+        "seller cohort",
+        "second-listing metric",
+        "baseline export"
+      ],
+      "mustAvoid": [
+        "generic measure office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "library e-card campaign",
+      "audience": "public library team",
+      "stakes": "card creation totals may not prove borrowing behavior",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Catarina measures borrowing by signup cohort before expanding ads",
+      "firstImage": "a stack of temporary library cards",
+      "mustInclude": [
+        "ecard campaign",
+        "borrow event",
+        "ad spend limit"
+      ],
+      "mustAvoid": [
+        "generic measure office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "fleet maintenance app",
+      "audience": "transport company",
+      "stakes": "download counts may impress while mechanics ignore the workflow",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Luke asks mechanics to verify the metric trail from install to completed inspection",
+      "firstImage": "a tablet mounted beside a service bay",
+      "mustInclude": [
+        "install log",
+        "inspection event",
+        "mechanic initials"
+      ],
+      "mustAvoid": [
+        "generic measure office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Measure from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Convert impressive numbers into decision-ready measurements that show whether a specific engine is improving.",
+      "Diagnose when a team is drifting into the misread: Using bigger dashboards, totals, or celebratory growth charts as proof of progress."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Convert impressive numbers into decision-ready measurements that show whether a specific engine is improving. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

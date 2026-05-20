@@ -1,0 +1,214 @@
+{
+  "chapterId": "the-12-week-year-ch03",
+  "number": 3,
+  "title": "The Emotional Connection",
+  "coreMove": "Tie the hard action to a felt future strong enough to beat comfort in the moment.",
+  "sourcePressure": "New actions are often uncomfortable, so abstract importance loses unless the reader has a compelling emotional stake in the outcome.",
+  "chapterSpecificMisunderstanding": "Turning vision into vague inspiration instead of an emotional lever for uncomfortable action.",
+  "sourceAlignmentTerms": [
+    "vision",
+    "emotional stake",
+    "comfort",
+    "uncomfortable actions",
+    "future",
+    "goals",
+    "compelling reason"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Your Brain and Vision",
+      "detail": "The source notes identify Your Brain and Vision as a chapter-map subhead.",
+      "useIn": "deepRead",
+      "phrasingHint": "Vision has to be close enough for the brain to feel the cost of quitting today."
+    },
+    {
+      "kind": "artifact",
+      "name": "emotional stake",
+      "detail": "The source notes say it is essential to have a strong emotional stake in the outcome.",
+      "useIn": "both",
+      "phrasingHint": "A goal without emotional stake loses the first time comfort offers a clean exit."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch03: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch03: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch03: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch03: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "diabetes prevention class attendance",
+      "audience": "a practitioner in diabetes prevention class attendance who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel links the uncomfortable class reminder to the future patient result.",
+      "firstImage": "folding chairs still stacked after class",
+      "mustInclude": [
+        "folding chairs still stacked after",
+        "vision",
+        "comfort"
+      ],
+      "mustAvoid": [
+        "generic the emotional connection explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "apprentice chef exam prep",
+      "audience": "a decision-maker in apprentice chef exam prep choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Thomas chooses the hard prep shift after naming the restaurant she wants.",
+      "firstImage": "a flour-dusted practical exam sheet",
+      "mustInclude": [
+        "a flour-dusted practical exam sheet",
+        "vision",
+        "comfort"
+      ],
+      "mustAvoid": [
+        "generic the emotional connection explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "family immigration paperwork plan",
+      "audience": "a team lead in family immigration paperwork plan who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Anna opens the folder and writes who benefits if the paperwork is finished.",
+      "firstImage": "passport photos clipped to a folder",
+      "mustInclude": [
+        "passport photos clipped to a",
+        "vision",
+        "comfort"
+      ],
+      "mustAvoid": [
+        "generic the emotional connection explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "product design certification",
+      "audience": "a reflective operator in product design certification reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Juliette ties exam practice to the job she wants by summer.",
+      "firstImage": "a certification syllabus with flagged pages",
+      "mustInclude": [
+        "a certification syllabus with flagged",
+        "vision",
+        "comfort"
+      ],
+      "mustAvoid": [
+        "generic the emotional connection explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "community orchestra audition prep",
+      "audience": "a reader in community orchestra audition prep comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Lukas plays the exposed passage after naming the audition room.",
+      "firstImage": "a mute beside marked sheet music",
+      "mustInclude": [
+        "a mute beside marked sheet",
+        "vision",
+        "comfort"
+      ],
+      "mustAvoid": [
+        "generic the emotional connection explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "Paris startup customer research",
+      "audience": "two colleagues in Paris startup customer research forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Aanya keeps the awkward customer interview because the product vision now has a face.",
+      "firstImage": "interview notes under a cafe receipt",
+      "mustInclude": [
+        "interview notes under a cafe",
+        "vision",
+        "comfort"
+      ],
+      "mustAvoid": [
+        "generic the emotional connection explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "connect discomfort to a meaningful future",
+      "distinguish vision from decoration",
+      "choose actions that need emotional fuel"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one avoided action, write the future person who benefits and the specific discomfort you are asking yourself to tolerate.",
+  "readingTimeMinutes": 12
+}

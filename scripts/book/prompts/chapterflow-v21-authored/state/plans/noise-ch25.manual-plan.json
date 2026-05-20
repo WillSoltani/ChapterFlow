@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch25",
+  "number": 25,
+  "title": "Heuristics Biases and Noise",
+  "coreMove": "Separate bias (the average directional lean that heuristics create) from noise (the scatter that heuristic sensitivity to context creates), because correcting one does not correct the other.",
+  "sourcePressure": "Cognitive heuristics — anchoring, availability, representativeness, affect — produce both predictable biases and noise. A heuristic applied under different contextual cues on different days produces scatter that looks random but is traceable to the heuristic's sensitivity to irrelevant salience features. Bias and noise are related but distinct problems that need different interventions: debiasing training targets average directional lean, but it does not reduce the scatter that heuristic context-sensitivity creates.",
+  "chapterSpecificMisunderstanding": "Thinking that debiasing training (which corrects systematic directional lean) also reduces noise, or treating noise as merely another name for bias expressed inconsistently.",
+  "sourceAlignmentTerms": ["heuristic", "bias", "noise", "anchoring", "availability", "affect heuristic", "context sensitivity", "scatter"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Heuristics as sources of both bias and noise in judgment research",
+      "detail": "Research on cognitive heuristics in the Kahneman-Tversky tradition documents systematic directional biases. The same research tradition — extended through noise audit studies — shows that heuristic sensitivity to irrelevant contextual features also produces substantial scatter: the anchoring heuristic, for instance, produces different numerical adjustments from the same anchor across occasions, generating noise even when the average adjustment is directionally biased.",
+      "useIn": "deepRead",
+      "phrasingHint": "Anchoring creates bias when every judge adjusts too little from an anchor. But anchoring creates noise when different judges adjust different amounts from the same anchor — or the same judge adjusts different amounts on different days. The directional problem and the scatter problem are both real. Only one of them goes away when you tell people about anchoring."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["your brain uses shortcuts — and they backfire in ways you have not noticed", "what Kahneman's heuristics research missed about noise"],
+    "counterintuition": ["debiasing training makes noise worse by shaking anchors loose without providing new ones", "knowing about a heuristic removes bias but amplifies scatter"],
+    "tryThisNow": ["name the heuristic that causes most noise in your work", "identify an anchor that biases your team's estimates"],
+    "examples": ["a scene where debiasing an anchor eliminates all forecasting disagreement — debiasing targets the directional lean, not the scatter", "a scene that presents heuristics as always producing predictable one-directional distortions, which misses the noise they also generate"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Heuristics-and-noise examples risk reading as a tour of named cognitive biases. The six domains must each show the same structure — heuristic context-sensitivity generating scatter independent of the directional lean — rather than simply naming which heuristic is active in which domain."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "equity analyst price target: a research quality team studying how anchoring to prior-period price targets produces both directional bias and inter-analyst scatter",
+      "audience": "a brokerage research quality officer studying why analysts covering the same stock produce different price targets from the same earnings release",
+      "stakes": "investor decisions and market credibility — a spread of 20 to 40 percent across price targets on the same company from the same information undermines investor reliance on research",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two research quality officers examine the price target distribution for the same stock over eight quarters: analysts anchor to their own prior-period target before adjusting for new earnings data, producing a directional bias (targets systematically under-react to new earnings news — bias); but the amount of adjustment from the anchor varies across analysts in ways unrelated to any information difference (one analyst adjusts 12 percent from anchor, another 31 percent — noise); debiasing analysts about their anchor-adjustment conservatism narrows the directional bias but does not reduce the inter-analyst spread",
+      "firstImage": "a scatter plot of analyst price targets for a single stock across eight quarters, with the prior-period average as a reference line — the targets spread around the average with no consistent information explanation for the spread",
+      "mustInclude": ["the bias component (systematic under-reaction to new earnings) and the noise component (variable adjustment amounts across analysts)", "the finding that debiasing reduces average under-reaction but leaves inter-analyst spread intact", "the quality officer's conclusion: two separate problems, two separate interventions needed"],
+      "mustAvoid": ["naming a specific company or stock", "a financial scandal or analyst fraud story"]
+    },
+    {
+      "domain": "refugee vulnerability triage: a resettlement agency studying how the affect heuristic produces both directional bias and inter-assessor scatter in vulnerability scoring",
+      "audience": "a resettlement agency quality director studying why assessors give different vulnerability scores to comparable cases",
+      "stakes": "who receives resettlement support priority — assessors who are emotionally engaged with specific case narratives consistently rate vulnerability higher; those who are fatigued or emotionally flat rate it lower, producing both a directional lean and substantial scatter",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the quality director reviews an assessor calibration exercise: assessors given case vignettes with emotionally vivid detail (affect-rich narratives) rate vulnerability on average 0.7 points higher than assessors given the same factual content in clinical language (directional bias from affect heuristic); but the same assessors also produce different ratings for the same vivid-narrative cases depending on their emotional state at the time of assessment (scatter from heuristic context-sensitivity — the 0.7-point average hides a 1.4-point range among individual assessors at the high-affect end)",
+      "firstImage": "a two-condition box-and-whisker plot: affect-rich vignettes on the left, clinical-language vignettes on the right — the left condition showing both a higher median (bias) and a wider box (noise) than the right",
+      "mustInclude": ["the 0.7-point average affect bias and the 1.4-point range at the high-affect end (noise)", "the mechanism: affect heuristic inflates average ratings (bias) and amplifies assessor-to-assessor variation (noise) simultaneously", "the director's conclusion: clinical-language framing reduces both bias and noise, not only the directional lean"],
+      "mustAvoid": ["a specific refugee's case", "a political framing of refugee assessment"]
+    },
+    {
+      "domain": "hurricane track forecast: a meteorological agency studying how availability heuristic effects produce both directional bias and forecast spread across forecasters",
+      "audience": "a forecast quality researcher studying inter-forecaster disagreement in seasonal hurricane track prediction",
+      "stakes": "emergency management resource pre-positioning and evacuation planning — forecasts that diverge by 100 miles or more in predicted landfall location produce conflicting official guidance",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality researcher reviews a post-season analysis: forecasters who had experienced a recent high-impact storm in a specific region gave landfall probability estimates for that region that were on average 12 percentage points higher than base rate probability (availability bias — recent events inflate perceived probability); but the deviation from base rate varied across forecasters from 5 to 23 percentage points depending on how proximate their prior experience with a high-impact storm was (availability-driven scatter — different recent experiences create different availability distortions, not just a common directional lean)",
+      "firstImage": "a forecast dispersion chart for a hurricane track study season, with forecaster estimates color-coded by their prior regional storm experience — more recent experience showing both higher average estimates and wider spread",
+      "mustInclude": ["the 12-point average directional bias and the 5-to-23 point range across forecasters (noise)", "the mechanism: recent experience inflates everyone's estimate (bias) but creates different inflation levels in different forecasters (noise)", "the researcher's implication: base-rate anchoring training reduces bias but inter-forecaster calibration exercises are needed to reduce the scatter"],
+      "mustAvoid": ["a specific hurricane disaster story", "implying forecasters should not use experiential knowledge in their assessments"]
+    },
+    {
+      "domain": "competitive figure skating judging: a sports federation studying how anchoring to the preceding skater's score produces directional bias and inter-judge score scatter",
+      "audience": "a sports federation judging standards director studying whether performance order affects score distribution independently of skater quality",
+      "stakes": "competitive outcome fairness — a skater who follows a high-scoring performance faces anchoring-inflated expectations that may suppress their score relative to the same performance in a different order position",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the director asks: if we reshuffle the performance order and compare scores for the same skaters across two competition runs, do we find only a directional bias (scores influenced by order position on average) or also noise (scores influenced by order position differently for different judges)? The answer from the study: average scores for skaters following a high-scoring predecessor are 0.3 points lower (bias from anchoring); but the suppression ranges from 0.1 to 0.6 points across individual judges for the same order condition (noise from different judges' susceptibility to the anchor)",
+      "firstImage": "a dot plot of judge scores for the same skater in two competition order conditions — following a weak predecessor versus following a strong predecessor — with each judge's dot showing their individual adjustment",
+      "mustInclude": ["the 0.3-point average suppression (bias) and the 0.1-to-0.6-point range across judges (noise)", "the mechanism: all judges anchor to prior scores but anchor to different degrees", "the director's conclusion: randomizing order reduces average bias but does not eliminate inter-judge variance — sequence-independence training is also needed"],
+      "mustAvoid": ["naming a specific skater or competition", "implying skating judging panels are generally corrupt"]
+    },
+    {
+      "domain": "civil jury damages award: a court researcher studying how anchoring to plaintiff counsel's demand figure produces both directional bias and inter-juror award scatter",
+      "audience": "a legal research team studying whether plaintiff counsel's opening demand figure shapes jury award amounts and inter-juror variation",
+      "stakes": "trial fairness and predictability — if a high anchor demand consistently inflates awards and also produces higher inter-juror disagreement, the same defendant faces very different outcomes based on counsel's opening figure rather than actual damage magnitude",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the experimental study design: juries assigned a high plaintiff anchor demand award on average $280,000 for the same case; juries assigned a low anchor award $180,000 (directional bias of $100,000); but within the high-anchor condition, individual juror pre-deliberation awards range from $150,000 to $450,000 (inter-juror noise of $300,000 in range), far exceeding the across-condition average difference; the anchor creates a shared directional lean and simultaneously amplifies the scatter within the condition",
+      "firstImage": "two box plots of juror pre-deliberation awards: high-anchor condition on the left (median higher, box wider), low-anchor condition on the right (median lower, box narrower) — the width difference illustrating noise amplification by the anchor",
+      "mustInclude": ["the $100,000 directional bias across conditions and the $300,000 within-high-anchor scatter (noise)", "the mechanism: a high anchor inflates average awards (bias) and expands the plausible range of individual award choices (noise)", "the implication: limiting extreme anchor demands reduces both bias and noise in jury awards"],
+      "mustAvoid": ["a specific civil lawsuit or verdict", "implying jury awards are always unreliable or that juries should be replaced"]
+    },
+    {
+      "domain": "military officer promotion board: a service branch studying how the affect heuristic in board member reaction to interview performance produces both directional bias and inter-board-member rating scatter",
+      "audience": "a military promotion board standards director studying why board members give different performance ratings to the same officer candidate after reviewing the same dossier",
+      "stakes": "career advancement and officer corps quality — candidates whose dossiers trigger strong positive affect in board members receive promotion ratings that diverge substantially from candidates with equivalent qualifications whose dossiers do not trigger the same response",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the standards director presents a board calibration study: dossiers that included a citation for an operationally dramatic action (affect-triggering) received average ratings 0.8 points higher than equivalent dossiers without the dramatic citation (directional bias); but individual board member ratings on the affect-triggering dossiers ranged from 3.1 to 4.7 on a 5-point scale (scatter of 1.6 points), compared to a range of 3.4 to 4.1 (scatter of 0.7 points) for the matched non-dramatic dossiers; the affect-triggering element inflated average ratings and doubled inter-board-member scatter simultaneously",
+      "firstImage": "a side-by-side dot plot of board member ratings for affect-triggering versus matched non-dramatic dossiers — the affect-triggering column showing both a higher center and wider spread",
+      "mustInclude": ["the 0.8-point average bias and the doubling of scatter (0.7 to 1.6 points) in the affect-triggering condition", "the mechanism: the dramatic citation creates a shared upward lean (bias) and simultaneously loosens the constraint on individual board member interpretation (noise)", "the director's conclusion: standardizing dossier format to reduce affect-triggering content reduces both bias and inter-board-member scatter"],
+      "mustAvoid": ["a specific officer's promotion case", "implying military promotion boards are generally inconsistent or corrupt"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain how a single cognitive heuristic can produce both directional bias and scatter in the same judgment context",
+      "identify the bias and noise components separately in a described heuristic-driven judgment situation",
+      "apply the bias-noise distinction to design different interventions for the directional and scatter components of a described judgment problem",
+      "analyze why debiasing training that successfully reduces average error does not also reduce inter-judge spread",
+      "evaluate whether a described judgment improvement program is addressing bias, noise, or both, and whether the intervention matches the problem"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick a recurring judgment your team makes that uses a numerical starting point — a prior estimate, a benchmark, a precedent figure. First, ask: does the team consistently over- or under-adjust from that starting point? That is the bias from anchoring. Second, ask: do individual team members adjust by different amounts from the same starting point, in ways that are not explained by different information? That is the noise from anchoring. The two problems have different signatures and different fixes. If you only see one of them, look harder for the other.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) stating the bias-noise distinction as it applies to heuristics specifically, at least one 5+ sentence paragraph on how the anchoring heuristic generates both a predictable directional lean and unpredictable inter-judge scatter from the same anchor, at least one one-sentence punch line about what happens when debiasing training is the only intervention applied to a problem that is 60 percent noise and 40 percent bias",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: if your team has been through debiasing training and still disagrees on comparable cases, you have probably solved the bias while leaving the noise intact — and the chapter's argument is that the noise problem needs its own separate treatment",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

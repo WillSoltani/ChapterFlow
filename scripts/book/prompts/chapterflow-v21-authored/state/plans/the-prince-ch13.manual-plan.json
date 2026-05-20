@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch13",
+  "number": 13,
+  "title": "Concerning Auxiliaries, Mixed Soldiery, and One's Own",
+  "coreMove": "Refuse victories won by another sovereign's united force because success makes you dependent and defeat destroys you outright.",
+  "sourcePressure": "The source distinguishes auxiliaries from mercenaries. Auxiliary troops are useful to their owner but ruinous to the prince who calls them in: if they lose, he is undone; if they win, he becomes their captive. Machiavelli contrasts Pope Julius, the Florentines, Constantinople, Cesare Borgia moving from French auxiliaries to mercenaries to his own men, David rejecting Saul's armor, and France weakening its own infantry by relying on Swiss arms.",
+  "chapterSpecificMisunderstanding": "The wrong version merges auxiliaries with mercenaries or says alliances are risky in general. The writer must stress the distinct auxiliary danger: capable, disciplined helpers remain someone else's instrument, so their victory is not a real victory for the caller.",
+  "sourceAlignmentTerms": [
+    "auxiliaries",
+    "Pope Julius",
+    "Ferdinand",
+    "French soldiers",
+    "one's own forces",
+    "David",
+    "Saul's arms",
+    "Goths",
+    "mixed soldiery",
+    "Switzers"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic alliance warning",
+      "mercenary repetition",
+      "self-reliance slogan"
+    ],
+    "counterintuition": [
+      "most people assume capable help is safest, but actually it is dangerous",
+      "never accept help from anyone",
+      "winning is losing if someone else did it"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list allies",
+      "decide to do everything yourself",
+      "write a generic independence pledge"
+    ],
+    "examples": [
+      "business partner with too much leverage",
+      "software platform dependency",
+      "friend helping with a personal task",
+      "contractor analogy already used for mercenaries"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a small duke calling a neighboring king's pikemen to retake a rebel fortress",
+      "audience": "a duke who wants the fortress back before his own levies are trained",
+      "stakes": "if the king's pikemen lose, the duchy is open; if they win, the king's banner sits over the gate",
+      "format": "scene",
+      "requiredBeat": "As the rebel flag falls, the duke reaches for his own colors, but the neighboring king's quartermaster bolts a foreign banner bracket above the fortress gate.",
+      "firstImage": "A foreign banner bracket waits beside a fallen rebel flag.",
+      "mustInclude": [
+        "foreign banner bracket",
+        "fallen rebel flag",
+        "untrained levies"
+      ],
+      "mustAvoid": [
+        "hired mercenary company",
+        "simple grateful ally",
+        "castle spectacle without dependence"
+      ]
+    },
+    {
+      "domain": "a coastal republic asking an imperial fleet to clear pirates from its shipping lanes",
+      "audience": "merchant councillors tempted by a clean victory at sea",
+      "stakes": "the imperial fleet can clear the pirates, but afterward the republic's customs buoys and convoy routes answer to the admiral who saved them",
+      "format": "decision_point",
+      "requiredBeat": "The admiral places his iron buoy chain across the republic's convoy slate, and the councillors see that the cleared sea now has someone else's locks on it.",
+      "firstImage": "An iron buoy chain lies across a slate of convoy routes.",
+      "mustInclude": [
+        "iron buoy chain",
+        "convoy slate",
+        "imperial admiral"
+      ],
+      "mustAvoid": [
+        "pirate adventure",
+        "naval contractor from chapter 12",
+        "trade logistics only"
+      ]
+    },
+    {
+      "domain": "a besieged hill city inviting royal artillery crews because its own gunners are few",
+      "audience": "city elders who think the guns are only temporary assistance",
+      "stakes": "royal crews are disciplined and effective because they obey their own crown, not the city that opened the sally port",
+      "format": "predict_reveal",
+      "requiredBeat": "After the wall is saved, the royal master gunner locks the powder magazine with a crown hasp while the city's own gunner stands outside holding an empty match cord.",
+      "firstImage": "A crown hasp clicks onto the powder magazine door.",
+      "mustInclude": [
+        "crown hasp",
+        "powder magazine",
+        "empty match cord"
+      ],
+      "mustAvoid": [
+        "chapter 10 fortress provisions",
+        "mercenary stipend problem",
+        "technology superiority story"
+      ]
+    },
+    {
+      "domain": "an emperor in exile bringing foreign cavalry into his homeland to defeat rival border lords",
+      "audience": "a chronicler tracing how temporary rescue becomes long servitude",
+      "stakes": "the cavalry obeys its own sultan and refuses to leave once the rivals are defeated",
+      "format": "postmortem",
+      "requiredBeat": "The chronicler draws the last rival lord crossed out, then turns the page to show the foreign horse lines still staked inside the valley after the war is finished.",
+      "firstImage": "Foreign horse lines remain staked in a quiet valley after the rival shields are crossed out.",
+      "mustInclude": [
+        "foreign horse lines",
+        "crossed rival shields",
+        "finished-war notation"
+      ],
+      "mustAvoid": [
+        "chapter 3 foreign entrant balance",
+        "invasion epic",
+        "religious enemy framing"
+      ]
+    },
+    {
+      "domain": "a royal army mixing its own heavy cavalry with renowned alpine infantry until its infantry schools empty",
+      "audience": "a war minister reviewing why mixed arms have weakened the national force",
+      "stakes": "the borrowed infantry raises its own reputation while the kingdom's soldiers learn they cannot win without it",
+      "format": "before_after",
+      "requiredBeat": "Before the campaign, the minister praises the alpine square; after the defeat, he opens the kingdom's infantry school and finds only practice staves on the floor.",
+      "firstImage": "Practice staves lie across the floor of an empty infantry school.",
+      "mustInclude": [
+        "alpine square diagram",
+        "empty infantry school",
+        "practice staves"
+      ],
+      "mustAvoid": [
+        "mercenary cavalry bias from chapter 12",
+        "fitness drill",
+        "schoolroom shell"
+      ]
+    },
+    {
+      "domain": "a young champion rejecting the king's ceremonial armor before a single-combat defense of the camp",
+      "audience": "a prince learning why another man's arms can weigh down even when generously offered",
+      "stakes": "borrowed armor gives prestige but ruins the champion's actual method, turning help into constraint",
+      "format": "dialogue",
+      "requiredBeat": "The champion takes three steps in the king's bronze greaves, stops, unbuckles them, and lifts the plain sling pouch that belongs to his own hand.",
+      "firstImage": "Bronze greaves lie open beside a plain sling pouch.",
+      "mustInclude": [
+        "bronze greaves",
+        "plain sling pouch",
+        "camp challenge post"
+      ],
+      "mustAvoid": [
+        "religious sermon",
+        "personal authenticity",
+        "generic underdog fight"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish auxiliaries from mercenaries by whose command structure they obey",
+      "analyze why auxiliary defeat ruins the caller and auxiliary victory makes the caller captive",
+      "identify mixed-soldiery decay when borrowed specialists diminish native arms",
+      "evaluate whether a victory gained by others is a real foundation or a disguised dependency"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one case where a ruler called in another ruler's forces. Write two outcomes: what happens if those forces lose, and what their owner can demand if they win.",
+  "readingTimeMinutes": 12
+}

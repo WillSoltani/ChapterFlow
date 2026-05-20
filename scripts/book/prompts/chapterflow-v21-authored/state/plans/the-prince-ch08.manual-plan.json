@@ -1,0 +1,175 @@
+{
+  "chapterId": "the-prince-ch08",
+  "number": 8,
+  "title": "Concerning Those Who Have Obtained a Principality by Wickedness",
+  "coreMove": "Separate seizure by wickedness from glory, then judge whether injury is concentrated for security or multiplied from insecurity.",
+  "sourcePressure": "The source uses Agathocles and Oliverotto to show that wicked seizure can gain and hold power without deserving glory. Its operational distinction is between severities used at one stroke for security and repeated cruelties that keep subjects unsettled, unattached, and unable to trust the ruler.",
+  "chapterSpecificMisunderstanding": "The wrong version says cruelty works or that the ends justify the means. The writer must hold both points at once: wickedness may gain empire but not glory, and repeated injuries reveal a ruler who is still unsafe.",
+  "sourceAlignmentTerms": [
+    "Agathocles",
+    "Syracuse",
+    "Oliverotto da Fermo",
+    "severities",
+    "one stroke",
+    "benefits",
+    "glory",
+    "knife in hand",
+    "repeated wrongs"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "true-crime banquet retelling for shock",
+      "admiring brutality as decisiveness",
+      "generic ruthless takeover"
+    ],
+    "counterintuition": [
+      "most people assume cruelty is bad, but actually it can work",
+      "violence is sometimes necessary, full stop",
+      "harsh leaders are respected"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list hard choices",
+      "think of where you need to be ruthless",
+      "write a plan to cut enemies out of your life"
+    ],
+    "examples": [
+      "corporate layoff as cruelty",
+      "mafia movie scene",
+      "school bully analogy",
+      "personal boundary-setting framed as severity"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a palace guard captain seizing a citadel after inviting senior officers to a dawn oath ceremony",
+      "audience": "a historian explaining why the coup held but never became honorable rule",
+      "stakes": "the captain removes rivals in one morning, but every later arrest either settles the new order or proves he must keep the blade visible",
+      "format": "postmortem",
+      "requiredBeat": "The historian places the single dawn casualty list beside a later stack of weekly arrest orders and draws the line where seizure ends and repeated insecurity begins.",
+      "firstImage": "A dawn casualty list lies beside a stack of weekly arrest orders.",
+      "mustInclude": [
+        "dawn casualty list",
+        "weekly arrest orders",
+        "citadel oath sheet"
+      ],
+      "mustAvoid": [
+        "glamorized coup",
+        "battle tactics",
+        "ends-justify-means slogan"
+      ]
+    },
+    {
+      "domain": "a mining concession boss taking over a remote camp through forged safety charges against rival foremen",
+      "audience": "a magistrate deciding whether the camp is stable or merely silenced",
+      "stakes": "miners may accept one purge if tunnels reopen, but monthly fabricated charges keep every crew waiting for the next injury",
+      "format": "before_after",
+      "requiredBeat": "The magistrate compares the first sealed dismissal packet with the new row of false safety tags hanging on foremen's bunks, showing injuries multiplying instead of decreasing.",
+      "firstImage": "False safety tags hang from six empty foremen's bunks.",
+      "mustInclude": [
+        "sealed dismissal packet",
+        "false safety tags",
+        "reopened tunnel board"
+      ],
+      "mustAvoid": [
+        "labor dispute only",
+        "workplace firing analogy",
+        "mine danger as atmosphere"
+      ]
+    },
+    {
+      "domain": "a frontier fortress quartermaster who poisons the old command council and then ration-books the garrison",
+      "audience": "a military judge reviewing why soldiers obeyed during siege but refused to praise him afterward",
+      "stakes": "the fortress survived external attack, but survival cannot convert treachery against friends into glory",
+      "format": "dialogue",
+      "requiredBeat": "The judge taps the ration book that saved the siege, then points to the stained council cups and says one explains holding power while the other bars honor.",
+      "firstImage": "Stained council cups sit beside a fortress ration book.",
+      "mustInclude": [
+        "stained council cups",
+        "ration book",
+        "siege order"
+      ],
+      "mustAvoid": [
+        "murder mystery",
+        "heroic siege",
+        "forgiveness arc"
+      ]
+    },
+    {
+      "domain": "a city tax farmer using one mass confiscation to break armed smuggling families, then choosing whether to keep raiding shops",
+      "audience": "an adviser warning that repeated small seizures create more hatred than the first blow settled",
+      "stakes": "security may require disarming smuggling houses, but daily raids teach ordinary shopkeepers that no property is safe",
+      "format": "decision_point",
+      "requiredBeat": "The adviser takes the confiscation ledger off the raid cart and closes it before the captain can add ordinary shop stalls to the second-day list.",
+      "firstImage": "A confiscation ledger slides across the rail of a raid cart.",
+      "mustInclude": [
+        "confiscation ledger",
+        "raid cart",
+        "shop-stall list"
+      ],
+      "mustAvoid": [
+        "tax policy debate",
+        "property rule from chapter 17",
+        "simple anti-corruption tale"
+      ]
+    },
+    {
+      "domain": "a rebel radio commander seizing a capital broadcaster through betrayal of allied announcers",
+      "audience": "listeners trying to read whether the new voice has secured the station or still fears it",
+      "stakes": "one seizure can control the signal, but nightly denunciations show the commander cannot let people settle into obedience",
+      "format": "predict_reveal",
+      "requiredBeat": "The first broadcast ends with a promised amnesty list, but the next three nights the commander scratches more names into the black transmission log while the studio clock blinks past midnight.",
+      "firstImage": "A black transmission log lies open below a blinking studio clock.",
+      "mustInclude": [
+        "transmission log",
+        "amnesty list",
+        "studio clock"
+      ],
+      "mustAvoid": [
+        "media manipulation chapter",
+        "propaganda theory",
+        "villain monologue"
+      ]
+    },
+    {
+      "domain": "a port guildmaster winning leadership by trapping rivals in a rigged audit and then distributing dock repairs",
+      "audience": "a guild apprentice learning why benefits must follow if the first injury is not to become daily fear",
+      "stakes": "dockworkers might accept the destroyed rival houses if the port becomes safer, but no attachment forms while surprise audits continue",
+      "format": "vignette",
+      "requiredBeat": "The guildmaster sets down the rigged audit stamp, unlocks the repair chest, and the apprentice notices whether the stamp stays on the desk or goes back into his sleeve.",
+      "firstImage": "A rigged audit stamp sits beside an unlocked dock repair chest.",
+      "mustInclude": [
+        "rigged audit stamp",
+        "dock repair chest",
+        "rival house notices"
+      ],
+      "mustAvoid": [
+        "generic union politics",
+        "redemption story",
+        "business compliance shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish gaining power by wickedness from gaining glory or legitimate excellence",
+      "identify whether severities are concentrated in one security act or multiplied over time",
+      "analyze how repeated injuries prevent subjects from attaching themselves to the ruler",
+      "evaluate whether later benefits are credible or dismissed as forced because harsh measures came too late"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one harsh consolidation in history. Make two columns: injuries done once to secure the new order, and injuries repeated afterward because the ruler still did not feel safe.",
+  "readingTimeMinutes": 12
+}

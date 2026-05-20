@@ -1,0 +1,214 @@
+{
+  "bookId": "seven-powers",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "seven-powers-ch01",
+      "title": "Scale Economies",
+      "sourcePressure": "Scale economies are declining unit costs as business size increases. The pressure is benefit plus barrier: volume must lower unit economics and make smaller rivals chase from a worse cost position, not merely make the company larger.",
+      "coreMove": "Test whether growth bends the unit-cost curve and leaves followers structurally disadvantaged.",
+      "commonMisread": "Scale economies mean being big, growing fast, or celebrating market share without proving lower unit cost and a barrier.",
+      "mustUseTerms": [
+        "scale economies",
+        "declining unit costs",
+        "fixed costs",
+        "volume",
+        "distribution density",
+        "learning economies",
+        "purchasing economies",
+        "benefit plus barrier"
+      ],
+      "mustNotDriftInto": [
+        "growth for its own sake",
+        "generic market dominance",
+        "fundraising scale theater"
+      ]
+    },
+    {
+      "number": 2,
+      "chapterId": "seven-powers-ch02",
+      "title": "Network Economies",
+      "sourcePressure": "Network economies exist when the value to one customer rises as more customers use the product. The source stresses winner-take-all pressure, boundedness, decisive early product, and complement effects without turning every audience or platform into a network.",
+      "coreMove": "Ask whether each added user makes the product more valuable for other users within a bounded network.",
+      "commonMisread": "Network economies mean having many users, a community, or a social feature.",
+      "mustUseTerms": [
+        "network economies",
+        "value to one customer",
+        "more users",
+        "winner take all",
+        "boundedness",
+        "decisive early product",
+        "complements",
+        "indirect network effects"
+      ],
+      "mustNotDriftInto": [
+        "platform mythology",
+        "audience size as strategy",
+        "viral marketing advice"
+      ]
+    },
+    {
+      "number": 3,
+      "chapterId": "seven-powers-ch03",
+      "title": "Counter-Positioning",
+      "sourcePressure": "Counter-positioning means a newcomer adopts a superior business model the incumbent will not mimic because copying would damage the existing business. The pressure is the incumbent trap, not novelty for its own sake.",
+      "coreMove": "Find the business-model move that improves the entrant while making imitation painful for the incumbent.",
+      "commonMisread": "Counter-positioning means being disruptive, cheaper, digital, or more innovative in a loose sense.",
+      "mustUseTerms": [
+        "counter-positioning",
+        "newcomer",
+        "superior business model",
+        "incumbent",
+        "anticipated damage",
+        "self-cannibalization",
+        "Scylla and Charybdis",
+        "invention"
+      ],
+      "mustNotDriftInto": [
+        "generic disruption story",
+        "novelty worship",
+        "startup bravery"
+      ]
+    },
+    {
+      "number": 4,
+      "chapterId": "seven-powers-ch04",
+      "title": "Switching Costs",
+      "sourcePressure": "Switching costs come from customer value built up with the incumbent that would be destroyed or painfully rebuilt by leaving. The source includes financial, procedural, and relational costs and warns that repeat buying alone is not lock-in.",
+      "coreMove": "Compare the rival offer against the value the customer would lose or rebuild during migration.",
+      "commonMisread": "Switching costs mean loyalty, habit, repeat purchase, or disliking change.",
+      "mustUseTerms": [
+        "switching costs",
+        "lock-in",
+        "continuity value",
+        "migration pain",
+        "financial costs",
+        "procedural costs",
+        "relational costs",
+        "portability"
+      ],
+      "mustNotDriftInto": [
+        "brand affection",
+        "customer satisfaction",
+        "generic retention tactics"
+      ]
+    },
+    {
+      "number": 5,
+      "chapterId": "seven-powers-ch05",
+      "title": "Branding",
+      "sourcePressure": "Branding creates higher willingness to pay for an objectively similar offering. The barrier is the time and uncertainty required to copy trust and emotional meaning, while allowing several strong brands to coexist.",
+      "coreMove": "Test whether history-backed trust lets a similar product command a real premium.",
+      "commonMisread": "Branding means awareness, logos, storytelling, or any positive reputation.",
+      "mustUseTerms": [
+        "branding",
+        "willingness to pay",
+        "objectively similar offering",
+        "premium",
+        "historical signals",
+        "trust",
+        "emotional meaning",
+        "time and uncertainty"
+      ],
+      "mustNotDriftInto": [
+        "advertising tactics",
+        "brand awareness alone",
+        "winner-take-all claims"
+      ]
+    },
+    {
+      "number": 6,
+      "chapterId": "seven-powers-ch06",
+      "title": "Cornered Resource",
+      "sourcePressure": "A cornered resource is preferential access on attractive terms to a coveted resource that independently raises value. The chapter must distinguish true cornering from ordinary strong assets, talent, suppliers, or quality.",
+      "coreMove": "Check whether privileged access to a scarce input independently raises value and cannot be matched by substitutes.",
+      "commonMisread": "A cornered resource is any talented team, useful patent, exclusive supplier, or rare-looking asset.",
+      "mustUseTerms": [
+        "cornered resource",
+        "preferential access",
+        "attractive terms",
+        "coveted resource",
+        "independent value",
+        "scarce assets",
+        "patents",
+        "substitutes"
+      ],
+      "mustNotDriftInto": [
+        "resource worship",
+        "generic talent advantage",
+        "unsupported scarcity claims"
+      ]
+    },
+    {
+      "number": 7,
+      "chapterId": "seven-powers-ch07",
+      "title": "Process Power",
+      "sourcePressure": "Process power is rare. It appears when deeply embedded, interlocking activities produce lower cost or better product and rivals would need prolonged commitment to match the whole system. Operational excellence alone does not qualify.",
+      "coreMove": "Look for an interlocking activity system that rivals cannot copy one routine at a time.",
+      "commonMisread": "Process power means being efficient, disciplined, lean, or having good standard operating procedures.",
+      "mustUseTerms": [
+        "process power",
+        "rare",
+        "interlocking activities",
+        "embedded process",
+        "lower cost",
+        "better product",
+        "prolonged commitment",
+        "operational excellence"
+      ],
+      "mustNotDriftInto": [
+        "generic efficiency sermon",
+        "Toyota or Amazon anecdotes from memory",
+        "one copied routine as moat"
+      ]
+    },
+    {
+      "number": 8,
+      "chapterId": "seven-powers-ch08",
+      "title": "The Path to Power",
+      "sourcePressure": "Operational excellence is not strategy. Firms often need invention or a crux directional choice before power can emerge, because me-too positioning leaves no barrier.",
+      "coreMove": "Choose the invention or crux move that can create a barrier before optimizing operations around it.",
+      "commonMisread": "The path to power is to execute better, innovate vaguely, or become best-in-class at the current model.",
+      "mustUseTerms": [
+        "path to power",
+        "operational excellence",
+        "strategy",
+        "invention",
+        "crux directional choice",
+        "me-too positioning",
+        "barrier creation",
+        "dynamics"
+      ],
+      "mustNotDriftInto": [
+        "generic startup mythology",
+        "innovation slogans",
+        "execution as strategy"
+      ]
+    },
+    {
+      "number": 9,
+      "chapterId": "seven-powers-ch09",
+      "title": "The Power Progression",
+      "sourcePressure": "Power forms fit stages: counter-positioning and cornered resource in origination; scale economies, network economies, and switching costs in take-off; process power and branding in stability. Timing matters because missed windows narrow later options.",
+      "coreMove": "Match the power you pursue to the firm stage and the window where that power can still form.",
+      "commonMisread": "A firm can pick any power at any time if leaders want it enough.",
+      "mustUseTerms": [
+        "power progression",
+        "origination",
+        "take-off",
+        "stability",
+        "counter-positioning",
+        "cornered resource",
+        "scale economies",
+        "network economies",
+        "switching costs",
+        "timing"
+      ],
+      "mustNotDriftInto": [
+        "deterministic life-cycle theory",
+        "extra stage models",
+        "abstract desire for a moat"
+      ]
+    }
+  ]
+}

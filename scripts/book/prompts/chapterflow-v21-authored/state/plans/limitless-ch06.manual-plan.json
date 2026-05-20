@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch06",
+  "number": 6,
+  "title": "The 7 Lies of Learning",
+  "coreMove": "Audit a learning myth by the behavior it produces, then replace it with a testable rule.",
+  "sourcePressure": "The chapter clears common myths that keep learners passive, intimidated, dependent, or too quick to surrender.",
+  "chapterSpecificMisunderstanding": "Inventing an exact seven-item list unsupported by the frozen source.",
+  "sourceAlignmentTerms": [
+    "learning myths",
+    "false beliefs",
+    "passivity",
+    "intimidation",
+    "dependence",
+    "premature surrender",
+    "tested rule"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open The 7 Lies of Learning with a generic unlocked potential claim.",
+      "Do not start with a definition of the 7 lies of learning."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "public library digital literacy class",
+      "audience": "patron who thinks older adults cannot learn new apps",
+      "stakes": "she needs the portal to renew housing forms",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "protagonistName": "Sophie",
+      "requiredBeat": "Sophie asks what action the belief prevents, then has the patron complete one renewal step while naming the myth as a guess.",
+      "firstImage": "a library mouse pad worn smooth at the edge",
+      "mustInclude": [
+        "housing portal",
+        "mouse pad",
+        "renewal deadline"
+      ],
+      "mustAvoid": [
+        "age stereotype",
+        "generic tech help"
+      ]
+    },
+    {
+      "domain": "bike shop suspension clinic",
+      "audience": "mechanic who thinks real learners never ask basic questions",
+      "stakes": "a customer's race setup depends on correct sag measurement",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "protagonistName": "Henrik",
+      "requiredBeat": "Henrik writes the embarrassing question on the work order and gets the measurement method right before touching the shock.",
+      "firstImage": "a shock pump clipped to a repair stand",
+      "mustInclude": [
+        "shock pump",
+        "work order",
+        "race setup form"
+      ],
+      "mustAvoid": [
+        "bike helmet shell",
+        "expert pride only"
+      ]
+    },
+    {
+      "domain": "immigration law volunteer desk",
+      "audience": "volunteer believes memory should work after one reading",
+      "stakes": "families wait while she rereads the same checklist",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "protagonistName": "Chiara",
+      "requiredBeat": "Chiara notices the myth by the delay it creates, then builds a three-card retrieval stack for intake steps.",
+      "firstImage": "passport photocopies under a binder clip",
+      "mustInclude": [
+        "photocopies",
+        "binder clip",
+        "intake cards"
+      ],
+      "mustAvoid": [
+        "legal advice",
+        "paperwork overwhelm only"
+      ]
+    },
+    {
+      "domain": "craft brewery quality lab",
+      "audience": "assistant believes mistakes mean he lacks the knack",
+      "stakes": "a contaminated batch can waste a week of production",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "protagonistName": "Thomas",
+      "requiredBeat": "Thomas predicts which step failed, checks the log, and replaces the knack story with a sanitation checklist test.",
+      "firstImage": "foam residue clinging to a sample tube",
+      "mustInclude": [
+        "sample tube",
+        "sanitation log",
+        "batch clock"
+      ],
+      "mustAvoid": [
+        "beer culture",
+        "talent myth only"
+      ]
+    },
+    {
+      "domain": "regional theater dialect coaching",
+      "audience": "actor believes accents require natural mimicry",
+      "stakes": "opening weekend depends on consistency",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Kasia",
+      "requiredBeat": "Kasia breaks the accent into one mouth position and records ten lines to test a practice rule against the myth.",
+      "firstImage": "a pencil tucked across a marked script",
+      "mustInclude": [
+        "marked script",
+        "pencil",
+        "audio recorder"
+      ],
+      "mustAvoid": [
+        "performance anxiety",
+        "accent caricature"
+      ]
+    },
+    {
+      "domain": "community garden seed-starting workshop",
+      "audience": "organizer thinks learning styles mean she cannot learn from diagrams",
+      "stakes": "spring seedlings are failing under the lights",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Hadiya",
+      "requiredBeat": "Hadiya tries the diagram plus one hands-on tray and records which instruction actually changed the seed depth.",
+      "firstImage": "peat cells lined under purple grow lights",
+      "mustInclude": [
+        "peat cells",
+        "seed packet",
+        "grow lights"
+      ],
+      "mustAvoid": [
+        "garden sentiment",
+        "learning-style lecture"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when audit a learning myth by the behavior it produces, then replace it with a testable rule. is needed in a new scenario.",
+      "Choose the visible action that matches The 7 Lies of Learning rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one learning myth by the behavior it causes, then choose one small test that would challenge it today.",
+  "readingTimeMinutes": 12
+}

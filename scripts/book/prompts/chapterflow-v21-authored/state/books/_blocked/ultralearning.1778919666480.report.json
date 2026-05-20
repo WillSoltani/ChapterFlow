@@ -1,0 +1,382 @@
+{
+  "bookId": "ultralearning",
+  "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
+  "author": "Scott H. Young",
+  "promotedAt": "2026-05-16T08:21:06.477Z",
+  "chapterCount": 14,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"if the\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "\"Before you buy another course, audit this,\" Nora says, sliding a screen-reader "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the format is not\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "\"Which one gets you through a variance file?\" Ruth from permits asks, then stops herself and points to the packet instead. Lukas has a zoning variance spread be"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "\"You hiding?\" Leo calls from the saw as Tomas lifts the half-cut stair stringer. A framing square lies across the board, and the next calculation decides the wh"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "It took Marit two clean supported runs to notice the hydrometer floating beside the yeast-stained batch log was not the real test. The laminated checklist had b"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"because it removes the\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A policy memo lies under Anna's red pencil with one paragraph boxed hard enough to dent the page. The evidence is clean, the recommendation is clear, and the ca"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "The basement amp hums while a guitar pick is taped above four measures of syncopation. Nicolas can keep playing the whole chorus and hoping the drag disappears,"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"in the same place\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "You are across from Elliot, where a paperback lies face down beside an empty seminar mug. The argument looked clear ten minutes ago. Now his classmate asks for "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "\"Cover the hint first,\" Noor says, sliding a sticky note over the worked answer in Pavel's workbook. The problem statement is still visible. Pavel has read the "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"open the acquisition case\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A shared-document comment pane sits open beside Claire's grant deadline calendar. The prose is still rough, and the budget logic is the part most likely to fail"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "The shop page shows a chipped mug photographed on a gray backdrop. Antoine wants another private photo session before anyone sees it. Instead, he posts three im"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "The train platform is wet, and Olivier clips a pocket phrase card to his ticket. He has a site visit next month and a long list of pleasant vocabulary. He highl"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "It took Frida one messy vendor call to see the future date stamped on her comparison sheet should have been a revisit, not a filing mark. The last cycle went cl"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A spreadsheet cell shows an unexpected negative number while Beatrice’s macro keeps running. Month-end starts tomorrow. She can rerun the macro and hope the exc"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "The pharmacy workroom is quiet around a capsule diagram and a patient case note. Etienne has fifty more cards ready, but one mechanism still feels like a label."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"spreadsheet cell the macro\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "You are beside Luke with two anatomy diagrams separated by a folded index card. The familiar method feels easier. The alternative feels clumsy. He studies the s"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "The pool deck smells of chlorine, and a damp lap card is clipped to the lane rope. Hugo’s swimmer has plateaued with the old cue. He tests one different stroke "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"a useful\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the result that would\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "You have a pipette calibration card, a taped lab schedule, and a cart full of extra materials waiting online. Matthew has to choose before the order goes throug"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "It took Maja three weeks to see that the community-centre bulletin board still had a blank map pin. Her postmortem crosses out learn climate data and replaces i"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "You are looking at a graduate office corkboard with three term cards pinned in a row. George has to choose before the semester starts: let his side research sta"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "The dovetail sample sits beside a trade certification brochure on Julien's bench. He is about to decide whether to treat the certificate and shop projects as ri"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "\"When would you even do the work?\" Giulia's sister asks as a child's lunchbox leans against an open enrollment form. Giulia must decide whether to keep waiting "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "It took Niklas until the set list was clipped to the keyboard stand after the final rehearsal to notice the drift. His postmortem crosses out practice when insp"
+          }
+        ],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 22
+  },
+  "bookGate": {
+    "bookId": "ultralearning",
+    "chapterCount": 14,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "1 protagonist name(s) appear as named characters in multiple chapters: Let(ch3,4). Regenerate affected examples with distinct names."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        42,
+        42,
+        42
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 126,
+      "duplicatedNames": [
+        {
+          "name": "Let",
+          "chapters": [
+            3,
+            4
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "ultralearning",
+        "chapterCount": 14,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

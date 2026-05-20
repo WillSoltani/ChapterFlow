@@ -1,0 +1,302 @@
+{
+  "chapterId": "never-eat-alone-ch02",
+  "number": 2,
+  "title": "Don't Keep Score",
+  "readingTimeMinutes": 12,
+  "hook": "An invoice stub can turn a favor cold before anyone has asked to be repaid.",
+  "counterintuition": "A favor with a private price tag can look generous from the outside and still feel cold to the person receiving it. Clean help gives before it starts collecting.",
+  "tryThisNow": "Choose one useful introduction, note, or small fix you can offer today, then remove the sentence that hints they owe you later.",
+  "keyTakeaway": "Give useful help in a way that leaves the relationship freer afterward; the moment your favor becomes a hidden invoice, generosity starts working against trust.",
+  "breakdown": {
+    "fastRead": "Claire has an invoice stub beside her keyboard and a perfect referral to pass along. A print shop needs a designer for a rush catalog. A fellow freelancer needs work after two slow months. Claire can send the introduction with a warm note, or she can add the little line that spoils it: remember me when your corporate client comes back.\n\nDo not keep score. Help should add value before it asks for value back. When the private ledger comes out too soon, the gift stops feeling like care and starts feeling like a loan.",
+    "deepRead": "A useful favor changes the air around a relationship. It says, I saw something that could help you, and I moved it closer. A scored favor says something colder: I moved this closer, and now I am watching what you do with the debt.\n\nPeople hear that difference even when you use polite words.\n\nThe work is not to become saintly or pretend you have no needs. Relationships are a two-way process. You give, receive, ask, answer, introduce, repair, and sometimes lean on people when your own path gets narrow. The point is timing and spirit. If every small favor is immediately converted into a claim, the other person stops feeling helped and starts feeling managed. If help arrives cleanly, trust has room to grow before either side needs to ask.\n\nOlivia sees it at the hospital shift swap board. A nurse needs Saturday covered because her childcare fell through. Olivia knows who prefers weekend shifts, and she can make the connection in thirty seconds. She also knows she needs a swap next month. The scored version mentions that future need inside the same breath. The cleaner version makes the connection now and lets the later ask stand on its own merits.\n\nGive the help room to be help.",
+    "fullRead": "Grace learned the cost of scorekeeping at an independent bookstore reading. The cash drawer slip showed a smaller crowd than expected, and a local teacher quietly mentioned that her school librarian could bring thirty students to the next event. Grace knew both women. She also knew the visiting writer owed her a blurb request, and she almost turned the introduction into a bargain.\n\nShe stopped with her hand on the slip.\n\nA running tally feels efficient because it seems to protect you from being used. You gave once, so you should receive once. You opened a door, so someone should open one for you. The math sounds fair until it enters the room. Then the human part of the relationship shrinks. Instead of remembering your care, the other person starts remembering the obligation wrapped around it.\n\nThis does not mean you should give blindly. Some people take without noticing. Some situations need boundaries. Some requests are too large, too one-sided, or too costly to absorb. The lesson is not to become an endlessly available helper. It is to stop poisoning useful help with an immediate demand for repayment.\n\nAsk yourself a harder question: would this favor still make sense if the person never paid it back? If the answer is no, you may be making a trade, not offering help. Trades can be honest. Just do not call the trade generosity.\n\nMargaux faces the same line in a software bug triage channel. A red bug ticket is blocking a release, and she knows the maintainer who wrote the brittle module. She can tag him with blame, tag him with a favor request, or send him the reproduction steps and the failing log so his first encounter with the problem is solvable. The last move gives value without adding a leash.\n\nSmall favors matter because influence changes over time. The intern you help today may be a director later. The parent on the carpool list may know the grant officer you need in three years. But if that possibility is the only reason you help, your warmth will feel calculated. Broad generosity works because people are not fixed assets on a spreadsheet. Their lives move, their circles change, and clean help leaves behind a memory that does not curdle.\n\nSo keep a different kind of record. Remember what people care about. Remember what you promised. Remember where you can add value. Forget the running total that turns every act into evidence in a future case.\n\nA favor should leave the other person more able, not more owned."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-claire-invoice",
+      "title": "Claire Leaves the Invoice Blank",
+      "tags": ["scene", "freelance", "referral"],
+      "planSpec": {
+        "domain": "freelance design referral chain",
+        "audience": "a reader facing freelance design referral chain where relationship quality changes the practical outcome",
+        "stakes": "access, trust, or momentum can be lost if freelance design referral chain becomes another generic networking move",
+        "format": "scene",
+        "requiredBeat": "Claire offers a useful connection and deliberately leaves the private ledger blank in front of invoice stub, so the lesson happens as a visible choice instead of advice."
+      },
+      "scenario": "The invoice stub curls beside Claire's laptop while a print shop owner texts for a catalog designer by Friday. Claire knows a freelancer who needs exactly that job. She also knows the owner may send bigger work later. Her cursor hovers over the note, caught between a clean referral and a line that quietly asks to be remembered.",
+      "whatToDo": "Send the useful referral without the hint of repayment. Name why the match works, connect both people, and let the value stand on its own.",
+      "whyItMatters": "The clean introduction keeps trust intact. A private invoice inside the favor makes the print shop owner feel managed before the relationship has earned that weight."
+    },
+    {
+      "exampleId": "ch02-ex02-olivia-shift-grid",
+      "title": "Olivia Marks the Shift Grid",
+      "tags": ["vignette", "hospital", "swap"],
+      "planSpec": {
+        "domain": "hospital nurse shift swap board",
+        "audience": "a reader facing hospital nurse shift swap board where relationship quality changes the practical outcome",
+        "stakes": "access, trust, or momentum can be lost if hospital nurse shift swap board becomes another generic networking move",
+        "format": "vignette",
+        "requiredBeat": "Olivia offers a useful connection and deliberately leaves the private ledger blank in front of whiteboard shift grid, so the lesson happens as a visible choice instead of advice."
+      },
+      "scenario": "\"I cannot cover Saturday,\" the pediatric nurse says, staring at the whiteboard shift grid at 6:10 a.m. Olivia knows a colleague who wants weekend hours and can solve the gap before rounds. She also needs a night off next month. Before rounds, she must choose between mentioning that future need and making this swap simple for everyone.",
+      "whatToDo": "Connect the two nurses and keep next month's need out of it. Let this solve today's staffing problem without turning help into a claim.",
+      "whyItMatters": "The swap board is already stressful. Clean help lowers the load, while a bundled future favor makes the other nurse feel charged for relief."
+    },
+    {
+      "exampleId": "ch02-ex03-sophie-socket-wrench",
+      "title": "Sophie Hands Over the Wrench",
+      "tags": ["dialogue", "neighborhood", "tools"],
+      "planSpec": {
+        "domain": "neighborhood tool library signup",
+        "audience": "a reader facing neighborhood tool library signup where relationship quality changes the practical outcome",
+        "stakes": "access, trust, or momentum can be lost if neighborhood tool library signup becomes another generic networking move",
+        "format": "dialogue",
+        "requiredBeat": "Sophie offers a useful connection and deliberately leaves the private ledger blank in front of borrowed socket wrench, so the lesson happens as a visible choice instead of advice."
+      },
+      "scenario": "You are beside Sophie at the neighborhood tool library signup when a borrowed socket wrench comes back late and a new member says, \"My sink is still leaking.\" Sophie knows Mark down the street has the right basin tool. Her hand is already on her phone, and the choice is between saying, \"You can owe me one,\" or simply calling Mark.",
+      "whatToDo": "Call Mark, explain the leaking sink, and leave the payback line unsaid. Make the connection about the repair, not about Sophie's future credit.",
+      "whyItMatters": "A neighbor remembers who made the repair easier. Adding debt language would shrink the moment from community trust into a small transaction."
+    },
+    {
+      "exampleId": "ch02-ex04-grace-cash-slip",
+      "title": "Grace Watches the Cash Slip",
+      "tags": ["decision_point", "bookstore", "reading"],
+      "planSpec": {
+        "domain": "independent bookstore reading",
+        "audience": "a reader facing independent bookstore reading where relationship quality changes the practical outcome",
+        "stakes": "access, trust, or momentum can be lost if independent bookstore reading becomes another generic networking move",
+        "format": "decision_point",
+        "requiredBeat": "Grace offers a useful connection and deliberately leaves the private ledger blank in front of cash drawer slip, so the lesson happens as a visible choice instead of advice."
+      },
+      "scenario": "It took Grace one slow bookstore reading to notice the cash drawer slip was not the real loss. The visiting writer needed readers, and a teacher in the second row ran a student book club. Grace could connect them before the chairs were stacked. Her thumb hovers over the writer's number. She is about to decide if her own blurb request belongs in the same message.",
+      "whatToDo": "Make the teacher introduction by itself. Save the blurb request for another day, when it can stand as an honest ask instead of a surcharge.",
+      "whyItMatters": "The visiting writer and teacher need a clean bridge. Folding Grace's request into the same note makes the help feel like bait instead of support."
+    },
+    {
+      "exampleId": "ch02-ex05-margaux-bug-ticket",
+      "title": "Margaux Sends the Red Ticket",
+      "tags": ["predict_reveal", "software", "triage"],
+      "planSpec": {
+        "domain": "software bug triage channel",
+        "audience": "a reader facing software bug triage channel where relationship quality changes the practical outcome",
+        "stakes": "access, trust, or momentum can be lost if software bug triage channel becomes another generic networking move",
+        "format": "predict_reveal",
+        "requiredBeat": "Margaux offers a useful connection and deliberately leaves the private ledger blank in front of red bug ticket, so the lesson happens as a visible choice instead of advice."
+      },
+      "scenario": "What does a red bug ticket owe the person who finds the right maintainer? Margaux predicts the senior engineer will be grateful if she tags him in the software triage channel. Then she sees the missing reproduction steps. Before the release call, she must choose between a favor request and the logs that let him solve it fast.",
+      "whatToDo": "Send the logs, reproduction steps, and affected version first. Do not attach a private request to the same tag.",
+      "whyItMatters": "The maintainer receives a solvable problem instead of a social debt. That keeps the help useful and keeps Margaux from turning urgency into leverage."
+    },
+    {
+      "exampleId": "ch02-ex06-aman-shin-guards",
+      "title": "Aman Drops the Carpool Tally",
+      "tags": ["postmortem", "soccer", "parents"],
+      "planSpec": {
+        "domain": "youth soccer carpool list",
+        "audience": "a reader facing youth soccer carpool list where relationship quality changes the practical outcome",
+        "stakes": "access, trust, or momentum can be lost if youth soccer carpool list becomes another generic networking move",
+        "format": "postmortem",
+        "requiredBeat": "Aman offers a useful connection and deliberately leaves the private ledger blank in front of muddy shin guards, so the lesson happens as a visible choice instead of advice."
+      },
+      "scenario": "The muddy shin guards are drying under the minivan hatch when Aman sees the carpool list gap for Thursday's away match. Later, he realizes the helpful part was not offering his spare seat. It was deleting the sentence that said he had already driven twice this month and would appreciate someone remembering that.",
+      "whatToDo": "Offer the spare seat plainly and let the carpool coordinator solve Thursday. Keep the tally out of the message unless the pattern truly becomes unfair.",
+      "whyItMatters": "Parents under schedule pressure need relief, not a reminder of old favors. The clean offer strengthens the list; the tally makes every ride feel contested."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A designer can introduce a client to a printer who solves an urgent catalog problem. She wants to add, 'Remember me for the annual report.' What is the cleaner move?",
+        "choices": [
+          "Add the annual report line so the client understands the exchange.",
+          "Make the introduction with the reason it fits and leave the annual report out of it.",
+          "Delay the introduction until she has a paid project to request."
+        ],
+        "correctIndex": 1,
+        "explanation": "The clean introduction adds value without immediate debt. Naming the annual report turns help into a trade, and delay protects the ledger while the client still has a real problem.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A resident covers a colleague's clinic hour after a childcare emergency. Which follow-up best preserves trust?",
+        "choices": [
+          "Say the slot is covered and ask them to focus on getting home safely.",
+          "Text a reminder that the colleague now owes one.",
+          "Mention that the department chief should know who helped."
+        ],
+        "correctIndex": 0,
+        "explanation": "The safety-focused text keeps the help clean. The owed-one reminder creates pressure, and copying status into the favor turns a humane act into self-advertising.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A neighbor lends a ladder and then immediately asks for an introduction to the borrower's employer. What has gone wrong?",
+        "choices": [
+          "The ladder was too small a favor to justify any later request.",
+          "The request should have been made before the ladder was lent.",
+          "The favor became a hidden invoice, so the borrower feels managed instead of helped."
+        ],
+        "correctIndex": 2,
+        "explanation": "The problem is the immediate conversion of help into debt. Favor size is not the main issue, and asking earlier would only make the trade explicit instead of generous.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A founder forwards a useful investor article to another founder, then writes, 'You can pay me back by sharing our launch.' Which revision fits the lesson?",
+        "choices": [
+          "Send nothing, because any article can look strategic.",
+          "Send the article with one sentence about why it may help their current raise.",
+          "Make the payback request more playful so it feels less direct."
+        ],
+        "correctIndex": 1,
+        "explanation": "Context makes the article useful and leaves the relationship freer. Silence withholds value out of fear, and playful debt language still ties the gift to repayment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "At a parent meeting, Laura offers to drive three children to practice but keeps noting how often she has helped. What should she change first?",
+        "choices": [
+          "Separate fairness concerns from the immediate offer, and make this ride cleanly.",
+          "Stop helping entirely until the group recognizes her effort.",
+          "Ask another parent to praise her in the group chat."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fairness can be handled separately if the pattern is real. Attaching it to every ride makes the current help feel charged, while praise-seeking adds another claim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A software lead shares a fix with another team only after asking them to support his roadmap item. Which diagnosis is most accurate?",
+        "choices": [
+          "He is using a fair two-way process because both teams need something.",
+          "He should make the demand stronger so the value exchange is clear.",
+          "He has turned technical help into leverage before trust can grow."
+        ],
+        "correctIndex": 2,
+        "explanation": "Bundling the fix with roadmap pressure makes the help feel like leverage. Two-way relationships matter, but timing and spirit decide whether giving feels clean or coercive.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A bookstore manager knows two visiting writers should meet. She also needs a review quote from one of them. What sequence best protects the relationship?",
+        "choices": [
+          "Make the introduction only if the quote is promised first.",
+          "Make the writer introduction now, then ask for the quote later as a separate, clear request.",
+          "Skip the introduction because needing a quote makes any help impure."
+        ],
+        "correctIndex": 1,
+        "explanation": "Separating the introduction from the quote lets each act stay honest. A promised quote turns the introduction into a trade, and skipping useful help is unnecessary purity.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A project manager says, 'I never ask for payback, but I keep a spreadsheet so I know who deserves help next time.' What is the risk?",
+        "choices": [
+          "The private ledger will shape how he treats people, even if he never names it.",
+          "The spreadsheet may be inaccurate if people forget favors.",
+          "The spreadsheet should include larger favors only."
+        ],
+        "correctIndex": 0,
+        "explanation": "A hidden tally still changes the relationship because it decides who receives warmth. Accuracy is secondary, and limiting the sheet does not solve the scorekeeping habit.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two sales reps help a junior colleague. One shares a contact and says nothing else. The other shares a contact while hinting the junior should route future leads back. Which help is stronger?",
+        "choices": [
+          "The hinted exchange, because it teaches the junior how business works.",
+          "They are equal because both contacts are useful.",
+          "The clean contact, because it lets trust form before any later business request."
+        ],
+        "correctIndex": 2,
+        "explanation": "Both contacts may help, but only the clean one leaves the junior freer. The hinted exchange teaches debt before trust, which weakens the relationship it claims to build.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You can help someone and also want help later. What keeps the first favor clean?",
+      "back": "Offer the help without attaching the later ask to it. If you need something later, make that request clearly on its own, so the first act does not become a hidden invoice.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A favor includes a subtle reminder that repayment would be appreciated. What has changed?",
+      "back": "The favor has become a debt account. Even if the help is real, the attached reminder makes the other person manage obligation instead of simply receiving useful care.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "When is a trade better than pretending to be generous?",
+      "back": "When your help only makes sense if something comes back, name the exchange honestly. Calling a trade generosity makes people feel handled, while a clean trade can at least be clear.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why can small favors matter even when the recipient seems minor today?",
+      "back": "People's roles and circles change. Clean help leaves a warm memory that can travel over time, while scored help leaves the memory of pressure and calculation.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A group has become unfair because you keep helping and nobody helps back. What should you do?",
+      "back": "Address the pattern directly and separately. Do not smuggle fairness complaints into every new favor, because that makes each useful act feel contested before it begins.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Give Without Tallying",
+    "coreSkill": "Practice separating help from hidden repayment. You can still have needs, limits, and honest asks. The skill is giving useful help cleanly, then making later requests as requests instead of invoices.",
+    "ifThenPlans": [
+      {
+        "context": "professional introduction",
+        "plan": "If you can connect two people who clearly help each other, then make the introduction with the reason it fits and leave your own future ask out of the note."
+      },
+      {
+        "context": "team support",
+        "plan": "If you cover a task for someone under pressure, then solve the task first and discuss any fairness pattern later, outside the relief moment."
+      },
+      {
+        "context": "community group",
+        "plan": "If you offer a ride, tool, or contact, then remove any sentence that reminds people how often you have helped before."
+      },
+      {
+        "context": "digital message",
+        "plan": "If you forward a useful resource, then add context for why it helps them and do not bundle it with a request for promotion, praise, or access."
+      }
+    ],
+    "twentyFourHourChallenge": "Send one useful note, referral, or resource today and delete any line that hints at future repayment before you send it.",
+    "weeklyPractice": "Once a week, review one favor you are tempted to count. Decide whether it was a clean gift, an honest trade, or a boundary problem that needs a direct conversation."
+  },
+  "memorableLines": [
+    {
+      "text": "When the private ledger comes out too soon, the gift stops feeling like care and starts feeling like a loan.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the scorekeeping problem tactile and hard to excuse."
+    },
+    {
+      "text": "Give the help room to be help.",
+      "location": "breakdown.deepRead",
+      "why": "The short sentence gives the reader a portable rule without sounding like a slogan."
+    },
+    {
+      "text": "A favor should leave the other person more able, not more owned.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the ethical and practical line between generosity and control."
+    }
+  ]
+}

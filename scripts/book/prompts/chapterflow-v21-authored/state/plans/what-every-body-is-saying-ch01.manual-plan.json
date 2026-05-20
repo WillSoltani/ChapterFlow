@@ -1,0 +1,177 @@
+{
+  "chapterId": "what-every-body-is-saying-ch01",
+  "number": 1,
+  "title": "I See What You're Thinking",
+  "coreMove": "Notice the split between polished words and whole-body behavior, then let that split make you more curious rather than more certain.",
+  "sourcePressure": "The source sidecar frames the opening promise: nonverbal behavior can show comfort, discomfort, interest, hesitation, and direction before speech has fully edited the moment. The chapter must make the whole body matter more than the face alone while refusing mind-reading claims.",
+  "chapterSpecificMisunderstanding": "The weak version tells readers that body language reveals hidden thoughts. This plan must force the writer to stay with observable comfort, discomfort, interest, hesitation, and direction, then choose a better next question.",
+  "sourceAlignmentTerms": [
+    "whole body",
+    "comfort",
+    "discomfort",
+    "interest",
+    "hesitation",
+    "direction",
+    "observation",
+    "face",
+    "signals",
+    "curiosity"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A dramatic claim that you can know what someone is thinking before they speak.",
+      "A poker-table or interrogation-room opener.",
+      "A face-only hook built around a fake smile or eye contact."
+    ],
+    "counterintuition": [
+      "Most people assume words matter, but actually the body tells the truth.",
+      "The body never lies.",
+      "A single mismatch reveals what someone really means."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and watch someone's body language.",
+      "Stare at a stranger until you decode them.",
+      "Pick one gesture and decide what it means."
+    ],
+    "examples": [
+      "Generic job interview nerves.",
+      "Romantic date attraction reading.",
+      "Classroom participation scene.",
+      "Bus depot departure scene.",
+      "Kitchen table family argument."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital discharge instructions after a minor stroke",
+      "audience": "a nurse watching a patient insist he understands the medication schedule",
+      "stakes": "whether the patient leaves with unspoken confusion that could send him back to the emergency department",
+      "format": "scene",
+      "requiredBeat": "The nurse hears yes, I have it, but sees the patient smooth the discharge packet twice, keep his eyes on the pill grid, and pull his shoulders inward, so she asks him to walk her through tomorrow morning instead of accusing him of confusion.",
+      "firstImage": "A stapled discharge packet lies open beside a plastic water pitcher.",
+      "mustInclude": [
+        "pill grid",
+        "plastic water pitcher",
+        "visitor chair"
+      ],
+      "mustAvoid": [
+        "generic doctor-office reassurance",
+        "drug dosing as the lesson",
+        "claiming the patient is lying"
+      ]
+    },
+    {
+      "domain": "aquarium touch-tank volunteer briefing a nervous field-trip group",
+      "audience": "a volunteer who has been trained to keep children moving through the exhibit",
+      "stakes": "one rushed child could yank away, splash the ray, and make the whole group tense",
+      "format": "vignette",
+      "requiredBeat": "The volunteer hears the child say she wants a turn, but notices her wet fingers curl under her sleeve, her torso angle behind the acrylic corner, and her eyes track the exit mat, so he offers a dry-shell observation first.",
+      "firstImage": "A gray ray glides under a row of dripping child-sized handprints.",
+      "mustInclude": [
+        "acrylic tank corner",
+        "paper wristband",
+        "dry shell tray"
+      ],
+      "mustAvoid": [
+        "school classroom lesson",
+        "fear diagnosis from one flinch",
+        "animal-care facts overtaking the body read"
+      ]
+    },
+    {
+      "domain": "small-claims mediation over a damaged catering deposit",
+      "audience": "a mediator trying to keep two business owners from hardening too early",
+      "stakes": "a settlement can still happen if the mediator notices the first sign that the public position is not the whole story",
+      "format": "dialogue",
+      "requiredBeat": "The caterer says the number is final while sliding the calculator away, flattening the invoice with both palms, and glancing at the signed delivery photo, so the mediator asks which part of the bill is hardest to move rather than treating final as final.",
+      "firstImage": "A laminated delivery photo sits between two marked-up invoices.",
+      "mustInclude": [
+        "calculator",
+        "laminated delivery photo",
+        "settlement clipboard"
+      ],
+      "mustAvoid": [
+        "lawyer cross-examination",
+        "secret motive reveal",
+        "generic negotiation power move"
+      ]
+    },
+    {
+      "domain": "independent camera shop helping a customer choose a used lens",
+      "audience": "a clerk who knows the buyer is trying not to look inexperienced",
+      "stakes": "a rushed sale could become a return, while a better question could preserve trust",
+      "format": "decision_point",
+      "requiredBeat": "The customer says the lens is perfect, but sets the rear cap down crooked, presses the price tag flat, and keeps his body angled toward the beginner shelf, so the clerk decides to ask what he plans to photograph first.",
+      "firstImage": "A used 50mm lens rests on a black microfiber cloth.",
+      "mustInclude": [
+        "rear lens cap",
+        "price tag",
+        "beginner shelf"
+      ],
+      "mustAvoid": [
+        "sales manipulation",
+        "confidence coaching",
+        "eye-contact honesty claim"
+      ]
+    },
+    {
+      "domain": "community pottery sale where a buyer says a cracked bowl is fine",
+      "audience": "a volunteer cashier trying to keep the sale fair without embarrassing the artist",
+      "stakes": "whether politeness hides discomfort that should change the next move",
+      "format": "predict_reveal",
+      "requiredBeat": "Before asking again, the cashier predicts the buyer's body will answer first; the buyer smiles, but keeps one hand under the crack, lowers the bowl toward the return table, and stops meeting the artist's gaze, so the cashier offers to find the maker's seconds shelf.",
+      "firstImage": "A celadon bowl with a hairline crack sits on tissue paper.",
+      "mustInclude": [
+        "tissue paper",
+        "seconds shelf",
+        "cash box"
+      ],
+      "mustAvoid": [
+        "home kitchen scene",
+        "calling the buyer dishonest",
+        "making the smile the whole evidence"
+      ]
+    },
+    {
+      "domain": "historic-house tour guide noticing a guest fall silent near a narrow staircase",
+      "audience": "a guide balancing the tour script with visitor comfort",
+      "stakes": "whether the guide keeps reciting facts or prevents a visitor from being trapped in a route that feels unsafe",
+      "format": "before_after",
+      "requiredBeat": "Before the stairs, the visitor asks detailed questions and leans toward display cases; at the staircase landing she gives short answers, grips the brochure, and turns her body toward the garden door, so the guide offers the ground-floor route without naming fear.",
+      "firstImage": "A polished wooden handrail bends into a tight servant staircase.",
+      "mustInclude": [
+        "folded brochure",
+        "garden door",
+        "display case"
+      ],
+      "mustAvoid": [
+        "generic public-speaking nerves",
+        "claustrophobia diagnosis",
+        "old-house atmosphere replacing the visible body shift"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate a spoken claim from the observable whole-body signals that complicate it",
+      "choose a curiosity-based next question when words and body behavior do not line up",
+      "identify comfort, discomfort, hesitation, interest, or direction without naming a hidden thought",
+      "evaluate whether an interpretation overreaches beyond the visible split"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In your next ordinary conversation, notice one moment when the person's words and body do not point the same way. Write only what you saw and one neutral follow-up question you could ask.",
+  "readingTimeMinutes": 12
+}

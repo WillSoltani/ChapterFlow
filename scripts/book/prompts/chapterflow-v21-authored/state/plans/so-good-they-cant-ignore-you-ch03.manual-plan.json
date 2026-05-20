@@ -1,0 +1,202 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch03",
+  "number": 3,
+  "title": "Passion Is Dangerous",
+  "coreMove": "Stop using immediate emotional fit as a verdict when early work may still be too immature to judge.",
+  "sourcePressure": "Passion-first thinking can create stress, burnout, over-monitoring, and premature identity pressure.",
+  "chapterSpecificMisunderstanding": "Turning this into advice to stay in every bad job or ignore exploitation.",
+  "sourceAlignmentTerms": [
+    "passion mindset",
+    "stress",
+    "burnout",
+    "premature identity pressure",
+    "develop passions",
+    "fit-checking",
+    "bad jobs limit"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "A broad interest becomes heavier",
+      "detail": "The frozen source supports passion mindset stress and burnout by turning broad interests into obligations.",
+      "useIn": "both",
+      "phrasingHint": "A broad interest becomes heavier when it is asked to prove a whole identity before it has matured."
+    },
+    {
+      "kind": "artifact",
+      "name": "College becomes less frantic",
+      "detail": "The source supports developing passions over time rather than obeying assumed preexisting ones.",
+      "useIn": "deepRead",
+      "phrasingHint": "College becomes less frantic when treated as a workshop, not a court where your calling is on trial."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch03: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch03: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch03: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch03: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rebecca",
+      "domain": "hospital unit clerk onboarding",
+      "audience": "a new clerk checking whether the role feels like a calling",
+      "stakes": "quitting during noisy learning before skill changes the experience",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "sorts each hard moment into unsafe, unsupported, unfamiliar, or genuinely wrong",
+      "firstImage": "a wristband printer spitting three labels",
+      "mustInclude": [
+        "wristband printer",
+        "shift card",
+        "training checklist"
+      ],
+      "mustAvoid": [
+        "medical burnout diagnosis"
+      ]
+    },
+    {
+      "protagonistName": "Emma",
+      "domain": "municipal planning graduate rotation",
+      "audience": "a junior planner bored by zoning files",
+      "stakes": "abandoning a useful rotation because passion feels absent",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "notices boredom peaks only before he understands the file history",
+      "firstImage": "a rolled zoning map with coffee stains",
+      "mustInclude": [
+        "zoning map",
+        "comment binder",
+        "rotation log"
+      ],
+      "mustAvoid": [
+        "all boredom means stay"
+      ]
+    },
+    {
+      "protagonistName": "Charlotte",
+      "domain": "language-school teaching practicum",
+      "audience": "a trainee comparing every class to an ideal",
+      "stakes": "mistaking rough classroom management for lack of passion",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "marks which failures were skill gaps and which were values conflicts",
+      "firstImage": "attendance sheets sliding off a lectern",
+      "mustInclude": [
+        "attendance sheet",
+        "timed speaking drill",
+        "mentor notes"
+      ],
+      "mustAvoid": [
+        "hero teacher sentiment"
+      ]
+    },
+    {
+      "protagonistName": "Kate",
+      "domain": "quality-assurance food lab",
+      "audience": "a lab assistant restless with repeated tests",
+      "stakes": "leaving before mastery creates judgment",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "tracks whether accuracy and judgment improve across repeated pH tests",
+      "firstImage": "rows of sample cups under strip lights",
+      "mustInclude": [
+        "pH strips",
+        "batch labels",
+        "error log"
+      ],
+      "mustAvoid": [
+        "monotony as mismatch proof"
+      ]
+    },
+    {
+      "protagonistName": "Beth",
+      "domain": "immigration legal clinic intake",
+      "audience": "a volunteer overwhelmed by forms and stakes",
+      "stakes": "calling stress a lack of passion instead of separating workload design from mission",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "lists workload constraints before deciding whether the work itself is wrong",
+      "firstImage": "a folder tabbed urgent in three colors",
+      "mustInclude": [
+        "intake form",
+        "calendar hold",
+        "escalation rule"
+      ],
+      "mustAvoid": [
+        "service-work martyrdom"
+      ]
+    },
+    {
+      "protagonistName": "Nora",
+      "domain": "freelance illustration commission queue",
+      "audience": "an artist who loves drawing but hates revisions",
+      "stakes": "burning out because every revision feels like identity betrayal",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "treats revisions as a commercial skill test rather than a passion referendum",
+      "firstImage": "a tablet screen covered with revision bubbles",
+      "mustInclude": [
+        "stylus nibs",
+        "client brief",
+        "revision count"
+      ],
+      "mustAvoid": [
+        "creative suffering cliche"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify dissatisfaction without overreacting",
+      "protect the bad-job exception",
+      "replace fit-checking with evidence gathering"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one mismatch feeling and classify it as bad environment, beginner friction, weak skill, or untested preference.",
+  "readingTimeMinutes": 12
+}

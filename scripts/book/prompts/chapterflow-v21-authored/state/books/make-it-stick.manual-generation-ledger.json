@@ -1,0 +1,294 @@
+{
+  "bookId": "make-it-stick",
+  "updatedAt": "2026-05-16T08:19:50.249Z",
+  "usedProtagonistNames": [
+    "Laura",
+    "Lucas",
+    "Camille",
+    "Henrik",
+    "Sofia",
+    "Anders",
+    "Megan",
+    "James",
+    "Claire",
+    "Luca",
+    "Marta",
+    "Kiran",
+    "Daniel",
+    "Sophie",
+    "Marco",
+    "Ingrid",
+    "Tomás",
+    "Adaeze",
+    "Rachel",
+    "Thomas",
+    "Juliette",
+    "Niklas",
+    "Catarina",
+    "Chidi",
+    "Grace",
+    "Ben",
+    "Margaux",
+    "Lars",
+    "Paula",
+    "Hadiya",
+    "Emily",
+    "David",
+    "Chloé",
+    "Mikkel",
+    "Isabel",
+    "Akira",
+    "Olivia",
+    "Andrew",
+    "Anya",
+    "Nicolas",
+    "Giulia",
+    "Yusuf",
+    "Anna",
+    "Michael",
+    "Manon",
+    "Jonas",
+    "Chiara",
+    "Lin"
+  ],
+  "usedExampleDomains": [
+    "Sarah, a pharmacy resident preparing for a sterile-compounding checkoff",
+    "Lucas, a regional aircraft mechanic moving from piston engines to turboprops",
+    "Camille, a law student reviewing hearsay exceptions for moot court",
+    "Henrik, a ski-patrol trainee learning avalanche beacon search",
+    "Sofia, a violin student preparing a jury piece",
+    "Anders, a cybersecurity analyst learning incident runbooks",
+    "Hannah, an oncology nurse learning a new infusion reaction protocol",
+    "James, a bakery night manager memorizing oven shutdown steps",
+    "Claire, a museum docent preparing a new exhibit tour",
+    "Luca, a paramedic student reviewing pediatric dosage calculations",
+    "Marta, a product-support lead learning outage scripts",
+    "Kiran, a language learner using flashcards for Czech cases",
+    "Daniel, a civil-engineering student sorting beam-load problems",
+    "Sophie, a pastry apprentice learning laminated dough faults",
+    "Marco, a tennis coach rebuilding serve return practice",
+    "Ingrid, a pathology resident comparing look-alike slides",
+    "Tomás, a jazz guitarist practicing chord substitutions",
+    "Adaeze, a customs officer trainee identifying counterfeit documents",
+    "Rachel, an emergency-dispatch trainee handling mixed radio calls",
+    "Thomas, a chess-club coach teaching rook endings",
+    "Juliette, a surgical-tech instructor practicing sterile breaks",
+    "Niklas, a firefighter academy instructor adding smoke to search drills",
+    "Catarina, a language tutor using generation before explanation",
+    "Chidi, a robotics mentor preparing students for sensor failure",
+    "Grace, a radiology resident reviewing chest films",
+    "Ben, a climber checking knot knowledge after months off",
+    "Margaux, a tax preparer auditing new deduction rules",
+    "Lars, a flight-sim trainee after a smooth autopilot lesson",
+    "Paula, a museum conservator identifying varnish damage",
+    "Hadiya, a policy analyst preparing briefing numbers",
+    "Emily, a biology lecturer redesigning osmosis instruction",
+    "David, a safety trainer teaching lockout-tagout",
+    "Chloé, a piano teacher explaining polyrhythm",
+    "Mikkel, a data-science mentor teaching model overfitting",
+    "Isabel, a literacy coach supporting multilingual readers",
+    "Akira, a climbing instructor teaching route reading",
+    "Olivia, a first-year engineering student who failed the first statics exam",
+    "Andrew, a paramedic practicing difficult intubation technique",
+    "Anya, a memory-contest novice building a card system",
+    "Nicolas, a late-career accountant learning Python automation",
+    "Giulia, a youth soccer goalkeeper rebuilding distribution",
+    "Yusuf, a community-college chemistry student using memory cues",
+    "Anna, a graduate student building a semester study cycle",
+    "Michael, a hospital educator designing nurse onboarding",
+    "Manon, an actor understudying two roles in repertory",
+    "Jonas, a technical bootcamp instructor redesigning assessments",
+    "Chiara, a small-business owner learning insurance licensing material",
+    "Lin, a maintenance supervisor building cross-training for technicians"
+  ],
+  "usedExampleAnchors": [
+    "Matt Brown",
+    "Cessna 401 fuel-system schematic",
+    "UCLA Psychology Building fire extinguisher study",
+    "Mike Ebersold",
+    "Roediger and Karpicke testing-effect work",
+    "Hermann Ebbinghaus",
+    "Vince Dooley",
+    "Kerr and Booth beanbag study",
+    "Sebastian Leitner",
+    "Mia Blundetto",
+    "Cal Poly baseball contextual-interference study",
+    "Elizabeth and Robert Bjork desirable-difficulties work",
+    "Catherine Johnson",
+    "Loftus car-crash wording study",
+    "China Airlines spatial-disorientation incident",
+    "Robert Sternberg",
+    "Bruce Hendry",
+    "learning-styles empirical reviews",
+    "Carol Dweck",
+    "James Paterson",
+    "Nelson Dellis",
+    "Swiss working-memory training study",
+    "Timothy Fellows",
+    "Nathan Fuller",
+    "Mary Pat Wenderoth",
+    "Farmers Insurance new-agent training",
+    "West Point Thayer method"
+  ],
+  "usedHookFrames": [
+    "concrete tool fails when support disappears",
+    "professional simulation exposes the real learning signal",
+    "named source anecdote before rule"
+  ],
+  "usedCounterFrames": [
+    "smooth practice can be the weaker signal",
+    "misses matter only when repair follows",
+    "preference is weaker than evidence"
+  ],
+  "usedTryThisNowFrames": [
+    "hide source and reconstruct exact need",
+    "label before solving mixed cases",
+    "mechanism audit for difficulty",
+    "seven-day learning loop"
+  ],
+  "usedQuizExplanationFrames": [
+    "explain why the tempting smooth option hides weak recall",
+    "explain which option creates retrieval plus feedback",
+    "explain why the mixed option trains discrimination"
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "make-it-stick-ch01",
+      "frames": [
+        "generic learning is misunderstood as study tips",
+        "timestamp-name-prop-decision repeated six times",
+        "student rereads notes then learns better without a visible method change"
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch02",
+      "frames": [
+        "generic to learn, retrieve as study tips",
+        "timestamp-name-prop-decision repeated six times",
+        "student rereads notes then learns better without a visible method change"
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch03",
+      "frames": [
+        "generic mix up your practice as study tips",
+        "timestamp-name-prop-decision repeated six times",
+        "student rereads notes then learns better without a visible method change"
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch04",
+      "frames": [
+        "generic embrace difficulties as study tips",
+        "timestamp-name-prop-decision repeated six times",
+        "student rereads notes then learns better without a visible method change"
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch05",
+      "frames": [
+        "generic avoid illusions of knowing as study tips",
+        "timestamp-name-prop-decision repeated six times",
+        "student rereads notes then learns better without a visible method change"
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch06",
+      "frames": [
+        "generic get beyond learning styles as study tips",
+        "timestamp-name-prop-decision repeated six times",
+        "student rereads notes then learns better without a visible method change"
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch07",
+      "frames": [
+        "generic increase your abilities as study tips",
+        "timestamp-name-prop-decision repeated six times",
+        "student rereads notes then learns better without a visible method change"
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch08",
+      "frames": [
+        "generic make it stick as study tips",
+        "timestamp-name-prop-decision repeated six times",
+        "student rereads notes then learns better without a visible method change"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "make-it-stick-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 1,
+      "checkedAt": "2026-05-16T06:49:47.730Z"
+    },
+    "make-it-stick-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-16T08:09:35.166Z"
+    },
+    "make-it-stick-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-16T06:53:18.199Z"
+    },
+    "make-it-stick-ch04": {
+      "shipGatePassed": false,
+      "shipGateBlockers": 1,
+      "shipGateMajors": 0,
+      "patternAuditPassed": false,
+      "patternAuditBlockers": 1,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-16T08:14:43.884Z"
+    },
+    "make-it-stick-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 5,
+      "checkedAt": "2026-05-16T06:57:13.833Z"
+    },
+    "make-it-stick-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-16T08:09:35.163Z"
+    },
+    "make-it-stick-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-16T07:00:18.321Z"
+    },
+    "make-it-stick-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-16T08:09:36.073Z"
+    }
+  }
+}

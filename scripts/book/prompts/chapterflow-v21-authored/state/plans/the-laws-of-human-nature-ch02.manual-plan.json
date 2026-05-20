@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch02",
+  "number": 2,
+  "title": "Master Your Emotional Self: The Law of Irrationality",
+  "coreMove": "Name the emotional surge, delay action, and rebuild the sequence before reason turns the surge into a respectable story.",
+  "sourcePressure": "This law says emotion directs judgment before reason narrates it, so rationality starts by catching biases, inflaming factors, and the delayed arrival of the calmer self.",
+  "chapterSpecificMisunderstanding": "Making this a call to suppress feelings or be calm rather than a concrete practice for interrupting emotional certainty.",
+  "sourceAlignmentTerms": [
+    "irrationality",
+    "biases",
+    "inflaming factors",
+    "emotional surge",
+    "rational self",
+    "delay"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Master Your Emotional Self: The Law of Irrationality",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an airport gate agent facing a traveler filming her during a cancellation",
+      "audience": "a frontline worker whose embarrassment is turning into punishment",
+      "stakes": "whether one viral-looking moment becomes a needless escalation",
+      "format": "decision_point",
+      "requiredBeat": "the agent feels the heat rise, turns the screen toward the delay log, and asks a supervisor to verify facts before issuing any threat",
+      "firstImage": "a departure board flashing red beside a half-closed jet bridge door",
+      "mustInclude": [
+        "delay log",
+        "boarding scanner",
+        "phone camera"
+      ],
+      "mustAvoid": [
+        "generic client email"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a restaurant expediter after a critic sends back a dish twice",
+      "audience": "a chef who hears criticism as humiliation",
+      "stakes": "whether the kitchen ruins service by cooking for revenge instead of correction",
+      "format": "postmortem",
+      "requiredBeat": "after service, she traces the timing of the returned plates and sees the second send-back followed a real salt mistake, not a personal attack",
+      "firstImage": "a ticket rail crowded with grease-spotted order slips",
+      "mustInclude": [
+        "order slips",
+        "salt cellar",
+        "returned plate photo"
+      ],
+      "mustAvoid": [
+        "home cooking scene"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a nonprofit grant committee split over one member's impatient tone",
+      "audience": "a chair trying to keep status threat from driving budget choices",
+      "stakes": "whether the best program loses funding because one comment bruised the room",
+      "format": "dialogue",
+      "requiredBeat": "the chair pauses the vote and asks each member to name the evidence for the proposal before naming how the tone felt",
+      "firstImage": "a grant binder opened to a color-coded budget tab",
+      "mustInclude": [
+        "grant binder",
+        "budget tabs",
+        "vote tally sheet"
+      ],
+      "mustAvoid": [
+        "generic meeting delay"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a high-stakes chess tournament after a teenager blunders a knight",
+      "audience": "a coach teaching a player to stop revenge moves",
+      "stakes": "whether one emotional move throws away the match",
+      "format": "predict_reveal",
+      "requiredBeat": "the coach asks the player to predict the next two moves from anger, then compare them with the board's quiet best move",
+      "firstImage": "a toppled black knight beside a silent digital clock",
+      "mustInclude": [
+        "digital chess clock",
+        "score sheet",
+        "captured knight"
+      ],
+      "mustAvoid": [
+        "class discussion"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a wedding photographer whose client demands a refund online",
+      "audience": "a freelancer tempted to answer from panic",
+      "stakes": "whether a public review fight damages the business more than the complaint",
+      "format": "before_after",
+      "requiredBeat": "before replying, she sorts the complaint into fact, fear, and reputation fantasy, then sends only the verifiable repair offer",
+      "firstImage": "a camera memory card case open beside a printed complaint",
+      "mustInclude": [
+        "memory card case",
+        "refund invoice",
+        "proof gallery"
+      ],
+      "mustAvoid": [
+        "generic social media spat"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a coastal search-and-rescue team hearing a false alarm report",
+      "audience": "a crew chief managing adrenaline and contempt",
+      "stakes": "whether irritation makes the team miss a real risk inside a messy call",
+      "format": "vignette",
+      "requiredBeat": "the chief makes the crew read back the coordinates twice before anyone jokes about tourists wasting time",
+      "firstImage": "a laminated tide chart held down by a rescue radio",
+      "mustInclude": [
+        "tide chart",
+        "radio transcript",
+        "GPS coordinates"
+      ],
+      "mustAvoid": [
+        "generic emergency drama"
+      ],
+      "openingDevice": "timestamp_named"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the bias active inside a hot reaction",
+      "distinguish evidence from emotional narration",
+      "choose a delay that protects judgment without avoiding action"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When a message spikes you, save the first reply as a private draft and mark which bias is writing it before you send any response.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Pericles",
+      "detail": "the source uses Pericles and Athens under pressure from Sparta to show restraint against fear, pride, and emotional contagion",
+      "useIn": "both",
+      "phrasingHint": "Pericles matters because he keeps Athens from mistaking emotional release for strategy."
+    },
+    {
+      "kind": "event",
+      "name": "financial bubbles",
+      "detail": "the source uses repeated financial manias to show crowds converting greed, imitation, and fear of missing out into apparent intelligence",
+      "useIn": "fullRead",
+      "phrasingHint": "A bubble is what happens when a crowd gives emotion enough witnesses to make it sound like evidence."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

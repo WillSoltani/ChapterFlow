@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch22",
+  "number": 22,
+  "title": "Prevent Distraction with Identity Pacts",
+  "coreMove": "Choose a concrete identity that makes the planned behavior feel like proof of who you are, not a rule you are enduring.",
+  "sourcePressure": "The chapter treats identity pacts as a different reinforcement mechanism, tying follow-through to a chosen identity proved through action.",
+  "chapterSpecificMisunderstanding": "A weak run would drift into affirmations instead of tying identity to repeated visible behavior.",
+  "sourceAlignmentTerms": [
+    "identity pacts",
+    "precommitment",
+    "chosen identity",
+    "proof",
+    "behavior",
+    "self-definition"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Prevent Distraction with Identity Pacts as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "volunteer trail steward maintaining weekly bridge checks",
+      "audience": "steward tempted to skip reports after muddy hikes",
+      "stakes": "trail safety depends on the kind of steward who documents damage",
+      "format": "scene",
+      "requiredBeat": "she says 'I am a steward who leaves a usable record' and uploads the bridge photo before changing boots",
+      "firstImage": "A splintered bridge plank photo sits beside a mud scraper.",
+      "mustInclude": [
+        "plank photo",
+        "mud scraper",
+        "steward log"
+      ],
+      "mustAvoid": [
+        "outdoors purity"
+      ]
+    },
+    {
+      "domain": "sourdough microbakery owner protecting test-bake notes",
+      "audience": "baker who sees herself as instinctive and skips records",
+      "stakes": "repeatable loaves require the identity of a craftsperson who records",
+      "format": "before_after",
+      "requiredBeat": "before, instinct excuses drift; after, she signs the test sheet as 'record-keeping baker' and logs the crumb",
+      "firstImage": "A sliced test loaf rests beside a crumb-record sheet.",
+      "mustInclude": [
+        "test loaf",
+        "record sheet",
+        "starter tag"
+      ],
+      "mustAvoid": [
+        "personality label"
+      ]
+    },
+    {
+      "domain": "bike-share mechanic closing maintenance tickets",
+      "audience": "mechanic who hates tablets but values rider safety",
+      "stakes": "unclosed tickets make broken bikes look available",
+      "format": "dialogue",
+      "requiredBeat": "he names himself a safety mechanic and closes three tickets before leaving the rack",
+      "firstImage": "A brake-pad gauge sits beside a maintenance tablet.",
+      "mustInclude": [
+        "brake-pad gauge",
+        "maintenance tablet",
+        "rack tag"
+      ],
+      "mustAvoid": [
+        "tech resistance"
+      ]
+    },
+    {
+      "domain": "court-appointed translator preparing glossaries",
+      "audience": "translator who puts prep off until court morning",
+      "stakes": "accurate testimony depends on prepared terminology",
+      "format": "decision_point",
+      "requiredBeat": "she writes 'prepared interpreter' at the top of the glossary and completes the first ten terms",
+      "firstImage": "A bilingual glossary card rests on a courthouse bench schedule.",
+      "mustInclude": [
+        "glossary card",
+        "bench schedule",
+        "term list"
+      ],
+      "mustAvoid": [
+        "courtroom drama"
+      ]
+    },
+    {
+      "domain": "community garden treasurer reconciling plot fees",
+      "audience": "volunteer who avoids money tasks because gardeners are communal",
+      "stakes": "the garden loses fairness when fees stay vague",
+      "format": "postmortem",
+      "requiredBeat": "he adopts the identity of transparent steward and posts the reconciled fee sheet",
+      "firstImage": "A seed packet tin sits beside a plot-fee ledger.",
+      "mustInclude": [
+        "seed packet tin",
+        "fee ledger",
+        "posting board"
+      ],
+      "mustAvoid": [
+        "money shame"
+      ]
+    },
+    {
+      "domain": "independent audiobook narrator checking pronunciation",
+      "audience": "narrator tempted to wing difficult names",
+      "stakes": "one mispronounced name breaks listener trust",
+      "format": "reflection",
+      "requiredBeat": "she calls herself a prepared narrator and records the pronunciation list before the first take",
+      "firstImage": "A pronunciation list lies beside a pop filter.",
+      "mustInclude": [
+        "pronunciation list",
+        "pop filter",
+        "first-take cue"
+      ],
+      "mustAvoid": [
+        "voice talent mystique"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Choose a concrete identity that makes the planned behavior feel like proof of who you are, not a rule you are enduring.",
+      "choose the action that stays inside Prevent Distraction with Identity Pacts's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would drift into affirmations instead of tying identity to repeated visible behavior.",
+      "use chapter-specific terms such as identity pacts, precommitment, chosen identity, proof in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one identity in action form, then write the next visible behavior that would make it true today.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-lean-startup-ch06",
+  "number": 6,
+  "title": "Test",
+  "coreMove": "Build the smallest honest learning device that can expose the assumption, even if it looks less like a finished product.",
+  "sourcePressure": "The minimum viable product is a learning instrument that completes one build-measure-learn cycle with minimum waste, including low-fidelity, video, concierge, or manual tests.",
+  "chapterSpecificMisunderstanding": "Treating MVP as a cheap, sloppy version of the whole product or as a launch shortcut.",
+  "sourceAlignmentTerms": [
+    "minimum viable product",
+    "build-measure-learn cycle",
+    "minimum waste",
+    "low-fidelity MVP",
+    "concierge test",
+    "manual MVP",
+    "learning instrument"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Minimum viable product",
+      "detail": "the sidecar says an MVP exists to complete one learning cycle with as little waste as possible",
+      "useIn": "both",
+      "phrasingHint": "The minimum viable product is not small because small is noble; it is small because the question should not need a castle to answer it."
+    },
+    {
+      "kind": "artifact",
+      "name": "Concierge / low-fidelity / manual MVPs",
+      "detail": "the sidecar names these as valid when they generate useful learning",
+      "useIn": "fullRead",
+      "phrasingHint": "A manual test can be more honest than a polished platform if it exposes the customer decision sooner."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Test.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "restaurant waitlist concierge MVP",
+      "audience": "hospitality founder",
+      "stakes": "a full app may be waste if diners only need human text updates",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Olivia runs the whole waitlist from one phone for two nights to test return visits",
+      "firstImage": "a host stand phone buzzing beside a reservation book",
+      "mustInclude": [
+        "single phone",
+        "reservation book",
+        "two-night test"
+      ],
+      "mustAvoid": [
+        "generic test office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "home energy audit video MVP",
+      "audience": "climate startup",
+      "stakes": "hardware buildout could outrun proof that homeowners act on advice",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Jonas sends one rough walkthrough video before buying sensors",
+      "firstImage": "a draft video paused on a basement fuse box",
+      "mustInclude": [
+        "rough video",
+        "energy bill",
+        "manual checklist"
+      ],
+      "mustAvoid": [
+        "generic test office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "museum audio guide concierge test",
+      "audience": "visitor-experience team",
+      "stakes": "building an app may hide whether visitors want route help",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chloe walks six visitors manually with rented headsets to test the guide logic",
+      "firstImage": "a tray of rented headsets at admissions",
+      "mustInclude": [
+        "rented headsets",
+        "route card",
+        "visitor stopwatch"
+      ],
+      "mustAvoid": [
+        "generic test office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "remote physiotherapy manual service",
+      "audience": "health product team",
+      "stakes": "software investment may precede proof that patients submit movement videos",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Michael asks three patients to text videos to a therapist before any portal exists",
+      "firstImage": "a phone propped against a yoga block",
+      "mustInclude": [
+        "texted videos",
+        "therapist notes",
+        "one-week plan"
+      ],
+      "mustAvoid": [
+        "generic test office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "book-club matching landing page",
+      "audience": "community founder",
+      "stakes": "the matching algorithm is premature if readers will not join",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Frida uses a spreadsheet to make six matches by hand after a landing-page signup",
+      "firstImage": "a spreadsheet open next to a stack of paperbacks",
+      "mustInclude": [
+        "landing page",
+        "spreadsheet",
+        "six manual matches"
+      ],
+      "mustAvoid": [
+        "generic test office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "warehouse picking voice-assist prototype",
+      "audience": "logistics innovation team",
+      "stakes": "device procurement may be waste before workers accept voice prompts",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Tomás shadows pickers and reads prompts aloud through a headset for one aisle",
+      "firstImage": "a headset cable coiled on a packing bench",
+      "mustInclude": [
+        "borrowed headset",
+        "one aisle",
+        "manual prompts"
+      ],
+      "mustAvoid": [
+        "generic test office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Test from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Build the smallest honest learning device that can expose the assumption, even if it looks less like a finished product.",
+      "Diagnose when a team is drifting into the misread: Treating MVP as a cheap, sloppy version of the whole product or as a launch shortcut."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Build the smallest honest learning device that can expose the assumption, even if it looks less like a finished product. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

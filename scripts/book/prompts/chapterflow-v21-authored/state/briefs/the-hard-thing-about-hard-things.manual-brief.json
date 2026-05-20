@@ -1,0 +1,90 @@
+{
+  "bookId": "the-hard-thing-about-hard-things",
+  "title": "The Hard Thing About Hard Things",
+  "author": "Ben Horowitz",
+  "thesisParagraph": "The book argues that leadership is not proven when a plan is elegant, funding is easy, or culture feels healthy. It is proven when the company is under stress and the CEO still has to make calls that hurt somebody. The practical work is to face the real facts, choose inside constraint, tell people the truth, build management systems that hold under pressure, and keep judgment alive when no rule fits the situation cleanly.",
+  "coreIdeas": [
+    {
+      "name": "The Struggle",
+      "oneSentence": "The hardest leadership terrain is the period after clean options have disappeared but responsibility has not.",
+      "mentalMove": "Treat fear and uncertainty as operating conditions to work inside, not signals that decision quality is impossible.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source",
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Truth As Control",
+      "oneSentence": "Candor is not a personality style; it is how a team keeps one shared map when pressure distorts information.",
+      "mentalMove": "Convert private anxiety into precise public facts, current priorities, and accountable next moves.",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch05.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Management Debt",
+      "oneSentence": "Neglected people systems eventually show up as product defects, confused ownership, and financial drag.",
+      "mentalMove": "Look upstream from weak outcomes to the training, standards, role clarity, and correction loops that produced them.",
+      "sourceAnchors": [
+        "ch06.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Judgment Over Formula",
+      "oneSentence": "Principles matter only when a leader can read the actual moment rather than hide inside the last rule that worked.",
+      "mentalMove": "Separate the principle worth preserving from the rule, tactic, or habit that may no longer fit.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch09.source",
+        "ch10.source"
+      ]
+    }
+  ],
+  "targetReader": "Founders, CEOs, senior operators, and managers who are responsible for outcomes when the room is scared, the facts are incomplete, and easy leadership language stops helping.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make the cost of delay visible in operational terms",
+      "separate toughness from useful action",
+      "land examples with protagonist names that read naturally to Canadian, American, and European readers - 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no worship of founder pain as proof of wisdom"
+    ]
+  },
+  "voiceSpecimens": [
+    "The bad news is already in the room. Your only choice is whether people hear it from you or build a worse version in private.",
+    "A deadline missed by three teams is not a calendar problem. It is an ownership problem wearing a calendar mask.",
+    "You can care about people and still owe them a clear standard. Confusion is not kindness.",
+    "When cash is short, the spreadsheet stops being a report and becomes a clock.",
+    "The rule that saved you last quarter can hurt you this quarter if you use it to stop reading the room.",
+    "If the team needs certainty you do not have, give them something better: the facts, the open questions, and the next move."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter will teach you how Horowitz thinks about leadership.",
+    "In today's fast-paced business world, leaders must embrace resilience and authenticity.",
+    "Take a moment to reflect on your leadership journey and unlock your inner CEO.",
+    "The key is to always be transparent, because transparency is important.",
+    "When challenges arise, simply lean into discomfort and trust the process."
+  ],
+  "teachingArc": "The book starts by defining leadership inside the struggle, then shows how Horowitz's operating instincts formed, how survival decisions work under collapse, and why repeated strain requires disciplined process. It then turns to the company itself: direct crisis communication, painful people calls, people-product-profit systems, scaling architecture, uncertainty leadership, and context-sensitive judgment. The ending asks the reader to convert the hard years into durable principles instead of a clean victory story.",
+  "forbiddenMoves": [
+    "Do not turn the book into generic resilience coaching or founder hustle mythology.",
+    "Do not soften layoffs, executive misfit, cash pressure, or failed strategy into vague leadership challenges.",
+    "Do not treat no rules as anti-process; the point is context-sensitive judgment, not improvisational laziness.",
+    "Do not make people first sound like comfort first; the chapter requires standards, training, feedback, and accountability."
+  ]
+}

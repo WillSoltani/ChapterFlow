@@ -1,0 +1,209 @@
+{
+  "chapterId": "mans-search-for-meaning-ch05",
+  "number": 5,
+  "title": "Postscript: The Case for a Tragic Optimism",
+  "coreMove": "Turn pain, guilt, or death into a bounded responsibility without denying the tragedy or calling it good.",
+  "sourcePressure": "The postscript works through tragic optimism and the tragic triad of pain, guilt, and death, showing optimism in spite of tragedy, guilt as opportunity for change, and death as a pressure toward responsibility.",
+  "chapterSpecificMisunderstanding": "Do not make this cheerful reframing, closure, or gratitude for trauma. The optimism is tragic because pain, guilt, and death remain intact while response still becomes possible.",
+  "sourceAlignmentTerms": [
+    "tragic optimism",
+    "tragic triad",
+    "pain",
+    "guilt",
+    "death",
+    "change",
+    "responsibility",
+    "in spite of tragedy"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "tragic triad",
+      "detail": "The frozen source identifies the tragic triad as pain, guilt, and death.",
+      "useIn": "both",
+      "phrasingHint": "Pain, guilt, and death should stand as three hard facts, not three prompts for cheerful reframing."
+    },
+    {
+      "kind": "artifact",
+      "name": "tragic optimism",
+      "detail": "The source says optimism remains possible in spite of tragedy, not by denying it.",
+      "useIn": "both",
+      "phrasingHint": "The optimism is honest only while the tragedy remains named."
+    },
+    {
+      "kind": "event",
+      "name": "death",
+      "detail": "The source says death can intensify responsibility rather than erase meaning.",
+      "useIn": "deepRead",
+      "phrasingHint": "Death can make the next promise more exact because time no longer pretends to be endless."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hope is a choice",
+      "Every tragedy contains a lesson"
+    ],
+    "counterintuition": [
+      "Optimism is strongest in pain",
+      "Guilt can be good"
+    ],
+    "tryThisNow": [
+      "Find the silver lining",
+      "Practice gratitude for hardship"
+    ],
+    "examples": [
+      "generic grief-to-growth arc",
+      "funeral rain scene",
+      "redemption through big speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "restorative justice preparation after a drunk-driving injury where apology cannot undo harm",
+      "audience": "a facilitator helping an offender move from shame performance to concrete repair",
+      "stakes": "guilt may become either self-punishment theater or one verifiable change",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she removes the polished apology from the folder and asks for the weekly ride schedule he will fund before the meeting happens",
+      "firstImage": "\"Do not bring me a speech yet,\" the facilitator says.",
+      "mustInclude": [
+        "apology draft",
+        "ride schedule",
+        "restitution receipt"
+      ],
+      "mustAvoid": [
+        "courtroom redemption speech",
+        "tearful handshake"
+      ],
+      "protagonistName": "Matthew"
+    },
+    {
+      "domain": "palliative care team after a missed symptom call hastened a patient crisis",
+      "audience": "a nurse manager holding pain, guilt, and death in the same review without collapse",
+      "stakes": "the team needs repair without pretending a protocol change redeems the death",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "she writes the missed call time on the board, leaves the patient's name visible, and assigns one callback rule before anyone uses closure language",
+      "firstImage": "The whiteboard has one time written in black marker: 2:17 a.m.",
+      "mustInclude": [
+        "missed-call log",
+        "patient name card",
+        "callback rule"
+      ],
+      "mustAvoid": [
+        "hospital closure ritual",
+        "blame meeting"
+      ],
+      "protagonistName": "Rebecca"
+    },
+    {
+      "domain": "bridge maintenance office after an inspection error contributed to a cyclist injury",
+      "audience": "an engineer whose guilt can become hiding or changed practice",
+      "stakes": "the next inspection standard matters more than his need to feel absolved",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the engineer circles the unchecked expansion joint in red and sends the revised inspection checklist before drafting his explanation",
+      "firstImage": "Rainwater beads in the photograph of the unchecked expansion joint.",
+      "mustInclude": [
+        "inspection photo",
+        "red pencil",
+        "revised checklist"
+      ],
+      "mustAvoid": [
+        "infrastructure thriller",
+        "public apology press conference"
+      ],
+      "protagonistName": "Mateusz"
+    },
+    {
+      "domain": "family sorting a father's workshop after sudden death and finding unfinished repair promises",
+      "audience": "an adult daughter deciding whether death means only loss or also a clearer responsibility",
+      "stakes": "sentiment may preserve every object while avoiding the one promise that can still be kept",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch her keep only the neighbor's broken lamp ticket and deliver the repair instead of turning the whole workshop into a shrine",
+      "firstImage": "You find the masking-tape label before you open the drawer.",
+      "mustInclude": [
+        "masking-tape label",
+        "broken lamp ticket",
+        "tool drawer"
+      ],
+      "mustAvoid": [
+        "nostalgic attic scene",
+        "inheritance dispute"
+      ],
+      "protagonistName": "Julia"
+    },
+    {
+      "domain": "graduate plagiarism case where a student can either deny, confess vaguely, or rebuild trust through concrete loss",
+      "audience": "an academic integrity officer guiding guilt toward change",
+      "stakes": "a clean confession without forfeited advantage leaves responsibility abstract",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the officer asks which consequence would make the false grade impossible to keep, and the student chooses to withdraw the prize application before appeal",
+      "firstImage": "What would make the stolen advantage impossible to keep?",
+      "mustInclude": [
+        "prize application",
+        "appeal form",
+        "source comparison sheet"
+      ],
+      "mustAvoid": [
+        "campus scandal melodrama",
+        "generic honor-code lecture"
+      ],
+      "protagonistName": "Erik"
+    },
+    {
+      "domain": "community choir after a singer loses her voice permanently and refuses both pity and false triumph",
+      "audience": "a choir director helping pain become contribution without performance of bravery",
+      "stakes": "the singer may be pushed into inspiration theater unless the new role is specific and chosen",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "after weeks of sitting in the back row, she marks breath cues in the alto scores for two new singers and chooses the work herself",
+      "firstImage": "It took Natalie five rehearsals to stop accepting the chair everyone called brave.",
+      "mustInclude": [
+        "alto score",
+        "breath cue pencil marks",
+        "back-row chair"
+      ],
+      "mustAvoid": [
+        "standing ovation recovery arc",
+        "music heals all framing"
+      ],
+      "protagonistName": "Natalie"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish tragic optimism from denial or silver-lining talk",
+      "turn guilt into concrete change without self-punishment theater",
+      "treat death as responsibility pressure without sentimental closure",
+      "refuse examples that call suffering good"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one hard fact you cannot improve with language. Write the single repair, promise, or responsibility it makes more exact today.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch02",
+  "number": 2,
+  "title": "Circle of Competence",
+  "readingTimeMinutes": 12,
+  "hook": "The cheese room smells profitable; the refrigerated shipping quote belongs to a different game.",
+  "counterintuition": "Competence is not the same as transferable advantage, but confidence often keeps walking after the earned edge ends.",
+  "tryThisNow": "Pick one live decision and draw three boxes: play, learn, defer. Put each part of the decision where your earned evidence says it belongs.",
+  "keyTakeaway": "Your circle of competence protects judgment only when you know the perimeter and treat nearby unfamiliar games as places to learn or defer.",
+  "breakdown": {
+    "fastRead": "The cheese room smells sharp and profitable. Andrew knows the suppliers, the aging racks, and the customers who ask for washed rind by name. Then he opens a refrigerated meal-kit shipping quote and feels the old confidence arrive in a new room.\n\nThat is where the circle of competence gets tested. Inside the circle, you have earned knowledge. Near the perimeter, the edge thins. Outside it, someone else understands the game better than you do.\n\nThe goal is not to stay small. It is to stop pretending the edge moved just because your confidence did.",
+    "deepRead": "Rose Blumkin's edge was not a halo around every business problem; it was furniture, cash, leases, and the ground she knew by touch. She could read that territory because she had spent years paying attention to it. That kind of competence has weight.\n\nThe trouble starts when weight in one place feels like weight everywhere. Even a chess grandmaster can see sixty-four squares clearly and still be a beginner when the board changes. Pattern recognition travels badly when the feedback, incentives, and hidden rules are different.\n\nPerimeter is the whole skill when confidence travels.\n\nSophie faces it in the triage bay. Blue gel dries around the ultrasound probe while a resident asks for a fast read. She knows the bedside protocol, the patient's pain score, and the moment to call radiology. She does not know enough to replace the radiologist. Her competence is real precisely because she can name where it ends.\n\nThis is what makes the model more demanding than a comfort-zone slogan. The honest perimeter may tell you to play, but it may also tell you to study, ask for help, or make a small test while feedback is still cheap.\n\nThe limit matters. A circle of competence is not an excuse to avoid learning. You can expand it by doing the work, getting feedback, and paying the price of being new. What breaks judgment is claiming the expanded circle before the evidence is there.",
+    "fullRead": "Nicolas is brilliant at the chess club. He can look at a position and feel the weak square before the teenagers finish writing down the move. Then a poker stream invites him to join a charity table. The river card glows on his laptop. A wooden chess clock sits beside it like a false passport. He reviews one hand aloud, hears himself speaking with chess certainty, and stops.\n\nThe hand is not a position. The players are not pieces. Hidden cards, betting pressure, bankroll, and bluffing change the game. Nicolas can learn poker, but he cannot import mastery whole. The honest label for the invitation is learn, not play.\n\nWhere are you borrowing confidence from a nearby room?\n\nCharlie Munger's warning is blunt: the other table may look open, but it belongs to people who have paid for knowledge you are only borrowing. That is not fear. It is respect for earned advantage. Inside the circle, you can see distinctions others miss. Outside it, the distinctions are still there, but they belong to someone else.\n\nMikkel sees the same thing on a loading dock. The neighboring building looks like a warehouse decision. He knows racks, forklifts, lease rates, and winter heating bills. Then he unfolds the zoning packet under a tape measure and sees a fight he has never learned to read. The competent move is not to walk away automatically. It is to circle the lease terms he understands, slide the zoning packet to counsel, and keep the signature page still.\n\nThe false pride version says, I have succeeded before, so I can trust myself here. The timid version says, I should never step outside my lane. Both miss the point. The circle is a map of earned reliability, not a prison. You can enter a new area as a student. You can partner with someone whose edge covers your gap. You can place a small bet while feedback is cheap. What you cannot do safely is call borrowed certainty competence.\n\nLayla learns this in a rights contract. She can cut a documentary until the story breathes. She cannot explain three international distribution clauses without guessing. The festival lanyard on the table belongs to her world. The redlined rights language does not. Once she highlights the clauses she can defend and the clauses a lawyer must read, the decision gets cleaner.\n\nThe circle also gives you a constructive path outward. If Nicolas wants poker competence, he can study hand histories, play tiny stakes, and measure feedback before the charity table. If Mikkel wants zoning judgment, he can learn the code with counsel while keeping the purchase unsigned. The boundary is not a wall; it is a label on the price of learning.\n\nThe circle protects you by lowering the volume on false confidence. It asks a practical question before every serious choice: where do I have an earned edge, where am I learning, and where should someone better informed take the lead?\n\nPlay where the edge is real. Learn where the gap is honest. Defer before confidence starts spending money it did not earn."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-andrew-cheese-kits",
+      "title": "Andrew Marks the Guess Column",
+      "tags": [
+        "retail",
+        "logistics",
+        "perimeter"
+      ],
+      "planSpec": {
+        "domain": "specialty cheese shop product expansion",
+        "audience": "a shop owner who knows aging, suppliers, and local customers but is tempted by online meal kits",
+        "stakes": "a profitable shop could burn cash in a business whose logistics she has not earned",
+        "format": "decision_point",
+        "requiredBeat": "Andrew places the aged-cheese margin sheet beside the refrigerated meal-kit shipping quote and marks which facts come from direct experience and which are guesses"
+      },
+      "scenario": "The ammoniac bite of washed-rind cheese hangs in the prep room while Andrew lays his aged-cheese margin sheet beside a refrigerated meal-kit shipping quote. He knows local suppliers and Saturday customers cold. He does not know spoilage rates across three provinces. His thumb rests on the approval email, and he has to decide whether this is still his game or a nearby game with different rules. He writes spoilage rate, packing labor, and failed-delivery refunds in the guess column before anyone orders new packaging.",
+      "whatToDo": "Mark each line as earned knowledge or guesswork before approving the expansion. Play the cheese-margin game, but learn or partner on refrigerated shipping.",
+      "whyItMatters": "Competence lives in particulars. Knowing aging rooms and customers gives Andrew an edge, but cold-chain logistics can transfer that edge to people who have earned a different map."
+    },
+    {
+      "exampleId": "ch02-ex02-sophie-ultrasound-edge",
+      "title": "Sophie Names the Radiology Edge",
+      "tags": [
+        "medicine",
+        "handoff",
+        "dialogue"
+      ],
+      "planSpec": {
+        "domain": "emergency-room ultrasound shift",
+        "audience": "a senior nurse asked to interpret a scan outside her certification",
+        "stakes": "a fast call could mislead treatment before radiology arrives",
+        "format": "dialogue",
+        "requiredBeat": "Sophie names exactly what she can verify from the bedside protocol and exactly where the radiologist's edge begins"
+      },
+      "scenario": "\"Can you tell if that's fluid?\" the resident asks while blue gel dries around the ultrasound probe in triage bay three. Sophie, the senior nurse, checks the bedside protocol and the radiology callback time. \"I can verify placement and pain response,\" she says. \"I cannot read the scan.\" Before the dose is changed, she must tell the team where her edge ends. The resident still gets speed, but not a pretend interpretation outside Sophie's feedback history.",
+      "whatToDo": "State the competent part out loud, then hand off the interpretation. Keep the protocol moving without pretending a nearby clinical skill is yours.",
+      "whyItMatters": "The patient needs speed and accuracy. Sophie's competence helps only while it stays inside the boundary where her training and feedback are real."
+    },
+    {
+      "exampleId": "ch02-ex03-nicolas-poker-hand",
+      "title": "Nicolas Writes Learn Beside the Invite",
+      "tags": [
+        "games",
+        "transfer",
+        "prediction"
+      ],
+      "planSpec": {
+        "domain": "chess club coach asked about poker",
+        "audience": "a brilliant chess coach invited into a high-stakes poker stream",
+        "stakes": "his pattern skill may be mistaken for transferable edge",
+        "format": "predict_reveal",
+        "requiredBeat": "Nicolas reviews one poker hand aloud, catches himself using chess certainty, and writes 'learn' rather than 'play' beside the invitation"
+      },
+      "scenario": "Which game is Nicolas actually good at? The paused river card glows on his laptop beside a wooden chess clock. The charity stream invitation includes a fee and a public table. Nicolas reviews one hand aloud, predicts the obvious fold, then hears two players explain pot odds he never considered. He must decide whether his chess pattern skill is an edge here or only borrowed confidence. The public table can wait until he has real poker feedback instead of familiar confidence.",
+      "whatToDo": "Write learn beside the invitation, not play. Treat poker as a new feedback system, even if the pattern-recognition feeling is familiar.",
+      "whyItMatters": "A nearby game can feel like home while hiding different rules. The perimeter protects Nicolas from mistaking one kind of expertise for another."
+    },
+    {
+      "exampleId": "ch02-ex04-mikkel-zoning-packet",
+      "title": "Mikkel Slides the Zoning Packet",
+      "tags": [
+        "warehouse",
+        "real-estate",
+        "edge"
+      ],
+      "planSpec": {
+        "domain": "furniture warehouse lease negotiation",
+        "audience": "a warehouse operator deciding whether to buy a neighboring building",
+        "stakes": "one familiar lease term hides an unfamiliar zoning fight",
+        "format": "vignette",
+        "requiredBeat": "Mikkel circles the parts of the deal his warehouse history covers, then slides the zoning packet to counsel instead of pretending the whole transaction is inside his circle"
+      },
+      "scenario": "It took Mikkel three pages to stop treating the neighboring building as a warehouse problem. A folded zoning packet lies under a tape measure on the loading dock, next to his lease ledger. He circles freight access, heating cost, and rack layout in blue. Then he slides the zoning packet across the desk to counsel. Before the purchase meeting, he must decide which parts he knows and which parts only look familiar.",
+      "whatToDo": "Split the deal by competence. Keep the lease and operations judgments, but move the zoning fight to someone whose edge covers that terrain.",
+      "whyItMatters": "The familiar building can hide an unfamiliar rule system. Naming the perimeter keeps Mikkel's warehouse knowledge useful without letting it overrun legal risk."
+    },
+    {
+      "exampleId": "ch02-ex05-layla-rights-contract",
+      "title": "Layla Highlights the Clauses She Cannot Defend",
+      "tags": [
+        "film",
+        "rights",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "indie documentary distribution rights",
+        "audience": "a filmmaker who understands editing but not international licensing",
+        "stakes": "a rights clause could lock the film away from festivals for years",
+        "format": "postmortem",
+        "requiredBeat": "You watch Layla highlight every clause she can explain unaided and every clause that requires a distribution lawyer before the signature page moves"
+      },
+      "scenario": "You watch Layla at the editing suite table, a festival lanyard lying across a redlined rights contract. She can explain every cut in the documentary and almost none of the international distribution language. After one bad clause nearly locks the film away from festivals, she marks what she can defend unaided and what needs a distribution lawyer before any future signature page moves.",
+      "whatToDo": "Separate creative competence from rights competence. Highlight the clauses that exceed Layla's earned knowledge and get expert review before signing.",
+      "whyItMatters": "A finished film does not make its creator competent in every contract attached to it. The circle preserves the work by admitting where another edge is needed."
+    },
+    {
+      "exampleId": "ch02-ex06-janek-snowpack-handoff",
+      "title": "Janek Asks Where His Home Range Ends",
+      "tags": [
+        "mountain",
+        "forecast",
+        "reflection"
+      ],
+      "planSpec": {
+        "domain": "ski guide avalanche forecast handoff",
+        "audience": "a mountain guide strong on route feel but new to a different snowpack",
+        "stakes": "local confidence could outrun unfamiliar avalanche patterns",
+        "format": "reflection",
+        "requiredBeat": "Janek writes the day's route plan only after asking the local forecaster where his home-range knowledge stops applying"
+      },
+      "scenario": "Wind-slab crystals skitter across a tailgate map outside the guide hut. Janek has twenty seasons of route feel in his home range, but this valley's avalanche bulletin reads differently. The local forecaster points to a loaded slope his eye had treated as harmless. Janek writes the day's route only after asking which parts of his home judgment do not transfer here. The ski team gets a weather handoff from the person who reads that mountain every morning.",
+      "whatToDo": "Use the home-range skill as a starting point, then ask the local forecaster where it fails. Build the route around the edge of Janek's knowledge.",
+      "whyItMatters": "Confidence can travel faster than competence in the mountains. The snowpack does not care where Janek earned his instincts; it tests only whether they apply here."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A bakery owner understands recipes, local demand, and suppliers, but wants to launch frozen national shipping. What should she identify first?",
+        "choices": [
+          "Whether frozen shipping is inside earned competence, a learn zone, or a defer zone.",
+          "Whether her current customers would praise the idea.",
+          "Whether a competitor has already made the same move."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first issue is perimeter. Current bakery skill may not cover cold-chain shipping. Customer praise and competitor behavior can help later, but they do not prove competence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A respected surgeon is asked to advise on hospital cybersecurity because she leads well under pressure. Which response best fits the model?",
+        "choices": [
+          "Accept, because pressure judgment transfers across serious domains.",
+          "Define the leadership help she can give and defer the technical security assessment to specialists.",
+          "Decline every part of the request because the topic is outside her original training."
+        ],
+        "correctIndex": 1,
+        "explanation": "Leadership may be inside her circle, while technical security is not. The right move splits the request rather than pretending all skill transfers or refusing useful help.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "At a charity poker stream, a chess coach sees the river card glow beside his wooden chess clock and says, I read patterns for a living. What is the strongest warning before he pays the buy-in?",
+        "choices": [
+          "Poker is mostly luck, so expertise cannot matter.",
+          "Chess expertise may create overconfidence because the hidden rules and feedback are different.",
+          "He should play only if the buy-in is small enough to lose."
+        ],
+        "correctIndex": 1,
+        "explanation": "The warning is transfer error. Chess pattern skill is real, but poker has different information, incentives, and feedback. A smaller buy-in manages loss but does not create competence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A restaurant manager knows front-of-house flow and wants to renegotiate the building's tax assessment alone. Which action is soundest?",
+        "choices": [
+          "Handle it alone because long experience in the building provides enough context.",
+          "Avoid the issue because property assessment is outside the restaurant business.",
+          "Name what building facts he knows and bring in someone with assessment expertise for the rest."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest move preserves real knowledge while deferring the unfamiliar assessment game. Experience with the building does not automatically cover the legal and valuation rules.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A designer has built successful mobile apps and now wants to price enterprise software contracts. What question should come before confidence?",
+        "choices": [
+          "Which parts of pricing have I learned through direct feedback, and which parts am I guessing?",
+          "How quickly can I learn the new pricing vocabulary?",
+          "Which previous app launch felt most similar to this contract?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The question separates earned knowledge from guesses. Vocabulary and analogy can help learning, but neither proves that enterprise pricing is inside the current circle.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A mountain guide from one range arrives in a new valley and feels confident reading the slopes. The local bulletin warns about a pattern he rarely sees. What should he do?",
+        "choices": [
+          "Trust his years of field instinct because snow knowledge is snow knowledge.",
+          "Cancel the trip because any unfamiliar pattern means the whole day is unknowable.",
+          "Ask where his home-range judgment stops applying and build the route around the local warning."
+        ],
+        "correctIndex": 2,
+        "explanation": "The years of skill matter, but the perimeter has moved. The bulletin and local knowledge show where his advantage thins, so the route must respect that edge.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A filmmaker understands editing and story but cannot explain several distribution clauses. Which behavior best shows competence rather than insecurity?",
+        "choices": [
+          "Highlight the unknown clauses and get a distribution lawyer before signing.",
+          "Sign because business details should not slow a finished creative project.",
+          "Reject the whole contract because unfamiliar clauses are always traps."
+        ],
+        "correctIndex": 0,
+        "explanation": "Competence includes knowing its edge. The lawyer does not replace Layla's creative judgment; the lawyer covers a different game attached to the work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A software founder succeeded in consumer subscriptions and assumes she can price a hospital procurement bid. What is the likely failure mode?",
+        "choices": [
+          "She is confusing courage with competence because all new markets require boldness.",
+          "She is letting real success in one feedback system masquerade as edge in another.",
+          "She is overvaluing expertise because procurement rules can be learned from public documents."
+        ],
+        "correctIndex": 1,
+        "explanation": "The danger is misplaced transfer. Consumer subscriptions and hospital procurement can look adjacent while using different buyers, timelines, incentives, and failure costs.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A regional retailer can expand into a nearby product line alone, partner with an expert, or run a small learning pilot. Which choice best reflects the circle of competence?",
+        "choices": [
+          "Expand alone if the new product reaches the same customers.",
+          "Avoid the expansion until the team has full mastery.",
+          "Choose among play, partner, and pilot based on which parts are earned knowledge and which are not."
+        ],
+        "correctIndex": 2,
+        "explanation": "The model does not force avoidance. It asks for an accurate perimeter, then matches the action to it: play where edge is real, partner or pilot where learning is still owed.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You feel confident in a decision near your usual work. What should you retrieve before acting?",
+      "back": "Confidence may have crossed the perimeter before competence did. Name what you know from earned feedback and what only feels familiar.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A skill worked in one domain and you want to use it in another. What is the transfer test?",
+      "back": "Ask whether the feedback, incentives, hidden rules, and failure costs are the same. If they changed, your circle may not have moved with your confidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A problem has three parts: one you know, one you can learn cheaply, and one with high stakes. How do you sort them?",
+      "back": "Play where the edge is earned, learn where feedback is cheap, and defer where another person clearly understands the game better.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why is knowing the perimeter often more important than having a large circle?",
+      "back": "A small circle with a clear edge protects decisions. A large-feeling circle with a fuzzy edge invites expensive pretending when the advantage has already transferred to someone else.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How can you expand the circle without pretending it has already expanded?",
+      "back": "Enter as a learner: make small bets, seek feedback, partner with people who have the edge, and wait for evidence before upgrading confidence into competence.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to sort decisions by earned edge. The skill is not retreating from unfamiliar work; it is naming whether you should play, learn, partner, or defer before confidence starts spending money.",
+    "ifThenPlans": [
+      {
+        "context": "new project",
+        "plan": "If a new project feels adjacent to work you know, then list the rules, feedback loops, and failure costs that may be different before committing."
+      },
+      {
+        "context": "professional advice",
+        "plan": "If someone asks for advice outside your edge, then say what you can judge and name the specialist needed for the rest."
+      },
+      {
+        "context": "personal finance",
+        "plan": "If an opportunity sounds clear after one explanation, then write whether you understand the mechanics or only the story."
+      },
+      {
+        "context": "learning",
+        "plan": "If you want to expand into a new area, then choose a small feedback-rich pilot before taking a full-sized risk."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one pending decision and mark each part as play, learn, partner, or defer. Take one action that matches the weakest label, not the strongest feeling.",
+    "weeklyPractice": "Once a week, review a decision where you felt confident. Write what evidence proved the confidence was earned, where the perimeter was unclear, and what feedback would expand the circle next time."
+  },
+  "memorableLines": [
+    {
+      "text": "The goal is not to stay small. It is to stop pretending the edge moved just because your confidence did.",
+      "location": "breakdown.fastRead",
+      "why": "It prevents the model from being reduced to comfort-zone advice."
+    },
+    {
+      "text": "Perimeter is the whole skill when confidence travels.",
+      "location": "breakdown.deepRead",
+      "why": "The short line compresses the chapter's practical demand into one memorable rule."
+    },
+    {
+      "text": "Play where the edge is real. Learn where the gap is honest.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a direct phrase for applying the model under pressure."
+    }
+  ]
+}

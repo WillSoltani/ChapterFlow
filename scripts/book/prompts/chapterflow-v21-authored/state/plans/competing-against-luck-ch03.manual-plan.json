@@ -1,0 +1,123 @@
+{
+  "chapterId": "competing-against-luck-ch03",
+  "number": 3,
+  "title": "Jobs in the Wild",
+  "coreMove": "Apply the jobs diagnostic — circumstance, progress sought, substitutes — in a domain you have not mapped before, and test whether the lens holds against observable evidence.",
+  "sourcePressure": "Jobs Theory has to prove it travels beyond the opening case. The method is portable because the explanatory structure applies across categories: what struggle activates the hire, what progress is sought, and what alternatives the buyer actually evaluated. But portability does not mean reusing a famous story. Each new setting requires fresh reading of the struggling moment, its local substitutes, and what progress is actually at stake. A team that concludes 'jobs applies here too' without doing the local diagnostic has not applied the theory — they have repeated the slogan.",
+  "chapterSpecificMisunderstanding": "Thinking Jobs Theory works only in consumer packaged goods or simple purchases, or conversely, assuming portability means the same job answer applies everywhere — rather than applying the same diagnostic questions freshly to each new context.",
+  "sourceAlignmentTerms": ["circumstance", "substitute", "demand", "struggle", "portable", "diagnostic", "competing alternatives", "struggling moment", "hire"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Jobs Theory works in any industry.",
+      "Every market has a hidden job waiting to be discovered.",
+      "The same rules apply whether you sell software or sandwiches."
+    ],
+    "counterintuition": [
+      "Your biggest competitor isn't who you think.",
+      "Industry boundaries are just a story companies tell themselves."
+    ],
+    "tryThisNow": [
+      "List your three biggest competitors and ask whether any are in a different category.",
+      "Apply the jobs framework to a product you use every day."
+    ],
+    "examples": [
+      "any example that merely restates the milkshake case with a different product",
+      "examples that conclude 'jobs applies here' without showing the fresh diagnostic work"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["dialogue_first", "sensory_first", "retrospective", "second_person", "timestamp_named", "environmental"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "airport parking valet service",
+      "audience": "an airport services researcher expecting to find a service quality gap between valet and self-park",
+      "stakes": "whether the valet price cut Emily is proposing will recover market share or solve the wrong problem",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "A frequent traveler says, 'I don't valet because I need to know exactly which level my car is on when I land at midnight after a delay.' Emily expected to find a quality or price gap. The diagnostic reveals the job: certainty of retrieval under high-stress conditions (late arrival, variable delay, no phone battery). Price is not the substitute. A self-park space you circled in a photo on your phone is. The valet product cannot be hired for this job because it removes the certainty variable.",
+      "firstImage": "'When I land at midnight,' the man says, not looking up from the departure board",
+      "mustInclude": ["a midnight retrieval scenario with a flight delay context", "a self-park level number the traveler can verify (photo on phone)", "Emily's incorrect working hypothesis (price gap) visible before the reveal"],
+      "mustAvoid": ["'customer service quality' framing — the beat must show the specific circumstance (late arrival + certainty need) as the key diagnostic variable"]
+    },
+    {
+      "domain": "community garden plot allocation",
+      "audience": "a garden coordinator trying to explain why a third of allocated plots are underused by midsummer",
+      "stakes": "whether André's new plot-management policy addresses the real reason people stop showing up",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "André expected the problem to be commitment. Interviews with underusing plot-holders reveal three distinct jobs: stress relief through physical outdoor work, social belonging (tied to the neighbor in the adjacent plot), and fresh produce access. The plots hired for the social job went underused when the neighboring plot-holder moved. André's waiting list and plot-reclaim policy were designed for a non-commitment model. The actual problem is job evaporation.",
+      "firstImage": "compost smell before 7 a.m., soil bags stacked by the chain-link gate, morning dew on a hose coiled near the entrance, no one visible yet",
+      "mustInclude": ["a neighboring plot whose holder moved away mid-season", "three distinct jobs identified in the interviews", "a waiting list that implies demand but doesn't explain vacancy"],
+      "mustAvoid": ["'people lose interest in hobbies' framing — the beat must show a specific social job evaporating when the social context (neighbor) changes"]
+    },
+    {
+      "domain": "freelance accounting software",
+      "audience": "a product designer examining churn data expecting to find an invoicing workflow problem",
+      "stakes": "whether the retention fix is a product improvement or a job rediagnosis",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chiara's team built the tool for faster invoicing. Retained users aren't using the invoicing feature most. They're using the client notes field — specifically to log the tone of calls, the client's mood, and whether a follow-up feels overdue. The job being hired is relationship-anxiety management, not billing speed. The product's busiest feature solves a job the product was never designed to solve.",
+      "firstImage": "a week-eight churn analytics chart, the drop visible, a product usage heat-map open below it showing client notes lighting up",
+      "mustInclude": ["a client notes field being used for non-billing entries", "a tone-of-call or relationship-anxiety note as the specific content", "the invoicing feature sitting idle for the retained cohort"],
+      "mustAvoid": ["'users use products in unexpected ways' framing — the beat must identify the specific job (relationship anxiety management) being hired from the unexpected feature"]
+    },
+    {
+      "domain": "language exchange app",
+      "audience": "a community manager making a case against adding pronunciation scoring AI to the app",
+      "stakes": "whether the product team builds what users say they want or what the diagnostic reveals they are hiring the app to do",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You are presenting research to the product team: users say they want better pronunciation. Observation shows something different. Users cancel their sessions less when the partner says 'you're easy to understand' than when they score 90% on a pronunciation metric. The job is not pronunciation accuracy. It is: lower the emotional cost of trying to speak with a native speaker without feeling like a burden. Pronunciation AI answers the stated want and misses the hired job.",
+      "firstImage": "a pronunciation scoring mockup on the design screen, the reader about to argue for or against it",
+      "mustInclude": ["a pronunciation scoring feature mockup", "a 'not wanting to be a burden' framing from user interviews", "a session cancellation pattern tied to perceived fluency rather than measured accuracy"],
+      "mustAvoid": ["'feature prioritization requires tradeoffs' framing — the beat must show the diagnostic (emotional burden-reduction job) as what the feature decision needs to answer"]
+    },
+    {
+      "domain": "paint supply store serving contractors",
+      "audience": "a store owner reviewing conversion from a new color consultation service",
+      "stakes": "whether Ingrid has correctly identified what buyers are hiring the consultation to do",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 10:15 a.m., Ingrid predicts the color consultation service will drive premium paint sales. Most consultees leave with the same mid-range their neighbor used, not the premium line. Exit interviews reveal the job: 'You told me it would look fine with our trim. I just needed someone to say I wasn't going to ruin it.' The consultation was hired to provide permission to proceed, not expertise. Ingrid has been pricing and promoting the wrong job.",
+      "firstImage": "a color fan spread across the consultation table, the appointment card stamped 10:15, a premium paint rack in the background",
+      "mustInclude": ["a neighbor's paint choice mentioned by the buyer as the reference standard", "a mid-range purchase by someone who came in for premium advice", "a 'you won't ruin it' reassurance as the actual value delivered"],
+      "mustAvoid": ["'customers want advice and reassurance' generality — the beat must name the specific progress job (permission to proceed, confidence to act) being hired from the consultation"]
+    },
+    {
+      "domain": "public swimming pool lap lane scheduling",
+      "audience": "a pool manager who added lane speed designations expecting to improve flow but found an unexpected usage shift",
+      "stakes": "whether Kiran has correctly read what the speed designations are being hired to do",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Kiran added slow/medium/fast lane designations to manage lane traffic. Fast lanes filled not because the fastest swimmers went there first but because the designation served as a social signal: serious swimmers only, casual swimmers need not share. The job being hired from the speed sign is social belonging in a peer-defined lane — not speed management. Kiran misread his own fix.",
+      "firstImage": "chlorine smell before 6 a.m., a lane-speed sign catching the surface light before any swimmer is in the water",
+      "mustInclude": ["a dawn-opening context with almost empty lanes", "a casual vs. serious swimmer contrast that appears once the lanes fill", "the speed designation as a social signal rather than a practical sorting tool"],
+      "mustAvoid": ["'aquatic center management and lane etiquette' framing — the beat must show the social belonging job the designation is being hired to communicate"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply the three-part jobs diagnostic (circumstance, progress, substitutes) to a domain not mentioned in the chapter",
+      "recognize when a product is being hired for a job the designer never intended",
+      "identify the actual substitute set once the job is named in a new domain",
+      "distinguish between 'portability proved' (fresh diagnostic, local evidence) and 'portability assumed' (same answer copied from another category)",
+      "evaluate whether a product change responds to the right job given the diagnostic evidence"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick a product or service you use in a category completely unrelated to your work. Write the three-part diagnostic: what circumstance makes you hire it, what progress you are trying to make, and what alternatives you evaluated (even if briefly) before choosing it. If the diagnostic reveals a job different from the product's stated purpose, you have just proven portability on your own example.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter showing the diagnostic questions applied cleanly; at least one paragraph 5+ sentences showing the full gap between category assumption and job reality; at least one one-sentence punch line that names what changes once the job is visible",
+    "fullReadInterludeRequirement": "at least one passage that names what the team would have done wrong without the diagnostic — not as a cautionary tale but as a direct contrast showing the alternative decision that would have been made",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

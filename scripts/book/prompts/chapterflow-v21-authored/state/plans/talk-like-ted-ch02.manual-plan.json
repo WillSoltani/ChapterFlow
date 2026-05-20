@@ -1,0 +1,213 @@
+{
+  "chapterId": "talk-like-ted-ch02",
+  "number": 2,
+  "title": "Master the Art of Storytelling",
+  "coreMove": "Turn evidence into human movement so the audience can feel why the idea matters.",
+  "sourcePressure": "The source uses Bryan Stevenson's TED talk on injustice, Aristotle's ethos/logos/pathos triad, Rosa Parks, and Kurt Vonnegut to show story as the exchange vessel for ideas. Pathos carries much of the talk while logos and ethos support it.",
+  "chapterSpecificMisunderstanding": "The weak version says stories beat facts. The useful version says story lets facts reach the audience through a person, a tension, and a consequence.",
+  "sourceAlignmentTerms": [
+    "story",
+    "pathos",
+    "logos",
+    "ethos",
+    "hero",
+    "tension",
+    "resolution",
+    "data"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Bryan Stevenson",
+      "detail": "the source uses Stevenson's talk on injustice as the primary anchor for mixing prison-system data with stories from life and family",
+      "useIn": "both",
+      "phrasingHint": "Bryan Stevenson lets the numbers carry a human face before asking the room to carry the argument."
+    },
+    {
+      "kind": "person",
+      "name": "Aristotle",
+      "detail": "the source explains the talk through Aristotle's rhetoric triad of ethos, logos, and pathos",
+      "useIn": "deepRead",
+      "phrasingHint": "Aristotle's old triad still names the balance: credibility, reason, and feeling have to work in the same direction."
+    },
+    {
+      "kind": "person",
+      "name": "Rosa Parks",
+      "detail": "the source lists Rosa Parks as a usable proper noun in the chapter's storytelling support",
+      "useIn": "fullRead",
+      "phrasingHint": "A name like Rosa Parks reminds the room that public ideas often survive because they have a person inside them."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "campfire story opening",
+      "once upon a time joke",
+      "data slide fails until story saves it"
+    ],
+    "counterintuition": [
+      "story is stronger than facts",
+      "facts do not persuade",
+      "emotion is the secret"
+    ],
+    "tryThisNow": [
+      "tell a personal story",
+      "add a hero to your talk",
+      "write down a beginning, middle, and end"
+    ],
+    "examples": [
+      "courtroom melodrama",
+      "brand founder myth",
+      "generic charity gala",
+      "school essay anecdote"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "innocence clinic fundraising talk",
+      "audience": "a law professor asking alumni to fund case investigation hours",
+      "stakes": "whether donors hear billable hours or the years one wrong file can steal",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she moves the exoneration statistics after the first client letter and lets the letter create the human path into the data",
+      "firstImage": "a creased prison envelope beside a stack of case-hour invoices",
+      "mustInclude": [
+        "client letter",
+        "case-hour invoice",
+        "exoneration statistics"
+      ],
+      "mustAvoid": [
+        "courtroom speech",
+        "data-free appeal"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "hospital infection-control briefing",
+      "audience": "an infection-control nurse briefing surgeons on handoff compliance",
+      "stakes": "whether a sterile checklist feels like bureaucracy or like the moment that protected one patient",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "he starts with the recovery-room call that almost went wrong, then shows how the compliance chart explains the risk at scale",
+      "firstImage": "a red phone light blinking over a recovery-room desk",
+      "mustInclude": [
+        "handoff checklist",
+        "compliance chart",
+        "recovery-room call"
+      ],
+      "mustAvoid": [
+        "generic hospital safety lecture",
+        "hero surgeon"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "wildlife corridor campaign",
+      "audience": "a conservation organizer speaking to skeptical landowners",
+      "stakes": "whether acreage maps become a story of one herd finding a safe path",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she asks where the tagged elk will cross, lets the room guess wrong, then reveals the map and tells the calf story that makes the corridor matter",
+      "firstImage": "a satellite collar dot frozen near a highway overpass",
+      "mustInclude": [
+        "tagged elk map",
+        "highway overpass",
+        "landowner easement"
+      ],
+      "mustAvoid": [
+        "nature sentimentality",
+        "map-only argument"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "union apprenticeship orientation",
+      "audience": "a trainer welcoming first-year electrical apprentices",
+      "stakes": "whether safety rules feel like scolding or like inherited craft protection",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "after an apprentice jokes about lockout tags, he tells the story of the retired foreman who kept one burned tag in his toolbox, then teaches the rule",
+      "firstImage": "a faded red lockout tag clipped to a dented toolbox latch",
+      "mustInclude": [
+        "lockout tag",
+        "toolbox",
+        "apprentice manual"
+      ],
+      "mustAvoid": [
+        "generic shop accident",
+        "macho trade banter"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "insurance actuarial risk update",
+      "audience": "an actuary explaining flood-model changes to claims managers",
+      "stakes": "whether a model revision sounds like math housekeeping or a family waiting longer for repair money",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch her replace the opening formula with a claim timeline for one flooded basement, then use the model to show why the delay repeats",
+      "firstImage": "a damp claim folder curling at the corner under a desk lamp",
+      "mustInclude": [
+        "claim timeline",
+        "flood model",
+        "repair estimate"
+      ],
+      "mustAvoid": [
+        "anti-data frame",
+        "generic customer empathy"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "school board literacy vote",
+      "audience": "a principal presenting reading-intervention results to a board",
+      "stakes": "whether the board sees a percentile table or a student who can finally read the bus sign home",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he introduces one student's bus-sign moment before showing the full intervention table, so the evidence has a person attached",
+      "firstImage": "a laminated bus route card held at the edge of a boardroom lectern",
+      "mustInclude": [
+        "bus route card",
+        "reading percentile table",
+        "intervention budget"
+      ],
+      "mustAvoid": [
+        "classroom cliche",
+        "single story replacing evidence"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when story supports evidence rather than replacing it",
+      "choose a human path into data",
+      "analyze ethos, logos, and pathos in a presentation choice",
+      "evaluate whether a story has tension and consequence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one number from an upcoming talk and write the person, tension, and consequence that the number should help the audience understand.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

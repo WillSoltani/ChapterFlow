@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch16",
+  "number": 16,
+  "title": "Expanding Your Circle",
+  "coreMove": "Move one circle outward through adjacency while preserving fit and warmth.",
+  "sourcePressure": "Useful expansion moves through adjacent networks and warm extensions rather than indiscriminate reach.",
+  "chapterSpecificMisunderstanding": "Counting breadth as success or treating every new contact as equally valuable.",
+  "sourceAlignmentTerms": [
+    "expand your circle",
+    "adjacent networks",
+    "warm extensions",
+    "breadth",
+    "fit",
+    "relevance"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Ethan",
+      "domain": "neighborhood mutual-aid WhatsApp list",
+      "audience": "a reader facing neighborhood mutual-aid WhatsApp list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if neighborhood mutual-aid WhatsApp list becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ethan chooses the adjacent circle with a real bridge instead of adding random strangers in front of WhatsApp notification, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "WhatsApp notification on the edge of neighborhood mutual-aid WhatsApp list",
+      "mustInclude": [
+        "WhatsApp notification",
+        "neighborhood mutual-aid WhatsApp list constraint",
+        "one named next step tied to expand your circle"
+      ],
+      "mustAvoid": [
+        "Counting breadth as success or treating every new contact as equally valuable.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Evan",
+      "domain": "alumni choir reunion rehearsal",
+      "audience": "a reader facing alumni choir reunion rehearsal where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if alumni choir reunion rehearsal becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Evan chooses the adjacent circle with a real bridge instead of adding random strangers in front of reunion program, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "reunion program on the edge of alumni choir reunion rehearsal",
+      "mustInclude": [
+        "reunion program",
+        "alumni choir reunion rehearsal constraint",
+        "one named next step tied to expand your circle"
+      ],
+      "mustAvoid": [
+        "Counting breadth as success or treating every new contact as equally valuable.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "George",
+      "domain": "regional logistics partner map",
+      "audience": "a reader facing regional logistics partner map where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if regional logistics partner map becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "George chooses the adjacent circle with a real bridge instead of adding random strangers in front of route atlas, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "route atlas on the edge of regional logistics partner map",
+      "mustInclude": [
+        "route atlas",
+        "regional logistics partner map constraint",
+        "one named next step tied to expand your circle"
+      ],
+      "mustAvoid": [
+        "Counting breadth as success or treating every new contact as equally valuable.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Henry",
+      "domain": "language exchange cafe board",
+      "audience": "a reader facing language exchange cafe board where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if language exchange cafe board becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Henry chooses the adjacent circle with a real bridge instead of adding random strangers in front of chalkboard menu, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "chalkboard menu on the edge of language exchange cafe board",
+      "mustInclude": [
+        "chalkboard menu",
+        "language exchange cafe board constraint",
+        "one named next step tied to expand your circle"
+      ],
+      "mustAvoid": [
+        "Counting breadth as success or treating every new contact as equally valuable.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "climbing gym belay sign-up",
+      "audience": "a reader facing climbing gym belay sign-up where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if climbing gym belay sign-up becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Henrik chooses the adjacent circle with a real bridge instead of adding random strangers in front of carabiner rack, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "carabiner rack on the edge of climbing gym belay sign-up",
+      "mustInclude": [
+        "carabiner rack",
+        "climbing gym belay sign-up constraint",
+        "one named next step tied to expand your circle"
+      ],
+      "mustAvoid": [
+        "Counting breadth as success or treating every new contact as equally valuable.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Anika",
+      "domain": "marine research volunteer calendar",
+      "audience": "a reader facing marine research volunteer calendar where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if marine research volunteer calendar becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anika chooses the adjacent circle with a real bridge instead of adding random strangers in front of tide chart, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "tide chart on the edge of marine research volunteer calendar",
+      "mustInclude": [
+        "tide chart",
+        "marine research volunteer calendar constraint",
+        "one named next step tied to expand your circle"
+      ],
+      "mustAvoid": [
+        "Counting breadth as success or treating every new contact as equally valuable.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish expand your circle from Counting breadth as success or treating every new contact as equally valuable.",
+      "choose the visible action that performs: Move one circle outward through adjacency while preserving fit and warmth.",
+      "diagnose when a scenario drifts into Counting breadth as success or treating every new contact as equally valuable.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real expand your circle moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

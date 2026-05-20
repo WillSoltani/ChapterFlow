@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch26",
+  "number": 26,
+  "title": "Prospect Theory",
+  "coreMove": "read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone",
+  "sourcePressure": "introduces prospect theory as a better account of how people value gains, losses, and certainty",
+  "chapterSpecificMisunderstanding": "using prospect theory as a vague label for risk aversion",
+  "sourceAlignmentTerms": [
+    "prospect theory",
+    "loss aversion",
+    "value function",
+    "reference dependence",
+    "certainty effect",
+    "probability weighting"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Prospect Theory",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just investment tips"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about investment tips",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "pharmacy verification bench facing a decision distorted by loss aversion",
+      "audience": "a lead or reviewer who must read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone while others want the quick answer",
+      "stakes": "the visible call will go wrong unless loss aversion is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "the scene shows the before call written on the tax audit worksheet labeled prospect theory, then the after call once the person performs the chapter move instead of trusting the original feeling",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the tax audit worksheet labeled prospect theory between the two choices.",
+      "mustInclude": [
+        "tax audit worksheet labeled prospect theory",
+        "prospect theory",
+        "loss aversion"
+      ],
+      "mustAvoid": [
+        "turning the scene into investment tips",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "architectural site survey facing a decision distorted by loss aversion",
+      "audience": "a lead or reviewer who must read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone while others want the quick answer",
+      "stakes": "the visible call will go wrong unless loss aversion is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "the protagonist pauses with the proofing basket label labeled loss aversion in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable",
+      "firstImage": "The decision station is quiet except for the proofing basket label labeled loss aversion beside the unfinished call.",
+      "mustInclude": [
+        "proofing basket label labeled loss aversion",
+        "prospect theory",
+        "value function"
+      ],
+      "mustAvoid": [
+        "turning the scene into investment tips",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "fire command post facing a decision distorted by loss aversion",
+      "audience": "a lead or reviewer who must read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone while others want the quick answer",
+      "stakes": "the visible call will go wrong unless loss aversion is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "the reader is asked to imagine signing the function snow-pit ruler labeled value function twice, once from the first impression and once after applying prospect theory, then compare the two commitments",
+      "firstImage": "What would change if the function snow-pit ruler labeled value function stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "function snow-pit ruler labeled value function",
+        "prospect theory",
+        "reference dependence"
+      ],
+      "mustAvoid": [
+        "turning the scene into investment tips",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "submarine simulator facing a decision distorted by loss aversion",
+      "audience": "a lead or reviewer who must read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone while others want the quick answer",
+      "stakes": "the visible call will go wrong unless loss aversion is separated from the tempting but weaker cue",
+      "format": "dialogue",
+      "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the rare-book cradle strap labeled reference dependence, then chooses only after both are visible",
+      "firstImage": "The first thing in the room is the texture of the rare-book cradle strap labeled reference dependence, not the person's opinion about it.",
+      "mustInclude": [
+        "rare-book cradle strap labeled reference dependence",
+        "prospect theory",
+        "certainty effect"
+      ],
+      "mustAvoid": [
+        "turning the scene into investment tips",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "independent bookstore buy desk facing a decision distorted by loss aversion",
+      "audience": "a lead or reviewer who must read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone while others want the quick answer",
+      "stakes": "the visible call will go wrong unless loss aversion is separated from the tempting but weaker cue",
+      "format": "decision_point",
+      "requiredBeat": "the trainee must move the caliper inspection tag labeled certainty effect from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence",
+      "firstImage": "You are looking at the caliper inspection tag labeled certainty effect while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "caliper inspection tag labeled certainty effect",
+        "prospect theory",
+        "probability weighting"
+      ],
+      "mustAvoid": [
+        "turning the scene into investment tips",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "orchard frost watch facing a decision distorted by loss aversion",
+      "audience": "a lead or reviewer who must read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone while others want the quick answer",
+      "stakes": "the visible call will go wrong unless loss aversion is separated from the tempting but weaker cue",
+      "format": "predict_reveal",
+      "requiredBeat": "the supervisor circles the alluring detail on the neon transformer tube labeled probability weighting, crosses it out, and asks for the boring comparison that the chapter says must come first",
+      "firstImage": "It took three passes before the reviewer saw what the neon transformer tube labeled probability weighting had been making too easy.",
+      "mustInclude": [
+        "neon transformer tube labeled probability weighting",
+        "prospect theory",
+        "probability weighting"
+      ],
+      "mustAvoid": [
+        "turning the scene into investment tips",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone",
+      "choose the correction that fits prospect theory rather than a generic careful-thinking answer",
+      "distinguish Prospect Theory from nearby drift into investment tips",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next choice that feels obvious, name the cue making it easy. Then perform the chapter move in one sentence: read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

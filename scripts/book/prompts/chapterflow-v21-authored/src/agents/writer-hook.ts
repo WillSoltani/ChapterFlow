@@ -11,7 +11,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
-import { BookBrief, ChapterDesignDoc } from "../types.js";
+import { BookBrief, ChapterDesignDoc, PriorChapterShapes } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -24,6 +24,9 @@ export type HookOutput = {
 export type HookInput = {
   brief: BookBrief;
   plan: ChapterDesignDoc;
+  /** Shapes of every prior chapter in this book. The writer uses this to
+   *  diversify away from over-used first words and counter shapes. */
+  priorChapterShapes?: PriorChapterShapes;
 };
 
 export async function runWriterHook(input: HookInput): Promise<HookOutput> {
@@ -39,6 +42,15 @@ export async function runWriterHook(input: HookInput): Promise<HookOutput> {
   parts.push(JSON.stringify(input.plan, null, 2));
   parts.push("```");
   parts.push("");
+  if (input.priorChapterShapes && (input.priorChapterShapes.priorHookFirstWords.length > 0 || input.priorChapterShapes.priorCounterShapes.length > 0)) {
+    parts.push(`# Prior chapter context`);
+    parts.push("Use this list to AVOID over-using any single first word. If a first word has already been used in 50%+ of prior chapters, do NOT use it for this hook. Pick a different opener structure.");
+    parts.push("");
+    parts.push("```json");
+    parts.push(JSON.stringify(input.priorChapterShapes, null, 2));
+    parts.push("```");
+    parts.push("");
+  }
   parts.push(`Write the HookOutput JSON now.`);
   const userPrompt = parts.join("\n");
 

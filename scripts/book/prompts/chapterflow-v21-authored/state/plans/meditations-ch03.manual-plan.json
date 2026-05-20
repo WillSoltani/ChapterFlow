@@ -1,0 +1,191 @@
+{
+  "chapterId": "meditations-ch03",
+  "number": 3,
+  "title": "Book III",
+  "coreMove": "Make haste by choosing clear judgment now, not by rushing more activity.",
+  "sourcePressure": "Understanding may fail before life ends, so perception and ready principles must be trained before praise, pleasure, and curiosity waste the remaining time.",
+  "chapterSpecificMisunderstanding": "urgency as panic or speed for its own sake",
+  "sourceAlignmentTerms": [
+    "make haste",
+    "ripe figs",
+    "bent grain",
+    "old age",
+    "standing erect",
+    "physician tools",
+    "idle hopes"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "ripe figs and bent grain",
+      "detail": "Book III trains perception through ripe figs, bent grain, old age, and other natural consequences that still belong to beauty.",
+      "useIn": "both",
+      "phrasingHint": "The ripe fig teaches the eye to see consequence without flinching from it."
+    },
+    {
+      "kind": "artifact",
+      "name": "physician's tools",
+      "detail": "Book III ends by urging principles kept ready like a physician's tools.",
+      "useIn": "fullRead",
+      "phrasingHint": "A principle left in storage is no more useful than an instrument sealed outside the operating room."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "film editing deadline",
+      "audience": "Rachel cutting a documentary before the festival lock",
+      "stakes": "another week of polishing could hide fear of final judgment",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel deletes three beautiful but evasive shots and exports the cut before fatigue blurs the decision.",
+      "firstImage": "The edit bay is dark except for the timeline bar blinking at 01:47:22.",
+      "mustInclude": [
+        "timeline marker",
+        "festival upload portal",
+        "headphones"
+      ],
+      "mustAvoid": [
+        "creative perfectionism generic"
+      ]
+    },
+    {
+      "domain": "eldercare appointment",
+      "audience": "Mathieu taking his father to a memory clinic",
+      "stakes": "delay could cost the family the last clear planning window",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Mathieu stops explaining away missed bills and books the assessment while his father can still choose.",
+      "firstImage": "A stack of unopened envelopes leans against the sugar bowl.",
+      "mustInclude": [
+        "unopened bills",
+        "clinic form",
+        "phone calendar"
+      ],
+      "mustAvoid": [
+        "medical melodrama"
+      ]
+    },
+    {
+      "domain": "orchard apprenticeship",
+      "audience": "Grace learning when to harvest bruised fruit",
+      "stakes": "she mistakes unblemished appearance for real readiness",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The grower has Grace cut open a speckled pear and a glossy hard one, then choose by the flesh.",
+      "firstImage": "\"Pretty skin is not ripeness,\" Mr. Lowell says, handing Grace the knife.",
+      "mustInclude": [
+        "paring knife",
+        "wooden crate",
+        "speckled pear"
+      ],
+      "mustAvoid": [
+        "rustic wisdom postcard"
+      ]
+    },
+    {
+      "domain": "law school clinic",
+      "audience": "Sam preparing an asylum brief",
+      "stakes": "reading one more article has become avoidance of the actual filing",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:05 p.m., Sam closes the last browser tab and drafts the client declaration while the facts are still clear.",
+      "firstImage": "At 9:05 p.m., Sam watches the cursor blink under Statement of Facts.",
+      "mustInclude": [
+        "case file",
+        "browser tabs",
+        "filing deadline"
+      ],
+      "mustAvoid": [
+        "academic procrastination shell"
+      ]
+    },
+    {
+      "domain": "mountain rescue training",
+      "audience": "Nicolas deciding whether to turn around a practice climb",
+      "stakes": "ambition makes worsening weather look negotiable",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Nicolas call the turn before the ridge, then see the fog erase the route ten minutes later.",
+      "firstImage": "You can smell wet rope before the ridge disappears.",
+      "mustInclude": [
+        "weather radio",
+        "rope coil",
+        "route card"
+      ],
+      "mustAvoid": [
+        "adventure triumph"
+      ]
+    },
+    {
+      "domain": "choir rehearsal",
+      "audience": "Laura correcting a section before performance week",
+      "stakes": "kindness has become avoidance of the hard note work",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Laura two rehearsals to see that postponing correction was using up the choir's last good hour.",
+      "firstImage": "It took Laura two rehearsals to hear the same flat entrance as a clock.",
+      "mustInclude": [
+        "marked score",
+        "piano bench",
+        "section list"
+      ],
+      "mustAvoid": [
+        "arts pep talk"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "tell urgency from panic",
+      "recognize disciplined perception of decay",
+      "apply ready principles before praise or curiosity steals time"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one delayed duty and ask what faculty may weaken if you keep postponing it, then do the first clean step.",
+  "readingTimeMinutes": 12
+}

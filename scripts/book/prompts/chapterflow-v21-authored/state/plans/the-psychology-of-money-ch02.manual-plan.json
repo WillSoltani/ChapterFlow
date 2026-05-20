@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch02",
+  "number": 2,
+  "title": "No One's Crazy",
+  "coreMove": "Translate a strange money choice back into the life that made it feel sensible.",
+  "sourcePressure": "Different financial histories make risk, reward, and fear feel different, so behavior that looks irrational from outside can be coherent from inside.",
+  "chapterSpecificMisunderstanding": "Explaining every disagreement as stupidity, ignorance, or lack of discipline.",
+  "sourceAlignmentTerms": [
+    "money history",
+    "inflation memory",
+    "boom years",
+    "layoffs",
+    "risk feeling",
+    "personal experience"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening No One's Crazy with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing No One's Crazy to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the money history move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of money history and inflation memory"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a coastal town insurance office after three storm evacuations in five years",
+      "audience": "an agent explaining why one family over-insures while another gambles",
+      "stakes": "misjudging clients as irrational will lose both policies and trust",
+      "format": "dialogue",
+      "requiredBeat": "the agent asks each spouse to point to the storm that taught them what safe means before recommending coverage",
+      "firstImage": "a flood map pinned beside two damp cardboard claim folders",
+      "mustInclude": [
+        "flood map",
+        "claim folders",
+        "coverage slider"
+      ],
+      "mustAvoid": [
+        "insurance sales pitch"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a first-generation college financial aid desk during award-letter week",
+      "audience": "a counselor hearing why debt feels different across households",
+      "stakes": "one student may decline a good loan because family memory treats debt as danger",
+      "format": "scene",
+      "requiredBeat": "the counselor stops explaining interest rates and asks who in the family still talks about the repossessed van",
+      "firstImage": "a financial aid letter folded into quarters inside a backpack pocket",
+      "mustInclude": [
+        "award letter",
+        "family text thread",
+        "loan amount"
+      ],
+      "mustAvoid": [
+        "college aspiration boilerplate"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a used camera shop negotiating trade-ins with retired newspaper photographers and teen creators",
+      "audience": "a shop owner managing two groups who value equipment differently",
+      "stakes": "the same price feels insulting or generous depending on the era that trained the buyer",
+      "format": "vignette",
+      "requiredBeat": "the owner writes each customer's first paid camera year on the appraisal sheet before discussing value",
+      "firstImage": "a glass case reflecting an old Nikon beside a phone rig",
+      "mustInclude": [
+        "appraisal sheet",
+        "first paid camera year",
+        "trade-in tag"
+      ],
+      "mustAvoid": [
+        "nostalgia essay"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a neighborhood grocery co-op debating bulk-buy rules after inflation spikes",
+      "audience": "a board chair trying to decode hoarding without shaming members",
+      "stakes": "strict limits may punish members whose childhood scarcity makes shelves feel unsafe",
+      "format": "decision_point",
+      "requiredBeat": "the chair asks members to mark which price jump changed their pantry habits before setting limits",
+      "firstImage": "a pallet of rice sacks next to handwritten purchase-limit signs",
+      "mustInclude": [
+        "rice pallet",
+        "limit sign",
+        "price log"
+      ],
+      "mustAvoid": [
+        "panic buying stereotype"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a public library fine-forgiveness program meeting resistance from older trustees",
+      "audience": "a library director explaining that fines mean responsibility to one generation and exclusion to another",
+      "stakes": "a policy vote could close access for families the library wants back",
+      "format": "postmortem",
+      "requiredBeat": "after low turnout, the director maps trustees' first library memories against patrons' current bus costs",
+      "firstImage": "a checkout desk drawer filled with expired library cards",
+      "mustInclude": [
+        "expired cards",
+        "bus fare note",
+        "fine ledger"
+      ],
+      "mustAvoid": [
+        "kids these days framing"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a community theater splitting ticket revenue between veteran actors and new livestream crew",
+      "audience": "a producer mediating people shaped by different career markets",
+      "stakes": "a fair formula collapses if each side thinks the other is playing the same game",
+      "format": "dialogue",
+      "requiredBeat": "the producer has each side state what a paid gig meant in their first working year before numbers are negotiated",
+      "firstImage": "a rehearsal hall floor taped for blocking beside a laptop on a tripod",
+      "mustInclude": [
+        "blocking tape",
+        "livestream laptop",
+        "revenue worksheet"
+      ],
+      "mustAvoid": [
+        "generational complaint"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: translate a strange money choice back into the life that made it feel sensible",
+      "distinguish money history from nearby but weaker advice such as personality typing",
+      "diagnose when a character is making the common misread: explaining every disagreement as stupidity, ignorance, or lack of discipline.",
+      "evaluate tradeoffs using the chapter-specific pressure around money history, inflation memory, boom years"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where money history is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: translate a strange money choice back into the life that made it feel sensible.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

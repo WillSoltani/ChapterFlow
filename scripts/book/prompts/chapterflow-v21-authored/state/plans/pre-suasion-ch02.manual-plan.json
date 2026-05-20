@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch02",
+  "number": 2,
+  "title": "Privileged Moments",
+  "coreMove": "Spot the short window when a question has made the right identity available for the real request.",
+  "sourcePressure": "The source defines privileged moments as points when people are unusually receptive because the right self-relevant idea is active, including pre-questions about helpful or adventurous identity.",
+  "chapterSpecificMisunderstanding": "Any good timing or emotional mood is a privileged moment.",
+  "sourceAlignmentTerms": [
+    "privileged moment",
+    "receptive window",
+    "pre-question",
+    "self-relevance",
+    "helpful identity",
+    "adventurous identity"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "blood-donor mobile clinic",
+      "audience": "a coordinator asking shoppers to register at the end of lunch hour",
+      "stakes": "whether people see themselves as helpers before hearing the time cost",
+      "format": "predict_reveal",
+      "requiredBeat": "the coordinator asks passersby to check a card naming a helpful act they did this week before showing the donation signup slot",
+      "firstImage": "a folding table outside a grocery entrance with red appointment cards",
+      "mustInclude": [
+        "appointment card",
+        "cooler label"
+      ],
+      "mustAvoid": [
+        "charity guilt appeal"
+      ]
+    },
+    {
+      "domain": "outdoor gear rental desk",
+      "audience": "a clerk offering first-time hikers a harder route option",
+      "stakes": "whether caution or adventurous identity is active when choosing the trail",
+      "format": "decision_point",
+      "requiredBeat": "the clerk asks which past trip made them feel bold before unfolding the route map",
+      "firstImage": "a damp trail map spread under a plexiglass counter",
+      "mustInclude": [
+        "route map",
+        "weather advisory"
+      ],
+      "mustAvoid": [
+        "travel inspiration generic"
+      ]
+    },
+    {
+      "domain": "library volunteer drive",
+      "audience": "a librarian seeking weekend shelving help from regular patrons",
+      "stakes": "whether patrons answer as busy customers or as people who keep the library running",
+      "format": "dialogue",
+      "requiredBeat": "the librarian asks what shelf they always check first before pointing to the volunteer calendar for that section",
+      "firstImage": "a patron holding a mystery novel near a half-empty shelf",
+      "mustInclude": [
+        "volunteer calendar",
+        "return cart"
+      ],
+      "mustAvoid": [
+        "school classroom shell"
+      ]
+    },
+    {
+      "domain": "software beta invite",
+      "audience": "a product manager inviting users to test a risky feature",
+      "stakes": "whether users feel like careful critics before the beta request",
+      "format": "vignette",
+      "requiredBeat": "the invite begins with a one-click question about the last bug they caught, then reveals the beta slot",
+      "firstImage": "a release-notes panel with one highlighted bug report",
+      "mustInclude": [
+        "beta toggle",
+        "bug ID"
+      ],
+      "mustAvoid": [
+        "generic SaaS onboarding"
+      ]
+    },
+    {
+      "domain": "neighborhood flood-prep canvass",
+      "audience": "a block captain asking residents to store sandbags",
+      "stakes": "whether residents see themselves as prepared neighbors before hearing the chore",
+      "format": "scene",
+      "requiredBeat": "the captain asks residents to name who checked on them during the last storm before offering the sandbag signup",
+      "firstImage": "a porch rail wet from afternoon rain",
+      "mustInclude": [
+        "sandbag tag",
+        "storm map"
+      ],
+      "mustAvoid": [
+        "fear-based disaster pitch"
+      ]
+    },
+    {
+      "domain": "music-school audition day",
+      "audience": "a registrar asking families to join a mentor program",
+      "stakes": "whether parents answer as overbooked adults or guardians of beginners",
+      "format": "reflection",
+      "requiredBeat": "the registrar asks parents to write the first instrument someone helped them learn before handing over the mentor card",
+      "firstImage": "a violin case open on a hallway bench",
+      "mustInclude": [
+        "mentor card",
+        "rosin cloth"
+      ],
+      "mustAvoid": [
+        "nostalgia speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a self-image has become active",
+      "design a pre-question that makes a relevant identity salient",
+      "avoid mistaking convenience timing for a privileged moment",
+      "transfer the idea to donation, beta, safety, and volunteer choices"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one pre-question that makes a relevant identity active before a real request, then remove any wording that flatters, traps, or pressures the person.",
+  "readingTimeMinutes": 12
+}

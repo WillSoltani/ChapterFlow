@@ -1,0 +1,223 @@
+{
+  "chapterId": "the-almanack-of-naval-ravikant-ch05",
+  "number": 5,
+  "title": "Philosophy",
+  "coreMove": "Hold a large question long enough to separate inherited doctrine from values you can test and live by.",
+  "sourcePressure": "The source offers three answers to meaning, then turns to values, honesty, long-term relationships, peer relationships, anger, rational Buddhism, evolution, skepticism toward unverifiable claims, wisdom, and the present. It asks the reader to discover and verify rather than accept doctrine.",
+  "chapterSpecificMisunderstanding": "The wrong version turns this into purpose-finding, abstract spirituality, nihilism, or quote-driven philosophy. This chapter must keep philosophy practical: what can you verify, what will you not compromise, and what does the present ask you to live now.",
+  "sourceAlignmentTerms": [
+    "meaning",
+    "values",
+    "honesty",
+    "long-term",
+    "peer relationships",
+    "anger",
+    "rational Buddhism",
+    "evolution",
+    "verify",
+    "present"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "staring at stars and asking the meaning of life",
+      "funeral reflection on mortality",
+      "dorm-room debate about purpose"
+    ],
+    "counterintuition": [
+      "life has no meaning so you create your own",
+      "philosophy must be lived, not studied",
+      "the present is all we have"
+    ],
+    "tryThisNow": [
+      "write your values in a notebook",
+      "sit quietly with a big question",
+      "ask what you would do if today were your last day"
+    ],
+    "examples": [
+      "yoga studio realization",
+      "quote on a wall",
+      "religious argument at dinner",
+      "academic philosophy seminar"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "family-owned quarry deciding whether to sell stone to a developer known for short-term breaches",
+      "audience": "an owner whose inherited business code is being tested by a lucrative order",
+      "stakes": "whether stated long-term values survive a contract that would reward short-term dealing",
+      "format": "decision_point",
+      "requiredBeat": "he places the developer's late-payment record beside the signed family credit policy and declines the order before the discount offer can become the real rule",
+      "firstImage": "A limestone sample sits on top of a stained family credit policy.",
+      "mustInclude": [
+        "late-payment record",
+        "credit policy",
+        "discount offer"
+      ],
+      "mustAvoid": [
+        "generic business ethics",
+        "startup partnership",
+        "wealth chapter overlap"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "urban planner testing whether her anti-car identity is blocking a safer street design",
+      "audience": "a policy professional whose label is starting to decide before the facts do",
+      "stakes": "whether a neighborhood gets a performative plan or one that actually lowers injuries",
+      "format": "before_after",
+      "requiredBeat": "before presenting, she removes the slogan slide, overlays crash data with delivery access, and keeps the protected turn lane because the facts survive her label",
+      "firstImage": "A transparent crash map is clipped over a street-section drawing.",
+      "mustInclude": [
+        "slogan slide",
+        "crash data overlay",
+        "protected turn lane"
+      ],
+      "mustAvoid": [
+        "political rant",
+        "transportation ideology",
+        "generic compromise"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "monastery archivist rejecting a miracle claim after examining the preservation conditions",
+      "audience": "a respectful seeker who wants spiritual practice without surrendering verification",
+      "stakes": "whether reverence becomes credulity or remains honest inquiry",
+      "format": "postmortem",
+      "requiredBeat": "she notes the sealed box, low humidity, and replaced binding, then keeps the meditation practice while crossing out the miracle explanation in the archive note",
+      "firstImage": "A cracked prayer book lies in a sealed cedar archive box.",
+      "mustInclude": [
+        "low-humidity log",
+        "replaced binding",
+        "archive note"
+      ],
+      "mustAvoid": [
+        "mocking religion",
+        "mystical spectacle",
+        "museum forgery from ch02"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "cooperative bakery choosing peer governance after a founder keeps drifting into boss mode",
+      "audience": "a founder who claims to value peers but enjoys being obeyed",
+      "stakes": "whether the stated value of peer relationships changes pay, voice, and decision rights",
+      "format": "dialogue",
+      "requiredBeat": "when a baker says the vote is fake if one person can overrule it, the founder rewrites the decision rule on the order board and steps out of the tiebreaker role",
+      "firstImage": "A flour-dusted order board lists tomorrow's bake beside a crossed-out veto rule.",
+      "mustInclude": [
+        "decision rule",
+        "vote tally",
+        "order board"
+      ],
+      "mustAvoid": [
+        "generic team culture",
+        "leadership humility",
+        "family dinner conflict"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "retired boxer deciding whether anger still belongs in his coaching after a teenager flinches",
+      "audience": "a coach whose old identity treats anger as useful fuel",
+      "stakes": "whether an inherited emotional tool keeps harming the people he claims to train",
+      "format": "reflection",
+      "requiredBeat": "he sees the teenager flinch at the mitt slap, lowers the pad, and writes a new rule that correction cannot require fear",
+      "firstImage": "A worn focus mitt hangs from one hand beside an empty ring corner.",
+      "mustInclude": [
+        "teenager flinch",
+        "focus mitt",
+        "new gym rule"
+      ],
+      "mustAvoid": [
+        "sports motivation",
+        "anger catharsis",
+        "redemption montage"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "astrophotographer leaving a failed eclipse shot undeleted to practice the present over the trophy",
+      "audience": "a maker who turns rare beauty into a possession test",
+      "stakes": "whether the event is lost twice: once to clouds and again to resentment",
+      "format": "vignette",
+      "requiredBeat": "she stops hunting for a salvageable frame, leaves the blurred corona on the camera screen, and looks up while the last light is still changing",
+      "firstImage": "A blurred eclipse corona glows on the back of a camera screen.",
+      "mustInclude": [
+        "camera screen",
+        "cloud edge",
+        "last light"
+      ],
+      "mustAvoid": [
+        "meaning-of-life stargazing",
+        "photography career",
+        "happiness chapter comparison"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate a lived value from a stated preference in a concrete decision",
+      "test a spiritual or philosophical claim without mocking or blindly accepting it",
+      "recognize when identity is making a belief package feel mandatory",
+      "apply long-term and peer values under pressure from money or hierarchy",
+      "evaluate whether a response honors the present or tries to possess what is passing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one value you claim to live by. Find the next choice today where it costs you something small, then remove the option that would let you keep the slogan without paying the cost.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Osho",
+      "detail": "the source uses Osho’s image of writing on water or building houses of sand while discussing the absence of intrinsic meaning",
+      "useIn": "both",
+      "phrasingHint": "Osho’s image keeps the nihilism from sounding abstract: write on water, build in sand, then decide how to live anyway."
+    },
+    {
+      "kind": "person",
+      "name": "Richard Feynman",
+      "detail": "the source invokes Feynman’s turtles-all-the-way-down image to show why every proposed ultimate meaning invites another why",
+      "useIn": "deepRead",
+      "phrasingHint": "Feynman’s infinite stack of whys keeps the question honest instead of letting the first answer harden into doctrine."
+    },
+    {
+      "kind": "person",
+      "name": "Charlie Munger",
+      "detail": "the source quotes Munger on becoming worthy of a worthy mate while discussing values and relationships",
+      "useIn": "fullRead",
+      "phrasingHint": "Munger’s line turns values from a list into a demand: become the kind of person the relationship would require."
+    },
+    {
+      "kind": "artifact",
+      "name": "The Iliad",
+      "detail": "the source includes Homer’s Iliad line about beauty under doom in the section on the present",
+      "useIn": "fullRead",
+      "phrasingHint": "The Iliad lands because it makes impermanence sharpen the moment instead of draining it."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

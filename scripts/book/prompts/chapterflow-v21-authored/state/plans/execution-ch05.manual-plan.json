@@ -1,0 +1,177 @@
+{
+  "chapterId": "execution-ch05",
+  "number": 5,
+  "title": "Building Block Three: The Job No Leader Should Delegate",
+  "coreMove": "Face role fit directly enough to move the right person into the work the strategy actually needs.",
+  "sourcePressure": "Third building block: getting the right people in the right jobs is non-delegable because comfort, weak knowledge, and lack of courage keep mismatches alive. No chapter-specific employee case is frozen.",
+  "chapterSpecificMisunderstanding": "Turn people decisions into generic hiring tips or harsh performance-management talk.",
+  "sourceAlignmentTerms": [
+    "right people",
+    "right jobs",
+    "lack of knowledge",
+    "lack of courage",
+    "psychological comfort factor",
+    "personal commitment",
+    "unvarnished truth"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "the building block three: the job no leader should delegate that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional pharmacy chain deciding whether a beloved store manager can handle controlled-substance compliance",
+      "audience": "an area director",
+      "stakes": "loyalty to a warm manager can expose patients and licenses to risk",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire separates affection from role fit by putting audit failures beside the compliance demands of the job",
+      "firstImage": "The controlled-substance cabinet clicks shut while Claire reads the third missed reconciliation note.",
+      "mustInclude": [
+        "reconciliation note",
+        "store audit file",
+        "compliance calendar"
+      ],
+      "mustAvoid": [
+        "generic firing scene"
+      ]
+    },
+    {
+      "domain": "a film festival assigning a volunteer director for sponsor logistics",
+      "audience": "a festival chair",
+      "stakes": "a crowd favorite can lose sponsor commitments if he cannot follow through through others",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Jack asks for evidence that the candidate gets work done through others before letting popularity decide the assignment",
+      "firstImage": "\"Who has he actually moved besides himself?\" Jack asks while the sponsor map lies between them.",
+      "mustInclude": [
+        "sponsor map",
+        "volunteer roster",
+        "delivery checklist"
+      ],
+      "mustAvoid": [
+        "student club popularity shell"
+      ]
+    },
+    {
+      "domain": "a dental practice deciding whether a technically strong hygienist should lead the new-patient flow",
+      "audience": "a practice owner",
+      "stakes": "a clinical star may not energize assistants or solve tough handoffs",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Manon replaces vague admiration with four role-fit criteria: energizes people, decides tough issues, works through others, follows through",
+      "firstImage": "It took Manon two missed new-patient handoffs to stop calling technical skill the whole job.",
+      "mustInclude": [
+        "handoff card",
+        "new-patient schedule",
+        "role-fit criteria sheet"
+      ],
+      "mustAvoid": [
+        "generic promotion dilemma"
+      ]
+    },
+    {
+      "domain": "a regional construction firm choosing a superintendent for a hospital wing",
+      "audience": "an owner who dislikes hard placement conversations",
+      "stakes": "the wrong superintendent can make subcontractor coordination fail under inspection pressure",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mathieu names the psychological comfort factor when he realizes he is keeping an easy relationship in a hard job",
+      "firstImage": "The hospital-wing punch list runs three pages, and Mathieu keeps looking at the name he wants to protect.",
+      "mustInclude": [
+        "punch list",
+        "subcontractor sequence",
+        "inspection date"
+      ],
+      "mustAvoid": [
+        "generic construction delay"
+      ]
+    },
+    {
+      "domain": "a university language department moving an admired lecturer into program administration",
+      "audience": "a department chair",
+      "stakes": "students can lose course continuity if warmth substitutes for decisive administration",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marta predicts which unresolved decision will expose the mismatch, then asks for unvarnished truth before assigning the role",
+      "firstImage": "Which matters more for the program next semester: beloved lectures or the courage to cut a course?",
+      "mustInclude": [
+        "course grid",
+        "student waitlist",
+        "role assignment memo"
+      ],
+      "mustAvoid": [
+        "generic academic politics"
+      ]
+    },
+    {
+      "domain": "a Toronto logistics startup deciding whether the founder should keep a friend as head of carrier relations",
+      "audience": "a founder under investor pressure",
+      "stakes": "personal comfort can block the carrier network the strategy needs",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Lin writes down what she knows, what she is avoiding, and what role the business actually needs before making the people decision herself",
+      "firstImage": "You have the carrier complaints in one tab and Lin has the old friendship thread in another.",
+      "mustInclude": [
+        "carrier complaints",
+        "friendship thread",
+        "investor update"
+      ],
+      "mustAvoid": [
+        "startup buddy drama"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose lack of knowledge, courage, comfort, and personal commitment in people decisions",
+      "choose evidence of role fit over affection or popularity",
+      "separate execution qualities from vague talent admiration",
+      "evaluate when unvarnished truth is needed"
+    ]
+  },
+  "tryThisNowSpec": "Pick one role you influence and write the job demands first, then the person you feel most comfortable naming for it.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

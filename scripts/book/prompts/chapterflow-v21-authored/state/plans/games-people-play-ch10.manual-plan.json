@@ -1,0 +1,213 @@
+{
+  "chapterId": "games-people-play-ch10",
+  "number": 10,
+  "title": "What Comes After Games",
+  "coreMove": "Use awareness, spontaneity, and intimacy as direction markers without turning them into new practices or performances.",
+  "sourcePressure": "Closes with autonomy as the capacity to live without games, constituted by awareness, spontaneity, and intimacy, while naming their failure modes and rarity.",
+  "chapterSpecificMisunderstanding": "Turning autonomy into a life-coach technique, a mindfulness routine, or permanent independence from other people.",
+  "sourceAlignmentTerms": [
+    "autonomy",
+    "awareness",
+    "spontaneity",
+    "intimacy",
+    "game-free contact",
+    "direct perception",
+    "full range of ego states",
+    "pattern-free moment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "autonomy triad",
+      "detail": "the source defines autonomy through awareness, spontaneity, and intimacy as what remains when games fall away",
+      "useIn": "both",
+      "phrasingHint": "Autonomy is not being alone; it is needing fewer hidden structures to make contact possible."
+    },
+    {
+      "kind": "artifact",
+      "name": "awareness",
+      "detail": "the source defines awareness as perceiving directly in the present rather than through Parent programming or Child reaction",
+      "useIn": "both",
+      "phrasingHint": "Awareness is the pause where the old response becomes visible before it becomes inevitable."
+    },
+    {
+      "kind": "artifact",
+      "name": "intimacy",
+      "detail": "the source defines intimacy as direct, game-free contact and notes that it is rare because it requires both people to be free of their patterns at once",
+      "useIn": "fullRead",
+      "phrasingHint": "Intimacy is rare because one person cannot produce it alone."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'What Comes After Games' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Audrey",
+      "domain": "editorial meeting where an old defensive line appears",
+      "audience": "a magazine editor catching awareness before the sentence delivers itself",
+      "stakes": "the team can either hear current facts or another old status move",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Audrey sees the prepared line form, waits one breath, and asks what changed in the draft instead.",
+      "firstImage": "At 9:06 a.m., Audrey feels the sentence arrive before her mouth moves.",
+      "mustInclude": [
+        "marked manuscript",
+        "meeting agenda",
+        "red pen cap"
+      ],
+      "mustAvoid": [
+        "generic mindfulness pause",
+        "writer-room drama"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "adult piano lesson after years of apologizing before mistakes",
+      "audience": "a learner finding spontaneity by accessing a playful Child state instead of his usual shame script",
+      "stakes": "practice can open range or confirm limitation",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Antoine laughs at the wrong note and tries the bar again from curiosity rather than apology.",
+      "firstImage": "The wrong note rings brighter than the right ones in the small studio.",
+      "mustInclude": [
+        "upright piano",
+        "metronome",
+        "penciled fingering marks"
+      ],
+      "mustAvoid": [
+        "inner child cliche",
+        "performance triumph"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "friendship conversation after a missed birthday",
+      "audience": "a friend testing whether contact can happen without prosecuting or performing injury",
+      "stakes": "a close friendship may leave the familiar grievance track for one clean exchange",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Marta says the hurt plainly and stops before adding the line that would make the other person pay.",
+      "firstImage": "\"I was hurt, and I do not want to make a case out of it,\" Marta says.",
+      "mustInclude": [
+        "unopened birthday card",
+        "cafe receipt",
+        "phone face down"
+      ],
+      "mustAvoid": [
+        "marital games drift",
+        "forgiveness lesson"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "firehouse debrief after a call went badly",
+      "audience": "a captain allowing Adult fact and genuine Child fear without collapsing into command voice",
+      "stakes": "safety learning depends on range, not forced toughness",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Jack moves from data to fear to next procedure without pretending one state cancels the others.",
+      "firstImage": "Soot dries in the creases of every hand around the debrief table.",
+      "mustInclude": [
+        "incident map",
+        "helmet shield",
+        "coffee thermos"
+      ],
+      "mustAvoid": [
+        "heroic emergency scene",
+        "stoicism sermon"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "first date after recognizing old performance habits",
+      "audience": "a person seeing that charm can become a game even when nothing cruel is intended",
+      "stakes": "a possible connection can stay direct or become a performance of being easy to like",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chloe lets one quiet answer stand instead of filling the silence with her reliable entertaining story.",
+      "firstImage": "You know the story that always works before the waiter takes the glasses away.",
+      "mustInclude": [
+        "menu corner",
+        "rain-specked window",
+        "untouched dessert spoon"
+      ],
+      "mustAvoid": [
+        "dating manipulation",
+        "romantic idealism"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "adult siblings sorting a parent's storage unit",
+      "audience": "two people finding a brief game-free hour inside a grief-heavy task",
+      "stakes": "intimacy requires both to drop the old roles at once, however briefly",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Kiran sees later that neither sibling prepared a defense while the other held the photograph, which made the hour different.",
+      "firstImage": "Only later does Kiran understand why the storage unit felt quiet instead of loaded.",
+      "mustInclude": [
+        "cardboard photo box",
+        "storage-unit padlock",
+        "dusty lamp shade"
+      ],
+      "mustAvoid": [
+        "nostalgic closure scene",
+        "therapy breakthrough"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "define autonomy as living without games",
+      "distinguish awareness from scheduled observation",
+      "distinguish spontaneity from impulsivity",
+      "explain why intimacy requires two people simultaneously free of patterns"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In one conversation today, notice the prepared line before saying it. Let one breath pass. Then answer only what is actually present.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

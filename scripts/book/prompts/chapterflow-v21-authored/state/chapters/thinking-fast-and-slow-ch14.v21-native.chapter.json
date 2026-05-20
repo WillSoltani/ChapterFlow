@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch14",
+  "number": 14,
+  "title": "Tom W's Specialty",
+  "readingTimeMinutes": 12,
+  "hook": "The description fits engineering so neatly that the base-rate table slides off the desk.",
+  "counterintuition": "The vivid profile may be diagnostic, but it is not allowed to erase the base rate. The better move is to put the category frequencies back on the table before sorting the case.",
+  "tryThisNow": "Before your next people-sort or category guess, write the base rate first. Then add the vivid description and ask how much it should move the prior number.",
+  "keyTakeaway": "Representativeness makes stereotype fit feel like probability, so restore the base rate before a description sorts the case.",
+  "breakdown": {
+    "fastRead": "A pharmacy reviewer reads a profile of a prescriber who sounds exactly like the kind of doctor who overorders controlled medications. The description fits. The base rate of actual violations in that group is low.\n\nFit is not frequency.\n\nFit judges how much a case looks like a group. That match can help, but it can drown out how common the group is. Ask: how often does this happen before the story? Then ask how much the story should move that first rate.",
+    "deepRead": "An architect reads a site note about a contractor who is quiet, precise, skeptical of shortcuts, and obsessed with tolerances. The immediate guess is structural specialist. The description has stereotype fit. It feels diagnostic.\n\nTom W works the same way: a vivid specialty profile can make one field feel obvious while the base-rate table underneath is ignored.\n\nThe mind loves representativeness because it is fast and coherent. If a person sounds like an engineer, a poet, a surgeon, or a fraudster, the match feels like evidence. But probability has two parts. First, how common is the category in the relevant population? Second, how much should this description move that starting rate? If the category is rare, even a good-fitting description may not make it likely.\n\nBase rates feel dull because they describe populations, not scenes. A description gives you a person to imagine. The imagined person then sorts the category by resemblance. That is not prejudice alone, though prejudice can use the same machinery. The broader error is letting stereotype fit replace probability.\n\nA fire command post shows the cost. A new officer is calm, clipped, and decisive, so the team assumes he has deep high-rise experience. The base rate says only a small fraction of officers on that rotation have led a high-rise evacuation. The description may move the estimate, but it cannot skip the rotation record.\n\nA good description updates a base rate. It does not bury it.",
+    "fullRead": "Representativeness is seductive because it feels like recognition. You are not merely guessing; you are seeing a fit. A profile sounds like a specialty. A file sounds like a risk type. A customer sounds like a buyer. The match gives the judgment a click.\n\nThe click is not the probability.\n\nTom W makes the trap plain. A detailed profile points the mind toward a specialty because the person described resembles the stereotype of that specialty. The missing move is to look at the base rates of the specialties first. Some categories are common, some rare. If the vivid description points toward a rare category, the base rate should resist the pull unless the description is strongly diagnostic.\n\nWhat is the category frequency before the story begins?\n\nThat question changes the order of judgment. Start with the base rate. Then ask how reliable the description is. Is it based on behavior that truly distinguishes the category, or on flavor that merely resembles it? Does the description come from a source with information, or from a few vivid traits? Is the category common enough that a modest clue should move it far?\n\nA bookstore buy desk has the same structure. A customer in a linen jacket asks for obscure essays and mentions a small press. The buyer immediately thinks rare-book collector and offers high for a box of titles. The porcelain shade tab labeled diagnosticity sits on the counter as a reminder from a staff drill: description first, category later is the risky order. The store's base rate says most sellers with literary language are still ordinary downsizers. The description may raise the collector estimate, but it should not replace the base rate.\n\nA submarine simulator shows the danger when representativeness meets pressure. A trainee's voice is calm and technical, matching the prototype of the skilled sonar operator. The signature cure envelope labeled Tom W, used as a training prop, sits beside the performance sheet. Calm technical speech resembles skill. Diagnosticity comes from hit rate, false alarm rate, and performance under varied drills. If the base performance rate is weak, the voice should not carry the judgment alone.\n\nThis is not a lecture about never using stereotypes or descriptions. You have to use descriptions. The point is sequence and weight. Base rate first. Description second. Diagnosticity third. A vivid match deserves influence only to the extent that it predicts the category beyond the base rate.\n\nThe limit is that base rates are sometimes unavailable or poorly matched. Then you use the best reference class you can find and mark uncertainty. But do not pretend that the absence of a clean base rate gives the description unlimited authority. It means the estimate is fragile.\n\nA description can point. The base rate decides how far it gets to move the needle."
+  },
+  "examples": [
+    {
+      "exampleId": "ch14-ex01-harper-prescriber",
+      "title": "Harper restores the violation base rate",
+      "tags": [
+        "postmortem",
+        "pharmacy",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "pharmacy verification bench facing a decision distorted by representativeness",
+        "audience": "a lead or reviewer who must put the base rate back on the table before a vivid description sorts someone into a category while others want the quick answer",
+        "stakes": "the visible call will go wrong unless representativeness is separated from the tempting but weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "the scene shows the before call written on the representativeness tide-table acetate labeled representativeness, then the after call once the person performs the correction instead of trusting the original feeling"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Harper says, with the representativeness tide-table acetate labeled representativeness between a prescriber profile and the audit log. The prescriber sounds like the stereotype of an overorderer: rushed, defensive, high volume. In the postmortem, Harper compares her first flag with the base rate of actual violations among similar prescribers. She must decide how much the description truly moves the case.",
+      "whatToDo": "Start with the violation base rate among comparable prescribers, then adjust only for description details that have proven diagnostic value.",
+      "whyItMatters": "The profile fits a category, but fit is not probability. The base rate prevents a vivid description from becoming the whole risk estimate."
+    },
+    {
+      "exampleId": "ch14-ex02-vincent-contractor",
+      "title": "Vincent checks the contractor category",
+      "tags": [
+        "before_after",
+        "architecture",
+        "site"
+      ],
+      "planSpec": {
+        "domain": "architectural site survey facing a decision distorted by representativeness",
+        "audience": "a lead or reviewer who must put the base rate back on the table before a vivid description sorts someone into a category while others want the quick answer",
+        "stakes": "the visible call will go wrong unless representativeness is separated from the tempting but weaker cue",
+        "format": "before_after",
+        "requiredBeat": "the protagonist pauses with the admissions scoring grid labeled base rate in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable"
+      },
+      "scenario": "The survey trailer is quiet except for an admissions scoring grid labeled base rate that Vincent uses as a reminder card. A contractor's notes are precise, clipped, and full of tolerance language. Before the reminder, Vincent would have labeled him a structural specialist. After naming stereotype fit, he checks the roster: few contractors on this site have that specialty. He must decide whether the description overrules the base rate.",
+      "whatToDo": "Write the roster base rate first, then adjust for actual credentials and past tasks rather than style of notes.",
+      "whyItMatters": "Precise language resembles a specialty, but category frequency and credentials are more diagnostic than tone."
+    },
+    {
+      "exampleId": "ch14-ex03-malcolm-command",
+      "title": "Malcolm separates calm voice from high-rise skill",
+      "tags": [
+        "reflection",
+        "fire",
+        "command"
+      ],
+      "planSpec": {
+        "domain": "fire command post facing a decision distorted by representativeness",
+        "audience": "a lead or reviewer who must put the base rate back on the table before a vivid description sorts someone into a category while others want the quick answer",
+        "stakes": "the visible call will go wrong unless representativeness is separated from the tempting but weaker cue",
+        "format": "reflection",
+        "requiredBeat": "the reader is asked to imagine signing the fit wax-rind wheel labeled stereotype fit twice, once from the first impression and once after applying representativeness, then compare the two commitments"
+      },
+      "scenario": "What would Malcolm sign beside the fit wax-rind wheel labeled stereotype fit: experienced high-rise lead, or calm officer with unknown exposure? The new officer's radio voice is clipped and steady. It sounds like expertise. Malcolm remembers Tom W and must decide whether base rate on rotation experience, drill records, and incident history should come before the voice-based category.",
+      "whatToDo": "Use calm voice as one clue, but start with rotation base rate and check high-rise drill and incident records before assigning command assumptions.",
+      "whyItMatters": "The voice resembles the prototype of expertise. Representativeness must update the base rate, not replace it."
+    },
+    {
+      "exampleId": "ch14-ex04-rhea-sonar",
+      "title": "Rhea tests the calm-operator profile",
+      "tags": [
+        "thought_experiment",
+        "simulator",
+        "skill"
+      ],
+      "planSpec": {
+        "domain": "submarine simulator facing a decision distorted by representativeness",
+        "audience": "a lead or reviewer who must put the base rate back on the table before a vivid description sorts someone into a category while others want the quick answer",
+        "stakes": "the visible call will go wrong unless representativeness is separated from the tempting but weaker cue",
+        "format": "thought_experiment",
+        "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the signature cure envelope labeled Tom W, then chooses only after both are visible"
+      },
+      "scenario": "The rough flap of the signature cure envelope labeled Tom W rests under Rhea's wrist in the simulator booth. Imagine a trainee who speaks like the model sonar operator: calm, technical, spare. On one side, Rhea places voice fit; on the other, hit rate, false alarms, and varied-drill performance. She must decide whether diagnosticity comes from resemblance or from the performance base record.",
+      "whatToDo": "Separate voice fit from performance data, then judge skill from hit rate, false alarms, and varied-drill results.",
+      "whyItMatters": "The trainee resembles the skilled prototype. Diagnosticity depends on whether that resemblance predicts real performance beyond the base record."
+    },
+    {
+      "exampleId": "ch14-ex05-lucas-bookbox",
+      "title": "Lucas checks the collector base rate",
+      "tags": [
+        "scene",
+        "bookstore",
+        "buying"
+      ],
+      "planSpec": {
+        "domain": "independent bookstore buy desk facing a decision distorted by representativeness",
+        "audience": "a lead or reviewer who must put the base rate back on the table before a vivid description sorts someone into a category while others want the quick answer",
+        "stakes": "the visible call will go wrong unless representativeness is separated from the tempting but weaker cue",
+        "format": "scene",
+        "requiredBeat": "the trainee must move the porcelain shade tab labeled diagnosticity from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence"
+      },
+      "scenario": "You are watching Lucas at the buy desk with a porcelain shade tab labeled diagnosticity beside a box of essays. The seller wears a linen jacket, names a small press, and sounds like a rare-book collector. Lucas wants to offer high. He must decide whether to move the box to checked only after saying the base rate: most literary-sounding sellers are still ordinary downsizers.",
+      "whatToDo": "Start with the store's base rate for collector-grade boxes, then adjust for edition, condition, provenance, and comparable sale evidence.",
+      "whyItMatters": "The seller's description fits a collector image. The actual category depends on how often such boxes are valuable and which details distinguish them."
+    },
+    {
+      "exampleId": "ch14-ex06-selma-frost",
+      "title": "Selma resists the classic frost profile",
+      "tags": [
+        "vignette",
+        "orchard",
+        "forecast"
+      ],
+      "planSpec": {
+        "domain": "orchard frost watch facing a decision distorted by representativeness",
+        "audience": "a lead or reviewer who must put the base rate back on the table before a vivid description sorts someone into a category while others want the quick answer",
+        "stakes": "the visible call will go wrong unless representativeness is separated from the tempting but weaker cue",
+        "format": "vignette",
+        "requiredBeat": "the supervisor circles the alluring detail on the touchline warning flag labeled description, crosses it out, and asks for the boring comparison that the chapter says must come first"
+      },
+      "scenario": "Selma saw the error after three cold, still evenings got the same label. The touchline warning flag labeled description sits on the frost-watch clipboard, and the night's profile looks classic: clear sky, calm air, nervous growers. She circles classic frost night, crosses it out, and must decide whether base rate for this block, dew point, and leaf temperature beat the description.",
+      "whatToDo": "Use the classic profile as a cue, but begin with block-specific frost base rate, dew point, and leaf temperature.",
+      "whyItMatters": "The night resembles the frost stereotype. Representativeness becomes useful only after the base rate and measurements are on the table."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A pharmacy reviewer reads a prescriber profile that sounds exactly like an overorderer, but actual violation rates among similar prescribers are low. What should happen?",
+        "choices": [
+          "Start with the base rate and adjust only for details shown to be diagnostic.",
+          "Flag strongly because the profile fits the category.",
+          "Ignore the profile because descriptions are always misleading."
+        ],
+        "correctIndex": 0,
+        "explanation": "The profile may carry signal, but the low base rate matters first. Strong flagging lets stereotype fit replace probability. Ignoring the profile loses potentially diagnostic details.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A contractor writes precise notes full of tolerance language, so a site lead assumes he is a structural specialist. The roster shows few structural specialists on the project. What is the risk?",
+        "choices": [
+          "Precise notes prove structural expertise.",
+          "Stereotype fit may overpower the category base rate.",
+          "Rosters are less useful than writing style."
+        ],
+        "correctIndex": 1,
+        "explanation": "The notes fit a specialty image, but the roster base rate resists that conclusion. The other choices treat style as more diagnostic than category frequency and credentials.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A fire officer sounds calm and technical on the radio, so the team assumes high-rise expertise. Rotation data show few officers have that experience. What is the best move?",
+        "choices": [
+          "Trust the calm voice because command skill sounds calm.",
+          "Assume the officer lacks expertise because the base rate is low.",
+          "Check rotation, drill, and incident records before assigning high-rise expertise."
+        ],
+        "correctIndex": 2,
+        "explanation": "The calm voice updates the estimate only if it is diagnostic. Records answer whether expertise exists. Assuming either way without records mishandles the base rate and description.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A simulator trainee speaks like the prototype of a skilled operator, but hit rates and false alarms are mediocre. Which evidence should carry most weight?",
+        "choices": [
+          "Hit rate, false alarms, and performance across varied drills.",
+          "Prototype resemblance, because communication style reveals skill.",
+          "The instructor's first impression."
+        ],
+        "correctIndex": 0,
+        "explanation": "Performance data are more diagnostic of skill than resemblance to a prototype. Communication style can inform coaching, but it should not override base performance evidence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A bookseller offers high for a box because the seller sounds like a collector. Store history shows most literary-sounding sellers are ordinary downsizers. What should guide the offer?",
+        "choices": [
+          "Collector-like description, because it is specific.",
+          "Base rate for valuable boxes, adjusted for edition, condition, provenance, and comparables.",
+          "The seller's clothing and vocabulary."
+        ],
+        "correctIndex": 1,
+        "explanation": "The offer should start with category frequency and diagnostic book details. The seller's style creates representativeness, but it is weaker than edition, condition, provenance, and sales evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An orchard night looks exactly like a classic frost profile. The block's frost base rate is low and leaf temperature is above threshold. What is the better interpretation?",
+        "choices": [
+          "The classic profile proves frost risk is high.",
+          "Classic profiles should be ignored.",
+          "The profile is a cue, but base rate and measurements should constrain the risk estimate."
+        ],
+        "correctIndex": 2,
+        "explanation": "The profile resembles a risk category, but the block base rate and leaf temperature are essential. Ignoring the profile loses useful information; trusting it alone lets representativeness dominate.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "In a seminar room, a reader says Tom W is just a lesson about prejudice after seeing the engineer stereotype crowd out base rates. Which response is more precise?",
+        "choices": [
+          "It is about stereotype fit overpowering base rates, which can include prejudice but is broader.",
+          "It is only about engineering students.",
+          "It shows descriptions should never be used."
+        ],
+        "correctIndex": 0,
+        "explanation": "The broader mechanism is representativeness: a vivid description feels more diagnostic than category frequencies. Prejudice can use that mechanism, but the probability error is wider.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A hiring panel sees a candidate who resembles their prototype of a successful founder. Very few applicants from this pool have actually built durable companies. What should they do?",
+        "choices": [
+          "Select the candidate because founder resemblance is the best signal.",
+          "Start with the applicant-pool base rate and update for evidence that predicts durable company building.",
+          "Reject the candidate because the pool base rate is low."
+        ],
+        "correctIndex": 1,
+        "explanation": "The base rate starts the estimate, but diagnostic evidence can update it. Selecting by resemblance or rejecting by base rate alone both skip the required weighting.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A doctor hears a patient description that sounds like a rare condition. The condition has a low base rate, and common causes have not been ruled out. What is the best next step?",
+        "choices": [
+          "Diagnose the rare condition because the description fits.",
+          "Dismiss the rare condition because rare means impossible.",
+          "Start with common base rates, then test whether the rare-condition signs are truly diagnostic."
+        ],
+        "correctIndex": 2,
+        "explanation": "A vivid match to a rare condition should prompt targeted checking, not immediate diagnosis. The base rate keeps common causes on the table while diagnostic signs are tested.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A description fits a category vividly. What should you put on the table first?",
+      "back": "Put the base rate on the table first. Then ask how diagnostic the description is and how much it should move the estimate.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can Tom W feel obvious even when base rates resist the guess?",
+      "back": "The specialty profile creates stereotype fit. The person is easy to imagine in one category, and that fit can feel like probability unless the category frequencies are restored.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A calm technical voice sounds like expertise. What evidence tests diagnosticity?",
+      "back": "Look for performance records: hit rate, false alarms, drill results, credentials, or outcomes. Resemblance to a prototype is not enough.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How should you update from a vivid description?",
+      "back": "Start with the base rate, then adjust only for details that reliably distinguish the category. The rarer the category, the stronger the diagnostic evidence must be.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "Why is representativeness broader than prejudice?",
+      "back": "It is any judgment where resemblance to a category overpowers category frequency. Prejudice is one possible case, but the mechanism appears in hiring, diagnosis, forecasting, and operations too.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is base-rate restoration. When a description makes a category feel obvious, write the relevant category frequency first and update only for diagnostic details.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If someone says a person or case fits a type, then ask for the base rate of that type in the relevant pool before deciding."
+      },
+      {
+        "context": "health",
+        "plan": "If a symptom description fits a rare diagnosis, then start with common-cause base rates and test the rare signs for diagnosticity."
+      },
+      {
+        "context": "money",
+        "plan": "If a seller, founder, or investment resembles a success story, then check how often that category actually succeeds before updating."
+      },
+      {
+        "context": "operations",
+        "plan": "If a situation looks like a classic risk profile, then put the local base rate and current measurements beside the profile before acting."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, catch one category guess based on a vivid description. Write the base rate first, then list which details are truly diagnostic.",
+    "weeklyPractice": "Once a week, review a people or category judgment. Mark description, guessed category, base rate, diagnostic details, and final estimate."
+  },
+  "memorableLines": [
+    {
+      "text": "Fit is not frequency.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the base-rate correction in four words."
+    },
+    {
+      "text": "A good description updates a base rate.",
+      "location": "breakdown.deepRead",
+      "why": "It states the proper sequence."
+    },
+    {
+      "text": "The click is not the probability.",
+      "location": "breakdown.fullRead",
+      "why": "It warns against mistaking recognition for odds."
+    }
+  ]
+}

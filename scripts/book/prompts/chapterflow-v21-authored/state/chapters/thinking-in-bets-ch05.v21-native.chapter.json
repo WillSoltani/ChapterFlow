@@ -1,0 +1,326 @@
+{
+  "chapterId": "thinking-in-bets-ch05",
+  "number": 5,
+  "title": "The buddy system",
+  "readingTimeMinutes": 12,
+  "hook": "A paused frame on a woman's face asks Rachel whether her favorite cut is fair or merely dramatic.",
+  "counterintuition": "Relief feels like help. In fact, it can leave the story untouched unless the partner is trusted enough to hear the truth and sharp enough to test it.",
+  "tryThisNow": "Write the one assumption carrying your next consequential call. Send that single assumption to a trusted challenger and ask what would make it false.",
+  "keyTakeaway": "Use a trusted challenger to audit assumptions, confidence, and memory before comfort edits the story into something easier to defend.",
+  "breakdown": {
+    "fastRead": "The edit suite is dark except for a paused frame on a woman's face. Rachel loves the scene. It makes the documentary breathe. It may also make the subject look colder than the unused footage supports.\n\nShe does not need praise for the cut. She needs pressure on it.\n\nSolo review bends around ego because the same mind that made the call also wants the call to look wise. A decision buddy adds outside friction. The role is not to soothe the room. The role is to ask what evidence would weaken the story before the story gets too pretty.",
+    "deepRead": "You have a shoebox of receipts and one tax number that feels too painless. Mikkel wants to show it to the friend who always says, probably fine. You ask for the colleague who questions deductions, asks for invoice dates, and makes him open the quarterly voucher before filing.\n\nThe right buddy is a hand on the file before your ego starts cleaning the pages.\n\nA private explanation can sound clean because no one else has asked where the dirt went. Mikkel can tell himself the estimate is conservative. He can call a missing receipt minor. He can imagine the tax office will see the pattern his way. None of those sentences has to be dishonest to be self-protective. They only have to be convenient.\n\nThe useful partner slows that convenience down.\n\nIn the buddy system, trust and challenge have to share the same table. Trust matters because Mikkel has to show the real invoice stack, not the tidied version. Challenge matters because the other person has to test the stack, not admire his effort. Safety without scrutiny becomes reassurance. Scrutiny without safety becomes a fight. The narrow band between them is where better judgment lives. That band has to be chosen before the result arrives, while the file is still messy enough to test honestly.",
+    "fullRead": "The simulation lab smells faintly of disinfectant and warm plastic. Laura is preparing for a difficult procedure drill, and two attendings have offered to watch her handoff. One smiles through mistakes and tells her she is ready. The other stops the rehearsal at the first vague instruction and makes her name the risk out loud. Laura chooses the second attending, even though the first one would let her leave calmer.\n\nComfort may settle the nerves; correction makes the estimate answer for itself.\n\nThat is the core tradeoff. A good buddy is not the person who leaves you feeling smartest. It is the person who helps your forecast, plan, or memory survive contact with evidence. Before a choice, that person asks what assumption carries the most weight, what would lower confidence, and what alternative has been ignored. After the outcome, that same person checks whether your explanation matches what you believed before the result arrived.\n\nThink about your own next decision. Who would you trust enough to show the messy version, and who would be willing to question it after seeing it?\n\nHenrik uses that standard before an investor diligence call. At 11:13 in the morning, slide seven stays on the projector while the novelty claim glows in bold type. The patent pitch sounds clean until the engineer who doubts it opens the prior-art search. Henrik invites the challenge before the investor does. The point is not to win the rehearsal. The point is to find the weak claim while it can still be repaired.\n\nThe same logic matters after disappointment. Aanya learned it during a winter rescue drill. It took one whiteout exercise to stop treating morale as evidence. The route card looked solid, the team sounded confident, and the avalanche bulletin had one slope condition that everyone talked around. Afterward, her partner asked which condition would have made her abandon the plan before anyone left the trailhead. That outside challenge of self-serving narration changed the review. It moved the lesson from brave team spirit to a cleaner trigger for turning back.\n\nReassurance has its place. People need steadiness after a hard result. But reassurance alone can leave the decision untouched. It can make the story feel survivable without making it more accurate. A truth-seeking correction is different. It puts pressure on the claim because long-run loyalty cares more about your judgment than your immediate comfort.\n\nDavid sees the softer version in a choir audition. What does a score sheet know that affection wants to blur? His favorite singer stumbles during the callback, and his private note from the first round says tone unreliable under pressure. His assistant compares the score sheet with the note before the final list is posted. The correction is not cruel. It protects the fairness of the audition from the affection David was ready to launder into artistic instinct.\n\nChoose buddies for that kind of pressure. Give them the assumption, the estimate, the notes from before the result, and permission to question the version you prefer. If they only comfort you, you may feel better and learn less. If they only attack you, you will hide the real file. The useful partner earns access and then uses it."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-rachel-paused-frame",
+      "title": "Rachel Tests the Paused Frame",
+      "tags": [
+        "dialogue",
+        "documentary",
+        "editing"
+      ],
+      "planSpec": {
+        "domain": "documentary edit room deciding whether a scene is fair",
+        "audience": "creative teams handling real people’s stories",
+        "stakes": "a dramatic scene could mislead viewers and damage a subject’s reputation",
+        "format": "dialogue",
+        "requiredBeat": "Rachel pauses the timeline and asks her editor to name what footage would weaken her preferred cut before she exports it."
+      },
+      "scenario": "The edit suite is dark except for a paused frame on a woman's face late Thursday. Rachel loves the dramatic silence before the subject answers. Her editor points to the unused footage bin and the release form on the desk. Before export, Rachel faces a choice: protect the cut she loves or ask what footage would weaken it. She pauses the timeline and asks the editor to name the missing countercase.",
+      "whatToDo": "Ask the editor to name the footage that would weaken the preferred cut before exporting. Then check the unused bin against the story the scene implies.",
+      "whyItMatters": "Rachel needs an ally for accuracy, not applause for drama. The outside challenge protects the subject and the film from a self-serving edit."
+    },
+    {
+      "exampleId": "ch05-ex02-mikkel-tax-stack",
+      "title": "Mikkel Shows the Harder Colleague",
+      "tags": [
+        "decision_point",
+        "tax",
+        "freelance"
+      ],
+      "planSpec": {
+        "domain": "freelance tax estimate before quarterly filing",
+        "audience": "self-employed professionals",
+        "stakes": "a comforting estimate could become a penalty notice",
+        "format": "decision_point",
+        "requiredBeat": "You ask Mikkel to show the invoice stack to the colleague who questions his deductions, not the friend who says it is probably fine."
+      },
+      "scenario": "You have a shoebox of receipts and one tax number that feels too painless on the kitchen table. Mikkel wants to show it to the friend who always says, probably fine. Before the quarterly filing window closes, you ask him to choose the colleague who will question deductions, invoice dates, and the missing voucher before the estimate becomes a story he wants to protect.",
+      "whatToDo": "Take the invoice stack to the colleague who will test it. Ask which deductions would fail if the tax office requested proof.",
+      "whyItMatters": "Comfort will not pay the penalty notice. A trusted challenger makes the estimate face evidence before the filing turns into a defended story."
+    },
+    {
+      "exampleId": "ch05-ex03-laura-simulation-handoff",
+      "title": "Laura Chooses the Stopping Attending",
+      "tags": [
+        "predict_reveal",
+        "medical",
+        "simulation"
+      ],
+      "planSpec": {
+        "domain": "surgical resident preparing for a difficult procedure simulation",
+        "audience": "medical trainees",
+        "stakes": "confidence from easy praise could hide a weak handoff before a high-risk simulation",
+        "format": "predict_reveal",
+        "requiredBeat": "Laura chooses the attending who will stop the rehearsal at the first vague instruction and make her repeat the handoff until the risk is named."
+      },
+      "scenario": "The St. Anne's simulation lab smells faintly of disinfectant and warm plastic on Tuesday morning before Laura's difficult procedure drill. Laura, a surgical resident, has one attending who smiles through every mistake and another who stops vague handoffs and makes her name the risk out loud. Before the assessment slot, Laura must decide which observer helps her most, and she chooses the one who exposes weak instructions while repair is still possible.",
+      "whatToDo": "Choose the attending who interrupts vague handoffs. Repeat the instruction until the risk is named clearly on the card.",
+      "whyItMatters": "Easy praise can leave a weak handoff intact. The stricter attending gives Laura confidence that has survived the pressure she will face later."
+    },
+    {
+      "exampleId": "ch05-ex04-henrik-slide-seven",
+      "title": "Henrik Leaves Slide Seven Up",
+      "tags": [
+        "vignette",
+        "patent",
+        "pitch"
+      ],
+      "planSpec": {
+        "domain": "patent pitch practice before investor due diligence",
+        "audience": "technical founders",
+        "stakes": "an untested novelty claim could collapse in due diligence",
+        "format": "vignette",
+        "requiredBeat": "At 11:13 a.m., Henrik invites the engineer who doubts the novelty claim to interrogate slide seven before the investor does."
+      },
+      "scenario": "At 11:13 a.m., Henrik keeps slide seven on the projector while the novelty claim glows in bold type. The investor diligence call is tomorrow, and the prior-art search is still open on the engineer's laptop. Before rehearsing the confident version again, Henrik must decide whether to invite the skeptical engineer to attack the claim while it can still be fixed.",
+      "whatToDo": "Invite the engineer with a repair frame: identify any prior art that would force us to pull, narrow, or reframe this claim before rehearsal. If the challenge lands, choose the least misleading path and name its cost before the diligence call; rehearsing first only embeds a broken claim.",
+      "whyItMatters": "A doubtful engineer is useful before diligence and expensive afterward. The challenge gives Henrik a chance to repair the claim while it is still private."
+    },
+    {
+      "exampleId": "ch05-ex05-aanya-route-card",
+      "title": "Aanya Adds the Turn-Back Trigger",
+      "tags": [
+        "before_after",
+        "rescue",
+        "route"
+      ],
+      "planSpec": {
+        "domain": "mountain rescue route plan before a winter training exercise",
+        "audience": "search-and-rescue volunteers",
+        "stakes": "a team may mistake morale for route safety in worsening weather",
+        "format": "before_after",
+        "requiredBeat": "Aanya changes the route review after her partner asks which slope condition would make her abandon the plan before anyone leaves the trailhead."
+      },
+      "scenario": "It took one whiteout rescue drill for Aanya to stop treating morale as evidence. At the trailhead debrief, the route card, avalanche bulletin, and slope-condition note sit under a wet glove. Her partner asks which condition should have canceled the route before departure, forcing Aanya to turn a brave story into a cleaner trigger for turning back.",
+      "whatToDo": "Let the partner name the slope condition that should cancel the route. Write the turn-back trigger on the route card before departure.",
+      "whyItMatters": "Team confidence can sound like safety. The partner's question forces the route plan to answer to conditions, not morale."
+    },
+    {
+      "exampleId": "ch05-ex06-david-score-sheet",
+      "title": "David Compares the Callback Notes",
+      "tags": [
+        "reflection",
+        "choir",
+        "selection"
+      ],
+      "planSpec": {
+        "domain": "community choir audition selection after a favorite singer stumbles",
+        "audience": "arts boards and volunteer directors",
+        "stakes": "personal affection could distort a fair casting decision",
+        "format": "reflection",
+        "requiredBeat": "What would David’s choice look like if his assistant compared the score sheet with the private note he wrote before the audition?"
+      },
+      "scenario": "What does a score sheet know that affection wants to blur? David sits in the community hall after callbacks with a favorite singer's shaky take, his first-round notes, and the final list waiting in draft. Before posting the results, he must decide whether artistic instinct is carrying real evidence or laundering affection into a cleaner story.",
+      "whatToDo": "Compare the score sheet with the private note before posting the list. Let the assistant question any choice that depends on affection more than evidence.",
+      "whyItMatters": "David can turn liking into a polished explanation. The assistant keeps the selection fair by making the preferred story answer to the written record."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "Before a board packet closes, a founder wants to show her forecast only to the adviser who says she is on track. What would a useful decision buddy do instead?",
+        "choices": [
+          "Reassure her quickly so she can enter the meeting calm.",
+          "Test the load-bearing assumption and ask what evidence would lower confidence.",
+          "Rewrite the forecast for her so she does not have to defend it."
+        ],
+        "correctIndex": 1,
+        "explanation": "A useful buddy challenges the reasoning without taking over. Reassurance may feel good, but it does not test the assumption carrying the forecast.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "In the edit room, unused footage may change whether a beloved documentary scene is fair, but the director wants to export tonight. Which buddy behavior best serves the decision?",
+        "choices": [
+          "Praise the scene's emotional power so the director can export with confidence.",
+          "Ask what footage would weaken the cut and compare it before export.",
+          "Avoid challenging the scene because creative work depends on instinct."
+        ],
+        "correctIndex": 1,
+        "explanation": "The right challenge tests the preferred story against missing footage. Praise and silence both leave the director's favorite version unexamined.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "The freelancer's tax estimate feels painless; one friend says it is probably fine, but a colleague will ask for invoice proof. Who is the better buddy?",
+        "choices": [
+          "The colleague, because the estimate needs evidence pressure before filing.",
+          "The friend, because reducing anxiety is the main purpose.",
+          "Neither, because tax estimates are private and cannot be challenged usefully."
+        ],
+        "correctIndex": 0,
+        "explanation": "The colleague adds truth-seeking pressure where the estimate is likely self-serving. Comfort may reduce anxiety, but it will not fix weak proof.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After a failed rescue drill, a team explains the route problem as bad weather. A partner asks what condition should have canceled the route before departure. What is she checking?",
+        "choices": [
+          "Whether the team can make the story sound less embarrassing.",
+          "Whether the after-the-fact explanation matches a usable pre-departure rule.",
+          "Whether morale stayed high despite the weather."
+        ],
+        "correctIndex": 1,
+        "explanation": "The partner is turning the postmortem into a future trigger, not a cleaner excuse. Morale and embarrassment do not test the route decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "In a simulation lab, a resident chooses the attending who stops vague handoffs instead of the one who praises every run. Why is that stronger preparation?",
+        "choices": [
+          "It creates a harder test that exposes weak instructions before the simulation.",
+          "It proves the praising attending is not trustworthy.",
+          "It makes the resident less nervous because criticism is calming."
+        ],
+        "correctIndex": 0,
+        "explanation": "The stricter attending helps the handoff survive pressure. The issue is preparation quality, not judging the other attending's character or chasing calm.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A singer who is liked by the choir board stumbles in callback. The director's assistant compares the score sheet with notes written before the audition. What bias is being checked?",
+        "choices": [
+          "A self-serving rewrite that turns affection into evidence.",
+          "A lack of kindness toward the singer.",
+          "A preference for written records over live performance in every case."
+        ],
+        "correctIndex": 0,
+        "explanation": "The assistant tests whether affection is being dressed up as evaluation. The score sheet is not always supreme, but it protects against a convenient rewrite.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A technical founder invites a skeptical engineer to attack the novelty claim before investor diligence. What makes this a good buddy move?",
+        "choices": [
+          "It lets the founder fix or reprice the claim before outsiders punish the weak spot.",
+          "It shows the founder is humble, which is more important than the patent claim.",
+          "It guarantees the investors will accept the pitch."
+        ],
+        "correctIndex": 0,
+        "explanation": "The challenge finds weakness while repair is still possible. It does not guarantee acceptance, and humility is not the central mechanism.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A manager is choosing who should review a risky forecast before the board packet closes at noon. One friend is safe but never challenges her; one critic is sharp but makes her hide information. What does she still lack?",
+        "choices": [
+          "A louder critic, because discomfort proves the review is honest.",
+          "A softer friend, because confidence grows from agreement.",
+          "A person who combines enough trust for candor with enough pressure for accuracy."
+        ],
+        "correctIndex": 2,
+        "explanation": "The useful band needs both safety and challenge. A harsh critic reduces candor, while pure agreement leaves the reasoning untouched.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team member asks before a decision, 'Which evidence would make us lower this forecast?' What role is that question playing?",
+        "choices": [
+          "It is trying to weaken confidence so the team avoids action.",
+          "It is a truth-seeking correction that makes confidence answer to evidence.",
+          "It is a social test to see who sounds most committed."
+        ],
+        "correctIndex": 1,
+        "explanation": "The question tests the forecast's conditions for revision. It supports action by making the estimate clearer, not by lowering morale or ranking commitment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What makes a decision buddy different from a cheerleader?",
+      "back": "A buddy tests assumptions, confidence, and memory in service of accuracy. A cheerleader mainly provides reassurance, which may feel good while leaving weak reasoning untouched.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is solo review vulnerable after an outcome arrives?",
+      "back": "The same mind that made the decision wants the story to remain flattering. It can smooth over weak evidence or rewrite confidence without noticing.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What should you give a buddy before a consequential call?",
+      "back": "Give the load-bearing assumption, the confidence level, and what evidence would change your mind. That gives the buddy something specific to test.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why does a buddy need trust as well as challenge?",
+      "back": "Trust gets the real file on the table. Challenge tests it. Without trust, you hide; without challenge, the story gets comfort instead of correction.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "After a setback, what question can stop a self-serving rewrite?",
+      "back": "Ask what you believed before the outcome and what evidence would have changed that belief then. The question makes today's explanation answer to yesterday's record.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Using a Trusted Challenger Effectively",
+    "coreSkill": "You learn to choose correction over comfort at the moment your story is most likely to protect itself. The skill is giving a trusted challenger a specific assumption or record to test.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a forecast depends on one assumption, then send that assumption to a trusted challenger and ask what evidence would lower it."
+      },
+      {
+        "context": "money",
+        "plan": "If a financial estimate feels conveniently painless, then show the proof file to the person who will ask for receipts."
+      },
+      {
+        "context": "creative",
+        "plan": "If you love a draft or cut, then ask a trusted reviewer what missing material would weaken the version you prefer."
+      },
+      {
+        "context": "postmortem",
+        "plan": "If your explanation after a result sounds cleaner than your notes before it, then ask a buddy to compare the two records."
+      }
+    ],
+    "twentyFourHourChallenge": "Before your next meaningful decision, send one load-bearing assumption to a trusted challenger with the question: what would make this false?",
+    "weeklyPractice": "Each week, choose one decision and one review. Use a buddy before the decision to test the assumption and after the result to compare memory with the original record."
+  },
+  "memorableLines": [
+    {
+      "text": "She does not need praise for the cut. She needs pressure on it.",
+      "location": "breakdown.fastRead",
+      "why": "It sharply distinguishes reassurance from useful challenge."
+    },
+    {
+      "text": "The useful partner slows that convenience down.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the buddy system's mechanism in one plain sentence."
+    },
+    {
+      "text": "Comfort may settle the nerves; correction makes the estimate answer for itself.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the source distinction into a memorable contrast."
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "bookId": "smarter-faster-better",
+  "title": "Smarter Faster Better",
+  "author": "Charles Duhigg",
+  "thesisParagraph": "Smarter Faster Better argues that productivity is not the art of cramming more activity into the day. It is the discipline of converting complexity into usable action: restoring agency when motion stalls, shaping rooms so useful signal can move, using mental models under pressure, setting goals that steer without blinding, managing through trustful learning loops, deciding through live probabilities, innovating by recombining ideas, and turning raw information into shared knowledge.",
+  "coreIdeas": [
+    {
+      "name": "Agency starts motion",
+      "oneSentence": "People act more reliably when the next step feels chosen, concrete, and connected to consequence.",
+      "mentalMove": "look for the place where ownership has been removed and restore one real next choice",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Rooms shape signal",
+      "oneSentence": "A team's intelligence depends on whether people can surface doubts, errors, and rough ideas before status edits them away.",
+      "mentalMove": "judge the room by what it lets people say early",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Pressure narrows perception",
+      "oneSentence": "Focus helps only when it keeps context visible instead of tunneling into the brightest cue.",
+      "mentalMove": "use a model to ask what else must be checked",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Targets steer behavior",
+      "oneSentence": "Goals work when specificity, stretch, and reality contact keep the metric serving the mission.",
+      "mentalMove": "test whether a target is clarifying action or replacing judgment",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Learning loops beat brittle control",
+      "oneSentence": "Under uncertainty, progress comes from trustful loops that move evidence quickly enough to revise the plan.",
+      "mentalMove": "shorten the distance between action, bad news, and adjustment",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Judgment updates",
+      "oneSentence": "Better decisions name uncertainty and revise as evidence changes instead of defending first certainty.",
+      "mentalMove": "turn choices into live estimates with update triggers",
+      "sourceAnchors": [
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Innovation recombines",
+      "oneSentence": "Creative work improves when useful patterns travel across boundaries and survive hard revision.",
+      "mentalMove": "borrow a pattern, fit it to constraints, and cut what does not work",
+      "sourceAnchors": [
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Data needs interpretation",
+      "oneSentence": "Information becomes knowledge only when people filter it into a shared read that changes action.",
+      "mentalMove": "convert a pile of signals into a pattern and a next move",
+      "sourceAnchors": [
+        "ch08.source"
+      ]
+    }
+  ],
+  "targetReader": "Busy professionals, team leads, students, caregivers, and institution-builders who already have plenty of advice, tools, and information, but need sharper ways to make action, judgment, and coordination happen under pressure.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "let a named source anchor carry weight without sounding like a citation"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no productivity-hustle slogans"
+    ]
+  },
+  "voiceSpecimens": [
+    "The tray is full, the rule is clear, and nobody has moved because the next step belongs to no one.",
+    "A room does not get smarter because the smartest person speaks longer.",
+    "Pressure can make one signal look like the whole world.",
+    "A goal should give your effort a handle, not a costume.",
+    "Trust is practical when it lets bad news arrive while the plan can still change.",
+    "A good estimate keeps a door open for the next piece of evidence.",
+    "Information becomes useful only when it starts changing what the room does next."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, Duhigg teaches readers that productivity is very important.",
+    "Unlock your potential by optimizing your workflow and embracing excellence.",
+    "The idea of psychological safety is a powerful concept for modern teams.",
+    "As we can see, decision making is all about being smarter and faster.",
+    "Try setting a timer for one minute and journaling about your goals.",
+    "This section will explore how innovation can transform your life."
+  ],
+  "teachingArc": "The book moves from personal launch to group interaction, then to pressure perception, goal design, adaptive management, probabilistic judgment, creative recombination, and finally data interpretation. Each chapter asks the same deeper question at a larger scale: what turns what you know into what you do next?",
+  "forbiddenMoves": [
+    "Do not flatten the book into hustle, speed, or efficiency advice.",
+    "Do not invent unsupported named scenes beyond the source sidecars.",
+    "Do not treat every chapter as a meeting-room problem.",
+    "Do not let data, goals, or safety become abstract virtues without visible decisions."
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "chapterId": "the-12-week-year-ch13",
+  "number": 13,
+  "title": "Establish Your Vision",
+  "coreMove": "Draft a vision vivid enough to organize sacrifice and close enough to guide the next 12 week cycle.",
+  "sourcePressure": "The chapter builds the long-range vision that gives the 12 week cycle direction and emotional force.",
+  "chapterSpecificMisunderstanding": "Making vision a vague dream statement that has no power over tradeoffs or discomfort.",
+  "sourceAlignmentTerms": [
+    "vision",
+    "Impossible, Possible, Probable, Given",
+    "Crafting Your Vision",
+    "Thinking Shift",
+    "Team Visions",
+    "Common Pitfalls"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Impossible, Possible, Probable, Given",
+      "detail": "The source sidecar verifies this phrase as a Chapter 13 subhead.",
+      "useIn": "deepRead",
+      "phrasingHint": "The vision has to move possibility down the ladder until a different future begins to feel claimable."
+    },
+    {
+      "kind": "artifact",
+      "name": "Team Visions",
+      "detail": "The source sidecar verifies Team Visions as a Chapter 13 subhead.",
+      "useIn": "fullRead",
+      "phrasingHint": "A team vision matters only when people can see what shared sacrifice is buying."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch13: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch13: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch13: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch13: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Alice",
+      "domain": "public library branch vision session",
+      "audience": "a practitioner in public library branch vision session who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Alice turns a vague branch dream into a concrete future residents can feel.",
+      "firstImage": "sticky notes around a branch floor plan",
+      "mustInclude": [
+        "sticky notes around a branch",
+        "vision",
+        "Crafting Your Vision"
+      ],
+      "mustAvoid": [
+        "generic establish your vision explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "startup leadership offsite",
+      "audience": "a decision-maker in startup leadership offsite choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Vincent asks each leader to write the future the offsite must serve.",
+      "firstImage": "name cards on a conference table",
+      "mustInclude": [
+        "name cards on a conference",
+        "vision",
+        "Crafting Your Vision"
+      ],
+      "mustAvoid": [
+        "generic establish your vision explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "nursing unit retention plan",
+      "audience": "a team lead in nursing unit retention plan who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Marit connects retention pain to a future unit nurses want.",
+      "firstImage": "exit interviews clipped by shift",
+      "mustInclude": [
+        "exit interviews clipped by shift",
+        "vision",
+        "Crafting Your Vision"
+      ],
+      "mustAvoid": [
+        "generic establish your vision explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "urban food rescue expansion",
+      "audience": "a reflective operator in urban food rescue expansion reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Matteo pictures the food rescue result before choosing expansion work.",
+      "firstImage": "coolers waiting beside a loading bay",
+      "mustInclude": [
+        "coolers waiting beside a loading",
+        "vision",
+        "Crafting Your Vision"
+      ],
+      "mustAvoid": [
+        "generic establish your vision explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Nina",
+      "domain": "secondary school arts department",
+      "audience": "a reader in secondary school arts department comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Nina turns the arts department vision into student-facing proof.",
+      "firstImage": "paint-splattered stools in a storage room",
+      "mustInclude": [
+        "paint-splattered stools in a storage",
+        "vision",
+        "Crafting Your Vision"
+      ],
+      "mustAvoid": [
+        "generic establish your vision explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "Stockholm hardware lab",
+      "audience": "two colleagues in Stockholm hardware lab forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Aman writes the lab future that makes the next sacrifice worth it.",
+      "firstImage": "sensor boards in anti-static bags",
+      "mustInclude": [
+        "sensor boards in anti-static bags",
+        "vision",
+        "Crafting Your Vision"
+      ],
+      "mustAvoid": [
+        "generic establish your vision explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use vision as emotional force",
+      "connect long-range direction to near-term sacrifice",
+      "spot vague vision that cannot guide a choice"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one sentence that describes the life or team result your current 12 week effort is meant to serve.",
+  "readingTimeMinutes": 12
+}

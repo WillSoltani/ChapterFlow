@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch11",
+  "number": 11,
+  "title": "Concerning Ecclesiastical Principalities",
+  "coreMove": "Distinguish authority sustained by sacred ordinance from the money, arms, and faction work that can expand its temporal power.",
+  "sourcePressure": "The chapter says ecclesiastical principalities are unusually secure because ancient religious ordinances sustain them beyond ordinary rule, defense, or princely conduct. Yet Machiavelli then explains the Church as a temporal power: Roman factions, short papal lives, Alexander VI using money and arms through Duke Valentino, Julius II strengthening the Church, reducing Orsini and Colonnesi disorder, and preventing factional cardinals.",
+  "chapterSpecificMisunderstanding": "The wrong version makes the chapter a theology lesson or skips it as an exception. The writer must separate the source of secure sacred legitimacy from the worldly instruments that made the papacy territorially powerful.",
+  "sourceAlignmentTerms": [
+    "ecclesiastical principalities",
+    "religion",
+    "Church",
+    "Alexander VI",
+    "Duke Valentino",
+    "Julius II",
+    "Orsini",
+    "Colonnesi",
+    "temporal power",
+    "cardinals"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "pious reflection on faith as leadership",
+      "anti-religious rant about hypocrisy",
+      "generic institutional trust opening"
+    ],
+    "counterintuition": [
+      "most people assume religion is spiritual, but actually it is political",
+      "sacred authority makes strategy unnecessary",
+      "all institutions are just power underneath"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list institutions you trust",
+      "compare your values to your tactics",
+      "write about whether religion and politics should mix"
+    ],
+    "examples": [
+      "generic church fundraising",
+      "corporate mission statement as sacred authority",
+      "charity board politics",
+      "theology debate"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a pilgrimage principality whose shrine courts are obeyed even when the abbot rarely governs",
+      "audience": "a temporal steward trying to explain why the shrine state survives without ordinary patrols",
+      "stakes": "pilgrims and villagers obey the old rite, but the shrine gains territory only when toll money and armed escorts are organized",
+      "format": "scene",
+      "requiredBeat": "The steward lowers the processional canopy after the rite, then points to the escort pikes and toll chest that turned reverence into road control.",
+      "firstImage": "A processional canopy casts a square of shade over a locked toll chest.",
+      "mustInclude": [
+        "processional canopy",
+        "escort pikes",
+        "locked toll chest"
+      ],
+      "mustAvoid": [
+        "sermon on belief",
+        "generic nonprofit governance",
+        "simple corruption exposure"
+      ]
+    },
+    {
+      "domain": "a mountain bishopric whose feast calendar holds villages while bridge tolls fund a militia",
+      "audience": "a visiting envoy who mistakes ritual obedience for the whole source of power",
+      "stakes": "the bishopric is not attacked because villages accept its holy calendar, but its new pass control came from toll revenue and drilled guards",
+      "format": "before_after",
+      "requiredBeat": "Before the envoy writes sacred obedience, the chamberlain lays the feast calendar beside the bridge-toll abacus and the militia drill cord.",
+      "firstImage": "A bridge-toll abacus sits below a painted feast calendar.",
+      "mustInclude": [
+        "feast calendar",
+        "bridge-toll abacus",
+        "militia drill cord"
+      ],
+      "mustAvoid": [
+        "mountain canton liberty from chapter 5",
+        "church as mere superstition",
+        "budgeting advice"
+      ]
+    },
+    {
+      "domain": "a shrine island suppressing two armed noble houses that kept turning temple elections into street fights",
+      "audience": "a new prelate deciding why factional religious offices matter to temporal order",
+      "stakes": "as long as rival houses get their own temple electors, sacred office becomes the pretext for armed disorder",
+      "format": "decision_point",
+      "requiredBeat": "He leaves the incense tray untouched, then removes the two faction benches from the election chamber so neither house can turn office into a war flag.",
+      "firstImage": "Two carved faction benches face each other across an untouched incense tray.",
+      "mustInclude": [
+        "incense tray",
+        "faction benches",
+        "election chamber"
+      ],
+      "mustAvoid": [
+        "modern church committee",
+        "family feud melodrama",
+        "prayer as conflict resolution"
+      ]
+    },
+    {
+      "domain": "a cathedral treasury inheriting territory from a private warrior-bishop whose family project collapsed",
+      "audience": "auditors tracing how a personal campaign accidentally strengthened the institution",
+      "stakes": "the warrior-bishop meant to raise his nephew, but when the nephew falls the lands, courts, and revenue remain with the cathedral state",
+      "format": "postmortem",
+      "requiredBeat": "The auditor draws a line through the nephew column and leaves the court fees, road guards, and captured towns under cathedral property.",
+      "firstImage": "A nephew column is crossed out on a waxed treasury tablet.",
+      "mustInclude": [
+        "waxed treasury tablet",
+        "court fees",
+        "captured town list"
+      ],
+      "mustAvoid": [
+        "Cesare biography retold",
+        "inheritance drama",
+        "accounting as dry paperwork"
+      ]
+    },
+    {
+      "domain": "a clerical city that gains river forts after its ruler breaks the local baron leagues",
+      "audience": "a council secretary explaining why the next ruler begins stronger than the last",
+      "stakes": "short tenures used to let factions recover, but once the baron leagues are weakened and denied their clerical sponsors the office itself becomes stronger",
+      "format": "predict_reveal",
+      "requiredBeat": "The secretary predicts another short reign will undo everything, then opens the chamber screen to show the empty baron seats and the river-fort appointment slips already in church hands.",
+      "firstImage": "Empty baron seats line a chamber screen beside river-fort appointment slips.",
+      "mustInclude": [
+        "empty baron seats",
+        "river-fort appointment slips",
+        "chamber screen"
+      ],
+      "mustAvoid": [
+        "chapter 4 baronial structure repetition",
+        "generic succession planning",
+        "anti-noble rant"
+      ]
+    },
+    {
+      "domain": "a holy hospital order whose ancient rule keeps subjects patient while commanders buy artillery for border towns",
+      "audience": "a novice administrator learning why veneration does not explain territorial expansion by itself",
+      "stakes": "patients and villagers accept the old rule, but neighboring princes begin to fear the order only after money and arms turn charity into defensible towns",
+      "format": "dialogue",
+      "requiredBeat": "When the novice points to the healing rule, the commander sets a mortar receipt beside the ward basin and asks which object made the border prince hesitate.",
+      "firstImage": "A mortar receipt rests beside a hammered ward basin.",
+      "mustInclude": [
+        "healing rule",
+        "mortar receipt",
+        "ward basin"
+      ],
+      "mustAvoid": [
+        "charity inspiration",
+        "medical administration",
+        "religion-only explanation"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify why ecclesiastical principalities are held differently from ordinary states",
+      "separate sacred ordinances that sustain obedience from temporal tactics that expand territory",
+      "analyze how Roman factions, cardinals, money, and arms affect institutional power",
+      "evaluate explanations that reduce the chapter either to theology or to ordinary conquest"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one institution with inherited sacred or constitutional authority. Write what people obey without ordinary force, then list the money, appointments, arms, or faction controls that expand its worldly reach.",
+  "readingTimeMinutes": 12
+}

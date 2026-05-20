@@ -1,0 +1,139 @@
+{
+  "chapterId": "the-innovators-dilemma-ch03",
+  "number": 3,
+  "title": "Disruptive Technological Change in the Mechanical Excavator Industry",
+  "coreMove": "Find the first market where your product's weaknesses are tolerable and its advantages are genuine, instead of trying to win the mainstream on day one.",
+  "sourcePressure": "Christensen uses hydraulic excavators to show that the disk-drive pattern travels across industries: hydraulic machines found a foothold in residential sewage trenching where cable-machine standards mattered less, then climbed upmarket. Incumbents could acquire or build the new technology and still remain late if they tried to commercialize it through the old network's expectations.",
+  "chapterSpecificMisunderstanding": "Thinking that a disruptive entrant needs to compete on mainstream standards from the start, or that an incumbent who owns the new technology has already solved the problem of finding the right first market.",
+  "sourceAlignmentTerms": [
+    "foothold market",
+    "alternate use case",
+    "hydraulic excavator",
+    "cable excavator",
+    "performance trajectory",
+    "incumbent response",
+    "residential sewage",
+    "backhoe"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "industry",
+      "name": "cable machines",
+      "detail": "Hydraulic excavators entered through residential sewage construction, where the backhoe attachment could work in smaller trenches that cable machines could not reach efficiently. Cable machines dominated the mainstream earthmoving market where payload and reach still mattered most. The hydraulic foothold was real precisely because the mainstream market did not want it there.",
+      "useIn": "deepRead",
+      "phrasingHint": "A hydraulic machine digging a residential sewer line was not trying to beat the cable crane at its own game — it was doing a job the crane could not do well, in a market the crane operator barely noticed."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'find your niche' framing",
+      "generic 'David vs. Goliath' framing"
+    ],
+    "counterintuition": [
+      "generic 'start small and think big' counter",
+      "generic 'don't try to boil the ocean' counter"
+    ],
+    "tryThisNow": [
+      "generic 'identify your minimum viable market' prompt",
+      "generic 'think of three niche use cases' prompt"
+    ],
+    "examples": [
+      "any scene that frames the entrant company as heroic or scrappy",
+      "any scene where the incumbent is simply described as refusing to change"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "This chapter's lesson is about finding the right first context, so examples should open in the context itself — not in a boardroom where someone decides whether to pursue it."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "electric cargo bike company entering urban same-day delivery for small parcels",
+      "audience": "a logistics startup founder whose main market is independent couriers and local shops, not large freight carriers",
+      "stakes": "the cargo bike can carry 80kg but cannot handle pallets, highway routes, or large-volume delivery batches — it fails every standard the freight carriers use",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel's cargo bike fails the freight carrier's minimum payload test in the first five minutes of the evaluation — but the test was built for a different use case, and the use case where the bike is genuinely better is not on the evaluation form",
+      "firstImage": "a loading dock beside a narrow alley too tight for a cargo van",
+      "mustInclude": ["payload limit", "freight carrier's evaluation standard", "the narrow alley use case not in the evaluation"],
+      "mustAvoid": ["any frame that makes the freight carrier evaluator look unintelligent"]
+    },
+    {
+      "domain": "open-source documentation tool entering enterprise knowledge management",
+      "audience": "a product manager at a mid-size software firm whose team has started using the open-source tool for internal wikis instead of the enterprise system",
+      "stakes": "the open-source tool has no enterprise support SLA, no audit trail, and no SSO — it fails IT's checklist completely",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Andrew notices his team is using the open-source tool for a specific kind of collaborative note-taking that the enterprise system handles badly, and the team is not asking permission — they have found a real use case in a context where the enterprise tool's strengths don't matter much",
+      "firstImage": "a shared wiki page edited by six team members the previous afternoon, shown in a browser tab beside an empty enterprise system dashboard",
+      "mustInclude": ["SSO and audit failure", "the specific collaborative use case", "usage without permission as a signal"],
+      "mustAvoid": ["any implication that IT is being obstructionist"]
+    },
+    {
+      "domain": "budget regional airline entering a short-haul route that a major carrier has discontinued as unprofitable",
+      "audience": "a route planning director at the regional carrier deciding whether the discontinuated route has a real market",
+      "stakes": "the major carrier discontinued the route because it couldn't fill the plane — the regional carrier's smaller aircraft changes the economics completely",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Lars has to decide whether to open the discontinued route based on passenger data that shows why the major carrier left — without the additional data that would show the regional aircraft makes the numbers work at a much lower fill rate",
+      "firstImage": "a route map with the discontinued leg shown as a dotted line",
+      "mustInclude": ["fill rate comparison by aircraft size", "discontinuation rationale from the major carrier", "the decision point where Lars must judge without full data"],
+      "mustAvoid": ["any implication that the major carrier made a bad decision for its aircraft size"]
+    },
+    {
+      "domain": "community credit union entering digital small-dollar lending for gig workers",
+      "audience": "a credit union lending officer whose mainstream members are salaried employees with W-2 income",
+      "stakes": "gig worker income is irregular and the standard underwriting model flags nearly all applicants as high-risk — the product only works with a different underwriting framework",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Giulia predicts that the gig-worker loan product will have a high default rate based on the credit union's existing risk model. The reveal shows that a different repayment structure matches gig payment cycles and produces a different default picture — a picture the existing model cannot generate.",
+      "firstImage": "an underwriting scorecard with most gig-worker applications in the red zone",
+      "mustInclude": ["standard underwriting model failure", "irregular income pattern", "alternative repayment structure in the reveal"],
+      "mustAvoid": ["any implication that gig workers are inherently higher risk"]
+    },
+    {
+      "domain": "natural language processing tool entering legal document review at small law firms",
+      "audience": "a legal tech founder whose product can handle contract review but not the complex multi-jurisdiction analysis that BigLaw associates do",
+      "stakes": "BigLaw evaluators list twelve capabilities the tool lacks — but small-firm practitioners have different review tasks where those twelve capabilities are not what they need",
+      "format": "postmortem",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Ben's postmortem on the BigLaw pilot shows every gap clearly: multi-jurisdiction analysis, citation validation, legal brief formatting. The postmortem on the small-firm pilot — which ran simultaneously — shows a different story that the team nearly failed to write up because it wasn't the target market.",
+      "firstImage": "two pilot reports side by side on a conference table, one thick and annotated in red, one thin and mostly unmarked",
+      "mustInclude": ["BigLaw gap list", "small-firm pilot contrast", "the near-miss of ignoring the small-firm data"],
+      "mustAvoid": ["any implication that BigLaw was wrong to evaluate rigorously"]
+    },
+    {
+      "domain": "reusable packaging company entering industrial transport packaging for local food distributors",
+      "audience": "a supply chain manager at a national grocery chain whose supplier network uses standardized disposable packaging at scale",
+      "stakes": "the reusable system requires local pickup logistics that don't exist for national supply chains — it works only for regional loops where the distributor controls both ends",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Before: Devon evaluates the reusable packaging system using the national chain's supply model and it fails on logistics cost and return network complexity. After: a regional food distributor has adopted it for their own delivery loop and the total cost per trip is lower than disposable — because the system was evaluated against the right use case, not the national one.",
+      "firstImage": "a regional distributor's delivery van loaded with reusable crates versus a pallet of shrink-wrapped disposables",
+      "mustInclude": ["national chain logistics failure", "regional loop economics", "the different evaluation context in the after"],
+      "mustAvoid": ["any environmental argument — keep the analysis purely on economics and fit"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify a foothold market in a described scenario",
+      "distinguish between a product that fails on mainstream standards and one that fails on relevant standards",
+      "recognize when an incumbent engaging a new technology has still not solved the first-market problem",
+      "evaluate whether a described pilot was conducted in the right first market",
+      "apply the pattern of foothold-then-climb to a non-technology example"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of a product or idea your team rejected because it failed your current standards. Write down one specific use case — outside your current customer base — where those exact standards would matter less and the product's actual advantages would matter more.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that names the hydraulic-excavator case as the book's proof-of-pattern — keeping the prose reference light and direct, not academic",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

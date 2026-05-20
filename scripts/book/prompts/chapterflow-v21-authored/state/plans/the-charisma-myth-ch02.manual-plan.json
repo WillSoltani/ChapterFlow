@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch02",
+  "number": 2,
+  "title": "Presence, Power, and Warmth",
+  "coreMove": "Diagnose whether the room is missing attention, credibility, or goodwill before changing your behavior.",
+  "sourcePressure": "The source names presence, power, and warmth as the three keys to charisma: presence helps people feel seen, power creates credibility and impact, and warmth signals trust and goodwill.",
+  "chapterSpecificMisunderstanding": "The weak version lists three nice traits. The useful version shows how one missing signal changes the whole read.",
+  "sourceAlignmentTerms": ["presence", "power", "warmth", "seen", "understood", "valued", "credibility", "goodwill"],
+  "forbiddenFrames": {
+    "hook": ["Charisma has three ingredients", "Presence power and warmth are the secret", "Every room needs balance"],
+    "counterintuition": ["Warmth beats power", "Power beats warmth", "Presence means mindfulness"],
+    "tryThisNow": ["Be warmer today", "Stand like a leader", "Listen for one minute"],
+    "examples": ["manager in weekly meeting", "dating conversation", "generic sales call", "teacher in classroom"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an airline gate safety briefing after a mechanical delay",
+      "audience": "a frontline supervisor who sounds competent but not attentive",
+      "stakes": "whether passengers believe the crew has both facts and concern before boarding resumes",
+      "format": "scene",
+      "requiredBeat": "she looks up from the operations tablet, names the delay plainly, then adds the specific passenger concern the crowd has been whispering about",
+      "firstImage": "a gate monitor blinking red beside a coiled microphone cord",
+      "mustInclude": ["operations tablet", "boarding lane rope", "maintenance clearance"],
+      "mustAvoid": ["crisis chapter", "customer-service apology template"]
+    },
+    {
+      "domain": "a neonatal unit handoff between two nurses and frightened parents",
+      "audience": "a warm professional whose credibility can vanish if she seems too soft",
+      "stakes": "whether the parents trust the next twelve-hour care plan",
+      "format": "dialogue",
+      "requiredBeat": "the nurse keeps one hand near the incubator log, states the oxygen number precisely, and then turns to ask the parents what they noticed overnight",
+      "firstImage": "a tiny knit cap folded beside an incubator log",
+      "mustInclude": ["oxygen reading", "handoff sheet", "rocking chair"],
+      "mustAvoid": ["medical heroics", "generic empathy advice"]
+    },
+    {
+      "domain": "a city planning hearing about a protected bike corridor",
+      "audience": "a technical expert who must be legible to residents",
+      "stakes": "whether the room sees both competence and respect for daily street life",
+      "format": "decision_point",
+      "requiredBeat": "he decides to leave the crash map projected while he steps away from the lectern and repeats a resident's exact block name before citing the data",
+      "firstImage": "a folded crash map pinned with colored tabs",
+      "mustInclude": ["lectern light", "block name", "public-comment card"],
+      "mustAvoid": ["bike-advocacy sermon", "PowerPoint presentation chapter"]
+    },
+    {
+      "domain": "an indoor climbing wall where a belay instructor wins trust from a nervous adult beginner",
+      "audience": "a skilled operator who forgets that power without warmth feels scary",
+      "stakes": "whether the beginner leans back into the rope instead of quitting",
+      "format": "predict_reveal",
+      "requiredBeat": "the instructor asks her to check the knot with him, names exactly how the belay device works, then waits until she says she is ready before taking slack",
+      "firstImage": "a figure-eight knot resting against a chalk-dusted harness",
+      "mustInclude": ["belay device", "floor mat seam", "route tag"],
+      "mustAvoid": ["adventure courage scene", "dominance as power"]
+    },
+    {
+      "domain": "a boutique lender meeting with a couple buying a fishing boat business",
+      "audience": "a financial expert who can sound cold when assessing risk",
+      "stakes": "whether the borrowers accept a hard condition without feeling dismissed",
+      "format": "vignette",
+      "requiredBeat": "she slides the cash-flow schedule forward, marks the risky month, and says what she wants to protect for them before naming the condition",
+      "firstImage": "a tide calendar tucked under a loan amortization sheet",
+      "mustInclude": ["cash-flow schedule", "fuel invoice", "loan condition"],
+      "mustAvoid": ["generic bank meeting", "financial advice"]
+    },
+    {
+      "domain": "a restaurant pass where an executive chef corrects a plating error mid-service",
+      "audience": "a high-power reader whose urgency can erase warmth",
+      "stakes": "whether a new line cook fixes the dish without shutting down",
+      "format": "before_after",
+      "requiredBeat": "contrast the barked correction with the reset where the chef points to the sauce ring, lowers his voice, and gives one exact next move",
+      "firstImage": "a white plate with sauce bleeding across the rim",
+      "mustInclude": ["ticket rail", "heat lamp", "sauce spoon"],
+      "mustAvoid": ["kitchen tyranny", "generic feedback formula"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which charisma signal is missing in a scenario",
+      "choose behavior that restores presence without weakening power",
+      "separate warmth from approval-seeking",
+      "evaluate tradeoffs when credibility and goodwill are both at stake"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before your next substantive exchange, ask which signal the other person most needs from you: full attention, credible weight, or visible goodwill.",
+  "readingTimeMinutes": 12
+}

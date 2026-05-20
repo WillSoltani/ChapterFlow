@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch78",
+  "number": 78,
+  "title": "Falsification of History",
+  "readingTimeMinutes": 12,
+  "hook": "After the result is known, the old uncertainty starts editing itself into confidence.",
+  "counterintuition": "Memory can feel like evidence while quietly rewriting the past; protect the next decision by checking the record made before the outcome was known.",
+  "tryThisNow": "Before revising one past decision, find one record from before the result and compare it with your current story.",
+  "keyTakeaway": "Do not let today's outcome rewrite yesterday's uncertainty. Return to the record before judging the past.",
+  "breakdown": {
+    "fastRead": "A court team says it always knew the lunch calendar would fail, but the old price card shows a different story. Before the change, most people expected the schedule to work. After the result, memory edits doubt into foresight. That is history falsification. The past becomes cleaner than it was. The fix is to preserve records made before the outcome, then judge the decision against what was knowable then.",
+    "deepRead": "A bad result makes the past look obvious. The donor letter failed, and now everyone remembers warning that the wording was too cold. The class filled late, and now everyone remembers knowing the deadline was wrong. The ferry sign confused passengers, and now everyone remembers predicting confusion from the start. Sometimes those memories are true. Often they have been polished by the outcome.\n\nFalsification of history is not always a lie. It can be memory trying to make a coherent story. Once the ending is known, the mind edits the beginning. Doubt becomes certainty. Mixed views become a clear camp. The person who guessed both ways remembers the right guess. The team that was unsure remembers being wise.\n\nThe record is the antidote.\n\nThe correction is to keep pre-outcome evidence close. What did we write before we knew? What did the price card, trial binder, maintenance tag, or waiting-list sheet say at the time? What odds did we assign? What risks did we name? What alternative did we reject? If the record shows uncertainty, respect that uncertainty. If it shows clear warnings, respect those too.\n\nThis matters because rewritten history ruins learning. If every failure becomes 'we knew it,' no one improves the decision process. If every success becomes 'we were sure,' luck disappears from the review. Good judgment needs the messy past: the doubts, limits, blind spots, and information actually available at the time.",
+    "fullRead": "The hospice donation letter raised less money than the spring campaign. By Monday, the story in the office is clear: the letter was too formal, the patient quote was buried, and everyone had sensed it. The trial binder says otherwise. In the draft meeting, three people liked the formal tone, two wanted a warmer quote, and nobody predicted a large drop. The failure is real. The new memory is too tidy.\n\nHistory falsification begins when the present result reorganizes the past. People remember their earlier attitudes as more stable, more accurate, or more aligned with the outcome than they were. This is why postmortems often become theater. The group tells a cleaner story than the evidence permits, then learns from the story it just invented.\n\nGregory Markus's work on stability and change in political attitudes, later discussed in Kathryn Schulz's Being Wrong, points at the same pressure: people do not merely hold views and then recall them perfectly. They observe, recall, and explain through the lens of later belief. A past position can be pulled toward the present self. Memory becomes narrator, not archive.\n\nWhat did you believe before the ending made belief easy?\n\nA college add-drop deadline shows the pattern in miniature. After late complaints, advisers say they always knew the deadline was confusing. The maintenance tag on the registration system shows the old change request: shorten the reminder text because students ignored long emails. That was a reasonable guess. It was also wrong. The useful review asks why the guess failed, not whether everyone can now sound prophetic.\n\nA ceramics shop sees the same thing after a defect discount. When customers buy the flawed bowls quickly, the owner says she knew the lower price was too low. The auction paddle from the pricing meeting shows a different debate: the team feared nobody would buy defects at all. The record does not embarrass them. It helps them learn the real lesson: demand was uncertain, and the next test needs smaller batches.\n\nThere is a limit. Records can be incomplete, defensive, or badly kept. A timestamp does not automatically tell the whole truth. People sometimes do give clear warnings that are ignored. The correction is not to worship documents. It is to compare memory with contemporaneous evidence before rewriting the story.\n\nThe best postmortem starts with artifacts. Put the old note, price card, email, binder, photo, calendar, or dashboard on the table. Ask what was known then, what was guessed, what was missed, and what only became obvious later. Once the past is allowed to be messy again, learning becomes possible. You stop punishing people for not knowing the ending and start improving how they reasoned before the ending arrived."
+  },
+  "examples": [
+    {
+      "exampleId": "ch78-ex01-norman-price-card",
+      "title": "The lunch calendar that everyone now knew would fail",
+      "scenario": "A price card from the courthouse cafe sits beside the municipal court lunch calendar at 1:15 p.m. in Albany. Norman, the court administrator, must decide whether to blame the scheduler after the lunch plan fails. He writes history falsification on the card, reads the prelaunch notes aloud, and changes the review from blame to a smaller demand test.",
+      "whatToDo": "Use the pre-outcome record to separate actual warnings from hindsight confidence.",
+      "whyItMatters": "The team cannot learn if a failed schedule becomes a story that everyone supposedly predicted.",
+      "tags": [
+        "municipal court lunch calendar",
+        "price card",
+        "history falsification"
+      ],
+      "planSpec": {
+        "domain": "municipal court lunch calendar",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch78-ex02-gloria-trial-binder",
+      "title": "The donation letter with a tidy failure story",
+      "scenario": "\"We all knew it was too formal,\" the fundraiser says while a trial binder lies open on the hospice conference table in Leeds. Gloria must decide whether to rewrite the annual appeal from memory or check the draft record first. She marks record risk on the binder, reads the split prelaunch votes, and changes the next test to compare warm and formal versions.",
+      "whatToDo": "Check the draft record before turning a failed appeal into a clean hindsight story.",
+      "whyItMatters": "The old disagreement is the useful data; the tidy memory hides it.",
+      "tags": [
+        "hospice donation letter",
+        "trial binder",
+        "record"
+      ],
+      "planSpec": {
+        "domain": "hospice donation letter",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch78-ex03-samuel-maintenance-tag",
+      "title": "The add-drop deadline everyone now remembers doubting",
+      "scenario": "The maintenance tag scratches Samuel's thumb at 8:30 a.m. as he pulls it from the college registration printer in Portland. As registrar for first-year courses, he must decide whether to accuse advisers of ignoring an obvious deadline problem. He circles memory risk on the tag, compares complaint dates with the old change request, and changes the review to test reminder length instead of rewriting blame.",
+      "whatToDo": "Compare current memory with the maintenance record created before complaints arrived.",
+      "whyItMatters": "A wrong guess can be improved only if it is remembered as a guess, not as ignored certainty.",
+      "tags": [
+        "college add-drop deadline",
+        "maintenance tag",
+        "memory"
+      ],
+      "planSpec": {
+        "domain": "college add-drop deadline",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch78-ex04-morris-auction-paddle",
+      "title": "The defect price that looks obvious after sales",
+      "scenario": "You are holding an auction paddle from the 7 p.m. ceramics shop pricing meeting in Asheville while the sold-out defect shelf sits empty. Morris, the shop owner, must decide whether to say the low price was obviously foolish or review what the team believed before sales. He writes revision on the paddle, reads the old fear that defects would not sell, and changes the next batch to a small price ladder.",
+      "whatToDo": "Use the old uncertainty to design a better test instead of pretending the answer was obvious.",
+      "whyItMatters": "After success, memory can erase the fear that made the original price reasonable.",
+      "tags": [
+        "ceramics defect pricing",
+        "auction paddle",
+        "revision"
+      ],
+      "planSpec": {
+        "domain": "ceramics defect pricing",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch78-ex05-elliott-waiting-list-sheet",
+      "title": "The ferry sign that everyone now remembers hating",
+      "scenario": "It took Elliott two fog mornings at the Victoria ferry terminal's customer desk to notice how the passenger-sign story changed. As terminal operations manager, he sees the waiting-list sheet showing that staff had expected fewer questions, but after complaints everyone remembered the sign as obviously vague. He must decide whether to discipline the sign team. He writes narrative on the sheet, restores the prelaunch assumptions, and changes the next sign test to include confused passengers.",
+      "whatToDo": "Restore the original assumptions before deciding what the failed sign teaches.",
+      "whyItMatters": "A post-complaint narrative can make a reasonable but wrong assumption look negligent.",
+      "tags": [
+        "ferry terminal passenger sign",
+        "waiting-list sheet",
+        "narrative"
+      ],
+      "planSpec": {
+        "domain": "ferry terminal passenger sign",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch78-ex06-harold-defect-photo",
+      "title": "The bakery leftovers that memory improves",
+      "scenario": "Did the bakery always know noon leftovers meant the croissants were too large? Harold pins a defect photo beside the Montreal bakery postmortem after three slow Fridays. The old prep sheet shows a different guess: rain, not size, was blamed at first. He writes falsification on the photo, compares weather and portion notes, and changes the next test to split batch size and daypart.",
+      "whatToDo": "Use old prep notes to keep the postmortem from inventing a cleaner cause.",
+      "whyItMatters": "A neat failure story can hide the actual uncertainty that needs testing.",
+      "tags": [
+        "bakery noon-leftover test",
+        "defect photo",
+        "falsification"
+      ],
+      "planSpec": {
+        "domain": "bakery noon-leftover test",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a falsification-history case, a project fails, everyone remembers having warned about the exact problem, but old notes show mixed expectations. What is the falsification-of-history risk?",
+        "choices": [
+          "The outcome may be rewriting memory into cleaner foresight.",
+          "What falsification-of-history outcome points toward a quicker call on having warned about; let fails everyone remembers stand until show mixed expectations contradicts it.",
+          "Outcome rewriting memory fits the immediate pressure around about exact problem; hold remembers having warned steady and test project fails everyone later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The issue is hindsight editing. The old notes help distinguish real warnings from memory polished by the result.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Falsification of History makes falsification-history case feel more decisive than the record supports, and that misprices project fails in this scene. The correct move keepss the choice by the outcome may be rewriting memory into cleaner foresight."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a falsification-history review, a donation letter underperforms, and staff say they all knew it was too formal, the draft binder shows a split vote before launch. What should the team do?",
+        "choices": [
+          "Binder shows split makes letter underperforms staff look credible; use knew formal draft first and revisit vote launch what when team design formal-versus-warm shifts.",
+          "Use the binder to design a formal-versus-warm test for the next letter.",
+          "Launch what team points toward a quicker call on underperforms staff knew; let falsification-history donation letter stand until shows split vote contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The binder restores the real prelaunch uncertainty. The next step is a better test, not a clean blame story.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Falsification of History works by letting falsification-history donation crowd out letter underperforms, which can misreads the staff knew decision. Use the binder to design a formal-versus-warm test for the next letter keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When falsification-history pressure appears, a ceramics discount sells out, and the owner says the price was obviously too low, old meeting notes show the team feared no one would buy flawed pieces. What is the best correction?",
+        "choices": [
+          "Uncertainty small ladder fits the immediate pressure around notes show team; hold price obviously meeting steady and test sells owner says later.",
+          "Discount sells owner looks strong enough to guide says price obviously; meeting notes show can wait unless team feared flawed changes the stakes.",
+          "Use the old uncertainty to run a small price ladder next time."
+        ],
+        "correctIndex": 2,
+        "explanation": "The notes show why the original choice seemed reasonable. A price ladder learns from uncertainty instead of erasing it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Falsification of History turns appears ceramics into a shortcut, so the room can overweights discount sells while missing owner says. Use the old uncertainty to run a small price ladder next time protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After falsification-history risk surfaces, a college deadline creates complaints. Advisers now say the reminder was clearly too short, but the old request asked for shorter reminders because long emails were ignored. What should the review ask?",
+        "choices": [
+          "What information was available before complaints, and what reminder length should be tested now?",
+          "Ignored what information fits the immediate pressure around clearly short request; hold complaints advisers reminder steady and test college deadline creates later.",
+          "Surfaces college deadline looks strong enough to guide creates complaints advisers; reminder clearly short can wait unless request asked shorter changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The useful question preserves the original reason and then tests it. Blame and hiding records feed history falsification.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Falsification of History would push the college deadline case toward creates complaints, creating a cost when advisers reminder stays untested. The useful guardrail is to what information was available before complaints, and what reminder length should be tested now."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If falsification-history reasoning takes over, a ferry sign confuses passengers, staff now remember calling it vague, but launch notes show most expected it to work. Which analysis is strongest?",
+        "choices": [
+          "Calling vague launch makes ferry sign confuses look credible; use passengers staff remember first and revisit notes show expected when work analysis strongest shifts.",
+          "The post-complaint memory may be too tidy, so compare it with launch notes.",
+          "Show expected work points toward a quicker call on sign confuses passengers; let falsification-history reasoning ferry stand until vague launch notes contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The launch notes do not prove the sign was good. They show what people believed before the outcome edited memory.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Falsification of History converts sign confuses into the loudest signal, which can rushes passengers staff before remember calling is checked. The better answer separatess attention on the post-complaint memory may be too tidy, so compare it with launch notes."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While falsification-history pressure builds, a team succeeds and now says it was always certain. The risk log from before launch listed three serious doubts. What should the postmortem preserve?",
+        "choices": [
+          "Launch listed three makes builds team succeeds look credible; use says often certain first and revisit serious doubts what when postmortem preserve both shifts.",
+          "Three serious doubts supports a narrower read of pressure builds team; keep succeeds says often central and leave certain launch listed aside.",
+          "Both the success and the uncertainty that existed before the result."
+        ],
+        "correctIndex": 2,
+        "explanation": "Learning needs both facts. Success happened, but the old uncertainty prevents the team from mistaking luck or mixed evidence for certainty.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Falsification of History hides inside the falsification-history pressure choice because falsification-history pressure seems sufficient, yet the cost lands in falsification-history pressure. Both the success and the uncertainty that existed before the result brings the falsification-history pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the falsification-history call, a manager wants to evaluate a failed campaign fairly, the team has emails, early forecasts, meeting notes, and current memories. Which source should anchor the first pass?",
+        "choices": [
+          "Falsification-history call manager looks strong enough to guide wants evaluate failed; campaign fairly team can wait unless emails early forecasts changes the stakes.",
+          "The pre-outcome records, because they show what was knowable then.",
+          "Early forecasts meeting makes evaluate failed campaign look credible; use fairly team emails first and revisit notes current memories when source anchor first shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pre-outcome records anchor the review in what could be known at the time. Current memories are useful only after checking for revision.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Falsification of History pressures the call manager decision toward the easy reading of call manager. That can inflates the real cost unless the choice is grounded in the pre-outcome records, because they show what was knowable then."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose falsification-history risk is present: a bakery blames leftover croissants on size after three slow Fridays. Old prep notes blamed rain and tourist traffic. What should the next test do?",
+        "choices": [
+          "After three slow makes present bakery blames look credible; use leftover croissants size first and revisit fridays prep notes when blamed rain tourist shifts.",
+          "Test size, weather, and daypart instead of accepting the cleaner memory.",
+          "Prep notes blamed points toward a quicker call on bakery blames leftover; let suppose falsification-history present stand until three slow fridays contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The old notes keep multiple causes alive for testing. The cleaner current story may be memory trying to simplify failure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Falsification of History is the mechanism here: a tidy narrative hides missing evidence, so present bakery can overpower present bakery. Test size, weather, and daypart instead of accepting the cleaner memory keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two falsification-history signals compete: a review has no pre-outcome notes, only people's current memories. What practice would reduce falsification of history next time?",
+        "choices": [
+          "Reasons odds risks points toward a quicker call on memories what practice; let notes people current stand until next time write contradicts it.",
+          "Risks outcome known fits the immediate pressure around practice reduce falsification; hold current memories what steady and test pre-outcome notes people later.",
+          "Write decision reasons, odds, and risks before the outcome is known."
+        ],
+        "correctIndex": 2,
+        "explanation": "Pre-outcome records create an anchor for later review. Remembering harder after the result cannot remove hindsight pressure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Falsification of History makes the pre-outcome notes evidence look cleaner than it is, risking a pre-outcome notes mistake in this setting. The answer protects pre-outcome notes by asking for write decision reasons, odds, and risks before the outcome is known."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "A result makes the past feel obvious. What pre-outcome record should check memory?",
+      "back": "Compare memory with notes, emails, probabilities, and risks recorded before the outcome. Later clarity often rewrites uncertainty.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why is 'we knew it' dangerous after failure?",
+      "back": "It can erase real uncertainty and turn a messy decision into a clean hindsight story, blocking learning.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What artifact should start a postmortem?",
+      "back": "Use a pre-outcome artifact: old note, binder, price card, email, forecast, photo, or timestamp.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How can success falsify history too?",
+      "back": "A good result can make mixed evidence feel like certainty, hiding luck and prelaunch doubts.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "What should a decision note preserve?",
+      "back": "Preserve reasons, odds, risks, rejected options, and the information available before the result was known.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Use pre-outcome records to keep memory from rewriting the past after success or failure.",
+    "ifThenPlans": [
+      {
+        "context": "Postmortem",
+        "plan": "If people say they knew the result, then I will put pre-outcome notes on the table before discussing blame."
+      },
+      {
+        "context": "Decision logging",
+        "plan": "If I make a meaningful choice, then I will record reasons, odds, and risks before the outcome arrives."
+      },
+      {
+        "context": "Success review",
+        "plan": "If a result succeeds, then I will check whether old notes show certainty or uncertainty."
+      },
+      {
+        "context": "Failure review",
+        "plan": "If a result fails, then I will compare current memory with the original information set before changing policy."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one recent result you are explaining. Find one pre-outcome record and rewrite the lesson using only what was knowable then.",
+    "weeklyPractice": "Once a week, write a decision note before the result, including what would change your mind later."
+  },
+  "memorableLines": [
+    {
+      "text": "The record is the antidote."
+    },
+    {
+      "text": "Memory becomes narrator, not archive."
+    },
+    {
+      "text": "The past becomes cleaner than it was."
+    }
+  ]
+}

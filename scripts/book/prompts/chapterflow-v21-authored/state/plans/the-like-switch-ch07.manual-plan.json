@@ -1,0 +1,188 @@
+{
+  "chapterId": "the-like-switch-ch07",
+  "number": 7,
+  "title": "Nurturing and Sustaining Long-Term Relationships",
+  "coreMove": "Keep a bond durable by making reciprocity, maintenance, and early repair visible after closeness already exists.",
+  "sourcePressure": "The ch07 source is narrower and stresses maintenance, reciprocity, and repair. It warns that close relationships erode when care becomes assumed, one-sided, or delayed until crisis.",
+  "chapterSpecificMisunderstanding": "Thinking a strong bond runs on history, loyalty, or familiarity without current upkeep.",
+  "sourceAlignmentTerms": [
+    "maintenance",
+    "repair",
+    "reciprocity",
+    "long-term relationships",
+    "drift",
+    "one-sided effort",
+    "durability"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "relationship maintenance",
+      "detail": "The ch07 source sidecar says long-term relationships need repeated maintenance after closeness forms.",
+      "useIn": "both",
+      "phrasingHint": "A bond can keep its name while losing its current care; maintenance is how the relationship stays present tense."
+    },
+    {
+      "kind": "event",
+      "name": "repair before distance hardens",
+      "detail": "The sidecar says repair matters when distance or strain appears and must happen before drift becomes structure.",
+      "useIn": "fullRead",
+      "phrasingHint": "Repair works best while the distance is still soft enough to answer."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Relationships take work",
+      "Do not take people for granted",
+      "Maintenance matters"
+    ],
+    "counterintuition": [
+      "closeness is not enough",
+      "history cannot sustain love"
+    ],
+    "tryThisNow": [
+      "send a check-in text"
+    ],
+    "examples": [
+      "old friends over coffee",
+      "marriage date night",
+      "team retreat trust fall"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a volunteer search-and-rescue unit where two longtime partners stop checking each other gear",
+      "audience": "a unit captain seeing familiarity replace maintenance",
+      "stakes": "one missed battery check could cost a night search",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the captain reinstates a mutual gear check and watches irritation turn into relief when one dead headlamp is found before deployment",
+      "firstImage": "a headlamp beam flickers against wet gravel",
+      "mustInclude": [
+        "headlamp",
+        "radio battery",
+        "grid map"
+      ],
+      "mustAvoid": [
+        "helmet or generic safety meeting"
+      ]
+    },
+    {
+      "domain": "a university alumni scholarship committee with lopsided follow-through",
+      "audience": "a committee chair protecting a long-running partnership",
+      "stakes": "donor deadlines will be missed if one member keeps carrying the invisible work",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "the chair traces the drift through unanswered task notes and asks each person to return one piece of effort before resentment hardens",
+      "firstImage": "sticky flags bristle from a stack of scholarship files",
+      "mustInclude": [
+        "scholarship files",
+        "deadline calendar",
+        "task notes"
+      ],
+      "mustAvoid": [
+        "generic office project"
+      ]
+    },
+    {
+      "domain": "a sibling pair managing care for an aging parent from different cities",
+      "audience": "an adult child who confuses family history with current reciprocity",
+      "stakes": "unspoken strain could rupture the care plan",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"I know we both love her, and the calls are not landing evenly,\" Hannah says, naming the maintenance gap before blame takes over",
+      "firstImage": [
+        "pill organizer",
+        "train ticket",
+        "shared care calendar"
+      ],
+      "mustInclude": [
+        "dosing cup anchor"
+      ]
+    },
+    {
+      "domain": "a chamber-music quartet after ten years together",
+      "audience": "a first violinist who assumes history will carry rehearsals",
+      "stakes": "a festival audition will expose quiet resentment",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes Margaux one brittle rehearsal to see that shared history stopped replacing prompt apology and rotated administrative work",
+      "firstImage": "rosin dust on a black rehearsal folder",
+      "mustInclude": [
+        "rehearsal folder",
+        "chair chart",
+        "invoice envelope"
+      ],
+      "mustAvoid": [
+        "generic choir scene"
+      ]
+    },
+    {
+      "domain": "a co-op bakery partnership after the first profitable year",
+      "audience": "partners who built closeness under pressure but now need upkeep",
+      "stakes": "one partner is doing all supplier calls and slowly detaching",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 5:22 a.m., Michael decides whether to defend his long hours or move two supplier calls back onto his own list",
+      "firstImage": "flour handprints across a steel prep table",
+      "mustInclude": [
+        "supplier list",
+        "proofing rack",
+        "cash drawer"
+      ],
+      "mustAvoid": [
+        "croissant sample from HWF reference"
+      ]
+    },
+    {
+      "domain": "a neighborhood mutual-aid freezer program entering its third winter",
+      "audience": "a coordinator maintaining trust after early enthusiasm fades",
+      "stakes": "missed restocks mean families arrive to empty shelves",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "you stop praising the founding story and ask who checked the freezer this week, making current care visible again",
+      "firstImage": "frost around a handwritten freezer inventory sheet",
+      "mustInclude": [
+        "freezer inventory",
+        "magnet clips",
+        "grocery receipt"
+      ],
+      "mustAvoid": [
+        "generic charity appeal"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish durable maintenance from sentimental history",
+      "spot one-sided effort before rupture",
+      "choose early repair over dramatic confrontation",
+      "evaluate whether a bond is current or only familiar"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one relationship that is running on history; make one current act of reciprocity or repair visible within the next day.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

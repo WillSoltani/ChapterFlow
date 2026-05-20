@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch29",
+  "number": 29,
+  "title": "Gambler's Fallacy",
+  "coreMove": "Break the false inference inside gambler fallacy, then decide from current evidence instead of the tempting story.",
+  "sourcePressure": "The source sidecar and official source notes frame Gambler's Fallacy as a specific decision error around gambler fallacy, independence, roulette. Traceable support includes S FALLACY One of the classic papers is: Iddo Gal & Jonathan Baron.",
+  "chapterSpecificMisunderstanding": "Treating Gambler's Fallacy as generic advice to be smarter, instead of forcing this exact move: break the false inference inside gambler fallacy, then decide from current evidence instead of the tempting story.",
+  "sourceAlignmentTerms": [
+    "gambler fallacy",
+    "independence",
+    "roulette",
+    "streak",
+    "Monte Carlo",
+    "gambler",
+    "fallacy"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Gambler's Fallacy.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Gambler's Fallacy sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Gambler's Fallacy."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a sports federation referee rating applying Gambler's Fallacy under operational pressure",
+      "audience": "a reader who has to make a live judgment where gambler fallacy could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Gambler's Fallacy is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the maintenance tag, names the gambler fallacy risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A maintenance tag sits at the center of the sports federation referee rating before anyone explains the choice.",
+      "mustInclude": [
+        "maintenance tag",
+        "gambler fallacy",
+        "a visible before-and-after choice tied to Gambler's Fallacy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a oncology dropout table applying Gambler's Fallacy under operational pressure",
+      "audience": "a reader who has to make a live judgment where independence could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Gambler's Fallacy is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the auction paddle, names the independence risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A auction paddle sits at the center of the oncology dropout table before anyone explains the choice.",
+      "mustInclude": [
+        "auction paddle",
+        "independence",
+        "a visible before-and-after choice tied to Gambler's Fallacy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a immigration appeal triage applying Gambler's Fallacy under operational pressure",
+      "audience": "a reader who has to make a live judgment where roulette could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Gambler's Fallacy is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the waiting-list sheet, names the roulette risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A waiting-list sheet sits at the center of the immigration appeal triage before anyone explains the choice.",
+      "mustInclude": [
+        "waiting-list sheet",
+        "roulette",
+        "a visible before-and-after choice tied to Gambler's Fallacy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a climate fund pitch review applying Gambler's Fallacy under operational pressure",
+      "audience": "a reader who has to make a live judgment where streak could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Gambler's Fallacy is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the defect photo, names the streak risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A defect photo sits at the center of the climate fund pitch review before anyone explains the choice.",
+      "mustInclude": [
+        "defect photo",
+        "streak",
+        "a visible before-and-after choice tied to Gambler's Fallacy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a call-center complaint script applying Gambler's Fallacy under operational pressure",
+      "audience": "a reader who has to make a live judgment where Monte Carlo could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Gambler's Fallacy is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the forecast grid, names the Monte Carlo risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A forecast grid sits at the center of the call-center complaint script before anyone explains the choice.",
+      "mustInclude": [
+        "forecast grid",
+        "Monte Carlo",
+        "a visible before-and-after choice tied to Gambler's Fallacy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a outdoor-gear influencer report applying Gambler's Fallacy under operational pressure",
+      "audience": "a reader who has to make a live judgment where gambler could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Gambler's Fallacy is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the donor pledge card, names the gambler risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A donor pledge card sits at the center of the outdoor-gear influencer report before anyone explains the choice.",
+      "mustInclude": [
+        "donor pledge card",
+        "gambler",
+        "a visible before-and-after choice tied to Gambler's Fallacy"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Gambler's Fallacy in a fresh decision scene",
+      "choose the correction that performs this move: break the false inference inside gambler fallacy, then decide from current evidence instead of the tempting story.",
+      "reject a tempting generic answer that ignores gambler fallacy",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Gambler's Fallacy' on a note, list the one gambler fallacy cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

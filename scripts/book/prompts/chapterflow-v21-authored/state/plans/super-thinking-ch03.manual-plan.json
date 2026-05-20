@@ -1,0 +1,199 @@
+{
+  "number": 3,
+  "title": "Spend Your Time Wisely",
+  "coreMove": "Choose the compounding activity by naming the best alternative it displaces and the present-bias reward that will try to steal the slot.",
+  "sourcePressure": "The source combines compound interest, opportunity cost, and present bias: small repeated gains stack, but every choice excludes another, and near-term rewards sabotage long-term progress.",
+  "chapterSpecificMisunderstanding": "Treating time wisdom as doing more tasks faster rather than protecting the few repeated choices that can compound.",
+  "sourceAlignmentTerms": [
+    "compound interest",
+    "opportunity cost",
+    "present bias",
+    "procrastination",
+    "fitness goals",
+    "long-term goals",
+    "incremental progress"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "compound interest",
+      "detail": "the source explains compounding as gains that accelerate because prior gains are added back into the base",
+      "useIn": "both",
+      "phrasingHint": "The first repeats look small because the base is still small; the power arrives when yesterday’s gain joins today’s work."
+    },
+    {
+      "kind": "artifact",
+      "name": "fitness goals and procrastination",
+      "detail": "the source uses procrastination and fitness goals as the concrete frame for present bias",
+      "useIn": "fullRead",
+      "phrasingHint": "Present bias rarely announces itself as sabotage; it arrives as one comfortable skip that steals from the body you wanted later."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "You can do anything but not everything",
+      "Time is your most valuable asset",
+      "Small habits compound"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more",
+      "Every yes is a no",
+      "The future self matters"
+    ],
+    "tryThisNow": [
+      "Open your calendar",
+      "Block time for your most important goal",
+      "Set a timer for focused work"
+    ],
+    "examples": [
+      "generic gym habit",
+      "startup founder morning routine",
+      "student procrastinating on phone",
+      "family budget calendar"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Emily, a public defender protecting ninety minutes each morning for case review before court calls begin",
+      "audience": "professionals whose urgent requests crowd out compounding preparation",
+      "stakes": "a missed detail could affect a plea negotiation",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily turns down a nonurgent committee invite by naming the specific case-review block it would displace",
+      "firstImage": "the courthouse hallway smells like wet wool and burnt coffee",
+      "mustInclude": [
+        "case folder",
+        "committee invite",
+        "plea notes"
+      ],
+      "mustAvoid": [
+        "generic office calendar block",
+        "heroic overwork"
+      ]
+    },
+    {
+      "domain": "Mathieu, a conservatory pianist choosing slow scales over another flashy recital piece",
+      "audience": "learners tempted by visible short-term rewards",
+      "stakes": "technical weakness will cap his auditions if he keeps chasing applause pieces",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Mathieu writes the audition skill that compounds from scales and crosses off the crowd-pleasing piece that would eat the same hour",
+      "firstImage": "It took Mathieu four auditions to admit the fast piece was hiding the same weak left hand",
+      "mustInclude": [
+        "metronome",
+        "audition list",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "generic studying",
+        "sports practice cliche"
+      ]
+    },
+    {
+      "domain": "Sophie, a municipal gardener choosing soil improvement over another row of showy annuals",
+      "audience": "readers who undervalue quiet base-building",
+      "stakes": "the park can look bright this month while growing weaker for next season",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sophie puts the compost order beside the flower invoice and chooses the slower work because the soil base will carry future blooms",
+      "firstImage": "rain beads on a pallet of compost bags beside a tray of red annuals",
+      "mustInclude": [
+        "compost bags",
+        "flower invoice",
+        "park map"
+      ],
+      "mustAvoid": [
+        "generic home gardening self-care",
+        "chapter 4 natural selection drift"
+      ]
+    },
+    {
+      "domain": "Lars, a freelance translator refusing a low-margin rush job to protect a certification-study evening",
+      "audience": "independent workers facing opportunity cost in cash terms",
+      "stakes": "tonight’s fee would delay the credential that raises future rates",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Lars calculates the rush fee against the exam slot it would consume and declines the job with a specific alternative date",
+      "firstImage": "At 6:12 p.m., Lars reads the rush-job email with his exam book already open",
+      "mustInclude": [
+        "rate sheet",
+        "certification textbook",
+        "client email"
+      ],
+      "mustAvoid": [
+        "generic side hustle",
+        "calendar productivity sermon"
+      ]
+    },
+    {
+      "domain": "Catarina, a medical resident choosing sleep before a surgical rotation instead of one more hour of review videos",
+      "audience": "high-achievers who confuse present effort with future payoff",
+      "stakes": "fatigue could erase the benefit of extra study",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Catarina says what the extra hour would cost tomorrow, closes the laptop, and preserves the compounding base of rested learning",
+      "firstImage": "“What does this hour take from rounds tomorrow?”",
+      "mustInclude": [
+        "review video",
+        "call-room locker",
+        "alarm set for 5:10"
+      ],
+      "mustAvoid": [
+        "generic wellness advice",
+        "fitness-present-bias source frame"
+      ]
+    },
+    {
+      "domain": "Chidi, a community radio producer choosing weekly archive cleanup over chasing a viral segment idea",
+      "audience": "creative workers balancing maintenance and novelty",
+      "stakes": "lost clips and messy rights notes will keep future episodes from shipping",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chidi opens the missing-rights spreadsheet, sees the compounding drag, and schedules the cleanup before approving the viral idea",
+      "firstImage": "You do not hear archive debt until the guest tape is missing",
+      "mustInclude": [
+        "audio archive",
+        "rights spreadsheet",
+        "episode board"
+      ],
+      "mustAvoid": [
+        "social media productivity trope",
+        "generic content creator hustle"
+      ]
+    }
+  ],
+  "tryThisNowSpec": "Pick one invitation or task from the next two days and write the best thing it would displace; decline, defer, or protect the slot if the displaced thing compounds more.",
+  "chapterId": "super-thinking-ch03",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the chapter-specific model in a fresh scenario for Spend Your Time Wisely",
+      "choose the visible action that performs the core move rather than naming the concept",
+      "explain the failure mode that appears when the model is used generically",
+      "evaluate tradeoffs and limits without sliding into certainty, cynicism, or manipulation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

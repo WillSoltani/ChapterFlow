@@ -1,0 +1,95 @@
+{
+  "bookId": "the-checklist-manifesto",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "the-checklist-manifesto-ch01",
+      "title": "The Problem of Extreme Complexity",
+      "sourcePressure": "The opening diagnosis uses the Austrian drowning rescue, superspecialists, and the limits of lone mastery to show why avoidable failure persists inside expert work.",
+      "coreMove": "Spot when a system has become too complex to trust to memory and individual command alone.",
+      "commonMisread": "Turn it into a vague sermon that people should be more careful or try harder.",
+      "mustUseTerms": ["extreme complexity", "superspecialists", "handoffs", "omission", "lone mastery", "coordination"],
+      "mustNotDriftInto": ["checklist design rules", "WHO rollout evidence", "aviation procedures"]
+    },
+    {
+      "number": 2,
+      "chapterId": "the-checklist-manifesto-ch02",
+      "title": "The Checklist",
+      "sourcePressure": "The B-17 story and Pronovost's central-line work show that one missed basic can beat expertise, and a short checklist can prevent routine omissions.",
+      "coreMove": "Separate vital minimum checks from expert knowledge and make those checks visible at the moment they are skipped.",
+      "commonMisread": "Make checklists sound like general to-do lists or productivity hacks.",
+      "mustUseTerms": ["B-17", "routine critical steps", "central line", "Pronovost", "Keystone Initiative", "anti-omission"],
+      "mustNotDriftInto": ["long manuals", "later Boeing checklist craft", "team identity resistance"]
+    },
+    {
+      "number": 3,
+      "chapterId": "the-checklist-manifesto-ch03",
+      "title": "The End of the Master Builder",
+      "sourcePressure": "Simple, complicated, and complex problems plus Russia Wharf show that modern projects are too distributed for one master builder to command.",
+      "coreMove": "Replace the master-controller reflex with distributed coordination and explicit handoffs.",
+      "commonMisread": "Praise collaboration in generic terms without naming the control problem.",
+      "mustUseTerms": ["simple problems", "complicated problems", "complex problems", "Russia Wharf", "master builder", "decentralization"],
+      "mustNotDriftInto": ["Katrina response", "Wal-Mart field action", "surgical checklist pilot"]
+    },
+    {
+      "number": 4,
+      "chapterId": "the-checklist-manifesto-ch04",
+      "title": "The Idea",
+      "sourcePressure": "The Katrina and Wal-Mart contrast shows how local action needs disciplined communication rather than trapped central permission.",
+      "coreMove": "Let people act near the facts while using short communication checks to keep the system aligned.",
+      "commonMisread": "Turn decentralization into a loose permission slip with no shared signal.",
+      "mustUseTerms": ["Katrina", "Wal-Mart", "local execution", "central bottleneck", "communication", "coordination device"],
+      "mustNotDriftInto": ["construction master builder", "aviation checklist design", "hospital trial statistics"]
+    },
+    {
+      "number": 5,
+      "chapterId": "the-checklist-manifesto-ch05",
+      "title": "The First Try",
+      "sourcePressure": "The early WHO surgical-checklist pilot surfaces resistance and refinement, showing that an idea becomes usable only after friction teaches the design.",
+      "coreMove": "Treat first-use resistance as implementation data and revise the checklist until the vital pause survives real workflow.",
+      "commonMisread": "Frame resistance as mere stubbornness or say the first draft just needs buy-in.",
+      "mustUseTerms": ["WHO pilot", "first try", "resistance", "refinement", "timing", "usable practice"],
+      "mustNotDriftInto": ["final WHO trial results", "Boeing checklist factory", "generic change management"]
+    },
+    {
+      "number": 6,
+      "chapterId": "the-checklist-manifesto-ch06",
+      "title": "The Checklist Factory",
+      "sourcePressure": "Dan Boorman, Boeing manuals, and simulator learning show that checklist quality is a design discipline built around brevity, timing, and live usefulness.",
+      "coreMove": "Design the list for the pressure point, cutting everything that does not earn attention in live execution.",
+      "commonMisread": "Assume a better checklist is a more complete checklist.",
+      "mustUseTerms": ["Dan Boorman", "Boeing", "simulator learning", "brevity", "pause point", "Do-Confirm"],
+      "mustNotDriftInto": ["WHO eight-hospital validation", "early pilot resistance", "investing transfer"]
+    },
+    {
+      "number": 7,
+      "chapterId": "the-checklist-manifesto-ch07",
+      "title": "The Test",
+      "sourcePressure": "The WHO 19-item checklist, Do-Confirm versus Read-Do, and the eight-hospital test show whether the tool survives real variation.",
+      "coreMove": "Raise confidence from local promise to field evidence by testing the checklist across different conditions.",
+      "commonMisread": "Celebrate a single successful pilot as proof.",
+      "mustUseTerms": ["WHO 19-item checklist", "Do-Confirm", "Read-Do", "eight-hospital test", "variation", "validation"],
+      "mustNotDriftInto": ["checklist factory craft", "identity resistance", "generic evidence-based practice"]
+    },
+    {
+      "number": 8,
+      "chapterId": "the-checklist-manifesto-ch08",
+      "title": "The Hero in the Age of Checklists",
+      "sourcePressure": "Once evidence exists, resistance shifts to ego, professional identity, lone-hero mythology, and the acceptance of disciplined teamwork.",
+      "coreMove": "Redefine professional excellence so shared verification counts as strength rather than insult.",
+      "commonMisread": "Scold experts for arrogance without understanding the identity threat.",
+      "mustUseTerms": ["professional identity", "lone hero", "teamwork", "ego", "adoption", "disciplined verification"],
+      "mustNotDriftInto": ["field trial proof", "investing examples", "general humility advice"]
+    },
+    {
+      "number": 9,
+      "chapterId": "the-checklist-manifesto-ch09",
+      "title": "The Save",
+      "sourcePressure": "The closing chapter uses investing and Mohnish Pabrai to show checklist logic outside surgery while preserving domain fit and judgment.",
+      "coreMove": "Transfer checklist discipline to another field by rebuilding it around that field's recurring failure points.",
+      "commonMisread": "Claim every domain should copy surgical routines unchanged.",
+      "mustUseTerms": ["Mohnish Pabrai", "investing", "transfer", "domain fit", "routine safeguards", "judgment"],
+      "mustNotDriftInto": ["medical rollout recap", "generic business process", "blind procedure"]
+    }
+  ]
+}

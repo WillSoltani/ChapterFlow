@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch74",
+  "number": 74,
+  "title": "Not-Invented-Here Syndrome",
+  "readingTimeMinutes": 12,
+  "hook": "The outside fix works on paper, but the room dislikes the fact that it came from outside.",
+  "counterintuition": "Rejecting an outside idea can feel like protecting standards, but origin pride often wears the costume of rigor; judge the idea with the same merit test you would use if your own team had built it.",
+  "tryThisNow": "Take one outside idea you dislike. Cover the source, write the problem it claims to solve, and score it against your normal criteria.",
+  "keyTakeaway": "Do not let origin decide merit. Make the outside idea pass the same test as an inside one.",
+  "breakdown": {
+    "fastRead": "A wealth adviser waves away a market memo from a rival firm. The forecast may be weak, but the reason for rejection is already suspect. Origin pride replaces evaluation. The borrowed idea is treated as tainted before it faces the merit test. The fix is plain: cover the source, name the problem, check the evidence, and accept or reject the idea for how well it works.",
+    "deepRead": "A ferry engineer hears a maintenance shortcut from a smaller port and rolls his eyes before the details finish. His own team has studied the same pump failure for months. The outside note is rough, but it names a part they keep missing. The danger is not that the outside idea is automatically good. The danger is that pride rejects it before it is allowed to be tested.\n\nNot-invented-here syndrome turns birthplace into evidence. If the idea came from our lab, our city, our department, or our tradition, it gets patience. If its source was a vendor, competitor, junior team, other country, or adjacent industry, it gets suspicion. Some suspicion is useful. Outside ideas can be naive, self-serving, or hard to adapt. The error begins when origin replaces the merit test.\n\nA useful idea does not become less useful because someone else found it first.\n\nThe correction is to blind the source long enough to score the claim. What problem does the idea solve? What evidence supports it? What would adaptation cost? What local constraint might break it? Had your group proposed the same thing, what test would it receive? That question is uncomfortable because it exposes whether the objection is quality or ownership.\n\nThis matters because rejection can look noble. People say they are defending standards, local knowledge, or hard-won craft. Sometimes they are. But sometimes they are defending the status of being the originator. The organization pays twice: once for ignoring a solution, and again for rebuilding a poorer version in-house so pride can stamp its name on it.",
+    "fullRead": "The lead-test review starts with a closed-door list of neighborhoods and ends with the same method the team has used for years. A neighboring city sends a simpler averaging method that catches clusters faster. The local analysts dislike it immediately. They say it is too crude, too external, too unlike their model. Only after someone covers the source line does the room notice that the method flags the same high-risk streets with fewer missed homes.\n\nNot-invented-here syndrome is easy to mock and hard to notice in yourself. It does not always sound like arrogance. It can sound like care for local context, fear of vendor lock-in, respect for craft, or loyalty to a team that worked hard. Those concerns can be valid. The bias enters when the outside origin does more work than the evidence.\n\nRalph Katz and Thomas J. Allen studied not-invented-here behavior in R&D project groups, looking at performance, tenure, and communication patterns. The lesson travels well beyond laboratories. Teams can grow inward as they age. They trust their own channels, discount outside signals, and slowly turn independence into isolation. Joel Spolsky later pushed back against lazy uses of the label, which is a useful warning too: rejecting outside work is not always bias. Sometimes the outside work really does not fit.\n\nWould you score this idea differently if your own team had written it?\n\nA clean process makes origin visible and then temporarily less powerful. First, name the source. Then hide it for the first scoring pass. Score the idea against the problem, evidence, cost, and fit. Only after that should origin return, because origin does matter for adoption risk. A vendor idea may create support dependence. A competitor idea may ignore your incentives. A foreign practice may need local changes. But those are adoption questions, not permission to skip evaluation.\n\nThe ferry maintenance team can do this with a postmortem note. Instead of saying, 'That came from the small port,' they can ask whether the shortcut reduces pump downtime under their tide schedule. The film festival table can do it with submissions software from a rival festival. Instead of rejecting it as borrowed, they can test whether it reduces missed eligibility checks. The volcano tourism board can do it with a booking alert rule from an airline. Instead of dismissing travel-industry logic, they can test whether it keeps guests away from ash closures.\n\nThere is also a reverse trap. Some outside ideas look smarter because they are external, polished, or fashionable. Not-invented-here syndrome should not become blind import. The same merit test protects both directions. The idea earns adoption when it solves the local problem better after adaptation costs, support needs, and failure modes are counted.\n\nThe best sentence is plain: 'If this had come from us, would we test it?' If yes, test it. If no, reject it and write the reason in performance terms. That one sentence moves the decision from origin pride to evidence. Adoption is not surrender. It is the mature act of letting the solution outrank the source."
+  },
+  "examples": [
+    {
+      "exampleId": "ch74-ex01-carol-market-memo",
+      "title": "The adviser call with a rival memo",
+      "scenario": "A market memo from a rival firm lies beside the client call notes at 7:50 a.m. in a Zurich wealth office. Carol, the senior adviser, must decide whether to ignore the memo's inflation warning or test it against her firm's own model. She marks not invented here on the memo, covers the logo, and changes the call script after the evidence matches two internal risk signals.",
+      "whatToDo": "Cover the source long enough to compare the outside claim with the normal evidence test.",
+      "whyItMatters": "A rival origin can make a useful warning feel disloyal before it is examined.",
+      "tags": [
+        "wealth-adviser expectation call",
+        "market memo",
+        "not invented here"
+      ],
+      "planSpec": {
+        "domain": "wealth-adviser expectation call",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch74-ex02-barry-closed-door-list",
+      "title": "The lead review with a borrowed average",
+      "scenario": "\"We do not use their shortcut,\" the analyst says while a closed-door list sits on the Flint lead-test review table. Barry must decide whether to reject a neighboring city's averaging method or run it beside the local model. He writes origin pride on the list, blinds the source name, and adds a parallel test after the method catches two missed clusters.",
+      "whatToDo": "Test a borrowed method beside the local method before pride decides.",
+      "whyItMatters": "Origin pride can block a public-health improvement while sounding like local rigor.",
+      "tags": [
+        "lead-test average review",
+        "closed-door list",
+        "origin pride"
+      ],
+      "planSpec": {
+        "domain": "lead-test average review",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch74-ex03-chidi-postmortem-note",
+      "title": "The ferry pump note from a smaller port",
+      "scenario": "The postmortem note smells of diesel after Chidi pulls it from a binder in the Halifax ferry maintenance shed. He must decide whether to adopt a pump-check sequence from a smaller port or keep the team's own checklist unchanged. He circles outside idea, asks mechanics to run both sequences on the morning vessel, and changes the maintenance plan after the borrowed check finds the loose seal faster.",
+      "whatToDo": "Compare the outside process under local conditions instead of rejecting its source.",
+      "whyItMatters": "A smaller port can still discover the missing step in a larger port's routine.",
+      "tags": [
+        "ferry maintenance planning",
+        "postmortem note",
+        "outside idea"
+      ],
+      "planSpec": {
+        "domain": "ferry maintenance planning",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch74-ex04-gina-commitment-card",
+      "title": "The award design that will not sell",
+      "scenario": "You are holding a commitment card from the sales team while the award-winning design sits on the Milan review wall. Gina, the product lead, must decide whether to keep the studio's own design or test an outside retail tweak. She writes merit test on the card, runs both versions with buyers, and changes the launch kit after the outside tweak lifts orders.",
+      "whatToDo": "Make the internal favorite and outside tweak face the same buyer test.",
+      "whyItMatters": "Awards can protect an in-house idea from evidence that customers prefer the borrowed change.",
+      "tags": [
+        "award-to-sales design review",
+        "commitment card",
+        "merit test"
+      ],
+      "planSpec": {
+        "domain": "award-to-sales design review",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch74-ex05-phillip-open-loop-list",
+      "title": "The festival table with borrowed software",
+      "scenario": "It took Phillip two submission nights in Galway to see that the rival festival's tool was solving their open loops. The open-loop list showed missed eligibility checks in three categories, but the committee kept calling the tool 'not ours.' He must decide whether to keep the spreadsheet. He writes adoption on the list, runs a one-category trial, and changes the submissions table after errors drop.",
+      "whatToDo": "Run a small adoption test when an outside tool solves the named failure.",
+      "whyItMatters": "A borrowed tool can be rejected as identity threat even when it fixes the work.",
+      "tags": [
+        "film festival submissions table",
+        "open-loop list",
+        "adoption"
+      ],
+      "planSpec": {
+        "domain": "film festival submissions table",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch74-ex06-sharon-news-alert-queue",
+      "title": "The volcano alert borrowed from airlines",
+      "scenario": "Why would a volcano tourism desk copy an airline alert rule? Sharon reviews the news alert queue in Reykjavik after a booking postmortem. The airline-style rule would stop guests from booking during ash warnings, but the tour team says it is not a tourism idea. She writes not on the queue, tests the rule against last season's closures, and changes the booking report after it catches unsafe dates.",
+      "whatToDo": "Translate a working rule from another field and test it against local failures.",
+      "whyItMatters": "Not-invented-here thinking can reject useful logic simply because it came from another industry.",
+      "tags": [
+        "volcano tourism booking report",
+        "news alert queue",
+        "not"
+      ],
+      "planSpec": {
+        "domain": "volcano tourism booking report",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a not-invented case, a team rejects a useful-looking method mainly because it came from a rival department, what is the not-invented-here warning?",
+        "choices": [
+          "Origin pride may be replacing a fair merit test.",
+          "Came rival department makes not-invented team rejects look credible; use useful-looking method mainly first and revisit what not-invented-here warning when origin pride replacing shifts.",
+          "Replacing fair merit supports a narrower read of mainly came rival; keep department what not-invented-here central and leave warning origin pride aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The issue is origin pride, not proof that the outside method is right. The method still needs a fair test.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Not-Invented-Here Syndrome makes not-invented case feel more decisive than the record supports, and that misprices team rejects in this scene. The correct move keepss the choice by origin pride may be replacing a fair merit test."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a not-invented review, a hospital unit dismisses a checklist from another hospital before comparing outcomes, the local checklist misses the same handoff twice. What should the unit do?",
+        "choices": [
+          "Misses handoff twice makes unit dismisses checklist look credible; use another outcomes local first and revisit what both checklists when small handoffs not-invented-here shifts.",
+          "Run both checklists on a small set of handoffs and compare misses.",
+          "Both checklists small points toward a quicker call on dismisses checklist another; let not-invented hospital unit stand until handoff twice what contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "A parallel test separates merit from origin. Blind adoption would skip the local fit and failure-mode checks.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Not-Invented-Here Syndrome works by letting not-invented hospital crowd out unit dismisses, which can misreads the checklist another decision. Run both checklists on a small set of handoffs and compare misses keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When not-invented pressure appears, a software group refuses an open-source library because 'we build our own here.' The library solves the bug they have missed for months. Which response fits the correction?",
+        "choices": [
+          "Score the library against security, support, cost, and bug coverage like an internal proposal.",
+          "Build here solves gives a practical reason for refuses open-source library; fits correction score belongs after missed months response clarifies the result.",
+          "Solves missed months makes group refuses open-source look credible; use library build here first and revisit response fits correction when score against security shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The same merit test should apply to outside and inside solutions. Both blanket rejection and blanket adoption let origin decide.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Not-Invented-Here Syndrome turns appears software into a shortcut, so the room can overweights group refuses while missing open-source library. Score the library against security, support, cost, and bug coverage like an internal proposal protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After not-invented risk surfaces, a city rejects a drainage rule from a neighboring town as 'too small-town.' Flood data suggests the rule would help two local streets, what is the best next step?",
+        "choices": [
+          "After not-invented surfaces looks strong enough to guide city rejects drainage; rule neighboring town can wait unless small-town flood data changes the stakes.",
+          "Pilot the rule on the two streets and compare flood calls.",
+          "Flood data suggests makes rejects drainage rule look credible; use neighboring town small-town first and revisit help local streets when what best next shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "A targeted pilot tests fit without surrendering local judgment. Size-based dismissal is origin pride.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Not-Invented-Here Syndrome would push the city rejects case toward drainage rule, creating a cost when neighboring town stays untested. The useful guardrail is to pilot the rule on the two streets and compare flood calls."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If not-invented reasoning takes over, a product team loves its award-winning design and rejects a retailer's plain tweak. Customer tests favor the tweak. What should leaders analyze?",
+        "choices": [
+          "Analyze whether improves points toward a quicker call on rejects retailer plain; let loves award-winning design stand until favor what leaders contradicts it.",
+          "Whether the tweak improves buyer behavior after adaptation costs are counted.",
+          "Product team loves looks strong enough to guide award-winning design rejects; retailer plain tweak can wait unless customer tests favor changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The buyer test and adaptation cost are the merit evidence. Awards and retailer origin should not decide alone.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Not-Invented-Here Syndrome converts team loves into the loudest signal, which can rushes award-winning design before rejects retailer is checked. The better answer separatess attention on whether the tweak improves buyer behavior after adaptation costs are counted."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While not-invented pressure builds, a finance team dislikes a model from consultants, then rebuilds a weaker version internally so it can call the model its own, what is the hidden cost?",
+        "choices": [
+          "Rebuilds weaker version makes builds finance team look credible; use dislikes model consultants first and revisit internally call what when hidden cost pays shifts.",
+          "The team pays extra to satisfy ownership while using a worse solution.",
+          "Call what hidden points toward a quicker call on finance team dislikes; let not-invented pressure builds stand until weaker version internally contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The cost is pride plus inferior performance. The lesson is not consultant control; it is fair comparison.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Not-Invented-Here Syndrome hides inside the not-invented pressure choice because not-invented pressure seems sufficient, yet the cost lands in not-invented pressure. The team pays extra to satisfy ownership while using a worse solution brings the not-invented pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the not-invented call, a lab rejects a vendor protocol because external protocols often miss local constraints. In this case, the vendor has strong evidence but support dependence is real. What is the best evaluation?",
+        "choices": [
+          "Best evaluation score points toward a quicker call on often miss local; let protocol external protocols stand until dependence real what contradicts it.",
+          "Score performance adaptation fits the immediate pressure around local constraints strong; hold protocols often miss steady and test vendor protocol external later.",
+          "Score performance, adaptation cost, support risk, and local constraints before deciding."
+        ],
+        "correctIndex": 2,
+        "explanation": "This keeps the fair test while respecting real adoption risks. Origin alone is too crude either way.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Not-Invented-Here Syndrome pressures the call rejects decision toward the easy reading of call rejects. That can inflates the real cost unless the choice is grounded in score performance, adaptation cost, support risk, and local constraints before deciding."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "During a product review, a team member admits, 'If this idea had come from us, we'd love it,' while the group is about to reject a vendor's workflow fix. What should the team do next?",
+        "choices": [
+          "Not-invented-here syndrome record fits the immediate pressure around workflow what next; hold about reject vendor steady and test come love group later.",
+          "Idea come love looks strong enough to guide group about reject; vendor workflow what can wait unless next hide source changes the stakes.",
+          "Hide the source and score it against the problem and criteria."
+        ],
+        "correctIndex": 2,
+        "explanation": "Blinding the source supports a fair merit test. The admission reveals risk, not final proof that the idea should win.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Not-Invented-Here Syndrome is the mechanism here: origin is judged before usefulness, so team member can overpower team member. Hide the source and score it against the problem and criteria keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two not-invented signals compete: a museum refuses another museum's queue system, saying visitors are different here. No one has checked wait times or floor layout. Which action is best?",
+        "choices": [
+          "Saying visitors different makes compete museum refuses look credible; use another queue system first and revisit here checked wait when times floor layout shifts.",
+          "Different here checked supports a narrower read of signals compete museum; keep refuses another queue central and leave system saying visitors aside.",
+          "Test the queue system against local wait-time and layout data."
+        ],
+        "correctIndex": 2,
+        "explanation": "Local differences may matter, but they need evidence. Testing keeps origin pride from blocking a useful adaptation.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Not-Invented-Here Syndrome makes the museum refuses evidence look cleaner than it is, risking a museum refuses mistake in this setting. The answer protects museum refuses by asking for test the queue system against local wait-time and layout data."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "An outside idea is rejected before testing. What blind test should judge it?",
+      "back": "Cover the source, then score fit, cost, evidence, and problem match. Origin should not decide value.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why can origin pride sound like rigor?",
+      "back": "People may frame source dislike as standards, local knowledge, or craft while skipping the same test used for internal ideas.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What should return after the first blind scoring pass?",
+      "back": "Origin should return for adoption risks: support dependence, incentives, adaptation cost, local constraints, and failure modes.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How do you avoid blind import?",
+      "back": "Use the same merit test in both directions. Outside ideas do not win by being external; they win by solving the problem better.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "What question exposes not-invented-here bias?",
+      "back": "Ask: if this had come from us, would we test it? If yes, test it instead of rejecting its source.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Separate origin from merit. Blind the source briefly, score the idea, then bring origin back only for adoption risks.",
+    "ifThenPlans": [
+      {
+        "context": "Outside proposal",
+        "plan": "If I dislike an idea because of its source, then I will cover the source and score the problem fit first."
+      },
+      {
+        "context": "Team review",
+        "plan": "If someone says 'that is not how we do it here,' then I will ask what evidence would make the idea worth testing."
+      },
+      {
+        "context": "Vendor or rival method",
+        "plan": "If a rival's method seems useful, then I will run a small comparison before rejecting it."
+      },
+      {
+        "context": "Internal rebuild",
+        "plan": "If we want to rebuild an outside solution ourselves, then I will price the pride premium before approving it."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one borrowed idea you resisted. Hide the source, write the merit criteria, and decide whether it deserves a small test.",
+    "weeklyPractice": "Once a week, review one rejected outside idea and check whether the written reason is about performance or origin."
+  },
+  "memorableLines": [
+    {
+      "text": "A useful idea does not become less useful because someone else found it first."
+    },
+    {
+      "text": "Origin pride replaces evaluation."
+    },
+    {
+      "text": "Adoption is not surrender."
+    }
+  ]
+}

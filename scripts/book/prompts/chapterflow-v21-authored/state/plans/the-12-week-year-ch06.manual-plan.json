@@ -1,0 +1,214 @@
+{
+  "chapterId": "the-12-week-year-ch06",
+  "number": 6,
+  "title": "Confronting the Truth",
+  "coreMove": "Use visible measurement to replace intention with evidence about execution and results.",
+  "sourcePressure": "Execution needs measurable truth because intention alone hides whether the work is actually happening.",
+  "chapterSpecificMisunderstanding": "Treating truth as self-criticism instead of feedback that lets the system adjust.",
+  "sourceAlignmentTerms": [
+    "measuring results",
+    "weekly scorecard",
+    "truth",
+    "feedback",
+    "evidence",
+    "results visibility",
+    "execution loop"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Weekly Scorecard",
+      "detail": "The source notes name Weekly Scorecard as a chapter-map term.",
+      "useIn": "both",
+      "phrasingHint": "A weekly scorecard turns a good intention into a number the week cannot flatter."
+    },
+    {
+      "kind": "artifact",
+      "name": "Measuring Results",
+      "detail": "The source notes name Measuring Results as a chapter-map term.",
+      "useIn": "fullRead",
+      "phrasingHint": "Measuring results is not about image; it is how the plan tells the truth back."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch06: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch06: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch06: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch06: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Michael",
+      "domain": "call center quality score review",
+      "audience": "a practitioner in call center quality score review who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Michael updates the scorecard before explaining the call-center miss.",
+      "firstImage": "headsets hanging over score sheets",
+      "mustInclude": [
+        "headsets hanging over score sheets",
+        "measuring results",
+        "truth"
+      ],
+      "mustAvoid": [
+        "generic confronting the truth explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "urban planning public-comment file",
+      "audience": "a decision-maker in urban planning public-comment file choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivia shows the public-comment count instead of a story about effort.",
+      "firstImage": "a zoning map rolled across a counter",
+      "mustInclude": [
+        "a zoning map rolled across",
+        "measuring results",
+        "truth"
+      ],
+      "mustAvoid": [
+        "generic confronting the truth explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "high school debate tournament prep",
+      "audience": "a team lead in high school debate tournament prep who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Henrik marks the tournament prep score next to each student name.",
+      "firstImage": "index cards on a debate lectern",
+      "mustInclude": [
+        "index cards on a debate",
+        "measuring results",
+        "truth"
+      ],
+      "mustAvoid": [
+        "generic confronting the truth explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "warehouse safety audit",
+      "audience": "a reflective operator in warehouse safety audit reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Catarina counts completed safety observations before discussing morale.",
+      "firstImage": "cut gloves beside a clipboard",
+      "mustInclude": [
+        "cut gloves beside a clipboard",
+        "measuring results",
+        "truth"
+      ],
+      "mustAvoid": [
+        "generic confronting the truth explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "fundraising gala ticket push",
+      "audience": "a reader in fundraising gala ticket push comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sam compares tickets sold with promised calls.",
+      "firstImage": "table numbers in a cardboard box",
+      "mustInclude": [
+        "table numbers in a cardboard",
+        "measuring results",
+        "truth"
+      ],
+      "mustAvoid": [
+        "generic confronting the truth explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "Berlin data migration team",
+      "audience": "two colleagues in Berlin data migration team forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lin shows the migration checklist percentage before requesting praise.",
+      "firstImage": "server labels on a migration cart",
+      "mustInclude": [
+        "server labels on a migration",
+        "measuring results",
+        "truth"
+      ],
+      "mustAvoid": [
+        "generic confronting the truth explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose evidence over intention",
+      "read a scorecard without self-protection",
+      "separate result feedback from personal judgment"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the one number or yes-no proof that would tell you whether this week moved your goal or only felt busy.",
+  "readingTimeMinutes": 12
+}

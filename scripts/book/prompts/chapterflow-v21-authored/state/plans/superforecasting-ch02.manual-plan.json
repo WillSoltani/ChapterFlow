@@ -1,0 +1,129 @@
+{
+  "chapterId": "superforecasting-ch02",
+  "number": 2,
+  "title": "Illusions of Knowledge",
+  "coreMove": "Catch the moment a coherent explanation stops feeling like a hypothesis and starts feeling like settled fact — before the evidence has earned that certainty.",
+  "sourcePressure": "Archie Cochrane pushed medicine toward randomized testing because professional confidence was treated as sufficient evidence. He was then harmed by the same error when a specialist delivered certainty before pathology results arrived. The chapter's core threat is not ignorance but the premature closure that fluency produces.",
+  "chapterSpecificMisunderstanding": "The wrong version is a catalog of cognitive biases (confirmation bias, availability heuristic, etc.). The chapter's precise target is explanatory overreach: the moment you stop treating your explanation as a candidate and start treating it as a verdict — and how that internal shift happens without feeling like an error.",
+  "sourceAlignmentTerms": ["illusion of knowledge", "explanatory overreach", "evidence", "confidence", "revision", "randomized testing", "proportionality"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Archie Cochrane",
+      "detail": "Scottish physician and epidemiologist who spent his career arguing that medicine relied too heavily on expert opinion and clinical intuition, pushing for randomized controlled trials as the standard — later became a patient himself when a specialist diagnosed him with a terminal cancer before pathology results were in; the diagnosis turned out to be wrong",
+      "useIn": "both",
+      "phrasingHint": "Cochrane had spent forty years demanding that medicine test its confident claims — then a specialist gave him a cancer verdict before the biopsy came back, and the verdict was wrong."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a list of cognitive biases — wrong chapter identity",
+      "opening with 'Do you ever feel overconfident?' — coaching register, too vague"
+    ],
+    "counterintuition": [
+      "'The smarter you are, the more confident you are — and that's the problem' — misses the book's narrower point about evidence not keeping pace with confidence"
+    ],
+    "tryThisNow": [
+      "'Write down three things you believe but can't prove' — generic epistemology prompt, not chapter-specific",
+      "any prompt about 'being more humble' without a specific mechanism for checking evidence"
+    ],
+    "examples": [
+      "any example where someone is simply overconfident without the specific beat of an explanation feeling complete before evidence arrives",
+      "medical malpractice framing — the chapter is not about negligence but about a cognitive transition that happens to thoughtful people"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The chapter is about premature closure — the examples should demonstrate variety in how closure happens, which requires variety in how each scene enters"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "structural engineering firm diagnosing a crack in a parking garage before materials lab results return",
+      "audience": "a senior structural engineer whose confident explanation has already been shared with building management",
+      "stakes": "whether the building is evacuated immediately or allowed to remain open while the lab report comes back",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the engineer has written a confident internal memo explaining the crack as a routine shrinkage fracture — and realizes she wrote it on the basis of what the crack looks like, not what the lab will find; she has to decide whether to mark it provisional before it circulates further",
+      "firstImage": "a thin diagonal fracture running through a concrete pillar, photographed under fluorescent light",
+      "mustInclude": ["the internal memo already written and sent", "the specific moment she notices her explanation feels settled", "the lab results still 48 hours away"],
+      "mustAvoid": ["framing it as negligence — the engineer is competent, just premature"]
+    },
+    {
+      "domain": "elementary school vice principal explaining a student's reading difficulty before the psychoeducational assessment is complete",
+      "audience": "a vice principal who has spoken to parents and shaped their expectations around an explanation that felt obvious",
+      "stakes": "the parents' willingness to pursue a full assessment vs. accepting the simple narrative",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the vice principal gave the parents a crisp explanation — 'he's likely just a late bloomer, we see this often' — before the psychoeducational assessment came back showing a significant processing disorder; the explanation had colonized the room before it had any right to",
+      "firstImage": "a parent meeting where the vice principal's confident, reassuring manner has closed down the parents' questions",
+      "mustInclude": ["the VP's explanation given before any formal assessment", "the parents' acceptance of it", "the assessment revealing something the explanation missed"],
+      "mustAvoid": ["making the VP incompetent — she was being kind and plausible, not reckless"]
+    },
+    {
+      "domain": "auto mechanic diagnosing an intermittent electrical fault without running the full diagnostic scan",
+      "audience": "a mechanic who is expert enough to have a confident story ready before the scan runs",
+      "stakes": "the customer's repair cost and whether the real fault is found on the first visit",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "the mechanic has already told the service advisor 'almost certainly the alternator' based on the symptom pattern — the diagnostic scan returns fifteen minutes later showing a corroded grounding strap, which is cheaper and simpler; the confident early explanation had primed everyone including himself",
+      "firstImage": "a service bay with the hood up and a mechanic with an explanation already forming before the scan finishes",
+      "mustInclude": ["the early verbal explanation already given", "the diagnostic scan result contradicting it", "the subtle cost of the premature explanation (parts already ordered)"],
+      "mustAvoid": ["making this an incompetence story — pattern recognition is legitimate, premature closure is the error"]
+    },
+    {
+      "domain": "a market analyst explaining a stock decline with a narrative that feels complete before earnings data is released",
+      "audience": "a buy-side analyst who has circulated an explanation to portfolio managers before the full earnings release",
+      "stakes": "the investment team's positioning based on an explanation that turned out to be directionally wrong",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the analyst sent a confident note explaining the 8% decline as supply-chain pressure — the earnings call the next day revealed the decline was entirely a one-time tax charge with no structural implication; the explanation had been plausible enough to feel true before the evidence arrived",
+      "firstImage": "a morning report email sent at 7:42 a.m. with the subject line 'What's happening with [ticker]'",
+      "mustInclude": ["the circulated explanation before the earnings call", "the specific mismatch on the actual cause", "the downstream positioning decision made on the explanation"],
+      "mustAvoid": ["any implication the analyst should have known — the point is the inner posture of settled certainty"]
+    },
+    {
+      "domain": "a forensic investigator explaining a warehouse fire's cause before the accelerant lab results return",
+      "audience": "an investigator whose verbal explanation to the insurance adjuster felt so complete that written follow-up seemed redundant",
+      "stakes": "a $2 million insurance claim and a potential arson referral to prosecutors",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the investigator's confident oral explanation (faulty wiring) was accepted and the claim was moving toward settlement — the accelerant test returned three days later positive for ignition fuel; the explanation had been offered as if certainty were already established",
+      "firstImage": "a charred beam photographed as evidence, with the investigator's handwriting in the margin of the site notes: 'wiring failure — consistent with pattern'",
+      "mustInclude": ["the oral explanation given as near-certain", "the insurance adjuster's acceptance of it", "the lab result contradiction"],
+      "mustAvoid": ["framing this as fraud or misconduct — the investigator was competent but premature"]
+    },
+    {
+      "domain": "a family physician explaining a patient's fatigue before bloodwork results are in",
+      "audience": "a physician who has already reassured the patient and documented a preliminary diagnosis",
+      "stakes": "a patient who will or will not pursue further testing based on how settled the doctor's explanation sounded",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the physician's charted note reads 'probable overwork syndrome, recommend rest' — the bloodwork returns showing a thyroid deficiency that explains everything; the note had settled the case before the evidence arrived, and the patient had started 'resting' instead of treating",
+      "firstImage": "a patient chart with the physician's neat handwriting recording a confident but provisional diagnosis as if it were final",
+      "mustInclude": ["the charted preliminary diagnosis", "the patient already acting on it before bloodwork", "the bloodwork result that reopens what felt closed"],
+      "mustAvoid": ["making it a misdiagnosis liability scene — the point is about inner epistemic state, not error rate"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the specific moment explanatory overreach occurs in a scenario",
+      "apply the proportionality rule (confidence should match evidence) to a new domain",
+      "distinguish illusion of knowledge from simple error or ignorance",
+      "analyze what signals indicate an explanation has prematurely closed",
+      "evaluate whether a confident claim has passed the randomized-evidence standard or just passed the plausibility test"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take the next explanation you're about to give — to a colleague, client, or family member — and ask yourself one question before you say it: what piece of evidence, if it came back differently than expected, would change this explanation? If you cannot name that piece of evidence, your explanation has already closed before it should have. State it as provisional.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one passage that asks the reader directly whether they have ever given an explanation that felt finished — not as a reflection prompt but as a sharp diagnostic question that the Cochrane example then answers",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

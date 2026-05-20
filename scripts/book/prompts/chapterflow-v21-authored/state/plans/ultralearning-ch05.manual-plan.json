@@ -1,0 +1,182 @@
+{
+  "chapterId": "ultralearning-ch05",
+  "number": 5,
+  "title": "Principle 2: Focus: sharpen your knife",
+  "coreMove": "Remove start friction and attention leakage so demanding work gets real contact time.",
+  "sourcePressure": "Focus concerns starting, sustaining, and protecting concentration from interruption without making the setup itself the performance. The source sidecar contains no named people, studies, institutions, places, dates, or artifacts for this chapter, so named source anchors must be omitted rather than invented.",
+  "chapterSpecificMisunderstanding": "Reducing focus to aesthetics, timers, or heroic willpower while the task never gets uninterrupted contact.",
+  "sourceAlignmentTerms": [
+    "focus",
+    "starting",
+    "sustaining",
+    "protecting concentration",
+    "friction",
+    "interruption",
+    "attention leakage"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Ch5: learner stares at browser tabs and realizes motivation is not enough",
+      "Ch5: broad modern world pressure opener"
+    ],
+    "counterintuition": [
+      "The obvious move is not the real move",
+      "Most people think more effort is enough",
+      "This is not about working harder"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three goals",
+      "Spend one minute thinking about your learning journey"
+    ],
+    "examples": [
+      "desk plus laptop plus vague course collection",
+      "generic student in a classroom",
+      "manager in a recurring meeting with no concrete artifact",
+      "kitchen-table life overhaul"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Rachel, a financial-aid officer protecting a morning database block",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the next month produces visible evidence or another private feeling of effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel closes email and starts the financial-aid database task before any student requests can split the morning block.",
+      "firstImage": "a locked inbox icon beside a federal-aid error code sheet",
+      "mustInclude": [
+        "printed standard",
+        "deadline box",
+        "proof artifact"
+      ],
+      "mustAvoid": [
+        "generic motivation speech",
+        "anti-school rant"
+      ]
+    },
+    {
+      "domain": "Ben, a medical resident starting anatomy recall before rounds interrupt her",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether a deadline exposes the weakness early enough to adjust",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ben begins anatomy recall in the stairwell before rounds so the first contact with the material happens before interruption.",
+      "firstImage": "a folded anatomy card tucked behind a hospital badge",
+      "mustInclude": [
+        "calendar conflict",
+        "single constraint",
+        "revised first session"
+      ],
+      "mustAvoid": [
+        "heroic schedule fantasy",
+        "all-night grind"
+      ]
+    },
+    {
+      "domain": "Margaux, a radio producer removing notification leakage during audio editing",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Margaux moves her phone into the studio mailbox and edits the difficult audio segment while the waveform is still unfamiliar.",
+      "firstImage": "a jagged audio waveform stretched across a producer console",
+      "mustInclude": [
+        "closed source",
+        "blank page",
+        "visible answer"
+      ],
+      "mustAvoid": [
+        "passive rereading",
+        "smooth familiarity"
+      ]
+    },
+    {
+      "domain": "Tomas, a carpenter apprentice choosing the quiet bench for layout calculations",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the project survives contact with a real schedule and real standards",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Tomas chooses the quiet bench because the stair layout calculation needs sustained thought, not the apprentice chatter by the saw.",
+      "firstImage": "a framing square laid across a half-cut stair stringer",
+      "mustInclude": [
+        "review note",
+        "circled weak step",
+        "one narrow prompt"
+      ],
+      "mustAvoid": [
+        "broad self-improvement chat",
+        "vague weakness label"
+      ]
+    },
+    {
+      "domain": "Kiran, a language learner noticing setup rituals replacing practice",
+      "audience": "a learner who has been mistaking motion for progress",
+      "stakes": "whether comfort keeps protecting the exact skill gap that matters",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Kiran stops rearranging the language app settings and speaks the first ugly paragraph into the recorder.",
+      "firstImage": "a phone recorder blinking beside a Portuguese phrasebook",
+      "mustInclude": [
+        "before-and-after attempt",
+        "small test condition",
+        "written prediction"
+      ],
+      "mustAvoid": [
+        "novelty for novelty's sake",
+        "unsupported science claim"
+      ]
+    },
+    {
+      "domain": "Astrid, a tax preparer sustaining focus through a hard rules section",
+      "audience": "a practitioner under a near-term performance constraint",
+      "stakes": "whether the next attempt changes the skill instead of decorating the plan",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Astrid protects the tax-rule section by putting client calls on hold for twenty minutes, then marks where attention first breaks.",
+      "firstImage": "a highlighted tax bulletin beside a muted desk phone",
+      "mustInclude": [
+        "old plan",
+        "new evidence",
+        "one crossed-out escape"
+      ],
+      "mustAvoid": [
+        "desk-laptop-browser-tabs shell",
+        "fake named study"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose start friction versus sustained-attention leakage",
+      "choose environmental changes that protect task contact",
+      "avoid focus rituals that replace practice"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next session, remove the single interruption most likely to break the first ten minutes of hard contact.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

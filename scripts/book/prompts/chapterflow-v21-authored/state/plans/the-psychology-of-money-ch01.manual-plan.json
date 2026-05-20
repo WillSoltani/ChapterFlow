@@ -1,0 +1,197 @@
+{
+  "chapterId": "the-psychology-of-money-ch01",
+  "number": 1,
+  "title": "Introduction: The Greatest Show On Earth",
+  "coreMove": "See money as a lived behavior system before reaching for formulas.",
+  "sourcePressure": "Money decisions are shaped by identity, memory, ego, incentives, and habit before they become spreadsheet problems.",
+  "chapterSpecificMisunderstanding": "Treating money as pure math, as if better information automatically creates better behavior.",
+  "sourceAlignmentTerms": [
+    "behavior",
+    "identity",
+    "memory",
+    "ego",
+    "incentives",
+    "habits"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Introduction: The Greatest Show On Earth with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Introduction: The Greatest Show On Earth to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the behavior move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of behavior and identity"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an oncology billing office redesigning payment reminders after patients ignore balance letters",
+      "audience": "a clinic administrator who sees fear behind unpaid bills",
+      "stakes": "collections pressure is rising while patients are already frightened by treatment costs",
+      "format": "scene",
+      "requiredBeat": "the administrator replaces the balance-first letter with a call script that starts by asking what the bill made the patient postpone this week",
+      "firstImage": "a stack of unopened clinic envelopes beside a pill organizer",
+      "mustInclude": [
+        "unopened envelopes",
+        "patient portal timestamp",
+        "call script"
+      ],
+      "mustAvoid": [
+        "generic budgeting talk"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a minor league baseball club pricing family night tickets after a losing season",
+      "audience": "a ticket director under pressure to raise revenue without humiliating loyal fans",
+      "stakes": "one wrong price turns a community habit into a luxury signal",
+      "format": "decision_point",
+      "requiredBeat": "the director marks which seats are bought by grandparents on fixed checks before touching the price column",
+      "firstImage": "a faded section map spread under fluorescent office lights",
+      "mustInclude": [
+        "seat map",
+        "renewal list",
+        "fixed-income notes"
+      ],
+      "mustAvoid": [
+        "sports success metaphor"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a refugee credit union onboarding members who distrust automatic withdrawals",
+      "audience": "a branch trainer teaching staff to hear memory in hesitation",
+      "stakes": "a useful account feature will fail if it feels like loss of control",
+      "format": "dialogue",
+      "requiredBeat": "the trainer asks a teller to pause the product pitch and ask what happened the last time money left without permission",
+      "firstImage": "a teller window with a translated fee schedule taped below the glass",
+      "mustInclude": [
+        "translated schedule",
+        "withdrawal form",
+        "pause in pitch"
+      ],
+      "mustAvoid": [
+        "financial literacy lecture"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a film festival treasurer deciding whether to publish every donor perk",
+      "audience": "a volunteer board balancing transparency with status anxiety",
+      "stakes": "the perks may change donations from civic support into public ranking",
+      "format": "postmortem",
+      "requiredBeat": "after a donor list causes resentment, the treasurer highlights how recognition changed behavior more than tax benefit did",
+      "firstImage": "a lanyard table sorted by badge color before opening night",
+      "mustInclude": [
+        "badge colors",
+        "donor list",
+        "perk chart"
+      ],
+      "mustAvoid": [
+        "generic nonprofit fundraising"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a farm equipment dealer offering loans after a drought year",
+      "audience": "a sales manager training reps not to treat financing as arithmetic only",
+      "stakes": "families may reject good terms because last season made debt feel dangerous",
+      "format": "vignette",
+      "requiredBeat": "the manager has reps circle the month each farmer's well ran low before discussing monthly payments",
+      "firstImage": "a service counter calendar marked with the first dry week in August",
+      "mustInclude": [
+        "drought calendar",
+        "loan worksheet",
+        "well report"
+      ],
+      "mustAvoid": [
+        "rural toughness cliche"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a subscription game studio deciding how to present annual plans to parents",
+      "audience": "a product lead who sees that a checkout page can trigger trust, guilt, and control issues",
+      "stakes": "the plan may save money but feel manipulative if the cancellation path is hidden",
+      "format": "before_after",
+      "requiredBeat": "the team watches a parent abandon checkout when the cancel link is buried, then moves it into view and sees completion rise",
+      "firstImage": "a usability lab screen frozen on the tiny cancel-policy link",
+      "mustInclude": [
+        "checkout screen",
+        "cancel link",
+        "screen recording"
+      ],
+      "mustAvoid": [
+        "conversion hack framing"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: see money as a lived behavior system before reaching for formulas",
+      "distinguish behavior from nearby but weaker advice such as calculator-only advice",
+      "diagnose when a character is making the common misread: treating money as pure math, as if better information automatically creates better behavior.",
+      "evaluate tradeoffs using the chapter-specific pressure around behavior, identity, memory"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where behavior is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: see money as a lived behavior system before reaching for formulas.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Ronald Read",
+      "detail": "the package text contrasts him as a modest, quiet figure whose long-term behavioral consistency produced financial durability",
+      "useIn": "both",
+      "phrasingHint": "Ronald Read matters because the quiet habit can beat the polished resume when money has decades to work."
+    },
+    {
+      "kind": "person",
+      "name": "Richard Fuscone",
+      "detail": "the package text contrasts him as an elite, visibly sophisticated finance figure whose financial life still cracked under pressure",
+      "useIn": "deepRead",
+      "phrasingHint": "Richard Fuscone is the warning that looking fluent with money is not the same as being behaviorally durable."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

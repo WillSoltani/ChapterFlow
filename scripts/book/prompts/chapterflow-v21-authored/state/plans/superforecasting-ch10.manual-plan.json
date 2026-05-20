@@ -1,0 +1,129 @@
+{
+  "chapterId": "superforecasting-ch10",
+  "number": 10,
+  "title": "The Leader's Dilemma",
+  "coreMove": "Act decisively while building structures that keep local judgment alive after the decision — so the organization can revise while action is already unfolding.",
+  "sourcePressure": "Leaders must decide and project confidence; superforecasters cultivate doubt and revision. Helmuth von Moltke's model for battlefield command was mission clarity plus decentralized initiative — once events move, overcontrol becomes structurally weak because command cannot know enough fast enough to direct every adjustment intelligently. Intellectual humility allows leaders to keep an organization corrigible without eroding the authority needed to act.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'be humble as a leader' as a personal virtue. The precise mechanism is structural: define mission and constraints clearly enough that people closer to changing conditions can exercise local judgment without waiting for orders — then build the feedback loops that let mistakes surface before they compound.",
+  "sourceAlignmentTerms": ["decentralized initiative", "mission clarity", "intellectual humility", "leader's dilemma", "doer-thinker tension", "Moltke", "corrigible"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Helmuth von Moltke",
+      "detail": "Prussian field marshal who pioneered Auftragstaktik — mission-based command — in the 19th century, giving subordinate commanders clearly defined objectives and constraints but leaving tactical execution to their discretion; recognized that conditions change faster than central command can process and redistribute, so overcontrol was structurally inferior to decentralized competent initiative under clear mission parameters",
+      "useIn": "both",
+      "phrasingHint": "Moltke's insight was not that commanders were incompetent — it was that the battlefield changes faster than any headquarters can track, so tight central control fails not from bad intentions but from structural latency."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic leadership inspiration quote — coaching register",
+      "opening with a military history lecture about Moltke's battles — the anchor is the principle, not the campaign"
+    ],
+    "counterintuition": [
+      "'Good leaders admit when they are wrong' — true but generic; the chapter's specific point is that the structure needs to survive the leader's individual limitations"
+    ],
+    "tryThisNow": [
+      "any prompt about 'journaling your leadership style' — wrong register",
+      "'Ask your team for feedback on your decisions' — misses the structural mechanism"
+    ],
+    "examples": [
+      "any example where leadership humility is the personality lesson rather than the structural design lesson",
+      "any domain from ch01–09"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The leader's dilemma appears in civilian, organizational, and operational contexts — variety of openings signals that this is not a military concept but a universal structural problem"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital chief of medicine managing a critical supply shortage during a high-census period",
+      "audience": "a chief of medicine who must allocate ventilators across three wards and cannot personally monitor all three simultaneously",
+      "stakes": "patient outcomes in the next 18 hours; micromanaging all three wards would slow responses to local changes",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the chief sets three explicit allocation rules and one reporting threshold (call if any ward drops below 2 units), then explicitly delegates all tactical decisions within those rules to ward leads — the required beat is the chief resisting the urge to override a ward lead's local call on reallocation even when the chief would have done it differently, because the local lead has information the chief does not",
+      "firstImage": "a corridor conversation where the chief has the impulse to countermand a ward lead's reallocated ventilator and stops",
+      "mustInclude": ["the three explicit allocation rules", "the reporting threshold as the feedback loop", "the moment of restraint when the chief lets the local call stand"],
+      "mustAvoid": ["clinical ventilator detail", "any domain overlap with earlier medical scenes"]
+    },
+    {
+      "domain": "construction site manager giving the crew authority on daily material sequencing decisions",
+      "audience": "a project manager who has been approving every material sequencing decision because the client is watching costs closely",
+      "stakes": "daily schedule adherence on a project with a $40K/week liquidated damages clause",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the project manager writes a one-page decision rule document for the site foreman — which sequencing decisions the foreman can make without calling in, and which require approval — and commits to responding to escalations within 30 minutes rather than requiring pre-approval; a week later, the site foreman makes a sequencing call the PM would not have made, and it saves four hours; the PM updates the decision rule document",
+      "firstImage": "a site trailer whiteboard with a project timeline and a foreman waiting by the phone for approval on a material delivery sequence",
+      "mustInclude": ["the decision rule document", "the 30-minute escalation commitment", "the foreman's call the PM would not have made, and its successful outcome"],
+      "mustAvoid": ["construction project management jargon", "any domain overlap with ch01–09"]
+    },
+    {
+      "domain": "wildfire incident commander delegating sector operations during a multi-front fire",
+      "audience": "an incident commander managing three active fire fronts with span-of-control limits",
+      "stakes": "resource allocation across three sectors with rapidly changing conditions; bottlenecked central command would cost suppression time",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "the incident commander gives each sector boss a clear objective (protect the indicated defensible space), a resource limit (how many engines and personnel), and a single reporting condition (call when you have used 80% of your resource budget) — then does not contact sectors again unless conditions change at the command level; one sector boss calls early because local conditions changed faster than the original objective assumed, and the commander adjusts; the structure worked because the feedback loop triggered the revision",
+      "firstImage": "an incident command map with three color-coded sectors and radio handsets lined up on a folding table",
+      "mustInclude": ["the three-element sector brief (objective, resource limit, reporting condition)", "the sector boss's early call", "the commander's adjustment based on that call"],
+      "mustAvoid": ["wildfire suppression technical content", "any firefighting drama"]
+    },
+    {
+      "domain": "startup CEO defining a product pivot with engineering choosing the implementation path",
+      "audience": "a startup CEO who has a clear business constraint (reduce CAC by 40%) but no strong technical view on how engineering should achieve it",
+      "stakes": "six weeks of engineering sprint capacity and the next investor update",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the CEO sets the business constraint clearly (40% CAC reduction), defines the one metric that will be reviewed in six weeks, and explicitly leaves the technical path to engineering — resisting two urges: to specify which channel to cut and to ask for weekly updates on implementation; engineering chooses a path the CEO would not have chosen; it works; the CEO's intellectual humility is structural, not performative",
+      "firstImage": "a startup all-hands where the CEO is writing '40% CAC reduction by week 6' on a whiteboard and then setting down the marker",
+      "mustInclude": ["the constraint (40% CAC)", "the one metric for six-week review", "the explicit delegation of path to engineering", "the CEO's moment of restraint"],
+      "mustAvoid": ["startup business model content", "any domain overlap with previous chapters"]
+    },
+    {
+      "domain": "school principal implementing a new literacy curriculum by setting outcomes and leaving method to teachers",
+      "audience": "a principal who wants consistent reading improvement outcomes across 14 classrooms with different teacher styles and student populations",
+      "stakes": "district literacy benchmarks, teacher retention, and parent expectations across four grade levels",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the principal sets a measurable outcome target per grade level and a check-in cadence (monthly data review with each teacher) but explicitly does not specify instructional method — when a first-year teacher asks 'but what exactly should I do?', the principal answers with the outcome target and offers three resources, then stops; the teacher develops a hybrid method that outperforms the standardized approach in her classroom",
+      "firstImage": "a staff meeting where first-year teachers are waiting for a prescribed method and the principal is deliberately not providing one",
+      "mustInclude": ["the outcome-not-method specification", "the first-year teacher's question and the principal's answer", "the hybrid method's outcome"],
+      "mustAvoid": ["education policy content", "pedagogy debate"]
+    },
+    {
+      "domain": "naval fleet exercise where a commodore sets the objective and gives sub-commanders tactical autonomy",
+      "audience": "a commodore running a multi-ship exercise who has historically been known for detailed tactical instructions",
+      "stakes": "the exercise's scoring on speed and adaptability; tight central control in previous exercises has produced slower adaptive responses",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the commodore issues a one-page mission statement with an end-state objective and three constraints, then goes radio-silent except for one scheduled check-in per six-hour period; two sub-commanders make a joint tactical decision the commodore would not have authorized under the old tight-control model; it succeeds; the exercise debrief credits the structural change — not the sub-commanders' bravery — as the lesson",
+      "firstImage": "an operations room with a one-page mission order that is shorter than any previous exercise brief, sub-commanders looking at it with some surprise",
+      "mustInclude": ["the one-page mission order", "the planned radio silence", "the unauthorized joint decision that succeeded", "the debrief crediting the structure"],
+      "mustAvoid": ["naval warfare detail", "technical military jargon"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply the Moltke model — mission clarity plus decentralized initiative — to a civilian organizational scenario",
+      "distinguish intellectual humility as a structural design choice from intellectual humility as a personality trait",
+      "identify the feedback loops that allow an organization to revise while action is underway",
+      "analyze when decentralization fails — when the mission is unclear or the reporting conditions are absent",
+      "evaluate whether a leader's decision to override a local call was structurally justified or a reversion to overcontrol"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one ongoing project or initiative you lead, write down: the objective in one sentence, the two or three constraints that bound how it can be achieved, and the single reporting condition that would trigger you stepping back in. If you cannot write those three things in under five minutes, you have not yet defined the mission clearly enough to delegate — and your team is probably waiting for approval on decisions they should be making themselves.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one direct analytical passage explaining why overcontrol is not a personality flaw but a structural failure — it is what happens when the mission is underspecified and the feedback loops are absent, so the leader fills the gap personally",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch06",
+  "number": 6,
+  "title": "Motivation Is Overrated; Environment Often Matters More",
+  "coreMove": "Place the desired cue where attention naturally lands before motivation is needed.",
+  "sourcePressure": "Behavior often follows what the environment makes visible, nearby, and easy to notice before motivation has to intervene.",
+  "chapterSpecificMisunderstanding": "Turning environment design into decluttering advice or claiming motivation never matters.",
+  "sourceAlignmentTerms": [
+    "environment design",
+    "visible cues",
+    "context",
+    "motivation",
+    "attention",
+    "physical arrangement"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of environment design",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a dialysis clinic making hand sanitizer the first object every patient sees",
+      "audience": "a clinic manager with uneven hygiene compliance",
+      "stakes": "whether cue placement changes behavior before reminders are spoken",
+      "format": "scene",
+      "requiredBeat": "she moves the sanitizer tower into the doorway path and watches patients reach before signing in",
+      "firstImage": "a sanitizer tower centered in a clinic doorway",
+      "mustInclude": [
+        "sign-in tablet",
+        "sanitizer tower"
+      ],
+      "mustAvoid": [
+        "hospital poster shell"
+      ]
+    },
+    {
+      "domain": "a saxophonist leaving reeds soaking beside the instrument case",
+      "audience": "a musician who skips warmups when setup feels scattered",
+      "stakes": "whether visible prep pulls practice forward",
+      "format": "vignette",
+      "requiredBeat": "the open reed case on the stand makes the first note happen before she debates practicing",
+      "firstImage": "a reed case open on a brass music stand",
+      "mustInclude": [
+        "reed case",
+        "neck strap"
+      ],
+      "mustAvoid": [
+        "generic music discipline"
+      ]
+    },
+    {
+      "domain": "a warehouse picker placing the safety cutter on top of the first bin",
+      "audience": "a supervisor reducing torn packaging and hand injuries",
+      "stakes": "whether the right tool becomes what the hand finds first",
+      "format": "decision_point",
+      "requiredBeat": "the picker reaches for the top bin and closes fingers around the cutter instead of a pocket knife",
+      "firstImage": "a safety cutter clipped to a blue pick bin",
+      "mustInclude": [
+        "pick bin",
+        "safety cutter"
+      ],
+      "mustAvoid": [
+        "factory memo scene"
+      ]
+    },
+    {
+      "domain": "a botanist moving seed packets from cabinet to germination bench",
+      "audience": "a researcher missing daily germination checks",
+      "stakes": "whether location makes the next observation obvious",
+      "format": "before_after",
+      "requiredBeat": "the packets sit under the lamp beside the tray, and the check happens while the timer hums",
+      "firstImage": "seed packets fanned under a grow lamp",
+      "mustInclude": [
+        "grow lamp",
+        "germination tray"
+      ],
+      "mustAvoid": [
+        "garden lifestyle prose"
+      ]
+    },
+    {
+      "domain": "a hotel night auditor setting the reconciliation folder on the keyboard before shift",
+      "audience": "a night-shift worker prone to skipping the dullest task",
+      "stakes": "whether visible placement beats a 2 a.m. reminder",
+      "format": "postmortem",
+      "requiredBeat": "the folder blocks the login keys so the reconciliation starts before email opens",
+      "firstImage": "a red reconciliation folder covering a keyboard",
+      "mustInclude": [
+        "audit folder",
+        "keycard drawer"
+      ],
+      "mustAvoid": [
+        "generic inbox productivity"
+      ]
+    },
+    {
+      "domain": "a family placing helmets on scooter handlebars at the apartment exit",
+      "audience": "a parent tired of yelling down the hallway",
+      "stakes": "whether obvious physical placement changes departure behavior",
+      "format": "predict_reveal",
+      "requiredBeat": "the child reaches for the scooter and has to lift the helmet first, proving the cue moved from voice to path",
+      "firstImage": "a scooter handlebar looped through a helmet strap",
+      "mustInclude": [
+        "helmet strap",
+        "apartment exit mat"
+      ],
+      "mustAvoid": [
+        "repeated bike-helmet shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "place cues in natural attention paths",
+      "distinguish cue visibility from motivation",
+      "avoid lifestyle decluttering drift"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Move one good-habit cue into your natural line of sight and move one distracting cue out of the first reach path.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,210 @@
+{
+  "chapterId": "mans-search-for-meaning-ch04",
+  "number": 4,
+  "title": "Part Two: Logotherapy in a Nutshell",
+  "coreMove": "Translate emptiness into a concrete responsibility through work, love, or attitude instead of chasing mood relief.",
+  "sourcePressure": "The theory unit presents logotherapy, the will to meaning, the existential vacuum, noogenic neurosis, three routes to meaning, paradoxical intention, and dereflection.",
+  "chapterSpecificMisunderstanding": "Do not reduce logotherapy to passion, happiness, or self-help purpose statements. It is about being addressed by a specific responsibility, especially when pleasure and power cannot answer the emptiness.",
+  "sourceAlignmentTerms": [
+    "logotherapy",
+    "will to meaning",
+    "existential vacuum",
+    "noogenic neurosis",
+    "work",
+    "love",
+    "attitude",
+    "paradoxical intention",
+    "dereflection"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "logotherapy",
+      "detail": "The frozen source identifies Part Two as the section where Frankl explains logotherapy.",
+      "useIn": "both",
+      "phrasingHint": "Logotherapy should enter as a discipline of responsibility, not a promise of better mood."
+    },
+    {
+      "kind": "artifact",
+      "name": "existential vacuum",
+      "detail": "The source says the existential vacuum names a modern emptiness problem.",
+      "useIn": "both",
+      "phrasingHint": "The vacuum is not solved by noise; it is answered by a task with a claim on you."
+    },
+    {
+      "kind": "artifact",
+      "name": "paradoxical intention",
+      "detail": "The source notes paradoxical intention as one therapeutic method in the framework.",
+      "useIn": "deepRead",
+      "phrasingHint": "Paradoxical intention can appear as the strange moment when fighting the symptom directly gives it more power."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Find your why",
+      "Meaning is the ultimate motivation"
+    ],
+    "counterintuition": [
+      "Happiness follows meaning",
+      "Purpose beats pleasure"
+    ],
+    "tryThisNow": [
+      "Write your purpose statement",
+      "List three things you love"
+    ],
+    "examples": [
+      "career passion pivot",
+      "generic burnout recovery",
+      "vision-board exercise"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "retired civil engineer whose first year after work is filled with errands and television but no claim on his skill",
+      "audience": "a retiree who is comfortable and still increasingly hollow",
+      "stakes": "pleasure and free time are not answering the empty mornings",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "he opens a box of old bridge inspection notes and agrees to mentor a town culvert committee for six weeks, turning skill into service",
+      "firstImage": "The garage shelf holds three binders of bridge inspections nobody has asked about in a year.",
+      "mustInclude": [
+        "inspection binders",
+        "culvert map",
+        "six-week calendar"
+      ],
+      "mustAvoid": [
+        "retirement hobby montage",
+        "golf-course emptiness"
+      ],
+      "protagonistName": "Nicolas"
+    },
+    {
+      "domain": "pediatric speech clinic aide bored by repetitive articulation cards until a child points to one sound she needs for her own name",
+      "audience": "a clinic aide who has been treating the work as dull compliance",
+      "stakes": "meaning appears when the exercise becomes a responsibility to one child, not when the task becomes glamorous",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she writes the child's name above the sound deck and slows the drill because the work now has a face",
+      "firstImage": "The laminated card squeaks under the dry-erase marker.",
+      "mustInclude": [
+        "sound deck",
+        "name label",
+        "timer with tape over buzzer"
+      ],
+      "mustAvoid": [
+        "teacher inspiration speech",
+        "generic classroom"
+      ],
+      "protagonistName": "Giulia"
+    },
+    {
+      "domain": "software quality analyst caught in an existential vacuum after promotion removes hands-on craft",
+      "audience": "a promoted analyst with status, salary, and no daily responsibility that feels real",
+      "stakes": "the promotion offers power but strips away the work that carried meaning",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "he declines one status meeting and takes ownership of a recurring accessibility defect until the screen reader flow actually works",
+      "firstImage": "What if the promotion gave him power and removed the work that made him answerable?",
+      "mustInclude": [
+        "screen reader transcript",
+        "status meeting invite",
+        "defect queue"
+      ],
+      "mustAvoid": [
+        "tech burnout cliche",
+        "standing desk scene"
+      ],
+      "protagonistName": "Ryan"
+    },
+    {
+      "domain": "widower learning that love can still organize action after the beloved person is gone",
+      "audience": "a man resisting the idea that love has any task left after death",
+      "stakes": "memory can become either shrine maintenance or a responsibility to keep a promise alive",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "you see him move one recipe card from the memory box to the counter and cook the soup his wife made for neighbors after surgery",
+      "firstImage": "You see the recipe card before you see the photograph.",
+      "mustInclude": [
+        "recipe card",
+        "soup pot",
+        "neighbor surgery calendar"
+      ],
+      "mustAvoid": [
+        "sentimental scrapbook",
+        "rain on window grief scene"
+      ],
+      "protagonistName": "Jack"
+    },
+    {
+      "domain": "stand-up trainee with crippling stage anxiety using paradoxical intention in a small open mic",
+      "audience": "a performer whose fear of shaking makes the shaking worse",
+      "stakes": "fighting the symptom directly keeps feeding it",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the coach tells her to begin by deliberately showing the audience her shaking hand, and the prediction is whether the tremor grows or loses command",
+      "firstImage": "\"Try to make the tremor obvious in the first ten seconds,\" the coach says.",
+      "mustInclude": [
+        "open-mic stool",
+        "index card",
+        "shaking hand"
+      ],
+      "mustAvoid": [
+        "generic courage speech",
+        "comedy club glamour"
+      ],
+      "protagonistName": "Aanya"
+    },
+    {
+      "domain": "university advising office where a student has every option open and feels emptier each week",
+      "audience": "an advisor helping a student move from abstract choice to one concrete responsibility",
+      "stakes": "limitless options are becoming paralysis rather than freedom",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "after three meetings of preference lists, the advisor asks whom the next semester of study would serve and circles one practicum tied to that answer",
+      "firstImage": "It took Thomas three advising appointments to admit that every open door felt weightless.",
+      "mustInclude": [
+        "course grid",
+        "practicum form",
+        "circled community clinic"
+      ],
+      "mustAvoid": [
+        "major-selection generic",
+        "motivational poster"
+      ],
+      "protagonistName": "Thomas"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish will to meaning from pleasure or power",
+      "diagnose existential vacuum in concrete behavior",
+      "choose work love or attitude as a route to responsibility",
+      "apply paradoxical intention without making it a gimmick"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one empty routine from today and add the person, task, or unavoidable fact that could make the next version a responsibility.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

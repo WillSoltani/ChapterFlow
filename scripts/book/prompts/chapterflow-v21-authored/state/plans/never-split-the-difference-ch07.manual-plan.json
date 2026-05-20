@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch07",
+  "number": 7,
+  "title": "Create the Illusion of Control",
+  "coreMove": "Ask calibrated how and what questions that make the other side solve the path forward.",
+  "sourcePressure": "The source ties this chapter to calibrated questions, collaboration, how questions, defusing conflict, and steering while preserving the other side's agency.",
+  "chapterSpecificMisunderstanding": "The writer must not turn this into generic open-ended questioning or disguised commands with question marks.",
+  "sourceAlignmentTerms": [
+    "calibrated questions",
+    "how",
+    "what",
+    "collaboration",
+    "agency",
+    "defusing conflict",
+    "steering"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A manager asks a better open-ended question",
+      "A coach helps someone find their own answer",
+      "Questions are more powerful than statements"
+    ],
+    "counterintuition": [
+      "Control comes from giving control",
+      "Questions steer better than commands",
+      "Let them solve it"
+    ],
+    "tryThisNow": [
+      "Ask how instead of why",
+      "Use an open question",
+      "Make them think"
+    ],
+    "examples": [
+      "workshop facilitation",
+      "generic performance review",
+      "parent-child chore talk",
+      "classroom Socratic method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "port crane unloading schedule after a labor shortage",
+      "audience": "a terminal operations lead facing a shipping agent demanding an impossible unload time",
+      "stakes": "reefers may lose power if the schedule is promised without a workable crew plan",
+      "format": "dialogue",
+      "requiredBeat": "the lead asks how the agent wants to keep refrigerated containers powered if the crane slot stays fixed, making the agent propose a staggered discharge order",
+      "firstImage": "a reefer power cord coiled beside a blinking container stack",
+      "mustInclude": [
+        "crane slot",
+        "reefer power",
+        "discharge order"
+      ],
+      "mustAvoid": [
+        "generic logistics delay",
+        "command disguised as question"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "hospital operating-room turnover conflict",
+      "audience": "a charge nurse dealing with a surgeon pressing for a room before sterilization is complete",
+      "stakes": "rushing turnover creates infection risk and staff blame",
+      "format": "decision_point",
+      "requiredBeat": "the nurse asks what part of the sterile count the surgeon wants documented as skipped, forcing the surgeon to solve for time another way",
+      "firstImage": "a wrapped instrument tray waiting under a blue sterile indicator strip",
+      "mustInclude": [
+        "sterile count",
+        "turnover board",
+        "case start time"
+      ],
+      "mustAvoid": [
+        "doctor-nurse power cliche",
+        "generic safety lecture"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "indie game publisher milestone dispute",
+      "audience": "a studio producer trying to keep a publisher from demanding a feature freeze before QA findings are known",
+      "stakes": "the release may ship with a save-corruption bug if the demand is accepted as stated",
+      "format": "scene",
+      "requiredBeat": "the producer asks how the publisher wants to handle refunds if the save bug survives the freeze, shifting the publisher into planning the QA exception",
+      "firstImage": "a bug dashboard filtered to one red save-corruption ticket",
+      "mustInclude": [
+        "feature freeze",
+        "QA exception",
+        "refund risk"
+      ],
+      "mustAvoid": [
+        "generic software sprint",
+        "gamer culture riff"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "orchard packing-house contract with a grocery chain",
+      "audience": "a packing-house owner facing a buyer demanding tighter delivery windows",
+      "stakes": "fruit may bruise in staging if the chain refuses flexible dock times",
+      "format": "vignette",
+      "requiredBeat": "the owner asks what the buyer would like the packers to do with picked fruit when trucks are held outside the dock window",
+      "firstImage": "a waxed apple tray stamped with a harvest-lot number",
+      "mustInclude": [
+        "dock window",
+        "harvest lot",
+        "bruise allowance"
+      ],
+      "mustAvoid": [
+        "generic grocery negotiation",
+        "price dispute"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "library digitization rights negotiation with a family archive",
+      "audience": "an archivist trying to move a family trustee from blanket refusal to workable safeguards",
+      "stakes": "fragile letters may stay inaccessible until they physically deteriorate",
+      "format": "reflection",
+      "requiredBeat": "the archivist asks what protections would make limited access acceptable, letting the trustee design a redaction and embargo path",
+      "firstImage": "a cotton-gloved hand lifting a brittle letter from an acid-free folder",
+      "mustInclude": [
+        "redaction rule",
+        "embargo date",
+        "acid-free folder"
+      ],
+      "mustAvoid": [
+        "generic privacy debate",
+        "history lecture"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "food-truck commissary lease conflict",
+      "audience": "a commissary owner dealing with a truck operator demanding more prep hours",
+      "stakes": "health-code compliance fails if the owner simply says yes to overlapping prep slots",
+      "format": "before_after",
+      "requiredBeat": "the owner replaces refusal with 'How would you like us to pass inspection with both trucks using the same wash sink at 6 a.m.?' and the operator suggests a split prep window",
+      "firstImage": "a three-basin wash sink tagged with a health-department sticker",
+      "mustInclude": [
+        "prep window",
+        "wash sink",
+        "inspection log"
+      ],
+      "mustAvoid": [
+        "generic small-business scheduling",
+        "restaurant scene reuse"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "write calibrated how or what questions that preserve agency",
+      "distinguish real calibrated questions from disguised commands",
+      "analyze how a question transfers problem-solving responsibility",
+      "evaluate whether a question defuses conflict or escalates blame"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one demand you want to reject and turn it into a how or what question that makes the other person solve the practical consequence of their own request.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch08",
+  "number": 8,
+  "title": "Nailing the Hookpoint",
+  "coreMove": "Land the concentrated moment where the room can feel why the offer matters now.",
+  "sourcePressure": "Hookpoint chapter: after frame, story, intrigue, and prize have prepared the room, the pitch needs a concentrated peak where novelty, consequence, and desire converge.",
+  "chapterSpecificMisunderstanding": "The writer must keep hookpoint as the peak created by prior sequence, not a slogan, line, or clever headline pasted onto weak material.",
+  "sourceAlignmentTerms": [
+    "hookpoint",
+    "novelty",
+    "consequence",
+    "desire",
+    "memorable peak",
+    "concentrated value",
+    "care now"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Every pitch needs a killer line",
+      "The hook is everything",
+      "Make them remember one thing"
+    ],
+    "counterintuition": [
+      "The hookpoint arrives late",
+      "A slogan is not a peak",
+      "Desire needs consequence"
+    ],
+    "tryThisNow": [
+      "Write your one-sentence hook",
+      "Find your big why now",
+      "Make your offer memorable"
+    ],
+    "examples": [
+      "tagline workshop",
+      "viral marketing headline",
+      "generic product launch reveal"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "battery-recycling company pitching a closed-loop supply deal to an electric bus manufacturer",
+      "audience": "a commercial lead whose value case is spread across compliance, cost, and supply security",
+      "stakes": "the manufacturer misses the immediate value unless one moment shows the next battery order at risk",
+      "format": "predict_reveal",
+      "requiredBeat": "after tracing supply risk, she reveals the purchase order the manufacturer cannot fill without recycled cobalt and lets the room connect timing to value",
+      "firstImage": "a redacted purchase order beside a vial of black battery powder",
+      "mustInclude": [
+        "purchase order",
+        "battery powder vial",
+        "delivery deadline"
+      ],
+      "mustAvoid": [
+        "generic sustainability pitch"
+      ]
+    },
+    {
+      "domain": "regional theater director pitching a corporate ticket block for a new production",
+      "audience": "an arts leader who must make business buyers feel why the production matters now",
+      "stakes": "the buyer sees hospitality spend instead of a timely employee-retention tool",
+      "format": "scene",
+      "requiredBeat": "she waits until after the workforce story, then shows the scene title that mirrors the buyer's retention crisis and stops speaking",
+      "firstImage": "a rehearsal script opened to a scene title beside a corporate badge",
+      "mustInclude": [
+        "rehearsal script",
+        "employee survey excerpt",
+        "ticket block offer"
+      ],
+      "mustAvoid": [
+        "generic arts sponsorship example"
+      ]
+    },
+    {
+      "domain": "precision irrigation firm pitching a citrus cooperative before a drought allocation vote",
+      "audience": "a sales engineer whose facts are scattered across water, yield, and hardware",
+      "stakes": "growers vote on allocations before seeing the one number that makes delay expensive",
+      "format": "decision_point",
+      "requiredBeat": "he reveals the acre-feet saved per night only after growers have seen the allocation calendar, then asks who wants that number before the vote",
+      "firstImage": "an irrigation valve tag lying on a paper drought calendar",
+      "mustInclude": [
+        "allocation calendar",
+        "acre-feet figure",
+        "valve tag"
+      ],
+      "mustAvoid": [
+        "generic agricultural efficiency pitch"
+      ]
+    },
+    {
+      "domain": "documentary distributor pitching a streaming platform on a regional investigation series",
+      "audience": "a distributor trying to concentrate audience, urgency, and exclusivity into one peak",
+      "stakes": "the platform treats the series as one more nonfiction title unless the release window matters",
+      "format": "vignette",
+      "requiredBeat": "she holds back the whistleblower interview clip until after the competitor schedule, then plays the first ten seconds and names the embargo date",
+      "firstImage": "a timecoded interview still on a laptop beside an embargo letter",
+      "mustInclude": [
+        "interview still",
+        "embargo date",
+        "competitor schedule"
+      ],
+      "mustAvoid": [
+        "generic media pitch"
+      ]
+    },
+    {
+      "domain": "advanced prosthetics clinic presenting a microprocessor knee to veterans' benefits reviewers",
+      "audience": "a clinician whose data needs one peak of human and financial consequence",
+      "stakes": "reviewers approve cheaper equipment that costs independence and later care dollars",
+      "format": "before_after",
+      "requiredBeat": "after showing gait data, she plays eight seconds of the patient stepping off a curb without help and then shows the avoided-care total",
+      "firstImage": "a prosthetic knee joint beside a paused curb-step video",
+      "mustInclude": [
+        "curb-step video",
+        "gait data",
+        "avoided-care total"
+      ],
+      "mustAvoid": [
+        "generic medical device demonstration"
+      ]
+    },
+    {
+      "domain": "craft paper mill pitching compostable packaging to a fast-casual restaurant chain",
+      "audience": "a mill sales lead trying to make packaging consequence converge with brand risk",
+      "stakes": "the chain delays while a city ordinance deadline approaches",
+      "format": "thought_experiment",
+      "requiredBeat": "she asks the team to picture opening week under the new ordinance, then reveals their current wrapper on the banned-material list",
+      "firstImage": "a folded takeout wrapper beside a city ordinance notice",
+      "mustInclude": [
+        "ordinance notice",
+        "banned-material list",
+        "wrapper sample"
+      ],
+      "mustAvoid": [
+        "generic green packaging pitch"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify whether the peak follows sufficient setup",
+      "choose a hookpoint that concentrates consequence and desire",
+      "analyze scattered facts versus one peak moment",
+      "evaluate hookpoints that are slogans without stakes"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name the one moment in your pitch where value, timing, and consequence should meet, then move any early facts that weaken that peak.",
+  "readingTimeMinutes": 12
+}

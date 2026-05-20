@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch03",
+  "number": 3,
+  "title": "The Cost of Zero Cost",
+  "coreMove": "Price the hidden costs of free before the zero overwhelms the better tradeoff.",
+  "sourcePressure": "The source turns zero price into a special emotional category: people overvalue free offers because they feel safe from loss while other costs disappear.",
+  "chapterSpecificMisunderstanding": "The weak version says free is tempting; the chapter-specific lesson is that zero changes the perceived risk calculus and hides competing costs.",
+  "sourceAlignmentTerms": ["zero cost", "free", "hidden cost", "opportunity cost", "loss aversion", "tradeoff"],
+  "forbiddenFrames": {
+    "hook": ["Free is never free", "The free sample costs you", "Zero changes everything"],
+    "counterintuition": ["Free saves money", "Free means no downside", "People like bargains"],
+    "tryThisNow": ["List the real costs", "Say no to free", "Check your cart"],
+    "examples": ["free shipping threshold", "free pizza table", "free software trial"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport lounge trial attached to a delayed flight",
+      "audience": "a traveler deciding whether to accept a free lounge pass during a tight connection",
+      "stakes": "missing the boarding-zone update because the free pass feels like found value",
+      "format": "decision_point",
+      "requiredBeat": "the traveler writes the walk time to the far gate on the boarding pass before following the sign to the free lounge",
+      "firstImage": "a boarding pass curled around a free lounge voucher at a crowded gate",
+      "mustInclude": ["boarding pass", "far gate", "voucher"],
+      "mustAvoid": ["restaurant free appetizer", "coupon cart", "professional webinar"]
+    },
+    {
+      "domain": "community garden offered free compost after a storm",
+      "audience": "a plot holder choosing whether to haul extra compost she cannot use this month",
+      "stakes": "losing a Saturday and blocking the shed path because zero price overrides storage reality",
+      "format": "vignette",
+      "requiredBeat": "she sets a tarp on the ground and marks the actual space her plot can absorb before loading another sack",
+      "firstImage": "steaming compost sacks piled beside a bent garden gate",
+      "mustInclude": ["tarp outline", "shed path", "storm pile"],
+      "mustAvoid": ["home clutter samples", "office supplies", "moving boxes"]
+    },
+    {
+      "domain": "local theater distributing free preview tickets",
+      "audience": "a parent with one quiet evening deciding whether to accept four free seats",
+      "stakes": "turning rest into logistics because tickets with no price feel too valuable to decline",
+      "format": "reflection",
+      "requiredBeat": "the parent writes the babysitter cost and drive time on the envelope before deciding whether the free tickets are still a gift",
+      "firstImage": "four preview tickets tucked into a cream envelope on a hall table",
+      "mustInclude": ["babysitter cost", "drive time", "cream envelope"],
+      "mustAvoid": ["movie voting", "concert prestige", "family budget generic"]
+    },
+    {
+      "domain": "warehouse receiving free misprinted labels from a supplier",
+      "audience": "an inventory supervisor deciding whether to accept a pallet of free labels",
+      "stakes": "adding sorting errors because the labels cost nothing up front",
+      "format": "postmortem",
+      "requiredBeat": "the supervisor traces three mis-shelved cartons back to the free label pallet and calculates the labor spent correcting them",
+      "firstImage": "a pallet of misprinted labels wrapped in cloudy plastic near dock door five",
+      "mustInclude": ["dock door five", "mis-shelved cartons", "labor log"],
+      "mustAvoid": ["software trial", "team perk", "office inventory"]
+    },
+    {
+      "domain": "pharmacy loyalty program offering a free vitamin bottle",
+      "audience": "a caregiver picking up prescriptions before work",
+      "stakes": "delaying needed pickup and buying unrelated items because the free bottle requires a second line",
+      "format": "dialogue",
+      "requiredBeat": "the caregiver points to the prescription pickup clock and asks whether the free vitamin is worth the extra line before joining it",
+      "firstImage": "a bright loyalty coupon clipped to a prescription bag at the pharmacy counter",
+      "mustInclude": ["pickup clock", "second line", "coupon clip"],
+      "mustAvoid": ["medical efficacy claims", "supplement performance", "free sample table"]
+    },
+    {
+      "domain": "public library giving away withdrawn atlases",
+      "audience": "a youth-program coordinator tempted to take a box for map-craft workshops",
+      "stakes": "using storage and planning time on materials that are free but stale",
+      "format": "before_after",
+      "requiredBeat": "before carrying the box, the teacher opens one atlas to the outdated map and names the exact lesson it would replace",
+      "firstImage": "a cardboard box of withdrawn atlases beside the library exit scanner",
+      "mustInclude": ["outdated map", "lesson slot", "exit scanner"],
+      "mustAvoid": ["worksheet shell", "school pizza", "generic donation"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["convert free into time, storage, attention, or risk costs", "spot when zero price hides a worse alternative", "distinguish a true gift from a costly obligation", "evaluate whether loss aversion around paying is steering the choice"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one free offer in front of you, write the nonmoney cost in one concrete unit, such as minutes, shelf space, obligation, or delay, before accepting it.",
+  "readingTimeMinutes": 12
+}

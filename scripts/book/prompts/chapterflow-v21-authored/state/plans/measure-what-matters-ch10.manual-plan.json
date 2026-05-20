@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch10",
+  "number": 10,
+  "title": "Superpower #3: Track for Accountability",
+  "coreMove": "Make progress reviewable early enough that teams can correct drift before excuses harden.",
+  "sourcePressure": "The third superpower introduces tracking and accountability as live visibility, course correction, and owned progress.",
+  "chapterSpecificMisunderstanding": "Do not frame tracking as surveillance, punishment, or neat reporting.",
+  "sourceAlignmentTerms": [
+    "tracking",
+    "accountability",
+    "visible progress",
+    "course correction",
+    "owned progress",
+    "live visibility"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "tracking and accountability",
+      "detail": "The source introduces tracking and accountability as the third OKR superpower, centered on visible progress and adjustment.",
+      "useIn": "both",
+      "phrasingHint": "Tracking earns its keep when it lets a team correct while the quarter is still alive, not when it supplies a prettier postmortem."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Superpower #3: Track for Accountability as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "tracking is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "culture policing",
+      "static dashboards",
+      "performance review rituals"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional construction safety retrofit",
+      "audience": "site managers",
+      "stakes": "the retrofit will drift unless progress is visible before inspections fail",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sophie changes the review from monthly reports to daily visible completion checks by floor",
+      "firstImage": "dusty stairwell with taped notices",
+      "mustInclude": [
+        "floor plan",
+        "inspection tag",
+        "completion board"
+      ],
+      "mustAvoid": [
+        "surveillance framing"
+      ]
+    },
+    {
+      "domain": "pediatric therapy waitlist reduction",
+      "audience": "clinic coordinators",
+      "stakes": "families wait longer when progress hides inside case notes",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Matteo asks for a visible weekly movement measure and a correction trigger when intake stalls",
+      "firstImage": "toy bins under a reception desk",
+      "mustInclude": [
+        "waitlist export",
+        "intake form",
+        "therapy room schedule"
+      ],
+      "mustAvoid": [
+        "doctor hero story"
+      ]
+    },
+    {
+      "domain": "farmers-market permit process",
+      "audience": "city clerks",
+      "stakes": "vendors cannot adjust if permits vanish into a silent queue",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Andrew posts the live queue and assigns ownership for any permit stuck past the review threshold",
+      "firstImage": "folding tents stacked in storage",
+      "mustInclude": [
+        "permit queue",
+        "vendor map",
+        "review stamp"
+      ],
+      "mustAvoid": [
+        "bureaucracy satire"
+      ]
+    },
+    {
+      "domain": "software accessibility remediation",
+      "audience": "engineering managers",
+      "stakes": "bugs are logged but not owned visibly enough to move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Frida asks which accessibility failures will still be open Friday if no one sees daily progress",
+      "firstImage": "screen reader output window",
+      "mustInclude": [
+        "bug tracker",
+        "screen reader",
+        "release branch"
+      ],
+      "mustAvoid": [
+        "generic sprint dashboard"
+      ]
+    },
+    {
+      "domain": "orchestra rehearsal readiness",
+      "audience": "section leaders",
+      "stakes": "concert risk hides until the full run-through exposes weak sections too late",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Paula sets visible passage targets for each section and reviews them before the final rehearsal week",
+      "firstImage": "rosin dust on a black music stand",
+      "mustInclude": [
+        "marked score",
+        "section roster",
+        "rehearsal clock"
+      ],
+      "mustAvoid": [
+        "arts inspiration"
+      ]
+    },
+    {
+      "domain": "home-care medication reconciliation",
+      "audience": "nursing supervisors",
+      "stakes": "errors stay invisible until a patient calls confused",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hiroshi creates a reviewable same-day reconciliation marker and names who corrects misses before the next visit",
+      "firstImage": "pill packets sorted on a blue tray",
+      "mustInclude": [
+        "med list",
+        "visit schedule",
+        "call log"
+      ],
+      "mustAvoid": [
+        "dosing cup repeat"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose live tracking signals",
+      "trigger correction before excuses harden",
+      "distinguish accountability from surveillance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live goal and define the progress signal that would trigger correction before the next formal review.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

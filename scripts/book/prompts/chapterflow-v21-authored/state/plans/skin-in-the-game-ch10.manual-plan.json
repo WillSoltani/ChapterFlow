@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch10",
+  "number": 10,
+  "title": "Only the Rich Are Poisoned: The Preferences of Others",
+  "coreMove": "Interrogate whether a preference came from direct use or from status pressure imported into your life.",
+  "sourcePressure": "Status and wealth can detach people from firsthand preference and make them vulnerable to desires manufactured by others.",
+  "chapterSpecificMisunderstanding": "Treating the chapter as envy of luxury or simple anti-consumerism.",
+  "sourceAlignmentTerms": [
+    "borrowed preference",
+    "constructed desire",
+    "wealth insulation",
+    "luxury signal",
+    "direct use",
+    "status pressure",
+    "autonomy loss"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Only the Rich Are Poisoned",
+      "detail": "The sidecar supports wealth or status insulation as a distortion of direct preference and judgment.",
+      "useIn": "deepRead",
+      "phrasingHint": "The poison is not money itself; it is the moment someone else can sell you a desire you would never have formed from use."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "wine collector buying bottles praised by status circles but never enjoyed at dinner",
+      "audience": "buyer separating taste from prestige contagion",
+      "stakes": "money and identity follow a preference he did not form",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Olivia opens one prized bottle with an ordinary meal and writes down whether she would buy it without the label.",
+      "firstImage": "a cork split beside a plain plate",
+      "mustInclude": [
+        "wine label",
+        "tasting note",
+        "price tag"
+      ],
+      "mustAvoid": [
+        "luxury envy"
+      ]
+    },
+    {
+      "domain": "executive choosing a private school because peers expect it",
+      "audience": "parent testing borrowed preference against child fit",
+      "stakes": "a child may carry the cost of status anxiety",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Vincent asks his daughter to rank the school day before he ranks the parent reception.",
+      "firstImage": "a glossy prospectus on a car seat",
+      "mustInclude": [
+        "prospectus",
+        "student shadow day",
+        "tuition contract"
+      ],
+      "mustAvoid": [
+        "parenting sermon"
+      ]
+    },
+    {
+      "domain": "homeowner hiring an interior designer whose choices erase how the family lives",
+      "audience": "reader seeing preference outsourced to taste authority",
+      "stakes": "daily comfort could be traded for photographed approval",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sofia puts the muddy boots where they actually land and rejects the room that only works empty.",
+      "firstImage": "mud flakes below a linen bench",
+      "mustInclude": [
+        "design board",
+        "boot tray",
+        "photo mockup"
+      ],
+      "mustAvoid": [
+        "minimalism cliché"
+      ]
+    },
+    {
+      "domain": "tech buyer selecting enterprise software because rivals use it",
+      "audience": "CFO checking whether status has replaced use",
+      "stakes": "staff workflow could be warped by prestige procurement",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Matthew makes the team run a live invoice before approving the famous vendor.",
+      "firstImage": "invoice fields glowing on a demo screen",
+      "mustInclude": [
+        "vendor logo",
+        "invoice test",
+        "procurement memo"
+      ],
+      "mustAvoid": [
+        "brand-name dunking"
+      ]
+    },
+    {
+      "domain": "charity gala committee choosing an expensive venue donors expect",
+      "audience": "organizer asking whether prestige serves the mission",
+      "stakes": "beneficiaries lose funds to performative taste",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chidi moves the venue line beside the services line and lets the budget show the trade.",
+      "firstImage": "linen swatches beside a grant spreadsheet",
+      "mustInclude": [
+        "venue quote",
+        "services budget",
+        "donor list"
+      ],
+      "mustAvoid": [
+        "virtue signaling overlap"
+      ]
+    },
+    {
+      "domain": "fitness client buying elite gear before knowing which movement she likes",
+      "audience": "coach helping her recover firsthand preference",
+      "stakes": "money can buy belonging before experience forms taste",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marta has her train for two weeks with borrowed gear before ordering the premium kit.",
+      "firstImage": "chalk dust on borrowed straps",
+      "mustInclude": [
+        "borrowed gear",
+        "order cart",
+        "training log"
+      ],
+      "mustAvoid": [
+        "consumer advice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify borrowed preference in a new concrete scenario",
+      "choose the action that performs the chapter move: Interrogate whether a preference came from direct use or from status pressure imported into your life.",
+      "separate the chapter's mechanism from the weak misread: Treating the chapter as envy of luxury or simple anti-consumerism.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for Only the Rich Are Poisoned: The Preferences of Others.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

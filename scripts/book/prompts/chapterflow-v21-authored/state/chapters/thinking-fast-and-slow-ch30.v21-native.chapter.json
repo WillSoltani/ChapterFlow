@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch30",
+  "number": 30,
+  "title": "Rare Events",
+  "readingTimeMinutes": 12,
+  "hook": "A printed one-percent warning feels loud; a hundred quiet days make the same risk disappear.",
+  "counterintuition": "Rare events are not always exaggerated or always ignored. Descriptions can make them loom, while experience can make them fade until the rare outcome finally appears.",
+  "tryThisNow": "For one risk today, write whether you learned it from a stated number, lived experience, or both. Then adjust how much weight it gets.",
+  "keyTakeaway": "Ask whether you learned the risk from a description or from experience before judging how much it weighs.",
+  "breakdown": {
+    "fastRead": "A factory label says a batch has a one-percent spoilage risk, and the room freezes. Another line has run for months with the same risk but no bad batch, so workers barely mention it. The odds are close. The way they learned it is not.\n\nRisk has an accent.\n\nRare events feel different when they are learned from a stated risk versus lived repeats. A stated risk can get too much weight because the number and image arrive together. A lived rare risk can get too little weight because most days nothing happens. Before judging the reaction, ask how the person learned the risk.",
+    "deepRead": "A bakery team reads a supplier notice: one in a thousand flour bags may contain a hard fragment. The warning feels vivid. Production slows, managers debate extra inspection, and every odd sound near the mixer gets attention.\n\nThe notice made the rare event present.\n\nIn another bakery, the same risk has existed for years without a noticed fragment. Workers learned from experience: bag after bag, shift after shift, nothing happens. That experience teaches safety by repetition, even when the actual probability has not become zero. Rare events are often underweighted in experience because they are absent most of the time.\n\nDescription does the opposite. A stated probability can compress time. It lets you imagine the rare outcome immediately, without waiting for it to occur. That can lead to useful caution, especially when the rare harm is severe. It can also lead to overreaction if the vivid description crowds out base rates and alternatives.\n\nA mountain forecast hut shows both sides. A bulletin describing a rare persistent weak layer makes skiers cautious. A local guide who has crossed the slope dozens of times without collapse may discount the same danger. Neither response is simply smart or foolish. The described risk and the experienced absence are pulling in opposite directions.\n\nThe same number wears a different coat when it is read than when it is lived.",
+    "fullRead": "Rare events sit in a strange mental position. If they are described, they can become too vivid for their probability. If they are learned through repeated experience, they can almost vanish because ordinary runs are so common. The same one-percent risk can feel like a warning siren on paper and like nothing at all after ninety-nine uneventful attempts.\n\nErin reviews a tax fraud model with the salvage diver slate labeled rare events between two escalation rules. A memo describes a rare false accusation pattern that affected a small group of filers. The description is vivid, and the team wants to lower every fraud score. Erin has to ask whether the rare event is being overweighted because the description is fresh, or whether prior daily experience had been neglecting it because the harmed group was rarely seen.\n\nHow did this probability enter the room?\n\nThat question should come before the risk argument. If the risk arrived through a story, warning label, memo, or news report, it may be overweighted because the rare outcome is easy to picture. If the risk arrived through personal experience, it may be underweighted because most samples did not include it. A driver who reads about a rare bridge failure may overavoid that bridge. A maintenance team that has never seen the failure may ignore early signs.\n\nNeither description nor experience is the enemy. Description can reveal harms too rare for one person to learn firsthand. Experience can prevent printed risks from becoming phantoms. The problem is treating either learning route as neutral. Both shape attention before the math begins.\n\nA rare-books desk gives a quieter example. June handles donated boxes every week. She has never found mold spores spreading from one box to a full shelf, so the risk feels remote. A conservation bulletin describes one archive that lost a collection after a single damp donation. The ballot signature loupe labeled overweighting sits beside the intake cart. June should not panic because of one described case, and she should not ignore the risk because her experience has been quiet. She should combine the archive rate, local storage conditions, and the severity of the rare harm.\n\nThe counter-objection is that rare risks are impossible to calibrate perfectly. True. Samples are small, descriptions are selective, and experience is uneven. The practical goal is not perfect probability. It is to notice whether the current feeling is being inflated by vivid description or dulled by uneventful experience. That noticing can change the next check.\n\nFor described rare events, ask for frequency, comparison, and severity. For experienced rare events, ask what your sample size can actually teach. One hundred safe days may be meaningful for a daily event. It may be nearly meaningless for a once-in-ten-years event.\n\nA rare event should be neither a ghost nor a rumor. It should be a probability with a learning history."
+  },
+  "examples": [
+    {
+      "exampleId": "ch30-ex01-erin-tax",
+      "title": "Erin asks how the false-accusation risk arrived",
+      "tags": [
+        "decision_point",
+        "tax",
+        "description"
+      ],
+      "planSpec": {
+        "domain": "tax fraud review unit facing a decision distorted by description",
+        "audience": "a lead or reviewer who must ask whether risk came from description or experience",
+        "stakes": "the visible call will go wrong unless description is separated from the weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the before call appears on the labeled slate, then the after call follows once learning route is checked"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Erin says, with the salvage diver slate labeled rare events between a fraud memo and the score cutoff. The memo describes a rare false-accusation pattern so vividly that the team wants to lower every score. Erin must decide whether description is overweighting the risk or exposing a harm that daily experience had neglected.",
+      "whatToDo": "Ask for frequency, affected group, prior missed cases, and severity before changing every cutoff.",
+      "whyItMatters": "The rare event may be real and still overweighted by description. The learning route affects how loud it feels."
+    },
+    {
+      "exampleId": "ch30-ex02-paolo-bakery",
+      "title": "Paolo compares the warning with quiet shifts",
+      "tags": [
+        "predict_reveal",
+        "bakery",
+        "experience"
+      ],
+      "planSpec": {
+        "domain": "commercial bakery proofing area facing a decision distorted by description",
+        "audience": "a lead or reviewer who must ask whether risk came from description or experience",
+        "stakes": "the visible call will go wrong unless description is separated from the weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the protagonist names the shortcut and chooses one check that makes it accountable"
+      },
+      "scenario": "The proofing area at 4:40 a.m. is quiet except for the scholarship score sheet labeled description beside Paolo's flour notice. One in a thousand bags may contain a hard fragment. His team has opened thousands without seeing one, so experience says relax. Paolo must decide whether the reveal should combine the written probability with the misleading comfort of quiet shifts.",
+      "whatToDo": "Treat the supplier description and local experience as separate evidence, then set inspection based on risk severity and true sample size.",
+      "whyItMatters": "Repeated uneventful experience can neglect rare events. A written warning can correct that, but it still needs calibration."
+    },
+    {
+      "exampleId": "ch30-ex03-june-avalanche",
+      "title": "June revisits the slope that never slid",
+      "tags": [
+        "postmortem",
+        "mountain",
+        "overweighting"
+      ],
+      "planSpec": {
+        "domain": "avalanche forecasting hut facing a decision distorted by description",
+        "audience": "a lead or reviewer who must ask whether risk came from description or experience",
+        "stakes": "the visible call will go wrong unless description is separated from the weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "two commitments are compared, one from first impression and one after the rare-event check"
+      },
+      "scenario": "Which signature on the experience brine-room thermometer labeled experience would June trust after the slope finally slid: the one from the bulletin or the one from forty quiet crossings? The bulletin described a rare weak layer. The guide's experience said the slope was safe. June must decide whether the postmortem shows overweighting by description or neglect from experience.",
+      "whatToDo": "Compare the bulletin's stated conditions with the guide's sample size and ask whether quiet crossings were enough evidence.",
+      "whyItMatters": "Rare events can be overfelt when described and underfelt when absent from experience. Both forces need checking."
+    },
+    {
+      "exampleId": "ch30-ex04-grant-archive",
+      "title": "Grant balances mold bulletin and local history",
+      "tags": [
+        "before_after",
+        "library",
+        "neglect"
+      ],
+      "planSpec": {
+        "domain": "library rare-books desk facing a decision distorted by description",
+        "audience": "a lead or reviewer who must ask whether risk came from description or experience",
+        "stakes": "the visible call will go wrong unless description is separated from the weaker cue",
+        "format": "before_after",
+        "requiredBeat": "quick cue and corrective evidence are separated before the choice"
+      },
+      "scenario": "The cool rim of the ballot signature loupe labeled overweighting sits under Grant's thumb as he reads a mold bulletin. One archive lost a collection after a damp donation; his desk has never seen that spread. Grant must decide whether the rare event is being inflated by a vivid description or neglected because his local experience is too small.",
+      "whatToDo": "Put the bulletin rate, local storage conditions, and severity of collection loss on one side; put local quiet history on the other.",
+      "whyItMatters": "The right weight comes from combining description and experience, not from letting either one dominate by feel."
+    },
+    {
+      "exampleId": "ch30-ex05-carys-quality",
+      "title": "Carys moves the defect risk to checked",
+      "tags": [
+        "reflection",
+        "factory",
+        "probability"
+      ],
+      "planSpec": {
+        "domain": "factory quality cage facing a decision distorted by description",
+        "audience": "a lead or reviewer who must ask whether risk came from description or experience",
+        "stakes": "the visible call will go wrong unless description is separated from the weaker cue",
+        "format": "reflection",
+        "requiredBeat": "the trainee moves the labeled object only after showing the correction"
+      },
+      "scenario": "You are looking at the ceramic bite fork labeled neglect while Carys's defect decision starts to feel too complete. A new warning describes a rare coating failure, but the line has run for months without it. Carys must decide whether to move the batch to checked only after naming the probability source: written description, local experience, or both.",
+      "whatToDo": "Write the described probability beside the number of local runs, then decide whether the sample size is large enough to downgrade the warning.",
+      "whyItMatters": "Local experience can be persuasive and still too small to teach much about a rare event."
+    },
+    {
+      "exampleId": "ch30-ex06-scott-neon",
+      "title": "Scott tests the transformer fire story",
+      "tags": [
+        "thought-experiment",
+        "repair",
+        "probability"
+      ],
+      "planSpec": {
+        "domain": "neon sign repair shop facing a decision distorted by description",
+        "audience": "a lead or reviewer who must ask whether risk came from description or experience",
+        "stakes": "the visible call will go wrong unless description is separated from the weaker cue",
+        "format": "thought_experiment",
+        "requiredBeat": "the supervisor crosses out an alluring detail and asks for the boring comparison first"
+      },
+      "scenario": "It took three passes before Scott saw what the referee substitution board labeled probability had been making too easy. A trade forum described a rare transformer fire, and now every flicker feels dangerous. Imagine Scott must decide whether to replace a working unit. He crosses out the vivid fire story and asks for base frequency, comparable models, and his shop's repair history.",
+      "whatToDo": "Separate the forum description from shop experience, then use comparable-model frequency before replacing the transformer.",
+      "whyItMatters": "A described rare event can become too vivid. The boring comparison keeps the image from becoming the probability."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A tax memo describes a rare false-accusation pattern in vivid detail, and reviewers want to lower every fraud cutoff immediately. What should the lead ask first?",
+        "choices": [
+          "Whether the risk is being learned from description, experience, or both, and what the actual frequency is.",
+          "Whether rare events should always be ignored.",
+          "Whether the vivid memo proves the model is useless."
+        ],
+        "correctIndex": 0,
+        "explanation": "The memo may reveal a real harm, but description can overweight it. Frequency and learning route should guide the change.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A bakery receives a one-in-a-thousand hard-fragment warning. Workers have opened many bags without seeing one, so they want to ignore it. What is the best correction?",
+        "choices": [
+          "Ignore the warning because experience beats description.",
+          "Treat the warning and local experience separately, then check whether the sample is large enough for a rare event.",
+          "Stop all production because descriptions are always more reliable."
+        ],
+        "correctIndex": 1,
+        "explanation": "Experience can neglect rare events when the sample is not large enough. The warning still needs calibration, not panic.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A guide has crossed a slope forty times without incident. A bulletin describes a rare weak layer under current conditions. Which question should shape the forecast?",
+        "choices": [
+          "Can a slope ever slide after safe crossings?",
+          "Should all bulletins be treated as exaggerations?",
+          "Is forty quiet crossings enough experience to outweigh a condition-specific rare-event description?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The issue is calibration between description and experience. Quiet crossings may or may not be enough evidence for a rare event.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "An archive reads a dramatic mold-loss bulletin after years without a local outbreak. The staff splits between panic and dismissal. What is the strongest response?",
+        "choices": [
+          "Combine described rate, local conditions, sample size, and severity before changing procedure.",
+          "Panic, because vivid descriptions are always right.",
+          "Dismissal, because local history has been quiet."
+        ],
+        "correctIndex": 0,
+        "explanation": "Both learning routes are biased in different directions. A combined check respects the risk without letting one story rule.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A factory has never seen a rare coating failure in its own line, but the supplier warning says it appears in one batch out of several thousand. What mistake would local experience invite?",
+        "choices": [
+          "Overweighting the risk because nothing has happened.",
+          "Neglecting the rare event because most experience contains no occurrence.",
+          "Assuming probability cannot be discussed."
+        ],
+        "correctIndex": 1,
+        "explanation": "Rare events are usually absent from short experience, so the line may underweight them unless the sample is large enough.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A repair shop reads a forum post about a rare transformer fire, and suddenly every flicker seems dangerous. What is the likely distortion?",
+        "choices": [
+          "Neglect from long experience.",
+          "Proof that every transformer should be replaced.",
+          "Overweighting from a vivid description."
+        ],
+        "correctIndex": 2,
+        "explanation": "The described fire image can become louder than its base frequency. Comparable-model data should check the reaction.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "In a safety meeting after a vivid near miss, a team says rare events are always exaggerated because people fear them. Which reply is most accurate?",
+        "choices": [
+          "Rare events can be overweighted when described and neglected when learned only through quiet experience.",
+          "Rare events should always be ignored.",
+          "Rare events should always dominate all decisions."
+        ],
+        "correctIndex": 0,
+        "explanation": "The learning route matters. Description and experience pull in different directions, so no single blanket rule works.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A manager has one hundred safe days for a risk that typically appears once every ten years. She says experience proves the risk is negligible. What should someone note?",
+        "choices": [
+          "The manager is definitely wrong about every risk.",
+          "The sample is too small to teach much about a once-in-ten-years event.",
+          "Descriptions should replace all experience."
+        ],
+        "correctIndex": 1,
+        "explanation": "Experience must be scaled to event frequency. A hundred safe days may be informative for common risks, not very rare ones.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "At an insurance desk, a team wants to calibrate a rare risk presented through a vivid house-fire story and a small annual probability. Which checklist is best?",
+        "choices": [
+          "How frightening the story feels.",
+          "How many people repeated the story.",
+          "Frequency, comparable cases, severity, and whether local experience is large enough to matter."
+        ],
+        "correctIndex": 2,
+        "explanation": "Calibration needs rate, comparison, severity, and sample size. Fear and repetition can amplify description without improving accuracy.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A rare risk feels too loud. What should you ask first?",
+      "back": "Ask whether it was learned from description, experience, or both. Description can overweight; experience can neglect.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can experience underweight rare events?",
+      "back": "Most samples do not include the rare event, so repeated quiet outcomes can teach false safety unless the sample is large enough.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why can description overweight rare events?",
+      "back": "A number, warning, or story makes the rare outcome vivid immediately, sometimes louder than its probability supports.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How should you combine a vivid warning with quiet local history?",
+      "back": "Check described frequency, local conditions, sample size, and severity before deciding whether to act.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What makes a safe history weak evidence against a rare event?",
+      "back": "A small sample relative to the event's frequency. Quiet experience over weeks may say little about a once-in-years risk.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is learning-route calibration: decide whether description is inflating a rare event or experience is neglecting it.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a memo highlights a rare risk, then ask for frequency and comparable cases before changing every process."
+      },
+      {
+        "context": "health",
+        "plan": "If a rare side effect feels vivid, then compare the described rate with personal or clinical experience size."
+      },
+      {
+        "context": "money",
+        "plan": "If an insurance or warranty decision turns on a rare event, then separate the written risk from your uneventful experience."
+      },
+      {
+        "context": "operations",
+        "plan": "If a line has never seen a rare failure, then check whether enough trials occurred to make that absence meaningful."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, pick one rare risk and write how you learned it, the stated frequency, and how much experience you actually have.",
+    "weeklyPractice": "Once a week, review a risk that felt too loud or too quiet and recalibrate it by learning route and sample size."
+  },
+  "memorableLines": [
+    {
+      "text": "Risk has an accent.",
+      "location": "breakdown.fastRead",
+      "why": "It captures how learning route changes the feel of probability."
+    },
+    {
+      "text": "The same number wears a different coat when it is read than when it is lived.",
+      "location": "breakdown.deepRead",
+      "why": "It makes description versus experience memorable."
+    },
+    {
+      "text": "A rare event should be neither a ghost nor a rumor.",
+      "location": "breakdown.fullRead",
+      "why": "It states the balanced calibration goal."
+    }
+  ]
+}

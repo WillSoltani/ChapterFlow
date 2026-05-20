@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch09",
+  "number": 9,
+  "title": "Instant Influence: Primitive Consent for an Automatic Age",
+  "coreMove": "Recover a deliberate inspection pause when several cues make agreement feel pre-approved.",
+  "sourcePressure": "The source frames this as a closing synthesis of automatic consent, cue accumulation, fast-trigger influence, modern persuasive saturation, and deliberate inspection without re-teaching every earlier lever.",
+  "chapterSpecificMisunderstanding": "Do not write a recap list; the chapter should show multiple cues converging into primitive consent before scrutiny returns.",
+  "sourceAlignmentTerms": ["instant influence", "primitive consent", "automatic age", "cue accumulation", "fast-trigger system", "deliberate inspection", "persuasive saturation"],
+  "forbiddenFrames": {
+    "hook": ["Modern life is full of influence", "Everything is trying to persuade you", "Slow down in an automatic age"],
+    "counterintuition": ["All shortcuts are dangerous", "Technology ruined judgment", "The answer is permanent skepticism"],
+    "tryThisNow": ["Notice three cues around you", "Take a mindful pause", "Review the seven principles"],
+    "examples": ["generic social media ad", "e-commerce checkout with countdown", "newsfeed doomscroll"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital cafeteria benefits enrollment table",
+      "audience": "a nurse choosing supplemental coverage between shifts",
+      "stakes": "agreeing because a stack of cues arrives at once: badge, colleague line, deadline, and free snack",
+      "format": "scene",
+      "requiredBeat": "the nurse names four cues on the enrollment card margin before asking for the policy exclusions",
+      "firstImage": "a hairnet crease across a benefits brochure beside an unopened granola bar",
+      "mustInclude": ["policy exclusions", "badge cue", "deadline", "colleague line"],
+      "mustAvoid": ["single authority lesson"]
+    },
+    {
+      "domain": "regional craft fair booth selling water filters",
+      "audience": "a homeowner approached after a local flood season",
+      "stakes": "buying because scarcity, social proof, and shared town identity converge",
+      "format": "decision_point",
+      "requiredBeat": "the homeowner separates last cases in the van, your neighbors bought, and we all went through the flood before asking for lab specs",
+      "firstImage": "a cloudy test vial beside a roll of receipt paper",
+      "mustInclude": ["lab specs", "neighbor claim", "last cases"],
+      "mustAvoid": ["overclaiming platform or news examples"]
+    },
+    {
+      "domain": "professional certification renewal webinar",
+      "audience": "a licensed counselor deciding on an add-on credential",
+      "stakes": "enrolling because authority, deadline, and identity cues combine",
+      "format": "predict_reveal",
+      "requiredBeat": "before the price slide, the counselor predicts which cues will appear, then marks them as they arrive and waits to evaluate curriculum fit",
+      "firstImage": "a webinar chat window scrolling beside a license renewal calendar",
+      "mustInclude": ["curriculum outline", "license calendar", "authority title"],
+      "mustAvoid": ["authority-only chapter rewrite"]
+    },
+    {
+      "domain": "public radio pledge drive phone bank",
+      "audience": "a listener deciding whether to increase a monthly donation",
+      "stakes": "responding to reciprocity, unity, and social proof in one fast call",
+      "format": "dialogue",
+      "requiredBeat": "the listener hears thank-you gift, listeners like us, and phones lighting up, then chooses the amount from budget rather than cue pressure",
+      "firstImage": "a pledge card with a headset cord coiled across it",
+      "mustInclude": ["thank-you gift", "phones lighting up", "monthly budget"],
+      "mustAvoid": ["generic charity pressure"]
+    },
+    {
+      "domain": "specialty medical conference exhibit hall",
+      "audience": "a clinic director considering a diagnostic device",
+      "stakes": "being pulled by expert titles, crowds, and limited conference pricing",
+      "format": "before_after",
+      "requiredBeat": "the director walks away from the booth and writes the clinical problem first, then returns only if the device solves that problem",
+      "firstImage": "lanyards brushing against a demo console screen",
+      "mustInclude": ["clinical problem", "conference price", "crowded booth"],
+      "mustAvoid": ["unsupported named medical anecdotes"]
+    },
+    {
+      "domain": "coastal town evacuation supply subscription",
+      "audience": "a new resident after a storm-prep workshop",
+      "stakes": "subscribing because fear, authority, scarcity, and neighbor uptake stack into instant consent",
+      "format": "postmortem",
+      "requiredBeat": "the resident revisits the order page later and sorts the cues from the actual supply checklist before canceling extras",
+      "firstImage": "a flashlight beam across a printed hurricane checklist",
+      "mustInclude": ["supply checklist", "neighbor uptake", "subscription extras"],
+      "mustAvoid": ["pure emergency preparedness lesson"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify multiple influence cues in one decision", "avoid collapsing synthesis into a principle list", "choose a pause that preserves useful shortcuts while restoring scrutiny", "evaluate which cue most deserves inspection when time is short"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take one decision that feels almost settled and write the cues making it feel settled; then choose the one fact you still need before consent is yours.",
+  "readingTimeMinutes": 12
+}

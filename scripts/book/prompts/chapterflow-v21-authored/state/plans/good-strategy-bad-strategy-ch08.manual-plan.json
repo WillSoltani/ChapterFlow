@@ -1,0 +1,195 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch08",
+  "number": 8,
+  "title": "Proximate Objectives",
+  "coreMove": "Translate uncertainty into a near-enough objective people can act on now.",
+  "sourcePressure": "Proximate objectives give concentrated force a credible next target under uncertainty: close enough to coordinate action without pretending the whole path is known. Frozen source has no chapter-specific named figure, study, place, or event beyond the visible title/support notes; use conceptual source terms only and do not invent anchors.",
+  "chapterSpecificMisunderstanding": "A proximate objective is just a quarterly goal or easier milestone.",
+  "sourceAlignmentTerms": [
+    "proximate objective",
+    "near-term direction",
+    "uncertainty",
+    "credible next aim",
+    "concentrated action",
+    "guided action",
+    "practical target"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of Proximate Objectives",
+      "The plan looked impressive because... repeated hook shell",
+      "any hook that starts with Strategy is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter"
+    ],
+    "tryThisNow": [
+      "Write down your top three goals",
+      "Set a timer and reflect",
+      "Ask yourself what matters most"
+    ],
+    "examples": [
+      "conference room deck review",
+      "whiteboard prioritization session",
+      "coffee shop founder scene",
+      "generic classroom group project"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Juliette",
+      "domain": "charter school setting a ninety-day attendance objective",
+      "audience": "a reader facing charter school setting a ninety-day attendance objective",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Juliette moves one concrete constraint to the center of the table and crosses out every action that does not address it using attendance ledger so the lesson happens as a visible action.",
+      "firstImage": "The attendance ledger sits where the laptop was supposed to go",
+      "mustInclude": [
+        "attendance ledger",
+        "bus pass envelopes",
+        "family call list"
+      ],
+      "mustAvoid": [
+        "generic attendance objective advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "cybersecurity team choosing the next exposed system",
+      "audience": "a reader facing cybersecurity team choosing the next exposed system",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Henrik asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using asset inventory so the lesson happens as a visible action.",
+      "firstImage": "\"Show me which part this fixes,\" Henrik says",
+      "mustInclude": [
+        "asset inventory",
+        "patch window",
+        "risk heat map"
+      ],
+      "mustAvoid": [
+        "generic exposed system advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "restaurant group stabilizing one lunch service lane",
+      "audience": "a reader facing restaurant group stabilizing one lunch service lane",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chiara uses the artifact to expose the hidden constraint before anyone proposes another initiative using prep rail diagram so the lesson happens as a visible action.",
+      "firstImage": "The room smells faintly of toner and rain-soaked coats",
+      "mustInclude": [
+        "prep rail diagram",
+        "ticket printer",
+        "line timer"
+      ],
+      "mustAvoid": [
+        "generic service lane advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "public health unit targeting one vaccination bottleneck",
+      "audience": "a reader facing public health unit targeting one vaccination bottleneck",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Javier turns a vague goal into a visible choice by marking the one place effort will land using clinic freezer log so the lesson happens as a visible action.",
+      "firstImage": "You can see the weak spot before anyone names it",
+      "mustInclude": [
+        "clinic freezer log",
+        "school calendar",
+        "dose shipment"
+      ],
+      "mustAvoid": [
+        "generic vaccination bottleneck advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "architecture firm defining a permit-ready prototype",
+      "audience": "a reader facing architecture firm defining a permit-ready prototype",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lin tests the proposed move against the object or record that reveals whether it fits the real problem using permit comments so the lesson happens as a visible action.",
+      "firstImage": "It took Lin three weeks to stop trusting the clean version of the plan",
+      "mustInclude": [
+        "permit comments",
+        "model photo",
+        "site survey"
+      ],
+      "mustAvoid": [
+        "generic permit-ready prototype advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "sports club choosing a reachable promotion target",
+      "audience": "a reader facing sports club choosing a reachable promotion target",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Andrew stops the meeting and rearranges the sequence of work so the strategic move becomes visible using league table so the lesson happens as a visible action.",
+      "firstImage": "What changes when the constraint is placed in the open?",
+      "mustInclude": [
+        "league table",
+        "training bibs",
+        "fixture list"
+      ],
+      "mustAvoid": [
+        "generic promotion target advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish proximate objective from its generic imitation in a new scenario",
+      "choose the action that performs translate uncertainty into a near-enough objective people can act on now. rather than merely describing it",
+      "diagnose when OKR mechanics is pulling the scenario off-course"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, write the current decision as one obstacle, one chosen response, and one action that would visibly test proximate objective in your actual situation.",
+  "readingTimeMinutes": 10,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -2,7 +2,7 @@
   "bookId": "you-cant-hurt-me",
   "title": "Can't Hurt Me: Master Your Mind and Defy the Odds",
   "author": "David Goggins",
-  "promotedAt": "2026-05-11T21:07:49.677Z",
+  "promotedAt": "2026-05-13T20:34:56.318Z",
   "chapterCount": 11,
   "shipGate": {
     "perChapter": [
@@ -11,14 +11,7 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"a torn manila file\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 2,
@@ -30,7 +23,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"a fogged bathroom mirror\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"racist hostility school trouble\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -39,14 +32,7 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"a stack of wet\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 4,
@@ -58,7 +44,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"a dripping stopwatch on\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"shoulders the next plank\" appears in both fastRead and fullRead — vary one of them"
           }
         ]
       },
@@ -72,7 +58,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"cold rain ticking on\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"with the exact place\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -86,7 +72,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"a medal ribbon tangled\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"the san diego 100\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -100,7 +86,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"a race map taped\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"before true necessity the\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -109,42 +95,21 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"a dull pencil beside\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 9,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"a clean uniform hanging\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 10,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"a cracked phone screen\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 11,
@@ -156,7 +121,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"a blank index card\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"reconciliation with a brother\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       }
@@ -179,7 +144,23 @@
       "totalQuizQuestions": 99,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "you-cant-hurt-me",
+        "chapterCount": 11,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

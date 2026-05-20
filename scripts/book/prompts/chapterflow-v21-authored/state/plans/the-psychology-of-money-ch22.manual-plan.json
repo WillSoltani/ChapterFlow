@@ -1,0 +1,200 @@
+{
+  "chapterId": "the-psychology-of-money-ch22",
+  "number": 22,
+  "title": "Postscript: A Brief History of Why the U.S. Consumer Thinks the Way They Do",
+  "coreMove": "Treat today's money defaults as historical inheritances rather than neutral common sense.",
+  "sourcePressure": "Postwar U.S. policy, housing, rates, demobilization, borrowing, and consumer demand shaped behaviors that later felt normal.",
+  "chapterSpecificMisunderstanding": "Turning history into trivia instead of using it to question defaults.",
+  "sourceAlignmentTerms": [
+    "postwar history",
+    "housing",
+    "credit",
+    "consumer demand",
+    "policy choices",
+    "defaults"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Postscript: A Brief History of Why the U.S. Consumer Thinks the Way They Do with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Postscript: A Brief History of Why the U.S. Consumer Thinks the Way They Do to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the postwar history move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of postwar history and housing"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a postwar suburb museum exhibit explaining why a mortgage came to feel like adulthood",
+      "audience": "a curator turning policy history into present-day self-awareness",
+      "stakes": "visitors may mistake inherited housing norms for timeless common sense",
+      "format": "vignette",
+      "requiredBeat": "the curator places a GI loan brochure beside a modern open-house flyer and asks what became normal",
+      "firstImage": "a glass case holding a 1940s loan brochure and a new subdivision flyer",
+      "mustInclude": [
+        "loan brochure",
+        "open-house flyer",
+        "policy caption"
+      ],
+      "mustAvoid": [
+        "nostalgia exhibit"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a credit counselor helping clients question the normality of revolving balances from a file-box timeline",
+      "audience": "a counselor connecting personal shame to historical credit availability",
+      "stakes": "clients may blame only themselves for behavior designed into the system",
+      "format": "dialogue",
+      "requiredBeat": "she maps when store cards entered the household before discussing today's balance",
+      "firstImage": "a portable file box of store-card statements sorted by year",
+      "mustInclude": [
+        "store-card statements",
+        "timeline cards",
+        "balance plan"
+      ],
+      "mustAvoid": [
+        "debt shame lecture",
+        "kitchen bill shell"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a housing reporter covering bidding wars without treating them as natural law",
+      "audience": "a journalist tracing low rates, zoning, and supply to buyer psychology",
+      "stakes": "readers may internalize panic buying as personal failure or destiny",
+      "format": "postmortem",
+      "requiredBeat": "the reporter annotates one bidding war with the policies and rate conditions that shaped it",
+      "firstImage": "a marked-up listing sheet with twelve crossed-out offers",
+      "mustInclude": [
+        "listing sheet",
+        "rate chart",
+        "zoning note"
+      ],
+      "mustAvoid": [
+        "housing market hot take"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a high school economics teacher using a library media cart to compare consumer optimism across generations",
+      "audience": "a teacher making history change how students read today's defaults",
+      "stakes": "students may think current borrowing norms are simply human nature",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks students to predict credit use before and after policy changes, then reveals the timeline",
+      "firstImage": "a library media cart holding a blank postwar timeline with covered dates",
+      "mustInclude": [
+        "postwar timeline",
+        "covered dates",
+        "credit-use chart"
+      ],
+      "mustAvoid": [
+        "dry history lecture",
+        "school lecture shell"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a bank product team reviewing why buy-now-pay-later feels normal to young customers",
+      "audience": "a product lead testing whether design exploits inherited consumer habits",
+      "stakes": "a smooth product may deepen defaults nobody chose deliberately",
+      "format": "decision_point",
+      "requiredBeat": "the team labels each checkout choice as convenience, pressure, or historical habit before launch",
+      "firstImage": "a checkout prototype with payment buttons arranged in a row",
+      "mustInclude": [
+        "checkout prototype",
+        "choice labels",
+        "launch checklist"
+      ],
+      "mustAvoid": [
+        "fintech hype"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a family archive project at a community history day connecting ration books, mortgage papers, and a teen credit card offer",
+      "audience": "a family using history to examine defaults without blame",
+      "stakes": "money habits repeat when nobody sees where they came from",
+      "format": "before_after",
+      "requiredBeat": "they lay three generations of documents in order and identify which habits were inherited rather than chosen",
+      "firstImage": "a folding table at a community archive day covered with ration books, mortgage papers, and a card offer",
+      "mustInclude": [
+        "ration books",
+        "mortgage papers",
+        "card offer"
+      ],
+      "mustAvoid": [
+        "family nostalgia",
+        "home-table budgeting shell"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: treat today's money defaults as historical inheritances rather than neutral common sense",
+      "distinguish postwar history from nearby but weaker advice such as history lecture",
+      "diagnose when a character is making the common misread: turning history into trivia instead of using it to question defaults.",
+      "evaluate tradeoffs using the chapter-specific pressure around postwar history, housing, credit"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where postwar history is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: treat today's money defaults as historical inheritances rather than neutral common sense.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "United States",
+      "detail": "the package text says U.S. consumer attitudes were shaped by a postwar period of growth, convenience, consumer abundance, and rising living standards",
+      "useIn": "both",
+      "phrasingHint": "In the United States, postwar abundance taught a generation what ordinary life was supposed to include."
+    },
+    {
+      "kind": "event",
+      "name": "postwar period",
+      "detail": "the package text frames the postwar period as a historical environment that trained expectations around comfort, borrowing, and consumer abundance",
+      "useIn": "fullRead",
+      "phrasingHint": "The postwar period did not just change household balance sheets; it changed what felt normal to want."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

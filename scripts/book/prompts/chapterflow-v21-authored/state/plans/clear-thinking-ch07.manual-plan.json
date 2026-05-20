@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch07",
+  "number": 7,
+  "title": "Self-Accountability",
+  "coreMove": "Move from what happened to what part you own while the moment is still changeable.",
+  "sourcePressure": "The first strength interrupts autopilot by owning choice, error, contribution, and responsibility before blame or excuse can take over.",
+  "chapterSpecificMisunderstanding": "Making accountability moralistic or blame-heavy instead of operational for better judgment.",
+  "sourceAlignmentTerms": [
+    "self-accountability",
+    "autopilot",
+    "ownership",
+    "responsibility",
+    "mirror test",
+    "excuse",
+    "contribution"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "self-accountability interrupts autopilot",
+      "detail": "Farnam Street podcast support gives this as the cleanest lawful mechanism for the chapter",
+      "useIn": "both",
+      "phrasingHint": "Self-accountability interrupts autopilot by putting your contribution back inside reach."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for self-accountability",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think self-accountability is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivier",
+      "domain": "a community legal clinic",
+      "audience": "a reader facing self-accountability in a concrete community legal clinic decision",
+      "stakes": "whether Olivier preserves judgment quality before the situation slides into self-blame",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Olivier performs the chapter move by setting the call bell beside the triage tag, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the triage tag in the community legal clinic",
+      "mustInclude": [
+        "call bell",
+        "triage tag"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "self-blame",
+        "reusing a previous chapter's community legal clinic shell"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "a construction site handoff",
+      "audience": "a reader facing self-accountability in a concrete construction site handoff decision",
+      "stakes": "whether Hugo preserves judgment quality before the situation slides into self-blame",
+      "format": "thought_experiment",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hugo performs the chapter move by setting the track diagram beside the delay code, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the track diagram lying beside the delay code in the construction site handoff",
+      "mustInclude": [
+        "track diagram",
+        "delay code"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "self-blame",
+        "reusing a previous chapter's construction site handoff shell"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "a pediatric ward discharge desk",
+      "audience": "a reader facing self-accountability in a concrete pediatric ward discharge desk decision",
+      "stakes": "whether Lukas preserves judgment quality before the situation slides into self-blame",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Lukas performs the chapter move by setting the return slips beside the price stickers, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the price stickers in the pediatric ward discharge desk",
+      "mustInclude": [
+        "return slips",
+        "price stickers"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "self-blame",
+        "reusing a previous chapter's pediatric ward discharge desk shell"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "a small manufacturer returns bay",
+      "audience": "a reader facing self-accountability in a concrete small manufacturer returns bay decision",
+      "stakes": "whether Jonas preserves judgment quality before the situation slides into self-blame",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Jonas performs the chapter move by setting the lineup card beside the ice shavings, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the ice shavings in the small manufacturer returns bay",
+      "mustInclude": [
+        "lineup card",
+        "ice shavings"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "self-blame",
+        "reusing a previous chapter's small manufacturer returns bay shell"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "a radio newsroom correction meeting",
+      "audience": "a reader facing self-accountability in a concrete radio newsroom correction meeting decision",
+      "stakes": "whether Niklas preserves judgment quality before the situation slides into self-blame",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Niklas performs the chapter move by setting the permit packet beside the cracked tile, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the permit packet against the counter in the radio newsroom correction meeting",
+      "mustInclude": [
+        "permit packet",
+        "cracked tile"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "self-blame",
+        "reusing a previous chapter's radio newsroom correction meeting shell"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "a family care schedule",
+      "audience": "a reader facing self-accountability in a concrete family care schedule decision",
+      "stakes": "whether Henrik preserves judgment quality before the situation slides into self-blame",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Henrik performs the chapter move by setting the speakerphone beside the probate folder, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the family care schedule as Henrik reaches for the speakerphone",
+      "mustInclude": [
+        "speakerphone",
+        "probate folder"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "self-blame",
+        "reusing a previous chapter's family care schedule shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Move from what happened to what part you own while the moment is still changeable.",
+      "detect the weak generic version: Making accountability moralistic or blame-heavy instead of operational for better judgment.",
+      "distinguish self-accountability from nearby drift into self-blame"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where self-accountability is active, then write the exact next visible move that would perform this chapter's move: move from what happened to what part you own while the moment is still changeable.",
+  "readingTimeMinutes": 12
+}

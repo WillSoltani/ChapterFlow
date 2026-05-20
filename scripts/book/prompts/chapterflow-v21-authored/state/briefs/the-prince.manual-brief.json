@@ -1,0 +1,111 @@
+{
+  "bookId": "the-prince",
+  "title": "The Prince",
+  "author": "Niccolo Machiavelli",
+  "thesisParagraph": "The Prince argues that political power has to be read before it can be safely used. A ruler must first identify the kind of state he has, how it was acquired, whose arms sustain it, whose memories threaten it, and which groups can make or unmake him. The book's hard edge is not a general permission slip for cruelty. It is a repeated demand to replace inherited moral pictures with the actual pressures of rule: new subjects resent burdens, old liberties survive in memory, mercenaries sell courage until danger arrives, nobles and people want different things, appearances matter because most people judge at a distance, and fortune only favors leaders who have prepared their own foundations.",
+  "coreIdeas": [
+    {
+      "name": "Classify Before Acting",
+      "oneSentence": "A state cannot be governed well until the ruler knows what kind of possession it is and how it came into his hands.",
+      "mentalMove": "Name the political structure, origin, habits, and military basis before choosing a policy.",
+      "sourceAnchors": ["ch01.source", "ch02.source", "ch03.source"]
+    },
+    {
+      "name": "New Rule Creates Injuries",
+      "oneSentence": "New acquisitions create enemies among the injured and disappoint the friends who expected too much.",
+      "mentalMove": "Treat conquest as the start of a hostile transition, not as the end of the problem.",
+      "sourceAnchors": ["ch03.source"]
+    },
+    {
+      "name": "Institutions Outlast Victory",
+      "oneSentence": "Centralized kingdoms, baronial kingdoms, hereditary states, and free cities each resist rule in different ways.",
+      "mentalMove": "Ask what loyalties and memories remain after the army leaves the field.",
+      "sourceAnchors": ["ch04.source", "ch05.source"]
+    },
+    {
+      "name": "Foundations Beat Windfalls",
+      "oneSentence": "Power gained by fortune or other people's arms must be rebuilt on one's own forces, laws, allies, and reputation.",
+      "mentalMove": "Convert a lucky rise into durable control before the patron, army, or moment disappears.",
+      "sourceAnchors": ["ch06.source", "ch07.source"]
+    },
+    {
+      "name": "Borrowed Force Is Captivity",
+      "oneSentence": "Mercenaries and auxiliaries promise strength while leaving the prince exposed to cowardice, ambition, or dependence.",
+      "mentalMove": "Choose slower owned capacity over quick military help that another person can turn against you.",
+      "sourceAnchors": ["ch12.source", "ch13.source", "ch14.source"]
+    },
+    {
+      "name": "Necessity Over Imagined Virtue",
+      "oneSentence": "A ruler who preserves every praised quality at all times will be destroyed by people who do not act that way.",
+      "mentalMove": "Separate reputation from operational necessity, then avoid only the vices that would lose the state.",
+      "sourceAnchors": ["ch15.source", "ch16.source", "ch17.source", "ch18.source"]
+    },
+    {
+      "name": "Avoid Hatred And Contempt",
+      "oneSentence": "Fear, severity, thrift, and deception can be survivable; hatred and contempt invite conspiracy and collapse.",
+      "mentalMove": "Track which actions touch property, honor, dignity, decisiveness, and popular esteem.",
+      "sourceAnchors": ["ch17.source", "ch18.source", "ch19.source", "ch20.source"]
+    },
+    {
+      "name": "Manage Advice And Instruments",
+      "oneSentence": "The quality of ministers, advisers, and counsel reveals and tests the ruler's own judgment.",
+      "mentalMove": "Choose people whose interests are bound to the state, then control when truth is invited and how decisions close.",
+      "sourceAnchors": ["ch22.source", "ch23.source"]
+    },
+    {
+      "name": "Do Not Blame Fortune For Neglect",
+      "oneSentence": "Fortune matters, but ruin often comes from failing to prepare arms, barriers, alliances, and public confidence while times are calm.",
+      "mentalMove": "Build the defenses that make a changeable world less decisive before the flood arrives.",
+      "sourceAnchors": ["ch24.source", "ch25.source", "ch26.source"]
+    }
+  ],
+  "targetReader": "A reader who wants to understand political realism, leadership under constraint, and the mechanics of state power without turning the book into either villain worship or generic executive advice. They need each chapter to teach a specific diagnostic move: what kind of power is in front of you, what support it rests on, what danger is hidden in that support, and what action preserves authority without confusing reputation for substance.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete political pressure before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices a ruler, founder, adviser, or modern institution would recognize",
+      "separate surface reputation from the mechanism that actually preserves power",
+      "make every example show a specific dependency, faction, memory, army, or public judgment"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic self-improvement coaching language",
+      "no glamorizing cruelty as toughness",
+      "no flattening every chapter into be pragmatic or be ruthless"
+    ]
+  },
+  "voiceSpecimens": [
+    "Before you decide what to do, ask what kind of possession is actually in your hand.",
+    "A city that remembers freedom does not become quiet because your tax receipt says it belongs to you.",
+    "Borrowed soldiers can win a gate for you and still leave you without a state.",
+    "The danger is not that people dislike every hard act. The danger is that they see you as weak, grabby, or safe to betray.",
+    "A court full of advice is useless if the ruler cannot tell truth from appetite.",
+    "Fortune may send the flood, but the missing wall is still your responsibility.",
+    "Do not call a lucky opening a foundation. A foundation is what remains when the helper is gone."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter shows that leaders must be strategic in a complex world.",
+    "Machiavelli teaches us that sometimes you have to be ruthless to succeed.",
+    "Most people think morality matters, but actually power is what counts.",
+    "As we saw in the previous chapter, princes need to make smart decisions.",
+    "In today's fast-paced environment, every leader needs political savvy.",
+    "The lesson is simple: do whatever it takes."
+  ],
+  "teachingArc": "The teaching arc begins with classification: hereditary, mixed, centralized, free, new, civil, ecclesiastical. It then tests the foundations beneath those forms: arms, allies, citizens, nobles, fortifications, ministers, counsel, and public esteem. The middle chapters harden the reader's judgment about owned force and necessity. The final chapters turn that judgment outward toward reputation, alliances, advisers, fortune, and Italy's need for a new order. Across the book, each chapter should add a distinct diagnostic instrument, not another version of the same ruthless-leader lesson.",
+  "forbiddenMoves": [
+    "Do not turn the book into generic leadership, confidence, productivity, or personal brand advice.",
+    "Do not treat cruelty, deception, or fear as inherently admirable; tie each to the precise source condition where Machiavelli says it works or fails.",
+    "Do not reuse Cesare Borgia as a decorative example outside the chapters where his mechanism matters.",
+    "Do not blur mercenaries, auxiliaries, mixed arms, and one's own arms into the same military outsourcing point.",
+    "Do not make every chapter about appearances; some chapters are about structure, memory, armies, counsel, or fortune.",
+    "Do not write free cities, hereditary states, and civil principalities as if they pose the same problem.",
+    "Do not let modern transfer examples become corporate office politics unless the statecraft mechanism is still visible.",
+    "Do not quote or imitate the source's misogynistic fortune passage; teach the adaptable-timing point without reproducing that frame."
+  ]
+}

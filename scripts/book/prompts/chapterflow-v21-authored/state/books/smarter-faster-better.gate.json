@@ -2,7 +2,7 @@
   "bookId": "smarter-faster-better",
   "title": "Smarter Faster Better",
   "author": "Charles Duhigg",
-  "promotedAt": "2026-05-11T18:49:29.110Z",
+  "promotedAt": "2026-05-14T06:41:59.763Z",
   "chapterCount": 8,
   "shipGate": {
     "perChapter": [
@@ -10,43 +10,14 @@
         "chapter": 1,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Keon drops eight laminated scripts beside a knot of headsets at 11:18 a.m. Monday in Training Room B, sure the new hires will start calls faster if the opening line is decided for them. The first pra…"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 2 paragraphs open with \"that is\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"that the next move\" appears in both fastRead and fullRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 2,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[5]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Dunja watches pager light flicker on a black monitor at 10:26 p.m. Friday, six faces stacked on the video bridge and the status doc glowing green. She predicts the room is aligned because every updat…"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
@@ -59,7 +30,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"the loudest cue is\" appears in both fastRead and fullRead — vary one of them"
+            "message": "breakdown: \"the room but it\" appears in both fastRead and fullRead — vary one of them"
           }
         ]
       },
@@ -67,28 +38,13 @@
         "chapter": 4,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Odelia uncaps a purple dry-erase marker at 8:08 a.m. in the east-wing casework room, yesterday's discharge board still crowded with red initials and bed numbers. The administrator has said, improve f…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Kadir clicks a stopwatch at 5:12 p.m. Tuesday beside lane 1, rain darkening the lanyard and cinders sticking to his shoes. \"I just need to get faster,\" the miler says, hands on knees. Kadir points to…"
-          }
-        ],
+        "majors": [],
         "minors": [
           {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"eight safe discharges before\" appears in both fastRead and fullRead — vary one of them"
+            "message": "breakdown: \"sharpen judgment not replace\" appears in both fastRead and fullRead — vary one of them"
           }
         ]
       },
@@ -96,35 +52,13 @@
         "chapter": 5,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Aitor crouches by a bent pallet tag at 9:22 a.m. in aisle K-14, the handheld scanner chirping error after error while the morning route map sits folded in his back pocket. The pickers are detouring a…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Tuvia wipes chalk dust off a laser level at 1:07 p.m. Thursday on the fourth-floor buildout, the drywall cart rattling near the elevator. \"Partition 4C is bowed,\" a carpenter says, not quite meeting …"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Domen pins a soaked grid map to corkboard at 6:14 p.m. in the fairground command trailer, rain ticking on the roof and radios hissing over muddy boots. He predicts the original ravine plan will hold …"
-          }
-        ],
+        "majors": [],
         "minors": [
           {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"a manager gets the\" appears in both fastRead and fullRead — vary one of them"
+            "message": "breakdown: \"receives the truth the\" appears in both fastRead and fullRead — vary one of them"
           }
         ]
       },
@@ -132,35 +66,13 @@
         "chapter": 6,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Boaz rests his clipboard on a wet cardboard box at 4:06 a.m. by stall 17 of the wholesale market, strawberry flats breathing cold sugar under the scale. The weekend forecast says forty percent hard r…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Reva pulls warm printer paper from the lab machine at 2:33 a.m. Wednesday beside bed 5, the curtain half open and the patient's shoes tucked under a chair. \"Still kidney stone?\" the resident asks. Re…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Valya rubs dust from the lineup card at 11:58 a.m. Saturday beside field 3, the tying run still stranded on second and parents muttering behind the fence. She asks the players to predict whether the …"
-          }
-        ],
+        "majors": [],
         "minors": [
           {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"what would make you\" appears in both fastRead and fullRead — vary one of them"
+            "message": "breakdown: \"evidence changes the field\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -168,41 +80,13 @@
         "chapter": 7,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Tavi loops an orange extension cord over a pump cart at 5:38 a.m. in the basement equipment cage, the elevator doors clanking behind him. He watched a pit-crew video last night and sketched the same …"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Mouna taps cold butter under a rolling pin at 4:22 a.m. Thursday on the marble pastry bench, flour dusting the black cuffs of her coat. \"It's from a pleating video,\" the apprentice says, folding doug…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Zulema pushes plastic gears into a tray at 8:48 p.m. Monday in the prototype shop, a cold burrito leaking foil beside the drill press. The trade-show demo is in thirty-six hours. She predicts they mu…"
-          }
-        ],
+        "majors": [],
         "minors": [
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 2 paragraphs open with \"innovation is\" — vary paragraph openers"
-          },
           {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"a borrowed idea is\" appears in both deepRead and fullRead — vary one of them"
+            "message": "breakdown: \"until the new constraint\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -210,41 +94,19 @@
         "chapter": 8,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Livia smooths stapled fluency sheets at 3:18 p.m. Thursday on the kidney table, a green pencil rolling against her coffee mug. \"First student, ninety-two words. Second, eighty-one. Third, seventy-eig…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[5]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Risto wipes condensation from a tomato tray at 11:31 p.m. Sunday in the greenhouse lab, nutrient meters blinking beside a spreadsheet with 1,842 rows. He can attach the file and prove he measured eve…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A school team can list every student's math score, but no one can say what instruction changes Monday. What is missing?"
-          }
-        ],
+        "majors": [],
         "minors": [
           {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"and what action follows\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"the room wins when\" appears in both fastRead and fullRead — vary one of them"
           }
         ]
       }
     ],
     "totalBlockers": 0,
-    "totalMajors": 16
+    "totalMajors": 0
   },
   "bookGate": {
     "bookId": "smarter-faster-better",
@@ -261,7 +123,24 @@
       "totalQuizQuestions": 72,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "smarter-faster-better",
+        "chapterCount": 8,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

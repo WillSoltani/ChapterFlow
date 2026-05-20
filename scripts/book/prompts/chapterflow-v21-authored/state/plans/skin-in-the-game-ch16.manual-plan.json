@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch16",
+  "number": 16,
+  "title": "No Worship Without Skin in the Game",
+  "coreMove": "Look for what the believer gives up or risks before treating belief as real commitment.",
+  "sourcePressure": "Belief becomes legible through worship, sacrifice, and cost-bearing practice rather than statements alone.",
+  "chapterSpecificMisunderstanding": "Writing devotional uplift or generic sincerity advice.",
+  "sourceAlignmentTerms": [
+    "worship",
+    "sacrifice",
+    "ritual cost",
+    "belief under exposure",
+    "commitment",
+    "surrender",
+    "revealed faith"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "No Worship Without Skin in the Game",
+      "detail": "The sidecar supports worship as practice under cost or exposure and commitment measured by what is risked or surrendered.",
+      "useIn": "both",
+      "phrasingHint": "Worship becomes evidence when it asks something real from the worshipper, not when it merely decorates a sentence."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "athlete claiming team commitment but skipping the inconvenient volunteer shift",
+      "audience": "coach testing belief through sacrificed time",
+      "stakes": "teammates learn whether the value costs anything",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Claire Ward moves the captaincy vote until the volunteer shift is actually served.",
+      "firstImage": "orange cones stacked before dawn",
+      "mustInclude": [
+        "captaincy vote",
+        "volunteer rota",
+        "attendance sheet"
+      ],
+      "mustAvoid": [
+        "generic sincerity"
+      ]
+    },
+    {
+      "domain": "congregation pledging care for refugees without offering spare rooms or hours",
+      "audience": "organizer distinguishing statement from worshipful cost",
+      "stakes": "families need actual risk and time, not warmth in minutes",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu Roy asks who will put a name beside a night, a ride, or a legal appointment.",
+      "firstImage": "a sign-up sheet on a fellowship table",
+      "mustInclude": [
+        "sign-up sheet",
+        "ride schedule",
+        "legal appointment"
+      ],
+      "mustAvoid": [
+        "devotional uplift"
+      ]
+    },
+    {
+      "domain": "startup declaring customer obsession while refusing refund pain",
+      "audience": "founder measuring belief by money surrendered",
+      "stakes": "customers detect whether values survive a costly correction",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Astrid Nilsen authorizes the refunds before repeating the customer promise.",
+      "firstImage": "refund envelopes lined beside a laptop",
+      "mustInclude": [
+        "refund list",
+        "customer promise",
+        "cash-flow sheet"
+      ],
+      "mustAvoid": [
+        "business values cliché"
+      ]
+    },
+    {
+      "domain": "family saying elder care matters but dodging the hardest visits",
+      "audience": "adult sibling seeing worship as cost-bearing love",
+      "stakes": "care burden falls on one person unless belief becomes schedule",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Daniel Price turns the sentiment thread into named visit blocks and takes the least convenient slot.",
+      "firstImage": "pill boxes sorted under a kitchen light",
+      "mustInclude": [
+        "visit rota",
+        "pill box",
+        "family thread"
+      ],
+      "mustAvoid": [
+        "family guilt trip"
+      ]
+    },
+    {
+      "domain": "environmental club reciting commitments while avoiding the cold cleanup",
+      "audience": "student leader linking belief to bodily inconvenience",
+      "stakes": "the creek stays dirty if commitment has no discomfort",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Yusuf Khan compares the pledge count with the cleanup attendance and changes membership rules.",
+      "firstImage": "mud streaks on a clipboard",
+      "mustInclude": [
+        "pledge list",
+        "cleanup attendance",
+        "membership rule"
+      ],
+      "mustAvoid": [
+        "eco moralizing"
+      ]
+    },
+    {
+      "domain": "executive invoking craft while cutting apprenticeship time",
+      "audience": "operations director asking what craft costs the firm",
+      "stakes": "skill talk is hollow if no margin is surrendered",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Chiara Bianchi restores protected apprentice hours and accepts the lower weekly output.",
+      "firstImage": "wood shavings beside a production chart",
+      "mustInclude": [
+        "apprentice hours",
+        "output chart",
+        "craft statement"
+      ],
+      "mustAvoid": [
+        "nostalgia overlap"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify worship in a new concrete scenario",
+      "choose the action that performs the chapter move: Look for what the believer gives up or risks before treating belief as real commitment.",
+      "separate the chapter's mechanism from the weak misread: Writing devotional uplift or generic sincerity advice.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for No Worship Without Skin in the Game.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,189 @@
+{
+  "chapterId": "peak-ch05",
+  "number": 5,
+  "title": "Principles of Deliberate Practice on the Job",
+  "coreMove": "Carve one repeatable subskill out of live work and install feedback close enough to alter the next attempt.",
+  "sourcePressure": "The chapter transfers deliberate-practice logic into messy workplaces through subskill isolation, designed feedback loops, review habits, and self-diagnosis without pretending work is a clean training field. Frozen sidecar for chapter 5 contains no traceable named figure, study, place, date, or artifact beyond the authors and chapter mechanism; sourceAnchors stays empty rather than inventing one.",
+  "chapterSpecificMisunderstanding": "The weak version says a busy job, annual review, or generic lesson learned meeting is workplace practice.",
+  "sourceAlignmentTerms": [
+    "subskill",
+    "feedback loop",
+    "review habit",
+    "self-diagnosis",
+    "live work",
+    "partial adaptation",
+    "workplace practice"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "dispatcher replay from old Peak draft",
+      "work is practice by itself",
+      "busy calendar as learning"
+    ],
+    "counterintuition": [
+      "experience automatically teaches",
+      "feedback is a performance review",
+      "just make a checklist"
+    ],
+    "tryThisNow": [
+      "ask for feedback at work",
+      "reflect on your day",
+      "improve one work habit"
+    ],
+    "examples": [
+      "sales call opening from old package",
+      "seminar-room teaching debrief from old package",
+      "handoff flaw with chart cart from old package"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "hotel front-desk check-in recovery after double bookings",
+      "audience": "a supervisor who sees apologies as personality rather than a trainable sequence",
+      "stakes": "a guest can leave angry before the room problem is solved",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emily replays one tense check-in, isolates the first apology sentence, and has the clerk practice that line with a new room option before the next guest arrives",
+      "firstImage": "key cards fanned beside a red overbooking alert",
+      "mustInclude": [
+        "overbooking alert",
+        "first apology sentence",
+        "new room option"
+      ],
+      "mustAvoid": [
+        "generic customer-service kindness",
+        "whole-shift review"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "civil-engineering site inspection note quality",
+      "audience": "an inspector whose reports keep missing the decision-relevant measurement",
+      "stakes": "a contractor can keep working from a vague note that should have stopped the pour",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Daniel compares three old inspection notes, circles the missing measurement line, and writes the next site note on a template before leaving the slab",
+      "firstImage": "a concrete slump cone rinsed beside a clipboard",
+      "mustInclude": [
+        "missing measurement",
+        "site-note template",
+        "slab stop decision"
+      ],
+      "mustAvoid": [
+        "generic construction safety",
+        "paperwork complaint"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "public-radio producer interview-question review",
+      "audience": "a producer whose guests keep giving rehearsed answers",
+      "stakes": "the segment loses live discovery because one question type keeps closing the room",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Margaux clips twelve seconds of a flat answer, rewrites only the question opener, and tests the replacement on the next pre-interview call",
+      "firstImage": "audio waveforms glowing above a cold studio fader",
+      "mustInclude": [
+        "twelve-second clip",
+        "question opener",
+        "pre-interview call"
+      ],
+      "mustAvoid": [
+        "generic media creativity",
+        "full episode critique"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "restaurant expeditor ticket-call clarity during dinner rush",
+      "audience": "a line leader whose shouted calls create repeated wrong plates",
+      "stakes": "one allergy modification could get lost in noise",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:36 p.m., Mikkel marks each misheard allergy call on the rail, switches to a fixed call-back phrase, and checks whether the next three tickets come back clean",
+      "firstImage": "order tickets clipped above a heat lamp with one allergy note underlined",
+      "mustInclude": [
+        "call-back phrase",
+        "allergy note",
+        "three-ticket check"
+      ],
+      "mustAvoid": [
+        "chef drama",
+        "generic teamwork"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "library reference-desk question triage",
+      "audience": "a librarian who keeps giving long answers before finding the real need",
+      "stakes": "patrons leave with sources that do not match their assignment",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Catarina save three transcript snippets, notice where she skipped the clarifying question, and script one shorter triage prompt for the next desk hour",
+      "firstImage": "a receipt printer curling search terms beside a library keyboard",
+      "mustInclude": [
+        "transcript snippets",
+        "clarifying question",
+        "triage prompt"
+      ],
+      "mustAvoid": [
+        "generic helpfulness",
+        "school research scene"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "solar-install crew roof-layout handoff",
+      "audience": "a crew lead turning installation errors into a short practice loop",
+      "stakes": "a misplaced rail can waste daylight and damage a roof membrane",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Aman photographs the last bad layout, has the apprentice mark the rail line on a mock shingle board, and compares it with the roof plan before climbing again",
+      "firstImage": "chalk rail lines crossing a black mock shingle board",
+      "mustInclude": [
+        "bad-layout photo",
+        "mock shingle board",
+        "roof plan comparison"
+      ],
+      "mustAvoid": [
+        "generic trade apprenticeship",
+        "safety lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "isolate workplace subskills",
+      "design fast feedback inside live work",
+      "distinguish experience from deliberate review",
+      "choose self-diagnosis when no coach is available"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next repeated work action, name the smallest piece that failed last time. Create one feedback trace: recording, sample, checklist mark, peer note, or before-after comparison.",
+  "readingTimeMinutes": 12
+}

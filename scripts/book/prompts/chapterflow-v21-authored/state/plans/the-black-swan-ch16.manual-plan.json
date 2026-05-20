@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch16",
+  "number": 16,
+  "title": "The Aesthetics of Randomness",
+  "coreMove": "Distrust the pleasure of a beautiful pattern until it earns contact with reality.",
+  "sourcePressure": "The mind beautifies randomness into patterns, stories, and smooth structures because order feels better than noise.",
+  "chapterSpecificMisunderstanding": "Treating taste, elegance, or visual order as automatically deceptive.",
+  "sourceAlignmentTerms": [
+    "aesthetics of randomness",
+    "pattern hunger",
+    "noise",
+    "smooth order",
+    "design",
+    "elegance",
+    "signal",
+    "taste for form"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the aesthetics of randomness",
+      "detail": "the frozen source says people beautify randomness into patterns, stories, and smooth structures because elegance feels satisfying",
+      "useIn": "both",
+      "phrasingHint": "A neat line can win the eye before the evidence has been asked to speak."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "museum attendance analytics",
+      "audience": "a director admiring a smooth seasonal curve",
+      "stakes": "budgeting around a pattern created by one exhibition mix",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the director overlays event changes before trusting the line",
+      "firstImage": "At 8:17 a.m., Emma faces colored attendance lines on a gallery wall.",
+      "mustInclude": [
+        "Emma",
+        "colored attendance lines on a gallery wall",
+        "aesthetics of randomness"
+      ],
+      "mustAvoid": [
+        "Treating taste, elegance, or visual order as automatically deceptive.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "stock-chart newsletter design",
+      "audience": "an editor choosing the prettiest technical pattern",
+      "stakes": "subscribers mistaking symmetry for signal",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the editor requires out-of-sample checks before publishing the chart",
+      "firstImage": "A first line of dialogue lands before the reader sees candlestick charts glowing at midnight.",
+      "mustInclude": [
+        "Charlotte",
+        "candlestick charts glowing at midnight",
+        "pattern hunger"
+      ],
+      "mustAvoid": [
+        "Treating taste, elegance, or visual order as automatically deceptive.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "weather app visualization",
+      "audience": "a product designer smoothing rainfall probabilities",
+      "stakes": "users underpreparing for jagged local storms",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the designer keeps uncertainty bands visible despite messier screens",
+      "firstImage": "Open on the texture, sound, or light of raindrops streaking across a phone display.",
+      "mustInclude": [
+        "Alice",
+        "raindrops streaking across a phone display",
+        "noise"
+      ],
+      "mustAvoid": [
+        "Treating taste, elegance, or visual order as automatically deceptive.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "quality-control dashboard",
+      "audience": "a plant supervisor seeing a graceful defect decline",
+      "stakes": "missing a sampling change that created the shape",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the supervisor annotates process changes on the chart before celebrating",
+      "firstImage": "You are looking at defect tags hanging from a wire rack before the choice becomes abstract.",
+      "mustInclude": [
+        "Beatrice",
+        "defect tags hanging from a wire rack",
+        "smooth order"
+      ],
+      "mustAvoid": [
+        "Treating taste, elegance, or visual order as automatically deceptive.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "academic citation network map",
+      "audience": "a researcher captivated by clean clusters",
+      "stakes": "overclaiming schools of thought from noisy links",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the researcher checks whether the cluster survives alternate thresholds",
+      "firstImage": "It takes Clara several weeks to understand what network nodes projected onto a seminar wall was really showing.",
+      "mustInclude": [
+        "Clara",
+        "network nodes projected onto a seminar wall",
+        "design"
+      ],
+      "mustAvoid": [
+        "Treating taste, elegance, or visual order as automatically deceptive.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "charity impact infographic",
+      "audience": "a fundraiser polishing a rising impact line",
+      "stakes": "donors funding a story made by selective smoothing",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the analyst shows raw monthly variation beside the designed graphic",
+      "firstImage": "foam-board proofs leaning against a desk appears before any human enters the sentence.",
+      "mustInclude": [
+        "Eva",
+        "foam-board proofs leaning against a desk",
+        "elegance"
+      ],
+      "mustAvoid": [
+        "Treating taste, elegance, or visual order as automatically deceptive.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "notice aesthetic pull in analysis",
+      "separate visual elegance from evidence",
+      "challenge patterns that feel satisfying before they prove signal"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one attractive chart and write the test that would make the pattern less pretty but more honest.",
+  "readingTimeMinutes": 12
+}

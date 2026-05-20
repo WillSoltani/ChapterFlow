@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch02",
+  "number": 2,
+  "title": "Attention and Effort",
+  "readingTimeMinutes": 12,
+  "hook": "The pharmacist has two amber vials in her hand, and the easy answer arrives just as her attention thins.",
+  "counterintuition": "Attention is not a moral badge, but a limited capacity. The risky move is treating focus as character, so the better move is to notice when a judgment needs mental work before a fluent answer gets trusted.",
+  "tryThisNow": "Before the next choice that feels obvious, name the cue making it easy. Then write the one effortful check the choice needs before you trust it.",
+  "keyTakeaway": "Effort is a warning light: when a judgment needs scarce attention, protect the mental work before accepting the answer that feels fluent.",
+  "breakdown": {
+    "fastRead": "A pharmacist reaches the last ten prescriptions of the shift. Two drug names look familiar, the label format is clean, and the answer feels routine. That is precisely when attention matters.\n\nEffort is not a moral badge. It is the cost of mental work.\n\nSome judgments run on automatic processing. Others need capacity: holding two numbers in mind, checking a dose against weight, resisting the pull of a familiar label. When attention is loaded, the first fluent answer can feel better than it deserves. The move is to ask, Does this decision need scarce attention right now? If yes, protect the check before trusting the ease.",
+    "deepRead": "A site architect stands in a half-built lobby with rain coming through the east wall. The rolled site blueprint labeled effort is tucked under one arm, and the contractor wants a quick answer on whether the drain line can stay where it is. The visible slope looks acceptable. The catch is that the answer requires holding three elevations in mind while the radio keeps interrupting.\n\nThat is mental work.\n\nAttention has capacity. You can spend it on counting, comparing, inhibiting an impulse, tracking a rule, or monitoring your own uncertainty. You cannot spend the same unit twice. When the room is noisy, the phone is buzzing, and the decision has several moving parts, the mind starts preferring the answer that is easiest to process.\n\nThis is why effort feels unpleasant in a specific way. It is not just annoyance. It is the felt cost of keeping System 2 online. A person doing hard multiplication, a dispatcher comparing codes, or a clinician checking a dose is using a scarce resource. In experiments, even the pupil responds to the load of mental work, widening as effort rises and relaxing when the task releases. The body knows when attention is being spent before the story of the decision catches up.\n\nA fire commander hears that the rear stairwell is clear and wants to send a crew through it. The report sounds clean because it came from the calmest radio voice. But the command post is tracking wind, floor plan, water pressure, and a missing resident. The first answer is fluent because it is simple, not because it is complete.\n\nWhen the judgment is effortful, fluency is suspicious.",
+    "fullRead": "You can feel the difference between a task that runs by itself and a task that makes you hold the world still for a moment. Reading a common word is easy. Comparing two nearly identical drug names is not. Recognizing a friendly face is easy. Checking whether a witness timeline fits three timestamps is not. The second kind of task consumes attention, and attention is limited.\n\nA pharmacy verification bench makes the problem visible. The amber vial tray labeled attention holds two prescriptions whose names differ by only a few letters. The dose for one is ordinary; the dose for the other is dangerous if swapped. A tired verifier may feel the familiar label snap into place and move on. The real question is not whether she cares. The real question is whether the task has enough protected capacity to do the comparison.\n\nWhat are you asking your mind to carry at once?\n\nThat question breaks the usual self-flattery. People like to think they can simply try harder when a decision matters. Sometimes they can. Often the issue is that the environment is taxing the same resource the check requires. Noise, interruption, fatigue, time pressure, emotional arousal, and parallel tasks do not merely make work unpleasant. They reduce the attention available for the one operation that would catch the error.\n\nA submarine simulator shows the cost in sharper relief. The trainee hears a sonar cue, sees a depth reading, and receives a navigation update. The first course correction feels obvious. Then the instructor freezes the run and separates the quick cue from the corrective evidence: current drift, battery status, and the delayed contact report. The first answer was not irrational. It was cheap. The corrected answer needed capacity.\n\nThis is not productivity advice. The goal is not to clear your desk, wake earlier, or become the sort of person who focuses heroically. The goal is to recognize the shape of judgments that need effort. If the answer requires arithmetic, comparison, inhibition, sequencing, or self-monitoring, treat the smooth answer with caution until the scarce mental work has happened.\n\nThere is a limit. Some situations punish delay, and practiced routines exist because attention cannot inspect everything. A paramedic cannot rebuild every protocol from scratch, and a pilot cannot deliberate every switch. Training matters because it moves some operations into reliable automatic processing. But the transfer is never total. The moment a routine decision contains an exception, a near match, a changed rule, or a high-cost reversal, effort comes back into the room.\n\nA bookstore buy desk offers a quieter version. A trainee sees a glossy hardcover in good condition and wants to buy high. The returns clipboard shows three copies already unsold. The glossy cover is fluent; checking the stock count is the effortful part. If the trainee is tired and the queue is long, the easy answer will feel like expertise.\n\nSo make a small rule. When a decision has several pieces and the answer feels fast, ask whether the speed came from real skill or from spared effort. If the check needs attention, give it a protected place: read the two labels aloud, cover the easy cue, stop the radio chatter, or write the comparison before choosing.\n\nAttention is not virtue. It is fuel, and some judgments run out before they look empty."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-katherine-vial",
+      "title": "Katherine catches the vial shortcut",
+      "tags": [
+        "dialogue",
+        "pharmacy",
+        "verification"
+      ],
+      "planSpec": {
+        "domain": "pharmacy verification bench facing a decision distorted by mental work",
+        "audience": "a lead or reviewer who must notice when a judgment requires scarce attention before you trust the first fluent answer while others want the quick answer",
+        "stakes": "the visible call will go wrong unless mental work is separated from the tempting but weaker cue",
+        "format": "dialogue",
+        "requiredBeat": "the scene shows the before call written on the amber vial tray labeled attention, then the after call once the person performs the chapter move instead of trusting the original feeling"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Katherine says, with the amber vial tray labeled attention between two prescriptions. The intern has written ok beside a familiar-looking drug name. \"Read the suffix,\" Katherine says. The queue is backing up, the phone is ringing, and both vials are due in ten minutes. The intern must decide whether the clean label is enough or whether the dose comparison deserves effort before release.",
+      "whatToDo": "Move the vial to the checked side only after reading both drug names aloud and matching dose, patient weight, and indication line by line.",
+      "whyItMatters": "The fluent label saves attention at the exact moment the task requires it. The comparison is mental work, so ease should trigger protection, not release."
+    },
+    {
+      "exampleId": "ch02-ex02-james-blueprint",
+      "title": "James protects the elevation check",
+      "tags": [
+        "decision_point",
+        "architecture",
+        "site"
+      ],
+      "planSpec": {
+        "domain": "architectural site survey facing a decision distorted by mental work",
+        "audience": "a lead or reviewer who must notice when a judgment requires scarce attention before you trust the first fluent answer while others want the quick answer",
+        "stakes": "the visible call will go wrong unless mental work is separated from the tempting but weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist pauses with the rolled site blueprint labeled effort in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable"
+      },
+      "scenario": "The lobby is wet, the contractor is waiting, and the rolled site blueprint labeled effort is softening in James's hand. The drain line looks close enough from where he stands. He is about to approve the placement because the slope reads cleanly to the eye. Then he notices the shortcut: visual slope instead of elevation math. He must decide whether to spend the attention on three measurements before the wall is closed.",
+      "whatToDo": "Say no approval yet, mark the three elevations on the blueprint, and compare them while the crew waits instead of trusting the visual slope.",
+      "whyItMatters": "The eye gives a fluent answer because it drops the load. The real judgment requires holding measurements together, and that scarce attention has to be spent before the decision is safe."
+    },
+    {
+      "exampleId": "ch02-ex03-arthur-command",
+      "title": "Arthur signs the vest twice",
+      "tags": [
+        "predict_reveal",
+        "fire",
+        "command"
+      ],
+      "planSpec": {
+        "domain": "fire command post facing a decision distorted by mental work",
+        "audience": "a lead or reviewer who must notice when a judgment requires scarce attention before you trust the first fluent answer while others want the quick answer",
+        "stakes": "the visible call will go wrong unless mental work is separated from the tempting but weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the reader is asked to imagine signing the incident command vest labeled mental work twice, once from the first impression and once after applying attention, then compare the two commitments"
+      },
+      "scenario": "Which signature would you trust on the incident command vest labeled mental work: the one Arthur makes after the calm radio report, or the one after the aide reads wind shift, water pressure, and missing resident aloud? He first marks send crew for the rear stairwell. Then the extra facts crowd the board. Arthur has to decide whether the second signature still matches the first after attention has carried all three facts.",
+      "whatToDo": "Make the first deployment call explicit, then repeat it only after wind, pressure, and resident status have each been spoken and marked on the board.",
+      "whyItMatters": "A calm radio voice makes one path feel easy. Capacity is the scarce part: the corrected call depends on keeping several live variables in mind together."
+    },
+    {
+      "exampleId": "ch02-ex04-freya-simulator",
+      "title": "Freya separates the sonar cue",
+      "tags": [
+        "postmortem",
+        "simulator",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "submarine simulator facing a decision distorted by mental work",
+        "audience": "a lead or reviewer who must notice when a judgment requires scarce attention before you trust the first fluent answer while others want the quick answer",
+        "stakes": "the visible call will go wrong unless mental work is separated from the tempting but weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the submarine simulator headset labeled capacity, then chooses only after both are visible"
+      },
+      "scenario": "The padded rim of the submarine simulator headset labeled capacity still smells of vinyl when Freya rewinds the failed run. The trainee turned toward the clean sonar cue and missed current drift. On the table, Freya places the sonar cue on the left and the delayed contact report on the right. The team must decide what rule to carry into the next run before another easy cue consumes the attention needed for correction.",
+      "whatToDo": "Teach the trainee to split quick cue from corrective evidence physically on the console, then choose only after both sides have been read.",
+      "whyItMatters": "The first cue was not foolish; it was low effort. The safer course required attention to carry a second piece of evidence that arrived less fluently."
+    },
+    {
+      "exampleId": "ch02-ex05-chloe-buydesk",
+      "title": "Chloe moves the buyback clipboard",
+      "tags": [
+        "before_after",
+        "retail",
+        "books"
+      ],
+      "planSpec": {
+        "domain": "independent bookstore buy desk facing a decision distorted by mental work",
+        "audience": "a lead or reviewer who must notice when a judgment requires scarce attention before you trust the first fluent answer while others want the quick answer",
+        "stakes": "the visible call will go wrong unless mental work is separated from the tempting but weaker cue",
+        "format": "before_after",
+        "requiredBeat": "the trainee must move the returns buyback clipboard labeled pupil response from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence"
+      },
+      "scenario": "You have a returns buyback clipboard labeled pupil response, a customer waiting at the counter, and a clean hardcover from last year's prize list. Chloe wants to offer eight dollars because the resale feels obvious. Before training, she bought on that feeling. After three costly returns, she moves the clipboard from guess to checked only when she can say the stock count and last sale date. She must decide before the customer leaves.",
+      "whatToDo": "Require one sentence before the offer: I checked current stock and last sale date, and the offer still makes sense.",
+      "whyItMatters": "The glossy cover lowers effort and creates a fluent buy signal. Self-monitoring catches when the task needs attention for inventory, not taste."
+    },
+    {
+      "exampleId": "ch02-ex06-anders-frost",
+      "title": "Anders distrusts the bright frost alarm",
+      "tags": [
+        "reflection",
+        "orchard",
+        "weather"
+      ],
+      "planSpec": {
+        "domain": "orchard frost watch facing a decision distorted by mental work",
+        "audience": "a lead or reviewer who must notice when a judgment requires scarce attention before you trust the first fluent answer while others want the quick answer",
+        "stakes": "the visible call will go wrong unless mental work is separated from the tempting but weaker cue",
+        "format": "reflection",
+        "requiredBeat": "the supervisor circles the alluring detail on the frost alarm sensor labeled self-monitoring, crosses it out, and asks for the boring comparison that the chapter says must come first"
+      },
+      "scenario": "It took three passes before Anders saw what the frost alarm sensor labeled self-monitoring had been making too easy. The north block alarm glowed red, and every grower wanted the fans started. The boring comparison was the south block dew point, wind speed, and leaf temperature. Anders circles the red light, crosses it out, and must decide whether attention goes to the glowing alarm or the less dramatic comparison.",
+      "whatToDo": "Check dew point, wind speed, and leaf temperature across blocks before starting the fans, and mark the red alarm as a cue rather than the decision.",
+      "whyItMatters": "A bright signal captures attention but may not deserve it. The costly call depends on self-monitoring: noticing where attention went before the comparison was done."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A pharmacist is tired near closing and sees a familiar medication name on a clean label. The dose requires matching patient weight and indication. What should happen before release?",
+        "choices": [
+          "Protect attention for the dose comparison before trusting the fluent label.",
+          "Trust the familiar label because repeated work trains quick recognition.",
+          "Release now and audit the tray at the end of the shift."
+        ],
+        "correctIndex": 0,
+        "explanation": "The familiar label is easy to process, but the dose check needs scarce attention now. Waiting until later misses the moment of risk. Quick recognition may help, but it cannot replace the weight and indication comparison.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An architect on a noisy job site feels a drain slope is acceptable by sight. Approval requires comparing three elevations while the crew waits. What is the best correction?",
+        "choices": [
+          "Approve by sight because delays create their own cost.",
+          "Do the elevation comparison before approving, even if the visual read feels obvious.",
+          "Ask the crew for a vote so attention is distributed across more people."
+        ],
+        "correctIndex": 1,
+        "explanation": "The visual read saves effort, but the real call requires mental work with measurements. Delay cost matters, yet a closed wall is costlier if wrong. A vote spreads opinion, not necessarily attention to the needed comparison.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A fire commander hears a calm radio report that one stairwell is clear while also tracking wind shift, water pressure, and a missing resident. What makes the clear-stairwell report risky?",
+        "choices": [
+          "Calm voices are generally less accurate during emergencies.",
+          "Emergency decisions should never rely on radio reports.",
+          "It is simple and fluent while the actual deployment decision needs capacity for several variables."
+        ],
+        "correctIndex": 2,
+        "explanation": "The calm report may be accurate, but its fluency can dominate a capacity-heavy decision. The issue is not voice quality or radio distrust. The issue is whether attention has carried all relevant variables before endorsement.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A bookstore buyer wants to pay high for a glossy hardcover because it looks like an easy resale. The stock system shows three unsold copies. Which move fits attention and effort best?",
+        "choices": [
+          "Check stock count and last sale date before making the offer.",
+          "Trust the buyer's taste because taste is the key skill in used books.",
+          "Refuse all glossy hardcovers to avoid being fooled by presentation."
+        ],
+        "correctIndex": 0,
+        "explanation": "The glossy cue lowers effort and feels like sellability. Checking stock and last sale date spends attention on the actual constraint. Trusting taste skips the needed data; refusing all glossy books turns a warning into a crude rule.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A trainee in a submarine simulator turns toward a clean sonar cue and misses delayed current information. In the debrief, what should the instructor emphasize?",
+        "choices": [
+          "The sonar cue was useless because it arrived too easily.",
+          "The trainee needed to separate the quick cue from the corrective evidence and spend attention on both.",
+          "The trainee should memorize more cues so future decisions require less checking."
+        ],
+        "correctIndex": 1,
+        "explanation": "The sonar cue may contain signal, but the correction required capacity for delayed evidence. Calling the cue useless overcorrects. Memorizing more cues helps only if exceptions still receive attention when they appear.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A supervisor says, \"If people cared more, they would pay better attention.\" Which response is most faithful to the mechanism here?",
+        "choices": [
+          "Attention is mainly a moral choice, so care is the central fix.",
+          "Attention cannot be managed, so procedures are pointless.",
+          "Attention is limited capacity; care helps only if the task gets enough protected mental work."
+        ],
+        "correctIndex": 2,
+        "explanation": "The point is capacity, not virtue. Care may motivate a check, but it does not create unlimited attention under load. Procedures matter because they protect the specific mental work a fluent answer would otherwise skip.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "An orchard manager sees one red frost alarm and wants to start expensive fans. Dew point, wind, and leaf temperature across blocks are available. What should guide the decision?",
+        "choices": [
+          "The cross-block comparison, because the judgment requires attention beyond the vivid cue.",
+          "The red alarm, because vivid signals deserve priority.",
+          "The grower group chat, because many impressions reduce individual bias."
+        ],
+        "correctIndex": 0,
+        "explanation": "The alarm captures attention, but the fan decision depends on a comparison that needs mental work. The group chat can amplify the same cue. The cross-block data check directs attention to the variables that decide cost and risk.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A claims adjuster has twenty files left and a case summary that reads cleanly. The policy exception table is dense but decisive. Which procedure is most defensible?",
+        "choices": [
+          "Use the clean summary first because summaries exist to conserve effort.",
+          "Read the dense exception table before accepting the clean summary as the answer.",
+          "Skip the file until tomorrow because tired judgment is always invalid."
+        ],
+        "correctIndex": 1,
+        "explanation": "The dense table is the effortful part that controls the outcome. The summary may help orient the adjuster, but trusting it first lets ease replace capacity. Skipping every tired file is too broad; the needed step is protected attention.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A lab lead notices her team makes more sample-label mistakes when interruptions rise, even though everyone is trying hard. What explanation best fits this pattern?",
+        "choices": [
+          "The team is careless because motivated people do not make attention errors.",
+          "The labels must be poorly designed, since attention errors do not change with load.",
+          "Interruptions consume the same limited attention needed for the label comparison."
+        ],
+        "correctIndex": 2,
+        "explanation": "Interruptions tax the capacity needed to compare labels, so effortful checking weakens despite motivation. Carelessness blames character. Label design may matter, but the load pattern points directly to attention being spent elsewhere.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A decision feels easy, but the check requires comparing two numbers. What warning should go off?",
+      "back": "The task needs attention. Ease may mean the mind has skipped the mental work. Protect the comparison before trusting the answer that arrived fluently.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A noisy room, a ringing phone, and a near-match label collide. What is the scarce resource?",
+      "back": "Attention. The issue is not whether the person cares. The same limited capacity is being pulled by interruptions while the label comparison requires effortful control.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A bright alarm captures everyone's eye, but the costly call depends on three quieter readings. What move comes first?",
+      "back": "Mark the alarm as a cue and run the quieter comparison. Vividness captures attention; it does not prove that attention has been spent on the variables that decide the outcome.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why is \"try harder\" too weak a correction for attention failures?",
+      "back": "Because attention is limited capacity under load. A better correction protects the exact mental work the decision needs: reduce interruption, write the comparison, or force the dense table into view before choosing.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A trainee chooses from a clean cue and misses delayed evidence. What should the debrief retrieve?",
+      "back": "Where the quick cue saved effort and where the delayed evidence required attention. The lesson is not to ignore cues, but to notice when the judgment needs capacity before commitment.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is reading effort as information. When a decision requires arithmetic, comparison, sequencing, inhibition, or self-monitoring, assume it needs protected attention before the easy answer can be trusted.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a decision depends on comparing two similar files, labels, or clauses, then stop incoming messages for five minutes and complete the comparison before giving an answer."
+      },
+      {
+        "context": "health",
+        "plan": "If a clinical or caregiving choice feels routine but includes a dose, timing, or symptom exception, then read that exception aloud before acting."
+      },
+      {
+        "context": "money",
+        "plan": "If a purchase or offer feels obvious because the item looks easy to resell, then check inventory, recent sale price, or replacement cost before naming a number."
+      },
+      {
+        "context": "home",
+        "plan": "If you are deciding while interrupted, then write the two facts the choice turns on and finish those checks before responding to the interruption."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, find one choice that requires a comparison. Before choosing, remove one interruption and write the comparison down. Notice whether the easy answer changes.",
+    "weeklyPractice": "Once a week, review a mistake or near miss. Ask whether the needed check required attention and what else was consuming that capacity at the same time."
+  },
+  "memorableLines": [
+    {
+      "text": "Effort is not a moral badge. It is the cost of mental work.",
+      "location": "breakdown.fastRead",
+      "why": "It separates effort from virtue and makes it a resource question."
+    },
+    {
+      "text": "When the judgment is effortful, fluency is suspicious.",
+      "location": "breakdown.deepRead",
+      "why": "It gives readers a simple trigger for slowing down."
+    },
+    {
+      "text": "Attention is not virtue. It is fuel, and some judgments run out before they look empty.",
+      "location": "breakdown.fullRead",
+      "why": "It makes limited capacity concrete without moralizing."
+    }
+  ]
+}

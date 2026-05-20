@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-lean-startup-ch12",
+  "number": 12,
+  "title": "Innovate",
+  "coreMove": "Design a bounded innovation space where a new idea has enough autonomy to learn and enough accountability to stay honest.",
+  "sourcePressure": "Established organizations need sandboxes, autonomy, protected resources, incentives, protection, and accountability so internal ventures can learn before the core business crushes them.",
+  "chapterSpecificMisunderstanding": "Assuming an innovation program needs only encouragement, budget, or executive slogans.",
+  "sourceAlignmentTerms": [
+    "sandbox",
+    "autonomy",
+    "protected resources",
+    "meaningful incentives",
+    "internal entrepreneurship",
+    "core business",
+    "accountability"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Innovation sandbox",
+      "detail": "the sidecar names sandboxes as a structure that lets new ideas learn",
+      "useIn": "both",
+      "phrasingHint": "A sandbox is not a toy room; it is a boundary that keeps the core business from judging a question before it has evidence."
+    },
+    {
+      "kind": "artifact",
+      "name": "Protected resources",
+      "detail": "the sidecar says resources must be protected for entrepreneurial teams",
+      "useIn": "deepRead",
+      "phrasingHint": "Protected resources buy time for learning, not immunity from proof."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Innovate.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bank internal savings tool",
+      "audience": "corporate venture lead",
+      "stakes": "mature revenue KPIs could kill a learning-stage service",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Kiran negotiates a sandbox with protected test accounts and clear evidence gates",
+      "firstImage": "a mahogany boardroom table with a tiny pilot scorecard",
+      "mustInclude": [
+        "pilot scorecard",
+        "protected accounts",
+        "evidence gate"
+      ],
+      "mustAvoid": [
+        "generic innovate office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "university research commercialization lab",
+      "audience": "technology-transfer office",
+      "stakes": "committee approvals may smother experiments before customers respond",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Petra defines autonomy inside a narrow commercialization sandbox",
+      "firstImage": "a lab bench with patent forms in a blue folder",
+      "mustInclude": [
+        "patent folder",
+        "sandbox charter",
+        "spending cap"
+      ],
+      "mustAvoid": [
+        "generic innovate office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "retail chain store-format experiment",
+      "audience": "innovation director",
+      "stakes": "core-store efficiency metrics may punish exploratory layout tests",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Samuel protects three stores from standard comparison for one learning cycle",
+      "firstImage": "a floor-plan printout spread over shelf tags",
+      "mustInclude": [
+        "three stores",
+        "layout test",
+        "standard KPI waiver"
+      ],
+      "mustAvoid": [
+        "generic innovate office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "public transit mobile ticket pilot",
+      "audience": "agency product team",
+      "stakes": "procurement controls may block fast fare experiments",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Layla secures bounded autonomy for one route and one fare product",
+      "firstImage": "a fare validator taped with a pilot sticker",
+      "mustInclude": [
+        "one route",
+        "pilot sticker",
+        "fare data"
+      ],
+      "mustAvoid": [
+        "generic innovate office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "enterprise AI assistant incubator",
+      "audience": "IT strategy group",
+      "stakes": "incentives may reward demos while legal reviews block real learning",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Mikkel ties incentives to tested workflow adoption inside a guarded sandbox",
+      "firstImage": "a demo laptop beside an access-permission spreadsheet",
+      "mustInclude": [
+        "demo laptop",
+        "permission sheet",
+        "adoption metric"
+      ],
+      "mustAvoid": [
+        "generic innovate office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "hospital home-monitoring venture",
+      "audience": "health-system innovation team",
+      "stakes": "clinical operations may crush a fragile model before patient evidence develops",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Claire protects nurse time while making readmission evidence mandatory",
+      "firstImage": "a remote blood-pressure cuff in a plastic bin",
+      "mustInclude": [
+        "nurse schedule",
+        "patient cohort",
+        "readmission measure"
+      ],
+      "mustAvoid": [
+        "generic innovate office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Innovate from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Design a bounded innovation space where a new idea has enough autonomy to learn and enough accountability to stay honest.",
+      "Diagnose when a team is drifting into the misread: Assuming an innovation program needs only encouragement, budget, or executive slogans."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Design a bounded innovation space where a new idea has enough autonomy to learn and enough accountability to stay honest. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

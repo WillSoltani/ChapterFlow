@@ -1,0 +1,199 @@
+{
+  "chapterId": "getting-things-done-ch07",
+  "number": 7,
+  "title": "Organizing: Setting Up the Right Buckets",
+  "coreMove": "Place each clarified item into the bucket where it can be found and acted on later.",
+  "sourcePressure": "After clarification, each item needs a stable container so decisions do not collapse back into one mixed pile.",
+  "chapterSpecificMisunderstanding": "Building a pretty taxonomy while clarified commitments still compete in one undifferentiated list.",
+  "sourceAlignmentTerms": [
+    "organizing",
+    "buckets",
+    "categories",
+    "calendar",
+    "next actions",
+    "waiting-for",
+    "reference",
+    "someday-maybe"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "right buckets",
+      "detail": "The source sidecar centers the chapter on organizing clarified material into discrete buckets and categories.",
+      "useIn": "both",
+      "phrasingHint": "A bucket earns trust when it tells the item how it will be found again, not when it makes the list look tidy."
+    },
+    {
+      "kind": "artifact",
+      "name": "calendar, next action, waiting-for, reference, someday-maybe",
+      "detail": "The broader workflow source support names these organizational destinations for clarified items.",
+      "useIn": "both",
+      "phrasingHint": "Once the decision is made, calendar, waiting-for, and reference cannot all live in the same swamp."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "a pharmacy inventory office after controlled-substance reconciliation",
+      "audience": "a pharmacy tech sorting clarified follow-ups",
+      "stakes": "a supplier callback could be confused with a legal record or calendar deadline",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The safe door is closed before Laura separates one clarified item into calendar, one into waiting-for, and one into reference.",
+      "firstImage": "a locked safe door beside a reconciliation binder",
+      "mustInclude": [
+        "safe door",
+        "reconciliation binder",
+        "supplier callback"
+      ],
+      "mustAvoid": [
+        "making it about medical compliance only"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "a landscape company planning spring equipment repairs",
+      "audience": "an owner with clarified mower, client, and permit items",
+      "stakes": "a repair appointment could sit beside someday design ideas and vanish",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The smell of cut grass comes through the shop door as Ben moves each clarified card into a real bucket instead of a priority pile.",
+      "firstImage": "a mower blade resting on a workbench",
+      "mustInclude": [
+        "mower blade",
+        "repair card",
+        "permit folder"
+      ],
+      "mustAvoid": [
+        "toolbox clutter as setup scene"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "a regional theatre costume shop after fittings are clarified",
+      "audience": "a costume manager deciding where each known commitment belongs",
+      "stakes": "an ordered zipper could be mistaken for a future design idea",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"That one is waiting-for, not next action,\" Nicolas says, sliding the supplier order out of the sewing notes.",
+      "firstImage": "a brass zipper taped to a costume card",
+      "mustInclude": [
+        "brass zipper",
+        "costume card",
+        "supplier order"
+      ],
+      "mustAvoid": [
+        "reusing alterations capture from ch5"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "a marine conservation nonprofit organizing grant follow-ups",
+      "audience": "a program manager with clarified funder requests and field notes",
+      "stakes": "a reporting date could disappear among reference PDFs",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 2:20 p.m., Astrid decides that the grant reporting date goes on the calendar while the kelp survey PDF goes to reference.",
+      "firstImage": "a kelp survey PDF open beside a grant calendar",
+      "mustInclude": [
+        "kelp survey PDF",
+        "grant calendar",
+        "funder email"
+      ],
+      "mustAvoid": [
+        "inventing research claims"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "a regional bakery commissary coordinating wholesale orders",
+      "audience": "a production scheduler with clarified orders, holds, and recipes",
+      "stakes": "a waiting customer confirmation could be baked into tomorrow’s plan by mistake",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which bucket should hold a croissant count that depends on a hotel buyer’s answer?",
+      "firstImage": "a laminated bake sheet under a cooling rack",
+      "mustInclude": [
+        "bake sheet",
+        "hotel order",
+        "cooling rack"
+      ],
+      "mustAvoid": [
+        "reusing ch1 bakery holiday rush"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "a probate paralegal organizing estate-case reminders",
+      "audience": "a paralegal whose clarified items have different legal meanings",
+      "stakes": "a court filing, a client wait, and a reference document could merge dangerously",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Chiara one misfiled beneficiary email to stop using one master list for calendar duties, waiting-fors, and reference.",
+      "firstImage": "a tabbed estate folder beside a court notice",
+      "mustInclude": [
+        "estate folder",
+        "court notice",
+        "beneficiary email"
+      ],
+      "mustAvoid": [
+        "public defender repeats"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose correct buckets after clarification",
+      "distinguish calendar from next-action lists",
+      "spot mixed-list drift"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take three already-clarified items and place each into exactly one bucket: calendar, next action, waiting-for, reference, or someday-maybe.",
+  "readingTimeMinutes": 12
+}

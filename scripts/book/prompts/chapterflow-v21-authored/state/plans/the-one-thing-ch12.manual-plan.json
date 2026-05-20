@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch12",
+  "number": 12,
+  "title": "The Path to Great Answers",
+  "coreMove": "Push past the first adequate answer by searching seriously for the answer that changes the standard.",
+  "sourcePressure": "Part 2 shifts from asking the question to finding stronger answers through serious search, while avoiding perfectionist delay.",
+  "chapterSpecificMisunderstanding": "Confusing great answers with endless research or perfectionist delay.",
+  "sourceAlignmentTerms": [
+    "great answers",
+    "search",
+    "seriousness",
+    "benchmark",
+    "stretch",
+    "perfectionist delay"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "The Path to Great Answers as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "prosthetics clinic improving socket comfort",
+      "audience": "prosthetist",
+      "stakes": "a teenager may quit running because of pain",
+      "format": "scene",
+      "requiredBeat": "she rejects the standard padding fix and calls a Paralympic technician to benchmark a different socket fit",
+      "firstImage": "a carbon-fiber socket on a bench beside a worn running blade",
+      "mustInclude": [
+        "socket",
+        "running blade",
+        "benchmark notes"
+      ],
+      "mustAvoid": [
+        "generic expert advice"
+      ]
+    },
+    {
+      "domain": "island ferry timetable redesign",
+      "audience": "transport planner",
+      "stakes": "missed medical appointments are rising",
+      "format": "decision_point",
+      "requiredBeat": "he moves beyond adding one ferry and studies three island systems to find the transfer pattern that actually cuts waits",
+      "firstImage": "a ferry timetable covered with tide marks and clinic appointment times",
+      "mustInclude": [
+        "timetable",
+        "clinic tide overlay",
+        "clinic times"
+      ],
+      "mustAvoid": [
+        "generic scheduling improvement"
+      ]
+    },
+    {
+      "domain": "artisan chocolate tempering defect",
+      "audience": "production lead",
+      "stakes": "white bloom is ruining holiday inventory",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts a colder room is enough, then benchmarks a master batch log and discovers the cooling curve standard is higher",
+      "firstImage": "chocolate bars streaked white beside a temperature curve printout",
+      "mustInclude": [
+        "temperature curve",
+        "batch log",
+        "holiday boxes"
+      ],
+      "mustAvoid": [
+        "generic kitchen troubleshooting"
+      ]
+    },
+    {
+      "domain": "city youth violence interruption program",
+      "audience": "program director",
+      "stakes": "one neighborhood pilot is failing",
+      "format": "reflection",
+      "requiredBeat": "he refuses a polished report answer and interviews the best comparable program to find the intake moment they treat differently",
+      "firstImage": "a folding table with incident maps and three unanswered interview calls",
+      "mustInclude": [
+        "incident maps",
+        "interview calls",
+        "pilot report"
+      ],
+      "mustAvoid": [
+        "generic nonprofit best practices"
+      ]
+    },
+    {
+      "domain": "rare plant propagation lab",
+      "audience": "horticulturist",
+      "stakes": "only two seedlings survived the last trial",
+      "format": "postmortem",
+      "requiredBeat": "she sees the adequate answer was more misting, while the great answer required comparing germination protocols from a specialist archive",
+      "firstImage": "two surviving seedlings under a humidity dome with archive pages nearby",
+      "mustInclude": [
+        "humidity dome",
+        "archive pages",
+        "seed tray"
+      ],
+      "mustAvoid": [
+        "generic lab persistence"
+      ]
+    },
+    {
+      "domain": "regional newspaper subscription rescue",
+      "audience": "publisher",
+      "stakes": "local coverage revenue keeps falling",
+      "format": "before_after",
+      "requiredBeat": "he goes past the first discount offer and studies a city paper that rebuilt membership around one civic data product",
+      "firstImage": "a subscriber churn chart beside a clipped civic data newsletter",
+      "mustInclude": [
+        "churn chart",
+        "newsletter clipping",
+        "pricing draft"
+      ],
+      "mustAvoid": [
+        "generic media monetization"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "refuse the merely available answer",
+      "use benchmarks without copying blindly",
+      "separate serious search from delay"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one important question, write the obvious answer, then find one benchmark or person that proves a stronger answer is possible.",
+  "readingTimeMinutes": 12
+}

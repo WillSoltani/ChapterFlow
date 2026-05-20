@@ -1,0 +1,213 @@
+{
+  "chapterId": "make-it-stick-ch08",
+  "number": 8,
+  "title": "Make It Stick",
+  "coreMove": "Assemble retrieval, spacing, interleaving, calibration, and repair into a weekly system that keeps learning honest over time.",
+  "sourcePressure": "The synthesis chapter turns the separate principles into routines for students, lifelong learners, teachers, and trainers, with practical systems that return, mix, retrieve, explain, check, and repair.",
+  "chapterSpecificMisunderstanding": "The writer must avoid a bag of study tips; the chapter is about combining the moves into a repeatable learning architecture.",
+  "sourceAlignmentTerms": [
+    "self-quizzing",
+    "weekly review",
+    "mixed practice",
+    "delayed retrieval",
+    "reflection",
+    "learning paragraphs",
+    "high-structure classes",
+    "transfer routines"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Timothy Fellows",
+      "detail": "USC Intro Psych student observed by professor Stephen Madigan, using reading notes, rhetorical questions during lecture, practice tests, and targeted relearning.",
+      "useIn": "both",
+      "phrasingHint": "Timothy Fellows treated the course like a system: read, question, test, find the hole, and relearn it before the exam did."
+    },
+    {
+      "kind": "person",
+      "name": "Nathan Fuller",
+      "detail": "Guthrie Theater understudy who covered lines, spoke them from memory, checked accuracy, and later used a palm-sized recorder to cue other actors’ lines.",
+      "useIn": "deepRead",
+      "phrasingHint": "Nathan Fuller made the script answer back, line by line, until retrieval had the shape of the stage."
+    },
+    {
+      "kind": "person",
+      "name": "Mary Pat Wenderoth",
+      "detail": "University of Washington biology teacher who used weekly learning paragraphs, Bloom’s taxonomy answer keys, and high-structure classes to help close science achievement gaps.",
+      "useIn": "fullRead",
+      "phrasingHint": "Mary Pat Wenderoth turned a biology course into a rhythm of retrieval, reflection, and visible standards for better answers."
+    },
+    {
+      "kind": "place",
+      "name": "Farmers Insurance new-agent training",
+      "detail": "Training cycles through sales, marketing systems, business planning, and brand advocacy so learners repeatedly retrieve and apply prior material in enlarged contexts.",
+      "useIn": "fullRead",
+      "phrasingHint": "Farmers does not leave each topic sealed in its own box; the week keeps returning to the same work at a higher level."
+    },
+    {
+      "kind": "place",
+      "name": "West Point Thayer method",
+      "detail": "West Point uses specific objectives, student responsibility, quizzing, and recitation in every class meeting under the Thayer method.",
+      "useIn": "fullRead",
+      "phrasingHint": "West Point’s old method is blunt about responsibility: arrive prepared, recite, get checked, and keep moving."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open by saying learning is harder than it looks",
+      "Do not use a generic desk-and-notes image",
+      "Do not start with a broad claim about students today"
+    ],
+    "counterintuition": [
+      "Do not use the shell easier is not better",
+      "Do not flatten the chapter into struggle is good",
+      "Do not contrast comfort and growth in generic coaching language"
+    ],
+    "tryThisNow": [
+      "Do not write set a timer and reflect",
+      "Do not ask for a vague study audit",
+      "Do not use a reusable close-your-notes prompt without a chapter-specific action"
+    ],
+    "examples": [
+      "No repeated mug, marker, dosing cup, bike helmet, radiator, bus depot, classroom, or narrow-kitchen shells",
+      "No six examples that all start with a timestamp and a named protagonist",
+      "No generic student rereads notes scene unless the visible beat changes the method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Anna, a graduate student building a semester study cycle",
+      "audience": "students who have learned the pieces but need a schedule",
+      "stakes": "comps require material from months apart, not last week only",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show her moving from topic-by-topic notes to a calendar that returns to old material, mixes questions, checks misses, and repairs weak areas each Friday",
+      "firstImage": "It took Anna one failed practice exam to stop collecting tips.",
+      "mustInclude": [
+        "semester calendar",
+        "question bank",
+        "Friday repair list"
+      ],
+      "mustAvoid": [
+        "final chapter as summary only"
+      ]
+    },
+    {
+      "domain": "Michael, a hospital educator designing nurse onboarding",
+      "audience": "trainers who must turn principles into a course architecture",
+      "stakes": "new nurses need transfer from classroom to floor handoffs",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "he lays out a month that cycles medication safety, handoff, escalation, and patient education through retrieval and simulation instead of one-week blocks",
+      "firstImage": "Four colored onboarding folders stretch across the conference table.",
+      "mustInclude": [
+        "onboarding folders",
+        "simulation schedule",
+        "handoff rubric"
+      ],
+      "mustAvoid": [
+        "generic corporate training deck"
+      ]
+    },
+    {
+      "domain": "Manon, an actor understudying two roles in repertory",
+      "audience": "performers needing retrieval, cues, and interleaving",
+      "stakes": "she may be called in with a few hours notice",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she records cue lines, covers her own lines, rotates scenes from both roles, and checks missed entrances before rehearsal",
+      "firstImage": "The tiny recorder warms in Manon’s palm.",
+      "mustInclude": [
+        "palm recorder",
+        "covered script",
+        "scene rotation list"
+      ],
+      "mustAvoid": [
+        "copying Nathan Fuller too closely without new action"
+      ]
+    },
+    {
+      "domain": "Jonas, a technical bootcamp instructor redesigning assessments",
+      "audience": "teachers moving from big exams to learning routines",
+      "stakes": "students can pass weekly projects while forgetting prior commands",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "he tells the cohort that every Monday quiz will include last month’s commands and asks them to explain one miss in a learning paragraph",
+      "firstImage": "\"Old material comes back Monday,\" Jonas says.",
+      "mustInclude": [
+        "terminal prompt",
+        "weekly quiz",
+        "learning paragraph"
+      ],
+      "mustAvoid": [
+        "testing as punishment"
+      ]
+    },
+    {
+      "domain": "Chiara, a small-business owner learning insurance licensing material",
+      "audience": "lifelong learners studying alongside work",
+      "stakes": "licensing requires retrieval across products, regulations, and client scenarios",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she builds a rotating box of product questions, client cases, and wrong-answer repairs for lunch breaks and Saturday review",
+      "firstImage": "At 12:12 p.m., Chiara opens a shoe box of mixed client cards.",
+      "mustInclude": [
+        "shoe box",
+        "client cards",
+        "wrong-answer sheet"
+      ],
+      "mustAvoid": [
+        "Leitner-only mechanic repeated from ch3"
+      ]
+    },
+    {
+      "domain": "Lin, a maintenance supervisor building cross-training for technicians",
+      "audience": "operations leaders applying the whole learning system",
+      "stakes": "technicians must diagnose unfamiliar faults when senior staff are away",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the postmortem redesigns cross-training so each tech retrieves, simulates, rotates fault types, and repairs misses before certification",
+      "firstImage": "What failed when the only trained technician was off shift?",
+      "mustInclude": [
+        "fault log",
+        "rotation board",
+        "certification checklist"
+      ],
+      "mustAvoid": [
+        "one-time workshop fix"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "combine the book’s methods into a repeatable system",
+      "adapt the system for student, teacher, trainer, or lifelong learner contexts",
+      "notice which method protects against which learning illusion"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Create a seven-day learning loop with one retrieval slot, one delayed review, one mixed set, one calibration check, and one repair block.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

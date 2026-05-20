@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch81",
+  "number": 81,
+  "title": "Default Effect",
+  "coreMove": "Name the default effect effect in the room, then redesign the next choice so it cannot choose for you.",
+  "sourcePressure": "The frozen TOC and official source notes frame Default Effect as a specific decision error around default effect, opt-in, organ donation. Traceable support includes Do Defaults Save Lives?.",
+  "chapterSpecificMisunderstanding": "Treating Default Effect as generic advice to be smarter, instead of forcing this exact move: name the default effect effect in the room, then redesign the next choice so it cannot choose for you.",
+  "sourceAlignmentTerms": [
+    "default effect",
+    "opt-in",
+    "organ donation",
+    "inertia",
+    "Nudge",
+    "default",
+    "effect"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Default Effect.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Default Effect sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Default Effect."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a hospital triage desk applying Default Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where default effect could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Default Effect is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the incident timeline, names the default effect risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A incident timeline sits at the center of the hospital triage desk before anyone explains the choice.",
+      "mustInclude": [
+        "incident timeline",
+        "default effect",
+        "a visible before-and-after choice tied to Default Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a seafood export cold-storage bid applying Default Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where opt-in could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Default Effect is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the warranty label, names the opt-in risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A warranty label sits at the center of the seafood export cold-storage bid before anyone explains the choice.",
+      "mustInclude": [
+        "warranty label",
+        "opt-in",
+        "a visible before-and-after choice tied to Default Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a port scheduling office applying Default Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where organ donation could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Default Effect is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the press clipping, names the organ donation risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A press clipping sits at the center of the port scheduling office before anyone explains the choice.",
+      "mustInclude": [
+        "press clipping",
+        "organ donation",
+        "a visible before-and-after choice tied to Default Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a fintech model review applying Default Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where inertia could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Default Effect is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the voting sheet, names the inertia risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A voting sheet sits at the center of the fintech model review before anyone explains the choice.",
+      "mustInclude": [
+        "voting sheet",
+        "inertia",
+        "a visible before-and-after choice tied to Default Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a school literacy intervention applying Default Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where Nudge could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Default Effect is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the permit folder, names the Nudge risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A permit folder sits at the center of the school literacy intervention before anyone explains the choice.",
+      "mustInclude": [
+        "permit folder",
+        "Nudge",
+        "a visible before-and-after choice tied to Default Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a limited bakery batch applying Default Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where default could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Default Effect is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the inventory scan, names the default risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A inventory scan sits at the center of the limited bakery batch before anyone explains the choice.",
+      "mustInclude": [
+        "inventory scan",
+        "default",
+        "a visible before-and-after choice tied to Default Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Default Effect in a fresh decision scene",
+      "choose the correction that performs this move: name the default effect effect in the room, then redesign the next choice so it cannot choose for you.",
+      "reject a tempting generic answer that ignores default effect",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Default Effect' on a note, list the one default effect cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

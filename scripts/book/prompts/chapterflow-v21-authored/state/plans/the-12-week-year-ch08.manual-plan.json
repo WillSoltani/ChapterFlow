@@ -1,0 +1,206 @@
+{
+  "chapterId": "the-12-week-year-ch08",
+  "number": 8,
+  "title": "Accountability as Ownership",
+  "coreMove": "Shift from waiting to be held accountable to owning the follow-through when conditions are imperfect.",
+  "sourcePressure": "The chapter redefines accountability as self-owned responsibility rather than surveillance, pressure, or punishment from others.",
+  "chapterSpecificMisunderstanding": "Making accountability mean blame, shame, or another person monitoring compliance.",
+  "sourceAlignmentTerms": [
+    "accountability",
+    "ownership",
+    "self-owned responsibility",
+    "follow-through",
+    "conditions",
+    "personal responsibility"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Accountability as Ownership",
+      "detail": "The verified chapter title frames accountability as owned rather than imposed.",
+      "useIn": "both",
+      "phrasingHint": "Accountability starts when the excuse is still available and you stop handing it the decision."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch08: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch08: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch08: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch08: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Julien",
+      "domain": "restaurant ownership meeting",
+      "audience": "a practitioner in restaurant ownership meeting who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Julien changes the meeting from blame to owned next actions.",
+      "firstImage": "a locked till report beside prep notes",
+      "mustInclude": [
+        "a locked till report beside",
+        "accountability",
+        "self-owned responsibility"
+      ],
+      "mustAvoid": [
+        "generic accountability as ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Emma",
+      "domain": "theater box-office shortfall",
+      "audience": "a decision-maker in theater box-office shortfall choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emma owns the theater sales call instead of blaming weather.",
+      "firstImage": "empty theater seats under work lights",
+      "mustInclude": [
+        "empty theater seats under work",
+        "accountability",
+        "self-owned responsibility"
+      ],
+      "mustAvoid": [
+        "generic accountability as ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "construction site materials delay",
+      "audience": "a team lead in construction site materials delay who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chris names what the site manager still controls before the supplier arrives.",
+      "firstImage": "pallet tags flapping in rain",
+      "mustInclude": [
+        "pallet tags flapping in rain",
+        "accountability",
+        "self-owned responsibility"
+      ],
+      "mustAvoid": [
+        "generic accountability as ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "regional sales territory handoff",
+      "audience": "a reflective operator in regional sales territory handoff reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Astrid takes responsibility for the handoff script before asking for help.",
+      "firstImage": "territory cards spread across a dashboard",
+      "mustInclude": [
+        "territory cards spread across a",
+        "accountability",
+        "self-owned responsibility"
+      ],
+      "mustAvoid": [
+        "generic accountability as ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "adult literacy program",
+      "audience": "a reader in adult literacy program comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Pavel chooses the class follow-up he owns despite low attendance.",
+      "firstImage": "phonics readers stacked by level",
+      "mustInclude": [
+        "phonics readers stacked by level",
+        "accountability",
+        "self-owned responsibility"
+      ],
+      "mustAvoid": [
+        "generic accountability as ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "Amsterdam logistics startup",
+      "audience": "two colleagues in Amsterdam logistics startup forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Min claims the shipping error and sets the correction window.",
+      "firstImage": "shipping labels curling off a scanner",
+      "mustInclude": [
+        "shipping labels curling off a",
+        "accountability",
+        "self-owned responsibility"
+      ],
+      "mustAvoid": [
+        "generic accountability as ownership explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish ownership from surveillance",
+      "choose responsibility under imperfect conditions",
+      "avoid blame as a substitute for action"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one condition you have been blaming, then write the next action you still own even if that condition stays unchanged.",
+  "readingTimeMinutes": 12
+}

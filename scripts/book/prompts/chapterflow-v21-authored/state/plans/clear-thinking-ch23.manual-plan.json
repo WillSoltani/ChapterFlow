@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch23",
+  "number": 23,
+  "title": "Dickens's Hidden Lesson",
+  "coreMove": "Audit the hidden costs of a desire before treating achievement as the same thing as fulfillment.",
+  "sourcePressure": "The late-book turn shifts from decision quality to value quality: what matters, hidden costs, miswanting, fulfillment, and whether pursued outcomes are worth wanting.",
+  "chapterSpecificMisunderstanding": "Literary analysis, anti-ambition sermon, or moral theory instead of practical examination of wanting.",
+  "sourceAlignmentTerms": [
+    "Dickens",
+    "hidden lesson",
+    "what matters",
+    "hidden costs",
+    "miswanting",
+    "fulfillment",
+    "value quality"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Dickens",
+      "detail": "the chapter title and map identify Dickens as the hidden-lesson pivot from decision quality into wanting what matters",
+      "useIn": "both",
+      "phrasingHint": "Dickens matters here because the visible prize can hide a private cost until the wanting has already won."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for Dickens",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think Dickens is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Ana",
+      "domain": "a law firm partner track",
+      "audience": "a reader facing Dickens in a concrete law firm partner track decision",
+      "stakes": "whether Ana preserves judgment quality before the situation slides into literary criticism",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ana performs the chapter move by setting the call sheet beside the red pencil, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the red pencil in the law firm partner track",
+      "mustInclude": [
+        "call sheet",
+        "red pencil"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "literary criticism",
+        "reusing a previous chapter's law firm partner track shell"
+      ]
+    },
+    {
+      "protagonistName": "Carmen",
+      "domain": "a stage actor touring contract",
+      "audience": "a reader facing Dickens in a concrete stage actor touring contract decision",
+      "stakes": "whether Carmen preserves judgment quality before the situation slides into literary criticism",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Carmen performs the chapter move by setting the oxygen bag beside the shift board, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the oxygen bag lying beside the shift board in the stage actor touring contract",
+      "mustInclude": [
+        "oxygen bag",
+        "shift board"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "literary criticism",
+        "reusing a previous chapter's stage actor touring contract shell"
+      ]
+    },
+    {
+      "protagonistName": "Luis",
+      "domain": "a family business succession",
+      "audience": "a reader facing Dickens in a concrete family business succession decision",
+      "stakes": "whether Luis preserves judgment quality before the situation slides into literary criticism",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Luis performs the chapter move by setting the boarding pass beside the complaint card, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the complaint card in the family business succession",
+      "mustInclude": [
+        "boarding pass",
+        "complaint card"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "literary criticism",
+        "reusing a previous chapter's family business succession shell"
+      ]
+    },
+    {
+      "protagonistName": "Rafael",
+      "domain": "a municipal mayoral run",
+      "audience": "a reader facing Dickens in a concrete municipal mayoral run decision",
+      "stakes": "whether Rafael preserves judgment quality before the situation slides into literary criticism",
+      "format": "thought_experiment",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Rafael performs the chapter move by setting the will copy beside the notepad, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the notepad in the municipal mayoral run",
+      "mustInclude": [
+        "will copy",
+        "notepad"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "literary criticism",
+        "reusing a previous chapter's municipal mayoral run shell"
+      ]
+    },
+    {
+      "protagonistName": "Gabriel",
+      "domain": "a celebrity chef expansion",
+      "audience": "a reader facing Dickens in a concrete celebrity chef expansion decision",
+      "stakes": "whether Gabriel preserves judgment quality before the situation slides into literary criticism",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Gabriel performs the chapter move by setting the order rail beside the ticket spike, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the order rail against the counter in the celebrity chef expansion",
+      "mustInclude": [
+        "order rail",
+        "ticket spike"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "literary criticism",
+        "reusing a previous chapter's celebrity chef expansion shell"
+      ]
+    },
+    {
+      "protagonistName": "Andres",
+      "domain": "a graduate fellowship choice",
+      "audience": "a reader facing Dickens in a concrete graduate fellowship choice decision",
+      "stakes": "whether Andres preserves judgment quality before the situation slides into literary criticism",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Andres performs the chapter move by setting the satellite phone beside the route map, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the graduate fellowship choice as Andres reaches for the satellite phone",
+      "mustInclude": [
+        "satellite phone",
+        "route map"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "literary criticism",
+        "reusing a previous chapter's graduate fellowship choice shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Audit the hidden costs of a desire before treating achievement as the same thing as fulfillment.",
+      "detect the weak generic version: Literary analysis, anti-ambition sermon, or moral theory instead of practical examination of wanting.",
+      "distinguish Dickens from nearby drift into literary criticism"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where Dickens is active, then write the exact next visible move that would perform this chapter's move: audit the hidden costs of a desire before treating achievement as the same thing as fulfillment.",
+  "readingTimeMinutes": 12
+}

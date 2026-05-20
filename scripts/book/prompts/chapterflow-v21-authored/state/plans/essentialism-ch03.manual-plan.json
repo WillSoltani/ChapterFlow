@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch03",
+  "number": 3,
+  "title": "Discern: The Unimportance of Practically Everything",
+  "coreMove": "Rank options sharply enough to release good-looking noise before it dilutes the contribution that matters.",
+  "sourcePressure": "The chapter applies the law of the vital few to show that almost everything is noise and only a small number of options deserve concentrated effort.",
+  "chapterSpecificMisunderstanding": "A weak run would say everything is important in different ways and ask the reader to balance it all.",
+  "sourceAlignmentTerms": [
+    "vital few",
+    "trivial many",
+    "discernment",
+    "ranking",
+    "law of the vital few",
+    "Joseph Moses Juran"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic discern: the unimportance of practically everything topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "equal priorities frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "equal priorities",
+      "general focus advice",
+      "working harder across all options",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "museum conservation lab after a roof leak exposes a backlog",
+      "audience": "conservator surrounded by many damaged objects",
+      "stakes": "equal care for every item would lose the most historically fragile works",
+      "format": "decision_point",
+      "requiredBeat": "She sorts the wet inventory by irreversible loss risk and moves two ceremonial textiles ahead of popular display pieces.",
+      "firstImage": "A damp inventory clipboard rests on blotting paper.",
+      "mustInclude": [
+        "damp inventory",
+        "blotting paper",
+        "textile crate"
+      ],
+      "mustAvoid": [
+        "generic museum tour",
+        "everything matters equally"
+      ]
+    },
+    {
+      "domain": "minor-league pitching coach reviewing twenty bullpen metrics",
+      "audience": "coach drowning in measurements",
+      "stakes": "fixing all stats evenly will miss the vital mechanical cause",
+      "format": "predict_reveal",
+      "requiredBeat": "He predicts velocity matters, then overlays walk clusters and finds one release-point drift driving most losses.",
+      "firstImage": "A bullpen chart is marked with red walk clusters.",
+      "mustInclude": [
+        "bullpen chart",
+        "release-point overlay",
+        "radar sheet"
+      ],
+      "mustAvoid": [
+        "generic sports grit",
+        "stat dumping"
+      ]
+    },
+    {
+      "domain": "disaster-relief warehouse sorting donated supplies after a flood",
+      "audience": "relief coordinator sorting mountains of good intentions",
+      "stakes": "time spent on low-utility donations delays what victims actually need",
+      "format": "scene",
+      "requiredBeat": "She marks the pallet tags by immediate shelter value and sends costume boxes to later sorting.",
+      "firstImage": "Pallet tags hang from wet cardboard towers.",
+      "mustInclude": [
+        "pallet tags",
+        "wet cardboard",
+        "shelter priority board"
+      ],
+      "mustAvoid": [
+        "generic charity sorting",
+        "all donations equal"
+      ]
+    },
+    {
+      "domain": "indie game studio reading thousands of beta-test comments",
+      "audience": "studio lead with too much feedback",
+      "stakes": "popular comments can distract from the few defects killing retention",
+      "format": "before_after",
+      "requiredBeat": "Before, every comment gets a label; after, he ranks only patterns tied to day-two quit data.",
+      "firstImage": "A feedback spreadsheet sits beside a retention graph.",
+      "mustInclude": [
+        "feedback spreadsheet",
+        "retention graph",
+        "bug labels"
+      ],
+      "mustAvoid": [
+        "generic app backlog",
+        "loudest complaint"
+      ]
+    },
+    {
+      "domain": "community health researcher allocating a mobile screening van",
+      "audience": "researcher choosing between many plausible stops",
+      "stakes": "equal distribution may miss the few neighborhoods carrying most risk",
+      "format": "dialogue",
+      "requiredBeat": "She points to the incidence map and moves the van from the vocal district to the untreated cluster.",
+      "firstImage": "An incidence map is folded over a van schedule.",
+      "mustInclude": [
+        "incidence map",
+        "van schedule",
+        "clinic wait list"
+      ],
+      "mustAvoid": [
+        "generic healthcare access",
+        "political fairness only"
+      ]
+    },
+    {
+      "domain": "luthier choosing repairs for a school orchestra’s donated instruments",
+      "audience": "craftsperson facing many broken instruments",
+      "stakes": "repairing visible damage first may not restore playable section balance",
+      "format": "postmortem",
+      "requiredBeat": "He lines up cracked bridges and warped pegs, then repairs the four instruments that unlock a full cello section.",
+      "firstImage": "Cracked bridges sit beside a section roster.",
+      "mustInclude": [
+        "cracked bridges",
+        "section roster",
+        "repair clamps"
+      ],
+      "mustAvoid": [
+        "generic craft perfection",
+        "sentimental instruments"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the Discern: The Unimportance of Practically Everything move inside a concrete scenario",
+      "choose the response that applies: Rank options sharply enough to release good-looking noise before it dilutes the contribution that matters.",
+      "reject the generic drift: A weak run would say everything is important in different ways and ask the reader to balance it all.",
+      "explain the trade-off using chapter-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one crowded list. Mark the few items that drive most of the result, then cross out one good-looking item that does not change the outcome.",
+  "readingTimeMinutes": 12
+}

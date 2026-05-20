@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch04",
+  "number": 4,
+  "title": "The Social Default",
+  "coreMove": "Separate what the group rewards from what the facts support before agreeing.",
+  "sourcePressure": "Social pressure rewards conformity before truth. This chapter should focus on belonging pressure, group norms, borrowed judgment, and the pause needed before a room's momentum decides for you.",
+  "chapterSpecificMisunderstanding": "Reducing social default to teenage peer pressure or treating all group influence as bad.",
+  "sourceAlignmentTerms": [
+    "social default",
+    "conformity",
+    "group norms",
+    "belonging pressure",
+    "borrowed judgment",
+    "soft dissent",
+    "independent thought"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "social pressure rewards conformity before truth",
+      "detail": "the frozen official concept support preserves this line as the strongest lawful anchor for the social-default mechanism",
+      "useIn": "both",
+      "phrasingHint": "A room can reward agreement so quickly that truth starts to feel impolite."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for social default",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think social default is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Ben",
+      "domain": "a climate nonprofit board",
+      "audience": "a reader facing social default in a concrete climate nonprofit board decision",
+      "stakes": "whether Ben preserves judgment quality before the situation slides into friendship advice",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ben performs the chapter move by setting the call bell beside the triage tag, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the triage tag in the climate nonprofit board",
+      "mustInclude": [
+        "call bell",
+        "triage tag"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "friendship advice",
+        "reusing a previous chapter's climate nonprofit board shell"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "a jury deliberation room",
+      "audience": "a reader facing social default in a concrete jury deliberation room decision",
+      "stakes": "whether Chris preserves judgment quality before the situation slides into friendship advice",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chris performs the chapter move by setting the track diagram beside the delay code, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the track diagram against the counter in the jury deliberation room",
+      "mustInclude": [
+        "track diagram",
+        "delay code"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "friendship advice",
+        "reusing a previous chapter's jury deliberation room shell"
+      ]
+    },
+    {
+      "protagonistName": "Nathan",
+      "domain": "a software incident channel",
+      "audience": "a reader facing social default in a concrete software incident channel decision",
+      "stakes": "whether Nathan preserves judgment quality before the situation slides into friendship advice",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Nathan performs the chapter move by setting the return slips beside the price stickers, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the return slips in the software incident channel",
+      "mustInclude": [
+        "return slips",
+        "price stickers"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "friendship advice",
+        "reusing a previous chapter's software incident channel shell"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "a museum acquisition committee",
+      "audience": "a reader facing social default in a concrete museum acquisition committee decision",
+      "stakes": "whether Ryan preserves judgment quality before the situation slides into friendship advice",
+      "format": "reflection",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ryan performs the chapter move by setting the lineup card beside the ice shavings, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the lineup card lying beside the ice shavings in the museum acquisition committee",
+      "mustInclude": [
+        "lineup card",
+        "ice shavings"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "friendship advice",
+        "reusing a previous chapter's museum acquisition committee shell"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "a parent council budget vote",
+      "audience": "a reader facing social default in a concrete parent council budget vote decision",
+      "stakes": "whether Jack preserves judgment quality before the situation slides into friendship advice",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Jack performs the chapter move by setting the permit packet beside the cracked tile, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the cracked tile in the parent council budget vote",
+      "mustInclude": [
+        "permit packet",
+        "cracked tile"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "friendship advice",
+        "reusing a previous chapter's parent council budget vote shell"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "a cycling club safety meeting",
+      "audience": "a reader facing social default in a concrete cycling club safety meeting decision",
+      "stakes": "whether Luke preserves judgment quality before the situation slides into friendship advice",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Luke performs the chapter move by setting the speakerphone beside the probate folder, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the probate folder in the cycling club safety meeting",
+      "mustInclude": [
+        "speakerphone",
+        "probate folder"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "friendship advice",
+        "reusing a previous chapter's cycling club safety meeting shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Separate what the group rewards from what the facts support before agreeing.",
+      "detect the weak generic version: Reducing social default to teenage peer pressure or treating all group influence as bad.",
+      "distinguish social default from nearby drift into friendship advice"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where social default is active, then write the exact next visible move that would perform this chapter's move: separate what the group rewards from what the facts support before agreeing.",
+  "readingTimeMinutes": 12
+}

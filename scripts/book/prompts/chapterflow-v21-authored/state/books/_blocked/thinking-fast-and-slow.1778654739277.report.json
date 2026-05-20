@@ -1,0 +1,2481 @@
+{
+  "bookId": "thinking-fast-and-slow",
+  "title": "Thinking, Fast and Slow",
+  "author": "Daniel Kahneman",
+  "promotedAt": "2026-05-13T06:45:39.276Z",
+  "chapterCount": 38,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The decision station is quiet except for the 1 barograph strip labeled System 1 beside the unfinished coastal call. Claire has thirty seconds before the bulletin queue locks. The radar flare looks li…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Sophie says, with the gilded frame label labeled System 2 between the two choices. Mathieu wants to classify the painting as later because the label looks wrong for…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rough edge of the freight seal manifest labeled automatic processing catches Daniel's thumb before anyone says theft. Nora points at the broken seal and wants the trailer held. Daniel sees the sa…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the control triage wristband labeled effortful control while the easy answer starts to feel too complete. Aanya has a laughing eight-year-old, a crowded waiting room, and a rash th…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Hannah says, with the amber vial tray labeled attention between two prescriptions. The intern has written ok beside a familiar-looking drug name. \"Read the suffix,\"…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The lobby is wet, the contractor is waiting, and the rolled site blueprint labeled effort is softening in James's hand. The drain line looks close enough from where he stands. He is about to approve …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which signature would you trust on the incident command vest labeled mental work: the one Liam makes after the calm radio report, or the one after the aide reads wind shift, water pressure, and missi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The padded rim of the submarine simulator headset labeled capacity still smells of vinyl when Freya rewinds the failed run. The trainee turned toward the clean sonar cue and missed current drift. On …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You have a returns buyback clipboard labeled pupil response, a customer waiting at the counter, and a clean hardcover from last year's prize list. Sarah wants to offer eight dollars because the resal…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Anders saw what the frost alarm sensor labeled self-monitoring had been making too easy. The north block alarm glowed red, and every grower wanted the fans started. The bo…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"and the answer feels\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The pebbled baggage carousel tag labeled lazy controller scratches Petra's palm as she compares it with a missing-bag claim. Toronto, black roller, silver ribbon: the match feels done. A passenger is…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Marta noticed the mistake only after the courier had already left. The blood cooler seal labeled cognitive reflection showed two run times close enough to combine, and everyone predicted the merge wa…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rehearsal room is empty except for a brass metronome pedal labeled impulse beside the piano bench. Lukas accused the drummer of dragging during the bridge. Mei disagreed and pointed at the unused…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Duplicate,\" Ryan says, before the caller finishes describing the pothole near King and Third. Ruth from street works shakes her head and slides the pothole call ledger labeled monitoring across the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which answer did Catarina approve: the frightened-squirrel story or the evidence on the intake form? The animal carrier latch labeled endorsement clicks shut, and the quick impression says minor stre…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the lazy\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "When a number, story, or feeling pulls your answer today, write the first cue th"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are beside Nathan at the salvage table, looking through a memory tide-table acetate labeled associative memory while rain taps the boathouse roof. The red mark near the reef makes the new wreck f…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which file did Amelia read, the applicant's or the three weak files before it? In the postmortem, she holds the admissions scoring grid labeled priming and sees the cue chain: same region, awkward fi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Smells damp,\" Giulia says, with the cue wax-rind wheel labeled cue under the cellar light. Tom asks whether she smelled dampness or remembered the failed batch with the same rind color. Before, Giul…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It was the fifth messy signature in a row that changed Lea's eyes. The signature cure envelope labeled activation looked suspect before she had compared the registration image. She places the envelop…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The dental lab is quiet except for a porcelain shade tab labeled network beside Marco's unfinished crown. Imagine you are Marco after sorting yellowed shade tabs for an hour. The next crown looks too…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"red mark on the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "When a claim reads smoothly, rhymes, or looks crisp, I register it as likelier t"
+          },
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 33 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "When a claim reads smoothly, rhymes, or looks crisp, I register it as likelier true; the fluency is a cheap proxy for truth, so treat ease itself as a question, not an answer."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Ingrid is four hours from the end of a twelve-hour cardiac shift when the night handoffs land on her clipboard. Bed 4's note is printed clean in a crisp sans-serif from the new EMR. Bed 5's is a smud…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Saskia is grading two clarinetists in practice room 3 after school Thursday, brass players waiting in the hall. Jiya just played the Weber opening Saskia has taught for eleven years; Corrin played a …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the house stock is\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Beth says, with the tax audit worksheet labeled norms between refund and fraud. A filer who usually claims small refunds is asking for twice the prior amount. Befor…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which snow-pit report should Sven sign: the one after the surprising shear result, or the one after he checks wind loading and yesterday's temperature crust? The cause snow-pit ruler labeled cause li…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The cotton texture of the rare-book cradle strap labeled expectation catches Miriam's finger as she finds it loose beside a seventeenth-century binding. A visitor handled the volume an hour ago, and …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Zoe saw the trap on the third flicker. The neon transformer tube labeled intentionality failed only when the client stood near the counter. \"He bumped it,\" Eli says. Zoe circles client nearby on the …"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 56% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The ridged edge of the conclusions storm-cell acetate labeled jumping to conclusions catches Grace's sleeve as three cells align offshore. The visible map says miss the coast, and the alert field is …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Henrik saw it on the third pass: the pigment swatch folder labeled WYSIATI made the object feel settled because every visible color matched the period. Imagine you are holding the vote sheet. You dra…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The loading bay is quiet except for a coherence loading-bay placard labeled coherence above the release desk. Tomasz has chain of custody, driver log, and receiver signature. Beatrice wants the truck…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which story belongs on the ticket rail spike labeled confidence: new cook failed, or missing tickets distorted the line? \"Three late plates from grill,\" the chef says. Beatrice writes new cook on the…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are Miles at intake, holding a plea calendar tab labeled missing information while a client waits across the desk. The file says missed prior date, late today, no stable address. The story says u…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"what you see is\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are Alex at the verification bench, with a judgment controlled-substance log labeled judgment open to a messy signature. The transaction feels suspicious before the ID field is checked. Imagine w…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Graham says, with the evacuation floor map labeled mental shotgun pinned under his radio. The thick black smoke mark makes the evacuation zone feel huge. He signs o…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The buy desk is quiet except for a publisher return slip labeled scale beside a glossy political hardcover. Paul feels the title will sell because the cover is loud and the topic filled yesterday's n…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The cold metal of the orchard wind vane labeled accessible impression snaps hard enough to make Vivian predict frost damage before reading the leaf sensors. The wind feels alarming, so risk feels hig…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A trainer wants analysts to detect when quick judgments answer the wrong scale. Which instruction is most useful?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"how good is this\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The baggage office is quiet except for a lost-luggage claim sleeve labeled substitution beside Colin's keyboard. The passenger is polite, specific, and tired. Colin feels ready to release the suitcas…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Iris says, with the donor compatibility band labeled heuristic question on the scheduling cart. The donor name is familiar and the morning run is crowded. The team …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The felt edge of the upright piano mute labeled target question is under Hugo's hand when the band starts blaming the sax tone. \"Do we dislike the tone, or does the arrangement fail?\" he asks. Nora s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are beside Morgan at the pothole hotline with a street-repair paint wand labeled affect heuristic across the desk. The caller is furious and repeats himself. Morgan wants to downgrade the ticket …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Clara did not see the swap until the feeding schedule clip labeled proxy was back on the intake board. The young animal sat quietly, and the first estimate was stable. Then the fall height, breathing…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A reviewer wants to catch substitution in a fast decision. Which prompt should they put at the top of the form?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 67% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Rowan says, with the salvage diver slate labeled law of small numbers wet on the table. Three dives through the channel were clean, and the crew wants to call the r…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The admissions table is quiet except for a scholarship score sheet labeled sample size beside four files. \"This feeder program is exceptional,\" a reader says after three strong applicants. Isabelle t…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which note should Erik sign beside the noise brine-room thermometer labeled sampling noise: brine room bad, or two cracked wheels need more comparison? The first two wheels from the new room cracked …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The knurled rim of the ballot signature loupe labeled representativeness sits under Farida's thumb as four mismatches appear from one precinct in the first tray. The room predicts precinct problem. F…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at a ceramic bite fork labeled variance on Noah's postmortem bench. Two crowns from the new scanner needed adjustment, and he told the team the scanner was off. The next eight were fi…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is not the same\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Rosa needed three passes to see how the gilded frame label labeled adjustment, taped as a joke above the aquarium bench, was pointing at yesterday's ammonia number. Today's sample looked slightly clo…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The signal shed is quiet except for a freight seal manifest labeled starting point with 45 minutes scribbled in the corner. Ian predicts a 40-minute repair because the prior tech sounded confident. K…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Jun says, sliding the estimate triage wristband labeled estimate beside the cupping bowls. The supplier mentioned 40 dollars per kilo before tasting, and the sample…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are Ethan in a dark color-grading suite, staring at an arraignment intake sheet labeled reference number taped to the monitor as a warning from yesterday's mistake. The prior colorist typed 62 in…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A colorist sees the prior exposure value 62 and makes every correction around that number. What is the best move?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A reviewer wants to reduce anchoring in estimates. Which instruction is most defensible?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"away from it but\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are beside Dana at the fraud desk, where an amber vial tray labeled availability holds sticky notes from recent cases. Last week's fake-dependent return comes to mind instantly when a new large r…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which is more common in Leon's proofing room: starter failure or ordinary good batches that nobody remembers? The rolled site blueprint labeled ease of recall is pinned to the bakery wall after two u…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Vera says, with the incident command vest labeled frequency hanging in the avalanche hut. A fatal slide on a neighboring ridge is vivid enough that every similar pi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Patrick saw the shift after the mishandled folio story spread through staff chat. The submarine simulator headset labeled memory fluency sits on the desk as a training prop: vivid story on the left, …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The quality cage is quiet except for a returns buyback clipboard labeled salience beside Livia's defect log. One customer photo of a cracked housing has appeared in every morning huddle. Livia feels …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The ridges on the frost alarm sensor labeled base occurrence are cold under Mina's fingers as a winter sign flickers on the bench. Last year's frost-damaged coil comes to mind fast. Imagine Mina circ…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the ease of remembering\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The forecast desk is quiet except for a baggage carousel tag labeled availability cascade beside Oscar's keyboard and the flood clip looping on a side monitor. The first alert draft jumps to catastro…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Sabine says, with the blood cooler seal labeled risk perception stuck to the quarantine cart after another museum's mold loss goes public. A speck on a frame trigge…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rubber foot of the brass metronome pedal labeled emotion sticks to Gareth's dispatch desk after a safety training session. A viral photo of a crushed container has everyone jumpy. Before, every d…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Rafael saw the source on the third remake: an animal carrier latch labeled fear from a training kit was clipped to the ticket rail beside a printed food-safety photo. Imagine service with one sauce l…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which fact should change Celine's recommendation: the client's record, or the headline everyone saw about a missed appearance last week? The night audit folio labeled public concern is taped to the i…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Harper says, with the representativeness tide-table acetate labeled representativeness between a prescriber profile and the audit log. The prescriber sounds like th…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The survey trailer is quiet except for an admissions scoring grid labeled base rate that Vincent uses as a reminder card. A contractor's notes are precise, clipped, and full of tolerance language. Be…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rough flap of the signature cure envelope labeled Tom W rests under Rhea's wrist in the simulator booth. Imagine a trainee who speaks like the model sonar operator: calm, technical, spare. On one…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are watching Lucas at the buy desk with a porcelain shade tab labeled diagnosticity beside a box of essays. The seller wears a linen jacket, names a small press, and sounds like a rare-book colle…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Selma saw the error after three cold, still evenings got the same label. The touchline warning flag labeled description sits on the frost-watch clipboard, and the night's profile looks classic: clear…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A reader says Tom W is just a lesson about prejudice. Which response is more precise?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"how common is the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The paper grain of the jury questionnaire stack labeled Linda catches Olivia's palm as a passenger describes a missing black case. The claim says owner and touring violinist carrying a concert dress.…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Bastien needed three passes to see why the salinity test ampoule labeled conjunction fallacy belonged on the scheduling board. A donor was described as compatible and available for an emergency run. …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rehearsal room is quiet except for a signal relay casing labeled less is more on Simon's amp. Imagine the substitute pianist is late. One story says transit delay. Another says transit delay and …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Greta says, with the cupping spoon tray labeled probability between the caller note and repair map. The report is pothole near school. The caller adds that a delive…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What feels more likely beside the plausibility bed-board magnet labeled plausibility: injured after falling from a tree, or injured after falling from a tree and struck by a bicycle? Tara hears the s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the color-grading reference card labeled detail on Claudia's night-audit board. \"Missing paid-out slip and hidden minibar refund,\" the trainee says. \"Or missing paid-out slip,\" Cla…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a generic abstraction — reach for a specific protagonist or moment"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"more likely than the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "A cheese affineur sees three cracked wheels and hears a tidy explanation: the new assistant rushed the brine. The story has a person, an action, and a cause. The defect-rate chart has rows.\n\nThe stor…"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at a tax audit worksheet labeled causal story on Alec's salvage table after a towline snaps. The explanation is neat: new deckhand, bad knot, avoid that crew. Before the worksheet, Al…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Irena holds a proofing basket label labeled statistics over an uneven essay from a school with a weak reputation? The causal story says poor preparation. The target distribution say…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Georg says, with the neglect snow-pit ruler labeled base rate neglect between three cracked wheels and the defect chart. The story says the new assistant rushed the…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Mona saw the shortcut only after the precinct name was already doing the work. The rare-book cradle strap labeled stereotype sits beside two piles: precinct reputation on the left, mismatch distribut…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The dental bench is quiet except for a caliper inspection tag labeled distribution beside two crowns. \"The new technician scanned these,\" Pavel's assistant says. \"That explains it.\" Pavel points to a…"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains a missing-connective fragment near \"must decide whether calls\" — needs \"whether\", \"if\", or \"to\" before the embedded clause",
+            "evidence": "The ribbed glass of the neon transformer tube labeled explanation glints on Bianca's referee-tent table. A coach says the official favored one club because he trained there years ago. Bianca circles t"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a generic abstraction — reach for a specific protagonist or moment"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Anika says, with the pigment swatch folder labeled extreme outcome beside a nitrate log. Yesterday's reading spiked, the team changed the filter, and today's readin…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rough plastic of the average loading-bay placard labeled average is under Willem's hand when the signal crew argues about a 12-minute repair. The next repair took 42, and someone says the crew go…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at an oxygen saturation sticker labeled random variation on Noelle's cupping table after a garden scores 98 one week and 87 the next. \"They lost the magic,\" the buyer says. Noelle sli…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Jasper saw the trap only after the second bed huddle. The ticket rail spike labeled talent was clipped to the board after a 34-discharge day, and everyone praised the new script. The next day cleared…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A tea garden scores 98 one week and 87 the next. The buyer says the garden lost talent. What should she compare?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A quality lab has one very low yield followed by an ordinary yield after a new checklist. What should the report say?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 78% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"unusually high or low\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Ari says, with the prediction controlled-substance log labeled intuitive prediction between a suspicious return and the review queue. His gut says fraud likely. The…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The proofing room is quiet except for a foundation crack gauge labeled base rate beside Monica's starter jar. The smell is sharp, and her intuitive prediction is tomorrow's batch will fail. The log s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which signature should Stefan trust on the evacuation floor map labeled regression: the one after hearing a snowpack crack, or the one after checking similar-slope history and pit results? \"The crack…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rough corner of the periscope drill card labeled correlation presses into Helena's wrist as she reads an elegant donor letter. Her intuitive prediction is valuable collection. On the other side o…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at a publisher return slip labeled forecast in Quentin's quality cage while one ugly early defect makes the whole run feel doomed. His first prediction is 80 percent bad run. The base…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Louise saw the overforecast when the bench audit reached the orchard wind vane labeled shrinkage. A winter flicker looked exactly like last year's frost-damaged coil, so the shop ordered an outdoor r…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team says taming intuitive prediction means abandoning intuition. Which response is most accurate?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A forecaster has no data on cue reliability but feels a case is extreme. What default should she use?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the base rate for\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The plastic seam on the lost-luggage claim sleeve labeled illusion of understanding catches Rachel's thumb before the river review begins. Now that the town stayed dry, the old low-alert call seems o…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Thomas three passes through the restoration notes to see what the donor compatibility band labeled hindsight had made too easy. \"The varnish match proves the earlier team was careless,\" a tru…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Sophie says, with the street-repair paint wand labeled luck between the fever chart and the transfer form. After the child recovered, everyone says the late medicat…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which lesson belongs beside the feeding schedule clip labeled uncertainty: the neat one after the failed dinner rush, or the rough one Julian wrote before the first table sat down? The team first bla…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the cash drawer tape labeled coherence while Maeve's intake miss starts to sound inevitable. After the plea offer collapsed, the office said the client had always been unreliable. …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the salvage diver slate labeled illusion of validity while Bridget's easy answer starts to feel complete. \"That dose has to be a typo,\" the trainee says. The cues fit: age, drug cl…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which mark on the scholarship score sheet labeled predictive validity should Marc trust: the one made after a quick foundation walk, or the one after matching similar cracks to later settlement repor…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Connor says, with the confidence brine-room thermometer labeled confidence between the roof report and the collapse-risk board. Smoke, heat, and sagging trim cohere…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Elin saw what the ballot signature loupe labeled coherence had been making too easy. The crew had called the sonar contact civilian because speed, bearing, and sound profi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The buy desk before opening is quiet except for the ceramic bite fork labeled feedback beside Phoebe's unfinished order. A debut novel feels perfect for the neighborhood: jacket, voice, and local set…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rough plastic edge of the referee substitution board labeled selection scrapes Manuel's sleeve while the frost crew studies the orchard map. Low wind, clear sky, and last year's memory make a fre…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the original judgment a\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"is not magic\" — 58 hits across 29 books.",
+            "evidence": "A formula is not magic, and expertise is not useless. In stable prediction tasks, a simple consistent rule can beat judgment because it removes noise that nuance keeps reintroducing."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The baggage control desk after the last inbound wave is quiet except for the formula barograph strip labeled formula beside Megan's unfinished call. An angry passenger with a tight connection pulls h…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Olivier says, with the gilded frame label labeled algorithm between the surgeon's reputation and the blood-order screen. The case sounds difficult, and everyone exp…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the consistency triage wristband labeled consistency while Fiona's hotline screen makes the easiest complaint feel too complete. A council member's street has three angry calls. An…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Peter saw what the sauce-stained order rail labeled noise had been making too easy. The caller sounded panicked, so the young owl felt like the top rescue priority. The in…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What would change if the arraignment intake sheet labeled prediction rule stopped feeling like proof and started looking like a cue on Liv's hotel desk? Imagine she has to decide which unpaid reserva…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"is not magic\" — 58 hits across 29 books.",
+            "evidence": "A cheese affineur taps a wheel, smells the rind, and says it needs four more days. The cellar is not perfectly predictable, but it is regular. Temperature, humidity, rind growth, and texture have rep…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Kelsey says, with the amber vial tray labeled expert intuition between the stern-lift plan and the diver's warning. The senior diver feels the hull will roll. Kelse…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What would change if the incident command vest labeled feedback stopped feeling like proof and started looking like a cue in Colette's aging cellar? She has to decide whether a washed-rind wheel need…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The padded rim of the submarine simulator headset labeled skill presses into Ben's palm as he watches two ballot reviewers disagree. One has cured signatures for five seasons with daily corrections; …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the returns buyback clipboard labeled validity while Justine's easy answer starts to feel too complete. Imagine she must decide whether a crown will sit high from one glance at the…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Lars saw what the frost alarm sensor labeled practice had been making too easy. A teenage referee looked confident calling offside from the center circle. Lars circles the…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rubber edge of the baggage carousel tag labeled outside view drags across Frank's docket stack after voir dire runs two hours long. His team had trusted the inside view: a tidy questionnaire, a c…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Celia says, with the pothole call ledger labeled planning fallacy between the tasting notes and the import calendar. Imagine she must decide whether a rare lot can …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which estimate belongs beside the animal carrier latch labeled forecast: Robin's hopeful noon clearance or the average from comparable completed days? The ward has many discharge notes, and the team …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team says the outside view is just pessimism because it makes every plan look slower. Which reply is most accurate?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the inside view is\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the optimism tide-table acetate labeled optimism while Natalie's pilot plan starts to feel too complete. A new verification service could help honest filers and reduce review time.…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which number belongs on the admissions scoring grid labeled overconfidence: Bruno's expected first-year profit or the survival rate for second locations in nearby neighborhoods? The sourdough line is…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Rita says, with the entrepreneurship wax-rind wheel labeled entrepreneurship between the prototype beacon and the investor letter. Imagine she must decide whether t…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Lucie saw what the signature cure envelope labeled risk taking had been making too easy. Ten donors praised a paid archive service, and the pilot felt obvious. She separat…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"wants to launch a\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The storm desk after payroll closes is quiet except for the jury questionnaire stack labeled Bernoulli beside Harriet's unfinished bonus decision. Two forecasters would each receive $700. One expecte…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Evan says, with the salinity test ampoule labeled utility between a $4,000 full restoration and a $2,000 partial repair. Imagine the donor must decide after hearing…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Pippa saw what the gain bed-board magnet labeled gain had been making too easy. \"Everyone still gets a meal,\" the chef says after replacing staff dinner with a smaller cre…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What would change if the color-grading reference card labeled loss stopped feeling like proof and started looking like a cue in Devon's intake review? A client rejected a plea because the new offer w…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"feels like a loss\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "For one choice today, mark its reference point, the possible loss, and whether a"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Carmen says, with the tax audit worksheet labeled prospect theory between two medication coverage choices. Imagine she must decide whether a patient should take a g…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The survey desk before the site walk is quiet except for the proofing basket label labeled loss aversion beside Neil's repair estimate. A client prefers a risky contract that could avoid a budget ove…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What would change if the function snow-pit ruler labeled value function stopped feeling like proof and started looking like a cue at Audrey's command post? She must decide whether to order evacuation…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The worn cloth of the rare-book cradle strap labeled reference dependence slides under Roland's palm as the simulator clock runs. \"The slow route costs points for sure,\" one crew member says. \"The fa…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the caliper inspection tag labeled certainty effect while Mae's buy order starts to feel too complete. A rare signed edition has a 3 percent chance of a huge collector sale and a h…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Theresa saw what the neon transformer tube labeled probability weighting had been making too easy. A 6 percent frost risk feels huge because crop loss would be brutal. She…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants to use prospect theory responsibly in a policy decision. Which practice is best?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a small chance of\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The slick edge of the effect storm-cell acetate labeled endowment effect rests under Laurel's radio as two baggage crews argue over a gate cart. Her crew has used it all afternoon and now demands a m…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Damian saw what the pigment swatch folder labeled ownership had been making too easy. A surgical team had reserved the first thaw slot and now demands special approval to …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" George says, with the oxygen saturation sticker labeled willingness to pay between two district equipment requests. One district has kept the patching trailer for y…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which prediction belongs beside the ticket rail spike labeled loss aversion: Rosalie's claim that the new bay protocol is obviously efficient, or the estimate after naming the front bay as owned capa…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the plea calendar tab labeled status quo while Finn's room-swap failure starts to sound too simple. A guest refused to move from one corner room to an identical corner room unless …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A company wants to reduce endowment-effect resistance when rotating premium shifts. Which design would help most?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the endowment\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"would have paid to\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 28,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the events controlled-substance log labeled bad events while Molly's faster lift plan starts to feel too complete. The rigging change saves two hours on most jobs but creates a sma…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which number changes if the foundation crack gauge labeled loss aversion stops feeling like proof and starts looking like a cue? \"The portal saves most applicants time,\" Sebastian says. \"And the wron…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Dean says, with the evacuation floor map labeled negativity dominance between two aging schedules. The new schedule improves ten wheels but raises the risk that one…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Eva saw what the periscope drill card labeled threat had been making too easy. A revised voter script improves clarity for most readers but makes one line sound like rejec…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The fitting bench after closing is quiet except for the publisher return slip labeled asymmetry beside Olga's remade crown. The new scan workflow saved five minutes on most cases but caused one painf…"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 78% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"whether the gains are\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 29,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The jury room before selection is quiet except for the lost-luggage claim sleeve labeled fourfold pattern beside Rebecca's settlement note. \"We should fight,\" counsel says, staring at a guaranteed mo…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Anton says, with the donor compatibility band labeled risk seeking between two tank-stabilization plans. One plan gives a high-probability moderate improvement. The…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the street-repair paint wand labeled high probability while Elodie's rare-lot miss starts to sound too complete. A tiny chance of a spectacular tea auction gain pulled the tasting …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Jacob saw what the feeding schedule clip labeled low probability had been making too easy. The board could activate a guaranteed overflow plan with staff cost, or wait for…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which promise on the cash drawer tape labeled gains and losses made Maren's grading suite take the unsafe bet? The team accepted a tiny chance of landing a streaming trailer by delivering an unfinish…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before advising someone on a risky choice, which two classifications should happen first?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 78% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a small chance of\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 30,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "For one risk today, write how you learned it: description, personal experience, "
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Erin says, with the salvage diver slate labeled rare events between a fraud memo and the score cutoff. The memo describes a rare false-accusation pattern so vividly…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which signature on the experience brine-room thermometer labeled experience would June trust after the slope finally slid: the one from the bulletin or the one from forty quiet crossings? The bulleti…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The cool rim of the ballot signature loupe labeled overweighting sits under Grant's thumb as he reads a mold bulletin. One archive lost a collection after a damp donation; his desk has never seen tha…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the ceramic bite fork labeled neglect while Carys's defect decision starts to feel too complete. A new warning describes a rare coating failure, but the line has run for months wit…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Scott saw what the referee substitution board labeled probability had been making too easy. A trade forum described a rare transformer fire, and now every flicker feels da…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A safety team says rare events are always exaggerated because people fear them. Which reply is most accurate?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants to calibrate a rare risk presented in a vivid story. Which checklist is best?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 78% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"be overweighted because the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 31,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The paper grain of the policy barograph strip labeled risk policy catches under Andrew's thumb as models hint at a severe cell. One early alert may be wrong and embarrassing. Across a season, the sam…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Lara saw what the gilded frame label labeled broad framing had been making too easy. One reversible cleaning test failed on a low-value sample, and the lab nearly stopped …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The freight room before dawn is quiet except for the freight seal manifest labeled narrow framing beside Philip's load screen. Yesterday's delay makes one dispatcher want to reject a borderline load.…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Simone says, with the portfolio triage wristband labeled portfolio between two transfer options. A borderline early transfer could waste a specialist bed today, but…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which rule should David trust on the sauce-stained order rail labeled repeated bets: cancel this week's menu test because food cost feels painful, or run the standing policy for ten small tests? Imag…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the arraignment intake sheet labeled consistency while Elsa's plea review starts to feel too complete. One rejected plea led to a bad trial result, and the office now wants to acce…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sentence best captures a useful risk policy?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 32,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Before one choice today, ask which account is talking: money spent, pride, time "
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the amber vial tray labeled mental accounting while Anita's failed workflow starts to sound too complete. Six months of training make switching back feel like admitting waste. In t…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which account is hiding inside the rolled site blueprint labeled sunk cost on Brian's survey table? The firm has already spent heavily testing a poor foundation option, and the client wants one more …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Leila says, with the incident command vest labeled separate ledgers between the old search grid and the updated heat map. The first hour found nothing. Staying with…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Roger saw what the submarine simulator headset labeled paper loss had been making too easy. Imagine his crew has spent half the exercise on a poor intercept route. Switchi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The buy desk before opening is quiet except for the returns buyback clipboard labeled realized loss beside Karin's slow-selling title. She paid too much for the shipment, so keeping it on the front t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants to use mental accounting well instead of being trapped by it. Which habit is best?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 33,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.4 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The baggage room after midnight is quiet except for the baggage carousel tag labeled preference reversal beside Margaret's routing board. A family with a tight connection makes one rescue plan feel o…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Hector says, with the blood cooler seal labeled joint evaluation between a dramatic surgical request and the full supply board. The single request sounds urgent. Be…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The brass metronome pedal labeled single evaluation is cool under Ines's shoe as a substitute player finishes a gorgeous warm-up. Imagine she must decide before the set list locks. Alone, soul is sal…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the pothole call ledger labeled salience while Robert's repair choice starts to feel too complete. One photo shows a crater filled with rainwater. Alone, it looks first. In the que…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Teagan saw what the animal carrier latch labeled comparability had been making too easy. A loud caller's case seemed most urgent when heard alone. In the shared intake gri…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which attribute on the night audit folio labeled attribute made Ansel's upgrade package reverse? \"Late checkout sounded generous alone,\" the clerk says. \"Next to the cheaper package, cancellation ter…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants to avoid preference reversals in a hiring process. Which design helps most?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement best captures the reversal check?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 67% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 34,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Gloria says, with the framing tide-table acetate labeled framing between two lift descriptions. One says the plan saves four of five panels. The other says one of f…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The file desk before committee is quiet except for the admissions scoring grid labeled equivalence beside Elias's draft. Imagine he must decide whether to call a threshold \"admitting the strongest 12…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which sentence on the frame wax-rind wheel labeled gain frame should Faye sign: \"ninety wheels mature cleanly\" or \"ten wheels may fail\"? Both describe the same cellar trial. Faye must decide whether …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the porcelain shade tab labeled description while Stella's crown remake decision starts to feel too complete. \"This material succeeds in 96 percent of cases,\" the rep says. \"So it …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Mikael saw what the touchline warning flag labeled decision had been making too easy. A rule says officials should \"protect game flow\" by avoiding late minor whistles. The…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before approving a policy described as 'helping 95 percent of users,' what translation should a reviewer request?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 35,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The soft paper edge of the jury questionnaire stack labeled experiencing self presses into Eleanor's palm as jury selection drags past lunch. Imagine she must decide whether to pause for a break or p…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Gavin saw what the salinity test ampoule labeled remembering self had been making too easy. The lab tour was smooth for fifty minutes, then the final handoff became rushed…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The signal shed before midnight is quiet except for the signal relay casing labeled moment utility beside Paula's shift report. The crew had steady breaks for eleven hours, then a chaotic final sign-…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Frederik says, with the cupping spoon tray labeled evaluation between the tasting notes and the guest survey. The first eight cups were excellent; the final cup was…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which improvement belongs beside the memory bed-board magnet labeled memory: faster discharge with a thinner goodbye, or a slower final conversation that patients remember as safer? Sasha must decide…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the color-grading reference card labeled duration while Marie's client review starts to feel too complete. The session ran comfortably for three hours, then the final export check …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before redesigning any service experience, which two measures best reflect the two-selves distinction?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 36,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the tax audit worksheet labeled peak-end rule while Nicole's appeal redesign starts to feel too complete. The process cut waiting by three days, but the final letter sounds accusat…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which part of the proofing basket label labeled duration neglect is Bruce missing as the wedding cake pickup rush begins? The bakery spent two careful weeks on the order, but a cold final handoff cou…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Katarina says, with the utility snow-pit ruler labeled remembered utility between the course plan and the debrief notes. The field drills were strong, but the final…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Lloyd saw what the rare-book cradle strap labeled story had been making too easy. Six weeks of careful archive review ended with a thin summary. Donors remembered indiffer…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The quality cage before the client walk is quiet except for the caliper inspection tag labeled ending beside Celeste's tour route. The route is efficient, but the peak moment is a confusing defect de…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The glass of the neon transformer tube labeled peak feels cold in Lorenzo's hand during the pickup postmortem. The repair was steady for two weeks, but the final pickup was rushed and one question we…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before judging an experience, which three points should a manager mark?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"but the final letter\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 37,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The weather desk before the overnight handoff is quiet except for the wellbeing storm-cell acetate labeled experienced well-being beside Laura's shift survey. The team rates the job meaningful. Momen…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The worn edge of the uindex loading-bay placard labeled U-index scratches Irene's clipboard during the evening surge. Drivers call, updates arrive late, and the team still says the job is fine overal…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Esther saw what the ticket rail spike labeled affect had been making too easy. The cooks felt proud after a strong weekend and rated the job high. During service, moment s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which line on the plea calendar tab labeled life satisfaction made Tobias miss the intake problem? Clients rated the office mission highly after court, but time samples showed anxious waiting, repeat…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A caregiver reports high life meaning but many difficult hours. Which interpretation best fits experienced well-being?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"says the job is\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 38,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"That cannot be the whole answer,\" Kendra says, with the illusion controlled-substance log labeled focusing illusion between a licensing scare and the staff survey. The scare makes life satisfaction …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The survey desk before the site visit is quiet except for the foundation crack gauge labeled life satisfaction beside Matthias's moving estimate. The crack has become the entire future in the homeown…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The survey desk before the site visit is quiet except for the foundation crack gauge labeled life satisfaction beside Matthias's moving estimate. The crack has become the entire future in the homeown…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which signature on the evacuation floor map labeled well-being should Cora trust after a public rescue: the one written while the honor still glows, or the one after ordinary shifts return? The rescu…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The rubber edge of the periscope drill card labeled attention presses into Yves's palm after a failed simulator exercise. The miss feels like proof he chose the wrong profession. In the postmortem, Y…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at the publisher return slip labeled remembering self while Lillian's supplier loss starts to feel like the whole business and the whole life. Before the loss, the shop also held loya…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took three passes before Andre saw what the orchard wind vane labeled meaning had been making too easy. A perfect harvest made him say the whole year was wonderful, despite months of strained slee…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before giving a global life rating after a vivid event, which practice best defuses the focusing illusion?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 89% (max 50%)"
+          }
+        ],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 268
+  },
+  "bookGate": {
+    "bookId": "thinking-fast-and-slow",
+    "chapterCount": 38,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F3",
+        "severity": "major",
+        "message": "Book-wide answer position drift: idx 0 wins 59% of 343 questions (ceiling 45%). Quiz balance fix needed."
+      },
+      {
+        "catalogId": "A10",
+        "severity": "blocker",
+        "message": "Schema inconsistency: \"memorableLines\" present on 37/38 chapters but missing on 1 (chapters 5). Likely cache-skip regression. Backfill before shipping."
+      },
+      {
+        "catalogId": "A10",
+        "severity": "blocker",
+        "message": "Schema inconsistency: \"tryThisNow\" present on 37/38 chapters but missing on 1 (chapters 5). Likely cache-skip regression. Backfill before shipping."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        202,
+        113,
+        28
+      ],
+      "answerPositionPctMax": 0.5889212827988338,
+      "totalQuizQuestions": 343,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [
+        {
+          "field": "memorableLines",
+          "presentInChapters": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "missingInChapters": [
+            5
+          ]
+        },
+        {
+          "field": "tryThisNow",
+          "presentInChapters": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "missingInChapters": [
+            5
+          ]
+        }
+      ],
+      "patternAudit": {
+        "bookId": "thinking-fast-and-slow",
+        "chapterCount": 38,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

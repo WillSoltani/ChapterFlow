@@ -1,0 +1,330 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch42",
+  "number": 42,
+  "title": "Framing",
+  "readingTimeMinutes": 12,
+  "hook": "The same fact can push harder after someone changes its clothes.",
+  "counterintuition": "Your reaction may be answering the wording, not the facts. A frame can make the same outcome feel like a gain, a loss, a rescue, or a threat.",
+  "tryThisNow": "Before one decision today, rewrite the same fact as a gain and as a loss, then choose from the shared number underneath.",
+  "keyTakeaway": "When wording changes your reaction, translate the choice into its opposite frame before deciding.",
+  "breakdown": {
+    "fastRead": "The forecast grid glows on Joanne's wealth-adviser screen before a client call. One slide says the portfolio has a 90 percent chance of preserving capital. Another could say a 10 percent chance of loss. Joanne writes framing risk beside the grid.\n\nBoth statements can describe the same fact. The frame changes the emotional handle. Preserve feels calm. Loss feels sharp. If the decision changes when the wording changes, the wording is steering.\n\nSame number, different pull.\n\nThe correction is to reverse the frame. Turn gains into losses, survival into mortality, discounts into costs, and ask whether the choice still holds.",
+    "deepRead": "The forecast grid in Joanne's advisory dashboard shows the same retirement scenario in two ways. The first says the plan is likely to preserve capital. The second shows the chance that capital falls below the target. The client has not changed. The market has not changed. The sentence has changed.\n\nFraming works because decisions arrive inside language. A plan can be worded by what it saves or what it risks, by what you gain or what you forgo, by how many succeed or how many fail. The facts may stay fixed while the emotional path shifts. The mind often reacts before it notices the translation.\n\nThe frame is part of the choice.\n\nAlbert sees the same issue in a lead-test average review. A donor pledge card sits beside a school water report. One draft says 95 percent of samples are below the threshold. Another says 5 percent exceed it. Albert marks wording risk on the card because the same average may produce either relief or alarm depending on which side of the threshold the sentence lights up.\n\nThe goal is not to become numb to wording. Wording matters because people need to understand risk. The discipline is to make the hidden twin visible. If the gain frame makes you say yes, check the loss frame. If the loss frame makes you panic, check the gain frame. Then decide from the underlying trade-off.\n\nA fair frame lets the same fact survive translation.",
+    "fullRead": "The shift roster on Justin's ferry maintenance table is smudged with engine grease. A repair option is described as keeping 80 percent of sailings on schedule during the next month. The operations lead likes it. Justin writes medicine frame risk on the roster and rewrites the line: one in five sailings will still be disrupted.\n\nNothing factual has changed. The first frame highlights success. The second highlights failure. In medicine, the same pattern is familiar: a treatment described by survival can feel different from one described by mortality. Tversky and Kahneman's work on the framing of decisions made that point hard to ignore. People can shift choices when the same outcome is cast as lives saved or lives lost.\n\nWhich version would you choose if the sentence were reversed?\n\nJustin asks that before the ferry vote. The team keeps both frames on the table. Schedule preserved. Sailings disrupted. Cost avoided. Cost paid. Passenger complaints reduced. Passenger complaints remaining. The repair option may still be right, but it no longer wins by showing only the bright side of the same number.\n\nYou can feel this in an award-to-sales design review. You are holding a risk register while Mary compares two ways to describe a product badge. One says winners convert 18 percent better. The other says non-winners lose 15 percent of expected sales lift. Mary must decide whether choice frame risk is changing the design decision before the same evidence is examined both ways.\n\nFraming also hides inside labels. A fee can be a service charge or a penalty. A discount can be savings or money left unclaimed. A policy can be described by households helped or households still waiting. A volcano tourism booking report can say 98 percent of trips run safely or 2 percent face cancellation and evacuation risk. The sentence does not merely report the fact. It points the reader toward a feeling.\n\nThe strongest frame is often the one that sounds like plain description. Safe, improved, protected, delayed, denied, and rescued all carry a tilt. None of those words is automatically dishonest. The issue is whether the matching frame is missing. A fair memo lets the reader see what is gained and what remains at risk.\n\nGood decisions do not require sterile language. They require honest translation. Put the opposing frame beside the first one. Ask whether the action changes. If it does, slow down and find the common number beneath the two sentences.\n\nWhen wording changes your reaction, translate the choice into its opposite frame before deciding.",
+    "whyItMatters": "Framing makes presentation feel like evidence. Readers need to reverse the wording so the same facts can be judged without the first label choosing for them."
+  },
+  "examples": [
+    {
+      "exampleId": "ch42-ex01-joanne-forecast-grid",
+      "title": "Joanne Rewrites the Capital Frame",
+      "tags": [
+        "scene",
+        "wealth",
+        "forecast"
+      ],
+      "planSpec": {
+        "domain": "a wealth-adviser expectation call applying Framing under operational pressure",
+        "audience": "a reader who has to make a live judgment where framing could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Framing is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the forecast grid, names the framing risk, and changes the next choice in view of another person."
+      },
+      "scenario": "A forecast grid glows on Joanne's 8:45 a.m. wealth-adviser screen in Toronto before a client call. One line says 90 percent capital preservation; the hidden twin says 10 percent loss risk, and the client is close to retirement. Joanne must decide whether framing risk should change the recommendation.",
+      "whatToDo": "Mark framing risk on the grid, show both preservation and loss wording, and ask whether the allocation still fits once the same number is reversed.",
+      "whyItMatters": "The client should choose the risk profile, not the calmer wording."
+    },
+    {
+      "exampleId": "ch42-ex02-albert-donor-pledge-card",
+      "title": "Albert Shows Both Lead-Test Sentences",
+      "tags": [
+        "vignette",
+        "school water",
+        "wording"
+      ],
+      "planSpec": {
+        "domain": "a lead-test average review applying Framing under operational pressure",
+        "audience": "a reader who has to make a live judgment where wording could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Framing is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the donor pledge card, names the wording risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"Ninety-five percent passed,\" the principal says as Albert places a donor pledge card beside the 2:30 p.m. lead-test average review in Newark. Five percent still exceeded the threshold, and the pipe repair vote is tonight. Albert has to choose whether wording risk should change the repair appeal.",
+      "whatToDo": "Mark wording risk on the card, publish both pass and exceedance frames, and ask donors to fund the same repair list from the shared data.",
+      "whyItMatters": "The community needs the actual risk, not only the sentence that sounds calmer."
+    },
+    {
+      "exampleId": "ch42-ex03-justin-shift-roster",
+      "title": "Justin Reframes Ferry Maintenance",
+      "tags": [
+        "dialogue",
+        "ferry",
+        "maintenance"
+      ],
+      "planSpec": {
+        "domain": "a ferry maintenance planning applying Framing under operational pressure",
+        "audience": "a reader who has to make a live judgment where medicine frame could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Framing is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the shift roster, names the medicine frame risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The shift roster smells of engine grease during Justin's 6:10 a.m. ferry maintenance planning in Halifax. One repair option keeps 80 percent of sailings on schedule; the twin frame disrupts one in five during commuter weeks. Justin must decide whether medicine frame risk should pause the vote.",
+      "whatToDo": "Mark medicine frame risk on the roster, show preserved sailings and disrupted sailings together, and choose from the full trade-off.",
+      "whyItMatters": "A success frame can hide the passengers still left with cancellations."
+    },
+    {
+      "exampleId": "ch42-ex04-mary-risk-register",
+      "title": "Mary Reverses the Badge Claim",
+      "tags": [
+        "decision",
+        "sales",
+        "design"
+      ],
+      "planSpec": {
+        "domain": "a award-to-sales design review applying Framing under operational pressure",
+        "audience": "a reader who has to make a live judgment where choice frame could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Framing is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the risk register, names the choice frame risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are in a Manchester design review, holding a risk register while Mary studies an award badge test. The slide says winners convert 18 percent better, while the reverse says non-winners lose expected lift on the same product page. Mary must decide whether choice frame risk is steering the rollout.",
+      "whatToDo": "Mark choice frame risk on the register, write gain and loss versions of the same result, and approve only if the evidence holds both ways.",
+      "whyItMatters": "A badge can look stronger when framed as a gain than when framed as the cost imposed on everyone else."
+    },
+    {
+      "exampleId": "ch42-ex05-barbara-lab-notebook",
+      "title": "Barbara Rewrites the Submission Table",
+      "tags": [
+        "predict",
+        "film festival",
+        "selection"
+      ],
+      "planSpec": {
+        "domain": "a film festival submissions table applying Framing under operational pressure",
+        "audience": "a reader who has to make a live judgment where Tversky could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Framing is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the lab notebook, names the Tversky risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Barbara, a programming chair, one 10 p.m. film festival submissions table in Berlin to see the lab notebook had become a frame test. The new category would highlight 40 additional documentaries, but it would also exclude 60 narrative shorts. Barbara must decide whether Tversky risk changes the vote.",
+      "whatToDo": "Mark Tversky risk on the notebook, show included films and displaced films side by side, and vote from the same denominator.",
+      "whyItMatters": "A program expansion can sound generous until the displaced choices are named with the same care."
+    },
+    {
+      "exampleId": "ch42-ex06-stephen-contract-redline",
+      "title": "Stephen Reopens the Volcano Booking Frame",
+      "tags": [
+        "postmortem",
+        "tourism",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "a volcano tourism booking report applying Framing under operational pressure",
+        "audience": "a reader who has to make a live judgment where framing could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Framing is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the contract redline, names the framing risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which volcano tour sentence made evacuation risk sound like fine print? Stephen asks at a 5:25 p.m. booking postmortem in Catania, laying a contract redline beside the sales report. He marks framing risk, then alters the next report to show safe-trip and disruption wording together.",
+      "whatToDo": "Pair the 98 percent safe-trip frame with the 2 percent evacuation-and-cancellation frame before approving the booking language.",
+      "whyItMatters": "Tourists deserve the same fact in both emotional directions before buying the trip."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a framing case, a fund is described as having a 90 percent chance of preserving capital, and clients feel calm, the same fact could be a 10 percent chance of loss. What is the framing risk?",
+        "choices": [
+          "The wording may be steering the reaction while the underlying probability stays the same.",
+          "Clients calm fact gives a practical reason for chance preserving capital; steering reaction underlying belongs after loss what wording clarifies the result.",
+          "Fact loss what makes percent chance preserving look credible; use capital clients calm first and revisit wording steering reaction when underlying probability stays shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "Both frames can describe the same fact. The decision should survive translation from preservation to loss.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Framing makes framing case feel more decisive than the record supports, and that misprices fund described in this scene. The correct move keepss the choice by the wording may be steering the reaction while the underlying probability stays the same."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a framing review, a school water report says 95 percent of lead samples passed, and the board relaxes, five percent still exceeded the threshold. What should the reviewer do?",
+        "choices": [
+          "Says percent lead gives a practical reason for school water report; relaxes five exceeded belongs after samples passed board clarifies the result.",
+          "Show pass and exceedance frames together before deciding repairs.",
+          "What reviewer show supports a narrower read of percent lead samples; keep passed board relaxes central and leave five exceeded threshold aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "Both frames reveal the same data from different emotional angles. Showing both keeps wording from deciding the repair list.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Framing works by letting framing school crowd out water report, which can misreads the says percent decision. Show pass and exceedance frames together before deciding repairs keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When framing pressure appears, a ferry repair option is sold as preserving 80 percent of sailings, but it also leaves one in five disrupted. What move best counters framing?",
+        "choices": [
+          "Side trade-off record fits the immediate pressure around leaves five disrupted; hold percent sailings also steady and test option sold preserving later.",
+          "Repair option sold looks strong enough to guide preserving percent sailings; also leaves five can wait unless disrupted what move changes the stakes.",
+          "Place preserved and disrupted sailings side by side, then choose from the trade-off."
+        ],
+        "correctIndex": 2,
+        "explanation": "The side-by-side translation exposes the same fact in both directions. The vote should come after that comparison.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Framing turns appears ferry into a shortcut, so the room can overweights repair option while missing sold preserving. Place preserved and disrupted sailings side by side, then choose from the trade-off protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After framing risk surfaces, a product badge test says winners convert 18 percent better, the reverse frame says non-winners lose expected lift. What should the design lead check?",
+        "choices": [
+          "Check whether rollout fits the immediate pressure around reverse frame non-winners; hold convert percent better steady and test test says winners later.",
+          "Badge test says looks strong enough to guide winners convert percent; better reverse frame can wait unless non-winners lose expected changes the stakes.",
+          "Whether the rollout still makes sense when gain and loss wording describe the same result."
+        ],
+        "correctIndex": 2,
+        "explanation": "The same result can push differently as gain or loss. The design choice should hold under both frames.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Framing would push the product badge case toward test says, creating a cost when winners convert stays untested. The useful guardrail is to whether the rollout still makes sense when gain and loss wording describe the same result."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If framing reasoning takes over, a film festival says a new category highlights 40 additional documentaries. It also displaces 60 narrative shorts from the same schedule. What is the strongest framing correction?",
+        "choices": [
+          "Documentaries also displaces makes film festival says look credible; use category highlights additional first and revisit narrative shorts schedule when what strongest correction shifts.",
+          "Show included and displaced films from the same denominator before voting.",
+          "Shorts schedule what points toward a quicker call on festival says category; let framing reasoning film stand until also displaces narrative contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The expansion frame and displacement frame belong together. The same schedule creates both outcomes.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Framing converts festival says into the loudest signal, which can rushes category highlights before additional documentaries is checked. The better answer separatess attention on show included and displaced films from the same denominator before voting."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While framing pressure builds, a volcano tour page says 98 percent of trips run safely, while the contract mentions a 2 percent evacuation and cancellation risk, what should the postmortem ask?",
+        "choices": [
+          "Did the sales frame and risk frame give buyers the same fact with equal clarity?",
+          "Says percent trips makes framing pressure builds look credible; use volcano tour page first and revisit safely contract mentions when evacuation cancellation what shifts.",
+          "What postmortem sales supports a narrower read of page says percent; keep trips safely contract central and leave mentions evacuation cancellation aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The issue is balance. Buyers should see the safe-trip and disruption frames clearly enough to understand the same risk.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Framing hides inside the framing pressure choice because framing pressure seems sufficient, yet the cost lands in framing pressure. Did the sales frame and risk frame give buyers the same fact with equal clarity brings the framing pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the framing call, a manager says the positive frame is fine because it is factually true. Which response is most useful?",
+        "choices": [
+          "A true frame can still be incomplete if the opposite frame changes the decision.",
+          "Fine factually true makes framing call manager look credible; use says positive frame first and revisit response useful incomplete when opposite changes framing shifts.",
+          "Framing baseline comparison supports a narrower read of frame fine factually; keep true response useful central and leave incomplete opposite changes aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "Truth is not the only test. The team should ask whether a different but equivalent frame would change the choice.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Framing pressures the call manager decision toward the easy reading of call manager. That can inflates the real cost unless the choice is grounded in a true frame can still be incomplete if the opposite frame changes the decision."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose framing risk is present: a hospital consent form says a treatment has an 85 percent survival rate, and patients accept quickly. The mortality version produces more hesitation. What does this show?",
+        "choices": [
+          "Suppose framing present looks strong enough to guide hospital consent form; says treatment percent can wait unless survival rate patients changes the stakes.",
+          "The frame changed reaction even though the fact stayed the same.",
+          "Rate patients accept makes consent form says look credible; use treatment percent survival first and revisit quickly mortality version when produces hesitation what shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "Survival and mortality can describe the same outcome from opposite sides. The reaction shift shows framing pressure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Framing is the mechanism here: wording changes the felt choice, so present hospital can overpower present hospital. The frame changed reaction even though the fact stayed the same keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "The team is preparing a rule for investment summaries, safety notices, medicine choices, and public reports. Which rule best prevents framing from choosing for the reader?",
+        "choices": [
+          "Prevents framing choosing supports a narrower read of investment summaries safety; keep notices medicine choices central and leave public reports best aside.",
+          "Choosing reader show points toward a quicker call on safety notices medicine; let rule investment summaries stand until best prevents framing contradicts it.",
+          "Show the gain and loss versions of the same fact, then decide from the shared number."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rule keeps true wording from becoming one-sided. It makes the underlying number visible under both frames.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Framing makes the investment summaries evidence look cleaner than it is, risking a investment summaries mistake in this setting. The answer protects investment summaries by asking for show the gain and loss versions of the same fact, then decide from."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch42-card01",
+      "front": "A fact is framed as a gain. What should you do?",
+      "back": "Rewrite it as the equivalent loss, then decide from the shared number."
+    },
+    {
+      "cardId": "ch42-card02",
+      "front": "Why can true wording still mislead?",
+      "back": "A true frame can emphasize one emotional side of the same fact while hiding the equivalent opposite frame."
+    },
+    {
+      "cardId": "ch42-card03",
+      "front": "What is the medicine-frame check?",
+      "back": "Translate survival into mortality, or mortality into survival, before choosing."
+    },
+    {
+      "cardId": "ch42-card04",
+      "front": "How do you know framing is steering?",
+      "back": "If your decision changes when the same fact is worded the opposite way, the frame is influencing you."
+    },
+    {
+      "cardId": "ch42-card05",
+      "front": "What is the core correction for framing?",
+      "back": "Put opposing frames beside each other and choose from the underlying fact."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to translate decisions out of their first wording. The habit is to write the opposite frame and make the shared number visible before choosing.",
+    "ifThenPlans": [
+      {
+        "context": "financial choices",
+        "plan": "If a result is described as preservation or gain, then I will also write the loss version."
+      },
+      {
+        "context": "health and safety",
+        "plan": "If a risk is described by survival or success, then I will also write mortality, failure, or remaining harm."
+      },
+      {
+        "context": "public reports",
+        "plan": "If a report highlights people helped, then I will also show people still waiting or affected."
+      },
+      {
+        "context": "postmortems",
+        "plan": "If wording changed the room's reaction, then I will identify the shared fact underneath both frames."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, take one number you plan to present and write its gain frame and loss frame before sharing it.",
+    "weeklyPractice": "Once this week, review a decision memo and add the missing opposite frame beside every key percentage."
+  },
+  "memorableLines": [
+    {
+      "text": "Same number, different pull.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the frame's emotional force."
+    },
+    {
+      "text": "The frame is part of the choice.",
+      "location": "breakdown.deepRead",
+      "why": "It reminds the reader that presentation shapes judgment."
+    },
+    {
+      "text": "When wording changes your reaction, translate the choice into its opposite frame before deciding.",
+      "location": "breakdown.fullRead",
+      "why": "It states the practical correction."
+    }
+  ]
+}

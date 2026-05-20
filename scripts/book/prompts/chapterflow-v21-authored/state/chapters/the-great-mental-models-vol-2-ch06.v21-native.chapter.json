@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch06",
+  "number": 6,
+  "title": "Velocity",
+  "readingTimeMinutes": 12,
+  "hook": "The ambulance timer was green, but Sophie's dispatch map showed the unit racing toward the wrong hospital.",
+  "counterintuition": "Fast is flattering because it feels like proof. Velocity asks for the less comfortable evidence: pace joined to the right heading.",
+  "tryThisNow": "Take one metric you are proud of. Draw an arrow beside it and write the target. If the arrow points elsewhere, stop celebrating the speed.",
+  "keyTakeaway": "Progress is speed in the right direction; judge pace and heading together before rewarding motion that carries you away from the target.",
+  "breakdown": {
+    "fastRead": "Sophie saw the unit timer turn green on the ambulance dispatch dashboard. Under eight minutes. Clean response. Then the dispatch map showed the ambulance heading to a hospital without the stroke unit the patient needed.\n\nThe system was fast in the wrong direction.\n\nVelocity is speed plus direction. The source support is that narrow and that useful: fast movement misleads when the heading is wrong. A quick action deserves praise only when its arrow points toward the target.",
+    "deepRead": "\"I finished three practice tests this week,\" Chris said, pointing to the language certification score grid. The exam calendar looked less frightening. Then his tutor opened the oral prompt deck and asked a simple spoken question. Chris froze.\n\nThe pace was real. The direction was wrong. He had been moving quickly through written drills while the target required live speaking. That is the practical difference between speed and velocity. Speed tells you how fast something is moving. Direction tells you whether the movement serves the goal. When those two are separated, motion can become a trap because effort feels like progress while the target stays off to the side.\n\nA fast wrong way is still wrong.\n\nManon found the same problem in a home renovation. The demolition schedule put her two days ahead, and the tile sample was already approved. Then the inspection card showed the wall had to remain open until a wiring check. Finishing early would mean tearing new work back out. The right move was to slow the visible pace so the project could keep the correct heading.\n\nVelocity also has a limit. Direction without pace can become dreamy planning. A perfect arrow that never moves is not progress either. Strong evaluation needs both: enough rate to matter, enough heading to arrive.",
+    "fullRead": "Hanna's campaign calendar looked beautiful by Friday morning. Signups were up 28 percent. The canvass route had twice as many doors as last month. Volunteers were sending screenshots with little bursts of celebration.\n\nThen Hanna pinned the district map beside the pledge sheet. The new signups clustered in a district the nonprofit had already won. The target district, where the city hearing would be decided, was nearly blank. The campaign was moving quickly away from the actual fight.\n\nThat is why velocity is such a useful guardrail for decision making. Speed alone is easy to measure and easy to praise. It produces numbers, motion, and relief. Direction is less flattering because it asks whether the motion is pointed at the thing that matters. If the target is retention, shipped features can be motion away from progress. If the target is injury-free training, added miles can be motion toward failure. If the target is the right hospital, a faster ambulance can still be wrong.\n\nWhat is the arrow pointing at?\n\nChidi had to ask that in the SaaS sprint review. The sprint ticket count was high. Engineers had shipped seven items. Then the retention board showed the same customers leaving for the same reason, and the customer note named one missing fix that none of the tickets touched. Chidi could celebrate output or redraw the arrow. He chose the arrow. The next sprint cut three visible features and funded the boring fix that pointed at retention.\n\nThis model protects you from a common managerial illusion: the clean metric that rewards motion because direction is harder to discuss. Calls made. Pages written. Miles run. Tickets closed. Doors knocked. Each can be useful. Each can also become a little machine for moving people away from the real target while everyone feels productive.\n\nThe answer is not slowness. Velocity does not ask you to distrust speed. It asks you to join speed to heading. Diego learned this after a marathon training block. The pace chart improved. The shoe log showed more miles. The physio appointment showed a calf strain getting worse. He was not training toward the race anymore. He was training toward an injury that would keep him from the start line. The correction was not to quit running. It was to change the direction of the work: fewer hard miles, more recovery, more race-specific strength.\n\nUse velocity when the room rewards busyness. Put the target on the same page as the rate. Draw the arrow. If the arrow points at the target, speed may be valuable. If the arrow points away, speed has become camouflage.\n\nThe wrong direction gets worse faster when you are good at moving."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-sophie-dispatch-map",
+      "title": "Sophie Checks the Hospital Code",
+      "tags": [
+        "scene",
+        "ambulance",
+        "heading"
+      ],
+      "planSpec": {
+        "domain": "ambulance dispatch dashboard",
+        "audience": "readers who face ambulance dispatch dashboard decisions where velocity is easy to misread",
+        "stakes": "response time versus wrong-hospital routing",
+        "format": "scene",
+        "requiredBeat": "Sophie writes the target on the dispatch map, draws an arrow through the unit timer, and refuses to celebrate the hospital code sheet until direction and pace match. Domain: ambulance dispatch dashboard."
+      },
+      "scenario": "The dispatch map flashes green while the unit timer drops under eight minutes, and Sophie hears the radio crackle over the ambulance desk. The hospital code sheet says stroke unit required, but the route line bends toward the closer general hospital. Before she clears the call, Sophie must decide whether the fast response is progress or a fast wrong turn.",
+      "whatToDo": "Put the required hospital code on the map and check the route arrow before praising the timer. Reward speed only when the unit is heading to the right care.",
+      "whyItMatters": "A short response time can hide a bad destination. Velocity joins pace to target, so the route must be right before the timer means progress."
+    },
+    {
+      "exampleId": "ch06-ex02-chris-oral-prompts",
+      "title": "Chris Leaves the Score Grid",
+      "tags": [
+        "vignette",
+        "study",
+        "target"
+      ],
+      "planSpec": {
+        "domain": "language certification study plan",
+        "audience": "readers who face language certification study plan decisions where velocity is easy to misread",
+        "stakes": "passing fast but learning wrong material",
+        "format": "vignette",
+        "requiredBeat": "Chris writes the target on the practice score grid, draws an arrow through the oral prompt deck, and refuses to celebrate the exam calendar until direction and pace match. Domain: language certification study plan."
+      },
+      "scenario": "\"Three practice tests in four days,\" Chris says, tapping the score grid in the language school lobby. The exam calendar is circled in red, but the oral prompt deck sits unopened in his bag. He must pick the next study block before class: another fast written drill or the slower speaking practice that points at the actual certification target.",
+      "whatToDo": "Write oral fluency on the score grid and move the prompt deck into the next study slot. Let the target, not completed pages, define progress.",
+      "whyItMatters": "Written drills create speed, but the exam requires speech. A rising score in the wrong format can make effort feel productive while the target is missed."
+    },
+    {
+      "exampleId": "ch06-ex03-manon-renovation-card",
+      "title": "Manon Slows the Wall",
+      "tags": [
+        "dialogue",
+        "renovation",
+        "sequence"
+      ],
+      "planSpec": {
+        "domain": "home renovation sequence",
+        "audience": "readers who face home renovation sequence decisions where velocity is easy to misread",
+        "stakes": "finishing early but redoing walls",
+        "format": "dialogue",
+        "requiredBeat": "Manon writes the target on the demolition schedule, draws an arrow through the tile sample, and refuses to celebrate the inspection card until direction and pace match. Domain: home renovation sequence."
+      },
+      "scenario": "The demolition schedule is taped to the kitchen doorway, and dust hangs in the afternoon light. \"We can close the wall today,\" the contractor says. Manon holds the tile sample in one hand and the inspection card in the other. Before the crew mixes plaster, she has to decide whether finishing early counts as progress if the wiring check still points the project backward.",
+      "whatToDo": "Put the inspection card above the schedule and hold the wall open until the check passes. Let sequence define direction, even if the visible pace slows.",
+      "whyItMatters": "Closing the wall early is speed. Passing inspection before tile is velocity. The right order prevents fast work from becoming rework."
+    },
+    {
+      "exampleId": "ch06-ex04-hanna-district-map",
+      "title": "Hanna Redraws the Campaign Arrow",
+      "tags": [
+        "decision_point",
+        "nonprofit",
+        "district"
+      ],
+      "planSpec": {
+        "domain": "climate nonprofit campaign calendar",
+        "audience": "readers who face climate nonprofit campaign calendar decisions where velocity is easy to misread",
+        "stakes": "signups rising in the wrong district",
+        "format": "decision_point",
+        "requiredBeat": "Hanna writes the target on the district map, draws an arrow through the pledge sheet, and refuses to celebrate the canvass route until direction and pace match. Domain: climate nonprofit campaign calendar."
+      },
+      "scenario": "At 8:30 a.m. Friday, Hanna opens the climate nonprofit campaign calendar and sees signup totals climbing. The pledge sheet looks strong. Then the district map shows most new names outside the hearing district. Her cursor hovers over the celebration email, and she must decide whether to praise the canvass route or redirect volunteers toward the district that can change the vote.",
+      "whatToDo": "Put the hearing district on the pledge sheet and redraw the canvass route before celebrating signups. Count only motion aimed at the decision point.",
+      "whyItMatters": "The campaign is moving quickly, but the map shows a wrong heading. More signups do not help if they gather outside the target district."
+    },
+    {
+      "exampleId": "ch06-ex05-chidi-retention-board",
+      "title": "Chidi Cuts Fast Tickets",
+      "tags": [
+        "predict_reveal",
+        "software",
+        "retention"
+      ],
+      "planSpec": {
+        "domain": "SaaS roadmap sprint review",
+        "audience": "readers who face SaaS roadmap sprint review decisions where velocity is easy to misread",
+        "stakes": "shipping features away from retention",
+        "format": "predict_reveal",
+        "requiredBeat": "Chidi writes the target on the retention board, draws an arrow through the sprint ticket, and refuses to celebrate the customer note until direction and pace match. Domain: SaaS roadmap sprint review."
+      },
+      "scenario": "You are in the sprint review when Chidi predicts the team will be praised for seven shipped tickets. The retention board is flat. A customer note says renewal failed because one dull export bug remains. Chidi drags a line from the board to the sprint ticket and must choose between applauding velocity-looking output or funding the fix that points at retention.",
+      "whatToDo": "Move the retention target onto the sprint board and cut tickets that do not point at it. Celebrate shipped work only when it changes the customer note that matters.",
+      "whyItMatters": "Ticket count measures speed. Retention gives direction. Without the arrow, the team can ship faster while moving away from the business problem."
+    },
+    {
+      "exampleId": "ch06-ex06-diego-pace-chart",
+      "title": "Diego Revises the Pace Chart",
+      "tags": [
+        "postmortem",
+        "training",
+        "injury"
+      ],
+      "planSpec": {
+        "domain": "marathon training adjustment",
+        "audience": "readers who face marathon training adjustment decisions where velocity is easy to misread",
+        "stakes": "adding miles while injury risk rises",
+        "format": "postmortem",
+        "requiredBeat": "Diego writes the target on the pace chart, draws an arrow through the shoe log, and refuses to celebrate the physio appointment until direction and pace match. Domain: marathon training adjustment."
+      },
+      "scenario": "It took Diego one physio appointment to see the problem in his pace chart. The shoe log showed more miles, faster long runs, and a calf that tightened earlier every week. In the postmortem, he writes start line healthy above the chart and sees that his training had been moving quickly toward a race he might not reach.",
+      "whatToDo": "Put healthy start line on the pace chart and adjust mileage toward that target. Use the physio note as directional evidence, not as a footnote to faster splits.",
+      "whyItMatters": "More miles can be speed away from the goal. The useful pace is the one that points toward racing healthy, not winning a spreadsheet."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A sales team makes twice as many calls this week, but most calls go to accounts outside the target segment. What does velocity ask first?",
+        "choices": [
+          "Are the calls pointed at the right target?",
+          "Can the team make even more calls next week?",
+          "Which rep has the strongest work ethic?"
+        ],
+        "correctIndex": 0,
+        "explanation": "Velocity joins rate to heading. More calls show speed, but target fit decides whether the motion counts as progress.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A student finishes twenty practice essays for an exam that grades live oral defense. Which study adjustment best applies the model?",
+        "choices": [
+          "Write essays faster to build confidence.",
+          "Shift the next block to oral prompts because the target requires speaking.",
+          "Stop studying until the exam format feels clearer."
+        ],
+        "correctIndex": 1,
+        "explanation": "The oral target changes direction. Essay speed may be real effort, but the next block must point toward the skill being tested.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A delivery company cuts average route time by sending drivers to a hub that lacks cold storage for medical parcels. Which verdict fits velocity?",
+        "choices": [
+          "The route is progress because time fell.",
+          "The route is progress only if drivers feel less stressed.",
+          "The route is fast in the wrong direction because the destination fails the parcel requirement."
+        ],
+        "correctIndex": 2,
+        "explanation": "Lower route time is speed. Cold storage is part of the target, so a faster route to the wrong hub is not progress.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A startup ships five onboarding features quickly, while churn interviews keep naming one billing confusion. Which move best restores velocity?",
+        "choices": [
+          "Put churn reduction on the sprint board and fund the billing fix before more visible features.",
+          "Keep shipping features because visible output builds morale.",
+          "Stop all shipping until every customer interview is complete."
+        ],
+        "correctIndex": 0,
+        "explanation": "The target is churn reduction, so the arrow points to billing. More features may increase speed while missing direction.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A nonprofit reports record signups, but 80 percent come from districts where the policy vote is already secure. What should leadership analyze?",
+        "choices": [
+          "Whether volunteers are working hard enough.",
+          "Whether signup speed is aimed at the district where the vote can change.",
+          "Whether signup forms are visually appealing."
+        ],
+        "correctIndex": 1,
+        "explanation": "The count is speed; the district map gives direction. Leadership needs to know whether motion is pointed at the decision that matters.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A runner adds miles every week and improves pace, but a recurring injury threatens race day. Which conclusion follows?",
+        "choices": [
+          "The runner is progressing because both mileage and pace are up.",
+          "The injury is irrelevant unless race day arrives.",
+          "The training may be moving quickly away from the target of starting healthy."
+        ],
+        "correctIndex": 2,
+        "explanation": "The target is not just more miles; it is arriving healthy. Speed that raises injury risk can point away from the real goal.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A customer support group closes tickets faster after using canned replies. Satisfaction drops because replies miss the actual issue. Which metric pairing would help?",
+        "choices": [
+          "Tickets closed per hour plus customer issue resolved.",
+          "Number of canned replies created.",
+          "Average typing speed by agent."
+        ],
+        "correctIndex": 0,
+        "explanation": "Closure rate is pace; resolved issue is direction. Pairing them prevents fast replies from being mistaken for useful progress.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A hospital celebrates faster ambulance arrival times, but more patients need transfers because routing ignores specialty care. Which evaluation is strongest?",
+        "choices": [
+          "The faster arrival metric is enough because minutes save lives.",
+          "The system should evaluate arrival time together with correct-care destination.",
+          "Specialty routing should be ignored until all arrival times are under target."
+        ],
+        "correctIndex": 1,
+        "explanation": "Velocity needs both speed and direction. Correct-care destination is part of the target, so arrival time alone can reward the wrong motion.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team spends a month building a reporting tool ahead of schedule, then learns the executive decision needed a forecast model instead. What failed?",
+        "choices": [
+          "The team lacked speed.",
+          "The team worked too carefully.",
+          "The team optimized pace before confirming heading."
+        ],
+        "correctIndex": 2,
+        "explanation": "Finishing early shows speed, but the decision needed a different target. Velocity failed because heading was not checked before motion accelerated.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A team is moving fast. What should you retrieve before calling it progress?",
+      "back": "Retrieve the target and draw the arrow. Speed counts as progress only when the motion points at the thing that matters.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A metric is improving while the real goal is not. What does velocity suggest?",
+      "back": "The metric may be measuring speed without direction. Pair the rate with a target measure that shows whether the motion is aimed correctly.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A slower sequence prevents rework. How should you read it?",
+      "back": "Slower pace can still be better velocity if it points at the target. Direction can justify reducing visible speed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A campaign is growing in the wrong district. What should you retrieve?",
+      "back": "Retrieve the target geography and compare it with the growth. Motion outside the decision area is speed without useful direction.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A runner improves pace while injury risk rises. What is the velocity check?",
+      "back": "Ask whether the training points toward race-day readiness. More miles and faster splits are not progress if they move the runner toward not starting.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to pair every speed measure with a target. The skill is drawing the direction arrow before rewarding motion.",
+    "ifThenPlans": [
+      {
+        "context": "metrics",
+        "plan": "If a number improves, then write the target beside it and ask whether the improvement points there."
+      },
+      {
+        "context": "projects",
+        "plan": "If the team is ahead of schedule, then check whether the finished work serves the decision or outcome that matters."
+      },
+      {
+        "context": "personal goals",
+        "plan": "If you are doing more reps, pages, or miles, then verify that the added work points toward the actual result."
+      },
+      {
+        "context": "reviews",
+        "plan": "If someone praises speed, then ask for the heading before approving more acceleration."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one speed metric you use today. Write the target beside it and mark whether the arrow points toward or away from that target.",
+    "weeklyPractice": "Each week, review one project metric. Pair its rate with a direction check, then stop or redirect one activity that moves quickly toward the wrong outcome."
+  },
+  "memorableLines": [
+    {
+      "text": "The system was fast in the wrong direction.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the chapter's core danger in one concrete sentence."
+    },
+    {
+      "text": "A fast wrong way is still wrong.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a short corrective line against speed worship."
+    },
+    {
+      "text": "The wrong direction gets worse faster when you are good at moving.",
+      "location": "breakdown.fullRead",
+      "why": "It turns competence itself into the risk when heading is wrong."
+    }
+  ]
+}

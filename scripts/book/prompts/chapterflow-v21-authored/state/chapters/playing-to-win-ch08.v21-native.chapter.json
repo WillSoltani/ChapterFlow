@@ -1,131 +1,114 @@
 {
   "chapterId": "playing-to-win-ch08",
+  "bookId": "playing-to-win",
   "number": 8,
   "title": "Shorten Your Odds",
-  "readingTimeMinutes": 14,
-  "hook": "Muriel does not need perfect confidence before launch. She needs the three conditions that must hold.",
-  "counterintuition": "Most teams ask whether they feel confident enough. The better question is what would have to be true. Naming and testing the key conditions improves the odds before commitment grows. Instead, the team should expose the few conditions that carry the most risk.",
-  "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
-  "keyTakeaway": "You shorten the odds by turning vague uncertainty into conditions, ranking the conditions by consequence, and testing the one that could change the decision fastest.",
+  "readingTimeMinutes": 12,
+  "hook": "The strategy debate had been running for six weeks. Both sides had projections. Neither side had listed what would have to be true for their option to actually work.",
+  "counterintuition": "The instinct under uncertainty is to gather more information until confidence arrives. The problem is that forward projection under genuine uncertainty produces more scenarios, not better decisions. The useful move is not to add more analysis but to reverse the direction: instead of projecting what might happen, ask what must be true for each option to succeed. That question produces a list of testable conditions, not a wider range of projections.",
+  "tryThisNow": "For the strategic option you are most committed to right now, ask: what would have to be true for the one you are least convinced of to be the better choice? List three conditions. Check each one: evidence in hand, or assumption? The condition you cannot support is the first thing to investigate, not the last.",
+  "keyTakeaway": "Shortening the odds under uncertainty means reverse engineering from a desired outcome to the specific conditions that must hold, then testing the most uncertain and most consequential conditions first rather than defending the most comfortable option.",
   "breakdown": {
-    "fastRead": "Muriel writes launch? on a whiteboard at 8:48 a.m. while the prototype charger blinks red. The room wants confidence. The charger wants a condition. Will users tolerate a six-hour charge?\n\nUncertainty becomes useful when it has a shape. Name what must be true, then test the riskiest condition first.\n\nYou do not need the fog to lift everywhere. You need one beam on the thing that could sink the plan.",
-    "deepRead": "Tariro stands in a school gym with a new after-care sign and twelve parent questions. The program might work if pickup is safe, snacks are covered, and older students do not crowd the younger ones. Those are not worries to admire. They are conditions to test.\n\nShortening the odds means reverse engineering the win. Start with the desired result. Ask what would have to be true. Ask which condition would hurt most if false. Then run the cheapest honest test.\n\nPicture Pernille at a pharmacy counter considering a home-delivery pilot. She does not survey everyone. She tests the hard condition first: can insulin deliveries stay cold on the longest route in August? A thermometer in a sample box teaches more than a month of confidence talk.\n\nThe limit is courage. A real test might tell you to stop. That is not failure. It is saved time, money, and trust.\n\nA restaurant owner can feel unsure about adding delivery for months. The useful question is smaller. What would have to be true? Food must travel well for twenty minutes. Drivers must arrive during the dinner peak. Packaging must protect fries from steam. The first test can happen with six boxed meals and a timer, not a full launch.\n\nThe order matters. Test the condition that would change the decision most. Easy tests are tempting, but they do little if they avoid the heaviest assumption.",
-    "fullRead": "Solvi holds a clipboard at 5:27 a.m. beside a ferry dock, watching wind push spray over the first row of cars. Her team wants to add a commuter coffee cart on the pier. The idea is charming. The question is not whether everyone likes coffee. The question is what would have to be true for the cart to work in this place.\n\nThree conditions appear fast. Commuters must arrive early enough to stop. The cart must stay upright and stocked in bad weather. The ferry crew must not see it as blocking the loading lane. Each condition can be tested before buying the cart. Count arrivals for three mornings. Set up a taped footprint in the wind. Walk the lane with the crew lead at rush hour. The odds improve because the guess becomes a set of checks.\n\nHuxley sees the same pattern in a software launch. The team wants one more month to feel ready. He asks what must be true. Trial users must invite a teammate in the first week, billing must not break on annual plans, and support must answer setup tickets in under two hours. The team stops debating mood and starts testing conditions. One fails. The launch narrows.\n\nDahlia uses it at home. She is thinking about moving her father into her spare room. The fear is huge until she names conditions: stairs, medication storage, privacy, and the morning commute to dialysis. She tests the stairs with him on Saturday and learns the upstairs room is wrong. Painful information, early, prevents a larger mistake.\n\nA condition list is not a guarantee. Some surprises will stay hidden. But the method changes the kind of uncertainty you carry. Instead of a cloud called risk, you get a short list of load-bearing assumptions and a next test.\n\nWhen a team asks for more confidence, trade the word for a condition. Then put the heaviest condition under pressure while the cost of being wrong is still small.\n\nShortening the odds is not the same as removing risk. It is choosing which risk deserves contact first. A team can still be surprised. A competitor can move, weather can shift, a supplier can fail, or customers can behave oddly after launch. The point is to stop carrying avoidable ignorance about the assumptions already in front of you.\n\nA good condition is written plainly enough that a test can touch it. Customers will love this is too vague. Ten of twenty trial users will invite a teammate in week one is testable. Pickup will be safe is too soft. No child crosses the loading lane during the taped pilot is sharper. Clear conditions make honest learning possible.\n\nThe test should be cheap but real. A survey about whether people like the idea of coffee on a pier is weaker than watching commuters move around a taped cart space in the wind. A family talk about stairs is weaker than walking the stairs with the person who will climb them. Contact beats opinion when the condition is physical, behavioral, or operational.\n\nUse the result with discipline. If the heavy condition fails, change the plan while the cost is small. That change may feel like retreat. It is often the reason the next attempt has better odds."
+    "fastRead": "Nils ran a restaurant and was weighing two options: a second location across town or a catering operation from his existing kitchen. The revenue projections looked good for both. When someone asked him to list what would have to be true for each option to succeed, the picture changed. For the catering path, he needed corporate clients at premium rates, a kitchen that could handle both service and catering without physical expansion, and a head chef willing to manage production scheduling. For the second location, he needed a neighborhood lunch crowd large enough to sustain a new spot, a manager who could run the existing location without him daily, and a landlord willing to negotiate the lease. Nils was not asking which option was safer. He was asking which assumptions each option was betting on that he could not yet verify. The catering path had two conditions he could test that week. The second location had three conditions he could not verify without signing a lease and committing a year of investment.",
+    "deepRead": "The misunderstanding that blocks clear decisions under uncertainty is the belief that more analysis will eventually produce enough confidence to act. The problem is that forward projection under genuine uncertainty produces more scenarios, not better decisions. The output is a wider range of possibilities and the same unresolved disagreement about which option to choose.\n\nThe what-would-have-to-be-true approach works in the opposite direction. Instead of projecting forward from available data, it works backward from a desired outcome. For each strategic option under consideration, the question is: what must be true for this option to succeed? The answer is a list of conditions, not a single probability estimate. Some conditions can be verified now with existing data. Some require a small test before the full commitment. Some cannot be resolved without committing to the option and accepting the uncertainty. Instead of asking which option is right, ask what would have to be true for each option to work. The conditions that neither side can agree on are the ones worth testing before committing to either.\n\nThat is where to put the next week's effort.\n\nThe practical sequence is to list the conditions for each option, rank them by consequence, and identify which high-consequence conditions are currently supported only by assumption rather than evidence. A condition that is uncertain but low-consequence can wait. A condition that is certain but high-consequence is a known constraint, not a risk. The most dangerous condition is the one that is both most consequential and treated as assumed, not yet verified.",
+    "fullRead": "Forward projection under uncertainty produces a useful feeling and a dangerous output. The feeling is rigor: multiple scenarios, probability estimates, sensitivity analyses. The output is a wider range of projections attached to the same unresolved strategic question. Adding another scenario does not resolve which option to choose; it extends the analysis phase and defers the commitment. The what-would-have-to-be-true approach changes the question being asked and, as a result, changes what the team does next.\n\nThe six examples above share a structural feature. In each case, the strategic debate was stuck because both sides were defending positions, not listing conditions. Sarah and her co-founder were arguing about which product path was safer. Matt's council was arguing about whether the repair estimate was credible. Julien's team was arguing about which market was larger. In each case, the stuck argument converted into a tractable question as soon as someone asked: what would have to be true for this option to work? The question produced a list. The list had items with different evidence quality. The items with the least support became the first tests.\n\nA condition is useful when it is written specifically enough that a test can touch it. 'The market will respond well' is not a condition; it is a hope. 'At least twelve of thirty trial users will invite a teammate in week one' is a condition. 'The neighborhood will support a second location' is not testable. 'The block has at least eight hundred weekday lunch visitors who do not yet have a dedicated option' is a condition. The specificity requirement is not pedantic. It is what makes the condition honest, not merely reassuring.\n\nConsider the option you are currently leaning toward on a decision you are carrying right now. What would have to be true for the option you are not leaning toward to actually be the better choice? Write the conditions for that option down. Now look at each condition and ask: do you have evidence for this, or are you assuming it? The conditions you are assuming but cannot yet verify are the ones your choice is actually resting on. If those conditions were false, would you still choose the same option? That is the question the analysis has not yet answered.\n\nThe uncertainty does not go away when you choose. But you can choose to test the most uncertain conditions before you commit, rather than discovering them after.\n\nThe order in which conditions are tested matters as much as the list itself. The temptation is to test the easiest condition first, because an easy test feels like progress and produces an early confirmation. But the easy condition is rarely the consequential one. The condition worth testing first is the one that, if false, would change the decision. A small pilot on the riskiest condition before the full commitment is more valuable than a large study on conditions that will not change the outcome.\n\nShortening the odds is not the same as eliminating uncertainty. A competitor can move after the commitment is made. A supplier can fail. Market behavior can shift in ways that no condition list predicted. The value of the what-would-have-to-be-true approach is not that it makes surprise impossible. It is that it converts avoidable ignorance into early tests. The surprises that remain are genuine surprises. The assumptions that were testable before the commitment are no longer acceptable as reasons for failure after it."
   },
   "examples": [
     {
-      "exampleId": "ch08-ex01-muriel-circles-the-red-charger-light-before-",
-      "title": "Muriel circles the red charger light before launch review",
-      "tags": [
-        "hardware",
-        "launch",
-        "decision"
-      ],
+      "exampleId": "ch08-ex01-sarah-startup-conditions",
+      "title": "Sarah Converts a Co-Founder Argument Into a List of Testable Conditions",
+      "tags": ["decision_point", "startup", "what-would-have-to-be-true"],
       "planSpec": {
-        "domain": "consumer hardware launch",
-        "audience": "product manager",
-        "stakes": "launch risk",
+        "domain": "an early-stage startup deciding between two product directions at a funding inflection point",
+        "audience": "two co-founders who disagree on whether to build a B2B tool or a B2C consumer app and are about to split the team over it",
+        "stakes": "the team will spend the next twelve months building one of these paths, and the other co-founder's buy-in depends on feeling like the choice was made on evidence, not politics",
         "format": "decision_point",
-        "requiredBeat": "replace confidence talk with key condition"
+        "openingDevice": "dialogue_first",
+        "requiredBeat": "Sarah asks what would have to be true for the B2C path to win, and her co-founder lists conditions, not positions; the conversation converts from argument to testable propositions"
       },
-      "scenario": "Muriel writes launch? on the lab whiteboard at 8:48 a.m. while the prototype charger blinks red beside her laptop. The room says it needs more confidence. The customer interviews are mixed, but one issue keeps returning: six hours to charge. She can ask for another broad research sprint, or she can name the condition that must hold: users will accept overnight charging.",
-      "whatToDo": "Turn the fear into a condition and test that condition first with real users. Do not spend another sprint measuring confidence in general.",
-      "whyItMatters": "The charger light points to the load-bearing assumption. Muriel improves the odds by testing what could sink the launch, not by collecting mood."
+      "scenario": "'You keep saying B2B is safer,' Sarah's co-founder said. 'You haven't said what would have to be true for B2C to win.' Sarah paused. That was the question she had been avoiding. She wrote it at the top of the whiteboard: what must be true for B2C to work? Her co-founder started listing: high organic word-of-mouth so the acquisition cost stays low, conversion from free to paid that is faster than the category average, and a viral loop that works without influencer spending. Sarah wrote each condition down. Then she asked which of those conditions they could test in the next six weeks without committing to the full build. The argument stopped being about who was right. It became about which conditions were most uncertain and what the cheapest honest test looked like.",
+      "whatToDo": "When a strategic debate is stuck between two positions, stop arguing which option is correct and start listing what must be true for each option to succeed. Then identify which conditions are testable before full commitment and run those tests first.",
+      "whyItMatters": "Turning conditions into testable propositions changes the conversation from defending positions to investigating evidence. The co-founders were not disagreeing about facts; they were assuming different conditions. Making the assumptions explicit is the first step to resolving them."
     },
     {
-      "exampleId": "ch08-ex02-tariro-sorts-parent-questions-on-the-gym-flo",
-      "title": "Tariro sorts parent questions on the gym floor",
-      "tags": [
-        "school",
-        "aftercare",
-        "postmortem"
-      ],
+      "exampleId": "ch08-ex02-matt-bridge-council-vote",
+      "title": "Matt Lists What Would Have to Be True Before the City Council Votes on the Bridge",
+      "tags": ["scene", "government", "what-would-have-to-be-true"],
       "planSpec": {
-        "domain": "school after-care program",
-        "audience": "program lead",
-        "stakes": "pilot design",
-        "format": "postmortem",
-        "requiredBeat": "worries become conditions"
-      },
-      "scenario": "Tariro sits on the gym floor at 7:11 p.m., sorting parent question cards after the after-care meeting. Pickup safety, snack allergies, older kids crowding younger ones, late buses. During the meeting she called them concerns and kept smiling. Now she writes what must be true across the top of the first card. The pile changes from anxiety into a test plan.",
-      "whatToDo": "Translate each major worry into a condition for success, then rank which false condition would do the most damage in week one.",
-      "whyItMatters": "The cards are not objections to soothe. They are early warnings about what the program must prove before the pilot grows."
-    },
-    {
-      "exampleId": "ch08-ex03-solvi-asks-the-ferry-crew-to-walk-the-taped-",
-      "title": "Solvi asks the ferry crew to walk the taped coffee-cart footprint",
-      "tags": [
-        "ferry",
-        "dialogue",
-        "test"
-      ],
-      "planSpec": {
-        "domain": "ferry commuter service",
-        "audience": "operations planner",
-        "stakes": "coffee cart pilot",
-        "format": "dialogue",
-        "requiredBeat": "conditions tested before purchase"
-      },
-      "scenario": "Solvi kneels at 5:27 a.m. on the ferry pier, pressing silver tape to wet concrete where the coffee cart would stand. \"If the line backs up here, we miss loading,\" the crew lead says. Spray dots the clipboard. Solvi points to the taped rectangle. \"Walk the rush with me before I buy anything.\" The first cars are already rolling down the ramp.",
-      "whatToDo": "Test the space and crew condition before buying the cart. Use a cheap physical trial where the real constraint will show itself.",
-      "whyItMatters": "The cart idea depends on pier flow, not just coffee demand. Solvi shortens the odds by testing the condition that could block the whole plan."
-    },
-    {
-      "exampleId": "ch08-ex04-pernille-watches-the-insulin-thermometer-on-",
-      "title": "Pernille watches the insulin thermometer on the longest route",
-      "tags": [
-        "pharmacy",
-        "delivery",
-        "reveal"
-      ],
-      "planSpec": {
-        "domain": "pharmacy delivery pilot",
-        "audience": "pharmacy owner",
-        "stakes": "cold-chain risk",
-        "format": "predict_reveal",
-        "requiredBeat": "longest route tests cold condition"
-      },
-      "scenario": "Pernille predicted customers would decide the delivery pilot. At 2:36 p.m. in August, she is staring at a thermometer inside a sample insulin box after the longest rural route. The reading is still safe by one degree. The driver has sweat through his collar. Customer interest matters, but this condition can kill the service before demand does.",
-      "whatToDo": "Keep testing the cold-chain condition under worse heat and longer delays before expanding the pilot. Put demand surveys second.",
-      "whyItMatters": "The riskiest condition is operational, not emotional. If insulin cannot arrive safely, popularity only makes the failure larger."
-    },
-    {
-      "exampleId": "ch08-ex05-huxley-cuts-the-launch-after-the-teammate-in",
-      "title": "Huxley cuts the launch after the teammate-invite test",
-      "tags": [
-        "software",
-        "before_after",
-        "assumption"
-      ],
-      "planSpec": {
-        "domain": "SaaS product launch",
-        "audience": "growth lead",
-        "stakes": "activation risk",
-        "format": "before_after",
-        "requiredBeat": "teammate invite condition fails and launch narrows"
-      },
-      "scenario": "At 4:09 p.m., Huxley used to ask whether the team felt ready for launch. Then he wrote three conditions on the glass: invite a teammate, annual billing works, support answers setup in two hours. The invite test failed badly. Only four of thirty trial users brought in a teammate. The launch changed from public release to a narrower onboarding experiment.",
-      "whatToDo": "Let the failed condition reshape the plan. Keep testing activation before buying traffic or announcing a broad launch.",
-      "whyItMatters": "The test saved the team from scaling a weak habit. Huxley improved the odds by letting one condition change the commitment."
-    },
-    {
-      "exampleId": "ch08-ex06-dahlia-carries-the-tea-tray-up-the-stairs-wi",
-      "title": "Dahlia carries the tea tray up the stairs with her father",
-      "tags": [
-        "family",
-        "personal",
-        "scene"
-      ],
-      "planSpec": {
-        "domain": "family care decision",
-        "audience": "adult child",
-        "stakes": "move-in plan",
+        "domain": "a city infrastructure committee deciding between repairing an aging bridge and building a new crossing route",
+        "audience": "a public works director presenting a recommendation to a city council that is split between the repair and new-build options",
+        "stakes": "the repair option is cheaper and faster but rests on the assumption that the bridge can be made safe for twenty more years; the debate is stuck because neither side can prove their assumption without testing it",
         "format": "scene",
-        "requiredBeat": "stairs condition changes care plan"
+        "openingDevice": "timestamp_named",
+        "requiredBeat": "Matt presents the committee report and a council member asks what would have to be true for the repair option to be the right choice; the question converts the debate from cost comparison to condition verification"
       },
-      "scenario": "Dahlia carries a tea tray up the narrow stairs at 10:14 a.m. Saturday while her father grips the rail behind her. She has been imagining him in the spare upstairs room after his lease ends. The fear felt too large to touch, so she named conditions: stairs, medication, privacy, dialysis rides. Halfway up, he stops and laughs without breath. The upstairs room is no longer a maybe.",
-      "whatToDo": "Test the physical condition before planning around hope. Move the care plan downstairs or look for another setup while there is still time.",
-      "whyItMatters": "The stair test is painful, but it is cheap truth. Dahlia prevents a bigger failure by checking the condition that daily life would expose anyway."
+      "scenario": "At 2:15, Matt advanced to the slide comparing repair at four million and new build at twenty-two million. A council member in the third row raised her hand before he finished. 'Walk me through what would have to be true for the repair to be the right choice,' she said. Matt listed the conditions: the structural assessment must confirm twenty-year life, the foundation must be sound enough to hold the repaired load, and the contractor must be able to hold the budget through winter construction. The council member asked which of those three conditions they actually knew versus assumed. One was known. Two were assumed. The committee had a vote scheduled for Thursday and two conditions that had not yet been tested.",
+      "whatToDo": "Before bringing a cost comparison to a decision-maker, list the specific conditions each option requires and mark which are supported by evidence versus which are currently assumed. The assumed conditions on the lower-cost option are often the ones that determine whether the savings are real.",
+      "whyItMatters": "The council member's question converted a cost debate into a condition inventory. The two assumed conditions were the actual risk in the repair option, not the cost difference. Testing them before the vote was cheaper than discovering them during construction."
+    },
+    {
+      "exampleId": "ch08-ex03-julien-launch-market-conditions",
+      "title": "Julien Discovers That Three Conditions Drive the Urban Launch Differently Than Assumed",
+      "tags": ["predict_reveal", "consumer-product", "what-would-have-to-be-true"],
+      "planSpec": {
+        "domain": "a consumer product company evaluating two possible launch markets for a new product",
+        "audience": "a marketing director choosing between launching first in a large urban market and launching first in a smaller, more concentrated regional market",
+        "stakes": "the urban launch offers faster volume but requires a marketing budget the company does not have; the regional launch requires word-of-mouth growth that the company has evidence for from a similar product",
+        "format": "predict_reveal",
+        "openingDevice": "question_hook",
+        "requiredBeat": "Julien asks his team to list what would have to be true for each launch path to succeed and finds that the urban launch requires three conditions his company has never met, while the regional launch requires two conditions supported by existing evidence"
+      },
+      "scenario": "Which launch market was the right choice when the company could only afford one? Julien had predicted the urban market would win the argument on size alone. He asked his team to list what would have to be true for each path to succeed before the budget was allocated. The urban launch required a performance marketing budget the company did not have, a retail placement that would take six months to negotiate, and a customer acquisition cost below a threshold the company had never achieved in any market. The regional launch required word-of-mouth velocity that a similar product had demonstrated the previous year and a distribution partnership the company already had in that geography. The size argument had been true. The condition argument changed the decision.",
+      "whatToDo": "Before choosing between two launch paths based on market size, list the specific conditions each path requires and check which conditions have supporting evidence from prior experience. The path with better evidence quality on its load-bearing conditions is often the one worth trying first.",
+      "whyItMatters": "Market size is an outcome, not a condition. Julien's team had been debating which market was bigger when the real question was which conditions they already had evidence for. The condition list converted a size debate into an evidence inventory."
+    },
+    {
+      "exampleId": "ch08-ex04-diego-research-pilot-condition",
+      "title": "Diego Finds the Single Most Uncertain Condition and Designs a Pilot Around It",
+      "tags": ["before_after", "research", "what-would-have-to-be-true"],
+      "planSpec": {
+        "domain": "a clinical research team evaluating two study designs for a new therapeutic approach",
+        "audience": "a research director choosing between a large randomized controlled trial and a smaller adaptive trial design",
+        "stakes": "the adaptive trial is faster and cheaper but depends on the assumption that early signals will be robust enough to adjust the protocol without introducing bias",
+        "format": "before_after",
+        "openingDevice": "environmental",
+        "requiredBeat": "before: Diego brings the two designs as a budget choice; after: he reframes each as a set of conditions and finds the single most uncertain condition for the adaptive trial is testable with a small pilot before either full design is committed"
+      },
+      "scenario": "Two study design proposals sat on the research committee table: the large randomized controlled trial on the left, labeled three years and full budget; the adaptive trial on the right, labeled eighteen months and sixty percent of the cost. Before: Diego framed the choice as a budget decision and the committee debated timelines. After: he asked what would have to be true for the adaptive trial to succeed and the conditions changed the conversation. The adaptive design required the early signal to be clean enough to adjust the protocol without introducing bias. That single condition was the most uncertain and the most consequential. It was also testable with a small preliminary study before either full design was committed. The committee stopped debating the budget and started planning the pilot.",
+      "whatToDo": "Before choosing between a faster, cheaper option and a slower, more expensive one, list the conditions for each and identify the single most uncertain condition on the faster option. If that condition is testable with a small pilot, run the pilot before committing to either full design.",
+      "whyItMatters": "The cost advantage of the adaptive trial was real only if the early signal condition held. That condition was testable before the commitment. Running a budget debate without first identifying the most uncertain condition meant the committee was evaluating the wrong question."
+    },
+    {
+      "exampleId": "ch08-ex05-petra-publisher-debut-conditions",
+      "title": "Petra Shifts the Acquisitions Committee From Manuscript Evaluation to Condition Testing",
+      "tags": ["vignette", "publishing", "what-would-have-to-be-true"],
+      "planSpec": {
+        "domain": "an independent publisher choosing between two manuscript acquisitions with limited budget for one",
+        "audience": "a senior editor who must recommend one of two strong manuscripts to the acquisitions committee",
+        "stakes": "manuscript A is from an established author with a reliable audience; manuscript B is from a debut novelist whose early reader response was exceptional but untested at scale",
+        "format": "vignette",
+        "openingDevice": "retrospective",
+        "requiredBeat": "Petra reviews previous debut acquisitions and reframes the question from which manuscript is better to what would have to be true for the debut to hit its target; she finds two of the three conditions are verifiable before the committee meeting"
+      },
+      "scenario": "Petra had reviewed the comparison document three times: prose quality, marketability, category fit, all rated for both manuscripts. The established author scored reliably. The debut scored exceptionally on prose and unevenly on everything else. She put the comparison document aside and asked a different question: what would have to be true for the debut to reach its target? The conditions were specific. The exceptional reader response must hold across a broader test group, not just the original early readers. The social media following must represent genuine engagement, not inflated counts. The category must have room for a new voice in the current season. Petra could verify two of the three before the committee meeting. She brought the condition list instead of the comparison document.",
+      "whatToDo": "Before making an acquisition decision based on evaluation criteria, ask what conditions must hold for the riskier option to succeed. Identify which conditions are verifiable before the commitment and gather that evidence before the decision meeting.",
+      "whyItMatters": "The comparison document ranked both manuscripts on the same criteria and could not resolve the debate. The condition list gave the committee something actionable: two conditions worth verifying before committing the budget to either manuscript."
+    },
+    {
+      "exampleId": "ch08-ex06-frida-real-estate-committee",
+      "title": "Frida Prepares for the Investment Committee's Question About Site B's Conditions",
+      "tags": ["thought_experiment", "real-estate", "what-would-have-to-be-true"],
+      "planSpec": {
+        "domain": "a real estate development team evaluating two sites for a mixed-use project",
+        "audience": "a development director whose team has built strong business cases for both sites but whose investment committee needs a clearer basis for choice",
+        "stakes": "site A has established foot traffic but higher land cost; site B has lower land cost but uncertain demand growth in a transitional neighborhood; both cases look good on paper but depend on different assumptions",
+        "format": "thought_experiment",
+        "openingDevice": "second_person",
+        "requiredBeat": "Frida imagines presenting both sites to the investment committee and being asked what would have to be true for Site B to be the right choice; the question converts the pro forma debate into a condition inventory with clear next tests"
+      },
+      "scenario": "You are preparing both site presentations for the investment committee and you already know the question that will come. Site B's pro forma is strong, but the committee will ask: what would have to be true for this site to be the right choice? Frida ran through the conditions before the meeting. Neighborhood demand growth must continue at its current pace through the three-year construction period. The zoning approval must proceed on the projected timeline without the variance that would add a year. The anchor tenant must commit before construction begins, not after. The pro forma assumed all three. The first condition was supported by two years of demand data. The second was assumed. The third was the condition that had sunk three previous transitional-neighborhood projects in the region. She knew which condition to test before the committee meeting and what the test would cost.",
+      "whatToDo": "Before presenting a business case to an investment committee, anticipate the 'what would have to be true' question for the riskier option and prepare condition-specific answers. Identify which conditions are assumed versus supported and have a plan for the most uncertain one.",
+      "whyItMatters": "The pro forma comparison made both sites look attractive. The condition inventory showed that Site B's advantage rested on three assumptions, one of which had a documented history of causing project failures. That condition, not the pro forma, was the real decision variable."
     }
   ],
   "quiz": {
@@ -133,119 +116,119 @@
     "questions": [
       {
         "questionId": "ch08-q01",
-        "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+        "prompt": "Why does the 'what would have to be true' question help teams make better decisions under uncertainty?",
         "choices": [
-          "Force the slide to name the one choice that decides the rest.",
-          "Add a sentence saying all priorities remain important.",
-          "Delay the review until every leader has edited the slide."
-        ],
-        "correctIndex": 0,
-        "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
-        "bloomsLevel": "apply",
-        "depthLevel": "simple"
-      },
-      {
-        "questionId": "ch08-q02",
-        "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
-        "choices": [
-          "Run all three as shorter projects.",
-          "Choose the project that fits the chosen students and let the others wait.",
-          "Ask students to vote without naming the learning target."
-        ],
-        "correctIndex": 1,
-        "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
-        "bloomsLevel": "analyze",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch08-q03",
-        "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
-        "choices": [
-          "Promise both groups a lighter version.",
-          "Build the feature requested by the louder group.",
-          "Pick the customer group tied to the win and say no to the other request."
+          "To identify which strategic option has the most supporting data before the decision is made",
+          "To determine which team members have the most confidence in each strategic option",
+          "To convert forward projections into a list of specific conditions that each option requires in order to succeed"
         ],
         "correctIndex": 2,
-        "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
-        "bloomsLevel": "evaluate",
-        "depthLevel": "deep"
-      },
-      {
-        "questionId": "ch08-q04",
-        "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
-        "choices": [
-          "Change the measure so it tracks the wait that decides the chosen service line.",
-          "Celebrate the green dashboard to keep morale high.",
-          "Add a second dashboard for every department."
-        ],
-        "correctIndex": 0,
-        "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
-        "bloomsLevel": "create",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch08-q05",
-        "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
-        "choices": [
-          "Rank the activities by how impressive they sound.",
-          "Name the one summer outcome that should lead the schedule.",
-          "Keep all activities and shorten sleep for two weeks."
-        ],
-        "correctIndex": 1,
-        "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+        "explanation": "The question reverses the direction of analysis: instead of projecting forward from available data, it works backward from a desired outcome to the conditions that must hold. The output is a list of conditions, not a confidence ranking.",
         "bloomsLevel": "understand",
         "depthLevel": "simple"
       },
       {
-        "questionId": "ch08-q06",
-        "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+        "questionId": "ch08-q02",
+        "prompt": "Two co-founders are arguing about whether to build a B2B or B2C product. Sarah asks: 'What would have to be true for the B2C path to win?' Her co-founder lists three conditions. What should the team do next?",
         "choices": [
-          "Split the grant into four equal mini-programs.",
-          "Use the grant on the group with the loudest advocate.",
-          "Choose one audience and design the program to win trust there first."
+          "Analyze the market size for each option to determine which has more revenue potential",
+          "Identify which conditions are testable in the next six weeks without committing to the full build, and run those tests first",
+          "Survey potential customers to determine which product type they would prefer before making the decision"
         ],
-        "correctIndex": 2,
-        "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+        "correctIndex": 1,
+        "explanation": "Once conditions are listed, the next step is to sort them by testability before full commitment. The conditions that can be tested cheaply before the major investment are the ones that should be tested first. Market size analysis and customer surveys are useful but do not test the specific conditions that could change the decision.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
-        "questionId": "ch08-q07",
-        "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+        "questionId": "ch08-q03",
+        "prompt": "Matt presented a bridge repair option at four million dollars versus a new build at twenty-two million. A council member asked what would have to be true for the repair to be the right choice. Matt identified three conditions: one supported by evidence and two assumed. What does this reveal?",
         "choices": [
-          "Choose the habit that reinforces the desired position with customers.",
-          "Try all three and review after staff burn out.",
-          "Let each shift choose its own priority."
+          "The cost comparison was the wrong frame; the two assumed conditions are the actual risk in the repair option and should be tested before the vote",
+          "The repair option is likely to cost more than projected because assumed conditions often lead to budget overruns",
+          "The council should delay the vote until the contractor can provide a binding cost guarantee for all three conditions"
         ],
         "correctIndex": 0,
-        "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+        "explanation": "The assumed conditions are where the cost advantage of the repair option can fail. Testing them before the vote is cheaper than discovering them during construction. The cost comparison gave the council a false sense of which decision was lower risk.",
         "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q04",
+        "prompt": "Julien's team found that the urban launch required three conditions his company had never met, while the regional launch required two conditions supported by existing evidence. Which action follows from this finding?",
+        "choices": [
+          "Commission a new study on whether the urban market conditions could be met before making a final decision",
+          "Split the launch budget between both markets to test the conditions for both simultaneously",
+          "Choose the regional launch path because it has better evidence quality on its load-bearing conditions"
+        ],
+        "correctIndex": 2,
+        "explanation": "The condition inventory showed that the regional launch had supporting evidence for its key conditions while the urban launch required capabilities the company had never demonstrated. That evidence quality difference, not market size, is the strategically relevant finding. The regional path has better-supported conditions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q05",
+        "prompt": "Diego's research committee was debating between an eighteen-month adaptive trial and a three-year randomized controlled trial. After listing the conditions each design required, the committee found the single most uncertain condition for the adaptive trial was testable with a small preliminary study. What is the correct next step?",
+        "choices": [
+          "Run the preliminary study to test the most uncertain condition before committing to either full design",
+          "Proceed with the randomized controlled trial because it has fewer uncertain conditions",
+          "Request additional budget to fund both designs simultaneously so the committee can evaluate the results in parallel"
+        ],
+        "correctIndex": 0,
+        "explanation": "When the most uncertain condition for the riskier option is testable before full commitment, the correct step is to run that test. The preliminary study provides evidence on the condition that determines whether the faster path is viable, at a fraction of the cost of committing to either full design.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q06",
+        "prompt": "Petra reframed the manuscript acquisition debate from 'which manuscript is better' to 'what would have to be true for the debut to hit its target.' She found two of the three required conditions were verifiable before the committee meeting. What principle does this illustrate?",
+        "choices": [
+          "Evaluation criteria are not useful for acquisition decisions because they cannot capture the conditions that drive commercial success",
+          "Reframing a comparative evaluation as a condition inventory reveals which conditions are testable before the commitment and gives the decision a concrete next step",
+          "The established author is always the safer choice because debut novels have more untested conditions than experienced authors"
+        ],
+        "correctIndex": 1,
+        "explanation": "The comparison document could not resolve the debate because it ranked both manuscripts on criteria that did not reveal the specific conditions driving the risk. The condition list gave the committee something actionable: evidence to gather before the meeting, not subjective ratings to debate.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q07",
+        "prompt": "Frida identified that Site B's pro forma rested on three conditions: two supported by data and one with a documented history of causing project failures in similar neighborhoods. What is the most strategically sound way to present this to the investment committee?",
+        "choices": [
+          "Recommend Site A because the presence of any high-risk assumed condition makes Site B's pro forma unreliable regardless of the other conditions",
+          "Present the condition inventory with the evidence quality for each condition and a specific plan for testing the most uncertain one before committing to Site B",
+          "Present both pro formas with sensitivity analysis showing the committee what happens if each condition fails"
+        ],
+        "correctIndex": 1,
+        "explanation": "The condition inventory gives the committee the actual information driving the decision: which conditions are supported and which are assumed. The plan to test the most uncertain condition before committing shows the committee a path to reduce the risk before committing, not simply accept or reject the site. Recommending Site A on the basis of one uncertain condition ignores the possibility that the condition is testable. Sensitivity analysis shows what happens if conditions fail but does not reduce the uncertainty.",
+        "bloomsLevel": "evaluate",
         "depthLevel": "deep"
       },
       {
         "questionId": "ch08-q08",
-        "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+        "prompt": "A planning team has been asked to choose between two options. The team has extensive analysis on both but keeps returning to the same disagreement. Which action most directly applies the 'what would have to be true' approach?",
         "choices": [
-          "Collect more survey answers before speaking.",
-          "Write two or three real options and use the evidence to test them.",
-          "Pick the safest option because it has fewer objections."
+          "Commission additional market research to resolve the disagreement with more data",
+          "Escalate the decision to senior leadership who can resolve the impasse with a final call",
+          "Ask each side to list the conditions their option requires, then identify which are assumed rather than supported by evidence"
         ],
-        "correctIndex": 1,
-        "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
-        "bloomsLevel": "evaluate",
+        "correctIndex": 2,
+        "explanation": "When analysis has not resolved a strategic disagreement, the problem is usually that both sides are defending positions, not examining conditions. Asking each side to list specific conditions converts the debate into an evidence inventory and identifies the assumptions that are actually driving the disagreement.",
+        "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "ch08-q09",
-        "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+        "prompt": "Why is the order in which conditions are tested strategically important?",
         "choices": [
-          "Wait until the full prototype is polished.",
-          "Ask friends which concept sounds more exciting.",
-          "Test the assumption that would kill the concept if it fails."
+          "The condition that is both most consequential and most uncertain should be tested first, because a failed test on that condition is the one that should change the decision",
+          "Testing easier conditions first builds team confidence and momentum before addressing the harder ones",
+          "Conditions should be tested in the order they were identified to maintain a consistent process"
         ],
-        "correctIndex": 2,
-        "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
-        "bloomsLevel": "create",
+        "correctIndex": 0,
+        "explanation": "Testing easy conditions first produces early confirmation but avoids the assumption that most threatens the decision. The condition worth testing first is the one that, if false, would change the choice. Easy tests on low-consequence conditions do not improve the odds; they generate activity that avoids the real question.",
+        "bloomsLevel": "analyze",
         "depthLevel": "deep"
       }
     ]
@@ -253,67 +236,73 @@
   "reviewCards": [
     {
       "cardId": "ch08-card-01",
-      "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
-      "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+      "front": "What does the 'what would have to be true' question produce that forward projection does not?",
+      "back": "A list of specific conditions that each option requires in order to succeed, rather than a wider range of projections. The conditions can be ranked by consequence and evidence quality, which the projections cannot.",
       "difficulty": "easy"
     },
     {
       "cardId": "ch08-card-02",
-      "front": "A team says every priority matters equally. How do you test whether shorten your odds is real?",
-      "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+      "front": "How do you sort a condition list once you have written it?",
+      "back": "Rank by consequence (if this condition is false, how much does it matter?) and by current evidence quality (supported by data, or assumed?). The conditions that are most consequential and least supported by evidence are the ones to test first.",
       "difficulty": "medium"
     },
     {
       "cardId": "ch08-card-03",
-      "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
-      "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+      "front": "What makes a condition testable rather than vague?",
+      "back": "A testable condition is written specifically enough that a test can touch it. 'The market will respond well' is not testable. 'At least twelve of thirty trial users will invite a teammate in week one' is testable. The specificity is what makes the test honest.",
       "difficulty": "medium"
     },
     {
       "cardId": "ch08-card-04",
-      "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
-      "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+      "front": "When a strategic debate is stuck between two positions, what does the 'what would have to be true' question change?",
+      "back": "It converts the debate from defending positions to listing conditions. The conditions that both sides disagree about are the assumptions driving the disagreement, not the facts. Making the assumptions explicit is the first step to resolving them through evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch08-card-05",
+      "front": "Does the 'what would have to be true' approach eliminate uncertainty?",
+      "back": "No. Competitors can move, suppliers can fail, and behavior can shift after the commitment. The value is that it converts avoidable ignorance into early tests. The surprises that remain after testing the most uncertain conditions are genuine surprises, not assumptions that could have been checked.",
       "difficulty": "hard"
     }
   ],
   "implementationPlan": {
-    "coreSkill": "The skill is assumption testing. You learn to turn uncertainty into conditions, rank them by consequence, and test the heaviest one early.",
+    "coreSkill": "You learn to reverse engineer from a desired strategic outcome to the specific conditions that must hold, then rank those conditions by consequence and evidence quality so the most uncertain and most consequential ones get tested before the full commitment is made.",
     "ifThenPlans": [
       {
-        "context": "work",
-        "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+        "context": "when a strategic debate is stuck between two options and more analysis is not resolving it",
+        "plan": "Ask each side to list what must be true for their preferred option to succeed. The conditions that both sides disagree about are the assumptions driving the disagreement. Run a test on the most uncertain one before continuing the debate."
       },
       {
-        "context": "health",
-        "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+        "context": "when preparing a recommendation for a decision-maker",
+        "plan": "Before finalizing the recommendation, list the conditions the preferred option requires and mark which are supported by evidence versus assumed. Present both the recommendation and the condition inventory so the decision-maker can see what has and has not been verified."
       },
       {
-        "context": "personal",
-        "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+        "context": "when a team is about to commit budget to a strategic option",
+        "plan": "Ask what would have to be true for the option that is not being chosen to be the better decision. List the conditions for that option and check the evidence quality. The conditions you cannot support are the ones to investigate before the budget is committed."
       },
       {
-        "context": "relationships",
-        "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+        "context": "when facing a decision with significant uncertainty",
+        "plan": "Write the conditions for each option. Identify the single most uncertain condition for the option that appears most attractive. Ask what it would cost to test that condition before the full commitment. If the test is cheaper than the cost of being wrong, run it first."
       }
     ],
-    "twentyFourHourChallenge": "Before the next planning conversation, write one decision you are delaying, three things that would have to be true, and the single condition you can test fastest. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
-    "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+    "twentyFourHourChallenge": "Take a decision you are currently carrying and write the conditions for each option: what must be true for each one to succeed. Mark each condition as either supported by evidence or currently assumed. Name the one assumed condition that would most change your thinking if it turned out to be false. That is the first thing to investigate.",
+    "weeklyPractice": "For one week, each time you hear a strategic debate stuck on positions, ask what would have to be true for each side to be correct. Write the conditions for both positions. At the end of the week, review which conditions were testable and which were not. The testable conditions that nobody tested are the places where the team could have shortened its odds."
   },
   "memorableLines": [
     {
-      "text": "Uncertainty becomes useful when it has a shape.",
+      "text": "Nils was not asking which option was safer. He was asking which assumptions each option was betting on that he could not yet verify.",
       "location": "breakdown.fastRead",
-      "why": "This line carries the practical test in plain language."
+      "why": "The reframe from 'safer' to 'which assumptions cannot yet be verified' captures the precise move the approach makes: it shifts the question from comfort to testability."
     },
     {
-      "text": "You do not need the fog to lift everywhere.",
-      "location": "breakdown.fullRead",
-      "why": "This line carries the practical test in plain language."
+      "text": "Instead of asking which option is right, ask what would have to be true for each option to work. The conditions that neither side can agree on are the ones worth testing before committing to either.",
+      "location": "breakdown.deepRead",
+      "why": "This two-sentence formulation gives the reader the exact question to ask and the exact output to look for. It is the practical instruction compressed into two sentences."
     },
     {
-      "text": "When a team asks for more confidence, trade the word for a condition.",
+      "text": "The uncertainty does not go away when you choose. But you can choose to test the most uncertain conditions before you commit, rather than discovering them after.",
       "location": "breakdown.fullRead",
-      "why": "This line carries the practical test in plain language."
+      "why": "The two-sentence contrast acknowledges that uncertainty is real while giving the reader an action that is genuinely within their control. It closes the argument without false reassurance."
     }
   ]
 }

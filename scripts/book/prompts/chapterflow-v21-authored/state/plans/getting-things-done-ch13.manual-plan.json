@@ -1,0 +1,198 @@
+{
+  "chapterId": "getting-things-done-ch13",
+  "number": 13,
+  "title": "The Power of Outcome Focusing",
+  "coreMove": "Name the desired outcome clearly enough that actions can be tested against what done should look like.",
+  "sourcePressure": "This principles chapter explains why a clear desired result gives direction to action and planning, acting as a force multiplier for lower-level control.",
+  "chapterSpecificMisunderstanding": "Treating outcome focusing as vision-board optimism instead of a practical standard for choosing and aligning next actions.",
+  "sourceAlignmentTerms": [
+    "outcome focusing",
+    "desired outcome",
+    "result",
+    "direction",
+    "clarity",
+    "force multiplier",
+    "done looks like"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "outcome focusing",
+      "detail": "The source sidecar identifies outcome focusing as the chapter’s principle-level power.",
+      "useIn": "both",
+      "phrasingHint": "Outcome focusing gives the work a finish line that the next action can actually aim at."
+    },
+    {
+      "kind": "artifact",
+      "name": "force multiplier",
+      "detail": "The source sidecar says outcome focusing acts as a force multiplier when paired with practical workflow control.",
+      "useIn": "both",
+      "phrasingHint": "The outcome does not do the work; it stops the work from spraying in every direction."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emma",
+      "domain": "a discharge coordinator clearing a hospital bed before shift handover",
+      "audience": "a coordinator with a patient medically cleared but not actually gone",
+      "stakes": "a vague discharge item could cost another patient a bed overnight",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The printer spits out discharge papers while Emma rewrites done as signed forms, confirmed transport, and bed marked available.",
+      "firstImage": "warm discharge papers sliding from a printer",
+      "mustInclude": [
+        "discharge papers",
+        "transport call",
+        "bed board"
+      ],
+      "mustAvoid": [
+        "hospital domains from nearby chapters"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "a freelance translator reorganizing Sunday deliverables",
+      "audience": "a translator managing multiple clients and versions",
+      "stakes": "a brief could be returned late because the result is named only by client surname",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The apartment is quiet when Luke changes \"Muller contract\" into a visible finished result with final file and invoice sent.",
+      "firstImage": "a translation file named final beside an unsent invoice",
+      "mustInclude": [
+        "final file",
+        "invoice",
+        "client surname"
+      ],
+      "mustAvoid": [
+        "reusing ch12 translator physical list"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "a drama teacher asking for production budget approval",
+      "audience": "a teacher needing a clear result before a department head can approve spending",
+      "stakes": "a budget may be bounced back because nobody can picture opening night requirements",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"What does ready look like on opening night?\" Hugo’s department head asks, and the missing outcome stops the request cold.",
+      "firstImage": "a costume budget sheet under a stage seating chart",
+      "mustInclude": [
+        "budget sheet",
+        "seating chart",
+        "opening night"
+      ],
+      "mustAvoid": [
+        "community theater repeats from ch3"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "a doctoral candidate revising a methods section before defense",
+      "audience": "a researcher whose hard work is scattered by fuzzy finish conditions",
+      "stakes": "a defense date could slip into another term",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 10:40 a.m., Kasia writes the outcome as methods section revised with all committee notes addressed and sent by Thursday.",
+      "firstImage": "a committee email printed with margin notes",
+      "mustInclude": [
+        "committee email",
+        "methods draft",
+        "Thursday send date"
+      ],
+      "mustAvoid": [
+        "inventing academic studies"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "a regional operations manager reviewing a failed territory offsite",
+      "audience": "a manager whose team spent a day moving without a defined result",
+      "stakes": "the quarter plan still does not exist two weeks before it is due",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Devon one wasted offsite to see that activity had no standard because nobody named what the day had to produce.",
+      "firstImage": "a conference room agenda with no decision line",
+      "mustInclude": [
+        "agenda",
+        "territory map",
+        "decision line"
+      ],
+      "mustAvoid": [
+        "corporate platitudes"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "a restaurant line cook developing a seasonal small-plates section",
+      "audience": "a cook leading menu development for the first time",
+      "stakes": "the chef’s deadline could arrive with attractive fragments and no finished section",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What changes when Javier pictures the printed menu section complete before choosing tonight’s first recipe test?",
+      "firstImage": "a blank menu proof clipped above the prep counter",
+      "mustInclude": [
+        "menu proof",
+        "recipe test",
+        "chef deadline"
+      ],
+      "mustAvoid": [
+        "kitchen service repeats"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish outcome from activity",
+      "use outcome to evaluate next actions",
+      "avoid replacing execution with vision language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one active commitment, write a single sentence beginning \"Done means\" and include the visible condition that would let you stop.",
+  "readingTimeMinutes": 12
+}

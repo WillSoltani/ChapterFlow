@@ -1,0 +1,117 @@
+{
+  "bookId": "essentialism",
+  "title": "Essentialism",
+  "author": "Greg McKeown",
+  "thesisParagraph": "Essentialism argues that meaningful contribution comes from disciplined selection, not from being capable enough to accept everything. The reader learns to reclaim choice, separate the vital few from the trivial many, name the trade-offs built into every yes, then build a life and work system that protects the essential through space, criteria, noes, boundaries, buffers, obstacle removal, small wins, routines, and present focus. The book is not a plea to do less for comfort; it is a method for putting the reader's best effort where it can actually matter.",
+  "coreIdeas": [
+    {
+      "name": "Less but better",
+      "oneSentence": "Doing fewer things only matters when the fewer things are the ones that produce the highest contribution.",
+      "mentalMove": "Stop using busyness as evidence of value and ask which contribution deserves protected effort.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch20.source"
+      ]
+    },
+    {
+      "name": "Choice before compliance",
+      "oneSentence": "Pressure can narrow options, but the reader still has to own the act of choosing.",
+      "mentalMove": "Translate a felt obligation into a deliberate yes, no, or negotiated constraint.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Vital few over trivial many",
+      "oneSentence": "Most possibilities are not equally valuable, and treating them as equal dilutes the work that matters.",
+      "mentalMove": "Rank sharply, filter for signal, and reject merely good options before they become commitments.",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch06.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Explore before eliminating",
+      "oneSentence": "Good selection requires space, observation, play, and rest before the reader can know what to cut.",
+      "mentalMove": "Protect the conditions that let judgment see clearly instead of reacting to the loudest input.",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source",
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Elimination as protection",
+      "oneSentence": "Noes, editing, uncommitment, and boundaries are not negativity; they are the structure that keeps essential work alive.",
+      "mentalMove": "Cut the nonessential with enough clarity and grace that the essential has room to proceed.",
+      "sourceAnchors": [
+        "ch10.source",
+        "ch11.source",
+        "ch12.source",
+        "ch13.source",
+        "ch14.source"
+      ]
+    },
+    {
+      "name": "Execution by design",
+      "oneSentence": "Essential work becomes easier when the system carries it through buffers, constraint removal, small wins, routines, and present focus.",
+      "mentalMove": "Stop relying on heroic effort and redesign the path so the vital few can survive reality.",
+      "sourceAnchors": [
+        "ch15.source",
+        "ch16.source",
+        "ch17.source",
+        "ch18.source",
+        "ch19.source"
+      ]
+    }
+  ],
+  "targetReader": "A capable, overcommitted reader whose competence has attracted too many requests, projects, meetings, and half-owned obligations, and who needs a practical way to protect their highest contribution without pretending every demand is equal.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make the cost of a yes visible before offering the better move",
+      "distinguish essentialism from comfort, avoidance, and generic minimalism"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic self-improvement coaching language",
+      "no treating essentialism as simple decluttering or aesthetic minimalism",
+      "no pretending every trade-off has a painless resolution"
+    ]
+  },
+  "voiceSpecimens": [
+    "The request sounds small until you put it beside the thing it will replace.",
+    "A crowded calendar does not prove commitment. It may only prove that no one has been asked to choose.",
+    "You do not need a stronger personality to say no. You need a clearer picture of what the yes would cost.",
+    "The useful question is not whether the opportunity is good. Many good things are still wrong for this season.",
+    "Space looks empty from the outside, but inside it is where judgment gets its eyesight back.",
+    "A routine is not a cage when it carries the work you keep claiming matters.",
+    "The essentialist does not worship subtraction. The essentialist removes what keeps the real contribution from moving."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter will teach you how to become more productive by prioritizing your goals.",
+    "In today's busy world, it is important to focus on what matters most.",
+    "The author explains that we should say no more often so we can live our best lives.",
+    "The key takeaway is to eliminate distractions and maximize efficiency in all areas.",
+    "Essentialism is about doing less, feeling calm, and simplifying everything.",
+    "If you follow this framework, you can have it all without sacrificing anything important."
+  ],
+  "teachingArc": "The book first changes the reader's stance toward choice: they are not trapped into accepting every good-looking demand. It then teaches exploration, because disciplined selection requires space, observation, play, sleep, and extreme criteria before cutting begins. The middle chapters turn insight into elimination through clear intent, graceful noes, uncommitment, editing, and boundaries. The final chapters make the vital few executable by adding margin, removing constraints, using small wins, designing routines, focusing on the present, and finally making essentialism an identity rather than a temporary productivity tactic.",
+  "forbiddenMoves": [
+    "Do not make every chapter a generic calendar-cleanup lesson; chapters about play, sleep, buffers, constraints, routine, and identity need their own source pressure.",
+    "Do not flatten the book into saying no; the early chapters are about agency and discernment, the middle chapters are about elimination, and the later chapters are about making the essential easier to execute.",
+    "Do not present essentialism as selfish withdrawal; the point is higher contribution, clearer relationships, and more honest trade-offs.",
+    "Do not write painless choices; every real yes carries a no, and every real no protects something specific.",
+    "Do not reuse the current v21 package's repeated frame that every chapter starts with a useful yes or no and ends with pressure spending attention."
+  ]
+}

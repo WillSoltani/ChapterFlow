@@ -1,0 +1,205 @@
+{
+  "chapterId": "smarter-faster-better-ch01",
+  "number": 1,
+  "title": "Motivation",
+  "coreMove": "Turn a stalled obligation into a self-authored next move that the actor can choose and start.",
+  "sourcePressure": "Robert Philippe can still understand his life after returning from South America, but his initiative collapses; the chapter connects that launch failure to locus of control, Marine boot camp, nursing-home rebellions, and a bias toward action.",
+  "chapterSpecificMisunderstanding": "Treating motivation as louder encouragement, stricter discipline, or a mood problem instead of a control-and-initiation problem.",
+  "sourceAlignmentTerms": [
+    "Robert Philippe",
+    "Viola Philippe",
+    "Dr. Richard Strub",
+    "La Paz",
+    "striatum",
+    "locus of control",
+    "bias toward action"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Robert Philippe",
+      "detail": "a high-output Louisiana businessman whose drive changes after a South America trip involving La Paz",
+      "useIn": "both",
+      "phrasingHint": "Robert Philippe still knew the shape of his life; what went missing was the small inner shove that turns knowing into doing."
+    },
+    {
+      "kind": "person",
+      "name": "Dr. Richard Strub",
+      "detail": "finds normal vital signs, intact understanding, and normal IQ while Robert shows little drive",
+      "useIn": "deepRead",
+      "phrasingHint": "Dr. Richard Strub could not solve Robert with the usual labels, because the facts were present and the launch was not."
+    },
+    {
+      "kind": "artifact",
+      "name": "MRI evidence of slight striatum damage",
+      "detail": "the sidecar supports only a careful claim that MRI evidence points to slight damage in the striatum",
+      "useIn": "fullRead",
+      "phrasingHint": "The striatum detail should land as a narrow clue about initiation, not as a grand theory of effort."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Person at a meeting realizes the real lesson",
+      "The day starts with a dashboard",
+      "A simple choice changes everything"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more faster",
+      "The obvious answer is wrong",
+      "The problem is not effort but something deeper"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three priorities",
+      "Pause before your next task"
+    ],
+    "examples": [
+      "generic office stand-up",
+      "kitchen table planning",
+      "classroom marker demonstration",
+      "commuter train epiphany"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "a hospital discharge desk where patients keep missing one form before leaving",
+      "audience": "a charge nurse trying to reduce repeated delays without barking orders",
+      "stakes": "patients wait longer and nurses learn to wait for Sarah to fix every omission",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah moves the final-signature choice from her clipboard to the patient-facing tray and asks each nurse to choose the next discharge they will personally close before lunch",
+      "firstImage": "A row of unsigned blue discharge folders leans against the printer",
+      "mustInclude": [
+        "blue discharge folders",
+        "patient-facing tray",
+        "no extra staff"
+      ],
+      "mustAvoid": [
+        "another morale talk about ownership"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "a Montreal youth hockey practice where players freeze until the coach names every drill",
+      "audience": "an assistant coach with twelve restless fifteen-year-olds",
+      "stakes": "practice pace dies and players stop reading the ice for themselves",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu stops calling the next drill, lays three puck routes on the ice, and makes each line captain pick and run one route immediately",
+      "firstImage": "\"Which route is yours?\" Mathieu asks, holding the whistle at his side",
+      "mustInclude": [
+        "three puck routes",
+        "line captains",
+        "one unused whistle"
+      ],
+      "mustAvoid": [
+        "coach gives a speech about confidence"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "a Toronto immigration clinic triaging appointment packets after a software outage",
+      "audience": "a clinic coordinator whose volunteers wait for her every instruction",
+      "stakes": "families lose appointment slots if packet checks stall",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aanya contrasts the morning when volunteers waited with the afternoon when each volunteer chose one packet category and owned the first correction",
+      "firstImage": "It took Aanya three hours to notice the quiet around the intake table",
+      "mustInclude": [
+        "appointment packets",
+        "colored intake bins",
+        "software outage"
+      ],
+      "mustAvoid": [
+        "generic office backlog scene"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "a restaurant prep station before a Saturday dinner rush",
+      "audience": "a sous-chef who has been over-directing new line cooks",
+      "stakes": "prep slips into service because no cook starts without Thomas naming the next pan",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Thomas places the prep list beside six empty hotel pans and has each cook claim one pan and start the first cut before he says another word",
+      "firstImage": "The smell of chopped parsley sits over six empty hotel pans",
+      "mustInclude": [
+        "hotel pans",
+        "prep list",
+        "Saturday dinner rush"
+      ],
+      "mustAvoid": [
+        "chef shouting faster faster"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "a university lab where undergraduates wait for the postdoc to assign every reagent check",
+      "audience": "a postdoc training first-year research assistants",
+      "stakes": "an experiment loses the afternoon window when no one initiates setup",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Giulia asks assistants to predict which step will stall, then gives each one a chosen setup move they must begin",
+      "firstImage": "What happens when everyone knows the protocol and no one owns the first pipette?",
+      "mustInclude": [
+        "reagent checklist",
+        "first pipette",
+        "afternoon assay window"
+      ],
+      "mustAvoid": [
+        "letting the question hook replace the visible action beat"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "a public library branch preparing for storm-day shelter service",
+      "audience": "a branch manager with part-time staff waiting for instructions",
+      "stakes": "residents will arrive cold before the shelter setup is ready",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Henrik turn a shelter checklist into five chosen posts so the staff can begin before the first family comes through the door",
+      "firstImage": "You are looking at a shelter checklist while sleet taps the library windows",
+      "mustInclude": [
+        "shelter checklist",
+        "charging strips",
+        "folding cots"
+      ],
+      "mustAvoid": [
+        "heroic emergency montage"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize a launch problem even when the person already has information",
+      "choose interventions that restore real agency instead of adding pressure",
+      "distinguish cosmetic choice from control that changes the next move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one task you keep treating as something you should do and rewrite only the next 60 seconds as a choice you will make: open the file, make the call, or move the first object.",
+  "readingTimeMinutes": 12
+}

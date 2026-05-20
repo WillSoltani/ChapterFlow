@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-lean-startup-ch08",
+  "number": 8,
+  "title": "Pivot (or Persevere)",
+  "coreMove": "Use evidence to decide whether to persevere or make a specific course correction that preserves learning while changing the hypothesis.",
+  "sourcePressure": "A pivot is a structured course correction that tests a new core hypothesis, and the decision should come from validated learning rather than attachment.",
+  "chapterSpecificMisunderstanding": "Calling any change a pivot, or treating persistence as virtue after the evidence has stopped improving.",
+  "sourceAlignmentTerms": [
+    "pivot",
+    "persevere",
+    "structured course correction",
+    "validated learning",
+    "emotional attachment",
+    "runway",
+    "meaningful pivots"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Pivot or persevere decision",
+      "detail": "the sidecar names this as the decision measurement is meant to support",
+      "useIn": "both",
+      "phrasingHint": "The meeting is not about whether the old idea feels lovable; it is about whether the evidence has earned another cycle."
+    },
+    {
+      "kind": "artifact",
+      "name": "Runway measured in meaningful pivots",
+      "detail": "the sidecar says runway depends on how many meaningful pivots remain, not only cash or time",
+      "useIn": "fullRead",
+      "phrasingHint": "A team can have months of cash and almost no runway if it has burned through the chances to learn differently."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Pivot (or Persevere).",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "meal-kit subscription pivot review",
+      "audience": "food startup",
+      "stakes": "attachment to the original family plan may outlast evidence from single-person users",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Kasia moves the pivot meeting from opinions to the retention evidence by segment",
+      "firstImage": "a fridge magnet holding two retention charts",
+      "mustInclude": [
+        "segment chart",
+        "runway note",
+        "pivot agenda"
+      ],
+      "mustAvoid": [
+        "generic pivot (or persevere) office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "campus tutoring platform model",
+      "audience": "student founders",
+      "stakes": "cash may last but only two hypothesis changes remain",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Julien counts remaining meaningful pivots before another semester build",
+      "firstImage": "a whiteboard with crossed-out business models",
+      "mustInclude": [
+        "semester calendar",
+        "hypothesis list",
+        "cash balance"
+      ],
+      "mustAvoid": [
+        "generic pivot (or persevere) office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "clinic scheduling tool course correction",
+      "audience": "healthtech team",
+      "stakes": "staff praise may mask weak patient adoption",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Paula proposes a customer-segment pivot tied to appointment data",
+      "firstImage": "a nurse station monitor showing missed portal bookings",
+      "mustInclude": [
+        "appointment data",
+        "segment note",
+        "new hypothesis"
+      ],
+      "mustAvoid": [
+        "generic pivot (or persevere) office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "artisan marketplace pricing pivot",
+      "audience": "craft platform founder",
+      "stakes": "seller loyalty may keep the founder from seeing buyer resistance",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Matthew compares buyer conversion to seller enthusiasm before persevering",
+      "firstImage": "a table of handmade mugs at a winter fair",
+      "mustInclude": [
+        "price test",
+        "buyer conversion",
+        "seller survey"
+      ],
+      "mustAvoid": [
+        "generic pivot (or persevere) office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "enterprise compliance app channel pivot",
+      "audience": "B2B software team",
+      "stakes": "direct sales effort may fail while partners could carry trust",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lea frames channel pivot as a new hypothesis rather than desperation",
+      "firstImage": "a partner brochure beside a failed outreach list",
+      "mustInclude": [
+        "outreach list",
+        "partner call notes",
+        "new channel test"
+      ],
+      "mustAvoid": [
+        "generic pivot (or persevere) office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "urban compost pickup service",
+      "audience": "local operations team",
+      "stakes": "route expansion may be persistence when apartment density evidence points elsewhere",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hugo chooses whether to pivot customer segment before the next truck lease",
+      "firstImage": "a route map taped to a compost bin lid",
+      "mustInclude": [
+        "route density map",
+        "lease deadline",
+        "building manager calls"
+      ],
+      "mustAvoid": [
+        "generic pivot (or persevere) office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Pivot (or Persevere) from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Use evidence to decide whether to persevere or make a specific course correction that preserves learning while changing the hypothesis.",
+      "Diagnose when a team is drifting into the misread: Calling any change a pivot, or treating persistence as virtue after the evidence has stopped improving."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Use evidence to decide whether to persevere or make a specific course correction that preserves learning while changing the hypothesis. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

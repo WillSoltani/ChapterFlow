@@ -1,0 +1,186 @@
+{
+  "chapterId": "blue-ocean-strategy-ch10",
+  "number": 10,
+  "title": "Renew Blue Oceans",
+  "coreMove": "Read the portfolio for settlers, migrators, and pioneers, then fund renewal before today's strong numbers hide tomorrow's weakness.",
+  "sourcePressure": "Use the pioneer-migrator-settler map as a portfolio view so leaders renew blue oceans before imitation turns current success into ordinary competition.",
+  "chapterSpecificMisunderstanding": "Assuming a successful blue ocean remains safe as long as revenue is still growing.",
+  "sourceAlignmentTerms": [
+    "renewal",
+    "pioneer-migrator-settler map",
+    "settlers",
+    "migrators",
+    "pioneers",
+    "portfolio view",
+    "future growth"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "pioneer-migrator-settler map",
+      "detail": "official support defines settlers, migrators, and pioneers as a portfolio view for future growth and renewal",
+      "useIn": "both",
+      "phrasingHint": "The pioneer-migrator-settler map asks a cold question: which offers merely survive, which improve, and which can create future growth?"
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "restaurant renewal after copied open-fire menus",
+      "audience": "an owner with strong demand and weakening distinctiveness",
+      "stakes": "whether the restaurant funds the next move before the current one settles",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she treats a full reservation book as a warning that the once-pioneering offer is being copied",
+      "firstImage": "The reservation book is full beside a review clipping for a rival open-fire menu",
+      "mustInclude": [
+        "reservation book",
+        "rival menu clipping",
+        "test-kitchen calendar"
+      ],
+      "mustAvoid": [
+        "generic restaurant margin scene"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "tutoring company reassessing an original market-creating offer",
+      "audience": "an education entrepreneur with a cash-generating legacy offer",
+      "stakes": "whether nostalgia blocks new growth bets",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "he admits the original offer has settled and reallocates cash toward a new test",
+      "firstImage": "It took Mikkel six renewal invoices to admit the old breakthrough now behaved like rent",
+      "mustInclude": [
+        "renewal invoices",
+        "pilot budget envelope",
+        "student outcome chart"
+      ],
+      "mustAvoid": [
+        "classroom teaching scene"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "clinic portfolio review of a once-unique migraine program",
+      "audience": "a healthcare leader balancing reliable services and future growth",
+      "stakes": "whether resources stay trapped in yesterday's innovation",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she distinguishes a migrator from a pioneer during a portfolio review instead of protecting every successful service",
+      "firstImage": "\"It is better than average,\" Manon says, \"but is it still creating demand?\"",
+      "mustInclude": [
+        "service portfolio sheet",
+        "migraine program brochure",
+        "capacity calendar"
+      ],
+      "mustAvoid": [
+        "generic hospital waiting room"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "youth camp renewal after rivals copy outdoor robotics",
+      "audience": "a program director whose once-distinct offer is being copied",
+      "stakes": "whether the camp renews or keeps polishing an imitated formula",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she shifts from defending copied robotics features to testing a new family need around mixed-age weeks",
+      "firstImage": "Dew beads on a robot chassis while Adaeze reads a rival camp flyer with the same photo",
+      "mustInclude": [
+        "robot chassis",
+        "rival flyer",
+        "family survey cards"
+      ],
+      "mustAvoid": [
+        "generic summer-camp nostalgia"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "software roadmap audit for settlers, migrators, and pioneers",
+      "audience": "a product leader with many small improvements but few market-creating bets",
+      "stakes": "whether the roadmap is safer than it looks",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he expects balance, then the PMS map reveals a portfolio of settlers and mild migrators",
+      "firstImage": "At 4:45 p.m., Chris drags twenty-three roadmap cards into three columns",
+      "mustInclude": [
+        "roadmap cards",
+        "three-column map",
+        "renewal budget line"
+      ],
+      "mustAvoid": [
+        "generic SaaS roadmap story"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "publisher balancing reliable study guides with audio essay tests",
+      "audience": "an editorial director deciding how much risk the list can carry",
+      "stakes": "whether the publishing list stays profitable and fresh",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she chooses portfolio balance instead of reckless novelty or pure safety",
+      "firstImage": "Which list is healthier: ten reliable study guides or eight guides and two strange tests?",
+      "mustInclude": [
+        "catalog proof",
+        "audio pilot script",
+        "sales forecast tab"
+      ],
+      "mustAvoid": [
+        "generic media disruption story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify settlers, migrators, and pioneers",
+      "spot when success is aging into imitation",
+      "choose renewal investment before visible decline"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Sort your current offers into settlers, migrators, and pioneers. Put a star beside the one that funds renewal but is no longer renewal.",
+  "readingTimeMinutes": 12
+}

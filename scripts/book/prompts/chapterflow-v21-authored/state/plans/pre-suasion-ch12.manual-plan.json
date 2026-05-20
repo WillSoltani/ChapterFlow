@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch12",
+  "number": 12,
+  "title": "Unity 2: Acting Together",
+  "coreMove": "Create togetherness through shared action before the request rather than merely naming shared identity.",
+  "sourcePressure": "The source says We relationships can also be produced by synchronized or collaborative activity, increasing liking and support through acting together.",
+  "chapterSpecificMisunderstanding": "Any group activity builds unity.",
+  "sourceAlignmentTerms": [
+    "acting together",
+    "synchrony",
+    "collaboration",
+    "unitary activity",
+    "mutual support",
+    "shared action"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rowing-club safety vote",
+      "audience": "a coach asking members to adopt stricter launch rules",
+      "stakes": "whether synchronized warmups make support easier before the vote",
+      "format": "scene",
+      "requiredBeat": "the coach has mixed crews row a short cadence together before opening the rule vote",
+      "firstImage": "oars rising at the same count before dawn practice",
+      "mustInclude": [
+        "stroke count",
+        "rule ballot"
+      ],
+      "mustAvoid": [
+        "team-building slogan"
+      ]
+    },
+    {
+      "domain": "factory shift handoff",
+      "audience": "a supervisor building cooperation between rival shifts",
+      "stakes": "whether collaborative inspection creates We before the overtime request",
+      "format": "dialogue",
+      "requiredBeat": "the supervisor pairs one day worker and one night worker to sign the same machine check before asking for shared overtime",
+      "firstImage": "two signatures on a machine-check tag",
+      "mustInclude": [
+        "check tag",
+        "overtime sheet"
+      ],
+      "mustAvoid": [
+        "manufacturing generic"
+      ]
+    },
+    {
+      "domain": "children’s clinic breathing class",
+      "audience": "a therapist helping anxious children support one another",
+      "stakes": "whether synchronized breathing changes how they respond to a group task",
+      "format": "vignette",
+      "requiredBeat": "the therapist has children breathe with the same pinwheel before asking them to practice in pairs",
+      "firstImage": "pinwheels spinning together on a low table",
+      "mustInclude": [
+        "pinwheel",
+        "pair card"
+      ],
+      "mustAvoid": [
+        "classroom shell"
+      ]
+    },
+    {
+      "domain": "student lab cleanup",
+      "audience": "a professor asking students to maintain shared equipment",
+      "stakes": "whether doing the first cleanup together precedes rule acceptance",
+      "format": "before_after",
+      "requiredBeat": "the professor cleans one microscope station alongside students before assigning the rotation",
+      "firstImage": "a microscope lens cloth beside a sign-up strip",
+      "mustInclude": [
+        "lens cloth",
+        "rotation strip"
+      ],
+      "mustAvoid": [
+        "school discipline"
+      ]
+    },
+    {
+      "domain": "brand repair workshop",
+      "audience": "a company asking angry customers to help redesign packaging",
+      "stakes": "whether collaborative action changes the relationship before feedback",
+      "format": "decision_point",
+      "requiredBeat": "the facilitator has customers sort failed package tabs with staff before the survey opens",
+      "firstImage": "a table covered with torn package tabs",
+      "mustInclude": [
+        "sorting tray",
+        "survey tablet"
+      ],
+      "mustAvoid": [
+        "brand loyalty fluff"
+      ]
+    },
+    {
+      "domain": "neighborhood mural permit",
+      "audience": "an organizer asking business owners to back a public art plan",
+      "stakes": "whether shared painting creates support before a permit signature",
+      "format": "reflection",
+      "requiredBeat": "the organizer has owners paint one test tile together before handing over the permit letter",
+      "firstImage": "a wet ceramic tile on a newspaper-covered table",
+      "mustInclude": [
+        "test tile",
+        "permit letter"
+      ],
+      "mustAvoid": [
+        "community feel-good generic"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "create We through synchronized or collaborative action",
+      "distinguish unitary activity from icebreakers",
+      "time shared action before the ask",
+      "transfer acting-together logic across teams and customers"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Design a thirty-second shared action that happens before the request and directly relates to the support you need.",
+  "readingTimeMinutes": 12
+}

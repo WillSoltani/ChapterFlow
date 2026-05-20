@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch88",
+  "number": 88,
+  "title": "Illusion of Attention",
+  "readingTimeMinutes": 12,
+  "hook": "You can stare straight at the screen and still miss the thing that changes the answer.",
+  "counterintuition": "Feeling focused is not proof that you saw the scene; test attention with a visible check before trusting what seemed obvious.",
+  "tryThisNow": "Choose one decision you think you inspected closely. Ask one concrete miss question, then point to the proof that answers it.",
+  "keyTakeaway": "The illusion of attention makes focus feel like coverage. Replace confidence in looking with a checklist, count, second view, or physical test.",
+  "breakdown": {
+    "fastRead": "The dashboard printout at the train delay message desk shows all green boxes, so Hilary thinks the notice is safe to send. One platform closure sits below the fold. Attention creates the look of coverage without the fact of coverage. She writes attention on the printout, adds a closure check before sending, and makes the next message match the platform map.",
+    "deepRead": "Attention feels like a spotlight, but it is more like a keyhole. You see what the task tells you to see. The rest can stand in plain sight and remain unseen.\n\nThe illusion of attention is the belief that because you looked, you noticed. A robotics team can stare at sensor accuracy and miss the mounting gap. A hospital board can focus on a demo and miss who is holding the visitor badge. A warehouse manager can inspect bonus totals without noticing that the floor plan changed the walking route. The mind fills the unseen part with confidence.\n\nLooking is not the same as checking.\n\nThe correction is to turn attention into an external test. Do not ask whether everyone looked carefully. Ask what would be easy to miss. Then build a visible check: a caliper measure, a map overlay, a second reader, a count, a before-and-after photo, a forced field, a walk-through. The check has to exist outside the feeling of focus.\n\nThis matters because attention often fails under honest effort. People miss things while trying hard, not only while being careless. The more demanding the main task, the less spare attention remains for the unexpected feature. A good process assumes blindness is possible and gives reality another way to speak.",
+    "fullRead": "The caliper in the robotics sensor vendor review shows a small mounting gap. Didier, the hardware lead, almost misses it because the vendor demo is built around accuracy curves. The robot arm tracks beautifully on the screen. The physical bracket is the invisible gorilla of the meeting: large enough to matter, but outside the task everyone thinks they are performing.\n\nThe invisible gorilla became famous because people asked to count passes in a video could miss a person in a gorilla suit crossing the scene. The lesson is not that people are fools. The lesson is that attention follows instructions so tightly that visible facts can vanish if they are not part of the task.\n\nWhat did your task tell you not to see?\n\nThe same limit shows up outside demonstrations. Redelmeier and Tibshirani's work on cellular-telephone calls and motor vehicle collisions made the everyday version harder to dismiss. A driver can look through the windshield and still lose the spare attention needed for changing traffic. The eyes are aimed forward. The attention is partly somewhere else.\n\nThat is why 'I was looking' is weak evidence. A hospital procurement board can watch a device demo and miss that the rep's visitor badge gives access to a restricted ward. An avalanche bulletin team can study wind slabs and miss the driving route that will put crews under a closure. A library notice team can read every word and miss that the inspection tag directs patrons to the wrong branch door.\n\nThe check must be visible before the miss becomes visible.\n\nA library overdue notice redesign shows the quiet version. Corinne reads the notice three times and predicts fewer confused calls. The inspection tag on the door tells a different story: patrons are entering from the side hall, where the main return-box instruction is hidden. If she trusts her attention, the notice ships. If she tests the path, the design changes.\n\nThe practical correction is to name the attention trap and add a reality check. If the task is reading, add a location check. If the task is watching a demo, add a physical measure. If the task is judging a map, add a walk-through. If the task is driving, remove the competing task instead of trusting yourself to split focus.\n\nThe limit is that checks cost time. You cannot inspect every edge of every choice. The right check targets the miss that would change the decision. Ask what a focused person could fail to notice here, and what small proof would catch it. That proof is usually cheaper than a confident miss.\n\nBefore the choice moves forward, make attention prove itself. Do not ask, 'Did we look?' Ask, 'What did we verify outside the act of looking?' The answer should be something another person can see, measure, or repeat."
+  },
+  "examples": [
+    {
+      "exampleId": "ch88-ex01-hilary-dashboard-printout",
+      "title": "Hilary finds the hidden closure",
+      "scenario": "A dashboard printout lies under the message desk lamp at Manchester Piccadilly at 6:12 a.m. Hilary must decide whether to send a train delay notice because every visible status box is green. She marks attention on the printout, checks the platform map below the fold with the duty manager, and changes the notice before commuters see the wrong gate.",
+      "whatToDo": "Add a platform-map check before sending the delay notice, instead of trusting the visible green boxes.",
+      "whyItMatters": "The printout made attention feel complete. The closure below the fold changes the passenger instruction.",
+      "tags": [
+        "dashboard printout",
+        "attention",
+        "train delay message desk"
+      ],
+      "planSpec": {
+        "domain": "a train delay message desk applying Illusion of Attention under operational pressure",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch88-ex02-didier-caliper",
+      "title": "Didier measures the bracket",
+      "scenario": "\"The accuracy curve is the whole story,\" the vendor says during a robotics sensor review in Zurich. Didier must decide whether to approve the sensor after a smooth demo, while a caliper sits beside the mounting bracket. He writes invisible gorilla on the caliper, measures the gap in front of the purchasing lead, and changes the review from software score to fit test.",
+      "whatToDo": "Use the caliper to test the physical bracket before approving the sensor on demo accuracy.",
+      "whyItMatters": "The demo focuses attention on the curve. The bracket gap can still decide whether the sensor works on the robot.",
+      "tags": [
+        "caliper",
+        "invisible gorilla",
+        "robotics sensor vendor review"
+      ],
+      "planSpec": {
+        "domain": "a robotics sensor vendor review applying Illusion of Attention under operational pressure",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch88-ex03-justine-visitor-badge",
+      "title": "Justine checks the badge path",
+      "scenario": "The visitor badge clicks against the table edge during a hospital procurement board in Boston. Justine must decide whether the device demo is ready for ward testing after everyone watched the screen. She marks cell phone on the badge as a split-attention warning, asks where the rep walked unescorted, and changes the pilot approval until access logs are checked.",
+      "whatToDo": "Treat the demo as incomplete until access logs confirm what the board did not watch.",
+      "whyItMatters": "The screen held attention while the visitor path went unchecked. A pilot decision needs both device performance and access control.",
+      "tags": [
+        "visitor badge",
+        "cell phone",
+        "hospital procurement board"
+      ],
+      "planSpec": {
+        "domain": "a hospital procurement board applying Illusion of Attention under operational pressure",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch88-ex04-nils-sample-tray",
+      "title": "Nils maps the route below the ridge",
+      "scenario": "You are holding a sample tray in an avalanche risk bulletin office in Banff, and the snow crystals are all anyone wants to discuss. Nils must decide whether to publish the bulletin before checking the crew driving route under the closed ridge. He writes driving on the tray, overlays the route map with the forecaster, and changes the bulletin note before the field team leaves.",
+      "whatToDo": "Add a route overlay before publishing the bulletin, so snow attention does not hide travel exposure.",
+      "whyItMatters": "The snow sample is central, but crews still reach the field by road. The missed route can create the real risk.",
+      "tags": [
+        "sample tray",
+        "driving",
+        "avalanche risk bulletin"
+      ],
+      "planSpec": {
+        "domain": "a avalanche risk bulletin applying Illusion of Attention under operational pressure",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch88-ex05-corinne-inspection-tag",
+      "title": "Corinne walks the notice route",
+      "scenario": "It took Corinne one week of patron calls in Bristol to see that the library overdue notice redesign had been read closely and still missed the door path. At 8:40 p.m. by the circulation desk, Corinne, the branch manager, reads the inspection tag showing the return box hidden from the side entrance. Before printing, she must decide whether blindness means another proofread or a walk-through from the actual entrance.",
+      "whatToDo": "Walk the notice route from the side entrance before printing, instead of adding another text-only proofread.",
+      "whyItMatters": "The notice was read with care, but the reader's path was the missing fact. A walk-through checks reality outside the text.",
+      "tags": [
+        "inspection tag",
+        "blindness",
+        "library overdue notice redesign"
+      ],
+      "planSpec": {
+        "domain": "a library overdue notice redesign applying Illusion of Attention under operational pressure",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch88-ex06-sergio-floor-plan",
+      "title": "Sergio's bonus-route postmortem",
+      "scenario": "What did the bonus plan reward: speed or the shorter walking route? Sergio asks that after a warehouse bonus meeting in Madrid reviews a floor plan from the last quarter. The team watched pick-rate totals and missed that one zone had a new cut-through aisle. He marks illusion on the floor plan and changes the next bonus review so routes are measured before performance is compared.",
+      "whatToDo": "Measure route distance before comparing pick rates, so the bonus does not reward a hidden layout change.",
+      "whyItMatters": "The totals looked like effort differences. The floor plan shows that attention was aimed at output while the path changed underneath.",
+      "tags": [
+        "floor plan",
+        "illusion",
+        "warehouse bonus meeting"
+      ],
+      "planSpec": {
+        "domain": "a warehouse bonus meeting applying Illusion of Attention under operational pressure",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In the operations meeting, someone says a notice is safe because everyone stared at the dashboard, but a critical closure was below the fold. What is the illusion of attention?",
+        "choices": [
+          "The belief that looking carefully means everything relevant was noticed.",
+          "Dashboard critical closure gives a practical reason for safe everyone stared; illusion attention belief belongs after below fold what clarifies the result.",
+          "Closure below fold makes notice safe everyone look credible; use stared dashboard critical first and revisit what illusion attention when belief looking carefully shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The team looked, but the task did not force them to check below the fold. Focus felt like coverage without proving coverage.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Illusion of Attention makes operations meeting feel more decisive than the record supports, and that misprices someone says in this scene. The correct move keepss the choice by the belief that looking carefully means everything relevant was noticed."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a illusion-attention review, a train desk sees green status boxes and wants to send a delay notice, the platform map may contain a closure not visible on the first page. What should happen first?",
+        "choices": [
+          "Send delay notice makes desk sees green look credible; use status boxes wants first and revisit platform contain closure when visible first page shifts.",
+          "Notice platform contain supports a narrower read of train desk sees; keep green status boxes central and leave wants send delay aside.",
+          "Check the platform map and closure list before sending."
+        ],
+        "correctIndex": 2,
+        "explanation": "The platform-map check is a visible test of reality. Asking people to look harder at the same surface leaves the miss intact.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Attention works by letting illusion-attention train crowd out desk sees, which can misreads the green status decision. Check the platform map and closure list before sending keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When illusion-attention pressure appears, a robotics demo shows excellent accuracy curves, but the sensor bracket may not fit the robot arm, which correction fits?",
+        "choices": [
+          "The robotics team should approve the sensor from the accuracy curves and reserve bracket measurement for installation day.",
+          "Measure the bracket with the caliper before approving the sensor.",
+          "Excellent accuracy curves gives a practical reason for robotics demo shows; correction fits measure belongs after sensor bracket robot clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The caliper check tests the thing the demo did not ask people to see. The accuracy curve is useful but incomplete.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Attention turns appears robotics into a shortcut, so the room can overweights demo shows while missing excellent accuracy. Measure the bracket with the caliper before approving the sensor protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After illusion-attention risk surfaces, a hospital board watches a device demo closely and misses that the sales rep walked through a restricted ward with a visitor badge. What should the pilot approval require?",
+        "choices": [
+          "Check access logs fits the immediate pressure around walked restricted ward; hold closely misses sales steady and test watches device demo later.",
+          "Board watches device looks strong enough to guide demo closely misses; sales walked restricted can wait unless ward visitor badge changes the stakes.",
+          "Check access logs and visitor path before approving ward testing."
+        ],
+        "correctIndex": 2,
+        "explanation": "The board's attention was on the screen, not the visitor path. Access logs create a check outside the attended task.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Attention would push the hospital board case toward watches device, creating a cost when demo closely stays untested. The useful guardrail is to check access logs and visitor path before approving ward testing."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If illusion-attention reasoning takes over, an avalanche team studies snow samples and almost misses that the crew route passes under a closed ridge, what is the likely error?",
+        "choices": [
+          "Needed check illusion fits the immediate pressure around passes closed ridge; hold misses crew route steady and test snow samples almost later.",
+          "Attention to the sample hid an adjacent risk that needed a route check.",
+          "Samples almost misses gives a practical reason for team studies snow; closed ridge what belongs after crew route passes clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The sample matters, but the route also affects safety. The illusion is treating focus on snow as proof the whole trip was checked.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Attention converts team studies into the loudest signal, which can rushes snow samples before almost misses is checked. The better answer separatess attention on attention to the sample hid an adjacent risk that needed a route check."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While illusion-attention pressure builds, a library notice was proofread several times, yet patrons still miss the return box because they enter from a side hall. Which test should replace another proofread?",
+        "choices": [
+          "Walk the actual patron route from the side entrance.",
+          "Several times patrons makes illusion-attention pressure builds look credible; use library notice proofread first and revisit miss return enter when side hall test shifts.",
+          "Test replace another supports a narrower read of proofread several times; keep patrons miss return central and leave enter side hall aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The walk-through checks reality outside the text. More proofreading repeats the same attention path that missed the entrance problem.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Attention hides inside the illusion-attention pressure choice because illusion-attention pressure seems sufficient, yet the cost lands in illusion-attention pressure. Walk the actual patron route from the side entrance brings the illusion-attention pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the illusion-attention call, a warehouse compares pick rates and rewards one zone, then discovers that zone had a shorter route after a floor-plan change, what should future reviews add?",
+        "choices": [
+          "Measure route distance for each zone before comparing pick rates, so floor-plan changes do not get rewarded as performance gains.",
+          "Rates rewards zone looks strong enough to guide discovers shorter route; after floor-plan change can wait unless what future reviews changes the stakes.",
+          "Zone discovers shorter gives a practical reason for pick rates rewards; change what future belongs after route after floor-plan clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "Route distance is the hidden reality check. Without it, the team may reward layout instead of effort or skill.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Attention pressures the call warehouse decision toward the easy reading of call warehouse. That can inflates the real cost unless the choice is grounded in measure route distance for each zone before comparing pick rates, so floor-plan changes."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose illusion-attention risk is present: an analyst hears a manager say, 'We all looked at it,' after a miss. The task was demanding and the missed item was outside the instructed focus. What is the best evaluation?",
+        "choices": [
+          "Suppose illusion-attention present looks strong enough to guide analyst hears manager; looked after miss can wait unless task demanding missed changes the stakes.",
+          "Miss task demanding gives a practical reason for manager looked after; instructed focus what belongs after missed item outside clarifies the result.",
+          "Honest attention can still miss what the task did not require people to check."
+        ],
+        "correctIndex": 2,
+        "explanation": "The point is not dishonesty. Demanding focus narrows what is seen, so a separate check is needed for out-of-task risks.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Illusion of Attention is the mechanism here: looking gets confused with noticing, so present analyst can overpower present analyst. Honest attention can still miss what the task did not require people to check keeps the scenario from becoming a costly."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two illusion-attention signals compete: a product team wants to prevent attention misses in every possible corner of a release. Time is limited. Which principle should guide the checks?",
+        "choices": [
+          "Time limited principle supports a narrower read of product team wants; keep prevent attention misses central and leave possible corner release aside.",
+          "Check the miss that would change the decision if discovered.",
+          "Checks check miss fits the immediate pressure around attention misses possible; hold team wants prevent steady and test signals compete product later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The useful check targets a miss that would change the decision. Checking everything equally is impossible, and expert focus can still be narrow.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Attention makes the product team evidence look cleaner than it is, risking a product team mistake in this setting. The answer protects product team by asking for check the miss that would change the decision if discovered."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "Everyone looked, but a critical fact was missed. What coverage check should follow looking?",
+      "back": "Ask what was not checked, by whom, and against what list. Attention needs coverage, not just confidence.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What is the first correction?",
+      "back": "Ask what a focused person could still miss, then add a visible check for that miss.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "Why is 'we looked carefully' weak evidence?",
+      "back": "Because the task may have directed attention away from a fact that was visible but unchecked.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How do you choose a check when time is limited?",
+      "back": "Target the miss that would change the decision, then make the proof visible, measurable, or repeatable.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "A demo looks excellent. What should you ask?",
+      "back": "Ask what the demo did not require anyone to inspect, then test that part directly.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Replace confidence in looking with a visible check on the miss that would change the decision.",
+    "ifThenPlans": [
+      {
+        "context": "Dashboards and reports",
+        "plan": "If all visible fields look fine, then I will check the hidden section that would change the message."
+      },
+      {
+        "context": "Vendor demos",
+        "plan": "If the demo holds attention, then I will test one physical or operational fit outside the demo."
+      },
+      {
+        "context": "Safety reviews",
+        "plan": "If the team is focused on the main hazard, then I will ask what adjacent hazard is outside that task."
+      },
+      {
+        "context": "Performance comparisons",
+        "plan": "If output looks different, then I will check route, access, and setup before judging effort."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one decision you inspected today. Add one visible check for the thing a focused person could still miss.",
+    "weeklyPractice": "Once a week, review a confident miss and ask what external check would have caught it."
+  },
+  "memorableLines": [
+    {
+      "text": "Looking is not the same as checking."
+    },
+    {
+      "text": "The check must be visible before the miss becomes visible."
+    },
+    {
+      "text": "Before the choice moves forward, make attention prove itself."
+    }
+  ]
+}

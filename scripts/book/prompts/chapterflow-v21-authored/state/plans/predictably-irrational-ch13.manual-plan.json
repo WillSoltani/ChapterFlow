@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch13",
+  "number": 13,
+  "title": "Beer and Free Lunches",
+  "coreMove": "Remove the audience or sequence pressure so the real preference can surface cheaply.",
+  "sourcePressure": "The source closes on public choice, beer ordering, and the idea that predictable irrationality creates cheap design fixes that recover better preferences.",
+  "chapterSpecificMisunderstanding": "The weak version says people conform; the precise lesson is that visibility and sequence contaminate preference revelation, and low-cost design can clean it up.",
+  "sourceAlignmentTerms": ["public choice", "preference", "social signal", "sequence effect", "free lunch", "choice architecture"],
+  "forbiddenFrames": {
+    "hook": ["The room orders before you do", "A public choice performs", "The beer is not just beer"],
+    "counterintuition": ["People know their preferences", "Public votes reveal demand", "Choice design is manipulation"],
+    "tryThisNow": ["Make voting private", "Ask what you really want", "Remove social pressure"],
+    "examples": ["team lunch order", "club poll", "cheap beer after everyone else"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "bookstore staff choosing front-window picks aloud",
+      "audience": "a store manager trying to learn what books staff genuinely recommend",
+      "stakes": "filling the window with impressive picks rather than books staff can hand-sell well",
+      "format": "before_after",
+      "requiredBeat": "after switching from aloud nominations to sealed shelf cards, the manager sees more varied picks and stronger sales notes",
+      "firstImage": "sealed shelf cards stacked beside an empty bookstore window display",
+      "mustInclude": ["sealed shelf cards", "window display", "sales notes"],
+      "mustAvoid": ["club event poll", "school elective chat", "restaurant order"]
+    },
+    {
+      "domain": "firehouse meal planning board",
+      "audience": "a station captain trying to choose meals firefighters will actually eat",
+      "stakes": "public bravado pushing spicy or heavy meals that half the crew avoids",
+      "format": "decision_point",
+      "requiredBeat": "the captain replaces shouted meal votes with folded slips before the first senior firefighter can set the tone",
+      "firstImage": "folded meal slips in a stainless pan beside a firehouse duty board",
+      "mustInclude": ["folded slips", "senior firefighter", "duty board"],
+      "mustAvoid": ["team lunch", "family movie vote", "cheap beer"]
+    },
+    {
+      "domain": "dance studio recital music selection",
+      "audience": "teen dancers choosing songs while peers are watching",
+      "stakes": "selecting trendy music that weakens performance because no one wants to seem uncool",
+      "format": "dialogue",
+      "requiredBeat": "the instructor has dancers rank songs privately, then reveals that the strongest practice scores match the private favorite",
+      "firstImage": "song title slips scattered on a sprung studio floor",
+      "mustInclude": ["private rankings", "practice scores", "trend pressure"],
+      "mustAvoid": ["public club voting", "music producer plug-ins", "generic peer pressure"]
+    },
+    {
+      "domain": "software incident retrospective choosing root causes",
+      "audience": "an engineering manager who wants honest prioritization after an outage",
+      "stakes": "engineers naming socially safe causes once senior staff speak first",
+      "format": "postmortem",
+      "requiredBeat": "the manager collects anonymous root-cause cards before anyone talks, then compares them with the spoken discussion",
+      "firstImage": "anonymous root-cause cards beside a red incident timeline on a monitor",
+      "mustInclude": ["anonymous cards", "senior staff", "incident timeline"],
+      "mustAvoid": ["open-source bounty", "software beta labels", "work lunch"]
+    },
+    {
+      "domain": "craft brewery tasting flight order forms",
+      "audience": "a taproom owner trying to learn real customer preference among experimental beers",
+      "stakes": "customers choosing the bold-sounding beer to look adventurous when ordering aloud",
+      "format": "predict_reveal",
+      "requiredBeat": "the owner lets half the room order by private numbered cards and compares reorder rates with the aloud-order group",
+      "firstImage": "numbered tasting cards lined beside small flight glasses on a wooden bar",
+      "mustInclude": ["private numbered cards", "reorder rates", "aloud-order group"],
+      "mustAvoid": ["cheap beer dialogue", "public lunch", "expectation label test"]
+    },
+    {
+      "domain": "parent council selecting playground repairs",
+      "audience": "a school principal trying to learn what repairs families most value",
+      "stakes": "visible hands favoring prestigious additions while basic safety repairs lose",
+      "format": "vignette",
+      "requiredBeat": "the principal switches from show-of-hands to private ranked ballots and the cracked rubber surface rises above the new mural",
+      "firstImage": "ranked ballots tucked under a photo of a cracked playground surface",
+      "mustInclude": ["private ranked ballots", "cracked surface", "new mural"],
+      "mustAvoid": ["classroom setting", "public survey benefits", "city bond jar"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify when public sequence contaminates preference", "design a low-cost private-choice repair", "distinguish conformity from preference-performance mixing", "evaluate whether a free-lunch intervention improves signal without coercion"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one group decision this week, collect first preferences privately before discussion starts, then compare the private signal with the public conversation.",
+  "readingTimeMinutes": 12
+}

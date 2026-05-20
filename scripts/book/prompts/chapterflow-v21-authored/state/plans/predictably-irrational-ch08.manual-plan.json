@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch08",
+  "number": 8,
+  "title": "Keeping Doors Open",
+  "coreMove": "Let a low-value option close so attention can move to the choice that actually matters.",
+  "sourcePressure": "The source shows that people spend time, money, and attention preserving options even when the preservation cost exceeds the option's likely value.",
+  "chapterSpecificMisunderstanding": "The weak version says focus is good; the chapter-specific move is to calculate the active cost of keeping an option alive.",
+  "sourceAlignmentTerms": ["open doors", "option value", "opportunity cost", "attention", "closing doors", "focus"],
+  "forbiddenFrames": {
+    "hook": ["Every open door has rent", "Options can steal from you", "Keeping choices alive costs more than losing them"],
+    "counterintuition": ["Flexibility is free", "More paths mean more safety", "Closing doors is failure"],
+    "tryThisNow": ["Choose one priority", "Close a door today", "Make a focus list"],
+    "examples": ["student clubs", "side projects", "weekend plans"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "indie game studio maintaining three prototypes",
+      "audience": "a two-person studio deciding which demo to stop updating",
+      "stakes": "burning launch runway on keeping all prototypes playable for investors",
+      "format": "decision_point",
+      "requiredBeat": "the studio deletes two prototype build slots from the weekly test calendar and watches the remaining demo get a real polish pass",
+      "firstImage": "three game builds listed on a cracked whiteboard beside a countdown to demo day",
+      "mustInclude": ["test calendar", "investor demo", "runway weeks"],
+      "mustAvoid": ["software side project portfolio", "generic startup prioritization", "pricing-page work"]
+    },
+    {
+      "domain": "regional theater choosing scripts for a small season",
+      "audience": "an artistic director holding options on too many productions",
+      "stakes": "losing rehearsal quality because deposits keep every script technically alive",
+      "format": "postmortem",
+      "requiredBeat": "the director totals option fees and rehearsal conflicts on the lobby floor, then releases two scripts before casting begins",
+      "firstImage": "script packets spread across a dark lobby carpet after closing night",
+      "mustInclude": ["option fees", "rehearsal conflicts", "released scripts"],
+      "mustAvoid": ["theater free tickets", "community radio scripts", "generic arts budget"]
+    },
+    {
+      "domain": "wildlife rehabilitator choosing species certifications",
+      "audience": "a volunteer deciding whether to maintain credentials for animals she rarely handles",
+      "stakes": "spending weekends on renewals instead of deepening skill for the species arriving daily",
+      "format": "reflection",
+      "requiredBeat": "she places the renewal forms beside the intake log and crosses out the certifications that served no animal in the last year",
+      "firstImage": "renewal forms tucked under a clipboard of injured songbird intakes",
+      "mustInclude": ["intake log", "renewal forms", "last-year count"],
+      "mustAvoid": ["career credential advice", "school registration", "health routine"]
+    },
+    {
+      "domain": "specialty coffee roaster carrying too many seasonal beans",
+      "audience": "a roaster deciding which micro-lots to keep offering",
+      "stakes": "wasting roast attention and inventory freshness by preserving a long menu",
+      "format": "vignette",
+      "requiredBeat": "the roaster tips the last stale beans from three low-volume jars and writes the freshness cost next to each kept option",
+      "firstImage": "glass sample jars of green coffee lined beneath a roasting curve printout",
+      "mustInclude": ["stale beans", "roasting curve", "freshness cost"],
+      "mustAvoid": ["fancy coffee expectations", "restaurant menu", "free sample clutter"]
+    },
+    {
+      "domain": "nonprofit grant calendar with too many possible applications",
+      "audience": "a development director protecting staff time",
+      "stakes": "submitting weak proposals because every grant door feels too risky to close",
+      "format": "dialogue",
+      "requiredBeat": "the director removes the lowest-fit grants from the wall calendar during the staff meeting and assigns saved hours to one high-fit proposal",
+      "firstImage": "colored grant cards pinned across a wall calendar with strings between dates",
+      "mustInclude": ["lowest-fit grants", "saved hours", "high-fit proposal"],
+      "mustAvoid": ["compliance deadlines", "generic nonprofit choice", "deadline productivity"]
+    },
+    {
+      "domain": "apprentice chef choosing station rotations",
+      "audience": "a culinary apprentice trying to keep every station path open",
+      "stakes": "remaining mediocre across stations instead of becoming trusted on one critical station",
+      "format": "before_after",
+      "requiredBeat": "after missing prep on two stations, the apprentice gives up the least valuable rotation slot and spends the hour mastering fish butchery",
+      "firstImage": "station cards clipped above a stainless prep table before service",
+      "mustInclude": ["rotation slot", "fish butchery", "prep miss"],
+      "mustAvoid": ["career generalism", "restaurant food choice", "night pastry arousal"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["calculate the maintenance cost of an open option", "distinguish useful flexibility from option hoarding", "choose which door to close based on actual use", "explain why preserving possibilities can damage the main path"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one option you are paying to keep alive with time or attention, then schedule a specific closing action unless it has been used in the last month.",
+  "readingTimeMinutes": 12
+}

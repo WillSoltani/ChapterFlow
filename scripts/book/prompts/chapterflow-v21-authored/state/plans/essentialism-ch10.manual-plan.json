@@ -1,0 +1,166 @@
+{
+  "chapterId": "essentialism-ch10",
+  "number": 10,
+  "title": "Clarify: One Decision That Makes a Thousand",
+  "coreMove": "Write an essential intent concrete enough to settle hundreds of later decisions before they become debates.",
+  "sourcePressure": "The chapter begins elimination by showing that vague purpose produces politics, scattered effort, and short-term wins that do not add up.",
+  "chapterSpecificMisunderstanding": "A weak run would write about vision statements or inspirational goals without behavioral specificity.",
+  "sourceAlignmentTerms": [
+    "essential intent",
+    "clarity",
+    "purpose",
+    "one decision",
+    "thousand decisions"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic clarify: one decision that makes a thousand topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "corporate mission statements frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "corporate mission statements",
+      "wordsmithing goals",
+      "motivational slogans",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "city archive digitization project drowning in donor requests",
+      "audience": "archive director whose team is scanning whatever the loudest family requests next",
+      "stakes": "the grant year can create usable eviction records or a decorative sampler",
+      "format": "decision_point",
+      "requiredBeat": "She writes digitize every eviction docket from 1930 to 1960 before commemorative requests on the white access board.",
+      "firstImage": "A white access board stands beside a box of eviction dockets.",
+      "mustInclude": [
+        "white access board",
+        "eviction docket box",
+        "donor scan slips"
+      ],
+      "mustAvoid": [
+        "generic mission statement",
+        "blue marker anchor"
+      ]
+    },
+    {
+      "domain": "public aquarium rebuilding its school visit program",
+      "audience": "education manager whose staff keeps adding fun stations",
+      "stakes": "students may leave entertained but unable to act locally",
+      "format": "before_after",
+      "requiredBeat": "Before, every tank gets a worksheet; after, he pins every fifth grader leaves able to test runoff at home above the touch-pool cart.",
+      "firstImage": "A touch-pool cart is covered with activity sheets.",
+      "mustInclude": [
+        "touch-pool cart",
+        "runoff strips",
+        "activity sheets"
+      ],
+      "mustAvoid": [
+        "classroom shell",
+        "vague inspiration"
+      ]
+    },
+    {
+      "domain": "open-source accessibility project choosing which issues to accept",
+      "audience": "maintainer whose queue mixes nice improvements with core purpose",
+      "stakes": "the project can become pleasant or excellent at one hard workflow",
+      "format": "dialogue",
+      "requiredBeat": "She pastes blind shoppers complete checkout without help above the issue board and closes a popular color-theme request.",
+      "firstImage": "An issue board glows beneath a pasted intent card.",
+      "mustInclude": [
+        "issue board",
+        "intent card",
+        "color-theme request"
+      ],
+      "mustAvoid": [
+        "generic backlog",
+        "popularity as value"
+      ]
+    },
+    {
+      "domain": "regional food bank redesigning delivery routes after fuel costs rise",
+      "audience": "logistics director balancing speed, fairness, donor preference, and habit",
+      "stakes": "families with no transport need reliable staples more than visible stops",
+      "format": "scene",
+      "requiredBeat": "He pins serve every no-car household with a weekly staple box above the route map and ends the donor-stop debate.",
+      "firstImage": "A route map is pinned with fuel receipts.",
+      "mustInclude": [
+        "route map",
+        "fuel receipts",
+        "no-car household list"
+      ],
+      "mustAvoid": [
+        "bus depot shell",
+        "donor villain"
+      ]
+    },
+    {
+      "domain": "materials lab choosing experiments for a biodegradable packaging prototype",
+      "audience": "lab lead whose researchers chase disconnected tests",
+      "stakes": "the prototype needs one market proof rather than impressive fragments",
+      "format": "postmortem",
+      "requiredBeat": "She writes survive frozen shipping and compost in ninety days on the lab sash, and half the clever experiments lose permission.",
+      "firstImage": "A lab sash is crowded with test labels.",
+      "mustInclude": [
+        "lab sash",
+        "frozen-shipping report",
+        "compost calendar"
+      ],
+      "mustAvoid": [
+        "generic innovation lab",
+        "cleverness as enough"
+      ]
+    },
+    {
+      "domain": "county public defender intake redesign after missed court notices",
+      "audience": "intake supervisor whose team keeps adding forms",
+      "stakes": "clients need clear appearance information more than internal paperwork",
+      "format": "vignette",
+      "requiredBeat": "She tapes every client leaves knowing date, room, and ride plan above the intake window, then removes two forms.",
+      "firstImage": "Two extra forms sit beneath a taped court-date card.",
+      "mustInclude": [
+        "court-date card",
+        "intake window",
+        "ride-plan field"
+      ],
+      "mustAvoid": [
+        "generic forms cleanup",
+        "office convenience"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify essential intent inside a concrete scenario",
+      "choose the response that makes one clear decision govern later debates",
+      "reject the generic drift: A weak run would write about vision statements or inspirational goals without behavioral specificity.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one drifting project. Write one essential intent in the form: by when, for whom, what concrete result, and what will no longer win.",
+  "readingTimeMinutes": 12
+}

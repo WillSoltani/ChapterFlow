@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch03",
+  "number": 3,
+  "title": "The Importance of Attention . . . Is Importance",
+  "coreMove": "Notice when attention is silently upgrading one factor from present to important.",
+  "sourcePressure": "The source says attended items gain extra perceived importance at decision time, sitting between privileged moments and focal-as-causal logic.",
+  "chapterSpecificMisunderstanding": "The most noticeable factor is naturally the most important factor.",
+  "sourceAlignmentTerms": [
+    "attention",
+    "importance",
+    "salience",
+    "decision weight",
+    "foreground",
+    "neglected factor"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "restaurant health inspection prep",
+      "audience": "a chef deciding which fix gets budget before inspection",
+      "stakes": "whether a vivid broken tile steals weight from a quieter refrigeration risk",
+      "format": "postmortem",
+      "requiredBeat": "the chef covers the cracked tile photo and watches the team finally notice the temperature log failures",
+      "firstImage": "a clipboard of cooler readings under a red grease-pencil line",
+      "mustInclude": [
+        "temperature log",
+        "repair quote"
+      ],
+      "mustAvoid": [
+        "generic priority matrix"
+      ]
+    },
+    {
+      "domain": "consumer banking overdraft notice",
+      "audience": "a bank designer choosing what customers see first",
+      "stakes": "whether a flashy fee waiver makes the due date feel less important",
+      "format": "before_after",
+      "requiredBeat": "the designer swaps the hero badge for the actual deadline and watches test users change what they remember",
+      "firstImage": "a mobile mockup with a large due date at the top",
+      "mustInclude": [
+        "phone prototype",
+        "overdraft notice"
+      ],
+      "mustAvoid": [
+        "app redesign fluff"
+      ]
+    },
+    {
+      "domain": "pediatric allergy intake",
+      "audience": "a nurse checking which symptom parents report as most serious",
+      "stakes": "whether a rash photo crowds out breathing details",
+      "format": "scene",
+      "requiredBeat": "the nurse turns the tablet face down and asks for the last difficult breath before discussing the rash",
+      "firstImage": "a parent scrolling to a bright rash photo in the exam room",
+      "mustInclude": [
+        "tablet photo",
+        "inhaler spacer"
+      ],
+      "mustAvoid": [
+        "medical diagnosis advice"
+      ]
+    },
+    {
+      "domain": "used-car lot inspection",
+      "audience": "a buyer deciding whether to purchase a van",
+      "stakes": "whether shiny paint overweights the ignored maintenance record",
+      "format": "decision_point",
+      "requiredBeat": "the buyer makes the seller read the service gap aloud before stepping back to admire the repaint",
+      "firstImage": "sunlight flashing on a newly painted cargo door",
+      "mustInclude": [
+        "service folder",
+        "odometer slip"
+      ],
+      "mustAvoid": [
+        "car-sales cliche"
+      ]
+    },
+    {
+      "domain": "festival security planning",
+      "audience": "an organizer allocating guards after a loud complaint",
+      "stakes": "whether one angry vendor outweighs a quiet bottleneck at the west gate",
+      "format": "decision_point",
+      "requiredBeat": "the organizer pins foot-traffic counts over the complaint email before assigning the guards",
+      "firstImage": "a site map taped to a folding barricade",
+      "mustInclude": [
+        "clicker count",
+        "vendor email"
+      ],
+      "mustAvoid": [
+        "event logistics generic"
+      ]
+    },
+    {
+      "domain": "scholarship review panel",
+      "audience": "a panel judging applicants with uneven essays",
+      "stakes": "whether a polished opening paragraph makes need feel smaller",
+      "format": "reflection",
+      "requiredBeat": "the chair has reviewers read the financial-aid line first, then return to the essay",
+      "firstImage": "three application packets clipped with colored tabs",
+      "mustInclude": [
+        "aid line",
+        "score sheet"
+      ],
+      "mustAvoid": [
+        "classroom shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate salience from true importance",
+      "repair decisions distorted by a loud but minor cue",
+      "choose what deserves foreground placement",
+      "explain why unattended factors get underweighted"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one decision in front of you and circle the factor getting the most attention, then name one quieter factor that deserves weight before you choose.",
+  "readingTimeMinutes": 12
+}

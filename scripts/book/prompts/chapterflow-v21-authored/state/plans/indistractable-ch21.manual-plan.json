@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch21",
+  "number": 21,
+  "title": "Prevent Distraction with Price Pacts",
+  "coreMove": "Attach a meaningful cost to a clearly defined distraction only after the desired path is already planned and possible.",
+  "sourcePressure": "The chapter treats price pacts as one subtype of pact, attaching explicit consequence before the weak moment so distraction stops feeling cheap.",
+  "chapterSpecificMisunderstanding": "A weak run would make money penalties sound like a gimmick and skip the order of operations.",
+  "sourceAlignmentTerms": [
+    "price pacts",
+    "precommitment",
+    "consequence",
+    "cost",
+    "order of operations",
+    "traction"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Prevent Distraction with Price Pacts as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "freelance cartographer finishing a trail map revision",
+      "audience": "cartographer who repeatedly opens travel forums during map work",
+      "stakes": "client delivery and trail safety depend on precise revisions",
+      "format": "decision_point",
+      "requiredBeat": "after setting the revision block, she pledges a donation if travel forums open before the contour layer is done",
+      "firstImage": "A contour-layer proof sits beside a pledge receipt.",
+      "mustInclude": [
+        "contour proof",
+        "pledge receipt",
+        "travel forum tab"
+      ],
+      "mustAvoid": [
+        "money shame"
+      ]
+    },
+    {
+      "domain": "rowing-club mechanic rebuilding an oarlock rack",
+      "audience": "mechanic who keeps watching race clips between repairs",
+      "stakes": "boats miss practice if repairs stretch",
+      "format": "scene",
+      "requiredBeat": "he places twenty dollars in the junior-team jar if clips open before six oarlocks are bolted",
+      "firstImage": "An oarlock bolt tray rests beside a junior-team jar.",
+      "mustInclude": [
+        "bolt tray",
+        "team jar",
+        "repair count"
+      ],
+      "mustAvoid": [
+        "sports betting"
+      ]
+    },
+    {
+      "domain": "public-interest lawyer drafting a filing",
+      "audience": "lawyer who has planned the block but checks commentary sites",
+      "stakes": "filing precision needs the whole morning",
+      "format": "dialogue",
+      "requiredBeat": "she sends a pact to a colleague: if commentary opens before section two is drafted, lunch is on her",
+      "firstImage": "A filing outline sits beside a lunch-pact note.",
+      "mustInclude": [
+        "filing outline",
+        "pact note",
+        "commentary site"
+      ],
+      "mustAvoid": [
+        "legal prestige"
+      ]
+    },
+    {
+      "domain": "woodwind repairer completing pad adjustments",
+      "audience": "repairer who drifts into auction listings",
+      "stakes": "a player's instrument must be ready by evening",
+      "format": "before_after",
+      "requiredBeat": "before, listings feel free; after, every premature auction click funds the youth ensemble jar",
+      "firstImage": "A clarinet pad tray lies under a youth ensemble envelope.",
+      "mustInclude": [
+        "pad tray",
+        "ensemble envelope",
+        "auction listing"
+      ],
+      "mustAvoid": [
+        "craft shopping"
+      ]
+    },
+    {
+      "domain": "boutique hotel night auditor closing accounts",
+      "audience": "auditor who opens sports feeds after midnight",
+      "stakes": "morning accounts fail if late drift stays costless",
+      "format": "postmortem",
+      "requiredBeat": "he sets a pact that any feed before closeout buys breakfast for the day clerk",
+      "firstImage": "A closeout tape curls beside a breakfast voucher.",
+      "mustInclude": [
+        "closeout tape",
+        "breakfast voucher",
+        "sports feed"
+      ],
+      "mustAvoid": [
+        "workplace bribery"
+      ]
+    },
+    {
+      "domain": "language tutor creating lesson audio files",
+      "audience": "tutor who checks messages during export waits",
+      "stakes": "students receive late files when the waits become escapes",
+      "format": "reflection",
+      "requiredBeat": "she makes a cost pact only after batching exports and placing a checklist beside the audio folder",
+      "firstImage": "A waveform export panel sits beside a lesson-audio checklist.",
+      "mustInclude": [
+        "export panel",
+        "audio checklist",
+        "cost note"
+      ],
+      "mustAvoid": [
+        "generic timer prompt"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Attach a meaningful cost to a clearly defined distraction only after the desired path is already planned and possible.",
+      "choose the action that stays inside Prevent Distraction with Price Pacts's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would make money penalties sound like a gimmick and skip the order of operations.",
+      "use chapter-specific terms such as price pacts, precommitment, consequence, cost in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one narrow recurring drift, write the planned action first, then choose a small cost that only triggers if you break that plan.",
+  "readingTimeMinutes": 12
+}

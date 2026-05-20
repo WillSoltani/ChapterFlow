@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch17",
+  "number": 17,
+  "title": "The Four Thieves",
+  "coreMove": "Identify the recurring threats that steal protected focus and build defenses before they enter the room.",
+  "sourcePressure": "Part 3 identifies recurring thieves that remove time, structure, or attention from the chosen path and asks for practical defenses instead of paranoia.",
+  "chapterSpecificMisunderstanding": "Turning obstacles into vague anxiety, blame, or a made-up canonical list.",
+  "sourceAlignmentTerms": [
+    "four thieves",
+    "steal focus",
+    "time",
+    "structure",
+    "attention",
+    "defense"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "The Four Thieves as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "oncology research consent calls",
+      "audience": "research coordinator",
+      "stakes": "eligible patients are missed when interruptions scatter the call window",
+      "format": "scene",
+      "requiredBeat": "she marks the interruption source, moves consent calls behind a closed clinic door, and places a paper sign before dialing",
+      "firstImage": "a consent script under a closed clinic-room sign at 9:00 a.m.",
+      "mustInclude": [
+        "consent script",
+        "door sign",
+        "call list"
+      ],
+      "mustAvoid": [
+        "generic distraction scene"
+      ]
+    },
+    {
+      "domain": "print shop rush-order production",
+      "audience": "press operator",
+      "stakes": "walk-in favors keep breaking the color calibration block",
+      "format": "dialogue",
+      "requiredBeat": "he names walk-in favors as the thief and gives the front desk a red card rule during calibration",
+      "firstImage": "a red card clipped to a press console beside cyan test strips",
+      "mustInclude": [
+        "red card",
+        "press console",
+        "test strips"
+      ],
+      "mustAvoid": [
+        "generic boundaries advice"
+      ]
+    },
+    {
+      "domain": "rural courthouse records digitization",
+      "audience": "records clerk",
+      "stakes": "small requests erase the only scanning window",
+      "format": "before_after",
+      "requiredBeat": "she sets a public request basket for later and scans the oldest deed books before opening the counter window",
+      "firstImage": "a cracked deed book on a flatbed scanner before the counter gate lifts",
+      "mustInclude": [
+        "deed book",
+        "flatbed digitizer",
+        "request basket"
+      ],
+      "mustAvoid": [
+        "generic admin efficiency"
+      ]
+    },
+    {
+      "domain": "symphony audition preparation",
+      "audience": "principal oboist",
+      "stakes": "committee work keeps swallowing practice",
+      "format": "reflection",
+      "requiredBeat": "he sees committee email is the thief and leaves the reed case on the stand while the laptop stays in another room",
+      "firstImage": "an oboe reed case open on a music stand under a single lamp",
+      "mustInclude": [
+        "reed case",
+        "music stand",
+        "closed laptop"
+      ],
+      "mustAvoid": [
+        "generic artist focus"
+      ]
+    },
+    {
+      "domain": "nonprofit legal hotline data cleanup",
+      "audience": "data manager",
+      "stakes": "urgent chat pings prevent fixing duplicate client records",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts pings are unavoidable, then reroutes them for ninety minutes and watches duplicate records finally disappear",
+      "firstImage": "two duplicate client records highlighted on a database screen",
+      "mustInclude": [
+        "database screen",
+        "chat routing note",
+        "cleanup checklist"
+      ],
+      "mustAvoid": [
+        "generic notification blocking"
+      ]
+    },
+    {
+      "domain": "ceremonial catering load-out",
+      "audience": "event captain",
+      "stakes": "late menu tweaks threaten the delivery route",
+      "format": "postmortem",
+      "requiredBeat": "the team identifies last-minute taste changes as the thief and freezes the menu before loading the van",
+      "firstImage": "a sealed menu packet taped inside a catering van door",
+      "mustInclude": [
+        "sealed menu",
+        "van door",
+        "route sheet"
+      ],
+      "mustAvoid": [
+        "generic event stress"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot recurring focus theft",
+      "build a practical defense",
+      "separate threat recognition from fatalism"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name the one thief most likely to steal tomorrow's priority and place one visible defense before the work begins.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,204 @@
+{
+  "chapterId": "meditations-ch12",
+  "number": 12,
+  "title": "Book XII",
+  "coreMove": "Live the present so cleanly that death finds you already begun.",
+  "sourcePressure": "The close compresses everything into present piety and justice, the divine within, separating impressions, practice, pancratiast readiness, truth, and clean departure.",
+  "chapterSpecificMisunderstanding": "death reflection as gloom or dramatic renunciation",
+  "sourceAlignmentTerms": [
+    "present only",
+    "divinity within",
+    "Empedocles sphere",
+    "left hand",
+    "pancratiast",
+    "lamp",
+    "waveless bay"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Empedocles",
+      "detail": "Book XII invokes Empedocles' sphere while describing the ruling faculty separated from past, future, body, and external vortex.",
+      "useIn": "both",
+      "phrasingHint": "Empedocles' sphere gives the mind an image of present wholeness without escape from action."
+    },
+    {
+      "kind": "artifact",
+      "name": "left hand on the bridle",
+      "detail": "Book XII says the left hand holds the bridle more vigorously because practice has trained it.",
+      "useIn": "deepRead",
+      "phrasingHint": "The left hand proves that despair is often only an unpracticed faculty speaking too soon."
+    },
+    {
+      "kind": "artifact",
+      "name": "pancratiast not gladiator",
+      "detail": "Book XII says principles should be applied like the pancratiast, not the gladiator who can drop his sword.",
+      "useIn": "both",
+      "phrasingHint": "The pancratiast carries the weapon in the hand itself: readiness cannot be misplaced."
+    },
+    {
+      "kind": "artifact",
+      "name": "mariner and waveless bay",
+      "detail": "Book XII says casting away opinion is like a mariner doubling the promontory into calm and a waveless bay.",
+      "useIn": "fullRead",
+      "phrasingHint": "The waveless bay is not the world changing; it is opinion released after the turn."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "end-of-life legal planning",
+      "audience": "Monica signing medical directives with her partner",
+      "stakes": "fear of death could delay the truthful present act",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Monica reads the directive aloud, signs it, and asks the witness for the next page instead of changing the subject.",
+      "firstImage": "The notary stamp waits beside two untouched glasses of water.",
+      "mustInclude": [
+        "medical directive",
+        "notary stamp",
+        "blue pen"
+      ],
+      "mustAvoid": [
+        "morbid legal scene"
+      ]
+    },
+    {
+      "domain": "apprentice farrier training",
+      "audience": "Jonas practicing with his weak hand",
+      "stakes": "awkwardness feels like proof he cannot learn",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Jonas uses his left hand for the rasp until the motion steadies enough to hold the hoof safely.",
+      "firstImage": "Metal filings cling to the sweat on Jonas's wrist.",
+      "mustInclude": [
+        "hoof stand",
+        "rasp",
+        "leather apron"
+      ],
+      "mustAvoid": [
+        "animal-centered novelty"
+      ]
+    },
+    {
+      "domain": "airport lost luggage desk",
+      "audience": "Bridget handling a final flight before quitting",
+      "stakes": "past frustration and future resignation threaten the present customer",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Bag tag first,\" Bridget says, and completes the trace before indulging the story of how done she is.",
+      "firstImage": [
+        "bag tag",
+        "claim screen",
+        "boarding pass"
+      ],
+      "mustInclude": [
+        "airport complaint repeat"
+      ]
+    },
+    {
+      "domain": "surgical instrument sterilization",
+      "audience": "Hadiya preparing trays after an error report",
+      "stakes": "self-reproach could overpower the clean next procedure",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Hadiya divide the tray into instrument, wrapper, indicator, and log until the next set is clean.",
+      "firstImage": "You see the indicator strip before you see the mistake report.",
+      "mustInclude": [
+        "instrument tray",
+        "indicator strip",
+        "sterilizer log"
+      ],
+      "mustAvoid": [
+        "hospital guilt loop"
+      ]
+    },
+    {
+      "domain": "retirement workshop",
+      "audience": "Pierre closing his workshop after forty years",
+      "stakes": "identity grief tries to make ending look like failure",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Pierre one final sweep to see that a completed series of work is not harmed by ending.",
+      "firstImage": "It took Pierre one final sweep to hear the shop become quiet.",
+      "mustInclude": [
+        "broom",
+        "ledger book",
+        "workbench key"
+      ],
+      "mustAvoid": [
+        "nostalgic farewell"
+      ]
+    },
+    {
+      "domain": "tenant emergency repair",
+      "audience": "Alice choosing truth with an angry landlord",
+      "stakes": "a false reassurance would buy peace and lose justice",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What must be said if this were the last clean hour of the work?",
+      "firstImage": "Alice tells the landlord the unit is uninhabitable, documents the leak, and offers the legal next step.",
+      "mustInclude": [
+        "leak photos",
+        "inspection form",
+        "ceiling stain"
+      ],
+      "mustAvoid": [
+        "housing conflict repeat"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "compress past and future into present action",
+      "practice what feels impossible before despairing",
+      "use death to test whether life has actually begun"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Strip one present problem into matter, form, purpose, and the time within which it will end, then do the just act.",
+  "readingTimeMinutes": 12
+}

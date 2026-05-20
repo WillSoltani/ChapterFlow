@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch31",
+  "number": 31,
+  "title": "Optimal Noise",
+  "coreMove": "Set a noise-reduction target that is good enough to justify the standardization cost, treating zero noise as a theoretical bound rather than a practical goal.",
+  "sourcePressure": "Zero noise is neither achievable nor necessarily desirable. Some variation is the residual of appropriate discretion that the institution has not yet codified into rules. The optimal noise target balances the accuracy gains from reduction against the costs of over-standardization. Beyond a certain point, further noise reduction produces rigidity, friction, and morale costs that outweigh the consistency gains.",
+  "chapterSpecificMisunderstanding": "Assuming that any reduction in noise is always worth its cost, or conversely that optimal noise means accepting current noise levels as reasonable simply because they are familiar.",
+  "sourceAlignmentTerms": ["optimal noise", "reduction target", "standardization cost", "residual variation", "accuracy gain", "tradeoff", "noise floor"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Diminishing returns in noise reduction across professional standardization programs",
+      "detail": "Research on standardization programs in medicine, finance, and criminal justice consistently finds that early noise reduction efforts produce the largest accuracy gains for the lowest cost, and that subsequent rounds of tightening produce smaller gains at higher costs. The relationship is not linear: the first 50 percent of noise reduction is almost always easier and cheaper than the second 50 percent.",
+      "useIn": "deepRead",
+      "phrasingHint": "The first noise reduction intervention — a structured form, an anchored scale, a sequenced protocol — typically produces a 30 to 40 percent reduction in spread for modest process cost. The next intervention produces another 15 to 20 percent for substantially higher cost. The third produces 5 to 10 percent for costs that frequently exceed the benefits. There is an optimal stopping point. Finding it is part of the noise problem."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["how much noise is acceptable?", "the science of knowing when to stop reducing noise"],
+    "counterintuition": ["zero noise is the goal of a well-designed system", "more standardization is always better than less"],
+    "tryThisNow": ["calculate the point at which further noise reduction is no longer worth the cost in your system", "name the noise floor your organization should aim for"],
+    "examples": ["a scene where a system achieves zero noise and is presented as optimal — contradicts the chapter's argument that zero noise trades accuracy for rigidity", "a scene where current noise levels are accepted without analysis — that is not optimal noise, it is unexamined noise"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Optimal-noise examples risk reading as arguments for accepting current noise levels. Each domain must show an organization actually calculating the tradeoff — measuring the accuracy gain against the standardization cost — rather than either accepting high noise or pursuing noise elimination. The specific stopping-point decision is the chapter's payload."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bank consumer loan approval noise tolerance: a retail bank studying where along its noise-reduction curve the marginal accuracy gain from further standardization no longer justifies the cost",
+      "audience": "a retail bank credit risk director studying the optimal noise target for consumer loan approval decisions",
+      "stakes": "lending profitability and customer fairness — too much noise in loan approval decisions produces inconsistent credit access; too much standardization removes the credit judgment that catches edge cases the model misses",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two credit risk directors review the noise-reduction curve from three rounds of process standardization: the first round (anchored credit criteria) reduced inter-officer spread by 38 percent and improved default prediction accuracy by 12 percent at a process cost of 2 additional minutes per application; the second round (structured prior relationship assessment) reduced spread by another 18 percent and improved accuracy by 4 percent at 5 additional minutes; the third proposed round (mandatory committee review for borderline applications) is projected to reduce spread by 7 percent and improve accuracy by 1.5 percent at 15 additional minutes; the directors conclude that the third round is beyond the optimal stopping point",
+      "firstImage": "a noise-reduction curve for loan approval decisions showing three rounds of standardization: each round's y-axis showing accuracy gain and x-axis showing process cost — the curve flattening sharply after the second round",
+      "mustInclude": ["the three rounds' accuracy gains (12%, 4%, 1.5%) and process costs (2, 5, 15 minutes)", "the explicit framing that the third round is beyond the optimal point — not because noise is acceptable but because the marginal gain no longer justifies the marginal cost", "the directors' framing: optimal noise is not zero noise; it is the noise level at which the next reduction costs more than it gains"],
+      "mustAvoid": ["a specific loan approval case or customer", "implying that any noise in consumer lending is acceptable or that credit officers' judgment has no value"]
+    },
+    {
+      "domain": "food assistance eligibility determination: a social services agency studying where standardization of eligibility determination produces diminishing accuracy returns",
+      "audience": "a state social services quality director studying the optimal noise target for food assistance eligibility determination",
+      "stakes": "program integrity and applicant access — too much noise means similar applicants receive different eligibility determinations; too much standardization means unusual household configurations that legitimately qualify are systematically excluded by rigid rules",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the quality director presents the standardization curve to the program management team: the first round of standardization (anchored income definition and household composition criteria) reduced inter-caseworker spread by 41 percent and reduced erroneous denial rate by 15 percent; the second round (structured exception pathway for non-standard household configurations) reduced spread by 16 percent and erroneous denial rate by 5 percent; the third round (mandatory supervisor review for all applications more than two standard deviations from the median) is projected to reduce spread by 5 percent but would add seven days to average processing time and requires hiring 12 additional supervisors; the program management team concludes the agency has reached its optimal noise target after round two",
+      "firstImage": "a noise-reduction and accuracy-improvement dual-axis chart for food assistance eligibility: three standardization rounds shown as points on the curve, with the curve flattening and the cost arrow accelerating after round two",
+      "mustInclude": ["the accuracy improvements across three rounds (15%, 5%, projected minor)", "the processing-time and staffing cost of round three as the stopping-point justification", "the director's framing: the agency has eliminated the avoidable noise and reached the noise floor where the residual is either irreducible or cheaper to tolerate than to eliminate"],
+      "mustAvoid": ["a specific applicant's eligibility case", "implying that current noise in social services eligibility determination is generally acceptable without measurement"]
+    },
+    {
+      "domain": "hurricane track forecast variance: a meteorological service studying where additional model ensemble standardization produces diminishing accuracy returns relative to computational cost",
+      "audience": "a national weather service computational modeling director studying the optimal ensemble standardization level for operational hurricane track forecasting",
+      "stakes": "emergency management effectiveness — too much track forecast variance produces conflicting evacuation guidance; too much model standardization reduces the ensemble diversity that captures alternative track scenarios",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the director reviews three years of ensemble standardization decisions: the first standardization round (constraining ensemble initial conditions to a shared data assimilation standard) reduced inter-model track spread by 35 percent and improved 48-hour track error by 22 km; the second round (harmonizing ensemble perturbation methodology) reduced spread by 14 percent and improved 48-hour error by 8 km; the third proposed round (mandatory consensus weighting that penalizes outlier ensemble members) is projected to reduce spread by 6 percent and improve 48-hour error by 2 km while reducing the ensemble's ability to capture low-probability high-impact track scenarios — a cost that is not captured in average error metrics",
+      "firstImage": "a hurricane track forecast accuracy-versus-ensemble-diversity tradeoff chart: three standardization levels shown, with ensemble diversity (x-axis) and average track error (y-axis) — the third standardization level improving average error slightly but reducing the diversity that captures rare scenarios",
+      "mustInclude": ["the accuracy improvements across three rounds (22 km, 8 km, 2 km)", "the rare-scenario capture cost of the third round as the stopping-point justification", "the director's framing: the optimal noise target preserves enough ensemble diversity to capture the scenarios that matter most even when the average track is well-predicted"],
+      "mustAvoid": ["a specific hurricane or storm track", "implying that any forecast variance is acceptable in emergency management contexts"]
+    },
+    {
+      "domain": "medical expert witness testimony consistency: a forensic medicine program studying where standardization of expert witness testimony preparation produces diminishing reliability returns",
+      "audience": "a forensic medicine training program director studying the optimal standardization level for expert witness testimony on injury causation",
+      "stakes": "trial fairness and litigation predictability — inconsistent expert testimony on the same injury type produces different trial outcomes; over-standardized testimony that cannot adapt to case-specific factors loses credibility with courts",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the program director asks: how many rounds of testimony standardization does it take before the next round costs more than it gains? The three-round analysis shows: the first round (anchored causal terminology and probability language training) reduced inter-expert testimony spread by 40 percent and improved attorney-rated credibility by 22 percent; the second round (structured case review protocol before testimony) reduced spread by 17 percent and improved credibility by 8 percent; the third proposed round (mandatory committee review of all testimony outlines) is projected to reduce spread by 6 percent and improve credibility by 2 percent, while adding three weeks to testimony preparation and reducing expert willingness to take difficult cases — costs that outweigh the reliability gain",
+      "firstImage": "a testimony reliability improvement curve across three standardization rounds, showing the flattening of the reliability gain and the accelerating cost (preparation time and expert participation) as rounds increase",
+      "mustInclude": ["the reliability improvements across three rounds (40%, 17%, 6% spread reduction)", "the expert participation cost of the third round as the stopping-point justification", "the director's framing: beyond the optimal point, further standardization reduces the pool of experts willing to testify — a system cost that wipes out the reliability gain"],
+      "mustAvoid": ["a specific trial or legal case involving expert testimony", "implying that medical expert testimony should be fully scripted or algorithmic"]
+    },
+    {
+      "domain": "military procurement decision variance: a defense acquisition agency studying where standardization of acquisition evaluation produces diminishing accuracy returns relative to schedule costs",
+      "audience": "a defense acquisition agency quality director studying the optimal standardization level for major procurement evaluation decisions",
+      "stakes": "taxpayer value and operational capability — too much procurement decision noise means comparable proposals receive different awards based on evaluator variation; too much standardization increases evaluation schedule and reduces the ability to weight qualitative factors appropriately",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the quality director presents the standardization study to the acquisition oversight board: the first round (structured evaluation criteria weighting with recorded individual scores before any discussion) reduced inter-evaluator spread by 33 percent and reduced bid protest rates by 18 percent; the second round (mandatory clarification interview protocol for technical proposals) reduced spread by 14 percent and bid protest rates by 7 percent; the third proposed round (full committee consensus requirement before any individual scores are finalized) is projected to reduce spread by 5 percent and bid protest rates by 2 percent, but would add 45 days to average evaluation timelines and create incentives for early anchoring in the consensus process — a dynamic that would add a different form of noise rather than reduce overall spread",
+      "firstImage": "a procurement evaluation noise-reduction curve with bid protest rate improvement on the y-axis and process schedule cost on the x-axis — three standardization levels shown, with the third producing marginal noise reduction while adding substantial schedule cost and a new noise risk",
+      "mustInclude": ["the bid protest rate improvements across three rounds (18%, 7%, 2%)", "the schedule cost and the consensus-anchoring risk of the third round as the stopping-point justification", "the director's framing: the third round would add a social-influence noise source to replace the evaluator-variance noise source it removes — net noise may not decrease"],
+      "mustAvoid": ["a specific procurement program or contractor", "implying military procurement evaluation should be fully algorithmic"]
+    },
+    {
+      "domain": "software defect severity classification: a software engineering organization studying where standardization of defect triage produces diminishing accuracy returns",
+      "audience": "a software quality director studying the optimal standardization level for defect severity classification across the engineering organization",
+      "stakes": "release quality and engineering efficiency — too much inter-engineer severity classification noise delays critical defects while advancing minor ones; too much standardization produces rigid classification that cannot adapt to novel defect types",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review three standardization rounds for the defect classification process: the first round (severity criteria with observable behavioral descriptors at each level) reduced inter-engineer spread by 36 percent and reduced customer-reported critical-defect escapes by 19 percent; the second round (mandatory cross-team review for severity-1 and severity-2 defects) reduced spread by 15 percent and escapes by 6 percent; the third proposed round (mandatory committee consensus for all severity-3 and above defects) is projected to reduce spread by 5 percent and escapes by 1 percent, but would extend average triage time from 2 hours to 18 hours for every defect in the category — a schedule penalty that costs more in engineering time than the escape reduction saves in remediation time",
+      "firstImage": "a defect severity classification noise-reduction and accuracy-improvement chart with three standardization rounds marked, showing flattening marginal accuracy gain and accelerating schedule cost from round two to round three",
+      "mustInclude": ["the accuracy improvements across three rounds (36%, 15%, 5% spread reduction and 19%, 6%, 1% escape reduction)", "the triage time cost of the third round (2 hours to 18 hours) as the stopping-point justification", "your conclusion: the third round costs more in engineering schedule than it saves in customer impact — the optimal noise target is after round two"],
+      "mustAvoid": ["a specific software product or company", "implying that any defect misclassification is acceptable or that defect triage should be fully automated"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why zero noise is not the correct target for noise reduction programs and what the optimal noise concept means in practice",
+      "identify the signals that indicate a noise reduction program has passed its optimal stopping point in a described system",
+      "apply a diminishing-returns analysis to determine whether a proposed additional standardization round is justified in a described professional context",
+      "analyze why the cost of noise reduction is not constant across rounds of standardization and what drives the increasing cost of later rounds",
+      "evaluate whether a described noise reduction program has reached its optimal point or whether additional rounds would still produce net benefit"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of the noise reduction effort your organization has most recently completed. Ask: what accuracy gain did it produce and at what process cost? Now think about the next proposed round of noise reduction in the same process. What is the projected accuracy gain and what is the projected cost? If the accuracy-to-cost ratio for the next round is substantially lower than the ratio for the last round, you may be approaching your optimal noise target. The difference in those ratios is the signal that tells you whether you are in the high-return part of the curve or the diminishing-returns part.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why the optimal noise target is not zero and not 'current levels' — it is the point where the next unit of noise reduction costs more than it produces in accuracy gain, at least one 5+ sentence paragraph on the shape of the noise-reduction curve — why early rounds produce large gains at low cost and later rounds produce small gains at high cost, at least one one-sentence punch line about what organizations that have not found their optimal noise target are doing instead",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: has your organization ever calculated the accuracy gain from its last noise reduction intervention? If not, you cannot know whether you are in the high-return part of the curve or the diminishing-returns part — and acting without knowing which means you are as likely to over-standardize as to under-standardize",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

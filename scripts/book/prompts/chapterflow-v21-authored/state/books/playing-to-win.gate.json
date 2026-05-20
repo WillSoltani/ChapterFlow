@@ -1,8 +1,8 @@
 {
   "bookId": "playing-to-win",
   "title": "Playing to Win",
-  "author": "A.G. Lafley, Roger L. Martin",
-  "promotedAt": "2026-05-12T00:57:35.439Z",
+  "author": "A.G. Lafley and Roger L. Martin",
+  "promotedAt": "2026-05-18T15:30:18.050Z",
   "chapterCount": 8,
   "shipGate": {
     "perChapter": [
@@ -12,14 +12,70 @@
         "blockers": [],
         "majors": [
           {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "A strategy only exists when five choices cohere: aspiration, field, advantage, c"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which listener is the station trying to win: the one who left for a podcast three years ago or the one who never found the station? Luca brings the question to the programming committee predicting qu…"
+          },
+          {
             "catalogId": "C3",
             "severity": "major",
-            "unit": "example[2]",
+            "unit": "example[3]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Suri taps flour from a steel scoop at 5:48 a.m. Tuesday while the deck oven ticks behind her. \"Wholesale keeps us steady,\" she says. \"Custom cakes keep the margin. Breakfast keeps the line out the do…"
+            "evidence": "Which listener is the station trying to win: the one who left for a podcast three years ago or the one who never found the station? Luca brings the question to the programming committee predicting qu…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Twelve pallets of slow-moving inventory fill the storeroom, each bought in the last three years to match a competitor's promotion. James has run the hardware store for eleven years. He traces the inv…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 2.0× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Which customer type does this feature most reinforce, and is that the customer the strategy is built"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The five-choice cascade has collapsed: the portfolio is shaped by funder priorities, not by a cohere"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The hybrid hire defers the strategic choice and produces a result that partially serves two directio"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Pick the goal whose capability requirements best fit the bakery's current activity system and the fi"
           }
         ],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"pointed in the same\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 2,
@@ -27,26 +83,94 @@
         "blockers": [],
         "majors": [
           {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 37 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "A winning aspiration names which customers to delight and which alternatives to beat them on specifically enough that it can say no to a plausible-looking option. An aspiration that cannot say no is s"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶4: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[0]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Avel folds a laminated scorecard beside the coffee urn at 7:32 a.m. in the Maple Street clinic lobby. The first line says serve patients well. Three nurses are asking whether to add walk-in slots, ca…"
+            "evidence": "You put two proposals on the table. One is a discharge follow-up call program: a nurse reaches out to post-surgical patients at 48 hours, seven days, and thirty days. The other is a patient room rede…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Looking back on eight months of Monday support reviews, Marco could see the pattern that had made every roadmap negotiation a stalemate. Half the tickets were enterprise IT requests: slow to resolve,…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[5]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Walid sets the blood-pressure cuff on the kitchen counter at 6:55 a.m., beside toast crumbs and the salt shaker. His note from last January says be healthier. It has survived untouched for eleven mon…"
+            "evidence": "The parks map is pinned to the back wall of the capital planning office, green patches scattered across the city grid. Two redesign proposals have been on Ben's desk for three weeks. The first: two s…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does a winning aspiration differ from a participation aspiration?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A winning aspiration names specific customers and specific alternatives to beat; a participation asp"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Rewrite the aspiration to name which patient type and which gap in existing care the clinic is most "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The aspiration did not name which import buyers, which specific imports, or what advantage would mak"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The aspiration did not name which reader to serve better than the regional chain, so the three progr"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Aspiration B, because it names a specific customer, a performance standard that customer requires, a"
           }
         ],
         "minors": [
           {
-            "catalogId": "B7",
+            "catalogId": "B8",
             "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 2 paragraphs open with \"a winning\" — vary paragraph openers"
+            "unit": "breakdown",
+            "message": "breakdown: \"a participation aspiration is\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -56,40 +180,115 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "C3",
+            "catalogId": "A14",
             "severity": "major",
-            "unit": "example[5]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Yuki lines up chili-oil jars at 9:44 a.m. under the farmers market tent. Tourists keep lifting the jars, praising the red label, and setting them back. Then the ramen shop owner from Halsey Street ar…"
-          }
-        ],
-        "minors": []
-      },
-      {
-        "chapter": 4,
-        "passed": true,
-        "blockers": [],
-        "majors": [
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 38 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Where to play is not a description of where you currently operate. It is a set of explicit decisions about which customers, channels, and geographies you will compete for, and which you will stop serv"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "The where-to-play choice operates on multiple dimensions simultaneously. A business that asks where should we compete is actually asking several questions at once: which customers, in which geographi…"
+          },
           {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[0]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Thayer holds a blue marker at 10:03 p.m. in the medical device lab, the competitor grid taped beside a quote from a nurse: setup takes too long. His prototype now matches eight rival features, and th…"
+            "evidence": "'We can get you into four hundred stores by Q3.' The buyer's offer sat in Sophie's inbox for three days. On one side of the spreadsheet: a grocery distribution deal, lower unit price, standardized pa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Three years of enrollment data told Andrew a story he had been avoiding. Adult beginners were canceling at twice the rate of other groups; he had been replacing them every quarter. Beginner children …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:45, Vincent reviews the referral sheet before the clinic opens. Twelve incoming patients this week: six from an orthopedic surgeon group whose referrals require insurance pre-authorizations, hos…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[3]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Crispin predicted a fuller accessory wall would pull riders from the online warehouse. At 4:40 p.m., a courier rolls in with a cracked wheel and rain dripping from his helmet. He does not look at the…"
+            "evidence": "Which of the two channels had the brand actually won a customer through from nothing, without a personal visit or a placement incentive? The investor's question caught Giulia mid-sentence. She had be…"
           },
           {
-            "catalogId": "C3",
+            "catalogId": "D1",
             "severity": "major",
-            "unit": "example[5]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Farida sits at 11:42 a.m. in the public library study room with a draft flier that says experienced, patient, customized. Across the table, a student explains that her parents want to help but cannot…"
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does the where-to-play choice determine in a strategy cascade?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Name which client type the firm's staff expertise, software systems, and referral network actually s"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The brand occupies two channels without the specific advantage, pricing, or capability that either r"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The brand has a genuine advantage in the subscription channel and is competing in the grocery channe"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Name advanced teens as the primary segment and redesign the scheduling, marketing, and teaching arou"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The field is shifting: the practice has not yet chosen which direction to follow, and equipment inve"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Name the professional audience as the chosen field, redesign content and positioning around that spe"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Choosing one segment let Bounty build the pricing and positioning to win there; competing across the"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Option B: naming the field first is the strategic choice; billing efficiency is an operational fix w"
           }
         ],
         "minors": [
@@ -97,7 +296,118 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"customer a reason to\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"was not the largest\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 11.7 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Grace traced the last five clients who had left the firm. Four of them had moved to a national practice for faster digital filing: the national firm's processing time was forty-eight hours and the fi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 8:30, Chiara presents the two options to the staff before the first patient. Option one: expand weekend hours to match the urgent care chain's coverage. Option two: extend weekday appointment slot…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'The coffee brings people in. Once they are in, they buy books.' Kasia's retail advisor had a point. She had been losing online price comparisons for three years. The advisor was right that foot traf…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Chris reviewed five years of placement data from the apprenticeship's top employer. Every graduate hired in the first hiring round, across five cohorts, had the same characteristic: they had worked o…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does head-to-head competition differ from choosing an alternate-path value equation?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Head-to-head means competing on the same terms the competitor is already strongest at; an alternate "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Name the value the national firm cannot offer at scale (industry-specific judgment that catches what"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Price and bag count were the competitors' strongest terms; competing there required matching an adva"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Name a value equation the academy cannot offer without becoming something different: consistent deve"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 2.0× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Ask which option requires the urgent care chain to change its fundamental operating model to match; "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Alternate win paths remain durable only when the competitor cannot match them without fundamentally "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Option B, because staff expertise cannot be replicated online, while a coffee bar puts the bookshop "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the competitor can match\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -107,35 +417,136 @@
         "blockers": [],
         "majors": [
           {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 6 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 9 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶5: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[0]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Harlan stands at 4:12 p.m. under a poster that says white-glove service while the support screen shows forty-three calls waiting. A sales deck on his tablet promises every premium account a named con…"
+            "evidence": "'We can offer clients everything under one roof.' Emily's potential partner described the design-build opportunity over the phone: her studio would handle design, his construction management firm wou…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 9:00, Ryan presents the oncology unit proposal to the board. Two slides: rising cancer diagnosis rates in the county, forty minutes of travel time to the nearest oncology center. The case for the …"
           },
           {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[2]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Rivka is in the pharmacy stockroom at 7:05 p.m., counting blister packs while the owner praises Tomer at the front counter. \"He remembers everyone,\" the owner says. Rivka points to three refill slips…"
+            "evidence": "Six months after launching the online pilot, Antoine reviewed the graduation and placement numbers. Completion rate for the online cohort: forty-four percent. For the in-person program: eighty-eight …"
           },
           {
-            "catalogId": "C3",
+            "catalogId": "C2",
             "severity": "major",
             "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Petrina predicted the premium gift line could ship custom boxes within twenty-four hours. At 6:08 a.m., she walks the fulfillment aisle and watches one temp hunt for ivory ribbon while another waits …"
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The warehouse smelled of cardboard and cold storage, optimized for movement: pallets in, pallets out, routes planned to minimize truck idle time. Before: Catarina signed the retail supply agreement a…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
-            "unit": "example[5]",
+            "unit": "example[4]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Nakul sits in a laundromat at 9:36 p.m. with a client text asking if the landing page can go live by Friday. His notebook lists strengths: taste, patience, curiosity. The washer thumps behind him. No…"
+            "evidence": "You are running the thought experiment with Pavel. The donor proposal is for three touring exhibitions over five years. He imagines the first show arriving at a partner museum: the partner curator se…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What distinguishes a strategy-specific capability system from a general list of organizational strengths?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "What must the company be able to do consistently well for financial services teams to choose this pl"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The in-person activity system (cohort accountability, pair programming, proximity-built habits) did "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The distributor's activity system was built for logistics, not the consumer brand decisions that mov"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Do Gillette's specific capabilities (precision manufacturing, consumer insight, global distribution)"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The audit reveals an activity system the hospital does not have; building it is a strategic decision"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "List the activities construction management requires (scheduling systems, site supervision, contract"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The racing program needed dedicated slips, coaching continuity, and fleet priority: an activity syst"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Map the activities a touring show requires against the current system, name the gaps, and decide whe"
           }
         ],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a capability system is\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 6,
@@ -147,14 +558,98 @@
             "severity": "major",
             "unit": "example[0]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Perla taps the green dashboard at 9:05 a.m. in the grocery office while a stock clerk radios from aisle seven: the local honey shelf is empty again. The strategy says win weekend shoppers with local …"
+            "evidence": "Rachel reviewed six months of sprint decks. Every single one celebrated a green velocity number in the top right corner. Every single one was missing the retention chart. She went back to the retenti…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 2:00 p.m., Luke walks into the monthly leadership review and sees the standard agenda printed on the table: bed occupancy, procedure counts, average length of stay. Three numbers. All three were d…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'I spend seventy percent of my time on renewal calls. I get paid for zero percent of it.' Niklas's top rep said it quietly after the team meeting, not in front of the room. She was not complaining ab…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[5]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "At 5:43 p.m., Marnix stands at the host stand with a brass bell in his palm. The bistro says it wins by turning first-time guests into regulars, but the nightly shout-out always goes to fastest table…"
+            "evidence": "You imagine standing at the whiteboard in front of Camille's father, the founder, presenting the combined month-end P&L. The new product line has low margins and fast growth. The mature line has high…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What distinguishes a genuine strategy review from corporate theater?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A genuine strategy review could actually change a decision based on new information; corporate theat"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Redesign the commission structure so that renewal and expansion revenue carries equal or greater wei"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Replace velocity as the primary sprint review metric with the retention depth measure the new strate"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The review measures what mattered under the old strategy, making the leadership team accountable for"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Replace deliverable completion and budget adherence with effectiveness measures the agency can repor"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The promotion system weighted publications and ignored partnership outcomes: three years of decision"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Separate the two product lines in the review, apply metrics suited to each line's strategic profile,"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 2.0× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The commission structure is actively rewarding the behavior the new strategy wants to eliminate and "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 2.0× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Option B, because Option A adds preventive care measures without removing the acute care metrics tha"
           }
         ],
         "minors": [
@@ -162,7 +657,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"is not neutral it\" appears in both deepRead and fullRead — vary one of them"
+            "message": "breakdown: \"measure the previous strategys\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -172,32 +667,92 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "C3",
+            "catalogId": "A14",
             "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Noam scrolls through sixty pages at 11:19 p.m. in the hotel business center, the printer warming behind him. Market data, branch maps, and customer interviews fill the deck. Slide fifty-eight says op…"
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 37 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Strategic thinking requires generating at least two or three genuinely different possibilities before analyzing any of them; analysis that runs before possibilities exist does not produce strategy, it"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 13 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
           },
           {
             "catalogId": "C3",
             "severity": "major",
-            "unit": "example[2]",
+            "unit": "example[0]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Vikram tapes five index cards to the conference-room wall at 8:33 a.m. \"Medical practices, farm loans, freelancers, acquisition, broad cost cut,\" he says. The CFO points to the freelancer card. \"Our …"
+            "evidence": "Twelve transit study reports occupied the left side of Anna's conference table. Each one was thorough, and each one examined the same corridor from a different technical angle: soil conditions, rider…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Sam had commissioned the brand equity study six months before the digital transition deadline, reasoning that the data would drive the decision. The results were clear: high recognition among readers…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sam had commissioned the brand equity study six months before the digital transition deadline, reasoning that the data would drive the decision. The results were clear: high recognition among readers…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[3]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Althea predicted the thick arts-grant folder would settle the debate. At 2:24 p.m., she opens it in city hall: audience decline, venue costs, school contacts, donor notes. Then a sculptor asks which …"
+            "evidence": "At 9:14, Isabel advanced to the slide that was supposed to show alternative curriculum models. The slide was blank. The committee had spent four months analyzing the STEM-focused curriculum: implemen…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
-            "unit": "example[5]",
+            "unit": "example[4]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Raquel sits at 6:02 a.m. in a quiet train car with salary charts, alumni notes, and program rankings spread across her tablet. The research has grown for months. Her stop is twelve minutes away. She …"
+            "evidence": "'Walk me through what the company looks like if you take the software-only path,' the lead investor said. 'Not the risks of it. What the company actually looks like. Who the customer is, how you go t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does strategic thinking differ from analysis in the strategy development process?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When analysis runs before strategic possibilities are generated, what is the most likely result?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What must a genuine strategic possibility include to be worth analyzing?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Each genuine possibility should be sketched as a complete cascade across all five questions, because"
           }
         ],
         "minors": [
@@ -205,7 +760,7 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"needs a fork in\" appears in both fastRead and fullRead — vary one of them"
+            "message": "breakdown: \"that is not a\" appears in both fastRead and deepRead — vary one of them"
           }
         ]
       },
@@ -215,32 +770,66 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "C3",
+            "catalogId": "A14",
             "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Muriel writes launch? on the lab whiteboard at 8:48 a.m. while the prototype charger blinks red beside her laptop. The room says it needs more confidence. The customer interviews are mixed, but one i…"
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 36 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Shortening the odds under uncertainty means reverse engineering from a desired outcome to the specific conditions that must hold, then testing the most uncertain and most consequential conditions firs"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
           },
           {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[2]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Solvi kneels at 5:27 a.m. on the ferry pier, pressing silver tape to wet concrete where the coffee cart would stand. \"If the line backs up here, we miss loading,\" the crew lead says. Spray dots the c…"
+            "evidence": "Which launch market was the right choice when the company could only afford one? Julien had predicted the urban market would win the argument on size alone. He asked his team to list what would have …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Petra had reviewed the comparison document three times: prose quality, marketability, category fit, all rated for both manuscripts. The established author scored reliably. The debut scored exceptiona…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
-            "unit": "example[3]",
+            "unit": "example[4]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Pernille predicted customers would decide the delivery pilot. At 2:36 p.m. in August, she is staring at a thermometer inside a sample insulin box after the longest rural route. The reading is still s…"
+            "evidence": "Petra had reviewed the comparison document three times: prose quality, marketability, category fit, all rated for both manuscripts. The established author scored reliably. The debut scored exceptiona…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
             "unit": "example[5]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Dahlia carries a tea tray up the narrow stairs at 10:14 a.m. Saturday while her father grips the rail behind her. She has been imagining him in the spare upstairs room after his lease ends. The fear …"
+            "evidence": "You are preparing both site presentations for the investment committee and you already know the question that will come. Site B's pro forma is strong, but the committee will ask: what would have to b…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does the 'what would have to be true' question help teams make better decisions under uncertainty?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is the order in which conditions are tested strategically important?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The condition that is both most consequential and most uncertain should be tested first, because a f"
           }
         ],
         "minors": [
@@ -248,19 +837,26 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"what must be true\" appears in both fastRead and fullRead — vary one of them"
+            "message": "breakdown: \"what would have to\" appears in both fastRead and deepRead — vary one of them"
           }
         ]
       }
     ],
     "totalBlockers": 0,
-    "totalMajors": 21
+    "totalMajors": 104
   },
   "bookGate": {
     "bookId": "playing-to-win",
     "chapterCount": 8,
     "passed": true,
-    "findings": [],
+    "findings": [
+      {
+        "catalogId": "F4",
+        "severity": "major",
+        "message": "soft-banned phrase \"rather than\" appears 16 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+        "evidence": "rather than"
+      }
+    ],
     "stats": {
       "answerPositionCounts": [
         24,
@@ -271,7 +867,26 @@
       "totalQuizQuestions": 72,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "playing-to-win",
+        "chapterCount": 8,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

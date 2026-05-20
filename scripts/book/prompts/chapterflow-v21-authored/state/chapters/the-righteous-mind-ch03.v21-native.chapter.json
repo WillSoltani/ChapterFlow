@@ -1,0 +1,301 @@
+{
+  "chapterId": "the-righteous-mind-ch03",
+  "number": 3,
+  "title": "Elephants Rule",
+  "readingTimeMinutes": 12,
+  "hook": "A green route button can move a rider faster than another speech about safety.",
+  "counterintuition": "The paradox: knowing the better path can still lose to the familiar track. Control becomes practical before it becomes motivational when you change the cue, route, default, or friction.",
+  "tryThisNow": "Move one cue before relying on resolve: put the tempting thing out of reach, or place the better option where your hand lands first.",
+  "keyTakeaway": "When intuition has momentum, change the path first so reflection no longer has to win a wrestling match.",
+  "breakdown": {
+    "fastRead": "Rain beads on the dispatch window while the old shortcut glows green on every screen. Thomas has already given the safety talk. Riders nod, then choose the same dangerous route when orders stack up.\n\nSo he changes the screen. The safest route moves to the top. The shortcut now takes two taps and shows the rain radar first. By Friday, the lecture has not improved, but the path in front of the rider has.\n\nThe rider can make speeches, but the elephant decides how much road the speech actually gets.",
+    "deepRead": "The courthouse stairwell smells like floor wax and wet wool. Ingrid has sentencing notes in one hand and a client photo in the other. She knows the prosecutor's hallway smirk will light the fuse she hates in herself, so she waits by the back stairwell instead of outside chambers.\n\nThat is self-command without the fantasy. She does not demand a calmer soul at the hardest moment. She changes the approach to the moment.\n\nDavid Hume's old warning about passion and reason turns practical when the rider knows the elephant is already leaning. The rider can plan the route, place the cue, choose the doorway, delay the trigger, or make the bad move slightly harder. Those are not tricks around morality. They are how a divided mind gets any leverage.\n\nA speech to the rider often fails because the elephant is already moving.\n\nLuca sees the same thing at 2:17 during an outage. The incident channel fills with blame faster than logs. He can post another reminder about teamwork, or he can lock the channel to three fields: symptom, owner, next check. The template gives panic a track. People still feel fear, but fear now has somewhere useful to step.\n\nThe limit is respect. Steering the elephant should make the intended action easier to choose, not hide the choice from the person making it. Good design gives judgment a better road; it does not pretend the rider is cargo.",
+    "fullRead": "\"Show me where the biscuits are,\" Hadiya says, and the phone camera swings toward the pantry. Her patient has a glucose log, five sincere promises, and a late-night habit stronger than all five. Hadiya does not begin with motivation. She asks him to choose a shelf across the kitchen, behind the slow cooker, where the biscuits will no longer be the first thing his hand finds.\n\nThis looks too small until you remember the scale of the elephant. Entrenched intuition is not waiting politely for the rider's memo. It is a body rehearsed by time, place, smell, fear, pride, and ease. If the old cue remains in the old place, the old choice has a head start.\n\nWhere is your own elephant already leaning before you begin to argue with it?\n\nClaire learned this from a sour choir rehearsal. Her lecture about generosity made the singers stare at their hymn folders. The next week she changed the seating and opened with the easiest shared harmony. The first sound in the room was success, not correction. Only then did the group have enough softness to hear what had gone wrong.\n\nKeep the rider-elephant image sharper than a cute metaphor. The rider is not useless. It can see farther, make plans, and notice patterns. Its mistake is assuming that seeing is steering. The elephant supplies the weight, the pull, the fear, and the habit. If the rider wants movement, it should design the ground.\n\nThat means a wise plan often looks less heroic than a vow. It changes where the body pauses, what the eye sees first, what the hand reaches toward, and which path requires an extra step. The rider still chooses. It simply stops choosing from terrible terrain.\n\nJonas does this on a rail yard. His crews know the inspection checklist and skip the same hidden bolts anyway. He adds colored tags to the bolts and moves the inspection clipboard to the yellow track gate, where the crew has to pass it before entering. The skipped step becomes visible in the hand, not buried in memory.\n\nThe limit is dignity. Changing conditions should help a person steer, not treat them as a machine to be trapped. A route default, a back stairwell, a shelf move, a status template: these work because they make the intended choice easier to inhabit. They do not replace judgment. They give judgment a road the elephant can actually walk.\n\nThe best intervention often feels almost embarrassingly concrete. Move the biscuit tin. Change the channel template. Put the clipboard where the hand already goes. Shift the first sound in the room. The smallness is not a weakness. It is the point: the elephant meets the world before the rider finishes explaining it."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-thomas-route-toggle",
+      "title": "Thomas Moves the Safe Route",
+      "tags": ["dispatch", "default", "safety"],
+      "planSpec": {
+        "domain": "food delivery dispatcher trying to reduce unsafe rush decisions",
+        "audience": "operations leads whose staff know the rule but ignore it under pressure",
+        "stakes": "Thomas changes the dispatch screen default before giving another safety talk.",
+        "format": "before_after",
+        "requiredBeat": "Thomas moves the safest route option to the top and watches riders stop choosing the shortcut."
+      },
+      "scenario": "Rain beads on the dispatch window at the courier office while the old shortcut glows green on every rider screen. Thomas has already warned riders about the underpass twice, and the rain radar says it will flood again before dinner. On Monday, the shortcut sits first. By Wednesday, he moves the safer route to the top and puts the shortcut behind a warning toggle. The riders stop choosing it without another safety poster.",
+      "whatToDo": "Change the default route before repeating the warning. Put the safer path first, add friction to the shortcut, and let the screen steer under pressure.",
+      "whyItMatters": "The riders know the rule, but speed and rain give the old shortcut momentum. A better default changes the path the elephant sees first."
+    },
+    {
+      "exampleId": "ch03-ex02-ingrid-back-stairwell",
+      "title": "Ingrid Takes the Back Stairwell",
+      "tags": ["law", "anger", "cue"],
+      "planSpec": {
+        "domain": "public defender managing anger before a sentencing hearing",
+        "audience": "lawyers who cannot outthink a trigger in the moment",
+        "stakes": "Ingrid changes where she waits so the prosecutor's hallway smirk does not steer the whole hearing.",
+        "format": "scene",
+        "requiredBeat": "Ingrid takes the back stairwell and reviews one client photo before entering court."
+      },
+      "scenario": "The courthouse stairwell smells like floor wax and wet wool. Ingrid has sentencing notes clipped under one arm and a client photo tucked inside the folder. The prosecutor usually waits in the main hallway with the smirk that makes her open too sharply. Before the hearing, she must decide whether to prove she can ignore him or take the back stairwell and look at the photo before entering court.",
+      "whatToDo": "Take the back stairwell and review the client photo before entering. Remove the trigger instead of asking anger to behave at the hardest point.",
+      "whyItMatters": "Ingrid's rider can promise composure, but the hallway cue has rehearsed the opposite. Changing the approach gives her judgment a cleaner start."
+    },
+    {
+      "exampleId": "ch03-ex03-luca-status-template",
+      "title": "Luca Locks the Incident Channel",
+      "tags": ["software", "outage", "template"],
+      "planSpec": {
+        "domain": "software incident commander avoiding blame spirals at 2 a.m.",
+        "audience": "engineering leads under outage stress",
+        "stakes": "Luca replaces blame chat with a forced status template that gives the elephant a track.",
+        "format": "decision_point",
+        "requiredBeat": "At 2:17, Luca locks the channel to three fields: symptom, owner, next check."
+      },
+      "scenario": "At 2:17, Luca watches the outage channel fill with accusations faster than logs. The pager alert is still pulsing on his laptop. His status template is ready, but one senior engineer is already blaming the payments team. Luca has to decide whether to post another calm-down reminder or lock the channel to three fields: symptom, owner, next check.",
+      "whatToDo": "Lock the channel to the template and require every update to name a symptom, owner, and next check. Give panic a track instead of a speech.",
+      "whyItMatters": "During an outage, anxiety will move somewhere. The template channels momentum into useful updates before blame becomes the team's default path."
+    },
+    {
+      "exampleId": "ch03-ex04-hadiya-pantry-shelf",
+      "title": "Hadiya Moves the Biscuits",
+      "tags": ["health", "habit", "pantry"],
+      "planSpec": {
+        "domain": "diabetes educator helping a patient skip late-night sweets",
+        "audience": "health coaches facing habits stronger than intentions",
+        "stakes": "Hadiya moves the sweets before discussing motivation.",
+        "format": "vignette",
+        "requiredBeat": "Hadiya asks where the biscuits live and has the patient choose a different shelf during the call."
+      },
+      "scenario": "\"Show me where the biscuits are,\" Hadiya says during the diabetes clinic's video check-in, and the phone camera swings toward the pantry shelf. The glucose log is open on the kitchen table. Her patient has promised five times to stop the late-night handful. Hadiya asks him to choose a higher shelf across the room before they discuss motivation, because the first shelf has been making the choice before he does.",
+      "whatToDo": "Move the biscuits during the call. Put them where the hand cannot reach without a second step, then talk about the evening plan.",
+      "whyItMatters": "A habit with a visible cue is already halfway chosen. Moving the cue gives intention a chance before the old reach begins."
+    },
+    {
+      "exampleId": "ch03-ex05-claire-harmony",
+      "title": "Claire Opens With Easier Harmony",
+      "tags": ["choir", "mood", "seating"],
+      "planSpec": {
+        "domain": "choir director recovering after a sour rehearsal",
+        "audience": "arts leaders trying to shift group mood",
+        "stakes": "Claire changes the first song and seating pattern before asking singers to be more generous.",
+        "format": "postmortem",
+        "requiredBeat": "Claire sees the lecture failed, then opens rehearsal with the easiest shared harmony and mixed seating."
+      },
+      "scenario": "It took Claire, the choir director at St. Anne's, one recorded Thursday rehearsal to hear the elephant refusing her sermon. The voice memo caught folding chairs scraping in the parish hall, hymn folders snapping shut, and her own lecture about generosity landing flat. The next week she mixed the seating and opened with the easiest shared harmony. Only after the room heard itself sound whole did she discuss the sourness.",
+      "whatToDo": "Change the first sound and the seating before asking for a better attitude. Let the group feel cooperation once, then talk about the problem.",
+      "whyItMatters": "A tense group cannot always be argued into softness. Claire gives the elephant a successful first step, and the rider can learn from that."
+    },
+    {
+      "exampleId": "ch03-ex06-jonas-tagged-bolts",
+      "title": "Jonas Tags the Hidden Bolts",
+      "tags": ["rail", "inspection", "friction"],
+      "planSpec": {
+        "domain": "rail maintenance supervisor preventing shortcut inspections",
+        "audience": "field supervisors whose crews know the checklist by heart",
+        "stakes": "Jonas makes skipped steps physically impossible to hide.",
+        "format": "predict_reveal",
+        "requiredBeat": "What would Jonas change if the crew's hands, not their intentions, were carrying the inspection?"
+      },
+      "scenario": "What if the problem is not the checklist but the path of the clipboard through the yard? Jonas watches a crew pass the yellow track gate with the inspection clipboard under one arm and a radio crackling by the tool shed. The hidden bolts are skipped again. Before the next shift, he has to decide whether to repeat the checklist lecture or tag the bolts and hang the clipboard at the gate so their hands cannot miss the step.",
+      "whatToDo": "Tag the hidden bolts and move the clipboard to the gate. Make the skipped step visible in the crew's path rather than hidden in memory.",
+      "whyItMatters": "The crew already knows the checklist. Jonas changes the environment so the right inspection becomes the path of least resistance."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A delivery team knows a flooded shortcut is unsafe but keeps tapping it when orders pile up. What is the strongest first intervention?",
+        "choices": [
+          "Move the safer route to the top and add friction before the shortcut.",
+          "Give a longer safety speech at the next shift meeting.",
+          "Ask riders to sign a promise not to rush."
+        ],
+        "correctIndex": 0,
+        "explanation": "The old screen gives the shortcut momentum under pressure. Changing the default steers behavior before another speech has to fight the same cue.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A public defender knows a hallway encounter makes her angry before sentencing. Which move fits the rider-elephant model best?",
+        "choices": [
+          "Tell herself anger is unprofessional and walk the same hallway.",
+          "Take a different route and review a client photo before entering court.",
+          "Plan a sharper opening so the anger has a legal outlet."
+        ],
+        "correctIndex": 1,
+        "explanation": "The back stairwell changes the cue before anger takes over. A self-command speech leaves the trigger in place, and a sharper opening feeds the same momentum.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "At 2 a.m., an outage channel at a payments company fills with blame while customers are still locked out. The incident lead wants calmer behavior before the next update window. What should he change first?",
+        "choices": [
+          "Post that blame is unhelpful and ask everyone to be professional.",
+          "Wait until morning to discuss the pattern calmly.",
+          "Lock updates into fields for symptom, owner, and next check."
+        ],
+        "correctIndex": 2,
+        "explanation": "The template gives anxious energy a track. A reminder asks the rider to override panic while the channel still rewards blame.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "During a diabetes video check-in, a patient keeps eating biscuits late at night despite sincere promises and a glucose log on the kitchen table. Which change shows the clearest understanding of intuitive momentum?",
+        "choices": [
+          "Move the biscuits to a harder shelf before talking about motivation.",
+          "Ask the patient to repeat the health goal aloud each evening.",
+          "Explain the glucose log in more detail."
+        ],
+        "correctIndex": 0,
+        "explanation": "The shelf is part of the habit. Moving it changes the reach that starts the behavior, while more explanation leaves the cue untouched.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "After a sour parish choir rehearsal, the director's lecture about generosity lands flat while singers stare at their folders. Which next move best steers the group's elephant?",
+        "choices": [
+          "Send a stern email naming the singers who created the sour mood.",
+          "Open with easy shared harmony and mixed seating before discussing the problem.",
+          "Cancel rehearsal until everyone is ready to cooperate."
+        ],
+        "correctIndex": 1,
+        "explanation": "The easier harmony lets the group feel cooperation before being corrected. Sternness and cancellation ask for attitude change without changing the first experience.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A rail crew skips hidden bolts even though the checklist includes them. What does this reveal about the control problem?",
+        "choices": [
+          "The crew must not understand the checklist.",
+          "The supervisor should punish the next missed inspection.",
+          "Knowledge is present, but the physical path makes the skipped step too easy."
+        ],
+        "correctIndex": 2,
+        "explanation": "The problem is not missing information. The environment lets the old inspection path continue, so tagging bolts and moving the clipboard changes the path.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager keeps reminding staff to use a hard-to-find form, but they revert to the old one under deadline. What is the deeper mistake?",
+        "choices": [
+          "She is addressing the rider while the workflow still carries the elephant to the old form.",
+          "She has not explained the moral value of paperwork strongly enough.",
+          "The staff are proving that rules never change habits."
+        ],
+        "correctIndex": 0,
+        "explanation": "The workflow is doing the steering. The manager should change access, defaults, or friction rather than keep explaining a choice the path undermines.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A coach says players need discipline, but the practice layout makes the risky shortcut the easiest drill path. What should be analyzed first?",
+        "choices": [
+          "Whether the players respect the coach enough.",
+          "Whether the drill path rewards the behavior the coach condemns.",
+          "Whether discipline is an outdated concept."
+        ],
+        "correctIndex": 1,
+        "explanation": "The layout may be teaching against the speech. The elephant follows the path with less friction, so the path needs inspection before character judgments.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team can either make the intended action easier or schedule another motivation session. Which choice is stronger when habit momentum is high?",
+        "choices": [
+          "The motivation session, because people should choose consciously.",
+          "Making the intended action easier, because changed conditions can steer before self-command gets exhausted.",
+          "Neither, because entrenched habits cannot be influenced."
+        ],
+        "correctIndex": 1,
+        "explanation": "High momentum favors the existing path. Reducing friction gives reflection a usable road, while a session leaves the old path ready to pull again.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "The better choice is known but the old choice keeps happening. What should you inspect first?",
+      "back": "Inspect the path, cue, default, and friction. The rider may understand the better choice while the elephant follows the route that has momentum.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why does another speech often fail when intuition has momentum?",
+      "back": "A speech addresses the reflective rider. If the elephant is still being pulled by the same cue or easier path, the old behavior keeps its advantage.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A habit starts when the object is in reach. What is the steering move?",
+      "back": "Move the object or change the reach before relying on resolve. Put friction in front of the old path and ease in front of the intended one.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A team panics and blames during incidents. What would steering the elephant look like?",
+      "back": "Give panic a narrow track: required update fields, clear ownership, and a next check. The goal is not calmer feelings first, but useful movement under pressure.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How do you keep environmental design from becoming manipulation?",
+      "back": "Use it to help people inhabit the choice they already endorse. Change cues and friction to support judgment, not to trap people into choices they would reject.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to steer before you command. When the old choice has momentum, change the cue, default, path, or friction so reflection has a route the elephant can follow.",
+    "ifThenPlans": [
+      {
+        "context": "operations",
+        "plan": "If people keep choosing the unsafe shortcut under pressure, then change the default screen before giving another warning."
+      },
+      {
+        "context": "personal",
+        "plan": "If you keep reaching for something you meant to avoid, then move it behind one extra step and put the better option in the old spot."
+      },
+      {
+        "context": "team conflict",
+        "plan": "If a channel turns into blame during stress, then require structured updates before asking people to calm down."
+      },
+      {
+        "context": "leadership",
+        "plan": "If a group mood keeps spoiling the work, then change the first shared action so the group feels the desired pattern once."
+      }
+    ],
+    "twentyFourHourChallenge": "Move one cue today: change a default, relocate a tempting object, pin a useful template, or take a different route before the usual trigger appears.",
+    "weeklyPractice": "Each Friday, choose one recurring failure and map its path. Mark the cue, the easiest next step, and the point where one changed default would make the better action easier."
+  },
+  "memorableLines": [
+    {
+      "text": "By Friday, the lecture has not improved, but the path in front of the rider has.",
+      "location": "breakdown.fastRead",
+      "why": "The short sentence makes the contrast between speech and environment land sharply."
+    },
+    {
+      "text": "A speech to the rider often fails because the elephant is already moving.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the control problem a concrete image without turning it into generic willpower advice."
+    },
+    {
+      "text": "If the rider wants movement, it should design the ground.",
+      "location": "breakdown.fullRead",
+      "why": "The line converts the metaphor into an actionable design principle."
+    }
+  ]
+}

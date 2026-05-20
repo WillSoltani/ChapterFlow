@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch05",
+  "number": 5,
+  "title": "Determine the Strength of People's Character: The Law of Compulsive Behavior",
+  "coreMove": "Test character by repeated behavior under pressure, dependence, and frustration rather than by talent, apology, or charm.",
+  "sourcePressure": "This law replaces charisma-based judgment with slower pattern recognition: character shows through recurring compulsions under stress, frustration, dependence, and time.",
+  "chapterSpecificMisunderstanding": "Making character a moral vibe instead of a trackable pattern of compulsive behavior.",
+  "sourceAlignmentTerms": [
+    "character",
+    "compulsive behavior",
+    "patterns",
+    "stress",
+    "dependence",
+    "superior character"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Determine the Strength of People's Character: The Law of Compulsive Behavior",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a craft brewery choosing a distribution partner after a truck breakdown",
+      "audience": "an owner who likes a partner's energy but needs reliability",
+      "stakes": "whether a regional launch fails from avoidable chaos",
+      "format": "postmortem",
+      "requiredBeat": "the owner reviews how the distributor handled three small delays before the big contract and sees the same blame reflex each time",
+      "firstImage": "a pallet of dented cans wrapped in torn plastic",
+      "mustInclude": [
+        "delivery manifest",
+        "delay emails",
+        "damaged pallet"
+      ],
+      "mustAvoid": [
+        "generic sales team"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a film festival volunteer coordinator promoting a charming latecomer",
+      "audience": "a coordinator tempted by social ease",
+      "stakes": "whether the opening night desk collapses when pressure hits",
+      "format": "decision_point",
+      "requiredBeat": "she checks the volunteer's last four shift handoffs and refuses to promote the person who always needs rescue at closing",
+      "firstImage": "a lanyard box spilled across a check-in table",
+      "mustInclude": [
+        "shift handoff sheet",
+        "lanyards",
+        "closing checklist"
+      ],
+      "mustAvoid": [
+        "generic office promotion"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a rural clinic hiring a billing contractor after one glowing demo",
+      "audience": "a clinic manager protecting cash flow",
+      "stakes": "whether denied claims pile up for patients",
+      "format": "predict_reveal",
+      "requiredBeat": "the manager predicts the contractor will be steady, then calls two references about disputed invoices and hears the same evasive pattern",
+      "firstImage": "a printer tray filled with rejected claim forms",
+      "mustInclude": [
+        "claim forms",
+        "reference notes",
+        "sample invoice"
+      ],
+      "mustAvoid": [
+        "generic hiring interview"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "a climbing gym partnership where one cofounder always disappears after conflict",
+      "audience": "a founder deciding if friendship can carry business strain",
+      "stakes": "whether safety inspections and payroll depend on an avoidant partner",
+      "format": "dialogue",
+      "requiredBeat": "during the conflict talk, she names the repeated disappearance after repairs, payroll, and lease negotiations rather than arguing about today's excuse",
+      "firstImage": "a chalky rope coiled beside a repair invoice",
+      "mustInclude": [
+        "repair invoice",
+        "lease email",
+        "safety checklist"
+      ],
+      "mustAvoid": [
+        "generic friendship drama"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a youth debate coach selecting a captain after a tournament loss",
+      "audience": "a coach weighing talent against steadiness",
+      "stakes": "whether younger members learn discipline or theatrics",
+      "format": "before_after",
+      "requiredBeat": "before naming captain, the coach compares who blamed judges after losses and who stayed to help novices rebuild cases",
+      "firstImage": "a judge ballot with coffee rings and crossed-out scores",
+      "mustInclude": [
+        "judge ballots",
+        "case files",
+        "practice attendance"
+      ],
+      "mustAvoid": [
+        "classroom leadership scene"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "an independent bookstore evaluating a consignment artist",
+      "audience": "a shop owner whose kindness blurs boundaries",
+      "stakes": "whether staff spend months absorbing someone else's chaos",
+      "format": "reflection",
+      "requiredBeat": "the owner maps every missed pickup, rushed apology, and rescheduled payment before deciding the pattern is the proposal",
+      "firstImage": "a crate of unsold prints near the stockroom door",
+      "mustInclude": [
+        "print crate",
+        "pickup calendar",
+        "payment receipt"
+      ],
+      "mustAvoid": [
+        "generic retail complaint"
+      ],
+      "openingDevice": "sensory_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "read recurring behavior across situations",
+      "distinguish apology from changed pattern",
+      "judge reliability under pressure rather than charisma"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before trusting someone with more responsibility, list how they behaved the last three times they were corrected, delayed, or dependent.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Howard Hughes",
+      "detail": "the source uses Hughes to show brilliance, daring, wealth, and glamour hiding compulsion, rigidity, isolation, and weakening judgment",
+      "useIn": "both",
+      "phrasingHint": "Howard Hughes is the warning that talent can dazzle while character is already becoming expensive to trust."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

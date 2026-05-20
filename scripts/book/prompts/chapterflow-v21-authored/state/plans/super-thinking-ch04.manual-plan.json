@@ -1,0 +1,207 @@
+{
+  "number": 4,
+  "title": "Becoming One with Nature",
+  "coreMove": "Diagnose the system’s motion: adapt to its environment, add flywheel pushes, look for the threshold, or increase network value before expecting acceleration.",
+  "sourcePressure": "The source ties natural selection, the peppered moth, flywheel momentum, tipping points, and network effects into a chapter about adaptation and self-reinforcing change.",
+  "chapterSpecificMisunderstanding": "Assuming slow progress means failure, or that momentum appears without fit, repeated pushes, thresholds, and reinforcement.",
+  "sourceAlignmentTerms": [
+    "natural selection",
+    "peppered moth",
+    "flywheel",
+    "merry-go-round",
+    "tipping point",
+    "network effects",
+    "critical mass",
+    "chain reaction"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "peppered moth example",
+      "detail": "the source uses peppered moths to show fit to environment changing over time",
+      "useIn": "both",
+      "phrasingHint": "The moth is not stronger in the abstract; it survives because the environment has changed what “fit” means."
+    },
+    {
+      "kind": "artifact",
+      "name": "merry-go-round analogy",
+      "detail": "the source uses a merry-go-round to show flywheel effort: hard to start, easier to keep moving after momentum builds",
+      "useIn": "deepRead",
+      "phrasingHint": "The first push feels wasteful because the wheel has not started paying you back yet."
+    },
+    {
+      "kind": "artifact",
+      "name": "social-network example",
+      "detail": "the source uses social networks to illustrate value increasing as more members join",
+      "useIn": "fullRead",
+      "phrasingHint": "A network can be useless at five people and valuable at five hundred for the same reason: the members are part of the product."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Nature knows best",
+      "Momentum changes everything",
+      "Systems have tipping points"
+    ],
+    "counterintuition": [
+      "Slow progress can be good",
+      "The beginning is always hardest",
+      "Growth is nonlinear"
+    ],
+    "tryThisNow": [
+      "Identify your flywheel",
+      "Look for a tipping point",
+      "Write down a system"
+    ],
+    "examples": [
+      "startup social network",
+      "viral app launch",
+      "generic gym momentum",
+      "environmental biology lecture"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Grace, a coastal bookstore owner changing inventory after cruise traffic replaces local lunch-hour traffic",
+      "audience": "small-business readers facing a changed environment",
+      "stakes": "the old bestselling mix no longer fits the people walking in",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace compares the receipt stack before and after cruise season and moves portable field guides to the front table instead of blaming customers",
+      "firstImage": "salt drying on the glass door below a rack of unsold hardcovers",
+      "mustInclude": [
+        "receipt stack",
+        "front table",
+        "cruise schedule"
+      ],
+      "mustAvoid": [
+        "generic retail pivot",
+        "startup product-market fit jargon"
+      ]
+    },
+    {
+      "domain": "Marco, a youth soccer coach rebuilding a team’s passing rhythm with the same first drill every practice",
+      "audience": "leaders frustrated by slow early momentum",
+      "stakes": "parents see dull repetition before the team’s play begins to connect",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marco keeps the five-minute rondo despite complaints, then shows how the same push starts producing faster decisions after three weeks",
+      "firstImage": "cleats squeak on damp turf while the same orange cones come out again",
+      "mustInclude": [
+        "orange cones",
+        "parent sideline",
+        "three-week practice log"
+      ],
+      "mustAvoid": [
+        "fitness habit compounding from chapter 3",
+        "hero coach speech"
+      ]
+    },
+    {
+      "domain": "Frida, a farmers-market organizer trying to reach the stall density where shoppers browse instead of make one purchase",
+      "audience": "community organizers building critical mass",
+      "stakes": "too few vendors make the market feel empty and self-defeating",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Frida marks the stall map and chooses to subsidize three anchor vendors because crossing the density threshold changes shopper behavior",
+      "firstImage": "How many stalls make a market feel like a place instead of a table?",
+      "mustInclude": [
+        "stall map",
+        "anchor vendor subsidy",
+        "foot-traffic count"
+      ],
+      "mustAvoid": [
+        "generic networking event",
+        "social app network effect"
+      ]
+    },
+    {
+      "domain": "Akira, a language-exchange host deciding whether to seed the first ten reliable participants before advertising widely",
+      "audience": "people building participation systems",
+      "stakes": "newcomers will not return if no conversation partners are present",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Akira treats the first ten members as the product, personally matches them, and only then opens public signups",
+      "firstImage": "You can print a hundred flyers and still have an empty room at 7:05",
+      "mustInclude": [
+        "name tags",
+        "signup sheet",
+        "matching notes"
+      ],
+      "mustAvoid": [
+        "social network platform example",
+        "generic community growth"
+      ]
+    },
+    {
+      "domain": "Rachel, a hospital volunteer coordinator recognizing that a new discharge-call program needs the ward nurses’ workflow to change first",
+      "audience": "operators installing changes inside existing systems",
+      "stakes": "volunteers cannot help if referrals never arrive at the right time",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rachel traces every missed call back to the same discharge handoff and adapts the program to the nurses’ actual rhythm",
+      "firstImage": "It took Rachel twelve missed discharge calls to stop blaming the volunteers",
+      "mustInclude": [
+        "discharge board",
+        "nurse handoff note",
+        "call sheet"
+      ],
+      "mustAvoid": [
+        "chapter 6 decision-tree hospital example",
+        "generic process improvement"
+      ]
+    },
+    {
+      "domain": "Niklas, a maker-space treasurer deciding when monthly members are enough to justify buying a shared laser cutter",
+      "audience": "club leaders balancing thresholds and reinforcement",
+      "stakes": "buying too early drains dues, buying after member density arrives can accelerate retention",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Niklas waits until the waitlist and dues cross a set threshold, then shows how the cutter itself makes membership more valuable",
+      "firstImage": "“If we buy it now, who uses it on Tuesday night?”",
+      "mustInclude": [
+        "member waitlist",
+        "dues ledger",
+        "laser-cutter quote"
+      ],
+      "mustAvoid": [
+        "generic capital purchase",
+        "startup flywheel cliché"
+      ]
+    }
+  ],
+  "tryThisNowSpec": "Name one system that feels stuck and mark which force is missing right now: fit, repeated pushes, threshold density, or reinforcement from more participants.",
+  "chapterId": "super-thinking-ch04",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the chapter-specific model in a fresh scenario for Becoming One with Nature",
+      "choose the visible action that performs the core move rather than naming the concept",
+      "explain the failure mode that appears when the model is used generically",
+      "evaluate tradeoffs and limits without sliding into certainty, cynicism, or manipulation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

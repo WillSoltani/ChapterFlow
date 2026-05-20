@@ -1,0 +1,196 @@
+{
+  "chapterId": "grit-ch03",
+  "number": 3,
+  "title": "Effort Counts Twice",
+  "coreMove": "Break achievement into skill-building effort and skill-using effort before judging outcomes.",
+  "sourcePressure": "Show why effort both builds skill and turns skill into achievement.",
+  "chapterSpecificMisunderstanding": "Reducing the formula to work harder and ignoring the two separate jobs effort performs.",
+  "sourceAlignmentTerms": [
+    "talent x effort = skill",
+    "skill x effort = achievement",
+    "Dan Chambliss",
+    "Mark Spitz",
+    "small habits",
+    "Marty Seligman"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Dan Chambliss swimmer study",
+      "detail": "Chambliss spent six years studying competitive swimmers and argued excellence came from many small habits made reliable.",
+      "useIn": "both",
+      "phrasingHint": "Chambliss watched the miracle dissolve into flip turns, starts, breath timing, and ordinary habits done unusually well."
+    },
+    {
+      "kind": "person",
+      "name": "Marty Seligman",
+      "detail": "Duckworth recalls Seligman telling her she had data but no theory, which pushed her toward the effort-counts-twice model.",
+      "useIn": "fullRead",
+      "phrasingHint": "The hard comment from Seligman forced the missing mechanism onto the table."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for Effort Counts Twice",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "competitive swim stroke rebuild",
+      "audience": "readers facing competitive swim stroke rebuild where grit could be confused with mood or talent",
+      "stakes": "whether Rachel treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist separates skill-building effort from achievement-delivering effort on the page before acting",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn competitive swim stroke rebuild into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "tax clinic filing season",
+      "audience": "readers facing tax clinic filing season where grit could be confused with mood or talent",
+      "stakes": "whether Thomas treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist separates skill-building effort from achievement-delivering effort on the page before acting",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn tax clinic filing season into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "violin intonation lab",
+      "audience": "readers facing violin intonation lab where grit could be confused with mood or talent",
+      "stakes": "whether Ingrid treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist separates skill-building effort from achievement-delivering effort on the page before acting",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn violin intonation lab into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "restaurant line-cook promotion",
+      "audience": "readers facing restaurant line-cook promotion where grit could be confused with mood or talent",
+      "stakes": "whether Pablo treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist separates skill-building effort from achievement-delivering effort on the page before acting",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn restaurant line-cook promotion into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "community theater rehearsal run",
+      "audience": "readers facing community theater rehearsal run where grit could be confused with mood or talent",
+      "stakes": "whether Hadiya treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist separates skill-building effort from achievement-delivering effort on the page before acting",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn community theater rehearsal run into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "cycling hill-climb training",
+      "audience": "readers facing cycling hill-climb training where grit could be confused with mood or talent",
+      "stakes": "whether Lukas treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "the protagonist separates skill-building effort from achievement-delivering effort on the page before acting",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn cycling hill-climb training into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Break achievement into skill-building effort and skill-using effort before judging outcomes. from Reducing the formula to work harder and ignoring the two separate jobs effort performs.",
+      "choose the visible next action in a fresh competitive swim stroke rebuild scenario",
+      "diagnose when a scene has drifted into hustle culture"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real effort counts twice decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

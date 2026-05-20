@@ -1,0 +1,1316 @@
+{
+  "bookId": "superforecasting",
+  "title": "Superforecasting: The Art and Science of Prediction",
+  "author": "Philip E. Tetlock, Dan Gardner",
+  "promotedAt": "2026-05-18T20:03:31.216Z",
+  "chapterCount": 12,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Forecast credibility comes from tracked accuracy, not from confidence, title, or"
+          },
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 32 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Forecast credibility comes from tracked accuracy, not from confidence, title, or fluency. Respect real limits where chaos makes prediction hard, then work only questions where a record can be built an"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "For four years, Sarah timed barrel aging decisions by the region's most prominent wine critic. His vintage assessments were confident and widely cited. She also had her cellar master's handwritten no…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:14 a.m. on a Saturday, Thomas opens a spreadsheet of public race results he compiled from three regional marathons over two years. Column A shows athletes who completed the celebrity program. Co…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can confident public forecasters sustain high reputations even when their accuracy tracks near chance over time?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 78% (max 50%)"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It establishes nothing about calibration on its own, because a single confident wrong call is fully "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Luck produces streaks, but regression to the mean tests whether accuracy persists. Top forecasters' "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"and reads the table\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Explanatory overreach does not feel like error; it feels like clarity. The problem arrives precisely when your explanation is most convincing: before the evidence that would test it has come back."
+          },
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 38 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "An explanation earns certainty when the evidence does, not when it sounds fluent. Before offering any significant conclusion, name out loud what confirming evidence is still outstanding, and mark the "
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Petra had given the parents a reassuring explanation, which is different from giving them a supported one. Their son was a late bloomer. She had seen it before, the reading catches up, the assessment…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The diagonal fracture runs two-thirds of the way up the east pillar, just past the second rebar grid. Ben photographs it from three angles and stands back. The concrete surface is smooth on either si…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'He's probably just a late bloomer,' Petra says. 'We see this often in boys in year two. The reading usually catches up by the following year.' The parents across the desk nod. They had come in worri…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are a mechanic with eleven years of experience. When the customer describes flickering dash lights and intermittent cold-start failure, you have heard it before. The explanation assembles in unde…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are a mechanic with eleven years of experience. When the customer describes flickering dash lights and intermittent cold-start failure, you have heard it before. The explanation assembles in unde…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What does a physician's chart note actually do? It records an assessment, but it also signals, to the patient, to the next clinician who opens the file, and sometimes to the physician herself, that t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What does a physician's chart note actually do? It records an assessment, but it also signals, to the patient, to the next clinician who opens the file, and sometimes to the physician herself, that t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What distinguishes 'explanatory overreach' from simply being wrong about a prediction?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does the Cochrane cancer diagnosis story carry analytical weight in an argument about explanatory overreach?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"in the register of\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 40 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "A verbal hedge can mean anything its reader needs it to mean, which is why it survives unchecked. A numerical probability can only mean one thing, which is why it changes the forecaster's own thinking"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶4: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The soil moisture reports are spread across the table, edges damp from a coffee mug someone put down wrong. Forty farm operators leaning in at different angles, all of them listening for the same wor…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'Just put a number in the column,' the partner says, sliding the deal memo across the table. 'Don't overthink it.'\n\nDiego opens his laptop. He has been saying 'looking good' and 'I think they'll get …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Three weeks of family consultations, and Camille has been using the same language: guarded prognosis, challenging case, difficult road ahead. Medically accurate. Empathetic in register. She has not s…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Three weeks of family consultations, and Camille has been using the same language: guarded prognosis, challenging case, difficult road ahead. Medically accurate. Empathetic in register. She has not s…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are an engineering lead who has typed 'looking good for Q3' in the standup thread four days running. The product VP asks to meet before the board presentation and says she needs an actual percent…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "To produce a claim specific enough that its accuracy can be checked after the outcome arrives."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Her stated confidence is poorly calibrated: 'high confidence' is tracking near 60% accuracy when it "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because 'strong likelihood' can be interpreted as anywhere from 50% to 95% by different readers, mak"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Verbal probability language gives different readers license to assign different numbers to the same "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Partly, because the concern about false certainty applies to poorly calibrated numbers, not to numer"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"inside the intelligence community\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 54 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "The question you are answering is not always the question you were supposed to answer. Name the target question explicitly before doing analytical work, then ask whether your conclusion addresses it o"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶4: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Three liver enzyme charts are spread across the conference table, each with red circles around datapoints that flagged in the automated safety review. David photographs the charts, opens the signal r…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'She reminds me a lot of Damien,' the panel member says. 'Same energy. Same way of framing ambiguous problems.' Two other panelists nod.\n\nKasia is running the debrief. She has been in enough of these…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The manila folder is thick with claim photos and sticky notes. In the upper corner of the folder, Hugo's handwriting: 'Evasive on third call. Possible.' He has been keeping a running read on this cla…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are a credit analyst reviewing a restaurant group's $1.2M expansion loan. Two monitors: the left one has the group's three-year financials, the right one has their website with interior photos an…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "How do you know when two enthusiastic customers are evidence rather than noise?\n\nLars has just run two user research calls for a proposed file-tagging feature. Both customers said they would use it c…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is 'question substitution' in forecasting and analytical decision-making?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is question substitution particularly difficult to detect from the inside, even for experienced analysts?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Answering an easier proxy question rather than the harder target question, while presenting the resu"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "That sustained accuracy over many predictions is evidence of a method that consistently addresses th"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Partly valid for the premise, but the conclusion does not follow: acknowledging a proxy as a proxy ("
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the first question requires\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 38 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Raw intelligence without a method produces brilliant-sounding wrong answers. Decomposing a question into estimable components, anchoring each on the reference class, then adjusting for what you know s"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶4: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "Michael's board deck had 'TAM: $2.8B' on slide four. He had found a market research report that felt right and used its top-level number. The board's first question would be: how did you get to that …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The CT scan printout is pinned to the OR scheduling board with a question mark penciled next to the time slot. Frida has seen the film: unusual acetabular hardware from the original surgery, some bon…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 9:00 on a Tuesday in March, Sophie opens a blank spreadsheet and starts the estimate. The client expects 500 attendees for their first industry conference. She has never run this conference before…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What is the right question to ask before a surge period begins?\n\nNot 'do we have enough medication?' That question produces a gut answer based on a general impression of the stockroom. The right ques…"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "The prior architect's estimate read: '$180,000 to $220,000, hard to know at this"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the core principle behind Fermi decomposition as a forecasting tool?"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "Why does consulting the reference class before examining the specific case feel counterintuitive or unsatisfying to experienced analysts? Because reference classes are typically unreliable when appli…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "card[3]",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "Why does consulting the reference class before examining the specific case feel uncomfortable for experienced analysts? The reference class strips away the case-specific details that make inside-view…"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The decomposed estimate, because each trade estimate is independently sourced and errors in individu"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because component errors are independent of each other and tend to partially cancel, while a single "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because starting with the reference class prevented the narrative's coherence from inflating his con"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A specific number that can be compared against a threshold and trigger a documented decision rather "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Partly, because experience can calibrate intuition in stable, high-feedback domains, but explicit de"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"before the reference class\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 68 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Probabilistic honesty is not about mathematical sophistication. It is about distinguishing what the evidence has settled from what it has not yet reached, expressing that distinction as a range, and u"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 9 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 6 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 11.4 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Two Kaplan-Meier curves are projected on the screen at the far end of the conference room, and several board members are already leaning toward the conclusion the first curve suggests. The treatment …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "'Give me a yes or a no,' the dispatcher says. 'Forty flights. Eight minutes.'\n\nManon is looking at two radar products simultaneously: the wide view showing the storm track and the high-resolution sho…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The cover slide had read 'default risk: moderate.' Niklas had submitted the committee brief the previous afternoon, and by morning he had already decided to redo it.\n\n'Moderate' was a word that meant…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the core distinction between epistemic uncertainty and aleatory uncertainty?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Epistemic uncertainty can be reduced with more or better evidence; aleatory uncertainty reflects gen"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "That the finer distinctions tracked real differences in evidentiary weight that coarser numbers woul"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "That their exposure depends on position size relative to the aleatory component, which more research"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because small proportionate updates keep the estimate close to the true probability throughout the q"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Pre-position for 2,200 because the upper bound reflects irreducible severity variation, and schedule"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It degrades forecast quality because analysts suppress the range rather than eliminating the underly"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"this is\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 53 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "The quality of an update matters more than its frequency. The discipline is to strip the narrative from the signal before sizing the move: identify what the new information actually establishes, separ"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "The next time you read a long report, news article, or email chain, count: how m"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The manila folder is on the table, six pages inside it, the first paragraph already making the case sound stronger. Ryan reads it twice. A witness who places the defendant at a different location at …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'I've already drafted the warning,' the supervisor says over the phone. 'The third-county cluster confirms it. I need you to sign off.'\n\nNina is looking at the cluster data on her screen. Four cases …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What does a single blurry photograph of a bird 30 kilometers north of its historical range actually tell you about whether that range has permanently expanded?\n\nVincent is asking that question in the…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Catarina finished the transcript at two in the morning and had been careful not to trust how she felt after reading it.\n\nForty-seven pages. The CEO's opening remarks: four pages of backward-looking o…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Catarina finished the transcript at two in the morning and had been careful not to trust how she felt after reading it.\n\nForty-seven pages. The CEO's opening remarks: four pages of backward-looking o…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is proportionate revision, and why is it the central skill in update discipline?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Sizing each update to match the actual diagnostic weight of the new evidence rather than its emotion"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Moving to approximately 51% after applying a credibility discount that reflects the impeachment risk"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "That the update was calibrated to what the evidence had actually established: a meaningful but not c"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "That the dilution effect can be neutralized by explicitly separating diagnostic content from context"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Moving from 61% to 67%, reflecting that one spatially correlated result warrants a meaningful but bo"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because small proportionate updates keep the estimate calibrated throughout the question's life rath"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It systematically degrades calibration by training analysts to size updates to emotional salience ra"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 53 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Perpetual beta requires three things simultaneously: a record precise enough to be audited rather than interpreted after the fact, a willingness to seek feedback before it arrives naturally, and activ"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "memorableLines[1]",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Hindsight bias does not feel like revision. It feels like remembering clearly. The auditable record is the only thing that can tell the difference."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Hindsight bias does not feel like revision. It feels like remembering clearly. The auditable record is the only thing that can tell the difference.\n\nThis is why the mechanism matters beyond general o…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Three things make perpetual beta work as a discipline rather than as a stance. A record precise enough to audit. A willingness to seek feedback rather than wait for it. And memory discipline strong e…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'I know exactly where I went wrong,' Sam tells his playing partner. 'Move 27. I panicked when the queenside opened. Everything after that was just cleanup.'\n\nHe opens the engine on his laptop that ev…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The lamination is still visible in cross-section but the layers are compressed. Anke cuts a second croissant from the collapsed batch and confirms the pattern. For four days she has been troubleshoot…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What does it mean to track a student's technical progress if the tracking is done by memory?\n\nMathieu has been addressing right-hand tension in his student's playing for four lessons. Each lesson, he…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does perpetual beta mean as a forecasting discipline, and what three requirements does it depend on?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does a vague forecast record fail to support genuine learning from errors?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 1 wins 56% (max 50%)"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 2.0× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "An ongoing discipline of keeping records precise enough to audit, actively seeking feedback rather t"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "That an early hypothesis formed without consulting the record can be wrong in a direction that four "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Acknowledge that the session notes do not support the consolidation explanation, investigate whether"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because a record that can be interpreted as consistent with any outcome cannot tell the forecaster w"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "That within-session improvements (which memory registers because they occur in the teacher's presenc"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It prevents the feedback loop that connects past prediction errors to specific improvements in futur"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"bias does not feel\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 69 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "A superteam is not a team that avoids conflict. It is a team structured so that disagreement remains operationally available at the exact moment it could change the collective estimate. Groupthink doe"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶4: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶5: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The blister pack is on the tray beside the bed, and Tom has been looking at it for the past three minutes while the attending narrates the preliminary diagnosis. The curtained bay has organized itsel…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'Are we all comfortable with the submission package as it stands?' the partner asks. 'Five days. If anyone has anything, now is the time.'\n\nJuliette has been sitting with the façade load path for two…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are on a mountain rescue team and the trail fork is fifty meters ahead. The team lead is moving toward the left path based on the topographic map and formal rescue protocol for this type of call.…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The chair had stated her view before the open discussion began. The current monitoring period was sufficient. The adverse event signal was within expected parameters. There was no statistical basis f…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What does a crew member do when the contact on the display does not match the expected exercise pattern but is not clearly noise?\n\nConsider what Henrik faces. He has been on watch for three hours. Th…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does adding more people to a forecasting group not automatically improve the collective estimate?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A structure that keeps dissenting views operationally available at the moment they could change the "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because the improvement depends on whether the additional people's divergent views are preserved in "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "To capture each person's estimate before any authoritative voice can anchor the group's subsequent e"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because expressed agreement after an authoritative opening statement may reflect anchoring to the au"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It degrades collective forecast quality by ensuring that divergent views are expressed only after th"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead: 3 paragraphs open with \"the attending\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 87 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "The leader's dilemma is not a trade-off between decisiveness and humility. It is a design problem: how to act without closing the organization off from the corrections that action will require. The Mo"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶4: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 11.3 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'You are on for the Lerner Wing tonight?' Matthew asks the Ward B lead in the corridor, already knowing the answer.\n\n'Since seven this morning,' she says. 'The afternoon labs came back on the three n…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Paula told the story at the retrospective three months later, which is the only way she could tell it without sounding like a management parable.\n\nAt the all-hands in February she had written '40% CA…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What happens when a principal sets a measurable outcome and refuses to specify the method for reaching it?\n\nConsider Hiroshi's position at the spring staff meeting. He has fourteen classrooms across …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What was the central structural insight of Moltke's Auftragstaktik?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does overcontrol emerge in organizations even when no leader intends it?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Under what conditions does the Moltke model of decentralized initiative fail to improve outcomes?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "That when conditions change faster than headquarters can track and redistribute information, local j"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to close the gap\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 88 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Kahneman and Taleb's critiques narrow the honest scope of forecasting without erasing it. Short-range forecasting with stable base rates and regular feedback remains valuable; long-range forecasting o"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 12.9 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The projected loss distribution on the screen fills the room's back wall when the slide advances. The curve climbs, peaks, and then trails into a dotted line at the far right labeled 'tail not modele…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "'What's the probability of a simultaneous main road closure and wildfire during peak season?' the committee chair asks. 'Give me a number I can put in the planning document.'\n\nMargaux has the histori…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are a product manager and the engineering document in front of you has a line item for a failsafe with a question mark in the probability column. The estimate is 3 to 5 percent per year. The engi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The policy committee had asked for a two-year inflation forecast, and Lin had delivered one. What she had also delivered, posted on sticky notes beside the projection chart, was something the committ…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What does a safety engineer do with a scenario that is outside the design envelope and cannot be reliably probability-estimated?\n\nConsider what Léa faces at the facility safety review. The scenario d…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is conditional preparation, and when does it become the appropriate response to an uncertain outcome?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What distinguishes an honest acknowledgment of a probability limit from using uncertainty as a reason not to analyze?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "State that two near-cases in 80 years is insufficient to calibrate a reliable model, and propose two"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "An honest limit names the specific reason why estimation is unreliable, such as too few comparable c"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The director is correct: when historical data is insufficient to calibrate a model, a probability es"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the first one is\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 73 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Scorekeeping is not a technical add-on to forecasting: it is the mechanism that converts a forecast into evidence. Without it, accuracy and persuasiveness are indistinguishable, and the institutional "
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 11.2 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The spreadsheet has been in a folder labeled 'personal review' for five years. Hanna opens it on a Thursday afternoon to find a row she started adding to in 2019 and never shared: her own forecast lo…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are on a corporate strategy team and you have been watching the same pattern for three years. A single annual revenue number is issued in January. By April, conditions have changed and it is revi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are on a corporate strategy team and you have been watching the same pattern for three years. A single annual revenue number is issued in January. By April, conditions have changed and it is revi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Devon had started the back-issue review as a project about sourcing. She tagged every prediction made under a named expert byline over three years, 140 total across political, economic, and market co…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What question do eleven people in a grant review committee fail to ask?\n\nConsider what Lukas asks at the vote on a behavioral intervention study application. The committee has reviewed the methodolog…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why do institutions reliably reward persuasive over accurate forecasting when public scorekeeping is absent?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A question is too large when its outcome cannot be distinguished from 'the world changed under us,' "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"a forecast\" — vary paragraph openers"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 153
+  },
+  "bookGate": {
+    "bookId": "superforecasting",
+    "chapterCount": 12,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "1 protagonist name(s) appear as named characters in multiple chapters: Scenario(ch6,11). Regenerate affected examples with distinct names."
+      },
+      {
+        "catalogId": "B11",
+        "severity": "major",
+        "message": "6 of 12 chapters (50%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch2, Ch4, Ch7, Ch8, Ch9, Ch10. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+      },
+      {
+        "catalogId": "F4",
+        "severity": "major",
+        "message": "soft-banned phrase \"rather than\" appears 203 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+        "evidence": "rather than"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        33,
+        42,
+        33
+      ],
+      "answerPositionPctMax": 0.3888888888888889,
+      "totalQuizQuestions": 108,
+      "duplicatedNames": [
+        {
+          "name": "Scenario",
+          "chapters": [
+            6,
+            11
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "superforecasting",
+        "chapterCount": 12,
+        "passed": true,
+        "findings": [
+          {
+            "code": "B11",
+            "severity": "major",
+            "chapters": [
+              2,
+              4,
+              7,
+              8,
+              9,
+              10
+            ],
+            "count": 6,
+            "unit": "counterintuition",
+            "message": "6 of 12 chapters (50%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch2, Ch4, Ch7, Ch8, Ch9, Ch10. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+          }
+        ],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

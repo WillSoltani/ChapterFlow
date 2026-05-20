@@ -1,0 +1,153 @@
+{
+  "chapterId": "atomic-habits-ch18",
+  "number": 18,
+  "title": "The Truth About Talent (When Genes Matter and When They Don't)",
+  "coreMove": "Select habits and arenas where natural tendencies make effort compound faster.",
+  "sourcePressure": "People differ in natural tendencies and strengths, so habits compound best when the chosen behavior or field fits those tendencies rather than fighting them blindly.",
+  "chapterSpecificMisunderstanding": "Treating genes as destiny or using fit as an excuse to avoid hard work.",
+  "sourceAlignmentTerms": [
+    "genes",
+    "talent",
+    "natural tendencies",
+    "fit",
+    "strengths",
+    "field selection",
+    "effort"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of genes",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a short-track skater choosing starts over endurance events after split analysis",
+      "audience": "an athlete frustrated by generic training plans",
+      "stakes": "whether fit guides where effort compounds",
+      "format": "postmortem",
+      "requiredBeat": "the coach compares reaction splits and lap fade, then moves her to start-heavy races",
+      "firstImage": "split times taped beside sharpened skate blades",
+      "mustInclude": [
+        "split sheet",
+        "skate blades"
+      ],
+      "mustAvoid": [
+        "genes as destiny"
+      ]
+    },
+    {
+      "domain": "a dyslexic founder designing a sales habit around spoken demos instead of long proposals",
+      "audience": "a founder whose strength is live explanation",
+      "stakes": "whether the habit fits natural verbal fluency without avoiding rigor",
+      "format": "scene",
+      "requiredBeat": "he records a two-minute demo first, then turns the transcript into the proposal outline",
+      "firstImage": "a microphone clipped beside a proposal template",
+      "mustInclude": [
+        "demo recording",
+        "transcript"
+      ],
+      "mustAvoid": [
+        "fixed talent excuse"
+      ]
+    },
+    {
+      "domain": "a museum guide choosing morning research blocks because energy crashes after tours",
+      "audience": "a guide trying to write accurate exhibit notes",
+      "stakes": "whether schedule fit makes repetition sustainable",
+      "format": "reflection",
+      "requiredBeat": "she moves research to the pre-tour hour and watches notes accumulate for the first time",
+      "firstImage": "an exhibit placard draft under a gallery lamp",
+      "mustInclude": [
+        "placard draft",
+        "tour schedule"
+      ],
+      "mustAvoid": [
+        "generic morning-person advice"
+      ]
+    },
+    {
+      "domain": "a data analyst selecting visualization review over cold-call networking",
+      "audience": "an introverted analyst seeking promotion without copying extroverts",
+      "stakes": "whether strength-aligned practice still stretches ability",
+      "format": "dialogue",
+      "requiredBeat": "her manager asks where effort already gains traction, and she commits to weekly visual reviews with stakeholders",
+      "firstImage": "a dashboard mockup marked with sticky flags",
+      "mustInclude": [
+        "dashboard mockup",
+        "stakeholder list"
+      ],
+      "mustAvoid": [
+        "personality typing"
+      ]
+    },
+    {
+      "domain": "a chef with heat tolerance choosing grill station reps over pastry precision",
+      "audience": "a culinary student comparing stations honestly",
+      "stakes": "whether natural comfort points to the arena where hard work pays",
+      "format": "decision_point",
+      "requiredBeat": "during rotation, he logs mistakes and energy by station before requesting grill training",
+      "firstImage": "a char log beside tongs on a stainless shelf",
+      "mustInclude": [
+        "station log",
+        "grill tongs"
+      ],
+      "mustAvoid": [
+        "kitchen machismo"
+      ]
+    },
+    {
+      "domain": "a language tutor with strong mimicry building pronunciation drills before grammar lectures",
+      "audience": "a tutor designing a habit that uses her natural ear",
+      "stakes": "whether fit is used as leverage rather than limitation",
+      "format": "before_after",
+      "requiredBeat": "she starts each lesson with sound imitation and adds grammar after the student is engaged",
+      "firstImage": "phonetic cards spread beside a small recorder",
+      "mustInclude": [
+        "phonetic cards",
+        "recorder"
+      ],
+      "mustAvoid": [
+        "learning style myth"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify fit between tendencies and habit design",
+      "use strengths without treating them as destiny",
+      "choose arenas where effort compounds"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "List one habit that keeps failing because it fights your tendencies. Redesign the first rep so it uses a strength you already show elsewhere.",
+  "readingTimeMinutes": 12
+}

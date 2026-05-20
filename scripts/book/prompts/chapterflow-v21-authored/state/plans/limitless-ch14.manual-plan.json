@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch14",
+  "number": 14,
+  "title": "Speed Reading",
+  "coreMove": "Remove the friction that slows reading while matching speed to comprehension demands.",
+  "sourcePressure": "Reading efficiency is treated as cleaner pacing, reduced regressions, and preserved comprehension rather than careless skimming.",
+  "chapterSpecificMisunderstanding": "Equating speed reading with skimming or status performance.",
+  "sourceAlignmentTerms": [
+    "speed reading",
+    "clean pacing",
+    "regression",
+    "wandering attention",
+    "comprehension fit",
+    "input efficiency",
+    "reading friction"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Speed Reading with a generic unlocked potential claim.",
+      "Do not start with a definition of speed reading."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "academic journal club",
+      "audience": "nurse practitioner reading dense trials efficiently",
+      "stakes": "clinic protocol discussion starts at noon",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Ruth",
+      "requiredBeat": "Ruth runs a finger pace through the methods section, marks regressions, and slows only at the outcome table.",
+      "firstImage": "a printed trial with the outcome table boxed",
+      "mustInclude": [
+        "printed trial",
+        "finger pace",
+        "noon huddle"
+      ],
+      "mustAvoid": [
+        "medical conclusions",
+        "speed for status"
+      ]
+    },
+    {
+      "domain": "patent search desk",
+      "audience": "inventor scanning prior art without missing key claims",
+      "stakes": "a filing deadline is six days away",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "protagonistName": "Diego",
+      "requiredBeat": "You preview claim headings, pace through known boilerplate, and stop fully when a claim overlaps your design.",
+      "firstImage": "a patent claim page covered in tiny numbers",
+      "mustInclude": [
+        "claim headings",
+        "filing deadline",
+        "design sketch"
+      ],
+      "mustAvoid": [
+        "legal advice",
+        "reckless skimming"
+      ]
+    },
+    {
+      "domain": "urban planning public-comment packet",
+      "audience": "analyst reading hundreds of resident comments",
+      "stakes": "council summary must preserve minority concerns",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "protagonistName": "Anke",
+      "requiredBeat": "Diego sorts comments by signal first, then slows for representative objections instead of rereading every sentence twice.",
+      "firstImage": "comment pages clipped in stacks of twenty",
+      "mustInclude": [
+        "comment stacks",
+        "summary grid",
+        "council deadline"
+      ],
+      "mustAvoid": [
+        "civic bureaucracy",
+        "speed over care"
+      ]
+    },
+    {
+      "domain": "rare-book cataloging room",
+      "audience": "assistant reading descriptions for provenance clues",
+      "stakes": "a misread note can misprice an archive item",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Michael",
+      "requiredBeat": "Anke uses clean pacing on standard fields and pauses when marginalia or ownership marks appear.",
+      "firstImage": "cotton gloves beside a catalog card",
+      "mustInclude": [
+        "cotton gloves",
+        "catalog card",
+        "ownership note"
+      ],
+      "mustAvoid": [
+        "bookish atmosphere only",
+        "collector glamour"
+      ]
+    },
+    {
+      "domain": "sales contract review for a solar installer",
+      "audience": "operations manager reading boilerplate and exceptions",
+      "stakes": "install date depends on spotting one financing clause",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "protagonistName": "Lea",
+      "requiredBeat": "Michael identifies where regressions waste time, then reads standard clauses faster while flagging unusual financing language.",
+      "firstImage": "a financing clause highlighted in green",
+      "mustInclude": [
+        "contract PDF",
+        "green highlight",
+        "install calendar"
+      ],
+      "mustAvoid": [
+        "legal advice",
+        "office skim"
+      ]
+    },
+    {
+      "domain": "graduate seminar philosophy text",
+      "audience": "student tempted to speed through every paragraph equally",
+      "stakes": "discussion grade depends on understanding the hard argument",
+      "format": "question_hook",
+      "openingDevice": "question_hook",
+      "protagonistName": "Ronan",
+      "requiredBeat": "Lea asks which paragraphs deserve speed and which deserve wrestling, then changes pace at each argumentative turn.",
+      "firstImage": "a margin note shaped like a question mark",
+      "mustInclude": [
+        "margin note",
+        "seminar prompt",
+        "argument map"
+      ],
+      "mustAvoid": [
+        "abstract philosophy lecture",
+        "all texts same speed"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when remove the friction that slows reading while matching speed to comprehension demands. is needed in a new scenario.",
+      "Choose the visible action that matches Speed Reading rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Preview the next page, choose where to speed up and where to slow down, then read with that pacing on purpose.",
+  "readingTimeMinutes": 12
+}

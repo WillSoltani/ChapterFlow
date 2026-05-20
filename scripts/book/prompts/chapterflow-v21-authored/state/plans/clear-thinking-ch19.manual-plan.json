@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch19",
+  "number": 19,
+  "title": "Evaluate the Options",
+  "coreMove": "Make each option stand beside the same criteria so attractiveness cannot outrun evidence.",
+  "sourcePressure": "Now compare alternatives through tradeoffs, criteria, information quality, and judgment. Attractive options must be tested against evidence quality and real costs before action.",
+  "chapterSpecificMisunderstanding": "Turning evaluation into a scoring spreadsheet or abstract optimization exercise.",
+  "sourceAlignmentTerms": [
+    "evaluate options",
+    "tradeoffs",
+    "criteria",
+    "information quality",
+    "judgment",
+    "evidence",
+    "comparison"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "tradeoffs, criteria, information quality, and judgment",
+      "detail": "the heading index supports the chapter through tradeoffs, criteria, information quality, and judgment",
+      "useIn": "deepRead",
+      "phrasingHint": "Evaluation starts when every option has to answer the same hard questions in the same light."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for evaluate options",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think evaluate options is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Adam",
+      "domain": "a vendor contract comparison",
+      "audience": "a reader facing evaluate options in a concrete vendor contract comparison decision",
+      "stakes": "whether Adam preserves judgment quality before the situation slides into consulting scorecards",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Adam performs the chapter move by setting the call bell beside the triage tag, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the triage tag in the vendor contract comparison",
+      "mustInclude": [
+        "call bell",
+        "triage tag"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting scorecards",
+        "reusing a previous chapter's vendor contract comparison shell"
+      ]
+    },
+    {
+      "protagonistName": "Aaron",
+      "domain": "a medical device purchase",
+      "audience": "a reader facing evaluate options in a concrete medical device purchase decision",
+      "stakes": "whether Aaron preserves judgment quality before the situation slides into consulting scorecards",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Aaron performs the chapter move by setting the track diagram beside the delay code, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the track diagram lying beside the delay code in the medical device purchase",
+      "mustInclude": [
+        "track diagram",
+        "delay code"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting scorecards",
+        "reusing a previous chapter's medical device purchase shell"
+      ]
+    },
+    {
+      "protagonistName": "Isaac",
+      "domain": "a school curriculum choice",
+      "audience": "a reader facing evaluate options in a concrete school curriculum choice decision",
+      "stakes": "whether Isaac preserves judgment quality before the situation slides into consulting scorecards",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Isaac performs the chapter move by setting the return slips beside the price stickers, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the price stickers in the school curriculum choice",
+      "mustInclude": [
+        "return slips",
+        "price stickers"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting scorecards",
+        "reusing a previous chapter's school curriculum choice shell"
+      ]
+    },
+    {
+      "protagonistName": "Nathan",
+      "domain": "a fleet vehicle replacement",
+      "audience": "a reader facing evaluate options in a concrete fleet vehicle replacement decision",
+      "stakes": "whether Nathan preserves judgment quality before the situation slides into consulting scorecards",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nathan performs the chapter move by setting the lineup card beside the ice shavings, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the ice shavings in the fleet vehicle replacement",
+      "mustInclude": [
+        "lineup card",
+        "ice shavings"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting scorecards",
+        "reusing a previous chapter's fleet vehicle replacement shell"
+      ]
+    },
+    {
+      "protagonistName": "Adrian",
+      "domain": "a wedding venue selection",
+      "audience": "a reader facing evaluate options in a concrete wedding venue selection decision",
+      "stakes": "whether Adrian preserves judgment quality before the situation slides into consulting scorecards",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Adrian performs the chapter move by setting the permit packet beside the cracked tile, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the permit packet against the counter in the wedding venue selection",
+      "mustInclude": [
+        "permit packet",
+        "cracked tile"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting scorecards",
+        "reusing a previous chapter's wedding venue selection shell"
+      ]
+    },
+    {
+      "protagonistName": "Sebastian",
+      "domain": "a community grant allocation",
+      "audience": "a reader facing evaluate options in a concrete community grant allocation decision",
+      "stakes": "whether Sebastian preserves judgment quality before the situation slides into consulting scorecards",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Sebastian performs the chapter move by setting the speakerphone beside the probate folder, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the community grant allocation as Sebastian reaches for the speakerphone",
+      "mustInclude": [
+        "speakerphone",
+        "probate folder"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting scorecards",
+        "reusing a previous chapter's community grant allocation shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Make each option stand beside the same criteria so attractiveness cannot outrun evidence.",
+      "detect the weak generic version: Turning evaluation into a scoring spreadsheet or abstract optimization exercise.",
+      "distinguish evaluate options from nearby drift into consulting scorecards"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where evaluate options is active, then write the exact next visible move that would perform this chapter's move: make each option stand beside the same criteria so attractiveness cannot outrun evidence.",
+  "readingTimeMinutes": 12
+}

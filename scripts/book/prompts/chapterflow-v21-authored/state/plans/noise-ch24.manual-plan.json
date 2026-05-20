@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch24",
+  "number": 24,
+  "title": "How Noise Happens",
+  "coreMove": "Trace how level noise, pattern noise, and occasion noise interact in a single judgment rather than treating each component as a self-contained explanation.",
+  "sourcePressure": "A single judgment disagreement is rarely the product of one noise source in isolation. Level noise (stable between-judge differences in overall severity), pattern noise (stable personal tendencies about specific case types), and occasion noise (within-judge temporal variation) operate simultaneously in every judgment. Explaining a disagreement as 'just' one type misses the compound structure and therefore misses the compound remedy.",
+  "chapterSpecificMisunderstanding": "Picking the most convenient single noise type as the explanation for any given disagreement, when in fact all three components are always present in varying proportions.",
+  "sourceAlignmentTerms": ["level noise", "pattern noise", "occasion noise", "interaction", "components", "decompose", "compound", "judgment ecology"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Variance decomposition in professional assessment research",
+      "detail": "Empirical studies of noise in professional judgment — including judicial sentencing, clinical diagnosis, and performance appraisal — consistently find that level, pattern, and occasion noise each contribute measurably to total spread, and that removing any single component leaves the others operating at full strength.",
+      "useIn": "deepRead",
+      "phrasingHint": "You can calibrate every judge to the same average severity level and still have noise — because their patterns on specific case types diverge. You can standardize case types and still have noise — because occasion variation within each judge persists. The three components are not alternatives to each other. They are layers."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["noise is more complicated than you think", "the three types of noise every expert should know"],
+    "counterintuition": ["noise has a structure — and that structure means you can target it", "understanding the mechanism is the first step to fixing it"],
+    "tryThisNow": ["categorize a recent disagreement as level, pattern, or occasion noise", "rank the three noise types in order of impact in your organization"],
+    "examples": ["a scene where one noise type is identified and the problem is considered solved — that misses the compound structure", "a scene where eliminating one noise source eliminates all noise — that contradicts the chapter's premise"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "How-noise-happens examples risk reading as sequential textbook illustrations of each noise type. The six domains must show all three components operating together in each case — not one domain per component — so the reader sees the interaction rather than a taxonomy."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "prison security classification: a corrections department researcher decomposing inter-officer agreement rates in inmate security tier assignment",
+      "audience": "a corrections department research director mapping noise sources in security classification decisions across a state prison system",
+      "stakes": "inmate safety and rehabilitation access — a security tier assigned too high restricts educational and vocational program eligibility; a tier assigned too low creates documented safety risk",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the researcher presents the variance decomposition to the classification committee: inter-officer disagreement in security tier assignment breaks into three components — a level component (Officer A's average rating is 0.6 points higher than Officer B's on a 5-point scale across all cases), a pattern component (the two officers diverge by 0.4 points specifically on cases involving gang affiliation, but agree closely on cases with no affiliation), and an occasion component (each officer's ratings on equivalent cases vary by 0.3 points depending on their position in the weekly batch); the total observed spread is the compound of all three, and addressing any single one leaves the other two intact",
+      "firstImage": "a three-panel variance decomposition chart for security tier ratings, one panel for each noise component, each bar showing the magnitude of that component's contribution to total spread",
+      "mustInclude": ["the three numerical noise contributions (level 0.6, pattern 0.4, occasion 0.3)", "the framing that removing any single component would leave the other two operating at full strength", "the researcher's recommendation that the department design a reform targeting all three components"],
+      "mustAvoid": ["a specific inmate's classification story", "implying that any single targeted fix would resolve all classification noise"]
+    },
+    {
+      "domain": "workers compensation disability rating: a state authority comparing two raters' disability percentage assessments across a matched case sample",
+      "audience": "a workers compensation medical director auditing inter-rater reliability in permanent disability determination",
+      "stakes": "benefit payment amounts — a 10-percentage-point difference in disability rating produces substantial income replacement differences for an injured worker over the course of a claim",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two raters at an audit session examine their independent ratings: the medical director shows that their total disagreement decomposes into a level component (rater A is systematically 5 percentage points higher than rater B across all case types), a pattern component (rater A rates musculoskeletal cases 8 points higher than rater B but rates neurological cases nearly identically), and an occasion component (both raters show 4-point within-rater variation when the same case is reassessed three weeks later); the sum of the three components explains 90 percent of observed spread",
+      "firstImage": "a variance decomposition table for disability ratings with level, pattern, and occasion noise components in separate columns and the total variance in the final column, the pattern component showing the largest bar for musculoskeletal cases",
+      "mustInclude": ["the three numerical components (5 points level, 8 points pattern for musculoskeletal, 4 points occasion)", "the 90 percent explained-variance framing", "the implication that calibration training targeting only rater leniency levels would leave pattern and occasion noise fully intact"],
+      "mustAvoid": ["a specific injured worker's claim story", "implying workers compensation ratings are generally unreliable or arbitrarily administered"]
+    },
+    {
+      "domain": "annual performance review: a talent management research team decomposing inter-manager rating variance in a matched employee sample",
+      "audience": "a head of talent management studying why matched employees in equivalent roles receive different performance ratings depending on their manager",
+      "stakes": "compensation, promotion eligibility, and retention — rating variance attributable to noise rather than performance creates inequitable pay and advancement outcomes at scale",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the research team's analysis of 300 matched employee-manager pairs shows three simultaneous noise layers: managers' average rating generosity varies by 0.6 points on a 5-point scale (level noise — some managers are systematically harder graders); each manager has idiosyncratic tendencies on rating technical performance versus relational performance (pattern noise — accounting for 0.3 points of spread); and managers' ratings for the same employee vary by 0.25 points between mid-year check-in and year-end review when verifiable performance has not changed (occasion noise); calibrating only manager leniency levels would leave 55 percent of the noise structure untouched",
+      "firstImage": "a performance rating noise decomposition chart for a single company's review cycle, with three bars showing the relative contribution of level, pattern, and occasion components to total inter-manager spread",
+      "mustInclude": ["the three-component sizes (0.6 level, 0.3 pattern, 0.25 occasion)", "the 55 percent residual noise after level-only calibration", "the framing that a complete noise reduction program must target all three components or it is addressing a minority of the problem"],
+      "mustAvoid": ["a specific employee's evaluation story", "implying the performance review system is fundamentally broken and should be abandoned"]
+    },
+    {
+      "domain": "structural building inspection: a municipal building department studying inter-inspector variance in structural deficiency ratings for the same buildings",
+      "audience": "a city building department director studying why comparable buildings receive different deficiency severity ratings from different inspectors in the same department",
+      "stakes": "building safety and owner remediation costs — buildings rated above the mandatory remediation threshold face costly required repairs; noise in ratings means similar buildings face different mandatory-expenditure outcomes based on which inspector arrived",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the director asks: if three inspectors rate the same 30 buildings independently, how much of the observed spread is attributable to each inspector's general severity level, how much to their idiosyncratic domain preferences (one inspector consistently rates electrical deficiencies higher; another rates structural deficiencies higher), and how much to day-to-day variation within each inspector? The audit data answers: 40 percent level, 35 percent pattern, 25 percent occasion — and a reform focused only on calibrating general severity would leave 60 percent of total spread unaddressed",
+      "firstImage": "a pie chart of building inspection rating variance decomposed into three components: general inspector severity (40%), domain-specific inspector patterns (35%), and within-inspector day-to-day variation (25%)",
+      "mustInclude": ["the 40/35/25 decomposition", "the 60 percent unaddressed residual from a level-only calibration reform", "the framing that pattern noise — domain-specific inspector tendencies — is a larger noise source than within-inspector temporal variation in this context"],
+      "mustAvoid": ["a building failure or collapse story", "implying building inspectors are poorly trained or acting in bad faith"]
+    },
+    {
+      "domain": "health insurance medical necessity review: a health plan comparing medical reviewers' prior authorization decisions on matched cases",
+      "audience": "a health plan medical director studying inter-reviewer variance in medical necessity determinations for the same types of procedures",
+      "stakes": "patient access to care — prior authorization denials based on noisy reviewer judgment delay or prevent necessary treatments for patients whose cases are otherwise comparable",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the inter-reviewer analysis: the three-component decomposition shows that 30 percent of spread is level noise (some reviewers deny at higher rates overall for all procedure categories), 45 percent is pattern noise (reviewers disagree most on specific procedure categories where evidence standards are genuinely ambiguous), and 25 percent is occasion noise (the same reviewer reaches different decisions on the same case presented two months apart with no new clinical information); the largest noise source is pattern noise concentrated in the most clinically complex categories — not general reviewer leniency",
+      "firstImage": "a medical necessity decision noise decomposition bar chart, with pattern noise the tallest bar, occasion noise the shortest, and level noise in between — the pattern bar annotated with the specific high-ambiguity procedure categories where it concentrates",
+      "mustInclude": ["the 30/45/25 decomposition with pattern noise dominant", "the connection between pattern noise peaks and clinically ambiguous procedure categories", "the implication that reviewer training calibrating only overall denial rates would miss the largest noise source"],
+      "mustAvoid": ["a specific patient's denied claim story", "implying health insurance reviewers are systematically biased against approvals"]
+    },
+    {
+      "domain": "academic misconduct panel: a university honor code office studying inter-panel-member decision variance on matched case vignettes",
+      "audience": "a university dean of students studying why panel members reach different outcomes on comparable honor code cases presented in identical written form",
+      "stakes": "a student's academic record and standing — expulsion, suspension, or academic probation depending on which panel members happened to review the case",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the dean presents vignette study results to the annual panel training: 12 panelists rated 20 anonymized cases; total spread decomposes into a level component (3 panelists consistently recommended the most severe outcomes; 2 consistently the mildest — accounting for 38 percent of spread), a pattern component (panelists diverged most on cases involving collaborative work and shared authorship, far less on clear solo-plagiarism cases — accounting for 42 percent of spread), and an occasion component (panelists re-evaluated the same cases six weeks later and shifted 0.4 severity points — accounting for 20 percent); pattern noise in the ambiguous collaborative category is the largest single source",
+      "firstImage": "a dot plot of panelist severity ratings across 20 vignette cases, color-coded by panelist, with collaborative-work cases visibly showing the widest spread and solo-plagiarism cases showing the tightest",
+      "mustInclude": ["the 38/42/20 level/pattern/occasion decomposition", "the collaborative-work category as the highest-pattern-noise case type", "the dean's implication that panel training should devote the most time to calibration on ambiguous collaborative cases rather than on the clear-cut ones"],
+      "mustAvoid": ["a specific student's academic misconduct case", "implying honor code processes are generally unfair or corrupt"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain how level noise, pattern noise, and occasion noise each contribute to total judgment spread and why they are not interchangeable explanations for the same phenomenon",
+      "identify which noise component is likely dominant in a described judgment context based on the observed pattern of disagreement",
+      "apply the three-component decomposition to design a noise measurement exercise that captures all three sources independently",
+      "analyze why addressing only the most salient noise component in a system leaves the majority of noise intact",
+      "evaluate whether a proposed noise reduction intervention targets the correct mix of components for the described judgment system"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick three judgment decisions you made in the last two weeks that felt straightforward. For each, ask: Did you feel the same alertness and frame of mind as usual when you made it? (occasion) Do you notice you lean in a consistent direction on this type of case relative to your colleagues? (pattern) Are you generally more or less lenient than those colleagues on this decision type as a whole? (level) Most people can answer yes to at least one question for each judgment. That compound of yes answers is the three-component interaction you were not accounting for — and it is operating every time you assess a case.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why the three components are not alternatives to each other but simultaneous contributors to every judgment, at least one 5+ sentence paragraph showing how a single plausible disagreement between two judges can be traced to contributions from all three operating at once, at least one one-sentence punch line about what happens when you treat the most visible noise component as the only one",
+    "fullReadInterludeRequirement": "at least one paragraph presenting the three-component structure as a general empirical finding — not specific to any domain — that holds across judicial, clinical, and professional assessment research; framing it as a structural property of any human judgment system rather than a domain-specific quirk",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -183,6 +183,44 @@ function validateExample(ex: ExampleOutput, input: ExampleInput): ExampleOutput 
     }
   }
 
+  // whatToDo must not restate the scenario (>80% content-word overlap is a restatement)
+  if (ex.scenario && ex.whatToDo) {
+    const STOP = new Set([
+      "a","an","and","are","as","at","be","but","by","do","for","from",
+      "had","has","have","he","her","his","if","in","into","is","it","its",
+      "no","not","of","on","or","she","so","that","the","their","them",
+      "then","they","this","those","to","too","up","was","we","were","what",
+      "when","which","who","will","with","you","your",
+    ]);
+    const cw = (t: string) => new Set(
+      t.toLowerCase().split(/\s+/).map((w) => w.replace(/[^a-z]/g, ""))
+        .filter((w) => w.length >= 5 && !STOP.has(w)),
+    );
+    const scenWords = cw(ex.scenario);
+    const wtdWords = Array.from(cw(ex.whatToDo));
+    if (wtdWords.length > 0) {
+      const overlap = wtdWords.filter((w) => scenWords.has(w)).length / wtdWords.length;
+      if (overlap > 0.8) {
+        problems.push(`whatToDo repeats the scenario (${Math.round(overlap * 100)}% content-word overlap) — rewrite to add new instruction not already in the scenario`);
+      }
+    }
+  }
+
+  // Protagonist name drift: the name token in the exampleId slug must appear
+  // somewhere in the display fields. If it doesn't, the slug was written with
+  // a draft name that was later changed.
+  const slugParts = (ex.exampleId ?? "").split("-");
+  if (slugParts.length >= 3) {
+    const slugName = slugParts[2];
+    if (slugName && slugName.length >= 3 && !/^\d/.test(slugName)) {
+      const nameCapitalized = slugName.charAt(0).toUpperCase() + slugName.slice(1).toLowerCase();
+      const allDisplay = `${ex.scenario} ${ex.whatToDo} ${ex.whyItMatters} ${ex.title}`;
+      if (!new RegExp(`\\b${nameCapitalized}\\b`, "i").test(allDisplay)) {
+        problems.push(`exampleId slug name "${slugName}" does not appear in any display field — protagonist name drift; use the display name in the slug or update the display fields`);
+      }
+    }
+  }
+
   if (problems.length > 0) {
     throw new Error(`example invalid: ${problems.join("; ")}`);
   }

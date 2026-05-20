@@ -1,0 +1,976 @@
+{
+  "bookId": "predictably-irrational",
+  "title": "Predictably Irrational",
+  "author": "Dan Ariely",
+  "promotedAt": "2026-05-13T20:15:41.269Z",
+  "chapterCount": 13,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A folded festival program rests on Nora's lap, its showtimes circled in pencil beside a red all-access wristband. The weekday-only pass is badly priced, so all-access feels sensible. Nora turns the p…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mud streaks the rental office mat beside a clipboard of lift heights. Grace studies three machines during harvest week. The mid-size lift misses the top branches and costs close to the largest model,…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The premium trim is only a little more,\" someone says in the church basement office. Three fabric swatches are pinned to a felt strip, and Martin sees the plain package is oddly overpriced. Before t…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A wire cap rack rolled onto the concourse before the gates opened, with the premium cap at eye level and cheaper caps tucked lower. Two weeks later, Claire reviews the sales sheet and fan comments. T…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A buyer wants to prevent an arbitrary opening estimate from shaping an auction. Which plan is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A planner says, \"The first quote is high, but it gives us useful market reality.\" Which evaluation is most accurate?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Put one free offer into a concrete unit, such as minutes lost, space used, extra"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Steaming compost sacks are piled beside a bent garden gate after the storm. Emily can take as many as she wants, and the shed path is already narrowing. Before loading another sack, she sets a tarp o…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Steaming compost sacks are piled beside a bent garden gate after the storm. Emily can take as many as she wants, and the shed path is already narrowing. Before loading another sack, she sets a tarp o…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the far gate is\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sealed envelopes line the edge of an upright piano after rehearsal. Sophie has handwritten notes for section leaders in one stack and per-session payments in another. When the payment envelopes appea…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Tripod legs fold on a dark field beside a red flashlight. Leo's astronomy club once treated public telescope nights as pride in sharing the sky. After a per-telescope payment is announced, members as…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A neighborhood wants people to clear shared stairs after snow. Which plan best protects the social norm?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A meal network debates reimbursing every homemade dish. Which design best keeps care from becoming catering?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"pins in one tray\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A wet river-gauge printout is taped above hanging paddles in the equipment shed. Rowan hears the first van of clients outside, already laughing about the spring melt. Before the riverbank fills with …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "An unsent email glows above pocket trauma shears on a break-room counter. Leah has just been insulted in front of a patient, and her reply sounds perfect while her pulse is still high. The rule taped…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A courthouse phone blinks beside a laminated plea-response checklist after a hallway confrontation. Simon wants to reject the prosecutor's offer immediately. He points to the checklist, waits for a c…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A collector knows auctions make him competitive. Which plan best protects his restoration budget?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A chef overeats rejected pastries only on exhausted night shifts. Which diagnosis is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A doctor wants to send an angry reply after being embarrassed in front of colleagues. What design best fits the lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A guide says, \"I will decide at the riverbank after I see how excited the group is.\" What is wrong with that plan?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A person wants to stop late-night impulse purchases. Which move goes beyond awareness?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A lawyer refuses a plea immediately after a hostile exchange, then regrets it. Which explanation best fits?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"inside the equipment shed\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A studio clock hangs above a stack of blank pledge scripts. Moira remembers the failed drive where hosts wrote copy an hour before broadcast. After that, she requires each host to record a thirty-sec…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Porcelain crowns rest in foam slots under a magnifying lamp. Greta reviews late shipments and finds the same cause: defects discovered at final polish. She pins rejection photos beside each interim s…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A manila renewal packet is stamped with three colored dates before Paola slides it across the clinic table. Green is identity evidence, blue is work history, red is filing review. The final deadline …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team has a final demo in eight weeks and no required proof until the final week. What is the main risk?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A facilities lead has one inspection date for several repairs. Which checkpoint best fits the lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A clinic has a filing deadline months away, and clients often miss evidence requests. Which design is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A lab discovers defects only at final polish. Which change turns self-control into process design?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A relay captain asks runners to post route screenshots twice a week. What makes this stronger than a weekly promise?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A person sets a reminder for a tax task but never has to show any progress before the due date. What is missing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A curator moves completed boxes to a public progress shelf each Friday. What problem does this solve?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a cracked push bar\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Rolled maps tied with cotton tape stretch across Anton's green felt counter. Each one carries a mentor's note in careful pencil. Before assigning prices, Anton turns the notes facedown and sorts the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rolled maps tied with cotton tape stretch across Anton's green felt counter. Each one carries a mentor's note in careful pencil. Before assigning prices, Anton turns the notes facedown and sorts the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A hand-painted sign leans against a brick wall before sunrise. Nina first prices it from opening-night memory and the years it hung above her restaurant. After photographing the sign without the stor…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A person demands $200 to sell a lamp he would never buy for $80 today. What bias is most likely at work?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A lab keeps an unreliable device because former students built it. Which action makes the decision cleaner?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A collector says, \"This map belonged to my mentor, so buyers should pay more.\" What should a dealer ask first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A restaurant owner prices an old sign from opening-night memories. Which test best transfers the core move?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A family heirloom has low market value and high emotional value. Which response is most accurate?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"with a warped rim\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Script packets are spread across the dark lobby carpet after closing night. Celine totals option fees and rehearsal conflicts, then sees why last season felt thin. Keeping every script technically al…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Glass sample jars of green coffee line the bench beneath a roasting curve printout. Marco tips the last stale beans from three low-volume jars and writes the freshness cost beside each micro-lot he w…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Glass sample jars of green coffee line the bench beneath a roasting curve printout. Marco tips the last stale beans from three low-volume jars and writes the freshness cost beside each micro-lot he w…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Station cards are clipped above a stainless prep table before service. Diego first keeps every rotation open and misses prep on two stations. After the chef marks the gaps, he gives up the least valu…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team keeps three weak prototypes alive because any one might impress investors. What cost should they count first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A coffee roaster keeps a long menu of slow-moving micro-lots. Which evidence should guide which lots close?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit keeps every grant possibility on the calendar and submits weak proposals. What is the better move?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A chef apprentice tries every station but becomes trusted at none. Which move transfers the core idea?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A planner must decide whether to keep an emergency backup process. Which factor would justify keeping the door open?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"on a cracked whiteboard\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Hide one label, maker name, format cue, or reputation signal long enough to reco"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Two violin bows rest on velvet with their labels wrapped in paper. Anya expects the older French bow to sound warmer and predicts she will know it by the first scale. Before the shop owner reveals an…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Two bus route maps are clipped to a survey board in a transit-planning office. David reviews comments after riders saw identical timetables under different neighborhood names. In the postmortem, he s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Numbered sourdough slices sit on slate boards beside a covered supplier card. Olivia has heard three complaints since a rumor spread about flour changes, though today's loaves came from the same batc…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Two identical tablets sit on a testing table, one labeled beta and one labeled stable. Lin runs the same build on both and changes only the label. Users report more flaws on the beta tablet before an…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A diner rates the same soup higher after hearing it came from a famous chef. What is the most likely mechanism?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A music teacher wants students to judge two instruments without reputation bias. Which plan best fits?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A transit planner finds complaints follow a neighborhood label more than route timing. Which next step is most useful?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"expects the older french\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Three insole pairs are lined on a rubber mat with tape over the price stickers. Serena is six weeks from a half marathon and expects the costly pair to protect her knee. Before she reaches for it, sh…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A phone shows completed speaking drills beside a benefits enrollment page. Cora sees her employer discount and wonders whether the cheaper app teaches less. She hides subscription prices for two week…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Identical silver tins sit below Matteo's mirror with tiny color dots on the lids. One holds the premium batch, one the house-made product. He styles clients through the afternoon and checks hold by c…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Identical silver tins sit below Matteo's mirror with tiny color dots on the lids. One holds the premium batch, one the house-made product. He styles clients through the afternoon and checks hold by c…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A producer hears more warmth from a premium plug-in while staring at its expensive interface. Which test is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A barber wants to know whether a house-made product holds as well as a premium product. What design best fits?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A shopper says a discounted item feels weaker, though blind tests show equal performance. What should she infer?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"on a rubber mat\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "An honor jar sits beside wrapped flower bouquets under a striped awning. Fiona predicts customers will pay fairly, but she has seen a few short payments when the note sits behind the jar. Before the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Cream-colored archive folders sit in a gray box beneath a cotton handling sheet. Julian places the handling oath on top of the folder box, so patrons touch it before removing a folder for self-checko…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A laser-cutter keypad glows beside a stack of acrylic offcuts after a late session. Evan used extra minutes and almost rounds down. After discrepancies appear, the shop moves the member agreement abo…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A person overstates a small number while still thinking of herself as honest. What mechanism best explains the risk?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A club uses an honor jar and finds people shorting payments by small amounts. Which change best applies the lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An archive loses folders because patrons skip a quick sign-out. Which design is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A referee may soften a card report for the local team. Which cue best protects the report?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A makerspace moves its member agreement above the machine-time keypad. Why might this reduce underreporting?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A conference finds inflated attendance credits. Which placement of an attestation is most useful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A cashier signs an honesty pledge after closing the till, and shortages continue. What is likely wrong with the design?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"at a\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "counterintuition opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Value does not feel equally moral in every costume. Tokens, vouchers, credits, a"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Pick one voucher, credit, points balance, or shared good and write its cash equi"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A roll of parking validation stickers sits beside Gemma's clinic appointment ledger. A friend texts from the garage asking for an extra sticker. Before Gemma peels one from the roll, she must decide …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"It's just an unused credit,\" Andreas says near the rack of rental skis. The lift-pass scanner blinks as his supervisor scans one barcode credit and shows the full ticket price. Before transferring a…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Meal vouchers fan beside a hotel breakfast menu during Oliver's training week. Another guest offers cash for the unused stack. Oliver totals the vouchers at menu prices and writes that amount on the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Meal vouchers fan beside a hotel breakfast menu during Oliver's training week. Another guest offers cash for the unused stack. Oliver totals the vouchers at menu prices and writes that amount on the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Blue guest passes are stacked under a plexiglass ticket window. Mabel reviews a week of missing complimentary passes and hears staff call them favors. In the postmortem, she converts each missing pas…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A reagent order screen glows beside Livia's handwritten grant-code card. The shared allotment code makes a personal side-project reagent feel easy to add. Before submitting, Livia converts the code b…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Colored drink tokens sit in a shallow tray under a string of booth lights. Rose first hears volunteers joke about missing plastic chips after a busy shift. After she posts the cash equivalent above t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A trainee trades meal vouchers for cash because the vouchers feel like paper perks. What should have happened first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An aquarium finds missing complimentary passes. Which report best reduces rationalized misuse?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A festival's drink tokens keep disappearing because volunteers treat them like plastic chips. Which design fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A person says, \"It is only points, not money,\" before using a shared balance for herself. What should she do?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a roll of parking\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Folded meal slips sit in a stainless pan beside the firehouse duty board. Mike knows the first senior firefighter can set the tone with one shouted vote for brutal chili. Before meal planning starts,…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Numbered tasting cards line the wooden bar beside small flight glasses. Tomas predicts customers ordering aloud will choose the bold-sounding experimental beer. He lets half the room order by private…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Numbered tasting cards line the wooden bar beside small flight glasses. Tomas predicts customers ordering aloud will choose the bold-sounding experimental beer. He lets half the room order by private…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Ranked ballots sit under a photo of a cracked playground surface. Violet had watched show-of-hands favor a new mural while basic repairs stayed quiet. After the switch to private ranked ballots, the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ranked ballots sit under a photo of a cracked playground surface. Violet had watched show-of-hands favor a new mural while basic repairs stayed quiet. After the switch to private ranked ballots, the …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A group orders aloud, and later people admit they wanted different options. What likely contaminated the first choices?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A firehouse meal vote always chooses the spiciest dish aloud, but leftovers pile up. What should the captain try?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A dance studio chooses a trendy song aloud, but practice scores are weak. Which evidence should guide the next choice?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An incident retrospective follows the first senior engineer's theory every time. What is the cheapest useful repair?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader says private voting is manipulative because it changes outcomes. Which evaluation is most accurate?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants the benefits of discussion without losing first preferences. Which sequence is best?"
+          }
+        ],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 104
+  },
+  "bookGate": {
+    "bookId": "predictably-irrational",
+    "chapterCount": 13,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "A10",
+        "severity": "blocker",
+        "message": "Schema inconsistency: \"memorableLines\" present on 12/13 chapters but missing on 1 (chapters 12). Likely cache-skip regression. Backfill before shipping."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        50,
+        37,
+        30
+      ],
+      "answerPositionPctMax": 0.42735042735042733,
+      "totalQuizQuestions": 117,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [
+        {
+          "field": "memorableLines",
+          "presentInChapters": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13
+          ],
+          "missingInChapters": [
+            12
+          ]
+        }
+      ],
+      "patternAudit": {
+        "bookId": "predictably-irrational",
+        "chapterCount": 13,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch18",
+  "number": 18,
+  "title": "Incentive Super-Response Tendency",
+  "readingTimeMinutes": 12,
+  "slug": "incentive-super-response-tendency",
+  "hook": "Show people the prize, and the room starts noticing different facts.",
+  "coreIdea": "Incentive super-response tendency is the way rewards and penalties can pull attention, belief, and behavior harder than people admit.",
+  "counterintuition": "The first question is not whether someone is good or bad. It is what the system is paying them to see, ignore, defend, hurry, or call success.",
+  "tryThisNow": "Before judging a strange behavior, write the reward beside it. Ask what the person gains by repeating that behavior.",
+  "keyTakeaway": "Inspect the incentive before you moralize the response.",
+  "breakdown": {
+    "fastRead": "A lab notebook sits open in the wildfire planning room while Ronan reviews fuel-clearing proposals. The contractor with the biggest acreage bonus keeps recommending larger cuts. The map may be right. The reward is still pulling on it.\n\nIncentives change attention. They tell people what to count, what to defend, and what to call progress. Once the payoff is clear, behavior can move farther and faster than polite explanations suggest.\n\nThe reward points the eyes.\n\nThe correction is to mark the incentive in the room, then ask what behavior it makes easy, tempting, or invisible before accepting the recommendation.",
+    "deepRead": "The lab notebook in Ronan's wildfire office lists slope, wind, tree density, and last year's burns. The contractor's proposal sounds technical, but the payment rule pays by cleared hectare. Ronan writes incentives beside the notebook and asks the team to score risk reduction per hectare, not hectares cleared.\n\nIncentives do not make people machines. They do something subtler. They bend the search. A person paid for volume finds volume. A person rewarded for speed notices speed. A person punished for bad news delays bad news. The incentive does not have to be secret or corrupt. It only has to be strong enough to become the path of least resistance.\n\nFollow the payoff before judging the speech.\n\nA good review asks what the system rewards, what it punishes, and what it leaves unmeasured. If salespeople are paid for contracts signed, they may stop noticing whether the customer can succeed. If doctors are paid by procedure, procedure may look more natural. If a software team is praised for sign-ups, it may treat retention as someone else's problem.\n\nA software beta dashboard shows this cleanly. Saskia is reading a contract redline after the vendor promises a flood of beta users. The bonus pays for activated accounts, not useful feedback. She writes super-response on the redline and changes the contract to pay for completed test tasks and bug reports instead.\n\nDesign the reward for the behavior you actually want.",
+    "fullRead": "A biotech signal review room smells of cold coffee and marker ink. Irene has a menu proof from the investor lunch beside the trial summary because the company is preparing a fundraising event. The scientists want to highlight a borderline subgroup result. The subgroup may matter. The financing deadline also matters. Irene writes fish lures on the menu proof.\n\nFish lures are made for the fish, not the angler. Incentives work the same way. The reward does not care what people say they value; it pulls on what the system has made worth catching. That is why incentives can change not only behavior, but belief. People begin to notice the facts that help the payoff and discount the facts that threaten it.\n\nCharlie Munger treated incentive super-response as one of the strongest forces in human judgment because it can override good intentions while leaving everyone with a reasonable-sounding explanation. The lesson is not that character is fake. It is that character works inside a current of rewards and penalties.\n\nWho gets paid, praised, protected, or punished if this answer wins?\n\nIrene uses that question on the biotech signal. The subgroup result goes into the appendix with its sample size and uncertainty. The main deck leads with the primary endpoint. If the subgroup is real, it can survive further testing. If it is only a fundraising lure, the revised deck removes the reward for overstating it.\n\nYou can feel the same pull in a cycling crash audit. You are holding a case file after a courier company rewards riders for deliveries per hour. Pablo, the safety lead, sees managers blaming reckless cyclists. He marks reward design on the file and must choose: discipline riders alone or change the pay rule that rewards speed through dangerous intersections.\n\nThis is not an excuse for bad conduct. It is a map of pressure.\n\nPeople still make choices. Ethics still matter. But a system that pays for the wrong thing should not be surprised when it gets a super-response to the wrong thing. The clearest fix is often not a speech about values. It is a better incentive, a countermeasure, or a guardrail that makes the desired behavior worth doing.\n\nSo look at incentives early. Look before the scandal, before the missed safety signal, before the sales spike that will later become refunds. Ask what the reward makes visible and what it hides. If the answer points away from the stated goal, redesign the reward before the reward redesigns the people.",
+    "whyItMatters": "Incentives can bend attention and behavior before anyone admits they are being pulled. Readers need to inspect payoff design before judging conduct or trusting recommendations."
+  },
+  "examples": [
+    {
+      "exampleId": "ch18-ex01-ronan-lab-notebook",
+      "title": "Ronan Changes the Fire Metric",
+      "tags": [
+        "scene",
+        "wildfire",
+        "planning"
+      ],
+      "planSpec": {
+        "domain": "a wildfire planning room applying Incentive Super-Response Tendency under operational pressure",
+        "audience": "a reader who has to make a live judgment where incentives could mislead them",
+        "stakes": "public safety and budgets get misallocated if incentive super-response is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the lab notebook, names the incentives risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The wildfire planning room smells of pine dust at 8:15 a.m. while Ronan opens a lab notebook beside three fuel-clearing maps. The contractor paid by hectare recommends the widest cut. Before approving the plan, Ronan must decide whether acreage is steering the advice, so he writes incentives in the notebook.",
+      "whatToDo": "Score risk reduction per hectare and cap payment on measured hazard reduction, not raw area cleared.",
+      "whyItMatters": "The contractor may be competent, but the reward points toward more hectares. The plan should pay for reduced fire risk, not visible activity."
+    },
+    {
+      "exampleId": "ch18-ex02-saskia-contract-redline",
+      "title": "Saskia Rewrites the Beta Bonus",
+      "tags": [
+        "vignette",
+        "software",
+        "beta"
+      ],
+      "planSpec": {
+        "domain": "a software beta dashboard applying Incentive Super-Response Tendency under operational pressure",
+        "audience": "a reader who has to make a live judgment where super-response could mislead them",
+        "stakes": "product quality and customer trust get misallocated if incentive super-response is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the contract redline, names the super-response risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"We can bring five thousand beta users,\" the vendor says as Saskia reads the contract redline beside the dashboard. The bonus pays for activated accounts. It says nothing about completed tasks or useful bug reports. Saskia weighs whether to buy sign-ups or redesign the reward, so she writes super-response on the redline. At the handoff, Saskia has to pause the tidy story and test the record. Before the contract moves, Saskia must decide whether to buy sign-ups or redesign the reward around completed useful work.",
+      "whatToDo": "Tie payment to completed test tasks, verified bug reports, and retention after onboarding. Do not pay only for accounts created.",
+      "whyItMatters": "A sign-up bonus will produce sign-ups. If the goal is learning, the incentive has to pay for learning behavior."
+    },
+    {
+      "exampleId": "ch18-ex03-irene-menu-proof",
+      "title": "Irene Removes the Fundraising Lure",
+      "tags": [
+        "dialogue",
+        "biotech",
+        "trial"
+      ],
+      "planSpec": {
+        "domain": "a biotech signal review applying Incentive Super-Response Tendency under operational pressure",
+        "audience": "a reader who has to make a live judgment where fish lures could mislead them",
+        "stakes": "research credibility and investor trust get misallocated if incentive super-response is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the menu proof, names the fish lures risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Marker ink stains Irene's thumb as she sets the investor-lunch menu proof beside the trial summary. \"Lead with the subgroup,\" the finance head says. The sample is small, and the financing deadline is close. Irene marks fish lures and must decide whether the reward for fundraising is pulling the science story.",
+      "whatToDo": "Lead with the primary endpoint and show the subgroup with its limits. Keep fundraising pressure from selecting the strongest-looking fragment.",
+      "whyItMatters": "The subgroup may deserve study, but the incentive can make it look bigger than the evidence. The lure has to be named before it catches the deck."
+    },
+    {
+      "exampleId": "ch18-ex04-pablo-case-file",
+      "title": "Pablo Audits the Delivery Bonus",
+      "tags": [
+        "decision",
+        "cycling",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "a cycling crash audit applying Incentive Super-Response Tendency under operational pressure",
+        "audience": "a reader who has to make a live judgment where reward design could mislead them",
+        "stakes": "worker safety and public trust get misallocated if incentive super-response is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the case file, names the reward design risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are in the courier office when Pablo opens a case file from a cyclist crash. Managers call the rider reckless. The pay rule rewards deliveries per hour, and the crash happened at a known red-light shortcut. Pablo must decide whether to punish the rider alone or mark reward design and change the bonus.",
+      "whatToDo": "Add safety compliance and route quality to the bonus formula before disciplining riders as if speed pressure were irrelevant.",
+      "whyItMatters": "Personal choice matters, but the pay rule is pushing speed. A safety audit has to inspect the incentive that made risk profitable."
+    },
+    {
+      "exampleId": "ch18-ex05-adele-sensor-graph",
+      "title": "Adele Finds the Touring Budget Pull",
+      "tags": [
+        "predict",
+        "theater",
+        "budget"
+      ],
+      "planSpec": {
+        "domain": "a touring theater budget applying Incentive Super-Response Tendency under operational pressure",
+        "audience": "a reader who has to make a live judgment where Munger could mislead them",
+        "stakes": "tour viability and artist trust get misallocated if incentive super-response is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the sensor graph, names the Munger risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Adele one sensor graph from the stage-rigging team to see why every touring budget looked optimistic. Producers earned bonuses when the tour was approved, not when load-in times were accurate. Adele writes Munger risk on the graph and decides whether to accept the rosy budget or attach bonuses to actual tour variance. With the file still open, Adele faces a choice: act on the claim now or check the missing evidence first.",
+      "whatToDo": "Tie producer bonuses to budget accuracy and safe load-in estimates, not approval alone. Require variance tracking before the next green light.",
+      "whyItMatters": "The optimistic budget is not just optimism. The reward makes approval attractive and accuracy optional."
+    },
+    {
+      "exampleId": "ch18-ex06-layla-chlorine-strip",
+      "title": "Layla Reprices the Pension Advice",
+      "tags": [
+        "postmortem",
+        "pension",
+        "committee"
+      ],
+      "planSpec": {
+        "domain": "a pension fund committee applying Incentive Super-Response Tendency under operational pressure",
+        "audience": "a reader who has to make a live judgment where incentive could mislead them",
+        "stakes": "retirement money and fiduciary trust get misallocated if incentive super-response is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the water sample, names the incentive risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which pension recommendation looked independent until the fee schedule came out? Layla answers at 5:25 p.m. in the fund committee room with a chlorine test strip from the building's water check beside the adviser packet. As committee secretary, she sees the adviser earned more from complex products. Layla marks incentive risk and revises the next check to require flat-fee comparisons.",
+      "whatToDo": "Compare advice under flat-fee and commission structures before accepting product complexity. Make compensation visible in the committee packet.",
+      "whyItMatters": "The adviser may believe the product is good, but the fee design pulls attention toward complexity. The committee needs to see that pull."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a incentive-super case, a wildfire district pays a contractor by cleared acreage, in the planning room, the contractor recommends a wide cut across low-risk land while a smaller high-risk slope gets less attention. What is the clearest incentive risk?",
+        "choices": [
+          "The payment rule may make more clearing look better than targeted risk reduction.",
+          "Wide across low-risk supports a narrower read of wildfire district pays; keep contractor cleared acreage central and leave planning room recommends aside.",
+          "Low-risk land smaller points toward a quicker call on pays contractor cleared; let incentive-super wildfire district stand until recommends wide across contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The incentive rewards area, so advice may drift toward area. The fix is to pay for measured risk reduction, not to assume bad character.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Incentive Super-Response Tendency makes incentive-super case feel more decisive than the record supports, and that misprices wildfire district in this scene. The correct move keepss the choice by the payment rule may make more clearing look better than targeted risk."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a incentive-super review, a software vendor is paid for activated beta accounts, the client actually needs careful bug reports. What should the contract reward?",
+        "choices": [
+          "Feedback incentive super-response fits the immediate pressure around reports what contract; hold actually needs careful steady and test beta accounts client later.",
+          "Completed test tasks, verified bug reports, and useful feedback.",
+          "Accounts client actually gives a practical reason for paid activated beta; what contract reward belongs after needs careful reports clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The reward should match the desired behavior. Paying for accounts creates a super-response to accounts, not learning.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Incentive Super-Response Tendency works by letting incentive-super software crowd out vendor paid, which can misreads the activated beta decision. Completed test tasks, verified bug reports, and useful feedback keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When incentive-super pressure appears, a sales team gets bonuses for closed contracts but not renewals. Complaints rise after aggressive selling. Which change best addresses the incentive?",
+        "choices": [
+          "Contracts renewals complaints makes appears sales team look credible; use gets bonuses closed first and revisit rise after aggressive when selling change best shifts.",
+          "Add renewal quality, fit checks, and refund rates to the compensation plan.",
+          "After aggressive selling points toward a quicker call on sales team gets; let incentive-super pressure appears stand until renewals complaints rise contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "Values language may help, but the pay rule still pulls behavior. Adding quality and retention changes what the system rewards.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Incentive Super-Response Tendency turns appears sales into a shortcut, so the room can overweights team gets while missing bonuses closed. Add renewal quality, fit checks, and refund rates to the compensation plan protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After incentive-super risk surfaces, a research group highlights a small favorable subgroup before a funding round, the main endpoint was weak. What should reviewers inspect?",
+        "choices": [
+          "Whether financing pressure is rewarding the most flattering slice of evidence.",
+          "Subgroup funding round gives a practical reason for highlights small favorable; what reviewers inspect belongs after main endpoint weak clarifies the result.",
+          "Round main endpoint makes group highlights small look credible; use favorable subgroup funding first and revisit weak what reviewers when inspect whether financing shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The subgroup may be worth study, but the incentive to raise funds can pull attention toward flattering fragments. The main endpoint and limits need to stay visible.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Incentive Super-Response Tendency would push the research group case toward highlights small, creating a cost when favorable subgroup stays untested. The useful guardrail is to whether financing pressure is rewarding the most flattering slice of evidence."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If incentive-super reasoning takes over, a delivery company pays riders by deliveries per hour. After crashes rise, managers blame individual recklessness. What is the better first review?",
+        "choices": [
+          "After crashes rise makes delivery company pays look credible; use riders deliveries hour first and revisit managers blame individual when recklessness what better shifts.",
+          "Audit whether the bonus makes risky shortcuts profitable and redesign it around safe completion.",
+          "Blame individual recklessness points toward a quicker call on company pays riders; let incentive-super reasoning delivery stand until crashes rise managers contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "Riders still choose, but the pay rule may reward danger. A serious review inspects reward design before moralizing the behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Incentive Super-Response Tendency converts company pays into the loudest signal, which can rushes riders deliveries before hour after is checked. The better answer separatess attention on audit whether the bonus makes risky shortcuts profitable and redesign it around safe completion."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While incentive-super pressure builds, a theater producer earns a bonus when a tour is approved, not when estimates prove accurate, budgets keep looking optimistic. What does the incentive explain?",
+        "choices": [
+          "Approval has become more rewarding than accuracy.",
+          "Producer earns bonus looks strong enough to guide tour approved estimates; prove accurate budgets can wait unless keep looking optimistic changes the stakes.",
+          "Bonus tour approved gives a practical reason for theater producer earns; budgets keep looking belongs after estimates prove accurate clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "The incentive pulls estimates toward approval. That does not prove intent, but it explains why optimism keeps winning.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Incentive Super-Response Tendency hides inside the incentive-super pressure choice because incentive-super pressure seems sufficient, yet the cost lands in incentive-super pressure. Approval has become more rewarding than accuracy brings the incentive-super pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the incentive-super call, a pension adviser recommends complex products that pay higher commissions. The adviser sounds sincere and technically fluent. What should the committee do?",
+        "choices": [
+          "Commissions sounds sincere makes pension adviser recommends look credible; use complex products higher first and revisit technically fluent what when committee require transparency shifts.",
+          "Require fee transparency and compare advice under flat-fee and commission structures.",
+          "Fluent what committee points toward a quicker call on adviser recommends complex; let incentive-super call pension stand until sounds sincere technically contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "Sincerity and expertise can coexist with incentive pressure. Fee transparency lets the committee see whether the reward is shaping advice.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Incentive Super-Response Tendency pressures the call pension decision toward the easy reading of call pension. That can inflates the real cost unless the choice is grounded in require fee transparency and compare advice under flat-fee and commission structures."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose incentive-super risk is present: a call center changes its bonus so agents are rewarded only for shorter calls. Two weeks later, average call time improves, but repeat calls and unresolved billing cases increase. What likely happened?",
+        "choices": [
+          "Agents responded to the rewarded metric and under-served the unmeasured outcome.",
+          "Calls weeks average supports a narrower read of incentive-super present call; keep center changes bonus central and leave agents rewarded shorter aside.",
+          "Average time improves points toward a quicker call on call center changes; let suppose incentive-super present stand until shorter calls weeks contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The reward made speed visible and repeat resolution less important. The fix is to reward solved problems, not only short calls.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Incentive Super-Response Tendency is the mechanism here: rewards reshape behavior around the metric, so present call can overpower present call. Agents responded to the rewarded metric and under-served the unmeasured outcome keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two incentive-super signals compete: a hospital wants fewer readmissions. One proposal rewards doctors for shorter stays only. Another rewards safe discharge plus no readmission within thirty days. Which recommendation best avoids incentive super-response?",
+        "choices": [
+          "Readmission within thirty points toward a quicker call on proposal rewards doctors; let wants fewer readmissions stand until safe discharge plus contradicts it.",
+          "Thirty days recommendation fits the immediate pressure around doctors shorter stays; hold readmissions proposal rewards steady and test hospital wants fewer later.",
+          "Reward the combined outcome so speed does not overpower safety."
+        ],
+        "correctIndex": 2,
+        "explanation": "A simple speed reward can create a super-response to speed. The combined measure aligns the incentive with the actual goal.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Incentive Super-Response Tendency makes the hospital wants evidence look cleaner than it is, risking a hospital wants mistake in this setting. The answer protects hospital wants by asking for reward the combined outcome so speed does not overpower safety."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "A behavior looks strange or harmful. What should you inspect first?",
+      "back": "Inspect the reward or penalty attached to it. The incentive may be pulling attention and behavior."
+    },
+    {
+      "front": "Why is moralizing too early risky?",
+      "back": "It can miss the system that pays for the conduct. Better reward design may prevent repetition."
+    },
+    {
+      "front": "What is a super-response?",
+      "back": "A strong behavioral reaction to a reward, often stronger than people admit or notice."
+    },
+    {
+      "front": "A metric improves while the real goal worsens. What likely happened?",
+      "back": "The incentive rewarded the metric, so people optimized it while ignoring the unmeasured goal."
+    },
+    {
+      "front": "How do you redesign a bad incentive?",
+      "back": "Pay for the behavior and outcome you actually want, then add guardrails for what the reward might hide."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to find the reward behind a behavior and redesign the incentive before blaming character or trusting recommendations.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If behavior seems irrational or unethical, then I will write what the person is paid, praised, or punished for before judging."
+      },
+      {
+        "context": "contracts",
+        "plan": "If a vendor promises volume, then I will check whether payment rewards volume, quality, retention, or real learning."
+      },
+      {
+        "context": "management",
+        "plan": "If one metric improves while the goal worsens, then I will inspect whether the incentive rewards the metric alone."
+      },
+      {
+        "context": "advice",
+        "plan": "If an adviser recommends a product, then I will ask how they are compensated before weighing the recommendation."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, pick one recurring behavior that frustrates you. Write the reward beside it and name one better incentive.",
+    "weeklyPractice": "Once this week, audit one metric or bonus system for the behavior it may overproduce and the outcome it may hide."
+  },
+  "memorableLines": [
+    {
+      "text": "The reward points the eyes.",
+      "location": "breakdown.fastRead",
+      "why": "It captures how incentives steer attention before behavior."
+    },
+    {
+      "text": "Follow the payoff before judging the speech.",
+      "location": "breakdown.deepRead",
+      "why": "It gives readers the chapter's correction as a direct rule."
+    },
+    {
+      "text": "This is not an excuse for bad conduct. It is a map of pressure.",
+      "location": "breakdown.fullRead",
+      "why": "It prevents cynical misreading while preserving the incentive analysis."
+    }
+  ]
+}

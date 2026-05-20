@@ -1,0 +1,83 @@
+{
+  "bookId": "the-great-mental-models-vol-1",
+  "title": "The Great Mental Models, Volume 1: General Thinking Concepts",
+  "author": "Shane Parrish",
+  "thesisParagraph": "The book argues that better judgment comes from carrying a small set of reliable thinking tools and knowing when each one applies. A model is useful because it compresses reality, but it becomes dangerous when the compression is mistaken for the world itself. The reader learns to test maps against ground truth, stay inside earned competence, expose claims to disproof, rebuild from first principles, simulate consequences, separate necessary from sufficient conditions, reason in probabilities, avoid false causal stories, work backward from failure, and prefer simpler or more charitable explanations when the evidence allows.",
+  "coreIdeas": [
+    {
+      "name": "Models Are Tools",
+      "oneSentence": "A model earns trust only while reality keeps confirming its range.",
+      "mentalMove": "Use the representation, then check where it omits, distorts, or starts shaping behavior.",
+      "sourceAnchors": ["ch01.source"]
+    },
+    {
+      "name": "Know Your Edge",
+      "oneSentence": "Judgment weakens when confidence crosses the perimeter of earned competence.",
+      "mentalMove": "Mark what you know from direct skill before entering a decision where others have the advantage.",
+      "sourceAnchors": ["ch02.source"]
+    },
+    {
+      "name": "Expose Claims",
+      "oneSentence": "A belief gets stronger when it risks being wrong in a clear test.",
+      "mentalMove": "Ask what observation would change your mind before gathering support.",
+      "sourceAnchors": ["ch03.source"]
+    },
+    {
+      "name": "Rebuild From Bedrock",
+      "oneSentence": "Inherited assumptions hide better designs until you strip a problem down to what is actually true.",
+      "mentalMove": "Separate facts from conventions, then rebuild the choice from first principles.",
+      "sourceAnchors": ["ch04.source"]
+    },
+    {
+      "name": "Run the Future",
+      "oneSentence": "Structured imagination lets you test consequences before cost, risk, or time makes the lesson expensive.",
+      "mentalMove": "Create a constrained mental simulation and watch what it reveals.",
+      "sourceAnchors": ["ch05.source", "ch07.source", "ch08.source"]
+    },
+    {
+      "name": "Prefer Lean Explanations",
+      "oneSentence": "Do not add complexity or hostile intent when a simpler sufficient account fits the evidence.",
+      "mentalMove": "Check sufficiency, simplicity, and ordinary error before escalating the story.",
+      "sourceAnchors": ["ch06.source", "ch09.source", "ch11.source", "ch12.source"]
+    }
+  ],
+  "targetReader": "A practical reader who makes decisions under incomplete information and wants sharper judgment without turning every choice into an academic exercise.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language"
+    ]
+  },
+  "voiceSpecimens": [
+    "The spreadsheet looks calm until the first customer call breaks it.",
+    "Your edge is not what you can explain at dinner. It is what still holds when money, time, or pride is on the line.",
+    "A claim that can survive every outcome has not become stronger. It has become harder to test.",
+    "Take the problem apart until you can tell which pieces are facts and which pieces are furniture someone else arranged.",
+    "Before you chase the benefit, walk one step farther and look at what the benefit will make harder.",
+    "The simpler story is not automatically true. It is the one you test before you decorate the room with theory."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches readers the importance of using mental models in their daily lives.",
+    "In today's complex world, we must all become better thinkers and unlock our potential.",
+    "The author argues that decision-making can be improved by applying frameworks.",
+    "Ask yourself: what is one area where you can be more intentional today?",
+    "The key takeaway is that wisdom requires nuance, balance, and a growth mindset."
+  ],
+  "teachingArc": "The sequence starts by humbling representations and personal confidence, then gives the reader tools for testing, rebuilding, simulating, tracing consequences, weighing uncertainty, checking causality, reversing failure, simplifying explanations, and reducing hostile misreadings. The chapters compound from map discipline into judgment discipline: first check the tool, then check your edge, then check the claim, the assumptions, the conditions, the downstream effects, the odds, the causal story, the failure path, and finally the explanation you are tempted to believe.",
+  "forbiddenMoves": [
+    "Do not turn mental models into motivational slogans or a generic smarter-thinking sermon.",
+    "Do not import unsupported historical anecdotes into thin-source chapters.",
+    "Do not treat simplicity, competence, or charity as excuses for inaction when evidence demands escalation.",
+    "Do not make every example a meeting, dashboard, kitchen, classroom, or whiteboard scene."
+  ]
+}

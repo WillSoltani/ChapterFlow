@@ -27,6 +27,16 @@ type BookBrief = {
     cadence: "short" | "medium" | "long";
     signatureMoves: string[];    // 3–5 specific moves the writer must use (e.g., "open chapters with a concrete scene")
     avoidMoves: string[];        // 3–5 specific don'ts for THIS book
+    readabilityDefaults: {
+      maxAvgSentenceLengthFast: number;             // default 14
+      maxAvgSentenceLengthDeep: number;             // default 16
+      maxAvgSentenceLengthFull: number;             // default 18
+      maxSubordinateClausesPerSentenceFast: number; // default 1
+      maxSubordinateClausesPerSentenceDeepFull: number; // default 2
+      maxSentenceLengthAnyTier: number;             // default 30
+      satisfactionTestsRequired: number;            // default 3
+      plainWordSubstitutionRequired: boolean;       // default true
+    };
   };
   voiceSpecimens: string[];      // 5–7 SAMPLE SENTENCES in the target voice. These are the north stars the writer echoes. See below.
   voiceAntiSpecimens: string[];  // 4–6 SAMPLE SENTENCES explicitly off-voice. These are what the writer must NOT sound like.
@@ -34,6 +44,27 @@ type BookBrief = {
   forbiddenMoves: string[];      // 3–6 book-specific hard don'ts (e.g., "no war metaphors in Atomic Habits")
 };
 ```
+
+## About readabilityDefaults
+
+Every charter must include `readabilityDefaults`. These apply to every book unless this book's source register demands an exception. The defaults are:
+
+```
+{
+  "maxAvgSentenceLengthFast": 14,
+  "maxAvgSentenceLengthDeep": 16,
+  "maxAvgSentenceLengthFull": 18,
+  "maxSubordinateClausesPerSentenceFast": 1,
+  "maxSubordinateClausesPerSentenceDeepFull": 2,
+  "maxSentenceLengthAnyTier": 30,
+  "satisfactionTestsRequired": 3,
+  "plainWordSubstitutionRequired": true
+}
+```
+
+The default is the floor for readability; the charter can RAISE the average-sentence-length caps for specific books but should never raise `maxAvgSentenceLengthFull` above 22. For example, *Thinking, Fast and Slow* may need `maxAvgSentenceLengthFull = 20` because Kahneman's experimental prose is naturally denser. *The Prince* may need `maxAvgSentenceLengthFull = 21` because Renaissance political-philosophy cadence runs long. For most books — Atomic Habits, Psychology of Money, Deep Work, Indistractable, etc. — keep the defaults.
+
+`satisfactionTestsRequired` is the count of the five satisfaction tests (see writer-breakdown.system.md) every paragraph must clear. The default is 3 of 5; you may set it to 4 of 5 for books where prose payoff is the brand (Housel, Gladwell, McRaven). Do not set it below 3.
 
 ## About voiceSpecimens and voiceAntiSpecimens
 
@@ -90,7 +121,14 @@ The pipeline has shipped ten issues we are correcting for. Your brief participat
 - The `thesisParagraph` should be the book's argument as you would pitch it to a skeptical friend in one minute. Not a summary, a claim.
 - Each `coreIdea.mentalMove` must be a verb the reader performs, not a concept the reader knows. "Name the internal trigger before the outlet" is a mental move. "Understand habit loops" is not.
 - `voiceCharter.signatureMoves` should be specific enough that two different writers following them would write similarly. "Use short sentences" is weak. "Open each section with a concrete scene in under 25 words, then zoom out to the idea" is strong.
+- At least one signature move should be a "satisfaction move" — something concrete about how this author rewards the reader at the paragraph or chapter scale. Examples:
+   - Housel: "ends paragraphs on a sentence the reader could tweet, but never abstract — always a specific image or a specific dollar amount"
+   - Kahneman: "ends each section with an experimental finding in plain words, not the methodology behind it"
+   - Goggins: "lands every paragraph on a verb the reader could do tomorrow"
+   - Newport: "compresses each rule into a sentence under 12 words that closes the paragraph"
+  The signature move makes the chapter feel like the book it's drawing from, not a pipeline-generated essay.
 - `avoidMoves` and `forbiddenMoves` must reflect the book's own risks. For *Atomic Habits*, forbid "war metaphors". For *The Prince*, forbid "self-help softening". For *Thinking, Fast and Slow*, forbid "chummy warmth" and "anthropomorphizing System 1".
+- Always include in `avoidMoves`: "Latinate or academic register when plain English fits", "restatement closers", "hedge adverbs inside scenes", "sentences over 30 words". These are universal across books even when other avoid moves are book-specific.
 
 ## Output
 

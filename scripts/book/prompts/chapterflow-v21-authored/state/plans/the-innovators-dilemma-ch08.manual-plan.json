@@ -1,0 +1,131 @@
+{
+  "chapterId": "the-innovators-dilemma-ch08",
+  "number": 8,
+  "title": "Discovering New and Emerging Markets",
+  "coreMove": "Treat the first stage of market entry as learning under real conditions, not as a forecasting exercise that must be completed before contact begins.",
+  "sourcePressure": "New and emerging markets are underdefined at the start: first users, use contexts, and demand patterns are not yet clear. Demanding forecast-level certainty before entering blocks the learning that real contact produces. Discovery is disciplined — not careless — but it operates by gathering evidence from real use rather than by modeling from a distance.",
+  "chapterSpecificMisunderstanding": "Reading this chapter as anti-planning or pro-experimentation-without-discipline, when the argument is for disciplined discovery — organized around what the team needs to learn, what boundaries to respect, and what evidence will count once contact begins.",
+  "sourceAlignmentTerms": [
+    "discovery",
+    "emerging market",
+    "forecast-first",
+    "first users",
+    "learning under uncertainty",
+    "real contact",
+    "disciplined discovery",
+    "market formation"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'get out of the building' framing",
+      "generic 'test everything, assume nothing' framing"
+    ],
+    "counterintuition": [
+      "generic 'planning is overrated' counter",
+      "generic 'just start talking to customers' counter"
+    ],
+    "tryThisNow": [
+      "generic 'talk to ten potential customers this week' prompt",
+      "generic 'run an A/B test' prompt"
+    ],
+    "examples": [
+      "any scene that frames discovery as validation of a pre-existing hypothesis",
+      "any scene where the team simply 'interviews customers' without a specific learning question"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Discovery episodes should feel like contact with something real — open in the moment of encounter, not in the planning meeting."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "medical device team learning from the first twelve patients to receive an early implant outside of clinical trial conditions",
+      "audience": "a clinical product manager whose regulatory submission requires controlled trial data, but whose first commercial users are creating information the trial didn't capture",
+      "stakes": "the commercial users are using the device in ways the clinical protocol did not anticipate, and that use is generating the most actionable information the team has seen",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anna's weekly review of the first twelve commercial implants surfaces three use patterns the trial protocol never measured — not failures, but real-world applications that clarify what the device actually does for patients in normal care settings. The learning was not planned. It arrived because the team was in contact.",
+      "firstImage": "a clinical review board with twelve patient case folders open, three with handwritten notes in the margin",
+      "mustInclude": ["twelve commercial users", "use patterns outside the trial protocol", "the contrast between planned learning and arrived learning"],
+      "mustAvoid": ["suggesting that clinical trials should be replaced by commercial observation"]
+    },
+    {
+      "domain": "language-learning app piloting with heritage speakers of minority languages rather than foreign-language learners",
+      "audience": "a product manager whose market model was built around foreign-language learners in formal education settings",
+      "stakes": "heritage speakers use the app differently than learners — they skip foundational lessons, seek vocabulary for family conversations, and want audio over text — patterns the product model didn't anticipate",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chris's pilot with heritage speakers was not in the original market plan. The team ran it because a community center requested access. The usage patterns that emerged — which features got skipped, which got daily use — didn't match the learner model and revealed a real but unmapped market segment.",
+      "firstImage": "an app session heatmap showing heritage speakers skipping the grammar module and spending three times longer in the audio vocabulary section",
+      "mustInclude": ["heritage speaker use pattern", "grammar module being skipped", "community center as the discovery entry point"],
+      "mustAvoid": ["treating the heritage speaker segment as more culturally important than the learner segment"]
+    },
+    {
+      "domain": "electric bicycle fleet company testing urban office commuters in a city where the infrastructure was not designed for cycling",
+      "audience": "a mobility startup director whose demand model was built on cities with existing bike lane infrastructure",
+      "stakes": "the city has minimal bike infrastructure, which the model treated as a disqualifying condition — but real commuter use is producing different data",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Lukas has to decide whether to expand the pilot in the low-infrastructure city or wait for better conditions. The pilot data shows that commuters are finding routes the model hadn't mapped — shared sidewalk paths, parking garage shortcuts, and dedicated building access routes — and using them consistently.",
+      "firstImage": "a city map with official bike lanes in green and actual observed commuter routes added in pencil",
+      "mustInclude": ["infrastructure disqualification in the model", "observed routes not on the map", "the decision to expand or wait"],
+      "mustAvoid": ["implying that low-infrastructure cities are inherently unsuitable for cycling"]
+    },
+    {
+      "domain": "agricultural input company testing soil nutrient products with smallholder farmers in a new region",
+      "audience": "a market development manager whose standard go-to-market model assumes farm sizes above 20 hectares and extension service infrastructure",
+      "stakes": "smallholder farmers under 5 hectares are applying the product differently — smaller quantities, different timing, non-standard mixing — and the results are not what the usage protocol predicts",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Isabel predicts that non-protocol application will produce suboptimal results based on the standard trial data. The reveal shows that several smallholder adaptations — smaller dose timing matched to hand-application logistics — produce results comparable to the standard protocol on small plots. The discovery was not in any model.",
+      "firstImage": "a trial result table with smallholder rows flagged for non-protocol use and an unexpected result column",
+      "mustInclude": ["non-protocol application flag", "protocol prediction of suboptimal results", "the comparable results in the reveal for adapted use"],
+      "mustAvoid": ["implying that smallholder farmers are less sophisticated than large-farm operators"]
+    },
+    {
+      "domain": "modular housing company learning from disaster-relief deployments in ways that feed back into commercial product design",
+      "audience": "a product director whose commercial market is urban workforce housing, not emergency response",
+      "stakes": "the disaster-relief deployments were a grant-funded program, not a market entry — but the conditions they produced (rapid assembly, extreme weather, irregular terrain) have generated design insights not available in commercial deployments",
+      "format": "postmortem",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Anders's postmortem on the disaster-relief program wasn't supposed to inform commercial product design. The team conducted it as a compliance exercise. But the assembly challenges documented in the field — which subcontractors in disaster conditions could and could not do — revealed assumptions in the commercial design that no commercial deployment had yet stressed.",
+      "firstImage": "a post-hurricane deployment site with modular units being assembled by an unfamiliar subcontractor crew",
+      "mustInclude": ["grant-funded program as unintended discovery context", "assembly challenge documentation", "commercial design assumptions revealed"],
+      "mustAvoid": ["treating disaster relief as a market to be commercialized"]
+    },
+    {
+      "domain": "cloud HR software team discovering that gig-economy platforms are using their scheduling module in an unanticipated way",
+      "audience": "a product manager whose customer base is assumed to be traditional salaried employers managing W-2 employees",
+      "stakes": "gig platforms are using the scheduling module for contractor assignment instead of employee scheduling — it works for their use case in ways the product team didn't design for and the support team wasn't trained for",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Before: Hiroshi's team treats gig platform usage as an edge case and routes their support tickets to a lower tier. After: the team interviews five gig platform operators, documents the specific scheduling logic they are using, and discovers that the module handles contractor assignment as well as it handles employee scheduling — a real market the product team had not modeled.",
+      "firstImage": "a support ticket queue with five gig platform tickets marked 'non-standard use — refer to advanced support'",
+      "mustInclude": ["edge-case classification being revised", "contractor assignment use case", "the documented market in the after"],
+      "mustAvoid": ["implying that traditional employer use cases are less important than gig-economy ones"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish forecast-first thinking from disciplined discovery in a described scenario",
+      "identify what a team needs to learn in an emerging market situation",
+      "recognize when an unplanned use pattern is a discovery opportunity rather than an anomaly",
+      "apply discovery-before-forecast reasoning to a non-technology emerging market",
+      "evaluate whether a described market entry approach is appropriate for the stage of market formation"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one market your organization has decided it cannot enter yet because the forecast isn't clear enough. Write down one specific question — not a forecast, a question — that real contact with potential users would let you answer within the next month.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that directly addresses the reader about what they are waiting to learn before they act — and asks whether contact would resolve it faster than modeling",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

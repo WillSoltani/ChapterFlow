@@ -1,0 +1,395 @@
+{
+  "bookId": "noise",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "noise-ch01",
+      "title": "Finding Noise",
+      "sourcePressure": "The book opens with an insurance company discovering that 48 underwriters given identical cases produced roughly 55 percent variability, far above the 10 percent expected. The chapter distinguishes noise from bias: bias is the average error; noise is the variability in error. The opening case makes disagreement visible and costly before any taxonomy or remedy appears.",
+      "coreMove": "Spot judgment variability as a systemic problem distinct from bias before asking which individual was wrong.",
+      "commonMisread": "Treating noise as just another word for bias, or assuming that identifying the outlier in any disagreement resolves the problem.",
+      "mustUseTerms": ["noise", "bias", "variability", "judgment", "underwriter", "spread", "consistency"],
+      "mustNotDriftInto": ["solutions or remedies (those come later)", "the taxonomy of noise types (level, occasion, pattern — those come later)"]
+    },
+    {
+      "number": 2,
+      "chapterId": "noise-ch02",
+      "title": "Crime and Noisy Punishment",
+      "sourcePressure": "Judges in the same court give different sentences for comparable crimes. Both between-judge variation and within-judge variation (morning vs. afternoon) are relevant. The noise in sentencing is a fairness and legitimacy problem, not just a technical inconsistency.",
+      "coreMove": "Recognize that inconsistent punishment is an injustice in itself, not merely imprecision in a system that is otherwise fair.",
+      "commonMisread": "Assuming that legal discretion is the same as noise, or that disagreement between judges is natural and acceptable given different case details.",
+      "mustUseTerms": ["sentencing", "discretion", "variability", "between-judge", "within-judge", "fairness", "comparable cases"],
+      "mustNotDriftInto": ["solutions to sentencing noise (those come later)", "bias in sentencing (racial or demographic — distinct from noise)"]
+    },
+    {
+      "number": 3,
+      "chapterId": "noise-ch03",
+      "title": "A Noisy System",
+      "sourcePressure": "The chapter widens from one dramatic example to the systemic picture: many institutional judgment points operating without comparison produce normalized noise. Systems can hide scatter better than a single dramatic example does. Accountability is harder when spread is dispersed.",
+      "coreMove": "See how systems normalize noise by distributing scatter across many judgment points rather than concentrating it where it would be visible.",
+      "commonMisread": "Assuming that if no single judgment looks obviously wrong, the system as a whole is working acceptably.",
+      "mustUseTerms": ["system", "distributed noise", "institutional", "judgment point", "visibility", "normalization", "accountability"],
+      "mustNotDriftInto": ["specific named remedies (those come later)", "individual bad actors as the explanation"]
+    },
+    {
+      "number": 4,
+      "chapterId": "noise-ch04",
+      "title": "Singular Decisions",
+      "sourcePressure": "Singular one-off decisions (a hiring call, a startup valuation, a cancer treatment plan) still carry noise even when no comparison set exists to expose it. The invisibility of the spread does not make the spread go away; it makes it harder to discipline.",
+      "coreMove": "Accept that singular decisions carry noise even when no comparison set is visible to confirm it.",
+      "commonMisread": "Thinking that a decision with no obvious alternative scenario is therefore free of noise, or that noise only matters when you can see two people disagreeing.",
+      "mustUseTerms": ["singular decision", "invisible spread", "counterfactual", "comparison set", "one-off", "noise in isolation"],
+      "mustNotDriftInto": ["the taxonomy of noise types", "systems of many decision points (that was ch03)"]
+    },
+    {
+      "number": 5,
+      "chapterId": "noise-ch05",
+      "title": "Your Mind Is a Measuring Instrument",
+      "sourcePressure": "The judging mind is the instrument producing the judgment. An instrument can be accurate on average but unreliable across readings. Reliability of the judge matters as much as the facts of the case. Noise lives in the instrument, not only in the environment.",
+      "coreMove": "Treat your own judgment as an instrument whose reliability must be measured, not merely whose intentions must be good.",
+      "commonMisread": "Equating expertise or good intentions with consistent output, or assuming that one correct answer means the instrument is working properly.",
+      "mustUseTerms": ["instrument", "reliability", "calibration", "consistency", "judgment", "measurement", "reading"],
+      "mustNotDriftInto": ["the specific calibration techniques (those come later)", "bias as opposed to noise inconsistency"]
+    },
+    {
+      "number": 6,
+      "chapterId": "noise-ch06",
+      "title": "Matters of Judgment",
+      "sourcePressure": "Noise belongs specifically in decisions where human interpretation genuinely shapes the outcome. Some decisions that look like judgment calls are closer to rule lookups; some apparent rule lookups contain buried judgment. The chapter helps identify where noise is actually active.",
+      "coreMove": "Distinguish the decisions where human interpretation genuinely determines the outcome from those where it only appears to.",
+      "commonMisread": "Assuming that any decision involving experts is automatically a matter of judgment, or that purely mechanical rules are always noise-free.",
+      "mustUseTerms": ["judgment", "interpretation", "discretion", "rule", "assessment", "scope of judgment", "noise-prone"],
+      "mustNotDriftInto": ["solutions to noisy judgment", "the full taxonomy of noise (that comes later)"]
+    },
+    {
+      "number": 7,
+      "chapterId": "noise-ch07",
+      "title": "Measuring Error",
+      "sourcePressure": "Error in judgment should be treated as something inspectable rather than merely felt or suspected. Measuring the gap between judgments on the same case gives noise a number rather than a story. Uncertainty in the domain does not erase the need to measure misses.",
+      "coreMove": "Quantify the spread between judgments on the same case rather than explaining each disagreement away one case at a time.",
+      "commonMisread": "Treating domain complexity as a sufficient explanation for disagreement, or assuming that because perfect accuracy is impossible, measuring error is pointless.",
+      "mustUseTerms": ["error", "measurement", "spread", "gap", "inspectable", "quantify", "disagreement rate"],
+      "mustNotDriftInto": ["the full analysis of noise types (that comes later in ch08)", "specific remedies"]
+    },
+    {
+      "number": 8,
+      "chapterId": "noise-ch08",
+      "title": "The Analysis of Noise",
+      "sourcePressure": "Noise is most usefully studied as a pattern across a sample of cases, not as a collection of individual surprises. Analysis turns scattered inconsistencies into a clear problem that can be targeted. This chapter prepares the move into remedies.",
+      "coreMove": "Study noise as a repeating pattern across a sample of matched cases rather than explaining away each individual disagreement.",
+      "commonMisread": "Treating each disagreement as a unique event requiring its own explanation, which prevents seeing the distribution that reveals systemic noise.",
+      "mustUseTerms": ["pattern", "sample", "distribution", "matched cases", "analysis", "systemic", "scatter"],
+      "mustNotDriftInto": ["specific remedies (those start in ch09)", "the full taxonomy of noise components (level, occasion, pattern — that comes in ch17-29)"]
+    },
+    {
+      "number": 9,
+      "chapterId": "noise-ch09",
+      "title": "Improving Judgments",
+      "sourcePressure": "Visible noise creates pressure for improvement. Improvement means changing the process through which judgments are formed, not merely encouraging better intentions or awareness. Improvement does not mean perfection — the target is reduction, not elimination.",
+      "coreMove": "Change the process through which judgments are formed, not merely the awareness or intentions of the people forming them.",
+      "commonMisread": "Assuming that telling people about noise (awareness) will reduce it, or that more experienced judges are automatically more consistent.",
+      "mustUseTerms": ["process", "improvement", "reduction", "judgment discipline", "intervention", "awareness gap"],
+      "mustNotDriftInto": ["specific improvement techniques (those come in ch10-16)", "the mechanisms of noise (those come later)"]
+    },
+    {
+      "number": 10,
+      "chapterId": "noise-ch10",
+      "title": "Better Judges for Better Judgments",
+      "sourcePressure": "Human-side improvement is a real lever alongside system design. Better judges are not simply more experienced judges — experience without feedback does not reliably produce calibration. Quality requires deliberate practice against known outcomes.",
+      "coreMove": "Build judge quality through deliberate calibration practice against known outcomes, not through years of unexamined experience.",
+      "commonMisread": "Assuming that seniority or track record automatically means calibration, when in fact noisy judgment can accumulate experience without self-correcting.",
+      "mustUseTerms": ["calibration", "deliberate practice", "feedback", "judge quality", "track record", "experience", "consistency"],
+      "mustNotDriftInto": ["system-level remedies (those are in ch11-16)", "selection and training as perfectly solving the noise problem"]
+    },
+    {
+      "number": 11,
+      "chapterId": "noise-ch11",
+      "title": "Debiasing and Decision Hygiene",
+      "sourcePressure": "Decision hygiene operates through disciplined process rather than through good intentions. Debiasing and hygiene overlap but are not identical: debiasing targets systematic leans, hygiene targets the conditions that let noise accumulate. Both work through structure, not attitude.",
+      "coreMove": "Apply decision hygiene as a process discipline that reduces noise regardless of the judge's effort, awareness, or attitude.",
+      "commonMisread": "Treating hygiene as a mindset shift or a set of reminders rather than a process constraint that operates independently of motivation.",
+      "mustUseTerms": ["decision hygiene", "debiasing", "process discipline", "structure", "conditions", "pre-decision", "protocol"],
+      "mustNotDriftInto": ["the specific hygiene techniques from later chapters (sequencing, aggregation, scales)", "treating hygiene as a complete solution"]
+    },
+    {
+      "number": 12,
+      "chapterId": "noise-ch12",
+      "title": "Sequencing Information in Forensic Science",
+      "sourcePressure": "The order in which evidence arrives shapes the judgment that follows. In forensic science, early information anchors later interpretation: a fingerprint examiner who knows the suspect was arrested first will assess the print differently. Sequencing is a concrete process lever that reduces contamination without requiring the examiner to be less expert.",
+      "coreMove": "Protect later judgment from earlier information by deliberately sequencing which evidence arrives first and which arrives after an independent assessment is recorded.",
+      "commonMisread": "Treating sequencing as a cosmetic presentation preference rather than a structural constraint on how one judgment anchors the next.",
+      "mustUseTerms": ["sequencing", "contamination", "anchoring", "forensic", "information order", "independent assessment", "blind evaluation"],
+      "mustNotDriftInto": ["aggregation of multiple forecasts (that is ch13)", "the full decision hygiene framework (that was ch11)"]
+    },
+    {
+      "number": 13,
+      "chapterId": "noise-ch13",
+      "title": "Selection and Aggregation in Forecasting",
+      "sourcePressure": "Combining multiple independent forecast judgments reduces noise better than group discussion that collapses toward a single agreed number. Selection of forecasters (who is in the pool) still matters because the pool's composition shapes the combined result. The chapter shows aggregation as a process design choice, not just a statistical trick.",
+      "coreMove": "Aggregate independent forecasts rather than letting a group discuss until it converges on one number, because group discussion replaces information diversity with social influence.",
+      "commonMisread": "Assuming that any group deliberation improves accuracy, or that the average of a group's post-discussion consensus is the same as the average of its pre-discussion individual forecasts.",
+      "mustUseTerms": ["aggregation", "independent forecasts", "selection", "pool", "group discussion", "convergence", "diversity of judgment"],
+      "mustNotDriftInto": ["the group amplification of noise specifically (that is ch18)", "guidelines or rules as the main remedy (those are ch14 and ch21)"]
+    },
+    {
+      "number": 14,
+      "chapterId": "noise-ch14",
+      "title": "Guidelines in Medicine",
+      "sourcePressure": "Clinical guidelines reduce some avoidable variation in medical decisions. They work best when treated as the starting baseline from which departures must be justified, rather than as a ceiling that constrains the best doctors. Structure helps without eliminating judgment; the key is making departures explicit.",
+      "coreMove": "Treat a structured clinical guideline as the default starting point and require explicit justification for departing from it, rather than treating adherence as optional or guidelines as merely advisory.",
+      "commonMisread": "Treating guidelines as a constraint imposed on expert judgment rather than a consistency anchor that elevates median outcomes across a population of patients.",
+      "mustUseTerms": ["guideline", "protocol", "variance", "adherence", "clinical judgment", "departure", "baseline"],
+      "mustNotDriftInto": ["rating scales (that is ch15)", "structured hiring (that is ch16)", "that guidelines eliminate noise entirely"]
+    },
+    {
+      "number": 15,
+      "chapterId": "noise-ch15",
+      "title": "Defining the Scale in Performance Ratings",
+      "sourcePressure": "Rating scales are not neutral containers. A scale with no behavioral anchors lets each rater supply their own implicit definition of each level, producing spread from scale interpretation rather than from genuine differences in performance. Better scale design reduces this layer of avoidable noise.",
+      "coreMove": "Anchor each rating level in observable, behaviorally specific descriptions so that scale interpretation does not become its own source of noise on top of performance differences.",
+      "commonMisread": "Assuming that adding more scale points improves accuracy, or that trained raters will apply an unanchored scale consistently because they are experienced.",
+      "mustUseTerms": ["rating scale", "behavioral anchor", "scale design", "level definition", "rating noise", "performance assessment", "calibration"],
+      "mustNotDriftInto": ["structured hiring processes (that is ch16)", "the full analysis of rater patterns (that is ch28)"]
+    },
+    {
+      "number": 16,
+      "chapterId": "noise-ch16",
+      "title": "Structure in Hiring",
+      "sourcePressure": "Structured hiring reduces avoidable variability across candidate evaluations by comparing all candidates against a fixed set of criteria rather than against each other or against the interviewer's memory of the previous person. Unstructured interviews are highly noisy; structured ones are not perfect but are significantly less noisy.",
+      "coreMove": "Compare every candidate against a fixed evaluation structure, not against each other or against the previous candidate still fresh in the interviewer's mind.",
+      "commonMisread": "Assuming that experienced interviewers using their instincts produce consistent results, or that unstructured conversation surfaces candidate quality that a structured process would miss.",
+      "mustUseTerms": ["structured interview", "unstructured interview", "criteria", "evaluation structure", "candidate comparison", "inter-rater", "consistency"],
+      "mustNotDriftInto": ["performance rating scales (that was ch15)", "the claim that structure eliminates hiring noise completely"]
+    },
+    {
+      "number": 17,
+      "chapterId": "noise-ch17",
+      "title": "Occasion Noise",
+      "sourcePressure": "Occasion noise is variability within a single judge across different occasions — the same person making different judgments on the same or similar cases at different times, influenced by hunger, mood, weather, or the ordering of prior cases in a queue. This layer of noise persists even inside improved processes.",
+      "coreMove": "Notice how your own judgment shifts across occasions even when your reasoning, your expertise, and the case facts remain unchanged.",
+      "commonMisread": "Assuming that within-person variation is trivial compared to between-person variation, or that a good process eliminates occasion noise even if it reduces other noise sources.",
+      "mustUseTerms": ["occasion noise", "within-judge", "temporal variation", "mood", "sequence effect", "fatigue", "instance"],
+      "mustNotDriftInto": ["between-judge (level) noise (that was ch01-02)", "group amplification (that is ch18)"]
+    },
+    {
+      "number": 18,
+      "chapterId": "noise-ch18",
+      "title": "How Groups Amplify Noise",
+      "sourcePressure": "Groups do not automatically cancel noise by involving multiple people. Deliberation can amplify variation instead of averaging it out: the loudest or highest-status voice anchors the group, independent judgments are lost before they are aggregated, and social pressure narrows the apparent range while the real decision quality shrinks.",
+      "coreMove": "Recognize when a group's apparent convergence has replaced independent thinking with social influence rather than aggregating it.",
+      "commonMisread": "Assuming that group discussion automatically improves accuracy because more minds are involved, or that consensus equals correct.",
+      "mustUseTerms": ["group deliberation", "amplification", "social influence", "anchor", "convergence", "independent judgment", "cascades"],
+      "mustNotDriftInto": ["the aggregation solution (that was ch13)", "occasion noise (that was ch17)", "that groups are always worse than individuals"]
+    },
+    {
+      "number": 19,
+      "chapterId": "noise-ch19",
+      "title": "Noise in Predictive Judgments",
+      "sourcePressure": "Predictive judgments — clinical prognoses, recidivism assessments, project timelines — carry noise in their own right. A predictor makes a single point estimate, but there is a range of outcomes that would be consistent with the evidence. Different predictors choose different points from that range, producing spread that compounds with the underlying uncertainty.",
+      "coreMove": "Separate the range of plausible outcomes from the single point estimate the judge delivers, and ask whether the point chosen is consistent across judges.",
+      "commonMisread": "Treating a confident single-number prediction as if precision reduces uncertainty, or assuming predictive disagreement just reflects genuine underlying ambiguity.",
+      "mustUseTerms": ["predictive judgment", "point estimate", "range", "outcome uncertainty", "forecast", "consistency", "prediction noise"],
+      "mustNotDriftInto": ["statistical models as the solution (that is ch20)", "correcting predictions with base rates (that is ch39)"]
+    },
+    {
+      "number": 20,
+      "chapterId": "noise-ch20",
+      "title": "Judgments and Models",
+      "sourcePressure": "Statistical models make a relevant appearance as a contrast and complement to human judgment. Research repeatedly shows that simple linear models outperform expert clinical judgment in many prediction tasks, not because models are brilliant but because they are consistent: a model has no occasion noise and no within-judge variation.",
+      "coreMove": "Use a statistical model as the reference floor before deciding how much human adjustment to layer on top, rather than using the model as a check on human judgment after the fact.",
+      "commonMisread": "Treating model use as a threat to expert autonomy, or assuming that models only matter in high-volume processing contexts rather than as baselines for any prediction.",
+      "mustUseTerms": ["statistical model", "actuarial", "baseline", "human adjustment", "consistency", "override", "model vs. judgment"],
+      "mustNotDriftInto": ["noiseless rules as a governance tool (that is ch21)", "treating model adoption as a complete solution to judgment noise"]
+    },
+    {
+      "number": 21,
+      "chapterId": "noise-ch21",
+      "title": "Noiseless Rules",
+      "sourcePressure": "Noiseless rules — mandatory protocols, checklists, bright-line thresholds — gain consistency by removing discretion. Research shows this produces better aggregate outcomes than leaving room for expert judgment in many contexts. The chapter examines when the consistency gain outweighs the loss of individualized judgment.",
+      "coreMove": "Recognize when replacing discretion with a noiseless rule produces better aggregate outcomes despite providing a worse fit for some individual cases.",
+      "commonMisread": "Treating rule-based consistency as automatically inferior to expert judgment, or assuming that a rule is only acceptable when every case it handles would have been handled the same way by a thoughtful expert.",
+      "mustUseTerms": ["noiseless rule", "bright-line", "mandatory", "discretion", "aggregate outcomes", "individual fit", "consistency gain"],
+      "mustNotDriftInto": ["the philosophical tradeoffs of rules vs. standards (that is ch34)", "optimal noise (that is ch31)"]
+    },
+    {
+      "number": 22,
+      "chapterId": "noise-ch22",
+      "title": "Objective Ignorance",
+      "sourcePressure": "Some uncertainty is not a failure of judgment quality but a consequence of what cannot be cleanly known yet. Objective ignorance — the genuine unpredictability of future events — sets a floor below which noise reduction cannot help. Better structure improves consistency, not prophecy.",
+      "coreMove": "Distinguish what is unknown because of noisy judgment from what is unknowable because the future has not happened yet, and stop blaming inconsistency for the latter.",
+      "commonMisread": "Assuming that all prediction error is judgment error, or that if you could just reduce noise your forecasts would become accurate rather than merely more consistent.",
+      "mustUseTerms": ["objective ignorance", "unpredictability", "uncertainty floor", "epistemic limit", "future state", "calibration vs. accuracy"],
+      "mustNotDriftInto": ["noiseless rules (that was ch21)", "collapsing all prediction error into a solvable noise problem"]
+    },
+    {
+      "number": 23,
+      "chapterId": "noise-ch23",
+      "title": "The Valley of the Normal",
+      "sourcePressure": "Cases that fall near the center of a distribution — the ordinary-looking ones — still create disagreement because classification there is harder than it appears. Being statistically typical does not make a case easy to categorize; it may make it the hardest case because borderlines run through the middle of a distribution.",
+      "coreMove": "Resist treating a borderline case as easy simply because it falls close to the statistical center of the distribution; normal-range cases generate noise precisely because they sit where categories blur.",
+      "commonMisread": "Assuming that easy cases are ones that look average and hard cases are ones that look extreme, when in fact the valley of the normal is where disagreement concentrates.",
+      "mustUseTerms": ["normal range", "borderline", "classification", "distribution center", "category blur", "valley of the normal", "apparent easy case"],
+      "mustNotDriftInto": ["the sources of noise taxonomy (that comes in ch29)", "extreme-case judgment which is actually easier"]
+    },
+    {
+      "number": 24,
+      "chapterId": "noise-ch24",
+      "title": "How Noise Happens",
+      "sourcePressure": "Noise is generated through an interaction of level noise (stable between-judge differences), pattern noise (stable personal biases about specific case types), and occasion noise (within-judge temporal variation). A single judgment is the product of all three operating together, rarely one in isolation.",
+      "coreMove": "Trace how level noise, pattern noise, and occasion noise interact in a single judgment rather than treating each component as a self-contained explanation.",
+      "commonMisread": "Explaining a specific disagreement by picking whichever noise type seems most plausible rather than acknowledging that all three are always present in varying proportions.",
+      "mustUseTerms": ["level noise", "pattern noise", "occasion noise", "interaction", "components", "decompose", "judgment ecology"],
+      "mustNotDriftInto": ["the full sources-of-noise synthesis (that is ch29)", "remedies before the mechanism is clear"]
+    },
+    {
+      "number": 25,
+      "chapterId": "noise-ch25",
+      "title": "Heuristics Biases and Noise",
+      "sourcePressure": "Cognitive heuristics — anchoring, availability, representativeness, affect — produce both predictable biases and noise. A heuristic applied to a case with different salience features on different days produces scatter that looks random but is traceable to the heuristic's sensitivity to context. Bias and noise are related but distinct problems that need different interventions.",
+      "coreMove": "Separate bias (the average directional lean that heuristics create) from noise (the scatter that heuristic sensitivity to context creates), because correcting one does not correct the other.",
+      "commonMisread": "Thinking that debiasing training eliminates noise, or that noise is just another form of bias under a different label.",
+      "mustUseTerms": ["heuristic", "bias", "noise", "anchoring", "availability", "affect heuristic", "context sensitivity", "scatter"],
+      "mustNotDriftInto": ["a comprehensive review of Kahneman's System 1/System 2 model", "treating heuristics as only producing directional bias rather than scatter"]
+    },
+    {
+      "number": 26,
+      "chapterId": "noise-ch26",
+      "title": "The Matching Operation",
+      "sourcePressure": "Judgments depend on how a case gets matched to a scale category or response frame. The matching step — deciding which category this case belongs to — is its own source of instability independent of the facts of the case or the rater's general tendencies. Poor matching produces noise even when the underlying evaluation is sound.",
+      "coreMove": "Examine the step where a case gets matched to a category or scale level as its own independent source of noise, not just a consequence of the facts or the rater.",
+      "commonMisread": "Assuming that if the rater has accurate information and no obvious bias, the matching step will take care of itself, when in fact matching is where much judgment noise is generated.",
+      "mustUseTerms": ["matching operation", "case-to-category", "scale level", "response frame", "mapping", "match noise", "classification step"],
+      "mustNotDriftInto": ["scale design remedies (that is ch27)", "the full sources taxonomy (that was ch24 and ch29)"]
+    },
+    {
+      "number": 27,
+      "chapterId": "noise-ch27",
+      "title": "Scales",
+      "sourcePressure": "Poor scale design corrupts judgment output. When rating scale levels are defined only by number (1 through 5) or by vague adjectives (poor, fair, good, excellent), raters supply their own implicit anchors, and those anchors differ. Better scale design provides behaviorally specific, observable descriptions at each level.",
+      "coreMove": "Design a rating scale so that each level is anchored in behaviorally specific, observable descriptions rather than numbers or generic adjectives that each rater interprets privately.",
+      "commonMisread": "Assuming that a scale with more points gives raters more precision, when in fact more points on an unanchored scale produce more disagreement because there are more ambiguous positions to interpret.",
+      "mustUseTerms": ["scale design", "anchor", "behavioral descriptor", "rating level", "vague adjective", "calibration", "scale noise"],
+      "mustNotDriftInto": ["the full matching operation (that was ch26)", "that better scales alone solve all rating noise without further process discipline"]
+    },
+    {
+      "number": 28,
+      "chapterId": "noise-ch28",
+      "title": "Patterns",
+      "sourcePressure": "Some judgment variation recurs as stable personal patterns: one judge consistently over-sentences violent crimes; one appraiser systematically overvalues recent renovations; one physician under-diagnoses rare conditions because their base rate estimates are calibrated low. Pattern noise is stable personal bias about specific case types — distinct from both level noise and occasion noise.",
+      "coreMove": "Identify stable recurring patterns in how one judge's assessments differ from peers on specific case types, and treat those patterns as a distinct noise layer rather than random error.",
+      "commonMisread": "Treating all within-person judgment variation as random occasion noise, when some of it is stable, predictable, and traceable to consistent personal tendencies about specific domains.",
+      "mustUseTerms": ["pattern noise", "stable variation", "personal tendency", "case-type bias", "systematic personal", "between-judge within-type", "signature pattern"],
+      "mustNotDriftInto": ["occasion noise (that was ch17)", "the general sources taxonomy (that is ch29)", "personality typing as an explanation"]
+    },
+    {
+      "number": 29,
+      "chapterId": "noise-ch29",
+      "title": "The Sources of Noise",
+      "sourcePressure": "The chapter gathers the full taxonomy into one view: level noise (stable between-judge differences), pattern noise (stable personal biases about specific case types), and occasion noise (within-judge temporal variation). These sources interact rather than operate independently. No single-cause explanation is adequate for any real judgment system.",
+      "coreMove": "Map all contributing sources of noise in a judgment system simultaneously before choosing which layer to target first, because targeting only one source while ignoring the others produces incomplete improvement.",
+      "commonMisread": "Assuming that finding the dominant source of noise in a system means the other sources are negligible, or that a remedy targeting one source transfers its benefits to the others.",
+      "mustUseTerms": ["level noise", "pattern noise", "occasion noise", "taxonomy", "sources", "interaction", "compound", "target"],
+      "mustNotDriftInto": ["specific remedies for each source (those are in the chapters just preceding and following)", "presenting the taxonomy as exhaustive and fixed"]
+    },
+    {
+      "number": 30,
+      "chapterId": "noise-ch30",
+      "title": "The Mediating Assessments Protocol",
+      "sourcePressure": "The mediating assessments protocol is a structured evaluation sequence: judges make independent assessments on specific intermediate dimensions before reaching any final judgment, and the final judgment integrates those intermediates through a defined path rather than a free intuition leap. This constrains noise at each step and prevents early impressions from contaminating later ones.",
+      "coreMove": "Work through intermediate assessments in a fixed, independent sequence before reaching a final judgment, so that each step constrains the next rather than letting a global intuition skip the structure.",
+      "commonMisread": "Treating the protocol as an algorithmic replacement for human judgment rather than a disciplined path through the judgment that keeps each step honest.",
+      "mustUseTerms": ["mediating assessments", "intermediate", "sequence", "protocol", "final judgment", "structured path", "constraint"],
+      "mustNotDriftInto": ["aggregation of independent forecasters (that was ch13)", "noiseless rules that remove judgment entirely (that was ch21)"]
+    },
+    {
+      "number": 31,
+      "chapterId": "noise-ch31",
+      "title": "Optimal Noise",
+      "sourcePressure": "Zero noise is neither achievable nor necessarily desirable. Some variation is the residual of appropriate discretion that the institution has not yet coded into rules. The optimal noise target balances the accuracy gains from reduction against the costs of over-standardization.",
+      "coreMove": "Set a noise-reduction target that is good enough to justify the standardization cost, treating zero noise as a theoretical bound rather than a practical goal.",
+      "commonMisread": "Assuming that any reduction in noise is always worth its cost, or conversely that optimal noise means accepting current noise levels as reasonable.",
+      "mustUseTerms": ["optimal noise", "reduction target", "standardization cost", "residual variation", "accuracy gain", "tradeoff", "noise floor"],
+      "mustNotDriftInto": ["the specific costs of reduction (that is ch32)", "dignity costs of standardization (that is ch33)"]
+    },
+    {
+      "number": 32,
+      "chapterId": "noise-ch32",
+      "title": "The Costs of Noise Reduction",
+      "sourcePressure": "Reducing noise imposes real burdens: rigidity (a rule that cannot flex for unusual cases), friction (more process steps that slow decisions), morale costs (judges who feel their expertise is being overridden), and the risk of optimizing for consistency at the expense of sensitivity to morally relevant case differences.",
+      "coreMove": "Calculate the friction, rigidity, and morale costs of tighter judgment structure as part of the decision to standardize, not as an afterthought once the noise-reduction program has been designed.",
+      "commonMisread": "Assuming that costs of noise reduction are merely political resistance that can be managed away, rather than genuine tradeoffs in decision quality for specific cases.",
+      "mustUseTerms": ["rigidity", "friction", "morale cost", "over-standardization", "edge case", "cost-benefit", "standardization burden"],
+      "mustNotDriftInto": ["dignity specifically as a distinct cost (that is ch33)", "optimal noise as the solution (that was ch31)"]
+    },
+    {
+      "number": 33,
+      "chapterId": "noise-ch33",
+      "title": "Dignity",
+      "sourcePressure": "Standardization and automation reduce noise but can also strip individuals of the experience of being seen as unique. When a person's case is processed by an algorithm or a rigid protocol, the judgment may be more consistent but the person may experience a loss of dignity — of being assessed as a whole human rather than as a data point matching a category.",
+      "coreMove": "Weigh what is lost in human dignity when judgment is automated or standardized alongside what is gained in consistency, rather than treating consistency gains as automatically worth any process cost.",
+      "commonMisread": "Treating dignity concerns as purely sentimental obstacles to rational noise reduction rather than as genuine stakes in how institutions treat the people they serve.",
+      "mustUseTerms": ["dignity", "standardization", "automation", "individual treatment", "procedural justice", "seen as unique", "human cost"],
+      "mustNotDriftInto": ["rules vs. standards as a governance choice (that is ch34)", "optimal noise calculations (that was ch31)"]
+    },
+    {
+      "number": 34,
+      "chapterId": "noise-ch34",
+      "title": "Rules or Standards?",
+      "sourcePressure": "Rules produce consistency across all cases by removing discretion. Standards preserve discretion to tailor outcomes to case particulars but leave more room for noise. The choice between rules and standards is a governance question about which failure mode is more costly: the injustice of treating different cases the same or the injustice of treating the same cases differently.",
+      "coreMove": "Choose rules when consistency across all cases is the priority; choose standards when tailoring to case particulars matters more, and name which failure mode is acceptable before choosing.",
+      "commonMisread": "Treating rules and standards as a one-size-fits-all choice rather than a domain-specific tradeoff that depends on which failure mode the institution can least afford.",
+      "mustUseTerms": ["rule", "standard", "discretion", "consistency", "individual tailoring", "governance", "failure mode"],
+      "mustNotDriftInto": ["legal doctrine or named constitutional tests", "the dignity dimension of standardization (that was ch33)"]
+    },
+    {
+      "number": 35,
+      "chapterId": "noise-ch35",
+      "title": "Taking Noise Seriously",
+      "sourcePressure": "Most institutions are aware of noise but treat it as a background fact rather than an active problem requiring systematic response. Taking noise seriously means treating diagnosis and reduction as institutional priorities, not as occasional audits or personal commitments of interested managers.",
+      "coreMove": "Build active, routine measurement of judgment variability into the institution's operations rather than trusting that awareness of noise or the existence of guidelines has already fixed it.",
+      "commonMisread": "Assuming that publishing guidelines, running one calibration workshop, or acknowledging the noise problem in a meeting constitutes taking noise seriously.",
+      "mustUseTerms": ["institutional commitment", "routine measurement", "noise awareness", "active monitoring", "organizational posture", "seriousness", "systematic response"],
+      "mustNotDriftInto": ["the noise audit how-to (that is ch37)", "the less-noisy world vision (that is ch36)"]
+    },
+    {
+      "number": 36,
+      "chapterId": "noise-ch36",
+      "title": "A Less Noisy World",
+      "sourcePressure": "A less noisy world is a practical direction of improvement, not a utopian promise. Meaningful reductions in judgment scatter are achievable through deliberate systems design, and those reductions have real consequences for fairness, efficiency, and trust in institutions.",
+      "coreMove": "Pursue meaningful reduction in avoidable judgment scatter as a tractable engineering and governance goal rather than waiting for a perfect solution.",
+      "commonMisread": "Treating noise reduction as either a solved problem (once you know about it, you fix it) or an impossible problem (human judgment is irreducibly messy).",
+      "mustUseTerms": ["less noisy world", "practical improvement", "tractable goal", "deliberate design", "fairness", "achievable reduction", "incremental"],
+      "mustNotDriftInto": ["repeating all the specific remedies from earlier chapters", "promising perfect consistency"]
+    },
+    {
+      "number": 37,
+      "chapterId": "noise-ch37",
+      "title": "How to Conduct a Noise Audit",
+      "sourcePressure": "A noise audit collects multiple independent judgments on the same cases and measures the spread. Organized comparison is stronger than casual impression. The audit must be designed so that raters do not communicate before recording their judgments, and the metric of spread must be chosen before looking at the data.",
+      "coreMove": "Conduct a noise audit by collecting independent judgments on matched cases, measuring the spread before drawing any conclusions, and resisting the urge to explain individual disagreements as isolated special cases.",
+      "commonMisread": "Treating a noise audit as simply asking experts whether they agree rather than measuring the actual distribution of their independent assessments on the same cases.",
+      "mustUseTerms": ["noise audit", "independent judgment", "spread", "matched cases", "pre-commitment", "measurement", "audit design"],
+      "mustNotDriftInto": ["the decision observer checklist for live judgments (that is ch38)", "correcting predictions after measuring noise (that is ch39)"]
+    },
+    {
+      "number": 38,
+      "chapterId": "noise-ch38",
+      "title": "A Checklist for a Decision Observer",
+      "sourcePressure": "A decision observer watches a live judgment process and notices conditions that increase noise risk: early sharing of impressions before individual assessments are recorded, anchoring on the first strong opinion, social pressure to converge, failure to elicit all views. The checklist gives the observer concrete things to watch for before the decision is final.",
+      "coreMove": "Use a structured checklist while observing a live judgment process to notice noise-amplifying conditions before the decision is finalized, not to assess whether the decision was correct afterward.",
+      "commonMisread": "Treating decision observation as a quality-control audit of the outcome rather than a real-time process monitor for conditions that increase scatter.",
+      "mustUseTerms": ["decision observer", "checklist", "live judgment", "noise condition", "early anchoring", "real-time", "process monitor"],
+      "mustNotDriftInto": ["the noise audit (that was ch37)", "post-hoc outcome evaluation"]
+    },
+    {
+      "number": 39,
+      "chapterId": "noise-ch39",
+      "title": "Correcting Predictions",
+      "sourcePressure": "A single-point prediction can be corrected by considering the distribution of outcomes for similar past cases before committing to a number. This is reference class forecasting: the correction replaces unconstrained intuition with a disciplined integration of the base rate and the specific case features.",
+      "coreMove": "Correct a single-point prediction by first anchoring to the base rate distribution of similar past cases, then adjusting for specific case features rather than letting unaided intuition bypass the reference class entirely.",
+      "commonMisread": "Assuming that adjusting a base-rate prediction for case-specific features requires abandoning the base rate, when in fact the base rate is the correction, not the starting guess to overwrite.",
+      "mustUseTerms": ["reference class", "base rate", "prediction correction", "distribution", "single-point estimate", "inside view", "outside view"],
+      "mustNotDriftInto": ["the noise audit (that was ch37)", "objective ignorance as a reason not to forecast (that was ch22)"]
+    }
+  ]
+}

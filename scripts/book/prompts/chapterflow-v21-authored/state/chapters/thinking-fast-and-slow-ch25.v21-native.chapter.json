@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch25",
+  "number": 25,
+  "title": "Bernoulli's Errors",
+  "readingTimeMinutes": 12,
+  "hook": "The final balance is identical, but one person feels rescued and the other feels robbed.",
+  "counterintuition": "The mistake is not bad arithmetic. It is evaluating choices only by final wealth when people actually feel gains and losses from a reference point.",
+  "tryThisNow": "For one money or time choice today, write the final outcome, then write the reference point it will feel like a gain or loss against.",
+  "keyTakeaway": "Evaluate a choice from the reference point the person actually feels, not only from final wealth.",
+  "breakdown": {
+    "fastRead": "Two drivers end the week with the same bank balance. One expected a $900 repair and paid $500, so the bill feels like relief. The other expected $200 and paid $500, so the same bill feels like a loss. Final wealth cannot explain the difference.\n\nThe reference point carries the feeling.\n\nA neat wealth model looks only at what you have after the outcome. Real life often starts from a prior mark: what you expected, owned, were promised, or hoped to hit. Gain and loss are judged against that mark. Ignore it, and the choice may make sense on paper while feeling very different to the person living it.",
+    "deepRead": "A museum conservator offers a donor two options. Pay $4,000 now to restore a painting fully, or pay $2,000 now and risk a later $3,000 stabilization bill. Final wealth matters, but it does not tell the whole story. The donor's reference point is the original $2,000 estimate.\n\nThe second bill would feel like damage.\n\nBernoulli's inherited model looks tidy until the reader notices that people judge changes from a reference point. A person with $100,000 who loses $10,000 and a person with $80,000 who gains $10,000 may end at different wealth states, but the emotional direction matters. A gain from expectation and a loss from expectation do not simply mirror final totals. They carry relief, disappointment, regret, and sometimes a sense of violation.\n\nThis does not mean final wealth is irrelevant. It matters for budgets, safety, and long-term options. The error is treating it as the only psychological input. A choice can improve final wealth while still feel like a painful loss if it falls below a target. A choice can leave someone worse off than another person while still feel like a gain if it beats a feared outcome.\n\nA freight dispatcher sees the trap in a bonus dispute. Two drivers each receive $300. One had been told no bonus was likely. The other had been informally promised $600. Same cash, different experience. The useful analysis starts by asking what each driver counted as the reference point before the payment arrived.\n\nFinal wealth is a ledger. Gains and losses are lived against a line.",
+    "fullRead": "Classical utility thinking becomes attractive because it is clean. Put the person at the final wealth state and ask how much utility that state provides. The approach avoids messy stories about expectation, regret, and status quo. Bernoulli gave later thinkers a powerful way to connect money with diminishing utility. The error appears when the clean model is asked to describe how choices actually feel.\n\nHarriet runs the weather desk budget after a storm season. The jury questionnaire stack labeled Bernoulli sits beside two overtime proposals. One forecaster would move from an expected $1,000 bonus to $700. Another would move from no expected bonus to $700. The final payment is identical. The felt choice is not. For one person, the proposal is a loss from the reference point; for the other, it is a gain.\n\nWhere is the line the person is measuring from?\n\nThat question changes the analysis. A salary that looks generous against final wealth may feel like a loss against a promised raise. A discount that leaves two shoppers paying the same price may feel different if one expected a larger markdown. A medical wait time that ends at the same appointment date may feel like relief to someone expecting three months and betrayal to someone promised two weeks. The reference point supplies the emotional zero.\n\nThis matters because decisions are made by people who react to gains and losses, not only to final states. Negotiations fail when one side sees an offer as a gain over the market and the other sees it as a loss from a promise. Policies backfire when designers calculate net benefit but ignore what citizens were counting on. Managers create resentment by delivering the same outcome to two people whose expectations were different.\n\nA pediatric triage desk shows the point without money. Jonas has two transfer options for a child who needs a specialist. Both produce arrival at 4 p.m. One family was first told midnight was likely, so 4 p.m. feels like a gain. Another had been told noon, so 4 p.m. feels like a loss. The cupping spoon tray labeled wealth state is a reminder that final state alone hides the lived comparison. The team's communication has to address the reference point, not just the arrival time.\n\nThe counter-objection is that reference points can be unreasonable. They can. A person may anchor to a fantasy price, an impossible timeline, or a promise no one actually made. Still, ignoring the reference point does not make it disappear. The better move is to identify it, test whether it is legitimate, and explain the choice relative to both final outcome and felt change.\n\nWhen you evaluate a choice, ask for two numbers or states. First, where does the person end up? Second, from what line does the person experience the move? The first tells you resources. The second tells you gain or loss.\n\nA choice is not only a destination. It is a movement from somewhere."
+  },
+  "examples": [
+    {
+      "exampleId": "ch25-ex01-harriet-weather",
+      "title": "Harriet finds the bonus reference point",
+      "tags": [
+        "reflection",
+        "weather",
+        "utility"
+      ],
+      "planSpec": {
+        "domain": "meteorology desk facing a decision distorted by utility",
+        "audience": "a lead or reviewer who must evaluate from the felt reference point, not final wealth alone",
+        "stakes": "the visible call will go wrong unless utility is separated from the weaker cue",
+        "format": "reflection",
+        "requiredBeat": "the operator places the labeled stack beside the tempting answer and speaks the correction"
+      },
+      "scenario": "The storm desk after payroll closes is quiet except for the jury questionnaire stack labeled Bernoulli beside Harriet's unfinished bonus decision. Two forecasters would each receive $700. One expected nothing; one expected $1,000. Harriet must decide whether utility is captured by final wealth or by the gain and loss each person feels from the reference point.",
+      "whatToDo": "Name each person's reference point before judging fairness, morale, or reaction to the final payment.",
+      "whyItMatters": "The same wealth state can feel like relief or loss. Bernoulli's tidy final-state view misses the lived comparison."
+    },
+    {
+      "exampleId": "ch25-ex02-evan-restoration",
+      "title": "Evan marks the donor's estimate line",
+      "tags": [
+        "thought-experiment",
+        "museum",
+        "reference-point"
+      ],
+      "planSpec": {
+        "domain": "museum conservation lab facing a decision distorted by utility",
+        "audience": "a lead or reviewer who must evaluate from the felt reference point, not final wealth alone",
+        "stakes": "the visible call will go wrong unless utility is separated from the weaker cue",
+        "format": "thought_experiment",
+        "requiredBeat": "the specialist boxes the misleading cue and writes the missing check before a vote"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Evan says, with the salinity test ampoule labeled utility between a $4,000 full restoration and a $2,000 partial repair. Imagine the donor must decide after hearing a $2,000 estimate last month. Evan boxes final cost and writes the missing check: the donor's reference point makes a later $3,000 bill feel like a loss.",
+      "whatToDo": "Compare each option with the donor's expected price, not only with the final bank balance after payment.",
+      "whyItMatters": "The reference point changes the experience of risk. The cheaper first option may create a painful later loss against expectation."
+    },
+    {
+      "exampleId": "ch25-ex03-carla-freight",
+      "title": "Carla separates equal cash from equal feeling",
+      "tags": [
+        "scene",
+        "freight",
+        "wealth-state"
+      ],
+      "planSpec": {
+        "domain": "freight dispatch room facing a decision distorted by utility",
+        "audience": "a lead or reviewer who must evaluate from the felt reference point, not final wealth alone",
+        "stakes": "the visible call will go wrong unless utility is separated from the weaker cue",
+        "format": "scene",
+        "requiredBeat": "two people disagree over the labeled object; one asks what evidence would change the call"
+      },
+      "scenario": "The cold metal ridge of the signal relay casing labeled reference point presses into Carla's hand as two dispatchers argue over bonuses. Two drivers get $300, and one manager says the wealth state is identical. Another points out that one driver expected zero and the other expected $600. Carla must decide which evidence would change the call before calling the payments equal.",
+      "whatToDo": "Evaluate final pay and felt change separately, then address the promised or expected baseline in the communication.",
+      "whyItMatters": "Equal cash is not equal utility when the reference points differ. The loss frame may dominate the reaction."
+    },
+    {
+      "exampleId": "ch25-ex04-jonas-triage",
+      "title": "Jonas explains the same transfer time two ways",
+      "tags": [
+        "vignette",
+        "health",
+        "gain"
+      ],
+      "planSpec": {
+        "domain": "pediatric triage desk facing a decision distorted by utility",
+        "audience": "a lead or reviewer who must evaluate from the felt reference point, not final wealth alone",
+        "stakes": "the visible call will go wrong unless utility is separated from the weaker cue",
+        "format": "vignette",
+        "requiredBeat": "the lead places the labeled tray at the decision point and waits for the reference check"
+      },
+      "scenario": "You are looking at the cupping spoon tray labeled wealth state while Jonas's 4 p.m. transfer estimate starts to feel too complete. One family expected midnight and hears a gain. Another expected noon and hears a loss. Jonas must decide how to explain the same arrival time only after the Bernoulli check makes both reference points visible.",
+      "whatToDo": "State the final transfer time, then acknowledge whether it is better or worse than the family's prior expectation.",
+      "whyItMatters": "The final state is identical, but the movement from expectation changes trust, relief, and disappointment."
+    },
+    {
+      "exampleId": "ch25-ex05-pippa-expo",
+      "title": "Pippa catches the shift-meal loss",
+      "tags": [
+        "dialogue",
+        "restaurant",
+        "loss"
+      ],
+      "planSpec": {
+        "domain": "restaurant expo line facing a decision distorted by utility",
+        "audience": "a lead or reviewer who must evaluate from the felt reference point, not final wealth alone",
+        "stakes": "the visible call will go wrong unless utility is separated from the weaker cue",
+        "format": "dialogue",
+        "requiredBeat": "the team records the quick impression, then reveals how the reference correction changes the estimate"
+      },
+      "scenario": "It took three passes before Pippa saw what the gain bed-board magnet labeled gain had been making too easy. \"Everyone still gets a meal,\" the chef says after replacing staff dinner with a smaller credit. The quick impression is no loss. Pippa must decide after writing the old meal as the reference point and seeing why the credit feels like a loss.",
+      "whatToDo": "Compare the new credit with the staff's previous meal expectation, then communicate or compensate for the loss frame.",
+      "whyItMatters": "Final food value may look adequate, but the change from the old reference point drives the reaction."
+    },
+    {
+      "exampleId": "ch25-ex06-devon-intake",
+      "title": "Devon traces the plea offer loss",
+      "tags": [
+        "decision_point",
+        "legal",
+        "loss"
+      ],
+      "planSpec": {
+        "domain": "public defender intake facing a decision distorted by utility",
+        "audience": "a lead or reviewer who must evaluate from the felt reference point, not final wealth alone",
+        "stakes": "the visible call will go wrong unless utility is separated from the weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "after the miss, the reviewer tapes the labeled card to the board and traces where final-state thinking displaced judgment"
+      },
+      "scenario": "What would change if the color-grading reference card labeled loss stopped feeling like proof and started looking like a cue in Devon's intake review? A client rejected a plea because the new offer was objectively lighter than trial risk. The earlier informal offer had been better. Devon must decide whether the client's reaction was irrational or a loss from the reference point.",
+      "whatToDo": "Evaluate the plea against trial risk and against the earlier offer the client was using as the felt baseline.",
+      "whyItMatters": "A better-than-trial outcome can still feel like a loss when it falls below a previous offer."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "Two employees each receive a $700 bonus. One expected no bonus, while the other had been told $1,000 was likely. A manager says their utility is the same because the final payment matches. What is missing?",
+        "choices": [
+          "The reference point that makes one bonus a gain and the other a loss.",
+          "A history lesson about who first studied utility.",
+          "A rule that all bonuses must be equal."
+        ],
+        "correctIndex": 0,
+        "explanation": "Final payment alone misses the felt change. The same amount can be experienced as gain or loss depending on the expectation line.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A donor chooses between a higher restoration cost now and a cheaper plan that may create a later bill. She had already anchored on the cheaper estimate. Which analysis best predicts her reaction?",
+        "choices": [
+          "Only the final bank balance after all payments matters.",
+          "The later bill should be evaluated against the earlier estimate she uses as a reference point.",
+          "The donor's feelings are irrelevant because restoration is technical."
+        ],
+        "correctIndex": 1,
+        "explanation": "The reference point makes the later bill feel like a loss, even if final wealth arithmetic is defensible. Technical framing does not erase that experience.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Two drivers get $300. One expected zero; one expected $600 because of an informal promise. The company wants to predict morale after the payout. Which statement is strongest?",
+        "choices": [
+          "Morale should match because the final cash amount matches.",
+          "The driver who expected $600 is being unreasonable, so no analysis is needed.",
+          "Morale depends partly on whether the payment is experienced as a gain or a loss from expectation."
+        ],
+        "correctIndex": 2,
+        "explanation": "The same final amount lands differently against different baselines. Calling one reaction unreasonable skips the psychological reference point.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Two families receive the same 4 p.m. transfer time. One expected midnight; the other expected noon. The hospital wants to explain the delay clearly. What should it recognize?",
+        "choices": [
+          "The same time can feel like a gain to one family and a loss to the other.",
+          "Only the objective arrival time matters.",
+          "The family expecting noon should be ignored because the transfer still happens."
+        ],
+        "correctIndex": 0,
+        "explanation": "Communication should address the movement from each reference point. Objective timing matters, but it does not fully predict relief or disappointment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A restaurant replaces a full staff meal with a smaller meal credit. Management says no one lost anything because everyone still receives food value. Staff compare it with the old meal. What is the key issue?",
+        "choices": [
+          "Food benefits should never be changed under any condition.",
+          "Staff are comparing the new policy with their reference point, so it can feel like a loss.",
+          "Reference points matter only for money, not workplace benefits."
+        ],
+        "correctIndex": 1,
+        "explanation": "The old meal is the baseline. Benefits, time, and promises can all create reference points, not just cash.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A client rejects a plea that is better than trial risk because it is worse than an earlier informal offer. The lawyer calls this irrational final-state thinking. What should be added?",
+        "choices": [
+          "Only trial risk should count because the earlier offer disappeared.",
+          "All plea offers should be accepted if they reduce risk.",
+          "The earlier offer is the reference point that makes the new offer feel like a loss."
+        ],
+        "correctIndex": 2,
+        "explanation": "The new offer may be objectively safer than trial, but the client experiences movement down from the earlier offer. Both frames matter.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A policy analyst argues that if two households end with the same income after a tax change, they should feel the same utility. One household gained from last year; the other lost. What is the best critique?",
+        "choices": [
+          "Final income misses whether the change was experienced as gain or loss.",
+          "Utility can never be discussed with money.",
+          "The household that lost should ignore the past."
+        ],
+        "correctIndex": 0,
+        "explanation": "The critique is reference dependence. Final income is relevant, but it does not erase the experienced direction of change.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A retailer gives two shoppers the same final price. One expected no discount; the other expected 30 percent off after an email mistake. Which forecast best predicts satisfaction?",
+        "choices": [
+          "The shoppers should be equally satisfied because final price is equal.",
+          "The shopper expecting no discount may feel a gain, while the other may feel a loss against the mistaken reference point.",
+          "The email mistake means no reference point exists."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mistaken email can still create a felt baseline. Satisfaction depends on the move from that line, not just the final price.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team wants to use reference points in a negotiation but worries that some expectations are unrealistic. What is the best practical response?",
+        "choices": [
+          "Ignore all reference points because some are unrealistic.",
+          "Accept every expectation as binding because feelings matter.",
+          "Identify the reference point, test whether it is legitimate, and explain the offer against both final outcome and felt change."
+        ],
+        "correctIndex": 2,
+        "explanation": "The balanced move recognizes reference points without surrendering to all of them. Ignoring them blinds the negotiation; accepting all expectations is unworkable.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Two people end with the same amount but react differently. What should you check?",
+      "back": "Check the reference point each person used. The same final state can be a gain from one line and a loss from another.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What did final-wealth thinking miss?",
+      "back": "It missed that people experience changes from expectations, status quo, promises, and targets, not only the utility of the final wealth state.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why can a better offer still feel like a loss?",
+      "back": "If it is worse than a prior offer or expectation, the person may experience it as a drop from the reference point.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How should you handle an unreasonable reference point?",
+      "back": "Name it, test its legitimacy, and explain the final outcome and the felt change separately. Do not pretend it is absent.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What two states should a choice analysis include?",
+      "back": "Where the person ends up, and the reference line from which the person experiences the movement as gain or loss.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is reference-point evaluation: judge choices by final state and by the gain or loss felt from the person's baseline.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a pay, role, or benefit change seems fair on final numbers, then ask what each person expected before judging reaction."
+      },
+      {
+        "context": "health",
+        "plan": "If a wait time or treatment result is communicated, then compare it with the patient's prior expectation as well as the final outcome."
+      },
+      {
+        "context": "money",
+        "plan": "If a price, bonus, or refund feels surprising, then write the reference price or amount beside the final number."
+      },
+      {
+        "context": "negotiation",
+        "plan": "If an offer is rejected despite being objectively better than an alternative, then check whether it is a loss from an earlier anchor."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, find one reaction that seems too strong and identify the reference point that made the outcome feel like a gain or loss.",
+    "weeklyPractice": "Once a week, review one decision by writing final state, reference point, gain or loss, and whether the reference point was legitimate."
+  },
+  "memorableLines": [
+    {
+      "text": "The reference point carries the feeling.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the core correction in one direct sentence."
+    },
+    {
+      "text": "Final wealth is a ledger. Gains and losses are lived against a line.",
+      "location": "breakdown.deepRead",
+      "why": "It separates accounting from experience."
+    },
+    {
+      "text": "A choice is not only a destination. It is a movement from somewhere.",
+      "location": "breakdown.fullRead",
+      "why": "It makes reference dependence memorable."
+    }
+  ]
+}

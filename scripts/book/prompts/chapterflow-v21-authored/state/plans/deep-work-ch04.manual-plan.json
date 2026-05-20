@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch04",
+  "number": 4,
+  "title": "Deep Work Is Meaningful",
+  "coreMove": "Choose depth as a way to make work more satisfying by giving attention to something worth shaping well.",
+  "sourcePressure": "The source frame says deep work is intrinsically satisfying and supports a more meaningful work life.",
+  "chapterSpecificMisunderstanding": "The weak version says deep work is fulfilling because passion matters; the real point is that attention changes the felt quality of work.",
+  "sourceAlignmentTerms": ["meaningful work", "intrinsic satisfaction", "attention", "craft", "absorption", "work life"],
+  "forbiddenFrames": {
+    "hook": ["find your purpose", "love what you do", "flow state as magic"],
+    "counterintuition": ["happiness comes from hard work", "meaning is productivity"],
+    "tryThisNow": ["write what matters to you", "practice gratitude"],
+    "examples": ["woodworker nostalgia", "artist in studio", "teacher inspiring students"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a forensic accountant reconstructing a missing payment trail",
+      "audience": "a detail-oriented professional who has started to feel numb from routine reviews",
+      "stakes": "a fraud case stays vague unless the pattern is found",
+      "format": "scene",
+      "requiredBeat": "she stops skimming transactions, traces one vendor code line by line, and feels the work sharpen as the pattern appears",
+      "firstImage": "a ledger export with one vendor code highlighted in pale green",
+      "mustInclude": ["vendor code", "payment trail", "case memo"],
+      "mustAvoid": ["generic spreadsheet satisfaction", "crime drama tone"]
+    },
+    {
+      "domain": "a luthier repairing a cracked cello bridge for a youth orchestra",
+      "audience": "a craft worker choosing attention over throughput",
+      "stakes": "the instrument buzzes during auditions if the bridge is rushed",
+      "format": "vignette",
+      "requiredBeat": "he slows down to shave the bridge by sound and fit, not by job-ticket speed",
+      "firstImage": "a cello bridge held against a bench light with a hairline crack visible",
+      "mustInclude": ["audition date", "fine file", "job ticket"],
+      "mustAvoid": ["romantic old workshop", "generic handmade craft"]
+    },
+    {
+      "domain": "a disaster-response mapper cleaning satellite imagery after a storm",
+      "audience": "a technical volunteer tempted to see the task as tedious cleanup",
+      "stakes": "rescue crews may miss blocked roads if the map stays noisy",
+      "format": "before_after",
+      "requiredBeat": "she compares the blurred first pass with the cleaned road layer and sees how sustained attention turned noise into usable guidance",
+      "firstImage": "a satellite tile mottled with cloud cover and red road segments",
+      "mustInclude": ["road layer", "cloud mask", "rescue route"],
+      "mustAvoid": ["heroic disaster rescue", "generic mapping app"]
+    },
+    {
+      "domain": "a court clerk indexing sealed exhibits in a complex trial",
+      "audience": "an administrative professional whose precise work rarely gets public credit",
+      "stakes": "a mislabeled exhibit can derail a hearing",
+      "format": "reflection",
+      "requiredBeat": "he notices the satisfaction is not applause but the clean fit between exhibit, docket entry, and judge's question",
+      "firstImage": "sealed evidence envelopes lined up beside a docket terminal",
+      "mustInclude": ["sealed exhibit", "docket entry", "judge's question"],
+      "mustAvoid": ["generic paperwork dignity", "legal thriller"]
+    },
+    {
+      "domain": "a marine mechanic diagnosing a ferry engine vibration",
+      "audience": "a tradesperson whose day can become either rushed fixes or absorbed diagnosis",
+      "stakes": "the ferry misses the morning commuter run if the vibration is patched badly",
+      "format": "postmortem",
+      "requiredBeat": "after a failed quick fix, she listens through the second test cycle and identifies the mount problem by staying with the vibration",
+      "firstImage": "a torque wrench resting on a steel deck beside a vibration log",
+      "mustInclude": ["test cycle", "engine mount", "commuter run"],
+      "mustAvoid": ["generic mechanic competence", "boat adventure"]
+    },
+    {
+      "domain": "a speech-language pathologist designing one exercise for a stroke patient",
+      "audience": "a clinician whose meaning comes from exact fit, not broad sentiment",
+      "stakes": "the patient gives up if the exercise is too easy or humiliatingly hard",
+      "format": "dialogue",
+      "requiredBeat": "she adjusts the exercise after watching one failed consonant and writes a version that meets the patient at the edge of ability",
+      "firstImage": "a therapy card with three crossed-out consonant pairs",
+      "mustInclude": ["stroke patient", "consonant pair", "therapy card"],
+      "mustAvoid": ["inspirational recovery story", "generic helping profession"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["explain why depth can feel meaningful", "distinguish intrinsic satisfaction from external praise", "identify when attention changes the experience of work", "evaluate whether a task can become meaningful through craft-level engagement"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one task you are tempted to rush and identify the single detail that would make it worth doing with full attention.",
+  "readingTimeMinutes": 12
+}

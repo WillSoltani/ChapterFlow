@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch07",
+  "number": 7,
+  "title": "The High Price of Ownership",
+  "coreMove": "Ask what you would pay for the thing today before ownership makes its loss feel larger than its use.",
+  "sourcePressure": "The source explains the endowment effect: owning something inflates its value, makes selling feel like a loss, and turns labor or customization into attachment.",
+  "chapterSpecificMisunderstanding": "The weak version says people love their stuff; the precise lesson is that ownership changes the valuation question from use value to felt loss.",
+  "sourceAlignmentTerms": ["ownership", "endowment effect", "loss aversion", "reservation price", "sunk effort", "selling price"],
+  "forbiddenFrames": {
+    "hook": ["Ownership raises the price", "Your stuff gets expensive", "Selling feels like losing"],
+    "counterintuition": ["You know what it is worth", "Use determines value", "Sentiment is separate from price"],
+    "tryThisNow": ["Ask what you would pay today", "Sell one unused item", "Ignore sunk cost"],
+    "examples": ["old bike", "student ticket", "internal tool replacement"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "ceramic artist pricing a flawed kiln piece",
+      "audience": "a maker deciding whether to list or keep a vase she spent weeks glazing",
+      "stakes": "overpricing a flawed piece because labor and ownership feel like market value",
+      "format": "decision_point",
+      "requiredBeat": "the artist covers her initials on the base and asks what she would pay if another maker brought the same warped vase to the table",
+      "firstImage": "a blue-glazed vase with a warped rim cooling on a kiln shelf",
+      "mustInclude": ["warped rim", "covered initials", "market table"],
+      "mustAvoid": ["garage decluttering", "furniture resale", "sunk cost lecture"]
+    },
+    {
+      "domain": "season-ticket holder pricing a single playoff seat",
+      "audience": "a fan deciding whether to sell a ticket after years on a waiting list",
+      "stakes": "demanding a price no buyer would pay because giving up the seat feels personal",
+      "format": "dialogue",
+      "requiredBeat": "a friend asks the fan to name the maximum he would pay today if the ticket were not already in his account",
+      "firstImage": "a playoff ticket barcode glowing on a cracked phone screen",
+      "mustInclude": ["waiting list", "barcode", "maximum today"],
+      "mustAvoid": ["student sports ticket", "auction bidding", "public beer order"]
+    },
+    {
+      "domain": "family recipe blog considering deletion of low-traffic posts",
+      "audience": "a blogger deciding whether to remove recipes that took years to photograph",
+      "stakes": "protecting dead pages because the work invested makes them feel too valuable to cut",
+      "format": "postmortem",
+      "requiredBeat": "the blogger compares traffic and remake requests after hiding author photos, then chooses which posts deserve the homepage",
+      "firstImage": "a spreadsheet of page views beside stained handwritten recipe cards",
+      "mustInclude": ["page views", "author photos hidden", "homepage slot"],
+      "mustAvoid": ["software customization", "student club storage", "generic website cleanup"]
+    },
+    {
+      "domain": "research lab deciding whether to retire a custom apparatus",
+      "audience": "a principal investigator attached to a device built by former students",
+      "stakes": "keeping unreliable equipment because ownership and history inflate its practical worth",
+      "format": "reflection",
+      "requiredBeat": "the lab covers the engraved build plaque and prices the apparatus as if it appeared used from another lab",
+      "firstImage": "an aluminum apparatus with an engraved plaque under a dust cover",
+      "mustInclude": ["engraved plaque", "maintenance log", "used-lab price"],
+      "mustAvoid": ["clinic freezer purchase", "software tool", "factory equipment"]
+    },
+    {
+      "domain": "vintage map dealer evaluating inherited stock",
+      "audience": "a dealer who inherited unsold maps from a mentor",
+      "stakes": "setting prices from attachment instead of actual buyer demand",
+      "format": "vignette",
+      "requiredBeat": "the dealer turns the mentor's notes facedown and sorts the maps by recent comparable sales before assigning prices",
+      "firstImage": "rolled maps tied with cotton tape across a green felt counter",
+      "mustInclude": ["mentor notes", "comparable sales", "cotton tape"],
+      "mustAvoid": ["auction anchor", "museum membership", "sentimental family heirloom"]
+    },
+    {
+      "domain": "restaurant owner selling a hand-painted sign after rebranding",
+      "audience": "an owner deciding what the old sign is worth to another business",
+      "stakes": "confusing memory of opening night with what the sign can earn now",
+      "format": "before_after",
+      "requiredBeat": "after photographing the sign without the storefront behind it, the owner writes what a stranger could use it for and lowers the asking price",
+      "firstImage": "a hand-painted sign leaning against a brick wall before sunrise",
+      "mustInclude": ["storefront cropped out", "asking price", "opening-night memory"],
+      "mustAvoid": ["home decluttering", "bike resale", "generic nostalgia"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["spot endowment effect in pricing and retention", "apply the would-I-buy-it-today test", "distinguish use value from loss feeling", "evaluate when customization or labor is inflating valuation"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one thing you own but rarely use; hide the ownership cue and write the most you would pay to buy it today from a stranger.",
+  "readingTimeMinutes": 12
+}

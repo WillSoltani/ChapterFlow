@@ -1,0 +1,98 @@
+{
+  "bookId": "pitch-anything",
+  "title": "Pitch-Anything",
+  "author": "Oren Klaff",
+  "thesisParagraph": "Pitching fails when a room is treated like a patient panel of analysts waiting for details. The book argues that a pitch is a live social contest for attention, status, meaning, and decision, so the presenter has to control the frame, keep the message simple enough to survive the first filter, build curiosity, protect the value of the offer, concentrate the peak moment, and ask for a concrete decision before warmth leaks away into vague praise.",
+  "coreIdeas": [
+    {
+      "name": "Method beats effort",
+      "oneSentence": "More preparation does not save a pitch if the preparation feeds the room the wrong kind of information at the wrong moment.",
+      "mentalMove": "Separate hard work from live-room effectiveness and diagnose where a pitch dies.",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Design for the first filter",
+      "oneSentence": "A room first screens for novelty, threat, simplicity, and relevance before it rewards analysis.",
+      "mentalMove": "Translate dense material into simple, high-contrast cues that make the audience keep listening.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Sequence creates control",
+      "oneSentence": "STRONG is not a list of tricks but an order in which each move prepares the next.",
+      "mentalMove": "Place frame, story, intrigue, prize, hookpoint, and decision in a deliberate chain.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Own the frame first",
+      "oneSentence": "The meaning of the facts changes when the other side gets to define status, urgency, and interpretation first.",
+      "mentalMove": "Notice the room trying to assign you a weaker role and calmly reestablish the terms before explaining.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Curiosity needs control",
+      "oneSentence": "Intrigue works when it creates useful tension, not when it turns the pitch into fog or performance.",
+      "mentalMove": "Reveal enough to make the room lean in while holding back enough consequence to keep attention alive.",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Value cannot look needy",
+      "oneSentence": "A strong offer is damaged when the presenter acts as though any approval from the room is a rescue.",
+      "mentalMove": "Qualify fit, preserve scarcity, and ask for decision without chasing warmth.",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch09.source"
+      ]
+    }
+  ],
+  "targetReader": "A founder, salesperson, operator, consultant, job candidate, or internal advocate who already knows their material but loses rooms because they overload them, accept weak status, chase approval, or leave with compliments instead of a decision.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language"
+    ]
+  },
+  "voiceSpecimens": [
+    "The room does not reject your spreadsheet because it hates numbers. It rejects the pile of numbers because you gave it no reason to care yet.",
+    "The first loss is usually quiet. Someone checks the meeting clock, and your facts keep marching into a room that has already left.",
+    "Do not rush to prove you belong. Set the terms, make the offer clear, and let the other side show whether it can keep up.",
+    "A good pitch has a spine. If you pull one piece too early, the next piece has nothing to stand on.",
+    "Warmth feels like progress until you walk out with no date, no terms, and no next move.",
+    "The strongest moment is not the loudest sentence. It is the point where the room finally sees what is at stake."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains why pitching is important for modern professionals in many contexts.",
+    "In conclusion, readers should be mindful of audience dynamics and use the concepts appropriately.",
+    "By implementing these strategies consistently, you can optimize persuasive outcomes across stakeholder environments.",
+    "The author argues that a successful pitch requires preparation, confidence, and storytelling.",
+    "Take a minute to reflect on how this idea applies to your life and write down three insights."
+  ],
+  "teachingArc": "The book first breaks the reader out of the belief that better facts automatically win. It then gives a practical audience filter, turns that diagnosis into STRONG, and walks the reader through each move in order: frame before content, story before intrigue, intrigue before prize, prize before hookpoint, hookpoint before decision. The final chapters integrate the sequence into a live pitch rhythm and close on disciplined confidence rather than charisma.",
+  "forbiddenMoves": [
+    "Do not turn frame control into swagger, dominance theater, or disrespect.",
+    "Do not use fake neuroscience beyond the bounded practical brain-model heuristic in the source sidecars.",
+    "Do not make STRONG sound like disconnected presentation tips or a rigid script.",
+    "Do not treat prizing as aloof manipulation; it must stay tied to real value and fit.",
+    "Do not let decision discipline become pressure tactics detached from sequence and timing."
+  ]
+}

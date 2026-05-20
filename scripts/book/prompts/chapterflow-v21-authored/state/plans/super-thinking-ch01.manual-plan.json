@@ -1,0 +1,199 @@
+{
+  "number": 1,
+  "title": "Being Wrong Less",
+  "coreMove": "Take a tempting conclusion apart into first-principles assumptions, then design the smallest test that can expose the unforced error cheaply.",
+  "sourcePressure": "The source frames better thinking as being wrong less: reduce unforced errors, reason from first principles, preserve useful antifragile stress, de-risk commitment, and use MVP tests before scaling.",
+  "chapterSpecificMisunderstanding": "Treating error reduction as timid delay instead of active, low-cost contact with reality.",
+  "sourceAlignmentTerms": [
+    "unforced error",
+    "tennis",
+    "first principles",
+    "antifragile",
+    "de-risking",
+    "minimum viable product",
+    "bounded stress"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "tennis unforced error",
+      "detail": "the source uses tennis to distinguish a self-created miss from a shot nobody could have returned",
+      "useIn": "both",
+      "phrasingHint": "The missed easy return matters because no opponent had to be brilliant; the mistake came from your side of the net."
+    },
+    {
+      "kind": "artifact",
+      "name": "minimum viable product",
+      "detail": "the source supports testing cheaply before overcommitting so the downside stays low",
+      "useIn": "fullRead",
+      "phrasingHint": "A stripped-down version gives reality a vote before your confidence gets a budget."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "You are probably wrong more often than you think",
+      "What if being right is the wrong goal?",
+      "A smart person knows they can be wrong"
+    ],
+    "counterintuition": [
+      "Caution is not weakness",
+      "The best thinkers are humble",
+      "Failure is feedback"
+    ],
+    "tryThisNow": [
+      "Set a timer and list assumptions",
+      "Think of a recent mistake",
+      "Write down one decision"
+    ],
+    "examples": [
+      "generic startup pilot",
+      "student cramming with index cards",
+      "family budget spreadsheet",
+      "warehouse rollout copied from old examples"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Sarah, a museum exhibit lead choosing whether to rebuild the ticketing kiosk flow after three angry visitor comments",
+      "audience": "product-minded operators who overreact to vivid complaints",
+      "stakes": "a six-week redesign could consume the education team’s launch window",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah pins the three complaint slips beside the month’s visitor log, circles the exact assumption about frequency, and swaps the redesign pitch for a two-day lobby observation test",
+      "firstImage": "three crumpled comment slips under a brass paperweight",
+      "mustInclude": [
+        "visitor log",
+        "complaint slips",
+        "two-day observation sheet"
+      ],
+      "mustAvoid": [
+        "software startup dashboard",
+        "one customer interview becomes roadmap"
+      ]
+    },
+    {
+      "domain": "Daniel, a civil-engineering student checking a bridge-load answer that sounds elegant but rests on one borrowed formula",
+      "audience": "students who mistake fluency for understanding",
+      "stakes": "a lab grade and a later design review depend on whether he can rebuild the logic",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Daniel erases the polished solution, writes only the known loads and constraints, and finds the unsupported assumption before submitting the revision",
+      "firstImage": "eraser crumbs collecting along the bottom of a calculation page",
+      "mustInclude": [
+        "load table",
+        "red pencil",
+        "office-hours queue"
+      ],
+      "mustAvoid": [
+        "history summary sheet",
+        "generic exam panic"
+      ]
+    },
+    {
+      "domain": "Claire, a neighborhood bakery owner testing gluten-free demand before signing a lease for a second kitchen",
+      "audience": "small-business readers facing a tempting leap",
+      "stakes": "a lease would lock her into fixed costs before demand is proven",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Claire answers a friend’s smallest-real-test question by opening twenty preorder slots instead of calling the landlord",
+      "firstImage": "“What would prove this before you rent another oven?”",
+      "mustInclude": [
+        "preorder list",
+        "landlord voicemail",
+        "cooling rack"
+      ],
+      "mustAvoid": [
+        "banned baking-business shell with quitting a job",
+        "expensive gear as identity"
+      ]
+    },
+    {
+      "domain": "Étienne, a hospital lab supervisor piloting a specimen-tracking checklist on one shift before changing every ward handoff",
+      "audience": "managers under pressure to scale a promising process",
+      "stakes": "a hospital-wide change could slow urgent samples if the idea breaks",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Étienne watches the night-shift pilot expose one mislabeled handoff and revises the checklist before asking daytime wards to adopt it",
+      "firstImage": "fluorescent light reflecting off a tray of barcode labels",
+      "mustInclude": [
+        "night shift",
+        "barcode labels",
+        "handoff tray"
+      ],
+      "mustAvoid": [
+        "warehouse scheduling pilot",
+        "generic agile MVP"
+      ]
+    },
+    {
+      "domain": "Aanya, a junior barrister deciding whether to ask one narrow courtroom question before committing to a full theory of the case",
+      "audience": "professionals whose confidence can outrun evidence",
+      "stakes": "a premature theory could waste limited cross-examination time",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Aanya writes the one fact that would collapse her theory, asks a narrow witness question, and lets the answer decide whether to proceed",
+      "firstImage": "What fact would make the whole story buckle?",
+      "mustInclude": [
+        "witness binder",
+        "yellow sticky tab",
+        "court clock"
+      ],
+      "mustAvoid": [
+        "generic meeting confidence",
+        "TV courtroom drama"
+      ]
+    },
+    {
+      "domain": "Jonas, an amateur triathlete using a low-stakes brick workout to test a new race nutrition plan",
+      "audience": "readers who avoid all stress and call it discipline",
+      "stakes": "race day stomach trouble would be expensive, but a training test is survivable",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Jonas deliberately tests the drink mix during a short bike-run session, records the stomach reaction, and keeps the useful stress instead of hiding from it",
+      "firstImage": "You can smell the citrus drink mix before the bottle is even full",
+      "mustInclude": [
+        "bike trainer mat",
+        "drink mix scoop",
+        "training log"
+      ],
+      "mustAvoid": [
+        "fitness-goal present bias from chapter 3",
+        "heroic endurance story"
+      ]
+    }
+  ],
+  "tryThisNowSpec": "Take one live decision and write the one assumption that would make it fail; shrink the next action until that assumption can meet reality today without major cost.",
+  "chapterId": "super-thinking-ch01",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the chapter-specific model in a fresh scenario for Being Wrong Less",
+      "choose the visible action that performs the core move rather than naming the concept",
+      "explain the failure mode that appears when the model is used generically",
+      "evaluate tradeoffs and limits without sliding into certainty, cynicism, or manipulation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

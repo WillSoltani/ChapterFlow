@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch04",
+  "number": 4,
+  "title": "Setting and Owning the Frame",
+  "coreMove": "Recognize a frame collision and calmly establish the interpretation before the facts are judged.",
+  "sourcePressure": "First solution chapter: live pitches are shaped by competing social interpretations, and weak presenters lose by reacting, overexplaining, or accepting the other side's assumptions.",
+  "chapterSpecificMisunderstanding": "The writer must keep frame control practical and status-aware, not aggressive, theatrical, or dismissive of the other side.",
+  "sourceAlignmentTerms": [
+    "frame control",
+    "status",
+    "interpretation",
+    "momentum",
+    "assumptions",
+    "reacting",
+    "overexplaining"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The room decides who you are before you speak",
+      "Win the frame or lose the pitch",
+      "Never let them control you"
+    ],
+    "counterintuition": [
+      "Power is silent",
+      "Explaining can make you weaker",
+      "Status beats facts"
+    ],
+    "tryThisNow": [
+      "Stand taller in your next meeting",
+      "Notice who has status",
+      "Practice a confident opener"
+    ],
+    "examples": [
+      "alpha behavior in boardroom",
+      "hostile investor interrupting founder",
+      "generic negotiation power move"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "architect presenting a library renovation concept to preservation trustees",
+      "audience": "a design lead being treated as a vendor who must defend every line item",
+      "stakes": "the trustees reduce the project to cost cuts before hearing the civic-use frame",
+      "format": "dialogue",
+      "requiredBeat": "when a trustee calls the design decorative, she pauses, slides the circulation map forward, and names the decision as public access versus storage, not style preference",
+      "firstImage": "a vellum circulation map unrolled under a marble paperweight",
+      "mustInclude": [
+        "circulation map",
+        "preservation rulebook",
+        "public access count"
+      ],
+      "mustAvoid": [
+        "generic design critique"
+      ]
+    },
+    {
+      "domain": "sports medicine specialist advising a pro cycling team on recovery protocols",
+      "audience": "a clinician facing coaches who frame recovery as softness",
+      "stakes": "riders keep losing late-season power because the staff treats rest as indulgence",
+      "format": "scene",
+      "requiredBeat": "he lets the coach finish the toughness speech, then places the power-output decline chart beside the race calendar and reframes recovery as preserving watts",
+      "firstImage": "a laminated race calendar beside a crankset power report",
+      "mustInclude": [
+        "power-output chart",
+        "race calendar",
+        "recovery protocol sheet"
+      ],
+      "mustAvoid": [
+        "generic athletic motivation scene"
+      ]
+    },
+    {
+      "domain": "aquaculture feed supplier pitching a new pellet blend to salmon farm operators",
+      "audience": "a supplier whose offer is being framed as a commodity price quote",
+      "stakes": "the farm chooses the cheaper pellet and absorbs slower growth for an entire season",
+      "format": "decision_point",
+      "requiredBeat": "when the operator asks only for price per ton, the supplier turns the feed sample tray toward the growth table and asks which number controls harvest week",
+      "firstImage": "three feed pellets lined on a white sample tray",
+      "mustInclude": [
+        "feed sample tray",
+        "harvest-week table",
+        "price-per-ton sheet"
+      ],
+      "mustAvoid": [
+        "generic procurement negotiation"
+      ]
+    },
+    {
+      "domain": "airport retail operator defending a local-food concession bid",
+      "audience": "an operator being boxed into rent-per-square-foot comparison",
+      "stakes": "the airport loses a distinctive tenant mix and the operator loses a ten-year lease",
+      "format": "before_after",
+      "requiredBeat": "she changes the conversation from rent alone to dwell time by pointing to receipt timestamps from delayed flights",
+      "firstImage": "a strip of airport receipts clipped beside a gate-delay report",
+      "mustInclude": [
+        "receipt timestamps",
+        "gate-delay report",
+        "lease scoring rubric"
+      ],
+      "mustAvoid": [
+        "generic retail pitch"
+      ]
+    },
+    {
+      "domain": "legal aid director asking county supervisors for eviction-defense funding",
+      "audience": "a nonprofit leader facing a room that frames the request as charity spending",
+      "stakes": "families lose representation while county shelter costs rise",
+      "format": "postmortem",
+      "requiredBeat": "she marks the point where she accepted the charity frame and writes the replacement frame, avoidable county cost, in the margin",
+      "firstImage": "a yellow legal pad beside a stack of eviction notices",
+      "mustInclude": [
+        "eviction notices",
+        "shelter cost table",
+        "county budget margin note"
+      ],
+      "mustAvoid": [
+        "generic social services appeal"
+      ]
+    },
+    {
+      "domain": "premium coffee importer negotiating with a grocery chain buyer",
+      "audience": "an importer whose beans are being compared to discount bulk bags",
+      "stakes": "the chain strips the origin story and forces a price-only listing",
+      "format": "vignette",
+      "requiredBeat": "she stops answering the discount comparison and asks whether the buyer wants a commodity shelf or a destination shelf before opening the cupping ledger",
+      "firstImage": "a burlap sample bag beside a stained cupping ledger",
+      "mustInclude": [
+        "cupping ledger",
+        "shelf photo",
+        "origin lot code"
+      ],
+      "mustAvoid": [
+        "generic commodity sales example"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot a frame collision before facts are debated",
+      "choose a calm reframing move instead of overexplaining",
+      "analyze when a presenter accepted the wrong assumption",
+      "evaluate frame control without rewarding disrespect"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the sentence the other side might use to define you weakly, then write the calmer frame you want the room to judge instead.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,193 @@
+{
+  "chapterId": "the-pyramid-principle-ch04",
+  "number": 4,
+  "title": "Fine points of introductions",
+  "coreMove": "Frame situation, complication, and the active reader question before releasing the key line.",
+  "sourcePressure": "Chapter 4 focuses on introductions: introductory flow, length, where to start the situation, what counts as complication, why that order, key-line timing, and patterns such as requests for funds, how-to documents, proposals, progress reviews, transitions, and summaries.",
+  "chapterSpecificMisunderstanding": "Treating introductions as throat-clearing, scene-setting, or a place to hide the answer until the reader is patient enough.",
+  "sourceAlignmentTerms": [
+    "introductory flow",
+    "situation",
+    "complication",
+    "question",
+    "key line",
+    "requests for funds",
+    "letters of proposal",
+    "progress reviews"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "introductory flow",
+      "detail": "the sidecar lists headings for introductory flow, starting the situation, complication, order, key line, and common patterns including requests for funds, how-to documents, proposal letters, progress reviews, transitions, and summarizing",
+      "useIn": "both",
+      "phrasingHint": "The opening is not decoration; it is the small doorway that tells the reader which question the answer is about to resolve."
+    },
+    {
+      "kind": "artifact",
+      "name": "requests for funds",
+      "detail": "the authorized heading map names requests for funds as one common pattern for introductions",
+      "useIn": "fullRead",
+      "phrasingHint": "A funding request works only when the reader feels the changed condition before the ask appears."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A reader gets lost because the writer skipped the hard sorting",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "The point is not polish; the point is discipline",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Ask what the reader needs to know next",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "family budget conversation around a kitchen table",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a parks department request for emergency tree-removal funds",
+      "audience": "municipal writers making public-safety funding asks",
+      "stakes": "council may reject the request if the opening starts with budget mechanics rather than the changed risk",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia cuts the arborist history, starts with last week's storm damage, names the complication of school-route closures, and lets the funding key line land after that pressure is clear.",
+      "firstImage": "Wet bark flakes onto Olivia's desk from a sample branch in a plastic evidence bag.",
+      "mustInclude": [
+        "storm damage map",
+        "school-route closure list",
+        "funding request form"
+      ],
+      "mustAvoid": [
+        "climate sensor council memo from ch1"
+      ]
+    },
+    {
+      "domain": "a biotech equipment proposal to replace an aging freezer bank",
+      "audience": "lab managers writing capital proposals",
+      "stakes": "samples worth years of work could be lost if the proposal reads like a purchasing preference",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Julien begins at the current freezer alarm pattern, adds the complication of rising overnight failures, and delays the replacement ask until the reader expects it.",
+      "firstImage": "A freezer alarm chirps every twelve seconds in the empty corridor.",
+      "mustInclude": [
+        "temperature log",
+        "sample inventory",
+        "capital request sheet"
+      ],
+      "mustAvoid": [
+        "pharmaceutical trial readiness from ch3"
+      ]
+    },
+    {
+      "domain": "a software documentation lead writing a how-to for incident handoff",
+      "audience": "technical writers and on-call engineers",
+      "stakes": "handoffs will remain sloppy if the guide opens with steps before the reader knows what failure it prevents",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marta contrasts the old step-first guide with a new opening that states the normal handoff, the missed-alert complication, and the question the procedure answers.",
+      "firstImage": "It took Marta one failed midnight handoff to see the guide had started too late.",
+      "mustInclude": [
+        "incident handoff template",
+        "pager alert log",
+        "runbook draft"
+      ],
+      "mustAvoid": [
+        "cybersecurity audit findings from ch2"
+      ]
+    },
+    {
+      "domain": "an architecture firm progress review for a delayed library renovation",
+      "audience": "project leads reporting status without burying the issue",
+      "stakes": "the client needs to decide on phasing before contractor bids expire",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"If we begin with everything we did, they will miss what changed,\" James says, then frames the prior plan, the asbestos discovery, and the phasing question before the update.",
+      "firstImage": "\"If we begin with everything we did, they will miss what changed,\" James says over the rolled drawings.",
+      "mustInclude": [
+        "rolled drawings",
+        "asbestos report",
+        "bid expiry calendar"
+      ],
+      "mustAvoid": [
+        "generic construction delay memo"
+      ]
+    },
+    {
+      "domain": "a university admissions office proposing a transcript-upload change",
+      "audience": "administrators writing internal proposal letters",
+      "stakes": "manual review costs will rise unless the reader sees why the current process broke",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Layla move three paragraphs of platform history below the key line and open instead with the current process, the application-volume complication, and the resulting question.",
+      "firstImage": "You can hear the scanner jam behind the admissions desk.",
+      "mustInclude": [
+        "transcript queue screenshot",
+        "application-volume chart",
+        "proposal letter draft"
+      ],
+      "mustAvoid": [
+        "university housing move-in from ch2"
+      ]
+    },
+    {
+      "domain": "a regional airport operations summary after a baggage outage",
+      "audience": "operations leaders transitioning between report groups",
+      "stakes": "the next section will sound abrupt unless the transition creates the right question",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 5:20 a.m., Thomas writes a transition that restates the restored belt service, names the remaining passenger-notification gap, and then introduces the next group.",
+      "firstImage": "At 5:20 a.m., Thomas watches delayed bag tags scroll across a dim monitor.",
+      "mustInclude": [
+        "baggage outage log",
+        "passenger notification script",
+        "section transition note"
+      ],
+      "mustAvoid": [
+        "railway near-miss reports from ch2"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose where the situation should begin",
+      "separate complication from background",
+      "time the key line after the reader question is active",
+      "adapt the frame for proposals, requests, progress reviews, and transitions"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write three labels above a live opening: situation, complication, key line. If the complication is missing, do not polish the answer yet.",
+  "readingTimeMinutes": 12
+}

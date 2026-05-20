@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch10",
+  "number": 10,
+  "title": "Better Judges for Better Judgments",
+  "coreMove": "Build judge quality through deliberate calibration practice against known outcomes, not through years of unexamined experience.",
+  "sourcePressure": "Human-side improvement is a real lever: better-calibrated judges produce less noise. But calibration requires deliberate feedback against known outcomes, not just accumulation of experience. Experience without feedback is noise-tolerant — a judge can be consistently wrong and get better and better at defending their wrong answers. The improvement requires structured exposure to outcomes.",
+  "chapterSpecificMisunderstanding": "Assuming that seniority or track record automatically means calibration, when in fact noisy judgment can be accumulated across decades without self-correcting if feedback mechanisms are absent.",
+  "sourceAlignmentTerms": ["calibration", "deliberate practice", "feedback", "judge quality", "experience", "consistency", "track record"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Deliberate practice and calibration feedback",
+      "detail": "The research tradition on deliberate practice (Anders Ericsson and others) establishes that expertise in closed-feedback domains (chess, music, tennis) improves with practice, but judgment in open domains (clinical medicine, hiring, forecasting) does not improve with mere experience without structured feedback against outcomes.",
+      "useIn": "deepRead",
+      "phrasingHint": "A chess player knows immediately whether a move was good. A hiring manager does not hear for a year whether the person worked out — and by then has forgotten what they noticed in the interview. Experience in that environment does not produce calibration. It produces confidence."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["experience is overrated in judgment", "seniority does not mean accuracy"],
+    "counterintuition": ["the most experienced judges are often the noisiest", "years of practice can make judgment worse"],
+    "tryThisNow": ["track your last ten hiring decisions and their outcomes", "ask a colleague to rate the same candidate you just rated"],
+    "examples": ["a scene where a junior judge outperforms a senior one — makes the lesson too simple and too flattering", "a scene where experience is shown to be entirely worthless — the chapter's point is that feedback makes experience valuable, not that experience is always wrong"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Judge quality examples risk all sounding like the same portrait of an experienced expert whose confidence exceeds their accuracy. Different formats and institutional domains are needed to show how calibration practice looks different from experience accumulation."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "air traffic control assessment: veteran controllers discovered to have wider spread in weather-condition severity ratings than recently certified controllers who received structured calibration training",
+      "audience": "an air traffic control training manager analyzing reliability data from the most recent certification cohort versus a cohort from ten years prior",
+      "stakes": "flight safety decisions that depend on consistent weather-condition assessment across all controllers on shift",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the training manager lays out the reliability data side by side: the newly certified cohort, who completed structured calibration exercises against recorded scenarios with known correct ratings, shows tighter inter-rater agreement on weather severity than the veteran cohort, who completed the same raw hours but without structured feedback against known outcomes",
+      "firstImage": "two reliability data summaries printed on paper, laid side by side on a training room desk — the standard deviation of weather ratings wider in the veteran cohort than in the new cohort",
+      "mustInclude": ["the specific calibration training the new cohort received (scored against known outcomes)", "the tighter inter-rater agreement in the calibrated group", "the veteran cohort's reaction of surprise and defensiveness when shown the comparison"],
+      "mustAvoid": ["implying any veteran controller made a safety error", "claiming a specific calibration program by name"]
+    },
+    {
+      "domain": "child welfare investigation: two social workers with very different investigation experience levels assessed on judgment consistency",
+      "audience": "a child welfare agency quality manager studying whether experience correlates with consistent risk assessment",
+      "stakes": "child safety decisions and equitable treatment of families — inconsistent risk ratings lead to some families being over-intervened and others under-monitored",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the quality manager discusses the agency's calibration data with the training director: the workers who received structured calibration against reviewed cases (outcomes known, feedback given) score significantly higher on inter-rater consistency than workers with more raw experience but no systematic calibration program, and the correlation between years of experience and consistency is near zero",
+      "firstImage": "a scatter plot printed for the training discussion, years of experience on the x-axis, inter-rater consistency on the y-axis, the dots scattered with no upward trend — a nearly flat regression line",
+      "mustInclude": ["the near-zero experience-consistency correlation", "the structured calibration group's better performance", "neither participant in the dialogue dismissing the finding"],
+      "mustAvoid": ["a child harm narrative", "a scene that implies experienced workers are worse (they are not worse; they are not better than calibrated workers)"]
+    },
+    {
+      "domain": "clinical psychology diagnosis: a psychology department comparing consistency across experienced versus newly trained diagnosticians in a calibration program",
+      "audience": "a clinical psychology training program director reviewing a two-year calibration study",
+      "stakes": "diagnostic reliability for treatment planning — inconsistent diagnosis means patients receive different treatments for the same presentation",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the director reviews the two-year study result: diagnosticians who completed a structured weekly calibration session (assessing recorded presentations and comparing their diagnoses against consensus outcomes) showed 30 percent lower variance in diagnosis at the end of two years; a matched group who underwent the same number of hours of supervised clinical experience without structured calibration sessions showed no significant reduction in variance",
+      "firstImage": "two parallel trend lines over two years — one declining (calibrated group), one flat (experience-only group) — showing variance on the y-axis and time on the x-axis",
+      "mustInclude": ["the 30 percent variance reduction in the calibrated group", "the flat trend in the experience-only group", "the structured weekly session design as the specific mechanism"],
+      "mustAvoid": ["a specific patient diagnosis story", "clinical psychology-specific technical diagnostic jargon"]
+    },
+    {
+      "domain": "securities fraud pattern detection: experienced analysts at a regulatory agency tested against a newly calibrated cohort for consistency in flagging suspicious activity",
+      "audience": "a regulatory agency quality team building a new analyst certification program",
+      "stakes": "consistent enforcement across the market — if experienced analysts apply different thresholds to similar suspicious activity, enforcement is uneven",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the quality lead asks the room of senior analysts: if we gave the same ten file samples to two analysts from our veteran cohort and two from the calibrated-certification cohort, which pair would agree more often? The veterans resist answering because they assume experience guarantees consistency; the test was run quietly last month, and the calibrated pair agreed more often",
+      "firstImage": "ten file folders on a meeting room table, an envelope beside them with the calibration test results that the quality lead is about to open",
+      "mustInclude": ["the veterans' assumption that experience guarantees consistency", "the calibration test result that disproves it", "the quality lead's framing: this is not about competence; it is about whether feedback was built into the development path"],
+      "mustAvoid": ["implying any veteran analyst missed fraud", "a specific enforcement action"]
+    },
+    {
+      "domain": "job interview panel: a company comparing inter-rater consistency for panels trained with calibration workshops versus panels trained only by reading the rubric",
+      "audience": "a talent acquisition lead evaluating the ROI of the company's calibration workshop program",
+      "stakes": "hire quality and legal defensibility — noisy interview panels produce inconsistent selection decisions and potential discrimination exposure",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the inter-rater agreement data for panels before and after the calibration workshop: the workshop involved scoring recorded interviews against previously agreed-upon correct ratings and discussing where panelists diverged; panels that completed it show inter-rater agreement of 0.71; panels that read the rubric only show 0.44 — and the rubric-only panels show no improvement on a six-month follow-up",
+      "firstImage": "two bar charts side by side: agreement scores for rubric-only panels and workshop panels, the workshop bar taller and more consistent",
+      "mustInclude": ["the calibration workshop design (scoring against known-correct outcomes)", "the 0.71 vs. 0.44 agreement rates", "the lack of improvement in the rubric-only group on follow-up"],
+      "mustAvoid": ["a specific candidate's experience", "a legal discrimination story"]
+    },
+    {
+      "domain": "military officer promotion board: comparing consistency across board members who underwent structured decision calibration versus those who did not",
+      "audience": "a military personnel officer studying whether pre-board calibration sessions reduce score variance for borderline candidates",
+      "stakes": "officer career advancement — promotion decisions that vary across boards affect retention of talent and institutional trust in the promotion system",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the personnel officer reviews the board variance data from two promotion cycles: in the cycle where board members completed a calibration session using prior-cycle case files with known outcomes, the variance in borderline candidate scores was 40 percent lower than in the cycle without calibration; the board members who completed calibration also reported greater confidence in their scoring because they had a reference floor",
+      "firstImage": "a military conference room where board members are opening folders of prior-cycle calibration cases — the process of scoring against known outcomes before scoring new candidates",
+      "mustInclude": ["the calibration session design (prior-cycle cases with known outcomes)", "the 40 percent variance reduction", "the board members' greater confidence as a secondary benefit"],
+      "mustAvoid": ["a specific promotion or denial decision", "military hierarchy that distracts from the calibration theme"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why experience without feedback does not produce calibration",
+      "identify the specific design features of calibration practice that distinguish it from ordinary experience",
+      "apply the calibration-vs.-experience distinction to assess whether a given training program would reduce judgment noise",
+      "analyze why experienced judges may resist calibration data and what that resistance reveals",
+      "evaluate whether a proposed judge improvement program would build genuine calibration or only build confidence"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find one judgment type you make regularly where outcomes are eventually knowable — a hire who stays or leaves, a credit decision that performs or defaults, a risk rating that proves accurate or not. Start a record: write down your prediction before the outcome, then record the outcome when it is known. Do this for 20 cases. That record is the raw material of calibration.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) distinguishing experience from calibration, at least one 5+ sentence paragraph on why domains with slow or absent feedback resist calibration naturally, at least one one-sentence punch line about what ten years of confident wrong judgment actually produces",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to present the Ericsson research tradition as a brief research aside — showing where deliberate practice works (closed-feedback domains) and where it does not (judgment domains without feedback loops)",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

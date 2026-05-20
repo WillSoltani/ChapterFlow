@@ -1,0 +1,326 @@
+{
+  "chapterId": "thinking-in-bets-ch03",
+  "number": 3,
+  "title": "Wanna bet?",
+  "readingTimeMinutes": 12,
+  "hook": "The hop contract waits for a signature while Catarina asks what sell out really means.",
+  "counterintuition": "A stake looks like pressure; the actual test is whether confidence becomes measurable. Used badly, it turns uncertainty into status; used well, it makes a claim answerable.",
+  "tryThisNow": "Pick one strong claim you made this week. Write the confidence level you would stand behind if someone recorded it before the result arrived.",
+  "keyTakeaway": "Make strong claims carry a price: a probability, stake, or condition that reveals confidence without turning disagreement into dominance.",
+  "breakdown": {
+    "fastRead": "The taproom smells like citrus hops while empty keg labels wait in a stack. Catarina hears the brewer say they will sell out by July. The sentence sounds confident enough to sign a hop contract.\n\nCatarina asks for the price behind the sentence.\n\nA belief changes when it has to name its confidence. Words like definitely and obviously can be cheap. A percentage, batch size, or stake makes the claim show how much conviction it actually carries. The point is calibration, not swagger. If the number shrinks when cost appears, the first sentence was posture wearing a serious face.",
+    "deepRead": "What would Tomas actually stake on the sentence he keeps saying to nervous couples? He tells every June bride that it never rains at the vineyard. The venue calendar and weather archive sit open on his laptop, and the refund clause is still blank. Before he sends the contract, the real decision is whether the sentence is evidence or reassurance.\n\nThe small question changes the air because the claim has to become a price, not just a posture. \"Wanna bet?\" is useful when it asks, how much confidence belongs here? It is not useful when it corners someone for sport.\n\nA confident claim meeting a stake may become a range the moment it has to carry a cost. Tomas does not need to gamble with a client. He needs to ask what odds his own contract should reflect. Ten years of venue dates may show that rain is rare, not impossible. That difference changes the refund language, the backup plan, and the way he talks to couples.\n\nCost reveals exaggeration.\n\nThe limit is social. If Catarina asks the brewer for a confidence level, she is improving the purchase decision. If she asks with a smirk so the brewer loses face, she has changed the tool. Pricing belief should reduce theater, not become a new stage for it.",
+    "fullRead": "At the board packet review, Anya deletes the word fine from the runway slide. The phrase had read, fine through November. It sounded steady. It also hid three customer-payment dates, a possible seed extension, and a payroll cliff in early December. She replaces the sentence with confidence bands: ninety percent through September, seventy percent through October, forty percent through November without the largest invoice paid.\n\nOnce the belief has a price, tone stops doing the work that evidence should do.\n\nThis is why priced belief changes disagreement. Before Anya adds the bands, the room can argue only about whether fine sounds responsible or evasive. After the bands appear, the room can inspect the dates. Which customer is most likely to slip? Which payment has a purchase order attached? Which expense can move if the extension is delayed? The claim becomes workable because confidence has a shape.\n\nTry the same move inside your own head. When you say, this will obviously fail, what probability would you sign under that sentence? When you say, I am sure they are angry, what would you risk on that reading? Private certainty often gets away with more drama than public speech because no one asks it to post a price. A number does not make the belief true. It makes the belief answerable.\n\nMichael uses that answerability in a public-health clinic before the vaccine signup portal opens. The waiting room chairs are stacked against the wall, the appointment grid glows on the monitor, and three planners are arguing with equal force. One expects no-shows. One expects a rush. One expects the phones to stall. Michael asks each planner to write the odds behind the attendance estimate before anyone sees the others. The reveal is quiet: the loudest voice had the widest uncertainty.\n\nThat is the gain. Bet language can separate volume from confidence. It can show that two people who sound far apart are only ten points apart, or that a calm person holds a stronger estimate than the person speaking in absolutes. It turns disagreement from a contest over tone into a comparison of commitments.\n\nThere is still a way to misuse it. Ben at a dinner table saying wanna bet with a grin is not calibrating anything if his only goal is to make someone back down. The question has to serve truth, not humiliation. A useful stake can be small, private, even imaginary. Would you plan staffing around that number? Would you order inventory from it? Would you write it down before the result arrives? Those are prices too.\n\nOlivia sees the same effect in a radio pledge drive. It took one silent pass of the pledge sheet for the room's confidence to shrink. Volunteers who had cheered for an aggressive target wrote lower donation totals when asked what number they would staff around and what ad spend they would authorize. Nobody became less committed to the station. They became more honest about the distance between hope and forecast.\n\nA priced belief does not make people colder. It makes learning possible later. If the forecast was 80 percent and the result failed, the review can ask whether the evidence justified 80. If the forecast was only a vague promise, memory will polish it after the fact. The original confidence will be impossible to find.\n\nStrong claims deserve a receipt. Not a weapon. A receipt."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-catarina-hop-contract",
+      "title": "Catarina Prices the Hop Contract",
+      "tags": [
+        "dialogue",
+        "brewery",
+        "forecast"
+      ],
+      "planSpec": {
+        "domain": "craft brewery seasonal demand forecast",
+        "audience": "founders and operations leads",
+        "stakes": "brewing too much ties up tanks; brewing too little loses summer accounts",
+        "format": "dialogue",
+        "requiredBeat": "Catarina asks the brewer to turn \"we will sell out\" into a confidence percentage and batch size he would defend before ordering hops."
+      },
+      "scenario": "The taproom smells like citrus hops while empty keg labels wait in a stack on Tuesday. \"We will sell out by July,\" the brewer says, reaching for the hop contract as the wholesale order sheet sits half filled. Catarina, the operations lead, points to the batch-size chart and the cold-room limit. Before she signs, she must choose whether the sentence carries enough confidence, so she asks what percentage and batch size he would defend.",
+      "whatToDo": "Turn the confident sentence into a percentage and a batch-size commitment before signing the hop contract. Then order from that priced belief.",
+      "whyItMatters": "The brewery is not buying a mood. It is buying ingredients and tank time. Pricing the forecast exposes whether the claim can carry real operational cost."
+    },
+    {
+      "exampleId": "ch03-ex02-tomas-rain-clause",
+      "title": "Tomas Rewrites the Rain Clause",
+      "tags": [
+        "decision_point",
+        "wedding",
+        "contract"
+      ],
+      "planSpec": {
+        "domain": "wedding photography rain refund policy",
+        "audience": "solo service providers",
+        "stakes": "a photographer is overconfident about weather risk and underprices a refund clause",
+        "format": "decision_point",
+        "requiredBeat": "What would Tomás actually stake on \"it never rains here in June\"? He checks ten years of venue dates and changes the contract language from certainty to odds."
+      },
+      "scenario": "What would Tomas actually stake on the sentence he keeps saying to nervous couples? On Friday afternoon, the venue calendar, weather archive, and refund clause sit open on his desk beside a half-signed June contract. He says it never rains here in June, but the archive shows two washed-out Saturdays. Before he sends the contract, he must decide whether his certainty deserves the clause he is about to offer.",
+      "whatToDo": "Check the venue dates and rewrite the clause from certainty to odds. Price the rain risk in the contract instead of soothing couples with an absolute.",
+      "whyItMatters": "A comforting sentence can underprice real exposure. The weather archive gives Tomas a better stake to stand behind than his usual confident line."
+    },
+    {
+      "exampleId": "ch03-ex03-anya-runway-bands",
+      "title": "Anya Deletes the Word Fine",
+      "tags": [
+        "vignette",
+        "startup",
+        "runway"
+      ],
+      "planSpec": {
+        "domain": "startup runway estimate before a seed extension",
+        "audience": "finance leads and founders",
+        "stakes": "overstated confidence could push the company into a payroll cliff",
+        "format": "vignette",
+        "requiredBeat": "At the board packet review, Anya replaces \"we are fine through November\" with confidence bands tied to three customer-payment dates."
+      },
+      "scenario": "At 7:42 a.m., Anya deletes the word fine from the runway slide before the board packet review. Three customer-payment dates sit under the cash chart, and the payroll cliff is circled in red beside the investor-call note. Before the packet goes out, she must decide whether to send a soothing sentence or confidence bands: ninety percent through September, seventy through October, forty through November.",
+      "whatToDo": "Replace the broad reassurance with confidence bands tied to the payment dates. Let the board see which month depends on which invoice.",
+      "whyItMatters": "The runway claim becomes useful only when its confidence changes with the evidence. A soft word like fine hides the cliff that finance needs to see."
+    },
+    {
+      "exampleId": "ch03-ex04-michael-clinic-estimates",
+      "title": "Michael Collects the Attendance Odds",
+      "tags": [
+        "predict_reveal",
+        "clinic",
+        "planning"
+      ],
+      "planSpec": {
+        "domain": "public-health clinic vaccine appointment planning",
+        "audience": "clinic administrators",
+        "stakes": "too many slots wastes staff time; too few leaves vulnerable patients waiting",
+        "format": "predict_reveal",
+        "requiredBeat": "Michael asks each planner to write the odds behind their attendance estimate before the signup portal opens, then compares the spread rather than the volume of their voices."
+      },
+      "scenario": "The waiting room chairs are stacked against the wall while the appointment grid glows on the monitor. Michael, the clinic administrator, hears three planners argue about vaccine turnout before the signup portal opens. Before staffing blocks are posted, he has to decide whose estimate to use, so he asks each planner to write the odds behind attendance. The quietest estimate has the tightest range.",
+      "whatToDo": "Collect written odds before discussion continues. Compare the spread behind each attendance estimate, then set staffing blocks from the most defensible range.",
+      "whyItMatters": "Volume can masquerade as confidence. Written odds show which forecast carries evidence and which one is only a loud guess."
+    },
+    {
+      "exampleId": "ch03-ex05-olivia-pledge-sheet",
+      "title": "Olivia Lowers the Pledge Target",
+      "tags": [
+        "before_after",
+        "radio",
+        "fundraising"
+      ],
+      "planSpec": {
+        "domain": "local radio pledge-drive target",
+        "audience": "station managers and volunteers",
+        "stakes": "a boastful target changes ad spend and volunteer shifts",
+        "format": "before_after",
+        "requiredBeat": "Olivia sees that the pledge target becomes more honest after every volunteer must write the donation total they would plan staffing around."
+      },
+      "scenario": "Olivia watches one silent pass of the pledge sheet make the room's confidence shrink. On Monday night, volunteers cheer for a huge pledge-drive target while the ad spend cap, phone-bank schedule, and shift board sit beside the coffee urn. When each person writes the donation total they would actually staff around, the target drops by a third and the volunteer schedule finally matches the risk.",
+      "whatToDo": "Ask each volunteer to write the donation total they would plan staffing and ad spend around. Build the target from those priced commitments.",
+      "whyItMatters": "A rallying number costs nothing until it changes shifts and ads. The written totals reveal confidence the room will actually act on."
+    },
+    {
+      "exampleId": "ch03-ex06-mathieu-preorder-cartons",
+      "title": "Mathieu Counts the Unsigned Cartons",
+      "tags": [
+        "postmortem",
+        "bookstore",
+        "inventory"
+      ],
+      "planSpec": {
+        "domain": "independent bookstore preorder estimate for a visiting novelist",
+        "audience": "booksellers and event coordinators",
+        "stakes": "ordering too many signed copies traps cash in unsold stock",
+        "format": "postmortem",
+        "requiredBeat": "You ask Mathieu to compare his confident preorder claim with the number he would have ordered if his own margin had been on the line."
+      },
+      "scenario": "You are standing behind the register with three cartons of unsigned books at your feet on Sunday morning. Mathieu, the event coordinator, had told the owner that preorders would explode for the visiting novelist. The preorder list was modest, but his voice was certain. You ask him to compare that claim with the number he would have ordered if his own margin sheet had been on the line.",
+      "whatToDo": "Treat the margin-backed number as the priced forecast. If it is much lower than the spoken claim, reprice the order before accepting the forecast; confidence that someone would not stake their own margin on is enthusiasm, not evidence.",
+      "whyItMatters": "The unsold cartons show the cost of unpriced certainty. A margin-backed estimate would have exposed the difference between enthusiasm and confidence."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "Before a campaign forecast is accepted, the marketing lead has named no probability, time frame, or budget risk. What is the first calibration move?",
+        "choices": [
+          "Ask what confidence level and stake she would attach to that forecast.",
+          "Ask the team to list the biggest campaign risk before assigning any number.",
+          "Accept the forecast because certainty helps teams move faster."
+        ],
+        "correctIndex": 0,
+        "explanation": "The useful move prices the claim so the team can inspect it. Calling all confidence irresponsible overcorrects, and accepting tone as evidence leaves calibration undone.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Before ordering extra butter, the bakery manager hears that the new croissant flavor will sell out by noon every Saturday. What should she ask?",
+        "choices": [
+          "Whether she feels excited enough to promote the flavor loudly.",
+          "What quantity and confidence percentage she would plan the butter order around.",
+          "Whether a rival bakery has ever sold out of a similar pastry."
+        ],
+        "correctIndex": 1,
+        "explanation": "The order needs a priced belief: quantity and confidence. Excitement is not evidence, and rival sales may help only after the owner names her own estimate.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "During a budget meeting, Ben says 'wanna bet' with a grin whenever someone sounds unsure. People stop sharing weak evidence. What has gone wrong?",
+        "choices": [
+          "The group has made every belief measurable in a helpful way.",
+          "The phrase has become status pressure instead of calibration.",
+          "The group should use literal money so people take it seriously."
+        ],
+        "correctIndex": 1,
+        "explanation": "The tool has shifted into intimidation, which reduces truth. Literal money would make the status problem worse, and the scene is not producing honest measurement.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A clinic planner loudly predicts 400 vaccine appointments. Another planner quietly predicts 320 to 360 and names the signup assumptions. Which estimate is stronger?",
+        "choices": [
+          "The louder estimate because confidence signals knowledge.",
+          "The quiet range because it names confidence and the assumptions carrying it.",
+          "Neither estimate, because all appointment predictions are guesses."
+        ],
+        "correctIndex": 1,
+        "explanation": "The range has a price and supporting assumptions, so it can be tested. Loud delivery is only tone, and dismissing all forecasts blocks useful planning.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "When a founder writes 'we are safe through winter' on a cash slide, the finance lead replaces it with confidence bands tied to three unpaid invoices. Why is that stronger?",
+        "choices": [
+          "It makes the belief measurable and shows which evidence changes the runway.",
+          "It makes the slide sound less optimistic, which investors prefer.",
+          "It avoids taking a position on whether the company needs money."
+        ],
+        "correctIndex": 0,
+        "explanation": "Confidence bands reveal the priced belief and the evidence behind it. The point is not pessimistic tone or avoiding a position; it is measurable commitment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A friend keeps saying a job change would be a disaster. When asked what odds she would put on that, she says maybe 55 percent. What did the pricing reveal?",
+        "choices": [
+          "Her private language was more certain than her actual confidence.",
+          "The job change is now proven safe.",
+          "She should ignore the feeling because it was not above 80 percent."
+        ],
+        "correctIndex": 0,
+        "explanation": "The odds reveal that her internal certainty was inflated. They do not prove safety, and a 55 percent concern still deserves attention.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "For a visiting author event, the buyer asks what order quantity the event lead would defend if unsold stock came from his own bonus. Why does that help?",
+        "choices": [
+          "It pressures him to be less ambitious.",
+          "It turns enthusiasm into a stake-linked estimate the store can act on.",
+          "It guarantees the event lead will choose the correct order."
+        ],
+        "correctIndex": 1,
+        "explanation": "The bonus question makes the claim carry cost, which exposes real confidence. It does not guarantee correctness, and ambition is not the target.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A photographer tells couples rain never happens in June, but the archive shows two rainy Saturdays in ten years. Which contract language best matches calibrated belief?",
+        "choices": [
+          "A no-refund clause because rare events should be ignored.",
+          "Use the standard full-refund clause couples expect, since pricing rare rain may only complicate the contract.",
+          "A clause that prices rare rain risk and names the backup plan."
+        ],
+        "correctIndex": 2,
+        "explanation": "Rare risk still needs a price. Ignoring it overstates certainty, while a full refund may overreact beyond what the archive supports.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "In a volunteer room, cheers for an aggressive fundraising target quiet down after each person writes the staffing number they would defend. What improved?",
+        "choices": [
+          "Confidence became tied to commitments people would act on.",
+          "The room became less loyal to the cause.",
+          "The room now had a shared staffing standard for what the higher target would require."
+        ],
+        "correctIndex": 0,
+        "explanation": "The written numbers exposed real confidence behind the applause. Lowering the target does not mean less loyalty, and optimism can still help if it is priced.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A claim sounds certain but costs nothing. What should you ask it to name?",
+      "back": "Ask it to name a price: a probability, stake, quantity, or condition that shows how much confidence the speaker actually holds.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "When does 'wanna bet' help a conversation?",
+      "back": "It helps when it clarifies confidence and makes disagreement more measurable. It fails when it humiliates someone or turns calibration into a status contest.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Your self-talk says a choice will obviously fail. What is the retrieval move?",
+      "back": "Put odds on the claim. If your confidence drops when you have to name a probability, the original sentence was carrying more drama than evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why do confidence bands often beat one confident sentence?",
+      "back": "Bands show how belief changes with evidence. They let other people inspect the assumptions instead of arguing over whether the speaker sounds forceful.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A group applauds a big forecast. What should happen before planning around it?",
+      "back": "Each person should write the number or stake they would actually plan around. The gap between applause and commitment reveals the forecast's true strength.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Pricing Belief as a Measurable Claim",
+    "coreSkill": "You learn to convert confidence from tone into a measurable claim. The skill is pricing belief without turning the pricing into a social weapon.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If someone says a forecast is certain, then ask for the confidence percentage and the first condition that would lower it."
+      },
+      {
+        "context": "money",
+        "plan": "If you want to order inventory from a strong hunch, then write the quantity you would buy if your own margin carried the loss."
+      },
+      {
+        "context": "relationships",
+        "plan": "If your private story uses words like always or obviously, then assign a probability before you repeat it as fact."
+      },
+      {
+        "context": "planning",
+        "plan": "If a team is cheering for a target, then ask each person to write the number they would staff, budget, or schedule around."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one confident sentence you said today. Write the probability, stake, or condition that would make it honest enough to review later.",
+    "weeklyPractice": "Once a week, collect three claims you heard at work or home. Convert each one into a confidence level and note whether the price changed the conversation."
+  },
+  "memorableLines": [
+    {
+      "text": "The point is calibration, not swagger.",
+      "location": "breakdown.fastRead",
+      "why": "It protects the source idea from the common gambling or dominance misread."
+    },
+    {
+      "text": "Once the belief has a price, tone stops doing the work that evidence should do.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the chapter's mechanism in three memorable words."
+    },
+    {
+      "text": "Strong claims deserve a receipt. Not a weapon. A receipt.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the distinction between accountability and status pressure."
+    }
+  ]
+}

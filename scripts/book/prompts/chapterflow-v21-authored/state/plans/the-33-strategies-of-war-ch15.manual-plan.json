@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch15",
+  "number": 15,
+  "title": "Forcing Strategies: Control the Dynamic",
+  "coreMove": "Set the time, place, sequence, pace, and frame so the other side is answering your chosen terms.",
+  "sourcePressure": "Initiative means controlling the dynamic before the engagement appears to start; agenda and sequence are strategic tools.",
+  "chapterSpecificMisunderstanding": "Act aggressively just to feel in charge.",
+  "sourceAlignmentTerms": [
+    "forcing",
+    "initiative",
+    "terms",
+    "agenda control",
+    "sequence",
+    "pace",
+    "frame",
+    "ego reversal"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "John Boyd",
+      "detail": "historical-context.md links Boyd's OODA influence to both Strategy 14 and Strategy 15.",
+      "useIn": "deepRead",
+      "phrasingHint": "Boyd's shadow is in the pacing: the side that orients the room first often owns the choices the room sees."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for Forcing Strategies: Control the Dynamic.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nicolas",
+      "domain": "labor negotiation agenda",
+      "audience": "a reader facing labor negotiation agenda who needs to practice Strategy 15 without reducing it to act aggressively just to feel in charge.",
+      "stakes": "a concrete decision in labor negotiation agenda where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist sends the agenda first, places the decisive issue early, and forces the counterparty to respond inside that sequence rather than their preferred one. The visible action must happen inside labor negotiation agenda, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" Nicolas says, with the agenda draft still unopened.",
+      "mustInclude": [
+        "agenda draft",
+        "room seating map",
+        "one visible deadline tied to forcing"
+      ],
+      "mustAvoid": [
+        "Act aggressively just to feel in charge.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "board retreat sequence",
+      "audience": "a reader facing board retreat sequence who needs to practice Strategy 15 without reducing it to act aggressively just to feel in charge.",
+      "stakes": "a concrete decision in board retreat sequence where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist sends the agenda first, places the decisive issue early, and forces the counterparty to respond inside that sequence rather than their preferred one. The visible action must happen inside board retreat sequence, not as an abstract reflection.",
+      "firstImage": "The room seating map is damp at one corner when Antoine pulls it from the folder.",
+      "mustInclude": [
+        "room seating map",
+        "deadline notice",
+        "a named counterparty tied to forcing"
+      ],
+      "mustAvoid": [
+        "Act aggressively just to feel in charge.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "public hearing speaking order",
+      "audience": "a reader facing public hearing speaking order who needs to practice Strategy 15 without reducing it to act aggressively just to feel in charge.",
+      "stakes": "a concrete decision in public hearing speaking order where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist sends the agenda first, places the decisive issue early, and forces the counterparty to respond inside that sequence rather than their preferred one. The visible action must happen inside public hearing speaking order, not as an abstract reflection.",
+      "firstImage": "You are beside Vincent as the deadline notice makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "deadline notice",
+        "agenda draft",
+        "a public consequence tied to forcing"
+      ],
+      "mustAvoid": [
+        "Act aggressively just to feel in charge.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "vendor renewal deadline",
+      "audience": "a reader facing vendor renewal deadline who needs to practice Strategy 15 without reducing it to act aggressively just to feel in charge.",
+      "stakes": "a concrete decision in vendor renewal deadline where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist sends the agenda first, places the decisive issue early, and forces the counterparty to respond inside that sequence rather than their preferred one. The visible action must happen inside vendor renewal deadline, not as an abstract reflection.",
+      "firstImage": "It took Julien three weeks to notice the agenda draft was the part everyone kept avoiding.",
+      "mustInclude": [
+        "agenda draft",
+        "room seating map",
+        "a resource limit tied to forcing"
+      ],
+      "mustAvoid": [
+        "Act aggressively just to feel in charge.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "product demo choreography",
+      "audience": "a reader facing product demo choreography who needs to practice Strategy 15 without reducing it to act aggressively just to feel in charge.",
+      "stakes": "a concrete decision in product demo choreography where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist sends the agenda first, places the decisive issue early, and forces the counterparty to respond inside that sequence rather than their preferred one. The visible action must happen inside product demo choreography, not as an abstract reflection.",
+      "firstImage": "What changes when Olivier stops arguing and points to the room seating map?",
+      "mustInclude": [
+        "room seating map",
+        "deadline notice",
+        "a private decision rule tied to forcing"
+      ],
+      "mustAvoid": [
+        "Act aggressively just to feel in charge.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "coalition strategy meeting",
+      "audience": "a reader facing coalition strategy meeting who needs to practice Strategy 15 without reducing it to act aggressively just to feel in charge.",
+      "stakes": "a concrete decision in coalition strategy meeting where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist sends the agenda first, places the decisive issue early, and forces the counterparty to respond inside that sequence rather than their preferred one. The visible action must happen inside coalition strategy meeting, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the deadline notice before Hugo says a word.",
+      "mustInclude": [
+        "deadline notice",
+        "agenda draft",
+        "a reversal check tied to forcing"
+      ],
+      "mustAvoid": [
+        "Act aggressively just to feel in charge.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 15 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Set the time, place, sequence, pace, and frame so the other side is answering your chosen terms.",
+      "explain why the common misread fails: Act aggressively just to feel in charge.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next meeting, decide the first question, the order of issues, and the deadline you want the room to treat as normal.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

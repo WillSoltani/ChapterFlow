@@ -1,0 +1,204 @@
+{
+  "chapterId": "the-art-of-war-ch13",
+  "number": 13,
+  "title": "The Use of Spies",
+  "coreMove": "Pay for human foreknowledge before committing lives and resources to ignorance.",
+  "sourcePressure": "The source argues that a small outlay for intelligence prevents massive public loss, says foreknowledge comes from people rather than spirits or calculation, names five spy classes, values converted spies, secrecy, rewards, and historical servant-advisers behind dynastic rise.",
+  "chapterSpecificMisunderstanding": "Reducing spying to sneaky behavior, gossip, or data dashboards.",
+  "sourceAlignmentTerms": [
+    "foreknowledge",
+    "local spies",
+    "inward spies",
+    "converted spies",
+    "doomed spies",
+    "surviving spies",
+    "divine manipulation of the threads",
+    "I Chih",
+    "Lu Ya"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "five classes of spies",
+      "detail": "Local, inward, converted, doomed, and surviving spies each provide different access to enemy knowledge.",
+      "useIn": "both",
+      "phrasingHint": "Foreknowledge is not one channel; it is a system of people placed at different distances from the truth."
+    },
+    {
+      "kind": "person",
+      "name": "I Chih",
+      "detail": "The rise of the Yin dynasty is tied to I Chih, who had served under the Hsia.",
+      "useIn": "deepRead",
+      "phrasingHint": "I Chih matters because the decisive knowledge crossed from inside the old order into the new one."
+    },
+    {
+      "kind": "person",
+      "name": "Lu Ya",
+      "detail": "The rise of the Chou dynasty is tied to Lu Ya, who had served under the Yin.",
+      "useIn": "fullRead",
+      "phrasingHint": "Lu Ya carries the same warning: inside knowledge can move history when rulers are willing to value it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Kasia",
+      "domain": "retailer entering a new city without knowing local delivery constraints",
+      "audience": "expansion lead for a grocery delivery service",
+      "stakes": "a launch could fail because headquarters misunderstands apartment access and winter routes",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Snow piles against a back-lane gate while Kasia pays two local couriers to map the real entrances before signing launch volume.",
+      "firstImage": "snow against a back-lane gate",
+      "mustInclude": [
+        "courier interviews",
+        "building access notes",
+        "launch forecast"
+      ],
+      "mustAvoid": [
+        "generic market research survey"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "hospital board considering an expensive scheduling system",
+      "audience": "board member evaluating vendor claims",
+      "stakes": "buying blind could lock nurses into unusable workflows",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Who has used it on a bad Tuesday? Luke asks, then delays the vote until charge nurses from another hospital speak privately.",
+      "firstImage": "a demo tablet left on a boardroom chair",
+      "mustInclude": [
+        "vendor deck",
+        "nurse call list",
+        "contract lock-in"
+      ],
+      "mustAvoid": [
+        "generic software procurement"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "independent brewery negotiating with a distributor",
+      "audience": "brewery founder entering a new market",
+      "stakes": "bad distributor terms could bury the brand for three years",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What does the glossy sales forecast miss that a former route driver can tell you in ten minutes?",
+      "firstImage": "keg collars stacked near a loading dock",
+      "mustInclude": [
+        "route map",
+        "driver interview",
+        "territory clause"
+      ],
+      "mustAvoid": [
+        "generic beer branding story"
+      ]
+    },
+    {
+      "protagonistName": "Janek",
+      "domain": "city inspector investigating illegal short-term rentals",
+      "audience": "housing enforcement supervisor",
+      "stakes": "public listings reveal less than cleaners and doormen know",
+      "format": "audit",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:15 a.m., Janek compares permit data with doorman shift notes and cleaner invoices before sending inspectors.",
+      "firstImage": "a clipboard of cleaner invoices",
+      "mustInclude": [
+        "permit database",
+        "doorman notes",
+        "inspection schedule"
+      ],
+      "mustAvoid": [
+        "generic surveillance fantasy"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "pharmaceutical trial team selecting overseas sites",
+      "audience": "clinical operations director",
+      "stakes": "a site that looks strong on paper could hide recruitment shortcuts",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Paula one unusable data set to learn that the retired coordinator knew more than the feasibility questionnaire.",
+      "firstImage": "a rejected trial binder with sticky tabs",
+      "mustInclude": [
+        "coordinator call",
+        "audit finding",
+        "recruitment log"
+      ],
+      "mustAvoid": [
+        "generic medical research delay"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "renewable-energy developer assessing community opposition",
+      "audience": "project lead before filing permits",
+      "stakes": "formal hearings may reveal resistance too late to redesign the project",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Devon meet the snowplow contractor, diner owner, and retired township clerk before trusting the official map of support.",
+      "firstImage": "a township map under diner glass",
+      "mustInclude": [
+        "permit calendar",
+        "landowner list",
+        "clerk notes"
+      ],
+      "mustAvoid": [
+        "generic public consultation"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose human intelligence over speculation",
+      "distinguish types of informants by access",
+      "evaluate when refusing intelligence costs more than paying for it"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one high-stakes decision, name the person who actually knows the ground, then decide what trust, payment, or protection would let them tell you the truth.",
+  "readingTimeMinutes": 12
+}

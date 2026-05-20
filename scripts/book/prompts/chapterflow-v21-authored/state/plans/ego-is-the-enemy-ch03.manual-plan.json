@@ -1,0 +1,196 @@
+{
+  "chapterId": "ego-is-the-enemy-ch03",
+  "number": 3,
+  "title": "Become a student",
+  "coreMove": "Move from proving you are already formed to arranging yourself where correction can still reach you.",
+  "sourcePressure": "Aspire section: apprenticeship over self-certainty. Supported by frozen source sidecar.",
+  "chapterSpecificMisunderstanding": "Making studenthood sound like passive humility rather than active exposure to feedback and standards.",
+  "sourceAlignmentTerms": [
+    "student",
+    "apprenticeship",
+    "correction",
+    "teachable",
+    "practice",
+    "authority"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "No named person, study, place, or artifact is available in the frozen source sidecar for this chapter; use fictional scenarios only and do not invent source anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of student",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple student is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Charlotte",
+      "domain": "bakery production certification",
+      "audience": "a reader facing bakery production certification pressure who needs to practice chapter 3's move without turning it into student advice in general",
+      "stakes": "a concrete standard in bakery production certification will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "writes down the correction before defending the draft and changes one line while the reviewer is still present in the concrete setting of bakery production certification; make the lesson visible through action, not explanation",
+      "firstImage": "a cracked proof tray beside the certification sheet sits between Charlotte and the easiest explanation in the bakery production certification room.",
+      "mustInclude": [
+        "student",
+        "apprenticeship",
+        "bakery production"
+      ],
+      "mustAvoid": [
+        "do not turn this into student as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Amelia",
+      "domain": "library makerspace launch",
+      "audience": "a reader facing library makerspace launch pressure who needs to practice chapter 3's move without turning it into student advice in general",
+      "stakes": "a concrete standard in library makerspace launch will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "asks the newest technician to show the step she missed and repeats it until the error disappears in the concrete setting of library makerspace launch; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Amelia hears, with a rehearsal call sheet with three missing initials already on the table.",
+      "mustInclude": [
+        "student",
+        "apprenticeship",
+        "library makerspace"
+      ],
+      "mustAvoid": [
+        "do not turn this into student as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Alice",
+      "domain": "pharmacy residency rotation",
+      "audience": "a reader facing pharmacy residency rotation pressure who needs to practice chapter 3's move without turning it into student advice in general",
+      "stakes": "a concrete standard in pharmacy residency rotation will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "puts the failed attempt beside the master example and names the gap without softening it in the concrete setting of pharmacy residency rotation; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a supplier quote stapled to the wrong invoice makes the pressure in pharmacy residency rotation visible.",
+      "mustInclude": [
+        "student",
+        "apprenticeship",
+        "pharmacy residency"
+      ],
+      "mustAvoid": [
+        "do not turn this into student as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Lucy",
+      "domain": "climate data field station",
+      "audience": "a reader facing climate data field station pressure who needs to practice chapter 3's move without turning it into student advice in general",
+      "stakes": "a concrete standard in climate data field station will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "trades the expert seat for the practice station where mistakes are visible in the concrete setting of climate data field station; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Lucy's thumb stop over a rescue drill map folded to the missed checkpoint before the ego-favoring move happens.",
+      "mustInclude": [
+        "student",
+        "apprenticeship",
+        "climate data"
+      ],
+      "mustAvoid": [
+        "do not turn this into student as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Julia",
+      "domain": "legal aid intake desk",
+      "audience": "a reader facing legal aid intake desk pressure who needs to practice chapter 3's move without turning it into student advice in general",
+      "stakes": "a concrete standard in legal aid intake desk will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "keeps the question on the table after the room starts treating him as the authority in the concrete setting of legal aid intake desk; make the lesson visible through action, not explanation",
+      "firstImage": "It took Julia until the third review of an interpreter score sheet with the hesitation marks visible to see what ego had protected.",
+      "mustInclude": [
+        "student",
+        "apprenticeship",
+        "legal aid"
+      ],
+      "mustAvoid": [
+        "do not turn this into student as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Rebecca",
+      "domain": "film festival volunteer board",
+      "audience": "a reader facing film festival volunteer board pressure who needs to practice chapter 3's move without turning it into student advice in general",
+      "stakes": "a concrete standard in film festival volunteer board will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "builds the next rehearsal around the defect that embarrassed her instead of around what already looks polished in the concrete setting of film festival volunteer board; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when a lane-assignment clipboard with the early win highlighted becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "student",
+        "apprenticeship",
+        "film festival"
+      ],
+      "mustAvoid": [
+        "do not turn this into student as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish student from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Move from proving you are already formed to arranging yourself where correction can still reach you.",
+      "spot when a scenario has drifted into school nostalgia",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves student or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

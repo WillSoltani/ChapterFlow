@@ -1,0 +1,327 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch11",
+  "number": 11,
+  "title": "Availability Bias",
+  "readingTimeMinutes": 12,
+  "slug": "availability-bias",
+  "hook": "A fresh storm photo can redraw a whole risk map before the numbers arrive.",
+  "coreIdea": "Availability bias makes vivid, recent, or emotional examples feel more common or important because memory retrieves them first.",
+  "counterintuition": "The example you remember fastest is not necessarily the evidence that represents the situation best. A strong decision asks what the data would look like if memory were quieter.",
+  "tryThisNow": "Write the example that comes to mind first. Then find one base rate or log that represents the whole set.",
+  "keyTakeaway": "Treat easy recall as a warning light, then check representative evidence before deciding.",
+  "breakdown": {
+    "fastRead": "A storm track is still open on the diamond broker's screen when Rebecca reviews the first offer. Last week's flood story is everywhere, so one threatened mine feels like the whole market. The offer has not changed. Her memory has.\n\nAvailability bias appears when the mind mistakes easy recall for real weight. A vivid example comes forward quickly, so it feels frequent, likely, or decisive. Quiet evidence waits in the file.\n\nMemory is a loud clerk, not a fair sample.\n\nThe correction is to name the vivid example, then force a count, base rate, log, or comparison that covers the whole set.",
+    "deepRead": "The storm track on Rebecca's screen shows a red curve near a mining region. The buyer on the phone says prices will jump by Monday. Rebecca can picture the flooded road from a news clip. That image makes the first offer feel urgent, even though the supply report covers twenty mines and only one is near the storm.\n\nAvailability bias is not stupidity. It is a useful memory system doing a job too quickly. The mind brings up what is vivid, recent, emotional, or repeated. That helps when a smell warns you about smoke or a near miss changes how you cross a street. The problem starts when the easy example pretends to represent the whole pattern.\n\nA clear image can bully a dull table.\n\nThe practical move is to ask what kind of evidence would be less vivid but more representative. For Rebecca, that means production volume, alternate supply, shipment delays, and past storm price moves. For a safety team, it may mean incident logs instead of the crash everyone saw on video. For a manager, it may mean payroll records instead of the employee story that made the room angry.\n\nA language school shows the same mechanism with no storm at all. Patrick is holding a maintenance key after a student named Karina fails the advanced placement interview. The name makes him think of the letter K test: words beginning with K come to mind more easily than words where K sits third, even when the hidden count is larger. Patrick writes letter K on the key tag and checks the last fifty placements before lowering the level cutoff.\n\nRecall speed is not frequency.",
+    "fullRead": "The food bank loading bay smells of onions, diesel, and wet cardboard. Manon has a booking ledger for three trucks, and everyone is talking about the pantry that ran out of infant formula on Tuesday. The story is vivid because the volunteer cried on the phone. Manon writes risk map across the ledger before sending every truck to that pantry.\n\nThis bias builds a risk map from whatever memory can fetch quickly. Airplane crashes, tornadoes, shark attacks, and dramatic fires occupy more mental space than many quieter dangers because images and stories travel well. Meanwhile, routine shortages, chronic illnesses, falls, and small repeated failures can look smaller than they are because they do not arrive as a scene.\n\nTversky and Kahneman's work on availability made the pattern famous with the letter K: people could more easily think of words that start with K than words with K in the third position, so ease of recall pulled judgment away from the real count. That small puzzle shows a large habit. What comes to mind first feels like what happens most.\n\nWhat would the answer be if nothing vivid had happened this week?\n\nManon uses that question on the food bank ledger. The infant-formula story stays on the table. It matters. But she adds delivery counts, waitlists, missed routes, and age-group demand for every pantry. The truck plan changes. One truck goes to the Tuesday pantry, one to a site with a larger silent shortage, and one to a route that had missed two deliveries without a dramatic call.\n\nYou can feel the same pressure in a tenant meeting. You are holding a grant rubric when Diego tells the room about a ceiling collapse in one building. The story is awful and immediate. It also threatens to consume the entire repair budget. Diego marks vivid example on the rubric and asks for complaint severity, unit count, and inspection dates across all buildings before ranking repairs.\n\nThis pause can feel cold, especially when the case involves harm. It is not cold. It is how you prevent one visible injury from hiding ten less visible ones.\n\nThe trap is especially dangerous in operational risk because the memorable event often comes with faces, names, and blame. A crash with video feels bigger than a hundred near misses in a spreadsheet. A missed payroll bonus feels bigger when the angriest employee is in the room. A food shortage feels bigger when the caller cries. Those scenes deserve attention, but they do not deserve sole authority.\n\nSo give the vivid case a place, not the whole map. Write it down. Then ask for the boring evidence: counts, logs, base rates, denominators, and missed cases. If the vivid example is truly representative, the broader evidence will confirm it. If it is not, the broader evidence will keep your decision from chasing the easiest memory.",
+    "whyItMatters": "Availability bias turns memorable cases into false maps. Readers need to notice the vivid example and then demand evidence that represents the full set."
+  },
+  "examples": [
+    {
+      "exampleId": "ch11-ex01-rebecca-storm-track",
+      "title": "Rebecca Checks the Mine Count",
+      "tags": [
+        "scene",
+        "diamond",
+        "supply"
+      ],
+      "planSpec": {
+        "domain": "a diamond broker first offer applying Availability Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where availability could mislead them",
+        "stakes": "money and timing get misallocated if availability bias is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the storm track, names the availability risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The broker floor is loud at 8:50 a.m. as Rebecca studies a storm track beside the first diamond offer. A flood clip from one mining road is still playing on the wall screen. Before accepting the price jump, she must decide whether the available story represents supply, so she writes availability on the storm track.",
+      "whatToDo": "Check production volume, alternate mines, and past storm delays before treating the first offer as urgent.",
+      "whyItMatters": "The flood story is vivid, but it may not represent the market. The count of affected supply has to beat the image in memory."
+    },
+    {
+      "exampleId": "ch11-ex02-patrick-maintenance-key",
+      "title": "Patrick Counts Placements Before Cutting",
+      "tags": [
+        "vignette",
+        "language-school",
+        "placement"
+      ],
+      "planSpec": {
+        "domain": "a language school level placement applying Availability Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where letter K could mislead them",
+        "stakes": "student progress and credibility get misallocated if availability bias is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the maintenance key, names the letter K risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"Karina froze in the advanced interview,\" the teacher says as Patrick clips a maintenance key back onto the language-school board. The failed interview is fresh, and the staff wants to lower the cutoff. Patrick has to choose whether one easy-to-recall student should guide the rule, so he writes letter K on the key tag.",
+      "whatToDo": "Review the last fifty placements, pass rates, and later transfers before changing the cutoff. Use the remembered student as a prompt, not as the count.",
+      "whyItMatters": "The letter K reminder keeps ease of recall separate from frequency. One vivid placement failure should not rewrite the level system."
+    },
+    {
+      "exampleId": "ch11-ex03-manon-booking-ledger",
+      "title": "Manon Rebuilds the Truck Map",
+      "tags": [
+        "dialogue",
+        "food-bank",
+        "allocation"
+      ],
+      "planSpec": {
+        "domain": "a food bank truck allocation applying Availability Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where risk map could mislead them",
+        "stakes": "scarce food and trust get misallocated if availability bias is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the booking ledger, names the risk map risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Wet cardboard softens under Manon's shoes in the loading bay as she opens the booking ledger. \"The Tuesday pantry ran out of formula,\" a volunteer says. The call was painful. Manon marks risk map and has to choose: send every truck there or compare waitlists, missed routes, and age-group demand.",
+      "whatToDo": "Allocate trucks from the full ledger while still addressing the Tuesday shortage. Let the whole demand map shape the route.",
+      "whyItMatters": "The vivid call matters, but it can crowd out quieter shortages. A risk map built from logs protects more people."
+    },
+    {
+      "exampleId": "ch11-ex04-diego-grant-rubric",
+      "title": "Diego Puts the Collapse in the Rubric",
+      "tags": [
+        "decision",
+        "housing",
+        "repairs"
+      ],
+      "planSpec": {
+        "domain": "a tenant-complaint meeting applying Availability Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where vivid example could mislead them",
+        "stakes": "repair money and tenant safety get misallocated if availability bias is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the grant rubric, names the vivid example risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are in the municipal chamber at 6:20 p.m. holding the grant rubric when Diego, the housing officer, describes a ceiling collapse in Building C. The room goes silent. The story is vivid enough to swallow the repair list. Before the vote, Diego must decide whether to fund the loudest case first or score all buildings by severity, unit count, and inspection date.",
+      "whatToDo": "Place the collapse inside the rubric and rank it with the full complaint and inspection record. Do not let vividness replace triage.",
+      "whyItMatters": "A vivid example deserves urgency, but it still needs comparison. The rubric keeps memory from becoming the whole budget."
+    },
+    {
+      "exampleId": "ch11-ex05-alice-fuel-receipt",
+      "title": "Alice Finds the Quiet Hotspot",
+      "tags": [
+        "predict",
+        "bike-share",
+        "crashes"
+      ],
+      "planSpec": {
+        "domain": "a bike-share crash hotspot review applying Availability Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where operational risk could mislead them",
+        "stakes": "safety work gets misallocated if availability bias is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the fuel receipt, names the operational risk risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Alice two crash photos at the 7:15 a.m. bike-share depot review to notice the fuel receipt was the only dull object in the packet. The Harbour Street photos were everywhere online. The receipt came from a van that serviced a less visible hill route. As operations analyst, Alice marks operational risk on the receipt and must decide whether photos or incident density choose the next fix.",
+      "whatToDo": "Map crashes per ride and service history by route before assigning crews. Use the viral photos as a signal to inspect, not as the risk map.",
+      "whyItMatters": "Public images can make one hotspot feel dominant. Operational risk lives in rates, exposure, and repeated near misses."
+    },
+    {
+      "exampleId": "ch11-ex06-karim-prototype",
+      "title": "Karim Audits the Bonus Story",
+      "tags": [
+        "postmortem",
+        "payroll",
+        "bonus"
+      ],
+      "planSpec": {
+        "domain": "a payroll bonus test applying Availability Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where bias could mislead them",
+        "stakes": "pay fairness and morale get misallocated if availability bias is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the prototype, names the bias risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which bonus rule failed, the prototype or the story everyone remembered? Karim answers after payroll closes by putting the prototype form beside the complaint log. One angry supervisor's example had dominated the test. Karim marks bias on the prototype and rebuilds the next bonus review from all missed payouts.",
+      "whatToDo": "Count every missed payout by role, shift, and rule condition before changing the bonus design. Keep the loud complaint in the set, not above it.",
+      "whyItMatters": "The remembered complaint may expose a real flaw. It still cannot represent the whole payroll system until the count supports it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a availability-bias case, a manager changes a safety plan after watching one dramatic accident video, even though she has not checked incident logs, what is the availability-bias risk?",
+        "choices": [
+          "The vivid video may feel representative before the full pattern is checked.",
+          "Video even though gives a practical reason for watching dramatic accident; what vivid representative belongs after checked incident logs clarifies the result.",
+          "Though checked incident makes after watching dramatic look credible; use accident video even first and revisit logs what vivid when representative full availability shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The video may matter, but vividness is not frequency. Logs reveal whether the scene represents the wider risk.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Availability Bias makes availability-bias case feel more decisive than the record supports, and that misprices manager changes in this scene. The correct move keepss the choice by the vivid video may feel representative before the full pattern is checked."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a availability-bias review, a parent hears two stories about school bus delays and assumes delays are common, the district has monthly route data available. What should the parent check?",
+        "choices": [
+          "Availability-bias parent hears looks strong enough to guide stories about school; delays assumes common can wait unless district monthly route changes the stakes.",
+          "The route data and delay rate, while keeping the stories as prompts.",
+          "Monthly route data makes about school delays look credible; use assumes common district first and revisit available what check when delay rate keeping shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The stories are easy to recall, but the route data represents the pattern. The correction is representative evidence, not contempt for memory.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Availability Bias works by letting availability-bias parent crowd out hears stories, which can misreads the about school decision. The route data and delay rate, while keeping the stories as prompts keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When availability-bias pressure appears, a hospital team fears a rare drug reaction after a recent case. The medication also prevents many common complications. Which move best avoids availability bias?",
+        "choices": [
+          "Also prevents many supports a narrower read of hospital team fears; keep rare drug reaction central and leave after recent medication aside.",
+          "Compare reaction rates, prevented complications, and patient risk groups before changing protocol.",
+          "Complications move best fits the immediate pressure around drug reaction after; hold team fears rare steady and test pressure appears hospital later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The recent case deserves attention, but protocol should follow rates and tradeoffs. Ignoring the case or letting it dominate both fail.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Availability Bias turns appears hospital into a shortcut, so the room can overweights team fears while missing rare drug. Compare reaction rates, prevented complications, and patient risk groups before changing protocol protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After availability-bias risk surfaces, a fundraiser remembers one donor who hated text messages and wants to cancel all text outreach, past campaigns show strong text response in two segments. What should happen?",
+        "choices": [
+          "Remembers donor hated gives a practical reason for availability-bias surfaces fundraiser; cancel outreach past belongs after text messages wants clarifies the result.",
+          "Hated text messages makes after availability-bias surfaces look credible; use fundraiser remembers donor first and revisit wants cancel outreach when past campaigns show shifts.",
+          "Treat the upset donor as a vivid example and compare response data by segment."
+        ],
+        "correctIndex": 2,
+        "explanation": "The donor complaint is a useful warning, not the whole sample. Segment data shows whether the memory represents the audience.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Availability Bias would push the fundraiser remembers case toward donor hated, creating a cost when text messages stays untested. The useful guardrail is to treat the upset donor as a vivid example and compare response data by segment."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If availability-bias reasoning takes over, a city council spends most of a meeting on a dramatic pothole photo from one street. Several less visible streets have higher injury reports. Which correction fits?",
+        "choices": [
+          "Rank repairs by injury reports, traffic exposure, and road condition while still logging the photographed pothole.",
+          "Several less visible supports a narrower read of reasoning city council; keep spends meeting dramatic central and leave pothole photo street aside.",
+          "Visible streets higher points toward a quicker call on council spends meeting; let availability-bias reasoning city stand until street several less contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The photo made one case available, but injury reports and exposure represent the wider repair need. Photos can stay if they do not replace the map.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Availability Bias converts council spends into the loudest signal, which can rushes meeting dramatic before pothole photo is checked. The better answer separatess attention on rank repairs by injury reports, traffic exposure, and road condition while still logging the photographed."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While availability-bias pressure builds, a news story about an airplane emergency, a traveler believes flying is suddenly much more dangerous. What evidence would best test the belief?",
+        "choices": [
+          "Much dangerous what supports a narrower read of news story about; keep airplane emergency traveler central and leave believes flying suddenly aside.",
+          "Flight safety rates over time and comparable travel risks.",
+          "Test belief flight fits the immediate pressure around emergency traveler believes; hold story about airplane steady and test pressure builds news later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The footage is memorable, but rates over time test actual risk. Friends remembering the story only confirms availability.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Availability Bias hides inside the availability-bias pressure choice because availability-bias pressure seems sufficient, yet the cost lands in availability-bias pressure. Flight safety rates over time and comparable travel risks brings the availability-bias pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the availability-bias call, a supervisor redesigns a bonus rule after one loud complaint. Later, payroll records show the issue affected one role but missed payouts happened elsewhere. What went wrong?",
+        "choices": [
+          "The loud complaint was treated as the whole payroll risk map.",
+          "Role missed payouts points toward a quicker call on rule after loud; let supervisor redesigns bonus stand until show issue affected contradicts it.",
+          "Payouts happened elsewhere fits the immediate pressure around loud complaint payroll; hold bonus rule after steady and test call supervisor redesigns later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The complaint revealed one issue, but it did not represent every missed payout. Availability bias made the loud case set the map.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Availability Bias pressures the call supervisor decision toward the easy reading of call supervisor. That can inflates the real cost unless the choice is grounded in the loud complaint was treated as the whole payroll risk map."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "While reviewing a product launch remembers three angry cancellation calls and wants to rebuild onboarding. The full cancellation survey shows most users left after a billing failure. What should the team conclude?",
+        "choices": [
+          "Rebuild onboarding full makes remembers three angry look credible; use cancellation calls wants first and revisit survey shows users when left after billing shifts.",
+          "Full survey shows supports a narrower read of launch remembers three; keep angry cancellation calls central and leave wants rebuild onboarding aside.",
+          "The angry calls are vivid, but billing data better represents the main loss point."
+        ],
+        "correctIndex": 2,
+        "explanation": "The calls may reveal pain, but the survey identifies the broader cause. The correction keeps vivid stories in the set while following representative evidence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Availability Bias is the mechanism here: memorable cases feel more common than they are, so launch remembers can overpower launch remembers. The angry calls are vivid, but billing data better represents the main loss point keeps the scenario from becoming."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two availability-bias signals compete: a public-health team must allocate outreach after one memorable heatstroke case in a park. Data shows more cases in isolated apartments. What recommendation best avoids availability bias?",
+        "choices": [
+          "Shows cases isolated supports a narrower read of public-health team allocate; keep outreach after memorable central and leave heatstroke park data aside.",
+          "Allocate outreach by case rates and exposure data, while still reviewing the park incident.",
+          "What recommendation best fits the immediate pressure around after memorable heatstroke; hold team allocate outreach steady and test signals compete public-health later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The park case belongs in the review, but allocation should follow the full risk map. Ignoring it or letting it dominate both distort the decision.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Availability Bias makes the public-health team evidence look cleaner than it is, risking a public-health team mistake in this setting. The answer protects public-health team by asking for allocate outreach by case rates and exposure data, while still reviewing the."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "A vivid story comes to mind first. What should you ask before acting?",
+      "back": "Ask what count, base rate, log, or comparison would represent the full set."
+    },
+    {
+      "front": "Why does availability bias distort risk?",
+      "back": "Memory retrieves vivid, recent, or emotional cases quickly, so they feel more common than they may be."
+    },
+    {
+      "front": "A dramatic complaint dominates a meeting. What is the corrective move?",
+      "back": "Put the complaint into the full record and check whether it represents the pattern."
+    },
+    {
+      "front": "What does the letter K example teach?",
+      "back": "Ease of recall can mislead frequency judgment. What comes to mind faster is not always more common."
+    },
+    {
+      "front": "When is a memorable example useful?",
+      "back": "It is useful as a prompt to investigate. It becomes dangerous when it replaces representative evidence."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to treat memorable examples as prompts and then check representative evidence before changing a risk map, budget, or rule.",
+    "ifThenPlans": [
+      {
+        "context": "risk",
+        "plan": "If a recent incident dominates my judgment, then I will ask for the rate or log that shows whether it represents the whole risk."
+      },
+      {
+        "context": "meetings",
+        "plan": "If one story makes the room emotional, then I will write it down and request the count of similar and opposite cases before voting."
+      },
+      {
+        "context": "buying",
+        "plan": "If a review or story is easy to remember, then I will compare it with aggregate failure rates before changing my choice."
+      },
+      {
+        "context": "operations",
+        "plan": "If a visible failure pulls resources toward one site, then I will check exposure, backlog, and incident counts across all sites first."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, catch one decision driven by a memorable example. Write the example, then find one count or base rate before acting.",
+    "weeklyPractice": "Once this week, review a risk you may be overestimating or underestimating and rebuild it from logs instead of memory."
+  },
+  "memorableLines": [
+    {
+      "text": "Memory is a loud clerk, not a fair sample.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the bias vivid without turning memory into the enemy."
+    },
+    {
+      "text": "A clear image can bully a dull table.",
+      "location": "breakdown.deepRead",
+      "why": "It captures why vivid examples overpower representative evidence."
+    },
+    {
+      "text": "Recall speed is not frequency.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader the core correction in five words."
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "chapterId": "extreme-ownership-ch07",
+  "number": 7,
+  "title": "Simple",
+  "coreMove": "compress the plan until the people under pressure can repeat the intent, sequence, and constraints from memory",
+  "sourcePressure": "Overcomplicated plans and explanations collapse under pressure; simple plans survive chaos because people can understand and execute them.",
+  "chapterSpecificMisunderstanding": "simple means dumbed down or underplanned",
+  "sourceAlignmentTerms": [
+    "simple",
+    "clarity",
+    "pressure test",
+    "explainability",
+    "frontline execution",
+    "not shallow"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "campground wildfire evacuation notice for weekend campers",
+      "audience": "a park superintendent whose draft plan has six color-coded zones",
+      "stakes": "families may not remember the route when smoke lowers visibility",
+      "format": "before_after",
+      "requiredBeat": "the superintendent replaces the color code with three named exits, has a seasonal ranger repeat the plan back, and cuts any step the ranger cannot say cleanly",
+      "firstImage": "ash flecks land on a laminated campground map at the ranger kiosk",
+      "mustInclude": [
+        "campground map",
+        "three named exits",
+        "repeat-back test"
+      ],
+      "mustAvoid": [
+        "oversimplifying into vague stay safe advice"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "pharmacy recall instruction for a crowded neighborhood counter",
+      "audience": "a pharmacist explaining a medication recall to technicians and patients",
+      "stakes": "confusing directions can send patients home with the wrong bottles",
+      "format": "scene",
+      "requiredBeat": "the pharmacist rewrites the recall into three bins and one patient sentence, then asks the newest tech to process a sample return",
+      "firstImage": "You are close enough to see this: orange recall stickers scatter beside three empty plastic bins.",
+      "mustInclude": [
+        "orange recall stickers",
+        "three bins",
+        "sample return"
+      ],
+      "mustAvoid": [
+        "medical jargon lecture"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "software incident runbook during a payment outage",
+      "audience": "an incident commander with engineers arguing over twelve tabs of instructions",
+      "stakes": "customers cannot pay while the team debates which procedure applies",
+      "format": "decision_point",
+      "requiredBeat": "the commander closes the extra tabs, names one rollback path, one customer message, and one owner for each, then has the room repeat it",
+      "firstImage": "The first thing you register is physical: checkout error graph spikes red beside twelve open browser tabs.",
+      "mustInclude": [
+        "checkout error graph",
+        "one rollback path",
+        "repeat-back"
+      ],
+      "mustAvoid": [
+        "technical complexity as intelligence"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "wedding venue rain switch with an anxious couple waiting",
+      "audience": "an event captain leading servers, florist, and musicians",
+      "stakes": "a complex contingency sheet can collapse during the thirty-minute weather pivot",
+      "format": "dialogue",
+      "requiredBeat": "the captain cuts the rain plan to aisle, chairs, music, and guest path, assigns one owner to each, and refuses a decorative change that would confuse the move",
+      "firstImage": "\"Hold there,\" someone says. Raindrops darken the edge of a printed seating chart on the ceremony table.",
+      "mustInclude": [
+        "printed seating chart",
+        "guest path",
+        "four owners"
+      ],
+      "mustAvoid": [
+        "event-planning chaos comedy"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "scuba certification emergency ascent drill",
+      "audience": "a dive instructor with nervous students overloaded by safety detail",
+      "stakes": "students must remember the emergency sequence underwater",
+      "format": "predict_reveal",
+      "requiredBeat": "the instructor reduces the drill to stop, signal, breathe, ascend, then has each student demonstrate it with a pressure gauge before entering open water",
+      "firstImage": "Later, the team will trace the lesson back to this: pressure gauge needle rests in the red while fins slap against the dock.",
+      "mustInclude": [
+        "pressure gauge",
+        "four-word sequence",
+        "dock demonstration"
+      ],
+      "mustAvoid": [
+        "reckless underwater drama"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "animal shelter intake after a hoarding seizure",
+      "audience": "a shelter director with volunteers facing thirty incoming cats",
+      "stakes": "unclear intake steps can lose medical notes and separate bonded animals",
+      "format": "vignette",
+      "requiredBeat": "the director replaces a long intake packet with four station cards, walks the first carrier through them, and stops when a volunteer cannot explain station three",
+      "firstImage": "What changes once this is in front of everyone: cardboard cat carrier scratches against a folding intake table?",
+      "mustInclude": [
+        "four station cards",
+        "carrier tag",
+        "station-three repeat"
+      ],
+      "mustAvoid": [
+        "generic volunteer overload"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "compress a plan without stripping the essential constraints",
+      "use repeat-back as the pressure test for simplicity",
+      "reject impressive complexity that frontline people cannot execute"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take a plan you own and reduce it to intent, three steps, and two limits; ask someone new to repeat it back.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

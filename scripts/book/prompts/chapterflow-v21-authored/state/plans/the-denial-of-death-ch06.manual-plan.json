@@ -1,0 +1,197 @@
+{
+  "chapterId": "the-denial-of-death-ch06",
+  "number": 6,
+  "title": "The Problem of Freud's Character, Noch Einmal",
+  "coreMove": "hold admiration and critique together by seeing how a thinker's character can shape both insight and blindness",
+  "sourcePressure": "Revisits Freud as a major psychological force whose own character narrowed parts of his theory.",
+  "chapterSpecificMisunderstanding": "The chapter is either a takedown of Freud or a defense of Freud.",
+  "sourceAlignmentTerms": [
+    "Freud",
+    "character",
+    "insight",
+    "limitation",
+    "reduction",
+    "method",
+    "defended style"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Sigmund Freud",
+      "detail": "the source sidecar supports treating Freud as both a major psychological insight and a thinker whose own character narrowed parts of his vision",
+      "useIn": "both",
+      "phrasingHint": "Freud can be right enough to change psychology and defended enough to miss what his own style would not let him see."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first mortality hook",
+      "generic fear controls your life opener",
+      "chapter 6 as essay preview"
+    ],
+    "counterintuition": [
+      "what looks like X is actually Y",
+      "you think this is about fear but it is about meaning",
+      "not weakness but strength correction shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on death",
+      "write three things you fear",
+      "generic notice your reaction prompt"
+    ],
+    "examples": [
+      "office meeting with mug scene shell",
+      "kitchen-table epiphany",
+      "classroom whiteboard morality tale",
+      "timestamp plus name plus prop opener"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "biography seminar on scientific founders",
+      "audience": "student balancing genius and blind spots",
+      "stakes": "critique greatness without needing to destroy it",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Laura draws two columns for Freud: what the method opened and what the character narrowed",
+      "firstImage": "chalk dust under a seminar board",
+      "mustInclude": [
+        "photocopied essay",
+        "chalk columns",
+        "signup sheet"
+      ],
+      "mustAvoid": [
+        "Freud trivia",
+        "generic Freud lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "hospital morbidity review",
+      "audience": "senior doctor with decisive style",
+      "stakes": "show one structure producing saves and misses",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ben marks where speed saved the patient and where the same speed skipped a nurse warning",
+      "firstImage": "curled waveform printout",
+      "mustInclude": [
+        "case timeline",
+        "morbidity binder",
+        "nurse note"
+      ],
+      "mustAvoid": [
+        "culture-war psychoanalysis",
+        "generic Freud lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "documentary edit suite",
+      "audience": "director cutting a complicated subject",
+      "stakes": "hold admiration and critique in the same edit",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Etienne keeps the brave scene and the harmful scene in the same cut",
+      "firstImage": "audio monitors under dialogue",
+      "mustInclude": [
+        "timeline markers",
+        "release form",
+        "hard drive"
+      ],
+      "mustAvoid": [
+        "Freud trivia",
+        "generic Freud lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "venture capital partner memo",
+      "audience": "investor judging a brilliant defensive founder",
+      "stakes": "separate useful obsession from blind reduction",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anke writes the memo in two truths and tests both in diligence calls",
+      "firstImage": "term sheet with margin notes",
+      "mustInclude": [
+        "reference grid",
+        "demo link",
+        "term sheet"
+      ],
+      "mustAvoid": [
+        "culture-war psychoanalysis",
+        "generic Freud lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "restoration workshop",
+      "audience": "craft master hiding fear of dependence",
+      "stakes": "see excellence and isolation from the same defended style",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Diego watches an apprentice repair the joint correctly and does not retake the tool",
+      "firstImage": "wood shavings around a clamp",
+      "mustInclude": [
+        "chair leg",
+        "glue pot",
+        "checklist"
+      ],
+      "mustAvoid": [
+        "Freud trivia",
+        "generic Freud lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "public policy field visit",
+      "audience": "analyst whose model explains too much",
+      "stakes": "notice reduction as a character-shaped method",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hadiya adds a field visit to the model that made messy people disappear",
+      "firstImage": "model output on a train tray",
+      "mustInclude": [
+        "field notebook",
+        "regression table",
+        "bus pass"
+      ],
+      "mustAvoid": [
+        "culture-war psychoanalysis",
+        "generic Freud lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply hold admiration and critique together by seeing how a thinker's character can shape both insight and blindness in a fresh scenario",
+      "avoid the weak version: The chapter is either a takedown of Freud or a defense of Freud.",
+      "explain choices using Freud, character, insight"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one person you admire or reject and list one insight their character enabled and one thing it narrowed.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

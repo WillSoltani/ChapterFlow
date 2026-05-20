@@ -1,0 +1,125 @@
+{
+  "bookId": "superforecasting",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "superforecasting-ch01",
+      "title": "An Optimistic Skeptic",
+      "sourcePressure": "The chapter contrasts Tom Friedman's famous-but-inaccurate forecasting against Bill Flack's obscure-but-accurate one, then cites Tetlock's 1984–2004 expert study to show that prestige and predictive accuracy routinely diverge. It closes with Bouazizi and the Arab Spring to mark genuine limits — some outcomes resist prediction not because the forecaster is careless but because the system is chaotic.",
+      "coreMove": "Separate prestige signals from track-record evidence, and apply the same skepticism to your own confident explanations.",
+      "commonMisread": "A generic 'experts are often wrong, trust yourself instead' — the chapter argues for disciplined measurement of accuracy, not populist anti-expertise.",
+      "mustUseTerms": ["optimistic skeptic", "chance-level", "Good Judgment Project", "forecast-measure-revise", "track record", "black swan limit"],
+      "mustNotDriftInto": ["generic anti-expert cynicism", "political commentary on specific geopolitics", "cheerleading for amateurs over professionals"]
+    },
+    {
+      "number": 2,
+      "chapterId": "superforecasting-ch02",
+      "title": "Illusions of Knowledge",
+      "sourcePressure": "The chapter attacks a specific cognitive error: coherence masquerading as proof. Archie Cochrane pushed medicine toward randomized testing because professional confidence was accepted as sufficient evidence; he was then harmed by the same error when a specialist delivered certainty before pathology results arrived.",
+      "coreMove": "Catch the moment a coherent explanation stops feeling like a hypothesis and starts feeling like settled fact.",
+      "commonMisread": "A generic 'list your cognitive biases' chapter — the real lesson is narrower: confident-sounding explanations can change your inner posture before evidence has earned that certainty.",
+      "mustUseTerms": ["illusion of knowledge", "explanatory overreach", "evidence", "confidence", "revision", "randomized testing", "proportionality"],
+      "mustNotDriftInto": ["medical malpractice framing", "comprehensive bias taxonomy", "generic skepticism about all expert knowledge"]
+    },
+    {
+      "number": 3,
+      "chapterId": "superforecasting-ch03",
+      "title": "Keeping Score",
+      "sourcePressure": "Vague probability language (likely, significant) allows different people to hear different odds and prevents later evaluation. Sherman Kent pushed for numerical probability in intelligence. Calibration, resolution, and Brier scoring make judgment visible. Foxes outperform hedgehogs once there is a scoreboard.",
+      "coreMove": "Turn a vague hedge word into a specific number so the claim can be checked when the outcome arrives.",
+      "commonMisread": "A 'quantify everything' or data-science methodology lecture — the real lesson is that numerical language changes the forecaster's own cognition by forcing a claim into a form that can meet reality.",
+      "mustUseTerms": ["calibration", "resolution", "Brier score", "Sherman Kent", "hedgehog", "fox", "aggregation", "numerical probability"],
+      "mustNotDriftInto": ["statistics textbook content", "CIA history beyond Kent", "generic precision-vs-accuracy lecture"]
+    },
+    {
+      "number": 4,
+      "chapterId": "superforecasting-ch04",
+      "title": "Superforecasters",
+      "sourcePressure": "The Iraq WMD case illustrates question substitution — the hard question (does he have WMDs?) got replaced by the easier proxy (does his behavior resemble concealment?). Robert Jervis shows the judgment could be understandable yet still overconfident. IARPA and the Good Judgment Project then demonstrate that volunteers using probabilities and aggregation beat intelligence professionals. Doug Lorch anchors the skill-vs-luck argument with sustained accurate performance.",
+      "coreMove": "Stay on the hard forecasting question and resist the slide to an easier proxy that merely feels answerable.",
+      "commonMisread": "A generic 'use smart processes' lesson — the precise move is identifying and refusing the substitution that lets you feel confident while answering the wrong question.",
+      "mustUseTerms": ["question substitution", "bait-and-switch", "Good Judgment Project", "IARPA", "Doug Lorch", "regression to the mean", "skill versus luck"],
+      "mustNotDriftInto": ["Iraq war political history", "general intelligence analysis methodology", "generic tournament-competition framing"]
+    },
+    {
+      "number": 5,
+      "chapterId": "superforecasting-ch05",
+      "title": "Supersmart?",
+      "sourcePressure": "The chapter cuts the genius myth. Enrico Fermi's piano-tuner decomposition turns impossible-feeling questions into estimable components. Bill Flack's Arafat case shows the outside view and base rates overriding a vivid narrative. Need for cognition, openness, and self-critical thinking explain why some smart people become adaptable forecasters while others become prisoners of their first theory.",
+      "coreMove": "Break the problem into parts small enough to estimate, anchor each part on a base rate, and only then adjust for what you know specifically about this case.",
+      "commonMisread": "A 'be curious and open-minded' pep talk — the real move is mechanical: decompose, reference-class, adjust, recombine.",
+      "mustUseTerms": ["Fermi decomposition", "outside view", "base rate", "need for cognition", "openness to experience", "self-critical thinking", "intelligence versus genius"],
+      "mustNotDriftInto": ["IQ debate", "genius mythology", "generic praise for intellectual curiosity"]
+    },
+    {
+      "number": 6,
+      "chapterId": "superforecasting-ch06",
+      "title": "Superquants?",
+      "sourcePressure": "The bin Laden estimate spread shows that serious decision-makers face a range of coexisting probabilities, not one clean answer. Epistemic uncertainty can shrink with better information; aleatory uncertainty cannot. Barbara Mellers on granularity and Tim Minto's small updates show that finer probability discrimination, not mathematical sophistication, is the real edge.",
+      "coreMove": "Express your uncertainty as a calibrated range that stays honest about what type of unknown you face — the kind that more evidence could shrink, or the kind that won't.",
+      "commonMisread": "A 'use math for predictions' lesson — the precise point is that raw numeracy is not the advantage; probabilistic honesty and granularity are.",
+      "mustUseTerms": ["probabilistic thinking", "epistemic uncertainty", "aleatory uncertainty", "granularity", "calibrated openness", "update size", "probability range"],
+      "mustNotDriftInto": ["statistics tutorial", "advanced math showcase", "bin Laden raid blow-by-blow narrative"]
+    },
+    {
+      "number": 7,
+      "chapterId": "superforecasting-ch07",
+      "title": "Supernewsjunkies?",
+      "sourcePressure": "Superforecasters' early forecasts were already stronger before updates arrived — the advantage is not information volume. Bill Flack's Arafat revision (60% to 65%) shows proportionate movement on a meaningful but limited signal. Underreaction preserves old stories too stubbornly; overreaction grants excessive power to new information. The dilution effect shows abundance disguising noise as diagnostic value. Tim Minto's many small updates beat long inertia followed by dramatic correction.",
+      "coreMove": "Size each revision to match the actual strength of the new signal, not the emotional salience of how it arrived.",
+      "commonMisread": "A 'stay informed' or 'update your views more' chapter — the precise lesson is about update sizing and proportionality, not update frequency.",
+      "mustUseTerms": ["proportionate revision", "dilution effect", "underreaction", "overreaction", "signal strength", "update discipline", "Tim Minto"],
+      "mustNotDriftInto": ["media criticism", "information diet advice", "generic Bayesian tutorial"]
+    },
+    {
+      "number": 8,
+      "chapterId": "superforecasting-ch08",
+      "title": "Perpetual Beta",
+      "sourcePressure": "Superforecasters stay revisable through growth mindset, precise records, and active resistance to hindsight bias. Ambiguous language weakens the original record; hindsight bias rewrites the earlier uncertainty after the outcome. Perpetual beta means keeping the self open to feedback that can still hurt — not cheerful positivity but rigorous self-revision.",
+      "coreMove": "Treat each past forecast as auditable evidence about your own thinking process, not a reputation to manage — keep the record precise enough to check.",
+      "commonMisread": "A 'have a growth mindset' pep talk — the chapter's specific mechanism is about making records precise enough to survive hindsight and seeking feedback rather than evading it.",
+      "mustUseTerms": ["perpetual beta", "growth mindset", "hindsight bias", "feedback", "self-improvement", "trial and error", "auditable record"],
+      "mustNotDriftInto": ["generic self-help", "positive thinking", "productivity system advice"]
+    },
+    {
+      "number": 9,
+      "chapterId": "superforecasting-ch09",
+      "title": "Superteams",
+      "sourcePressure": "Superteams are not defined by harmony. Their advantage comes from keeping disagreement alive long enough to improve the shared estimate. Groupthink is the central danger. Psychologically safe pushback and aggregation of multiple views before convergence are the mechanism. Dissent voiced early protects the room from larger misses later.",
+      "coreMove": "Preserve disagreement long enough for it to improve the collective estimate before the group settles on one answer.",
+      "commonMisread": "A 'encourage diverse opinions' or 'run team brainstorms' chapter — the precise point is structural: dissent must remain socially safe to voice at the moment it would actually change the forecast.",
+      "mustUseTerms": ["superteam", "groupthink", "psychological safety", "dissent", "aggregation", "collective forecasting", "conformity pressure"],
+      "mustNotDriftInto": ["generic teamwork slogans", "harmony-seeking management advice", "HR-style team-building content"]
+    },
+    {
+      "number": 10,
+      "chapterId": "superforecasting-ch10",
+      "title": "The Leader's Dilemma",
+      "sourcePressure": "Leaders must decide and project confidence; superforecasters cultivate doubt and revision. Helmuth von Moltke's answer to battlefield chaos was mission clarity plus decentralized initiative — overcontrol becomes structurally weak when conditions change faster than command intelligence can follow. Intellectual humility lets leaders keep the organization corrigible without eroding authority.",
+      "coreMove": "Act decisively while building structures that keep local judgment alive after the decision, so the organization can revise while action unfolds.",
+      "commonMisread": "A generic 'be humble as a leader' lesson — the chapter's mechanism is structural: define mission and constraints clearly so people closer to changing conditions can exercise judgment without waiting for orders.",
+      "mustUseTerms": ["decentralized initiative", "mission clarity", "intellectual humility", "leader's dilemma", "doer-thinker tension", "Moltke", "corrigible"],
+      "mustNotDriftInto": ["military history lecture beyond Moltke's narrow example", "generic leadership inspiration", "command-and-control vs. servant-leadership framing"]
+    },
+    {
+      "number": 11,
+      "chapterId": "superforecasting-ch11",
+      "title": "Are They Really So Super?",
+      "sourcePressure": "Kahneman and Taleb press on the limits of forecasting: black swans, long-range fragility, and the illusion of control. The defense is not that superforecasters master the future but that disciplined forecasting still improves preparation, comparison, and conditional planning before events arrive. Planning for surprise is what survives when prediction fails.",
+      "coreMove": "Accept what forecasting cannot do, then use that boundary to clarify what it can still do — preparation, conditional thinking, and better questions before events arrive.",
+      "commonMisread": "A 'forecasting is just limited, so be humble' conclusion — the chapter defends careful forecasting within honest limits, not abandonment of the practice.",
+      "mustUseTerms": ["black swan", "limits", "planning for surprise", "long-range fragility", "robustness", "conditional preparation", "Kahneman", "Taleb"],
+      "mustNotDriftInto": ["broad Taleb or Kahneman intellectual biography", "generic uncertainty acceptance", "anti-quantitative backlash"]
+    },
+    {
+      "number": 12,
+      "chapterId": "superforecasting-ch12",
+      "title": "What's Next?",
+      "sourcePressure": "Forecasting improves institutionally only when scorekeeping is real, feedback reaches forecasters, and accuracy is rewarded over persuasiveness. Political and organizational incentives often prefer flattering wrongness over accountable accuracy. Codman's outcome-tracking model requires visible accountability despite institutional resistance. Big questions need decomposition into testable components. Superquestioners who ask the obvious but neglected framing questions are as important as superforecasters.",
+      "coreMove": "Demand outcome scores from every forecast so accuracy and persuasiveness can be told apart — and build the incentives that make that distinction matter.",
+      "commonMisread": "A 'the future of AI prediction' or generic optimism chapter — the real argument is institutional: without scorekeeping and accountable incentives, forecasting excellence stays invisible and unrewarded.",
+      "mustUseTerms": ["scorekeeping", "accountability", "superquestioners", "incentive structure", "smaller component questions", "Codman", "improvement"],
+      "mustNotDriftInto": ["AI forecasting tools speculation", "policy advocacy on specific issues", "appendix commandments"]
+    }
+  ]
+}

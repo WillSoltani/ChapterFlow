@@ -1,0 +1,1024 @@
+{
+  "bookId": "measure-what-matters",
+  "title": "Measure What Matters",
+  "author": "John Doerr",
+  "promotedAt": "2026-05-14T06:32:49.885Z",
+  "chapterCount": 21,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which looks more serious, a polished team motto or a robot that can cross the practice mat twice without a reset? Jonas had spent three meetings editing the motto while the battery tester blinked red…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Camille until the brown paper came off the front window to notice that every launch conversation had become a branding session. The cash drawer was still untested, the advance-order list live…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"that is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"larry page and sergey\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"The mistake is to\" — Narrower form of 'The mistake is' that captures the counter opener template ('The mistake is to [verb]…') without false-firing on body-prose uses like 'The mistake is at line 47.' Used in The Prince (10/26), Power of Habit (7/9), and others.",
+            "evidence": "Blue nitrile gloves sit on a stainless lab bench after the third fume-hood near-miss in a month. Sophie has heard enough brilliant discussion about safety culture. Before the lab meeting ends, she wr…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took David one look at orange baggage tubs jammed by a belt to find the drift. Belt alarm, transfer manifest, and radio channel make the stakes concrete: three terminals are firefighting separate …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Fog over stacked containers frames Claire's problem in port authority labor disruption. Berth schedule, radio handset, and customs queue make the stakes concrete: containers are piling up while depar…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Aman studies folding cots under gym lights. Intake wristbands, pet crates, and whiteboard map make the stakes concrete: supply runs, cots, pets, and medical triage…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"in a crisis reduce\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the real test is\" — Counter payoff template. Recurs across multiple books. Same family.",
+            "evidence": "Focus feels easy when it is only ranking. The real test is whether attractive work loses status and stakeholders still carry the surviving priorities."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.4 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Sterile test bench humming frames Chloe's problem in medical-device design freeze. Prototype tray, risk register, and test fixture make the stakes concrete: feature requests keep returning after the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Marta studies fluorescent bay lights. Crew roster, response map, and radio charger make the stakes concrete: buy-in is claimed but crews still protect old shift ha…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"make worthy alternatives lose\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Show me the first proof,\" Anders says near yellow safety tape by a test aisle. Pilot checklist, scanner cradle, and safety tape make the stakes concrete: pilot scope creep is making the first deploy…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"moves that actually lead\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Show me the first proof,\" Nicolas says near flour dust on a loading label. Oven schedule, delivery crates, and standing order sheet make the stakes concrete: the wholesale goal is official but retai…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Mikkel one look at wind rattling the terminal glass to find the drift. Sailing schedule, inspection tag, and crew notice make the stakes concrete: the safety objective is announced but mainte…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"do not\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"test commitment by identifying\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Lea studies metal instrument trays cooling. OR slate, sterile tray cart, and bed board make the stakes concrete: departments optimize separately while cases start …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Ryan one look at sound booth door with a red light to find the drift. Recording schedule, cover proof, and ad booking make the stakes concrete: each lane is moving but the release date depend…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"draw the shared map\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Cooler thermometer blinking frames Sofia's problem in independent pharmacy vaccination clinic. Dose cooler, appointment cap, and shift sheet make the stakes concrete: appointments can fill faster tha…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"use linked priorities to\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Chris one look at coffee-stained call queue printout to find the drift. Support macro, policy memo, and UI copy deck make the stakes concrete: customers need answers that depend on linked cha…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Book carts parked under fluorescent lights frames Grace's problem in library digital-card launch. Card scanner, web form, and outreach flyer make the stakes concrete: patrons fall through gaps when t…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Show me the first proof,\" Diego says near stainless tanks sweating. Keg ledger, route map, and sales sheet make the stakes concrete: sales promises outrun keg availability and delivery windows. Dieg…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"turn adjacent workstreams into\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"The trap is to\" — Counter opener shell from The One Thing (17 of 18 chapters used 'The trap is [verb]'). Narrow form to avoid false-firing on legitimate 'The trap is set' / 'The trap is here' body uses.",
+            "evidence": "Folding tents stacked in storage brings the pressure down to a particular floor. Andrew can see how vendors cannot adjust if permits vanish into a silent queue. The old response would be safer talk, …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Folding tents stacked in storage frames Andrew's problem in farmers-market permit process. Permit queue, vendor map, and review stamp make the stakes concrete: vendors cannot adjust if permits vanish…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Paula studies rosin dust on a black music stand. Marked score, section roster, and rehearsal clock make the stakes concrete: concert risk hides until the full run-…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Hiroshi one look at pill packets sorted on a blue tray to find the drift. Med list, visit schedule, and call log make the stakes concrete: errors stay invisible until a patient calls confused…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"correction is still possible\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Ruth studies folding chairs beside a cooler. Appointment list, dose count, and staff rota make the stakes concrete: appointments are high but no-show and supply mi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Tomas one look at court-date stamp pad to find the drift. Case file, deadline tracker, and call sheet make the stakes concrete: case volume hides whether tenants receive help before deadlines…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"use reviewable movement to\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Mobile clinic parked by a community center frames Claire's problem in cancer-screening outreach target. Screening roster, neighborhood map, and weekly obstacle list make the stakes concrete: safe inc…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Sam studies heat shimmer above compressors. Meter log, compressor schedule, and maintenance ticket make the stakes concrete: incremental efficiency misses the cost…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the proof has to\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Show me the first proof,\" Laura says near dark monitors reflected in a window. Crash log, feature flag list, and release checklist make the stakes concrete: the stretch target risks becoming hype un…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Luke one look at laminated language cards to find the drift. Coverage board, appointment list, and interpreter roster make the stakes concrete: demand is rising faster than safe staffing can …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"set a bold reach\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Anna studies blue light over a moderation queue. Review queue, quality sample, and escalation rule make the stakes concrete: the stretch target must improve review…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Hugo one look at red coolers lined by a loading bay to find the drift. Appointment sheet, donor chairs, and staff calendar make the stakes concrete: the donor target has to rise after shortag…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Green bins lined along an alley frames Giulia's problem in municipal compost pickup expansion. Route sheet, contamination tags, and household list make the stakes concrete: the service can scale only…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Show me the first proof,\" Aanya says near accordion folder of visa forms. Case queue, deadline calendar, and interpreter rota make the stakes concrete: need is larger than safe capacity, so stretch …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"use a second proof\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Show me the first proof,\" Catarina says near butter block softening on marble. Dough sheet, timer, and proofing tray make the stakes concrete: end-of-month judgment will not fix croissants baked wro…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Yusuf studies loose bow hair near a chair leg. Marked score, section note, and practice roster make the stakes concrete: players only hear judgment after concerts …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"add a live support\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Sofia studies metal shavings in a tray. Setup gauge, shift log, and feedback card make the stakes concrete: apprentices need correction on the machine before the y…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"do not\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"signal forward from delayed\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Oil smudges on a tablet case frames Juliette's problem in mobile car-repair dispatch. Route app, parts bin, and customer text make the stakes concrete: late customer complaints trigger rescue work in…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Show me the first proof,\" Lars says near MRI suite door buzzing. Slot list, cancellation note, and scheduler headset make the stakes concrete: same mistakes recur because review waits until the week…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone can soften the issue, Hannah studies marked glossary on a tablet. Glossary, proof file, and translator queue make the stakes concrete: errors are caught after delivery when revision cos…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"has to reach the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Quiet vault door ajar frames Olivia's problem in regional bank risk culture audit. Approval queue, exception memo, and recognition email make the stakes concrete: the value statement says prudence wh…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"culture is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"from the signals people\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Anders one look at public counter bell beside forms to find the drift. Permit tray, queue report, and recognition board make the stakes concrete: the public-facing pledge is new but internal …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"change by tracing which\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"The trap is to\" — Counter opener shell from The One Thing (17 of 18 chapters used 'The trap is [verb]'). Narrow form to avoid false-firing on legitimate 'The trap is set' / 'The trap is here' body uses.",
+            "evidence": "Paper grocery bags along a hallway brings the pressure down to a particular floor. Lukas can see how shared purpose masks old handoff failures between donors and distribution teams. The old response …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"test whether a noble\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Future goals become real when they enter a system of proof, ownership, cadence, "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Take one future goal and write its owner, proof line, review cadence, and suppor"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Michael one look at auditorium chairs scraping after a vote to find the drift. Review calendar, reading measure, and support roster make the stakes concrete: a future goal will fade unless it…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Ink-smudged page proofs frames Ben's problem in independent newsroom membership future. Membership chart, editorial calendar, and reader survey make the stakes concrete: the next objective can sound …"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "card[2]",
+            "message": "banned phrase \"operating logic\" — 60 hits across 15 books — fine occasionally, overused.",
+            "evidence": "How do you keep this idea specific to The Goals to Come? Use the pressure in the title and plan: The closing chapter points toward future goals and asks the reader to carry the operating logic forwar…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the next\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"drag the next future\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 58
+  },
+  "bookGate": {
+    "bookId": "measure-what-matters",
+    "chapterCount": 21,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "32 protagonist name(s) appear as named characters in multiple chapters: David(ch3,19), Ingrid(ch3,21), Javier(ch3,19), Claire(ch3,12,19), Emily(ch4,20), …. Regenerate affected examples with distinct names."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        63,
+        64,
+        62
+      ],
+      "answerPositionPctMax": 0.3386243386243386,
+      "totalQuizQuestions": 189,
+      "duplicatedNames": [
+        {
+          "name": "David",
+          "chapters": [
+            3,
+            19
+          ]
+        },
+        {
+          "name": "Ingrid",
+          "chapters": [
+            3,
+            21
+          ]
+        },
+        {
+          "name": "Javier",
+          "chapters": [
+            3,
+            19
+          ]
+        },
+        {
+          "name": "Claire",
+          "chapters": [
+            3,
+            12,
+            19
+          ]
+        },
+        {
+          "name": "Emily",
+          "chapters": [
+            4,
+            20
+          ]
+        },
+        {
+          "name": "Lukas",
+          "chapters": [
+            4,
+            20
+          ]
+        },
+        {
+          "name": "Marta",
+          "chapters": [
+            4,
+            20
+          ]
+        },
+        {
+          "name": "Yusuf",
+          "chapters": [
+            4,
+            15
+          ]
+        },
+        {
+          "name": "Juliette",
+          "chapters": [
+            5,
+            17
+          ]
+        },
+        {
+          "name": "Anders",
+          "chapters": [
+            5,
+            19
+          ]
+        },
+        {
+          "name": "Megan",
+          "chapters": [
+            5,
+            15
+          ]
+        },
+        {
+          "name": "Lin",
+          "chapters": [
+            5,
+            16
+          ]
+        },
+        {
+          "name": "Hannah",
+          "chapters": [
+            6,
+            17
+          ]
+        },
+        {
+          "name": "Nicolas",
+          "chapters": [
+            6,
+            20
+          ]
+        },
+        {
+          "name": "Laura",
+          "chapters": [
+            6,
+            13
+          ]
+        },
+        {
+          "name": "Mikkel",
+          "chapters": [
+            6,
+            18
+          ]
+        },
+        {
+          "name": "Catarina",
+          "chapters": [
+            6,
+            15
+          ]
+        },
+        {
+          "name": "Chidi",
+          "chapters": [
+            6,
+            19
+          ]
+        },
+        {
+          "name": "Michael",
+          "chapters": [
+            7,
+            21
+          ]
+        },
+        {
+          "name": "Lea",
+          "chapters": [
+            7,
+            19
+          ]
+        },
+        {
+          "name": "Hadiya",
+          "chapters": [
+            7,
+            18
+          ]
+        },
+        {
+          "name": "Olivia",
+          "chapters": [
+            8,
+            18
+          ]
+        },
+        {
+          "name": "Ben",
+          "chapters": [
+            8,
+            21
+          ]
+        },
+        {
+          "name": "Sofia",
+          "chapters": [
+            8,
+            16
+          ]
+        },
+        {
+          "name": "Akira",
+          "chapters": [
+            8,
+            20
+          ]
+        },
+        {
+          "name": "Margaux",
+          "chapters": [
+            9,
+            21
+          ]
+        },
+        {
+          "name": "Lars",
+          "chapters": [
+            9,
+            17
+          ]
+        },
+        {
+          "name": "Grace",
+          "chapters": [
+            9,
+            16
+          ]
+        },
+        {
+          "name": "Diego",
+          "chapters": [
+            9,
+            20
+          ]
+        },
+        {
+          "name": "Adaeze",
+          "chapters": [
+            9,
+            17
+          ]
+        },
+        {
+          "name": "Tomas",
+          "chapters": [
+            11,
+            21
+          ]
+        },
+        {
+          "name": "Kiran",
+          "chapters": [
+            12,
+            21
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "measure-what-matters",
+        "chapterCount": 21,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

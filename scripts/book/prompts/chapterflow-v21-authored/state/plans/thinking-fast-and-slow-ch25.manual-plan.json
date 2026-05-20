@@ -1,0 +1,209 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch25",
+  "number": 25,
+  "title": "Bernoulli's Errors",
+  "coreMove": "evaluate a choice from the reference point the person actually feels, not only from final wealth",
+  "sourcePressure": "shows that classical utility theory misses how people evaluate gains and losses relative to a reference point",
+  "chapterSpecificMisunderstanding": "reducing this to money math instead of reference-dependent experience",
+  "sourceAlignmentTerms": [
+    "Bernoulli",
+    "utility",
+    "reference point",
+    "wealth state",
+    "gain",
+    "loss"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Bernoulli's Errors",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just economics history"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about economics history",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "meteorology desk facing a decision distorted by utility",
+      "audience": "a lead or reviewer who must evaluate a choice from the reference point the person actually feels, not only from final wealth while others want the quick answer",
+      "stakes": "the visible call will go wrong unless utility is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "the operator places the jury questionnaire stack labeled Bernoulli beside the tempting first answer, covers the answer field with a palm, and speaks the correction: evaluate a choice from the reference point the person actually feels, not only from final wealth",
+      "firstImage": "The decision station is quiet except for the jury questionnaire stack labeled Bernoulli beside the unfinished call.",
+      "mustInclude": [
+        "jury questionnaire stack labeled Bernoulli",
+        "Bernoulli",
+        "utility"
+      ],
+      "mustAvoid": [
+        "turning the scene into economics history",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "museum conservation lab facing a decision distorted by utility",
+      "audience": "a lead or reviewer who must evaluate a choice from the reference point the person actually feels, not only from final wealth while others want the quick answer",
+      "stakes": "the visible call will go wrong unless utility is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "the specialist draws a red box around the misleading cue on the salinity test ampoule labeled utility, then writes the missing check in the margin before anyone votes",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the salinity test ampoule labeled utility between the two choices.",
+      "mustInclude": [
+        "salinity test ampoule labeled utility",
+        "Bernoulli",
+        "reference point"
+      ],
+      "mustAvoid": [
+        "turning the scene into economics history",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "freight dispatch room facing a decision distorted by utility",
+      "audience": "a lead or reviewer who must evaluate a choice from the reference point the person actually feels, not only from final wealth while others want the quick answer",
+      "stakes": "the visible call will go wrong unless utility is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "two people disagree over the signal relay casing labeled reference point; one points to the fluent story, the other forces the chapter move by asking which evidence would change the call",
+      "firstImage": "The first thing in the room is the texture of the signal relay casing labeled reference point, not the person's opinion about it.",
+      "mustInclude": [
+        "signal relay casing labeled reference point",
+        "Bernoulli",
+        "wealth state"
+      ],
+      "mustAvoid": [
+        "turning the scene into economics history",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "pediatric triage desk facing a decision distorted by utility",
+      "audience": "a lead or reviewer who must evaluate a choice from the reference point the person actually feels, not only from final wealth while others want the quick answer",
+      "stakes": "the visible call will go wrong unless utility is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "at the decision point, the lead slides the cupping spoon tray labeled wealth state into the center of the table and refuses to choose until the Bernoulli check is visible",
+      "firstImage": "You are looking at the cupping spoon tray labeled wealth state while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "cupping spoon tray labeled wealth state",
+        "Bernoulli",
+        "gain"
+      ],
+      "mustAvoid": [
+        "turning the scene into economics history",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "restaurant expo line facing a decision distorted by utility",
+      "audience": "a lead or reviewer who must evaluate a choice from the reference point the person actually feels, not only from final wealth while others want the quick answer",
+      "stakes": "the visible call will go wrong unless utility is separated from the tempting but weaker cue",
+      "format": "dialogue",
+      "requiredBeat": "the team predicts the answer from the quick impression, records it beside the gain bed-board magnet labeled gain, then reveals how the chapter correction changes the estimate",
+      "firstImage": "It took three passes before the reviewer saw what the gain bed-board magnet labeled gain had been making too easy.",
+      "mustInclude": [
+        "gain bed-board magnet labeled gain",
+        "Bernoulli",
+        "loss"
+      ],
+      "mustAvoid": [
+        "turning the scene into economics history",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "public defender intake facing a decision distorted by utility",
+      "audience": "a lead or reviewer who must evaluate a choice from the reference point the person actually feels, not only from final wealth while others want the quick answer",
+      "stakes": "the visible call will go wrong unless utility is separated from the tempting but weaker cue",
+      "format": "decision_point",
+      "requiredBeat": "after the miss, the reviewer tapes the color-grading reference card labeled loss to the postmortem board and traces the exact moment utility displaced the better judgment",
+      "firstImage": "What would change if the color-grading reference card labeled loss stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "color-grading reference card labeled loss",
+        "Bernoulli",
+        "loss"
+      ],
+      "mustAvoid": [
+        "turning the scene into economics history",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: evaluate a choice from the reference point the person actually feels, not only from final wealth",
+      "choose the correction that fits Bernoulli rather than a generic careful-thinking answer",
+      "distinguish Bernoulli's Errors from nearby drift into economics history",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live Bernoulli judgment and write the first answer on paper. Add the one fact that would make you slow or change it. Stop after ninety seconds.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Bernoulli",
+      "detail": "the source identifies Bernoulli's Errors as the chapter where classical utility theory misses reference-dependent gains and losses",
+      "useIn": "both",
+      "phrasingHint": "Bernoulli can appear as the inherited model that looks tidy until the reader notices people judge changes from a reference point."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

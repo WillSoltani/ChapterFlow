@@ -1,0 +1,186 @@
+{
+  "chapterId": "how-to-talk-to-anyone-ch03",
+  "number": 3,
+  "title": "How to Talk Like a VIP",
+  "coreMove": "Trim your self-presentation and everyday phrasing until every sentence carries useful information without begging for approval.",
+  "sourcePressure": "Verbal-status unit covering techniques 24 through 37: identity-question answers, compressed self-description, stronger words, avoiding quick imitation, cliches, teasing, overeager gratitude, and keeping attention on the receiver.",
+  "chapterSpecificMisunderstanding": "The weak version is to sound fancy. The useful version is disciplined wording: precise, brief, receiver-aware, and free of cliches or needy embellishment.",
+  "sourceAlignmentTerms": [
+    "verbal status",
+    "identity questions",
+    "compressed self-description",
+    "stronger words",
+    "restraint",
+    "cliches",
+    "teasing",
+    "overeager gratitude"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Successful people speak differently",
+      "Words reveal status",
+      "Never use weak language"
+    ],
+    "counterintuition": [
+      "Big words make you sound small",
+      "Never thank people too much",
+      "Do not joke with important people"
+    ],
+    "tryThisNow": [
+      "Rewrite your elevator pitch",
+      "Remove filler words for one day",
+      "Use stronger verbs in your next email"
+    ],
+    "examples": [
+      "executive boardroom introduction",
+      "job interview tell me about yourself",
+      "LinkedIn profile rewrite",
+      "startup pitch deck"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a wildlife rehabilitator answering what do you do at a county permit hearing",
+      "audience": "a skilled practitioner whose rambling answer makes officials miss the public value",
+      "stakes": "whether a temporary permit is renewed before spring intake season",
+      "format": "before_after",
+      "requiredBeat": "she crosses out three apologetic sentences on her note card and replaces them with one concrete line about returning injured hawks to the county fields",
+      "firstImage": "a permit hearing note card with three lines struck through",
+      "mustInclude": [
+        "intake log",
+        "permit clock",
+        "carrier towel"
+      ],
+      "mustAvoid": [
+        "nonprofit fundraising pitch",
+        "generic passion statement"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a bicycle framebuilder describing his craft to a hotel concierge arranging a private tour",
+      "audience": "a quiet artisan who undersells himself with technical clutter",
+      "stakes": "whether visiting cyclists see the shop as worth an afternoon detour",
+      "format": "dialogue",
+      "requiredBeat": "when asked what makes the tour special, he stops listing alloys and gives one clean sentence about fitting steel to the rider body and roads",
+      "firstImage": "a brazing torch cooling beside a row of unfinished fork crowns",
+      "mustInclude": [
+        "caliper",
+        "top tube",
+        "tour request email"
+      ],
+      "mustAvoid": [
+        "sports motivation",
+        "generic small-business branding"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a forensic accountant explaining a fraud finding to a family court mediator",
+      "audience": "a specialist tempted to sound impressive with jargon",
+      "stakes": "whether the mediator understands the pattern quickly enough to pause settlement pressure",
+      "format": "scene",
+      "requiredBeat": "she swaps a jargon-heavy explanation for a plain comparison between reported sales and deposit slips, then stops before adding credentials",
+      "firstImage": "two columns of highlighted deposit slips clipped under a binder tab",
+      "mustInclude": [
+        "bank stamp",
+        "spreadsheet tab",
+        "mediation timer"
+      ],
+      "mustAvoid": [
+        "courtroom drama",
+        "financial literacy lecture"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a perfumer presenting a custom scent to a hotel amenities buyer",
+      "audience": "a creative expert whose poetic cliches make the buyer distrust the pitch",
+      "stakes": "whether a boutique hotel chooses her soap and lotion line for a full season",
+      "format": "decision_point",
+      "requiredBeat": "she looks at the phrase unforgettable journey on her sample card, tears it off, and describes the scent through two exact notes the buyer can smell",
+      "firstImage": "a blotter strip drying beside a tiny amber vial",
+      "mustInclude": [
+        "sample card",
+        "bergamot note",
+        "linen tray"
+      ],
+      "mustAvoid": [
+        "luxury branding fluff",
+        "romantic scent monologue"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a ferry captain making a safety announcement to tourists on a foggy crossing",
+      "audience": "a seasoned operator who must sound calm without sounding bored",
+      "stakes": "whether passengers follow instructions during low visibility",
+      "format": "vignette",
+      "requiredBeat": "he replaces the habitual welcome aboard cliche with exact instructions tied to the foghorn and orange rail markers",
+      "firstImage": "fog beads collecting on the orange rail marker near the gangway",
+      "mustInclude": [
+        "foghorn",
+        "life-ring cabinet",
+        "orange rail marker"
+      ],
+      "mustAvoid": [
+        "cruise hospitality patter",
+        "disaster movie tension"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a ceramicist responding to a collector who asks why one cracked glaze costs more",
+      "audience": "an artist who either overexplains process or hides behind mystique",
+      "stakes": "whether the collector understands value without feeling sold to",
+      "format": "postmortem",
+      "requiredBeat": "after losing one sale to a cloudy answer, she practices naming the exact kiln risk and stops before apologizing for the price",
+      "firstImage": "a tea bowl with a silver repair line resting on black felt",
+      "mustInclude": [
+        "kiln shelf cone",
+        "glaze test tile",
+        "price tag"
+      ],
+      "mustAvoid": [
+        "gallery snobbery",
+        "generic confidence pricing"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "compress a self-description without making it vague",
+      "identify wording that sounds approval-hungry",
+      "replace cliches with concrete receiver-useful language",
+      "decide when restraint is stronger than extra gratitude or teasing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Rewrite one answer you give often, such as what do you do, into one sentence with a concrete result, no apology, and no decorative adjective.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

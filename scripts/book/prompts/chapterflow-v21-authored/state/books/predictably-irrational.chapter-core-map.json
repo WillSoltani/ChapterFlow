@@ -1,0 +1,135 @@
+{
+  "bookId": "predictably-irrational",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "predictably-irrational-ch01",
+      "title": "The Truth about Relativity",
+      "sourcePressure": "The chapter uses the Economist subscription decoy and social comparison to show that value is judged against nearby alternatives, not in isolation.",
+      "coreMove": "Remove the planted comparison and rebuild the choice around the options that actually compete for your goal.",
+      "commonMisread": "Comparison is always bad or envy is the whole lesson.",
+      "mustUseTerms": ["relativity", "decoy effect", "comparison frame", "reference option", "absolute value", "nearby benchmark"],
+      "mustNotDriftInto": ["general minimalism", "budgeting advice", "status anxiety without decoys"]
+    },
+    {
+      "number": 2,
+      "chapterId": "predictably-irrational-ch02",
+      "title": "The Fallacy of Supply and Demand",
+      "sourcePressure": "The chapter argues that first prices, even arbitrary ones, become anchors that make later prices and demand feel coherent.",
+      "coreMove": "Build your own estimate before the first visible number turns into the ruler for every later judgment.",
+      "commonMisread": "High prices are always manipulative or negotiation is only about bargaining harder.",
+      "mustUseTerms": ["anchor", "arbitrary coherence", "first price", "initial number", "demand curve", "self-herding"],
+      "mustNotDriftInto": ["generic negotiation tactics", "inflation commentary", "shopping around as the whole fix"]
+    },
+    {
+      "number": 3,
+      "chapterId": "predictably-irrational-ch03",
+      "title": "The Cost of Zero Cost",
+      "sourcePressure": "The chapter shows that free offers produce an emotional pull that hides real costs and makes inferior choices feel riskless.",
+      "coreMove": "Price the hidden costs of free before the zero overwhelms the better tradeoff.",
+      "commonMisread": "Free things are always bad or frugality is the issue.",
+      "mustUseTerms": ["zero cost", "free", "hidden cost", "opportunity cost", "loss aversion", "tradeoff"],
+      "mustNotDriftInto": ["decluttering alone", "coupon advice", "anti-consumer moralizing"]
+    },
+    {
+      "number": 4,
+      "chapterId": "predictably-irrational-ch04",
+      "title": "The Cost of Social Norms",
+      "sourcePressure": "The chapter distinguishes social norms from market norms and shows how small payments can crowd out goodwill.",
+      "coreMove": "Identify the norm in force before introducing money, because a tiny payment can reclassify the whole relationship.",
+      "commonMisread": "Pay people more or never pay people for help.",
+      "mustUseTerms": ["social norms", "market norms", "crowding out", "gift exchange", "transaction frame", "reciprocity"],
+      "mustNotDriftInto": ["compensation philosophy", "volunteering slogans", "generic workplace culture"]
+    },
+    {
+      "number": 5,
+      "chapterId": "predictably-irrational-ch05",
+      "title": "The Influence of Arousal",
+      "sourcePressure": "The chapter shows that people in calm states mispredict their choices under arousal, anger, attraction, fear, or heat.",
+      "coreMove": "Make the safety decision while calm, then remove the option to renegotiate it when the hot state arrives.",
+      "commonMisread": "Willpower fails because people are weak or desire is inherently irrational.",
+      "mustUseTerms": ["arousal", "hot state", "cold state", "state-dependent judgment", "precommitment", "impulse"],
+      "mustNotDriftInto": ["sexual sensationalism", "generic impulse control", "moral panic"]
+    },
+    {
+      "number": 6,
+      "chapterId": "predictably-irrational-ch06",
+      "title": "The Problem of Procrastination and Self-Control",
+      "sourcePressure": "The chapter uses deadlines and self-imposed constraints to show that people need externally visible commitments to protect long-term aims.",
+      "coreMove": "Turn a distant intention into staged commitments that create consequences before the final deadline.",
+      "commonMisread": "Better time management or motivation is enough.",
+      "mustUseTerms": ["procrastination", "self-control", "deadline", "commitment device", "precommitment", "interim constraint"],
+      "mustNotDriftInto": ["productivity hacks", "calendar cleanup", "discipline pep talks"]
+    },
+    {
+      "number": 7,
+      "chapterId": "predictably-irrational-ch07",
+      "title": "The High Price of Ownership",
+      "sourcePressure": "The chapter explains the endowment effect, where ownership inflates valuation and makes giving up an object feel like a loss.",
+      "coreMove": "Ask what you would pay for the thing today before ownership makes its loss feel larger than its use.",
+      "commonMisread": "Sentimental attachment is foolish or selling old things is always rational.",
+      "mustUseTerms": ["ownership", "endowment effect", "loss aversion", "reservation price", "sunk effort", "selling price"],
+      "mustNotDriftInto": ["decluttering content", "minimalism", "sunk cost alone"]
+    },
+    {
+      "number": 8,
+      "chapterId": "predictably-irrational-ch08",
+      "title": "Keeping Doors Open",
+      "sourcePressure": "The chapter shows that people spend resources preserving options even when those options are unlikely to matter.",
+      "coreMove": "Let a low-value option close so attention can move to the choice that actually matters.",
+      "commonMisread": "Flexibility is bad or people should specialize in everything.",
+      "mustUseTerms": ["open doors", "option value", "opportunity cost", "attention", "closing doors", "focus"],
+      "mustNotDriftInto": ["career advice", "essentialism as a slogan", "generic prioritization"]
+    },
+    {
+      "number": 9,
+      "chapterId": "predictably-irrational-ch09",
+      "title": "The Effect of Expectations",
+      "sourcePressure": "The chapter shows that labels, prior beliefs, and presentation change experienced taste and evaluation before evidence is judged.",
+      "coreMove": "Blind the cue that is shaping the experience before deciding what you actually perceive.",
+      "commonMisread": "Expectations are placebo magic or branding is always fake.",
+      "mustUseTerms": ["expectations", "label", "blind test", "prior belief", "experience", "assimilation"],
+      "mustNotDriftInto": ["branding strategy", "positive thinking", "taste snobbery"]
+    },
+    {
+      "number": 10,
+      "chapterId": "predictably-irrational-ch10",
+      "title": "The Power of Price",
+      "sourcePressure": "The chapter shows that price can change experienced effectiveness because people use cost as a signal of potency or quality.",
+      "coreMove": "Separate the price signal from the result before letting expensive become synonymous with effective.",
+      "commonMisread": "Cheap is always as good as expensive or placebo means fake.",
+      "mustUseTerms": ["price signal", "placebo effect", "quality inference", "expectancy", "discount", "effectiveness"],
+      "mustNotDriftInto": ["generic bargain hunting", "medical advice", "luxury criticism"]
+    },
+    {
+      "number": 11,
+      "chapterId": "predictably-irrational-ch11",
+      "title": "The Context of Our Character, Part 1",
+      "sourcePressure": "The chapter shows that people cheat by small amounts when they can preserve an honest self-image, and that timely moral reminders reduce it.",
+      "coreMove": "Move the honesty cue to the moment before rationalization starts.",
+      "commonMisread": "People are either honest or dishonest as fixed character types.",
+      "mustUseTerms": ["honesty", "self-concept", "rationalization", "honor code", "moral reminder", "small cheating"],
+      "mustNotDriftInto": ["crime prevention", "virtue sermons", "corporate compliance alone"]
+    },
+    {
+      "number": 12,
+      "chapterId": "predictably-irrational-ch12",
+      "title": "The Context of Our Character, Part 2",
+      "sourcePressure": "The chapter shows that cheating becomes easier when value is represented by tokens, goods, credits, or other noncash forms.",
+      "coreMove": "Translate indirect value back into money before moral distance softens the rule.",
+      "commonMisread": "This is only about stealing office supplies.",
+      "mustUseTerms": ["token effect", "cash distance", "indirect value", "noncash reward", "moral distance", "abstraction"],
+      "mustNotDriftInto": ["general theft", "budget controls", "Part 1 honor reminders"]
+    },
+    {
+      "number": 13,
+      "chapterId": "predictably-irrational-ch13",
+      "title": "Beer and Free Lunches",
+      "sourcePressure": "The chapter uses public ordering and preference distortion to show that predictable irrationality creates low-cost design fixes.",
+      "coreMove": "Remove the audience or sequence pressure so the real preference can surface cheaply.",
+      "commonMisread": "The lesson is only about beer or social conformity.",
+      "mustUseTerms": ["public choice", "preference", "social signal", "sequence effect", "free lunch", "choice architecture"],
+      "mustNotDriftInto": ["restaurant etiquette", "peer pressure alone", "utopian rationality"]
+    }
+  ]
+}

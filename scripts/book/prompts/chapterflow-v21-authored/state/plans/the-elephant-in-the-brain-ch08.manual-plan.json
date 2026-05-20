@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch08",
+  "number": 8,
+  "title": "Laughter",
+  "coreMove": "Use laughter to identify when people are making danger playable while keeping a retreat route open.",
+  "sourcePressure": "The source treats laughter as a play signal that softens physical or social danger and preserves deniability in risky interaction.",
+  "chapterSpecificMisunderstanding": "The writer makes laughter about happiness or humor quality instead of danger, play, and deniability.",
+  "sourceAlignmentTerms": [
+    "laughter",
+    "play signal",
+    "danger",
+    "deniability",
+    "social risk",
+    "offense",
+    "flirtation"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "laughter as a play signal",
+      "detail": "The source says laughter functions as a play signal.",
+      "useIn": "both",
+      "phrasingHint": "The laugh tells the room that the bite is not meant to draw blood."
+    },
+    {
+      "kind": "event",
+      "name": "softening physical and social danger",
+      "detail": "The source says laughter softens physical and social danger.",
+      "useIn": "both",
+      "phrasingHint": "A risky move becomes easier to test when laughter wraps the edge."
+    },
+    {
+      "kind": "artifact",
+      "name": "deniability in risky interaction",
+      "detail": "The source says laughter preserves deniability around offense, flirtation, or threat.",
+      "useIn": "deepRead",
+      "phrasingHint": "If the signal fails, the laugh leaves a door marked only joking."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch08: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch08: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch08: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch08: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch08: no generic timer reflection",
+      "the-elephant-in-the-brain-ch08: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch08: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch08: no coffee shop conversation as the default social proof",
+      "no comedian backstage scene",
+      "no laughter is medicine angle"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "climbing gym belay training",
+      "audience": "a coach stopping rough teasing from becoming unsafe",
+      "stakes": "jokes are testing hierarchy under physical risk",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ben hears Chloe laugh after a bad knot joke and pauses the drill to separate playful fear from real belay uncertainty.",
+      "firstImage": "Chalk dust floats in the cone of light above the belay mats.",
+      "mustInclude": [
+        "belay rope",
+        "chalk bag",
+        "knot card"
+      ],
+      "mustAvoid": [
+        "generic sports banter"
+      ]
+    },
+    {
+      "domain": "design critique for a fragile prototype",
+      "audience": "a product lead managing teasing around a flawed demo",
+      "stakes": "one laugh can keep critique playable or hide a status jab",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"It looks like a toaster with a law degree,\" Lars says, and Isabel watches whether Akira laughs with relief or freezes before continuing critique.",
+      "firstImage": "\"It looks like a toaster with a law degree,\" Lars says as the prototype wobbles.",
+      "mustInclude": [
+        "prototype stand",
+        "critique notes",
+        "demo cable"
+      ],
+      "mustAvoid": [
+        "pure humor taste debate"
+      ]
+    },
+    {
+      "domain": "family dinner with new partner",
+      "audience": "a sibling testing a risky question without making it official",
+      "stakes": "flirtation and offense need a retreat route",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You hear Anna laugh before asking about the old breakup, then decide whether the laugh softened curiosity or disguised a shove.",
+      "firstImage": "You see the serving spoon pause halfway over the casserole.",
+      "mustInclude": [
+        "serving spoon",
+        "place cards",
+        "family photo shelf"
+      ],
+      "mustAvoid": [
+        "romantic comedy scene"
+      ]
+    },
+    {
+      "domain": "police-community workshop role play",
+      "audience": "a facilitator keeping simulated conflict from becoming real threat",
+      "stakes": "laughter can mark the exercise as play without trivializing fear",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The facilitator lets one shared laugh land after the mock traffic stop, then names the exact line where play would become dismissal.",
+      "firstImage": "Fluorescent tape marks the pretend curb on the gym floor.",
+      "mustInclude": [
+        "fluorescent tape",
+        "role-play card",
+        "folding badge"
+      ],
+      "mustAvoid": [
+        "political argument from ch16"
+      ]
+    },
+    {
+      "domain": "new employee hazing boundary",
+      "audience": "an HR partner deciding whether a welcome joke is safe",
+      "stakes": "deniability can protect the person taking the shot",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "When does a laugh turn a welcome ritual into a warning?",
+      "firstImage": "When does the laugh belong to the group but not the new hire?",
+      "mustInclude": [
+        "welcome banner",
+        "paper crown",
+        "onboarding checklist"
+      ],
+      "mustAvoid": [
+        "generic workplace harassment training"
+      ]
+    },
+    {
+      "domain": "surgical simulation lab mistake",
+      "audience": "a resident using laughter after dropping an instrument",
+      "stakes": "physical danger is simulated but status danger is real",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Maja one video review to see that her laugh invited help on the first mistake and hid panic on the second.",
+      "firstImage": "It took Maja one video review to hear the two laughs differently.",
+      "mustInclude": [
+        "simulation tray",
+        "video timestamp",
+        "dropped clamp"
+      ],
+      "mustAvoid": [
+        "medicine conspicuous-care discussion"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify laughter as play signaling rather than joy alone",
+      "analyze deniability in risky social moves",
+      "choose when to accept, redirect, or stop laughter around danger"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Notice one laugh today after a risky comment. Ask whether it softened play, hid aggression, invited closeness, or kept an escape route open.",
+  "readingTimeMinutes": 12
+}

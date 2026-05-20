@@ -1,0 +1,198 @@
+{
+  "chapterId": "the-righteous-mind-ch01",
+  "number": 1,
+  "title": "Where Does Morality Come From?",
+  "coreMove": "Catch a moral verdict before the reason arrives, then ask what native and cultural machinery may have produced it.",
+  "sourcePressure": "The chapter asks where morality comes from, weighing nativism, blank-slate empiricism, reasoning-heavy development, cross-cultural variation, and moral dumbfounding.",
+  "chapterSpecificMisunderstanding": "The writer turns origin into a nature-versus-nurture lecture and loses moral dumbfounding.",
+  "sourceAlignmentTerms": [
+    "moral dumbfounding",
+    "nativism",
+    "empiricism",
+    "Piaget",
+    "Kohlberg",
+    "Turiel",
+    "Shweder"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Jean Piaget",
+      "detail": "the frozen sidecar places Piaget in the reasoning-heavy tradition of moral development.",
+      "useIn": "both",
+      "phrasingHint": "Piaget's child-as-reasoner model makes sense until a person feels the verdict first and only later hunts for the reason."
+    },
+    {
+      "kind": "person",
+      "name": "Elliot Turiel",
+      "detail": "the frozen sidecar identifies Turiel's distinction between moral rules and social conventions as chapter-local support.",
+      "useIn": "deepRead",
+      "phrasingHint": "Turiel's line between moral rules and conventions helps explain why some rules feel optional while others feel like violations."
+    },
+    {
+      "kind": "person",
+      "name": "Richard Shweder",
+      "detail": "the frozen sidecar uses Shweder as support for cross-cultural variation in where moral boundaries are drawn.",
+      "useIn": "fullRead",
+      "phrasingHint": "Shweder's cross-cultural work keeps the reader from mistaking one local moral map for the whole human territory."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch01 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "childhood lesson opener"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "blank slate classroom debate"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "generic values inventory"
+    ],
+    "examples": [
+      "childhood lesson opener",
+      "blank slate classroom debate",
+      "generic values inventory"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "university research ethics review for a harmless-but-taboo survey",
+      "audience": "graduate coordinators and ethics reviewers",
+      "stakes": "Sarah risks killing a study because the room feels disgust before it can name harm.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah slides the survey across the table and asks reviewers to separate the rule they can defend from the recoil they felt first.",
+      "firstImage": "The consent forms smell of warm printer toner beside a plate of untouched cookies.",
+      "mustInclude": [
+        "survey packet",
+        "red ethics stamp",
+        "windowless seminar room"
+      ],
+      "mustAvoid": [
+        "generic campus free-speech debate"
+      ]
+    },
+    {
+      "domain": "municipal bylaw office sorting noise complaints and neighbor etiquette",
+      "audience": "city clerks handling ambiguous rule violations",
+      "stakes": "Mathieu has to decide whether a complaint is moral harm or social convention before issuing a warning.",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mathieu places two complaint files side by side and marks which one involves harm, not mere annoyance.",
+      "firstImage": "Fluorescent light reflects off two blue folders on a scratched counter.",
+      "mustInclude": [
+        "two complaint folders",
+        "decibel chart",
+        "warning letter"
+      ],
+      "mustAvoid": [
+        "courtroom moral philosophy"
+      ]
+    },
+    {
+      "domain": "pediatric clinic explaining vaccination hesitancy to new residents",
+      "audience": "medical residents who assume facts will settle every objection",
+      "stakes": "Aanya must teach residents why a parent feels a verdict before weighing evidence.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Aanya asks the resident to repeat the parent's exact first sentence and circle the moral alarm inside it.",
+      "firstImage": "\"She said I was poisoning him,\" the resident says, still holding the chart.",
+      "mustInclude": [
+        "chart tablet",
+        "waiting-room sticker",
+        "resident badge"
+      ],
+      "mustAvoid": [
+        "generic misinformation lecture"
+      ]
+    },
+    {
+      "domain": "restoration crew deciding whether to repaint a memorial wall",
+      "audience": "museum conservators facing public anger",
+      "stakes": "Henrik must distinguish sacred attachment from mere preference.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Henrik realizes the angry calls were not about color accuracy after he reads the names engraved under the old paint.",
+      "firstImage": "It took Henrik three days to understand why the beige sample had made callers sound betrayed.",
+      "mustInclude": [
+        "paint swatch",
+        "engraved names",
+        "voicemail log"
+      ],
+      "mustAvoid": [
+        "art critique scene"
+      ]
+    },
+    {
+      "domain": "family-run bakery handling a recipe change after the founder's death",
+      "audience": "small business owners changing inherited practices",
+      "stakes": "Laura sees that the staff's no is moralized loyalty, not taste preference.",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You can call it a cheaper filling, but Laura watches the bakers touch the old recipe card like a photograph.",
+      "firstImage": "You notice the laminated recipe card before anyone mentions cost.",
+      "mustInclude": [
+        "laminated card",
+        "apricot filling tub",
+        "black mourning ribbon"
+      ],
+      "mustAvoid": [
+        "generic workplace change management"
+      ]
+    },
+    {
+      "domain": "online marketplace moderation call about a culturally loaded listing",
+      "audience": "trust-and-safety reviewers in a cross-border marketplace",
+      "stakes": "Diego has to pause a takedown argument until the team names which culture's moral boundary is being assumed.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which policy line did Diego think was universal until the Dublin reviewer read the listing differently?",
+      "firstImage": "Which rule feels obvious only because everyone in your office shares it?",
+      "mustInclude": [
+        "flagged listing",
+        "Dublin reviewer note",
+        "policy matrix"
+      ],
+      "mustAvoid": [
+        "abstract cultural relativism"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot moral dumbfounding in a scenario where the person has a verdict but no stable reason",
+      "distinguish moral rules from social conventions without collapsing both into etiquette",
+      "avoid universalizing one culture's moral boundary"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Recall one judgment you had today, write the verdict first, then write the reason you gave afterward; mark which arrived first.",
+  "readingTimeMinutes": 12
+}

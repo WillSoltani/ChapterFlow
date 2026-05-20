@@ -1,0 +1,87 @@
+{
+  "bookId": "competing-against-luck",
+  "title": "Competing Against Luck: The Story of Innovation and Customer Choice",
+  "author": "Clayton M. Christensen, Taddy Hall, Karen Dillon, David S. Duncan",
+  "thesisParagraph": "Most innovation fails not because teams lack effort but because they answer the wrong question. They ask what customers want changed in the product, when the causal question is what progress a person is trying to make in a specific circumstance — and what they hire to make it. Jobs Theory offers a different unit of analysis: the job, defined as the progress a person seeks when a situation creates enough pressure to act. When teams learn to identify that job, they can build solutions that actually get hired, price them honestly, and organize around delivering them consistently — moving from innovation by guesswork to innovation by cause.",
+  "coreIdeas": [
+    {
+      "name": "The job as the unit of analysis",
+      "oneSentence": "A customer does not buy a product; they hire it to make a specific progress in a circumstance that makes that progress urgent.",
+      "mentalMove": "Stop asking what the product should do; start asking what situation activates demand and what movement the buyer is trying to achieve.",
+      "sourceAnchors": ["ch01.source", "ch02.source"]
+    },
+    {
+      "name": "Progress, not features",
+      "oneSentence": "The real competition for any product is every alternative that could serve the same functional, social, and emotional progress in that moment.",
+      "mentalMove": "Redraw the competitive map from category neighbors to all alternatives that can get the same job done.",
+      "sourceAnchors": ["ch02.source", "ch03.source"]
+    },
+    {
+      "name": "The Four Forces of Progress",
+      "oneSentence": "Customers are pushed away from old solutions and pulled toward new ones, while habit and anxiety work to keep them in place.",
+      "mentalMove": "Map what is pushing, pulling, holding, and blocking a buyer to decode the job beneath their words.",
+      "sourceAnchors": ["ch05.source"]
+    },
+    {
+      "name": "The product resume",
+      "oneSentence": "A solution's real identity is the record of jobs it repeatedly earns the trust to do — not the jobs its creators believe it should do.",
+      "mentalMove": "Test whether your product's claimed identity matches the pattern of why buyers keep hiring it.",
+      "sourceAnchors": ["ch06.source"]
+    },
+    {
+      "name": "Integration around the job",
+      "oneSentence": "Once the job is clear, every internal function must coordinate around delivering that progress consistently, not optimizing its own scorecard.",
+      "mentalMove": "Audit tradeoffs by asking whether each decision strengthens or weakens the job's delivery.",
+      "sourceAnchors": ["ch07.source", "ch08.source"]
+    },
+    {
+      "name": "The jobs-focused organization",
+      "oneSentence": "A jobs-focused organization keeps recurring decisions anchored in the buyer's progress rather than in product categories, internal metrics, or departmental logic.",
+      "mentalMove": "Distinguish between speaking the jobs language and actually routing decisions through it.",
+      "sourceAnchors": ["ch09.source", "ch10.source"]
+    }
+  ],
+  "targetReader": "Product managers, team leads, founders, and anyone who has watched a well-resourced team build something nobody hired — and wants a causal explanation for why innovation keeps missing.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second and third, alternating",
+    "cadence": "medium to short; punchy conclusions after longer build",
+    "signatureMoves": [
+      "open on a concrete moment where a product fails or succeeds before naming the reason",
+      "use the hiring/firing metaphor naturally, not as jargon",
+      "expose the gap between what teams measure and what buyers actually experience",
+      "end sections with a single short sentence that names the discipline, not a rallying cry"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no vague calls for empathy or customer love — keep it causal"
+    ]
+  },
+  "voiceSpecimens": [
+    "The shake was not competing with other shakes. It was competing with anything that could get a commuter through a boring drive with one hand and no crumbs.",
+    "A product resume is not what the company says. It is the pattern of why the same buyers keep coming back.",
+    "The four forces are not a framework for understanding customers. They are a way to hear what behavior shows and words hide.",
+    "Teams that integrate around the job stop asking which department owns a tradeoff and start asking what the buyer hired them to protect.",
+    "You cannot drift-proof a company by repeating the job statement. The job has to filter the next decision, then the one after.",
+    "One interpreted hire is a theory. A recurring pattern of hires is evidence.",
+    "The question is not what should we build. The question is what progress is someone failing to make right now."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, we will explore the powerful concept of Jobs to Be Done and how it can transform your innovation process.",
+    "Customers are at the heart of everything great companies do — and by truly listening, you can unlock the keys to their needs.",
+    "As Christensen masterfully illustrates through his famous milkshake example, the lesson is clear: focus on the customer.",
+    "The framework gives us a lens through which to view our entire go-to-market strategy and organizational effectiveness.",
+    "By embracing a jobs-to-be-done mindset, leaders can revolutionize how they think about customer value creation."
+  ],
+  "teachingArc": "The book moves from one opening case that reframes the question (ch1), through the theory of progress and its dimensions (ch2), into wider proof that the lens travels (ch3), then into practice: how to hunt for jobs (ch4), how to hear what behavior reveals using the Four Forces (ch5), how to build a product's earned record (ch6), and how to organize around delivering that record consistently (ch7–ch9), closing with a clear-eyed statement of what the theory explains and what it does not (ch10). Each chapter compounds: you cannot hear the forces until you have named the job; you cannot integrate until the earned record is clear.",
+  "forbiddenMoves": [
+    "treating Jobs Theory as a guaranteed innovation formula rather than a causal lens that improves judgment",
+    "using 'hire' as a filler metaphor without showing the circumstance that activates it",
+    "flattening functional, social, and emotional progress into 'what customers want' without naming the forces",
+    "presenting product resume as branding rather than as an evidence-based record",
+    "vague empathy language where the chapter needs a specific causal claim about circumstance and progress"
+  ]
+}

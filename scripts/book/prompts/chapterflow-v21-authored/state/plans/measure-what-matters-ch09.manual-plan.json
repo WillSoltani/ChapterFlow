@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch09",
+  "number": 9,
+  "title": "Connect: The Intuit Story",
+  "coreMove": "Turn adjacent workstreams into explicit handoffs so parallel effort becomes connected execution.",
+  "sourcePressure": "Intuit is the company case for connection, emphasizing real linkage across work rather than disconnected parallel effort.",
+  "chapterSpecificMisunderstanding": "Do not make connection a synonym for friendliness, chat volume, or meeting frequency.",
+  "sourceAlignmentTerms": [
+    "Intuit",
+    "connection",
+    "linked execution",
+    "handoffs",
+    "fragmented streams",
+    "operational connection"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Intuit",
+      "detail": "The source stabilizes Intuit as the company case for connection and linked execution across related work.",
+      "useIn": "both",
+      "phrasingHint": "Intuit presses the difference between parallel effort and work that actually hands off cleanly across the company."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Connect: The Intuit Story as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "Intuit is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "alignment as sameness",
+      "social belonging",
+      "surveillance tracking"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "tax-prep help-center surge",
+      "audience": "product, support, and compliance",
+      "stakes": "customers need answers that depend on linked changes across policy, UI, and scripts",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Chris creates an explicit handoff chain from compliance update to product copy to support macro",
+      "firstImage": "coffee-stained call queue printout",
+      "mustInclude": [
+        "support macro",
+        "policy memo",
+        "UI copy deck"
+      ],
+      "mustAvoid": [
+        "Intuit invented metrics"
+      ]
+    },
+    {
+      "domain": "school-lunch vendor transition",
+      "audience": "district nutrition, vendors, and principals",
+      "stakes": "food arrives but menu, allergy, and pickup streams are fragmented",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Margaux makes each stream name what it needs from the next before the Monday switch",
+      "firstImage": "steam rising from delivery trays",
+      "mustInclude": [
+        "allergy binder",
+        "vendor route sheet",
+        "pickup signs"
+      ],
+      "mustAvoid": [
+        "cafeteria nostalgia"
+      ]
+    },
+    {
+      "domain": "insurance-claim storm response",
+      "audience": "adjusters, call center, and contractors",
+      "stakes": "parallel effort leaves homeowners repeating the same damage story",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lars links first call, adjuster visit, and contractor dispatch so each step hands off the same claim state",
+      "firstImage": "wet carpet rolled by a doorway",
+      "mustInclude": [
+        "claim file",
+        "photo upload",
+        "contractor slot"
+      ],
+      "mustAvoid": [
+        "weather disaster melodrama"
+      ]
+    },
+    {
+      "domain": "library digital-card launch",
+      "audience": "branch staff, web team, and outreach",
+      "stakes": "patrons fall through gaps when teams each finish their own lane",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace replaces separate completion flags with linked patron journey checkpoints",
+      "firstImage": "book carts parked under fluorescent lights",
+      "mustInclude": [
+        "card scanner",
+        "web form",
+        "outreach flyer"
+      ],
+      "mustAvoid": [
+        "generic community project"
+      ]
+    },
+    {
+      "domain": "craft brewery distribution expansion",
+      "audience": "brewers, sales, and drivers",
+      "stakes": "sales promises outrun keg availability and delivery windows",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Diego stops the new account push until brewing capacity, sales commitments, and delivery routes connect",
+      "firstImage": "stainless tanks sweating",
+      "mustInclude": [
+        "keg ledger",
+        "route map",
+        "sales sheet"
+      ],
+      "mustAvoid": [
+        "barroom anecdote"
+      ]
+    },
+    {
+      "domain": "London mental-health helpline referral flow",
+      "audience": "clinicians, volunteers, and partner clinics",
+      "stakes": "callers hear caring words but referral handoffs break quietly",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Adaeze maps where calls died between volunteer note, clinician review, and clinic slot",
+      "firstImage": "headsets lined on a folding table",
+      "mustInclude": [
+        "call note",
+        "clinic slot list",
+        "privacy form"
+      ],
+      "mustAvoid": [
+        "generic wellness advice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn parallel streams into linked handoffs",
+      "recognize communication theater",
+      "repair fragmented work without adding empty meetings"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Trace one customer or stakeholder handoff from start to finish and mark where parallel work stops being connected.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

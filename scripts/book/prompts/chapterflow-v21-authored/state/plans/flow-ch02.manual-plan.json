@@ -1,0 +1,198 @@
+{
+  "chapterId": "flow-ch02",
+  "number": 2,
+  "title": "The Anatomy of Consciousness",
+  "coreMove": "Treat attention as a limited organizing force and move it from scattered demands toward one chosen goal with feedback.",
+  "sourcePressure": "The architecture chapter: attention is limited psychic energy, consciousness can fall into psychic entropy or order, and the self grows through differentiation plus integration.",
+  "chapterSpecificMisunderstanding": "Flatten psychic entropy into ordinary stress or make the chapter into focus-hack productivity advice.",
+  "sourceAlignmentTerms": [
+    "consciousness",
+    "attention",
+    "psychic energy",
+    "psychic entropy",
+    "flow",
+    "self",
+    "differentiation",
+    "integration"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "attention as psychic energy",
+      "detail": "the frozen heading index names attention as psychic energy in Chapter 2",
+      "useIn": "both",
+      "phrasingHint": "Attention behaves like a small current: whatever receives it starts shaping the day, and whatever loses it stops mattering in practice."
+    },
+    {
+      "kind": "artifact",
+      "name": "psychic entropy",
+      "detail": "the frozen heading index names disorder in consciousness as psychic entropy",
+      "useIn": "deepRead",
+      "phrasingHint": "Psychic entropy is what a split mind feels like when every open loop pulls on the same limited current."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic the anatomy of consciousness definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "a remote analyst with six dashboards open",
+      "audience": "remote workers whose busyness hides fractured attention",
+      "stakes": "the client forecast is due before noon and every tab claims urgency",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she drags five dashboards to a later folder, writes the one question the forecast must answer, and starts with the data column that gives feedback first",
+      "firstImage": "At 8:17 a.m., Emily counts six open dashboards",
+      "mustInclude": [
+        "forecast spreadsheet",
+        "chat pings",
+        "later folder"
+      ],
+      "mustAvoid": [
+        "generic inbox cleanup"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "an emergency dispatcher after a chaotic shift",
+      "audience": "operators and care workers who need order under pressure",
+      "stakes": "a mistake in call priority can cost real response time",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he replays the shift and marks the moment his attention split between a radio code and a personal text, then builds a rule for the next call stack",
+      "firstImage": "The radio hiss is still in Hugo's ear after midnight",
+      "mustInclude": [
+        "dispatch log",
+        "radio headset",
+        "phone face down"
+      ],
+      "mustAvoid": [
+        "stress management platitudes"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "a chemistry student in a lab practical",
+      "audience": "students who mistake concentration for willpower",
+      "stakes": "one mislabeled vial ruins the trial and the grade",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her lab partner asks what they are actually solving, and Rachel has to state the goal before touching the next pipette",
+      "firstImage": "\"What result are we trying to get first?\"",
+      "mustInclude": [
+        "pipette rack",
+        "blue gloves",
+        "lab timer"
+      ],
+      "mustAvoid": [
+        "study tips without feedback"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "a youth football referee handling sideline noise",
+      "audience": "people under public pressure who need a stable attentional target",
+      "stakes": "the match is getting rough and parents are shouting over every call",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "the sideline noise rises, he predicts he will miss the next offside unless he locks attention to the last defender, then tests it on the next attack",
+      "firstImage": "The wet touchline shines under the floodlights",
+      "mustInclude": [
+        "whistle",
+        "muddy flag",
+        "last defender"
+      ],
+      "mustAvoid": [
+        "sports heroics"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "a shop owner deciding whether to answer every customer review",
+      "audience": "small business owners whose identity is pulled by criticism",
+      "stakes": "one angry review could consume the morning and damage the inventory plan",
+      "format": "dilemma",
+      "openingDevice": "second_person",
+      "requiredBeat": "you read the review twice, feel the self contract around it, and must choose between a defensive reply and the stock count that restores order",
+      "firstImage": "You read the same one-star review for the second time",
+      "mustInclude": [
+        "review screen",
+        "inventory clipboard",
+        "locked front door"
+      ],
+      "mustAvoid": [
+        "reputation management tactics"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "a Toronto paramedic student building a simulation checklist",
+      "audience": "trainees learning to order attention before live pressure",
+      "stakes": "simulation errors are teaching habits that will travel into real calls",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show the messy first simulation beside the second run where he writes one cue for airway, pulse, and medication feedback before entering",
+      "firstImage": "Yusuf needed one failed simulation to see the problem",
+      "mustInclude": [
+        "simulation mannequin",
+        "laminated checklist",
+        "medication tray"
+      ],
+      "mustAvoid": [
+        "medical accuracy beyond source"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnosing scattered attention as entropy",
+      "choosing a goal that orders consciousness",
+      "distinguishing disciplined direction from rigid control"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick the one open loop pulling hardest on your attention, write the next visible action it needs, and remove one competing cue from sight.",
+  "readingTimeMinutes": 12
+}

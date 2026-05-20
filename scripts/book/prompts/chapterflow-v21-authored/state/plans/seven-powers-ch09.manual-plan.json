@@ -1,0 +1,204 @@
+{
+  "chapterId": "seven-powers-ch09",
+  "number": 9,
+  "title": "The Power Progression",
+  "coreMove": "Match the power you pursue to the firm stage and the window where that power can still form.",
+  "sourcePressure": "Power forms fit stages: counter-positioning and cornered resource in origination; scale economies, network economies, and switching costs in take-off; process power and branding in stability. Timing matters because missed windows narrow later options.",
+  "chapterSpecificMisunderstanding": "A firm can pick any power at any time if leaders want it enough.",
+  "sourceAlignmentTerms": [
+    "power progression",
+    "origination",
+    "take-off",
+    "stability",
+    "counter-positioning",
+    "cornered resource",
+    "scale economies",
+    "network economies",
+    "switching costs",
+    "timing"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "origination, take-off, and stability",
+      "detail": "the source sidecar gives these stages and maps typical powers to each stage",
+      "useIn": "both",
+      "phrasingHint": "The progression is a timing discipline: some powers are built before the market is obvious, some only after demand begins to run."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of The Power Progression",
+      "A business has power when... repeated opener shell",
+      "any hook that starts with Strategy is... or Power is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter",
+      "generic moat-versus-no-moat contrast without the chapter mechanism"
+    ],
+    "tryThisNow": [
+      "Write down your top three advantages",
+      "Set a timer and reflect on your strategy",
+      "Ask yourself what matters most",
+      "generic benefit/barrier prompt reused without the chapter-specific test"
+    ],
+    "examples": [
+      "founder in a coffee shop reviewing a deck",
+      "generic boardroom whiteboard choice",
+      "classroom project analogy",
+      "spreadsheet-only SaaS pricing scene",
+      "reusing physical anchors from adjacent plans"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "robotics startup reviewing whether to chase brand before product-market proof",
+      "audience": "a reader facing robotics startup reviewing whether to chase brand before product-market proof",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace moves the brand campaign card out of the origination column and puts the exclusive actuator option where the first power can form.",
+      "firstImage": "Prototype arms hang motionless above a table of colored planning cards",
+      "mustInclude": [
+        "brand campaign card",
+        "exclusive actuator option",
+        "stage columns"
+      ],
+      "mustAvoid": [
+        "generic roadmap board",
+        "sticky notes hook repeat"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "meal-kit company entering take-off after local retention improves",
+      "audience": "a reader facing meal-kit company entering take-off after local retention improves",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Luca sorts delivery density, recipe data, and saved preferences into the take-off powers that are actually forming.",
+      "firstImage": "At 9:03 a.m., Luca spreads three reports across the packing table",
+      "mustInclude": [
+        "delivery density report",
+        "recipe data",
+        "saved preferences"
+      ],
+      "mustAvoid": [
+        "generic meal-kit growth",
+        "frozen meal scale example"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "industrial-sensor firm reaching stability after years of installations",
+      "audience": "a reader facing industrial-sensor firm reaching stability after years of installations",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marta reviews old install tickets and customer renewal notes, then marks which stability power is real and which is nostalgia.",
+      "firstImage": "It took Marta five renewals to see that the early fight was over",
+      "mustInclude": [
+        "install tickets",
+        "renewal notes",
+        "service playbook"
+      ],
+      "mustAvoid": [
+        "generic maturity advice",
+        "repair depot process example"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "new marketplace for surplus laboratory equipment choosing when to seed buyers and sellers",
+      "audience": "a reader facing new marketplace for surplus laboratory equipment choosing when to seed buyers and sellers",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Adaeze asks the team to predict the first week when an added seller helps existing buyers, then compares it with the actual listing log.",
+      "firstImage": "Which week does one more seller help someone already here? Adaeze asks",
+      "mustInclude": [
+        "listing log",
+        "buyer requests",
+        "seller seed list"
+      ],
+      "mustAvoid": [
+        "generic platform mythology",
+        "medical courier marketplace"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "craft-tool manufacturer deciding whether a late patent can still corner a resource",
+      "audience": "a reader facing craft-tool manufacturer deciding whether a late patent can still corner a resource",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ryan places the patent filing date against the substitute catalog and decides whether the window has already closed.",
+      "firstImage": "What if the right power arrived after the market stopped needing it?",
+      "mustInclude": [
+        "patent filing date",
+        "substitute catalog",
+        "standards sheet"
+      ],
+      "mustAvoid": [
+        "generic patent moat",
+        "cornered-resource lab example"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "regional payments firm conducting a quarterly power review",
+      "audience": "a reader facing regional payments firm conducting a quarterly power review",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Javier has you place each initiative under origination, take-off, or stability, then cross out the ones whose window has passed.",
+      "firstImage": "You can feel the room quiet when the old initiative lands under the wrong stage",
+      "mustInclude": [
+        "quarterly initiative list",
+        "stage labels",
+        "crossed-out funding line"
+      ],
+      "mustAvoid": [
+        "generic strategy offsite",
+        "whiteboard shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "match each power to origination, take-off, or stability",
+      "diagnose timing windows in new business scenarios",
+      "avoid pursuing a desired power after the stage that could create it has passed"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Mark your business or project as origination, take-off, or stability, then name the one power that stage can still realistically build.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "sourceAnchorsNote": "The source has a supported stage sequence but no named market-history example. Do not add extra stage theories or deterministic life-cycle claims."
+}

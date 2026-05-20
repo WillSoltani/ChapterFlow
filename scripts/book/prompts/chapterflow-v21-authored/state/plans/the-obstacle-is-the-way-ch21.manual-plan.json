@@ -1,0 +1,200 @@
+{
+  "chapterId": "the-obstacle-is-the-way-ch21",
+  "number": 21,
+  "title": "Build Your Inner Citadel",
+  "coreMove": "Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.",
+  "sourcePressure": "This chapter belongs to Will, so it must teach endurance, acceptance, and inner governance when control is partial. No source sidecar exists for ch21; this plan is grounded in the frozen TOC title and part placement only, with no named anecdotes invented. For \"Build Your Inner Citadel\", the pressure is to teach this exact move: Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.",
+  "chapterSpecificMisunderstanding": "The weak version turns the chapter into vague toughness or acceptance slogans instead of disciplined endurance under partial control. For \"Build Your Inner Citadel\", avoid replacing the chapter move with the whole book thesis.",
+  "sourceAlignmentTerms": [
+    "will",
+    "inner citadel",
+    "reserve",
+    "governance",
+    "stability",
+    "fortress"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic obstacle appears and teaches build your inner citadel",
+      "The problem is not the problem",
+      "Everything changed when the setback arrived"
+    ],
+    "counterintuition": [
+      "The obstacle is actually a blessing",
+      "The hard part is really your mindset",
+      "Success comes from staying positive"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on adversity",
+      "Write down three things you are grateful for",
+      "Take a breath and choose courage"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "generic kitchen-table family argument",
+      "generic classroom grade disappointment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research-free aside on source limits, a direct second-person passage, or a brief historical reference where sourceAnchors permits it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Pruitt",
+      "domain": "social worker building a recovery ritual after unpredictable court days",
+      "audience": "Readers facing social worker building a recovery ritual after unpredictable court days who need to practice \"Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into emotional walls.",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "openingDeviceNote": "open on a concrete sound, texture, smell, or visual detail before naming the person",
+      "requiredBeat": "Pruitt must visibly perform the chapter move by returning to an internal rule when external events refuse to stabilize, so the lesson happens in action rather than explanation.",
+      "firstImage": "a clipboard bent at one corner under fluorescent light",
+      "mustInclude": [
+        "locked door",
+        "backup route",
+        "two-minute choice window"
+      ],
+      "mustAvoid": [
+        "do not turn this into emotional walls",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Yelena",
+      "domain": "teacher creating a quiet grading standard after parent pressure",
+      "audience": "Readers facing teacher creating a quiet grading standard after parent pressure who need to practice \"Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into emotional walls.",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "openingDeviceNote": "open with one line of spoken dialogue that forces the decision into view",
+      "requiredBeat": "Yelena must visibly perform the chapter move by returning to an internal rule when external events refuse to stabilize, so the lesson happens in action rather than explanation.",
+      "firstImage": "rainwater beading on a taped paper sign",
+      "mustInclude": [
+        "spreadsheet row",
+        "timestamped note",
+        "one disputed fact"
+      ],
+      "mustAvoid": [
+        "do not turn this into emotional walls",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Nia",
+      "domain": "founder setting personal rules during investor silence",
+      "audience": "Readers facing founder setting personal rules during investor silence who need to practice \"Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into emotional walls.",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "openingDeviceNote": "open with the room, tool, weather, queue, screen, or workplace layout before any person acts",
+      "requiredBeat": "Nia must visibly perform the chapter move by returning to an internal rule when external events refuse to stabilize, so the lesson happens in action rather than explanation.",
+      "firstImage": "a red notification badge beside an unopened file",
+      "mustInclude": [
+        "weather alert",
+        "supply box",
+        "call list"
+      ],
+      "mustAvoid": [
+        "do not turn this into emotional walls",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Arthur",
+      "domain": "nurse manager protecting conduct after a tragic outcome",
+      "audience": "Readers facing nurse manager protecting conduct after a tragic outcome who need to practice \"Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into emotional walls.",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "openingDeviceNote": "open by putting the reader directly in the scene with a precise constraint",
+      "requiredBeat": "Arthur must visibly perform the chapter move by returning to an internal rule when external events refuse to stabilize, so the lesson happens in action rather than explanation.",
+      "firstImage": "chalk dust on the heel of a hand",
+      "mustInclude": [
+        "practice log",
+        "public result",
+        "private correction"
+      ],
+      "mustAvoid": [
+        "do not turn this into emotional walls",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Celine",
+      "domain": "artist keeping studio order during repeated rejection",
+      "audience": "Readers facing artist keeping studio order during repeated rejection who need to practice \"Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into emotional walls.",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "openingDeviceNote": "open after the fact, with the protagonist realizing what the earlier choice meant",
+      "requiredBeat": "Celine must visibly perform the chapter move by returning to an internal rule when external events refuse to stabilize, so the lesson happens in action rather than explanation.",
+      "firstImage": "a numbered ticket curling on a counter",
+      "mustInclude": [
+        "printed schedule",
+        "one fixed deadline",
+        "one person waiting for a decision"
+      ],
+      "mustAvoid": [
+        "do not turn this into emotional walls",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Gareth",
+      "domain": "project lead holding decision rules during executive churn",
+      "audience": "Readers facing project lead holding decision rules during executive churn who need to practice \"Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into emotional walls.",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "openingDeviceNote": "open with a practical question the scene will answer",
+      "requiredBeat": "Gareth must visibly perform the chapter move by returning to an internal rule when external events refuse to stabilize, so the lesson happens in action rather than explanation.",
+      "firstImage": "a cold loading-dock chain in a gloved hand",
+      "mustInclude": [
+        "marked-up form",
+        "visible queue",
+        "one rule that cannot be changed"
+      ],
+      "mustAvoid": [
+        "do not turn this into emotional walls",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the exact visible action that performs \"Build an inner reserve that remains governed when events, outcomes, and other people cannot be governed.\" in a new scenario",
+      "distinguish \"Build Your Inner Citadel\" from its common weak drift: emotional walls",
+      "choose between two plausible responses where only one preserves the chapter's control boundary",
+      "explain why a concrete beat works without reusing generic resilience language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real obstacle, write one sentence naming the raw fact, one sentence naming the move under your control, and one sentence naming the first visible action for \"Build Your Inner Citadel\"; keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

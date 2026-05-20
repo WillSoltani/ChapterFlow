@@ -1,0 +1,196 @@
+{
+  "chapterId": "made-to-stick-ch02",
+  "number": 2,
+  "title": "Unexpected",
+  "coreMove": "Break the audiences expected pattern, then open a useful knowledge gap that pulls them toward the core.",
+  "sourcePressure": "The source distinguishes attention from curiosity: surprise breaks a pattern, gap theory sustains attention, and examples like Nora Ephron, Sony pocket radio, and JFK moonshot keep the surprise tied to the core.",
+  "chapterSpecificMisunderstanding": "Confusing unexpected with shock, novelty, drama, or clickbait.",
+  "sourceAlignmentTerms": [
+    "surprise",
+    "curiosity gap",
+    "pattern break",
+    "Nora Ephron",
+    "gap theory",
+    "Sony pocket radio",
+    "JFK moonshot"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Nora Ephron",
+      "detail": "the sidecar says Nora Ephrons journalism-class lead supports the anti-bury-the-lead lesson",
+      "useIn": "both",
+      "phrasingHint": "Nora Ephrons journalism lesson works because the lead changes what the room thought the story was about."
+    },
+    {
+      "kind": "study",
+      "name": "gap theory",
+      "detail": "the sidecar says gap theory supports the claim that curiosity grows when people can feel what they do not yet know",
+      "useIn": "deepRead",
+      "phrasingHint": "A gap pulls only after people can feel the missing piece, not before they know enough to want it."
+    },
+    {
+      "kind": "event",
+      "name": "JFKs moonshot",
+      "detail": "the sidecar pairs JFKs moonshot with Sonys pocket radio as bold, surprising ambition that still gives direction",
+      "useIn": "fullRead",
+      "phrasingHint": "The moonshot is not random grandeur; it is surprise with a destination attached."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "everyone expects X but gets Y",
+      "a shocking fact opens every section"
+    ],
+    "counterintuition": [
+      "surprise is not enough repeated as a shell",
+      "curiosity is just attention continued"
+    ],
+    "tryThisNow": [
+      "open with a surprising fact",
+      "ask what they do not know"
+    ],
+    "examples": [
+      "marketing launch shock stunt",
+      "lecture starts with a quiz every time",
+      "mystery box prop"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "coastal flood-insurance town hall",
+      "audience": "a planner facing residents tired of risk maps",
+      "stakes": "families will reject new premiums if the danger feels like old paperwork",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Claire asks residents to predict which street flooded first, then reveals it was the high road everyone assumed was safe",
+      "firstImage": "Which street went under first when the tide topped the wall?",
+      "mustInclude": [
+        "laminated flood map",
+        "blue pushpins",
+        "insurance letters"
+      ],
+      "mustAvoid": [
+        "generic city planner speech"
+      ]
+    },
+    {
+      "domain": "vocational welding safety demo",
+      "audience": "an instructor teaching apprentices who tune out warnings",
+      "stakes": "a shortcut around eye protection can cause permanent damage",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Jonas starts with the tiny burn mark on a clear face shield, then opens the gap about where the spark landed",
+      "firstImage": "The face shield has one white scar no wider than a grain of rice",
+      "mustInclude": [
+        "clear face shield",
+        "slag bucket",
+        "bench vise"
+      ],
+      "mustAvoid": [
+        "gruesome injury shock"
+      ]
+    },
+    {
+      "domain": "public-radio pledge script rewrite",
+      "audience": "a producer trying to stop listeners from tuning out the annual appeal",
+      "stakes": "the station misses payroll if the appeal sounds like last year",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"We are not asking for money first,\" Camille says, then opens with the unanswered question of who keeps the overnight transmitter running",
+      "firstImage": "\"We are not asking for money first,\" Camille says over the studio talkback",
+      "mustInclude": [
+        "pledge script",
+        "red ON AIR light",
+        "transmitter log"
+      ],
+      "mustAvoid": [
+        "generic nonprofit donor pitch"
+      ]
+    },
+    {
+      "domain": "pharmacy vaccine reminder redesign",
+      "audience": "a pharmacist writing reminders for older patients",
+      "stakes": "patients ignore messages that sound like routine notices",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Thomas moves the consequence to the first line, then creates a gap about which appointments prevent missed holiday visits",
+      "firstImage": "At 9:10 a.m., Thomas stares at a stack of unsent reminder cards",
+      "mustInclude": [
+        "postcard proofs",
+        "flu-shot fridge",
+        "appointment calendar"
+      ],
+      "mustAvoid": [
+        "medical scare tactics"
+      ]
+    },
+    {
+      "domain": "art-history museum label for children",
+      "audience": "an educator making a quiet painting matter to fifth graders",
+      "stakes": "the group walks past the painting unless the label opens a chase",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You notice Sofia covers the title and asks what is missing from the banquet table before giving the historical fact",
+      "firstImage": "You are standing in front of a painting full of silver plates and one empty chair",
+      "mustInclude": [
+        "gallery bench",
+        "covered wall label",
+        "sketch clipboard"
+      ],
+      "mustAvoid": [
+        "classroom lecture opening"
+      ]
+    },
+    {
+      "domain": "software incident postmortem",
+      "audience": "a reliability lead presenting a boring outage review",
+      "stakes": "engineers repeat the failure if the timeline feels familiar too soon",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aanya starts with the dashboard metric that looked healthy, then reveals the hidden queue that made the safe signal dangerous",
+      "firstImage": "It took Aanya six hours to stop trusting the green dashboard tile",
+      "mustInclude": [
+        "green status tile",
+        "message queue graph",
+        "pager transcript"
+      ],
+      "mustAvoid": [
+        "startup pitch drama"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish relevant surprise from gimmickry",
+      "design a knowledge gap after enough context exists",
+      "evaluate whether a pattern break points back to the core",
+      "repair an opener that shocks but does not teach"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the assumption your audience is likely carrying, then write the first sentence that breaks that assumption while pointing straight back to your core.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

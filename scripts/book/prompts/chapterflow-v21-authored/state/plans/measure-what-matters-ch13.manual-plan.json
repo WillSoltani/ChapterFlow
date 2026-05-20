@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch13",
+  "number": 13,
+  "title": "Stretch: The Google Chrome Story",
+  "coreMove": "Set a bold reach target that forces stronger execution without becoming hype.",
+  "sourcePressure": "Google Chrome is the company case for stretch, with narrow support for bold targets and grounded accountability but no internal launch detail.",
+  "chapterSpecificMisunderstanding": "Do not invent Chrome launch metrics, product tactics, or management scenes.",
+  "sourceAlignmentTerms": [
+    "Google Chrome",
+    "stretch",
+    "bold targets",
+    "grounded execution",
+    "safe ceilings",
+    "visible effort"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Google Chrome",
+      "detail": "The source stabilizes Google Chrome as the company case for stretch, while blocking invented internal scenes, launch detail, and product metrics.",
+      "useIn": "both",
+      "phrasingHint": "Google Chrome should show stretch as a disciplined reach past a safe ceiling, not as a louder promise about growth."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Stretch: The Google Chrome Story as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "Google Chrome is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "browser history",
+      "growth hacking",
+      "generic ambition"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "browser-extension launch reliability",
+      "audience": "engineering team",
+      "stakes": "the stretch target risks becoming hype unless tied to crash-free sessions and review cadence",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Laura keeps the bold reach but forces every feature decision through reliability proof",
+      "firstImage": "dark monitors reflected in a window",
+      "mustInclude": [
+        "crash log",
+        "feature flag list",
+        "release checklist"
+      ],
+      "mustAvoid": [
+        "Chrome internal invention"
+      ]
+    },
+    {
+      "domain": "public-bike dock expansion",
+      "audience": "city mobility office",
+      "stakes": "expansion goals are bold but safe neighborhoods are easier than underserved ones",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Vincent raises the coverage target and makes blocked permits and equity gaps visible weekly",
+      "firstImage": "bolt cutters beside a dock base",
+      "mustInclude": [
+        "permit map",
+        "station list",
+        "equity heatmap"
+      ],
+      "mustAvoid": [
+        "bike helmet shell"
+      ]
+    },
+    {
+      "domain": "medical translation service scale-up",
+      "audience": "hospital interpreters",
+      "stakes": "demand is rising faster than safe staffing can handle",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Luke sets a stretch coverage target but refuses any measure that hides missed critical appointments",
+      "firstImage": "laminated language cards",
+      "mustInclude": [
+        "coverage board",
+        "appointment list",
+        "interpreter roster"
+      ],
+      "mustAvoid": [
+        "hospital hero story"
+      ]
+    },
+    {
+      "domain": "specialty manufacturer export push",
+      "audience": "sales and production",
+      "stakes": "sales wants a bigger market target but production proof is thin",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Petra asks what evidence must improve before the stretch export goal can be called grounded",
+      "firstImage": "sample parts in foam inserts",
+      "mustInclude": [
+        "export order sheet",
+        "quality report",
+        "shipping crate"
+      ],
+      "mustAvoid": [
+        "sales rah-rah"
+      ]
+    },
+    {
+      "domain": "climate-data nonprofit platform",
+      "audience": "research and product",
+      "stakes": "ambition to serve more cities could outrun data quality",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chiara splits the stretch target from vanity city count by tying it to verified data coverage",
+      "firstImage": "rain tapping on a lab window",
+      "mustInclude": [
+        "city dataset",
+        "verification checklist",
+        "partner memo"
+      ],
+      "mustAvoid": [
+        "generic NGO scale"
+      ]
+    },
+    {
+      "domain": "rural ambulance coverage model",
+      "audience": "health-system planners",
+      "stakes": "a larger response target is necessary but politically tempting to fake",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Devon traces which measures kept the reach honest and which would have made the goal look bigger than it was",
+      "firstImage": "folded road atlas on a conference table",
+      "mustInclude": [
+        "response map",
+        "crew roster",
+        "coverage gap list"
+      ],
+      "mustAvoid": [
+        "crisis repeat"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply stretch without inventing hype",
+      "pair bold targets with quality guardrails",
+      "recognize safe ceilings disguised as prudence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one ambitious launch, pair the reach target with the quality measure that can embarrass it if hype outruns execution.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

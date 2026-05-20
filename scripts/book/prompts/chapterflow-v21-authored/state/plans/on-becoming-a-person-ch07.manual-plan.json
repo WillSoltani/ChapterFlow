@@ -1,0 +1,191 @@
+{
+  "chapterId": "on-becoming-a-person-ch07",
+  "number": 7,
+  "title": "A Process Conception of Psychotherapy",
+  "coreMove": "Follow the living movement of the encounter without abandoning discipline or hiding inside technique.",
+  "sourcePressure": "Therapy is framed as disciplined unfolding process rather than an external technique applied to a passive object. Frozen sidecar ch07 supports the heading, part placement, and broad thematic claims; it exposes no chapter-local named anecdotes, studies, or places.",
+  "chapterSpecificMisunderstanding": "Using process as an excuse for vagueness or rejecting technique altogether.",
+  "sourceAlignmentTerms": [
+    "process conception",
+    "psychotherapy",
+    "unfolding experiencing",
+    "awareness",
+    "less distortion",
+    "technique",
+    "discipline"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source exposes no usable chapter-local named person, study, institution, place, date, or anecdotal artifact from Rogers here. Use fictional protagonists only; do not invent named Rogers cases or studies.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of process conception",
+      "therapist office at the window",
+      "reader-you-are-stuck generic opener"
+    ],
+    "counterintuition": [
+      "Most people think X, but Y",
+      "It is not about being nice",
+      "The paradox is that acceptance changes everything"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you noticed",
+      "pause and breathe before replying"
+    ],
+    "examples": [
+      "therapy-is-a-journey language",
+      "anti-structure slogans",
+      "branded modality talk",
+      "reused classroom worksheet shell",
+      "coffee mug office feedback shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivier",
+      "domain": "career coaching session",
+      "audience": "readers who face career coaching session and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around process conception; specifically, the outcome turns on whether Olivier can make process conception visible without sliding into using process as an excuse for vagueness or rejecting technique altogether.",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "In the career coaching session, Olivier puts the script down long enough to follow the living turn in the encounter while keeping the purpose clear, with the highlighted skills checklist and the yellow legal pad making the choice visible instead of merely stated.",
+      "firstImage": "the highlighted skills checklist beside Olivier's hand; the opening opens with the practical question the scene has to answer",
+      "mustInclude": [
+        "highlighted skills checklist",
+        "yellow legal pad"
+      ],
+      "mustAvoid": [
+        "do not turn career coaching session into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Olivier lecture"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "agile team retrospective",
+      "audience": "readers who face agile team retrospective and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around process conception; specifically, the outcome turns on whether Hugo can make process conception visible without sliding into using process as an excuse for vagueness or rejecting technique altogether.",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "In the agile team retrospective, Hugo puts the script down long enough to follow the living turn in the encounter while keeping the purpose clear, with the yellow legal pad and the session note with arrows making the choice visible instead of merely stated.",
+      "firstImage": "a half-finished note on Hugo's desk; the opening opens from the texture, sound, or physical pressure of the object before anyone explains it",
+      "mustInclude": [
+        "yellow legal pad",
+        "session note with arrows"
+      ],
+      "mustAvoid": [
+        "do not turn agile team retrospective into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Hugo lecture"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "music lesson studio",
+      "audience": "readers who face music lesson studio and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around process conception; specifically, the outcome turns on whether Lukas can make process conception visible without sliding into using process as an excuse for vagueness or rejecting technique altogether.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "In the music lesson studio, Lukas puts the script down long enough to follow the living turn in the encounter while keeping the purpose clear, with the session note with arrows and the highlighted skills checklist making the choice visible instead of merely stated.",
+      "firstImage": "the open doorway before Lukas speaks; the opening begins with one line of speech that exposes the relational pressure before the narrator explains it",
+      "mustInclude": [
+        "session note with arrows",
+        "highlighted skills checklist"
+      ],
+      "mustAvoid": [
+        "do not turn music lesson studio into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Lukas lecture"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "farm co-op planning meeting",
+      "audience": "readers who face farm co-op planning meeting and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around process conception; specifically, the outcome turns on whether Jonas can make process conception visible without sliding into using process as an excuse for vagueness or rejecting technique altogether.",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "In the farm co-op planning meeting, Jonas puts the script down long enough to follow the living turn in the encounter while keeping the purpose clear, with the highlighted skills checklist and the yellow legal pad making the choice visible instead of merely stated.",
+      "firstImage": "a line on the form that Jonas cannot ignore; the opening lets the room or setting carry the first signal before any person is named",
+      "mustInclude": [
+        "highlighted skills checklist",
+        "yellow legal pad"
+      ],
+      "mustAvoid": [
+        "do not turn farm co-op planning meeting into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Jonas lecture"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "immigration clinic interview",
+      "audience": "readers who face immigration clinic interview and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around process conception; specifically, the outcome turns on whether Niklas can make process conception visible without sliding into using process as an excuse for vagueness or rejecting technique altogether.",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "In the immigration clinic interview, Niklas puts the script down long enough to follow the living turn in the encounter while keeping the purpose clear, with the yellow legal pad and the session note with arrows making the choice visible instead of merely stated.",
+      "firstImage": "the quiet after Niklas stops explaining; the opening puts the reader directly in the moment before naming the choice",
+      "mustInclude": [
+        "yellow legal pad",
+        "session note with arrows"
+      ],
+      "mustAvoid": [
+        "do not turn immigration clinic interview into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Niklas lecture"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "paramedic station review",
+      "audience": "readers who face paramedic station review and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around process conception; specifically, the outcome turns on whether Henrik can make process conception visible without sliding into using process as an excuse for vagueness or rejecting technique altogether.",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "In the paramedic station review, Henrik puts the script down long enough to follow the living turn in the encounter while keeping the purpose clear, with the session note with arrows and the highlighted skills checklist making the choice visible instead of merely stated.",
+      "firstImage": "two chairs pulled out from the table; the opening starts after the cost is visible, then backs into the choice that created it",
+      "mustInclude": [
+        "session note with arrows",
+        "highlighted skills checklist"
+      ],
+      "mustAvoid": [
+        "do not turn paramedic station review into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Henrik lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "notice when a script freezes contact",
+      "keep form without forcing sequence",
+      "respond to unfolding experience"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In a scripted conversation, pause once to ask what is actually happening between you before moving to the next planned step.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside where supported, a direct second-person passage, or a brief historical reference to the frozen chapter placement",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

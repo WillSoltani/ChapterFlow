@@ -1,0 +1,208 @@
+{
+  "chapterId": "the-obstacle-is-the-way-ch05",
+  "number": 5,
+  "title": "Alter Your Perspective",
+  "coreMove": "Change the angle of view until a truthful opening appears inside facts that first looked closed.",
+  "sourcePressure": "This chapter belongs to Perception, so it must teach cleaner seeing before it teaches action or endurance. Source sidecar ch05 exists and provides partial-source support only; no full text is frozen. For \"Alter Your Perspective\", the pressure is to teach this exact move: Change the angle of view until a truthful opening appears inside facts that first looked closed.",
+  "chapterSpecificMisunderstanding": "The weak version turns the chapter into generic mindset advice instead of a precise discipline of reading the obstacle cleanly. For \"Alter Your Perspective\", avoid replacing the chapter move with the whole book thesis.",
+  "sourceAlignmentTerms": [
+    "perspective",
+    "angle",
+    "reframe",
+    "opportunity",
+    "facts",
+    "denial"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Dwight D. Eisenhower",
+      "detail": "Frozen notes connect Eisenhower to seeing opportunity where others see disaster, without supporting a detailed wartime retelling.",
+      "useIn": "both",
+      "phrasingHint": "Eisenhower should enter as a restrained example of a mind looking for usable room inside what others called disaster."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic obstacle appears and teaches alter your perspective",
+      "The problem is not the problem",
+      "Everything changed when the setback arrived"
+    ],
+    "counterintuition": [
+      "The obstacle is actually a blessing",
+      "The hard part is really your mindset",
+      "Success comes from staying positive"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on adversity",
+      "Write down three things you are grateful for",
+      "Take a breath and choose courage"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "generic kitchen-table family argument",
+      "generic classroom grade disappointment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research-free aside on source limits, a direct second-person passage, or a brief historical reference where sourceAnchors permits it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "product team whose launch delay reveals a better pilot market",
+      "audience": "Readers facing product team whose launch delay reveals a better pilot market who need to practice \"Change the angle of view until a truthful opening appears inside facts that first looked closed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into bright-side optimism.",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "openingDeviceNote": "open on a concrete sound, texture, smell, or visual detail before naming the person",
+      "requiredBeat": "Megan must visibly perform the chapter move by turning the same facts to a different truthful angle and finding one usable opening, so the lesson happens in action rather than explanation.",
+      "firstImage": "a clipboard bent at one corner under fluorescent light",
+      "mustInclude": [
+        "weather alert",
+        "supply box",
+        "call list"
+      ],
+      "mustAvoid": [
+        "do not turn this into bright-side optimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "graduate student treating a failed experiment as a cleaner question",
+      "audience": "Readers facing graduate student treating a failed experiment as a cleaner question who need to practice \"Change the angle of view until a truthful opening appears inside facts that first looked closed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into bright-side optimism.",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "openingDeviceNote": "open with one line of spoken dialogue that forces the decision into view",
+      "requiredBeat": "Michael must visibly perform the chapter move by turning the same facts to a different truthful angle and finding one usable opening, so the lesson happens in action rather than explanation.",
+      "firstImage": "rainwater beading on a taped paper sign",
+      "mustInclude": [
+        "practice log",
+        "public result",
+        "private correction"
+      ],
+      "mustAvoid": [
+        "do not turn this into bright-side optimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "cycling coach seeing a headwind as pacing practice",
+      "audience": "Readers facing cycling coach seeing a headwind as pacing practice who need to practice \"Change the angle of view until a truthful opening appears inside facts that first looked closed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into bright-side optimism.",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "openingDeviceNote": "open with the room, tool, weather, queue, screen, or workplace layout before any person acts",
+      "requiredBeat": "Isabel must visibly perform the chapter move by turning the same facts to a different truthful angle and finding one usable opening, so the lesson happens in action rather than explanation.",
+      "firstImage": "a red notification badge beside an unopened file",
+      "mustInclude": [
+        "printed schedule",
+        "one fixed deadline",
+        "one person waiting for a decision"
+      ],
+      "mustAvoid": [
+        "do not turn this into bright-side optimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "cafe owner using a road closure to test delivery orders",
+      "audience": "Readers facing cafe owner using a road closure to test delivery orders who need to practice \"Change the angle of view until a truthful opening appears inside facts that first looked closed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into bright-side optimism.",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "openingDeviceNote": "open by putting the reader directly in the scene with a precise constraint",
+      "requiredBeat": "Nicolas must visibly perform the chapter move by turning the same facts to a different truthful angle and finding one usable opening, so the lesson happens in action rather than explanation.",
+      "firstImage": "chalk dust on the heel of a hand",
+      "mustInclude": [
+        "marked-up form",
+        "visible queue",
+        "one rule that cannot be changed"
+      ],
+      "mustAvoid": [
+        "do not turn this into bright-side optimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "translator reframing a rejection as a specialty signal",
+      "audience": "Readers facing translator reframing a rejection as a specialty signal who need to practice \"Change the angle of view until a truthful opening appears inside facts that first looked closed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into bright-side optimism.",
+      "format": "thought_experiment",
+      "openingDevice": "retrospective",
+      "openingDeviceNote": "open after the fact, with the protagonist realizing what the earlier choice meant",
+      "requiredBeat": "Layla must visibly perform the chapter move by turning the same facts to a different truthful angle and finding one usable opening, so the lesson happens in action rather than explanation.",
+      "firstImage": "a numbered ticket curling on a counter",
+      "mustInclude": [
+        "locked door",
+        "backup route",
+        "two-minute choice window"
+      ],
+      "mustAvoid": [
+        "do not turn this into bright-side optimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "choir director turning a lost venue into an outdoor performance",
+      "audience": "Readers facing choir director turning a lost venue into an outdoor performance who need to practice \"Change the angle of view until a truthful opening appears inside facts that first looked closed.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into bright-side optimism.",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "openingDeviceNote": "open with a practical question the scene will answer",
+      "requiredBeat": "Marit must visibly perform the chapter move by turning the same facts to a different truthful angle and finding one usable opening, so the lesson happens in action rather than explanation.",
+      "firstImage": "a cold loading-dock chain in a gloved hand",
+      "mustInclude": [
+        "spreadsheet row",
+        "timestamped note",
+        "one disputed fact"
+      ],
+      "mustAvoid": [
+        "do not turn this into bright-side optimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the exact visible action that performs \"Change the angle of view until a truthful opening appears inside facts that first looked closed.\" in a new scenario",
+      "distinguish \"Alter Your Perspective\" from its common weak drift: bright-side optimism",
+      "choose between two plausible responses where only one preserves the chapter's control boundary",
+      "explain why a concrete beat works without reusing generic resilience language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real obstacle, write one sentence naming the raw fact, one sentence naming the move under your control, and one sentence naming the first visible action for \"Alter Your Perspective\"; keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

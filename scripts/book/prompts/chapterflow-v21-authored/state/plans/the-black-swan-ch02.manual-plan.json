@@ -1,0 +1,191 @@
+{
+  "chapterId": "the-black-swan-ch02",
+  "number": 2,
+  "title": "Yevgenia's Black Swan",
+  "coreMove": "Study a visible winner while keeping the invisible field of failed alternatives in view.",
+  "sourcePressure": "Yevgenia Krasnova shows how one improbable success gets rewritten as if the path had been visible before the outcome.",
+  "chapterSpecificMisunderstanding": "Treating breakout success as meaningless or as a simple recipe to copy.",
+  "sourceAlignmentTerms": [
+    "Yevgenia Krasnova",
+    "Black Swan success",
+    "post hoc admiration",
+    "ex ante predictability",
+    "selection blindness",
+    "visible winner",
+    "failed attempts"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Yevgenia Krasnova",
+      "detail": "a fictional author whose improbable rise is later narrated as if it were written in advance",
+      "useIn": "both",
+      "phrasingHint": "Yevgenia looks inevitable only after the bookshelf has already made room for her."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "indie game launch analysis",
+      "audience": "a studio founder studying a surprise hit",
+      "stakes": "copying surface features while missing hundreds of failed launches",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the founder adds a failed-games column before approving the clone",
+      "firstImage": "At 8:17 a.m., Sophie faces a Steam chart printed beside rejected prototypes.",
+      "mustInclude": [
+        "Sophie",
+        "a Steam chart printed beside rejected prototypes",
+        "Yevgenia Krasnova"
+      ],
+      "mustAvoid": [
+        "Treating breakout success as meaningless or as a simple recipe to copy.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "restaurant expansion decision",
+      "audience": "a chef admiring a viral ramen counter",
+      "stakes": "opening a second site from one glamorous case",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the chef asks for lease failures in the same neighborhood before signing",
+      "firstImage": "A first line of dialogue lands before the reader sees neon reflected in a rain-wet storefront.",
+      "mustInclude": [
+        "Grace",
+        "neon reflected in a rain-wet storefront",
+        "Black Swan success"
+      ],
+      "mustAvoid": [
+        "Treating breakout success as meaningless or as a simple recipe to copy.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "grant committee artist review",
+      "audience": "a foundation officer reading a breakout novelist profile",
+      "stakes": "funding only applicants who match the winning origin story",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the officer pulls the rejected manuscript pile into the scoring meeting",
+      "firstImage": "Open on the texture, sound, or light of a stack of unopened brown envelopes.",
+      "mustInclude": [
+        "Rachel",
+        "a stack of unopened brown envelopes",
+        "post hoc admiration"
+      ],
+      "mustAvoid": [
+        "Treating breakout success as meaningless or as a simple recipe to copy.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "venture capital pattern memo",
+      "audience": "an associate reverse-engineering a unicorn deck",
+      "stakes": "mistaking one winner for a law of company building",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the associate marks which traits were visible before funding versus after exit",
+      "firstImage": "You are looking at a cap table projected in a glass room before the choice becomes abstract.",
+      "mustInclude": [
+        "Laura",
+        "a cap table projected in a glass room",
+        "ex ante predictability"
+      ],
+      "mustAvoid": [
+        "Treating breakout success as meaningless or as a simple recipe to copy.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "music festival booking",
+      "audience": "a promoter chasing last summer's viral singer",
+      "stakes": "a weak lineup built from hindsight glamour",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the promoter compares pre-breakout audience data across acts, not press clips",
+      "firstImage": "It takes Anna several weeks to understand what bass vibration through a half-empty hall was really showing.",
+      "mustInclude": [
+        "Anna",
+        "bass vibration through a half-empty hall",
+        "selection blindness"
+      ],
+      "mustAvoid": [
+        "Treating breakout success as meaningless or as a simple recipe to copy.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "sports academy recruitment",
+      "audience": "a coach copying the training route of one superstar",
+      "stakes": "dropping late bloomers who lack the famous script",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the coach reviews all players who had the same early metrics and disappeared",
+      "firstImage": "mud on a row of academy boots appears before any human enters the sentence.",
+      "mustInclude": [
+        "James",
+        "mud on a row of academy boots",
+        "visible winner"
+      ],
+      "mustAvoid": [
+        "Treating breakout success as meaningless or as a simple recipe to copy.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate outcome knowledge from process evidence",
+      "ask for the denominator behind a success story",
+      "avoid copying survivors as manuals"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one admired success and name three unseen attempts that would have looked similar before the result.",
+  "readingTimeMinutes": 12
+}

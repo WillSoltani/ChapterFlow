@@ -1,0 +1,175 @@
+{
+  "chapterId": "the-power-of-habit-ch01",
+  "number": 1,
+  "title": "The Habit Loop",
+  "coreMove": "Separate the trigger, automatic action, and payoff before deciding what the behavior means.",
+  "sourcePressure": "Eugene Pauly's memory-loss case shows that procedural routines can keep operating outside explicit recall. This chapter is about diagnosis: cue, routine, and reward make an automatic behavior visible before anyone tries to replace or control it.",
+  "chapterSpecificMisunderstanding": "The weak version turns this into generic advice about better habits or discipline. The writer must keep the focus on making an automatic procedure legible before judging it.",
+  "sourceAlignmentTerms": [
+    "Eugene Pauly",
+    "procedural routine",
+    "cue",
+    "routine",
+    "reward",
+    "automatic mode",
+    "brain efficiency",
+    "diagnosis",
+    "memory loss"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic morning-on-autopilot opening with a phone, coffee, or toothbrush.",
+      "A character asking why they have no discipline.",
+      "Any hook that names the habit loop before the reader sees a loop."
+    ],
+    "counterintuition": [
+      "Most people think habits are about willpower, but actually they are loops.",
+      "Treating automatic behavior as destiny or moral failure.",
+      "Collapsing cue, routine, and reward into one blur called a habit."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and notice a habit.",
+      "Pick a bad habit and replace it immediately.",
+      "Write down every habit from your morning."
+    ],
+    "examples": [
+      "Office procrastination diagnosed with sticky notes.",
+      "Kitchen coffee or snack routine.",
+      "Classroom worksheet or study habit scene.",
+      "Generic phone-checking loop."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "memory-care wayfinding on an assisted-living hallway",
+      "audience": "an adult child who thinks a parent is wandering at random",
+      "stakes": "whether the family responds with correction and alarm or sees a preserved procedural route that can be supported",
+      "format": "scene",
+      "requiredBeat": "The daughter stops repeating directions, watches her father touch the brass sailboat plaque, turn left, and settle on the aquarium bench, then writes plaque cue, hallway walk routine, and relief payoff on the care-team clipboard.",
+      "firstImage": "A brass sailboat plaque hangs beside a locked garden door.",
+      "mustInclude": [
+        "brass sailboat plaque",
+        "laminated floor map",
+        "aquarium bench"
+      ],
+      "mustAvoid": [
+        "a direct retelling of Eugene Pauly",
+        "a generic dementia tragedy",
+        "a replacement tactic"
+      ]
+    },
+    {
+      "domain": "airport baggage-screening false alarms during a holiday rush",
+      "audience": "a screening supervisor reviewing why a reliable screener keeps clearing the same alert too fast",
+      "stakes": "a backed-up checkpoint and the risk that speed starts substituting for inspection",
+      "format": "postmortem",
+      "requiredBeat": "The supervisor freezes the replay on the orange density box, sees the screener tap the same clear button after every cookie tin, and separates screen glow cue, button tap routine, and line-moving relief reward.",
+      "firstImage": "A row of holiday cookie tins waits beside an X-ray monitor.",
+      "mustInclude": [
+        "orange density box",
+        "clear button",
+        "snaking checkpoint belt"
+      ],
+      "mustAvoid": [
+        "generic workplace productivity",
+        "security theater lecture",
+        "willpower framing"
+      ]
+    },
+    {
+      "domain": "community theater blackout cues before opening night",
+      "audience": "a volunteer stage manager whose assistant keeps hitting the wrong light slider",
+      "stakes": "one missed cue could leave an actor crossing in darkness during the final dress rehearsal",
+      "format": "dialogue",
+      "requiredBeat": "Instead of saying pay attention, the stage manager watches the assistant hear a headset click, reach for the house-light slider, and exhale when the booth quiets, then names the click, reach, and quiet in three short lines.",
+      "firstImage": "A headset cord twists around the edge of a lighting console.",
+      "mustInclude": [
+        "headset click",
+        "house-light slider",
+        "taped cue sheet"
+      ],
+      "mustAvoid": [
+        "school play scene",
+        "lecture about focus",
+        "same-stage persuasion beat from HWF"
+      ]
+    },
+    {
+      "domain": "pharmacy pickup counter repeating insurance overrides",
+      "audience": "a lead pharmacist trying to understand why a technician keeps bypassing a warning screen",
+      "stakes": "customers are waiting, but one automatic override could hide a real coverage or safety problem",
+      "format": "predict_reveal",
+      "requiredBeat": "The pharmacist predicts the override will happen when the red queue number blinks; the rejection tone sounds, the technician taps F8 without looking, and the pharmacist marks tone cue, F8 routine, and cleared-screen reward.",
+      "firstImage": "A red queue number blinks above a stack of prescription bags.",
+      "mustInclude": [
+        "rejection tone",
+        "F8 key",
+        "red queue number"
+      ],
+      "mustAvoid": [
+        "drug dosing example",
+        "blaming the technician",
+        "patient morality tale"
+      ]
+    },
+    {
+      "domain": "marina dockhand tying boats before a storm front",
+      "audience": "a dockmaster who keeps finding the same weak knot on transient slips",
+      "stakes": "a loose line could send a rented boat into the seawall when the wind shifts",
+      "format": "decision_point",
+      "requiredBeat": "The dockmaster starts to scold, then notices the wind chime clatter, the dockhand throw the same half-hitch, and the relief of an empty cleat row, so he diagnoses the sequence before correcting the knot.",
+      "firstImage": "A green bow line slaps against a wet cleat.",
+      "mustInclude": [
+        "wind chime clatter",
+        "half-hitch",
+        "wet cleat"
+      ],
+      "mustAvoid": [
+        "sports practice correction",
+        "storm-as-crisis reform",
+        "generic safety lecture"
+      ]
+    },
+    {
+      "domain": "ceramics studio cleanup after a kiln-loading class",
+      "audience": "a studio instructor whose students keep contaminating one glaze bucket",
+      "stakes": "one automatic cleanup pass can ruin a week's worth of student pieces",
+      "format": "before_after",
+      "requiredBeat": "Before changing the shelf labels, the instructor watches the kiln fan stop, a student drop the sponge into the cobalt bucket, wipe the table, and smile at the cleared space, making fan, sponge drop, and clear table the first diagnosis.",
+      "firstImage": "A damp sponge rests on the rim of a cobalt glaze bucket.",
+      "mustInclude": [
+        "kiln fan",
+        "cobalt glaze bucket",
+        "cleared worktable"
+      ],
+      "mustAvoid": [
+        "classroom worksheet",
+        "home cleaning habit",
+        "instant replacement routine"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify cue, routine, and reward in a novel automatic behavior without moralizing the person",
+      "distinguish diagnosis from replacement, craving design, and willpower coaching",
+      "infer a likely reward from the visible relief, speed, quiet, or order that follows a routine",
+      "evaluate whether a proposed response has observed the loop closely enough before changing it"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one repeated action from today and write three evidence labels: what happened just before it, what your body did next, and what changed afterward. Do not fix it yet.",
+  "readingTimeMinutes": 12
+}

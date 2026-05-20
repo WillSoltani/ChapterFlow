@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch08",
+  "number": 8,
+  "title": "Unity: The We Is the Shared Me",
+  "coreMove": "Distinguish real shared identity from borrowed belonging cues before letting scrutiny drop.",
+  "sourcePressure": "The source supports unity as the added 2021 principle: shared identity, belonging, we-ness, common fate, boundary softening, and the distinction from liking or similarity.",
+  "chapterSpecificMisunderstanding": "Do not flatten unity into liking; unity works when the other side feels like part of us, not merely pleasant or similar.",
+  "sourceAlignmentTerms": ["unity", "shared identity", "we-ness", "belonging", "common fate", "boundary softening", "identity borrowing"],
+  "forbiddenFrames": {
+    "hook": ["We is stronger than like", "Belonging lowers the guard", "The tribe can sell"],
+    "counterintuition": ["Community is manipulation", "Shared identity is fake", "Trust no insider"],
+    "tryThisNow": ["Notice your groups", "Ask who counts as we", "Question belonging"],
+    "examples": ["sports team fandom", "military brotherhood", "national identity rally"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "mutual-aid disaster supply depot",
+      "audience": "a volunteer deciding whether to skip inventory checks for a fellow member",
+      "stakes": "letting we-ness override accountability during flood recovery",
+      "format": "scene",
+      "requiredBeat": "the volunteer hears our people take care of our people, then still counts the medical kits before release",
+      "firstImage": "plastic bins of bandages stacked on a church gym floor",
+      "mustInclude": ["medical kits", "membership phrase", "inventory sheet"],
+      "mustAvoid": ["generic charity gratitude"]
+    },
+    {
+      "domain": "heritage language weekend school fundraiser",
+      "audience": "a parent asked to underwrite a curriculum purchase",
+      "stakes": "approving a weak vendor because the pitch invokes shared ancestry",
+      "format": "decision_point",
+      "requiredBeat": "the parent honors the shared heritage line, then asks for the vendor comparison matrix before pledging",
+      "firstImage": "handwritten alphabet cards taped along a hallway",
+      "mustInclude": ["vendor matrix", "heritage phrase", "pledge card"],
+      "mustAvoid": ["liking friendly parent"]
+    },
+    {
+      "domain": "worker-owned bakery equipment vote",
+      "audience": "a member-owner hearing a supplier claim cooperative values",
+      "stakes": "buying a mixer because the supplier borrows co-op language",
+      "format": "dialogue",
+      "requiredBeat": "the member asks how the warranty and service terms reflect shared risk rather than just shared words",
+      "firstImage": "flour dust on a meeting packet beside a dough hook",
+      "mustInclude": ["co-op language", "warranty terms", "service schedule"],
+      "mustAvoid": ["authority equipment expert"]
+    },
+    {
+      "domain": "diaspora remittance investment pool",
+      "audience": "siblings asked to join a cousin's land fund",
+      "stakes": "confusing family identity with investment diligence",
+      "format": "postmortem",
+      "requiredBeat": "after the family call, one sibling marks which claims were kinship appeals and which were verifiable documents",
+      "firstImage": "a video-call grid reflected in a dark kitchen window",
+      "mustInclude": ["land deed scan", "family appeal", "wire deadline"],
+      "mustAvoid": ["generic family dinner shell"]
+    },
+    {
+      "domain": "open-source security project governance vote",
+      "audience": "a maintainer asked to trust a longtime contributor's release shortcut",
+      "stakes": "shipping insecure code because we built this together feels binding",
+      "format": "before_after",
+      "requiredBeat": "the maintainer contrasts the contributor's history with the failed security checklist and keeps the review requirement",
+      "firstImage": "a terminal window showing a failed dependency scan",
+      "mustInclude": ["security checklist", "contributor history", "release tag"],
+      "mustAvoid": ["commitment to old roadmap"]
+    },
+    {
+      "domain": "alumni-owned credit union loan pitch",
+      "audience": "a graduate considering a business loan from an alumni lender",
+      "stakes": "accepting poor terms because school identity feels like protection",
+      "format": "reflection",
+      "requiredBeat": "the graduate circles every alumni phrase in the pitch, then compares interest, collateral, and penalties to two non-alumni lenders",
+      "firstImage": "a loan folder embossed with the old campus seal",
+      "mustInclude": ["campus seal", "penalty clause", "comparison lenders"],
+      "mustAvoid": ["authority financial advisor"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish unity from liking and similarity", "detect borrowed belonging cues", "preserve scrutiny inside real shared identity", "evaluate when common fate is substantive versus rhetorical"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "When a request uses we language today, write what is actually shared, what is only being claimed, and what evidence should still be checked.",
+  "readingTimeMinutes": 12
+}

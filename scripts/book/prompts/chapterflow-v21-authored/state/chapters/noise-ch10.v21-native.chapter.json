@@ -1,0 +1,301 @@
+{
+  "chapterId": "noise-ch10",
+  "number": 10,
+  "title": "Better Judges for Better Judgments",
+  "readingTimeMinutes": 12,
+  "hook": "Ten years of confident judgment without feedback is ten years of practicing the same errors.",
+  "counterintuition": "Experience and calibration are often treated as synonyms: the more someone has done something, the better their judgment of it. But the two only overlap when the doing includes feedback on whether the outcome was correct. Without that feedback, experience accumulates evidence that the judge existed during decisions. Calibration accumulates evidence that the judge's predictions were tested against outcomes. Only one of them reduces noise.",
+  "tryThisNow": "Find one recurring judgment where outcomes eventually become knowable. Before each of the next 10 cases, write your prediction. Record the outcome when it arrives. After 10 cases, you have the raw material of calibration.",
+  "keyTakeaway": "Experience without feedback produces confident judgments, not calibrated ones. The improvement in judge quality that reduces noise requires structured exposure to outcomes, not just the accumulation of cases.",
+  "breakdown": {
+    "fastRead": "Two reliability data summaries, side by side on a training room desk. Aaron reads across them: the standard deviation of weather-severity ratings for the veteran cohort, then for the newly certified cohort. The veteran cohort's spread is wider. The new cohort completed calibration exercises scored against recorded scenarios with known correct ratings. The veterans accumulated the same raw hours without systematic feedback against outcomes. Aaron is preparing the next certification redesign, and this comparison settles one question about what to keep.\n\nLay two training records side by side: one built on supervised caseload, one built on calibration sessions scored against known outcomes. Check the inter-rater agreement data for each. The gap between them is what deliberate feedback produces.\n\nExperience accumulates case files. Calibration accumulates tested predictions.",
+    "deepRead": "Hand two judges identical case files and ask each to rate the risk. If both have twenty years of experience but neither received feedback on whether their prior ratings matched outcomes, you will likely find wide disagreement. Experience and calibration are not the same credential: experience counts cases, and calibration tests predictions against outcomes.\n\nConsider what happens to a forecaster who predicts market direction on Monday and learns the result by Friday, versus a credit officer who approves a loan and sees the default rate two years later, distributed across a portfolio rather than attributed to specific decisions. In the forecasting domain, feedback is timely enough that the forecaster can trace a connection between a specific prediction and its outcome. In the credit domain, the feedback is so delayed and diffuse that no such connection completes. In open domains where outcomes are delayed, noisy, or difficult to match to specific prior judgments, the feedback loop that drives calibration in closed domains does not fire. Experience accumulates without the correction mechanism that makes it instructive. A judge can be consistently wrong about a specific case type for a decade and become increasingly confident at defending those wrong answers.\n\nA chess player knows immediately whether a move was good. A hiring manager does not hear for a year whether the person worked out, and by then has forgotten what they noticed in the interview. Experience in that environment does not produce calibration. It produces confidence. The research tradition on deliberate practice establishes this limit: expertise in closed-feedback domains (chess, music, surgery) improves with practice; judgment in domains with delayed or absent feedback (screening, hiring, risk assessment) does not improve with practice alone.\n\nExperience without feedback does not converge on accuracy: it converges on confidence, and the two feel identical from the inside.",
+    "fullRead": "Two trend lines run parallel on the study chart at the start of year one. Each begins at the same variance level. Over two years, one declines. The other holds flat. The declining line belongs to the group that completed weekly calibration sessions: each week, diagnosticians assessed a recorded clinical presentation and compared their diagnosis against the session's consensus outcome, then discussed specifically where their assessment had diverged from the result. The flat line belongs to the matched group that completed the same number of supervised clinical hours without the structured calibration sessions. Irene has been watching both groups for two years. The trend lines now explain the difference.\n\nFind the research literature on deliberate practice and you encounter a consistent boundary. Expertise grows with practice in domains where feedback is tight and short: chess, music, surgery, tennis. Judgment in domains where feedback is delayed, noisy, or absent does not grow in the same way. The practice framework that produced the deliberate practice concept was built primarily on closed-feedback domains, and it contains an implicit warning for judgment-intensive fields: practice without specific feedback against outcomes is not deliberate practice. It is repetition.\n\nMalcolm poses the question to the room of senior analysts before opening the envelope. If two veteran analysts and two analysts from the calibrated-certification cohort each assessed the same ten file samples, which pair would agree more often? The veterans resist answering. They hear a comparison of competence. Malcolm reframes it: this is not about who is more skilled. It is about whether your development path included systematic feedback on whether your flags matched outcomes. The envelope holds last month's test results. The calibrated pair agreed more often.\n\nThe military conference room holds board members opening prior-cycle calibration cases before the new promotion cycle begins. Each member scores a candidate whose outcome they do not yet know. After scoring, outcomes are revealed and score variance is discussed. In the cycle that followed, Rodney found variance in borderline scores forty percent lower than in the prior cycle without calibration. Board members reported greater confidence: prior-cycle cases had given them a reference floor. Rodney submits the comparison to the program office before next cycle's training protocol is finalized.\n\nWalk through what calibration requires in sequence: a judgment committed before the outcome is known, an outcome that becomes observable after the judgment, and a comparison between the prediction and the result reviewed with specific attention to where they diverged. Remove any of the three and you have something that resembles calibration training but does not produce it. A session that presents cases without requiring a committed prediction first removes the prediction from the sequence. A session that presents cases without revealing the outcome data removes the feedback. A session that reveals the outcome without asking participants to identify where their prediction diverged from it removes the correction mechanism. All three components are necessary. Training that satisfies only one or two of them produces awareness, not calibration.\n\nCalibrated judgment is built by measuring. Unexamined experience is built by counting. The number of years and the quality of feedback are two different things, and only one of them shows up in the inter-rater agreement data."
+  },
+  "examples": [
+    {
+      "exampleId": "noise-ch10-ex01",
+      "title": "Wider Spread",
+      "tags": ["air traffic control", "calibration training", "veteran cohort", "inter-rater reliability"],
+      "planSpec": {
+        "domain": "air traffic control assessment: veteran controllers discovered to have wider spread in weather-condition severity ratings than recently certified controllers who received structured calibration training",
+        "audience": "an air traffic control training manager analyzing reliability data from the most recent certification cohort versus a cohort from ten years prior",
+        "stakes": "flight safety decisions that depend on consistent weather-condition assessment across all controllers on shift",
+        "format": "scene",
+        "requiredBeat": "the training manager lays out the reliability data side by side: the newly certified cohort, who completed structured calibration exercises against recorded scenarios with known correct ratings, shows tighter inter-rater agreement than the veteran cohort who accumulated the same hours without structured feedback against outcomes"
+      },
+      "scenario": "Two reliability data summaries, side by side on a training room desk. Aaron reads across them: the standard deviation of weather-severity ratings for the veteran cohort, then for the newly certified cohort. The veteran cohort's spread is wider. The new cohort completed calibration exercises scored against recorded scenarios with known correct ratings. The veterans accumulated the same raw hours without systematic feedback against outcomes. Aaron is preparing the next certification redesign, and this comparison settles one question about what to keep.",
+      "whatToDo": "When veteran agreement is wider than newly certified agreement, compare training structures. If the newer cohort received feedback against known outcomes and veterans did not, the calibration design is the variable. Preserve it in the next certification redesign.",
+      "whyItMatters": "Tighter agreement in a calibration-trained cohort than in veterans without feedback shows that time in role did not substitute for structured outcome feedback. The training design drove the difference."
+    },
+    {
+      "exampleId": "noise-ch10-ex02",
+      "title": "Near-Zero Slope",
+      "tags": ["child welfare", "experience-consistency correlation", "calibration program", "professional development"],
+      "planSpec": {
+        "domain": "child welfare investigation: two social workers with very different investigation experience levels assessed on judgment consistency",
+        "audience": "a child welfare agency quality manager studying whether experience correlates with consistent risk assessment",
+        "stakes": "child safety decisions and equitable treatment of families — inconsistent risk ratings lead to some families being over-intervened and others under-monitored",
+        "format": "dialogue",
+        "requiredBeat": "the quality manager and training director review the agency's calibration data: the correlation between years of experience and inter-rater consistency is near zero, and workers who completed structured calibration against reviewed cases with known outcomes score significantly higher on consistency"
+      },
+      "scenario": "'The correlation between years of experience and consistency is almost flat,' Charlotte says, sliding the scatter plot across the table. Hugo studies the chart: experience on the x-axis, inter-rater consistency on the y-axis, dots scattered with no upward trend. Workers who completed structured calibration against reviewed cases with known outcomes score significantly higher on consistency than workers with more raw experience. The regression line is nearly horizontal. Hugo circles the calibration group's cluster. The training calendar for next year is still open for revision.",
+      "whatToDo": "When experience and consistency correlate near zero and calibration training predicts consistency, restructure professional development to include sessions with known-outcome cases. Supervised caseload builds domain knowledge. Calibration sessions build judgment quality.",
+      "whyItMatters": "A near-zero correlation between experience and consistency means accumulated caseload without outcome feedback is not converging on calibrated judgment. The structured calibration program is what drives the consistency improvement."
+    },
+    {
+      "exampleId": "noise-ch10-ex03",
+      "title": "Thirty Percent",
+      "tags": ["clinical psychology", "diagnostic variance", "calibration group", "experience-only control"],
+      "planSpec": {
+        "domain": "clinical psychology diagnosis: a psychology department comparing consistency across experienced versus newly trained diagnosticians in a calibration program",
+        "audience": "a clinical psychology training program director reviewing a two-year calibration study",
+        "stakes": "diagnostic reliability for treatment planning — inconsistent diagnosis means patients receive different treatments for the same presentation",
+        "format": "postmortem",
+        "requiredBeat": "the director reviews the two-year study result: the calibrated group shows 30 percent lower variance in diagnosis; the matched experience-only group shows no significant reduction in variance over the same period"
+      },
+      "scenario": "Two years after the study began, Irene reviews the variance data for both groups. The calibrated group, whose members completed weekly sessions assessing recorded presentations against consensus outcomes, shows thirty percent lower diagnosis variance at the end of two years. The matched group, which completed the same number of supervised clinical hours without structured calibration sessions, shows no significant reduction in variance. Both groups started at the same level. Experience without calibration did not converge.",
+      "whatToDo": "When two years of experience-only training shows no variance reduction while calibrated-feedback training shows thirty percent improvement, the development program needs structured outcome-comparison sessions. Adding caseload without adding feedback against outcomes will not close the gap.",
+      "whyItMatters": "Parallel groups starting at the same variance diverging over two years shows that calibration sessions drove the improvement. More experience without feedback held flat. Less experience with feedback declined."
+    },
+    {
+      "exampleId": "noise-ch10-ex04",
+      "title": "Before Opening the Envelope",
+      "tags": ["securities fraud detection", "calibration certification", "veteran analyst", "agreement comparison"],
+      "planSpec": {
+        "domain": "securities fraud pattern detection: experienced analysts at a regulatory agency tested against a newly calibrated cohort for consistency in flagging suspicious activity",
+        "audience": "a regulatory agency quality team building a new analyst certification program",
+        "stakes": "consistent enforcement across the market — if experienced analysts apply different thresholds to similar suspicious activity, enforcement is uneven",
+        "format": "thought_experiment",
+        "requiredBeat": "the quality lead presents the question to veteran analysts before revealing that the calibrated pair agreed more often on identical file samples — showing that the development path, not competence, is the variable"
+      },
+      "scenario": "Which pair would agree more often: two veterans or two analysts from the calibrated-certification cohort, given the same ten file samples? Malcolm poses the question before opening the envelope. The veterans resist answering: they hear a comparison of competence. Malcolm reframes it as a question about whether your development path included feedback on whether your flags matched outcomes. The envelope holds last month's test results. Malcolm opens it before the certification proposal goes to the review committee.",
+      "whatToDo": "When calibrated analysts agree more often on matched file samples than veterans, use the finding to justify certification redesign: require structured feedback against known outcomes as a certification condition, not a supplementary option.",
+      "whyItMatters": "The comparison does not measure competence. It measures whether the development path included feedback loops. Building calibration into certification makes that difference systematic rather than accidental."
+    },
+    {
+      "exampleId": "noise-ch10-ex05",
+      "title": "0.71 vs. 0.44",
+      "tags": ["job interview panel", "calibration workshop", "inter-rater agreement", "rubric-only comparison"],
+      "planSpec": {
+        "domain": "job interview panel: a company comparing inter-rater consistency for panels trained with calibration workshops versus panels trained only by reading the rubric",
+        "audience": "a talent acquisition lead evaluating the ROI of the company's calibration workshop program",
+        "stakes": "hire quality and legal defensibility — noisy interview panels produce inconsistent selection decisions",
+        "format": "before_after",
+        "requiredBeat": "calibration workshop panels score 0.71 inter-rater agreement versus 0.44 for rubric-only panels, with no follow-up improvement in the rubric-only group at six months, showing the calibration design is what drives the difference"
+      },
+      "scenario": "You review the inter-rater agreement data for two types of interview panels. One group completed a calibration workshop: scoring recorded interviews against agreed-upon correct ratings and discussing where panelists diverged. The other group read the rubric only. Workshop panels score 0.71. Rubric-only panels score 0.44. On a six-month follow-up, the rubric-only panels show no improvement. The calibration design is the variable, not the rubric content.",
+      "whatToDo": "When calibration-workshop panels score 0.71 agreement against rubric-only panels at 0.44 with no follow-up improvement, include calibration workshops (scored against known-correct interview outcomes) in every new panel orientation, not as an optional supplement.",
+      "whyItMatters": "A 0.71 versus 0.44 agreement gap with no improvement in rubric-only panels at six months shows that reading the scoring guide is not sufficient. Scoring against known outcomes is what makes the difference."
+    },
+    {
+      "exampleId": "noise-ch10-ex06",
+      "title": "Reference Floor",
+      "tags": ["military promotion board", "pre-board calibration", "borderline candidate variance", "outcome feedback"],
+      "planSpec": {
+        "domain": "military officer promotion board: comparing consistency across board members who underwent structured decision calibration versus those who did not",
+        "audience": "a military personnel officer studying whether pre-board calibration sessions reduce score variance for borderline candidates",
+        "stakes": "officer career advancement — promotion decisions that vary across boards affect retention and institutional trust in the promotion system",
+        "format": "vignette",
+        "requiredBeat": "the personnel officer reviews two promotion cycles: the cycle with pre-board calibration using prior-cycle cases with known outcomes shows 40 percent lower variance in borderline candidate scores than the cycle without calibration"
+      },
+      "scenario": "The military conference room holds board members opening prior-cycle calibration cases before the new promotion cycle begins. Each member scores a candidate whose outcome they do not yet know. After scoring, outcomes are revealed and score variance is discussed. In the cycle that followed, Rodney found variance in borderline scores forty percent lower than in the prior cycle without calibration. Board members reported greater confidence: prior-cycle cases had given them a reference floor. Rodney submits the comparison to the program office before next cycle's training protocol is finalized.",
+      "whatToDo": "Before each promotion board cycle, run a pre-board calibration session using prior-cycle cases with known outcomes. Ask board members to score before outcomes are revealed. That session is what reduces borderline score variance.",
+      "whyItMatters": "A forty-percent variance reduction between calibrated and uncalibrated cycles shows what prior-case feedback produces. Board members also gain greater confidence: knowing prior outcomes gives current scoring a concrete anchor."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch10-q01",
+        "prompt": "What distinguishes calibration from experience in the context of professional judgment quality?",
+        "choices": [
+          "Calibration is another word for expert judgment: experienced judges are by definition calibrated because they have processed many cases in their domain.",
+          "Calibration measures outcome accuracy formally while experience measures time in role: calibration is a testing process and cannot be developed through ordinary practice.",
+          "Experience is the accumulation of cases; calibration is the accumulation of tested predictions. Only calibration includes systematic feedback on whether predictions matched outcomes, which is what produces reduction in judgment noise."
+        ],
+        "correctIndex": 2,
+        "explanation": "Experience accumulates cases. Calibration requires that the cases come with feedback: a prediction committed before the outcome, an observable outcome, and a comparison between the two. Without those components, experience does not produce calibration.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch10-q02",
+        "prompt": "An air traffic control training manager finds that newly certified controllers show tighter inter-rater agreement on weather severity than veteran controllers who logged more total hours. What does this finding reveal?",
+        "choices": [
+          "The tighter agreement in the new cohort reflects the structured calibration exercises in their certification, which scored trainees against recorded scenarios with known correct ratings. The hours alone did not produce calibration; the feedback against outcomes did.",
+          "The finding reveals that veteran controllers have developed individual assessment styles that diverge over time: this is a symptom of overspecialization and would be resolved by rotating controllers across different stations.",
+          "The finding is inconclusive because the newer cohort was trained under different meteorological conditions: before concluding that calibration caused the difference, the agency should rule out that the newer cohort faced easier assessment tasks."
+        ],
+        "correctIndex": 0,
+        "explanation": "The design difference between the two cohorts is structured calibration feedback. The veteran cohort logged more hours without that feedback. Tighter agreement in the calibrated group is evidence that feedback against known outcomes, not raw experience, produces calibration.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch10-q03",
+        "prompt": "In a child welfare agency, the correlation between years of experience and inter-rater consistency is near zero. Workers who completed structured calibration against reviewed cases with known outcomes score significantly higher on consistency. What should the agency conclude?",
+        "choices": [
+          "The near-zero correlation shows that child welfare work is inherently inconsistent and calibration training is unlikely to produce meaningful improvement: the domain complexity is simply too high for consistent rating.",
+          "The near-zero correlation shows that accumulated caseload without structured outcome feedback is not converging on calibrated judgment. The calibration program drives the consistency improvement and should be built into the professional development path rather than left optional.",
+          "The near-zero correlation shows that the current risk assessment tool is too subjective: the agency should replace the judgment-based tool with an algorithmic scoring system that removes human variability."
+        ],
+        "correctIndex": 1,
+        "explanation": "A near-zero experience-consistency correlation means years of caseload are not producing calibration. The calibrated group's better performance identifies the mechanism: structured feedback against known outcomes is what drives consistency, not case accumulation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch10-q04",
+        "prompt": "A two-year clinical training study shows a calibration group reduces diagnosis variance by 30 percent while a matched experience-only group shows no variance reduction. What does the flat experience-only trend specifically demonstrate?",
+        "choices": [
+          "Clinical hours without structured feedback against known outcomes do not produce calibration: supervised practice that lacks the committed-prediction and outcome-comparison components does not drive variance reduction.",
+          "The flat experience-only trend demonstrates that the training program was poorly supervised: a more intensive case-review model, even without calibration sessions, would have produced the same variance reduction.",
+          "The flat trend suggests the diagnosis tool has a reliability ceiling: after a certain baseline skill level, the tool's own measurement error prevents further variance reduction regardless of training format."
+        ],
+        "correctIndex": 0,
+        "explanation": "Supervised caseload builds domain knowledge but is not the same as calibration. The experience-only group accumulated cases without the prediction-then-outcome sequence. The flat trend is evidence that the component producing noise reduction is the calibration mechanism, not clinical hours.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch10-q05",
+        "prompt": "Interview panels that completed calibration workshops (scoring against known-correct ratings) show agreement of 0.71, while rubric-only panels show 0.44 with no follow-up improvement. Why does rubric reading fail to improve agreement?",
+        "choices": [
+          "Rubrics typically fail because they are poorly designed: scoring criteria that are too broad do not provide actionable guidance, and better rubric design would close the agreement gap without requiring a workshop.",
+          "Rubrics fail because they are cognitively demanding: panelists retain only the most memorable criteria, which fragments the scoring approach. The workshop works because it simplifies the rubric.",
+          "Reading the rubric provides criteria without feedback: panelists apply criteria using their existing interpretive judgments without testing whether those interpretations match the outcomes the rubric was designed to predict. The calibration workshop adds the committed-prediction and outcome-comparison components that rubric reading alone cannot provide."
+        ],
+        "correctIndex": 2,
+        "explanation": "Rubric reading is information transfer. The calibration workshop requires scoring against known-correct interview outcomes, which tests the panelist's interpretation of the criteria against actual results. The workshop produces higher agreement because it adds feedback to the criteria.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch10-q06",
+        "prompt": "Why do judgment domains with delayed or diffuse feedback resist natural calibration even when practitioners are experienced and motivated?",
+        "choices": [
+          "Judgment domains with delayed feedback resist calibration because cultural resistance to error acknowledgment is stronger in professional fields like medicine and law than in technical fields, and this cultural barrier prevents practitioners from building accurate models of their own performance.",
+          "When feedback arrives long after the judgment, or is distributed across a portfolio rather than attributed to specific decisions, the connection between a particular prediction and its outcome cannot be traced. Without that traceable connection, the correction mechanism that drives calibration in closed-feedback domains never fires, and experience accumulates without producing calibration improvement.",
+          "Judgment domains resist calibration because they involve genuinely complex and situationally unique cases: when no two situations are sufficiently similar, no specific past outcome provides reliably actionable guidance for improving decisions in future cases of the same general type."
+        ],
+        "correctIndex": 1,
+        "explanation": "The correction mechanism requires a traceable connection between a specific prediction and a specific outcome. Delayed and diffuse feedback breaks that connection. Without it, experience accumulates without producing the comparison that drives calibration.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch10-q07",
+        "prompt": "What does a pre-board calibration session using prior-cycle cases with known outcomes accomplish that simply reviewing the evaluation rubric does not?",
+        "choices": [
+          "The calibration session accomplishes greater consistency by standardizing the vocabulary board members use when discussing candidates: the shared language from reviewing prior cases reduces drift when board members describe the same trait in different terms.",
+          "The calibration session gives board members a concrete reference floor by requiring them to commit predictions before outcomes are revealed and then compare their predictions against the known results. The rubric provides criteria. The calibration session provides tested criteria, which is a different thing.",
+          "The calibration session reduces variance by exposing board members to the full range of candidate quality before scoring begins: knowing the distribution of prior candidates changes the implicit scale, which improves consistency without requiring explicit prediction or outcome comparison."
+        ],
+        "correctIndex": 1,
+        "explanation": "The rubric tells board members what to look for. The calibration session requires them to apply that rubric to a case with a known outcome and compare what they found against the outcome. The difference is tested criteria versus stated criteria.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch10-q08",
+        "prompt": "A regulatory agency test shows calibrated analysts agree more often on identical file samples than veteran analysts. The veterans argue the calibrated cohort's files were easier. How should this objection be evaluated?",
+        "choices": [
+          "The veterans are correct that without controlling for file complexity, the comparison between the two cohorts is not methodologically valid, and the agency should rerun the entire test with properly matched files before drawing any conclusions about calibration superiority.",
+          "The veterans' objection is motivated reasoning: when credentialed experts resist calibration findings that directly challenge their professional expertise, the act of resistance itself serves as confirmation that the original finding was correct.",
+          "The veterans' objection is testable: if file complexity explains the gap, controlling for complexity should eliminate the agreement difference. If the calibrated pair continues to agree more often on matched files, the explanation fails. The appropriate response is to run the controlled comparison, not to accept or dismiss either position without evidence."
+        ],
+        "correctIndex": 2,
+        "explanation": "The objection raises a valid confound. The appropriate response is to test it: control for file complexity and check whether the agreement difference holds. Accepting the objection without testing it and dismissing it without testing it are equally premature.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch10-q09",
+        "prompt": "A hospital proposes improving surgeon judgment by requiring weekly case review meetings where past difficult cases are discussed. A quality officer argues this will not reduce surgical judgment noise unless surgeons commit independent assessments before case outcomes are revealed. Which evaluation is more accurate?",
+        "choices": [
+          "The quality officer is more accurate: case review meetings that reveal outcomes before participants commit their own assessments eliminate the prediction component that makes feedback informative. Discussions of past cases can improve knowledge of options, but they do not produce the committed-prediction-then-outcome-comparison sequence that drives calibration and noise reduction.",
+          "The quality officer's concern is real but overstated: discussions of what attendees would have done differently, even without a formal pre-outcome commitment, are sufficient to produce meaningful calibration improvement.",
+          "Neither proposal addresses the fundamental limit: surgical judgment noise is primarily driven by case complexity variation, and any training intervention that does not reduce case complexity will fail to reduce noise."
+        ],
+        "correctIndex": 0,
+        "explanation": "The quality officer identifies the specific component that case review meetings typically omit: the committed prediction before outcome disclosure. Discussing what you would have done after the outcome is known is a different cognitive task from committing a prediction before seeing it. The second produces calibration; the first does not.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "noise-ch10-rc01",
+      "front": "What is the difference between experience and calibration in professional judgment?",
+      "back": "Experience is the accumulation of cases. Calibration is the accumulation of tested predictions. Experience accumulates without a correction mechanism unless the development path includes structured feedback against known outcomes. Only calibration produces systematic reduction in judgment noise.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "noise-ch10-rc02",
+      "front": "Why does deliberate practice improve expertise in closed-feedback domains but not in open judgment domains?",
+      "back": "In closed-feedback domains (chess, music, surgery), feedback is immediate and attributable: a move results in a visible board state, a note sounds right or wrong, a cut has an observable consequence. In judgment domains with delayed or absent feedback, the connection between a specific prediction and a specific outcome cannot be traced, and the correction mechanism that produces calibration never fires.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "noise-ch10-rc03",
+      "front": "What are the three required components of genuine calibration practice?",
+      "back": "A judgment committed before the outcome is known, an outcome that becomes observable after the judgment, and a comparison between the prediction and the result reviewed with specific attention to where they diverged. Remove any of the three and the practice does not produce calibration. Most experience accumulation includes only the outcome component.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "noise-ch10-rc04",
+      "front": "Why does a near-zero correlation between experience and inter-rater consistency challenge the assumption that seniority means calibration?",
+      "back": "The assumption rests on the inference that more experience produces better judgment. The correlation data shows the inference is wrong in domains where experience is not paired with outcome feedback. In those domains, experienced judges have processed many cases, but the processing did not include the prediction-then-outcome sequence that drives calibration. Confidence increases. Accuracy does not necessarily follow.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "noise-ch10-rc05",
+      "front": "Why does reading a scoring rubric produce lower inter-rater agreement than calibration workshop training?",
+      "back": "Reading a rubric provides criteria but does not test whether the judge's interpretation of those criteria matches the outcomes the rubric is designed to predict. A calibration workshop that requires scoring against known-correct outcomes tests the interpretation against actual results and reveals the divergences. The workshop produces higher agreement not through better criteria but through tested criteria.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Build deliberate calibration practice into professional development paths where judgment quality matters. The requirement is three-part: a prediction committed before the outcome is known, an observable outcome, and a systematic comparison of the prediction against the result. Years of experience without this sequence accumulate confidence, not calibration.",
+    "ifThenPlans": [
+      {
+        "context": "A team relies on senior judges for high-stakes decisions on the grounds that their experience guarantees quality",
+        "plan": "Check whether the senior judges' development path included structured feedback against known outcomes. If it did not, the seniority records case exposure, not calibration. Propose a calibration check: ask senior judges to rate ten prior cases with known outcomes before seeing the outcomes, then review the gap. The result tells you whether you have experienced or calibrated judgment on your team."
+      },
+      {
+        "context": "A training program builds expertise by assigning supervised caseload without structured outcome-feedback sessions",
+        "plan": "Add a calibration component at regular intervals: have trainees assess prior cases with known outcomes before the outcomes are revealed, then review where their assessments diverged from the results. The supervised caseload builds domain knowledge. The calibration sessions build judgment quality. Both are needed; neither alone is sufficient."
+      },
+      {
+        "context": "An inter-rater agreement exercise reveals that experienced judges disagree substantially on the same case",
+        "plan": "Run a calibration check before attributing the disagreement to case complexity: score a set of prior cases with known correct outcomes and compare the results. If experienced judges show wide variation on cases with known answers, the variation is noise rather than legitimate case complexity, and the development path lacked calibration."
+      },
+      {
+        "context": "A calibration session is being designed for a panel or board",
+        "plan": "Build in all three required components: require each participant to commit their individual assessment before any outcome is revealed, use cases with outcomes that have already been determined, and structure the post-reveal discussion around specifically where individual assessments diverged from the outcome. Training that satisfies only one or two of these three components produces awareness, not calibration."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, identify one recurring judgment in your work where outcomes eventually become knowable. Before your next case of that type, write your prediction down before you learn the outcome. Record the outcome when it is known. After ten such cases, you will have the starting material of a personal calibration record.",
+    "weeklyPractice": "Each week, select one past judgment from the previous month where the outcome is now known. Without looking at the outcome first, write down what you would have predicted at the time. Then compare. After four weeks of this exercise, you have a small calibration record that tells you more about your judgment quality than any number of performance reviews."
+  },
+  "memorableLines": [
+    {
+      "text": "Experience accumulates case files. Calibration accumulates tested predictions.",
+      "location": "breakdown.fastRead",
+      "why": "States the core distinction in two parallel short sentences that cannot be confused: the two things that look similar (experience and calibration) are named as structurally different by what they accumulate."
+    },
+    {
+      "text": "A chess player knows immediately whether a move was good. A hiring manager does not hear for a year whether the person worked out, and by then has forgotten what they noticed in the interview. Experience in that environment does not produce calibration. It produces confidence.",
+      "location": "breakdown.deepRead",
+      "why": "The source anchor phrasing crystallizes the feedback-timing problem in two concrete comparisons and names its consequence: not error but confidence, which is harder to detect and correct than error."
+    },
+    {
+      "text": "Calibrated judgment is built by measuring. Unexamined experience is built by counting. The number of years and the quality of feedback are two different things, and only one of them shows up in the inter-rater agreement data.",
+      "location": "breakdown.fullRead",
+      "why": "Closes the chapter's argument by naming exactly what the distinction produces in practice: one shows up in agreement data and one does not, giving the reader a concrete test for whether a development path is producing calibration."
+    }
+  ]
+}

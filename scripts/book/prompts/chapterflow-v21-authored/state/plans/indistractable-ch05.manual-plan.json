@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch05",
+  "number": 5,
+  "title": "Reimagine the Task",
+  "coreMove": "Find the puzzle, choice, or visible progress inside a necessary task so escape is no longer the most interesting option.",
+  "sourcePressure": "The chapter shifts from trigger interpretation to task shaping, reducing avoidable friction without pretending serious work should feel effortless.",
+  "chapterSpecificMisunderstanding": "A weak run would tell the reader to make hard work fun and skip the specific redesign that changes the task's pull.",
+  "sourceAlignmentTerms": [
+    "reimagine the task",
+    "traction",
+    "friction",
+    "engagement",
+    "curiosity",
+    "progress"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Reimagine the Task as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rare-book cataloger processing a donation box",
+      "audience": "cataloger bored by repetitive entries",
+      "stakes": "valuable provenance details get missed when dullness wins",
+      "format": "scene",
+      "requiredBeat": "she turns the box into a search for the oldest owner's mark and logs three entries without opening a side site",
+      "firstImage": "A foxed bookplate peeks from a donation box ledger.",
+      "mustInclude": [
+        "bookplate",
+        "donation ledger",
+        "catalog terminal"
+      ],
+      "mustAvoid": [
+        "library quiet cliche"
+      ]
+    },
+    {
+      "domain": "restaurant prep cook washing crates of herbs",
+      "audience": "cook who drifts into messages during repetitive prep",
+      "stakes": "service starts late if prep remains pure drudgery",
+      "format": "before_after",
+      "requiredBeat": "he times one clean basil batch and tries to beat the bruise-free count on the next",
+      "firstImage": "A basil crate sits beside a damp prep towel.",
+      "mustInclude": [
+        "basil crate",
+        "prep towel",
+        "batch tally"
+      ],
+      "mustAvoid": [
+        "kitchen hustle"
+      ]
+    },
+    {
+      "domain": "municipal grant clerk checking address fields",
+      "audience": "clerk bored by form validation",
+      "stakes": "funding applications fail because tiny errors survive",
+      "format": "decision_point",
+      "requiredBeat": "she makes the first pass a hunt for mismatch patterns and marks each cluster with colored tabs",
+      "firstImage": "A stack of grant forms is held by a copper binder clip.",
+      "mustInclude": [
+        "grant forms",
+        "copper binder clip",
+        "mismatch tabs"
+      ],
+      "mustAvoid": [
+        "bureaucracy complaint"
+      ]
+    },
+    {
+      "domain": "piano tuner entering service notes",
+      "audience": "tuner who avoids paperwork after house calls",
+      "stakes": "repeat clients lose useful repair history",
+      "format": "vignette",
+      "requiredBeat": "he records each note as a clue for the future sound of that room, not as clerical waste",
+      "firstImage": "A tuning fork lies beside a service notebook.",
+      "mustInclude": [
+        "tuning fork",
+        "service notebook",
+        "felt mute"
+      ],
+      "mustAvoid": [
+        "music practice repeat"
+      ]
+    },
+    {
+      "domain": "wildlife rehab volunteer cleaning enclosure records",
+      "audience": "volunteer tempted by animal videos during data entry",
+      "stakes": "release decisions depend on clean weight history",
+      "format": "postmortem",
+      "requiredBeat": "she graphs one hawk's weight line first so the numbers become a story to check",
+      "firstImage": "A hawk weight card sits under a clear clipboard.",
+      "mustInclude": [
+        "weight card",
+        "clear clipboard",
+        "graph line"
+      ],
+      "mustAvoid": [
+        "animal sentimentality"
+      ]
+    },
+    {
+      "domain": "tailor ripping seams from a miscut jacket panel",
+      "audience": "tailor who finds correction work humiliating",
+      "stakes": "the jacket cannot be saved if he avoids the repair",
+      "format": "reflection",
+      "requiredBeat": "he frames each removed stitch as returning control to the garment and counts the first sleeve edge",
+      "firstImage": "A seam ripper rests beside a chalked jacket panel.",
+      "mustInclude": [
+        "seam ripper",
+        "jacket panel",
+        "sleeve edge"
+      ],
+      "mustAvoid": [
+        "perfectionism sermon"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Find the puzzle, choice, or visible progress inside a necessary task so escape is no longer the most interesting option.",
+      "choose the action that stays inside Reimagine the Task's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would tell the reader to make hard work fun and skip the specific redesign that changes the task's pull.",
+      "use chapter-specific terms such as reimagine the task, traction, friction, engagement in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one dull task and add one question you can answer inside it, then complete the first tiny round of that question.",
+  "readingTimeMinutes": 12
+}

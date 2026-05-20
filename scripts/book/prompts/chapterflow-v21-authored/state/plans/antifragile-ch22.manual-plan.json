@@ -1,0 +1,200 @@
+{
+  "chapterId": "antifragile-ch22",
+  "number": 22,
+  "title": "To Live Long, but Not Too Long",
+  "coreMove": "Improve survival odds first by removing fragility-amplifying inputs rather than adding heroic fixes.",
+  "sourcePressure": "This chapter applies Via Negativa to longevity through subtraction, restraint, and avoiding avoidable harm.",
+  "chapterSpecificMisunderstanding": "Turning the lesson into generic health hacks or immortality chasing.",
+  "sourceAlignmentTerms": [
+    "longevity",
+    "via negativa",
+    "subtraction",
+    "restraint",
+    "avoidable harm",
+    "fragility-amplifying inputs"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "living long but not too long",
+      "detail": "the title pressure keeps longevity tied to restraint and limits",
+      "useIn": "both",
+      "phrasingHint": "The target is not forever; it is fewer self-inflicted ways to break."
+    },
+    {
+      "kind": "artifact",
+      "name": "subtraction",
+      "detail": "source notes emphasize removing harmful inputs over adding fixes",
+      "useIn": "fullRead",
+      "phrasingHint": "Subtraction works because the removed harm does not need a forecast to stop hurting you."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining To Live Long, but Not Too Long"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Turning the lesson into generic health hacks or immortality chasing."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "sleep-clinic routine with Rafael as the decision-maker",
+      "audience": "a reader who handles sleep clinic routine under uncertainty",
+      "stakes": "whether Rafael avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Rafael removes the obvious harmful input before adding a new intervention.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "sleep clinic log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic to live long, but not too long paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "pantry snack removal with Miguel as the decision-maker",
+      "audience": "a reader who handles pantry snack removal under uncertainty",
+      "stakes": "whether Miguel avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Miguel removes the obvious harmful input before adding a new intervention.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "pantry log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic to live long, but not too long paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "cycling overtraining log with Sergio as the decision-maker",
+      "audience": "a reader who handles cycling overtraining log under uncertainty",
+      "stakes": "whether Sergio avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sergio removes the obvious harmful input before adding a new intervention.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "cycling log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic to live long, but not too long paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "phone notification audit with Carlos as the decision-maker",
+      "audience": "a reader who handles phone notification audit under uncertainty",
+      "stakes": "whether Carlos avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Carlos removes the obvious harmful input before adding a new intervention.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "phone log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic to live long, but not too long paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "dry-month calendar with Isabela as the decision-maker",
+      "audience": "a reader who handles dry month calendar under uncertainty",
+      "stakes": "whether Isabela avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Isabela removes the obvious harmful input before adding a new intervention.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "dry month log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic to live long, but not too long paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "fall-proof apartment walkthrough with Teresa as the decision-maker",
+      "audience": "a reader who handles fall proof apartment walkthrough under uncertainty",
+      "stakes": "whether Teresa avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Teresa removes the obvious harmful input before adding a new intervention.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "fall proof log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic to live long, but not too long paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by improve survival odds first by removing fragility-amplifying inputs rather than adding heroic fixes.",
+      "distinguish longevity, via negativa, subtraction in unfamiliar cases",
+      "choose actions that avoid: Turning the lesson into generic health hacks or immortality chasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Remove one clearly harmful input for 24 hours before adding any new improvement.",
+  "readingTimeMinutes": 12
+}

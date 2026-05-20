@@ -1,0 +1,213 @@
+{
+  "chapterId": "talk-like-ted-ch09",
+  "number": 9,
+  "title": "Stay in Your Lane",
+  "coreMove": "Build from your own expertise and conviction instead of borrowing another speaker's surface style.",
+  "sourcePressure": "The source closes on authenticity, originality, real enthusiasm, and lived voice. It includes passion and mood-contagion support through Matthieu Ricard, Larry Smith, Melissa Cardon, Jill Bolte Taylor, and Howard Friedman while warning against imitation.",
+  "chapterSpecificMisunderstanding": "The weak version says be yourself. The useful version says build a prepared, structured talk from real expertise, conviction, and voice rather than copying someone else's recognizable surface.",
+  "sourceAlignmentTerms": [
+    "authenticity",
+    "originality",
+    "own lane",
+    "enthusiasm",
+    "lived voice",
+    "imitation",
+    "credibility",
+    "real experience"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Matthieu Ricard",
+      "detail": "the source connects Ricard to authentic motivation, joy, calm, and audience connection",
+      "useIn": "deepRead",
+      "phrasingHint": "Matthieu Ricard helps show that authenticity can sound calm when the motive is real."
+    },
+    {
+      "kind": "person",
+      "name": "Larry Smith",
+      "detail": "the source uses Smith as support for urgency and conviction around meaningful work",
+      "useIn": "both",
+      "phrasingHint": "Larry Smith's urgency matters because it comes from a concern he cannot treat lightly."
+    },
+    {
+      "kind": "study",
+      "name": "Howard Friedman mood-contagion work",
+      "detail": "the source says mood-contagion work summarized through Friedman supports the claim that genuine positive energy spreads to the audience",
+      "useIn": "fullRead",
+      "phrasingHint": "Friedman's mood-contagion support belongs where the prose explains why borrowed enthusiasm feels thinner than real energy."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "just be yourself",
+      "speaker copies Steve Jobs",
+      "authenticity beats polish"
+    ],
+    "counterintuition": [
+      "originality matters more than technique",
+      "imitation kills credibility",
+      "authenticity means less preparation"
+    ],
+    "tryThisNow": [
+      "write what makes you unique",
+      "stop copying other speakers",
+      "be more authentic"
+    ],
+    "examples": [
+      "black turtleneck imitation",
+      "generic personal brand speech",
+      "unprepared authenticity defense",
+      "celebrity speaker mimicry"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Juliette",
+      "domain": "research conference talk",
+      "audience": "a postdoc tempted to copy a famous lab director's theatrical style",
+      "stakes": "whether her own careful fieldwork gets buried under borrowed swagger",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "she deletes the imitation opener and begins with the muddy notebook page that only her field season could have produced",
+      "firstImage": "a rain-warped field notebook opened under a hotel desk lamp",
+      "mustInclude": [
+        "field notebook",
+        "conference lectern",
+        "deleted imitation opener"
+      ],
+      "mustAvoid": [
+        "generic academic confidence",
+        "anti-polish claim"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "founder customer pitch",
+      "audience": "a technical founder pitching hospital buyers after watching too many famous product launches",
+      "stakes": "whether buyers trust his actual knowledge of their workflow or see a borrowed performance",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "he removes the slick reveal, opens with the nurse's handoff bottleneck he personally observed, and lets his own domain knowledge carry the pitch",
+      "firstImage": "a worn nurse handoff clipboard beside a closed laptop",
+      "mustInclude": [
+        "handoff bottleneck",
+        "buyer demo",
+        "removed reveal slide"
+      ],
+      "mustAvoid": [
+        "Steve Jobs imitation",
+        "startup origin repeat"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "school principal assembly",
+      "audience": "a principal addressing students after copying a viral commencement clip",
+      "stakes": "whether students hear a trend or the actual adult who knows their hallway",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "after a student mutters that she sounds like a video, she rewrites the assembly around the lost-and-found table and the habit she sees every morning",
+      "firstImage": "a lost-and-found table piled with hoodies beside a gym microphone",
+      "mustInclude": [
+        "viral clip",
+        "lost-and-found table",
+        "morning hallway habit"
+      ],
+      "mustAvoid": [
+        "school inspiration cliche",
+        "authenticity as casualness"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "craft distillery tour",
+      "audience": "a distiller leading visitors through a tasting after imitating a luxury-brand script",
+      "stakes": "whether visitors remember the actual craft or a pasted-on prestige voice",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he drops the velvet vocabulary, names the dent in the copper still, and explains the repair his father taught him",
+      "firstImage": "warm copper reflecting a shallow dent near a distillery gauge",
+      "mustInclude": [
+        "copper still",
+        "luxury script",
+        "repair story"
+      ],
+      "mustAvoid": [
+        "brand romance",
+        "alcohol lifestyle scene"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "public defender training",
+      "audience": "a senior defender training new attorneys who admire a courtroom celebrity",
+      "stakes": "whether new lawyers copy aggression instead of building credibility from client knowledge",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she asks which opening sounds stronger, then reveals that the quieter version wins because it contains the client's exact timeline and no borrowed outrage",
+      "firstImage": "two opening statements printed on opposite sides of a legal pad",
+      "mustInclude": [
+        "client timeline",
+        "celebrity clip",
+        "quiet opening"
+      ],
+      "mustAvoid": [
+        "courtroom melodrama repeat",
+        "aggression as authenticity"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "orchestra donor address",
+      "audience": "a conductor speaking to donors after trying to sound like a famous maestro",
+      "stakes": "whether donors hear grand borrowed language or the conductor's actual reason for the community program",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he cuts the grand phrasing, lifts the student's repaired viola case, and speaks from the program he actually runs every Tuesday",
+      "firstImage": "a scuffed viola case resting against a rehearsal-room chair",
+      "mustInclude": [
+        "repaired viola case",
+        "donor address",
+        "Tuesday community program"
+      ],
+      "mustAvoid": [
+        "arts grant repeat",
+        "grandiosity as passion"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish authenticity from lack of preparation",
+      "identify borrowed surface style",
+      "choose details rooted in lived expertise",
+      "evaluate whether originality serves credibility and audience transfer"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at your opening minute and cross out any move borrowed from a speaker you admire; replace it with one detail only your work, room, or lived experience could supply.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

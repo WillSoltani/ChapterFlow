@@ -1,0 +1,81 @@
+{
+  "bookId": "predictably-irrational",
+  "title": "Predictably Irrational",
+  "author": "Dan Ariely",
+  "thesisParagraph": "People experience their choices as private, deliberate, and sensible, but many of those choices are pushed around by predictable features of the situation: the comparison set, the first number seen, a price of zero, the switch between social and market norms, arousal, deadlines, ownership, open options, expectations, price signals, honesty cues, tokens, and public visibility. The useful lesson is not that people are foolish. It is that human judgment has recurring weak spots, and once those weak spots are visible, a reader can redesign the moment before the mistake happens.",
+  "coreIdeas": [
+    {
+      "name": "Comparison manufactures value",
+      "oneSentence": "People often decide by nearby contrast instead of by independent worth.",
+      "mentalMove": "Inspect the frame before trusting the option that looks obvious inside it.",
+      "sourceAnchors": ["ch01.source", "ch02.source"]
+    },
+    {
+      "name": "Free changes the math",
+      "oneSentence": "A zero price can make people ignore time, clutter, effort, and the better paid alternative.",
+      "mentalMove": "Translate free into the real tradeoff before saying yes.",
+      "sourceAnchors": ["ch03.source"]
+    },
+    {
+      "name": "Norms are fragile",
+      "oneSentence": "A small payment can replace generosity with transaction thinking and make the original relationship hard to restore.",
+      "mentalMove": "Decide whether a moment belongs to social obligation or market exchange before adding money.",
+      "sourceAnchors": ["ch04.source"]
+    },
+    {
+      "name": "Cold selves must protect hot selves",
+      "oneSentence": "People in calm states badly predict what desire, anger, fear, or attraction will make plausible later.",
+      "mentalMove": "Set boundaries while calm that still work when the state changes.",
+      "sourceAnchors": ["ch05.source", "ch06.source"]
+    },
+    {
+      "name": "Context edits character",
+      "oneSentence": "Honesty, value, and preference shift when cues, tokens, labels, and audiences alter the meaning of the act.",
+      "mentalMove": "Change the setup so the honest or accurate choice is easier to see before rationalization begins.",
+      "sourceAnchors": ["ch09.source", "ch10.source", "ch11.source", "ch12.source", "ch13.source"]
+    }
+  ],
+  "targetReader": "A reader who makes purchases, schedules work, evaluates incentives, handles temptation, or designs choices for other people, and who wants practical ways to spot the trap before a confident but distorted decision locks in.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make the bias feel ordinary before showing its cost",
+      "turn the mechanism into a small design move"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no blanket cynicism about human nature"
+    ]
+  },
+  "voiceSpecimens": [
+    "The third price on the menu does not need to be good. It only needs to make the second price look clean.",
+    "Free has a way of walking into the room and turning every other cost into background noise.",
+    "Once money touches a favor, the favor starts acting like a contract.",
+    "The calm version of you writes plans the heated version of you may never read.",
+    "Ownership puts a thumb on the scale, then lets you call the number fair.",
+    "A public choice is never only a choice. It is also a small report about who you want to seem to be."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explores the fascinating behavioral-economic implications of irrational consumer behavior.",
+    "In today's fast-paced world, we must all learn to make smarter choices and avoid common pitfalls.",
+    "The author argues that people are not rational, and this chapter will show you why.",
+    "Try this now: take a moment to reflect on your values and make better decisions.",
+    "At the end of the day, the key is to be mindful and intentional in everything you do."
+  ],
+  "teachingArc": "The book begins with value judgments that feel objective but are built from comparison and anchors. It then moves into special decision environments where one cue overwhelms better judgment: zero price, money inside social relationships, hot states, weak deadlines, ownership, and too many open options. The later chapters show that the same predictability reaches taste, price response, honesty, indirect value, and public preference. By the end, the reader has a design discipline: do not merely try harder inside a distorted setup; change the setup before it starts steering.",
+  "forbiddenMoves": [
+    "Do not flatten the book into 'humans are irrational, so slow down.' Each chapter needs the specific lever that makes the distortion predictable.",
+    "Do not turn every fix into mindfulness or self-awareness. Many fixes must be environmental, such as changing defaults, timing, visibility, price framing, or commitment structure.",
+    "Do not overuse shopping examples. The book includes markets, but its stronger lesson is that the same machinery shapes work, relationships, health, honesty, and public choice.",
+    "Do not make arousal content sensational. Keep it about state-dependent judgment and precommitment.",
+    "Do not merge the two character chapters. Part 1 is about small dishonest acts and honesty cues; Part 2 is about moral distance from cash through tokens and indirect value."
+  ]
+}

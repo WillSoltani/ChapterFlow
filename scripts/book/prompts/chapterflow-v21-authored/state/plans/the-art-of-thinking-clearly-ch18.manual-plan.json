@@ -1,0 +1,186 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch18",
+  "number": 18,
+  "title": "Incentive Super-Response Tendency",
+  "coreMove": "Use Incentive Super-Response Tendency as the warning label, then make the specific correction before the choice moves forward.",
+  "sourcePressure": "The source sidecar and official source notes frame Incentive Super-Response Tendency as a specific decision error around incentives, super-response, fish lures. Traceable support includes s thoughts on the incentive super-response tendency , read: Charles T. Munger, Poor Charlie.",
+  "chapterSpecificMisunderstanding": "Treating Incentive Super-Response Tendency as generic advice to be smarter, instead of forcing this exact move: use incentive super-response tendency as the warning label, then make the specific correction before the choice moves forward.",
+  "sourceAlignmentTerms": [
+    "incentives",
+    "super-response",
+    "fish lures",
+    "reward design",
+    "Munger",
+    "incentive",
+    "super",
+    "response"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Incentive Super-Response Tendency.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Incentive Super-Response Tendency sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Incentive Super-Response Tendency."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a wildfire planning room applying Incentive Super-Response Tendency under operational pressure",
+      "audience": "a reader who has to make a live judgment where incentives could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Incentive Super-Response Tendency is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the lab notebook, names the incentives risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A lab notebook sits at the center of the wildfire planning room before anyone explains the choice.",
+      "mustInclude": [
+        "lab notebook",
+        "incentives",
+        "a visible before-and-after choice tied to Incentive Super-Response Tendency"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a software beta dashboard applying Incentive Super-Response Tendency under operational pressure",
+      "audience": "a reader who has to make a live judgment where super-response could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Incentive Super-Response Tendency is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the contract redline, names the super-response risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A contract redline sits at the center of the software beta dashboard before anyone explains the choice.",
+      "mustInclude": [
+        "contract redline",
+        "super-response",
+        "a visible before-and-after choice tied to Incentive Super-Response Tendency"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a biotech signal review applying Incentive Super-Response Tendency under operational pressure",
+      "audience": "a reader who has to make a live judgment where fish lures could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Incentive Super-Response Tendency is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the menu proof, names the fish lures risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A menu proof sits at the center of the biotech signal review before anyone explains the choice.",
+      "mustInclude": [
+        "menu proof",
+        "fish lures",
+        "a visible before-and-after choice tied to Incentive Super-Response Tendency"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a cycling crash audit applying Incentive Super-Response Tendency under operational pressure",
+      "audience": "a reader who has to make a live judgment where reward design could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Incentive Super-Response Tendency is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the case file, names the reward design risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A case file sits at the center of the cycling crash audit before anyone explains the choice.",
+      "mustInclude": [
+        "case file",
+        "reward design",
+        "a visible before-and-after choice tied to Incentive Super-Response Tendency"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a touring theater budget applying Incentive Super-Response Tendency under operational pressure",
+      "audience": "a reader who has to make a live judgment where Munger could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Incentive Super-Response Tendency is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the sensor graph, names the Munger risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A sensor graph sits at the center of the touring theater budget before anyone explains the choice.",
+      "mustInclude": [
+        "sensor graph",
+        "Munger",
+        "a visible before-and-after choice tied to Incentive Super-Response Tendency"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a pension fund committee applying Incentive Super-Response Tendency under operational pressure",
+      "audience": "a reader who has to make a live judgment where incentive could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Incentive Super-Response Tendency is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the water sample, names the incentive risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A water sample sits at the center of the pension fund committee before anyone explains the choice.",
+      "mustInclude": [
+        "water sample",
+        "incentive",
+        "a visible before-and-after choice tied to Incentive Super-Response Tendency"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Incentive Super-Response Tendency in a fresh decision scene",
+      "choose the correction that performs this move: use incentive super-response tendency as the warning label, then make the specific correction before the choice moves forward.",
+      "reject a tempting generic answer that ignores incentives",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Incentive Super-Response Tendency' on a note, list the one incentives cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

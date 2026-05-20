@@ -1,0 +1,288 @@
+{
+  "chapterId": "noise-ch20",
+  "number": 20,
+  "title": "Judgments and Models",
+  "readingTimeMinutes": 12,
+  "hook": "The model does not have worse days. It does not get depleted by the previous case. That is most of the advantage.",
+  "counterintuition": "Statistical models outperform expert clinical and professional judgment in prediction tasks not because they are smarter but because they are consistent. The expert has good days and bad days. Across a large population of cases, inconsistency is indistinguishable from error. Consistency is not a small advantage. It is most of the advantage.",
+  "tryThisNow": "Rate the two strongest predictors for your next prediction on a 1-to-3 scale and sum them. Make your judgment. Note whether your judgment is consistently above, below, or randomly around the formula.",
+  "keyTakeaway": "Statistical models outperform expert prediction on average because they never vary across cases. The expert's value lies in setting up the model and handling genuinely novel cases that fall outside its training range.",
+  "breakdown": {
+    "fastRead": "Three bars on Cornelius's outcome chart: tool-only, lenient override, restrictive override. The lenient-override bar is the tallest. In 200 cases where officers overrode the actuarial tool toward leniency, the two-year recidivism rate was 24 percent. In the same risk-score band, tool-only decisions produced 16 percent. The 8-point gap is not explained by case differences.\n\nSimple models consistently outperform expert clinical and professional judgment in prediction tasks. The mechanism is consistency, not superior insight. A model does not get depleted by the previous case. It does not find one applicant more charming than another. It does not have worse days. Across thousands of decisions, the absence of those variables is most of the model's advantage.",
+    "deepRead": "Set a model beside an expert on the same prediction task and count the right answers across a thousand cases. The model will win on average. The mechanism is not superior model knowledge; it is the absence of model inconsistency.\n\nPaul Meehl's landmark research on actuarial versus clinical judgment, and the meta-analyses that followed, show the same pattern across multiple domains: simple models consistently outperform expert prediction, and expert override of the model typically reduces rather than improves predictive accuracy. The mechanism is not that models know more. It is that models never vary. The expert responds to the previous case, weights case features differently across sessions, and applies judgment that drifts with the hour. The model applies the same weights to the same inputs every time.\n\nExperts resist this finding because it implies their professional judgment is less valuable than a formula. But the finding is not about a single case. It is about what happens across a population of cases when the same judge has good days and bad days, responds to the previous case, and applies different weights to the same feature depending on their state at the moment. Those are real properties of expert cognition. They are also exactly the properties that make expert judgment noisier than a formula on average.\n\nOverrides are not reliably attached to novel case information.\n\nThe broken-leg exception exists. It does not rescue the average override.",
+    "fullRead": "Three bars on Cornelius's outcome chart: tool-only, lenient override, restrictive override. The lenient-override bar is the tallest. In 200 cases where officers overrode the actuarial tool toward leniency, the two-year recidivism rate was 24 percent. In the same risk-score band, tool-only decisions produced 16 percent. The 8-point gap reflects not case differences but override decisions that added inconsistency without adding information.\n\nPaul Meehl's research on actuarial versus clinical judgment, and the meta-analyses that followed, show the same pattern across multiple domains: simple models consistently outperform expert prediction, and expert override typically reduces rather than improves accuracy. The mechanism is not that models know more. It is that models never vary. The expert responds to the previous case and applies judgment that drifts with the hour. The model applies the same weights to the same inputs every time.\n\nMeredith's five-year admissions review showed the same direction. Formula composite correlated with 4-year GPA at 0.44. Holistic officer assessment: 0.31. Students admitted by holistic override of formula rejection completed at rates 7 percent lower than formula-admitted students in the same score range.\n\n\"Algorithm-only has the lowest variance,\" Prudence said. \"Physician-only has the highest peak and the highest variance,\" Sylvester added. The physician-with-algorithm-as-baseline condition had the highest median accuracy. The algorithm removes the physician's worst decisions without constraining the physician's best ones.\n\nThere is a case where expert override is clearly right. Paul Meehl called it the broken-leg problem: if a model predicts attendance based on historical patterns and you learn the subject has a broken leg, you override. The broken leg is causally decisive information the model cannot have. That override is warranted and necessary. Most overrides are not broken legs. They are the expert applying pattern or occasion noise to factors the model has already incorporated.\n\nAcross 12 months of fraud data: analysts who released high-confidence algorithm flags saw a subsequent fraud rate 3.2 times higher than the algorithm's false-positive rate. Borderline flag overrides showed no significant difference from algorithm-only decisions. The high-confidence overrides added noise at exactly the point where the model was most confident.\n\nCompare two OR scheduling approaches. Surgeon self-estimated duration: mean absolute error 23 minutes, standard deviation 31 minutes. Model-predicted duration based on procedure type, patient factors, and surgeon history: mean absolute error 18 minutes, standard deviation 12 minutes. The surgeons with the largest estimation errors resist using the model estimate as a starting point most consistently.\n\nThree years of loan portfolio data, sorted by adjustment direction. Wilhelmina found appraiser adjustments above the automated valuation model correlating with higher default-adjusted losses. Adjustments below showed no significant difference from model-only decisions. The largest upward adjustors' decisions correlated with client-relationship factors, not property characteristics.\n\nEach of these domains is different. What they share is the relationship between expert override and model output. In each, the override was more likely to add noise than to add information. In each, it was more likely to reflect the expert's state than the case's exceptional features. Most expert overrides are not broken legs. They are noise in a suit."
+  },
+  "memorableLines": [
+    {
+      "text": "A model does not get depleted by the previous case. It does not find one applicant more charming than another. It does not have worse days. Across thousands of decisions, the absence of those variables is most of the model's advantage.",
+      "location": "breakdown.fastRead",
+      "why": "The three concrete negations build a picture of what the model lacks (depletion, charm response, bad days) and then reframe those absences as the mechanism of the model's advantage, making the argument feel like a revelation rather than an abstraction."
+    },
+    {
+      "text": "The broken-leg exception exists. It does not rescue the average override.",
+      "location": "breakdown.deepRead",
+      "why": "Acknowledges the valid case for override in seven words, then dismisses its relevance to the average override in six. The compression makes the concession and the rebuttal feel equally settled."
+    },
+    {
+      "text": "Most expert overrides are not broken legs. They are noise in a suit.",
+      "location": "breakdown.fullRead",
+      "why": "Borrows Meehl's broken-leg image and uses it to rename the typical override: not a special case but a familiar one dressed in professional authority."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "noise-ch20-ex01",
+      "title": "The Lenient Override Bar",
+      "tags": ["parole risk assessment", "actuarial tool", "lenient override", "recidivism outcome"],
+      "planSpec": {
+        "domain": "actuarial vs. clinical parole risk assessment: a parole board comparing model-only decisions versus officer-overridden decisions on a two-year outcome lookback",
+        "audience": "a corrections department research team studying whether parole officer overrides improve or hurt recidivism prediction accuracy",
+        "stakes": "public safety and prisoner rehabilitation: overrides that reduce accuracy are increasing both wrongful incarceration and undetected risk",
+        "format": "scene",
+        "requiredBeat": "in 200 lenient-override cases, recidivism rate is 24 percent versus 16 percent for tool-only in the same risk-score band; restrictive overrides show a smaller, non-significant difference; on average, overrides reduced accuracy"
+      },
+      "scenario": "The two-year outcome comparison chart shows three bars on Cornelius's table: model-only decisions, lenient officer overrides, restrictive officer overrides. The lenient-override bar is the tallest by a clear margin. In 200 cases where officers overrode the actuarial tool toward leniency, the recidivism rate was 24 percent. In the same risk-score band, tool-only decisions produced a 16 percent recidivism rate. In 80 restrictive-override cases, the difference was smaller and not statistically significant. On average, the overrides had reduced accuracy.",
+      "whatToDo": "When parole officer overrides consistently show higher recidivism rates than the tool in the same risk-score band, restrict leniency overrides to cases with documented novel factors not in the tool's training data.",
+      "whyItMatters": "An 8-point recidivism gap between lenient-override and tool-only decisions in the same risk band is not evidence that officers exercise good judgment. It is evidence that overrides add noise on average."
+    },
+    {
+      "exampleId": "noise-ch20-ex02",
+      "title": "0.44 and 0.31",
+      "tags": ["college admissions", "formula composite", "holistic assessment", "predictive validity"],
+      "planSpec": {
+        "domain": "college admissions holistic review: a university comparing the predictive validity of formula-based admission scores versus admissions officer holistic assessment for four-year graduation and GPA",
+        "audience": "a university admissions research team studying which input better predicts four-year graduation and GPA",
+        "stakes": "admissions quality and educational equity: if holistic assessment adds noise without adding signal, the students admitted through officer judgment graduate at lower rates",
+        "format": "postmortem",
+        "requiredBeat": "formula composite predicts 4-year GPA at 0.44; holistic assessment predicts at 0.31; students admitted by holistic override of formula rejection complete at rates 7 percent lower than formula-admitted population at the same score range"
+      },
+      "scenario": "Meredith's five-year outcome review compared two predictors: the formula composite and the admissions officer holistic assessment. The formula predicted 4-year GPA with a correlation of 0.44. The holistic assessment predicted with a correlation of 0.31. In the sample of students admitted by holistic override of formula rejection, 4-year completion rates were 7 percent lower than formula-admitted students at the same score range. The holistic assessment had added noise faster than signal.",
+      "whatToDo": "When holistic assessment shows lower predictive validity than the formula composite, use holistic review only for applicants at the formula borderline, where genuine ambiguity makes a supplementary structured input more defensible.",
+      "whyItMatters": "A 0.13 predictive validity gap and a 7 percent lower completion rate in override admits are evidence that holistic review is adding noise faster than signal. The formula's consistency is the source of its advantage."
+    },
+    {
+      "exampleId": "noise-ch20-ex03",
+      "title": "Highest Median",
+      "tags": ["diagnostic algorithm", "physician-with-algorithm", "model as baseline", "variance reduction"],
+      "planSpec": {
+        "domain": "clinical diagnosis with algorithmic support: a hospital comparing diagnostic accuracy and consistency between physician-only, algorithm-only, and physician-with-algorithm-as-baseline workflows",
+        "audience": "a hospital quality team studying the effect of diagnostic algorithm integration on physician accuracy and variance",
+        "stakes": "diagnostic accuracy and consistent care: if the algorithm floor raises median accuracy, its integration has clear value even if top physicians perform better alone",
+        "format": "dialogue",
+        "requiredBeat": "physician-with-algorithm-as-baseline has the highest median accuracy and reduced variance; algorithm-only has the lowest variance and second-highest accuracy; physician-only has the highest peak accuracy and the highest variance; the algorithm raises the floor without replacing the ceiling"
+      },
+      "scenario": "\"Algorithm-only has the lowest variance,\" Prudence said. \"Physician-only has the highest peak accuracy and the highest variance,\" Sylvester added. \"And physician-with-algorithm-as-baseline has the highest median accuracy of the three.\" The three-way comparison on the whiteboard showed it: algorithm-only tight and moderate, physician-only wide and variable, physician-with-algorithm tighter than physician-only and higher than algorithm-only on median. The algorithm was not replacing the ceiling. It was raising the floor.",
+      "whatToDo": "Use the algorithm output as the starting point before physician review: the physician then acts on cases where the algorithm flags uncertainty or where novel case features fall outside the algorithm's training range.",
+      "whyItMatters": "Physician-with-algorithm-as-baseline outperforming both physician-only and algorithm-only on median accuracy shows that the structure divides labor correctly: the algorithm handles the noise floor, the physician adds value at the ceiling."
+    },
+    {
+      "exampleId": "noise-ch20-ex04",
+      "title": "3.2 Times Higher",
+      "tags": ["fraud detection", "algorithm flag", "analyst override", "high-confidence release"],
+      "planSpec": {
+        "domain": "fraud detection: a fintech company comparing algorithmic flag rates versus analyst review override rates for the same transaction set",
+        "audience": "a fraud operations manager measuring whether analyst overrides of algorithmic flags improve detection accuracy",
+        "stakes": "fraud losses and customer false-positive rates: analyst overrides that release fraudulent transactions have direct costs",
+        "format": "thought_experiment",
+        "requiredBeat": "analysts who released high-confidence algorithm fraud flags had a fraud rate 3.2 times higher than the algorithm's false-positive rate; borderline flag overrides showed no significant difference from algorithm-only decisions; the high-confidence overrides were adding noise, not expertise"
+      },
+      "scenario": "Across the last 12 months, when fraud analysts overrode the algorithm's high-confidence fraud flags in the direction of release, what was the subsequent fraud rate? The answer: analysts who released high-confidence flags had a fraud rate 3.2 times higher than the algorithm's false-positive rate on the same flag type. On borderline flags, analyst overrides showed no significant difference from algorithm-only decisions. The high-confidence overrides were not expertise. They were noise at exactly the point where the model was most confident.",
+      "whatToDo": "Restrict analyst override authority to borderline flags. For high-confidence algorithm flags, require documented novel case factors before an override is permitted.",
+      "whyItMatters": "A 3.2x higher fraud rate on analyst-released high-confidence flags shows analysts are not adding expertise on those cases. They are adding noise. Borderline flags are exactly where analyst judgment can legitimately supplement the model."
+    },
+    {
+      "exampleId": "noise-ch20-ex05",
+      "title": "31 and 12",
+      "tags": ["surgical scheduling", "OR duration estimate", "model prediction", "surgeon resistance"],
+      "planSpec": {
+        "domain": "surgical scheduling: a hospital comparing model-predicted surgery duration versus surgeon-estimated duration for scheduling accuracy",
+        "audience": "a hospital OR scheduling manager studying over- and under-booking patterns",
+        "stakes": "OR utilization and patient care: surgeon-estimate variance drives scheduling noise and costs",
+        "format": "before_after",
+        "requiredBeat": "surgeon self-estimated duration has mean absolute error of 23 minutes and standard deviation of 31 minutes; model-predicted duration has mean absolute error of 18 minutes and standard deviation of 12 minutes; surgeons with largest estimation errors also resist using model estimate as starting point most"
+      },
+      "scenario": "You compare two scheduling approaches for the same OR suite. Surgeon self-estimated duration: mean absolute error 23 minutes, standard deviation 31 minutes. Model-predicted duration based on procedure type, patient factors, and surgeon historical data: mean absolute error 18 minutes, standard deviation 12 minutes. The surgeons with the largest estimation errors also resist using the model estimate as a starting point most consistently. The resistance is strongest where the gap between surgeon estimate and model estimate is widest.",
+      "whatToDo": "Use the model's predicted duration as the starting point for OR scheduling, with surgeon override permitted only when documented patient factors fall outside the model's training range. Track override frequency and direction by surgeon.",
+      "whyItMatters": "A standard deviation of 12 minutes (model) versus 31 minutes (surgeon) on the same procedures shows the model's consistency is its primary value. The 5-minute MAE advantage is smaller than the 19-minute variance advantage."
+    },
+    {
+      "exampleId": "noise-ch20-ex06",
+      "title": "Upward and Downward",
+      "tags": ["automated valuation model", "appraiser override", "upward adjustment", "lending portfolio"],
+      "planSpec": {
+        "domain": "real-estate automated valuation versus appraiser override: a bank comparing model-only versus appraiser-adjusted valuations on a portfolio of residential properties",
+        "audience": "a bank lending quality officer studying whether appraiser adjustments to automated model values improve or hurt loan portfolio quality",
+        "stakes": "lending risk management: appraisers who inflate above the automated value expose the bank to greater collateral risk",
+        "format": "vignette",
+        "requiredBeat": "appraiser adjustments above the automated valuation model correlate with higher subsequent default-adjusted losses; adjustments below show no significant difference from model-only decisions; the largest upward adjusters' decisions correlate with client-relationship factors rather than property characteristics"
+      },
+      "scenario": "Three years of loan portfolio data, sorted by adjustment direction. Wilhelmina's analysis showed a consistent pattern: appraiser adjustments above the automated valuation model correlated with higher subsequent default-adjusted losses, while adjustments below showed no significant difference from model-only decisions. The largest upward adjustments concentrated in a subset of appraisers. Their decisions correlated with client-relationship factors rather than property characteristics. The model had produced a well-calibrated floor. The upward adjustments were noise above it.",
+      "whatToDo": "When portfolio analysis shows upward appraiser adjustments correlating with higher default-adjusted losses, restrict upward override authority and require documented property-specific factors before any upward adjustment is permitted.",
+      "whyItMatters": "No significant difference between downward adjustments and model-only decisions, paired with higher losses for upward adjustments, shows the model's floor is well-calibrated. The overrides above it are adding noise, not information."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch20-q01",
+        "prompt": "What does research on actuarial versus clinical judgment consistently find?",
+        "choices": [
+          "Clinical experts consistently outperform simple actuarial models when given sufficient deliberation time, because expert review captures factors models cannot encode.",
+          "Actuarial models and clinical experts perform comparably on average, with model advantages appearing mainly in high-volume domains where individual assessment time is limited.",
+          "Simple actuarial models consistently outperform clinical expert judgment in prediction tasks, not because they know more but because they are consistent across cases while expert performance varies."
+        ],
+        "correctIndex": 2,
+        "explanation": "The consistent finding across Paul Meehl's original research and subsequent meta-analyses is that even simple models outperform expert judgment on average. Options A and B either reverse the finding or attribute it to a domain restriction the evidence does not support. The mechanism is model consistency across cases, not superior model knowledge.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch20-q02",
+        "prompt": "Parole officers who override the actuarial risk tool toward leniency show a 24 percent two-year recidivism rate; tool-only decisions in the same risk-score band show 16 percent. What best explains this outcome?",
+        "choices": [
+          "The 24 percent group represents cases the actuarial tool underscored; the officers correctly identified risk factors not captured in the model's training inputs.",
+          "The lenient overrides introduce occasion and pattern noise without adding information the tool has not already incorporated; the officer's decision at the moment of override reflects case-irrelevant factors more than the case's actual risk.",
+          "The lenient overrides represent a policy choice to reduce incarceration at some cost to prediction accuracy; the 8-point gap is an acceptable tradeoff for a more humane parole outcome."
+        ],
+        "correctIndex": 1,
+        "explanation": "If officers were identifying genuine model underscores, the override cases would have distinguishing characteristics separating them from tool-only cases at the same risk score; the absence of that pattern indicates noise rather than information. Option C reframes the finding as a policy choice, but the data measures whether the override improves accuracy, not whether it serves a different goal.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch20-q03",
+        "prompt": "Why does adding expert override to a well-calibrated model typically reduce rather than improve predictive accuracy?",
+        "choices": [
+          "Experts disagree with each other about the same case, introducing between-expert noise that the model's single output avoids.",
+          "Models are trained to detect patterns experts systematically underweight, so expert review introduces a bias against precisely the signals driving model accuracy.",
+          "Expert overrides introduce occasion noise from the expert's state at the moment of decision and pattern noise from idiosyncratic feature-weighting tendencies, both absent from the model, without correspondingly adding novel case information."
+        ],
+        "correctIndex": 2,
+        "explanation": "Option A describes a between-expert noise problem, but the typical override involves one expert overriding a model, not multiple experts disagreeing. Option B incorrectly claims models are trained against expert underweighting, which is not how most actuarial models are built. The correct analysis identifies the two noise components that override adds without information gain: occasion noise and pattern noise.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch20-q04",
+        "prompt": "A hospital quality team proposes physician-with-algorithm-as-baseline as the standard diagnostic workflow, where the algorithm output is reviewed before the physician decides. What best justifies this change?",
+        "choices": [
+          "The physician-with-algorithm-as-baseline condition empirically outperforms both physician-only and algorithm-only on median accuracy and reduces variance, showing that the algorithm removes the physician's worst decisions while preserving the physician's best ones.",
+          "The algorithm-only condition is more accurate than physician-only, so using it as a floor prevents physicians from overriding a superior output.",
+          "The change reduces physician cognitive load by delegating initial assessment to the algorithm, freeing physician attention for the complex cases that genuinely require expert judgment."
+        ],
+        "correctIndex": 0,
+        "explanation": "Option B describes algorithm-only superiority, which would argue for algorithm replacement rather than a baseline workflow. Option C describes a cognitive load mechanism not directly supported by the accuracy and variance comparison. The direct empirical justification is the three-way finding: physician-with-algorithm-as-baseline outperforms both alternatives on the metrics that matter for the population of cases.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch20-q05",
+        "prompt": "What distinguishes a broken-leg override from the average expert override of a model?",
+        "choices": [
+          "The broken-leg override is based on a single high-salience feature that dominates the prediction; the average override integrates multiple subtle features the expert weights differently from the model.",
+          "The broken-leg override uses causally decisive novel information that falls outside the model's training distribution and definitionally changes the prediction; the average expert override applies pattern or occasion noise to case features the model has already incorporated.",
+          "The broken-leg override involves confirmed factual information that postdates the model's training data; the average override involves the expert applying updated intuitions to inputs that were current at training time."
+        ],
+        "correctIndex": 1,
+        "explanation": "Option A correctly notes the salience difference but does not identify the defining distinction. Option C narrows the broken-leg criterion to information timing, which is partially correct but mischaracterizes average overrides. The key distinction is that the broken-leg override applies novel information that causally overrides the prediction because it was definitionally absent from the training distribution; average overrides apply human variation to information the model has already incorporated.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch20-q06",
+        "prompt": "Fraud analysts who release high-confidence algorithm fraud flags see a subsequent fraud rate 3.2 times higher than the algorithm's false-positive rate on the same flag type. Borderline flag overrides show no significant difference. Which policy best addresses this?",
+        "choices": [
+          "Eliminate analyst override authority entirely; if high-confidence flags are consistently more accurate than analyst releases, the algorithm should have final authority.",
+          "Require a second analyst to review each proposed override before it is executed, adding a two-step review process to reduce individual analyst noise.",
+          "Restrict analyst override authority to borderline flags, where analyst contextual judgment can add information the model may not have; for high-confidence flags, require documented novel case factors before an override is permitted."
+        ],
+        "correctIndex": 2,
+        "explanation": "Eliminating override authority entirely removes analyst value in borderline cases, where the data shows no significant disadvantage to overrides. Two-step analyst review adds cost but does not address the noise source: two analysts applying intuition to the same high-confidence flag are likely to share the bias rather than cancel it. The targeted policy preserves analyst value where it exists and restricts override where it adds noise.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch20-q07",
+        "prompt": "The surgeons with the largest OR scheduling estimation errors also resist using the model duration estimate as a starting point most strongly. What should the scheduling manager conclude?",
+        "choices": [
+          "Resistance to using the model correlates with the highest noise contribution; requiring model-as-baseline with a structured override path is appropriate for exactly the surgeons who most resist it.",
+          "Surgeon resistance to the model estimate suggests these surgeons have case knowledge the model cannot capture; their larger estimation errors may reflect genuine case complexity rather than estimation noise.",
+          "Resistance to model estimates reflects professional autonomy concerns that should be addressed through training and culture change before any structural scheduling policy change."
+        ],
+        "correctIndex": 0,
+        "explanation": "Option B conflates resistance with superior knowledge, but the finding is that resistance correlates with larger errors, not with case complexity measures. Option C identifies a real phenomenon but addresses symptoms rather than the underlying measurement. The direct conclusion is that the surgeons most resistant to the model are the surgeons with the most to gain from using it, making structural requirements the appropriate response.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch20-q08",
+        "prompt": "A clinical expert argues that using a model as the decision baseline eliminates individualized assessment. How should a quality officer evaluate this claim?",
+        "choices": [
+          "The claim is valid; models produce population-level predictions calibrated on historical cases and cannot account for the specific combination of factors present in an individual case.",
+          "The claim conflates the elimination of noise with the elimination of judgment; a model baseline eliminates the expert's occasion and pattern noise while preserving the expert's ability to override when genuinely novel case factors are present.",
+          "The claim reflects a reasonable concern about deskilling; sustained reliance on a model baseline may erode the expert's ability to handle cases that fall outside the model's training range."
+        ],
+        "correctIndex": 1,
+        "explanation": "Option A is incorrect: models are applied to individual cases; the population advantage comes from consistency across cases, not from sacrificing individual assessment. Option C identifies a secondary concern about long-term calibration but does not evaluate the direct claim. The direct response is that a baseline model eliminates the noise components of expert judgment while leaving the expert's override authority intact when novel case information justifies it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch20-q09",
+        "prompt": "A university proposes restricting holistic admissions officer review to applicants within 5 percent of the formula score threshold, on the grounds that officer assessment adds value in genuinely ambiguous cases. Is this approach sound?",
+        "choices": [
+          "The approach has merit: borderline cases are where the formula's prediction is least certain and where officer assessment of factors the formula does not capture can add signal; restricting holistic review to the threshold reduces its noise contribution in clear cases while preserving its potential value where the formula is most uncertain.",
+          "The approach is flawed: if holistic assessment shows lower predictive validity than the formula overall, it should be eliminated entirely rather than selectively applied, since applying it at all introduces a further noise source.",
+          "The approach is sound only if officers receive calibration training before reviewing borderline cases; without calibration, threshold-restricted holistic review is as noisy as holistic review across the full range."
+        ],
+        "correctIndex": 0,
+        "explanation": "Option B overreacts to the aggregate finding by eliminating officer assessment in precisely the cases where the formula is least decisive. Option C adds a useful conditional recommendation but does not assess whether the core approach is sound absent that condition. The approach is sound in principle: threshold restriction addresses the noise contribution of holistic review while preserving its plausible value in the ambiguous middle where formula predictions are genuinely marginal.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "Why do statistical models outperform expert judgment on average in prediction tasks?",
+      "back": "Models outperform expert judgment on average not because they know more but because they are consistent. An expert has good days and bad days, responds to the previous case, and weights the same features differently across sessions. A model applies the same formula to the same inputs every time. Across a large population of cases, that consistency is most of the advantage.",
+      "difficulty": "easy"
+    },
+    {
+      "front": "What is the broken-leg exception in the model-versus-expert debate?",
+      "back": "The broken-leg exception is the case where expert override is clearly warranted: the expert has causally decisive novel information that postdates the model's training and that the model definitionally cannot know. A person with a broken leg is highly unlikely to attend the event the model predicts they will attend, regardless of their historical pattern. The exception exists; it does not rescue the average override.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "What does expert override of a model typically add to a prediction?",
+      "back": "Expert override typically adds noise rather than information. The override introduces the expert's occasion noise from their state at the moment of decision and their pattern noise from stable idiosyncratic feature-weighting tendencies. Both are absent from the model. Unless the override carries causally decisive novel information outside the model's training range, it usually reduces accuracy.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "Why does physician-with-algorithm-as-baseline outperform both physician-only and algorithm-only conditions on median accuracy?",
+      "back": "The algorithm removes the physician's worst decisions, which are driven by noise rather than genuine case complexity. The physician adds value for genuinely novel cases and cases at the edge of the algorithm's training distribution. The combination preserves the floor (model consistency) and the ceiling (expert judgment in exceptional cases) without forcing a choice between them.",
+      "difficulty": "hard"
+    },
+    {
+      "front": "What is the difference between a valid model override and the average model override?",
+      "back": "A valid override applies causally decisive novel information that falls outside the model's training range and that definitionally changes the prediction. The average override applies the expert's pattern or occasion noise to case features the model has already incorporated. The broken-leg problem is an example of a valid override; most expert overrides in research studies resemble the average, not the exception.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Use a statistical model output as the floor before adding any expert adjustment. Build the simplest model available for your prediction domain: identify the two or three features most predictive of the outcome, score each, and compute a composite. Make the composite before exercising judgment. Then ask whether your adjustment is warranted by novel case information outside the model's training range, or whether it reflects your state at the moment of the decision.",
+    "ifThenPlans": [
+      {
+        "context": "When you are about to override a model or formula output based on intuition or general concern about the case",
+        "plan": "Before overriding, write the specific novel case feature that is not in the model's inputs and explain why it causally changes the prediction. If you cannot name that feature, the override is likely noise. Record the direction and magnitude of every override; patterns across your overrides reveal your pattern noise."
+      },
+      {
+        "context": "When a colleague argues that a model constraint eliminates professional judgment",
+        "plan": "Distinguish between the model as a constraint and the model as a floor. A model floor requires the expert to name novel case information to justify deviation; it does not prevent deviation when that information exists. The autonomy argument applies to mandatory model-only decisions, not to model-as-baseline workflows where the expert can still override with documented reasoning."
+      }
+    ],
+    "twentyFourHourChallenge": "For your next prediction, compute the simplest formula available first: score the two strongest predictors and sum them. Then make your judgment without looking at the score. Compare the two. If your judgment is consistently above or below the score, you have identified a bias. If it varies randomly, you are adding noise.",
+    "weeklyPractice": "For each prediction in the week that uses a model or formula, record the direction and magnitude of any adjustment you make from the model's output. At the end of four weeks, calculate what percentage of your overrides moved in the same direction and what percentage moved opposite. A consistent direction suggests bias. Random direction suggests noise. Either pattern suggests the model should be your starting point, not your check."
+  }
+}

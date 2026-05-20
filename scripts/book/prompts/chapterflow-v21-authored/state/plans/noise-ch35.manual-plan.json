@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch35",
+  "number": 35,
+  "title": "Taking Noise Seriously",
+  "coreMove": "Build active, routine measurement of judgment variability into the institution's operations rather than trusting that awareness of noise or the existence of guidelines has already fixed it.",
+  "sourcePressure": "Most institutions are aware of noise but treat it as a background fact rather than an active problem requiring systematic response. Taking noise seriously means treating diagnosis and reduction as institutional priorities with dedicated measurement systems — not as occasional audits or personal commitments of interested managers. Awareness without measurement is not the same as taking noise seriously.",
+  "chapterSpecificMisunderstanding": "Assuming that publishing guidelines, running one calibration workshop, or acknowledging the noise problem in a management meeting constitutes taking noise seriously as an institutional commitment.",
+  "sourceAlignmentTerms": ["institutional commitment", "routine measurement", "noise awareness", "active monitoring", "organizational posture", "seriousness", "systematic response"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Noise monitoring as an organizational practice in high-reliability institutions",
+      "detail": "High-reliability organizations in aviation, nuclear power, and military operations treat failure mode monitoring as a routine operational function rather than a response to incidents. Research on noise reduction programs finds that organizations which embed routine noise measurement into standard operations sustain improvements better than organizations that treat noise measurement as a periodic project or a response to crisis.",
+      "useIn": "deepRead",
+      "phrasingHint": "An aviation safety program that reviews incident rates annually is not taking safety seriously. One that reviews them weekly, publishes the data to all crew, and triggers automatic review when incident rates cross a threshold — that is taking safety seriously. The same principle applies to noise. Annual calibration workshops are the equivalent of annual safety reviews: they signal awareness without providing the measurement infrastructure that would actually change behavior between workshops."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["most organizations are not taking noise seriously — are you?", "the one commitment that separates noise-aware organizations from noise-resistant ones"],
+    "counterintuition": ["awareness of noise is sufficient to begin reducing it", "guidelines reduce noise without active monitoring — you just need to write good guidelines"],
+    "tryThisNow": ["start taking noise seriously this week by scheduling a calibration session", "tell your team about the noise problem and watch it improve"],
+    "examples": ["a scene where an organization's awareness of noise is treated as equivalent to reducing it — the chapter's argument is that awareness is the starting point, not the solution", "a scene where a single calibration workshop produces sustained noise reduction without ongoing measurement — that contradicts the chapter's argument"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Taking-noise-seriously examples risk reading as case studies in building measurement infrastructure. Each domain must show the contrast between awareness-only postures and genuine measurement commitment — so the reader sees what the difference looks like operationally rather than rhetorically."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bank credit risk assessment consistency: a regional bank studying the difference between its credit officers' awareness of rating inconsistency and its measurement infrastructure for detecting and correcting that inconsistency",
+      "audience": "a regional bank chief credit officer studying whether the bank's credit officer calibration program represents genuine institutional commitment to noise reduction or awareness-only posture",
+      "stakes": "credit quality and lending equity — credit officers who are aware of inconsistency but not measured for it produce the same spread as officers who are unaware; only measurement with consequences changes the consistency level",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the chief credit officer presents the two-program comparison to the bank's board risk committee: program A (the current program) consists of an annual calibration workshop and a policy statement acknowledging inter-officer consistency as a goal — officers are aware of the noise issue, and inter-officer spread has not changed in three years; program B (piloted in one region) adds quarterly matched-case re-rating exercises with published variance statistics per officer and a trigger for additional calibration when any officer's variance exceeds a defined threshold — inter-officer spread in the pilot region fell 31 percent in the first year; the difference between programs is not awareness but measurement with operational consequences",
+      "firstImage": "a two-program comparison chart showing three years of inter-officer credit rating spread: program A (annual workshop only — flat spread line) and program B (quarterly measurement with triggers — declining spread line)",
+      "mustInclude": ["the flat spread in the awareness-only program versus 31% reduction in the measurement program", "the specific elements that distinguish program B from program A (quarterly exercises, published variance, automatic triggers)", "the chief credit officer's framing: the bank has been aware of the inconsistency for three years — the difference in outcomes is not awareness, it is the measurement infrastructure that acts on the awareness"],
+      "mustAvoid": ["a specific loan or borrower", "implying that awareness programs have no value or that they cannot eventually evolve into measurement programs"]
+    },
+    {
+      "domain": "child welfare risk assessment monitoring: a child welfare agency studying the difference between its stated commitment to consistent risk assessment and its actual measurement of inter-caseworker variability",
+      "audience": "a state child welfare agency director studying whether the agency's approach to assessment consistency represents genuine institutional commitment or awareness-only posture",
+      "stakes": "child safety and family equity — caseworkers who know that consistency is a goal but are not measured for it produce the same variability as those without stated guidelines",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two agency directors compare two regions: region A has published consistency guidelines and a required calibration workshop for new caseworkers — inter-caseworker spread on matched family profiles has remained at 1.2 points on a 5-point scale for four years; region B has the same guidelines and workshop, plus a monthly matched-case audit with published per-caseworker spread scores and a structured support pathway when any caseworker's spread exceeds the 0.8-point threshold — inter-caseworker spread fell from 1.2 to 0.7 points in region B over the same four years; the difference is not commitment to consistency as a value — both regions have that — but measurement as a systematic institutional practice",
+      "firstImage": "a four-year inter-caseworker spread comparison for two agency regions: region A (guidelines only — flat 1.2-point spread) and region B (guidelines plus monthly measurement — declining to 0.7-point spread)",
+      "mustInclude": ["the 1.2-point flat spread in region A versus the 1.2-to-0.7 decline in region B", "the specific measurement elements in region B (monthly audit, published scores, support trigger)", "the directors' framing: both regions stated the same commitment to consistency — only one of them built the infrastructure to know whether they were achieving it"],
+      "mustAvoid": ["a specific child welfare case", "implying that child welfare consistency programs are generally ineffective"]
+    },
+    {
+      "domain": "sports officiating consistency program: a professional sports league studying the difference between its officiating training program and a measurement-based consistency monitoring program",
+      "audience": "a professional sports league officiating director studying whether the league's current officiating consistency program represents genuine institutional commitment or awareness-only posture",
+      "stakes": "competitive integrity and public trust — officials who are trained on consistency principles but not measured for consistency produce the same call variance as those without training if the training is not reinforced by measurement",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the officiating director asks the competition committee: if we give officials comprehensive consistency training but no ongoing measurement of their inter-official variance, how much do we expect their consistency to improve after the training period? The data from a league pilot answers: training-only officials showed an average 11 percent inter-official variance reduction in the first six months after training, with the reduction eroding to 4 percent by month eighteen; officials in the measurement program (monthly blind re-rating exercises on video clips with published variance scores and coaching conversations when scores exceeded the threshold) maintained a 27 percent variance reduction through month eighteen; training produces short-term awareness; measurement produces sustained consistency",
+      "firstImage": "a two-program consistency curve over eighteen months: training-only (initial improvement followed by erosion back toward baseline) versus training-plus-measurement (sustained improvement held through month eighteen)",
+      "mustInclude": ["the 11% initial versus 4% sustained improvement for training-only", "the 27% sustained improvement for training-plus-measurement", "the director's framing: training produces the awareness that makes measurement meaningful — but measurement is what makes the awareness last"],
+      "mustAvoid": ["naming a specific sport, league, or officiating controversy", "implying officiating consistency programs are generally ineffective"]
+    },
+    {
+      "domain": "forensic laboratory proficiency monitoring: a forensic science accreditation body studying the difference between proficiency testing for accreditation versus ongoing noise measurement as an operational practice",
+      "audience": "a forensic science accreditation body standards director studying whether laboratory proficiency testing programs represent genuine operational noise monitoring or compliance-documentation exercises",
+      "stakes": "forensic evidence reliability and criminal justice integrity — laboratories that pass periodic proficiency tests for accreditation purposes but do not measure ongoing inter-examiner variability maintain accreditation status while producing case-level noise between testing cycles",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the standards director presents a comparative study of laboratory noise profiles: laboratories that conduct proficiency testing only for accreditation renewal (every two years) show an average inter-examiner variance that is 40 percent higher in the months between accreditation periods than in the months immediately preceding an accreditation review; laboratories with ongoing monthly blind inter-examiner comparison exercises show stable inter-examiner variance year-round, with no pre-accreditation-review spike; the pattern in the first group shows that accreditation testing produces compliance behavior, not consistency behavior — the measurement that matters is the routine one, not the periodic one",
+      "firstImage": "a two-laboratory variance profile over a two-year accreditation cycle: accreditation-only testing laboratory (higher variance between reviews, lower variance near review — a sawtooth pattern) versus ongoing measurement laboratory (flat low variance throughout)",
+      "mustInclude": ["the 40% higher inter-examiner variance between accreditation periods versus near-review periods in the accreditation-only laboratories", "the flat variance profile in ongoing-measurement laboratories", "the director's framing: the laboratories producing the sawtooth pattern are taking accreditation seriously — not noise seriously. The two are not the same commitment"],
+      "mustAvoid": ["a specific forensic case or wrongful conviction", "implying all forensic laboratories produce unreliable results"]
+    },
+    {
+      "domain": "military performance evaluation consistency: a service branch studying the difference between stated consistency goals in performance evaluation policy and active measurement of inter-rater variability",
+      "audience": "a military personnel command quality director studying whether the branch's performance evaluation consistency policy represents genuine institutional commitment or documented intent without operational measurement",
+      "stakes": "promotion equity and force management quality — evaluators who are aware of consistency as a policy value but not measured for their variance produce the same inter-rater spread as evaluators without the policy",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review fifteen years of evaluation data bracketed by two policy eras: era one (consistency guidelines in policy, no measurement of inter-rater variance) — inter-rater variance for matched officer profiles remained at 0.9 points on a 5-point scale across the full period; era two (consistency guidelines plus semi-annual inter-rater variance reports published to unit commanders, with automatic review required when any commander's rater pool exceeds the 0.6-point threshold) — inter-rater variance declined from 0.9 to 0.6 points in year one and to 0.5 points by year three; the policy language was identical in both eras; the measurement infrastructure was not",
+      "firstImage": "a fifteen-year inter-rater variance trend for officer performance evaluations: the first policy era (flat 0.9-point variance) separated by a policy change line from the second era (declining from 0.9 to 0.5 points)",
+      "mustInclude": ["the 0.9-point flat variance in era one versus the 0.9-to-0.5 decline in era two with identical policy language", "the specific measurement elements in era two (semi-annual reports, commander-level publication, automatic review trigger)", "your framing: the branch's stated commitment to consistency did not change between the two eras — but the operational meaning of that commitment changed completely when measurement was added to the stated goal"],
+      "mustAvoid": ["a specific officer's evaluation or promotion outcome", "implying military performance evaluation is generally unreliable or unfair"]
+    },
+    {
+      "domain": "algorithmic fairness audit program: a technology company studying the difference between a published algorithmic fairness policy and a systematic ongoing measurement program for detecting fairness violations",
+      "audience": "a chief technology officer studying whether the company's algorithmic fairness commitment represents genuine institutional seriousness or awareness-level posture",
+      "stakes": "algorithmic decision quality and regulatory compliance — a published fairness policy without measurement produces the same disparate impact as no policy if the measurement that would reveal violations is not routinely conducted",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the CTO reviews two years of fairness program data: year one featured a published algorithmic fairness policy, internal training on fairness principles, and an annual fairness audit — disparate impact metrics were measured once and no violations were found; year two added a quarterly automated disparate impact measurement across all decision-producing algorithms, with alert thresholds that triggered review when any algorithm's disparate impact metric crossed a defined boundary — three algorithmic processes triggered review in year two and two were found to produce demonstrable disparate impact that the annual audit had missed by averaging over quarters in which disparate impact had emerged seasonally; the policy was the same in both years; only the measurement frequency changed",
+      "firstImage": "a two-year algorithmic fairness monitoring comparison: year one (annual audit — no violations found) versus year two (quarterly measurement — three triggers, two confirmed disparate impact findings) — the findings visual showing that the year-one 'clean' result was an artifact of measurement timing",
+      "mustInclude": ["the three triggers and two confirmed findings in year two that the year-one annual audit missed", "the seasonal emergence pattern as the mechanism the annual audit failed to capture", "the CTO's framing: the company had a fairness policy in both years — but only in year two did it have the measurement infrastructure to know whether the policy was producing fairness"],
+      "mustAvoid": ["a specific company's algorithmic system or bias incident", "implying that algorithmic fairness policies are generally ineffective or that fairness cannot be measured"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain the distinction between noise awareness and noise seriousness as institutional postures, and why awareness does not produce the outcomes that measurement produces",
+      "identify the operational elements that distinguish a genuine noise measurement commitment from an awareness-level program in a described institutional context",
+      "apply the noise-measurement infrastructure design principles to recommend specific measurement elements for a described judgment system",
+      "analyze why periodic compliance-oriented measurement produces different behavioral effects than routine operational measurement in the same institutional context",
+      "evaluate whether a described organizational noise reduction program represents genuine institutional seriousness based on the measurement infrastructure described"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of the most important judgment process in your organization. Ask three questions: How often is inter-judge variability measured on matched cases — monthly, quarterly, annually, or never? When high variability is detected, what happens automatically — is there a defined response, or does a manager decide whether to act? Are variability statistics published to the people who make the judgments? If the answer to any of these is 'never,' 'nothing automatic,' or 'no,' your organization is aware of the noise problem. Whether it is taking the problem seriously depends on how many of those questions you answered differently.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on the specific difference between awareness and seriousness — not a rhetorical difference but an operational one, detectable in measurement frequency, publication practice, and automatic consequence, at least one 5+ sentence paragraph on why periodic compliance-oriented measurement produces compliance behavior rather than consistency behavior — showing the sawtooth pattern as the evidence, at least one one-sentence punch line about what three years of flat noise levels tell you about whether an organization's calibration workshops are working",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to directly address the reader: what is the measurement frequency for inter-judge variability in your most important judgment process? If you do not know the answer, the answer is not 'low enough to mention' — it is probably 'never measured between workshops,' which is the operational definition of awareness without seriousness",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

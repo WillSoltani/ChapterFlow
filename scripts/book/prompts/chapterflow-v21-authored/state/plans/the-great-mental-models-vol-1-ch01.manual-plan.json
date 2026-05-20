@@ -1,0 +1,205 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch01",
+  "number": 1,
+  "title": "The Map Is Not the Territory",
+  "coreMove": "Test a representation against ground truth before letting it govern the decision.",
+  "sourcePressure": "The source says maps, models, financial statements, policy documents, manuals, resumes, and performance reviews are reductions of reality. It anchors the idea in Bezos testing a customer-service metric, Newton and Einstein showing useful but incomplete maps, and Jane Jacobs warning against forcing living cities into abstract plans.",
+  "chapterSpecificMisunderstanding": "The weak version says data is inferior to anecdotes or that all maps should be distrusted.",
+  "sourceAlignmentTerms": [
+    "map",
+    "territory",
+    "reduction",
+    "reality update",
+    "cartographer",
+    "proxy",
+    "Jane Jacobs"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Jeff Bezos",
+      "detail": "customer complaint anecdotes conflicted with Amazon's reported call-wait metric, and a live phone call showed the metric was missing the territory",
+      "useIn": "both",
+      "phrasingHint": "A dashboard said the line was moving; Bezos picked up the phone and let the customer line answer back."
+    },
+    {
+      "kind": "person",
+      "name": "Jane Jacobs",
+      "detail": "her city-planning critique is used to show how people try to force living cities to fit abstract plans",
+      "useIn": "fullRead",
+      "phrasingHint": "Jane Jacobs matters because the plan did not merely describe the city; it tried to make the city obey the drawing."
+    },
+    {
+      "kind": "person",
+      "name": "Newton and Einstein",
+      "detail": "Newtonian physics remains useful while Einstein's special relativity shows that an older map can be incomplete in some domains",
+      "useIn": "deepRead",
+      "phrasingHint": "Newton's map still gets you across much of the terrain, but Einstein showed where the terrain changed under its feet."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "GPS route cliche",
+      "treasure map metaphor",
+      "spreadsheet bad because human story good"
+    ],
+    "counterintuition": [
+      "data versus intuition",
+      "models are lies",
+      "reality is messy"
+    ],
+    "tryThisNow": [
+      "audit every dashboard",
+      "go outside and observe",
+      "ask what am I missing"
+    ],
+    "examples": [
+      "generic quarterly KPI meeting",
+      "classroom map lesson",
+      "coffee shop sales chart"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "customer-service dashboard audit",
+      "audience": "an operations lead whose call-center report shows healthy wait times",
+      "stakes": "renewal calls are being lost while the executive team trusts a green metric",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire calls the support line from the conference room speakerphone and lets the actual hold music run past the dashboard's promised answer time",
+      "firstImage": "tinny hold music filling a glass conference room",
+      "mustInclude": [
+        "speakerphone timer",
+        "green dashboard tile",
+        "customer complaint log"
+      ],
+      "mustAvoid": [
+        "generic dashboard skepticism",
+        "anti-data rant"
+      ]
+    },
+    {
+      "domain": "grant-funded river restoration survey",
+      "audience": "a conservation coordinator reading a neat habitat map",
+      "stakes": "grant money may be spent on the wrong bend of the river",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Michael places the laminated habitat map beside muddy boot photos from the riverbank and delays the grant order until the two disagreeing pictures are reconciled",
+      "firstImage": "wet boot prints drying on the tailgate beside a laminated river map",
+      "mustInclude": [
+        "laminated habitat map",
+        "boot photos",
+        "grant order"
+      ],
+      "mustAvoid": [
+        "outdoor adventure moral",
+        "map as literal navigation only"
+      ]
+    },
+    {
+      "domain": "resume screen for tool-and-die apprentice",
+      "audience": "a plant manager selecting candidates from polished resumes",
+      "stakes": "the wrong hire will slow a short-staffed apprenticeship bench",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rachel compares a perfect resume with a five-minute bench test and watches the weaker paper candidate solve the caliper setup cleanly",
+      "firstImage": "a digital caliper blinking beside two printed resumes",
+      "mustInclude": [
+        "resume stack",
+        "caliper setup",
+        "bench test"
+      ],
+      "mustAvoid": [
+        "generic interview scene",
+        "degree-versus-skill sermon"
+      ]
+    },
+    {
+      "domain": "city playground redesign walk-through",
+      "audience": "a parks planner relying on a clean safety diagram",
+      "stakes": "children may avoid the new layout because the plan misses how families actually move",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Olivier follow parents across the site with a clipboard and mark the desire paths that never appear on the approved plan",
+      "firstImage": "chalk arrows crossing the mulch before the new swings arrive",
+      "mustInclude": [
+        "approved plan",
+        "desire paths",
+        "clipboard"
+      ],
+      "mustAvoid": [
+        "Jane Jacobs biography",
+        "generic public meeting"
+      ]
+    },
+    {
+      "domain": "farmers market vendor fee review",
+      "audience": "a market treasurer trusting a clean vendor-revenue sheet",
+      "stakes": "a fee increase could drive out the small vendors who make the market worth visiting",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Aman counts the empty end stalls at closing and writes the missing vendors directly onto the revenue sheet before approving the fee change",
+      "firstImage": "folded stall weights lined up where two vegetable tents used to stand",
+      "mustInclude": [
+        "vendor-revenue sheet",
+        "empty end stalls",
+        "fee vote"
+      ],
+      "mustAvoid": [
+        "small business nostalgia",
+        "spreadsheet villain"
+      ]
+    },
+    {
+      "domain": "software uptime incident log",
+      "audience": "a reliability lead whose uptime report excludes degraded login failures",
+      "stakes": "customers are technically online while unable to complete work",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Marit reads one customer screen recording beside the uptime incident log and changes the incident definition before the weekly report goes out",
+      "firstImage": "a frozen login spinner on a customer's screen recording",
+      "mustInclude": [
+        "uptime report",
+        "screen recording",
+        "incident definition"
+      ],
+      "mustAvoid": [
+        "generic SaaS dashboard story",
+        "bug-fix heroics"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a proxy has outrun ground truth",
+      "choose a reality check for a representation",
+      "inspect the mapmaker's incentives",
+      "notice when a map starts changing behavior"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one trusted report or plan. Write one concrete territory check you can do before the next decision that depends on it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

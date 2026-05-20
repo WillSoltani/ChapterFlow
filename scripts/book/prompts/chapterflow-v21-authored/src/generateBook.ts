@@ -13,8 +13,9 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { generateChapter, BookMeta, ChapterSpec } from "./generateChapter.js";
-import { ChapterV21 } from "./types.js";
+import { ChapterV21, PriorChapterShapes } from "./types.js";
 import { runBookGate, formatBookGateReport, BookGateReport } from "./critics/bookGate.js";
+import { classifyCounterShape } from "./critics/bookPatternAudit.js";
 import { promoteBook, formatPromotionResult, PromotionResult } from "./promoteBook.js";
 import { runCategorizer } from "./agents/categorizer.js";
 
@@ -31,6 +32,14 @@ export type GenerateBookOptions = {
   continueOnError?: boolean;
   /** Auto-promote to book-packages/ on success. Default true. */
   autoPromote?: boolean;
+  /** Skip the categorizer model call. Required for inline-operator runs that
+   *  do not want any subprocess model calls. When true, the operator must
+   *  provide manualCategories + manualTags. */
+  noCategorizer?: boolean;
+  /** Operator-supplied categories; used when noCategorizer is true. */
+  manualCategories?: string[];
+  /** Operator-supplied tags; used when noCategorizer is true. */
+  manualTags?: string[];
 };
 
 export type GenerateBookResult = {
@@ -69,7 +78,8 @@ export async function generateBook(
     const ch = range[i];
     log(`\n--- Chapter ${ch.chapterNumber}/${range[range.length - 1].chapterNumber}: ${ch.chapterTitle} ---`);
     try {
-      const produced = await generateChapter(book, ch);
+      const priorChapterShapes = buildPriorChapterShapes(succeeded);
+      const produced = await generateChapter(book, ch, { priorChapterShapes });
       succeeded.push(produced);
     } catch (err) {
       const msg = (err as Error).message;
@@ -105,25 +115,36 @@ export async function generateBook(
     } else if (!bookGate.passed) {
       log(`\n=== Skipping promotion: book gate has blockers ===`);
     } else {
-      log(`\n=== Categorizer ===`);
       let categories: string[] | undefined;
       let tags: string[] | undefined;
-      try {
-        const categorized = await runCategorizer({
-          bookId: book.bookId,
-          title: book.title,
-          author: book.author,
-          chapterTitles: chapters.map((c) => c.chapterTitle),
-        });
-        categories = categorized.categories;
-        tags = categorized.tags;
-        log(`categories: ${categories.join(", ")}`);
-        log(`tags: ${tags.join(", ")}`);
-      } catch (err) {
-        // Categorizer failure shouldn't block promotion. Categories are
-        // optional metadata; the book is still shippable. Operator can rerun
-        // the categorizer later (it caches once it succeeds).
-        log(`categorizer failed (${(err as Error).message}); promoting without categories — rerun the categorizer separately to backfill`);
+      if (options.noCategorizer) {
+        log(`\n=== Categorizer SKIPPED (--no-categorizer) ===`);
+        categories = options.manualCategories;
+        tags = options.manualTags;
+        if (categories) log(`manual categories: ${categories.join(", ")}`);
+        if (tags) log(`manual tags: ${tags.join(", ")}`);
+        if (!categories || !tags) {
+          log(`WARNING: --no-categorizer set without manual categories/tags; promoting without metadata.`);
+        }
+      } else {
+        log(`\n=== Categorizer ===`);
+        try {
+          const categorized = await runCategorizer({
+            bookId: book.bookId,
+            title: book.title,
+            author: book.author,
+            chapterTitles: chapters.map((c) => c.chapterTitle),
+          });
+          categories = categorized.categories;
+          tags = categorized.tags;
+          log(`categories: ${categories.join(", ")}`);
+          log(`tags: ${tags.join(", ")}`);
+        } catch (err) {
+          // Categorizer failure shouldn't block promotion. Categories are
+          // optional metadata; the book is still shippable. Operator can rerun
+          // the categorizer later (it caches once it succeeds).
+          log(`categorizer failed (${(err as Error).message}); promoting without categories — rerun the categorizer separately to backfill`);
+        }
       }
 
       log(`\n=== Library promotion ===`);
@@ -151,6 +172,22 @@ export async function generateBook(
     promotion,
     totalWallTimeSec,
   };
+}
+
+/** Build PriorChapterShapes from the chapters already produced in this run.
+ *  Cached/resumed chapters count too, because generateChapter ingests them
+ *  into `succeeded` before returning. Keeps writers steered away from over-
+ *  used opener words and counter shapes as the book is built. */
+function buildPriorChapterShapes(prior: ChapterV21[]): PriorChapterShapes {
+  const priorHookFirstWords: string[] = [];
+  const priorCounterShapes: string[] = [];
+  for (const ch of prior) {
+    const hook = (ch.hook ?? "").trim();
+    const firstWord = hook.split(/\s+/)[0]?.toLowerCase().replace(/[^a-z']/g, "") ?? "";
+    priorHookFirstWords.push(firstWord);
+    priorCounterShapes.push(classifyCounterShape(ch.counterintuition ?? ""));
+  }
+  return { priorHookFirstWords, priorCounterShapes };
 }
 
 /** Read a chapter index file. The index is an array of ChapterSpec objects

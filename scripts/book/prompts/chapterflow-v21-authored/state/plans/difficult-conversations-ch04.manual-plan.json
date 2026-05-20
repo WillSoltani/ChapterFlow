@@ -1,0 +1,186 @@
+{
+  "chapterId": "difficult-conversations-ch04",
+  "number": 4,
+  "title": "Abandon Blame",
+  "coreMove": "Map the repeating contribution system and identify one move of yours that keeps it alive.",
+  "sourcePressure": "The chapter trades blame for contribution while preserving asymmetry and accountability limits.",
+  "chapterSpecificMisunderstanding": "False parity, self-blame, or using contribution language to excuse the person with more power.",
+  "sourceAlignmentTerms": [
+    "blame",
+    "contribution",
+    "contribution system",
+    "avoiding until now",
+    "being unapproachable",
+    "style intersections",
+    "problematic role assumptions"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the contribution system",
+      "detail": "The source names avoiding until now, being unapproachable, style intersections, and problematic role assumptions as common contribution types.",
+      "useIn": "both",
+      "phrasingHint": "Once the system is visible, the question changes from who deserves blame to which move keeps recreating the same room."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch04 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: retrospective first line; dialogue first line; environmental detail before any human; sensory detail first; timestamp+name+action; question-as-hook",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "remote engineering check-in cycle",
+      "audience": "managers and remote employees in mutual distrust",
+      "stakes": "extra oversight is making a capable employee withdraw further",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hannah draws the loop: silence leads to check-ins, check-ins lead to more silence, then marks her own arrow",
+      "firstImage": "a webcam thumbnail frozen on a weekly check-in",
+      "mustInclude": [
+        "status dashboard",
+        "Slack thread",
+        "calendar invite"
+      ],
+      "mustAvoid": [
+        "who is the bad manager story"
+      ]
+    },
+    {
+      "domain": "sibling holiday planning roles",
+      "audience": "adult families with entrenched competence patterns",
+      "stakes": "one sibling is burning out after a decade of invisible planning",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mikkel names how his non-role has become a role, then asks for one concrete planning task",
+      "firstImage": "\"I thought you liked doing it,\" he says",
+      "mustInclude": [
+        "holiday train tickets",
+        "shared grocery list",
+        "folding table plan"
+      ],
+      "mustAvoid": [
+        "equal blame for unequal burden"
+      ]
+    },
+    {
+      "domain": "design handoff style clash",
+      "audience": "cross-functional teams with incompatible definitions of done",
+      "stakes": "missed review cycles are threatening a launch date",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Giulia compares the fast rough draft and the slow polished draft as two styles intersecting, not two character flaws",
+      "firstImage": "two files with the same project name open side by side",
+      "mustInclude": [
+        "prototype file",
+        "QA checklist",
+        "launch countdown"
+      ],
+      "mustAvoid": [
+        "perfectionist versus careless labels"
+      ]
+    },
+    {
+      "domain": "community theater rehearsal pattern",
+      "audience": "volunteer groups with critic-defender roles",
+      "stakes": "the director's notes are making actors defensive and rehearsal quality worse",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Thomas pauses before giving the note and asks what his delivery is contributing to the same defensive scene",
+      "firstImage": "a stage floor taped with glow marks",
+      "mustInclude": [
+        "marked script",
+        "folding chairs",
+        "rehearsal call sheet"
+      ],
+      "mustAvoid": [
+        "director simply being right"
+      ]
+    },
+    {
+      "domain": "shared apartment cleaning standoff",
+      "audience": "roommates in avoider-pursuer loop",
+      "stakes": "a lease renewal depends on whether the home can stop feeling hostile",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Yusuf lists what he avoided raising for months before asking Camille to change anything",
+      "firstImage": "a vacuum tucked behind a hall door",
+      "mustInclude": [
+        "lease renewal form",
+        "sink photo",
+        "chore app history"
+      ],
+      "mustAvoid": [
+        "chore nagging scene"
+      ]
+    },
+    {
+      "domain": "medical clinic scheduling backlog",
+      "audience": "clinic staff and physicians with role assumptions",
+      "stakes": "patients are waiting longer because everyone assumes someone else owns cancellations",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Camille maps receptionist, nurse, and physician assumptions on the whiteboard before suggesting fixes",
+      "firstImage": "a whiteboard covered with colored appointment blocks",
+      "mustInclude": [
+        "cancellation list",
+        "triage phone",
+        "staff-room whiteboard"
+      ],
+      "mustAvoid": [
+        "process improvement jargon"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs map the repeating contribution system and identify one move of yours that keeps it alive.",
+      "distinguish blame from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate false parity, self-blame, or using contribution language to excuse the person with more power."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Draw the repeating loop in one stuck conflict and put a small star beside the move you personally keep making.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

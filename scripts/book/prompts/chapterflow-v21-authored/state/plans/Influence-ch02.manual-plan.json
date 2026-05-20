@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch02",
+  "number": 2,
+  "title": "Reciprocation: The Old Give and Take",
+  "coreMove": "Pause after a gift or concession and decide whether you received generosity or an obligation device.",
+  "sourcePressure": "The source covers reciprocation, uninvited debt, free samples, institutional favors, unequal exchange, reciprocal concessions, rejection-then-retreat, and the defense of distinguishing real generosity from imitated generosity.",
+  "chapterSpecificMisunderstanding": "Do not make this simple gratitude advice; the chapter is about debt pressure that can be deliberately manufactured.",
+  "sourceAlignmentTerms": ["reciprocation", "uninvited debt", "unequal exchange", "free sample", "reciprocal concession", "rejection-then-retreat", "real generosity"],
+  "forbiddenFrames": {
+    "hook": ["The free gift is never free", "You owe more than you think", "Kindness can be expensive"],
+    "counterintuition": ["Never accept favors", "Generosity is manipulation", "Debt is only financial"],
+    "tryThisNow": ["Think of one favor you owe", "Refuse the next free sample", "Say thank you without saying yes"],
+    "examples": ["supermarket cheese cube", "street fundraiser flower", "coworker buys coffee then asks for help"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "wedding venue tasting appointment",
+      "audience": "an engaged couple comparing three reception halls",
+      "stakes": "booking an overpriced venue because the tasting felt like hospitality",
+      "format": "scene",
+      "requiredBeat": "the coordinator boxes extra pastries before the price discussion, and the couple writes the favor on the quote sheet before deciding",
+      "firstImage": "two sugared tartlets wrapped in gold paper",
+      "mustInclude": ["quote sheet", "pastry box", "deposit deadline"],
+      "mustAvoid": ["generic restaurant comp"]
+    },
+    {
+      "domain": "independent bookstore author event",
+      "audience": "a store owner asked to order a large stack from a distributor",
+      "stakes": "tying up cash in unsold inventory after a distributor sponsors refreshments",
+      "format": "decision_point",
+      "requiredBeat": "the owner notices the sponsored wine came before the order form and asks whether the quantity would still make sense without it",
+      "firstImage": "a corkscrew lying beside a carton of advance copies",
+      "mustInclude": ["order form", "sponsored wine", "return policy"],
+      "mustAvoid": ["friendship or liking as main lever"]
+    },
+    {
+      "domain": "municipal vendor breakfast before a procurement vote",
+      "audience": "a new council aide tracking ethics risk",
+      "stakes": "mistaking catered friendliness for neutral information",
+      "format": "postmortem",
+      "requiredBeat": "the aide maps who ate the vendor's breakfast before the committee softens its questions",
+      "firstImage": "foil trays of egg sandwiches under heat lamps",
+      "mustInclude": ["committee agenda", "vendor badge", "breakfast trays"],
+      "mustAvoid": ["unsupported political scandal detail"]
+    },
+    {
+      "domain": "ceramics studio trial class",
+      "audience": "a hobbyist deciding whether to buy an annual kiln package",
+      "stakes": "upgrading after the instructor gifts an extra firing",
+      "format": "reflection",
+      "requiredBeat": "the hobbyist hears herself justifying the annual package as repayment for the free firing and separates the two",
+      "firstImage": "a wet clay bowl on a wooden bat",
+      "mustInclude": ["kiln ticket", "annual package", "free firing"],
+      "mustAvoid": ["scarcity seat-limited framing"]
+    },
+    {
+      "domain": "community theater sponsorship ask",
+      "audience": "a hardware store owner approached by a board member",
+      "stakes": "agreeing to a large ad after first refusing an unrealistic title sponsorship",
+      "format": "dialogue",
+      "requiredBeat": "after declining the title sponsorship, the owner recognizes the smaller program ad as a retreat designed to feel like compromise",
+      "firstImage": "a poster mockup taped to a paint counter",
+      "mustInclude": ["title sponsorship", "program ad", "paint counter"],
+      "mustAvoid": ["generic charity guilt"]
+    },
+    {
+      "domain": "software onboarding call for a veterinary clinic",
+      "audience": "a clinic manager evaluating a records platform",
+      "stakes": "accepting a two-year contract after free data cleanup creates obligation",
+      "format": "before_after",
+      "requiredBeat": "the manager compares her buying criteria from before the cleanup to the contract terms after the free service",
+      "firstImage": "a spreadsheet of patient records with duplicate pet names highlighted",
+      "mustInclude": ["cleanup report", "two-year contract", "export clause"],
+      "mustAvoid": ["generic SaaS demo"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["detect uninvited debt in an offer sequence", "separate sincere favor from compliance setup", "identify rejection-then-retreat concessions", "choose repayment that does not surrender the larger decision"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before accepting a free add-on today, say what return action it might be quietly asking from you and whether that return is deserved.",
+  "readingTimeMinutes": 12
+}

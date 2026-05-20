@@ -1,0 +1,157 @@
+{
+  "chapterId": "pre-suasion-ch01",
+  "number": 1,
+  "title": "PRE-SUASION: An Introduction",
+  "coreMove": "Shift the planning question from what to ask to what should be made receptive before the ask.",
+  "sourcePressure": "The introduction establishes pre-suasion as the work done before the request, using the infiltration of persuasion trainings, prepared-ground logic, anchoring examples, and Jim the fire-alarm salesperson with an ethical wrinkle.",
+  "chapterSpecificMisunderstanding": "Pre-suasion means making a smoother pitch or clever first impression.",
+  "sourceAlignmentTerms": [
+    "pre-suasion",
+    "prepared ground",
+    "receptivity",
+    "before the request",
+    "anchor",
+    "first impression",
+    "ethical wrinkle"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "municipal permit counter redesign",
+      "audience": "a civic-services lead watching residents abandon applications",
+      "stakes": "whether the new fee schedule is accepted or treated as another city trick",
+      "format": "scene",
+      "requiredBeat": "the lead places the rejected form stack beside the revised one before asking staff to notice where people stopped reading",
+      "firstImage": "a counter with two uneven piles of permit forms",
+      "mustInclude": [
+        "date stamp",
+        "fee sticker",
+        "clear plastic tray"
+      ],
+      "mustAvoid": [
+        "generic office meeting"
+      ]
+    },
+    {
+      "domain": "specialty bakery wholesale pitch",
+      "audience": "a bakery owner meeting a hotel buyer before naming the rate",
+      "stakes": "whether a high per-pastry price feels premium or inflated",
+      "format": "vignette",
+      "requiredBeat": "the owner lets the buyer smell the morning batch beside a sealed grocery pastry before the quote appears",
+      "firstImage": "steam lifting from a tray of almond rolls",
+      "mustInclude": [
+        "linen proofing cloth",
+        "hotel tasting plate"
+      ],
+      "mustAvoid": [
+        "price negotiation abstraction"
+      ]
+    },
+    {
+      "domain": "independent fire-safety inspection",
+      "audience": "a safety consultant entering a plant where crews distrust outside vendors",
+      "stakes": "whether the plant manager grants access before the formal audit",
+      "format": "decision_point",
+      "requiredBeat": "the consultant asks to retrieve a left-behind clipboard, waits for escort approval, then begins only after being walked through the gate like a trusted guest",
+      "firstImage": "a clipboard visible through a glass security booth",
+      "mustInclude": [
+        "visitor badge",
+        "chain-link gate"
+      ],
+      "mustAvoid": [
+        "heroic salesperson story"
+      ]
+    },
+    {
+      "domain": "museum membership desk",
+      "audience": "a membership director preparing visitors for a donation ask",
+      "stakes": "whether the contribution feels like support for access or a ticket surcharge",
+      "format": "before_after",
+      "requiredBeat": "the director moves the conservation lab photo before the payment screen and watches the same ask land differently",
+      "firstImage": "a faded textile under a magnifying lamp in a framed photo",
+      "mustInclude": [
+        "membership tablet",
+        "conservation photo"
+      ],
+      "mustAvoid": [
+        "generic charity appeal"
+      ]
+    },
+    {
+      "domain": "custom bicycle fitting studio",
+      "audience": "a fitter explaining a premium saddle before stating cost",
+      "stakes": "whether the rider hears the price as comfort insurance or upsell",
+      "format": "predict_reveal",
+      "requiredBeat": "the fitter has the rider predict pressure points on a sensor map before showing the corrected fit",
+      "firstImage": "a pressure map glowing red under a rider silhouette",
+      "mustInclude": [
+        "sensor mat",
+        "hex key"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor"
+      ]
+    },
+    {
+      "domain": "community mediation intake",
+      "audience": "a mediator preparing neighbors for a settlement conversation",
+      "stakes": "whether both parties enter ready to solve or ready to win",
+      "format": "reflection",
+      "requiredBeat": "the mediator asks each person to mark one shared cost on a utility bill before the first demand is spoken",
+      "firstImage": "two neighbors seated apart with the same bill copy",
+      "mustInclude": [
+        "utility bill",
+        "blue sticky tab"
+      ],
+      "mustAvoid": [
+        "therapy-session generic"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the before-request condition that changes how the ask is heard",
+      "distinguish prepared receptivity from a better pitch",
+      "spot the ethical risk in staged trust",
+      "choose a truthful anchor before naming a price or request"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next request you plan to make, write the one thing the other person should be noticing first, then choose one honest cue that can make it present before you ask.",
+  "readingTimeMinutes": 12
+}

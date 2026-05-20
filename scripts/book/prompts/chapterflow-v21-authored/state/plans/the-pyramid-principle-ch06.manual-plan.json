@@ -1,0 +1,194 @@
+{
+  "chapterId": "the-pyramid-principle-ch06",
+  "number": 6,
+  "title": "How to highlight the structure",
+  "coreMove": "Make rank, sequence, and dependence visible on the page without pretending formatting can create logic.",
+  "sourcePressure": "Chapter 6 turns to visible presentation: underlined points, decimal numbering, and indented display as ways to expose hierarchy so the reader need not reconstruct it.",
+  "chapterSpecificMisunderstanding": "Believing that numbering, underlining, or indentation will fix a structure that is still vague or mixed.",
+  "sourceAlignmentTerms": [
+    "highlight the structure",
+    "underlined points",
+    "decimal numbering",
+    "indented display",
+    "rank",
+    "sequence",
+    "dependence",
+    "visible hierarchy"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "underlined points",
+      "detail": "the Chapter 6 sidecar lists Underlined points as one authorized heading for making structure visible",
+      "useIn": "both",
+      "phrasingHint": "An underlined point should tell the eye which claim governs the detail, not make every sentence shout equally."
+    },
+    {
+      "kind": "artifact",
+      "name": "decimal numbering and indented display",
+      "detail": "the sidecar ties structure visibility to decimal numbering and indented display",
+      "useIn": "fullRead",
+      "phrasingHint": "Numbering and indentation are useful only when their levels match the hierarchy the logic has already earned."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A clean list hides mixed logic until someone asks why the items belong together",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "It is not about being concise; it is about being structured",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Set a timer and rewrite the first paragraph",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "teacher explains the same lesson with better wording",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a medical-device quality manager preparing corrective-action evidence",
+      "audience": "regulated quality teams writing inspection responses",
+      "stakes": "inspectors may miss which evidence supports which corrective action if the page treats every line equally",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anna underlines only the governing corrective actions, indents each evidence item beneath its parent, and removes emphasis from details that had been competing with claims.",
+      "firstImage": "A blue inspection stamp dries beside a stack of corrective-action forms.",
+      "mustInclude": [
+        "inspection response",
+        "evidence appendix",
+        "blue underline marks"
+      ],
+      "mustAvoid": [
+        "hospital operations from ch1",
+        "clinical trial from ch3"
+      ]
+    },
+    {
+      "domain": "a film festival scheduler explaining screening conflicts",
+      "audience": "event teams coordinating rooms, rights, and guest travel",
+      "stakes": "volunteers will misroute guests if the schedule note hides dependency levels",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Diego replaces a flat list with decimal levels that show venue constraints, rights windows, and dependent guest-travel actions.",
+      "firstImage": "Two lanyards and a marked screening grid lie on the box-office counter.",
+      "mustInclude": [
+        "screening grid",
+        "rights-window email",
+        "guest-travel list"
+      ],
+      "mustAvoid": [
+        "documentary edit-suite from ch3"
+      ]
+    },
+    {
+      "domain": "a fisheries regulator writing quota guidance",
+      "audience": "policy staff who must show rule hierarchy",
+      "stakes": "harvesters may follow exceptions as if they were main rules if the display is flat",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Mikkel shows the old flat bulletin beside a revised indented version where exceptions sit visibly under the quota rule they modify.",
+      "firstImage": "It took Mikkel one angry harbor call to notice the exception looked like a rule.",
+      "mustInclude": [
+        "quota bulletin",
+        "exception paragraph",
+        "harbor call notes"
+      ],
+      "mustAvoid": [
+        "wildlife refuge invasive plants from ch5"
+      ]
+    },
+    {
+      "domain": "a bank fraud team documenting escalation rules",
+      "audience": "risk teams writing procedures with nested decisions",
+      "stakes": "frontline staff will escalate every alert if thresholds and subconditions are not visibly ranked",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"This looks like six equal rules,\" Catarina says, then indents subconditions under the two real escalation thresholds.",
+      "firstImage": "\"This looks like six equal rules,\" Catarina says beside the fraud queue.",
+      "mustInclude": [
+        "fraud queue screenshot",
+        "threshold table",
+        "procedure draft"
+      ],
+      "mustAvoid": [
+        "cybersecurity audit from ch2"
+      ]
+    },
+    {
+      "domain": "a youth soccer league publishing playoff tiebreaker rules",
+      "audience": "volunteer administrators writing rules parents will scan fast",
+      "stakes": "a disputed playoff spot will be decided from the posted rule sheet",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Sam asks which rule should be read first, then uses numbering to reveal the tiebreaker sequence and indentation for subconditions.",
+      "firstImage": "Which line will a parent read first when two teams are tied?",
+      "mustInclude": [
+        "playoff bracket",
+        "tiebreaker list",
+        "club bulletin board"
+      ],
+      "mustAvoid": [
+        "sports coaching demonstration"
+      ]
+    },
+    {
+      "domain": "a library acquisitions lead explaining collection cuts",
+      "audience": "public-sector readers scanning a difficult policy note",
+      "stakes": "branches will assume the wrong materials are protected if the governing criteria are not visibly distinct",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Kasia underline only the three selection criteria and indent examples so the branch managers can see they are examples, not new rules.",
+      "firstImage": "You are standing beside a cart of withdrawn books and a draft policy sheet.",
+      "mustInclude": [
+        "withdrawn-book cart",
+        "selection criteria",
+        "branch manager note"
+      ],
+      "mustAvoid": [
+        "architecture library renovation from ch4"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use formatting to reveal hierarchy rather than decorate text",
+      "select underlining, numbering, or indentation for the right structural need",
+      "spot when display hides weak logic",
+      "preserve deductive or inductive movement visibly on the page"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open one section and add only level marks, not new words: parent, child, child detail. If the marks feel false, fix the structure before formatting.",
+  "readingTimeMinutes": 12
+}

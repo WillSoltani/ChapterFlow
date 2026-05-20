@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch15",
+  "number": 15,
+  "title": "Live for Productivity",
+  "coreMove": "Carry the chosen priority into protected execution where visible output follows from focused action.",
+  "sourcePressure": "Part 3 turns priority into productivity, defined as concentrated execution of the chosen first claim rather than busyness or output theater.",
+  "chapterSpecificMisunderstanding": "Equating productivity with busyness, speed, or a larger count of completed tasks.",
+  "sourceAlignmentTerms": [
+    "productivity",
+    "concentrated execution",
+    "priority",
+    "focused action",
+    "output theater",
+    "time block"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "Live for Productivity as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "architectural accessibility retrofit drawings",
+      "audience": "project architect",
+      "stakes": "a permit filing depends on one ramp section",
+      "format": "scene",
+      "requiredBeat": "she closes the inbox, pins the ramp section at full scale, and works until the permit-ready drawing exists",
+      "firstImage": "a full-scale ramp section taped under a drafting lamp",
+      "mustInclude": [
+        "ramp section",
+        "permit checklist",
+        "closed inbox"
+      ],
+      "mustAvoid": [
+        "generic deep work copy"
+      ]
+    },
+    {
+      "domain": "community paramedicine pilot launch",
+      "audience": "paramedic captain",
+      "stakes": "hospital readmissions stay high without the visit protocol",
+      "format": "decision_point",
+      "requiredBeat": "he chooses a two-hour protocol build over attending a status huddle and leaves with the first visit script ready",
+      "firstImage": "a blank home-visit protocol on a clipboard beside an ambulance key ring",
+      "mustInclude": [
+        "protocol clipboard",
+        "ambulance keys",
+        "readmission chart"
+      ],
+      "mustAvoid": [
+        "generic meeting avoidance"
+      ]
+    },
+    {
+      "domain": "independent game studio bug triage before release",
+      "audience": "lead developer",
+      "stakes": "one save-file bug can erase players' progress",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts clearing small bugs will feel productive, then protects three hours to reproduce and fix the save bug",
+      "firstImage": "a crash log frozen above a saved-game folder on a test laptop",
+      "mustInclude": [
+        "crash log",
+        "save folder",
+        "release board"
+      ],
+      "mustAvoid": [
+        "generic software sprint"
+      ]
+    },
+    {
+      "domain": "regional bakery wholesale catalog",
+      "audience": "operations manager",
+      "stakes": "buyers cannot order until the SKU sheet is real",
+      "format": "before_after",
+      "requiredBeat": "he stops rearranging sample trays and finishes the SKU sheet line by line until purchasing can use it",
+      "firstImage": "a spreadsheet of blank SKU rows beside sealed cookie samples",
+      "mustInclude": [
+        "SKU sheet",
+        "sealed samples",
+        "buyer email"
+      ],
+      "mustAvoid": [
+        "generic food business scene"
+      ]
+    },
+    {
+      "domain": "charter boat safety certification",
+      "audience": "captain",
+      "stakes": "the season opener depends on one inspection binder",
+      "format": "vignette",
+      "requiredBeat": "she turns away dock chatter and completes the safety binder section that lets the inspector sign off",
+      "firstImage": "a salt-stained inspection binder weighted open by a brass compass",
+      "mustInclude": [
+        "inspection binder",
+        "brass compass",
+        "dock radio"
+      ],
+      "mustAvoid": [
+        "generic maritime vibe"
+      ]
+    },
+    {
+      "domain": "speech therapist documenting AAC evaluations",
+      "audience": "therapist",
+      "stakes": "a child waits for device approval",
+      "format": "postmortem",
+      "requiredBeat": "she sees the productive hour was the report submission, not color-coding therapy materials around it",
+      "firstImage": "an AAC device approval form beside a box of picture cards",
+      "mustInclude": [
+        "approval form",
+        "picture cards",
+        "therapy notes"
+      ],
+      "mustAvoid": [
+        "generic paperwork scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn priority into protected execution",
+      "define output rather than activity",
+      "recognize busyness theater"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Block one uninterrupted execution window for the current priority and define the visible output that must exist when it ends.",
+  "readingTimeMinutes": 12
+}

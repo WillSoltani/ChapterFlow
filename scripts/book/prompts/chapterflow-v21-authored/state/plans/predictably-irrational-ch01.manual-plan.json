@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch01",
+  "number": 1,
+  "title": "The Truth about Relativity",
+  "coreMove": "Remove the planted comparison and rebuild the choice around the options that actually compete for your goal.",
+  "sourcePressure": "The source centers on relativity, the Economist subscription decoy, and the way nearby comparisons make an option feel valuable without proving absolute worth.",
+  "chapterSpecificMisunderstanding": "The weak version says comparison is bad; the precise lesson is that easy comparison can replace the real comparison set.",
+  "sourceAlignmentTerms": ["relativity", "decoy effect", "comparison frame", "reference option", "absolute value", "nearby benchmark"],
+  "forbiddenFrames": {
+    "hook": ["A menu has three choices", "The expensive option is not the trap", "You think you know value"],
+    "counterintuition": ["More options create clarity", "Comparison always helps", "The cheapest choice is rational"],
+    "tryThisNow": ["Think of a recent purchase", "Pause before buying", "Compare your values"],
+    "examples": ["subscription menu", "apartment envy", "software pricing page"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "museum membership desk with one deliberately weak patron tier",
+      "audience": "a museum visitor choosing an annual membership before a family exhibit opens",
+      "stakes": "committing to a donation level that may be steered by a decoy instead of actual visit plans",
+      "format": "decision_point",
+      "requiredBeat": "the visitor covers the middle tier on the laminated rate sheet with a receipt and checks whether the premium tier still looks worth buying",
+      "firstImage": "a laminated membership sheet clipped to a brass stand beside the coat-check counter",
+      "mustInclude": ["family pass", "patron lounge line", "receipt edge"],
+      "mustAvoid": ["digital pricing page", "subscription bundle", "software tiers"]
+    },
+    {
+      "domain": "fish market stall comparing catch boxes before dawn",
+      "audience": "a restaurant buyer choosing between seafood boxes under time pressure",
+      "stakes": "overpaying for the largest box because a smaller damaged box makes it look clean",
+      "format": "predict_reveal",
+      "requiredBeat": "the buyer turns the cracked foam box backward so it cannot act as the loser, then reprices the remaining two boxes by portions served",
+      "firstImage": "three foam seafood boxes sweating on crushed ice under a hanging scale",
+      "mustInclude": ["chalk price board", "cracked foam corner", "portion count"],
+      "mustAvoid": ["grocery produce", "restaurant menu choice", "auction bidding"]
+    },
+    {
+      "domain": "independent film festival pass selection",
+      "audience": "a volunteer choosing between single-film, weekday, and all-access passes",
+      "stakes": "spending a week's food budget because the all-access pass dominates a badly priced weekday pass",
+      "format": "reflection",
+      "requiredBeat": "the volunteer writes the films they can actually attend on the back of the program before looking at the decoy pass again",
+      "firstImage": "a folded festival program with showtimes circled in pencil",
+      "mustInclude": ["red wristband", "weekday-only pass", "pencil circles"],
+      "mustAvoid": ["college course selection", "music subscription", "status purchase"]
+    },
+    {
+      "domain": "farm equipment rental counter during harvest week",
+      "audience": "a small orchard owner comparing lift rentals",
+      "stakes": "renting an oversized lift because a useless mid-size option makes it look prudent",
+      "format": "vignette",
+      "requiredBeat": "the owner steps outside and marks the actual branch height on the rental yard fence before choosing between lifts",
+      "firstImage": "mud on the rental office mat beside a clipboard of lift heights",
+      "mustInclude": ["yard fence mark", "branch height", "rental clipboard"],
+      "mustAvoid": ["car buying", "office procurement", "construction helmet scene"]
+    },
+    {
+      "domain": "choir robe replacement committee",
+      "audience": "a treasurer evaluating fabric packages for a community choir",
+      "stakes": "using donor money on premium trim because the plain-but-overpriced package creates an easy contrast",
+      "format": "dialogue",
+      "requiredBeat": "the treasurer lays the fabric swatches over the price labels and asks which one meets the choir's actual durability rule",
+      "firstImage": "three fabric swatches pinned to a felt bulletin strip in a church basement office",
+      "mustInclude": ["fabric swatches", "donor envelope", "durability rule"],
+      "mustAvoid": ["fashion shopping", "wedding planning", "generic nonprofit budget"]
+    },
+    {
+      "domain": "boat storage contract at a winter marina",
+      "audience": "a first-time boat owner choosing storage before the first freeze",
+      "stakes": "buying unnecessary indoor storage because a bad outdoor-plus-service option pushes the premium plan",
+      "format": "before_after",
+      "requiredBeat": "after ignoring the weak middle contract, the owner measures actual winter access needs against the basic covered rack",
+      "firstImage": "a salt-stiff contract packet flapping under a marina office paperweight",
+      "mustInclude": ["covered rack", "winter access hours", "service add-on"],
+      "mustAvoid": ["housing comparison", "garage clutter", "insurance upsell"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["spot a decoy option that exists to lose", "rebuild the relevant comparison set", "distinguish absolute fit from relative dominance", "explain why confidence can rise when the frame is rigged"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take one active choice with three options and physically cover the option that mainly makes another option look good; decide whether the winner still solves the original need.",
+  "readingTimeMinutes": 12
+}

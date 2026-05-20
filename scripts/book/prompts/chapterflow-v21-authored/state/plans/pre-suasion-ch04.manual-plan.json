@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch04",
+  "number": 4,
+  "title": "What's Focal Is Casual",
+  "coreMove": "Separate what is most visible from what is actually causing the result.",
+  "sourcePressure": "The source says channeled attention can make a visible feature feel causal, so what is focal can be mistaken for what explains the outcome.",
+  "chapterSpecificMisunderstanding": "If something keeps appearing in the story, it must be the reason the story happened.",
+  "sourceAlignmentTerms": [
+    "focal",
+    "causal",
+    "visibility",
+    "explanation",
+    "channeled attention",
+    "attribution"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport baggage claim delay",
+      "audience": "an operations manager reviewing a late-bag complaint",
+      "stakes": "whether the visible carousel jam is mistaken for the true staffing cause",
+      "format": "postmortem",
+      "requiredBeat": "the manager traces timestamps backward from the jam to the unstaffed transfer belt before assigning blame",
+      "firstImage": "a frozen baggage carousel with one suitcase wedged sideways",
+      "mustInclude": [
+        "scan timestamps",
+        "transfer-belt roster"
+      ],
+      "mustAvoid": [
+        "generic root-cause workshop"
+      ]
+    },
+    {
+      "domain": "online fraud review queue",
+      "audience": "a risk analyst explaining a spike in declined payments",
+      "stakes": "whether the most obvious country flag becomes the false cause",
+      "format": "decision_point",
+      "requiredBeat": "the analyst hides the country column and shows device fingerprints first",
+      "firstImage": "a dashboard row of red declines with one flag column minimized",
+      "mustInclude": [
+        "device fingerprint",
+        "chargeback note"
+      ],
+      "mustAvoid": [
+        "xenophobic shortcut"
+      ]
+    },
+    {
+      "domain": "greenhouse crop failure",
+      "audience": "a grower diagnosing wilted basil trays",
+      "stakes": "whether the visible yellow leaves distract from a pump timer error",
+      "format": "scene",
+      "requiredBeat": "the grower points the apprentice to the dry irrigation line before they cut open another leaf",
+      "firstImage": "rows of basil trays sagging under glass",
+      "mustInclude": [
+        "pump timer",
+        "irrigation tube"
+      ],
+      "mustAvoid": [
+        "garden analogy repeat"
+      ]
+    },
+    {
+      "domain": "podcast audience drop",
+      "audience": "a producer reviewing why listeners quit mid-episode",
+      "stakes": "whether one awkward joke gets blamed instead of the ad break placement",
+      "format": "before_after",
+      "requiredBeat": "the producer plays the retention graph muted, then reveals the joke happened after the drop",
+      "firstImage": "a waveform frozen at minute nineteen",
+      "mustInclude": [
+        "retention graph",
+        "ad marker"
+      ],
+      "mustAvoid": [
+        "media critique generic"
+      ]
+    },
+    {
+      "domain": "warranty repair bench",
+      "audience": "a technician investigating cracked appliance handles",
+      "stakes": "whether the cracked plastic gets blamed instead of packing pressure",
+      "format": "dialogue",
+      "requiredBeat": "the technician stacks shipping inserts by lot number until the focal crack no longer looks like the cause",
+      "firstImage": "three cracked handles lined under a bench lamp",
+      "mustInclude": [
+        "lot sticker",
+        "foam insert"
+      ],
+      "mustAvoid": [
+        "manufacturing generic"
+      ]
+    },
+    {
+      "domain": "aquarium water-clouding complaint",
+      "audience": "a curator explaining cloudy tanks to donors",
+      "stakes": "whether the visible haze is mistaken for neglect instead of a filter-cycle change",
+      "format": "vignette",
+      "requiredBeat": "the curator shows the maintenance chart before letting donors stare through the clouded glass",
+      "firstImage": "a viewing window with silver fish moving through haze",
+      "mustInclude": [
+        "maintenance chart",
+        "filter cartridge"
+      ],
+      "mustAvoid": [
+        "public relations spin"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate focal visibility from causality",
+      "test alternate causes hidden outside the spotlight",
+      "avoid blaming the most photographable feature",
+      "redirect attention toward evidence that explains the result"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one problem you are explaining and write the most visible feature beside the least visible possible cause, then decide what evidence would separate them.",
+  "readingTimeMinutes": 12
+}

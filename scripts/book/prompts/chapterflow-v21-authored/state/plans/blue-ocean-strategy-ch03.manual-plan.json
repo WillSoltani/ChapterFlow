@@ -1,0 +1,200 @@
+{
+  "chapterId": "blue-ocean-strategy-ch03",
+  "number": 3,
+  "title": "Reconstruct Market Boundaries",
+  "coreMove": "Look across one accepted market boundary until a different buyer, alternative, complement, emotion, or trend changes the search field.",
+  "sourcePressure": "Use the six paths framework to minimize search risk by looking across alternatives, strategic groups, buyer groups, complements, functional-emotional orientation, and time.",
+  "chapterSpecificMisunderstanding": "Thinking reconstruction means making a wild leap outside the business instead of systematically looking across known borders.",
+  "sourceAlignmentTerms": [
+    "six paths framework",
+    "alternative industries",
+    "strategic groups",
+    "buyer groups",
+    "complementary offerings",
+    "functional-emotional orientation",
+    "across time"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "six paths framework",
+      "detail": "official support names six directions for reconstructing market boundaries and reducing search risk",
+      "useIn": "both",
+      "phrasingHint": "The six paths turn market search from wandering into a set of doors: alternatives, groups, buyers, complements, emotion, and time."
+    },
+    {
+      "kind": "person",
+      "name": "Bloomberg",
+      "detail": "official example support gives a narrow buyer-group shift case",
+      "useIn": "fullRead",
+      "phrasingHint": "Bloomberg is useful here as a reminder that a different buyer group can redefine what counts as value."
+    },
+    {
+      "kind": "person",
+      "name": "Viagra",
+      "detail": "official example support gives a narrow functional-emotional orientation shift case",
+      "useIn": "deepRead",
+      "phrasingHint": "Viagra shows how a category can move when the emotional job is treated as part of the value, not an embarrassment outside it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "home-care scheduling across ferry logistics",
+      "audience": "an operations lead whose agency misses island first visits after discharge",
+      "stakes": "whether patients receive care or fall through a transport gap",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she tapes the ferry timetable beside discharge notes and sees the agency competing with travel friction, not other agencies",
+      "firstImage": "The ferry timetable hangs crooked beside three hospital discharge folders",
+      "mustInclude": [
+        "ferry timetable",
+        "discharge folders",
+        "weather cancellation notice"
+      ],
+      "mustAvoid": [
+        "generic healthcare wait-time story"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "language lessons competing with rest and bus timing",
+      "audience": "an adult education operator serving exhausted shift supervisors",
+      "stakes": "whether workers choose class, rest, or nothing after long shifts",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "he must choose whether to redesign around the alternative of going home, not another language school",
+      "firstImage": "You watch the 10:12 p.m. bus leave while Nicolas counts eight empty chairs",
+      "mustInclude": [
+        "bus schedule strip",
+        "thermos shelf",
+        "shift badge box"
+      ],
+      "mustAvoid": [
+        "school classroom framing"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "wedding cookware gifts and the social job of guests",
+      "audience": "a retailer squeezed by online cookware pricing",
+      "stakes": "whether wedding guests choose a safer gift outside the cookware category",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "she shifts from selling pans to solving the guest fear of giving something impersonal or duplicate",
+      "firstImage": "It took Astrid one returned copper pan to notice the real rival was a safe gift card",
+      "mustInclude": [
+        "registry printout",
+        "gift-note station",
+        "duplicate-return tag"
+      ],
+      "mustAvoid": [
+        "generic e-commerce pricing"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "bike-share adoption and emotional barriers",
+      "audience": "a city planner trying to raise first-time bike-share use",
+      "stakes": "whether nervous riders see the service as freedom or public embarrassment",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a commuter admits the helmet station is not the problem; being watched while wobbling is",
+      "firstImage": "\"I know where the bikes are,\" the commuter tells Diego, \"I just do not want everyone watching me start.\"",
+      "mustInclude": [
+        "practice loop map",
+        "low-traffic route decal",
+        "starter ride card"
+      ],
+      "mustAvoid": [
+        "bike shop commuter example from chapter 1"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "restaurant supply delivery and receiving friction",
+      "audience": "a wholesaler focused on product quality while delivery friction grows",
+      "stakes": "whether chefs keep buying when morning receiving wrecks prep",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she traces churn to the complementary receiving process around the product, not to tomato quality",
+      "firstImage": "At 5:58 a.m., Kasia watches parsley crates block the pastry bench",
+      "mustInclude": [
+        "receiving checklist",
+        "crate label system",
+        "prep-station clock"
+      ],
+      "mustAvoid": [
+        "generic delivery reliability story"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "senior-center programs across caregiving-time trends",
+      "audience": "a nonprofit director watching attendance change",
+      "stakes": "whether programs fit the next wave of older adults and family caregivers",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he predicts crafts will recover, then voicemail patterns reveal caregiving schedules as the trend to design across",
+      "firstImage": "Voicemails stack up with the same clipped apology: cannot come before noon",
+      "mustInclude": [
+        "voicemail log",
+        "caregiver pickup window",
+        "portable activity kit"
+      ],
+      "mustAvoid": [
+        "generic demographic-trend paragraph"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which market boundary is being crossed",
+      "choose a systematic six-path search move",
+      "avoid direct-rival benchmarking when an alternative or complement matters more"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one boundary around your offer and label it: alternative, buyer group, complement, emotion, or time.",
+  "readingTimeMinutes": 12
+}

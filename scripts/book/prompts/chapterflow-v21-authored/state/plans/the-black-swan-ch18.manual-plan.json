@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch18",
+  "number": 18,
+  "title": "The Uncertainty of the Phony",
+  "coreMove": "Separate competence that carries its limits from authority that sells finished-sounding certainty under opacity.",
+  "sourcePressure": "False expertise monetizes prediction theater, Gaussian overreach, misplaced tools, and prestige authority by selling precision the world never granted.",
+  "chapterSpecificMisunderstanding": "Calling every expert a phony or replacing expertise with instinct.",
+  "sourceAlignmentTerms": [
+    "phony",
+    "counterfeit confidence",
+    "precision theater",
+    "prestige authority",
+    "opacity",
+    "method theater",
+    "real competence",
+    "badge and bluff"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the phony expert",
+      "detail": "the frozen source defines the phony as confidently wrong in a way that borrows authority from prestige, method theater, and exaggerated visibility",
+      "useIn": "both",
+      "phrasingHint": "The phony sells the finished map because the room still pays extra for straight lines."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "televised market panel",
+      "audience": "a producer booking the most certain strategist",
+      "stakes": "viewers mistaking performance for visibility",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the producer asks guests to state what would make them wrong on air",
+      "firstImage": "At 8:17 a.m., Peter faces studio lights warming a desk of forecast notes.",
+      "mustInclude": [
+        "Peter",
+        "studio lights warming a desk of forecast notes",
+        "phony"
+      ],
+      "mustAvoid": [
+        "Calling every expert a phony or replacing expertise with instinct.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "corporate transformation pitch",
+      "audience": "a CEO hearing a consultancy promise exact savings",
+      "stakes": "layoffs following a model that hid uncertainty",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the CEO asks for prior misses and uncertainty ranges before signing",
+      "firstImage": "A first line of dialogue lands before the reader sees consulting binders lined along a walnut credenza.",
+      "mustInclude": [
+        "Patrick",
+        "consulting binders lined along a walnut credenza",
+        "counterfeit confidence"
+      ],
+      "mustAvoid": [
+        "Calling every expert a phony or replacing expertise with instinct.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "nutrition influencer partnership",
+      "audience": "a brand manager impressed by precise health claims",
+      "stakes": "customers following advice beyond the evidence",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the manager requires study limits before approving the campaign",
+      "firstImage": "Open on the texture, sound, or light of sample packets arranged beside a ring-light stand.",
+      "mustInclude": [
+        "George",
+        "sample packets arranged beside a ring-light stand",
+        "precision theater"
+      ],
+      "mustAvoid": [
+        "Calling every expert a phony or replacing expertise with instinct.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "foreign-policy briefing",
+      "audience": "a minister hearing a confident regional forecast",
+      "stakes": "policy hardening around guesses presented as fact",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the minister asks which drivers are unknowable before choosing action",
+      "firstImage": "You are looking at flags reflected in a polished briefing table before the choice becomes abstract.",
+      "mustInclude": [
+        "Robert",
+        "flags reflected in a polished briefing table",
+        "prestige authority"
+      ],
+      "mustAvoid": [
+        "Calling every expert a phony or replacing expertise with instinct.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "startup board advisor",
+      "audience": "founders hiring a famous operator with universal rules",
+      "stakes": "strategy narrowing around someone else's old domain",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the board asks where the adviser's experience stops applying",
+      "firstImage": "It takes Steven several weeks to understand what term sheets clipped beneath a glass paperweight was really showing.",
+      "mustInclude": [
+        "Steven",
+        "term sheets clipped beneath a glass paperweight",
+        "opacity"
+      ],
+      "mustAvoid": [
+        "Calling every expert a phony or replacing expertise with instinct.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "hospital AI vendor demo",
+      "audience": "clinicians watching a perfect accuracy slide",
+      "stakes": "patients exposed to brittle deployment claims",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the chief physician asks for failure modes before pilot approval",
+      "firstImage": "demo tablets charging in a locked cabinet appears before any human enters the sentence.",
+      "mustInclude": [
+        "Mark",
+        "demo tablets charging in a locked cabinet",
+        "method theater"
+      ],
+      "mustAvoid": [
+        "Calling every expert a phony or replacing expertise with instinct.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot counterfeit confidence",
+      "value experts who state limits",
+      "identify when prestige props replace visibility"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before accepting one confident recommendation, ask what limit the speaker volunteers without being forced.",
+  "readingTimeMinutes": 12
+}

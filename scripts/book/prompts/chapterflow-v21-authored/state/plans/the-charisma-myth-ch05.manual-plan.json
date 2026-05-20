@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch05",
+  "number": 5,
+  "title": "Creating Charismatic Mental States",
+  "coreMove": "Prepare the inner condition that your body and voice will reveal before the moment begins.",
+  "sourcePressure": "The source frames this as practical state work: charisma can be raised or lowered through internal states and external behaviors, and internal state shows up in body language.",
+  "chapterSpecificMisunderstanding": "The weak version sells positive thinking or miracle routines. The useful version treats preparation as repeatable state work that makes congruent signals possible.",
+  "sourceAlignmentTerms": ["mental state", "internal condition", "preparation", "body language", "repeatable", "state work", "signals"],
+  "forbiddenFrames": {
+    "hook": ["Your mind creates your charisma", "State is everything", "Prepare to be charismatic"],
+    "counterintuition": ["Technique is useless", "Think better to look better", "Confidence starts inside"],
+    "tryThisNow": ["Visualize your ideal self", "Repeat a positive affirmation", "Power pose for two minutes"],
+    "examples": ["locker-room pep talk", "mirror affirmation", "generic pre-meeting nerves", "meditation app scene"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a courtroom expert witness preparing outside a deposition room",
+      "audience": "a precise expert whose fear of cross-examination tightens her face",
+      "stakes": "whether jurors later read her as careful or evasive",
+      "format": "scene",
+      "requiredBeat": "before entering, she reviews one true reason her work helps the case and lets that purpose slow her first answer",
+      "firstImage": "a sealed evidence envelope resting on a deposition table",
+      "mustInclude": ["case exhibit list", "water glass", "transcript binder"],
+      "mustAvoid": ["legal theatrics", "performance coaching"]
+    },
+    {
+      "domain": "a food-safety inspector preparing to enter a family-owned creamery",
+      "audience": "a regulator whose suspicion can broadcast contempt",
+      "stakes": "whether the owners cooperate with a difficult corrective order",
+      "format": "decision_point",
+      "requiredBeat": "he pauses beside the boot-wash station and chooses curiosity about the process before he opens the inspection tablet",
+      "firstImage": "sanitizer foam pooling at the edge of a boot-wash tray",
+      "mustInclude": ["temperature probe", "curd vat", "corrective order"],
+      "mustAvoid": ["restaurant inspection", "bureaucratic villain"]
+    },
+    {
+      "domain": "a maternity photographer preparing to meet exhausted parents after a long delivery",
+      "audience": "a warm professional whose own haste can overwhelm vulnerable clients",
+      "stakes": "whether the parents feel gently held rather than arranged",
+      "format": "vignette",
+      "requiredBeat": "she lowers the camera before entering, reads the room through the door window, and chooses softness before choosing poses",
+      "firstImage": "a camera strap wrapped around a packet of hospital bracelets",
+      "mustInclude": ["bassinet card", "window light", "quiet shutter mode"],
+      "mustAvoid": ["family sentimentality", "photo posing tips"]
+    },
+    {
+      "domain": "a chess arbiter preparing to rule on a disputed touch-move claim",
+      "audience": "a rule expert whose impatience can read as bias",
+      "stakes": "whether both players accept the ruling and continue the tournament",
+      "format": "dialogue",
+      "requiredBeat": "he takes one full look at each player before speaking, reminding himself that neutrality must be felt before it is believed",
+      "firstImage": "a toppled knight beside a stopped chess clock",
+      "mustInclude": ["score sheet", "appeals form", "spectator rope"],
+      "mustAvoid": ["sports comeback", "dominance as authority"]
+    },
+    {
+      "domain": "a disaster-relief volunteer intake table after a basement flood",
+      "audience": "a helper whose compassion turns frantic when the line grows",
+      "stakes": "whether displaced residents trust the registration process",
+      "format": "before_after",
+      "requiredBeat": "contrast the rushed first intake with the reset where she plants both feet, sees the next resident as one person, and lets that state shape her greeting",
+      "firstImage": "a damp insurance folder inside a clear plastic sleeve",
+      "mustInclude": ["cot tag", "relief voucher", "registration wristband"],
+      "mustAvoid": ["crisis leadership", "generic volunteer kindness"]
+    },
+    {
+      "domain": "a submarine museum guide preparing to lead veterans through a cramped exhibit",
+      "audience": "a knowledgeable guide whose excitement can crowd the guests",
+      "stakes": "whether visitors feel respected rather than lectured",
+      "format": "reflection",
+      "requiredBeat": "he touches the hatch rim, remembers he is hosting memory rather than performing facts, and changes the pace of his opening",
+      "firstImage": "a brass hatch wheel polished by thousands of hands",
+      "mustInclude": ["torpedo diagram", "visitor badge", "narrow gangway"],
+      "mustAvoid": ["military nostalgia", "tour-guide trivia"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose preparation that changes the state behind the signal",
+      "distinguish grounded preparation from positive thinking",
+      "analyze how purpose, neutrality, or care changes visible behavior",
+      "evaluate whether a prep move creates congruence or performance"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before one interaction today, take ten seconds to choose the inner stance the other person should be able to feel from your face and pace.",
+  "readingTimeMinutes": 12
+}

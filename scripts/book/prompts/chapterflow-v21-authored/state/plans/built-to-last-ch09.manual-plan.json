@@ -1,0 +1,182 @@
+{
+  "chapterId": "built-to-last-ch09",
+  "number": 9,
+  "title": "Good Enough Never Is",
+  "coreMove": "Make tolerated drift visible early and attach improvement pressure to the work, not to ego or panic.",
+  "sourcePressure": "The sidecar supports relentless improvement, demanding institutional standards, anti-complacency pressure, and the distinction between excellence and neurotic perfectionism.",
+  "chapterSpecificMisunderstanding": "Turning good enough never is into burnout, perfectionism, or leader impatience instead of a system that refuses invisible decay.",
+  "sourceAlignmentTerms": [
+    "good enough never is",
+    "relentless improvement",
+    "institutional standards",
+    "anti-complacency",
+    "excellence",
+    "stimulating progress",
+    "tolerated drift"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Good enough never is",
+      "detail": "the source sidecar supports anti-complacency pressure and the difference between excellence and neurotic perfectionism",
+      "useIn": "both",
+      "phrasingHint": "The standard is not a mood; it is the visible gap between the work and what the institution promised."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "never settle",
+      "excellence is a habit"
+    ],
+    "counterintuition": [
+      "good enough is dangerous",
+      "high standards are not perfectionism"
+    ],
+    "tryThisNow": [
+      "raise one standard today",
+      "find one thing to improve"
+    ],
+    "examples": [
+      "hotel towel cart",
+      "coach yells at team",
+      "factory defect board with generic red marks"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "blood-test courier network catching small temperature deviations before samples fail",
+      "audience": "Marta, quality lead reviewing route coolers",
+      "stakes": "slight warming can ruin tests while every courier claims the route is basically fine",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marta places the temperature strips from three almost-fine routes on the dispatch board and changes cooler loading before a failure appears",
+      "firstImage": "pale blue temperature strips curling beside a cooler latch",
+      "mustInclude": [
+        "temperature strips",
+        "dispatch board",
+        "cooler loading"
+      ],
+      "mustAvoid": [
+        "shaming couriers for one mistake"
+      ]
+    },
+    {
+      "domain": "local newspaper copy desk catching headline corrections that readers never complain about",
+      "audience": "Matthew, managing editor after a clean-looking week",
+      "stakes": "small corrections can teach the newsroom to accept fuzziness in public facts",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Matthew stacks silent corrections by type, then makes the desk fix the upstream checklist instead of celebrating no complaints",
+      "firstImage": "a neat pile of correction slips under the newsroom clock",
+      "mustInclude": [
+        "silent corrections",
+        "upstream checklist",
+        "reader complaints"
+      ],
+      "mustAvoid": [
+        "editor perfectionism as personality"
+      ]
+    },
+    {
+      "domain": "craft brewery refusing small packaging scuffs before distributors normalize them",
+      "audience": "Giulia, packaging manager under a holiday shipment deadline",
+      "stakes": "brand trust erodes when small scuffs become the accepted look",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 11:18 p.m., Giulia stops the labeler for a three-millimeter drift and logs the fix as standard protection, not personal fussiness",
+      "firstImage": "a label edge sitting three millimeters low under inspection light",
+      "mustInclude": [
+        "holiday shipment",
+        "label drift",
+        "inspection light"
+      ],
+      "mustAvoid": [
+        "aesthetic nitpicking with no customer promise"
+      ]
+    },
+    {
+      "domain": "municipal snow-removal team reviewing blocks that were technically cleared but unsafe for wheelchairs",
+      "audience": "Devon, accessibility coordinator after a mild storm",
+      "stakes": "residents can be trapped by snow lips everyone calls acceptable",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What counts as cleared if a wheelchair cannot cross? Devon uses curb photos to update the route signoff standard",
+      "firstImage": "curb-cut photos with snow ridges casting thin shadows",
+      "mustInclude": [
+        "curb-cut photos",
+        "route signoff",
+        "wheelchair access"
+      ],
+      "mustAvoid": [
+        "weather complaint as generic civic gripe"
+      ]
+    },
+    {
+      "domain": "meal-kit company tracking recipe substitutions that technically work but weaken trust",
+      "audience": "Chloe, culinary operations lead reading customer notes",
+      "stakes": "small swaps can make the promise of reliable cooking feel arbitrary",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Would you cook from us again after the third substitution?\" Chloe asks, then changes procurement triggers before churn shows up",
+      "firstImage": "three recipe cards with different substituted ingredients circled",
+      "mustInclude": [
+        "recipe substitutions",
+        "customer notes",
+        "procurement triggers"
+      ],
+      "mustAvoid": [
+        "food preference as the whole problem"
+      ]
+    },
+    {
+      "domain": "airport cleaning contractor refusing invisible restroom drift during overnight audits",
+      "audience": "Henrik, contract manager whose metrics all show green",
+      "stakes": "a contract can be lost when passengers sense decline before metrics catch it",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Henrik run a white-glove audit under stall hinges and change supervisor walks even though the dashboard is green",
+      "firstImage": "a white cotton glove gray at the fingertip under fluorescent restroom light",
+      "mustInclude": [
+        "overnight audit",
+        "green dashboard",
+        "supervisor walk"
+      ],
+      "mustAvoid": [
+        "cleanliness obsession without institutional promise"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot tolerated drift before visible failure",
+      "separate standards from perfectionist ego",
+      "choose pressure mechanisms tied to the work"
+    ]
+  },
+  "tryThisNowSpec": "Find one place where the phrase basically fine appears. Replace it with the visible standard, the smallest unacceptable drift, and who checks it next.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

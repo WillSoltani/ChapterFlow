@@ -1,0 +1,196 @@
+{
+  "chapterId": "grit-ch01",
+  "number": 1,
+  "title": "Showing Up",
+  "coreMove": "Treat grit as the act of staying in the hard place after credentials stop helping.",
+  "sourcePressure": "Separate initial selection from sustained return under pressure.",
+  "chapterSpecificMisunderstanding": "Thinking grit means toughness, elite credentials, or one heroic burst.",
+  "sourceAlignmentTerms": [
+    "Beast Barracks",
+    "West Point",
+    "Grit Scale",
+    "5:00 a.m.",
+    "10:00 p.m.",
+    "cadet attrition"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "West Point Beast Barracks",
+      "detail": "New cadets face a seven-week training stretch with days running from 5:00 a.m. to 10:00 p.m., no weekends, and little outside contact.",
+      "useIn": "both",
+      "phrasingHint": "West Point strips away the admissions polish fast; by nightfall, the test is who returns to the line tomorrow."
+    },
+    {
+      "kind": "artifact",
+      "name": "Grit Scale",
+      "detail": "In 2004, Duckworth used the Grit Scale with incoming West Point cadets and found it predicted who stayed through Beast Barracks better than the admissions score.",
+      "useIn": "fullRead",
+      "phrasingHint": "The scorecard that looked less glamorous than admissions credentials saw something the admissions process missed."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for Showing Up",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "fire academy intake week",
+      "audience": "readers facing fire academy intake week where grit could be confused with mood or talent",
+      "stakes": "whether Sarah treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist marks the first moment when selection, praise, or comfort no longer helps and chooses the next concrete rep anyway",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn fire academy intake week into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "apprentice pastry kitchen",
+      "audience": "readers facing apprentice pastry kitchen where grit could be confused with mood or talent",
+      "stakes": "whether Daniel treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist marks the first moment when selection, praise, or comfort no longer helps and chooses the next concrete rep anyway",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn apprentice pastry kitchen into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "regional hospital night-shift residency",
+      "audience": "readers facing regional hospital night-shift residency where grit could be confused with mood or talent",
+      "stakes": "whether Camille treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist marks the first moment when selection, praise, or comfort no longer helps and chooses the next concrete rep anyway",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn regional hospital night-shift residency into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "winter search-and-rescue training",
+      "audience": "readers facing winter search-and-rescue training where grit could be confused with mood or talent",
+      "stakes": "whether Henrik treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist marks the first moment when selection, praise, or comfort no longer helps and chooses the next concrete rep anyway",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn winter search-and-rescue training into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "public defender case backlog",
+      "audience": "readers facing public defender case backlog where grit could be confused with mood or talent",
+      "stakes": "whether Aanya treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "the protagonist marks the first moment when selection, praise, or comfort no longer helps and chooses the next concrete rep anyway",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn public defender case backlog into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "conservatory audition callback",
+      "audience": "readers facing conservatory audition callback where grit could be confused with mood or talent",
+      "stakes": "whether Luca treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist marks the first moment when selection, praise, or comfort no longer helps and chooses the next concrete rep anyway",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn conservatory audition callback into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Treat grit as the act of staying in the hard place after credentials stop helping. from Thinking grit means toughness, elite credentials, or one heroic burst.",
+      "choose the visible next action in a fresh fire academy intake week scenario",
+      "diagnose when a scene has drifted into generic resilience stories"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real showing up decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch05",
+  "number": 5,
+  "title": "When Enough Is Enough",
+  "coreMove": "Name the sufficiency line before more starts impersonating responsibility.",
+  "sourcePressure": "Introduces sufficiency as a leadership judgment: more can keep sounding responsible after the original need is met, and pursuit can slip its purpose.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into anti-ambition or simple moderation instead of judging when pursuit detaches from purpose.",
+  "sourceAlignmentTerms": [
+    "enough",
+    "sufficiency line",
+    "powerful forces",
+    "more",
+    "purpose",
+    "threshold",
+    "escalation"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 5 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "blood bank holiday drive",
+      "audience": "drive coordinator after target is met",
+      "stakes": "extra collection may waste units and exhaust volunteers",
+      "format": "decision_point",
+      "requiredBeat": "she closes the appointment slots once the hospital buffer is full and writes the reason on the intake board",
+      "firstImage": "a cooler seal beside a filled appointment ledger",
+      "mustInclude": [
+        "cooler seal",
+        "appointment ledger"
+      ],
+      "mustAvoid": [
+        "fundraising more-is-better"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "shipyard overtime schedule",
+      "audience": "foreman chasing one more hull section",
+      "stakes": "extra output risks rework and injury",
+      "format": "scene",
+      "requiredBeat": "he taps the weld inspection tags and stops the shift before the last section enters the bay",
+      "firstImage": "a blue weld tag hanging from a steel seam",
+      "mustInclude": [
+        "weld tag",
+        "overtime sheet"
+      ],
+      "mustAvoid": [
+        "generic quota"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "public radio pledge hour",
+      "audience": "producer tempted to extend the drive",
+      "stakes": "listener trust may erode after the goal is funded",
+      "format": "dialogue",
+      "requiredBeat": "the producer points to the funded transmitter line and cuts the extra urgency script",
+      "firstImage": "a studio clock above a pledge tally",
+      "mustInclude": [
+        "studio clock",
+        "pledge tally"
+      ],
+      "mustAvoid": [
+        "charity overreach"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "software incident response",
+      "audience": "incident commander after service recovers",
+      "stakes": "continued war-room intensity is damaging judgment",
+      "format": "postmortem",
+      "requiredBeat": "she removes the severity banner and schedules root-cause work instead of hunting one more graph",
+      "firstImage": "a status page reading operational on a wall screen",
+      "mustInclude": [
+        "status page",
+        "incident timeline"
+      ],
+      "mustAvoid": [
+        "feature creep"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "botanical garden seed catalog",
+      "audience": "curator expanding rare seed intake",
+      "stakes": "more acquisitions exceed greenhouse care capacity",
+      "format": "before_after",
+      "requiredBeat": "the curator locks the seed cabinet after matching each new packet to bench space",
+      "firstImage": "a packet of alpine seeds on a metal shelf",
+      "mustInclude": [
+        "seed packet",
+        "bench map"
+      ],
+      "mustAvoid": [
+        "collection hobby"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "neighborhood flood sandbag line",
+      "audience": "block captain during rising river",
+      "stakes": "extra sandbags for one house leave others exposed",
+      "format": "reflection",
+      "requiredBeat": "the captain counts doorways, not fear, and redirects the next pallet down the street",
+      "firstImage": "a pallet of sandbags on wet asphalt",
+      "mustInclude": [
+        "sandbag pallet",
+        "doorway list"
+      ],
+      "mustAvoid": [
+        "stockpiling home scene"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "define enough before incentives heat up",
+      "detect when more has lost its original purpose",
+      "separate ambition from escalation appetite",
+      "evaluate a stop line under peer pressure"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one active target, write the condition that would make the next increment unnecessary or distorting.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

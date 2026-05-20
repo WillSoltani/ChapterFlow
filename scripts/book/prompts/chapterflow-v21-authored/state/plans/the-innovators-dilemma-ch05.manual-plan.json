@@ -1,0 +1,131 @@
+{
+  "chapterId": "the-innovators-dilemma-ch05",
+  "number": 5,
+  "title": "Managing Disruptive Technological Change",
+  "coreMove": "Apply a different standard of rigor to an early disruptive effort — judge learning progress and first-market fit, not mature-market metrics.",
+  "sourcePressure": "Once disruption is understood as structural, a new management problem appears: the incumbent business knows how to evaluate mature markets but an early disruptive effort cannot yet satisfy those same tests. Demanding clean forecasts, strong margins, and familiar customers before the new market has formed makes the effort look weak too early — and the wrong proof demand can kill a real opportunity.",
+  "chapterSpecificMisunderstanding": "Treating this chapter as an argument to abandon discipline or skip forecasting, when it is an argument to redirect discipline toward the right kind of evidence for the stage of market development.",
+  "sourceAlignmentTerms": [
+    "learning progress",
+    "immature market",
+    "proof demand",
+    "mature-business standards",
+    "resource allocation",
+    "disruptive effort",
+    "early-stage evidence",
+    "market formation"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'fail fast' framing",
+      "generic 'don't let perfect be the enemy of good' framing"
+    ],
+    "counterintuition": [
+      "generic 'MVPs are better than polished products' counter",
+      "generic 'data is overrated' counter"
+    ],
+    "tryThisNow": [
+      "generic 'ship something imperfect this week' prompt",
+      "generic 'run an experiment before you plan' prompt"
+    ],
+    "examples": [
+      "any scene that reads as a lean-startup endorsement",
+      "any scene where a corporate manager is simply described as too risk-averse"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The chapter's tension lives in the evaluation moment — show evaluation meetings, budget reviews, and criteria conflicts rather than hero narratives."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pharmaceutical company evaluating an early-stage biotech spin-out with no Phase II data",
+      "audience": "a business development director whose portfolio decisions are governed by Phase II success rates and revenue projections",
+      "stakes": "the spin-out has credible early mechanism data but no patient trial results — it cannot pass the standard evaluation criteria by definition",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emily presents the spin-out using the standard evaluation scorecard and it fails on every mature-stage criterion. The question at the end of the meeting is not whether the criteria were correct for a mature asset — they were — but whether they were the right criteria for this stage of development.",
+      "firstImage": "a drug candidate evaluation scorecard with red marks in every row below Phase II",
+      "mustInclude": ["Phase II requirement", "mechanism data that exists", "the wrong-criteria-for-stage tension"],
+      "mustAvoid": ["any implication that skipping Phase II is acceptable in drug development"]
+    },
+    {
+      "domain": "corporate sustainability team evaluating a carbon-offset startup with only pilot-level verification data",
+      "audience": "a sustainability director whose corporate commitments require audited, third-party-verified offset credits",
+      "stakes": "the startup's credits are real but their verification process is new and has not yet been through a full third-party audit cycle",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Daniel uses the sustainability team's procurement standard — full third-party audit, two-year track record, minimum credit volume — and the startup cannot meet it. The standard was built for mature offset providers. The startup is being judged by a timeline it has not had.",
+      "firstImage": "a credit verification report with a 'pending audit' flag on the new startup's ledger entry",
+      "mustInclude": ["audit requirement", "track record minimum", "the time-mismatch between the standard and the startup's age"],
+      "mustAvoid": ["suggesting that corporate sustainability standards are wrong in general"]
+    },
+    {
+      "domain": "community-college credentialing board reviewing a pilot micro-credential program with one semester of completion data",
+      "audience": "a board chair whose approval criteria require multi-year completion rates, employer adoption surveys, and accreditation pathway evidence",
+      "stakes": "the micro-credential has strong first-semester signals but cannot produce the multi-year evidence the board requires before approval",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Frida has to decide whether to table the micro-credential pending the full evidence set or to define what kind of evidence would be appropriate at this stage of program maturity — and the meeting is the moment where those two different standards collide",
+      "firstImage": "a board agenda with 'micro-credential approval — deferred pending full evidence' written in the action column",
+      "mustInclude": ["multi-year completion rate requirement", "first-semester signal data", "the moment where the two evidence standards are named"],
+      "mustAvoid": ["taking a position on whether micro-credentials are valuable or not"]
+    },
+    {
+      "domain": "media company evaluating a newsletter platform experiment run by an editorial team without a revenue model",
+      "audience": "a publishing director whose ROI framework requires a revenue projection and a subscriber acquisition cost before any editorial investment is approved",
+      "stakes": "the newsletter has strong open rates and reader engagement, but no revenue and no clear acquisition cost benchmark for the format",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Tomás predicts the newsletter will fail the ROI standard and recommends not expanding the experiment. The reveal shows that the engagement data — which the ROI model discounted — was the leading signal for a reader segment that the company later spent three times as much to acquire through paid channels.",
+      "firstImage": "an ROI scorecard with subscriber acquisition cost marked N/A and revenue projection marked zero",
+      "mustInclude": ["ROI requirement", "engagement signal that was discounted", "the acquisition cost paid later"],
+      "mustAvoid": ["treating newsletters as inherently superior to other media formats"]
+    },
+    {
+      "domain": "agri-tech company evaluating soil sensor pilot results from twelve farms after one growing season",
+      "audience": "a VP of product whose commercialization criteria require multi-season validation, agronomist endorsement, and minimum viable addressable market evidence",
+      "stakes": "the pilot data from twelve farms is promising but too small and too short to meet commercial criteria — the product team wants to expand but the commercialization criteria say no",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Grace's postmortem on the delayed expansion shows that the criteria used — multi-season validation, endorsement, market size threshold — were all appropriate for a mature agri-tech product. They were applied to a pilot at the end of its first season. The question the postmortem doesn't answer is what criteria would have been appropriate instead.",
+      "firstImage": "a twelve-farm pilot map beside a commercialization criteria checklist with most rows unchecked",
+      "mustInclude": ["multi-season validation requirement", "twelve-farm pilot data", "the unanswered question about appropriate criteria for pilot stage"],
+      "mustAvoid": ["implying the commercial criteria were poorly designed"]
+    },
+    {
+      "domain": "urban logistics startup applying for corporate venture funding with no steady-state unit economics",
+      "audience": "a corporate VC analyst whose investment criteria require steady-state unit economics and a capital efficiency ratio before a Series A commitment",
+      "stakes": "the startup's unit economics improve significantly at scale, but it cannot demonstrate steady-state performance at its current size — the criteria assume a maturity the startup cannot yet show",
+      "format": "before_after",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Before: Aman's investment criteria knock the startup out in the first screen — no steady-state economics, no capital efficiency ratio. After: the criteria are revised to include a trajectory metric (unit economics improvement rate over last six months) and the same startup passes the revised screen. The before and after are not the same evaluation.",
+      "firstImage": "an investment screening spreadsheet with the startup in red in the top row",
+      "mustInclude": ["steady-state economics requirement", "trajectory metric as alternative", "the explicit contrast between the two evaluation frameworks"],
+      "mustAvoid": ["suggesting corporate VC criteria are generally wrong or too rigorous"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a mature-market evaluation criterion is being misapplied to an immature market",
+      "name an alternative form of evidence appropriate for an early-stage disruptive effort",
+      "distinguish 'failed the standard' from 'wrong standard for this stage'",
+      "evaluate whether a described evaluation process is stage-appropriate",
+      "apply stage-appropriate criteria to a non-technology disruptive effort"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of one new effort in your organization that has been evaluated and found lacking. Write down the two or three criteria it was judged by. Then write one alternative criterion that would measure learning progress rather than mature-market performance.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph in second person asking the reader to name the last evaluation meeting where the wrong standard was applied",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

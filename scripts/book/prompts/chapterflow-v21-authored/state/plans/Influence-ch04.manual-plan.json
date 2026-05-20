@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch04",
+  "number": 4,
+  "title": "Social Proof: Truths Are Us",
+  "coreMove": "Ask whether the crowd signal is real, relevant, and made of people comparable to you.",
+  "sourcePressure": "The source centers popularity cues, uncertainty, similarity, pluralistic ignorance, staged audience reactions, engineered popularity, norm messages that can backfire, and the defense of checking the social signal.",
+  "chapterSpecificMisunderstanding": "Do not make this a blanket warning against crowds; the lesson is how uncertainty borrows certainty from visible behavior.",
+  "sourceAlignmentTerms": ["social proof", "uncertainty", "similar others", "pluralistic ignorance", "popularity cue", "staged reaction", "descriptive norm"],
+  "forbiddenFrames": {
+    "hook": ["Everyone else cannot be wrong", "The crowd can lie", "Popularity is not proof"],
+    "counterintuition": ["Never trust consensus", "Crowds are stupid", "Being different is smarter"],
+    "tryThisNow": ["Question one popular choice", "Look for social proof today", "Do not follow the crowd"],
+    "examples": ["restaurant most popular dish", "online five-star reviews", "crowded nightclub line"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "trailhead safety board before a flooded creek crossing",
+      "audience": "a hiker watching three groups continue down the path",
+      "stakes": "following visible confidence into unsafe water",
+      "format": "decision_point",
+      "requiredBeat": "the hiker checks whether the groups ahead match her gear and route before treating their movement as evidence",
+      "firstImage": "a damp trail map curling under a plexiglass cover",
+      "mustInclude": ["flood notice", "gear difference", "route marker"],
+      "mustAvoid": ["generic wilderness bravery"]
+    },
+    {
+      "domain": "auction preview for used restaurant equipment",
+      "audience": "a first-time cafe owner bidding on an espresso machine",
+      "stakes": "overbidding because a ring of bidders gathers near one machine",
+      "format": "predict_reveal",
+      "requiredBeat": "the owner asks the auctioneer whether the crowd is watching the machine or waiting for the lot beside it",
+      "firstImage": "a stainless-steel portafilter tagged with a yellow lot number",
+      "mustInclude": ["lot number", "bidder cluster", "maintenance sticker"],
+      "mustAvoid": ["scarcity bidding urgency"]
+    },
+    {
+      "domain": "apartment building lobby during a smoke alarm chirp",
+      "audience": "a tenant deciding whether to call emergency services",
+      "stakes": "pluralistic ignorance while everyone watches everyone else",
+      "format": "scene",
+      "requiredBeat": "the tenant sees neighbors standing still, names the uncertainty out loud, and assigns one person to check the stairwell while another calls",
+      "firstImage": "a smoke alarm light blinking above the mailboxes",
+      "mustInclude": ["mailboxes", "stairwell door", "phone call"],
+      "mustAvoid": ["over-elaborated tragedy"]
+    },
+    {
+      "domain": "language-learning app placement screen",
+      "audience": "an adult learner choosing a course level",
+      "stakes": "selecting the popular beginner track despite already knowing the material",
+      "format": "reflection",
+      "requiredBeat": "the learner notices the thousands enrolled badge and takes the placement quiz instead of copying the majority",
+      "firstImage": "a green progress owl beside a course list",
+      "mustInclude": ["enrollment badge", "placement quiz", "course level"],
+      "mustAvoid": ["platform criticism"]
+    },
+    {
+      "domain": "farm co-op pesticide disposal day",
+      "audience": "a grower reading a sign about common dumping behavior",
+      "stakes": "a descriptive norm sign accidentally making dumping seem normal",
+      "format": "before_after",
+      "requiredBeat": "the grower revises the sign from many people dumped last year to nine out of ten brought containers here",
+      "firstImage": "empty chemical jugs stacked in a wire crate",
+      "mustInclude": ["old sign", "revised sign", "collection crate"],
+      "mustAvoid": ["environmental guilt sermon"]
+    },
+    {
+      "domain": "independent cinema test screening",
+      "audience": "a director interpreting laughter in the room",
+      "stakes": "mistaking planted audience reaction for real response",
+      "format": "postmortem",
+      "requiredBeat": "the director compares laugh timing between invited friends in the front row and strangers in the back rows",
+      "firstImage": "paper feedback cards on a red velvet seat",
+      "mustInclude": ["front row", "feedback cards", "laugh timing"],
+      "mustAvoid": ["liking friend feedback"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify uncertainty as the opening for social proof", "test whether visible behavior comes from comparable others", "recognize pluralistic ignorance in group silence", "revise norm messages that accidentally endorse bad behavior"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "When you see a popularity label today, ask one exact question: popular with whom, and were they deciding under the same conditions as me?",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch24",
+  "number": 24,
+  "title": "The Happiness Experts",
+  "coreMove": "Let elder hindsight challenge what current ambition is calling important.",
+  "sourcePressure": "The chapter tests priorities against hindsight, regret, elder wisdom, life satisfaction, and what later still feels worthwhile.",
+  "chapterSpecificMisunderstanding": "Sentimental advice, pop happiness frameworks, or nostalgia replacing present judgment.",
+  "sourceAlignmentTerms": [
+    "happiness experts",
+    "regret",
+    "elder wisdom",
+    "life satisfaction",
+    "priorities",
+    "hindsight",
+    "what matters"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "regret, elder wisdom, life satisfaction, and priorities",
+      "detail": "the heading index supports the chapter through regret, elder wisdom, life satisfaction, and priorities",
+      "useIn": "both",
+      "phrasingHint": "Elder hindsight is useful because it has already paid for priorities that once sounded urgent."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for happiness experts",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think happiness experts is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Miguel",
+      "domain": "a retirement residence interview circle",
+      "audience": "a reader facing happiness experts in a concrete retirement residence interview circle decision",
+      "stakes": "whether Miguel preserves judgment quality before the situation slides into well-being taxonomy",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Miguel performs the chapter move by setting the foam model beside the review sheet, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the review sheet in the retirement residence interview circle",
+      "mustInclude": [
+        "foam model",
+        "review sheet"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "well-being taxonomy",
+        "reusing a previous chapter's retirement residence interview circle shell"
+      ]
+    },
+    {
+      "protagonistName": "Lorena",
+      "domain": "a hospice volunteer training",
+      "audience": "a reader facing happiness experts in a concrete hospice volunteer training decision",
+      "stakes": "whether Lorena preserves judgment quality before the situation slides into well-being taxonomy",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lorena performs the chapter move by setting the annotated manuscript beside the referee note, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the annotated manuscript against the counter in the hospice volunteer training",
+      "mustInclude": [
+        "annotated manuscript",
+        "referee note"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "well-being taxonomy",
+        "reusing a previous chapter's hospice volunteer training shell"
+      ]
+    },
+    {
+      "protagonistName": "Jana",
+      "domain": "a late-career professor office hours",
+      "audience": "a reader facing happiness experts in a concrete late-career professor office hours decision",
+      "stakes": "whether Jana preserves judgment quality before the situation slides into well-being taxonomy",
+      "format": "thought_experiment",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Jana performs the chapter move by setting the burn-rate slide beside the customer email, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the burn-rate slide in the late-career professor office hours",
+      "mustInclude": [
+        "burn-rate slide",
+        "customer email"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "well-being taxonomy",
+        "reusing a previous chapter's late-career professor office hours shell"
+      ]
+    },
+    {
+      "protagonistName": "Zofia",
+      "domain": "a empty-nest home sale",
+      "audience": "a reader facing happiness experts in a concrete empty-nest home sale decision",
+      "stakes": "whether Zofia preserves judgment quality before the situation slides into well-being taxonomy",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Zofia performs the chapter move by setting the sign-in sheet beside the folding chairs, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the sign-in sheet lying beside the folding chairs in the empty-nest home sale",
+      "mustInclude": [
+        "sign-in sheet",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "well-being taxonomy",
+        "reusing a previous chapter's empty-nest home sale shell"
+      ]
+    },
+    {
+      "protagonistName": "Ewa",
+      "domain": "a veterans lunch table",
+      "audience": "a reader facing happiness experts in a concrete veterans lunch table decision",
+      "stakes": "whether Ewa preserves judgment quality before the situation slides into well-being taxonomy",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ewa performs the chapter move by setting the case notes beside the scan image, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the scan image in the veterans lunch table",
+      "mustInclude": [
+        "case notes",
+        "scan image"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "well-being taxonomy",
+        "reusing a previous chapter's veterans lunch table shell"
+      ]
+    },
+    {
+      "protagonistName": "Irena",
+      "domain": "a long-married couple calendar",
+      "audience": "a reader facing happiness experts in a concrete long-married couple calendar decision",
+      "stakes": "whether Irena preserves judgment quality before the situation slides into well-being taxonomy",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Irena performs the chapter move by setting the sheet music beside the audition list, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the audition list in the long-married couple calendar",
+      "mustInclude": [
+        "sheet music",
+        "audition list"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "well-being taxonomy",
+        "reusing a previous chapter's long-married couple calendar shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Let elder hindsight challenge what current ambition is calling important.",
+      "detect the weak generic version: Sentimental advice, pop happiness frameworks, or nostalgia replacing present judgment.",
+      "distinguish happiness experts from nearby drift into well-being taxonomy"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where happiness experts is active, then write the exact next visible move that would perform this chapter's move: let elder hindsight challenge what current ambition is calling important.",
+  "readingTimeMinutes": 12
+}

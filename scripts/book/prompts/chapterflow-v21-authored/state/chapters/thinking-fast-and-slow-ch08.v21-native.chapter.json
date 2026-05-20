@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch08",
+  "number": 8,
+  "title": "How Judgments Happen",
+  "readingTimeMinutes": 12,
+  "hook": "The crack looks dramatic, so the building feels dangerous, though no one has named the scale being used.",
+  "counterintuition": "Quick judgment is not just emotion, but often a scale swap. The mind answers a hard, vague question by matching intensity on an easier scale, so the better move is to identify that hidden scale.",
+  "tryThisNow": "Take one fast rating you made today. Write the question you meant to answer, then the scale your feeling actually used: vividness, size, speed, neatness, fear, or warmth.",
+  "keyTakeaway": "When a quick answer appears to a vague question, look for the accessible impression and hidden scale that produced it.",
+  "breakdown": {
+    "fastRead": "An architect sees a foundation crack and feels the building is unsafe. The crack is wide, jagged, and ugly. But unsafe is not the same scale as ugly.\n\nThe mind matches intensity.\n\nWhen a question is hard, How dangerous is this? How good is this person? How urgent is this call?, the mind may answer an easier one: How dramatic does it look? How warm do I feel? How vivid is the cue? That substitution feels like judgment. The correction is to name the hidden scale before trusting the answer.",
+    "deepRead": "A pharmacist sees a controlled-substance log with a messy signature and feels the transaction is suspicious. The real question is whether the dispensing record is legitimate. The easy scale is how disorderly the signature looks.\n\nThose are different scales.\n\nJudgments often begin with a mental shotgun. A vague question fires many small assessments at once: size, brightness, ease, fear, familiarity, emotion, resemblance to a prototype. One of those accessible impressions may be strong enough to stand in for the answer. The mind then maps intensity from the easy dimension onto the hard one. Very messy becomes very suspicious. Very dramatic becomes very dangerous. Very smooth becomes very competent.\n\nThe problem is not that the easy dimension is irrelevant. Sometimes drama, mess, or fear points toward real risk. The problem is that the conversion happens silently. You feel as if you judged legitimacy, safety, or quality, when you may have judged neatness, vividness, or resemblance.\n\nA fire command post has this problem under pressure. The evacuation floor map labeled mental shotgun shows one smoke plume drawn thick and dark. The map looks frightening, so the evacuation zone feels larger. But the proper scale is spread rate, wind, exits, and occupancy. If the commander does not identify the scale that created the feeling, the map's visual intensity can become the decision.\n\nA scale you did not choose is still choosing for you.",
+    "fullRead": "Some questions are too broad for the mind to answer directly. How good is this plan? How risky is this patient? How trustworthy is this applicant? How urgent is this repair? Instead of announcing the difficulty, the mind often finds an accessible impression and transfers its intensity to the target question.\n\nA bookstore buy desk makes the transfer plain. A publisher return slip labeled scale sits beside a glossy political hardcover. The customer asks whether it will sell. The trainee feels high demand because the cover is bold, the title is loud, and the topic is familiar from yesterday's news. The target question is market demand in this store. The answered scale may be topical intensity.\n\nWhich scale did the judgment use?\n\nThat question is the repair. It does not require you to know every mechanism in the mind. It asks you to compare the target question with the accessible impression. Did I rate danger by visual drama? Did I rate competence by speaking fluency? Did I rate urgency by how anxious the caller sounded? Did I rate quality by resemblance to my prototype of quality?\n\nA submarine simulator shows the difference in a crisp way. The periscope drill card labeled prototype has a silhouette that resembles the hostile-contact example drilled all week. The trainee says high threat. The instructor asks what scale produced that answer. Similarity to prototype is high. Actual threat may depend on speed, bearing change, acoustic signature, and rules of engagement. The prototype is information, but it is not the whole scale.\n\nThis is not personality typing. The issue is not that a person is intuitive or analytical. The issue is dimension substitution. A real judgment may require a formal scale, probability, cost, frequency, severity, or fit to criteria. A quick answer may have come from an easier scale, brightness, neatness, familiarity, emotional heat, resemblance, or vividness.\n\nThe correction can be small. In a pharmacy, ask whether suspicious means messy, mismatched, early, high dose, unknown prescriber, or failed ID check. In architecture, ask whether unsafe means ugly crack, widening crack, load-bearing crack, water intrusion, or measured displacement. In orchards, ask whether frost danger is being judged by the loud wind vane or by leaf temperature and dew point.\n\nThere is a limit. Sometimes the accessible impression is exactly what the task needs. A burnt smell may be the right scale for kitchen danger. A child's labored breathing may properly dominate triage. But when the target question is vague and the answer arrives as a strong feeling, assume a hidden scale may have done the work.\n\nWrite both scales where you can see them. One line names the target question; the next names the feeling that tried to answer it. That small split keeps vividness from borrowing authority.\n\nName the scale, then decide whether it belongs."
+  },
+  "examples": [
+    {
+      "exampleId": "ch08-ex01-evelyn-log",
+      "title": "Evelyn identifies the messy-signature scale",
+      "tags": [
+        "thought_experiment",
+        "pharmacy",
+        "verification"
+      ],
+      "planSpec": {
+        "domain": "pharmacy verification bench facing a decision distorted by intensity matching",
+        "audience": "a lead or reviewer who must identify the hidden scale your mind used when it answered a vague question quickly while others want the quick answer",
+        "stakes": "the visible call will go wrong unless intensity matching is separated from the tempting but weaker cue",
+        "format": "thought_experiment",
+        "requiredBeat": "the scene shows the before call written on the judgment controlled-substance log labeled judgment, then the after call once the person performs the correction instead of trusting the original feeling"
+      },
+      "scenario": "You are Evelyn at the verification bench, with a judgment controlled-substance log labeled judgment open to a messy signature. The transaction feels suspicious before the ID field is checked, and the bench timer is counting down beside the lockbox. Imagine writing suspicious beside the signature, then writing the real target question: is this dispensing record legitimate? Evelyn must decide whether the hidden scale is messiness, early refill timing, dose, prescriber, or failed ID.",
+      "whatToDo": "Translate suspicious into specific scales: signature legibility, refill timing, dose, prescriber match, and ID check. Act only on the scales that actually bear on legitimacy.",
+      "whyItMatters": "Intensity matching can turn visual disorder into suspicion. Naming the scale keeps a messy signature from answering a broader legitimacy question alone."
+    },
+    {
+      "exampleId": "ch08-ex02-nina-crack",
+      "title": "Nina measures the dramatic crack",
+      "tags": [
+        "scene",
+        "architecture",
+        "survey"
+      ],
+      "planSpec": {
+        "domain": "architectural site survey facing a decision distorted by intensity matching",
+        "audience": "a lead or reviewer who must identify the hidden scale your mind used when it answered a vague question quickly while others want the quick answer",
+        "stakes": "the visible call will go wrong unless intensity matching is separated from the tempting but weaker cue",
+        "format": "scene",
+        "requiredBeat": "the protagonist pauses with the foundation crack gauge labeled intensity matching in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable"
+      },
+      "scenario": "What is Nina rating when the foundation crack gauge labeled intensity matching hovers over a jagged line in the basement wall? The crack looks severe, and the owner wants a yes-or-no safety call. Nina hears her own answer forming from visual drama. She must decide whether danger gets measured by ugliness or by displacement, width change, load path, and water intrusion.",
+      "whatToDo": "Name the visual-drama scale, then measure displacement, width change, load path, and water intrusion before calling the building unsafe.",
+      "whyItMatters": "A dramatic crack can feel intensely dangerous. The safety judgment needs structural scales, not the strength of the image."
+    },
+    {
+      "exampleId": "ch08-ex03-graham-map",
+      "title": "Graham redraws the evacuation scale",
+      "tags": [
+        "vignette",
+        "fire",
+        "command"
+      ],
+      "planSpec": {
+        "domain": "fire command post facing a decision distorted by intensity matching",
+        "audience": "a lead or reviewer who must identify the hidden scale your mind used when it answered a vague question quickly while others want the quick answer",
+        "stakes": "the visible call will go wrong unless intensity matching is separated from the tempting but weaker cue",
+        "format": "vignette",
+        "requiredBeat": "the reader is asked to imagine signing the evacuation floor map labeled mental shotgun twice, once from the first impression and once after applying judgment, then compare the two commitments"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Graham says, with the evacuation floor map labeled mental shotgun pinned under his radio. The thick black smoke mark makes the evacuation zone feel huge. He signs one map from first impression, then a second after spread rate, wind, exits, and occupancy are marked. He must decide which signature uses the right scale for the order.",
+      "whatToDo": "Keep the visual smoke mark visible, but set evacuation size from spread rate, wind, exits, and occupancy.",
+      "whyItMatters": "The map's darkness supplies intensity. The evacuation order needs operational scale, so visual fear cannot be allowed to set the boundary by itself."
+    },
+    {
+      "exampleId": "ch08-ex04-astrid-periscope",
+      "title": "Astrid separates prototype from threat",
+      "tags": [
+        "dialogue",
+        "simulator",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "submarine simulator facing a decision distorted by intensity matching",
+        "audience": "a lead or reviewer who must identify the hidden scale your mind used when it answered a vague question quickly while others want the quick answer",
+        "stakes": "the visible call will go wrong unless intensity matching is separated from the tempting but weaker cue",
+        "format": "dialogue",
+        "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the periscope drill card labeled prototype, then chooses only after both are visible"
+      },
+      "scenario": "Astrid caught the substitution on the third simulator run. The periscope drill card labeled prototype matched the hostile silhouette from Monday, and the trainee called high threat. \"Which scale?\" Astrid asks. \"Similarity or actual behavior?\" She places silhouette match on one side and speed, bearing change, and acoustic signature on the other. The trainee must decide whether prototype resemblance deserves the threat rating.",
+      "whatToDo": "Separate similarity-to-prototype from behavior evidence, then rate threat only after speed, bearing change, and acoustic signature are visible.",
+      "whyItMatters": "Prototype resemblance is an accessible impression. It can inform the judgment, but intensity matching makes it over-answer a broader threat question."
+    },
+    {
+      "exampleId": "ch08-ex05-paul-return",
+      "title": "Paul checks the bestseller impression",
+      "tags": [
+        "decision_point",
+        "bookstore",
+        "buying"
+      ],
+      "planSpec": {
+        "domain": "independent bookstore buy desk facing a decision distorted by intensity matching",
+        "audience": "a lead or reviewer who must identify the hidden scale your mind used when it answered a vague question quickly while others want the quick answer",
+        "stakes": "the visible call will go wrong unless intensity matching is separated from the tempting but weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the trainee must move the publisher return slip labeled scale from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence"
+      },
+      "scenario": "The buy desk is quiet except for a publisher return slip labeled scale beside a glossy political hardcover. Paul feels the title will sell because the cover is loud and the topic filled yesterday's news. The customer waits for an offer. Paul must decide whether he is rating demand in this store or the intensity of the public topic before moving the slip from guess to checked.",
+      "whatToDo": "State the hidden scale, topical heat, then check local stock, last sale date, and comparable titles before making the offer.",
+      "whyItMatters": "A loud topic creates an accessible impression of demand. The store's sell-through scale may tell a different story."
+    },
+    {
+      "exampleId": "ch08-ex06-vivian-frost",
+      "title": "Vivian crosses out the wind-vane fear",
+      "tags": [
+        "predict_reveal",
+        "orchard",
+        "frost"
+      ],
+      "planSpec": {
+        "domain": "orchard frost watch facing a decision distorted by intensity matching",
+        "audience": "a lead or reviewer who must identify the hidden scale your mind used when it answered a vague question quickly while others want the quick answer",
+        "stakes": "the visible call will go wrong unless intensity matching is separated from the tempting but weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the supervisor circles the alluring detail on the orchard wind vane labeled accessible impression, crosses it out, and asks for the boring comparison that the chapter says must come first"
+      },
+      "scenario": "The cold metal of the orchard wind vane labeled accessible impression snaps hard enough to make Vivian predict frost damage before reading the leaf sensors. The wind feels alarming, so risk feels high. She circles wind noise on the clipboard, crosses it out, and must decide whether the real scale is gust drama or leaf temperature, dew point, and block exposure.",
+      "whatToDo": "Use wind as a cue, but set frost risk from leaf temperature, dew point, and block exposure.",
+      "whyItMatters": "The vane supplies sensory intensity. Frost risk lives on a different scale, and the hidden substitution can start costly fans for the wrong reason."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A pharmacist sees a messy signature in a controlled-substance log and feels the transaction is suspicious. ID and refill timing have not been checked. What is the best correction?",
+        "choices": [
+          "Translate suspicious into specific scales such as ID match, refill timing, dose, and prescriber.",
+          "Trust the suspicion because messy records often signal trouble.",
+          "Ignore the signature because handwriting has no bearing on legitimacy."
+        ],
+        "correctIndex": 0,
+        "explanation": "The messy signature may matter, but only through a defined scale. Naming ID, timing, dose, and prescriber prevents visual disorder from answering the whole legitimacy question. Ignoring or trusting the signature both skip the scale check.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An architect sees a jagged foundation crack and immediately says the building feels unsafe. Measurements are not yet taken. Which hidden scale is most likely driving the first answer?",
+        "choices": [
+          "Load path and displacement data.",
+          "Visual drama or ugliness of the crack.",
+          "The owner's anxiety about the basement."
+        ],
+        "correctIndex": 1,
+        "explanation": "The fast answer maps the intensity of visual drama onto danger. The right safety scale is displacement, width change, load path, and water. Owner anxiety may add pressure, but it is not the scale created by the crack itself.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A fire commander sees a floor map with a dark smoke mark and wants a wider evacuation zone. Spread rate and occupancy are available. What should determine the order?",
+        "choices": [
+          "The darkness of the smoke mark, because it shows severity.",
+          "The largest possible zone, because visual fear means uncertainty.",
+          "Spread rate, wind, exits, and occupancy, with the mark treated as one cue."
+        ],
+        "correctIndex": 2,
+        "explanation": "The dark mark supplies intensity, but the evacuation scale is operational. The largest zone may be needed in some cases, but the decision should come from spread, exits, wind, and occupancy, not visual force alone.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A simulator trainee calls a contact high threat because its silhouette resembles the hostile prototype drilled all week. Speed and bearing change are modest. What is happening?",
+        "choices": [
+          "Similarity to prototype is being mapped onto threat level.",
+          "The trainee has no useful judgment because drills create bias.",
+          "Threat level should always follow the most familiar silhouette."
+        ],
+        "correctIndex": 0,
+        "explanation": "The accessible scale is resemblance, not actual behavior. Drills can help recognition, but similarity must be checked against speed, bearing, and signature. Following familiarity alone is the substitution.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A bookstore buyer feels a political hardcover will sell because the cover is loud and the topic is everywhere online. Local sales history is weak. Which judgment error is most likely?",
+        "choices": [
+          "Ignoring the importance of public events.",
+          "Rating local demand by topical heat.",
+          "Using sales history instead of personal taste."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hard question is local demand; the easy scale is topical intensity. Public events may matter, but sales history tests the actual store scale. Personal taste is not the right standard either.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An orchard supervisor hears a wind vane snapping loudly and predicts frost damage before reading leaf temperature or dew point. What should she ask?",
+        "choices": [
+          "Can the team tolerate another night without starting the fans?",
+          "Did the loudest gust happen before or after midnight?",
+          "Is wind noise being used as the risk scale instead of leaf temperature, dew point, and exposure?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The key is identifying the hidden scale. Loud wind makes risk feel intense, but frost danger depends on leaf temperature, dew point, and exposure. Fan tolerance and gust timing may matter later, but they do not name the substitution.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says a candidate is \"strong\" after a warm interview, though the work sample is unreviewed. Which response targets intensity matching?",
+        "choices": [
+          "Ask whether strong means warm, fluent, experienced, or effective on the work sample.",
+          "Warmth is irrelevant, so discard the interview.",
+          "Use the interview because warmth predicts team fit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The word strong hides a scale. Naming warmth, fluency, experience, and sample quality separates the accessible impression from the target judgment. Discarding the interview or trusting warmth both avoid the scale question.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A doctor rates a case as urgent because the patient's complaint is vivid and emotional, but vital signs are stable. What is the best next move?",
+        "choices": [
+          "Treat vividness as urgency because emotion reveals severity.",
+          "Separate emotional intensity from clinical urgency and check the formal triage criteria.",
+          "Downgrade the case because vivid complaints often exaggerate."
+        ],
+        "correctIndex": 1,
+        "explanation": "Emotional intensity may be information, but it is not the same scale as clinical urgency. Formal criteria keep vividness from over-answering the question. Downgrading vivid complaints makes the inverse error.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "At 4:40 p.m. in a compliance training room, a trainer watches analysts rate angry emails on a ten-point risk scale when the real task is contract exposure. Which instruction is most useful?",
+        "choices": [
+          "Avoid all quick impressions when questions are vague.",
+          "Replace vague questions with majority vote.",
+          "Write the target question and then write the easier impression that may have answered it."
+        ],
+        "correctIndex": 2,
+        "explanation": "Writing both questions exposes dimension substitution. Avoiding all impressions is too broad, and majority vote can simply aggregate the same hidden scale across people.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A vague judgment arrives fast. What should you identify before trusting it?",
+      "back": "Identify the hidden scale: visual drama, warmth, familiarity, vividness, neatness, fear, or resemblance. Then compare it with the scale the decision actually requires.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A crack looks severe, so a building feels unsafe. What scale mismatch may be present?",
+      "back": "Visual severity may be answering for structural danger. Safety needs displacement, width change, load path, water intrusion, and other engineering measures.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A person feels competent because they speak fluently. What is the target-versus-accessible split?",
+      "back": "The target question is competence at the task. The accessible impression is speaking fluency. Fluency may be relevant, but it cannot silently stand in for task evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why is intensity matching different from simply being emotional?",
+      "back": "Intensity matching can use emotion, visual force, familiarity, prototype resemblance, or any accessible impression. The issue is that intensity on one scale gets mapped onto another question.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A loud cue makes a risk feel high. What check makes the judgment accountable?",
+      "back": "Name the cue's scale and then use the formal risk scale: probability, severity, exposure, rate, measurement, or criteria. Decide whether the loud cue belongs there.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is scale naming. When a fast judgment answers a vague question, identify the accessible impression and ask whether it belongs on the target scale.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If someone says a plan is strong, weak, risky, or promising, then ask which scale produced that rating and which scale the decision needs."
+      },
+      {
+        "context": "health",
+        "plan": "If a case feels urgent because it is vivid or emotional, then check the formal triage scale before prioritizing."
+      },
+      {
+        "context": "money",
+        "plan": "If an item or investment feels valuable because it is topical or stylish, then compare that feeling with local demand, cash flow, or resale data."
+      },
+      {
+        "context": "operations",
+        "plan": "If a visual cue looks severe, then identify the measurement scale that actually defines severity before acting."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next day, catch one adjective you use quickly, such as strong, risky, urgent, or good. Rewrite it as the exact scale you meant.",
+    "weeklyPractice": "Once a week, review three fast ratings. For each, write target question, accessible impression, hidden scale, and whether the scale belonged."
+  },
+  "memorableLines": [
+    {
+      "text": "But unsafe is not the same scale as ugly.",
+      "location": "breakdown.fastRead",
+      "why": "It makes substitution visible in one concrete contrast."
+    },
+    {
+      "text": "A scale you did not choose is still choosing for you.",
+      "location": "breakdown.deepRead",
+      "why": "It names the hidden cost of an unexamined proxy."
+    },
+    {
+      "text": "Name the scale, then decide whether it belongs.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the chapter move into a reusable check."
+    }
+  ]
+}

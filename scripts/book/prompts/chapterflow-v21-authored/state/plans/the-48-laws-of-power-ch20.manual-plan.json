@@ -1,0 +1,193 @@
+{
+  "chapterId": "the-48-laws-of-power-ch20",
+  "number": 20,
+  "title": "Do Not Commit to Anyone",
+  "coreMove": "Keep alignment valuable by delaying capture until the price of commitment is visible",
+  "sourcePressure": "Chapter 20 is supported here by the frozen title and grouped secondary summaries: commitment can reduce leverage when you tie yourself too quickly to one side, while noncommitment can preserve independence because multiple sides still want your alignment. The mechanism should stay narrow. The chapter is about optionality, capture risk, and timing, not about condemning all loyalty or all cooperation. Keep it grounded in side-taking cost, leverage retention, and the limit that empty drift is not the same as strategic independence. Avoid invented court, battlefield, or palace anecdotes and avoid turning the law into generic anti-relationship advice. Frozen sidecar provides no traceable named anecdote for this chapter; do not fabricate named source anchors.",
+  "chapterSpecificMisunderstanding": "never being loyal to anyone",
+  "sourceAlignmentTerms": [
+    "noncommitment",
+    "optionality",
+    "capture risk",
+    "side-taking",
+    "leverage retention",
+    "timing"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "ch20 abstract law-title opener",
+      "cold definition of power",
+      "generic boardroom pressure first line"
+    ],
+    "counterintuition": [
+      "not X but Y negation shell for the-48-laws-of-power-ch20",
+      "most people assume opener",
+      "simple reversal without concrete cost"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three bullet points about the law",
+      "ask yourself what power means"
+    ],
+    "examples": [
+      "timestamp plus named protagonist plus prop plus decision repeated six times",
+      "work/home/school rotation",
+      "nameless office stakeholder shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Vanessa",
+      "domain": "freelance designer delaying exclusivity with two agencies",
+      "audience": "a reader handling freelance designer delaying exclusivity with two agencies",
+      "stakes": "whether the reader can apply keep alignment valuable by delaying capture until the price of commitment is visible before the situation hardens",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Vanessa changes the first visible artifact in freelance designer delaying exclusivity with two agencies so the room sees noncommitment before any explanation begins",
+      "firstImage": "freelance designer sheet with one corner folded in freelance designer delaying exclusivity with two agencies",
+      "mustInclude": [
+        "freelance-designer artifact specific to this scene",
+        "delaying constraint that makes noncommitment visible",
+        "one named threshold, deadline, or status cue from freelance designer delaying exclusivity with two agencies"
+      ],
+      "mustAvoid": [
+        "do not turn this into never being loyal to anyone",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Wendy",
+      "domain": "city councillor refusing early faction labels before budget week",
+      "audience": "a reader handling city councillor refusing early faction labels before budget week",
+      "stakes": "whether the reader can apply keep alignment valuable by delaying capture until the price of commitment is visible before the situation hardens",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "A challenge lands in city councillor refusing early faction labels before budget week, and Wendy answers by moving a concrete object, name, or option into a new position that enacts: keep alignment valuable by delaying capture until the price of commitment is visible",
+      "firstImage": "councillor refusing log clipped to a thin board in city councillor refusing early faction labels before budget week",
+      "mustInclude": [
+        "city-councillor artifact specific to this scene",
+        "refusing constraint that makes noncommitment visible",
+        "one named threshold, deadline, or status cue from city councillor refusing early faction labels before budget week"
+      ],
+      "mustAvoid": [
+        "do not turn this into never being loyal to anyone",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Julia",
+      "domain": "actor not signing with one agent before festival meetings",
+      "audience": "a reader handling actor not signing with one agent before festival meetings",
+      "stakes": "whether the reader can apply keep alignment valuable by delaying capture until the price of commitment is visible before the situation hardens",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "The scene turns when Julia withholds the obvious speech and alters the setup in actor not signing with one agent before festival meetings so the other side has to react to the new field",
+      "firstImage": "actor signing sample under a strip of tape in actor not signing with one agent before festival meetings",
+      "mustInclude": [
+        "actor-not artifact specific to this scene",
+        "signing constraint that makes noncommitment visible",
+        "one named threshold, deadline, or status cue from actor not signing with one agent before festival meetings"
+      ],
+      "mustAvoid": [
+        "do not turn this into never being loyal to anyone",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Alice",
+      "domain": "research lab keeping industry partnerships nonexclusive until data arrives",
+      "audience": "a reader handling research lab keeping industry partnerships nonexclusive until data arrives",
+      "stakes": "whether the reader can apply keep alignment valuable by delaying capture until the price of commitment is visible before the situation hardens",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Alice makes one public choice in research lab keeping industry partnerships nonexclusive until data arrives that converts optionality from an abstract idea into a visible constraint",
+      "firstImage": "keeping list marked with a single pencil circle in research lab keeping industry partnerships nonexclusive until data arrives",
+      "mustInclude": [
+        "research-lab artifact specific to this scene",
+        "keeping constraint that makes noncommitment visible",
+        "one named threshold, deadline, or status cue from research lab keeping industry partnerships nonexclusive until data arrives"
+      ],
+      "mustAvoid": [
+        "do not turn this into never being loyal to anyone",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Beth",
+      "domain": "union local holding endorsement until both candidates answer demands",
+      "audience": "a reader handling union local holding endorsement until both candidates answer demands",
+      "stakes": "whether the reader can apply keep alignment valuable by delaying capture until the price of commitment is visible before the situation hardens",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The reveal comes when Beth lets the first prediction fail against the physical setup in union local holding endorsement until both candidates answer demands, then uses that failure to practice: keep alignment valuable by delaying capture until the price of commitment is visible",
+      "firstImage": "union folder opened beside a named seat card in union local holding endorsement until both candidates answer demands",
+      "mustInclude": [
+        "union-local artifact specific to this scene",
+        "holding constraint that makes noncommitment visible",
+        "one named threshold, deadline, or status cue from union local holding endorsement until both candidates answer demands"
+      ],
+      "mustAvoid": [
+        "do not turn this into never being loyal to anyone",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Clara",
+      "domain": "restaurant supplier avoiding one-chain dependency during expansion",
+      "audience": "a reader handling restaurant supplier avoiding one-chain dependency during expansion",
+      "stakes": "whether the reader can apply keep alignment valuable by delaying capture until the price of commitment is visible before the situation hardens",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "In the debrief, Clara points to the concrete trace left in restaurant supplier avoiding one-chain dependency during expansion and separates the law's real move from its common misread",
+      "firstImage": "supplier receipt pinned above a narrow work surface in restaurant supplier avoiding one-chain dependency during expansion",
+      "mustInclude": [
+        "restaurant-supplier artifact specific to this scene",
+        "avoiding constraint that makes noncommitment visible",
+        "one named threshold, deadline, or status cue from restaurant supplier avoiding one-chain dependency during expansion"
+      ],
+      "mustAvoid": [
+        "do not turn this into never being loyal to anyone",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario requires keep alignment valuable by delaying capture until the price of commitment is visible",
+      "distinguish never being loyal to anyone from the chapter's actual move",
+      "choose the visible action that preserves the law's limit instead of overplaying it"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real situation where noncommitment is present, spend 60 seconds naming the visible move that would keep alignment valuable by delaying capture until the price of commitment is visible without using a reusable reflection prompt.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference when supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

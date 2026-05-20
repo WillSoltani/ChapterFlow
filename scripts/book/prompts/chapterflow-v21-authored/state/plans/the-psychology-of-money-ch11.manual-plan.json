@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch11",
+  "number": 11,
+  "title": "Save Money",
+  "coreMove": "Convert ego-driven spending gaps into flexibility before life demands it.",
+  "sourcePressure": "Saving creates options, lowers desperation, and buys time before it funds any named purchase.",
+  "chapterSpecificMisunderstanding": "Making saving only about deprivation or a future shopping goal.",
+  "sourceAlignmentTerms": [
+    "saving",
+    "flexibility",
+    "cash reserves",
+    "ego",
+    "expense gap",
+    "future choice"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Save Money with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Save Money to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the saving move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of saving and flexibility"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a paramedic saving irregular overtime to buy schedule flexibility",
+      "audience": "an emergency worker who sees savings as breathing room, not a purchase fund",
+      "stakes": "without reserves every extra shift becomes mandatory",
+      "format": "scene",
+      "requiredBeat": "she moves the overtime deposit into a buffer account before choosing next month's schedule",
+      "firstImage": "a payroll app open beside a uniform patch on a bench",
+      "mustInclude": [
+        "payroll app",
+        "buffer account",
+        "shift calendar"
+      ],
+      "mustAvoid": [
+        "rainy-day cliche"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a concert venue keeping a cash reserve after a ventilation failure",
+      "audience": "an operations director defending unused cash to impatient owners",
+      "stakes": "the reserve can keep staff paid through closures",
+      "format": "postmortem",
+      "requiredBeat": "she shows the two-week closure invoice that would have forced layoffs without savings",
+      "firstImage": "a repair invoice clipped to a dark stage door notice",
+      "mustInclude": [
+        "repair invoice",
+        "cash reserve",
+        "staff payroll"
+      ],
+      "mustAvoid": [
+        "business continuity jargon"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a wedding photographer lowering equipment upgrades to reduce desperation",
+      "audience": "a freelancer whose savings let her turn down bad clients",
+      "stakes": "a too-thin buffer makes every inquiry feel necessary",
+      "format": "decision_point",
+      "requiredBeat": "she deletes the new lens from the cart after reading a client's abusive contract demands",
+      "firstImage": "an online gear cart beside a marked-up client contract",
+      "mustInclude": [
+        "gear cart",
+        "contract demands",
+        "savings target"
+      ],
+      "mustAvoid": [
+        "creative freelancer trope"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a busker saving coins for visa paperwork rather than a new amplifier",
+      "audience": "a street musician needing options more than volume",
+      "stakes": "the paperwork window closes if the cash is spent on gear",
+      "format": "vignette",
+      "requiredBeat": "he counts the permit fee into an envelope before testing the amplifier he wants",
+      "firstImage": "a guitar case with sorted coins and a government form tucked inside",
+      "mustInclude": [
+        "permit form",
+        "coin stacks",
+        "amplifier listing"
+      ],
+      "mustAvoid": [
+        "starving artist romance"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a dental practice receptionist building a commute escape fund",
+      "audience": "a staff member whose savings reduce dependence on a failing car route",
+      "stakes": "one breakdown could cost the job without backup cash",
+      "format": "before_after",
+      "requiredBeat": "she labels the fund with the train-pass amount instead of a vacation photo",
+      "firstImage": "a cracked phone screen showing a train-pass price",
+      "mustInclude": [
+        "train-pass price",
+        "car repair estimate",
+        "fund label"
+      ],
+      "mustAvoid": [
+        "transportation complaint"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a young couple pruning subscription services before a child arrives",
+      "audience": "partners who need optionality more than another comfort",
+      "stakes": "small recurring costs quietly narrow parental leave choices",
+      "format": "dialogue",
+      "requiredBeat": "they cancel the services they cannot name quickly and convert the monthly total into leave days",
+      "firstImage": "a bank transaction list filtered for recurring charges",
+      "mustInclude": [
+        "recurring charge list",
+        "leave calendar",
+        "cancellation emails"
+      ],
+      "mustAvoid": [
+        "budget bootcamp"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: convert ego-driven spending gaps into flexibility before life demands it",
+      "distinguish saving from nearby but weaker advice such as coupon hacks",
+      "diagnose when a character is making the common misread: making saving only about deprivation or a future shopping goal.",
+      "evaluate tradeoffs using the chapter-specific pressure around saving, flexibility, cash reserves"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where saving is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: convert ego-driven spending gaps into flexibility before life demands it.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

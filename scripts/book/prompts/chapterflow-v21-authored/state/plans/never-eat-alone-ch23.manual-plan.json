@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch23",
+  "number": 23,
+  "title": "Become the King of Content",
+  "coreMove": "Curate or create one useful piece that makes you helpful at a distance.",
+  "sourcePressure": "Useful content and curation extend presence across a network when sharing serves people rather than broadcasting ego.",
+  "chapterSpecificMisunderstanding": "Equating volume, hot takes, or self-promotion with relational value.",
+  "sourceAlignmentTerms": [
+    "content",
+    "curation",
+    "digital age",
+    "visibility",
+    "usefulness",
+    "online sharing"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anthony",
+      "domain": "industry newsletter draft",
+      "audience": "a reader facing industry newsletter draft where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if industry newsletter draft becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anthony shares one carefully chosen resource with context for a specific group in front of draft headline, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "draft headline on the edge of industry newsletter draft",
+      "mustInclude": [
+        "draft headline",
+        "industry newsletter draft constraint",
+        "one named next step tied to content"
+      ],
+      "mustAvoid": [
+        "Equating volume, hot takes, or self-promotion with relational value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Arthur",
+      "domain": "research digest mailing list",
+      "audience": "a reader facing research digest mailing list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if research digest mailing list becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Arthur shares one carefully chosen resource with context for a specific group in front of bibliography link, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "bibliography link on the edge of research digest mailing list",
+      "mustInclude": [
+        "bibliography link",
+        "research digest mailing list constraint",
+        "one named next step tied to content"
+      ],
+      "mustAvoid": [
+        "Equating volume, hot takes, or self-promotion with relational value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Bradley",
+      "domain": "LinkedIn article annotation",
+      "audience": "a reader facing LinkedIn article annotation where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if LinkedIn article annotation becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Bradley shares one carefully chosen resource with context for a specific group in front of annotation box, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "annotation box on the edge of LinkedIn article annotation",
+      "mustInclude": [
+        "annotation box",
+        "LinkedIn article annotation constraint",
+        "one named next step tied to content"
+      ],
+      "mustAvoid": [
+        "Equating volume, hot takes, or self-promotion with relational value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Brandon",
+      "domain": "private Slack resource thread",
+      "audience": "a reader facing private Slack resource thread where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if private Slack resource thread becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Brandon shares one carefully chosen resource with context for a specific group in front of pinned message, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "pinned message on the edge of private Slack resource thread",
+      "mustInclude": [
+        "pinned message",
+        "private Slack resource thread constraint",
+        "one named next step tied to content"
+      ],
+      "mustAvoid": [
+        "Equating volume, hot takes, or self-promotion with relational value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "webinar recap page",
+      "audience": "a reader facing webinar recap page where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if webinar recap page becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Maja shares one carefully chosen resource with context for a specific group in front of edit history, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "edit history on the edge of webinar recap page",
+      "mustInclude": [
+        "edit history",
+        "webinar recap page constraint",
+        "one named next step tied to content"
+      ],
+      "mustAvoid": [
+        "Equating volume, hot takes, or self-promotion with relational value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Leila",
+      "domain": "community wiki update",
+      "audience": "a reader facing community wiki update where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if community wiki update becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Leila shares one carefully chosen resource with context for a specific group in front of table placard, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "table placard on the edge of community wiki update",
+      "mustInclude": [
+        "table placard",
+        "community wiki update constraint",
+        "one named next step tied to content"
+      ],
+      "mustAvoid": [
+        "Equating volume, hot takes, or self-promotion with relational value.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish content from Equating volume, hot takes, or self-promotion with relational value.",
+      "choose the visible action that performs: Curate or create one useful piece that makes you helpful at a distance.",
+      "diagnose when a scenario drifts into Equating volume, hot takes, or self-promotion with relational value.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real content moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

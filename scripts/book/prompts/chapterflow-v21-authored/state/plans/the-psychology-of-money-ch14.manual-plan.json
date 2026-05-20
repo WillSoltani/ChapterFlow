@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch14",
+  "number": 14,
+  "title": "Room for Error",
+  "coreMove": "Pay for slack before pressure turns a small miss into forced action.",
+  "sourcePressure": "Margin is not waste. It lets a plan survive volatility, mistakes, tight assumptions, and bad timing.",
+  "chapterSpecificMisunderstanding": "Treating room for error as pessimism or inefficiency.",
+  "sourceAlignmentTerms": [
+    "margin",
+    "slack",
+    "volatility",
+    "tight assumptions",
+    "bad timing",
+    "flexibility"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Room for Error with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Room for Error to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the margin move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of margin and slack"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a climbing gym setting route capacity below the theoretical maximum",
+      "audience": "a gym owner resisting profitable crowding",
+      "stakes": "one small slip in supervision can turn a busy night into injury",
+      "format": "decision_point",
+      "requiredBeat": "she leaves four paid slots empty after watching how long staff need to reach the far wall",
+      "firstImage": "a reservation screen with four open slots at peak hour",
+      "mustInclude": [
+        "reservation screen",
+        "staff path time",
+        "capacity limit"
+      ],
+      "mustAvoid": [
+        "safety theater"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a family farm choosing lower debt before buying irrigation equipment",
+      "audience": "a farmer who knows weather and crop prices do not obey tight plans",
+      "stakes": "one weak harvest could force a land sale",
+      "format": "scene",
+      "requiredBeat": "he subtracts a bad-yield year before signing the equipment note",
+      "firstImage": "an irrigation quote held down by a soil moisture probe",
+      "mustInclude": [
+        "equipment note",
+        "bad-yield scenario",
+        "soil probe"
+      ],
+      "mustAvoid": [
+        "farm hardship melodrama"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a newspaper editor building deadline slack for election night verification",
+      "audience": "an editor balancing speed and mistake risk",
+      "stakes": "a too-tight timeline can publish a wrong result",
+      "format": "dialogue",
+      "requiredBeat": "she moves the publish time after asking which precinct error would be impossible to fix live",
+      "firstImage": "a newsroom whiteboard listing precinct checks",
+      "mustInclude": [
+        "publish time",
+        "precinct checks",
+        "correction policy"
+      ],
+      "mustAvoid": [
+        "media speed rant"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a wedding caterer packing extra meals for dietary errors",
+      "audience": "a caterer pricing slack clients never notice unless needed",
+      "stakes": "a single missed allergy note can become a crisis",
+      "format": "postmortem",
+      "requiredBeat": "after a seating chart mistake, she logs how the extra meals prevented a visible failure",
+      "firstImage": "a labeled cooler with three untouched allergy-safe meals",
+      "mustInclude": [
+        "labeled cooler",
+        "seating chart",
+        "allergy note"
+      ],
+      "mustAvoid": [
+        "event planning chaos"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a software infrastructure team adding server headroom before a televised fundraiser",
+      "audience": "an engineer defending unused capacity",
+      "stakes": "the fundraiser fails if normal traffic assumptions are tight",
+      "format": "predict_reveal",
+      "requiredBeat": "the engineer runs a traffic spike drill and shows where the no-headroom version collapses",
+      "firstImage": "a status dashboard turning yellow during a load test",
+      "mustInclude": [
+        "load test",
+        "capacity graph",
+        "fundraiser clock"
+      ],
+      "mustAvoid": [
+        "tech reliability jargon"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a household choosing a rent target below what the broker says they can afford",
+      "audience": "roommates protecting flexibility from job and health surprises",
+      "stakes": "a maximum rent leaves no room for real life",
+      "format": "before_after",
+      "requiredBeat": "they add medication, travel, and slow-paycheck delays to the rent decision before applying",
+      "firstImage": "an apartment application beside a list of irregular monthly costs",
+      "mustInclude": [
+        "application",
+        "irregular cost list",
+        "rent ceiling"
+      ],
+      "mustAvoid": [
+        "generic frugality"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: pay for slack before pressure turns a small miss into forced action",
+      "distinguish margin from nearby but weaker advice such as overengineering",
+      "diagnose when a character is making the common misread: treating room for error as pessimism or inefficiency.",
+      "evaluate tradeoffs using the chapter-specific pressure around margin, slack, volatility"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where margin is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: pay for slack before pressure turns a small miss into forced action.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

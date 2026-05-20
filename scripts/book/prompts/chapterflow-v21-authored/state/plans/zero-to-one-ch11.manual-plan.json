@@ -1,0 +1,182 @@
+{
+  "chapterId": "zero-to-one-ch11",
+  "number": 11,
+  "title": "If You Build It, Will They Come?",
+  "coreMove": "Design the path to the customer with the same seriousness as the product itself.",
+  "sourcePressure": "The chapter rejects the fantasy that a strong product automatically reaches customers and treats distribution as a core business design problem. The frozen source for this chapter contains no chapter-specific named anecdote beyond author/editor metadata, so examples should use fictional protagonists and stay anchored to verified terms.",
+  "chapterSpecificMisunderstanding": "Collapsing distribution into generic marketing or hype.",
+  "sourceAlignmentTerms": [
+    "distribution",
+    "sales",
+    "reach",
+    "customers",
+    "channel",
+    "go-to-market"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of distribution",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Robert",
+      "domain": "radiology AI procurement",
+      "audience": "a founder realizing hospital sales require workflow adoption, not demo applause",
+      "stakes": "whether a strong model dies outside the pilot room",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Robert maps the path from demo to procurement committee before adding another feature",
+      "firstImage": "a demo laptop beside a hospital badge printer",
+      "mustInclude": [
+        "demo laptop",
+        "procurement checklist",
+        "badge printer"
+      ],
+      "mustAvoid": [
+        "AI product hype"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "craft furniture marketplace",
+      "audience": "an owner with beautiful supply and no repeatable customer channel",
+      "stakes": "whether inventory sits because nobody built reach",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Catarina compares the glowing product photos with the empty order queue",
+      "firstImage": "oak chairs wrapped in moving blankets",
+      "mustInclude": [
+        "moving blankets",
+        "order queue",
+        "dealer list"
+      ],
+      "mustAvoid": [
+        "marketing slogans"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "specialist tax software",
+      "audience": "a product lead treating CPA partnerships as product work, not a later sales chore",
+      "stakes": "whether the software reaches the few firms that need it urgently",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Mathieu adds partner onboarding to the release checklist before polishing another calculator",
+      "firstImage": "tax forms stacked beside a half-finished onboarding deck",
+      "mustInclude": [
+        "tax forms",
+        "partner deck",
+        "release checklist"
+      ],
+      "mustAvoid": [
+        "sales shame"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "local food delivery co-op",
+      "audience": "a founder designing neighborhood pickup captains instead of assuming the app will spread",
+      "stakes": "whether great logistics remain invisible to households",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Adaeze watches the app stall until one block captain moves thirty orders in a night",
+      "firstImage": "paper grocery labels stuck to insulated totes",
+      "mustInclude": [
+        "insulated totes",
+        "block map",
+        "pickup roster"
+      ],
+      "mustAvoid": [
+        "community app generic"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "industrial water sensor sales",
+      "audience": "an engineer learning that municipal trust and installation channels matter as much as sensor accuracy",
+      "stakes": "whether a technically superior device ever reaches plant operators",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Olivier predicts the accuracy demo will close the deal, then watches the operator ask who installs it at midnight",
+      "firstImage": "a sensor probe dripping over a utility sink",
+      "mustInclude": [
+        "sensor probe",
+        "installation manual",
+        "operator schedule"
+      ],
+      "mustAvoid": [
+        "clean-tech drift"
+      ]
+    },
+    {
+      "protagonistName": "Vera",
+      "domain": "independent podcast network",
+      "audience": "a producer deciding whether audience acquisition is a designed channel or a hope after recording",
+      "stakes": "whether excellent episodes remain invisible",
+      "format": "second_person",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "You watch Vera move distribution planning into the recording calendar before the first interview",
+      "firstImage": "a microphone stand beside a blank launch calendar",
+      "mustInclude": [
+        "microphone stand",
+        "launch calendar",
+        "guest tracker"
+      ],
+      "mustAvoid": [
+        "content quality sermon"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires design the path to the customer with the same seriousness as the product itself.",
+      "separate distribution from sales in a novel operating case",
+      "diagnose the specific failure mode: collapsing distribution into generic marketing or hype.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one strong product, draw the route from first buyer awareness to signed adoption; mark the weakest handoff as product work, not marketing cleanup.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch10",
+  "number": 10,
+  "title": "Snowmobile in the Desert",
+  "coreMove": "Diagnose the terrain before you label the person as defective.",
+  "sourcePressure": "Uses the snowmobile metaphor to diagnose fit before blame: poor performance may reveal a mismatch between human design, conditions, incentives, and environment.",
+  "chapterSpecificMisunderstanding": "Excusing all underperformance as environmental or turning fit into a personality-matching exercise.",
+  "sourceAlignmentTerms": [
+    "snowmobile in the desert",
+    "fit",
+    "terrain",
+    "human design",
+    "conditions",
+    "incentives",
+    "diagnosis"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 10 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "aquarium touch-tank staffing",
+      "audience": "education lead judging a quiet guide",
+      "stakes": "poor engagement may be bad station fit, not laziness",
+      "format": "decision_point",
+      "requiredBeat": "she moves the guide from crowd patter to specimen prep and watches questions improve",
+      "firstImage": "a wet starfish tray under blue lights",
+      "mustInclude": [
+        "specimen tray",
+        "shift card"
+      ],
+      "mustAvoid": [
+        "personality typing"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "postal sorting annex",
+      "audience": "supervisor reviewing mis-sorts",
+      "stakes": "new scanner layout may create failure terrain",
+      "format": "scene",
+      "requiredBeat": "he walks the route with a carrier and notices the label-window height forces wrist turns",
+      "firstImage": "a mail tub under a tilted label window",
+      "mustInclude": [
+        "mail tub",
+        "label window"
+      ],
+      "mustAvoid": [
+        "warehouse metrics"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "emergency call center headset bay",
+      "audience": "trainer with a struggling dispatcher",
+      "stakes": "alarm volume and script order may overload judgment",
+      "format": "predict_reveal",
+      "requiredBeat": "the trainer swaps the script prompts and asks the dispatcher to handle one call with the new order",
+      "firstImage": "a headset coiled beside a laminated script",
+      "mustInclude": [
+        "headset",
+        "script card"
+      ],
+      "mustAvoid": [
+        "stress management"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "community orchestra percussion section",
+      "audience": "conductor labeling a player unreliable",
+      "stakes": "late entrances come from a sightline mismatch",
+      "format": "postmortem",
+      "requiredBeat": "the conductor sits behind the timpani and sees the baton disappear behind the basses",
+      "firstImage": "a timpani mallet on a marked part",
+      "mustInclude": [
+        "timpani mallet",
+        "marked part"
+      ],
+      "mustAvoid": [
+        "school music"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "greenhouse propagation bench",
+      "audience": "nursery manager blaming a trainee",
+      "stakes": "seedling loss follows a humidity setup no one explained",
+      "format": "before_after",
+      "requiredBeat": "the manager moves the mist timer control to eye level and shows the tray survival difference",
+      "firstImage": "a plug tray under a mist nozzle",
+      "mustInclude": [
+        "plug tray",
+        "mist timer"
+      ],
+      "mustAvoid": [
+        "generic training"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "airport wheelchair service",
+      "audience": "dispatcher reviewing missed pickups",
+      "stakes": "routing software may pit helpers against impossible gates",
+      "format": "reflection",
+      "requiredBeat": "the dispatcher rides the route once and redraws assignments by elevator distance",
+      "firstImage": "an elevator map tucked behind a radio",
+      "mustInclude": [
+        "elevator map",
+        "service radio"
+      ],
+      "mustAvoid": [
+        "no accountability drift"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate person defect from condition mismatch",
+      "inspect incentives before blame",
+      "choose a terrain test",
+      "keep accountability after diagnosis"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next performance judgment, list two terrain factors that would make a capable person fail here.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

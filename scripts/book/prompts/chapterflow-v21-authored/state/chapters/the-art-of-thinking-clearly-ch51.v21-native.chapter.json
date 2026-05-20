@@ -1,0 +1,335 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch51",
+  "number": 51,
+  "title": "Hyperbolic Discounting",
+  "readingTimeMinutes": 12,
+  "hook": "Tomorrow's cost looks tiny until the choice is sitting warm in your hand.",
+  "counterintuition": "A near reward can shrink the future consequence, but the consequence has not changed. Make the delayed cost visible before immediacy sets the price.",
+  "tryThisNow": "Before taking one near reward today, write what your future self pays, when it pays, and what would make waiting easier.",
+  "keyTakeaway": "Bring the future cost into the room before the immediate reward gets to set the terms.",
+  "breakdown": {
+    "fastRead": "The dashboard printout sits between Iona and a coffee supplier in Portland. A quick discount is available if she accepts lower bean quality for six months. The savings feel real now. The customer complaints live later. Iona marks hyperbolic discounting on the printout before signing.\n\nHyperbolic discounting is the pull of the near reward over the later cost. The closer a benefit gets, the larger it feels. The future penalty may be bigger, but distance makes it quiet. Present bias turns delay into a discount.\n\nNear rewards can look bigger than later costs.\n\nThe correction is to make the delayed cost concrete before choosing. Put a date on it. Name who pays it. Add a small barrier between you and the immediate reward.",
+    "deepRead": "The dashboard printout on Iona's table shows a supplier discount that would help this quarter's margin. The lower bean quality would not hurt until regular customers notice the flavor drift. Iona writes present bias beside the printout because the immediate saving is louder than the delayed complaint.\n\nHyperbolic discounting bends time. A reward due now can feel much more valuable than the same reward later. A cost due later can feel much smaller than the same cost today. That tilt is why people accept a small immediate pleasure while pushing a larger repair, fee, health cost, or apology onto the future. The future self becomes someone else in the room, and that person is easy to outvote.\n\nDelay turns the volume down on future pain.\n\nClark sees the same tilt in a neonatal checklist review. A caliper sits near the chart, and skipping a slow measurement would save a tired nurse two minutes now. The risk is a delayed catch on a small change in the infant's condition. Clark marks present bias on the caliper and changes the checklist so the measurement is done before the next handoff, not after everyone feels behind.\n\nThis is not a sermon about willpower. The near reward is genuinely tempting because it is close. The useful move is design: make future cost visible, make delay less abstract, and precommit before the reward is inches away.\n\nGive the later self a seat before the vote.",
+    "fullRead": "The visitor badge taps against Denise's winter shelter allocation folder in Winnipeg. One option keeps more beds open tonight by delaying insulation repairs for three weeks. The immediate relief is visible: fewer people turned away in the cold. The later cost is less visible: higher heating failures when the deep freeze arrives. Denise writes future self risk on the badge before the allocation meeting votes.\n\nHyperbolic discounting does not mean the present never matters. Tonight's beds matter. The error begins when immediacy changes the scale so much that a larger later harm is treated like a footnote. The mind wants the reward close to hand and lets the future carry the bill.\n\nRichard Thaler's early work on dynamic inconsistency put this problem in plain economic terms: preferences can shift as timing changes. A person may prefer the larger later benefit when both options are distant, then switch to the smaller near benefit as it moves close. The facts have not changed. The calendar changed the feeling.\n\nWhat would you choose if both costs arrived today?\n\nYou are beside a goalkeeper academy drill in Utrecht with Willa, looking at a sample tray of recovery drinks. The players want the sweet version now, even though the staff's delayed hydration plan reduces cramps in the final sessions. Willa must decide whether delay risk is letting today's taste beat Friday's legs. She marks the tray and moves the sweet drinks after the drill block instead of before it.\n\nImmediacy can also hide inside paperwork. Tara's flood insurance desk has an inspection tag for a property owner who wants to skip a $280 elevation report and close the sale today. It took one storm season for Tara to see the pattern: the saved fee felt large at closing, while the larger uncovered loss felt unreal. She marks immediacy risk and requires the report before the policy discount is approved.\n\nThe best fixes make time harder to ignore. Write the future date. Put the delayed cost in today's units. Ask who will open the bill, complaint, injury report, or rework ticket. If the future cost still looks worth paying, choose it openly. If it only looked small because it was far away, change the design before temptation gets close.\n\nWhich part of the price has been pushed down the calendar?\n\nThe floor plan in Shaun's newsroom front-page meeting shows a story that will drive clicks tonight but require corrections tomorrow. Shaun marks hyperbolic risk on the plan and changes the queue: the piece can run only after one verification call, even if it loses the top slot. The future cost is no longer a vague apology. It is tomorrow's named correction box.\n\nBring the future cost into the room before the immediate reward gets to set the terms.\n\nBefore the next close call, Shaun adds a future-cost field to the meeting sheet. It asks for the first person who will deal with the delayed consequence and the date it will arrive. A cost with a name and date is harder to wave away than a cost called later.",
+    "whyItMatters": "Hyperbolic discounting makes near rewards feel too large and delayed costs too small. Readers need to make future consequences concrete before choosing."
+  },
+  "examples": [
+    {
+      "exampleId": "ch51-ex01-iona-dashboard-printout",
+      "title": "Iona Prices the Coffee Discount",
+      "tags": [
+        "scene",
+        "coffee",
+        "present bias"
+      ],
+      "planSpec": {
+        "domain": "a coffee supplier negotiation applying Hyperbolic Discounting under operational pressure",
+        "audience": "a reader who has to make a live judgment where hyperbolic discounting could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Hyperbolic Discounting is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the dashboard printout, names the hyperbolic discounting risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Iona studies a dashboard printout between her and a coffee supplier at 9:30 a.m. in Portland. A quick discount would lower this quarter's cost, help the margin meeting, and please finance by Friday, but it locks in lower bean quality for six months. With customer reviews already softening, Iona must decide whether hyperbolic discounting risk is shrinking later complaints. The supplier has the contract tabbed for signature, making the near saving feel one pen stroke away.",
+      "whatToDo": "Mark hyperbolic discounting on the printout, date the likely complaint window, and sign only if the six-month quality cost still beats the savings.",
+      "whyItMatters": "The near discount should not hide the delayed cost paid by regular customers."
+    },
+    {
+      "exampleId": "ch51-ex02-clark-caliper",
+      "title": "Clark Protects the Slow Measurement",
+      "tags": [
+        "vignette",
+        "neonatal",
+        "checklist"
+      ],
+      "planSpec": {
+        "domain": "a neonatal checklist review applying Hyperbolic Discounting under operational pressure",
+        "audience": "a reader who has to make a live judgment where present bias could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Hyperbolic Discounting is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the caliper, names the present bias risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Clark holds a caliper beside the chart during a 6:15 a.m. neonatal checklist review in Boston after the charge nurse says, \"It only saves two minutes.\" The unit is crowded, handoff is close, and the slow measurement is the one step that can catch a small condition change later. Clark must decide whether present bias risk should keep the measurement before handoff.",
+      "whatToDo": "Protect the later safety cost by turning the shortcut into a fixed pre-handoff measurement rule.",
+      "whyItMatters": "Two minutes now can become a missed catch later."
+    },
+    {
+      "exampleId": "ch51-ex03-denise-visitor-badge",
+      "title": "Denise Makes the Freeze Visible",
+      "tags": [
+        "dialogue",
+        "shelter",
+        "future self"
+      ],
+      "planSpec": {
+        "domain": "a winter shelter allocation applying Hyperbolic Discounting under operational pressure",
+        "audience": "a reader who has to make a live judgment where future self could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Hyperbolic Discounting is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the visitor badge, names the future self risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Denise feels a visitor badge tap against her winter shelter allocation folder during a noon meeting in Winnipeg. Delaying insulation repairs opens more beds tonight, which everyone can picture, but it risks heating failures in three weeks when the deep freeze forecast arrives. Denise must decide whether future self risk is being outvoted before the repair reserve is spent. The maintenance quote is clipped to the folder, but it is under the bed-count spreadsheet where nobody keeps looking.",
+      "whatToDo": "Mark future self risk on the badge, date the freeze-week failure cost, and reserve repair money before adding tonight's overflow beds.",
+      "whyItMatters": "The later shelter team should not inherit an invisible bill from tonight's relief."
+    },
+    {
+      "exampleId": "ch51-ex04-willa-sample-tray",
+      "title": "Willa Moves the Sweet Drinks",
+      "tags": [
+        "decision",
+        "goalkeeper",
+        "delay"
+      ],
+      "planSpec": {
+        "domain": "a goalkeeper academy drill applying Hyperbolic Discounting under operational pressure",
+        "audience": "a reader who has to make a live judgment where delay could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Hyperbolic Discounting is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the sample tray, names the delay risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Willa stands at an Utrecht goalkeeper academy at 3:10 p.m., holding a sample tray of recovery drinks before a long drill block. Players want the sweet version now, the assistant coach wants compliance, and Friday's cramp data sits in a binder nobody is opening. Willa must decide whether delay risk is making the later body too quiet.",
+      "whatToDo": "Mark delay risk on the tray, place sweet drinks after the drill block, and show players the final-session cramp data before they choose.",
+      "whyItMatters": "Today's taste can crowd out the later body that has to finish the week."
+    },
+    {
+      "exampleId": "ch51-ex05-tara-inspection-tag",
+      "title": "Tara Holds the Elevation Report",
+      "tags": [
+        "predict",
+        "insurance",
+        "immediacy"
+      ],
+      "planSpec": {
+        "domain": "a flood insurance desk applying Hyperbolic Discounting under operational pressure",
+        "audience": "a reader who has to make a live judgment where immediacy could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Hyperbolic Discounting is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the inspection tag, names the immediacy risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Tara reviews an inspection tag at a Halifax flood insurance desk after one storm season shows the same pattern again. Owners want to skip a $280 elevation report at closing, agents want the sale to move, and the larger uncovered loss sounds unreal until water is in the basement. Tara must decide whether immediacy risk should change the discount rule. The closing packet is already stacked for signature, which makes the report feel like the only obstacle.",
+      "whatToDo": "Mark immediacy risk on the tag, require the elevation report before the discount, and show the uncovered-loss estimate beside today's fee.",
+      "whyItMatters": "A small fee now can look bigger than a much larger loss later."
+    },
+    {
+      "exampleId": "ch51-ex06-shaun-floor-plan",
+      "title": "Shaun Buys Time for Verification",
+      "tags": [
+        "postmortem",
+        "newsroom",
+        "front page"
+      ],
+      "planSpec": {
+        "domain": "a newsroom front-page meeting applying Hyperbolic Discounting under operational pressure",
+        "audience": "a reader who has to make a live judgment where hyperbolic could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Hyperbolic Discounting is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the floor plan, names the hyperbolic risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Shaun asks which front-page floor plan gave the newsroom clicks tonight and a correction box tomorrow. At a 7:05 p.m. Chicago postmortem, he marks hyperbolic risk while the analytics screen still shows the traffic spike and the corrections editor holds the next-day note. Before the next breaking story is placed, Shaun must decide whether a verification call belongs before top placement.",
+      "whatToDo": "Create a pre-publication hold box, require the editor on duty to write the credibility cost in it, and release the story only after the evidence owner signs the box.",
+      "whyItMatters": "Immediate attention should not make tomorrow's credibility cost look small."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a hyperbolic-discounting case, a small reward available now feels more attractive than a larger benefit later, even though the later benefit would matter more, what is happening?",
+        "choices": [
+          "Present bias is making the near reward feel too large.",
+          "Discounting pressure result fits the immediate pressure around matter what happening; hold benefit even though steady and test available attractive larger later.",
+          "Reward available attractive looks strong enough to guide larger benefit even; though matter what can wait unless happening present bias changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "Hyperbolic discounting makes closeness change the felt weight of a reward. The near option becomes louder than its real value.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Hyperbolic Discounting makes hyperbolic-discounting case feel more decisive than the record supports, and that misprices small reward in this scene. The correct move keepss the choice by present bias is making the near reward feel too large."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a hyperbolic-discounting review, a cafe can save money today by accepting lower bean quality for six months, customer complaints would likely arrive later. What should the buyer do?",
+        "choices": [
+          "Signing hyperbolic discounting fits the immediate pressure around complaints likely arrive; hold quality months customer steady and test accepting lower bean later.",
+          "Put a date and owner on the likely complaint cost before signing.",
+          "Lower bean quality gives a practical reason for money today accepting; likely arrive what belongs after months customer complaints clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "Dating the delayed cost makes the future consequence concrete before the near saving sets the terms.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Hyperbolic Discounting works by letting hyperbolic-discounting cafe crowd out save money, which can misreads the today accepting decision. Put a date and owner on the likely complaint cost before signing keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When hyperbolic-discounting pressure appears, a neonatal checklist step takes two minutes now but helps catch a condition change later. Staff want to move it after handoff. Which move best handles present bias?",
+        "choices": [
+          "Want move after supports a narrower read of neonatal checklist step; keep minutes helps catch central and leave condition change staff aside.",
+          "After handoff best points toward a quicker call on step minutes helps; let appears neonatal checklist stand until staff want move contradicts it.",
+          "Keep the measurement before handoff and show the delayed risk on the checklist."
+        ],
+        "correctIndex": 2,
+        "explanation": "The later risk is easy to discount when everyone is rushed. Keeping the step before handoff protects the future patient.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Hyperbolic Discounting turns appears neonatal into a shortcut, so the room can overweights checklist step while missing takes minutes. Keep the measurement before handoff and show the delayed risk on the checklist protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After hyperbolic-discounting risk surfaces, a shelter can add beds tonight by delaying insulation repairs that may fail during a deep freeze in three weeks, what should the allocation lead do?",
+        "choices": [
+          "Reserve repair money and name the freeze-week cost before adding overflow beds.",
+          "What allocation lead points toward a quicker call on tonight delaying insulation; let surfaces shelter beds stand until freeze three weeks contradicts it.",
+          "Lead reserve repair fits the immediate pressure around insulation repairs fail; hold beds tonight delaying steady and test hyperbolic-discounting surfaces shelter later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The point is not to ignore urgent needs. It is to keep the delayed heating failure visible while choosing tonight's relief.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Hyperbolic Discounting would push the shelter beds case toward tonight delaying, creating a cost when insulation repairs stays untested. The useful guardrail is to reserve repair money and name the freeze-week cost before adding overflow beds."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If hyperbolic-discounting reasoning takes over, a goalkeeper academy's players want sweet recovery drinks before training, while staff data shows better final-session legs when the drinks come later. What is the best design?",
+        "choices": [
+          "Move after drill fits the immediate pressure around data shows better; hold drinks training staff steady and test want sweet recovery later.",
+          "Move the sweet drinks after the drill block and show the later cramp data.",
+          "Sweet recovery drinks gives a practical reason for academy players want; shows better final-session belongs after training staff data clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "Moving the reward changes timing. It keeps the immediate taste from overpowering the later performance cost.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Hyperbolic Discounting converts academy players into the loudest signal, which can rushes want sweet before recovery drinks is checked. The better answer separatess attention on move the sweet drinks after the drill block and show the later cramp data."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While hyperbolic-discounting pressure builds, a homeowner wants to skip a $280 elevation report at closing, though the missing report could lead to a much larger uninsured flood loss, what is the strongest analysis?",
+        "choices": [
+          "The near fee is being weighed too heavily against the delayed flood cost.",
+          "Missing lead much supports a narrower read of pressure builds homeowner; keep wants skip elevation central and leave report closing though aside.",
+          "Much larger uninsured points toward a quicker call on homeowner wants skip; let hyperbolic-discounting pressure builds stand until though missing lead contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "Immediacy makes the small fee feel larger than the future loss. The delayed cost needs to be brought into the decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Hyperbolic Discounting hides inside the hyperbolic-discounting pressure choice because hyperbolic-discounting pressure seems sufficient, yet the cost lands in hyperbolic-discounting pressure. The near fee is being weighed too heavily against the delayed flood cost brings the hyperbolic-discounting pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the hyperbolic-discounting call, a newsroom can get clicks tonight from an underchecked story, but a correction tomorrow would hurt credibility. Which rule counters hyperbolic discounting?",
+        "choices": [
+          "Hyperbolic-discounting call newsroom looks strong enough to guide clicks tonight underchecked; story correction tomorrow can wait unless hurt credibility rule changes the stakes.",
+          "Require one verification call before top placement, even if the story loses the slot.",
+          "Credibility rule counters makes tonight underchecked story look credible; use correction tomorrow hurt first and revisit hyperbolic discounting require when verification placement even shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The rule adds a barrier between the team and immediate attention. It makes tomorrow's correction cost harder to ignore.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Hyperbolic Discounting pressures the call newsroom decision toward the easy reading of call newsroom. That can inflates the real cost unless the choice is grounded in require one verification call before top placement, even if the story loses the slot."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose hyperbolic-discounting risk is present: a manager prefers a larger bonus in six months when thinking in January, then switches to a smaller bonus today when June arrives. What changed?",
+        "choices": [
+          "Today june arrives supports a narrower read of manager prefers larger; keep bonus months thinking central and leave january switches smaller aside.",
+          "The timing changed the felt value of the near reward.",
+          "Changed timing felt fits the immediate pressure around months thinking january; hold prefers larger bonus steady and test hyperbolic-discounting present manager later."
+        ],
+        "correctIndex": 1,
+        "explanation": "This is dynamic inconsistency. As the smaller reward gets close, it feels larger relative to the future reward.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Hyperbolic Discounting is the mechanism here: near rewards crowd out later value, so present manager can overpower present manager. The timing changed the felt value of the near reward keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "In the next plan, you set a rule for choices where a near reward competes with a delayed cost. Which rule best handles hyperbolic discounting?",
+        "choices": [
+          "Reward competes delayed gives a practical reason for rule choices near; hyperbolic discounting name belongs after cost best handles clarifies the result.",
+          "Delayed cost best makes next rule choices look credible; use near reward competes first and revisit handles hyperbolic discounting when name pays date shifts.",
+          "Name who pays the later cost, date it, and add a barrier before taking the near reward."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rule makes the future cost concrete and slows the near reward long enough for a fair comparison.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Hyperbolic Discounting makes the near reward evidence look cleaner than it is, risking a near reward mistake in this setting. The answer protects near reward by asking for name who pays the later cost, date it, and add a barrier."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch51-card01",
+      "front": "A near reward feels too good to pass up. What should you name?",
+      "back": "Name the future cost, who pays it, and when it arrives.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch51-card02",
+      "front": "A nearby discount is crowding out a later repair bill. What does present bias do?",
+      "back": "It makes nearby rewards feel larger and delayed costs feel smaller than they are.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch51-card03",
+      "front": "Your future self will open the bill. How can you protect that person now?",
+      "back": "Give the later self a concrete seat in the choice: a date, a bill, a person, or a visible consequence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch51-card04",
+      "front": "A small barrier slows an immediate reward. Why can that help?",
+      "back": "It slows the immediate reward long enough for the delayed cost to be weighed.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch51-card05",
+      "front": "A delayed cost is being treated like a footnote. What correction blocks hyperbolic discounting?",
+      "back": "Bring the future cost into the room before the immediate reward sets the terms.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to make delayed costs concrete before a nearby reward distorts the decision.",
+    "ifThenPlans": [
+      {
+        "context": "purchases",
+        "plan": "If a discount tempts me today, then I will date the later quality, fee, or repair cost before accepting."
+      },
+      {
+        "context": "health and safety",
+        "plan": "If skipping a step saves time now, then I will name the delayed risk before moving the step."
+      },
+      {
+        "context": "work deadlines",
+        "plan": "If speed creates immediate praise, then I will write tomorrow's correction or rework cost first."
+      },
+      {
+        "context": "commitments",
+        "plan": "If I favor the near option, then I will add one small barrier before choosing it."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, pause one near reward long enough to write the delayed cost, date, payer, and one barrier.",
+    "weeklyPractice": "This week, create one precommitment that makes a future cost visible before the tempting moment arrives."
+  },
+  "memorableLines": [
+    {
+      "text": "Near rewards can look bigger than later costs.",
+      "location": "breakdown.fastRead",
+      "why": "It captures present bias in plain language."
+    },
+    {
+      "text": "Delay turns the volume down on future pain.",
+      "location": "breakdown.deepRead",
+      "why": "It explains why timing changes felt value."
+    },
+    {
+      "text": "Bring the future cost into the room before the immediate reward gets to set the terms.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the practical rule."
+    }
+  ]
+}

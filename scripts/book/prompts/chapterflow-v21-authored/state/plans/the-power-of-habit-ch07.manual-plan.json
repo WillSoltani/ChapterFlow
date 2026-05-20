@@ -1,0 +1,175 @@
+{
+  "chapterId": "the-power-of-habit-ch07",
+  "number": 7,
+  "title": "How Target Knows What You Want Before You Do",
+  "coreMove": "Read the habit trail from the outside, then test whether using it serves the person or quietly steers them.",
+  "sourcePressure": "Target's buying patterns show that routines become commercially readable data. The chapter is about partial prediction, life-stage inference, familiar placement, and the ethical line between helpful personalization and manipulation.",
+  "chapterSpecificMisunderstanding": "The weak version turns this into generic privacy panic, omniscient AI prediction, or marketing tips. The writer must keep the mechanism narrower: repeated actions leave trails, and familiar placement can lower resistance to novelty.",
+  "sourceAlignmentTerms": [
+    "Target",
+    "buying patterns",
+    "life-stage change",
+    "habit trails",
+    "predictive inference",
+    "familiar placement",
+    "novelty",
+    "manipulation",
+    "partial prediction"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A creepy company knows everything about you.",
+      "An AI predicts your whole life.",
+      "A generic data privacy warning."
+    ],
+    "counterintuition": [
+      "Most people think data is private, but actually companies know everything.",
+      "Treating customers as helpless targets.",
+      "Ignoring whether the personalization helps or manipulates."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and delete an app.",
+      "Stop all tracking.",
+      "Collect more customer data with no ethical test."
+    ],
+    "examples": [
+      "Target pregnancy prediction retell.",
+      "Phone notification addiction shell.",
+      "Omniscient surveillance horror.",
+      "Marketing optimization without user benefit."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional grocer detecting a low-sodium cooking shift",
+      "audience": "a loyalty-program manager deciding what to do with a sudden pattern in regular basket data",
+      "stakes": "a helpful nudge could support a health change, while a blunt coupon could expose something private at the checkout",
+      "format": "decision_point",
+      "requiredBeat": "The manager circles low-sodium broth, unsalted crackers, and the same Tuesday pickup slot, then chooses a familiar receipt placement for general heart-healthy staples instead of a message that announces a diagnosis.",
+      "firstImage": "A receipt shows low-sodium broth beside the same Tuesday pickup slot.",
+      "mustInclude": [
+        "receipt circle",
+        "Tuesday pickup slot",
+        "familiar coupon strip"
+      ],
+      "mustAvoid": [
+        "pharmacy purchase shell",
+        "medical advice",
+        "privacy panic with no design choice"
+      ]
+    },
+    {
+      "domain": "hardware store project purchases revealing a first winter in a new house",
+      "audience": "a merchandising analyst deciding how to place unfamiliar maintenance products",
+      "stakes": "new homeowners need help, but a store can turn uncertainty into overselling",
+      "format": "predict_reveal",
+      "requiredBeat": "The analyst predicts the shopper will resist a big winterization banner, then places pipe insulation beside the paint trays and furnace filters already in the basket so novelty rides with familiar projects.",
+      "firstImage": "A cart holds paint trays, furnace filters, and one roll of pipe insulation.",
+      "mustInclude": [
+        "paint trays",
+        "furnace filters",
+        "winterization shelf tag"
+      ],
+      "mustAvoid": [
+        "home-morning routine",
+        "omniscient data model",
+        "scare-based selling"
+      ]
+    },
+    {
+      "domain": "music streaming app reading late-night replay patterns",
+      "audience": "a product lead reviewing whether to personalize after repeated 2 a.m. listening sessions",
+      "stakes": "the same inference could help a listener wind down or push them deeper into sleepless autoplay",
+      "format": "dialogue",
+      "requiredBeat": "The lead points to the 2 a.m. replay cluster and asks whether the next card should be a sleep-timer shortcut or another endless mix, making the ethical line visible in the interface choice.",
+      "firstImage": "A replay graph spikes at 2 a.m. beside a glowing sleep-timer button.",
+      "mustInclude": [
+        "2 a.m. replay cluster",
+        "sleep-timer button",
+        "endless mix card"
+      ],
+      "mustAvoid": [
+        "generic screen addiction",
+        "total consumer helplessness",
+        "data as magic"
+      ]
+    },
+    {
+      "domain": "checking-account transaction pattern before recurring overdrafts",
+      "audience": "a bank service designer deciding between a warning, a fee product, and silence",
+      "stakes": "predictive inference can prevent avoidable fees or quietly monetize a customer's tightest week",
+      "format": "postmortem",
+      "requiredBeat": "After a complaint, the designer lays payroll dates, grocery debits, and overdraft fees on one timeline and sees that the trail was readable before the fee; the next design choice must pass a help-versus-steer test.",
+      "firstImage": "A transaction timeline shows payroll, grocery debits, and overdraft fees.",
+      "mustInclude": [
+        "transaction timeline",
+        "payroll dates",
+        "fee-warning draft"
+      ],
+      "mustAvoid": [
+        "budgeting lecture",
+        "simple blame",
+        "marketing without ethics"
+      ]
+    },
+    {
+      "domain": "running-shoe retailer using purchase cadence and blister-pad add-ons",
+      "audience": "a store analyst who wants to personalize without making customers feel watched",
+      "stakes": "the data can prevent injury through a fitting check or exploit anxiety with unnecessary gear",
+      "format": "before_after",
+      "requiredBeat": "Before the change, the email screams injury risk; after revision, the blister-pad add-on and worn-shoe timing trigger a normal fitting invitation tucked beside the usual reorder reminder.",
+      "firstImage": "A worn-shoe photo sits beside a blister-pad receipt.",
+      "mustInclude": [
+        "blister-pad receipt",
+        "reorder reminder",
+        "fitting invitation"
+      ],
+      "mustAvoid": [
+        "climbing gym injury habit",
+        "sports discipline story",
+        "fear-based targeting"
+      ]
+    },
+    {
+      "domain": "meal-kit service noticing a shift from shared dinners to single-serving orders",
+      "audience": "a retention manager deciding whether to chase a churn risk or respect a life change",
+      "stakes": "a company can make a hard transition easier or turn a private change into relentless pressure to buy",
+      "format": "reflection",
+      "requiredBeat": "The manager sees family-size dinners give way to single-serving soups and skipped Fridays, then chooses a pause-and-adjust card in the normal menu flow rather than a barrage of win-back discounts.",
+      "firstImage": "Single-serving soup cards replace family-size dinners in a menu queue.",
+      "mustInclude": [
+        "menu queue",
+        "skipped Fridays",
+        "pause-and-adjust card"
+      ],
+      "mustAvoid": [
+        "Target pregnancy retell",
+        "customer helplessness",
+        "pure privacy essay"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "infer what a repeated external data trail can and cannot reveal",
+      "distinguish partial prediction from omniscient surveillance claims",
+      "choose personalization that uses familiar placement without exposing or manipulating the person",
+      "evaluate whether a commercial use of habit data serves the user's interest or exploits their vulnerability"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one repeated trail you leave outside yourself, such as purchases, logins, routes, or skips. Write what it might reveal, then draw a line between a helpful use and a manipulative one.",
+  "readingTimeMinutes": 12
+}

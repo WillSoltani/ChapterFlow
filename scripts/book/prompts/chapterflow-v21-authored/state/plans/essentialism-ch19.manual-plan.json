@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch19",
+  "number": 19,
+  "title": "Focus: What's Important Now?",
+  "coreMove": "Pause inside pressure, name the one important now, and give that next move undivided attention.",
+  "sourcePressure": "The chapter narrows execution to the present moment by distinguishing multitasking from the fantasy of multifocusing and asking what is important now.",
+  "chapterSpecificMisunderstanding": "A weak run would write broad focus advice about avoiding distractions or single-tasking all day.",
+  "sourceAlignmentTerms": [
+    "focus",
+    "now",
+    "multifocusing",
+    "presence",
+    "pause",
+    "kairos"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic focus: what's important now? topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "deep work frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "deep work",
+      "attention hacks",
+      "abstract mindfulness",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "paramedic triaging a multi-car pileup while radios overlap",
+      "audience": "paramedic inside intense attention pressure",
+      "stakes": "fractured attention can miss the one lifesaving next move",
+      "format": "decision_point",
+      "requiredBeat": "She closes her fist around the red triage tag, says airway now, and mutes the noncritical radio channel.",
+      "firstImage": "A red triage tag sticks inside a paramedic glove.",
+      "mustInclude": [
+        "red triage tag",
+        "paramedic glove",
+        "crackling radio"
+      ],
+      "mustAvoid": [
+        "generic multitasking",
+        "deep work block"
+      ]
+    },
+    {
+      "domain": "trial judge managing a sentencing hearing after a surprise outburst",
+      "audience": "judge whose room pressure splinters focus",
+      "stakes": "the next important now is stabilizing the hearing, not answering every reaction",
+      "format": "scene",
+      "requiredBeat": "Her palm covers the bench calendar while she names the one next action: clear the gallery and return to allocution.",
+      "firstImage": "A bench calendar sits under the judge’s palm.",
+      "mustInclude": [
+        "bench calendar",
+        "gallery note",
+        "allocution page"
+      ],
+      "mustAvoid": [
+        "abstract mindfulness",
+        "generic court drama"
+      ]
+    },
+    {
+      "domain": "wind-farm control room during a grid frequency dip",
+      "audience": "operator facing simultaneous alarms",
+      "stakes": "focus means choosing the present control action",
+      "format": "dialogue",
+      "requiredBeat": "He points to the frequency needle, mutes maintenance chat, and assigns one operator to turbine curtailment.",
+      "firstImage": "A frequency needle trembles beside muted maintenance chat.",
+      "mustInclude": [
+        "frequency needle",
+        "maintenance chat",
+        "curtailment panel"
+      ],
+      "mustAvoid": [
+        "attention hack",
+        "all alarms equal"
+      ]
+    },
+    {
+      "domain": "child welfare caseworker during a family reunification visit",
+      "audience": "caseworker pulled by tablet alerts",
+      "stakes": "present focus protects the live family moment",
+      "format": "reflection",
+      "requiredBeat": "She turns the case tablet face down beside a puzzle piece and asks what this child needs in the next minute.",
+      "firstImage": "A puzzle piece sits beside a face-down case tablet.",
+      "mustInclude": [
+        "puzzle piece",
+        "case tablet",
+        "visit note"
+      ],
+      "mustAvoid": [
+        "generic parenting",
+        "phone detox"
+      ]
+    },
+    {
+      "domain": "commercial diver repairing an intake grate in low visibility",
+      "audience": "diver whose attention can fragment under risk",
+      "stakes": "one present move keeps orientation and safety intact",
+      "format": "vignette",
+      "requiredBeat": "A loose wrench drifts beside the guide rope in cloudy green water while the diver chooses grip rope first.",
+      "firstImage": "A loose wrench floats beside a guide rope in cloudy green water.",
+      "mustInclude": [
+        "loose wrench",
+        "guide rope",
+        "intake grate"
+      ],
+      "mustAvoid": [
+        "adventure heroics",
+        "general calm"
+      ]
+    },
+    {
+      "domain": "museum registrar receiving a damaged loan crate during a gala opening",
+      "audience": "registrar pulled between event pressure and artifact protection",
+      "stakes": "the important now is condition evidence before social response",
+      "format": "postmortem",
+      "requiredBeat": "She places the damage ruler against the crushed crate corner before answering the gala radio call.",
+      "firstImage": "A damage ruler touches a crushed crate corner.",
+      "mustInclude": [
+        "damage ruler",
+        "crate corner",
+        "gala radio"
+      ],
+      "mustAvoid": [
+        "museum overlap as tour",
+        "avoid distractions tip"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the important-now move inside a concrete pressure scenario",
+      "choose the response that pauses, names the live priority, and gives that next move undivided attention",
+      "reject the generic drift: A weak run would write broad focus advice about avoiding distractions or single-tasking all day.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "At the next pressure moment, put one hand on a visible object, say what matters now in five words or fewer, and do that next move first.",
+  "readingTimeMinutes": 12
+}

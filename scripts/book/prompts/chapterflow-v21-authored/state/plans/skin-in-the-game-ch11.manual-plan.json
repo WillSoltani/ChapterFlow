@@ -1,0 +1,184 @@
+{
+  "chapterId": "skin-in-the-game-ch11",
+  "number": 11,
+  "title": "Facta non Verba (Deeds Before Words)",
+  "coreMove": "Audit sincerity by asking what the person actually does when talk would become expensive.",
+  "sourcePressure": "Words become weak evidence when action under cost would reveal conviction more reliably.",
+  "chapterSpecificMisunderstanding": "Reducing the chapter to actions speak louder than words without exposure, sacrifice, or revealed preference.",
+  "sourceAlignmentTerms": [
+    "Facta non Verba",
+    "deeds before words",
+    "revealed preference",
+    "sacrifice",
+    "conviction",
+    "action under consequence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Facta non Verba",
+      "detail": "The Latin title and sidecar support action under risk as the evidentiary test of conviction, competence, and loyalty.",
+      "useIn": "both",
+      "phrasingHint": "The Latin only earns its place if it becomes practical: when words are cheap, the paid action is the evidence."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "company announcing safety values while rushing an untested release",
+      "audience": "product lead auditing deeds under launch pressure",
+      "stakes": "customers bear the defect if values stay verbal",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Chloé blocks release until the safety test appears in the deployment log, not only in the town-hall slide.",
+      "firstImage": "a red failed-test icon on a deployment board",
+      "mustInclude": [
+        "deployment log",
+        "town-hall slide",
+        "safety test"
+      ],
+      "mustAvoid": [
+        "actions speak louder cliché"
+      ]
+    },
+    {
+      "domain": "politician praising transit while never riding the failing route",
+      "audience": "constituent judging commitment through exposure",
+      "stakes": "commuters pay for neglect hidden behind speeches",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Niklas asks the candidate to take the 6:40 bus before the endorsement meeting.",
+      "firstImage": "diesel smell at a winter bus shelter",
+      "mustInclude": [
+        "route schedule",
+        "endorsement form",
+        "arrival log"
+      ],
+      "mustAvoid": [
+        "political dunking"
+      ]
+    },
+    {
+      "domain": "nonprofit leader promising transparency but resisting an open ledger",
+      "audience": "board member testing virtue by the paid action",
+      "stakes": "donors and clients need evidence beyond assurances",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Isabel asks which expenses will be visible tomorrow morning and waits for the ledger link.",
+      "firstImage": "a board packet clipped with a binder ring",
+      "mustInclude": [
+        "expense ledger",
+        "board packet",
+        "public link"
+      ],
+      "mustAvoid": [
+        "generic trust talk"
+      ]
+    },
+    {
+      "domain": "parent telling a teenager to value reading while phone-scrolling every evening",
+      "audience": "family member noticing words have no cost",
+      "stakes": "habit evidence teaches more than parental command",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ryan places his phone in another room and reads at the kitchen table before mentioning books again.",
+      "firstImage": "a paperback open beside a charging cable",
+      "mustInclude": [
+        "phone charger",
+        "paperback",
+        "kitchen timer"
+      ],
+      "mustAvoid": [
+        "self-help parenting"
+      ]
+    },
+    {
+      "domain": "manager claiming team health matters while rewarding weekend emails",
+      "audience": "team lead auditing incentives instead of slogans",
+      "stakes": "workers learn from promotion patterns, not wellness language",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aman rewrites the promotion note that praised weekend availability and names the new evidence standard.",
+      "firstImage": "a promotion packet with highlighted email times",
+      "mustInclude": [
+        "promotion note",
+        "weekend email log",
+        "wellness policy"
+      ],
+      "mustAvoid": [
+        "corporate wellness cliché"
+      ]
+    },
+    {
+      "domain": "friend apologizing repeatedly but never changing a recurring imposition",
+      "audience": "reader judging apology through next-cost behavior",
+      "stakes": "trust depends on the paid correction, not the phrase",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Tomasz watches whether the next pickup happens on time before accepting another apology as evidence.",
+      "firstImage": "car keys on a hallway hook",
+      "mustInclude": [
+        "pickup time",
+        "apology text",
+        "calendar invite"
+      ],
+      "mustAvoid": [
+        "relationship platitude"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify Facta non Verba in a new concrete scenario",
+      "choose the action that performs the chapter move: Audit sincerity by asking what the person actually does when talk would become expensive.",
+      "separate the chapter's mechanism from the weak misread: Reducing the chapter to actions speak louder than words without exposure, sacrifice, or revealed preference.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for Facta non Verba (Deeds Before Words).",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

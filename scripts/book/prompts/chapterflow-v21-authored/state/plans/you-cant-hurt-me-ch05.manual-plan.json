@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch05",
+  "number": 5,
+  "title": "Armored Mind",
+  "coreMove": "Treat a setback as a return drill instead of proof that the armor failed.",
+  "sourcePressure": "The source focuses on repeated injury and setback in the SEAL pipeline, humiliation, insecurity, calloused mind, mental armor, and continued return rather than clean invincibility.",
+  "chapterSpecificMisunderstanding": "The writer must not praise numbness, pain denial, or fake invulnerability.",
+  "sourceAlignmentTerms": ["injury", "setback", "SEAL pipeline", "humiliation", "return", "calloused mind", "mental armor"],
+  "forbiddenFrames": {
+    "hook": ["Armor means nothing can hurt you", "Pain is weakness leaving the body", "Get back up stronger"],
+    "counterintuition": ["Ignore pain", "Never admit weakness", "Setbacks make you invincible"],
+    "tryThisNow": ["Do something uncomfortable", "Push through pain", "Remember a time you won"],
+    "examples": ["athlete plays through injury", "generic comeback montage", "stoic warrior scene"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "concert pianist recovering after a tendon strain",
+      "audience": "a musician humiliated by a cancelled recital",
+      "stakes": "whether injury becomes identity or a disciplined return protocol",
+      "format": "before_after",
+      "requiredBeat": "she sets the recital notice aside, opens the rehab chart, and plays only the prescribed five-note pattern without sneaking into the showpiece",
+      "firstImage": "a recital notice folded beside a metronome with the cover cracked",
+      "mustInclude": ["rehab chart", "five-note pattern", "metronome"],
+      "mustAvoid": ["miracle performance", "pain denial", "generic practice scene"]
+    },
+    {
+      "domain": "apprentice electrician after failing a live-panel simulation",
+      "audience": "a trainee ashamed after freezing in front of the crew",
+      "stakes": "whether public humiliation makes him avoid the exact drill that exposed him",
+      "format": "postmortem",
+      "requiredBeat": "he marks the step where his hand froze, resets the breaker board, and runs that step slowly three times with the assessor present",
+      "firstImage": "a breaker board with one switch tagged in red tape",
+      "mustInclude": ["breaker board", "assessor sheet", "red tape"],
+      "mustAvoid": ["electrocution scare", "foreman insults", "instant competence"]
+    },
+    {
+      "domain": "competitive swimmer after shoulder pain ends a heat",
+      "audience": "a swimmer who wants to quit the season because the pool now feels like shame",
+      "stakes": "whether the first controlled return happens or avoidance wins",
+      "format": "decision_point",
+      "requiredBeat": "he stops before pain spikes, logs the exact lap count, and returns the next morning for kick-only work instead of pretending he is fine",
+      "firstImage": "a lane rope dripping onto a laminated rehab lane sheet",
+      "mustInclude": ["lap count", "kickboard", "rehab lane sheet"],
+      "mustAvoid": ["winning injured", "coach pressure", "generic grit"]
+    },
+    {
+      "domain": "pastry apprentice whose laminated dough fails during a trial week",
+      "audience": "a baker embarrassed by a tray of ruined layers",
+      "stakes": "whether failure becomes a reason to hide from the lamination bench",
+      "format": "dialogue",
+      "requiredBeat": "she cuts the failed croissant open, names the butter break, and rolls one new test block under the chef's quiet count",
+      "firstImage": "a split croissant showing butter pooled in the layers",
+      "mustInclude": ["test block", "butter sheet", "bench scraper"],
+      "mustAvoid": ["food competition drama", "chef tirade", "generic mistake lesson"]
+    },
+    {
+      "domain": "probationary paramedic after a botched radio report",
+      "audience": "a medic whose voice cracked during evaluation",
+      "stakes": "whether embarrassment keeps him from practicing the exact pressure point",
+      "format": "scene",
+      "requiredBeat": "he rewinds the radio recording, writes the missing blood pressure line, and repeats the report into a training handset until the sequence stays intact",
+      "firstImage": "a training handset lying beside a crumpled run sheet",
+      "mustInclude": ["radio recording", "blood pressure line", "run sheet"],
+      "mustAvoid": ["ambulance rescue", "public shaming", "generic communication tip"]
+    },
+    {
+      "domain": "glassblower returning after a cracked commission",
+      "audience": "an artisan whose pride got hit in front of a buyer",
+      "stakes": "whether he protects his ego by avoiding the furnace",
+      "format": "reflection",
+      "requiredBeat": "he places the cracked vase shard on the bench, notes the temperature drop, and reheats a small gather rather than starting with a showpiece",
+      "firstImage": "a green glass shard catching light on a steel bench",
+      "mustInclude": ["temperature log", "small gather", "annealing shelf"],
+      "mustAvoid": ["artistic inspiration", "buyer confrontation", "generic craft perseverance"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish return practice from pain denial", "choose the smallest honest re-entry after setback", "analyze humiliation as exposure of a weak point", "evaluate when toughness becomes fake invulnerability"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one setback you keep treating as a verdict, then design the smallest return drill that touches the exposed point without pretending it does not hurt.",
+  "readingTimeMinutes": 12
+}

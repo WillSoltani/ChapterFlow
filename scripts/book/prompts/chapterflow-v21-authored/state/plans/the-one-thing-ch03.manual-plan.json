@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch03",
+  "number": 3,
+  "title": "Success Leaves Clues",
+  "coreMove": "Study a strong outcome for transferable patterns while refusing to copy its surface costume.",
+  "sourcePressure": "Chapter 3 says successful outcomes leave studyable patterns, while warning against copying every surface detail or treating success as magic.",
+  "chapterSpecificMisunderstanding": "Imitating successful people detail for detail or turning winners into proof of certainty.",
+  "sourceAlignmentTerms": [
+    "success leaves clues",
+    "patterns",
+    "evidence",
+    "transfer",
+    "repeatable",
+    "surface detail"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "Success Leaves Clues as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "youth soccer academy studying a rival club",
+      "audience": "academy director",
+      "stakes": "parents demand copying uniforms and slogans",
+      "format": "dialogue",
+      "requiredBeat": "the director points from the rival's trophy photo to their documented passing drill frequency and rejects the uniform copy",
+      "firstImage": "two club photos taped beside a practice log with pass counts circled",
+      "mustInclude": [
+        "practice log",
+        "trophy photo",
+        "parent email"
+      ],
+      "mustAvoid": [
+        "sports hero worship"
+      ]
+    },
+    {
+      "domain": "restaurant prep line after a competitor wins reviews",
+      "audience": "chef-owner",
+      "stakes": "weekend revenue is sliding",
+      "format": "decision_point",
+      "requiredBeat": "she ignores the competitor's tile color and times their ticket flow from counter to pickup, then changes her own prep stations",
+      "firstImage": "a stopwatch running beside a stack of takeout tickets",
+      "mustInclude": [
+        "stopwatch",
+        "takeout tickets",
+        "prep rail"
+      ],
+      "mustAvoid": [
+        "generic restaurant makeover"
+      ]
+    },
+    {
+      "domain": "rural library reading program",
+      "audience": "branch librarian",
+      "stakes": "grant renewal depends on attendance recovery",
+      "format": "reflection",
+      "requiredBeat": "he reviews the neighboring branch and finds the clue is parent pickup timing, not their superhero theme",
+      "firstImage": "a library sign-up sheet folded around a school dismissal schedule",
+      "mustInclude": [
+        "sign-up sheet",
+        "dismissal schedule",
+        "grant notes"
+      ],
+      "mustAvoid": [
+        "copying a fun theme"
+      ]
+    },
+    {
+      "domain": "manufacturing line copying a safety record",
+      "audience": "plant supervisor",
+      "stakes": "injury rate threatens an insurance audit",
+      "format": "postmortem",
+      "requiredBeat": "she traces the safer plant's near-miss review habit instead of buying the same poster set",
+      "firstImage": "a clipboard of near-miss notes beside unopened safety posters",
+      "mustInclude": [
+        "near-miss clipboard",
+        "poster tube",
+        "audit letter"
+      ],
+      "mustAvoid": [
+        "generic safety compliance"
+      ]
+    },
+    {
+      "domain": "podcast network analyzing breakout episodes",
+      "audience": "show producer",
+      "stakes": "sponsors may cancel after flat downloads",
+      "format": "predict_reveal",
+      "requiredBeat": "the producer predicts guests drive growth, then finds episode retention jumps instead at one recurring story segment",
+      "firstImage": "retention graph printed with one segment shaded in pencil",
+      "mustInclude": [
+        "retention graph",
+        "episode transcript",
+        "sponsor memo"
+      ],
+      "mustAvoid": [
+        "media celebrity copying"
+      ]
+    },
+    {
+      "domain": "tailoring shop learning from a master fitter",
+      "audience": "apprentice tailor",
+      "stakes": "a wedding suit must be corrected by Friday",
+      "format": "scene",
+      "requiredBeat": "the apprentice stops copying the master's patter and marks how she checks shoulder slope before sleeve length",
+      "firstImage": "chalk dust on navy wool under a brass measuring gauge",
+      "mustInclude": [
+        "tailor chalk",
+        "measuring gauge",
+        "wedding jacket"
+      ],
+      "mustAvoid": [
+        "generic mentor admiration"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish mechanism from costume",
+      "ask what successful chains share",
+      "test whether a clue transfers to your setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one result you admire and list one mechanism behind it, not the person's schedule, brand, or personality.",
+  "readingTimeMinutes": 12
+}

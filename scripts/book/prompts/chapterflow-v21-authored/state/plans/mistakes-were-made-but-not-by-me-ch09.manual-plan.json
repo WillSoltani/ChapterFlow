@@ -1,0 +1,200 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+  "number": 9,
+  "title": "Letting Go and Owning Up",
+  "coreMove": "Make dignity mean surviving an unflattering truth and acting under it, rather than staying exonerated.",
+  "sourcePressure": "The final chapter closes the arc with apology, repair, and conditions for real ownership; the source contrasts image-saving regret language with clear responsibility and treats letting go as neither forgetting nor excusing.",
+  "chapterSpecificMisunderstanding": "Turning owning up into a nicer apology script or turning letting go into pressure on the harmed person to forget.",
+  "sourceAlignmentTerms": [
+    "owning up",
+    "letting go",
+    "non-apology",
+    "clear verbs",
+    "accepted consequence",
+    "repair",
+    "dignity",
+    "accountability"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Vermont Public non-apology context",
+      "detail": "the source basis supports the contrast between image-saving regret language and accepted responsibility",
+      "useIn": "deepRead",
+      "phrasingHint": "Regret language can smooth the room while still keeping the responsible person insulated from the verb that matters."
+    },
+    {
+      "kind": "artifact",
+      "name": "clear ownership sentence",
+      "detail": "the source supports clear responsibility, consequence, and repair as the final alternative to self-justifying grammar",
+      "useIn": "both",
+      "phrasingHint": "The sentence has to survive clear verbs: I chose, I ignored, I defended, I delayed, I will repair."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a tearful public apology.",
+      "Avoid redemption-arc sentimentality."
+    ],
+    "counterintuition": [
+      "Do not promise forgiveness as the reward for ownership.",
+      "Avoid \"letting go means moving on\"."
+    ],
+    "tryThisNow": [
+      "No generic write-an-apology prompt.",
+      "No blanket forgiveness exercise."
+    ],
+    "examples": [
+      "No dramatic courtroom apology.",
+      "No deathbed reconciliation."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "a restaurant manager responding after a kitchen missed an allergy note",
+      "audience": "service leaders who need to own harm without hiding behind rush conditions",
+      "stakes": "a guest's trust and the restaurant's safety system depend on clear responsibility and repair",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anna removes \"the ticket was misread\" from the draft and writes the exact handoff failure plus the comped meal, staff retraining, and follow-up call",
+      "firstImage": "a red allergy flag clipped to a grease-spotted order ticket",
+      "mustInclude": [
+        "allergy flag",
+        "handoff failure",
+        "follow-up call"
+      ],
+      "mustAvoid": [
+        "lawsuit fear",
+        "hospitalization drama"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "a nonprofit director correcting a donor report that overstated program reach",
+      "audience": "leaders whose image depends on impact claims",
+      "stakes": "funders may trust the correction only if consequence replaces polished regret",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Henrik chooses to send the corrected number, the cause of the overstatement, and the budget consequence in one email instead of a soft regret note",
+      "firstImage": "a stack of donor postcards beside a revised participant-count spreadsheet",
+      "mustInclude": [
+        "corrected number",
+        "budget consequence",
+        "donor email"
+      ],
+      "mustAvoid": [
+        "fundraising strategy",
+        "grant compliance lecture"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "a teenager telling a neighbor she dented a borrowed car",
+      "audience": "readers practicing ownership where shame is small but sharp",
+      "stakes": "a relationship either absorbs truth early or becomes a longer cover story",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Manon keeps the verb \"I backed into\" in the first sentence and offers the repair plan before explaining panic",
+      "firstImage": "a chipped taillight shard in a paper napkin",
+      "mustInclude": [
+        "borrowed car",
+        "first sentence",
+        "repair plan"
+      ],
+      "mustAvoid": [
+        "coming-of-age moralizing",
+        "parent punishment scene"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "an airline operations lead apologizing for a preventable passenger rebooking failure",
+      "audience": "frontline managers whose systems cause harm they did not personally intend",
+      "stakes": "passengers hear either weather-like regret or specific ownership of preventable delay",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Ryan three drafts to move from \"we regret the disruption\" to the crew-scheduling choice that stranded the passengers and the concrete remedy",
+      "firstImage": "a torn boarding pass stuck to the bottom of a gate podium drawer",
+      "mustInclude": [
+        "crew-scheduling choice",
+        "rebooking failure",
+        "concrete remedy"
+      ],
+      "mustAvoid": [
+        "travel rant",
+        "corporate apology parody"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "a software security lead disclosing a delayed patch to customers",
+      "audience": "technical leaders whose competence feels threatened by disclosure",
+      "stakes": "users need the truth early enough to protect themselves",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Pablo writes the timeline of discovery, delay, and customer risk before writing any sentence about commitment to security",
+      "firstImage": "a server certificate warning printed on thermal receipt paper",
+      "mustInclude": [
+        "discovery timeline",
+        "patch delay",
+        "customer risk"
+      ],
+      "mustAvoid": [
+        "hacker chase",
+        "security marketing copy"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "siblings repairing a caregiving breach after one person carried hospital paperwork alone",
+      "audience": "families distinguishing letting go from pretending no harm happened",
+      "stakes": "future care depends on preserving the truth of the wound without keeping prosecution as the family structure",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Lin say what she left to her brother, what it cost him, and what she will take over next Tuesday, without asking him to say it is fine",
+      "firstImage": "a hospital parking token resting on a folded discharge packet",
+      "mustInclude": [
+        "discharge packet",
+        "next Tuesday task",
+        "no demand for forgiveness"
+      ],
+      "mustAvoid": [
+        "sentimental sibling reconciliation",
+        "vague healing language"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish regret language from ownership language",
+      "evaluate apology by accepted consequence rather than emotional tone",
+      "separate letting go from forgetting or excusing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one ownership sentence using a clear verb: I chose, ignored, delayed, defended, or avoided. Add one consequence you accept and one repair action you will take.",
+  "readingTimeMinutes": 12
+}

@@ -192,6 +192,20 @@ export type VoiceCharter = {
   cadence: "short" | "medium" | "long";
   signatureMoves: string[];       // e.g., "open with a concrete scene", "use the reader's own situations"
   avoidMoves: string[];           // e.g., "no meta-reference to 'the chapter'", "no 'boundary condition'"
+  readabilityDefaults?: ReadabilityDefaults; // optional for backwards-compat with existing charters
+};
+
+/** Per-book readability floor — see editor-in-chief.system.md for guidance.
+ *  Defaults are applied when a charter omits the field. */
+export type ReadabilityDefaults = {
+  maxAvgSentenceLengthFast: number;             // default 14
+  maxAvgSentenceLengthDeep: number;             // default 16
+  maxAvgSentenceLengthFull: number;             // default 18
+  maxSubordinateClausesPerSentenceFast: number; // default 1
+  maxSubordinateClausesPerSentenceDeepFull: number; // default 2
+  maxSentenceLengthAnyTier: number;             // default 30
+  satisfactionTestsRequired: number;            // default 3 (of 5)
+  plainWordSubstitutionRequired: boolean;       // default true
 };
 
 /** Curriculum planner output — one per chapter. Allows per-chapter variation
@@ -236,6 +250,7 @@ export type CriticCheckId =
   | "narrative.decision_point"
   | "narrative.example_templating"
   | "narrative.title_templating"
+  | "narrative.alphabet_cycling_names"
   | "register.no_meta_reference"
   | "register.no_chapter_number_literal"
   | "register.no_banned_phrase"
@@ -244,7 +259,38 @@ export type CriticCheckId =
   | "pedagogy.example_exercises_core_move"
   | "schema.enum_validity"
   | "schema.answer_position_balance"
-  | "schema.bloom_vocabulary";
+  | "schema.bloom_vocabulary"
+  | "integrity.capitalization"
+  | "integrity.sentence_sanity"
+  | "integrity.length_cap"
+  | "integrity.example_title_verb_shell"
+  | "C11.identical_backs"
+  | "C11.mostly_identical_backs"
+  | "C12.quiz_template_prompt"
+  | "C13.title_keyword_injection"
+  | "C14.trailing_fragment"
+  | "C15.role_domain_mismatch"
+  | "A15.stub_deepRead"
+  | "A15.stub_fastRead"
+  | "A15.stub_fullRead"
+  | "A16.quiz_count_floor"
+  | "A16.cards_count_floor"
+  | "A16.examples_count_floor"
+  | "C16.broken_example_template"
+  | "C17.required_beat_verbatim"
+  | "BP14.quiz_position_template"
+  // Quiz-quality critic (audited from 86 shipped v21 books).
+  | "BP15.quiz_strawman_distractor"
+  | "BP16.quiz_answer_length_blocker"
+  | "BP16.quiz_answer_length_major"
+  | "BP17.quiz_opener_monotony"
+  | "BP18.quiz_label_shape_correct"
+  | "BP19.quiz_banned_tail_phrase"
+  | "BP20.quiz_ngram_template_repeat"
+  | "BP21.quiz_cross_chapter_duplicate"
+  | "schema.quiz_duplicate_choice"
+  | "schema.quiz_lowercase_choice_start"
+  | "schema.quiz_unexpected_field";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 
@@ -395,6 +441,7 @@ export type ReviewCardV21 = {
 };
 
 export type ImplementationPlanV21 = {
+  title: string;                        // 4–7 words naming the specific skill this plan teaches
   coreSkill: string;                    // 2–4 sentences
   ifThenPlans: Array<{
     context: string;                    // free-form; planner chooses relevant contexts for this book
@@ -402,4 +449,19 @@ export type ImplementationPlanV21 = {
   }>;
   twentyFourHourChallenge: string;
   weeklyPractice: string;
+};
+
+// ── Per-book prior-chapter shape awareness ──────────────────────────────────
+//
+// generateBook passes these to each writer call so the writer can avoid
+// over-using a single hook first word or counter shape across the book.
+// Without this, the pipeline generates each chapter in isolation and the
+// model converges on a single template (60-100% of chapters per book share
+// a literal first-word pattern was the dominant defect class in the audit
+// batch). The writer enforces caps internally; B13/B14 audits enforce them
+// at book-gate time as a backstop.
+
+export type PriorChapterShapes = {
+  priorHookFirstWords: string[];      // one per prior chapter in book order
+  priorCounterShapes: string[];       // one per prior chapter in book order
 };

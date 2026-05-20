@@ -1,0 +1,325 @@
+{
+  "chapterId": "what-every-body-is-saying-ch08",
+  "number": 8,
+  "title": "The Mind's Canvas",
+  "readingTimeMinutes": 12,
+  "hook": "The parent smiled through the booth glass, then reread the test card again.",
+  "counterintuition": "The mistake is treating the face as the secret screen. The better move is to read facial timing, strain, and mismatch only with the hands, torso, object, and task around it.",
+  "tryThisNow": "Watch one polite expression today. Write what happened just before it, whether it arrived on time or late, and what the hands or body did with it.",
+  "keyTakeaway": "Facial cues become useful when their timing, strain, or mismatch connects to the rest of the body and points to a clearer next question.",
+  "breakdown": {
+    "fastRead": "A child-sized headset hangs inside a quiet test booth. The parent smiles at the child through the booth glass. The smile arrives late, the eyelids stay tight, and one hand rereads the test card.\n\nThe face is managed evidence. People smile to reassure a child, stay polite, buy time, soften worry, or keep a room moving. A smile alone is too small for a verdict.\n\nPut timing first. What came before the expression? What joined it? What did the hands, torso, or object do at the same moment?",
+    "deepRead": "A laminated allergy card lies beside a small dish of sauce at a chef's counter. The guest smiles and says any sauce is fine. When sesame is named, the lips press flat, the gaze drops to the allergy card, and the shoulders stay still. The server should not ask, \"Are you scared?\" He should ask the chef to confirm the ingredients aloud.\n\nFaces carry social work. A smile can cover concern, show politeness, signal comfort, or simply keep the exchange smooth. Eyelids can tighten with strain. Lips can press when a person holds back speech. A jaw can set around a hard point. Gaze can help a person track information or avoid making the moment heavier.\n\nA marbled endpaper opens beside a folded repair receipt at an antique book fair. The seller keeps a polite smile while the dealer studies a restored first edition. When hinge repair is mentioned, her eyebrows lift before the smile returns, her jaw sets, and the receipt folder stays closed. The dealer writes, verify repair invoice. He does not write, seller is hiding something.\n\nUse the face to locate the question, not to finish the story. Timing gives the cue weight. A late smile after a confusing instruction, a lip press after an allergen, or a jaw set when a repair is named can mark where the next clean question belongs.",
+    "fullRead": "A ramp slope diagram fills a portable projector screen. Two board members nod politely while the architect explains the redesign. One jaw tightens as the slope diagram appears. The nod stops exactly when the landing-width label is named. The architect could defend the drawing. Instead he asks, \"What concern should I hear before I keep going?\"\n\nThat question works because the face is not being asked to carry the whole meaning. The jaw tension alone does not prove rejection. The stopped nod alone does not prove disagreement. The timing around the landing-width label, joined with the polite nod and the still room, gives the architect a better place to pause.\n\nA face is often the most practiced part of the body. People learn to smile for a camera, hold eye contact during a hard answer, nod through a meeting, and soften a reaction for someone else's comfort. That does not make the face useless. It makes the face contextual. The useful read is not, \"That smile is fake.\" The useful read is, \"That smile arrived late and did not travel with the rest of the body.\"\n\nA posted inspection notice is taped beside trays of cooling rolls. Before the camera rolls, the bakery owner's smile drops whenever the inspection grade is named, and her eyelids narrow toward the notice. The producer does not train a brighter smile. He rehearses the first sentence. After that, the smile arrives with her torso turning back toward the ovens.\n\nThe counter-objection is fair: sometimes a face changes because of light, fatigue, contact lenses, hearing strain, camera pressure, cultural rules, or the effort to be kind. Steady eye contact can be habit, training, respect, or a way to hold attention. Avoided gaze can be thought, shame, memory, or reading a document. The face gains force when it changes with a topic and lines up with other channels.\n\nA yellow incident form sits beside a labeled waste container after a lab spill report. In the timeline review, the graduate assistant keeps steady eye contact. At the waste-container step, his lips thin and jaw locks while his hands flatten the incident form. The lab manager marks that step for verification.\n\nRead the face in sequence before you read it as meaning. Start with timing. Add the body. Add the object. Add the task. Then choose a next move that leaves room: explain the test step, confirm ingredients, verify the invoice, ask for the concern, rehearse the first sentence, or check the timeline."
+  },
+  "examples": [
+    {
+      "exampleId": "ch08-ex01-hessa-hearing-booth",
+      "title": "Hessa catches the late booth smile",
+      "tags": [
+        "smile",
+        "timing",
+        "health"
+      ],
+      "planSpec": {
+        "domain": "pediatric hearing-test booth with a parent watching through glass",
+        "audience": "an audiologist deciding whether a parent understands the next test step",
+        "stakes": "a parent's managed smile can hide confusion that affects consent and cooperation",
+        "format": "scene",
+        "requiredBeat": "The parent smiles at the child through the booth glass, but the smile arrives late, the eyelids stay tight, and one hand keeps rereading the test card, so the audiologist pauses to explain the next tone series."
+      },
+      "scenario": "A child-sized headset hangs inside a quiet test booth at 9:35 a.m. Hessa, the audiologist, watches the parent smile at the child through the booth glass. The smile arrives late, the eyelids stay tight, and one hand keeps rereading the test card. Hessa must decide whether to start the next tone series or pause before consent gets thin.",
+      "whatToDo": "Pause and explain the next tone series with the test card visible. Treat the late smile, tight eyelids, and rereading hand as possible confusion, not a face-only diagnosis.",
+      "whyItMatters": "The smile is joined by timing and object use. The parent's hand keeps returning to the card, so the next useful move is clearer instruction before the test continues."
+    },
+    {
+      "exampleId": "ch08-ex02-pavel-repair-receipt",
+      "title": "Pavel writes verify repair invoice",
+      "tags": [
+        "jaw",
+        "verification",
+        "books"
+      ],
+      "planSpec": {
+        "domain": "antique book fair dealer evaluating a restored first edition",
+        "audience": "a dealer weighing a seller's reaction without accusing anyone",
+        "stakes": "a valuable sale needs verification of restoration history, not a facial verdict",
+        "format": "predict_reveal",
+        "requiredBeat": "When the hinge repair is mentioned, the seller's eyebrows lift before the polite smile, her jaw sets while the receipt folder stays closed, and the dealer writes verify repair invoice instead of deciding she is hiding something."
+      },
+      "scenario": "A marbled endpaper opens beside a folded repair receipt at the West Hall antique book fair at 1:20 p.m. Pavel, a dealer evaluating a restored first edition, mentions the hinge repair. The seller's eyebrows lift before the polite smile, her jaw sets while the receipt folder stays closed, and Pavel must decide whether to treat that as suspicion or write a bounded note.",
+      "whatToDo": "Write verify repair invoice and ask for the paperwork. Do not decide she is hiding something from an eyebrow lift, a set jaw, and a closed folder.",
+      "whyItMatters": "The facial timing points to the repair history, and the closed folder gives a concrete verification target. Accusation would outrun the evidence."
+    },
+    {
+      "exampleId": "ch08-ex03-soraya-allergy-card",
+      "title": "Soraya checks sesame aloud",
+      "tags": [
+        "lips",
+        "allergy",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "restaurant allergy conversation at a chef's counter",
+        "audience": "a server watching whether a guest's smile is social cover for concern",
+        "stakes": "a missed concern could create a safety risk, while an accusation would embarrass the guest",
+        "format": "dialogue",
+        "requiredBeat": "The guest smiles and says any sauce is fine, but the lips press flat after sesame is named, gaze drops to the allergy card, and the shoulders stay still, so the server asks the chef to confirm ingredients aloud."
+      },
+      "scenario": "A laminated allergy card lies beside a small sesame dish at the chef's counter at 7:05 p.m. \"Any sauce is fine,\" the guest tells Soraya with a smile. \"This one has sesame,\" the chef says. The guest's lips press flat, his gaze drops to the allergy card, and his shoulders stay still. Soraya must decide whether to accept the smile or slow the handoff.",
+      "whatToDo": "Ask the chef to confirm the ingredients aloud before serving. Keep the read at possible concern around sesame, not dishonesty or fear.",
+      "whyItMatters": "The lip press, gaze drop, and still shoulders arrive together after sesame is named. That cluster points to a safety check without embarrassing the guest."
+    },
+    {
+      "exampleId": "ch08-ex04-imre-ramp-diagram",
+      "title": "Imre asks before defending the ramp",
+      "tags": [
+        "jaw tension",
+        "design",
+        "mismatch"
+      ],
+      "planSpec": {
+        "domain": "architect presenting a ramp redesign to a disability advisory board",
+        "audience": "an architect noticing strain before the board formalizes objections",
+        "stakes": "the design can improve if the architect reads mismatch as invitation to ask, not as rejection",
+        "format": "decision_point",
+        "requiredBeat": "Two board members nod politely, but one jaw tightens as the slope diagram appears and the nod stops exactly when the landing width is named; the architect asks for the concern before defending the drawing."
+      },
+      "scenario": "A ramp slope diagram fills a portable projector screen in the civic annex at 3:00 p.m. Imre, the architect, clicks to the landing-width label with the projector remote. Two board members nod politely, but one jaw tightens as the slope diagram appears and the nod stops exactly when the landing width is named. Imre must decide whether to defend the drawing.",
+      "whatToDo": "Ask for the concern before defending the design. Tie the question to the landing-width label instead of treating the polite nod as agreement or the jaw as rejection.",
+      "whyItMatters": "The facial strain has timing and a design object attached to it. Asking there turns mismatch into usable feedback before the meeting hardens."
+    },
+    {
+      "exampleId": "ch08-ex05-liora-bakery-camera",
+      "title": "Liora rehearses the first sentence",
+      "tags": [
+        "broadcast",
+        "smile",
+        "whole body"
+      ],
+      "planSpec": {
+        "domain": "family-owned bakery filming a local news segment after a health inspection",
+        "audience": "a producer helping a nervous owner speak plainly on camera",
+        "stakes": "the owner needs to communicate without letting a managed broadcast smile erase visible strain",
+        "format": "before_after",
+        "requiredBeat": "Before the camera rolls, the owner's smile drops whenever the inspection grade is named and her eyelids narrow toward the posted notice; after the producer rehearses the first sentence, the smile arrives with her torso turning back toward the ovens."
+      },
+      "scenario": "A posted inspection notice is taped beside trays of cooling rolls at the bakery at 6:40 a.m. Before the camera tally light turns red, Liora sees the owner's smile drop whenever the inspection grade is named and her eyelids narrow toward the notice. After Liora rehearses the first sentence, the smile arrives with the owner's torso turning back toward the ovens.",
+      "whatToDo": "Rehearse the first sentence instead of coaching a brighter smile. Let the owner connect the inspection line to the ovens before the camera rolls.",
+      "whyItMatters": "The smile improves only when the body turns back toward the work. That whole-body shift is more useful than polishing the face in isolation."
+    },
+    {
+      "exampleId": "ch08-ex06-kaspar-waste-step",
+      "title": "Kaspar marks the waste-container step",
+      "tags": [
+        "gaze",
+        "verification",
+        "lab"
+      ],
+      "planSpec": {
+        "domain": "university lab safety review after a chemical spill report",
+        "audience": "a lab manager listening to a graduate assistant describe what happened",
+        "stakes": "the report needs better reconstruction, but facial tension cannot become an accusation",
+        "format": "postmortem",
+        "requiredBeat": "In the timeline review, the assistant keeps steady eye contact, but his lips thin and jaw locks only at the waste-container step while his hands flatten the incident form, so the manager marks that step for verification."
+      },
+      "scenario": "A yellow incident form sits beside a labeled waste container in the university lab office at 4:15 p.m. Kaspar, the lab manager, reviews the spill timeline while the graduate assistant keeps steady eye contact. His lips thin and jaw locks only at the waste-container step while his hands flatten the incident form. Kaspar must decide what to verify before closing the report.",
+      "whatToDo": "Mark the waste-container step for verification and reconstruct that part of the timeline. Do not treat steady eye contact as honesty or facial tension as guilt.",
+      "whyItMatters": "The tension appears at one timeline step and joins the flattened form. That makes the waste step a verification target, not a deception verdict."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch08-q01",
+        "prompt": "At a school registration desk, a parent smiles after hearing the bus policy, but the smile arrives late and her hand stays on the route map. What should the clerk do?",
+        "choices": [
+          "Explain the bus route once more and ask which stop is unclear.",
+          "Assume the smile is fake and the parent is upset.",
+          "Move on because a smile shows she accepted the policy."
+        ],
+        "correctIndex": 0,
+        "explanation": "The late smile and hand on the route map point to a specific information gap. A route question fits the cue, while fake-smile and acceptance claims overread the face.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q02",
+        "prompt": "A contractor keeps steady eye contact while reviewing a delivery delay. His jaw tightens only when the crane permit date appears on the screen. What is the strongest read?",
+        "choices": [
+          "The eye contact proves he is being honest.",
+          "The permit date is the place to verify timing.",
+          "The jaw tension proves he caused the delay."
+        ],
+        "correctIndex": 1,
+        "explanation": "The jaw change is tied to the permit date, so verification belongs there. Eye contact does not prove honesty, and causation is a story beyond the cue.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q03",
+        "prompt": "At a parent-teacher meeting, a student nods while her lips press flat after the word retake. Her feet turn toward her backpack. What should the teacher do next?",
+        "choices": [
+          "Tell her not to be nervous.",
+          "Assume she does not want to improve.",
+          "Ask what part of the retake plan needs changing."
+        ],
+        "correctIndex": 2,
+        "explanation": "The lip press and foot turn appear with the retake topic. Asking about the plan uses face and body timing; nervousness and motivation labels are too broad.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q04",
+        "prompt": "A donor at a charity table smiles warmly through the mission summary, then the smile drops when recurring billing appears on the tablet. His thumb hovers above the amount field. What is the best move?",
+        "choices": [
+          "Offer one-time and monthly options before asking for an amount.",
+          "Point out that his expression changed.",
+          "Assume he never meant to donate."
+        ],
+        "correctIndex": 0,
+        "explanation": "The face changes at the billing format, and the thumb stops at the amount field. Options address that pressure point without exposing him or judging intent.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q05",
+        "prompt": "During a recipe demo, the host's eyelids tighten when the guest mentions peanuts, and the guest glances at the ingredient bowl. What should the producer do?",
+        "choices": [
+          "Assume the host dislikes the guest.",
+          "Pause and confirm the ingredient list before filming the next step.",
+          "Ignore it because no one stopped smiling."
+        ],
+        "correctIndex": 1,
+        "explanation": "Eyelid tension plus the glance toward the bowl gives a safety check target. Dislike and smiling are not the right claims when an ingredient may matter.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch08-q06",
+        "prompt": "A museum donor smiles for a photo, but her jaw sets when the plaque spelling is read aloud and her hand taps the printed program. What should the curator do?",
+        "choices": [
+          "Decide she is angry about the whole event.",
+          "Ask her to smile again for a better photo.",
+          "Check the plaque spelling against the program before continuing."
+        ],
+        "correctIndex": 2,
+        "explanation": "The jaw set and tapping hand attach to spelling, so the useful action is verification. Anger about the event and photo coaching both miss the concrete trigger.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q07",
+        "prompt": "A patient smiles at the receptionist while receiving a form, then rereads the insurance line with tight eyelids and still shoulders. What should happen?",
+        "choices": [
+          "Explain the insurance line and ask if any term needs clarification.",
+          "Treat the smile as proof the form is understood.",
+          "Tell the patient there is no reason to worry."
+        ],
+        "correctIndex": 0,
+        "explanation": "The smile is less useful than the later tight-eyed rereading of one line. Clarifying the insurance wording fits the timing without assigning worry.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch08-q08",
+        "prompt": "At a design review, a client nods until the maintenance schedule is shown. The nod stops, lips press, and his notebook closes halfway. What should the designer infer?",
+        "choices": [
+          "The client rejects the whole proposal.",
+          "The maintenance schedule deserves a clarifying question.",
+          "The earlier nodding was dishonest."
+        ],
+        "correctIndex": 1,
+        "explanation": "The nod, lips, and notebook shift with the maintenance schedule. That points to a focused question, not a whole-project rejection or a claim about dishonest nodding.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q09",
+        "prompt": "A witness in a safety review avoids eye contact while reading dates from a log, then looks up steadily when explaining the repair sequence. What is the safest read?",
+        "choices": [
+          "Avoided eye contact proves the dates are false.",
+          "Steady eye contact proves the repair sequence is true.",
+          "Gaze changed with reading versus explaining, so verify the log dates directly."
+        ],
+        "correctIndex": 2,
+        "explanation": "The gaze shift fits two different tasks: reading and explaining. The next move is to verify the dates, not turn eye contact into proof either way.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch08-card01",
+      "front": "A smile arrives late after a confusing instruction. What should you check before interpreting it?",
+      "back": "Check what happened before the smile and what the hands, torso, or object did with it. Late timing often points to a question, not a hidden feeling.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch08-card02",
+      "front": "A jaw tightens exactly when one label appears on a diagram. What is the next move?",
+      "back": "Ask about that label before defending or assuming agreement. The timing gives you a place to clarify, but the face alone does not prove rejection.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch08-card03",
+      "front": "Someone keeps steady eye contact during a timeline review. What should you avoid claiming?",
+      "back": "Avoid treating eye contact as proof of honesty. Gaze needs task context, topic timing, and other body cues before it earns much weight.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch08-card04",
+      "front": "A lip press appears after an allergen is named. What should the response be?",
+      "back": "Confirm ingredients or repeat the safety step aloud. The facial cue matters because it arrived with a concrete risk and other cues, not because lips have a fixed meaning.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch08-card05",
+      "front": "A practiced smile does not move with the rest of the body. What does that let you do?",
+      "back": "It lets you slow down and ask a cleaner question. The mismatch is useful as timing information, not as a verdict about sincerity.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Read facial cues as managed displays that need timing and whole-body context. Notice smiles, lips, eyelids, jaw tension, and gaze, then tie the cue to the object, task, or topic that changed it.",
+    "ifThenPlans": [
+      {
+        "context": "Instructions or consent",
+        "plan": "If a smile arrives late while the person rereads a card or form, then explain the next step again before moving on."
+      },
+      {
+        "context": "Safety or allergy checks",
+        "plan": "If lips press or eyelids tighten after a hazard is named, then confirm the relevant detail aloud without naming fear."
+      },
+      {
+        "context": "Design or proposal reviews",
+        "plan": "If a polite nod stops when one diagram label appears, then ask for the concern at that label before defending the work."
+      },
+      {
+        "context": "Timeline or incident review",
+        "plan": "If jaw tension or a lip press appears at one step while hands fix on the form, then mark that step for verification."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, record one polite facial expression. Write what came just before it, whether it was early, on time, or late, and what the hands or torso did at the same moment.",
+    "weeklyPractice": "For one week, collect one face cue per day using this format: face cue, timing, body/object cue, restrained next question. Do not use honesty, fake, or deception labels."
+  },
+  "memorableLines": [
+    {
+      "text": "The face is managed evidence.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a short frame for using facial cues without overclaiming."
+    },
+    {
+      "text": "Use the face to locate the question, not to finish the story.",
+      "location": "breakdown.deepRead",
+      "why": "It turns facial observation into a bounded next move."
+    },
+    {
+      "text": "Read the face in sequence before you read it as meaning.",
+      "location": "breakdown.fullRead",
+      "why": "It makes timing and context the chapter's practical rule."
+    }
+  ]
+}

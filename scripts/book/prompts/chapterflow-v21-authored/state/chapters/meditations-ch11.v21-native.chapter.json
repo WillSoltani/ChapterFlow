@@ -1,0 +1,329 @@
+{
+  "chapterId": "meditations-ch11",
+  "number": 11,
+  "title": "Book XI",
+  "hook": "The triage printer jams while a furious hand hits the counter, and Fiona still has one useful act to finish.",
+  "counterintuition": "Anger is not proof that you care about justice, but a force that can cut you from the people and task justice still needs.",
+  "keyTakeaway": "Do the next social act cleanly: correct what you can, keep benevolence intact, and refuse the anger that severs you from the whole.",
+  "breakdown": {
+    "fastRead": "The triage printer jams, a family member shouts, and Fiona can feel the room pulling her toward a matching voice. The useful act is smaller and harder: name the wait, check the chart, give the next true update, and stay connected enough to keep serving the room.\n\nAnger often disguises itself as moral energy. The test is whether it helps you complete the general-interest act. If it makes you louder, crueler, or eager to win, it has cut the branch from the tree. A corrected person should still be treated as kin. Mildness is not surrender when it keeps the work whole.",
+    "deepRead": "Luca reads the code review twice. The comment is rude, the null fixture is real, and his first answer would be a clean little revenge. He can spend ten minutes defending his competence, or he can patch the case and leave one plain note: the bug was valid, the tone was not.\n\nThat is the split this lesson keeps asking you to notice. The act may need firmness. It may need correction, a boundary, a refusal, or a consequence. What it does not need is the inward break where another person stops being part of the same human whole and becomes only an enemy to defeat.\n\nAnger cuts the branch before the saw arrives.\n\nDiogenes appears where plain speech is meant to cure pride, not entertain it. Old comedy could strip pretension because it served a corrective purpose; it did not merely give resentment a clever costume. That distinction matters when you are tempted to say the savage thing because it is true. A truth used to humiliate has already begun serving vanity. A truth used to repair can stay simple.\n\nPhocion marks the difference between calm strength and calm performance. If the face is mild but the inner speech is counting points, the calm is only another tactic. Genuine benevolence can say no, correct the error, report the harm, or end the conversation. It does those things without needing the other person to be shamed first.\n\nSocrates keeps reappearing as a model for not letting other people's noise own the soul. Public opinion, domestic embarrassment, and insult are all tested by the same question: will you let this person determine the quality of your own act? If not, finish the act. Do it for the common interest, not for applause from your anger.",
+    "fullRead": "Margaux stands under a leaning maple while orange tape snaps against the fence. One neighbor wants the whole branch gone. The other wants a public apology before anyone touches the saw. Margaux opens the property survey, marks the line, and puts the arborist note beside it. First the diseased limb. Then the hurt pride.\n\nThe rational soul is not complete because nothing interrupts it. It is complete because it can make each interrupted act whole. A dance can be spoiled if the music stops. A just response can still be finished in one sentence, one signature, one chart check, one refusal to hate.\n\nWhat makes anger so persuasive is that it often begins near something real. The family member in the waiting room is frightened. The reviewer was insulting. The neighbor is careless. The volunteer is vain. The sibling knows exactly which old sentence will sting. You do not have to pretend harm is harmless. You have to keep the harm from recruiting you into a second harm.\n\nSophocles is useful only if the stage trains you not to rage at the larger stage outside it. Tragedy shows people caught in forces larger than preference, and that lesson is wasted if you leave the theater ready to curse every hard event in your own life. The point is not theatrical sorrow. The point is scale.\n\nThe branch and tree image is severe because it names anger as self-injury. Someone else can obstruct you, insult you, or act foolishly. Hatred is the motion by which you cut yourself away from the social body. You may be right about the offense and still wrong about the severing.\n\nYou can test this in the next hard conversation. Can you name the fact without adding contempt? Can you correct the mistake without performing wounded superiority? Can you remember your own errors before deciding that another person's error makes them alien? These questions do not make you soft. They keep your strength pointed at the work.\n\nMina sees the vanity in the charity kitchen. A volunteer keeps drifting toward the camera, overfilling plates when donors pass, and ignoring the quiet prep table. Resentment would be easy and almost pleasant. Mina hands him the serving ladle, points to the meal tickets, and gives him a visible task that also moves the line.\n\nThat is not approval. It is social intelligence. If the vain helper is still helping, she can use the help while guarding the work from vanity's damage. If he endangers the line, she corrects him. Either way, her act stays joined to the whole.\n\nRobert feels the old insult land at the kitchen table. The estate folder is open, the photocopied will is between them, and one sibling has reached back twenty years for a sentence that still knows its way under his ribs. He leaves the insult unanswered and asks which bill must be paid before Friday.\n\nThere is no victory in becoming the exact shape of the interruption. The useful act is waiting, and anger is asking to wear your hands."
+  },
+  "examples": [
+    {
+      "exampleId": "ch11-ex01-fiona-triage",
+      "title": "Fiona Keeps Triage",
+      "tags": [
+        "scene",
+        "emergency",
+        "anger"
+      ],
+      "planSpec": {
+        "domain": "emergency department triage",
+        "audience": "Fiona facing a furious family member",
+        "stakes": "anger could sever her from the next correct triage act",
+        "format": "scene",
+        "requiredBeat": "Fiona names the wait, checks the chart, and gives the next update without matching the shout."
+      },
+      "scenario": "The triage printer jams while a man pounds the counter beside a strip of waiting-room wristbands. Fiona must decide whether to answer the shout or finish the next care act. She names the delay, checks the chart screen, and gives the family the next honest update in the same low voice. The medication cart is blocking the corridor, so the next clear update matters more than winning the counter.",
+      "whatToDo": "Name the delay, check the chart, and give the next accurate update without matching the shout.",
+      "whyItMatters": "The social act is not passive. Fiona still gives information, but she refuses to let another person's volume choose her manner."
+    },
+    {
+      "exampleId": "ch11-ex02-luca-review",
+      "title": "Luca Patches First",
+      "tags": [
+        "dialogue",
+        "software",
+        "pride"
+      ],
+      "planSpec": {
+        "domain": "software code review",
+        "audience": "Luca receiving a dismissive review comment",
+        "stakes": "pride could turn a fixable bug into a feud",
+        "format": "dialogue",
+        "requiredBeat": "\"The bug is real even if the sentence is ugly,\" Luca says, then patches the null case."
+      },
+      "scenario": "\"Did you even test the null case?\" the review thread asks above a red test output. Luca's cursor rests over a defensive reply, then moves to the fixture instead. He patches the null case, adds the failing test, and writes that the bug was valid while the tone made review harder. The failing test is still red, and the null fixture will remain broken after any clever reply.",
+      "whatToDo": "Patch the valid bug first, then answer the tone without turning the thread into a feud.",
+      "whyItMatters": "He separates the useful correction from the insult, so pride does not turn a fixable defect into a feud."
+    },
+    {
+      "exampleId": "ch11-ex03-margaux-tree",
+      "title": "Margaux Splits the Dispute",
+      "tags": [
+        "decision_point",
+        "neighborhood",
+        "justice"
+      ],
+      "planSpec": {
+        "domain": "neighborhood tree dispute",
+        "audience": "Margaux mediating branches over a fence",
+        "stakes": "two homeowners want victory more than shade or safety",
+        "format": "decision_point",
+        "requiredBeat": "Margaux draws the property line and the diseased limb separately before either neighbor speaks again."
+      },
+      "scenario": "Sawdust dots the snow under the leaning maple before either neighbor stops talking. Margaux can let the loudest grievance set the agenda, or she can split the problem. She draws the property line from the survey, circles the diseased limb from the arborist note, and puts orange tape only where safety requires action. The saw crew is waiting by the curb, so the line between safety and pride has to be drawn now.",
+      "whatToDo": "Separate the property line, the diseased limb, and the pride dispute before choosing the next action.",
+      "whyItMatters": "Anger wants one winner. The social move distinguishes property, safety, and pride before anyone is made an enemy."
+    },
+    {
+      "exampleId": "ch11-ex04-brennan-rowing",
+      "title": "Brennan Reviews the Stroke",
+      "tags": [
+        "postmortem",
+        "rowing",
+        "team"
+      ],
+      "planSpec": {
+        "domain": "college rowing crew",
+        "audience": "Brennan coaching after a lost race",
+        "stakes": "blame would cut one athlete from the crew's common work",
+        "format": "postmortem",
+        "requiredBeat": "You watch Brennan replay the missed stroke, then ask each rower for the next synchronized correction."
+      },
+      "scenario": "You hear eight oarlocks click out of time on the race video while Brennan stands in the erg room with the lineup card. He has to choose between naming one rower as the loss and restoring synchronized work. He replays the missed stroke, asks each rower for one correction, and writes the next drill beside each seat. The whiteboard still lists tomorrow's practice pieces, and the lineup card needs a repair plan.",
+      "whatToDo": "Replay the mistake, name the synchronized correction, and give every seat a next drill.",
+      "whyItMatters": "A postmortem can correct failure without cutting one person out of the crew's common labor."
+    },
+    {
+      "exampleId": "ch11-ex05-mina-kitchen",
+      "title": "Mina Uses the Help",
+      "tags": [
+        "vignette",
+        "volunteer",
+        "benevolence"
+      ],
+      "planSpec": {
+        "domain": "charity kitchen volunteer shift",
+        "audience": "Mina working beside a volunteer who keeps grandstanding",
+        "stakes": "resentment at vanity could become another unsocial act",
+        "format": "vignette",
+        "requiredBeat": "What if the vain helper is still helping?"
+      },
+      "scenario": "What if the loud helper is still moving the line? Mina watches the volunteer drift toward the donors while the hairnet box sits unopened. She must decide whether to stew over his performance or use the remaining good in it. She gives him the serving ladle, points him at meal tickets, and keeps the food line moving. The meal tickets are stacking near the warmer, so resentment has to become an assignment or get out of the line.",
+      "whatToDo": "Assign the vain helper a visible, useful task with clear limits instead of feeding resentment.",
+      "whyItMatters": "Benevolence can be practical. She corrects vanity by assigning useful work instead of making resentment her own vanity."
+    },
+    {
+      "exampleId": "ch11-ex06-robert-estate",
+      "title": "Robert Leaves the Sentence",
+      "tags": [
+        "reflection",
+        "family",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "family estate meeting",
+        "audience": "Robert hearing an old sibling insult revived",
+        "stakes": "history wants to finish the argument for him",
+        "format": "reflection",
+        "requiredBeat": "It took Robert one breath to see that answering the insult would abandon the actual estate decision."
+      },
+      "scenario": "It took Robert one breath to leave the old sentence on the table. The estate folder was open, the photocopied will was marked, and his sibling had revived the insult perfectly. He could answer history with history; instead he pointed to the unpaid tax bill and brought the meeting back to the decision. The tax bill deadline is circled in blue, and the old insult cannot pay it.",
+      "whatToDo": "Let the insult sit and return the meeting to the live estate decision.",
+      "whyItMatters": "Not every insult deserves the steering wheel. Robert keeps the shared obligation from being swallowed by an old wound."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A nurse is shouted at by a patient's son while a medication chart waits for confirmation. Which response best keeps the social act intact? The medication chart is open, and the waiting room can hear both voices.",
+        "choices": [
+          "Match his volume so he understands the seriousness of delaying the chart.",
+          "Name the wait, confirm the chart, and give the next true update without contempt.",
+          "Silence may avoid rewarding the interruption pattern and remove the attention that keeps it active."
+        ],
+        "correctIndex": 1,
+        "explanation": "The second choice keeps care moving and preserves benevolence. Matching volume lets anger choose the act; ignoring him makes pride more important than the needed update.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A teammate leaves a dismissive code review comment, but the reported bug is real. What should the developer do first? The pull request is blocked until the null case is handled.",
+        "choices": [
+          "Reply with an equally sharp comment before touching the code.",
+          "Close the review until the teammate rewrites the sentence.",
+          "Patch the bug and answer the tone plainly if needed."
+        ],
+        "correctIndex": 2,
+        "explanation": "The bug is the useful social work. A plain boundary about tone can follow, but retaliation would make ego the center and delay the repair.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Two neighbors are furious about a maple limb over a fence. One demands apology, the other threatens court. What is the best first move? The arborist note and survey are on the hood of a parked car.",
+        "choices": [
+          "Let both vent until someone is too tired to continue.",
+          "Ask who has lived there longer and give that person priority.",
+          "Separate the property line, the safety risk, and the emotional grievance."
+        ],
+        "correctIndex": 2,
+        "explanation": "The third choice turns one angry mass into distinct decisions. Venting may heat the conflict, and seniority does not answer the arborist or survey facts.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After a lost race, a rowing coach knows one athlete missed the catch. Which postmortem best fits this lesson? The video is paused in the erg room while the crew waits for the first sentence.",
+        "choices": [
+          "Tell the crew the loss proves who lacks commitment.",
+          "Naming the mistake later in private may teach the correction without making the rower absorb public embarrassment.",
+          "Replay the stroke, name the correction, and assign each seat a next drill."
+        ],
+        "correctIndex": 2,
+        "explanation": "The coach corrects the error while preserving the crew as a common body. Blame cuts one branch away; silence avoids the useful correction.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A charity volunteer keeps posing for donors but is also serving meals quickly. What response shows benevolent firmness? The donor photographer is nearby, and the food line is starting to slow.",
+        "choices": [
+          "Send him home because vanity cancels every useful contribution.",
+          "Praise his generosity in public so he stays motivated.",
+          "Give him a visible serving task with clear limits and keep the line moving."
+        ],
+        "correctIndex": 2,
+        "explanation": "The third choice uses the remaining help while limiting the vanity. Dismissing him may waste service, while flattery feeds the exact disorder.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "During an estate meeting, a sibling revives an old insult just as the group must decide which bill gets paid first. What should the targeted person do?",
+        "choices": [
+          "Return to the bill decision unless the insult affects the estate facts.",
+          "Answer the insult fully so the meeting is finally honest.",
+          "End the meeting to prove the insult was unacceptable."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first choice keeps the shared obligation from being captured by history. The insult may need attention later, but answering it now abandons the active duty.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "During a case where manager prides herself on staying calm, but internally she enjoys making difficult employees look foolish in meetings. What is the problem? The employees in the room can feel the difference between correction and a trap.",
+        "choices": [
+          "Her calm is only performance if it serves humiliation.",
+          "She should show more visible anger so people trust her honesty.",
+          "Her inner motives are irrelevant if her voice stays even."
+        ],
+        "correctIndex": 0,
+        "explanation": "Phocion-like mildness has to be real, not a mask for point-scoring. A quiet voice can still be unsocial if it aims at humiliation.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "In a situation where customer makes a false accusation in a crowded shop. The clerk can correct the record with one sentence or expose the customer's ignorance at length. Which choice fits?",
+        "choices": [
+          "Use the one sentence that corrects the record and protects the work.",
+          "Humiliate the customer so no one tries it again.",
+          "Say nothing, because any correction would be anger."
+        ],
+        "correctIndex": 0,
+        "explanation": "Correction is allowed; contempt is the extra injury. Silence is not required, but the correction should serve truth and order rather than revenge.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "After a scenario where friend disappoints you in a predictable way again. Which thought best applies the nine-rule spirit without excusing the behavior? The boundary still matters, but the next answer can be clear without being tyrannical.",
+        "choices": [
+          "People should not repeat flaws once I have named them.",
+          "I can set the boundary while remembering that repeated human error is not a cosmic surprise.",
+          "Because mistakes are common, I should stop caring about the boundary."
+        ],
+        "correctIndex": 1,
+        "explanation": "The second answer combines realism and action. Expecting flawed people never to err is impossible; dropping the boundary would confuse benevolence with surrender.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Someone obstructs your task and you feel contempt rising. What is the first distinction to make?",
+      "back": "Separate the useful correction from the urge to sever the person from your concern.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A rude comment contains a real point. What should you retrieve from it?",
+      "back": "Take the true part and address the tone without letting pride delay the repair.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why is anger like cutting a branch from a tree?",
+      "back": "Hatred separates you from the social whole even when someone else caused the first problem.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What marks genuine mildness, not performed niceness?",
+      "back": "It can correct, refuse, or set consequences without secretly aiming to shame.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A conflict is full of noise. What question restores the act?",
+      "back": "Ask what correction serves the common work now, then do that without contempt.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Keep The Social Act",
+    "coreSkill": "You practice keeping correction, boundary, and benevolence joined. The skill is to complete the act that serves the whole without letting anger turn another person into an enemy.",
+    "ifThenPlans": [
+      {
+        "context": "active duty",
+        "plan": "If someone insults me while a concrete duty is pending, then I will name the duty out loud and complete its next step before answering the insult."
+      },
+      {
+        "context": "criticism",
+        "plan": "If criticism arrives in a rude form, then I will extract the valid correction first and respond to tone in a separate, plain sentence."
+      },
+      {
+        "context": "leadership",
+        "plan": "If I catch myself enjoying another person's embarrassment, then I will stop the performance and choose the smallest correction that serves the shared work."
+      },
+      {
+        "context": "family decisions",
+        "plan": "If an old grievance tries to take over a current decision, then I will ask which fact must be decided today and return to that fact."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next irritation, run three checks before answering: what do I know, where have I erred too, and what correction serves the shared work?",
+    "weeklyPractice": "Each week, choose one conflict and write the useful act, the anger story, and the sentence that would correct without contempt."
+  },
+  "tryThisNow": "Pick one current irritation. Ask: what do I know, where have I erred too, and what correction would serve the whole without contempt?",
+  "memorableLines": [
+    {
+      "text": "Anger cuts the branch before the saw arrives.",
+      "whyItMatters": "It makes anger visible as self-separation, not strength.",
+      "location": "breakdown.deepRead",
+      "why": "It makes anger visible as self-separation, not strength."
+    },
+    {
+      "text": "A truth used to repair can stay simple.",
+      "whyItMatters": "It distinguishes correction from humiliation.",
+      "location": "breakdown.deepRead",
+      "why": "It distinguishes correction from humiliation."
+    },
+    {
+      "text": "There is no victory in becoming the exact shape of the interruption.",
+      "whyItMatters": "It keeps attention on the reader's own next act.",
+      "location": "breakdown.fullRead",
+      "why": "It keeps attention on the reader's own next act."
+    }
+  ],
+  "readingTimeMinutes": 12
+}

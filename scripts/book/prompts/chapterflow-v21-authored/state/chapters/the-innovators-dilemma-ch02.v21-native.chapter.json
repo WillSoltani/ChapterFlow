@@ -1,0 +1,320 @@
+{
+  "chapterId": "the-innovators-dilemma-ch02",
+  "number": 2,
+  "title": "Value Networks and the Impetus to Innovate",
+  "readingTimeMinutes": 12,
+  "hook": "The product that failed your quality review this morning may be exactly what someone else's market has been waiting for.",
+  "counterintuition": "When you evaluate a new product against your current standards and reject it, even though the rejection is correct for your market, you may be wrong about another one. The quality test you trust is calibrated to the network you already serve.",
+  "tryThisNow": "Pick one product or service you recently rejected for not meeting your standards. Write one sentence about what a customer in a different market would find useful about it at exactly this level of quality.",
+  "keyTakeaway": "A value network defines what your organization considers worth building. A product that fails inside one network may be exactly right inside another.",
+  "breakdown": {
+    "fastRead": "The benchmark comparison had eight rows. Precision accuracy, simulation fidelity, mesh resolution, processing speed, error tolerance, documentation format, API compatibility, and licensing structure. The simplified product failed six of them. The product director showed the table at the quarterly review and the room agreed: this product did not belong in the roadmap.\n\nThe aerospace engineers who generated that table were right about what aerospace engineering requires. The problem is that the table was only ever calibrated to one kind of work.\n\nA value network defines what matters. Your current customers shape that definition, and it becomes your measuring instrument for everything.",
+    "deepRead": "A value network is not just your customer segment. It is the full set of rules your market applies to decide what is worth building. The rules live in your margin requirements, your product specifications, your sales process, the customers who set your planning calendar, and the improvements they will pay for. Everything in that system points in a consistent direction. Projects that fit the direction get funded. Projects that don't produce no signal: not a vote against, just silence.\n\nThis is why the same product can fail one evaluation room and succeed in another. The standards that govern the evaluation are different. In one network, precision is load-bearing: if the simulation is not accurate to four decimal places, the customer will not certify the result. In another network, good enough at low cost is the whole point. A maker community running a small-batch prototype does not care whether the tool runs at aerospace tolerances. The simplified product was genuinely inferior to the flagship in the first network and genuinely useful in the second. Both assessments were correct. They were correct about different things.\n\nResource allocation follows profit logic. Your business funds what your best customers will pay for because that is where the return is clear and the criteria are legible. A new product that serves a different network has a structural problem: the criteria for evaluating it do not exist inside your planning process. It will be judged by your network's rules, fail them, and disappear from the roadmap.\n\nThat actual market has no vote in your budget meeting.\n\nThe impetus to innovate, the pull that drives where R&D goes, comes from your current customers. What they want more of gets funded. What they cannot use generates no pull. A disruptive product entering from another network does not look dangerous at first. It looks weak. It looks like it failed the review.",
+    "fullRead": "Consider what an evaluation against current standards actually does. When you run a new product through your quality checklist, you are asking whether it serves your market at your market's requirements. That is the right question for managing the current business. It is not the right question for assessing whether the product has any market at all.\n\nEtienne's compliance checklist for aviation maintenance software had twelve required fields. Every commercial airline he served required all twelve. The checklist was not bureaucracy: it was a legal and regulatory baseline for an industry where a documentation error could ground a fleet. The checklist was correct. A tablet-based app that skipped six of those fields was not acceptable in that network. The small-aircraft mechanics using the same app in a different context did not need those six fields, had no fleet to ground, and had never heard of the regulatory pathway the airlines required. Neither evaluation was wrong. They were measuring different things.\n\nHere is the practical question: which requirements on your evaluation checklist are universal, and which are specific to the network you already serve?\n\nYou probably cannot answer that quickly. Most organizations cannot, because the checklist was assembled from what current customers required and the distinction between those two categories has blurred over time. The blur is not careless. It is the natural result of building an evaluation process inside one network.\n\nThe frame of the evaluation is too narrow to show you the other network.\n\nA new product that fits a different network will arrive looking weak by every criterion you have, because your criteria were built for your network. You will see something that fails six of eight quality tests and conclude it is a poor product. It may genuinely be poor for your market. Whether it is poor in its actual market is a different question.\n\nSophie's postmortem on the credit union lending tool confirmed every step of the original analysis. The loan sizes were below the bank's minimum. The approval criteria were too simple for mid-market commercial underwriting. The documentation trail was too thin. Every decision was correct inside the bank's model. The postmortem recorded no explanation for why the credit union's small-business lending portfolio had grown faster than the bank's over the same period. The bank's model did not have a category for borrowers who were outside the bank's network.\n\nThis is what value-network logic does at scale. An organization can run excellent analysis, apply consistent criteria, reach defensible conclusions, and systematically miss the markets forming outside its evaluation frame. The analysis is not flawed. The frame is narrower than the market.\n\nName the value network you are measuring against right now. Name the one you are not. That is the gap worth closing."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-claire-simulation",
+      "title": "Claire's Benchmark Table Has No Row for Hobbyists",
+      "tags": [
+        "scene",
+        "software",
+        "engineering"
+      ],
+      "planSpec": {
+        "domain": "engineering simulation software company evaluating a free simplified version gaining traction in the maker community",
+        "audience": "a product director whose core customers are aerospace engineering teams who need simulation precision above all else",
+        "stakes": "the simplified version scores poorly on every benchmark the engineering team uses — but the maker community has entirely different benchmarks",
+        "format": "scene",
+        "requiredBeat": "Claire presents the simplified product's failure on precision metrics to justify shelving it, while the forum where hobbyists are sharing screenshots of what they built with it doesn't appear in the presentation at all"
+      },
+      "scenario": "\"The error tolerance fails by a factor of twelve,\" the lead engineer says, turning the benchmark table toward Claire. She has the simplified simulation tool's scores in front of her: aerospace tolerances, mesh resolution, material modeling depth, processing speed under load. The product places last on six of eight measures. The maker community forum where hobbyists are posting projects built with the tool does not appear in the presentation. Claire must decide whether to recommend shelving the tool based on the benchmark results or ask why the benchmark criteria only reflect the requirements of aerospace customers.",
+      "whatToDo": "Before shelving, identify what criteria the maker community is applying and whether the tool passes those. The benchmark table is accurate for aerospace users. It produces no information about the network where the tool is already being used.",
+      "whyItMatters": "A benchmark built from current customer requirements will confirm what current customers need. It cannot confirm whether the product has value in a different network applying different standards."
+    },
+    {
+      "exampleId": "ch02-ex02-thomas-bakery",
+      "title": "Thomas Runs Restaurant Economics on a Home-Baker Kit",
+      "tags": [
+        "vignette",
+        "distribution",
+        "food"
+      ],
+      "planSpec": {
+        "domain": "specialty bakery ingredients distributor evaluating a small-batch home-baker product line",
+        "audience": "a sales director whose revenue comes from restaurant accounts that order in large quantities and expect professional-grade consistency",
+        "stakes": "the home-baker product needs smaller pack sizes, different labeling, and a lower price point — none of which fit the restaurant account model",
+        "format": "vignette",
+        "requiredBeat": "Thomas runs the unit economics on the home-baker line through the restaurant account model and the product fails every measure. It passes every measure that a different kind of customer would apply."
+      },
+      "scenario": "The large-format professional flour sacks are stacked four high. Beside them, the small-batch home-baker kit holds two cups. Thomas runs the unit economics through the restaurant account model: cost per unit, minimum order size, delivery margin per route stop. The home-baker product fails all three. It passes every measure a different kind of customer would apply, but the model for that customer has never been built, and the customer is not in the room.",
+      "whatToDo": "Run a separate unit economics model calibrated to a direct-to-consumer channel before using the restaurant account model to kill the home-baker line. The restaurant model is accurate for restaurant customers.",
+      "whyItMatters": "The unit economics that govern the restaurant channel are not universal laws. They reflect what makes business viable in one specific network. A product that fails those economics may be viable in a network with different margin requirements and a different distribution structure."
+    },
+    {
+      "exampleId": "ch02-ex03-etienne-checklist",
+      "title": "Etienne Declines the App That the Small Shops Already Use",
+      "tags": [
+        "decision_point",
+        "aviation",
+        "software"
+      ],
+      "planSpec": {
+        "domain": "aviation maintenance documentation software company evaluating a tablet-based checklist app made for independent mechanics",
+        "audience": "a product manager whose enterprise customers are commercial airlines requiring regulatory-grade documentation, audit trails, and legal defensibility",
+        "stakes": "the checklist app is lightweight and quick but cannot pass the compliance audit that every airline requires — it is rated irrelevant by the only customers the company knows",
+        "format": "decision_point",
+        "requiredBeat": "Etienne decides not to acquire the checklist app because no airline would accept it. The small-aircraft MRO shops using it are not in his customer database. He is right about his customers and wrong about the market."
+      },
+      "scenario": "At 10:40 a.m. Tuesday, Etienne opens the acquisition brief for the tablet-based maintenance app. The compliance audit checklist has twelve required fields. The app covers six. No commercial airline he serves would accept it. The small-aircraft MRO shops using the app daily are not in his customer database, and their requirements are not on the checklist. Etienne must decide whether to pass on the acquisition based on the compliance audit or to ask why the checklist only reflects the requirements of customers who need all twelve fields.",
+      "whatToDo": "Before closing the file, identify which customers are successfully using the app and what compliance requirements they are operating under. The audit was correct for airline customers. It produced no information about the network where the app is running.",
+      "whyItMatters": "Compliance requirements are specific to the network they were written for. An app that fails airline compliance may be well-suited to a network where those regulations do not apply. Both facts can be true at the same time."
+    },
+    {
+      "exampleId": "ch02-ex04-ingrid-transit-app",
+      "title": "Ingrid's Team Predicts the Right Thing About the Wrong Network",
+      "tags": [
+        "predict_reveal",
+        "transit",
+        "technology"
+      ],
+      "planSpec": {
+        "domain": "municipal transit authority evaluating a real-time bus tracking app built for a smaller regional system",
+        "audience": "a technology director whose system runs hundreds of routes and whose riders expect integration with payment cards and accessibility features",
+        "stakes": "the regional app handles 12 routes and has no payment integration — it fails the city's minimum requirements immediately",
+        "format": "predict_reveal",
+        "requiredBeat": "Ingrid's team predicts the regional app will never scale to the city system's requirements — and the prediction is technically accurate. What it misses is that the regional system's riders are in a different performance context, and the app is winning there for exactly the reasons it fails here."
+      },
+      "scenario": "Which app is worth buying: one that handles twelve routes well, or one that handles three hundred routes poorly? Ingrid's team predicts that the regional transit app will never meet the city system's requirements, and that prediction is technically correct. The app has no payment integration, no accessibility compliance pathway, and no capacity for the city's route complexity. The reveal: the regional system using the app is managing twelve routes, and the app handles that task better than any product the city would approve.",
+      "whatToDo": "Assess the regional app against the regional network's requirements before concluding it is weak. The city's minimum requirements are correct for the city's network. They are not the relevant standard for a system running twelve routes.",
+      "whyItMatters": "Minimum requirements set by a large network reflect what that network needs. An app that fails those minimums may be exactly right for a smaller network operating under different constraints, for the same reasons it fails the large system's evaluation."
+    },
+    {
+      "exampleId": "ch02-ex05-sophie-lending-tool",
+      "title": "Sophie's Postmortem Confirms Every Decision Was Right",
+      "tags": [
+        "postmortem",
+        "banking",
+        "lending"
+      ],
+      "planSpec": {
+        "domain": "retail bank evaluating a small credit union's digital lending product for first-time small-business borrowers",
+        "audience": "a commercial lending director whose portfolio is mid-market business clients requiring underwriting sophistication",
+        "stakes": "the credit union's approval criteria are simpler and the loan size is too small to justify the bank's underwriting overhead",
+        "format": "postmortem",
+        "requiredBeat": "Sophie's team reviews why they passed on licensing the credit union's tool and concludes every decision was correct inside the bank's current model — the postmortem cannot easily explain why the credit union's small-business portfolio has grown faster than the bank's over the same period"
+      },
+      "scenario": "It took Sophie's team three months to complete the postmortem on the credit union lending tool, and every finding confirmed the original decision. The loan sizes were below the bank's minimum. The approval criteria were too simple for mid-market commercial underwriting. The documentation trail was too thin. The postmortem confirmed each step, closed the file, and recorded no explanation for why the credit union's small-business portfolio had grown faster than the bank's over the same three-year period.",
+      "whatToDo": "Include the credit union's growth data in the postmortem analysis and ask which borrower segment drove it. The bank's model produced a correct evaluation of the tool for the bank's network. It produced no analysis of the borrower network the tool actually serves.",
+      "whyItMatters": "A postmortem that confirms each decision was correct within the current model can still miss the strategic question of why a different organization, serving a different network with different standards, grew faster over the same period."
+    },
+    {
+      "exampleId": "ch02-ex06-kiran-ultrasound",
+      "title": "Kiran's Before-and-After Starts in a Radiology Suite",
+      "tags": [
+        "before_after",
+        "medical",
+        "rural-access"
+      ],
+      "planSpec": {
+        "domain": "medical imaging equipment company evaluating a portable ultrasound device entering rural clinic markets",
+        "audience": "a product director whose flagship equipment serves hospital radiology departments requiring full diagnostic capability",
+        "stakes": "the portable unit's image resolution is below diagnostic standards for most of the conditions the hospital equipment handles",
+        "format": "before_after",
+        "requiredBeat": "Before: Kiran evaluates the portable unit against hospital imaging standards and it fails. After: the unit has been in rural clinic use for two years, and the clinics that adopted it have added a capability they never had before."
+      },
+      "scenario": "The hospital radiology suite has a ceiling-mounted imaging arm and three trained technicians. The portable ultrasound being evaluated is handheld, about the size of a large phone. Before: Kiran runs it against hospital imaging standards. It fails on resolution, reimbursement classification, and regulatory pathway. After: two years into rural clinic deployment, the clinics that adopted it have diagnostic capability they never had before, because they are not substituting for hospital equipment. They are using something that previously did not exist in their setting.",
+      "whatToDo": "Evaluate the portable unit against the standards of the rural clinic network before closing it out on hospital criteria. The hospital evaluation is correct for the hospital's network. It produces no information about the clinical context where the device is actually deployed.",
+      "whyItMatters": "A device that falls short of replacing existing capability in one network may represent a genuine capability gain in a network where no comparable tool existed. The two evaluations are not measuring the same thing."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A company describes its market research process as comprehensive because it surveys all major customer segments. A new product fails the evaluation. Which feature of value-network logic does this process most likely miss?",
+        "choices": [
+          "The process may accurately reflect what customers in the current network need while producing no information about whether those requirements apply in a different network.",
+          "The process should use a larger sample size and include broader demographic categories to be statistically valid.",
+          "Major customer segments are always the most reliable source of product requirements and should be surveyed more frequently."
+        ],
+        "correctIndex": 0,
+        "explanation": "Comprehensive coverage of current customer segments accurately maps the current value network. It cannot describe a different network where different performance criteria apply. The gap is structural, not a survey size problem.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A product team evaluates a simplified simulation tool against the eight precision criteria used by their aerospace customers. The tool fails six of eight. Which question should the team ask before recommending the tool be shelved?",
+        "choices": [
+          "Whether the development team could rebuild the tool to pass all eight criteria.",
+          "Whether there is a user community where the two criteria the tool passes are the load-bearing ones and the six failing criteria are not relevant.",
+          "Whether the tool's pricing model is competitive with the flagship product."
+        ],
+        "correctIndex": 1,
+        "explanation": "The six failing criteria are load-bearing in the aerospace network. They may not apply in a maker or prototype community with different requirements. Shelving the tool without asking this question treats one network's standards as universal.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02b",
+        "prompt": "A tablet-based checklist app fails a commercial airline's compliance audit because it lacks six required fields. Independent aircraft mechanics report the app handles their daily maintenance tasks well. What does this pattern illustrate?",
+        "choices": [
+          "The independent mechanics are using the app in a way that violates safety standards.",
+          "The app is better than the compliance audit suggests because audits overcount requirements.",
+          "The compliance requirements were built for the airline network, where those fields are legally mandated, not for the independent mechanic network, where they are not."
+        ],
+        "correctIndex": 2,
+        "explanation": "Compliance requirements reflect the standards of the network that generated them. The airline's requirements are correct for the airline's network. The independent mechanic operates under different regulatory conditions where those six fields do not apply. Both assessments can be accurate simultaneously.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A regional transit app handles twelve routes well but fails a city transit authority's minimum requirements for payment integration and accessibility compliance. A technology director concludes the app is technically weak. What is the most important thing this conclusion misses?",
+        "choices": [
+          "The city's minimum requirements were set for a system managing three hundred routes, not twelve. The app succeeds in the smaller network for the same reasons it fails the larger one.",
+          "The technology director should have tested the app in a live environment before evaluating.",
+          "Transit apps should not be required to meet the same accessibility standards as larger urban systems."
+        ],
+        "correctIndex": 0,
+        "explanation": "The city's minimum requirements reflect what three hundred routes demand. An app built for twelve routes is not in the same value network. The app's limitations relative to the city's requirements are precisely what makes it well-matched to the regional network.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A bank evaluates a credit union's lending tool and concludes it is below threshold because the loan sizes are too small and the approval criteria are too simple. Three years later, the credit union's small-business lending portfolio has grown faster than the bank's. What best explains the gap?",
+        "choices": [
+          "The bank's analysis was correct for the bank's network. The credit union's tool served a borrower network where the bank's underwriting standards are not the relevant ones.",
+          "The bank should have lowered its minimum loan size to better match the credit union's product offering.",
+          "The bank's underwriting criteria were incorrectly applied to the credit union's market."
+        ],
+        "correctIndex": 0,
+        "explanation": "The bank's underwriting standard is correct for mid-market commercial lending. The credit union's tool serves first-time small-business borrowers whose needs do not map to that standard. The bank's evaluation was accurate for its own network and silent on the other one.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A product director argues that the company's evaluation process is sound because it applies the same criteria consistently to every new product. What is the strongest critique of this position?",
+        "choices": [
+          "The criteria should change dynamically for each product depending on the specific market context being evaluated.",
+          "Consistent criteria applied to all products will give equally valid and unbiased results across different network types.",
+          "Criteria that were built from current customer requirements will consistently reject products that fit a different network, even when those products are commercially viable in that network."
+        ],
+        "correctIndex": 2,
+        "explanation": "Consistency in applying criteria is a property of the process, not a property of the criteria's coverage. If the criteria were built from one value network, consistent application will consistently favor that network and consistently reject the other.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A portable ultrasound fails a hospital evaluation on resolution, reimbursement classification, and regulatory pathway. Rural clinics report that the same device gave them diagnostic capability they previously lacked. Which statement best explains why both can be true?",
+        "choices": [
+          "The hospital evaluation is correct for a network where full diagnostic capability is required. The rural clinic assessment reflects a network where any portable diagnostic capability is a gain.",
+          "The rural clinics are applying lower diagnostic and documentation standards than the hospital's network requires.",
+          "The portable device improved significantly between the hospital evaluation and the rural clinic deployment."
+        ],
+        "correctIndex": 0,
+        "explanation": "The hospital is measuring whether the device can substitute for existing diagnostic equipment. The rural clinic is measuring whether the device adds diagnostic capability that did not previously exist in their setting. These are different questions applied in different networks.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A warehouse distributor evaluates a small-batch consumer product by running it through the unit economics model used for restaurant accounts. The product fails on cost per unit, minimum order, and delivery margin. What does this evaluation reveal and what does it conceal?",
+        "choices": [
+          "It reveals the product is commercially unviable across all distribution channels.",
+          "It reveals the product should be repriced to fit the restaurant account model.",
+          "It reveals the product fails the restaurant account model accurately and conceals whether a different distribution structure would produce a different result."
+        ],
+        "correctIndex": 2,
+        "explanation": "The restaurant account model is the measuring instrument applied here. The model is accurate for restaurant accounts. It cannot show whether the product is viable under a direct-to-consumer distribution model with different margin requirements and different order structures.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A postmortem confirms that a product acquisition decision was correct by every criterion used in the original evaluation. The product later succeeds at a competitor who serves a different market. What is the most important thing the postmortem should add?",
+        "choices": [
+          "An analysis of whether the competitor's development team had superior resources.",
+          "An audit of which evaluation criteria drove the decision and whether those criteria apply in the market where the product succeeded.",
+          "A recommendation to acquire the competitor before they grow further."
+        ],
+        "correctIndex": 1,
+        "explanation": "A postmortem that confirms the process was correctly applied does not address whether the process was measuring the right things. The competitor's success in a different market is evidence that the evaluation criteria were specific to one network, not universal.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "Your team just rejected a product because it failed six of eight benchmark criteria. What should you verify before treating that as a final answer?",
+      "back": "Check whether the six failing criteria apply in the market the product was built for. A benchmark built from current customer requirements confirms your network's standards. It does not confirm whether a different network uses those standards.",
+      "difficulty": "basic"
+    },
+    {
+      "front": "Why can two companies look at the same product and reach opposite conclusions about its quality?",
+      "back": "They are applying the standards of different value networks. The same product can fail a network that requires high precision and succeed in one that values lower cost or simpler operation. Both evaluations can be correct.",
+      "difficulty": "basic"
+    },
+    {
+      "front": "What does a value network include beyond just your customers?",
+      "back": "Margin requirements, performance standards, planning cycles, distribution structures, and the improvement criteria that determine what gets funded. The whole system shapes what looks worth building.",
+      "difficulty": "intermediate"
+    },
+    {
+      "front": "A product serves rural clinics well and fails a hospital evaluation. Is the hospital evaluation wrong?",
+      "back": "No. The evaluation is correct for the hospital's network. The product operates in a different network where the hospital's requirements do not apply. Both assessments can be accurate at the same time.",
+      "difficulty": "intermediate"
+    },
+    {
+      "front": "What happens to a product that fits a different value network when evaluated by your current network's standards?",
+      "back": "It fails, generates no pull in the resource allocation process, and disappears from the roadmap. The evaluation was correct for your network. The product's actual market was never visible in the evaluation.",
+      "difficulty": "advanced"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to separate which evaluation criteria are specific to your current value network from which are universal, and to apply that distinction before using a rejection to close a file.",
+    "ifThenPlans": [
+      {
+        "context": "evaluating a new product against current standards",
+        "plan": "If the product fails your quality checklist, then identify which failing criteria are specific to your current network and which would also apply in the market the product was actually built for."
+      },
+      {
+        "context": "reviewing a competitor's product that seems weak",
+        "plan": "If a competitor's tool is gaining share in a market you don't serve, then map which performance criteria matter in that market before concluding the tool is simply inferior to yours."
+      },
+      {
+        "context": "making a resource allocation decision about a new product line",
+        "plan": "If the investment case concludes a product is not viable, then verify whether the viability test used your current network's standards or the standards of the market the product was built for."
+      },
+      {
+        "context": "running a postmortem on a rejected product that later succeeded elsewhere",
+        "plan": "If the product succeeded in a different market, then audit which evaluation criteria drove the rejection and whether those criteria apply in the network where it succeeded."
+      }
+    ],
+    "twentyFourHourChallenge": "Name one product or technology your organization rejected in the last year. Write down the three criteria that drove the rejection. Then write one sentence about which of those criteria would not apply if a different type of customer used the product.",
+    "weeklyPractice": "Once a week, when evaluating a new product or initiative, write one sentence naming the alternate network where the product might succeed before judging it against your current standards."
+  },
+  "memorableLines": [
+    {
+      "text": "A value network defines what matters. Your current customers shape that definition, and it becomes your measuring instrument for everything.",
+      "location": "breakdown.fastRead",
+      "why": "Compresses the chapter's structural insight into two sentences without jargon."
+    },
+    {
+      "text": "That actual market has no vote in your budget meeting.",
+      "location": "breakdown.deepRead",
+      "why": "Names the organizational consequence of the value-network problem in a single direct sentence."
+    },
+    {
+      "text": "The frame of the evaluation is too narrow to show you the other network.",
+      "location": "breakdown.fullRead",
+      "why": "Locates the problem precisely: not a bad evaluation, but an evaluation with a structural blind spot built in."
+    }
+  ]
+}

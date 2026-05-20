@@ -1,0 +1,197 @@
+{
+  "chapterId": "flow-ch07",
+  "number": 7,
+  "title": "Work as Flow",
+  "coreMove": "Redesign a work task so it answers back with challenge and feedback instead of waiting for leisure to supply all meaning.",
+  "sourcePressure": "Work can become a primary flow site when autonomy, challenge, skill, goals, and feedback line up, even though people often expect leisure to provide the better life.",
+  "chapterSpecificMisunderstanding": "Romanticize all jobs or tell exploited workers to enjoy bad conditions.",
+  "sourceAlignmentTerms": [
+    "autotelic workers",
+    "autotelic jobs",
+    "work paradox",
+    "free time",
+    "challenge",
+    "skill",
+    "self-direction"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the paradox of work",
+      "detail": "the frozen contents list the paradox of work as a Chapter 7 subheading",
+      "useIn": "both",
+      "phrasingHint": "The paradox of work is that people often report richer structure there, then spend the day dreaming of free time they may not know how to use."
+    },
+    {
+      "kind": "artifact",
+      "name": "autotelic jobs",
+      "detail": "the frozen contents list autotelic jobs as a Chapter 7 subheading",
+      "useIn": "fullRead",
+      "phrasingHint": "An autotelic job is not a dream title; it is work arranged so the doing itself can become absorbing."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic work as flow definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "David",
+      "domain": "a municipal permit clerk changing how applications answer back",
+      "audience": "office workers in repetitive public-service roles",
+      "stakes": "mistakes delay housing permits and make the day feel pointless",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he chooses whether to batch-stamp forms mechanically or create a visible error pattern board that turns the queue into a solvable process",
+      "firstImage": "At 9:03 a.m., David lifts the first permit folder",
+      "mustInclude": [
+        "permit folders",
+        "error board",
+        "date stamp"
+      ],
+      "mustAvoid": [
+        "bureaucracy complaint"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "a hotel laundry supervisor finding feedback in turnaround flow",
+      "audience": "service managers whose work is invisible when it goes right",
+      "stakes": "late linens ripple into guest complaints before dinner",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she traces yesterday's late carts to one hidden bottleneck and marks a new load sequence by floor",
+      "firstImage": "Warm cotton fogs the laundry room windows",
+      "mustInclude": [
+        "linen carts",
+        "floor tags",
+        "dryer clock"
+      ],
+      "mustAvoid": [
+        "workplace efficiency generic"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "an apprentice electrician choosing a harder wiring run",
+      "audience": "tradespeople balancing speed and skill growth",
+      "stakes": "choosing only easy jobs keeps him fast but stagnant",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "his foreman asks which run will teach him, and Jack takes the conduit bend that gives immediate visible feedback",
+      "firstImage": "\"Which one will teach you something?\" the foreman asks",
+      "mustInclude": [
+        "conduit bender",
+        "chalk line",
+        "panel label"
+      ],
+      "mustAvoid": [
+        "trade work romanticism"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "a call-center lead redesigning free time after a structured shift",
+      "audience": "workers who feel engaged at work and empty after clock-out",
+      "stakes": "her evening can collapse into passive exhaustion despite a competent day",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "ask why the shift felt more alive than the evening, then show her adding one goal and feedback loop to a language practice block",
+      "firstImage": "Why did the shift feel clearer than the free evening?",
+      "mustInclude": [
+        "headset hook",
+        "language notebook",
+        "kitchen timer"
+      ],
+      "mustAvoid": [
+        "generic evening routine"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "a freelance illustrator replacing vague client work with milestones",
+      "audience": "freelancers whose autonomy creates drift",
+      "stakes": "the contract deadline is close and no manager will define progress",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the studio wall has blank space, and Ryan turns the commission into six visible thumbnails with one client feedback gate",
+      "firstImage": "The north wall of the studio is still bare",
+      "mustInclude": [
+        "thumbnail sketches",
+        "client brief",
+        "blue tape"
+      ],
+      "mustAvoid": [
+        "creative passion cliche"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "a lab sterilization tech protecting dignity in constrained work",
+      "audience": "workers in necessary jobs with limited autonomy",
+      "stakes": "the job cannot be made glamorous, but one controllable skill loop can reduce drift and errors",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "you cannot rename the job, but you can decide whether each tray returns as a blur or as a timed accuracy challenge with a clean handoff",
+      "firstImage": "You slide the twelfth instrument tray under the lamp",
+      "mustInclude": [
+        "instrument tray",
+        "indicator strip",
+        "handoff shelf"
+      ],
+      "mustAvoid": [
+        "claiming every job is fulfilling"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identifying the work paradox",
+      "adding agency without denying bad conditions",
+      "turning routine work into structured challenge where possible"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one work task you resent, name the feedback it currently hides, and add one visible checkpoint before the next attempt.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch02",
+  "number": 2,
+  "title": "Be a Mirror",
+  "coreMove": "Echo the loaded few words and hold the silence so the other person expands the truth on their own.",
+  "sourcePressure": "The source defines mirroring as repeating the last or critical one to three words, using a calm late night FM DJ voice, slowing the conversation, allowing silence, and testing how solid the other side's position is.",
+  "chapterSpecificMisunderstanding": "The writer must not portray mirroring as parroting whole sentences, agreeing, or using a fake listening trick.",
+  "sourceAlignmentTerms": [
+    "mirror",
+    "one to three words",
+    "silence",
+    "late night FM DJ voice",
+    "rapport",
+    "discovery tool",
+    "position"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Someone repeats the last word and magically wins",
+      "A customer-service script with polite echoing",
+      "A therapist-style reflection"
+    ],
+    "counterintuition": [
+      "Repeating is better than responding",
+      "Silence is power",
+      "Less talking creates more listening"
+    ],
+    "tryThisNow": [
+      "Repeat the last three words today",
+      "Use silence for ten seconds",
+      "Practice active listening"
+    ],
+    "examples": [
+      "call center refund",
+      "coffee shop order confusion",
+      "classroom discussion",
+      "sales demo objection"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport gate rebooking after a mechanical delay",
+      "audience": "a gate supervisor facing a passenger who says the airline ruined a custody handoff",
+      "stakes": "the passenger may miss the legally scheduled exchange unless the real constraint surfaces",
+      "format": "dialogue",
+      "requiredBeat": "the supervisor mirrors 'custody handoff' in a low voice and stays quiet until the passenger explains the court-ordered time window",
+      "firstImage": "a boarding scanner blinking red beside a stack of delayed-flight meal vouchers",
+      "mustInclude": [
+        "gate podium",
+        "custody order time",
+        "standby list"
+      ],
+      "mustAvoid": [
+        "generic angry traveler",
+        "policy lecture"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "industrial bakery ingredient shortage call",
+      "audience": "a procurement lead trying to learn whether a supplier's impossible delivery claim is firm",
+      "stakes": "a regional bread run may be canceled if the flour blend is truly unavailable",
+      "format": "predict_reveal",
+      "requiredBeat": "the lead mirrors 'absolutely no pallets' and lets the silence run until the supplier admits two partial pallets are held for another buyer",
+      "firstImage": "a flour-dusted purchase order beside a scale ticket from the loading dock",
+      "mustInclude": [
+        "blend code",
+        "partial pallet",
+        "delivery slot"
+      ],
+      "mustAvoid": [
+        "generic vendor squeeze",
+        "price haggling"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "wildfire evacuation shelter intake",
+      "audience": "a shelter coordinator speaking with a resident refusing to register",
+      "stakes": "the family may leave without medication access because the privacy fear remains unnamed",
+      "format": "scene",
+      "requiredBeat": "the coordinator mirrors 'government list' and waits until the resident explains an immigration concern that changes the intake path",
+      "firstImage": "a folding cot tag clipped to a clipboard under fluorescent gym lights",
+      "mustInclude": [
+        "medication bag",
+        "intake badge",
+        "privacy screen"
+      ],
+      "mustAvoid": [
+        "generic disaster compassion",
+        "legal advice"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "museum artifact loan negotiation",
+      "audience": "a registrar trying to understand why a partner museum says the loan is impossible",
+      "stakes": "a centerpiece exhibit may open with an empty case if the true condition is not discovered",
+      "format": "vignette",
+      "requiredBeat": "the registrar mirrors 'not stable enough' and says nothing until the counterpart explains the vibration limit in the freight contract",
+      "firstImage": "a foam-lined crate diagram spread under a conservation lamp",
+      "mustInclude": [
+        "condition report",
+        "vibration limit",
+        "freight contract"
+      ],
+      "mustAvoid": [
+        "generic art-world prestige",
+        "insurance lecture"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "regional rail maintenance dispatch during signal failure",
+      "audience": "a dispatcher trying to locate the real cause of a crew's refusal to clear a track",
+      "stakes": "commuter service will cascade into cancellations if the hidden safety concern stays vague",
+      "format": "decision_point",
+      "requiredBeat": "the dispatcher mirrors 'not putting anyone on that section' and waits through the radio hiss until the crew names the wet junction box",
+      "firstImage": "a green track diagram frozen on a dispatch wall at 5:18 p.m.",
+      "mustInclude": [
+        "radio channel",
+        "junction box",
+        "maintenance tag"
+      ],
+      "mustAvoid": [
+        "generic transport delay",
+        "heroic emergency scene"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "special-events permit review for a street festival",
+      "audience": "a nonprofit organizer hearing that the permit is not acceptable",
+      "stakes": "the festival loses its food vendors unless the city reviewer reveals the exact blockage",
+      "format": "before_after",
+      "requiredBeat": "after a failed defense of the application, the organizer mirrors 'not acceptable as submitted' and the reviewer finally points to the fire-lane diagram",
+      "firstImage": "a rolled street-closure map held flat by two permit stamps",
+      "mustInclude": [
+        "fire-lane diagram",
+        "vendor row",
+        "permit stamp"
+      ],
+      "mustAvoid": [
+        "generic city hall frustration",
+        "fundraising story"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "select the phrase worth mirroring from a tense statement",
+      "distinguish mirroring from agreement or paraphrase",
+      "analyze how silence after a mirror changes information flow",
+      "evaluate when a mirror would be too mechanical or unsafe"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When someone gives you a loaded reason, pick the one to three words with the most heat, repeat only those words in a calm voice, and let the next silence finish before you speak again.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

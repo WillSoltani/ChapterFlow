@@ -1,0 +1,186 @@
+{
+  "chapterId": "difficult-conversations-ch10",
+  "number": 10,
+  "title": "Speak for Yourself with Clarity and Power",
+  "coreMove": "Report your experience as discussable material without turning your interpretation into a verdict.",
+  "sourcePressure": "The chapter teaches owned expression: observation, internal response, and the story you began telling, plus honesty calibration under reaction.",
+  "chapterSpecificMisunderstanding": "Generic assertiveness or softer accusations labeled as I-statements.",
+  "sourceAlignmentTerms": [
+    "speak from your own experience",
+    "observation",
+    "internal response",
+    "story you were telling yourself",
+    "invitation not verdict",
+    "say the hardest thing first",
+    "do not take it back"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the story I started telling myself",
+      "detail": "The source uses the story component to keep interpretation owned and checkable rather than hardened into accusation.",
+      "useIn": "both",
+      "phrasingHint": "The same interpretation can open the door or lock it, depending on whether you offer it as a story or a verdict."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch10 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: retrospective first line; second-person You direct address; sensory detail first; dialogue first line; environmental detail before any human; question-as-hook",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "promotion visibility conversation",
+      "audience": "employees needing honest upward expression",
+      "stakes": "a missed promotion list has started a story about invisibility",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sophie names the announcement, the feeling, and the story without accusing Marit of ignoring her career",
+      "firstImage": "an announcement email printed beside a marked-up resume",
+      "mustInclude": [
+        "announcement email",
+        "resume",
+        "performance notes"
+      ],
+      "mustAvoid": [
+        "assertiveness monologue"
+      ]
+    },
+    {
+      "domain": "friendship resentment after repeated hosting",
+      "audience": "friends who have minimized too long",
+      "stakes": "a friendship will become brittle if the point keeps being underdone",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Marit says the honest version before she can bury it in jokes",
+      "firstImage": "a sink full of wine glasses after everyone leaves",
+      "mustInclude": [
+        "wine glasses",
+        "group chat poll",
+        "spare bedding"
+      ],
+      "mustAvoid": [
+        "scorekeeping speech"
+      ]
+    },
+    {
+      "domain": "graduate seminar critique exchange",
+      "audience": "students separating observation from verdict",
+      "stakes": "a critique that landed as dismissal could become a learning conversation",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marco reports the exact sentence, the embarrassment, and the story it started",
+      "firstImage": "\"When you said 'that is basic,' I went quiet,\" he says",
+      "mustInclude": [
+        "seminar table",
+        "marked article",
+        "recorder app"
+      ],
+      "mustAvoid": [
+        "you humiliated me verdict"
+      ]
+    },
+    {
+      "domain": "task-force omission at city hall",
+      "audience": "civic professionals naming exclusion without motive claims",
+      "stakes": "a public committee missed one department whose work is affected",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ryan states the observable omission and the story he is checking before proposing any remedy",
+      "firstImage": "a laminated seating chart in a council chamber",
+      "mustInclude": [
+        "seating chart",
+        "committee agenda",
+        "department memo"
+      ],
+      "mustAvoid": [
+        "bureaucratic complaint only"
+      ]
+    },
+    {
+      "domain": "designer responding to harsh client edits",
+      "audience": "freelancers who overstate when hurt",
+      "stakes": "a client relationship may survive if the feeling is serious but not inflated",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chidi trims 'you destroyed the project' into the honest version of what happened for him",
+      "firstImage": "a PDF covered with tracked edits",
+      "mustInclude": [
+        "tracked-changes PDF",
+        "invoice draft",
+        "brand board"
+      ],
+      "mustAvoid": [
+        "dramatic accusation"
+      ]
+    },
+    {
+      "domain": "adult child speaking to parent about old pattern",
+      "audience": "families where the hard thing gets taken back",
+      "stakes": "the parent's first flinch may tempt the adult child to erase the truth",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Olivier lets the reaction happen and keeps the statement available for discussion",
+      "firstImage": "a kettle clicking off in a quiet kitchen",
+      "mustInclude": [
+        "kettle",
+        "family photo",
+        "folded note"
+      ],
+      "mustAvoid": [
+        "rigidity after speaking"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs report your experience as discussable material without turning your interpretation into a verdict.",
+      "distinguish speak from your own experience from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate generic assertiveness or softer accusations labeled as i-statements."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Turn one accusation into three owned parts: observable event, internal response, and the story you started telling yourself.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "chapterId": "games-people-play-ch07",
+  "number": 7,
+  "title": "Party and Social Games",
+  "coreMove": "Distinguish ordinary social talk from short games by asking whether the exchange is moving toward contact, action, or only the familiar payoff.",
+  "sourcePressure": "Covers Ain't It Awful, Blemish, and Why Don't You Yes But as short-duration social patterns, while protecting legitimate complaint and critique.",
+  "chapterSpecificMisunderstanding": "Calling every complaint, criticism, or advice-seeking moment a game and sliding into cynicism.",
+  "sourceAlignmentTerms": [
+    "Ain't It Awful",
+    "Blemish",
+    "Why Don't You Yes But",
+    "short-duration game",
+    "pastime",
+    "social strokes",
+    "antithesis"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Ain't It Awful",
+      "detail": "the source describes shared deploring as a bonding pattern whose payoff is social strokes and avoidance of intimacy or action",
+      "useIn": "both",
+      "phrasingHint": "Ain't It Awful is not complaint itself; it is the circle that feeds on complaint and refuses any door out."
+    },
+    {
+      "kind": "artifact",
+      "name": "Blemish",
+      "detail": "the source describes scanning for flaws to secure superiority and protection from one's own inadequacy",
+      "useIn": "deepRead",
+      "phrasingHint": "Blemish gets its small warmth from being first to find the crack."
+    },
+    {
+      "kind": "artifact",
+      "name": "Why Don't You Yes But",
+      "detail": "the source describes presenting a problem, inviting suggestions, and rejecting each to prove the problem cannot be solved",
+      "useIn": "both",
+      "phrasingHint": "Why Don't You Yes But asks for solutions the way a locked display case asks to be opened."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'Party and Social Games' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "parent sideline chat at a rainy youth orchestra pickup",
+      "audience": "a parent hearing weather, school, and city complaints become Ain't It Awful",
+      "stakes": "social belonging is being bought by shared helplessness",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Laura asks what one parent can actually email the venue about, testing whether the group wants movement or only agreement.",
+      "firstImage": "Rainwater runs off instrument cases lined against the lobby wall.",
+      "mustInclude": [
+        "violin case",
+        "venue leak photo",
+        "parent email thread"
+      ],
+      "mustAvoid": [
+        "sports sideline repeat",
+        "generic gossip circle"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "architecture firm portfolio review before a client bid",
+      "audience": "a senior designer tempted to play Blemish on a junior team's model",
+      "stakes": "quality control can become status protection",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Etienne names the one flaw that affects the bid and refuses the pleasure of listing the harmless ones.",
+      "firstImage": "A tiny shadow gap under the model stairs catches Etienne's eye first.",
+      "mustInclude": [
+        "foam-core model",
+        "bid checklist",
+        "scale ruler"
+      ],
+      "mustAvoid": [
+        "design critique from ch1",
+        "perfectionism advice"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "group chat about a friend's impossible apartment search",
+      "audience": "a friend recognizing Why Don't You Yes But after four rejected suggestions",
+      "stakes": "care can become a proof machine that nothing helps",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivia stops offering fixes and asks which option the friend has already tried this week.",
+      "firstImage": "\"What about a short sublet near the train?\" Olivia types.",
+      "mustInclude": [
+        "rental listing screenshot",
+        "chat reaction icons",
+        "train-zone map"
+      ],
+      "mustAvoid": [
+        "generic dating advice chat",
+        "housing market essay"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "conference lunch table after a keynote everyone disliked",
+      "audience": "a researcher deciding whether shared critique is analysis or AIA",
+      "stakes": "networking can become grievance bonding that blocks useful contact",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Lars moves from deploring to one specific question he wants to ask the speaker in the hallway.",
+      "firstImage": "You balance a paper plate on one knee while the keynote becomes worse with each retelling.",
+      "mustInclude": [
+        "conference badge",
+        "paper lunch plate",
+        "question card"
+      ],
+      "mustAvoid": [
+        "academic satire",
+        "social media doom-scrolling"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "neighborhood book club where one member always finds the plot hole first",
+      "audience": "a host distinguishing real literary critique from Blemish as superiority",
+      "stakes": "the club may stop being a place of contact",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Kasia later changes the first round to what each reader noticed before flaws, removing the race to be first with a defect.",
+      "firstImage": "By the third meeting, Kasia can predict the page number of the first objection.",
+      "mustInclude": [
+        "marked paperback",
+        "cheese board",
+        "reading lamp"
+      ],
+      "mustAvoid": [
+        "generic dinner party",
+        "anti-intellectual tone"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "public transit advocacy Discord after a service cut",
+      "audience": "a moderator seeing advice requests turn into Yes But loops",
+      "stakes": "anger can either organize a petition or become the night's entertainment",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Devon pins a choices-only thread and closes solution replies when the poster rejects three concrete next steps.",
+      "firstImage": "When does asking for help become a way to prove help cannot work?",
+      "mustInclude": [
+        "Discord thread",
+        "route cancellation notice",
+        "petition draft"
+      ],
+      "mustAvoid": [
+        "bus depot physical shell",
+        "platform complaint montage"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate complaint from AIA by movement toward action",
+      "recognize Blemish without condemning real critique",
+      "choose antithesis for WDYYB",
+      "avoid weaponizing the labels socially"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next group complaint, ask one clean action question: what would we actually do for ten minutes if we meant this?",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

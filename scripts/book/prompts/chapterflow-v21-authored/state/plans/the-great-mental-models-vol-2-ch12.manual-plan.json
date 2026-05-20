@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch12",
+  "number": 12,
+  "title": "Evolution Part Two: Adaptation Rate and the Red Queen Effect",
+  "coreMove": "Measure adaptation against a moving baseline, not against your own prior version.",
+  "sourcePressure": "Adaptation Rate and the Red Queen Effect concern changing quickly enough while the landscape and competitors also move.",
+  "chapterSpecificMisunderstanding": "turning the Red Queen effect into generic run-faster urgency",
+  "sourceAlignmentTerms": [
+    "adaptation rate",
+    "Red Queen effect",
+    "moving baseline",
+    "relative improvement",
+    "pace mismatch",
+    "environment",
+    "churn"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Evolution Part Two: Adaptation Rate and the Red Queen Effect",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "turning the Red Queen effect into generic run-faster urgency",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Caroline",
+      "domain": "cybersecurity patch cadence",
+      "audience": "readers who face cybersecurity patch cadence decisions where adaptation rate is easy to misread",
+      "stakes": "strong controls aging faster than threats",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Caroline overlays the threat matrix on the moving patch window, crosses out one churn task on the incident note, and funds the adaptation that matches the new baseline. Domain: cybersecurity patch cadence.",
+      "firstImage": "threat matrix visible in the cybersecurity patch cadence",
+      "mustInclude": [
+        "threat matrix",
+        "patch window",
+        "incident note"
+      ],
+      "mustAvoid": [
+        "turning the Red Queen effect into generic run-faster urgency",
+        "reusing a generic meeting scene instead of the cybersecurity patch cadence constraints"
+      ]
+    },
+    {
+      "protagonistName": "George",
+      "domain": "fitness studio class trend",
+      "audience": "readers who face fitness studio class trend decisions where adaptation rate is easy to misread",
+      "stakes": "packed classes losing ground to a rival",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "George overlays the class waitlist on the moving trend board, crosses out one churn task on the instructor roster, and funds the adaptation that matches the new baseline. Domain: fitness studio class trend.",
+      "firstImage": "class waitlist visible in the fitness studio class trend",
+      "mustInclude": [
+        "class waitlist",
+        "trend board",
+        "instructor roster"
+      ],
+      "mustAvoid": [
+        "turning the Red Queen effect into generic run-faster urgency",
+        "reusing a generic meeting scene instead of the fitness studio class trend constraints"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "bus ridership redesign",
+      "audience": "readers who face bus ridership redesign decisions where adaptation rate is easy to misread",
+      "stakes": "route change lagging commuter habits",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Julien overlays the ridership heat map on the moving stop poster, crosses out one churn task on the transfer receipt, and funds the adaptation that matches the new baseline. Domain: bus ridership redesign.",
+      "firstImage": "ridership heat map visible in the bus ridership redesign",
+      "mustInclude": [
+        "ridership heat map",
+        "stop poster",
+        "transfer receipt"
+      ],
+      "mustAvoid": [
+        "turning the Red Queen effect into generic run-faster urgency",
+        "reusing a generic meeting scene instead of the bus ridership redesign constraints"
+      ]
+    },
+    {
+      "protagonistName": "Inga",
+      "domain": "admissions rubric update",
+      "audience": "readers who face admissions rubric update decisions where adaptation rate is easy to misread",
+      "stakes": "applicants chasing yesterday's criteria",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Inga overlays the rubric revision on the moving portfolio sample, crosses out one churn task on the deadline grid, and funds the adaptation that matches the new baseline. Domain: admissions rubric update.",
+      "firstImage": "rubric revision visible in the admissions rubric update",
+      "mustInclude": [
+        "rubric revision",
+        "portfolio sample",
+        "deadline grid"
+      ],
+      "mustAvoid": [
+        "turning the Red Queen effect into generic run-faster urgency",
+        "reusing a generic meeting scene instead of the admissions rubric update constraints"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "greenhouse pest pressure plan",
+      "audience": "readers who face greenhouse pest pressure plan decisions where adaptation rate is easy to misread",
+      "stakes": "crop plan outpaced by pest timing",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Kiran overlays the sticky trap card on the moving greenhouse row tag, crosses out one churn task on the spray log, and funds the adaptation that matches the new baseline. Domain: greenhouse pest pressure plan.",
+      "firstImage": "sticky trap card visible in the greenhouse pest pressure plan",
+      "mustInclude": [
+        "sticky trap card",
+        "greenhouse row tag",
+        "spray log"
+      ],
+      "mustAvoid": [
+        "turning the Red Queen effect into generic run-faster urgency",
+        "reusing a generic meeting scene instead of the greenhouse pest pressure plan constraints"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "grocery delivery competitor response",
+      "audience": "readers who face grocery delivery competitor response decisions where adaptation rate is easy to misread",
+      "stakes": "customers switching before metrics catch up",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marta overlays the competitor flyer on the moving delivery map, crosses out one churn task on the basket receipt, and funds the adaptation that matches the new baseline. Domain: grocery delivery competitor response.",
+      "firstImage": "competitor flyer visible in the grocery delivery competitor response",
+      "mustInclude": [
+        "competitor flyer",
+        "delivery map",
+        "basket receipt"
+      ],
+      "mustAvoid": [
+        "turning the Red Queen effect into generic run-faster urgency",
+        "reusing a generic meeting scene instead of the grocery delivery competitor response constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for adaptation rate rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Measure adaptation against a moving baseline, not against your own prior version.",
+      "explain why the tempting misread fails: turning the Red Queen effect into generic run-faster urgency",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving adaptation rate, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

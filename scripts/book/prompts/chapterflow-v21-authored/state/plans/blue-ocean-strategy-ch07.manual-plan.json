@@ -1,0 +1,186 @@
+{
+  "chapterId": "blue-ocean-strategy-ch07",
+  "number": 7,
+  "title": "Overcome Key Organizational Hurdles",
+  "coreMove": "Find the few hotspots, direct experiences, kingpins, and blockers that can tip execution through organizational resistance.",
+  "sourcePressure": "Apply tipping point leadership to execution hurdles by focusing leverage on cognitive, resource, motivational, and political barriers instead of trying to move everyone evenly.",
+  "chapterSpecificMisunderstanding": "Treating organizational change as a morale campaign where everyone needs equal persuasion and equal resources.",
+  "sourceAlignmentTerms": [
+    "tipping point leadership",
+    "cognitive hurdles",
+    "resource hurdles",
+    "motivational hurdles",
+    "political hurdles",
+    "hotspots",
+    "kingpins"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "tipping point leadership",
+      "detail": "official support defines the public vocabulary around cognitive, resource, motivational, and political hurdles",
+      "useIn": "both",
+      "phrasingHint": "Tipping point leadership starts by naming which hurdle is actually holding the room in place: seeing, resourcing, wanting, or politics."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Michael",
+      "domain": "precinct radio failures and cognitive hurdles",
+      "audience": "a public-safety leader whose equipment requests keep stalling",
+      "stakes": "whether officers get working radios before another call goes bad",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he places the failed radio on the command desk and makes the cognitive hurdle impossible to ignore",
+      "firstImage": "Static crackles from a cracked patrol radio long after the call has ended",
+      "mustInclude": [
+        "failed radio",
+        "incident log",
+        "command desk speaker"
+      ],
+      "mustAvoid": [
+        "another memo-versus-object persuasion scene"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "hospital discharge hotspots and cold spots",
+      "audience": "a nurse leader with no extra headcount",
+      "stakes": "whether discharge delays keep backing up beds",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she chooses to move one clerk into the discharge hotspot instead of asking for more of everything",
+      "firstImage": "At 11:30 a.m., Juliette counts seven charts waiting beside the discharge printer",
+      "mustInclude": [
+        "discharge chart rack",
+        "bed-status screen",
+        "clerk shift card"
+      ],
+      "mustAvoid": [
+        "generic hospital staffing complaint"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "warehouse shift leads and visible error accountability",
+      "audience": "an operations manager whose bin errors spread through shift leads",
+      "stakes": "whether errors fall without lecturing every picker",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the visible board changes kingpin behavior among shift leads before the whole floor follows",
+      "firstImage": "It took Lars two inventory counts to notice four shift leads shaped everyone else",
+      "mustInclude": [
+        "error board",
+        "bin scanner",
+        "lead badge hooks"
+      ],
+      "mustAvoid": [
+        "generic warehouse safety story"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "vendor reform and political blockers",
+      "audience": "a manager facing a protected incumbent vendor",
+      "stakes": "whether a better vendor survives committee politics",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she protects an ally and contains a blocker before the meeting where the old contract would normally win",
+      "firstImage": "\"He will call procurement before lunch,\" Aanya says, sliding the seating chart across the table",
+      "mustInclude": [
+        "committee seating chart",
+        "contract renewal packet",
+        "ally briefing note"
+      ],
+      "mustAvoid": [
+        "generic office politics drama"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "library sorting redesign and trustee exposure",
+      "audience": "a civic leader trying to fund a sorting redesign",
+      "stakes": "whether trustees see the strain behind slow returns",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "he brings trustees into the cramped returns room during the rush so the cognitive hurdle changes before budget talk starts",
+      "firstImage": "The returns room has one narrow aisle and a cart already blocking the sorter",
+      "mustInclude": [
+        "return cart",
+        "jammed sorter belt",
+        "trustee visitor badge"
+      ],
+      "mustAvoid": [
+        "classroom or municipal lecture"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "restaurant lunch rollout and operational hotspots",
+      "audience": "an owner introducing a simplified lunch service",
+      "stakes": "whether a promising menu dies in execution",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she predicts the grill is the constraint, then prep reveals the true hotspot at the garnish station",
+      "firstImage": "What if the lunch bottleneck is not the grill everyone complains about?",
+      "mustInclude": [
+        "garnish pans",
+        "order rail",
+        "prep timer"
+      ],
+      "mustAvoid": [
+        "generic restaurant morale story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "name cognitive, resource, motivational, and political hurdles in scenes",
+      "choose concentrated leverage over broad persuasion",
+      "identify hotspots, kingpins, and blockers"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name the hurdle in one stalled change: cognitive, resource, motivational, or political. Do not solve it yet.",
+  "readingTimeMinutes": 12
+}

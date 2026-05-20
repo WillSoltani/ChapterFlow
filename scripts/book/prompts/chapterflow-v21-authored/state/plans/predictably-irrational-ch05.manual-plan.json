@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch05",
+  "number": 5,
+  "title": "The Influence of Arousal",
+  "coreMove": "Make the safety decision while calm, then remove the option to renegotiate it when the hot state arrives.",
+  "sourcePressure": "The source shows that people in cold states mispredict their own decisions in hot states, so safeguards must be designed before arousal, anger, fear, or attraction changes judgment.",
+  "chapterSpecificMisunderstanding": "The weak version says impulses are strong; the chapter-specific point is that state-dependent prediction fails, so cold-state design must bind hot-state behavior.",
+  "sourceAlignmentTerms": ["arousal", "hot state", "cold state", "state-dependent judgment", "precommitment", "impulse"],
+  "forbiddenFrames": {
+    "hook": ["The hot version of you is different", "Desire changes the rules", "Calm plans fail at midnight"],
+    "counterintuition": ["You know yourself", "Willpower will be available", "Awareness will hold"],
+    "tryThisNow": ["Make a plan while calm", "Set a boundary", "Avoid temptation"],
+    "examples": ["late-night texting", "party hookup", "angry Slack reply"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "whitewater rafting outfitter before spring melt",
+      "audience": "a guide deciding safety thresholds before clients arrive excited",
+      "stakes": "letting group adrenaline push a launch after river gauges cross the red line",
+      "format": "decision_point",
+      "requiredBeat": "the guide tapes the cancellation gauge level inside the equipment shed before the cheering group can argue at the riverbank",
+      "firstImage": "a wet river-gauge printout taped above hanging paddles",
+      "mustInclude": ["cancellation level", "equipment shed", "river gauge"],
+      "mustAvoid": ["party safety", "weekend exit plan", "generic outdoor thrill"]
+    },
+    {
+      "domain": "auction-house absentee bidding for a collector",
+      "audience": "a collector who becomes competitive once paddles start rising",
+      "stakes": "blowing a restoration budget because the room's heat makes the limit feel negotiable",
+      "format": "predict_reveal",
+      "requiredBeat": "the collector signs an absentee maximum before entering the saleroom and gives the paddle to a friend once bidding reaches it",
+      "firstImage": "a numbered auction paddle lying beside a signed absentee bid form",
+      "mustInclude": ["absentee maximum", "restoration budget", "paddle handoff"],
+      "mustAvoid": ["price anchoring", "ownership valuation", "sports ticket scarcity"]
+    },
+    {
+      "domain": "emergency-room resident after a public insult",
+      "audience": "a medical trainee writing a reply to a senior physician while angry",
+      "stakes": "damaging a rotation evaluation by sending a hot-state message",
+      "format": "vignette",
+      "requiredBeat": "the resident uses a prewritten rule that all conflict replies sit in drafts until the next shift handoff",
+      "firstImage": "an unsent email glowing above a pocket trauma shears on a break-room counter",
+      "mustInclude": ["drafts folder", "shift handoff", "rotation evaluation"],
+      "mustAvoid": ["Slack insult", "generic anger management", "office email"]
+    },
+    {
+      "domain": "night-shift pastry kitchen tasting station",
+      "audience": "a pastry chef trying not to overeat rejected batches at 2 a.m.",
+      "stakes": "making exhausted taste-testing choices that the daytime plan did not anticipate",
+      "format": "before_after",
+      "requiredBeat": "before the shift, the chef portions tasting bites on a labeled tray and locks the reject bin before fatigue and sugar smell arrive",
+      "firstImage": "tiny pastry squares lined on a steel tray under fluorescent light",
+      "mustInclude": ["labeled tray", "reject bin lock", "2 a.m. batch"],
+      "mustAvoid": ["diet pep talk", "free samples", "home pantry"]
+    },
+    {
+      "domain": "teen driver preparing for a snowstorm curfew",
+      "audience": "a parent and teen setting rules before friends start calling",
+      "stakes": "renegotiating a driving boundary once social pressure and excitement rise",
+      "format": "dialogue",
+      "requiredBeat": "they leave the car keys in a timed lockbox at 8 p.m. before the group chat starts pushing for a late drive",
+      "firstImage": "car keys dropped into a small lockbox beside a weather alert on a phone",
+      "mustInclude": ["weather alert", "timed lockbox", "group chat"],
+      "mustAvoid": ["sexualized party scene", "weekend plan", "driver coffee demo"]
+    },
+    {
+      "domain": "public defender plea call after a courthouse confrontation",
+      "audience": "a lawyer deciding whether to respond immediately to a hostile prosecutor",
+      "stakes": "letting anger push a client-harming refusal that calm strategy would reject",
+      "format": "postmortem",
+      "requiredBeat": "the lawyer points to a laminated plea-response checklist and waits for a colleague's second read before returning the call",
+      "firstImage": "a courthouse phone blinking beside a laminated response checklist",
+      "mustInclude": ["second read", "plea deadline", "laminated checklist"],
+      "mustAvoid": ["generic legal drama", "office conflict", "ethics cheating"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify hot-state prediction errors", "choose a cold-state commitment that survives pressure", "distinguish awareness from precommitment", "evaluate safeguards for timing and enforceability"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Choose one moment where your state changes your standards and put one nonnegotiable barrier in place now, before the state arrives.",
+  "readingTimeMinutes": 12
+}

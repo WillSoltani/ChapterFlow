@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch19",
+  "number": 19,
+  "title": "The Goldilocks Rule: How to Stay Motivated in Life and Work",
+  "coreMove": "Keep the challenge at the edge of ability so attention stays alive.",
+  "sourcePressure": "Motivation stays strongest when the task is just hard enough to demand attention without tipping into discouragement or boredom.",
+  "chapterSpecificMisunderstanding": "Mistaking calibrated challenge for constant novelty, grind, or maximum difficulty.",
+  "sourceAlignmentTerms": [
+    "Goldilocks Rule",
+    "manageable difficulty",
+    "boredom",
+    "discouragement",
+    "flow",
+    "challenge level"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of Goldilocks Rule",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a chess coach setting puzzles one rating band above a student",
+      "audience": "a player bored by easy drills and crushed by master games",
+      "stakes": "whether challenge is calibrated enough to hold attention",
+      "format": "scene",
+      "requiredBeat": "the coach swaps a 1900 puzzle for a 1450 puzzle and the student leans in instead of shutting down",
+      "firstImage": "a chess clock beside a puzzle book with a rating tab",
+      "mustInclude": [
+        "rating tab",
+        "chess clock"
+      ],
+      "mustAvoid": [
+        "constant novelty"
+      ]
+    },
+    {
+      "domain": "a rock-climbing setter adjusting a route by one hold color",
+      "audience": "a gym member stuck between boredom and falls",
+      "stakes": "whether difficulty changes by a manageable edge",
+      "format": "predict_reveal",
+      "requiredBeat": "the setter removes one green foothold and the climber falls once, then solves it on the third try",
+      "firstImage": "green footholds scattered below a route wall",
+      "mustInclude": [
+        "foothold",
+        "route tape"
+      ],
+      "mustAvoid": [
+        "maximum grind"
+      ]
+    },
+    {
+      "domain": "a piano teacher assigning a passage at 86 beats per minute instead of full tempo",
+      "audience": "a student losing motivation from impossible jumps",
+      "stakes": "whether the task stretches without breaking",
+      "format": "dialogue",
+      "requiredBeat": "the metronome clicks at the edge where mistakes appear but the line still survives",
+      "firstImage": "a metronome blinking beside marked sheet music",
+      "mustInclude": [
+        "metronome",
+        "marked passage"
+      ],
+      "mustAvoid": [
+        "music repetition already used as cue"
+      ]
+    },
+    {
+      "domain": "a claims adjuster learning fraud review through borderline files",
+      "audience": "a trainee bored by obvious cases",
+      "stakes": "whether near-miss cases create attention",
+      "format": "postmortem",
+      "requiredBeat": "the supervisor replaces easy fraud flags with ambiguous files and error notes become specific",
+      "firstImage": "three claim folders labeled borderline on a metal tray",
+      "mustInclude": [
+        "borderline folder",
+        "error note"
+      ],
+      "mustAvoid": [
+        "generic office training"
+      ]
+    },
+    {
+      "domain": "a youth fencing coach rotating bouts by skill gap",
+      "audience": "a coach retaining beginners through the hard middle",
+      "stakes": "whether opponents are just difficult enough to teach",
+      "format": "before_after",
+      "requiredBeat": "the beginner loses 5-3 instead of 5-0 and asks for one more bout",
+      "firstImage": "foil masks lined along a strip boundary",
+      "mustInclude": [
+        "foil mask",
+        "bout card"
+      ],
+      "mustAvoid": [
+        "sports triumph arc"
+      ]
+    },
+    {
+      "domain": "a software learner raising test difficulty only after two clean passes",
+      "audience": "a bootcamp student oscillating between boredom and panic",
+      "stakes": "whether challenge ladder keeps attention alive",
+      "format": "decision_point",
+      "requiredBeat": "after two passing tests, she unlocks one failing edge case instead of jumping to a whole new project",
+      "firstImage": "a failing test line highlighted on a laptop screen",
+      "mustInclude": [
+        "edge-case test",
+        "progress ladder"
+      ],
+      "mustAvoid": [
+        "generic coding grind"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "calibrate challenge to ability",
+      "diagnose boredom versus discouragement",
+      "adjust difficulty one notch at a time"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Adjust one practice task so it is neither easy nor impossible: add or remove one notch of difficulty before the next rep.",
+  "readingTimeMinutes": 12
+}

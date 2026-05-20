@@ -1,0 +1,197 @@
+{
+  "chapterId": "thinking-in-bets-ch07",
+  "number": 7,
+  "title": "Adventures in mental time travel",
+  "coreMove": "Let a future review point inspect today before the present mood spends the chips.",
+  "sourcePressure": "The source support is thinner here, so the plan stays narrow: mental time travel widens present judgment through future review, 10-10-10 thinking, premortems, backcasting, and regret placed before commitment.",
+  "chapterSpecificMisunderstanding": "The writer must state that future perspective widens the frame; it does not reveal the future or guarantee regret-free decisions.",
+  "sourceAlignmentTerms": [
+    "mental time travel",
+    "present bias",
+    "future review point",
+    "10-10-10",
+    "premortem",
+    "backcasting",
+    "regret rehearsal"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "10-10-10 thinking",
+      "detail": "The frozen source names 10-10-10 thinking as one tool for widening the time frame of a decision.",
+      "useIn": "deepRead",
+      "phrasingHint": "Ten minutes, ten months, and ten years can each ask a different question of the same impulse."
+    },
+    {
+      "kind": "artifact",
+      "name": "premortems and backcasting",
+      "detail": "The frozen source lists premortems and backcasting as future-facing checks that bring later review into present choice.",
+      "useIn": "fullRead",
+      "phrasingHint": "A premortem lets a later failure speak early enough to change the plan."
+    },
+    {
+      "kind": "event",
+      "name": "regret moved before the decision",
+      "detail": "The frozen source says regret is more useful when moved in front of the choice rather than processed only afterward.",
+      "useIn": "both",
+      "phrasingHint": "Regret is a better tool before the signature than after the apology."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Imagine your future self",
+      "Travel to tomorrow",
+      "The future can advise you"
+    ],
+    "counterintuition": [
+      "Visualization predicts better",
+      "Regret should drive the decision"
+    ],
+    "tryThisNow": [
+      "Picture yourself in ten years",
+      "Do a quick premortem"
+    ],
+    "examples": [
+      "six-month work meeting check",
+      "journal entry split then and now",
+      "future review column worksheet"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "home renovation contract before signing a change order",
+      "audience": "homeowners managing contractors",
+      "stakes": "current frustration could approve a costly shortcut that looks foolish by final inspection",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask Megan to read the change order as if the inspector is already standing in the finished kitchen three months from now.",
+      "firstImage": "You have a pen over the change order while drywall dust sits on the counter.",
+      "mustInclude": [
+        "change order",
+        "inspection checklist",
+        "three-month review"
+      ],
+      "mustAvoid": [
+        "generic home improvement regret"
+      ]
+    },
+    {
+      "domain": "city marathon permit decision during a heat-warning week",
+      "audience": "event directors and municipal staff",
+      "stakes": "present pressure from sponsors could crowd out the later safety review",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"What will the incident report ask us first?\" Julien says, moving the discussion from sponsor pressure to the later safety file.",
+      "firstImage": "\"What will the incident report ask us first?\" Julien says, with the heat bulletin open.",
+      "mustInclude": [
+        "heat bulletin",
+        "sponsor email",
+        "incident-report template"
+      ],
+      "mustAvoid": [
+        "charity gala weather from ch1"
+      ]
+    },
+    {
+      "domain": "startup acquisition term sheet with a fast deadline",
+      "audience": "founders and advisers",
+      "stakes": "a celebratory offer could hide terms future employees will resent",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:35 p.m., Kasia backcasts from the first all-hands after acquisition and marks which terms would be hardest to defend then.",
+      "firstImage": "At 6:35 p.m., Kasia puts the champagne back in the mini-fridge and opens the vesting schedule.",
+      "mustInclude": [
+        "term sheet",
+        "vesting schedule",
+        "future all-hands"
+      ],
+      "mustAvoid": [
+        "startup runway estimate from ch3"
+      ]
+    },
+    {
+      "domain": "college major selection before a scholarship deadline",
+      "audience": "students and advisers",
+      "stakes": "family pressure and deadline panic may narrow the view of future coursework and debt",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What would Ben ask after two semesters of the major, with the scholarship used and the first lab grade posted?",
+      "firstImage": "What would the second-semester version of Ben ask that deadline-night Ben is avoiding?",
+      "mustInclude": [
+        "scholarship deadline",
+        "course map",
+        "first lab grade"
+      ],
+      "mustAvoid": [
+        "student exchange placement from ch2"
+      ]
+    },
+    {
+      "domain": "elder-care move decision after one frightening fall",
+      "audience": "adult children making family care decisions",
+      "stakes": "fear from the latest fall could rush a move that needs a wider view of health, autonomy, and support",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Astrid runs a premortem for both choices, naming what each future regret would accuse today of ignoring.",
+      "firstImage": "The hallway night-light is still on at noon after the ambulance leaves.",
+      "mustInclude": [
+        "care calendar",
+        "premortem list",
+        "mobility assessment"
+      ],
+      "mustAvoid": [
+        "generic family panic"
+      ]
+    },
+    {
+      "domain": "film festival jury choosing a controversial prize winner",
+      "audience": "jury chairs and arts critics",
+      "stakes": "present-room momentum may choose the safest film instead of the one the jury can defend later",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Diego asks the jury to write the award note from one year later before the vote, exposing which choice survives distance.",
+      "firstImage": "It took Diego one festival cycle to learn that applause in the room fades faster than the printed award note.",
+      "mustInclude": [
+        "award note",
+        "jury ballot",
+        "one-year retrospective"
+      ],
+      "mustAvoid": [
+        "documentary edit room from ch5"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use future review without claiming foresight",
+      "identify present bias in urgent decisions",
+      "apply premortem, backcasting, and 10-10-10 checks",
+      "distinguish regret rehearsal from fantasy"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before one decision today, write three review questions from a later vantage point: ten minutes after, ten months after, and when the first hard evidence arrives.",
+  "readingTimeMinutes": 12
+}

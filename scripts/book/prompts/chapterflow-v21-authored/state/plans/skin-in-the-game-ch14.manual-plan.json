@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch14",
+  "number": 14,
+  "title": "Peace, Neither Ink nor Blood",
+  "coreMove": "Judge peace by the structure of consequence that keeps it alive after the ink dries.",
+  "sourcePressure": "Declared peace is weak unless the arrangement gives each side a credible reason not to break it.",
+  "chapterSpecificMisunderstanding": "Making the chapter generic diplomacy advice or glorifying force.",
+  "sourceAlignmentTerms": [
+    "declared peace",
+    "durable peace",
+    "deterrence",
+    "credible threat",
+    "lived arrangement",
+    "paper assurance",
+    "stability"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Peace, Neither Ink nor Blood",
+      "detail": "The sidecar supports declared peace versus durable peace, with stability coming from credible consequence rather than words alone.",
+      "useIn": "deepRead",
+      "phrasingHint": "The title should push the writer to ask what holds when signatures stop being fresh and nobody is bleeding today."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "labor mediator reviewing a signed agreement after two near-strikes",
+      "audience": "mediator asking what consequence keeps peace after signatures",
+      "stakes": "workers and management need a living enforcement structure",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Margaux adds a joint inspection trigger to the agreement before calling it settled.",
+      "firstImage": "wet ink beside a factory floor map",
+      "mustInclude": [
+        "agreement",
+        "inspection trigger",
+        "floor map"
+      ],
+      "mustAvoid": [
+        "diplomacy abstraction"
+      ]
+    },
+    {
+      "domain": "neighbors ending a fence dispute with a note but no repair schedule",
+      "audience": "homeowner seeing why declared peace fails without structure",
+      "stakes": "the dispute will restart if maintenance costs stay vague",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Jonas turns the apology note into dated repair tasks and shared receipts.",
+      "firstImage": "a leaning fence casting a crooked shadow",
+      "mustInclude": [
+        "apology note",
+        "repair schedule",
+        "receipt folder"
+      ],
+      "mustAvoid": [
+        "neighbor sitcom"
+      ]
+    },
+    {
+      "domain": "school rivalry cooled by a handshake after a fight",
+      "audience": "principal building credible consequence into peace",
+      "stakes": "students may treat ceremony as theater unless routines change",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hanna pairs the handshake with supervised shared setup duty for the next four games.",
+      "firstImage": "rubber gym mats stacked after a pep rally",
+      "mustInclude": [
+        "handshake photo",
+        "setup rota",
+        "game calendar"
+      ],
+      "mustAvoid": [
+        "anti-violence sermon"
+      ]
+    },
+    {
+      "domain": "software vendor and client signing an SLA with no penalty path",
+      "audience": "procurement lawyer testing ink against consequence",
+      "stakes": "service failure could continue if breach costs are symbolic",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Javier rewrites the SLA so outage credits trigger automatically from monitoring logs.",
+      "firstImage": "server-status lights reflected in a glass wall",
+      "mustInclude": [
+        "SLA",
+        "monitoring log",
+        "outage credit"
+      ],
+      "mustAvoid": [
+        "contract trivia"
+      ]
+    },
+    {
+      "domain": "co-op board calming a renovation conflict with promises but no access rules",
+      "audience": "board chair creating a lived arrangement",
+      "stakes": "residents need predictable consequence, not warm language",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Adaeze Reed notes which promise failed, then posts access windows with fines already approved.",
+      "firstImage": "dust footprints across a lobby mat",
+      "mustInclude": [
+        "access window",
+        "fine schedule",
+        "renovation notice"
+      ],
+      "mustAvoid": [
+        "building drama"
+      ]
+    },
+    {
+      "domain": "two departments ending budget conflict by sharing one scarce specialist",
+      "audience": "manager designing mutual exposure so peace holds",
+      "stakes": "either side can defect unless both feel the cost",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Kasia Nowak makes both departments lose priority if either poaches the specialist outside the queue.",
+      "firstImage": "a shared calendar blocked in alternating colors",
+      "mustInclude": [
+        "shared calendar",
+        "priority queue",
+        "budget memo"
+      ],
+      "mustAvoid": [
+        "teamwork cliché"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify declared peace in a new concrete scenario",
+      "choose the action that performs the chapter move: Judge peace by the structure of consequence that keeps it alive after the ink dries.",
+      "separate the chapter's mechanism from the weak misread: Making the chapter generic diplomacy advice or glorifying force.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for Peace, Neither Ink nor Blood.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,205 @@
+{
+  "chapterId": "the-first-20-hours-ch02",
+  "number": 2,
+  "title": "10 Principles of Rapid Skill Acquisition",
+  "coreMove": "Turn a competence target into a low-friction practice loop that produces corrected reps quickly.",
+  "sourcePressure": "The source lists the rapid acquisition operating system: lovable project, one skill at a time, target performance level, deconstruction, critical tools, removed barriers, made time, fast feedback loops, short bursts, quantity, and speed.",
+  "chapterSpecificMisunderstanding": "Treating the principles as a checklist for feeling prepared rather than a loop that increases useful contact with the skill.",
+  "sourceAlignmentTerms": [
+    "lovable project",
+    "one skill at a time",
+    "target performance level",
+    "deconstruction",
+    "critical tools",
+    "barriers to practice",
+    "fast feedback loops",
+    "quantity and speed"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "10 principles of rapid skill acquisition",
+      "detail": "the frozen support lists the chapter principles from project choice through deconstruction, friction removal, feedback, short bursts, and quantity-speed practice",
+      "useIn": "both",
+      "phrasingHint": "The ten principles are less like advice on a poster and more like a bench setup: target, tools, clear space, feedback, reps."
+    },
+    {
+      "kind": "artifact",
+      "name": "target performance level",
+      "detail": "the source names a target performance level as one of the core rapid acquisition principles",
+      "useIn": "deepRead",
+      "phrasingHint": "A target performance level tells the practice session what finished enough will look like before enthusiasm starts wandering."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "toolbox metaphor opener",
+      "ten simple rules promise",
+      "morning routine montage"
+    ],
+    "counterintuition": [
+      "discipline is all you need",
+      "practice longer to learn faster",
+      "principles replace effort"
+    ],
+    "tryThisNow": [
+      "pick a goal and practice now",
+      "make a generic checklist",
+      "remove distractions with no named barrier"
+    ],
+    "examples": [
+      "generic gym routine",
+      "language app streak",
+      "whiteboard in conference room"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "paramedic trainee practicing radio handoff clarity",
+      "audience": "a learner who needs a narrow professional subskill under time pressure",
+      "stakes": "unclear handoffs waste seconds when a patient is transferred",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Emily strips the skill to a thirty-second SBAR radio handoff, records five attempts, and uses the instructor stopwatch and playback as fast feedback",
+      "firstImage": "a scuffed radio clipped beside a laminated SBAR card",
+      "mustInclude": [
+        "SBAR card",
+        "stopwatch",
+        "playback clip"
+      ],
+      "mustAvoid": [
+        "general public speaking lesson",
+        "heroic ambulance rescue"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "craft brewery quality tech learning yeast-cell counting",
+      "audience": "a technical learner whose project needs the right tool before reps can count",
+      "stakes": "a batch decision depends on whether the count is trustworthy by Friday",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mikkel borrows the hemocytometer first, clears one bench, and repeats only the counting grid until his supervisor can compare results",
+      "firstImage": "a glass counting chamber drying beside a labeled yeast sample",
+      "mustInclude": [
+        "hemocytometer",
+        "yeast sample",
+        "supervisor comparison"
+      ],
+      "mustAvoid": [
+        "beer tasting scene",
+        "generic lab montage"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "legal clinic volunteer learning intake triage questions",
+      "audience": "a reader who needs one usable service skill instead of whole-field knowledge",
+      "stakes": "walk-in clients are being booked with the wrong attorney slots",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Grace asks a supervising attorney to mark the three triage questions that sort urgent eviction from general advice, then practices only those calls in short bursts",
+      "firstImage": "a pink hearing notice sliding under a scratched intake window",
+      "mustInclude": [
+        "hearing notice",
+        "three triage questions",
+        "call script"
+      ],
+      "mustAvoid": [
+        "courtroom drama",
+        "generic customer service"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "cycling mechanic learning derailleur indexing",
+      "audience": "a hands-on learner who keeps expanding into the whole bicycle",
+      "stakes": "a charity repair day needs ten safe commuter bikes by Saturday",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hugo predicts watching repair videos will help more, then improves when he isolates one barrel-adjuster loop and gets immediate chain-noise feedback",
+      "firstImage": "a rear wheel ticking against a bent repair stand tray",
+      "mustInclude": [
+        "barrel adjuster",
+        "chain noise",
+        "repair stand"
+      ],
+      "mustAvoid": [
+        "bike-helmet commuter cliche",
+        "full bike overhaul"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "wedding officiant learning one bilingual ceremony segment",
+      "audience": "a reader whose lovable project gives practice emotional pull",
+      "stakes": "the couple wants the ring exchange understood by both families in two weeks",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel limits the target to the ring exchange, removes unused readings from the folder, and rehearses ten short takes with feedback from the groom's aunt",
+      "firstImage": "thin gold rings resting on a printed bilingual vow page",
+      "mustInclude": [
+        "ring exchange",
+        "ten takes",
+        "aunt feedback"
+      ],
+      "mustAvoid": [
+        "generic language-learning app",
+        "romantic speechwriting"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "library staff member learning 3D printer first-layer setup",
+      "audience": "a public-service learner who needs repeatable tool competence",
+      "stakes": "patrons keep losing reservations when prints fail in the first ten minutes",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lin traces three failed prints to bed leveling, tapes the setup card to the machine, and does six first-layer checks instead of browsing model catalogs",
+      "firstImage": "a curled strip of blue filament lifted from a glass print bed",
+      "mustInclude": [
+        "bed leveling card",
+        "six first-layer checks",
+        "failed print log"
+      ],
+      "mustAvoid": [
+        "maker-space hype",
+        "generic technology training"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "design a practice loop with target, barrier removal, feedback, and reps",
+      "distinguish deconstruction from overplanning",
+      "choose fast feedback over vague effort",
+      "identify when quantity and speed are serving the right subskill"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one current skill and write four labels on one line: target, first subskill, biggest barrier, fastest feedback source.",
+  "readingTimeMinutes": 12
+}

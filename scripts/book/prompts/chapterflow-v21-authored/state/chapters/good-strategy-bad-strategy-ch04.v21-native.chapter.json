@@ -1,0 +1,325 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch04",
+  "number": 4,
+  "title": "Why So Much Bad Strategy?",
+  "readingTimeMinutes": 11,
+  "hook": "A room can agree quickly because nothing costly has been named yet.",
+  "counterintuition": "Avoidance can sound like consensus and still leave the real problem untouched. Bad strategy lets fluff and easy goals stand where diagnosis should be.",
+  "tryThisNow": "Take one recent consensus decision and write the choice it avoided. Name the group or project that would have lost if the plan had been precise.",
+  "keyTakeaway": "Ambiguity keeps bad strategy alive because it buys agreement cheaply, hides political cost, and delays the painful exclusions that real strategy requires.",
+  "breakdown": {
+    "fastRead": "Emily studies the sticky-note wall after a city agency workshop. The notes say access, safety, equity, speed, trust, and innovation. Public comment cards mention one complaint again and again: permit delays for small contractors. The budget cap leaves room for one fix. Emily removes the notes that do not address the delay and watches the room tense up.\n\nThat tension explains why bad strategy keeps returning. Vague language lets everyone stay included. Precise diagnosis makes someone pay a cost.\n\nA room may look aligned because nothing has been excluded. The agreement is real, but it is shallow. It lasts only because the hard choice has not arrived.",
+    "deepRead": "Nicolas holds a cracked machine part at the annual retreat of a family-owned manufacturer. The owner agenda protects new territories, a trade-show booth, a cousin’s custom line, and a service expansion. The part tells a narrower story: field failures are coming from one aging assembly step. Nicolas asks which pet project gets cut so the assembly fix can be funded before the next sales season.\n\nConsensus becomes expensive the moment it meets a constraint.\n\nThis is not a story about foolish people. Smart, serious groups often prefer ambiguity because ambiguity performs a social job. It keeps coalitions intact. It lowers the political cost of the meeting. It lets each person hear a version of the plan that protects their own priority. The trouble begins later, when the vague agreement has to become action.\n\nIngrid sees the aftereffect at a university committee. The committee binder says transformation. The program inventory says duplication. The tuition model says two low-enrollment tracks cannot both survive. In the postmortem, she realizes why the vague language passed so easily: no department had been asked to give anything up.\n\nBad strategy is often manufactured by the reward system around the room. If precision creates conflict and vagueness creates applause, the room will learn to applaud vagueness.",
+    "fullRead": "Marco stands in a hospital planning session with a referral queue, a bed map, and a service charter. The charter promises patient-centered excellence across every service line. The referral queue shows orthopedic patients waiting longest. The bed map shows medical patients displaced every Thursday when the operating schedule peaks. Marco asks whether the plan will favor beds for one service line this quarter, and the mood changes.\n\nThe mood changes because strategy has touched status. A vague plan lets each service hear respect. A precise plan says which constraint rules and which group absorbs the inconvenience first. People are not irrational for resisting that moment. They are responding to a real political cost.\n\nThat is why blaming bad strategy on stupidity misses the mechanism. Many bad plans are produced by capable people who understand exactly which fight a clear diagnosis would start. The institution may not reward them for starting it. It may reward smooth language, broad inclusion, and a document that every stakeholder can endorse before lunch.\n\nYou can see the pattern in any committee that loves adjectives. Comprehensive. Transformative. Inclusive. Innovative. Each word may express a genuine value. None forces a choice by itself. The question is what the words are allowed to decide. If they decide nothing, they have become alignment theater.\n\nYusuf finds that in an arts board funding cycle. The grant score sheets reward ambition, community reach, artistic excellence, access, and experimentation. The rehearsal calendar and donor pledges show that small theater groups are collapsing between grant award and opening night. Yusuf predicts the highest-scoring proposal will again be the broadest. Then he tests it against last year’s canceled productions. Breadth won the scoring meeting; cash timing lost on stage.\n\nA fair objection says consensus is not worthless. True. Strategy often needs cooperation, and a leader who creates needless enemies is not brave. The problem is counterfeit consensus: agreement purchased by leaving the conflict unnamed. Real consensus can survive a stated tradeoff. Counterfeit consensus needs fog.\n\nGrace meets the same fog at a software offsite. Before lunch, every team priority card stays on the table. After she places the dependency board beside the release date, she stops the ranking exercise and changes the order. First choose the dependency that blocks the release. Then choose which team priority waits. Only after that does the roadmap deserve a name.\n\nAmbiguity is attractive because it feels humane. It lets people leave the room believing they were heard. But a plan that hears everyone and chooses nothing has only moved the conflict to a later date, where it will appear as delay, budget creep, missed handoffs, or quiet sabotage.\n\nThe cure is not harshness. It is honest specificity. Name the constraint. Name the tradeoff. Name the priority that will wait. A room can still disagree after that, but at least the disagreement is about the real cost. That is progress."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-emily-sticky-notes",
+      "title": "Emily Pulls Down the Safe Notes",
+      "tags": [
+        "city agency",
+        "consensus",
+        "budget"
+      ],
+      "planSpec": {
+        "domain": "city agency consensus workshop that avoids exclusions",
+        "audience": "a reader facing city agency consensus workshop that avoids exclusions",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "scene",
+        "requiredBeat": "Emily moves one concrete constraint to the center of the table and crosses out every action that does not address it using sticky-note wall so the lesson happens as a visible action."
+      },
+      "scenario": "The sticky-note wall fills the council annex by four in the afternoon: access, trust, safety, speed, fairness. Emily, the workshop lead, pins public comment cards below it and places the budget cap on the table. Contractors keep naming permit delays. She is about to decide whether to preserve the feel-good clusters or pull down every note that does not address the delay.",
+      "whatToDo": "Move the budget cap and comment cards into view, name permit delay as the constraint, and remove notes that do not fit that diagnosis.",
+      "whyItMatters": "The workshop’s agreement is cheap until a constraint appears. Removing safe notes reveals whether the room has strategy or only shared adjectives."
+    },
+    {
+      "exampleId": "ch04-ex02-nicolas-machine-part",
+      "title": "Nicolas Cuts the Owner’s Favorite Expansion",
+      "tags": [
+        "manufacturing",
+        "family business",
+        "politics"
+      ],
+      "planSpec": {
+        "domain": "family-owned manufacturer annual retreat preserving every pet project",
+        "audience": "a reader facing family-owned manufacturer annual retreat preserving every pet project",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "decision_point",
+        "requiredBeat": "Nicolas asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using machine part sample so the lesson happens as a visible action."
+      },
+      "scenario": "\"Which sale survives this defect?\" Nicolas asks in the lakeside retreat room, setting a cracked machine part beside the sales territories and the owner agenda. His uncle wants a custom line; his sister wants western expansion. The same technicians are needed for the assembly fix. Nicolas must decide before the retreat vote whether to protect both family projects or delete one from the year plan.",
+      "whatToDo": "Use the cracked part to force the choice, fund the assembly repair, and remove the expansion that depends on the same scarce technicians.",
+      "whyItMatters": "Ambiguity keeps family peace until the constraint takes the floor. The part makes the political cost visible enough to choose."
+    },
+    {
+      "exampleId": "ch04-ex03-ingrid-committee-binder",
+      "title": "Ingrid Reads the Binder Against Tuition",
+      "tags": [
+        "university",
+        "committee",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "university committee approving vague transformation language",
+        "audience": "a reader facing university committee approving vague transformation language",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "postmortem",
+        "requiredBeat": "Ingrid uses the artifact to expose the hidden constraint before anyone proposes another initiative using committee binder so the lesson happens as a visible action."
+      },
+      "scenario": "The seminar room smells of toner and damp coats after the transformation vote passes unanimously. Ingrid opens the committee binder beside the program inventory and tuition model. In the postmortem, she marks the sentence everyone liked: strengthen distinctive learning pathways. Then she marks the hidden constraint: two low-enrollment tracks consume the same faculty load. The phrase passed because no track had to close. The quarterly target packet sits beside the defect log, making the avoidance visible before the team can turn it into another performance slogan.",
+      "whatToDo": "Read the binder against the tuition model, then replace the broad phrase with the specific track choice the committee avoided.",
+      "whyItMatters": "Vague transformation language can earn unanimous approval precisely because it leaves the painful exclusion for someone else."
+    },
+    {
+      "exampleId": "ch04-ex04-marco-referral-queue",
+      "title": "Marco Points to the Bed Conflict",
+      "tags": [
+        "hospital",
+        "service line",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "hospital service line plan designed to offend nobody",
+        "audience": "a reader facing hospital service line plan designed to offend nobody",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "dialogue",
+        "requiredBeat": "Marco turns a vague goal into a visible choice by marking the one place effort will land using referral queue so the lesson happens as a visible action."
+      },
+      "scenario": "You can see the weak spot in the referral queue before the service chiefs speak. Marco has the bed map folded under a service charter that promises excellence for every line. \"No one loses in this draft,\" a chief says. Marco points to Thursday’s bed crunch. \"Then who waits when orthopedics gets the block?\" The group has to choose before the board packet goes out.",
+      "whatToDo": "Make the bed conflict explicit, choose the service line that gets priority this quarter, and state who waits instead of hiding the cost.",
+      "whyItMatters": "A plan designed to offend nobody cannot allocate scarce beds. The queue turns politeness into a visible tradeoff."
+    },
+    {
+      "exampleId": "ch04-ex05-yusuf-score-sheets",
+      "title": "Yusuf Tests the Broadest Grant",
+      "tags": [
+        "arts funding",
+        "ambiguity",
+        "prediction"
+      ],
+      "planSpec": {
+        "domain": "arts board funding cycle that rewards ambiguity",
+        "audience": "a reader facing arts board funding cycle that rewards ambiguity",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "predict_reveal",
+        "requiredBeat": "Yusuf tests the proposed move against the object or record that reveals whether it fits the real problem using grant score sheets so the lesson happens as a visible action."
+      },
+      "scenario": "After last year’s cancellations, Yusuf no longer trusts the grant score sheets by themselves. He spreads them beside a rehearsal calendar and donor pledges in the arts board office. The broadest proposal predicts the highest score again: youth access, innovation, community, touring, and training. Yusuf has to decide whether to reward breadth or test which plan survives the cash gap before opening night.",
+      "whatToDo": "Compare the score sheets with canceled rehearsals, then favor the plan that solves cash timing instead of the one with the broadest language.",
+      "whyItMatters": "Ambiguity wins scoring rounds because it sounds generous. The rehearsal calendar shows which promise can actually reach the stage."
+    },
+    {
+      "exampleId": "ch04-ex06-grace-priority-cards",
+      "title": "Grace Reorders the Offsite Around Dependencies",
+      "tags": [
+        "software",
+        "offsite",
+        "priorities"
+      ],
+      "planSpec": {
+        "domain": "software leadership offsite where every team keeps its priority",
+        "audience": "a reader facing software leadership offsite where every team keeps its priority",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "before_after",
+        "requiredBeat": "Grace stops the meeting and rearranges the sequence of work so the strategic move becomes visible using team priority cards so the lesson happens as a visible action."
+      },
+      "scenario": "Why does every team still have a top priority after the ranking exercise? Before lunch, Grace watches product, platform, security, and sales place team priority cards in the keep column. After she lays the dependency board beside the release date, she stops the offsite. Before anyone votes again, she changes the sequence: pick the blocking dependency, name the team that waits, then rebuild the priority list.",
+      "whatToDo": "Start with the dependency board and release date, then make every team priority answer that constraint before it stays in the plan.",
+      "whyItMatters": "The old ranking protected every group. The new sequence makes agreement depend on a real exclusion."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A committee approves a plan quickly because every department sees its favorite project included. No budget increase is available. What should you infer?",
+        "choices": [
+          "Fast agreement may mean the plan avoided the exclusion that budget limits require.",
+          "Fast agreement proves the plan is aligned and ready for execution.",
+          "Fast agreement means the group should add more detail later but keep the portfolio intact."
+        ],
+        "correctIndex": 0,
+        "explanation": "The budget cap means inclusion has a cost. Quick agreement can be a warning that no department has yet been asked to lose.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A city task force writes “safe, vibrant, inclusive streets” into its plan. Crash records show one dangerous intersection creates most injuries. What is the most strategic next move?",
+        "choices": [
+          "Keep the phrase because it reflects shared values across the city.",
+          "Name the intersection as the constraint and decide which other street projects wait.",
+          "Launch a broad public art campaign so residents feel ownership."
+        ],
+        "correctIndex": 1,
+        "explanation": "The crash records create a precise choice. Shared values and art may help later, but ambiguity should not hide the intersection tradeoff.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A family business retreat protects every owner’s pet project because nobody wants a fight. A failing assembly step is causing returns. What does the retreat reward?",
+        "choices": [
+          "Technical precision in diagnosing returns.",
+          "A healthy culture of inclusion that should remain untouched.",
+          "Ambiguity that preserves relationships while delaying the needed tradeoff."
+        ],
+        "correctIndex": 2,
+        "explanation": "The retreat rewards peace over choice. Inclusion becomes costly when it keeps resources from the assembly failure driving returns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A university committee loves the phrase “distinctive pathways,” but enrollment data show two tracks compete for the same faculty. What question should break the fog?",
+        "choices": [
+          "Which track gets protected this year, and which one is paused or merged?",
+          "Can the phrase be made more inspiring for prospective students?",
+          "Should the committee schedule another listening session before data review?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The faculty constraint requires a track choice. Better language or more listening can postpone the decision without resolving the conflict.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A hospital plan wins approval because every service line is praised equally. Bed data show one service must get priority to reduce waits. What is wrong with the approval?",
+        "choices": [
+          "The plan is too optimistic about patient demand.",
+          "The approval is shallow if it avoids saying which service absorbs the bed tradeoff.",
+          "The plan should have used more clinical evidence in the introduction."
+        ],
+        "correctIndex": 1,
+        "explanation": "Equal praise hides the scarce-bed decision. The issue is not tone or evidence volume; it is avoided allocation.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An arts board gives high scores to proposals that mention access, innovation, community, and experimentation. Canceled productions show cash timing is the recurring failure. What should change?",
+        "choices": [
+          "Reward proposals that directly solve the cash-timing problem, even if their language is narrower.",
+          "Keep rewarding breadth because more values means more public benefit.",
+          "Ask applicants to add stronger community language to every budget."
+        ],
+        "correctIndex": 0,
+        "explanation": "The scoring system rewards ambiguity. The canceled productions show the constraint that should govern funding decisions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A software offsite ends with all teams keeping their top priorities, even though one dependency blocks the release. What does this reveal?",
+        "choices": [
+          "The teams collaborated well because nobody left empty-handed.",
+          "The release date should be moved before dependencies are discussed.",
+          "The offsite avoided the political cost of naming which team waits."
+        ],
+        "correctIndex": 2,
+        "explanation": "Keeping every priority protects groups from loss. The dependency requires a choice about who waits, which the offsite avoided.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A director says vague language is necessary because the organization needs unity. When is that unity counterfeit?",
+        "choices": [
+          "When people agree before any real constraint or exclusion has been named.",
+          "When the plan includes values that cannot be measured immediately.",
+          "When the plan takes longer than one meeting to approve."
+        ],
+        "correctIndex": 0,
+        "explanation": "Unity becomes counterfeit when agreement depends on leaving the cost unnamed. Values can be useful, and approval time is not the real issue.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A nonprofit avoids choosing between legal aid and rent relief by calling both “housing stability pillars.” Funding covers only one pilot. What should a strategist do?",
+        "choices": [
+          "Run both pilots at half strength to keep the coalition together.",
+          "Ask which pilot answers the most urgent obstacle and state why the other waits.",
+          "Rename the pillars so donors see them as complementary."
+        ],
+        "correctIndex": 1,
+        "explanation": "The funding limit makes a choice unavoidable. Half-strength pilots and renaming preserve ambiguity instead of deciding what the obstacle requires.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A room agrees quickly before any tradeoff is named. What should you suspect?",
+      "back": "Suspect cheap consensus. Agreement may be real, but it is shallow until the constraint and the losing priority are named.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why does ambiguity feel useful inside institutions?",
+      "back": "It protects coalitions, lowers political cost, and lets different groups hear their own priorities in the same language.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What turns broad consensus into strategy?",
+      "back": "The group must name the constraint, accept the tradeoff, and decide which priority waits. Agreement after that point is more meaningful.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A plan praises every service equally while resources are scarce. What question retrieves the move?",
+      "back": "Ask who gets priority and who waits. Scarce resources turn politeness into evasion unless the plan states the allocation.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How can you challenge ambiguity without becoming cynical?",
+      "back": "Treat ambiguity as a social incentive, not a character flaw. Ask what cost the language avoids and what decision would make the plan real.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading consensus for the tradeoff it may be hiding. The skill is to honor the need for cooperation while still naming the constraint, the loser, and the political cost.",
+    "ifThenPlans": [
+      {
+        "context": "committee work",
+        "plan": "If everyone agrees before a constraint is named, then ask what choice would make one group unhappy and put that choice on the table."
+      },
+      {
+        "context": "budget planning",
+        "plan": "If a budget plan includes every priority, then mark the cap in plain numbers and ask which priority waits."
+      },
+      {
+        "context": "leadership offsite",
+        "plan": "If the language gets broader as disagreement rises, then translate one broad phrase into a specific allocation decision."
+      },
+      {
+        "context": "community work",
+        "plan": "If a coalition avoids choosing among real needs, then name the people affected by delay and choose the first tractable intervention."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, revisit one easy agreement and write the exclusion it avoided. Share the exclusion as a question, not an accusation.",
+    "weeklyPractice": "Each week, review one meeting note for consensus language. Beside each broad phrase, write the constraint it should decide or mark it as unresolved."
+  },
+  "memorableLines": [
+    {
+      "text": "Consensus becomes expensive the moment it meets a constraint.",
+      "location": "deepRead",
+      "why": "The line makes the political cost of strategy vivid."
+    },
+    {
+      "text": "Counterfeit consensus needs fog.",
+      "location": "fullRead",
+      "why": "A compact phrase distinguishes real cooperation from avoidance."
+    },
+    {
+      "text": "Ambiguity is attractive because it feels humane.",
+      "location": "fullRead",
+      "why": "It explains why weak plans can be emotionally appealing."
+    }
+  ]
+}

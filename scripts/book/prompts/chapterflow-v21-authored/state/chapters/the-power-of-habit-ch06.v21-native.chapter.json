@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-power-of-habit-ch06",
+  "number": 6,
+  "title": "The Power of a Crisis",
+  "readingTimeMinutes": 12,
+  "hook": "The thawed inventory sheet is still wet when the lab director changes who must answer the next alarm.",
+  "counterintuition": "The mistake is to treat crisis as proof that one person failed or that fear will keep people careful. The better move is to use the exposed breakdown to install a new reporting, escalation, or accountability habit before routines harden again.",
+  "tryThisNow": "Name one recent group breakdown. Write the old routine it exposed, then choose the single handoff, signoff, or escalation step that should exist before comfort returns.",
+  "keyTakeaway": "A crisis changes an institution only when a leader converts the exposed breakdown into a specific new routine for reporting, escalation, or accountability before old habits return.",
+  "breakdown": {
+    "fastRead": "An amber thermometer strip curls beside a thawed inventory sheet. The blood bank can blame the night tech, replace the freezer, and tell everyone to be careful. That would leave the old habit alive: warnings had no clear owner.\n\nA crisis makes the old routine visible while people still care enough to change it. The useful question is not who looks guilty today. It is what work path became open to redesign because the accident made its cost plain.\n\nThe leader's work is fast and exact. Add the signoff, report path, call-up rule, or owner check before the group relaxes and the old pattern seals itself again.",
+    "deepRead": "A silent studio clock glows above a public radio alert console. Minutes earlier, the station released a false storm warning because producers had trusted the old hallway habit: ask whoever is nearby, hear a confident yes, go live. The manager can issue an apology and move on. Listeners might even forgive it. But forgiveness is not a new routine.\n\nThe accident is only the opening. While the mistake is still warm, the manager tapes an alert-release card to the console. No emergency warning leaves the booth until a producer reads the source and an engineer reads it back. The new step is small, but it changes who must speak, what must be checked, and when uncertainty is allowed to stop the broadcast.\n\nThis is the hard edge. Crisis does not reform an organization by itself. It interrupts the normal defenses. People who would have said we have always done it this way are suddenly willing to admit that the way was partly invisible, partly improvised, and partly protected by status.\n\nA construction near-miss shows the same mechanism with more steel around it. A cracked outrigger pad lands on plywood near the subcontractor gate. The easy response is to fire the signaler and let the chain of command snap back. The stronger response is a stop-work tag any trade can hang without supervisor permission. That new habit changes the route of bad news.\n\nDo not glorify the crisis. The damaged blood units, false warning, and near-miss are costs, not gifts. The point is that after the cost is exposed, denial has less cover. The window is brief. If no one changes the reporting, handoff, or escalation routine, the institution learns to survive the embarrassment and returns to what felt normal.",
+    "fullRead": "A warm milk crate sweats on a pantry loading dock after a holiday closure. Volunteers are angry, families are short on food, and donors want to know why fresh dairy spoiled before it reached the cooler. The director could gather everyone and say the pantry's values out loud. He could remind volunteers that hungry families are counting on them. None of that names the institutional habit that failed.\n\nBefore the loss, cold deliveries moved by memory. Whoever noticed the truck opened the cooler, waved to the driver, and trusted that someone else had checked the time. The routine felt kind because people were busy helping. It was also fragile. When the closure changed the schedule, no one owned the receiving moment.\n\nCrisis has power because it lowers the organization's defenses. The spoiled milk does not make the pantry wiser. It makes the old receiving routine harder to defend. A leader uses that opening by installing a new habit at the exact point where the breakdown happened: every cold delivery receives a dock stamp with time, temperature, and initials before the cooler door opens.\n\nA university greenhouse can make the same mistake in a more technical costume. Dry soil probes lean from cracked trays during a heat wave, and the first demand is obvious: buy a better pump. A better pump may be necessary. It is not reform if the old handoff remains intact. The research team assumed facilities would notice failure. Facilities assumed each lab watched its own trials. The dead plants reveal the gap between those assumptions.\n\nA new habit has to catch the work before the old one closes around it. The research coordinator creates a daily exception board that needs both lab and facilities initials before sunset. The point is not paperwork for its own sake. The point is to make the ownership gap visible every day, before heat turns ambiguity into loss.\n\nThe counter-objection is fair: institutions can overreact after crisis. They can create three new forms, punish one unlucky person, and call the mess accountability. That is not the move. A useful crisis habit is close to the exposed breakdown. It changes a real route: warning to owner, hazard to stop-work authority, delivery to documented receiving, exception to named handoff, ballot sleeve to witnessed scan.\n\nAn elections office makes the limit especially clear. A power outage leaves an unmarked custody sleeve under a battery lantern after a late-night count. The ballots are not necessarily wrong. The public problem is that a memory-based routine now looks indefensible. The supervisor should not hide behind seniority or make a speech about trust. She should assign a scan-and-witness step before the next count night, while everyone can still see how easily a valid process can look careless.\n\nThis is not crisis worship. The accident does not deserve gratitude. The leader does not become heroic because something broke. The practical lesson is colder: disruption makes routines negotiable for a short time. If you use that time to install a specific reporting, escalation, or accountability habit, the institution may learn. If you use it only for apology, blame, or inspiration, the old habit waits."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-sabela-freezer-signoff",
+      "title": "Sabela Adds the Second Alarm Signature",
+      "tags": [
+        "blood bank",
+        "postmortem",
+        "signoff"
+      ],
+      "planSpec": {
+        "domain": "regional blood bank freezer alarm failure",
+        "audience": "a lab director facing staff who have ignored small temperature warnings for years",
+        "stakes": "one freezer failure can destroy rare blood units and expose how many warnings had no owner",
+        "format": "postmortem",
+        "requiredBeat": "The director places the thawed inventory sheet beside the amber thermometer strip and installs a two-person alarm signoff before the replacement freezer arrives, while everyone still remembers the loss."
+      },
+      "scenario": "An amber thermometer strip curls beside a thawed inventory sheet at 6:35 a.m. in the regional blood bank. Sabela, the lab director, reviews the overnight notes with Ivo from quality. For years, small temperature warnings were cleared by whoever happened to be closest. Before the replacement freezer arrives, Sabela sets the sheet and strip on the conference table and must decide whether to hunt for one careless technician or install a two-person alarm signoff while the loss is still visible.",
+      "whatToDo": "Put the thawed inventory sheet and amber strip in the postmortem room, then require two named people to sign every freezer alarm response before the new freezer is accepted.",
+      "whyItMatters": "The failed habit was ownerless warning clearance. The crisis makes that routine impossible to defend, so the new signoff has to change ownership before staff drift back to informal clearing."
+    },
+    {
+      "exampleId": "ch06-ex02-veyra-alert-readback",
+      "title": "Veyra Tapes the Alert Card to the Console",
+      "tags": [
+        "radio",
+        "readback",
+        "scene"
+      ],
+      "planSpec": {
+        "domain": "public radio newsroom after a false storm alert",
+        "audience": "a station manager whose team relied on informal hallway checks before broadcasts",
+        "stakes": "a false emergency alert can erode listener trust and crowd out a real warning later",
+        "format": "scene",
+        "requiredBeat": "With the silent studio clock still lit, the manager tapes a new alert-release card to the console and requires producer-engineer readback before the next warning, using the mistake to replace the hallway habit."
+      },
+      "scenario": "A silent studio clock glows above the alert-release console at 5:18 p.m. in the public radio newsroom. Veyra, the station manager, still hears the false storm alert in her headphones. Producer Kellan says the apology draft is ready. Veyra must decide whether to stop at regret or change release. She tapes a new alert-release card to the console: source named, producer read, engineer readback. The next warning cannot go live on a hallway yes.",
+      "whatToDo": "Tape the alert-release card to the console before the next warning and require producer-engineer readback from the card, not an informal hallway check.",
+      "whyItMatters": "The crisis exposed a trust shortcut at the release point. The card and readback create a new broadcast habit while the false alert still has everyone's attention."
+    },
+    {
+      "exampleId": "ch06-ex03-eamon-stop-work-tag",
+      "title": "Eamon Gives Every Trade a Stop-Work Tag",
+      "tags": [
+        "construction",
+        "escalation",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "construction crane near-miss on a hospital expansion site",
+        "audience": "a project executive who discovers that subcontractors report hazards through favors and whispers",
+        "stakes": "the next missed outrigger warning could injure workers and shut down the site",
+        "format": "decision_point",
+        "requiredBeat": "The executive can fire the signaler and move on, but instead holds up the cracked outrigger pad and creates a stop-work tag that any trade can hang without supervisor permission before the old chain of command returns."
+      },
+      "scenario": "A cracked outrigger pad lies on plywood beside the subcontractor gate at 6:50 a.m. on the hospital expansion site. Eamon, the project executive, hears three versions of the same near-miss: everyone noticed something, no one had permission to stop the lift. He can fire the signaler and close the meeting. Instead he holds up the pad and must decide whether to create a stop-work tag any trade can hang before supervisors pull reporting back into whispers.",
+      "whatToDo": "Create a stop-work tag at the subcontractor gate and give every trade authority to hang it without supervisor permission when a hazard appears.",
+      "whyItMatters": "The near-miss revealed that bad news traveled through favors and rank. The tag changes the escalation route while the cracked pad still makes the old route indefensible."
+    },
+    {
+      "exampleId": "ch06-ex04-mirek-receiving-stamp",
+      "title": "Mirek Stamps Cold Deliveries Before Storage",
+      "tags": [
+        "food pantry",
+        "receiving",
+        "before after"
+      ],
+      "planSpec": {
+        "domain": "food pantry spoiled dairy delivery after a holiday closure",
+        "audience": "a pantry director whose volunteers have been improvising receiving checks for years",
+        "stakes": "families lose food, donors lose trust, and volunteers start blaming each other instead of the receiving routine",
+        "format": "before_after",
+        "requiredBeat": "Before the holiday loss, milk crates go straight to the cooler; after it, the director puts a receiving stamp at the dock and makes every cold delivery show time, temperature, and initials before storage."
+      },
+      "scenario": "A warm milk crate sweats on the pantry loading dock at 9:10 a.m. after the holiday closure. Before the loss, volunteers waved dairy deliveries straight to the cooler door and trusted memory for the check. After donors call, director Mirek stands with Alda at the dock and adds a receiving stamp: time, temperature, initials. Every cold delivery now gets marked before storage, not explained afterward.",
+      "whatToDo": "Place the receiving stamp at the loading dock and require time, temperature, and initials on every cold delivery before anyone opens the cooler door.",
+      "whyItMatters": "The spoiled dairy exposed an improvised handoff, not a lack of caring. The stamp fixes the receiving routine at the moment where memory used to hide responsibility."
+    },
+    {
+      "exampleId": "ch06-ex05-sabine-exception-board",
+      "title": "Sabine Refuses to Stop at a New Pump",
+      "tags": [
+        "greenhouse",
+        "handoff",
+        "predict reveal"
+      ],
+      "planSpec": {
+        "domain": "university greenhouse irrigation collapse during a heat wave",
+        "audience": "a research coordinator whose labs assumed facilities would notice failing equipment",
+        "stakes": "months of plant trials can die overnight if no one owns the handoff between research and maintenance",
+        "format": "predict_reveal",
+        "requiredBeat": "The coordinator predicts the team will want a new pump and stop there, then points to the dry soil probes and creates a daily exception board that requires lab and facilities initials before sunset."
+      },
+      "scenario": "Dry soil probes lean from cracked greenhouse trays at 4:45 p.m. during the heat wave. Sabine, the research coordinator, predicts the first meeting will end with a new pump order and no handoff. Facilities lead Roan nods toward the dead trials. Sabine must decide whether to let the pump order count as reform. She points to the probes and adds a daily exception board by the greenhouse door: lab initials, facilities initials, before sunset. The reveal is that the pump was not the only failed routine.",
+      "whatToDo": "Order the repair, but also post a daily exception board that requires both lab and facilities initials before sunset when irrigation readings are out of range.",
+      "whyItMatters": "The heat made the handoff gap visible. A new pump may help the equipment, but the exception board changes who owns abnormal readings before the next failure."
+    },
+    {
+      "exampleId": "ch06-ex06-yael-scan-witness",
+      "title": "Yael Makes the Custody Sleeve Defensible",
+      "tags": [
+        "elections",
+        "custody",
+        "dialogue"
+      ],
+      "planSpec": {
+        "domain": "county clerk ballot-chain gap after a power outage",
+        "audience": "an elections supervisor whose office has trusted memory and seniority during late-night counts",
+        "stakes": "a missing custody mark can make a valid election look careless to the public",
+        "format": "dialogue",
+        "requiredBeat": "The supervisor sets the unmarked custody sleeve on the table and tells the team the outage made the old memory-based routine indefensible, then assigns a scan-and-witness step before the next count night."
+      },
+      "scenario": "An unmarked custody sleeve rests under a battery lantern at 12:32 a.m. in the county clerk's count room. Yael sets it on the table. \"The ballots may be valid,\" she tells Dario and the night team, \"but our memory routine is no longer defensible.\" Dario says senior staff always know the chain. Yael points to the blank mark. \"Before the next count night, every sleeve gets a scan-and-witness step.\"",
+      "whatToDo": "Use the outage gap to replace memory with a scan-and-witness step for every custody sleeve before the next late-night count begins.",
+      "whyItMatters": "The crisis exposed how a valid process can look careless when proof depends on memory. The new step creates public accountability at the exact custody handoff."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A bus depot discovers after a yard collision that brake warnings were being written on sticky notes and handed to whoever looked least busy. What is the strongest crisis response?",
+        "choices": [
+          "Create a brake-warning log with a named mechanic signoff before the damaged bus returns to service.",
+          "Tell drivers the collision shows why everyone must take safety more seriously.",
+          "Suspend the newest mechanic because the last warning passed through his bay."
+        ],
+        "correctIndex": 0,
+        "explanation": "The collision exposed an ownerless reporting habit. A named signoff changes the route of warnings while the damaged bus is still visible; speeches and one-person punishment leave sticky-note reporting intact.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A school cafeteria serves the wrong meal to a student after a substitute cook relies on a verbal allergy warning. The principal has one staff meeting before lunch service resumes. What should she do?",
+        "choices": [
+          "Ask every cook to remember that allergies can be life-threatening.",
+          "Install an allergy tray readback between server and cook before the tray leaves the line.",
+          "Tell families the substitute cook has been corrected and the problem is closed."
+        ],
+        "correctIndex": 1,
+        "explanation": "The crisis made the verbal warning routine negotiable. A tray readback changes the handoff at the serving line; reminding people or naming the substitute avoids the failed routine.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A shelter loses vaccine doses during a brief power outage. Staff want to buy a larger refrigerator and move on. What is missing if the goal is institutional habit change?",
+        "choices": [
+          "A stronger statement that animal care is the shelter's highest value.",
+          "A thank-you note to the donor who paid for replacement doses.",
+          "A power-loss escalation rule that names who checks temperature and who confirms transfer."
+        ],
+        "correctIndex": 2,
+        "explanation": "The refrigerator may be needed, but equipment alone does not assign ownership when power fails. The escalation rule turns the outage into a new response habit instead of a purchase-only fix.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A dental clinic creates a sterilizer log after a failed cycle delays patients. Two weeks later, assistants return to saying \"all clear\" across the hall while the log stays blank. What does this show?",
+        "choices": [
+          "The old routine is re-hardening because the new accountability step never became the normal path.",
+          "The crisis was too small to matter because no patient was injured.",
+          "The assistants need a more inspiring reminder about patient trust."
+        ],
+        "correctIndex": 0,
+        "explanation": "The blank log shows the new habit did not catch the work. The verbal all-clear has returned as the real routine, so inspiration or minimizing the delay misses the accountability failure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A restaurant sends a nut-containing dessert to the wrong table. The owner wants a reform that will last after the angry review fades. Which change best fits?",
+        "choices": [
+          "Hold a meeting about the restaurant's commitment to hospitality.",
+          "Require the expo cook and server to read back every allergy ticket before dessert leaves the pass.",
+          "Ask the server who carried the dessert to write an apology to the guest."
+        ],
+        "correctIndex": 1,
+        "explanation": "The readback changes the exposed handoff at the pass. Hospitality language and apology may matter, but neither creates a routine that catches allergy risk once urgency fades.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A city posts a false road-closure notice during a snowstorm because the command desk copied an old map layer. What should replace the apology-only response?",
+        "choices": [
+          "Wait until winter ends to revisit the public notice process.",
+          "Tell residents the mistake came from unusual storm conditions.",
+          "Add a source-map readback and supervisor witness before any closure notice is published."
+        ],
+        "correctIndex": 2,
+        "explanation": "The false notice exposed a release habit that trusted an unchecked map layer. Readback plus witness changes the publishing path; delay and storm explanations let the old process survive.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A daycare gate is found unlocked during pickup. No child leaves, but the director sees that staff rely on memory when parents arrive in a rush. What is the best use of the scare?",
+        "choices": [
+          "Add a pickup gate check that one staff member marks and another confirms before the rush begins.",
+          "Tell parents the center is grateful nothing bad happened.",
+          "Ask the newest aide to stand by the gate for the rest of the week."
+        ],
+        "correctIndex": 0,
+        "explanation": "The scare exposed a memory-based routine before injury occurred. A marked and confirmed gate check changes the pickup habit; gratitude and assigning one aide do not redesign the handoff.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A museum nearly ships a borrowed sculpture without condition photos after a late courier change. A curator suggests buying a better camera. Why is that response incomplete?",
+        "choices": [
+          "A camera is too expensive for a shipping department.",
+          "It does not assign who must take, check, and attach the photos before release.",
+          "Condition photos are useful only after damage has already happened."
+        ],
+        "correctIndex": 1,
+        "explanation": "The near-miss exposed an ownership gap in the release routine. A camera may help, but without a named photo handoff the old assumption can return on the next rushed courier change.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A clinic loses a blood specimen when a courier shelf is moved during renovation. Which reform uses the disruption without turning it into blame?",
+        "choices": [
+          "Warn staff that another lost specimen will lead to discipline.",
+          "Move the courier shelf back and assume the familiar layout will solve it.",
+          "Create a custody scan at pickup and receiving so the specimen changes hands visibly."
+        ],
+        "correctIndex": 2,
+        "explanation": "The renovation exposed a handoff that depended on place and memory. Custody scans make the transfer visible; discipline and restoring the shelf leave the deeper pickup routine weak.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A freezer failure exposes years of ignored warning lights. What question should the leader ask first?",
+      "back": "Ask what old routine the failure made visible. The useful target is the ownerless warning, handoff, escalation, or accountability path, not the most convenient person to blame.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "After a public mistake, why is an apology not enough?",
+      "back": "An apology may repair tone, but it does not change the habit that produced the mistake. Use the attention window to install a specific reporting, readback, signoff, or escalation step.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A team buys new equipment after a breakdown. What should you check before calling it reform?",
+      "back": "Check whether the handoff or accountability routine changed. New equipment can help, but the old institutional habit may survive if no one owns the warning, exception, or release decision.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What does it mean for routines to re-harden after crisis?",
+      "back": "It means urgency fades and the old informal path becomes normal again. The new habit has to be installed at the work point before comfort, status, and memory reclaim the process.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How do you tell a useful crisis habit from overreaction?",
+      "back": "A useful habit sits close to the exposed breakdown and changes a real route of work. Overreaction adds broad punishment, vague forms, or speeches without changing reporting or escalation.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is turning a breakdown into a redesigned routine while the old one is still visible. Name the failed institutional habit, then install one concrete reporting, handoff, escalation, or accountability step at the point of failure. Move before embarrassment fades and the organization explains the accident away.",
+    "ifThenPlans": [
+      {
+        "context": "team incident review",
+        "plan": "If a team is reviewing a mistake, then I will ask which routine made the mistake possible and write one new owner, signoff, or readback before the meeting ends."
+      },
+      {
+        "context": "handoff failure",
+        "plan": "If a breakdown happened between two roles, then I will create a visible handoff step with both roles named instead of asking each side to be more careful."
+      },
+      {
+        "context": "ignored warning",
+        "plan": "If a warning was seen but not owned, then I will assign a response path that names who acknowledges it, who verifies it, and when it escalates."
+      },
+      {
+        "context": "post-crisis calm",
+        "plan": "If people start saying the crisis is behind us, then I will check whether the new routine is being used in live work, not just written in the recap."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, choose one recent group breakdown. Write the sentence: \"The old routine was...\" Then add one new handoff, signoff, or escalation step that should be in place before the next similar moment.",
+    "weeklyPractice": "Once a week, review one small mistake or near-miss from a group you belong to. Do not stop at lessons learned. Identify the old routine, pick the new accountability step, and check whether it is used one week later."
+  },
+  "memorableLines": [
+    {
+      "text": "A crisis makes the old routine visible while people still care enough to change it.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the chapter's window: visibility plus urgency, not crisis as inspiration."
+    },
+    {
+      "text": "The accident is only the opening.",
+      "location": "breakdown.deepRead",
+      "why": "It separates the disruption from the designed habit that must follow."
+    },
+    {
+      "text": "A new habit has to catch the work before the old one closes around it.",
+      "location": "breakdown.fullRead",
+      "why": "It gives re-hardening a concrete image and names the timing pressure."
+    }
+  ]
+}

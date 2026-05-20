@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch10",
+  "number": 10,
+  "title": "Find the Black Swan",
+  "coreMove": "Keep probing past the visible deal until the hidden fact that changes leverage appears.",
+  "sourcePressure": "The source ties the close to unknown unknowns, hidden leverage, information asymmetry, and breakthrough facts that can overturn even strong bargaining logic.",
+  "chapterSpecificMisunderstanding": "The writer must not treat random details as black swans, make intuition mystical, or suggest profiling can replace disciplined discovery.",
+  "sourceAlignmentTerms": [
+    "black swan",
+    "unknown unknowns",
+    "hidden leverage",
+    "information asymmetry",
+    "breakthrough",
+    "constraint",
+    "discovery"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A detective spots one clue",
+      "A gut feeling solves the negotiation",
+      "A surprising fact appears from nowhere"
+    ],
+    "counterintuition": [
+      "The hidden thing is the deal",
+      "Unknown unknowns create leverage",
+      "Curiosity beats preparation"
+    ],
+    "tryThisNow": [
+      "Ask one more question",
+      "Look for the hidden variable",
+      "Find the black swan"
+    ],
+    "examples": [
+      "mystery clue hunt",
+      "generic sales discovery",
+      "poker tell",
+      "random trivia twist"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rural clinic merger negotiation with a hospital network",
+      "audience": "a clinic board chair trying to understand why the network suddenly softened its terms",
+      "stakes": "the board may give up governance rights without seeing the network's hidden state-license deadline",
+      "format": "scene",
+      "requiredBeat": "the chair asks what happens if the deal is not signed this quarter and discovers the network needs the clinic's license address to keep a service line open",
+      "firstImage": "a state license renewal envelope half-visible under a merger binder tab",
+      "mustInclude": [
+        "license deadline",
+        "governance rights",
+        "service line"
+      ],
+      "mustAvoid": [
+        "generic healthcare consolidation",
+        "boardroom drama"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "manufacturer negotiating with a sole-source sensor supplier",
+      "audience": "a production director trying to learn why the supplier resists a modest volume increase",
+      "stakes": "a product launch may stall unless the hidden bottleneck is found",
+      "format": "dialogue",
+      "requiredBeat": "the director asks what would make the added volume easy, and the supplier reveals the limiting factor is a calibration bench, not raw parts",
+      "firstImage": "a tray of tiny sensors waiting under a magnifying inspection lamp",
+      "mustInclude": [
+        "calibration bench",
+        "launch date",
+        "raw-parts stock"
+      ],
+      "mustAvoid": [
+        "generic supply chain shortage",
+        "price-only discussion"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "professional orchestra guest-conductor contract",
+      "audience": "an orchestra manager negotiating with an agent over a fee that suddenly seems rigid",
+      "stakes": "the concert may be canceled if the manager misses the non-fee condition driving the agent",
+      "format": "vignette",
+      "requiredBeat": "the manager asks what makes this date difficult, uncovering that the conductor needs a rehearsal recording for a visa dossier",
+      "firstImage": "a conductor's marked score lying beside an unsigned artist agreement",
+      "mustInclude": [
+        "visa dossier",
+        "rehearsal recording",
+        "artist agreement"
+      ],
+      "mustAvoid": [
+        "generic celebrity demand",
+        "arts budget complaint"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "regional grocery cold-storage lease negotiation",
+      "audience": "a grocer bargaining with a warehouse owner over renewal terms",
+      "stakes": "the grocer may overpay if she misses the warehouse's hidden vacancy problem",
+      "format": "predict_reveal",
+      "requiredBeat": "the grocer predicts that price is the only issue, then asks what happens to the adjacent freezer bay and learns the owner needs her tenancy to qualify for a utility rebate",
+      "firstImage": "a frost line tracing the edge of an empty freezer bay door",
+      "mustInclude": [
+        "utility rebate",
+        "freezer bay",
+        "renewal term"
+      ],
+      "mustAvoid": [
+        "generic rent fight",
+        "food spoilage melodrama"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "college esports arena sponsorship negotiation",
+      "audience": "an athletic director trying to understand a sponsor's sudden insistence on naming rights",
+      "stakes": "the school may reject money it needs because it misses the sponsor's hidden grant-matching requirement",
+      "format": "decision_point",
+      "requiredBeat": "the director pauses before refusing naming rights and asks what internal deadline the sponsor is trying to satisfy, revealing a grant match that changes the package",
+      "firstImage": "a neon arena rendering pinned over a spreadsheet of sponsorship tiers",
+      "mustInclude": [
+        "grant match",
+        "naming rights",
+        "internal deadline"
+      ],
+      "mustAvoid": [
+        "generic campus fundraising",
+        "sports hype"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "specialty compost facility permit appeal",
+      "audience": "an operator negotiating with nearby growers who oppose a permit expansion",
+      "stakes": "the facility may abandon expansion when the hidden objection is truck timing, not odor",
+      "format": "postmortem",
+      "requiredBeat": "the operator reviews how asking what would make the expansion harmless revealed that growers feared harvest-road congestion during two October weeks",
+      "firstImage": "a harvest-road map smudged with soil beside an odor-monitoring report",
+      "mustInclude": [
+        "harvest-road congestion",
+        "odor report",
+        "October window"
+      ],
+      "mustAvoid": [
+        "generic environmental fight",
+        "villain neighbor frame"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish black swans from random details",
+      "ask questions that uncover hidden constraints or leverage",
+      "analyze how new information changes bargaining power",
+      "evaluate whether a discovery is decisive enough to alter the deal"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one stuck negotiation, ask what changes for the other side if nothing happens by a specific date; listen for the constraint that was not visible in the stated terms.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

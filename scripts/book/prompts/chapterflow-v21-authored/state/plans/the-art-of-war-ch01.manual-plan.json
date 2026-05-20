@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch01",
+  "number": 1,
+  "title": "Laying Plans",
+  "coreMove": "Run the five-factor comparison before action so you know whether the field can support the move you want to make.",
+  "sourcePressure": "The opening frames war as a life-or-ruin inquiry governed by five constant factors, seven comparative questions, adaptation to circumstance, deception, and many calculations before battle.",
+  "chapterSpecificMisunderstanding": "Treating planning as motivational goal-setting or a generic pros-and-cons list.",
+  "sourceAlignmentTerms": [
+    "Moral Law",
+    "Heaven",
+    "Earth",
+    "Commander",
+    "Method and discipline",
+    "seven considerations",
+    "many calculations",
+    "deception"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the five constant factors",
+      "detail": "Moral Law, Heaven, Earth, the Commander, and Method and discipline are named as the heads to compare before action.",
+      "useIn": "both",
+      "phrasingHint": "Before the first move, lay the five factors side by side until the ground itself starts arguing for or against the plan."
+    },
+    {
+      "kind": "artifact",
+      "name": "the temple calculations",
+      "detail": "The winner is described as making many calculations before battle while the loser makes few or none.",
+      "useIn": "deepRead",
+      "phrasingHint": "The battle is often decided in the quiet room where the calculations happen before anyone moves."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "hospital winter staffing triage after three nurses call in sick",
+      "audience": "operations lead in a regional hospital",
+      "stakes": "whether the emergency department opens four beds safely during a flu spike",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Sarah writes five headings on the glass board, puts staffing, weather, patient flow, charge nurse authority, and supply routes under them, then cancels the bed-opening plan when Earth and Method fail.",
+      "firstImage": "a glove dispenser with a handwritten out-of-stock tag",
+      "mustInclude": [
+        "snow forecast",
+        "bed map",
+        "agency nurse cap"
+      ],
+      "mustAvoid": [
+        "heroic overtime rescue"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "commercial bakery deciding whether to accept a supermarket rush order",
+      "audience": "owner of a thirty-person bakery",
+      "stakes": "a contract could double revenue but break delivery reliability",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Thomas one rejected pallet to see that he had counted ovens and ignored loading-bay distance.",
+      "firstImage": "six cracked baguette trays beside the loading door",
+      "mustInclude": [
+        "two delivery vans",
+        "cooling racks",
+        "contract penalty clause"
+      ],
+      "mustAvoid": [
+        "generic startup scaling scene"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "municipal flood-response drill before spring melt",
+      "audience": "deputy emergency planner",
+      "stakes": "a riverside district may need evacuation within six hours",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The river gauge blinks amber while Camille compares road access, night temperature, radio coverage, public trust, and command authority before approving the drill route.",
+      "firstImage": "an amber river gauge above wet concrete steps",
+      "mustInclude": [
+        "sandbag depot",
+        "radio repeater map",
+        "senior center list"
+      ],
+      "mustAvoid": [
+        "weather as mere mood setting"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "shipping-line reroute around a port strike",
+      "audience": "logistics director for refrigerated freight",
+      "stakes": "salmon containers will spoil if the alternate route lacks cold-chain discipline",
+      "format": "decision_memo",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Cold vapor rolls from a cracked reefer door as Henrik separates favorable opportunity from missing method and discipline.",
+      "firstImage": "cold vapor from a reefer container",
+      "mustInclude": [
+        "port strike notice",
+        "temperature logger",
+        "customs cutoff"
+      ],
+      "mustAvoid": [
+        "spreadsheet-only logistics example"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "museum deciding whether to move a fragile exhibit before a donor gala",
+      "audience": "collections manager",
+      "stakes": "a rushed move could damage a seventeenth-century cabinet",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Show me the route, not the guest list, Sofia says, then walks the corridor measuring door widths before approving any promise to the director.",
+      "firstImage": "a tape measure across a marble doorway",
+      "mustInclude": [
+        "humidity crate",
+        "freight elevator key",
+        "donor schedule"
+      ],
+      "mustAvoid": [
+        "generic event planning"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "cybersecurity team weighing public disclosure after a vendor breach",
+      "audience": "security lead at a Toronto software firm",
+      "stakes": "early disclosure could protect clients or trigger avoidable panic",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What changes if the adversary already knows the gap and the clients do not?",
+      "firstImage": "a redacted vendor incident email on a laptop",
+      "mustInclude": [
+        "client notice draft",
+        "patch window",
+        "legal signoff"
+      ],
+      "mustAvoid": [
+        "abstract risk matrix with no action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose when five-factor comparison should precede action",
+      "distinguish adaptation from abandoning the plan",
+      "identify deception as positioning, not lying for its own sake"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next consequential move, score the five factors on one page and circle the factor that would make the plan fail even if your willpower held.",
+  "readingTimeMinutes": 12
+}

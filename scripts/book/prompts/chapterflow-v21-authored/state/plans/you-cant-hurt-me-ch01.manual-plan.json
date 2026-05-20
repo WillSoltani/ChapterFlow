@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch01",
+  "number": 1,
+  "title": "Should Have Been a Statistic",
+  "coreMove": "Separate what happened to you from the authority it still claims over your next move.",
+  "sourcePressure": "The source centers on Buffalo, Trunnis Goggins, forced night work at a skating rink and nightclub, fear at home, escape with Jackie to Brazil, Indiana, and the refusal to let real damage become destiny.",
+  "chapterSpecificMisunderstanding": "The writer must not turn a violent childhood into a tidy resilience origin story where hardship automatically produces strength.",
+  "sourceAlignmentTerms": ["Buffalo", "Trunnis", "skating rink", "night work", "Jackie", "Brazil, Indiana", "pain inventory"],
+  "forbiddenFrames": {
+    "hook": ["A child should have been a statistic", "Everything changed when he escaped", "Pain made him stronger"],
+    "counterintuition": ["Your past does not define you", "Trauma can become strength", "Hardship is a gift"],
+    "tryThisNow": ["Write down three hard things", "Look in the mirror and tell yourself the truth", "Take one brave step today"],
+    "examples": ["generic abused-child survivor story", "coach turns pain into championship", "therapy breakthrough in a quiet office"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "county survivor benefits office processing an old violence file",
+      "audience": "an adult claimant whose history is real but whose next form cannot be filled out by rage alone",
+      "stakes": "whether the claim stalls because the file becomes identity instead of evidence",
+      "format": "decision_point",
+      "requiredBeat": "the claimant slides the stamped police report into the evidence tray, then writes one next action on the intake checklist without softening what happened",
+      "firstImage": "a torn manila file pressed flat under a scratched plexiglass window",
+      "mustInclude": ["stamped report", "intake checklist", "case number"],
+      "mustAvoid": ["courtroom vindication", "therapy couch", "generic paperwork frustration"]
+    },
+    {
+      "domain": "night janitorial crew orientation at an airport terminal",
+      "audience": "a supervisor training a teenager who is exhausted from a chaotic home",
+      "stakes": "whether fatigue becomes an excuse for unsafe shortcuts around locked gates",
+      "format": "vignette",
+      "requiredBeat": "the supervisor points to the sealed gate log, names the exhaustion as real, and still makes the trainee sign the safety sequence before the shift starts",
+      "firstImage": "a yellow gate log clipped to a rolling supply cart under fluorescent light",
+      "mustInclude": ["sealed gate log", "radio check", "wet-floor placard"],
+      "mustAvoid": ["school hallway", "motivational boss speech", "parent rescue scene"]
+    },
+    {
+      "domain": "public library adult literacy desk after a housing move",
+      "audience": "a new resident carrying shame from a disrupted childhood",
+      "stakes": "whether past instability keeps him from entering the reading program he needs",
+      "format": "before_after",
+      "requiredBeat": "he writes the old address on the registration card, crosses it out once, and copies the new tutoring time without apologizing for either address",
+      "firstImage": "a blue library card with one address crossed through in pen",
+      "mustInclude": ["registration card", "tutoring schedule", "library barcode"],
+      "mustAvoid": ["graduation montage", "teacher saving him", "instant confidence"]
+    },
+    {
+      "domain": "community boxing gym first weigh-in for a young fighter",
+      "audience": "a coach working with a fighter whose home chaos follows him into training",
+      "stakes": "whether anger becomes a permanent alibi for missing basic drills",
+      "format": "dialogue",
+      "requiredBeat": "the coach lets the fighter name the chaos, then taps the taped drill card and waits until he completes the first round exactly",
+      "firstImage": "a taped drill card curling at the corner of a heavy bag",
+      "mustInclude": ["hand wraps", "round timer", "drill card"],
+      "mustAvoid": ["championship bout", "tough-love shouting", "revenge fantasy"]
+    },
+    {
+      "domain": "tenant legal clinic preparing a move-out packet",
+      "audience": "a volunteer helping someone leave a dangerous household",
+      "stakes": "whether escape is framed as the finish line rather than the start of hard rebuilding",
+      "format": "postmortem",
+      "requiredBeat": "after the emergency order is copied, the volunteer opens the benefits packet and circles the first appointment because safety did not solve rent",
+      "firstImage": "a photocopied emergency order warming on the copier tray",
+      "mustInclude": ["emergency order", "benefits packet", "appointment slip"],
+      "mustAvoid": ["perfect fresh start", "rescuer heroism", "crime-drama scene"]
+    },
+    {
+      "domain": "rural apprentice mechanic rebuilding after foster placement",
+      "audience": "a foreman deciding whether to excuse missed steps or teach accountability",
+      "stakes": "whether compassion becomes lowered expectations that trap the apprentice",
+      "format": "reflection",
+      "requiredBeat": "the foreman reads the placement note, folds it once, and has the apprentice torque each lug nut again to the printed spec",
+      "firstImage": "a torque chart taped beside a dented wheel rim",
+      "mustInclude": ["placement note", "torque chart", "lug nuts"],
+      "mustAvoid": ["car crash", "father-son replacement", "generic comeback job"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish explanation from excuse in a concrete hardship case", "choose the next accountable action after naming real damage", "detect false tidy-redemption framing", "evaluate when compassion has become lowered standards"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Write one hard fact from your past as evidence, then write one present-tense action beside it that the fact does not get to cancel today.",
+  "readingTimeMinutes": 12
+}

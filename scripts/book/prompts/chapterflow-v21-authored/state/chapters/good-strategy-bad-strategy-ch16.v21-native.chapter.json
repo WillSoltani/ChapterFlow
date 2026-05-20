@@ -1,0 +1,327 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch16",
+  "number": 16,
+  "title": "The Science of Strategy",
+  "readingTimeMinutes": 11,
+  "hook": "Claims become strategy only when pressure can test and revise them.",
+  "counterintuition": "A formula can look rigorous and still protect a weak claim if evidence cannot challenge the logic or refine the next move.",
+  "tryThisNow": "Write one strategy claim as because, therefore, unless. Add one piece of evidence that would force you to revise it.",
+  "keyTakeaway": "The science of strategy is disciplined inquiry: state the causal logic, expose it to challenge, watch consequences, and refine before slogans harden into belief.",
+  "breakdown": {
+    "fastRead": "The assumption memo lies under a clipped funding request on Celine's table. Customer churn data points to a service failure, but the request asks for a brand campaign. Celine circles the word because and asks the team to fill in the missing causal link. Discipline begins if the claim could be wrong.\n\nThe science of strategy is not a certainty machine. It is disciplined inquiry. A strategic idea should say what is happening, why the chosen action should change it, what consequence would confirm the logic, and what evidence would challenge it. Without that, a plan can sound smart while remaining untestable.",
+    "deepRead": "Erik listens to a reform team praise a pilot district map. The logic model says better intake will reduce missed appointments. The service data shows missed appointments rise after intake, during document review. Erik points to the gap and deletes the outreach campaign from the draft. The theory has to explain the actual bottleneck before money moves.\n\nA strategy is a causal argument under pressure. It says this diagnosis explains the problem, this action changes the cause, and this consequence should follow. That argument may be rough, but it has to be visible. If no one can challenge it, no one can improve it.\n\nThe work starts when the claim can be wrong.\n\nBianca uses the same discipline in an investment committee postmortem. The deal memo treated growth as proof of pricing power. The bear-case sheet showed margins falling whenever a large buyer renegotiated. A market signal from two competitors made the weakness sharper. Bianca lays the memo beside the bear case and asks which fact would have changed the vote. The room goes quiet because the original thesis had no clear disconfirming test.\n\nDisciplined inquiry is uncomfortable because it removes the protection of vague confidence. A slogan can survive almost any result. A causal claim cannot. That is why it is useful. It tells you what to watch, when to revise, and where the strategy is strongest or weakest.",
+    "fullRead": "You can see the weak spot before anyone names it. Anton holds an experiment card while the product council debates a pricing test. The usage cohort shows heavy use by small teams, but the revenue plan depends on enterprise upgrades. The goal is \"prove willingness to pay.\" Anton asks, \"Willingness by whom, caused by what change, and visible in which behavior?\"\n\nHe rewrites the card in three lines. If small teams hit a collaboration limit, then a team-based pricing prompt should create upgrades before the third project. If enterprise buyers are the real path, then the cohort should not be used as proof. If neither behavior appears, the pricing claim is wrong. The room loses a comforting story and gains a test.\n\nWhat evidence would embarrass your favorite plan? That question is not cynicism. It is a protection against wasting months on a claim that cannot learn. A rigorous strategy makes room for challenge before reality delivers a costlier version.\n\nMei learned that in a university lab. The grant aims page promised a bold instrument upgrade. A failed replication note sat in the margin of the same folder, and the equipment quote would consume most of the grant. Mei must decide whether to write the proposal around new machinery or around the causal uncertainty the failed replication exposed. She places the note on top of the grant aims page and changes the proposal: first replicate the core effect with borrowed equipment, then justify the purchase if the result holds.\n\nRefinement is not retreat when evidence improves the argument. It is the discipline of improving the argument as evidence arrives. A weak team treats revision as embarrassment and hides it. A strong team treats revision as part of the work. The point is not to be endlessly skeptical. The point is to let consequences teach while there is still time to act.\n\nPatrick brings that habit to a hospital board. The quality dashboard shows improvement in average wait time, but the incident timeline shows severe delays concentrated after specialist consults. The board packet celebrates the average. Patrick stops the meeting and rearranges the sequence: cause first, consequence second, decision third. Before, the board was approving a staffing plan because the headline measure improved. After, it tests whether specialist consult delays are the real cause and funds a targeted handoff team only if the timeline supports it.\n\nBefore the vote, write the sentence that would change your mind. If the sentence is impossible to write, the plan is not yet disciplined enough to deserve confidence. The science of strategy keeps judgment honest. It does not replace judgment with math or make uncertainty disappear. It asks leaders to state the logic, expose the weak link, notice consequences, and refine the claim. A strategy that cannot be challenged can become a belief. A strategy that can be challenged can become sharper."
+  },
+  "examples": [
+    {
+      "exampleId": "ch16-ex01-celine-assumption-memo",
+      "title": "Celine Circles Because",
+      "tags": [
+        "strategy-review",
+        "assumptions",
+        "funding"
+      ],
+      "planSpec": {
+        "domain": "strategy review team testing causal claims before funding",
+        "audience": "a reader facing strategy review team testing causal claims before funding",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "scene",
+        "requiredBeat": "Celine moves one concrete constraint to the center of the table and crosses out every action that does not address it using assumption memo so the lesson happens as a visible action."
+      },
+      "scenario": "The assumption memo lies under a clipped funding request. Celine has customer churn data showing service delays, and she must decide whether to fund a brand campaign or force the team to state how that campaign would change churn.  In the funding review room at 8:30 a.m., as the strategy review chair, she will not let a polished request pass until the churn mechanism is named.",
+      "whatToDo": "Circle the missing causal link, cross out funding that does not address churn, and require a testable because before approval.",
+      "whyItMatters": "Strategic rigor begins when the claim is causal enough to be challenged."
+    },
+    {
+      "exampleId": "ch16-ex02-erik-logic-model",
+      "title": "Erik Deletes the Outreach Fix",
+      "tags": [
+        "public-sector",
+        "logic-model",
+        "service-data"
+      ],
+      "planSpec": {
+        "domain": "public-sector analytics unit challenging a reform theory",
+        "audience": "a reader facing public-sector analytics unit challenging a reform theory",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "decision_point",
+        "requiredBeat": "Erik asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using logic model so the lesson happens as a visible action."
+      },
+      "scenario": "\"Where does this theory touch the data?\" Erik, the public-sector analytics lead, asks in the pilot district review room, holding the logic model beside service data and a district map. He has to choose between an outreach campaign and a document-review fix, then removes the campaign when the data shows the bottleneck happens after intake. The pilot budget closes at noon, so Erik has to decide which causal claim deserves money before the reform story hardens.",
+      "whatToDo": "Revise the reform theory around the document-review bottleneck and fund the pilot that tests that causal link.",
+      "whyItMatters": "A theory that ignores the consequence pattern is not disciplined inquiry; it is a story with public money attached."
+    },
+    {
+      "exampleId": "ch16-ex03-bianca-deal-memo",
+      "title": "Bianca Asks What Would Have Changed the Vote",
+      "tags": [
+        "investment",
+        "disconfirmation",
+        "markets"
+      ],
+      "planSpec": {
+        "domain": "investment committee forcing disconfirming evidence",
+        "audience": "a reader facing investment committee forcing disconfirming evidence",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "postmortem",
+        "requiredBeat": "Bianca uses the artifact to expose the hidden constraint before anyone proposes another initiative using deal memo so the lesson happens as a visible action."
+      },
+      "scenario": "The deal memo is warm from the printer when Bianca places it beside the bear-case sheet. A market signal from two competitors had contradicted the pricing-power claim, but the vote went through because no one named what evidence would break the thesis.  In the investment committee room after the failed vote, as the committee partner, she wants the next memo to show the fact that would make everyone stop.",
+      "whatToDo": "Write the disconfirming evidence test before the next deal vote and require the memo to answer it directly.",
+      "whyItMatters": "Strategy becomes more scientific when a favorite claim has a visible way to fail."
+    },
+    {
+      "exampleId": "ch16-ex04-anton-experiment-card",
+      "title": "Anton Rewrites the Pricing Test",
+      "tags": [
+        "product",
+        "experiments",
+        "pricing"
+      ],
+      "planSpec": {
+        "domain": "product council turning assumptions into tests",
+        "audience": "a reader facing product council turning assumptions into tests",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "dialogue",
+        "requiredBeat": "Anton turns a vague goal into a visible choice by marking the one place effort will land using experiment card so the lesson happens as a visible action."
+      },
+      "scenario": "You can see the weak spot on the experiment card in the product council room: \"prove willingness to pay\" has no buyer, cause, or behavior. Anton, the product director, has a usage cohort and pricing test in front of him, and he must decide whether to launch the test or rewrite it around a specific upgrade behavior.",
+      "whatToDo": "Name the buyer, trigger, behavior, and failure condition before the pricing test starts.",
+      "whyItMatters": "A vague experiment protects a vague belief. A causal test can refine the strategy."
+    },
+    {
+      "exampleId": "ch16-ex05-mei-grant-aims",
+      "title": "Mei Moves the Failed Note",
+      "tags": [
+        "research",
+        "grants",
+        "replication"
+      ],
+      "planSpec": {
+        "domain": "university lab evaluating a grant strategy",
+        "audience": "a reader facing university lab evaluating a grant strategy",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "predict_reveal",
+        "requiredBeat": "Mei tests the proposed move against the object or record that reveals whether it fits the real problem using grant aims page so the lesson happens as a visible action."
+      },
+      "scenario": "Mei stopped trusting the grant plan when the failed replication note would not fit in the appendix. The grant aims page and equipment quote point to a purchase, but she must decide whether the real strategy is buying gear or proving the causal effect first.  In the lab office beside the freezer log, as principal investigator, she knows the grant will be stronger if the uncertain effect is tested before the equipment purchase.",
+      "whatToDo": "Place the failed replication note on top of the grant aims page and rewrite the grant around replication before equipment purchase.",
+      "whyItMatters": "Refinement protects the lab from spending money before the strategic claim is strong enough."
+    },
+    {
+      "exampleId": "ch16-ex06-patrick-quality-dashboard",
+      "title": "Patrick Reorders the Board Packet",
+      "tags": [
+        "hospital",
+        "dashboard",
+        "causality"
+      ],
+      "planSpec": {
+        "domain": "hospital board examining cause and consequence",
+        "audience": "a reader facing hospital board examining cause and consequence",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "before_after",
+        "requiredBeat": "Patrick stops the meeting and rearranges the sequence of work so the strategic move becomes visible using quality dashboard so the lesson happens as a visible action."
+      },
+      "scenario": "Which number should the board trust when the average improves and the worst cases worsen? Patrick places the quality dashboard beside the incident timeline and board packet. Before, the packet led with averages. After, it asks whether specialist consult delays cause the severe incidents.  In the hospital boardroom at 7:45 a.m., as board quality chair, he changes the packet order so the severe-incident pattern cannot be buried under a better average.",
+      "whatToDo": "Reorder the board discussion around cause, consequence, and the decision that would test the causal claim.",
+      "whyItMatters": "Rigor means refusing a comforting average when the consequence pattern points somewhere else."
+    }
+  ],
+  "quiz": {
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A funding request asks for a brand campaign, but churn data points to service delays. What makes the request strategically rigorous?",
+        "choices": [
+          "A clear causal claim explaining how the campaign would reduce the delay-driven churn.",
+          "A larger slide deck with more market language.",
+          "A promise to review results sometime next year."
+        ],
+        "correctIndex": 0,
+        "explanation": "Rigor requires a causal link that can be challenged. More polish or vague later review leaves the strategy untestable.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A reform team says intake outreach will reduce missed appointments, but service data shows people drop out during document review. What should happen?",
+        "choices": [
+          "Fund outreach because the logic model already says it matters.",
+          "Revise the theory and test a document-review fix against the dropout pattern.",
+          "Stop using data because it complicates reform."
+        ],
+        "correctIndex": 1,
+        "explanation": "The service data challenges the causal theory. A rigorous strategy revises the claim rather than funding the prettier story.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "An investment memo argues a company has pricing power, but the bear case shows margins fall whenever large buyers renegotiate. What should the committee require?",
+        "choices": [
+          "A disconfirming test that says what evidence would break the pricing-power thesis.",
+          "A more optimistic market-size estimate.",
+          "A faster vote before doubts spread."
+        ],
+        "correctIndex": 0,
+        "explanation": "The thesis needs a way to be wrong. Optimistic estimates and speed protect confidence instead of testing it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A product team wants to run a pricing test called \"prove willingness to pay,\" but the card names no buyer or behavior. What is the best next step?",
+        "choices": [
+          "Launch it anyway so the team learns something.",
+          "Cancel all pricing work until the market is certain.",
+          "Rewrite the card around a specific buyer, trigger, behavior, and failure condition."
+        ],
+        "correctIndex": 2,
+        "explanation": "A test only refines strategy when it names what behavior would support or weaken the claim. Launching vague tests preserves vague beliefs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A lab wants equipment funding, but a failed replication note questions the effect the equipment would study. What is the disciplined move?",
+        "choices": [
+          "Replicate the core effect first and make the purchase depend on the result.",
+          "Hide the replication note because funders prefer confidence.",
+          "Buy the equipment quickly before prices rise."
+        ],
+        "correctIndex": 0,
+        "explanation": "The failed note challenges the causal foundation. Testing the effect first refines the strategy before the expensive commitment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A hospital dashboard shows average wait time improving, but severe incidents cluster after specialist consults. Which board decision is most rigorous?",
+        "choices": [
+          "Approve the general staffing plan because the average improved.",
+          "Study whether consult delays cause severe incidents before funding a targeted handoff team.",
+          "Remove incident timelines from the packet to avoid confusion."
+        ],
+        "correctIndex": 1,
+        "explanation": "The incident timeline challenges the comfort of the average. A rigorous decision tests the causal pattern before committing resources.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A startup strategy says, \"Customers will love the new platform because it is modern.\" What is the main scientific weakness?",
+        "choices": [
+          "The sentence is too short for a strategy document.",
+          "The claim has no causal mechanism, consequence, or evidence that would challenge it.",
+          "The word modern should be replaced with innovative."
+        ],
+        "correctIndex": 1,
+        "explanation": "The weakness is not style. The claim cannot guide inquiry because it lacks cause, expected consequence, and a disconfirming test.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A city transport plan predicts that bus shelters will increase ridership, but early data shows ridership rises only on routes with schedule reliability fixes. What should leaders conclude?",
+        "choices": [
+          "Shelters are always useless and should never be built.",
+          "The causal claim should be refined so reliability, not shelters alone, carries the next test.",
+          "The early data should be ignored until the whole plan is complete."
+        ],
+        "correctIndex": 1,
+        "explanation": "The evidence does not require panic; it requires refinement. The better claim is closer to the observed consequence pattern.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A leadership team says its strategy is scientific because it includes a spreadsheet model, but no one can say what result would change the plan. What is missing?",
+        "choices": [
+          "A challenge condition that would force revision of the causal claim.",
+          "A more complex spreadsheet with extra tabs.",
+          "A rule that the model can never be questioned."
+        ],
+        "correctIndex": 0,
+        "explanation": "A model alone is not rigor. The plan needs a visible condition that can challenge and improve the causal argument.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A plan sounds confident but cannot be wrong. What is the retrieval question?",
+      "back": "Ask what evidence would challenge the causal claim. If nothing could, the claim is not rigorous enough.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What does the science of strategy mean in practice?",
+      "back": "Disciplined inquiry: diagnosis, causal logic, expected consequences, challenge, and refinement.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A test names an action but no behavior. What should be added?",
+      "back": "Name the buyer or actor, the trigger, the expected behavior, and the condition that would weaken the claim.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "When is revision a sign of stronger strategy?",
+      "back": "When evidence improves the causal argument before larger commitments lock in.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A spreadsheet model impresses the room. What still has to be explicit?",
+      "back": "The causal claim, the consequence to watch, and the evidence that would force refinement.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice making strategy claims causal, challengeable, and refinable. State the because, expected consequence, and revision trigger before trusting the plan.",
+    "ifThenPlans": [
+      {
+        "context": "funding review",
+        "plan": "If a request asks for resources, then require the causal link between action and problem before approval."
+      },
+      {
+        "context": "experiment design",
+        "plan": "If a test uses vague success language, then rewrite it around a specific behavior and failure condition."
+      },
+      {
+        "context": "postmortem",
+        "plan": "If a decision failed, then identify what evidence would have changed the original vote."
+      },
+      {
+        "context": "personal planning",
+        "plan": "If you believe a move will help your career, then write what result would prove the belief weak."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, rewrite one strategic claim in this form: because X causes Y, we will do Z, and we will revise if W appears.",
+    "weeklyPractice": "Each week, choose one active plan and add a challenge condition. Review whether new evidence strengthens, weakens, or refines the logic."
+  },
+  "memorableLines": [
+    {
+      "text": "The work starts when the claim can be wrong.",
+      "whyItSticks": "It makes challenge the start of discipline rather than an attack.",
+      "why": "It makes challenge the start of discipline rather than an attack.",
+      "location": "deepRead"
+    },
+    {
+      "text": "A strategy is a causal argument under pressure.",
+      "whyItSticks": "It captures strategy as reasoning that has to survive consequences.",
+      "why": "It captures strategy as reasoning that has to survive consequences.",
+      "location": "deepRead"
+    },
+    {
+      "text": "Refinement is not retreat when evidence improves the argument.",
+      "whyItSticks": "It frames revision as strength when evidence improves the logic.",
+      "why": "It frames revision as strength when evidence improves the logic.",
+      "location": "fullRead"
+    }
+  ]
+}

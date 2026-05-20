@@ -1,0 +1,175 @@
+{
+  "chapterId": "the-prince-ch01",
+  "number": 1,
+  "title": "How Many Kinds of Principalities There Are, and by What Means They Are Acquired",
+  "coreMove": "Sort the possession by form, origin, prior habits, and military basis before choosing any rule for it.",
+  "sourcePressure": "The source is a compact decision tree. It separates all states into republics and principalities, then divides principalities into hereditary, new, and annexed possessions, asks whether subjects were used to freedom or princely rule, and asks whether acquisition came by one's own arms, others' arms, fortune, or ability.",
+  "chapterSpecificMisunderstanding": "The wrong version treats the opening as a generic preface about power. The writer must make it a diagnostic sorting act where every later prescription depends on the labels attached at the start.",
+  "sourceAlignmentTerms": [
+    "republics",
+    "principalities",
+    "hereditary",
+    "new",
+    "annexed",
+    "freedom",
+    "arms",
+    "fortune",
+    "ability"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a broad opening about ruthless leaders or timeless power",
+      "a modern executive staring at an org chart and learning to be strategic",
+      "a chapter-by-chapter preview of the whole book"
+    ],
+    "counterintuition": [
+      "most people assume power is about personality, but actually it is classification",
+      "strategy starts with being realistic",
+      "all leadership situations are basically the same until you choose tactics"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list your power bases",
+      "write down a goal and decide whether to be bold",
+      "think of a leader you admire and copy their style"
+    ],
+    "examples": [
+      "generic corporate reorganization map",
+      "startup founder sorting departments",
+      "school classroom government exercise",
+      "home renovation or kitchen-label metaphor"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a provisional governor receiving three towns after a border treaty",
+      "audience": "a civilian administrator who wants to announce one uniform policy on the first morning",
+      "stakes": "one town has elected councils, one obeyed a duke, and one was attached to the old crown by marriage, so a single decree could create three different rebellions",
+      "format": "decision_point",
+      "requiredBeat": "Before signing the tax notice, the governor pins three seals on the wall, moves the free town under republic, the ducal town under principality, and the marriage town under annexed member, then crosses out the single policy order.",
+      "firstImage": "Three wax seals lie on a treaty map beside an unsigned tax notice.",
+      "mustInclude": [
+        "treaty map",
+        "three wax seals",
+        "unsigned tax notice"
+      ],
+      "mustAvoid": [
+        "generic new-manager announcement",
+        "victory speech",
+        "one-size-fits-all change management"
+      ]
+    },
+    {
+      "domain": "a naval prize court deciding what authority captured harbor islands had lived under",
+      "audience": "a judge advocate sorting reports before recommending occupation rules",
+      "stakes": "mislabeling elected harbor councils as former royal dependencies would send troops to solve a problem that needs preserved local law",
+      "format": "vignette",
+      "requiredBeat": "The advocate places a harbor charter, a royal appointment, and a captain's surrender note into separate trays labeled free, princely, and won by another's arms before drafting any order.",
+      "firstImage": "A salt-stained harbor charter curls at the edge of a court table.",
+      "mustInclude": [
+        "harbor charter",
+        "royal appointment",
+        "surrender note"
+      ],
+      "mustAvoid": [
+        "pirate adventure",
+        "battle tactics",
+        "law as paperwork only"
+      ]
+    },
+    {
+      "domain": "a museum repatriation board classifying the governing claims behind disputed city bronzes",
+      "audience": "curators deciding whom to negotiate with after a regime change",
+      "stakes": "returning the bronzes to the loudest ministry could ignore a city that had governed the shrine under its own civic law",
+      "format": "postmortem",
+      "requiredBeat": "The board stops debating ownership rhetoric and circles the old civic statutes, the royal inventory stamp, and the militia seizure date in different colors to classify the claim before naming a counterparty.",
+      "firstImage": "A bronze horse tag rests on a photocopy of old civic statutes.",
+      "mustInclude": [
+        "bronze horse tag",
+        "civic statutes",
+        "royal inventory stamp"
+      ],
+      "mustAvoid": [
+        "art-world prestige story",
+        "generic ethics debate",
+        "donor politics"
+      ]
+    },
+    {
+      "domain": "an election observer mission entering a province after a coup and a negotiated restoration",
+      "audience": "field observers who must decide which local actors can certify turnout",
+      "stakes": "the province may be a restored hereditary administration, a newly seized capital, or a free district coerced by soldiers, and each label changes the risk report",
+      "format": "predict_reveal",
+      "requiredBeat": "The team leader asks observers to predict the category, then turns over three evidence cards: family governor retained, council dissolved, garrison installed by outside troops.",
+      "firstImage": "Laminated polling-station cards sit under a cracked plastic evidence box.",
+      "mustInclude": [
+        "polling-station cards",
+        "evidence cards",
+        "outside garrison note"
+      ],
+      "mustAvoid": [
+        "campaign popularity",
+        "voter-turnout lesson",
+        "generic democracy praise"
+      ]
+    },
+    {
+      "domain": "a monastic land steward reviewing estates after an abbot inherits and purchases neighboring valleys",
+      "audience": "a steward tempted to use the same rent roll for old abbey lands and newly acquired villages",
+      "stakes": "ancestral tenants, purchased lands, and villages used to their own councils will react differently to the same levy",
+      "format": "before_after",
+      "requiredBeat": "Before copying last year's levy, the steward lays the abbey rent roll beside the purchase deed and the village council bell, then marks inherited, new, and accustomed to freedom in the margin.",
+      "firstImage": "A brass council bell sits on top of a folded purchase deed.",
+      "mustInclude": [
+        "abbey rent roll",
+        "purchase deed",
+        "council bell"
+      ],
+      "mustAvoid": [
+        "religious devotion lesson",
+        "budgeting advice",
+        "sentimental inheritance"
+      ]
+    },
+    {
+      "domain": "a peacekeeping logistics cell mapping who actually won control of checkpoints after a ceasefire",
+      "audience": "officers deciding whether authority rests on local forces, allied troops, or accidental collapse",
+      "stakes": "a checkpoint held by local fighters can be negotiated differently from one held because a foreign brigade handed over the gate",
+      "format": "dialogue",
+      "requiredBeat": "The colonel stops the briefing at the phrase under control and makes the analyst put colored pins for own arms, others' arms, fortune, and ability on each checkpoint before approving supplies.",
+      "firstImage": "Colored map pins are scattered beside a ceasefire checkpoint grid.",
+      "mustInclude": [
+        "checkpoint grid",
+        "colored map pins",
+        "foreign brigade handover log"
+      ],
+      "mustAvoid": [
+        "heroic soldiers",
+        "supply-chain efficiency",
+        "simple command-and-control story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify a possession as republic or principality before choosing a governing response",
+      "distinguish hereditary, entirely new, and annexed principalities in short political scenarios",
+      "infer why prior freedom, prior obedience, own arms, others' arms, fortune, and ability change the next move",
+      "evaluate whether a proposed policy skipped the opening taxonomy and therefore overreaches"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one institution in the news and label it in four columns: form of rule, old or new possession, prior habit of the people, and basis of control. Stop before recommending any action.",
+  "readingTimeMinutes": 12
+}

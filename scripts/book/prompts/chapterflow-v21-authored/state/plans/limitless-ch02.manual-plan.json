@@ -1,0 +1,184 @@
+{
+  "chapterId": "limitless-ch02",
+  "number": 2,
+  "title": "Why This Matters Now",
+  "coreMove": "Translate overwhelm into a reason to build a deliberate learning operating system.",
+  "sourcePressure": "The frame widens to modern cognitive pressure: information overload, distraction, rapid change, and the premium on learning quickly and retaining well.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into broad technology panic or productivity scolding.",
+  "sourceAlignmentTerms": [
+    "information overload",
+    "attention scarcity",
+    "rapid change",
+    "adaptable learner",
+    "cognitive demand",
+    "passive learning cost"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Why This Matters Now with a generic unlocked potential claim.",
+      "Do not start with a definition of why this matters now."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "emergency dispatch refresher",
+      "audience": "dispatcher flooded by new protocols and alerts",
+      "stakes": "a winter storm will double call volume by midnight",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "protagonistName": "Claire",
+      "requiredBeat": "Claire clears every alert except the storm triage card and practices recalling the three dispatch changes without looking.",
+      "firstImage": "snow grit melting under the dispatch-room door",
+      "mustInclude": [
+        "triage card",
+        "muted alert panel",
+        "midnight storm shift"
+      ],
+      "mustAvoid": [
+        "technology panic",
+        "generic inbox overload"
+      ]
+    },
+    {
+      "domain": "architecture materials library",
+      "audience": "junior architect tracking changing fire-code materials",
+      "stakes": "a permit submission can be rejected for one missed standard",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "protagonistName": "Jonas",
+      "requiredBeat": "Jonas sorts the code updates into must-recall, must-reference, and can-ignore piles before opening another bulletin.",
+      "firstImage": "sample brick chips spread on a steel shelf",
+      "mustInclude": [
+        "brick chips",
+        "code bulletins",
+        "permit deadline"
+      ],
+      "mustAvoid": [
+        "busy professional skim",
+        "generic compliance scene"
+      ]
+    },
+    {
+      "domain": "cancer clinic patient-education desk",
+      "audience": "navigator learning new treatment handouts",
+      "stakes": "families need clear answers after diagnosis meetings",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Sofia",
+      "requiredBeat": "Sofia stops apologizing for not remembering every handout and builds a two-question retrieval card for each treatment path.",
+      "firstImage": "a stack of stapled handouts warm from the copier",
+      "mustInclude": [
+        "handouts",
+        "retrieval cards",
+        "waiting-room clock"
+      ],
+      "mustAvoid": [
+        "medical advice",
+        "heroic nurse trope"
+      ]
+    },
+    {
+      "domain": "local news election desk",
+      "audience": "producer sorting polls, corrections, and voter questions",
+      "stakes": "wrong information will air in the evening bulletin",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Daniel",
+      "requiredBeat": "Daniel traces the previous correction to passive scanning and redesigns the shift around recall checks before broadcast.",
+      "firstImage": "red correction tape across a rundown sheet",
+      "mustInclude": [
+        "rundown sheet",
+        "correction tape",
+        "broadcast deadline"
+      ],
+      "mustAvoid": [
+        "media cynicism",
+        "breaking-news chaos only"
+      ]
+    },
+    {
+      "domain": "auto repair apprenticeship",
+      "audience": "apprentice learning electric vehicle diagnostics",
+      "stakes": "a misread code can send a customer home unsafe",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "protagonistName": "Juliette",
+      "requiredBeat": "Juliette predicts the fault from memory before checking the scanner, then marks the gap between recognition and recall.",
+      "firstImage": "diagnostic scanner balanced on a fender cover",
+      "mustInclude": [
+        "scanner",
+        "fender cover",
+        "fault-code sheet"
+      ],
+      "mustAvoid": [
+        "car-shop machismo",
+        "generic training manual"
+      ]
+    },
+    {
+      "domain": "food bank intake office",
+      "audience": "coordinator adapting to new benefits rules",
+      "stakes": "families will lose assistance if forms are wrong",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "protagonistName": "Chidi",
+      "requiredBeat": "Chidi replaces a wall of rule changes with a short recall route for the three questions clients actually ask.",
+      "firstImage": "folding chairs lined beneath a benefits poster",
+      "mustInclude": [
+        "benefits poster",
+        "intake forms",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "charity sentimentality",
+        "paperwork complaint"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when translate overwhelm into a reason to build a deliberate learning operating system. is needed in a new scenario.",
+      "Choose the visible action that matches Why This Matters Now rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one overloaded information stream and sort it into remember, reference, and ignore before reading one more item.",
+  "readingTimeMinutes": 12
+}

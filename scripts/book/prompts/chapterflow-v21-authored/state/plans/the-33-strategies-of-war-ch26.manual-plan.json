@@ -1,0 +1,194 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch26",
+  "number": 26,
+  "title": "The Strategy of the Void: Deny Them Targets",
+  "coreMove": "Deny efficient attack by distributing the target while preserving enough coherence to keep acting.",
+  "sourcePressure": "A weaker operator survives by removing the fixed center, public face, or central node the stronger opponent wants to strike.",
+  "chapterSpecificMisunderstanding": "Become so diffuse that nobody can decide or execute.",
+  "sourceAlignmentTerms": [
+    "void strategy",
+    "deny targets",
+    "diffusion",
+    "fixed center",
+    "decentralization",
+    "coherence",
+    "drift reversal"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Mao Zedong",
+      "detail": "historical-context.md links Mao and guerrilla theory to Strategy 26, the Strategy of the Void.",
+      "useIn": "deepRead",
+      "phrasingHint": "Mao's guerrilla influence matters because a weaker side survives by making the stronger side's clean strike inefficient."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for The Strategy of the Void: Deny Them Targets.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nina",
+      "domain": "distributed advocacy network",
+      "audience": "a reader facing distributed advocacy network who needs to practice Strategy 26 without reducing it to become so diffuse that nobody can decide or execute.",
+      "stakes": "a concrete decision in distributed advocacy network where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist removes one single point of failure, rotates the public-facing role, and keeps a clear decision rule so diffusion does not become drift. The visible action must happen inside distributed advocacy network, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" Nina says, with the distributed contact list still unopened.",
+      "mustInclude": [
+        "distributed contact list",
+        "rotating spokesperson schedule",
+        "one visible deadline tied to void strategy"
+      ],
+      "mustAvoid": [
+        "Become so diffuse that nobody can decide or execute.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "small retailer collective",
+      "audience": "a reader facing small retailer collective who needs to practice Strategy 26 without reducing it to become so diffuse that nobody can decide or execute.",
+      "stakes": "a concrete decision in small retailer collective where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist removes one single point of failure, rotates the public-facing role, and keeps a clear decision rule so diffusion does not become drift. The visible action must happen inside small retailer collective, not as an abstract reflection.",
+      "firstImage": "The rotating spokesperson schedule is damp at one corner when Kasia pulls it from the folder.",
+      "mustInclude": [
+        "rotating spokesperson schedule",
+        "encrypted archive",
+        "a named counterparty tied to void strategy"
+      ],
+      "mustAvoid": [
+        "Become so diffuse that nobody can decide or execute.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "privacy-preserving research group",
+      "audience": "a reader facing privacy-preserving research group who needs to practice Strategy 26 without reducing it to become so diffuse that nobody can decide or execute.",
+      "stakes": "a concrete decision in privacy-preserving research group where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist removes one single point of failure, rotates the public-facing role, and keeps a clear decision rule so diffusion does not become drift. The visible action must happen inside privacy-preserving research group, not as an abstract reflection.",
+      "firstImage": "You are beside Petra as the encrypted archive makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "encrypted archive",
+        "distributed contact list",
+        "a public consequence tied to void strategy"
+      ],
+      "mustAvoid": [
+        "Become so diffuse that nobody can decide or execute.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Tomasz",
+      "domain": "loose freelancer consortium",
+      "audience": "a reader facing loose freelancer consortium who needs to practice Strategy 26 without reducing it to become so diffuse that nobody can decide or execute.",
+      "stakes": "a concrete decision in loose freelancer consortium where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist removes one single point of failure, rotates the public-facing role, and keeps a clear decision rule so diffusion does not become drift. The visible action must happen inside loose freelancer consortium, not as an abstract reflection.",
+      "firstImage": "It took Tomasz three weeks to notice the distributed contact list was the part everyone kept avoiding.",
+      "mustInclude": [
+        "distributed contact list",
+        "rotating spokesperson schedule",
+        "a resource limit tied to void strategy"
+      ],
+      "mustAvoid": [
+        "Become so diffuse that nobody can decide or execute.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Aleksy",
+      "domain": "community aid network",
+      "audience": "a reader facing community aid network who needs to practice Strategy 26 without reducing it to become so diffuse that nobody can decide or execute.",
+      "stakes": "a concrete decision in community aid network where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist removes one single point of failure, rotates the public-facing role, and keeps a clear decision rule so diffusion does not become drift. The visible action must happen inside community aid network, not as an abstract reflection.",
+      "firstImage": "What changes when Aleksy stops arguing and points to the rotating spokesperson schedule?",
+      "mustInclude": [
+        "rotating spokesperson schedule",
+        "encrypted archive",
+        "a private decision rule tied to void strategy"
+      ],
+      "mustAvoid": [
+        "Become so diffuse that nobody can decide or execute.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "open-source maintainer circle",
+      "audience": "a reader facing open-source maintainer circle who needs to practice Strategy 26 without reducing it to become so diffuse that nobody can decide or execute.",
+      "stakes": "a concrete decision in open-source maintainer circle where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist removes one single point of failure, rotates the public-facing role, and keeps a clear decision rule so diffusion does not become drift. The visible action must happen inside open-source maintainer circle, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the encrypted archive before Pavel says a word.",
+      "mustInclude": [
+        "encrypted archive",
+        "distributed contact list",
+        "a reversal check tied to void strategy"
+      ],
+      "mustAvoid": [
+        "Become so diffuse that nobody can decide or execute.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 26 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Deny efficient attack by distributing the target while preserving enough coherence to keep acting.",
+      "explain why the common misread fails: Become so diffuse that nobody can decide or execute.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Identify your most attackable single point, then distribute one dependency without losing the owner of the next decision.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

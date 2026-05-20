@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch12",
+  "number": 12,
+  "title": "Study",
+  "coreMove": "Turn exposure into a visible retrieval or explanation action.",
+  "sourcePressure": "Study follows focus by making the learner interact actively with material instead of trusting rereading or exposure alone.",
+  "chapterSpecificMisunderstanding": "Equating time-on-page with understanding or promising one trick for every subject.",
+  "sourceAlignmentTerms": [
+    "study",
+    "active learning",
+    "passive exposure",
+    "familiarity",
+    "understanding",
+    "interaction",
+    "retrieval"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Study with a generic unlocked potential claim.",
+      "Do not start with a definition of study."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "veterinary anatomy practical",
+      "audience": "student rereading terms without being able to identify structures",
+      "stakes": "a live handling exam is next week",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "protagonistName": "Kate",
+      "requiredBeat": "Kate covers the label list, points to the model, and names the structure before checking the answer.",
+      "firstImage": "a plastic canine skeleton on a rolling cart",
+      "mustInclude": [
+        "canine skeleton",
+        "covered label list",
+        "exam date"
+      ],
+      "mustAvoid": [
+        "medical advice",
+        "flashcard generic"
+      ]
+    },
+    {
+      "domain": "aviation weather ground school",
+      "audience": "pilot candidate confusing cloud terms with actual go/no-go decisions",
+      "stakes": "a solo cross-country signoff depends on judgment",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "protagonistName": "Vincent",
+      "requiredBeat": "Vincent converts each weather paragraph into a go, delay, or divert choice and explains the reason aloud.",
+      "firstImage": "a weather chart folded beside a headset",
+      "mustInclude": [
+        "weather chart",
+        "headset",
+        "solo signoff form"
+      ],
+      "mustAvoid": [
+        "flight adventure",
+        "memorizing definitions only"
+      ]
+    },
+    {
+      "domain": "French pastry exam theory",
+      "audience": "baker knows terms but cannot use them under a timer",
+      "stakes": "certification includes written troubleshooting",
+      "format": "question_hook",
+      "openingDevice": "question_hook",
+      "protagonistName": "Petra",
+      "requiredBeat": "Petra asks what failure the concept would diagnose, then matches one broken custard photo to the rule.",
+      "firstImage": "a photo of split custard taped to a notebook",
+      "mustInclude": [
+        "custard photo",
+        "timer",
+        "troubleshooting sheet"
+      ],
+      "mustAvoid": [
+        "food romance",
+        "rote culinary facts"
+      ]
+    },
+    {
+      "domain": "union contract reading group",
+      "audience": "new steward learning grievance language",
+      "stakes": "a coworker needs an answer before the next shift bid",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Chris",
+      "requiredBeat": "Chris reads one clause, closes the packet, and explains it as a decision tree for the actual grievance.",
+      "firstImage": "a contract packet creased at article nine",
+      "mustInclude": [
+        "contract packet",
+        "shift-bid notice",
+        "decision tree"
+      ],
+      "mustAvoid": [
+        "labor politics",
+        "generic group study"
+      ]
+    },
+    {
+      "domain": "genealogy archive research",
+      "audience": "hobbyist drowning in scanned records",
+      "stakes": "family story will stay wrong if sources are only skimmed",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Manon",
+      "requiredBeat": "Manon turns each record into one claim, one uncertainty, and one next source before opening another scan.",
+      "firstImage": "a census scan enlarged on a tablet",
+      "mustInclude": [
+        "census scan",
+        "source log",
+        "magnifier"
+      ],
+      "mustAvoid": [
+        "family nostalgia",
+        "research rabbit hole"
+      ]
+    },
+    {
+      "domain": "Toronto data analytics course",
+      "audience": "career switcher confusing familiarity with skill",
+      "stakes": "portfolio project must explain decisions to reviewers",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "protagonistName": "Min",
+      "requiredBeat": "You shut the tutorial, rebuild the chart from a blank file, and narrate why each field belongs there.",
+      "firstImage": "an empty chart canvas on a laptop",
+      "mustInclude": [
+        "blank chart",
+        "dataset CSV",
+        "review rubric"
+      ],
+      "mustAvoid": [
+        "generic coding bootcamp",
+        "watching videos equals learning"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when turn exposure into a visible retrieval or explanation action. is needed in a new scenario.",
+      "Choose the visible action that matches Study rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Turn the next section you study into a closed-page explanation or decision.",
+  "readingTimeMinutes": 12
+}

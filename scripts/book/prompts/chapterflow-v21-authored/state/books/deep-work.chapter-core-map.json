@@ -1,0 +1,95 @@
+{
+  "bookId": "deep-work",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "deep-work-ch01",
+      "title": "Introduction",
+      "sourcePressure": "Define deep work and shallow work, then state the deep-work hypothesis from the frozen source bundle.",
+      "coreMove": "Separate the tasks that require uninterrupted cognition from the tasks that merely keep you visibly occupied.",
+      "commonMisread": "Treating focus as a general preference for fewer distractions.",
+      "mustUseTerms": ["deep work", "shallow work", "cognitive demand", "distraction", "deep-work hypothesis"],
+      "mustNotDriftInto": ["generic productivity tips", "email etiquette", "social media detox"]
+    },
+    {
+      "number": 2,
+      "chapterId": "deep-work-ch02",
+      "title": "Deep Work Is Valuable",
+      "sourcePressure": "Deep work helps people learn hard things quickly and produce at high quality and quantity.",
+      "coreMove": "Identify where rapid learning and high-quality output create the real advantage, then protect attention there first.",
+      "commonMisread": "Saying focus is nice because it helps you get more done.",
+      "mustUseTerms": ["learn hard things", "high quality", "high quantity", "scarce skill", "valuable output"],
+      "mustNotDriftInto": ["career motivation", "speed reading", "generic efficiency"]
+    },
+    {
+      "number": 3,
+      "chapterId": "deep-work-ch03",
+      "title": "Deep Work Is Rare",
+      "sourcePressure": "Modern organizations often reward shallow behaviors through constant connectivity and visible busyness.",
+      "coreMove": "Notice when an organization rewards responsiveness instead of contribution, then stop mistaking the signal for the work.",
+      "commonMisread": "Complaining that meetings and messages are annoying.",
+      "mustUseTerms": ["constant connectivity", "visible busyness", "shallow behaviors", "organizational defaults", "responsiveness"],
+      "mustNotDriftInto": ["anti-office rant", "remote work debate", "personal phone habits"]
+    },
+    {
+      "number": 4,
+      "chapterId": "deep-work-ch04",
+      "title": "Deep Work Is Meaningful",
+      "sourcePressure": "Deep work is intrinsically satisfying and supports a more meaningful work life.",
+      "coreMove": "Choose depth as a way to make work more satisfying by giving attention to something worth shaping well.",
+      "commonMisread": "Claiming meaningful work means following passion or loving every task.",
+      "mustUseTerms": ["meaningful work", "intrinsic satisfaction", "attention", "craft", "absorption"],
+      "mustNotDriftInto": ["career purpose sermon", "wellness content", "gratitude exercise"]
+    },
+    {
+      "number": 5,
+      "chapterId": "deep-work-ch05",
+      "title": "Work Deeply",
+      "sourcePressure": "Scheduling philosophies, rituals, and shutdown routines help create regular depth.",
+      "coreMove": "Convert a wish to focus into a calendar, ritual, and shutdown rule that make depth repeatable.",
+      "commonMisread": "Telling the reader to block time and try harder.",
+      "mustUseTerms": ["schedule", "ritual", "shutdown", "depth", "regular practice"],
+      "mustNotDriftInto": ["morning routine content", "willpower pep talk", "planner aesthetics"]
+    },
+    {
+      "number": 6,
+      "chapterId": "deep-work-ch06",
+      "title": "Embrace Boredom",
+      "sourcePressure": "Concentration must be trained; schedule distraction instead of waiting for focus to appear.",
+      "coreMove": "Train the mind to stay with a chosen problem by deciding when distraction is allowed before the urge arrives.",
+      "commonMisread": "Equating boredom with rest, meditation, or doing nothing.",
+      "mustUseTerms": ["concentration", "train", "boredom", "schedule distraction", "urge"],
+      "mustNotDriftInto": ["digital minimalism", "sleep advice", "mindfulness lesson"]
+    },
+    {
+      "number": 7,
+      "chapterId": "deep-work-ch07",
+      "title": "Quit Social Media",
+      "sourcePressure": "Use a craftsman mindset and keep only tools that substantially support what matters.",
+      "coreMove": "Judge each network tool by whether its concrete benefits substantially outweigh the attention it costs.",
+      "commonMisread": "Making a blanket moral case against social media.",
+      "mustUseTerms": ["craftsman mindset", "network tools", "substantially support", "benefits", "values"],
+      "mustNotDriftInto": ["phone addiction story", "privacy debate", "platform culture war"]
+    },
+    {
+      "number": 8,
+      "chapterId": "deep-work-ch08",
+      "title": "Drain the Shallows",
+      "sourcePressure": "Reduce shallow obligations, constrain email sprawl, and defend time for deep work.",
+      "coreMove": "Quantify shallow obligations, cap them deliberately, and redesign communication so depth has room to happen.",
+      "commonMisread": "Telling readers to ignore email or become unavailable.",
+      "mustUseTerms": ["shallow obligations", "email sprawl", "defend time", "constraints", "reduce"],
+      "mustNotDriftInto": ["inbox zero tutorial", "anti-meeting absolutism", "personal boundaries only"]
+    },
+    {
+      "number": 9,
+      "chapterId": "deep-work-ch09",
+      "title": "Conclusion",
+      "sourcePressure": "The supported closing case is Bill Gates as an example of the value of a deep life.",
+      "coreMove": "Treat depth as a life design choice that must be chosen repeatedly, not as a single productivity tactic.",
+      "commonMisread": "Ending with a generic summary that repeats all four rules.",
+      "mustUseTerms": ["deep life", "Bill Gates", "deliberate choice", "focused effort", "closing case"],
+      "mustNotDriftInto": ["celebrity biography", "success worship", "unsupported anecdotes"]
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+  "number": 4,
+  "title": "Memory, the Self-justifying Historian",
+  "coreMove": "Before trusting a vivid memory, ask what present innocence the memory is helping protect.",
+  "sourcePressure": "The chapter treats memory as reconstruction rather than neutral recording; the source supports conflicting recollections, confidence without accuracy, and Anthony Greenwald's \"totalitarian ego\" metaphor.",
+  "chapterSpecificMisunderstanding": "Making the chapter a generic warning that memory is fallible, rather than showing memory as an identity-protecting reconstruction.",
+  "sourceAlignmentTerms": [
+    "memory reconstruction",
+    "self-justifying historian",
+    "conflicting recollections",
+    "confidence",
+    "vividness",
+    "totalitarian ego",
+    "selective omission"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Anthony Greenwald",
+      "detail": "the source names Greenwald's \"totalitarian ego\" as a metaphor for a censoring self-system that favors flattering evidence",
+      "useIn": "both",
+      "phrasingHint": "Greenwald's totalitarian ego is not a monster in the basement; it is the quiet editor deciding which parts of the past get to stay bright."
+    },
+    {
+      "kind": "artifact",
+      "name": "the self-justifying historian",
+      "detail": "the source names memory as a self-justifying historian that arranges the past into a livable story",
+      "useIn": "deepRead",
+      "phrasingHint": "Memory can act less like a camera and more like a house historian paid to keep the family crest clean."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with childhood nostalgia.",
+      "Avoid a generic lost-keys memory trick."
+    ],
+    "counterintuition": [
+      "Do not say vivid memories are always false.",
+      "Avoid reducing memory to brain storage."
+    ],
+    "tryThisNow": [
+      "No broad diary prompt.",
+      "No \"ask someone what they remember\" without a specific disputed action."
+    ],
+    "examples": [
+      "No courtroom eyewitness scene; save legal pressure for the law chapter.",
+      "No repeated couple argument scene; save marriage pressure for ch7."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "siblings reconstructing a hospital visit before dividing care duties for their mother",
+      "audience": "adult siblings whose memories protect different versions of loyalty",
+      "stakes": "one sibling may be cast as selfish because each remembers the visit around their own sacrifice",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hannah puts the parking receipt, nurse call log, and text thread on the table before deciding whose memory gets to carry blame",
+      "firstImage": "a hospital parking receipt flattened under a water glass",
+      "mustInclude": [
+        "parking receipt",
+        "nurse call log",
+        "text thread"
+      ],
+      "mustAvoid": [
+        "inheritance fight",
+        "sentimental family montage"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "a software outage timeline where the product lead remembers warning engineering earlier than the messages show",
+      "audience": "teams rebuilding events after a public incident",
+      "stakes": "the postmortem either learns from timestamps or preserves each role's innocence",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Nicolas drags the chat export beside the outage timeline and marks where his remembered warning appears two hours later than he thought",
+      "firstImage": "a server-status timeline printed with three red outage blocks",
+      "mustInclude": [
+        "chat export",
+        "status timeline",
+        "warning timestamp"
+      ],
+      "mustAvoid": [
+        "generic agile retrospective",
+        "cybersecurity breach"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "a co-parenting exchange after a missed school pickup",
+      "audience": "separated parents trying to separate memory from prosecution",
+      "stakes": "the child's schedule becomes another exhibit in a moral case",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Astrid hears herself say \"you always do this,\" then opens the shared calendar and corrects the memory before sending the message",
+      "firstImage": "a child's raincoat dripping onto the hallway mat",
+      "mustInclude": [
+        "shared calendar",
+        "missed pickup",
+        "draft message"
+      ],
+      "mustAvoid": [
+        "divorce-law advice",
+        "custody battle melodrama"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "a landlord deposit dispute over a scratched oak floor",
+      "audience": "people tempted to remember property damage around their preferred innocence",
+      "stakes": "a small dispute hardens into accusations because each side remembers the move-out walk-through differently",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Michael predicts the move-out photos will prove his account, then compares the photo metadata to the inspection sheet before claiming certainty",
+      "firstImage": "a silver key ring beside a scratched strip of oak flooring",
+      "mustInclude": [
+        "photo metadata",
+        "inspection sheet",
+        "security deposit"
+      ],
+      "mustAvoid": [
+        "tenant-rights explainer",
+        "villain landlord scene"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "a surgical handoff review after a missing allergy bracelet",
+      "audience": "clinical teams whose confidence can outrun recorded sequence",
+      "stakes": "a safety fix depends on knowing whether the bracelet was absent, removed, or never checked",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Paula watching the doorway camera log to separate what she usually does from what she actually did that morning",
+      "firstImage": "an empty plastic bracelet clasp in a specimen tray",
+      "mustInclude": [
+        "doorway camera log",
+        "handoff note",
+        "allergy bracelet"
+      ],
+      "mustAvoid": [
+        "malpractice thriller",
+        "memory neuroscience"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "an amateur choir committee revisiting why a long-time accompanist quit",
+      "audience": "small-group leaders whose recollections protect their own kindness",
+      "stakes": "the committee will repeat the insult if the past stays polished",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Akira read the resignation email slowly and underline the sentence everyone had remembered as gratitude but that was actually a warning",
+      "firstImage": "a torn concert program tucked inside a piano bench",
+      "mustInclude": [
+        "resignation email",
+        "committee minutes",
+        "piano bench"
+      ],
+      "mustAvoid": [
+        "office exit interview",
+        "generic friendship fallout"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test vivid memory against external sequence",
+      "identify identity protection inside conflicting recollections",
+      "evaluate when confidence is evidence versus successful reconstruction"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one conflict memory you tell often; write the one detail that would make you look worse and check whether it is absent, minimized, or disputed.",
+  "readingTimeMinutes": 12
+}

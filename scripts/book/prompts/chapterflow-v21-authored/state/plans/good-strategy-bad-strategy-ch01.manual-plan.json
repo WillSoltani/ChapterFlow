@@ -1,0 +1,218 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch01",
+  "number": 1,
+  "title": "Good and Bad Strategy",
+  "coreMove": "Replace ambition language with a diagnosis of the governing obstacle and a coordinated set of actions that actually fit it.",
+  "sourcePressure": "Apple in 1997 shows the difference between strategy and ambition: Jobs narrowed product lines, channels, manufacturing, inventory, and software work around the real obstacle instead of adding slogans or broad effort.",
+  "chapterSpecificMisunderstanding": "Good strategy means having a bold vision, tighter costs, or more executive energy.",
+  "sourceAlignmentTerms": [
+    "Apple 1997",
+    "Steve Jobs",
+    "focused action",
+    "coherence",
+    "diagnosis",
+    "real obstacle",
+    "strategy-shaped busyness",
+    "Microsoft investment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Apple in September 1997",
+      "detail": "the source sidecar presents Apple as close to bankruptcy before Jobs narrowed product lines, retailers, software efforts, manufacturing, and inventory around survival in personal computers",
+      "useIn": "both",
+      "phrasingHint": "Apple was not saved by louder ambition; the visible move was a hard narrowing of products, channels, software, factories, and inventory around the problem in front of it."
+    },
+    {
+      "kind": "person",
+      "name": "Steve Jobs",
+      "detail": "Jobs returned and cut the desktop models down to one while reducing portable and handheld lines, peripherals, retailers, and operating complexity",
+      "useIn": "deepRead",
+      "phrasingHint": "Jobs made the strategy visible by cutting the product maze down until the company could act coherently again."
+    },
+    {
+      "kind": "artifact",
+      "name": "Microsoft $150 million investment",
+      "detail": "the source sidecar names Microsoft's $150 million investment as part of Apple's stabilization story",
+      "useIn": "fullRead",
+      "phrasingHint": "The Microsoft investment mattered because it bought time for a narrower operating logic, not because money alone became the strategy."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of Good and Bad Strategy",
+      "The plan looked impressive because... repeated hook shell",
+      "any hook that starts with Strategy is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter"
+    ],
+    "tryThisNow": [
+      "Write down your top three goals",
+      "Set a timer and reflect",
+      "Ask yourself what matters most"
+    ],
+    "examples": [
+      "conference room deck review",
+      "whiteboard prioritization session",
+      "coffee shop founder scene",
+      "generic classroom group project"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rebecca",
+      "domain": "regional electronics retailer rationalizing repair counters",
+      "audience": "a reader facing regional electronics retailer rationalizing repair counters",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rebecca moves one concrete constraint to the center of the table and crosses out every action that does not address it using service-ticket printout so the lesson happens as a visible action.",
+      "firstImage": "The service-ticket printout sits where the laptop was supposed to go",
+      "mustInclude": [
+        "service-ticket printout",
+        "cracked phone shell",
+        "inventory aging report"
+      ],
+      "mustAvoid": [
+        "generic repair counters advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "hospital discharge team redesigning weekend handoffs",
+      "audience": "a reader facing hospital discharge team redesigning weekend handoffs",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Thomas asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using discharge checklist so the lesson happens as a visible action.",
+      "firstImage": "\"Show me which part this fixes,\" Thomas says",
+      "mustInclude": [
+        "discharge checklist",
+        "nurse callback log",
+        "Saturday staffing grid"
+      ],
+      "mustAvoid": [
+        "generic weekend handoffs advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "municipal library cutting a failing program slate",
+      "audience": "a reader facing municipal library cutting a failing program slate",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Camille uses the artifact to expose the hidden constraint before anyone proposes another initiative using program calendar so the lesson happens as a visible action.",
+      "firstImage": "The room smells faintly of toner and rain-soaked coats",
+      "mustInclude": [
+        "program calendar",
+        "circulation slips",
+        "locked supply cabinet"
+      ],
+      "mustAvoid": [
+        "generic program slate advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "private school robotics club choosing one competition path",
+      "audience": "a reader facing private school robotics club choosing one competition path",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Lukas turns a vague goal into a visible choice by marking the one place effort will land using robotics kit crate so the lesson happens as a visible action.",
+      "firstImage": "You can see the weak spot before anyone names it",
+      "mustInclude": [
+        "robotics kit crate",
+        "competition rule sheet",
+        "battery tester"
+      ],
+      "mustAvoid": [
+        "generic competition path advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "specialty food importer facing cash and spoiled inventory",
+      "audience": "a reader facing specialty food importer facing cash and spoiled inventory",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aanya tests the proposed move against the object or record that reveals whether it fits the real problem using customs invoice so the lesson happens as a visible action.",
+      "firstImage": "It took Aanya three weeks to stop trusting the clean version of the plan",
+      "mustInclude": [
+        "customs invoice",
+        "spoiled cheese sample",
+        "cash-flow calendar"
+      ],
+      "mustAvoid": [
+        "generic spoiled inventory advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "SaaS support team pruning product promises",
+      "audience": "a reader facing SaaS support team pruning product promises",
+      "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hugo stops the meeting and rearranges the sequence of work so the strategic move becomes visible using support transcript so the lesson happens as a visible action.",
+      "firstImage": "What changes when the constraint is placed in the open?",
+      "mustInclude": [
+        "support transcript",
+        "feature flag list",
+        "refund queue"
+      ],
+      "mustAvoid": [
+        "generic product promises advice",
+        "conference-room whiteboard shell",
+        "timestamp-plus-name repetition"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Apple 1997 from its generic imitation in a new scenario",
+      "choose the action that performs replace ambition language with a diagnosis of the governing obstacle and a coordinated set of actions that actually fit it. rather than merely describing it",
+      "diagnose when generic turnaround storytelling is pulling the scenario off-course"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, write the current decision as one obstacle, one chosen response, and one action that would visibly test Apple 1997 in your actual situation.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

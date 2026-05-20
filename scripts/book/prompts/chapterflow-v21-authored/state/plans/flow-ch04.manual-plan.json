@@ -1,0 +1,198 @@
+{
+  "chapterId": "flow-ch04",
+  "number": 4,
+  "title": "The Conditions of Flow",
+  "coreMove": "Look past motivation and redesign the conditions that make goals, feedback, challenge, and engagement easier to enter.",
+  "sourcePressure": "This chapter explains why flow appears more readily in certain activities, cultures, families, and personalities, without making flow purely private or purely environmental.",
+  "chapterSpecificMisunderstanding": "Treat flow as equally available everywhere if someone has the right attitude.",
+  "sourceAlignmentTerms": [
+    "flow activities",
+    "flow and culture",
+    "autotelic personality",
+    "people of flow",
+    "goals",
+    "feedback",
+    "challenge",
+    "environment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "flow activities",
+      "detail": "the frozen heading index names flow activities as the opening condition",
+      "useIn": "both",
+      "phrasingHint": "Some activities lend you a hand: they show the next move, answer back quickly, and keep challenge close enough to reach."
+    },
+    {
+      "kind": "artifact",
+      "name": "the autotelic personality",
+      "detail": "the frozen heading index names the autotelic personality as a central condition",
+      "useIn": "fullRead",
+      "phrasingHint": "An autotelic personality is not a trophy label; it is the habit of noticing where a usable challenge can be made."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic the conditions of flow definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "a robotics club mentor redesigning a chaotic build night",
+      "audience": "teachers and mentors whose groups lose focus in loose environments",
+      "stakes": "the regional qualifier is in two weeks and the team keeps drifting",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "she maps the failed build night to missing goals, missing feedback, and too many open stations, then changes the next session plan",
+      "firstImage": "The robotics lab floor is a tangle of battery leads",
+      "mustInclude": [
+        "battery leads",
+        "test mat",
+        "whiteboard checklist"
+      ],
+      "mustAvoid": [
+        "generic classroom management"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "a restaurant prep cook comparing two station setups",
+      "audience": "frontline workers who think engagement depends only on mood",
+      "stakes": "one setup makes errors invisible until service, the other gives feedback before the rush",
+      "format": "comparison",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he places the old prep list beside the color-coded pans and watches which setup tells him the next move without a supervisor",
+      "firstImage": "Parsley stems cling to the damp cutting board",
+      "mustInclude": [
+        "prep list",
+        "color-coded pans",
+        "walk-in shelf"
+      ],
+      "mustAvoid": [
+        "kitchen hero scene"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "a family setting up Saturday piano practice for a child who resists",
+      "audience": "parents who confuse pressure with supportive conditions",
+      "stakes": "practice can become a weekly fight or a structured challenge the child can own",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the child says the piece is too big, and Sophie helps split it into four bars with a sticker feedback row instead of demanding more discipline",
+      "firstImage": "\"It is too much,\" her son says before sitting down",
+      "mustInclude": [
+        "sticker row",
+        "four-bar section",
+        "piano bench"
+      ],
+      "mustAvoid": [
+        "parental discipline sermon"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "a bike courier deciding between a loose workout and a timed skills loop",
+      "audience": "active people whose training loses structure",
+      "stakes": "winter confidence depends on practicing the exact handling skill, not just riding more",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "ask whether motivation or structure will get him through wet cornering practice, then show him setting cones and measuring each turn",
+      "firstImage": "What makes a cold practice ride absorbing instead of merely hard?",
+      "mustInclude": [
+        "traffic cones",
+        "wet pavement",
+        "handlebar timer"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor repetition"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "a museum education lead changing a volunteer tour format",
+      "audience": "community workers designing cultural participation",
+      "stakes": "visitors leave bored when the tour gives no task for attention",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show the old lecture tour against the new route where visitors receive one object card and must match it to a gallery detail",
+      "firstImage": "Anna saw the old tour fail in the first room",
+      "mustInclude": [
+        "object card",
+        "gallery bench",
+        "bronze handle"
+      ],
+      "mustAvoid": [
+        "museum as passive appreciation"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "a warehouse apprentice learning to create flow in a dull inventory job",
+      "audience": "people in low-autonomy roles who still need some controllable structure",
+      "stakes": "the work is repetitive and cannot be romanticized",
+      "format": "dilemma",
+      "openingDevice": "second_person",
+      "requiredBeat": "you cannot change the whole warehouse, but you can choose whether to scan randomly or build a shelf-by-shelf feedback loop",
+      "firstImage": "You are handed a scanner and forty minutes of gray shelving",
+      "mustInclude": [
+        "barcode scanner",
+        "shelf map",
+        "damaged carton"
+      ],
+      "mustAvoid": [
+        "claiming every bad job can become joyful"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separating poor conditions from poor character",
+      "designing flow-friendly structures",
+      "holding personality and environment together"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one task you avoid and add one visible goal, one feedback cue, and one boundary that makes the first ten minutes easier to enter.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch25",
+  "number": 25,
+  "title": "Memento Mori",
+  "coreMove": "Use death awareness to shrink false urgency and reveal what still deserves attention.",
+  "sourcePressure": "Mortality awareness sharpens hindsight into perspective, clarity, and urgency about what deserves finite life.",
+  "chapterSpecificMisunderstanding": "Theatrical gloom, borrowed philosophy costume, or panic-driven living.",
+  "sourceAlignmentTerms": [
+    "memento mori",
+    "death awareness",
+    "perspective",
+    "clarity",
+    "urgency",
+    "finite life",
+    "proportion"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Memento Mori",
+      "detail": "the chapter title and heading index support death awareness, perspective, clarity, and urgency",
+      "useIn": "both",
+      "phrasingHint": "Memento mori is not a dark pose; it is a scale that shows which demands deserve a finite life."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for memento mori",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think memento mori is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Karolina",
+      "domain": "a cemetery plot visit",
+      "audience": "a reader facing memento mori in a concrete cemetery plot visit decision",
+      "stakes": "whether Karolina preserves judgment quality before the situation slides into stoic doctrine",
+      "format": "reflection",
+      "openingDevice": "environmental",
+      "requiredBeat": "Karolina performs the chapter move by setting the call bell beside the triage tag, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the call bell lying beside the triage tag in the cemetery plot visit",
+      "mustInclude": [
+        "call bell",
+        "triage tag"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "stoic doctrine",
+        "reusing a previous chapter's cemetery plot visit shell"
+      ]
+    },
+    {
+      "protagonistName": "Marek",
+      "domain": "a oncology waiting room",
+      "audience": "a reader facing memento mori in a concrete oncology waiting room decision",
+      "stakes": "whether Marek preserves judgment quality before the situation slides into stoic doctrine",
+      "format": "thought_experiment",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Marek performs the chapter move by setting the track diagram beside the delay code, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the delay code in the oncology waiting room",
+      "mustInclude": [
+        "track diagram",
+        "delay code"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "stoic doctrine",
+        "reusing a previous chapter's oncology waiting room shell"
+      ]
+    },
+    {
+      "protagonistName": "Anton",
+      "domain": "a estate document signing",
+      "audience": "a reader facing memento mori in a concrete estate document signing decision",
+      "stakes": "whether Anton preserves judgment quality before the situation slides into stoic doctrine",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anton performs the chapter move by setting the return slips beside the price stickers, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the return slips against the counter in the estate document signing",
+      "mustInclude": [
+        "return slips",
+        "price stickers"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "stoic doctrine",
+        "reusing a previous chapter's estate document signing shell"
+      ]
+    },
+    {
+      "protagonistName": "Bogdan",
+      "domain": "a last-minute flight rebooking",
+      "audience": "a reader facing memento mori in a concrete last-minute flight rebooking decision",
+      "stakes": "whether Bogdan preserves judgment quality before the situation slides into stoic doctrine",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Bogdan performs the chapter move by setting the lineup card beside the ice shavings, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the ice shavings in the last-minute flight rebooking",
+      "mustInclude": [
+        "lineup card",
+        "ice shavings"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "stoic doctrine",
+        "reusing a previous chapter's last-minute flight rebooking shell"
+      ]
+    },
+    {
+      "protagonistName": "Daria",
+      "domain": "a empty office after a layoff",
+      "audience": "a reader facing memento mori in a concrete empty office after a layoff decision",
+      "stakes": "whether Daria preserves judgment quality before the situation slides into stoic doctrine",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Daria performs the chapter move by setting the permit packet beside the cracked tile, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the permit packet in the empty office after a layoff",
+      "mustInclude": [
+        "permit packet",
+        "cracked tile"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "stoic doctrine",
+        "reusing a previous chapter's empty office after a layoff shell"
+      ]
+    },
+    {
+      "protagonistName": "Oksana",
+      "domain": "a old photo archive table",
+      "audience": "a reader facing memento mori in a concrete old photo archive table decision",
+      "stakes": "whether Oksana preserves judgment quality before the situation slides into stoic doctrine",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Oksana performs the chapter move by setting the speakerphone beside the probate folder, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the probate folder in the old photo archive table",
+      "mustInclude": [
+        "speakerphone",
+        "probate folder"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "stoic doctrine",
+        "reusing a previous chapter's old photo archive table shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Use death awareness to shrink false urgency and reveal what still deserves attention.",
+      "detect the weak generic version: Theatrical gloom, borrowed philosophy costume, or panic-driven living.",
+      "distinguish memento mori from nearby drift into stoic doctrine"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where memento mori is active, then write the exact next visible move that would perform this chapter's move: use death awareness to shrink false urgency and reveal what still deserves attention.",
+  "readingTimeMinutes": 12
+}

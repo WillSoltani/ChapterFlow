@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch19",
+  "number": 19,
+  "title": "When You'll Believe Anything",
+  "coreMove": "Leave messy outcomes partly unexplained instead of rushing into a neat story.",
+  "sourcePressure": "People crave tidy narratives when markets and life are random, complex, and uncertain.",
+  "chapterSpecificMisunderstanding": "Treating a confident explanation as proof that the explanation is true.",
+  "sourceAlignmentTerms": [
+    "narrative",
+    "uncertainty",
+    "complexity",
+    "explanatory confidence",
+    "after the fact",
+    "messy outcomes"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening When You'll Believe Anything with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing When You'll Believe Anything to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the narrative move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of narrative and uncertainty"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a market newsletter writer resisting a tidy explanation for a sudden selloff",
+      "audience": "a writer whose readers reward certainty",
+      "stakes": "a neat story may teach false precision and bad trades",
+      "format": "decision_point",
+      "requiredBeat": "he publishes three plausible causes and one honest unknown instead of one heroic headline",
+      "firstImage": "a draft newsletter headline with five deleted explanations beneath it",
+      "mustInclude": [
+        "draft headline",
+        "unknown label",
+        "price chart"
+      ],
+      "mustAvoid": [
+        "media literacy boilerplate"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a baseball analyst refusing to explain a slump with one clubhouse rumor",
+      "audience": "an analyst protecting uncertainty in public commentary",
+      "stakes": "fans may mistake narrative neatness for evidence",
+      "format": "dialogue",
+      "requiredBeat": "she asks which data would be true if the rumor were false before saying it on air",
+      "firstImage": "a broadcast desk stat sheet beside a rumor text",
+      "mustInclude": [
+        "stat sheet",
+        "rumor text",
+        "on-air note"
+      ],
+      "mustAvoid": [
+        "sports gossip"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a supply manager investigating why a shipment arrived late",
+      "audience": "a manager avoiding the first clean story from a vendor",
+      "stakes": "punishing the wrong cause leaves the real risk untouched",
+      "format": "postmortem",
+      "requiredBeat": "she keeps the timeline open until port logs, customs delay, and warehouse staffing are all visible",
+      "firstImage": "a shipment timeline with three colored delay bands",
+      "mustInclude": [
+        "port log",
+        "customs notice",
+        "staffing roster"
+      ],
+      "mustAvoid": [
+        "process improvement jargon"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a family explaining a relative's bankruptcy without reducing it to laziness",
+      "audience": "a sibling preserving complexity when shame wants a simple label",
+      "stakes": "a tidy blame story can block useful support and repeat the mistake",
+      "format": "reflection",
+      "requiredBeat": "she writes income loss, medical bills, pride, and timing in separate columns before speaking at dinner",
+      "firstImage": "a folded bankruptcy notice beside a legal pad with four columns",
+      "mustInclude": [
+        "bankruptcy notice",
+        "four-column pad",
+        "family dinner"
+      ],
+      "mustAvoid": [
+        "family drama melodrama"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a climate startup board explaining a failed pilot to investors",
+      "audience": "a board chair resisting one villain story",
+      "stakes": "a clean villain may hide technical and market uncertainty the next pilot must face",
+      "format": "before_after",
+      "requiredBeat": "she replaces the blame slide with a map of assumptions that proved false at different times",
+      "firstImage": "a slide deck with the word assumptions typed across the top",
+      "mustInclude": [
+        "assumption map",
+        "pilot data",
+        "investor update"
+      ],
+      "mustAvoid": [
+        "startup blame game"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a judge reviewing sentencing reports where one incident dominates the narrative",
+      "audience": "a judge aware that coherent stories can outrun messy evidence",
+      "stakes": "a person's future may turn on which story sounds neatest",
+      "format": "scene",
+      "requiredBeat": "she rereads the full timeline after noticing the report's opening anecdote has taken over her attention",
+      "firstImage": "a sentencing report flagged with colored tabs along the edge",
+      "mustInclude": [
+        "sentencing report",
+        "full timeline",
+        "opening anecdote"
+      ],
+      "mustAvoid": [
+        "legal thriller framing"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: leave messy outcomes partly unexplained instead of rushing into a neat story",
+      "distinguish narrative from nearby but weaker advice such as media literacy boilerplate",
+      "diagnose when a character is making the common misread: treating a confident explanation as proof that the explanation is true.",
+      "evaluate tradeoffs using the chapter-specific pressure around narrative, uncertainty, complexity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where narrative is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: leave messy outcomes partly unexplained instead of rushing into a neat story.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

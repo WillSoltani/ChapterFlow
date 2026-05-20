@@ -1,0 +1,202 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch04",
+  "number": 4,
+  "title": "The Clarity of the Craftsman",
+  "coreMove": "Shift attention from whether work serves you to what valuable contribution you can make next.",
+  "sourcePressure": "The craftsman mindset is the alternative to the passion mindset, supported by Jordan Tice and patient craft development.",
+  "chapterSpecificMisunderstanding": "Flattening the craftsman mindset into hustle rhetoric or accepting growthless work.",
+  "sourceAlignmentTerms": [
+    "craftsman mindset",
+    "Jordan Tice",
+    "offer the world",
+    "contribution",
+    "output",
+    "patience",
+    "bad environment limit"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Jordan Tice",
+      "detail": "The frozen source uses Tice as an example of patient, modest, output-centered craft development.",
+      "useIn": "both",
+      "phrasingHint": "Jordan Tice gives the idea a quieter shape: attention on the sound produced, not the status received."
+    },
+    {
+      "kind": "artifact",
+      "name": "The bluegrass frame",
+      "detail": "The source defines the craftsman mindset as focusing on what you can offer the world rather than what the world offers you.",
+      "useIn": "both",
+      "phrasingHint": "The bluegrass frame makes the question smaller and harder: what can you make better today?"
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch04: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch04: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch04: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch04: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Alice",
+      "domain": "audio mastering apprenticeship",
+      "audience": "an assistant engineer frustrated by invisible cleanup",
+      "stakes": "missing craft learned in small corrections",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "replays the muddy track and writes three fixes that would serve the singer",
+      "firstImage": "a waveform frozen on a dim monitor",
+      "mustInclude": [
+        "reference track",
+        "decibel meter",
+        "client headphones"
+      ],
+      "mustAvoid": [
+        "music passion monologue"
+      ]
+    },
+    {
+      "protagonistName": "Paige",
+      "domain": "public library catalog cleanup",
+      "audience": "a librarian tired of metadata tasks",
+      "stakes": "patrons failing to find materials because self-checking outruns service",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "searches as a patron and fixes the record that blocks discovery",
+      "firstImage": "a barcode scanner blinking red",
+      "mustInclude": [
+        "MARC record",
+        "hold slip",
+        "scanner light"
+      ],
+      "mustAvoid": [
+        "cozy library vocation"
+      ]
+    },
+    {
+      "protagonistName": "Lucy",
+      "domain": "cycling repair bench",
+      "audience": "a mechanic apprentice bored by brake adjustments",
+      "stakes": "unsafe bikes leaving the shop",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "feels the difference between acceptable brake pull and clean brake pull",
+      "firstImage": "brake cable fray on a rubber mat",
+      "mustInclude": [
+        "brake cable",
+        "torque wrench",
+        "test-ride card"
+      ],
+      "mustAvoid": [
+        "bike-shop lifestyle fantasy"
+      ]
+    },
+    {
+      "protagonistName": "Molly",
+      "domain": "court transcript editing",
+      "audience": "a legal transcriptionist tempted to measure work by interest",
+      "stakes": "a transcript error changing a hearing record",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "slows down at the disputed phrase and serves the record instead of mood",
+      "firstImage": "an audio timestamp at 01:17:42",
+      "mustInclude": [
+        "audio timestamp",
+        "style sheet",
+        "case number"
+      ],
+      "mustAvoid": [
+        "generic detail obsession"
+      ]
+    },
+    {
+      "protagonistName": "Erin",
+      "domain": "ceramic tile installation",
+      "audience": "a tiler wanting more creative work",
+      "stakes": "rework costs if small standards slip",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "uses an uneven grout line to show why craft came before expression",
+      "firstImage": "a laser level casting a green line",
+      "mustInclude": [
+        "laser level",
+        "grout float",
+        "punch list"
+      ],
+      "mustAvoid": [
+        "artist-versus-trades frame"
+      ]
+    },
+    {
+      "protagonistName": "Fiona",
+      "domain": "regional news fact-check desk",
+      "audience": "a junior fact-checker resenting anonymous corrections",
+      "stakes": "publishing a false local claim",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "protects the reader from one wrong claim even if no one sees who did it",
+      "firstImage": "a correction policy under a desk lamp",
+      "mustInclude": [
+        "source call log",
+        "correction policy",
+        "red pencil"
+      ],
+      "mustAvoid": [
+        "journalism hero narrative"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "move from self-monitoring to contribution",
+      "protect limits around growthless work",
+      "define value in output terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one task today, replace Do I like this? with What would make this output more useful to the next person?",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,124 @@
+{
+  "chapterId": "competing-against-luck-ch04",
+  "number": 4,
+  "title": "Job Hunting",
+  "coreMove": "Identify the moment where current solutions are failing the buyer's progress — before deciding what to build.",
+  "sourcePressure": "Job hunting is deliberate search for struggling moments before product design begins. Feature requests, surveys, and personas arrive after the underlying struggle has already been translated into solution language — they are downstream artifacts. The more useful field is earlier: strained workarounds, improvised substitutes, tolerated compromise, and fallback behavior. Those signals expose not only that someone wants improvement but that the current solution is actively failing to deliver a specific progress.",
+  "chapterSpecificMisunderstanding": "Treating customer feature requests, survey responses, or focus group outputs as job evidence — when those arrive after the job has already been translated into solution language by the buyer, stripping away the circumstance and struggle that activated the hire.",
+  "sourceAlignmentTerms": ["struggle", "workaround", "substitute", "strained", "fallback", "observation", "struggling moment", "improvised", "tolerated", "field"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "The best innovations start with watching people struggle.",
+      "Stop asking customers what they want. Watch what they do instead.",
+      "Discovery starts in the field."
+    ],
+    "counterintuition": [
+      "Customer feedback is the enemy of innovation.",
+      "The data is always wrong."
+    ],
+    "tryThisNow": [
+      "Go observe a customer for 30 minutes.",
+      "Shadow someone trying to use your product.",
+      "List three workarounds your customers use."
+    ],
+    "examples": [
+      "any example where the 'discovery' is simply a new survey method or a better question asked in the same channel",
+      "examples that show finding a job through a user interview that started with 'what would you change?'"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["sensory_first", "retrospective", "dialogue_first", "second_person", "timestamp_named", "environmental"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "local hardware store renovation materials section",
+      "audience": "a hardware store buyer who goes to the floor to investigate a return spike on a specific tile adhesive SKU",
+      "stakes": "whether the fix is a product quality issue or a missing job in the buying experience that Camille can address before the returns happen",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Camille watches a buyer stand at the tile display, pick up two different adhesives, read the backs, then buy both plus two spacer sizes and a grout color. Three days later, two of the five items come back. The struggling moment is not the product's quality — it is the buyer's inability to validate that this combination will work together before purchase. The return desk is the downstream symptom; the tile aisle is where the failing happens.",
+      "firstImage": "a new tile adhesive display by the sample tiles, price tags perfectly aligned, fresh stock, no human visible yet — before the store opens",
+      "mustInclude": ["a buyer holding two product labels side by side", "a combination mismatch that becomes a return three days later", "Camille's return-desk record that led her to the floor"],
+      "mustAvoid": ["'customers don't read instructions' framing — the beat must show the specific struggling moment (combination validation at point of purchase) that the store is failing to address"]
+    },
+    {
+      "domain": "urgent care clinic evening hours",
+      "audience": "a clinic operations manager reviewing why extended evening hours did not grow walk-in volume as expected",
+      "stakes": "whether the evening hours investment solves the right problem or whether the struggling moment Lars missed is elsewhere",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The clinic extended hours. Walk-ins didn't grow. Exit data from a competing urgent care clinic reveals the gap: evening patients weren't primarily seeking treatment — they were seeking resolution of the question 'is this serious enough for the ER or can this wait until morning?' The struggling moment is uncertainty before arrival, not inconvenient hours. The competitor added a triage phone line. The struggling moment is pre-visit, not in-clinic.",
+      "firstImage": "a half-empty waiting room at 8:15 p.m., the check-in tablet in sleep mode, a nurse visible through the glass partition",
+      "mustInclude": ["an ER-vs-urgent-care decision context that patients name in exit interviews", "a competitor's triage phone line that resolved the pre-arrival struggle", "Lars's original assumption (hours = access barrier) visible before the reveal"],
+      "mustAvoid": ["'hours and cost matter to patients' framing — the beat must show the specific struggling moment (uncertainty about severity, pre-visit) that the extended hours didn't touch"]
+    },
+    {
+      "domain": "rural road atlas vs. GPS navigation",
+      "audience": "a product researcher at a digital mapping company conducting exit interviews at truck stops in low-signal territory",
+      "stakes": "whether the mapping company's next product update addresses the job that is actually causing GPS non-adoption in this segment",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "A long-haul trucker says: 'I know where I'm going. I take the atlas because if the signal drops at mile marker 112, I want the exit I circled six years ago.' Isabel expected to find GPS fatigue or interface complaints. The struggling moment is signal-dead-zone anxiety on a specific stretch of highway that has caused delays before. The job is not navigation. It is certainty in the dead zone. The GPS product fails this job by design.",
+      "firstImage": "'I know where I'm going,' the trucker says, folding the atlas back into the driver-side door pocket without looking at it",
+      "mustInclude": ["a specific mile marker or route section known for signal loss", "a circled exit in the atlas that represents a prior successful workaround", "Isabel's expected finding (interface or fatigue) vs. the actual struggling moment"],
+      "mustAvoid": ["'low-tech users resist change' framing — the beat must show the specific struggling moment (signal-dead-zone anxiety on a known route) that the atlas is hired to resolve"]
+    },
+    {
+      "domain": "garden center spring planting selection",
+      "audience": "a garden center manager deciding what to stock before the spring buying rush — through second-person",
+      "stakes": "whether David orders based on species popularity (survey data) or based on the struggling moment he can now see in last year's floor observations",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You have two weeks of floor observation notes from last spring. Buyers who stood in front of tall, full flats made decisions fast. Buyers in front of small or sparse flats lingered, set things down, and often left without buying. The struggling moment: 'Will this actually look like a started garden today, or will I have to wait three weeks to feel like I did something?' The job is not the species. It is: give me a plausible start to the season, visible by this evening. Small flats fail this job at any price.",
+      "firstImage": "two rows of bedding plant flats, one full and tall, one small and sparse, same species label, different heights — the second-person reader about to place the order",
+      "mustInclude": ["a floor observation note showing the decision behavior difference between tall and small flats", "a 'season started today' framing from a buyer or implied by behavior", "David's prior pricing assumption (cheaper small flats = better value) visible before the diagnostic"],
+      "mustAvoid": ["'product quality' or 'visual merchandising' framing — the beat must show the specific struggling moment (need for a visible, plausible start today) as what the purchase is really resolving"]
+    },
+    {
+      "domain": "wedding venue viewing",
+      "audience": "a venue manager expecting to sell on catering and AV credentials",
+      "stakes": "whether Frida's next pricing conversation is anchored to the right job or the wrong one",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 2:15 p.m., Frida walks a couple through the venue expecting AV and catering to be the decision points. The couple returns to the same window three times. Finally: 'My parents got married somewhere like this.' The job is not a perfect venue — it is a container that carries a specific emotional memory forward without recreating it exactly. Frida's pricing sheet is organized around the wrong value. The struggling moment is not 'find a great venue'; it is 'find something that already means something.'",
+      "firstImage": "a venue walk-through sheet at 2:15 p.m., the couple pausing at the same tall window for the third time in twelve minutes",
+      "mustInclude": ["a family memory reference the buyer names unprompted", "a window or outdoor element the couple keeps returning to", "a pricing sheet waiting on the table that Frida hasn't opened yet"],
+      "mustAvoid": ["'couples choose venues emotionally' generality — the beat must show the specific struggling moment (finding a container for a memory to travel forward in) as what the hire is resolving"]
+    },
+    {
+      "domain": "children's clothing resale pop-up market",
+      "audience": "a pop-up market organizer reviewing which table layout drives the most sales",
+      "stakes": "whether Ben redesigns the pop-up around the struggling moment the observation data is showing",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ben's buyer surveys say people come for price. Floor observation shows parents lingering longest at the section labeled by occasion (school plays, swim season, winter parties) rather than by size or brand. The struggling moment is not 'find cheap clothes' — it is 'avoid the 10 p.m. panic before a school play when the right costume doesn't exist.' The pop-up is being hired as a readiness system, not a discount shop. Ben's layout has been hiding the section that does the most work.",
+      "firstImage": "a folding market table with chalk-label bins sorted by occasion, small clothes folded and tagged, no shoppers yet — early setup",
+      "mustInclude": ["an occasion-labeled bin that draws more lingering than a price-labeled bin", "a school play or event deadline as the specific anxiety context", "Ben's survey data showing 'price' as the stated reason vs. the observation showing the occasion section"],
+      "mustAvoid": ["'price-sensitive families shop secondhand' framing — the beat must show the specific struggling moment (late-night readiness panic before a school event) that the occasion-labeled section is being hired to resolve"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which signals (workarounds, fallback behavior, strained substitutes) constitute job evidence vs. which are downstream solution-language",
+      "recognize the difference between a struggling moment and a feature request in a given scenario",
+      "apply the job hunting approach to a new domain by identifying where to look before asking what to build",
+      "analyze why survey or focus group data often misses the struggling moment",
+      "evaluate whether a proposed discovery method will surface the job or only the translation of it"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one area where your current solution gets returned, abandoned, or replaced by something improvised. Write one sentence describing the specific moment before the return, abandonment, or workaround — not what went wrong with the product but what the buyer was trying to do in that moment. That sentence is the beginning of a job hunt.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter naming only the struggling moment in a scene; at least one 5+ sentence paragraph tracing the gap from feature request back to the struggling moment it came from; at least one one-sentence punch line that names what job hunting actually changes in a team's behavior",
+    "fullReadInterludeRequirement": "at least one passage that contrasts what a team learns from a survey vs. what they learn from watching a buyer at the moment of failure — not as a method comparison but as a single concrete case showing both versions side by side",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

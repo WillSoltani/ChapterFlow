@@ -1,0 +1,198 @@
+{
+  "chapterId": "the-righteous-mind-ch02",
+  "number": 2,
+  "title": "The Intuitive Dog and Its Rational Tail",
+  "coreMove": "Treat a moral reason as an advocate's brief until you know which intuition hired it.",
+  "sourcePressure": "The chapter makes the intuition-first claim directly: moral reasoning often justifies and persuades after intuition has already moved.",
+  "chapterSpecificMisunderstanding": "The writer makes reason useless instead of showing reason as socially powerful but often post-hoc.",
+  "sourceAlignmentTerms": [
+    "intuitive dog",
+    "rational tail",
+    "Hume",
+    "servant",
+    "automaticity",
+    "Damasio",
+    "de Waal"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "David Hume",
+      "detail": "the frozen sidecar makes Hume central because he treats reason as serving the passions, with Haidt preferring servant language.",
+      "useIn": "both",
+      "phrasingHint": "Hume belongs in the room whenever a tidy reason arrives after the emotional verdict has already taken its seat."
+    },
+    {
+      "kind": "person",
+      "name": "Antonio Damasio",
+      "detail": "the frozen sidecar lists Damasio among the support surface for returning morality toward emotion and intuition.",
+      "useIn": "deepRead",
+      "phrasingHint": "Damasio's work gives the chapter permission to treat feeling as part of judgment, not as noise outside it."
+    },
+    {
+      "kind": "person",
+      "name": "Frans de Waal",
+      "detail": "the frozen sidecar names de Waal in the support surface for emotion, automaticity, and social moral life.",
+      "useIn": "fullRead",
+      "phrasingHint": "De Waal keeps morality from looking like a late classroom invention; social feeling has older roots."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch02 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "emotion versus logic sermon"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "courtroom metaphor only"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "neuroscience flourish"
+    ],
+    "examples": [
+      "emotion versus logic sermon",
+      "courtroom metaphor only",
+      "neuroscience flourish"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital morbidity review after a risky but successful shortcut",
+      "audience": "clinicians defending their judgments under scrutiny",
+      "stakes": "Emily hears polished reasons arrive after a gut-level loyalty response.",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emily writes the first emotional verdict on the board before allowing anyone to list clinical reasons.",
+      "firstImage": "\"We would do it again,\" the surgeon says before anyone opens the case file.",
+      "mustInclude": [
+        "case file",
+        "whiteboard column",
+        "cold coffee urn"
+      ],
+      "mustAvoid": [
+        "malpractice courtroom"
+      ]
+    },
+    {
+      "domain": "product team deciding whether a disliked feature is unethical or merely ugly",
+      "audience": "design leads with strong taste reactions",
+      "stakes": "Chris must find the intuition underneath his principled language.",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chris deletes three noble-sounding objections and names the embarrassment he felt when users mocked the prototype.",
+      "firstImage": "The prototype loops silently on a wall monitor while nobody sits in the front row.",
+      "mustInclude": [
+        "wall monitor",
+        "deleted comment draft",
+        "usability notes"
+      ],
+      "mustAvoid": [
+        "generic app redesign"
+      ]
+    },
+    {
+      "domain": "parent-teacher conference after a playground exclusion",
+      "audience": "teachers mediating parents who each feel morally certain",
+      "stakes": "Manon catches both parents using fairness language to defend their own child first.",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Manon asks each parent to state the other child's strongest reason before giving another defense.",
+      "firstImage": "Wet mittens drip under the conference table as two parents speak over each other.",
+      "mustInclude": [
+        "mittens",
+        "incident slip",
+        "tiny chair"
+      ],
+      "mustAvoid": [
+        "school discipline lecture"
+      ]
+    },
+    {
+      "domain": "investment committee rejecting a proposal from a rival office",
+      "audience": "finance partners protecting reputation through analysis",
+      "stakes": "Yusuf spots the memo becoming an advocate for office pride.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Yusuf compares the rejection memo with last year's identical risk that the committee accepted from its own team.",
+      "firstImage": "It took Yusuf one archived memo to see that the spreadsheet had learned office politics.",
+      "mustInclude": [
+        "archived memo",
+        "risk model",
+        "glass boardroom"
+      ],
+      "mustAvoid": [
+        "numbers versus feelings cliche"
+      ]
+    },
+    {
+      "domain": "climate nonprofit choosing campaign language after donor backlash",
+      "audience": "campaign strategists who believe they are just following evidence",
+      "stakes": "Pavel notices that donor identity selected the evidence the team called decisive.",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 10:12, Pavel asks the team to predict which fact each donor group will call most rational before showing the split.",
+      "firstImage": "At 10:12, Pavel dims the screen and leaves only the donor segments visible.",
+      "mustInclude": [
+        "donor segments",
+        "projector remote",
+        "fact cards"
+      ],
+      "mustAvoid": [
+        "polling horse race"
+      ]
+    },
+    {
+      "domain": "couple deciding whether a holiday visit is fair",
+      "audience": "readers in intimate arguments where reasons arrive fast",
+      "stakes": "Grace identifies the feeling of being taken for granted before continuing the fairness debate.",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You pause with the calendar open and say the feeling first, then ask whether the fairness reason still fits.",
+      "firstImage": "You have the shared calendar open and your thumb over the send button.",
+      "mustInclude": [
+        "shared calendar",
+        "train fare",
+        "unsent text"
+      ],
+      "mustAvoid": [
+        "generic relationship advice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify post-hoc reasoning after an intuitive verdict",
+      "separate persuasion and justification from neutral truth seeking",
+      "recognize when emotion is part of judgment rather than a contaminant"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In your next disagreement, pause after your first reason and ask, 'What feeling is this reason protecting?'",
+  "readingTimeMinutes": 12
+}

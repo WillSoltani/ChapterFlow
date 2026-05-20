@@ -1,0 +1,374 @@
+{
+  "chapterId": "the-innovators-dilemma-ch10",
+  "number": 10,
+  "title": "Managing the Strategy Development Process",
+  "readingTimeMinutes": 12,
+  "hook": "Most strategy processes are optimized for executing a plan. Very few are optimized for updating one when the market contradicts it.",
+  "counterintuition": "What looks like strategic discipline is often its own obstacle in a disruptive context. A plan written before the market speaks cannot be held at all costs. The discipline is to set direction and build a process that can absorb what real market contact teaches. A strategy that cannot hear what the market is saying is not rigorous. It is fragile.",
+  "tryThisNow": "Think of the last time your organization received information that contradicted the current plan. Write down whether that information was absorbed into the strategy or filed as an exception. Name one change to your review process that would make the next signal harder to file away.",
+  "keyTakeaway": "A strategy process needs a mechanism for absorbing what market contact teaches. Without it, the process executes a plan the evidence is ready to revise.",
+  "breakdown": {
+    "fastRead": "Strategy is normally treated as a destination: set the direction, assign the resources, execute toward the target. In a stable market where what customers want is well understood, that approach works. The plan can be tested against prior experience, validated before deployment, and executed with confidence that what was right at the start is still right at the end.\n\nIn a disruptive or emerging market, the plan was written before the most important evidence was available. Early contact with the actual market is the first opportunity to learn things that could not have been known beforehand. A strategy process that treats that early evidence as validation of the original design filters out the information it most needs. A strategy process that has no mechanism for the evidence to revise the plan leaves the organization executing a plan the market is ready to contradict.\n\nThe discipline is not to hold the plan at all costs. The discipline is to hold direction while letting evidence change what needs to change.",
+    "deepRead": "What distinguishes a strategy process that can learn from one that cannot is not a matter of organizational culture or leadership personality. It is a structural question: does the process have a mechanism for what real market contact teaches to reach the strategy?\n\nMost strategy processes are designed to filter signal from noise. That is appropriate. Not every piece of incoming data deserves to revise the plan. But in a disruptive context, the most important signals often arrive in forms that the current strategy framework classifies as noise: a secondary use case that the plan did not contemplate, a customer population the model did not include, a demand corridor the forecast missed, a loan use the methodology has no category for. The framework filters the signal because the signal does not fit the framework. The plan survives. The evidence does not.\n\nThe structural question is: what must happen for a learning signal to require a strategy revision rather than being filed as an exception?\n\nThat question is not permission to drift. It is a discipline. It requires defining in advance what kind of evidence would qualify as a revision trigger and building a review mechanism that treats qualifying evidence as load-bearing rather than anomalous.\n\nThe strategy that cannot absorb what the market teaches becomes the obstacle to the organization's learning.",
+    "fullRead": "Think about the last time your organization received a piece of information that contradicted the current plan. What happened to it? If the process worked the way most strategy processes work, the answer is: it was noted, filed, discussed briefly, and folded into the next planning cycle, if it survived that long. The plan continued. The evidence was processed as a data point rather than as something that might require the strategy to move.\n\nThis is not necessarily the wrong decision. Not every contradictory signal deserves to revise the plan. The problem is the default. If the process treats every contradictory signal as an exception until proven otherwise, and if the burden of proof for revision is high enough that no single signal ever clears it, the strategy will survive its own evidence. It will be executing a plan that the market is ready to teach the organization is wrong.\n\nIn a stable market with mature customers and legible competitive dynamics, this is correctable. The feedback loop operates over a long enough timeline that evidence accumulates into a pattern that is hard to ignore. The plan gets revised at the next major planning cycle. The cost of the lag is real but manageable.\n\nIn a disruptive or emerging market, the feedback loop operates differently. The signals that most matter often arrive early and in forms the current framework does not recognize. The physician interest in a secondary use case arrives in handwritten notes at the bottom of a clinical dashboard. The industrial operator demand arrives in an out-of-scope leads folder in a portfolio company's CRM. The demand corridor that the route model missed appears in booking data as a gap rather than as a line on the network map. What these signals share is that the current strategy framework has no place to put them. They are not noise: they are real demand from real customers. But they are not on-model, which means the process treats them as exceptions rather than as evidence that might require the model to change.\n\nA strategy process that can learn from what the market teaches needs a mechanism that distinguishes between noise and a genuine revision trigger. That mechanism does not remove rigor from the process. It adds a specific kind of rigor: the discipline of deciding in advance what kind of evidence would require a revision, rather than deciding after the evidence arrives. A process with that mechanism will still reject most incoming signals as noise. But it will have a defined threshold at which the rejection stops and the revision begins.\n\nThe discipline is not to hold the plan at all costs. The discipline is to hold direction while letting evidence change what needs to change.\n\nThat requires building a mechanism before the evidence arrives, not after. Waiting until primary targets are missed to evaluate whether the strategy needs revision means waiting until the signals that mattered most have already passed through the process unexamined. The industrial operator inquiries were in the out-of-scope leads folder before the dedicated sector funds formed. The physician notes about the secondary use case were at the bottom of the clinical dashboard before the trial closed. The non-standard loan use cases were flagged for compliance follow-up before the urban borrower population's needs became visible as a pattern. In each case, the signal was there. The mechanism for hearing it was not.\n\nSetting direction seriously and building a process that can learn from what the market teaches are not competing commitments. They are the same discipline, applied at different points in the strategy development process."
+  },
+  "examples": [
+    {
+      "exampleId": "ch10-ex01-beth-healthtech",
+      "title": "Beth's Clinical Dashboard Shows Thirty-One Unsolicited Secondary Mentions",
+      "tags": [
+        "scene",
+        "health-tech",
+        "strategy-revision"
+      ],
+      "planSpec": {
+        "domain": "health tech startup discovering mid-clinical trial that a secondary use case is generating unsolicited physician interest",
+        "audience": "a CEO whose board has approved a strategy built entirely around the primary endpoint indication",
+        "stakes": "the secondary use case is not in the approved strategy, regulatory pathway, or board presentation, but physicians are raising it without being asked",
+        "format": "scene",
+        "openingDevice": "dialogue_first",
+        "requiredBeat": "Beth has to decide whether to document the secondary use case formally or treat the physician interest as a future option. The moment is about whether the strategy process has a mechanism for absorbing the signal.",
+        "mustInclude": [
+          "primary endpoint meeting target",
+          "secondary use case signal",
+          "the choice of whether to document or filter it"
+        ],
+        "mustAvoid": [
+          "suggesting that mid-trial pivots are standard clinical practice"
+        ]
+      },
+      "scenario": "\"The secondary endpoint mentions are in thirty-one of forty physician feedback entries,\" the clinical operations lead says. \"None of the physicians were asked about it.\" Beth looks at the dashboard: the primary endpoint is at 94 percent of target. The secondary use case is not in the approved strategy, the regulatory pathway, or the board presentation. The physicians are raising it without prompting. Beth's strategy process has one formal review mechanism: quarterly status against primary endpoint targets. It has no formal mechanism for a secondary signal that is not on-model.",
+      "whatToDo": "Create a formal documentation track for the secondary use case before the trial closes. The strategy process cannot evaluate whether this signal deserves a revision until it has a mechanism for the signal to enter as evidence, not as a footnote.",
+      "whyItMatters": "A signal outside the approved framework will be treated as an exception unless the process has a mechanism for it. Thirty-one physician mentions without prompting is not noise. The current process has no place to hear it."
+    },
+    {
+      "exampleId": "ch10-ex02-luke-brewery",
+      "title": "Luke's Reorder Spreadsheet Puts the Seasonal Ale in Row One",
+      "tags": [
+        "vignette",
+        "consumer-goods",
+        "strategy-revision"
+      ],
+      "planSpec": {
+        "domain": "craft brewery discovering during regional expansion that a different product than the flagship is generating the most repeat orders",
+        "audience": "a founder-CEO whose distribution expansion strategy was built around the flagship lager",
+        "stakes": "the expansion plan, marketing spend, and distributor relationships all support the flagship, but week-six reorder data shows the seasonal ale outperforming it",
+        "format": "vignette",
+        "openingDevice": "sensory_first",
+        "requiredBeat": "Luke's reorder data from week six does not match the strategy. He has to decide what the data is telling him and whether the strategy process can hold it.",
+        "mustInclude": [
+          "flagship as the strategy anchor",
+          "seasonal ale as the unexpected reorder leader",
+          "the strategy process as the mechanism for holding or ignoring the signal"
+        ],
+        "mustAvoid": [
+          "treating craft brewery as a stand-in for startup culture generally"
+        ]
+      },
+      "scenario": "The reorder spreadsheet from the regional distributor is two pages, printed. Luke sets it on the table. The seasonal ale is in the first row: fourteen cases reordered by eleven accounts in week six. The flagship lager is in the fourth row: eight cases reordered by six accounts. The expansion plan, marketing budget, and distributor conversations are all built around the flagship. The seasonal ale was not the strategic anchor. It is the reorder leader. Luke's strategy process has no defined threshold for what reorder evidence would require a revision.",
+      "whatToDo": "Ask what reorder level in what time window would constitute a revision trigger for the expansion strategy before treating week-six data as an anomaly. The strategy process needs a defined threshold before it can distinguish between noise and a signal that deserves a revision.",
+      "whyItMatters": "A strategy anchored to the flagship will treat outperformance by another product as anomalous until the evidence is too large to ignore. Defining the revision threshold in advance makes the process capable of hearing the signal."
+    },
+    {
+      "exampleId": "ch10-ex03-mathieu-airline",
+      "title": "Mathieu's Booking Report Shows a Demand Corridor That Is Not on the Network Map",
+      "tags": [
+        "decision_point",
+        "transportation",
+        "evidence-absorption"
+      ],
+      "planSpec": {
+        "domain": "regional airline discovering that new route demand data shows different origin-destination pairs than the strategy modeled",
+        "audience": "a network planning director whose approved route expansion was based on demand models built before market entry",
+        "stakes": "approved routes are not producing the predicted load factors, and booking data shows a demand corridor the model missed",
+        "format": "decision_point",
+        "openingDevice": "timestamp_named",
+        "requiredBeat": "Mathieu has to decide whether to bring the real booking data to an unscheduled review or hold it to the next quarterly cycle. The decision is about whether the strategy process has a mechanism for real evidence to revise the plan between scheduled cycles.",
+        "mustInclude": [
+          "load factor below model prediction",
+          "unmodeled demand corridor",
+          "the choice between holding and revising"
+        ],
+        "mustAvoid": [
+          "implying that demand modeling is generally unreliable"
+        ]
+      },
+      "scenario": "At 7:15 a.m., Mathieu opens the six-week booking report for the new route network. The approved routes are producing load factors at 71 percent of the model's prediction. The booking data shows 340 passenger inquiries for a city pair the current network does not serve, generated over six weeks without any promotion. The network planning committee meets quarterly. The next session is eight weeks away. Mathieu's process has no mechanism for bringing real booking evidence to a review between scheduled cycles.",
+      "whatToDo": "Bring the booking data to an unscheduled strategy review before the next quarterly session rather than holding it as a note for the scheduled cycle. A review mechanism that operates only on schedule cannot absorb evidence that arrives between cycles.",
+      "whyItMatters": "Booking data from real passengers is not a model prediction. It is evidence of demand. An unserved corridor with 340 inquiries in six weeks is a signal the strategy was not designed to hear. The network was written before the market answered."
+    },
+    {
+      "exampleId": "ch10-ex04-catarina-vc",
+      "title": "Catarina Files Industrial Operator Inbound Under Out-of-Scope Leads",
+      "tags": [
+        "predict_reveal",
+        "venture-capital",
+        "framework-filter"
+      ],
+      "planSpec": {
+        "domain": "climate-focused VC discovering mid-portfolio review that a grid-storage investment is generating unexpected interest from industrial operators outside the target market",
+        "audience": "a managing partner whose fund thesis is built around utility-scale renewable energy storage",
+        "stakes": "the industrial operators are not in the fund thesis, LP reporting metrics, or investment committee model, but represent a real demand signal from outside the original target market",
+        "format": "predict_reveal",
+        "openingDevice": "question_hook",
+        "requiredBeat": "Catarina predicts the industrial operator interest is an edge case. Eighteen months later, industrial storage has attracted two dedicated sector funds and the portfolio company is generating revenue from industrial clients the original model did not include.",
+        "mustInclude": [
+          "utility-scale thesis as strategy anchor",
+          "industrial operator inbound as out-of-scope",
+          "the two dedicated funds in the reveal"
+        ],
+        "mustAvoid": [
+          "implying that VC fund theses should constantly be revised"
+        ]
+      },
+      "scenario": "What does inbound interest from industrial operators mean for a fund whose thesis is built around utility-scale renewable storage? Catarina's read: edge cases. Industrial operators are a different sector, a different check size, and outside the LP reporting metrics. The inbound interest is filed under out-of-scope leads in the portfolio company's CRM. Catarina predicts it will not develop into a fundable market at the fund's check size. Eighteen months later, industrial grid storage has two dedicated sector funds and the portfolio company's fastest-growing revenue line is from industrial clients. The signal was in the out-of-scope folder before the sector became legible.",
+      "whatToDo": "Create a quarterly review of out-of-scope inbound for portfolio companies. A signal that does not fit the current fund thesis is not automatically noise. It may be the market arriving before the framework has a category for it.",
+      "whyItMatters": "A fund thesis is a framework for recognizing relevant signals and a filter that classifies signals outside the thesis as irrelevant. In a disruptive context, the most important signals often arrive from outside the framework that defined the strategy."
+    },
+    {
+      "exampleId": "ch10-ex05-niklas-microfinance",
+      "title": "Niklas's Urban Pilot Generates Sixty-Eight Non-Standard Loan Use Cases",
+      "tags": [
+        "postmortem",
+        "social-enterprise",
+        "learning-mechanism"
+      ],
+      "planSpec": {
+        "domain": "social enterprise in microfinance discovering that urban borrowers are using loans differently than the rural model they were trained on",
+        "audience": "a program director whose impact reporting and lending methodology were designed for rural smallholder borrowers",
+        "stakes": "urban borrowers are using loans for inventory cycles, sub-contracting, and gig-income smoothing — use cases the rural methodology does not recognize, but which are financially real",
+        "format": "postmortem",
+        "openingDevice": "retrospective",
+        "requiredBeat": "Niklas's postmortem shows that off-model loan uses were flagged for compliance follow-up rather than studied. The strategy process had no mechanism for the urban context to teach the organization anything.",
+        "mustInclude": [
+          "rural methodology as the strategy anchor",
+          "urban use flagged as non-standard",
+          "no mechanism for learning in the postmortem finding"
+        ],
+        "mustAvoid": [
+          "suggesting that rural microfinance methodology is irrelevant to urban lending"
+        ]
+      },
+      "scenario": "Looking back at the urban pilot's first twelve months, Niklas counts sixty-eight loan use cases flagged as non-standard by the rural classification methodology. Urban borrowers used loans for inventory cycles ahead of seasonal demand peaks, sub-contractor float during multi-party project sequences, and gig-income smoothing between platform payouts. The methodology had no category for any of these uses. Each was flagged for individual compliance follow-up. No review session asked what the non-standard pattern was teaching the organization about the urban context.",
+      "whatToDo": "Add a quarterly review of non-standard loan use categories to the methodology's governance process. When anomalies accumulate into a pattern, the pattern is a signal. A process that reviews anomalies individually will not see the pattern.",
+      "whyItMatters": "A classification built for rural borrowers will categorize urban behavior as non-standard. Non-standard is a process verdict, not a market verdict. The process needs a mechanism for the non-standard category to become a learning signal."
+    },
+    {
+      "exampleId": "ch10-ex06-adaeze-edtech",
+      "title": "Adaeze's Adult Learner Abandonment Rate Is Three Times the K-12 Baseline",
+      "tags": [
+        "before_after",
+        "edtech",
+        "architecture-mismatch"
+      ],
+      "planSpec": {
+        "domain": "edtech platform broadening from K-12 to adult learners and discovering that adult engagement patterns require revising the content architecture",
+        "audience": "a product director whose K-12 learning architecture was designed for curriculum-aligned, teacher-assigned content",
+        "stakes": "adult learners are self-directed and disengage when content feels school-like, behaviors the K-12 architecture did not design for",
+        "format": "before_after",
+        "openingDevice": "second_person",
+        "requiredBeat": "Before: Adaeze launches with the proven K-12 architecture. After: three months of engagement data shows adult module abandonment at three times the K-12 rate. The after shows the strategy process either learning from the data or treating it as a product defect.",
+        "mustInclude": [
+          "K-12 architecture as the strategy anchor",
+          "adult engagement abandonment rate",
+          "the strategy process choice in the after"
+        ],
+        "mustAvoid": [
+          "treating adult learners as a less important market than K-12 students"
+        ]
+      },
+      "scenario": "You are launching the adult learner product using the K-12 platform's content architecture. The architecture is proven. Before: Adaeze applies the curriculum-aligned module structure to the adult learner catalog. Engagement baselines come from K-12 teacher-assigned cohort data. After: three months of data shows adult module abandonment at three times the K-12 rate. Self-directed path creation requests are at four times what the architecture was built to support. The strategy process now has a choice: treat the abandonment rate as a product optimization problem, or treat it as a context mismatch signal.",
+      "whatToDo": "Define in the next sprint whether the adult engagement data is a product defect or a context mismatch signal before optimizing for completion rates. The two diagnoses require different responses. The strategy process needs to name which it is.",
+      "whyItMatters": "A platform built for curriculum-aligned learners embeds assumptions about how people engage with content. Adult learners have different habits. The abandonment data is not a performance failure. It is evidence that the architecture's assumptions do not match the adult context."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A strategy review team receives a signal from an emerging market segment that does not fit the current plan. The team logs it as anomalous and continues without asking whether the strategy should be revised. This behavior is best described as which of the following?",
+        "choices": [
+          "The process classifies the signal as not on-model and files it as an exception rather than evaluating whether it should require a strategy revision.",
+          "The process rejects all information that arrives outside the formal quarterly review cycle.",
+          "The process requires independent source validation for all incoming signals before including them in strategy reviews."
+        ],
+        "correctIndex": 0,
+        "explanation": "Filtering is the default behavior of most strategy processes: signals that do not fit the current framework are treated as exceptions and set aside. Absorbing a signal means the process has a mechanism for evaluating whether the signal, once present, should require the strategy to change.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Beth leads a clinical trial for a health tech startup. The primary endpoint is at 94 percent of target. Thirty-one of forty physician feedback reports mention a secondary use case that is not in the approved strategy. The strategy process has no formal mechanism for secondary signals. What is the most important immediate action?",
+        "choices": [
+          "Redirect resources from the primary endpoint to investigate the secondary use case before the trial closes.",
+          "Create a formal documentation mechanism for the secondary use case before the trial closes, so the process can evaluate whether the signal deserves a strategy revision.",
+          "Present the secondary use case to the board immediately as a strategy revision proposal."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strategy process cannot evaluate whether the secondary use case signal deserves a revision until it has a mechanism for the signal to enter as evidence. Creating a documentation track gives the process a place to put the signal without committing to a revision or abandoning the primary strategy.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A craft brewery's regional expansion strategy is built around its flagship lager. Week-six reorder data from a new distributor shows the seasonal ale outperforming the flagship in both accounts and cases reordered. The expansion plan, marketing budget, and distributor conversations all support the flagship. What does the strategy process most need?",
+        "choices": [
+          "An immediate revision of the expansion strategy to center on the seasonal ale.",
+          "Continued execution of the flagship strategy through at least one full season of reorder data before any revision is considered.",
+          "A defined threshold for what level of reorder evidence would constitute a revision trigger, before treating the week-six data as anomalous."
+        ],
+        "correctIndex": 2,
+        "explanation": "Without a predefined revision threshold, the strategy process cannot distinguish between noise and a genuine signal. Defining the threshold before the evidence accumulates further makes it possible to evaluate the data as a potential revision trigger rather than filing it as an anomaly.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A regional airline's six-week booking report shows new routes at 71 percent of modeled load factors and 340 passenger inquiries for an unserved city pair, generated without promotion. The next network planning committee session is eight weeks away. What is the core strategy process question?",
+        "choices": [
+          "Whether the strategy process has a mechanism for bringing real booking data to an unscheduled review rather than holding it to the next quarterly cycle.",
+          "Whether the load factor gap indicates that demand modeling is generally unreliable for new route entry.",
+          "Whether to abandon the approved route network and rebuild it from the booking data."
+        ],
+        "correctIndex": 0,
+        "explanation": "A review mechanism that operates only on schedule cannot absorb evidence that arrives between cycles. The booking data represents real demand that the approved strategy did not anticipate. The strategy process question is whether it has a path to an unscheduled review, not whether the quarterly cycle should be trusted.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A climate-focused VC files industrial operator inbound interest under out-of-scope leads because industrial operators are not in the fund thesis. Eighteen months later, industrial grid storage has two dedicated sector funds and the portfolio company's industrial revenue is its fastest-growing line. What does this outcome reveal about the fund's strategy process?",
+        "choices": [
+          "The fund thesis was wrong to focus on utility-scale storage rather than industrial applications from the start.",
+          "The fund's strategy process had no mechanism for evaluating whether out-of-scope inbound might constitute a revision trigger. A real market signal was filed rather than evaluated.",
+          "Industrial operators are always more important than utility-scale operators as a market for grid storage technology."
+        ],
+        "correctIndex": 1,
+        "explanation": "The out-of-scope designation is a process verdict, not a market verdict. The strategy process treated signals outside the fund thesis as not worth evaluating. The signals represented real demand that a process with a revision mechanism could have examined before the sector became legible to the broader market.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Why do the most important signals in a disruptive market often arrive in forms the current strategy framework classifies as exceptions or noise?",
+        "choices": [
+          "Because disruptive markets produce fundamentally unreliable data that requires more filtering than stable markets.",
+          "Because organizations deliberately suppress incoming evidence to protect existing strategic commitments.",
+          "Because the current framework was built to recognize what the current strategy anticipated. A signal that does not fit the anticipated framework appears anomalous by definition, even when it represents real demand."
+        ],
+        "correctIndex": 2,
+        "explanation": "The framework's filtering is accurate relative to the current strategy. A secondary clinical use case, an out-of-scope inbound lead, and a demand corridor not in the network model are all correctly classified as not on-model. They are anomalous to the framework. They may not be anomalous to the market.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "What distinguishes deliberate strategy revision from undisciplined drift?",
+        "choices": [
+          "Deliberate revision is triggered by a mechanism the process defined in advance: a specific kind of evidence that, when present, qualifies as a revision trigger. Drift occurs when any incoming signal can redirect the strategy without a predefined threshold.",
+          "Deliberate revision requires approval from external stakeholders such as boards or investors before the strategy can change direction.",
+          "Drift and deliberate revision are functionally equivalent because both involve changing the strategy in response to new information."
+        ],
+        "correctIndex": 0,
+        "explanation": "The distinction is structural. A process with a predefined revision threshold can evaluate evidence against a standard. A process without one will either reject all incoming evidence or revise on any signal. The predefined threshold is what makes revision deliberate rather than reactive.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A social enterprise's urban microfinance pilot produces sixty-eight loan use cases flagged as non-standard by the rural classification methodology. No review session asks what the non-standard category is teaching the organization. The postmortem finds excellent case-level follow-up but no aggregate review. What does this reveal about the strategy process?",
+        "choices": [
+          "The rural microfinance methodology was inappropriate for urban contexts and should have been replaced before the pilot began.",
+          "The strategy process had no mechanism for a non-standard category to generate a learning signal. Sixty-eight instances were treated as individual anomalies rather than as a pattern that might require the methodology to adapt.",
+          "Urban borrowers are not appropriate clients for microfinance products designed for rural smallholders."
+        ],
+        "correctIndex": 1,
+        "explanation": "The postmortem reveals a structural gap: the process reviewed anomalies individually through the compliance track but had no aggregate review path. A pattern that would have been visible across sixty-eight cases was not seen because no review mechanism was designed to look for it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A program director argues that a strategy process can remain stable as long as primary performance targets are being met, and that contradictory signals only matter once primary targets are missed. How should this argument be assessed?",
+        "choices": [
+          "The argument is correct: primary targets are the most reliable indicator of whether a strategy is working and whether revision is warranted.",
+          "The argument is wrong: strategy revision should be triggered by any incoming evidence, regardless of whether primary targets are being met.",
+          "The argument misses the timing problem. In a disruptive context, the most important signals often arrive while primary targets are still being met. Waiting until targets are missed may mean waiting past the window when revision was still actionable."
+        ],
+        "correctIndex": 2,
+        "explanation": "Primary targets measure how well the organization is executing the current strategy. They do not measure whether the market is about to make that strategy obsolete. In disruptive contexts, the signals that most matter often arrive before primary targets are affected. By the time targets are missed, the revision window may have already closed.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "What does a strategy process need in order to absorb a learning signal rather than filter it?",
+      "back": "A mechanism that defines in advance what kind of evidence would constitute a revision trigger. Without that mechanism, the process defaults to treating contradictory signals as exceptions. The mechanism does not remove rigor. It adds a specific kind of rigor: a predefined standard for when the rejection of evidence stops and revision begins.",
+      "difficulty": "basic"
+    },
+    {
+      "front": "Why do the most important signals in a disruptive context often arrive in forms the current framework classifies as noise?",
+      "back": "Because the current framework was built to recognize what the current strategy anticipated. A signal from outside the anticipated framework looks anomalous by definition. The framework's filtering is accurate relative to the current strategy. The signal may be accurate relative to the market.",
+      "difficulty": "basic"
+    },
+    {
+      "front": "What distinguishes deliberate strategy revision from undisciplined drift?",
+      "back": "Deliberate revision is triggered by a mechanism the process defined in advance: a specific kind of evidence that, when present, qualifies as a revision trigger. Drift happens when any incoming signal can redirect the strategy without a predefined threshold. The difference is whether the standard was set before or after the evidence arrived.",
+      "difficulty": "intermediate"
+    },
+    {
+      "front": "In a disruptive market, when is the worst time to begin evaluating whether a strategy needs revision?",
+      "back": "After primary targets are missed. In disruptive markets, the signals that matter most often arrive while primary targets are still being met. By the time targets are missed, the window for revision may have already passed and the signals that would have allowed earlier action were already present.",
+      "difficulty": "intermediate"
+    },
+    {
+      "front": "What does it mean for a strategy process to be fragile?",
+      "back": "A strategy process is fragile when it is optimized for executing the current plan but has no mechanism for the plan to be revised when real market evidence contradicts it. Fragility is not the same as rigidity. The process may be well-governed. But if it cannot absorb what the market teaches, it is executing a plan the evidence is ready to revise.",
+      "difficulty": "advanced"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to identify when incoming evidence is being filed as an exception and to build a review mechanism that evaluates whether that evidence should trigger a strategy revision.",
+    "ifThenPlans": [
+      {
+        "context": "an incoming signal does not fit the current strategy framework",
+        "plan": "If evidence arrives that does not fit the current strategy framework, then create a formal documentation entry for it and set a date by which the accumulated evidence will be reviewed as a potential revision trigger, rather than filing it as a one-time exception."
+      },
+      {
+        "context": "the strategy review cycle is quarterly and a significant signal arrives mid-cycle",
+        "plan": "If a significant contradictory signal arrives between formal review cycles, then convene an unscheduled review of that signal before the next quarterly session rather than holding it until the scheduled cycle."
+      },
+      {
+        "context": "primary performance targets are being met but market signals consistently fall outside the strategy framework",
+        "plan": "If primary targets are being met but incoming signals consistently fail the current framework's classification, then evaluate whether the classification is filtering evidence the strategy should hear, not whether the primary targets justify ignoring it."
+      },
+      {
+        "context": "evaluating whether an out-of-scope signal in a new market context is noise or a revision trigger",
+        "plan": "If evidence arrives from outside the current strategy's target customer or use case, then ask whether it represents real demand from real customers before treating it as out of scope."
+      }
+    ],
+    "twentyFourHourChallenge": "Think of the last time your organization received information that contradicted the current plan. Write down whether that information was absorbed into the strategy or filed as an exception. Name one change to your review process that would make the next signal harder to file away.",
+    "weeklyPractice": "Once a week, at the close of any review session that receives incoming market evidence, record whether any piece of that evidence was filed as an exception rather than evaluated as a potential revision trigger. Track whether the ratio of exceptions to revision triggers is changing over time."
+  },
+  "memorableLines": [
+    {
+      "text": "The discipline is not to hold the plan at all costs. The discipline is to hold direction while letting evidence change what needs to change.",
+      "location": "breakdown.fastRead",
+      "why": "Converts the chapter's core tension into a two-sentence rule that distinguishes strategic commitment from strategic rigidity."
+    },
+    {
+      "text": "The strategy that cannot absorb what the market teaches becomes the obstacle to the organization's learning.",
+      "location": "breakdown.deepRead",
+      "why": "Reframes a strategy failure as a process failure without excusing the outcome."
+    },
+    {
+      "text": "A strategy process that can learn from what the market teaches needs a mechanism that distinguishes between noise and a genuine revision trigger.",
+      "location": "breakdown.fullRead",
+      "why": "Converts the abstract prescription into a structural requirement that can be acted on directly."
+    }
+  ]
+}

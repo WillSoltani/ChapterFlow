@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch79",
+  "number": 79,
+  "title": "In-Group Out-Group Bias",
+  "readingTimeMinutes": 12,
+  "hook": "The same mistake looks forgivable on your side and suspicious the moment it belongs to them.",
+  "counterintuition": "Loyalty can feel like fairness while it quietly changes the standard of evidence; compare the same behavior across groups before deciding.",
+  "tryThisNow": "Take one judgment involving your team and an outside team. Write the evidence standard you would use if the names were swapped.",
+  "keyTakeaway": "Do not let group membership change the evidence standard. Swap the labels before you decide.",
+  "breakdown": {
+    "fastRead": "A pension app team trusts its own forecast and questions the outside auditor's grid, even though the same error appears in both. The in-group gets context. The out-group gets suspicion. That is in-group out-group bias: loyalty changes how evidence is read. The fix is to swap labels before judging. If the same record would look worse under an outsider's name, the standard is not evidence. It is group protection.",
+    "deepRead": "A night-shift crew misses a call, and the explanation is fatigue. A rival crew misses a call, and the explanation is laziness. A local architect overruns a budget, and the story is complexity. An outside firm overruns a budget, and the story is incompetence. The facts may differ, but the first check is whether your standard changed with the badge.\n\nIn-group out-group bias gives your side the benefit of context and gives the other side the burden of proof. Your group has history, constraints, intentions, and exceptions. Their group has patterns, motives, and flaws. The mind does not announce the switch. It simply makes one explanation feel humane and the other feel obvious.\n\nThe badge should not choose the verdict.\n\nThe correction is the missing comparison. What would you say if the same evidence came from the other group? What would you ask if your group had done it? What standard did you use last time the roles were reversed? This is not a call to distrust your own people. It is a call to make loyalty answer to evidence.\n\nThis matters because groups are useful. Teams, professions, unions, neighborhoods, and families protect people and coordinate action. The danger starts when protection becomes proof. Then errors by insiders are softened, warnings from outsiders are discounted, and good evidence is read through a membership card.",
+    "fullRead": "The ambulance review begins with a donor pledge card on the table and two missed response times on the screen. The day crew says the night crew is careless. When the day crew missed the same target last month, the explanation was traffic and a bad handoff. The facts are similar enough to make the room uncomfortable. The badge is doing part of the analysis.\n\nIn-group bias rarely feels like hatred. It often feels like knowing the full story. You know your group's constraints, personalities, old injuries, budget gaps, and good intentions. You know the out-group through thinner evidence: one incident, one rumor, one stereotype, one rivalry. That asymmetry makes loyalty feel factual. Your side becomes complex; their side becomes simple.\n\nClassic experiments in intergroup discrimination showed how little it can take for people to favor their own group once a boundary exists. The point is not that every group tie is irrational. Life in groups gives people protection, identity, and practical strength. The hidden risk is that once a group line is drawn, evidence can start crossing the line with different weight.\n\nWhat would this look like if the jerseys changed?\n\nA watch retailer sees the same force in a waitlist. Long-time collectors call themselves a family, and the store gives them first access because the relationship feels earned. New customers with the same purchase history are treated as opportunists. The risk register should ask a cold question: what rule would we defend if the names were hidden? If the answer changes, pseudokinship is replacing policy.\n\nThe bias can also turn evidence into a weapon. A vaccine-statistic framing debate may treat numbers from one's own advocacy group as education and the same framing from opponents as manipulation. A viral chart fact-check may scrutinize an out-group post line by line while giving an in-group post a generous headline. The issue is not that all sides are equal. The issue is whether the standard changes before the evidence is read.\n\nThere is a limit. Groups often carry real information. A trusted team may deserve trust because its record is strong. A hostile group may require scrutiny because its incentives are bad. The correction is not forced neutrality. It is explicit criteria. Record, incentive, method, and consequence should explain the judgment, not membership alone.\n\nThe practical move is simple and uncomfortable. Swap the labels. Hide the group names. Ask for the same evidence from both sides. Write one rule that applies to insiders and outsiders before the case is discussed. When loyalty is healthy, it can survive that test. When it cannot, it was not loyalty serving truth. It was loyalty editing truth."
+  },
+  "examples": [
+    {
+      "exampleId": "ch79-ex01-edith-forecast-grid",
+      "title": "The pension default with a friendly model",
+      "scenario": "A forecast grid fills the pension app screen at 9:05 a.m. in a Bristol product room. Edith, the default-rate lead, has to choose between trusting the in-house model and delaying launch for the outside auditor's matching error. She writes in-group on the grid, hides the model labels, and changes the launch plan after the same error appears in both forecasts.",
+      "whatToDo": "Blind the source labels before judging the same forecast error differently.",
+      "whyItMatters": "The internal model should not receive context that the outside model never gets.",
+      "tags": [
+        "pension app default rate",
+        "forecast grid",
+        "in-group"
+      ],
+      "planSpec": {
+        "domain": "pension app default rate",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch79-ex02-stuart-donor-pledge-card",
+      "title": "The night-shift review with two standards",
+      "scenario": "\"Night shift always cuts corners,\" the supervisor says at 6:20 a.m. while a donor pledge card sits beside the ambulance response log in Winnipeg. Stuart, the operations reviewer, must choose between disciplining the night crew and comparing the same missed target from the day crew. He marks out-group on the card, lines up both incidents, and changes the review to use one response-time standard.",
+      "whatToDo": "Apply the same explanation test to both crews before assigning blame.",
+      "whyItMatters": "A rival shift can be judged by character while the home shift is judged by context.",
+      "tags": [
+        "ambulance night-shift review",
+        "donor pledge card",
+        "out-group"
+      ],
+      "planSpec": {
+        "domain": "ambulance night-shift review",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch79-ex03-maureen-shift-roster",
+      "title": "The renovation plan that protects the local firm",
+      "scenario": "The shift roster rustles under Maureen's hand in the Edinburgh architecture studio as two renovation overruns are reviewed. She is about to excuse the local partner's delay as complexity while calling the outside firm's delay incompetence. She writes loyalty on the roster, swaps the firm names in the summary, and changes the recommendation after the same permit issue explains both delays.",
+      "whatToDo": "Swap names in the case summary before turning delay into character judgment.",
+      "whyItMatters": "Loyalty can make identical project problems look morally different.",
+      "tags": [
+        "architecture renovation plan",
+        "shift roster",
+        "loyalty"
+      ],
+      "planSpec": {
+        "domain": "architecture renovation plan",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch79-ex04-leonard-risk-register",
+      "title": "The collector family with a hidden rule",
+      "scenario": "You are looking at a risk register behind a Geneva watch counter while the waitlist names glow on the sales tablet. Leonard must choose between giving long-time collectors first access or applying the written purchase-history rule to everyone. He writes pseudokinship on the register, hides customer labels, and changes the allocation after new buyers match the same criteria.",
+      "whatToDo": "Turn family-feeling into a written rule that can apply to outsiders too.",
+      "whyItMatters": "Pseudokinship can turn a fair waitlist into a private club without saying so.",
+      "tags": [
+        "watch retailer waitlist",
+        "risk register",
+        "pseudokinship"
+      ],
+      "planSpec": {
+        "domain": "watch retailer waitlist",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch79-ex05-gillian-lab-notebook",
+      "title": "The statistic that changes sides",
+      "scenario": "It took Gillian two vaccine briefings in Ottawa to notice that the same risk chart was praised or condemned by source. The lab notebook showed the advocacy group and the opposition group used matching denominators, but her team called one education and the other spin. She has to choose the briefing frame. She writes evidence on the notebook, applies one denominator rule, and changes the slide before publication.",
+      "whatToDo": "Judge the method before judging the group that used it.",
+      "whyItMatters": "A statistic can look honest or manipulative depending on whose badge sits above it.",
+      "tags": [
+        "vaccine-statistic framing",
+        "lab notebook",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "vaccine-statistic framing",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch79-ex06-stanley-contract-redline",
+      "title": "The viral chart with friendly errors",
+      "scenario": "Which typo gets called a mistake, and which gets called proof of bad faith? Stanley lays a contract redline beside the newsroom fact-check desk after a viral chart postmortem in Toronto. The in-group chart has a scale error, and the out-group chart has the same error. He writes group on the redline, applies the same correction label to both, and changes the headline before publication.",
+      "whatToDo": "Use the same correction language for matching errors from friendly and hostile sources.",
+      "whyItMatters": "Fact-checking becomes group defense when identical errors receive different moral labels.",
+      "tags": [
+        "viral chart fact-check",
+        "contract redline",
+        "group"
+      ],
+      "planSpec": {
+        "domain": "viral chart fact-check",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "Two teams make the same error. One is your team, and one is a rival. Your team gets context while the rival gets blame. What is the in-group out-group risk?",
+        "choices": [
+          "Group membership may be changing the evidence standard.",
+          "Blame what in-group makes teams error team look credible; use rival gets context first and revisit out-group group membership when changing standard bias shifts.",
+          "Bias in-group out-group supports a narrower read of context blame what; keep in-group out-group group central and leave membership changing standard aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The risk is a shifting standard. The same behavior should be compared under the same rule before blame changes hands.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "In-Group Out-Group Bias makes teams error feel more decisive than the record supports, and that misprices team rival in this scene. The correct move keepss the choice by group membership may be changing the evidence standard."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a in-group review, a hospital excuses a home-unit delay as staffing pressure but calls the same delay by an outside unit incompetence, what should the review do?",
+        "choices": [
+          "Delay staffing pressure gives a practical reason for hospital excuses home-unit; incompetence what apply belongs after calls outside unit clarifies the result.",
+          "Apply the same staffing, timing, and harm criteria to both cases.",
+          "Harm criteria both supports a narrower read of staffing pressure calls; keep outside unit incompetence central and leave what apply timing aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "The criteria should travel across the group line. Familiarity may add context, but it should not change the standard.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "In-Group Out-Group Bias works by letting in-group hospital crowd out excuses home-unit, which can misreads the delay staffing decision. Apply the same staffing, timing, and harm criteria to both cases keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When in-group pressure appears, a retailer calls long-time customers 'family' and gives them inventory first, while newer customers with the same record wait, which action fights the bias?",
+        "choices": [
+          "Record wait action supports a narrower read of retailer calls long-time; keep customers family gives central and leave inventory first newer aside.",
+          "Action fights bias points toward a quicker call on long-time customers family; let appears retailer calls stand until newer record wait contradicts it.",
+          "Write the allocation rule and apply it to names hidden from group labels."
+        ],
+        "correctIndex": 2,
+        "explanation": "Hidden labels test whether the rule is fair or just pseudokinship. Loyalty benefits may still exist if the criteria are explicit.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "In-Group Out-Group Bias turns appears retailer into a shortcut, so the room can overweights calls long-time while missing customers family. Write the allocation rule and apply it to names hidden from group labels protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After in-group risk surfaces, a fact-check desk calls an ally's chart error a typo but an opponent's matching error deception. What is the best correction?",
+        "choices": [
+          "Use the same correction label for the same kind of error.",
+          "Error typo opponent gives a practical reason for calls ally chart; best correction label belongs after matching deception what clarifies the result.",
+          "Opponent matching deception makes desk calls ally look credible; use chart error typo first and revisit what best correction when label kind out-group shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The same error needs the same standard. Overcorrecting into equal hostility is not evidence-based either.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "In-Group Out-Group Bias would push the fact-check desk case toward calls ally, creating a cost when chart error stays untested. The useful guardrail is to use the same correction label for the same kind of error."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If in-group reasoning takes over, a committee trusts a model built by its own unit and distrusts an outside model, although both miss the same variable, what should it analyze?",
+        "choices": [
+          "Variable what analyze supports a narrower read of trusts model built; keep unit distrusts outside central and leave although both miss aside.",
+          "Analyze whether model-quality points toward a quicker call on built unit distrusts; let committee trusts model stand until miss variable what contradicts it.",
+          "Whether the same model-quality rule applies after source labels are hidden."
+        ],
+        "correctIndex": 2,
+        "explanation": "Blinding source labels tests model quality without group protection. Loyalty does not fix a missing variable.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "In-Group Out-Group Bias converts trusts model into the loudest signal, which can rushes built unit before distrusts outside is checked. The better answer separatess attention on whether the same model-quality rule applies after source labels are hidden."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While in-group pressure builds, a vaccine communication team praises its own chart framing as education but calls the opponent's identical denominator spin. What should the team do before publishing?",
+        "choices": [
+          "Framing education calls makes builds vaccine communication look credible; use team praises chart first and revisit opponent identical denominator when spin what publishing shifts.",
+          "Calls opponent identical supports a narrower read of pressure builds vaccine; keep communication team praises central and leave chart framing education aside.",
+          "Apply one denominator rule to both charts and revise the slide."
+        ],
+        "correctIndex": 2,
+        "explanation": "The method matters before the group. A good goal does not excuse a rule you would condemn from the other side.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "In-Group Out-Group Bias hides inside the in-group pressure choice because in-group pressure seems sufficient, yet the cost lands in in-group pressure. Apply one denominator rule to both charts and revise the slide brings the in-group pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the in-group call, an architecture board reviews delays from a local firm and an outside firm, the same permit problem caused both, but the local firm is described as unlucky. What should leaders evaluate?",
+        "choices": [
+          "Whether the permit evidence would support the same explanation if firm names were swapped.",
+          "Unlucky what leaders points toward a quicker call on delays local firm; let architecture board reviews stand until caused both described contradicts it.",
+          "Leaders evaluate whether fits the immediate pressure around firm outside permit; hold reviews delays local steady and test call architecture board later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The label-swap test exposes whether loyalty is bending the interpretation. History may matter, but it cannot rewrite identical evidence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "In-Group Out-Group Bias pressures the call architecture decision toward the easy reading of call architecture. That can inflates the real cost unless the choice is grounded in whether the permit evidence would support the same explanation if firm names were."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose in-group risk is present: a volunteer group reviews a complaint against one member and one outsider. The member receives a private warning; the outsider is publicly removed for the same action. What question should be asked?",
+        "choices": [
+          "Labels were hidden fits the immediate pressure around private warning publicly; hold member outsider receives steady and test reviews complaint against later.",
+          "What consequence would we choose if the names and group labels were hidden?",
+          "Complaint against member gives a practical reason for volunteer group reviews; warning publicly removed belongs after outsider receives private clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "Hiding labels forces the same consequence standard. Friendship is exactly the pressure that can distort the decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "In-Group Out-Group Bias is the mechanism here: group identity changes error judgments, so present volunteer can overpower present volunteer. What consequence would we choose if the names and group labels were hidden keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two in-group signals compete: a trusted in-group has a strong record, while a hostile out-group has repeatedly distorted data. How should bias be avoided without pretending both records are equal?",
+        "choices": [
+          "Use record, incentive, method, and consequence as explicit criteria instead of membership alone.",
+          "Strong record hostile looks strong enough to guide out-group repeatedly distorted; data bias avoided can wait unless pretending both records changes the stakes.",
+          "Hostile out-group repeatedly gives a practical reason for trusted strong record; avoided pretending both belongs after distorted data bias clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "Prior record and incentives can matter when named as evidence. The bias enters when membership replaces those criteria.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "In-Group Out-Group Bias makes the trusted strong evidence look cleaner than it is, risking a trusted strong mistake in this setting. The answer protects trusted strong by asking for use record, incentive, method, and consequence as explicit criteria instead of."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "Your side and their side make similar errors. What label-swap test should be run?",
+      "back": "Reverse the group labels and judge the same evidence again. If the verdict changes, identity is doing the work.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "How does in-group bias soften insider mistakes?",
+      "back": "It gives insiders context, constraints, and good intentions while giving outsiders motives, patterns, and flaws.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What is pseudokinship in a decision?",
+      "back": "Family-like loyalty that gives insiders benefits or excuses without a written rule that outsiders could meet.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How do you avoid false neutrality?",
+      "back": "Use explicit criteria such as record, incentive, method, and consequence. Do not pretend all groups have identical evidence.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "What visible process reduces group bias?",
+      "back": "Hide labels, swap names, compare matching cases, and write one rule before the group identity is discussed.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Hold insiders and outsiders to the same evidence standard by swapping labels and writing criteria before deciding.",
+    "ifThenPlans": [
+      {
+        "context": "Team review",
+        "plan": "If my team and another team make similar errors, then I will compare them under one written standard."
+      },
+      {
+        "context": "Policy or allocation",
+        "plan": "If loyalty language appears, then I will write the rule an outsider could meet before approving the benefit."
+      },
+      {
+        "context": "Fact-checking",
+        "plan": "If an ally and opponent make similar claims, then I will apply the same correction label to both."
+      },
+      {
+        "context": "Conflict",
+        "plan": "If I explain my side by context and their side by character, then I will swap labels before acting."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one judgment involving your group and an outside group. Swap the labels in writing and see whether your evidence standard changes.",
+    "weeklyPractice": "Once a week, review one decision where loyalty was active and identify whether the same criteria applied across the group line."
+  },
+  "memorableLines": [
+    {
+      "text": "The badge should not choose the verdict."
+    },
+    {
+      "text": "Your side becomes complex; their side becomes simple."
+    },
+    {
+      "text": "It was loyalty editing truth."
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "chapterId": "the-12-week-year-ch05",
+  "number": 5,
+  "title": "One Week at a Time",
+  "coreMove": "Translate the 12 week plan into a weekly set of actions that can survive the actual week in front of you.",
+  "sourcePressure": "A 12 week plan still needs a weekly bridge where priorities become current action inside real-week constraints.",
+  "chapterSpecificMisunderstanding": "Reducing the chapter to making a to-do list instead of using the week as the operating unit of execution.",
+  "sourceAlignmentTerms": [
+    "weekly plan",
+    "weekly execution",
+    "12 week goals",
+    "priorities",
+    "current action",
+    "real-week demands"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Weekly Plan",
+      "detail": "The source notes identify The Weekly Plan as the chapter-map term.",
+      "useIn": "both",
+      "phrasingHint": "The weekly plan is where a 12 week promise either receives a slot in the week or stays imaginary."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch05: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch05: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch05: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch05: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "museum membership renewal week",
+      "audience": "a practitioner in museum membership renewal week who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Laura writes the renewal action that must happen before Friday.",
+      "firstImage": "renewal envelopes in a canvas mail bin",
+      "mustInclude": [
+        "renewal envelopes in a canvas",
+        "weekly plan",
+        "12 week goals"
+      ],
+      "mustAvoid": [
+        "generic one week at a time explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "cycling event volunteer schedule",
+      "audience": "a decision-maker in cycling event volunteer schedule choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Andrew assigns this week's volunteer confirmations from the 12 week plan.",
+      "firstImage": "race radios charging in a plastic crate",
+      "mustInclude": [
+        "race radios charging in a",
+        "weekly plan",
+        "12 week goals"
+      ],
+      "mustAvoid": [
+        "generic one week at a time explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "pharmacy technician exam cohort",
+      "audience": "a team lead in pharmacy technician exam cohort who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Manon pulls one exam objective into the current week's practice.",
+      "firstImage": "flashcards beside a pharmacy badge",
+      "mustInclude": [
+        "flashcards beside a pharmacy badge",
+        "weekly plan",
+        "12 week goals"
+      ],
+      "mustAvoid": [
+        "generic one week at a time explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "small SaaS customer-success queue",
+      "audience": "a reflective operator in small SaaS customer-success queue reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ingrid turns the retention goal into five named customer calls.",
+      "firstImage": "support tickets sorted by color",
+      "mustInclude": [
+        "support tickets sorted by color",
+        "weekly plan",
+        "12 week goals"
+      ],
+      "mustAvoid": [
+        "generic one week at a time explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "legal aid intake triage",
+      "audience": "a reader in legal aid intake triage comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Jack chooses the intake action that keeps the grant outcome alive.",
+      "firstImage": "intake folders in a locked cabinet",
+      "mustInclude": [
+        "intake folders in a locked",
+        "weekly plan",
+        "12 week goals"
+      ],
+      "mustAvoid": [
+        "generic one week at a time explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "Quebec bakery wholesale calendar",
+      "audience": "two colleagues in Quebec bakery wholesale calendar forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Adaeze moves wholesale outreach into this week's bake calendar.",
+      "firstImage": "proofing baskets lined along a steel rack",
+      "mustInclude": [
+        "proofing baskets lined along a",
+        "weekly plan",
+        "12 week goals"
+      ],
+      "mustAvoid": [
+        "generic one week at a time explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "convert 12 week goals into weekly actions",
+      "spot weeks with no bridge from plan to work",
+      "protect priority work inside real constraints"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one 12 week goal and write the one weekly action that must happen before Friday for it to stay alive.",
+  "readingTimeMinutes": 12
+}

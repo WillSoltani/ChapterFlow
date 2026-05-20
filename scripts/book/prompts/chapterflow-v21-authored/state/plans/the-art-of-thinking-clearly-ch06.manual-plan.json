@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch06",
+  "number": 6,
+  "title": "Reciprocity",
+  "coreMove": "Use Reciprocity as the warning label, then make the specific correction before the choice moves forward.",
+  "sourcePressure": "The source sidecar and official source notes frame Reciprocity as a specific decision error around reciprocity, obligation, gift. Traceable support includes Robert B. Cialdini, Influence.",
+  "chapterSpecificMisunderstanding": "Treating Reciprocity as generic advice to be smarter, instead of forcing this exact move: use reciprocity as the warning label, then make the specific correction before the choice moves forward.",
+  "sourceAlignmentTerms": [
+    "reciprocity",
+    "obligation",
+    "gift",
+    "reciprocal altruism",
+    "Cialdini"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Reciprocity.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Reciprocity sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Reciprocity."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a family court calendar applying Reciprocity under operational pressure",
+      "audience": "a reader who has to make a live judgment where reciprocity could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the menu proof, names the reciprocity risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A menu proof sits at the center of the family court calendar before anyone explains the choice.",
+      "mustInclude": [
+        "menu proof",
+        "reciprocity",
+        "a visible before-and-after choice tied to Reciprocity"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a auto-parts defect review applying Reciprocity under operational pressure",
+      "audience": "a reader who has to make a live judgment where obligation could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the case file, names the obligation risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A case file sits at the center of the auto-parts defect review before anyone explains the choice.",
+      "mustInclude": [
+        "case file",
+        "obligation",
+        "a visible before-and-after choice tied to Reciprocity"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a warehouse lease choice applying Reciprocity under operational pressure",
+      "audience": "a reader who has to make a live judgment where gift could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the sensor graph, names the gift risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A sensor graph sits at the center of the warehouse lease choice before anyone explains the choice.",
+      "mustInclude": [
+        "sensor graph",
+        "gift",
+        "a visible before-and-after choice tied to Reciprocity"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a cybersecurity breach room applying Reciprocity under operational pressure",
+      "audience": "a reader who has to make a live judgment where reciprocal altruism could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the water sample, names the reciprocal altruism risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A water sample sits at the center of the cybersecurity breach room before anyone explains the choice.",
+      "mustInclude": [
+        "water sample",
+        "reciprocal altruism",
+        "a visible before-and-after choice tied to Reciprocity"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a urban farm volunteer plan applying Reciprocity under operational pressure",
+      "audience": "a reader who has to make a live judgment where Cialdini could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the model card, names the Cialdini risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A model card sits at the center of the urban farm volunteer plan before anyone explains the choice.",
+      "mustInclude": [
+        "model card",
+        "Cialdini",
+        "a visible before-and-after choice tied to Reciprocity"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a appliance warranty desk applying Reciprocity under operational pressure",
+      "audience": "a reader who has to make a live judgment where reciprocity could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the queue ticket, names the reciprocity risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A queue ticket sits at the center of the appliance warranty desk before anyone explains the choice.",
+      "mustInclude": [
+        "queue ticket",
+        "reciprocity",
+        "a visible before-and-after choice tied to Reciprocity"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Reciprocity in a fresh decision scene",
+      "choose the correction that performs this move: use reciprocity as the warning label, then make the specific correction before the choice moves forward.",
+      "reject a tempting generic answer that ignores reciprocity",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Reciprocity' on a note, list the one reciprocity cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

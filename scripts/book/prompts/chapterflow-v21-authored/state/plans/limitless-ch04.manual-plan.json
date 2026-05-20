@@ -1,0 +1,184 @@
+{
+  "chapterId": "limitless-ch04",
+  "number": 4,
+  "title": "How to Read and Remember This (and Any) Book",
+  "coreMove": "Read with retrieval in mind before the page disappears from working attention.",
+  "sourcePressure": "The reader is moved from passive consumption into active reading, retention posture, and deliberate engagement before later methods arrive.",
+  "chapterSpecificMisunderstanding": "Dumping all speed-reading or memory tactics too early.",
+  "sourceAlignmentTerms": [
+    "active reading",
+    "retention posture",
+    "deliberate engagement",
+    "review",
+    "attention",
+    "training text"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open How to Read and Remember This (and Any) Book with a generic unlocked potential claim.",
+      "Do not start with a definition of how to read and remember this (and any) book."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "criminal law casebook reading",
+      "audience": "first-year law student drowning in dense cases",
+      "stakes": "tomorrow cold-call can expose shallow reading",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Emily",
+      "requiredBeat": "Emily closes the casebook and recites the holding, facts, and question before highlighting another line.",
+      "firstImage": "yellow tabs sticking from a heavy casebook",
+      "mustInclude": [
+        "casebook",
+        "yellow tabs",
+        "cold-call seating chart"
+      ],
+      "mustAvoid": [
+        "generic student grind",
+        "highlighting tips only"
+      ]
+    },
+    {
+      "domain": "birding field guide study",
+      "audience": "retiree preparing for a volunteer survey",
+      "stakes": "misidentifying species will corrupt count data",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "protagonistName": "Lars",
+      "requiredBeat": "Lars reads one entry, covers the page, then sketches the two field marks he must remember outdoors.",
+      "firstImage": "binocular strap lying across a mud-splashed guide",
+      "mustInclude": [
+        "binoculars",
+        "field guide",
+        "survey checklist"
+      ],
+      "mustAvoid": [
+        "nature reverie",
+        "memory palace claim"
+      ]
+    },
+    {
+      "domain": "pharmacy technician manual",
+      "audience": "trainee learning controlled-substance procedures",
+      "stakes": "a missed step can shut down the dispensary audit",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "protagonistName": "Camille",
+      "requiredBeat": "Camille turns a paragraph into three retrieval questions before the procedures blur together.",
+      "firstImage": "tamper-evident bags stacked beside the manual",
+      "mustInclude": [
+        "procedure manual",
+        "tamper-evident bags",
+        "audit checklist"
+      ],
+      "mustAvoid": [
+        "medical advice",
+        "rote compliance"
+      ]
+    },
+    {
+      "domain": "city bus route handbook",
+      "audience": "new driver learning detours and landmarks",
+      "stakes": "passengers will miss transfers if she only recognizes route names",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "protagonistName": "Tomas",
+      "requiredBeat": "Tomas reads the route once, closes the handbook, and draws the turn sequence from memory before checking the map.",
+      "firstImage": "a folded route map on a vinyl driver seat",
+      "mustInclude": [
+        "route map",
+        "transfer clock",
+        "detour notice"
+      ],
+      "mustAvoid": [
+        "bus depot shell",
+        "commute complaint"
+      ]
+    },
+    {
+      "domain": "wine importer tasting notes",
+      "audience": "sales rep learning regional differences",
+      "stakes": "restaurant buyers will challenge vague claims",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Grace",
+      "requiredBeat": "Grace predicts the region from her own blank tasting card before checking the label and correcting the cue she missed.",
+      "firstImage": "three unlabeled glasses on a slate counter",
+      "mustInclude": [
+        "unlabeled glasses",
+        "blank tasting card",
+        "buyer appointment"
+      ],
+      "mustAvoid": [
+        "luxury lifestyle",
+        "memorizing facts only"
+      ]
+    },
+    {
+      "domain": "online cybersecurity course",
+      "audience": "parent retraining after a layoff",
+      "stakes": "the certificate requires applying terms, not recognizing them",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "protagonistName": "Lin",
+      "requiredBeat": "Lin replaces passive video watching with a pause, explain, check loop after every phishing example.",
+      "firstImage": "paused video frame showing a fake login page",
+      "mustInclude": [
+        "paused video",
+        "notebook grid",
+        "certificate deadline"
+      ],
+      "mustAvoid": [
+        "generic career pivot",
+        "screen-time panic"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when read with retrieval in mind before the page disappears from working attention. is needed in a new scenario.",
+      "Choose the visible action that matches How to Read and Remember This (and Any) Book rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Close the page after one paragraph and say the point from memory before continuing.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,2699 @@
+{
+  "bookId": "the-black-swan",
+  "title": "The Black Swan",
+  "author": "Nassim Nicholas Taleb",
+  "promotedAt": "2026-05-18T14:58:03.084Z",
+  "chapterCount": 19,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "A calm record feels like proof, but it may only prove that the real stress has not arrived. The better move is to ask what the sample never had to survive."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are beside Megan in a municipal bridge maintenance meeting, close enough to see rust flakes in a clear evidence sleeve. Everyone else is treating the file as settled because recent peace looks or…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Claire three weeks to see what the family emergency reserve planning file had hidden. An untouched envelope marked insurance deductible had been present from the first meeting, but recent pea…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Food distributor cold-chain audit rarely looks dramatic from the hallway. Olivia arrives with a row of temperature stickers on a steel door, a short agenda, and one uncomfortable fact about untested …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "If a committee rewards the most confident speaker in a continuity dispute, what risk grows?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which final recommendation would you approve after reading a file shaped by recent peace?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Cap the downside while checking whether untested rupture changes the scale of action."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Order can come from exclusion, so the first task is to ask what stayed outside the frame."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The question is a sizing tool, not a mood; it tells you how much trust the evidence deserves."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Confidence can outrun visibility and make calm history look like knowledge."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Proceed only if the plan states what was tested, what remains untested, and how loss is capped."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "Success invites backward reading. The better move is to admire the winner while restoring the failed attempts that once looked just as possible."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "The case uses a fictional novelist because fiction strips away prestige clutter and leaves the mechanism exposed. Yevgenia is not there to prove that success is meaningless. She is there to show how …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Cal is in a small editorial office with a viral essay printed beside six rejected submissions. The publisher wants to call the essay's rise obvious, but the slush pile tells a less flattering story. …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Rafi is looking at his own product launch slides in a coworking room after the applause has faded. The deck makes his success sound planned from day one, but he remembers the almost-identical tests t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A musician goes viral and fans say the rise was obvious. What mistake appears?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why use a fictional writer here?"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "Why use a fictional writer here? To isolate the mechanism without prestige clutter. To prove novels beat statistics. To say fiction is always truer. The invented author strips away reputation and lea…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What hidden population keeps getting lost?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Maja invests in every startup that resembles one famous breakout. What correction fits?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Leah cites one famous dropout founder as a hiring model. Best response?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A profile turns every odd detail from a celebrity's early life into proof that fame was coming. What is happening?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A scholarship office uses one famous alumnus to prove a program works. What evidence would most improve the claim?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Compare similar films that used the pattern and disappeared before treating it as a rule."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Completion and dropout patterns for comparable students who entered the same program."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"yevgenia krasnova\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"that is\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 33 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Judge a strategy by payoff shape, downside, and survivability instead of by hit rate alone. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Marco can take reliable contract work this month or keep building a product that might sell at scale. The rent is due in twelve days, and the prototype is still ugly. He is about to choose between a …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Most programs on Rafi's podcast slate underperform. One breakout show, though, could finance the whole network. In the budget meeting, Rafi has to choose whether to kill the slate by average performa…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A filmmaker has five rejected cuts and enough cash for two more submissions. What should she check before quitting?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A sales team closes one giant contract after thirty ignored pilots. What does the low hit rate fail to show?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A rights agent pitches obscure novels abroad and loses most attempts. What makes the strategy potentially rational?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A legal finance analyst sees many losing cases in a docket. Which fact separates optionality from denial?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A friend mocks a bursty freelancer for lacking monthly proof. What question should come first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A podcast network has many small misses and one possible breakout. Which lens is most useful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A committee wants to judge every career by steady visible earnings. What is the deepest error?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Separate survivable rejection from ruin, then decide whether the upside still warrants another try."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "One scalable contract can dominate the record if the misses were survivable."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The trials deserve a capped budget and a clear upside trigger before more exposure."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The docket works only if total downside is capped and one settlement can outweigh many losses."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Ask how much downside the freelancer carries and how large a single contract can become."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the contrast\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4 paragraphs open with \"the contrast\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "More confirming days can make a hidden reversal more dangerous. The better move is to ask what changes the regime, not just what repeats the pattern."
+          },
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 34 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Ask what regime change could reverse the pattern on the very day the pattern feels strongest. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"The trap is not\" — Negation-correction opener from You Can't Hurt Me Ch1 ('The trap is not admitting how bad it was. The trap is letting…'). Combined with B11 audit, fully covers the negation-shell counter template.",
+            "evidence": "The warning is exposing the emotional economy of induction. People borrow certainty from repetition because repetition feels earned. The longer the pattern holds, the more they treat fear as irration…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario too short (179 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Olivier a pension board sees three calm years and assumes the portfolio is now fundamentally safe. Olivier is working inside finance with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Olivier a pension board sees three calm years and assumes the portfolio is now fundamentally safe. Olivier is working inside finance with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario too short (161 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Tara has never lost a laptop and starts to feel her backup routine is unnecessary. Tara is working inside personal with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tara has never lost a laptop and starts to feel her backup routine is unnecessary. Tara is working inside personal with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (164 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Lukas a company increases leverage because recent conditions have been unusually steady. Lukas is working inside work with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Lukas a company increases leverage because recent conditions have been unusually steady. Lukas is working inside work with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario too short (178 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Leo has taken the same route for months without delay and stops allowing any buffer in his schedule. Leo is working inside personal with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Leo has taken the same route for months without delay and stops allowing any buffer in his schedule. Leo is working inside personal with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Administrators see years without a serious incident and treat drills as unnecessary interruption. Administrators is working inside school with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Administrators see years without a serious incident and treat drills as unnecessary interruption. Administrators is working inside school with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Mina has felt good for a long time and starts to believe warning signs and checkups are no longer relevant. Mina is working inside health with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mina has felt good for a long time and starts to believe warning signs and checkups are no longer relevant. Mina is working inside health with the consequence visible, not theoretical."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the turkey's core mistake? Which response handles that pressure best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is the turkey example so unsettling? What should happen before the decision hardens?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can confidence and danger rise together? Which choice reads the evidence most carefully?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A firm adds leverage after a long stable period. Which lesson applies? What move keeps the hidden case visible?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is The warning rejecting in this lesson? Which answer avoids overclaiming from the scene?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does day one thousand feel safer than day ten to the turkey? What should the decision maker do next?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What makes the turkey a model for institutions too? What response fits the risk in the scene?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which phrase best captures the lesson's discipline? Which recommendation uses the evidence well?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because the farmer made a promise. in a way that misses the source of error."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4 paragraphs open with \"the warning\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario too short (162 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Mara keeps opening research notes that support the stock she already wants to buy. Mara ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mara keeps opening research notes that support the stock she already wants to buy. Mara ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario too short (172 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Lars a student keeps citing articles that support the argument already chosen for the essay. Lars ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Lars a student keeps citing articles that support the argument already chosen for the essay. Lars ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Mikkel an operations team keeps highlighting the metrics that validate the plan it already approved. Mikkel ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mikkel an operations team keeps highlighting the metrics that validate the plan it already approved. Mikkel ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario too short (175 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Noah keeps citing success stories for a diet while ignoring reports of failure or side effects. Noah ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Noah keeps citing success stories for a diet while ignoring reports of failure or side effects. Noah ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Hanna a hiring committee keeps interpreting every resume detail as support for the preferred candidate. Hanna ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Hanna a hiring committee keeps interpreting every resume detail as support for the preferred candidate. Hanna ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (162 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Frida a founder keeps showing the product to users who already like the category. Frida ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Frida a founder keeps showing the product to users who already like the category. Frida ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is The warning mocking in This lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is disconfirming evidence so important?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the core procedural problem in confirmation bias?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What stronger question replaces, How much support does the claim have?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can a fact-heavy process still fail?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What makes confirmation bias dangerous inside institutions?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does This lesson lead into This lesson?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because it can genuinely test whether the claim survives pressure."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the lesson\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the lesson\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the lesson shows that\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 32 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Treat a clean story as an edited object and recover what it cut away. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3/7 (43%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "The lesson matters because a tidy explanation can look more rigorous than a messy truth. Once the ending is known, motives and turning points can be arranged so skillfully that the outcome feels almo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Astrid a documentary strings together a founder's flaws until the collapse looks almost prewritten. Astrid ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario too short (148 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Maja a student says one bad habit fully explains a poor exam result. Maja ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Maja a student says one bad habit fully explains a poor exam result. Maja ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Anke an investment memo explains a winning stock with a smooth chain of strategic reasons after the run-up already happened. Anke ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.leng…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Anke an investment memo explains a winning stock with a smooth chain of strategic reasons after the run-up already happened. Anke ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.leng…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Marit a family retells a relative's career as if one brave decision fully explains everything that followed. Marit ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marit a family retells a relative's career as if one brave decision fully explains everything that followed. Marit ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Marco a board wants one simple explanation for a failed launch before the postmortem is even finished. Marco ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marco a board wants one simple explanation for a failed launch before the postmortem is even finished. Marco ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (171 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Luca a podcast walks through a crisis so smoothly that the turning point feels unavoidable. Luca ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Luca a podcast walks through a crisis so smoothly that the turning point feels unavoidable. Luca ${cueWords[(num+i)%cueWords.length]} ${cueTails[(num+i)%cueTails.length]}."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the narrative fallacy?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why are stories so persuasive after events happen?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What role does omission play here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A postmortem gives one elegant cause for a failed launch. What correction fits This lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does hindsight strengthen narrative fallacy?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is narrative pleasure epistemically risky?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What stronger question should follow a perfectly shaped explanation?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does This lesson affect later thinking about prediction?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A family story turns one career into a noble arc. Which idea is most relevant?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It shows that polished explanations can train forecast overconfidence."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the lesson\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"can feel like understanding\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 33 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Keep a vivid possible upside in proportion to its actual frequency and cost of waiting. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario too short (118 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Lea keeps picturing her app suddenly exploding across the market while ignoring how many similar products never catch."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Lea keeps picturing her app suddenly exploding across the market while ignoring how many similar products never catch."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario too short (122 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Tomas a student keeps replaying one celebrated scholarship winner and starts feeling personally close to the same outcome."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tomas a student keeps replaying one celebrated scholarship winner and starts feeling personally close to the same outcome."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (137 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Diego after watching stories of spectacular trades, a trader begins feeling that catching the next huge move is almost around the corner."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Diego after watching stories of spectacular trades, a trader begins feeling that catching the next huge move is almost around the corner."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario too short (141 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Pablo a performer keeps consuming discovery stories until sudden fame feels like a station that can be reached by simply waiting long enough."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Pablo a performer keeps consuming discovery stories until sudden fame feels like a station that can be reached by simply waiting long enough."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario too short (140 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Javier a family keeps talking about a lottery jackpot as if it were a realistic near-future event because the prize stays emotionally alive."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Javier a family keeps talking about a lottery jackpot as if it were a realistic near-future event because the prize stays emotionally alive."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (125 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Sofia a junior employee hears one dramatic promotion story and starts treating extraordinary acceleration as the likely path."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sofia a junior employee hears one dramatic promotion story and starts treating extraordinary acceleration as the likely path."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the antechamber of hope?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the core distortion in this case?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why do visible winners matter so much here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What stronger distinction does The warning want?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can hope imitate progress?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A lottery jackpot starts shaping family planning because it stays emotionally vivid. Which correction fits?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which phrase best captures the lesson?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because they dominate attention and hide the loser field."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the lesson\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the mind keeps rehearsing\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 11.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (165 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Paula marks the surviving traders in a fund memo, then pauses over the blank column for closed accounts before deciding how much evidence the winners really provide."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Paula marks the surviving traders in a fund memo, then pauses over the blank column for closed accounts before deciding how much evidence the winners really provide."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario too short (162 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Isabel hears the podcast producer ask for career lessons from celebrity paths; before the edit locks, she must decide whether absent ordinary careers get counted."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario too short (149 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Catarina studies one star employee profile and must decide whether to copy the traits or first pull records for similar hires who never became stars."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (154 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Anya hears her uncle retell the lucky concentrated bet at dinner and has to choose whether family wisdom includes the relatives whose risks ended quietly."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A survivor story is being used as proof while the failed cases are absent. What is the missing evidence problem?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can one visible winner be misleading?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the core inferential problem here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why do survivor stories persuade so easily?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What stronger correction does The warning want before copying a winner?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How is silent evidence more than a statistics issue?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does this case lead into this case?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A memo highlights only winners from a risky field. Which response best keeps the denominator honest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"silent evidence\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"silent evidence\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"this is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the lesson\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the lesson is really\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 33 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Check whether a formal model's clean boundaries belong to the domain before trusting its precision. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario too short (160 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Nina watches the simulation run perfectly inside its neat boxes and must decide whether a live market with changing rules belongs in the same confidence bucket."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario too short (150 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Kasia holds a tidy classroom strategy case beside a messy org chart. Before advising the CEO, she must decide which incentives the case never modeled."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (151 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Marta solves the probability puzzle in minutes, then must decide whether that clean success says anything about a campus dispute with shifting motives."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario too short (135 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Petra presents a dashboard of countable items and has to choose whether the uncounted field failures get a place on the forecast slide."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario too short (149 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Tomasz sees the regime-shift memo squeezed into a normal-model update and must decide whether the old assumptions survive the new political boundary."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (163 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Aleksy reviews a fair-looking scoring game. Before the policy meeting, he must decide if contributors who can change the rules should be treated like fixed tokens."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A clean game-like model is applied to a messy market with changing rules. What error is taking shape?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why do bounded games create false comfort when overtransferred?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What question matters most after this lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A risk model behaves cleanly under stable assumptions, so a team treats market danger as contained. What is happening?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can a beautiful model still fail badly?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What makes precision dangerous in this lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A scoring system works neatly until employees adapt around it. Which idea fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does this case prepare this case?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead: 3 paragraphs open with \"the ludic\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the ludic\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"fallacy mistakes gamelike bounded\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 31 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Make precision contract when visibility is weak instead of letting prestige expand it. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario too short (146 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Pavel writes a market turning date on the studio card and must decide whether the exact date should stay on air once the signal behind it is thin."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario too short (153 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Mateusz listens as one executive gives a crisp forecast and another marks uncertainty; before the vote, he has to choose which answer deserves authority."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (144 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Janek sees polished charts in the forecast packet and must decide whether numerical formatting has supplied knowledge or only a sharper costume."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario too short (166 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "David drafts exact delivery dates for a volatile launch. Before sending the update, he must decide if professional confidence means giving a range instead of a point."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario too short (145 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Michael feels the panel reward decisive speech, then must decide whether a political call should name its blindness before it becomes a headline."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (160 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Thomas pins one forecast above the planning table. Before the budget locks, he must decide if buffers, triggers, and escape routes matter more than a clean map."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A forecast arrives with a date, a number, and little visibility behind it. What makes that confidence scandalous?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does prediction theater persist?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What outranks calibration in many prediction settings?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is overprecision more damaging than simple error?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can prestige be borrowed in forecasting culture?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What should happen to prediction in opaque, tail-heavy domains?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does this case lead into this case?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants one precise forecast to settle the plan. Which response treats prediction with the right humility?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It shows why better search and noticing outrank false foresight."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"that is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"forecasts win authority through\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "counterintuition opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "When the far map is weak, the answer is not stillness. Send probes, read traces,"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Cotton gloves rasp against a foxed title page as Matthew prepares a rare-books bid. He must decide whether private holds from actual collectors matter more than the auction estimate."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario too short (169 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "You are looking at paw prints pressed into fine sand near the park fence. Ben has to choose whether one week of track pads comes before a full wildlife-control contract."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It takes Etienne several shadow days to understand what the visitor badge on his recycled lanyard is telling him. Before resigning, he must decide whether small volunteer work has shown enough realit…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does The warning use the bird-poop image?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What makes search stronger than fake foresight here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does optionality matter in this lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does The warning keep pragmatism from sliding into cynicism?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team reads complaints and anomalies instead of trusting a clean forecast deck. What are they doing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does this case prepare this case?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A planner can make a small probe before betting on a large forecast. Which answer best captures that habit?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the lesson\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"under opacity useful action\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 32 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Grant more trust to people whose claims stay close to feedback, constraint, and consequence. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 11.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Ryan a policy panel gives its greatest authority to commentators who sound the most composed under uncertainty. Ryan must decide inside the pension board consultant review case whether a small test s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Jack an investment committee ignores people with direct exposure and instead defers to distant experts with better reputations. Before the building-code waiver hearing choice hardens, Jack has to dec…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Camille a student leans on one famous authority as though reputation alone settles an uncertain question. The medical device procurement deadline forces Camille to choose a reversible move instead of…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario too short (141 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "It takes Hugo two weeks to understand what Tomasz was showing. Hugo faces a concrete choice: surface one weak signal before approving action."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The software architecture review room is quiet except for Aleksy and the decision waiting beside it. Lukas treats the decision as unfinished until the next small contact with reality speaks."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A pension board hears a polished recommendation from someone insulated from losses. What should change before the vote?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why should authority contract under opacity?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does accountability do in this lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An institution rewards fluent experts who never absorb the fallout of bad advice. Which idea fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is this case not a generic anti-expert rant?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can prestige drift away from epistemic worth?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"authority deserves less deference\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "counterintuition opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Weak prediction asks for design, not surrender. Cap the loss, keep the option, a"
+          },
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 32 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Design the position so being wrong stays survivable and being lucky can still matter. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Juliette a startup cannot predict the market cleanly, so it caps burn and keeps several experiments alive instead of betting the company on one story. Before the independent bookstore event planning …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Manon an investor knows prediction is weak, so the portfolio is built to avoid ruin while retaining exposure to favorable shocks. The language-learning app roadmap deadline forces Manon to choose a r…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Manon an investor knows prediction is weak, so the portfolio is built to avoid ruin while retaining exposure to favorable shocks. The language-learning app roadmap deadline forces Manon to choose a r…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Etienne a team faces a volatile project and chooses staged releases, buffers, and fallback plans instead of one brittle launch. Etienne faces a concrete specialty farm crop choice choice: expose the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Etienne a team faces a volatile project and chooses staged releases, buffers, and fallback plans instead of one brittle launch. Etienne faces a concrete specialty farm crop choice choice: expose the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario too short (153 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "It takes Mikkel two weeks to understand what Aman was showing. Mikkel treats the decision as unfinished until the next small contact with reality speaks."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The hardware startup manufacturing room is quiet except for Devon and the decision waiting beside it. Ingrid must decide inside this exact case whether a small probe belongs before the larger bet."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What must a sane setup do first in this lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does The warning care about asymmetry here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A startup preserves runway and runs several experiments instead of making one giant bet. What idea fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is optionality valuable in this case?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What changes about intelligence in this lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team adds buffers and fallback plans so one error does not end the project. What are they doing?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because upside should stay open while downside stays limited."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It becomes more about exposure design than forecast display."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"appelles the\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"once prediction prestige collapses\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 31 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Classify the domain before using averages, intuitions, or protection levels from another domain. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Bed-board cards click against a metal rail while Grace separates routine discharges from cases that consumed whole weeks. She must decide if length of stay belongs in one average or two domains."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You are looking at advance reader copies piled beside a sales-rank printout. Sofia has to choose whether long-tail books and event-driven releases deserve separate forecasts before the seasonal buy."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It takes Adaeze several weeks to see what the colored pins on one avenue map are showing. Before proposing a citywide rule, she must decide if noise complaints are spread normally or clustered by ext…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Invoice copies clipped by client size cover the freelancer’s desk before any budget opens. Tomas has to choose whether ordinary retainers pay the rent while rare big wins get treated as bonuses, not …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What makes Extremistan different?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why must the domain be identified before trusting the math?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A single bestseller dominates annual publishing revenue. Which domain logic fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is human height a better image for Mediocristan than wealth?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can an average become fragile?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A planner treats city sizes like body heights and misreads the distribution. What failed?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A domain of bounded variation where no single case overwhelms the whole."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because tools that behave well in bounded domains can fail in outlier-dominated ones."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"this is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"has bounded variation where\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (169 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Sealed adverse-event forms sit under a red tab on the trial table. Ingrid must decide whether rare safety cases deserve their own review before the final recommendation."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (172 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Queue counters glow in a dark control room before the ticket launch opens. Jack has to choose whether demand concentration can crash the average forecast in the first hour."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A reinsurance model excludes storms so large they could dominate losses. What is the bell-curve error in that setup?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does the bell curve fail in Extremistan?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What danger does the wrong curve create besides numerical error?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A risk memo downplays catastrophe because the model treats extremes as marginal. What fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does The warning call the misuse fraudulent?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can a wrong distribution train institutions badly?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A risk committee stops reading at the VaR threshold. What question belongs just beyond that reported line?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead: 2 paragraphs open with \"the bell\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the bell\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the bell\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the bell curve becomes\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 31 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Distrust the pleasure of a beautiful pattern until it earns contact with reality. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario too short (173 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "\"That chart looks too beautiful,\" Chris says as candlestick panels glow at midnight. Before the newsletter ships, he has to choose out-of-sample checks over visual elegance."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (174 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Raindrops streak across a phone display while the forecast band crowds the screen. Astrid must decide whether a messier visualization is more honest than a clean single line."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (163 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Foam-board proofs lean against a desk before the charity board meeting. Daniel has to choose whether raw monthly variation sits beside the designed impact graphic."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does the mind do to noise here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can weak models survive after poor fit?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team trusts the cleaner chart even though the underlying record is messy. What fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is this lesson more than a generic bias list?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can taste become infrastructure for error?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"into patterns stories and\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 32 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Ask whether the tool has the right address before letting its precision confer authority. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (167 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Survey stakes lean in wet clay after three new subdivisions altered the riverbank. Marta must decide whether an old flood percentile still speaks for the changed land."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (177 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Benchmark tables sit beside a log of malformed prompts before the rollout meeting starts. Tomasz has to choose whether domain data gets tested before anyone announces precision."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can a neat curve become dangerous here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What can technical polish hide in this lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A model looks rigorous but assumes stability in a domain that changes its own rules. What fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is this case not anti-math?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can a tool cosmetically falsify a domain?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"this is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"this case\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"lesson sharpens the wrongplace\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 32 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Separate competence that carries its limits from authority that sells finished-sounding certainty under opacity. Do this before a clean story, model, or survivor is allowed to set the size of the deci"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Show me the last three misses,\" Rachel says as consulting binders line the walnut credenza. Before signing the transformation pitch, she has to choose uncertainty ranges over stage confidence."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario too short (164 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "You are looking at flags reflected in a polished briefing table. Before the recommendation hardens, Antoine must decide if the unknowable drivers get named plainly."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It takes Steven several board meetings to notice what the term sheets beneath the glass paperweight are really showing. He must decide where the advisor’s startup experience stops applying."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario too short (162 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Demo tablets charge in a locked cabinet before the hospital AI pitch begins. Claire has to choose whether failure modes and miss rates come before pilot approval."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does the phony sell beyond real visibility?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What helps the phony look credible?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A speaker uses technical language and decimals to sound certain in a murky domain. What fits best?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is the phony more than merely mistaken?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does this case avoid anti-expert rhetoric?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A strategist keeps selling a model after it lost domain fit. What is The warning pushing back against?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It clears away counterfeit expertise so practical asymmetry can replace deference."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"this is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"this case\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the phony\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"false expertise monetizes prediction\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A14",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway is 32 words (cap 30) — too long to scan as a single takeaway",
+            "evidence": "Build a stance that can survive bad surprise and remain available for good surprise. Do this before a clean story, model, or survivor is allowed to set the size of the decision."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.4 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Sandbags first, sensors second,\" Paula says while city staff stack flood basics beside solar sensor kits. Before the budget vote, she has to choose a protected base plus modular pilots."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario too short (173 chars) — needs ≥180 chars of concrete setup",
+            "evidence": "Tuition statements lie beside a brokerage printout under the kitchen light. James must decide which dollars are required and which surplus dollars can take option-like risk."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It takes Aaron several outreach days to understand what folding tables loaded with vaccine coolers are showing. He must decide which proven basics stay funded before cheap experiments spread to new n…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What must be capped if you want uncertainty to offer gains without being allowed to destroy you?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does The warning prefer survival to predictive brilliance?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does optionality preserve in the final chapter?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is the ending not a control fantasy?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A family builds buffers and keeps commitments survivable so one shock does not unravel everything. What are they doing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A buyer can keep one robust supplier and add small optional contracts elsewhere. Which risk posture does that create?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"half and\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4 paragraphs open with \"the warning\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the closing posture is\" appears in both fastRead and deepRead — vary one of them"
+          },
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[1]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "Downside discipline comes first in the final posture. The useful answer is to keep the visible evide"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 296
+  },
+  "bookGate": {
+    "bookId": "the-black-swan",
+    "chapterCount": 19,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "2 protagonist name(s) appear as named characters in multiple chapters: Mina(ch2,4), Mikkel(ch5,13). Regenerate affected examples with distinct names."
+      },
+      {
+        "catalogId": "F4",
+        "severity": "major",
+        "message": "soft-banned phrase \"rather than\" appears 39 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+        "evidence": "rather than"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        58,
+        57,
+        56
+      ],
+      "answerPositionPctMax": 0.3391812865497076,
+      "totalQuizQuestions": 171,
+      "duplicatedNames": [
+        {
+          "name": "Mina",
+          "chapters": [
+            2,
+            4
+          ]
+        },
+        {
+          "name": "Mikkel",
+          "chapters": [
+            5,
+            13
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "the-black-swan",
+        "chapterCount": 19,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

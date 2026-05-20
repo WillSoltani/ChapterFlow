@@ -1,0 +1,198 @@
+{
+  "chapterId": "getting-things-done-ch11",
+  "number": 11,
+  "title": "The Power of the Collection Habit",
+  "coreMove": "Capture each open loop at the moment it appears so your mind stops rehearsing it as a substitute for control.",
+  "sourcePressure": "This principles chapter explains why the habit of collecting open loops clears commitments out of the head and reduces psychic drag.",
+  "chapterSpecificMisunderstanding": "Repeating the mechanics of Chapter 5 instead of showing why capture itself changes mental load.",
+  "sourceAlignmentTerms": [
+    "collection habit",
+    "out of the head",
+    "psychic drag",
+    "capture",
+    "open loops",
+    "attention",
+    "trusted external collection"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "psychic drag",
+      "detail": "The source sidecar identifies reduced psychic drag as the principle-level benefit of collection.",
+      "useIn": "both",
+      "phrasingHint": "Psychic drag is what a commitment costs before you even work on it."
+    },
+    {
+      "kind": "artifact",
+      "name": "collection habit",
+      "detail": "The source sidecar frames capture as a habit that gets open loops out of the head.",
+      "useIn": "both",
+      "phrasingHint": "The habit matters because the capture happens when the loop appears, not later after it has stolen half your attention."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rebecca",
+      "domain": "a neonatal unit social worker after a family meeting",
+      "audience": "a social worker holding sensitive follow-ups in a high-interruption setting",
+      "stakes": "a benefits call could vanish during the next urgent conversation",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The hand sanitizer is still wet on Rebecca’s palms when she writes the benefits call into her capture notebook before entering the next room.",
+      "firstImage": "wet hand sanitizer shine under corridor lights",
+      "mustInclude": [
+        "capture notebook",
+        "benefits call",
+        "corridor lights"
+      ],
+      "mustAvoid": [
+        "hospital charge-nurse repeats"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "a freelance stage rigger driving home after load-out",
+      "audience": "a technician whose commitments surface after physical exhaustion",
+      "stakes": "a rebooking lead could disappear because he trusts a tired drive home",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "The loading dock gate rattles shut behind Matthew as he records the rebooking lead before the van leaves the curb.",
+      "firstImage": "a loading dock gate rattling down",
+      "mustInclude": [
+        "voice memo",
+        "load-out gloves",
+        "rebooking lead"
+      ],
+      "mustAvoid": [
+        "making the car an inbox"
+      ]
+    },
+    {
+      "protagonistName": "Lea",
+      "domain": "a high school choir director during concert rehearsal",
+      "audience": "a teacher whose attention keeps snagging on unwritten reminders",
+      "stakes": "a riser repair could stay mental and become a safety issue",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Pause once,\" Lea tells the pianist, captures four reminders, and hears the next measure cleanly for the first time all afternoon.",
+      "firstImage": "a chipped riser step under stage light",
+      "mustInclude": [
+        "riser step",
+        "pianist cue",
+        "capture list"
+      ],
+      "mustAvoid": [
+        "classroom shells"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "a closing attorney mentoring a new associate",
+      "audience": "a lawyer explaining why immediate capture is professional discipline",
+      "stakes": "a document request held for two minutes could cost a closing date",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Niklas one delayed closing to stop trusting the phrase \"I will remember\" in any client conversation.",
+      "firstImage": "a closing binder with a missing-tab gap",
+      "mustInclude": [
+        "closing binder",
+        "missing tab",
+        "client request"
+      ],
+      "mustAvoid": [
+        "using character flaw language"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "a restaurant prep lead after a fish substitution breaks service",
+      "audience": "a kitchen lead tracing a failure back to uncaptured verbal changes",
+      "stakes": "wasted product and comped meals can follow from one uncaptured promise",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Where did the substitution really fail: at the grill, or at the moment someone said they would remember it?",
+      "firstImage": "a crossed-out fish order on a prep board",
+      "mustInclude": [
+        "prep board",
+        "fish order",
+        "substitution note"
+      ],
+      "mustAvoid": [
+        "kitchen service heroics"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "a reader-facing fifteen-minute capture sweep at a desk, train seat, or break-room table",
+      "audience": "the reader who suspects the method is too simple to matter",
+      "stakes": "they may discover that busyness is partly the cost of holding loops in memory",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "You write every claim on your attention without judging it, then notice how few items actually require action in the next five minutes.",
+      "firstImage": "a blank index card filling with small obligations",
+      "mustInclude": [
+        "index card",
+        "pen cap",
+        "five-minute check"
+      ],
+      "mustAvoid": [
+        "generic timer prompt"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why capture reduces mental rehearsal",
+      "identify fake capture versus trusted capture",
+      "apply capture habit under interruption"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When the next reminder pops into your mind, capture it immediately in the same place you will review later, then return to what you were doing.",
+  "readingTimeMinutes": 12
+}

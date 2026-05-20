@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch06",
+  "number": 6,
+  "title": "The Career Capitalists",
+  "coreMove": "Sequence autonomy, mission, and ideal conditions after compounding skill rather than before it.",
+  "sourcePressure": "Career capitalists build rare skill before demanding autonomy, mission, or ideal conditions.",
+  "chapterSpecificMisunderstanding": "Making patience into passive waiting instead of active compounding.",
+  "sourceAlignmentTerms": [
+    "career capitalist",
+    "sequence",
+    "compounding skill",
+    "leverage",
+    "autonomy",
+    "mission",
+    "ideal conditions"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The career capitalist does not wait vaguely",
+      "detail": "The authorized source supports a behavioral contrast between capital builders and people demanding rewards too early.",
+      "useIn": "both",
+      "phrasingHint": "The career capitalist does not wait vaguely; they build the thing that changes the next negotiation."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch06: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch06: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch06: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch06: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Harriet",
+      "domain": "commercial drone inspection business",
+      "audience": "a practitioner responsible for commercial drone inspection business",
+      "stakes": "commercial drone inspection business will either gain a defensible next move or drift into the chapter-specific trap: Making patience into passive waiting instead of active compounding.",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "requiredBeat": "orders three proof milestones on propellers beside a cracked roof tile, then moves the autonomy or mission request to the far side of those milestones instead of asking first",
+      "firstImage": "propellers beside a cracked roof tile",
+      "mustInclude": [
+        "propellers beside a",
+        "sequence",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "nonprofit grant writing desk",
+      "audience": "a practitioner responsible for nonprofit grant writing desk",
+      "stakes": "nonprofit grant writing desk will either gain a defensible next move or drift into the chapter-specific trap: Making patience into passive waiting instead of active compounding.",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "orders three proof milestones on grant calendar with sticky notes, then moves the autonomy or mission request to the far side of those milestones instead of asking first",
+      "firstImage": "grant calendar with sticky notes",
+      "mustInclude": [
+        "grant calendar with",
+        "sequence",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Juliet",
+      "domain": "marine navigation software support",
+      "audience": "a practitioner responsible for marine navigation software support",
+      "stakes": "marine navigation software support will either gain a defensible next move or drift into the chapter-specific trap: Making patience into passive waiting instead of active compounding.",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "orders three proof milestones on salt-stained field laptop, then moves the autonomy or mission request to the far side of those milestones instead of asking first",
+      "firstImage": "salt-stained field laptop",
+      "mustInclude": [
+        "salt-stained field laptop",
+        "sequence",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Leila",
+      "domain": "community college welding program",
+      "audience": "a practitioner responsible for community college welding program",
+      "stakes": "community college welding program will either gain a defensible next move or drift into the chapter-specific trap: Making patience into passive waiting instead of active compounding.",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "orders three proof milestones on snapped weld coupon in a vise, then moves the autonomy or mission request to the far side of those milestones instead of asking first",
+      "firstImage": "snapped weld coupon in a vise",
+      "mustInclude": [
+        "snapped weld coupon",
+        "sequence",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "museum membership analytics",
+      "audience": "a practitioner responsible for museum membership analytics",
+      "stakes": "museum membership analytics will either gain a defensible next move or drift into the chapter-specific trap: Making patience into passive waiting instead of active compounding.",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "orders three proof milestones on donor heat map on a projector, then moves the autonomy or mission request to the far side of those milestones instead of asking first",
+      "firstImage": "donor heat map on a projector",
+      "mustInclude": [
+        "donor heat map",
+        "sequence",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "restaurant wine program",
+      "audience": "a practitioner responsible for restaurant wine program",
+      "stakes": "restaurant wine program will either gain a defensible next move or drift into the chapter-specific trap: Making patience into passive waiting instead of active compounding.",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "orders three proof milestones on six tasting glasses on linen, then moves the autonomy or mission request to the far side of those milestones instead of asking first",
+      "firstImage": "six tasting glasses on linen",
+      "mustInclude": [
+        "six tasting glasses",
+        "sequence",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot premature reward demands",
+      "design compounding proof",
+      "separate patience from stagnation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one desired reward and write the next three compounding proofs that should come before you ask for it.",
+  "readingTimeMinutes": 12
+}

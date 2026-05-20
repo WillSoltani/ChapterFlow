@@ -1,0 +1,335 @@
+{
+  "chapterId": "ego-is-the-enemy-ch12",
+  "number": 12,
+  "title": "Don't tell yourself a story",
+  "readingTimeMinutes": 12,
+  "hook": "A success memo can turn three ordinary facts into a private myth before anyone notices.",
+  "counterintuition": "The dangerous story is not the one you tell publicly. It is the one that quietly edits facts until your success looks inevitable and correction looks rude.",
+  "tryThisNow": "Write the flattering version of a recent win in one sentence. Under it, list three dull facts it leaves out.",
+  "keyTakeaway": "Interrupt self-narration by checking the story against plain facts, especially the luck, help, timing, and mistakes that ego wants edited out.",
+  "breakdown": {
+    "fastRead": "Paul reviews an app accessibility audit that came back better than expected. His draft memo says the team succeeded because he insisted on inclusive design from day one. The issue tracker shows something less heroic: a contractor flagged the screen-reader trap, support tickets forced the keyboard fix, and Paul missed the first warning.\n\nHe cuts the heroic sentence.\n\nThat is the work. A story can make success feel cleaner than it was. Ego does not need to lie loudly; it only has to arrange facts until they prove specialness. The antidote is the dull list: what happened, who helped, what failed, what you missed.\n\nPlain facts keep correction alive.",
+    "deepRead": "Simon sits at the bakery counter with rent numbers, landlord emails, and a margin note that says, We survived because I never backed down. It feels satisfying. It is also incomplete. The delivery driver found the cheaper flour source, weekend preorders carried cash flow, and the landlord gave a temporary discount because another tenant left.\n\nSimon writes the flattering story in the margin, then checks each claim against evidence.\n\nThat interruption matters because success wants coherence. Once the result turns good, the mind starts smoothing the road behind it. Luck becomes foresight. Help becomes background. Mistakes become necessary drama. The private myth feels harmless until it starts making decisions for you.\n\nA myth is a fact pattern with the humility removed.\n\nNathan hears his own version in a college rowing boathouse. He is selected for the top shell and starts thinking he rose because he simply wanted it more. The coach asks which fact would make that legend less convenient. Nathan looks first at the seat-race sheet and sees two teammates scratched from illness, a tailwind on his best trial, and a split time that still fades in the final 500 meters. The selection stands. The myth does not get to own it.",
+    "fullRead": "Alexander opens the housing co-op repair vote with a neat origin story ready in his head. He had warned everyone about the roof. He had pushed the reserve fund. He had been the only adult in the room. The packet on the table is less flattering: one neighbor gathered the contractor bids, another caught the insurance clause, and Alexander had voted against the first inspection two years earlier.\n\nHe replaces the origin myth with a timeline.\n\nThe timeline is not as satisfying, which is why it is useful. It includes timing, help, resistance, error, and luck. It makes success less available as a personal legend and more available as a record anyone can learn from. That is the point. When the story gets too clean, correction loses a place to attach.\n\nWhat fact would make your favorite version less convenient?\n\nGeorge learns this in a fire station drill debrief. The crew's evacuation time improved, and the easy narrative says his new command sequence fixed the problem. A contradictory data point sits in the log: the south stairwell was empty because a maintenance crew had blocked access that morning. George almost edits it out as irrelevant. Then he leaves it in and asks for another drill with both stairwells active.\n\nThat small act protects the work. The improvement may still be real. The command sequence may still help. But if the story deletes the blocked stairwell, the station learns the wrong lesson. Ego-made stories do not only inflate the person; they corrupt the next decision.\n\nYou do not have to become suspicious of every success. You do have to become suspicious of every success that explains itself too neatly. The real world is usually messier than the version that flatters you. It has other people's hands in it. It has accidents, missed warnings, boring constraints, and data points that complicate the applause.\n\nHenry finds the duller truth in a language school placement-test postmortem. Scores improved after his new oral warmup, and the marketing copy wants to call it a breakthrough. Henry checks the roster and sees that two advanced students had been misgrouped the month before, skewing the old results. He uses the dullest accurate explanation: the warmup helped, and the comparison month was flawed.\n\nDon't tell yourself a story.\n\nTell yourself the record. The record may still be good. It may even be better, because it can teach. A private myth can only protect the self; a plain account can improve the next choice."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-paul-accessibility-memo",
+      "title": "Paul Cuts the Heroic Sentence",
+      "tags": [
+        "scene",
+        "accessibility",
+        "facts"
+      ],
+      "planSpec": {
+        "domain": "app accessibility audit",
+        "audience": "a reader facing app accessibility audit pressure who needs to practice chapter 12's move without turning it into story advice in general",
+        "stakes": "a concrete standard in app accessibility audit will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "scene",
+        "requiredBeat": "cuts the heroic explanation from the memo and lists the plain facts that actually caused the result in the concrete setting of app accessibility audit; make the lesson visible through action, not explanation"
+      },
+      "scenario": "The screen-reader report glows green on Paul's monitor after the app accessibility audit. His memo says the result came from his inclusive design insistence. The issue tracker shows a contractor, support tickets, and one missed warning. Before the memo goes out, Paul must decide whether the heroic sentence stays or the plain fact list replaces it. At 3:48 p.m. inside the app accessibility audit setting, Paul must decide: separate the accessibility audit index.",
+      "whatToDo": "Cut the heroic explanation and list the contractor catch, support-ticket pressure, keyboard fix, and missed warning.",
+      "whyItMatters": "Paul keeps success teachable by refusing to let self-narration own the result. The dull facts show what actually worked."
+    },
+    {
+      "exampleId": "ch12-ex02-simon-rent-margin",
+      "title": "Simon Checks the Margin Story",
+      "tags": [
+        "vignette",
+        "bakery",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "bakery rent renegotiation",
+        "audience": "a reader facing bakery rent renegotiation pressure who needs to practice chapter 12's move without turning it into story advice in general",
+        "stakes": "a concrete standard in bakery rent renegotiation will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "vignette",
+        "requiredBeat": "writes the flattering story in the margin, then checks each claim against evidence in the concrete setting of bakery rent renegotiation; make the lesson visible through action, not explanation"
+      },
+      "scenario": "\"We survived because I never backed down,\" Simon writes beside the bakery rent packet. The sentence feels strong. The cash-flow sheet has weekend preorders, a flour-source change, and a landlord vacancy discount. At 4:01 a.m. inside the bakery rent renegotiation setting, Simon must decide: reset the rent renegotiation screen.",
+      "whatToDo": "Leave the story visible, then mark which claims are supported, which were help, and which were luck or timing.",
+      "whyItMatters": "The margin story protects Simon's identity. The checked packet protects the next negotiation from a false lesson."
+    },
+    {
+      "exampleId": "ch12-ex03-nathan-rowing-sheet",
+      "title": "Nathan Looks for the Inconvenient Fact",
+      "tags": [
+        "dialogue",
+        "rowing",
+        "myth"
+      ],
+      "planSpec": {
+        "domain": "college rowing selection",
+        "audience": "a reader facing college rowing selection pressure who needs to practice chapter 12's move without turning it into story advice in general",
+        "stakes": "a concrete standard in college rowing selection will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "dialogue",
+        "requiredBeat": "asks which fact would make the private legend less convenient and looks for it first in the concrete setting of college rowing selection; make the lesson visible through action, not explanation"
+      },
+      "scenario": "The boathouse smells of river mud and wet oars when Nathan sees his name in the top shell. \"Which fact makes your legend less convenient?\" the coach asks. Nathan wants the story to be simple: he wanted it more. Before practice, he must choose whether to repeat that line or inspect the seat-race sheet first.",
+      "whatToDo": "Check the seat-race sheet for scratches, conditions, and fading splits before explaining the selection.",
+      "whyItMatters": "Nathan can accept the seat without letting a private legend distort the evidence. The inconvenient facts keep training honest."
+    },
+    {
+      "exampleId": "ch12-ex04-alexander-repair-timeline",
+      "title": "Alexander Builds the Timeline",
+      "tags": [
+        "decision",
+        "housing",
+        "record"
+      ],
+      "planSpec": {
+        "domain": "housing co-op repair vote",
+        "audience": "a reader facing housing co-op repair vote pressure who needs to practice chapter 12's move without turning it into story advice in general",
+        "stakes": "a concrete standard in housing co-op repair vote will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "decision_point",
+        "requiredBeat": "replaces the origin myth with a timeline that includes luck, help, and mistakes in the concrete setting of housing co-op repair vote; make the lesson visible through action, not explanation"
+      },
+      "scenario": "You are at the housing co-op table as Alexander prepares the roof repair vote. His private story says he alone saw the problem. The packet says neighbors gathered bids, insurance timing helped, and he opposed the first inspection. Before speaking, the choice is origin myth or a timeline that includes help, luck, and error. At 8:27 a.m. inside the housing coop repair vote setting, Alexander must decide: copy the repair vote row.",
+      "whatToDo": "Replace the opening speech with a factual timeline that names the bids, insurance clause, missed inspection, and current vote.",
+      "whyItMatters": "The timeline prevents Alexander's success story from editing out the facts others need to learn from."
+    },
+    {
+      "exampleId": "ch12-ex05-george-stairwell-log",
+      "title": "George Leaves the Contradiction In",
+      "tags": [
+        "predict",
+        "fire-station",
+        "data"
+      ],
+      "planSpec": {
+        "domain": "fire station drill debrief",
+        "audience": "a reader facing fire station drill debrief pressure who needs to practice chapter 12's move without turning it into story advice in general",
+        "stakes": "a concrete standard in fire station drill debrief will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "predict_reveal",
+        "requiredBeat": "lets a contradictory data point survive the narrative instead of editing it away in the concrete setting of fire station drill debrief; make the lesson visible through action, not explanation"
+      },
+      "scenario": "It took George one fast fire station drill to see how quickly a good result writes its own explanation. The crew time improved, and everyone expected the new command sequence to get credit. The reveal was a blocked stairwell in the log. Before debrief, George had to choose whether that contradiction survived the story. At 9:40 p.m. inside the fire station drill debrief setting, George must decide: count the drill debrief page.",
+      "whatToDo": "Leave the blocked-stairwell note in the debrief and schedule another drill with both stairwells active.",
+      "whyItMatters": "George protects the next decision from a clean but false lesson. The contradiction keeps the success record honest."
+    },
+    {
+      "exampleId": "ch12-ex06-henry-placement-test",
+      "title": "Henry Uses the Dull Explanation",
+      "tags": [
+        "postmortem",
+        "language-school",
+        "accuracy"
+      ],
+      "planSpec": {
+        "domain": "language school placement test",
+        "audience": "a reader facing language school placement test pressure who needs to practice chapter 12's move without turning it into story advice in general",
+        "stakes": "a concrete standard in language school placement test will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "postmortem",
+        "requiredBeat": "uses the dullest accurate explanation because it keeps correction possible in the concrete setting of language school placement test; make the lesson visible through action, not explanation"
+      },
+      "scenario": "What if the boring explanation teaches more than the breakthrough story? Henry's placement-test postmortem began with improved scores after his oral warmup. It ended with two misgrouped advanced students in the old cohort and a duller line: the warmup helped, and the comparison month was flawed.",
+      "whatToDo": "Use the accurate mixed explanation in the report and keep testing the warmup before calling it a breakthrough.",
+      "whyItMatters": "The dull explanation keeps correction possible. A breakthrough story would flatter Henry while teaching the school the wrong lesson."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A product team says a launch succeeded because their instincts were right. Support logs show a late fix from customer service drove most of the improvement. What should happen?",
+        "choices": [
+          "Rewrite the launch summary to include the support fix and the missed early warning.",
+          "Keep the instinct story because it builds confidence for the next launch.",
+          "Remove all interpretation and report only the final growth number."
+        ],
+        "correctIndex": 0,
+        "explanation": "The support fix is a fact the flattering story leaves out. Including it keeps the result teachable; confidence and raw numbers both hide the causal lesson.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Rewriting the launch summary to include the support fix and the missed early warning is what stops instinct from being credited for work it did not do. The story has to match the record."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A team lead describes a promotion as the result of years of being underestimated. The record shows two mentors made key introductions. What is the risk?",
+        "choices": [
+          "The mentors may receive too much credit if they are mentioned",
+          "The story may edit help into background and turn success into proof of specialness.",
+          "The promotion will feel less meaningful if any luck appears in the record."
+        ],
+        "correctIndex": 1,
+        "explanation": "The ego risk is editing help out of the story. Mentioning help does not erase achievement; it preserves an accurate record for future choices.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Editing help into background and turning success into proof of specialness is the standard self-narration move. The mentor introductions are the data the story is omitting."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A clinic improves appointment flow after a manager changes the script. The same month, a new nurse shortened intake time. What would resist self-narration?",
+        "choices": [
+          "Credit the script alone so the team has a simple lesson.",
+          "Avoid discussing the result because multiple causes are hard to explain.",
+          "List both changes and test which one affected the flow before scaling."
+        ],
+        "correctIndex": 2,
+        "explanation": "Listing and testing both causes keeps facts from being forced into a cleaner story. A simple lesson may flatter the manager but mislead the clinic.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Listing both changes and testing which one affected the flow is the disciplined move. Self-narration would attribute the improvement to whichever change supports the desired identity."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a founder says early revenue proves customers always understood the product. Refund notes show buyers were confused until a retailer rewrote the display card. What is the honest move?",
+        "choices": [
+          "Use the revenue number because success is the only evidence investors need.",
+          "Add the refund notes and retailer display change to the growth account.",
+          "Delete the confused refund notes because they came before the success."
+        ],
+        "correctIndex": 1,
+        "explanation": "The refund notes and display change complicate the story in a useful way. Removing them lets a flattering myth corrupt the next marketing decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Adding the refund notes and retailer display change to the growth account makes the story match the evidence. Without those, early revenue becomes false confirmation of an instinctive read."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Given the proportion standard, a researcher believes a strong presentation changed the committee's mind. The vote record shows two members had already shifted before the presentation. Which question helps most?",
+        "choices": [
+          "How can the presentation story be made more inspiring?",
+          "What evidence would make my preferred explanation less convenient?",
+          "Who can confirm that the presentation still mattered emotionally?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The question points directly at the inconvenient fact. Inspiration and emotional confirmation keep the preferred story protected from evidence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "\"What evidence would make my preferred explanation less convenient?\" is the question that interrupts self-narration. The two members who had already shifted are the evidence the convenient story is suppressing."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "After a chef explains a busy month as proof that his new menu is brilliant. Weather records show a nearby festival doubled foot traffic. What should he do before expanding?",
+        "choices": [
+          "Expand quickly while the success story is still persuasive",
+          "Dismiss the festival data because it makes the win feel less earned.",
+          "Separate menu effects from festival traffic and test demand on ordinary weekends."
+        ],
+        "correctIndex": 2,
+        "explanation": "Testing ordinary weekends keeps the story tied to facts. Ignoring the festival data lets the chef mistake timing for proof of brilliance.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Separating menu effects from festival traffic and testing demand on ordinary weekends is what prevents one busy month from being read as the brilliance of the new menu."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "While reviewing the repair evidence, a theater director says the improved show proves her new rehearsal method works. The cast also changed two leads. What is the best summary?",
+        "choices": [
+          "The result improved, and both the rehearsal method and casting change need to be considered.",
+          "The method worked because the director is the only constant worth measuring.",
+          "The casting change should be ignored because it makes the method harder to sell."
+        ],
+        "correctIndex": 0,
+        "explanation": "The mixed summary resists a too-clean narrative. It does not deny the method; it keeps another major fact from being edited away.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Reporting that the result improved and both the rehearsal method and the casting change need consideration is the honest summary. Choosing one cause to credit is the story doing work it has not earned."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "With the signal record open, a consultant wins a renewal and says it proves clients value his strategic courage. Survey comments praise his assistant's weekly follow-up notes. What is self-narration doing?",
+        "choices": [
+          "Helping him communicate the win in a memorable way; signal record work lacks a separateed gap",
+          "Making the assistant's notes more valuable by connecting them to strategy",
+          "Turning client evidence into a flattering identity story that sidelines another person's contribution."
+        ],
+        "correctIndex": 2,
+        "explanation": "The survey comments point to a concrete contribution. The courage story may feel coherent, but it edits out help and weakens the next decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Turning client evidence into a flattering identity story that sidelines the assistant's contribution is self-narration at full strength. The survey comments are the data the story is editing out."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Facing the scale choice, a school program's scores rise after a new curriculum, smaller class sizes, and a quieter testing room. Which postmortem avoids the ego trap?",
+        "choices": [
+          "Report all three changes and design the next test to separate their effects.",
+          "Name the curriculum as the cause because it was the leader's main decision.",
+          "Avoid a postmortem because multiple causes make the result less impressive."
+        ],
+        "correctIndex": 0,
+        "explanation": "Reporting all three changes keeps the record useful. A single-cause story flatters the leader, while avoiding the postmortem protects the myth from correction.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Reporting all three changes and designing the next test to separate their effects is the postmortem that resists the ego trap. A single attributed cause feels better and explains less."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A win produces a clean heroic explanation. What should you list?",
+      "back": "List the dull facts the story leaves out: help, luck, timing, mistakes, constraints, and contradictory data.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is a private success story dangerous?",
+      "back": "It can edit facts into proof of specialness, making correction harder and future decisions less accurate.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What question interrupts a flattering myth?",
+      "back": "What fact would make my preferred explanation less convenient?",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A result is still good after luck and help are included. What changes?",
+      "back": "The success becomes more teachable. Accuracy does not erase the win; it shows what can actually be repeated.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What should replace the origin myth?",
+      "back": "A timeline that includes help, timing, error, resistance, and the actual sequence of causes.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Checking the Story Against Evidence",
+    "coreSkill": "You learn to stop a flattering narrative before it becomes your evidence. The practical move is to write the story down and then make it answer to the record.",
+    "ifThenPlans": [
+      {
+        "context": "after a win",
+        "plan": "If I explain a win in one clean sentence, then I will list three facts that complicate the sentence."
+      },
+      {
+        "context": "credit",
+        "plan": "If my story makes me the central cause, then I will name the help, luck, and timing that also mattered."
+      },
+      {
+        "context": "postmortems",
+        "plan": "If a contradictory data point appears, then I will leave it in the record before drawing the lesson."
+      },
+      {
+        "context": "future decisions",
+        "plan": "If I want to repeat a success, then I will separate what actually caused it from what flatters me about it."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one recent success and write the plain record beside the flattering story, including at least one inconvenient fact.",
+    "weeklyPractice": "Once a week, audit a success story you tell yourself and update it with help, timing, luck, mistakes, and evidence."
+  },
+  "memorableLines": [
+    {
+      "text": "Plain facts keep correction alive.",
+      "location": "breakdown.fastRead",
+      "why": "It names why accuracy matters after a win."
+    },
+    {
+      "text": "A myth is a fact pattern with the humility removed.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a memorable test for self-narration."
+    },
+    {
+      "text": "Tell yourself the record.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the warning into a concrete replacement habit."
+    }
+  ]
+}

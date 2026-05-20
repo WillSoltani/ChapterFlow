@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch14",
+  "number": 14,
+  "title": "From Mediocristan to Extremistan, and Back",
+  "coreMove": "Classify the domain before using averages, intuitions, or protection levels from another domain.",
+  "sourcePressure": "Mediocristan has bounded variation where averages behave; Extremistan has scalable, concentrated variation where one observation can dominate totals.",
+  "chapterSpecificMisunderstanding": "Repeating the terms without using them to change decisions.",
+  "sourceAlignmentTerms": [
+    "Mediocristan",
+    "Extremistan",
+    "bounded variation",
+    "single observation",
+    "averages",
+    "concentration",
+    "scaling",
+    "winner-take-most"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Mediocristan and Extremistan",
+      "detail": "the frozen source names the central distinction between bounded aggregate-stable domains and domains dominated by single observations",
+      "useIn": "both",
+      "phrasingHint": "First decide which kingdom you are in; only then decide whether the average deserves a crown."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "public-library late-fee policy",
+      "audience": "a director using average overdue days",
+      "stakes": "one rare hoarder skewing the whole fine debate",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the director separates ordinary returns from extreme nonreturns before setting policy",
+      "firstImage": "At 8:17 a.m., Kiran faces checkout slips sorted into two trays.",
+      "mustInclude": [
+        "Kiran",
+        "checkout slips sorted into two trays",
+        "Mediocristan"
+      ],
+      "mustAvoid": [
+        "Repeating the terms without using them to change decisions.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "creator-platform revenue planning",
+      "audience": "a CFO using average creator income",
+      "stakes": "one superstar making the mean useless for most creators",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the CFO presents median and concentration before changing payouts",
+      "firstImage": "A first line of dialogue lands before the reader sees creator earnings dots scattered across a wall chart.",
+      "mustInclude": [
+        "Layla",
+        "creator earnings dots scattered across a wall chart",
+        "Extremistan"
+      ],
+      "mustAvoid": [
+        "Repeating the terms without using them to change decisions.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "hospital length-of-stay analysis",
+      "audience": "an administrator judging wards by average stay",
+      "stakes": "a few complex cases distorting staffing conclusions",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the administrator splits bounded routine cases from extreme outliers",
+      "firstImage": "Open on the texture, sound, or light of bed board cards arranged by discharge date.",
+      "mustInclude": [
+        "Hadiya",
+        "bed board cards arranged by discharge date",
+        "bounded variation"
+      ],
+      "mustAvoid": [
+        "Repeating the terms without using them to change decisions.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "bookstore sales forecasting",
+      "audience": "a buyer ordering by average title sales",
+      "stakes": "one blockbuster hiding slow inventory risk",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the buyer separates long-tail titles from event-driven releases",
+      "firstImage": "You are looking at advance reader copies piled beside a sales rank printout before the choice becomes abstract.",
+      "mustInclude": [
+        "Yusuf",
+        "advance reader copies piled beside a sales rank printout",
+        "single observation"
+      ],
+      "mustAvoid": [
+        "Repeating the terms without using them to change decisions.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "city noise complaint dashboard",
+      "audience": "an analyst averaging complaints across streets",
+      "stakes": "one nightclub block dominating the citywide number",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the analyst maps concentration before proposing citywide rules",
+      "firstImage": "It takes Adaeze several weeks to understand what colored pins clustered on one avenue map was really showing.",
+      "mustInclude": [
+        "Adaeze",
+        "colored pins clustered on one avenue map",
+        "averages"
+      ],
+      "mustAvoid": [
+        "Repeating the terms without using them to change decisions.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "freelance designer income planning",
+      "audience": "a designer budgeting from average monthly income",
+      "stakes": "one giant client month masking fragile cash flow",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the designer budgets from ordinary retainers and treats big wins separately",
+      "firstImage": "invoice copies clipped by client size appears before any human enters the sentence.",
+      "mustInclude": [
+        "Chidi",
+        "invoice copies clipped by client size",
+        "concentration"
+      ],
+      "mustAvoid": [
+        "Repeating the terms without using them to change decisions.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose bounded versus scalable domains",
+      "know when averages stay stable",
+      "adjust intuition when one case can dominate"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Label one decision as bounded or scalable, then write how much one extreme case could move the total.",
+  "readingTimeMinutes": 12
+}

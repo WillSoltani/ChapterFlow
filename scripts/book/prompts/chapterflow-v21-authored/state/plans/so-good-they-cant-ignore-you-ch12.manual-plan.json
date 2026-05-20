@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch12",
+  "number": 12,
+  "title": "The Meaningful Life of Pardis Sabeti",
+  "coreMove": "Turn earned control into the question of what larger mission that freedom can serve.",
+  "sourcePressure": "Rule 4 opens through Pardis Sabeti and mission, but support is narrow and forbids unsupported biography.",
+  "chapterSpecificMisunderstanding": "Inventing Sabeti biography or treating mission as a return to passion-first searching.",
+  "sourceAlignmentTerms": [
+    "Pardis Sabeti",
+    "mission",
+    "meaningful direction",
+    "Rule 4",
+    "control",
+    "capital",
+    "sequence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Pardis Sabeti",
+      "detail": "The locked heading names Pardis Sabeti, but the sidecar forbids unsupported biographical detail.",
+      "useIn": "both",
+      "phrasingHint": "Pardis Sabeti can signal the turn toward mission without becoming a made-up biography."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch12: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch12: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch12: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch12: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Matthew",
+      "domain": "bioinformatics lab rotation choice",
+      "audience": "a practitioner responsible for bioinformatics lab rotation choice",
+      "stakes": "bioinformatics lab rotation choice will either gain a defensible next move or drift into the chapter-specific trap: Inventing Sabeti biography or treating mission as a return to passion-first searching.",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "requiredBeat": "takes a freedom already earned, points it at the concrete problem visible in sequencing readouts on a monitor, and crosses out the convenience-only use of that freedom",
+      "firstImage": "sequencing readouts on a monitor",
+      "mustInclude": [
+        "sequencing readouts on",
+        "mission",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "public defender training program",
+      "audience": "a practitioner responsible for public defender training program",
+      "stakes": "public defender training program will either gain a defensible next move or drift into the chapter-specific trap: Inventing Sabeti biography or treating mission as a return to passion-first searching.",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "takes a freedom already earned, points it at the concrete problem visible in plea form in a training binder, and crosses out the convenience-only use of that freedom",
+      "firstImage": "plea form in a training binder",
+      "mustInclude": [
+        "plea form in",
+        "mission",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "rural broadband cooperative",
+      "audience": "a practitioner responsible for rural broadband cooperative",
+      "stakes": "rural broadband cooperative will either gain a defensible next move or drift into the chapter-specific trap: Inventing Sabeti biography or treating mission as a return to passion-first searching.",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "takes a freedom already earned, points it at the concrete problem visible in coverage map on a folding table, and crosses out the convenience-only use of that freedom",
+      "firstImage": "coverage map on a folding table",
+      "mustInclude": [
+        "coverage map on",
+        "mission",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "independent documentary editing",
+      "audience": "a practitioner responsible for independent documentary editing",
+      "stakes": "independent documentary editing will either gain a defensible next move or drift into the chapter-specific trap: Inventing Sabeti biography or treating mission as a return to passion-first searching.",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "takes a freedom already earned, points it at the concrete problem visible in hard drives labeled by year, and crosses out the convenience-only use of that freedom",
+      "firstImage": "hard drives labeled by year",
+      "mustInclude": [
+        "hard drives labeled",
+        "mission",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "occupational therapy clinic design",
+      "audience": "a practitioner responsible for occupational therapy clinic design",
+      "stakes": "occupational therapy clinic design will either gain a defensible next move or drift into the chapter-specific trap: Inventing Sabeti biography or treating mission as a return to passion-first searching.",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "takes a freedom already earned, points it at the concrete problem visible in therapy putty in a clear bin, and crosses out the convenience-only use of that freedom",
+      "firstImage": "therapy putty in a clear bin",
+      "mustInclude": [
+        "therapy putty in",
+        "mission",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "municipal climate adaptation office",
+      "audience": "a practitioner responsible for municipal climate adaptation office",
+      "stakes": "municipal climate adaptation office will either gain a defensible next move or drift into the chapter-specific trap: Inventing Sabeti biography or treating mission as a return to passion-first searching.",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "takes a freedom already earned, points it at the concrete problem visible in flood-depth markers on a street map, and crosses out the convenience-only use of that freedom",
+      "firstImage": "flood-depth markers on a street map",
+      "mustInclude": [
+        "flood-depth markers on",
+        "mission",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate mission from passion",
+      "turn autonomy into direction",
+      "respect source limits around named figures"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one freedom you have earned and finish this sentence: This freedom should now help me move toward...",
+  "readingTimeMinutes": 12
+}

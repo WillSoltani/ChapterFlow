@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch06",
+  "number": 6,
+  "title": "Getting Wealthy vs. Staying Wealthy",
+  "coreMove": "Choose survival over brilliance when one bad break can end the game.",
+  "sourcePressure": "Getting wealthy may reward boldness, but keeping wealth depends on endurance, restraint, and enough margin to survive shocks.",
+  "chapterSpecificMisunderstanding": "Treating wealth-building and wealth-preservation as the same skill.",
+  "sourceAlignmentTerms": [
+    "survival",
+    "endurance",
+    "restraint",
+    "ruin risk",
+    "shocks",
+    "still in the game"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Getting Wealthy vs. Staying Wealthy with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Getting Wealthy vs. Staying Wealthy to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the survival move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of survival and endurance"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a fireworks manufacturer refusing a large order that would strain safety checks",
+      "audience": "an owner balancing bold growth against one accident that ends the company",
+      "stakes": "a profitable season can destroy decades if survival rules bend",
+      "format": "decision_point",
+      "requiredBeat": "the owner crosses out the rush order after counting which inspections would be skipped",
+      "firstImage": "a production clipboard beside sealed crates marked for holiday shipment",
+      "mustInclude": [
+        "inspection checklist",
+        "rush order",
+        "sealed crates"
+      ],
+      "mustAvoid": [
+        "risk aversion lecture"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a freelance translator deciding whether to depend on one global publisher",
+      "audience": "a contractor who grew fast through a single client",
+      "stakes": "losing the account would wipe out income and bargaining power at once",
+      "format": "before_after",
+      "requiredBeat": "she compares last year's growth to the invoice concentration that now controls her calendar",
+      "firstImage": "a translation dashboard showing one client color filling most of the month",
+      "mustInclude": [
+        "invoice concentration",
+        "calendar blocks",
+        "contract clause"
+      ],
+      "mustAvoid": [
+        "freelance hustle tips"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a city arborist choosing tree species for storm resilience instead of fastest canopy gain",
+      "audience": "a public works manager judged on visible progress",
+      "stakes": "one disease outbreak could undo a decade of planting",
+      "format": "scene",
+      "requiredBeat": "the arborist rejects the fastest-growing species after placing disease maps over the planting plan",
+      "firstImage": "a laminated planting map weighted by a pruning saw sheath",
+      "mustInclude": [
+        "planting map",
+        "disease map",
+        "species list"
+      ],
+      "mustAvoid": [
+        "urban greening slogan"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a theater company saving cash after its first sold-out season",
+      "audience": "an artistic director under pressure to spend on prestige",
+      "stakes": "one weak season could close the doors if applause replaces reserves",
+      "format": "dialogue",
+      "requiredBeat": "the director asks the board which bill gets paid if next winter has three snow cancellations",
+      "firstImage": "a box-office report beside a snow cancellation notice from last year",
+      "mustInclude": [
+        "box-office report",
+        "reserve target",
+        "snow notice"
+      ],
+      "mustAvoid": [
+        "art versus commerce debate"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a cryptocurrency miner deciding not to lever equipment purchases after a price run",
+      "audience": "an operator who has seen fast gains and hidden fragility",
+      "stakes": "a power-rate change could force liquidation at the bottom",
+      "format": "postmortem",
+      "requiredBeat": "he calculates the power bill at a lower coin price before ordering more machines",
+      "firstImage": "a humming rack of machines beside a utility rate notice",
+      "mustInclude": [
+        "utility rate notice",
+        "machine invoice",
+        "liquidation price"
+      ],
+      "mustAvoid": [
+        "crypto hype or dunking"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a regional airline keeping reserve crews despite pressure to maximize utilization",
+      "audience": "a scheduler defending survival capacity",
+      "stakes": "a storm week can turn efficient staffing into canceled routes and fines",
+      "format": "predict_reveal",
+      "requiredBeat": "the scheduler walks executives through a simulated thunderstorm week before cutting reserve headcount",
+      "firstImage": "a route board with red weather cells moving toward hub cities",
+      "mustInclude": [
+        "route board",
+        "reserve roster",
+        "fine schedule"
+      ],
+      "mustAvoid": [
+        "airline complaint story"
+      ],
+      "openingDevice": "dialogue_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: choose survival over brilliance when one bad break can end the game",
+      "distinguish survival from nearby but weaker advice such as cowardice vs courage frames",
+      "diagnose when a character is making the common misread: treating wealth-building and wealth-preservation as the same skill.",
+      "evaluate tradeoffs using the chapter-specific pressure around survival, endurance, restraint"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where survival is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: choose survival over brilliance when one bad break can end the game.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

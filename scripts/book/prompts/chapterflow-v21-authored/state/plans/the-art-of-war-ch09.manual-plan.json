@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch09",
+  "number": 9,
+  "title": "The Army on the March",
+  "coreMove": "Read terrain, weather, and small signs before they become orders you cannot ignore.",
+  "sourcePressure": "The source teaches how to camp and observe: mountains, rivers, marshes, high sunny ground, ambush signs in birds, dust, trees, chariots, water-drawers, shifted flags, and discipline with humanity.",
+  "chapterSpecificMisunderstanding": "Turning observation into vague situational awareness without concrete signals.",
+  "sourceAlignmentTerms": [
+    "mountain warfare",
+    "river warfare",
+    "salt-marshes",
+    "Yellow Emperor",
+    "birds take flight",
+    "dust rises",
+    "light chariots",
+    "iron discipline"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "the Yellow Emperor",
+      "detail": "Four branches of military knowledge are linked to the Yellow Emperor vanquishing his foes.",
+      "useIn": "deepRead",
+      "phrasingHint": "Old victory begins with ordinary ground: high places, rivers, marshes, and the discipline to read them."
+    },
+    {
+      "kind": "artifact",
+      "name": "dust from chariots and infantry",
+      "detail": "High dust signals chariots, low broad dust signals infantry, and branching dust means parties gathering firewood.",
+      "useIn": "both",
+      "phrasingHint": "The dust tells you what the report has not reached you in time to say."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "ski resort deciding whether to open a wind-scoured chairlift",
+      "audience": "mountain operations manager before first chair",
+      "stakes": "opening on surface optimism could strand guests in dangerous wind",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Spindrift lifts sideways across the loading ramp while Anna reads wind, lift sway, patrol radio tone, and guest line behavior before calling hold.",
+      "firstImage": "spindrift crossing a lift ramp",
+      "mustInclude": [
+        "anemometer",
+        "patrol radio",
+        "chair-swing log"
+      ],
+      "mustAvoid": [
+        "generic weather delay"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "restaurant group spotting failure signs before a dinner rush",
+      "audience": "area manager visiting a flagship kitchen",
+      "stakes": "a chaotic service could damage a major review night",
+      "format": "audit",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The prep fridge smells faintly of warm basil as Chris reads small signs: silent line cooks, missing garnish, late fish, and a printer already backed up.",
+      "firstImage": "warm basil smell from a prep fridge",
+      "mustInclude": [
+        "ticket printer",
+        "fish delivery text",
+        "garnish tray"
+      ],
+      "mustAvoid": [
+        "generic chef yelling"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "port authority monitoring a labor slowdown",
+      "audience": "operations analyst at a container port",
+      "stakes": "misreading the signs could leave ships idle for days",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What does it mean when cranes move but no empty chassis return?",
+      "firstImage": "cranes moving above still chassis rows",
+      "mustInclude": [
+        "chassis count",
+        "gate camera",
+        "vessel berth plan"
+      ],
+      "mustAvoid": [
+        "generic logistics spreadsheet"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "child protection team preparing a home visit",
+      "audience": "case supervisor reviewing morning signals",
+      "stakes": "missing small cues could put a child or worker at risk",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 8:10 a.m., Frida delays the visit after reading disconnected phones, a moved car, and neighbor notes as terrain rather than inconvenience.",
+      "firstImage": "a case file clipped under a windshield wiper",
+      "mustInclude": [
+        "neighbor note",
+        "phone log",
+        "paired-worker policy"
+      ],
+      "mustAvoid": [
+        "generic social work sadness"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "data center technician diagnosing a cooling problem before alarms trip",
+      "audience": "facilities technician on night shift",
+      "stakes": "waiting for the main alarm could force emergency shutdown",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Pablo notice condensation on one pipe, a new fan pitch, and two blinking amber lights before the dashboard admits the pattern.",
+      "firstImage": "condensation on an insulated pipe",
+      "mustInclude": [
+        "fan pitch",
+        "rack thermometer",
+        "maintenance ticket"
+      ],
+      "mustAvoid": [
+        "generic IT dashboard"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "retail bank branch sensing a fraud ring at opening",
+      "audience": "branch manager before Saturday service",
+      "stakes": "one rushed transaction could expose vulnerable customers",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hold the wire desk for ten minutes, Kiran says, after spotting repeated envelopes, nervous glances, and a phone script in the lobby.",
+      "firstImage": "sealed envelopes on a lobby table",
+      "mustInclude": [
+        "wire desk roster",
+        "CCTV still",
+        "customer callback list"
+      ],
+      "mustAvoid": [
+        "generic bank robbery drama"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "infer condition from concrete signs",
+      "choose positions from terrain not preference",
+      "balance humane treatment with enforced discipline"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one active situation and list five observable signs that would tell you its condition before anyone gives you an explanation.",
+  "readingTimeMinutes": 12
+}

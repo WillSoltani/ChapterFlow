@@ -1,0 +1,206 @@
+{
+  "chapterId": "games-people-play-ch03",
+  "number": 3,
+  "title": "Ulterior Transactions and the Anatomy of a Game",
+  "coreMove": "Read the social sentence and the psychological invitation as two different messages before you decide whether to play.",
+  "sourcePressure": "Defines ulterior transactions, then introduces the technical game structure: thesis, antithesis, dynamics, switch, and payoff.",
+  "chapterSpecificMisunderstanding": "Calling any bad habit or conflict a game instead of requiring a hidden level and predictable payoff.",
+  "sourceAlignmentTerms": [
+    "ulterior transaction",
+    "social level",
+    "psychological level",
+    "game",
+    "thesis",
+    "antithesis",
+    "switch",
+    "payoff"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "ulterior transaction",
+      "detail": "the source defines it as a transaction with a visible social level and a hidden psychological level underneath",
+      "useIn": "both",
+      "phrasingHint": "The polite sentence is the social level; the invitation hidden under it is the level that decides whether a game begins."
+    },
+    {
+      "kind": "artifact",
+      "name": "thesis and antithesis of a game",
+      "detail": "the source defines a game by its plot and the uncomfortable move that refuses the plot at the hidden level",
+      "useIn": "both",
+      "phrasingHint": "The antithesis usually feels rude because it answers the hidden demand instead of obeying the polite script."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'Ulterior Transactions and the Anatomy of a Game' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "venture-capital pitch feedback coffee",
+      "audience": "a founder receiving a compliment that quietly tests whether she will chase approval",
+      "stakes": "the next funding meeting may be shaped by a hidden status bid",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire thanks the investor for the public praise but asks for the specific risk he wants resolved, refusing the vanity hook.",
+      "firstImage": "The espresso foam has gone flat by the time the compliment arrives.",
+      "mustInclude": [
+        "pitch deck printout",
+        "espresso cup",
+        "term-sheet margin notes"
+      ],
+      "mustAvoid": [
+        "generic startup hustle",
+        "investor villain scene"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "choir rehearsal seating dispute",
+      "audience": "a volunteer conductor hearing a singer's helpful suggestion carry a rank challenge underneath",
+      "stakes": "the rehearsal can become a weekly status game",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu answers the hidden demand for special status by restating the audition rule without shaming the singer.",
+      "firstImage": "\"I only thought the altos might sound better if I stood front row,\" Erin says.",
+      "mustInclude": [
+        "folding music stand",
+        "seating chart",
+        "pencil-marked score"
+      ],
+      "mustAvoid": [
+        "school choir nostalgia",
+        "petty arts gossip"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "shared flat cleaning rota after a passive note appears",
+      "audience": "a housemate deciding whether to answer the note or the accusation under it",
+      "stakes": "three people may enter a months-long grievance pattern",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace takes the note off the fridge and asks for a 10-minute rota reset instead of adding a sharper note below it.",
+      "firstImage": "The yellow note curls at one corner on the refrigerator door.",
+      "mustInclude": [
+        "magnet shaped like a lemon",
+        "cleaning rota",
+        "overflowing recycling bin"
+      ],
+      "mustAvoid": [
+        "kitchen sink argument shell",
+        "roommate stereotype"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "museum donor tour after a veiled board remark",
+      "audience": "a curator hearing praise that is really an invitation to owe someone",
+      "stakes": "future exhibit choices can be bent by one accepted hidden bargain",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Jonas later spots the switch: the donor's praise became a claim on exhibit placement, so he drafts a neutral policy response.",
+      "firstImage": "Three days later, Jonas rereads the donor's email and sees the hook in the second sentence.",
+      "mustInclude": [
+        "white cotton gloves",
+        "donor badge",
+        "exhibit placement grid"
+      ],
+      "mustAvoid": [
+        "elite art-world caricature",
+        "gratitude lesson"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "after-school robotics team sponsorship",
+      "audience": "a teacher fielding a parent's offer that may become control over team decisions",
+      "stakes": "student access to equipment depends on clean boundaries",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What makes a generous offer turn into a game before the first cheque clears?",
+      "firstImage": "the teacher accepts the donation only through the school fund and names decision authority before the parent can convert help into leverage.",
+      "mustInclude": [
+        "sponsorship form",
+        "tool cabinet key",
+        "competition registration page"
+      ],
+      "mustAvoid": [
+        "generic school fundraiser",
+        "rich parent villain"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "neighborhood bike-lane consultation",
+      "audience": "a planner hearing a citizen ask a factual question that keeps returning as a trap",
+      "stakes": "the public meeting can get captured by predictable outrage",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hiroshi marks the thesis, switch, and payoff after the meeting, then prepares an antithesis that answers process rather than outrage next time.",
+      "firstImage": "You leave the gymnasium with a stack of comment cards and the same exchange repeating in your ears.",
+      "mustInclude": [
+        "comment cards",
+        "traffic-count map",
+        "portable microphone"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor",
+        "generic civic yelling"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate social and psychological levels",
+      "identify when a repeated sequence qualifies as a game",
+      "choose an antithesis that answers the hidden level",
+      "explain why antithesis feels socially awkward"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one polite sentence you recently received. Under it, write the possible hidden invitation in five words or fewer.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

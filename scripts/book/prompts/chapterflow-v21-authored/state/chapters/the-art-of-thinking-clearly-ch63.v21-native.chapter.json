@@ -1,0 +1,335 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch63",
+  "number": 63,
+  "title": "Simple Logic",
+  "readingTimeMinutes": 12,
+  "hook": "The first answer feels quick because it skips the one step that would expose it.",
+  "counterintuition": "Simple logic is not about doing harder math. It is about pausing when the intuitive answer arrives too smoothly and forcing the missing relation into view.",
+  "tryThisNow": "Before accepting one quick answer, write the two quantities it compares and ask which one changes when the other changes.",
+  "keyTakeaway": "When the easy answer arrives instantly, slow down long enough to test the relation it skipped.",
+  "breakdown": {
+    "fastRead": "The route map on Hanna's pension app desk shows a default saving rate of 8 percent. A product lead says raising it to 10 adds only two percent, so users will barely notice. Hanna marks CRT on the map and writes the simple logic: two points is a 25 percent increase from eight.\n\nThe intuitive answer often grabs the visible number and stops. It sees “two” and misses “two out of eight.” Simple logic asks for the relation, not the first number that feels available.\n\nA quick answer can be wrong because it is incomplete.",
+    "deepRead": "The route map matters because the product team is not being foolish. The 8-to-10 change looks small on the screen. It is two points, and two feels light. Hanna slows the room by naming the base: if a worker saves 8 percent now, a move to 10 percent raises contributions by a quarter. The user's paycheck may feel that.\n\nSimple logic fails when the mind answers a neighboring question. How big is the visible change? Two. How big is the change relative to the base? Twenty-five percent. Those are different questions, but the first one often shows up first and sounds complete. The correction is to state the relation out loud: compared with what, added to what, taken from what, over what time?\n\nThe missing relation is the trap.\n\nClaude sees the same problem in an ambulance night-shift review. An invoice stack shows that one crew logged twice as many late arrivals after adding a second vehicle. The intuitive answer is that the vehicle failed. Claude marks simple logic on the invoice stack and checks call volume. The area handled three times as many calls, so late arrivals per call improved.\n\nThis is why reflection matters. It is not slow thinking for its own sake. It is a small brake on the first answer: translate the sentence, write the base, reverse the comparison, or test one simple case. If the answer survives that pause, use it. If it breaks, the pause paid for itself.",
+    "fullRead": "The dashboard printout in Isla's architecture studio shows a renovation estimate: the new lobby wall costs 20 percent less if built in two phases. The contractor says the choice is obvious. Isla hears the intuitive answer forming and marks intuitive answer on the printout. Then she writes the missing relation: two phases reduce material waste but add three weeks of rent on temporary space.\n\nShane Frederick's work on Cognitive Reflection and Decision Making used short questions that lure people toward an immediate answer. The famous bat-and-ball style problem is not hard because the arithmetic is advanced. It is hard because the first answer feels fluent enough to stop reflection. The test asks whether you can distrust a smooth answer for ten seconds.\n\nTry this question in ordinary form: what number did the first answer ignore?\n\nYou use that question at a watch retailer. Poppy holds a caliper beside a waitlist for a limited watch. The owner says a ten-percent deposit is harmless because it is only ten percent. But the deposit is nonrefundable and tied to a watch whose delivery date is uncertain. Poppy marks reflection on the caliper and compares the deposit with the buyer's walk-away cost, not the retail price alone.\n\nSimple logic also prevents public numbers from fooling decent people. Manuel is reviewing vaccine-statistic framing with a visitor badge clipped to the health department folder. A draft says side effects doubled after a booster. The raw count moved from one report to two in a tiny subgroup. Manuel marks Frederick on the badge and rewrites the page to show counts, denominator, and absolute risk beside the relative change.\n\nThe point is not to distrust every simple claim. A simple claim may be exactly right. The point is to distrust the feeling that the first simple claim is complete. Ask what relation it used. Ask what relation it skipped. A number can be true and still answer the wrong question. The pause is small; the error it catches can be large.\n\nJules sees the postmortem version in a viral chart fact-check. A sample tray from a water test sits beside a chart that says contamination fell by half. The chart compares two wells after one dry week. Jules marks simple on the tray and rebuilds the fact-check around the full sampling period, because the clean-looking ratio ignored season and site count.\n\nWhen the easy answer arrives instantly, slow down long enough to test the relation it skipped.",
+    "whyItMatters": "Simple Logic helps readers catch fluent wrong answers. They learn to pause, name the base, and check the relation before using a quick answer."
+  },
+  "examples": [
+    {
+      "exampleId": "ch63-ex01-hanna-route-map",
+      "title": "Hanna Names the Base Rate",
+      "tags": [
+        "scene",
+        "pension app",
+        "CRT"
+      ],
+      "planSpec": {
+        "domain": "a pension app default rate applying Simple Logic under operational pressure",
+        "audience": "a reader who has to make a live judgment where CRT could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Simple Logic is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the route map, names the CRT risk, and changes the pension copy from point difference to relative paycheck effect."
+      },
+      "scenario": "A route map lies across Hanna's 9:20 a.m. pension app review in Toronto, showing the path from an 8 percent default to 10 percent. The product lead calls it “only two percent.” Before release, Hanna must choose between the visible point change and the relative contribution increase.",
+      "whatToDo": "Mark CRT on the route map, write 2 out of 8 as a 25 percent increase, and show paycheck effect before changing the default copy.",
+      "whyItMatters": "The intuitive answer sees two points; simple logic sees the base it was taken from."
+    },
+    {
+      "exampleId": "ch63-ex02-claude-invoice-stack",
+      "title": "Claude Checks Calls per Arrival",
+      "tags": [
+        "vignette",
+        "ambulance",
+        "simple logic"
+      ],
+      "planSpec": {
+        "domain": "a ambulance night-shift review applying Simple Logic under operational pressure",
+        "audience": "a reader who has to make a live judgment where simple logic could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Simple Logic is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the invoice stack, names the simple logic risk, and compares late arrivals per call instead of raw late arrivals."
+      },
+      "scenario": "\"Late arrivals doubled after we added the second vehicle,\" the operations chief says at a 6:50 a.m. ambulance night-shift review in Cardiff. Claude holds the invoice stack and has to choose: blame the vehicle from raw late arrivals or divide by call volume.",
+      "whatToDo": "Mark simple logic on the invoices, calculate late arrivals per call, and judge the vehicle only after the denominator is visible.",
+      "whyItMatters": "A doubled count can hide an improved rate when the workload grew faster."
+    },
+    {
+      "exampleId": "ch63-ex03-isla-dashboard-printout",
+      "title": "Isla Adds the Rent Weeks",
+      "tags": [
+        "dialogue",
+        "renovation",
+        "intuitive answer"
+      ],
+      "planSpec": {
+        "domain": "a architecture renovation plan applying Simple Logic under operational pressure",
+        "audience": "a reader who has to make a live judgment where intuitive answer could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Simple Logic is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the dashboard printout, names the intuitive answer risk, and adds temporary-rent weeks to the apparent material saving."
+      },
+      "scenario": "Dust gathers on the dashboard printout in Isla's Montreal architecture studio while a contractor points to a 20 percent material saving. Two construction phases look cheaper. Isla must choose before the client call between the neat saving and the rent cost it excludes.",
+      "whatToDo": "Mark intuitive answer on the printout, add temporary rent and schedule cost, and present the two-phase plan only if the total still wins.",
+      "whyItMatters": "The obvious saving answered the material question, not the total-cost question."
+    },
+    {
+      "exampleId": "ch63-ex04-poppy-caliper",
+      "title": "Poppy Reframes the Deposit",
+      "tags": [
+        "decision",
+        "retail",
+        "reflection"
+      ],
+      "planSpec": {
+        "domain": "a watch retailer waitlist applying Simple Logic under operational pressure",
+        "audience": "a reader who has to make a live judgment where reflection could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Simple Logic is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the caliper, names the reflection risk, and compares the deposit with walk-away cost instead of retail price alone."
+      },
+      "scenario": "You are at a Geneva watch counter with Poppy, holding a caliper while the owner says the nonrefundable deposit is “only ten percent.” The waitlist date is vague. Before changing the policy, Poppy must choose the comparison: retail price or customer's walk-away cost.",
+      "whatToDo": "Mark reflection on the caliper, show the deposit as money at risk, and rewrite the waitlist terms around cancellation cost and delivery uncertainty.",
+      "whyItMatters": "Ten percent sounds small until the right comparison is the buyer's lost cash, not the watch price."
+    },
+    {
+      "exampleId": "ch63-ex05-manuel-visitor-badge",
+      "title": "Manuel Shows the Absolute Risk",
+      "tags": [
+        "predict",
+        "public health",
+        "Frederick"
+      ],
+      "planSpec": {
+        "domain": "a vaccine-statistic framing applying Simple Logic under operational pressure",
+        "audience": "a reader who has to make a live judgment where Frederick could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Simple Logic is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the visitor badge, names the Frederick risk, and rewrites the statistic with counts, denominator, and absolute risk."
+      },
+      "scenario": "It took Manuel one public briefing rehearsal in Boston to notice the visitor badge clipped to the vaccine folder hid the key number. The slide said reports doubled. They moved from one to two in a tiny subgroup. Before cameras arrive, he must choose between the relative headline and the full count.",
+      "whatToDo": "Mark Frederick on the badge, show raw counts and denominator, and place absolute risk beside the relative change.",
+      "whyItMatters": "A true relative change can still lure readers into the wrong scale."
+    },
+    {
+      "exampleId": "ch63-ex06-jules-sample-tray",
+      "title": "Jules Rebuilds the Viral Chart",
+      "tags": [
+        "postmortem",
+        "fact-check",
+        "simple"
+      ],
+      "planSpec": {
+        "domain": "a viral chart fact-check applying Simple Logic under operational pressure",
+        "audience": "a reader who has to make a live judgment where simple could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Simple Logic is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the sample tray, names the simple risk, and rebuilds the chart around the full sampling period and site count."
+      },
+      "scenario": "Which viral water chart looked clean because it compared two wells after one dry week? Jules asks at a 4:35 p.m. newsroom postmortem in Bristol, marking simple on the sample tray before the correction note is drafted.",
+      "whatToDo": "Rebuild the chart with the full sampling period, site count, and season notes before publishing the correction.",
+      "whyItMatters": "A simple chart can be clear because it removed the relation that mattered."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a simple-logic case, a quick answer feels obvious because it grabs the most visible number and ignores what that number is being compared with, what is the Simple Logic warning?",
+        "choices": [
+          "Warning intuitive skipped supports a narrower read of obvious grabs visible; keep number ignores what central and leave compared simple logic aside.",
+          "The intuitive answer may have skipped the relation that decides the case.",
+          "Decides simple logic fits the immediate pressure around ignores what compared; hold grabs visible number steady and test quick answer obvious later."
+        ],
+        "correctIndex": 1,
+        "explanation": "Simple logic asks for the relation: compared with what, out of what, over what time. The quick answer can be true-looking and incomplete.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Simple Logic makes simple-logic case feel more decisive than the record supports, and that misprices quick answer in this scene. The correct move keepss the choice by the intuitive answer may have skipped the relation that decides the case."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a simple-logic review, a pension app moves the default saving rate from 8 percent to 10 percent, and the team says users will barely notice because it is only two points, what should the reviewer calculate?",
+        "choices": [
+          "Whether two points equals a 25 percent increase from the old contribution.",
+          "Says users barely gives a practical reason for rate percent team; reviewer calculate whether belongs after notice points what clarifies the result.",
+          "Barely notice points makes saving rate percent look credible; use team says users first and revisit what reviewer calculate when whether equals increase shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The missing relation is two out of eight. The point change looks small, but the contribution increase may be large enough for paychecks.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Simple Logic works by letting simple-logic pension crowd out moves default, which can misreads the saving rate decision. Whether two points equals a 25 percent increase from the old contribution keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When simple-logic pressure appears, an ambulance crew has twice as many late arrivals after adding a second vehicle, but call volume tripled. What comparison is needed before blaming the vehicle?",
+        "choices": [
+          "Simple-logic pressure appears looks strong enough to guide ambulance crew twice; many late arrivals can wait unless after adding second changes the stakes.",
+          "Arrivals after adding gives a practical reason for twice many late; volume tripled what belongs after second vehicle call clarifies the result.",
+          "Late arrivals per call before and after the vehicle."
+        ],
+        "correctIndex": 2,
+        "explanation": "The raw count answers the wrong question. Per-call lateness shows whether service worsened or improved under a larger workload.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Simple Logic turns appears ambulance into a shortcut, so the room can overweights crew twice while missing many late. Late arrivals per call before and after the vehicle protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After simple-logic risk surfaces, a renovation contractor says a two-phase wall build saves 20 percent on material, but the phased plan adds three weeks of temporary rent, what should the client see?",
+        "choices": [
+          "Temporary rent what points toward a quicker call on wall build saves; let contractor says two-phase stand until adds three weeks contradicts it.",
+          "What client total fits the immediate pressure around saves percent material; hold two-phase wall build steady and test renovation contractor says later.",
+          "The total cost after adding rent and schedule cost to the material saving."
+        ],
+        "correctIndex": 2,
+        "explanation": "The intuitive answer uses the clean material number. Simple logic asks whether that number answers total cost after the added weeks.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Simple Logic would push the renovation contractor case toward says two-phase, creating a cost when wall build stays untested. The useful guardrail is to the total cost after adding rent and schedule cost to the material saving."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If simple-logic reasoning takes over, a watch shop says a nonrefundable deposit is only 10 percent of the price, but delivery is uncertain and buyers may walk away. What is the better comparison?",
+        "choices": [
+          "The deposit as money at risk for the buyer.",
+          "Price delivery uncertain gives a practical reason for nonrefundable deposit percent; what better comparison belongs after buyers walk away clarifies the result.",
+          "Uncertain buyers walk makes says nonrefundable deposit look credible; use percent price delivery first and revisit away what better when comparison money buyer shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "Ten percent sounds small against the retail price. The relevant relation is the buyer's lost cash if delivery uncertainty makes them leave.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Simple Logic converts shop says into the loudest signal, which can rushes nonrefundable deposit before percent price is checked. The better answer separatess attention on the deposit as money at risk for the buyer."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While simple-logic pressure builds, a health slide says side-effect reports doubled, but the count moved from one to two in a tiny subgroup, which rewrite uses simple logic?",
+        "choices": [
+          "Doubled count moved makes builds health slide look credible; use says side-effect reports first and revisit tiny subgroup rewrite when simple logic show shifts.",
+          "Show counts, denominator, and absolute risk beside the relative change.",
+          "Subgroup rewrite simple points toward a quicker call on health slide says; let simple-logic pressure builds stand until count moved tiny contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The relative claim is technically true but scale-poor. Counts and denominator restore the relation that the intuitive answer skipped.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Simple Logic hides inside the simple-logic pressure choice because simple-logic pressure seems sufficient, yet the cost lands in simple-logic pressure. Show counts, denominator, and absolute risk beside the relative change brings the simple-logic pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the simple-logic call, a viral chart says contamination fell by half after comparing two wells during one dry week. What should the fact-checker add?",
+        "choices": [
+          "Fact-checker full sampling supports a narrower read of chart says contamination; keep fell half after central and leave wells week what aside.",
+          "The full sampling period, site count, and season notes.",
+          "Site count season fits the immediate pressure around half after wells; hold says contamination fell steady and test call viral chart later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The simple chart hid the relation that matters. More sites and the full period test whether the clean result was a narrow comparison trick.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Simple Logic pressures the call viral decision toward the easy reading of call viral. That can inflates the real cost unless the choice is grounded in the full sampling period, site count, and season notes."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "In a planning session, a manager says a discount saves $500, but accepting it requires a $700 support contract. Which response best reflects the CRT habit?",
+        "choices": [
+          "Support contract response makes manager says discount look credible; use saves accepting requires first and revisit best reflects habit when pause intuitive saving shifts.",
+          "Pause the intuitive saving and compare net cost after the required contract.",
+          "Reflects habit pause points toward a quicker call on says discount saves; let planning session manager stand until contract response best contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The CRT habit distrusts the fluent first answer and checks the relation. The relevant number is net cost, not the visible discount alone.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Simple Logic is the mechanism here: a clean premise skips messy conditions, so manager says can overpower manager says. Pause the intuitive saving and compare net cost after the required contract keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two simple-logic signals compete: a delivery dashboard says a route is “30 percent faster,” but it compares a Sunday trial with weekday traffic. What should be checked before changing routes?",
+        "choices": [
+          "Whether the route is faster under the same day and traffic conditions.",
+          "Trial weekday traffic supports a narrower read of signals compete delivery; keep dashboard says route central and leave percent faster sunday aside.",
+          "Traffic what checked points toward a quicker call on delivery dashboard says; let simple-logic signals compete stand until sunday trial weekday contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The missing relation is like-for-like timing. The percentage may be true for Sunday and still wrong for weekday routing.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Simple Logic makes the delivery dashboard evidence look cleaner than it is, risking a delivery dashboard mistake in this setting. The answer protects delivery dashboard by asking for whether the route is faster under the same day and traffic conditions."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "A quick number feels obvious. What should you ask first?",
+      "back": "Ask what relation the number uses: compared with what, out of what, over what time. The first answer often skips that relation.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why does a true percentage still mislead?",
+      "back": "It can answer the wrong comparison. Add counts, denominator, time frame, or base rate before using it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What is the practical lesson of the CRT?",
+      "back": "Distrust a smooth first answer for a few seconds. Write the relation it assumes and test one simple case before acting.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "A cost saving excludes a required add-on. What is the simple logic move?",
+      "back": "Move from visible saving to net cost. The relevant relation includes the add-on because the decision includes the add-on.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "A chart looks simple and clean. What is the hidden risk?",
+      "back": "It may be simple because the key relation was removed. Check period, denominator, comparison group, and conditions.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Use a brief reflection pause when the first answer arrives too smoothly. Name the relation, write the base, and check whether the visible number answers the real question.",
+    "ifThenPlans": [
+      {
+        "context": "Percentage claim",
+        "plan": "If a percentage sounds decisive, then I will translate it into counts and denominator before using it."
+      },
+      {
+        "context": "Cost comparison",
+        "plan": "If a saving is presented alone, then I will add required costs and compare net value."
+      },
+      {
+        "context": "Operational metric",
+        "plan": "If a raw count rises or falls, then I will check the rate against workload or volume."
+      },
+      {
+        "context": "Public chart",
+        "plan": "If a chart is unusually clean, then I will ask what period, group, or condition was left out."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one quick answer in a meeting or message. Write the base it uses and one relation it might have skipped.",
+    "weeklyPractice": "Once a week, collect three percentages or raw counts from reports and rewrite each as a full comparison."
+  },
+  "memorableLines": [
+    {
+      "text": "A quick answer can be wrong because it is incomplete.",
+      "location": "breakdown.fastRead",
+      "why": "It captures why fluency is not enough."
+    },
+    {
+      "text": "The missing relation is the trap.",
+      "location": "breakdown.deepRead",
+      "why": "It points to the exact correction."
+    },
+    {
+      "text": "The test asks whether you can distrust a smooth answer for ten seconds.",
+      "location": "breakdown.fullRead",
+      "why": "It makes cognitive reflection concrete."
+    }
+  ]
+}

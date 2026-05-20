@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch15",
+  "number": 15,
+  "title": "Buffer: The Unfair Advantage",
+  "coreMove": "Build margin before reality interrupts, so surprise does not turn essential work into emergency response.",
+  "sourcePressure": "The chapter begins execution by treating the unexpected as predictable enough to plan for through buffers, scenario planning, larger estimates, and resilience.",
+  "chapterSpecificMisunderstanding": "A weak run would say leave extra time as a scheduling tip without teaching the planning fallacy or contingency logic.",
+  "sourceAlignmentTerms": [
+    "buffer",
+    "planning fallacy",
+    "margin",
+    "contingency",
+    "scenario planning",
+    "Daniel Kahneman"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic buffer: the unfair advantage topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "padding laziness frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "padding laziness",
+      "generic time blocking",
+      "pessimism",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rural mail ferry adding storm margin before medical deliveries",
+      "audience": "operator whose schedule meets predictable weather disruption",
+      "stakes": "no-buffer planning turns medicine into emergency",
+      "format": "decision_point",
+      "requiredBeat": "She adds the tide-and-wind buffer before accepting extra parcel sacks.",
+      "firstImage": "A tide table lies beside sealed medicine parcels.",
+      "mustInclude": [
+        "tide table",
+        "medicine parcels",
+        "parcel sacks"
+      ],
+      "mustAvoid": [
+        "generic time padding",
+        "pessimism"
+      ]
+    },
+    {
+      "domain": "court interpreter scheduling extra handoff time for a rare-language hearing",
+      "audience": "coordinator facing the planning fallacy",
+      "stakes": "one missing handoff can delay legal access",
+      "format": "scene",
+      "requiredBeat": "He writes the interpreter handoff buffer into the docket before anyone asks for a shorter day.",
+      "firstImage": "A docket sheet is marked with interpreter handoff time.",
+      "mustInclude": [
+        "docket sheet",
+        "handoff time",
+        "language card"
+      ],
+      "mustAvoid": [
+        "bureaucratic slack",
+        "generic calendar tip"
+      ]
+    },
+    {
+      "domain": "community kitchen preparing backup refrigeration before a heat wave",
+      "audience": "kitchen lead treating disruption as predictable",
+      "stakes": "food safety depends on margin built before heat arrives",
+      "format": "before_after",
+      "requiredBeat": "Before, coolers are borrowed after failure; after, she parks backup ice chests beside the prep list.",
+      "firstImage": "Backup ice chests sit under a heat advisory printout.",
+      "mustInclude": [
+        "ice chests",
+        "heat advisory",
+        "prep list"
+      ],
+      "mustAvoid": [
+        "kitchen shell",
+        "panic planning"
+      ]
+    },
+    {
+      "domain": "field archaeologist doubling permit transport time before monsoon road closures",
+      "audience": "field lead resisting best-case estimates",
+      "stakes": "permit days vanish when predictable roads fail",
+      "format": "postmortem",
+      "requiredBeat": "He marks washed-out road dates on the permit calendar and adds two travel days before promising finds.",
+      "firstImage": "A permit calendar is crossed with road-closure dates.",
+      "mustInclude": [
+        "permit calendar",
+        "road dates",
+        "transport crates"
+      ],
+      "mustAvoid": [
+        "adventure delay",
+        "padding laziness"
+      ]
+    },
+    {
+      "domain": "hospital lab manager scenario-planning reagent shortage before flu season",
+      "audience": "lab manager protecting essential testing capacity",
+      "stakes": "supply surprise is foreseeable enough to plan around",
+      "format": "dialogue",
+      "requiredBeat": "She asks what fails first if reagent delivery slips, then reserves a smaller testing menu.",
+      "firstImage": "A reagent inventory sheet sits beside flu-season forecasts.",
+      "mustInclude": [
+        "inventory sheet",
+        "flu forecasts",
+        "testing menu"
+      ],
+      "mustAvoid": [
+        "medical advice",
+        "hoarding"
+      ]
+    },
+    {
+      "domain": "independent printer adding proofing buffer before a civic ballot run",
+      "audience": "printer whose deadline cannot slip",
+      "stakes": "rework margin protects civic accuracy",
+      "format": "predict_reveal",
+      "requiredBeat": "The first proof looks clean, then a precinct typo appears; the reserved proofing day absorbs it.",
+      "firstImage": "A ballot proof lies beside a reserved proofing-day card.",
+      "mustInclude": [
+        "ballot proof",
+        "proofing-day card",
+        "precinct list"
+      ],
+      "mustAvoid": [
+        "generic deadline",
+        "fake inefficiency"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify planning fallacy and contingency buffer moves inside a concrete scenario",
+      "choose the response that applies: Build margin before reality interrupts, so surprise does not turn essential work into emergency response.",
+      "reject the generic drift: A weak run would say leave extra time as a scheduling tip without teaching the planning fallacy or contingency logic.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one essential task and add one concrete buffer before reality interrupts: extra time, backup supply, alternate route, or reserved review slot.",
+  "readingTimeMinutes": 12
+}

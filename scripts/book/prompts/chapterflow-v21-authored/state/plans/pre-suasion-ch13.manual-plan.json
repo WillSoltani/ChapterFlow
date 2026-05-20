@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch13",
+  "number": 13,
+  "title": "Ethical Use: A Pre-Pre-Suasive Consideration",
+  "coreMove": "Decide whether the attention plan should be used before deciding how to use it.",
+  "sourcePressure": "The source says the first decision is ethical use, warns that profit can outrank ethics, and argues unethical tactics undermine organizational profits in three ways without naming them in the sidecar.",
+  "chapterSpecificMisunderstanding": "Ethics is a compliance note after the persuasive design is finished.",
+  "sourceAlignmentTerms": [
+    "ethical use",
+    "pre-pre-suasive",
+    "profit",
+    "trust",
+    "unethical tactics",
+    "organizational outcomes"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "subscription-pricing review",
+      "audience": "a growth lead deciding whether to hide cancellation terms",
+      "stakes": "whether profit pressure is checked before the attention tactic is built",
+      "format": "decision_point",
+      "requiredBeat": "the lead circles the hidden-fee revenue line, then writes the likely trust cost beside it before approving copy",
+      "firstImage": "a pricing mockup beside a revenue forecast",
+      "mustInclude": [
+        "revenue forecast",
+        "cancellation link"
+      ],
+      "mustAvoid": [
+        "legal compliance only"
+      ]
+    },
+    {
+      "domain": "pharmaceutical reminder campaign",
+      "audience": "a marketing manager weighing fear-based refill messages",
+      "stakes": "whether a health cue informs or exploits patient anxiety",
+      "format": "decision_point",
+      "requiredBeat": "the manager reads the message aloud beside the patient opt-out list before sending it",
+      "firstImage": "a campaign screen with the opt-out count visible",
+      "mustInclude": [
+        "opt-out list",
+        "refill message"
+      ],
+      "mustAvoid": [
+        "medical scare tactic"
+      ]
+    },
+    {
+      "domain": "children’s game purchase flow",
+      "audience": "a designer reviewing pre-purchase animations",
+      "stakes": "whether the cue targets the parent’s decision or bypasses the child’s restraint",
+      "format": "postmortem",
+      "requiredBeat": "the designer removes the countdown sparkle after watching a child press buy before reading the price",
+      "firstImage": "a tablet screen frozen on a sparkling countdown",
+      "mustInclude": [
+        "price label",
+        "parent gate"
+      ],
+      "mustAvoid": [
+        "dark pattern"
+      ]
+    },
+    {
+      "domain": "charity disaster appeal",
+      "audience": "a fundraising director choosing images for relief donations",
+      "stakes": "whether attention honors the people pictured or turns suffering into a lever",
+      "format": "reflection",
+      "requiredBeat": "the director rejects the most shocking image after checking consent notes and need specificity",
+      "firstImage": "a contact sheet beside a consent log",
+      "mustInclude": [
+        "consent log",
+        "need statement"
+      ],
+      "mustAvoid": [
+        "poverty spectacle"
+      ]
+    },
+    {
+      "domain": "workplace wellness enrollment",
+      "audience": "an HR manager deciding whether to prefill employee goals",
+      "stakes": "whether the design supports agency or manufactures agreement",
+      "format": "scene",
+      "requiredBeat": "the manager watches a tester erase a prefilled goal and marks the coercion risk before launch",
+      "firstImage": "a wellness form with a prefilled goal highlighted",
+      "mustInclude": [
+        "test note",
+        "erase icon"
+      ],
+      "mustAvoid": [
+        "corporate wellness sermon"
+      ]
+    },
+    {
+      "domain": "auto-loan dealership script",
+      "audience": "a finance director auditing add-on warranty prompts",
+      "stakes": "whether the pre-suasive frame creates informed choice or confusion",
+      "format": "dialogue",
+      "requiredBeat": "the director has a clerk explain the warranty with the total payment visible and stops the script when the cost is hidden",
+      "firstImage": "a payment worksheet with add-on rows exposed",
+      "mustInclude": [
+        "payment worksheet",
+        "warranty row"
+      ],
+      "mustAvoid": [
+        "sales villain scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "run the ethical decision before tactic design",
+      "identify when profit pressure corrupts pre-suasion",
+      "distinguish informed attention from exploitation",
+      "forecast trust costs from manipulative frames"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before polishing a persuasive cue, write who benefits, who could be misled, and what trust cost would make the tactic unacceptable.",
+  "readingTimeMinutes": 12
+}

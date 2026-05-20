@@ -10,6 +10,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
+import { getAuthorVoiceProfile } from "../critics/shared.js";
 import { BookBrief } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -45,7 +46,28 @@ export async function runEditorInChief(input: EditorInChiefInput): Promise<BookB
     timeoutMs: 240_000,
   });
 
-  return validateBrief(result.content, input);
+  const brief = validateBrief(result.content, input);
+  return applyAuthorVoiceProfile(brief, input.bookId);
+}
+
+/** Merge per-book author-voice-profile constraints into the brief. Pulls
+ *  `avoidFrames` from the profile into the brief's `voiceCharter.avoidMoves`
+ *  (which the brief-sanitizer later strips for the writer's input, but which
+ *  the ship gate's banned-phrase critic enforces by config). This means the
+ *  brief reflects book-specific known model-voice tells regardless of what
+ *  the editor LLM thought to include. */
+export function applyAuthorVoiceProfile(brief: BookBrief, bookId: string): BookBrief {
+  const profile = getAuthorVoiceProfile(bookId);
+  if (!profile) return brief;
+  const avoidFrames = Array.isArray(profile.avoidFrames) ? profile.avoidFrames : [];
+  if (avoidFrames.length === 0) return brief;
+
+  const merged = { ...brief, voiceCharter: { ...brief.voiceCharter } };
+  const existing = merged.voiceCharter.avoidMoves ?? [];
+  const seen = new Set(existing.map((s) => s.toLowerCase()));
+  const additions = avoidFrames.filter((f: string) => !seen.has(f.toLowerCase()));
+  merged.voiceCharter.avoidMoves = [...existing, ...additions];
+  return merged;
 }
 
 function buildUserPrompt(input: EditorInChiefInput): string {

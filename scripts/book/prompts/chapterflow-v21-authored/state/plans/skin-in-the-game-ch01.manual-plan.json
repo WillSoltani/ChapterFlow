@@ -1,0 +1,198 @@
+{
+  "chapterId": "skin-in-the-game-ch01",
+  "number": 1,
+  "title": "Why Each One Should Eat His Own Turtles: Equality in Uncertainty",
+  "coreMove": "Test any recommendation by asking whether the person shaping the choice will eat the downside if it goes bad.",
+  "sourcePressure": "The opening fairness test: a person who sells, advises, recommends, or imposes a choice should not be able to hand the downside to someone else while keeping private certainty or upside.",
+  "chapterSpecificMisunderstanding": "Flattening the lesson into generic honesty or nice dealing, instead of asymmetry in who knows and who pays.",
+  "sourceAlignmentTerms": [
+    "turtle rule",
+    "asymmetry",
+    "equality in uncertainty",
+    "disclosure",
+    "gharar",
+    "Rav Safra",
+    "Rhodes corn problem"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Mercury and the turtles",
+      "detail": "The source opens with people who caught and cooked turtles trying to pass the unpleasant meal to Mercury, who forces them to eat what they brought.",
+      "useIn": "deepRead",
+      "phrasingHint": "The turtle meal gives the rule its bite: if you brought the exposure into the room, you do not get to serve it to someone else."
+    },
+    {
+      "kind": "person",
+      "name": "Cicero",
+      "detail": "The source uses Cicero's report of the Rhodes corn problem to ask how much a seller must disclose when he knows more than the buyer.",
+      "useIn": "fullRead",
+      "phrasingHint": "The Rhodes merchant matters because the harm begins before the sale, at the point where one side knows the weather and the other side buys the cargo blind."
+    },
+    {
+      "kind": "person",
+      "name": "Rav Safra",
+      "detail": "The source presents Rav Safra refusing a higher price that arose while he was silently praying because his original intention had already fixed a fairer price.",
+      "useIn": "both",
+      "phrasingHint": "Rav Safra makes transparency harsher than disclosure: even the seller's silent intention becomes part of the moral ledger."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "commissioned benefits broker recommending a tax product to a clinic owner",
+      "audience": "clinic owner deciding whether the broker shares any audit exposure",
+      "stakes": "an audit bill could land after the broker has collected commission",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Sarah circles the indemnity clause, asks who pays if the tax treatment fails, and refuses to sign until the broker accepts written downside.",
+      "firstImage": "a commission schedule under a desk lamp",
+      "mustInclude": [
+        "indemnity clause",
+        "audit letter",
+        "commission schedule"
+      ],
+      "mustAvoid": [
+        "generic sales manipulation"
+      ]
+    },
+    {
+      "domain": "university procurement committee evaluating a vendor-paid software recommendation",
+      "audience": "faculty member who suspects helpful advice is inventory dumping",
+      "stakes": "a three-year lock-in could trap students in a weak platform",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu asks the vendor whether his firm will refund migration costs if the platform misses accessibility requirements.",
+      "firstImage": "a demo laptop with the accessibility tab open",
+      "mustInclude": [
+        "accessibility checklist",
+        "vendor lunch receipt",
+        "refund term"
+      ],
+      "mustAvoid": [
+        "abstract ethics debate"
+      ]
+    },
+    {
+      "domain": "family investment tip before a condo down payment",
+      "audience": "reader facing a relative who sounds certain but will not co-own the loss",
+      "stakes": "a failed tip could consume the deposit for a first home",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Grace slides a co-investment form across the table and watches the certainty leave the room when the tipper must share the downside.",
+      "firstImage": "steam rising from soup beside a folded investment flyer",
+      "mustInclude": [
+        "co-investment form",
+        "condo deposit statement"
+      ],
+      "mustAvoid": [
+        "family melodrama"
+      ]
+    },
+    {
+      "domain": "architecture firm disclosing a drainage defect before selling a design package",
+      "audience": "partner deciding whether to bury a known defect in optimistic language",
+      "stakes": "a client could inherit flood risk the firm already sees",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lukas adds the drainage defect to the front page and watches the negotiation become slower but cleaner.",
+      "firstImage": "red markup on a site plan",
+      "mustInclude": [
+        "site plan",
+        "drainage memo",
+        "client signoff"
+      ],
+      "mustAvoid": [
+        "be honest slogan"
+      ]
+    },
+    {
+      "domain": "student club selling a ski-trip package with hidden cancellation risk",
+      "audience": "club treasurer who knows the refund policy is weaker than advertised",
+      "stakes": "students could lose wages and deposits after trusting friends",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Camille reads the angry refund emails aloud, then rewrites the sign-up sheet so the risk appears before the payment line.",
+      "firstImage": "wet boots lined under a campus noticeboard",
+      "mustInclude": [
+        "refund policy",
+        "sign-up sheet",
+        "deposit receipt"
+      ],
+      "mustAvoid": [
+        "generic school leadership"
+      ]
+    },
+    {
+      "domain": "freelance designer asked to recommend a printer she has never used",
+      "audience": "independent worker tempted to give confident advice for a referral fee",
+      "stakes": "a client launch could fail while she keeps the fee",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hiroshi asks the printer to put the failure guarantee in writing before he passes the recommendation along.",
+      "firstImage": "sample paper clipped to a quote sheet",
+      "mustInclude": [
+        "sample paper",
+        "referral fee",
+        "failure guarantee"
+      ],
+      "mustAvoid": [
+        "abstract advice talk"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify turtle rule in a new concrete scenario",
+      "choose the action that performs the chapter move: Test any recommendation by asking whether the person shaping the choice will eat the downside if it goes bad.",
+      "separate the chapter's mechanism from the weak misread: Flattening the lesson into generic honesty or nice dealing, instead of asymmetry in who knows and who pays.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for Why Each One Should Eat His Own Turtles: Equality in Uncertainty.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

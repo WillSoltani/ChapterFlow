@@ -1,0 +1,326 @@
+{
+  "chapterId": "meditations-ch06",
+  "number": 6,
+  "title": "Book VI",
+  "readingTimeMinutes": 12,
+  "hook": "Sample tubing sits beside a savings sheet, and Julien has to decide what the hive can afford.",
+  "counterintuition": "Convenience can look public-spirited and still shift risk onto the system; duty asks who has to live with the cost.",
+  "tryThisNow": "Before choosing the convenient response, ask whether it would still look right if the whole group had to live by it.",
+  "keyTakeaway": "Strip public choices down to their real effects: duty holds in cold, praise, blame, or convenience because the bee cannot thrive by injuring the swarm.",
+  "breakdown": {
+    "fastRead": "The sample box sits unopened beside a spreadsheet of savings. Julien can help the committee look efficient by approving the cheaper tubing, or he can ask the nurse lead to test what patients and staff will actually touch. The bid is not just a number. It is a future condition for other people.\n\nDuty does not wait for a pleasant mood, a clean image, or a convenient room. It asks what the shared life can safely use.\n\nThe bee cannot win against the hive.",
+    "deepRead": "The phrase the swarm and the bee makes the test plain: the bee cannot call itself successful while damaging the hive that makes its work possible. That line turns duty away from private appearance and toward the common structure that supports every private gain. If a saving moves risk onto nurses and patients, the saving has not stayed private. It has entered the swarm.\n\nThis is why public work has to be stripped of glamour. Praise, blame, luxury, and admiration all need to be reduced to what they are worth. The bid spreadsheet is not noble because it is efficient. The photo-op planting is not civic because cameras are present. The audit memo is not trustworthy because partners prefer softer words.\n\nAntoninus becomes the model when public work tempts the soul to dress itself as power.\n\nAnna hears a swing chain click wrong in the empty park before a holiday. The planting tray is ready for the public photos, and the loose bolt will take ten quiet minutes with a socket wrench. She delays the planting. The playground does not need her to look efficient. It needs the hazard fixed.\n\nThe limit is not suspicion of every public image. Some visible acts are necessary. But image cannot become the test of duty. The test is whether the action still fits reason when nobody praises it and everyone has to live with its consequences.",
+    "fullRead": "Duty is easy to distort when conditions change. Cold rain makes a drill feel optional. Praise makes a softened audit finding feel diplomatic. A public holiday makes a loose playground bolt feel less urgent than visible planting. A popular discount makes wage pressure look like member generosity. The work of judgment is to strip each appearance down to what it does.\n\nWhat would this choice become if everyone in the system had to live inside it?\n\nThat question is social, not sentimental. Rational life is political life in the old sense: ordered toward a common field. The useful city widens until the private self has to see the people carried by its decision. The nurse who handles the tubing. The child who grips the swing chain. The junior auditor whose report becomes less true. The staff member whose wage is quietly cut by a popular board vote.\n\nAntoninus rather than Caesar gives the public standard. Caesar is the temptation of rank, image, and command. Antoninus is steadiness without display: careful deliberation, plain work, mildness, and refusal to let power dress itself up. The model matters because public work constantly offers costumes. You can look decisive while shifting risk. You can look generous while underpaying. You can look loyal while weakening a report.\n\nKiran faces that test on an audit call. The redline file shows a control failure in plain language. A partner says the sentence will sound harsh to the client. Kiran reads it aloud anyway and leaves it in the memo. Not because harshness is a virtue, but because trust in the report belongs to more people than the partner's comfort.\n\nWeather and mood receive the same treatment. Michael runs the hose-pack drill again while rain beads on the engine bay floor. Cold fingers are not a reason to relax a life-saving motion, because the real call will not wait for warm gloves. Isabel traces a member discount through payroll before voting, and the applause changes shape when she sees the gap in staff wages.\n\nThere is severity here, but not domination. Public duty often feels dull because its beneficiaries are scattered: the nurse who will handle the tubing next month, the child who will grab the chain after the cameras leave, the staff member whose lost hour is hidden inside a cheerful discount. Seeing them is part of the work. Correction should not imitate the wrongdoer. Public reason does not mean pleasing everyone. It means refusing to let personal convenience, public image, or private advantage claim the name of duty when the swarm will bear the cost.\n\nBefore the vote, ask who is absent but affected. Strip the appearance bare before the system pays for your comfort. Ask who carries the consequence. Choose as a member of the whole, not as a bee congratulating itself while the hive weakens under it."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-julien-tubing",
+      "title": "Julien Opens the Sample Box",
+      "tags": [
+        "decision",
+        "hospital",
+        "procurement"
+      ],
+      "planSpec": {
+        "domain": "hospital procurement committee",
+        "audience": "Julien reviewing a cheaper supplier bid",
+        "stakes": "savings could shift hidden risk to nurses and patients",
+        "format": "decision_point",
+        "requiredBeat": "Julien asks the nurse lead to test the cheaper tubing before the committee votes."
+      },
+      "scenario": "The sample box sits unopened beside a bid spreadsheet showing six figures in savings, and the committee agenda is already behind. Julien can move the cheaper tubing to a quick vote, or he can open the box and ask the nurse lead to test the line before anyone praises the savings. The nurse lead is still outside the room, which is exactly why the spreadsheet cannot be the whole test.",
+      "whatToDo": "Open the sample box, ask the nurse lead to test the tubing, and delay the vote until the people who will use it have handled it.",
+      "whyItMatters": "The savings are not isolated. If the tubing shifts risk onto nurses or patients, the committee has made the hive pay for one clean line on a spreadsheet."
+    },
+    {
+      "exampleId": "ch06-ex02-anna-swing",
+      "title": "Anna Fixes the Chain First",
+      "tags": [
+        "scene",
+        "parks",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "city parks maintenance",
+        "audience": "Anna choosing a shortcut before a public holiday",
+        "stakes": "looking efficient could leave hazards for families",
+        "format": "scene",
+        "requiredBeat": "Anna delays the photo-op planting and fixes the loose playground bolt first."
+      },
+      "scenario": "A swing chain clicks wrong in the empty park while Anna unloads a planting tray for the holiday photo. The socket wrench is in the cart, and the inspection tag still hangs from the gate. Cameras arrive in forty minutes. Her next task can make the park look finished or make the playground safer for the first family through. The photographer is unpacking a tripod, and the loose chain is clicking in the wind behind the flower trays.",
+      "whatToDo": "Delay the planting, tighten the loose bolt with the socket wrench, update the inspection tag, and let safety outrank the photo.",
+      "whyItMatters": "Efficiency for the camera is not the same as service to the park. Anna's duty belongs to the families who will use the swing, not to the image of readiness."
+    },
+    {
+      "exampleId": "ch06-ex03-kiran-audit",
+      "title": "Kiran Leaves the Sentence In",
+      "tags": [
+        "dialogue",
+        "audit",
+        "truth"
+      ],
+      "planSpec": {
+        "domain": "financial audit team",
+        "audience": "Kiran under pressure to soften a finding",
+        "stakes": "praise from partners conflicts with the larger trust of the report",
+        "format": "dialogue",
+        "requiredBeat": "Kiran reads the control failure aloud in plain words and leaves it in the report."
+      },
+      "scenario": "\"If we remove that sentence, the report stops being ours,\" Kiran says into the conference phone. The audit memo is open, and the redline file has softened control failure into process note. A partner praises the gentler wording. Kiran's cursor rests on accept change, with the report's larger trust on the other side. The junior auditor is listening silently, knowing the softened sentence will become tomorrow's precedent.",
+      "whatToDo": "Read the control failure aloud in plain words, reject the softening redline, and leave the finding where the report needs it.",
+      "whyItMatters": "The report serves more than the partner's comfort. Kiran protects the shared trust by refusing to make public truth smaller for private ease."
+    },
+    {
+      "exampleId": "ch06-ex04-astrid-microscope",
+      "title": "Astrid Takes the Midnight Slot",
+      "tags": [
+        "before_after",
+        "lab",
+        "allocation"
+      ],
+      "planSpec": {
+        "domain": "university lab allocation",
+        "audience": "Astrid deciding who gets scarce microscope time",
+        "stakes": "favoring her own project would injure the shared lab",
+        "format": "before_after",
+        "requiredBeat": "What is the bee owed when the swarm owns the microscope?"
+      },
+      "scenario": "Who owns a shared microscope at midnight? Astrid looks at the microscope calendar, the keycard log, and a sample tray from her own project. Before she posts the rotation, she traces every reserved hour. Her lab can trust the schedule only if she takes the inconvenient midnight slot herself. The frozen samples in the hallway cooler belong to three teams, not only to her midnight result.",
+      "whatToDo": "Post the transparent rotation, move her project to the midnight slot, and make the keycard log match the schedule everyone can inspect.",
+      "whyItMatters": "A shared lab fails when private advantage hides inside allocation. Astrid protects the swarm by taking the inconvenient cost her authority could have avoided."
+    },
+    {
+      "exampleId": "ch06-ex05-michael-hose",
+      "title": "Michael Runs the Wet Drill",
+      "tags": [
+        "vignette",
+        "firehouse",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "fire station training",
+        "audience": "Michael training in cold rain",
+        "stakes": "weather becomes an excuse to relax a life-saving drill",
+        "format": "vignette",
+        "requiredBeat": "At 7:40 p.m., Michael runs the hose-pack drill again because cold fingers are part of the real call."
+      },
+      "scenario": "At 7:40 in the evening, rain beads on the engine bay floor while Michael checks the drill timer. The hose pack is slick, and turnout gloves make everyone's fingers clumsy. The crew has already run it once indoors. Michael resets the timer outside because the real call will not wait for warm hands. The drill timer is wet, and the next emergency will not ask whether the indoor version felt sufficient.",
+      "whatToDo": "Run the hose-pack drill again in the rain, keep the turnout gloves on, and train the movement under the conditions that a call may actually bring.",
+      "whyItMatters": "Cold and wet do not cancel the duty. Michael is not performing toughness; he is making the drill answer to the conditions where lives depend on it."
+    },
+    {
+      "exampleId": "ch06-ex06-isabel-payroll",
+      "title": "Isabel Follows the Discount Into Payroll",
+      "tags": [
+        "postmortem",
+        "co-op",
+        "wages"
+      ],
+      "planSpec": {
+        "domain": "cooperative grocery board",
+        "audience": "Isabel voting on member discounts",
+        "stakes": "a popular discount would undercut staff wages",
+        "format": "postmortem",
+        "requiredBeat": "You see Isabel trace the discount through payroll before voting against applause."
+      },
+      "scenario": "You see the vote tally before anyone sees the payroll gap. Isabel keeps the member ballot beside the payroll sheet and the chalkboard sign promising five percent off. In her notes after the meeting, the turning point is the line where applause for members became fewer paid hours for staff. The applause for the discount is loudest before the payroll sheet shows who pays for it.",
+      "whatToDo": "Trace the discount through payroll, show the wage gap to the board, and vote against the popular cut when it injures the staff side of the co-op.",
+      "whyItMatters": "Generosity that quietly underpays workers is not common good. Isabel follows the benefit through the whole system before giving it her vote."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A committee can save money with cheaper hospital tubing, but no nurse has handled it yet. What question should guide the vote? The sample box is unopened, and the nurse lead has not yet tested the connector under pressure.",
+        "choices": [
+          "Will the savings look strong in the quarterly report?",
+          "Can the people who use the tubing safely live with this choice?",
+          "Will the supplier accept a shorter contract?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The duty is to the system that will use the tubing, not the appearance of savings. Contract details matter later, but the risk must be tested first.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A parks crew can finish a visible planting before cameras arrive, but a swing chain is loose. Which action fits social duty? The holiday photo is scheduled, but the child who uses the swing tomorrow will never see the camera.",
+        "choices": [
+          "Plant first because public confidence supports the park.",
+          "Remove the swing from use after the holiday.",
+          "Fix the loose chain first and let the photo wait."
+        ],
+        "correctIndex": 2,
+        "explanation": "Families carry the consequence of the loose chain. Public confidence built on an unfixed hazard is image, not duty. Removing it later delays the present safety act.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "An audit partner asks Kiran to soften a control failure because the client will dislike the wording. What should Kiran do? The redline is visible to everyone on the call, and the softened phrase would guide future audits.",
+        "choices": [
+          "Accept the softer wording to preserve the relationship.",
+          "Leave the failure in plain language if the report needs it to be true.",
+          "Move the sentence to a private note outside the report."
+        ],
+        "correctIndex": 1,
+        "explanation": "The report serves trust beyond the client relationship. Private notes or soft wording protect comfort while weakening the public function of the audit.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Before acting in a case where lab director can give herself the best microscope slot without anyone objecting. What action protects the swarm? The calendar looks neutral until the keycard log shows whose work keeps being displaced.",
+        "choices": [
+          "Ask the loudest lab members which slot they prefer.",
+          "Post a transparent rotation and take the inconvenient slot herself.",
+          "Keep the schedule informal to preserve flexibility."
+        ],
+        "correctIndex": 1,
+        "explanation": "The transparent rotation keeps the shared resource trustworthy. Asking only loud members or staying informal lets private advantage hide inside process.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Suppose a fire crew wants to skip a wet hose drill because they already ran it indoors. What makes repeating it in rain the better choice? The rain is the condition the crew is likely to meet when the motion matters.",
+        "choices": [
+          "It proves the crew is tougher than other stations.",
+          "It makes the drill more memorable through discomfort.",
+          "It tests the movement under conditions the real call may bring."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rain matters because real duty may arrive in rain. Toughness and memory are side issues; the point is matching training to the conditions of service.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Two details frame the case: a co-op grocery board loves a member discount until one director traces it into reduced staff hours. What does that reveal? The staff rota is open beside the discount proposal, and the hidden cost has a name.",
+        "choices": [
+          "Popular benefits can injure the same community they claim to serve.",
+          "Discounts can make price the relationship, forcing the co-op to invent new loyalty signals whenever costs rise.",
+          "Payroll should be kept separate from board votes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The discount has to be judged through the whole system. Rejecting all discounts is too broad, and separating payroll hides the consequence that needs judgment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "When a public leader says, I chose what made people praise the department, so it must have served the common good. What is wrong? Praise may be public, but the risk can still be shifted onto people outside the room.",
+        "choices": [
+          "Praise is an appearance that must be tested against actual effects.",
+          "Public praise reflects the traits currently fashionable in the audience, not necessarily the standard the office should serve.",
+          "Departments should avoid visible work whenever possible."
+        ],
+        "correctIndex": 0,
+        "explanation": "Praise may accompany good work, but it cannot prove it. The effects on the people who live with the decision must be examined.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "The manager refuses to correct a colleague because correction might look harsh. Which principle applies? The colleague may dislike the correction, yet the shared work needs the true standard spoken.",
+        "choices": [
+          "Correction should happen without anger, but public image cannot decide whether truth is spoken.",
+          "Correction should wait until everyone agrees it will feel kind.",
+          "Correction is unnecessary if the manager keeps private self-command."
+        ],
+        "correctIndex": 0,
+        "explanation": "The duty is truthful and social correction without imitation of vice. Waiting for universal comfort or keeping it private forever lets image overrule responsibility.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two choices both help one group. One quietly shifts risk onto another group; the other costs more but keeps the shared system healthy. Which better fits the bee and swarm?",
+        "choices": [
+          "The cheaper choice, because the first group benefits immediately.",
+          "The healthier system choice, because private gain cannot injure the whole that supports it.",
+          "Either choice, as long as the decision maker remains calm."
+        ],
+        "correctIndex": 1,
+        "explanation": "The bee image tests private advantage against the whole. Calm alone is not enough, and immediate benefit is suspect when another part of the system pays hidden costs.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Before choosing a convenient public action, what should you ask?",
+      "back": "Ask whether the whole group could live with the choice. Trace who carries the risk, cost, or hidden work before accepting convenience as duty.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What does the bee and swarm image test?",
+      "back": "It tests whether private gain injures the shared system that makes the gain possible. A bee cannot call itself successful while weakening the hive.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why strip praise and image from public responsibility?",
+      "back": "Praise and image are appearances. They may accompany good work, but they cannot prove that the action serves the people who must live with it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A report sounds harsh but true. What should govern the wording?",
+      "back": "The report's public function. If plain wording is needed for trust, softening it for comfort shifts risk onto everyone who relies on the report.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How does Antoninus rather than Caesar guide public work?",
+      "back": "Choose steadiness, deliberation, and service over display, command, and rank. Public duty should become cleaner, not more theatrical, under power.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Testing the Swarm of Impressions",
+    "coreSkill": "You practice judging public choices by their system effects. The skill is to strip away praise, convenience, and image, then ask who carries the consequence.",
+    "ifThenPlans": [
+      {
+        "context": "procurement",
+        "plan": "If a cheaper option looks clean on a spreadsheet, then put it in the hands of the people who will live with it before approving it."
+      },
+      {
+        "context": "public service",
+        "plan": "If a visible task competes with a quiet safety task, then fix the quiet hazard before improving the public image."
+      },
+      {
+        "context": "professional trust",
+        "plan": "If a true sentence would disappoint a powerful person, then test whether softening it would injure the report's purpose."
+      },
+      {
+        "context": "shared resources",
+        "plan": "If you control a scarce resource you also want, then make the allocation visible and take the cost your authority could hide."
+      }
+    ],
+    "twentyFourHourChallenge": "Before one convenient decision today, trace the consequence to the least visible person affected by it. Adjust the decision if that person pays the hidden cost.",
+    "weeklyPractice": "Once a week, review a public or team choice. Write the private benefit, the public image, and the system effect. Keep the choice only if all three can be defended."
+  },
+  "memorableLines": [
+    {
+      "text": "The bee cannot win against the hive.",
+      "location": "breakdown.fastRead",
+      "why": "It turns the swarm image into a plain operational test."
+    },
+    {
+      "text": "Antoninus becomes the model when public work tempts the soul to dress itself as power.",
+      "location": "breakdown.deepRead",
+      "why": "It lands the named source anchor without turning into citation."
+    },
+    {
+      "text": "Strip the appearance bare before the system pays for your comfort.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a compact action for judging public choices."
+    }
+  ]
+}

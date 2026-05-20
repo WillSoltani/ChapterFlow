@@ -1,0 +1,301 @@
+{
+  "chapterId": "the-righteous-mind-ch06",
+  "number": 6,
+  "title": "Taste Buds of the Righteous Mind",
+  "readingTimeMinutes": 12,
+  "hook": "A frozen scanner image can make three officers feel three different kinds of wrong.",
+  "counterintuition": "The paradox: two people can be equally moral and still taste different violations. The disagreement may not be intensity, but harm, fairness, loyalty, authority, or sanctity firing in different mouths.",
+  "tryThisNow": "When a reaction feels disproportionate today, label the receptor it touched before deciding whether the reaction was justified.",
+  "keyTakeaway": "Name the moral receptor before arguing about the verdict, because different triggers can produce real outrage for different reasons.",
+  "breakdown": {
+    "fastRead": "The training room screen freezes on a suitcase halfway through the scanner. Rachel replays three lane incidents and hands officers tag cards. One card says authority. One says harm. One says fairness.\n\nThe room stops treating every passenger call as the same kind of problem. A shouted refusal, a hidden blade, and a line-jumper all feel wrong, but not in the same way.\n\nThe taste-buds image lets you hear a rival's concern as another receptor firing, not as a defect in the tongue.",
+    "deepRead": "\"Why does the cheap shot feel different from the fake roster?\" Nicolas asks. The volunteer discipline panel has a folder of injuries, team jerseys on the backs of chairs, and a penalty chart that wants one clean scale. Nicolas slows the room before sanctions.\n\nHe asks for the receptor first.\n\nTreat moral taste buds as a framework for that pause. A cheap shot activates harm. A fake roster activates fairness. A captain abandoning teammates may activate loyalty. A player cursing an official may activate authority. The reactions can all be moral without being identical. Once the panel names the receptor, it can decide whether the penalty fits the concern.\n\nThis is the difference between a list and a framework. A list makes people memorize labels. A framework lets them see why the same word, wrong, can cover different moral experiences.\n\nGiulia faces the same problem in a nursing home. Incense smoke curls above the medication cart, and the first staff reaction is rule violation. Then she names sanctity and care in the same room: the ritual comforts the family, the cart protects residents with breathing problems. Now the decision can weigh competing receptors instead of pretending only one exists.",
+    "fullRead": "It took Kiran twenty player tickets to see that betrayal had its own taste. The moderation team had treated every guild dispute as cheating or harassment. Then a guild log showed a player secretly selling a shared map to a rival group. No rule category fit cleanly. The complaint was not only fairness. It was loyalty broken in public.\n\nThose moral triggers do not have to convince the whole mind first. They only have to touch the receptor built to notice them.\n\nWhich concern remains after the lab results come back clean? Lars asks that at the food co-op after a supplier sheet passes every safety test. The board still feels uneasy. The lab results answer harm. They do not answer purity, trust, or the co-op's promise about how food should be raised. Lars writes harm, fairness, and purity on the chalkboard before anyone chooses criteria.\n\nThis does not mean every receptor gets a veto. A receptor is an alarm, not a judge. It tells you what kind of concern has been touched. You still have to ask whether the alarm fits the facts, how strong it should be, and what it would cost to obey it.\n\nThe common mistake is to translate every alarm into your own favorite receptor. A fairness-first person hears loyalty and says favoritism. A care-first person hears authority and says domination. A sanctity-first person hears harm-only reasoning and says soullessness. Translation can clarify, but it can also erase the signal that made the other person move.\n\nPaula stands over a model courthouse with removable stone steps and a public comment binder. Some comments demand open access. Some want dignity for defendants. Some want authority in the entrance, a building that makes law feel weighty. If she hears all of them as aesthetic preferences, she misses the moral architecture inside the design fight.\n\nThe framework matters because it slows contempt. When a concern is not your strongest receptor, it can sound theatrical or backward. Naming it does not make you agree. It lets you answer the actual signal. The person across from you may not be tasting more or less morality. They may be tasting a different part of it.\n\nThe second step is proportion. Once you know the receptor, you still ask whether the reaction fits the facts. Loyalty may explain the guild anger, but it does not settle the punishment. Purity may explain the co-op's unease, but it does not automatically outrank safety or fairness. The taste tells you what was touched; judgment decides what should follow.\n\nThat matters most when two receptors collide inside one decision. A nursing home can honor a family ritual and still protect people whose lungs are fragile. A sports panel can punish injury differently from roster fraud without saying one outrage is fake. The vocabulary is useful because it lets the room keep more than one value visible long enough to choose.\n\nThat is why the metaphor is useful. It gives you more moral vocabulary without handing every alarm a veto."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-rachel-scanner-tags",
+      "title": "Rachel Replays the Scanner Footage",
+      "tags": ["security", "training", "triggers"],
+      "planSpec": {
+        "domain": "airport security training after inconsistent passenger judgments",
+        "audience": "trainers teaching staff to name moral triggers",
+        "stakes": "Rachel labels authority, harm, and fairness triggers before correcting officers.",
+        "format": "before_after",
+        "requiredBeat": "Rachel replays three lane incidents and has officers tag the receptor before debating the call."
+      },
+      "scenario": "The training room screen freezes on a suitcase halfway through the scanner. Rachel has scanner footage, tag cards, and a lane incident log spread across the table, with three new officers waiting for a rule they can use tomorrow morning. At first the officers argue each call as simply right or wrong. After replaying three incidents, she has them tag authority, harm, or fairness before debating the call.",
+      "whatToDo": "Tag the receptor before judging the officer's choice. Make the room say which kind of wrong it sees, then debate the response.",
+      "whyItMatters": "The same word, wrong, is hiding different alarms. Rachel gets better training only when officers can tell which alarm fired."
+    },
+    {
+      "exampleId": "ch06-ex02-nicolas-penalty-chart",
+      "title": "Nicolas Sorts the Outrage",
+      "tags": ["sports", "discipline", "sanctions"],
+      "planSpec": {
+        "domain": "sports league discipline panel reviewing taunting, cheating, and injury",
+        "audience": "volunteer panel members with mixed reactions",
+        "stakes": "Nicolas sorts the cases by receptor rather than penalty size.",
+        "format": "decision_point",
+        "requiredBeat": "Nicolas asks whether each outrage comes from harm, fairness, loyalty, or authority before setting sanctions."
+      },
+      "scenario": "\"Why does the cheap shot feel different from the fake roster?\" Nicolas asks, opening the discipline folder beside a row of team jerseys. The penalty chart gives point ranges, and two club reps are already pushing for matching suspensions, but the panel is lumping taunting, cheating, and injury together. Before sanctions are set, Nicolas must choose whether to rank anger by size or sort it by harm, fairness, loyalty, and authority.",
+      "whatToDo": "Sort each case by the receptor it activates before choosing penalty size. Then match the sanction to the kind of violation, not only the volume of outrage.",
+      "whyItMatters": "A cheap shot and a fake roster can both anger the room. They need different reasoning because they touch different moral receptors."
+    },
+    {
+      "exampleId": "ch06-ex03-giulia-incense-cart",
+      "title": "Giulia Names Sanctity and Care",
+      "tags": ["care", "ritual", "safety"],
+      "planSpec": {
+        "domain": "nursing home staff deciding whether a family ritual can stay",
+        "audience": "care staff balancing safety and dignity",
+        "stakes": "Giulia names sanctity and care triggers in the same room.",
+        "format": "scene",
+        "requiredBeat": "Giulia moves the incense discussion from rule violation to competing moral receptors."
+      },
+      "scenario": "A thin line of incense smoke curls above the plastic medication cart. Giulia sees a visitor badge on the table, an oxygen warning sign by the door, and two aides ready to call the ritual a rule violation. Before the evening round, she has to decide whether to shut it down in safety language or name the sanctity and care receptors competing in the same hallway.",
+      "whatToDo": "Name both receptors before setting the rule. Protect breathing safety while recognizing that the ritual carries dignity for the family.",
+      "whyItMatters": "The incense is not only smoke to the family, and it is not only sacred to the staff. Giulia needs both alarms visible to choose well."
+    },
+    {
+      "exampleId": "ch06-ex04-kiran-guild-log",
+      "title": "Kiran Finds Betrayal in the Guild Log",
+      "tags": ["games", "moderation", "loyalty"],
+      "planSpec": {
+        "domain": "online game moderation team judging betrayal inside player guilds",
+        "audience": "moderators who see only rule violations",
+        "stakes": "Kiran distinguishes fairness cheating from loyalty betrayal in player complaints.",
+        "format": "postmortem",
+        "requiredBeat": "Kiran tags the complaints and changes which cases get mediation instead of bans."
+      },
+      "scenario": "It took Kiran, the game-moderation lead on the 7 p.m. escalation shift, twenty player tickets to see that betrayal had its own taste. The ticket queue called every guild fight cheating, and the canned reply template offered only warnings or bans. Then the guild log showed a member selling a shared map to rivals. Kiran stopped reaching for the ban button on every case, tagged loyalty betrayal separately, and moved some complaints into mediation.",
+      "whatToDo": "Tag loyalty betrayal apart from fairness cheating. Use bans for clear rule breaks and mediation when the wound is broken trust inside the guild.",
+      "whyItMatters": "A betrayal complaint can look like ordinary rule enforcement from outside. Kiran moderates better when he names the receptor the players are actually feeling."
+    },
+    {
+      "exampleId": "ch06-ex05-lars-supplier-sheet",
+      "title": "Lars Writes Purity on the Board",
+      "tags": ["co-op", "supplier", "purity"],
+      "planSpec": {
+        "domain": "food co-op board debating supplier standards",
+        "audience": "board members whose moral concerns talk past each other",
+        "stakes": "Lars maps purity, harm, and fairness before choosing criteria.",
+        "format": "dialogue",
+        "requiredBeat": "Which receptor is firing when Lars refuses a supplier that meets every safety rule?"
+      },
+      "scenario": "Which concern remains after the lab results come back clean? Lars stands by the co-op chalkboard with a supplier sheet in one hand and lab results in the other, while the produce manager waits to place the morning order. \"Safe is not the same as right for us,\" a board member says. Before the vote, Lars has to decide whether to call that irrational or map purity, harm, and fairness as separate criteria.",
+      "whatToDo": "Write the three receptors on the board, then test the supplier against each one. Do not let clean lab results answer every concern by default.",
+      "whyItMatters": "Safety data answer harm. They may not answer purity or trust. Lars keeps the board from arguing past itself by naming the separate alarms."
+    },
+    {
+      "exampleId": "ch06-ex06-paula-courthouse-model",
+      "title": "Paula Marks the Courthouse Comments",
+      "tags": ["architecture", "authority", "access"],
+      "planSpec": {
+        "domain": "architecture firm reviewing a courthouse redesign",
+        "audience": "designers navigating authority, access, and dignity",
+        "stakes": "Paula treats the building complaints as different moral receptors, not aesthetic preferences.",
+        "format": "reflection",
+        "requiredBeat": "You watch Paula mark which comments seek openness, which seek dignity, and which seek authority."
+      },
+      "scenario": "You stand in the county architecture studio over a model courthouse with removable stone steps. Paula, the project architect, has a public comment binder open beside it before the 4 p.m. design review, and the foam-core entrance keeps coming loose under her hand. One resident wants access without intimidation. Another wants defendants treated with dignity. A judge wants the entrance to carry authority. You watch Paula mark the comments by receptor before anyone calls them mere aesthetic preferences.",
+      "whatToDo": "Mark each comment by the moral concern it carries: access, dignity, authority, or safety. Then revise the model with those conflicts visible.",
+      "whyItMatters": "A building can trigger moral reactions before anyone talks about style. Paula designs better when she sees the values inside the complaints."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A security trainer sees officers react differently to a hidden knife, a line-jumper, and a shouted refusal. What should she teach first?",
+        "choices": [
+          "Name which moral receptor each incident activates.",
+          "Treat all reactions as the same intensity problem.",
+          "Ignore reactions and use only the written rule."
+        ],
+        "correctIndex": 0,
+        "explanation": "The incidents touch different alarms: harm, fairness, and authority. Naming the receptor clarifies the judgment before anyone debates penalties.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "At a volunteer hockey league discipline meeting, the panel feels equal outrage over a cheap shot that injured a player and a fake roster that changed a playoff result. Which move best applies the taste-buds frame?",
+        "choices": [
+          "Set the same penalty because outrage feels equal.",
+          "Sort injury and cheating into different receptors before choosing sanctions.",
+          "Dismiss both reactions because sports rules are artificial."
+        ],
+        "correctIndex": 1,
+        "explanation": "The cheap shot likely activates harm, while the roster activates fairness. Equal heat does not mean identical moral structure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A nursing home ritual creates incense smoke near medication carts. Staff see safety, while family sees dignity. What should the lead do?",
+        "choices": [
+          "Ban the ritual immediately because safety is the only moral issue.",
+          "Allow it anywhere because ritual always outranks rules.",
+          "Name both care and sanctity concerns, then set a rule that protects breathing and dignity."
+        ],
+        "correctIndex": 2,
+        "explanation": "The lead should not flatten the conflict. Naming both receptors makes the practical rule sharper and less dismissive.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A game moderation team treats every guild dispute as cheating, but players complain most about betrayal. What should change?",
+        "choices": [
+          "Create a separate path for loyalty breaches that may need mediation rather than only bans.",
+          "Ban every betrayal complaint because feelings are too subjective.",
+          "Ignore guild disputes unless money changes hands."
+        ],
+        "correctIndex": 0,
+        "explanation": "Betrayal activates loyalty more than ordinary fairness. A mediation path fits that wound better than treating every case as a standard cheat.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "At a food co-op board meeting, a supplier sheet passes every safety test, but members still resist because the farm seems to violate the co-op's promise about how food should be raised. Which next step is most useful?",
+        "choices": [
+          "Tell the board lab results settle every moral concern.",
+          "Map purity, harm, and fairness separately before deciding standards.",
+          "Drop all standards that cannot be measured in the lab."
+        ],
+        "correctIndex": 1,
+        "explanation": "Lab results answer harm well. They may not answer purity or trust, so the board needs to name the extra receptor before deciding its weight.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A courthouse redesign gets comments about access, dignity, and authority. What does the taste-buds metaphor help the architects avoid?",
+        "choices": [
+          "Treating all comments as style preferences with no moral content.",
+          "Letting judges decide every design choice.",
+          "Assuming public comments should always control architecture."
+        ],
+        "correctIndex": 0,
+        "explanation": "The comments carry different moral receptors. The metaphor helps architects hear values in design reactions without handing over every decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "In a neighborhood mediation, one resident objects because the parking plan treats renters unfairly while another objects because it betrays long-time neighbors. Why do they talk past each other?",
+        "choices": [
+          "They are reacting through different moral receptors while using the same word, wrong.",
+          "One person is moral and the other is not.",
+          "Moral receptors are literal organs that cannot communicate."
+        ],
+        "correctIndex": 0,
+        "explanation": "The shared word hides different triggers. The metaphor is a framework, not biology, and it helps explain why both reactions feel real.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "During a staff dispute, a leader says a reaction to a badge policy is disproportionate before asking whether it touched authority, dignity, or belonging. What analytic step is missing?",
+        "choices": [
+          "Checking whether the reaction is popular.",
+          "Naming the receptor touched before judging the size of the response.",
+          "Replacing all moral terms with legal terms."
+        ],
+        "correctIndex": 1,
+        "explanation": "You cannot evaluate proportion well until you know the kind of concern. A loyalty alarm and a harm alarm call for different tests.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A committee can either list moral labels abstractly or make members tag live cases by receptor. Which approach is stronger?",
+        "choices": [
+          "Listing labels, because examples add confusion.",
+          "Tagging live cases, because the framework matters only when people can feel which trigger is active.",
+          "Neither, because moral reactions cannot be compared."
+        ],
+        "correctIndex": 1,
+        "explanation": "The receptor idea is practical, not vocabulary trivia. Live cases train people to identify the active trigger before debating the verdict.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Two reactions both say wrong but feel different. What should you name?",
+      "back": "Name the receptor: harm, fairness, loyalty, authority, sanctity, dignity, or another moral trigger. The same word can cover different alarms.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What does the taste-buds image help you remember?",
+      "back": "People may not be tasting more or less morality. They may be tasting different moral concerns, so first identify the receptor that fired.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why is a receptor not the same as a final judgment?",
+      "back": "A receptor signals that a concern has been touched. You still have to test whether the alarm fits the facts and what response it deserves.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A safety result comes back clean, but concern remains. What might still be active?",
+      "back": "Purity, loyalty, authority, dignity, or trust may still be active. Clean harm data do not automatically answer every moral receptor.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How do receptor labels reduce contempt?",
+      "back": "They keep unfamiliar concerns from looking like stupidity. You can still disagree, but you answer the actual moral signal instead of a flattened version.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to tag the receptor before judging the reaction. This turns a vague wrong into a more precise concern, which makes disagreement easier to evaluate.",
+    "ifThenPlans": [
+      {
+        "context": "training",
+        "plan": "If people argue over incidents as simply right or wrong, then make them tag the moral receptor before choosing a response."
+      },
+      {
+        "context": "policy",
+        "plan": "If data answer one concern but the group stays uneasy, then ask what receptor remains untouched by the data."
+      },
+      {
+        "context": "design",
+        "plan": "If public comments sound aesthetic, then mark which comments express access, dignity, authority, or safety."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone's reaction feels too large, then label the trigger before deciding whether the response is fair."
+      }
+    ],
+    "twentyFourHourChallenge": "Catch one strong reaction today and label its receptor in a sentence: this touched harm, fairness, loyalty, authority, sanctity, dignity, or order.",
+    "weeklyPractice": "Once a week, review three conflicts and tag the receptor in each. Then write whether the alarm was accurate, too loud, too quiet, or aimed at the wrong target."
+  },
+  "memorableLines": [
+    {
+      "text": "The taste-buds image lets you hear a rival's concern as another receptor firing, not as a defect in the tongue.",
+      "location": "breakdown.fastRead",
+      "why": "It lands the source metaphor with a vivid image and an anti-contempt payoff."
+    },
+    {
+      "text": "He asks for the receptor first.",
+      "location": "breakdown.deepRead",
+      "why": "The short sentence turns the abstract framework into a repeatable editorial move."
+    },
+    {
+      "text": "A receptor is an alarm, not a judge.",
+      "location": "breakdown.fullRead",
+      "why": "It prevents the metaphor from becoming automatic endorsement of every reaction."
+    }
+  ]
+}

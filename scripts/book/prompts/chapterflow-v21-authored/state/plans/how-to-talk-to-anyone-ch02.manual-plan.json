@@ -1,0 +1,186 @@
+{
+  "chapterId": "how-to-talk-to-anyone-ch02",
+  "number": 2,
+  "title": "How to Know What to Say After You Say \"Hi\"",
+  "coreMove": "After hello, place one useful handle into the exchange and return one of their own words so the next sentence has somewhere to go.",
+  "sourcePressure": "Conversation-continuation unit covering techniques 10 through 23: matching mood, giving easy hooks, using context and visible objects, richer introductions, repeated words, spotlighting, parroting, and encore prompts.",
+  "chapterSpecificMisunderstanding": "The weak version is clever small talk. The useful version is building conversational fuel from context, introductions, repeated words, and prompts.",
+  "sourceAlignmentTerms": [
+    "conversation hooks",
+    "matching mood",
+    "visible objects",
+    "richer introductions",
+    "repeated words",
+    "spotlighting",
+    "parroting",
+    "encore prompts"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Small talk is not small",
+      "The hardest part is after hi",
+      "Ask better questions"
+    ],
+    "counterintuition": [
+      "You should always talk less",
+      "Silence is always golden",
+      "Questions are all that matter"
+    ],
+    "tryThisNow": [
+      "Ask someone how their day is going",
+      "Repeat the last word they said",
+      "Prepare three questions before lunch"
+    ],
+    "examples": [
+      "elevator weather chat",
+      "conference lanyard opener",
+      "neighbor mailbox conversation",
+      "first date banter"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a specialty cheese counter during a Saturday tasting line",
+      "audience": "a new cheesemonger who panics after greeting shoppers",
+      "stakes": "whether the line keeps moving and a hesitant shopper buys something unfamiliar",
+      "format": "dialogue",
+      "requiredBeat": "after the shopper says she needs something not too barnyard, he slides the ash-rind sample forward and repeats not too barnyard as the handle for the next question",
+      "firstImage": "a slate board dusted with crumbs from an ash-rind cheese",
+      "mustInclude": [
+        "tasting pick",
+        "chalk price tag",
+        "wax paper"
+      ],
+      "mustAvoid": [
+        "restaurant waiter script",
+        "generic sales pitch"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a dog adoption meet-and-greet in a shelter yard",
+      "audience": "a volunteer who knows the animals but not how to draw out visitors",
+      "stakes": "whether a cautious family learns enough to consider a shy older dog",
+      "format": "scene",
+      "requiredBeat": "when the father mentions quiet mornings, the volunteer kneels beside the blanket and turns quiet mornings into the next question instead of listing traits",
+      "firstImage": "a frayed blue leash looped through the shelter yard fence",
+      "mustInclude": [
+        "adoption card",
+        "treat pouch",
+        "shade tarp"
+      ],
+      "mustAvoid": [
+        "pet rescue sob story",
+        "generic empathy lesson"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a rare-book fair booth where a collector pauses at a travel atlas",
+      "audience": "a bookseller who tends to lecture about provenance too early",
+      "stakes": "whether a browser becomes engaged before drifting to the next aisle",
+      "format": "vignette",
+      "requiredBeat": "he notices the collector touching the foldout map, offers one concrete hook about the pencil route, then asks what coastline caught her eye",
+      "firstImage": "a foldout map held flat by two velvet weights",
+      "mustInclude": [
+        "pencil route",
+        "glassine sleeve",
+        "booth placard"
+      ],
+      "mustAvoid": [
+        "academic lecture",
+        "auction price negotiation"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a neighborhood tool library orientation for first-time members",
+      "audience": "a coordinator introducing strangers without making them recite biographies",
+      "stakes": "whether new members talk to each other and return for the repair night",
+      "format": "before_after",
+      "requiredBeat": "instead of names plus jobs, she introduces each person with the object they came to borrow and one practical reason, giving everyone an immediate hook",
+      "firstImage": "a pegboard with empty outlines where borrowed tools should hang",
+      "mustInclude": [
+        "laminated checkout card",
+        "tile cutter",
+        "repair-night sign"
+      ],
+      "mustAvoid": [
+        "corporate icebreaker",
+        "classroom introductions"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a planetarium lobby after a meteor-shower lecture",
+      "audience": "a shy docent trying to keep visitors talking after the lights come up",
+      "stakes": "whether visitors ask follow-up questions or leave with unanswered confusion",
+      "format": "predict_reveal",
+      "requiredBeat": "she hears a teenager repeat the word radiant, points to the lobby star chart, and predicts the next question will be about where to look tonight",
+      "firstImage": "a glowing star chart mounted beside the exit doors",
+      "mustInclude": [
+        "red flashlight",
+        "meteor pamphlet",
+        "ticket stub"
+      ],
+      "mustAvoid": [
+        "science-class explanation",
+        "generic ask-open-ended-questions advice"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a winter farmers market booth selling seed packets to apartment gardeners",
+      "audience": "a grower who needs to help novices without drowning them in details",
+      "stakes": "whether a first-time gardener leaves with a feasible plan instead of embarrassment",
+      "format": "decision_point",
+      "requiredBeat": "when the shopper says tiny balcony twice, the grower picks up the compact basil packet and uses tiny balcony as the doorway to narrow choices",
+      "firstImage": "seed packets clipped to twine with miniature clothespins",
+      "mustInclude": [
+        "compact basil packet",
+        "balcony photo on phone",
+        "cash box"
+      ],
+      "mustAvoid": [
+        "garden center upsell",
+        "generic hobby advice"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "select the best conversational handle from visible context",
+      "turn repeated words into natural expansion prompts",
+      "compare rich introductions with flat name-and-title introductions",
+      "diagnose when a question gives no easy material to answer"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In your next casual exchange, listen for one repeated or vivid word, say that word back lightly, and add one concrete question that lets the person expand from it.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch07",
+  "number": 7,
+  "title": "Offering the Prize",
+  "coreMove": "Present the offer as selective value and make the room qualify for fit instead of chasing its approval.",
+  "sourcePressure": "Prizing chapter: the presenter protects value by avoiding needy seller energy, qualifying fit, and showing that the opportunity has selective value rather than begging for approval.",
+  "chapterSpecificMisunderstanding": "The writer must avoid turning prizing into false aloofness; the stance must come from real value, scarcity, and fit.",
+  "sourceAlignmentTerms": [
+    "prize",
+    "scarcity",
+    "selective value",
+    "status",
+    "fit",
+    "needy seller energy",
+    "qualify"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Stop needing the deal",
+      "Make them chase you",
+      "The seller is the prize"
+    ],
+    "counterintuition": [
+      "Needing approval lowers value",
+      "Scarcity changes the room",
+      "Fit beats persuasion"
+    ],
+    "tryThisNow": [
+      "Act less available",
+      "List why you are valuable",
+      "Ask if they qualify"
+    ],
+    "examples": [
+      "dating-style scarcity move",
+      "founder pretending to walk away",
+      "generic luxury product waitlist"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "specialty logistics firm offering limited cold-storage capacity to seafood exporters",
+      "audience": "a logistics director who usually begs for volume commitments",
+      "stakes": "the wrong customer fills scarce freezer slots and blocks higher-fit shipments",
+      "format": "decision_point",
+      "requiredBeat": "when the exporter asks for a discount, she points to the remaining pallet calendar and asks whether their harvest timing actually fits the open slots",
+      "firstImage": "a freezer-slot calendar clipped to a clipboard with frost on the edge",
+      "mustInclude": [
+        "pallet calendar",
+        "harvest timing",
+        "temperature guarantee"
+      ],
+      "mustAvoid": [
+        "generic warehouse capacity pitch"
+      ]
+    },
+    {
+      "domain": "private aviation maintenance shop choosing which charter fleet to onboard",
+      "audience": "a shop owner tempted to justify every premium labor rate",
+      "stakes": "taking the wrong fleet crowds out existing aircraft and damages turnaround promises",
+      "format": "dialogue",
+      "requiredBeat": "he stops defending the hourly rate and asks for the fleet's maintenance history before deciding whether the shop can take them",
+      "firstImage": "a turbine blade inspection sheet beside a hangar key ring",
+      "mustInclude": [
+        "maintenance history",
+        "hangar slot chart",
+        "turnaround promise"
+      ],
+      "mustAvoid": [
+        "generic service pricing negotiation"
+      ]
+    },
+    {
+      "domain": "specialized language school pitching executive immersion seats to a diplomatic institute",
+      "audience": "a program director whose limited cohort seats must feel selective for real reasons",
+      "stakes": "the institute wants seats for unprepared candidates who would slow the cohort",
+      "format": "vignette",
+      "requiredBeat": "she slides the placement rubric forward and explains that the seat opens only if the candidate can sustain the second-week negotiation drill",
+      "firstImage": "a placement rubric beside a stack of passport copies",
+      "mustInclude": [
+        "placement rubric",
+        "cohort cap",
+        "negotiation drill"
+      ],
+      "mustAvoid": [
+        "generic education enrollment pitch"
+      ]
+    },
+    {
+      "domain": "rare-instrument restorer discussing a violin repair with a touring soloist's manager",
+      "audience": "an artisan whose scarcity is real but can sound arrogant if mishandled",
+      "stakes": "accepting a rushed repair risks the instrument and the restorer's waiting list",
+      "format": "reflection",
+      "requiredBeat": "she sets the repair calendar between them and asks whether the tour schedule permits the curing time before quoting price",
+      "firstImage": "a cracked violin rib under a bench lamp beside a linen repair calendar",
+      "mustInclude": [
+        "repair calendar",
+        "curing time",
+        "tour itinerary"
+      ],
+      "mustAvoid": [
+        "generic luxury craft example"
+      ]
+    },
+    {
+      "domain": "AI-chip allocation manager briefing robotics startups on a constrained pilot batch",
+      "audience": "a technical business lead with more demand than supply",
+      "stakes": "chips go to teams that cannot validate the batch while better-fit pilots wait",
+      "format": "postmortem",
+      "requiredBeat": "after a chaotic meeting, he notes where he pitched availability instead of making each startup prove its test rig readiness",
+      "firstImage": "a sealed antistatic chip tray beside a pilot-readiness checklist",
+      "mustInclude": [
+        "chip tray",
+        "test rig checklist",
+        "batch quantity"
+      ],
+      "mustAvoid": [
+        "generic tech scarcity pitch"
+      ]
+    },
+    {
+      "domain": "heritage seed cooperative selecting restaurant partners for a limited bean harvest",
+      "audience": "a cooperative manager who must protect member growers from needy distribution deals",
+      "stakes": "a chef treats the beans as garnish and wastes a crop that could build the cooperative's reputation",
+      "format": "scene",
+      "requiredBeat": "she asks the chef to name the menu slot and purchase cadence before revealing how many sacks are available",
+      "firstImage": "a cloth sack of speckled beans on a stainless prep counter",
+      "mustInclude": [
+        "bean sack",
+        "menu slot",
+        "purchase cadence"
+      ],
+      "mustAvoid": [
+        "generic farm-to-table sales story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish prizing from arrogance",
+      "choose qualification questions tied to real scarcity",
+      "analyze needy seller signals",
+      "evaluate whether fit is substantive or performative"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one real constraint that makes your offer selective, then turn it into a fit question you can ask before discussing terms.",
+  "readingTimeMinutes": 12
+}

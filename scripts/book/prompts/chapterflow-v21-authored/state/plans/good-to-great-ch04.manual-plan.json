@@ -1,0 +1,190 @@
+{
+  "chapterId": "good-to-great-ch04",
+  "number": 4,
+  "title": "Confront the Brutal Facts",
+  "coreMove": "Build a room where hard facts can enter without becoming despair or blame.",
+  "sourcePressure": "The source pairs brutal facts with the Stockdale paradox and supports question-led leadership, debate, autopsies without blame, and red-flag mechanisms.",
+  "chapterSpecificMisunderstanding": "The weak version confuses candor with cruelty or faith with denial.",
+  "sourceAlignmentTerms": [
+    "brutal facts",
+    "Stockdale paradox",
+    "questions not answers",
+    "debate",
+    "autopsies without blame",
+    "red-flag mechanisms"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "boss slams bad numbers on a table",
+      "grim war-room speech",
+      "truth hurts opener"
+    ],
+    "counterintuition": [
+      "optimism is dangerous",
+      "brutal honesty means being blunt",
+      "facts fix everything alone"
+    ],
+    "tryThisNow": [
+      "ask for feedback",
+      "write one hard truth",
+      "be honest today"
+    ],
+    "examples": [
+      "generic bad quarterly results meeting",
+      "family truth-telling",
+      "school report card"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "neonatal infection-control huddle",
+      "audience": "a nurse manager whose unit is proud of survival rates",
+      "stakes": "a small infection cluster could become fatal if staff protect feelings over facts",
+      "format": "scene",
+      "requiredBeat": "the manager asks three questions before offering any answer, then places anonymous line-access timestamps on the huddle rail so debate starts with facts, not blame",
+      "firstImage": "tiny name bands clipped beside a sink timer at dawn",
+      "mustInclude": [
+        "line-access timestamps",
+        "anonymous cases",
+        "sink timer"
+      ],
+      "mustAvoid": [
+        "medical blame drama",
+        "heroic diagnosis"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "rural bank loan portfolio review",
+      "audience": "a bank president seeing early stress in farm equipment loans",
+      "stakes": "denial could damage borrowers and the bank before harvest receipts arrive",
+      "format": "decision_point",
+      "requiredBeat": "the president hands each lender a red card they can raise when optimism outruns evidence, then keeps the card raised for his own favorite borrower",
+      "firstImage": "red index cards beside a tray of stamped loan folders",
+      "mustInclude": [
+        "red cards",
+        "farm equipment loans",
+        "favorite borrower"
+      ],
+      "mustAvoid": [
+        "financial panic",
+        "generic risk management"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "avalanche patrol snowpack briefing",
+      "audience": "a patrol leader deciding whether to open a high bowl after new snow",
+      "stakes": "ticket pressure is rising while a weak layer still sits under the slope",
+      "format": "predict_reveal",
+      "requiredBeat": "the leader asks each patroller what evidence would change their mind before slicing the snow pit and watching the slab shear cleanly",
+      "firstImage": "a snow saw teeth-down across a blue shadow in the pit wall",
+      "mustInclude": [
+        "snow pit",
+        "weak layer",
+        "ticket pressure"
+      ],
+      "mustAvoid": [
+        "thrill-seeking avalanche story",
+        "fear as the lesson"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "regional theater subscription decline",
+      "audience": "an artistic director whose loyal patrons still praise the season",
+      "stakes": "applause hides a shrinking base that could close the second stage",
+      "format": "postmortem",
+      "requiredBeat": "the director runs an autopsy without blame by pinning empty-seat maps beside patron praise letters and asking what both can be true",
+      "firstImage": "a row map dotted with gray empty-seat stickers",
+      "mustInclude": [
+        "empty-seat map",
+        "praise letters",
+        "second stage"
+      ],
+      "mustAvoid": [
+        "artistic taste debate",
+        "fundraising generic"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "food pantry waitlist mechanism",
+      "audience": "a pantry director who hears only the smooth weekly volunteer report",
+      "stakes": "families are being turned away quietly while volunteers protect the director from discouraging news",
+      "format": "before_after",
+      "requiredBeat": "the director installs a brass counter bell for every turned-away family and lets the sound interrupt the packing line until the waitlist is visible",
+      "firstImage": "a brass service bell beside torn produce boxes",
+      "mustInclude": [
+        "counter bell",
+        "turned-away count",
+        "packing line"
+      ],
+      "mustAvoid": [
+        "charity sentimentality",
+        "generic scarcity lesson"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "aircraft maintenance torque-error review",
+      "audience": "a maintenance supervisor after a nonfatal inspection miss",
+      "stakes": "mechanics will hide future misses if the review becomes punishment",
+      "format": "dialogue",
+      "requiredBeat": "the supervisor asks what made the wrong torque setting easy to choose, then labels the socket tray and signoff screen as system facts before naming any person",
+      "firstImage": "a torque wrench lying on a foam tray with one empty cutout",
+      "mustInclude": [
+        "torque wrench",
+        "signoff screen",
+        "wrong setting"
+      ],
+      "mustAvoid": [
+        "aviation disaster suspense",
+        "scapegoat mechanic"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "pair hard evidence with continued resolve",
+      "choose question-led truth gathering",
+      "recognize blame-free autopsy design",
+      "distinguish red-flag mechanisms from complaint boxes"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next decision, write one question that would let bad news enter the room and one sentence that keeps the team from treating that news as defeat.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Stockdale",
+      "detail": "the source names the Stockdale paradox as confronting current facts without flinching while maintaining faith in eventual success",
+      "useIn": "both",
+      "phrasingHint": "The Stockdale paradox keeps the room from choosing between clean facts and a living future."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

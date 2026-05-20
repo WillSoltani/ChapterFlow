@@ -1,0 +1,187 @@
+{
+  "chapterId": "the-like-switch-ch08",
+  "number": 8,
+  "title": "The Perils and Promise of Relationships",
+  "coreMove": "Pair openness with verification so trust grows at the speed of evidence rather than the speed of good feeling.",
+  "sourcePressure": "The ch08 source closes on trust, truth bias, online deception, and guarded optimism. It must preserve both relationship promise and risk without collapsing into cynicism or naive warmth.",
+  "chapterSpecificMisunderstanding": "Turning the warning into total suspicion, or treating warm signals and polished online presentation as proof.",
+  "sourceAlignmentTerms": [
+    "trust",
+    "truth bias",
+    "online deception",
+    "misrepresentation",
+    "verification",
+    "guarded optimism",
+    "relationship risk"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "truth bias",
+      "detail": "The ch08 sidecar names truth bias as a risk because people default toward believing socially coherent signals.",
+      "useIn": "both",
+      "phrasingHint": "Truth bias keeps normal life moving, but it becomes expensive when a polished signal is not backed by reality."
+    },
+    {
+      "kind": "event",
+      "name": "online misrepresentation",
+      "detail": "The source sidecar says online presentation can separate surface signals from underlying reality and deserves more verification.",
+      "useIn": "fullRead",
+      "phrasingHint": "A profile can feel coherent before anything meaningful has been checked; that is where trust needs to slow down."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Trust but verify",
+      "Online people can lie",
+      "Relationships are risky"
+    ],
+    "counterintuition": [
+      "trust is weakness",
+      "be cynical to stay safe"
+    ],
+    "tryThisNow": [
+      "Google someone before trusting them"
+    ],
+    "examples": [
+      "catfish romance cliche",
+      "generic dating app profile",
+      "phishing email scam"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a freelance illustrator considering a large online commission from a charming new client",
+      "audience": "a creator balancing opportunity with payment risk",
+      "stakes": "two weeks of unpaid work could wipe out rent money",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the illustrator slows trust by requiring a deposit and checking the business record even though the client feels warm and urgent",
+      "firstImage": "a color palette open beside an unsigned contract",
+      "mustInclude": [
+        "unsigned contract",
+        "deposit invoice",
+        "portfolio link"
+      ],
+      "mustAvoid": [
+        "romance scam or phishing shell"
+      ]
+    },
+    {
+      "domain": "a parent evaluating a private online tutor for a teenager",
+      "audience": "a parent who wants help without handing over trust too quickly",
+      "stakes": "a child will spend unsupervised video hours with a stranger",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What evidence matters more than the tutor profile: references, trial boundaries, or the speed of the friendly messages?",
+      "firstImage": [
+        "sample lesson PDF",
+        "video-call waiting room",
+        "reference email"
+      ],
+      "mustInclude": [
+        "generic school classroom"
+      ]
+    },
+    {
+      "domain": "a remote nonprofit board vetting a volunteer treasurer met through a forum",
+      "audience": "a board chair tempted by competence signals",
+      "stakes": "bank access could expose donor funds",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"He sounds perfect,\" Anna says, then separates signal from evidence by asking what has actually been verified before access is granted",
+      "firstImage": [
+        "board agenda",
+        "bank authorization form",
+        "forum profile"
+      ],
+      "mustInclude": [
+        "charity appeal repeat"
+      ]
+    },
+    {
+      "domain": "a community language app user invited to move a conversation off-platform",
+      "audience": "a user practicing guarded optimism without shutting down connection",
+      "stakes": "the relationship could be real, but the new channel removes safeguards",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "you keep the conversation warm while asking for slower steps and platform boundaries until claims and behavior align",
+      "firstImage": "a blinking off-platform invitation under a translation prompt",
+      "mustInclude": [
+        "translation prompt",
+        "privacy setting",
+        "voice-note request"
+      ],
+      "mustAvoid": [
+        "catfish romance cliche"
+      ]
+    },
+    {
+      "domain": "a small manufacturer approached by a polished distributor at a trade show",
+      "audience": "an owner balancing a promising partnership with due diligence",
+      "stakes": "one premature purchase order could trap inventory for months",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the owner enjoys the rapport at the booth but waits for references and a test order before granting exclusivity",
+      "firstImage": "sample parts arranged under bright trade-show lights",
+      "mustInclude": [
+        "sample parts",
+        "badge scanner",
+        "test order sheet"
+      ],
+      "mustAvoid": [
+        "generic sales handshake"
+      ]
+    },
+    {
+      "domain": "a tenant group receiving urgent messages from a supposed building inspector",
+      "audience": "a tenant organizer protecting neighbors without becoming suspicious of everyone",
+      "stakes": "residents might share personal details or miss a real safety notice",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:48 p.m., Marit compares the message style with verified city contact channels before forwarding anything to the building list",
+      "firstImage": "a phone screen glowing in a dim stairwell",
+      "mustInclude": [
+        "city contact page",
+        "building list",
+        "inspection notice"
+      ],
+      "mustAvoid": [
+        "online fraud statistics or crime taxonomy"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply truth bias to ambiguous trust decisions",
+      "choose verification that preserves openness",
+      "identify when online signals outrun evidence",
+      "evaluate guarded optimism against cynicism and naivete"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one trust decision and split it into two columns: what feels promising and what has been verified. Slow only the unverified part.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

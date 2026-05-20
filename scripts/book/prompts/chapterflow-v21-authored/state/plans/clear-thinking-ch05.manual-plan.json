@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch05",
+  "number": 5,
+  "title": "The Inertia Default",
+  "coreMove": "Ask what is continuing only because it was already moving.",
+  "sourcePressure": "Inertia is the default of comfort, habit, familiarity, and change resistance. The chapter contrasts passive continuation with deliberately built clarity-supporting defaults.",
+  "chapterSpecificMisunderstanding": "Mistaking inertia for laziness or motivation failure instead of familiarity defending itself.",
+  "sourceAlignmentTerms": [
+    "inertia default",
+    "comfort",
+    "habit",
+    "familiarity",
+    "change resistance",
+    "passive carryover",
+    "deliberate defaults"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "inertia in the four-default map",
+      "detail": "the official excerpt-backed bundle names inertia as one of the four defaults and the heading index supports comfort, habit, change resistance, and familiarity",
+      "useIn": "deepRead",
+      "phrasingHint": "Inertia often does not feel like a decision; it feels like the least strange next step."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for inertia default",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think inertia default is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Camille",
+      "domain": "a regional newspaper subscription desk",
+      "audience": "a reader facing inertia default in a concrete regional newspaper subscription desk decision",
+      "stakes": "whether Camille preserves judgment quality before the situation slides into habit-building mechanics",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Camille performs the chapter move by setting the call sheet beside the red pencil, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the call sheet lying beside the red pencil in the regional newspaper subscription desk",
+      "mustInclude": [
+        "call sheet",
+        "red pencil"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "habit-building mechanics",
+        "reusing a previous chapter's regional newspaper subscription desk shell"
+      ]
+    },
+    {
+      "protagonistName": "Lea",
+      "domain": "a city permit office",
+      "audience": "a reader facing inertia default in a concrete city permit office decision",
+      "stakes": "whether Lea preserves judgment quality before the situation slides into habit-building mechanics",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lea performs the chapter move by setting the oxygen bag beside the shift board, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the shift board in the city permit office",
+      "mustInclude": [
+        "oxygen bag",
+        "shift board"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "habit-building mechanics",
+        "reusing a previous chapter's city permit office shell"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "a dental practice scheduling room",
+      "audience": "a reader facing inertia default in a concrete dental practice scheduling room decision",
+      "stakes": "whether Margaux preserves judgment quality before the situation slides into habit-building mechanics",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Margaux performs the chapter move by setting the boarding pass beside the complaint card, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the boarding pass against the counter in the dental practice scheduling room",
+      "mustInclude": [
+        "boarding pass",
+        "complaint card"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "habit-building mechanics",
+        "reusing a previous chapter's dental practice scheduling room shell"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "a university lab inventory closet",
+      "audience": "a reader facing inertia default in a concrete university lab inventory closet decision",
+      "stakes": "whether Juliette preserves judgment quality before the situation slides into habit-building mechanics",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Juliette performs the chapter move by setting the will copy beside the notepad, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the notepad in the university lab inventory closet",
+      "mustInclude": [
+        "will copy",
+        "notepad"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "habit-building mechanics",
+        "reusing a previous chapter's university lab inventory closet shell"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "a theater rehearsal calendar",
+      "audience": "a reader facing inertia default in a concrete theater rehearsal calendar decision",
+      "stakes": "whether Chloe preserves judgment quality before the situation slides into habit-building mechanics",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chloe performs the chapter move by setting the order rail beside the ticket spike, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the order rail in the theater rehearsal calendar",
+      "mustInclude": [
+        "order rail",
+        "ticket spike"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "habit-building mechanics",
+        "reusing a previous chapter's theater rehearsal calendar shell"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "a farm co-op ordering system",
+      "audience": "a reader facing inertia default in a concrete farm co-op ordering system decision",
+      "stakes": "whether Manon preserves judgment quality before the situation slides into habit-building mechanics",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Manon performs the chapter move by setting the satellite phone beside the route map, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the route map in the farm co-op ordering system",
+      "mustInclude": [
+        "satellite phone",
+        "route map"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "habit-building mechanics",
+        "reusing a previous chapter's farm co-op ordering system shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Ask what is continuing only because it was already moving.",
+      "detect the weak generic version: Mistaking inertia for laziness or motivation failure instead of familiarity defending itself.",
+      "distinguish inertia default from nearby drift into habit-building mechanics"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where inertia default is active, then write the exact next visible move that would perform this chapter's move: ask what is continuing only because it was already moving.",
+  "readingTimeMinutes": 12
+}

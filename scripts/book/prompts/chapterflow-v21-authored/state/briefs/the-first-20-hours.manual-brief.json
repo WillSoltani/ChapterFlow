@@ -1,0 +1,95 @@
+{
+  "bookId": "the-first-20-hours",
+  "title": "The First 20 Hours: How to Learn Anything... Fast!",
+  "author": "Josh Kaufman",
+  "thesisParagraph": "The book argues that busy adults can make serious progress in new skills when they stop pricing the first step as if it were elite mastery. Its practical target is usable competence: deconstruct one skill, remove barriers, practice the most important pieces first, get fast feedback, and push through the awkward early hours until the skill starts returning value. The case chapters test that method across body skills, technical skills, motor habit repair, strategic games, performance, and outdoor conditions, showing that each skill needs a different practice shape while the core discipline stays the same.",
+  "coreIdeas": [
+    {
+      "name": "Competence before mastery",
+      "oneSentence": "A skill becomes startable when the first target is useful competence rather than elite performance.",
+      "mentalMove": "replace the prestige target with a concrete threshold that can be tested in real life",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Practice loop design",
+      "oneSentence": "Progress accelerates when the learner chooses one skill, one target, low friction, fast feedback, and dense corrected reps.",
+      "mentalMove": "build the session so the right repetition is easy to start and easy to correct",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Learning serves contact",
+      "oneSentence": "Research, models, checklists, and memory work are useful only when they sharpen the next attempt.",
+      "mentalMove": "turn preparation into a prediction, scaffold, practitioner cue, or test",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Skill-specific shape",
+      "oneSentence": "Yoga, programming, typing, Go, ukulele, and windsurfing each demand a different kind of narrowing.",
+      "mentalMove": "ask what kind of difficulty this skill actually contains before choosing the practice format",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch05.source",
+        "ch06.source",
+        "ch07.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Friction is information, not verdict",
+      "oneSentence": "The ugly opening phase should change the practice design before it becomes a story about talent.",
+      "mentalMove": "read frustration as a design signal and keep the corrected rep alive long enough to learn",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch06.source"
+      ]
+    }
+  ],
+  "targetReader": "A capable adult with a crowded schedule who keeps postponing useful skills because the standard in their head is too grand, the first sessions feel humiliating, or preparation keeps replacing practice.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make each skill feel materially different from the last one"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no invented research citations or memoir scenes"
+    ]
+  },
+  "voiceSpecimens": [
+    "A huge goal gets smaller the moment you ask what would make the skill useful by Friday.",
+    "The first rep does not need to impress anyone. It needs to tell you what to fix next.",
+    "A tutorial is helping only if your hands behave differently after it closes.",
+    "When the old habit feels smoother, that is exactly when the corrected motion needs protection.",
+    "Narrow the practice until the world can answer back without drowning you.",
+    "Good enough is not a shrug. It is a line you can test."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains that readers should optimize their learning journey for maximum growth.",
+    "Josh Kaufman argues that all people can master anything if they simply believe in themselves.",
+    "In today's fast-paced world, skill acquisition is more important than ever before.",
+    "Take a moment to reflect deeply on your dreams and unlock your potential.",
+    "The key takeaway is that practice matters, so try to practice consistently."
+  ],
+  "teachingArc": "The arc starts by shrinking the target from mastery to usable competence, then turns that target into a deliberate practice loop and a bounded learning loop. The case chapters then vary the loop by skill type: simplify a body practice, make code executable, repair a motor habit, read one strategic pattern, prepare a tiny public performance, and stage a live environmental subskill. By the end, the reader should be able to diagnose what kind of practice a new skill actually needs before the first twenty hours begin.",
+  "forbiddenMoves": [
+    "Do not promise expertise, fluency, safety, or therapeutic outcomes from a twenty-hour commitment.",
+    "Do not invent named studies, famous anecdotes, or author memoir scenes absent from the frozen source.",
+    "Do not flatten every case chapter into the same narrow-practice lesson.",
+    "Do not let preparation, gear, or research become the hero instead of corrected contact with the skill."
+  ]
+}

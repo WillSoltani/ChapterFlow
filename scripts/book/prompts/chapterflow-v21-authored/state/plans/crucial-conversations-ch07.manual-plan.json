@@ -1,0 +1,185 @@
+{
+  "chapterId": "crucial-conversations-ch07",
+  "number": 7,
+  "title": "STATE My Path: How to Speak Persuasively, Not Abrasively",
+  "coreMove": "Put a difficult story into the pool without presenting it as a verdict.",
+  "sourcePressure": "STATE structures a hard message: facts first, owned story second, invitation third, tentative language throughout, and active encouragement for testing.",
+  "chapterSpecificMisunderstanding": "Treating STATE as a polished feedback sandwich or a way to sound less harsh while accusing someone.",
+  "sourceAlignmentTerms": [
+    "STATE",
+    "Share your facts",
+    "Tell your story",
+    "Ask for others' paths",
+    "Talk tentatively",
+    "Encourage testing",
+    "observable facts"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first",
+      "soft wording is always safer"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional blood bank quality lead raising concerns about mislabeled courier pickups",
+      "audience": "a quality lead addressing a respected logistics partner",
+      "stakes": "mislabeled samples could delay transfusions if the concern lands as an accusation",
+      "format": "scene",
+      "requiredBeat": "the lead begins with three scan records, states the story as a concern about handoff drift, asks what she is missing, and invites correction",
+      "firstImage": "Three barcode scan records are printed on pink thermal paper.",
+      "mustInclude": [
+        "scan records",
+        "courier route sheet",
+        "sample cooler seal"
+      ],
+      "mustAvoid": [
+        "generic peer feedback"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "architecture firm project architect telling a principal the client presentation is overpromising",
+      "audience": "a mid-level architect speaking upward before a city-library pitch",
+      "stakes": "the firm may win work it cannot deliver and burn its reputation with the client",
+      "format": "decision_point",
+      "requiredBeat": "the architect chooses facts from the model and timeline before saying the story that the pitch is outrunning the design capacity",
+      "firstImage": "\"Wait,\" someone says, and a foam massing model sits under a desk lamp beside a city-library RFP.",
+      "mustInclude": [
+        "massing model",
+        "RFP timeline",
+        "rendering draft"
+      ],
+      "mustAvoid": [
+        "generic executive pushback"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "radio newsroom producer confronting a host about unattributed claims on air",
+      "audience": "a producer who needs editorial standards without making the host defensive",
+      "stakes": "a correction notice and station credibility are at stake",
+      "format": "dialogue",
+      "requiredBeat": "the producer shares the timestamp and transcript first, then says she is worried the sourcing line is getting blurry, and asks what happened in prep",
+      "firstImage": "The first signal is sensory before it is social: a red ON AIR bulb cools above a marked-up transcript.",
+      "mustInclude": [
+        "timestamp",
+        "transcript",
+        "source sheet"
+      ],
+      "mustAvoid": [
+        "generic media ethics lecture"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "wildland fire crew boss speaking to a veteran sawyer about ignoring escape-route checks",
+      "audience": "a crew boss younger than the sawyer but responsible for safety",
+      "stakes": "one bad ridge call could trap the crew during a wind shift",
+      "format": "predict_reveal",
+      "requiredBeat": "the boss tests two openings, one verdict and one STATE path, then chooses the version that starts with observed skipped checks and invites the sawyer's view",
+      "firstImage": "You notice a topo map is weighted by a dirty Pulaski head on a tailgate before anyone names the problem.",
+      "mustInclude": [
+        "topo map",
+        "escape-route card",
+        "radio log"
+      ],
+      "mustAvoid": [
+        "generic command authority confrontation"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "university dining allergy coordinator addressing a chef who improvises substitutions",
+      "audience": "a coordinator needing to protect students without insulting culinary judgment",
+      "stakes": "a student with a sesame allergy could be exposed by an undocumented swap",
+      "format": "before_after",
+      "requiredBeat": "the coordinator converts you are reckless into two substitution records, a worry about uncontrolled allergens, and a direct invitation to challenge the interpretation",
+      "firstImage": "Only later does the miss become obvious: a laminated allergen matrix is clipped above a stainless prep sink.",
+      "mustInclude": [
+        "allergen matrix",
+        "substitution record",
+        "sesame label"
+      ],
+      "mustAvoid": [
+        "generic food-service complaint"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "documentary film editor telling a director a cut manipulates chronology",
+      "audience": "an editor who respects the director but sees a truth problem in the edit",
+      "stakes": "festival submission pressure could lead to a credibility-damaging cut",
+      "format": "reflection",
+      "requiredBeat": "the editor writes the facts from the footage bins, owns the story as concern about viewer trust, and asks the director to test it against the raw sequence",
+      "firstImage": "What changes when a timeline of colored video clips fills a dark editing monitor?",
+      "mustInclude": [
+        "footage bins",
+        "festival deadline",
+        "raw sequence marker"
+      ],
+      "mustAvoid": [
+        "generic creative disagreement"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "start with observable data instead of accusation",
+      "own a story without weakening the concern",
+      "ask for the other path before defending",
+      "encourage testing and survive the first disagreement"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Draft your hard message in five labeled lines: facts, story, ask, tentative phrase, testing invitation. Delete any adjective that pretends your story is a fact.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "chapterId": "the-checklist-manifesto-ch04",
+  "number": 4,
+  "title": "The Idea",
+  "coreMove": "Let people act near the facts while using short communication checks to keep the system aligned.",
+  "sourcePressure": "The source contrasts Katrina with Wal-Mart to show the difference between trapped central response and decentralized local execution connected by disciplined communication.",
+  "chapterSpecificMisunderstanding": "The weak version praises decentralization as freedom. The real move is local action plus a tight signal structure.",
+  "sourceAlignmentTerms": ["Katrina", "Wal-Mart", "local execution", "central bottleneck", "communication", "coordination device"],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Katrina",
+      "detail": "The source sidecar identifies Katrina as the contrast case for a central response structure that could not move authority and signal fast enough.",
+      "useIn": "both",
+      "phrasingHint": "Katrina shows what happens when the field keeps waiting for a center that cannot see fast enough."
+    },
+    {
+      "kind": "event",
+      "name": "Wal-Mart local response during Katrina",
+      "detail": "The source sidecar contrasts Wal-Mart with Katrina as a system where local actors had more room to respond close to facts on the ground.",
+      "useIn": "fullRead",
+      "phrasingHint": "Wal-Mart matters here because local action did not mean silence; it meant action with a usable signal back to the system."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["Decentralization beats command", "The people closest to the problem should decide"],
+    "counterintuition": ["Less control creates more control", "Freedom needs structure"],
+    "tryThisNow": ["Delegate one decision today", "Ask your team what they need"],
+    "examples": ["generic hurricane relief", "office approval bottleneck", "same construction coordination shell as ch03"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Megan, a flood relief supply hub coordinator",
+      "audience": "disaster volunteers deciding what can be local and what must be shared",
+      "stakes": "neighborhood shelters wait for diapers and insulin coolers while the central desk tries to approve every load",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Megan gives shelter leads authority to reroute essentials but requires a two-line status update before each truck leaves",
+      "firstImage": "cardboard softening under rainwater at the loading dock",
+      "mustInclude": ["insulin cooler", "truck bay", "shelter status board"],
+      "mustAvoid": ["Katrina recreation", "hero volunteer montage"]
+    },
+    {
+      "domain": "Marco, an airport ground delay operations lead",
+      "audience": "transport coordinators balancing local gates and network consequences",
+      "stakes": "gate crews improvise aircraft moves that strand wheelchairs and baggage if nobody shares the signal",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Marco authorizes gate agents to swap two stands locally, then requires the wheelchair desk and baggage lead to confirm the move in one shared channel",
+      "firstImage": "At 6:18 a.m., Marco sees three delayed flights blinking amber on the ramp board",
+      "mustInclude": ["ramp board", "wheelchair desk", "baggage cart lane"],
+      "mustAvoid": ["pilot cockpit", "generic airline delay"]
+    },
+    {
+      "domain": "Frida, a rural ambulance mutual-aid dispatcher",
+      "audience": "emergency coordinators who cannot run every call from one desk",
+      "stakes": "two towns have ambulances moving toward the same crash while a dialysis call goes uncovered",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Frida lets field crews choose the closest unit but makes each crew state destination, coverage gap, and next available time over the radio",
+      "firstImage": "\"Say the gap before you roll,\" Frida says into the headset",
+      "mustInclude": ["radio console", "county map", "dialysis pickup card"],
+      "mustAvoid": ["hospital trauma bay from ch01", "central dispatcher as omniscient hero"]
+    },
+    {
+      "domain": "Nicolas, a hotel evacuation desk manager",
+      "audience": "hospitality leaders handling a smoke alarm across departments",
+      "stakes": "housekeeping, security, and front desk each act quickly but leave one stairwell unchecked",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Nicolas redesigns the alarm response so each floor captain can clear rooms locally but must call in stairwell status and guest count",
+      "firstImage": "It took Nicolas one false alarm to see the missing stairwell was a communication failure",
+      "mustInclude": ["stairwell C", "guest count sheet", "security radio"],
+      "mustAvoid": ["generic fire drill", "clipboard in lobby"]
+    },
+    {
+      "domain": "Aanya, a community kitchen meal-surge organizer",
+      "audience": "nonprofit teams serving a sudden influx without formal hierarchy",
+      "stakes": "allergy meals and hot trays drift apart when volunteers solve local problems silently",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aanya assigns local station decisions but makes each station move a colored magnet when allergy stock, hot trays, or drivers change",
+      "firstImage": "You hear the foil lids crackle while three vans idle outside the kitchen door",
+      "mustInclude": ["colored magnets", "allergy meal rack", "driver keys"],
+      "mustAvoid": ["restaurant service rush", "generic charity inspiration"]
+    },
+    {
+      "domain": "Henrik, a wildfire animal shelter intake lead",
+      "audience": "temporary shelter teams matching fast local care with shared records",
+      "stakes": "animals are fed and medicated locally but owners cannot be reunited if tags and cage moves vanish",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Henrik allows each aisle team to move animals for safety but requires every move to hit the intake photo board within two minutes",
+      "firstImage": "How do you move fast without losing the animal someone is searching for?",
+      "mustInclude": ["intake photo board", "temporary cage tags", "medication bin"],
+      "mustAvoid": ["paperwork lecture", "lost pet melodrama"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["pair local authority with communication", "distinguish decentralization from drift", "identify central bottlenecks", "evaluate short status signals"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one active workflow, name one decision that should move closer to the facts and the one signal that must come back when it moves.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch04",
+  "number": 4,
+  "title": "Everything Matters Equally",
+  "coreMove": "Break task democracy by ranking work according to leverage, not neatness, urgency, or volume.",
+  "sourcePressure": "Part 1 begins by dismantling the lie that everything matters equally and pushes the reader from task democracy toward sharper ranking.",
+  "chapterSpecificMisunderstanding": "Repeating the 80/20 idea as a slogan without forcing a hard ranking.",
+  "sourceAlignmentTerms": [
+    "everything matters equally",
+    "lie",
+    "ranking",
+    "leverage",
+    "priority",
+    "task democracy"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "Everything Matters Equally as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport gate operations during a snow delay",
+      "audience": "gate supervisor",
+      "stakes": "one wrong sequencing call strands a crew overnight",
+      "format": "decision_point",
+      "requiredBeat": "she stops answering every passenger question and ranks crew reassignment above snack vouchers and signage",
+      "firstImage": "a gate podium screen blinking crew timeout in red",
+      "mustInclude": [
+        "gate podium",
+        "crew timeout alert",
+        "voucher box"
+      ],
+      "mustAvoid": [
+        "generic travel chaos"
+      ]
+    },
+    {
+      "domain": "cardiology clinic backlog",
+      "audience": "clinic administrator",
+      "stakes": "three urgent patient callbacks are buried under routine forms",
+      "format": "scene",
+      "requiredBeat": "he moves the callback list above insurance scans after seeing which tasks alter care today",
+      "firstImage": "a fax tray split into routine forms and three highlighted callback slips",
+      "mustInclude": [
+        "fax tray",
+        "callback slips",
+        "scan queue"
+      ],
+      "mustAvoid": [
+        "generic healthcare busyness"
+      ]
+    },
+    {
+      "domain": "wildfire evacuation shelter setup",
+      "audience": "relief logistics lead",
+      "stakes": "families arrive in two hours",
+      "format": "vignette",
+      "requiredBeat": "she ranks generator fuel above folding cots because refrigeration protects insulin and infant formula first",
+      "firstImage": "yellow fuel cans lined beside a taped shelter floor plan",
+      "mustInclude": [
+        "fuel cans",
+        "insulin cooler",
+        "floor plan"
+      ],
+      "mustAvoid": [
+        "generic disaster preparedness"
+      ]
+    },
+    {
+      "domain": "jewelry studio before a trade show",
+      "audience": "studio owner",
+      "stakes": "one wholesale buyer decides the season's cash flow",
+      "format": "before_after",
+      "requiredBeat": "she leaves the display labels unfinished and repairs the clasp on the necklace the buyer requested by name",
+      "firstImage": "a tiny broken clasp under a magnifying lamp beside unprinted labels",
+      "mustInclude": [
+        "magnifying lamp",
+        "broken clasp",
+        "buyer request card"
+      ],
+      "mustAvoid": [
+        "generic artisan hustle"
+      ]
+    },
+    {
+      "domain": "university lab grant submission",
+      "audience": "principal investigator",
+      "stakes": "missing preliminary figure will kill the proposal",
+      "format": "postmortem",
+      "requiredBeat": "the lab sees that polished bios mattered less than one messy-but-real figure showing the effect",
+      "firstImage": "a blotchy preliminary figure taped over a pile of polished bios",
+      "mustInclude": [
+        "preliminary figure",
+        "bios",
+        "submission portal"
+      ],
+      "mustAvoid": [
+        "generic academic deadline"
+      ]
+    },
+    {
+      "domain": "rail maintenance night shift",
+      "audience": "track foreman",
+      "stakes": "morning service depends on one switch",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts ballast cleanup can wait, then proves the jammed switch is the item that decides whether trains move",
+      "firstImage": "a headlamp beam fixed on a frozen rail switch at 2:10 a.m.",
+      "mustInclude": [
+        "headlamp",
+        "rail switch",
+        "maintenance radio"
+      ],
+      "mustAvoid": [
+        "generic maintenance checklist"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "rank by consequence instead of volume",
+      "resist comfort tasks",
+      "identify the task that changes the field"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take today's task list and mark the one item that makes the largest consequence move, even if it is not the easiest to finish.",
+  "readingTimeMinutes": 12
+}

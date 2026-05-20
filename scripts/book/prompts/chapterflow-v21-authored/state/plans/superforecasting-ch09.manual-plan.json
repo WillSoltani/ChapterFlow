@@ -1,0 +1,121 @@
+{
+  "chapterId": "superforecasting-ch09",
+  "number": 9,
+  "title": "Superteams",
+  "coreMove": "Preserve disagreement long enough for it to improve the collective estimate before the group settles — a reservation voiced before consensus is a forecasting asset; the same reservation voiced after costs more and helps less.",
+  "sourcePressure": "Superteams are not defined by harmony but by structure that keeps disagreement alive. Groupthink can degrade even a smart group when disagreement becomes socially expensive. Psychologically safe pushback and aggregation of multiple views before convergence are the mechanism. More people do not automatically yield better forecasting — it depends entirely on whether dissent remains operationally available at the moment it could still change the estimate.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'encourage diverse opinions' as a team norm, or 'run team brainstorms.' The precise point is structural and temporal: disagreement must remain socially safe to voice at the exact moment it would actually change the forecast — before the group has implicitly converged — not as a retrospective debrief.",
+  "sourceAlignmentTerms": ["superteam", "groupthink", "psychological safety", "dissent", "aggregation", "collective forecasting", "conformity pressure"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with 'Two heads are better than one' — generic teamwork truism",
+      "opening with generic management advice about diversity or inclusion"
+    ],
+    "counterintuition": [
+      "'The best team is not the most harmonious team' — accurate but needs the structural mechanism, not just the slogan"
+    ],
+    "tryThisNow": [
+      "any prompt about scheduling team brainstorms or check-ins — misses the temporal specificity",
+      "'Tell your team you value dissent' — the chapter argues structural safety, not declarations"
+    ],
+    "examples": [
+      "any example where diversity of opinion is encouraged as a culture statement without the specific beat of dissent changing a collective estimate",
+      "any domain from ch01–08"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Groupthink takes different forms in high-stakes professional teams — the variety of openings should show that the conformity pressure is universal, not specific to boardrooms"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "emergency room triage team where a junior nurse has a different read on a patient's presentation than the attending physician",
+      "audience": "a triage team of four people, fifteen minutes into an ambiguous presentation with competing explanations",
+      "stakes": "the 30-minute window in which a different treatment path could change the outcome",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the attending has named a preliminary diagnosis and the team's language has shifted to organizing around it; the junior nurse catches a detail in the medication history that suggests a different cause — she hesitates because the attending has been right every time this month; the required beat is her deciding to voice it anyway, and the team reversing course on the preliminary path",
+      "firstImage": "a curtained bay with a medication blister pack on the tray that the attending has not picked up",
+      "mustInclude": ["the attending's preliminary diagnosis already shaping team language", "the nurse's specific detail (medication history)", "her hesitation and the social cost of voicing it", "the reversal"],
+      "mustAvoid": ["clinical medicine detail that overwhelms the dissent beat", "any domain overlap with earlier medical examples"]
+    },
+    {
+      "domain": "architecture firm design review where the structural engineer disagrees with the team's preferred building envelope",
+      "audience": "a design team of six with a senior partner whose direction has shaped the last two weeks of work",
+      "stakes": "a planning submission due in five days and a structural concern that could require significant redesign",
+      "format": "dialogue_first",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the structural engineer has been holding back a concern about the façade's load path because the partner is personally attached to the design; at the penultimate review, she names it — 'I need to flag something I should have said last week' — the team pauses a design the partner loved, adds two days to the schedule, and avoids a costly planning revision",
+      "firstImage": "a design review table covered in printed plans and model sections, the team's energy already pointed toward submission",
+      "mustInclude": ["the engineer's prior hesitation", "the explicit naming of the concern she had been holding", "the schedule impact and the avoided worse outcome"],
+      "mustAvoid": ["architecture or structural engineering technical content", "making the partner unsympathetic"]
+    },
+    {
+      "domain": "mountain rescue coordination team debating a route decision with a dissenting team member",
+      "audience": "a rescue team of five, two hours into a search, with one member who doubts the team lead's route choice",
+      "stakes": "reaching the missing hiker before weather closes in; the wrong route wastes 90 minutes",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "one team member has a different read on the terrain from her local knowledge — she has not voiced it because the team lead has more formal training and the group is moving — she speaks up at the trail fork; the team runs a 90-second discussion, switches routes, and finds the hiker 40 minutes later on the route she advocated",
+      "firstImage": "a trail fork at treeline with fog rolling in, the team already moving in the default direction",
+      "mustInclude": ["the member's local knowledge vs. the lead's formal training", "the 90-second discussion at the fork", "the outcome on the switched route"],
+      "mustAvoid": ["search and rescue procedure content", "dramatizing the terrain danger"]
+    },
+    {
+      "domain": "pharmaceutical company's drug safety committee considering whether to extend a trial monitoring period",
+      "audience": "a committee of seven safety scientists reviewing adverse event signals from a Phase III trial",
+      "stakes": "extending the monitoring adds $3M in cost; not extending risks missing a delayed signal",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the committee chair has stated her view (the current monitoring period is sufficient) before the open discussion — the framing effect means four members have already adjusted their internal estimates toward her position; one member explicitly disagrees and provides a quantified rationale; the committee runs a structured anonymous estimate round before the final discussion, which reveals that three of the four apparent supporters had private reservations they had not voiced",
+      "firstImage": "a committee room where the chair's opening statement is being written in the minutes before members have spoken",
+      "mustInclude": ["the chair's premature framing", "the structured anonymous estimate round", "the three suppressed reservations revealed by the round"],
+      "mustAvoid": ["FDA regulatory content", "pharmaceutical industry jargon"]
+    },
+    {
+      "domain": "navy submarine crew during a tactical exercise where a sonar technician hesitates to report an anomalous contact",
+      "audience": "a crew of eight on watch, with an exercise score that rewards confident decision-making",
+      "stakes": "the exercise scenario outcome and the real-life habit being drilled",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the sonar tech has a contact that does not fit the expected exercise pattern — she is unsure whether to report it or classify it as noise; the exercise culture has historically rewarded quick confident calls; she reports it anyway as 'possible contact, requires confirmation' — the watch officer investigates and finds it is relevant to the scenario; the exercise debrief credits the report as the critical decision",
+      "firstImage": "a sonar display with an anomalous trace that does not match the expected exercise signature",
+      "mustInclude": ["the exercise culture pressure toward confident quick calls", "her 'possible contact, requires confirmation' report", "the debrief credit for the hedged report"],
+      "mustAvoid": ["naval warfare content", "technical sonar detail"]
+    },
+    {
+      "domain": "jury deliberation room where one holdout asks an uncomfortable factual question that the other eleven had moved past",
+      "audience": "eleven jurors who have formed a consensus and a twelfth who has a specific question about the timeline evidence",
+      "stakes": "a verdict that will stand unchallenged if the twelfth does not voice the concern",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the eleven have been discussing punishment and sentencing implications for forty minutes — effectively post-verdict — when the twelfth juror asks about a fifteen-minute gap in the timeline that no one had addressed; the room goes quiet; the foreperson requests to see the exhibit again; the gap turns out to be significant; the deliberation restarts from the finding of guilt rather than from sentencing",
+      "firstImage": "a jury room with verdict forms already pulled from an envelope, the foreperson's pen hovering over the first signature line",
+      "mustInclude": ["the eleven already in post-verdict mode", "the twelfth's specific timeline question", "the restart of deliberation from the finding"],
+      "mustAvoid": ["legal procedure detail beyond what the scene requires", "any specific crime type that could distract from the team dynamics lesson"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when groupthink is operating — the signals that dissent has become socially expensive",
+      "apply the aggregation principle — why the group estimate should be formed before individual views influence each other",
+      "analyze what structural conditions make psychological safety operational rather than just declared",
+      "distinguish collective forecasting from committee consensus — what is preserved in the former that is lost in the latter",
+      "evaluate when a team's agreement is genuine convergence vs. conformity pressure"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before your next team discussion on a forecast or decision, run a one-minute silent estimate round: each person writes a number before anyone speaks. Collect them before opening discussion. Note whether the range is wider or narrower than you expected. If the range collapses to near-consensus after you speak first, your opening framing was already shaping the group's estimates — that is groupthink beginning, not wisdom emerging.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one analytical passage explaining why dissent feels like disloyalty in real teams — the social cost is genuine, not imagined — and why the structural intervention matters more than asking people to be braver",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

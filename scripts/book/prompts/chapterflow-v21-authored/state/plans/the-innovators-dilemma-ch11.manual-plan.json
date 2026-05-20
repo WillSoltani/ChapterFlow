@@ -1,0 +1,132 @@
+{
+  "chapterId": "the-innovators-dilemma-ch11",
+  "number": 11,
+  "title": "The Dilemmas of Innovation: A Summary",
+  "coreMove": "See disruption as a pattern of interacting dilemmas rather than a single mistake to fix — the full picture matters more than any one lever.",
+  "sourcePressure": "The final chapter gathers the book's recurring tensions into a pattern. No single mechanism explains incumbent failure. Customer dependence, value-network filtering, upmarket gravity, organizational mismatch, capability context-dependence, and strategy-process rigidity interact and compound. The conclusion is a diagnostic map: this is why disruption is structurally hard for strong firms, and it requires holding multiple pressures together.",
+  "chapterSpecificMisunderstanding": "Reading the summary as a checklist where checking each box prevents disruption, when the book's point is that these pressures interact in ways that resist single-factor solutions — solving one constraint can leave you trapped by another.",
+  "sourceAlignmentTerms": [
+    "dilemma",
+    "value network",
+    "customer dependence",
+    "organizational fit",
+    "capability",
+    "strategy process",
+    "rational incumbent behavior",
+    "interacting pressures"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'the game has changed' framing",
+      "generic 'are you the disruptor or the disrupted?' framing"
+    ],
+    "counterintuition": [
+      "generic 'great companies fail because of success' counter",
+      "generic 'innovation requires embracing failure' counter"
+    ],
+    "tryThisNow": [
+      "generic 'audit your innovation pipeline' prompt",
+      "generic 'run a disruption readiness assessment' prompt"
+    ],
+    "examples": [
+      "any scene that implies a checklist approach will solve the problem the book describes",
+      "any scene that frames one chapter's lesson as the solution to the whole book's dilemma"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Summary chapter examples should show multiple pressures operating at once, not a clean single-mechanism scenario."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "newspaper editor who has read all the analysis, understands the pressures, and still cannot act on all of them simultaneously",
+      "audience": "an experienced editor-in-chief who has studied the industry's structural challenges and has no illusions about what is happening",
+      "stakes": "understanding the dilemma clearly does not dissolve the resource constraints, customer commitments, and organizational structure that make each response costly",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Kate maps out the five interacting pressures on her newspaper — subscriber logic, advertiser dependence, legacy print infrastructure, newsroom capability in digital formats, and an editorial strategy built for the print cadence — and finds that resolving any one of them alone still leaves the other four in place. The map is the lesson, not a solution.",
+      "firstImage": "a whiteboard with five labeled pressures drawn as overlapping circles, none of them independent of the others",
+      "mustInclude": ["five labeled pressures named specifically", "the interaction between them", "the map as the end product — not a solution"],
+      "mustAvoid": ["implying that digital-first strategy solves the newspaper's dilemma"]
+    },
+    {
+      "domain": "hospital administrator navigating the tension between serving existing patients well and building capacity for a different kind of care",
+      "audience": "a COO at a regional hospital whose board expects excellence in current care delivery and also wants an innovation roadmap",
+      "stakes": "current patient excellence and future care model development compete for the same physician time, capital budget, and administrative attention",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Tom traces back through the last three years of decisions and finds that every choice that improved current patient outcomes consumed the resource that would have gone into the new care model — and every choice that invested in the new model was flagged by quality metrics as a distraction. Both kinds of failure were rationally generated.",
+      "firstImage": "a three-year decision log with capital allocations alternating between quality improvement and new model investment, both labeled 'priority' in different years",
+      "mustInclude": ["current excellence consuming new model capacity", "new model investment generating quality metric flags", "both as rationally generated failures"],
+      "mustAvoid": ["suggesting that hospitals should simply choose innovation over current care quality"]
+    },
+    {
+      "domain": "manufacturing plant manager confronting all four disruption pressures at once with no independent lever that resolves them",
+      "audience": "a plant manager at a mid-size industrial components manufacturer facing a lower-cost competitor entering from a simpler product category",
+      "stakes": "the plant's best customers want better versions of the existing product; the competitor is entering through a category the plant left behind; the plant's cost structure doesn't fit the lower-category market; and the plant's strategy planning cycle produces annual plans that can't incorporate what is learned monthly",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Vincent maps out which lever would help most and finds they are interdependent: fixing the cost structure requires volume that requires customers that are moving upmarket that require product improvements that require capital that competes with the lower-category investment. The decision point has no clean first move.",
+      "firstImage": "a whiteboard with arrows connecting four labeled constraints in a loop — no arrow points outward",
+      "mustInclude": ["four labeled constraints as interdependent", "the loop structure", "no clean first move as the explicit finding"],
+      "mustAvoid": ["suggesting that lean manufacturing or cost reduction is the answer"]
+    },
+    {
+      "domain": "urban planner discovering that the city's current neighborhood development success is generating the market-size mismatch that makes the next housing type invisible",
+      "audience": "a planning director whose department's successful mixed-use development program has attracted investment that prices out smaller-scale housing providers",
+      "stakes": "the planning success has changed the market conditions in a way that makes the smaller-scale housing type — the type the next group of residents needs — economically invisible to every developer the department funds",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hanna predicts that the housing pipeline is healthy based on the units approved and in development. The reveal shows that the pipeline is healthy for the customer segment the department's funding model serves — and that the segment the next cohort of residents represents is not in any developer's business model at current land values.",
+      "firstImage": "a development pipeline report showing strong unit counts beside an affordability gap chart showing a different segment underserved",
+      "mustInclude": ["healthy pipeline by current metrics", "gap segment absent from developer models", "the planning success as the cause of the gap"],
+      "mustAvoid": ["treating urban planning as uniquely resistant to disruption analysis"]
+    },
+    {
+      "domain": "school principal navigating the tension between serving current students and families and building capacity for a different kind of instruction",
+      "audience": "a principal at a high-performing traditional school whose parents expect excellence in the current model and whose board wants a hybrid-learning pilot",
+      "stakes": "parent satisfaction with the current model creates active resistance to the hybrid pilot; the hybrid pilot requires teacher time that the current model consumes; and the metrics the school reports don't capture what the hybrid model would learn",
+      "format": "postmortem",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Pablo's postmortem on the hybrid pilot's failure finds three simultaneous causes: parent resistance driven by current satisfaction, teacher time fully committed to the model that generates satisfaction scores, and reporting metrics that measured hybrid performance against the same outcomes as traditional instruction. No single cause was sufficient. All three were necessary.",
+      "firstImage": "a hybrid learning classroom used three times in the semester, the chairs still in traditional rows",
+      "mustInclude": ["three simultaneous causes named", "each cause insufficient on its own", "all three necessary"],
+      "mustAvoid": ["suggesting that parent resistance is the primary obstacle to school innovation"]
+    },
+    {
+      "domain": "public transit director synthesizing all dilemma pressures after a failed modernization initiative",
+      "audience": "a transit authority director whose three-year modernization plan addressed each known constraint and still produced a failed outcome",
+      "stakes": "the modernization plan addressed customer requirements, organizational structure, market fit, capability gaps, and strategy process — and each individual change was implemented — but the outcome did not improve",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Lin's reflection after the failed initiative is the chapter's endpoint: the plan fixed each constraint that was named, but the constraints interacted in ways the plan did not model. Fixing the organizational structure without changing the customer base meant the new structure answered the old customers. Fixing the strategy process without changing the capabilities meant the new process generated plans the team couldn't execute. The dilemmas are named; the lesson is that naming them does not dissolve the interactions.",
+      "firstImage": "a modernization initiative report card with each initiative checked as completed and an overall outcome marked as not achieved",
+      "mustInclude": ["each constraint addressed and checked", "the interaction between constraints producing the failure", "naming the dilemmas without resolving them as the honest conclusion"],
+      "mustAvoid": ["suggesting that the failure means modernization was wrong or impossible"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 3, "analyze": 3, "evaluate": 2 },
+    "transferEmphasis": 0.9,
+    "skillTargets": [
+      "name the multiple pressures operating simultaneously in a described organizational failure",
+      "recognize when a single-lever solution leaves the other pressures in place",
+      "apply the full dilemma pattern to a non-technology incumbent",
+      "evaluate whether a described innovation response addresses one dilemma or the interaction among them",
+      "distinguish rational incumbent behavior from incompetent management in a described scenario",
+      "identify which combination of pressures is active in a described organizational situation"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one challenge your organization is treating as a single-lever problem. Write down two other pressures that are connected to it. Then write one sentence about what you would need to address all three — and whether that is currently possible.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that names all the book's main dilemmas in a compressed diagnostic list — not as a summary of chapter titles, but as interacting pressures the reader can test against their own situation",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

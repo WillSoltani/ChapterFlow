@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch09",
+  "number": 9,
+  "title": "Batch",
+  "readingTimeMinutes": 12,
+  "hook": "The tenth vial tells Aanya something the hundredth vial would have hidden until evening.",
+  "counterintuition": "Large batches can feel efficient because motion stays uninterrupted. The hidden cost is distance from feedback: problems grow quietly until correction is expensive.",
+  "tryThisNow": "Take one piece of work you planned to finish in a large batch. Cut the next pass to a smaller unit and name the feedback you will inspect before continuing.",
+  "keyTakeaway": "Shrink batch size until problems appear close to the work, while correction is still cheap and learning is still fast.",
+  "breakdown": {
+    "fastRead": "Aanya holds a tray of capped vials under the barcode light. The courier cutoff is at 4:30. The old routine labels everything at the end of the day, then discovers mistakes when retesting is expensive.\n\nShe splits the run into ten-sample trays.\n\nA smaller batch puts the mistake close enough to the hand that made it. The barcode scanner catches a label drift on vial seven, not vial seventy. The work may pause sooner, but the correction is smaller. That is the point: small batches shorten the distance between action and feedback.",
+    "deepRead": "\"Ship one flag to one cohort,\" Chris says, with the feature-flag panel open beside support tickets. The SaaS team is used to monthly releases. When onboarding breaks, nobody knows which change did it. One flagged change lets the support queue answer sooner.\n\nContinuous deployment matters when each release tightens the distance between a change and the truth it produces.\n\nBatch size is not a productivity aesthetic. It is a learning lever. A large batch creates inventory-like waste: work piles up before anyone knows whether it is right. By the time feedback arrives, the team has already invested in the wrong direction. A small batch exposes defects, confusion, or demand while the work is still flexible.\n\nThis can feel inefficient at first. The stop-and-check rhythm interrupts the clean flow of production. But the flow was not clean if errors were traveling quietly through it.\n\nFast feedback is worth the interruption.\n\nAanya writes the batch size on the pharmacy report before the packet debate resumes. Three patients are enough to reveal whether the dosing line is confusing, but not so few that every odd result becomes noise. That is the practical middle: small enough to find the defect early, large enough to trust the signal. The next print run waits until the instruction survives that batch.",
+    "fullRead": "Chiara lays a stack of cream envelopes beside a color proof. The wedding order is large, and the press can run all afternoon. The ink note from yesterday mentions a slight drift after warm-up. She prints twenty envelopes first and checks them against the proof before committing the whole batch.\n\nThe smaller run saves the afternoon from a beautiful mistake.\n\nLarge batches hide problems because they postpone the moment when reality gets a vote. That is true in printing, software, cafeterias, factories, and media calendars. The longer the team waits to inspect, the more work piles up behind the same untested assumption. Correction becomes emotional because the waste is now visible and expensive.\n\nWhere could feedback arrive one unit earlier?\n\nMathieu sees it in a school cafeteria. A stainless-steel lunch tray holds two sample portions, and the nutrition director is about to order pallets for the district. Instead, he tests one lunch line at one school and watches the waste bin tally. District-wide rollout would hide which item failed. One school makes failure specific enough to fix.\n\nSmall batches do not mean small ambition. They mean shorter learning distance. The goal is to keep the work in contact with feedback so defects do not become systems and weak assumptions do not become inventory. Continuous deployment is the software version of this idea, but the principle travels. Release less at once. Inspect sooner. Adjust while the mistake is still local.\n\nNiklas learns this after a factory calibration scare. The sensor panel blinks beside a calibration wrench, and the old plan would have touched every machine before running a control batch. He calibrates one machine, runs a short control batch, and checks the calibration log. One wrong setting is annoying. Twenty wrong settings are rework disguised as efficiency.\n\nThere is a balance. If the batch becomes so tiny that the feedback is noisy or the setup cost overwhelms the learning, the team should widen it. The right size is the smallest unit that can reveal the problem reliably. Too large hides truth. Too small creates static.\n\nIsabel uses the same rule with a newsletter calendar. Thirty empty email slots invite a month of subject lines. Before filling them, she sends two subject lines to small lists and waits for the open-rate window. If neither line works, the calendar stays empty for a reason. The team learns before the month is written.\n\nA big batch makes failure late and general. A small batch makes failure early and specific.\n\nBatch size is a learning choice, not a moral preference. The team is not trying to make work tiny for its own sake. It is trying to keep mistakes close to their cause. When a batch is too large, the cause hides inside many changes. When it is too small, the signal may be too weak to guide the next move. The right batch is the smallest slice that can show the problem clearly enough to act."
+  },
+  "examples": [
+    {
+      "exampleId": "ch09-ex01-aanya-lab",
+      "title": "Aanya Checks Ten Vials Before the Courier",
+      "tags": [
+        "scene",
+        "lab",
+        "labels"
+      ],
+      "planSpec": {
+        "domain": "medical lab sample labeling",
+        "audience": "lab operations supervisor",
+        "stakes": "large end-of-day batches hide labeling errors until retesting is costly",
+        "format": "scene",
+        "requiredBeat": "Aanya splits the labeling run into ten-sample checks before the courier arrives"
+      },
+      "scenario": "At 3:10 p.m. Monday, Aanya slides a tray of capped vials under the barcode light while the courier cutoff sits on the wall clock. The barcode scanner has been clean all morning, but end-of-day labeling errors have forced retests before. Before the final hour rush, she must choose between one large run and ten-sample trays checked as they go. The barcode light lets Aanya catch one label error while the courier window is still open.",
+      "whatToDo": "Split the labeling work into ten-sample trays and scan each tray before continuing. Catch drift while retesting is still local and the courier has not arrived.",
+      "whyItMatters": "Large end-of-day batches make errors expensive. Ten-sample checks keep the mistake near the work that created it."
+    },
+    {
+      "exampleId": "ch09-ex02-chris-feature",
+      "title": "Chris Ships One Flag to One Cohort",
+      "tags": [
+        "dialogue",
+        "software",
+        "release"
+      ],
+      "planSpec": {
+        "domain": "software feature flag release",
+        "audience": "SaaS engineering team",
+        "stakes": "a monthly release buries which change broke onboarding",
+        "format": "dialogue",
+        "requiredBeat": "Chris ships one flagged change to one cohort and watches the support queue"
+      },
+      "scenario": "\"How many doses before the first reading?\" Aanya asks at 9:30 a.m. in the pharmacy pilot room. The dosing cups sit beside a blood-pressure cuff and a seven-day report sheet. The team wants to print a full patient packet, but Aanya must decide whether one small-batch instruction card can reveal dosing confusion before the whole packet is produced. The seven-day report sheet keeps the first patient packet small enough to correct before every patient sees it.",
+      "whatToDo": "Release one flagged change to one cohort and watch the support queue before shipping the rest. Keep each change close to its feedback.",
+      "whyItMatters": "A monthly release can bury the cause of failure. One cohort with one flag turns support tickets into useful feedback instead of detective work."
+    },
+    {
+      "exampleId": "ch09-ex03-chiara-print",
+      "title": "Chiara Runs Twenty Envelopes First",
+      "tags": [
+        "vignette",
+        "print shop",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "wedding invitation print shop",
+        "audience": "print operator",
+        "stakes": "batching all envelopes delays discovery of color drift",
+        "format": "vignette",
+        "requiredBeat": "Chiara prints twenty envelopes first and checks ink against the proof"
+      },
+      "scenario": "The stack of cream envelopes smells faintly of paper dust beside the color proof. Chiara reads yesterday's ink note and hears the press warming behind her. She has to decide before the full order starts: print every envelope in one run, or pull twenty first and check the ink against the proof while correction is still cheap. The press note helps Chiara find the ink problem before the full envelope run becomes scrap.",
+      "whatToDo": "Print twenty envelopes and compare them with the proof before running the full order. Let the small batch reveal color drift early.",
+      "whyItMatters": "A full run delays discovery until the waste is stacked. Twenty envelopes make the problem small enough to correct without losing the day."
+    },
+    {
+      "exampleId": "ch09-ex04-mathieu-cafeteria",
+      "title": "Mathieu Tests One Lunch Line",
+      "tags": [
+        "decision point",
+        "school food",
+        "rollout"
+      ],
+      "planSpec": {
+        "domain": "school cafeteria menu test",
+        "audience": "nutrition director",
+        "stakes": "district-wide rollout would hide which lunch item failed",
+        "format": "decision_point",
+        "requiredBeat": "Mathieu tests one lunch line at one school before ordering pallets"
+      },
+      "scenario": "You are with Niklas at 6:25 a.m. on the factory calibration floor, where one sensor panel blinks beside a calibration wrench and a short control-batch log. The old plan would touch every machine before checking output. Before the shift begins, Niklas must decide whether to calibrate one machine first and inspect the batch while any error is still local. The control-batch log gives Niklas proof from one machine before the setting spreads across the floor.",
+      "whatToDo": "Run one lunch line at one school and watch the waste bin tally before ordering pallets. Use the small test to see which item fails.",
+      "whyItMatters": "District-wide rollout can hide the weak item and make waste expensive. One school gives the nutrition team feedback while the menu can still change."
+    },
+    {
+      "exampleId": "ch09-ex05-niklas-sensor",
+      "title": "Niklas Calibrates One Machine First",
+      "tags": [
+        "postmortem",
+        "factory",
+        "calibration"
+      ],
+      "planSpec": {
+        "domain": "factory sensor calibration",
+        "audience": "process engineer",
+        "stakes": "calibrating all sensors before feedback creates inventory-like rework",
+        "format": "postmortem",
+        "requiredBeat": "Niklas calibrates one machine and runs a short control batch before touching the rest"
+      },
+      "scenario": "It took Isabel one quiet Thursday in the newsroom analytics corner to distrust the full newsletter calendar. Thirty empty email slots filled the planning sheet, and two subject lines waited beside a small-list test. In the postmortem, she sends the small batch first and leaves the month unwritten until the open-rate window teaches which line works. The open-rate window lets Isabel learn from two subject lines before thirty slots become sunk work.",
+      "whatToDo": "Calibrate one machine and run a short control batch before touching the remaining sensors. Let the calibration log prove the setting locally.",
+      "whyItMatters": "Calibrating everything before feedback creates inventory-like rework. One machine turns a possible line-wide mistake into a contained correction."
+    },
+    {
+      "exampleId": "ch09-ex06-isabel-newsletter",
+      "title": "Isabel Tests Two Subject Lines Before Filling the Calendar",
+      "tags": [
+        "before after",
+        "media",
+        "email"
+      ],
+      "planSpec": {
+        "domain": "newsletter subject-line system",
+        "audience": "media growth team",
+        "stakes": "writing a month of emails before testing open behavior delays learning",
+        "format": "before_after",
+        "requiredBeat": "Isabel sends two subject lines to small lists before filling the calendar"
+      },
+      "scenario": "At 3:15 p.m. in the transit design lab, Marc stands over three paper signs, a taped platform path, and a rider-count sheet. Before, the agency printed a full station set and found confusion everywhere at once. After the paper test, he must decide which sign earns a second batch and which wording dies before the print order. The rider-count sheet shows Marc which wording works before the agency pays for a station-wide print run.",
+      "whatToDo": "Send two subject lines to small lists before writing the month. Use the open-rate window to decide which pattern deserves more calendar space.",
+      "whyItMatters": "A full calendar delays learning. Small-list tests let the growth team find weak subject lines before they become a month of avoidable misses."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team prepares a month-long campaign before testing a single message, and the designer says batching everything will save setup time. The campaign brief is polished, but one bad assumption could spoil all thirty assets. What is the hidden cost?",
+        "choices": [
+          "Large batches delay feedback and let defects travel farther before correction.",
+          "Large batches always take longer to schedule than small batches.",
+          "Large batches prevent workers from focusing on one task."
+        ],
+        "correctIndex": 0,
+        "explanation": "The core risk is delayed problem detection. Setup efficiency can be real, but it may hide errors until they become expensive.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A lab labels all samples at the end of the day, then often discovers errors near courier pickup. Which change best applies small-batch logic?",
+        "choices": [
+          "Add a second courier pickup to reduce deadline pressure.",
+          "Check labels in ten-sample trays throughout the afternoon.",
+          "Ask staff to be more careful during the final hour."
+        ],
+        "correctIndex": 1,
+        "explanation": "Ten-sample checks shorten feedback distance. More pickup time or reminders may help, but they do not make errors visible near their source.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A clinic wants to send a complete patient packet to every diabetes patient, but the nurse suspects the dosing instruction may confuse people. Which small-batch move catches the problem earliest?",
+        "choices": [
+          "Ship the bundle and ask support to summarize all issues afterward.",
+          "Delay the release until all five changes are perfect.",
+          "Ship one flagged change to one cohort and watch the support queue."
+        ],
+        "correctIndex": 2,
+        "explanation": "One flagged change links feedback to a specific cause. Bundles create detective work, while perfection delays contact with users.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A software team deploys every change at once at the end of the month, then spends three days finding which change broke checkout. What would continuous deployment improve?",
+        "choices": [
+          "Print twenty envelopes and compare them with the proof.",
+          "Run the full order quickly so the press stays warm.",
+          "Ask the couple whether small color changes would bother them."
+        ],
+        "correctIndex": 0,
+        "explanation": "The twenty-envelope run reveals drift before waste stacks up. Speed and customer tolerance both miss the immediate quality feedback.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A district wants to order lunch ingredients for every school before trying the menu. Which test reduces delayed problem detection?",
+        "choices": [
+          "A district-wide rollout with extra staff watching.",
+          "One lunch line at one school with a waste bin tally.",
+          "A student survey about favorite lunch names."
+        ],
+        "correctIndex": 1,
+        "explanation": "One lunch line makes failure visible before pallets are ordered. District rollout multiplies the risk, and names do not test eating behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A factory calibrates every sensor before running any control batch, then discovers the setting was wrong. What did the large batch create?",
+        "choices": [
+          "Better documentation because every sensor was handled consistently.",
+          "A faster learning cycle because the work was completed in one pass.",
+          "Inventory-like rework because many units carried the same untested setting."
+        ],
+        "correctIndex": 2,
+        "explanation": "The untested setting traveled through the whole line. Consistency is not useful when the consistent action is wrong.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A transit agency can print every station sign now or tape three paper signs to one platform and watch riders move through the space. Which choice better matches the batch discipline?",
+        "choices": [
+          "It creates too many finished pieces before any feedback can correct the pattern.",
+          "It makes writers less creative because calendars feel restrictive.",
+          "It prevents the team from using a consistent voice."
+        ],
+        "correctIndex": 0,
+        "explanation": "The issue is feedback timing. Small-list tests reveal weak patterns before a whole month is committed.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team shrinks batches so much that each test produces noisy results and setup consumes most of the week. What should it do?",
+        "choices": [
+          "Return to the largest possible batch to restore efficiency.",
+          "Increase the batch to the smallest unit that gives reliable feedback.",
+          "Stop measuring until the team can automate the process."
+        ],
+        "correctIndex": 1,
+        "explanation": "Small batches are for learning, not ritual. The right size is small enough for fast feedback and large enough to produce a usable signal.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team can finish a full rollout in four weeks or test one meaningful slice tomorrow with clear feedback. Which is better under uncertainty?",
+        "choices": [
+          "The full rollout, because stopping to inspect creates delay.",
+          "Neither, because uncertainty makes all feedback unreliable.",
+          "The slice, because it surfaces problems while correction is still cheap."
+        ],
+        "correctIndex": 2,
+        "explanation": "The slice shortens the distance between action and feedback. Under uncertainty, delayed correction is often more costly than early inspection.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Why do small batches accelerate learning?",
+      "back": "They shorten the distance between action and feedback. Problems surface while they are still close to the work and cheap to fix.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What kind of waste can a large batch create?",
+      "back": "It can create inventory-like waste: finished or half-finished work piling up before anyone knows whether the underlying setting, feature, or assumption is right.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How does continuous deployment connect to batch size?",
+      "back": "It shortens learning distance by releasing smaller changes more often, so each change can be connected to the feedback it produces.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "When can a batch be too small?",
+      "back": "When feedback becomes noisy or setup cost overwhelms the learning. The right batch is the smallest unit that still produces reliable feedback.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A team says a large batch is more efficient. What should you ask?",
+      "back": "Ask when the team will find out whether the work is wrong. Efficiency before feedback can simply make mistakes travel farther.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to choose batch size by feedback distance. The skill is shrinking work until errors, confusion, or weak demand appear while correction is still local.",
+    "ifThenPlans": [
+      {
+        "context": "software release",
+        "plan": "If a release bundles multiple risky changes, then ship one change behind a flag to one cohort first."
+      },
+      {
+        "context": "operations",
+        "plan": "If work is checked only at the end, then insert a smaller inspection point before the next batch continues."
+      },
+      {
+        "context": "manufacturing or print",
+        "plan": "If a setting can drift, then run a short control batch before committing the full order or line."
+      },
+      {
+        "context": "content calendar",
+        "plan": "If a calendar is being filled before feedback arrives, then test a small slice and wait for behavior before writing the rest."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, find one large batch in your work and cut the next run to a smaller unit. Name the feedback you will inspect before continuing.",
+    "weeklyPractice": "Each week, review one error that appeared late. Redesign the workflow so the same error would appear at least one batch earlier next time."
+  },
+  "memorableLines": [
+    {
+      "text": "She splits the run into ten-sample trays.",
+      "location": "breakdown.fastRead",
+      "why": "It makes batch size concrete through a visible operational move."
+    },
+    {
+      "text": "Fast feedback is worth the interruption.",
+      "location": "breakdown.deepRead",
+      "why": "It answers the efficiency objection in plain language."
+    },
+    {
+      "text": "A big batch makes failure late and general.",
+      "location": "breakdown.fullRead",
+      "why": "It captures why delayed feedback is dangerous."
+    }
+  ]
+}

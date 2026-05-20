@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-war-of-art-ch02",
+  "number": 2,
+  "title": "Book Two: Combating Resistance - Turning Pro",
+  "readingTimeMinutes": 12,
+  "hook": "Before the inbox can vote, Claire opens the discharge queue and pays the hour she already owes.",
+  "counterintuition": "Readiness gets the credit for care, but the kept appointment is doing the work. Turning pro means the hour leads and the feeling catches up if it can.",
+  "tryThisNow": "Find the next work block you are likely to renegotiate. Add the first artifact-producing action to the calendar note and do that before any mood check.",
+  "keyTakeaway": "Turning pro means treating meaningful work as an appointment already owed, with standards and patience strong enough to outlast today's mood.",
+  "breakdown": {
+    "fastRead": "Claire reaches the registrar desk just after seven with the discharge queue open and the message inbox flashing beside it. The inbox looks urgent. The summaries are the work that will clear beds before the next shift inherits confusion. She opens the first summary and pays the hour first.\n\nThat is turning pro in its plainest form. The professional does not ask whether the feeling is clean enough to begin. The professional protects the appointment, meets the work, and lets standards govern the hour.\n\nMood may visit. It does not get the keys.",
+    "deepRead": "Daniel stands over a cracked basswood model after a brutal critique. The easy story is that he is too embarrassed to touch it tonight. The professional story is smaller and less dramatic: two clean corner joints before he judges anything else. He mixes glue, pins the first corner, and gives the model the hour he would rather spend interpreting himself.\n\nAt the workbench, turning pro is the shift from studying the enemy to practicing against it. A named enemy still wins when every session can be reopened for debate. The amateur asks whether the day feels right, whether pride has recovered, whether confidence has returned. The professional treats the work block as already owed.\n\nThe appointment becomes the boss.\n\nDaniel does not need punishment. Punishment keeps the self at the center, counting bruises and proving toughness. Professional routine lowers the drama so craft can continue. The scheduled hour protects the calling from the weather of the worker. Some days the work is strong. Some days it is plain maintenance. Both days count because return is the standard.\n\nBen can keep an hour for months and still feel the ritual turn hollow when the calling drops out of sight. Routine can become a shrine if it stops serving the work. The point is not to worship the schedule. The point is to give meaningful work a structure sturdy enough that Resistance cannot renegotiate every morning.",
+    "fullRead": "Sophie sits at a library desk with a sealed civil-service practice packet and one retake window left. She has already checked how nervous she feels twice. The answer has not improved. The packet does not need a cleaner feeling. It needs to be opened at the minute she chose yesterday, before today's fear gets to rewrite the contract.\n\nThis is the practical force of turning pro. The work moves from a hoped-for state into an owed appointment. The amateur posture is not always lazy. Often it is sensitive, articulate, and endlessly aware of how the self feels. It checks readiness, shame, energy, confidence, and identity before granting permission to begin. Resistance loves that court because it can always submit one more motion.\n\nProfessional posture closes the court for the length of the session.\n\nThere is a plain reason routine helps without becoming sacred. Every renegotiation burns attention before the work has even started. Should I begin now, after lunch, after the inbox, after confidence returns, after one more warmup? A fixed appointment removes most of those votes. It does not make the labor easy. It makes the beginning less available to debate.\n\nAnders proves the point under a proofing shelf, not at a writing desk. Three dough tubs are labeled for a hydration test that a wholesale buyer needs by Friday. The first batch looks weak. His old habit would turn that weakness into a reason to pause the whole experiment and run service orders instead. This time he keeps the test running, records the result, and learns from the batch instead of letting disappointment cancel the sequence.\n\nThe professional is patient because patience keeps contact with reality. A weak batch teaches more than a canceled test. A rough model corner teaches more than a night of wounded pride. A discharge summary written before inbox triage teaches the hospital more than another hour of feeling indispensable to every message. Standards matter, but they have to be applied after contact with the work, not before contact as a condition of entry.\n\nYou can test your own posture by asking who owns the first minute. If mood owns it, the session begins only after the inner weather grants clearance. If the appointment owns it, you begin with the artifact-producing act and let mood argue from the back of the room. That difference is quiet, but it changes the whole day.\n\nCatarina misses a cue in rehearsal and wants to cancel her vocal warmup. You can almost hear the amateur bargain: why practice while embarrassed? She opens the piano app anyway and starts the first scale before deciding what the mistake means. The warmup does not crown her. It returns her to craft.\n\nDo not confuse this with empty grind. Empty grind keeps a ritual alive after it has stopped serving the calling. Turning pro keeps the ritual answerable to the calling. Michael sees that difference in a month of release logs. The invoice export patch had review approval for days, yet his longest delays came after the safe path was open. In the next maintenance window, he merges the small patch first and debates confidence afterward.\n\nResistance cannot be beaten by a mood that promises to behave tomorrow. It is met by a posture that has already decided where the hour goes. Keep the appointment. Lower the drama. Let the work receive what was owed."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-claire-discharge-hour",
+      "title": "Claire Pays the First Hour",
+      "tags": [
+        "scene",
+        "hospital",
+        "schedule"
+      ],
+      "planSpec": {
+        "domain": "an emergency department registrar keeping a discharge-summary hour before inbox triage",
+        "audience": "medical administrators whose urgent surroundings constantly invite renegotiation",
+        "stakes": "delayed summaries are slowing beds and making the next shift inherit avoidable confusion",
+        "format": "scene",
+        "requiredBeat": "At 7:10 a.m., Claire opens the discharge queue before the inbox, completes the first summary, and only then checks the overnight messages."
+      },
+      "scenario": "At 7:10 a.m., Claire reaches the registrar desk with the discharge queue already sorted and the overnight inbox blinking red beside a half-cold tea. Bed managers need the first summaries before handoff, but every message looks like it can justify a detour. Her cursor moves toward the inbox badge. She has to choose whether the locked first hour belongs to the summaries or to the loudest unread message.",
+      "whatToDo": "Open the discharge queue first, complete one summary, and check overnight messages only after the owed hour has made real progress.",
+      "whyItMatters": "The inbox can always sound urgent. The professional move protects the appointment that clears beds before urgency becomes another way to avoid the harder queue."
+    },
+    {
+      "exampleId": "ch02-ex02-daniel-model-repair",
+      "title": "Daniel Repairs Two Corners",
+      "tags": [
+        "dialogue",
+        "architecture",
+        "critique"
+      ],
+      "planSpec": {
+        "domain": "an architecture apprentice returning to model work after a harsh critique",
+        "audience": "early-career craft workers who let wounded pride cancel the next session",
+        "stakes": "the model review is in four days and skipping tonight would turn critique into drift",
+        "format": "dialogue",
+        "requiredBeat": "Daniel says he is too embarrassed to touch the model, then sets a repair floor of two clean corner joints and starts before judging the whole project."
+      },
+      "scenario": "\"I can't look at it tonight,\" Daniel says, the basswood model split at one corner under the studio lamp, with knife marks still white at the edge. His critique notes sit beside the glue, all red pencil and blunt verbs. The review is four days away. \"Then don't judge it,\" his desk mate says. \"Repair two corners.\" Daniel has to decide whether embarrassment cancels the session or only changes the first task.",
+      "whatToDo": "Set a repair floor of two clean corner joints, then begin. Let the session be maintenance before it becomes a verdict on the whole model.",
+      "whyItMatters": "Wounded pride wants authority over the schedule. A small craft standard returns authority to the work without pretending the critique did not hurt."
+    },
+    {
+      "exampleId": "ch02-ex03-sophie-practice-packet",
+      "title": "Sophie Breaks the Seal",
+      "tags": [
+        "decision",
+        "exam",
+        "readiness"
+      ],
+      "planSpec": {
+        "domain": "a civil-service candidate using a fixed exam block instead of readiness checks",
+        "audience": "career changers who keep taking their emotional temperature before serious study",
+        "stakes": "one retake window remains before the hiring list closes",
+        "format": "decision_point",
+        "requiredBeat": "Sophie breaks the seal on the practice packet at the planned minute, answers the first ten questions, and postpones confidence talk until after the block."
+      },
+      "scenario": "The library desk is quiet except for the sealed practice exam packet, a dull pencil, and Sophie's phone showing 6:29 p.m. One retake window remains before the hiring list closes. She has already checked whether she feels ready and received no useful answer. At 6:30, her thumb rests under the seal. She must decide whether confidence gets another vote or the exam block starts as planned.",
+      "whatToDo": "Break the packet seal at the planned minute, answer ten questions, and discuss confidence only after the block has begun in real contact with the material.",
+      "whyItMatters": "Readiness checks can become a hidden permission system. A fixed start moves authority from the feeling to the appointment."
+    },
+    {
+      "exampleId": "ch02-ex04-anders-dough-test",
+      "title": "Anders Keeps the Test Running",
+      "tags": [
+        "predict-reveal",
+        "bakery",
+        "standards"
+      ],
+      "planSpec": {
+        "domain": "a bakery owner running sourdough tests on schedule despite uneven batches",
+        "audience": "small business owners whose craft experiments keep being postponed by daily service work",
+        "stakes": "a wholesale buyer needs a consistent loaf before signing the account",
+        "format": "predict_reveal",
+        "requiredBeat": "Anders labels three dough tubs, starts the test at the appointed hydration, and refuses to change the plan when the first batch looks weak."
+      },
+      "scenario": "The first tub smells sharper than Anders expected, and the dough slumps against its label under the proofing shelf while the deck oven clicks awake. A wholesale buyer wants a consistent loaf by Friday, yet the morning service rush is already calling from the front. He predicts this batch will make the test look foolish. Before changing the hydration plan, he has to choose whether a weak first result cancels the scheduled experiment.",
+      "whatToDo": "Keep the three labeled tubs on the planned hydration test, record the weak batch plainly, and finish the sequence before service work absorbs the day.",
+      "whyItMatters": "Standards improve through contact with uneven results. Canceling the test protects pride, while completing it gives the loaf real information."
+    },
+    {
+      "exampleId": "ch02-ex05-catarina-vocal-warmup",
+      "title": "Catarina Starts the Scale",
+      "tags": [
+        "before-after",
+        "theatre",
+        "return"
+      ],
+      "planSpec": {
+        "domain": "a theatre understudy protecting vocal warmups after a missed cue",
+        "audience": "performers who turn one mistake into permission to abandon the next practice block",
+        "stakes": "the lead may be out on Saturday and the understudy has one clean week to prepare",
+        "format": "before_after",
+        "requiredBeat": "You watch Catarina stop replaying the missed cue, start the first scale on the app, and complete the warmup before discussing whether she feels ready."
+      },
+      "scenario": "You hear Catarina replay the missed cue twice in the dressing room, one shoe still unlaced, then watch her stare at the piano app as if the first scale might accuse her. The lead may be out Saturday, and the understudy week is short. Before, the mistake gave her permission to brood. After she taps the starting note, the warmup becomes ordinary work again, completed before anyone debates whether she feels ready.",
+      "whatToDo": "Start the first scale, finish the warmup, and let the missed cue become information for practice rather than a permit to cancel practice.",
+      "whyItMatters": "A mistake becomes larger when it controls the next appointment. Returning to the scale keeps shame from managing the work."
+    },
+    {
+      "exampleId": "ch02-ex06-michael-maintenance-window",
+      "title": "Michael Merges the Patch",
+      "tags": [
+        "postmortem",
+        "software",
+        "shipping"
+      ],
+      "planSpec": {
+        "domain": "a software maintainer shipping the small patch before debating confidence",
+        "audience": "technical workers whose standards can become a courtroom before contact with the task",
+        "stakes": "a bug is affecting invoice exports for twenty customers and the safe patch is already reviewed",
+        "format": "postmortem",
+        "requiredBeat": "It takes Michael a month of logs to see that his longest delays came after review approval, so he merges the small patch inside the maintenance window."
+      },
+      "scenario": "It takes Michael a month of release logs to see the embarrassing pattern, highlighted in three late-night comments. The invoice export bug affected twenty customers, the patch had review approval, and his longest delays began after the safe path was open. During the Thursday maintenance window, with the failing unit test green beside the checklist, he merges the small patch before starting another confidence debate.",
+      "whatToDo": "Use the logs to expose when doubt arrived, then merge the reviewed patch inside the maintenance window before reopening the confidence trial.",
+      "whyItMatters": "Standards protected the code until review passed. After that, the debate protected Michael from ownership more than it protected customers."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "During the 8:00 client-edit block, a photographer starts checking at 7:58 whether she feels inspired enough to do careful color work. What does the professional posture change first?",
+        "choices": [
+          "It moves authority from the feeling check to the already chosen appointment.",
+          "It makes the color work easier by removing all emotion.",
+          "It proves that client edits matter more than creative projects."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first shift is authority. The appointment leads even if feeling is mixed; the point is not emotionless work or ranking one kind of work above another.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "After a rough morning, the nurse educator is supposed to review simulation notes at 4:00 but wants to wait until she feels sharper. Which action best fits turning pro?",
+        "choices": [
+          "Wait until tomorrow so the review can happen with full energy.",
+          "Start the review at 4:00 with the first chart, then judge quality after contact with the work.",
+          "Move the review to a calmer weekly slot because rough mornings recur and the notes consistently get worse when she starts cold."
+        ],
+        "correctIndex": 1,
+        "explanation": "Starting with the first chart honors the appointment without pretending the morning was easy. Waiting gives mood control, and redesigning everything avoids the immediate return.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When the first glaze sample looks dull, a ceramicist wants to stop the kiln test even though the shop needs a reliable result by Friday. What should he do?",
+        "choices": [
+          "Finish the planned test sequence and record the weak result without letting it cancel the run.",
+          "Stop the test and wait for a day when the first sample looks promising.",
+          "Switch to customer orders because they feel more certain."
+        ],
+        "correctIndex": 0,
+        "explanation": "The weak sample is information, not a vote to cancel the appointment. Switching tasks or waiting lets disappointment govern the sequence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Ten minutes before a protected drafting block, a policy analyst opens a message thread that could be answered later but feels urgent. What is the professional move?",
+        "choices": [
+          "Answer the thread first because three colleagues are blocked and a fast reply still leaves most of the session for drafting.",
+          "Ignore all messages for the rest of the week to prove the block matters.",
+          "Begin the draft block with the first paragraph and handle the thread after the protected start."
+        ],
+        "correctIndex": 2,
+        "explanation": "The move protects the start of the owed work without becoming rigid forever. The message may matter later, but it should not seize the first minute.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "After a bad studio class, the violin student wants to skip evening scales because she feels exposed. Which response keeps standards without turning routine into punishment?",
+        "choices": [
+          "Complete a modest scale block and treat the bad class as information for practice.",
+          "Double the practice time as a penalty for playing badly.",
+          "Skip practice so she can return only when pride has recovered."
+        ],
+        "correctIndex": 0,
+        "explanation": "A modest scale block returns her to craft without revenge. Doubling as penalty keeps ego central, while skipping lets embarrassment run the schedule.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Suppose the consultant's daily writing hour now produces polished paragraphs no client needs, while he avoids the hard call that would clarify the project. What should he analyze?",
+        "choices": [
+          "Whether the consultant's polished paragraphs are improving in quality measurably over the past month.",
+          "Whether the ritual is still serving the calling or has become a safe performance.",
+          "Whether client calls should be banned during creative work."
+        ],
+        "correctIndex": 1,
+        "explanation": "Routine is useful only while it serves meaningful work. Here the hour may have become a shelter from the needed call, not proof of seriousness.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "When the civil-service candidate says she will start the practice exam once confidence returns, her retake window is closing and her calendar block has arrived. What amateur posture is showing?",
+        "choices": [
+          "She is studying too many subjects at once.",
+          "She is choosing a career path too late.",
+          "She is letting readiness act as permission to begin."
+        ],
+        "correctIndex": 2,
+        "explanation": "Readiness has become the gatekeeper. The issue is not subject variety or career timing; it is letting a feeling decide whether the block begins.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "The software maintainer delays a reviewed patch because he wants one more pass, but the bug is affecting customers and tests are green. What distinguishes a standard from Resistance here?",
+        "choices": [
+          "A second review fits the team's history because his previous invoice fix caused a regression outside the test suite.",
+          "Customer bugs matter less than the maintainer's confidence and comfort.",
+          "A standard protects customers before approval; after approval, the extra pass may protect the maintainer."
+        ],
+        "correctIndex": 2,
+        "explanation": "The same action changes meaning by timing and function. Extra review can protect quality, but after review and green tests it may protect the worker.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "On a team with night caregiving duties, the manager proposes a strict 5:00 a.m. work ritual because discipline matters. The real issue is missed artifact-producing blocks. What is the best evaluation?",
+        "choices": [
+          "Accept it, because harsher shared routines create professional identity.",
+          "Reject the shared hour and protect concrete work appointments that fit the calling and constraints.",
+          "Replace all routines with inspiration so nobody feels punished."
+        ],
+        "correctIndex": 1,
+        "explanation": "Professional routine serves the work; it is not a costume of severity. A fitted appointment protects output better than a harsh ritual detached from people's real constraints.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Your planned work block arrives and your mood asks for a delay. What changes when you turn pro?",
+      "back": "The appointment leads. You begin with the first artifact-producing action and let the mood come along or complain from the back of the room. The work no longer waits for a cleaner feeling.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A bad critique makes you want to cancel the next practice session. What is the professional response?",
+      "back": "Lower the drama and give the work a modest standard: two repairs, one scale block, ten questions, one reviewed patch. The point is return to craft, not punishment for feeling hurt.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "When can a routine become another hiding place?",
+      "back": "The signal is that the appointment continues with comfort but stops producing the exposed work it was created to protect. A ritual that quietly drops its hard task has become a costume; the test is whether the day's actual artifact moves forward.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A message thread feels urgent right before the protected work starts. What discipline keeps the appointment intact without ignoring the thread entirely?",
+      "back": "Protect the first minute. Begin the owed artifact before the thread gets to vote. The message may still be handled, but it should not take command of the appointment.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A routine keeps running after it stops serving the work. What should you check?",
+      "back": "Discipline serves the calling through standards, patience, and return. Empty grind worships the ritual after it stops serving the work. The schedule is a tool, not the thing being served.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Keep the Work Appointment",
+    "coreSkill": "Turn meaningful work into an appointment already owed. The skill is to begin with the artifact-producing action before readiness, shame, or urgency gets a vote. Routine should lower drama and protect the calling, not become a costume of toughness.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If inbox urgency appears at the start of a protected work block, then complete the first visible deliverable before opening the message thread."
+      },
+      {
+        "context": "craft",
+        "plan": "If a bad critique or weak batch makes you want to cancel practice, then set a modest craft floor and complete it before judging the whole project."
+      },
+      {
+        "context": "study",
+        "plan": "If you check whether you feel ready as the study block begins, then open the packet or problem set first and evaluate readiness after ten minutes of contact."
+      },
+      {
+        "context": "technical work",
+        "plan": "If a reviewed, safe patch waits while confidence debates continue, then merge inside the planned window and record any follow-up from real results."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next day, choose one appointment with meaningful work and write its first artifact-producing action into the calendar note. When the hour arrives, do that action before checking mood or messages.",
+    "weeklyPractice": "Once this week, review three work blocks. Mark where mood, shame, or urgency tried to renegotiate the start, and adjust one block so the first minute belongs to the artifact."
+  },
+  "memorableLines": [
+    {
+      "text": "Mood may visit. It does not get the keys.",
+      "location": "breakdown.fastRead",
+      "why": "The sentence compresses the professional posture into a practical rule about authority."
+    },
+    {
+      "text": "The appointment becomes the boss.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a simple phrase for moving authority from feeling to schedule."
+    },
+    {
+      "text": "Professional posture closes the court for the length of the session.",
+      "location": "breakdown.fullRead",
+      "why": "The line turns endless internal negotiation into a concrete image the reader can interrupt."
+    }
+  ]
+}

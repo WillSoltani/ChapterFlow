@@ -1,0 +1,205 @@
+{
+  "chapterId": "smarter-faster-better-ch05",
+  "number": 5,
+  "title": "Managing Others",
+  "coreMove": "Build trust-rich feedback loops that let reality change the plan before control hardens into blindness.",
+  "sourcePressure": "The chapter's subtitle anchors managing others in solving a kidnapping with lean and agile thinking and a culture of trust, pointing to adaptive coordination under uncertainty.",
+  "chapterSpecificMisunderstanding": "Equating management with tighter command, cleaner updates, or inspirational support.",
+  "sourceAlignmentTerms": [
+    "kidnapping",
+    "lean",
+    "agile",
+    "culture of trust",
+    "uncertainty",
+    "adaptive coordination",
+    "execution"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "kidnapping",
+      "detail": "the subtitle supports a kidnapping case as the pressure anchor, without named participants or chronology",
+      "useIn": "fullRead",
+      "phrasingHint": "The kidnapping anchor should make uncertainty felt without invented details: when the facts move, management must learn faster than the plan ages."
+    },
+    {
+      "kind": "artifact",
+      "name": "lean and agile thinking",
+      "detail": "the sidecar supports lean and agile as tools for short learning loops and adaptation",
+      "useIn": "both",
+      "phrasingHint": "Lean and agile belong as a way to shorten the distance between action, evidence, and correction."
+    },
+    {
+      "kind": "study",
+      "name": "culture of trust",
+      "detail": "the sidecar allows culture of trust as a chapter anchor for fast, honest reporting",
+      "useIn": "both",
+      "phrasingHint": "A culture of trust is not softness; it is the system that lets bad news travel while it can still help."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Person at a meeting realizes the real lesson",
+      "The day starts with a dashboard",
+      "A simple choice changes everything"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more faster",
+      "The obvious answer is wrong",
+      "The problem is not effort but something deeper"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three priorities",
+      "Pause before your next task"
+    ],
+    "examples": [
+      "generic office stand-up",
+      "kitchen table planning",
+      "classroom marker demonstration",
+      "commuter train epiphany"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "a regional ambulance dispatch center after a routing software change",
+      "audience": "an operations supervisor managing dispatchers under time pressure",
+      "stakes": "delayed feedback could leave crews taking bad routes for a week",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:10 a.m., Grace replaces the weekly complaint review with a two-hour route-friction check where dispatchers can flag failures without blame",
+      "firstImage": "At 7:10 a.m., three ambulance icons stall on the new routing screen",
+      "mustInclude": [
+        "routing screen",
+        "two-hour check",
+        "dispatcher notes"
+      ],
+      "mustAvoid": [
+        "software vendor blame story"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "a museum exhibit installation with contractors, curators, and fragile loans",
+      "audience": "a project lead whose Gantt chart is losing contact with the room",
+      "stakes": "a late wall-load problem could damage a loaned sculpture",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Nicolas changes the daily meeting so the art handler speaks first about physical constraints before schedule status",
+      "firstImage": "A wrapped bronze sculpture waits on foam blocks beside an unfinished wall",
+      "mustInclude": [
+        "wrapped bronze sculpture",
+        "wall-load note",
+        "daily meeting order"
+      ],
+      "mustAvoid": [
+        "generic project management board"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "a community food bank rolling out a new inventory process",
+      "audience": "a volunteer coordinator who wants accuracy without scaring new volunteers",
+      "stakes": "expired goods and empty shelves both become likely if errors stay hidden",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Adaeze answers the first inventory mistake with a process fix, then shows volunteers that reported errors shorten the next loop",
+      "firstImage": "\"I put the tins in the wrong bin,\" a volunteer says without meeting her eyes",
+      "mustInclude": [
+        "inventory bins",
+        "expired tins",
+        "process fix card"
+      ],
+      "mustAvoid": [
+        "warm fuzzy volunteering scene"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "a construction site pouring concrete before weather shifts",
+      "audience": "a site foreman balancing schedule pressure and field reports",
+      "stakes": "a silent concern about forms could ruin the pour",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ben traces a failed pour back to the moment a junior carpenter stopped mentioning a bowing form, then changes how field checks are heard",
+      "firstImage": "Wet concrete dust clings to the cuffs of Ben's work pants",
+      "mustInclude": [
+        "bowing form",
+        "weather window",
+        "field check"
+      ],
+      "mustAvoid": [
+        "macho construction command story"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "a software localization sprint across English, French, and German releases",
+      "audience": "a release manager coordinating translators and engineers",
+      "stakes": "late translation defects could delay a regulated launch",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Astrid predicts likely handoff failures with the translators, then adds a daily defect loop before code freeze",
+      "firstImage": "Which defect will surface too late if every team waits for the official handoff?",
+      "mustInclude": [
+        "code freeze",
+        "translation strings",
+        "daily defect loop"
+      ],
+      "mustAvoid": [
+        "letting the question hook replace the visible action beat"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "a wildfire mitigation crew clearing brush near a town boundary",
+      "audience": "a crew boss coordinating saw teams and local officials",
+      "stakes": "a late terrain update could send crews into the wrong ridge line",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Javier thank a crew member for contradicting the map, then move the plan around the fresh ridge report before pride can harden the route",
+      "firstImage": "You can smell dry pine resin before the ridge comes into view",
+      "mustInclude": [
+        "ridge map",
+        "saw teams",
+        "fresh terrain report"
+      ],
+      "mustAvoid": [
+        "heroic disaster spectacle"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose trust-building responses that keep bad news moving",
+      "identify when control is suppressing feedback",
+      "apply lean or agile loops without turning them into jargon"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Ask one person you manage or coordinate with: what is the smallest bad-news update you are hesitating to tell me, and what should we change before it grows?",
+  "readingTimeMinutes": 12
+}

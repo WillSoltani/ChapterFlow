@@ -1,0 +1,107 @@
+{
+  "bookId": "skin-in-the-game",
+  "title": "Skin in the Game: Hidden Asymmetries in Daily Life",
+  "author": "Nassim Nicholas Taleb",
+  "thesisParagraph": "Skin in the Game argues that judgment, ethics, and rationality are corrupted whenever decision rights, upside, and downside are split apart. Taleb keeps returning to the same hard test: the person who advises, sells, governs, predicts, worships, or takes risk must remain exposed to the consequences of being wrong. The book is not a call to reckless courage. It is an attack on hidden asymmetry, protected expertise, cheap virtue, borrowed preference, and risk taking that leaves other people holding the tail.",
+  "coreIdeas": [
+    {
+      "name": "Eat your own turtles",
+      "oneSentence": "Do not feed others risks you would not bear yourself.",
+      "mentalMove": "trace the downside back to the person who created or recommended the exposure",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Minority asymmetry",
+      "oneSentence": "A small strict group can set the default when the majority can tolerate the stricter option.",
+      "mentalMove": "look for asymmetric tolerance rather than counting votes",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Practical captivity",
+      "oneSentence": "Formal freedom can hide practical ownership when someone else controls the thing you cannot afford to lose.",
+      "mentalMove": "map the hostage points around a choice: income, status, family, references, identity",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Reality-tested expertise",
+      "oneSentence": "Expertise deserves less trust when it is insulated from the errors it creates.",
+      "mentalMove": "ask where the expert meets field correction and personal consequence",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Revealed preference under cost",
+      "oneSentence": "Belief and virtue become credible when action carries cost.",
+      "mentalMove": "compare declarations with what the person actually risks, gives up, or pays",
+      "sourceAnchors": [
+        "ch11.source",
+        "ch13.source",
+        "ch16.source",
+        "ch17.source"
+      ]
+    },
+    {
+      "name": "Ruin changes the math",
+      "oneSentence": "No upside compensates for a downside that ends your ability to keep playing.",
+      "mentalMove": "identify irreversible or nonlinear loss before considering expected upside",
+      "sourceAnchors": [
+        "ch18.source",
+        "ch19.source"
+      ]
+    }
+  ],
+  "targetReader": "A practical reader who makes decisions in organizations, families, markets, and civic life, and who needs sharper tests for advice, expertise, virtue, and risk than polished language or confidence can provide.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "let the uncomfortable consequence stay visible"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no macho risk slogans"
+    ]
+  },
+  "voiceSpecimens": [
+    "The clause looks harmless until you ask who signs the check when it fails.",
+    "A person with no downside can sound calm because the fire exits are all behind him.",
+    "Do not count votes first. Count who can refuse to move.",
+    "The cleanest belief is the one that has already paid rent in the real world.",
+    "A model is useful when reality can bruise it.",
+    "The risk is not bold if someone else is standing under it.",
+    "When ruin is on the table, the upside is not the main character."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches readers how to understand accountability in modern life.",
+    "At the end of the day, the key is to be authentic and take ownership.",
+    "Taleb argues that people should have more skin in the game across society.",
+    "The idea is both counterintuitive and deeply important for anyone seeking success.",
+    "Try setting a timer and reflecting on where you need better alignment.",
+    "In today's fast-paced world, risk is everywhere and we must be mindful."
+  ],
+  "teachingArc": "The plan starts with the transactional fairness rule, then scales it through minority dynamics, dependence, expert insulation, inequality, time-tested credibility, signaling, preference, action, narrative, virtue, peace, religion, rationality, and finally ruin. Each chapter widens the same audit: who decides, who benefits, who pays, and what survives contact with consequence.",
+  "forbiddenMoves": [
+    "turning skin in the game into a vague accountability slogan",
+    "using Taleb's combative style as permission for cheap sneering",
+    "inventing named anecdotes or studies for chapters whose source sidecars explicitly lack them",
+    "making risk sound heroic when the book is often warning about ruin",
+    "flattening religious chapters into generic theology or culture-war commentary"
+  ]
+}

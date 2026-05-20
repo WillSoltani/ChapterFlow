@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch02",
+  "number": 2,
+  "title": "Employees Are People Too",
+  "coreMove": "Replace process-first control with one humanizing question that restores dignity before judging performance.",
+  "sourcePressure": "Moves from factory-bell control to the claim that employees are not process attachments. Humane recognition is operational because dignity changes judgment, candor, and responsibility.",
+  "chapterSpecificMisunderstanding": "Reducing the chapter to be nicer to staff while leaving the system blind to context and dignity.",
+  "sourceAlignmentTerms": [
+    "factory bell",
+    "employees are people",
+    "dignity",
+    "empathy at the company",
+    "human recognition",
+    "process attachments",
+    "judgment"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 2 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "municipal sanitation route planning",
+      "audience": "route supervisor revising pickup quotas",
+      "stakes": "drivers are skipping breaks and hiding injuries",
+      "format": "decision_point",
+      "requiredBeat": "she circles one route time and writes the driver's dialysis appointment beside it before changing the schedule",
+      "firstImage": "a laminated route sheet clipped to a cracked dashboard",
+      "mustInclude": [
+        "route sheet",
+        "dashboard crack"
+      ],
+      "mustAvoid": [
+        "warehouse scan counts"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "dental lab night bench",
+      "audience": "lab owner watching remake rates rise",
+      "stakes": "technicians are treated as hands attached to tools",
+      "format": "scene",
+      "requiredBeat": "he pulls a remake tray to the bench and asks what the wax pattern hid about the client's bite",
+      "firstImage": "a row of porcelain crowns under a task lamp",
+      "mustInclude": [
+        "wax pattern",
+        "porcelain crowns"
+      ],
+      "mustAvoid": [
+        "factory bell scene"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "ferry terminal passenger desk",
+      "audience": "terminal manager after a missed sailing",
+      "stakes": "staff are being blamed for a storm backlog",
+      "format": "dialogue",
+      "requiredBeat": "the manager asks the agent what each passenger had been promised before rewriting the delay script",
+      "firstImage": "a tide board beside a stack of refund vouchers",
+      "mustInclude": [
+        "tide board",
+        "refund vouchers"
+      ],
+      "mustAvoid": [
+        "call-center policy"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "animal shelter intake room",
+      "audience": "shelter director changing volunteer rules",
+      "stakes": "burned-out volunteers are becoming curt with adopters",
+      "format": "postmortem",
+      "requiredBeat": "she reads the intake log aloud with the dog names still attached before discussing throughput",
+      "firstImage": "a leash clipped to an intake clipboard",
+      "mustInclude": [
+        "leash",
+        "intake clipboard"
+      ],
+      "mustAvoid": [
+        "pet adoption sentimentality"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "commercial kitchen prep line",
+      "audience": "chef confronting repeated prep errors",
+      "stakes": "line cooks are treated like replaceable speed units",
+      "format": "before_after",
+      "requiredBeat": "the chef swaps the prep chart for a station walk where each cook names the bottleneck in their hands",
+      "firstImage": "a tray of untrimmed fennel beside a dull knife",
+      "mustInclude": [
+        "fennel tray",
+        "dull knife"
+      ],
+      "mustAvoid": [
+        "restaurant yelling"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "city pool lifeguard rotation",
+      "audience": "aquatics coordinator changing rotations",
+      "stakes": "guards are exhausted and missing small signals",
+      "format": "reflection",
+      "requiredBeat": "the coordinator watches one guard scan the deep end for ninety seconds before changing the rotation plan",
+      "firstImage": "a rescue tube against wet tile",
+      "mustInclude": [
+        "rescue tube",
+        "rotation card"
+      ],
+      "mustAvoid": [
+        "wellness break advice"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a rule is treating a person as a unit",
+      "add context without excusing poor work",
+      "choose a dignity-preserving intervention",
+      "explain why humane treatment improves responsibility"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one rule you enforce this week and add the missing human fact it ignores before you decide what to do next.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

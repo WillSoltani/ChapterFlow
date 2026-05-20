@@ -1,0 +1,188 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch01",
+  "number": 1,
+  "title": "Animal Behavior",
+  "coreMove": "Ask what social payoff a useful behavior buys before accepting its surface function as the whole explanation.",
+  "sourcePressure": "The source uses primate grooming and Arabian babbler helping to teach readers to separate a behavior's useful surface from its hidden social payoff.",
+  "chapterSpecificMisunderstanding": "The writer turns the animal examples into sneering proof that care and cooperation are fake.",
+  "sourceAlignmentTerms": [
+    "hidden motives",
+    "primate grooming",
+    "political behavior",
+    "Arabian babbler",
+    "competitive altruism",
+    "prestige"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "primate social grooming",
+      "detail": "The source says grooming looks hygienic but also functions as political alliance management among primates.",
+      "useIn": "both",
+      "phrasingHint": "A hand picking through fur can clean and campaign at the same time."
+    },
+    {
+      "kind": "event",
+      "name": "Arabian babbler competitive altruism",
+      "detail": "The source says babbler helping can look group-serving while also working as prestige competition.",
+      "useIn": "both",
+      "phrasingHint": "The bird on guard may be helping the flock and advertising itself in the same breath."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch01: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch01: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch01: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch01: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch01: no generic timer reflection",
+      "the-elephant-in-the-brain-ch01: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch01: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch01: no coffee shop conversation as the default social proof",
+      "no zoo field-trip morality lesson",
+      "no pet-owner anecdote standing in for the babbler case"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "wildlife sanctuary grooming log review",
+      "audience": "a volunteer coordinator learning to read animal care records socially",
+      "stakes": "a misread dominance problem keeps disrupting introductions between rescued primates",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah circles grooming entries that cluster after fights and beside higher-ranking animals, then changes the introduction plan around alliance tension rather than hygiene alone.",
+      "firstImage": "The clipboard smells faintly of disinfectant beside a row of penciled grooming marks.",
+      "mustInclude": [
+        "grooming log",
+        "rank notes",
+        "quarantine door"
+      ],
+      "mustAvoid": [
+        "cute animal care story with no status pattern"
+      ]
+    },
+    {
+      "domain": "bird conservation training session",
+      "audience": "a junior field assistant mapping cooperative behavior in a preserve",
+      "stakes": "the team may mistake visible guarding for pure sacrifice and miss the prestige pattern",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mathieu predicts the loudest helper will be safest from status conflict, then watches the same bird push into the most visible guard perch after feeding others.",
+      "firstImage": "Dry grass rattles under the hide before any person speaks.",
+      "mustInclude": [
+        "field hide",
+        "guard perch",
+        "feeding tally"
+      ],
+      "mustAvoid": [
+        "invented species behavior beyond the supported babbler anchor"
+      ]
+    },
+    {
+      "domain": "youth sports captain selection",
+      "audience": "a coach trying to distinguish help from rank bids without punishing help",
+      "stakes": "a generous player may be both useful and campaigning for captain",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What if the player who carries every cone is also choosing the moment when every parent can see him?",
+      "firstImage": "What if the player carrying the cones waits until the parents line the fence?",
+      "mustInclude": [
+        "mesh ball bag",
+        "captain clipboard",
+        "sideline parents"
+      ],
+      "mustAvoid": [
+        "turning visible help into fraud"
+      ]
+    },
+    {
+      "domain": "open-source maintainer triage",
+      "audience": "a maintainer reviewing a sudden burst of helpful issue comments",
+      "stakes": "a public helper could improve the project while maneuvering for commit access",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Ingrid three weeks to notice that the most helpful comments appeared only on issues watched by the steering group, so she separates contribution value from status bid.",
+      "firstImage": "It took Ingrid three weeks to see the pattern in the notification timestamps.",
+      "mustInclude": [
+        "issue tracker",
+        "maintainer label",
+        "public thread"
+      ],
+      "mustAvoid": [
+        "generic teamwork example"
+      ]
+    },
+    {
+      "domain": "hospital volunteer desk scheduling",
+      "audience": "a volunteer lead assigning visible and invisible tasks fairly",
+      "stakes": "highly visible favors are crowding out less glamorous work patients need",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"I can take the lobby shift again,\" Jack says, and the lead asks who stocked the quiet family room where no donors pass.",
+      "firstImage": "\"I can take the lobby shift again,\" Jack says before the schedule is even open.",
+      "mustInclude": [
+        "lobby badge",
+        "family room cabinet",
+        "shift sheet"
+      ],
+      "mustAvoid": [
+        "moralizing the volunteer as fake"
+      ]
+    },
+    {
+      "domain": "student theater backstage roles",
+      "audience": "a director balancing real help and public credit",
+      "stakes": "backstage labor is being neglected because the visible helpful roles carry prestige",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Sofia choose the prop table only after the cast list goes up, then assign public thanks to the invisible crew as well as the visible runners.",
+      "firstImage": "You see the prop table empty under the stage lights before rehearsal starts.",
+      "mustInclude": [
+        "prop table",
+        "cast list",
+        "curtain call thanks"
+      ],
+      "mustAvoid": [
+        "school popularity cliche"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish surface function from social payoff in animal and human analogies",
+      "explain how useful behavior can still signal prestige",
+      "avoid the false choice between pure altruism and fraud"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one visible helpful act you saw today and write two columns: what it accomplished, and what standing or alliance signal it may also have sent.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-denial-of-death-ch07",
+  "number": 7,
+  "title": "The Spell Cast by Persons: The Nexus of Unfreedom",
+  "coreMove": "identify when another person becomes a borrowed source of reality, worth, and safety",
+  "sourcePressure": "Explains transference, dependency, and submission to powerful persons as terror management through borrowed certainty.",
+  "chapterSpecificMisunderstanding": "Dependency is only gullibility or weakness.",
+  "sourceAlignmentTerms": [
+    "transference",
+    "dependency",
+    "borrowed certainty",
+    "unfreedom",
+    "authority",
+    "powerful persons"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Spell Cast by Persons",
+      "detail": "the source sidecar confirms the chapter title phrase and supports transference, dependency, submission, and borrowed certainty from powerful persons",
+      "useIn": "both",
+      "phrasingHint": "The spell begins as relief: someone else seems to hold the reality you cannot hold alone."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first mortality hook",
+      "generic fear controls your life opener",
+      "chapter 7 as essay preview"
+    ],
+    "counterintuition": [
+      "what looks like X is actually Y",
+      "you think this is about fear but it is about meaning",
+      "not weakness but strength correction shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on death",
+      "write three things you fear",
+      "generic notice your reaction prompt"
+    ],
+    "examples": [
+      "office meeting with mug scene shell",
+      "kitchen-table epiphany",
+      "classroom whiteboard morality tale",
+      "timestamp plus name plus prop opener"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "elite music mentorship",
+      "audience": "pianist surrendering judgment",
+      "stakes": "reverse the order of borrowed certainty",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sophie plays the phrase her own way once before asking the famous teacher",
+      "firstImage": "piano hammers under an open lid",
+      "mustInclude": [
+        "annotated score",
+        "practice key",
+        "recording phone"
+      ],
+      "mustAvoid": [
+        "generic boundary advice",
+        "generic transference lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "political campaign office",
+      "audience": "organizer under a charismatic candidate",
+      "stakes": "recover judgment before loyalty becomes submission",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chris reads contradictory canvass numbers aloud while the room wants optimism",
+      "firstImage": "pizza boxes beside voter lists",
+      "mustInclude": [
+        "canvass sheets",
+        "polling memo",
+        "campaign button"
+      ],
+      "mustAvoid": [
+        "charisma tactics",
+        "generic transference lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "therapy supervision room",
+      "audience": "intern seeking total approval",
+      "stakes": "separate learning from making a supervisor an oracle",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mathieu writes his own case formulation first and brings it as a thought rather than a plea",
+      "firstImage": "two clocks in a supervision room",
+      "mustInclude": [
+        "case notes",
+        "supervision form",
+        "recorder"
+      ],
+      "mustAvoid": [
+        "generic boundary advice",
+        "generic transference lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "relationship after relocation",
+      "audience": "partner whose world shrank around love",
+      "stakes": "notice love becoming borrowed reality",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lars compares the calendar before and after the move and adds one independent commitment back",
+      "firstImage": "empty bike hook in a hallway",
+      "mustInclude": [
+        "shared calendar",
+        "cycling jersey",
+        "train pass"
+      ],
+      "mustAvoid": [
+        "charisma tactics",
+        "generic transference lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "founder cult audit meeting",
+      "audience": "employee trusting a visionary CEO",
+      "stakes": "name the shelter provided by borrowed future-certainty",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Giulia prints missed revenue promises and brings them to the audit meeting",
+      "firstImage": "glass wall with roadmap stickers",
+      "mustInclude": [
+        "revenue memo",
+        "stickers",
+        "audit agenda"
+      ],
+      "mustAvoid": [
+        "generic boundary advice",
+        "generic transference lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    },
+    {
+      "domain": "art academy critique",
+      "audience": "student copying a professor taste",
+      "stakes": "risk one independent mark instead of borrowed approval",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Akira leaves the strange red line after the professor frowns and explains why it belongs",
+      "firstImage": "charcoal dust on a sleeve",
+      "mustInclude": [
+        "portfolio board",
+        "red pastel",
+        "critique stool"
+      ],
+      "mustAvoid": [
+        "charisma tactics",
+        "generic transference lesson",
+        "reuse of previous chapter scene shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply identify when another person becomes a borrowed source of reality, worth, and safety in a fresh scenario",
+      "avoid the weak version: Dependency is only gullibility or weakness.",
+      "explain choices using transference, dependency, borrowed certainty"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Identify one person whose approval has become reality for you and make one small judgment before checking with them.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

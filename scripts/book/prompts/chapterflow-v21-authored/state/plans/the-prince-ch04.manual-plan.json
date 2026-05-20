@@ -1,0 +1,175 @@
+{
+  "chapterId": "the-prince-ch04",
+  "number": 4,
+  "title": "Why the Kingdom of Darius, Conquered by Alexander, Did Not Rebel Against the Successors of Alexander at His Death",
+  "coreMove": "Judge conquest and retention by whether authority runs through removable servants or rooted local lords.",
+  "sourcePressure": "Machiavelli answers why Alexander's successors held Darius's empire by contrasting two structures: a centralized prince ruling through servants, like the Turk, and a prince ruling among hereditary barons, like France. The first is hard to enter but easier to hold after the ruling family falls; the second is easier to enter through malcontents but hard to retain because local lords remain centers of attachment.",
+  "chapterSpecificMisunderstanding": "The weak version makes this about Alexander's genius. The writer must keep the institutional contrast visible: servants cannot carry the people before conquest and have little independent credit afterward, while barons can open the gate and later lead fresh movements.",
+  "sourceAlignmentTerms": [
+    "Darius",
+    "Alexander",
+    "Turk",
+    "France",
+    "servants",
+    "barons",
+    "family of the prince",
+    "malcontents",
+    "uniformity"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Alexander as a great-man opening",
+      "battlefield genius explaining political retention",
+      "a generic empire-management hook"
+    ],
+    "counterintuition": [
+      "most people assume conquest is about military skill, but actually it is structure",
+      "centralized systems are always better than decentralized systems",
+      "local leaders are always the problem"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and draw your org chart",
+      "ask whether your team is centralized or decentralized",
+      "rank leaders by charisma"
+    ],
+    "examples": [
+      "corporate org chart takeover",
+      "sports team coaching hierarchy",
+      "generic school district bureaucracy",
+      "battle reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an intelligence service assessing two rival regimes before a coup attempt",
+      "audience": "analysts deciding whether defecting ministers can bring a capital with them",
+      "stakes": "in one regime ministers are rotated servants with no personal following; in the other, hereditary provincial bosses can unlock roads and later rebel",
+      "format": "predict_reveal",
+      "requiredBeat": "The analyst moves the minister photos off the map when no local flags follow them, then leaves the provincial bosses pinned to roads, granaries, and radio towers.",
+      "firstImage": "Minister photos and provincial flags cover a wall map under a desk lamp.",
+      "mustInclude": [
+        "minister photos",
+        "provincial flags",
+        "radio towers"
+      ],
+      "mustAvoid": [
+        "spy thriller chase",
+        "personality profiles",
+        "simple coup mechanics"
+      ]
+    },
+    {
+      "domain": "a medieval military council comparing an imperial satrapy with a baronial frontier kingdom",
+      "audience": "a commander choosing whether to seek local invitations or prepare for a direct field defeat",
+      "stakes": "bribed palace officials may open a gate but cannot carry the countryside, while angry barons can help entry and later make holding impossible",
+      "format": "dialogue",
+      "requiredBeat": "The commander scratches servant under the satrap's removable badge and baron under the lord's hereditary banner, then changes the invasion plan from intrigue to field battle for the satrapy.",
+      "firstImage": "A removable satrap's badge lies beside a stitched hereditary banner.",
+      "mustInclude": [
+        "satrap's badge",
+        "hereditary banner",
+        "field-battle route"
+      ],
+      "mustAvoid": [
+        "sword-fight spectacle",
+        "honor duel",
+        "Alexander biography"
+      ]
+    },
+    {
+      "domain": "a colonial archive team explaining why one occupied territory stayed quiet and another kept rebelling",
+      "audience": "historians reconstructing administration records without turning everything into national character",
+      "stakes": "the explanation changes if rebellions came from rooted local houses rather than the conqueror's lack of talent",
+      "format": "postmortem",
+      "requiredBeat": "The archivist places appointment slips in one pile and family land grants in another, then traces rebellions only from the land-grant pile.",
+      "firstImage": "Family land grants are tied with string beside stamped appointment slips.",
+      "mustInclude": [
+        "appointment slips",
+        "family land grants",
+        "rebellion docket"
+      ],
+      "mustAvoid": [
+        "national stereotypes",
+        "great conqueror ranking",
+        "archive dust as atmosphere only"
+      ]
+    },
+    {
+      "domain": "a cybersecurity incident team taking over two compromised municipal networks",
+      "audience": "responders deciding whether removing the central administrator account is enough",
+      "stakes": "one network routes all permissions through a central directory, while another has autonomous departments with local credentials that can restart the breach",
+      "format": "before_after",
+      "requiredBeat": "After disabling the mayoral admin key, the lead draws a red box around every local department token still trusted by residents and refuses to call the second network secured.",
+      "firstImage": "A revoked admin key flashes red beside six local credential tokens.",
+      "mustInclude": [
+        "revoked admin key",
+        "local credential tokens",
+        "department trust list"
+      ],
+      "mustAvoid": [
+        "generic IT cleanup",
+        "password advice",
+        "hacker villain story"
+      ]
+    },
+    {
+      "domain": "a humanitarian food program entering two famine zones with different chains of authority",
+      "audience": "field logisticians deciding whether village elders can distribute ration cards",
+      "stakes": "appointed depot managers may lack followers once the capital falls, while clan elders can move families toward or away from the program",
+      "format": "decision_point",
+      "requiredBeat": "The logistician taps the blank ration-card stack, then marks one route capital servants and the other rooted elders before choosing who must be negotiated with after entry.",
+      "firstImage": "Blank ration cards sit beside two colored supply routes.",
+      "mustInclude": [
+        "ration cards",
+        "supply routes",
+        "elder registry"
+      ],
+      "mustAvoid": [
+        "aid-worker heroism",
+        "food shortage pity scene",
+        "generic stakeholder mapping"
+      ]
+    },
+    {
+      "domain": "a film restoration consortium acquiring distribution rights from two dissolved studios",
+      "audience": "lawyers determining why one catalog clears quickly and the other keeps producing objections",
+      "stakes": "a studio controlled all rights through one dissolving office, while the other had regional families with inherited exhibition claims",
+      "format": "vignette",
+      "requiredBeat": "The lawyer stamps clear on the central studio binder, then stops at the regional ledger where each theater family has its own seal and veto history.",
+      "firstImage": "A central studio binder sits beside a regional theater ledger with wax seals.",
+      "mustInclude": [
+        "central studio binder",
+        "regional theater ledger",
+        "family seals"
+      ],
+      "mustAvoid": [
+        "Hollywood glamour",
+        "copyright trivia",
+        "business acquisition boilerplate"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish servant-ruled and baronial structures from scenario evidence",
+      "predict whether entry or retention will be harder based on internal authority",
+      "analyze why removing the ruling family solves one structure but not the other",
+      "evaluate explanations that over-credit the conqueror and under-read the subject state's structure"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one institution you know from public reporting. Mark which actors are removable servants and which have their own followers, assets, or inherited authority. Then write which danger comes before entry and which comes after.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch01",
+  "number": 1,
+  "title": "The Map Is Not the Territory",
+  "readingTimeMinutes": 12,
+  "hook": "The green dashboard looks calm until one live customer call starts ringing through the room.",
+  "counterintuition": "A clean map can make you less aware, not more; but the better move is to use the map as a shortcut, then let the territory interrupt it before the shortcut becomes command.",
+  "tryThisNow": "Choose a trusted report. Before acting, write one direct territory check: a call to make, a work sample to inspect, or a room to walk.",
+  "keyTakeaway": "Use maps because reality is too large to carry, but keep testing the map against the territory before it starts ruling the decision.",
+  "breakdown": {
+    "fastRead": "Tinny hold music fills the conference room. The dashboard says customer wait time is fine. The complaint log says callers are furious. Hannah does not debate which signal deserves respect. She puts the support line on speakerphone and lets the timer run past the promised answer time.\n\nThat is the move. A map is a reduction of the territory, not the territory itself. Metrics, resumes, plans, and reports help because they leave things out. They harm when the missing parts stop feeling missing.\n\nUse the map, then touch the ground.",
+    "deepRead": "A dashboard said the line was moving; Jeff Bezos picked up the phone and let the customer line answer back. That story matters because the problem was not the existence of a metric. The problem was that the metric had become easier to trust than the people it claimed to represent.\n\nEvery useful map is incomplete on purpose. A financial statement cannot carry every invoice, customer argument, supplier delay, and shelf of unsold stock. A resume cannot show whether a candidate can keep their hands steady at the bench. A policy cannot hold every exception a real hallway will produce. The reduction is what makes the tool usable. It is also what makes overconfidence possible.\n\nThe test is contact.\n\nNewton and Einstein make the point cleanly: one map can work across much of the terrain while another shows where the terrain changes under its feet. That is the mature way to treat models. Do not worship them, and do not throw them away the first time they show an edge. Ask where the map works, what it leaves out, and what kind of evidence would force an update.\n\nThe limit is important. Anecdotes are not automatically superior to data. A complaint can be noisy, selective, or wrong. The discipline is to make the map answer to the territory, not to replace one blind faith with another.",
+    "fullRead": "Michael stands at the river tailgate with a laminated habitat map and six muddy boot photos. The grant plan points to the north bend. The boot photos point to the south bank, where the saplings are actually failing. If he treats the map as the decision, money moves cleanly and wrongly. If he treats the map as a question, the next step is obvious: reconcile the picture with the ground before the purchase order goes out.\n\nThat is why the cartographer matters. A map carries the maker's purpose. A call-center dashboard may count average answer time because that number is easy to collect. A resume may reward polish because polish is easy to read. A city plan may favor straight lines because straight lines are easy to defend in a meeting. The map is not lying. It is choosing.\n\nWhat has your current map chosen to ignore?\n\nJane Jacobs matters because the plan did not merely describe the city; it tried to make the city obey the drawing. That is the deeper danger. Once a map gets power, people begin serving it. Students serve the ranking. Teams serve the status report. Managers serve the green tile. A representation can start shaping the territory it was meant to describe.\n\nRachel sees the smaller version at the apprenticeship bench. One resume is perfect. The other is uneven, patched together from odd jobs and a short certificate. The map says the polished candidate is safer. Then the caliper test begins. Five minutes later, the messy resume is attached to steadier hands. The right lesson is not to ignore resumes. It is to remember what they are: compressed guesses about work that still needs to be watched.\n\nMaps earn trust by staying connected. They lose trust when they become easier to defend than reality. That can happen slowly. A metric looks useful, then official, then sacred. A plan starts as coordination, then becomes a reason to stop seeing the room. A review form begins as a memory aid, then turns into the only thing anyone is allowed to notice.\n\nUse the abstraction. Inspect the maker. Check the ground. The order matters because a clean abstraction can make a bad decision feel tidy. When the stakes rise, add one direct contact point: a call, a sample, a walk-through, a field photo, or a complaint read in full. That contact point does not replace the map. It keeps the map answerable.\n\nUse the abstraction. Inspect the maker. Check the ground. Watch for the moment the scorecard starts rewriting the game.\n\nThe point is not suspicion for its own sake. You cannot run a hospital, shop, classroom, or software service by direct inspection of everything. You need reductions. The skill is knowing when the reduction has gathered too much authority. High stakes, strong incentives, strange complaints, and signals that look too smooth are all reasons to go touch the territory.\n\nA map that still answers to the ground is leverage. A map that refuses correction is a trap with clean labels."
+  },
+  "examples": [
+    {
+      "exampleId": "ch01-ex01-claire-support-line",
+      "title": "Claire Lets the Hold Music Run",
+      "tags": [
+        "support",
+        "metrics",
+        "scene"
+      ],
+      "planSpec": {
+        "domain": "customer-service dashboard audit",
+        "audience": "an operations lead whose call-center report shows healthy wait times",
+        "stakes": "renewal calls are being lost while the executive team trusts a green metric",
+        "format": "scene",
+        "requiredBeat": "Hannah calls the support line from the conference room speakerphone and lets the actual hold music run past the dashboard's promised answer time"
+      },
+      "scenario": "Tinny hold music fills the glass conference room before anyone says the word metric. Claire, the operations lead, has the green dashboard tile open beside a customer complaint log full of missed renewal calls. The report promises answers in under a minute. The speakerphone timer crosses ninety seconds while the executives stare at it. Claire has to decide before the renewal review ends whether the dashboard still gets to govern the staffing call.",
+      "whatToDo": "Let the call keep running, write the actual wait time beside the green tile, and pause the staffing decision until the metric explains the customer experience it claims to measure.",
+      "whyItMatters": "The live call is the territory pushing back. It does not make the dashboard useless; it shows the edge where the reduction stopped matching the thing it was built to track."
+    },
+    {
+      "exampleId": "ch01-ex02-michael-river-map",
+      "title": "Michael Delays the Grant Order",
+      "tags": [
+        "fieldwork",
+        "grant",
+        "map"
+      ],
+      "planSpec": {
+        "domain": "grant-funded river restoration survey",
+        "audience": "a conservation coordinator reading a neat habitat map",
+        "stakes": "grant money may be spent on the wrong bend of the river",
+        "format": "decision_point",
+        "requiredBeat": "Michael places the laminated habitat map beside muddy boot photos from the riverbank and delays the grant order until the two disagreeing pictures are reconciled"
+      },
+      "scenario": "The tailgate is wet with boot grit and a laminated habitat map curls at the corners. Michael, a conservation coordinator, sets the map beside six muddy photos from this morning's river walk. The grant order points to the north bend. The photos show saplings failing on the south bank. His pen hovers over the purchase request, and he must decide whether the map is enough or the field evidence gets another visit.",
+      "whatToDo": "Stop the purchase request, mark the disagreement between the map and the photos, and send the crew back to the river before committing the grant money.",
+      "whyItMatters": "The map is useful for narrowing attention, not for ending inspection. When the field photos disagree, the next action has to reconnect the plan to the ground."
+    },
+    {
+      "exampleId": "ch01-ex03-rachel-caliper-test",
+      "title": "Rachel Watches the Caliper Test",
+      "tags": [
+        "hiring",
+        "resume",
+        "bench"
+      ],
+      "planSpec": {
+        "domain": "resume screen for tool-and-die apprentice",
+        "audience": "a plant manager selecting candidates from polished resumes",
+        "stakes": "the wrong hire will slow a short-staffed apprenticeship bench",
+        "format": "predict_reveal",
+        "requiredBeat": "Rachel compares a perfect resume with a five-minute bench test and watches the weaker paper candidate solve the caliper setup cleanly"
+      },
+      "scenario": "It took Rachel one minute to prefer the perfect resume and five minutes to doubt it. The caliper blinks on the tool-room bench beside two applications. One candidate's paper looks tidy; the other reads like a patchwork of odd jobs. Rachel predicts the polished candidate will finish first, then watches the uneven resume solve the setup cleanly. She must decide which map of skill deserves the offer.",
+      "whatToDo": "Treat the resume as a first filter, not a verdict. Put the bench test result beside the paper record and hire from the work that actually showed up.",
+      "whyItMatters": "A resume is a compressed story about ability. The bench test brings the territory into the room, where neat paper can lose to steadier hands."
+    },
+    {
+      "exampleId": "ch01-ex04-olivier-playground-paths",
+      "title": "Olivier Marks the Desire Paths",
+      "tags": [
+        "planning",
+        "city",
+        "vignette"
+      ],
+      "planSpec": {
+        "domain": "city playground redesign walk-through",
+        "audience": "a parks planner relying on a clean safety diagram",
+        "stakes": "children may avoid the new layout because the plan misses how families actually move",
+        "format": "vignette",
+        "requiredBeat": "You watch Olivier follow parents across the site with a clipboard and mark the desire paths that never appear on the approved plan"
+      },
+      "scenario": "You stand by the mulch while chalk arrows cross the future swing area. Olivier, the parks planner, follows parents with a clipboard and marks where strollers actually turn. The approved plan keeps every path clean and square. The ground keeps drawing diagonals. Before the contractor stakes the first post, Olivier must decide whether the safety diagram is describing movement or trying to command it.",
+      "whatToDo": "Move the plan back into contact with the site. Add the desire paths to the drawing before the layout hardens into concrete, fencing, and frustrated families.",
+      "whyItMatters": "The approved plan has authority, but the walking paths reveal behavior. If the design ignores the territory, families will either resist it or be shaped badly by it."
+    },
+    {
+      "exampleId": "ch01-ex05-aman-market-fees",
+      "title": "Aman Writes in the Missing Vendors",
+      "tags": [
+        "market",
+        "fees",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "farmers market vendor fee review",
+        "audience": "a market treasurer trusting a clean vendor-revenue sheet",
+        "stakes": "a fee increase could drive out the small vendors who make the market worth visiting",
+        "format": "postmortem",
+        "requiredBeat": "Aman counts the empty end stalls at closing and writes the missing vendors directly onto the revenue sheet before approving the fee change"
+      },
+      "scenario": "Which number belongs in the fee vote: vendor revenue or the empty end stalls after closing? Aman, the market treasurer, folds two stall weights where vegetable tents used to stand and carries them to the office. The vendor-revenue sheet looks strong because the largest booths are paying more. He writes the missing small vendors in the margin before next Saturday's board packet is printed.",
+      "whatToDo": "Add the absence to the sheet. Count the vendors the revenue map has erased before voting on a fee increase that may keep the spreadsheet healthy and weaken the market.",
+      "whyItMatters": "A map can hide losses by counting what remains. The empty stalls are not sentimental detail; they are part of the territory the decision will change."
+    },
+    {
+      "exampleId": "ch01-ex06-marit-login-spinner",
+      "title": "Marit Rewrites the Incident Definition",
+      "tags": [
+        "software",
+        "uptime",
+        "definition"
+      ],
+      "planSpec": {
+        "domain": "software uptime incident log",
+        "audience": "a reliability lead whose uptime report excludes degraded login failures",
+        "stakes": "customers are technically online while unable to complete work",
+        "format": "before_after",
+        "requiredBeat": "Marit reads one customer screen recording beside the uptime incident log and changes the incident definition before the weekly report goes out"
+      },
+      "scenario": "\"The site was up,\" someone says, while a customer's screen recording shows a frozen login spinner for forty-two seconds. Marit, the reliability lead, has the uptime report on one monitor and the incident log on the other. Before the weekly report goes out, she changes the incident definition so degraded login failures count as failures, not footnotes.",
+      "whatToDo": "Revise the map so it tracks the experience that matters. Keep uptime, but add degraded login failure to the incident definition before the report earns another green week.",
+      "whyItMatters": "The old metric was technically true and practically misleading. Better definitions keep the representation attached to what customers are actually trying to do."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A support team has a dashboard showing healthy response times, but three large customers send recordings of long waits. What is the first disciplined move?",
+        "choices": [
+          "Treat the recordings as complaints that can be reviewed after the dashboard trend changes.",
+          "Run a direct check of the support line and compare the actual wait with the dashboard's definition.",
+          "Replace the dashboard with customer anecdotes because direct stories are always more reliable."
+        ],
+        "correctIndex": 1,
+        "explanation": "The direct check makes the map answer to the territory. The recordings should not be dismissed, but replacing measurement with anecdotes repeats the same overtrust problem in another form.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A hiring panel has two candidates: one perfect resume, one uneven resume with a strong work sample. Which action best fits the map-territory move?",
+        "choices": [
+          "Use the resume as a filter, then let the work sample revise the panel's confidence.",
+          "Ignore the resume entirely because paper credentials are only a map.",
+          "Choose the polished resume because it is easier to defend if the hire fails."
+        ],
+        "correctIndex": 0,
+        "explanation": "The resume remains useful as a reduction, but the work sample is closer to the territory. Ignoring paper completely or choosing defensibility both confuse convenience with evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A city planner has a clean park diagram, but parents keep walking across a muddy diagonal path. Which response shows the strongest judgment?",
+        "choices": [
+          "Keep the diagram because plans need consistency once approved.",
+          "Ask whether the informal path reveals movement the approved plan failed to capture.",
+          "Remove the diagonal path quickly so visitors learn the official route."
+        ],
+        "correctIndex": 1,
+        "explanation": "The muddy path is territory evidence. It may not automatically decide the design, but it should force the planner to question what the diagram omitted before the plan hardens.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A nonprofit scorecard rewards the number of people served, and staff begin choosing easier cases to keep the number high. What has happened?",
+        "choices": [
+          "The staff have proved that measurement should be removed from the nonprofit.",
+          "The scorecard has started influencing the territory it was meant to describe.",
+          "The original service goal was probably too difficult to measure accurately."
+        ],
+        "correctIndex": 1,
+        "explanation": "The map is no longer passive. The score changes staff behavior, so the organization must inspect the incentive the metric created rather than simply trust the clean count.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A clinic policy says patients receive discharge instructions, but nurses report that confused patients keep calling the next day. Which move best tests the policy?",
+        "choices": [
+          "Review whether the policy was signed by the correct committee.",
+          "Watch one discharge conversation and call one patient the next morning to see what they understood.",
+          "Send a reminder email telling nurses to follow the policy more carefully."
+        ],
+        "correctIndex": 1,
+        "explanation": "The policy is a map of intended practice. Watching the conversation and checking patient understanding tests whether the map still touches what happens in the hallway and at home.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An executive says a customer-satisfaction average proves a launch is working. The comments are polarized: some love it, many cannot finish setup. What should an analyst notice?",
+        "choices": [
+          "The average may be compressing the territory in a way that hides a failure mode.",
+          "The comments are emotional and should not update a numerical metric.",
+          "The average is invalid because all summaries conceal some detail."
+        ],
+        "correctIndex": 0,
+        "explanation": "Averages reduce reality. That reduction can be useful, but here it may hide a setup failure. The answer is not to worship comments or reject summaries outright.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A school ranking pushes teachers to spend less time with students who need slow help because quick improvements lift the score. Which diagnosis is most precise?",
+        "choices": [
+          "The ranking is a bad map because schools cannot be compared.",
+          "The ranking is useful only if every classroom uses the same curriculum.",
+          "The map has become a target, and the territory is changing to flatter the score."
+        ],
+        "correctIndex": 2,
+        "explanation": "The ranking is now shaping behavior. Whether comparison is possible is a separate issue; the immediate danger is that people are optimizing the proxy instead of the learning.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A warehouse manager trusts a safety checklist, but workers keep moving around one blind corner without scanning badges. Which action best uses the map without worshiping it?",
+        "choices": [
+          "Stand at the corner during shift change and compare actual movement with the checklist step.",
+          "Add a second signature line to the checklist so workers take it seriously.",
+          "Remove the checklist because observed behavior is the only thing that counts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The corner observation tests the checklist against the territory. More signatures may only strengthen the map, and removing the checklist loses a tool that may still help once corrected.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A hospital dashboard, patient interviews, and direct hallway observation all disagree about discharge delays. Which plan is best?",
+        "choices": [
+          "Follow the dashboard because it is the only consistent source.",
+          "Follow the interviews because lived experience outranks all reports.",
+          "Map what each source measures, then use direct observation to find where the representation breaks."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest plan keeps multiple maps in play and checks their range against the ground. Choosing one source as sacred, even interviews, skips the work of locating the mismatch.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A report looks clean, but the people closest to the work keep objecting. What should you retrieve?",
+      "back": "A map is a reduction of the territory. Use the report, but test it against one direct contact point before letting it govern the choice.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A metric has become the target people optimize. What danger should you name?",
+      "back": "The map may be influencing the territory. Once rewards attach to a proxy, people can start serving the proxy instead of the reality it was meant to track.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A resume and a work sample point in different directions. Which one is closer to the territory?",
+      "back": "The work sample is closer to the actual ability being judged. The resume is still useful, but it should lose authority when the work itself gives better evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A model has worked for years, then fails in one edge case. What should you remember?",
+      "back": "A useful map can still have a range. The right move is to find the edge, update the model, and keep using it where it still earns trust.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "Before trusting a map made by someone else, what question protects you?",
+      "back": "Ask what the cartographer chose to count, ignore, and reward. Those choices shape what the map can show and what it will quietly hide.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to keep representations useful without letting them become sovereign. The skill is simple: name the map, inspect what it omits, and run one direct territory check when stakes or strange signals rise.",
+    "ifThenPlans": [
+      {
+        "context": "work metrics",
+        "plan": "If a dashboard will decide staffing, budget, or priority, then pair it with one live customer, worker, or process check before the decision is final."
+      },
+      {
+        "context": "hiring",
+        "plan": "If a resume makes a candidate look obviously safe, then require one work sample that tests the actual skill the role needs."
+      },
+      {
+        "context": "planning",
+        "plan": "If a plan looks elegant on paper, then walk the place or process it describes and mark one behavior the plan did not show."
+      },
+      {
+        "context": "personal judgment",
+        "plan": "If a story about yourself feels clean and settled, then ask what recent behavior or result would complicate that story."
+      }
+    ],
+    "twentyFourHourChallenge": "Before your next decision based on a report, plan, score, or summary, perform one territory check: call one person, inspect one work sample, observe one process, or walk one place.",
+    "weeklyPractice": "Each Friday, choose one map that guided your week. Write what it helped you see, what it may have hidden, who made it, and one change you would make before trusting it again."
+  },
+  "memorableLines": [
+    {
+      "text": "Use the map, then touch the ground.",
+      "location": "breakdown.fastRead",
+      "why": "The sentence turns a broad mental model into a concrete operating rule."
+    },
+    {
+      "text": "Every useful map is incomplete on purpose.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the tradeoff without making models sound defective."
+    },
+    {
+      "text": "A map that refuses correction is a trap with clean labels.",
+      "location": "breakdown.fullRead",
+      "why": "The image makes overtrusted representations feel dangerous and visible."
+    }
+  ]
+}

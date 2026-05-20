@@ -1,0 +1,183 @@
+{
+  "chapterId": "zero-to-one-ch09",
+  "number": 9,
+  "title": "Foundations",
+  "coreMove": "Design the beginning as if early structure will become expensive to change.",
+  "sourcePressure": "The chapter treats the founding moment as unusually consequential because early roles, ownership, incentives, and relationships harden into the company shape. The frozen source for this chapter contains no chapter-specific named anecdote beyond author/editor metadata, so examples should use fictional protagonists and stay anchored to verified terms.",
+  "chapterSpecificMisunderstanding": "Reducing foundations to legal paperwork or startup housekeeping.",
+  "sourceAlignmentTerms": [
+    "foundations",
+    "beginning",
+    "structure",
+    "roles",
+    "ownership",
+    "relationships",
+    "incentives"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of foundations",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "co-founder equity split",
+      "audience": "a startup lawyer forcing founders to settle control, vesting, and decision rights before the first hire",
+      "stakes": "whether early ambiguity becomes permanent resentment",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sarah stops the friendly handshake and makes each founder write what happens if one leaves",
+      "firstImage": "unsigned equity papers beside two untouched coffees",
+      "mustInclude": [
+        "equity papers",
+        "vesting calendar",
+        "cap table draft"
+      ],
+      "mustAvoid": [
+        "paperwork obsession"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "community clinic launch",
+      "audience": "a director deciding roles before grant money arrives",
+      "stakes": "whether mission clarity survives the first operational conflict",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Etienne assigns clinical authority before the donor announcement locks in confusion",
+      "firstImage": "folding chairs around a clinic floor plan",
+      "mustInclude": [
+        "floor plan",
+        "grant letter",
+        "role chart"
+      ],
+      "mustAvoid": [
+        "nonprofit governance generic"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "restaurant partnership agreement",
+      "audience": "two chefs opening a tasting room without deciding who controls menu, hiring, and debt",
+      "stakes": "whether friendship hides a structural fault line",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Giulia rereads the first vague agreement after the second payroll fight",
+      "firstImage": "a prep table dusted with flour and invoices",
+      "mustInclude": [
+        "partnership agreement",
+        "payroll envelope",
+        "prep list"
+      ],
+      "mustAvoid": [
+        "relationship drama"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "robotics hardware startup",
+      "audience": "an engineer-founder defining decision rights between hardware, software, and sales early",
+      "stakes": "whether blurred ownership slows every prototype decision later",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Jonas labels each prototype decision with a single owner before hiring accelerates",
+      "firstImage": "prototype arms mounted beside a torque chart",
+      "mustInclude": [
+        "torque chart",
+        "owner matrix",
+        "prototype arm"
+      ],
+      "mustAvoid": [
+        "teamwork slogans"
+      ]
+    },
+    {
+      "protagonistName": "Nina",
+      "domain": "family-run manufacturing succession",
+      "audience": "a second-generation manager formalizing authority before expansion",
+      "stakes": "whether unspoken family roles distort company incentives",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Nina writes the org chart nobody wants to discuss and places it next to the loan documents",
+      "firstImage": "loan documents weighted by a brass nameplate",
+      "mustInclude": [
+        "loan documents",
+        "org chart",
+        "brass nameplate"
+      ],
+      "mustAvoid": [
+        "family business sentiment"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "research consortium governance",
+      "audience": "a coordinator setting data ownership terms before labs contribute samples",
+      "stakes": "whether a shared scientific aim breaks under unclear ownership",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Kiran refuses to accept the first tissue shipment until data rights are signed",
+      "firstImage": "dry ice fog curling around a sample box",
+      "mustInclude": [
+        "sample box",
+        "data-use agreement",
+        "lab roster"
+      ],
+      "mustAvoid": [
+        "academic politics"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires design the beginning as if early structure will become expensive to change.",
+      "separate foundations from beginning in a novel operating case",
+      "diagnose the specific failure mode: reducing foundations to legal paperwork or startup housekeeping.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next project meeting, write who owns the decision, who owns the result, and what happens if the owner leaves; leave no box with two names.",
+  "readingTimeMinutes": 12
+}

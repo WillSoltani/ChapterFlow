@@ -1,0 +1,326 @@
+{
+  "chapterId": "skin-in-the-game-ch14",
+  "number": 14,
+  "title": "Peace, Neither Ink nor Blood",
+  "readingTimeMinutes": 12,
+  "hook": "Wet ink beside a floor map cannot keep a factory quiet by itself.",
+  "counterintuition": "Peace is weakest when it depends on fresh signatures or exhausted tempers, but it lasts when each side can see the cost of breaking it tomorrow.",
+  "tryThisNow": "Find one agreement you rely on. Add the missing trigger, owner, consequence, or shared cost that would still work after goodwill fades.",
+  "keyTakeaway": "Judge peace by the lived consequence structure that keeps it stable after the ceremony ends and nobody feels noble anymore.",
+  "breakdown": {
+    "fastRead": "Margaux looks at wet ink beside a factory floor map after two near-strikes. The agreement says the dispute is settled. The floor still has the same safety complaint, the same supervisors, and the same chance to drift. She adds a joint inspection trigger before calling it peace.\n\nDeclared peace is a moment. Durable peace is a structure. The title pushes the right question: what holds when signatures stop being fresh and nobody is bleeding today? Stability comes from credible consequence, shared exposure, and routines that make defection costly.",
+    "deepRead": "\"We're good now,\" Jonas says, holding the apology note while the leaning fence casts a crooked shadow. The note is sincere. It does not name who buys boards, who calls the contractor, or when the shared line gets repaired. Without a repair schedule and receipt folder, the note only delays the next argument.\n\nPeace, Neither Ink nor Blood asks for something harder than a signed page and quieter than revenge. Ink can announce an intention. Blood can frighten people into stopping. Neither is enough on its own. A lived arrangement has to give each side a reason to keep the peace when irritation, advantage, or forgetfulness returns.\n\nA truce without a trigger is a pause.\n\nThat is why the mechanism matters. A labor agreement needs inspection triggers. A fence apology needs dated repair tasks. A school handshake needs routines that change how rivals meet. An SLA needs automatic outage credits. A co-op promise needs access windows and approved fines. Two departments sharing a scarce specialist need mutual loss if either side poaches.\n\nThe weak version turns this into generic diplomacy advice. The sharper rule is structural. If one side can violate the agreement cheaply while the other side absorbs the cost, peace is decorative. If violation automatically costs the violator something he values, peace has a spine.",
+    "fullRead": "Rubber gym mats are stacked after the pep rally when Hanna studies the handshake photo. The two school teams smiled for the camera after a fight. By Friday, they will share a hallway, a court, and a crowd that loves rivalry. Hanna pairs the handshake with supervised shared setup duty for the next four games because ceremony fades faster than routine.\n\nThat is the practical difference between paper assurance and lived arrangement. Paper can name obligations, and sometimes that is necessary. But paper needs a path into repeated behavior. Who checks? When? What happens automatically? Who loses convenience if the terms are ignored? A peace that cannot answer those questions is asking mood to do the work of design.\n\nJavier watches server-status lights reflect in a glass wall before he rewrites the SLA. The vendor promises reliability, and the client wants the contract signed. The old draft has a breach clause that requires a fight after every outage. Javier makes credits trigger automatically from monitoring logs. The relationship becomes calmer because the penalty path no longer depends on anger, memory, or legal stamina.\n\nWhat keeps this agreement alive after everyone is tired? That question is useful in families, teams, buildings, vendors, schools, and states. The answer should be boring enough to run without speeches: logs, calendars, triggers, shared queues, inspection rights, fines, credits, deposits, rotations, and visible records.\n\nNora learns this in a co-op postmortem. Dust footprints cross the lobby mat while residents complain about renovation promises that failed. The board had used warm language about consideration, but no access windows, no fine schedule, and no approved consequence existed when contractors arrived early. Nora posts the access windows and fines before the next notice goes out. The tone gets less warm and the peace gets more real.\n\nStability is a habit with teeth.\n\nAnya Nowak sees the same pattern in a budget fight. A shared calendar is blocked in alternating colors for one scarce specialist. Each department promises not to poach outside the queue, but the budget memo has no cost for cheating. Anya writes the rule: if either side bypasses the queue, both departments lose priority the following week. Mutual exposure makes defection less attractive than patience.\n\nThe practical rule is to design for the day after goodwill. If the agreement relies on everyone feeling reasonable, strengthen it. Add automatic triggers, shared records, and consequences close to the violation, with a named owner close enough to notice the breach before resentment hardens. Do not glorify force, and do not worship ink. Peace becomes durable when the structure makes betrayal expensive and cooperation ordinary."
+  },
+  "examples": [
+    {
+      "exampleId": "ch14-ex01-margaux-inspection",
+      "title": "Margaux adds the trigger",
+      "tags": [
+        "labor",
+        "agreement",
+        "inspection"
+      ],
+      "planSpec": {
+        "domain": "labor mediator reviewing a signed agreement after two near-strikes",
+        "audience": "mediator asking what consequence keeps peace after signatures",
+        "stakes": "workers and management need a living enforcement structure",
+        "format": "decision_point",
+        "requiredBeat": "Margaux adds a joint inspection trigger to the agreement before calling it settled."
+      },
+      "scenario": "At 8:30 p.m. Monday, Margaux sees wet ink beside the agreement and the factory floor map. Two near-strikes are over on paper, but the safety aisle that started the dispute still needs a shared check before the next shift change. Margaux must choose between calling the room settled tonight and adding an inspection trigger that will still matter next month.",
+      "whatToDo": "Add a joint inspection trigger to the agreement, assign both sides to the floor map, and define what happens if the aisle fails again.",
+      "whyItMatters": "The signature marks intent. The inspection trigger gives peace a routine that survives after relief and exhaustion fade."
+    },
+    {
+      "exampleId": "ch14-ex02-jonas-fence",
+      "title": "Jonas dates the repair",
+      "tags": [
+        "neighbors",
+        "repair",
+        "agreement"
+      ],
+      "planSpec": {
+        "domain": "neighbors ending a fence dispute with a note but no repair schedule",
+        "audience": "homeowner seeing why declared peace fails without structure",
+        "stakes": "the dispute will restart if maintenance costs stay vague",
+        "format": "dialogue",
+        "requiredBeat": "Jonas turns the apology note into dated repair tasks and shared receipts."
+      },
+      "scenario": "\"I'm sorry it got this far,\" the neighbor says while the leaning fence throws a crooked shadow across both yards. Jonas holds the apology note, but the broken posts, receipt folder, payment split, and repair schedule are still blank. Jonas must decide if kindness alone can settle a cost that will return with the next storm.",
+      "whatToDo": "Turn the apology note into dated repair tasks, open a shared receipt folder, and agree on the payment split before the next rain.",
+      "whyItMatters": "A warm note can lower tension, but vague maintenance costs restart conflict. Dated tasks make peace practical."
+    },
+    {
+      "exampleId": "ch14-ex03-hanna-setup",
+      "title": "Hanna gives the handshake a routine",
+      "tags": [
+        "school",
+        "rivalry",
+        "routine"
+      ],
+      "planSpec": {
+        "domain": "school rivalry cooled by a handshake after a fight",
+        "audience": "principal building credible consequence into peace",
+        "stakes": "students may treat ceremony as theater unless routines change",
+        "format": "scene",
+        "requiredBeat": "Hanna pairs the handshake with supervised shared setup duty for the next four games."
+      },
+      "scenario": "Rubber gym mats lean in stacks after the pep rally while Hanna studies the handshake photo and the game calendar. The students smiled for the camera, but the same teams will meet again Friday with friends watching from both bleachers. Hanna must decide whether the photo closes the fight or whether shared setup duty should make them practice peace before the next crowd arrives.",
+      "whatToDo": "Pair the handshake with a supervised setup rota for the next four games, and make missed duty affect both teams' event privileges.",
+      "whyItMatters": "Ceremony is fragile. Repeated shared work gives the students a lived arrangement that can outlast the photo."
+    },
+    {
+      "exampleId": "ch14-ex04-javier-sla",
+      "title": "Javier automates the consequence",
+      "tags": [
+        "contracts",
+        "SLA",
+        "outage"
+      ],
+      "planSpec": {
+        "domain": "software vendor and client signing an SLA with no penalty path",
+        "audience": "procurement lawyer testing ink against consequence",
+        "stakes": "service failure could continue if breach costs are symbolic",
+        "format": "before_after",
+        "requiredBeat": "Javier rewrites the SLA so outage credits trigger automatically from monitoring logs."
+      },
+      "scenario": "Javier watches server-status lights reflected in the glass wall before he opens the SLA. The draft promised uptime but made outage credits depend on a separate dispute and a tired client remembering every outage. After he linked credits to monitoring logs, the vendor could still fail, but failure would no longer require a new argument before it cost anything.",
+      "whatToDo": "Rewrite the SLA so outage credits trigger automatically from monitoring logs, then attach the credit table to the signature page.",
+      "whyItMatters": "Ink is weak when breach costs are symbolic. Automatic credits give the relationship a consequence path that does not need anger."
+    },
+    {
+      "exampleId": "ch14-ex05-nora-access",
+      "title": "Nora posts the access windows",
+      "tags": [
+        "co-op",
+        "renovation",
+        "rules"
+      ],
+      "planSpec": {
+        "domain": "co-op board calming a renovation conflict with promises but no access rules",
+        "audience": "board chair creating a lived arrangement",
+        "stakes": "residents need predictable consequence, not warm language",
+        "format": "postmortem",
+        "requiredBeat": "Nora notes which promise failed, then posts access windows with fines already approved."
+      },
+      "scenario": "It took Nora three complaints to read the dust footprints across the lobby mat as a failed agreement. The renovation notice promised respect, but contractors entered early, residents missed calls, and no fine schedule existed. In the postmortem, she marks which promise failed, approves fines, and posts access windows before the next notice.",
+      "whatToDo": "Name the failed promise, post access windows, attach the fine schedule, and tell residents exactly when enforcement starts.",
+      "whyItMatters": "Warm language did not give residents predictability. Approved fines and access windows create a lived arrangement."
+    },
+    {
+      "exampleId": "ch14-ex06-anya-priority",
+      "title": "Anya makes both sides lose priority",
+      "tags": [
+        "departments",
+        "queue",
+        "shared cost"
+      ],
+      "planSpec": {
+        "domain": "two departments ending budget conflict by sharing one scarce specialist",
+        "audience": "manager designing mutual exposure so peace holds",
+        "stakes": "either side can defect unless both feel the cost",
+        "format": "reflection",
+        "requiredBeat": "Anya Nowak makes both departments lose priority if either poaches the specialist outside the queue."
+      },
+      "scenario": "You see a shared calendar blocked in alternating colors while Anya Nowak reads the budget memo beside two directors waiting for an exception. Both departments promised to stop fighting over the specialist, but the priority queue has no cost for poaching. Anya must choose between trusting goodwill and making both departments lose priority if either side bypasses the queue.",
+      "whatToDo": "Write the queue rule so either department's poaching makes both lose priority the next week, then publish the shared calendar.",
+      "whyItMatters": "Mutual exposure makes defection costly to the group that would benefit from it. The calendar becomes peace with teeth."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A labor agreement is signed after a near-strike, and everyone wants to leave the room, but the safety aisle that caused the conflict has no inspection trigger for the next shift. What is missing?",
+        "choices": [
+          "Add a lived enforcement structure after signatures: named triggers, automatic consequences, and an owner who acts on them.",
+          "Give a more emotional signing speech because shared feeling may keep both sides attentive to the agreement.",
+          "The structure should require renewal review at each contract anniversary because static peace decays."
+        ],
+        "correctIndex": 0,
+        "explanation": "The signature is only a declaration. The inspection trigger gives both sides a repeatable way to keep the settlement alive.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Neighbors exchange apology notes over a damaged fence after a storm, but they leave repair costs, contractor calls, and receipts vague. What would make the peace more durable?",
+        "choices": [
+          "A kinder note with no payment details.",
+          "A dated repair schedule and shared receipt folder.",
+          "A promise to avoid mentioning the fence again."
+        ],
+        "correctIndex": 1,
+        "explanation": "The repair schedule attaches peace to action and cost. A warmer note cannot prevent the next storm from reopening the dispute.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Two rival school teams take a handshake photo after a fight, then return to the same hallway, court, and Friday crowd. Which addition best turns ceremony into structure?",
+        "choices": [
+          "A larger photo in the hallway display.",
+          "Shared supervised setup duty for future games.",
+          "A warning that rivalry feelings are forbidden."
+        ],
+        "correctIndex": 1,
+        "explanation": "Shared setup duty creates repeated contact and consequence. The photo records a moment, but routine changes behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A software SLA promises uptime, but every outage credit requires a new dispute, fresh screenshots, and someone angry enough to push. What should the procurement lawyer add?",
+        "choices": [
+          "Add more optimistic partnership language because tone may reduce disputes before they become formal claims.",
+          "Make clients prove frustration more carefully because subjective complaints can distort outage discussions.",
+          "Replace the dispute-based credit process with automatic credits triggered by monitoring logs, so the SLA enforces itself."
+        ],
+        "correctIndex": 2,
+        "explanation": "Automatic credits create a credible consequence path. Without it, breach costs remain symbolic and peace depends on stamina.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A co-op board promises considerate renovations, then contractors arrive early while residents are still asleep and no fine schedule exists. Why does the conflict return?",
+        "choices": [
+          "Residents object because renovation disrupts sleep and parking, not because enforcement structure is missing.",
+          "Diagnose the promises as lacking predictable consequence and timing, so contractors test the rule rather than follow it.",
+          "Warm language depends on goodwill that contractor relationships do not consistently provide for timing."
+        ],
+        "correctIndex": 1,
+        "explanation": "The issue is missing structure. Access windows and fines turn vague consideration into predictable behavior.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Two departments agree to share a scarce specialist, but either director can poach the person before a deadline without penalty. What rule would make peace hold better?",
+        "choices": [
+          "A motivational statement about collaboration.",
+          "A rule that punishes only the department with less senior leadership.",
+          "Both departments lose priority if either bypasses the queue."
+        ],
+        "correctIndex": 2,
+        "explanation": "Mutual exposure makes defection costly. A slogan or biased penalty leaves one side with a cheap route around the agreement.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "When a signed settlement depends on both sides feeling reasonable, but one side can violate cheaply during a busy month while the other absorbs the cost, what is the best analysis?",
+        "choices": [
+          "The peace is decorative because consequence is asymmetric.",
+          "The peace is durable because ink creates trust by itself.",
+          "The peace should be replaced with force immediately."
+        ],
+        "correctIndex": 0,
+        "explanation": "Durable peace needs consequence close to violation. This does not glorify force; it rejects paper assurance without credible cost.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "The mediator says the agreement is peaceful because nobody is currently angry at the closing table, even though no trigger or owner exists. Which response best fits the lesson?",
+        "choices": [
+          "Anger must be preserved so each side remains afraid.",
+          "No agreement matters unless it includes punishment for everything.",
+          "Current calm is useful, but triggers and costs decide durability."
+        ],
+        "correctIndex": 2,
+        "explanation": "Calm helps, but it fades. Durable peace comes from a structure that works when mood, memory, and goodwill weaken.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "In this case, an agreement has signatures, public praise, and no automatic consequence for breach once people return to their desks. What question should come next?",
+        "choices": [
+          "How can the signing ceremony be made more impressive?",
+          "Who checks, when, and what happens if the terms are ignored?",
+          "Which side can be blamed if emotions rise again?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The practical question looks for enforcement structure. Ceremony and blame do not keep the agreement alive after the ink dries.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A peace agreement has signatures but no trigger. What lived enforcement structure converts the signature into a working peace?",
+      "back": "Declared peace needs a lived arrangement: who checks, when, and what consequence follows if the terms are ignored.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is an apology note weak in a fence dispute?",
+      "back": "It may lower tension, but repair costs remain vague. Dated tasks and shared receipts make the peace durable.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What makes an SLA stronger than paper assurance?",
+      "back": "Automatic outage credits from monitoring logs. Consequence triggers without a new fight give the agreement a spine.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How do you avoid glorifying force in this lesson?",
+      "back": "Focus on credible consequence, not violence. Durable arrangements make cooperation ordinary and defection costly.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "Two teams share a scarce resource. What keeps the truce from failing?",
+      "back": "Mutual exposure. If either side poaches, both should feel the cost, so patience beats defection.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Designing Triggered Peace Through Consequences",
+    "coreSkill": "Treat calm and signatures as beginnings. Add triggers, records, and consequences that still work after goodwill fades.",
+    "ifThenPlans": [
+      {
+        "context": "labor",
+        "plan": "If a settlement names a problem, then add a joint inspection trigger before calling it done."
+      },
+      {
+        "context": "neighbors",
+        "plan": "If an apology settles a repair dispute, then date the tasks and share receipts immediately."
+      },
+      {
+        "context": "contracts",
+        "plan": "If service failure matters, then make credits automatic from logs instead of negotiable after anger."
+      },
+      {
+        "context": "teams",
+        "plan": "If two groups share a scarce person, then make queue violations cost both groups priority."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one fragile agreement. Add one trigger, one record, and one consequence that would operate without another speech.",
+    "weeklyPractice": "Each week, inspect one truce in work or home and ask whether it has a structure that survives boredom, advantage, and fatigue."
+  },
+  "memorableLines": [
+    {
+      "text": "A truce without a trigger is a pause.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the difference between declaration and durable structure memorable."
+    },
+    {
+      "text": "Stability is a habit with teeth.",
+      "location": "breakdown.fullRead",
+      "why": "It captures routine plus consequence in one sentence."
+    },
+    {
+      "text": "The practical rule is to design for the day after goodwill.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a practical phrase for agreements after ceremony."
+    }
+  ]
+}

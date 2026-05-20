@@ -1,0 +1,193 @@
+{
+  "chapterId": "extreme-ownership-ch04",
+  "number": 4,
+  "title": "Believe",
+  "coreMove": "earn buy-in by understanding the mission deeply enough to explain its purpose without spin or borrowed language",
+  "sourcePressure": "Resistance to the Iraqi partner-force mission changes when leaders understand and explain why building partner capability matters.",
+  "chapterSpecificMisunderstanding": "make people believe by sounding confident",
+  "sourceAlignmentTerms": [
+    "Iraqi partner forces",
+    "mission purpose",
+    "strategic why",
+    "buy-in",
+    "compliance",
+    "belief",
+    "no spin"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Iraqi partner-force mission",
+      "detail": "the source says SEAL resistance shifts once leaders understand why building Iraqi capability matters strategically",
+      "useIn": "both",
+      "phrasingHint": "The Iraqi partner-force mission should land as the moment where orders prove thinner than belief until the why becomes clear."
+    },
+    {
+      "kind": "event",
+      "name": "SEAL resistance to the Iraqi partner-force mission",
+      "detail": "the source uses the resistance to show that authority can create participation before it creates conviction",
+      "useIn": "fullRead",
+      "phrasingHint": "The resistance is useful because it shows disciplined people can still carry a mission as rented work when the purpose has not reached them."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "mobile vaccination team asked to serve a distrustful rural fairground",
+      "audience": "a clinic lead whose nurses think the assignment is political theater",
+      "stakes": "families will skip care if the team arrives resentful and unable to explain the purpose",
+      "format": "scene",
+      "requiredBeat": "the lead admits her own doubts, calls the county nurse for the real access problem, then explains the fairground plan in terms of missed appointments and transport gaps",
+      "firstImage": "folding vaccine privacy screens lean against a cattle-show pen at dawn",
+      "mustInclude": [
+        "privacy screens",
+        "county nurse call",
+        "transport gap"
+      ],
+      "mustAvoid": [
+        "blind compliance with health policy"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "university archive staff moving rare documents for a flood-wall project",
+      "audience": "an archive director facing staff anger about disruptive relocation",
+      "stakes": "the move can damage trust and irreplaceable materials if people treat it as pointless",
+      "format": "vignette",
+      "requiredBeat": "the director studies the flood-risk map, walks staff to the lowest stacks, and explains why the temporary move protects access instead of just ordering boxes packed",
+      "firstImage": "You are close enough to see this: blue flood-line sticker sits three inches above a row of acid-free boxes.",
+      "mustInclude": [
+        "flood-line sticker",
+        "acid-free boxes",
+        "temporary move path"
+      ],
+      "mustAvoid": [
+        "bureaucratic change-management language"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "software privacy migration that slows feature work",
+      "audience": "an engineering manager with developers angry about deleting legacy data",
+      "stakes": "rushed compliance work can turn into resentment and sloppy migration",
+      "format": "dialogue",
+      "requiredBeat": "the manager stops selling the deadline, reads the user deletion request history, and explains the migration as keeping a promise users already made visible",
+      "firstImage": "The first thing you register is physical: data-retention ticket shows a user request that has been waiting forty-three days.",
+      "mustInclude": [
+        "data-retention ticket",
+        "user deletion request",
+        "migration checklist"
+      ],
+      "mustAvoid": [
+        "legal fear as the only why"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "wildlife crossing build that closes a popular trailhead",
+      "audience": "a park ranger whose crew is tired of visitor complaints",
+      "stakes": "the crew may enforce the closure harshly if they do not believe in the purpose",
+      "format": "reflection",
+      "requiredBeat": "the ranger reviews the collision reports, walks the crew to the underpass survey stakes, and has each person practice explaining the closure in one honest sentence",
+      "firstImage": "\"Hold there,\" someone says. Orange survey ribbon flutters beside fresh deer tracks near the highway fence.",
+      "mustInclude": [
+        "survey ribbon",
+        "collision reports",
+        "one-sentence explanation"
+      ],
+      "mustAvoid": [
+        "environmental sermon"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "food bank changing pickup rules for partner pantries",
+      "audience": "an operations lead whose volunteers think the new appointment system is needless hassle",
+      "stakes": "families may receive less food if partner pantries keep arriving in clumps",
+      "format": "before_after",
+      "requiredBeat": "the lead shows volunteers the previous week’s spoiled produce count, connects it to uneven pickups, and has them test the new appointment sheet before explaining it to partners",
+      "firstImage": "Later, the team will trace the lesson back to this: crate of wilted cilantro sits beside a clipboard of late partner pickups.",
+      "mustInclude": [
+        "spoiled produce count",
+        "appointment sheet",
+        "partner pickup window"
+      ],
+      "mustAvoid": [
+        "volunteer guilt trip"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "orchestra section asked to adopt an unpopular slower tempo",
+      "audience": "a principal violinist leading musicians who think the conductor is overcorrecting",
+      "stakes": "the section can comply mechanically and still make the passage lifeless",
+      "format": "predict_reveal",
+      "requiredBeat": "the section lead listens to the singer’s breath mark, has the violins play both tempos, and asks which one lets the phrase land before defending the change",
+      "firstImage": "What changes once this is in front of everyone: penciled breath mark circles one measure on the violin part?",
+      "mustInclude": [
+        "penciled breath mark",
+        "two-tempo test",
+        "singer recording"
+      ],
+      "mustAvoid": [
+        "artistic authority speech"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test whether a leader actually understands the why",
+      "turn compliance problems into purpose explanations",
+      "reject spin, pressure, and borrowed language as false belief"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take a task people resist and explain the real why in two plain sentences without using authority, urgency, or because I said so.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

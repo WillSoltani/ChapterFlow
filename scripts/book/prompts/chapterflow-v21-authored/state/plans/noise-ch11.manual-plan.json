@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch11",
+  "number": 11,
+  "title": "Debiasing and Decision Hygiene",
+  "coreMove": "Apply decision hygiene as a process discipline that reduces noise regardless of the judge's effort, awareness, or attitude.",
+  "sourcePressure": "Decision hygiene operates through structural constraints on the judgment process — what information arrives when, whether ratings are recorded before sharing, whether scales are anchored — not through the judge's motivation or mindset. Debiasing and hygiene overlap but differ: debiasing targets the directional lean; hygiene targets the conditions that generate scatter. Both work through process, not through trying harder.",
+  "chapterSpecificMisunderstanding": "Treating hygiene as a mindset shift or a checklist of reminders to consult rather than a set of process constraints that operate independently of the judge's motivation or awareness.",
+  "sourceAlignmentTerms": ["decision hygiene", "debiasing", "process constraint", "pre-judgment", "structure", "conditions", "protocol"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Decision hygiene practices across professional domains",
+      "detail": "Practices like independent pre-evaluation, delayed sharing of assessments, sequenced information delivery, and structured deliberation formats appear across medicine, finance, and forensics as noise-reducing process constraints that work without requiring cognitive effort from participants.",
+      "useIn": "fullRead",
+      "phrasingHint": "A surgeon who washes their hands between patients is not making a heroic effort each time. The protocol works whether they feel like it or not. Decision hygiene works the same way: the structure does the work, not the intention."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["cleanliness is next to good judgment", "hygiene isn't just for hospitals"],
+    "counterintuition": ["discipline doesn't require discipline when it's structural", "your best decisions happen when you stop trying so hard"],
+    "tryThisNow": ["write down your assessment before reading anyone else's", "take a break before making your next important decision"],
+    "examples": ["a scene where someone successfully debiases themselves through sheer cognitive effort — that is not hygiene", "a scene where hygiene is presented as a complete solution that eliminates all judgment error"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Hygiene examples risk all reading as 'someone introduces a new protocol and things improve.' The contrast between hygiene (process) and intention (trying harder) must be visible in multiple domains."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "jury deliberation in a civil liability case: a litigation consultant comparing deliberation formats for a client's research project",
+      "audience": "a litigation consultant hired to study whether deliberation format affects damage award consistency",
+      "stakes": "plaintiff fairness and defendant predictability — if process format drives award amounts more than case merit, the system is noisy",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the consultant presents the finding: mock juries that were asked to write individual damage estimates before deliberation showed 40 percent less variance in final awards than juries that began deliberation by discussing damages openly; the content of the case was identical across both conditions",
+      "firstImage": "two sets of mock-jury summary sheets: one set with individual written estimates at the top before group discussion, one set with blank top lines — the award distributions visible in the numbers at the bottom of each sheet",
+      "mustInclude": ["the pre-estimation condition as the hygiene intervention", "the 40 percent variance reduction", "the mechanism: first voice anchors the group in open discussion; pre-estimation prevents this"],
+      "mustAvoid": ["a real case narrative", "implying the pre-estimation condition produced more accurate (rather than more consistent) awards"]
+    },
+    {
+      "domain": "surgical case review: a hospital introducing a structured pre-operative briefing protocol to reduce variance in patient risk classification",
+      "audience": "a patient safety officer comparing risk classification consistency before and after protocol introduction",
+      "stakes": "appropriate pre-operative preparation and resource allocation — risk misclassification leads to under- or over-preparation for surgery",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast pre-protocol (surgeons classified patient risk individually but the classification could be discussed before any individual score was committed to writing) with post-protocol (each surgeon records a risk classification before any discussion, then discrepancies are resolved); variance in matched-patient risk classifications fell by half",
+      "firstImage": "a pre-operative briefing room before the protocol: a whiteboard with risk categories, surgeons clustering around it without written scores in hand; then the same room after the protocol: surgeons holding completed risk forms before the meeting starts",
+      "mustInclude": ["the recorded-before-discussion change as the specific intervention", "the halved variance", "the surgeons' initial resistance to the protocol on the grounds that their clinical judgment should not be pre-constrained"],
+      "mustAvoid": ["a surgical complication story", "presenting the protocol as eliminating clinical judgment"]
+    },
+    {
+      "domain": "loan officer evaluation: a bank introducing a standardized information sequence for credit evaluation to reduce spread",
+      "audience": "a credit risk manager comparing assessments from officers who received information in different sequences",
+      "stakes": "consistent credit decisions and regulatory compliance — officers who see the loan purpose before the financial data may weight purpose more than financials warrant",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two credit risk officers compare their assessments of a split sample of identical loan applications: one group received applicant purpose statement first, the other received financial data first; the purpose-first group's assessments cluster around the stated purpose's implied quality (restaurant = risky, technology = promising) regardless of the financial data; the financial-first group's assessments track the financial data more closely and are tighter",
+      "firstImage": "two stacks of identical loan files on a training room table — the sequencing difference is invisible from the outside but the assessments in each stack tell different stories",
+      "mustInclude": ["the specific sequencing difference as the hygiene variable", "the purpose-first vs. financial-first divergence", "the mechanism: early information anchors subsequent evaluation"],
+      "mustAvoid": ["a fraudulent loan story", "implying either sequencing is always correct"]
+    },
+    {
+      "domain": "environmental impact evaluation: a regulatory team introducing a blind first-stage review to reduce contamination from the sponsor's narrative",
+      "audience": "an environmental review coordinator comparing evaluation quality before and after a blind first-stage protocol",
+      "stakes": "fair and consistent environmental approval decisions — reviewers who see the sponsor's narrative before examining the technical data may weight the narrative's framing",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the coordinator reviews the protocol's first year: reviewers who examined the technical impact data before reading the sponsor narrative produced risk classifications that differed from the narrative's implied risk more often — and produced more inter-reviewer agreement — than reviewers who read the narrative first",
+      "firstImage": "two risk classification distributions overlaid on the same scale — reviewers who read the narrative first cluster around the narrative's implied risk level; reviewers who examined data first show a wider distribution centered differently",
+      "mustInclude": ["the blind data-first review as the hygiene intervention", "the greater inter-reviewer agreement in the data-first group", "the mechanism: narrative framing anchors risk perception when it arrives first"],
+      "mustAvoid": ["a specific environmental approval or denial decision", "implying one group's classifications were more accurate (the point is consistency)"]
+    },
+    {
+      "domain": "social work risk assessment: a child services agency introducing an assessment tool that forces structured data entry before narrative is written",
+      "audience": "a child services agency quality manager measuring the effect of a structured data-entry tool on assessment consistency",
+      "stakes": "child safety and family fairness — inconsistent risk assessments lead to some families receiving unnecessary interventions and others being under-monitored",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the quality manager asks: if we required social workers to complete the structured risk factor checklist before writing the narrative assessment, would consistency improve? The pilot data says yes — inter-worker consistency on matched cases rose from 58 to 74 percent after the tool introduction — because the tool forced each worker to encounter the same data points in the same order before composing their narrative frame",
+      "firstImage": "two assessment forms side by side: the old format (narrative first, data appended) and the new format (structured data table at the top, narrative below) — both completed by different workers for the same case",
+      "mustInclude": ["the structured-first change as the hygiene mechanism", "the 58-to-74 consistency improvement", "the mechanism: data-first prevents narrative from being constructed before data is examined"],
+      "mustAvoid": ["a child safety incident", "implying the narrative was less important than the structured data"]
+    },
+    {
+      "domain": "baseball scouting: a major league team introducing a structured pre-scouting report form to reduce scout-to-scout variance in player ratings",
+      "audience": "a scouting director studying whether format changes reduce assessment inconsistency",
+      "stakes": "draft pick quality and player development investment — inconsistent scouting ratings mean the team cannot trust the aggregated rankings that drive pick decisions",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the scouting director reviews the variance data after the first year with the structured report form: scouts who completed the tool's individual category ratings (speed, bat speed, fielding range) before writing their overall evaluation showed 25 percent lower variance in overall ratings for comparable players than scouts who wrote the narrative first and filled in categories from the narrative",
+      "firstImage": "two scouting reports for the same high school shortstop: one with the category ratings filled in detail at the top and a shorter narrative below, one with a dense narrative and sparser category ratings — both by different scouts who watched the same game",
+      "mustInclude": ["the structured-first vs. narrative-first format split", "the 25 percent lower variance in the structured-first group", "the mechanism: global impressions contaminate specific ratings when the narrative is written first"],
+      "mustAvoid": ["a specific player's scouting story", "implying one scout's evaluation was more accurate"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish decision hygiene (process constraint) from debiasing (attitude change or cognitive correction)",
+      "identify the specific process mechanism through which a hygiene intervention reduces noise",
+      "apply hygiene thinking to design a process change for a described judgment system",
+      "analyze why the same person in the same domain produces less noise under hygiene conditions than under open deliberation",
+      "evaluate whether a proposed hygiene intervention actually changes a judgment-process condition or only changes what people are encouraged to think about"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For your next team rating or evaluation session, introduce one hygiene step before the meeting: ask everyone to write their independent assessment and submit it before reading anyone else's. Then run the meeting normally. Compare how much the ratings shift from submitted to final. The shift is the signal that the hygiene step was doing work.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (2-3 sentences) crystallizing the difference between hygiene and intention, at least one 5+ sentence paragraph on why structural constraints reduce noise when motivational ones do not, at least one one-sentence punch line about what 'trying harder' produces in a process that has no structural hygiene",
+    "fullReadInterludeRequirement": "at least one brief historical-reference passage drawing the parallel to handwashing in medicine — a process change that worked before anyone understood the mechanism, as evidence that hygiene does not require the mechanism to be understood to work",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

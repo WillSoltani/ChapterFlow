@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch16",
+  "number": 16,
+  "title": "Politics",
+  "coreMove": "Interpret political action as side-taking that can signal loyalty even when policy knowledge is thin.",
+  "sourcePressure": "The source frames democratic politics as policy pursuit plus visible group loyalty, making strong emotions, low information, and sacrifice easier to explain.",
+  "chapterSpecificMisunderstanding": "The writer turns politics into voter stupidity or partisan scolding instead of mixed policy and loyalty motives.",
+  "sourceAlignmentTerms": [
+    "politics",
+    "democratic participation",
+    "loyalty",
+    "strong emotions",
+    "low information",
+    "sacrifice",
+    "policy optimization"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "democratic participation as group loyalty expression",
+      "detail": "The source says democratic participation may express group loyalty as much as policy optimization.",
+      "useIn": "both",
+      "phrasingHint": "The ballot can be a policy instrument and a team signal at the same time."
+    },
+    {
+      "kind": "event",
+      "name": "strong emotions and low information",
+      "detail": "The source says strong emotions and low information fit the group-loyalty account.",
+      "useIn": "both",
+      "phrasingHint": "The heat can stay high even when the details stay thin because allegiance is doing part of the work."
+    },
+    {
+      "kind": "event",
+      "name": "sacrifice fitting the group-loyalty account",
+      "detail": "The source says sacrifice fits the group-loyalty account of politics.",
+      "useIn": "deepRead",
+      "phrasingHint": "Time in the rain outside a rally can say I am with you more loudly than a policy memo."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch16: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch16: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch16: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch16: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch16: no generic timer reflection",
+      "the-elephant-in-the-brain-ch16: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch16: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch16: no coffee shop conversation as the default social proof",
+      "no partisan caricatures",
+      "no polling data invention"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "city zoning referendum canvass",
+      "audience": "a canvass captain listening for loyalty beneath policy claims",
+      "stakes": "doorstep persuasion fails if it treats side identity as ignorance only",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Luke changes the script after Clara says the parking issue is really about whether longtime residents still count.",
+      "firstImage": "Yard signs lean against the porch rail before the canvass starts.",
+      "mustInclude": [
+        "yard signs",
+        "canvass script",
+        "zoning map"
+      ],
+      "mustAvoid": [
+        "policy-only zoning debate"
+      ]
+    },
+    {
+      "domain": "student union divestment vote",
+      "audience": "a moderator reading emotion as allegiance display",
+      "stakes": "heated speeches may be about belonging as much as portfolio details",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Daan watches Noor hold the placard through two hours of finance testimony and separates policy claims from the loyalty the room is rewarding.",
+      "firstImage": "Marker ink stains Noor's fingers from the placard edge.",
+      "mustInclude": [
+        "placard",
+        "finance testimony packet",
+        "vote tokens"
+      ],
+      "mustAvoid": [
+        "campus activism caricature"
+      ]
+    },
+    {
+      "domain": "rural broadband town hall",
+      "audience": "a policy aide seeing sacrifice as a signal",
+      "stakes": "attendance after a long shift can matter beyond technical comments",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"I came straight from the late milking,\" Rosa says, and Elliot notes that the muddy boots are a loyalty signal the agency should not dismiss.",
+      "firstImage": "\"I came straight from the late milking,\" Rosa says near the sign-in table.",
+      "mustInclude": [
+        "sign-in table",
+        "muddy boots",
+        "broadband map"
+      ],
+      "mustAvoid": [
+        "rural stereotype"
+      ]
+    },
+    {
+      "domain": "company internal values vote",
+      "audience": "an employee group deciding why symbolic wording draws strong reactions",
+      "stakes": "low technical stakes can still carry side-taking weight",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask Luke which group would feel abandoned by each wording choice before debating the policy effect alone.",
+      "firstImage": "You see the values ballot with only three words changed.",
+      "mustInclude": [
+        "values ballot",
+        "comment thread",
+        "wording options"
+      ],
+      "mustAvoid": [
+        "generic HR politics"
+      ]
+    },
+    {
+      "domain": "public health mask-rule meeting",
+      "audience": "a mediator avoiding the stupidity frame",
+      "stakes": "thin knowledge may coexist with strong loyalty signals",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What if the loudest wrong fact is carrying a true group fear?",
+      "firstImage": "What if the fact is wrong but the allegiance is real?",
+      "mustInclude": [
+        "meeting microphone",
+        "printed rule",
+        "speaker queue"
+      ],
+      "mustAvoid": [
+        "pandemic data argument"
+      ]
+    },
+    {
+      "domain": "neighborhood memorial dispute",
+      "audience": "a facilitator distinguishing policy outcome from side loyalty",
+      "stakes": "small design choices become allegiance markers after vandalism",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Clara one failed compromise to see that the plaque wording was not only wording; it named whose loss the neighborhood would stand beside.",
+      "firstImage": "It took Clara one failed compromise to reread the plaque draft.",
+      "mustInclude": [
+        "plaque draft",
+        "flower buckets",
+        "repair invoice"
+      ],
+      "mustAvoid": [
+        "culture-war shouting match"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate policy preference from loyalty display",
+      "analyze why low information can coexist with high emotion",
+      "choose responses that address allegiance without surrendering policy substance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before judging one political reaction today, write the policy claim and the side-loyalty claim separately. Answer both or admit which one you are ignoring.",
+  "readingTimeMinutes": 12
+}

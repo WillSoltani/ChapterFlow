@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch25",
+  "number": 25,
+  "title": "Understand Their Internal Triggers",
+  "coreMove": "Respond to a child's device pull by getting curious about the feeling underneath it before imposing a rule.",
+  "sourcePressure": "The child section applies the discomfort lens to children, asking caregivers to look for urges and uncomfortable states before blaming devices.",
+  "chapterSpecificMisunderstanding": "A weak run would blame screens or diagnose children rather than noticing discomfort and asking better questions.",
+  "sourceAlignmentTerms": [
+    "children",
+    "internal triggers",
+    "discomfort",
+    "urges",
+    "caregiver curiosity",
+    "devices"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Understand Their Internal Triggers as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "middle-school swimmer grabbing a tablet after a bad meet",
+      "audience": "parent who wants to confiscate immediately",
+      "stakes": "the disappointment underneath the reach needs language",
+      "format": "dialogue",
+      "requiredBeat": "the parent asks what the tablet is helping her not feel before talking about limits",
+      "firstImage": "A damp swim cap lies beside a tablet charging cable.",
+      "mustInclude": [
+        "swim cap",
+        "charging cable",
+        "meet ribbon"
+      ],
+      "mustAvoid": [
+        "screen-time scolding"
+      ]
+    },
+    {
+      "domain": "eight-year-old avoiding piano practice after a recital mistake",
+      "audience": "caregiver who sees only defiance",
+      "stakes": "shame may be driving the escape, not laziness",
+      "format": "scene",
+      "requiredBeat": "the caregiver points to the recital program and asks which part still feels bad",
+      "firstImage": "A recital program rests beside a piano bench cushion.",
+      "mustInclude": [
+        "recital program",
+        "bench cushion",
+        "practice chart"
+      ],
+      "mustAvoid": [
+        "music discipline repeat"
+      ]
+    },
+    {
+      "domain": "teen apprentice leaving group project messages unread",
+      "audience": "mentor trying to understand avoidance",
+      "stakes": "anxious uncertainty can masquerade as irresponsibility",
+      "format": "decision_point",
+      "requiredBeat": "the mentor asks what part of opening the thread feels worst before setting the response plan",
+      "firstImage": "A shop apron hangs beside an unread project thread.",
+      "mustInclude": [
+        "shop apron",
+        "project thread",
+        "response plan"
+      ],
+      "mustAvoid": [
+        "teen laziness"
+      ]
+    },
+    {
+      "domain": "child in a hospital waiting room reaching for games",
+      "audience": "grandparent assuming boredom is the whole story",
+      "stakes": "fear may need naming before distraction rules make sense",
+      "format": "reflection",
+      "requiredBeat": "the grandparent asks whether the game is for boredom or worry and waits through the pause",
+      "firstImage": "A paper wristband lies next to a handheld game case.",
+      "mustInclude": [
+        "paper wristband",
+        "game case",
+        "waiting ticket"
+      ],
+      "mustAvoid": [
+        "medical reassurance claims"
+      ]
+    },
+    {
+      "domain": "young chess player disappearing into videos after a tournament loss",
+      "audience": "coach helping a child name the trigger",
+      "stakes": "loss recovery teaches attention better than a lecture",
+      "format": "postmortem",
+      "requiredBeat": "the coach reviews the scoresheet and asks what the video made him not think about",
+      "firstImage": "A chess scoresheet sits beside a captured-piece pouch.",
+      "mustInclude": [
+        "scoresheet",
+        "piece pouch",
+        "video icon"
+      ],
+      "mustAvoid": [
+        "competition toughness"
+      ]
+    },
+    {
+      "domain": "sibling pair fighting over a shared console after moving homes",
+      "audience": "parent seeing conflict as device obsession",
+      "stakes": "loneliness and instability may sit under the fight",
+      "format": "before_after",
+      "requiredBeat": "before, the parent sets a rule only; after, the parent asks what changed after the move that makes the console feel important",
+      "firstImage": "A moving-box label sticks to a console controller case.",
+      "mustInclude": [
+        "moving label",
+        "controller case",
+        "shared schedule"
+      ],
+      "mustAvoid": [
+        "family blame"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Respond to a child's device pull by getting curious about the feeling underneath it before imposing a rule.",
+      "choose the action that stays inside Understand Their Internal Triggers's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would blame screens or diagnose children rather than noticing discomfort and asking better questions.",
+      "use chapter-specific terms such as children, internal triggers, discomfort, urges in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "The next time a child reaches for a device, ask what feeling came right before the reach and wait for one concrete answer.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch04",
+  "number": 4,
+  "title": "Build It Before You Need It",
+  "coreMove": "Make low-pressure contact before the request becomes urgent.",
+  "sourcePressure": "Relationships should be built before pressure arrives, because trust and familiarity cannot be manufactured at the moment of need.",
+  "chapterSpecificMisunderstanding": "Treating maintenance as automated check-ins or panic networking with nicer wording.",
+  "sourceAlignmentTerms": [
+    "before you need it",
+    "trust",
+    "familiarity",
+    "early contact",
+    "ongoing connection",
+    "light maintenance"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emma",
+      "domain": "nonprofit grant office before deadline season",
+      "audience": "a reader facing nonprofit grant office before deadline season where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if nonprofit grant office before deadline season becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emma makes a small useful contact while there is still nothing to ask for in front of stamped envelope, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "stamped envelope on the edge of nonprofit grant office before deadline season",
+      "mustInclude": [
+        "stamped envelope",
+        "nonprofit grant office before deadline season constraint",
+        "one named next step tied to before you need it"
+      ],
+      "mustAvoid": [
+        "Treating maintenance as automated check-ins or panic networking with nicer wording.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Charlotte",
+      "domain": "winter cycling club volunteer roster",
+      "audience": "a reader facing winter cycling club volunteer roster where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if winter cycling club volunteer roster becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Charlotte makes a small useful contact while there is still nothing to ask for in front of reflective vest, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "reflective vest on the edge of winter cycling club volunteer roster",
+      "mustInclude": [
+        "reflective vest",
+        "winter cycling club volunteer roster constraint",
+        "one named next step tied to before you need it"
+      ],
+      "mustAvoid": [
+        "Treating maintenance as automated check-ins or panic networking with nicer wording.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Katherine",
+      "domain": "early-stage supplier quality visit",
+      "audience": "a reader facing early-stage supplier quality visit where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if early-stage supplier quality visit becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Katherine makes a small useful contact while there is still nothing to ask for in front of inspection caliper, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "inspection caliper on the edge of early-stage supplier quality visit",
+      "mustInclude": [
+        "inspection caliper",
+        "early-stage supplier quality visit constraint",
+        "one named next step tied to before you need it"
+      ],
+      "mustAvoid": [
+        "Treating maintenance as automated check-ins or panic networking with nicer wording.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Victoria",
+      "domain": "university radio alumni list",
+      "audience": "a reader facing university radio alumni list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if university radio alumni list becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Victoria makes a small useful contact while there is still nothing to ask for in front of vinyl record sleeve, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "vinyl record sleeve on the edge of university radio alumni list",
+      "mustInclude": [
+        "vinyl record sleeve",
+        "university radio alumni list constraint",
+        "one named next step tied to before you need it"
+      ],
+      "mustAvoid": [
+        "Treating maintenance as automated check-ins or panic networking with nicer wording.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "parent council playground campaign",
+      "audience": "a reader facing parent council playground campaign where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if parent council playground campaign becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Chloe makes a small useful contact while there is still nothing to ask for in front of splintered swing seat, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "splintered swing seat on the edge of parent council playground campaign",
+      "mustInclude": [
+        "splintered swing seat",
+        "parent council playground campaign constraint",
+        "one named next step tied to before you need it"
+      ],
+      "mustAvoid": [
+        "Treating maintenance as automated check-ins or panic networking with nicer wording.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "rural broadband task force",
+      "audience": "a reader facing rural broadband task force where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if rural broadband task force becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Kiran makes a small useful contact while there is still nothing to ask for in front of tower permit form, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "tower permit form on the edge of rural broadband task force",
+      "mustInclude": [
+        "tower permit form",
+        "rural broadband task force constraint",
+        "one named next step tied to before you need it"
+      ],
+      "mustAvoid": [
+        "Treating maintenance as automated check-ins or panic networking with nicer wording.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish before you need it from Treating maintenance as automated check-ins or panic networking with nicer wording.",
+      "choose the visible action that performs: Make low-pressure contact before the request becomes urgent.",
+      "diagnose when a scenario drifts into Treating maintenance as automated check-ins or panic networking with nicer wording.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real before you need it moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

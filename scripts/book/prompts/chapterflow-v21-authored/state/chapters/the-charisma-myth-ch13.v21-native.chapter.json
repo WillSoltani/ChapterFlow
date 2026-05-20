@@ -1,0 +1,265 @@
+{
+  "chapterId": "the-charisma-myth-ch13",
+  "number": 13,
+  "title": "Charisma in a Crisis",
+  "readingTimeMinutes": 12,
+  "hook": "The lantern glow reaches the front row before the first child decides whether to panic.",
+  "counterintuition": "Crisis charisma is not heroic intensity. It is visible steadiness, clear authority, and enough warmth to give people the next action without spreading fear.",
+  "tryThisNow": "When something small goes wrong today, say what is known and give the next action before naming when you will update.",
+  "keyTakeaway": "In crisis, charisma gives people the next steady action while presence, authority, and warmth tell them the situation is being held.",
+  "breakdown": {
+    "fastRead": "Evelyn steps into the dark theatre aisle with a battery lantern. The usher radio crackles. Children in the front row are turning toward their parents.\n\nShe gives one exit instruction and tells the front row exactly who is coming next. The room does not need a speech. It needs a steady signal and the next action.\n\nIn crisis, charisma is the triad under urgency: presence, power, and warmth moving in the same direction.",
+    "deepRead": "Urgency makes signals louder. A shaky voice spreads faster. Loose reassurance breeds rumor. A hard command with no human contact can make people comply while fear keeps rising.\n\nSteadiness must become visible.\n\nMalcolm sees this in a data center cooling failure during a payroll window. The temperature dashboard flashes amber across the wall monitor. Payroll has to run, and servers cannot keep heating. Malcolm names the threshold, assigns one person to payroll status, assigns another to the vendor call, and repeats the next checkpoint time.\n\nThat sequence carries power without drama. It tells technical and nontechnical staff what is known, what happens next, and when the next update arrives.\n\nThe limit is that charisma is not a substitute for competence. It cannot replace the actual procedure, the real expertise, or the physical fix. It helps people follow the next competent action under pressure.",
+    "fullRead": "Rosa is in a coastal ferry galley when a sealed medical kit slides across the counter. A passenger is reacting badly to something on the ingredient card. The captain call is open, servers are staring, and the aisle is filling with worried faces.\n\nRosa kneels beside the passenger, points one server to the kit, and tells the watching passengers the next two actions in a level voice: clear the aisle and stay seated until called. She does not explain everything. She gives enough authority for movement and enough reassurance for people to stop inventing the rest.\n\nThis is the highest-pressure version of the same pattern. Presence says, I am here and seeing what is happening. Power says, there is a next action. Warmth says, you are not being abandoned inside the action.\n\nWhat do people need from you first when the room starts to scatter?\n\nGisela answers in a sculpture foundry. A hairline crack spreads across a ceramic shell mold before a hot bronze pour. The sand bucket, heat visor, and marked safety line are all visible. Gisela raises one hand, says stop once, points to the bucket and line, then checks the apprentice's eyes before moving. The pour stops because the room can follow her body and words together.\n\nNancy faces a smaller but real crisis at a food co-op before a vaccine clinic. A refrigerator thermometer sits above sweating yogurt cups. Her first apology scatters the volunteers because embarrassment leads every sentence. On the reset, she gives three assignments and personally moves the spoiled trays to the discard bin while another volunteer brings the replacement fruit crate to the clinic sign-in table.\n\nArthur learns from a mountain hostel mistake. A bus has not arrived before a snow closure. His first vague reassurance creates rumor near the room key rack. Later, he gathers everyone by the road-closure map weighted with a headlamp, states what is known, assigns the battery box, and names the next snowplow update time.\n\nCrisis does not reward extra words. It rewards signal discipline. Say what is known. Give the next action. Keep enough human contact that people do not feel discarded by the action.\n\nSteady is not silent. Steady tells people where to put their next breath."
+  },
+  "examples": [
+    {
+      "exampleId": "ch13-ex01-evelyn-lantern",
+      "title": "Evelyn Steps Into the Lantern Aisle",
+      "tags": ["theatre", "dark", "exit"],
+      "planSpec": {
+        "domain": "a children's theatre matinee after a lighting grid shorts and the house goes dark",
+        "audience": "a stage manager who must calm children, parents, and crew at once",
+        "stakes": "whether the room exits safely without panic",
+        "format": "scene",
+        "requiredBeat": "she steps into the aisle with a battery lantern, gives one exit instruction, and tells the front row exactly who is coming next"
+      },
+      "scenario": "A battery lantern glows against the dark velvet aisle while Evelyn hears the usher radio crackle near the aisle tape. Front-row children twist in their seats. She is about to speak and must decide whether to explain the short or give one exit instruction and tell them exactly which usher is coming next.",
+      "whatToDo": "Step into sight, give one exit instruction, and name who is coming to the front row next.",
+      "whyItMatters": "The visible lantern and specific next help give children and parents a place to put attention before fear fills it."
+    },
+    {
+      "exampleId": "ch13-ex02-malcolm-dashboard",
+      "title": "Malcolm Names the Temperature Threshold",
+      "tags": ["data center", "assignments", "updates"],
+      "planSpec": {
+        "domain": "a data center cooling failure during a payroll processing window",
+        "audience": "an operations lead whose calm must guide technical and nontechnical staff",
+        "stakes": "whether payroll runs while servers are protected from heat damage",
+        "format": "decision_point",
+        "requiredBeat": "he names the temperature threshold, assigns one person to payroll status and one to cooling vendors, then repeats the next checkpoint time"
+      },
+      "scenario": "A server temperature dashboard flashes amber across the wall monitor while Malcolm watches the payroll window shrink. The vendor call is still ringing, and the next checkpoint time is blank. He must decide whether to narrate the problem or name the threshold, assign payroll status, assign cooling vendors, and repeat the next check time.",
+      "whatToDo": "State the threshold, split the assignments, and repeat the next checkpoint time. Make calm operational.",
+      "whyItMatters": "People steady when they know what is known, who owns the next action, and when the next information arrives."
+    },
+    {
+      "exampleId": "ch13-ex03-rosa-kit",
+      "title": "Rosa Clears the Galley Aisle",
+      "tags": ["ferry", "medical", "authority"],
+      "planSpec": {
+        "domain": "a coastal ferry galley when a passenger has a severe allergic reaction",
+        "audience": "a crew lead who needs authority without spreading fear",
+        "stakes": "whether passengers clear space and the affected person receives help quickly",
+        "format": "dialogue",
+        "requiredBeat": "the crew lead kneels beside the passenger, points one server to the medical kit, and tells the watching passengers the next two actions in a level voice"
+      },
+      "scenario": "\"Move back, please,\" Rosa says as a sealed medical kit slides across the galley counter. The captain call is live, the ingredient card is open, and passengers are crowding the aisle space. Rosa must choose between explaining the reaction or kneeling, pointing one server to the kit, and giving the next two actions.",
+      "whatToDo": "Kneel, assign the kit, and tell passengers the two actions they can follow now: clear the aisle and stay seated until called.",
+      "whyItMatters": "The level voice gives authority without feeding fear. People need a role more than a full explanation."
+    },
+    {
+      "exampleId": "ch13-ex04-gisela-mold",
+      "title": "Gisela Raises One Hand at the Foundry",
+      "tags": ["foundry", "stop", "safety"],
+      "planSpec": {
+        "domain": "a sculpture foundry after a cracked mold threatens a hot bronze pour",
+        "audience": "a shop lead balancing physical risk and apprentice fear",
+        "stakes": "whether the pour stops safely before anyone is burned",
+        "format": "vignette",
+        "requiredBeat": "she raises one hand, says stop once, points to the sand bucket and the marked line, then checks the apprentice's eyes before moving"
+      },
+      "scenario": "A hairline crack spreads across a ceramic shell mold at the bronze foundry during the 3 p.m. pour, while the sand bucket, heat visor, and marked safety line sit within reach. Gisela, the shop lead, sees an apprentice freeze near the pour path. She must decide whether to shout a string of warnings or raise one hand, say stop once, point to the bucket and line, and check his eyes.",
+      "whatToDo": "Use one hand, one stop, and one pointed path. Check the apprentice's eyes before you move.",
+      "whyItMatters": "Too many warnings scatter attention. A visible sequence gives fear a safe direction."
+    },
+    {
+      "exampleId": "ch13-ex05-nancy-yogurt",
+      "title": "Nancy Moves the Spoiled Trays Herself",
+      "tags": ["co-op", "assignments", "food"],
+      "planSpec": {
+        "domain": "a food co-op after a refrigeration failure spoils a vaccine clinic's snack supply",
+        "audience": "a shift lead whose embarrassment could make the team scatter",
+        "stakes": "whether volunteers protect guests, discard unsafe food, and keep the clinic moving",
+        "format": "before_after",
+        "requiredBeat": "contrast the first scattered apology with the reset where she gives three calm assignments and personally moves the spoiled trays out of sight"
+      },
+      "scenario": "A refrigerator thermometer rests above a tray of sweating yogurt cups beside the discard bin and clinic sign-in table. Nancy's first apology makes volunteers look at one another. On the reset, she gives three calm assignments, carries the spoiled trays out of sight herself, and sends one person for the replacement fruit crate.",
+      "whatToDo": "Replace apology with assignments. Move the spoiled food yourself, send for replacement fruit, and keep the clinic line moving.",
+      "whyItMatters": "Embarrassment scatters the team. Clear action and visible ownership restore authority and reassurance."
+    },
+    {
+      "exampleId": "ch13-ex06-arthur-map",
+      "title": "Arthur Gathers Everyone by the Closure Map",
+      "tags": ["hostel", "snow", "update"],
+      "planSpec": {
+        "domain": "a mountain hostel after a bus carrying guests fails to arrive before a snow closure",
+        "audience": "a host who must keep stranded travelers informed without false certainty",
+        "stakes": "whether guests conserve phone batteries, share rooms, and wait without rumor",
+        "format": "postmortem",
+        "requiredBeat": "the host realizes her first vague reassurance created rumor, then gathers everyone by the map, states what is known, and assigns the next update time"
+      },
+      "scenario": "A paper road-closure map is weighted with a headlamp in the mountain hostel lobby near the battery box and room key rack. Arthur, the night host after the 8 p.m. bus fails to arrive, sees that his first reassurance created rumor before the snowplow update arrived. He gathers everyone by the map, states what is known, assigns battery use, and names the next update time.",
+      "whatToDo": "Gather people around the map, state what is known, assign battery use, and give the next update time.",
+      "whyItMatters": "False certainty feeds rumor. Clear knowns and a next update let people wait without inventing their own story."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "During a children's matinee, a theatre goes dark and families begin turning on phone lights while ushers wait in the aisle. What should the stage manager do first?",
+        "choices": ["Give one visible exit instruction and name who is coming next.", "Explain the lighting grid failure in detail.", "Tell everyone to stay calm until the issue is understood."],
+        "correctIndex": 0,
+        "explanation": "The room needs a visible next action. Technical detail or vague calm leaves space for fear to fill.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During payroll processing, a data center overheats and the temperature dashboard flashes amber while finance and engineering both need direction. Which response best combines calm and authority?",
+        "choices": ["Tell staff not to worry because vendors are being called.", "Name the threshold, assign owners, and repeat the next checkpoint time.", "Let engineers handle it quietly to avoid alarm."],
+        "correctIndex": 1,
+        "explanation": "The threshold and assignments make calm operational. Vague reassurance or silence creates uncertainty for everyone else.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "In a ferry galley, a passenger has a severe allergic reaction after checking an ingredient card and people begin crowding the aisle. What should the crew lead avoid?",
+        "choices": ["Kneeling beside the passenger.", "Giving passengers two clear actions.", "Explaining the whole reaction while people keep crowding."],
+        "correctIndex": 2,
+        "explanation": "The full explanation can wait. Clear roles and space matter first, and kneeling plus level instructions carry warmth and power.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "At a sculpture foundry, a ceramic shell mold cracks before a hot pour and an apprentice freezes near the marked safety line. What signal helps most?",
+        "choices": ["One hand, one stop, and a pointed path to the safety line.", "A rapid list of every danger in the area.", "A loud reminder that everyone trained for this."],
+        "correctIndex": 0,
+        "explanation": "The visible sequence directs fear. A danger list or training reminder adds noise when the apprentice needs one safe path.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Before a vaccine clinic, a food co-op lead apologizes repeatedly after yogurt spoils in the fridge and volunteers scatter around the sign-in table. What reset fits?",
+        "choices": ["Keep apologizing until everyone sees she cares.", "Give three assignments and personally move the spoiled food.", "Cancel the clinic snacks without telling guests."],
+        "correctIndex": 1,
+        "explanation": "Assignments and visible ownership restore authority and reassurance. Repeated apology keeps embarrassment in the lead.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A hostel host says a missing bus is probably fine before a snow closure, and rumors spread. What should replace vague reassurance?",
+        "choices": ["A promise that the bus will arrive soon.", "Silence until the snowplow gives final information.", "Known facts, battery guidance, and the next update time."],
+        "correctIndex": 2,
+        "explanation": "Known facts and timing reduce rumor without false certainty. Promises and silence both leave guests to invent the missing pieces.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says crisis charisma means sounding heroic and intense. Which reply is strongest?",
+        "choices": ["It means giving clear next actions with visible steadiness and human contact.", "It means showing no emotion so people know you are strong.", "It means speaking louder than the fear in the room."],
+        "correctIndex": 0,
+        "explanation": "The skill is steadiness plus action. Heroics, blankness, or volume can all spread the wrong signal.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "During a small operational problem, a lead fills silence with reassurance but never says what happens next. What is missing?",
+        "choices": ["More warmth.", "A concrete next action and update time.", "A fuller explanation of intent."],
+        "correctIndex": 1,
+        "explanation": "Reassurance without action can become noise. People steady when they know what to do and when they will hear more.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "During an evacuation drill that has become real, a crisis response has strong commands but no eye contact, names, or visible human contact. What risk does that create?",
+        "choices": ["People may comply while fear keeps rising.", "People will always ignore the commands.", "Warmth will distract from action."],
+        "correctIndex": 0,
+        "explanation": "Commands can move bodies, but warmth and presence help settle the room. Human contact does not weaken action when it is bounded.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "In a crisis, what should come before explanation?",
+      "back": "Give the next steady action. Explanation can follow after people know where to put attention and what to do.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is vague reassurance dangerous?",
+      "back": "It leaves empty space for rumor. People need what is known, what happens next, and when they will be updated.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How does warmth help without weakening authority?",
+      "back": "It preserves human contact while the boundary or action remains clear. People feel guided, not discarded.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What is the crisis version of presence, power, and warmth?",
+      "back": "Presence sees what is happening, power names the next action, and warmth keeps people from feeling abandoned inside the action.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What should you say when something small goes wrong?",
+      "back": "Say what is known, give the next action, and name the next update time instead of filling the space with reassurance.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is steady action under urgency. You make presence, power, and warmth visible through known facts, next steps, and bounded reassurance.",
+    "ifThenPlans": [
+      {
+        "context": "public rooms",
+        "plan": "If a room starts to panic, then make yourself visible and give one instruction people can follow now."
+      },
+      {
+        "context": "operations",
+        "plan": "If systems are failing, then name the threshold, assign owners, and repeat the next checkpoint time."
+      },
+      {
+        "context": "safety",
+        "plan": "If someone freezes near danger, then use one visible cue and one spoken command before explaining."
+      },
+      {
+        "context": "service recovery",
+        "plan": "If embarrassment scatters your team, then replace apology with assignments and visible ownership."
+      }
+    ],
+    "twentyFourHourChallenge": "When a small problem happens today, say what is known, give the next action, and name when you will update.",
+    "weeklyPractice": "This week, choose one minor disruption and practice the crisis sequence: known fact, next action, next update, human contact."
+  },
+  "memorableLines": [
+    {
+      "text": "Steadiness must become visible.",
+      "location": "breakdown.deepRead",
+      "why": "It turns crisis calm into a behavioral standard."
+    },
+    {
+      "text": "Crisis does not reward extra words. It rewards signal discipline.",
+      "location": "breakdown.fullRead",
+      "why": "It names the final chapter's central restraint."
+    },
+    {
+      "text": "Steady is not silent. Steady tells people where to put their next breath.",
+      "location": "breakdown.fullRead",
+      "why": "It gives crisis charisma a memorable final image."
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "chapterId": "make-it-stick-ch02",
+  "number": 2,
+  "title": "To Learn, Retrieve",
+  "coreMove": "Turn recall into the learning event by making memory produce, checking the miss, repairing it, and retrieving again.",
+  "sourcePressure": "The chapter reframes testing and self-quizzing as retrieval practice: a low-stakes recall attempt strengthens access and exposes repair targets when it is followed by feedback.",
+  "chapterSpecificMisunderstanding": "The writer must avoid treating retrieval as formal testing pressure; the mechanism is reconstruction with correction, not anxiety or grading.",
+  "sourceAlignmentTerms": [
+    "retrieval practice",
+    "testing effect",
+    "low-stakes quizzing",
+    "self-quizzing",
+    "feedback",
+    "repair",
+    "effortful recall",
+    "spaced retrieval"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Mike Ebersold",
+      "detail": "Neurosurgeon called to a Wisconsin emergency room in late 2011 for a hunter with a 12-gauge slug lodged in the skull, relying on prior retrieval and reflection to anticipate a torn venous sinus.",
+      "useIn": "both",
+      "phrasingHint": "Mike Ebersold had rehearsed enough hard cases that the hidden danger under the wound was already available before the incision."
+    },
+    {
+      "kind": "study",
+      "name": "Roediger and Karpicke testing-effect work",
+      "detail": "The notes cite H. L. Roediger and J. D. Karpicke on the power of testing memory and the retrieval-practice effect.",
+      "useIn": "deepRead",
+      "phrasingHint": "The test is not just a verdict; the act of pulling the answer back changes the memory itself."
+    },
+    {
+      "kind": "person",
+      "name": "Hermann Ebbinghaus",
+      "detail": "The notes identify Ebbinghaus and his 1885 forgetting-curve work as an early foundation for thinking about retrieval and forgetting.",
+      "useIn": "fullRead",
+      "phrasingHint": "Forgetting is not a moral failure; since Ebbinghaus, it has been the terrain every durable memory has to cross."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open by saying learning is harder than it looks",
+      "Do not use a generic desk-and-notes image",
+      "Do not start with a broad claim about students today"
+    ],
+    "counterintuition": [
+      "Do not use the shell easier is not better",
+      "Do not flatten the chapter into struggle is good",
+      "Do not contrast comfort and growth in generic coaching language"
+    ],
+    "tryThisNow": [
+      "Do not write set a timer and reflect",
+      "Do not ask for a vague study audit",
+      "Do not use a reusable close-your-notes prompt without a chapter-specific action"
+    ],
+    "examples": [
+      "No repeated mug, marker, dosing cup, bike helmet, radiator, bus depot, classroom, or narrow-kitchen shells",
+      "No six examples that all start with a timestamp and a named protagonist",
+      "No generic student rereads notes scene unless the visible beat changes the method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Hannah, an oncology nurse learning a new infusion reaction protocol",
+      "audience": "clinical staff who reread policy but freeze on sequence",
+      "stakes": "a wrong first move can delay epinephrine and escalation",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the charge nurse takes the laminated protocol away and asks Hannah to call out the first three actions before a mock patient deteriorates",
+      "firstImage": "\"Tell me before you look,\" the charge nurse says.",
+      "mustInclude": [
+        "mock monitor",
+        "covered protocol",
+        "saline bag"
+      ],
+      "mustAvoid": [
+        "punitive test atmosphere"
+      ]
+    },
+    {
+      "domain": "James, a bakery night manager memorizing oven shutdown steps",
+      "audience": "workers learning safety sequences after long shifts",
+      "stakes": "one skipped valve leaves the proofing line down by morning",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he predicts the shutdown order from memory, checks against the card, repairs the missed valve, then runs the sequence again",
+      "firstImage": "At 1:17 a.m., James wipes flour from the gas-valve label.",
+      "mustInclude": [
+        "oven key",
+        "steam valve",
+        "laminated card face down"
+      ],
+      "mustAvoid": [
+        "generic workplace quiz"
+      ]
+    },
+    {
+      "domain": "Claire, a museum docent preparing a new exhibit tour",
+      "audience": "public speakers who know the notes only while reading",
+      "stakes": "a school group will ask questions out of order",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "she walks the gallery without the binder and retrieves the three turning points at each display before checking the script",
+      "firstImage": "The gallery is empty except for the hum behind the glass cases.",
+      "mustInclude": [
+        "closed binder",
+        "bronze label",
+        "audio-guide earpiece"
+      ],
+      "mustAvoid": [
+        "memorized speech perfectionism"
+      ]
+    },
+    {
+      "domain": "Luca, a paramedic student reviewing pediatric dosage calculations",
+      "audience": "certification candidates who fear missed recall",
+      "stakes": "the miss has to become a repair target before a simulated call",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "after missing a weight conversion, he marks the exact step, gets feedback, and repeats a new calculation without the chart",
+      "firstImage": "A plastic infant mannequin lies under the exam lamp.",
+      "mustInclude": [
+        "weight tape",
+        "calculator",
+        "feedback sheet"
+      ],
+      "mustAvoid": [
+        "dosing cup shell"
+      ]
+    },
+    {
+      "domain": "Marta, a product-support lead learning outage scripts",
+      "audience": "teams that rely on searchable docs during incidents",
+      "stakes": "customers are waiting while the knowledge base is unavailable",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the postmortem shows how a five-minute daily blank-page recall of escalation steps would have exposed the missing handoff before the outage",
+      "firstImage": "It took Marta one silent status page to see the gap.",
+      "mustInclude": [
+        "status page",
+        "escalation tree",
+        "pager transcript"
+      ],
+      "mustAvoid": [
+        "generic SaaS meeting"
+      ]
+    },
+    {
+      "domain": "Kiran, a language learner using flashcards for Czech cases",
+      "audience": "self-directed learners tempted to flip cards too fast",
+      "stakes": "recognizing the answer side keeps hiding weak production",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch Kiran stop flipping immediately, speak the declension aloud, check it, and put the missed card back into a sooner box",
+      "firstImage": "You can hear the pause before the noun ending arrives.",
+      "mustInclude": [
+        "index-card box",
+        "case ending",
+        "pencil tick mark"
+      ],
+      "mustAvoid": [
+        "mindless spaced repetition praise"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "convert a failed recall into a repair sequence",
+      "separate retrieval practice from grading pressure",
+      "choose feedback timing that makes the second retrieval stronger"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one question from memory about material you studied today, answer it without looking, then check and rewrite only the missing part.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

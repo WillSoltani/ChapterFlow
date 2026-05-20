@@ -1,0 +1,202 @@
+{
+  "chapterId": "the-lean-startup-ch04",
+  "number": 4,
+  "title": "Experiment",
+  "coreMove": "Turn a hopeful belief into a concrete experiment where customer behavior can answer value or growth directly.",
+  "sourcePressure": "Startup work is treated as hypothesis-driven experimentation, especially around value and growth, because live tests reveal more than market research under uncertainty.",
+  "chapterSpecificMisunderstanding": "Equating research, interviews, surveys, or opinions with experiments that test behavior.",
+  "sourceAlignmentTerms": [
+    "startup as experiment",
+    "value hypothesis",
+    "growth hypothesis",
+    "actionable feedback",
+    "market research",
+    "live test"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Value hypothesis",
+      "detail": "the sidecar identifies it as a core question an experiment should test",
+      "useIn": "both",
+      "phrasingHint": "A value test asks whether people do the thing that proves the offer matters, not whether they compliment the idea."
+    },
+    {
+      "kind": "artifact",
+      "name": "Growth hypothesis",
+      "detail": "the sidecar pairs it with value as a core business hypothesis",
+      "useIn": "deepRead",
+      "phrasingHint": "A growth story stays fiction until an experiment shows how one user reliably leads to another."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Experiment.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "farm-share pickup redesign",
+      "audience": "local food cooperative",
+      "stakes": "survey praise may not prove members will change pickup behavior",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Grace turns a preference survey into a Friday pickup behavior test",
+      "firstImage": "a chalkboard menu leaning against produce crates",
+      "mustInclude": [
+        "pickup tokens",
+        "survey printout",
+        "sample cooler"
+      ],
+      "mustAvoid": [
+        "generic experiment office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "language-learning app referral idea",
+      "audience": "mobile product team",
+      "stakes": "users may like the concept but never invite a friend",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nicolas sets a test where learners must send one real invite to unlock a lesson",
+      "firstImage": "a phone screen showing an unsent invite",
+      "mustInclude": [
+        "invite code",
+        "lesson lock",
+        "referral tally"
+      ],
+      "mustAvoid": [
+        "generic experiment office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "veterinary reminder service",
+      "audience": "clinic owner",
+      "stakes": "pet owners may say reminders help without booking sooner",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel tests one reminder script against actual appointment bookings",
+      "firstImage": "a stack of vaccination postcards by a reception phone",
+      "mustInclude": [
+        "postcards",
+        "booking log",
+        "SMS script"
+      ],
+      "mustAvoid": [
+        "generic experiment office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "architectural salvage marketplace",
+      "audience": "circular-economy startup",
+      "stakes": "builders may admire reuse but not reserve materials",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Marco asks for a hold deposit instead of another interview",
+      "firstImage": "a reclaimed brass handle on a sample table",
+      "mustInclude": [
+        "deposit form",
+        "material photos",
+        "reservation deadline"
+      ],
+      "mustAvoid": [
+        "generic experiment office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "community theatre ticket bundle",
+      "audience": "arts manager",
+      "stakes": "audiences may like bundles but still buy single nights",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Astrid runs a two-show bundle at the box office for one weekend",
+      "firstImage": "a box-office drawer with color-coded tickets",
+      "mustInclude": [
+        "ticket bundle",
+        "weekend window",
+        "sales sheet"
+      ],
+      "mustAvoid": [
+        "generic experiment office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "diabetes meal-planning service",
+      "audience": "health startup team",
+      "stakes": "clinicians may approve the plan while patients ignore it",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sam watches whether patients upload one real dinner photo after the consult",
+      "firstImage": "a phone gallery open to a dinner plate",
+      "mustInclude": [
+        "photo prompt",
+        "clinician handout",
+        "upload metric"
+      ],
+      "mustAvoid": [
+        "generic experiment office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Experiment from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Turn a hopeful belief into a concrete experiment where customer behavior can answer value or growth directly.",
+      "Diagnose when a team is drifting into the misread: Equating research, interviews, surveys, or opinions with experiments that test behavior."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Turn a hopeful belief into a concrete experiment where customer behavior can answer value or growth directly. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

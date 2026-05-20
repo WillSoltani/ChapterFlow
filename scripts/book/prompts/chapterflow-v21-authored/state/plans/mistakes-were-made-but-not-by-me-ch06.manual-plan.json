@@ -1,0 +1,199 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+  "number": 6,
+  "title": "Law and Disorder",
+  "coreMove": "Slow the jump from suspicion to certainty before the system starts treating correction as an attack on itself.",
+  "sourcePressure": "The legal-system chapter shows self-justification under coercive power: early guilt decisions, Reid-style interrogation pressure, confession over-weighting, and post-conviction resistance to innocence evidence.",
+  "chapterSpecificMisunderstanding": "Casting the legal problem as a few corrupt officials rather than ordinary self-justification magnified by authority, reputation, and institutional stakes.",
+  "sourceAlignmentTerms": [
+    "jumping to convictions",
+    "tunnel vision",
+    "Reid-style interrogation",
+    "confession pressure",
+    "post-conviction defense",
+    "institutional legitimacy",
+    "exonerating evidence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Reid-style interrogation culture",
+      "detail": "the source supports deceptive pressure and interrogation culture as a context where officials can elicit confessions that feel stronger than they deserve",
+      "useIn": "both",
+      "phrasingHint": "A confession created under pressure can look like the missing piece even when the pressure helped manufacture the shape of it."
+    },
+    {
+      "kind": "event",
+      "name": "jumping to convictions",
+      "detail": "the source supports the phrase for deciding guilt early and interpreting later evidence through that decision",
+      "useIn": "deepRead",
+      "phrasingHint": "The danger starts when suspicion stops being a question and becomes the lens for every answer afterward."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a dramatic murder scene.",
+      "Avoid detective-show pacing."
+    ],
+    "counterintuition": [
+      "Do not say only corrupt actors resist innocence.",
+      "Avoid making confession equal truth."
+    ],
+    "tryThisNow": [
+      "No citizen legal checklist.",
+      "No generic \"keep an open mind\" prompt."
+    ],
+    "examples": [
+      "No real named case unsupported by source.",
+      "No courtroom closing argument as the central shell."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "a campus security investigation into stolen lab laptops",
+      "audience": "investigators and managers who choose a suspect early",
+      "stakes": "a student worker could lose a scholarship if contradictory access logs are treated as noise",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah pins the first suspect's name at the bottom of the board, not the top, and forces the team to map evidence that points away from him",
+      "firstImage": "two empty laptop docks under fluorescent lab shelving",
+      "mustInclude": [
+        "access logs",
+        "evidence board",
+        "student worker"
+      ],
+      "mustAvoid": [
+        "police procedural",
+        "campus politics"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "a public defender reviewing a signed confession from a frightened nineteen-year-old",
+      "audience": "lawyers and readers weighing confession against pressure",
+      "stakes": "the confession may bury timeline facts that make guilt less plausible",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lars lines up the interview breaks, sleep hours, and confession sentences before deciding how much weight the statement deserves",
+      "firstImage": "a transcript page creased where the word confession is highlighted",
+      "mustInclude": [
+        "interview timeline",
+        "sleep hours",
+        "signed statement"
+      ],
+      "mustAvoid": [
+        "courtroom speech",
+        "legal jargon dump"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "a corporate compliance inquiry into a missing vendor payment",
+      "audience": "compliance teams whose first theory can harden into prosecution",
+      "stakes": "an employee may be accused of fraud when a banking cutoff explains the gap",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Giulia asks the team to predict what the bank cutoff record would show if the fraud theory were false, then opens the record before interviewing again",
+      "firstImage": "a vendor invoice stamped twice with different processing dates",
+      "mustInclude": [
+        "bank cutoff",
+        "vendor invoice",
+        "fraud theory"
+      ],
+      "mustAvoid": [
+        "white-collar crime thriller",
+        "spreadsheet-only scene"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "a university misconduct panel reviewing lab notebook alterations",
+      "audience": "committee members under pressure to defend an earlier finding",
+      "stakes": "new metadata could clear a researcher after the panel has already announced sanctions",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Chris rereading the sanctions email aloud to hear why admitting new metadata now feels like confessing panel failure",
+      "firstImage": "a lab notebook photographed beside a USB evidence sleeve",
+      "mustInclude": [
+        "metadata report",
+        "sanctions email",
+        "panel vote"
+      ],
+      "mustAvoid": [
+        "academic scandal gossip",
+        "science fraud lecture"
+      ]
+    },
+    {
+      "protagonistName": "Tomasz",
+      "domain": "a neighborhood fire investigation where a disliked tenant becomes the easy arson suspect",
+      "audience": "local officials and witnesses watching dislike become evidence",
+      "stakes": "real evidence gets filtered through the tenant's reputation",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Tomasz writes \"unliked is not motive\" on the incident board and moves the accelerant test above the neighbor complaints",
+      "firstImage": "a melted doorbell camera casing in a paper evidence bag",
+      "mustInclude": [
+        "neighbor complaints",
+        "accelerant test",
+        "incident board"
+      ],
+      "mustAvoid": [
+        "true-crime tone",
+        "revenge plot"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "an innocence clinic deciding whether to reopen a decade-old conviction file",
+      "audience": "students and supervisors learning why reversal threatens identity",
+      "stakes": "a credible alibi may sit unread because the original prosecutor is now a respected judge",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Aanya place the judge's old press quote beside the new alibi record and name the reputation cost before assessing the evidence",
+      "firstImage": "a brittle courthouse clipping under a clear archival weight",
+      "mustInclude": [
+        "old press quote",
+        "new alibi",
+        "case file"
+      ],
+      "mustAvoid": [
+        "real exoneration case",
+        "hero-lawyer arc"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect when early guilt decisions reshape evidence",
+      "evaluate confession pressure without assuming bad faith",
+      "choose review practices that reduce institutional self-defense"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In one current judgment, write the strongest fact against your first suspect or theory before you add another fact for it.",
+  "readingTimeMinutes": 12
+}

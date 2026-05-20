@@ -1,0 +1,182 @@
+{
+  "chapterId": "built-to-last-ch03",
+  "number": 3,
+  "title": "More Than Profits",
+  "coreMove": "Use purpose and core values as decision constraints when a profitable option would bend the institution out of shape.",
+  "sourcePressure": "The sidecar supports the argument that durable organizations are guided by something deeper than short-term profit, with core values and purpose defining enduring character beyond specific leaders.",
+  "chapterSpecificMisunderstanding": "Turning purpose into sentimental branding or anti-profit posture instead of a practical rule for refusing profitable compromises.",
+  "sourceAlignmentTerms": [
+    "more than profits",
+    "core values",
+    "purpose",
+    "enduring character",
+    "long-run cohesion",
+    "short-term profit",
+    "institutional cohesion"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Core values and purpose",
+      "detail": "the source sidecar says core values and purpose define enduring character beyond specific leaders and support long-run cohesion",
+      "useIn": "both",
+      "phrasingHint": "Profit keeps the doors open; the core decides which door the institution will not walk through."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "profits are bad",
+      "purpose always beats money"
+    ],
+    "counterintuition": [
+      "the best companies care about mission, not money",
+      "values are not posters on a wall"
+    ],
+    "tryThisNow": [
+      "write your why",
+      "list three values"
+    ],
+    "examples": [
+      "generic mission statement workshop",
+      "bakery refusing a contract because it feels wrong",
+      "founder speech about meaning"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "medical-device startup choosing whether to rush a profitable hospital pilot before usability fixes",
+      "audience": "Rachel, product lead facing a signed purchase order",
+      "stakes": "early revenue could arrive before nurses can safely operate the device at night",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel places the night-shift usability notes beside the purchase order and delays the pilot until the core promise of safe use is met",
+      "firstImage": "a signed hospital purchase order under a stack of sticky notes from night nurses",
+      "mustInclude": [
+        "night-shift notes",
+        "purchase order",
+        "usability fix list"
+      ],
+      "mustAvoid": [
+        "profit rejected because money is impure"
+      ]
+    },
+    {
+      "domain": "outdoor gear retailer rejecting a high-margin private-label jacket after a repair test fails",
+      "audience": "Claire, merchandising director with quarterly pressure",
+      "stakes": "the jacket could lift margins while teaching customers the repair promise is fake",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire asks the repair bench to patch the sample in front of the buying team, then cancels the order when the seam tears again",
+      "firstImage": "wet nylon bunched under a repair needle",
+      "mustInclude": [
+        "private-label sample",
+        "repair bench",
+        "margin sheet"
+      ],
+      "mustAvoid": [
+        "brand purpose presented as ad copy"
+      ]
+    },
+    {
+      "domain": "credit union deciding whether to add overdraft fees that competitors use heavily",
+      "audience": "Mathieu, finance chair balancing the budget",
+      "stakes": "a budget gap could be closed by charging the members the credit union was built to protect",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Show me the members who would pay it,\" Mathieu says, then uses account data to reject revenue that violates the member-protection core",
+      "firstImage": "a fee projection spreadsheet beside anonymized member accounts",
+      "mustInclude": [
+        "fee projection",
+        "member account sample",
+        "budget gap"
+      ],
+      "mustAvoid": [
+        "all fees are evil sermon"
+      ]
+    },
+    {
+      "domain": "vocational school accepting a flashy sponsor whose equipment cannot be maintained by students",
+      "audience": "Michael, program dean writing the sponsorship memo",
+      "stakes": "the school could gain press while weakening its promise of practical skill",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Michael one lab walk to see students watching a vendor technician touch equipment they were supposed to learn, so he rewrites the sponsor terms",
+      "firstImage": "students standing behind a velvet rope around donated equipment",
+      "mustInclude": [
+        "sponsor terms",
+        "lab walk",
+        "student maintenance access"
+      ],
+      "mustAvoid": [
+        "sponsorship bad because corporations bad"
+      ]
+    },
+    {
+      "domain": "regional newspaper weighing sponsored content that looks like reporting",
+      "audience": "Manon, editor under subscription pressure",
+      "stakes": "a needed revenue line could make readers doubt the paper's civic role",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:35 p.m., Manon marks the mock page with a red pencil until every paid item is unmistakably labeled or killed",
+      "firstImage": "a mock front page glowing on a newsroom monitor",
+      "mustInclude": [
+        "sponsored content mockup",
+        "red pencil marks",
+        "reader trust"
+      ],
+      "mustAvoid": [
+        "journalism purity speech with no business pressure"
+      ]
+    },
+    {
+      "domain": "childcare cooperative deciding whether to increase enrollment beyond the ratio families were promised",
+      "audience": "Nina, parent-board treasurer with a rent increase due",
+      "stakes": "extra tuition could pay rent while breaking the care standard that makes the cooperative worth joining",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Nina count mats on the nap-room floor, then strike the enrollment increase and propose a dues vote instead",
+      "firstImage": "small blue nap mats laid inches closer than usual",
+      "mustInclude": [
+        "nap-room floor",
+        "rent notice",
+        "ratio promise"
+      ],
+      "mustAvoid": [
+        "parents magically ignore money"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify purpose as a constraint rather than a slogan",
+      "choose profitable refusals grounded in core values",
+      "separate anti-profit rhetoric from institution-protecting decisions"
+    ]
+  },
+  "tryThisNowSpec": "Name one attractive option in front of you and write the value it would bend. If no value bends, it is not a purpose test.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

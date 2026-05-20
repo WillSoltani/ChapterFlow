@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch83",
+  "number": 83,
+  "title": "Salience Effect",
+  "readingTimeMinutes": 12,
+  "hook": "One bright detail can drag a whole decision off balance while the dull facts sit untouched.",
+  "counterintuition": "The detail you notice first may be the least important one; name its salience, then force the choice back through base importance.",
+  "tryThisNow": "Pick one decision with a vivid detail attached. Write that detail at the top, then list the three dull facts that should carry more weight.",
+  "keyTakeaway": "Salience makes a vivid feature look important because it is easy to notice. Treat brightness as a warning to check the quieter base facts.",
+  "breakdown": {
+    "fastRead": "The policy draft in the coffee supplier deal has a photo of split burlap sacks on the cover. Francis keeps looking at it while the shipping terms sit on page four. Salience makes the vivid detail feel like the main risk. He writes salience beside the photo, moves the freight record to the first score line, and makes the buyer choose by base importance, not by the loudest image.",
+    "deepRead": "Attention is not a fair judge. It grabs what is bright, recent, emotional, unusual, or easy to picture. Once attention grabs a feature, the mind often treats that feature as if it must deserve the weight it receives.\n\nThe salience effect is this slide from noticeable to important. A neonatal team may remember one dramatic oxygen-line error and rewrite a checklist around that vivid detail while a dull infection-control step causes more harm each month. A flood insurance clerk may focus on a spectacular airport delay photo and miss the boring map layer that actually changes the household's risk. The eye is not the same as the scale.\n\nBright is not the same as important.\n\nThe correction is to mark the vivid detail before it becomes the decision. Name it: salience. Then ask what the base importance would be if the detail were printed in gray. Which factor changes outcomes most often? Which risk has the largest cost? Which number would matter if nobody had seen the photo, heard the story, or watched the clip?\n\nThis is not a call to ignore vivid evidence. Sometimes the bright detail is bright because it is a real warning. A site photo of ice at a shelter entrance may reveal a danger that the spreadsheet missed. The move is to test the detail against base importance, not to let it skip the test.",
+    "fullRead": "The site photo in the winter shelter allocation shows a blue tarp whipping loose in a freezing wind. Esther, the housing coordinator, can feel the room move toward that site before anyone has compared bed counts, transit access, or staffing. The photo matters. It may show a genuine problem. But if it becomes the whole decision, salience has replaced the allocation rule.\n\nSalient information has unfair access to the mind. It is easy to recall, easy to describe, and easy to defend in a meeting. Quiet information has to work harder. Base rates, average costs, failure frequency, and long-term capacity rarely sparkle. They arrive as columns, not scenes.\n\nWhich fact would still matter if it had no photograph?\n\nDe Bondt and Thaler's Do Analysts Overreact put this pressure into the world of markets and forecasts. Analysts can become too responsive to striking news or vivid recent information, even when base importance and longer patterns deserve more weight. The lesson travels beyond finance: a bright feature pulls judgment toward what can be seen, retold, or emotionally replayed.\n\nThat pull can be useful. A vivid detail can break complacency. A neonatal floor sticker that keeps getting peeled back may reveal that a safety route is not as clear as the checklist says. A goalkeeper academy's blood-test panel may flag a fatigue issue that coaches cannot see during drills. Salience becomes a problem when the feature wins because it is vivid, not because it changes the outcome that matters.\n\nThe quiet facts need a chair at the table.\n\nA newsroom front-page meeting shows the trap cleanly. A loan worksheet contains one heartbreaking borrower quote, and the room wants the story above the fold. The quote is real. It should not be erased. But the editor still has to compare public impact, novelty, evidence strength, and who is affected. A vivid quote can open attention. It should not decide placement by itself.\n\nThe practical correction is a salience brake. First, put the vivid detail in a box and label it. Second, list the base facts that should matter even without the vivid item. Third, decide how much the detail should change the weights. If it reveals a hidden variable, raise its weight. If it only adds color, keep it from taking over.\n\nThe limit is that decisions need human attention. You cannot run a city, ward, fund, or newsroom on blank tables alone. People notice what they can see, and vivid detail often carries human truth that averages flatten. The error is not noticing. The error is letting notice become rank.\n\nBefore the next choice moves forward, ask what is loud and what is large. The loud thing may deserve action, but it has to earn its place beside the large thing. Once salience is named, the bright feature stops choosing for the room."
+  },
+  "examples": [
+    {
+      "exampleId": "ch83-ex01-francis-policy-draft",
+      "title": "Francis moves the freight line up",
+      "scenario": "A policy draft sits beside three green coffee sample bags in a Rotterdam supplier negotiation at 2:30 p.m. Francis must decide whether to reject a farm cooperative after seeing a photo of split burlap sacks on the cover. He writes salience beside the photo, moves freight reliability and defect rate to the first comparison line, and changes the supplier vote in front of the buyer.",
+      "whatToDo": "Label the striking photo as salience, then force the supplier choice through freight reliability and defect rates before the vote.",
+      "whyItMatters": "The torn-sack image may be real, but it can crowd out the quieter terms that decide cost, delivery, and quality over the contract.",
+      "tags": [
+        "policy draft",
+        "salience",
+        "coffee supplier negotiation"
+      ],
+      "planSpec": {
+        "domain": "a coffee supplier negotiation applying Salience Effect under operational pressure",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch83-ex02-esther-floor-sticker",
+      "title": "Esther checks the dull checklist line",
+      "scenario": "\"That sticker is impossible to miss,\" the nurse says during a neonatal checklist review in Calgary at 7:05 a.m. A bright floor sticker marks the resuscitation route, but Esther must decide whether the vivid detail should outrank the quieter infection-control miss rate. She circles vivid detail on the sticker, adds the miss rate beside it, and changes the next checklist revision in front of the charge nurse.",
+      "whatToDo": "Keep the vivid sticker visible, but make the checklist revision compare it with the higher-frequency infection-control risk.",
+      "whyItMatters": "The sticker gets attention because it is visible. The checklist should follow harm and frequency, not only the detail everyone remembers.",
+      "tags": [
+        "floor sticker",
+        "vivid detail",
+        "neonatal checklist review"
+      ],
+      "planSpec": {
+        "domain": "a neonatal checklist review applying Salience Effect under operational pressure",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch83-ex03-geoffrey-site-photo",
+      "title": "Geoffrey weighs the shelter photo",
+      "scenario": "The site photo is cold enough to feel wet in the winter shelter allocation room in Ottawa at 5:45 p.m. Geoffrey must decide whether the tarp-flapping image should move one site ahead of another with more beds and better transit. He marks base importance on the photo, asks the planner to read capacity aloud, and changes the allocation sheet only after the larger factors are scored.",
+      "whatToDo": "Use the photo as a risk cue, then score bed count, transit, staffing, and exposure before moving the shelter site.",
+      "whyItMatters": "A bleak image can dominate the room while capacity affects more people. Base importance keeps visible hardship from swallowing total impact.",
+      "tags": [
+        "site photo",
+        "base importance",
+        "winter shelter allocation"
+      ],
+      "planSpec": {
+        "domain": "a winter shelter allocation applying Salience Effect under operational pressure",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch83-ex04-avril-blood-panel",
+      "title": "Avril slows the academy drill",
+      "scenario": "You are holding a blood-test panel at a goalkeeper academy in Lyon while a teenager's spectacular diving save loops on the training screen. Avril, the performance coach, must decide whether the save should keep him in the drill despite fatigue markers. She writes attention on the panel, shows the marker to the head coach, and changes the drill list before the next set begins.",
+      "whatToDo": "Put the eye-catching save beside the fatigue marker, then choose the drill list from injury risk and training load.",
+      "whyItMatters": "The save wins attention, but the blood-test panel may carry the larger risk. Salience should not decide who trains through fatigue.",
+      "tags": [
+        "blood-test panel",
+        "attention",
+        "goalkeeper academy drill"
+      ],
+      "planSpec": {
+        "domain": "a goalkeeper academy drill applying Salience Effect under operational pressure",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch83-ex05-anne-airport-board",
+      "title": "Anne separates flood risk from delay drama",
+      "scenario": "It took Anne one claims season in Hamburg to see that the flood insurance desk kept overreacting to the airport board photo after every storm delay. She predicted clients would need air-travel riders, but the reveal was basement loss data. Before renewing the brochure, she must decide whether the vivid feature belongs on page one or behind the flood-zone map.",
+      "whatToDo": "Mark the airport board as a salient feature, then rank brochure space by claim frequency, loss size, and flood-zone exposure.",
+      "whyItMatters": "Travel disruption is easy to picture, but flood exposure drives the actual insurance need. The feature should not outrank the base loss data.",
+      "tags": [
+        "airport board",
+        "feature",
+        "flood insurance desk"
+      ],
+      "planSpec": {
+        "domain": "a flood insurance desk applying Salience Effect under operational pressure",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch83-ex06-christopher-loan-worksheet",
+      "title": "Christopher's front-page postmortem",
+      "scenario": "Which deserved the front page: the heartbreaking quote or the larger pattern? Christopher asks that after a newsroom meeting in Cardiff reviews a loan worksheet from the previous night's housing story. The vivid quote drove placement while the broader lending data sat lower. He marks effect on the worksheet and changes the next meeting so impact, novelty, and evidence strength are scored before quotes are read.",
+      "whatToDo": "Let vivid quotes open the discussion only after the front-page criteria have been scored from evidence and public impact.",
+      "whyItMatters": "A quote can focus attention without proving rank. Scoring the larger criteria first keeps salience from choosing the lead story.",
+      "tags": [
+        "loan worksheet",
+        "effect",
+        "newsroom front-page meeting"
+      ],
+      "planSpec": {
+        "domain": "a newsroom front-page meeting applying Salience Effect under operational pressure",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a salience-effect case, a buyer focuses on a dramatic photo in a supplier packet while ignoring delivery reliability, defect rate, and payment terms, what is the salience effect doing?",
+        "choices": [
+          "Salience-effect buyer focuses looks strong enough to guide dramatic photo supplier; packet ignoring delivery can wait unless reliability defect rate changes the stakes.",
+          "Delivery reliability defect gives a practical reason for supplier packet ignoring; what salience effect belongs after rate payment terms clarifies the result.",
+          "It is making the most noticeable detail feel more important than quieter base facts."
+        ],
+        "correctIndex": 2,
+        "explanation": "The photo may matter, but salience is giving it extra weight because it is vivid. The quieter supplier facts still carry the contract risk.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Salience Effect makes salience-effect case feel more decisive than the record supports, and that misprices buyer focuses in this scene. The correct move keepss the choice by it is making the most noticeable detail feel more important than quieter base."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a salience-effect review, a neonatal team wants to rewrite a checklist around a bright floor sticker everyone remembers, even though a dull infection-control step causes more monthly harm, what should lead the revision?",
+        "choices": [
+          "Even though dull supports a narrower read of wants rewrite checklist; keep around bright floor central and leave sticker everyone remembers aside.",
+          "A comparison of vividness with harm frequency and severity.",
+          "Step causes monthly fits the immediate pressure around bright floor sticker; hold rewrite checklist around steady and test neonatal team wants later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The revision should test the vivid detail against harm frequency and severity. Noticing the sticker first does not make it the largest safety issue.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Salience Effect works by letting salience-effect neonatal crowd out team wants, which can misreads the rewrite checklist decision. A comparison of vividness with harm frequency and severity keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When salience-effect pressure appears, a shelter committee sees a grim site photo and wants to move that location to the top. Another site has more beds, better transit, and stronger staffing. What is the best next step?",
+        "choices": [
+          "Score capacity, access, staffing, and exposure before changing the allocation.",
+          "Better transit stronger points toward a quicker call on sees grim site; let appears shelter committee stand until location another beds contradicts it.",
+          "Stronger staffing what fits the immediate pressure around site photo wants; hold committee sees grim steady and test pressure appears shelter later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The photo should enter as a risk cue, not as the ranking rule. Capacity and access affect how many people are helped.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Salience Effect turns appears shelter into a shortcut, so the room can overweights committee sees while missing grim site. Score capacity, access, staffing, and exposure before changing the allocation protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After salience-effect risk surfaces, a goalkeeper's spectacular save is looping on the academy screen, but his blood-test panel shows fatigue markers, the coach wants to keep him in the drill. What correction fits?",
+        "choices": [
+          "Fatigue markers coach supports a narrower read of goalkeeper spectacular save; keep looping academy screen central and leave blood-test panel shows aside.",
+          "Coach wants keep points toward a quicker call on save looping academy; let surfaces goalkeeper spectacular stand until shows fatigue markers contradicts it.",
+          "Put the save beside the fatigue marker and choose from injury risk and training load."
+        ],
+        "correctIndex": 2,
+        "explanation": "The save is salient, but the fatigue marker may carry the larger risk. The correction compares attention with the base training factors.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Salience Effect would push the goalkeeper spectacular case toward save looping, creating a cost when academy screen stays untested. The useful guardrail is to put the save beside the fatigue marker and choose from injury risk and training load."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If salience-effect reasoning takes over, an insurance desk gives brochure space to airport delay photos after a storm, even though basement flood claims drive losses. What is the likely error?",
+        "choices": [
+          "A vivid feature is crowding out claim frequency and loss size.",
+          "Gives brochure space looks strong enough to guide airport delay photos; after storm even can wait unless though basement flood changes the stakes.",
+          "Space airport delay gives a practical reason for desk gives brochure; even though basement belongs after photos after storm clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "The airport image is easier to picture, but claim frequency and loss size should rank the brochure. Removing all photos would overcorrect.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Salience Effect converts desk gives into the loudest signal, which can rushes brochure space before airport delay is checked. The better answer separatess attention on a vivid feature is crowding out claim frequency and loss size."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While salience-effect pressure builds, a newsroom wants a housing story above the fold because one quote is heartbreaking, the broader lending data is strong but less emotional. What should the editor do?",
+        "choices": [
+          "Impact novelty strength fits the immediate pressure around broader lending data; hold fold quote heartbreaking steady and test housing story above later.",
+          "Score impact, novelty, and evidence strength before using the quote to shape presentation.",
+          "Story above fold gives a practical reason for newsroom wants housing; lending data strong belongs after quote heartbreaking broader clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The quote can help readers care, but placement should first reflect public impact and evidence strength. Emotion alone is not rank.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Salience Effect hides inside the salience-effect pressure choice because salience-effect pressure seems sufficient, yet the cost lands in salience-effect pressure. Score impact, novelty, and evidence strength before using the quote to shape presentation brings the salience-effect pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the salience-effect call, a meeting keeps returning to a recent dramatic customer complaint, while the average complaint category affects ten times more users. Which question best restores balance?",
+        "choices": [
+          "Which factor changes outcomes most often or at the largest scale?",
+          "Returning recent dramatic looks strong enough to guide customer complaint average; category affects times can wait unless users best restores changes the stakes.",
+          "Dramatic customer complaint gives a practical reason for keeps returning recent; times users best belongs after average category affects clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "The scale question restores base importance. Retellability and emotion are exactly the salience cues that may be overweighted.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Salience Effect pressures the call meeting decision toward the easy reading of call meeting. That can inflates the real cost unless the choice is grounded in which factor changes outcomes most often or at the largest scale."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose salience-effect risk is present: a hospital review includes one vivid medication error and a dull recurring handoff gap. The vivid error is severe but rare; the handoff gap is moderate and frequent. What is the best evaluation?",
+        "choices": [
+          "Suppose salience-effect present looks strong enough to guide hospital includes vivid; medication error dull can wait unless recurring handoff severe changes the stakes.",
+          "Dull recurring handoff gives a practical reason for vivid medication error; frequent what best belongs after severe rare moderate clarifies the result.",
+          "Compare severity, frequency, and preventability before changing the protocol."
+        ],
+        "correctIndex": 2,
+        "explanation": "The evaluation needs severity, frequency, and preventability. Picking either issue from vividness or dullness alone repeats the bias.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Salience Effect is the mechanism here: vivid detail takes too much weight, so present hospital can overpower present hospital. Compare severity, frequency, and preventability before changing the protocol keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two salience-effect signals compete: a team labels a striking feature as salience but then ignores it completely. The feature may reveal a hidden variable that no table captured. What should they do?",
+        "choices": [
+          "Salience-effect signals compete looks strong enough to guide team labels striking; feature salience ignores can wait unless often reveal hidden changes the stakes.",
+          "Test whether the feature changes the outcome weights or only adds color.",
+          "Reveal hidden variable makes labels striking feature look credible; use salience ignores often first and revisit table captured what when test whether changes shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "A salient feature can contain real evidence. The right move tests whether it changes the weights, instead of ignoring it or surrendering to it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Salience Effect makes the team labels evidence look cleaner than it is, risking a team labels mistake in this setting. The answer protects team labels by asking for test whether the feature changes the outcome weights or only adds color."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "A vivid detail grabs the room. What base rate should regain attention?",
+      "back": "Bring back the base rate, total scale, and less vivid evidence. Salient details need a denominator.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What question restores base importance?",
+      "back": "Ask which factor changes outcomes most often, at the largest scale, or at the highest cost.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "When can a salient detail deserve weight?",
+      "back": "When it reveals a hidden variable or changes the expected outcome, not merely because it is memorable.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "A photo, quote, or clip is driving the decision. What is the correction?",
+      "back": "Label it as salient, list the base facts, then decide how much the detail should change the weights.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "Why do dull facts lose in meetings?",
+      "back": "They arrive as columns instead of scenes, so they need a deliberate place in the choice structure.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Label the vivid feature, list the quieter base facts, and choose by weighted importance instead of attention.",
+    "ifThenPlans": [
+      {
+        "context": "Supplier or vendor choice",
+        "plan": "If one image dominates the packet, then I will move reliability, cost, and failure rates above it before deciding."
+      },
+      {
+        "context": "Safety review",
+        "plan": "If one dramatic incident leads the room, then I will compare severity, frequency, and preventability before changing protocol."
+      },
+      {
+        "context": "Editorial or presentation work",
+        "plan": "If one quote carries the room, then I will score impact and evidence before choosing placement."
+      },
+      {
+        "context": "Risk or insurance decisions",
+        "plan": "If a vivid disruption story grabs attention, then I will check claim frequency and loss size before allocating space or money."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one vivid detail that influenced you today. Write the base facts it may have crowded out and decide whether it truly changes their weight.",
+    "weeklyPractice": "Once a week, review a decision where the loudest detail won and ask what the quiet largest factor was."
+  },
+  "memorableLines": [
+    {
+      "text": "Bright is not the same as important."
+    },
+    {
+      "text": "The quiet facts need a chair at the table."
+    },
+    {
+      "text": "The error is not noticing."
+    }
+  ]
+}

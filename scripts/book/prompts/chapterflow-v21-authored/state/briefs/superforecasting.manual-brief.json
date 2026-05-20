@@ -1,0 +1,126 @@
+{
+  "bookId": "superforecasting",
+  "title": "Superforecasting: The Art and Science of Prediction",
+  "author": "Philip E. Tetlock, Dan Gardner",
+  "thesisParagraph": "Most confident-sounding forecasts are untested performances. Philip Tetlock and Dan Gardner tracked expert predictions over decades and found that prestige, fluency, and decisiveness routinely masquerade as forecasting skill. The book then identifies a small group of people — superforecasters — who outperform not by genius but by disciplined habits: breaking problems into estimable parts, anchoring on base rates before adjusting for inside information, expressing uncertainty as calibrated probabilities, updating proportionately to new evidence, seeking feedback, and staying open to revision. The argument is not that the future is controllable. It is that better-calibrated thinking consistently beats overconfident punditry, and that the habits behind it can be learned.",
+  "coreIdeas": [
+    {
+      "name": "Prestige is not track record",
+      "oneSentence": "The credibility signals we trust most — fame, authority, decisiveness — are almost entirely uncorrelated with forecasting accuracy.",
+      "mentalMove": "Separate how confident a source sounds from how accurate it has actually been over time.",
+      "sourceAnchors": ["ch01.source", "ch04.source"]
+    },
+    {
+      "name": "Illusions of understanding",
+      "oneSentence": "A coherent explanation feels like knowledge before the evidence has earned that confidence.",
+      "mentalMove": "Catch the moment your explanation stops feeling like a hypothesis and starts feeling like a verdict.",
+      "sourceAnchors": ["ch02.source"]
+    },
+    {
+      "name": "Scorekeeping makes improvement possible",
+      "oneSentence": "Vague probability language cannot be checked; a specific number can.",
+      "mentalMove": "Translate hedge words into percentages so your claims can meet outcomes later.",
+      "sourceAnchors": ["ch03.source"]
+    },
+    {
+      "name": "Question substitution",
+      "oneSentence": "The hardest part of forecasting is staying on the hard question instead of sliding to an easier proxy.",
+      "mentalMove": "Ask what you are actually trying to predict and resist the pull toward the question that feels answerable.",
+      "sourceAnchors": ["ch04.source"]
+    },
+    {
+      "name": "Fermi decomposition plus outside view",
+      "oneSentence": "Break the problem into parts small enough to estimate, then check each part against base rates before adjusting for inside information.",
+      "mentalMove": "Decompose the question, look up the reference class, and only then apply what you know specifically.",
+      "sourceAnchors": ["ch05.source"]
+    },
+    {
+      "name": "Calibrated probability expression",
+      "oneSentence": "A forecast that acknowledges its own uncertainty is more honest and more useful than one that claims false precision.",
+      "mentalMove": "State a probability range that reflects what you actually know, distinguishing what more evidence could resolve from what remains irreducibly uncertain.",
+      "sourceAnchors": ["ch06.source"]
+    },
+    {
+      "name": "Proportionate updating",
+      "oneSentence": "The size of a revision should match the strength of the new signal, not the emotional salience of the news.",
+      "mentalMove": "Before adjusting your estimate, ask how much this piece of information should actually move it.",
+      "sourceAnchors": ["ch07.source"]
+    },
+    {
+      "name": "Perpetual beta",
+      "oneSentence": "Forecasting skill compounds only when you treat each mistake as auditable evidence rather than a reputation to manage.",
+      "mentalMove": "Keep a record precise enough to check and stay open to correction that can still hurt.",
+      "sourceAnchors": ["ch08.source"]
+    },
+    {
+      "name": "Superteams preserve disagreement",
+      "oneSentence": "Collective forecasting beats individual forecasting only when dissent is kept alive long enough to improve the shared estimate.",
+      "mentalMove": "Voice the reservation before the group settles, not after the cost of being wrong arrives.",
+      "sourceAnchors": ["ch09.source"]
+    },
+    {
+      "name": "Decisive humility",
+      "oneSentence": "Strong leadership and strong forecasting are compatible only when action is decoupled from the pretense of certainty.",
+      "mentalMove": "Commit to a course while building structures that keep local judgment alive after the decision.",
+      "sourceAnchors": ["ch10.source"]
+    },
+    {
+      "name": "Forecasting limits and planning for surprise",
+      "oneSentence": "Accepting what forecasting cannot do clarifies what it can do — and that boundary is itself a forecasting insight.",
+      "mentalMove": "Distinguish tractable uncertainty from genuine black swans, then prepare conditionally for the latter instead of ignoring it.",
+      "sourceAnchors": ["ch11.source"]
+    },
+    {
+      "name": "Institutional scorekeeping",
+      "oneSentence": "Forecasting improves at scale only when institutions demand outcome scores and reward accuracy over persuasiveness.",
+      "mentalMove": "Demand that predictions meet outcomes publicly before granting the forecaster authority on the next question.",
+      "sourceAnchors": ["ch12.source"]
+    }
+  ],
+  "targetReader": "Managers, analysts, policy thinkers, and anyone who makes decisions under uncertainty and suspects their confident gut is not as reliable as it feels.",
+  "voiceCharter": {
+    "register": "plainspoken, analytically precise",
+    "person": "second",
+    "cadence": "medium — varies between tight declarative punches and longer diagnostic sequences",
+    "signatureMoves": [
+      "open each idea in a concrete scene before naming the principle",
+      "use specific numbers and percentages where the book does — they create precision, not pedantry",
+      "let the visible action carry the lesson; the reader should see it happen before you name it",
+      "challenge the reader's prior confidence gently, then supply a better tool",
+      "end paragraphs with the sharpest version of the claim, not the softest"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language ('unlock your potential', 'transform the way you think')",
+      "no hedge phrases that cannot be checked ('things are developing', 'probably likely')",
+      "no sentences that praise forecasting without showing it in action"
+    ]
+  },
+  "voiceSpecimens": [
+    "A confident prediction from someone with no track record is just a confident story.",
+    "When you say probably, write down a number — otherwise you will never know if you were right.",
+    "The forecast that sends you from 60 to 85 on one news item is almost certainly an overreaction.",
+    "Your base rate is not the interesting part of the problem. It is the part you have to nail before the interesting part begins.",
+    "Cochrane wanted a number. The specialist wanted a story. The story was wrong.",
+    "What you are actually forecasting matters more than how well you forecast it.",
+    "The team that reaches consensus fastest is not always the team that reaches it best."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, we will explore the fascinating world of probabilistic thinking and what it means for modern decision-making.",
+    "By applying these groundbreaking insights, you can transform the way you approach uncertainty.",
+    "Experts often get it wrong, and that is why you need to think differently about the future.",
+    "The key takeaway here is that calibration is absolutely essential to becoming a better thinker.",
+    "This powerful research shows us that even ordinary people can achieve extraordinary forecasting results."
+  ],
+  "teachingArc": "The book opens by showing that the forecasting ecosystem is broken in a specific way: credibility signals (fame, authority, fluency) crowd out accuracy signals (track record, calibration, revision). It then goes looking for people who actually forecast well and asks what they do. The middle chapters dissect each ingredient: decomposition, probability expression, update discipline, feedback hunger, and team structure. The final chapters stress-test the claim by asking what forecasting genuinely cannot do, then close by arguing that the same discipline applied to institutions could change what gets rewarded in public life.",
+  "forbiddenMoves": [
+    "Treating 'be humble' as the lesson — the book teaches specific calibration mechanics, not generic modesty",
+    "Confusing update frequency with update quality — more news consumption is not the variable",
+    "Using the word 'probably' in examples without attaching a number — every hedge word in this book demands a percentage",
+    "Treating superforecasters as geniuses or special talents — the book explicitly rejects that frame",
+    "Letting 'black swan' become an excuse to dismiss all forecasting — the book defends careful prediction while accepting limits",
+    "Collapsing epistemic and aleatory uncertainty into one vague 'things are uncertain' gesture"
+  ]
+}

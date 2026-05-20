@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-righteous-mind-ch09",
+  "number": 9,
+  "title": "Why Are We So Groupish?",
+  "coreMove": "Hold selfish motives and group-binding motives in the same picture instead of reducing one to the other.",
+  "sourcePressure": "The chapter reopens morality through groupishness, multilevel selection, and the tension between self-interest and group-binding tendencies.",
+  "chapterSpecificMisunderstanding": "The writer reduces groupishness to mob thinking and misses the self-interest versus group-binding tension.",
+  "sourceAlignmentTerms": [
+    "groupishness",
+    "multilevel selection",
+    "self-interest",
+    "group-binding",
+    "evolutionary logic",
+    "tension"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "multilevel selection",
+      "detail": "the frozen sidecar identifies multilevel selection as the chapter-level frame for selfishness and groupishness.",
+      "useIn": "both",
+      "phrasingHint": "Multilevel selection gives the reader a way to hold two facts together: people compete as individuals and bind into groups."
+    },
+    {
+      "kind": "event",
+      "name": "the shift into Part III",
+      "detail": "the frozen sidecar says the book shifts here from partisan moral foundations into the social and evolutionary logic of group life.",
+      "useIn": "deepRead",
+      "phrasingHint": "The moral question gets bigger here; it is no longer only what a person judges, but what a group can become."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch09 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "sports fan tribalism only"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "office team-building cliche"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "evolution proves everything"
+    ],
+    "examples": [
+      "sports fan tribalism only",
+      "office team-building cliche",
+      "evolution proves everything"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "volunteer fire brigade deciding who gets scarce training slots",
+      "audience": "volunteers balancing ambition and crew loyalty",
+      "stakes": "Olivia holds individual advancement and brigade readiness together.",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivia moves one name down the list because the crew needs a pump operator more than another captain.",
+      "firstImage": "Mud from last night's call dries on the firehouse floor beneath the roster.",
+      "mustInclude": [
+        "training roster",
+        "muddy boots",
+        "pump manual"
+      ],
+      "mustAvoid": [
+        "team-building cliche"
+      ]
+    },
+    {
+      "domain": "open-source project enforcing maintainer norms",
+      "audience": "software contributors who mistake all conflict for ego",
+      "stakes": "Mikkel sees individual credit and group survival pulling at once.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mikkel asks the contributor what would help the project live after the contributor leaves.",
+      "firstImage": "\"Do you want the patch merged, or the project healthier?\" Mikkel asks.",
+      "mustInclude": [
+        "pull request",
+        "maintainer guide",
+        "release clock"
+      ],
+      "mustAvoid": [
+        "generic tech teamwork"
+      ]
+    },
+    {
+      "domain": "neighborhood flood response allocating sandbags",
+      "audience": "community organizers in emergency cooperation",
+      "stakes": "Adaeze notices when self-protection turns into block-level protection.",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Adaeze watches residents stop counting their own sandbags and start filling the weakest corner.",
+      "firstImage": "Wet sand sticks to Adaeze's wrists as the river climbs the curb.",
+      "mustInclude": [
+        "sandbags",
+        "river gauge",
+        "corner house"
+      ],
+      "mustAvoid": [
+        "disaster hero montage"
+      ]
+    },
+    {
+      "domain": "academic department deciding whether to share grant credit",
+      "audience": "researchers balancing status and lab survival",
+      "stakes": "Jack frames credit as individual incentive and group resource.",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:05, Jack redraws the authorship chart to protect both contribution and lab continuity.",
+      "firstImage": "At 4:05, Jack stands before an authorship chart no one wants to touch.",
+      "mustInclude": [
+        "authorship chart",
+        "grant deadline",
+        "lab roster"
+      ],
+      "mustAvoid": [
+        "academic ego caricature"
+      ]
+    },
+    {
+      "domain": "local choir choosing dues for members who cannot pay",
+      "audience": "small associations with shared identity",
+      "stakes": "Kasia names the moment the choir pays a cost to remain a choir.",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Kasia ask what kind of group they become if the best alto leaves over dues.",
+      "firstImage": "You hear the alto part missing before anyone discusses money.",
+      "mustInclude": [
+        "dues envelope",
+        "alto folder",
+        "practice piano"
+      ],
+      "mustAvoid": [
+        "arts funding generic"
+      ]
+    },
+    {
+      "domain": "cycling club enforcing safety norms on a popular rider",
+      "audience": "club leaders facing status versus group welfare",
+      "stakes": "Antoine treats the rider's talent and the group's safety as competing levels.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Antoine reviews the near miss and suspends the rider for the group's future rides.",
+      "firstImage": "It took Antoine one helmet-camera clip to stop calling it a personality clash.",
+      "mustInclude": [
+        "helmet camera",
+        "route sheet",
+        "suspension email"
+      ],
+      "mustAvoid": [
+        "bike helmet repeated anchor"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "hold individual and group-level incentives together",
+      "recognize group-binding motives without romanticizing them",
+      "use multilevel selection as a frame rather than a settled slogan"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Think of one group you sacrifice for and one you merely use; write the cue that makes the difference visible.",
+  "readingTimeMinutes": 12
+}

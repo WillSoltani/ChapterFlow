@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch04",
+  "number": 4,
+  "title": "Inertia",
+  "coreMove": "Identify what is already moving, then decide whether to interrupt, redirect, or use its momentum.",
+  "sourcePressure": "Inertia concerns people and systems continuing in their current direction unless a meaningful force changes the path.",
+  "chapterSpecificMisunderstanding": "making the lesson a generic motivation speech about getting started",
+  "sourceAlignmentTerms": [
+    "inertia",
+    "momentum",
+    "current direction",
+    "force",
+    "resistance",
+    "routine",
+    "institutional path"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Inertia",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "making the lesson a generic motivation speech about getting started",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "ferry timetable changeover",
+      "audience": "readers who face ferry timetable changeover decisions where inertia is easy to misread",
+      "stakes": "commuters missing transfers",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire marks the current path on the tide chart, removes the transfer board that keeps it moving, and schedules the driver notice as the first interrupting force. Domain: ferry timetable changeover.",
+      "firstImage": "tide chart visible in the ferry timetable changeover",
+      "mustInclude": [
+        "tide chart",
+        "transfer board",
+        "driver notice"
+      ],
+      "mustAvoid": [
+        "making the lesson a generic motivation speech about getting started",
+        "reusing a generic meeting scene instead of the ferry timetable changeover constraints"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "violin practice restart",
+      "audience": "readers who face violin practice restart decisions where inertia is easy to misread",
+      "stakes": "a student quitting after a missed month",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Andrew marks the current path on the practice notebook, removes the rosin cloth that keeps it moving, and schedules the lesson recording as the first interrupting force. Domain: violin practice restart.",
+      "firstImage": "practice notebook visible in the violin practice restart",
+      "mustInclude": [
+        "practice notebook",
+        "rosin cloth",
+        "lesson recording"
+      ],
+      "mustAvoid": [
+        "making the lesson a generic motivation speech about getting started",
+        "reusing a generic meeting scene instead of the violin practice restart constraints"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "credit union underwriting workflow",
+      "audience": "readers who face credit union underwriting workflow decisions where inertia is easy to misread",
+      "stakes": "loan delays from inherited rules",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Juliette marks the current path on the loan exception sheet, removes the underwriting stamp that keeps it moving, and schedules the queue ticket as the first interrupting force. Domain: credit union underwriting workflow.",
+      "firstImage": "loan exception sheet visible in the credit union underwriting workflow",
+      "mustInclude": [
+        "loan exception sheet",
+        "underwriting stamp",
+        "queue ticket"
+      ],
+      "mustAvoid": [
+        "making the lesson a generic motivation speech about getting started",
+        "reusing a generic meeting scene instead of the credit union underwriting workflow constraints"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "condo board bylaw update",
+      "audience": "readers who face condo board bylaw update decisions where inertia is easy to misread",
+      "stakes": "renovation blocked by old procedure",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Henrik marks the current path on the bylaw binder, removes the proxy ballot that keeps it moving, and schedules the elevator permit as the first interrupting force. Domain: condo board bylaw update.",
+      "firstImage": "bylaw binder visible in the condo board bylaw update",
+      "mustInclude": [
+        "bylaw binder",
+        "proxy ballot",
+        "elevator permit"
+      ],
+      "mustAvoid": [
+        "making the lesson a generic motivation speech about getting started",
+        "reusing a generic meeting scene instead of the condo board bylaw update constraints"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "emergency room triage habit",
+      "audience": "readers who face emergency room triage habit decisions where inertia is easy to misread",
+      "stakes": "waiting room crowding from an old habit",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Yusuf marks the current path on the triage card, removes the waiting-room count that keeps it moving, and schedules the handoff phone as the first interrupting force. Domain: emergency room triage habit.",
+      "firstImage": "triage card visible in the emergency room triage habit",
+      "mustInclude": [
+        "triage card",
+        "waiting-room count",
+        "handoff phone"
+      ],
+      "mustAvoid": [
+        "making the lesson a generic motivation speech about getting started",
+        "reusing a generic meeting scene instead of the emergency room triage habit constraints"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "factory retooling line",
+      "audience": "readers who face factory retooling line decisions where inertia is easy to misread",
+      "stakes": "shutdown cost during a product change",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Javier marks the current path on the changeover wrench, removes the line diagram that keeps it moving, and schedules the shutdown clock as the first interrupting force. Domain: factory retooling line.",
+      "firstImage": "changeover wrench visible in the factory retooling line",
+      "mustInclude": [
+        "changeover wrench",
+        "line diagram",
+        "shutdown clock"
+      ],
+      "mustAvoid": [
+        "making the lesson a generic motivation speech about getting started",
+        "reusing a generic meeting scene instead of the factory retooling line constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for inertia rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Identify what is already moving, then decide whether to interrupt, redirect, or use its momentum.",
+      "explain why the tempting misread fails: making the lesson a generic motivation speech about getting started",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving inertia, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,122 @@
+{
+  "chapterId": "superforecasting-ch08",
+  "number": 8,
+  "title": "Perpetual Beta",
+  "coreMove": "Treat each past forecast as auditable evidence about your own thinking process — keep the record precise enough to check, seek feedback rather than evade it, and stay open to correction that can still hurt.",
+  "sourcePressure": "Superforecasters stay revisable through growth mindset, precise records, and active resistance to hindsight bias. Ambiguous forecasting language weakens the original record by allowing the forecaster to reinterpret what was meant after the outcome is known. Hindsight bias rewrites earlier uncertainty after the fact — protecting self-image but destroying the informational value of the error. Perpetual beta means ongoing trial, feedback, analysis, and revision of process — not cheerful optimism but disciplined self-audit that may involve finding you were wrong for reasons you missed.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'have a growth mindset' as a personality stance. The precise mechanism requires three things simultaneously: a record precise enough to be audited, a willingness to seek feedback rather than wait for it, and a memory discipline strong enough to resist hindsight smoothing. Any one of the three missing makes the other two useless.",
+  "sourceAlignmentTerms": ["perpetual beta", "growth mindset", "hindsight bias", "feedback", "self-improvement", "trial and error", "auditable record"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with 'Embrace failure as a learning opportunity' — generic self-help register",
+      "opening with a Carol Dweck reference — the chapter uses the concept, not the name, and importing the attribution risks making it feel like a different book's lesson"
+    ],
+    "counterintuition": [
+      "'Mistakes are good' — too feel-good; the chapter's tone is that feedback can be unpleasant and the discipline is being open to it anyway",
+      "'Fixed mindset vs. growth mindset' as the main frame — the chapter uses growth mindset as one ingredient, not the whole story"
+    ],
+    "tryThisNow": [
+      "any prompt about journaling or morning reflection without specific forecast-record auditing",
+      "'Think of a mistake you made and what you learned from it' — too generic, does not require the auditable record mechanism"
+    ],
+    "examples": [
+      "any example where growth mindset is the lesson rather than the precise mechanism of keeping auditable records and seeking feedback",
+      "any domain used in ch01–07"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The auditable-record discipline appears in very different performance contexts — variety of openings emphasizes the mechanism is domain-independent"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "competitive chess player reviewing a lost game against an engine analysis tool",
+      "audience": "an amateur tournament player reviewing a match loss with no coach, only software",
+      "stakes": "the specific habit that determines whether tournament losses compound or teach",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the player is tempted to look at the engine analysis from move 27 onward — where he knows he blundered — but the engine flagged move 14 as the real error; he has been defending move 14 in his mental replay for two days, which means hindsight bias had already begun rewriting the uncertainty; the auditable record (the move log) overrides his memory",
+      "firstImage": "a laptop screen showing a chessboard with move 14 flagged in red while the player's memory had placed the error at move 27",
+      "mustInclude": ["the move 14 vs. move 27 gap between memory and record", "the player's two days of hindsight narration that had already settled", "the auditable record overriding that narration"],
+      "mustAvoid": ["chess theory content", "making the player look incompetent rather than subject to normal hindsight bias"]
+    },
+    {
+      "domain": "pastry chef auditing a failed batch of croissants using a tasting notebook she has kept for six months",
+      "audience": "a pastry chef whose croissants collapsed twice in the same week, but whose diagnosis of why has been shifting since the first failure",
+      "stakes": "a catering order for 120 people in four days and the inability to diagnose a repeating failure",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the notebook shows that she recorded proofing time and oven temperature for every batch over six months; looking at the failures, the pattern is consistent — not butter temperature (her current hypothesis) but proofing time in a specific humidity range; her current hypothesis is wrong, and the notebook proves it, which means her confident diagnosis of the last two days has been defending the wrong mechanism",
+      "firstImage": "a tasting notebook with handwritten entries going back six months, each entry recording a brief quality assessment and three process variables",
+      "mustInclude": ["the six months of records", "the humidity-proofing pattern vs. her current butter-temperature hypothesis", "the precise moment the record overrides the working explanation"],
+      "mustAvoid": ["baking technique content", "framing this as a food science case study"]
+    },
+    {
+      "domain": "physical therapist reviewing a rehab patient's progress plateau using treatment records",
+      "audience": "a physiotherapist whose patient has plateaued at 65% range of motion for three weeks despite consistent treatment",
+      "stakes": "the patient's confidence in the treatment plan and the therapist's credibility in the treatment relationship",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "the therapist reviews her session notes and finds that she changed the strengthening sequence six weeks ago but did not note why; she has been explaining the plateau as 'expected consolidation phase' — a post-hoc explanation that her notes do not support; the record forces her to confront that she does not know why she made the change, which means her explanation is hindsight narration rather than diagnosis",
+      "firstImage": "a patient folder with a progress chart showing a plateau and session notes from six weeks ago with a protocol change that has no documented rationale",
+      "mustInclude": ["the undocumented protocol change", "the 'expected consolidation' hindsight explanation being exposed by the record", "the patient's plan now requiring an honest restart"],
+      "mustAvoid": ["physiotherapy clinical content", "any domain overlap with medical examples in earlier chapters"]
+    },
+    {
+      "domain": "software developer reviewing a production bug using the commit history",
+      "audience": "a senior developer conducting a post-incident review after a deployment caused a data schema conflict",
+      "stakes": "the team's incident process and whether future deployments carry the same hidden risk",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the developer's mental model of the incident placed the root cause at the database migration script; the commit history shows the migration script was correct — the actual cause was a configuration flag changed in a different commit three days earlier by a different engineer; the developer's memory had already shaped the incident into a narrative that fit her mental model, and the commit log contradicts it",
+      "firstImage": "a terminal window scrolling through git log output, the developer's working hypothesis already formed and already wrong",
+      "mustInclude": ["the configuration flag commit three days prior", "the developer's incorrect mental model that memory had already locked in", "the commit log as the auditable record that reveals the discrepancy"],
+      "mustAvoid": ["software architecture detail", "DevOps jargon"]
+    },
+    {
+      "domain": "music teacher comparing a pupil's current recording with a recording from the previous lesson",
+      "audience": "a piano teacher whose pupil's parents are asking why a specific technical problem has not improved over four lessons",
+      "stakes": "the teacher's honest assessment of whether her current approach is working, and whether she should change it",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the teacher plays both recordings back-to-back for the first time — she has been tracking the problem by memory — and finds that the right-hand tension she has been addressing has actually gotten worse over four lessons, not better; her lesson-to-lesson memory had been registering micro-improvements that the recording does not support; the auditable record contradicts the felt progress",
+      "firstImage": "two recordings on a tablet, played back-to-back, with the problem passage highlighted on a score",
+      "mustInclude": ["the memory-based felt progress vs. the recording comparison", "the worsening technical problem revealed by the auditable comparison", "the teacher's reassessment of her current approach"],
+      "mustAvoid": ["music pedagogy content", "any domain overlap with previous chapters"]
+    },
+    {
+      "domain": "investment advisor conducting a year-end portfolio review with a client",
+      "audience": "an advisor whose client believes the portfolio significantly outperformed because the advisor's confident calls 'worked'",
+      "stakes": "whether the client's attribution is accurate, and what the advisor's actual track record on her specific recommendations was versus the benchmark",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the advisor pulls her recommendation log from twelve months ago — a precise written record of each recommendation with a stated rationale and implicit probability of outperformance; of 11 recommendations, 6 beat the benchmark and 5 underperformed; but the 5 that underperformed were three of the four she had expressed highest confidence in; the record shows her high-confidence calls are where her calibration breaks down, which neither she nor the client would have known without the precise record",
+      "firstImage": "a year-end review meeting with a client leaning forward over a performance summary that shows portfolio up 12% vs. benchmark 9%",
+      "mustInclude": ["the recommendation log with stated confidence levels", "the 6/5 split", "the calibration failure at high-confidence specifically"],
+      "mustAvoid": ["investment advice content", "financial regulation framing"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when hindsight bias has already begun rewriting a past forecast",
+      "apply the auditable-record requirement — what must be logged at time of prediction for later review to be honest",
+      "distinguish perpetual beta from general growth mindset as a discipline",
+      "analyze what makes a record too vague to enable honest review",
+      "evaluate whether a post-hoc explanation for an error is supported by the contemporaneous record or only makes sense in retrospect"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find one prediction you made in the last month — a project outcome, a client behavior, a conversation you anticipated. Write down exactly what you predicted, as precisely as you can remember stating it at the time. Then write how the outcome compared. If your memory of what you predicted has already shifted toward what happened, you have already experienced hindsight bias. From now on, write predictions at the moment of making them — date, specific claim, specific probability.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one direct analytical passage on why hindsight bias is so hard to catch in real time — it does not feel like revision, it feels like remembering clearly — and what the auditable record does that memory cannot",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

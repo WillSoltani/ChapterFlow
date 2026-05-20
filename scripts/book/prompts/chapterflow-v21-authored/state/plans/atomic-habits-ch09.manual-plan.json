@@ -1,0 +1,153 @@
+{
+  "chapterId": "atomic-habits-ch09",
+  "number": 9,
+  "title": "The Role of Family and Friends in Shaping Your Habits",
+  "coreMove": "Choose or shape a group where the desired behavior protects belonging.",
+  "sourcePressure": "Habits become more attractive when they align with belonging, social norms, and the people around us.",
+  "chapterSpecificMisunderstanding": "Claiming people blindly copy groups, instead of showing belonging changing what feels desirable.",
+  "sourceAlignmentTerms": [
+    "close",
+    "many",
+    "powerful",
+    "imitation",
+    "social norms",
+    "belonging",
+    "tribe"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of close",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a robotics team normalizing teardown notes after every failed test",
+      "audience": "a new member who hides mistakes",
+      "stakes": "whether belonging makes documentation attractive",
+      "format": "scene",
+      "requiredBeat": "the captain cheers the messiest failure note, and the new member adds her own before packing up",
+      "firstImage": "a robot chassis upside down on a pit table",
+      "mustInclude": [
+        "failure note",
+        "battery strap"
+      ],
+      "mustAvoid": [
+        "generic team culture"
+      ]
+    },
+    {
+      "domain": "a synagogue walking group making punctual arrival the mark of care",
+      "audience": "an older member trying to rebuild exercise",
+      "stakes": "whether close-group norms pull the habit into identity",
+      "format": "vignette",
+      "requiredBeat": "the group waits at the side door for anyone who texted by 6:55, and punctuality becomes part of being included",
+      "firstImage": "a side door propped open before sunrise",
+      "mustInclude": [
+        "walking roster",
+        "reflective sash"
+      ],
+      "mustAvoid": [
+        "generic friend support"
+      ]
+    },
+    {
+      "domain": "a tattoo studio apprentice adopting glove-change rituals from senior artists",
+      "audience": "an apprentice watching what respected people do",
+      "stakes": "whether prestige makes the safety habit attractive",
+      "format": "before_after",
+      "requiredBeat": "she copies the senior artist changing gloves before touching the lamp, not because of a rule but because that is what pros do",
+      "firstImage": "black nitrile gloves beside a wrapped lamp arm",
+      "mustInclude": [
+        "glove box",
+        "lamp wrap"
+      ],
+      "mustAvoid": [
+        "medical hygiene shell"
+      ]
+    },
+    {
+      "domain": "a neighborhood birding club making field-note precision the price of being taken seriously",
+      "audience": "a casual birder wanting acceptance by experts",
+      "stakes": "whether the many define what good participation looks like",
+      "format": "dialogue",
+      "requiredBeat": "after hearing three members compare timestamped notes, he adds weather and location instead of just bird names",
+      "firstImage": "binoculars resting on a damp trail map",
+      "mustInclude": [
+        "trail map",
+        "field notebook"
+      ],
+      "mustAvoid": [
+        "school club scene"
+      ]
+    },
+    {
+      "domain": "a software incident room where senior engineers narrate calm rollbacks",
+      "audience": "a junior engineer tempted to panic-deploy fixes",
+      "stakes": "whether the powerful model makes restraint desirable",
+      "format": "postmortem",
+      "requiredBeat": "she sees the respected lead pause, write the rollback plan, and gets status by copying composure",
+      "firstImage": "a status board glowing red in a dark incident room",
+      "mustInclude": [
+        "rollback plan",
+        "status board"
+      ],
+      "mustAvoid": [
+        "generic meeting shell"
+      ]
+    },
+    {
+      "domain": "a dance crew where everyone stretches before music starts",
+      "audience": "a newcomer who usually skips mobility",
+      "stakes": "whether group entry ritual makes warmup feel like belonging",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts she will skip stretching, then notices nobody touches the speaker until every mat is down",
+      "firstImage": "rolled dance mats lined against a studio mirror",
+      "mustInclude": [
+        "speaker remote",
+        "dance mat"
+      ],
+      "mustAvoid": [
+        "fitness class generic"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "analyze how belonging makes habits attractive",
+      "choose social environments that normalize the desired action",
+      "avoid total social-determinism explanations"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one group where the behavior you want is normal. Put one of their visible norms in your path today.",
+  "readingTimeMinutes": 12
+}

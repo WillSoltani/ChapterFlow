@@ -1,0 +1,111 @@
+{
+  "bookId": "war-of-art-smoke",
+  "title": "The War of Art",
+  "author": "Steven Pressfield",
+  "thesisParagraph": "There is a force inside every person who tries to make something, and it is not laziness, not bad luck, not the wrong day. Pressfield names it Resistance, with a capital R, and he treats it the way a soldier treats an enemy: known, studied, expected at dawn. The book's argument is that the work you were put here to do is the work you most dread, and the dread is the compass. You do not beat Resistance by feeling ready. You beat it by sitting down, by turning pro, by treating the craft as a job and the muse as a coworker who arrives only after you do. The book is short, blunt, and almost scriptural in tone because Pressfield believes that excess language is itself a form of Resistance.",
+  "coreIdeas": [
+    {
+      "name": "Resistance as a named enemy",
+      "oneSentence": "The internal force that stops you from doing your real work is a single, predictable adversary that can be named and fought.",
+      "mentalMove": "Name the thing stopping you today out loud, in one short phrase, before you try to push through it.",
+      "sourceAnchors": [
+        "Book One: Resistance, Defining the Enemy",
+        "\"Resistance will tell you anything to keep you from doing your work.\""
+      ]
+    },
+    {
+      "name": "The professional vs. the amateur",
+      "oneSentence": "Amateurs wait for inspiration; professionals show up on schedule, take the hits, and treat the work as a job.",
+      "mentalMove": "Set a daily start time for the work and keep it the way a shift worker keeps a shift.",
+      "sourceAnchors": [
+        "Book Two: Combating Resistance, Turning Pro",
+        "\"The professional has learned that success, like happiness, comes as a by-product of work.\""
+      ]
+    },
+    {
+      "name": "The compass of dread",
+      "oneSentence": "The work that scares you most is almost always the work you were meant to do.",
+      "mentalMove": "When two projects compete for your time, pick the one that frightens you, not the one that flatters you.",
+      "sourceAnchors": [
+        "Book One, Resistance and Fear",
+        "\"The more important a call or action is to our soul's evolution, the more Resistance we will feel toward pursuing it.\""
+      ]
+    },
+    {
+      "name": "Territory, not hierarchy",
+      "oneSentence": "Work done for status corrodes; work done because the act itself is your territory sustains you.",
+      "mentalMove": "Before you start, ask whether you are working for a rank or for the act itself, and refuse to begin until the answer is the act.",
+      "sourceAnchors": [
+        "Book Three: Beyond Resistance, the Higher Realm",
+        "\"Territorial artists are reclusive; they avoid celebrity; they do their work and go home.\""
+      ]
+    },
+    {
+      "name": "The muse rewards the seat",
+      "oneSentence": "Inspiration is real, but it visits the person who is already at the desk, not the person waiting to feel ready.",
+      "mentalMove": "Sit down at the agreed time without negotiating with yourself, and let the first ugly sentence be the price of entry.",
+      "sourceAnchors": [
+        "Book Three: Invoking the Muse",
+        "\"Put your ass where your heart wants to be.\""
+      ]
+    }
+  ],
+  "targetReader": "Someone with a real piece of work inside them, a book, a business, a song, a recovery, who has been stalling for months or years and has begun to suspect the stalling is the point. They want a kick in the chest, not a hug.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "short",
+    "signatureMoves": [
+      "Open each section with a single hard sentence under twelve words that names the enemy or the rule.",
+      "Speak to the reader as a fellow soldier, second person, present tense, no softening.",
+      "Use one short biblical or martial image per section, never two, and never decorative.",
+      "Land every paragraph on a verb the reader could do in the next sixty seconds.",
+      "Allow exactly one fragment per paragraph for impact, never more, never as a tic."
+    ],
+    "avoidMoves": [
+      "Latinate or academic register when plain English fits",
+      "restatement closers",
+      "hedge adverbs inside scenes",
+      "sentences over 30 words",
+      "chummy warmth or motivational-coach cheer",
+      "ironic distance from the subject",
+      "throat-clearing or essayistic setup before the claim"
+    ],
+    "readabilityDefaults": {
+      "maxAvgSentenceLengthFast": 12,
+      "maxAvgSentenceLengthDeep": 14,
+      "maxAvgSentenceLengthFull": 16,
+      "maxSubordinateClausesPerSentenceFast": 1,
+      "maxSubordinateClausesPerSentenceDeepFull": 2,
+      "maxSentenceLengthAnyTier": 28,
+      "satisfactionTestsRequired": 4,
+      "plainWordSubstitutionRequired": true
+    }
+  },
+  "voiceSpecimens": [
+    "Resistance woke up before you did. It is already at the desk, in your chair, holding your pen.",
+    "You are not blocked. You are scared. Those are different words for different problems, and only one of them is true.",
+    "The professional shows up sick. The amateur shows up inspired. Guess which one finishes the book.",
+    "Sit down. The muse is not late. You are.",
+    "Fear is good. Fear tells you what to do. Run toward the thing that makes your hands cold.",
+    "A pro takes the hit. A pro takes the next hit. A pro keeps the appointment with the page even when the page is ugly.",
+    "Your real work is the one you keep almost starting."
+  ],
+  "voiceAntiSpecimens": [
+    "In a world that often feels overwhelming, we can find solace in the gentle practice of showing up for ourselves.",
+    "Perhaps it could be argued that creative blocks are, in some sense, a kind of internal negotiation with our deeper selves.",
+    "Studies suggest that habitual creative practice yields measurable increases in long-term output.",
+    "Let us consider the multifaceted nature of artistic resistance and its sociocultural antecedents.",
+    "You've got this! Today is your day to shine and unleash your inner creative warrior!",
+    "The neuropsychological architecture underlying procrastination involves prefrontal regulation of limbic impulse."
+  ],
+  "teachingArc": "Start by naming Resistance and showing the reader they have already met it today. Then sharpen the contrast between amateur and professional until the reader feels the cost of staying an amateur. Move from defense to offense, the daily appointment, the seat, the page. Close on territory, the quiet truth that the work itself is the reward and the rank is a trap.",
+  "forbiddenMoves": [
+    "Never write \"the chapter\", \"this chapter\", \"the author\", \"the book\", \"the law\", or \"in this chapter\"",
+    "Never print \"Chapter 1\", \"Chapter 12\", or any numbered chapter label inside prose",
+    "Never use the banned phrases: \"boundary condition\", \"keeps the chapter honest\", \"strips away\", \"is not decorative\", \"is not magic\", \"operating logic\", \"diagnostic discipline\", \"durable practice\", \"turns out to be\", \"That matters because\"",
+    "Never use the over-used names Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi for any protagonist",
+    "Never frame Resistance as a metaphor the reader can dismiss; treat it as a real adversary throughout",
+    "Never soften Pressfield with therapy-language, self-care vocabulary, or motivational-coach cheer"
+  ]
+}

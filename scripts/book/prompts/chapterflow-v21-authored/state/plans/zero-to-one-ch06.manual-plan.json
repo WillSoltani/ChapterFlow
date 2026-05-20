@@ -1,0 +1,182 @@
+{
+  "chapterId": "zero-to-one-ch06",
+  "number": 6,
+  "title": "You Are Not a Lottery Ticket",
+  "coreMove": "Replace lottery-ticket thinking with a definite plan that can shape uncertain outcomes.",
+  "sourcePressure": "The chapter pushes against luck-only explanations and argues that uncertainty is not the same as helplessness; planning still changes the odds and the path. The frozen source for this chapter contains no chapter-specific named anecdote beyond author/editor metadata, so examples should use fictional protagonists and stay anchored to verified terms.",
+  "chapterSpecificMisunderstanding": "Pretending planning guarantees success or, on the other side, treating uncertainty as fatalism.",
+  "sourceAlignmentTerms": [
+    "planning",
+    "luck",
+    "uncertainty",
+    "agency",
+    "definite",
+    "probability-shaping"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of planning",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Matthew",
+      "domain": "surgical scheduling reform",
+      "audience": "an operations chief rejecting the claim that delays are just random hospital life",
+      "stakes": "whether planning can reduce canceled surgeries without pretending emergencies vanish",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Matthew pins the cancellation reasons on the board and separates noise from designable bottlenecks",
+      "firstImage": "colored cancellation slips clipped to a metal board",
+      "mustInclude": [
+        "cancellation slips",
+        "OR schedule",
+        "pager log"
+      ],
+      "mustAvoid": [
+        "control everything fantasy"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "independent film financing",
+      "audience": "a producer deciding whether uncertainty justifies no plan for festival, sales, or audience",
+      "stakes": "whether the film survives beyond hope and a rough cut",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Juliette asks which uncertainty remains after the team designs the distribution path",
+      "firstImage": "a rough-cut timeline glowing in a dark edit suite",
+      "mustInclude": [
+        "rough-cut timeline",
+        "festival calendar",
+        "sales-agent list"
+      ],
+      "mustAvoid": [
+        "creative luck myth"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "coastal flood insurance startup",
+      "audience": "a founder moving from luck talk to a definite underwriting wedge",
+      "stakes": "whether climate uncertainty becomes an excuse for vague exposure",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Ryan draws the first insurable neighborhood boundary instead of pitching total-market chaos",
+      "firstImage": "blue flood maps spread across a conference table",
+      "mustInclude": [
+        "flood maps",
+        "actuarial notes",
+        "county permit records"
+      ],
+      "mustAvoid": [
+        "clean-tech drift"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "apprenticeship placement program",
+      "audience": "a workforce director refusing to call every placement outcome random",
+      "stakes": "whether the program builds better employer matching instead of shrugging at retention",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Manon compares random intake placement with one deliberate employer-fit interview",
+      "firstImage": "work boots under a folding registration table",
+      "mustInclude": [
+        "registration table",
+        "employer scorecard",
+        "bus pass envelope"
+      ],
+      "mustAvoid": [
+        "motivational agency talk"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "specialty insurance claims unit",
+      "audience": "a manager whose team says difficult claims are pure luck",
+      "stakes": "whether a pre-mortem checklist can shape outcomes without guaranteeing them",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Pavel sorts last quarter’s losses by preventable missing facts versus true surprises",
+      "firstImage": "claim folders rubber-banded in three piles",
+      "mustInclude": [
+        "claim folders",
+        "pre-mortem checklist",
+        "phone log"
+      ],
+      "mustAvoid": [
+        "risk platitudes"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "rural broadband rollout",
+      "audience": "a project lead deciding whether weather uncertainty excuses an undefined build sequence",
+      "stakes": "whether crews lose months because nobody chose the hard first route",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Olivia puts the worst-weather corridor first on the schedule because waiting will not make it clearer",
+      "firstImage": "fiber spools beside a muddy road permit",
+      "mustInclude": [
+        "fiber spools",
+        "muddy permit packet",
+        "weather window chart"
+      ],
+      "mustAvoid": [
+        "infrastructure optimism"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires replace lottery-ticket thinking with a definite plan that can shape uncertain outcomes.",
+      "separate planning from luck in a novel operating case",
+      "diagnose the specific failure mode: pretending planning guarantees success or, on the other side, treating uncertainty as fatalism.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one uncertain outcome you have been treating as luck, then separate the part you cannot control from the one design choice that changes the odds.",
+  "readingTimeMinutes": 12
+}

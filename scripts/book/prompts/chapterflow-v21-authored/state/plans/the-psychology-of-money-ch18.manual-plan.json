@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch18",
+  "number": 18,
+  "title": "The Seduction of Pessimism",
+  "coreMove": "Give vivid danger its due without letting it outrank slow progress by default.",
+  "sourcePressure": "Pessimism sounds smart because threats are immediate and legible while progress is gradual and easy to miss.",
+  "chapterSpecificMisunderstanding": "Replacing optimism with denial or pessimism with intelligence.",
+  "sourceAlignmentTerms": [
+    "pessimism",
+    "progress",
+    "bad news",
+    "adaptation",
+    "fragility",
+    "long run"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening The Seduction of Pessimism with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing The Seduction of Pessimism to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the pessimism move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of pessimism and progress"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a local news editor balancing storm coverage with slow infrastructure improvements",
+      "audience": "an editor who sees why danger gets clicks and progress gets ignored",
+      "stakes": "coverage can train readers to mistake vivid risk for the whole truth",
+      "format": "dialogue",
+      "requiredBeat": "she places the bridge-collapse alert beside the ten-year repair record before assigning the front page",
+      "firstImage": "a newsroom budget screen showing one red alert and a gray maintenance chart",
+      "mustInclude": [
+        "storm alert",
+        "repair record",
+        "front-page slot"
+      ],
+      "mustAvoid": [
+        "news detox advice"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a biotech analyst reading fraud headlines against decades of treatment gains",
+      "audience": "an analyst avoiding both naivete and fashionable gloom",
+      "stakes": "clients may miss durable progress if scandal becomes the only lens",
+      "format": "reflection",
+      "requiredBeat": "he writes what failed and what kept improving before sending the note",
+      "firstImage": "a research memo with fraud headlines clipped to clinical trial trend lines",
+      "mustInclude": [
+        "fraud headlines",
+        "trial trend lines",
+        "client note"
+      ],
+      "mustAvoid": [
+        "tech optimism puffery"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a public transit advocate responding to a viral breakdown video",
+      "audience": "an advocate pairing real failure with long-run ridership gains",
+      "stakes": "one dramatic clip could erase years of quieter improvement",
+      "format": "scene",
+      "requiredBeat": "she shows the broken escalator clip after the reliability chart, not instead of it",
+      "firstImage": "a city council monitor paused on a viral escalator video",
+      "mustInclude": [
+        "viral video",
+        "reliability chart",
+        "ridership data"
+      ],
+      "mustAvoid": [
+        "civic boosterism"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a farmer deciding whether one bad harvest means the soil program failed",
+      "audience": "a farmer whose pain is immediate and progress is slow",
+      "stakes": "abandoning the program may sacrifice gains that are hard to feel annually",
+      "format": "before_after",
+      "requiredBeat": "he compares this year's loss with five years of soil organic matter before quitting",
+      "firstImage": "a soil test report smudged with field dust",
+      "mustInclude": [
+        "soil test",
+        "harvest loss sheet",
+        "five-year trend"
+      ],
+      "mustAvoid": [
+        "nature always heals"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a cybersecurity trainer explaining why breach stories feel smarter than prevention stats",
+      "audience": "a trainer teaching executives to respect quiet non-events",
+      "stakes": "funding may chase fear while neglecting steady controls",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks executives to estimate prevented incidents before revealing the control log",
+      "firstImage": "a dark conference screen with a breach headline above a control log",
+      "mustInclude": [
+        "breach headline",
+        "control log",
+        "funding request"
+      ],
+      "mustAvoid": [
+        "security fearmongering"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a housing-policy researcher presenting slow gains after a dramatic rent spike",
+      "audience": "a researcher making room for anger without surrendering to despair",
+      "stakes": "policy could swing toward performative fixes if only the spike is seen",
+      "format": "postmortem",
+      "requiredBeat": "she layers the rent spike over permit completions and vacancy changes before recommending policy",
+      "firstImage": "a chart wall with a red rent line crossing pale permit bars",
+      "mustInclude": [
+        "rent spike",
+        "permit bars",
+        "vacancy data"
+      ],
+      "mustAvoid": [
+        "political blame frame"
+      ],
+      "openingDevice": "dialogue_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: give vivid danger its due without letting it outrank slow progress by default",
+      "distinguish pessimism from nearby but weaker advice such as positive thinking",
+      "diagnose when a character is making the common misread: replacing optimism with denial or pessimism with intelligence.",
+      "evaluate tradeoffs using the chapter-specific pressure around pessimism, progress, bad news"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where pessimism is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: give vivid danger its due without letting it outrank slow progress by default.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

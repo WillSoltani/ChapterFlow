@@ -2,7 +2,7 @@
   "bookId": "leaders-eat-last",
   "title": "Leaders Eat Last",
   "author": "Simon Sinek",
-  "promotedAt": "2026-05-12T00:43:24.951Z",
+  "promotedAt": "2026-05-13T19:30:30.213Z",
   "chapterCount": 27,
   "shipGate": {
     "perChapter": [
@@ -11,7 +11,14 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the circle of safety\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 2,
@@ -32,14 +39,28 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"someone says yeah but\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 5,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"one more hull section\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 6,
@@ -60,14 +81,28 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"do not have to\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 9,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"after the vote each\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 10,
@@ -88,21 +123,42 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"those habits become leadership\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 13,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a name face and\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 14,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"between authority and consequence\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 15,
@@ -123,21 +179,42 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"source sheet before celebrating\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 18,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"call in front of\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 19,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the first costly exception\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 20,
@@ -151,21 +228,48 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"a number\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to the lowoxygen tank\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 22,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the rush order he\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 23,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"when the bill is\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 24,
@@ -179,21 +283,42 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"asks the cellar tech\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 26,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"when the cost is\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 27,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the van until the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
       }
     ],
     "totalBlockers": 0,
@@ -203,62 +328,33 @@
     "bookId": "leaders-eat-last",
     "chapterCount": 27,
     "passed": true,
-    "findings": [
-      {
-        "catalogId": "B6",
-        "severity": "minor",
-        "message": "Multiple chapters open hook with same 50-char prefix \"a dented badge on a table can tell you whether the\": chapters 7, 9, 11, 12, 24"
-      },
-      {
-        "catalogId": "B6",
-        "severity": "minor",
-        "message": "Multiple chapters open hook with same 50-char prefix \"a dented badge on a table can tell you whether lea\": chapters 17, 18, 19, 20, 21"
-      },
-      {
-        "catalogId": "B6",
-        "severity": "minor",
-        "message": "Multiple chapters open hook with same 50-char prefix \"a dented badge on a table can tell you whether at \": chapters 22, 23"
-      }
-    ],
+    "findings": [],
     "stats": {
       "answerPositionCounts": [
-        81,
-        81,
-        81
+        102,
+        85,
+        56
       ],
-      "answerPositionPctMax": 0.3333333333333333,
+      "answerPositionPctMax": 0.41975308641975306,
       "totalQuizQuestions": 243,
       "duplicatedNames": [],
-      "duplicatedHookOpeners": [
-        {
-          "opener": "a dented badge on a table can tell you whether the",
-          "chapters": [
-            7,
-            9,
-            11,
-            12,
-            24
-          ]
-        },
-        {
-          "opener": "a dented badge on a table can tell you whether lea",
-          "chapters": [
-            17,
-            18,
-            19,
-            20,
-            21
-          ]
-        },
-        {
-          "opener": "a dented badge on a table can tell you whether at ",
-          "chapters": [
-            22,
-            23
-          ]
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "leaders-eat-last",
+        "chapterCount": 27,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
         }
-      ],
-      "schemaInconsistencies": []
+      }
     }
   }
 }

@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch26",
+  "number": 26,
+  "title": "An Exhortation to Liberate Italy from the Barbarians",
+  "coreMove": "Turn a humiliated country into a founding opportunity by joining native arms, new ordinances, and a leader able to command scattered valor.",
+  "sourcePressure": "The closing exhortation says the present misery of Italy creates the same kind of opportunity that captivity, oppression, or dispersion gave Moses, Cyrus, and Theseus. Italy is wounded, fragmented, plundered, and willing to follow a raised banner, but liberation requires a Medici prince to found a new order, raise Italian forces, exploit the defects of foreign infantry, and make scattered individual valor obedient under one head.",
+  "chapterSpecificMisunderstanding": "The wrong version becomes patriotic uplift or inspirational closure. The writer must keep the source mechanisms visible: humiliation as opportunity, the Medici as possible founder, native arms rather than foreign scourges, a new military order, and leadership that turns scattered skill into organized force.",
+  "sourceAlignmentTerms": [
+    "Italy",
+    "Medici",
+    "new order",
+    "Moses",
+    "Cyrus",
+    "Theseus",
+    "own forces",
+    "foreign infantry",
+    "Petrarch",
+    "liberator"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic patriotic finale",
+      "inspirational hope after hardship",
+      "national greatness speech without institutions or arms"
+    ],
+    "counterintuition": [
+      "most people assume crisis is tragedy, but actually it is opportunity",
+      "a nation just needs the right leader",
+      "foreigners are the whole problem"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and write what your country needs",
+      "make a hope map",
+      "list values worth defending"
+    ],
+    "examples": [
+      "modern campaign rally",
+      "sports comeback for national pride",
+      "startup turnaround as liberation",
+      "abstract anti-foreign sentiment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a fragmented peninsula of city arsenals trying to form its first native infantry ordinance after decades of hired companies",
+      "audience": "a prospective founder deciding whether the moment of humiliation is ready for a new military order",
+      "stakes": "each city has brave fighters in duels, but no army holds together when foreign battalions arrive",
+      "format": "scene",
+      "requiredBeat": "The founder lays duel medals from six cities beside one blank infantry ordinance sheet, then writes the first shared drill command instead of another appeal for foreign captains.",
+      "firstImage": "Duel medals from six cities lie beside a blank infantry ordinance sheet.",
+      "mustInclude": [
+        "duel medals",
+        "infantry ordinance sheet",
+        "foreign captain petition"
+      ],
+      "mustAvoid": [
+        "generic national pride",
+        "chapter 12 mercenary mechanics alone",
+        "sports-team unity"
+      ]
+    },
+    {
+      "domain": "a ravaged border league choosing whether to wait for outside rescue or raise its own banner after three occupying armies pass through",
+      "audience": "league delegates who have petitions, tears, and grievances but no owned force yet",
+      "stakes": "suffering makes willingness visible, but the banner will mean nothing unless it summons paid, trained, native companies",
+      "format": "decision_point",
+      "requiredBeat": "The delegates pin burned-village petitions under the new banner cord, then count native company pay tokens before allowing the banner to be raised.",
+      "firstImage": "Burned-village petitions sit under a coiled new banner cord.",
+      "mustInclude": [
+        "burned-village petitions",
+        "banner cord",
+        "native company pay tokens"
+      ],
+      "mustAvoid": [
+        "relief sentimentality",
+        "chapter 24 restoration hope",
+        "empty flag ceremony"
+      ]
+    },
+    {
+      "domain": "a ruling house offered the chance to lead a liberation because church authority, fortune, and public suffering briefly converge",
+      "audience": "a young dynastic prince who could mistake favorable signs for completed redemption",
+      "stakes": "patronage and sacred favor open the door, but free will and glory require the prince to do the military and institutional work himself",
+      "format": "dialogue",
+      "requiredBeat": "When the court chaplain points to the blessing candle, the military secretary places the recruit roll beside it and asks which part God will not do for them.",
+      "firstImage": "A blessing candle burns beside an unsigned native recruit roll.",
+      "mustInclude": [
+        "blessing candle",
+        "native recruit roll",
+        "family charge letter"
+      ],
+      "mustAvoid": [
+        "theology lesson from chapter 11",
+        "dynastic romance",
+        "miracle solves politics"
+      ]
+    },
+    {
+      "domain": "a military design room comparing Swiss pikes and Spanish shields to invent a native formation that answers both",
+      "audience": "a prince who must turn observation of foreign defects into a new order of arms",
+      "stakes": "copying either foreign infantry preserves dependence; designing a third order could make native force superior",
+      "format": "predict_reveal",
+      "requiredBeat": "The engineer places a long pike and a round shield on opposite sides of the table, then draws a native formation lane that slips under one and braces against the other.",
+      "firstImage": "A long pike and a round shield cross over a chalked formation table.",
+      "mustInclude": [
+        "long pike",
+        "round shield",
+        "native formation lane"
+      ],
+      "mustAvoid": [
+        "weapons trivia",
+        "chapter 13 auxiliary dependence only",
+        "technology determinism"
+      ]
+    },
+    {
+      "domain": "a council of exiled towns deciding whether scattered courage can become obedience under one commander",
+      "audience": "exiles proud of local champions but unable to agree on command",
+      "stakes": "individual valor remains wasted if each captain thinks himself equal and no one yields to the liberating head",
+      "format": "before_after",
+      "requiredBeat": "Before the vote, each town captain lays his personal victory token on the table; after the oath, the tokens are threaded onto one command cord under a single seal.",
+      "firstImage": "Personal victory tokens from rival towns cover a council table.",
+      "mustInclude": [
+        "victory tokens",
+        "command cord",
+        "single seal"
+      ],
+      "mustAvoid": [
+        "team-building exercise",
+        "chapter 4 baronial structure",
+        "committee consensus"
+      ]
+    },
+    {
+      "domain": "a devastated province hearing a final exhortation that must become logistics before dawn",
+      "audience": "a writer-prince or secretary turning moral urgency into orders a later chapter writer can dramatize",
+      "stakes": "tears, revenge, devotion, and Petrarch's line stir the room, but liberation starts only when roads, pay, arms, and captains are assigned",
+      "format": "postmortem",
+      "requiredBeat": "The secretary copies the poetic line at the top of the page, then draws four boxes underneath: road watches, pay chest, armory issue, and captain names.",
+      "firstImage": "A copied Petrarch line sits above four empty order boxes.",
+      "mustInclude": [
+        "Petrarch line",
+        "pay chest box",
+        "captain names"
+      ],
+      "mustAvoid": [
+        "pure literary close",
+        "motivational speech",
+        "abstract hope without arms"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify how national humiliation can become a founding opportunity only when matched with a new order",
+      "distinguish native arms and military design from dependence on foreign infantry or outside rescue",
+      "analyze how scattered local valor fails without a single commanding head and ordinances",
+      "evaluate whether an exhortation contains actionable foundations or only patriotic emotion"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one historical liberation appeal. Underline the suffering it names, then write the concrete native force, new ordinance, command structure, and first logistical order that would make the appeal more than hope.",
+  "readingTimeMinutes": 12
+}

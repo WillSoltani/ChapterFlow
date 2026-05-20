@@ -1,0 +1,197 @@
+{
+  "chapterId": "meditations-ch10",
+  "number": 10,
+  "title": "Book X",
+  "coreMove": "Hold the few names of character so conditions cannot rename you.",
+  "sourcePressure": "The soul is tested for simplicity, contentment, correct names, condition-independent goodness, and clear judgment of praise, bodies, courts, and changing substance.",
+  "chapterSpecificMisunderstanding": "self-labels and affirmations are enough",
+  "sourceAlignmentTerms": [
+    "good simple one naked",
+    "political animal",
+    "few names",
+    "fame",
+    "Bestiarii",
+    "Plato",
+    "Hadrianus"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Zeno",
+      "detail": "Book X has an editorial note identifying God as defined by Zeno in relation to the perfect living being.",
+      "useIn": "fullRead",
+      "phrasingHint": "Zeno's definition keeps the scale larger than personal comfort."
+    },
+    {
+      "kind": "person",
+      "name": "Plato",
+      "detail": "Book X invokes Plato on dwelling within city walls while the mind ranges over human things.",
+      "useIn": "both",
+      "phrasingHint": "Plato enters as a reminder that a narrow place does not require a narrow soul."
+    },
+    {
+      "kind": "event",
+      "name": "Bestiarii",
+      "detail": "Book X compares clinging to a defiled life to half-devoured fighters with wild beasts begging to be kept for the next day.",
+      "useIn": "deepRead",
+      "phrasingHint": "The wounded arena fighter is the image of a life that keeps choosing the same claws."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "remote arctic clinic rotation",
+      "audience": "Simon wanting a better posting before he acts well",
+      "stakes": "location becomes his excuse for thin care",
+      "format": "reflection",
+      "openingDevice": "environmental",
+      "requiredBeat": "Simon writes \"careful\" on the top of the patient board and handles the next chart as if the posting were permanent.",
+      "firstImage": "Snow presses against the clinic windows before the first chart opens.",
+      "mustInclude": [
+        "patient board",
+        "parka hooks",
+        "satellite phone"
+      ],
+      "mustAvoid": [
+        "frontier hardship romance"
+      ]
+    },
+    {
+      "domain": "fashion production floor",
+      "audience": "Julia measuring a rushed sample",
+      "stakes": "style pressure could rename dishonesty as speed",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Julia rejects the sample under her own quality name before anyone else sees the defect.",
+      "firstImage": "Loose black thread curls from the jacket cuff.",
+      "mustInclude": [
+        "sample jacket",
+        "measuring tape",
+        "quality tag"
+      ],
+      "mustAvoid": [
+        "glamour industry"
+      ]
+    },
+    {
+      "domain": "local newspaper correction desk",
+      "audience": "Patrick deciding whether to bury a correction",
+      "stakes": "public embarrassment tests the name true",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Put the correction above the fold online,\" Patrick says, before checking social reaction.",
+      "firstImage": [
+        "correction note",
+        "CMS draft",
+        "analytics screen"
+      ],
+      "mustInclude": [
+        "media cynicism"
+      ]
+    },
+    {
+      "domain": "urban planning review",
+      "audience": "Nora facing a developer's praise",
+      "stakes": "flattery could pull her from modest and rational into approval-seeking",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Nora compare the plan to the flood map, not to the compliment she just received.",
+      "firstImage": "You see the flood map cover the glossy rendering.",
+      "mustInclude": [
+        "flood map",
+        "rendering packet",
+        "zoning table"
+      ],
+      "mustAvoid": [
+        "real estate villain"
+      ]
+    },
+    {
+      "domain": "high school debate judging",
+      "audience": "Matthew tempted to reward confidence over truth",
+      "stakes": "the room's applause pressures the score sheet",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which name survives the applause: fair, or impressed?",
+      "firstImage": "Matthew lowers the speaker score after checking unsupported claims against his notes.",
+      "mustInclude": [
+        "score sheet",
+        "timer light",
+        "evidence cards"
+      ],
+      "mustAvoid": [
+        "debate club cliche"
+      ]
+    },
+    {
+      "domain": "artisan furniture delivery",
+      "audience": "Anke finding a small crack before client pickup",
+      "stakes": "pride wants the sale, character wants the repair",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Anke one thumbnail across the crack to know the table was not ready to carry her name.",
+      "firstImage": "It took Anke one thumbnail to hear the crack catch.",
+      "mustInclude": [
+        "walnut table",
+        "wax cloth",
+        "delivery straps"
+      ],
+      "mustAvoid": [
+        "craft perfectionism generic"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "maintain character names without needing applause",
+      "judge comfort, fame, and body by their real substance",
+      "act well in the condition already given"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one name of character you claim, then identify the condition that most often makes you drop it.",
+  "readingTimeMinutes": 12
+}

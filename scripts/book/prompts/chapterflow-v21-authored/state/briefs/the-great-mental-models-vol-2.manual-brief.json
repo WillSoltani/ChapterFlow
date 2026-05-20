@@ -1,0 +1,106 @@
+{
+  "bookId": "the-great-mental-models-vol-2",
+  "title": "The Great Mental Models, Volume 2: Physics, Chemistry, and Biology",
+  "author": "Shane Parrish",
+  "thesisParagraph": "This book teaches judgment by borrowing clean patterns from physics, chemistry, and biology and using them as practical lenses for ordinary decisions. Its argument is not that life literally behaves like a laboratory. Its argument is that models such as relativity, inertia, activation energy, catalysts, selection, niches, replication, hierarchy, incentives, and energy minimization help you see the forces already shaping a situation. A reader learns to ask what position changes the view, what resistance slows motion, what threshold blocks action, what environment selects for survival, what structure preserves coordination, and what path the system will choose when effort costs are uneven.",
+  "coreIdeas": [
+    {
+      "name": "position before verdict",
+      "oneSentence": "A first interpretation is shaped by vantage point, frame, and time horizon.",
+      "mentalMove": "reconstruct the other seat, inspect what the frame hides, and widen the clock before deciding",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "forces shape movement",
+      "oneSentence": "Progress depends on direction, drag, momentum, leverage, and startup thresholds, not just desire.",
+      "mentalMove": "locate the force, resistance, fulcrum, or ignition cost that is actually controlling motion",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch05.source",
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "reaction pathways matter",
+      "oneSentence": "Systems often change faster when the path changes rather than when more pressure is added.",
+      "mentalMove": "find catalysts, mixtures, and positive reciprocal loops that make better responses easier to repeat",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch09.source",
+        "ch10.source"
+      ]
+    },
+    {
+      "name": "fit beats abstract strength",
+      "oneSentence": "Survival depends on environmental fit, adaptation rate, niche, and ecosystem spillover.",
+      "mentalMove": "ask what the environment is selecting for and whether the system is adapting quickly enough",
+      "sourceAnchors": [
+        "ch11.source",
+        "ch12.source",
+        "ch13.source",
+        "ch14.source"
+      ]
+    },
+    {
+      "name": "structure steers behavior",
+      "oneSentence": "Systems preserve themselves, replicate, cooperate, scale, follow incentives, and conserve energy through design conditions.",
+      "mentalMove": "change the condition that keeps producing the behavior rather than scolding the behavior itself",
+      "sourceAnchors": [
+        "ch15.source",
+        "ch16.source",
+        "ch17.source",
+        "ch18.source",
+        "ch19.source",
+        "ch20.source"
+      ]
+    }
+  ],
+  "targetReader": "A practical reader who makes decisions in teams, families, schools, public systems, small businesses, and personal routines, and wants a sharper way to see the forces underneath confusing behavior.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "treat models as lenses, not decorations",
+      "make the cost of a wrong read visible in the scene"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no textbook science lectures",
+      "no invented named case studies"
+    ]
+  },
+  "voiceSpecimens": [
+    "The chart did not lie, but it was standing in the wrong room.",
+    "Before you call the move foolish, ask what pressure would make it sensible from that seat.",
+    "A system keeps its shape only when someone keeps paying the maintenance bill.",
+    "Speed feels clean until you notice the arrow is pointing away from the target.",
+    "The better lever is usually quieter than the harder push.",
+    "A copy that loses the working part is not a copy. It is a costume.",
+    "When the easy path is badly placed, good intentions keep walking into the wrong result."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explores how readers can leverage a physics-based paradigm to optimize outcomes.",
+    "The author argues that the model is important because it applies to business and life.",
+    "In today's fast-paced world, everyone needs to think harder about systems.",
+    "Simply consider all perspectives and be more mindful of your decisions.",
+    "The takeaway is that science can teach us a lot if we pay attention."
+  ],
+  "teachingArc": "The book starts with physics models that change how a reader reads motion, resistance, direction, and force. It then moves into chemistry models that show why thresholds, pathways, and combinations alter change. The biology arc asks what environments select, how systems adapt, how they occupy roles, preserve themselves, replicate, cooperate, scale, respond to incentives, and conserve energy. The arc compounds from seeing a situation more accurately to designing conditions that make better behavior more likely.",
+  "forbiddenMoves": [
+    "Do not turn physical, chemical, or biological models into decorative metaphors; every model must change a concrete decision.",
+    "Do not invent named scientists, studies, species stories, or historical anecdotes not frozen in the source sidecars.",
+    "Do not reuse the old modern-package fictional cast or its generic work-school-personal rotation.",
+    "Do not make every example a meeting with a dashboard, a whiteboard, or a deadline."
+  ]
+}

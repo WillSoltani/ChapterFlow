@@ -1,0 +1,185 @@
+{
+  "chapterId": "crucial-conversations-ch01",
+  "number": 1,
+  "title": "What Is a Crucial Conversation and Why Should I Care?",
+  "coreMove": "Recognize a consequential conversation before you dodge it or dump emotion into it.",
+  "sourcePressure": "Crucial conversations are moments of high stakes, opposing views, and strong emotion where avoidance or clumsy handling creates the downstream damage people later call bad luck.",
+  "chapterSpecificMisunderstanding": "Treating the opening as a generic celebration of brave honesty or conflict confidence.",
+  "sourceAlignmentTerms": [
+    "high stakes",
+    "opposing views",
+    "strong emotions",
+    "avoid it",
+    "handle it badly",
+    "handle it well",
+    "surrogate action"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener",
+      "opening with famous stakes examples before defining the reader's own moment"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "emergency-room charge nurse deciding whether to confront a surgeon who skipped the timeout checklist",
+      "audience": "a nurse with seniority in the room but less formal power than the surgeon",
+      "stakes": "a wrong-site procedure risk and a team that has normalized silence around a fast operator",
+      "format": "decision_point",
+      "requiredBeat": "the nurse sees the unsigned timeout line, touches the blank box on the tablet, and chooses to stop the rolling bed before the patient crosses the OR doors",
+      "firstImage": "A blue surgical cap is caught in the wheel of a rolling bed outside operating room four.",
+      "mustInclude": [
+        "unsigned timeout field",
+        "rolling bed rail",
+        "OR doors"
+      ],
+      "mustAvoid": [
+        "generic hospital teamwork pep talk"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "minor-league baseball clubhouse where a trainer notices painkillers being traded after games",
+      "audience": "an assistant trainer afraid of losing trust with players",
+      "stakes": "an injured pitcher may keep throwing while hiding medication use",
+      "format": "scene",
+      "requiredBeat": "the trainer watches a bottle pass from one locker stall to another and names the moment as crucial before inventing a paperwork excuse",
+      "firstImage": "\"Wait,\" someone says, and a strip of athletic tape sticks to the concrete floor under a row of metal lockers.",
+      "mustInclude": [
+        "orange prescription bottle",
+        "ice tub schedule",
+        "pitch count sheet"
+      ],
+      "mustAvoid": [
+        "sports coach halftime speech"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "probate law office where two siblings are about to sign an estate division they privately resent",
+      "audience": "a paralegal who sees resentment forming before signatures are taken",
+      "stakes": "the agreement could become a year-long family lawsuit if the withheld concern stays hidden",
+      "format": "vignette",
+      "requiredBeat": "the paralegal notices one sibling fold the appraisal page twice and asks for a pause instead of letting the signatures proceed",
+      "firstImage": "The first signal is sensory before it is social: a stack of cream-colored estate forms sits beside a brass letter opener.",
+      "mustInclude": [
+        "folded appraisal page",
+        "signature tabs",
+        "conference phone"
+      ],
+      "mustAvoid": [
+        "generic family inheritance argument"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "independent theater tech booth before opening night",
+      "audience": "a stage manager who knows the lead actor is skipping safety marks",
+      "stakes": "a trapdoor cue could injure someone during the first public performance",
+      "format": "dialogue",
+      "requiredBeat": "the stage manager hears a joke about the missed mark, sees the crew laugh it off, and chooses the direct conversation over another note in the call sheet",
+      "firstImage": "You notice a strip of glow tape peels at the edge of a dark stage platform before anyone names the problem.",
+      "mustInclude": [
+        "trapdoor mark",
+        "headset battery",
+        "call sheet"
+      ],
+      "mustAvoid": [
+        "general creative-team disagreement"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "credit union loan desk where a borrower is about to accept a payment plan she does not understand",
+      "audience": "a loan officer tempted to hurry through the last appointment of the day",
+      "stakes": "a missed explanation could put a single parent into default within two months",
+      "format": "before_after",
+      "requiredBeat": "the officer catches the borrower nodding while gripping the amortization sheet upside down and stops the closing instead of treating the nod as agreement",
+      "firstImage": "Only later does the miss become obvious: a plastic number placard blinks 42 above the loan desk.",
+      "mustInclude": [
+        "upside-down amortization sheet",
+        "payment calendar",
+        "closing folder"
+      ],
+      "mustAvoid": [
+        "generic financial literacy lesson"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "aquarium maintenance team debating whether to delay a shark-tank water change",
+      "audience": "a junior aquarist whose test strip contradicts the senior keeper",
+      "stakes": "animal health and public exhibit timing collide before the weekend crowd arrives",
+      "format": "predict_reveal",
+      "requiredBeat": "the aquarist sees the nitrate strip darken, hears the senior keeper say it can wait, and predicts what avoidance will cost by Sunday",
+      "firstImage": "What changes when a purple test strip dries on the rim of a saltwater bucket?",
+      "mustInclude": [
+        "nitrate strip",
+        "feeding chart",
+        "public viewing window"
+      ],
+      "mustAvoid": [
+        "generic environmental concern"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot the three conditions in an ordinary moment before the damage appears",
+      "separate avoidance from a strategic delay",
+      "identify surrogate actions such as vague emails, jokes, silence, and sudden side decisions",
+      "choose the next honest contact point without jumping into a speech"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one conversation you are currently replacing with a workaround. Write the three conditions beside it: stakes, opposing view, emotion. Circle the condition you have been minimizing.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

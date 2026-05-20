@@ -1,0 +1,335 @@
+{
+  "chapterId": "ego-is-the-enemy-ch02",
+  "number": 2,
+  "title": "To be or to do?",
+  "readingTimeMinutes": 12,
+  "hook": "The nameplate looked useful until the work on the table started asking for someone less important.",
+  "counterintuition": "Status can look like proof that you are serving the mission. The harder test comes when the title is available, but the contribution needs you somewhere less flattering.",
+  "tryThisNow": "Name one status reward attached to your next choice. Then write the unglamorous task that would improve the result if nobody knew you did it.",
+  "keyTakeaway": "When status and contribution split, choose the task that makes the work stronger, even if the visible role, rank, or praise goes to someone else.",
+  "breakdown": {
+    "fastRead": "Grace stands in a studio critique with the presentation slot everyone wants. Her model is clean, but Rachel has the load data that will save the proposal. The slot can make Grace look central. The data can make the work right.\n\nThat is the fork. Being somebody and doing something may overlap for a while. Then the room offers status in one direction and contribution in another.\n\nEgo wants the visible role because the visible role feels like evidence. The work asks a colder question: what choice improves the result?\n\nTake the task side of the fork.",
+    "deepRead": "Sophie is on a fisheries inspection call with a delayed cargo truck and a camera-ready crisis role waiting for her. The regional director wants one person to brief the press. Sophie can take the visible role, or she can drive to the cold-storage site and fix the paperwork error that will keep the fish from spoiling.\n\nThe public role will travel farther. The colder job will matter more.\n\nStatus bait works because it is not imaginary. Rank opens rooms. Prestige moves faster than quiet usefulness. Recognition can help serious work when it points in the same direction. The danger begins when the reward starts issuing orders to the task.\n\nJohn Boyd makes the fork visible: be somebody in the room, or do the work that may cost you the room. The force of that example is not sainthood. It is orientation. The work remains the standard even when status is close enough to impersonate it.\n\nThis is why the question is sharper than modesty. Modesty can still be a performance. The live test is obedience under split incentives. When the role and the result want different sacrifices, which one gets your loyalty?\n\nContribution is the answer that survives anonymity.",
+    "fullRead": "Rachel rewrites the freight reroute proposal at 11:40 p.m. The first slide names her as interim customs lead. It looks deserved. She found the bottleneck, pushed the carrier, and kept the client calm. The problem is the slide does not solve the customs failure. The failure sits on page four: nobody has authority to clear the Saturday transfer.\n\nShe deletes the title slide and moves the failure to the front.\n\nThat is what the be-or-do choice looks like when it stops being a slogan. Rachel is not deciding whether titles are bad. She is deciding whether the title will pull attention away from the problem the role is supposed to solve. If the room spends its first five minutes accepting her authority, the cargo may still miss the transfer window. If the room spends those five minutes fixing authority at the port, the result improves, and her status may stay smaller.\n\nYou will know the fork by the feeling of loss. The useful task often feels like a demotion because ego measures from the self outward. It asks whether you were seen, credited, included, named. Contribution measures from the work backward. It asks what changed in the world because you gave up the easier signal.\n\nLaura learns this on a museum donor committee. A chair nameplate is ready after two trustees praise her persistence. The real problem is duller: the conservation invoice is trapped in procurement, and the next exhibit payment will stall without it. She declines the chair role for the month, walks to purchasing, and removes the blocker. No one gives a toast for invoice routing. The paintings arrive on time.\n\nThat is not anti-ambition. It is ambition disciplined enough to care where the result lives. Titles can help. Public authority can matter. A person sometimes needs a role to protect the work. The question is not whether status is dirty. The question is whether status has become a substitute for the contribution that justified wanting it.\n\nBoyd belongs here because the fork is not theoretical. Rank, prestige, and flattering attention can all sit close to useful work. They look related. They may even begin related. Then comes the split. Do you stay loyal to the task when the task no longer flatters you? Do you let another person take the visible slot because their data is stronger? Do you repair the transfer paperwork while someone else briefs the room?\n\nAnna faces the smaller version during cycling club race selection. Her name is on the draft email as selection lead, and she likes how it looks. The timing files show that Luca should choose the final lineup because he caught the crosswind pattern she missed. Anna keeps her credit line small and hands him the final decision note. The roster gets better. Her identity gets less food.\n\nThere is a cheap version of this lesson that says ignore all titles. That version is lazy. The real work is harder: use status when it serves contribution, refuse it when it starts steering you away from contribution, and never confuse being known for the work with doing the work.\n\nAsk the question before the room rewards you. If nobody learned you made the call, which choice would improve the result?\n\nThat answer is the work talking. Follow it."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-sophie-cold-storage",
+      "title": "Sophie Leaves the Crisis Call",
+      "tags": [
+        "dialogue",
+        "inspection",
+        "contribution"
+      ],
+      "planSpec": {
+        "domain": "regional fisheries inspection",
+        "audience": "a reader facing regional fisheries inspection pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+        "stakes": "a concrete standard in regional fisheries inspection will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "dialogue",
+        "requiredBeat": "chooses the slower route that fixes the cargo problem over the visible role on the crisis call in the concrete setting of regional fisheries inspection; make the lesson visible through action, not explanation"
+      },
+      "scenario": "The fisheries inspection office smells like wet wool and printer heat when Sophie hears, \"We need you on the crisis call.\" The shipping manifest shows a cold-storage gap outside the port. If she joins the call, she becomes the visible lead. If she drives to the depot, the cargo may clear. She has to choose before the truck leaves the weigh station.",
+      "whatToDo": "Skip the visible call and go fix the cold-storage paperwork. Send one factual update from the depot after the cargo problem is actually moving.",
+      "whyItMatters": "The call makes Sophie important. The depot protects the fish and the inspection standard. Contribution is the part that improves the result when status steps aside."
+    },
+    {
+      "exampleId": "ch02-ex02-grace-studio-slot",
+      "title": "Grace Gives Away the Critique Slot",
+      "tags": [
+        "decision",
+        "architecture",
+        "standard"
+      ],
+      "planSpec": {
+        "domain": "architecture studio critique",
+        "audience": "a reader facing architecture studio critique pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+        "stakes": "a concrete standard in architecture studio critique will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "decision_point",
+        "requiredBeat": "hands the prestigious speaking slot to the person with the strongest data and takes the unfashionable task that protects the outcome in the concrete setting of architecture studio critique; make the lesson visible through action, not explanation"
+      },
+      "scenario": "You can see Grace's thumb stop over the printed order for architecture studio critique. Her model photographs best, so she has the final speaking slot. Maren has the wind-load data that answers the visiting engineer's objection. Before the panel enters, Grace has to choose between holding the prestigious slot and handing it to Maren while she takes the dull drawing-revision task.",
+      "whatToDo": "Give Maren the speaking slot, take the revision task, and let the strongest evidence face the panel. Do not protect the visible role at the model's expense.",
+      "whyItMatters": "The critique is not a contest over who looks central. The standard is whether the proposal survives. Grace deepens contribution by moving status toward the data."
+    },
+    {
+      "exampleId": "ch02-ex03-rachel-reroute-title",
+      "title": "Rachel Deletes the Title Slide",
+      "tags": [
+        "predict",
+        "freight",
+        "authority"
+      ],
+      "planSpec": {
+        "domain": "freight customs reroute",
+        "audience": "a reader facing freight customs reroute pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+        "stakes": "a concrete standard in freight customs reroute will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "predict_reveal",
+        "requiredBeat": "removes the title slide from the proposal and opens with the operational failure the role is supposed to solve in the concrete setting of freight customs reroute; make the lesson visible through action, not explanation"
+      },
+      "scenario": "It took Rachel one late freight customs reroute to see how fast a title slide could steal the room. She predicted the words interim customs lead would make the fix easier to accept. Then the Saturday transfer authority stayed unresolved. Now she hovers over the deck at 11:40 p.m., choosing between the title slide and an opening page about the broken clearance chain.",
+      "whatToDo": "Delete the title slide and start with the clearance failure, named owner, and transfer deadline. Let authority serve the fix instead of announcing itself first.",
+      "whyItMatters": "The title slide asks the room to recognize Rachel. The broken clearance chain asks the room to solve the problem. The second demand protects the cargo."
+    },
+    {
+      "exampleId": "ch02-ex04-laura-donor-nameplate",
+      "title": "Laura Declines the Committee Chair",
+      "tags": [
+        "postmortem",
+        "museum",
+        "service"
+      ],
+      "planSpec": {
+        "domain": "museum donor committee",
+        "audience": "a reader facing museum donor committee pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+        "stakes": "a concrete standard in museum donor committee will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "postmortem",
+        "requiredBeat": "declines the committee chair nameplate when the actual work needs a quiet blocker removed first in the concrete setting of museum donor committee; make the lesson visible through action, not explanation"
+      },
+      "scenario": "Which helped the museum more, Laura's nameplate or the invoice she unstuck from procurement? The donor committee offered her the chair role after she saved two pledges. The conservation payment still had no purchase order. In the postmortem she marks the choice that mattered: she declined the chair for a month and spent Friday clearing the blocker.",
+      "whatToDo": "Decline the nameplate until the conservation invoice moves. Remove the quiet blocker first, then decide whether a formal role would help the work.",
+      "whyItMatters": "The chair title rewards Laura for being important. The invoice releases the exhibit. The useful choice may be less visible because the work is asking for leverage, not ceremony."
+    },
+    {
+      "exampleId": "ch02-ex05-anna-race-roster",
+      "title": "Anna Keeps the Credit Line Small",
+      "tags": [
+        "scene",
+        "cycling",
+        "roster"
+      ],
+      "planSpec": {
+        "domain": "cycling club race selection",
+        "audience": "a reader facing cycling club race selection pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+        "stakes": "a concrete standard in cycling club race selection will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "scene",
+        "requiredBeat": "keeps the credit line small so the standard, not the status, decides the next assignment in the concrete setting of cycling club race selection; make the lesson visible through action, not explanation"
+      },
+      "scenario": "Chain oil darkens Anna's fingers as she reviews the cycling club race selection sheet in the garage. Her name sits on the draft email as lead selector. Luca's timing notes catch the crosswind pattern she missed. Before the roster goes out, Anna's cursor waits on the credit line: make herself the center, or shrink the line and hand Luca the final call. At 9:30 p.m. inside the cycling club race selection setting, Anna must decide: circle the race selection brief.",
+      "whatToDo": "Shrink the credit line, attach Luca's timing notes, and give him the final roster decision. Let the race standard outrank the status of being selector.",
+      "whyItMatters": "The club needs the fastest honest roster, not the cleanest story about Anna's role. Moving authority to better evidence makes contribution visible in the result."
+    },
+    {
+      "exampleId": "ch02-ex06-emma-fundraising-call",
+      "title": "Emma Asks the Anonymous Result Question",
+      "tags": [
+        "vignette",
+        "radio",
+        "fundraising"
+      ],
+      "planSpec": {
+        "domain": "public radio fundraising drive",
+        "audience": "a reader facing public radio fundraising drive pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+        "stakes": "a concrete standard in public radio fundraising drive will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "vignette",
+        "requiredBeat": "asks which option improves the result if nobody learns who made the call in the concrete setting of public radio fundraising drive; make the lesson visible through action, not explanation"
+      },
+      "scenario": "\"Put your name on the matching-hour script,\" the station manager says while Emma watches the public radio pledge board stall at 63 percent. The celebrity host wants the microphone, and the quiet producer has the stronger donor data. Before the next break, Emma must decide whether to be known as the architect or ask which call improves pledges if nobody knows who made it.",
+      "whatToDo": "Give the microphone to the host, give the data to the producer, and remove your name from the script if that combination raises the pledge total.",
+      "whyItMatters": "The result does not care who gets called architect. The drive needs the best mix of voice and data, and Emma's status is useful only if it serves that mix."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A research coordinator is offered the lead presenter role, but the statistician has the only clean answer to the funder's question. What does the be-or-do fork ask her to consider?",
+        "choices": [
+          "Whether her presenting role displaces the statistician's clean answer in front of the funder.",
+          "Whether refusing the role will make her look humble enough",
+          "Whether taking the role strengthens the work or only makes her status visible."
+        ],
+        "correctIndex": 2,
+        "explanation": "The fork is contribution versus status, not speaking versus analysis. The coordinator should ask what improves the result, while humility theater is still image management.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "The fork is between status and contribution. Taking the role only because it makes status visible is \"to be.\" Taking it because it strengthens the work the audience needs is \"to do.\""
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A restaurant group offers Daniel the title of launch chef for a new location. The kitchen is failing because prep ownership is unclear. Which response best fits the lesson?",
+        "choices": [
+          "Ask for authority only if it lets him fix prep ownership; otherwise take the unglamorous prep map task first.",
+          "Accept the title because the kitchen's prep failure is a coordination problem the launch-chef authority is structured to resolve.",
+          "Reject every title connected to the launch so the work stays pure"
+        ],
+        "correctIndex": 0,
+        "explanation": "The title is useful only if it serves contribution. Accepting rank as magic feeds status, while rejecting all rank ignores cases where authority helps the standard.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "A title that lets Daniel fix prep ownership is contribution; a title that leaves prep ownership unchanged is decoration. The unglamorous task is the actual lever the kitchen needs."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A policy analyst can join a high-profile press briefing or spend the afternoon correcting the dataset the briefing depends on. What is the stronger move?",
+        "choices": [
+          "Join the briefing so senior leaders see her expertise",
+          "Correct the dataset first, because the contribution is upstream of the visible role.",
+          "Split the difference by attending the first half, then checking the data afterward."
+        ],
+        "correctIndex": 1,
+        "explanation": "The dataset governs whether the briefing is true. Visibility is tempting, and splitting time may protect ego, but the upstream standard needs the analyst first.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Correcting the dataset the briefing depends on is upstream work; joining the press briefing is downstream visibility. The fork asks which contribution actually moves the outcome the visible role claims to be about."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a volunteer organizer wants chair credit on the gala program, but the caterer contract is unsigned and no one else can resolve it. What should she do?",
+        "choices": [
+          "Insist on chair credit because donors respect formal authority.",
+          "Give up the event completely to avoid wanting recognition",
+          "Resolve the caterer contract before asking whether chair credit helps anything."
+        ],
+        "correctIndex": 2,
+        "explanation": "The contract is the contribution pressure. Credit may come later if useful, but demanding it now lets status outrank the work. Quitting avoids the test.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Chair credit on the program protects identity; resolving the unsigned caterer contract protects the gala. The lesson asks which problem the available time can actually solve."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "At the hit point, a lab manager is invited onto a prestigious advisory panel while her own safety audit remains unfinished. Which question best exposes status bait?",
+        "choices": [
+          "Will the panel let her meet people who could advance her career?",
+          "What choice would improve the safety standard if nobody knew she made it?",
+          "Can she describe the panel in modest language when telling colleagues?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The anonymous-result question strips out prestige and asks what serves the standard. Career benefit and modest wording both keep attention on appearance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep",
+        "whyItMatters": "Asking what choice would improve the safety standard if nobody knew she made it strips visibility from the decision and exposes the contribution question underneath."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Inside the regard case, a hospital fellow says, \"If I get the title, I can do more good.\" Which evidence would show the title is serving contribution instead of ego?",
+        "choices": [
+          "The title sounds impressive enough that other departments will notice",
+          "The fellow feels less overlooked once the title is announced; the regard hospital record keeps the result unresolved",
+          "The title gives her authority to change a broken handoff rule that patients are already experiencing."
+        ],
+        "correctIndex": 2,
+        "explanation": "Authority that fixes a handoff serves contribution. Being noticed or feeling less overlooked may be real, but those benefits are status rewards, not proof of usefulness.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "A title that gives the fellow authority to change a broken handoff rule is doing real work. A title without that authority is performance. The test is whether the role unlocks a specific change."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Given the service standard, a theater director keeps the lead credit for a grant application even after the production manager finds the budget flaw that could sink the proposal. What has gone wrong?",
+        "choices": [
+          "The director is protecting the status story after the work has asked for a different center of gravity.",
+          "The production manager should avoid all recognition to keep the team calm",
+          "Grant applications should foreground program structure over individual credits, because funders reading at scale need institutional accountability."
+        ],
+        "correctIndex": 0,
+        "explanation": "The flaw means contribution has moved toward the production manager's evidence. The issue is not banning recognition; it is refusing to let status follow the work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Protecting status by keeping the lead credit after the production manager has found the budget flaw inverts the priority order. The work has asked for a different center of gravity, and the director is refusing to give it."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "After a founder gives a keynote about being a visionary operator while the customer-support backlog doubles. Why is this not merely a time-management problem?",
+        "choices": [
+          "The keynote builds the brand awareness that converts to enterprise leads, and the support backlog is a separate operational problem.",
+          "The visible identity is being fed while the contribution standard is starving.",
+          "Customer support is more noble than strategy work"
+        ],
+        "correctIndex": 1,
+        "explanation": "The tension is status reward displacing contribution. A keynote can be useful in some cases, and support is not automatically nobler; the backlog is the evidence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Time-management framing makes the schedule the problem. The deeper issue is that the visible identity is consuming the resources the contribution standard needs to live. That is an identity problem, not a calendar problem."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two options face a school principal: accept an award for innovation at a public lunch, or stay back to repair a broken reading intervention before inspection week. Which choice best applies the lesson?",
+        "choices": [
+          "Repair the intervention if that is the choice that improves student outcomes when status is removed.",
+          "Accept the award because reputation will help future programs; options school work lacks a maped route",
+          "Reject the award publicly to show everyone the school values humility"
+        ],
+        "correctIndex": 0,
+        "explanation": "The right test removes status and asks what improves outcomes. Reputation might help later, but the broken intervention is the current standard. Public rejection can become performance.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Repairing the reading intervention if it improves student outcomes when status is removed makes the contribution test concrete. The award is real recognition; it is also a test of which the principal is actually serving."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A visible role and a useful task pull in different directions. What question should you ask?",
+      "back": "Ask which choice improves the result if nobody knows you made it. That strips out status bait and lets contribution set the direction.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "When can a title be legitimate under this lesson?",
+      "back": "A title is legitimate when it gives authority, access, or coordination that directly improves the work. It becomes ego bait when the role starts replacing proof of contribution.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "You feel disappointed after giving a prestigious slot to someone with better evidence. What does that feeling reveal?",
+      "back": "The loss points to the status reward you gave up. The decision may still be right if the work got stronger because the best evidence moved to the front.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why is this lesson not anti-career advice?",
+      "back": "Status can serve contribution. The discipline is to use rank when it helps the work and refuse it when it starts steering you away from the standard.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What is the danger of being known for the work before doing the work?",
+      "back": "The known identity can become a second job to protect. Once that happens, choices start serving the role instead of the contribution that should govern the role.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Choose Contribution Over Status",
+    "coreSkill": "You learn to test ambition when rank, credit, or visibility are available. The skill is not rejecting status. It is making status answer to contribution every time the two begin to split.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a visible role appears before the result is secure, then ask what task would improve the result if your name disappeared from the story."
+      },
+      {
+        "context": "leadership",
+        "plan": "If authority would help the work, then use it for the specific standard it can protect. If it mainly feeds the role, decline or shrink it."
+      },
+      {
+        "context": "creative collaboration",
+        "plan": "If someone else has the stronger evidence, then move the visible slot toward that evidence and take the quieter task that supports the finished piece."
+      },
+      {
+        "context": "career decisions",
+        "plan": "If a promotion path weakens the craft you claim to care about, then write down the cost to the craft before accepting the status reward."
+      }
+    ],
+    "twentyFourHourChallenge": "Before your next visible decision, write two columns: what makes me look central, and what makes the result stronger. Choose one action from the second column.",
+    "weeklyPractice": "Once a week, review a choice involving credit, title, access, or praise. Mark whether status served contribution or competed with it, then adjust one future decision rule."
+  },
+  "memorableLines": [
+    {
+      "text": "Take the task side of the fork.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the whole status-versus-contribution test into a sentence the reader can remember."
+    },
+    {
+      "text": "Contribution is the answer that survives anonymity.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a clean way to test whether a choice still matters without credit."
+    },
+    {
+      "text": "That answer is the work talking.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the final decision rule in the concrete voice of the standard instead of the ego."
+    }
+  ]
+}

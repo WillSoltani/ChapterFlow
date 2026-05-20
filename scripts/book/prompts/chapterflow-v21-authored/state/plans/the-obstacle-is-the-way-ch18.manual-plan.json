@@ -1,0 +1,200 @@
+{
+  "chapterId": "the-obstacle-is-the-way-ch18",
+  "number": 18,
+  "title": "Use Obstacles Against Themselves",
+  "coreMove": "Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.",
+  "sourcePressure": "This chapter belongs to Action, so it must move from clear seeing into visible execution under constraint. No source sidecar exists for ch18; this plan is grounded in the frozen TOC title and part placement only, with no named anecdotes invented. For \"Use Obstacles Against Themselves\", the pressure is to teach this exact move: Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.",
+  "chapterSpecificMisunderstanding": "The weak version turns the chapter into motivational busyness instead of a precise way to act against resistance. For \"Use Obstacles Against Themselves\", avoid replacing the chapter move with the whole book thesis.",
+  "sourceAlignmentTerms": [
+    "leverage",
+    "resistance",
+    "judo",
+    "pressure",
+    "constraint",
+    "reverse"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic obstacle appears and teaches use obstacles against themselves",
+      "The problem is not the problem",
+      "Everything changed when the setback arrived"
+    ],
+    "counterintuition": [
+      "The obstacle is actually a blessing",
+      "The hard part is really your mindset",
+      "Success comes from staying positive"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on adversity",
+      "Write down three things you are grateful for",
+      "Take a breath and choose courage"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "generic kitchen-table family argument",
+      "generic classroom grade disappointment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research-free aside on source limits, a direct second-person passage, or a brief historical reference where sourceAnchors permits it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Dana",
+      "domain": "customer support team turning complaint categories into product fixes",
+      "audience": "Readers facing customer support team turning complaint categories into product fixes who need to practice \"Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into revenge.",
+      "format": "thought_experiment",
+      "openingDevice": "sensory_first",
+      "openingDeviceNote": "open on a concrete sound, texture, smell, or visual detail before naming the person",
+      "requiredBeat": "Dana must visibly perform the chapter move by using the obstacle's own pressure, rule, or resistance as leverage, so the lesson happens in action rather than explanation.",
+      "firstImage": "a cracked plastic folder with forms slipping out",
+      "mustInclude": [
+        "practice log",
+        "public result",
+        "private correction"
+      ],
+      "mustAvoid": [
+        "do not turn this into revenge",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Reese",
+      "domain": "teacher using repeated late homework to redesign pickup routine",
+      "audience": "Readers facing teacher using repeated late homework to redesign pickup routine who need to practice \"Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into revenge.",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "openingDeviceNote": "open with one line of spoken dialogue that forces the decision into view",
+      "requiredBeat": "Reese must visibly perform the chapter move by using the obstacle's own pressure, rule, or resistance as leverage, so the lesson happens in action rather than explanation.",
+      "firstImage": "a measuring tape stretched across a taped floor mark",
+      "mustInclude": [
+        "printed schedule",
+        "one fixed deadline",
+        "one person waiting for a decision"
+      ],
+      "mustAvoid": [
+        "do not turn this into revenge",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Lila",
+      "domain": "tenant group using landlord inspection rules to document repairs",
+      "audience": "Readers facing tenant group using landlord inspection rules to document repairs who need to practice \"Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into revenge.",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "openingDeviceNote": "open with the room, tool, weather, queue, screen, or workplace layout before any person acts",
+      "requiredBeat": "Lila must visibly perform the chapter move by using the obstacle's own pressure, rule, or resistance as leverage, so the lesson happens in action rather than explanation.",
+      "firstImage": "a phone face-down beside a stamped envelope",
+      "mustInclude": [
+        "marked-up form",
+        "visible queue",
+        "one rule that cannot be changed"
+      ],
+      "mustAvoid": [
+        "do not turn this into revenge",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Hana",
+      "domain": "logistics planner using weight limits to optimize packing",
+      "audience": "Readers facing logistics planner using weight limits to optimize packing who need to practice \"Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into revenge.",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "openingDeviceNote": "open by putting the reader directly in the scene with a precise constraint",
+      "requiredBeat": "Hana must visibly perform the chapter move by using the obstacle's own pressure, rule, or resistance as leverage, so the lesson happens in action rather than explanation.",
+      "firstImage": "a row of empty chairs after a meeting ends",
+      "mustInclude": [
+        "locked door",
+        "backup route",
+        "two-minute choice window"
+      ],
+      "mustAvoid": [
+        "do not turn this into revenge",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Adrian",
+      "domain": "coach turning a rival's press into open passing lanes",
+      "audience": "Readers facing coach turning a rival's press into open passing lanes who need to practice \"Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into revenge.",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "openingDeviceNote": "open after the fact, with the protagonist realizing what the earlier choice meant",
+      "requiredBeat": "Adrian must visibly perform the chapter move by using the obstacle's own pressure, rule, or resistance as leverage, so the lesson happens in action rather than explanation.",
+      "firstImage": "a stack of returned envelopes in a mail tray",
+      "mustInclude": [
+        "spreadsheet row",
+        "timestamped note",
+        "one disputed fact"
+      ],
+      "mustAvoid": [
+        "do not turn this into revenge",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Leila",
+      "domain": "musician using venue noise limits to build an acoustic set",
+      "audience": "Readers facing musician using venue noise limits to build an acoustic set who need to practice \"Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into revenge.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "openingDeviceNote": "open with a practical question the scene will answer",
+      "requiredBeat": "Leila must visibly perform the chapter move by using the obstacle's own pressure, rule, or resistance as leverage, so the lesson happens in action rather than explanation.",
+      "firstImage": "a whiteboard corner where the old plan is half erased",
+      "mustInclude": [
+        "weather alert",
+        "supply box",
+        "call list"
+      ],
+      "mustAvoid": [
+        "do not turn this into revenge",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the exact visible action that performs \"Turn the pressure, rule, or resistance inside the obstacle into the force that helps move it.\" in a new scenario",
+      "distinguish \"Use Obstacles Against Themselves\" from its common weak drift: revenge",
+      "choose between two plausible responses where only one preserves the chapter's control boundary",
+      "explain why a concrete beat works without reusing generic resilience language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real obstacle, write one sentence naming the raw fact, one sentence naming the move under your control, and one sentence naming the first visible action for \"Use Obstacles Against Themselves\"; keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

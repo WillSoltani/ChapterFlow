@@ -1,0 +1,112 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch12",
+  "number": 12,
+  "title": "Hanlon's Razor",
+  "coreMove": "Check ordinary error before assigning hostile intent, while preserving the evidence that would change the call.",
+  "sourcePressure": "Frozen support is moderate and narrow through official model reference and table-of-contents identity. The safe floor is to avoid rushing to malice when ignorance, confusion, or ordinary error may explain enough, while clearly preserving accountability when real malice is supported.",
+  "chapterSpecificMisunderstanding": "The weak version excuses harmful behavior or tells the reader never to suspect malice.",
+  "sourceAlignmentTerms": ["Hanlon's razor", "malice", "ignorance", "confusion", "ordinary error", "sufficient explanation", "accountability"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Hanlon's razor",
+      "detail": "the frozen source supports Hanlon's razor as a Volume 1 model and authorizes a narrow paraphrase: do not rush to malice when ordinary error may explain enough, but do not deny real malice",
+      "useIn": "both",
+      "phrasingHint": "Check the ordinary mistake first, not because harm is harmless, but because the first story your anger writes may be too expensive."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["forgive and forget", "everyone is doing their best", "toxic positivity conflict"],
+    "counterintuition": ["malice never exists", "accountability is unkind", "assume good intent no matter what"],
+    "tryThisNow": ["be charitable", "calm down", "give people grace"],
+    "examples": ["romantic betrayal", "office villain", "proverb history"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "shared driveway complaint",
+      "audience": "a homeowner whose neighbor keeps blocking a shared driveway",
+      "stakes": "a hostile confrontation could escalate a problem caused by a confusing property line",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Natalie checks the faded driveway marker and old survey before accusing the neighbor of deliberate disrespect",
+      "firstImage": "a faded yellow property marker half-buried in gravel",
+      "mustInclude": ["property marker", "old survey", "blocked driveway"],
+      "mustAvoid": ["neighbor feud melodrama", "avoid confrontation"]
+    },
+    {
+      "domain": "hospital medication label mix-up",
+      "audience": "a charge nurse reacting to a repeated mislabeled tray",
+      "stakes": "patient safety needs action, but blame may land before the process error is found",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sean traces the mislabeled tray to two nearly identical shelf bins before deciding whether discipline or system repair comes first",
+      "firstImage": "two white medication bins with labels peeling at the same corner",
+      "mustInclude": ["mislabeled tray", "shelf bins", "safety report"],
+      "mustAvoid": ["excusing harm", "medical villain"]
+    },
+    {
+      "domain": "delayed invoice dispute",
+      "audience": "a freelancer who believes a client is stalling payment",
+      "stakes": "a relationship may be damaged if a portal error explains the missing approval",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Valeria asks for the approval screenshot and discovers the invoice is stuck under the wrong purchase-order field before sending the angry email",
+      "firstImage": "an unpaid invoice tab open beside a drafted angry email",
+      "mustInclude": ["purchase-order field", "approval screenshot", "drafted email"],
+      "mustAvoid": ["client always innocent", "freelancer resentment"]
+    },
+    {
+      "domain": "apartment smoke alarm issue",
+      "audience": "a tenant convinced the building manager ignores repairs",
+      "stakes": "the alarm must be fixed while the cause of the silence is still unknown",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Nils checks the maintenance queue and finds the request filed under the wrong unit, then still sets a deadline for repair",
+      "firstImage": "a chirping smoke alarm balanced on a hallway radiator cover",
+      "mustInclude": ["maintenance queue", "wrong unit number", "repair deadline"],
+      "mustAvoid": ["landlord forgiveness sermon", "harm minimized"]
+    },
+    {
+      "domain": "community soccer roster error",
+      "audience": "a parent whose child was left off the tournament roster",
+      "stakes": "the parent may accuse the coach before checking whether a registration field failed",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ada compares the roster export with the payment receipt and finds the software dropped late registrations, then asks for correction without inventing intent",
+      "firstImage": "a roster printout creased beside a muddy cleat bag",
+      "mustInclude": ["roster export", "payment receipt", "late registration"],
+      "mustAvoid": ["sports parent caricature", "coach villain"]
+    },
+    {
+      "domain": "partner's missed pickup explanation",
+      "audience": "someone angry after being left waiting at a train station",
+      "stakes": "the response must protect trust without turning a phone failure into a character trial",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Zoe check the missed-call log and dead phone before deciding whether the pattern is ordinary error or a deeper reliability problem",
+      "firstImage": "a station clock reflected in a dark phone screen",
+      "mustInclude": ["missed-call log", "dead phone", "reliability pattern"],
+      "mustAvoid": ["relationship advice sermon", "excuse repeated neglect"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["separate harm from intent", "test ordinary-error explanations first", "preserve accountability when evidence supports malice", "choose a response that gathers facts without escalating prematurely"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "For one irritation, write two ordinary-error explanations and the evidence that would make you treat it as intentional instead.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

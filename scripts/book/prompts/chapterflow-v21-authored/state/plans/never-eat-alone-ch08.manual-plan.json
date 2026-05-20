@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch08",
+  "number": 8,
+  "title": "Take Names",
+  "coreMove": "Capture the human detail that will make the next contact specific and warm.",
+  "sourcePressure": "Names and remembered details are not trophies; they are the memory infrastructure that makes follow-up feel real.",
+  "chapterSpecificMisunderstanding": "Treating people like entries in a CRM or making memory feel creepy.",
+  "sourceAlignmentTerms": [
+    "take names",
+    "memory",
+    "personal details",
+    "note-taking",
+    "recognition",
+    "follow-up"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Jessica",
+      "domain": "wedding planner guest notebook",
+      "audience": "a reader facing wedding planner guest notebook where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if wedding planner guest notebook becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Jessica records one human detail and uses it later in a restrained, useful follow-up in front of guest card, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "guest card on the edge of wedding planner guest notebook",
+      "mustInclude": [
+        "guest card",
+        "wedding planner guest notebook constraint",
+        "one named next step tied to take names"
+      ],
+      "mustAvoid": [
+        "Treating people like entries in a CRM or making memory feel creepy.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Joanna",
+      "domain": "community clinic volunteer log",
+      "audience": "a reader facing community clinic volunteer log where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if community clinic volunteer log becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Joanna records one human detail and uses it later in a restrained, useful follow-up in front of volunteer badge, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "volunteer badge on the edge of community clinic volunteer log",
+      "mustInclude": [
+        "volunteer badge",
+        "community clinic volunteer log constraint",
+        "one named next step tied to take names"
+      ],
+      "mustAvoid": [
+        "Treating people like entries in a CRM or making memory feel creepy.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Katie",
+      "domain": "municipal repair request binder",
+      "audience": "a reader facing municipal repair request binder where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if municipal repair request binder becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Katie records one human detail and uses it later in a restrained, useful follow-up in front of repair ticket, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "repair ticket on the edge of municipal repair request binder",
+      "mustInclude": [
+        "repair ticket",
+        "municipal repair request binder constraint",
+        "one named next step tied to take names"
+      ],
+      "mustAvoid": [
+        "Treating people like entries in a CRM or making memory feel creepy.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Lauren",
+      "domain": "architecture open house sign-in sheet",
+      "audience": "a reader facing architecture open house sign-in sheet where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if architecture open house sign-in sheet becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lauren records one human detail and uses it later in a restrained, useful follow-up in front of floor-plan sketch, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "floor-plan sketch on the edge of architecture open house sign-in sheet",
+      "mustInclude": [
+        "floor-plan sketch",
+        "architecture open house sign-in sheet constraint",
+        "one named next step tied to take names"
+      ],
+      "mustAvoid": [
+        "Treating people like entries in a CRM or making memory feel creepy.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "choir rehearsal attendance card",
+      "audience": "a reader facing choir rehearsal attendance card where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if choir rehearsal attendance card becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Antoine records one human detail and uses it later in a restrained, useful follow-up in front of sheet music folder, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "sheet music folder on the edge of choir rehearsal attendance card",
+      "mustInclude": [
+        "sheet music folder",
+        "choir rehearsal attendance card constraint",
+        "one named next step tied to take names"
+      ],
+      "mustAvoid": [
+        "Treating people like entries in a CRM or making memory feel creepy.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "maker-space safety waiver stack",
+      "audience": "a reader facing maker-space safety waiver stack where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if maker-space safety waiver stack becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Adaeze records one human detail and uses it later in a restrained, useful follow-up in front of safety goggles, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "safety goggles on the edge of maker-space safety waiver stack",
+      "mustInclude": [
+        "safety goggles",
+        "maker-space safety waiver stack constraint",
+        "one named next step tied to take names"
+      ],
+      "mustAvoid": [
+        "Treating people like entries in a CRM or making memory feel creepy.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish take names from Treating people like entries in a CRM or making memory feel creepy.",
+      "choose the visible action that performs: Capture the human detail that will make the next contact specific and warm.",
+      "diagnose when a scenario drifts into Treating people like entries in a CRM or making memory feel creepy.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real take names moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

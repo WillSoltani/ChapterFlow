@@ -1,0 +1,221 @@
+{
+  "bookId": "competing-against-luck",
+  "title": "Competing Against Luck",
+  "author": "Clayton M. Christensen",
+  "promotedAt": "2026-05-16T10:11:30.026Z",
+  "chapterCount": 10,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"in the first place\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"names a movement from\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"struggling moment is not\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At 9:15 a.m., \"You said commuters,\" the council liaison says, setting the report"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"job many similar hires\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the moment the subscriber\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "A11",
+            "severity": "blocker",
+            "unit": "memorableLines[0]",
+            "message": "pinned memorable line \"The contract is not a growth opportunity. It is a job-abandonment decision weari…\" does not appear verbatim in any breakdown tier — either restore the original sentence to the prose or repoint memorableLines[0].text to a sentence that does appear",
+            "evidence": "The contract is not a growth opportunity. It is a job-abandonment decision wearing the disguise of a revenue gain."
+          }
+        ],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the job-first\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the job buyers hired\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"vocabulary it did not\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 1,
+    "totalMajors": 2
+  },
+  "bookGate": {
+    "bookId": "competing-against-luck",
+    "chapterCount": 10,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "BP13",
+        "severity": "blocker",
+        "message": "Verbatim phrase \"You must decide whether to\" repeats across 4 chapters (4, 6, 8, 9). This is a stock writer template; the reader will notice the repetition by Chapter 9. Rewrite each scenario to drop the shared phrase entirely.",
+        "evidence": "\"You must decide whether to\" — sample: You are David. Spring order deadline tomorrow. Your April observation notes show buyers at full tall flats deciding fast; buyers at small sparse flats reading tags twice, setting t"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        30,
+        29,
+        31
+      ],
+      "answerPositionPctMax": 0.34444444444444444,
+      "totalQuizQuestions": 90,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "competing-against-luck",
+        "chapterCount": 10,
+        "passed": false,
+        "findings": [
+          {
+            "code": "BP13",
+            "severity": "blocker",
+            "chapters": [
+              4,
+              6,
+              8,
+              9
+            ],
+            "count": 4,
+            "unit": "examples.scenario.literal",
+            "evidence": "\"You must decide whether to\" — sample: You are David. Spring order deadline tomorrow. Your April observation notes show buyers at full tall flats deciding fast; buyers at small sparse flats reading tags twice, setting t",
+            "message": "Verbatim phrase \"You must decide whether to\" repeats across 4 chapters (4, 6, 8, 9). This is a stock writer template; the reader will notice the repetition by Chapter 9. Rewrite each scenario to drop the shared phrase entirely.",
+            "maxScoreCap": 70
+          }
+        ],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 1,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch12",
+  "number": 12,
+  "title": "The Law of Least Effort",
+  "coreMove": "Redraw the path so the desired action is the lower-friction default.",
+  "sourcePressure": "Behavior often follows the path of least resistance, so good habit design reduces friction for the desired action and increases friction for the unwanted one.",
+  "chapterSpecificMisunderstanding": "Using ease as laziness rather than as a deliberately designed path of least resistance.",
+  "sourceAlignmentTerms": [
+    "least effort",
+    "friction",
+    "path of resistance",
+    "convenience",
+    "energy",
+    "default path"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of least effort",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a rural nurse placing vaccination coolers beside the intake desk",
+      "audience": "a clinic director improving same-visit vaccination rates",
+      "stakes": "whether lower friction makes the right action easier than deferral",
+      "format": "scene",
+      "requiredBeat": "the nurse can vaccinate before the family leaves because the cooler and consent pad are already in the intake path",
+      "firstImage": "a vaccine cooler tucked under an intake counter",
+      "mustInclude": [
+        "consent pad",
+        "cooler latch"
+      ],
+      "mustAvoid": [
+        "hospital poster shell"
+      ]
+    },
+    {
+      "domain": "a calligrapher leaving practice nibs soaking next to the sink",
+      "audience": "a hobbyist who skips cleanup and then avoids practice",
+      "stakes": "whether reducing setup drag protects tomorrow practice",
+      "format": "before_after",
+      "requiredBeat": "clean nibs wait in a labeled tray, so the next session starts with ink instead of scraping",
+      "firstImage": "silver nibs drying in a porcelain tray",
+      "mustInclude": [
+        "nib tray",
+        "ink bottle"
+      ],
+      "mustAvoid": [
+        "generic craft desk"
+      ]
+    },
+    {
+      "domain": "a theater stage manager taping cable paths before rehearsal",
+      "audience": "a crew lead reducing repeated trip hazards",
+      "stakes": "whether the low-resistance path is physically drawn on the floor",
+      "format": "vignette",
+      "requiredBeat": "actors follow the taped route without instruction because it is easier than stepping around loose cables",
+      "firstImage": "bright tape running across a black stage floor",
+      "mustInclude": [
+        "gaffer tape",
+        "cable coil"
+      ],
+      "mustAvoid": [
+        "safety lecture"
+      ]
+    },
+    {
+      "domain": "a beekeeper moving the hive tool to the first box handle",
+      "audience": "a beekeeper who abandons inspections when setup sprawls",
+      "stakes": "whether the needed action is made the easiest next reach",
+      "format": "decision_point",
+      "requiredBeat": "she grips the box handle and finds the hive tool already clipped there, so the inspection begins",
+      "firstImage": "a hive tool clipped to a painted box handle",
+      "mustInclude": [
+        "smoker fuel",
+        "hive tool"
+      ],
+      "mustAvoid": [
+        "garden shell"
+      ]
+    },
+    {
+      "domain": "a college dining hall making fruit the first tray item",
+      "audience": "a nutrition director changing defaults without preaching",
+      "stakes": "whether convenience changes selection before preference is debated",
+      "format": "predict_reveal",
+      "requiredBeat": "students take fruit because tongs and bowls appear before dessert, proving path beats posters",
+      "firstImage": "green pears stacked before the entree line",
+      "mustInclude": [
+        "fruit tongs",
+        "tray rail"
+      ],
+      "mustAvoid": [
+        "cafeteria moralizing"
+      ]
+    },
+    {
+      "domain": "a mailroom clerk pre-sorting return labels by route color",
+      "audience": "a clerk overwhelmed by end-of-day parcels",
+      "stakes": "whether friction removal changes repeated behavior",
+      "format": "postmortem",
+      "requiredBeat": "colored label bins cut four handoffs, and the clerk notices fewer parcels left after cutoff",
+      "firstImage": "colored label bins lined beneath a sorting shelf",
+      "mustInclude": [
+        "route labels",
+        "cutoff clock"
+      ],
+      "mustAvoid": [
+        "generic office efficiency"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify friction points in a behavior path",
+      "redesign defaults toward the desired action",
+      "raise friction without relying on shame"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Lower the friction on one good action by one physical step, and raise the friction on one unwanted action by one physical step.",
+  "readingTimeMinutes": 12
+}

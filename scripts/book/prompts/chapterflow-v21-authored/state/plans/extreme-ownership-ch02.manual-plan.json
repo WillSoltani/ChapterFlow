@@ -1,0 +1,193 @@
+{
+  "chapterId": "extreme-ownership-ch02",
+  "number": 2,
+  "title": "Extreme Ownership",
+  "coreMove": "accept responsibility at the level where repair becomes possible, then change the procedures and communication that shaped the result",
+  "sourcePressure": "The namesake chapter uses the Ramadi friendly-fire failure to show a leader refusing excuses and owning the system that produced the failure.",
+  "chapterSpecificMisunderstanding": "take the blame publicly and move on",
+  "sourceAlignmentTerms": [
+    "friendly fire",
+    "blue-on-blue",
+    "ownership",
+    "responsibility",
+    "procedures",
+    "communication",
+    "trust"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Jocko Willink",
+      "detail": "the source says he treats the Ramadi blue-on-blue incident as a leadership problem he has to own instead of spreading blame through chaos",
+      "useIn": "both",
+      "phrasingHint": "Jocko Willink’s move is not a speech about guilt; he keeps responsibility close enough to the failure that repair can begin."
+    },
+    {
+      "kind": "event",
+      "name": "Ramadi blue-on-blue incident",
+      "detail": "the source describes it as chaotic, involving incomplete information and many people, yet still used to show ownership instead of excuse-making",
+      "useIn": "fullRead",
+      "phrasingHint": "The blue-on-blue failure matters because it offers every reasonable excuse, and ownership refuses to start there."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital specimen lab after a mislabeled blood tube reaches processing",
+      "audience": "a lab supervisor facing angry nurses and a shaken technician",
+      "stakes": "a patient result could be tied to the wrong person if the chain is not repaired",
+      "format": "postmortem",
+      "requiredBeat": "the supervisor says the miss belongs to her process, marks the unclear handoff on the accession log, and changes the two-person check before the next batch",
+      "firstImage": "a red-top blood tube lies beside an accession label with one digit wrong",
+      "mustInclude": [
+        "red-top blood tube",
+        "accession log",
+        "two-person check"
+      ],
+      "mustAvoid": [
+        "public apology without system change"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "regional airport baggage desk after mobility equipment is sent to the wrong city",
+      "audience": "a baggage operations lead with agents blaming the connecting carrier",
+      "stakes": "a passenger lands without essential equipment and the desk loses trust",
+      "format": "scene",
+      "requiredBeat": "the lead stops the carrier blame, walks to the transfer tag printer, finds the missing exception step, and assigns a manual verification for mobility items",
+      "firstImage": "You are close enough to see this: torn transfer tag curls from the edge of a stalled baggage belt.",
+      "mustInclude": [
+        "transfer tag printer",
+        "mobility-equipment flag",
+        "manual verification list"
+      ],
+      "mustAvoid": [
+        "airline complaint scene about rude customers"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "cybersecurity incident from an old contractor account",
+      "audience": "an IT director briefing executives after a limited breach",
+      "stakes": "leaders may blame one analyst instead of closing the access-control gap",
+      "format": "decision_point",
+      "requiredBeat": "the director opens with my offboarding process failed, shows the stale account in the access report, and commits to a weekly owner review",
+      "firstImage": "The first thing you register is physical: stale contractor username glows amber on an access-review report.",
+      "mustInclude": [
+        "access-review report",
+        "contractor account",
+        "weekly owner review"
+      ],
+      "mustAvoid": [
+        "generic security-awareness lecture"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "artisan bakery after sesame cross-contact in a nut-free order",
+      "audience": "a bakery owner managing a frightened parent and defensive bakers",
+      "stakes": "a food-allergy trust breach can close wholesale accounts",
+      "format": "before_after",
+      "requiredBeat": "the owner traces the failure to unlabeled cooling racks, relabels allergen zones before reopening, and personally briefs the staff on the changed flow",
+      "firstImage": "\"Hold there,\" someone says. Sesame seeds cling to parchment under a tray marked for the wrong order.",
+      "mustInclude": [
+        "parchment sheet",
+        "allergen-zone label",
+        "cooling rack"
+      ],
+      "mustAvoid": [
+        "blaming the newest baker"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "city snow removal after one cul-de-sac is missed twice",
+      "audience": "a public works foreman with drivers blaming an outdated route file",
+      "stakes": "residents are trapped on an icy hill and council pressure is rising",
+      "format": "vignette",
+      "requiredBeat": "the foreman owns the route-control miss, pins the omitted street on the dispatch wall, and requires drivers to mark exceptions before leaving the yard",
+      "firstImage": "Later, the team will trace the lesson back to this: pink street tab hangs crooked on a laminated snow route wall.",
+      "mustInclude": [
+        "pink street tab",
+        "dispatch wall",
+        "exception mark"
+      ],
+      "mustAvoid": [
+        "weather excuse or citizen-blame frame"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "nonprofit gala check-in after donor QR codes fail",
+      "audience": "an event director with volunteers blaming the ticketing vendor",
+      "stakes": "major donors wait in a line long enough to sour the evening",
+      "format": "dialogue",
+      "requiredBeat": "the director tells the volunteer lead the backup table was her responsibility, opens the printed guest binder, and moves three people to handwritten check-in",
+      "firstImage": "What changes once this is in front of everyone: locked phone stand displays a spinning QR code at the ballroom entrance?",
+      "mustInclude": [
+        "printed guest binder",
+        "handwritten check-in sheet",
+        "phone stand"
+      ],
+      "mustAvoid": [
+        "vendor blame or fundraising platitudes"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate owning the system from taking symbolic blame",
+      "spot excuse patterns that prevent repair",
+      "choose a procedure or communication change after failure"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one recent miss and write the condition you controlled that made it easier, then name the one process change you can make before the next attempt.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

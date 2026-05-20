@@ -1,0 +1,186 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch97",
+  "number": 97,
+  "title": "Fallacy of the Single Cause",
+  "coreMove": "Break the false inference inside single cause, then decide from current evidence instead of the tempting story.",
+  "sourcePressure": "The frozen TOC and official source notes frame Fallacy of the Single Cause as a specific decision error around single cause, multi-causality, Tolstoy. Traceable support includes Nexus Causality, Moral Warfare, and Misattribution Arbitrage.",
+  "chapterSpecificMisunderstanding": "Treating Fallacy of the Single Cause as generic advice to be smarter, instead of forcing this exact move: break the false inference inside single cause, then decide from current evidence instead of the tempting story.",
+  "sourceAlignmentTerms": [
+    "single cause",
+    "multi-causality",
+    "Tolstoy",
+    "mechanism map",
+    "clean explanation",
+    "fallacy",
+    "single",
+    "cause"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Fallacy of the Single Cause.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Fallacy of the Single Cause sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Fallacy of the Single Cause."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a hospital triage desk applying Fallacy of the Single Cause under operational pressure",
+      "audience": "a reader who has to make a live judgment where single cause could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Fallacy of the Single Cause is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the dropout table, names the single cause risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A dropout table sits at the center of the hospital triage desk before anyone explains the choice.",
+      "mustInclude": [
+        "dropout table",
+        "single cause",
+        "a visible before-and-after choice tied to Fallacy of the Single Cause"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a seafood export cold-storage bid applying Fallacy of the Single Cause under operational pressure",
+      "audience": "a reader who has to make a live judgment where multi-causality could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Fallacy of the Single Cause is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the organ-donor form, names the multi-causality risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A organ-donor form sits at the center of the seafood export cold-storage bid before anyone explains the choice.",
+      "mustInclude": [
+        "organ-donor form",
+        "multi-causality",
+        "a visible before-and-after choice tied to Fallacy of the Single Cause"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a port scheduling office applying Fallacy of the Single Cause under operational pressure",
+      "audience": "a reader who has to make a live judgment where Tolstoy could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Fallacy of the Single Cause is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the storm track, names the Tolstoy risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A storm track sits at the center of the port scheduling office before anyone explains the choice.",
+      "mustInclude": [
+        "storm track",
+        "Tolstoy",
+        "a visible before-and-after choice tied to Fallacy of the Single Cause"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a fintech model review applying Fallacy of the Single Cause under operational pressure",
+      "audience": "a reader who has to make a live judgment where mechanism map could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Fallacy of the Single Cause is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the maintenance key, names the mechanism map risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A maintenance key sits at the center of the fintech model review before anyone explains the choice.",
+      "mustInclude": [
+        "maintenance key",
+        "mechanism map",
+        "a visible before-and-after choice tied to Fallacy of the Single Cause"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a school literacy intervention applying Fallacy of the Single Cause under operational pressure",
+      "audience": "a reader who has to make a live judgment where clean explanation could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Fallacy of the Single Cause is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the booking ledger, names the clean explanation risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A booking ledger sits at the center of the school literacy intervention before anyone explains the choice.",
+      "mustInclude": [
+        "booking ledger",
+        "clean explanation",
+        "a visible before-and-after choice tied to Fallacy of the Single Cause"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a limited bakery batch applying Fallacy of the Single Cause under operational pressure",
+      "audience": "a reader who has to make a live judgment where fallacy could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Fallacy of the Single Cause is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the grant rubric, names the fallacy risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A grant rubric sits at the center of the limited bakery batch before anyone explains the choice.",
+      "mustInclude": [
+        "grant rubric",
+        "fallacy",
+        "a visible before-and-after choice tied to Fallacy of the Single Cause"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Fallacy of the Single Cause in a fresh decision scene",
+      "choose the correction that performs this move: break the false inference inside single cause, then decide from current evidence instead of the tempting story.",
+      "reject a tempting generic answer that ignores single cause",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Fallacy of the Single Cause' on a note, list the one single cause cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

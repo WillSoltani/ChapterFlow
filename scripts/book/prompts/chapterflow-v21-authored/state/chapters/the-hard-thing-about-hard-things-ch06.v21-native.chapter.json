@@ -1,0 +1,301 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch06",
+  "number": 6,
+  "title": "Take Care of the People, the Products, and the Profits, In That Order",
+  "readingTimeMinutes": 12,
+  "hook": "The profit leak starts on the floor where two supervisors teach the same job differently.",
+  "counterintuition": "The mistaken move is to chase margin or morale as separate problems. Instead, inspect the people system producing product misses before profit is treated alone.",
+  "tryThisNow": "Take one recurring product or financial miss and name the manager behavior, training gap, or unclear standard that could be producing it upstream.",
+  "keyTakeaway": "People systems create product reliability, and reliable products create durable profit. Weak training and unclear standards become financial problems later.",
+  "breakdown": {
+    "fastRead": "A margin report shows the loss at the bottom of the page, but the cause may be three layers upstream. A shift lead trains proofing one way, another lead trains it differently, and customers return the product as if the oven failed. The spreadsheet records the symptom.\n\nPeople first does not mean comfort first. It means clear standards, training, feedback, roles, and follow-through strong enough to produce reliable work. When product quality slips or profit erodes, inspect the management system before treating finance as a separate problem.",
+    "deepRead": "A founder looks at rising warranty claims and feels the natural pull toward pressure: move faster, reduce waste, protect margin. Then three returned units land on the bench with the same calibration mistake. The technicians were not lazy. They were never trained to the same standard.\n\nThe people, product, profit order is a causal chain. Managers set the standard. Training turns the standard into repeatable behavior. Feedback catches drift before customers do. Role clarity tells people who can approve exceptions, stop a line, price a change order, or promise a service interval. Accountability makes the standard real when the week gets busy. If any link is weak, the product absorbs the weakness first. Profit sees it later as returns, penalties, churn, discounts, missed renewals, and rework.\n\nManagement debt compounds quietly.\n\nA leader who skips the people system often misdiagnoses the miss. Croissant returns look like an oven issue until two shift leads are seen proofing dough under different rules. Late biopsy reports look like software trouble until one sample's path reveals no handoff rule between shifts. Margin erosion looks like lumber inflation until project leads are approving change orders through three different gates. The product is not separate from management. It is management made visible.\n\nThe limit is that upstream analysis should not become an excuse for slow correction. Once the people-system cause is visible, the response must be concrete: write the standard, train supervisors, certify managers, pause bad incentives, and hold the new bar. Kind language without correction only lets the same defect return.",
+    "fullRead": "At the bakery, the owner wants to blame flour because flour feels easier to replace than management habits. The returns arrive in neat boxes: collapsed croissants, wholesale credits, angry notes from cafes that cannot sell what arrived before dawn. The oven gets checked. The flour gets checked. Only later does someone stand through both shifts and see the real problem: two leads are teaching proofing by two different clocks.\n\nThat is the shape of many profit problems. The last line says margin, but the first failure happened in a manager's sentence, a missing checklist, a training shortcut, or an exception no one knew who could approve. Product reliability is not only design or craft. It is what happens when people are taught the same standard, corrected early, and given clear authority to protect the work.\n\nLook at the miss you are tempted to call financial. What behavior would have had to repeat for the number to appear?\n\nThat question moves the investigation upstream. A sales renewal miss may begin with managers who cannot coach reps to explain service intervals. A recycling contamination penalty may begin with two line leads applying different rejection calls. A furniture margin problem may begin with project leads approving change orders without one margin gate. The point is not to blame managers reflexively. The point is to notice that management is where standards either become real or dissolve into local improvisation.\n\nPutting people first can sound soft from a distance. Up close, it is demanding. It asks leaders to train before they blame, define before they enforce, and correct before drift becomes normal. It also asks them to stop calling unkind systems compassionate. Leaving a new supervisor without training is not trust. Letting two teams invent different standards is not autonomy. Avoiding feedback until numbers are bad is not respect.\n\nProfit comes last in the sequence because profit is a result, not because it is unimportant. A business that ignores profit cannot keep taking care of anyone. The order simply tells the leader where durable profit is built. You do not get reliable margin by squeezing a broken system harder. You get it by fixing the system that makes the product customers pay for.\n\nIncentives deserve special suspicion. A throughput bonus may look like profit discipline until it teaches technicians to skip calibration. A commission change may look like urgency until it hides the fact that managers cannot teach the renewal story. A public education campaign may look like action until the sort-line leads still disagree about reason codes. Incentives work only when the people system underneath them can execute the behavior being rewarded.\n\nA strong people system has visible artifacts. The proofing standard is written. The bench test is passed by every technician. The handoff rule is taught by supervisors on both shifts. The margin gate is used before a bid goes out. The manager certification checks whether coaches can explain the service interval, not whether they can recite values. These artifacts are not paperwork for its own sake. They are the rails that keep care connected to output.\n\nThe hard part is accepting that management quality is part of the product. Customers do not see the training gap, but they receive it. Finance does not see the vague handoff rule, but it pays for it. Treat the people system as a production system, and the product and profit numbers start making more sense."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-olivia-proofing-standard",
+      "title": "Olivia Writes the Proofing Standard",
+      "tags": ["bakery", "training", "profit"],
+      "planSpec": {
+        "domain": "specialty bakery expanding wholesale pastry production",
+        "audience": "an owner whose croissant returns look like a flour or oven problem",
+        "stakes": "profit on wholesale accounts is disappearing because shift leads use different proofing standards",
+        "format": "before_after",
+        "requiredBeat": "the owner stops blaming the oven, watches two shift leads proof dough differently, and writes one training standard before repricing accounts"
+      },
+      "scenario": "The collapsed croissants smell faintly sour beside two conflicting proofing notes. Olivia first blamed the oven, then the flour, then wholesale customers who waited too long to display them. Before repricing accounts, she watched both shift leads proof dough. One used time, the other used touch. Olivia wrote one proofing standard and trained both leads before calling the returns a pricing problem.",
+      "whatToDo": "Stop the finance-first diagnosis, observe the shift leads, write one proofing standard, and train the people who create the product before changing prices.",
+      "whyItMatters": "Wholesale returns look like margin trouble at the end. The cause is a people-system gap upstream: two leaders teaching different product standards."
+    },
+    {
+      "exampleId": "ch06-ex02-stefan-bench-test",
+      "title": "Stefan Pulls the Throughput Bonus",
+      "tags": ["repair", "calibration", "warranty"],
+      "planSpec": {
+        "domain": "marine electronics repair shop with repeat sonar warranty claims",
+        "audience": "a shop manager tempted to pressure technicians for faster throughput",
+        "stakes": "rushing repairs increases warranty loss and damages dealer trust",
+        "format": "scene",
+        "requiredBeat": "the manager traces three failed units to the same untrained calibration step and pulls the throughput bonus until every tech passes the bench test"
+      },
+      "scenario": "Three returned sonar heads sit next to a calibration gauge on Stefan's repair bench during Monday dealer intake. The shop manager hears the dealer asking for faster turnaround, and the throughput bonus has technicians clearing tickets by noon. Stefan traces all three failures to the same untrained calibration step and has to decide whether to push harder or pull the bonus until every tech passes the bench test.",
+      "whatToDo": "Trace the warranty claims to the calibration step, pause the throughput bonus, and require a bench test before speed is rewarded again.",
+      "whyItMatters": "Pressure for speed is not profit discipline when training is weak. It converts a people gap into warranty loss and dealer distrust."
+    },
+    {
+      "exampleId": "ch06-ex03-natalie-handoff-rule",
+      "title": "Natalie Follows the Biopsy Sample",
+      "tags": ["lab", "handoff", "supervisors"],
+      "planSpec": {
+        "domain": "veterinary lab processing biopsy samples across two shifts",
+        "audience": "a lab director seeing late reports and blaming software",
+        "stakes": "delayed diagnoses and lost clinic contracts trace to inconsistent handoff standards",
+        "format": "postmortem",
+        "requiredBeat": "the director follows one sample's path, finds the missing handoff rule between shifts, and retrains supervisors before buying new software"
+      },
+      "scenario": "\"The software lost it again,\" a supervisor says as Natalie sees a biopsy cassette sitting beside a timestamped handoff tray at the 11 p.m. shift change. Natalie, the lab director, follows one sample from intake to report in the postmortem and finds the missing handoff rule between shifts. Before buying new software, she retrains supervisors on late reports, tray ownership, and the exact transfer point.",
+      "whatToDo": "Follow one sample through the lab, find the missing handoff rule, and retrain supervisors before spending money on a technology fix.",
+      "whyItMatters": "The software may be imperfect, but the late-report pattern comes from unclear supervision. Product reliability improves when the handoff standard is taught."
+    },
+    {
+      "exampleId": "ch06-ex04-george-margin-gate",
+      "title": "George Pauses the New Bids",
+      "tags": ["manufacturing", "margin", "standards"],
+      "planSpec": {
+        "domain": "custom furniture manufacturer with margin erosion",
+        "audience": "a founder who thinks profits fell because lumber costs rose",
+        "stakes": "untrained project leads are approving change orders inconsistently",
+        "format": "decision_point",
+        "requiredBeat": "the founder audits five change orders, finds three different approval rules, and pauses new bids until project leads use one margin gate"
+      },
+      "scenario": "It took George five walnut change orders and one calculator tape on a remodel invoice review morning to stop blaming lumber alone. The project leads are approving client changes through three different rules, and the margin report hides the variation until the job closes. George must decide before sending new bids: keep pricing around the mess, or pause bids until every lead uses one margin gate.",
+      "whatToDo": "Audit the change orders, identify the conflicting approval rules, and pause new bids until project leads use one margin gate consistently.",
+      "whyItMatters": "Rising lumber may be real, but inconsistent approval is management debt. Profit cannot stabilize while each lead protects margin differently."
+    },
+    {
+      "exampleId": "ch06-ex05-catarina-service-interval",
+      "title": "Catarina Certifies the Managers",
+      "tags": ["sales", "coaching", "renewals"],
+      "planSpec": {
+        "domain": "regional laboratory instrument sales team missing renewal targets",
+        "audience": "a VP considering commission cuts before checking manager coaching",
+        "stakes": "customers leave because reps cannot explain service intervals clearly",
+        "format": "dialogue",
+        "requiredBeat": "the VP asks two managers to role-play the renewal explanation, hears the gap, and builds manager certification before changing commissions"
+      },
+      "scenario": "You are beside Catarina in the regional sales office as she opens the renewal spreadsheet next to a service-interval card. The missed targets make commission cuts tempting. \"Show me how you coach the renewal explanation,\" she tells two managers. Their role-play stumbles before the second interval. Catarina has to decide whether to change pay or build manager certification first.",
+      "whatToDo": "Have managers role-play the service-interval explanation, certify their coaching, and change commissions only after the management gap is addressed.",
+      "whyItMatters": "Reps cannot sell a renewal story their managers cannot teach. Commission pressure would punish the symptom while leaving the coaching system broken."
+    },
+    {
+      "exampleId": "ch06-ex06-martin-reason-codes",
+      "title": "Martin Records the Reason Codes",
+      "tags": ["recycling", "training", "standards"],
+      "planSpec": {
+        "domain": "municipal recycling facility with contamination penalties",
+        "audience": "a plant superintendent blaming residents before checking floor training",
+        "stakes": "penalties rise because sort-line leads apply different rejection calls",
+        "format": "reflection",
+        "requiredBeat": "the superintendent stands at two sort lines, records conflicting rejection calls, and creates a lead-training checklist before asking the city for new bins"
+      },
+      "scenario": "Which is easier to blame: residents or two sort-line leads using different reason codes? Martin stands beside a rejected bundle of mixed paper tagged twice, once for food residue and once for plastic film, at the municipal recovery facility before the noon truck. Before asking the city for new bins, he watches both lines, records the conflicting calls, and creates a lead-training checklist tied to the contamination penalty.",
+      "whatToDo": "Observe both sort lines, record the reason-code conflict, and train leads on one rejection checklist before asking for a public bin campaign.",
+      "whyItMatters": "Resident behavior may matter, but the facility is adding its own variation. The penalty starts falling only when floor standards become consistent."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch06-q01",
+        "prompt": "A repair shop's warranty losses rise after a throughput bonus. The manager wants to demand faster work and fewer mistakes. Which first move follows the people-product-profit chain?",
+        "choices": [
+          "Trace failed units to the work step, check training, and pause incentives that reward speed before competence.",
+          "Cut technician bonuses immediately so profit pressure is clear.",
+          "Tell dealers the shop is improving culture and ask for patience."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest move checks the people system creating the defect. Bonus cuts and dealer messages may not touch the calibration or training failure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q02",
+        "prompt": "A founder sees margin erosion and blames raw material costs. An audit shows project leads approve change orders under three different rules. What is the better diagnosis?",
+        "choices": [
+          "Profit fell only because the market changed.",
+          "The company has management debt: unclear standards are becoming margin loss.",
+          "The project leads need a morale event before they can focus."
+        ],
+        "correctIndex": 1,
+        "explanation": "Material costs may contribute, but inconsistent approval rules are a people-system defect. The margin report is showing a management standard problem.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q03",
+        "prompt": "A sales VP considers cutting commissions after missed renewals. Two managers cannot role-play the service-interval explanation their reps need. Which action should come before pay changes?",
+        "choices": [
+          "Replace the reps with people who are more naturally persuasive.",
+          "Lower renewal targets until confidence returns.",
+          "Build manager certification around the renewal explanation and coach reps through that standard."
+        ],
+        "correctIndex": 2,
+        "explanation": "The miss traces to manager coaching, not only rep effort. Certification repairs the upstream teaching gap before compensation is used as pressure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q04",
+        "prompt": "A lab director sees late biopsy reports and wants to buy workflow software. A sample walk-through reveals no clear handoff rule between shifts. What should she do?",
+        "choices": [
+          "Retrain supervisors on the handoff rule before buying software to solve a management gap.",
+          "Buy the software because technology fixes are faster than supervisor training.",
+          "Ask clinics to expect slower reports during busy weeks."
+        ],
+        "correctIndex": 0,
+        "explanation": "The sample path exposes a missing standard. Software may help later, but buying it first mislabels supervision debt as a tool problem.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q05",
+        "prompt": "A plant superintendent blames residents for contamination penalties, but two sort-line leads reject the same item for different reasons. What does this reveal?",
+        "choices": [
+          "Public education is pointless because residents never change.",
+          "Profit penalties can begin inside the facility when floor standards vary by lead.",
+          "The city should stop measuring contamination until the team feels supported."
+        ],
+        "correctIndex": 1,
+        "explanation": "The inconsistent reason codes show product quality is being shaped by training and standards. Blaming residents alone skips the controllable floor system.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q06",
+        "prompt": "A CEO says putting people first means being generous with perks and avoiding harsh feedback during a quality slump. Which response best fits the principle?",
+        "choices": [
+          "Perks are enough if employees feel appreciated.",
+          "People first means training, standards, feedback, and accountability strong enough to help people produce reliable work.",
+          "Quality should be handled by product leaders; people systems are separate."
+        ],
+        "correctIndex": 1,
+        "explanation": "The principle is not comfort-first management. It treats people systems as the source of product reliability, which means clear correction is part of care.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q07",
+        "prompt": "A bakery owner gets wholesale returns and wants to raise prices. Two shift leads are proofing dough by different standards. Which sequence is strongest?",
+        "choices": [
+          "Raise prices first because wholesale customers are already costing money.",
+          "Replace the oven because product problems should be solved with equipment.",
+          "Write one proofing standard, train both shift leads, watch returns, then decide whether repricing is still needed."
+        ],
+        "correctIndex": 2,
+        "explanation": "The return problem starts with inconsistent training. Repricing before fixing proofing may charge customers for a defect the bakery is producing.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q08",
+        "prompt": "A service business has churn, discounts, and rework. Leaders argue whether finance or product owns the issue. Which evaluation best applies the causal chain?",
+        "choices": [
+          "Finance owns it because profit is the final number.",
+          "Product owns it because customers see defects first.",
+          "Leadership should inspect training, standards, role clarity, and feedback loops that produce product reliability and profit."
+        ],
+        "correctIndex": 2,
+        "explanation": "The chain runs through the people system into product outcomes and then profit. Assigning it only to finance or product misses the upstream management levers.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q09",
+        "prompt": "A manager says, 'We should hold people accountable,' after missed orders. No one can find a written standard for order handoff. What accountability move is legitimate first?",
+        "choices": [
+          "Discipline the people who missed orders so everyone sees consequences.",
+          "Define and train the handoff standard, then hold people to that standard once it is clear.",
+          "Avoid standards because they make employees feel mistrusted."
+        ],
+        "correctIndex": 1,
+        "explanation": "Accountability without a taught standard is blame. The first legitimate move is to make the expected behavior clear and repeatable.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch06-card01",
+      "front": "A profit number is worsening. Where should you inspect before treating finance as separate?",
+      "back": "Inspect the people system: manager behavior, training, standards, role clarity, feedback, and accountability. These often produce the product miss that becomes profit loss.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch06-card02",
+      "front": "A product defect keeps recurring. What is the upstream question?",
+      "back": "Ask what behavior, standard, or training gap would have to repeat for this defect to appear. Then fix that system, not only the visible defect.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-card03",
+      "front": "A leader says people first means being nice. What should you retrieve?",
+      "back": "People first means giving people the system needed to do reliable work: training, clear standards, feedback, authority, and fair accountability.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-card04",
+      "front": "A new incentive seems profit-focused. What should you check before launching it?",
+      "back": "Check whether the people system can perform the behavior being rewarded. Incentives can amplify training gaps and create product damage.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch06-card05",
+      "front": "A manager wants accountability before standards are written. What is the risk?",
+      "back": "Untaught accountability becomes blame. Define and train the standard first, then hold people to it once the expected behavior is visible.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice tracing weak output upstream before reacting to the financial symptom. Look for management debt in training, standards, role clarity, feedback, incentives, and accountability.",
+    "ifThenPlans": [
+      {
+        "context": "Product defect",
+        "plan": "If a defect repeats, then observe the work in two places and compare whether the same standard is being taught."
+      },
+      {
+        "context": "Profit miss",
+        "plan": "If margin erodes, then audit the approval, pricing, or exception rules before assuming the market alone caused the loss."
+      },
+      {
+        "context": "Incentive change",
+        "plan": "If you want to pressure output with pay or targets, then verify that people have been trained to the standard you are rewarding."
+      },
+      {
+        "context": "Manager coaching",
+        "plan": "If reps or technicians underperform, then ask their managers to demonstrate the coaching script or bench standard before blaming the front line."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one recurring miss and trace it to one likely upstream management gap: training, standard, owner, feedback, or incentive.",
+    "weeklyPractice": "Once a week, review one product or profit issue and ask which people-system artifact would prevent the same miss next time."
+  },
+  "memorableLines": [
+    {
+      "text": "Management debt compounds quietly.",
+      "location": "breakdown.deepRead",
+      "why": "It turns weak training and standards into a financial image."
+    },
+    {
+      "text": "The product is not separate from management.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the causal chain impossible to miss."
+    },
+    {
+      "text": "Customers do not see the training gap, but they receive it.",
+      "location": "breakdown.fullRead",
+      "why": "It connects internal management quality to external product experience."
+    }
+  ]
+}

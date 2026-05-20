@@ -1,0 +1,204 @@
+{
+  "chapterId": "smarter-faster-better-ch02",
+  "number": 2,
+  "title": "Teams",
+  "coreMove": "Diagnose the room by how safely useful signal moves before status fear edits it out.",
+  "sourcePressure": "The chapter centers on psychological safety: Google data scientists studied teams for four years and found that interaction quality matters more than individual composition; Saturday Night Live supplies a creative-room echo.",
+  "chapterSpecificMisunderstanding": "Reducing team performance to talent, friendship, or everyone being nice.",
+  "sourceAlignmentTerms": [
+    "Google",
+    "four-year study",
+    "psychological safety",
+    "how a group interacts",
+    "Saturday Night Live",
+    "contribution norms"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Google four-year team study",
+      "detail": "official copy says Google data scientists ran a four-year study of how the best teams function",
+      "useIn": "both",
+      "phrasingHint": "Google spent years looking for the magic in team rosters and found the room itself mattered more than the names on it."
+    },
+    {
+      "kind": "study",
+      "name": "psychological safety",
+      "detail": "the sidecar permits the exact term and frames it as the chapter mechanism for voice and interaction quality",
+      "useIn": "both",
+      "phrasingHint": "Psychological safety is the quiet permission to put an unfinished doubt into the room before the decision hardens."
+    },
+    {
+      "kind": "institution",
+      "name": "Saturday Night Live",
+      "detail": "official copy says the same principle helps explain why Saturday Night Live became a hit",
+      "useIn": "fullRead",
+      "phrasingHint": "A comedy room needs rough lines to survive long enough to improve; if every weak draft is punished, the room edits too soon."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Person at a meeting realizes the real lesson",
+      "The day starts with a dashboard",
+      "A simple choice changes everything"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more faster",
+      "The obvious answer is wrong",
+      "The problem is not effort but something deeper"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three priorities",
+      "Pause before your next task"
+    ],
+    "examples": [
+      "generic office stand-up",
+      "kitchen table planning",
+      "classroom marker demonstration",
+      "commuter train epiphany"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "a municipal flood-response briefing before sandbag crews are deployed",
+      "audience": "an emergency planner leading police, works crews, and volunteers",
+      "stakes": "one quiet hydrology warning could change where crews go first",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Claire stops the senior officer from closing the briefing and asks the junior hydrologist to name the one assumption that feels unsafe",
+      "firstImage": "\"Before we lock this route, who sees the weak spot?\" Claire says",
+      "mustInclude": [
+        "flood map",
+        "sandbag route list",
+        "junior hydrologist"
+      ],
+      "mustAvoid": [
+        "everyone politely agrees"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "a touring theater company deciding whether to cut a scene after previews",
+      "audience": "a stage manager watching actors hide doubts around the director",
+      "stakes": "a weak second act will stay broken if no one risks naming it",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lukas opens notes by sharing one staging mistake he made, then asks each actor for one line that is not landing",
+      "firstImage": "The rehearsal room smells of dust, sweat, and wet wool coats",
+      "mustInclude": [
+        "preview note cards",
+        "second-act scene",
+        "director in the room"
+      ],
+      "mustAvoid": [
+        "generic creative brainstorming"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "a London hospital ward handoff where nurses soften bad news for a famous surgeon",
+      "audience": "a senior registrar trying to catch medication-risk signals",
+      "stakes": "a dosage change may be missed if the room protects rank",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:42 a.m., Hadiya asks the nurse who hesitated to repeat the concern exactly, while the consultant is still present",
+      "firstImage": "At 6:42 a.m., Hadiya sees one nurse touch the medication sheet and pull her hand back",
+      "mustInclude": [
+        "handoff sheet",
+        "consultant present",
+        "dosage change"
+      ],
+      "mustAvoid": [
+        "doctor as villain caricature"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "a junior cycling team reviewing a near-crash before race day",
+      "audience": "a coach with riders who are scared to blame a popular captain",
+      "stakes": "a repeat mistake could put two riders on the pavement",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Jack until the video replay to see that riders described the crash differently when the captain left the room",
+      "firstImage": "It took Jack three replays to notice who stopped talking when the captain leaned forward",
+      "mustInclude": [
+        "helmet-cam replay",
+        "team captain",
+        "race-day route"
+      ],
+      "mustAvoid": [
+        "repeated bike helmet prop as central anchor"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "a newsroom morning pitch meeting after a correction went public",
+      "audience": "a deputy editor trying to restore early error reporting",
+      "stakes": "another thinly checked story could damage trust",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ingrid compares the old pitch order with a new first round where reporters must name one uncertainty before selling the story",
+      "firstImage": "Two corrected headlines sit taped to the glass wall",
+      "mustInclude": [
+        "correction printouts",
+        "pitch order",
+        "fact-check slot"
+      ],
+      "mustAvoid": [
+        "hero editor lecture"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "a family-owned furniture workshop choosing whether to accept a rush hotel order",
+      "audience": "a second-generation operations lead balancing family status and production truth",
+      "stakes": "the order could save the month or break the shop schedule",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Pablo has everyone write the riskiest constraint before his father gives an opinion, then compares the cards after the room talks",
+      "firstImage": "Which warning disappears when the founder speaks first?",
+      "mustInclude": [
+        "rush hotel order",
+        "constraint cards",
+        "founder at the table"
+      ],
+      "mustAvoid": [
+        "letting the question hook replace the visible action beat"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when silence is self-protection rather than agreement",
+      "choose meeting moves that lower the cost of candor",
+      "separate psychological safety from comfort or niceness"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next group conversation, ask the quietest informed person what risk they see before you state your own preference.",
+  "readingTimeMinutes": 12
+}

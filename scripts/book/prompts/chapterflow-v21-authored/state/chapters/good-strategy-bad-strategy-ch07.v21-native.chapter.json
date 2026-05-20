@@ -1,0 +1,325 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch07",
+  "number": 7,
+  "title": "Using Leverage",
+  "readingTimeMinutes": 10,
+  "hook": "One injury log can turn a safety campaign from scattered concern into applied force.",
+  "counterintuition": "Equal attention is not responsibility but diffusion when one pivot point controls the outcome. Other problems can remain worthy while focused force gets priority.",
+  "tryThisNow": "Circle the one point where effort would change the most downstream outcomes. Write one action that lands there and one tempting action you will leave alone.",
+  "keyTakeaway": "Use leverage by finding the pivot point, concentrating force there, and refusing attractive work that diffuses power without changing the system.",
+  "breakdown": {
+    "fastRead": "Olivia lays the injury log beside a guard sample and a shift huddle card. The warehouse safety plan has posters, quizzes, floor markings, and a new slogan. The log says hand cuts on one packing station account for most lost time. Olivia crosses out the broad campaign and puts the guard sample in the center of the huddle.\n\nLeverage asks where force should land. It is not the same as caring about every problem.\n\nA pivot point changes more than its size suggests. When effort lands there, the system moves. When effort spreads evenly, the plan may look fair while nothing important changes.",
+    "deepRead": "Mathieu opens renewal envelopes at a local newspaper office while a subscriber map and front-page proof sit beside him. The staff wants a social campaign, a redesign, and a public letter. The map shows expired subscriptions clustered on two delivery routes where papers arrive late. Mathieu asks which fix touches the renewal decision this week.\n\nFocused force has a cost because other work waits.\n\nThe cost is leaving other reasonable work aside. That is why leverage is emotionally harder than efficiency. Efficiency asks people to do work better. Leverage asks them to do less of the wrong work so force can land where it matters. A team can be efficient at posters, meetings, and updates while missing the bend in the contest.\n\nAnke sees this after a medtech sales push stalls. The demo kit is strong. The buyer org chart is clear. The procurement checklist shows the bottleneck: one compliance packet is missing before every hospital review. In the postmortem, the sales team stops adding demos and assigns its best person to the packet.\n\nThe leverage point is often embarrassingly specific.\n\nThe harder test is evidence. If the chosen point is real leverage, movement there should show up downstream: fewer returns, faster renewals, lower losses, shorter delays. If nothing downstream changes, the team chose a favorite task, not a pivot point.",
+    "fullRead": "Tomas stands beside a rail switch at dawn with orange cones, an inspection torch, and a failure log. The maintenance crew wants a system-wide reliability push. The log points to one switch that fails after heavy rain and delays the same morning route. Tomas asks which inspection would prevent the next delay, and the answer is not system-wide. It is this switch, before this rain window, with this crew.\n\nThat narrowness can feel unfair. Other switches need attention. Other safety concerns deserve respect. Other routes have riders too. But leverage is not a moral ranking of all concerns. It is a choice about where applied power changes the most. If you confuse fairness of attention with strategic effect, you spread effort until it becomes harmless.\n\nHiroshi faces the same temptation in a community bank fraud response. The fraud alert stack is thick, the branch call list is long, and account flags cover many cases. A broad customer education push would feel responsible. Then he sorts the alerts by account type and sees that new business checking accounts create the largest loss spike. He predicts that a focused call script for those accounts will catch more fraud than a general campaign. The reveal is quick: the first branch call stops two transfers before noon.\n\nThere are two limits. First, the pivot point must be real, not merely convenient. Teams often choose the point they can control and call it leverage. The test is whether that point changes downstream outcomes. Second, leverage does not excuse neglect forever. It concentrates force for a purpose, then moves when the bend moves.\n\nChris learns that on an online course platform. Before the review, the team debates pricing, badges, social sharing, and lesson design. After he puts the trial funnel report beside the lesson preview and welcome email, he stops the meeting. The dropoff is not course quality; it is the first click after signup. He rearranges the sequence: welcome email first, lesson preview second, pricing later.\n\nUsing leverage means accepting diffusion cost. Every action away from the pivot point spends scarce attention. Some of those actions will be nice. Some will even be useful. The question is whether they change the outcome that governs the problem right now. If they do not, they wait.\n\nAnother limit matters: the pivot point can move. Once the hand-cut station is fixed, Olivia has to read the injury log again. Once the late routes are repaired, Mathieu has to watch renewal data again. Leverage is not loyalty to yesterday’s bottleneck. It is loyalty to the place where force now changes the most.\n\nApplied power is force with an address.\n\nA useful leverage habit is to name the downstream result before the work starts. If the result cannot be named, the concentration may be only preference. If it can be named and watched, the team can move with force and still know when to shift."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-olivia-injury-log",
+      "title": "Olivia Moves the Guard Sample Into the Huddle",
+      "tags": [
+        "warehouse",
+        "safety",
+        "pivot"
+      ],
+      "planSpec": {
+        "domain": "warehouse safety program choosing one injury pivot",
+        "audience": "a reader facing warehouse safety program choosing one injury pivot",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "scene",
+        "requiredBeat": "Olivia moves one concrete constraint to the center of the table and crosses out every action that does not address it using injury log so the lesson happens as a visible action."
+      },
+      "scenario": "The injury log sits on the warehouse lunch table at 5:40 a.m., next to a guard sample and the shift huddle card. Olivia, the safety lead, sees posters, quizzes, and floor tape proposed for next month. The log shows most lost time comes from hand cuts at one packing station. She has to decide whether to run the broad campaign or put the guard sample into every huddle this week.",
+      "whatToDo": "Aim the safety push at the packing-station cuts, install the guard sample there, and make the huddle card teach that one injury pivot first.",
+      "whyItMatters": "Leverage comes from landing effort where one fix changes most losses. A broad campaign would spread concern without moving the injury count."
+    },
+    {
+      "exampleId": "ch07-ex02-mathieu-renewals",
+      "title": "Mathieu Drops the Public Letter",
+      "tags": [
+        "newspaper",
+        "renewal",
+        "routes"
+      ],
+      "planSpec": {
+        "domain": "local newspaper subscription rescue at renewal week",
+        "audience": "a reader facing local newspaper subscription rescue at renewal week",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "decision_point",
+        "requiredBeat": "Mathieu asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using renewal envelopes so the lesson happens as a visible action."
+      },
+      "scenario": "\"Which envelope changes by Friday?\" Mathieu asks in the newsroom, spreading renewal envelopes beside a subscriber map and the front-page proof. The editor wants a public letter about local journalism; the circulation lead wants to fix late delivery on two routes. The deadline is renewal week. Mathieu must decide whether to protect the letter or delete it and send drivers to the late routes.",
+      "whatToDo": "Choose the delivery routes, not the letter, and put the circulation team where renewal decisions are being lost this week.",
+      "whyItMatters": "The pivot point is late delivery for expiring subscribers. A public letter may be noble, but it does not touch the decision now."
+    },
+    {
+      "exampleId": "ch07-ex03-anke-procurement-checklist",
+      "title": "Anke Finds the Missing Packet",
+      "tags": [
+        "medtech",
+        "procurement",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "medtech sales team focusing on procurement bottleneck",
+        "audience": "a reader facing medtech sales team focusing on procurement bottleneck",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "postmortem",
+        "requiredBeat": "Anke uses the artifact to expose the hidden constraint before anyone proposes another initiative using procurement checklist so the lesson happens as a visible action."
+      },
+      "scenario": "The sales room smells of plastic demo cases after another hospital review slips. Anke opens the procurement checklist beside the demo kit and buyer org chart. The postmortem shows the product story landed, the surgeon liked the device, and the buyer knew the price. The review still stalled because one compliance packet was missing from procurement every time.",
+      "whatToDo": "Stop adding demos and assign the strongest seller to complete the compliance packet before the next buyer review.",
+      "whyItMatters": "The stalled packet is the pivot point. More persuasion spreads effort away from the step that releases the sale."
+    },
+    {
+      "exampleId": "ch07-ex04-tomas-switch-failure",
+      "title": "Tomas Aims the Crew at One Switch",
+      "tags": [
+        "rail",
+        "maintenance",
+        "failure"
+      ],
+      "planSpec": {
+        "domain": "rail maintenance crew targeting a recurring switch failure",
+        "audience": "a reader facing rail maintenance crew targeting a recurring switch failure",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "dialogue",
+        "requiredBeat": "Tomas turns a vague goal into a visible choice by marking the one place effort will land using switch failure log so the lesson happens as a visible action."
+      },
+      "scenario": "You can see the weak spot in the switch failure log before the rain starts at the north rail siding. Tomas, the rail maintenance lead, stands near orange cones with an inspection torch clipped to his vest. A supervisor wants the whole line checked, but Tomas must decide whether to concentrate the crew on the one wet switch that stops the freight schedule. The rain window gives the crew only ninety minutes before the commuter line opens, so the specific switch choice has to beat the urge to look comprehensive.",
+      "whatToDo": "Send the crew to switch 18 before the rain, inspect the failure pattern, and leave the lower-impact checks for the next window.",
+      "whyItMatters": "Focused force beats full coverage when one switch controls the route delay. Checking everywhere would waste the rain window."
+    },
+    {
+      "exampleId": "ch07-ex05-hiroshi-fraud-stack",
+      "title": "Hiroshi Sorts the Fraud Stack by Account Type",
+      "tags": [
+        "banking",
+        "fraud",
+        "concentration"
+      ],
+      "planSpec": {
+        "domain": "community bank fraud response concentrating on one account type",
+        "audience": "a reader facing community bank fraud response concentrating on one account type",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "predict_reveal",
+        "requiredBeat": "Hiroshi tests the proposed move against the object or record that reveals whether it fits the real problem using fraud alert stack so the lesson happens as a visible action."
+      },
+      "scenario": "After the second weekend loss report, Hiroshi distrusts the general fraud bulletin. He sorts the fraud alert stack beside the branch call list and account flags. New business checking accounts carry the largest losses. Hiroshi predicts a focused branch script will stop more transfers than a general email. He has to decide whether to call every customer or concentrate on that account type first. At the branch operations desk, the noon transfer cutoff makes the account-type sort more than analysis; it decides which calls can still stop money leaving today.",
+      "whatToDo": "Use the account flags to target new business checking accounts, then give branches a script for that specific transfer pattern.",
+      "whyItMatters": "The account type is the pivot. General education spends attention on customers who are not driving the loss spike."
+    },
+    {
+      "exampleId": "ch07-ex06-chris-trial-funnel",
+      "title": "Chris Moves the Welcome Email First",
+      "tags": [
+        "online learning",
+        "funnel",
+        "dropoff"
+      ],
+      "planSpec": {
+        "domain": "online course platform fixing trial-to-first-lesson dropoff",
+        "audience": "a reader facing online course platform fixing trial-to-first-lesson dropoff",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "before_after",
+        "requiredBeat": "Chris stops the meeting and rearranges the sequence of work so the strategic move becomes visible using trial funnel report so the lesson happens as a visible action."
+      },
+      "scenario": "Where does the trial actually die? Before the review, Chris’s team debates badges, pricing, lesson length, and social sharing. After he places the trial funnel report beside the lesson preview and welcome email, he stops the meeting. Before the sprint starts, he rearranges the work: welcome email clarity first, first lesson preview second, pricing tests after the signup-to-lesson gap moves.",
+      "whatToDo": "Put the welcome email at the pivot point, make the first lesson obvious, and delay work that does not move trial-to-first-lesson conversion.",
+      "whyItMatters": "The platform does not need equal effort across the funnel. It needs force at the dropoff that controls whether trial users ever begin."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A warehouse safety team has ten injury categories, but hand cuts at one station cause most lost time. Which action best uses leverage?",
+        "choices": [
+          "Run a broad safety-awareness month for every category.",
+          "Ask supervisors to mention all injury categories equally at every shift.",
+          "Fix the guard and huddle routine at the hand-cut station first."
+        ],
+        "correctIndex": 2,
+        "explanation": "The station is the pivot point. Equal attention sounds fair, but it diffuses force away from the injury source controlling lost time.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A newspaper has a renewal problem. Expiring subscribers cluster on two late-delivery routes. What should renewal week prioritize?",
+        "choices": [
+          "A public letter about the value of local journalism.",
+          "A redesign of the front page to impress all readers.",
+          "Fixing delivery on the two routes before renewal envelopes are due."
+        ],
+        "correctIndex": 2,
+        "explanation": "The late routes touch the renewal decision directly. A letter or redesign may help reputation, but not the pivot point this week.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A medtech sales team keeps adding demos after hospital reviews stall. Procurement records show one compliance packet is missing every time. What is the leveraged move?",
+        "choices": [
+          "Assign the strongest person to complete the compliance packet before more demos.",
+          "Schedule more surgeon demos to create enthusiasm.",
+          "Lower the price so procurement feels urgency."
+        ],
+        "correctIndex": 0,
+        "explanation": "The missing packet blocks the sale. More demos or discounts push around the bottleneck instead of moving it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A rail crew wants a full-line inspection, but one switch causes most rain delays. The rain window is short. What does leverage require?",
+        "choices": [
+          "Inspect every switch lightly to show complete coverage.",
+          "Inspect the recurring switch deeply before the rain and schedule the rest later.",
+          "Wait until after the storm so crews can see all failures."
+        ],
+        "correctIndex": 1,
+        "explanation": "The recurring switch is where force should land before the window closes. Complete coverage would reduce depth where it matters most.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A community bank plans a general fraud email. Alert data show new business checking accounts drive the largest losses. What mistake would the email make?",
+        "choices": [
+          "It would concentrate too much attention on one group.",
+          "It would diffuse attention away from the account type where fraud response has the most effect.",
+          "It would be too cheap to count as a serious response."
+        ],
+        "correctIndex": 1,
+        "explanation": "The loss pattern points to one account type. General education spends scarce attention across many customers outside the pivot.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An online course platform loses users between signup and the first lesson. The team wants badges, community features, and pricing tests. What should come first?",
+        "choices": [
+          "Welcome email clarity and first-lesson access, because that is the controlling dropoff.",
+          "Badges, because motivation improves all later behavior.",
+          "Pricing tests, because revenue should guide product work."
+        ],
+        "correctIndex": 0,
+        "explanation": "The signup-to-lesson gap controls whether users start. Badges and pricing are later levers unless the first dropoff moves.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says leverage means making every process 10 percent more efficient. What is missing?",
+        "choices": [
+          "The idea of a pivot point where concentrated force changes more than evenly spread improvement.",
+          "A way to measure employee effort by hour.",
+          "A larger list of processes to improve at the same time."
+        ],
+        "correctIndex": 0,
+        "explanation": "Leverage is not even improvement. It requires finding where effort changes the system most and concentrating there.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A nonprofit focuses all energy on one donor segment because it is easiest to reach. Results do not change because that segment was never the funding bottleneck. How should you judge the move?",
+        "choices": [
+          "It was leverage because the team concentrated force.",
+          "It was not leverage because concentration landed on convenience rather than the pivot point.",
+          "It was leverage because any focus beats broad effort."
+        ],
+        "correctIndex": 1,
+        "explanation": "Concentration alone is insufficient. The point chosen has to control downstream results, not simply be easy to address.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A city road team can fix one intersection before school starts. Crash data show one crossing causes most injuries, but council members want small fixes in every district. What should guide the decision?",
+        "choices": [
+          "Distribute fixes evenly so every district feels respected.",
+          "Repair the crossing that controls the injury pattern and explain why other fixes wait.",
+          "Choose the cheapest repairs first to complete more visible projects."
+        ],
+        "correctIndex": 1,
+        "explanation": "The crossing is the pivot point for injuries. Equal distribution and cheap visibility spread effort away from the outcome that matters.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A team has six safety problems and one injury pattern drives most losses. What should it retrieve?",
+      "back": "Leverage is applied force at a pivot point, where a concentrated action changes more than broad activity would.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can equal attention be strategically weak?",
+      "back": "Equal attention can diffuse power across many worthy issues while missing the one point that controls the outcome.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How do you test whether a focus point is real leverage?",
+      "back": "Ask whether movement there changes downstream results. If the point is only convenient or visible, concentration may still be wasted.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A team is efficient everywhere but results do not move. What should you retrieve?",
+      "back": "Efficiency is not leverage. Look for the pivot point where force can bend the system, then shift effort away from work that only looks responsible.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A tempting side project pulls attention from the pivot point. What cost should you name?",
+      "back": "It is the price paid when scarce attention is spread across attractive work that does not touch the pivot point.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice locating the pivot point before assigning effort. The skill is to ask where one concentrated action changes the most downstream outcomes, then tolerate leaving other work for later.",
+    "ifThenPlans": [
+      {
+        "context": "operations",
+        "plan": "If a problem has many symptoms, then rank them by downstream effect and pick the one point that controls the largest loss."
+      },
+      {
+        "context": "team planning",
+        "plan": "If people ask for equal effort across priorities, then ask which priority changes the result if it moves this week."
+      },
+      {
+        "context": "personal work",
+        "plan": "If your task list grows under pressure, then identify the one task that unlocks three others and do it before maintenance work."
+      },
+      {
+        "context": "public service",
+        "plan": "If fairness pushes attention everywhere, then separate fairness of concern from strategic effect and explain why one pivot gets force first."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one active problem and name its pivot point. Move one hour, one person, or one budget line away from diffuse work and toward that point.",
+    "weeklyPractice": "Each week, review one effort that felt busy. Ask where force actually landed, what outcome moved, and what work should have waited."
+  },
+  "memorableLines": [
+    {
+      "text": "Focused force has a cost because other work waits.",
+      "location": "deepRead",
+      "why": "The sentence makes leverage feel like a tradeoff, not a hack."
+    },
+    {
+      "text": "The leverage point is often embarrassingly specific.",
+      "location": "deepRead",
+      "why": "It keeps readers looking for concrete pivots."
+    },
+    {
+      "text": "Applied power is force with an address.",
+      "location": "fullRead",
+      "why": "It closes the chapter with a compact image for aimed effort."
+    }
+  ]
+}

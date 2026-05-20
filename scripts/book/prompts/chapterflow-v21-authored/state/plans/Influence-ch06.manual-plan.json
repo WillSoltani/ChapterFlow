@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch06",
+  "number": 6,
+  "title": "Scarcity: The Rule of the Few",
+  "coreMove": "Remove the loss pressure long enough to price the option by its use, not its disappearance.",
+  "sourcePressure": "The source supports scarcity, fewness, limited access, urgency, threatened loss, and the defense of separating actual value from the pressure created by disappearing availability.",
+  "chapterSpecificMisunderstanding": "Do not make this a general fear-of-missing-out chapter; it is about value swelling under threatened loss.",
+  "sourceAlignmentTerms": ["scarcity", "fewness", "limited access", "urgency", "threatened loss", "actual value", "closing access"],
+  "forbiddenFrames": {
+    "hook": ["The last one looks better", "Scarcity makes desire louder", "A deadline can lie"],
+    "counterintuition": ["Rare means worthless", "Never act under urgency", "Abundance is always better"],
+    "tryThisNow": ["Wait before buying", "Ignore the countdown", "Ask if you need it"],
+    "examples": ["limited-time online sale", "last hotel room alert", "concert tickets selling out"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "community garden plot lottery",
+      "audience": "a renter offered the last available plot",
+      "stakes": "accepting a plot she cannot maintain because last available feels precious",
+      "format": "decision_point",
+      "requiredBeat": "she covers the last plot label and compares the watering schedule to her actual week before accepting",
+      "firstImage": "a laminated plot map clipped to a chain-link fence",
+      "mustInclude": ["plot map", "watering schedule", "last available label"],
+      "mustAvoid": ["unity neighborhood belonging"]
+    },
+    {
+      "domain": "rare-book fair glass case",
+      "audience": "a collector considering a signed atlas",
+      "stakes": "overpaying because the dealer says another buyer is circling",
+      "format": "scene",
+      "requiredBeat": "the collector asks to inspect condition notes and comparable sales after hearing only two left in private hands",
+      "firstImage": "cotton gloves resting on a velvet-lined case",
+      "mustInclude": ["condition notes", "comparable sale", "private hands phrase"],
+      "mustAvoid": ["authority appraiser credential"]
+    },
+    {
+      "domain": "childcare waitlist phone call",
+      "audience": "parents offered a deposit window for a preschool slot",
+      "stakes": "paying a nonrefundable deposit before checking fit",
+      "format": "dialogue",
+      "requiredBeat": "one parent repeats the deadline, then asks what they would choose if two slots were open for a week",
+      "firstImage": "a sticky note with the deposit deadline beside a toy catalog",
+      "mustInclude": ["nonrefundable deposit", "tour notes", "deadline"],
+      "mustAvoid": ["generic parenting anxiety"]
+    },
+    {
+      "domain": "artisan tool preorder for luthiers",
+      "audience": "a guitar repair technician tempted by a small-batch plane",
+      "stakes": "buying a tool that duplicates one already on the bench",
+      "format": "reflection",
+      "requiredBeat": "the technician lays the current plane beside the preorder specs and checks what job the scarce tool would uniquely do",
+      "firstImage": "curling maple shavings around a brass-bodied plane",
+      "mustInclude": ["preorder specs", "current tool", "batch size"],
+      "mustAvoid": ["craft romanticism"]
+    },
+    {
+      "domain": "rural broadband early-adopter contract",
+      "audience": "a township resident offered limited early installation",
+      "stakes": "locking into a plan because access has been scarce for years",
+      "format": "before_after",
+      "requiredBeat": "the resident compares plan terms before and after the installer says the first trenching round closes Friday",
+      "firstImage": "orange utility flags lined along a gravel road",
+      "mustInclude": ["contract term", "trenching round", "installation fee"],
+      "mustAvoid": ["authority utility worker"]
+    },
+    {
+      "domain": "artist residency application invitation",
+      "audience": "a painter offered one substitute spot with a fast reply deadline",
+      "stakes": "pausing paid work for a residency that no longer fits her goals",
+      "format": "postmortem",
+      "requiredBeat": "after the initial thrill, she reads last year's studio requirements and realizes the substitute spot is scarce but misaligned",
+      "firstImage": "a voicemail transcript printed beside paint-splattered invoices",
+      "mustInclude": ["reply deadline", "studio requirements", "paid commission"],
+      "mustAvoid": ["liking curator praise"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["separate scarcity pressure from actual usefulness", "recognize closing access as a value amplifier", "decide under deadlines without ignoring fit", "evaluate whether a scarce option deserves its new urgency"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "When something is framed as almost gone, cover the scarcity cue and say the one use or benefit that would still justify it tomorrow.",
+  "readingTimeMinutes": 12
+}

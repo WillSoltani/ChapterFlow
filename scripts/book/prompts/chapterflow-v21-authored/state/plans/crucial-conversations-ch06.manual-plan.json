@@ -1,0 +1,186 @@
+{
+  "chapterId": "crucial-conversations-ch06",
+  "number": 6,
+  "title": "Make It Safe: How to Make It Safe to Talk About Almost Anything",
+  "coreMove": "Repair the safety break before continuing the hard message.",
+  "sourcePressure": "Safety is restored by diagnosing whether Mutual Purpose or Mutual Respect is missing, then using apology, contrasting, or CRIB sincerely and in the right order.",
+  "chapterSpecificMisunderstanding": "Making safety repair sound like softening the truth until nobody objects.",
+  "sourceAlignmentTerms": [
+    "Mutual Purpose",
+    "Mutual Respect",
+    "apologize",
+    "contrast",
+    "CRIB",
+    "Commit",
+    "Recognize",
+    "Invent",
+    "Brainstorm"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "ICU family meeting after a resident uses a phrase that sounds dismissive",
+      "audience": "a senior physician repairing trust with a patient's daughter",
+      "stakes": "a treatment decision cannot proceed while the family doubts respect for the patient",
+      "format": "dialogue",
+      "requiredBeat": "the physician notices the daughter push back from the table, diagnoses lost respect, apologizes for the dismissive phrase, then contrasts the intent",
+      "firstImage": "A laminated ICU visitor badge lies beside a half-filled consent form.",
+      "mustInclude": [
+        "visitor badge",
+        "consent form",
+        "monitor alarm"
+      ],
+      "mustAvoid": [
+        "generic bedside compassion scene"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "city bus dispatch office after a driver hears a route-change memo as blame",
+      "audience": "a transit supervisor who needs to discuss missed stops without threatening identity",
+      "stakes": "drivers may resist the new detour if they believe management is calling them careless",
+      "format": "scene",
+      "requiredBeat": "the supervisor hears the driver say so this is my fault, stops the missed-stop data, and contrasts blame versus shared rider reliability",
+      "firstImage": "\"Wait,\" someone says, and a laminated detour card is tucked under the dispatch window glass.",
+      "mustInclude": [
+        "detour card",
+        "route radio",
+        "missed-stop log"
+      ],
+      "mustAvoid": [
+        "forbidden bus depot shell as background spectacle"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "small medical-device startup negotiating launch timing with regulatory counsel",
+      "audience": "a founder whose growth goal is colliding with compliance concerns",
+      "stakes": "a rushed launch could trigger a warning letter, but counsel may be dismissed as obstructionist",
+      "format": "decision_point",
+      "requiredBeat": "the founder realizes Mutual Purpose is broken, commits to seek one, and asks what launch goal sits behind counsel's no",
+      "firstImage": "The first signal is sensory before it is social: a prototype blister pack rests beside a marked-up FDA guidance printout.",
+      "mustInclude": [
+        "prototype blister pack",
+        "guidance printout",
+        "launch calendar"
+      ],
+      "mustAvoid": [
+        "generic startup disagreement"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "prison education program where an instructor corrects a participant in front of peers",
+      "audience": "an instructor who has damaged respect while trying to enforce class rules",
+      "stakes": "the participant may leave the program and others may stop speaking honestly",
+      "format": "postmortem",
+      "requiredBeat": "the instructor identifies that respect, not purpose, broke when he corrected publicly, then plans a private apology before the next session",
+      "firstImage": "You notice a paperback GED workbook is left open on a metal table before anyone names the problem.",
+      "mustInclude": [
+        "GED workbook",
+        "attendance sheet",
+        "security window"
+      ],
+      "mustAvoid": [
+        "generic classroom shell"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "wedding photography contract dispute after a couple thinks the photographer is upselling",
+      "audience": "a photographer trying to solve package confusion without sounding greedy",
+      "stakes": "a bad review and a ruined relationship are forming around misunderstood intent",
+      "format": "before_after",
+      "requiredBeat": "the photographer contrasts what she does not mean, selling fear, with what she does mean, protecting the only posed family hour",
+      "firstImage": "Only later does the miss become obvious: a rain-speckled sample album lies open to a family portrait.",
+      "mustInclude": [
+        "sample album",
+        "shot list",
+        "rain plan"
+      ],
+      "mustAvoid": [
+        "generic vendor complaint"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "co-op grocery board deciding whether to drop a beloved local supplier",
+      "audience": "a board chair trying to rebuild Mutual Purpose between food-safety advocates and loyalty advocates",
+      "stakes": "members may split into moral camps while a contamination risk remains unresolved",
+      "format": "thought_experiment",
+      "requiredBeat": "the chair maps purpose behind each strategy, local loyalty and safe shelves, then invents a shared purpose before brainstorming supplier conditions",
+      "firstImage": "What changes when a recall notice is taped beside jars of local almond butter?",
+      "mustInclude": [
+        "recall notice",
+        "supplier letter",
+        "member comment cards"
+      ],
+      "mustAvoid": [
+        "generic nonprofit harmony"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose purpose loss versus respect loss",
+      "use apology only where ownership is real",
+      "construct a truthful contrast in the right order",
+      "use CRIB when strategies hide competing purposes"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In a tense exchange, ask which safety condition is broken: purpose or respect. Choose one repair only: own your part, contrast your intent, or ask what shared purpose both strategies are trying to serve.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

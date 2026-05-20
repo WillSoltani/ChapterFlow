@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch10",
+  "number": 10,
+  "title": "Inversion",
+  "readingTimeMinutes": 12,
+  "hook": "The safest race plan begins with the headline no director wants to read.",
+  "counterintuition": "More success work is not always the best next move, but inversion often wins by removing the obvious way to lose before the causes get a vote.",
+  "tryThisNow": "Write one failure headline for a current plan. Under it, list three causes, then remove or reduce one before doing anything else.",
+  "keyTakeaway": "Start with the failed ending, name its causes, and remove one before chasing upside.",
+  "breakdown": {
+    "fastRead": "Orange course flags snap above a rocky switchback while Anna writes the headline she never wants to read: Runner injured after water and weather cutoff fail. The sentence is ugly, so it is useful.\n\nInversion starts at the bad ending. Instead of asking only how the race succeeds, Anna asks what would make it fail. Route flags, aid-station water, and the weather cutoff become sharper because each one can prevent a specific bad ending.\n\nRemove the cause before admiring the goal.",
+    "deepRead": "Rubber belt smell rises from a silent baggage carousel before opening weekend. Anders, the station manager, is supposed to praise the new belt. Instead, he imagines the midnight jam: delayed bags stacked three carts deep, tired agents guessing which scanner handoff failed, passengers leaving with claim slips. Start with the ruined version and the cause list gets sharper.\n\nInversion is not pessimism. It is a way to work backward from failure, error, or ruin until the preventable causes are visible. Sometimes the smartest move is not adding brilliance; it is removing the thing that would make success impossible.\n\nThe bad ending gives instructions.\n\nPablo stands over crushed ice melting around oyster tags before the raw-bar special. He asks what would have to go wrong for guests to get sick. The answer is not vague kitchen chaos. It is a weak ice-bin handoff and a cold-chain log that nobody owns during service. He deletes that handoff from the plan before the first plate leaves.\n\nThe limit is that inversion should not become a mood. If every imagined disaster gets equal attention, planning turns into dread. Keep the bad ending concrete and trace it to removable causes. A missing backup ritual can be fixed. A narrow gate can be widened. A stranded-passenger timetable gap can be closed. Vague fear cannot be managed.",
+    "fullRead": "Rita lands at the airport after a three-day remote shoot and imagines opening the camera case to find no usable footage. That loss cannot be recreated. The interview subject has gone home, the light has changed, and the crew is scattered. So she builds the backup ritual backward from the empty drive: two memory cards taped inside a field notebook, one field copy before dinner, one drive kept away from the camera bag.\n\nThat is inversion at its cleanest. Picture the result you must not get. Then identify the conditions that would make that result happen.\n\nWhat would make this plan fail even if everyone worked hard? The question cuts through optimism because effort is not the same as protection. A careful team can still lose footage. A competent station can still jam a belt. A friendly festival can still pinch a crowd at the entrance.\n\nNicole uses the same move on a winter ferry timetable. You watch the dark terminal after the last bus pulls away. A crew shift change delays the ferry by nine minutes, and the passenger who works the hospital night shift is stranded. Starting there changes the schedule review. The question is no longer how to make the timetable look efficient. It is which gap would create the unacceptable ending.\n\nThe habit of avoiding stupidity sounds less glamorous than chasing brilliance, but it often has the higher return. A mountain race does not need a more inspiring slogan if runners cannot find water. A raw bar does not need prettier menus if the cold chain has a weak handoff. A film shoot does not need a better creative brief if the memory cards can disappear in one bag.\n\nMartin sees it at a neighborhood festival entrance. Temporary fencing leans beside a painted curb, and the map shows one narrow gate. The first plan puts ticket scanning at that pinch point because it seems tidy. He starts with the crush question, then moves scanning away from the gate before opening. The success plan got simpler by removing the cause of failure.\n\nInversion also protects you from heroic fixes. When you start with success, you may add speeches, dashboards, reminders, and energy. When you start with failure, the needed action can be smaller and more physical: move a scanner, assign the ice-bin owner, add the weather cutoff, separate the backup drives, close the last-bus gap.\n\nUse the model when the cost of a preventable failure is high. The point is not to predict every disaster; it is to find the few causes that would make effort irrelevant. A race with no water, a belt with a broken handoff, and a gate that compresses a crowd all fail before motivation can help. Write the bad ending in plain language. List the causes that could create it. Cross out the causes that are fantasy. Then remove or reduce one real cause before adding anything decorative.\n\nYou do not have to be brilliant to avoid the obvious loss."
+  },
+  "examples": [
+    {
+      "exampleId": "ch10-ex01-anna-race-headline",
+      "title": "Anna Writes the Bad Headline",
+      "tags": [
+        "race",
+        "safety",
+        "cutoff"
+      ],
+      "planSpec": {
+        "domain": "mountain race safety plan",
+        "audience": "a race director preparing a high-altitude trail event",
+        "stakes": "one preventable route or hydration failure could injure runners",
+        "format": "postmortem",
+        "requiredBeat": "Anna writes the headline she never wants to read, then removes the three causes most likely to put a runner in that story"
+      },
+      "scenario": "Orange course flags snap above a rocky switchback while Anna, the race director, writes the headline she never wants to read. In the postmortem, she lists the three causes most likely to injure a runner: missing route flags, dry aid-station water, and a weather cutoff nobody owns. Then she removes those causes before printing the final plan and assigns one marshal to verify each fix on race morning. The written headline stays at the top of the clipboard while she checks each aid station.",
+      "whatToDo": "Write the failure headline, name the route, water, and weather causes, then assign prevention before race week.",
+      "whyItMatters": "The ugly ending makes prevention specific. Safety improves when the causes of failure are removed, not when optimism gets louder."
+    },
+    {
+      "exampleId": "ch10-ex02-anders-baggage-belt",
+      "title": "Anders Finds the Handoff",
+      "tags": [
+        "airport",
+        "handoff",
+        "opening"
+      ],
+      "planSpec": {
+        "domain": "airport baggage meltdown premortem",
+        "audience": "an airline station manager opening a new baggage belt",
+        "stakes": "opening weekend could bury the station in delayed bags",
+        "format": "decision_point",
+        "requiredBeat": "Anders imagines the belt jammed at midnight and removes the scanner handoff failure before praising the new system"
+      },
+      "scenario": "Rubber belt smell rises from a silent baggage carousel before opening weekend. Anders, the station manager, can praise the new system or imagine the midnight jam first. Before signing off, he must decide whether the scanner handoff is clear enough to prevent delayed bags from burying the station. He runs the handoff drill with two tired agents instead of trusting the diagram. The night supervisor has to repeat the scanner handoff without coaching before the belt opens.",
+      "whatToDo": "Work backward from the midnight jam and fix the scanner handoff before celebrating the belt.",
+      "whyItMatters": "The preventable failure sits in a handoff, not in the system's sales pitch. Inversion exposes it before passengers do."
+    },
+    {
+      "exampleId": "ch10-ex03-pablo-raw-bar",
+      "title": "Pablo Deletes the Weak Handoff",
+      "tags": [
+        "restaurant",
+        "cold-chain",
+        "service"
+      ],
+      "planSpec": {
+        "domain": "restaurant food-poisoning prevention",
+        "audience": "a chef opening a raw-bar special",
+        "stakes": "one missed cold-chain step could harm guests and close the restaurant",
+        "format": "scene",
+        "requiredBeat": "Pablo asks what would have to go wrong for the raw bar to make guests sick, then deletes the weak ice-bin handoff from the service plan"
+      },
+      "scenario": "\"What would have to go wrong for this to make guests sick?\" Pablo, the kitchen manager, asks as crushed ice melts around oyster tags. Before the raw-bar special opens, he must decide whether the cold-chain log and ice-bin handoff have a named owner. The weak handoff disappears from the service plan, and one person signs the cold-chain log during the rush. The oyster tags and ice-bin owner now travel together on the cold-chain checklist.",
+      "whatToDo": "Start with the guest-harm ending, find the cold-chain break that could cause it, and remove that handoff.",
+      "whyItMatters": "Food safety is protected by deleting the path to failure. The useful question is what would have to go wrong."
+    },
+    {
+      "exampleId": "ch10-ex04-rita-memory-cards",
+      "title": "Rita Builds Backward From Loss",
+      "tags": [
+        "film",
+        "backup",
+        "remote"
+      ],
+      "planSpec": {
+        "domain": "film shoot data backup",
+        "audience": "a documentary producer with a three-day remote shoot",
+        "stakes": "lost footage cannot be recreated once the crew leaves",
+        "format": "before_after",
+        "requiredBeat": "Rita imagines landing home with no usable footage and builds the backup ritual backward from that loss"
+      },
+      "scenario": "It took Rita, the documentary producer, one imagined empty drive to change the remote shoot plan. Before, two memory cards rode together in the camera bag. After she pictures landing home with no usable footage, she builds a backup ritual: field copy before dinner, cards logged in the notebook, and one drive kept away from the bag. The ritual is checked before anyone leaves the location. The field notebook includes a checkbox that no vehicle leaves until both copies exist.",
+      "whatToDo": "Imagine the lost-footage ending and build the backup ritual backward from that loss.",
+      "whyItMatters": "Remote footage cannot be recreated. The backup plan matters because it removes the causes of an irreversible failure."
+    },
+    {
+      "exampleId": "ch10-ex05-nicole-last-bus",
+      "title": "Nicole Starts With the Stranded Passenger",
+      "tags": [
+        "ferry",
+        "timetable",
+        "connection"
+      ],
+      "planSpec": {
+        "domain": "ferry winter timetable",
+        "audience": "a transit planner adjusting winter ferry service",
+        "stakes": "a missed connection could strand shift workers after the last bus",
+        "format": "vignette",
+        "requiredBeat": "You watch Nicole start with the stranded-passenger outcome and remove the timetable gap that would create it"
+      },
+      "scenario": "You watch a dark ferry terminal after the last bus pulls away. Nicole, the transit manager, starts with the stranded-passenger outcome instead of the clean winter timetable. Before approving the crew shift change, she must decide which nine-minute gap would create the missed connection and remove it. The timetable now protects the last hospital shift, not just the average rider. She calls the bus dispatcher with the exact ferry arrival time before the public timetable is posted.",
+      "whatToDo": "Begin with the stranded passenger, trace the timetable gap that creates it, and adjust the crew-shift connection.",
+      "whyItMatters": "The timetable can look efficient while producing a bad ending. Inversion forces the hidden failure into the schedule review."
+    },
+    {
+      "exampleId": "ch10-ex06-martin-narrow-gate",
+      "title": "Martin Moves the Scan Point",
+      "tags": [
+        "festival",
+        "crowd",
+        "entrance"
+      ],
+      "planSpec": {
+        "domain": "neighborhood festival crowd control",
+        "audience": "a volunteer marshal planning a street festival entrance",
+        "stakes": "a crowd pinch could turn a family event unsafe",
+        "format": "predict_reveal",
+        "requiredBeat": "Alex asks what would cause a crush at the entrance and moves the ticket scan away from the narrow gate before opening"
+      },
+      "scenario": "What would turn the family festival unsafe before the band starts? Martin, the festival safety lead, looks at temporary fencing leaning beside a painted curb and predicts the pinch point. Before gates open, he must decide whether ticket scan belongs at the narrow gate or farther inside where the crowd can spread. He marks the pavement with tape so volunteers do not drift back to the old choke point. The moved scan point gets one marshal whose only job is to keep the narrow gate flowing.",
+      "whatToDo": "Ask what would cause a crush, then move scanning away from the narrow gate before the crowd arrives.",
+      "whyItMatters": "The entrance fails when scanning and a narrow passage combine. Removing that cause beats adding more volunteers at the same pinch point."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A race director sees orange flags snapping over a rocky switchback and imagines the headline Runner injured after water and weather cutoff fail. What is the inversion move?",
+        "choices": [
+          "List the causes that would create that headline and remove the most likely ones.",
+          "Stop planning the race because thinking about injuries proves it is unsafe.",
+          "Write a more inspiring safety message for the runner packet."
+        ],
+        "correctIndex": 0,
+        "explanation": "Inversion starts with the failed ending and works backward to removable causes. Canceling or adding inspiration misses the concrete route, water, and cutoff problems.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An airport station manager is excited about a new baggage belt, but imagines a midnight jam caused by scanner handoff confusion. What should he do first?",
+        "choices": [
+          "Praise the system publicly so staff trust the new process.",
+          "Fix the scanner handoff that would cause the delayed-bag failure.",
+          "Delay opening until every possible passenger complaint is solved."
+        ],
+        "correctIndex": 1,
+        "explanation": "The imagined jam points to a specific removable cause. Fixing the handoff is inversion; praising the system or chasing every complaint avoids the sharper failure path.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A kitchen manager asks what would have to go wrong for a raw-bar special to make guests sick. The weak point is an unnamed ice-bin handoff. Which action fits?",
+        "choices": [
+          "Trust the experienced staff to notice issues during service.",
+          "Promote the raw bar more carefully so guests understand freshness.",
+          "Remove or assign the ice-bin handoff before the first plate leaves."
+        ],
+        "correctIndex": 2,
+        "explanation": "The handoff is the cause that could produce the bad ending. Inversion removes it directly instead of relying on experience or better messaging.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A documentary crew cannot recreate a remote interview after leaving a rural location. The producer imagines arriving home with no usable footage. What is the best next step?",
+        "choices": [
+          "Build a backup ritual backward from that loss, including separated cards and field copies.",
+          "Trust the camera operator because the team has never lost footage before.",
+          "Focus on getting better shots because creative quality matters most."
+        ],
+        "correctIndex": 0,
+        "explanation": "The irreversible loss points to the backup ritual as the prevention target. Past luck and creative ambition do not remove the cause of data loss.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A ferry timetable looks efficient on paper, but one winter crew shift change may make hospital workers miss the last bus home. How should the transit manager use inversion?",
+        "choices": [
+          "Keep the efficient timetable because most passengers will still connect.",
+          "Start with the stranded-passenger outcome and close the gap that creates it.",
+          "Add a note telling passengers to plan for winter delays."
+        ],
+        "correctIndex": 1,
+        "explanation": "The bad ending reveals the exact timetable gap. Closing it prevents the failure; warning passengers leaves the cause in place.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A festival entrance places ticket scanning at a narrow gate where temporary fencing already squeezes the crowd. The safety lead asks what would cause a crush. What should he change?",
+        "choices": [
+          "Add a cheerful sign so families know where to line up.",
+          "Keep scanning at the gate because it is tidy on the map.",
+          "Move scanning away from the pinch point before the crowd arrives."
+        ],
+        "correctIndex": 2,
+        "explanation": "The narrow gate plus scanning creates the failure path. Moving the scan point removes the cause instead of decorating or preserving the tidy plan.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A project team avoids a backward review because naming the failure feels negative, even though one approval gap could stop the launch. Which response best explains the model?",
+        "choices": [
+          "It is not a mood; it is a method for finding removable causes before they damage the plan.",
+          "Negative thinking is superior because success usually comes from fear.",
+          "The team should avoid discussing failure so morale stays high."
+        ],
+        "correctIndex": 0,
+        "explanation": "Inversion is practical, not gloomy. It starts with failure to identify causes that can be removed; fear and forced positivity both miss that mechanism.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A launch plan includes speeches, dashboards, and extra reminders, but the likely failure is one missing approval that can stop the release cold. What would inversion favor?",
+        "choices": [
+          "More reminders because visibility prevents most errors.",
+          "Removing the missing-approval cause before adding decorative success supports.",
+          "A bigger launch meeting so everyone understands the goal."
+        ],
+        "correctIndex": 1,
+        "explanation": "Inversion favors removing the cause that would make success impossible. Speeches and reminders may help, but they do not clear the approval failure.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A manager lists fifteen disasters for a project and feels paralyzed because every fear sounds equally possible. How should the inversion exercise be tightened?",
+        "choices": [
+          "Give every imagined disaster the same attention so nothing is missed.",
+          "Stop the exercise because inversion has made the team anxious.",
+          "Keep one concrete bad ending and trace it to causes the team can actually remove."
+        ],
+        "correctIndex": 2,
+        "explanation": "Inversion becomes useful when the bad ending is concrete and tied to removable causes. Treating every fear equally turns the model into dread.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A plan looks good, but one failure would be costly. What should you write first?",
+      "back": "Write the concrete bad ending, then list the causes that would make it happen.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "How is inversion different from pessimism?",
+      "back": "Pessimism stays with fear. Inversion traces a bad ending to removable causes and then removes one.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why can avoiding stupidity beat adding brilliance?",
+      "back": "A single preventable cause can make success impossible. Removing it may matter more than adding another success feature.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A risk list has become overwhelming. What should you retrieve?",
+      "back": "Choose one concrete bad ending and focus on causes you can remove. Vague fear is not an action list.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A plan has a concrete bad ending. Which core sequence should you retrieve?",
+      "back": "Name the failure, work backward to causes, and remove or reduce a real cause before chasing upside.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to protect success by starting from the failed ending, tracing it to specific causes, and removing one cause before adding more upside.",
+    "ifThenPlans": [
+      {
+        "context": "events",
+        "plan": "If a crowd or participant failure would be costly, then write the bad ending and remove the physical cause that would create it."
+      },
+      {
+        "context": "operations",
+        "plan": "If a new system is being praised, then imagine the first meltdown and fix the handoff that would cause it."
+      },
+      {
+        "context": "data work",
+        "plan": "If a file or record cannot be recreated, then build the backup ritual backward from total loss."
+      },
+      {
+        "context": "scheduling",
+        "plan": "If an efficient schedule could strand someone, then start with that stranded person and close the gap."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one active plan. Write the bad headline, list three causes that could make it true, and remove or assign ownership for one cause today.",
+    "weeklyPractice": "Each week, run one backward review on a plan with real downside. Track whether you removed a cause or merely added another reminder."
+  },
+  "memorableLines": [
+    {
+      "text": "Remove the cause before admiring the goal.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the practical inversion move in plain words."
+    },
+    {
+      "text": "The bad ending gives instructions.",
+      "location": "breakdown.deepRead",
+      "why": "It reframes failure imagery as a source of useful action."
+    },
+    {
+      "text": "You do not have to be brilliant to avoid the obvious loss.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the source idea of avoiding stupidity without sounding abstract."
+    }
+  ]
+}

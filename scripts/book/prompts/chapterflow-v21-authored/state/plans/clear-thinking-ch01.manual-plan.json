@@ -1,0 +1,198 @@
+{
+  "chapterId": "clear-thinking-ch01",
+  "number": 1,
+  "title": "Thinking Badly-or Not Thinking at All?",
+  "coreMove": "Catch the instant when a default is about to define the moment before your goal does.",
+  "sourcePressure": "The opening failure is recognition failure: pressure arrives as insult, threat, delay, or status friction before the person realizes a thinking moment is happening. The angry CEO warning, ordinary reactive scenes, biology, and the four-default map all point to the same upstream loss.",
+  "chapterSpecificMisunderstanding": "Treating the chapter as generic calm-down advice or a plea to reason better after the reaction has already started.",
+  "sourceAlignmentTerms": [
+    "recognition failure",
+    "angry CEO",
+    "default behavior",
+    "territory",
+    "hierarchy",
+    "self-preservation",
+    "emotion default",
+    "ego default"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "the angry CEO",
+      "detail": "the official excerpt uses an angry CEO as the warning example of circumstances thinking for someone before deliberate judgment catches up",
+      "useIn": "both",
+      "phrasingHint": "The angry CEO is useful because the damage starts before analysis starts: the room has already been named by reaction."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for recognition failure",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think recognition failure is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Natalie",
+      "domain": "a hospital triage desk",
+      "audience": "a reader facing recognition failure in a concrete hospital triage desk decision",
+      "stakes": "whether Natalie preserves judgment quality before the situation slides into bias catalog",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Natalie performs the chapter move by setting the call bell beside the triage tag, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the call bell lying beside the triage tag in the hospital triage desk",
+      "mustInclude": [
+        "call bell",
+        "triage tag"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "bias catalog",
+        "reusing a previous chapter's hospital triage desk shell"
+      ]
+    },
+    {
+      "protagonistName": "Rebecca",
+      "domain": "a railway operations center",
+      "audience": "a reader facing recognition failure in a concrete railway operations center decision",
+      "stakes": "whether Rebecca preserves judgment quality before the situation slides into bias catalog",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Rebecca performs the chapter move by setting the track diagram beside the delay code, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the delay code in the railway operations center",
+      "mustInclude": [
+        "track diagram",
+        "delay code"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "bias catalog",
+        "reusing a previous chapter's railway operations center shell"
+      ]
+    },
+    {
+      "protagonistName": "Heather",
+      "domain": "a independent bookstore returns counter",
+      "audience": "a reader facing recognition failure in a concrete independent bookstore returns counter decision",
+      "stakes": "whether Heather preserves judgment quality before the situation slides into bias catalog",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Heather performs the chapter move by setting the return slips beside the price stickers, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the return slips against the counter in the independent bookstore returns counter",
+      "mustInclude": [
+        "return slips",
+        "price stickers"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "bias catalog",
+        "reusing a previous chapter's independent bookstore returns counter shell"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "a youth hockey bench",
+      "audience": "a reader facing recognition failure in a concrete youth hockey bench decision",
+      "stakes": "whether Megan preserves judgment quality before the situation slides into bias catalog",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Megan performs the chapter move by setting the lineup card beside the ice shavings, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the ice shavings in the youth hockey bench",
+      "mustInclude": [
+        "lineup card",
+        "ice shavings"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "bias catalog",
+        "reusing a previous chapter's youth hockey bench shell"
+      ]
+    },
+    {
+      "protagonistName": "Claire",
+      "domain": "a building inspection walk-through",
+      "audience": "a reader facing recognition failure in a concrete building inspection walk-through decision",
+      "stakes": "whether Claire preserves judgment quality before the situation slides into bias catalog",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Claire performs the chapter move by setting the permit packet beside the cracked tile, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the permit packet in the building inspection walk-through",
+      "mustInclude": [
+        "permit packet",
+        "cracked tile"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "bias catalog",
+        "reusing a previous chapter's building inspection walk-through shell"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "a family estate call",
+      "audience": "a reader facing recognition failure in a concrete family estate call decision",
+      "stakes": "whether Olivia preserves judgment quality before the situation slides into bias catalog",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Olivia performs the chapter move by setting the speakerphone beside the probate folder, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the probate folder in the family estate call",
+      "mustInclude": [
+        "speakerphone",
+        "probate folder"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "bias catalog",
+        "reusing a previous chapter's family estate call shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Catch the instant when a default is about to define the moment before your goal does.",
+      "detect the weak generic version: Treating the chapter as generic calm-down advice or a plea to reason better after the reaction has already started.",
+      "distinguish recognition failure from nearby drift into bias catalog"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where recognition failure is active, then write the exact next visible move that would perform this chapter's move: catch the instant when a default is about to define the moment before your goal does.",
+  "readingTimeMinutes": 12
+}

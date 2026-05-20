@@ -1,0 +1,334 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch02",
+  "number": 2,
+  "title": "Swimmer's Body Illusion",
+  "readingTimeMinutes": 12,
+  "hook": "The swimmer looks carved by the pool; the pool may have admitted carved bodies first.",
+  "counterintuition": "A visible result can borrow credit from the filter that selected it. Copy the practice only after you know what was already true about the people inside it.",
+  "tryThisNow": "Pick one admired result. Before copying the routine, ask who was selected into it before the routine ever began.",
+  "keyTakeaway": "Before you credit a method for an outcome, check whether the method produced the result or selected people who already had it.",
+  "breakdown": {
+    "fastRead": "Ingrid watches a wildfire-planning consultant stride into the room with a visitor badge, a calm voice, and a record full of clean evacuations. Everyone leans toward hiring his firm. She writes selection effect on the badge before the vote.\n\nThe swimmer's body illusion is the mistake of crediting the pool for the body. The swimmer may look the way he does partly because that body type helped him become a swimmer in the first place.\n\nDo not copy the pool until you know what the pool filtered in.\n\nTraining matters. Methods matter. But visible excellence often combines practice with selection, and the selection part is easy to miss because it happened before the story started.",
+    "deepRead": "The visitor badge on Ingrid's folder says wildfire resilience specialist. His slides show towns that followed his evacuation model and then avoided catastrophe. The room wants the model because the towns look calm, prepared, almost enviable.\n\nIngrid asks for the list of towns that were offered the same model and never adopted it. Then she asks which towns already had strong volunteer networks, recent fire drills, or budgets large enough to maintain the plan after the consultant left. The badge no longer means the same thing.\n\nThis is the core move: separate what a method produces from what it selects. A gym can improve fitness and still display bodies that were partly selected before the first workout. A university can educate well and still owe some of its graduates' outcomes to who was admitted. A leadership program can sharpen judgment and still look miraculous because it enrolled people with rare discipline.\n\nBoth can be true.\n\nThe mistake is not believing in selection instead of training. The mistake is refusing to split them. If you confuse them, you buy the program, copy the routine, hire the consultant, or chase the credential while ignoring the filter that made the visible cases look so convincing.\n\nA software team makes the same mistake with a beta dashboard. The enthusiastic testers appear to prove the product is easy to use. Rachel, the product lead, notices that the testers all volunteered after reading a technical forum post. They were not ordinary users. They were people who enjoy rough software. Until Rachel tests people who did not self-select, the dashboard is measuring a filtered group, not the product's real ease.\n\nSelection is the silent partner in many success stories.",
+    "fullRead": "Marco is reviewing a biotech signal when the inspection tag on the freezer catches his eye. The trial site with the cleanest sample handling also has the best early result. A director wants to treat that site as proof that the protocol is working. Marco puts the inspection tag beside the site list and says the uncomfortable part aloud: maybe the site looks better because it was better before the protocol arrived.\n\nThat does not make the result useless. It makes the comparison incomplete.\n\nThe swimmer's body illusion appears whenever an admired outcome stands beside an admired practice and your mind draws a straight line between them. Swimmers have strong bodies, so swimming must create that body. Elite schools have successful graduates, so the school must create the success. A premium training program shows confident alumni, so the program must create the confidence. The line feels clean because the filter is hidden.\n\nThe Harvard comparison in the source notes makes the problem concrete. A fairer test would compare people admitted to Harvard who attended with people admitted to Harvard who chose another path, because both groups passed a similar selection gate. David Lykken and Auke Tellegen's work on happiness also sits near this problem in the source trail: outcomes often reflect forces already present in the person, not only the environment wrapped around them later. The warning is practical, not academic. Compare like with like before you credit the container.\n\nAsk this in any tempting case: what had to be true before someone entered the pool?\n\nA cycling safety audit in Copenhagen shows the same shape. The cyclists who attend the advanced handling course have fewer crashes. The easy conclusion is that the course caused the difference. Kiran, the safety analyst, checks enrollment and finds that the course attracts experienced commuters who already ride daily, maintain their brakes, and avoid icy routes. The course may still help. But the before state matters, and without it the city might fund a course while neglecting junction design where less experienced riders are actually getting hurt.\n\nThe correction is a visible check on reality. Find the people who were eligible but did not enter. Find the people who entered with weaker starting traits. Compare outcomes before and after, not just insiders against outsiders. If you cannot do that, at least lower your confidence and name the selection effect in the room.\n\nThere is a second edge: do not use selection as an excuse to dismiss effort. A swimmer still trains. A strong university still teaches. A good course can still improve judgment. Selection does not erase causation; it keeps causation from taking all the credit.\n\nSo when you see an admired group, resist the pull to buy the group's visible routine as if it were a recipe. First inspect the gate. Who got in? Who stayed out? Who left early? Who would have done well almost anywhere? Only after that can you ask what the practice added.\n\nA good method deserves credit for what it changes, not for the people it was lucky enough to attract."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-ingrid-visitor-badge",
+      "title": "Ingrid Marks the Visitor Badge",
+      "tags": [
+        "scene",
+        "wildfire",
+        "selection"
+      ],
+      "planSpec": {
+        "domain": "a wildfire planning room applying Swimmer's Body Illusion under operational pressure",
+        "audience": "a reader who has to make a live judgment where selection effect could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Swimmer's Body Illusion is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the visitor badge, names the selection effect risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "A visitor badge glints under the wildfire maps as Ingrid watches the consultant present towns that used his evacuation model and stayed calm. in a Calgary review room at 2:10 p.m. The mayor is ready to hire him by Friday. Ingrid writes selection effect on the badge sleeve. Her pen stops above the contract line: approve now, or first compare those towns with equally prepared towns that never hired him. With the file still open, Ingrid faces a choice: act on the claim now or check the missing evidence first.",
+      "whatToDo": "Ask what the model selected before judging what it caused. Compare the consultant's towns with eligible towns that already had strong drills, budgets, and volunteer networks.",
+      "whyItMatters": "The calm towns may have been strong before the consultant arrived. Separating selection from training keeps Ingrid from buying a filter and calling it a cure."
+    },
+    {
+      "exampleId": "ch02-ex02-rachel-beta-sample-tray",
+      "title": "Rachel Tests Beyond the Beta Fans",
+      "tags": [
+        "vignette",
+        "software",
+        "users"
+      ],
+      "planSpec": {
+        "domain": "a software beta dashboard applying Swimmer's Body Illusion under operational pressure",
+        "audience": "a reader who has to make a live judgment where training effect could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Swimmer's Body Illusion is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the sample tray, names the training effect risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "\"Our beta users love the advanced settings,\" the designer says, sliding a sample tray of test phones toward Rachel. Every phone shows the same green dashboard. Rachel writes training effect on a label. The release toggle is open on her laptop, and she has to choose between shipping the settings as default or testing people outside the power-user forum.",
+      "whatToDo": "Run the next test with non-volunteers before changing the default. Keep the beta fans separate from ordinary users until the product proves it works beyond the selected group.",
+      "whyItMatters": "Power users can make a rough feature look easy because they arrived trained. The dashboard shows enthusiasm from a filter, not necessarily usability for everyone."
+    },
+    {
+      "exampleId": "ch02-ex03-marco-inspection-tag",
+      "title": "Marco Questions the Clean Trial Site",
+      "tags": [
+        "dialogue",
+        "biotech",
+        "comparison"
+      ],
+      "planSpec": {
+        "domain": "a biotech signal review applying Swimmer's Body Illusion under operational pressure",
+        "audience": "a reader who has to make a live judgment where Harvard comparison could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Swimmer's Body Illusion is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the inspection tag, names the Harvard comparison risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "The freezer seal snaps as Marco lifts the inspection tag from site 4. \"Best handling, best signal,\" the director says. \"Protocol works.\" Marco taps the tag. \"Or site 4 was exceptional before we touched it.\" He writes Harvard comparison on the review sheet. Before recommending expansion, he has to check sites that passed the same quality gate. Before the expansion vote, Marco must decide whether to treat site 4 as proof or compare it with the other sites that passed the same gate.",
+      "whatToDo": "Compare high-quality sites against similarly qualified sites before crediting the protocol. Treat the clean site as selected until matched sites show the same lift.",
+      "whyItMatters": "A strong site can make a protocol look stronger than it is. The Harvard-style comparison matters because it compares people or sites that cleared the same gate."
+    },
+    {
+      "exampleId": "ch02-ex04-antoine-cycling-floor-plan",
+      "title": "Antoine Redraws the Cycling Audit",
+      "tags": [
+        "decision",
+        "cycling",
+        "self-selection"
+      ],
+      "planSpec": {
+        "domain": "a cycling crash audit applying Swimmer's Body Illusion under operational pressure",
+        "audience": "a reader who has to make a live judgment where self-selection could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Swimmer's Body Illusion is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the floor plan, names the self-selection risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "You are standing with Antoine over a floor plan of the cycling corridor where advanced-course graduates report fewer crashes. The transport chair wants to fund more classes. Antoine writes self-selection across the plan. The vote is next on the agenda, and his choice is stark: approve classes now or first check whether cautious, experienced riders were the ones signing up.",
+      "whatToDo": "Separate course effect from rider selection. Compare graduates with similar non-graduates and inspect crash sites before moving money away from road design.",
+      "whyItMatters": "The class may help, but safer riders may also be the ones who enroll. The floor plan needs the starting condition, not just the polished outcome."
+    },
+    {
+      "exampleId": "ch02-ex05-hannah-theater-weather-log",
+      "title": "Hannah Checks the Touring Weather",
+      "tags": [
+        "predict",
+        "theater",
+        "budget"
+      ],
+      "planSpec": {
+        "domain": "a touring theater budget applying Swimmer's Body Illusion under operational pressure",
+        "audience": "a reader who has to make a live judgment where swimmer body could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Swimmer's Body Illusion is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the weather log, names the swimmer body risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "It took Hannah two budget cycles to see why the northern tour looked so profitable. in a Calgary review room at 2:10 p.m. The finance chair predicts the new route will copy last year's margin. Hannah opens the weather log and marks swimmer body risk beside the mild-weather weeks. The budget cell is still blank; she is about to fund the route or adjust for towns that were easy before the tour began. Before the next step, Hannah faces a choice over whether the evidence is strong enough to act.",
+      "whatToDo": "Test whether the route created the margin or selected easier conditions. Rebuild the budget with weather, venue costs, and local demand included before approving the tour.",
+      "whyItMatters": "The profitable route may have looked strong because it started with favorable conditions. Copying the result without the filter turns luck and selection into strategy."
+    },
+    {
+      "exampleId": "ch02-ex06-kiran-pension-score-sheet",
+      "title": "Kiran Reopens the Manager Score Sheet",
+      "tags": [
+        "postmortem",
+        "pension",
+        "filters"
+      ],
+      "planSpec": {
+        "domain": "a pension fund committee applying Swimmer's Body Illusion under operational pressure",
+        "audience": "a reader who has to make a live judgment where swimmer could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Swimmer's Body Illusion is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the score sheet, names the swimmer risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "Which manager proved the training program worked: the polished finalist, or the applicants filtered out before training? Kiran reviews the pension committee's score sheet after a weak hire. He circles the word swimmer beside the finalists and changes the next search by asking for records of qualified candidates who never entered the program.",
+      "whatToDo": "Audit the selection gate before praising the training. Compare trained finalists with qualified outsiders and rejected applicants who had similar starting records.",
+      "whyItMatters": "A polished finalist can make a program look causal. The score sheet has to show who was admitted, who was excluded, and what the program actually changed."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a swimmer-s case, a gym advertises before-and-after photos from members who now look athletic, what question best targets the swimmer's body illusion?",
+        "choices": [
+          "Were people with athletic starting bodies more likely to join and stay?",
+          "Members athletic what looks strong enough to guide best targets swimmer; body illusion were can wait unless people starting bodies changes the stakes.",
+          "What best targets gives a practical reason for photos members athletic; were people starting belongs after swimmer body illusion clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "The correction is to check selection before causation. Training hours and trainer quality matter later, but first ask whether the visible members were filtered from the start.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Swimmer's Body Illusion makes swimmer-s case feel more decisive than the record supports, and that misprices advertises before-and-after in this scene. The correct move keepss the choice by were people with athletic starting bodies more likely to join and stay."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a swimmer-s review, a coding bootcamp shows graduates who now work at major tech firms, a student is about to enroll based on those profiles. What evidence should she request first?",
+        "choices": [
+          "Starting skill levels and outcomes for everyone admitted, including dropouts.",
+          "Starting skill levels fits the immediate pressure around student about enroll; hold major tech firms steady and test shows graduates work later.",
+          "Bootcamp shows graduates looks strong enough to guide work major tech; firms student about can wait unless enroll based those changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "She needs to know who entered, who left, and what changed. Alumni videos show selected survivors; instructor resumes do not separate training from intake quality.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Swimmer's Body Illusion works by letting swimmer-s coding crowd out bootcamp shows, which can misreads the graduates work decision. Starting skill levels and outcomes for everyone admitted, including dropouts keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When swimmer-s pressure appears, a city finds that residents in a cycling club have fewer accidents and proposes mandatory club training for commuters. What is the best next step?",
+        "choices": [
+          "Compare club members with non-members who had similar riding experience before joining.",
+          "Cycling club fewer makes swimmer-s pressure appears look credible; use city finds residents first and revisit accidents proposes mandatory when training commuters what shifts.",
+          "What best next supports a narrower read of residents cycling club; keep fewer accidents proposes central and leave mandatory training commuters aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The city must compare like with like. Experienced cautious riders may self-select into the club, so member safety alone cannot prove the training caused the difference.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Swimmer's Body Illusion turns appears city into a shortcut, so the room can overweights finds residents while missing cycling club. Compare club members with non-members who had similar riding experience before joining protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After swimmer-s risk surfaces, a luxury language school claims its method creates fluent speakers because its advanced class speaks beautifully after six months, which check matters most?",
+        "choices": [
+          "Class speaks beautifully supports a narrower read of luxury language school; keep claims method creates central and leave fluent speakers advanced aside.",
+          "Whether students had to pass a fluency screen before entering that class.",
+          "Check matters whether fits the immediate pressure around method creates fluent; hold language school claims steady and test swimmer-s surfaces luxury later."
+        ],
+        "correctIndex": 1,
+        "explanation": "A fluency screen would mean the class selected strong speakers before the method acted. Tutors and class size can help, but they do not expose the filter.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Swimmer's Body Illusion would push the luxury language case toward school claims, creating a cost when method creates stays untested. The useful guardrail is to whether students had to pass a fluency screen before entering that class."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If swimmer-s reasoning takes over, a founder sees that accelerator-backed startups raise more money and assumes the accelerator causes funding success. What comparison would be most useful?",
+        "choices": [
+          "Similarly attend swimmer fits the immediate pressure around funding success what; hold assumes accelerator causes steady and test startups raise money later.",
+          "Accepted founders who attended versus similarly accepted founders who did not attend.",
+          "Raise money assumes gives a practical reason for sees accelerator-backed startups; success what comparison belongs after accelerator causes funding clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "Accepted-but-not-attended founders passed a similar gate, so they help separate selection from the accelerator's effect. Broad outside comparisons mix too many differences.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep",
+        "whyItMatters": "Swimmer's Body Illusion converts sees accelerator-backed into the loudest signal, which can rushes startups raise before money assumes is checked. The better answer separatess attention on accepted founders who attended versus similarly accepted founders who did not attend."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While swimmer-s pressure builds, a hospital credits a leadership course for producing calm charge nurses, but course participants were nominated by supervisors for being calm under pressure, what is the flaw?",
+        "choices": [
+          "Swimmer-s pressure builds looks strong enough to guide hospital credits leadership; course producing calm can wait unless charge nurses participants changes the stakes.",
+          "Calm charge nurses gives a practical reason for leadership course producing; supervisors what flaw belongs after participants were nominated clarifies the result.",
+          "Supervisor nominations may be selecting the trait the course claims to produce."
+        ],
+        "correctIndex": 2,
+        "explanation": "The selection gate already contains the outcome. The issue is not course length or hospital metrics; the course may be displaying people who had the trait first.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Swimmer's Body Illusion hides inside the swimmer-s pressure choice because swimmer-s pressure seems sufficient, yet the cost lands in swimmer-s pressure. Supervisor nominations may be selecting the trait the course claims to produce brings the swimmer-s pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the swimmer-s call, a parent says a music academy creates discipline because its students seem unusually focused. Which observation would most challenge that claim?",
+        "choices": [
+          "Practice swimmer body fits the immediate pressure around focused observation challenge; hold students seem unusually steady and test academy creates discipline later.",
+          "The academy requires a demanding audition and a year of prior practice.",
+          "Creates discipline students gives a practical reason for says music academy; observation challenge claim belongs after seem unusually focused clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "A demanding audition means the academy may select disciplined students before training them. Uniforms and scales may matter, but they do not reveal the intake filter.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Swimmer's Body Illusion pressures the call parent decision toward the easy reading of call parent. That can inflates the real cost unless the choice is grounded in the academy requires a demanding audition and a year of prior practice."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose swimmer-s risk is present: a remote-work consultant points to highly productive firms that use remote-first policies. A CEO wants to copy the policy immediately. What should the CEO inspect?",
+        "choices": [
+          "Firms remote-first policies makes present remote-work consultant look credible; use points highly productive first and revisit wants copy policy when immediately what inspect shifts.",
+          "Policies wants copy supports a narrower read of swimmer-s present remote-work; keep consultant points highly central and leave productive firms remote-first aside.",
+          "Whether those firms hired people already suited to written, independent work."
+        ],
+        "correctIndex": 2,
+        "explanation": "Remote-first firms may have selected workers who thrive remotely. Tools and retreats are useful details, but the causal claim needs the hiring filter examined.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Swimmer's Body Illusion is the mechanism here: selection effects masquerade as training effects, so present remote-work can overpower present remote-work. Whether those firms hired people already suited to written, independent work keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two leadership programs show impressive alumni. Program A reports only current stars. Program B reports entry criteria, dropouts, and before-and-after measures. Which is stronger evidence?",
+        "choices": [
+          "Entered what changed points toward a quicker call on current stars entry; let alumni program reports stand until measures stronger separate contradicts it.",
+          "Changed swimmer body fits the immediate pressure around entry criteria dropouts; hold reports current stars steady and test impressive alumni program later.",
+          "Program B, because it lets you separate who entered from what changed."
+        ],
+        "correctIndex": 2,
+        "explanation": "Program B gives the selection gate and the change data. Program A may be showing polished survivors, while the claim needs evidence of what the program actually added.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Swimmer's Body Illusion makes the impressive alumni evidence look cleaner than it is, risking a impressive alumni mistake in this setting. The answer protects impressive alumni by asking for program B, because it lets you separate who entered from what."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You admire the visible result of a group and want to copy its routine. What do you check first?",
+      "back": "Check who was selected into the group before the routine began. The result may come from the filter, the training, or both, and you need to split those before copying anything.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A school claims its program creates top students, but admission is selective. What comparison helps?",
+      "back": "Compare admitted students who attended with similarly admitted students who did not, or at least compare students with similar starting traits. That keeps selection from taking credit as teaching.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why is the swimmer's body illusion not the same as saying training does nothing?",
+      "back": "Training may matter a lot. The error is giving training all the credit when the visible group may already have been filtered for traits that make the outcome likely.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A consultant shows impressive client outcomes. What intake question should you ask before hiring?",
+      "back": "Ask what those clients looked like before the consultant began: budget, staff, prior discipline, and selection criteria. Strong clients can make a method look stronger than it is.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What practical test separates method effect from selection effect?",
+      "back": "Compare like with like: eligible people who entered versus eligible people who did not, or before-and-after results within the same group. Do not compare polished insiders with everyone outside.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to split selection from causation before copying a visible routine. The practical move is to ask what was already true about the people, firms, schools, or cases before the method got credit.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a vendor shows excellent clients, then ask how those clients were chosen, what they looked like before the engagement, and which similar clients did not get the same result."
+      },
+      {
+        "context": "learning",
+        "plan": "If a course advertises star graduates, then compare entry requirements, dropouts, and starting skill before treating the course as the cause."
+      },
+      {
+        "context": "health",
+        "plan": "If a routine is sold through unusually fit users, then ask whether the routine created the fitness or attracted people who already had the advantage."
+      },
+      {
+        "context": "money",
+        "plan": "If a fund, school, or accelerator displays exceptional alumni, then inspect the selection gate before paying for the container."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one program, routine, or credential you admire. Write down three traits people likely had before entering it, then decide what evidence would show actual change.",
+    "weeklyPractice": "Once a week, take one visible success and split the story into two columns: what the method may have changed, and what selection may have supplied in advance."
+  },
+  "memorableLines": [
+    {
+      "text": "Do not copy the pool until you know what the pool filtered in.",
+      "location": "breakdown.fastRead",
+      "why": "It turns the chapter's selection warning into a compact, memorable test before imitation."
+    },
+    {
+      "text": "Selection is the silent partner in many success stories.",
+      "location": "breakdown.deepRead",
+      "why": "The line gives selection a concrete role and keeps causation from taking all the credit."
+    },
+    {
+      "text": "A good method deserves credit for what it changes, not for the people it was lucky enough to attract.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the balanced correction: methods can matter, but only for the change they actually cause."
+    }
+  ]
+}

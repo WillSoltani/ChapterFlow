@@ -2,7 +2,7 @@
   "bookId": "make-it-stick",
   "title": "Make It Stick",
   "author": "Peter C. Brown; Henry L. Roediger III; Mark A. McDaniel",
-  "promotedAt": "2026-05-12T01:09:14.667Z",
+  "promotedAt": "2026-05-16T08:23:32.041Z",
   "chapterCount": 8,
   "shipGate": {
     "perChapter": [
@@ -10,793 +10,61 @@
         "chapter": 1,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Marisol balances blue grammar cards on her knee at 6:18 a.m. at bus Bay 9, brake hiss rolling under the shelter roof. The cards feel friendly because she has seen them every commute this week. Then s…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A trainer wants to know if staff learned the evacuation route or only followed wall signs. What should she do?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A piano student can play a piece only from the first measure. What practice change would expose the real gap?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which practice result should carry the most weight?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A learner tries a blank-page recall and misses half the ideas. What is the best next move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which study plan best uses the stronger scorecard?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"raisa pinches a laminated\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 2,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Nikhil wipes flour from his wrist at 2:09 a.m. beside rack three, the proofer breathing warm air into the aisle. \"One more look at the oven sheet,\" he says. Mara drops a towel over the laminated code…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Soren stands in lab bay B at 10:44 p.m., blue anatomy pins lined in a kidney dish and formalin sharp in his throat. He predicts twenty more minutes with the glowing atlas will beat the ugly self-test…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A nurse reviews a medication sequence with the chart open. What would turn review into retrieval practice?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Why can a missed flashcard help learning?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q03",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A team leader uses weekly low-pressure quizzes during training. What is the main reason this can work?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A trainee says retrieval feels worse than rereading, so it must be worse. What should you say?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which use of flashcards is strongest?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A presenter wants to remember a speech opening. What practice best uses retrieval?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What is the best description of retrieval in learning?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"celia spreads damp index\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 3,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Sibyl wipes orange dust from her palm at 8:58 p.m. in the high school gym, the mop bucket squeaking by the baseline. She predicts fifty straight free throws will beat the station circuit: sprint, cor…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Roan lines three orange mushrooms on a field-station table at 8:16 a.m., rain ticking on the blue tarp overhead. Chanterelle, jack-o-lantern, false chanterelle. The labels stay facedown. He runs a th…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which practice design best builds discrimination?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q03",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Why can mixed practice feel worse while working better?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What is the risk of mixing cases that are too unrelated?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A language learner practices only past-tense verbs for an hour. What mixed addition would help transfer?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which result is strongest evidence for interleaving?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A software team drills one bug type all morning. What should the next round add?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What does blocked practice often give the learner?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"faye holds two glaze\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 4,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Sachi steadies a collapsed bowl at 9:18 a.m. in the community studio, slip cooling between her fingers and the wheel humming under her palms. The rim folded because her left hand climbed too high. He…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q03",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which difficulty has the clearest job?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A learner gets a problem wrong and wants to erase it. What is the better first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What separates useful difficulty from wasted struggle?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A safety trainer wants trainees to learn a checklist. Which plan is best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "When can an error improve later performance?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A training session is calm because learners copy each step from a model. What useful challenge could be added?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"juno holds a dryerase\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 5,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Berenice fans purple vocabulary cards across a train tray table at 5:44 p.m. on Friday, rain streaking the window. The colors make the verb families feel obvious. She predicts Monday will be fine. On…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Sameer turns the laminated patient-transfer poster to the wall at 1:36 p.m. in exam room 4, paper crinkling under the tape. The aides have read it every shift this month. A gait belt lies on the viny…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A worker recognizes every slide in safety training but misses the equipment step. What was the illusion?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q03",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which check best calibrates confidence?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A learner misses several items on a delayed quiz. What should that change?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "When can rereading still be useful?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A musician knows a piece only when the sheet is open. What test fits this idea?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A learner wants confidence that is not just a feeling. What should confidence be tied to?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What is the risk of color-coded flashcards?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Design a quick illusion check for a familiar article."
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"nola presses a sticky\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 6,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Yael sharpens a green pencil at 4:33 p.m. in the tutoring lab, triangle proofs spread under the lamp. She predicts the audio summary will help her most because she likes listening. Her tutor gives he…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Briony runs a leather glove over the weld bead at 6:11 a.m. in bay 3, sparks ticking out in the sand bucket. The apprentice wants a video because he likes videos. Briony angles the joint under the la…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A learner says she is auditory, but the topic is a map route. What should guide the first format choice?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Why is preference weak evidence by itself?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which design best follows this idea?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A mechanic must learn a hidden fluid path. Which method fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What does active processing add?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A training team wants to personalize without style labels. What should they collect?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "When might a preference still matter?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which statement fits best?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 2 paragraphs open with \"that is\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"aislinn stands at 214\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 7,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Manon drops her phone on the cafe table at 8:03 p.m., rain beads still on her coat. \"Same verb, wrong again. Maybe languages are not mine.\" Quentin turns the phone so the app timer shows 11:47 p.m. f…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Greta circles a 61 in red at 4:19 p.m. in the tutoring office, pencil shavings stuck to her sweater. She predicts the retest will prove the first score was her ceiling. Her tutor builds a new plan: r…"
-          },
-          {
-            "catalogId": "B4",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "banned phrase \"is not magic\" — 58 hits across 29 books.",
-            "evidence": "Greta circles a 61 in red at 4:19 p.m. in the tutoring office, pencil shavings stuck to her sweater. She predicts the retest will prove the first score was her ceiling. Her tutor builds a new plan: r…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Jules squats beside platform 2 at 6:06 a.m., chalk dust on his black joggers and a failed clean still rattling in the plates. His lifter waits for the slogan: believe in yourself. Jules does not give…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A trainee fails a first skills check and says she is not suited for the work. What should happen before that verdict?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What is wrong with replacing fatalism with simple slogans?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which response treats a setback as information?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What does a better second score prove?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A learner repeats the same weak plan and gets the same weak result. What is the result mostly judging?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which sentence best fits after a poor performance?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "How should a coach respond to a missed lift?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Design a response to a failed exam that fits this idea."
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"cormac stares at a\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 8,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Paloma caps a black marker at 8:22 a.m. in the union hall, bagels cooling beside a stack of certification handouts. \"Flashcards are enough,\" Wen says. Paloma points at the whiteboard columns: recall,…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Saskia tapes a recertification checklist above her locker at 6:18 a.m., sanitizer smell sharp in the staff hall. She predicts her quiet weekly plan will beat her usual Sunday burst: Tuesday recall, T…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Thabo clips a repair ticket above the garde-manger station at 2:37 p.m., tape snapping against the steel shelf. The apprentice cooks have practiced knife cuts, sauces, and plating in separate bursts.…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Why is a calendar useful for learning?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q03",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Which routine best fits the synthesis?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A training program checks errors but never revisits them. What is missing?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What does interleaving add inside the full routine?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A learner says the cram block felt more intense than the weekly plan. What evidence should decide?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Design a small weekly cycle for a certification skill."
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "Why can one strong tactic still fall short?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "What is the best final measure of a learning system?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"clio writes four boxes\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       }
     ],
     "totalBlockers": 0,
-    "totalMajors": 98
+    "totalMajors": 0
   },
   "bookGate": {
     "bookId": "make-it-stick",
@@ -805,15 +73,33 @@
     "findings": [],
     "stats": {
       "answerPositionCounts": [
+        29,
         24,
-        24,
-        24
+        19
       ],
-      "answerPositionPctMax": 0.3333333333333333,
+      "answerPositionPctMax": 0.4027777777777778,
       "totalQuizQuestions": 72,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "make-it-stick",
+        "chapterCount": 8,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

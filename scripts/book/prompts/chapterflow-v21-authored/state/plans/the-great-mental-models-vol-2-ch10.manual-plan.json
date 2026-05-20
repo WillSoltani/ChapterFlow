@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch10",
+  "number": 10,
+  "title": "Alloying",
+  "coreMove": "Combine unlike strengths so the mixture gains properties no pure element can provide alone.",
+  "sourcePressure": "Alloying focuses on complementary combination, resilience, flexibility, and useful mixed properties rather than purity.",
+  "chapterSpecificMisunderstanding": "making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+  "sourceAlignmentTerms": [
+    "alloying",
+    "combination",
+    "mixture",
+    "properties",
+    "resilience",
+    "flexibility",
+    "purity"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Alloying",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "museum exhibit team blend",
+      "audience": "readers who face museum exhibit team blend decisions where alloying is easy to misread",
+      "stakes": "public opening depending on blended expertise",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anna pairs the artifact loan tag with the wall text draft, tests the new property against the case layout, and keeps the mixture only if it beats either pure option. Domain: museum exhibit team blend.",
+      "firstImage": "artifact loan tag visible in the museum exhibit team blend",
+      "mustInclude": [
+        "artifact loan tag",
+        "wall text draft",
+        "case layout"
+      ],
+      "mustAvoid": [
+        "making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+        "reusing a generic meeting scene instead of the museum exhibit team blend constraints"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "neighborhood microgrid mix",
+      "audience": "readers who face neighborhood microgrid mix decisions where alloying is easy to misread",
+      "stakes": "outages during peak demand",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Daniel pairs the battery readout with the load profile, tests the new property against the breaker label, and keeps the mixture only if it beats either pure option. Domain: neighborhood microgrid mix.",
+      "firstImage": "battery readout visible in the neighborhood microgrid mix",
+      "mustInclude": [
+        "battery readout",
+        "load profile",
+        "breaker label"
+      ],
+      "mustAvoid": [
+        "making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+        "reusing a generic meeting scene instead of the neighborhood microgrid mix constraints"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "bilingual support desk pairing",
+      "audience": "readers who face bilingual support desk pairing decisions where alloying is easy to misread",
+      "stakes": "customers lost between languages",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Antoine pairs the language queue with the translated macro, tests the new property against the callback ticket, and keeps the mixture only if it beats either pure option. Domain: bilingual support desk pairing.",
+      "firstImage": "language queue visible in the bilingual support desk pairing",
+      "mustInclude": [
+        "language queue",
+        "translated macro",
+        "callback ticket"
+      ],
+      "mustAvoid": [
+        "making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+        "reusing a generic meeting scene instead of the bilingual support desk pairing constraints"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "cofounder skill split",
+      "audience": "readers who face cofounder skill split decisions where alloying is easy to misread",
+      "stakes": "company gaps neither founder can cover",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Marit pairs the equity split sheet with the sales deck, tests the new property against the support inbox, and keeps the mixture only if it beats either pure option. Domain: cofounder skill split.",
+      "firstImage": "equity split sheet visible in the cofounder skill split",
+      "mustInclude": [
+        "equity split sheet",
+        "sales deck",
+        "support inbox"
+      ],
+      "mustAvoid": [
+        "making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+        "reusing a generic meeting scene instead of the cofounder skill split constraints"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "prosthetics material choice",
+      "audience": "readers who face prosthetics material choice decisions where alloying is easy to misread",
+      "stakes": "comfort versus durability for patients",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Akira pairs the socket mold with the wear-test strip, tests the new property against the patient note, and keeps the mixture only if it beats either pure option. Domain: prosthetics material choice.",
+      "firstImage": "socket mold visible in the prosthetics material choice",
+      "mustInclude": [
+        "socket mold",
+        "wear-test strip",
+        "patient note"
+      ],
+      "mustAvoid": [
+        "making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+        "reusing a generic meeting scene instead of the prosthetics material choice constraints"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "debate team role mix",
+      "audience": "readers who face debate team role mix decisions where alloying is easy to misread",
+      "stakes": "team wins requiring role contrast",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Isabel pairs the role card with the flow sheet, tests the new property against the round ballot, and keeps the mixture only if it beats either pure option. Domain: debate team role mix.",
+      "firstImage": "role card visible in the debate team role mix",
+      "mustInclude": [
+        "role card",
+        "flow sheet",
+        "round ballot"
+      ],
+      "mustAvoid": [
+        "making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+        "reusing a generic meeting scene instead of the debate team role mix constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for alloying rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Combine unlike strengths so the mixture gains properties no pure element can provide alone.",
+      "explain why the tempting misread fails: making the point generic teamwork or diversity language without mixture-specific tradeoffs",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving alloying, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

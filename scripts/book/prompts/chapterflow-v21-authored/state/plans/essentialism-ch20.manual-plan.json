@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch20",
+  "number": 20,
+  "title": "Be: The Essentialist Life",
+  "coreMove": "Move from doing essentialist tactics to becoming the kind of person who repeatedly asks what is essential and eliminates the rest.",
+  "sourcePressure": "The closing chapter lifts essentialism from occasional technique into identity, meaning, clarity, control, joy, and a life with fewer regrets.",
+  "chapterSpecificMisunderstanding": "A weak run would close with generic inspiration about living your best life or maintaining productivity habits.",
+  "sourceAlignmentTerms": [
+    "essentialist life",
+    "identity",
+    "meaning",
+    "regret",
+    "what is essential",
+    "Socrates"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic be: the essentialist life topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "grand life advice frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "grand life advice",
+      "motivational conclusion",
+      "one more productivity tactic",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "retired shipyard welder asked to chair every civic maintenance committee",
+      "audience": "retiree whose competence keeps attracting obligations",
+      "stakes": "identity is shown by which contribution he repeatedly protects",
+      "format": "reflection",
+      "requiredBeat": "He places committee envelopes beside apprentice welding coupons and chooses the one role that keeps teaching craft.",
+      "firstImage": "Committee envelopes sit beside apprentice welding coupons.",
+      "mustInclude": [
+        "committee envelopes",
+        "welding coupons",
+        "shop key"
+      ],
+      "mustAvoid": [
+        "generic retirement advice",
+        "heroic busyness"
+      ]
+    },
+    {
+      "domain": "solo pediatric speech therapist redesigning a practice after ten years of saying yes",
+      "audience": "practitioner turning tactics into identity",
+      "stakes": "the essentialist life requires a repeated kind of practice, not one cleanup",
+      "format": "before_after",
+      "requiredBeat": "Before, conference badges crowd her wall; after, she keeps the therapy-room key under one identity sentence.",
+      "firstImage": "Conference badges hang beside a therapy-room key.",
+      "mustInclude": [
+        "conference badges",
+        "therapy-room key",
+        "identity sentence"
+      ],
+      "mustAvoid": [
+        "productivity habit recap",
+        "self-care brand"
+      ]
+    },
+    {
+      "domain": "rural newspaper publisher choosing the paper’s future after losing ad revenue",
+      "audience": "publisher deciding what kind of paper remains",
+      "stakes": "identity clarifies which painful cuts protect meaning",
+      "format": "decision_point",
+      "requiredBeat": "She sets school-board minutes beside a sponsored-content mockup and chooses the paper that still covers civic facts.",
+      "firstImage": "School-board minutes sit beside a sponsored-content mockup.",
+      "mustInclude": [
+        "school-board minutes",
+        "sponsored mockup",
+        "ad ledger"
+      ],
+      "mustAvoid": [
+        "media nostalgia",
+        "live-your-best-life"
+      ]
+    },
+    {
+      "domain": "monastery guesthouse manager deciding what hospitality means as demand grows",
+      "audience": "manager tempted to expand beyond purpose",
+      "stakes": "being essentialist may look strange to growth culture",
+      "format": "scene",
+      "requiredBeat": "He places the retreat proposal binder beside the quiet-hours ledger and refuses expansion that would destroy the welcome.",
+      "firstImage": "A retreat proposal binder lies beside a quiet-hours ledger.",
+      "mustInclude": [
+        "proposal binder",
+        "quiet-hours ledger",
+        "guest bell"
+      ],
+      "mustAvoid": [
+        "aesthetic minimalism",
+        "generic spirituality"
+      ]
+    },
+    {
+      "domain": "public-interest technologist leaving prestige panels to maintain a civic outage tool",
+      "audience": "technologist choosing identity over visibility",
+      "stakes": "essential contribution may be quiet maintenance",
+      "format": "postmortem",
+      "requiredBeat": "She reads the uptime incident report over panel invitations and writes the kind of technologist she is.",
+      "firstImage": "An uptime incident report covers prestige panel invitations.",
+      "mustInclude": [
+        "uptime report",
+        "panel invitations",
+        "maintenance calendar"
+      ],
+      "mustAvoid": [
+        "anti-prestige cliché",
+        "one more tactic"
+      ]
+    },
+    {
+      "domain": "family caregiver choosing a smaller but clearer life after a parent’s diagnosis",
+      "audience": "caregiver whose commitments must match a changed identity",
+      "stakes": "fewer activities can carry more meaning and less regret",
+      "format": "dialogue",
+      "requiredBeat": "He sets the neurology appointment card beside volunteer rosters and names the practices his family can still sustain.",
+      "firstImage": "A neurology appointment card lies beside volunteer rosters and a breakfast note.",
+      "mustInclude": [
+        "appointment card",
+        "volunteer rosters",
+        "breakfast note"
+      ],
+      "mustAvoid": [
+        "generic motivational conclusion",
+        "martyrdom"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the move from occasional tactic to repeated essentialist identity inside a concrete scenario",
+      "choose the response that asks what is essential and eliminates the rest as a lived pattern",
+      "reject the generic drift: A weak run would close with generic inspiration about living your best life or maintaining productivity habits.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one sentence that starts, I am the kind of person who protects ____. Put one current commitment beside it and decide whether it belongs.",
+  "readingTimeMinutes": 12
+}

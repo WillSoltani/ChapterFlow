@@ -1,0 +1,90 @@
+{
+  "bookId": "make-time",
+  "title": "Make Time",
+  "author": "Jake Knapp and John Zeratsky",
+  "thesisParagraph": "Make Time argues that most people do not need a more punishing productivity system. They need a way to stop default forces from deciding the day before intention has a chance. The Busy Bandwagon pushes people toward visible busyness and instant responsiveness, while Infinity Pools offer endless low-friction distraction whenever attention gets tired. The book answers with a small daily operating loop: choose one Highlight, protect it with Laser, support attention through Energize, and use Reflect to learn what actually worked under real conditions.",
+  "coreIdeas": [
+    {
+      "name": "Defaults decide first",
+      "oneSentence": "A day often gets captured by work culture and endless inputs before a person has chosen what matters.",
+      "mentalMove": "notice which default force is taking command before blaming yourself in the abstract",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "One chosen center beats vague intention",
+      "oneSentence": "A Highlight gives the day a center of gravity strong enough to compete with urgent and easy demands.",
+      "mentalMove": "pick one concrete outcome or moment that would make the day feel used well",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Attention needs friction around it",
+      "oneSentence": "Laser is not willpower; it is the redesign of devices, apps, and focus blocks so distraction has to work harder.",
+      "mentalMove": "make the next distraction less automatic before the focus block begins",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "The body is part of focus",
+      "oneSentence": "Energy choices around movement, sleep, food, and caffeine change how available attention feels.",
+      "mentalMove": "treat physical state as a practical input to focus instead of a separate health virtue",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "The system improves by evidence",
+      "oneSentence": "Reflect turns each day into a small experiment so tactics are refined, added, or dropped without drama.",
+      "mentalMove": "convert the day into one useful adjustment for tomorrow",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    }
+  ],
+  "targetReader": "Busy knowledge workers, students, parents, makers, operators, and professionals who feel their days are full but strangely unclaimed, and who need a humane way to recover one meaningful part of each day without pretending every obligation can disappear.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "land examples with protagonist names that read naturally to Canadian, American, and European readers -- 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language"
+    ]
+  },
+  "voiceSpecimens": [
+    "The day did not explode. It just started without you.",
+    "A full calendar can look like proof until you ask what it protected.",
+    "The feed feels relaxing because it never asks you to choose.",
+    "Pick the thing you would be glad to remember tonight, then give it a place on the day before the day fills itself.",
+    "Focus gets easier when the phone has to cross the room before it can reach you.",
+    "Your body is not a side project. It is the battery your attention keeps borrowing from.",
+    "A rough day is still useful if it tells you which small setting to change tomorrow."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, readers will explore a transformational productivity framework.",
+    "The authors argue that everyone can optimize their life through intentional behavior change.",
+    "Take a few moments to reflect deeply on your goals and unlock your best self.",
+    "The key insight is that focus is important in today's fast-paced digital world.",
+    "This principle can be applied holistically across work, school, relationships, and personal development."
+  ],
+  "teachingArc": "The book begins by naming the default forces that steal command of the day. It then gives the reader a sequence of counter-moves: choose a single daily Highlight, protect attention long enough to work on it, restore the physical energy that makes focus possible, and review the evidence so tomorrow can be adjusted. The chapters compound from diagnosis to choice, from choice to protection, from protection to energy, and from energy to learning.",
+  "forbiddenMoves": [
+    "Do not turn Make Time into generic time-blocking or task-list advice.",
+    "Do not make every problem a phone addiction problem; the Busy Bandwagon matters as much as Infinity Pools.",
+    "Do not promise total control over the day or total escape from modern work.",
+    "Do not turn Energize into medical or wellness claims beyond modest attention support.",
+    "Do not turn Reflect into elaborate tracking, scoring, or self-surveillance."
+  ]
+}

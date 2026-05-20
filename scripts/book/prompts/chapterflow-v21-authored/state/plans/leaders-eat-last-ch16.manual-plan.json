@@ -1,0 +1,175 @@
+{
+  "chapterId": "leaders-eat-last-ch16",
+  "number": 16,
+  "title": "Imbalance",
+  "coreMove": "Detect the side of the system being overfed and deliberately support the human condition being crowded out.",
+  "sourcePressure": "Names the crowding-out pattern where measurable order gains authority over less visible but essential human conditions like trust, discretion, and judgment.",
+  "chapterSpecificMisunderstanding": "Complaining that metrics are cold, or calling every workload problem imbalance.",
+  "sourceAlignmentTerms": [
+    "imbalance",
+    "measurable order",
+    "crowding out",
+    "trust",
+    "discretion",
+    "judgment",
+    "standardization",
+    "output"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 16 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "commercial bakery production dashboard",
+      "audience": "plant manager chasing perfect batch counts",
+      "stakes": "output metric crowds out dough-rest judgment",
+      "format": "decision_point",
+      "requiredBeat": "she slows one line after tasting the rushed crumb herself",
+      "firstImage": "a sliced loaf on a cooling rack",
+      "mustInclude": [
+        "sliced loaf",
+        "batch counter"
+      ],
+      "mustAvoid": [
+        "work-life balance"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "fire academy skills checklist",
+      "audience": "academy chief standardizing drills",
+      "stakes": "checklists crowd out situational judgment",
+      "format": "scene",
+      "requiredBeat": "he pauses the timed drill so recruits explain smoke behavior before resetting the clock",
+      "firstImage": "a stopwatch beside a smoke-stained mask",
+      "mustInclude": [
+        "stopwatch",
+        "mask"
+      ],
+      "mustAvoid": [
+        "anti-metric"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "legal aid intake portal",
+      "audience": "director optimizing closed cases",
+      "stakes": "closure counts crowd out trust for complex clients",
+      "format": "dialogue",
+      "requiredBeat": "she moves one domestic-violence case out of the speed lane after reading the safety plan",
+      "firstImage": "a case-closure chart beside a safety plan",
+      "mustInclude": [
+        "closure chart",
+        "safety plan"
+      ],
+      "mustAvoid": [
+        "generic burnout"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "regional ferry maintenance shed",
+      "audience": "maintenance lead tracking on-time sailings",
+      "stakes": "schedule order may crowd out a handwritten vibration warning before a ferry leaves the dock",
+      "format": "postmortem",
+      "requiredBeat": "he links a near miss to the ignored handwritten vibration note, then changes departure authority",
+      "firstImage": "a vibration gauge beside a departure board",
+      "mustInclude": [
+        "vibration gauge",
+        "departure board"
+      ],
+      "mustAvoid": [
+        "bus-depot maintenance shell"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "wildlife census drone team",
+      "audience": "project lead valuing coverage maps",
+      "stakes": "map coverage crowds out field biologist judgment",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks the biologist to mark what the drone missed before accepting the count",
+      "firstImage": "a drone battery beside a field notebook",
+      "mustInclude": [
+        "drone battery",
+        "field notebook"
+      ],
+      "mustAvoid": [
+        "technology bad"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "eldercare meal delivery route",
+      "audience": "program manager optimizing stops per hour",
+      "stakes": "route efficiency crowds out the safety check elders rely on",
+      "format": "reflection",
+      "requiredBeat": "she restores the two-minute doorway pause after seeing the missed fall note",
+      "firstImage": "a meal tote beside a doorway checklist",
+      "mustInclude": [
+        "meal tote",
+        "doorway checklist"
+      ],
+      "mustAvoid": [
+        "home care sentiment"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify crowding-out patterns",
+      "name invisible conditions under measurable strength",
+      "rebalance without abandoning order",
+      "evaluate long-term system health"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one metric that is winning every tradeoff and write the invisible human condition it is starving.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

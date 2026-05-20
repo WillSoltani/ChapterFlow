@@ -1,0 +1,187 @@
+{
+  "chapterId": "difficult-conversations-ch09",
+  "number": 9,
+  "title": "Listen from the Inside Out",
+  "coreMove": "Set down the internal voice long enough for the other person's meaning to arrive.",
+  "sourcePressure": "The chapter locates listening inside the listener: notice counterargument, judgment, and identity management before using questions, paraphrase, and acknowledgment.",
+  "chapterSpecificMisunderstanding": "Equating listening with silence, eye contact, or scripted paraphrase.",
+  "sourceAlignmentTerms": [
+    "listen from the inside out",
+    "internal voice",
+    "counter-arguments",
+    "judging",
+    "identity stakes",
+    "genuine curiosity",
+    "paraphrase",
+    "acknowledge feelings"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "internal voice",
+      "detail": "The source names three internal tasks that block listening: building counterarguments, judging, and managing identity stakes.",
+      "useIn": "both",
+      "phrasingHint": "The first thing to listen for is often the argument already speaking inside your own head."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch09 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: dialogue first line; question-as-hook; environmental detail before any human; sensory detail first; retrospective first line; timestamp+name+action",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "reorg 1:1 with unhappy direct report",
+      "audience": "managers whose internal voice is louder than the employee",
+      "stakes": "retention risk is rising because the employee feels unheard",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Megan writes 'counterargument,' 'judgment,' and 'identity' on the margin before asking what has been hardest",
+      "firstImage": "a video-call window with the mute icon lit",
+      "mustInclude": [
+        "reorg FAQ",
+        "1:1 doc",
+        "mute icon"
+      ],
+      "mustAvoid": [
+        "silent waiting as listening"
+      ]
+    },
+    {
+      "domain": "medical resident receiving patient-family anger",
+      "audience": "clinicians listening under accusation",
+      "stakes": "a family complaint could reveal a real care gap if judgment quiets down",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Frida notices her mind saying 'they are being unfair' and sets it aside for one question",
+      "firstImage": "the antiseptic smell of a consultation room",
+      "mustInclude": [
+        "visitor chairs",
+        "patient chart",
+        "tissue box"
+      ],
+      "mustAvoid": [
+        "clinical paraphrase script"
+      ]
+    },
+    {
+      "domain": "partner explaining loneliness after a busy season",
+      "audience": "couples where one person is building rebuttals",
+      "stakes": "loneliness may harden if it is answered with schedule facts",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Javier paraphrases the sting in his own words and leaves room for correction",
+      "firstImage": "\"You are already preparing your defense,\" Sam says",
+      "mustInclude": [
+        "work calendar",
+        "half-folded laundry",
+        "phone face down"
+      ],
+      "mustAvoid": [
+        "defending workload"
+      ]
+    },
+    {
+      "domain": "teacher hearing student complaint about grading",
+      "audience": "educators managing identity while listening",
+      "stakes": "a student may be pointing at a confusing rubric, not attacking competence",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sam notices the competence quake and asks what part of the rubric felt unclear",
+      "firstImage": "a stack of essays with colored tabs",
+      "mustInclude": [
+        "grading rubric",
+        "essay stack",
+        "office-hours chair"
+      ],
+      "mustAvoid": [
+        "authority lecture"
+      ]
+    },
+    {
+      "domain": "software incident postmortem with angry customer-success lead",
+      "audience": "technical teams listening across roles",
+      "stakes": "fixing the outage depends on hearing the customer pain without judging tone",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes Hiroshi two minutes to stop composing the root-cause defense and ask what customers heard first",
+      "firstImage": "a status page still showing yellow",
+      "mustInclude": [
+        "status page",
+        "incident timeline",
+        "support tickets"
+      ],
+      "mustAvoid": [
+        "technical facts only"
+      ]
+    },
+    {
+      "domain": "friend returning after months of silence",
+      "audience": "friendships where timing makes paraphrase delicate",
+      "stakes": "one scripted summary could sound like therapy and push the friend away",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Manon uses ordinary language to check the meaning instead of a formula",
+      "firstImage": "a voicemail waveform on a cracked phone screen",
+      "mustInclude": [
+        "voicemail",
+        "park bench",
+        "coffee receipt"
+      ],
+      "mustAvoid": [
+        "so what I hear you saying formula"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs set down the internal voice long enough for the other person's meaning to arrive.",
+      "distinguish listen from the inside out from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate equating listening with silence, eye contact, or scripted paraphrase."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next tense exchange, silently label your internal voice as counterargument, judgment, or identity before asking one real question.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

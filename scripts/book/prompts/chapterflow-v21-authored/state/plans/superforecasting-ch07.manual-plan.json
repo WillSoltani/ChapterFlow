@@ -1,0 +1,136 @@
+{
+  "chapterId": "superforecasting-ch07",
+  "number": 7,
+  "title": "Supernewsjunkies?",
+  "coreMove": "Size each revision to match the actual strength of the new signal — not the emotional salience of how it arrived, not the volume of detail it came wrapped in.",
+  "sourcePressure": "Superforecasters' early forecasts were already stronger before later updates arrived — the edge is not information volume. Bill Flack's Arafat revision (60% to 65%) shows proportionate movement on a meaningful but limited signal. Underreaction preserves old stories too stubbornly; overreaction grants too much power to new information. The dilution effect shows that more detail makes a case feel richer without making it more predictive. Tim Minto's many small updates beat long inertia followed by dramatic correction.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'stay informed' or 'update your views when you get new information.' The precise lesson is about update sizing: how much should a specific piece of evidence move the estimate? The answer is almost always less than the emotional salience of the news suggests, and the dilution effect explains why more detail is dangerous — it feels diagnostic while adding noise.",
+  "sourceAlignmentTerms": ["proportionate revision", "dilution effect", "underreaction", "overreaction", "signal strength", "update discipline", "Tim Minto"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Bill Flack",
+      "detail": "When the story broke claiming Yasser Arafat had died of polonium poisoning, most analysts would have either discounted it entirely or dramatically revised their probability of a state-sponsored assassination. Flack moved his estimate from 60% to 65% — reflecting a meaningful but limited signal, because the evidence was suggestive but not conclusive",
+      "useIn": "deepRead",
+      "phrasingHint": "Flack's 5-percentage-point revision was not timid — it was accurate. The polonium story was suggestive, not conclusive, and a 5-point move was what the evidence had earned."
+    },
+    {
+      "kind": "person",
+      "name": "Tim Minto",
+      "detail": "A superforecaster in the Good Judgment Project whose characteristic pattern was frequent small updates — moving 2–3 percentage points at a time rather than holding steady and then revising dramatically — which kept his forecasts more responsive without becoming erratic",
+      "useIn": "fullRead",
+      "phrasingHint": "Tim Minto's forecasting log looked like a gentle staircase — many small steps rather than the cliffs and plateaus that mark a forecaster who holds and then panics."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with media criticism or information overload commentary — wrong frame for this chapter",
+      "opening with 'We live in a world of too much information' — generic tech-age complaint"
+    ],
+    "counterintuition": [
+      "'More news is bad for your forecasting' — too simple; the chapter says update quality is the variable, not information quantity"
+    ],
+    "tryThisNow": [
+      "any prompt about managing news consumption or creating an information diet — not the chapter's lesson",
+      "'Update one of your beliefs based on something you read today' — misses the sizing mechanism entirely"
+    ],
+    "examples": [
+      "any example where the protagonist simply updates or refuses to update — the required beat must show the forecaster asking 'how much should this move my estimate?' and arriving at a specific, proportionate number",
+      "any domain shared with ch01–06"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The update-sizing problem looks different in investigation, monitoring, trading, and analysis contexts — variety of entry points reinforces that the lesson is universal"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "criminal defense attorney receiving a new witness statement two weeks before trial",
+      "audience": "a defense lawyer whose case probability assessment is 45% acquittal before the new statement arrives",
+      "stakes": "whether to pursue a plea deal, which requires accepting guilt, or continue to trial based on the new evidence",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the new statement is vivid, confident, and supports the defense narrative — but comes from a witness whose prior testimony in another case was impeached; the lawyer asks how much this should move her acquittal estimate and works through it: the statement adds some corroborating force but the impeachment risk reduces its evidentiary value — she moves from 45% to 51%, not to 70%, and continues to negotiate the plea in parallel",
+      "firstImage": "a six-page typed statement in a manila folder, the first paragraph already making the defense case sound stronger",
+      "mustInclude": ["the 45% to 51% move (proportionate)", "the temptation to move to 70% based on the statement's vividness", "the continuing parallel negotiation despite the positive signal"],
+      "mustAvoid": ["legal procedure detail", "court drama framing"]
+    },
+    {
+      "domain": "epidemiologist updating an active outbreak model after a single new geographically clustered case cluster",
+      "audience": "a field epidemiologist who has been tracking a foodborne illness cluster across two counties",
+      "stakes": "whether to issue a broader public warning that would affect twelve businesses in a third county",
+      "format": "dialogue_first",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a supervisor wants to immediately issue the third-county warning based on one new cluster; the epidemiologist calculates how much this single cluster should move the estimate — given the cluster could be independent, the base rate of false geographic extensions is non-trivial — she moves from 35% probability of broader contamination to 42%, not to 80%, and recommends one more day of sampling before the public warning",
+      "firstImage": "a phone call where the supervisor has already drafted the public warning and is asking for sign-off",
+      "mustInclude": ["the 35% to 42% move", "the base rate of false geographic extensions", "the one-more-day recommendation"],
+      "mustAvoid": ["epidemiology jargon overload", "any domain overlap with clinical trial content from ch06"]
+    },
+    {
+      "domain": "commodities trader receiving a new shipping disruption report on a grain corridor",
+      "audience": "a grain trader at a commodity desk whose current position is priced around 68% probability of a supply disruption in the next 30 days",
+      "stakes": "a hedging decision worth $500K in premium cost if made now vs. waiting",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "the report is detailed and alarming — it includes satellite imagery, port congestion data, and three named sources — but when the trader separates the diagnostic content from the contextual background noise (the dilution effect), the new diagnostic information is actually a single new data point: port throughput down 15%; she moves from 68% to 73%, not to 90%, and hedges only half the position",
+      "firstImage": "a twelve-page report in a trader's inbox with the subject line 'URGENT: Corridor disruption imminent'",
+      "mustInclude": ["the dilution effect named — the bulk of the report is non-diagnostic detail", "the 68% to 73% move", "the partial hedge reflecting proportionate revision"],
+      "mustAvoid": ["commodities trading jargon", "financial advice content"]
+    },
+    {
+      "domain": "geological survey team adding one new borehole sample to a mineral reserve estimate",
+      "audience": "a mining exploration geologist whose current reserve probability sits at 61%",
+      "stakes": "a drilling permit decision that commits $2M in equipment mobilization",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the new borehole sample shows high-grade mineralization at depth — exciting, but the sample is one of eight planned; the geologist calculates how much one sample should move a reserve confidence estimate given the spatial correlation patterns from analogous deposits, and moves from 61% to 67%, not to 85%; the permit decision is deferred until two more samples return",
+      "firstImage": "a core sample in a split tube, bright with mineral color, laid out on a sample tray at dawn",
+      "mustInclude": ["the 61% to 67% move", "the spatial correlation logic that limits the update size", "the deferred permit decision"],
+      "mustAvoid": ["mining geology jargon", "any domain overlap with previous chapters"]
+    },
+    {
+      "domain": "conservation biologist recording a new habitat observation that seems to shift a species range estimate",
+      "audience": "a field biologist tracking a bird species' northward range shift whose current estimate is 55% that the range has expanded beyond the historical boundary",
+      "stakes": "whether to recommend emergency habitat protection for a corridor that would cost a development project $8M",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the biologist photographs what appears to be the target species 30km north of the historical limit — strong signal — but asks how much one sighting should move the range estimate; given the base rate of misidentification at distance and the lack of breeding evidence, she moves from 55% to 63%, not to 90%; the protection recommendation is deferred pending a second confirmed sighting with nesting evidence",
+      "firstImage": "a field photograph on a camera screen, blurry at the edges but showing the right field marks — maybe",
+      "mustInclude": ["the 55% to 63% move", "the misidentification base rate as limiting factor", "the deferred protection recommendation"],
+      "mustAvoid": ["ornithology content", "environmental policy debate"]
+    },
+    {
+      "domain": "portfolio manager reviewing a company's earnings call transcript looking for changes to forward guidance",
+      "audience": "a fund manager whose position is sized around a 59% probability of the company meeting annual revenue guidance",
+      "stakes": "whether to increase or reduce a $12M position before the next trading session",
+      "format": "retrospective",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the earnings transcript has 47 pages; after stripping out boilerplate, investor relations language, and backward-looking metrics, the only new diagnostic information is one sentence of revised geographic revenue guidance — the manager moves from 59% to 55%, not to 35%, reflecting the limited diagnostic weight of one sentence in 47 pages; position size is reduced modestly, not exited",
+      "firstImage": "a 47-page earnings transcript with a highlighter making its way through it and most pages unmarked",
+      "mustInclude": ["the 59% to 55% move", "the dilution effect — 47 pages, one diagnostic sentence", "the modest position reduction rather than exit"],
+      "mustAvoid": ["financial analysis jargon", "investment advice framing"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply proportionate revision to a new scenario — calculate a reasonable update size from a described signal",
+      "identify when the dilution effect is operating — more detail, no more diagnostic value",
+      "distinguish underreaction from overreaction given a specific signal strength",
+      "analyze whether a dramatic revision was warranted by evidence or driven by emotional salience",
+      "evaluate Tim Minto's small-update approach compared to hold-and-revise in terms of cumulative accuracy"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "The next time you read a long report, news article, or email chain, count: how many sentences contain new diagnostic information — information that would actually change your estimate if true — versus contextual detail, repetition, or framing? Identify the one or two diagnostic sentences. Then ask how much your estimate would move if those sentences were verified. Write the number. That is your proportionate update — not the emotional salience of the whole document.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one analytical passage explaining the dilution effect mechanism — why detail feels diagnostic even when it is not — as a direct explanation before the reader has seen it in the examples",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

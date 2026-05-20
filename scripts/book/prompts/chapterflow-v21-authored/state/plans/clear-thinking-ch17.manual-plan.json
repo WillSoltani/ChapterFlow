@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch17",
+  "number": 17,
+  "title": "Define the Problem",
+  "coreMove": "Rewrite the complaint into the obstacle you can actually act on.",
+  "sourcePressure": "The decision-process section starts by clarifying the real problem: framing, obstacles, responsibility, and root cause before effort goes toward the wrong target.",
+  "chapterSpecificMisunderstanding": "Jumping to solutions or importing problem-solving frameworks before the problem is named cleanly.",
+  "sourceAlignmentTerms": [
+    "define the problem",
+    "problem framing",
+    "obstacles",
+    "responsibility",
+    "root cause",
+    "real problem",
+    "wrong target"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "problem framing, obstacles, responsibility, and root cause",
+      "detail": "the heading index supports this chapter through problem framing, obstacles, responsibility, and root cause",
+      "useIn": "deepRead",
+      "phrasingHint": "A badly named problem sends good effort to the wrong address."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for define the problem",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think define the problem is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Iris",
+      "domain": "a animal shelter intake",
+      "audience": "a reader facing define the problem in a concrete animal shelter intake decision",
+      "stakes": "whether Iris preserves judgment quality before the situation slides into consulting matrices",
+      "format": "thought_experiment",
+      "openingDevice": "environmental",
+      "requiredBeat": "Iris performs the chapter move by setting the call sheet beside the red pencil, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the call sheet lying beside the red pencil in the animal shelter intake",
+      "mustInclude": [
+        "call sheet",
+        "red pencil"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting matrices",
+        "reusing a previous chapter's animal shelter intake shell"
+      ]
+    },
+    {
+      "protagonistName": "Nora",
+      "domain": "a college financial aid appeal",
+      "audience": "a reader facing define the problem in a concrete college financial aid appeal decision",
+      "stakes": "whether Nora preserves judgment quality before the situation slides into consulting matrices",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nora performs the chapter move by setting the oxygen bag beside the shift board, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the shift board in the college financial aid appeal",
+      "mustInclude": [
+        "oxygen bag",
+        "shift board"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting matrices",
+        "reusing a previous chapter's college financial aid appeal shell"
+      ]
+    },
+    {
+      "protagonistName": "Patrick",
+      "domain": "a municipal pothole backlog",
+      "audience": "a reader facing define the problem in a concrete municipal pothole backlog decision",
+      "stakes": "whether Patrick preserves judgment quality before the situation slides into consulting matrices",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Patrick performs the chapter move by setting the boarding pass beside the complaint card, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the boarding pass against the counter in the municipal pothole backlog",
+      "mustInclude": [
+        "boarding pass",
+        "complaint card"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting matrices",
+        "reusing a previous chapter's municipal pothole backlog shell"
+      ]
+    },
+    {
+      "protagonistName": "Peter",
+      "domain": "a software support queue",
+      "audience": "a reader facing define the problem in a concrete software support queue decision",
+      "stakes": "whether Peter preserves judgment quality before the situation slides into consulting matrices",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Peter performs the chapter move by setting the will copy beside the notepad, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the notepad in the software support queue",
+      "mustInclude": [
+        "will copy",
+        "notepad"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting matrices",
+        "reusing a previous chapter's software support queue shell"
+      ]
+    },
+    {
+      "protagonistName": "George",
+      "domain": "a orthodontic treatment plan",
+      "audience": "a reader facing define the problem in a concrete orthodontic treatment plan decision",
+      "stakes": "whether George preserves judgment quality before the situation slides into consulting matrices",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "George performs the chapter move by setting the order rail beside the ticket spike, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the order rail in the orthodontic treatment plan",
+      "mustInclude": [
+        "order rail",
+        "ticket spike"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting matrices",
+        "reusing a previous chapter's orthodontic treatment plan shell"
+      ]
+    },
+    {
+      "protagonistName": "William",
+      "domain": "a regional train delay review",
+      "audience": "a reader facing define the problem in a concrete regional train delay review decision",
+      "stakes": "whether William preserves judgment quality before the situation slides into consulting matrices",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "William performs the chapter move by setting the satellite phone beside the route map, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the route map in the regional train delay review",
+      "mustInclude": [
+        "satellite phone",
+        "route map"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "consulting matrices",
+        "reusing a previous chapter's regional train delay review shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Rewrite the complaint into the obstacle you can actually act on.",
+      "detect the weak generic version: Jumping to solutions or importing problem-solving frameworks before the problem is named cleanly.",
+      "distinguish define the problem from nearby drift into consulting matrices"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where define the problem is active, then write the exact next visible move that would perform this chapter's move: rewrite the complaint into the obstacle you can actually act on.",
+  "readingTimeMinutes": 12
+}

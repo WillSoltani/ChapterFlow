@@ -1,0 +1,177 @@
+{
+  "chapterId": "what-every-body-is-saying-ch03",
+  "number": 3,
+  "title": "Living Our Limbic Legacy",
+  "coreMove": "Read early body reactions as protective timing signals, then slow interpretation until recovery and context show more.",
+  "sourcePressure": "The source sidecar supports only a narrow limbic frame: bodily reaction can appear before polished speech because fast protective responses, orientation, comfort, discomfort, and recovery show up quickly. The chapter must avoid precise neuroscience and truth-leak mythology.",
+  "chapterSpecificMisunderstanding": "The weak version says the limbic system tells the truth before the conscious mind can hide it. The writer must instead teach timing: first reaction, protective adjustment, recovery, and then restrained interpretation.",
+  "sourceAlignmentTerms": [
+    "limbic",
+    "survival",
+    "protective response",
+    "orientation",
+    "comfort",
+    "discomfort",
+    "freeze",
+    "soothing",
+    "recovery",
+    "timing"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A brain-scan or neuroscience lecture opener.",
+      "A predator-in-the-forest survival cliche.",
+      "A claim that the first reaction reveals the truth."
+    ],
+    "counterintuition": [
+      "Most people assume the mind leads, but actually the limbic body leads.",
+      "The primitive brain cannot lie.",
+      "Freeze, flight, or fight explains every tense moment."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and watch your limbic system.",
+      "Startle someone to see their real reaction.",
+      "Force yourself to identify fight, flight, or freeze in every scene."
+    ],
+    "examples": [
+      "Generic public-speaking butterflies.",
+      "Dark parking-lot danger scene.",
+      "Police suspect flinching under accusation.",
+      "Stress-snacking or fridge temptation.",
+      "Bus depot near-miss."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "glassblowing studio safety correction during a beginner workshop",
+      "audience": "an instructor watching a student react to a sudden heat flare",
+      "stakes": "whether the instructor mistakes embarrassment for carelessness or catches the protective response before the next attempt",
+      "format": "scene",
+      "requiredBeat": "When the furnace door blooms orange, the student freezes with the pipe angled down, pulls his elbow tight to his ribs, and only then laughs too loudly, so the instructor waits for his grip to loosen before giving the next instruction.",
+      "firstImage": "An orange furnace mouth opens around the end of a blowpipe.",
+      "mustInclude": [
+        "blowpipe",
+        "heat shield",
+        "bench rail"
+      ],
+      "mustAvoid": [
+        "heroic accident rescue",
+        "brain chemistry explanation",
+        "calling laughter proof of confidence"
+      ]
+    },
+    {
+      "domain": "passport renewal counter when a traveler hears her name mispronounced",
+      "audience": "a clerk trying to keep a paperwork correction calm",
+      "stakes": "whether a small administrative error turns into a defensive exchange",
+      "format": "dialogue",
+      "requiredBeat": "The traveler answers politely, but the first beat is a still face, a half-step back from the counter, and both hands closing over the appointment folder; the clerk gives the folder time to lower before asking how the name should appear.",
+      "firstImage": "A navy passport folder rests under the glass slot.",
+      "mustInclude": [
+        "glass slot",
+        "appointment folder",
+        "number display"
+      ],
+      "mustAvoid": [
+        "accusing the traveler of anger",
+        "immigration interrogation frame",
+        "name mistake as cultural lecture"
+      ]
+    },
+    {
+      "domain": "diving certification pool after a mask-flood drill",
+      "audience": "a dive instructor watching a student surface from a failed drill",
+      "stakes": "whether the instructor sends the student back underwater before recovery is visible",
+      "format": "before_after",
+      "requiredBeat": "Underwater, the student's knees lock and both hands clamp the mask; at the pool edge, her shoulders remain high until she presses her fins flat on the tile and exhales twice, giving the instructor the recovery cue.",
+      "firstImage": "A fogged dive mask bobs beside the pool ladder.",
+      "mustInclude": [
+        "pool ladder",
+        "yellow fins",
+        "mask strap"
+      ],
+      "mustAvoid": [
+        "sports toughness lesson",
+        "panic diagnosis as certainty",
+        "generic breathing advice"
+      ]
+    },
+    {
+      "domain": "auction preview room when a bidder discovers a repaired painting frame",
+      "audience": "an appraiser watching whether interest survives new information",
+      "stakes": "whether the appraiser overreads a quick recoil and loses a serious buyer",
+      "format": "predict_reveal",
+      "requiredBeat": "At the word repaired, the bidder's hand leaves the frame, her feet plant, and her chin pulls back; after three seconds she leans in again with the flashlight, so the appraiser treats the recoil as protective timing, not a final no.",
+      "firstImage": "A small flashlight beam runs along the back of a gilt frame.",
+      "mustInclude": [
+        "condition tag",
+        "flashlight",
+        "gilt frame"
+      ],
+      "mustAvoid": [
+        "sales manipulation",
+        "fake-art scandal",
+        "first recoil as proof of distrust"
+      ]
+    },
+    {
+      "domain": "hospital cafeteria when a resident hears an overhead emergency page",
+      "audience": "a senior resident mentoring an intern after a hard shift",
+      "stakes": "whether the intern's reaction is treated as incompetence or as a fast protective response to a familiar stress cue",
+      "format": "reflection",
+      "requiredBeat": "The intern's fork stops halfway to the tray, her torso turns toward the speakers before the code is complete, and she rubs her thumb across the badge clip after realizing it is not her unit.",
+      "firstImage": "A metal fork hovers over a cafeteria tray as the ceiling speaker crackles.",
+      "mustInclude": [
+        "ceiling speaker",
+        "badge clip",
+        "meal tray"
+      ],
+      "mustAvoid": [
+        "hospital heroism",
+        "diagnosing trauma",
+        "unsupported nervous-system detail"
+      ]
+    },
+    {
+      "domain": "orchestra rehearsal when the conductor stops on a missed entrance",
+      "audience": "a section leader helping a substitute musician recover",
+      "stakes": "whether the substitute's first freeze hardens into the next mistake",
+      "format": "decision_point",
+      "requiredBeat": "At the cutoff, the substitute's bow hand locks above the string, then she tucks the hand under the music stand and rubs two fingers against the frog; the section leader waits until the bow returns to the string before quietly counting the entrance.",
+      "firstImage": "A violin bow hangs motionless above an open part.",
+      "mustInclude": [
+        "music stand",
+        "bow frog",
+        "penciled entrance mark"
+      ],
+      "mustAvoid": [
+        "talent judgment",
+        "stage-fright cliche",
+        "one freeze as proof she cannot play"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot the first protective reaction without turning it into a truth claim",
+      "distinguish initial freeze, orientation, soothing, and recovery in a visible sequence",
+      "choose a next move that gives the person time to recover before interpretation",
+      "evaluate whether a scenario overstates limbic reaction as motive, guilt, or deception"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "After one small startle or tense moment today, write the sequence in order: what happened first in your body, what you did to protect or orient, and what showed you had recovered.",
+  "readingTimeMinutes": 12
+}

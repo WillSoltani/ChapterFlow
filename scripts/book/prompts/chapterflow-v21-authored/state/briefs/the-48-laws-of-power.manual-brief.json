@@ -1,0 +1,101 @@
+{
+  "bookId": "the-48-laws-of-power",
+  "title": "The 48 Laws of Power",
+  "author": "Robert Greene",
+  "thesisParagraph": "The book treats power as a social field where appearances, incentives, timing, reputation, and emotional threat often decide outcomes before formal rules do. Its argument is not that cruelty is always wise or that every relationship should become manipulation. It is that people constantly misread power because they assume merit, sincerity, logic, or loyalty will protect them on their own. The practical curriculum teaches the reader to notice status threat, control visibility, shape incentives, choose timing, preserve optionality, and avoid the recurring traps of overexposure, rigidity, sentimentality, and unfinished opposition.",
+  "coreIdeas": [
+    {
+      "name": "Status threat beats merit",
+      "oneSentence": "Strong work can become dangerous when it humiliates someone with power over you.",
+      "mentalMove": "read how competence lands in the other person's self-image before displaying it",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch04.source",
+        "ch46.source"
+      ]
+    },
+    {
+      "name": "Visibility must be directed",
+      "oneSentence": "Attention, credit, silence, and spectacle gain force only when their direction is controlled.",
+      "mentalMove": "choose where the room looks and what that looking makes people feel",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source",
+        "ch37.source"
+      ]
+    },
+    {
+      "name": "Incentives outlast sentiment",
+      "oneSentence": "Requests, alliances, and dependence work better when they are tied to concrete advantage than to goodwill alone.",
+      "mentalMove": "translate emotion into motive, benefit, cost, and replaceability",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch11.source",
+        "ch13.source"
+      ]
+    },
+    {
+      "name": "Control the field before the clash",
+      "oneSentence": "Power often comes from bait, options, timing, information, and planning that shape the contest before direct force begins.",
+      "mentalMove": "move upstream of the visible decision and alter the ground on which it happens",
+      "sourceAnchors": [
+        "ch08.source",
+        "ch29.source",
+        "ch31.source",
+        "ch35.source"
+      ]
+    },
+    {
+      "name": "Flexibility preserves power",
+      "oneSentence": "A fixed form becomes vulnerable once others can predict, compare, or contain it.",
+      "mentalMove": "keep enough shape to stay trusted and enough movement to stay untrapped",
+      "sourceAnchors": [
+        "ch20.source",
+        "ch25.source",
+        "ch48.source"
+      ]
+    }
+  ],
+  "targetReader": "An ambitious adult who works inside organizations, families, civic groups, creative fields, or competitive markets and wants a clearer map of hidden status pressure, incentive games, and reputational risk without being handed generic career advice.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "keep the moral tension visible instead of sanding it down"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no glamorizing cruelty when the supported point is narrower"
+    ]
+  },
+  "voiceSpecimens": [
+    "The room does not punish your talent first. It punishes the comparison your talent creates.",
+    "A favor tied to pity expires quickly. A favor tied to advantage keeps breathing after you leave.",
+    "If the other person has to cross the room to reach you, they have already given up one piece of ground.",
+    "Silence is useful only when it makes people study you. Otherwise it is just empty air.",
+    "Do not chase the thing that denied you until your chasing becomes its trophy.",
+    "A fixed pattern feels loyal from the inside and looks targetable from the outside."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains why power is important in modern life.",
+    "You should always be strategic and mindful in all interpersonal interactions.",
+    "The key lesson is to think carefully about your goals and communicate effectively.",
+    "Robert Greene argues that readers must understand manipulation to succeed.",
+    "Try this now: set a timer for one minute and journal about power."
+  ],
+  "teachingArc": "The sequence starts with status risk around superiors, friends, intentions, speech, reputation, and attention. It then moves into leverage through credit, bait, proof, exposure, dependence, disarming, incentives, intelligence, and closure. The middle chapters teach positioning: absence, unpredictability, circulation, person-specific judgment, optionality, underestimation, surrender, concentration, court behavior, reinvention, clean hands, belief, boldness, planning, polish, choices, fantasy, pressure points, bearing, timing, disdain, spectacle, camouflage, provocation, and true price. The final stretch turns toward succession, central nodes, emotional buy-in, mirroring, reform pace, envy management, stopping, and formlessness, so the reader ends with adaptive judgment rather than a bag of isolated tricks.",
+  "forbiddenMoves": [
+    "turn every law into generic workplace assertiveness",
+    "sanitize the book into harmless positivity and lose the strategic edge",
+    "invent historical anecdotes or named studies when the frozen source lacks them",
+    "repeat the same shadowy boardroom example with different names",
+    "write villain instructions without limits, costs, or moral tension"
+  ]
+}

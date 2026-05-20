@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch03",
+  "number": 3,
+  "title": "Luck & Risk",
+  "coreMove": "Separate visible outcomes from the hidden mix of skill, luck, and exposure behind them.",
+  "sourcePressure": "Luck and risk are twin forces that can make similar processes end in praise or blame depending on the final score.",
+  "chapterSpecificMisunderstanding": "Turning winners into geniuses and losers into fools based only on the scoreboard.",
+  "sourceAlignmentTerms": [
+    "luck",
+    "risk",
+    "randomness",
+    "process",
+    "outcome noise",
+    "humility"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Luck & Risk with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Luck & Risk to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the luck move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of luck and risk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a vineyard choosing which apprentice's pruning method to praise after a frost",
+      "audience": "a vintner trying not to confuse harvest outcome with skill",
+      "stakes": "the wrong promotion teaches the crew to copy luck instead of process",
+      "format": "postmortem",
+      "requiredBeat": "the vintner compares the weather exposure of each row before praising the higher yield",
+      "firstImage": "frost-blackened leaves on one side of a sloped block",
+      "mustInclude": [
+        "row map",
+        "frost line",
+        "yield tags"
+      ],
+      "mustAvoid": [
+        "wine romance"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "an independent app developer whose launch coincides with a celebrity mention",
+      "audience": "a founder deciding how much of a spike to credit to product decisions",
+      "stakes": "over-crediting skill could lead to a reckless hiring plan",
+      "format": "predict_reveal",
+      "requiredBeat": "the founder overlays the download spike with the celebrity timestamp before approving payroll",
+      "firstImage": "a dashboard spike rising beside a social post timestamp",
+      "mustInclude": [
+        "analytics dashboard",
+        "timestamp",
+        "payroll sheet"
+      ],
+      "mustAvoid": [
+        "startup hero story"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a youth chess coach reviewing a tournament upset",
+      "audience": "a coach teaching parents to praise thinking rather than trophy placement",
+      "stakes": "a child could learn arrogance from one lucky trap or shame from one unlucky blunder",
+      "format": "scene",
+      "requiredBeat": "the coach replays the position where the opponent missed mate before discussing the medal",
+      "firstImage": "a chessboard reset to move twenty-three under cafeteria lights",
+      "mustInclude": [
+        "score sheet",
+        "move twenty-three",
+        "medal"
+      ],
+      "mustAvoid": [
+        "genius child narrative"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a hospital triage team studying two similar emergency-room nights",
+      "audience": "a nurse manager separating good protocol from random patient flow",
+      "stakes": "one team may be blamed for a wait time caused by ambulance clustering",
+      "format": "before_after",
+      "requiredBeat": "the manager pins ambulance arrival times beside staffing notes before naming any failure",
+      "firstImage": "colored magnets clustered on an emergency department timeline",
+      "mustInclude": [
+        "arrival timeline",
+        "staffing notes",
+        "wait-time report"
+      ],
+      "mustAvoid": [
+        "healthcare blame cycle"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a seafood wholesaler judging two buyers after a price swing",
+      "audience": "an owner deciding whether margin came from insight or weather",
+      "stakes": "promoting the lucky buyer could distort the next season's purchasing rules",
+      "format": "decision_point",
+      "requiredBeat": "the owner checks storm closures and auction lots before rewarding the buyer with the best margin",
+      "firstImage": "a wet auction clipboard under a hanging dock light",
+      "mustInclude": [
+        "auction lots",
+        "storm closure notice",
+        "margin sheet"
+      ],
+      "mustAvoid": [
+        "market wizard framing"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a documentary grant panel reviewing films released during a news cycle",
+      "audience": "a panel chair preventing attention from masquerading as craft",
+      "stakes": "funding could chase timing instead of disciplined filmmaking",
+      "format": "reflection",
+      "requiredBeat": "the chair asks reviewers to score the cut they saw before the headline made the topic hot",
+      "firstImage": "screening-room notes beside a breaking-news alert on a phone",
+      "mustInclude": [
+        "screening notes",
+        "news alert",
+        "score rubric"
+      ],
+      "mustAvoid": [
+        "media buzz analysis"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: separate visible outcomes from the hidden mix of skill, luck, and exposure behind them",
+      "distinguish luck from nearby but weaker advice such as winner worship",
+      "diagnose when a character is making the common misread: turning winners into geniuses and losers into fools based only on the scoreboard.",
+      "evaluate tradeoffs using the chapter-specific pressure around luck, risk, randomness"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where luck is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: separate visible outcomes from the hidden mix of skill, luck, and exposure behind them.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

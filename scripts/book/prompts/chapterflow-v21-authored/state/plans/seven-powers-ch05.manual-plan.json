@@ -1,0 +1,202 @@
+{
+  "chapterId": "seven-powers-ch05",
+  "number": 5,
+  "title": "Branding",
+  "coreMove": "Test whether history-backed trust lets a similar product command a real premium.",
+  "sourcePressure": "Branding creates higher willingness to pay for an objectively similar offering. The barrier is the time and uncertainty required to copy trust and emotional meaning, while allowing several strong brands to coexist.",
+  "chapterSpecificMisunderstanding": "Branding means awareness, logos, storytelling, or any positive reputation.",
+  "sourceAlignmentTerms": [
+    "branding",
+    "willingness to pay",
+    "objectively similar offering",
+    "premium",
+    "historical signals",
+    "trust",
+    "emotional meaning",
+    "time and uncertainty"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "higher willingness to pay",
+      "detail": "the source sidecar defines branding power as higher willingness to pay for an objectively similar offering",
+      "useIn": "both",
+      "phrasingHint": "A brand earns power only when a buyer pays more for the same functional job because history has reduced doubt."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Branding",
+      "A business has power when... repeated opener shell",
+      "any hook that starts with Strategy is... or Power is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter",
+      "generic moat-versus-no-moat contrast without the chapter mechanism"
+    ],
+    "tryThisNow": [
+      "Write down your top three advantages",
+      "Set a timer and reflect on your strategy",
+      "Ask yourself what matters most",
+      "generic benefit/barrier prompt reused without the chapter-specific test"
+    ],
+    "examples": [
+      "founder in a coffee shop reviewing a deck",
+      "generic boardroom whiteboard choice",
+      "classroom project analogy",
+      "spreadsheet-only SaaS pricing scene",
+      "reusing physical anchors from adjacent plans"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "boutique running-shoe maker pricing a plain black training shoe",
+      "audience": "a reader facing boutique running-shoe maker pricing a plain black training shoe",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivia covers the logos on two similar shoes, records the blind ratings, then uncovers the trusted label before checking the price premium.",
+      "firstImage": "Rain ticks against the shop window while two black shoes sit unlaced on the bench",
+      "mustInclude": [
+        "covered logos",
+        "blind rating cards",
+        "price tag"
+      ],
+      "mustAvoid": [
+        "generic fashion branding",
+        "celebrity endorsement story"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "regional cheese maker entering hotel breakfast contracts",
+      "audience": "a reader facing regional cheese maker entering hotel breakfast contracts",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Etienne places the award card beside the cheaper sample and asks which one the hotel manager trusts on a buffet with no explanation.",
+      "firstImage": "Which wheel would you serve without standing beside it? Etienne asks",
+      "mustInclude": [
+        "award card",
+        "cheese sample",
+        "hotel buffet order"
+      ],
+      "mustAvoid": [
+        "generic food quality",
+        "teacup hotel tray anchor"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "medical glove distributor selling to dental practices after a recall scare",
+      "audience": "a reader facing medical glove distributor selling to dental practices after a recall scare",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Giulia sets the recall notice beside the inspection certificate and watches which sheet the dentist touches before the price list.",
+      "firstImage": "The latex smell reaches the hallway before the sample box opens",
+      "mustInclude": [
+        "recall notice",
+        "inspection certificate",
+        "price list"
+      ],
+      "mustAvoid": [
+        "generic medical device brand",
+        "pediatric dentist shell"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "privacy-focused email service renewing small-law-firm accounts",
+      "audience": "a reader facing privacy-focused email service renewing small-law-firm accounts",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Kiran has you compare two identical feature tables, then adds the breach-history file and watches the renewal decision change.",
+      "firstImage": "You think the feature table settles it until the breach-history file lands beside it",
+      "mustInclude": [
+        "feature table",
+        "breach-history file",
+        "renewal invoice"
+      ],
+      "mustAvoid": [
+        "generic cybersecurity fear",
+        "password switching-cost example"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "independent hotel group replacing generic toiletries with a heritage soap supplier",
+      "audience": "a reader facing independent hotel group replacing generic toiletries with a heritage soap supplier",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "David reads the guest notes after the switch and separates actual premium language from compliments about scent.",
+      "firstImage": "It took David six guest cards to stop confusing charm with pricing power",
+      "mustInclude": [
+        "guest cards",
+        "soap wrapper",
+        "room-rate report"
+      ],
+      "mustAvoid": [
+        "generic hospitality luxury",
+        "cracked teacup hook repeat"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "children's helmet company deciding whether safety history supports a premium",
+      "audience": "a reader facing children's helmet company deciding whether safety history supports a premium",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Maja covers the brand names on two certified helmets, then uncovers the accident-test archive before asking which one a parent chooses.",
+      "firstImage": "What does a parent buy after the certificates match?",
+      "mustInclude": [
+        "certification sticker",
+        "accident-test archive",
+        "retail shelf card"
+      ],
+      "mustAvoid": [
+        "bike helmet physical anchor",
+        "generic safety lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish brand power from awareness or liking",
+      "test whether a premium survives functional similarity",
+      "explain why time and uncertainty make trust hard to copy"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one product you think has brand power and write the exact premium a buyer pays over a similar option, plus the history that makes the premium believable.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "sourceAnchorsNote": "No named advertising history or company case is supported by the sidecar. Keep the anchor as the traceable willingness-to-pay mechanism and do not invent market-share stories."
+}

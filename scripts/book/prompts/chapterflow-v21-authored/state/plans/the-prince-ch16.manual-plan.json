@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch16",
+  "number": 16,
+  "title": "Concerning Liberality and Meanness",
+  "coreMove": "Prefer the reproach of thrift to the public hatred produced by generosity that must be funded through extraction.",
+  "sourcePressure": "The chapter follows the chain from maintaining a reputation for liberality to exhausting resources, taxing subjects, becoming rapacious, hated, poor, and unable to defend the state. Thrift can later appear useful because it funds defense and enterprises without extraordinary burdens, while generosity with other people's property works differently from squandering one's own or one's subjects' resources.",
+  "chapterSpecificMisunderstanding": "The wrong version becomes personal frugality advice or anti-charity moralizing. The writer must show the political sequence: visible liberality consumes revenue, forces taxation or robbery, creates hatred, and weakens defense.",
+  "sourceAlignmentTerms": [
+    "liberality",
+    "meanness",
+    "tax",
+    "rapacity",
+    "Pope Julius II",
+    "King of Spain",
+    "subjects",
+    "defense",
+    "reputation",
+    "extraordinary tax"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "personal budgeting or scarcity mindset",
+      "a generous CEO learning to cut perks",
+      "charity is naive moralizing"
+    ],
+    "counterintuition": [
+      "most people assume generosity is good, but actually thrift wins",
+      "being cheap is strategic",
+      "public spending always creates hatred"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list expenses to cut",
+      "make a personal budget",
+      "stop being generous this week"
+    ],
+    "examples": [
+      "office perks and bonuses",
+      "household spending",
+      "startup burn-rate metaphor",
+      "philanthropy donor gala"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a mountain prince canceling victory games after seeing the winter pass repair estimate",
+      "audience": "a ruler tempted to keep the name of openhanded victor with public games",
+      "stakes": "the games win praise from a few now, but the pass wall will fail unless repairs are funded without a new hearth tax",
+      "format": "decision_point",
+      "requiredBeat": "He sets the gilded race wreath on top of the cracked pass-stone estimate, then signs the repair order and accepts that the poets will call him mean.",
+      "firstImage": "A gilded race wreath rests on a cracked pass-stone estimate.",
+      "mustInclude": [
+        "gilded race wreath",
+        "pass-stone estimate",
+        "hearth tax draft"
+      ],
+      "mustAvoid": [
+        "personal frugality",
+        "festival popularity only",
+        "chapter 10 wall logistics as main lesson"
+      ]
+    },
+    {
+      "domain": "a river monarchy deciding whether to remit ferry tolls for a coronation month",
+      "audience": "a new monarch whose council wants a visible gift to secure affection",
+      "stakes": "remitting tolls looks liberal, but replacing the revenue with market levies would make every trader pay for a short-lived cheer",
+      "format": "before_after",
+      "requiredBeat": "Before the herald reads the remission decree, the treasurer lays the missing toll counters beside the market levy slips and shows whose purse will supply the applause.",
+      "firstImage": "Missing toll counters are stacked beside blank market levy slips.",
+      "mustInclude": [
+        "toll counters",
+        "market levy slips",
+        "coronation decree"
+      ],
+      "mustAvoid": [
+        "chapter 2 toll custom",
+        "generic tax policy",
+        "campaign favor"
+      ]
+    },
+    {
+      "domain": "a frontier army dividing captured enemy stores instead of the home treasury before a long campaign",
+      "audience": "a commander deciding when liberality with others' goods is politically different",
+      "stakes": "soldiers must be followed in the field, but spending the home treasury would burden subjects who are not receiving the spoils",
+      "format": "predict_reveal",
+      "requiredBeat": "The commander asks which chest can be opened without taxing home villages, then breaks the enemy store seal and leaves the subject-tax coffer locked.",
+      "firstImage": "An enemy store seal lies beside a locked subject-tax coffer.",
+      "mustInclude": [
+        "enemy store seal",
+        "subject-tax coffer",
+        "march pay list"
+      ],
+      "mustAvoid": [
+        "mercenary pay from chapter 12",
+        "loot celebration",
+        "simple soldier morale"
+      ]
+    },
+    {
+      "domain": "a harbor ruler refusing a marble quay dedication while building patrol boats from saved customs revenue",
+      "audience": "councillors embarrassed that visiting envoys will see a plain quay",
+      "stakes": "marble creates a reputation for magnificence, but patrol boats prevent raiders without imposing an emergency customs surcharge",
+      "format": "scene",
+      "requiredBeat": "She runs her hand over the uncarved quay block, then stamps the saved customs ledger for three patrol hulls instead of one dedication inscription.",
+      "firstImage": "An uncarved quay block sits beside a saved customs ledger.",
+      "mustInclude": [
+        "uncarved quay block",
+        "customs ledger",
+        "patrol hull contract"
+      ],
+      "mustAvoid": [
+        "chapter 13 naval auxiliaries",
+        "public art debate",
+        "personal taste"
+      ]
+    },
+    {
+      "domain": "a desert ruler rejecting a court gift cycle that would force new well fees on caravan villages",
+      "audience": "a prince whose nobles expect robes, horses, and jeweled cups every season",
+      "stakes": "gifts satisfy a narrow court while well fees make distant villages hate a ruler they rarely see",
+      "format": "dialogue",
+      "requiredBeat": "When the steward reads the gift list, the prince places a well-fee tablet over the jeweled cup inventory and asks which names will remember the cost.",
+      "firstImage": "A well-fee tablet covers the corner of a jeweled cup inventory.",
+      "mustInclude": [
+        "well-fee tablet",
+        "jeweled cup inventory",
+        "court robe list"
+      ],
+      "mustAvoid": [
+        "oasis annexation from chapter 3",
+        "noble court glamour",
+        "charity framing"
+      ]
+    },
+    {
+      "domain": "a war widow regent ending public bread spectacles to keep the armoury supplied without confiscations",
+      "audience": "a regent accused of meanness by city crowds after the funeral year",
+      "stakes": "spectacle bread would preserve affection briefly, but empty armouries would invite attack and later force seizures from the same households",
+      "format": "postmortem",
+      "requiredBeat": "The regent closes the painted bread booth, opens the armoury nail tally, and points to the confiscation order she will not have to issue if thrift holds.",
+      "firstImage": "A painted bread booth shutter leans against an armoury nail tally.",
+      "mustInclude": [
+        "painted bread booth",
+        "armoury nail tally",
+        "unsigned confiscation order"
+      ],
+      "mustAvoid": [
+        "famine-ration scene from chapter 15",
+        "anti-poor moralizing",
+        "popularity contest"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "trace the chain from visible liberality to taxation, rapacity, hatred, poverty, and military weakness",
+      "distinguish spending one's own or subjects' resources from distributing goods taken in campaign",
+      "apply the difference between reproach without hatred and rapacity with hatred",
+      "evaluate whether a generous act is politically sustainable or merely reputation maintenance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one public act of generosity by a ruler or institution. Write who visibly receives it, whose resources quietly pay for it, and whether the payment route creates reproach, hatred, or defensible thrift.",
+  "readingTimeMinutes": 12
+}

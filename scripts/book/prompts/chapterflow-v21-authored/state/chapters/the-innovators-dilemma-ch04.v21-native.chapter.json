@@ -1,0 +1,320 @@
+{
+  "chapterId": "the-innovators-dilemma-ch04",
+  "number": 4,
+  "title": "What Goes Up, Can't Go Down",
+  "readingTimeMinutes": 12,
+  "hook": "Every market your organization quietly exits becomes the first step of someone else's climb.",
+  "counterintuition": "Abandoning a low-margin segment looks like smart financial discipline. It is in fact the moment you hand an entrant their starting position. Unattractive to the incumbent does not mean unimportant to the industry.",
+  "tryThisNow": "Name one customer segment your organization has stopped actively serving because the margins were thin. Write down what kind of operator could serve them profitably at a smaller scale.",
+  "keyTakeaway": "Low-end markets too thin for an incumbent's cost structure can be exactly right for an entrant's. Climbing upmarket creates the gap the entrant fills, one segment at a time.",
+  "breakdown": {
+    "fastRead": "The rebar segment looked like a problem the integrated steel producers were glad to hand off. Low grade, tight margins, heavy volume, minimal differentiation. Every financial measure pointed away from it. The minimills had a different cost structure and a different scale expectation. For them, rebar was commercially real ground. They improved there, learned there, and eventually followed the profitability gradient upward into structural steel and then into higher-value product lines that the integrated producers had once considered secure.\n\nThe incumbent's rational retreat created the entrant's entry ramp.\n\nA market can be unattractive to the incumbent and strategically dangerous at the same time. Those two things are not contradictions. They are the same fact described from two different positions.",
+    "deepRead": "Integrated steel producers moved upmarket because the economics were clear. Higher-value steel products carried better margins, served more sophisticated customers, and produced investment cases that were easy to defend. Rebar, by contrast, was a commodity. Volume-driven, price-sensitive, and dependent on construction cycles that varied unpredictably. A large integrated producer looking at rebar was looking at a segment that consumed capacity without delivering the return that higher-value segments provided. The exit was financially rational.\n\nThe steel minimills and the rebar segment make this pattern concrete. Minimills used electric arc furnaces, which let them operate profitably at a fraction of the scale an integrated mill required. Rebar did not look thin at minimill scale. It looked like a business. The minimills entered the rebar segment, competed effectively there, and over time generated the cash and the learning to improve their product quality and reach into adjacent segments. Each time an integrated producer moved upmarket, they vacated another step on the ladder the minimills were climbing.\n\nThis is the structure worth seeing. Not that low-end markets are always worth defending. They often are not, at the incumbent's cost structure and scale requirement. The point is that the decision to exit is evaluated against the incumbent's profit logic, not against the logic of an entrant with different economics. A market that is genuinely thin for the incumbent can be genuinely real for a competitor whose numbers are different.\n\nThe climb happens one segment at a time. The minimills did not enter structural steel on their first day in the market. They entered rebar, demonstrated that they could compete there, and expanded incrementally. Each segment they entered was one the integrated producers had either left or had started treating as secondary. The foothold built on the segment above it.\n\nUnattractive to us is not the same claim as unattractive in general.",
+    "fullRead": "Consider how the upmarket migration actually feels from inside the incumbent. Each step looks correct. A business division that moves from commodity steel to specialty steel is reporting better margins, better customers, and cleaner investment cases. The resource allocation meeting approves the move without significant resistance because the case is genuine. The financials improve. The board approves. The firm is becoming leaner, more focused, more profitable per unit of output.\n\nWhat that sequence cannot show is what is happening below. As the firm climbs, it leaves segments behind. Those segments do not disappear. They become available. An entrant with a different cost structure does not need to win the segments the incumbent values most. They only need to win the segment the incumbent just decided was not worth defending.\n\nHannah's radio station rationalized the local music exit clearly. National syndication carried higher CPM rates and lower production overhead. The financial case was real. What the case could not show was where the listeners who preferred local music were going. They did not disappear from the market. They became the first reliable audience for a different kind of programming that picked them up after Hannah's station put them down.\n\nThe pattern holds across industries and cost structures because the mechanism is simple. Upmarket moves are always easier to justify than downmarket moves. Better margins, clearer customers, stronger investment narratives. Downmarket moves require the opposite: accepting lower margins, serving customers who are harder to profile, building a case that looks smaller than what the current business does. The asymmetry is structural. Incumbents are not making emotional decisions when they climb. They are making the rational decision that their current business model rewards.\n\nWhat that rational decision produces, reliably, is a gap at the bottom of the market. The gap is real. An entrant with a leaner cost structure, smaller scale requirements, and a different margin expectation can enter that gap and build from it.\n\nYou may have a version of this happening in a market you serve. Not necessarily in steel. Maybe in a service tier, a product category, or a customer segment that your current pricing structure treats as unprofitable. The question is not whether the segment is profitable for you. The question is whether it is profitable for a smaller competitor with a different fixed cost base. If it is, the segment is not empty. It is waiting.\n\nThe minimill lesson is not that you should defend every low-end segment regardless of economics. It is more specific. Before exiting a segment, ask whether the exit creates a viable starting position for an entrant with different economics. If the answer is yes, the exit is not just a financial decision. It is a strategic one."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-diana-radio",
+      "title": "Diana Drops Local Music and Hands Off Its Audience",
+      "tags": [
+        "scene",
+        "media",
+        "programming"
+      ],
+      "planSpec": {
+        "domain": "commercial radio station rationalizing its decision to drop local music programming in favor of syndicated talk",
+        "audience": "a programming director whose ad revenue comes entirely from national syndication accounts",
+        "stakes": "local music programming brings lower CPM rates and more production overhead — the margin math makes it easy to drop",
+        "format": "scene",
+        "requiredBeat": "Diana drops local music programming after a clear margin analysis and moves the slot to national syndication. The local listeners who produced lower CPM revenue are not mourned in the analysis. They become the first reliable audience for a format that begins picking up those listeners instead."
+      },
+      "scenario": "\"The CPM on local music is less than half what we get from syndication,\" the sales director says. Diana has the slot analysis open. Local music costs four times as much per hour to produce as a syndicated talk block and brings in a third of the ad rate. The margin case is clear. National syndication goes in, local music comes out. Diana must decide whether to approve the programming change based on the CPM comparison alone or to ask where the local music listeners will go after the format change.",
+      "whatToDo": "Track what happens to the local music audience after the slot changes. The CPM analysis is correct for the current programming model. It does not show whether the departed audience becomes someone else's core following.",
+      "whyItMatters": "Audiences that leave a format because the format was dropped do not disappear from the market. They become the first reliable listeners for whatever picks them up. The CPM analysis cannot measure that transition."
+    },
+    {
+      "exampleId": "ch04-ex02-matthew-hotel",
+      "title": "Matthew's Portfolio Improves and the Economy Tier Opens Up",
+      "tags": [
+        "decision_point",
+        "hospitality",
+        "portfolio"
+      ],
+      "planSpec": {
+        "domain": "hotel chain closing its economy-tier properties to concentrate on midscale and above",
+        "audience": "a portfolio director whose RevPAR metrics improve every quarter as economy properties are sold or reflagged",
+        "stakes": "the economy tier produces lower RevPAR and more operational variability — every financial metric rewards the exit",
+        "format": "decision_point",
+        "requiredBeat": "Matthew's portfolio rationalization is complete, RevPAR is up, and the board approves the results. The market for economy stays has not gone away — it has gone to a different kind of operator with a different cost structure who is now opening where the chain closed."
+      },
+      "scenario": "At 11:00 a.m. Monday, Matthew presents the portfolio rationalization results to the board. RevPAR is up fourteen percent. The eight economy properties are under contract or reflagged. The midscale and above segment is performing. Every financial metric the board tracks is moving in the right direction. Matthew must decide whether to recommend accelerating the remaining economy exits or to first map which operators are entering those markets in the properties the chain has vacated.",
+      "whatToDo": "Map who is entering the economy tier markets the chain has exited before accelerating the next round of property sales. The RevPAR improvement is real. What is not in the report is which competitors are building economies of scale in the markets the chain is leaving.",
+      "whyItMatters": "A hotel chain that exits economy properties in a market does not eliminate the demand for economy accommodation. An operator with a leaner cost model enters the same market and begins building the local knowledge and scale the chain just gave up."
+    },
+    {
+      "exampleId": "ch04-ex03-nicolas-paywall",
+      "title": "Nicolas Closes Free Access and Does Not Track Where the Readers Go",
+      "tags": [
+        "vignette",
+        "publishing",
+        "digital"
+      ],
+      "planSpec": {
+        "domain": "broadsheet newspaper rationalizing a decision to move all content behind a premium paywall and abandon free access",
+        "audience": "a publisher whose digital subscriber revenue is growing and whose free page-view revenue was always thin",
+        "stakes": "the free readers produce low advertising yield and the subscriber model has a cleaner margin structure",
+        "format": "vignette",
+        "requiredBeat": "Nicolas decides to close free access to protect subscription revenue. The decision is correct inside the subscription economics. The free readers who leave are not tracked after the paywall — until a different outlet begins converting them."
+      },
+      "scenario": "The subscriber report shows 94,000 paying readers and a margin structure that makes the paid model clean. The free traffic statistics show 2.1 million monthly visits generating advertising yield that rounds to noise. Nicolas looks at both numbers and closes free access. The paywall goes up on Tuesday morning. The 2.1 million free readers are not in the subscriber database and they do not appear in any subsequent reporting. They are simply no longer in the measurement system.",
+      "whatToDo": "Track where free readers migrate after the paywall closes. The subscription economics are correct for the subscribers who convert. The readers who leave are not lost prospects. They are an audience that another outlet can now claim.",
+      "whyItMatters": "Free readers who leave a site after a paywall goes up do not stop reading. They find a different outlet. That outlet has just received a significant audience development it did not have to earn."
+    },
+    {
+      "exampleId": "ch04-ex04-paula-rental-listings",
+      "title": "Paula Stops Taking Rental Listings and Starts Losing Landlords",
+      "tags": [
+        "predict_reveal",
+        "real-estate",
+        "rentals"
+      ],
+      "planSpec": {
+        "domain": "residential real estate agency rationalizing its exit from the rental listing market",
+        "audience": "a regional director whose commission income comes entirely from property sales and whose rental listings produce lower per-transaction revenue",
+        "stakes": "rental listings consume agent time at a much lower commission rate — every analysis shows they should focus on sales",
+        "format": "predict_reveal",
+        "requiredBeat": "Paula predicts that the rental market is unattractive and the exit will improve agent productivity metrics. The reveal shows that the landlords who left the agency's rental service became a first customer base for a different platform — one that now knows those landlords better than the agency does."
+      },
+      "scenario": "Which earns more agent time: a rental listing at two percent commission or a sale at six? Paula's productivity analysis has a clear answer. Rental listings are consuming roughly thirty percent of active agent hours and generating twelve percent of revenue. The prediction: refocusing on sales will improve revenue per agent hour significantly. The reveal: three years later, the landlords who took their rental listings elsewhere are concentrated on a platform that now has their property data, their renewal history, and their contact preferences. The agency does not.",
+      "whatToDo": "Track where the departing landlords list their properties before closing the rental business unit. The commission analysis is correct for the agency's current model. What is not in the analysis is the customer relationship data the agency is giving away.",
+      "whyItMatters": "Landlords who move their rental listings to another platform take their property data and relationship history with them. The platform that receives that data knows those landlords better than the agency that served them for years."
+    },
+    {
+      "exampleId": "ch04-ex05-mikkel-short-run",
+      "title": "Mikkel's Postmortem Finds Every Decision Was Right",
+      "tags": [
+        "postmortem",
+        "printing",
+        "operations"
+      ],
+      "planSpec": {
+        "domain": "commercial printing company rationalizing its decision to exit short-run digital printing in favor of long-run offset",
+        "audience": "a plant manager whose equipment utilization numbers are strongest on the offset presses that run long jobs",
+        "stakes": "short-run digital printing has lower equipment margins and more changeover time per job — the utilization math favors exits",
+        "format": "postmortem",
+        "requiredBeat": "Mikkel's postmortem on the short-run exit shows every decision was correct inside the offset plant's economics. The postmortem does not include the small-run clients who left, what they are now printing, or what kind of operator serves them."
+      },
+      "scenario": "The offset presses are running at 91 percent utilization. Mikkel's postmortem on the decision to exit short-run digital printing confirms each step: changeover time per job was three times higher than long-run, equipment margin was 40 percent lower, and floor space allocation favored the offset lines by every measure. The postmortem records no information about the clients who moved their short-run work elsewhere, what those clients are printing now, or how a regional digital print shop nearby has added forty new accounts in the eighteen months since the exit.",
+      "whatToDo": "Add a section to the postmortem covering where the short-run clients went and what they are printing now. The offset economics are correct. What is not in the analysis is the market position the plant gave up to whoever picked up the short-run work.",
+      "whyItMatters": "A postmortem that confirms only the internal economics of an exit cannot show what competitive position the exit created for someone else. Short-run clients who leave go somewhere, and where they go matters for the plant's long-term market position."
+    },
+    {
+      "exampleId": "ch04-ex06-chidi-brokerage",
+      "title": "Chidi's Account Threshold Sends Small Investors Somewhere Else",
+      "tags": [
+        "before_after",
+        "finance",
+        "retail-investing"
+      ],
+      "planSpec": {
+        "domain": "full-service brokerage rationalizing its decision to stop offering small-account discount trading",
+        "audience": "a product director whose advisory revenue comes from clients with over $250,000 in assets",
+        "stakes": "small accounts produce low advisory revenue and high servicing cost — the economics favor a minimum account size",
+        "format": "before_after",
+        "requiredBeat": "Before: Chidi's analysis shows clearly that small accounts below the threshold cost more to service than they generate. After: three years later, the accounts that left the brokerage are concentrated at a discount platform that now knows their trading behavior, tax patterns, and growth trajectory."
+      },
+      "scenario": "You are reviewing the account profitability analysis that Chidi completed before the minimum account size was introduced. Before: accounts below $50,000 cost an average of $420 per year to service and generate $180 in advisory revenue. The math is clear. After: three years later, the discount platform that absorbed those accounts has built profiles on their trading frequency, risk tolerance, tax lot patterns, and account growth rates. Several of those accounts have crossed $50,000. The brokerage is now acquiring them as new customers, without the history the platform has already collected.",
+      "whatToDo": "Before setting a minimum account size, assess whether the departing accounts carry relationship data or growth trajectories that become more valuable over time. The servicing cost analysis is accurate for today. It cannot show what the accounts look like at $75,000.",
+      "whyItMatters": "Accounts that leave a brokerage because of a minimum threshold take their history to whoever accepts them. That platform accumulates the behavioral data, loyalty, and eventual account growth that the brokerage declined to keep."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A large integrated steel producer exits the rebar segment because the margins are thin and the volume is commodity-grade. A steel minimill enters the same segment and builds a profitable operation. What explains why both decisions are rational?",
+        "choices": [
+          "The integrated producer made the exit correctly because rebar is inherently unprofitable.",
+          "The minimill took a larger financial risk than the integrated producer because it lacked the capital reserves to absorb a sustained margin loss in a commodity segment.",
+          "Rebar is thin for the integrated producer's cost structure and viable for the minimill's. Rationality is relative to the economics of the organization making the decision."
+        ],
+        "correctIndex": 2,
+        "explanation": "A segment's attractiveness is not fixed. It is a function of the evaluating firm's cost structure, scale requirements, and margin expectations. The same segment can rationally be exited by one firm and rationally entered by another.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A hotel chain exits its economy-tier properties to focus on midscale and above. RevPAR improves significantly. Which question is missing from the board presentation?",
+        "choices": [
+          "Whether the economy-tier markets being vacated are being entered by operators with leaner cost structures who will now develop local scale and customer relationships the chain gave up.",
+          "Whether the midscale properties are achieving their target occupancy rates after the transition to the new upscale brand affiliation.",
+          "Whether the reflagged properties should eventually be reacquired once the economy-tier market demonstrates sufficient revenue recovery to justify the purchase."
+        ],
+        "correctIndex": 0,
+        "explanation": "The RevPAR improvement is real and correctly reported. The board presentation describes the upside of the exit without assessing who fills the markets being vacated and what competitive position they build there.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A brokerage sets a $50,000 minimum account size because accounts below the threshold cost more to service than they generate. Three years later, many of those departed accounts have grown past $50,000 at a discount platform. What did the servicing cost analysis miss?",
+        "choices": [
+          "That small accounts always grow into large accounts over time, which would make early exits from that segment a strategic error in any market.",
+          "That the analysis measured current revenue accurately but could not show the future account value or the relationship data the departing accounts would take elsewhere.",
+          "That the brokerage should have offered lower service costs to keep the small accounts."
+        ],
+        "correctIndex": 1,
+        "explanation": "Servicing cost analysis is accurate for current economics. It cannot model account growth trajectories or the behavioral data those accounts carry as they grow. The accounts did not disappear. They grew somewhere else.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A commercial printing plant exits short-run digital work because changeover time is too high and equipment margins are too low. A regional digital print shop gains forty new accounts in the next eighteen months. What does the postmortem need to add?",
+        "choices": [
+          "An analysis of whether the digital print shop has lower equipment costs.",
+          "A recommendation to reenter the short-run market immediately.",
+          "An assessment of where the departing short-run clients went and what competitive position those clients gave the regional shop."
+        ],
+        "correctIndex": 2,
+        "explanation": "Confirming that the internal exit economics were correct does not answer the strategic question of what position the exit created for a competitor. The short-run clients went somewhere, and their destination matters.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A radio station drops local music programming because CPM rates are half of syndicated content and production costs are four times higher. Which downstream consequence is missing from the margin analysis?",
+        "choices": [
+          "Whether the local music listeners who depart will become a ready-made audience for a competing format that picks them up.",
+          "Whether the syndicated content will perform better in morning or evening slots.",
+          "Whether the local music was profitable in any market context."
+        ],
+        "correctIndex": 0,
+        "explanation": "The CPM analysis measures the economics of the current programming. It cannot show where the departing audience goes or how much development value that audience represents to whoever receives it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A newspaper moves all content behind a paywall and does not track where the 2.1 million free readers go afterward. What is the strategic risk of this omission?",
+        "choices": [
+          "The newspaper cannot report accurate total traffic statistics to advertisers because its audience measurement methodology was built for its print-era reader base.",
+          "The newspaper will need to rebuild its free content section later.",
+          "A competing outlet that picks up the departing free readers gains a significant audience base that the newspaper built over years but did not capture in the subscriber conversion."
+        ],
+        "correctIndex": 2,
+        "explanation": "Free readers who leave after a paywall goes up do not stop reading. They move to an outlet that accepts them. That outlet receives the audience development the newspaper invested in without having to earn it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A real estate agency stops taking rental listings because commission rates are too low relative to sales. Three years later, a competing platform holds detailed property and landlord data for the accounts that left. What was the agency's most significant omission?",
+        "choices": [
+          "The agency failed to track whether departing landlords carried relationship data and growth trajectories that had long-term value beyond the immediate transaction.",
+          "The agency should have raised its rental commission rates to offset the revenue reduction from departing landlord accounts before exiting the segment.",
+          "Rental listings are always more strategically important than sales when the market is trending toward long-term tenancy over property purchase transactions."
+        ],
+        "correctIndex": 0,
+        "explanation": "The commission analysis is correct for per-transaction revenue. It cannot capture the value of landlord data accumulated over time or the strategic position built by whoever holds that data as those landlords' portfolios grow.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Steel minimills entered the rebar segment and then climbed into structural steel and higher-value products over time. Which best describes the mechanism?",
+        "choices": [
+          "Minimills improved their cost structure in one segment and used the cash and learning from that segment to enter adjacent ones as the incumbent exited upward.",
+          "Minimills developed superior technology in the rebar segment that transferred directly to higher-value steel.",
+          "Minimills acquired the integrated producers' abandoned facilities at a discount."
+        ],
+        "correctIndex": 0,
+        "explanation": "The foothold strategy works through learning and cash generation in one segment, then expansion into adjacent segments vacated by the incumbent climbing upward. Each integrated producer exit created the next rung on the minimill's ladder.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A company director argues that exiting a low-margin segment is always the right strategic choice because it improves the firm's overall profitability profile. What is the strongest objection to this reasoning?",
+        "choices": [
+          "Profitability improvements should never drive exit decisions because short-term margin gains consistently mask the long-term strategic costs of surrendering market presence.",
+          "The exit may improve the firm's profitability while simultaneously creating a viable starting position for an entrant whose economics allow them to serve the segment profitably.",
+          "Low-margin segments should always be subsidized by higher-margin ones to prevent competitors from gaining a foothold in undefended market territory."
+        ],
+        "correctIndex": 1,
+        "explanation": "A segment exit can be financially correct for the exiting firm and strategically damaging if it hands an entrant a real starting market. The two facts are not contradictions. They describe the same exit from two different positions.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "A segment is too thin to defend at your cost structure. Before you exit, what should you check?",
+      "back": "Check whether an entrant with a leaner cost structure and smaller scale requirements can operate profitably in the same segment. If they can, the exit does not eliminate the segment. It opens it.",
+      "difficulty": "basic"
+    },
+    {
+      "front": "Why did steel minimills start in the rebar segment rather than competing with integrated producers in high-value steel?",
+      "back": "Rebar was the segment integrated producers treated as unprofitable. Minimills had a cost structure that made it viable. Starting there gave them cash flow, learning, and a foothold to climb from.",
+      "difficulty": "basic"
+    },
+    {
+      "front": "A competitor exits a market segment. What strategic question should you ask immediately?",
+      "back": "Ask whether your economics allow you to enter the segment they vacated profitably. An incumbent's exit often creates the starting position that a different entrant has been waiting for.",
+      "difficulty": "intermediate"
+    },
+    {
+      "front": "What makes upmarket migration consistently easier to approve than downmarket moves?",
+      "back": "Upmarket moves improve margins, bring stronger customers, and produce cleaner investment cases. Downmarket moves do the opposite. The asymmetry is structural, not a failure of imagination.",
+      "difficulty": "intermediate"
+    },
+    {
+      "front": "Unattractive to the incumbent. Does that mean unattractive in general?",
+      "back": "No. A segment that is unattractive at the incumbent's cost structure and scale may be commercially real for an entrant operating at a different scale with a different margin requirement.",
+      "difficulty": "advanced"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to evaluate market exits not only against your own economics but against the economics of an entrant who might find the same segment viable.",
+    "ifThenPlans": [
+      {
+        "context": "evaluating a segment exit on profitability grounds",
+        "plan": "If the segment is unprofitable at your cost structure, then identify what cost structure would make it viable and whether an entrant with that structure exists or could enter."
+      },
+      {
+        "context": "reviewing a competitor's exit from a market",
+        "plan": "If a competitor exits a segment your organization serves, then assess whether your economics allow you to serve the customers they are leaving before someone else does."
+      },
+      {
+        "context": "improving portfolio metrics by shedding low-margin assets",
+        "plan": "If you are exiting low-margin accounts or properties, then track where those accounts go and what competitive position the recipient builds from them over the following two years."
+      },
+      {
+        "context": "setting minimum thresholds for customers, accounts, or orders",
+        "plan": "If a minimum threshold excludes a class of customers, then assess whether those customers carry data, relationship value, or growth trajectories that become more valuable over time."
+      }
+    ],
+    "twentyFourHourChallenge": "Name one customer segment or product category your organization has stopped actively serving in the last three years. Write one sentence about what kind of operator could serve those customers profitably at a different scale.",
+    "weeklyPractice": "Once a week, when reviewing portfolio or market exit decisions, identify one competitor or potential entrant who could enter the vacated segment and map what position they would build there."
+  },
+  "memorableLines": [
+    {
+      "text": "The incumbent's rational retreat created the entrant's entry ramp.",
+      "location": "breakdown.fastRead",
+      "why": "Captures the asymmetry between the incumbent's logic and the entrant's opportunity in one sentence."
+    },
+    {
+      "text": "Unattractive to us is not the same claim as unattractive in general.",
+      "location": "breakdown.deepRead",
+      "why": "Short and precise: names the logical error the upmarket migration makes without lengthy explanation."
+    },
+    {
+      "text": "Before exiting a segment, ask whether the exit creates a viable starting position for an entrant with different economics.",
+      "location": "breakdown.fullRead",
+      "why": "Converts the chapter's diagnosis into a concrete decision rule."
+    }
+  ]
+}

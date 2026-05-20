@@ -1,0 +1,189 @@
+{
+  "chapterId": "peak-ch06",
+  "number": 6,
+  "title": "Principles of Deliberate Practice in Everyday Life",
+  "coreMove": "Shrink an ordinary activity into a visible standard, a short rep, and a feedback signal you can use immediately.",
+  "sourcePressure": "The chapter adapts deliberate-practice principles for ordinary learners by using narrow goals, created feedback, repeated review, and anti-vagueness discipline when formal coaching is weak. Frozen sidecar for chapter 6 contains no traceable named figure, study, place, date, or artifact beyond the authors and chapter mechanism; sourceAnchors stays empty rather than inventing one.",
+  "chapterSpecificMisunderstanding": "The weak version turns the lesson into pleasant habits, motivation, or broad self-improvement.",
+  "sourceAlignmentTerms": [
+    "everyday practice",
+    "narrow goal",
+    "created feedback",
+    "review",
+    "visible target",
+    "anti-vagueness",
+    "ordinary learning"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "kitchen knife drill from old Peak draft",
+      "daily life is full of practice opener",
+      "habit tracker enthusiasm"
+    ],
+    "counterintuition": [
+      "ordinary repetition is enough",
+      "small habits automatically improve skill",
+      "motivation creates feedback"
+    ],
+    "tryThisNow": [
+      "set a timer and practice anything",
+      "write down one habit",
+      "reflect on your routine"
+    ],
+    "examples": [
+      "Spanish vowel at lunch from old package",
+      "violin passage with earbuds from old package",
+      "phone waveform writing opener from old package"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "home bicycle brake adjustment before a weekend ride",
+      "audience": "a practical learner who usually fixes things until they feel fine",
+      "stakes": "a brake can rub all week because no visible standard defines good enough",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Laura tapes a two-millimeter gap guide beside the rim, adjusts one brake pad, spins the wheel, and writes the rub signal before touching the second pad",
+      "firstImage": "a thin paper gap guide taped beside a bicycle rim",
+      "mustInclude": [
+        "gap guide",
+        "brake pad",
+        "wheel spin"
+      ],
+      "mustAvoid": [
+        "bike helmet shell",
+        "generic repair confidence"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "parent practicing bedtime story pacing with a child",
+      "audience": "a parent who wants calmer bedtime without turning it into a lecture",
+      "stakes": "the child gets more wired when every page is rushed",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "James asks his daughter to raise a finger when he reads too fast, rereads only one page at a slower pace, and checks whether she settles before the next page",
+      "firstImage": "a picture book open under a small clip-on lamp",
+      "mustInclude": [
+        "finger signal",
+        "one reread page",
+        "slower pace"
+      ],
+      "mustAvoid": [
+        "generic parenting patience",
+        "bedtime morality"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "community-garden pruning technique on tomato plants",
+      "audience": "a novice gardener who keeps watching videos without testing one standard",
+      "stakes": "the plants grow leafy but weak because every cut is guessed",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chloe tags three suckers with string, predicts which cut will open airflow, prunes one plant, and compares leaf dampness the next morning",
+      "firstImage": "green string tied around a tomato sucker after rain",
+      "mustInclude": [
+        "string tags",
+        "airflow prediction",
+        "next-morning leaf check"
+      ],
+      "mustAvoid": [
+        "generic garden mindfulness",
+        "video-watching as learning"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "home budgeting receipt categorization after grocery trips",
+      "audience": "a reader whose money practice stays vague because the feedback arrives too late",
+      "stakes": "a monthly budget breaks before anyone can see which category drifted",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 8:11 p.m., Ingrid sorts only one receipt into three envelope labels, compares it with the planned amount, and changes tomorrow's shopping list before entering the full spreadsheet",
+      "firstImage": "three paper envelopes labeled in pencil beside a grocery receipt",
+      "mustInclude": [
+        "one receipt",
+        "three envelope labels",
+        "tomorrow shopping list"
+      ],
+      "mustAvoid": [
+        "generic personal finance advice",
+        "spreadsheet productivity"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "adult swimmer learning bilateral breathing at a public pool",
+      "audience": "a recreational learner whose laps hide the same asymmetry",
+      "stakes": "distance improves while technique locks in a neck strain",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Matteo reviews a lifeguard video of six strokes, counts only left-side breaths for one length, and stops when the splash pattern changes",
+      "firstImage": "pool water flashing against a phone sealed in a plastic pouch",
+      "mustInclude": [
+        "six-stroke video",
+        "left-side breath count",
+        "splash pattern"
+      ],
+      "mustAvoid": [
+        "generic fitness laps",
+        "pain tolerance"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "home language pronunciation using voicemail playback",
+      "audience": "an adult learner without a formal coach",
+      "stakes": "coworkers understand the phrase, but one sound still marks every call as hesitant",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hadiya leaves herself three voicemails with the same phrase, marks the one vowel that collapses, and records the fourth only after changing mouth position",
+      "firstImage": "three voicemail bars stacked on a cracked phone screen",
+      "mustInclude": [
+        "three voicemails",
+        "one vowel mark",
+        "mouth-position change"
+      ],
+      "mustAvoid": [
+        "language lab shell",
+        "general confidence"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "make everyday standards visible",
+      "create feedback without formal coaching",
+      "distinguish habit repetition from designed reps",
+      "keep ordinary practice small enough to repeat"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one ordinary task you will do today. Add one visible standard to it, such as a measurement, count, mark, recording, or before-after photo, then use it to change the next attempt.",
+  "readingTimeMinutes": 12
+}

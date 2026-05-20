@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch02",
+  "number": 2,
+  "title": "Reciprocity",
+  "coreMove": "Choose the move that teaches the next move to become more cooperative, then update on the response pattern.",
+  "sourcePressure": "Reciprocity is about actions creating reactions in iterative relationships, with positive first moves and forgiveness bounded by observed returns.",
+  "chapterSpecificMisunderstanding": "turning reciprocity into abstract kindness, karma, or unconditional niceness",
+  "sourceAlignmentTerms": [
+    "reciprocity",
+    "reaction",
+    "iteration",
+    "compounding",
+    "go positive first",
+    "forgiveness",
+    "response pattern"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Reciprocity",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "turning reciprocity into abstract kindness, karma, or unconditional niceness",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "neighborhood snow clearing rota",
+      "audience": "readers who face neighborhood snow clearing rota decisions where reciprocity is easy to misread",
+      "stakes": "sidewalk safety after the first storm",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily draws last move and next move on the snow-route map, changes the message attached to the porch shovel tag, and watches whether the salt-bin receipt comes back cleaner. Domain: neighborhood snow clearing rota.",
+      "firstImage": "snow-route map visible in the neighborhood snow clearing rota",
+      "mustInclude": [
+        "snow-route map",
+        "porch shovel tag",
+        "salt-bin receipt"
+      ],
+      "mustAvoid": [
+        "turning reciprocity into abstract kindness, karma, or unconditional niceness",
+        "reusing a generic meeting scene instead of the neighborhood snow clearing rota constraints"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "open-source security patch queue",
+      "audience": "readers who face open-source security patch queue decisions where reciprocity is easy to misread",
+      "stakes": "maintainer burnout and exposed users",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "David draws last move and next move on the patch queue, changes the message attached to the maintainer note, and watches whether the release key comes back cleaner. Domain: open-source security patch queue.",
+      "firstImage": "patch queue visible in the open-source security patch queue",
+      "mustInclude": [
+        "patch queue",
+        "maintainer note",
+        "release key"
+      ],
+      "mustAvoid": [
+        "turning reciprocity into abstract kindness, karma, or unconditional niceness",
+        "reusing a generic meeting scene instead of the open-source security patch queue constraints"
+      ]
+    },
+    {
+      "protagonistName": "Lea",
+      "domain": "restaurant shift trade",
+      "audience": "readers who face restaurant shift trade decisions where reciprocity is easy to misread",
+      "stakes": "short-staffed dinner service",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Lea draws last move and next move on the shift swap card, changes the message attached to the prep list, and watches whether the reservation screen comes back cleaner. Domain: restaurant shift trade.",
+      "firstImage": "shift swap card visible in the restaurant shift trade",
+      "mustInclude": [
+        "shift swap card",
+        "prep list",
+        "reservation screen"
+      ],
+      "mustAvoid": [
+        "turning reciprocity into abstract kindness, karma, or unconditional niceness",
+        "reusing a generic meeting scene instead of the restaurant shift trade constraints"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "youth soccer equipment loan",
+      "audience": "readers who face youth soccer equipment loan decisions where reciprocity is easy to misread",
+      "stakes": "kids missing Saturday kits",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Jonas draws last move and next move on the kit bag label, changes the message attached to the laundry bin tag, and watches whether the match roster comes back cleaner. Domain: youth soccer equipment loan.",
+      "firstImage": "kit bag label visible in the youth soccer equipment loan",
+      "mustInclude": [
+        "kit bag label",
+        "laundry bin tag",
+        "match roster"
+      ],
+      "mustAvoid": [
+        "turning reciprocity into abstract kindness, karma, or unconditional niceness",
+        "reusing a generic meeting scene instead of the youth soccer equipment loan constraints"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "coworking kitchen cleanup",
+      "audience": "readers who face coworking kitchen cleanup decisions where reciprocity is easy to misread",
+      "stakes": "tenant trust in a shared space",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aman draws last move and next move on the sink rota, changes the message attached to the compost pail tag, and watches whether the tenant note comes back cleaner. Domain: coworking kitchen cleanup.",
+      "firstImage": "sink rota visible in the coworking kitchen cleanup",
+      "mustInclude": [
+        "sink rota",
+        "compost pail tag",
+        "tenant note"
+      ],
+      "mustAvoid": [
+        "turning reciprocity into abstract kindness, karma, or unconditional niceness",
+        "reusing a generic meeting scene instead of the coworking kitchen cleanup constraints"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "wedding vendor referral",
+      "audience": "readers who face wedding vendor referral decisions where reciprocity is easy to misread",
+      "stakes": "future referrals after a cancellation",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Giulia draws last move and next move on the vendor invoice, changes the message attached to the timeline card, and watches whether the referral email comes back cleaner. Domain: wedding vendor referral.",
+      "firstImage": "vendor invoice visible in the wedding vendor referral",
+      "mustInclude": [
+        "vendor invoice",
+        "timeline card",
+        "referral email"
+      ],
+      "mustAvoid": [
+        "turning reciprocity into abstract kindness, karma, or unconditional niceness",
+        "reusing a generic meeting scene instead of the wedding vendor referral constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for reciprocity rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Choose the move that teaches the next move to become more cooperative, then update on the response pattern.",
+      "explain why the tempting misread fails: turning reciprocity into abstract kindness, karma, or unconditional niceness",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving reciprocity, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

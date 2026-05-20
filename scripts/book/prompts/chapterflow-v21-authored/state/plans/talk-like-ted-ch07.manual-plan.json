@@ -1,0 +1,199 @@
+{
+  "chapterId": "talk-like-ted-ch07",
+  "number": 7,
+  "title": "Stick to the 18-Minute Rule",
+  "coreMove": "Compress the talk until the central idea is stronger, not merely shorter.",
+  "sourcePressure": "The source centers the eighteen-minute rule as a constraint that forces prioritization, serves the audience, protects attention, and reduces cognitive overload. The boundary is that shorter only helps when the main idea stays intact.",
+  "chapterSpecificMisunderstanding": "The weak version says keep it short because attention spans are bad. The useful version says time pressure forces hierarchy, cuts drift, and preserves audience bandwidth.",
+  "sourceAlignmentTerms": [
+    "18-minute rule",
+    "compression",
+    "prioritization",
+    "audience attention",
+    "cognitive overload",
+    "clarity",
+    "message",
+    "drift"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "18-minute rule",
+      "detail": "the source treats the eighteen-minute rule as a talk-length constraint that forces clearer prioritization and protects the audience from overload",
+      "useIn": "both",
+      "phrasingHint": "The 18-minute rule is less a stopwatch trick than a demand to decide what the talk is truly carrying."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "less is more",
+      "attention spans are shrinking",
+      "speaker cuts slides the night before"
+    ],
+    "counterintuition": [
+      "shorter is harder",
+      "brevity creates clarity",
+      "audiences cannot handle long talks"
+    ],
+    "tryThisNow": [
+      "delete three slides",
+      "set an 18-minute timer",
+      "make your talk shorter"
+    ],
+    "examples": [
+      "generic meeting agenda trim",
+      "slide-deck diet",
+      "productivity timeboxing",
+      "speed-talking rehearsal"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Camille",
+      "domain": "arts grant committee pitch",
+      "audience": "a theatre director with twenty minutes to defend a community program",
+      "stakes": "whether extra background buries the one proof that the program changes attendance",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "she lays every story card on the floor, keeps the three that prove the program's effect, and cuts the history section before rehearsal",
+      "firstImage": "index cards spread across a black-box theatre floor",
+      "mustInclude": [
+        "story cards",
+        "grant timer",
+        "attendance proof"
+      ],
+      "mustAvoid": [
+        "generic arts funding plea",
+        "cutting until shallow"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "vaccine consent briefing",
+      "audience": "a public-health doctor briefing parents before a school clinic",
+      "stakes": "whether parents keep the essential risk and consent points without overload",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "he compares a twelve-point draft with three parent questions from last year's clinic and rebuilds the briefing around those questions only",
+      "firstImage": "a consent form clipped under a stopwatch on a cafeteria table",
+      "mustInclude": [
+        "consent form",
+        "three parent questions",
+        "school clinic"
+      ],
+      "mustAvoid": [
+        "medical debate",
+        "omitting needed risk information"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "legal closing argument rehearsal",
+      "audience": "a junior attorney preparing a closing argument for a small civil trial",
+      "stakes": "whether jurors remember the central breach or drown in every email",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she removes seven emails from the binder and keeps the one timeline jurors can hold in working memory",
+      "firstImage": "paper clips snapping off a thick binder of printed emails",
+      "mustInclude": [
+        "email binder",
+        "one-page timeline",
+        "jury clock"
+      ],
+      "mustAvoid": [
+        "courtroom melodrama repeat",
+        "all evidence is too much"
+      ]
+    },
+    {
+      "protagonistName": "Tomás",
+      "domain": "museum opening remarks",
+      "audience": "a director introducing a new gallery to members and local press",
+      "stakes": "whether the audience leaves with one curatorial idea instead of a full donor list",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "after a board member asks to thank twelve more people, he protects the two-minute object story and moves extra acknowledgments to the printed program",
+      "firstImage": "a printed program folded beside a velvet gallery rope",
+      "mustInclude": [
+        "printed program",
+        "object story",
+        "two-minute limit"
+      ],
+      "mustAvoid": [
+        "museum chapter repeats",
+        "rude brevity"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "product roadmap review",
+      "audience": "a product lead presenting a roadmap to customer-support managers",
+      "stakes": "whether the room understands the tradeoff behind one delayed feature",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "he asks which feature will reduce support tickets fastest, then cuts the platform tour and spends the saved minutes on the tradeoff slide",
+      "firstImage": "colored roadmap bars compressed on a wall monitor",
+      "mustInclude": [
+        "roadmap bars",
+        "support-ticket count",
+        "tradeoff slide"
+      ],
+      "mustAvoid": [
+        "generic startup pitch",
+        "feature-list tour"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "flood recovery update",
+      "audience": "an emergency manager updating residents after a river flood",
+      "stakes": "whether worried residents hear the next three decisions instead of every agency detail",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch him cut the agency roster, keep the shelter, debris, and permit sequence, and use the final minute for where residents go next",
+      "firstImage": "a damp folding chair facing a gymnasium stage",
+      "mustInclude": [
+        "shelter list",
+        "debris pickup map",
+        "permit desk"
+      ],
+      "mustAvoid": [
+        "disaster-drill repeat",
+        "bureaucratic roll call"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish compression from simple shortening",
+      "choose what to cut based on the main idea",
+      "analyze audience cognitive load in a talk plan",
+      "evaluate whether brevity protects substance or weakens it"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the one sentence your audience must still remember tomorrow, then circle every slide, story, or detail that does not make that sentence easier to keep.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

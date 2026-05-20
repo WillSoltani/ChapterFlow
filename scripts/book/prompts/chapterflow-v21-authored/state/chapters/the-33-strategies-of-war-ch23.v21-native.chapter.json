@@ -1,0 +1,308 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch23",
+  "number": 23,
+  "title": "Misperception Strategies: Weave a Seamless Blend of Fact and Fiction",
+  "readingTimeMinutes": 12,
+  "hook": "The order of true facts can change what people think they are seeing.",
+  "counterintuition": "Framing becomes strategic before it becomes false. You can sequence true facts to clarify the field, but any frame that needs hidden distortion or false belief has crossed the line.",
+  "tryThisNow": "Take one message and underline which facts are emphasized, which are omitted, and whether the audience could still consent if they saw the frame.",
+  "keyTakeaway": "Shape perception ethically by sequencing true facts clearly and rejecting frames that depend on concealed distortion, false belief, or lost consent.",
+  "breakdown": {
+    "fastRead": "Sofia erases one line from the launch narrative board because it makes a delay look like a choice customers freely requested. The fact-check sheet does not support that. A clean frame survives the facts it leaves in view. Framing is not the same as lying. It chooses order, emphasis, and context. The ethical test is whether the audience could see the frame and still recognize the core reality.",
+    "deepRead": "Giulia runs a finger down the investor update fact-check sheet and stops at the churn paragraph. The team wants to open with enterprise growth and bury small-business cancellations in a footnote. Both facts are true. The question is whether the sequence clarifies the business or hides the pressure that matters. She has to decide whether the investor update is framing or camouflage.\n\nStrategic framing works because attention is limited. The first fact sets the lens. The second fact gains or loses weight depending on the first. A timeline can make a setback look like learning or like decay. A comparison group can make growth look strong or weak. These choices are real strategic tools.\n\nThe line is crossed when emphasis needs ignorance to work.\n\nChiara faces a public version in a campus safety disclosure. The administration wants to lead with new lighting, then mention the incident that prompted it. She has to choose whether that order informs students or softens the truth beyond recognition. She moves the incident first, the lighting second, and the response timeline third. The frame still shows progress, but it does not require students to misunderstand why the change happened.\n\nThe skill is not moral squeamishness. It is durable credibility. A frame that collapses when full facts appear was never clean. Use emphasis to guide attention, not to steal informed consent.",
+    "fullRead": "Paula notices the policy campaign's strongest chart is also its most dangerous. The chart compares this year's transit delays with the worst month from five years ago. The improvement is real, but the comparison hides a recent rise in missed connections. The launch narrative board makes the city look steadily better. The fact-check sheet tells a more complicated story.\n\nShe rebuilds the sequence. First, the campaign names the recent deterioration. Second, it shows the five-year improvement. Third, it explains the policy change meant to protect the gains. The message becomes less slick and more trustworthy. It still guides perception, but the audience is allowed to understand what is being guided.\n\nOtto von Bismarck is useful here only if the moral question stays open: framing can clarify a field or quietly deform it. Diplomatic skill often depends on timing, sequence, and emphasis. Those same tools can also hide the reality people need in order to choose freely. The tool is not made clean by being effective.\n\nAsk three questions before you frame. Is the core reality still visible? Are omitted facts merely secondary, or would they change the audience's consent? Would the message survive if the audience saw your narrative board and your fact-check sheet side by side? If the answer to the third question is no, the frame is probably doing its work through concealment.\n\nIsabel learns this during a customer migration announcement. In the postmortem, her team had led with new features and buried the forced migration date. Customers felt tricked because the central fact was not the upgrade; it was the loss of choice after a deadline. The revised private rule is blunt: if a fact changes what customers can do, it must appear before benefits, not after them.\n\nCatarina uses the before-and-after version in a foundation impact report. Before, the report highlighted graduation numbers and left out that the program served fewer students than planned. After, she puts scale first, outcomes second, and funding constraints third. Donors still see impact, but they also see the real size of the work. Framing clarifies when the audience could still consent to the picture.\n\nPerception is not a toy. Once people learn that your frames need their ignorance, every future truth you tell becomes suspect. A strategic frame should make reality easier to grasp from the angle that matters. It should not make reality smaller than the audience has a right to know."
+  },
+  "examples": [
+    {
+      "exampleId": "ch23-ex01-sofia-launch",
+      "title": "Sofia Removes the False Choice",
+      "tags": [
+        "scene",
+        "launch",
+        "framing"
+      ],
+      "planSpec": {
+        "domain": "public launch narrative",
+        "audience": "a reader shaping a public launch without hiding core facts",
+        "stakes": "a misleading omission can destroy trust once customers see the full timeline",
+        "format": "scene",
+        "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion."
+      },
+      "scenario": "Inside the public launch narrative room at 11:41 a.m. \"That sentence makes the delay look voluntary,\" Sofia says, with the launch narrative board beside the fact-check sheet. She must decide whether to keep the cleaner story or add the deadline constraint customers need to understand the launch.",
+      "whatToDo": "Remove the misleading line, name the delay constraint, then sequence the benefits after the fact that explains why the launch changed.",
+      "whyItMatters": "Sofia keeps the core reality visible. The launch still has a frame, but it no longer depends on customer misunderstanding."
+    },
+    {
+      "exampleId": "ch23-ex02-giulia-investors",
+      "title": "Giulia Moves the Churn Paragraph",
+      "tags": [
+        "vignette",
+        "investor_update",
+        "ethics"
+      ],
+      "planSpec": {
+        "domain": "investor update framing",
+        "audience": "a reader presenting progress while preserving informed consent",
+        "stakes": "burying churn can make true growth figures misleading",
+        "format": "vignette",
+        "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion."
+      },
+      "scenario": "During the investor update framing room at 8:52 a.m. The fact-check sheet is creased beside Giulia's laptop when the investor update draft opens on enterprise growth. She has to choose whether to bury small-business churn or put it near the growth story so the pressure is visible.",
+      "whatToDo": "Move churn into the main update, explain enterprise growth beside it, and state what customer segment is changing.",
+      "whyItMatters": "The growth is true, but incomplete alone. Giulia's frame survives because investors can see the pressure shaping the business."
+    },
+    {
+      "exampleId": "ch23-ex03-chiara-safety",
+      "title": "Chiara Puts the Incident First",
+      "tags": [
+        "decision_point",
+        "campus",
+        "disclosure"
+      ],
+      "planSpec": {
+        "domain": "campus safety disclosure",
+        "audience": "a reader writing a public safety message after a difficult incident",
+        "stakes": "leading with improvements may hide the reason students need the information",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion."
+      },
+      "scenario": "You stand with Chiara beside a taped ethics red line while the safety disclosure waits for approval. She must decide whether to lead with new lighting or name the incident first so students understand why the changes matter.",
+      "whatToDo": "Open with the incident, then give the lighting change and response timeline in that order.",
+      "whyItMatters": "Chiara still frames the response as action, but she does not make progress depend on hiding the triggering fact."
+    },
+    {
+      "exampleId": "ch23-ex04-paula-policy",
+      "title": "Paula Rebuilds the Chart",
+      "tags": [
+        "predict_reveal",
+        "policy",
+        "campaign"
+      ],
+      "planSpec": {
+        "domain": "policy campaign fact sequence",
+        "audience": "a reader using true comparisons without distorting the current picture",
+        "stakes": "a selective comparison can make recent deterioration disappear",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion."
+      },
+      "scenario": "At the policy campaign fact sequence room at 10:14 a.m. It took Paula three drafts to notice the launch narrative board was hiding the newest delays. Before publishing, she has to decide whether to keep the five-year improvement chart alone or add the recent missed-connection rise beside it.",
+      "whatToDo": "Name the recent deterioration first, then show five-year improvement and the policy meant to protect the gains.",
+      "whyItMatters": "The campaign keeps its argument without shrinking reality. The audience can see both progress and pressure."
+    },
+    {
+      "exampleId": "ch23-ex05-isabel-migration",
+      "title": "Isabel Leads with the Deadline",
+      "tags": [
+        "postmortem",
+        "customer_migration",
+        "announcement"
+      ],
+      "planSpec": {
+        "domain": "customer migration announcement",
+        "audience": "a reader reviewing why customers felt tricked by a true but incomplete message",
+        "stakes": "benefit-first messaging can hide the loss of choice customers care about most",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion."
+      },
+      "scenario": "Near the customer migration announcement room at 11:25 a.m. What changes when Isabel stops arguing and points to the fact-check sheet? The migration postmortem shows that new features were true, but customers needed the forced deadline before the benefits.",
+      "whatToDo": "Lead with the migration deadline, explain what choice remains, then describe the new features.",
+      "whyItMatters": "Isabel restores informed consent. Customers can understand what is changing before being asked to appreciate it."
+    },
+    {
+      "exampleId": "ch23-ex06-catarina-foundation",
+      "title": "Catarina Shows the Scale",
+      "tags": [
+        "before_after",
+        "foundation",
+        "impact"
+      ],
+      "planSpec": {
+        "domain": "foundation impact report",
+        "audience": "a reader reporting impact without hiding scale or constraint",
+        "stakes": "strong outcomes can mislead donors if the smaller-than-planned reach disappears",
+        "format": "before_after",
+        "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion."
+      },
+      "scenario": "Before the foundation impact report room at 8:36 a.m. Morning light catches the ethics red line on Catarina's report draft before she moves the graduation chart. Before, outcomes led alone; after, scale appears first, outcomes second, and funding constraints third.",
+      "whatToDo": "Report the smaller service count, then the graduation outcomes, then the funding constraint that explains scale.",
+      "whyItMatters": "Catarina's frame still shows impact, but donors are not asked to ignore the program's size."
+    }
+  ],
+  "quiz": {
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A launch message says customers chose a later date, but the delay actually came from an internal constraint. What is the ethical framing move?",
+        "choices": [
+          "Remove the misleading choice language, name the constraint, and then explain the benefits.",
+          "Keep the cleaner story because customers like positive launches.",
+          "Hide the date entirely so no one asks about it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first choice preserves the core reality while still sequencing a useful message. The other choices depend on false belief or missing consent.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An investor update truthfully shows enterprise growth but buries small-business churn that changes how the growth should be understood. What should change?",
+        "choices": [
+          "Delete churn because the growth number is true.",
+          "Put churn near the growth story and explain how the customer mix is changing.",
+          "Lead with only the worst number to avoid all framing."
+        ],
+        "correctIndex": 1,
+        "explanation": "True facts can still mislead when sequenced to hide pressure. Showing churn near growth lets investors understand the real picture.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A campus disclosure leads with new lighting but mentions the incident that prompted it only at the end. Students need the incident context for safety decisions. What is wrong?",
+        "choices": [
+          "New lighting should never be mentioned.",
+          "Safety messages should be as vague as possible.",
+          "The sequence may deform consent by hiding the core fact behind progress language."
+        ],
+        "correctIndex": 2,
+        "explanation": "Progress can be included, but the triggering incident belongs first because it changes how students evaluate risk.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A policy campaign uses a five-year improvement chart while omitting a recent deterioration that the policy is meant to address. What is the stronger frame?",
+        "choices": [
+          "Name the recent deterioration, then show the five-year improvement and the policy meant to protect the gains.",
+          "Keep only the best comparison because it is technically true.",
+          "Avoid all charts because framing is always deceptive."
+        ],
+        "correctIndex": 0,
+        "explanation": "The stronger frame keeps both facts visible. It guides attention without making recent deterioration disappear.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Customers are being forced to migrate by a deadline, but the announcement opens with new features and hides the deadline below the fold. What should happen?",
+        "choices": [
+          "Keep the features first because they sound better.",
+          "Lead with the deadline and remaining choices, then describe the features.",
+          "Do not tell customers about the migration until the last day."
+        ],
+        "correctIndex": 1,
+        "explanation": "The deadline changes customer options, so it must be visible before benefits. Otherwise the frame depends on lost consent.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A foundation impact report shows strong graduation outcomes but hides that the program served far fewer students than planned. What is the honest sequence?",
+        "choices": [
+          "Lead only with outcomes because impact is what matters.",
+          "Hide the report because every result is imperfect.",
+          "Report service count first, outcomes second, and constraints third."
+        ],
+        "correctIndex": 2,
+        "explanation": "Scale changes how outcomes should be read. The sequence still shows impact while preserving reality.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A strategist says any use of sequencing and emphasis is propaganda. What is the best evaluation The decision is due before the next review, and the wrong choice will lock people into a costly path. What should they do?",
+        "choices": [
+          "Sequencing can clarify truth; it becomes propaganda when it relies on false belief or concealed core facts.",
+          "Sequencing is always harmless.",
+          "The best strategy is to present facts in random order."
+        ],
+        "correctIndex": 0,
+        "explanation": "The ethical line is not emphasis itself. The line is whether the audience can still see the core reality and consent to the picture.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A message would fail if the audience saw the narrative board and fact-check sheet side by side. What does that suggest The decision is due before the next review, and the wrong choice will lock people into a costly path. What should they do?",
+        "choices": [
+          "The frame is stronger because hidden work is normal.",
+          "The frame may depend on concealment rather than clarification.",
+          "Fact-check sheets should never be made."
+        ],
+        "correctIndex": 1,
+        "explanation": "A clean frame survives exposure to its own facts. If it needs concealment, the strategy has crossed the ethical boundary.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team wants to emphasize a true benefit but omit a limitation that would change whether customers agree. What should stop them?",
+        "choices": [
+          "Benefits should never be emphasized.",
+          "Customers do not need limitations when the benefit is true.",
+          "The omission would undermine informed consent because the limitation changes the customer's choice."
+        ],
+        "correctIndex": 2,
+        "explanation": "True benefits do not excuse hiding choice-changing limits. The audience needs the limitation to understand the offer.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "What makes a strategic frame ethical?",
+      "back": "The core reality stays visible, and the audience could still consent if it saw the frame and facts together."
+    },
+    {
+      "front": "When does emphasis cross the line?",
+      "back": "It crosses the line when it needs ignorance, false belief, or hidden distortion to work."
+    },
+    {
+      "front": "A benefit is true, but a limitation changes the audience's choice. What should happen?",
+      "back": "The limitation must appear clearly before or beside the benefit."
+    },
+    {
+      "front": "Why can true facts still mislead?",
+      "back": "Order, omission, and comparison can change how facts are understood, even when each fact is accurate."
+    },
+    {
+      "front": "What quick test catches dirty framing?",
+      "back": "Ask whether the message survives if the audience sees your narrative board and fact-check sheet side by side."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to shape perception through truthful sequencing while refusing frames that rely on hidden distortion or false belief.",
+    "ifThenPlans": [
+      {
+        "context": "launch messaging",
+        "plan": "If a constraint caused a change, then name the constraint before presenting benefits."
+      },
+      {
+        "context": "investor updates",
+        "plan": "If growth and churn both shape the picture, then place them close enough that neither distorts the other."
+      },
+      {
+        "context": "public disclosure",
+        "plan": "If an incident changes people's choices, then lead with the incident before response details."
+      },
+      {
+        "context": "impact reporting",
+        "plan": "If outcomes are strong but scale is smaller than planned, then report scale before outcomes."
+      }
+    ],
+    "twentyFourHourChallenge": "Take one message you plan to send. Mark emphasized facts, omitted facts, and any omission that would change consent; revise before sending.",
+    "weeklyPractice": "Review one public message each week and ask whether it clarifies reality from an angle or quietly makes reality smaller."
+  },
+  "memorableLines": [
+    {
+      "text": "A clean frame survives the facts it leaves in view."
+    },
+    {
+      "text": "The line is crossed when emphasis needs ignorance to work."
+    },
+    {
+      "text": "Framing clarifies when the audience could still consent to the picture."
+    }
+  ]
+}

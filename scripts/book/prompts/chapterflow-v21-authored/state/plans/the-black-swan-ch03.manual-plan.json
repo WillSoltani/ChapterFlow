@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch03",
+  "number": 3,
+  "title": "The Speculator and the Prostitute",
+  "coreMove": "Judge a strategy by payoff shape, downside, and survivability instead of by hit rate alone.",
+  "sourcePressure": "The chapter contrasts linear paid labor with scalable, asymmetric payoff where many small misses can coexist with one dominating hit.",
+  "chapterSpecificMisunderstanding": "Romanticizing every losing streak as visionary optionality.",
+  "sourceAlignmentTerms": [
+    "linear earnings",
+    "speculative payoff",
+    "scalability",
+    "asymmetry",
+    "rare hit",
+    "survivability",
+    "payoff map",
+    "optionality"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the speculator/prostitute payoff contrast",
+      "detail": "the source-sidecar names the contrast between speculative payoff and linear paid labor as the chapter mechanism",
+      "useIn": "both",
+      "phrasingHint": "The crude contrast matters because one ledger pays by the hour while the other may wait for one line to carry the whole account."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pharmaceutical compound screening",
+      "audience": "a research director facing ninety failed assays",
+      "stakes": "a board cutting the program before the one viable molecule appears",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the director shows downside burn beside the patent upside instead of defending win rate",
+      "firstImage": "At 8:17 a.m., David faces a tray of labeled assay wells under blue light.",
+      "mustInclude": [
+        "David",
+        "a tray of labeled assay wells under blue light",
+        "linear earnings"
+      ],
+      "mustAvoid": [
+        "Romanticizing every losing streak as visionary optionality.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "documentary distribution",
+      "audience": "a producer with five rejected festival cuts",
+      "stakes": "selling the camera gear before streaming rights are possible",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the producer separates survivable rejections from fatal cash drain",
+      "firstImage": "A first line of dialogue lands before the reader sees a hard drive taped with old festival badges.",
+      "mustInclude": [
+        "Michael",
+        "a hard drive taped with old festival badges",
+        "speculative payoff"
+      ],
+      "mustAvoid": [
+        "Romanticizing every losing streak as visionary optionality.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "enterprise sales pipeline",
+      "audience": "a founder closing one deal after thirty ignored pilots",
+      "stakes": "mistaking low conversion for low value",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the founder calculates whether one contract funds the next year before adding outreach",
+      "firstImage": "Open on the texture, sound, or light of a pipeline board with one oversized contract card.",
+      "mustInclude": [
+        "Thomas",
+        "a pipeline board with one oversized contract card",
+        "scalability"
+      ],
+      "mustAvoid": [
+        "Romanticizing every losing streak as visionary optionality.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "scientific instrument startup",
+      "audience": "an engineer field-testing sensors with frequent failures",
+      "stakes": "running out of capital before the rare defense order",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the engineer caps each trial cost and leaves room for a non-linear buyer",
+      "firstImage": "You are looking at a cracked sensor casing on an aluminum bench before the choice becomes abstract.",
+      "mustInclude": [
+        "Daniel",
+        "a cracked sensor casing on an aluminum bench",
+        "asymmetry"
+      ],
+      "mustAvoid": [
+        "Romanticizing every losing streak as visionary optionality.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "translation rights agency",
+      "audience": "an agent pitching obscure novels abroad",
+      "stakes": "monthly rejection counts hiding one territory-changing deal",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the agent tracks survival runway against royalty concentration",
+      "firstImage": "It takes Andrew several weeks to understand what foreign-rights catalogs spread across a hotel bed was really showing.",
+      "mustInclude": [
+        "Andrew",
+        "foreign-rights catalogs spread across a hotel bed",
+        "rare hit"
+      ],
+      "mustAvoid": [
+        "Romanticizing every losing streak as visionary optionality.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "patent litigation portfolio",
+      "audience": "a legal finance analyst reviewing losing cases",
+      "stakes": "one settlement paying for the whole docket",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the analyst asks how much can be lost before the portfolio dies",
+      "firstImage": "redacted claim charts in a locked binder appears before any human enters the sentence.",
+      "mustInclude": [
+        "Matthew",
+        "redacted claim charts in a locked binder",
+        "survivability"
+      ],
+      "mustAvoid": [
+        "Romanticizing every losing streak as visionary optionality.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify linear versus scalable domains",
+      "evaluate losses by payoff geometry",
+      "distinguish optionality from denial"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one repeated loss and write whether it is buying upside, hiding ruin, or simply repeating failure.",
+  "readingTimeMinutes": 12
+}

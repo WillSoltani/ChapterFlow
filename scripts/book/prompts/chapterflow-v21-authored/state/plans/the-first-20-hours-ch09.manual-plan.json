@@ -1,0 +1,205 @@
+{
+  "chapterId": "the-first-20-hours-ch09",
+  "number": 9,
+  "title": "Windsurfing",
+  "coreMove": "Shrink a condition-shaped skill to one live subskill that can be repeated safely and then tested by the real environment.",
+  "sourcePressure": "The source frames windsurfing as environment-shaped practice where staged isolation of subskills and risk-aware progression make a condition-dependent skill trainable.",
+  "chapterSpecificMisunderstanding": "Using staging to avoid the real environment instead of using it to make one live piece of the environment readable and safer.",
+  "sourceAlignmentTerms": [
+    "windsurfing",
+    "environment-shaped practice",
+    "staged isolation",
+    "subskills",
+    "conditions",
+    "equipment",
+    "risk-aware progression",
+    "live sequence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "windsurfing",
+      "detail": "the frozen support names windsurfing as the final case and frames it through conditions, equipment, and staged risk",
+      "useIn": "both",
+      "phrasingHint": "Windsurfing refuses to be learned only in your head because wind, board, sail, and water keep changing the assignment."
+    },
+    {
+      "kind": "artifact",
+      "name": "staged isolation of subskills",
+      "detail": "the source says staged isolation of subskills helps make windsurfing trainable while risk-aware progression matters because conditions cannot be fully controlled",
+      "useIn": "fullRead",
+      "phrasingHint": "A staged subskill is honest only if it is still on speaking terms with wind and water."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "stormy-water bravery opener",
+      "extreme sport lifestyle opener",
+      "perfect conditions fantasy"
+    ],
+    "counterintuition": [
+      "risk is the teacher",
+      "gear choice matters most",
+      "drills replace water"
+    ],
+    "tryThisNow": [
+      "go outside and try something risky",
+      "check the weather and practice",
+      "visualize the skill"
+    ],
+    "examples": [
+      "generic sailing club scene",
+      "ski slope courage story",
+      "helmet/bike safety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sam",
+      "domain": "kayak rescue-club edging drill in a sheltered cove",
+      "audience": "a learner whose water skill needs live but bounded conditions",
+      "stakes": "open-water practice is unsafe until edge recovery stops surprising him",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sam stays in the sheltered cove, repeats one edge-and-recover sequence beside the instructor boat, then tests it once where the current begins to tug",
+      "firstImage": "green water tapping against a kayak blade near a buoy line",
+      "mustInclude": [
+        "sheltered cove",
+        "edge recovery",
+        "current line"
+      ],
+      "mustAvoid": [
+        "heroic rescue",
+        "gear specification"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "drone pilot learning crosswind landing in a marked field",
+      "audience": "a technical outdoor learner whose conditions change the assignment",
+      "stakes": "a client shoot fails if the drone drifts into trees during landing",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Margaux predicts simulator time is enough, then isolates only crosswind landings between two field cones before flying near the tree line",
+      "firstImage": "two orange cones trembling in a gust across short grass",
+      "mustInclude": [
+        "crosswind landing",
+        "field cones",
+        "tree line"
+      ],
+      "mustAvoid": [
+        "drone brand specs",
+        "cinematic footage fantasy"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "ski patrol trainee practicing loaded sled turns on a low slope",
+      "audience": "a learner in a risky outdoor skill needing staged progression",
+      "stakes": "a full run with a loaded sled could endanger both trainee and patient",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Ryan chooses the low slope, repeats only the loaded turn with a trainer walking beside him, and advances after the sled stops fishtailing",
+      "firstImage": "red sled straps laid across packed spring snow",
+      "mustInclude": [
+        "low slope",
+        "loaded turn",
+        "trainer walking beside"
+      ],
+      "mustAvoid": [
+        "mountain hero scene",
+        "unsafe rescue claims"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "outdoor photographer learning manual exposure in changing cloud cover",
+      "audience": "a creator whose practice must answer to moving conditions",
+      "stakes": "a paid family session will lose the faces whenever clouds break and return",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Catarina stops practicing every camera setting, isolates exposure changes every time a cloud crosses the sun, and checks the histogram after each five-shot set",
+      "firstImage": "cloud shadow sliding over a white reflector on damp grass",
+      "mustInclude": [
+        "cloud cover",
+        "five-shot set",
+        "histogram check"
+      ],
+      "mustAvoid": [
+        "camera gear review",
+        "generic creative confidence"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "outdoor market vendor learning canopy setup in wind",
+      "audience": "a practical learner whose equipment and conditions interact",
+      "stakes": "one loose canopy leg can damage neighboring stalls before opening",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Luke asks the experienced vendor to isolate the windward-leg sequence, repeats it with empty weights first, then tests it when gusts hit the aisle",
+      "firstImage": "canvas snapping against a half-weighted canopy leg",
+      "mustInclude": [
+        "windward leg",
+        "empty weights",
+        "market aisle gusts"
+      ],
+      "mustAvoid": [
+        "business sales advice",
+        "unsafe setup detail"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "field archaeologist learning total-station setup on uneven ground",
+      "audience": "a learner in a condition-sensitive technical field task",
+      "stakes": "bad leveling ruins the day's grid points before the trench team starts",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Adaeze narrows the session to leveling the tripod on uneven ground, repeats it beside one trench, and lets the morning's first grid reading judge whether it held",
+      "firstImage": "your boot pressing into chalky soil beside three tripod feet",
+      "mustInclude": [
+        "uneven ground",
+        "tripod leveling",
+        "first grid reading"
+      ],
+      "mustAvoid": [
+        "Indiana Jones adventure tone",
+        "surveying specification lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose staged isolation without avoiding real conditions",
+      "identify which environmental variable changes the practice task",
+      "evaluate safe progression from sheltered subskill to live test",
+      "distinguish equipment detail from trainable condition-shaped behavior"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one condition-shaped skill and define the smallest live subskill that could face a real but low-risk version of the environment.",
+  "readingTimeMinutes": 12
+}

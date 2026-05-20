@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch05",
+  "number": 5,
+  "title": "Authority: Directed Deference",
+  "coreMove": "Verify whether the authority signal is genuine and qualified for this exact choice.",
+  "sourcePressure": "The source narrowly supports deference to rank, expertise, legitimacy, titles, uniforms, symbols, and status cues, with defense focused on whether the authority is real, relevant, and earned for the decision.",
+  "chapterSpecificMisunderstanding": "Do not write an anti-expert chapter; the issue is authority cues outrunning relevance.",
+  "sourceAlignmentTerms": ["authority", "deference", "legitimacy", "expertise", "rank cue", "title", "relevance"],
+  "forbiddenFrames": {
+    "hook": ["The badge is not the answer", "Experts can be wrong", "Authority makes thinking stop"],
+    "counterintuition": ["Trust no authority", "Credentials are meaningless", "Status is always fake"],
+    "tryThisNow": ["Question an expert today", "Check one credential", "Ask who benefits"],
+    "examples": ["doctor giving medical order", "police uniform compliance", "famous professor endorses product"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "historic-home renovation permit review",
+      "audience": "a homeowner weighing advice from a confident inspector",
+      "stakes": "paying for unnecessary window replacements because the title feels decisive",
+      "format": "dialogue",
+      "requiredBeat": "the homeowner asks which code section applies to these exact windows instead of accepting the inspector's title alone",
+      "firstImage": "peeling sash paint collected on a folded permit notice",
+      "mustInclude": ["code section", "permit notice", "window measurement"],
+      "mustAvoid": ["generic contractor dispute"]
+    },
+    {
+      "domain": "aquarium store saltwater tank recommendation",
+      "audience": "a beginner aquarist hearing advice from a staff member in a branded vest",
+      "stakes": "buying incompatible equipment because the uniform signals expertise",
+      "format": "decision_point",
+      "requiredBeat": "the buyer asks the staffer to match each item to the tank's volume and species list before checkout",
+      "firstImage": "a refractometer case beside bags of live sand",
+      "mustInclude": ["branded vest", "tank volume", "species list"],
+      "mustAvoid": ["liking friendly clerk"]
+    },
+    {
+      "domain": "college financial aid appeal meeting",
+      "audience": "a first-generation student facing a senior administrator",
+      "stakes": "accepting an appeal denial without checking policy fit",
+      "format": "scene",
+      "requiredBeat": "the student reads the policy paragraph aloud and asks the administrator to show where her case fails it",
+      "firstImage": "a financial aid folder held shut with a bent paper clip",
+      "mustInclude": ["policy paragraph", "appeal form", "administrator title"],
+      "mustAvoid": ["institutional cynicism"]
+    },
+    {
+      "domain": "wine shop vintage recommendation",
+      "audience": "a host buying bottles for a retirement dinner",
+      "stakes": "choosing a costly bottle because a framed certificate sits behind the register",
+      "format": "reflection",
+      "requiredBeat": "the host notices the certificate, then asks how the recommended bottle fits the menu and guest preferences",
+      "firstImage": "a cream label tilted in a wooden display rack",
+      "mustInclude": ["certificate", "menu", "guest preference"],
+      "mustAvoid": ["scarcity rare vintage"]
+    },
+    {
+      "domain": "maker-space laser cutter training",
+      "audience": "a volunteer approving a safety shortcut from a founding member",
+      "stakes": "letting status override the machine's posted procedure",
+      "format": "postmortem",
+      "requiredBeat": "after a scorched test piece, the volunteer traces the shortcut back to founding-member status rather than relevant safety knowledge",
+      "firstImage": "a square of scorched plywood under the cutter lid",
+      "mustInclude": ["posted procedure", "founding member", "test piece"],
+      "mustAvoid": ["commitment to old rules"]
+    },
+    {
+      "domain": "independent lab report for well water",
+      "audience": "a rural property buyer reading advice from a real estate agent",
+      "stakes": "skipping a second test because the agent sounds authoritative outside her domain",
+      "format": "before_after",
+      "requiredBeat": "the buyer separates the agent's market expertise from water safety expertise and orders the lab retest",
+      "firstImage": "a capped sample bottle in a zippered plastic bag",
+      "mustInclude": ["lab report", "agent title", "retest order"],
+      "mustAvoid": ["social proof other buyers"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish legitimate expertise from authority appearance", "test relevance of a credential to the decision", "respond respectfully without surrendering judgment", "identify rank cues that are outside their domain"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one authoritative recommendation today, ask what exact expertise would be needed to answer this decision and whether the speaker has that expertise.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch15",
+  "number": 15,
+  "title": "The Cardinal Rule of Behavior Change",
+  "coreMove": "Give the good habit an immediate satisfying signal while its larger payoff is still delayed.",
+  "sourcePressure": "Behavior that feels satisfying now is more likely to be repeated, so good habits need some immediate reinforcement while bad habits often win because they reward immediately.",
+  "chapterSpecificMisunderstanding": "Confusing lasting reward with immediate satisfaction, or making rewards so large they become the habit.",
+  "sourceAlignmentTerms": [
+    "cardinal rule",
+    "immediate reward",
+    "delayed reward",
+    "satisfaction",
+    "reinforcement",
+    "present self"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of cardinal rule",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an ICU nurse rewarding hydration with a bead moved across her badge lanyard",
+      "audience": "a shift worker who cannot feel long-term benefits at 4 p.m.",
+      "stakes": "whether a tiny immediate signal keeps the habit alive",
+      "format": "vignette",
+      "requiredBeat": "after finishing the bottle, she slides one bead to the other side and feels the small click before the headache would have improved",
+      "firstImage": "clear beads threaded on a blue badge lanyard",
+      "mustInclude": [
+        "badge lanyard",
+        "water bottle label"
+      ],
+      "mustAvoid": [
+        "generic water app"
+      ]
+    },
+    {
+      "domain": "a freelance illustrator making tax transfers satisfying with a visible progress stamp",
+      "audience": "a self-employed creative tempted by immediate purchases",
+      "stakes": "whether the boring transfer gets a present-tense payoff",
+      "format": "decision_point",
+      "requiredBeat": "she transfers 18 percent and stamps the invoice paid-to-future before opening any shopping tab",
+      "firstImage": "a rubber stamp hovering over a paid invoice",
+      "mustInclude": [
+        "rubber stamp",
+        "invoice number"
+      ],
+      "mustAvoid": [
+        "budget spreadsheet shell"
+      ]
+    },
+    {
+      "domain": "a widower walking to the corner mailbox for the sound of a brass token drop",
+      "audience": "an older adult whose health payoff feels too far away",
+      "stakes": "whether the immediate sound becomes what the body repeats",
+      "format": "scene",
+      "requiredBeat": "he drops a brass token into a jar only after returning from the mailbox, and the sound becomes the reward",
+      "firstImage": "a brass token pinched above a glass jar on a hallway shelf",
+      "mustInclude": [
+        "brass token",
+        "mail key"
+      ],
+      "mustAvoid": [
+        "candy reward shell"
+      ]
+    },
+    {
+      "domain": "a line cook studying food-safety cards to reveal one sticker on a knife-roll map",
+      "audience": "an adult learner with failed exams behind him",
+      "stakes": "whether the visible reveal beats the distant promise of certification",
+      "format": "dialogue",
+      "requiredBeat": "his sister says the sticker is childish, then hears him admit the reveal is why he opened the cards",
+      "firstImage": "a knife roll with one blank square on a taped map",
+      "mustInclude": [
+        "study cards",
+        "sticker square"
+      ],
+      "mustAvoid": [
+        "school reward chart"
+      ]
+    },
+    {
+      "domain": "a city bus driver logging calm handoffs with a punched transit ticket",
+      "audience": "a parent whose relationship payoff will lag",
+      "stakes": "whether the immediate punch keeps the new response alive before his daughter warms",
+      "format": "reflection",
+      "requiredBeat": "after one calm doorway exchange, he punches a paper ticket and files it in the visor",
+      "firstImage": "a paper transit ticket sliding into a visor clip",
+      "mustInclude": [
+        "ticket punch",
+        "visor clip"
+      ],
+      "mustAvoid": [
+        "family dinner shell"
+      ]
+    },
+    {
+      "domain": "a plant nursery worker rewarding sunscreen use by clicking a row counter",
+      "audience": "an outdoor worker who never sees the prevented burn today",
+      "stakes": "whether immediate tactile feedback reinforces the delayed-protection habit",
+      "format": "before_after",
+      "requiredBeat": "she applies sunscreen, clicks the counter once, and later sees the click mattered more than the health warning",
+      "firstImage": "a metal row counter beside a sunscreen pump",
+      "mustInclude": [
+        "row counter",
+        "sunscreen pump"
+      ],
+      "mustAvoid": [
+        "generic health PSA"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "design immediate satisfaction for delayed-payoff habits",
+      "distinguish reinforcement from bribery",
+      "predict why bad habits win in the present"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Give one delayed-payoff habit a tiny immediate completion signal you can see, hear, or feel today.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch14",
+  "number": 14,
+  "title": "How to Make Good Habits Inevitable and Bad Habits Impossible",
+  "coreMove": "Preload the environment so the good action is ready and the bad action is blocked.",
+  "sourcePressure": "Good habits become far more likely when the environment keeps them available and ready, while bad habits weaken when stronger barriers make them hard to perform.",
+  "chapterSpecificMisunderstanding": "Treating commitment devices as perfect control instead of stronger default design.",
+  "sourceAlignmentTerms": [
+    "commitment device",
+    "environment reset",
+    "availability",
+    "barrier",
+    "automation",
+    "inversion"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of commitment device",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a sleep clinic patient locking the router timer before bedtime",
+      "audience": "a patient whose late streaming destroys CPAP compliance",
+      "stakes": "whether a barrier makes the bad habit harder before fatigue arrives",
+      "format": "scene",
+      "requiredBeat": "the router shuts off at 10:15 and the bedroom charger is already across the room",
+      "firstImage": "a router timer glowing beside a CPAP case",
+      "mustInclude": [
+        "router timer",
+        "CPAP case"
+      ],
+      "mustAvoid": [
+        "generic phone drawer"
+      ]
+    },
+    {
+      "domain": "a marine rescue team pre-rigging throw bags before storm season",
+      "audience": "a volunteer crew that loses minutes under pressure",
+      "stakes": "whether setup makes the right action inevitable when alarms sound",
+      "format": "vignette",
+      "requiredBeat": "the bag clips are already color-coded to boat seats, so no one chooses under stress",
+      "firstImage": "orange throw bags clipped under a rescue boat bench",
+      "mustInclude": [
+        "throw bag",
+        "boat bench clip"
+      ],
+      "mustAvoid": [
+        "hero rescue scene"
+      ]
+    },
+    {
+      "domain": "a cafe owner putting pastry orders behind a pre-commitment cutoff",
+      "audience": "a customer trying to stop impulse buying before dawn shifts",
+      "stakes": "whether removing day-of ordering changes the default",
+      "format": "decision_point",
+      "requiredBeat": "she must place tomorrow order by 6 p.m.; at 6 a.m. the display is no longer a live choice",
+      "firstImage": "an order cutoff card taped beside a pastry case",
+      "mustInclude": [
+        "cutoff card",
+        "display case"
+      ],
+      "mustAvoid": [
+        "diet restriction sermon"
+      ]
+    },
+    {
+      "domain": "a violin teacher auto-booking practice rooms for students after recital signups",
+      "audience": "a teacher making practice available without extra decisions",
+      "stakes": "whether preloaded space changes attendance",
+      "format": "postmortem",
+      "requiredBeat": "attendance rises because each student receives a booked room code before the week begins",
+      "firstImage": "a practice-room code slip tucked into a violin case",
+      "mustInclude": [
+        "room code",
+        "recital signup"
+      ],
+      "mustAvoid": [
+        "classroom schedule shell"
+      ]
+    },
+    {
+      "domain": "a municipal fleet manager installing fuel-card locks for idle-heavy trucks",
+      "audience": "a manager reducing wasteful idling",
+      "stakes": "whether a structural barrier beats another reminder memo",
+      "format": "predict_reveal",
+      "requiredBeat": "drivers predict they will work around the lock, then the engine-off refuel sequence becomes the easiest route",
+      "firstImage": "a fuel card locked in a dashboard sleeve",
+      "mustInclude": [
+        "dashboard sleeve",
+        "idle log"
+      ],
+      "mustAvoid": [
+        "generic sustainability poster"
+      ]
+    },
+    {
+      "domain": "a home dialysis patient setting supply cassettes in weekday bins every Sunday",
+      "audience": "a patient whose evening fatigue causes skipped setup",
+      "stakes": "whether ready supplies make the good action the obvious next move",
+      "format": "before_after",
+      "requiredBeat": "on Wednesday night she opens the marked bin and begins without hunting through boxes",
+      "firstImage": "weekday supply bins lined under a treatment chair",
+      "mustInclude": [
+        "weekday bin",
+        "cassette packet"
+      ],
+      "mustAvoid": [
+        "narrow kitchen or medicine-cabinet shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use commitment devices and availability design",
+      "preload good actions before choice moments",
+      "make unwanted actions harder without pretending choice disappears"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Set up one future good action so it is ready before the moment of choice, then add one barrier to the tempting alternative.",
+  "readingTimeMinutes": 12
+}

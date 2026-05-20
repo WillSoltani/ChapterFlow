@@ -1,0 +1,217 @@
+{
+  "chapterId": "the-48-laws-of-power-ch04",
+  "number": 4,
+  "title": "Always Say Less Than Necessary",
+  "coreMove": "Use verbal scarcity so others project control onto you instead of measuring every thought",
+  "sourcePressure": "why verbal restraint can create authority and mystery, how overexplaining weakens presence, and where silence becomes suspicious unless another harmless surface carries the disguise.",
+  "chapterSpecificMisunderstanding": "being silent in every conversation",
+  "sourceAlignmentTerms": [
+    "verbal restraint",
+    "mystery",
+    "overexplaining",
+    "aura",
+    "sparse speech",
+    "projection",
+    "Coriolanus",
+    "Warhol"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Coriolanus",
+      "detail": "lost political aura once speech became brash and uncontrolled",
+      "useIn": "both",
+      "phrasingHint": "Coriolanus had distance until his own words dragged him down into ordinary quarrel."
+    },
+    {
+      "kind": "person",
+      "name": "Louis XIV",
+      "detail": "used sparse speech to keep people unsure where they stood",
+      "useIn": "deepRead",
+      "phrasingHint": "Louis XIV made few words feel like a locked door everyone else had to study."
+    },
+    {
+      "kind": "person",
+      "name": "Andy Warhol",
+      "detail": "gained an aura of depth from sparse, vague replies",
+      "useIn": "fullRead",
+      "phrasingHint": "Warhol let blankness do the work talk would have spoiled."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "ch04 abstract law-title opener",
+      "cold definition of power",
+      "generic boardroom pressure first line"
+    ],
+    "counterintuition": [
+      "not X but Y negation shell for the-48-laws-of-power-ch04",
+      "most people assume opener",
+      "simple reversal without concrete cost"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three bullet points about the law",
+      "ask yourself what power means"
+    ],
+    "examples": [
+      "timestamp plus named protagonist plus prop plus decision repeated six times",
+      "work/home/school rotation",
+      "nameless office stakeholder shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Ben",
+      "domain": "police review board hearing where the chair must say less under pressure",
+      "audience": "a reader handling police review board hearing where the chair must say less under pressure",
+      "stakes": "whether the reader can apply use verbal scarcity so others project control onto you instead of measuring every thought before the situation hardens",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ben changes the first visible artifact in police review board hearing where the chair must say less under pressure so the room sees verbal restraint before any explanation begins",
+      "firstImage": "police review sheet with one corner folded in police review board hearing where the chair must say less under pressure",
+      "mustInclude": [
+        "police-review artifact specific to this scene",
+        "board constraint that makes verbal restraint visible",
+        "one named threshold, deadline, or status cue from police review board hearing where the chair must say less under pressure"
+      ],
+      "mustAvoid": [
+        "do not turn this into being silent in every conversation",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "architecture critique where a partner stops defending every design choice",
+      "audience": "a reader handling architecture critique where a partner stops defending every design choice",
+      "stakes": "whether the reader can apply use verbal scarcity so others project control onto you instead of measuring every thought before the situation hardens",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "A challenge lands in architecture critique where a partner stops defending every design choice, and Chris answers by moving a concrete object, name, or option into a new position that enacts: use verbal scarcity so others project control onto you instead of measuring every thought",
+      "firstImage": "critique partner log clipped to a thin board in architecture critique where a partner stops defending every design choice",
+      "mustInclude": [
+        "architecture-critique artifact specific to this scene",
+        "partner constraint that makes verbal restraint visible",
+        "one named threshold, deadline, or status cue from architecture critique where a partner stops defending every design choice"
+      ],
+      "mustAvoid": [
+        "do not turn this into being silent in every conversation",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "auction house estimate meeting with a silent senior specialist",
+      "audience": "a reader handling auction house estimate meeting with a silent senior specialist",
+      "stakes": "whether the reader can apply use verbal scarcity so others project control onto you instead of measuring every thought before the situation hardens",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The scene turns when Sam withholds the obvious speech and alters the setup in auction house estimate meeting with a silent senior specialist so the other side has to react to the new field",
+      "firstImage": "auction estimate sample under a strip of tape in auction house estimate meeting with a silent senior specialist",
+      "mustInclude": [
+        "auction-house artifact specific to this scene",
+        "estimate constraint that makes verbal restraint visible",
+        "one named threshold, deadline, or status cue from auction house estimate meeting with a silent senior specialist"
+      ],
+      "mustAvoid": [
+        "do not turn this into being silent in every conversation",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "high school debate coach teaching pauses before rebuttal",
+      "audience": "a reader handling high school debate coach teaching pauses before rebuttal",
+      "stakes": "whether the reader can apply use verbal scarcity so others project control onto you instead of measuring every thought before the situation hardens",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ryan makes one public choice in high school debate coach teaching pauses before rebuttal that converts mystery from an abstract idea into a visible constraint",
+      "firstImage": "debate list marked with a single pencil circle in high school debate coach teaching pauses before rebuttal",
+      "mustInclude": [
+        "high-school artifact specific to this scene",
+        "debate constraint that makes verbal restraint visible",
+        "one named threshold, deadline, or status cue from high school debate coach teaching pauses before rebuttal"
+      ],
+      "mustAvoid": [
+        "do not turn this into being silent in every conversation",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "boardroom crisis update where the CFO refuses to fill every silence",
+      "audience": "a reader handling boardroom crisis update where the CFO refuses to fill every silence",
+      "stakes": "whether the reader can apply use verbal scarcity so others project control onto you instead of measuring every thought before the situation hardens",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The reveal comes when Jack lets the first prediction fail against the physical setup in boardroom crisis update where the CFO refuses to fill every silence, then uses that failure to practice: use verbal scarcity so others project control onto you instead of measuring every thought",
+      "firstImage": "boardroom folder opened beside a named seat card in boardroom crisis update where the CFO refuses to fill every silence",
+      "mustInclude": [
+        "boardroom-crisis artifact specific to this scene",
+        "update constraint that makes verbal restraint visible",
+        "one named threshold, deadline, or status cue from boardroom crisis update where the CFO refuses to fill every silence"
+      ],
+      "mustAvoid": [
+        "do not turn this into being silent in every conversation",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "ceramics studio sale where the artist lets one sentence carry the price",
+      "audience": "a reader handling ceramics studio sale where the artist lets one sentence carry the price",
+      "stakes": "whether the reader can apply use verbal scarcity so others project control onto you instead of measuring every thought before the situation hardens",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "In the debrief, Luke points to the concrete trace left in ceramics studio sale where the artist lets one sentence carry the price and separates the law's real move from its common misread",
+      "firstImage": "studio receipt pinned above a narrow work surface in ceramics studio sale where the artist lets one sentence carry the price",
+      "mustInclude": [
+        "ceramics-studio artifact specific to this scene",
+        "sale constraint that makes verbal restraint visible",
+        "one named threshold, deadline, or status cue from ceramics studio sale where the artist lets one sentence carry the price"
+      ],
+      "mustAvoid": [
+        "do not turn this into being silent in every conversation",
+        "do not use a generic meeting-room scene",
+        "do not resolve the scene with a speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario requires use verbal scarcity so others project control onto you instead of measuring every thought",
+      "distinguish being silent in every conversation from the chapter's actual move",
+      "choose the visible action that preserves the law's limit instead of overplaying it"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real situation where verbal restraint is present, spend 60 seconds naming the visible move that would use verbal scarcity so others project control onto you instead of measuring every thought without using a reusable reflection prompt.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference when supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

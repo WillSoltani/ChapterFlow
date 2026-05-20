@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch04",
+  "number": 4,
+  "title": "Beware \"Yes\", Master \"No\"",
+  "coreMove": "Invite a protected no so the other side can become honest without feeling cornered.",
+  "sourcePressure": "The source says yes can be a trap, while no-oriented questions preserve control, increase safety, and draw out deeper honesty after labeling has reduced friction.",
+  "chapterSpecificMisunderstanding": "The writer must not romanticize refusal or claim every no is useful apart from context and safety.",
+  "sourceAlignmentTerms": [
+    "yes trap",
+    "no-oriented question",
+    "control",
+    "safety",
+    "honesty",
+    "defensiveness",
+    "refusal"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A salesperson stops chasing yes",
+      "A child says no and feels empowered",
+      "A boundaries lesson"
+    ],
+    "counterintuition": [
+      "No is better than yes",
+      "Rejection creates control",
+      "Agreement is suspicious"
+    ],
+    "tryThisNow": [
+      "Ask a question that gets no",
+      "Say no to something today",
+      "Stop chasing yes"
+    ],
+    "examples": [
+      "sales yes ladder",
+      "subscription cancellation",
+      "generic marriage boundary",
+      "classroom permission request"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "public defender plea discussion with a skeptical client",
+      "audience": "a defender who needs truthful risk tolerance rather than a pressured agreement",
+      "stakes": "the client may accept a plea he does not understand and later withdraw trust",
+      "format": "dialogue",
+      "requiredBeat": "the defender asks 'Would it be a bad idea to slow down before you decide?' and the client finally says no, then explains the sentence length he fears",
+      "firstImage": "a plea form lying beside a scratched interview-room phone",
+      "mustInclude": [
+        "plea form",
+        "sentence range",
+        "court clock"
+      ],
+      "mustAvoid": [
+        "legal heroics",
+        "generic advice to say no"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "architectural review for a historic storefront sign",
+      "audience": "a shop owner facing a preservation board that keeps giving polite yeses and later objections",
+      "stakes": "manufacturing the sign before real approval could waste the store's opening budget",
+      "format": "decision_point",
+      "requiredBeat": "the owner stops asking if the design is acceptable and asks whether approving the brushed steel letters would be impossible, prompting the board chair to name the reflective finish issue",
+      "firstImage": "a brushed steel letter sample wrapped in kraft paper on a hearing table",
+      "mustInclude": [
+        "finish sample",
+        "historic district guideline",
+        "opening date"
+      ],
+      "mustAvoid": [
+        "generic permit scene",
+        "design taste debate"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "nonprofit donor renewal after a failed campaign",
+      "audience": "a development director trying to learn whether a major donor is truly out",
+      "stakes": "the budget assumes a renewal that may be only a politeness yes",
+      "format": "postmortem",
+      "requiredBeat": "the director compares the old 'Can we count on you?' call with the no-oriented 'Would it be wrong to assume this year is off the table?' call that produces an honest condition",
+      "firstImage": "a pledge card with the amount field left blank under a desk lamp",
+      "mustInclude": [
+        "pledge card",
+        "restricted gift",
+        "campaign report"
+      ],
+      "mustAvoid": [
+        "generic fundraising charm",
+        "guilt appeal"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "shipyard repair estimate for an owner worried about overruns",
+      "audience": "a yard manager who needs the owner to reveal the real budget ceiling",
+      "stakes": "work may begin under false approval and stall when hidden cash limits appear",
+      "format": "scene",
+      "requiredBeat": "the manager asks whether starting with the full refit would be reckless, giving the owner a safe no that opens a conversation about phased repairs",
+      "firstImage": "a barnacle-scraped propeller resting on a wooden cradle near the lift bay",
+      "mustInclude": [
+        "refit estimate",
+        "haul-out date",
+        "phased repair list"
+      ],
+      "mustAvoid": [
+        "car repair cliche",
+        "price haggle"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "software security exception request at a bank",
+      "audience": "a product lead who keeps hearing yes from risk reviewers and then getting blocked",
+      "stakes": "a release date will slip unless reviewers can safely say what they cannot accept",
+      "format": "before_after",
+      "requiredBeat": "the lead replaces 'Are we approved?' with 'Would it be unsafe to ship this exception?' and the reviewer finally says no to the current logging gap",
+      "firstImage": "a risk waiver tab open beside a failed audit screenshot",
+      "mustInclude": [
+        "logging gap",
+        "risk waiver",
+        "release freeze"
+      ],
+      "mustAvoid": [
+        "generic agile meeting",
+        "productivity checklist"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "farmers market stall placement dispute",
+      "audience": "a market manager mediating between two vendors who keep agreeing in public and complaining later",
+      "stakes": "the Saturday map may collapse if the hidden refusal stays private",
+      "format": "vignette",
+      "requiredBeat": "the manager asks each vendor whether the proposed aisle swap would be unacceptable, and one finally names the cold-storage distance as the true issue",
+      "firstImage": "a laminated stall map pinned under a crate of peaches before sunrise",
+      "mustInclude": [
+        "stall map",
+        "cold-storage trailer",
+        "vendor badge"
+      ],
+      "mustAvoid": [
+        "generic small-business dispute",
+        "neighborly compromise"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "rewrite a yes-seeking question as a no-oriented safety question",
+      "identify a false yes in a scenario",
+      "analyze why protected refusal produces better information",
+      "evaluate when chasing no would become performative or hostile"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one request where you usually ask for yes and rewrite it as a no-oriented question that lets the other person reject the unsafe path without embarrassment.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

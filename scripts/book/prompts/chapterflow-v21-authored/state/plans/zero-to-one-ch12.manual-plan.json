@@ -1,0 +1,183 @@
+{
+  "chapterId": "zero-to-one-ch12",
+  "number": 12,
+  "title": "Man and Machine",
+  "coreMove": "Split a workflow so computers handle pattern-heavy work and people handle judgment-rich calls.",
+  "sourcePressure": "The chapter frames technology as complementing human work when machines and people do different jobs well, not as a simple replacement story. The frozen source for this chapter contains no chapter-specific named anecdote beyond author/editor metadata, so examples should use fictional protagonists and stay anchored to verified terms.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into automation panic or technological cheerleading.",
+  "sourceAlignmentTerms": [
+    "computer",
+    "human",
+    "machine",
+    "complementarity",
+    "system",
+    "judgment",
+    "pattern work"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of computer",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Min",
+      "domain": "fraud review operations",
+      "audience": "a bank manager splitting machine scoring from human judgment on edge cases",
+      "stakes": "whether automation increases accuracy or hides brittle calls",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Min routes the easy cases to the model and reserves ambiguous family transfers for reviewers",
+      "firstImage": "transaction alerts tiled across a blue monitor",
+      "mustInclude": [
+        "alert queue",
+        "review rubric",
+        "model score"
+      ],
+      "mustAvoid": [
+        "automation panic"
+      ]
+    },
+    {
+      "protagonistName": "Anders",
+      "domain": "forestry fire detection",
+      "audience": "a field coordinator pairing satellite scans with ranger interpretation",
+      "stakes": "whether smoke signatures become useful decisions before crews deploy",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anders lets the software flag heat anomalies, then asks rangers to interpret wind and access roads",
+      "firstImage": "satellite tiles beside a paper topo map",
+      "mustInclude": [
+        "topo map",
+        "heat anomaly feed",
+        "radio log"
+      ],
+      "mustAvoid": [
+        "tech boosterism"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "legal discovery review",
+      "audience": "a litigation partner using software to cluster documents while lawyers judge privileged context",
+      "stakes": "whether speed sacrifices judgment or multiplies it",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chidi rejects the all-automation pitch and assigns humans to the consequence-heavy clusters",
+      "firstImage": "banker boxes stacked around a glowing review screen",
+      "mustInclude": [
+        "review screen",
+        "privilege log",
+        "banker boxes"
+      ],
+      "mustAvoid": [
+        "law tech generic"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "oncology trial matching",
+      "audience": "a coordinator combining algorithmic eligibility with doctor judgment about patient burden",
+      "stakes": "whether eligible on paper means suitable in life",
+      "format": "reflection",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Anke watches the match score clear, then calls the nurse who knows the patient’s bus route",
+      "firstImage": "trial criteria printed beside a bus timetable",
+      "mustInclude": [
+        "trial criteria",
+        "bus timetable",
+        "nurse notes"
+      ],
+      "mustAvoid": [
+        "human touch sentiment"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "warehouse picking optimization",
+      "audience": "a floor supervisor dividing route calculation from exception handling during a holiday surge",
+      "stakes": "whether the software speeds work without breaking judgment at the dock",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Akira lets the system reorder picks but keeps damaged-item calls with the dock lead",
+      "firstImage": "shipping labels curling near a conveyor scanner",
+      "mustInclude": [
+        "conveyor scanner",
+        "exception bin",
+        "route tablet"
+      ],
+      "mustAvoid": [
+        "headcount story"
+      ]
+    },
+    {
+      "protagonistName": "Lea",
+      "domain": "newsroom verification desk",
+      "audience": "an editor using image-matching tools while reporters verify context and source intent",
+      "stakes": "whether faster scans produce trustworthy publication decisions",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lea stops the team from publishing until the reporter confirms where the image came from",
+      "firstImage": "a reverse-image search grid on a newsroom screen",
+      "mustInclude": [
+        "image grid",
+        "source log",
+        "publication timer"
+      ],
+      "mustAvoid": [
+        "AI prophecy"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires split a workflow so computers handle pattern-heavy work and people handle judgment-rich calls.",
+      "separate computer from human in a novel operating case",
+      "diagnose the specific failure mode: turning the chapter into automation panic or technological cheerleading.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one workflow and split its tasks into pattern scanning, context judgment, and consequence ownership; assign machines and people only where each is strongest.",
+  "readingTimeMinutes": 12
+}

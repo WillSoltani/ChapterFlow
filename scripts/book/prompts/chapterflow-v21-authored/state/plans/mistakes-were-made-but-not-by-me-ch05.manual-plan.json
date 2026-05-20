@@ -1,0 +1,200 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+  "number": 5,
+  "title": "Good Intentions, Bad Science: The Closed Loop of Clinical Judgment",
+  "coreMove": "Turn a confident helping story into a testable hypothesis before good intentions seal the loop.",
+  "sourcePressure": "The chapter critiques clinical judgment when intuition and benevolent identity become a closed loop; the source emphasizes science as error exposure, arrogance control, and the danger of suggestive interviewing.",
+  "chapterSpecificMisunderstanding": "Attacking therapy, clinicians, or expertise broadly instead of targeting untested confirmation loops inside helping work.",
+  "sourceAlignmentTerms": [
+    "good intentions",
+    "bad science",
+    "closed loop",
+    "clinical judgment",
+    "falsifiability",
+    "independent verification",
+    "suggestive interviewing",
+    "arrogance control"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "arrogance control",
+      "detail": "the source supports the phrase as a way to frame scientific method forcing experts to face the possibility of error",
+      "useIn": "both",
+      "phrasingHint": "Good method is arrogance control: it makes even the caring expert leave room to be wrong."
+    },
+    {
+      "kind": "event",
+      "name": "suggestive child interviews",
+      "detail": "the source supports the risk that child-abuse and similar interviews become contaminated when the interviewer seeks confirmation instead of testing alternatives",
+      "useIn": "fullRead",
+      "phrasingHint": "The danger begins when a question stops searching and starts leading the witness toward the story the helper already believes."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a therapist as villain.",
+      "Avoid a lab-coat caricature."
+    ],
+    "counterintuition": [
+      "Do not imply compassion makes people less reliable by itself.",
+      "Avoid \"science beats feelings\" as a blunt frame."
+    ],
+    "tryThisNow": [
+      "No generic evidence checklist.",
+      "No broad \"be skeptical\" instruction."
+    ],
+    "examples": [
+      "No courtroom child-abuse case details beyond the source boundary.",
+      "No medical diagnosis drama as the only clinical setting."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "a school counselor interviewing a ten-year-old after a playground injury report",
+      "audience": "helpers who fear missing harm and may start leading before testing",
+      "stakes": "the child's answer may become evidence shaped by the adult's first theory",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Laura writes two alternative explanations on a sticky note before asking the next question, then replaces a leading prompt with an open one",
+      "firstImage": "a cartoon bandage wrapper beside a child-sized chair",
+      "mustInclude": [
+        "open question",
+        "alternative explanations",
+        "playground report"
+      ],
+      "mustAvoid": [
+        "criminal allegation detail",
+        "school gossip"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "an addiction clinic case conference where staff read missed appointments as denial",
+      "audience": "care teams whose rescue identity can close down rival hypotheses",
+      "stakes": "a patient loses housing support if practical barriers are misread as resistance",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu asks the team to list what would disprove denial before they write the care plan",
+      "firstImage": "a bus-transfer slip tucked into a clinic intake folder",
+      "mustInclude": [
+        "missed appointments",
+        "bus route",
+        "care plan"
+      ],
+      "mustAvoid": [
+        "sobriety sermon",
+        "doctor hero narrative"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "a speech-language assessment for a preschooler in a bilingual household",
+      "audience": "clinicians separating observation from theory",
+      "stakes": "a child may be mislabeled because every silence is interpreted through one favored explanation",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Frida predicts what she would see if shyness, hearing trouble, or language exposure were each true, then changes the session plan",
+      "firstImage": "a felt animal board lined up beside a small audiology headset",
+      "mustInclude": [
+        "three hypotheses",
+        "session plan",
+        "bilingual household"
+      ],
+      "mustAvoid": [
+        "parent blame",
+        "developmental diagnosis lecture"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "a workplace investigator reviewing a harassment complaint without assuming the first narrative is complete",
+      "audience": "internal investigators balancing care with verification",
+      "stakes": "a flawed interview sequence could contaminate testimony and undermine real accountability",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Ben deletes a question that names the alleged motive and replaces it with a sequence question about what each person saw first",
+      "firstImage": "a digital recorder beside a blank chronology grid",
+      "mustInclude": [
+        "chronology grid",
+        "sequence question",
+        "witness notes"
+      ],
+      "mustAvoid": [
+        "legal adjudication",
+        "HR template advice"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "a nonprofit youth mentor interpreting a teenager's silence as trauma disclosure",
+      "audience": "well-meaning mentors who need humility around interpretation",
+      "stakes": "the teenager may be pushed into an adult story before trust or evidence exists",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Catarina write \"maybe\" beside each interpretation, then ask what the teen wants help with today instead of naming the hidden wound",
+      "firstImage": "a half-finished chessboard on a community center table",
+      "mustInclude": [
+        "mentor notes",
+        "teen choice",
+        "maybe labels"
+      ],
+      "mustAvoid": [
+        "trauma exposition",
+        "savior language"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "a hospital quality-improvement analyst checking a senior consultant's theory about readmissions",
+      "audience": "analysts who must challenge confident experts without humiliating them",
+      "stakes": "resources go to the wrong fix if narrative fit outranks disconfirming data",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Yusuf one cross-tab to show that the consultant's favored explanation predicts the wrong ward, then he designs a falsifying check for the next meeting",
+      "firstImage": "a discharge binder opened beside a green spreadsheet filter",
+      "mustInclude": [
+        "readmission cross-tab",
+        "consultant theory",
+        "falsifying check"
+      ],
+      "mustAvoid": [
+        "doctor incompetence story",
+        "data worship"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "turn a clinical interpretation into a falsifiable hypothesis",
+      "spot leading questions that contaminate evidence",
+      "evaluate when good intentions are shielding a closed loop"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one judgment you feel sure about, write the sentence \"If I am wrong, I would expect to see...\" and name one observation that could actually unsettle you.",
+  "readingTimeMinutes": 12
+}

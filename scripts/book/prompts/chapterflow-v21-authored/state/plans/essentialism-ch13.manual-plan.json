@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch13",
+  "number": 13,
+  "title": "Edit: The Invisible Art",
+  "coreMove": "Remove, condense, and correct until the essential point has room to be seen and used.",
+  "sourcePressure": "The chapter reframes editing as a creative act of cutting, condensing, and correcting so the important becomes clearer and stronger.",
+  "chapterSpecificMisunderstanding": "A weak run would treat editing as tidying, decluttering, or simply deleting random commitments.",
+  "sourceAlignmentTerms": [
+    "edit",
+    "condense",
+    "correct",
+    "subtraction",
+    "clarity",
+    "Alan D. Williams"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic edit: the invisible art topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "aesthetic decluttering frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "aesthetic decluttering",
+      "cutting for its own sake",
+      "surface polish",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "botanical garden pruning a public map before opening weekend",
+      "audience": "visitor experience lead editing too many paths",
+      "stakes": "subtraction can make the essential route usable",
+      "format": "scene",
+      "requiredBeat": "She cuts five minor labels, combines two loops, and corrects the greenhouse arrow until first-time visitors stop circling.",
+      "firstImage": "A garden map is covered with removable labels.",
+      "mustInclude": [
+        "garden map",
+        "removable labels",
+        "greenhouse arrow"
+      ],
+      "mustAvoid": [
+        "aesthetic decluttering",
+        "surface polish"
+      ]
+    },
+    {
+      "domain": "legal aid attorney condensing a tenant rights handout",
+      "audience": "attorney whose thoroughness hides the action",
+      "stakes": "more information can bury the tenant’s next step",
+      "format": "before_after",
+      "requiredBeat": "Before, the handout has nine dense sections; after, she cuts legal history and moves the filing deadline into a box.",
+      "firstImage": "A dense handout lies under a red deadline box.",
+      "mustInclude": [
+        "tenant handout",
+        "deadline box",
+        "filing checklist"
+      ],
+      "mustAvoid": [
+        "generic writing tips",
+        "oversimplifying law"
+      ]
+    },
+    {
+      "domain": "museum audio editor cutting a survivor interview episode",
+      "audience": "editor afraid subtraction dishonors material",
+      "stakes": "editing protects the one story listeners can carry",
+      "format": "dialogue",
+      "requiredBeat": "He removes three repeated background sections and keeps the silence before the decisive memory.",
+      "firstImage": "An audio waveform glows beside transcript pages.",
+      "mustInclude": [
+        "waveform",
+        "transcript pages",
+        "edit markers"
+      ],
+      "mustAvoid": [
+        "sentimental montage",
+        "cutting for cruelty"
+      ]
+    },
+    {
+      "domain": "emergency shelter intake lead correcting confusing signage",
+      "audience": "lead seeing errors as part of edit",
+      "stakes": "wrong signals can waste scared people’s attention",
+      "format": "decision_point",
+      "requiredBeat": "She removes one arrow, combines two desk labels, and corrects the shelter-night line before doors open.",
+      "firstImage": "Shelter signs lean against a folding intake desk.",
+      "mustInclude": [
+        "shelter signs",
+        "intake desk",
+        "night line"
+      ],
+      "mustAvoid": [
+        "generic organization",
+        "decorating"
+      ]
+    },
+    {
+      "domain": "product packaging team removing claims from a medicine carton",
+      "audience": "team tempted to keep every approved phrase",
+      "stakes": "crowded language can hide the one dosage warning",
+      "format": "postmortem",
+      "requiredBeat": "They place the carton beside a warning hierarchy and cut claims until the overdose instruction is visible first.",
+      "firstImage": "A medicine carton sits beside a warning hierarchy sheet.",
+      "mustInclude": [
+        "medicine carton",
+        "warning hierarchy",
+        "claim list"
+      ],
+      "mustAvoid": [
+        "medical advice",
+        "marketing cynicism"
+      ]
+    },
+    {
+      "domain": "orchestra librarian condensing a marked conductor score",
+      "audience": "librarian making performance cues usable",
+      "stakes": "too many markings make the essential entrance invisible",
+      "format": "vignette",
+      "requiredBeat": "Pencil marks vanish from the score until the brass entrance cue is the one thing the conductor can see at tempo.",
+      "firstImage": "A conductor score is crowded with pencil marks.",
+      "mustInclude": [
+        "conductor score",
+        "brass cue",
+        "eraser crumbs"
+      ],
+      "mustAvoid": [
+        "music overlap as practice",
+        "random deletion"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify cut, condense, and correct moves inside a concrete scenario",
+      "choose the response that applies: Remove, condense, and correct until the essential point has room to be seen and used.",
+      "reject the generic drift: A weak run would treat editing as tidying, decluttering, or simply deleting random commitments.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one message, page, route, or process that feels crowded. Remove one extra, condense two related pieces, and correct one misleading cue.",
+  "readingTimeMinutes": 12
+}

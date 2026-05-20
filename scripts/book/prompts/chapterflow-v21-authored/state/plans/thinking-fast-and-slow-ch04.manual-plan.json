@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch04",
+  "number": 4,
+  "title": "The Associative Machine",
+  "coreMove": "trace a judgment back to the cue-chain that activated it before you treat it as independent evidence",
+  "sourcePressure": "explains how associative memory links ideas quickly and shapes what feels available, threatening, or normal",
+  "chapterSpecificMisunderstanding": "reducing association to random word games rather than a mechanism that steers perception",
+  "sourceAlignmentTerms": [
+    "associative memory",
+    "priming",
+    "cue",
+    "activation",
+    "network",
+    "coherence"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for The Associative Machine",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just creative brainstorming"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about creative brainstorming",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "marine salvage planning facing a decision distorted by associative memory",
+      "audience": "a lead or reviewer who must trace a judgment back to the cue-chain that activated it before you treat it as independent evidence while others want the quick answer",
+      "stakes": "the visible call will go wrong unless associative memory is separated from the tempting but weaker cue",
+      "format": "predict_reveal",
+      "requiredBeat": "the scene shows the before call written on the memory tide-table acetate labeled associative memory, then the after call once the person performs the chapter move instead of trusting the original feeling",
+      "firstImage": "You are looking at the memory tide-table acetate labeled associative memory while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "memory tide-table acetate labeled associative memory",
+        "associative memory",
+        "priming"
+      ],
+      "mustAvoid": [
+        "turning the scene into creative brainstorming",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "college admissions file review facing a decision distorted by associative memory",
+      "audience": "a lead or reviewer who must trace a judgment back to the cue-chain that activated it before you treat it as independent evidence while others want the quick answer",
+      "stakes": "the visible call will go wrong unless associative memory is separated from the tempting but weaker cue",
+      "format": "postmortem",
+      "requiredBeat": "the protagonist pauses with the admissions scoring grid labeled priming in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable",
+      "firstImage": "What would change if the admissions scoring grid labeled priming stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "admissions scoring grid labeled priming",
+        "associative memory",
+        "cue"
+      ],
+      "mustAvoid": [
+        "turning the scene into creative brainstorming",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "cheese aging cellar facing a decision distorted by associative memory",
+      "audience": "a lead or reviewer who must trace a judgment back to the cue-chain that activated it before you treat it as independent evidence while others want the quick answer",
+      "stakes": "the visible call will go wrong unless associative memory is separated from the tempting but weaker cue",
+      "format": "before_after",
+      "requiredBeat": "the reader is asked to imagine signing the cue wax-rind wheel labeled cue twice, once from the first impression and once after applying associative memory, then compare the two commitments",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the cue wax-rind wheel labeled cue between the two choices.",
+      "mustInclude": [
+        "cue wax-rind wheel labeled cue",
+        "associative memory",
+        "activation"
+      ],
+      "mustAvoid": [
+        "turning the scene into creative brainstorming",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "election ballot curing table facing a decision distorted by associative memory",
+      "audience": "a lead or reviewer who must trace a judgment back to the cue-chain that activated it before you treat it as independent evidence while others want the quick answer",
+      "stakes": "the visible call will go wrong unless associative memory is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the signature cure envelope labeled activation, then chooses only after both are visible",
+      "firstImage": "It took three passes before the reviewer saw what the signature cure envelope labeled activation had been making too easy.",
+      "mustInclude": [
+        "signature cure envelope labeled activation",
+        "associative memory",
+        "network"
+      ],
+      "mustAvoid": [
+        "turning the scene into creative brainstorming",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "dental lab crown fitting facing a decision distorted by associative memory",
+      "audience": "a lead or reviewer who must trace a judgment back to the cue-chain that activated it before you treat it as independent evidence while others want the quick answer",
+      "stakes": "the visible call will go wrong unless associative memory is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "the trainee must move the porcelain shade tab labeled network from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence",
+      "firstImage": "The decision station is quiet except for the porcelain shade tab labeled network beside the unfinished call.",
+      "mustInclude": [
+        "porcelain shade tab labeled network",
+        "associative memory",
+        "coherence"
+      ],
+      "mustAvoid": [
+        "turning the scene into creative brainstorming",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "youth soccer referee tent facing a decision distorted by associative memory",
+      "audience": "a lead or reviewer who must trace a judgment back to the cue-chain that activated it before you treat it as independent evidence while others want the quick answer",
+      "stakes": "the visible call will go wrong unless associative memory is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "the supervisor circles the alluring detail on the touchline warning flag labeled coherence, crosses it out, and asks for the boring comparison that the chapter says must come first",
+      "firstImage": "The first thing in the room is the texture of the touchline warning flag labeled coherence, not the person's opinion about it.",
+      "mustInclude": [
+        "touchline warning flag labeled coherence",
+        "associative memory",
+        "coherence"
+      ],
+      "mustAvoid": [
+        "turning the scene into creative brainstorming",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: trace a judgment back to the cue-chain that activated it before you treat it as independent evidence",
+      "choose the correction that fits associative memory rather than a generic careful-thinking answer",
+      "distinguish The Associative Machine from nearby drift into creative brainstorming",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When a number, story, or feeling pulls your answer today, write what it is pulling you toward and the chapter-specific correction that should pull back.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

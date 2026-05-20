@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-gift-of-fear-ch14",
+  "number": 14,
+  "title": "Extreme hazards",
+  "readingTimeMinutes": 12,
+  "hook": "Topo paper snapping in the wind is not a forecast; it is a reminder to keep margin.",
+  "counterintuition": "Severe risk rarely arrives with a clean signal; when prediction is weak, margin and preparation beat forced certainty.",
+  "tryThisNow": "Choose one severe but hard-to-predict risk and add one margin today: backup route, spare key, contact plan, extra time, or a charged device.",
+  "keyTakeaway": "When severe hazards offer thin signal, stop pretending to know more than the evidence allows and build margin before the cost rises.",
+  "breakdown": {
+    "fastRead": "Natalie holds a topo map snapping in the wind at the trailhead. The forecast is uncertain. The exposed ridge gives the group no easy shelter. She cannot predict lightning with clean confidence, so she turns the group back.\n\nSome extreme hazards give thin signal. The answer is not panic and not bravado. It is margin: time, route, backup, distance, exit, spare capacity.\n\nWhen you cannot know, create room.",
+    "deepRead": "Natalie is not proving danger. She is refusing to pretend the evidence is cleaner than it is. Thin signal plus high consequence changes the task. The question becomes: what buffer can I build before the hazard gets expensive?\n\nMargin is humble. It does not say the worst will happen. It says the cost of extra room is low now and higher later. Turning back at the trailhead is easier than turning back on the ridge.\n\nA good margin has three traits. It is concrete, it is available before the hazard peaks, and it does not require you to pretend the future is clear. If the action only feeds imagination, it is worry. If it creates room, it is preparation.\n\nPreparation is not panic.\n\nPeter learns that in a basement apartment during a flood watch. A plastic document box sits on the second stair. The weather alert is uncertain, and the floor is dry. He still moves medicine and documents upstairs because those losses would be hard to replace and the action costs little.\n\nThe limit is overbuilding fear. Extreme hazards can become a hobby of dread. The useful move is a margin you can actually name and use, not hours of catastrophic imagination.",
+    "fullRead": "A server rail sits half pulled from the rack during overnight maintenance. Julien watches a dashboard that looks mostly normal. The signal for a rare cascade failure is thin: one intermittent alert, one odd latency spike, one spare drive already used. Confidence would be comfortable. Margin would be wiser.\n\nHe adds rollback staff and spare hardware instead of betting the night on a clean dashboard. That is the core discipline with extreme hazards. Do not force certainty out of weak data. Do not inflate weak data into disaster. Add the buffer that would make a bad turn survivable.\n\nWhere would ten minutes, one spare part, one backup route, or one extra person change the outcome?\n\nAnke faces the same question on a winter highway car-share trip. A salt truck idles under sodium lights. There is no visible crash, only black-ice warnings, a route printout, a snow brush, and a fuel receipt from the service plaza. She waits, changes route, and keeps the car where help exists. The margin is cheap at the plaza. It is expensive on the empty road.\n\nOverconfidence is especially tempting with rare hazards because most of the time nothing happens. The absence of frequent failure becomes a story: we always do it this way, the dashboard is green, the road looks fine, the rehearsal has never gone wrong. That story may be true until it is not. Thin signal means you should be slower to claim knowledge, not faster.\n\nMarta sees it in a small theatre pyrotechnic rehearsal. A coil of ignition wire lies beside the apron, the vent fan sounds weak, and the exit plan has not been walked since last season. Everyone has expertise. Expertise is useful. It is not a substitute for ventilation and exits. She stops rehearsal until both are checked.\n\nPlanning is not panic because planning ends in a concrete margin. Panic spins. Planning moves stock, charges radios, checks exits, changes routes, adds people, protects documents, backs up drives. You can point to the buffer afterward.\n\nAisha works this way in a remote clinic. A thermometer blinks inside a cooler lid during a vaccine fridge outage. The temperature log is not yet disastrous, and the backup battery may hold. She moves stock to a backup cooler because the signal is thin but the loss would be high. That is not fear taking over. That is fear being disciplined by preparation.\n\nExtreme hazards ask for humility. If the signal is thin, stop pretending to forecast perfectly. Build a buffer you can use."
+  },
+  "examples": [
+    {
+      "exampleId": "ch14-ex01-natalie-trailhead",
+      "title": "Natalie Turns Back at the Trailhead",
+      "tags": [
+        "scene",
+        "trail",
+        "margin"
+      ],
+      "planSpec": {
+        "domain": "mountain trailhead before a storm",
+        "audience": "a trip leader deciding under thin signal",
+        "stakes": "whether to predict lightning or build margin",
+        "format": "scene",
+        "requiredBeat": "turns the group back because forecast uncertainty plus exposed ridge leaves no buffer"
+      },
+      "scenario": "At 6:50 a.m., Natalie grips a topo map snapping in the wind beside the trail register. The headlamp batteries are fresh, but the exposed ridge has no shelter and the forecast will not settle. Before the group starts, she has to choose between predicting lightning and turning back because there is no buffer.",
+      "whatToDo": "Turn the group back at the trailhead and choose a lower route later. Treat exposed terrain plus uncertain forecast as a margin problem.",
+      "whyItMatters": "The issue is not proving lightning. The ridge leaves no room for being wrong, and margin is cheapest before ascent."
+    },
+    {
+      "exampleId": "ch14-ex02-peter-document-box",
+      "title": "Peter Moves the Medicine Upstairs",
+      "tags": [
+        "dialogue",
+        "flood",
+        "preparation"
+      ],
+      "planSpec": {
+        "domain": "basement apartment during flood watch",
+        "audience": "a tenant preparing without panic",
+        "stakes": "whether preparation means fear has taken over",
+        "format": "dialogue",
+        "requiredBeat": "moves documents and medicine upstairs because prediction is weak and loss is high"
+      },
+      "scenario": "\"It is only a watch,\" Peter's neighbor says as a plastic document box sits on the second stair. The weather alert glows on his phone, and the medicine pouch is beside the sink. The floor is dry. Peter has to choose whether preparation means fear has taken over or whether weak prediction plus high loss justifies moving the box. It is Thursday morning.",
+      "whatToDo": "Move documents and medicine upstairs, then stop. Do the cheap protective action without building a disaster story around it.",
+      "whyItMatters": "The flood is uncertain, but the cost of moving irreplaceable items is low. Margin protects without panic."
+    },
+    {
+      "exampleId": "ch14-ex03-julien-server-rail",
+      "title": "Julien Adds Rollback Staff",
+      "tags": [
+        "vignette",
+        "data center",
+        "backup"
+      ],
+      "planSpec": {
+        "domain": "data center overnight maintenance",
+        "audience": "an engineer facing a rare cascade risk",
+        "stakes": "whether confidence should outrun weak signals",
+        "format": "vignette",
+        "requiredBeat": "adds rollback staff and spare hardware instead of betting on the dashboard"
+      },
+      "scenario": "A server rail sits half pulled from the rack while Julien checks the rollback checklist. The dashboard is mostly green, but one spare drive is already used and latency has flickered twice. He has to choose whether confidence should outrun weak signals or whether to add rollback staff and spare hardware before maintenance continues. It is Friday night.",
+      "whatToDo": "Add rollback staff, stage spare drives, and delay the risky step until the backup is ready. Do not ask the dashboard for certainty it cannot give.",
+      "whyItMatters": "Rare cascades offer thin signal. Spare capacity is the practical answer when confidence would be mostly a story."
+    },
+    {
+      "exampleId": "ch14-ex04-anke-service-plaza",
+      "title": "Anke Waits at the Service Plaza",
+      "tags": [
+        "decision",
+        "winter",
+        "route"
+      ],
+      "planSpec": {
+        "domain": "winter highway car-share trip",
+        "audience": "a driver weighing black-ice uncertainty",
+        "stakes": "whether no visible crash means safe enough",
+        "format": "decision_point",
+        "requiredBeat": "waits at the service plaza and changes route because margin is cheap now"
+      },
+      "scenario": "You are Anke, watching a salt truck idle under sodium lights while the route printout curls beside a fuel receipt. The snow brush is still dry, and no crash is visible from the service plaza. Before the next highway stretch, you have to choose whether no visible wreck means safe enough or whether waiting here keeps margin cheap. It is Saturday afternoon.",
+      "whatToDo": "Wait at the service plaza, change to the slower route, and message the arrival delay. Keep help nearby while the signal is uncertain.",
+      "whyItMatters": "Black ice does not need to prove itself at the plaza. The plaza gives time, light, and help, which disappear on the empty road."
+    },
+    {
+      "exampleId": "ch14-ex05-marta-ignition-wire",
+      "title": "Marta Stops for Ventilation",
+      "tags": [
+        "postmortem",
+        "theatre",
+        "exits"
+      ],
+      "planSpec": {
+        "domain": "small theatre pyrotechnic rehearsal",
+        "audience": "a stage manager handling low-frequency hazard",
+        "stakes": "whether expertise removes the need for margin",
+        "format": "postmortem",
+        "requiredBeat": "stops rehearsal until ventilation and exits are rechecked, despite no incident yet"
+      },
+      "scenario": "It took Marta one coil of ignition wire beside the apron to stop trusting expertise alone. The exit plan was outdated, and the vent fan sounded weak. No incident had happened. Before rehearsal continued, she had to choose between experienced confidence and rechecking ventilation and exits.",
+      "whatToDo": "Stop rehearsal until the vent fan and exit plan are checked, then restart with the margin visible to the crew.",
+      "whyItMatters": "Low-frequency hazards punish overconfidence. Expertise helps only when the exits and ventilation still work."
+    },
+    {
+      "exampleId": "ch14-ex06-aisha-backup-cooler",
+      "title": "Aisha Moves the Vaccine Stock",
+      "tags": [
+        "before_after",
+        "clinic",
+        "cooler"
+      ],
+      "planSpec": {
+        "domain": "remote clinic vaccine fridge outage",
+        "audience": "a nurse planning for a rare failure",
+        "stakes": "whether worry or preparation is speaking",
+        "format": "before_after",
+        "requiredBeat": "moves stock to a backup cooler because temperature signal is thin but stakes are high"
+      },
+      "scenario": "A thermometer blinks inside the cooler lid during the remote clinic outage. Before, Aisha watched the temperature log and backup battery, hoping the fridge would hold. After the second flicker, she moves the vaccine stock to a backup cooler. The signal is thin, but the stakes are too high for waiting.",
+      "whatToDo": "Move the stock to the backup cooler, log the temperature, and check the battery. Stop once the margin is in place.",
+      "whyItMatters": "Preparation has a concrete endpoint. The cooler protects the stock without pretending failure is certain."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A designer asks: A trail leader cannot predict lightning cleanly, but the ridge leaves no buffer. What should she do?",
+        "choices": [
+          "Turn the group back and keep margin",
+          "Predict the exact storm path",
+          "Push ahead until proof appears"
+        ],
+        "correctIndex": 0,
+        "explanation": "The signal is thin, but the exposed ridge makes margin cheap now and costly later. Turning back is preparation.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A writer asks: A basement tenant has a flood watch but no water yet. What preparation avoids panic?",
+        "choices": [
+          "Ignore the watch entirely",
+          "Move documents and medicine upstairs",
+          "Evacuate the city"
+        ],
+        "correctIndex": 1,
+        "explanation": "Moving documents and medicine protects high-loss items without claiming the flood will happen.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "An analyst asks: A data-center engineer sees weak signs of rare cascade risk. What action fits?",
+        "choices": [
+          "Shut down every system permanently",
+          "Trust the dashboard completely",
+          "Add rollback staff and spare hardware"
+        ],
+        "correctIndex": 2,
+        "explanation": "Rollback staff and spare drives add resilience without pretending the dashboard proves failure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A manager asks: A driver sees no crash but black-ice warnings and low margin. What should change?",
+        "choices": [
+          "Wait at the service plaza and change route",
+          "Drive faster before ice forms",
+          "Assume no crash means safe"
+        ],
+        "correctIndex": 0,
+        "explanation": "The service plaza creates buffer. No visible crash does not mean black ice risk has disappeared.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A teacher asks: A stage manager has pyrotechnics expertise but ventilation uncertainty. What is the right move?",
+        "choices": [
+          "Trust expertise alone",
+          "Stop until ventilation and exits are rechecked",
+          "Run rehearsal to see what happens"
+        ],
+        "correctIndex": 1,
+        "explanation": "Expertise helps, but low-frequency hazards need margin. Rechecking exits and ventilation is the narrow preparation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A student asks: Why is overconfidence risky with extreme hazards?",
+        "choices": [
+          "Rare events are easy to forecast",
+          "Confidence always improves safety",
+          "Thin signals make confident prediction weak"
+        ],
+        "correctIndex": 2,
+        "explanation": "When signals are thin, certainty can outrun evidence. Preparation handles uncertainty better than prediction theater.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A coach asks: How is margin different from panic?",
+        "choices": [
+          "It adds buffer without pretending certainty",
+          "It imagines the worst for hours",
+          "It requires dramatic public action"
+        ],
+        "correctIndex": 0,
+        "explanation": "Margin creates room: time, backup, route, exit, or spare capacity. Panic creates story without useful buffer.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A director asks: A clinic fridge signal is thin but vaccine loss would be high. What should the nurse do?",
+        "choices": [
+          "Wait for complete failure",
+          "Move stock to backup cooler and log temperature",
+          "Discard everything immediately"
+        ],
+        "correctIndex": 1,
+        "explanation": "The backup cooler protects stock while evidence is still limited. It is a proportionate margin move.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "An engineer asks: Which is better for low-frequency severe hazards: forced certainty or modest preparation?",
+        "choices": [
+          "No planning until proof",
+          "Forced certainty",
+          "Modest preparation"
+        ],
+        "correctIndex": 2,
+        "explanation": "Preparation accepts uncertainty. Forced certainty either overclaims or delays until the cheap margin is gone.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "When the moment arrives, what should you do when a severe hazard has thin signal?",
+      "back": "Stop pretending to know and build margin: time, route, backup, distance, spare capacity, or an exit.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "How is preparation different from panic?",
+      "back": "Preparation creates a concrete buffer and then stops. Panic keeps inventing scenes without improving your position.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why can no visible failure be misleading?",
+      "back": "Rare hazards often look normal until they do not. The question is whether cheap margin is available before the cost rises.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "In a tense scene, what is the right action under thin signal and high loss?",
+      "back": "A modest buffer tied to the hazard: move stock, change route, add rollback, check exits, or protect documents.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What does overconfidence do in extreme hazards?",
+      "back": "It forces certainty out of weak evidence and delays simple preparation until the margin is gone.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Build margin under uncertainty. The skill is to identify severe hazards with thin signal and add a concrete buffer before overconfidence spends the option.",
+    "ifThenPlans": [
+      {
+        "context": "outdoors",
+        "plan": "If weather signal is uncertain and exposure is high, then turn back before the exposed section."
+      },
+      {
+        "context": "home",
+        "plan": "If flood or fire signal is uncertain, then move irreplaceable items and medicine first."
+      },
+      {
+        "context": "technology",
+        "plan": "If a rare cascade would be costly, then add rollback staff and spare hardware before the risky step."
+      },
+      {
+        "context": "travel",
+        "plan": "If road risk is uncertain, then wait where help exists and choose the route with more margin."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one severe but hard-to-predict risk. Add one margin today: backup route, spare key, charged battery, copied document, extra time, or a named contact.",
+    "weeklyPractice": "Once this week, review a plan and ask where ten minutes, one spare, or one extra person would make a bad turn easier to survive."
+  },
+  "memorableLines": [
+    {
+      "text": "When you cannot know, create room.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the chapter move in a portable sentence."
+    },
+    {
+      "text": "Preparation is not panic.",
+      "location": "breakdown.deepRead",
+      "why": "It separates useful margin from dread."
+    },
+    {
+      "text": "Planning is not panic because planning ends in a concrete margin.",
+      "location": "breakdown.fullRead",
+      "why": "It gives a clear test for productive preparation."
+    }
+  ]
+}

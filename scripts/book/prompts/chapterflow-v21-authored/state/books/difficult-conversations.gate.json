@@ -2,7 +2,7 @@
   "bookId": "difficult-conversations",
   "title": "Difficult Conversations: How to Discuss What Matters Most",
   "author": "Douglas Stone, Bruce Patton, Sheila Heen",
-  "promotedAt": "2026-05-12T00:43:09.043Z",
+  "promotedAt": "2026-05-14T07:02:09.075Z",
   "chapterCount": 12,
   "shipGate": {
     "perChapter": [
@@ -10,320 +10,89 @@
         "chapter": 1,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 2,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 3,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Brisa steadies a clipboard with loose waiver forms at Thursday 6:05 p.m. in the mirrored lobby of Vale Dance, assistant instructor, with rosin dust on the floor. 'You skipped my daughter again,' a pa…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 4,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Greer touches a rolling towel cart at Monday 6:33 a.m. in the YMCA locker room in Akron, aquatics manager, with chlorine sharp in the air. 'The teens trashed it,' the custodian says. Greer looks at t…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 5,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Raul touches a scuffed batting helmet at Tuesday 5:52 p.m. in the first-base dugout at Arroyo Park, Little League coach, with orange dust on his shoes. 'You benched him because you don't like him,' a…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 6,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Quirin touches a red-circled score at Thursday 4:32 p.m. in Room 214 at Barlow Middle School, math teacher, with pencil shavings near the sharpener. 'So he is just bad at math?' the parent asks. Quir…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 7,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 8,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Orson touches a scratched wooden bench at Thursday 1:18 p.m. in outside Courtroom 6 in Marion County, public defender, with a plea form clipped to a file. 'The prosecutor is railroading us,' his clie…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 9,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Valya touches a dripping ice pack at Monday 8:49 p.m. in rink 2 at the Kestrel Ice Center, figure skating coach, with skate blades clacking behind her. 'You never let me try the jump,' the skater say…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 10,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Laleh touches a brass cabinet hinge at Thursday 4:23 p.m. in the cabinet shop on South Archer, apprentice carpenter, with cedar dust on her sleeve. 'You all keep changing the measurements,' she says,…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 11,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Tomasz touches a fogged thermometer at Saturday 6:12 a.m. in the walk-in cooler at Pier Market, fishmonger, with crushed ice under his boots. 'You want me to eat the loss,' the supplier says. Tomasz …"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       },
       {
         "chapter": 12,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E4",
-            "severity": "major",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Yusef touches rain-specked glasses at Thursday 5:29 p.m. in Bay 11 at the Greyford bus depot, route supervisor, with a route map flapping in the wind. 'You cut my overtime,' the driver says. Yusef st…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A neighbor wants to confront the upstairs tenant after midnight noise. Which plan should they use before knocking?"
-          }
-        ],
+        "majors": [],
         "minors": []
       }
     ],
     "totalBlockers": 0,
-    "totalMajors": 33
+    "totalMajors": 0
   },
   "bookGate": {
     "bookId": "difficult-conversations",
@@ -332,15 +101,32 @@
     "findings": [],
     "stats": {
       "answerPositionCounts": [
-        36,
-        36,
-        36
+        39,
+        38,
+        31
       ],
-      "answerPositionPctMax": 0.3333333333333333,
+      "answerPositionPctMax": 0.3611111111111111,
       "totalQuizQuestions": 108,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "difficult-conversations",
+        "chapterCount": 12,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

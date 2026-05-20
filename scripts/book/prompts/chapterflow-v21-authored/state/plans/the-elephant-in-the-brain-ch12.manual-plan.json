@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch12",
+  "number": 12,
+  "title": "Charity",
+  "coreMove": "Evaluate giving as help plus public signal, then ask whether visibility is serving impact or the giver.",
+  "sourcePressure": "The source argues that charity often signals wealth, empathy, and prosocial orientation, so giving patterns can fit social display better than pure effectiveness.",
+  "chapterSpecificMisunderstanding": "The writer turns charity into hypocrisy or effective-altruism math and loses mixed motives.",
+  "sourceAlignmentTerms": [
+    "charity",
+    "wealth",
+    "empathy",
+    "prosocial",
+    "giving",
+    "social display",
+    "effectiveness"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "charity signaling wealth",
+      "detail": "The source says charity can signal wealth.",
+      "useIn": "both",
+      "phrasingHint": "A gift can show surplus even while it funds something real."
+    },
+    {
+      "kind": "event",
+      "name": "charity signaling empathy and prosocial orientation",
+      "detail": "The source says giving can signal empathy and prosocial orientation.",
+      "useIn": "both",
+      "phrasingHint": "The donation says I care, and also asks to be read as the kind of person who cares."
+    },
+    {
+      "kind": "artifact",
+      "name": "giving patterns fitting social-display motives",
+      "detail": "The source says giving patterns can fit social-display motives more than pure effectiveness.",
+      "useIn": "deepRead",
+      "phrasingHint": "When the visible gift wins over the effective one, the audience has entered the budget."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch12: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch12: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch12: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch12: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch12: no generic timer reflection",
+      "the-elephant-in-the-brain-ch12: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch12: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch12: no coffee shop conversation as the default social proof",
+      "no invented donation statistics",
+      "no gala villain scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "local food bank donor wall redesign",
+      "audience": "a director balancing recognition with useful giving",
+      "stakes": "public recognition may increase donations while steering gifts toward display",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sophie moves the donor wall beside the volunteer packing line and tests whether recognition increases staples instead of only naming-rights gifts.",
+      "firstImage": "Canned beans rattle in crates under an unfinished donor wall.",
+      "mustInclude": [
+        "donor wall",
+        "staples crate",
+        "naming-rights form"
+      ],
+      "mustAvoid": [
+        "rich donor caricature"
+      ]
+    },
+    {
+      "domain": "corporate payroll giving campaign",
+      "audience": "an HR lead deciding whether leaderboards help or distort",
+      "stakes": "employees may give to be seen rather than to match need",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Teams with full participation get a badge,\" Luca says, and Astrid asks what happens to private hardship funds that cannot be displayed.",
+      "firstImage": "\"Teams with full participation get a badge,\" Luca says beside the campaign dashboard.",
+      "mustInclude": [
+        "participation badge",
+        "campaign dashboard",
+        "hardship fund"
+      ],
+      "mustAvoid": [
+        "generic CSR campaign"
+      ]
+    },
+    {
+      "domain": "mutual-aid winter coat drive",
+      "audience": "a coordinator redirecting visible generosity toward requested sizes",
+      "stakes": "people donate impressive coats while children need plain waterproof sizes",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Javier sorts the glossy adult coats away from the children's waterproof-size list and changes the public ask to make usefulness visible.",
+      "firstImage": "Wet wool smell rises from the donated coats by the gym door.",
+      "mustInclude": [
+        "waterproof-size list",
+        "gym door",
+        "sorting bins"
+      ],
+      "mustAvoid": [
+        "sentimental charity scene"
+      ]
+    },
+    {
+      "domain": "wedding charity registry",
+      "audience": "a couple choosing between a public registry and anonymous direct aid",
+      "stakes": "guests may need a visible ritual to participate",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You have Ada add a plain impact note beside each public gift option so display pulls money toward actual need instead of away from it.",
+      "firstImage": "You see the registry page before the envelopes are addressed.",
+      "mustInclude": [
+        "registry page",
+        "impact note",
+        "gift envelopes"
+      ],
+      "mustAvoid": [
+        "wedding consumption repeat"
+      ]
+    },
+    {
+      "domain": "school fundraiser prize ladder",
+      "audience": "a principal checking what the prize ladder teaches",
+      "stakes": "children learn that giving counts most when ranked",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What happens when empathy comes with a gold-level lanyard?",
+      "firstImage": "What does the lanyard teach before the cause is named?",
+      "mustInclude": [
+        "gold lanyard",
+        "pledge sheet",
+        "assembly stage"
+      ],
+      "mustAvoid": [
+        "education chapter credential drift"
+      ]
+    },
+    {
+      "domain": "animal shelter emergency appeal",
+      "audience": "a board member measuring response to named stories versus unglamorous repairs",
+      "stakes": "visible empathy may ignore invisible infrastructure",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Patrick one flooded kennel to see that the public loved rescue photos but skipped drainage work, so he pairs every story with the hidden repair it requires.",
+      "firstImage": "It took Patrick one flooded kennel to reread the appeal photos.",
+      "mustInclude": [
+        "kennel drain",
+        "appeal photos",
+        "repair invoice"
+      ],
+      "mustAvoid": [
+        "animal behavior repeat"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate charitable impact from signal value",
+      "identify wealth, empathy, and prosocial signals in giving",
+      "design giving prompts that use visibility without letting display dominate"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next donation or favor, write what it helps and what it signals. Change one detail so the help stays first.",
+  "readingTimeMinutes": 12
+}

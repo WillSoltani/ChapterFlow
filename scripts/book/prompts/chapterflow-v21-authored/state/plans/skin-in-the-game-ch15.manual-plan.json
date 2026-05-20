@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch15",
+  "number": 15,
+  "title": "They Don't Know What They Are Talking About When They Talk About Religion",
+  "coreMove": "Interpret a belief system through what practitioners do, risk, and repeat, not only through literal statements.",
+  "sourcePressure": "Detached outsiders misread religion when they treat it as propositions rather than embedded practice, ritual, and function.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into theology, culture-war commentary, or outsider sneering.",
+  "sourceAlignmentTerms": [
+    "outsider interpretation",
+    "embedded practice",
+    "ritual",
+    "lived use",
+    "insider knowledge",
+    "function",
+    "revealed preference"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "embedded religious practice",
+      "detail": "The sidecar supports function, ritual, and lived use over detached literalism, with no named religious anecdote frozen.",
+      "useIn": "both",
+      "phrasingHint": "The lived practice matters because a rule can mean one thing on paper and another thing when a community carries it with cost."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital chaplain explaining fasting rules to a medical team",
+      "audience": "clinician learning practice cannot be read only as a proposition",
+      "stakes": "patient trust depends on understanding function inside practice",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sophie Hart asks what the practice does for the patient before reducing it to a nutrition rule.",
+      "firstImage": "a meal tray cooling by a privacy curtain",
+      "mustInclude": [
+        "meal tray",
+        "fasting note",
+        "patient consent"
+      ],
+      "mustAvoid": [
+        "theology debate"
+      ]
+    },
+    {
+      "domain": "museum educator interpreting a ritual object without practitioners present",
+      "audience": "educator seeing outsider description miss lived use",
+      "stakes": "visitors may learn the object as dead text rather than practice",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Antoine invites a practitioner to describe when the object is handled, not just what it symbolizes.",
+      "firstImage": "cotton gloves hovering over a carved object",
+      "mustInclude": [
+        "ritual object",
+        "label draft",
+        "practitioner note"
+      ],
+      "mustAvoid": [
+        "museum exoticism"
+      ]
+    },
+    {
+      "domain": "manager scheduling around a religious holiday she does not understand",
+      "audience": "team lead treating practice as lived constraint rather than preference trivia",
+      "stakes": "staff dignity and project timing both depend on embedded knowledge",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Frida Holm moves the deadline after asking which work would violate the practice, not which belief sounds important.",
+      "firstImage": "calendar squares marked in two colors",
+      "mustInclude": [
+        "holiday calendar",
+        "deadline sheet",
+        "coverage plan"
+      ],
+      "mustAvoid": [
+        "HR generic"
+      ]
+    },
+    {
+      "domain": "journalist writing about a congregation from one literal quotation",
+      "audience": "reporter learning use and ritual change the meaning of words",
+      "stakes": "readers may receive a false map from accurate quotation",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "James Bell sits through the service sequence before deciding what the quoted phrase means.",
+      "firstImage": "folding chairs aligned before a small lectern",
+      "mustInclude": [
+        "quotation note",
+        "service order",
+        "field notebook"
+      ],
+      "mustAvoid": [
+        "media overlap"
+      ]
+    },
+    {
+      "domain": "teacher explaining dietary rules as mere superstition",
+      "audience": "teacher correcting a detached lesson plan",
+      "stakes": "students need function, identity, and practice without caricature",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aanya Shah rewrites the lesson after a student explains when the rule matters at home.",
+      "firstImage": "lunch containers arranged by a classroom sink",
+      "mustInclude": [
+        "lesson plan",
+        "student note",
+        "lunch container"
+      ],
+      "mustAvoid": [
+        "religion-bashing"
+      ]
+    },
+    {
+      "domain": "product team designing a prayer-space feature from survey text only",
+      "audience": "designer needing embedded observation before building",
+      "stakes": "a feature can insult users while satisfying literal requirements",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Marco Ruiz watches how people enter, pause, and leave before naming the feature complete.",
+      "firstImage": "soft footsteps at the edge of a quiet room",
+      "mustInclude": [
+        "survey text",
+        "observation note",
+        "feature mockup"
+      ],
+      "mustAvoid": [
+        "culture-war product story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify outsider interpretation in a new concrete scenario",
+      "choose the action that performs the chapter move: Interpret a belief system through what practitioners do, risk, and repeat, not only through literal statements.",
+      "separate the chapter's mechanism from the weak misread: Turning the chapter into theology, culture-war commentary, or outsider sneering.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for They Don't Know What They Are Talking About When They Talk About Religion.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

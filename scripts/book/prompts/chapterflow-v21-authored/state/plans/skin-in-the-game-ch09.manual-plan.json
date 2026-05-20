@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch09",
+  "number": 9,
+  "title": "Surgeons Should Not Look like Surgeons",
+  "coreMove": "Look past polished signals and ask which evidence actually connects the person to successful performance under risk.",
+  "sourcePressure": "Professional theater can mislead trust when appearance becomes a substitute for competence under consequence.",
+  "chapterSpecificMisunderstanding": "Making it about sloppy dress versus polished dress instead of cosmetic signal versus tested competence.",
+  "sourceAlignmentTerms": [
+    "cosmetic expertise",
+    "professional theater",
+    "practical signal",
+    "competence",
+    "costume",
+    "trust shortcut",
+    "performance"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Surgeons Should Not Look like Surgeons",
+      "detail": "The frozen title and sidecar support a chapter about distrust of theatrical expertise markers and preference for practical credibility.",
+      "useIn": "both",
+      "phrasingHint": "The surgeon image works when it tests a trust shortcut: the costume can calm you while telling you almost nothing about the hand holding the scalpel."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "patient choosing between a polished surgeon and a blunt high-volume specialist",
+      "audience": "patient needing competence evidence under real risk",
+      "stakes": "appearance could override the outcome data that matters",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Rachel asks for procedure volume and complication rates before letting bedside polish decide.",
+      "firstImage": "a paper gown folded on an exam chair",
+      "mustInclude": [
+        "complication rate",
+        "procedure volume",
+        "consult note"
+      ],
+      "mustAvoid": [
+        "dress-code commentary"
+      ]
+    },
+    {
+      "domain": "restaurant hiring a chef after a theatrical tasting",
+      "audience": "owner separating performance from service reliability",
+      "stakes": "a dazzling tasting means little if dinner rush execution fails",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Luca puts the chef on a Saturday service trial before trusting the plated audition.",
+      "firstImage": "steam hitting a pass window",
+      "mustInclude": [
+        "service ticket rail",
+        "trial shift",
+        "tasting plate"
+      ],
+      "mustAvoid": [
+        "foodie theater"
+      ]
+    },
+    {
+      "domain": "law firm selecting expert witness with plain manner and strong deposition record",
+      "audience": "litigator tempted by polished credentials",
+      "stakes": "a jury may see through costume but evidence must survive cross-exam",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Anke asks for deposition transcripts instead of headshot polish.",
+      "firstImage": "transcript pages under a brass lamp",
+      "mustInclude": [
+        "deposition transcript",
+        "expert CV",
+        "jury note"
+      ],
+      "mustAvoid": [
+        "anti-polish rant"
+      ]
+    },
+    {
+      "domain": "aircraft mechanic whose overalls look rough but logs are impeccable",
+      "audience": "operations manager judging signal from maintenance record",
+      "stakes": "cosmetic neatness is cheaper than error-free work",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Andrew checks torque logs and repeat defects before judging the mechanic's stained sleeves.",
+      "firstImage": "oil smudge beside a torque wrench",
+      "mustInclude": [
+        "torque log",
+        "repeat-defect chart",
+        "work order"
+      ],
+      "mustAvoid": [
+        "blue-collar romance"
+      ]
+    },
+    {
+      "domain": "venture pitch from a charming founder with no shipped product",
+      "audience": "investor testing competence against field exposure",
+      "stakes": "money could follow charisma rather than operating proof",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hadiya marks every polished answer that lacked a customer who had paid and stayed.",
+      "firstImage": "pitch badges scattered near a laptop",
+      "mustInclude": [
+        "customer ledger",
+        "demo video",
+        "term sheet"
+      ],
+      "mustAvoid": [
+        "startup cliché"
+      ]
+    },
+    {
+      "domain": "school choosing a principal from interviews versus hallway evidence",
+      "audience": "teacher representative looking past interview theater",
+      "stakes": "students and staff live with competence, not polish",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Janek shadows dismissal duty before scoring the candidate's leadership.",
+      "firstImage": "wet floor cones near the dismissal doors",
+      "mustInclude": [
+        "interview scorecard",
+        "dismissal rota",
+        "staff survey"
+      ],
+      "mustAvoid": [
+        "education hero story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify cosmetic expertise in a new concrete scenario",
+      "choose the action that performs the chapter move: Look past polished signals and ask which evidence actually connects the person to successful performance under risk.",
+      "separate the chapter's mechanism from the weak misread: Making it about sloppy dress versus polished dress instead of cosmetic signal versus tested competence.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for Surgeons Should Not Look like Surgeons.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

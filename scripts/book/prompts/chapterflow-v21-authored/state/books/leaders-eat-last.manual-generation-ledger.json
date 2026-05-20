@@ -1,0 +1,1506 @@
+{
+  "bookId": "leaders-eat-last",
+  "updatedAt": "2026-05-13T19:24:59.460Z",
+  "usedProtagonistNames": [
+    "Sarah",
+    "Daniel",
+    "Camille",
+    "James",
+    "Hannah",
+    "Marco",
+    "Laura",
+    "Peter",
+    "Sophie",
+    "Ingrid",
+    "Mathieu",
+    "Aanya",
+    "Ryan",
+    "Claire",
+    "Lukas",
+    "Marta",
+    "Sofia",
+    "Anders",
+    "Emily",
+    "Giulia",
+    "Ben",
+    "Amina",
+    "Pavel",
+    "Katarina",
+    "Natalie",
+    "Henrik",
+    "Luca",
+    "Rachel",
+    "Petra",
+    "Yusuf",
+    "Megan",
+    "Anton",
+    "Beatrice",
+    "Lin",
+    "Clara",
+    "Diego",
+    "Oliver",
+    "Grace",
+    "Leila",
+    "Niklas",
+    "Serena",
+    "Isabel",
+    "Patrick",
+    "Erin",
+    "Miriam",
+    "Joost",
+    "Alice",
+    "Farah",
+    "Olivia",
+    "Samuel",
+    "Fiona",
+    "Rebecca",
+    "Chloe",
+    "Adrian",
+    "Julia",
+    "Robert",
+    "Niamh",
+    "Martin",
+    "Alina",
+    "Ethan",
+    "Nora",
+    "Malcolm",
+    "Celine",
+    "Irene",
+    "Jasper",
+    "Noa",
+    "Helen",
+    "Rosa",
+    "Rafael",
+    "Greta",
+    "Kiran",
+    "Diana",
+    "Madeline",
+    "Hugo",
+    "Sabine",
+    "Elin",
+    "Russell",
+    "Catarina",
+    "Maeve",
+    "Colin",
+    "Ana",
+    "Stefan",
+    "Lucia",
+    "Bram",
+    "Livia",
+    "Arthur",
+    "Keira",
+    "Soren",
+    "Monica",
+    "Celia",
+    "Freya",
+    "Warren",
+    "Amelie",
+    "Byron",
+    "Yara",
+    "Helena",
+    "Elias",
+    "Vivian",
+    "Oscar",
+    "Renee",
+    "Milo",
+    "Tania",
+    "Georgia",
+    "Frank",
+    "Eva",
+    "Lionel",
+    "Nina",
+    "Ronan",
+    "Harriet",
+    "Julien",
+    "Paul",
+    "Imogen",
+    "Vera",
+    "Wesley",
+    "Maisie",
+    "Gerard",
+    "Bethany",
+    "Ravi",
+    "Allison",
+    "Karla",
+    "Laurel",
+    "Graham",
+    "Phoebe",
+    "Quentin",
+    "Daria",
+    "Morgan",
+    "Hazel",
+    "Vivienne",
+    "Vincent",
+    "Margot",
+    "Ansel",
+    "Teresa",
+    "Eleanor",
+    "Callum",
+    "Saskia",
+    "Bernard",
+    "Leonie",
+    "Rowan",
+    "Maren",
+    "Ellis",
+    "Cosima",
+    "Neil",
+    "Sylvia",
+    "Gordon",
+    "Declan",
+    "Louise",
+    "Adam",
+    "Everett",
+    "Jocelyn",
+    "Marisa",
+    "Paige",
+    "Nolan",
+    "Daphne",
+    "Ruth",
+    "Rosalie",
+    "Sebastian",
+    "Valerie",
+    "Ian",
+    "Cora",
+    "Leah",
+    "Miles",
+    "June"
+  ],
+  "usedExampleDomains": [
+    "leaders-eat-last-ch01: air ambulance dispatch in coastal fog",
+    "leaders-eat-last-ch01: night-shift refinery control room",
+    "leaders-eat-last-ch01: community theater rigging inspection",
+    "leaders-eat-last-ch01: wildfire base camp map tent",
+    "leaders-eat-last-ch01: hospital code-review huddle",
+    "leaders-eat-last-ch01: restaurant freezer outage",
+    "leaders-eat-last-ch02: municipal sanitation route planning",
+    "leaders-eat-last-ch02: dental lab night bench",
+    "leaders-eat-last-ch02: ferry terminal passenger desk",
+    "leaders-eat-last-ch02: animal shelter intake room",
+    "leaders-eat-last-ch02: commercial kitchen prep line",
+    "leaders-eat-last-ch02: city pool lifeguard rotation",
+    "leaders-eat-last-ch03: search-and-rescue volunteer debrief",
+    "leaders-eat-last-ch03: bakery apprenticeship bench",
+    "leaders-eat-last-ch03: youth orchestra sectional",
+    "leaders-eat-last-ch03: harbor repair cooperative",
+    "leaders-eat-last-ch03: community clinic intake desk",
+    "leaders-eat-last-ch03: farmers market weather cancellation",
+    "leaders-eat-last-ch04: airport ground crew turnaround",
+    "leaders-eat-last-ch04: oncology clinic scheduling desk",
+    "leaders-eat-last-ch04: minor-league grounds crew",
+    "leaders-eat-last-ch04: public defenders' arraignment room",
+    "leaders-eat-last-ch04: museum exhibit installation",
+    "leaders-eat-last-ch04: snowplow dispatch during storm",
+    "leaders-eat-last-ch05: blood bank holiday drive",
+    "leaders-eat-last-ch05: shipyard overtime schedule",
+    "leaders-eat-last-ch05: public radio pledge hour",
+    "leaders-eat-last-ch05: software incident response",
+    "leaders-eat-last-ch05: botanical garden seed catalog",
+    "leaders-eat-last-ch05: neighborhood flood sandbag line",
+    "leaders-eat-last-ch06: espresso bar tip competition",
+    "leaders-eat-last-ch06: radiology reading room",
+    "leaders-eat-last-ch06: rowing club winter erg room",
+    "leaders-eat-last-ch06: open-source release triage",
+    "leaders-eat-last-ch06: hospital volunteer desk",
+    "leaders-eat-last-ch06: city chess club ladder",
+    "leaders-eat-last-ch07: marine weather office",
+    "leaders-eat-last-ch07: bakery health inspection prep",
+    "leaders-eat-last-ch07: juvenile court clerk window",
+    "leaders-eat-last-ch07: mountain lodge avalanche desk",
+    "leaders-eat-last-ch07: pharmacy verification station",
+    "leaders-eat-last-ch07: animal rescue transport van",
+    "leaders-eat-last-ch08: commercial fishing deck",
+    "leaders-eat-last-ch08: hotel evacuation stairwell",
+    "leaders-eat-last-ch08: archaeology field camp",
+    "leaders-eat-last-ch08: ski patrol morning sweep",
+    "leaders-eat-last-ch08: public library closing shift",
+    "leaders-eat-last-ch08: hurricane shelter intake",
+    "leaders-eat-last-ch09: fishery quota hearing",
+    "leaders-eat-last-ch09: surgical morbidity conference",
+    "leaders-eat-last-ch09: independent bookstore payroll",
+    "leaders-eat-last-ch09: wildlife rehab release site",
+    "leaders-eat-last-ch09: high-school robotics inspection queue",
+    "leaders-eat-last-ch09: apartment co-op board",
+    "leaders-eat-last-ch10: aquarium touch-tank staffing",
+    "leaders-eat-last-ch10: postal sorting annex",
+    "leaders-eat-last-ch10: emergency call center headset bay",
+    "leaders-eat-last-ch10: community orchestra percussion section",
+    "leaders-eat-last-ch10: greenhouse propagation bench",
+    "leaders-eat-last-ch10: airport wheelchair service",
+    "leaders-eat-last-ch11: regional cheese creamery expansion",
+    "leaders-eat-last-ch11: concert venue booking office",
+    "leaders-eat-last-ch11: urban tree nursery grant cycle",
+    "leaders-eat-last-ch11: language school enrollment desk",
+    "leaders-eat-last-ch11: indie game studio prototype sprint",
+    "leaders-eat-last-ch11: harbor ferry cafe",
+    "leaders-eat-last-ch12: regional bank promotion panel",
+    "leaders-eat-last-ch12: family-owned print shop",
+    "leaders-eat-last-ch12: hospital residency call schedule",
+    "leaders-eat-last-ch12: city planning archive room",
+    "leaders-eat-last-ch12: manufacturing apprenticeship test",
+    "leaders-eat-last-ch12: college alumni board",
+    "leaders-eat-last-ch13: hospital bed management dashboard",
+    "leaders-eat-last-ch13: food bank allocation spreadsheet",
+    "leaders-eat-last-ch13: court fines collection office",
+    "leaders-eat-last-ch13: university waitlist algorithm",
+    "leaders-eat-last-ch13: regional trucking dispatch board",
+    "leaders-eat-last-ch13: insurance claims queue",
+    "leaders-eat-last-ch14: telemedicine triage platform",
+    "leaders-eat-last-ch14: warehouse robotics control room",
+    "leaders-eat-last-ch14: online university discussion analytics",
+    "leaders-eat-last-ch14: utility outage prediction center",
+    "leaders-eat-last-ch14: national retailer return algorithm",
+    "leaders-eat-last-ch14: city bike-share rebalancing system",
+    "leaders-eat-last-ch15: public housing maintenance queue",
+    "leaders-eat-last-ch15: airline bereavement fare desk",
+    "leaders-eat-last-ch15: school lunch debt report",
+    "leaders-eat-last-ch15: fisheries license portal",
+    "leaders-eat-last-ch15: hospital discharge checklist",
+    "leaders-eat-last-ch15: museum membership renewal system",
+    "leaders-eat-last-ch16: commercial bakery production dashboard",
+    "leaders-eat-last-ch16: fire academy skills checklist",
+    "leaders-eat-last-ch16: legal aid intake portal",
+    "leaders-eat-last-ch16: regional ferry maintenance shed",
+    "leaders-eat-last-ch16: wildlife census drone team",
+    "leaders-eat-last-ch16: eldercare meal delivery route",
+    "leaders-eat-last-ch17: ship chandlery counter",
+    "leaders-eat-last-ch17: dance company rehearsal room",
+    "leaders-eat-last-ch17: farm co-op grain scale",
+    "leaders-eat-last-ch17: podcast production studio",
+    "leaders-eat-last-ch17: community pool swim meet",
+    "leaders-eat-last-ch17: biotech cleanroom gowning area",
+    "leaders-eat-last-ch18: newspaper correction desk",
+    "leaders-eat-last-ch18: restaurant expo station",
+    "leaders-eat-last-ch18: mountaineering guide hut",
+    "leaders-eat-last-ch18: community newspaper board",
+    "leaders-eat-last-ch18: prosthetics clinic workshop",
+    "leaders-eat-last-ch18: harbor master radio desk",
+    "leaders-eat-last-ch19: pharmaceutical sample closet",
+    "leaders-eat-last-ch19: film festival jury room",
+    "leaders-eat-last-ch19: crane inspection platform",
+    "leaders-eat-last-ch19: private tutoring admissions package",
+    "leaders-eat-last-ch19: community choir audition",
+    "leaders-eat-last-ch19: apartment safety inspection",
+    "leaders-eat-last-ch20: remote weather station repair team",
+    "leaders-eat-last-ch20: ceramics cooperative kiln room",
+    "leaders-eat-last-ch20: rural mail carrier route swap",
+    "leaders-eat-last-ch20: disaster relief supply tent",
+    "leaders-eat-last-ch20: print newsroom copy desk",
+    "leaders-eat-last-ch20: neighborhood tool library",
+    "leaders-eat-last-ch21: aquaculture hatchery dashboard",
+    "leaders-eat-last-ch21: city call-center abandon-rate report",
+    "leaders-eat-last-ch21: youth swim qualifying times",
+    "leaders-eat-last-ch21: food-truck health score",
+    "leaders-eat-last-ch21: public works pothole map",
+    "leaders-eat-last-ch21: college advising GPA alert",
+    "leaders-eat-last-ch22: specialty coffee roastery cupping table",
+    "leaders-eat-last-ch22: neighborhood clinic waiting room",
+    "leaders-eat-last-ch22: film crew location shoot",
+    "leaders-eat-last-ch22: community garden compost station",
+    "leaders-eat-last-ch22: regional sales forecast call",
+    "leaders-eat-last-ch22: youth shelter donation closet",
+    "leaders-eat-last-ch23: catering company wedding season",
+    "leaders-eat-last-ch23: mobile app moderation queue",
+    "leaders-eat-last-ch23: hospital laundry contractor",
+    "leaders-eat-last-ch23: youth orchestra tour planning",
+    "leaders-eat-last-ch23: meal-kit warehouse promotion",
+    "leaders-eat-last-ch23: shared apartment energy bill",
+    "leaders-eat-last-ch24: ambulance service new-hire cohort",
+    "leaders-eat-last-ch24: architecture studio pin-up wall",
+    "leaders-eat-last-ch24: community orchestra audition app",
+    "leaders-eat-last-ch24: corporate apprenticeship chat channel",
+    "leaders-eat-last-ch24: summer camp counselor staff",
+    "leaders-eat-last-ch24: apartment building tenant board",
+    "leaders-eat-last-ch25: brewery cellar safety routine",
+    "leaders-eat-last-ch25: public school principal office",
+    "leaders-eat-last-ch25: family restaurant cash drawer",
+    "leaders-eat-last-ch25: community radio repair night",
+    "leaders-eat-last-ch25: museum docent training",
+    "leaders-eat-last-ch25: home hospice sibling schedule",
+    "leaders-eat-last-ch26: data-center overnight migration",
+    "leaders-eat-last-ch26: community kiln firing weekend",
+    "leaders-eat-last-ch26: rural hospice meal train",
+    "leaders-eat-last-ch26: search-dog training rain day",
+    "leaders-eat-last-ch26: newspaper strike fund table",
+    "leaders-eat-last-ch26: multi-family well repair",
+    "leaders-eat-last-ch27: county animal shelter intake",
+    "leaders-eat-last-ch27: tenant laundry room bulletin board",
+    "leaders-eat-last-ch27: regional blood courier route",
+    "leaders-eat-last-ch27: community college lab supply closet",
+    "leaders-eat-last-ch27: independent cinema volunteer crew",
+    "leaders-eat-last-ch27: neighborhood cooling center"
+  ],
+  "usedExampleAnchors": [
+    "leaders-eat-last-ch01: The coastal dispatch room smells like wet wool while a blinking weather radar washes green across a sealed trauma kit. Sarah, the flight nur",
+    "leaders-eat-last-ch01: \"Who touched valve seven?\" the radio snaps before Daniel's new operator can lift her head. A red pressure light flashes across the safety gl",
+    "leaders-eat-last-ch01: The sandbag rope rasps through Camille's palm above the gaffer tape marks. \"I think I missed something,\" the volunteer whispers. \"Then we st",
+    "leaders-eat-last-ch01: It took James one wind shift to learn what the rookies were watching. In the base camp map tent, a laminated fire map is held flat by a comp",
+    "leaders-eat-last-ch01: Which detail will the next nurse remember: the incident form or the first person blamed? Hannah stands in the medication room after a near m",
+    "leaders-eat-last-ch01: You open the frost-fogged freezer door with Marco just after midnight, and a milk crate is holding it wide enough to show the loss. The clos",
+    "leaders-eat-last-ch02: A laminated route sheet is clipped to a truck dashboard split by a thin crack. Laura, the route supervisor, sees route 14 running twenty min",
+    "leaders-eat-last-ch02: \"Another remake?\" Peter hears himself say under the task lamp, with porcelain crowns lined like small white shells. The night bench is quiet",
+    "leaders-eat-last-ch02: Rain taps the tide board beside a stack of refund vouchers. \"They think I lied,\" the desk agent says as the missed sailing rolls off the scr",
+    "leaders-eat-last-ch02: Ingrid noticed the curt adoption calls only after three volunteers quit in one month. In the intake room, a leash is clipped to an intake cl",
+    "leaders-eat-last-ch02: Which tells the truth faster, a prep chart or a cook's hand around a dull knife? Mathieu sees a fennel tray half trimmed at 4:40 p.m., the f",
+    "leaders-eat-last-ch02: You stand on wet tile with Aanya while a rescue tube leans against the wall and the rotation card curls at the corners. She watches one guar",
+    "leaders-eat-last-ch03: A muddy handheld radio sits on a folding table while boots dry under the hall heater. Ryan, the newest search volunteer, missed a call durin",
+    "leaders-eat-last-ch03: \"I ruined it,\" Claire says before dawn, with a scorched tray beside rising dough. The baker wipes flour from a bench scraper and looks at th",
+    "leaders-eat-last-ch03: A pencil taps a marked score while a rosin cloth slips from Lukas's knee. He came in two beats early, and every violinist heard it. The cond",
+    "leaders-eat-last-ch03: Marta understood the damage two days after the mislabeled part order, when Tomas stopped adding notes to the pegboard. A brass propeller tag",
+    "leaders-eat-last-ch03: What does the patient hear after Sofia corrects the doctor: tension or teamwork? A laminated phrase sheet lies under a blood-pressure cuff a",
+    "leaders-eat-last-ch03: You watch Anders fold a rain-soaked stall permit back into its plastic sleeve while his cash apron hangs empty. His first Saturday at the ma",
+    "leaders-eat-last-ch04: A cargo pin tag snaps in jet wash while ear protection hangs loose around Emily's neck. The departure is already fourteen minutes late, and ",
+    "leaders-eat-last-ch04: \"There is no room for preferences today,\" a nurse says as Giulia studies the printed chair grid under a yellow highlighter. The clinic is ov",
+    "leaders-eat-last-ch04: The tarp rope is dark with rain and sticks grit to Ben's gloves. A field rake lies by third base. \"We always hurry and hope,\" a crew member ",
+    "leaders-eat-last-ch04: Amina found the docket sheet folded in her jacket pocket after the last arraignment, with a legal pad full of half-answers. The skipped ques",
+    "leaders-eat-last-ch04: What will vibration do to a ceramic bowl resting on a foam cradle? Pavel, the registrar, asks the installer to predict before anyone lifts i",
+    "leaders-eat-last-ch04: You stand beside Katarina as a salt-stained route map curls under a magnet and the phones keep lighting up. The driver initials sheet shows ",
+    "leaders-eat-last-ch05: A cooler seal rests beside a filled appointment ledger as Natalie checks the hospital buffer for the third time. Volunteers are tired, but t",
+    "leaders-eat-last-ch05: \"We can fit one more,\" a welder says as a blue weld tag swings from a steel seam. Henrik has the overtime sheet in his hand and the last hul",
+    "leaders-eat-last-ch05: The studio clock hums above the pledge tally, and the phones are still warm. \"One more urgency read?\" the host asks. Luca points to the fund",
+    "leaders-eat-last-ch05: Rachel saw the status page reading operational on the wall screen, but the incident timeline kept filling with new graph requests. The servi",
+    "leaders-eat-last-ch05: How rare is a seed if no one can care for it? Petra holds an alpine seed packet beside a bench map, with three greenhouse shelves already ma",
+    "leaders-eat-last-ch05: You stand with Yusuf beside a sandbag pallet on wet asphalt while the river keeps rising. One homeowner wants another row at the porch. The ",
+    "leaders-eat-last-ch06: A chalk leaderboard leans beside a backed-up milk pitcher while the morning line curls to the door. Megan sees the top-tip crown circled twi",
+    "leaders-eat-last-ch06: \"Thirty reads by noon,\" someone says as a grayscale scan freezes on the diagnostic monitor. Anton watches a difficult case slide into the pe",
+    "leaders-eat-last-ch06: The erg screen flashes a split time while flywheels hiss in the winter room. Beatrice points to the boat roster and asks, \"Which boat wins i",
+    "leaders-eat-last-ch06: Lin noticed the release getting thinner when the review queue stayed full and tiny fixes kept landing. The pull-request queue was filtered b",
+    "leaders-eat-last-ch06: Which volunteer gets seen: the one wearing visitor badges at the front desk or the one who quietly sets up the next shift? Clara stands by t",
+    "leaders-eat-last-ch06: You sit across from Diego while a chess clock ticks beside an annotation notebook. \"Why teach beginners if ladder points only come from wins",
+    "leaders-eat-last-ch07: A wall speaker hangs above a buoy chart, and the red siren cuts through the marine weather office for the fifth time before noon. Oliver wat",
+    "leaders-eat-last-ch07: \"Did you check the sink again?\" Grace asks as a sanitizer test strip dries near the basin. Her prep checklist is folded in her apron, and th",
+    "leaders-eat-last-ch07: The ticket dispenser clicks at the glass window while Leila watches a clerk read the security memo before unlocking intake. Every family now",
+    "leaders-eat-last-ch07: Niklas saw the warning fatigue after a month of yellow notes, when guides stopped adding details to the slope notebook. An avalanche bulleti",
+    "leaders-eat-last-ch07: Which amber popup changed action yesterday? Serena asks the pharmacy team before the prescription scanner flashes again. The alert log shows",
+    "leaders-eat-last-ch07: You see Isabel's van key clipped to a transport manifest while her phone lights up for the seventh time after midnight. Volunteers have stop",
+    "leaders-eat-last-ch08: A wet winch drum turns under deck lights while the snagged gear jerks hard to starboard. Patrick can feel the crew watching him through spra",
+    "leaders-eat-last-ch08: \"Do we go now?\" a guest asks as a glow stick taped to the stair rail flickers in the outage. Erin has two flashlights and a count sheet on a",
+    "leaders-eat-last-ch08: Dust sticks to the canteen line beside the shade tarp after the water truck delay. Miriam used to brief the plan first and ration afterward.",
+    "leaders-eat-last-ch08: Joost remembered the morning the resort wanted the lift open before the frost cleared. The lift key sat on a frost-covered control panel, an",
+    "leaders-eat-last-ch08: Who should absorb the first angry minute at the service desk? Alice saw the answer when a return cart blocked one exit and an aggressive pat",
+    "leaders-eat-last-ch08: You watch Farah tie a cot tag with blue string while rainwater spreads under the gym doors. A medical power strip needs the driest corner. F",
+    "leaders-eat-last-ch09: A trawl sample jar sits beside the microphone while Olivia scans the hearing agenda. The sponsor is scheduled next, and the low-count data w",
+    "leaders-eat-last-ch09: \"Start with the resident note?\" someone asks as an operative note glows on the wall of the dim conference room. Samuel holds the laser point",
+    "leaders-eat-last-ch09: The sealed payroll envelope leans against a receipt spike, and Fiona can hear rain against the bookstore windows. \"Do we need fewer shifts n",
+    "leaders-eat-last-ch09: Rebecca kept the broken tracking tag on a clipboard for two days, waiting for a better moment. The gala program was already printed. Before ",
+    "leaders-eat-last-ch09: What does the trophy mean if the inspector misses the aluminum bracket in the parts bin? Chloe asks the team while an inspection sticker cur",
+    "leaders-eat-last-ch09: You sit beside Adrian as a bank statement stays folded under the meeting minutes. The reserve transfer can be fixed quietly after the vote, ",
+    "leaders-eat-last-ch10: A wet starfish tray glows under blue lights while Julia checks the shift card. The quiet guide has drawn weak visitor scores at the touch ta",
+    "leaders-eat-last-ch10: \"She's mis-sorting again,\" a clerk says as Robert stands by a mail tub under a tilted label window. The carrier says the new scanner station",
+    "leaders-eat-last-ch10: The headset cord is coiled beside a laminated script card, and the alarm tone keeps bleeding through the bay. Niamh asks the trainee which p",
+    "leaders-eat-last-ch10: Martin called the percussionist unreliable after three late entrances, then found a timpani mallet resting on a marked part after rehearsal.",
+    "leaders-eat-last-ch10: Why did one plug tray fail while the next bench lived? Alina stands under a mist nozzle with the timer tucked below the shelf. Last week she",
+    "leaders-eat-last-ch10: You stand with Ethan while an elevator map is tucked behind a service radio and missed pickups flash on the dispatch screen. The same helper",
+    "leaders-eat-last-ch11: A copper vat shines beside a missing temperature log as Nora reviews the month that set the creamery record. The first spoiled batch arrived",
+    "leaders-eat-last-ch11: \"We should add four more nights,\" the agent says while Malcolm looks at a ticket manifest under a barrier diagram. Every show sold out, but ",
+    "leaders-eat-last-ch11: A tree tag scratches against a brittle sapling in the nursery wind. Celine holds the grant calendar that made last year's planting count loo",
+    "leaders-eat-last-ch11: Irene celebrated the waitlist until she stood beside a classroom door with placement cards stacked in her hand. The class roster was full, a",
+    "leaders-eat-last-ch11: What breaks at launch if this is how we win the demo? Jasper asks, tapping the build number on the whiteboard. The bug list is shorter than ",
+    "leaders-eat-last-ch11: You stand with Noa by an engine-room valve while a service tag hangs behind the cafe's sales ledger. The tourist surge made every week look ",
+    "leaders-eat-last-ch12: A promotion rubric lies beside an old branch photo from 1988 while Helen reviews candidates for remote-team leadership. The panel keeps prai",
+    "leaders-eat-last-ch12: \"Your grandfather never questioned a rush tag,\" Rosa's father says beside a metal type drawer. The rush-order wall is full, and the press cr",
+    "leaders-eat-last-ch12: A pager vibrates beside the call schedule while Rafael reads complaints from residents he first wanted to call soft. The error log changed h",
+    "leaders-eat-last-ch12: Greta once thought the parking minimum argument was only nostalgia. In the archive room, a zoning map weighted by a tape measure showed the ",
+    "leaders-eat-last-ch12: Which failed task predicts shop safety? Kiran asks, setting a micrometer on the scored test sheet. The older trainers predict the timed dril",
+    "leaders-eat-last-ch12: You sit with Diana as a brass nameplate catches the light beside a donor seating chart. Last year she treated every tradition as unity. This",
+    "leaders-eat-last-ch13: A bed-board screen glows beside a patient transfer form while Madeline reviews twenty delayed discharges. The capacity plan would move three",
+    "leaders-eat-last-ch13: \"Region three can spare one pallet,\" someone says as Hugo looks at a pallet label on shrink-wrapped dry beans. The delivery manifest shows r",
+    "leaders-eat-last-ch13: Paper clicks in the tray as a notice batch warms beside a childcare receipt copy. \"Arrears over ninety days,\" the clerk says. Sabine reaches",
+    "leaders-eat-last-ch13: Elin used to trust the yield rule until a waitlist screen sat beside a scholarship letter from a student flagged as unlikely. She asks the t",
+    "leaders-eat-last-ch13: Which dot nearly crossed the median, and how much sleep did the driver have? Russell asked that after the near miss, with a GPS map beside a",
+    "leaders-eat-last-ch13: You sit with Catarina while a claim code prints above a call transcript and the old-file queue blinks red. The denial macro is ready. She li",
+    "leaders-eat-last-ch14: A triage screen shows colored severity tiles while Maeve reviews a callback list after the night shift. The platform routes mild symptoms qu",
+    "leaders-eat-last-ch14: \"The fleet can run faster,\" someone says as a robot path map glows on the monitor. Colin sees the rate target rise beside a tote label marke",
+    "leaders-eat-last-ch14: The engagement heatmap glows red beside an advising note. \"Low posters need stricter penalties,\" a faculty lead says. Ana runs her finger ov",
+    "leaders-eat-last-ch14: Stefan used to accept the model ranking until a feeder map sat beside a clinic backup report. He asks which feeder the model deprioritized. ",
+    "leaders-eat-last-ch14: Which fraud flag is actually a repair? Lucia asked that after a return authorization code printed on thermal paper beside a repair invoice. ",
+    "leaders-eat-last-ch14: You stand with Bram as a docking-station display reads zero bikes outside the hospital at 6:40 a.m. The model says the station is balanced o",
+    "leaders-eat-last-ch15: A work-order code sits beside a damp ceiling photo while Livia prepares to close the weekly maintenance list. The system ranks the leak as l",
+    "leaders-eat-last-ch15: \"The category denies it,\" the agent says, sliding a boarding pass beside a funeral notice. Arthur sees the fare rule on screen and the tight",
+    "leaders-eat-last-ch15: The lunch account printout looked clean until Keira stood beside the tray rail and watched a student whisper his balance to the cashier. The",
+    "leaders-eat-last-ch15: Soren used to treat the permit timestamp as final until a closure notice sat beside a late application. He asks which applicant missed by ho",
+    "leaders-eat-last-ch15: What does ready mean if no one can open the apartment door? Monica reviews a discharge score sheet beside a key tag. Last month she trusted ",
+    "leaders-eat-last-ch15: You sit with Celia as a renewal code appears beside a handwritten note card. The churn report says price sensitivity. Three notes say no one",
+    "leaders-eat-last-ch16: A sliced loaf cools on the rack while the batch counter shows another perfect morning. Freya tears the crumb and tastes the tight, rushed te",
+    "leaders-eat-last-ch16: \"Fastest team wins,\" a trainer says as Warren sets a stopwatch beside a smoke-stained mask. The recruits move cleanly through the checklist,",
+    "leaders-eat-last-ch16: The closure chart hums from the printer beside a safety plan marked confidential. \"This one can close today,\" the intake lead says. Amelie r",
+    "leaders-eat-last-ch16: Byron traced the near miss back to a vibration gauge beside the departure board. The board had shown green, but a handwritten vibration note",
+    "leaders-eat-last-ch16: What does a full coverage map miss under tree shade? Yara asks, with a drone battery beside a field notebook. The team predicts the map will",
+    "leaders-eat-last-ch16: You stand with Helena as a meal tote sits beside a doorway checklist and a missed fall note lies under the route sheet. Stops per hour impro",
+    "leaders-eat-last-ch17: A boxed deck lantern sits beside a refund slip while Elias watches a clerk whisper that three more units flickered. The customer is waiting,",
+    "leaders-eat-last-ch17: \"I can keep going,\" a dancer says as Vivian sees ankle tape beside the rehearsal schedule. The premiere is close, and the understudy is not ",
+    "leaders-eat-last-ch17: Grain dust coats a sample cup beside a scale ticket. \"Just wave mine through,\" a longtime member says. Oscar sees three farmers waiting in l",
+    "leaders-eat-last-ch17: Renee saw the culture forming after the viral episode, when the waveform screen filled with download spikes and the source sheet sat blank. ",
+    "leaders-eat-last-ch17: Which culture do kids learn from a wet clipboard? Milo sees a lane card clipped near the pool edge and notices the coach's daughter moved tw",
+    "leaders-eat-last-ch17: You stand with Tania as a torn glove lies in the cleanroom waste bin and the batch tag is already late. Everyone saw the rushed gowning. Tan",
+    "leaders-eat-last-ch18: A red correction stamp sits beside a marked proof page while Georgia reads the reporter's error. The morning meeting is in ten minutes, and ",
+    "leaders-eat-last-ch18: \"Allergy plate, wrong sauce,\" the runner says as an allergy ticket hangs above the pass on the ticket rail. Frank sees the line freeze. He i",
+    "leaders-eat-last-ch18: Wind rattles the hut while a summit forecast is taped to the bunk wall beside an ice axe. \"I think we call it,\" the junior guide says. Clien",
+    "leaders-eat-last-ch18: Lionel saw the pattern only after the apology letter sat beside the column draft. Three past exceptions had taught the star columnist that i",
+    "leaders-eat-last-ch18: What do technicians learn when the schedule is late and a patient is frustrated? Nina stands beside a socket strap and an appointment card a",
+    "leaders-eat-last-ch18: You stand beside Ronan as the radio log lies under a channel marker chart and the Mayday call turns out false. The caller sounds embarrassed",
+    "leaders-eat-last-ch19: A sample cabinet key rests beside the sample log while Harriet hears the favored doctor ask for one box off record. Patients are waiting, an",
+    "leaders-eat-last-ch19: \"We should remember who paid for the venue,\" a juror says as ballots sit beside a sponsor placard. Julien lifts the scoring sheet before spo",
+    "leaders-eat-last-ch19: Wind snaps against the platform while a meter clipped to the control box crosses the stated limit. Paul hears the concrete crew groan about ",
+    "leaders-eat-last-ch19: Imogen found the altered evaluation grid under an embossed admissions folder after the wealthy family had already received a welcome call. T",
+    "leaders-eat-last-ch19: What will members think if this exception leaks? Vera asks, with a tuning fork beside the audition rubric. The weak audition belongs to her ",
+    "leaders-eat-last-ch19: You watch Wesley hold a smoke alarm battery beside an inspection form for his own unit. Last year he fixed his issues quietly before citing ",
+    "leaders-eat-last-ch20: A satellite phone sits beside a cracked boot sole while Maisie watches the repair lead unfold the climb plan. She has seen his hands shake b",
+    "leaders-eat-last-ch20: \"I am taking it hotter,\" a member says as a kiln cone rests beside a glaze tile. Gerard remembers the test they ran together last month, the",
+    "leaders-eat-last-ch20: A mail satchel thumps against the bench beside a route swap card. Bethany sees the icy hill route marked in pencil and the colleague's surge",
+    "leaders-eat-last-ch20: Ravi remembered the supply tally under a headlamp, written after midnight by people who had been unloading all day. The count was wrong. In ",
+    "leaders-eat-last-ch20: Which error does a new editor hide when nobody knows her language history? Allison sees a stylebook open beside a marked page and asks how s",
+    "leaders-eat-last-ch20: You watch Karla set a tile saw tag beside a borrow card while her friend waits behind a stranger in line. She knows the friend's kitchen dea",
+    "leaders-eat-last-ch21: The oxygen probe beside the larval tank blinks amber while Laurel studies the survival chart from the doorway. The tank chart shows a dip be",
+    "leaders-eat-last-ch21: \"The abandon rate finally turned green,\" the deputy says, tapping a call timer beside an empty headset stand. Graham hears applause starting",
+    "leaders-eat-last-ch21: The lap counter clicks hard in Phoebe's hand as the lane sheet curls at the wet corner of the bench. \"Her split is faster,\" the assistant sa",
+    "leaders-eat-last-ch21: Quentin framed the inspection placard after the truck earned a perfect score, then found three exit notes from prep cooks in the glove box. ",
+    "leaders-eat-last-ch21: Which street is worse: the one with thirty complaints or the one with none? Daria points at the pothole map beside a cracked hubcap photo an",
+    "leaders-eat-last-ch21: You see Morgan pause over a GPA alert while an advising calendar invite sits open on her second monitor. The red flag can launch an automate",
+    "leaders-eat-last-ch22: A cupping spoon rests beside a roast log while Hazel marks the third bitter batch in two weeks. The supplier looks easy to blame until she s",
+    "leaders-eat-last-ch22: \"They keep missing appointments,\" the receptionist says as a reminder postcard curls beside the clinic phone. Vivienne is ready to blame pat",
+    "leaders-eat-last-ch22: Cold coffee film coats Vincent's tongue while a call sheet slides under a meal voucher. After a silent safety check, he blamed crew cynicism",
+    "leaders-eat-last-ch22: Margot had complained about the compost for a month before she pointed a compost fork at the plastic label. \"I know who needs the training t",
+    "leaders-eat-last-ch22: Who benefits when every forecast arrives padded? Ansel studies a projection worksheet beside a bonus memo and predicts the answer is headqua",
+    "leaders-eat-last-ch22: You watch Teresa kneel beside a broken suitcase while a donation receipt pad balances on a carton of stained coats. She wants to complain ab",
+    "leaders-eat-last-ch23: A stack of prep cards leans beside a plated tasting spoon in Eleanor's kitchen office. Record wedding revenue is ready for the review, but t",
+    "leaders-eat-last-ch23: \"Growth is ready,\" the analyst says, sliding a launch checklist toward Callum while the moderation queue flashes on a side monitor. The feat",
+    "leaders-eat-last-ch23: The linen cart tag rasps against Saskia's thumb as the lowest bid sheet lands on the table. \"They can meet the price if fold rates rise,\" th",
+    "leaders-eat-last-ch23: Bernard had praised the cheap tour invoice until the medication roster came back with missed checks from the overnight bus. The dollars save",
+    "leaders-eat-last-ch23: What does faster delivery cost after the thermal label leaves the printer? Leonie predicts the answer from cost per box, then sees the spoil",
+    "leaders-eat-last-ch23: You see Rowan place a thermostat log beside a quilt folded over a kitchen chair. Before, the apartment celebrated a lower energy bill while ",
+    "leaders-eat-last-ch24: A trauma shears pouch hangs beside a laminated feedback rubric while Maren watches a new medic freeze during live critique. The sarcastic li",
+    "leaders-eat-last-ch24: \"This one got the most likes,\" a student says as a printed rendering hangs under metal clips beside a blank critique card. Ellis can feel a ",
+    "leaders-eat-last-ch24: The tablet audition form glows against Cosima's palm while a music stand tag swings from a folding chair. \"Two accepted players have not rep",
+    "leaders-eat-last-ch24: Neil kept the chat transcript beside the room booking slip after the apprenticeship cohort's first serious conflict. Online, every sentence ",
+    "leaders-eat-last-ch24: Why does the lock pouch fail right after lunch? Sylvia sets a camp radio beside the phone lock pouch and predicts rule-breaking during the l",
+    "leaders-eat-last-ch24: You watch Gordon tape a door-hours sign beside a repair app screenshot in the lobby. He used to complain that younger neighbors only trusted",
+    "leaders-eat-last-ch25: A valve seal tag hangs beside a tasting glass in the cellar while Declan reviews another near miss. He can explain exactly why he rushed the",
+    "leaders-eat-last-ch25: \"Last time I brought a problem, I regretted it,\" a teacher says as an agenda page sits beside the school radio. Louise has already apologize",
+    "leaders-eat-last-ch25: The cash key sticks in Adam's palm while a prep ticket spits from the rail. \"Say 'back door' if I start climbing,\" he tells his sister befor",
+    "leaders-eat-last-ch25: Everett saw the pattern on the volunteer sign-up sheet after another night of unfinished learning. The solder spool was in his hand every ti",
+    "leaders-eat-last-ch25: Which proves more: a promise to stop dominating, or a pocket timer beside a gallery map? Before, Jocelyn answered every visitor question whi",
+    "leaders-eat-last-ch25: You watch Marisa pause over a medication chart while a shared login note sits under her phone. She has always sent final schedules and calle",
+    "leaders-eat-last-ch26: A cable label printer rattles under server-room lights while Paige reviews the migration rota beside an open server rack. The newest technic",
+    "leaders-eat-last-ch26: \"Who has the midnight pyrometer check?\" someone asks as the firing log lies open beside a chipped mug. Nolan, the guild president, sees his ",
+    "leaders-eat-last-ch26: Gravel pings under Daphne's tires as she unfolds the road map beside the meal roster. \"That far slot will be hard to fill,\" a neighbor says.",
+    "leaders-eat-last-ch26: Ruth had planned the rain drill until the wet tracking harness lay beside a paw-check towel stained pink from the last route. She asked what",
+    "leaders-eat-last-ch26: Who stood on the line, and who made it possible for parents to stand there? Rosalie placed the strike fund envelope beside the childcare lis",
+    "leaders-eat-last-ch26: You see Sebastian set a pipe wrench beside a frost-crusted trench board while three families wait for the well line to thaw. Before, he owne",
+    "leaders-eat-last-ch27: A kennel card clipped to the gate says difficult while Valerie watches the dog flatten itself against the back wall. The old handoff note wi",
+    "leaders-eat-last-ch27: \"It ate another dollar,\" a neighbor says as the coin slot clicks beside Ian's handwritten fee log. Everyone complains alone, and management ",
+    "leaders-eat-last-ch27: The loose cooler strap snaps against Cora's wrist while the route tablet keeps flashing late. \"Dispatch wants it moving,\" the loader says. C",
+    "leaders-eat-last-ch27: Leah reviewed the supply closet key log beside a stack of checkout cards after another evening lab came up short. The same late commuters mi",
+    "leaders-eat-last-ch27: How long is too long to wait when a ticket stub is clenched in someone's hand? Miles sees a patron shrink near the back row while his aisle ",
+    "leaders-eat-last-ch27: You see June set a thermometer beside an apartment knock list while the cooling center fan rattles behind her. Policy will not reach the thi"
+  ],
+  "usedHookFrames": [
+    "leaders-eat-last-ch01: A pilot sees men pinned below the cloud line and has to decide what altitude is for.",
+    "leaders-eat-last-ch02: A bell rings, a line moves, and a tired person starts looking like part of the machine.",
+    "leaders-eat-last-ch03: One missed note hangs in the room, and everyone watches whether the chair is still hers.",
+    "leaders-eat-last-ch04: The plane is late, the storm is close, and one honest objection can either guide the work or excuse the shortcut.",
+    "leaders-eat-last-ch05: The ledger is full, the goal is met, and the room still wants one more notch.",
+    "leaders-eat-last-ch06: The leaderboard is bright, the room is fast, and nobody is helping the slow station.",
+    "leaders-eat-last-ch07: The red siren sounds again, and the room no longer knows whether to move or brace.",
+    "leaders-eat-last-ch08: The line is short on water, the room is losing order, and rank has to decide what it is for.",
+    "leaders-eat-last-ch09: The low-count data sits beside the microphone, and silence would be easier for everyone in power.",
+    "leaders-eat-last-ch10: The quiet guide looks useless at the touch tank until the station changes.",
+    "leaders-eat-last-ch11: The sales board glows green while the first skipped log sheet curls beside the vat.",
+    "leaders-eat-last-ch12: An old branch photo sits beside a promotion rubric, and the rule suddenly looks less timeless.",
+    "leaders-eat-last-ch13: The bed-board count looks clean until one transfer form gives the delay a name.",
+    "leaders-eat-last-ch14: The severity tiles look precise until one symptom cluster disappears between colors.",
+    "leaders-eat-last-ch15: The weekly queue is ready to close when a damp ceiling photo refuses to stay a code.",
+    "leaders-eat-last-ch16: The batch counter is perfect, but the sliced loaf tastes like the dough was rushed.",
+    "leaders-eat-last-ch17: A faulty lantern sits on the counter, and the refund teaches more than the policy.",
+    "leaders-eat-last-ch18: The correction stamp lands on the proof, and the newsroom watches who gets protected first.",
+    "leaders-eat-last-ch19: The sample cabinet key is in her hand, and the favored doctor is waiting.",
+    "leaders-eat-last-ch20: The satellite phone is quiet, the boot sole is cracked, and the hard warning can finally land.",
+    "leaders-eat-last-ch21: The survival chart is green, but one tank smells wrong and the technician keeps rubbing her eyes.",
+    "leaders-eat-last-ch22: The roast log shows the bad batch, and the signature approving the rush order is not the supplier's.",
+    "leaders-eat-last-ch23: The tasting spoon gleams beside record revenue, while the prep cards show nights nobody paid for.",
+    "leaders-eat-last-ch24: The trauma shears are real, but the feedback rubric has trained the new medics to fear live judgment.",
+    "leaders-eat-last-ch25: The valve seal tag is still damp, and the shortcut everyone understands has happened again.",
+    "leaders-eat-last-ch26: The label printer clicks at 2 a.m., and the manager reaches for the newest technician's cable shift.",
+    "leaders-eat-last-ch27: The kennel card is wrong, the frightened dog is shaking, and no new title is coming before noon."
+  ],
+  "usedCounterFrames": [
+    "leaders-eat-last-ch01: The mistaken move is to ask exposed people for courage while rank stays clean. The better move is to turn authority into cover first, then ask for truth, speed, or risk.",
+    "leaders-eat-last-ch02: The mistake is to add kindness after process has already flattened the person. The better move is to restore one human fact before judgment hardens.",
+    "leaders-eat-last-ch03: The weak move is to prove belonging with warmth when nothing is at stake. The stronger move is to correct the mistake while proving membership is not on trial.",
+    "leaders-eat-last-ch04: The mistake is treating every yeah-but as cynicism or every deadline as permission to drop safety. The better move is to turn pressure into a design constraint.",
+    "leaders-eat-last-ch05: The trap is not ambition itself. It is letting more impersonate responsibility after the purpose has already been served.",
+    "leaders-eat-last-ch06: The trap is not low motivation. It is overfeeding quick individual rewards until trust-building rewards feel slow, optional, or invisible.",
+    "leaders-eat-last-ch07: The problem is not urgency. It is chronic alarm that keeps people in self-protection after the useful signal is gone.",
+    "leaders-eat-last-ch08: The wrong move is to treat rank as earned comfort. The better move is to make privilege match the first burden when the group is under strain.",
+    "leaders-eat-last-ch09: Courage is not dramatic boldness. It is accepting the cost that keeps truth and standards from being pushed onto someone weaker.",
+    "leaders-eat-last-ch10: The lazy move is to label the person first. The harder move is to test the terrain before deciding whether the person, role, or system is failing.",
+    "leaders-eat-last-ch11: The danger is not success itself. It is letting strong results certify habits that will break the group when conditions change.",
+    "leaders-eat-last-ch12: The mistake is turning friction into a generation verdict. The better move is to ask what each group was trained to expect before changing the rule.",
+    "leaders-eat-last-ch13: The danger is not data. It is letting a category decide after the human cost has disappeared from view.",
+    "leaders-eat-last-ch14: The problem is not modern tools. It is using summaries as substitutes for judgment when scale has widened the distance to consequence.",
+    "leaders-eat-last-ch15: The failure is not having process. The failure is letting process close before the human fact that could change judgment is found.",
+    "leaders-eat-last-ch16: The danger is not measurement. It is letting measurable order win so often that trust, discretion, and judgment lose their place in the system.",
+    "leaders-eat-last-ch17: Culture is not the mood people describe. It is the behavior they learn to repeat when pressure makes the values expensive.",
+    "leaders-eat-last-ch18: The leader's speech matters less than the first visible reaction everyone can copy when bad news arrives.",
+    "leaders-eat-last-ch19: Integrity is not proven by believing the principle. It is proven when the first convenient exception would make life easier.",
+    "leaders-eat-last-ch20: Friendship at work is not forced fun or special treatment. It is enough real knowledge for candor and sacrifice to travel safely.",
+    "leaders-eat-last-ch21: The mistake is not using numbers. The mistake is letting numbers command the decision before they have led you back to the people and conditions underneath.",
+    "leaders-eat-last-ch22: Systems can be real and unfair while your own habit still feeds them. Agency begins where complaint names the benefit you keep taking.",
+    "leaders-eat-last-ch23: The problem is not wanting wins. The problem is calling a win clean before you know who carried the hidden bill.",
+    "leaders-eat-last-ch24: The wrong move is contempt or excuse. The better move is to ask what conditions trained thin trust, then rebuild standards through concrete trust.",
+    "leaders-eat-last-ch25: Admission is not recovery. The better move is to turn the known habit into repeated practice, visible proof, accountability, and help.",
+    "leaders-eat-last-ch26: Hardship does not bond people by itself. Trust grows when leaders enter a protected burden instead of outsourcing strain.",
+    "leaders-eat-last-ch27: More leaders does not mean more bosses or saviors. It means more people taking local responsibility for protection before permission arrives."
+  ],
+  "usedTryThisNowFrames": [
+    "leaders-eat-last-ch01: Before your next correction, write the name of the person most exposed and one sentence you can say that puts the first heat on you.",
+    "leaders-eat-last-ch02: Pick one rule you enforce this week and write the human fact it misses before you decide the next correction.",
+    "leaders-eat-last-ch03: In the next tense group moment, say the standard that still holds and the membership that is not at risk before the review continues.",
+    "leaders-eat-last-ch04: Take one objection you hear today and rewrite it as: how do we keep the standard while reducing the unnecessary threat?",
+    "leaders-eat-last-ch05: Choose one active target and write the condition that would make the next increment unnecessary or distorting.",
+    "leaders-eat-last-ch06: Look at one scoreboard or incentive and mark whether it rewards chase, status, bonding, or care. Change one signal that crowds out trust.",
+    "leaders-eat-last-ch07: Pick one recurring alert, meeting, or metric and ask what threat it keeps broadcasting after the useful signal is gone.",
+    "leaders-eat-last-ch08: Name one privilege your role gives you and the matching burden you will take first when pressure rises.",
+    "leaders-eat-last-ch09: Write the sentence you are avoiding because it will cost you comfort, then decide who pays if you keep avoiding it.",
+    "leaders-eat-last-ch10: Before your next performance judgment, list two terrain factors that would make a capable person fail here.",
+    "leaders-eat-last-ch11: Pick one practice currently praised because results are good and ask what behavior it is training if pressure changes.",
+    "leaders-eat-last-ch12: When a rule feels obvious to one age group and absurd to another, write what each group was trained to expect before choosing a response.",
+    "leaders-eat-last-ch13: Take one anonymous label in a decision and replace it with one concrete person and the consequence they will feel.",
+    "leaders-eat-last-ch14: For one dashboard or workflow, add the person or place you will check before acting on the summary.",
+    "leaders-eat-last-ch15: Before approving one process-driven decision, ask what human fact would change your mind and go get that fact.",
+    "leaders-eat-last-ch16: Look at one metric that is winning every tradeoff and write the invisible human condition it is starving.",
+    "leaders-eat-last-ch17: Find one repeated tradeoff everyone notices and write what it teaches people this place really rewards.",
+    "leaders-eat-last-ch18: Before responding to bad news, write what your first visible reaction will teach everyone watching.",
+    "leaders-eat-last-ch19: Find one standard you believe in and write the exception that will tempt you to bend it this month.",
+    "leaders-eat-last-ch20: Ask one person a specific question about the burden they are carrying, then use the answer to change one demand or offer one concrete help.",
+    "leaders-eat-last-ch21: Choose one red or green metric and name the person, place, or conversation it should send you toward before you act on it.",
+    "leaders-eat-last-ch22: Name one pattern you criticize, then write the small convenience, approval, or relief you get by letting it continue.",
+    "leaders-eat-last-ch23: Pick one recent win and write three names: who got credit, who did cleanup, and who paid a cost that stayed offscreen.",
+    "leaders-eat-last-ch24: Pick one habit you judge quickly, name the environment that may have trained it, then choose one concrete trust rep that could retrain it.",
+    "leaders-eat-last-ch25: Choose one harmful habit you already understand and schedule the next accountable practice that would prove change to someone else.",
+    "leaders-eat-last-ch26: Choose one hard task you have been watching from above and take a visible, useful share of the burden this week.",
+    "leaders-eat-last-ch27: Name one human cost close enough for you to affect, then take one protective action that does not require a new title."
+  ],
+  "usedQuizExplanationFrames": [],
+  "rejectedFrames": [
+    {
+      "chapterId": "leaders-eat-last-ch01",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 1 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch02",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 2 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch03",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 3 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch04",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 4 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch05",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 5 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch06",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 6 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch07",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 7 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch08",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 8 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch09",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 9 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch10",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 10 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch11",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 11 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch12",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 12 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch13",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 13 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch14",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 14 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch15",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 15 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch16",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 16 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch17",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 17 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch18",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 18 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch19",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 19 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch20",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 20 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch21",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 21 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch22",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 22 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch23",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 23 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch24",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 24 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch25",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 25 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch26",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 26 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    },
+    {
+      "chapterId": "leaders-eat-last-ch27",
+      "hook": [
+        "definition-first opening",
+        "book-summary opening",
+        "generic pressure-at-work opening",
+        "reused chapter 27 title-as-question opening"
+      ],
+      "counterintuition": [
+        "good leadership is just kindness",
+        "pressure means safety must wait",
+        "numbers versus people as a flat binary"
+      ],
+      "tryThisNow": [
+        "set a timer and reflect",
+        "write three values",
+        "ask yourself what matters"
+      ],
+      "examples": [
+        "generic manager in a meeting",
+        "school group project fallback",
+        "family chore dispute",
+        "dashboard-only office scene"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "leaders-eat-last-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 1,
+      "checkedAt": "2026-05-13T05:11:48.627Z"
+    },
+    "leaders-eat-last-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 2,
+      "checkedAt": "2026-05-13T05:14:04.336Z"
+    },
+    "leaders-eat-last-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-13T05:16:00.222Z"
+    },
+    "leaders-eat-last-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 4,
+      "checkedAt": "2026-05-13T05:17:59.898Z"
+    },
+    "leaders-eat-last-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 5,
+      "checkedAt": "2026-05-13T05:19:50.281Z"
+    },
+    "leaders-eat-last-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:54.699Z"
+    },
+    "leaders-eat-last-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:55.071Z"
+    },
+    "leaders-eat-last-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-13T05:25:44.396Z"
+    },
+    "leaders-eat-last-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:55.438Z"
+    },
+    "leaders-eat-last-ch10": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:55.803Z"
+    },
+    "leaders-eat-last-ch11": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:56.176Z"
+    },
+    "leaders-eat-last-ch12": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 8,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 12,
+      "checkedAt": "2026-05-13T06:34:06.299Z"
+    },
+    "leaders-eat-last-ch13": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 9,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 13,
+      "checkedAt": "2026-05-13T06:36:30.970Z"
+    },
+    "leaders-eat-last-ch14": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:56.565Z"
+    },
+    "leaders-eat-last-ch15": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 7,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 15,
+      "checkedAt": "2026-05-13T06:42:52.986Z"
+    },
+    "leaders-eat-last-ch16": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:56.942Z"
+    },
+    "leaders-eat-last-ch17": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 8,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 17,
+      "checkedAt": "2026-05-13T06:49:21.949Z"
+    },
+    "leaders-eat-last-ch18": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:57.328Z"
+    },
+    "leaders-eat-last-ch19": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:57.733Z"
+    },
+    "leaders-eat-last-ch20": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:58.213Z"
+    },
+    "leaders-eat-last-ch21": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:58.663Z"
+    },
+    "leaders-eat-last-ch22": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 7,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:59.074Z"
+    },
+    "leaders-eat-last-ch23": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 23,
+      "checkedAt": "2026-05-13T07:12:16.066Z"
+    },
+    "leaders-eat-last-ch25": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 25,
+      "checkedAt": "2026-05-13T19:16:30.478Z"
+    },
+    "leaders-eat-last-ch26": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-13T19:18:20.720Z"
+    },
+    "leaders-eat-last-ch27": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:20:10.286Z"
+    },
+    "leaders-eat-last-ch24": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 27,
+      "checkedAt": "2026-05-13T19:24:59.460Z"
+    }
+  }
+}

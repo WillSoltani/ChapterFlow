@@ -1,0 +1,189 @@
+{
+  "chapterId": "peak-ch07",
+  "number": 7,
+  "title": "The Road to Extraordinary",
+  "coreMove": "Build a support system that keeps focused practice alive through the long middle after easy gains fade.",
+  "sourcePressure": "The chapter explains that extraordinary performance grows through a long developmental road with rising standards, deepening commitment, accumulating gains, and real costs. Frozen sidecar for chapter 7 contains no traceable named figure, study, place, date, or artifact beyond the authors and chapter mechanism; sourceAnchors stays empty rather than inventing one.",
+  "chapterSpecificMisunderstanding": "The weak version turns extraordinary performance into inspirational grit or a single heroic commitment.",
+  "sourceAlignmentTerms": [
+    "extraordinary performance",
+    "long development",
+    "standards",
+    "commitment",
+    "support",
+    "plateau",
+    "cost"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "sprinter eating cold rice from old Peak draft",
+      "early morning sacrifice montage",
+      "grind while others sleep"
+    ],
+    "counterintuition": [
+      "motivation is everything",
+      "extraordinary means never quitting",
+      "support makes practice soft"
+    ],
+    "tryThisNow": [
+      "write your big why",
+      "commit to excellence",
+      "work harder this week"
+    ],
+    "examples": [
+      "young pianist family pressure from old draft",
+      "scholarship runner shell",
+      "founder sales calls as identity trial"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "youth chess club progression from casual games to rated study",
+      "audience": "a parent-coach trying to keep challenge alive without burning children out",
+      "stakes": "promising players quit when early wins end and no support explains the plateau",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace replaces Friday free play with one annotated loss, one endgame drill, and a parent ride schedule so practice survives the first losing streak",
+      "firstImage": "score sheets curled beside a locked community-center cabinet",
+      "mustInclude": [
+        "annotated loss",
+        "parent ride schedule",
+        "endgame drill"
+      ],
+      "mustAvoid": [
+        "generic prodigy chess",
+        "winning as destiny"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "apprentice paramedic airway certification path",
+      "audience": "a trainee whose early excitement fades after repeated failed assessments",
+      "stakes": "a vital skill stalls unless feedback, rest, and identity are protected through failure",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Matthew lays three failed assessment sheets beside a revised practice calendar and schedules mentor review before the next simulation instead of adding random extra shifts",
+      "firstImage": "three creased assessment sheets under a clear clipboard cover",
+      "mustInclude": [
+        "failed assessment sheets",
+        "mentor review",
+        "practice calendar"
+      ],
+      "mustAvoid": [
+        "generic emergency drama",
+        "more shifts equal growth"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "ballet academy recovery plan after growth-related coordination changes",
+      "audience": "a dancer whose body changes faster than her old technique",
+      "stakes": "shame can turn a temporary reorganization into quitting",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Juliette and her teacher lower jump volume, add balance drills, and mark progress weekly so the road continues through awkward months",
+      "firstImage": "a balance board resting beside pointe shoes with loose ribbons",
+      "mustInclude": [
+        "lower jump volume",
+        "weekly progress mark",
+        "balance board"
+      ],
+      "mustAvoid": [
+        "dance glamour",
+        "body-as-destiny"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "elite pastry exam preparation across a winter season",
+      "audience": "a craft learner facing months of tiny technical corrections",
+      "stakes": "she may abandon the exam because ganache tempering gains are invisible week to week",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marit photographs each split ganache, logs room temperature, and keeps the coach meeting even after two flat weeks so the pattern can accumulate",
+      "firstImage": "a glossy ganache smear cooling on a marble slab",
+      "mustInclude": [
+        "temperature log",
+        "split ganache photos",
+        "coach meeting"
+      ],
+      "mustAvoid": [
+        "foodie celebration",
+        "perfectionism sermon"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "community-college robotics team preparing for regional trials",
+      "audience": "a team lead learning that the road needs structure, not only excitement",
+      "stakes": "early prototype wins hide the repair schedule needed for real competition",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Luca predicts the prototype will keep improving from late nights, then the drive chain fails twice; he builds a boring weekly test cycle and parts log that carries the team through the plateau",
+      "firstImage": "a drive chain link snapped beside a plastic parts bin",
+      "mustInclude": [
+        "weekly test cycle",
+        "parts log",
+        "drive chain failure"
+      ],
+      "mustAvoid": [
+        "startup-style hackathon",
+        "heroic all-nighter"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "regional theater actor learning dialect work over a full rehearsal run",
+      "audience": "a performer tempted to rely on opening-week adrenaline",
+      "stakes": "the accent decays under emotion unless practice is sustained beyond first confidence",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Adaeze keep a dialect notebook, schedule short coach checks after emotional scenes, and protect vocal rest so the skill survives the whole run",
+      "firstImage": "phonetic notes penciled beside a wrinkled rehearsal call sheet",
+      "mustInclude": [
+        "dialect notebook",
+        "coach checks",
+        "vocal rest"
+      ],
+      "mustAvoid": [
+        "theater inspiration",
+        "talent as charisma"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate long-term support from raw motivation",
+      "identify the long middle and plateau risk",
+      "choose structures that preserve practice through costs",
+      "evaluate when ambition lacks support design"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one skill where early progress has slowed. Write the support that is missing now: coach check, recovery, schedule protection, progress log, peer, or reason to return after a bad week.",
+  "readingTimeMinutes": 12
+}

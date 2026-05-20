@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch10",
+  "number": 10,
+  "title": "Flow",
+  "coreMove": "Adjust challenge and conditions so attention can enter the task instead of bouncing off it.",
+  "sourcePressure": "After action begins, the chapter explains deeper engagement through challenge, skill, and immersion without making flow mystical.",
+  "chapterSpecificMisunderstanding": "Selling flow as effortless magic or forced peak state.",
+  "sourceAlignmentTerms": [
+    "flow",
+    "deep engagement",
+    "challenge-skill balance",
+    "immersion",
+    "demanding task",
+    "overload",
+    "absorbed attention"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Flow with a generic unlocked potential claim.",
+      "Do not start with a definition of flow."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "glassblowing studio practice",
+      "audience": "apprentice either bored by repeats or panicked by complex forms",
+      "stakes": "a paid ornament batch must be consistent",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "protagonistName": "Alice",
+      "requiredBeat": "Alice chooses a form just beyond comfort and sets a twenty-minute run where the gather, turn, and breath absorb all attention.",
+      "firstImage": "orange glass turning at the end of a blowpipe",
+      "mustInclude": [
+        "blowpipe",
+        "timer",
+        "ornament order"
+      ],
+      "mustAvoid": [
+        "artistic trance",
+        "danger spectacle"
+      ]
+    },
+    {
+      "domain": "database migration rehearsal",
+      "audience": "engineer switching between easy chores and terrifying cutover tasks",
+      "stakes": "a client launch window is fixed",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "protagonistName": "Olivier",
+      "requiredBeat": "Olivier breaks the migration into a rehearsal that is hard enough to require focus but small enough to finish cleanly.",
+      "firstImage": "terminal windows tiled across a dark monitor",
+      "mustInclude": [
+        "terminal windows",
+        "migration checklist",
+        "launch window"
+      ],
+      "mustAvoid": [
+        "startup hustle",
+        "generic deep work"
+      ]
+    },
+    {
+      "domain": "competitive fencing footwork drill",
+      "audience": "athlete drifting during basic repetitions",
+      "stakes": "selection bout will expose sloppy distance",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Catarina",
+      "requiredBeat": "Catarina adds a distance target and scoring consequence so the drill becomes absorbing instead of automatic.",
+      "firstImage": "a foil tip tapping the same floor mark",
+      "mustInclude": [
+        "foil",
+        "floor mark",
+        "selection ladder"
+      ],
+      "mustAvoid": [
+        "sports montage",
+        "panic equals flow"
+      ]
+    },
+    {
+      "domain": "newborn photography session",
+      "audience": "photographer either rushes or overthinks every shot",
+      "stakes": "parents have only one calm hour",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "protagonistName": "David",
+      "requiredBeat": "David narrows the challenge to one light setup and one expression cue, then stays with the frame until timing replaces hurry.",
+      "firstImage": "softbox light falling across a sleeping blanket",
+      "mustInclude": [
+        "softbox",
+        "blanket clamp",
+        "one-hour window"
+      ],
+      "mustAvoid": [
+        "sentimental baby scene",
+        "camera gear flex"
+      ]
+    },
+    {
+      "domain": "marine navigation simulator",
+      "audience": "cadet overwhelmed by full-harbor scenarios",
+      "stakes": "assessment requires calm adjustments under changing weather",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Marit",
+      "requiredBeat": "Marit lowers the simulation one notch, then raises current speed until the task demands full attention without panic.",
+      "firstImage": "green radar sweep crossing a simulator screen",
+      "mustInclude": [
+        "radar sweep",
+        "current setting",
+        "assessment log"
+      ],
+      "mustAvoid": [
+        "boat adventure",
+        "overload as virtue"
+      ]
+    },
+    {
+      "domain": "tailor alterations bench",
+      "audience": "apprentice losing focus on repetitive hems",
+      "stakes": "wedding garments must leave by Friday",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "protagonistName": "Hiroshi",
+      "requiredBeat": "Hiroshi turns ten hems into a timed fit-and-finish challenge with immediate measurement feedback.",
+      "firstImage": "silver pins lined along dark wool",
+      "mustInclude": [
+        "silver pins",
+        "hem gauge",
+        "Friday garment rack"
+      ],
+      "mustAvoid": [
+        "craft nostalgia",
+        "speed over quality"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when adjust challenge and conditions so attention can enter the task instead of bouncing off it. is needed in a new scenario.",
+      "Choose the visible action that matches Flow rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Make the task one notch harder or easier until it demands attention without producing panic.",
+  "readingTimeMinutes": 12
+}

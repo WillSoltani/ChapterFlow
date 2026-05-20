@@ -1,0 +1,177 @@
+{
+  "chapterId": "what-every-body-is-saying-ch08",
+  "number": 8,
+  "title": "The Mind's Canvas",
+  "coreMove": "Treat the face as a managed display that becomes useful only when timing and the rest of the body give it weight.",
+  "sourcePressure": "The source sidecar frames the face as expressive but socially managed. The chapter can use smiles, lips, eyebrows, eyelids, jaw tension, gaze limits, timing, mismatch, and whole-body context, but must avoid micro-expression certainty and eye-contact honesty myths.",
+  "chapterSpecificMisunderstanding": "The weak version makes the face the secret screen of emotion. The writer must show that facial signals matter most when their timing, strain, or mismatch connects with the rest of the body.",
+  "sourceAlignmentTerms": [
+    "face",
+    "smile",
+    "eyelids",
+    "lips",
+    "jaw tension",
+    "gaze",
+    "timing",
+    "mismatch",
+    "managed display",
+    "whole-body context"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A micro-expression reveals the truth.",
+      "Eye contact proves honesty or avoidance proves deception.",
+      "A fake smile exposes a hidden feeling by itself."
+    ],
+    "counterintuition": [
+      "Most people think faces are unreliable, but actually tiny expressions reveal everything.",
+      "The eyes are windows to the soul.",
+      "A smile means comfort unless it is fake."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and read faces.",
+      "Watch someone's eyes to see if they are honest.",
+      "Practice spotting fake smiles in strangers."
+    ],
+    "examples": [
+      "Poker-table micro-expression tell.",
+      "Interrogation eye-contact myth.",
+      "Romantic date smile decoding.",
+      "Generic customer-service fake smile.",
+      "Face-only emotion labeling drill."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "pediatric hearing-test booth with a parent watching through glass",
+      "audience": "an audiologist deciding whether a parent understands the next test step",
+      "stakes": "a parent's managed smile can hide confusion that affects consent and cooperation",
+      "format": "scene",
+      "requiredBeat": "The parent smiles at the child through the booth glass, but the smile arrives late, the eyelids stay tight, and one hand keeps rereading the test card, so the audiologist pauses to explain the next tone series.",
+      "firstImage": "A child-sized headset hangs inside a quiet test booth.",
+      "mustInclude": [
+        "booth glass",
+        "test card",
+        "child-sized headset"
+      ],
+      "mustAvoid": [
+        "hospital discharge confusion",
+        "smile means fake",
+        "diagnosing fear from the face alone"
+      ]
+    },
+    {
+      "domain": "antique book fair dealer evaluating a restored first edition",
+      "audience": "a dealer weighing a seller's reaction without accusing anyone",
+      "stakes": "a valuable sale needs verification of restoration history, not a facial verdict",
+      "format": "predict_reveal",
+      "requiredBeat": "When the hinge repair is mentioned, the seller's eyebrows lift before the polite smile, her jaw sets while the receipt folder stays closed, and the dealer writes verify repair invoice instead of deciding she is hiding something.",
+      "firstImage": "A marbled endpaper opens beside a folded repair receipt.",
+      "mustInclude": [
+        "marbled endpaper",
+        "repair receipt",
+        "receipt folder"
+      ],
+      "mustAvoid": [
+        "auction repaired-frame scene",
+        "deception verdict",
+        "micro-expression certainty"
+      ]
+    },
+    {
+      "domain": "restaurant allergy conversation at a chef's counter",
+      "audience": "a server watching whether a guest's smile is social cover for concern",
+      "stakes": "a missed concern could create a safety risk, while an accusation would embarrass the guest",
+      "format": "dialogue",
+      "requiredBeat": "The guest smiles and says any sauce is fine, but the lips press flat after sesame is named, gaze drops to the allergy card, and the shoulders stay still, so the server asks the chef to confirm ingredients aloud.",
+      "firstImage": "A laminated allergy card lies beside a small dish of sauce.",
+      "mustInclude": [
+        "allergy card",
+        "sesame dish",
+        "chef's counter"
+      ],
+      "mustAvoid": [
+        "shellfish tasting-panel context",
+        "face-only safety decision",
+        "calling the guest dishonest"
+      ]
+    },
+    {
+      "domain": "architect presenting a ramp redesign to a disability advisory board",
+      "audience": "an architect noticing strain before the board formalizes objections",
+      "stakes": "the design can improve if the architect reads mismatch as invitation to ask, not as rejection",
+      "format": "decision_point",
+      "requiredBeat": "Two board members nod politely, but one jaw tightens as the slope diagram appears and the nod stops exactly when the landing width is named; the architect asks for the concern before defending the drawing.",
+      "firstImage": "A ramp slope diagram fills a portable projector screen.",
+      "mustInclude": [
+        "slope diagram",
+        "landing-width label",
+        "projector remote"
+      ],
+      "mustAvoid": [
+        "generic accessibility inspiration",
+        "nodding equals agreement",
+        "architect ego story"
+      ]
+    },
+    {
+      "domain": "family-owned bakery filming a local news segment after a health inspection",
+      "audience": "a producer helping a nervous owner speak plainly on camera",
+      "stakes": "the owner needs to communicate without letting a managed broadcast smile erase visible strain",
+      "format": "before_after",
+      "requiredBeat": "Before the camera rolls, the owner's smile drops whenever the inspection grade is named and her eyelids narrow toward the posted notice; after the producer rehearses the first sentence, the smile arrives with her torso turning back toward the ovens.",
+      "firstImage": "A posted inspection notice is taped beside trays of cooling rolls.",
+      "mustInclude": [
+        "inspection notice",
+        "camera tally light",
+        "cooling rolls"
+      ],
+      "mustAvoid": [
+        "artisan bread tasting panel",
+        "public-relations polish lecture",
+        "smile training as the solution"
+      ]
+    },
+    {
+      "domain": "university lab safety review after a chemical spill report",
+      "audience": "a lab manager listening to a graduate assistant describe what happened",
+      "stakes": "the report needs better reconstruction, but facial tension cannot become an accusation",
+      "format": "postmortem",
+      "requiredBeat": "In the timeline review, the assistant keeps steady eye contact, but his lips thin and jaw locks only at the waste-container step while his hands flatten the incident form, so the manager marks that step for verification.",
+      "firstImage": "A yellow incident form sits beside a labeled waste container.",
+      "mustInclude": [
+        "incident form",
+        "waste-container label",
+        "lab goggles"
+      ],
+      "mustAvoid": [
+        "eye contact means honesty",
+        "pseudo-forensics",
+        "deception chapter taking over"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "read smiles, eyelids, lips, jaw tension, gaze, timing, and mismatch as bounded facial evidence",
+      "combine facial timing with body, object, or topic context before interpreting",
+      "reject eye-contact honesty myths, micro-expression certainty, and face-only verdicts",
+      "choose a next move that verifies or clarifies without naming a hidden emotion"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Watch one polite facial expression today and write what happened before it, whether it arrived on time or late, and what the rest of the body or hands did at the same moment.",
+  "readingTimeMinutes": 12
+}

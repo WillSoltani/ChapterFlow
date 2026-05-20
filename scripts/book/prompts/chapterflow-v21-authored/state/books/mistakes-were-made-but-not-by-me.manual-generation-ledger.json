@@ -1,0 +1,614 @@
+{
+  "bookId": "mistakes-were-made-but-not-by-me",
+  "updatedAt": "2026-05-16T08:16:59.809Z",
+  "usedProtagonistNames": [
+    "Grace",
+    "Camille",
+    "James",
+    "Ingrid",
+    "Luca",
+    "Hadiya",
+    "Andrew",
+    "Sophie",
+    "Etienne",
+    "Marta",
+    "Daniel",
+    "Chiara",
+    "Claire",
+    "Julien",
+    "Anke",
+    "David",
+    "Isabel",
+    "Chidi",
+    "Hannah",
+    "Nicolas",
+    "Astrid",
+    "Michael",
+    "Paula",
+    "Akira",
+    "Laura",
+    "Mathieu",
+    "Frida",
+    "Ben",
+    "Catarina",
+    "Yusuf",
+    "Sarah",
+    "Lars",
+    "Giulia",
+    "Chris",
+    "Tomasz",
+    "Aanya",
+    "Emily",
+    "Vincent",
+    "Maja",
+    "Jack",
+    "Kasia",
+    "Aman",
+    "Megan",
+    "Olivier",
+    "Marit",
+    "Sam",
+    "Javier",
+    "Adaeze",
+    "Anna",
+    "Henrik",
+    "Manon",
+    "Ryan",
+    "Pablo",
+    "Lin"
+  ],
+  "usedExampleDomains": [
+    "a hospital medication-incident review where a nurse manager is tempted to write that a dose was delayed",
+    "a seed-stage startup postmortem after a failed enterprise pilot",
+    "a youth soccer club email after a coach berated a referee",
+    "a university chemistry lab spill review after a graduate student left a reagent uncapped",
+    "a municipal snow-removal memo after two blocks were missed during an overnight storm",
+    "a family care rota after an adult daughter misses a pharmacy pickup for her father",
+    "a marathon trainee who keeps running on a sore tendon after buying an expensive race package",
+    "a school district technology committee defending a tablet purchase after teachers report low use",
+    "a neighborhood restaurant owner defending a costly pizza oven that slows service",
+    "a family investment club holding a losing clean-energy stock because selling would admit a bad call",
+    "a museum membership director defending a failed exhibit theme after donors praised the concept",
+    "an e-bike commuter defending a risky route because she already told friends it was the perfect switch from driving",
+    "a hiring panel reviewing two candidates after a structured interview",
+    "a condo board noise dispute between an upstairs pianist and a downstairs shift worker",
+    "a newsroom correction meeting after a local profile framed a neighborhood group as obstructionist",
+    "a youth rugby referee committee reviewing parent complaints after a regional final",
+    "a scholarship committee reading essays from urban and rural applicants",
+    "a product design review for a banking app used by elderly customers",
+    "siblings reconstructing a hospital visit before dividing care duties for their mother",
+    "a software outage timeline where the product lead remembers warning engineering earlier than the messages show",
+    "a co-parenting exchange after a missed school pickup",
+    "a landlord deposit dispute over a scratched oak floor",
+    "a surgical handoff review after a missing allergy bracelet",
+    "an amateur choir committee revisiting why a long-time accompanist quit",
+    "a school counselor interviewing a ten-year-old after a playground injury report",
+    "an addiction clinic case conference where staff read missed appointments as denial",
+    "a speech-language assessment for a preschooler in a bilingual household",
+    "a workplace investigator reviewing a harassment complaint without assuming the first narrative is complete",
+    "a nonprofit youth mentor interpreting a teenager's silence as trauma disclosure",
+    "a hospital quality-improvement analyst checking a senior consultant's theory about readmissions",
+    "a campus security investigation into stolen lab laptops",
+    "a public defender reviewing a signed confession from a frightened nineteen-year-old",
+    "a corporate compliance inquiry into a missing vendor payment",
+    "a university misconduct panel reviewing lab notebook alterations",
+    "a neighborhood fire investigation where a disliked tenant becomes the easy arson suspect",
+    "an innocence clinic deciding whether to reopen a decade-old conviction file",
+    "a breakfast argument over a forgotten allergy-safe school snack",
+    "a daycare pickup conflict after a delayed train",
+    "a renovation budget meeting between spouses after a surprise plumbing bill",
+    "a holiday visit where one spouse remembers every slight from the other's family",
+    "new parents arguing over night feeds after three weeks without sleep",
+    "a retirement-planning disagreement after one spouse hides anxiety about savings",
+    "a union-management safety committee after a bruising lockout",
+    "a neighborhood redevelopment forum between long-time residents and new apartment owners",
+    "an online fan community split after moderators banned a popular contributor",
+    "a regional school merger committee balancing two towns with a long rivalry",
+    "a museum repatriation working group after a disputed exhibit label",
+    "a refugee association board split between older arrivals and newly arrived families",
+    "a restaurant manager responding after a kitchen missed an allergy note",
+    "a nonprofit director correcting a donor report that overstated program reach",
+    "a teenager telling a neighbor she dented a borrowed car",
+    "an airline operations lead apologizing for a preventable passenger rebooking failure",
+    "a software security lead disclosing a delayed patch to customers",
+    "siblings repairing a caregiving breach after one person carried hospital paperwork alone"
+  ],
+  "usedExampleAnchors": [
+    "the phrase \"mistakes were made\"",
+    "Leon Festinger",
+    "the smoker contradiction",
+    "bias blind spot",
+    "naive realism",
+    "Anthony Greenwald",
+    "the self-justifying historian",
+    "arrogance control",
+    "suggestive child interviews",
+    "Reid-style interrogation culture",
+    "jumping to convictions",
+    "happy versus unhappy partner framing",
+    "attribution split",
+    "us-versus-them escalation",
+    "injury as identity",
+    "Vermont Public non-apology context",
+    "clear ownership sentence"
+  ],
+  "usedHookFrames": [
+    "ch01: concrete scene revealing Hear the sentence where ownership disappears, then",
+    "ch02: concrete scene revealing When contradiction hurts, identify whether the person",
+    "ch03: concrete scene revealing Treat your own certainty as one perspective",
+    "ch04: concrete scene revealing Before trusting a vivid memory, ask what",
+    "ch05: concrete scene revealing Turn a confident helping story into a",
+    "ch06: concrete scene revealing Slow the jump from suspicion to certainty",
+    "ch07: concrete scene revealing Translate one permanent indictment back into the",
+    "ch08: concrete scene revealing Preserve the reality of a wound without",
+    "ch09: concrete scene revealing Make dignity mean surviving an unflattering truth"
+  ],
+  "usedCounterFrames": [
+    "ch01: avoid simple moralizing; show Treating self-justification as obvious lying by bad people, instead of",
+    "ch02: avoid simple moralizing; show Reducing cognitive dissonance to ordinary discomfort or inconsistency,",
+    "ch03: avoid simple moralizing; show Turning blind spots into a lecture about other people's prejudice rath",
+    "ch04: avoid simple moralizing; show Making the chapter a generic warning that memory is fallible, rather t",
+    "ch05: avoid simple moralizing; show Attacking therapy, clinicians, or expertise broadly instead of targeti",
+    "ch06: avoid simple moralizing; show Casting the legal problem as a few corrupt officials rather than ordin",
+    "ch07: avoid simple moralizing; show Turning the chapter into generic relationship advice, apology scripts,",
+    "ch08: avoid simple moralizing; show Equating all harms, flattening historical injuries, or jumping to conf",
+    "ch09: avoid simple moralizing; show Turning owning up into a nicer apology script or turning letting go in"
+  ],
+  "usedTryThisNowFrames": [
+    "ch01: Take one explanation you gave this week and underline every verb; rewrite the one sentence where the actor vanished so the action and repair step are visible.",
+    "ch02: Name one choice you defended recently; write one fact that would make you revise it and one excuse that merely makes it feel better.",
+    "ch03: Before your next disagreement, write one sentence beginning \"My read may be shaped by...\" and fill it with a concrete loyalty, fear, or prior commitment.",
+    "ch04: Pick one conflict memory you tell often; write the one detail that would make you look worse and check whether it is absent, minimized, or disputed.",
+    "ch05: For one judgment you feel sure about, write the sentence \"If I am wrong, I would expect to see...\" and name one observation that could actually unsettle you.",
+    "ch06: In one current judgment, write the strongest fact against your first suspect or theory before you add another fact for it.",
+    "ch07: Take one complaint about someone close to you and rewrite it from \"they are\" into \"in that moment, under these conditions, they did...\" without excusing the harm.",
+    "ch08: For one group you belong to, write two true sentences: what was done to us, and what that does not give us permission to do now.",
+    "ch09: Write one ownership sentence using a clear verb: I chose, ignored, delayed, defended, or avoided. Add one consequence you accept and one repair action you will take."
+  ],
+  "usedQuizExplanationFrames": [],
+  "rejectedFrames": [
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+      "surface": "hook",
+      "frame": "Do not open with a celebrity scandal or a generic apology speech."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+      "surface": "hook",
+      "frame": "Avoid the shell where a public figure stands at a podium and dodges blame."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+      "surface": "counterintuition",
+      "frame": "Do not frame it as people lie because they are selfish."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+      "surface": "counterintuition",
+      "frame": "Avoid simple hypocrisy language without the identity cost."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+      "surface": "tryThisNow",
+      "frame": "Do not ask for a broad apology audit."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+      "surface": "tryThisNow",
+      "frame": "Avoid a reusable journaling timer."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+      "surface": "examples",
+      "frame": "No boardroom crisis statement as the default scene."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch01",
+      "surface": "examples",
+      "frame": "No courtroom confession preview."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+      "surface": "hook",
+      "frame": "Do not open with a generic bad habit at a kitchen table."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+      "surface": "hook",
+      "frame": "Avoid \"everyone knows this feeling\" as the first move."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+      "surface": "counterintuition",
+      "frame": "Do not say contradiction always leads to learning."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+      "surface": "counterintuition",
+      "frame": "Avoid treating certainty after commitment as proof of wisdom."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+      "surface": "tryThisNow",
+      "frame": "No generic pros-and-cons list."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+      "surface": "tryThisNow",
+      "frame": "No broad values exercise."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+      "surface": "examples",
+      "frame": "No repeated smoker scenes beyond the source anchor."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+      "surface": "examples",
+      "frame": "No failed prophecy imitation as a fictional cult scene."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+      "surface": "hook",
+      "frame": "Do not start with red-team versus blue-team politics."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+      "surface": "hook",
+      "frame": "Avoid a generic argument at Thanksgiving."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+      "surface": "counterintuition",
+      "frame": "Do not make the lesson \"everyone is biased\" and stop there."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+      "surface": "counterintuition",
+      "frame": "Avoid scolding language about prejudice."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+      "surface": "tryThisNow",
+      "frame": "No vague empathy prompt."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+      "surface": "tryThisNow",
+      "frame": "No broad perspective-taking exercise without evidence."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+      "surface": "examples",
+      "frame": "No social-media feed as default shell."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch03",
+      "surface": "examples",
+      "frame": "No classroom debate as the main repeated setting."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+      "surface": "hook",
+      "frame": "Do not open with childhood nostalgia."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+      "surface": "hook",
+      "frame": "Avoid a generic lost-keys memory trick."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+      "surface": "counterintuition",
+      "frame": "Do not say vivid memories are always false."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+      "surface": "counterintuition",
+      "frame": "Avoid reducing memory to brain storage."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+      "surface": "tryThisNow",
+      "frame": "No broad diary prompt."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+      "surface": "tryThisNow",
+      "frame": "No \"ask someone what they remember\" without a specific disputed action."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+      "surface": "examples",
+      "frame": "No courtroom eyewitness scene; save legal pressure for the law chapter."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch04",
+      "surface": "examples",
+      "frame": "No repeated couple argument scene; save marriage pressure for ch7."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+      "surface": "hook",
+      "frame": "Do not open with a therapist as villain."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+      "surface": "hook",
+      "frame": "Avoid a lab-coat caricature."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+      "surface": "counterintuition",
+      "frame": "Do not imply compassion makes people less reliable by itself."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+      "surface": "counterintuition",
+      "frame": "Avoid \"science beats feelings\" as a blunt frame."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+      "surface": "tryThisNow",
+      "frame": "No generic evidence checklist."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+      "surface": "tryThisNow",
+      "frame": "No broad \"be skeptical\" instruction."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+      "surface": "examples",
+      "frame": "No courtroom child-abuse case details beyond the source boundary."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+      "surface": "examples",
+      "frame": "No medical diagnosis drama as the only clinical setting."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+      "surface": "hook",
+      "frame": "Do not open with a dramatic murder scene."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+      "surface": "hook",
+      "frame": "Avoid detective-show pacing."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+      "surface": "counterintuition",
+      "frame": "Do not say only corrupt actors resist innocence."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+      "surface": "counterintuition",
+      "frame": "Avoid making confession equal truth."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+      "surface": "tryThisNow",
+      "frame": "No citizen legal checklist."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+      "surface": "tryThisNow",
+      "frame": "No generic \"keep an open mind\" prompt."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+      "surface": "examples",
+      "frame": "No real named case unsupported by source."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch06",
+      "surface": "examples",
+      "frame": "No courtroom closing argument as the central shell."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+      "surface": "hook",
+      "frame": "Do not start with a generic kitchen fight."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+      "surface": "hook",
+      "frame": "Avoid wedding-ring symbolism."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+      "surface": "counterintuition",
+      "frame": "Do not say both sides are equally wrong in every conflict."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+      "surface": "counterintuition",
+      "frame": "Avoid \"just communicate better\"."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+      "surface": "tryThisNow",
+      "frame": "No broad gratitude list."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+      "surface": "tryThisNow",
+      "frame": "No generic date-night assignment."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+      "surface": "examples",
+      "frame": "No repeated dishes-in-sink scenario."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+      "surface": "examples",
+      "frame": "No infidelity plot."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+      "surface": "hook",
+      "frame": "Do not open with a named war or current political conflict."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+      "surface": "hook",
+      "frame": "Avoid flags, battlefields, and casualty imagery."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+      "surface": "counterintuition",
+      "frame": "Do not imply real wounds should be forgotten."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+      "surface": "counterintuition",
+      "frame": "Avoid false equivalence."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+      "surface": "tryThisNow",
+      "frame": "No broad forgiveness prompt."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+      "surface": "tryThisNow",
+      "frame": "No peace-talk fantasy."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+      "surface": "examples",
+      "frame": "No international conflict simulation."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+      "surface": "examples",
+      "frame": "No family argument reused from ch7."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+      "surface": "hook",
+      "frame": "Do not open with a tearful public apology."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+      "surface": "hook",
+      "frame": "Avoid redemption-arc sentimentality."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+      "surface": "counterintuition",
+      "frame": "Do not promise forgiveness as the reward for ownership."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+      "surface": "counterintuition",
+      "frame": "Avoid \"letting go means moving on\"."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+      "surface": "tryThisNow",
+      "frame": "No generic write-an-apology prompt."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+      "surface": "tryThisNow",
+      "frame": "No blanket forgiveness exercise."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+      "surface": "examples",
+      "frame": "No dramatic courtroom apology."
+    },
+    {
+      "chapterId": "mistakes-were-made-but-not-by-me-ch09",
+      "surface": "examples",
+      "frame": "No deathbed reconciliation."
+    }
+  ],
+  "chapterStatuses": {
+    "mistakes-were-made-but-not-by-me-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 1,
+      "checkedAt": "2026-05-16T06:49:03.435Z"
+    },
+    "mistakes-were-made-but-not-by-me-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:16:59.810Z"
+    },
+    "mistakes-were-made-but-not-by-me-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-16T06:53:38.246Z"
+    },
+    "mistakes-were-made-but-not-by-me-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 4,
+      "checkedAt": "2026-05-16T06:55:25.554Z"
+    },
+    "mistakes-were-made-but-not-by-me-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 5,
+      "checkedAt": "2026-05-16T06:57:10.205Z"
+    },
+    "mistakes-were-made-but-not-by-me-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:16:24.082Z"
+    },
+    "mistakes-were-made-but-not-by-me-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 9,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-16T07:00:37.332Z"
+    },
+    "mistakes-were-made-but-not-by-me-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:16:24.007Z"
+    },
+    "mistakes-were-made-but-not-by-me-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 12,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T07:03:45.834Z"
+    }
+  }
+}

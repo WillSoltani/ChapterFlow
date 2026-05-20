@@ -1,0 +1,487 @@
+{
+  "bookId": "made-to-stick",
+  "updatedAt": "2026-05-18T15:01:18.570Z",
+  "usedProtagonistNames": [
+    "Sarah",
+    "Mathieu",
+    "Ingrid",
+    "Daniel",
+    "Catarina",
+    "Akira",
+    "Claire",
+    "Jonas",
+    "Camille",
+    "Thomas",
+    "Sofia",
+    "Aanya",
+    "James",
+    "Juliette",
+    "Marco",
+    "Astrid",
+    "Kiran",
+    "Marta",
+    "Rachel",
+    "Lars",
+    "Chiara",
+    "David",
+    "Chidi",
+    "Anke",
+    "Grace",
+    "Hugo",
+    "Kasia",
+    "Sam",
+    "Layla",
+    "Luca",
+    "Emily",
+    "Nicolas",
+    "Frida",
+    "Ben",
+    "Tomas",
+    "Adaeze"
+  ],
+  "usedExampleDomains": [
+    "emergency-room triage board redesign",
+    "municipal snowplow routing",
+    "independent bookstore buying list",
+    "community theater safety rehearsal",
+    "family-run cheese counter opening routine",
+    "museum audio-guide redesign",
+    "coastal flood-insurance town hall",
+    "vocational welding safety demo",
+    "public-radio pledge script rewrite",
+    "pharmacy vaccine reminder redesign",
+    "art-history museum label for children",
+    "software incident postmortem",
+    "airport baggage-claim signage",
+    "rural broadband grant application",
+    "restaurant allergen training",
+    "climate adaptation workshop for farmers",
+    "youth orchestra rhythm rehearsal",
+    "housing-policy explainer for tenants",
+    "fish-market freshness claim",
+    "railway maintenance budget hearing",
+    "consumer sunscreen testing",
+    "youth-sports concussion policy",
+    "home energy retrofit estimate",
+    "public-library program report",
+    "factory hearing-protection campaign",
+    "regional blood-donor recruitment",
+    "apprentice electrician retention talk",
+    "urban tree-canopy vote",
+    "university financial-aid appeal",
+    "search-and-rescue volunteer onboarding",
+    "mountain-rescue avalanche briefing",
+    "bakery sourdough apprenticeship",
+    "neonatal ward handoff training",
+    "bike-share repair shop training",
+    "tenant-organizing meeting",
+    "industrial-design lab constraint exercise"
+  ],
+  "usedExampleAnchors": [
+    "Commanders Intent",
+    "Southwest Airlines",
+    "Hoover Adams",
+    "Nora Ephron",
+    "gap theory",
+    "JFKs moonshot",
+    "Aesops sour grapes",
+    "The Nature Conservancy",
+    "Jane Elliott",
+    "Velcro Theory of Memory",
+    "Barry Marshall and Robin Warren",
+    "Pam Laffin",
+    "human-scale statistics",
+    "one-person-versus-many framing",
+    "analytical framing",
+    "Floyd Lee",
+    "challenge, connection, and creativity plots",
+    "embedded narrative lesson"
+  ],
+  "usedHookFrames": [
+    "A cluttered meeting opens every simplicity lesson",
+    "The message is buried under too many slides",
+    "everyone expects X but gets Y",
+    "a shocking fact opens every section",
+    "an abstract word becomes a physical object every time",
+    "the room finally sees it",
+    "nobody believes the claim until a number appears",
+    "bring receipts as a generic line",
+    "one sad person replaces a statistic every time",
+    "make them care as generic command",
+    "a story travels after you leave repeated literally",
+    "plot carries the lesson as generic opener"
+  ],
+  "usedCounterFrames": [
+    "simple is not simplistic as a standalone thesis",
+    "less is more without a decision test",
+    "surprise is not enough repeated as a shell",
+    "curiosity is just attention continued",
+    "concrete is not colorful repeated flatly",
+    "vivid details always help",
+    "credibility is not authority repeated without proof",
+    "data beats stories",
+    "emotion is not manipulation stated abstractly",
+    "identity beats facts as a blanket rule",
+    "stories are not entertainment repeated without a test",
+    "story beats explanation always"
+  ],
+  "usedTryThisNowFrames": [
+    "write one sentence about your message",
+    "set a timer and cut words",
+    "open with a surprising fact",
+    "ask what they do not know",
+    "add a concrete example",
+    "picture it clearly",
+    "add a statistic",
+    "find an expert quote",
+    "add a human face",
+    "ask why it matters",
+    "tell a story about your idea",
+    "add a beginning middle and end"
+  ],
+  "usedQuizExplanationFrames": [
+    "because the proof is inspectable, not because it sounds official",
+    "because the concrete hook serves the principle rather than replacing it",
+    "because curiosity is aimed back at the core, not left as surprise"
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "hook",
+      "frame": "A cluttered meeting opens every simplicity lesson"
+    },
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "hook",
+      "frame": "The message is buried under too many slides"
+    },
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "counterintuition",
+      "frame": "simple is not simplistic as a standalone thesis"
+    },
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "counterintuition",
+      "frame": "less is more without a decision test"
+    },
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "tryThisNow",
+      "frame": "write one sentence about your message"
+    },
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "tryThisNow",
+      "frame": "set a timer and cut words"
+    },
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "examples",
+      "frame": "slide deck pruning as the only scene"
+    },
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "examples",
+      "frame": "generic startup pitch cleanup"
+    },
+    {
+      "chapterId": "made-to-stick-ch01",
+      "surface": "examples",
+      "frame": "kitchen rule board"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "hook",
+      "frame": "everyone expects X but gets Y"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "hook",
+      "frame": "a shocking fact opens every section"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "counterintuition",
+      "frame": "surprise is not enough repeated as a shell"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "counterintuition",
+      "frame": "curiosity is just attention continued"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "tryThisNow",
+      "frame": "open with a surprising fact"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "tryThisNow",
+      "frame": "ask what they do not know"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "examples",
+      "frame": "marketing launch shock stunt"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "examples",
+      "frame": "lecture starts with a quiz every time"
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "surface": "examples",
+      "frame": "mystery box prop"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "hook",
+      "frame": "an abstract word becomes a physical object every time"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "hook",
+      "frame": "the room finally sees it"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "counterintuition",
+      "frame": "concrete is not colorful repeated flatly"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "counterintuition",
+      "frame": "vivid details always help"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "tryThisNow",
+      "frame": "add a concrete example"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "tryThisNow",
+      "frame": "picture it clearly"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "examples",
+      "frame": "training mascot"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "examples",
+      "frame": "backpack donation prop"
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "surface": "examples",
+      "frame": "museum erosion display repeated from old package"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "hook",
+      "frame": "nobody believes the claim until a number appears"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "hook",
+      "frame": "bring receipts as a generic line"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "counterintuition",
+      "frame": "credibility is not authority repeated without proof"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "counterintuition",
+      "frame": "data beats stories"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "tryThisNow",
+      "frame": "add a statistic"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "tryThisNow",
+      "frame": "find an expert quote"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "examples",
+      "frame": "nonprofit dramatic photo from old package"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "examples",
+      "frame": "restaurant portion test from old package"
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "surface": "examples",
+      "frame": "medical miracle overclaim"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "hook",
+      "frame": "one sad person replaces a statistic every time"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "hook",
+      "frame": "make them care as generic command"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "counterintuition",
+      "frame": "emotion is not manipulation stated abstractly"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "counterintuition",
+      "frame": "identity beats facts as a blanket rule"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "tryThisNow",
+      "frame": "add a human face"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "tryThisNow",
+      "frame": "ask why it matters"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "examples",
+      "frame": "generic fundraiser with one child"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "examples",
+      "frame": "morale poster speech"
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "surface": "examples",
+      "frame": "family values dinner table"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "hook",
+      "frame": "a story travels after you leave repeated literally"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "hook",
+      "frame": "plot carries the lesson as generic opener"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "counterintuition",
+      "frame": "stories are not entertainment repeated without a test"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "counterintuition",
+      "frame": "story beats explanation always"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "tryThisNow",
+      "frame": "tell a story about your idea"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "tryThisNow",
+      "frame": "add a beginning middle and end"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "examples",
+      "frame": "customer-service story from old package"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "examples",
+      "frame": "assembly story from old package"
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "surface": "examples",
+      "frame": "values poster replaced by team legend"
+    }
+  ],
+  "chapterStatuses": {
+    "made-to-stick-ch01": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/made-to-stick-ch01.manual-plan.json",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-18T15:01:15.452Z"
+    },
+    "made-to-stick-ch02": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/made-to-stick-ch02.manual-plan.json",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-18T15:01:16.091Z"
+    },
+    "made-to-stick-ch03": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/made-to-stick-ch03.manual-plan.json",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-18T15:01:16.743Z"
+    },
+    "made-to-stick-ch04": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/made-to-stick-ch04.manual-plan.json",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-18T15:01:17.367Z"
+    },
+    "made-to-stick-ch05": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/made-to-stick-ch05.manual-plan.json",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-18T15:01:17.983Z"
+    },
+    "made-to-stick-ch06": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/made-to-stick-ch06.manual-plan.json",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 6,
+      "checkedAt": "2026-05-18T15:01:18.571Z"
+    }
+  }
+}

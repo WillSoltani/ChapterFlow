@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch21",
+  "number": 21,
+  "title": "Margin of Safety",
+  "coreMove": "Add enough buffer that normal variance cannot turn a good decision into a fragile one.",
+  "sourcePressure": "Action needs protection against uncertainty: slack, buffer, resilience, and practical protection against ordinary error and variance.",
+  "chapterSpecificMisunderstanding": "Treating margin as pessimism, waste, or financial formula instead of practical resilience.",
+  "sourceAlignmentTerms": [
+    "margin of safety",
+    "slack",
+    "buffer",
+    "uncertainty",
+    "resilience",
+    "ordinary error",
+    "variance"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "slack, buffer, uncertainty, and resilience",
+      "detail": "the heading index supports margin of safety through slack, buffer, uncertainty, and resilience",
+      "useIn": "both",
+      "phrasingHint": "Margin is the extra room that keeps reality from breaking a plan the first time it behaves normally."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for margin of safety",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think margin of safety is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Annika",
+      "domain": "a mountain hut reservation",
+      "audience": "a reader facing margin of safety in a concrete mountain hut reservation decision",
+      "stakes": "whether Annika preserves judgment quality before the situation slides into finance models",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Annika performs the chapter move by setting the foam model beside the review sheet, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the foam model lying beside the review sheet in the mountain hut reservation",
+      "mustInclude": [
+        "foam model",
+        "review sheet"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "finance models",
+        "reusing a previous chapter's mountain hut reservation shell"
+      ]
+    },
+    {
+      "protagonistName": "Elsa",
+      "domain": "a hospital oxygen ordering",
+      "audience": "a reader facing margin of safety in a concrete hospital oxygen ordering decision",
+      "stakes": "whether Elsa preserves judgment quality before the situation slides into finance models",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Elsa performs the chapter move by setting the annotated manuscript beside the referee note, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the referee note in the hospital oxygen ordering",
+      "mustInclude": [
+        "annotated manuscript",
+        "referee note"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "finance models",
+        "reusing a previous chapter's hospital oxygen ordering shell"
+      ]
+    },
+    {
+      "protagonistName": "Matilda",
+      "domain": "a construction crane lift plan",
+      "audience": "a reader facing margin of safety in a concrete construction crane lift plan decision",
+      "stakes": "whether Matilda preserves judgment quality before the situation slides into finance models",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Matilda performs the chapter move by setting the burn-rate slide beside the customer email, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the burn-rate slide against the counter in the construction crane lift plan",
+      "mustInclude": [
+        "burn-rate slide",
+        "customer email"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "finance models",
+        "reusing a previous chapter's construction crane lift plan shell"
+      ]
+    },
+    {
+      "protagonistName": "Bianca",
+      "domain": "a festival security staffing",
+      "audience": "a reader facing margin of safety in a concrete festival security staffing decision",
+      "stakes": "whether Bianca preserves judgment quality before the situation slides into finance models",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Bianca performs the chapter move by setting the sign-in sheet beside the folding chairs, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the folding chairs in the festival security staffing",
+      "mustInclude": [
+        "sign-in sheet",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "finance models",
+        "reusing a previous chapter's festival security staffing shell"
+      ]
+    },
+    {
+      "protagonistName": "Lucia",
+      "domain": "a home renovation contingency",
+      "audience": "a reader facing margin of safety in a concrete home renovation contingency decision",
+      "stakes": "whether Lucia preserves judgment quality before the situation slides into finance models",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lucia performs the chapter move by setting the case notes beside the scan image, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the case notes in the home renovation contingency",
+      "mustInclude": [
+        "case notes",
+        "scan image"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "finance models",
+        "reusing a previous chapter's home renovation contingency shell"
+      ]
+    },
+    {
+      "protagonistName": "Carla",
+      "domain": "a charter boat fuel planning",
+      "audience": "a reader facing margin of safety in a concrete charter boat fuel planning decision",
+      "stakes": "whether Carla preserves judgment quality before the situation slides into finance models",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Carla performs the chapter move by setting the sheet music beside the audition list, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the audition list in the charter boat fuel planning",
+      "mustInclude": [
+        "sheet music",
+        "audition list"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "finance models",
+        "reusing a previous chapter's charter boat fuel planning shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Add enough buffer that normal variance cannot turn a good decision into a fragile one.",
+      "detect the weak generic version: Treating margin as pessimism, waste, or financial formula instead of practical resilience.",
+      "distinguish margin of safety from nearby drift into finance models"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where margin of safety is active, then write the exact next visible move that would perform this chapter's move: add enough buffer that normal variance cannot turn a good decision into a fragile one.",
+  "readingTimeMinutes": 12
+}

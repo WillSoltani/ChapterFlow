@@ -1,0 +1,102 @@
+{
+  "bookId": "antifragile",
+  "title": "Antifragile: Things That Gain from Disorder",
+  "author": "Nassim Nicholas Taleb",
+  "thesisParagraph": "Antifragile argues that the useful question is not whether a system is strong in calm conditions, but how it responds to disorder. Fragile systems hide downside and are harmed by volatility. Robust systems endure and stay mostly unchanged. Antifragile systems can gain from bounded stress, error, variation, optionality, and consequence-bearing feedback. The book teaches the reader to look for asymmetry: where the downside lands, whether time has tested the structure, whether intervention removes signal or creates hidden harm, and whether people keep upside while exporting risk to others.",
+  "coreIdeas": [
+    {
+      "name": "Response to volatility",
+      "oneSentence": "Systems differ by whether volatility harms them, leaves them unchanged, or improves them.",
+      "mentalMove": "Classify the response curve before choosing protection, stress, or removal.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source",
+        "ch18.source"
+      ]
+    },
+    {
+      "name": "Bounded stress",
+      "oneSentence": "Some stressors teach only when the dose is survivable and the feedback is usable.",
+      "mentalMove": "Find the threshold between signal and damage.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch04.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Optionality and asymmetry",
+      "oneSentence": "Good uncertainty keeps upside open while limiting irreversible downside.",
+      "mentalMove": "Clip ruin first, then buy reversible rights and small experiments.",
+      "sourceAnchors": [
+        "ch10.source",
+        "ch11.source",
+        "ch12.source"
+      ]
+    },
+    {
+      "name": "Via negativa",
+      "oneSentence": "Removing known harm is often more reliable than adding clever interventions to opaque systems.",
+      "mentalMove": "Subtract the fragility amplifier before adding a fix.",
+      "sourceAnchors": [
+        "ch20.source",
+        "ch21.source",
+        "ch22.source"
+      ]
+    },
+    {
+      "name": "Skin in the game",
+      "oneSentence": "Judgment and ethics improve when decision-makers share the downside they impose.",
+      "mentalMove": "Trace who receives upside and who carries tail risk.",
+      "sourceAnchors": [
+        "ch23.source",
+        "ch24.source"
+      ]
+    }
+  ],
+  "targetReader": "A thoughtful operator, founder, analyst, clinician, manager, investor, or civic decision-maker who already distrusts simple certainty but needs a practical way to sort risk, intervention, experimentation, and responsibility.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "separate seductive surface strength from real exposure",
+      "make asymmetry visible through objects, ledgers, thresholds, and tails"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no chaos worship",
+      "no calling every hardship useful"
+    ]
+  },
+  "voiceSpecimens": [
+    "The system looks calm because nothing has asked it a hard question yet.",
+    "A spare part is waste only until the day it becomes memory.",
+    "Do not ask whether the stress is noble. Ask whether the downside is small enough to learn from.",
+    "The forecast can be wrong and still sound confident. The exposure table is less polite.",
+    "A clean fix is not clean if it buries the warning signal.",
+    "Your upside is not innocent when someone else is holding the tail.",
+    "Time does not certify everything, but it has a better audit trail than excitement."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches readers to embrace uncertainty in their personal and professional lives.",
+    "In this book, Taleb argues that people should become stronger through adversity.",
+    "The key takeaway is that resilience is important when facing modern challenges.",
+    "Try this now: set a timer for one minute and reflect on where you can be more antifragile.",
+    "What most people miss is that chaos can be a powerful teacher."
+  ],
+  "teachingArc": "The book starts by giving the reader the triad of fragile, robust, and antifragile, then sharpens the distinction through rebound, living systems, dose, and decentralized feedback. The middle chapters turn that diagnostic map into choices under uncertainty: bounded randomness, intervention restraint, payoff over prediction, barbell protection, and optionality. The later chapters deepen the mechanics through nonlinearity, time, and subtraction before ending with ethics: no one should keep optional upside while exporting the downside that makes others fragile.",
+  "forbiddenMoves": [
+    "Do not turn antifragility into motivational adversity talk.",
+    "Do not praise randomness without naming bounded downside and usable feedback.",
+    "Do not make Taleb sound like a generic productivity coach.",
+    "Do not flatten medicine, institutions, or expertise into crude anti-expert rhetoric.",
+    "Do not invent named studies or anecdotes beyond the source notes."
+  ]
+}

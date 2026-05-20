@@ -1,0 +1,199 @@
+{
+  "number": 2,
+  "title": "Anything That Can Go Wrong, Will",
+  "coreMove": "Stress-test a plan by asking what behavior its metric rewards, how the fix could backfire, and what future capability the plan may be borrowing from.",
+  "sourcePressure": "The source uses Murphy’s Law, perverse incentives, cobra effect, short-termism, and market failure to show how systems can produce unintended outcomes even from plausible plans.",
+  "chapterSpecificMisunderstanding": "Using Murphy’s Law as fatalism instead of as a disciplined search for incentives, loopholes, and delayed costs.",
+  "sourceAlignmentTerms": [
+    "Murphy's Law",
+    "perverse incentives",
+    "cobra effect",
+    "short-termism",
+    "market failure",
+    "rankings pressure",
+    "Atlanta"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "Atlanta high-stakes testing culture",
+      "detail": "the source cites adults correcting student answers when standardized-score pressure became the rewarded target",
+      "useIn": "both",
+      "phrasingHint": "Atlanta matters because the score stopped being a signal and became the thing adults were paid, praised, or punished to move."
+    },
+    {
+      "kind": "artifact",
+      "name": "hospital and college rankings",
+      "detail": "the source notes rankings pressure as another setting where measurement can redirect behavior",
+      "useIn": "fullRead",
+      "phrasingHint": "A ranking can begin as a mirror and end as a steering wheel."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The best plans fail",
+      "Murphy was right",
+      "Everything breaks eventually"
+    ],
+    "counterintuition": [
+      "Good intentions are not enough",
+      "Metrics can be dangerous",
+      "The fix can become the problem"
+    ],
+    "tryThisNow": [
+      "List three ways your plan could fail",
+      "Do a premortem",
+      "Look for incentives"
+    ],
+    "examples": [
+      "support team ticket quota with banned Priya",
+      "school attendance award",
+      "shopping app ban",
+      "quarterly training cuts copied from old draft"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Hannah, a public-library director rewarding branches for raw checkout volume",
+      "audience": "civic managers tempted by clean output metrics",
+      "stakes": "staff may push popular repeats while neglecting literacy outreach",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hannah moves the proposed leaderboard beside the mission statement and adds outreach-quality checks before the metric goes live",
+      "firstImage": "a laminate leaderboard propped against a cart of returned picture books",
+      "mustInclude": [
+        "branch leaderboard",
+        "summer reading flyers",
+        "quality check column"
+      ],
+      "mustAvoid": [
+        "generic dashboard metric",
+        "school test-score example"
+      ]
+    },
+    {
+      "domain": "Luca, a restaurant group owner offering bonuses for the lowest food waste",
+      "audience": "operators who use incentives to fix cost leaks",
+      "stakes": "chefs might under-prep and disappoint dinner guests to protect the bonus",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Luca predicts the loophole, watches one kitchen run out of salmon before nine, and rewrites the bonus around waste plus sellout complaints",
+      "firstImage": "the ice drawer smells clean because the salmon tray is already empty",
+      "mustInclude": [
+        "prep sheet",
+        "bonus memo",
+        "complaint tickets"
+      ],
+      "mustAvoid": [
+        "support-speed quota",
+        "generic restaurant pep talk"
+      ]
+    },
+    {
+      "domain": "Ingrid, a university residence coordinator using stricter quiet-hour penalties after noise complaints spike",
+      "audience": "student-life leaders balancing rules and adaptation",
+      "stakes": "students may move parties off-site into riskier settings",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ingrid asks resident assistants where noise will go after the fine doubles and changes the plan to include late common-room programming",
+      "firstImage": "“Where do they go when this fine works?”",
+      "mustInclude": [
+        "quiet-hours poster",
+        "resident assistant notes",
+        "common-room booking calendar"
+      ],
+      "mustAvoid": [
+        "plagiarism surveillance classroom",
+        "attendance award"
+      ]
+    },
+    {
+      "domain": "Tomás, a factory maintenance lead told to postpone lubrication checks to hit the monthly output target",
+      "audience": "frontline managers facing short-termism",
+      "stakes": "a prettier month could buy a line stoppage next quarter",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Tomás places the output target next to the bearing-failure log and refuses the cut that would spend machine health for monthly volume",
+      "firstImage": "At 5:40 a.m., Tomás hears the press line change pitch",
+      "mustInclude": [
+        "bearing-failure log",
+        "maintenance cart",
+        "monthly output target"
+      ],
+      "mustAvoid": [
+        "office training budget cut",
+        "warehouse operations chart"
+      ]
+    },
+    {
+      "domain": "Layla, a nonprofit grants manager designing a donor target for families housed within thirty days",
+      "audience": "mission-driven readers wary of metric capture",
+      "stakes": "caseworkers might favor easy placements and leave harder families waiting",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Layla reviews the first month, separates fast placements from hard-case neglect, and adds a weighted metric before the distortion becomes culture",
+      "firstImage": "It took Layla one month to see the missing families were not missing by accident",
+      "mustInclude": [
+        "donor report",
+        "caseworker notes",
+        "weighted metric"
+      ],
+      "mustAvoid": [
+        "school testing anchor as fictional example",
+        "generic nonprofit virtue story"
+      ]
+    },
+    {
+      "domain": "Pavel, a city bike-share planner considering a bounty for abandoned bikes returned to docks",
+      "audience": "public-service readers designing interventions in open systems",
+      "stakes": "the bounty could encourage people to move bikes out of docks just to collect returns",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Pavel sketches the bounty loop, spots the cobra-effect path, and changes the reward to verified staff-reported recoveries",
+      "firstImage": "What happens if the reward creates the abandoned bike?",
+      "mustInclude": [
+        "bike dock map",
+        "bounty flyer draft",
+        "verification log"
+      ],
+      "mustAvoid": [
+        "literal cobra history",
+        "generic policy debate"
+      ]
+    }
+  ],
+  "tryThisNowSpec": "For one plan you are about to reward or measure, write the sentence “People will get more of this by…” and finish it with the worst plausible behavior the metric could invite.",
+  "chapterId": "super-thinking-ch02",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the chapter-specific model in a fresh scenario for Anything That Can Go Wrong, Will",
+      "choose the visible action that performs the core move rather than naming the concept",
+      "explain the failure mode that appears when the model is used generically",
+      "evaluate tradeoffs and limits without sliding into certainty, cynicism, or manipulation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

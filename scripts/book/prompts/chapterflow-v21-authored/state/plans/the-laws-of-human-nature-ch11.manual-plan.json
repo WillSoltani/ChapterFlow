@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-laws-of-human-nature-ch11",
+  "number": 11,
+  "title": "Beware the Fragile Ego: The Law of Envy",
+  "coreMove": "Detect near-peer envy by tracking when praise, critique, distance, or concern begins to punish another person's rise.",
+  "sourcePressure": "This law exposes envy as disguised corrosion: another person's success becomes a wound to the self, especially among peers and near-equals.",
+  "chapterSpecificMisunderstanding": "Treating envy as obvious jealousy instead of a disguised force that often speaks in support, taste, standards, or concern.",
+  "sourceAlignmentTerms": [
+    "envy",
+    "fragile ego",
+    "near-equals",
+    "fatal friends",
+    "envier types",
+    "disguised hostility"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a generic \"people are not rational\" opener for Beware the Fragile Ego: The Law of Envy",
+      "opening with a definition of the law",
+      "starting with a vague office conflict"
+    ],
+    "counterintuition": [
+      "the obvious lesson is wrong because people are complicated",
+      "you think this is about others, but it is about you",
+      "the safest move is simply to be more self-aware"
+    ],
+    "tryThisNow": [
+      "pause and reflect for sixty seconds",
+      "write down three things you noticed",
+      "take a deep breath before reacting"
+    ],
+    "examples": [
+      "generic manager feedback scene",
+      "family dinner argument",
+      "classroom debate",
+      "coffee shop conversation",
+      "reused Slack-message anxiety shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "two pastry chefs shortlisted for the same magazine feature",
+      "audience": "a chef noticing her critique has become personal",
+      "stakes": "whether professional standards become a cover for sabotage",
+      "format": "reflection",
+      "requiredBeat": "she underlines every comment about the rival's technique and crosses out the lines that are really about being passed over",
+      "firstImage": "a proof sheet from a food magazine beside a sugared rolling pin",
+      "mustInclude": [
+        "proof sheet",
+        "award shortlist",
+        "recipe notes"
+      ],
+      "mustAvoid": [
+        "generic coworker promotion"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a graduate poetry workshop after one student's publication",
+      "audience": "a peer group where admiration turns sour",
+      "stakes": "whether critique becomes a socially acceptable attack",
+      "format": "dialogue",
+      "requiredBeat": "the instructor pauses the critique and asks which objections were present before the acceptance email arrived",
+      "firstImage": "a stapled poem packet with one acceptance email printed on top",
+      "mustInclude": [
+        "poem packet",
+        "acceptance email",
+        "critique notes"
+      ],
+      "mustAvoid": [
+        "generic classroom envy"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a small architecture firm where a junior designer wins a public commission",
+      "audience": "a principal tempted to call growth arrogance",
+      "stakes": "whether mentorship turns into quiet obstruction",
+      "format": "postmortem",
+      "requiredBeat": "the principal reviews when his feedback shifted from precise design notes to character warnings after the commission",
+      "firstImage": "a foam building model casting a long shadow across a drafting table",
+      "mustInclude": [
+        "foam model",
+        "commission letter",
+        "redline set"
+      ],
+      "mustAvoid": [
+        "generic creative jealousy"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a neighborhood running club after a new member qualifies for Boston",
+      "audience": "a club captain managing rank pain",
+      "stakes": "whether jokes and concern isolate the faster runner",
+      "format": "before_after",
+      "requiredBeat": "before naming envy, the captain calls it safety concern; after timing the comments, she sees they appear only after faster splits",
+      "firstImage": "a race bib pinned to a cork board under split times",
+      "mustInclude": [
+        "race bib",
+        "split chart",
+        "group chat printout"
+      ],
+      "mustAvoid": [
+        "generic sports rivalry"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "a newsroom book reviewer covering a former classmate's bestseller",
+      "audience": "a critic whose taste language may hide comparison pain",
+      "stakes": "whether readers get criticism or resentment",
+      "format": "decision_point",
+      "requiredBeat": "the reviewer hands the draft to an editor with one note: remove any line that only punishes the author's success",
+      "firstImage": "a galley copy covered with yellow tabs",
+      "mustInclude": [
+        "galley copy",
+        "review draft",
+        "conflict disclosure"
+      ],
+      "mustAvoid": [
+        "generic social media critique"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a startup alumni network where one founder raises a large round",
+      "audience": "a founder hearing concern used as a knife",
+      "stakes": "whether useful caution becomes contagious bitterness",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts the group will discuss fundamentals, then watches their concern focus only on the founder's visibility and praise",
+      "firstImage": "a cap-table spreadsheet open beside a celebration photo",
+      "mustInclude": [
+        "cap table",
+        "celebration photo",
+        "investor memo"
+      ],
+      "mustAvoid": [
+        "generic startup pitch"
+      ],
+      "openingDevice": "dialogue_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify envy disguised as principle",
+      "spot near-peer comparison pressure",
+      "respond to envy without becoming paranoid"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When someone's win bothers you, name the exact comparison it activates before you speak about their work or character.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Mary Shelley and Jane Williams",
+      "detail": "the source uses Shelley and Williams to show envy emerging inside friendship, admiration, proximity, and painful comparison",
+      "useIn": "both",
+      "phrasingHint": "Mary Shelley and Jane Williams keep envy close enough to hurt, where admiration and comparison start to blur."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

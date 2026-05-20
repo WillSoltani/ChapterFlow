@@ -1,0 +1,202 @@
+{
+  "chapterId": "seven-powers-ch03",
+  "number": 3,
+  "title": "Counter-Positioning",
+  "coreMove": "Find the business-model move that improves the entrant while making imitation painful for the incumbent.",
+  "sourcePressure": "Counter-positioning means a newcomer adopts a superior business model the incumbent will not mimic because copying would damage the existing business. The pressure is the incumbent trap, not novelty for its own sake.",
+  "chapterSpecificMisunderstanding": "Counter-positioning means being disruptive, cheaper, digital, or more innovative in a loose sense.",
+  "sourceAlignmentTerms": [
+    "counter-positioning",
+    "newcomer",
+    "superior business model",
+    "incumbent",
+    "anticipated damage",
+    "self-cannibalization",
+    "Scylla and Charybdis",
+    "invention"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Scylla and Charybdis",
+      "detail": "the source sidecar says the subtitle supports the incumbent being trapped between painful options",
+      "useIn": "deepRead",
+      "phrasingHint": "The incumbent is not blind; it is caught between copying the entrant and injuring the business that still pays the bills."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Counter-Positioning",
+      "A business has power when... repeated opener shell",
+      "any hook that starts with Strategy is... or Power is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter",
+      "generic moat-versus-no-moat contrast without the chapter mechanism"
+    ],
+    "tryThisNow": [
+      "Write down your top three advantages",
+      "Set a timer and reflect on your strategy",
+      "Ask yourself what matters most",
+      "generic benefit/barrier prompt reused without the chapter-specific test"
+    ],
+    "examples": [
+      "founder in a coffee shop reviewing a deck",
+      "generic boardroom whiteboard choice",
+      "classroom project analogy",
+      "spreadsheet-only SaaS pricing scene",
+      "reusing physical anchors from adjacent plans"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "mobile dental clinic selling subscription visits to employers",
+      "audience": "a reader facing mobile dental clinic selling subscription visits to employers",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sophie places the employer contract beside the clinic price sheet and marks the revenue line a traditional office would have to wound to match her offer.",
+      "firstImage": "The folding dental chair clicks open under a fluorescent warehouse light",
+      "mustInclude": [
+        "employer contract",
+        "clinic price sheet",
+        "route calendar"
+      ],
+      "mustAvoid": [
+        "generic healthcare innovation",
+        "dentist mirror shell"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "used-camera rental service competing with retail camera shops",
+      "audience": "a reader facing used-camera rental service competing with retail camera shops",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Julien tags one camera as rental-only and shows how the old retailer would lose a sale every time it copied the move.",
+      "firstImage": "At 6:42 p.m., Julien zips a rented lens into a padded case",
+      "mustInclude": [
+        "rental tag",
+        "new-equipment margin sheet",
+        "deposit receipt"
+      ],
+      "mustAvoid": [
+        "rented camera bag repeat",
+        "generic e-commerce disruption"
+      ]
+    },
+    {
+      "protagonistName": "Anya",
+      "domain": "low-cost legal forms platform serving uncontested tenant filings",
+      "audience": "a reader facing low-cost legal forms platform serving uncontested tenant filings",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Anya asks which line of hourly work the firm would have to erase, then highlights the routine filings her platform removes.",
+      "firstImage": "Which invoice would they volunteer to shrink? Anya asks",
+      "mustInclude": [
+        "hourly invoice",
+        "filing checklist",
+        "flat-fee page"
+      ],
+      "mustAvoid": [
+        "generic law-tech hype",
+        "courtroom drama"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "modular furniture refurbisher offering buy-back credits",
+      "audience": "a reader facing modular furniture refurbisher offering buy-back credits",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chidi pins returned chair tags under the new-stock price list and traces where the incumbent would poison its own premium shelf.",
+      "firstImage": "Sawdust gathers under the returned chair legs before the store opens",
+      "mustInclude": [
+        "returned chair tags",
+        "new-stock price list",
+        "buy-back credit slip"
+      ],
+      "mustAvoid": [
+        "generic sustainability branding",
+        "warehouse shell"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "no-commission music venue booking platform",
+      "audience": "a reader facing no-commission music venue booking platform",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Marco has you choose whether the incumbent copies the no-commission screen or protects the commission ledger, then reveals the lost-fee column.",
+      "firstImage": "You can hear the opening band through the office wall while Marco waits for the answer",
+      "mustInclude": [
+        "commission ledger",
+        "booking screen",
+        "artist payout sheet"
+      ],
+      "mustAvoid": [
+        "generic creator economy",
+        "coffee shop founder scene"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "pay-per-use industrial washer service replacing equipment sales",
+      "audience": "a reader facing pay-per-use industrial washer service replacing equipment sales",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Rachel draws the dealer channel in red and asks which relationship breaks if the manufacturer copies the entrant.",
+      "firstImage": "Which customer wins if the old seller copies the new model?",
+      "mustInclude": [
+        "dealer agreement",
+        "usage meter",
+        "equipment quote"
+      ],
+      "mustAvoid": [
+        "generic subscription model",
+        "software-only example"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the incumbent harm that creates the barrier",
+      "separate superior business model from mere product novelty",
+      "evaluate whether an incumbent can copy without self-cannibalization"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the incumbent sentence: we cannot copy this because it would damage __. If the blank is empty, the entrant may be different but not counter-positioned.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "sourceAnchorsNote": "No chapter-specific named company anecdote was available in the source sidecar. Use the traceable subtitle and framework terms only; do not invent a streaming, airline, or retail history."
+}

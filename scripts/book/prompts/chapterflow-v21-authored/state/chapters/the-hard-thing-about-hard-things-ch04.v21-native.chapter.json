@@ -1,0 +1,301 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch04",
+  "number": 4,
+  "title": "This Time with Feeling",
+  "readingTimeMinutes": 12,
+  "hook": "The second alarm sounds while your hands are still dirty from the first one.",
+  "counterintuition": "The mistaken move is to trust experience automatically after a prior save. Instead, add decision hygiene because memory and fatigue can distort the next call.",
+  "tryThisNow": "Before your next repeated hard call, write four words on the page: tradeoff, owner, consequence, review. Fill one concrete sentence under each before acting.",
+  "keyTakeaway": "Recurring strain needs a visible decision structure so experience can inform the call without letting fatigue, memory, or numbness quietly choose for you.",
+  "breakdown": {
+    "fastRead": "A team finishes one crisis and the next one arrives before anyone has recovered. The first save created useful pattern recognition, but it also left memory in the room. People are tired, proud, defensive, and tempted to treat the new call as a rerun.\n\nRepeated pressure needs decision hygiene. Write the tradeoff, name the owner, state the consequence, and set the review signal before the call hardens. The point is not to become emotionless. The point is to keep emotion, fatigue, and old victory from making the decision in the background.",
+    "deepRead": "A manager hears the same bad news twice in nine days and notices a dangerous calm settle over the room. The first time, everyone argued, checked assumptions, and named the cost. The second time, people nod faster. They know the playbook. They also want the meeting to end.\n\nRecurring strain changes the risk. Experience can sharpen judgment because the leader has seen which signals matter and which fears are noise. It can also make the leader underreact because the first disaster did not kill the company, or overreact because the first scar still burns. Fatigue shortens patience. Memory pulls facts toward the old pattern. Numbness makes an unsafe ratio, a broken system, or a bad promise feel normal because everyone is tired of being alarmed.\n\nCalm is useful only when it is still reading.\n\nDecision hygiene gives the next call a clean surface. Tradeoff: what two real goods are colliding now, not last week? Owner: who has authority to execute and adjust? Consequence: who will feel the cost if this call is wrong? Review: what signal or time will force another look? These four words slow the slide from experienced judgment into automatic response. They also make ownership visible when the team is too tired to infer it.\n\nThe limit is that structure cannot remove the emotional load. A written grid will not make the evacuation painless or the staffing ratio safe. It will, however, keep the leader from hiding behind either stoicism or exhaustion. Repeated hard calls deserve fresh attention, even when they look familiar.",
+    "fullRead": "After the first outage, the operations chief acted fast and got praised for it. After the second outage, praise becomes a hazard. People expect the same quick shape: manual workaround, tired team, public apology, late-night recovery. The old move might still be right. It might also be a reflex wearing the costume of confidence.\n\nThe second hard call is harder to see clearly because it arrives with residue. There is the memory of what worked. There is the embarrassment of being here again. There is the private wish to prove the first fix was not temporary. There is the team's fatigue, which can make any decisive sentence feel merciful. A leader under recurring strain may call this calm. Sometimes it is numbness.\n\nAsk a direct question: if this were the first time, what would we inspect more carefully?\n\nThat question breaks the spell of repetition. The current tradeoff may differ from the old tradeoff. The old issue may have been speed versus cost, while the new one is safety versus trust. The old owner may be exhausted or too close to the first fix. The old consequence may have moved from internal mess to public risk. The review signal may need to be earlier because the team has less stamina left.\n\nA useful hygiene pass is almost embarrassingly plain. Write tradeoff, owner, consequence, review. Under tradeoff, use a sentence that forces both sides into the open: keeping lanes open protects departures but hides the system fault. Under owner, name one person who can make the overnight call without a committee. Under consequence, say who pays if the decision fails: crews, customers, patients, residents, guests, or the public. Under review, set the trigger before the room disperses: dawn error count, noon booking accuracy, second positive sample, staffing ratio, wind shift.\n\nYou are not writing this because you lack nerve. You are writing it because strain makes smart people skip steps they would normally respect. The second cycle creates a false intimacy with danger. It whispers, we know this shape, we survived it once, move. The page answers, maybe, but first show the tradeoff.\n\nPast experience deserves a seat in the room. It can tell you which alarms were false, which people stayed steady, which vendors can be trusted, and which promises became expensive. Give it that seat. Do not hand it the chair. The facts of the present call still need to be checked against the memory of the prior one.\n\nRepeated pressure also changes ownership. In a first crisis, people often forgive unclear authority because everyone is improvising. In the second, unclear authority becomes a signal that leadership learned too little. Naming the owner is not bureaucracy. It is a way of protecting tired people from making inconsistent local promises while believing someone else is coordinating the whole system.\n\nThe real test comes after the decision. A review signal must be strong enough to interrupt momentum. If the lab gets a second positive sample, the public threshold changes. If the dawn bag count stays above the line, the airport closes lanes again. If the staffing ratio crosses the unsafe trigger, the schedule is no longer a heroic puzzle. A review signal is a promise that the decision will not coast on yesterday's confidence.\n\nFatigue does not always look like collapse. Sometimes it looks like speed, certainty, or a room that stops arguing too soon. Decision hygiene keeps the room awake."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-michael-incident-log",
+      "title": "Michael Moves the Boundary",
+      "tags": ["wildfire", "review", "fatigue"],
+      "planSpec": {
+        "domain": "wildfire incident command after a second wind shift",
+        "audience": "an incident commander whose crew just contained one line and must choose a new evacuation zone",
+        "stakes": "fatigue makes underreaction tempting while homes sit in the changed path",
+        "format": "scene",
+        "requiredBeat": "the commander writes tradeoff, owner, consequence, and review time on the incident log before moving the evacuation boundary"
+      },
+      "scenario": "It took Michael, the incident director, one contained line to trust the wind map too quickly. Now the map curls at the edges on the hood of the command truck, and a second wind shift pushes toward homes outside the current evacuation boundary. Before he moves it, Michael has to decide whether the crew's fatigue is making underreaction feel reasonable. He writes tradeoff, owner, consequence, and review time on the incident log.",
+      "whatToDo": "Write the four hygiene fields before moving the boundary, then name the owner and the review time so the new wind path gets fresh attention.",
+      "whyItMatters": "The prior save helps Michael read the fire, but it can also make danger feel familiar. The incident log keeps memory from muting the present wind shift."
+    },
+    {
+      "exampleId": "ch04-ex02-nora-dawn-trigger",
+      "title": "Nora Sets the Dawn Trigger",
+      "tags": ["airport", "systems", "ownership"],
+      "planSpec": {
+        "domain": "airport baggage system recovery after two failures in one holiday week",
+        "audience": "an airport operations chief deciding whether to keep manual sorting overnight",
+        "stakes": "manual sorting protects departures but exhausts crews and hides the system fault",
+        "format": "decision_point",
+        "requiredBeat": "the chief refuses to call the first fix proof, assigns one owner for overnight manual sorting, and sets a dawn trigger for shutting lanes again"
+      },
+      "scenario": "Which is worse: another belt shutdown or a manual sort that hides the fault until crews are wrecked? Nora, the airport operations manager, stands under a row of unclaimed red-tagged bags as the conveyor stops for the second time in one holiday week. The first fix looked good for six hours. She refuses to call it proof, assigns one owner for overnight manual sorting, and must decide the dawn trigger for shutting lanes again.",
+      "whatToDo": "Treat the first fix as evidence, not proof. Assign one overnight owner, run manual sorting only under a written trigger, and shut lanes if the dawn count crosses it.",
+      "whyItMatters": "Manual sorting can protect departures while concealing the system fault. The trigger keeps fatigue from turning an emergency workaround into silent policy."
+    },
+    {
+      "exampleId": "ch04-ex03-isabel-unsafe-ratio",
+      "title": "Isabel Marks the Unsafe Trigger",
+      "tags": ["NICU", "staffing", "numbness"],
+      "planSpec": {
+        "domain": "neonatal ICU staffing after a flu outbreak and a resignation",
+        "audience": "a nurse director managing repeat shortage calls",
+        "stakes": "overusing the same nurses may preserve the schedule while increasing patient risk",
+        "format": "reflection",
+        "requiredBeat": "the director marks which memory from last week's save is helping and which is pushing her toward numb acceptance of unsafe ratios"
+      },
+      "scenario": "The black pen squeaks as Isabel circles the same two names on the neonatal ICU staffing grid. Last week's prior save worked because two senior nurses took extra shifts, but one has a fever and the staffing ratio is already near the unsafe trigger. Isabel marks which memory is helping her find coverage and which memory is pushing her toward numb acceptance of patient risk.",
+      "whatToDo": "Separate the useful lesson from last week's save from the dangerous urge to reuse the same nurses, then mark the unsafe trigger before filling the schedule.",
+      "whyItMatters": "Experience can identify reliable people, but fatigue can make unsafe ratios feel ordinary. The trigger protects patients from a repeated workaround."
+    },
+    {
+      "exampleId": "ch04-ex04-marco-render-check",
+      "title": "Marco Adds the Check Step",
+      "tags": ["film", "delivery", "quality"],
+      "planSpec": {
+        "domain": "film post-production house after a second corrupted render",
+        "audience": "a post supervisor with a festival deadline and a tired editing team",
+        "stakes": "rushing another export may miss the real fault and ruin delivery",
+        "format": "predict_reveal",
+        "requiredBeat": "the supervisor asks the team to predict the failure source, then requires a fresh owner and check step before another overnight render begins"
+      },
+      "scenario": "The edit suite monitor is dark except for a failed render log frozen at 97 percent. Marco, the post-production manager, asks each editor to predict the failure source before anyone starts another export. The reveal is uncomfortable: three people assumed the same plug-in, and no one owned the checksum. Before the overnight render begins, Marco must choose a fresh owner and a check step.",
+      "whatToDo": "Slow the export long enough to collect predictions, name a fresh owner, and add a check step before the tired team spends another night repeating the fault.",
+      "whyItMatters": "A second corrupted render is not just bad luck. The prediction and check step reveal whether the team is solving the fault or replaying the first response."
+    },
+    {
+      "exampleId": "ch04-ex05-amina-threshold-card",
+      "title": "Amina Sets the Public Threshold",
+      "tags": ["water lab", "public health", "threshold"],
+      "planSpec": {
+        "domain": "city water lab after a second contamination alert",
+        "audience": "a lab manager balancing public warning, retest protocol, and staff exhaustion",
+        "stakes": "a false calm risks public health; a panic alert damages trust",
+        "format": "dialogue",
+        "requiredBeat": "the manager has the lead tech state the tradeoff aloud, assigns the retest owner, and sets the public update threshold before samples leave the bench"
+      },
+      "scenario": "\"Are we really going to warn the public again?\" the lead tech asks beside sample vials and a laminated boil-water threshold card. Amina, the lab manager, hears exhaustion under the question. Before samples leave the bench, she has to decide whether calm is judgment or numbness. She asks him to state the tradeoff aloud, assigns the retest owner, and sets the public update threshold.",
+      "whatToDo": "Have the tech name the public-health and trust costs, assign the retest owner, and define the update threshold before fatigue softens the alert decision.",
+      "whyItMatters": "The lab cannot let embarrassment from the first alert govern the second. A threshold ties communication to evidence instead of mood."
+    },
+    {
+      "exampleId": "ch04-ex06-grace-noon-review",
+      "title": "Grace Replaces Lobby Apologies",
+      "tags": ["hotel", "service", "grid"],
+      "planSpec": {
+        "domain": "boutique hotel after a second weekend reservation-system outage",
+        "audience": "a general manager deciding whether to comp rooms, close bookings, or keep improvising",
+        "stakes": "front-desk staff are making inconsistent promises to guests",
+        "format": "before_after",
+        "requiredBeat": "the manager replaces ad hoc apologies with a written decision grid and a noon review signal for reopening bookings"
+      },
+      "scenario": "You see the lobby printer spit duplicate reservation slips onto the floor while Grace, the hotel manager, watches front-desk promises drift in three directions. The first outage ended with charm and comps. The second needs a decision grid. Before checkout lines form, Grace closes new bookings, writes when to comp rooms and when to relocate guests, and sets a noon review signal for reopening.",
+      "whatToDo": "Replace improvisation with a written decision grid, stop inconsistent promises, and use the noon review to decide when bookings can safely reopen.",
+      "whyItMatters": "Polite apologies worked once because the outage was brief. Repeating them now lets fatigue and guest pressure create a different policy at every desk."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch04-q01",
+        "prompt": "A support platform has a second outage after last week's all-night recovery. The VP wants to reuse the same manual process because it worked before. What should she add first?",
+        "choices": [
+          "A tradeoff-owner-consequence-review note for this outage, including a trigger for stopping the manual process.",
+          "A message praising the team's resilience so they feel trusted to repeat the save.",
+          "A longer postmortem after the outage, with no change to the current process."
+        ],
+        "correctIndex": 0,
+        "explanation": "The prior save is evidence, not permission to coast. The hygiene note tests the current tradeoff and adds a review signal before fatigue makes the workaround permanent.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q02",
+        "prompt": "A hospital unit solved last week's shortage by asking two nurses to stay late. This week the same names appear on the grid, and one nurse looks ill. Which risk is most specific?",
+        "choices": [
+          "The director is showing too much emotion about staffing.",
+          "The memory of the prior save may be pushing the director toward numb acceptance of an unsafe ratio.",
+          "The team needs less structure because everyone already understands the crisis."
+        ],
+        "correctIndex": 1,
+        "explanation": "The risk is not emotion itself. The repeated pattern can make an unsafe staffing ratio feel normal because it solved a nearby problem once.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q03",
+        "prompt": "A film team suffers a second corrupted render before a festival deadline. The supervisor says, 'Just run it again overnight.' Which action better fits decision hygiene?",
+        "choices": [
+          "Run the export immediately because speed matters more after a repeated failure.",
+          "Cancel delivery until the team feels rested enough to think clearly.",
+          "Ask for failure-source predictions, name a fresh owner, and add a check step before the next render."
+        ],
+        "correctIndex": 2,
+        "explanation": "The second failure needs a fresh inspection step. Speed alone may repeat the fault, while cancellation avoids the tradeoff instead of managing it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q04",
+        "prompt": "A lab manager faces a second possible contamination alert. Staff are tired and worried about public backlash. What distinguishes calm judgment from numbness?",
+        "choices": [
+          "Calm judgment uses a retest owner and public update threshold; numbness avoids warning because everyone is tired of alarms.",
+          "Calm judgment waits for total certainty before saying anything public.",
+          "Numbness is only present when staff are visibly upset or angry."
+        ],
+        "correctIndex": 0,
+        "explanation": "A threshold ties the decision to evidence and ownership. Avoiding the warning because the last one was exhausting lets fatigue govern public risk.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q05",
+        "prompt": "An airport operations chief keeps manual baggage sorting after a second system failure. The workaround protects departures but exhausts crews. Which review signal is strongest?",
+        "choices": [
+          "Keep manual sorting until passengers stop complaining.",
+          "Set a dawn error-count trigger that closes lanes again if the system fault remains above the limit.",
+          "Let each shift supervisor decide whether the crew can keep going."
+        ],
+        "correctIndex": 1,
+        "explanation": "The dawn trigger forces a new look before the workaround becomes hidden policy. Complaints and local discretion are too vague under crew exhaustion.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q06",
+        "prompt": "A manager says, 'We have been through this before, so we know what to do.' Which question should a peer ask to keep experience useful?",
+        "choices": [
+          "Can we skip the tradeoff discussion and trust the prior playbook?",
+          "Who is most emotionally affected by revisiting the problem?",
+          "What is different in this call: tradeoff, owner, consequence, or review signal?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The question gives experience a role without letting it dominate. A prior playbook helps only after the current call's differences are checked.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q07",
+        "prompt": "A hotel manager has a second reservation outage and front-desk staff are offering different comps. Which move addresses recurring strain rather than customer-service style?",
+        "choices": [
+          "Give staff warmer language for apologizing to angry guests.",
+          "Create a written decision grid, name when to comp or relocate, and set a noon review for reopening bookings.",
+          "Allow each desk agent to do what feels fair because rigid rules will sound cold."
+        ],
+        "correctIndex": 1,
+        "explanation": "The grid turns repeated pressure into consistent decisions. Warmer language may help tone, but it does not solve inconsistent promises under fatigue.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q08",
+        "prompt": "A product team shipped a quick fix last week and now sees the same defect in a higher-risk customer environment. The lead feels strangely relaxed. What should she do?",
+        "choices": [
+          "Trust the relaxed feeling because familiarity is valuable under pressure.",
+          "Ignore the prior fix entirely and design a new response from zero.",
+          "Use the prior fix as input, then write the current consequence and review trigger before deploying."
+        ],
+        "correctIndex": 2,
+        "explanation": "Familiarity can be useful and misleading. The current consequence and trigger prevent last week's success from muting today's higher-risk context.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q09",
+        "prompt": "A wildfire commander contained one line and now faces a second wind shift. Crews are exhausted, and homes sit outside the old boundary. Which action is best?",
+        "choices": [
+          "Wait because moving the boundary twice may look like poor judgment.",
+          "Move the boundary only if the crew says it still has energy.",
+          "Write tradeoff, owner, consequence, and review time on the incident log, then move the boundary if the new wind path requires it."
+        ],
+        "correctIndex": 2,
+        "explanation": "The incident log keeps the second call tied to present conditions. Appearance and crew stamina matter, but neither should decide the evacuation boundary alone.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch04-card01",
+      "front": "A similar hard call arrives again before the team recovers. What four words should go on the page?",
+      "back": "Tradeoff, owner, consequence, review. Those four fields keep memory and fatigue from silently replacing fresh judgment.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch04-card02",
+      "front": "Experience from the first save feels useful. What should you test before reusing it?",
+      "back": "Test what changed in the current call. The tradeoff, owner, consequence, or review signal may have shifted even if the surface problem looks familiar.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch04-card03",
+      "front": "The room is calm during a repeat crisis. What warning sign should you watch?",
+      "back": "Watch for numbness: faster nods, fewer objections, unsafe workarounds treated as normal, and review signals skipped because everyone wants the meeting done.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch04-card04",
+      "front": "A workaround succeeded once. How do you keep it from becoming hidden policy?",
+      "back": "Assign one owner and set a concrete review trigger before the workaround starts. The trigger should be strong enough to stop momentum.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch04-card05",
+      "front": "Fatigue makes a second call feel familiar. What should ownership look like?",
+      "back": "Name one person with authority to execute and adjust. Clear ownership protects tired teams from making local promises while assuming coordination exists elsewhere.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Build a small decision hygiene habit for repeated pressure. Before acting, identify the current tradeoff, the owner, the consequence of being wrong, and the review signal that will force a new look.",
+    "ifThenPlans": [
+      {
+        "context": "Repeat incident",
+        "plan": "If a problem returns after a recent fix, then ask what is different in tradeoff, owner, consequence, or review before reusing the old response."
+      },
+      {
+        "context": "Fatigued team",
+        "plan": "If the room agrees unusually fast, then pause and ask whether calm is judgment or numbness."
+      },
+      {
+        "context": "Temporary workaround",
+        "plan": "If a workaround starts, then assign one owner and set the trigger that will stop, change, or review it."
+      },
+      {
+        "context": "High-stakes communication",
+        "plan": "If public trust or safety is involved, then define the evidence threshold for an update before samples, reports, or estimates leave the room."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, find one repeated work problem and fill four one-sentence fields for it: tradeoff, owner, consequence, review signal.",
+    "weeklyPractice": "Once a week, review a repeated issue and ask whether the second response was genuinely updated or simply copied from the first save."
+  },
+  "memorableLines": [
+    {
+      "text": "Calm is useful only when it is still reading.",
+      "location": "breakdown.deepRead",
+      "why": "It separates steady judgment from numb underreaction."
+    },
+    {
+      "text": "Give it that seat. Do not hand it the chair.",
+      "location": "breakdown.fullRead",
+      "why": "It captures how to use past experience without surrendering to it."
+    },
+    {
+      "text": "Decision hygiene keeps the room awake.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the practical purpose of the four-part structure."
+    }
+  ]
+}

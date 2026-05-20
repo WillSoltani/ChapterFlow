@@ -1,0 +1,1073 @@
+{
+  "bookId": "pitch-anything",
+  "updatedAt": "2026-05-13T20:14:48.646Z",
+  "usedProtagonistNames": [
+    "Aanya",
+    "Adrian",
+    "Alice",
+    "Andrew",
+    "Anne",
+    "Anthony",
+    "Ben",
+    "Beth",
+    "Brian",
+    "Camille",
+    "Caroline",
+    "Catarina",
+    "Chris",
+    "Claire",
+    "Clara",
+    "Claudia",
+    "Colin",
+    "Dana",
+    "Daniel",
+    "David",
+    "Edward",
+    "Emma",
+    "Erik",
+    "Eva",
+    "Fiona",
+    "Frank",
+    "George",
+    "Grace",
+    "Harriet",
+    "Helen",
+    "Henry",
+    "Ingrid",
+    "Isabelle",
+    "Jack",
+    "Jill",
+    "Julia",
+    "Karen",
+    "Kathryn",
+    "Laura",
+    "Lisa",
+    "Louise",
+    "Lucia",
+    "Lukas",
+    "Marc",
+    "Marco",
+    "Marianne",
+    "Marie",
+    "Martin",
+    "Megan",
+    "Melissa",
+    "Neil",
+    "Nina",
+    "Nora",
+    "Olivia",
+    "Patrick",
+    "Peter",
+    "Petra",
+    "Rachel",
+    "Rebecca",
+    "Renee",
+    "Robert",
+    "Simon",
+    "Sofia",
+    "Stefan",
+    "Tara",
+    "Thomas",
+    "Three"
+  ],
+  "usedExampleDomains": [
+    "Asks About the Shelf",
+    "Asks for Tuesday or Thursday",
+    "Asks for the Fleet History",
+    "Asks for the Menu Slot",
+    "Blinks the Runway Red",
+    "Circles the Unopened Flood Map",
+    "Clips Two Orchard Prints to the Tailgate",
+    "Closes the Oven Spec Sheet",
+    "Crosses Out Attendance First",
+    "Crosses Out the Apology",
+    "Cuts the Donor Story to One Minute",
+    "Cuts the Restaurant Opening",
+    "Does Not Return to the Slides",
+    "Fans Three Invoice Dates",
+    "Finds the Missing Intrigue",
+    "Freezes on the Missed Gauge",
+    "Hears the Board Choose Disruption",
+    "Holds Up the Incident Calendar",
+    "Holds Up the Temperature Strip",
+    "Keeps the Diagrams Clipped Shut",
+    "Leaves the Appendix Closed",
+    "Limits the Device Mechanics",
+    "Marks Sounds Great",
+    "Marks the Discount Trap",
+    "Moves From Test Image to Booking",
+    "Moves the Megawatt Card Back",
+    "Moves the Terms Sheet",
+    "Names the Acre-Feet Before the Vote",
+    "Narrates One Failed Puzzle",
+    "Notes the Missing Readiness Test",
+    "Notices the Sleeve Land First",
+    "Opens With the Refunded Snorkel Tour",
+    "Passes Three Intent Forms",
+    "Pauses the Failure Clip",
+    "Places the Case-Spec Sheet",
+    "Plays Ten Seconds After the Schedule",
+    "Plays the Curb Step",
+    "Points to Delayed-Flight Receipts",
+    "Points to the Pallet Calendar",
+    "Points to the Shutdown Calendar",
+    "Projects the Tide Email",
+    "Puts the Terms Sheet Last",
+    "Reaches the Trigger Map on Time",
+    "Redirects to Training Standards",
+    "Reframes Recovery as Watts",
+    "Returns to Ownership Timing",
+    "Reveals the Banned Wrapper",
+    "Reveals the Unfillable Order",
+    "Rewrites the County Cost Frame",
+    "Scans Only One Scarf",
+    "Sets Down the Repair Calendar",
+    "Shuts the Robot Case",
+    "Slides the Circulation Map Forward",
+    "Slides the Placement Rubric Forward",
+    "Starts With the Floating Container",
+    "Stops Before the Appendix",
+    "Stops Before the Chorus",
+    "Stops on the Scene Title",
+    "Stops the Voicemail Early",
+    "Turns One Vineyard Row Amber",
+    "Turns the Feed Tray Toward Harvest",
+    "Uses the Warm Moment",
+    "Waits After the Tile Drop",
+    "Waits With the Sealed Envelope",
+    "Writes Ten Seconds on the Board",
+    "Writes the Trust Question"
+  ],
+  "usedExampleAnchors": [
+    "\"You never wanted the west block anyway,\" one sibling says in the vineyard office, where Anne's succession chart lies beside four untouched water glasses",
+    "A blue grant binder lies unopened beside Clara after the state review panel thanks her and moves to the next applicant",
+    "A blue temperature strip is sealed in a plastic sleeve beside Marianne's shipping box and appointment roster",
+    "A carved cedar visitor token rests beside Catarina's guide-training standard sheet and partnership dates",
+    "A clear sensor housing sits beside Louise's folded newspaper clipping and pilot criteria sheet",
+    "A cloth sack of speckled beans sits on the stainless prep counter beside Renee's purchase cadence note",
+    "A cracked violin rib sits under Claudia's bench lamp beside a linen repair calendar and tour itinerary",
+    "A dark runway diagram glows on Lukas's tablet at 5:40 a",
+    "A faded silk sleeve rests on black archival foam under Ingrid's viewing lamp",
+    "A frayed cable cross-section sits inside a clear case beside Colin's clinic generator log",
+    "A freezer-slot calendar is clipped to Laura's clipboard with frost on the edge",
+    "A glass corner sample throws a pale reflection onto Robert's case-spec sheet while the exhibit schedule lies open",
+    "A handheld controller rests on Nina's printed level map beside the retention metric card and license style guide",
+    "A hurricane trigger map is clipped under Anthony's marina gate access card beside the storm-season date",
+    "A mobile collection route sheet is tucked under Eva's backstage pass while the venue manager's next appointment approaches",
+    "A mud-stained bid folder sits beside Brian's six-beat card before the second municipal cleanup meeting",
+    "A patient-screening calendar glows on Olivia's laptop beside a consent-form packet and enrollment window note",
+    "A playback waveform freezes before the chorus on Chris's studio monitor",
+    "A scratched snorkel mask lies beside Isabelle's resort cancellation sheet and reef nursery photo",
+    "A sealed antistatic chip tray sits beside Peter's pilot-readiness checklist and batch quantity note",
+    "A shutdown calendar is taped above Jack's steel workbench, and the weld sample plate still smokes faintly",
+    "A stack of pipe diagrams remains clipped shut after Stefan's refinery retrofit meeting",
+    "A sterile navigation pointer rests beside David's CEO briefing card and pilot owner note",
+    "A turbine blade inspection sheet lies beside Ben's hangar key ring",
+    "A vaccine-clinic schedule sits beside Helen's badge printer on a folding table",
+    "A wet orange towline is coiled beside Andrew's tide-stained claim form in the port insurer's claims room",
+    "Adrian sets an irrigation valve tag on his paper drought allocation calendar beside the acre-feet figure",
+    "After the publisher routes the launch to national chains, Melissa sits in the back room of an independent bookstore with a marked-up proposal beside advance reader copies",
+    "Alice stops at the first line of a voicemail transcript on her benefits-cost sheet at a broker breakfast: \"I can't make my shift today",
+    "An incident calendar printed on legal paper sits beside Tara's red binder clip and flu-season deadline",
+    "At 10:00 a",
+    "At 11:20 a",
+    "At 1:25 p",
+    "At 2:00 p",
+    "At 4:30 p",
+    "At 6:15 a",
+    "At 9:15 a",
+    "Beth sets a yellow legal pad beside her stack of eviction notices and shelter cost table",
+    "Dana freezes a timecoded interview still on her laptop beside an embargo letter and competitor schedule",
+    "Emma lays two indigo scarves on a black lacquer showroom table in Milan beneath her trace tag scanner",
+    "Erik lines three feed pellets on a white sample tray beside his harvest-week table",
+    "George pauses helmet-camera footage on his waterproof monitor beside the simulator console",
+    "Grace leaves the hospital with the stainless tray insert still sealed in its evidence bag",
+    "Harriet slides a vellum circulation map from under a marble paperweight beside the preservation rulebook",
+    "Henry sets a cream ticket envelope sealed with a student name tag beside his estate gift form",
+    "Inside city hall at 8:50 a",
+    "Inside the historic arcade at 7:10 p",
+    "Julia keeps a sealed robot case beside a bucket of tangled fishing line and the holiday trash log",
+    "Karen pauses a vibration-test video at 9:05 a",
+    "Kathryn spreads receipt timestamps across a gate-delay report in the concession office after the airport lease interview",
+    "Lisa rewinds the curb-step video beside a prosthetic knee joint and gait data folder after the benefits review",
+    "Marc sets a charred porch baluster beside his clean loan term sheet on the inn's dining table",
+    "Megan sets a redacted purchase order beside her vial of black battery powder and a delivery deadline note in the bus maker's procurement room",
+    "Near the buyer's category desk at 8:30 a",
+    "Nora sets a station audio recorder beside a grease-stained timetable in the supervisor room",
+    "Patrick sets the laminated race calendar beside his crankset power report in the team bus",
+    "Petra studies six colored index cards on a ferry terminal bench, weighted by a token beside the lease vote date",
+    "Rebecca studies a printed pilot agenda at 3:40 p",
+    "Simon places two tile squares on a rubber mat under fluorescent station lights beside his impact height mark",
+    "Sofia holds her licensing packet in a manufacturer's materials lab: a patent diagram clipped to a graphite sample pouch, with the terms sheet on top",
+    "The dusty plat map is pinned under a horseshoe paperweight on the ranch table",
+    "The fake tide-change email hangs above a chart table with tide books open",
+    "The tray of pale rolls is still warm beside Martin at 6:20 a",
+    "The vineyard risk map is spread beside a corkscrew on the tasting counter",
+    "Thomas sits in the minor-league stadium office after the branch-opening call, with a seating chart folded beside sponsor lanyards",
+    "Three invoice copies are fanned across Edward's walnut table beside a month-end ledger and owner signature stamp"
+  ],
+  "usedHookFrames": [
+    "A circulation map can stop a design meeting from becoming a price hunt.",
+    "A floating container at dawn can carry more meaning than a company history ever will.",
+    "A frosted pallet calendar can make a discount request sound like the wrong question.",
+    "One blinking runway segment beats three clean pages of failure rates.",
+    "Six index cards on a ferry bench decide whether the megawatts can wait.",
+    "The apology paragraph stays crossed out when the room gets hard again.",
+    "The blue grant binder is perfect. The panel never reaches page one.",
+    "The purchase order sits beside black battery powder, and timing becomes the offer.",
+    "The route card, noise reading, and permit slot have to move as one short sequence.",
+    "The test clip pauses one second before failure, and the room finally wants the bracket.",
+    "The trial sounds promising until the screening calendar stays blank."
+  ],
+  "usedCounterFrames": [
+    "A complete pitch is not stronger because it includes every stage, but because no stage steals the next stage's job. Integration is rhythm: enough, then hand off.",
+    "A hookpoint is not a clever line, but an earned peak. If the room has not felt setup and consequence first, even the sharpest sentence lands like a slogan.",
+    "A pitch failure is not proof that the facts were weak, but evidence that the room stopped receiving them. Find that break before adding more proof.",
+    "Dense analysis is not the opener, but the second act. The first filter wants simple relevance, novelty, and threat before it lets careful proof earn attention.",
+    "Frame control is not louder confidence, but calmer interpretation control. The room may seem to be judging facts while it is actually judging the frame those facts have been placed inside.",
+    "Intrigue is not hiding information to look clever, but delaying the answer until the room has formed the right question. The reveal should satisfy curiosity tied to consequence.",
+    "Prizing is not acting unavailable, but making value conditional on real fit. The less needy stance comes from true standards, not from pretending the room should chase you.",
+    "STRONG is not a menu of clever moves but a pressure sequence. Each beat earns the next one before the room is asked to decide.",
+    "Story is not the long path to the point, but the shortest sequence that makes change and stakes visible. Background earns its place only when it moves the decision.",
+    "The reward is not swagger, but the ability to return to sequence under pressure. Confidence comes from controlled moves, not from a better mood.",
+    "Warm interest is not progress, but a place where delay can hide. The stronger move is to ask for the defined decision while the room still has energy to make it."
+  ],
+  "usedTryThisNowFrames": [
+    "Map your current pitch as six one-line beats from frame to decision. Mark the beat you usually rush or skip.",
+    "Name the one moment where value, timing, and consequence should meet. Move any early fact that weakens that peak.",
+    "Open your last pitch and mark the first minute where proof appears before stakes. Replace that minute with one reason the room should care now.",
+    "Pick one fact you usually explain early. Write the question, pause, or visible test that would make the room ask for that fact first.",
+    "Put your pitch on one page as six timed beats. Cut the longest beat until the next handoff can happen without a reset.",
+    "Take one dense claim and rewrite it as one visible change, one risk, and one reason the listener should care before any detail appears.",
+    "Write a four-beat pitch path from first moment to final point. Delete any line that only proves effort.",
+    "Write one real constraint on your offer. Turn it into a fit question you can ask before price, timing, or commitment comes up.",
+    "Write the exact decision your next pitch needs: who decides, by when, and what calendar entry, form, or signature proves it happened.",
+    "Write the pressure moment most likely to make you chase approval, then name the STRONG beat you will return to instead.",
+    "Write the weak label the room may put on your offer. Beside it, write the decision frame you want judged before any detail appears."
+  ],
+  "usedQuizExplanationFrames": [
+    "A hookpoint compresses value",
+    "A peak needs preparation",
+    "A peak needs setup",
+    "A pitch story needs a point",
+    "A substantive fit question protects outcomes",
+    "Avoidable cost meets supervisors inside budget responsibility",
+    "Calling the room irrational skips the useful work",
+    "Commitment has to become owner-specific",
+    "Community story changes what the numbers mean",
+    "Diagnosis has to come before more material",
+    "Disrespect is theater, not control",
+    "Dwell time changes the decision surface while still allowing rent to matter",
+    "Fast overexplaining often accepts the other side's terms",
+    "Filling silence for approval is neediness",
+    "Frame comes before output because it shapes how the output will be judged",
+    "Harvest timing reframes the decision around season value",
+    "History can support credibility later, but the insurer first needs the event, clock, and consequence",
+    "Integration depends on pacing and handoffs",
+    "Intrigue needs a meaningful gap, not confusion",
+    "Moment, change, stakes, and point make the data legible",
+    "Novelty must sharpen meaning",
+    "Once interest is live, more explanation can signal neediness",
+    "One answer respects the question",
+    "Origin can help when it serves the sequence",
+    "Over-qualifying can signal need",
+    "Praise does not create enrollment",
+    "Prizing needs substance",
+    "Proof should hand off to program timing",
+    "Readiness is the relevant fit standard",
+    "Real scarcity changes the order",
+    "Repeated recaps reset the room and slow momentum",
+    "STRONG is an order of handoffs",
+    "Schedule plus clip plus embargo concentrates timing and value",
+    "Simplicity is the entrance, not the whole case",
+    "Standards protect cultural value and partnership quality",
+    "Terms need perceived value before they can land",
+    "The CEO needs credible proof and a path to ownership",
+    "The amber row is faithful compression because it preserves the real risk and timing",
+    "The banned list needs a live deadline",
+    "The batch log changes what the oven is about",
+    "The board is judging disruption before art",
+    "The cabinet needs the full chain",
+    "The calendar choice is the decision",
+    "The child's loop transfers meaning quickly",
+    "The clip had done its job",
+    "The clock check shows the room never felt why the detail mattered",
+    "The crop needs a partner who can use it well",
+    "The cue must be faithful to the underlying risk",
+    "The curb video and avoided-care total make human and financial consequence meet",
+    "The decision frame keeps the meeting useful",
+    "The drop must point to real repair consequences",
+    "The empty tray carries patient uptake and makes sodium relevant",
+    "The estimate makes the room participate in the gap",
+    "The evidence should not disappear; it should build toward a concentrated moment",
+    "The fake notice gives the rule a local threat",
+    "The first failure is category and uptake: the panel filed the project as ordinary",
+    "The freeze creates attention for the pattern",
+    "The gap is the missing curiosity handoff",
+    "The issue is sequence",
+    "The issue is the room's interpretation",
+    "The key is not avoiding proof; it is refusing to let a challenge pull him off sequence once proof has done its job",
+    "The map translates the report into a simple, relevant threat",
+    "The method improves conduct and diagnosis under pressure",
+    "The method is a route, not a fixed transcript",
+    "The method makes failure more legible",
+    "The novelty is tied to provenance and counterfeit risk",
+    "The number gives the room a handle",
+    "The number needs timing to become a peak",
+    "The order shaped the judgment",
+    "The pause creates a business question the data can answer",
+    "The problem is not asking; it is asking before value is clear or without a concrete next step",
+    "The question is tied to consequence",
+    "The rancher is testing motive, not cable speed",
+    "The rebound story makes the loan financeable",
+    "The receipt turns leakage into a concrete loss the owners recognize",
+    "The reframe changes how features will be heard",
+    "The refunded tour connects ecology to the managers' visitor economy",
+    "The repair has a real constraint",
+    "The risk is mistaking friendliness for agreement",
+    "The rubric makes scarcity substantive",
+    "The sample bag and roster make the risk immediate and local",
+    "The scene title peaks because the workforce story prepared it",
+    "The sequence provides control, but rooms differ",
+    "The shelf question changes what the buyer is judging",
+    "The shop's capacity is selective",
+    "The shutdown calendar creates timing",
+    "The six-beat path gives control under pressure",
+    "The sleeve made the risk concrete",
+    "The story may be good, but integration failed",
+    "The three moments show change, stakes, and point without drowning the board",
+    "The trigger map differentiates the product",
+    "The voicemail makes the table relevant and emotionally salient without discarding analysis",
+    "The warm moment is the opening for a clean decision",
+    "Thinking can be real only if it has edges: who, by when, and what decision",
+    "Useful tension keeps the room active",
+    "Watts preserve the performance frame the coach respects while changing the meaning of recovery",
+    "When fit is clear, the pitch needs commitment",
+    "Without frame and story, the demo has no decision context",
+    "Wording can help, but the peak comes from sequence, consequence, and desire meeting"
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "hook",
+      "text": "You have been pitching wrong your whole life"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "hook",
+      "text": "Everything changes when you learn to sell"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "hook",
+      "text": "A bad meeting starts before it starts"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "counterintuition",
+      "text": "More effort is not always better"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "counterintuition",
+      "text": "Confidence is not enough"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "counterintuition",
+      "text": "People are irrational"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "tryThisNow",
+      "text": "Write down three pitches you want to improve"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "tryThisNow",
+      "text": "Think of a recent meeting"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "tryThisNow",
+      "text": "Set a timer and reflect"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "examples",
+      "text": "generic startup investor meeting"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "examples",
+      "text": "conference room slide deck with nodding executives"
+    },
+    {
+      "chapterId": "pitch-anything-ch01",
+      "surface": "examples",
+      "text": "salary negotiation with vague anxiety"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "hook",
+      "text": "The brain hates complexity"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "hook",
+      "text": "Your audience is primitive"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "hook",
+      "text": "Facts bounce off the mind"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "counterintuition",
+      "text": "Less information always wins"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "counterintuition",
+      "text": "Emotion beats logic"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "counterintuition",
+      "text": "Simple is better than smart"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "tryThisNow",
+      "text": "Simplify your message in one minute"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "tryThisNow",
+      "text": "Cut your deck in half"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "tryThisNow",
+      "text": "Ask what your audience wants"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "examples",
+      "text": "generic investor deck full of charts"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "examples",
+      "text": "neuroscience lab analogy"
+    },
+    {
+      "chapterId": "pitch-anything-ch02",
+      "surface": "examples",
+      "text": "busy executive checking phone"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "hook",
+      "text": "Six steps can fix every pitch"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "hook",
+      "text": "A method beats chaos"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "hook",
+      "text": "Here is the sales checklist"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "counterintuition",
+      "text": "Structure gives freedom"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "counterintuition",
+      "text": "Order matters more than content"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "counterintuition",
+      "text": "A framework is not a script"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "tryThisNow",
+      "text": "Memorize the acronym"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "tryThisNow",
+      "text": "Rate your pitch on six steps"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "tryThisNow",
+      "text": "Write STRONG down the page"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "examples",
+      "text": "whiteboard acronym in training room"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "examples",
+      "text": "generic entrepreneur practicing pitch"
+    },
+    {
+      "chapterId": "pitch-anything-ch03",
+      "surface": "examples",
+      "text": "consultant checklist audit"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "hook",
+      "text": "The room decides who you are before you speak"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "hook",
+      "text": "Win the frame or lose the pitch"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "hook",
+      "text": "Never let them control you"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "counterintuition",
+      "text": "Power is silent"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "counterintuition",
+      "text": "Explaining can make you weaker"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "counterintuition",
+      "text": "Status beats facts"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "tryThisNow",
+      "text": "Stand taller in your next meeting"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "tryThisNow",
+      "text": "Notice who has status"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "tryThisNow",
+      "text": "Practice a confident opener"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "examples",
+      "text": "alpha behavior in boardroom"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "examples",
+      "text": "hostile investor interrupting founder"
+    },
+    {
+      "chapterId": "pitch-anything-ch04",
+      "surface": "examples",
+      "text": "generic negotiation power move"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "hook",
+      "text": "Everyone loves a story"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "hook",
+      "text": "Data needs narrative"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "hook",
+      "text": "A story makes people care"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "counterintuition",
+      "text": "Shorter stories can carry more"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "counterintuition",
+      "text": "The point comes before the history"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "counterintuition",
+      "text": "Narrative is not decoration"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "tryThisNow",
+      "text": "Tell a three-part story"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "tryThisNow",
+      "text": "Write your origin story"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "tryThisNow",
+      "text": "Cut unnecessary details"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "examples",
+      "text": "founder childhood origin"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "examples",
+      "text": "customer journey slide"
+    },
+    {
+      "chapterId": "pitch-anything-ch05",
+      "surface": "examples",
+      "text": "generic before-and-after case study"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "hook",
+      "text": "Curiosity is the currency of attention"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "hook",
+      "text": "Keep them guessing"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "hook",
+      "text": "Mystery makes people listen"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "counterintuition",
+      "text": "Do not explain too soon"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "counterintuition",
+      "text": "Confusion is not intrigue"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "counterintuition",
+      "text": "Novelty must earn its place"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "tryThisNow",
+      "text": "Hold one fact back"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "tryThisNow",
+      "text": "Add a surprising detail"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "tryThisNow",
+      "text": "Create curiosity in your opener"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "examples",
+      "text": "teaser slide with question mark"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "examples",
+      "text": "magician-style reveal"
+    },
+    {
+      "chapterId": "pitch-anything-ch06",
+      "surface": "examples",
+      "text": "generic suspenseful product launch"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "hook",
+      "text": "Stop needing the deal"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "hook",
+      "text": "Make them chase you"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "hook",
+      "text": "The seller is the prize"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "counterintuition",
+      "text": "Needing approval lowers value"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "counterintuition",
+      "text": "Scarcity changes the room"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "counterintuition",
+      "text": "Fit beats persuasion"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "tryThisNow",
+      "text": "Act less available"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "tryThisNow",
+      "text": "List why you are valuable"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "tryThisNow",
+      "text": "Ask if they qualify"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "examples",
+      "text": "dating-style scarcity move"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "examples",
+      "text": "founder pretending to walk away"
+    },
+    {
+      "chapterId": "pitch-anything-ch07",
+      "surface": "examples",
+      "text": "generic luxury product waitlist"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "hook",
+      "text": "Every pitch needs a killer line"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "hook",
+      "text": "The hook is everything"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "hook",
+      "text": "Make them remember one thing"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "counterintuition",
+      "text": "The hookpoint arrives late"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "counterintuition",
+      "text": "A slogan is not a peak"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "counterintuition",
+      "text": "Desire needs consequence"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "tryThisNow",
+      "text": "Write your one-sentence hook"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "tryThisNow",
+      "text": "Find your big why now"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "tryThisNow",
+      "text": "Make your offer memorable"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "examples",
+      "text": "tagline workshop"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "examples",
+      "text": "viral marketing headline"
+    },
+    {
+      "chapterId": "pitch-anything-ch08",
+      "surface": "examples",
+      "text": "generic product launch reveal"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "hook",
+      "text": "Interest is not a decision"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "hook",
+      "text": "Always ask for the close"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "hook",
+      "text": "Do not leave without commitment"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "counterintuition",
+      "text": "Warmth can waste the deal"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "counterintuition",
+      "text": "More explaining can weaken the ask"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "counterintuition",
+      "text": "A next step is not pressure"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "tryThisNow",
+      "text": "Ask for one clear next step"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "tryThisNow",
+      "text": "Write your closing question"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "tryThisNow",
+      "text": "Stop after the ask"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "examples",
+      "text": "generic sales close"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "examples",
+      "text": "investor says send me your deck"
+    },
+    {
+      "chapterId": "pitch-anything-ch09",
+      "surface": "examples",
+      "text": "job interview follow-up email"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "hook",
+      "text": "A perfect pitch has no wasted motion"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "hook",
+      "text": "Watch the pieces click together"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "hook",
+      "text": "The whole method becomes one flow"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "counterintuition",
+      "text": "Perfect does not mean polished longer"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "counterintuition",
+      "text": "Each move must hand off"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "counterintuition",
+      "text": "Brevity creates control"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "tryThisNow",
+      "text": "Time your whole pitch"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "tryThisNow",
+      "text": "Run the six steps out loud"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "tryThisNow",
+      "text": "Practice until it flows"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "examples",
+      "text": "full investor pitch transcript"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "examples",
+      "text": "stage performance metaphor"
+    },
+    {
+      "chapterId": "pitch-anything-ch10",
+      "surface": "examples",
+      "text": "generic rehearsal montage"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "hook",
+      "text": "You are now elite"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "hook",
+      "text": "Mastery changes everything"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "hook",
+      "text": "The best pitchers control the room"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "counterintuition",
+      "text": "Confidence is discipline"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "counterintuition",
+      "text": "Mastery stays bounded"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "counterintuition",
+      "text": "Control comes from sequence"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "tryThisNow",
+      "text": "Commit to practicing every day"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "tryThisNow",
+      "text": "Visualize your next win"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "tryThisNow",
+      "text": "Write your new identity"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "examples",
+      "text": "motivational keynote ending"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "examples",
+      "text": "victory lap after big deal"
+    },
+    {
+      "chapterId": "pitch-anything-ch11",
+      "surface": "examples",
+      "text": "generic mastery montage"
+    },
+    "abstract review-card fronts without a concrete retrieval scene",
+    "cross-chapter protagonist name reuse",
+    "example ending names that do not match the scenario protagonist",
+    "same suffix appended to every example in a chapter",
+    "short memorable lines that score as underspecified"
+  ],
+  "chapterStatuses": {
+    "pitch-anything-ch01": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.640Z"
+    },
+    "pitch-anything-ch02": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.641Z"
+    },
+    "pitch-anything-ch03": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.642Z"
+    },
+    "pitch-anything-ch04": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.643Z"
+    },
+    "pitch-anything-ch05": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.644Z"
+    },
+    "pitch-anything-ch06": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.644Z"
+    },
+    "pitch-anything-ch07": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.645Z"
+    },
+    "pitch-anything-ch08": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.645Z"
+    },
+    "pitch-anything-ch09": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.645Z"
+    },
+    "pitch-anything-ch10": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.646Z"
+    },
+    "pitch-anything-ch11": {
+      "status": "finalized",
+      "checkpoint": "pass",
+      "updatedAt": "2026-05-13T20:14:48.646Z"
+    }
+  }
+}

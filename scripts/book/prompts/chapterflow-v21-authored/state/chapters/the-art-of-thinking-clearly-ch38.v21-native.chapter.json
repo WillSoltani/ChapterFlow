@@ -1,0 +1,335 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch38",
+  "number": 38,
+  "title": "Halo Effect",
+  "readingTimeMinutes": 12,
+  "hook": "One bright trait can flood the rest of the judgment before evidence arrives.",
+  "counterintuition": "A bright trait can masquerade as proof about the whole person or product, but glow is not evidence. Score each trait before the shine spreads beyond its lane.",
+  "tryThisNow": "Before your next evaluation, cover the name or logo and score one criterion at a time before seeing the overall impression.",
+  "keyTakeaway": "Separate ratings before one vivid strength or flaw starts choosing for you.",
+  "breakdown": {
+    "fastRead": "The clipboard sits beside the family court calendar while Kevin reads a polished parent statement. The parent is calm, well dressed, and precise. A colleague starts to assume the schedule proposal is also careful. Kevin writes halo effect beside the notes.\n\nThe halo effect lets one visible trait spread into judgments it has not earned. Beauty, status, charm, confidence, polish, or one mistake can color skill, honesty, safety, or quality.\n\nGlow travels faster than evidence can follow.\n\nThe correction is to split the rating. Score the custody schedule, evidence, timing, and child-care plan separately. Let each claim carry its own proof.",
+    "deepRead": "The clipboard in Kevin's family court calendar holds two parent statements. One is polished and calm. The other is scattered and late. The polished statement may still be stronger, but Kevin marks halo effect risk because neat presentation can start lending credit to facts that have not been checked.\n\nThe mind likes coherence. Once a person or product looks good in one way, other judgments begin to line up. A confident speaker seems more competent. A famous logo seems safer. A messy form makes a plan look sloppy before anyone checks the plan. The first impression becomes a light source, and nearby evidence changes color.\n\nA halo is borrowed proof for an untested claim.\n\nElaine sees the same pressure in an auto-parts defect review. A supplier with a strong brand sends a sealed envelope of test results after a brake sensor failure. The brand has solved problems before. The packet looks professional. Elaine writes Cisco risk on the envelope because past admiration can make current evidence feel cleaner than it is. She asks the team to score defect rate, recall exposure, test coverage, and response time on separate lines before naming the supplier reliable.\n\nThe halo effect is not a ban on reputation. Reputation can be evidence when it is tied to the exact criterion being judged. The danger is carry-over. The fact that a company is admired does not prove this batch is safe. The fact that a person is articulate does not prove their plan is sound. The fact that a product feels premium does not prove its warranty claim is valid.\n\nGood judgment keeps the light in its lane.",
+    "fullRead": "The route map on Ian's warehouse lease table is printed in sharp color, with clean transit arcs and a photo of a renovated loading bay. The building tour was smooth. The landlord knew every number. The finance lead says the site feels first class. Ian marks Thorndike risk on the route map before the lease score is filled in.\n\nThe halo effect was named early in psychology as a constant error in rating. Edward Thorndike noticed that one broad impression could leak into judgments of separate traits. A person judged strong in one area might be rated higher in unrelated areas because the rater was no longer judging each feature on its own. The mind had made a single story and then filled the score sheet from that story.\n\nThat leak happens in business as easily as in people. Cisco became a classic caution because the same visible success once made its strategy, culture, and leadership look brilliant. When results later turned, many of those same features were judged harshly. The thing being rated had not changed as neatly as the story did. Performance cast the halo, then the halo changed the rating of everything nearby.\n\nWhich score would you give if the name, logo, face, or last result were hidden?\n\nIan uses that question at the lease table. Before anyone totals the sheet, he asks each reviewer to write one sentence of evidence beside each score. The exercise feels slower for ninety seconds, then it exposes the problem: three people gave high flood scores because the renovated bay made the whole site feel competent.\n\nThen he covers the photo and separates the rating sheet. Commute time gets one score. Loading access gets one. Flood exposure gets one. Fit-out cost gets one. The glossy tour can still matter, but it cannot raise the flood score or hide the longer truck route.\n\nYou can feel the same pull in a cybersecurity breach room. You are holding an invoice stack while Pamela reviews a famous vendor's emergency response. The vendor's keynote demos are excellent. Its logo makes the board relax. Pamela must decide whether carry-over risk is already lifting scores for documentation, patch speed, and handoff quality still untested.\n\nSplit scoring is not bureaucracy for its own sake. It protects the parts of a decision that are easy to blur. If you need to judge a person, split reliability, skill, judgment, warmth, and fit. If you need to judge a product, split price, safety, support, durability, and evidence. If one score is high, let it stay high. Do not let it drag the others upward without proof.\n\nThe reverse halo matters too. One flaw can poison unrelated judgments. A nervous interview answer can make a strong work sample look weaker. A cheap package can make a durable tool look suspect. A missed email can make a careful person look careless in every category. The fix is the same: make the rating local.\n\nSeparate ratings before one vivid strength or flaw starts choosing for you.",
+    "whyItMatters": "The halo effect lets one visible quality contaminate unrelated judgments. Readers need to separate ratings so charm, polish, brand, or one flaw does not choose for them."
+  },
+  "examples": [
+    {
+      "exampleId": "ch38-ex01-kevin-clipboard",
+      "title": "Kevin Splits the Calendar Score",
+      "tags": [
+        "scene",
+        "family court",
+        "rating"
+      ],
+      "planSpec": {
+        "domain": "a family court calendar applying Halo Effect under operational pressure",
+        "audience": "a reader who has to make a live judgment where halo effect could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Halo Effect is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the clipboard, names the halo effect risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Kevin rests a clipboard beside his 9:30 a.m. family court calendar in Calgary after a polished parent statement makes the room relax. The proposed schedule still has gaps around school pickups, one unsigned handoff, and a missing holiday plan. With the clerk waiting to call the next matter, Kevin must decide whether halo effect risk should change the review before presentation polish lifts the logistics score. A torn sticky note on the file lists the pickup addresses, making the weak handoff plan visible even while the statement sounds orderly.",
+      "whatToDo": "Mark halo effect risk on the clipboard, cover the writer's name, and score schedule evidence, timing, and child-care details on separate lines.",
+      "whyItMatters": "A calm statement can deserve respect without carrying the custody schedule past weak evidence."
+    },
+    {
+      "exampleId": "ch38-ex02-elaine-sealed-envelope",
+      "title": "Elaine Opens the Brand Packet Slowly",
+      "tags": [
+        "vignette",
+        "auto parts",
+        "brand"
+      ],
+      "planSpec": {
+        "domain": "a auto-parts defect review applying Halo Effect under operational pressure",
+        "audience": "a reader who has to make a live judgment where Cisco could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Halo Effect is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the sealed envelope, names the Cisco risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Elaine places a sealed envelope on the 1:10 p.m. auto-parts defect table in Detroit after an engineer says, \"They have always been solid.\" The supplier's brand is strong, but the brake sensor data is thin, the recall clock is running, and the test appendix skips two winter conditions. Elaine has to choose whether Cisco risk is coloring the defect review before the plant sends tomorrow's shipment.",
+      "whatToDo": "Mark Cisco risk on the envelope, hide the supplier name, and score defect evidence, test coverage, recall exposure, and response quality separately.",
+      "whyItMatters": "A respected brand can make thin current evidence look stronger than it is."
+    },
+    {
+      "exampleId": "ch38-ex03-ian-route-map",
+      "title": "Ian Covers the Warehouse Photo",
+      "tags": [
+        "dialogue",
+        "warehouse",
+        "lease"
+      ],
+      "planSpec": {
+        "domain": "a warehouse lease choice applying Halo Effect under operational pressure",
+        "audience": "a reader who has to make a live judgment where Thorndike could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Halo Effect is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the route map, names the Thorndike risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Ian studies a route map printed with fresh ink on the 4 p.m. warehouse lease table in Rotterdam. A renovated loading bay photo has everyone smiling, but the truck route adds twelve minutes, crosses a flood zone nearby, and needs a weekend permit. With the broker waiting outside the glass room, Ian must decide whether Thorndike risk is lifting unrelated lease scores.",
+      "whatToDo": "Mark Thorndike risk on the map, cover the glossy photo, and rate route time, flood exposure, loading access, and fit-out cost one by one.",
+      "whyItMatters": "The beautiful loading bay cannot shorten the route or lower the flood exposure."
+    },
+    {
+      "exampleId": "ch38-ex04-pamela-invoice-stack",
+      "title": "Pamela Separates the Vendor Scores",
+      "tags": [
+        "decision",
+        "cybersecurity",
+        "vendor"
+      ],
+      "planSpec": {
+        "domain": "a cybersecurity breach room applying Halo Effect under operational pressure",
+        "audience": "a reader who has to make a live judgment where carry-over could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Halo Effect is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the invoice stack, names the carry-over risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Pamela sits in a London cybersecurity breach room at 11:45 p.m., holding an invoice stack from a famous vendor. The logo calms the board, but the handoff notes are late, the patch log has gaps, and the incident manager cannot name the next owner. Pamela must decide whether carry-over risk is lifting scores that belong to documentation and patch speed.",
+      "whatToDo": "Mark carry-over risk on the invoice stack, score response time, handoff quality, patch evidence, and documentation before seeing the brand summary.",
+      "whyItMatters": "A vendor's reputation can calm a room while the breach response still fails in specific places."
+    },
+    {
+      "exampleId": "ch38-ex05-bridget-dashboard-printout",
+      "title": "Bridget Rates the Volunteer Plan Separately",
+      "tags": [
+        "predict",
+        "urban farm",
+        "volunteers"
+      ],
+      "planSpec": {
+        "domain": "a urban farm volunteer plan applying Halo Effect under operational pressure",
+        "audience": "a reader who has to make a live judgment where separate ratings could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Halo Effect is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the dashboard printout, names the separate ratings risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Bridget stands in a rainy Bristol harvest shed when the dashboard printout finally shows how much the founder's charisma has been glowing over the volunteer plan. The pitch was beautiful and the seedling beds looked perfect, but two Saturday shifts had no trained lead. Before signing the grant update, Bridget must decide whether separate ratings risk should change the approval. The rain has also kept half the volunteers indoors, which makes the uncovered shifts harder to dismiss as a spreadsheet detail.",
+      "whatToDo": "Mark separate ratings risk on the printout, score charisma, shift coverage, tool access, safety training, and yield plan independently.",
+      "whyItMatters": "A moving pitch can inspire volunteers without proving the schedule will cover the beds."
+    },
+    {
+      "exampleId": "ch38-ex06-lucia-caliper",
+      "title": "Lucia Reopens the Warranty Call",
+      "tags": [
+        "postmortem",
+        "appliance",
+        "warranty"
+      ],
+      "planSpec": {
+        "domain": "a appliance warranty desk applying Halo Effect under operational pressure",
+        "audience": "a reader who has to make a live judgment where halo could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Halo Effect is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the caliper, names the halo risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Lucia asks which warranty claim was denied because the cheap casing made the whole appliance seem flimsy. At a 3:35 p.m. warranty desk review in Lisbon, she sets a caliper beside the returned hinge while the service agent replays the customer call. She marks halo risk, then must decide whether the next call will score casing, hinge tolerance, and motor wear separately.",
+      "whatToDo": "Measure the failed part, separate appearance from tolerance, and require each warranty decision to name the exact defect being judged.",
+      "whyItMatters": "Cheap-looking plastic can drag down the whole product rating even when the measured failure sits elsewhere."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a halo-effect case, a polished applicant gives a calm interview, and the panel starts assuming her planning, reliability, and technical judgment are also strong, what is the halo-effect risk?",
+        "choices": [
+          "One vivid strength may spill into unrelated ratings before evidence supports them.",
+          "Spill unrelated ratings fits the immediate pressure around planning reliability technical; hold panel starts assuming steady and test gives calm interview later.",
+          "Applicant gives calm looks strong enough to guide interview panel starts; assuming planning reliability can wait unless technical judgment also changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The calm interview may matter, but it should not automatically raise planning or technical scores. Each rating needs its own evidence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Halo Effect makes halo-effect case feel more decisive than the record supports, and that misprices polished applicant in this scene. The correct move keepss the choice by one vivid strength may spill into unrelated ratings before evidence supports them."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a halo-effect review, a family court team is impressed by a parent's polished statement, but the proposed schedule has pickup gaps, what should the reviewer do?",
+        "choices": [
+          "Impressed parent polished gives a practical reason for family court team; pickup gaps what belongs after statement proposed schedule clarifies the result.",
+          "Score schedule details, evidence, timing, and child-care plan separately.",
+          "Score details timing supports a narrower read of parent polished statement; keep proposed schedule pickup central and leave gaps what reviewer aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "Separate ratings keep presentation from choosing the custody schedule. The statement can be respected without lifting weak logistics.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Halo Effect works by letting halo-effect family crowd out court team, which can misreads the impressed parent decision. Score schedule details, evidence, timing, and child-care plan separately keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When halo-effect pressure appears, an auto-parts supplier with a respected brand sends thin test data after a brake sensor failure. Which move best blocks the halo?",
+        "choices": [
+          "Best blocks halo points toward a quicker call on sends thin test; let supplier respected brand stand until sensor failure move contradicts it.",
+          "Halo hide name fits the immediate pressure around test data after; hold brand sends thin steady and test auto-parts supplier respected later.",
+          "Hide the supplier name and score defect evidence, test coverage, recall exposure, and response quality."
+        ],
+        "correctIndex": 2,
+        "explanation": "The brand may be relevant history, but the defect review needs current evidence on separate criteria.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Halo Effect turns appears auto-parts into a shortcut, so the room can overweights supplier respected while missing brand sends. Hide the supplier name and score defect evidence, test coverage, recall exposure, and response quality protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After halo-effect risk surfaces, a warehouse tour is impressive, but the route map adds twelve minutes and the flood exposure is unclear, what is the strongest lease-review move?",
+        "choices": [
+          "Cover the glossy photo and rate route time, flood exposure, loading access, and fit-out cost separately.",
+          "Twelve minutes flood gives a practical reason for impressive route adds; strongest lease-review move belongs after exposure unclear what clarifies the result.",
+          "Flood exposure unclear makes tour impressive route look credible; use adds twelve minutes first and revisit what strongest lease-review when move cover glossy shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The tour should not lift route or flood scores. Local ratings keep each lease factor tied to its own evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Halo Effect would push the warehouse tour case toward impressive route, creating a cost when adds twelve stays untested. The useful guardrail is to cover the glossy photo and rate route time, flood exposure, loading access, and fit-out cost separately."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If halo-effect reasoning takes over, a famous cybersecurity vendor calms the board during a breach, but its handoff notes and patch evidence are weak. What should the breach lead do?",
+        "choices": [
+          "Time documentation quality points toward a quicker call on breach handoff notes; let vendor calms board stand until lead score response contradicts it.",
+          "Score response time, documentation, patch evidence, and handoff quality before reviewing brand reputation.",
+          "Famous cybersecurity vendor looks strong enough to guide calms board breach; handoff notes patch can wait unless weak what lead changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "Reputation can be one input, but it should not carry over into untested breach-performance criteria.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Halo Effect converts cybersecurity vendor into the loudest signal, which can rushes calms board before during breach is checked. The better answer separatess attention on score response time, documentation, patch evidence, and handoff quality before reviewing brand reputation."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While halo-effect pressure builds, an urban farm founder gives a beautiful pitch, and the board starts overlooking weak shift coverage and safety training, what is happening?",
+        "choices": [
+          "Pitch board starts makes builds urban farm look credible; use founder gives beautiful first and revisit overlooking weak shift when coverage safety training shifts.",
+          "Starts overlooking weak supports a narrower read of pressure builds urban; keep farm founder gives central and leave beautiful pitch board aside.",
+          "The founder's charisma is spreading into unrelated operational ratings."
+        ],
+        "correctIndex": 2,
+        "explanation": "The halo from the pitch may be lifting schedule and safety scores. Those criteria need separate evidence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Halo Effect hides inside the halo-effect pressure choice because halo-effect pressure seems sufficient, yet the cost lands in halo-effect pressure. The founder's charisma is spreading into unrelated operational ratings brings the halo-effect pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the halo-effect call, a warranty team denies a claim because the casing looks cheap, but the measured hinge tolerance may still meet the standard. What should the postmortem ask?",
+        "choices": [
+          "Which visual impression contaminated the rating of the specific failed part?",
+          "Casing cheap measured makes halo-effect call warranty look credible; use team denies claim first and revisit hinge tolerance meet when standard what postmortem shifts.",
+          "Postmortem visual impression supports a narrower read of claim casing cheap; keep measured hinge tolerance central and leave meet standard what aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The postmortem should separate appearance from the measured defect. The cheap look may have poisoned unrelated judgment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Halo Effect pressures the call warranty decision toward the easy reading of call warranty. That can inflates the real cost unless the choice is grounded in which visual impression contaminated the rating of the specific failed part."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose halo-effect risk is present: a procurement team reviews a long-trusted lab vendor after a missed calibration report. One analyst says reputation should be ignored completely because it can create a halo. Which distinction is strongest?",
+        "choices": [
+          "Strongest matter tied fits the immediate pressure around report analyst says; hold after missed calibration steady and test reviews long-trusted vendor later.",
+          "Reputation can matter when it is tied to the exact criterion, but it should not raise unrelated scores.",
+          "Long-trusted vendor after gives a practical reason for procurement team reviews; analyst says reputation belongs after missed calibration report clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The issue is carry-over. Reputation may inform a relevant score, but it cannot substitute for evidence in other categories.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Halo Effect is the mechanism here: one strong trait colors the whole judgment, so present procurement can overpower present procurement. Reputation can matter when it is tied to the exact criterion, but it should not raise unrelated scores keeps the."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "The next version needs a hiring, vendor, and product-review process where one vivid impression often dominates the room. Which rule best prevents halo effect?",
+        "choices": [
+          "Require separate criteria points toward a quicker call on impression often dominates; let vendor product-review vivid stand until prevents halo effect contradicts it.",
+          "Criteria blind possible fits the immediate pressure around dominates room rule; hold vivid impression often steady and test hiring vendor product-review later.",
+          "Require separate criteria, blind review where possible, and evidence notes before any overall score."
+        ],
+        "correctIndex": 2,
+        "explanation": "Separate criteria and delayed overall judgment prevent one impression from spreading before evidence is recorded.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Halo Effect makes the hiring vendor evidence look cleaner than it is, risking a hiring vendor mistake in this setting. The answer protects hiring vendor by asking for require separate criteria, blind review where possible, and evidence notes before any."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch38-card01",
+      "front": "A person impresses you in one way. What should you protect next?",
+      "back": "Protect unrelated ratings. Score each trait or criterion from its own evidence before forming an overall view.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch38-card02",
+      "front": "A trusted logo raises scores for service, safety, and speed. What carry-over should you suspect?",
+      "back": "Suspect one strength, flaw, brand, or result spilling into ratings that should be judged separately.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch38-card03",
+      "front": "A polished pitch hides weak shift coverage. How do separate ratings reduce halo?",
+      "back": "They force each criterion to earn its score instead of borrowing light from the strongest impression.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch38-card04",
+      "front": "A famous name calms the room during a breach review. Why can that distort the vendor score?",
+      "back": "It can raise scores for documentation, patch speed, or handoff quality before those items have actually been checked.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch38-card05",
+      "front": "A hiring panel loves one interview answer. What core correction blocks the halo effect?",
+      "back": "Blind what you can, split criteria, record evidence, and delay the overall score.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to prevent one strong impression from spreading across a decision. The working habit is to blind the source where possible and rate one criterion at a time.",
+    "ifThenPlans": [
+      {
+        "context": "hiring",
+        "plan": "If one interview answer impresses me, then I will score the work sample and role skills before writing an overall rating."
+      },
+      {
+        "context": "vendor reviews",
+        "plan": "If a brand name reassures the room, then I will hide it until current evidence has been scored."
+      },
+      {
+        "context": "product decisions",
+        "plan": "If a product looks premium or cheap, then I will rate measured performance before appearance."
+      },
+      {
+        "context": "postmortems",
+        "plan": "If one result changes how everything looks, then I will ask which ratings moved without new evidence."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, take one evaluation and create three separate score lines before writing the overall judgment.",
+    "weeklyPractice": "Once this week, blind a name, logo, or face in one review and compare the separate ratings with your first impression."
+  },
+  "memorableLines": [
+    {
+      "text": "Glow travels faster than evidence can follow.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the carry-over mechanism into a short image."
+    },
+    {
+      "text": "A halo is borrowed proof for an untested claim.",
+      "location": "breakdown.deepRead",
+      "why": "It names the central error in plain language."
+    },
+    {
+      "text": "Separate ratings before one vivid strength or flaw starts choosing for you.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the practical correction."
+    }
+  ]
+}

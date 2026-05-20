@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch11",
+  "number": 11,
+  "title": "Difficult Situations",
+  "coreMove": "Hold steadiness and goodwill at the same time when pressure tempts you to drop one.",
+  "sourcePressure": "The source identifies this as an applied-charisma chapter for difficult interactions, with presence, power, warmth, and internal-state carryover under pressure.",
+  "chapterSpecificMisunderstanding": "The weak version turns into conflict scripts or negotiation tactics. The useful version keeps the triad alive when the other person gives you a reason to become cold, vague, or reactive.",
+  "sourceAlignmentTerms": ["difficult situations", "pressure", "presence", "power", "warmth", "steadiness", "goodwill", "tension"],
+  "forbiddenFrames": {
+    "hook": ["Difficult people test charisma", "Stay calm under pressure", "Conflict needs warmth and power"],
+    "counterintuition": ["Being nice is not enough", "Winning makes you less charismatic", "Scripts fail under stress"],
+    "tryThisNow": ["Pause before reacting", "Use I statements", "Assume positive intent"],
+    "examples": ["salary negotiation", "office conflict", "family argument", "angry customer at counter"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a museum restitution meeting with a family requesting a ceremonial object's return",
+      "audience": "an institutional representative who must carry authority and humility",
+      "stakes": "whether the family believes the museum is listening before legal review begins",
+      "format": "scene",
+      "requiredBeat": "the curator leaves the policy folder closed for the first minute, names the object's ceremonial role, then explains the review steps without softening the boundary",
+      "firstImage": "a closed policy folder beside a white cotton display cushion",
+      "mustInclude": ["accession number", "family statement", "review timeline"],
+      "mustAvoid": ["legal compliance lecture", "public apology theater"]
+    },
+    {
+      "domain": "a ferry terminal where a harbor officer turns away a contractor during unsafe winds",
+      "audience": "a public-safety worker facing a person losing money by the hour",
+      "stakes": "whether the contractor accepts the shutdown without charging the gate",
+      "format": "dialogue",
+      "requiredBeat": "the officer holds the line on the closed ramp while naming the contractor's concrete cost and giving the next wind-check time",
+      "firstImage": "a wind sock snapping above a locked ferry ramp",
+      "mustInclude": ["gust reading", "ramp chain", "reschedule board"],
+      "mustAvoid": ["crisis evacuation", "customer-service placation"]
+    },
+    {
+      "domain": "a university lab where a principal investigator confronts a beloved postdoc about contaminated samples",
+      "audience": "a leader who must be warm without dodging accountability",
+      "stakes": "whether the lab preserves both trust and research integrity",
+      "format": "decision_point",
+      "requiredBeat": "she chooses to say the contamination finding first, then stays seated and asks for the chain-of-custody reconstruction without accusing motive",
+      "firstImage": "a cracked freezer rack beside a printed assay failure graph",
+      "mustInclude": ["sample log", "freezer alarm", "retraction risk"],
+      "mustAvoid": ["science fraud drama", "generic feedback"]
+    },
+    {
+      "domain": "a funeral home arrangement room where siblings fight over a service detail",
+      "audience": "a professional whose warmth can become helplessness",
+      "stakes": "whether the family makes a decision before the obituary deadline",
+      "format": "vignette",
+      "requiredBeat": "the director lets the first angry sentence pass, states the deadline with a soft voice, and gives two choices that honor the parent",
+      "firstImage": "a box of memorial cards resting beside a half-open calendar",
+      "mustInclude": ["obituary deadline", "music list", "service folder"],
+      "mustAvoid": ["therapy mediation", "sentimental closure"]
+    },
+    {
+      "domain": "a construction punch-list walk where a homeowner accuses a site lead of hiding defects",
+      "audience": "a builder who must not answer accusation with contempt",
+      "stakes": "whether the final inspection stays factual",
+      "format": "before_after",
+      "requiredBeat": "contrast the defensive first reply with the reset where the lead writes the defect number on tape, invites the homeowner to watch the measurement, and states what will be fixed",
+      "firstImage": "blue painter's tape marking a crooked cabinet door",
+      "mustInclude": ["punch-list sheet", "level tool", "inspection date"],
+      "mustAvoid": ["generic contractor dispute", "dominance correction"]
+    },
+    {
+      "domain": "a performing-arts scholarship panel where a rejected applicant demands an explanation",
+      "audience": "a panel chair balancing compassion and standards",
+      "stakes": "whether the applicant leaves with dignity and usable information",
+      "format": "postmortem",
+      "requiredBeat": "the chair sees that her first answer overcomforted and blurred standards, then rewrites the response to name one criterion and one next audition path",
+      "firstImage": "a scholarship score sheet folded under a fountain pen",
+      "mustInclude": ["rubric criterion", "audition recording", "next application date"],
+      "mustAvoid": ["contest drama", "generic rejection email"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "maintain power and warmth in a difficult interaction",
+      "choose language that keeps dignity without avoiding the issue",
+      "analyze when overcomfort weakens credibility",
+      "evaluate whether a response preserves presence under pressure"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "In one tense exchange, state the hard fact and the human fact in adjacent sentences without apologizing for either one.",
+  "readingTimeMinutes": 12
+}

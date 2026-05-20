@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch11",
+  "number": 11,
+  "title": "Evolution Part One: Natural Selection and Extinction",
+  "coreMove": "Test fitness against the environment that selects, not against abstract strength or past success.",
+  "sourcePressure": "Natural selection and extinction are framed as differential persistence under environmental pressure, with extinction as the same logic in reverse.",
+  "chapterSpecificMisunderstanding": "turning selection into ruthless competition or survival-of-the-strongest slogans",
+  "sourceAlignmentTerms": [
+    "selection",
+    "extinction",
+    "environment",
+    "fit",
+    "survival",
+    "pressure",
+    "variant"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Evolution Part One: Natural Selection and Extinction",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "turning selection into ruthless competition or survival-of-the-strongest slogans",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "James",
+      "domain": "main street retail shift",
+      "audience": "readers who face main street retail shift decisions where selection is easy to misread",
+      "stakes": "old store strengths failing under new rent",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James compares the lease notice against the pressure shown in the foot-traffic count, then retires the window display tag when the environment no longer selects for it. Domain: main street retail shift.",
+      "firstImage": "lease notice visible in the main street retail shift",
+      "mustInclude": [
+        "lease notice",
+        "foot-traffic count",
+        "window display tag"
+      ],
+      "mustAvoid": [
+        "turning selection into ruthless competition or survival-of-the-strongest slogans",
+        "reusing a generic meeting scene instead of the main street retail shift constraints"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "rowing roster tryout",
+      "audience": "readers who face rowing roster tryout decisions where selection is easy to misread",
+      "stakes": "athletes selected by current fit",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ben compares the erg score sheet against the pressure shown in the seat chart, then retires the trial timer when the environment no longer selects for it. Domain: rowing roster tryout.",
+      "firstImage": "erg score sheet visible in the rowing roster tryout",
+      "mustInclude": [
+        "erg score sheet",
+        "seat chart",
+        "trial timer"
+      ],
+      "mustAvoid": [
+        "turning selection into ruthless competition or survival-of-the-strongest slogans",
+        "reusing a generic meeting scene instead of the rowing roster tryout constraints"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "seasonal menu review",
+      "audience": "readers who face seasonal menu review decisions where selection is easy to misread",
+      "stakes": "favorite item tying up kitchen capacity",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Vincent compares the sales ticket against the pressure shown in the prep station card, then retires the waste log when the environment no longer selects for it. Domain: seasonal menu review.",
+      "firstImage": "sales ticket visible in the seasonal menu review",
+      "mustInclude": [
+        "sales ticket",
+        "prep station card",
+        "waste log"
+      ],
+      "mustAvoid": [
+        "turning selection into ruthless competition or survival-of-the-strongest slogans",
+        "reusing a generic meeting scene instead of the seasonal menu review constraints"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "app feature sunset",
+      "audience": "readers who face app feature sunset decisions where selection is easy to misread",
+      "stakes": "beloved feature draining maintenance",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Frida compares the usage graph against the pressure shown in the support backlog, then retires the deprecation notice when the environment no longer selects for it. Domain: app feature sunset.",
+      "firstImage": "usage graph visible in the app feature sunset",
+      "mustInclude": [
+        "usage graph",
+        "support backlog",
+        "deprecation notice"
+      ],
+      "mustAvoid": [
+        "turning selection into ruthless competition or survival-of-the-strongest slogans",
+        "reusing a generic meeting scene instead of the app feature sunset constraints"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "scholarship applicant screen",
+      "audience": "readers who face scholarship applicant screen decisions where selection is easy to misread",
+      "stakes": "awards missing the selection pressure",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Devon compares the scoring sheet against the pressure shown in the recommendation letter, then retires the rubric note when the environment no longer selects for it. Domain: scholarship applicant screen.",
+      "firstImage": "scoring sheet visible in the scholarship applicant screen",
+      "mustInclude": [
+        "scoring sheet",
+        "recommendation letter",
+        "rubric note"
+      ],
+      "mustAvoid": [
+        "turning selection into ruthless competition or survival-of-the-strongest slogans",
+        "reusing a generic meeting scene instead of the scholarship applicant screen constraints"
+      ]
+    },
+    {
+      "protagonistName": "Nina",
+      "domain": "local radio format change",
+      "audience": "readers who face local radio format change decisions where selection is easy to misread",
+      "stakes": "listeners leaving after format drift",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Nina compares the playlist log against the pressure shown in the listener email, then retires the ad slot sheet when the environment no longer selects for it. Domain: local radio format change.",
+      "firstImage": "playlist log visible in the local radio format change",
+      "mustInclude": [
+        "playlist log",
+        "listener email",
+        "ad slot sheet"
+      ],
+      "mustAvoid": [
+        "turning selection into ruthless competition or survival-of-the-strongest slogans",
+        "reusing a generic meeting scene instead of the local radio format change constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for selection rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Test fitness against the environment that selects, not against abstract strength or past success.",
+      "explain why the tempting misread fails: turning selection into ruthless competition or survival-of-the-strongest slogans",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving selection, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

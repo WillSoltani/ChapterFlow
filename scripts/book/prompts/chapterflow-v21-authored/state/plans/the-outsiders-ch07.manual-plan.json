@@ -1,0 +1,200 @@
+{
+  "chapterId": "the-outsiders-ch07",
+  "number": 7,
+  "title": "Optimizing the Family Firm",
+  "coreMove": "Keep continuity useful by auditing protected habits harder than ordinary ones and making family-control advantages earn their place.",
+  "sourcePressure": "Dick Smith and General Cinema show capital allocation discipline inside family-control realities, where continuity can protect patience or shelter weak habits.",
+  "chapterSpecificMisunderstanding": "Do not romanticize family ownership or attack it; every case must show protection being tested by a scorecard rather than assumed good or bad.",
+  "sourceAlignmentTerms": [
+    "Dick Smith",
+    "General Cinema",
+    "family control",
+    "continuity",
+    "optimization",
+    "capital allocation",
+    "insulation",
+    "stewardship"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Dick Smith",
+      "detail": "The source sidecar pairs Chapter 7 with Dick Smith and General Cinema, emphasizing family-control realities and outsider-style capital allocation discipline.",
+      "useIn": "both",
+      "phrasingHint": "Dick Smith shows that continuity becomes useful only when it still has to answer a hard scorecard."
+    },
+    {
+      "kind": "place",
+      "name": "General Cinema",
+      "detail": "The source sidecar describes General Cinema as a diversified company associated with Richard A. Smith and a family-linked leadership context.",
+      "useIn": "fullRead",
+      "phrasingHint": "General Cinema turns family control into a management test rather than a sentimental backdrop."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Family firms need discipline too",
+      "Tradition can hide weakness",
+      "Continuity is not enough"
+    ],
+    "counterintuition": [
+      "Family control is automatically patient",
+      "Breaking tradition proves rationality",
+      "Protected structures are always soft"
+    ],
+    "tryThisNow": [
+      "Challenge one tradition",
+      "Ask what matters",
+      "Audit a habit"
+    ],
+    "examples": [
+      "student paper protected routine",
+      "family project spending",
+      "legacy team habit",
+      "tradition challenged then trust improves"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "third-generation hotel group deciding whether to keep a beloved banquet hall",
+      "audience": "a family CEO balancing cousins, guests, and renovation capital",
+      "stakes": "the hall consumes maintenance money needed for profitable room upgrades",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire compares the banquet hall maintenance ledger with room-upgrade returns and closes weekend banquets while preserving the hotel service standards guests actually value.",
+      "firstImage": "faded banquet carpet curling beside a room-renovation sample board",
+      "mustInclude": [
+        "maintenance ledger",
+        "room-upgrade returns",
+        "family vote"
+      ],
+      "mustAvoid": [
+        "wedding scene sentimentality"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "family-owned quarry choosing between ancestral equipment and safer contracted crushing",
+      "audience": "an operations heir whose uncle treats the old crusher as a monument",
+      "stakes": "downtime and safety incidents threatening supply contracts",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivier asks his uncle to walk the downtime log line by line, then retires the ancestral crusher because continuity must protect the quarry, not the machine.",
+      "firstImage": "limestone dust settling on an old crusher nameplate",
+      "mustInclude": [
+        "downtime log",
+        "safety incident report",
+        "supply contract"
+      ],
+      "mustAvoid": [
+        "family argument as melodrama"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "independent cinema chain with family ownership and underused weekday screens",
+      "audience": "a programming director whose relatives resist changing old booking rules",
+      "stakes": "weekday losses put two community screens at risk",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Megan one winter attendance report to replace the inherited booking rule with local event rentals that preserve the cinemas by changing how empty screens earn.",
+      "firstImage": "a blank marquee reflected in wet pavement",
+      "mustInclude": [
+        "attendance report",
+        "booking rule",
+        "event rental calendar"
+      ],
+      "mustAvoid": [
+        "movie-love nostalgia"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "family-controlled medical device supplier reviewing protected distributor relationships",
+      "audience": "a commercial lead whose father built the distributor network",
+      "stakes": "hospitals are delaying orders because protected distributors miss service calls",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Henrik overlays service-call delays on the distributor map and cuts the protected account that hurts hospital reliability most.",
+      "firstImage": "a sterilized device tray beside a map dotted with missed service calls",
+      "mustInclude": [
+        "distributor map",
+        "service-call delays",
+        "hospital order log"
+      ],
+      "mustAvoid": [
+        "generic sales-channel optimization"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "family-run import warehouse choosing whether to preserve informal credit for longtime retailers",
+      "audience": "a controller who respects the founder's handshake relationships",
+      "stakes": "cash conversion slipping while new suppliers demand faster payment",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Adaeze sort customer cards by payment days and keep the relationship principle only where it still supports cash discipline and supplier trust.",
+      "firstImage": "index cards with retailer names clipped above a pallet scale",
+      "mustInclude": [
+        "payment-days cards",
+        "supplier invoice terms",
+        "cash conversion sheet"
+      ],
+      "mustAvoid": [
+        "family loyalty sermon"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "family-controlled outdoor gear maker reviewing a legacy product catalog",
+      "audience": "a product head asked to respect the founder's classics",
+      "stakes": "inventory space tied up in slow-moving heritage items while the core tent line sells out",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which classics are still stewardship and which are insulation? Daniel tags each product by cash, brand pull, and production slot before cutting the protected items that fail all three.",
+      "firstImage": "canvas sample swatches stacked beside a sell-through report",
+      "mustInclude": [
+        "sell-through report",
+        "production slot list",
+        "heritage catalog"
+      ],
+      "mustAvoid": [
+        "outdoor adventure story"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test continuity against capital allocation rather than sentiment",
+      "detect insulation created by protected structures",
+      "choose optimization over preservation or theatrical disruption",
+      "apply owner discipline where relationships make accountability harder"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one protected routine and write the scorecard it would have to pass if it had no history attached to it.",
+  "readingTimeMinutes": 12
+}

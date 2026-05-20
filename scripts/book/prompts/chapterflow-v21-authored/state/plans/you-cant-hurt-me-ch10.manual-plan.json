@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch10",
+  "number": 10,
+  "title": "The Empowerment of Failure",
+  "coreMove": "Strip failure of ego protection until it becomes a correction sheet.",
+  "sourcePressure": "The source covers Delta Force failure and repeated pull-up record attempts, with failure becoming useful only when honestly reviewed, corrected, and re-entered against the standard.",
+  "chapterSpecificMisunderstanding": "The writer must not make failure automatically empowering or invent unsupported tactical and record details.",
+  "sourceAlignmentTerms": ["Delta Force", "pull-up record", "failure review", "correction", "standard", "setback", "renewed attempt"],
+  "forbiddenFrames": {
+    "hook": ["Failure is your teacher", "Every setback is a setup", "Fail forward"],
+    "counterintuition": ["Failure makes you stronger", "Mistakes are gifts", "The only failure is quitting"],
+    "tryThisNow": ["Write what went wrong", "Learn from a failure", "Try again"],
+    "examples": ["startup postmortem cliche", "sports loss speech", "generic lessons learned meeting"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "international pastry certification failed by one technique score",
+      "audience": "a chef whose pride wants to blame the judging table",
+      "stakes": "whether the next attempt repeats the same laminated-dough error",
+      "format": "postmortem",
+      "requiredBeat": "she pins the failed score sheet beside the practice tray, circles the lamination line, and schedules three cold-roll tests before entering again",
+      "firstImage": "a score sheet dusted with flour near a chilled marble slab",
+      "mustInclude": ["score sheet", "lamination line", "cold-roll tests"],
+      "mustAvoid": ["food TV drama", "judge complaint", "generic try-again"]
+    },
+    {
+      "domain": "cybersecurity red-team exercise lost through a missed log",
+      "audience": "a security lead embarrassed after the blue team found the breach first",
+      "stakes": "whether ego hides the exact monitoring gap",
+      "format": "dialogue",
+      "requiredBeat": "he reads the missed log timestamp aloud, deletes the excuse slide, and rewrites the detection rule in front of the team",
+      "firstImage": "a log timestamp highlighted on a dark terminal window",
+      "mustInclude": ["timestamp", "detection rule", "excuse slide"],
+      "mustAvoid": ["hacker theatrics", "blame hunt", "generic incident review"]
+    },
+    {
+      "domain": "civil-service oral board rejection",
+      "audience": "a candidate who keeps telling friends the panel was political",
+      "stakes": "whether the next interview improves or resentment protects the miss",
+      "format": "decision_point",
+      "requiredBeat": "he listens to the practice recording, marks the rambling answer at minute six, and books a mock board before reapplying",
+      "firstImage": "a practice recording paused at 06:12 on a cracked phone screen",
+      "mustInclude": ["mock board", "minute six", "rambling answer"],
+      "mustAvoid": ["corrupt panel story", "confidence coaching", "generic interview tips"]
+    },
+    {
+      "domain": "open-water relay team disqualified for an exchange violation",
+      "audience": "a captain tempted to call the rule petty",
+      "stakes": "whether the team respects the standard enough to qualify next season",
+      "format": "before_after",
+      "requiredBeat": "he lays the disqualification notice beside the exchange-zone diagram and has every swimmer rehearse the tag sequence slowly",
+      "firstImage": "a disqualification notice clipped to a waterproof clipboard",
+      "mustInclude": ["exchange-zone diagram", "tag sequence", "qualification standard"],
+      "mustAvoid": ["generic race loss", "rule whining", "heroic rematch"]
+    },
+    {
+      "domain": "architecture bid rejected for weak cost assumptions",
+      "audience": "a small-firm principal whose concept boards looked beautiful",
+      "stakes": "whether aesthetics keep hiding a preventable estimating flaw",
+      "format": "reflection",
+      "requiredBeat": "she turns the rejection letter over, writes the three missed cost assumptions, and assigns a pre-bid estimate check before the next design sketch",
+      "firstImage": "a rejection letter resting across a set of glossy concept boards",
+      "mustInclude": ["cost assumptions", "pre-bid estimate", "concept boards"],
+      "mustAvoid": ["creative martyrdom", "client stupidity", "generic business failure"]
+    },
+    {
+      "domain": "laboratory grant rejected for a flawed methods section",
+      "audience": "a principal investigator wounded by a harsh reviewer note",
+      "stakes": "whether the next submission changes the method or only the wording",
+      "format": "predict_reveal",
+      "requiredBeat": "before opening a new document, he reads the reviewer note into the lab recorder, names the missing control, and redesigns that assay first",
+      "firstImage": "a reviewer note taped above a rack of empty sample tubes",
+      "mustInclude": ["missing control", "assay redesign", "lab recorder"],
+      "mustAvoid": ["academic grievance", "genius vindication", "generic grant writing"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["separate failure review from failure inspiration", "choose the correction that addresses the standard", "analyze ego-protective storytelling after a miss", "evaluate whether a renewed attempt has actually changed tactics"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take one recent miss and write the failed standard, the factual cause, and the correction you will rehearse before you try again.",
+  "readingTimeMinutes": 12
+}

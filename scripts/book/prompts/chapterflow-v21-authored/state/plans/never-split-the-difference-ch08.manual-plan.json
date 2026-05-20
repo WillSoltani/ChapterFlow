@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch08",
+  "number": 8,
+  "title": "Guarantee Execution",
+  "coreMove": "Test agreement against implementation details until fake commitment has nowhere to hide.",
+  "sourcePressure": "The source ties the chapter to implementation, liar detection, follow-through, and commitment, while warning not to claim perfect lie detection or treat collaboration language as execution readiness.",
+  "chapterSpecificMisunderstanding": "The writer must not make this generic productivity follow-up, project management, or certainty about another person's motives.",
+  "sourceAlignmentTerms": [
+    "execution",
+    "implementation",
+    "follow-through",
+    "commitment",
+    "liar detection",
+    "readiness",
+    "how"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team agrees in a meeting and misses the deadline",
+      "Trust but verify",
+      "A checklist saves the project"
+    ],
+    "counterintuition": [
+      "Agreement is not commitment",
+      "Yes can hide no action",
+      "Details expose the lie"
+    ],
+    "tryThisNow": [
+      "Ask who does what by when",
+      "Check follow-through",
+      "Make an action plan"
+    ],
+    "examples": [
+      "generic project standup",
+      "wedding planning tasks",
+      "home chore agreement",
+      "detective interrogation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "pharmaceutical clean-room maintenance shutdown",
+      "audience": "a maintenance planner confirming a contractor's promise before a sterile line goes offline",
+      "stakes": "a missed valve replacement could waste a batch worth six figures",
+      "format": "scene",
+      "requiredBeat": "the planner asks how the contractor will stage certified parts before the shutdown and watches the promise fail when the part lot number is missing",
+      "firstImage": "a stainless valve tag hanging from a sealed parts bin outside the gowning room",
+      "mustInclude": [
+        "part lot number",
+        "shutdown window",
+        "gowning room"
+      ],
+      "mustAvoid": [
+        "generic deadline slip",
+        "manufacturing productivity"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "county emergency-alert vendor cutover",
+      "audience": "an IT director testing whether the vendor's cutover commitment can actually execute",
+      "stakes": "residents may miss storm alerts if the old and new systems do not overlap",
+      "format": "decision_point",
+      "requiredBeat": "the director asks who will send the live test to the Spanish-language list and when, revealing that the vendor has not imported the list",
+      "firstImage": "a test-alert console with the Spanish list count showing zero",
+      "mustInclude": [
+        "cutover runbook",
+        "Spanish-language list",
+        "live test"
+      ],
+      "mustAvoid": [
+        "generic SaaS implementation",
+        "storm drama"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "commercial kitchen hood repair before a fire inspection",
+      "audience": "a property manager verifying a tenant's assurance that repairs are handled",
+      "stakes": "the restaurant may fail inspection and close for the weekend if the hood certificate is absent",
+      "format": "postmortem",
+      "requiredBeat": "the manager traces how a confident yes collapsed when she asked which technician would upload the certificate before noon",
+      "firstImage": "a grease-filter panel leaning against a tile wall below an inspection notice",
+      "mustInclude": [
+        "hood certificate",
+        "technician name",
+        "inspection notice"
+      ],
+      "mustAvoid": [
+        "generic restaurant rush",
+        "trust issue"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "regional blood courier route handoff",
+      "audience": "a dispatch supervisor checking a courier's claim that a new route is covered",
+      "stakes": "a blood unit may arrive outside temperature range if nobody owns the second handoff",
+      "format": "dialogue",
+      "requiredBeat": "the supervisor asks how the courier will keep the logger in range during the pharmacy stop, exposing that the backup cooler is still at another depot",
+      "firstImage": "a temperature logger blinking inside a red transport case",
+      "mustInclude": [
+        "backup cooler",
+        "pharmacy stop",
+        "temperature logger"
+      ],
+      "mustAvoid": [
+        "generic delivery route",
+        "medical melodrama"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "festival electrical inspection for temporary stages",
+      "audience": "a production manager confirming a contractor's ready-to-open claim",
+      "stakes": "the gates cannot open if grounding certificates are missing",
+      "format": "before_after",
+      "requiredBeat": "the production manager contrasts the contractor's confident yes with the moment a how question reveals nobody scheduled the grounding test",
+      "firstImage": "a coil of stage cable beside a locked electrical panel at dawn",
+      "mustInclude": [
+        "grounding certificate",
+        "gate opening",
+        "electrical panel"
+      ],
+      "mustAvoid": [
+        "generic event planning",
+        "music-festival vibe"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "warehouse robotics installation at a fulfillment center",
+      "audience": "an operations lead testing the integrator's promise before go-live",
+      "stakes": "orders may jam for a full shift if manual exception lanes are not staffed",
+      "format": "predict_reveal",
+      "requiredBeat": "the lead asks the integrator to walk the first exception tote from scanner to human review, revealing that the review station has no badge access",
+      "firstImage": "a yellow exception tote stopped under a scanner arch",
+      "mustInclude": [
+        "badge access",
+        "exception lane",
+        "go-live checklist"
+      ],
+      "mustAvoid": [
+        "generic warehouse efficiency",
+        "robot novelty"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test a verbal agreement through implementation questions",
+      "spot fake commitment without claiming certainty about motives",
+      "analyze which missing detail threatens execution",
+      "evaluate whether a follow-up checks readiness or merely nags"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one agreement you are relying on, ask the owner to walk you through the first physical handoff, named person, or required document before you treat the yes as real.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

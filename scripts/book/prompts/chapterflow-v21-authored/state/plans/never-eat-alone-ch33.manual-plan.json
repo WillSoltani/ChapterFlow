@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch33",
+  "number": 33,
+  "title": "Welcome to the Connected Age",
+  "coreMove": "Carry the book into connected-age practice without letting tools replace care.",
+  "sourcePressure": "The closing chapter sits in the expanded edition context: relationship-building now lives inside a more connected, digital environment where generosity, content, and access travel faster.",
+  "chapterSpecificMisunderstanding": "Treating digital connection as either magic leverage or fake connection by default.",
+  "sourceAlignmentTerms": [
+    "connected age",
+    "digital environment",
+    "generosity",
+    "online relationship-building",
+    "tools",
+    "care"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Leonard",
+      "domain": "remote alumni forum thread",
+      "audience": "a reader facing remote alumni forum thread where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if remote alumni forum thread becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Leonard uses a digital tool to deepen one real relationship instead of broadcasting to everyone in front of video-call tile, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "video-call tile on the edge of remote alumni forum thread",
+      "mustInclude": [
+        "video-call tile",
+        "remote alumni forum thread constraint",
+        "one named next step tied to connected age"
+      ],
+      "mustAvoid": [
+        "Treating digital connection as either magic leverage or fake connection by default.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Malcolm",
+      "domain": "global volunteer onboarding call",
+      "audience": "a reader facing global volunteer onboarding call where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if global volunteer onboarding call becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Malcolm uses a digital tool to deepen one real relationship instead of broadcasting to everyone in front of reply notification, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "reply notification on the edge of global volunteer onboarding call",
+      "mustInclude": [
+        "reply notification",
+        "global volunteer onboarding call constraint",
+        "one named next step tied to connected age"
+      ],
+      "mustAvoid": [
+        "Treating digital connection as either magic leverage or fake connection by default.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Norman",
+      "domain": "creator newsletter reply queue",
+      "audience": "a reader facing creator newsletter reply queue where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if creator newsletter reply queue becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Norman uses a digital tool to deepen one real relationship instead of broadcasting to everyone in front of group chat poll, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "group chat poll on the edge of creator newsletter reply queue",
+      "mustInclude": [
+        "group chat poll",
+        "creator newsletter reply queue constraint",
+        "one named next step tied to connected age"
+      ],
+      "mustAvoid": [
+        "Treating digital connection as either magic leverage or fake connection by default.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Oscar",
+      "domain": "digital neighborhood group",
+      "audience": "a reader facing digital neighborhood group where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if digital neighborhood group becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Oscar uses a digital tool to deepen one real relationship instead of broadcasting to everyone in front of check-in agenda, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "check-in agenda on the edge of digital neighborhood group",
+      "mustInclude": [
+        "check-in agenda",
+        "digital neighborhood group constraint",
+        "one named next step tied to connected age"
+      ],
+      "mustAvoid": [
+        "Treating digital connection as either magic leverage or fake connection by default.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "virtual mastermind check-in",
+      "audience": "a reader facing virtual mastermind check-in where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if virtual mastermind check-in becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Giulia uses a digital tool to deepen one real relationship instead of broadcasting to everyone in front of issue tracker, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "issue tracker on the edge of virtual mastermind check-in",
+      "mustInclude": [
+        "issue tracker",
+        "virtual mastermind check-in constraint",
+        "one named next step tied to connected age"
+      ],
+      "mustAvoid": [
+        "Treating digital connection as either magic leverage or fake connection by default.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Noor",
+      "domain": "international open-source issue board",
+      "audience": "a reader facing international open-source issue board where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if international open-source issue board becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Noor uses a digital tool to deepen one real relationship instead of broadcasting to everyone in front of name card tray, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "name card tray on the edge of international open-source issue board",
+      "mustInclude": [
+        "name card tray",
+        "international open-source issue board constraint",
+        "one named next step tied to connected age"
+      ],
+      "mustAvoid": [
+        "Treating digital connection as either magic leverage or fake connection by default.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish connected age from Treating digital connection as either magic leverage or fake connection by default.",
+      "choose the visible action that performs: Carry the book into connected-age practice without letting tools replace care.",
+      "diagnose when a scenario drifts into Treating digital connection as either magic leverage or fake connection by default.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real connected age moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

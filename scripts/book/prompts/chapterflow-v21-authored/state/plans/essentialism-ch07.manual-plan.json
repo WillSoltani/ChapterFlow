@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch07",
+  "number": 7,
+  "title": "Play: Embrace the Wisdom of Your Inner Child",
+  "coreMove": "Use playful exploration to loosen a narrowed mind so better options can appear.",
+  "sourcePressure": "The chapter defends play as essential fuel for broader options, lower stress, executive function, and creative exploration.",
+  "chapterSpecificMisunderstanding": "A weak run would reduce play to leisure, reward, or childish fun after the real work is done.",
+  "sourceAlignmentTerms": [
+    "play",
+    "exploration",
+    "stress",
+    "executive function",
+    "joy",
+    "Stuart Brown"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic play: embrace the wisdom of your inner child topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "hobby advice frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "hobby advice",
+      "team-building games",
+      "work-life balance cliches",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "prosthetics lab stuck on a painful socket design",
+      "audience": "engineer whose serious work is stuck",
+      "stakes": "playful model-making can reveal a pressure path formal review missed",
+      "format": "scene",
+      "requiredBeat": "She uses clay and rubber bands to model the socket and sees the pinch point no spreadsheet showed.",
+      "firstImage": "Clay strips lie beside a prosthetic socket mold.",
+      "mustInclude": [
+        "clay strips",
+        "rubber bands",
+        "socket mold"
+      ],
+      "mustAvoid": [
+        "toy as decoration",
+        "hobby advice"
+      ]
+    },
+    {
+      "domain": "floodplain engineers testing a public plaza drainage plan",
+      "audience": "engineers narrowed by formal drawings",
+      "stakes": "play simulation can expose water movement before concrete is poured",
+      "format": "thought_experiment",
+      "requiredBeat": "They pour dyed water over a tabletop plaza model and watch the puddle choose the flaw for them.",
+      "firstImage": "Dyed water moves across a tabletop plaza model.",
+      "mustInclude": [
+        "dyed water",
+        "plaza model",
+        "storm-drain chips"
+      ],
+      "mustAvoid": [
+        "team-building game",
+        "generic brainstorm"
+      ]
+    },
+    {
+      "domain": "tax clinic volunteers designing better intake for non-English speakers",
+      "audience": "volunteers stuck in procedural assumptions",
+      "stakes": "playacting the intake can reveal hidden friction",
+      "format": "dialogue",
+      "requiredBeat": "They swap roles with blank forms and toy counters until a volunteer playing client gets stuck at the same question.",
+      "firstImage": "Toy counters sit on translated intake forms.",
+      "mustInclude": [
+        "toy counters",
+        "translated forms",
+        "role cards"
+      ],
+      "mustAvoid": [
+        "classroom roleplay",
+        "making light of clients"
+      ]
+    },
+    {
+      "domain": "choir director rebuilding rehearsal after voices keep tightening",
+      "audience": "director needing loosened attention",
+      "stakes": "playful vocal constraints can uncover a freer route to serious sound",
+      "format": "before_after",
+      "requiredBeat": "Before, she repeats corrections; after, she asks singers to pass a melody like a ball and hears tension drop.",
+      "firstImage": "A foam ball rests on a marked choral score.",
+      "mustInclude": [
+        "foam ball",
+        "choral score",
+        "warmup cards"
+      ],
+      "mustAvoid": [
+        "childish reward",
+        "generic music practice"
+      ]
+    },
+    {
+      "domain": "emergency dispatch trainers preparing recruits for ambiguous calls",
+      "audience": "trainers needing flexible judgment under stress",
+      "stakes": "playful scenario cards can expand response options safely",
+      "format": "predict_reveal",
+      "requiredBeat": "A bizarre call card makes recruits laugh, then reveals the hidden question they missed in serious drills.",
+      "firstImage": "A strange scenario card lies beside a headset.",
+      "mustInclude": [
+        "scenario card",
+        "headset",
+        "dispatch timer"
+      ],
+      "mustAvoid": [
+        "games replace training",
+        "silly office exercise"
+      ]
+    },
+    {
+      "domain": "watchmaker diagnosing a recurring escapement fault",
+      "audience": "craftsperson trapped in expert habits",
+      "stakes": "miniature play can reveal motion sequence differently",
+      "format": "vignette",
+      "requiredBeat": "Paper gears rotate under a desk lamp while the real escapement waits, and the wrong contact point finally becomes visible.",
+      "firstImage": "Paper gears turn beneath a brass loupe.",
+      "mustInclude": [
+        "paper gears",
+        "brass loupe",
+        "escapement tray"
+      ],
+      "mustAvoid": [
+        "generic tinkering",
+        "leisure break"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the Play: Embrace the Wisdom of Your Inner Child move inside a concrete scenario",
+      "choose the response that applies: Use playful exploration to loosen a narrowed mind so better options can appear.",
+      "reject the generic drift: A weak run would reduce play to leisure, reward, or childish fun after the real work is done.",
+      "explain the trade-off using chapter-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live situation and apply this chapter's move: Use playful exploration to loosen a narrowed mind so better options can appear.. Write the visible object, the protected essential, and the first concrete action.",
+  "readingTimeMinutes": 12
+}

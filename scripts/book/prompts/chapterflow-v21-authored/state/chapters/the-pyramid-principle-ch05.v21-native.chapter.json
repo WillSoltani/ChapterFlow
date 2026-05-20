@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-pyramid-principle-ch05",
+  "number": 5,
+  "title": "Deduction and induction: the difference",
+  "readingTimeMinutes": 12,
+  "hook": "A highlighter across a rebate statute shows Emily whether the reader must follow steps or spot siblings.",
+  "counterintuition": "Despite its formal look, a chain can mislead when the points are siblings. Use linked progression only when points depend; use induction when parallel support stands side by side.",
+  "tryThisNow": "Mark one support set with C for chain step or S for sibling reason. If both marks appear in one group, split the section before writing the conclusion.",
+  "keyTakeaway": "Use deduction for real chains and induction for real sibling groups; do not make the material move in a pattern it cannot bear.",
+  "breakdown": {
+    "fastRead": "A highlighter rests across Emily's marked-up rebate statute. The eligibility rule moves step by step: income threshold, filing status, then landlord pass-through. If one step fails, the renter misses the benefit. She refuses to present the issue as three independent concerns.\n\nThat is deduction. The reader follows a chain. Induction works differently: several sibling points sit side by side and rise into one summary. You need to know which motion the material is making before asking the reader to follow it.",
+    "deepRead": "\"Labor did not cause the lease,\" Nicolas says above the profit-and-loss binder. The restaurant board note has arrows from labor cost to lease renewal to foot traffic, as if one reason caused the next. The lease notice, foot-traffic count, and wage schedule are independent reasons to close the location. They do not form a staircase.\n\nNicolas faces a choice between leaving the causal arrows in place and turning the case into an inductive group. He removes the arrows. The three reasons become parallel support under one conclusion.\n\nThe writer has to know whether the reader is following a chain or recognizing a pattern among siblings.\n\nDeduction depends on linked progression. A statement leads to the next one, and the conclusion depends on the sequence holding. Induction depends on grouped similarity. Several points of the same kind gather under a higher claim.\n\nThe mistake is mixing motions inside one section. A true chain flattened into bullets loses force. Independent reasons forced into a chain start lying about causality.\n\nPick the logic path the material can bear.\n\nThe choice between deduction and induction is a choice of motion: one pulls the reader through a chain, the other asks them to recognize a pattern among related points.",
+    "fullRead": "Grace begins with a question on the refuge map: why did the reed grass appear first along the service road? Her draft lists mowing schedule, seed map, and wetland access gate as parallel issues. The list looks tidy, but the ecology does not behave as a list. Mowing disturbed the verge. Disturbance spread seeds along the service road. Seed spread blocked wetland access. One step changes the next.\n\nShe traces the chain instead of presenting three sibling points. The intervention changes with that choice. If the issues were parallel, she might fund three separate fixes. If the motion is deductive, the first link matters because later damage follows from it.\n\nNow picture the restaurant case again. Labor, lease, and foot traffic all support closure, but they do not produce each other. Treating them as a chain adds false drama. Treating them as induction lets the board see three comparable reasons rising into one conclusion.\n\nThe heading map keeps the lesson practical: choose the motion the section is actually making. The source distinction is not an invitation to formal logic theater. It asks whether the reader should move step by step or compare siblings.\n\nPavel discovers the same split in an insurance training page. His denial checklist contains a rule path: policy exclusion, notice timing, documentation. Then the page drops in three example claim packets. New adjusters read examples as if they were rule steps and deny claims too quickly. Pavel separates the deductive rule path from the inductive examples. The page gets longer by a few lines and clearer by a mile.\n\nWhat should you look for? Dependence. If point two needs point one to be true, you may have a chain. If each point can stand beside the others as the same kind of evidence, you may have induction. If both motions appear, split the section before writing the conclusion.\n\nThere is a limit. Some arguments contain a short deductive chain inside a larger inductive group, or examples after a rule. That is fine if the motion is signaled cleanly. The problem is not mixture across a whole document. The problem is one support set pretending to move in one way while actually moving in two.\n\nReadable logic comes from honest motion. The reader should not have to ask whether the section is climbing stairs or comparing siblings. The structure should tell them.\n\nThe small test is verbal as much as visual. If you hear yourself saying therefore, because of that, or which means, you may be in a chain. If you hear also, another reason, or the third factor, you may be in induction. Those words are not proof, but they often reveal the motion your material is trying to make.\n\nWhen in doubt, draw the motion before naming it. If the arrows depend on sequence, keep the chain visible. If the points can trade places without changing causality, test whether they are siblings under one honest summary."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-emily-rebate-chain",
+      "title": "Emily Keeps the Rebate as a Chain",
+      "tags": [
+        "scene",
+        "tax",
+        "policy"
+      ],
+      "planSpec": {
+        "domain": "a tax policy analyst explaining why a rebate will miss renters",
+        "audience": "policy writers handling cause-and-effect arguments",
+        "stakes": "lawmakers may support a measure that helps the wrong households if the chain is flattened",
+        "format": "scene",
+        "requiredBeat": "Emily draws the statutory eligibility chain step by step and refuses to present it as three independent concerns."
+      },
+      "scenario": "A highlighter rests across a marked-up rebate statute in Emily’s policy office at 6:10 p.m. The renter impact table looks like three concerns, but the eligibility flowchart shows sequence: income threshold, filing status, landlord pass-through. Before the lawmaker briefing, Emily faces a choice between three parallel bullets and a chain. She draws the statutory path step by step and refuses to flatten it.",
+      "whatToDo": "Present the eligibility path as a deductive chain. Show each condition in order so lawmakers see exactly where renters fall out.",
+      "whyItMatters": "The rebate misses renters through linked conditions. Parallel bullets would hide which step causes the exclusion and weaken the policy fix."
+    },
+    {
+      "exampleId": "ch05-ex02-nicolas-closure-reasons",
+      "title": "Nicolas Removes the False Arrows",
+      "tags": [
+        "decision_point",
+        "restaurant",
+        "board"
+      ],
+      "planSpec": {
+        "domain": "a restaurant group comparing three reasons to close one underperforming location",
+        "audience": "operators writing board notes with parallel reasons",
+        "stakes": "the closure case weakens if independent reasons are forced into a causal staircase",
+        "format": "decision_point",
+        "requiredBeat": "\"Labor did not cause the lease, and the lease did not cause foot traffic,\" Nicolas says, then turns a fake chain into an inductive group."
+      },
+      "scenario": "\"Labor did not cause the lease,\" Nicolas says as the finance director above the profit-and-loss binder before the board call. The lease renewal notice, wage schedule, and foot-traffic count are all bad news, but none causes the next. He faces a choice: keep the causal arrows because they look decisive, or remove them and present three parallel reasons. He turns the fake staircase into an inductive group.",
+      "whatToDo": "Remove the arrows and make the three reasons siblings under the closure recommendation. Let the board compare parallel pressures rather than follow a false chain.",
+      "whyItMatters": "Independent reasons can jointly support a conclusion without causing each other. Fake causality makes the closure case easier to attack."
+    },
+    {
+      "exampleId": "ch05-ex03-grace-reed-grass",
+      "title": "Grace Traces the Reed Grass Chain",
+      "tags": [
+        "predict_reveal",
+        "wildlife",
+        "sequence"
+      ],
+      "planSpec": {
+        "domain": "a wildlife refuge manager explaining an invasive-plant spread",
+        "audience": "environmental managers needing real progression",
+        "stakes": "the wrong intervention gets chosen if seed dispersal, mowing, and wetland access are listed as parallel issues",
+        "format": "predict_reveal",
+        "requiredBeat": "Grace asks whether the items are siblings, then traces the actual chain from mowing schedule to seed spread to blocked wetland access."
+      },
+      "scenario": "Why did the reed grass appear first along the service road? Grace asks beside a seed map and the wetland access gate at the refuge office. She predicts mowing, seed spread, and blocked access are three parallel issues. Then she checks the mowing schedule. The order reveals a chain: mowing disturbed the verge, seeds spread along the road, and the access gate became blocked. Grace must decide if the intervention starts at the first link.",
+      "whatToDo": "Trace the progression and write it as deduction. Start the intervention where the chain begins instead of treating every symptom as a separate problem.",
+      "whyItMatters": "The wrong structure suggests the wrong fix. A real chain points to the first leverage point; a list makes every visible problem look equal."
+    },
+    {
+      "exampleId": "ch05-ex04-pavel-claim-training",
+      "title": "Pavel Splits Rules From Examples",
+      "tags": [
+        "before_after",
+        "insurance",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "an insurance claims trainer writing denial guidance",
+        "audience": "trainers who must show rule application cleanly",
+        "stakes": "new adjusters will deny claims incorrectly if legal conditions and examples are mixed",
+        "format": "before_after",
+        "requiredBeat": "Pavel separates the deductive rule path from inductive examples, then writes two different support sections instead of one confused one."
+      },
+      "scenario": "As the claims trainer at the appeals desk, Pavel needed one appealed claim to see his training page had two motions. The denial checklist moved from policy exclusion to notice timing to documentation, then drifted into three example claim packets. New adjusters treated the examples as extra rule steps. Pavel rebuilt the page after the appeal letter arrived: one deductive rule path, one inductive example set, two support sections instead of one confused one.",
+      "whatToDo": "Separate rule application from examples. Put the legal conditions in sequence, then place comparable claim examples in their own group.",
+      "whyItMatters": "Adjusters need to know when a rule must be followed step by step and when examples merely show a pattern. Mixing the two creates bad denials."
+    },
+    {
+      "exampleId": "ch05-ex05-laura-rehearsal-floor",
+      "title": "Laura Preserves the Injury Chain",
+      "tags": [
+        "vignette",
+        "ballet",
+        "rehearsal"
+      ],
+      "planSpec": {
+        "domain": "a ballet company production manager justifying a rehearsal change",
+        "audience": "arts administrators balancing physical constraints and schedule reasons",
+        "stakes": "dancers may reject the change if a real injury-prevention chain is presented as a preference list",
+        "format": "vignette",
+        "requiredBeat": "You watch Laura show how floor fatigue leads to technique drift and then to injury risk, preserving the deductive chain instead of flattening it."
+      },
+      "scenario": "You can hear resin crackle under slippers at the edge of the sprung floor while Laura holds the rehearsal schedule and injury log. The floor maintenance note explains why late rehearsals leave the surface tired. Laura faces a choice before the dancers’ meeting: present shorter rehearsals as one preference among many, or show the chain from floor fatigue to technique drift to injury risk. She preserves the progression.",
+      "whatToDo": "Show the rehearsal change as a chain: floor fatigue, technique drift, injury risk. Do not flatten it into a list of preferences.",
+      "whyItMatters": "Dancers can reject a preference list. A linked injury chain shows why the schedule change follows from the physical constraint."
+    },
+    {
+      "exampleId": "ch05-ex06-tomas-supplier-risks",
+      "title": "Tomás Turns Risk Arrows Into Siblings",
+      "tags": [
+        "postmortem",
+        "energy",
+        "procurement"
+      ],
+      "planSpec": {
+        "domain": "a renewable-energy procurement lead summarizing supplier risks",
+        "audience": "procurement teams comparing parallel risk categories",
+        "stakes": "contract choice changes if shipping, warranty, and inverter compatibility stay as comparable siblings",
+        "format": "postmortem",
+        "requiredBeat": "At 3:35 p.m., Tomás removes causal arrows between unrelated supplier risks and creates an inductive summary that names their shared effect on delivery certainty."
+      },
+      "scenario": "At 3:35 p.m., Tomás erases three arrows from the supplier-risk board after a procurement review goes sideways. The warranty clause did not cause the shipping delay, and the shipping delay did not cause the inverter compatibility issue. The arrows made the supplier look like one cascading failure. In the postmortem, Tomás rebuilds the note as parallel risk categories with one shared effect: weaker delivery certainty.",
+      "whatToDo": "Remove causal arrows between unrelated risks. Present shipping, warranty, and inverter compatibility as sibling categories under delivery certainty.",
+      "whyItMatters": "Procurement teams compare suppliers by categories that can stand side by side. False chains distort the contract choice and overstate causality."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A section says one legal condition triggers the next and the conclusion fails if any step fails. What reasoning motion is the writer asking the reader to follow?",
+        "choices": [
+          "An inductive group.",
+          "A deductive chain.",
+          "A transition between sections."
+        ],
+        "correctIndex": 1,
+        "explanation": "Linked dependence signals deduction. The reader follows one step to the next. An inductive group would use parallel support, not required sequence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A board note lists rent increase, weak foot traffic, and labor cost as three independent reasons to close a store. What structure fits best?",
+        "choices": [
+          "An inductive group of parallel reasons under one closure conclusion.",
+          "A causal staircase from rent to foot traffic to labor.",
+          "A chronological history of the location."
+        ],
+        "correctIndex": 0,
+        "explanation": "The reasons support the same conclusion without causing each other. Treating them as induction avoids fake causality and lets the board compare them fairly.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A refuge report lists mowing, seed spread, and blocked access as separate issues, but field notes show mowing led to seed spread and seed spread blocked access. What should change?",
+        "choices": [
+          "Keep the list because all items are environmental.",
+          "Remove the access issue because it appears last.",
+          "Write the sequence as a deductive chain."
+        ],
+        "correctIndex": 2,
+        "explanation": "The items depend on one another, so the reader needs progression. A broad environmental topic does not make them siblings, and the last link still matters.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A claims-training page mixes a rule path with three example cases, and new adjusters treat the examples as required steps. What repair fits the reasoning problem?",
+        "choices": [
+          "Delete examples because rules should stand alone.",
+          "Make the examples longer so adjusters slow down.",
+          "Separate the deductive rule path from the inductive example group."
+        ],
+        "correctIndex": 2,
+        "explanation": "The page contains two motions. Rule conditions need sequence; examples need grouping. Longer examples would not fix the mixed structure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A manager draws arrows between three risks because arrows make the page look rigorous. The risks do not cause one another. What is the danger?",
+        "choices": [
+          "The section will sound too informal for senior readers reviewing risk.",
+          "The arrows imply a false deductive chain and mislead the reader about causality.",
+          "The risks will need more data labels and clearer ownership notes."
+        ],
+        "correctIndex": 1,
+        "explanation": "Arrows imply dependence. If the risks are independent siblings, false arrows make the structure lie about how the conclusion is earned.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A rehearsal-change memo says floor fatigue causes technique drift and technique drift increases injury risk. Why should that not be flattened into three bullets?",
+        "choices": [
+          "The linked progression is the reason the schedule change follows.",
+          "Use bullets so readers can verify each step independently, especially if the audience is unfamiliar with chain reasoning.",
+          "Dancers prefer paragraphs to bullets."
+        ],
+        "correctIndex": 0,
+        "explanation": "The force comes from dependence across steps. Flattening into bullets hides why the first condition leads to the final risk.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A procurement summary compares shipping reliability, warranty exposure, and inverter compatibility. They share one effect but do not cause each other. What top-line support pattern fits?",
+        "choices": [
+          "Induction, because parallel categories rise into a shared delivery-certainty claim.",
+          "Use deduction because reliability failures can drive warranty exposure and compatibility issues, making a dependency chain plausible.",
+          "A narrative timeline, because supplier work happens over time."
+        ],
+        "correctIndex": 0,
+        "explanation": "The categories are siblings. Induction lets them stand side by side under the shared effect. A chain or timeline would impose the wrong motion.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A writer starts a section with a deductive chain, then adds two independent reasons before the conclusion. The reader feels the logic wobble. What likely happened?",
+        "choices": [
+          "The conclusion used too few words.",
+          "The writer needed more examples before the chain.",
+          "The section switched reasoning motion midstream."
+        ],
+        "correctIndex": 2,
+        "explanation": "The wobble comes from mixing chain logic with sibling reasons in one support set. More words or examples do not solve the motion conflict.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A policy writer has three points on her screen: one legal condition that triggers the next, two examples that merely resemble each other, and a deadline before the compliance note goes out. What is the best first question before she chooses deduction or induction?",
+        "choices": [
+          "Which form sounds more formal to the audience?",
+          "Do the points depend on one another, or do they stand as same-kind support?",
+          "Which version will be shorter on the page?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Dependence decides the motion. Formality and length are surface concerns after the writer knows whether the material is a chain or a group.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A memo has one linked chain and one sibling list. What difference should the reader be able to see?",
+      "back": "Deduction is a linked chain where each step depends on the prior step. Induction is same-kind support sitting side by side under a shared summary.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Independent reasons have been drawn as a causal chain. What is the repair?",
+      "back": "Remove the causal arrows and present the reasons as an inductive group. Let them support the same conclusion without pretending one produces the next.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A real progression has been flattened into bullets. What does the reader lose?",
+      "back": "The reader loses the dependence between steps. If one condition produces the next, the structure needs to show that chain so the conclusion follows cleanly.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A training page contains rule conditions and examples. Why might it need two sections?",
+      "back": "Rule conditions may form a deductive path, while examples form an inductive set. Keeping them separate prevents readers from treating examples as required rule steps.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What question should you ask before choosing deduction or induction?",
+      "back": "Ask whether the points depend on one another or stand beside one another as the same kind of support. The answer determines the motion.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Choose the Reasoning Motion",
+    "coreSkill": "You learn to decide whether a section should move as a chain or as a group. The skill is looking for dependence between points before choosing the structure. When the motion is wrong, the conclusion feels less trustworthy even if the facts are true.",
+    "ifThenPlans": [
+      {
+        "context": "policy analysis",
+        "plan": "If one condition leads to the next, then write the section as a chain and keep the order visible."
+      },
+      {
+        "context": "board recommendation",
+        "plan": "If several independent reasons support one decision, then remove causal arrows and group them as siblings."
+      },
+      {
+        "context": "training material",
+        "plan": "If a rule path and examples appear together, then split them into a deductive rule section and an inductive example section."
+      },
+      {
+        "context": "editing review",
+        "plan": "If a section feels logical but hard to follow, then mark each point C for chain or S for sibling and separate mixed motions."
+      }
+    ],
+    "twentyFourHourChallenge": "Take one support set today and mark each point C for chain step or S for sibling reason. If both marks appear in one group, split the section before writing the conclusion.",
+    "weeklyPractice": "Each week, inspect one important argument for false arrows and flattened chains. Rewrite one section so the reasoning motion matches the material."
+  },
+  "memorableLines": [
+    {
+      "text": "The writer has to know whether the reader is following a chain or recognizing a pattern among siblings.",
+      "location": "breakdown.deepRead",
+      "why": "It states the whole distinction in reader terms."
+    },
+    {
+      "text": "Pick the logic path the material can bear.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the practical rule into a short command."
+    },
+    {
+      "text": "Readable logic comes from honest motion.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the lesson a final portable line."
+    }
+  ]
+}

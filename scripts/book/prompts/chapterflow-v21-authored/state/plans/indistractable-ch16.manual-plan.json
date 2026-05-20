@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch16",
+  "number": 16,
+  "title": "Hack Back Your Smartphone",
+  "coreMove": "Redesign the phone so useful tools remain reachable and unplanned cues lose their default path to your attention.",
+  "sourcePressure": "The chapter begins the personal-device stretch by treating the smartphone as a portable trigger source that can be reconfigured without abstinence fantasies.",
+  "chapterSpecificMisunderstanding": "A weak run would demand a phone detox instead of changing the device's trigger design.",
+  "sourceAlignmentTerms": [
+    "smartphone",
+    "external triggers",
+    "configuration",
+    "friction",
+    "portable cues",
+    "tool"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hack Back Your Smartphone as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "home-health nurse carrying a phone between patient visits",
+      "audience": "nurse who needs maps and medication calls but not every alert",
+      "stakes": "patient timing and privacy suffer when the whole device is treated as urgent",
+      "format": "decision_point",
+      "requiredBeat": "she leaves map, secure call, and schedule visible while moving social icons into a search-only folder",
+      "firstImage": "A privacy screen protector reflects a route list.",
+      "mustInclude": [
+        "privacy screen",
+        "route list",
+        "search-only folder"
+      ],
+      "mustAvoid": [
+        "throw phone away"
+      ]
+    },
+    {
+      "domain": "wildlife photographer waiting in a blind",
+      "audience": "photographer who needs camera controls but not feeds",
+      "stakes": "one feed check can scare off the shot and break patience",
+      "format": "scene",
+      "requiredBeat": "he pins the shutter remote and weather app while removing feeds from the home screen",
+      "firstImage": "A shutter remote app sits beside a camouflage lens wrap.",
+      "mustInclude": [
+        "shutter remote",
+        "lens wrap",
+        "weather tile"
+      ],
+      "mustAvoid": [
+        "nature escape"
+      ]
+    },
+    {
+      "domain": "paramedic student using flashcards on commute breaks",
+      "audience": "student whose study app sits beside video shortcuts",
+      "stakes": "certification prep erodes in five-minute gaps",
+      "format": "before_after",
+      "requiredBeat": "before, thumb opens video; after, flashcards sit alone on the dock during commute weeks",
+      "firstImage": "A transit transfer slip lies under a flashcard widget.",
+      "mustInclude": [
+        "transfer slip",
+        "flashcard widget",
+        "video folder"
+      ],
+      "mustAvoid": [
+        "school cramming"
+      ]
+    },
+    {
+      "domain": "auction house specialist verifying lot numbers",
+      "audience": "specialist who needs the camera and inventory app",
+      "stakes": "wrong lots get photographed if alerts hijack the check",
+      "format": "dialogue",
+      "requiredBeat": "she sets a lot-verification focus screen and silences collector-chat badges until noon",
+      "firstImage": "A porcelain lot tag is framed by a phone camera grid.",
+      "mustInclude": [
+        "lot tag",
+        "camera grid",
+        "focus screen"
+      ],
+      "mustAvoid": [
+        "luxury distraction"
+      ]
+    },
+    {
+      "domain": "landscape crew lead coordinating weather and crews",
+      "audience": "crew lead needing calls but not sports alerts",
+      "stakes": "rain timing and crew placement depend on the right cues",
+      "format": "postmortem",
+      "requiredBeat": "he keeps weather radar and crew calls, then deletes badge access for nonwork apps during shifts",
+      "firstImage": "A muddy work glove points at a weather radar tile.",
+      "mustInclude": [
+        "work glove",
+        "radar tile",
+        "crew-call list"
+      ],
+      "mustAvoid": [
+        "phone addiction trope"
+      ]
+    },
+    {
+      "domain": "museum visitor using audio guide with children",
+      "audience": "parent who wants the guide but not message drift",
+      "stakes": "the planned visit turns into scattered half-presence",
+      "format": "reflection",
+      "requiredBeat": "she opens audio guide mode, pockets the phone screen-down, and checks messages only at the courtyard bench",
+      "firstImage": "An audio-guide lanyard rests beside a folded gallery map.",
+      "mustInclude": [
+        "audio-guide lanyard",
+        "gallery map",
+        "courtyard bench"
+      ],
+      "mustAvoid": [
+        "family guilt"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Redesign the phone so useful tools remain reachable and unplanned cues lose their default path to your attention.",
+      "choose the action that stays inside Hack Back Your Smartphone's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would demand a phone detox instead of changing the device's trigger design.",
+      "use chapter-specific terms such as smartphone, external triggers, configuration, friction in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Move one high-trigger app off the first screen and place the tool you actually need for today's block where your thumb lands.",
+  "readingTimeMinutes": 12
+}

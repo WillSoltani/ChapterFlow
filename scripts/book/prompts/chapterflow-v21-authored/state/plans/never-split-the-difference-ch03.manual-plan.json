@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch03",
+  "number": 3,
+  "title": "Don't Feel Their Pain, Label It",
+  "coreMove": "Name the pressure you hear without taking it on, so the other side can lower its guard.",
+  "sourcePressure": "The source frames tactical empathy as identifying and verbalizing the counterpart's perspective and emotions, using recognition language such as it seems like and it sounds like, while preserving strategic distance.",
+  "chapterSpecificMisunderstanding": "The writer must not make the move about sharing feelings, agreeing with pain, or becoming emotionally fused with the other side.",
+  "sourceAlignmentTerms": [
+    "label",
+    "tactical empathy",
+    "it seems like",
+    "it sounds like",
+    "perspective",
+    "emotion",
+    "strategic distance"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A friend vents and receives validation",
+      "A therapist labels feelings",
+      "A manager says I hear you"
+    ],
+    "counterintuition": [
+      "Empathy does not mean agreement",
+      "Naming feelings reduces feelings",
+      "Distance helps closeness"
+    ],
+    "tryThisNow": [
+      "Say it sounds like before advice",
+      "Name one emotion",
+      "Validate someone's feelings"
+    ],
+    "examples": [
+      "couch conversation",
+      "generic employee morale meeting",
+      "school conflict circle",
+      "customer complaint apology"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "freight customs inspection for detained medical devices",
+      "audience": "a logistics coordinator speaking with an inspector who keeps saying paperwork is incomplete",
+      "stakes": "surgical trays may miss a hospital sterilization window if the inspection fear stays unnamed",
+      "format": "scene",
+      "requiredBeat": "the coordinator says it seems like the risk is releasing devices without traceable serial numbers, then stops arguing until the inspector points to the missing manifest column",
+      "firstImage": "a shrink-wrapped pallet with orange customs tape across the corner",
+      "mustInclude": [
+        "serial-number manifest",
+        "sterilization window",
+        "customs seal"
+      ],
+      "mustAvoid": [
+        "generic shipping delay",
+        "blaming bureaucracy"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "independent film location dispute with a neighborhood association",
+      "audience": "a location manager facing residents who oppose a night shoot",
+      "stakes": "the permit may be revoked if residents believe the crew will ignore sleep and parking concerns",
+      "format": "dialogue",
+      "requiredBeat": "the manager labels that it sounds like residents expect the crew to vanish after leaving the mess behind, causing the association chair to name the prior production's broken promise",
+      "firstImage": "a yellow no-parking sleeve half-taped to a street sign at dusk",
+      "mustInclude": [
+        "generator curfew",
+        "parking sleeve",
+        "cleanup deposit"
+      ],
+      "mustAvoid": [
+        "generic neighbor complaint",
+        "movie glamour"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "pediatric vaccine clinic line management",
+      "audience": "a clinic lead dealing with a parent who is loudly refusing the consent desk",
+      "stakes": "the line is freezing and staff may call security before the actual worry is heard",
+      "format": "decision_point",
+      "requiredBeat": "the clinic lead chooses not to correct the parent and instead labels that it seems like the form feels like signing away choice, making the parent point to the allergy field",
+      "firstImage": "a plastic consent tray sliding toward the edge of a registration table",
+      "mustInclude": [
+        "allergy field",
+        "numbered wristband",
+        "privacy curtain"
+      ],
+      "mustAvoid": [
+        "medical persuasion debate",
+        "generic anxious parent"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "data-center outage bridge with a furious enterprise client",
+      "audience": "an incident commander trying to keep the call useful while engineers diagnose",
+      "stakes": "the client may force a public escalation if the outage feels minimized",
+      "format": "postmortem",
+      "requiredBeat": "the commander reviews how labeling 'it sounds like your board thinks we are hiding the blast radius' changed the client's tone and produced the one service dependency not in the ticket",
+      "firstImage": "a red incident timer counting up above a muted video bridge",
+      "mustInclude": [
+        "dependency map",
+        "board update",
+        "status page"
+      ],
+      "mustAvoid": [
+        "generic tech outage",
+        "apology-only response"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "restaurant health inspection corrective meeting",
+      "audience": "a chef-owner hearing a violation list from an inspector",
+      "stakes": "a defensive outburst may turn a fixable recheck into a shutdown threat",
+      "format": "before_after",
+      "requiredBeat": "after resisting the report, the chef labels that it seems like the inspector is worried the cooling log is performative, and the inspector explains the exact timestamp gap",
+      "firstImage": "a metal prep table with a printed cooling log tucked under a sanitizer bottle",
+      "mustInclude": [
+        "cooling log",
+        "recheck date",
+        "walk-in shelf"
+      ],
+      "mustAvoid": [
+        "generic restaurant drama",
+        "foodie scene"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "rural broadband easement conversation with a landowner",
+      "audience": "a fiber-project negotiator facing a landowner who refuses survey access",
+      "stakes": "an entire road's installation may be rerouted at high cost if the landowner's fear stays hidden",
+      "format": "reflection",
+      "requiredBeat": "the negotiator labels that it sounds like temporary access feels like permanent loss of control, leading the landowner to describe an old pipeline dispute",
+      "firstImage": "a survey stake lying beside a cattle gate with pink flagging tape still attached",
+      "mustInclude": [
+        "easement map",
+        "gate lock",
+        "survey stake"
+      ],
+      "mustAvoid": [
+        "generic neighbor property conflict",
+        "legal threat"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose a label that names pressure without agreeing to the claim",
+      "spot emotional over-identification disguised as empathy",
+      "analyze when a label lowers defensiveness enough for new information",
+      "evaluate whether a sentence keeps strategic distance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one tense sentence you heard today, then turn it into a label beginning with it seems like or it sounds like; remove any advice, defense, or agreement from the line.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

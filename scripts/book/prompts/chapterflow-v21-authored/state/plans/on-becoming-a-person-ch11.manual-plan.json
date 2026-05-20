@@ -1,0 +1,190 @@
+{
+  "chapterId": "on-becoming-a-person-ch11",
+  "number": 11,
+  "title": "Personality Change in Psychotherapy",
+  "coreMove": "Look for personality change as reorganization of self-contact, not as surface behavior polish.",
+  "sourcePressure": "The chapter asks what actually changes in personality through psychotherapy and how such change should be understood. No split source sidecar exists for ch11; frozen TOC and book skeleton support the heading, part placement, and broad intent only, with no chapter-local named anecdotes, studies, or places.",
+  "chapterSpecificMisunderstanding": "Treating change as mood improvement, compliance, or a before-after makeover.",
+  "sourceAlignmentTerms": [
+    "personality change",
+    "psychotherapy",
+    "self-structure",
+    "measurable change",
+    "inner organization",
+    "therapeutic movement"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source exposes no usable chapter-local named person, study, institution, place, date, or anecdotal artifact from Rogers here. Use fictional protagonists only; do not invent named Rogers cases or studies.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of personality change",
+      "therapist office at the window",
+      "reader-you-are-stuck generic opener"
+    ],
+    "counterintuition": [
+      "Most people think X, but Y",
+      "It is not about being nice",
+      "The paradox is that acceptance changes everything"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you noticed",
+      "pause and breathe before replying"
+    ],
+    "examples": [
+      "makeover narratives",
+      "habit-fix framing",
+      "instant confidence arcs",
+      "reused classroom worksheet shell",
+      "coffee mug office feedback shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Chiara",
+      "domain": "therapy progress review",
+      "audience": "readers who face therapy progress review and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around personality change; specifically, the outcome turns on whether Chiara can make personality change visible without sliding into treating change as mood improvement, compliance, or a before-after makeover.",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "In the therapy progress review, Chiara separates surface compliance from a deeper shift in self-organization before calling it change, with the change-rating sheet and the follow-up graph making the choice visible instead of merely stated.",
+      "firstImage": "the change-rating sheet beside Chiara's hand; the opening opens with the practical question the scene has to answer",
+      "mustInclude": [
+        "change-rating sheet",
+        "follow-up graph"
+      ],
+      "mustAvoid": [
+        "do not turn therapy progress review into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Chiara lecture"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "probation reentry planning",
+      "audience": "readers who face probation reentry planning and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around personality change; specifically, the outcome turns on whether Paula can make personality change visible without sliding into treating change as mood improvement, compliance, or a before-after makeover.",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "In the probation reentry planning, Paula separates surface compliance from a deeper shift in self-organization before calling it change, with the follow-up graph and the sealed progress envelope making the choice visible instead of merely stated.",
+      "firstImage": "a half-finished note on Paula's desk; the opening opens from the texture, sound, or physical pressure of the object before anyone explains it",
+      "mustInclude": [
+        "follow-up graph",
+        "sealed progress envelope"
+      ],
+      "mustAvoid": [
+        "do not turn probation reentry planning into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Paula lecture"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "speech therapy reassessment",
+      "audience": "readers who face speech therapy reassessment and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around personality change; specifically, the outcome turns on whether Isabel can make personality change visible without sliding into treating change as mood improvement, compliance, or a before-after makeover.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "In the speech therapy reassessment, Isabel separates surface compliance from a deeper shift in self-organization before calling it change, with the sealed progress envelope and the change-rating sheet making the choice visible instead of merely stated.",
+      "firstImage": "the open doorway before Isabel speaks; the opening begins with one line of speech that exposes the relational pressure before the narrator explains it",
+      "mustInclude": [
+        "sealed progress envelope",
+        "change-rating sheet"
+      ],
+      "mustAvoid": [
+        "do not turn speech therapy reassessment into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Isabel lecture"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "leadership coaching midpoint",
+      "audience": "readers who face leadership coaching midpoint and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around personality change; specifically, the outcome turns on whether Catarina can make personality change visible without sliding into treating change as mood improvement, compliance, or a before-after makeover.",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "In the leadership coaching midpoint, Catarina separates surface compliance from a deeper shift in self-organization before calling it change, with the change-rating sheet and the follow-up graph making the choice visible instead of merely stated.",
+      "firstImage": "a line on the form that Catarina cannot ignore; the opening lets the room or setting carry the first signal before any person is named",
+      "mustInclude": [
+        "change-rating sheet",
+        "follow-up graph"
+      ],
+      "mustAvoid": [
+        "do not turn leadership coaching midpoint into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Catarina lecture"
+      ]
+    },
+    {
+      "protagonistName": "Anya",
+      "domain": "college disability accommodation meeting",
+      "audience": "readers who face college disability accommodation meeting and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around personality change; specifically, the outcome turns on whether Anya can make personality change visible without sliding into treating change as mood improvement, compliance, or a before-after makeover.",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "In the college disability accommodation meeting, Anya separates surface compliance from a deeper shift in self-organization before calling it change, with the follow-up graph and the sealed progress envelope making the choice visible instead of merely stated.",
+      "firstImage": "the quiet after Anya stops explaining; the opening puts the reader directly in the moment before naming the choice",
+      "mustInclude": [
+        "follow-up graph",
+        "sealed progress envelope"
+      ],
+      "mustAvoid": [
+        "do not turn college disability accommodation meeting into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Anya lecture"
+      ]
+    },
+    {
+      "protagonistName": "Nina",
+      "domain": "rural clinic follow-up",
+      "audience": "readers who face rural clinic follow-up and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around personality change; specifically, the outcome turns on whether Nina can make personality change visible without sliding into treating change as mood improvement, compliance, or a before-after makeover.",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "In the rural clinic follow-up, Nina separates surface compliance from a deeper shift in self-organization before calling it change, with the sealed progress envelope and the change-rating sheet making the choice visible instead of merely stated.",
+      "firstImage": "two chairs pulled out from the table; the opening starts after the cost is visible, then backs into the choice that created it",
+      "mustInclude": [
+        "sealed progress envelope",
+        "change-rating sheet"
+      ],
+      "mustAvoid": [
+        "do not turn rural clinic follow-up into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Nina lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "analyze depth of change",
+      "separate compliance from personality movement",
+      "evaluate evidence of inner reorganization"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one apparent improvement and ask what changed underneath: behavior, self-understanding, defensiveness, or merely the performance.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside where supported, a direct second-person passage, or a brief historical reference to the frozen chapter placement",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

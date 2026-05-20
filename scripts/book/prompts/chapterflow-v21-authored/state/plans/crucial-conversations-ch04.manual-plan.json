@@ -1,0 +1,185 @@
+{
+  "chapterId": "crucial-conversations-ch04",
+  "number": 4,
+  "title": "Master My Stories: Staying in Dialogue When You're Upset",
+  "coreMove": "Work backward from your reaction to the story you told, then separate facts from interpretation before acting.",
+  "sourcePressure": "The Path to Action inserts a story between facts and feelings, exposing victim, villain, and helpless stories as editable interpretations rather than direct reality.",
+  "chapterSpecificMisunderstanding": "Teaching readers to distrust emotion or suppress anger.",
+  "sourceAlignmentTerms": [
+    "Path to Action",
+    "see and hear",
+    "tell a story",
+    "feel",
+    "act",
+    "victim story",
+    "villain story",
+    "helpless story"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pharmacy counter where a technician assumes a customer is abusing the refill system",
+      "audience": "a pharmacy technician who is tired of being yelled at during shortage season",
+      "stakes": "a diabetic patient may leave without insulin because the technician acts from a villain story",
+      "format": "scene",
+      "requiredBeat": "the technician feels the snap rising, pauses with the refill screen open, and lists the actual facts before deciding what story is fair",
+      "firstImage": "A gray refill screen flashes rejected in red behind the pharmacy counter.",
+      "mustInclude": [
+        "refill screen",
+        "insurance code",
+        "insulin cooler"
+      ],
+      "mustAvoid": [
+        "generic customer service patience"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "airport gate crew after a delayed boarding announcement",
+      "audience": "a gate agent interpreting a pilot's silence as arrogance",
+      "stakes": "a full flight may turn hostile if the crew fights each other in front of passengers",
+      "format": "postmortem",
+      "requiredBeat": "after a curt announcement, the agent reconstructs see-hear-story-feel-act and finds the missing maintenance fact under her anger",
+      "firstImage": "\"Wait,\" someone says, and a boarding scanner sits idle while Zone 2 passengers crowd the stanchions.",
+      "mustInclude": [
+        "boarding scanner",
+        "maintenance text",
+        "delay monitor"
+      ],
+      "mustAvoid": [
+        "generic travel frustration"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "animal shelter adoption desk when a volunteer thinks an applicant is careless",
+      "audience": "a shelter volunteer protective of a returned dog",
+      "stakes": "a good adoption could be blocked by a victim story about overworked staff and careless applicants",
+      "format": "dialogue",
+      "requiredBeat": "the volunteer hears herself saying people like this, stops, and asks what facts she actually has about the applicant's fenced yard and prior vet records",
+      "firstImage": "The first signal is sensory before it is social: a leash with a red adoption tag hangs from a pegboard hook.",
+      "mustInclude": [
+        "adoption tag",
+        "vet record copy",
+        "yard photo"
+      ],
+      "mustAvoid": [
+        "generic pet-owner lecture"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "restaurant expo line where a sous-chef assumes sabotage after a repeated plating mistake",
+      "audience": "a sous-chef on a slammed Saturday service",
+      "stakes": "the line could melt down because one cook gets branded lazy instead of trained on the new garnish order",
+      "format": "predict_reveal",
+      "requiredBeat": "the sous-chef predicts what his helpless story will make him do, then checks the printed ticket and sees the new garnish abbreviation was never explained",
+      "firstImage": "You notice a heat lamp glows over three plates missing the same garnish before anyone names the problem.",
+      "mustInclude": [
+        "printed ticket",
+        "garnish tray",
+        "heat lamp"
+      ],
+      "mustAvoid": [
+        "generic angry chef scene"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "grant-funded research lab after a data file is mislabeled",
+      "audience": "a principal investigator who feels betrayed by a graduate assistant",
+      "stakes": "months of trust and a publication deadline depend on whether she checks the story before accusing",
+      "format": "decision_point",
+      "requiredBeat": "the investigator opens the file history, separates the timestamp facts from the betrayal story, and asks one counter-question before sending the email",
+      "firstImage": "Only later does the miss become obvious: a file named final_final2.csv sits in a shared drive folder.",
+      "mustInclude": [
+        "file history",
+        "lab notebook",
+        "submission deadline"
+      ],
+      "mustAvoid": [
+        "generic academic politics"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "fire station equipment bay after a missing oxygen cylinder check",
+      "audience": "a lieutenant convinced a probie is careless",
+      "stakes": "crew trust and emergency readiness suffer if the lieutenant acts from a villain story",
+      "format": "reflection",
+      "requiredBeat": "the lieutenant sees anger in his own clipped gear check, backs up to the facts, and asks why a reasonable rookie might have missed the second cylinder",
+      "firstImage": "What changes when a silver oxygen cylinder lies strapped into an open rescue compartment?",
+      "mustInclude": [
+        "equipment checklist",
+        "open compartment",
+        "shift roster"
+      ],
+      "mustAvoid": [
+        "generic command-and-control story"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate observable fact from added meaning",
+      "identify victim, villain, and helpless stories in live irritation",
+      "use counter-questions without excusing harm",
+      "choose a revised action after the story changes"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one irritation from today. Write four labels in order: saw/heard, story, feeling, action. Under saw/heard, keep only what a camera or recorder would capture.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

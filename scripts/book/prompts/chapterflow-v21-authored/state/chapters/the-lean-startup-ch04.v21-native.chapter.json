@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch04",
+  "number": 4,
+  "title": "Experiment",
+  "readingTimeMinutes": 12,
+  "hook": "A survey can praise the idea while a pickup table quietly refuses it.",
+  "counterintuition": "Research is not learning, but a way to shape the live test. The stronger move is to ask for behavior the team cannot politely explain away.",
+  "tryThisNow": "Write one belief as a testable sentence: We believe users will do X when offered Y. Then choose the smallest live behavior that can prove or weaken it.",
+  "keyTakeaway": "Turn hopeful beliefs into experiments where real behavior tests value or growth before opinions harden into plans.",
+  "breakdown": {
+    "fastRead": "Grace has a survey printout full of praise for the farm-share pickup redesign. Members like the idea of faster pickup. They like the chalkboard menu. They like the sample cooler near the crates.\n\nFriday is where the claim must go.\n\nA value test asks whether people do the thing that proves the offer matters, not whether they compliment the idea. Grace turns the preference survey into a pickup-token test. If members change how they collect food when the new setup is real, the team learns something. If they only praised it on paper, the plan has been spared a larger mistake.",
+    "deepRead": "\"Would you invite a friend to unlock the next lesson?\" Nicolas asks while the phone shows an unsent invite. The mobile team has heard users say they like the language app. That answer is not enough for a Growth hypothesis. A growth story stays fiction until an experiment shows how one user reliably leads to another.\n\nThe test is narrow: send one real invite to unlock one lesson.\n\nExperiments do not have to be elaborate. They have to be honest about the claim. If the claim is value, the test should ask for behavior that shows the offer matters. If the claim is growth, the test should ask whether use creates more use, referral, retention, or paid acquisition. Market research can help shape the test, but it cannot replace the moment when a person has to act.\n\nThis is why a live test often beats another round of opinions. Opinions carry politeness, imagination, and the desire to be helpful. Behavior carries friction. A user either sends the invite, reserves the material, books the appointment, buys the bundle, or uploads the photo.\n\nActionable feedback comes from the friction.\n\nNicolas writes the referral claim on a sticky note before anyone opens the research deck. The claim is not that learners enjoy the app. The claim is that one learner will spend social trust to bring in another. That makes the test sharper: one invite, one unlock, one tally the team cannot soften with encouraging comments.",
+    "fullRead": "Rachel looks at a stack of vaccination postcards beside the reception phone. Pet owners told the clinic that reminders would help. The booking log says many still schedule late. She can keep asking whether people like reminders, or she can send one SMS script to a small group and watch whether appointments move sooner.\n\nThat choice turns research into experiment.\n\nThe distinction matters because teams often confuse better language about the customer with better evidence from the customer. Interviews can reveal worries, vocabulary, and context. Surveys can show preference. Neither is useless. The problem begins when the team treats stated preference as if it were tested behavior. Under uncertainty, the important question is not whether the idea sounds attractive. It is whether people act when the offer enters their real day.\n\nWhat behavior would make the claim harder to dodge?\n\nMarco has to answer that at a circular-economy salvage table. Builders admire the reclaimed brass handle and ask for more material photos. Admiration is cheap compared with reserving inventory. So he asks for a small hold deposit before the reservation deadline, not another interview about reuse. The deposit form is uncomfortable because it turns approval into commitment. That is exactly why it teaches.\n\nThere are two core questions running through this kind of work. The Value hypothesis asks whether people care enough to use, pay, return, reserve, or otherwise behave as if the offer matters. The Growth hypothesis asks whether that use can create more use through retention, referral, acquisition, or another mechanism. Each hypothesis needs a test that can produce a visible result.\n\nAstrid learns this in the theatre box office. Audience members say a two-show bundle sounds charming. The weekend window tells the truth more clearly. She puts color-coded tickets in the drawer, offers the bundle for two nights, and checks the sales sheet. If people still buy single nights, the bundle praise was only a clue. If they buy pairs, the theatre has evidence to build on.\n\nThe counterweight is important: do not worship experiments as if every decision needs a perfect trial. Some choices are too small to overtest. Some early tests will be rough. The standard is not scientific theater. The standard is whether the test puts the key belief into contact with reality soon enough to affect the next move.\n\nConnor sees the same rule in a diabetes meal-planning service. Clinicians approve the handout, but patients may still ignore it after the consult. The team watches one upload metric: does the patient send a real dinner photo when prompted that night? A handout can earn professional approval and still fail in a kitchen. The photo prompt makes value visible where the behavior actually happens.\n\nAn experiment is a question with consequences. If the answer cannot change the plan, the team has not tested the belief. It has only decorated it."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-grace-farm-share",
+      "title": "Grace Moves the Survey to Friday Pickup",
+      "tags": [
+        "scene",
+        "farm share",
+        "behavior"
+      ],
+      "planSpec": {
+        "domain": "farm-share pickup redesign",
+        "audience": "local food cooperative",
+        "stakes": "survey praise may not prove members will change pickup behavior",
+        "format": "scene",
+        "requiredBeat": "Grace turns a preference survey into a Friday pickup behavior test"
+      },
+      "scenario": "At 4:05 p.m. Friday, Grace sets a chalkboard menu against produce crates and clips the survey printout beside a bowl of pickup tokens. Members praised the redesign, but the sample cooler will show whether they actually choose the faster route. Before the line forms, Grace must choose between trusting stated preference and running the pickup behavior test. The pickup tokens make the test visible because each member chooses a real route under Friday pressure.",
+      "whatToDo": "Run the Friday pickup test with tokens and the sample cooler. Use actual route choices to decide whether the redesign matters beyond survey praise.",
+      "whyItMatters": "The survey shows what members liked imagining. Pickup behavior shows whether the redesign changes a real handoff when people are tired and carrying groceries."
+    },
+    {
+      "exampleId": "ch04-ex02-nicolas-referral",
+      "title": "Nicolas Locks One Lesson Behind a Real Invite",
+      "tags": [
+        "dialogue",
+        "mobile app",
+        "growth"
+      ],
+      "planSpec": {
+        "domain": "language-learning app referral idea",
+        "audience": "mobile product team",
+        "stakes": "users may like the concept but never invite a friend",
+        "format": "dialogue",
+        "requiredBeat": "Nicolas sets a test where learners must send one real invite to unlock a lesson"
+      },
+      "scenario": "\"Do they say they would invite someone, or do they send the invite?\" Nicolas asks at 2:20 p.m. in the language-app team room, holding a phone screen with an unsent invite and an invite code. The lesson lock is ready for a small user group, and the referral tally is blank. Before the sprint starts, the team has to choose between more concept feedback and a test where one real invite unlocks one lesson. The invite code must turn praise into a measurable act before the team calls the growth claim real.",
+      "whatToDo": "Put the lesson lock in front of a small user group and require a real invite. Judge the growth idea by the referral tally, not by verbal approval.",
+      "whyItMatters": "A growth hypothesis needs behavior that creates another user. Liking the concept does not show whether learners will spend social capital on an invite."
+    },
+    {
+      "exampleId": "ch04-ex03-rachel-vet",
+      "title": "Rachel Sends One Reminder Script",
+      "tags": [
+        "vignette",
+        "clinic",
+        "booking"
+      ],
+      "planSpec": {
+        "domain": "veterinary reminder service",
+        "audience": "clinic owner",
+        "stakes": "pet owners may say reminders help without booking sooner",
+        "format": "vignette",
+        "requiredBeat": "Rachel tests one reminder script against actual appointment bookings"
+      },
+      "scenario": "The vaccination postcards sit in a rubber-banded stack by the reception phone while Rachel studies the booking log. Pet owners said reminders would help, and the SMS script sounds friendly. Her thumb hovers over the send button. She needs to decide whether to keep asking for opinions or test whether one script moves actual appointments sooner. The booking log gives Rachel a before-and-after signal tied to appointment dates, not reminder opinions.",
+      "whatToDo": "Send the SMS script to a small group and compare booking dates with the usual postcard group. Let appointment movement judge the reminder service.",
+      "whyItMatters": "Pet owners can endorse reminders without changing behavior. The booking log shows whether the reminder creates action while the vaccine date still matters."
+    },
+    {
+      "exampleId": "ch04-ex04-marco-salvage",
+      "title": "Marco Asks for a Hold Deposit",
+      "tags": [
+        "decision point",
+        "salvage",
+        "commitment"
+      ],
+      "planSpec": {
+        "domain": "architectural salvage marketplace",
+        "audience": "circular-economy startup",
+        "stakes": "builders may admire reuse but not reserve materials",
+        "format": "decision_point",
+        "requiredBeat": "Marco asks for a hold deposit instead of another interview"
+      },
+      "scenario": "You are beside Marco at a salvage-market sample table in Rotterdam, where a reclaimed brass handle rests next to material photos and a deposit form. Builders keep praising reuse, but the reservation deadline is tomorrow. Before packing the samples, Marco must decide whether to book another interview or ask for a small hold deposit that proves someone will reserve the materials. The deposit form makes commitment visible before the scarce material is promised to anyone else.",
+      "whatToDo": "Ask for the hold deposit before scheduling more interviews. Use reservations, not admiration, to test whether the marketplace has value to builders.",
+      "whyItMatters": "Admiration costs builders nothing. A deposit exposes whether reuse matters enough to claim scarce materials before the deadline passes."
+    },
+    {
+      "exampleId": "ch04-ex05-astrid-theatre",
+      "title": "Astrid Tests the Two-Show Bundle",
+      "tags": [
+        "postmortem",
+        "theatre",
+        "ticketing"
+      ],
+      "planSpec": {
+        "domain": "community theatre ticket bundle",
+        "audience": "arts manager",
+        "stakes": "audiences may like bundles but still buy single nights",
+        "format": "postmortem",
+        "requiredBeat": "Astrid runs a two-show bundle at the box office for one weekend"
+      },
+      "scenario": "It took Astrid one weekend window to separate charm from buying. The box-office drawer held color-coded tickets, and the sales sheet tracked singles beside the new ticket bundle. Patrons smiled at the ticket-window offer on Friday. By Sunday, the sheet showed whether they actually bought two-show plans or returned to single nights. The sales sheet forces the theatre to separate friendly box-office talk from paired-ticket purchases.",
+      "whatToDo": "Run the bundle for one weekend and read the sales sheet before expanding it. Treat smiles as interest and paired purchases as the behavior that matters.",
+      "whyItMatters": "Audience approval can be polite and cheap. The box office shows whether the bundle changes a purchase when real money and calendar time are involved."
+    },
+    {
+      "exampleId": "ch04-ex06-connor-meal-photo",
+      "title": "Connor Watches for One Dinner Photo",
+      "tags": [
+        "before after",
+        "health",
+        "photo upload"
+      ],
+      "planSpec": {
+        "domain": "diabetes meal-planning service",
+        "audience": "health startup team",
+        "stakes": "clinicians may approve the plan while patients ignore it",
+        "format": "before_after",
+        "requiredBeat": "Sam watches whether patients upload one real dinner photo after the consult"
+      },
+      "scenario": "The phone gallery is open to a dinner plate beside the clinician handout. Before, Connor's team treated clinical approval as proof the meal plan was strong. After adding a photo prompt after each consult, the upload metric tells a sharper story: patients either send one real dinner photo that night or the service has not entered their routine. The dinner photo is the first behavior that shows whether the plan survives outside the clinic.",
+      "whatToDo": "Keep the clinician handout, but test the patient behavior with a dinner photo prompt. Use uploads after the consult as the first value signal.",
+      "whyItMatters": "Professional approval does not prove patient use. A real dinner photo shows whether the plan survives the evening when choices are made."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team has survey data showing users like a feature concept, but no one has tried it in a real workflow. What is the missing step?",
+        "choices": [
+          "A live experiment where user behavior can answer the value claim.",
+          "A larger survey with more demographic detail.",
+          "A stronger presentation of the survey findings."
+        ],
+        "correctIndex": 0,
+        "explanation": "The value claim needs behavior, not only stated preference. More survey detail may shape the test, but it cannot replace a live result.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A language app team believes referrals will drive growth because learners say they would invite friends, but nobody has sent an invite from inside the product. Which experiment tests that belief most directly?",
+        "choices": [
+          "Ask learners in interviews whether they would recommend the app.",
+          "Require a small group to send one real invite to unlock a lesson and track completed invites.",
+          "Rewrite the referral copy until the team agrees it sounds natural."
+        ],
+        "correctIndex": 1,
+        "explanation": "The real invite tests whether one user can lead to another. Interviews and copy reviews may help, but they do not show referral behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A clinic owner wants to know whether pet owners will book vaccinations sooner after reminders. Which measure belongs in the experiment?",
+        "choices": [
+          "How many owners say reminders sound useful.",
+          "How attractive the reminder postcard looks at reception.",
+          "Whether owners who receive the script book earlier than the comparison group."
+        ],
+        "correctIndex": 2,
+        "explanation": "Earlier booking is the behavior tied to the claim. Usefulness ratings and design quality can inform the message, but the booking log carries the test.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A salvage marketplace hears builders praise reclaimed materials, but reservations stay vague. What should the team test next?",
+        "choices": [
+          "Ask for a small hold deposit before the reservation deadline.",
+          "Interview more builders about why reuse matters.",
+          "Add more photos to the material gallery."
+        ],
+        "correctIndex": 0,
+        "explanation": "The deposit turns admiration into commitment. Interviews and photos may increase interest, but the value hypothesis needs a reservation behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A health startup's meal plan is approved by clinicians, but patients rarely use it after leaving the consult. Which test best targets value?",
+        "choices": [
+          "Ask clinicians to rate the handout again after revisions.",
+          "Add a prompt asking patients to upload one dinner photo that evening.",
+          "Make the handout more visually polished."
+        ],
+        "correctIndex": 1,
+        "explanation": "A dinner upload tests patient use in the setting that matters. Clinician ratings and polish do not prove the plan enters the patient's routine.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A theatre audience says a ticket bundle sounds appealing, but the arts manager is unsure. Why is a one-weekend box-office test stronger than another survey?",
+        "choices": [
+          "It creates urgency that makes any offer look more successful.",
+          "It removes the need to understand why patrons choose single nights.",
+          "It tests actual purchase behavior under the same constraints as the real offer."
+        ],
+        "correctIndex": 2,
+        "explanation": "The weekend test asks patrons to spend money and calendar time, which matches the claim. Urgency and ignorance of motives are not the mechanism.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A product team says its market research proves customers want the service. The research is all interviews and preference rankings. What should you question?",
+        "choices": [
+          "Whether the team has turned the belief into a behavior test that can produce actionable feedback.",
+          "Whether interviews should ever be used in uncertain product work.",
+          "Whether customers are qualified to describe their own preferences."
+        ],
+        "correctIndex": 0,
+        "explanation": "Research can help frame the hypothesis, but a behavior test is needed for actionable feedback. The issue is not banning interviews or dismissing customers.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team tests three changes at once: price, referral reward, and onboarding flow. The conversion rate rises slightly. What makes the result hard to use?",
+        "choices": [
+          "The result is invalid because only large experiments produce learning.",
+          "The team cannot tell which hypothesis the behavior answered.",
+          "The team should have used opinions instead of behavior."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mixed test blurs the link between behavior and hypothesis. Small experiments can teach, and behavior is still stronger than opinion when designed cleanly.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A founder can either run another round of concept interviews or ask ten interested users to make a small paid reservation this week. Which better tests value?",
+        "choices": [
+          "The interviews, because they provide richer language about the idea.",
+          "Neither, because value cannot be tested before a finished product exists.",
+          "The paid reservation, because it turns interest into behavior with a consequence."
+        ],
+        "correctIndex": 2,
+        "explanation": "The reservation better tests whether the offer matters enough to act. Interviews may be rich, but they do not carry the same consequence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A survey says people like an idea. What makes it an experiment?",
+      "back": "A real behavior has to answer the claim. Turn the idea into a test where people use, pay, reserve, invite, return, or otherwise act under real constraints.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "How do you distinguish a value hypothesis from a growth hypothesis?",
+      "back": "A value hypothesis asks whether people care enough to use or pay. A growth hypothesis asks whether use can create more use through retention, referral, acquisition, or another mechanism.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A team wants more interviews before testing. What should you ask?",
+      "back": "Ask what behavior the interviews are meant to prepare. Research is useful when it sharpens the experiment, not when it postpones contact with reality.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why should an experiment be narrow?",
+      "back": "A narrow experiment keeps the link between hypothesis and result clear. If too many things change at once, behavior may move without teaching the team which belief was right or wrong.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What makes feedback actionable?",
+      "back": "It is actionable when the result can change the next decision. Praise, opinions, and traffic can be useful clues, but an experiment needs a result with consequences.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to convert beliefs into tests. The skill is naming whether you are testing value or growth, then choosing a live behavior that can answer before the team commits more work.",
+    "ifThenPlans": [
+      {
+        "context": "customer research",
+        "plan": "If a survey result sounds encouraging, then write the behavior that would prove it in the real world before changing the plan."
+      },
+      {
+        "context": "product growth",
+        "plan": "If someone predicts referrals, then run a small invite test with a real referral tally instead of debating the concept."
+      },
+      {
+        "context": "service design",
+        "plan": "If users say a new process is better, then test whether they use it when the old process is still available."
+      },
+      {
+        "context": "pricing or demand",
+        "plan": "If people praise the offer, then ask for a small commitment, reservation, purchase, or return visit that matches the claim."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, pick one hopeful belief and rewrite it as either a value hypothesis or growth hypothesis. Choose one live behavior that could answer it this week.",
+    "weeklyPractice": "Each week, review one piece of research and ask what experiment it should create. Do not let interviews, surveys, or opinions count as proof until behavior tests the claim."
+  },
+  "memorableLines": [
+    {
+      "text": "Friday is where the claim must go.",
+      "location": "breakdown.fastRead",
+      "why": "It moves the reader from opinion to live behavior in one concrete phrase."
+    },
+    {
+      "text": "Actionable feedback comes from the friction.",
+      "location": "breakdown.deepRead",
+      "why": "It explains why behavior teaches more than polite answers."
+    },
+    {
+      "text": "An experiment is a question with consequences.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the chapter's method a memorable test for seriousness."
+    }
+  ]
+}

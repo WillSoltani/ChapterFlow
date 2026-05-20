@@ -10,11 +10,23 @@
  * catalog must have a corresponding check here.
  */
 
-import { ChapterV21, ExampleV21 } from "../types.js";
+import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
+import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity } from "./integrity.js";
+import { finding } from "./shared.js";
 import { checkCardTestsRetrieval, checkQuizTestsApplication } from "./pedagogy.js";
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
+import {
+  checkQuizAnswerLengthRatio,
+  checkQuizBannedTailPhrase,
+  checkQuizDuplicateChoices,
+  checkQuizLabelShapedCorrect,
+  checkQuizLowercaseChoiceStart,
+  checkQuizPromptOpenerMonotony,
+  checkQuizStrawmanDistractors,
+  checkQuizUnexpectedFields,
+} from "./quizQuality.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -25,6 +37,7 @@ import {
   checkTiersProgressive,
 } from "./prose.js";
 import { checkReadingLevel } from "./readingLevel.js";
+import { runSupportSectionAudit } from "./supportSectionAudit.js";
 
 export type GateSeverity = "blocker" | "major" | "minor";
 
@@ -70,8 +83,36 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   C7: "blocker",
   C8: "blocker",
   C9: "blocker",
+  C10: "blocker",
   E4: "major",
   A11: "blocker",
+  A12: "blocker",
+  "A12-breakdown": "blocker",
+  A13: "major",
+  A14: "major",
+  A15: "blocker",
+  A16: "blocker",
+  "A16.quiz_count_floor": "blocker",
+  "A16.cards_count_floor": "blocker",
+  "A16.examples_count_floor": "blocker",
+  // Support sections (C11–C15) — review cards, quiz templates, title-keyword
+  // injection, trailing fragments, role/domain mismatch.
+  C11: "blocker",
+  "C11.identical_backs": "blocker",
+  "C11.mostly_identical_backs": "blocker",
+  C12: "blocker",
+  "C12.quiz_template_prompt": "blocker",
+  C13: "blocker",
+  "C13.title_keyword_injection": "blocker",
+  C14: "blocker",
+  "C14.trailing_fragment": "blocker",
+  C15: "major",
+  "C15.role_domain_mismatch": "major",
+  // Broken example template + requiredBeat paste (C16–C17)
+  C16: "blocker",
+  "C16.broken_example_template": "blocker",
+  C17: "blocker",
+  "C17.required_beat_verbatim": "blocker",
   // Pedagogy (D)
   D1: "major",
   D2: "minor",
@@ -79,9 +120,131 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   E1: "major",
   E2: "major",
   E3: "minor",
+  // Quiz-quality critic (BP15–BP21, schema.quiz_*)
+  "BP15.quiz_strawman_distractor": "major",
+  "BP16.quiz_answer_length_blocker": "blocker",
+  "BP16.quiz_answer_length_major": "major",
+  "BP17.quiz_opener_monotony": "major",
+  "BP18.quiz_label_shape_correct": "minor",
+  "BP19.quiz_banned_tail_phrase": "blocker",
+  "BP20.quiz_ngram_template_repeat": "blocker",
+  "BP21.quiz_cross_chapter_duplicate": "blocker",
+  "schema.quiz_duplicate_choice": "blocker",
+  "schema.quiz_lowercase_choice_start": "major",
+  "schema.quiz_unexpected_field": "blocker",
 };
 
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
+
+/**
+ * A15 — tier-length stub floor. A chapter whose tier prose falls below the
+ * stub floor cannot ship. The score-chapters rubric docks points for short
+ * tiers but the gate previously accepted them; 48 Laws of Power shipped
+ * with 0/48 chapters at the fullRead target (avg 347 chars, 12% of target)
+ * and the rubric still scored A- 88%. Hard floors fail-closed instead.
+ */
+function checkTierLengthFloors(chapter: ChapterV21): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  const fast = chapter.breakdown?.fastRead?.length ?? 0;
+  const deep = chapter.breakdown?.deepRead?.length ?? 0;
+  const full = chapter.breakdown?.fullRead?.length ?? 0;
+
+  if (fast < 350) {
+    findings.push(finding(
+      "A15.stub_fastRead" as any,
+      "blocker",
+      `breakdown.fastRead is ${fast} chars (floor 350). A chapter with fastRead under 350 is a stub — the gate refuses to ship it.`,
+      chapter.breakdown?.fastRead?.slice(0, 120) ?? "",
+    ));
+  }
+  if (deep < 1000) {
+    findings.push(finding(
+      "A15.stub_deepRead" as any,
+      "blocker",
+      `breakdown.deepRead is ${deep} chars (floor 1000). A chapter with deepRead under 1000 is a stub — the gate refuses to ship it.`,
+      chapter.breakdown?.deepRead?.slice(0, 120) ?? "",
+    ));
+  }
+  if (full < 2400) {
+    findings.push(finding(
+      "A15.stub_fullRead" as any,
+      "blocker",
+      `breakdown.fullRead is ${full} chars (floor 2400). A chapter with fullRead under 2400 is a stub — the gate refuses to ship it.`,
+      chapter.breakdown?.fullRead?.slice(0, 120) ?? "",
+    ));
+  }
+  return findings;
+}
+
+/**
+ * A16 — support-section count floor. A chapter must ship with the full slate
+ * of quiz questions, review cards, and examples. The 48 Laws of Power book
+ * shipped with 46 of 48 chapters at 3 quiz questions (instead of 9), because
+ * the writer-quiz agent's count check only fires inside the writer's retry
+ * loop and the ship gate had no minimum. extreme-ownership and zero-to-one
+ * had the same defect on 5 and 13 chapters respectively.
+ *
+ * Floors:
+ *   quiz.questions     >= 9
+ *   reviewCards        >= 4 (most books ship 5; floor of 4 matches atomic-habits)
+ *   examples           >= 6
+ */
+function checkSupportCountFloors(chapter: ChapterV21): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  const quizCount = chapter.quiz?.questions?.length ?? 0;
+  const cardCount = chapter.reviewCards?.length ?? 0;
+  const exampleCount = chapter.examples?.length ?? 0;
+
+  if (quizCount < 9) {
+    findings.push(finding(
+      "A16.quiz_count_floor" as any,
+      "blocker",
+      `quiz.questions has ${quizCount} entries (floor 9). Chapter is missing ${9 - quizCount} quiz questions — likely a partial generation or unrefreshed stub.`,
+      `${quizCount}/9`,
+    ));
+  }
+  if (cardCount < 4) {
+    findings.push(finding(
+      "A16.cards_count_floor" as any,
+      "blocker",
+      `reviewCards has ${cardCount} entries (floor 4). Chapter is missing review cards — likely a partial generation.`,
+      `${cardCount}/4`,
+    ));
+  }
+  if (exampleCount < 6) {
+    findings.push(finding(
+      "A16.examples_count_floor" as any,
+      "blocker",
+      `examples has ${exampleCount} entries (floor 6). Chapter is missing examples — likely a partial generation.`,
+      `${exampleCount}/6`,
+    ));
+  }
+  return findings;
+}
+
+function checkBreakdownSentenceCapitalization(
+  text: string | undefined,
+  tier: "fastRead" | "deepRead" | "fullRead",
+): Array<{ message: string; evidence?: string }> {
+  if (!text) return [];
+  const findings: Array<{ message: string; evidence?: string }> = [];
+  const sentences = text.split(/(?<=[.!?])\s+/).filter((sentence) => sentence.trim().length > 0);
+  for (const [index, sentence] of sentences.entries()) {
+    if (index === 0) continue;
+    const trimmed = sentence.replace(/^[\s"'“‘«\[]+/, "");
+    if (!trimmed) continue;
+    const first = trimmed.charAt(0);
+    // Numerals and parenthesized clauses are common legitimate prose openers.
+    if (/[0-9]/.test(first) || first === "(") continue;
+    if (/[a-z]/.test(first)) {
+      findings.push({
+        message: `breakdown.${tier} sentence ${index + 1} starts with a lowercase letter after a sentence boundary`,
+        evidence: sentence.slice(0, 180),
+      });
+    }
+  }
+  return findings;
+}
 
 export function runShipGate(chapter: ChapterV21): GateReport {
   const findings: GateFinding[] = [];
@@ -94,20 +257,31 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     findings.push({ catalogId, severity, unit, message, evidence });
   };
 
-  // ── Hook (B1, B2, B4, B5) ────────────────────────────────────────────────
+  // ── Hook (B1, B2, B4, B5, A12, A13) ──────────────────────────────────────
   if (chapter.hook) {
     if (HOOK_BANNED_OPENERS.test(chapter.hook)) {
       push("B1", "hook", "hook opens with meta-reference", chapter.hook);
     }
+    for (const f of checkCapitalization(chapter.hook, "hook")) push("A12", "hook", f.message, f.evidence);
+    for (const f of checkSentenceSanity(chapter.hook, "hook")) {
+      push(f.severity === "minor" ? "A13" : "A13", "hook", f.message, f.evidence);
+    }
     runRegisterChecks("hook", chapter.hook, push);
   }
   if (chapter.counterintuition) {
+    for (const f of checkCapitalization(chapter.counterintuition, "counterintuition")) push("A12", "counterintuition", f.message, f.evidence);
+    for (const f of checkSentenceSanity(chapter.counterintuition, "counterintuition")) push("A13", "counterintuition", f.message, f.evidence);
     runRegisterChecks("counterintuition", chapter.counterintuition, push);
   }
   if (chapter.keyTakeaway) {
+    for (const f of checkCapitalization(chapter.keyTakeaway, "keyTakeaway")) push("A12", "keyTakeaway", f.message, f.evidence);
+    for (const f of checkSentenceSanity(chapter.keyTakeaway, "keyTakeaway")) push("A13", "keyTakeaway", f.message, f.evidence);
+    for (const f of checkMaxWordCount(chapter.keyTakeaway, "keyTakeaway", 30)) push("A14", "keyTakeaway", f.message, f.evidence);
     runRegisterChecks("keyTakeaway", chapter.keyTakeaway, push);
   }
   if (chapter.tryThisNow) {
+    for (const f of checkCapitalization(chapter.tryThisNow, "tryThisNow")) push("A12", "tryThisNow", f.message, f.evidence);
+    for (const f of checkSentenceSanity(chapter.tryThisNow, "tryThisNow")) push("A13", "tryThisNow", f.message, f.evidence);
     runRegisterChecks("tryThisNow", chapter.tryThisNow, push);
   }
   // Backwards-compat: legacy v21 packages (tiny-habits) used reflectionBefore/After.
@@ -155,6 +329,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     ["deepRead", chapter.breakdown.deepRead],
     ["fullRead", chapter.breakdown.fullRead],
   ] as const) {
+    for (const f of checkBreakdownSentenceCapitalization(tierText, tierName)) {
+      push("A12-breakdown", `breakdown.${tierName}`, f.message, f.evidence);
+    }
     runRegisterChecks(`breakdown.${tierName}`, tierText, push);
     for (const f of checkReadingLevel(tierText, tierName)) {
       push("E1", `breakdown.${tierName}`, f.message);
@@ -174,6 +351,19 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     for (const f of checkClosingLineLandings(tierText, `breakdown.${tierName}`)) {
       push("B7", `breakdown.${tierName}`, f.message);
     }
+  }
+  // A15 — tier-length stub floor. Refuses to ship chapters whose breakdown
+  // prose falls below the stub threshold. Fail-closed because the rubric
+  // alone docked points but accepted stubs anyway (48 Laws of Power).
+  for (const f of checkTierLengthFloors(chapter)) {
+    push("A15", `tier_length`, f.message, f.evidence);
+  }
+  // A16 — support-section count floor. Refuses to ship chapters that are
+  // missing quiz questions, review cards, or examples. 48 Laws shipped with
+  // 46/48 chapters at 3 quiz questions instead of 9 because the writer's
+  // retry-loop check fires upstream of any ship-gate verification.
+  for (const f of checkSupportCountFloors(chapter)) {
+    push(f.checkId as string, `support_counts`, f.message, f.evidence);
   }
   // E2 — tier progression
   for (const f of checkTiersProgressive(
@@ -207,6 +397,15 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     push("C9", "examples", f.message, f.evidence);
   }
 
+  // ── Example-title verb shell (C10): when 4+ of 6 titles share the same
+  // second word (the verb), the titles all follow a "<Name> verb <domain>"
+  // shell — e.g., Indistractable Ch15: "Samantha handles shipyard…",
+  // "Grant handles university…", "Audrey handles restaurant…". C8 misses
+  // this because each title's 3-word substring is unique.
+  for (const f of checkExampleTitleVerbShell(chapter.examples)) {
+    push("C10", "examples", f.message, f.evidence);
+  }
+
   // ── Examples (B1, B2, B4, B5, C1, C2, C3, C7) ────────────────────────────
   chapter.examples.forEach((ex, i) => {
     const unit = `example[${i}]`;
@@ -222,6 +421,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     for (const f of checkNamedProtagonist(exForCritic as any)) push("C1", unit, f.message, f.evidence);
     for (const f of checkSpecificScene(exForCritic as any)) push("C2", unit, f.message, f.evidence);
     for (const f of checkDecisionPoint(exForCritic as any)) push("C3", unit, f.message, f.evidence);
+
+    // A12 / A13 — capitalization and sentence sanity on example scenario and title.
+    for (const f of checkCapitalization(ex.scenario, `${unit}.scenario`)) push("A12", `${unit}.scenario`, f.message, f.evidence);
+    for (const f of checkCapitalization(ex.title, `${unit}.title`)) push("A12", `${unit}.title`, f.message, f.evidence);
+    for (const f of checkSentenceSanity(ex.scenario, `${unit}.scenario`)) push("A13", `${unit}.scenario`, f.message, f.evidence);
 
     const exFullText = `${ex.scenario} ${ex.whatToDo} ${ex.whyItMatters} ${ex.title}`;
     runRegisterChecks(unit, exFullText, push);
@@ -258,6 +462,34 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     push("A4", "quiz", f.message);
   }
 
+  // ── Quiz quality (BP15–BP19, schema.quiz_*) ─────────────────────────────
+  // These run on a single chapter's quiz. The book-level template checks
+  // (BP20, BP21) run from runBookGate after every chapter is assembled.
+  for (const f of checkQuizStrawmanDistractors(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizAnswerLengthRatio(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizPromptOpenerMonotony(chapter.quiz)) {
+    push(f.checkId as string, "quiz", f.message, f.evidence);
+  }
+  for (const f of checkQuizLabelShapedCorrect(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizDuplicateChoices(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizLowercaseChoiceStart(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizUnexpectedFields(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizBannedTailPhrase(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+
   // ── Cards (D2, B1, B2, B4, B5) ───────────────────────────────────────────
   chapter.reviewCards.forEach((c, i) => {
     const unit = `card[${i}]`;
@@ -272,6 +504,23 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   chapter.implementationPlan.ifThenPlans.forEach((it, i) => {
     runRegisterChecks(`implementationPlan.ifThen[${i}]`, it.plan, push);
   });
+
+  // ── Support-section audit (C11–C15) ──────────────────────────────────────
+  // Catches the defect class that shipped 48 Laws of Power and partially
+  // 12 Week Year: review-card backs literally identical across all cards,
+  // quiz prompts sharing a long template prefix, title-keyword injected as
+  // adjective in example scenarios ("the say email"), trailing-fragment text
+  // ("…being silent in e"), role/domain mismatch ("nurse Chris" in an
+  // architecture critique).
+  for (const f of runSupportSectionAudit(chapter)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity,
+      unit: f.unit,
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
 
   const blockers = findings.filter((f) => f.severity === "blocker");
   const majors = findings.filter((f) => f.severity === "major");
@@ -304,6 +553,15 @@ function runRegisterChecks(unit: string, text: string, push: (catalogId: string,
   for (const f of checkBannedPhrases(text).findings) {
     push("B4", unit, f.message, f.evidence);
   }
+}
+
+/** Pull a "qNN" identifier out of a quiz-quality finding message for unit
+ *  routing. Quiz-quality findings start with "qNN choice[…]" or "qNN " so
+ *  the leading token is the question id. Falls back to "unknown" if the
+ *  pattern doesn't match (which shouldn't happen). */
+function extractQid(message: string): string {
+  const m = message.match(/^(q\d{2,3})\b/);
+  return m ? m[1] : "unknown";
 }
 
 /** Pretty-print a gate report for logging. */

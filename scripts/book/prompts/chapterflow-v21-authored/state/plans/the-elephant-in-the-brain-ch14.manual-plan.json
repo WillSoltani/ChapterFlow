@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch14",
+  "number": 14,
+  "title": "Medicine",
+  "coreMove": "Ask what care a treatment visibly displays in addition to what health effect it may produce.",
+  "sourcePressure": "The source frames medicine partly as conspicuous caring, where visible sacrifice and public signs of care matter alongside health claims.",
+  "chapterSpecificMisunderstanding": "The writer turns medicine into placebo theater or anti-medical cynicism.",
+  "sourceAlignmentTerms": [
+    "medicine",
+    "conspicuous caring",
+    "sacrifice",
+    "public signals of care",
+    "health claims",
+    "treatment",
+    "effort"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "medicine as conspicuous caring",
+      "detail": "The source says medicine may function partly as conspicuous caring.",
+      "useIn": "both",
+      "phrasingHint": "The treatment reassures partly because care has become visible."
+    },
+    {
+      "kind": "event",
+      "name": "visible sacrifice and public signals of care",
+      "detail": "The source says visible sacrifice and public signals of care matter alongside health claims.",
+      "useIn": "both",
+      "phrasingHint": "Time, pain, expense, and attention can show that nobody is being abandoned."
+    },
+    {
+      "kind": "artifact",
+      "name": "care signals alongside health claims",
+      "detail": "The source keeps health claims in frame while adding the signaling account.",
+      "useIn": "deepRead",
+      "phrasingHint": "The body can need the medicine while the family also needs to see care being spent."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch14: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch14: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch14: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch14: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch14: no generic timer reflection",
+      "the-elephant-in-the-brain-ch14: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch14: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch14: no coffee shop conversation as the default social proof",
+      "no named drug or trial invented",
+      "no doctor-bashing story"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pediatric urgent-care waiting room",
+      "audience": "a clinician deciding whether a low-value visible action calms a family",
+      "stakes": "parents need care to be seen but the child needs appropriate treatment",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Matthew explains why the child does not need an antibiotic, then offers a concrete monitoring card that makes attention visible without fake treatment.",
+      "firstImage": "The exam-room printer warms beside a box of tongue depressors.",
+      "mustInclude": [
+        "monitoring card",
+        "exam printer",
+        "temperature log"
+      ],
+      "mustAvoid": [
+        "anti-antibiotic lecture"
+      ]
+    },
+    {
+      "domain": "eldercare discharge planning",
+      "audience": "a nurse making invisible care legible to siblings",
+      "stakes": "family conflict rises when care work cannot be seen",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Beatrice lays the medication schedule, stair plan, and home-visit times on one sheet so Pavel sees care in coordinated work rather than another dramatic test.",
+      "firstImage": "A pill organizer clicks shut on the discharge desk.",
+      "mustInclude": [
+        "pill organizer",
+        "stair plan",
+        "home-visit schedule"
+      ],
+      "mustAvoid": [
+        "family guilt melodrama"
+      ]
+    },
+    {
+      "domain": "sports injury rehab clinic",
+      "audience": "a physiotherapist managing demand for dramatic imaging",
+      "stakes": "a scan may signal seriousness even when rehab work matters more",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Can we just get an MRI?\" Iris asks, and Min shows the strength-test baseline that will prove care every Friday.",
+      "firstImage": "\"Can we just get an MRI?\" Iris asks before touching the resistance band.",
+      "mustInclude": [
+        "resistance band",
+        "baseline chart",
+        "MRI referral form"
+      ],
+      "mustAvoid": [
+        "invented outcomes"
+      ]
+    },
+    {
+      "domain": "rural telehealth appointment",
+      "audience": "a physician making remote care feel real without over-treating",
+      "stakes": "distance can make care seem absent unless effort is visible",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You have Marco mail the pulse oximeter, schedule a named callback, and show Hanna exactly what readings trigger escalation.",
+      "firstImage": "You see the frozen video frame just as the cough starts.",
+      "mustInclude": [
+        "pulse oximeter",
+        "callback time",
+        "reading card"
+      ],
+      "mustAvoid": [
+        "technology saves medicine trope"
+      ]
+    },
+    {
+      "domain": "mental health intake process",
+      "audience": "a clinic director reducing performative burden while preserving visible attention",
+      "stakes": "long forms may signal seriousness while exhausting the patient",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Beatrice one abandoned intake to replace the thick packet with a same-day call and a visible care plan.",
+      "firstImage": "It took Beatrice one abandoned packet to question what the paperwork signaled.",
+      "mustInclude": [
+        "intake packet",
+        "same-day call slot",
+        "care plan"
+      ],
+      "mustAvoid": [
+        "therapy specifics"
+      ]
+    },
+    {
+      "domain": "post-surgery family update protocol",
+      "audience": "a surgeon deciding how to show care without turning updates into theater",
+      "stakes": "families read silence as neglect even when work is happening",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What does the family know when the operating-room door stays closed for four hours?",
+      "firstImage": "What fills the waiting room when no one names the work being done?",
+      "mustInclude": [
+        "waiting-room board",
+        "update card",
+        "scrub cap"
+      ],
+      "mustAvoid": [
+        "medical drama scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish health effect from visible care signal",
+      "evaluate treatments without dismissing medicine",
+      "design communication that makes real care legible without fake burden"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Think of one care act you owe someone. Make the real work visible with a time, note, checklist, or callback instead of adding empty drama.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,198 @@
+{
+  "chapterId": "grit-ch12",
+  "number": 12,
+  "title": "A Culture of Grit",
+  "coreMove": "Join or build a group where the normal answer to difficulty is sustained effort.",
+  "sourcePressure": "Show how groups make grit easier by turning standards into identity and language.",
+  "chapterSpecificMisunderstanding": "Treating grit as only an individual trait and ignoring peer norms.",
+  "sourceAlignmentTerms": [
+    "Pete Carroll",
+    "Seattle Seahawks",
+    "Dan Chambliss",
+    "James March",
+    "Tom Deierlein",
+    "sisu",
+    "Jamie Dimon",
+    "Anson Dorrance"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Pete Carroll",
+      "detail": "The Seattle Seahawks coach contacted Duckworth about building a culture of grit and used shared language around competition and finishing strong.",
+      "useIn": "both",
+      "phrasingHint": "Carroll’s culture turns effort into a team dialect, so a player hears the standard before he has to choose."
+    },
+    {
+      "kind": "place",
+      "name": "Finland and sisu",
+      "detail": "Duckworth uses Finnish sisu and the 1939 Winter War as an example of perseverance becoming part of national identity.",
+      "useIn": "deepRead",
+      "phrasingHint": "Sisu shows what happens when perseverance stops being a private mood and becomes a word everyone knows."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for A Culture of Grit",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "professional football locker room",
+      "audience": "readers facing professional football locker room where grit could be confused with mood or talent",
+      "stakes": "whether Kasia treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the group turns a private effort decision into a shared norm, phrase, or ritual that changes what people do",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn professional football locker room into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "hospital residency cohort",
+      "audience": "readers facing hospital residency cohort where grit could be confused with mood or talent",
+      "stakes": "whether Matthew treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the group turns a private effort decision into a shared norm, phrase, or ritual that changes what people do",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn hospital residency cohort into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "bank crisis communications floor",
+      "audience": "readers facing bank crisis communications floor where grit could be confused with mood or talent",
+      "stakes": "whether Anke treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the group turns a private effort decision into a shared norm, phrase, or ritual that changes what people do",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn bank crisis communications floor into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "national service corps camp",
+      "audience": "readers facing national service corps camp where grit could be confused with mood or talent",
+      "stakes": "whether Olivier treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the group turns a private effort decision into a shared norm, phrase, or ritual that changes what people do",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn national service corps camp into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "university soccer preseason",
+      "audience": "readers facing university soccer preseason where grit could be confused with mood or talent",
+      "stakes": "whether Hiroshi treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the group turns a private effort decision into a shared norm, phrase, or ritual that changes what people do",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn university soccer preseason into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "software incident response team",
+      "audience": "readers facing software incident response team where grit could be confused with mood or talent",
+      "stakes": "whether Paula treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "the group turns a private effort decision into a shared norm, phrase, or ritual that changes what people do",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn software incident response team into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Join or build a group where the normal answer to difficulty is sustained effort. from Treating grit as only an individual trait and ignoring peer norms.",
+      "choose the visible next action in a fresh professional football locker room scenario",
+      "diagnose when a scene has drifted into team slogans"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real a culture of grit decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch04",
+  "number": 4,
+  "title": "The Cost of Social Norms",
+  "coreMove": "Identify the norm in force before introducing money, because a tiny payment can reclassify the whole relationship.",
+  "sourcePressure": "The source contrasts social norms and market norms, showing how small payments can crowd out goodwill and make a relationship transactional.",
+  "chapterSpecificMisunderstanding": "The weak version says incentives backfire; the precise lesson is that money can move the interaction from social reciprocity to market pricing.",
+  "sourceAlignmentTerms": ["social norms", "market norms", "crowding out", "gift exchange", "transaction frame", "reciprocity"],
+  "forbiddenFrames": {
+    "hook": ["Money ruins favors", "A bonus can backfire", "Paying changes everything"],
+    "counterintuition": ["More pay always motivates", "A little money is harmless", "Rewards show appreciation"],
+    "tryThisNow": ["Do not pay for favors", "Thank someone instead", "Check your incentives"],
+    "examples": ["babysitting swap", "volunteer cleanup stipend", "mentoring micro-bonus"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "blood-donation mobile clinic changing thank-you gifts into cash cards",
+      "audience": "a clinic coordinator deciding how to recognize repeat donors",
+      "stakes": "reducing donor identity by making the visit feel like a low-paid errand",
+      "format": "predict_reveal",
+      "requiredBeat": "the coordinator compares the sign-up sheet after the thank-you pin is replaced by a small cash card and sees regular donors hesitate at the table",
+      "firstImage": "a folding table with donor pins in one tray and cash cards in another",
+      "mustInclude": ["donor pin", "cash card", "sign-up sheet"],
+      "mustAvoid": ["generic volunteering", "workplace bonus", "campus cleanup"]
+    },
+    {
+      "domain": "neighborhood snow-shoveling rota after a storm",
+      "audience": "a block captain deciding whether to fine households that skip their turn",
+      "stakes": "turning mutual aid into a cheap service residents can buy out of",
+      "format": "decision_point",
+      "requiredBeat": "the captain reads the proposed fine aloud, then asks whether residents will hear it as a penalty or as the price of staying inside",
+      "firstImage": "a clipboard of shoveled addresses resting on a snowbank at dusk",
+      "mustInclude": ["proposed fine", "rota list", "unshoveled steps"],
+      "mustAvoid": ["driveway favor", "neighbor babysitting", "family chores"]
+    },
+    {
+      "domain": "open-source security patch sprint",
+      "audience": "a maintainer deciding whether to add tiny bounties to every volunteer task",
+      "stakes": "making expert contributors price work they used to treat as stewardship",
+      "format": "dialogue",
+      "requiredBeat": "the maintainer watches a volunteer ignore the bounty amount and ask whether the project still trusts unpaid review",
+      "firstImage": "a terminal window beside a bounty spreadsheet on a late-night video call",
+      "mustInclude": ["bounty spreadsheet", "patch review", "maintainer chat"],
+      "mustAvoid": ["office help desk", "paid consulting", "software pricing"]
+    },
+    {
+      "domain": "choir section leaders asked to coach new singers",
+      "audience": "a music director deciding between handwritten thanks and per-session payments",
+      "stakes": "turning a shared musical duty into a low hourly wage comparison",
+      "format": "vignette",
+      "requiredBeat": "the director places thank-you notes and payment envelopes on the piano, then notices which one makes the section leaders start calculating hours",
+      "firstImage": "sealed envelopes lined along the edge of an upright piano",
+      "mustInclude": ["section leaders", "payment envelopes", "handwritten notes"],
+      "mustAvoid": ["school club", "mentoring program", "generic nonprofit"]
+    },
+    {
+      "domain": "mutual-aid freezer meal network after surgery",
+      "audience": "a neighbor organizing meals for a recovering resident",
+      "stakes": "making care feel like catering when someone suggests reimbursing every casserole",
+      "format": "reflection",
+      "requiredBeat": "the organizer writes a grocery reimbursement line, then crosses it out and replaces it with dietary notes and a thank-you call",
+      "firstImage": "foil-covered freezer meals stacked in a cooler by an apartment lobby",
+      "mustInclude": ["dietary notes", "reimbursement line", "thank-you call"],
+      "mustAvoid": ["family dinner", "restaurant food", "gift card incentive"]
+    },
+    {
+      "domain": "amateur astronomy club telescope nights",
+      "audience": "a club board deciding whether to charge members for setting up telescopes at public nights",
+      "stakes": "weakening the pride of sharing the sky by pricing the setup duty too cheaply",
+      "format": "before_after",
+      "requiredBeat": "after a per-telescope payment is announced, the board hears members ask whether the amount includes teardown, revealing the norm has shifted",
+      "firstImage": "tripod legs folded on a dark field beside a red flashlight",
+      "mustInclude": ["per-telescope payment", "teardown question", "red flashlight"],
+      "mustAvoid": ["paid event staff", "campus club poll", "work meeting"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish social norm cues from market norm cues", "predict when a small payment will crowd out goodwill", "redesign recognition without pricing the favor", "explain why returning to social norms can be difficult"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before offering money for a favor, name whether the moment is running on reciprocity or exchange; if it is reciprocity, choose a nonprice sign of appreciation instead.",
+  "readingTimeMinutes": 12
+}

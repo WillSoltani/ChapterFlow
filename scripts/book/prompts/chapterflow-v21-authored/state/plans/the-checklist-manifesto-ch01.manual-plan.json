@@ -1,0 +1,119 @@
+{
+  "chapterId": "the-checklist-manifesto-ch01",
+  "number": 1,
+  "title": "The Problem of Extreme Complexity",
+  "coreMove": "Spot when a system has become too complex to trust to memory and individual command alone.",
+  "sourcePressure": "The source uses the Austrian drowning rescue, the era of superspecialists, and the limits of lone mastery to diagnose why avoidable failure persists inside expert work before checklists appear as a response.",
+  "chapterSpecificMisunderstanding": "The weak version says smart people should try harder to remember the basics. The real chapter says the structure has outgrown unaided memory.",
+  "sourceAlignmentTerms": ["extreme complexity", "superspecialists", "handoffs", "omission", "lone mastery", "expert work"],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Austrian drowning rescue",
+      "detail": "The source sidecar identifies the Austrian drowning rescue as the opening concrete case for a chain of precise coordinated actions under pressure.",
+      "useIn": "both",
+      "phrasingHint": "The Austrian rescue matters because the save lives in the chain, not in one brilliant pair of hands."
+    },
+    {
+      "kind": "event",
+      "name": "the era of superspecialists",
+      "detail": "The source sidecar ties the chapter to modern medicine's superspecialists and the new handoff burden created by narrower expertise.",
+      "useIn": "fullRead",
+      "phrasingHint": "Superspecialists make medicine more powerful and more dependent on the seams between them."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["A busy hospital proves checklists are useful", "One forgotten detail changed everything"],
+    "counterintuition": ["The problem is not knowledge, it is execution", "Experts are not enough"],
+    "tryThisNow": ["Write down three steps you often forget", "Make a quick checklist for tomorrow"],
+    "examples": ["generic operating room memory lapse", "whiteboard meeting about process", "coffee mug beside a clipboard"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Sarah, a trauma nurse in a winter rescue handoff",
+      "audience": "clinicians who assume skill covers every transition",
+      "stakes": "a hypothermia patient loses time if one warm-fluid setup is assumed instead of owned",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah tags each handoff on the trauma bay wall and finds the unowned warm-fluid step before the patient leaves the ambulance stretcher",
+      "firstImage": "meltwater dripping from a yellow rescue blanket onto the trauma bay floor",
+      "mustInclude": ["trauma bay doors", "warm-fluid cabinet", "handoff wall"],
+      "mustAvoid": ["hero nurse saves the day alone", "generic emergency room chaos"]
+    },
+    {
+      "domain": "Mathieu, an urban rail signal maintainer during overnight work",
+      "audience": "technical teams with many expert roles in one narrow window",
+      "stakes": "a morning commuter shutdown if power isolation and signal testing pass each other unseen",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mathieu maps the work window by owner, not task type, and exposes the one test nobody has claimed",
+      "firstImage": "orange work lamps reflecting on wet rails in an empty station",
+      "mustInclude": ["lockout tag", "signal cabinet", "2:30 a.m. service deadline"],
+      "mustAvoid": ["software incident bridge", "one boss barking commands"]
+    },
+    {
+      "domain": "Ingrid, a specialty pharmacy coordinator handling transplant orders",
+      "audience": "health administrators who see errors as staff attentiveness problems",
+      "stakes": "a transplant patient misses a narrow medication delivery window",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ingrid rebuilds the missed order path across prescriber, insurer, courier, and cold storage instead of blaming the last person who touched the screen",
+      "firstImage": "a cold-pack label curling at the edge of an empty pharmacy tote",
+      "mustInclude": ["insurer portal", "courier cutoff", "cold-chain tag"],
+      "mustAvoid": ["simple typo mistake", "motivational accountability talk"]
+    },
+    {
+      "domain": "James, a youth sailing regatta safety officer",
+      "audience": "volunteer leaders coordinating weather, boats, and children",
+      "stakes": "a storm line arrives while adults believe another boat has counted the beginners",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "James asks which adult owns the beginner headcount and reveals that three adults each thought another clipboard held it",
+      "firstImage": "gray wind flattening the flags along the dock",
+      "mustInclude": ["safety skiff", "weather radio", "laminated fleet list"],
+      "mustAvoid": ["bike helmets", "classroom field trip"]
+    },
+    {
+      "domain": "Sofia, a museum conservation lead moving a fragile crate",
+      "audience": "project leads who mistake expertise in each specialty for control of the whole move",
+      "stakes": "a cracked artifact if lift timing, humidity, and loading dock access do not line up",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sofia stops the crate move until each specialist states the one dependency they need from the next person",
+      "firstImage": "\"Who owns the dock door?\" Sofia asks while the crate straps hang loose",
+      "mustInclude": ["humidity logger", "crate straps", "dock access code"],
+      "mustAvoid": ["generic art gallery scene", "single expert inspection"]
+    },
+    {
+      "domain": "Hadiya, a municipal snow emergency dispatcher",
+      "audience": "operations managers who trust experience during peak load",
+      "stakes": "ambulance access to a hill street depends on plow routing, salt supply, and police closure timing",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hadiya circles the street where three departments overlap and names it as an omission risk before the calls arrive",
+      "firstImage": "You watch blue plow dots crawl across a dispatch map while the radio queue grows",
+      "mustInclude": ["plow map", "salt yard", "police closure log"],
+      "mustAvoid": ["generic city hall meeting", "weather as mere inconvenience"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish ignorance from overload", "identify handoff omission risk", "spot when distributed expertise needs a support", "evaluate whether a proposed fix preserves judgment"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one live workflow with three or more owners, then write the single step most likely to be assumed rather than owned.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,191 @@
+{
+  "chapterId": "on-becoming-a-person-ch19",
+  "number": 19,
+  "title": "Toward a Theory of Creativity",
+  "coreMove": "Protect the conditions where something new can emerge without forcing novelty or pleasing the room.",
+  "sourcePressure": "The chapter links creativity to openness, inner freedom, and conditions that allow emergence instead of conformity. No split source sidecar exists for ch19; frozen TOC and book skeleton support the heading, part placement, and broad intent only, with no chapter-local named anecdotes, studies, or places.",
+  "chapterSpecificMisunderstanding": "Treating creativity as brainstorm technique or artistic self-expression only.",
+  "sourceAlignmentTerms": [
+    "creativity",
+    "openness",
+    "inner freedom",
+    "emergence",
+    "conditions of creativity",
+    "conformity",
+    "evaluation"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source exposes no usable chapter-local named person, study, institution, place, date, or anecdotal artifact from Rogers here. Use fictional protagonists only; do not invent named Rogers cases or studies.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of creativity",
+      "therapist office at the window",
+      "reader-you-are-stuck generic opener"
+    ],
+    "counterintuition": [
+      "Most people think X, but Y",
+      "It is not about being nice",
+      "The paradox is that acceptance changes everything"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you noticed",
+      "pause and breathe before replying"
+    ],
+    "examples": [
+      "brainstorm hacks",
+      "artist mystique",
+      "innovation theatre",
+      "reused classroom worksheet shell",
+      "coffee mug office feedback shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nora",
+      "domain": "industrial design sketch review",
+      "audience": "readers who face industrial design sketch review and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around creativity; specifically, the outcome turns on whether Nora can make creativity visible without sliding into treating creativity as brainstorm technique or artistic self-expression only.",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "In the industrial design sketch review, Nora delays evaluation long enough for a fragile new response to become specific instead of performative, with the charcoal sketch and the prototype shell making the choice visible instead of merely stated.",
+      "firstImage": "the charcoal sketch beside Nora's hand; the opening opens with the practical question the scene has to answer",
+      "mustInclude": [
+        "charcoal sketch",
+        "prototype shell"
+      ],
+      "mustAvoid": [
+        "do not turn industrial design sketch review into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Nora lecture"
+      ]
+    },
+    {
+      "protagonistName": "Paige",
+      "domain": "community theater rehearsal",
+      "audience": "readers who face community theater rehearsal and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around creativity; specifically, the outcome turns on whether Paige can make creativity visible without sliding into treating creativity as brainstorm technique or artistic self-expression only.",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "In the community theater rehearsal, Paige delays evaluation long enough for a fragile new response to become specific instead of performative, with the prototype shell and the recipe test card making the choice visible instead of merely stated.",
+      "firstImage": "a half-finished note on Paige's desk; the opening opens from the texture, sound, or physical pressure of the object before anyone explains it",
+      "mustInclude": [
+        "prototype shell",
+        "recipe test card"
+      ],
+      "mustAvoid": [
+        "do not turn community theater rehearsal into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Paige lecture"
+      ]
+    },
+    {
+      "protagonistName": "Robyn",
+      "domain": "lab prototype brainstorming",
+      "audience": "readers who face lab prototype brainstorming and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around creativity; specifically, the outcome turns on whether Robyn can make creativity visible without sliding into treating creativity as brainstorm technique or artistic self-expression only.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "In the lab prototype brainstorming, Robyn delays evaluation long enough for a fragile new response to become specific instead of performative, with the recipe test card and the charcoal sketch making the choice visible instead of merely stated.",
+      "firstImage": "the open doorway before Robyn speaks; the opening begins with one line of speech that exposes the relational pressure before the narrator explains it",
+      "mustInclude": [
+        "recipe test card",
+        "charcoal sketch"
+      ],
+      "mustAvoid": [
+        "do not turn lab prototype brainstorming into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Robyn lecture"
+      ]
+    },
+    {
+      "protagonistName": "Kayla",
+      "domain": "chef test-kitchen tasting",
+      "audience": "readers who face chef test-kitchen tasting and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around creativity; specifically, the outcome turns on whether Kayla can make creativity visible without sliding into treating creativity as brainstorm technique or artistic self-expression only.",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "In the chef test-kitchen tasting, Kayla delays evaluation long enough for a fragile new response to become specific instead of performative, with the charcoal sketch and the prototype shell making the choice visible instead of merely stated.",
+      "firstImage": "a line on the form that Kayla cannot ignore; the opening lets the room or setting carry the first signal before any person is named",
+      "mustInclude": [
+        "charcoal sketch",
+        "prototype shell"
+      ],
+      "mustAvoid": [
+        "do not turn chef test-kitchen tasting into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Kayla lecture"
+      ]
+    },
+    {
+      "protagonistName": "Georgia",
+      "domain": "urban planning charrette",
+      "audience": "readers who face urban planning charrette and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around creativity; specifically, the outcome turns on whether Georgia can make creativity visible without sliding into treating creativity as brainstorm technique or artistic self-expression only.",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "In the urban planning charrette, Georgia delays evaluation long enough for a fragile new response to become specific instead of performative, with the prototype shell and the recipe test card making the choice visible instead of merely stated.",
+      "firstImage": "the quiet after Georgia stops explaining; the opening puts the reader directly in the moment before naming the choice",
+      "mustInclude": [
+        "prototype shell",
+        "recipe test card"
+      ],
+      "mustAvoid": [
+        "do not turn urban planning charrette into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Georgia lecture"
+      ]
+    },
+    {
+      "protagonistName": "Holly",
+      "domain": "indie game jam",
+      "audience": "readers who face indie game jam and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around creativity; specifically, the outcome turns on whether Holly can make creativity visible without sliding into treating creativity as brainstorm technique or artistic self-expression only.",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "In the indie game jam, Holly delays evaluation long enough for a fragile new response to become specific instead of performative, with the recipe test card and the charcoal sketch making the choice visible instead of merely stated.",
+      "firstImage": "two chairs pulled out from the table; the opening starts after the cost is visible, then backs into the choice that created it",
+      "mustInclude": [
+        "recipe test card",
+        "charcoal sketch"
+      ],
+      "mustAvoid": [
+        "do not turn indie game jam into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Holly lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish emergence from performance",
+      "spot evaluative pressure too early",
+      "create conditions for original response"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before judging a new idea, give it ninety seconds of description without evaluation and notice whether it becomes more specific or collapses.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside where supported, a direct second-person passage, or a brief historical reference to the frozen chapter placement",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

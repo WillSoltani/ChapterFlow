@@ -1,0 +1,174 @@
+{
+  "chapterId": "the-prince-ch02",
+  "number": 2,
+  "title": "Concerning Hereditary Principalities",
+  "coreMove": "Preserve inherited attachment by avoiding fresh injuries to familiar customs.",
+  "sourcePressure": "The chapter argues that hereditary states are easier to hold because subjects are accustomed to the ruling family, old motives for change have faded, and a prince of average ability can survive by not transgressing ancestral customs and by adapting prudently when circumstances arise.",
+  "chapterSpecificMisunderstanding": "The weak version treats hereditary rule as automatic privilege or nostalgia. The writer must show that duration helps only if the new holder does not create new reasons to hate a familiar house.",
+  "sourceAlignmentTerms": [
+    "hereditary",
+    "customs",
+    "ancestors",
+    "Duke of Ferrara",
+    "extraordinary force",
+    "usurper",
+    "duration",
+    "well disposed"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a royal child learning leadership from a portrait gallery",
+      "a family business heir giving a motivational speech",
+      "an opening about tradition being good because it is old"
+    ],
+    "counterintuition": [
+      "most people assume inherited power is easy, but actually heirs must work hard",
+      "tradition always beats innovation",
+      "people love familiar rulers no matter what they do"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list family traditions",
+      "ask what your ancestors would do",
+      "write a personal legacy statement"
+    ],
+    "examples": [
+      "generic family company succession",
+      "palace childhood scene",
+      "inheritance fight around a kitchen table",
+      "startup founder stepping down"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a long-established ferry charter on a winter island route after the captain's daughter inherits command",
+      "audience": "an heir who wants to modernize the route announcement, ticket booth hours, and crew rotations in her first week",
+      "stakes": "islanders tolerate weather delays because the family has served the route for decades, but changing the first boat and dock ritual could turn patience into resentment",
+      "format": "scene",
+      "requiredBeat": "She reaches for the new timetable stamp, hears the deckhands call the old 6:10 loading order by memory, and puts the stamp down until she has marked which customs actually hold the route together.",
+      "firstImage": "A red timetable stamp sits beside a frost-stiff ferry manifest.",
+      "mustInclude": [
+        "red timetable stamp",
+        "ferry manifest",
+        "6:10 loading order"
+      ],
+      "mustAvoid": [
+        "generic family business",
+        "storm crisis",
+        "innovation speech"
+      ]
+    },
+    {
+      "domain": "a hereditary temple custodianship where a new keeper takes over festival keys",
+      "audience": "a young custodian tempted to move the festival procession for crowd control",
+      "stakes": "the town accepts the family key because the procession route has survived generations, and a small route change could look like contempt",
+      "format": "decision_point",
+      "requiredBeat": "With the festival key in his hand, the keeper traces the old chalk marks on the stone threshold and chooses to repair the crowd rope instead of moving the procession gate.",
+      "firstImage": "An iron festival key rests on a threshold dusted with white chalk.",
+      "mustInclude": [
+        "iron festival key",
+        "chalk threshold marks",
+        "crowd rope"
+      ],
+      "mustAvoid": [
+        "theology lesson",
+        "generic event planning",
+        "reform equals betrayal"
+      ]
+    },
+    {
+      "domain": "a mountain irrigation district whose watermaster role has passed through one household for a century",
+      "audience": "a successor reading snowpack data and old ditch schedules before the first dry summer meeting",
+      "stakes": "farmers will forgive a dry year more readily than a new watermaster who silently changes ancestral turn order",
+      "format": "before_after",
+      "requiredBeat": "Before presenting the drought chart, she clips the old wooden turn tokens to the new snowpack board so everyone sees adaptation attached to inherited order.",
+      "firstImage": "Wooden water-turn tokens hang from a nail above a snowpack chart.",
+      "mustInclude": [
+        "water-turn tokens",
+        "snowpack chart",
+        "ditch schedule"
+      ],
+      "mustAvoid": [
+        "climate policy lecture",
+        "personal resilience",
+        "generic agriculture hardship"
+      ]
+    },
+    {
+      "domain": "a county coroner's office after a respected elected coroner's nephew wins the seat",
+      "audience": "a new official who inherits public trust but also inherited burial notification customs",
+      "stakes": "families accept grim news partly because the office's old procedure feels stable, and a rushed software-only notice could create hatred from a needless offense",
+      "format": "postmortem",
+      "requiredBeat": "After the first complaint, the nephew places the unopened digital notice beside his uncle's worn call ledger and restores the personal call before changing the database workflow.",
+      "firstImage": "A worn call ledger lies open beside an unopened digital notice.",
+      "mustInclude": [
+        "call ledger",
+        "digital notice",
+        "family notification card"
+      ],
+      "mustAvoid": [
+        "crime drama",
+        "technology bad lesson",
+        "office etiquette"
+      ]
+    },
+    {
+      "domain": "a tribal canoe-fishing permit held by one chiefly line under a regional compact",
+      "audience": "a new permit holder negotiating with fisheries officers and village elders",
+      "stakes": "state inspectors may focus on quotas, but village consent depends on keeping the inherited landing sequence visible",
+      "format": "dialogue",
+      "requiredBeat": "When the officer asks for a new numbered queue, the permit holder lays the carved landing paddle across the form and asks which rule can change without touching the ancestral order.",
+      "firstImage": "A carved landing paddle covers the corner of a permit-renewal form.",
+      "mustInclude": [
+        "carved landing paddle",
+        "permit-renewal form",
+        "landing sequence"
+      ],
+      "mustAvoid": [
+        "cultural tourism",
+        "romantic tradition",
+        "generic stakeholder meeting"
+      ]
+    },
+    {
+      "domain": "a centuries-old market toll gate where a new hereditary warden faces a rival's attempted seizure",
+      "audience": "a warden trying to keep merchants loyal after an outside usurper briefly controlled the gate",
+      "stakes": "the rival's force may fade, but merchants will return only if the familiar toll practice resumes without punitive surprise fees",
+      "format": "predict_reveal",
+      "requiredBeat": "The warden predicts loyalty will return when the usurper stumbles, then proves it by rehanging the old copper toll scale and refusing to add a recovery surcharge.",
+      "firstImage": "A copper toll scale swings from an empty market arch.",
+      "mustInclude": [
+        "copper toll scale",
+        "rival's notice",
+        "recovery surcharge line"
+      ],
+      "mustAvoid": [
+        "merchant greed story",
+        "revenge after coup",
+        "simple popularity contest"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when duration and family familiarity reduce the need for disruptive action",
+      "distinguish prudent adaptation from transgressing ancestral customs",
+      "analyze how needless offenses create new motives for change in an otherwise settled hereditary state",
+      "evaluate whether a response relies on inherited legitimacy while preserving the practices that make it usable"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one role that survives because people are used to it. Write two columns: customs that must not be disturbed first, and circumstances that may require quiet adaptation.",
+  "readingTimeMinutes": 12
+}

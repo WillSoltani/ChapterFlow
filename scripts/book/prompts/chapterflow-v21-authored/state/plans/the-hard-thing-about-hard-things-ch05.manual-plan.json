@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch05",
+  "number": 5,
+  "title": "When Things Fall Apart",
+  "coreMove": "Convert private pressure into clear facts, clean people calls, and controlled execution.",
+  "sourcePressure": "Collapse requires direct communication, layoffs or role-fit corrections when needed, dignity, speed without panic, and refusal to plan around rescue fantasies.",
+  "chapterSpecificMisunderstanding": "The weak version is blunt toughness: say hard things, make cuts, and push through.",
+  "sourceAlignmentTerms": [
+    "candor",
+    "layoffs",
+    "executive misfit",
+    "rumor",
+    "dignity",
+    "delay",
+    "rescue fantasy"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "when everything falls apart",
+      "the CEO's lonely burden",
+      "bad news travels fast"
+    ],
+    "counterintuition": [
+      "truth is kind",
+      "delay hurts more",
+      "cuts can be compassionate"
+    ],
+    "tryThisNow": [
+      "draft a difficult conversation",
+      "tell one uncomfortable truth",
+      "make a list of rumors"
+    ],
+    "examples": [
+      "generic layoff all-hands",
+      "startup CEO pacing office",
+      "rescue investor phone call"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional ambulance service after a contract loss",
+      "audience": "an operations chief deciding whether to close two stations or quietly hope for replacement funding",
+      "stakes": "crews, response times, town councils, and patient coverage all face real harm",
+      "format": "decision_point",
+      "requiredBeat": "the chief posts the lost-contract number, names the two stations affected, and schedules individual crew meetings before the dispatch rumor channel fills the gap",
+      "firstImage": "a dispatch map with two station pins covered by orange tape",
+      "mustInclude": [
+        "lost-contract number",
+        "crew meetings",
+        "dispatch rumor channel"
+      ],
+      "mustAvoid": [
+        "public-safety heroism"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "medical device startup recalling a faulty sensor batch",
+      "audience": "a CEO whose head of quality keeps minimizing the defect",
+      "stakes": "patients, regulators, and the company's survival depend on fast factual action",
+      "format": "dialogue",
+      "requiredBeat": "the CEO asks the quality head to state the defect rate in front of legal and operations, then removes ambiguity about recall ownership before the next shipment leaves",
+      "firstImage": "a tray of returned sensors with red quarantine labels",
+      "mustInclude": [
+        "defect rate",
+        "recall ownership",
+        "quarantine labels"
+      ],
+      "mustAvoid": [
+        "compliance checklist story"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "regional newspaper after advertising revenue collapses",
+      "audience": "a publisher deciding between serial cuts and one clear restructuring",
+      "stakes": "serial uncertainty could bleed reporters and reduce local coverage further",
+      "format": "postmortem",
+      "requiredBeat": "the publisher compares the three-round cut plan with one decisive plan, then chooses the cleaner reduction and writes the exact coverage promise that remains",
+      "firstImage": "a newsroom assignment board with blank spaces where ads used to be pinned",
+      "mustInclude": [
+        "three-round cut plan",
+        "coverage promise",
+        "individual notices"
+      ],
+      "mustAvoid": [
+        "journalism nostalgia"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "specialty chemicals plant after an executive safety misfit",
+      "audience": "a plant president whose operations VP keeps bypassing shutdown procedures",
+      "stakes": "normalizing the misfit risks injury and teaches supervisors the wrong standard",
+      "format": "scene",
+      "requiredBeat": "the president holds up the bypass log, states the role expectation, and removes the VP from shutdown authority before the next production run",
+      "firstImage": "a bypass log with three supervisor initials in the margin",
+      "mustInclude": [
+        "shutdown authority",
+        "role expectation",
+        "bypass log"
+      ],
+      "mustAvoid": [
+        "villain executive caricature"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "independent childcare network after an insurer cancellation",
+      "audience": "an executive director tempted to keep accepting enrollments while seeking a last-minute quote",
+      "stakes": "parents need truth, staff need jobs, and operating uninsured is not an option",
+      "format": "before_after",
+      "requiredBeat": "the director stops enrollment, names the insurance gap to site leads, and assigns parent calls instead of building a plan around a quote that has not arrived",
+      "firstImage": "an insurance cancellation notice folded under a stack of enrollment forms",
+      "mustInclude": [
+        "insurance gap",
+        "parent calls",
+        "stopped enrollment"
+      ],
+      "mustAvoid": [
+        "childcare empathy only"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "data-center operator after a major customer churns",
+      "audience": "a general manager choosing between hiding the churn and renegotiating vendor commitments",
+      "stakes": "if staff hear it sideways, they will slow work and vendors will learn first",
+      "format": "reflection",
+      "requiredBeat": "the manager converts the churn email into a factual internal note, makes the vendor-call list, and refuses to call a speculative replacement deal the plan",
+      "firstImage": "a customer termination email open beside a rack-power invoice",
+      "mustInclude": [
+        "vendor-call list",
+        "speculative replacement",
+        "internal note"
+      ],
+      "mustAvoid": [
+        "tech infrastructure jargon"
+      ],
+      "openingDevice": "sensory_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose candor that creates shared reality",
+      "separate dignity from delay in layoffs",
+      "identify executive misfit as an organizational cost",
+      "reject plans that depend on unconfirmed rescue"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one fact people are likely to learn through rumor. Write the exact plain sentence that states it, the affected group, and the next decision boundary.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

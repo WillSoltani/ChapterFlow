@@ -1,0 +1,166 @@
+{
+  "chapterId": "essentialism-ch04",
+  "number": 4,
+  "title": "Trade-Off: Which Problem Do I Want?",
+  "coreMove": "Name the cost inside each option and choose the burden attached to the more essential contribution.",
+  "sourcePressure": "The chapter insists that trade-offs are real and that the essentialist stops asking how to do both and starts choosing which problem is worth carrying.",
+  "chapterSpecificMisunderstanding": "A weak run would frame trade-offs as temporary obstacles that clever scheduling can overcome.",
+  "sourceAlignmentTerms": [
+    "trade-off",
+    "do both",
+    "go big",
+    "choice cost",
+    "burden"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic trade-off: which problem do i want? topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "having it all frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "having it all",
+      "time management tricks",
+      "optimization without loss",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "coastal town deciding between dune restoration and expanded parking before tourist season",
+      "audience": "town planner facing two politically defensible choices",
+      "stakes": "either choice creates a real problem someone must own",
+      "format": "decision_point",
+      "requiredBeat": "She places the flood model beside the parking revenue sheet and asks which problem the council chooses to carry.",
+      "firstImage": "A flood model sits beside a parking revenue sheet.",
+      "mustInclude": [
+        "flood model",
+        "revenue sheet",
+        "council agenda"
+      ],
+      "mustAvoid": [
+        "having it all",
+        "generic town hall"
+      ]
+    },
+    {
+      "domain": "documentary editor choosing between a festival deadline and verifying a disputed interview",
+      "audience": "editor pulled between prestige and accuracy",
+      "stakes": "speed can gain a premiere while risking trust",
+      "format": "scene",
+      "requiredBeat": "He freezes the timeline on the disputed quote and writes the cost under festival yes and verification yes.",
+      "firstImage": "A paused timeline frame shows a disputed interview.",
+      "mustInclude": [
+        "timeline frame",
+        "festival email",
+        "fact-check log"
+      ],
+      "mustAvoid": [
+        "generic media deadline",
+        "both can be done"
+      ]
+    },
+    {
+      "domain": "regional seed farmer choosing between a high-yield hybrid contract and preserving a rare local variety",
+      "audience": "farmer facing income versus stewardship",
+      "stakes": "one season’s profit can crowd out the seed stock that makes future resilience possible",
+      "format": "reflection",
+      "requiredBeat": "She weighs the contract packet against the rare-seed envelopes and names which problem she can sleep with.",
+      "firstImage": "Rare-seed envelopes sit under a contract packet.",
+      "mustInclude": [
+        "seed envelopes",
+        "contract packet",
+        "field map"
+      ],
+      "mustAvoid": [
+        "anti-profit cliché",
+        "romantic farming"
+      ]
+    },
+    {
+      "domain": "fire department captain assigning one engine during simultaneous calls",
+      "audience": "captain choosing between urgent harms",
+      "stakes": "pretending both calls get equal response hides the burden",
+      "format": "dialogue",
+      "requiredBeat": "He taps the dispatch board and chooses the engine assignment while naming the unserved risk out loud.",
+      "firstImage": "A dispatch board flashes two red call cards.",
+      "mustInclude": [
+        "dispatch board",
+        "call cards",
+        "engine key"
+      ],
+      "mustAvoid": [
+        "heroic omnipresence",
+        "generic emergency"
+      ]
+    },
+    {
+      "domain": "graduate pianist choosing between a competition circuit and months of injury rehabilitation",
+      "audience": "musician choosing between career exposure and long-term capacity",
+      "stakes": "avoiding the trade-off risks losing both performance and hand health",
+      "format": "before_after",
+      "requiredBeat": "Before, she keeps both calendars; after, she writes the pain score beside each audition date and withdraws from two.",
+      "firstImage": "A pain-score notebook lies across audition dates.",
+      "mustInclude": [
+        "pain-score notebook",
+        "audition calendar",
+        "wrist brace"
+      ],
+      "mustAvoid": [
+        "generic wellness",
+        "quit when hard"
+      ]
+    },
+    {
+      "domain": "city newspaper deciding whether to keep the court reporter or launch a lifestyle newsletter",
+      "audience": "publisher choosing mission risk versus revenue experiment",
+      "stakes": "the paper cannot staff both without thinning public accountability",
+      "format": "postmortem",
+      "requiredBeat": "The publisher reviews the empty courthouse notebook after a missed ruling and names the cost of chasing newsletter growth.",
+      "firstImage": "An empty courthouse notebook rests beside a newsletter mockup.",
+      "mustInclude": [
+        "courthouse notebook",
+        "newsletter mockup",
+        "ad forecast"
+      ],
+      "mustAvoid": [
+        "media nostalgia",
+        "optimization without loss"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the Trade-Off: Which Problem Do I Want? move inside a concrete scenario",
+      "choose the response that applies: Name the cost inside each option and choose the burden attached to the more essential contribution.",
+      "reject the generic drift: A weak run would frame trade-offs as temporary obstacles that clever scheduling can overcome.",
+      "explain the trade-off using chapter-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one decision where you keep asking how to do both. Write the cost under each yes, then circle the burden you are willing to carry.",
+  "readingTimeMinutes": 12
+}

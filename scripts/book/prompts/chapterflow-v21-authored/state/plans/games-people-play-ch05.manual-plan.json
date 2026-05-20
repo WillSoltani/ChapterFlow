@@ -1,0 +1,213 @@
+{
+  "chapterId": "games-people-play-ch05",
+  "number": 5,
+  "title": "Life Games",
+  "coreMove": "Recognize a long-running life game by its repeated payoff, then refuse the role without confusing the pattern with the whole person.",
+  "sourcePressure": "Covers Kick Me, NIGYSOB, SWYMD, and Debtor while explicitly avoiding Alcoholic in this chapter and distinguishing game layers from structural harm.",
+  "chapterSpecificMisunderstanding": "Using life-game labels to blame people for real hardship, trauma, poverty, addiction, or repeated external harm.",
+  "sourceAlignmentTerms": [
+    "Kick Me",
+    "NIGYSOB",
+    "SWYMD",
+    "Debtor",
+    "antithesis",
+    "life game",
+    "position confirmation",
+    "neutral Adult courtesy"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Kick Me",
+      "detail": "the source describes a pattern where the player invites rejection or criticism, then reacts with hurt astonishment when it arrives",
+      "useIn": "both",
+      "phrasingHint": "Kick Me is the pattern where the bruise becomes proof: people always do this to me."
+    },
+    {
+      "kind": "artifact",
+      "name": "NIGYSOB",
+      "detail": "the source names Now I've Got You SOB as a pattern of looking for justified outrage and moral superiority",
+      "useIn": "fullRead",
+      "phrasingHint": "NIGYSOB waits for the paperwork error like a match waiting for a striker."
+    },
+    {
+      "kind": "artifact",
+      "name": "SWYMD",
+      "detail": "the source names See What You Made Me Do as blaming a mistake on the person who interrupted or witnessed it",
+      "useIn": "deepRead",
+      "phrasingHint": "SWYMD turns a dropped plate into evidence that someone else has hands."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'Life Games' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "David",
+      "domain": "municipal permit desk where one contractor arrives with incomplete forms every month",
+      "audience": "a clerk trying not to become the predictable kicker",
+      "stakes": "the contractor gets proof that city staff are against him and the queue backs up",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "David checks the missing attachment, gives the same neutral next step, and refuses the sharp aside that would complete Kick Me.",
+      "firstImage": "The permit lobby clock clicks louder than the printer.",
+      "mustInclude": [
+        "permit checklist",
+        "date stamp",
+        "plastic queue number"
+      ],
+      "mustAvoid": [
+        "bureaucracy rant",
+        "city hall villain"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "independent theatre rehearsal budget dispute",
+      "audience": "a producer facing an actor who waits to catch tiny fairness errors",
+      "stakes": "one caught mistake can become moral authority over the whole production",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Margaux fixes the stipend typo immediately and keeps the discussion on the corrected document, giving NIGYSOB no broader trial.",
+      "firstImage": "\"So you admit the ensemble contract was wrong,\" the actor says.",
+      "mustInclude": [
+        "stipend spreadsheet",
+        "rehearsal call sheet",
+        "black box stage tape"
+      ],
+      "mustAvoid": [
+        "arts gossip",
+        "courtroom marital drift"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "home espresso machine repair that becomes a blame scene",
+      "audience": "a partner who drops a screw after being interrupted and reaches for SWYMD",
+      "stakes": "the small repair can become a familiar responsibility escape",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Daniel says the interruption did not drop the screw, then offers to pause the repair without accepting blame.",
+      "firstImage": "A brass screw ticks once against the tile and vanishes under the cabinet toe-kick.",
+      "mustInclude": [
+        "espresso portafilter",
+        "tiny screwdriver",
+        "parts dish"
+      ],
+      "mustAvoid": [
+        "generic kitchen argument",
+        "appliance comedy"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "student loan repayment call after repeated deferment extensions",
+      "audience": "a financial-aid adviser distinguishing Debtor drama from real constraint",
+      "stakes": "helping without lending the pattern more crisis energy",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Petra maps the actual payment floor and refuses the heroic rescue call that would keep the near-miss story alive.",
+      "firstImage": "You hear the word temporary for the fifth time before the account screen finishes loading.",
+      "mustInclude": [
+        "repayment portal",
+        "income certificate",
+        "deferment email"
+      ],
+      "mustAvoid": [
+        "financial shame lecture",
+        "personal finance guru tone"
+      ]
+    },
+    {
+      "protagonistName": "Lucas",
+      "domain": "climbing gym belay partnership where one member keeps inviting criticism",
+      "audience": "a recreation group captain seeing a Kick Me loop in repeated safety mistakes",
+      "stakes": "physical safety and social belonging are both at risk",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lucas stops teasing after the predictable knot error and gives a binary safety standard instead.",
+      "firstImage": "By the third Thursday, Lucas can predict the joke before the knot is checked.",
+      "mustInclude": [
+        "belay device",
+        "chalk bag",
+        "route tag"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor",
+        "sports toughness cliche"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "open-source maintainer issue tracker after a minor patch regression",
+      "audience": "a maintainer tempted to enter a righteous-catching exchange",
+      "stakes": "project trust can become a rage payoff machine",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Aman sees the pleasure of catching the contributor and writes a reproduction request instead of a public takedown.",
+      "firstImage": "What does it feel like to be right at exactly the moment someone else is exposed?",
+      "mustInclude": [
+        "failing test log",
+        "pull request diff",
+        "issue label"
+      ],
+      "mustAvoid": [
+        "generic tech flamewar",
+        "mentor scolding"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "differentiate a game layer from genuine harm",
+      "identify payoff in Kick Me, NIGYSOB, SWYMD, and Debtor patterns",
+      "choose antithesis without punishment",
+      "explain why long-running life games require replacement over time"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When a recurring life pattern appears, write the payoff sentence it proves, then write the smallest neutral refusal of your usual role.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

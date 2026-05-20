@@ -1,0 +1,202 @@
+{
+  "chapterId": "the-lean-startup-ch05",
+  "number": 5,
+  "title": "Leap",
+  "coreMove": "Rank assumptions by how much damage their failure would do, then test the most dangerous leap before polishing safer details.",
+  "sourcePressure": "The riskiest leap-of-faith assumptions must be named and tested first because their failure can break the entire business.",
+  "chapterSpecificMisunderstanding": "Listing assumptions as paperwork while continuing to build around the frightening one.",
+  "sourceAlignmentTerms": [
+    "leap-of-faith assumptions",
+    "riskiest assumption first",
+    "value hypothesis",
+    "growth hypothesis",
+    "steering",
+    "business-breaking assumption"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Leap-of-faith assumptions",
+      "detail": "the sidecar says startups run on these assumptions",
+      "useIn": "both",
+      "phrasingHint": "The leap is the belief the plan quietly stands on before proof has arrived."
+    },
+    {
+      "kind": "artifact",
+      "name": "Riskiest assumption first",
+      "detail": "the sidecar says the assumptions that can break the business deserve attention first",
+      "useIn": "fullRead",
+      "phrasingHint": "The first test belongs to the assumption that would make every polished detail irrelevant if it failed."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Leap.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "winter boot rental kiosk",
+      "audience": "retail experiment team",
+      "stakes": "inventory plans collapse if tourists will not rent instead of buy",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Laura marks rental willingness as the business-breaking assumption and tests it first",
+      "firstImage": "a boot rack beside a ski-town hotel door",
+      "mustInclude": [
+        "rental tag",
+        "hotel desk card",
+        "deposit amount"
+      ],
+      "mustAvoid": [
+        "generic leap office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "freelancer tax reminder service",
+      "audience": "fintech product lead",
+      "stakes": "the model fails if users will not trust automated tax nudges",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Etienne puts trust in the riskiest-assumption slot before building integrations",
+      "firstImage": "a calendar alert hovering over a tax folder",
+      "mustInclude": [
+        "trust survey",
+        "manual reminder",
+        "bank-link mockup"
+      ],
+      "mustAvoid": [
+        "generic leap office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "senior home meal delivery",
+      "audience": "operations founder",
+      "stakes": "nutrition preferences matter less if adult children will not pay monthly",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily tests payer commitment before menu variety",
+      "firstImage": "a sample menu clipped to a fridge magnet",
+      "mustInclude": [
+        "payer call list",
+        "monthly price",
+        "sample menu"
+      ],
+      "mustAvoid": [
+        "generic leap office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "industrial safety micro-training",
+      "audience": "manufacturing HR team",
+      "stakes": "course polish is wasted if supervisors will not release workers for five minutes",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Pavel tests supervisor release before filming modules",
+      "firstImage": "a punch clock beside a training tablet",
+      "mustInclude": [
+        "shift roster",
+        "training tablet",
+        "release slip"
+      ],
+      "mustAvoid": [
+        "generic leap office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "neighborhood childcare swap platform",
+      "audience": "parent organizer",
+      "stakes": "matching features fail if parents do not trust reciprocal care",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Maja names trust as the leap and asks families for one trial evening",
+      "firstImage": "a kitchen table with printed emergency contacts",
+      "mustInclude": [
+        "trial evening form",
+        "contact sheet",
+        "two-family cap"
+      ],
+      "mustAvoid": [
+        "generic leap office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "legal-document automation tool",
+      "audience": "small-firm lawyer",
+      "stakes": "automation value fails if clients still demand human review",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Jack tests paid review preference before automating every clause",
+      "firstImage": "a marked-up contract beside a payment link",
+      "mustInclude": [
+        "contract draft",
+        "payment link",
+        "review option"
+      ],
+      "mustAvoid": [
+        "generic leap office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Leap from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Rank assumptions by how much damage their failure would do, then test the most dangerous leap before polishing safer details.",
+      "Diagnose when a team is drifting into the misread: Listing assumptions as paperwork while continuing to build around the frightening one."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Rank assumptions by how much damage their failure would do, then test the most dangerous leap before polishing safer details. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

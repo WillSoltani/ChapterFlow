@@ -80,6 +80,7 @@ export function assembleChapterV21(input: AssembleInput): ChapterV21 {
   }));
 
   const assembledPlan: ImplementationPlanV21 = {
+    title: implementationPlan.title,
     coreSkill: implementationPlan.coreSkill,
     ifThenPlans: implementationPlan.ifThenPlans.map((it) => ({
       context: it.context,

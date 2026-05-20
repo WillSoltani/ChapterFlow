@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch16",
+  "number": 16,
+  "title": "Replication",
+  "readingTimeMinutes": 12,
+  "hook": "The store photo matched perfectly; the mystery-shop note said the service had not survived the copy.",
+  "counterintuition": "Exact sameness can be the failed copy. Replication succeeds only when the working structure transfers with enough fidelity to persist.",
+  "tryThisNow": "Choose one process you want repeated. Hand it to someone else, watch the first attempt, and revise the step where structure failed to transfer.",
+  "keyTakeaway": "Replication preserves essential structure through transmission; copying the surface ritual is useless when the working pattern does not survive transfer.",
+  "breakdown": {
+    "fastRead": "Teresa's training binder made the new store look identical. The store photo matched the original counter, menu board, and greeting card. Then the mystery-shop note said customers waited while staff copied the words without understanding the service rhythm.\n\nShe stopped fixing decoration and rewrote the transfer: when to greet, when to move, when to notice a line forming.\n\nReplication is persistence through copying. The copy has to carry the working structure, not just the visible shell.",
+    "deepRead": "\"The checklist was on the tray,\" William said after the handoff review. The sterile checklist had been copied, laminated, and initialed. The new team still missed the timing because the initials grid did not show who owned each step.\n\nThe support stays focused: replication means copying, transmission, and persistence without needing technical biology. William's problem was not that the old team had failed to document. It was that the essential structure had not transferred. A good copy preserves what makes the pattern work after the original expert steps away. Fidelity is about function, not perfect resemblance. If the new team cannot run the handoff without the senior nurse whispering the real order, the copy has not carried the pattern.\n\nA copy that cannot run is only evidence of copying.\n\nGabrielle saw the same error in tutoring. Students copied answers from a worked example and still failed the next problem. The reasoning notebook showed where replication broke: they had copied the result, not the question sequence. She recorded a student explaining each step, then revised the example so the method, not the answer, could travel.\n\nThe limit is overcontrol. Perfect sameness can block useful local adjustment. Replication should preserve the working structure while allowing the surface to fit the new setting.",
+    "fullRead": "At 7:42 a.m., Stellan left a style sheet for the guest editor and expected the newsletter to sound right. The newsletter proof had the same section order, the same short headline style, and the same signoff. The guest draft still felt wrong because it copied the format without carrying the judgment behind the edits.\n\nReplication extends a system beyond one current instance. A franchise store, a surgical checklist, a tutoring method, an editorial playbook, a glaze recipe, or a volunteer script all face the same test: can someone else reproduce the pattern when the original keeper is absent? If not, the system has not replicated. It has staged a resemblance.\n\nWhat must survive for the copy to work?\n\nThat question changes documentation. You stop recording only the surface and start recording the structure: the sequence, constraint, feedback signal, exception, and reason for the move. Teresa needed service rhythm, not decor. William needed ownership timing, not laminated paper. Gabrielle needed reasoning steps, not answer shapes. Stellan needed editorial judgment, not a pretty style sheet.\n\nA useful replication test has two parts. First, the second person must use the process without the original keeper standing nearby. Second, the result must show the same function under ordinary variation. A store can have different floor tile and still replicate service. A newsletter can use a different example and still replicate editorial judgment. A glaze can move through a different pair of hands and still produce the surface the studio promised.\n\nYou can feel the difference in a ceramics studio. Nathan gives a glaze card to an assistant, and the test tile comes out dull. The card lists ingredients, but the kiln shelf position changes the heat. \"I followed the recipe,\" the assistant says. Nathan has to decide whether the recipe is complete or whether the working structure includes the shelf location, timing, and visible surface cue. The revised card does not tell the assistant to imitate Nathan's posture or favorite brush. It tells them which conditions make the glaze repeatable.\n\nEva found the same pattern with volunteer onboarding. A welcome script sounded friendly when she used it, but Saturday volunteers skipped the task card and left new people standing with name badges and no work. The script replicated tone. It did not replicate the onboarding structure. She revised the handoff so the next volunteer could welcome, assign, and check back without her. The second volunteer became the proof: if they could run the welcome table and the new person knew where to go, the structure had traveled.\n\nReplication can spread bad structure too. A copied error becomes more dangerous as it travels. Before making a process easy to repeat, ask whether it deserves persistence. Transmission gives power to whatever pattern you preserve, including shortcuts, blind spots, and hidden dependencies.\n\nMake the second person the test. If the copy fails, do not blame the person first. Look for the missing structure that only lived in the original operator's head."
+  },
+  "examples": [
+    {
+      "exampleId": "ch16-ex01-teresa-training-binder",
+      "title": "Teresa Watches the Second Store",
+      "tags": [
+        "predict_reveal",
+        "franchise",
+        "fidelity"
+      ],
+      "planSpec": {
+        "domain": "franchise training binder",
+        "audience": "readers who face franchise training binder decisions where replication is easy to misread",
+        "stakes": "new stores drifting from the original service",
+        "format": "predict_reveal",
+        "requiredBeat": "Teresa hands the training binder to a second person, watches them use the mystery-shop note, and revises the store photo where the working structure fails to transfer. Domain: franchise training binder."
+      },
+      "scenario": "The training binder smells like fresh plastic when Teresa gives it to the second store manager before the lunch rush. She predicts the store photo will preserve the original service, down to the counter angle and greeting card. The mystery-shop note reveals the failure: the counter looks right, but staff do not know when to greet, move, or notice the line. Teresa must choose function over resemblance.",
+      "whatToDo": "Revise the binder around the service sequence and line cues, then test it with another manager before opening.",
+      "whyItMatters": "The copied decor did not replicate the working structure. Fidelity means the service pattern survives transfer."
+    },
+    {
+      "exampleId": "ch16-ex02-william-surgical-checklist",
+      "title": "William Revises the Initials Grid",
+      "tags": [
+        "postmortem",
+        "surgery",
+        "transmission"
+      ],
+      "planSpec": {
+        "domain": "surgical checklist handoff",
+        "audience": "readers who face surgical checklist handoff decisions where replication is easy to misread",
+        "stakes": "handoff from senior nurse to new team",
+        "format": "postmortem",
+        "requiredBeat": "William hands the sterile checklist to a second person, watches them use the handoff tray, and revises the initials grid where the working structure fails to transfer. Domain: surgical checklist handoff."
+      },
+      "scenario": "\"We used the checklist,\" William says during the postmortem, pointing at the sterile tray after a delayed room turnover. The handoff tray was prepared, and every copied line was initialed, but the initials grid never made ownership clear to the new team. He must decide now whether the copied document is enough or whether timing and responsibility need to be part of the replication.",
+      "whatToDo": "Add ownership and timing to the initials grid, then watch a new team run the handoff without the senior nurse prompting.",
+      "whyItMatters": "The checklist did not persist as a working pattern until the handoff structure traveled with it."
+    },
+    {
+      "exampleId": "ch16-ex03-gabrielle-tutoring-method",
+      "title": "Gabrielle Records the Reasoning",
+      "tags": [
+        "scene",
+        "tutoring",
+        "essential-structure"
+      ],
+      "planSpec": {
+        "domain": "tutoring method transfer",
+        "audience": "readers who face tutoring method transfer decisions where replication is easy to misread",
+        "stakes": "students copying answers without reasoning",
+        "format": "scene",
+        "requiredBeat": "Gabrielle hands the worked example to a second person, watches them use the reasoning notebook, and revises the student recording where the working structure fails to transfer. Domain: tutoring method transfer."
+      },
+      "scenario": "The study room whiteboard still shows Gabrielle's worked example while a student's reasoning notebook sits blank beside a half-erased equation. The student copied every answer shape and failed the next problem when the numbers changed. Gabrielle faces a decision before the next session: provide more examples, or record the question sequence so the reasoning can replicate.",
+      "whatToDo": "Have the student explain each step into a recording and revise the worked example around prompts, not final answers.",
+      "whyItMatters": "Answer copying created surface repetition. The method persisted only when the reasoning structure transferred."
+    },
+    {
+      "exampleId": "ch16-ex04-stellan-editorial-playbook",
+      "title": "Stellan Rewrites the Style Sheet",
+      "tags": [
+        "vignette",
+        "newsletter",
+        "surface-decoration"
+      ],
+      "planSpec": {
+        "domain": "newsletter editorial playbook",
+        "audience": "readers who face newsletter editorial playbook decisions where replication is easy to misread",
+        "stakes": "guest editor maintaining tone",
+        "format": "vignette",
+        "requiredBeat": "Stellan hands the style sheet to a second person, watches them use the newsletter proof, and revises the guest draft where the working structure fails to transfer. Domain: newsletter editorial playbook."
+      },
+      "scenario": "At 7:42 a.m., Stellan opens the guest draft beside the style sheet and newsletter proof, with the send queue already scheduled. The sections match, but the judgment is off: weak claims stay, sharp details disappear, and the lead paragraph wanders. Before the next issue, Stellan has to decide whether to police wording or document the editing choices the guest editor must reproduce.",
+      "whatToDo": "Revise the playbook around judgment tests: what to cut, what to keep, and how each section earns space.",
+      "whyItMatters": "The layout copied easily. The editorial structure needed explicit transmission to persist without Stellan."
+    },
+    {
+      "exampleId": "ch16-ex05-nathan-glaze-recipe",
+      "title": "Nathan Marks the Kiln Shelf",
+      "tags": [
+        "dialogue",
+        "ceramics",
+        "copy"
+      ],
+      "planSpec": {
+        "domain": "ceramics glaze recipe",
+        "audience": "readers who face ceramics glaze recipe decisions where replication is easy to misread",
+        "stakes": "studio assistant repeating the glaze",
+        "format": "dialogue",
+        "requiredBeat": "Nathan hands the glaze card to a second person, watches them use the test tile, and revises the kiln shelf where the working structure fails to transfer. Domain: ceramics glaze recipe."
+      },
+      "scenario": "You hold the glaze card while Nathan studies a dull test tile from the lower kiln shelf, still warm enough to smell faintly mineral. \"I followed the recipe,\" the assistant says, pointing to each measured ingredient. Nathan hovers over two fixes: scold the measurement, or add shelf position, timing, and surface cues so the glaze can be replicated.",
+      "whatToDo": "Add kiln shelf position and visual cues to the glaze card, then test the recipe with a second assistant.",
+      "whyItMatters": "The ingredient list was only part of the structure. Replication failed where the recipe omitted conditions that shaped the result."
+    },
+    {
+      "exampleId": "ch16-ex06-eva-volunteer-script",
+      "title": "Eva Tests the Welcome Script",
+      "tags": [
+        "decision_point",
+        "volunteer",
+        "persistence"
+      ],
+      "planSpec": {
+        "domain": "volunteer onboarding script",
+        "audience": "readers who face volunteer onboarding script decisions where replication is easy to misread",
+        "stakes": "Saturday volunteers onboarding the next crew",
+        "format": "decision_point",
+        "requiredBeat": "Eva hands the welcome script to a second person, watches them use the name badge, and revises the task card where the working structure fails to transfer. Domain: volunteer onboarding script."
+      },
+      "scenario": "It took Eva three Saturdays to notice that new volunteers left with name badges but no assigned work after the morning rush. The welcome script sounded warm, yet the task card stayed on the table beside untouched gloves. She must choose between rewriting friendly lines or testing whether another volunteer can welcome, assign, and check back without her.",
+      "whatToDo": "Add the assignment step and check-back cue to the script, then watch a volunteer onboard the next person.",
+      "whyItMatters": "The tone replicated, but the onboarding structure did not. Persistence requires the working pattern to survive the handoff."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A franchise store copies the original counter, menu board, greeting card, and store photo, but customers wait longer and service feels wrong during lunch. What should be replicated?",
+        "choices": [
+          "The service rhythm and cues that make the format work.",
+          "Only the decor visible in photos.",
+          "A longer binder with more slogans."
+        ],
+        "correctIndex": 0,
+        "explanation": "Replication needs the working structure. Surface resemblance is weak if the service sequence does not transfer.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A surgical checklist is copied for a new team and placed on the sterile tray, but nobody knows who owns each step during the room handoff. Which fix fits replication?",
+        "choices": [
+          "Laminate the same checklist again.",
+          "Add timing and responsibility to the initials grid and test it without prompting.",
+          "Tell the new team to copy the senior nurse's style."
+        ],
+        "correctIndex": 1,
+        "explanation": "The missing structure is ownership during transfer. More copies of the same surface document will not preserve the handoff.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Students copy answers from worked examples into a reasoning notebook, but cannot solve new problems when the numbers change. What should the tutor transmit?",
+        "choices": [
+          "More answer shapes to memorize.",
+          "A nicer final answer template.",
+          "The reasoning prompts that generate the answer."
+        ],
+        "correctIndex": 2,
+        "explanation": "The method is the essential structure. Copying results creates surface sameness without transferable reasoning.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A guest editor follows the newsletter layout and headline format, but misses which claims to cut and which details to keep before send time. What is the replication problem?",
+        "choices": [
+          "Guest editors should never be trusted.",
+          "The playbook copied format but failed to transmit editorial judgment.",
+          "The newsletter needs a different font."
+        ],
+        "correctIndex": 1,
+        "explanation": "The format traveled; the working judgment did not. Replication requires the structure behind decisions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A ceramics assistant follows the ingredient card exactly, but the glaze changes because shelf position, timing, and surface cues were never documented. What should be revised?",
+        "choices": [
+          "The assistant's attitude.",
+          "The recipe to include the conditions that shape the result.",
+          "The studio logo on the card."
+        ],
+        "correctIndex": 1,
+        "explanation": "The ingredient list omitted essential conditions. Fidelity depends on transmitting what actually produces the glaze.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A volunteer script sounds friendly at the welcome table, but new volunteers leave with badges and no tasks after the morning rush. What is the strongest diagnosis?",
+        "choices": [
+          "Volunteers dislike friendly scripts.",
+          "Name badges are the only important part.",
+          "The tone replicated while the onboarding structure failed."
+        ],
+        "correctIndex": 2,
+        "explanation": "The script transmitted surface tone but not assignment and check-back steps. The working pattern did not persist.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager asks every branch to copy the flagship exactly, including decor and phrases, even though local constraints and customer flow differ. What should replication preserve?",
+        "choices": [
+          "The essential structure that produces results, with surfaces adjusted to context.",
+          "Every decoration and phrase regardless of fit.",
+          "Only the parts easiest to photograph."
+        ],
+        "correctIndex": 0,
+        "explanation": "Replication is not blind sameness. It preserves the working structure while allowing local surfaces to fit.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A playbook lets a second team run the process successfully without the founder present, even though the room setup and staff mix differ. How should you evaluate it?",
+        "choices": [
+          "It likely replicated the essential structure rather than just surface ritual.",
+          "It failed because the room was not identical.",
+          "It should remove all local judgment."
+        ],
+        "correctIndex": 0,
+        "explanation": "Success without the founder suggests the structure persisted. Exact surface sameness is less important than transferred function.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A sales team copies a top performer's email wording but not the qualification questions she asks before sending it, and results drop across new accounts. What response transfers the model?",
+        "choices": [
+          "Copy the email font more closely.",
+          "Tell everyone to send more messages.",
+          "Document and practice the qualification sequence that makes the email work."
+        ],
+        "correctIndex": 2,
+        "explanation": "The effective structure is the qualification sequence. The wording alone is a surface copy that cannot carry the method.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A copied process looks right and fails. What should you retrieve?",
+      "back": "Retrieve replication: identify the working structure that failed to transfer, not the surface that copied well.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A copied checklist looks right but fails in a new team's hands. What should you retrieve about fidelity?",
+      "back": "Fidelity means the function persists. The copy carries the sequence, constraints, and feedback that make the pattern work.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A process works only when the founder is nearby. What does a second-person test reveal?",
+      "back": "A second person exposes what only lived in the original operator's head.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A branch copies every surface detail and still fails locally. When can exact sameness hurt replication?",
+      "back": "When local conditions differ and rigid surfaces block the structure from working in the new setting.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A bad shortcut is about to become part of a playbook. What danger comes with making a process easy to copy?",
+      "back": "Bad structure can spread too. Decide whether the pattern deserves persistence before transmitting it.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to preserve the working structure through transfer. The skill is testing whether another person can reproduce the function without copying only the surface.",
+    "ifThenPlans": [
+      {
+        "context": "documentation",
+        "plan": "If I write a playbook, then I will include the sequence, constraint, feedback signal, and exception behind the visible steps."
+      },
+      {
+        "context": "training",
+        "plan": "If someone copies the answer but fails the next case, then I will teach the reasoning structure before adding more examples."
+      },
+      {
+        "context": "operations",
+        "plan": "If a new team follows the form and still fails, then I will watch the handoff to find the missing structure."
+      },
+      {
+        "context": "scaling",
+        "plan": "If a second location opens, then I will test whether the core service pattern works before matching the decor."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, hand one repeatable process to someone else for a small test. Watch where the structure fails to transfer and revise that step.",
+    "weeklyPractice": "Each week, choose one process you rely on and ask what must survive for it to replicate without you."
+  },
+  "memorableLines": [
+    {
+      "text": "Fidelity is about function, not perfect resemblance.",
+      "location": "breakdown.deepRead",
+      "why": "It distinguishes useful replication from exact surface copying."
+    },
+    {
+      "text": "A copy that cannot run is only evidence of copying.",
+      "location": "breakdown.deepRead",
+      "why": "It makes failed transfer concrete."
+    },
+    {
+      "text": "Make the second person the test.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader a direct replication audit."
+    }
+  ]
+}

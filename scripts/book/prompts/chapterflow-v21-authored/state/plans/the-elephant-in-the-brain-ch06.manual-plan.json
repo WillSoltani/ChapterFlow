@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch06",
+  "number": 6,
+  "title": "Counterfeit Reasons",
+  "coreMove": "Treat the stated reason as a press release and inspect what decision it was written to justify.",
+  "sourcePressure": "The source argues that people fabricate counterfeit reasons after the fact, with split-brain and confabulation evidence supporting the press-secretary model of the ego.",
+  "chapterSpecificMisunderstanding": "The writer turns counterfeit reasons into ordinary excuses and misses post-hoc confabulation.",
+  "sourceAlignmentTerms": [
+    "counterfeit reasons",
+    "confabulation",
+    "split-brain",
+    "press secretary",
+    "central executive",
+    "strategic ignorance"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "split-brain and confabulation evidence",
+      "detail": "The source says split-brain and confabulation evidence support the claim that minds generate reasons after the fact.",
+      "useIn": "both",
+      "phrasingHint": "The reason can arrive cleanly after the choice, like a caption pasted under a photograph."
+    },
+    {
+      "kind": "artifact",
+      "name": "ego as press secretary",
+      "detail": "The source says the ego behaves more like a press secretary than a central executive.",
+      "useIn": "both",
+      "phrasingHint": "The press secretary does not run the government; it explains the government after the door closes."
+    },
+    {
+      "kind": "artifact",
+      "name": "strategic ignorance about motives",
+      "detail": "The source says people can be strategically ignorant about motives.",
+      "useIn": "deepRead",
+      "phrasingHint": "A person can avoid knowing the motive that would make the public story harder to sell."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch06: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch06: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch06: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch06: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch06: no generic timer reflection",
+      "the-elephant-in-the-brain-ch06: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch06: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch06: no coffee shop conversation as the default social proof",
+      "no courtroom witness scene",
+      "no politician press conference scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "architecture competition jury",
+      "audience": "a juror explaining a favorite design after the vote",
+      "stakes": "the official reason may be a caption added after faction preference won",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Thomas compares the juror's praise to the vote order and notices the environmental language appeared only after Margaux's favored firm led.",
+      "firstImage": "Scale models cast long shadows across the jury table.",
+      "mustInclude": [
+        "scale models",
+        "vote order",
+        "jury notes"
+      ],
+      "mustAvoid": [
+        "art-value chapter overlap"
+      ]
+    },
+    {
+      "domain": "product roadmap prioritization",
+      "audience": "a product manager sorting real constraints from invented rationale",
+      "stakes": "a team may rationalize a feature because an executive already wanted it",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Customers asked for simplicity,\" Mikkel says, and Emily opens the support logs to test whether simplicity existed before the decision.",
+      "firstImage": "\"Customers asked for simplicity,\" Mikkel says as the roadmap card moves columns.",
+      "mustInclude": [
+        "roadmap card",
+        "support logs",
+        "executive note"
+      ],
+      "mustAvoid": [
+        "generic roadmap politics"
+      ]
+    },
+    {
+      "domain": "family estate distribution",
+      "audience": "a sibling defending an unequal keepsake split",
+      "stakes": "the spoken fairness rule may appear after desire has already chosen",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Aman sets the watch, quilt, and appraisal sheet on separate placemats and asks which fairness rule existed before anyone picked an object.",
+      "firstImage": "The watch ticks loudly on a placemat beside the folded quilt.",
+      "mustInclude": [
+        "pocket watch",
+        "quilt",
+        "appraisal sheet"
+      ],
+      "mustAvoid": [
+        "inheritance melodrama"
+      ]
+    },
+    {
+      "domain": "journal club paper selection",
+      "audience": "a researcher explaining why one paper deserves discussion",
+      "stakes": "status alignment may be hidden behind methods language",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What reason survives after the famous author's name is blacked out?",
+      "firstImage": "What reason survives when the author line is hidden under black tape?",
+      "mustInclude": [
+        "paper printout",
+        "black tape",
+        "methods checklist"
+      ],
+      "mustAvoid": [
+        "academic research display from ch9"
+      ]
+    },
+    {
+      "domain": "city grant scoring session",
+      "audience": "a reviewer defending a downtown project over a boring repair",
+      "stakes": "post-hoc reasons can make prestige preference sound civic-minded",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask Chiara to score blind project descriptions before seeing neighborhood names, then compare which reasons appear only after downtown becomes visible.",
+      "firstImage": "You watch the downtown name change the temperature of the room.",
+      "mustInclude": [
+        "blind descriptions",
+        "score sheet",
+        "neighborhood map"
+      ],
+      "mustAvoid": [
+        "policy optimization from politics chapter"
+      ]
+    },
+    {
+      "domain": "restaurant menu redesign",
+      "audience": "an owner justifying an expensive redesign as readability",
+      "stakes": "a taste for prestige may be disguised as customer clarity",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Margaux until the invoice arrived to admit the readability reason never mentioned the gold foil until after she saw it.",
+      "firstImage": "It took Margaux until the printer's invoice to reread her own brief.",
+      "mustInclude": [
+        "printer invoice",
+        "gold foil proof",
+        "readability test"
+      ],
+      "mustAvoid": [
+        "consumption chapter brand story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify post-hoc reason generation",
+      "distinguish central-executive stories from press-secretary stories",
+      "test a stated reason against pre-decision evidence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one decision already made. Before defending it, write what evidence would have changed your mind before the choice became yours.",
+  "readingTimeMinutes": 12
+}

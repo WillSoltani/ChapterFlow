@@ -1,0 +1,201 @@
+{
+  "chapterId": "antifragile-ch01",
+  "number": 1,
+  "title": "Between Damocles and Hydra",
+  "coreMove": "Sort a system by its response to volatility before deciding whether to shield it, test it, or leave it alone.",
+  "sourcePressure": "This chapter installs the missing map: fragile is harmed by volatility, robust resists it, and antifragile gains from bounded stress.",
+  "chapterSpecificMisunderstanding": "Treating antifragile as a fancy synonym for resilient toughness.",
+  "sourceAlignmentTerms": [
+    "Damocles",
+    "Hydra",
+    "fragile",
+    "robust",
+    "antifragile",
+    "volatility",
+    "bounded stress"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Damocles",
+      "detail": "appears safe and honored until the sword above him reveals one concentrated point of failure",
+      "useIn": "both",
+      "phrasingHint": "Damocles looks powerful until the room asks the only question that matters: what single thread can end this?"
+    },
+    {
+      "kind": "artifact",
+      "name": "Hydra",
+      "detail": "the positive image of a system that returns stronger after attack",
+      "useIn": "fullRead",
+      "phrasingHint": "Hydra is the reminder that survival and gain are not the same response."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Between Damocles and Hydra"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Treating antifragile as a fancy synonym for resilient toughness."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital downtime drill with Sarah as the decision-maker",
+      "audience": "a reader who handles hospital downtime drill under uncertainty",
+      "stakes": "whether Sarah avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Sarah places three labeled cards on the table and moves the system from robust to fragile after spotting the single point of failure.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "hospital log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic between damocles and hydra paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "theater understudy board with Emily as the decision-maker",
+      "audience": "a reader who handles theater understudy board under uncertainty",
+      "stakes": "whether Emily avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emily places three labeled cards on the table and moves the system from robust to fragile after spotting the single point of failure.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "theater log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic between damocles and hydra paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "data-backup restore test with Hannah as the decision-maker",
+      "audience": "a reader who handles data backup restore test under uncertainty",
+      "stakes": "whether Hannah avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hannah places three labeled cards on the table and moves the system from robust to fragile after spotting the single point of failure.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "data backup log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic between damocles and hydra paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "glacier field kit check with Megan as the decision-maker",
+      "audience": "a reader who handles glacier field kit check under uncertainty",
+      "stakes": "whether Megan avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Megan places three labeled cards on the table and moves the system from robust to fragile after spotting the single point of failure.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "glacier log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic between damocles and hydra paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "restaurant supplier map with Claire as the decision-maker",
+      "audience": "a reader who handles restaurant supplier map under uncertainty",
+      "stakes": "whether Claire avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Claire places three labeled cards on the table and moves the system from robust to fragile after spotting the single point of failure.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "restaurant log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic between damocles and hydra paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "marathon training plan with Olivia as the decision-maker",
+      "audience": "a reader who handles marathon training plan under uncertainty",
+      "stakes": "whether Olivia avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivia places three labeled cards on the table and moves the system from robust to fragile after spotting the single point of failure.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "marathon log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic between damocles and hydra paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by sort a system by its response to volatility before deciding whether to shield it, test it, or leave it alone.",
+      "distinguish Damocles, Hydra, fragile in unfamiliar cases",
+      "choose actions that avoid: Treating antifragile as a fancy synonym for resilient toughness."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one system you rely on and label it fragile, robust, or antifragile by asking what a small shock would actually do to it.",
+  "readingTimeMinutes": 12
+}

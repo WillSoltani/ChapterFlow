@@ -1,0 +1,107 @@
+{
+  "bookId": "peak",
+  "title": "Peak",
+  "author": "Anders Ericsson, Robert Pool",
+  "thesisParagraph": "Peak argues that high performance is usually built, not bestowed. The useful unit is not raw effort or years of experience, but a designed practice loop: choose a specific weakness, stretch just beyond current ability, get feedback close enough to change the next attempt, and build mental representations that make better performance visible from the inside. The book rejects lazy talent stories without pretending biology never matters; it teaches readers to look for training design, standards, coaching, feedback, and support before treating a skill gap as fixed.",
+  "coreIdeas": [
+    {
+      "name": "Purpose Beats Repetition",
+      "oneSentence": "Practice improves only when it targets a specific weakness and changes the next rep.",
+      "mentalMove": "Turn vague effort into a tight target, feedback signal, and adjustment.",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Adaptation Follows Demand",
+      "oneSentence": "Bodies and minds adapt to repeated pressure, including badly designed pressure.",
+      "mentalMove": "Ask what the drill is actually training before trusting the discomfort.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Experts See With Better Maps",
+      "oneSentence": "Expert judgment comes from mental representations that organize cues and make correction faster.",
+      "mentalMove": "Build the inner picture of good work, then test and redraw it through feedback.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Deliberate Practice Needs A Structure",
+      "oneSentence": "The strongest practice happens where standards, coaching, repeatable drills, and immediate correction exist.",
+      "mentalMove": "Borrow or build a practice environment that exposes the gap instead of trusting effort.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Transfer The Logic, Not The Myth",
+      "oneSentence": "Work and daily life can use deliberate-practice principles only when the learner designs narrower targets and feedback.",
+      "mentalMove": "Carve one trainable subskill out of messy life and make the next attempt different.",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Talent Is A Question, Not An Answer",
+      "oneSentence": "Visible gaps often hide training history, selection effects, support, and uneven access.",
+      "mentalMove": "Investigate trainable causes before turning ability into destiny.",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    }
+  ],
+  "targetReader": "A reader who wants to get better at a serious skill without fooling themselves with hours logged, motivational slogans, or talent envy: students, managers, athletes, musicians, professionals, teachers, and self-directed learners who need a cleaner way to turn effort into measurable improvement.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make feedback, standards, and visible correction feel physical",
+      "hold the talent argument with discipline: no fatalism, no unlimited-potential hype",
+      "land examples with protagonist names that read naturally to Canadian, American, and European readers, using roughly 4 of 6 from common Anglophone or Western European pools and 1 to 2 from diaspora or less-common European names"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no grit worship",
+      "no fake named studies, fake institutions, or invented expert anecdotes",
+      "no treating talent as either everything or nothing"
+    ]
+  },
+  "voiceSpecimens": [
+    "The weak bar is useful because it tells you where the next rep should live.",
+    "A tired session is not automatically a good one; the question is what changed before the next attempt.",
+    "If the standard stays invisible, comfort will keep grading its own paper.",
+    "The better player is often not seeing more. She is seeing the right thing sooner.",
+    "A job gives you repetition, but repetition only teaches when someone catches the miss while it is still warm.",
+    "Talent talk can close the file before the evidence has been read.",
+    "The cleanest practice plan is usually small enough to bruise your pride and precise enough to repair your hand."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains the importance of deliberate practice for personal growth.",
+    "Anders Ericsson argues that anyone can become world class if they work hard enough.",
+    "Try this now: take a minute to reflect on your goals.",
+    "In conclusion, expertise is a powerful framework for success.",
+    "The reader should understand that practice requires intentionality and resilience.",
+    "Success is simply a matter of believing in yourself and pushing past limits."
+  ],
+  "teachingArc": "The book starts by replacing repetition with purposeful practice, then explains why adaptation makes practice powerful and risky. It then shows that expert performance depends on mental representations, names deliberate practice as the strongest structured form, and transfers the principles into work and ordinary life. The final movement widens the lens: extraordinary performance needs a long supported road, talent stories must be investigated rather than worshiped, and schools, workplaces, and institutions should be redesigned around trainable performance instead of static labels.",
+  "forbiddenMoves": [
+    "Do not turn deliberate practice into generic hard work or more hours.",
+    "Do not use talent denial as a slogan; biology and starting points can matter without ending the inquiry.",
+    "Do not invent named researchers, studies, prodigies, or institutions not present in the frozen Peak source bundle.",
+    "Do not collapse purposeful practice, adaptability, mental representations, and deliberate practice into the same lesson.",
+    "Do not reuse the old Peak v21 scene shells around violinists, climbers, radiologists, fencing strips, dispatchers, kitchen knife drills, sprinters, or pep-poster school reform."
+  ]
+}

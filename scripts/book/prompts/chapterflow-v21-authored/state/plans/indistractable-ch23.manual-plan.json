@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch23",
+  "number": 23,
+  "title": "Fixing Distraction Is a Test of Company Culture",
+  "coreMove": "Diagnose workplace distraction by looking at the norms people are rewarded or punished for following.",
+  "sourcePressure": "The chapter moves to workplace culture, shifting blame from individual weakness to norms, coordination, and permission systems.",
+  "chapterSpecificMisunderstanding": "A weak run would tell employees to focus harder inside a culture that punishes focus.",
+  "sourceAlignmentTerms": [
+    "company culture",
+    "workplace distraction",
+    "norms",
+    "coordination",
+    "permission",
+    "blame"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Fixing Distraction Is a Test of Company Culture as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional ambulance billing office with instant-response expectations",
+      "audience": "billing supervisor watching staff apologize for every delayed reply",
+      "stakes": "claims errors rise when speed is rewarded over accuracy",
+      "format": "postmortem",
+      "requiredBeat": "she maps which praise and scolding make immediate chat replies feel mandatory",
+      "firstImage": "A denied-claim packet sits beside a response-time praise note.",
+      "mustInclude": [
+        "claim packet",
+        "praise note",
+        "norm map"
+      ],
+      "mustAvoid": [
+        "bad boss story"
+      ]
+    },
+    {
+      "domain": "architecture firm celebrating late-night render messages",
+      "audience": "associate who notices all praise goes to visible exhaustion",
+      "stakes": "design quality suffers when attention theater becomes status",
+      "format": "scene",
+      "requiredBeat": "he points to the project chat where midnight replies get applause and daytime focus gets suspicion",
+      "firstImage": "A render log glows beside a midnight applause thread.",
+      "mustInclude": [
+        "render log",
+        "applause thread",
+        "focus suspicion"
+      ],
+      "mustAvoid": [
+        "hustle culture only"
+      ]
+    },
+    {
+      "domain": "warehouse safety team after repeated scanner pings",
+      "audience": "safety lead tracing why pickers answer alerts while driving carts",
+      "stakes": "injury risk is cultural when the system rewards instant compliance",
+      "format": "decision_point",
+      "requiredBeat": "she follows the incentive trail from scanner metrics to cart behavior before blaming workers",
+      "firstImage": "A scanner metrics printout lies beside a cart-route badge.",
+      "mustInclude": [
+        "metrics printout",
+        "route badge",
+        "incentive trail"
+      ],
+      "mustAvoid": [
+        "worker blame"
+      ]
+    },
+    {
+      "domain": "remote software support team with always-open video rooms",
+      "audience": "team lead whose people fear stepping out of video",
+      "stakes": "presence pressure replaces actual support quality",
+      "format": "dialogue",
+      "requiredBeat": "she asks what happens to someone who turns camera off to solve a hard ticket",
+      "firstImage": "A support ticket board sits beside an always-open room tile.",
+      "mustInclude": [
+        "ticket board",
+        "room tile",
+        "camera rule"
+      ],
+      "mustAvoid": [
+        "remote work gripe"
+      ]
+    },
+    {
+      "domain": "hotel housekeeping department with conflicting priorities",
+      "audience": "manager who tells staff quality matters while rewarding fastest room turnover",
+      "stakes": "attention cannot stabilize under contradictory signals",
+      "format": "before_after",
+      "requiredBeat": "before, errors are called personal; after, the manager identifies the speed bonus as the trigger",
+      "firstImage": "A room-inspection card rests beside a turnover bonus chart.",
+      "mustInclude": [
+        "inspection card",
+        "bonus chart",
+        "error log"
+      ],
+      "mustAvoid": [
+        "service industry complaint"
+      ]
+    },
+    {
+      "domain": "university advising office during enrollment week",
+      "audience": "director whose advisors are told to be careful and instantly available",
+      "stakes": "students receive worse guidance when culture demands both",
+      "format": "reflection",
+      "requiredBeat": "she writes the two conflicting expectations on the intake board and chooses which one the office will protect",
+      "firstImage": "An enrollment intake board stands beside a careful-review pledge.",
+      "mustInclude": [
+        "intake board",
+        "review pledge",
+        "expectation pair"
+      ],
+      "mustAvoid": [
+        "academic bureaucracy"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Diagnose workplace distraction by looking at the norms people are rewarded or punished for following.",
+      "choose the action that stays inside Fixing Distraction Is a Test of Company Culture's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would tell employees to focus harder inside a culture that punishes focus.",
+      "use chapter-specific terms such as company culture, workplace distraction, norms, coordination in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one attention cost your workplace rewards, then write the norm that would have to change for focus to be allowed.",
+  "readingTimeMinutes": 12
+}

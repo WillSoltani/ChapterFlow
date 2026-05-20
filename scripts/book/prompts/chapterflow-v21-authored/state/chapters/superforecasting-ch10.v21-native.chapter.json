@@ -3,317 +3,305 @@
   "number": 10,
   "title": "The Leader's Dilemma",
   "readingTimeMinutes": 12,
-  "hook": "A leader has to move before certainty arrives and still leave the door open for correction.",
-  "counterintuition": "Svea thinks leadership means sounding certain. The stronger move is clear action paired with visible humility, local initiative, and a plan that can be corrected fast.",
-  "tryThisNow": "Open a note, write one forecast you already believe about a leadership decision, add a percent and a check date, then write what would make you move the number down.",
-  "keyTakeaway": "Lead under uncertainty by naming the mission, acting on the current best forecast, delegating local judgment, and making correction easy instead of shameful.",
+  "hook": "Moltke did not give his commanders a script. He gave them a mission, a set of constraints, and the authority to decide everything else as conditions changed. The insight was not about trust in subordinates. It was about information: a battlefield changes faster than any headquarters can process and redistribute. A leader who tries to control every adjustment from the center is not exercising careful oversight. They are creating structural latency at exactly the moment the situation demands speed.",
+  "counterintuition": "A leader who projects decisive certainty while privately maintaining open questions is not performing strength. They are choosing a pose that makes the organization harder to correct. The precise mechanism is structural: when the leader cannot be seen to doubt, the people closer to the changing conditions have no channel through which to surface what the original plan missed. The organization's ability to revise while action is unfolding depends on whether doubt is an acceptable input to the system, not on how the leader feels about being wrong.",
+  "tryThisNow": "For one ongoing project or initiative you lead, write down: the objective in one sentence, the two or three constraints that bound how it can be achieved, and the single reporting condition that would trigger you stepping back in. If you cannot write those three things in under five minutes, you have not yet defined the mission clearly enough to delegate, and your team is probably waiting for approval on decisions they should be making themselves.",
+  "keyTakeaway": "Leadership is a design problem. Mission clarity, explicit constraints, and a reporting condition let local actors exercise judgment without the leader staying close to every decision point.",
   "breakdown": {
-    "fastRead": "At 6:58 a.m., Svea writes the evacuation order and the review time on the same page. The order moves people now. The review time keeps the plan alive. He wants the clean answer now. The paper in front of him will not give it.\n\nWrite the odds where the room can see them. Add the date, the question, and the sign that would make you change your mind. Action without revision is theater. Revision without action is drift.\n\nA forecast gets useful when it can be checked later. Confidence without a receipt is only weather in someone else's voice. Keep the receipt.",
-    "deepRead": "At 1:03 p.m., Dugan, a plant manager, tells the floor what he knows and what he will recheck. The room relaxes because uncertainty is no longer a secret. The easy move is to pick the story that feels whole. The better move is to slow down long enough to ask what the record says before this case arrived.\n\nA number is not a costume for certainty. It is a handle. You can move it when the facts move. You can also leave it alone when the new fact is only loud. A leader can be clear without pretending the fog is gone.\n\nPicture Rikke giving store leads the mission and the local triggers for changing the plan. The choice is not between swagger and silence. The choice is between a claim that can learn and a claim that can only defend itself.\n\nUse the smallest clean question you can write. Put a date on it. Start from the outside view, the rate for cases like this one, then adjust for what is truly different here. Stop when you can explain the move in plain words.\n\nA limit stays in view. Some events are too tangled, too far out, or too hidden for a sharp answer. The skill is not pretending fog is glass. The skill is knowing when the glass is only dirty enough to wipe.",
-    "fullRead": "At 9:21 p.m., Orin, a fire chief, chooses a containment line while wind readings keep changing. He names the trigger that will make crews pull back. Everyone at the table can feel the pull of a clean story. It lowers stress. It gives the next meeting a script. It also hides the weak joint in the forecast, the part nobody will remember to test unless someone writes it down now.\n\nHand the room a sharper question. Do not ask whether the whole future will go well. Ask whether a named event will happen by a named date. Ask what would count as yes. Ask what rate similar cases have shown before. The room may groan, because the work feels smaller. The smaller work is the point. It gives reality a place to answer.\n\nA forecaster earns trust by leaving tracks. The first track is the base rate. Before you explain why this case is special, look at how often cases like it have turned out that way. The second track is the update. If a new fact arrives, move the odds by the strength of that fact, not by the size of the feeling it creates. The third track is the review. When the result lands, save the old number and ask which assumption broke.\n\nAt 7:36 a.m., Sachi, a hospital director, asks charge nurses to report the first sign her staffing forecast is wrong. The forecast improves because correction has permission. This is where the craft starts to feel almost physical. The pen pauses. The number changes from 60 to 55, not from 60 to 10, because the new fact is real but not huge. The team can see the move. Nobody has to pretend the old answer was perfect.\n\nThe plan gets stronger when correction is built in before pride can block it. It keeps judgment from turning into a costume. A person can sound brave while hiding from the record. A quieter person with dates, odds, and reviews may be doing the harder thing.\n\nThe limit matters. Long-range shocks, hidden incentives, and fragile systems can make even careful work miss. A good forecaster does not use that as an excuse to blur every claim. She uses it to sort questions. Some deserve a wide range. Some deserve a backup plan. Some deserve no forecast stronger than a shrug.\n\nTry the move on a live claim today. Take one future sentence you hear at work, at home, or in the news. Cut it into a smaller question. Put a probability on it. Write why you chose that number. Then mark the date when you will look again. The act takes two minutes. The habit changes the room because it makes confidence answerable."
+    "fastRead": "The pager buzzes with a ventilator reallocation from Ward B and Matthew's first instinct is to countermand it.\n\nHe would have done it differently. He knows the patient census pattern across the three wards and has a view about where the slack should sit. He is also eight hours behind the ward lead on the floor, has not seen the afternoon labs, and is reading a notification rather than a chart.\n\nHe puts the pager down.\n\nThe restraint was not modesty. It was the clear knowledge that the ward lead had data the chief did not, and overriding a local call based on less data is not leadership: it is noise in the chain.\n\nThe three allocation rules he set that morning were still holding. The reporting condition, any ward dropping below two units, had not triggered. The ward lead had the authority to make the call within the rules. The rules existed so he did not have to.",
+    "deepRead": "Helmuth von Moltke's insight was not that commanders were incompetent. It was that the battlefield changes faster than any headquarters can track, so tight central control fails not from bad intentions but from structural latency.\n\nA message traveled from the front to headquarters. An order traveled back. By then, the front had changed. The order addressed a situation that no longer existed. Not because the issuing commander was wrong, but because the information cycle was too slow for the rate of change. Auftragstaktik was a structural response to that latency: give subordinates the objective and constraints, then let local judgment handle execution. Each subordinate was expected to surface the moment when conditions exceeded what the original mission specification assumed.\n\nThe same structure applies to any organization where conditions change faster than the center can process them. A hospital chief of medicine cannot monitor three high-census wards simultaneously. A construction project manager cannot pre-approve every material sequencing decision on a site where pace outstrips the communication cycle. A startup CEO lacks the technical depth to name an implementation path that an engineering team does not already know better.\n\nIn each case, overcontrol does not come from a domineering personality. It fills a gap. When the mission is vague, people closer to the action must ask the center what it wants before they can act. The leader fills the gap personally because there is no other way to fill it. The fix is a mission statement clear enough that local actors can work from it. A reporting condition re-engages the center when the gap reopens.",
+    "fullRead": "The doer-thinker tension runs through every organization at scale. The people with the most information about changing conditions are the ones executing the work. The people with the authority to set direction and allocate resources are removed from daily execution. The gap between those two groups is permanent: no leader can simultaneously hold the strategic view and the operational view without losing resolution in both.\n\nThe structural response is not to close the gap by moving the leader closer to the execution. It is to design the gap so that accurate information flows across it in both directions. The reporting condition is the key mechanism: it defines the precise threshold that requires the leader to re-engage, and by doing so, it gives local actors the authority to handle everything short of that threshold without escalating.\n\nAdaeze's decision rule document for the site foreman made this mechanism explicit. Which sequencing decisions the foreman could make without calling in: anything within the daily delivery window and the approved material list. Which decisions required escalation: anything that would push the week's schedule past the eight-hour buffer protecting the liquidated damages clause. The document did not remove Adaeze's authority. It specified its scope, which is the precondition for delegating effectively.\n\nAn organization is corrigible when its mistakes surface before they compound. The reporting condition, the threshold that triggers re-engagement, is what makes that possible. Without it, the leader's choice is between staying too close and staying too far. The reporting condition converts that binary into a calibrated distance.\n\nThe Moltke model is sometimes read as a claim about trust: trust your subordinates to exercise good judgment. That reading misses the mechanism. The model works not because the subordinates are trustworthy in the abstract but because the mission specification gives their judgment something precise to work against. A local actor with a clear objective and explicit constraints can exercise judgment. A local actor with a vague mandate and no constraints cannot exercise judgment without guessing what the center wants, which means the center has to stay close to prevent guesses from drifting.\n\nThe intellectual humility the model requires of leaders is not the humility to admit they were wrong. It is the humility to accept that they will be less accurate than the local actor about local conditions, and to design for that asymmetry rather than fight it. The leader who overrides a local call because they would have decided differently is not being rigorous. They are substituting less information for more, which is the structural definition of noise."
   },
   "examples": [
     {
-      "exampleId": "ch10-ex01-svea-evacuation",
-      "title": "Svea writes the review time under the evacuation order",
-      "tags": [
-        "decision_point",
-        "emergency",
-        "forecasting"
-      ],
+      "exampleId": "ch10-ex01-matthew-hospital",
+      "title": "Matthew steps back from a ventilator reallocation the ward lead has already made and lets her call stand",
+      "tags": ["dialogue_first", "hospital-medicine", "restraint-from-overcontrol"],
       "planSpec": {
-        "domain": "emergency management",
-        "audience": "a county emergency chief ordering an evacuation",
-        "stakes": "whether action leaves room for correction",
+        "domain": "hospital chief of medicine managing a critical supply shortage during a high-census period",
+        "audience": "a chief of medicine who must allocate ventilators across three wards and cannot personally monitor all three simultaneously",
+        "stakes": "patient outcomes in the next 18 hours; micromanaging all three wards would slow responses to local changes",
         "format": "decision_point",
-        "requiredBeat": "she pairs a firm order with a scheduled forecast review"
+        "openingDevice": "dialogue_first",
+        "requiredBeat": "chief sets three explicit allocation rules and one reporting threshold, then resists the urge to override a ward lead's local reallocation call"
       },
-      "scenario": "Svea braces a clipboard against the hood of a sheriff's cruiser at 6:58 a.m., rain spotting the evacuation order. The river gauge is rising faster than the midnight model. Families on Mill Road need a clear order, not a seminar. Under the order line, Svea writes next review 9:00 a.m., trigger: gauge below 18.4 and west road open. The deputy is waiting for her signature. She has to decide whether admitting a review time will weaken the order or strengthen it.",
-      "whatToDo": "Issue the order and include the review trigger. Tell residents what to do now and tell staff what evidence could change the perimeter.",
-      "whyItMatters": "People need clear action under risk. The review trigger keeps the order from becoming a pride object if the river reading changes."
+      "scenario": "'You are on for the Lerner Wing tonight?' Matthew asks the Ward B lead in the corridor, already knowing the answer.\n\n'Since seven this morning,' she says. 'The afternoon labs came back on the three new admissions. I reallocated the unit-B ventilator to Bay 4. I flagged it to your pager.'\n\nHe had seen the page. He would have kept the unit in Bay 6, where the current census suggested the next critical presentation was likely. She has been on the floor for eleven hours. He has been in the chief's office for four, reading census summaries rather than charts.\n\nThe three allocation rules he had written that morning were still holding: no ward goes below two units without escalation, routine reallocations within a ward stay with the ward lead, and cross-ward transfers require a call. The pager notification was a flag, not a request. Matthew needs to decide: call the Lerner Wing and override the reallocation, or trust the on-floor judgment the rules were written to protect.\n\nHe does not countermand the call.\n\n'Good,' he says. 'How are the new admissions presenting?'\n\nShe walks him through Bay 4. The picture becomes clearer. He would have made the wrong call from the corridor.",
+      "whatToDo": "Before overriding a local decision, ask whether the local actor has more current information than you do about the specific situation. If the call is within the stated rules and the local actor has more recent information, the override is likely to substitute less information for more. Let the call stand and use the outcome as evidence about whether the rule was calibrated correctly.",
+      "whyItMatters": "Matthew's impulse to countermand was not unreasonable: he is accountable for the ward and has a view about census distribution. What he lacks is eleven hours on the floor with the afternoon labs. The three allocation rules were designed so the ward lead could use that information without requiring the chief to have it too. Overriding the call would have removed the structural advantage the rules were built to create."
     },
     {
-      "exampleId": "ch10-ex02-dugan-floor",
-      "title": "Dugan says what he knows over the plant radio",
-      "tags": [
-        "scene",
-        "manufacturing",
-        "forecasting"
-      ],
+      "exampleId": "ch10-ex02-adaeze-construction",
+      "title": "Adaeze hands the foreman a written decision rule; the foreman makes a sequencing call that saves four hours on day seven",
+      "tags": ["sensory_first", "construction-management", "decision-rule-delegation"],
       "planSpec": {
-        "domain": "manufacturing leadership",
-        "audience": "a plant manager responding to a safety fault",
-        "stakes": "whether uncertainty is hidden or made useful",
-        "format": "scene",
-        "requiredBeat": "he gives direction while naming what is unknown"
-      },
-      "scenario": "Dugan keys the plant radio at 1:03 p.m., standing beside press line four with a cracked guard in his hand. The fault may be limited to one batch of parts. It may not. The floor is waiting, hearing the rumor move faster than the facts. Dugan says, line four stops now, lines two and three slow to inspection speed, and maintenance reports part numbers in twenty minutes. He can feel how much easier fake certainty would sound.",
-      "whatToDo": "Give the action, the reason, and the next evidence check in one message. Do not fill the unknown with swagger.",
-      "whyItMatters": "The floor can act on clear instructions and still help improve the forecast. Hiding uncertainty only makes rumor do the updating."
-    },
-    {
-      "exampleId": "ch10-ex03-rikke-store-leads",
-      "title": "Rikke gives store leads triggers, not a script",
-      "tags": [
-        "before_after",
-        "retail",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "retail operations",
-        "audience": "a regional director managing a storm shortage",
-        "stakes": "whether local managers can adapt without waiting",
-        "format": "before_after",
-        "requiredBeat": "she sets mission and triggers instead of fixed commands"
-      },
-      "scenario": "Before the storm, Rikke used to send stores a fixed shortage script. At 8:44 a.m. in the regional stockroom, she changes the packet. Mission: keep water and insulin cold-chain items moving. Local trigger: if road closure adds more than forty minutes, swap to the nearest store pickup without asking. By evening, two store leads change routes before headquarters sees the traffic map, and the coolers stay full.",
-      "whatToDo": "State the mission and local triggers. Let store leads change tactics when their local evidence crosses the trigger.",
-      "whyItMatters": "Central certainty is too slow for local changes. Clear mission plus triggers lets people adapt without breaking the plan."
-    },
-    {
-      "exampleId": "ch10-ex04-orin-wind-line",
-      "title": "Orin names the wind trigger before sending crews east",
-      "tags": [
-        "dialogue",
-        "fire",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "fire command",
-        "audience": "a fire chief setting a containment line",
-        "stakes": "whether crews know when to abandon the plan",
-        "format": "dialogue",
-        "requiredBeat": "he states the correction trigger before committing people"
-      },
-      "scenario": "Orin crouches over a topo map at 9:21 p.m., ash grit in his teeth, while wind numbers flicker on the tablet. \"East line holds if the gusts stay under twenty,\" the operations lead says. Orin nods and writes pull back at twenty-four on the map edge. \"Say it on the radio,\" the lead says. Engines idle in the dark behind them. Orin has to decide whether naming the retreat trigger will sound weak to tired crews.",
-      "whatToDo": "Commit to the east line and broadcast the pullback trigger. Make the correction rule public before crews enter the brush.",
-      "whyItMatters": "A trigger protects lives and judgment. It lets the team reverse quickly without making retreat feel like disloyalty."
-    },
-    {
-      "exampleId": "ch10-ex05-sachi-nurse-board",
-      "title": "Sachi invites nurses to prove the staffing forecast wrong",
-      "tags": [
-        "reflection",
-        "hospital",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "hospital leadership",
-        "audience": "a hospital director allocating nurses under uncertainty",
-        "stakes": "whether subordinates can correct a leader’s forecast",
-        "format": "reflection",
-        "requiredBeat": "she asks for early disconfirming signals from local staff"
-      },
-      "scenario": "Sachi stands at the nurse staffing board at 7:36 a.m., dry-erase cap between her teeth, allocating float nurses for a flu surge. Her forecast says pediatrics peaks after noon. The night charge nurse thinks it is already starting. Sachi feels the old pull to defend the model she approved. Instead she writes: call me if triage hits nine kids in thirty minutes. She has to decide whether correction is a threat or part of the plan.",
-      "whatToDo": "Name the early warning sign and ask the charge nurse to call it. Move staff when the trigger fires, not when pride is ready.",
-      "whyItMatters": "Local staff often see the forecast fail first. Inviting correction turns their knowledge into part of the system instead of a challenge to authority."
-    },
-    {
-      "exampleId": "ch10-ex06-paavo-briefing",
-      "title": "Paavo leaves a blank line in the mission briefing",
-      "tags": [
-        "vignette",
-        "military",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "military logistics",
-        "audience": "a logistics officer planning a convoy route",
-        "stakes": "whether a fixed briefing blocks field updates",
+        "domain": "construction site manager giving the crew authority on daily material sequencing decisions",
+        "audience": "a project manager who has been approving every material sequencing decision because the client is watching costs closely",
+        "stakes": "daily schedule adherence on a project with a $40K/week liquidated damages clause",
         "format": "vignette",
-        "requiredBeat": "he leaves a visible slot for the first correction"
+        "openingDevice": "sensory_first",
+        "requiredBeat": "project manager writes a decision rule for the foreman; foreman makes a call the PM would not have made; it saves four hours; PM updates the document"
       },
-      "scenario": "Paavo prints the convoy briefing at 5:12 a.m., the paper warm from the field-office printer. Route Blue is the current call. Beside checkpoint three he leaves a blank line titled first correction from lead truck. The captain raises an eyebrow. Paavo staples the packet anyway. By noon, the lead truck radios a washed culvert, and the blank line fills before the rest of the convoy reaches it.",
-      "whatToDo": "Build a correction slot into the plan. Tell the lead truck what observation should update the route.",
-      "whyItMatters": "A plan under uncertainty should expect to learn. The blank line gives the field a sanctioned way to improve headquarters' forecast."
+      "scenario": "The site trailer smells of sawdust and cooling coffee. Adaeze has the week's delivery schedule on the whiteboard and Emeka is waiting by the door, phone in hand, for her approval on a steel delivery sequence that arrived out of order.\n\nShe has approved seven calls like this one in the past three days. Each required fifteen minutes, a photo of the delivery manifest, and a back-and-forth on the sequence implications. The project has a $40,000 per week liquidated damages clause and a twelve-week window. She cannot be in the office and on the site and on the phone simultaneously.\n\nShe writes the decision rule on a single sheet and gives it to Emeka before he leaves: which sequencing calls he can make without calling in, which require escalation, and the one threshold that triggers a mandatory call regardless. The threshold is simple: any decision that would push the current week's schedule past the eight-hour buffer she has been protecting against the LD clause.\n\nOn day seven, Emeka is at the rear gate with a concrete delivery that arrives four hours early. The scheduled sequence would have held it until the afternoon. He runs the numbers against the eight-hour buffer, sees the early delivery can be absorbed and actually recovers two hours, and accepts the revised sequence without calling.\n\nAdaeze finds out at the end-of-day summary. The site is four hours ahead of schedule. She updates the decision rule document to include early-delivery absorption as an explicit in-scope call for the foreman.",
+      "whatToDo": "Write the delegation rule before the next decision that requires your approval. The rule should name: which decisions the local actor can make independently, the threshold that requires escalation, and the one condition that triggers a mandatory call regardless of the local actor's read. Make the document a living record: update it when outcomes reveal that the threshold was set in the wrong place.",
+      "whyItMatters": "Adaeze's fifteen-minute approval cycle was costing the project more than the risk it was managing. The decision rule transferred accountability to Emeka for the decisions within his information advantage, and preserved her authority for the decisions that required her cross-site view. The document is not a trust exercise: it is a boundary specification that allows both of them to use their respective information more efficiently."
+    },
+    {
+      "exampleId": "ch10-ex03-olivier-wildfire",
+      "title": "Olivier issues a three-element sector brief; one sector boss's early resource call lets the command post adjust before the overrun",
+      "tags": ["second_person", "wildfire-incident-command", "reporting-condition-feedback"],
+      "planSpec": {
+        "domain": "wildfire incident commander delegating sector operations during a multi-front fire",
+        "audience": "an incident commander managing three active fire fronts with span-of-control limits",
+        "stakes": "resource allocation across three sectors with rapidly changing conditions; bottlenecked central command would cost suppression time",
+        "format": "scene",
+        "openingDevice": "second_person",
+        "requiredBeat": "incident commander issues three-element sector brief; one sector boss calls early when local conditions change; commander adjusts"
+      },
+      "scenario": "You are the incident commander and the three sector bosses are standing around the folding table with the radio handsets lined up. You have managed multi-front fires before with detailed tactical instructions. This time you have three sentences for each sector boss instead of three pages.\n\nConsider what Olivier gives each boss: the objective for their sector in one sentence, the resource limit in one number, and one reporting condition. Sector One gets 'protect the defensible space on the ridge road,' fourteen engines and forty personnel, and 'call me when you have used 80 percent of your resource budget.' The brief is identical in structure for each sector, with different specific numbers and objectives.\n\nSector Three calls at hour four. Their objective has not changed but the wind has shifted, and at the current consumption rate they will hit 80 percent of their budget before the next scheduled check-in. They are not asking for permission. They are providing the signal Olivier specified.\n\nOlivier redirects two engines from reserve to Sector Three and adjusts the Sector One objective slightly to accommodate the resource shift. The adjustment takes seven minutes. Under the previous briefing model, Sector Three would have held until they were overcommitted, then called to explain a problem rather than flag a threshold.\n\nThe reporting condition is what made the difference. Not the sector boss's bravery. Not Olivier's tactical instincts. The structure.",
+      "whatToDo": "In any situation where you are delegating to multiple actors with limited span-of-control, design the reporting condition for each actor before the delegation. The reporting condition defines the state of the world that re-engages you. Without it, local actors must choose between holding until they are overcommitted or calling before they have something specific to report.",
+      "whyItMatters": "The seven-minute Sector Three adjustment was possible because the reporting condition triggered early, when options were still available. A late call, after the sector had consumed its resource budget, would have arrived when the remaining choices were worse and fewer. The structural insight is that the reporting condition trades precision for timeliness: the threshold does not need to be the perfect trigger point, only early enough that the re-engagement still matters."
+    },
+    {
+      "exampleId": "ch10-ex04-paula-startup",
+      "title": "Paula writes the CAC constraint on a whiteboard and hands the marker to engineering without specifying the path",
+      "tags": ["retrospective", "startup-product", "intellectual-humility-as-structure"],
+      "planSpec": {
+        "domain": "startup CEO defining a product pivot with engineering choosing the implementation path",
+        "audience": "a startup CEO who has a clear business constraint but no strong technical view on how engineering should achieve it",
+        "stakes": "six weeks of engineering sprint capacity and the next investor update",
+        "format": "predict_reveal",
+        "openingDevice": "retrospective",
+        "requiredBeat": "CEO sets the constraint, defines the review metric, leaves the path to engineering; engineering chooses a path the CEO would not have chosen; it works"
+      },
+      "scenario": "Paula told the story at the retrospective three months later, which is the only way she could tell it without sounding like a management parable.\n\nAt the all-hands in February she had written '40% CAC reduction by week six' on the whiteboard. She had put down the marker after writing it and had not picked it up again. The engineering team had looked at the board for a moment and then asked her which channel she thought they should cut.\n\nPaula faces a choice at that moment: specify which channel to cut, or name the number and stop. She names the number and stops. She had said: 'I don't have a strong view on the channel. You have a much better read on where the acquisition cost is coming from than I do. I'll review the number at week six.'\n\nThe engineering team had chosen to rebuild the referral flow rather than cut the paid search budget, which was what Paula had expected them to do. She would have cut the paid search budget. She would have been wrong: the referral rebuild produced a 52% CAC reduction in five weeks, and the paid search budget was providing signals that would have been expensive to reconstruct.\n\nAt the retrospective, the engineering lead said the single constraint and the single review metric were what made the six weeks work. No weekly check-ins on implementation. No specification of which channel to optimize. Just the number they were targeting and the date it would be reviewed.\n\nPaula's restraint was not about trusting her engineers. It was about accurately reading where her information advantage ended.",
+      "whatToDo": "When setting a constraint for a team, specify the metric and the review date, then stop. The implementation path belongs to the people with the most current technical information about how to get there. The leader's information advantage ends at the constraint; the team's advantage begins there.",
+      "whyItMatters": "Paula's expected choice, cutting paid search, would have been a substitution of her less-informed view for the engineering team's more-informed one. Her restraint was not a virtue she had worked to develop. It was an accurate read of where her information actually ended. The structural lesson is that specifying the constraint and the metric creates the boundary at which that restraint becomes the correct decision rather than a personality choice."
+    },
+    {
+      "exampleId": "ch10-ex05-hiroshi-school",
+      "title": "Hiroshi offers a first-year teacher the outcome target and three resources; her hybrid approach outperforms the district standard",
+      "tags": ["question_hook", "school-administration", "outcome-not-method-specification"],
+      "planSpec": {
+        "domain": "school principal implementing a new literacy curriculum by setting outcomes and leaving method to teachers",
+        "audience": "a principal who wants consistent reading improvement outcomes across 14 classrooms",
+        "stakes": "district literacy benchmarks, teacher retention, and parent expectations across four grade levels",
+        "format": "thought_experiment",
+        "openingDevice": "question_hook",
+        "requiredBeat": "principal sets outcome target, does not specify method; first-year teacher develops hybrid approach; it outperforms the standardized curriculum"
+      },
+      "scenario": "What happens when a principal sets a measurable outcome and refuses to specify the method for reaching it?\n\nConsider Hiroshi's position at the spring staff meeting. He has fourteen classrooms across four grade levels and a district benchmark requiring measurable reading improvement in each. The district has a standardized curriculum. Hiroshi knows the curriculum. He also knows that the three most effective teachers in the building use different approaches, none of which is the standardized curriculum applied strictly.\n\nHe announces the grade-level outcome targets for the year and the monthly data check-in cadence. He does not specify the instructional method. He says he wants to see the numbers improve and will support each teacher in finding what works in their classroom.\n\nAfter the meeting, a first-year teacher named Clara approaches him. 'But what exactly should I do?' she asks. Hiroshi must choose: lay out a specific method or set the outcome and let her find the path.\n\nHe gives her the outcome target for her grade level, names three research-backed resources she might find useful, and stops. He does not specify which of the three she should use or how to combine them.\n\nClara develops a hybrid approach using elements of two of the three resources, adapted for the reading level distribution in her specific classroom. By November, her students are tracking six weeks ahead of the district benchmark. The standardized curriculum, implemented strictly in two comparable classrooms, is tracking three weeks ahead.\n\nAt the December data review, Hiroshi asks Clara to document what she did. He does not add her method to the prescribed curriculum. He adds her classroom data to his ongoing evidence about where the specified outcome target is producing different results than the method would have predicted.",
+      "whatToDo": "When setting expectations for people with domain knowledge you do not have, specify the outcome and the measurement cadence, then stop before specifying the method. The method belongs to the person who will be executing it with the specific conditions they can see. Your information advantage ends at the outcome definition.",
+      "whyItMatters": "Clara's hybrid approach depended on details of her classroom's reading level distribution that Hiroshi did not have and could not have had before the year began. A method prescription from the district would have given Clara a method optimized for a different distribution. The outcome specification gave her the target and the freedom to read her own classroom accurately."
+    },
+    {
+      "exampleId": "ch10-ex06-antoine-naval",
+      "title": "At 0800, Antoine issues a shortened mission order; two sub-commanders make a joint decision the previous protocol would have blocked",
+      "tags": ["timestamp_named", "naval-exercise", "decentralized-initiative-structure"],
+      "planSpec": {
+        "domain": "naval fleet exercise where a commodore sets the objective and gives sub-commanders tactical autonomy",
+        "audience": "a commodore running a multi-ship exercise who has historically issued detailed tactical instructions",
+        "stakes": "the exercise's scoring on speed and adaptability",
+        "format": "before_after",
+        "openingDevice": "timestamp_named",
+        "requiredBeat": "commodore issues one-page mission order with radio silence periods; two sub-commanders make a joint decision the old model would not have authorized; exercise debrief credits the structure"
+      },
+      "scenario": "At 0800 on the first day of the autumn fleet exercise, Antoine distributes a mission order that is one page long. The sub-commanders look at it with something between relief and unease: previous exercises from this commodore have run to eight pages of tactical specifics.\n\nThe one-page order contains three elements: the exercise end-state objective, three constraints on how it may be pursued, and one scheduled check-in period per six hours. No tactical instructions. No pre-specified coordination sequences. One note at the bottom: sub-commanders may coordinate directly with each other without routing through command, provided no constraint is violated.\n\nAt hour seven, the sub-commanders of the two northern ships identify an opportunity that requires a joint maneuver. Under the previous exercise model, the maneuver would have required command authorization because it fell outside the pre-specified coordination sequences. Under the one-page order, it falls within the stated end-state and violates no constraint.\n\nThey execute the joint maneuver. It produces the exercise's decisive scoring moment.\n\nAt the debrief, the exercise director reviews the decision. The sub-commanders had not been braver than in previous exercises. They had not had a relationship breakthrough that enabled new trust. They had a mission order that defined the boundary of their authority precisely enough that a beneficial decision was available to them without requiring authorization.\n\nAntoine notes in the debrief record: the previous eight-page order had specified coordination sequences to ensure quality control. The sequences had also blocked the joint decision that won the exercise. The constraint was real. So was the cost.",
+      "whatToDo": "In any context where you are distributing authority across multiple actors, identify the constraints that matter and specify only those. Coordination sequences and pre-approved interaction patterns are constraints in disguise: they block unanticipated beneficial decisions along with the harmful ones they were designed to prevent.",
+      "whyItMatters": "The previous eight-page order was not a mistake in intent. It was a rational attempt to prevent coordination errors by specifying the coordination pattern in advance. The cost it created was not visible until a situation arose that the specified pattern could not handle. The one-page order made the cost visible by comparison: the same sub-commanders, with a different boundary specification, found and executed the decision the longer order had blocked."
     }
   ],
   "quiz": {
-    "passingScorePercent": 80,
+    "passingScorePercent": 70,
     "questions": [
       {
         "questionId": "ch10-q01",
-        "prompt": "A manager at 8:10 a.m. hears a polished forecast for a leadership decision but sees no written odds or date. Which move best fits the skill of acting while staying corrigible?",
+        "prompt": "Prussian military commanders in the 1860s found that detailed orders from headquarters often addressed situations that had already changed by the time the orders reached the front. Rather than issuing longer or more detailed instructions, Moltke gave his commanders a mission, a set of constraints, and the authority to decide everything else locally. What structural problem was this approach designed to solve?",
         "choices": [
-          "Write a dated probability and ask what result would count as a miss.",
-          "Trust the confident speaker because clear delivery usually means better judgment.",
-          "Wait for perfect proof and refuse to act until uncertainty disappears."
-        ],
-        "correctIndex": 0,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "apply",
-        "depthLevel": "simple"
-      },
-      {
-        "questionId": "ch10-q02",
-        "prompt": "An analyst at 2:35 p.m. finds one vivid story pushing the team toward a leadership decision. Which response keeps the estimate tied to evidence?",
-        "choices": [
-          "Collect more fresh stories until one of them feels complete enough to use.",
-          "Start with the base rate, then list what this case adds or subtracts.",
-          "Ignore the story completely because single cases never teach anything."
-        ],
-        "correctIndex": 1,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "analyze",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch10-q03",
-        "prompt": "A parent at the kitchen table has to choose after hearing two confident claims about a leadership decision. Which question should come first?",
-        "choices": [
-          "Pick the claim that makes the next step feel least awkward.",
-          "Ask which claim is more inspiring and use that as the guide.",
-          "Ask what record, sample, or past rate each claim can point to."
+          "That leaders should systematically trust their subordinates' judgment more than their own across all organizational domains and decision types.",
+          "That decentralized decision-making is structurally and strategically superior to centralized command in all complex organizations regardless of circumstances.",
+          "That when conditions change faster than headquarters can track and redistribute information, local judgment under clearly specified mission parameters will outperform tight central control."
         ],
         "correctIndex": 2,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "evaluate",
-        "depthLevel": "deep"
-      },
-      {
-        "questionId": "ch10-q04",
-        "prompt": "A coach before practice is tempted to treat last week's surprise as proof that a leadership decision has changed for good. Which move improves the forecast?",
-        "choices": [
-          "Compare the surprise with a longer record before moving the odds.",
-          "Treat the surprise as a new trend and rewrite the whole forecast around it.",
-          "Hold the old forecast unchanged so the record looks steady."
-        ],
-        "correctIndex": 0,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "create",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch10-q05",
-        "prompt": "A founder on a Monday investor call wants to sound certain about a leadership decision, but the record is thin. Which line is strongest?",
-        "choices": [
-          "Use firm language so the room feels less anxious about the unknowns.",
-          "Give a range, name the unknowns, and promise a date for checking it.",
-          "Hide the range inside a slogan that sounds more decisive."
-        ],
-        "correctIndex": 1,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "Moltke's insight was not a claim about the comparative quality of subordinate judgment in the abstract. It was a structural observation about information speed relative to the rate of change. By the time a battlefield order traveled from command to the front and back, the front had moved. The order addressed a situation that no longer existed. Auftragstaktik was the structural response: give local actors the objective and constraints, and let their closer information handle the execution. The model requires mission clarity, not a general preference for decentralization.",
         "bloomsLevel": "understand",
         "depthLevel": "simple"
       },
       {
-        "questionId": "ch10-q06",
-        "prompt": "An emergency planner at 6:20 a.m. gets a new signal about a leadership decision. Which update is sized best?",
+        "questionId": "ch10-q02",
+        "prompt": "Matthew, a hospital chief of medicine, receives a pager notification that the Ward B lead has reallocated a ventilator in a way he would not have chosen. The reallocation is within the allocation rules he set that morning and has not triggered the reporting condition. What is the correct response?",
         "choices": [
-          "Jump to the new extreme so nobody can accuse the plan of being slow.",
-          "Move nothing because any update before the final outcome is premature.",
-          "Move the number a little unless the new signal is strong and direct."
+          "Let the reallocation stand, because the ward lead has more current information about the patient and the floor than the chief does, and the call is within the stated rules.",
+          "Call the ward lead to discuss the decision before allowing it to take effect, to ensure the chief's overall allocation strategy is preserved across all three wards.",
+          "Override the reallocation because the chief of medicine is ultimately accountable for patient outcomes across the ward and cannot allow calls that differ from their intended approach."
+        ],
+        "correctIndex": 0,
+        "explanation": "The allocation rules exist precisely so the ward lead can make local calls without requiring the chief's involvement in each one. The chief's alternative preference is based on summary data from four hours ago; the ward lead's call is based on eleven hours on the floor and the afternoon labs. Intervening to enforce a preference formed from less current information is structural noise: it overrides the information advantage the delegation was designed to capture. The reporting condition, which has not triggered, is the mechanism designed to re-engage the chief when the situation requires it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch10-q03",
+        "prompt": "Adaeze gives the site foreman a written decision rule specifying which sequencing decisions he can make independently and which require escalation. What is the threshold that triggers a mandatory call?",
+        "choices": [
+          "Any sequencing decision that differs from the original delivery schedule Adaeze approved at the start of the week.",
+          "Any decision that would push the current week's schedule past the eight-hour buffer protecting the liquidated damages clause.",
+          "Any decision the foreman cannot justify with documented reasoning that Adaeze could review after the fact."
+        ],
+        "correctIndex": 1,
+        "explanation": "The eight-hour buffer is the reporting condition: it represents the point at which a sequencing decision crosses from the foreman's information advantage (current site conditions, delivery timing) into Adaeze's information advantage (cross-week schedule, client commitments, LD clause management). The first choice misunderstands the delegation: the decision rule is designed to allow the foreman to deviate from the original schedule when local conditions warrant it. The third choice replaces the threshold with a documentation requirement, which creates a different kind of overhead without specifying when escalation is actually required.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch10-q04",
+        "prompt": "Adaeze, a construction project manager, has been individually approving every material sequencing decision on site because the client is watching costs closely. Each approval takes fifteen minutes and requires a photo and back-and-forth messages. She has made seven such calls in the last three days. She is accountable for the project but did not set out to control every detail. What structural gap is driving this pattern?",
+        "choices": [
+          "Because leaders are naturally inclined toward perfectionism and have difficulty accepting imperfect outcomes from delegated decisions.",
+          "Because organizational incentive structures systematically penalize leaders who appear uninvolved, pushing them toward excessive engagement regardless of the decision quality it produces.",
+          "Because when the mission is underspecified, local actors cannot exercise judgment without asking the center what it wants, so the leader fills the gap personally rather than closing it with a clearer mission specification."
         ],
         "correctIndex": 2,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "Overcontrol is usually a structural consequence, not a personality failure. When local actors lack a clear mission specification, they must ask the center what it actually wants before making decisions. The leader who answers those questions individually is not being controlling in the pejorative sense: they are filling a genuine information gap. The structural fix is to close the gap with a mission specification clear enough that local actors can form their own judgment against it. Without that, the leader has no better option than staying close, because the alternative is letting uninformed local judgment produce uncorrelated decisions.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch10-q05",
+        "prompt": "Olivier issues a three-element sector brief to each wildfire sector boss: an objective, a resource limit, and a reporting condition. Which element functions as the feedback loop that allows Olivier to adjust to changing conditions?",
+        "choices": [
+          "The reporting condition: each sector boss is required to call when they have used 80 percent of their resource budget.",
+          "The resource limit: it prevents individual sectors from overcommitting the incident's total resource pool before Olivier can redistribute.",
+          "The objective: it defines what success looks like for each sector, allowing the sector boss to assess their own progress without requiring check-ins."
+        ],
+        "correctIndex": 0,
+        "explanation": "The reporting condition is the feedback loop because it defines the precise moment at which the sector boss must re-engage the command level, regardless of the sector boss's own assessment of whether re-engagement is needed. The resource limit is a constraint, not a feedback mechanism: it bounds the scope of independent action but does not automatically surface information to the command level. The objective supports local assessment but generates no required information flow toward the commander. The reporting condition is specifically designed to trigger information transfer at the moment when adjustment is still possible rather than after commitment has occurred.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch10-q06",
+        "prompt": "Paula gives her engineering team a constraint (40% CAC reduction) and a review metric (measured at week six), but does not specify which channel to cut or how to implement the reduction. What is the structural reason for this restraint?",
+        "choices": [
+          "She withholds her channel preference to avoid anchoring the team's initial analysis toward her intuition, preserving the independence of their technical assessment.",
+          "She lacks the depth to improve on the engineering team's judgment about which channel is generating the acquisition cost, and specifying the path would substitute her less-informed view for their better-informed one.",
+          "She does not want to be held accountable for the specific implementation path if the 40% reduction is not achieved, so she deliberately leaves the decision with the team."
+        ],
+        "correctIndex": 1,
+        "explanation": "Paula's restraint is an accurate read of where her information advantage ends, not a technique for preserving independence or a way of managing accountability. She knows the business constraint (CAC must drop by 40%) and the review timeline. She does not have the engineering depth to identify which acquisition channel is responsible for the excess cost or which implementation path will reduce it most efficiently. Specifying the channel would mean substituting a judgment she is less qualified to make for a judgment the team is better positioned to make. The intellectual humility here is structural: it follows from an honest assessment of where better information sits, not from a preference for hands-off management.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "ch10-q07",
-        "prompt": "A student reviewing a missed prediction about a leadership decision wants to learn without protecting ego. Which action helps most?",
+        "prompt": "Antoine issues a one-page mission order to naval sub-commanders, replacing his usual eight-page tactical script. At hour seven, one sub-commander calls to report they are approaching 80% of their resource budget ahead of schedule. Antoine redirects two reserve assets in seven minutes. Later he reviews another exercise where no reporting condition was defined and the sector held until it was overcommitted before calling. What two conditions, if either is missing, prevent the Moltke model from improving outcomes?",
         "choices": [
-          "Save the old forecast, mark the missed assumption, and write one rule for next time.",
-          "Rewrite the old prediction in softer words before saving it.",
-          "Blame the outcome on luck and skip the written review."
+          "When the mission specification is too vague for local actors to exercise judgment, or when the reporting condition is absent and the center cannot re-engage when conditions exceed what the original mission assumed.",
+          "When subordinates have significantly less domain expertise than the central authority, making local judgment less reliable than centralized direction for this type of decision.",
+          "When the organization operates in a stable environment where conditions change slowly, making the overhead of mission-specification work greater than the value it provides."
         ],
         "correctIndex": 0,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "The model's two failure modes are mirror images of its two enabling conditions. Mission clarity enables local judgment; a vague mission disables it by forcing local actors to guess what the center wants, producing the same dynamic as overcontrol without the benefit of the leader's information. The reporting condition enables revision; its absence means mistakes compound until they are visible, by which point the corrective options are worse. The second and third choices describe situations where a different management approach might be appropriate, but they are not the model's failure modes: the model can work with less-expert subordinates if the mission is specified precisely and can work in stable environments where the overhead is genuinely low.",
         "bloomsLevel": "analyze",
         "depthLevel": "deep"
       },
       {
         "questionId": "ch10-q08",
-        "prompt": "A team is split over a leadership decision, and the loudest person has the cleanest story. Which process makes the group smarter?",
+        "prompt": "What distinguishes the intellectual humility required by the Moltke model from intellectual humility as a general personal virtue?",
         "choices": [
-          "Let the senior person speak last and call that alignment.",
-          "Have each person write private odds first, then compare reasons aloud.",
-          "Vote immediately so disagreement does not slow the meeting."
+          "The model's intellectual humility applies only to tactical decisions, while general intellectual humility extends to strategic decisions where the leader's information advantage is more reliable.",
+          "General intellectual humility is a private orientation toward one's own beliefs, while the model's version requires publicly stating uncertainty before subordinates have formed their own views.",
+          "The model requires accepting that the leader will be less accurate than the local actor about local conditions and designing the organization to reflect that asymmetry, rather than simply being willing to admit mistakes after they occur."
         ],
-        "correctIndex": 1,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "evaluate",
-        "depthLevel": "standard"
+        "correctIndex": 2,
+        "explanation": "The intellectual humility required by the model is not an emotional or attitudinal disposition: it is a structural design choice. A leader who is willing to admit mistakes but has not built a mission specification clear enough to enable local judgment has not applied the model. The model requires translating the recognition of information asymmetry into a concrete organizational design: the mission statement, the constraints, the reporting condition. These are structural outputs. Without them, intellectual humility is a private virtue that produces no organizational benefit. The model operationalizes the insight that the leader is less accurate than the local actor in local conditions, building that asymmetry into the authority structure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
       },
       {
         "questionId": "ch10-q09",
-        "prompt": "Someone making a three-month plan for a leadership decision wants to avoid confident blur. Which plan creates the best feedback?",
+        "prompt": "Adaeze's decision rule gives the site foreman authority over sequencing decisions within the daily delivery window. On day seven, the foreman accepts an early concrete delivery and resequences without calling Adaeze. The site ends the day four hours ahead of schedule. What should Adaeze do with the decision rule document?",
         "choices": [
-          "Keep the plan broad so later outcomes cannot embarrass anyone.",
-          "Make one large forecast and check it only after the whole period ends.",
-          "Split the plan into smaller forecasts with dates for checking each one."
+          "Leave the document unchanged, because one successful outcome from a delegated decision does not provide sufficient evidence to expand the foreman's scope of authority.",
+          "Update the document to reflect that early-delivery absorption is explicitly within the foreman's authority, treating the successful outcome as evidence that the rule's scope was set correctly or conservatively for this type of decision.",
+          "Discuss the specific reasoning the foreman used before updating the document, to verify that the success reflected systematic judgment rather than favorable conditions that are unlikely to repeat."
         ],
-        "correctIndex": 2,
-        "explanation": "The leader needs action and feedback, not performed certainty. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "create",
+        "correctIndex": 1,
+        "explanation": "The decision rule document is a living record of the evidence about where local judgment can be trusted with which types of decisions. The foreman's successful call is exactly the type of evidence the document should respond to: it shows that the foreman's judgment in early-delivery situations is reliable within the stated constraints, and that the original rule's scope was conservative for this scenario. Requiring a reasoning discussion before updating (choice 2) adds a layer of scrutiny that treats the successful outcome as suspect rather than as information. A decision rule that is never updated becomes a static constraint rather than a calibrated boundary, and that rigidity eventually produces the same overcontrol dynamic the document was designed to avoid.",
+        "bloomsLevel": "evaluate",
         "depthLevel": "deep"
       }
     ]
   },
   "reviewCards": [
     {
-      "cardId": "ch10-rc01",
-      "front": "You hear a confident claim about a leadership decision. What do you ask before trusting it?",
-      "back": "Ask for the dated probability, the base rate, and the outcome that would count as a miss. Forecasts improve when they can be checked, not when they sound smooth.",
+      "cardId": "ch10-card01",
+      "front": "What is the leader's dilemma, and what is the structural solution?",
+      "back": "The need to act decisively while keeping the organization capable of revising while action is underway. The structural solution is the Moltke model: specify the mission clearly enough that local actors can exercise judgment against it, define the constraints that bound how the mission may be pursued, and create the reporting condition that re-engages the center when conditions exceed what the original specification assumed. The solution is a design, not a temperament.",
       "difficulty": "easy"
     },
     {
-      "cardId": "ch10-rc02",
-      "front": "A fresh story makes your estimate feel wrong. How should you update?",
-      "back": "Move the odds by the strength of the new evidence. A vivid story can matter, but it should not erase the older record unless it directly changes the facts.",
+      "cardId": "ch10-card02",
+      "front": "What are the three elements of a well-formed delegation under the Moltke model?",
+      "back": "First, a mission objective stated clearly enough that local actors can assess their own progress against it. Second, explicit constraints that bound how the objective may be pursued, preventing local initiative from pulling in directions the mission cannot tolerate. Third, a reporting condition that defines the precise threshold at which the local actor must re-engage the center. Without all three, delegation either collapses into overcontrol or drifts without a feedback mechanism.",
       "difficulty": "medium"
     },
     {
-      "cardId": "ch10-rc03",
-      "front": "A team wants one bold answer. What smaller move protects learning?",
-      "back": "Break the issue into dated subquestions. Smaller forecasts show which assumption failed, so the next estimate can improve instead of becoming a blame session.",
+      "cardId": "ch10-card03",
+      "front": "Why does overcontrol emerge even when leaders do not intend it?",
+      "back": "Because an underspecified mission creates a gap that the leader fills personally. When local actors cannot exercise judgment without asking the center what it wants, the leader has no better option than staying close. Overcontrol is not usually a personality flaw: it is what happens when the mission specification has not been made clear enough to support decentralized judgment. The structural fix is a clearer mission, not a more hands-off leader.",
       "difficulty": "medium"
     },
     {
-      "cardId": "ch10-rc04",
-      "front": "A miss is embarrassing. What should the review preserve?",
-      "back": "Keep the original wording and number. Then mark which assumption failed. The record has to sting a little or it will not teach.",
+      "cardId": "ch10-card04",
+      "front": "What role does the reporting condition play in organizational corrigibility?",
+      "back": "The reporting condition is the threshold that triggers re-engagement of the central authority when local conditions have exceeded what the original mission assumed. It is the mechanism that makes an organization corrigible: it surfaces mistakes before they compound, without requiring the leader to monitor everything. Without a reporting condition, the choice is between overcontrol and drift. The condition converts that binary into a calibrated distance.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch10-card05",
+      "front": "What did Moltke understand about central control that the standard model of command missed?",
+      "back": "He understood that the failure of central control in fast-changing situations is structural, not personal. By the time an order traveled from headquarters to the front and a response returned, the situation had changed. The order addressed a reality that no longer existed. Tight central control fails not because commanders are incompetent but because the information cycle is too slow for the rate of change. Auftragstaktik was a structural response to that latency, not a claim about which individuals were more trustworthy.",
       "difficulty": "hard"
     }
   ],
   "implementationPlan": {
-    "coreSkill": "The core skill is giving direction without freezing the forecast into a loyalty test. Practice means writing the claim before the outcome arrives, then updating it in small, visible steps. The point is not to look cautious. The point is to give reality a way to train you.",
+    "coreSkill": "Before delegating any initiative, write the mission objective, the constraints that bound it, and the reporting condition that triggers re-engagement. These three elements are the structure that makes decentralized judgment possible without losing the feedback loop that allows correction.",
     "ifThenPlans": [
       {
-        "context": "work",
-        "plan": "If a work meeting turns on a leadership decision, then write one dated probability on the agenda and name the result that would prove it wrong."
+        "context": "Before delegating a project or decision to a team member",
+        "plan": "If you are about to delegate, then write the mission objective in one sentence, the two or three constraints that bound how it may be pursued, and the single reporting condition that triggers escalation. If you cannot write all three clearly in under five minutes, the mission is not yet specified clearly enough to support decentralized judgment."
       },
       {
-        "context": "health",
-        "plan": "If you are choosing a health step under uncertainty, then write the base rate you know, the personal fact that changes it, and the next check-in date."
+        "context": "When a team member makes a local call you would have made differently",
+        "plan": "If the call is within the stated constraints and has not triggered the reporting condition, then let it stand before intervening. Ask whether the local actor had more current information about the specific situation than you did. If yes, your intervention substitutes less information for more."
       },
       {
-        "context": "personal",
-        "plan": "If a personal plan depends on a guess, then split the guess into one small forecast you can check within seven days."
+        "context": "When a delegated project begins to drift from the intended direction",
+        "plan": "If the drift is within the stated constraints, then diagnose whether the mission specification was too vague rather than overriding the local call. Rewrite the mission to close the specification gap. If the drift violates a stated constraint, invoke the reporting condition explicitly and recalibrate the mission with the local actor."
       },
       {
-        "context": "relationships",
-        "plan": "If someone you care about sounds certain about the future, then ask what evidence would make both of you lower the odds by ten points."
+        "context": "After a delegated decision produces an unexpected outcome",
+        "plan": "If the outcome is better or worse than expected, then ask what the outcome reveals about the local actor's judgment in this domain and whether the reporting condition threshold was set in the right place. Update the decision rule or reporting condition based on what the outcome revealed."
       }
     ],
-    "twentyFourHourChallenge": "Before tomorrow night, write one live forecast about a leadership decision with a date, a probability, and two reasons for the number. Put a reminder on the date to check it without rewriting the original line.",
-    "weeklyPractice": "Once this week, review one old forecast before you know the outcome. Move the number only if new evidence deserves it, and write the reason in one sentence."
+    "twentyFourHourChallenge": "In the next 24 hours, find one decision you have been approving for a team member that falls within their area of expertise and within your stated constraints. Write the mission objective, the constraints, and the reporting condition, then hand the decision back to them with those three elements written down. Note whether you feel the urge to add clarifying guidance beyond the three elements. That urge is the overcontrol signal.",
+    "weeklyPractice": "Once a week, review one delegated project. Ask three questions: Is the mission objective still clear to the local actor? Have conditions changed that require updating the constraints? Did the reporting condition trigger this week, and if so, was the threshold set in the right place? Adjust what the answers reveal rather than what your preferences suggest."
   },
   "memorableLines": [
     {
-      "text": "Action without revision is theater. Revision without action is drift.",
+      "text": "The restraint was not modesty. It was the clear knowledge that the ward lead had data the chief did not, and overriding a local call based on less data is not leadership: it is noise in the chain.",
       "location": "breakdown.fastRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It strips the moral frame from the restraint decision and replaces it with an information frame. The leader who steps back is not being virtuous; they are making the accurate read about where better information sits."
     },
     {
-      "text": "A leader can be clear without pretending the fog is gone.",
+      "text": "Moltke's insight was not that commanders were incompetent. It was that the battlefield changes faster than any headquarters can track, so tight central control fails not from bad intentions but from structural latency.",
       "location": "breakdown.deepRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It removes the personality explanation for overcontrol and replaces it with the structural one. Central control fails because of information speed, not because of the character of the people exercising it."
     },
     {
-      "text": "The plan gets stronger when correction is built in before pride can block it.",
+      "text": "An organization is corrigible when its mistakes surface before they compound. The reporting condition, the threshold that triggers re-engagement, is what makes that possible. Without it, the leader's choice is between staying too close and staying too far. The reporting condition converts that binary into a calibrated distance.",
       "location": "breakdown.fullRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It makes corrigibility concrete by naming the mechanism rather than the aspiration. The reporting condition is the specific structural element that converts the binary of overcontrol vs. drift into a calibrated boundary."
     }
   ]
 }

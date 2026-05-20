@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-righteous-mind-ch12",
+  "number": 12,
+  "title": "Can't We All Disagree More Constructively?",
+  "coreMove": "Enter the other person's moral matrix before answering their argument.",
+  "sourcePressure": "The closing chapter synthesizes intuition-first judgment, moral foundations, group binding, and politics/religion into more constructive disagreement.",
+  "chapterSpecificMisunderstanding": "The writer writes civility advice and forgets the accumulated model of intuition, foundations, and group binding.",
+  "sourceAlignmentTerms": [
+    "constructive disagreement",
+    "moral matrix",
+    "self-righteousness",
+    "politics",
+    "religion",
+    "synthesis"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "politics and religion",
+      "detail": "the frozen sidecar names politics and religion as the book's subtitle-level domain and closing target.",
+      "useIn": "both",
+      "phrasingHint": "Politics and religion divide most fiercely where they carry sacred concerns, not where people merely lack information."
+    },
+    {
+      "kind": "artifact",
+      "name": "the accumulated moral psychology frame",
+      "detail": "the frozen sidecar says the close synthesizes intuition first, multiple foundations, group binding, hive switch, and institutional coordination.",
+      "useIn": "fullRead",
+      "phrasingHint": "The final skill is to hear the whole machinery at work before treating the other person's sentence as the whole person."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch12 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "just listen advice"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "both-sides flattening"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "promise of consensus"
+    ],
+    "examples": [
+      "just listen advice",
+      "both-sides flattening",
+      "promise of consensus"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "town council argument over refugee housing",
+      "audience": "local officials trying to lower righteous certainty",
+      "stakes": "Sam restates the objector's sacred concern before defending the housing plan.",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sam names order and neighbor duty in the first sentence, then argues for the shelter.",
+      "firstImage": "\"You are afraid the town will stop feeling responsible to itself,\" Sam says before opening his binder.",
+      "mustInclude": [
+        "binder",
+        "shelter map",
+        "council timer"
+      ],
+      "mustAvoid": [
+        "generic civility"
+      ]
+    },
+    {
+      "domain": "family dinner split over a religious school's policy",
+      "audience": "readers facing intimate politics and religion disputes",
+      "stakes": "Hiroshi enters the other moral matrix before rebutting.",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Hiroshi write the sentence his sister would accept as her real concern before speaking.",
+      "firstImage": "You can hear plates being stacked while the unsaid reply tightens in your throat.",
+      "mustInclude": [
+        "stacked plates",
+        "policy letter",
+        "kitchen doorway"
+      ],
+      "mustAvoid": [
+        "both-sides flattening"
+      ]
+    },
+    {
+      "domain": "company ERG debate about a speaker invitation",
+      "audience": "workplace facilitators managing sacred values",
+      "stakes": "Petra separates harm, dignity, loyalty, and free inquiry before proposing a path.",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Petra draws the moral map on paper before asking for solutions.",
+      "firstImage": "Name tents sit crooked around a conference table after everyone has stopped making eye contact.",
+      "mustInclude": [
+        "name tents",
+        "speaker bio",
+        "moral map"
+      ],
+      "mustAvoid": [
+        "DEI generic"
+      ]
+    },
+    {
+      "domain": "podcast host preparing an interview with an ideological opponent",
+      "audience": "communicators avoiding gotcha reflexes",
+      "stakes": "Matthew starts by stating the opponent's moral load-bearing wall.",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 8:20, Matthew replaces the opening gotcha with a premise the guest can recognize.",
+      "firstImage": "At 8:20, Matthew highlights the first question and deletes the word hypocrite.",
+      "mustInclude": [
+        "highlighted script",
+        "studio headphones",
+        "guest notes"
+      ],
+      "mustAvoid": [
+        "media dunking scene"
+      ]
+    },
+    {
+      "domain": "community mediation over a vandalized memorial",
+      "audience": "mediators balancing sacred injury and due process",
+      "stakes": "Sofia keeps real disagreement while reducing self-righteousness.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sofia reviews the failed session and opens the next one with the sacred value each side guards.",
+      "firstImage": "It took Sofia one failed circle to see that apology was not the first missing piece.",
+      "mustInclude": [
+        "memorial plaque",
+        "circle chairs",
+        "apology draft"
+      ],
+      "mustAvoid": [
+        "promise of consensus"
+      ]
+    },
+    {
+      "domain": "online forum moderator writing rules for political threads",
+      "audience": "moderators designing disagreement that can survive",
+      "stakes": "Janek turns the accumulated model into posting rules that force moral translation before rebuttal.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What rule would Janek add if the goal is not agreement but less blind disagreement?",
+      "firstImage": "What would a comment box ask before it lets the rebuttal through?",
+      "mustInclude": [
+        "comment box",
+        "moderation queue",
+        "translation prompt"
+      ],
+      "mustAvoid": [
+        "generic online toxicity"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "enter a rival moral matrix before rebuttal",
+      "lower self-righteousness without pretending disagreement is fake",
+      "synthesize intuition, foundations, and group binding in a live conflict"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next reply to a hot claim, write one sentence that the other side would recognize as their sacred concern.",
+  "readingTimeMinutes": 12
+}

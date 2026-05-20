@@ -1,0 +1,97 @@
+{
+  "bookId": "playing-to-win",
+  "title": "Playing to Win",
+  "author": "A.G. Lafley, Roger L. Martin",
+  "thesisParagraph": "Playing to Win argues that strategy is not a vision statement, a planning document, or a list of priorities — it is a cascade of five integrated choices that must reinforce one another: a winning aspiration that can say no, a field defined by where you will and will not compete, an advantage route that beats alternatives through a different value equation rather than harder effort at the same game, the specific capability system those first three choices require, and management systems that keep all of this alive through reviews, measures, and accountability aligned to the strategy. If any of the five choices is vague, missing, or misaligned with the others, the cascade collapses into a wish list. The Olay, Saturn, Bounty, Glad ForceFlex, and Gillette cases all teach the same underlying move: real strategy makes a coherent, defensible shape that is visible only when the choices fit.",
+  "coreIdeas": [
+    {
+      "name": "Strategy is a cascade, not a list",
+      "oneSentence": "Five choices — aspiration, field, advantage, capabilities, systems — only become strategy when they reinforce each other.",
+      "mentalMove": "Stop treating ambitions and priorities as strategy; look for the internal logic that makes choices cohere.",
+      "sourceAnchors": ["ch01.source"]
+    },
+    {
+      "name": "Winning aspiration guides trade-offs",
+      "oneSentence": "A winning aspiration is concrete enough to reject a bad option — if it cannot say no, it is not guiding anything.",
+      "mentalMove": "Name what winning means for specific customers against specific alternatives, then use that definition to make a real trade-off.",
+      "sourceAnchors": ["ch02.source"]
+    },
+    {
+      "name": "Field choice is active, not inherited",
+      "oneSentence": "Where you play is a decision across customers, channels, geographies, and scope — not the arena you happened to start in.",
+      "mentalMove": "Map the current field explicitly, then ask whether it is chosen or just inherited — and whether a different field could be won.",
+      "sourceAnchors": ["ch03.source"]
+    },
+    {
+      "name": "Advantage requires a different route",
+      "oneSentence": "How to win means designing a value equation that beats alternatives differently, not competing harder at the same thing.",
+      "mentalMove": "Ask whether the advantage logic actually works on the chosen field or whether it just adds cost on someone else's terms.",
+      "sourceAnchors": ["ch04.source"]
+    },
+    {
+      "name": "Capabilities must fit the strategy",
+      "oneSentence": "Capabilities only matter as a system — the specific things the strategy requires, not a general list of organizational strengths.",
+      "mentalMove": "Work backward from the how-to-win choice to the capability system it demands, then check honestly whether that system exists.",
+      "sourceAnchors": ["ch05.source"]
+    },
+    {
+      "name": "Systems reinforce or quietly kill strategy",
+      "oneSentence": "Management systems that measure and reward old behavior will undo the strategy no matter how well the choices were made.",
+      "mentalMove": "Audit reviews, metrics, and accountability to ask whether they reinforce the strategy or just report the past.",
+      "sourceAnchors": ["ch06.source"]
+    },
+    {
+      "name": "Possibilities before analysis",
+      "oneSentence": "Analysis can only test what imagination first created — generate genuinely different options before evaluating any of them.",
+      "mentalMove": "Before analyzing, name three or more strategic options that are actually different from each other, not variants of the default.",
+      "sourceAnchors": ["ch07.source"]
+    },
+    {
+      "name": "What-would-have-to-be-true reverses the uncertainty",
+      "oneSentence": "Working backward from a desired result surfaces the specific conditions that need to hold — which you can then test instead of debate.",
+      "mentalMove": "For any strategic option, list the conditions required for it to succeed, then prioritize testing the ones you are least sure about.",
+      "sourceAnchors": ["ch08.source"]
+    }
+  ],
+  "targetReader": "Managers, leaders, entrepreneurs, and operators who run something — a team, a practice, a business, a department — and want to move from vague ambition or busy planning toward choices that actually create an advantage in a defined field.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium-tight",
+    "signatureMoves": [
+      "open with a choice the protagonist has to make before naming the strategic rule",
+      "use concrete stakes — a market position at risk, a capability gap visible right now, a review that drifted into theater",
+      "let the cascade logic reveal itself through a specific decision, not through an explanation of the framework",
+      "treat strategy as a craft the reader can practice: name the move, show the constraint, make the decision visible"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic leadership or management coaching language",
+      "no abstract framework-talk disconnected from a real visible decision"
+    ]
+  },
+  "voiceSpecimens": [
+    "The plan looked confident, but nothing in it required the team to stop doing anything.",
+    "A winning aspiration names the customer you are trying to delight and the alternative you are trying to beat — not the version of yourselves you hope to become.",
+    "Three departments each believed they were the company's core competence. None of them had asked whether the strategy actually needed what they were offering.",
+    "The review took ninety minutes and told the leadership team what they already believed. That is not a strategy review. That is attendance.",
+    "Glad did not win the trash-bag market by making a stronger bag than the competitor made. It won by solving a problem the competitor was not even optimizing for.",
+    "The acquisition brought a capability P&G needed and had spent a decade trying to build internally. The price was high. So was the cost of not having it.",
+    "Before the analysis begins, the most important question is whether the options on the table are actually different from each other."
+  ],
+  "voiceAntiSpecimens": [
+    "In today's rapidly changing business environment, strategic alignment has never been more critical for organizational success.",
+    "True leaders understand that winning requires a holistic approach to value creation and stakeholder engagement.",
+    "As we explored in the previous section, the five-choice cascade is a powerful framework for driving competitive advantage.",
+    "Strategy is about making the right choices at the right time to achieve the outcomes your organization deserves.",
+    "By leveraging core competencies and aligning management systems, companies can unlock sustainable competitive advantage."
+  ],
+  "teachingArc": "Ch01 establishes that strategy is an integrated cascade of five choices, not a collection of priorities — the book's master frame. Ch02–Ch04 teach the first three choices (aspiration, field, advantage) in sequence, each one narrowing and reinforcing the others. Ch05–Ch06 teach the two enabling choices (capabilities, systems) that determine whether the first three survive contact with reality. Ch07–Ch08 teach the process side: how to generate genuine strategic alternatives (Ch07) and how to reduce uncertainty by surfacing conditions rather than pretending certainty (Ch08). The arc moves from 'what strategy is' to 'what strategy requires' to 'how to build it under realistic uncertainty.'",
+  "forbiddenMoves": [
+    "treating the five-choice cascade as a checklist to complete rather than a test of internal coherence — the point is whether the choices reinforce each other, not whether all five boxes have entries",
+    "importing generic strategy-consulting language (core competency, synergy, blue-sky thinking, value chain) without grounding it in the specific choice being made",
+    "letting Olay, Saturn, Bounty, Glad, or Gillette become historical case-study recaps rather than precision anchors for one specific strategic principle"
+  ]
+}

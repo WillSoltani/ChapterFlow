@@ -1,0 +1,198 @@
+{
+  "chapterId": "getting-things-done-ch08",
+  "number": 8,
+  "title": "Reviewing: Keeping Your System Functional",
+  "coreMove": "Refresh the whole system often enough that the lists regain credibility before you choose from them.",
+  "sourcePressure": "Organized buckets become stale unless a regular review refreshes lists, projects, waiting-fors, and calendars so the system still matches reality.",
+  "chapterSpecificMisunderstanding": "Treating review as inspirational reflection instead of maintenance that restores trust in concrete lists.",
+  "sourceAlignmentTerms": [
+    "reviewing",
+    "Weekly Review",
+    "functional",
+    "current",
+    "refresh",
+    "stale lists",
+    "system trust"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Weekly Review",
+      "detail": "The source sidecar calls Weekly Review load-bearing inside the reflection and reviewing stages.",
+      "useIn": "both",
+      "phrasingHint": "The Weekly Review is the maintenance window where the system proves it still knows your life."
+    },
+    {
+      "kind": "artifact",
+      "name": "keeping the system functional",
+      "detail": "The locked title and sidecar define review as keeping the organized system current and trustworthy.",
+      "useIn": "both",
+      "phrasingHint": "A list that was true last Tuesday can become fiction by Friday unless review pulls it back to reality."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "a family-law mediator doing a Friday case review",
+      "audience": "a mediator managing court dates, drafts, and waiting parties",
+      "stakes": "a stale waiting-for could cause a settlement draft to miss a judge’s deadline",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The courthouse elevator hums outside while Anna checks each open case against calendar dates, waiting-fors, and next actions.",
+      "firstImage": "a settlement draft clipped under a court calendar",
+      "mustInclude": [
+        "settlement draft",
+        "court calendar",
+        "waiting-for list"
+      ],
+      "mustAvoid": [
+        "turning it into legal strategy"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "a ski patrol coordinator reviewing mountain readiness before a holiday weekend",
+      "audience": "a coordinator with weather, staffing, and equipment lists",
+      "stakes": "an outdated sled repair note could become a response delay",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Cold air pushes through the patrol-room door as Chris decides whether the gear list is current enough to trust for Saturday.",
+      "firstImage": "a rescue sled tag beside a weather printout",
+      "mustInclude": [
+        "rescue sled tag",
+        "weather printout",
+        "staffing list"
+      ],
+      "mustAvoid": [
+        "using danger to replace review mechanics"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "an independent bookkeeper preparing month-end client reviews",
+      "audience": "a bookkeeper whose client lists age quickly",
+      "stakes": "a bank-feed error could sit unseen until invoices go out wrong",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 3:45 p.m., Manon turns an old client list from a hope into a current map by confirming every waiting-for and calendar trigger.",
+      "firstImage": "a bank-feed error banner on a laptop",
+      "mustInclude": [
+        "bank-feed banner",
+        "client list",
+        "calendar trigger"
+      ],
+      "mustAvoid": [
+        "generic finance cleanup"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "a university lab safety officer before inspection week",
+      "audience": "a safety officer checking projects and compliance commitments",
+      "stakes": "an old inspection list could hide a missing eyewash repair",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Marit one failed internal audit to see that the list structure was fine; the review rhythm had gone dead.",
+      "firstImage": "an eyewash inspection tag hanging from a chain",
+      "mustInclude": [
+        "inspection tag",
+        "audit checklist",
+        "repair ticket"
+      ],
+      "mustAvoid": [
+        "invented studies"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "a catering company operations lead reviewing weekend events",
+      "audience": "an operations lead with menus, rentals, staffing, and waiting vendors",
+      "stakes": "a rental confirmation could be assumed done when the vendor never answered",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Show me the waiting-fors,\" Aman says, because the menu list alone cannot make the weekend trustworthy.",
+      "firstImage": "a rental invoice beside a sauce-stained prep list",
+      "mustInclude": [
+        "rental invoice",
+        "prep list",
+        "vendor email"
+      ],
+      "mustAvoid": [
+        "kitchen shells from other chapters"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "a city bike-share maintenance analyst reviewing station outages",
+      "audience": "an analyst whose action lists age as repairs happen across town",
+      "stakes": "a station could stay empty if stale data remains trusted",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You know Diego’s review worked when the map no longer nags at him because each stale station has an updated next action or owner.",
+      "firstImage": "a station map with three red outage dots",
+      "mustInclude": [
+        "station map",
+        "outage dot",
+        "technician owner"
+      ],
+      "mustAvoid": [
+        "bike helmet physical anchor"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose stale-system risk",
+      "choose review actions that restore trust",
+      "separate review from re-planning everything"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open one list and remove, update, or confirm three items so the list becomes more believable than it was one minute ago.",
+  "readingTimeMinutes": 12
+}

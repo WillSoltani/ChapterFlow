@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch05",
+  "number": 5,
+  "title": "Multitasking",
+  "coreMove": "Stop treating attention switching as extra capacity and return to one consequential task at a time.",
+  "sourcePressure": "This lie chapter rejects multitasking as false productivity, focusing on divided attention, switching, error risk, and the prestige of appearing busy on several fronts.",
+  "chapterSpecificMisunderstanding": "Saying phones are distracting or that people should generally focus more.",
+  "sourceAlignmentTerms": [
+    "multitasking",
+    "switching",
+    "split attention",
+    "sequential priority",
+    "protected attention",
+    "error risk"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "Multitasking as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "pharmacy compounding bench",
+      "audience": "compounding pharmacist",
+      "stakes": "a pediatric dose has no margin for transcription error",
+      "format": "scene",
+      "requiredBeat": "she places the ringing phone in a drawer and completes the dilution calculation before touching the refill queue",
+      "firstImage": "a laminated dosing chart under one gloved finger beside a muted phone",
+      "mustInclude": [
+        "dosing chart",
+        "muted phone",
+        "syringe labels"
+      ],
+      "mustAvoid": [
+        "generic office multitasking"
+      ]
+    },
+    {
+      "domain": "live radio control booth",
+      "audience": "producer",
+      "stakes": "the sponsor read must hit while breaking news updates arrive",
+      "format": "decision_point",
+      "requiredBeat": "he locks the news chat, rides the sponsor timing cleanly, then returns to updates after the segment closes",
+      "firstImage": "a red on-air light reflected in a glass mixing board",
+      "mustInclude": [
+        "on-air light",
+        "mixing board",
+        "chat window"
+      ],
+      "mustAvoid": [
+        "generic media distraction"
+      ]
+    },
+    {
+      "domain": "commercial kitchen expo station",
+      "audience": "sous-chef",
+      "stakes": "two allergy tickets and six normal orders hit at once",
+      "format": "dialogue",
+      "requiredBeat": "she calls one allergy ticket at a time, turns the duplicate shouting into a sequence, and stops the garnish mistake before it happens",
+      "firstImage": "two allergy tickets clipped apart above a sizzling expo line",
+      "mustInclude": [
+        "allergy tickets",
+        "expo rail",
+        "garnish tray"
+      ],
+      "mustAvoid": [
+        "generic restaurant busyness"
+      ]
+    },
+    {
+      "domain": "crane operator on a bridge repair",
+      "audience": "site foreman",
+      "stakes": "a steel beam swings above traffic",
+      "format": "vignette",
+      "requiredBeat": "the foreman cuts the budget call mid-sentence and keeps every signal on the beam until it lands on the bearing pad",
+      "firstImage": "a suspended steel beam hanging over stopped traffic cones",
+      "mustInclude": [
+        "radio handset",
+        "bearing pad",
+        "traffic cones"
+      ],
+      "mustAvoid": [
+        "generic construction safety"
+      ]
+    },
+    {
+      "domain": "court stenographer during expert testimony",
+      "audience": "stenographer",
+      "stakes": "one missed word changes a transcript",
+      "format": "postmortem",
+      "requiredBeat": "she catches that checking exhibit numbers while typing caused the transcript gap and creates a strict handoff sequence",
+      "firstImage": "a stenotype machine beside an exhibit sticker half-peeled from a folder",
+      "mustInclude": [
+        "stenotype machine",
+        "exhibit stickers",
+        "transcript page"
+      ],
+      "mustAvoid": [
+        "generic legal focus scene"
+      ]
+    },
+    {
+      "domain": "aquarium water-quality test room",
+      "audience": "marine biologist",
+      "stakes": "a reef tank crash could spread by morning",
+      "format": "predict_reveal",
+      "requiredBeat": "she predicts answering donor texts during nitrate testing will be harmless, then catches the mislabeled vial before repeating the split",
+      "firstImage": "two test vials with similar blue caps under fluorescent light",
+      "mustInclude": [
+        "test vials",
+        "donor texts",
+        "reef log"
+      ],
+      "mustAvoid": [
+        "generic science lab scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect hidden switching costs",
+      "protect a single active lane",
+      "choose sequence over simultaneous pride"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "During your next important task, remove the second active task from the surface in front of you and write the reentry cost you avoided.",
+  "readingTimeMinutes": 12
+}

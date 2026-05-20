@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch16",
+  "number": 16,
+  "title": "How to Handle Mistakes",
+  "coreMove": "Turn a mistake into repair and learning before shame or defensiveness freezes it in place.",
+  "sourcePressure": "The chapter moves from prevention to recovery: repair, reflection, learning loop, and disciplined response when failure still happens.",
+  "chapterSpecificMisunderstanding": "Self-forgiveness theater, resilience slogans, or regret loops with no correction.",
+  "sourceAlignmentTerms": [
+    "mistakes",
+    "repair",
+    "reflection",
+    "learning loop",
+    "recovery",
+    "disciplined response",
+    "repeatable waste"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "repair, reflection, learning loop, and recovery",
+      "detail": "the heading index supports the chapter through repair, reflection, learning loop, and recovery",
+      "useIn": "deepRead",
+      "phrasingHint": "A handled mistake becomes information with a repair plan; an unhandled one becomes a subscription."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for mistakes",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think mistakes is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Charlotte",
+      "domain": "a restaurant health inspection follow-up",
+      "audience": "a reader facing mistakes in a concrete restaurant health inspection follow-up decision",
+      "stakes": "whether Charlotte preserves judgment quality before the situation slides into therapy frame",
+      "format": "reflection",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Charlotte performs the chapter move by setting the call bell beside the triage tag, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the triage tag in the restaurant health inspection follow-up",
+      "mustInclude": [
+        "call bell",
+        "triage tag"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy frame",
+        "reusing a previous chapter's restaurant health inspection follow-up shell"
+      ]
+    },
+    {
+      "protagonistName": "Julia",
+      "domain": "a airport baggage claim desk",
+      "audience": "a reader facing mistakes in a concrete airport baggage claim desk decision",
+      "stakes": "whether Julia preserves judgment quality before the situation slides into therapy frame",
+      "format": "thought_experiment",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Julia performs the chapter move by setting the track diagram beside the delay code, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the track diagram against the counter in the airport baggage claim desk",
+      "mustInclude": [
+        "track diagram",
+        "delay code"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy frame",
+        "reusing a previous chapter's airport baggage claim desk shell"
+      ]
+    },
+    {
+      "protagonistName": "Eva",
+      "domain": "a open-source release incident",
+      "audience": "a reader facing mistakes in a concrete open-source release incident decision",
+      "stakes": "whether Eva preserves judgment quality before the situation slides into therapy frame",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Eva performs the chapter move by setting the return slips beside the price stickers, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the return slips in the open-source release incident",
+      "mustInclude": [
+        "return slips",
+        "price stickers"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy frame",
+        "reusing a previous chapter's open-source release incident shell"
+      ]
+    },
+    {
+      "protagonistName": "Alice",
+      "domain": "a marathon water station",
+      "audience": "a reader facing mistakes in a concrete marathon water station decision",
+      "stakes": "whether Alice preserves judgment quality before the situation slides into therapy frame",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Alice performs the chapter move by setting the lineup card beside the ice shavings, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the lineup card lying beside the ice shavings in the marathon water station",
+      "mustInclude": [
+        "lineup card",
+        "ice shavings"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy frame",
+        "reusing a previous chapter's marathon water station shell"
+      ]
+    },
+    {
+      "protagonistName": "Beatrice",
+      "domain": "a local theater ticketing error",
+      "audience": "a reader facing mistakes in a concrete local theater ticketing error decision",
+      "stakes": "whether Beatrice preserves judgment quality before the situation slides into therapy frame",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Beatrice performs the chapter move by setting the permit packet beside the cracked tile, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the cracked tile in the local theater ticketing error",
+      "mustInclude": [
+        "permit packet",
+        "cracked tile"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy frame",
+        "reusing a previous chapter's local theater ticketing error shell"
+      ]
+    },
+    {
+      "protagonistName": "Clara",
+      "domain": "a family text thread after a blowup",
+      "audience": "a reader facing mistakes in a concrete family text thread after a blowup decision",
+      "stakes": "whether Clara preserves judgment quality before the situation slides into therapy frame",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Clara performs the chapter move by setting the speakerphone beside the probate folder, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the probate folder in the family text thread after a blowup",
+      "mustInclude": [
+        "speakerphone",
+        "probate folder"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "therapy frame",
+        "reusing a previous chapter's family text thread after a blowup shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Turn a mistake into repair and learning before shame or defensiveness freezes it in place.",
+      "detect the weak generic version: Self-forgiveness theater, resilience slogans, or regret loops with no correction.",
+      "distinguish mistakes from nearby drift into therapy frame"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where mistakes is active, then write the exact next visible move that would perform this chapter's move: turn a mistake into repair and learning before shame or defensiveness freezes it in place.",
+  "readingTimeMinutes": 12
+}

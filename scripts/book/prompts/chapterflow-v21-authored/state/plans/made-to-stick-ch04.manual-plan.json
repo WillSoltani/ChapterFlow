@@ -1,0 +1,196 @@
+{
+  "chapterId": "made-to-stick-ch04",
+  "number": 4,
+  "title": "Credible",
+  "coreMove": "Move a claim from assertion into inspectable proof, witness, or human-scale evidence.",
+  "sourcePressure": "The source centers belief through proof, witnesses, vivid detail, anti-authority, and human-scale statistics, anchored by Barry Marshall and Robin Warren, Pam Laffin, and translated numbers.",
+  "chapterSpecificMisunderstanding": "Thinking credibility means adding credentials, citations, or bigger numbers.",
+  "sourceAlignmentTerms": [
+    "credible",
+    "proof",
+    "anti-authority",
+    "Barry Marshall",
+    "Robin Warren",
+    "Pam Laffin",
+    "human-scale statistics"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Barry Marshall and Robin Warren",
+      "detail": "the sidecar says Barry Marshall and Robin Warren support the idea that vivid proof can make disbelief harder to hold",
+      "useIn": "both",
+      "phrasingHint": "Barry Marshall and Robin Warren matter here because proof can push past what expert habit refuses to see."
+    },
+    {
+      "kind": "person",
+      "name": "Pam Laffin",
+      "detail": "the sidecar says Pam Laffin supports anti-authority credibility through lived cost rather than official status",
+      "useIn": "deepRead",
+      "phrasingHint": "Pam Laffin carries credibility from cost, not credentials."
+    },
+    {
+      "kind": "artifact",
+      "name": "human-scale statistics",
+      "detail": "the sidecar says large statistics often fail until translated into human-scale terms people can feel without expertise",
+      "useIn": "fullRead",
+      "phrasingHint": "A giant number starts to work only after it is translated into a scale the body understands."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "nobody believes the claim until a number appears",
+      "bring receipts as a generic line"
+    ],
+    "counterintuition": [
+      "credibility is not authority repeated without proof",
+      "data beats stories"
+    ],
+    "tryThisNow": [
+      "add a statistic",
+      "find an expert quote"
+    ],
+    "examples": [
+      "nonprofit dramatic photo from old package",
+      "restaurant portion test from old package",
+      "medical miracle overclaim"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "fish-market freshness claim",
+      "audience": "a stall owner answering skeptical restaurant buyers",
+      "stakes": "buyers drop the stall if freshness sounds like sales talk",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel places the catch log, ice temperature reading, and stamped delivery tag beside the fish so buyers can judge the claim",
+      "firstImage": "The cod still smells like clean salt, not fish",
+      "mustInclude": [
+        "catch log",
+        "ice thermometer",
+        "stamped delivery tag"
+      ],
+      "mustAvoid": [
+        "foodie description without proof"
+      ]
+    },
+    {
+      "domain": "railway maintenance budget hearing",
+      "audience": "an engineer defending track replacement to a finance committee",
+      "stakes": "a delayed repair raises derailment risk on a commuter line",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Lars translates vibration readings into the number of loose bolts found on a single platform section and shows the inspection photos",
+      "firstImage": "The committee room table trembles when the freight train passes outside",
+      "mustInclude": [
+        "vibration printout",
+        "inspection photos",
+        "loose bolt tray"
+      ],
+      "mustAvoid": [
+        "abstract infrastructure alarm"
+      ]
+    },
+    {
+      "domain": "consumer sunscreen testing",
+      "audience": "a product manager deciding whether a claim can go on packaging",
+      "stakes": "a bold claim could mislead families and trigger regulator scrutiny",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Can a parent test this?\" Chiara asks, then rejects the claim until the lab result and use condition fit on the package",
+      "firstImage": "\"Can a parent test this?\" Chiara asks with the label proof in her hand",
+      "mustInclude": [
+        "label proof",
+        "lab result sheet",
+        "water-resistance condition"
+      ],
+      "mustAvoid": [
+        "generic legal compliance"
+      ]
+    },
+    {
+      "domain": "youth-sports concussion policy",
+      "audience": "a league director persuading coaches to follow removal rules",
+      "stakes": "a player could return too soon if the evidence feels bureaucratic",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "David brings a parent witness and the sideline checklist instead of a lecture from league headquarters",
+      "firstImage": "At 6:30 p.m., David clips the folded sideline checklist to a goalpost",
+      "mustInclude": [
+        "sideline checklist",
+        "parent witness",
+        "helmet sticker sheet"
+      ],
+      "mustAvoid": [
+        "credential-only doctor appeal"
+      ]
+    },
+    {
+      "domain": "home energy retrofit estimate",
+      "audience": "an auditor convincing a homeowner that attic sealing matters",
+      "stakes": "the homeowner will spend money only if the leak is believable",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Chidi ask the homeowner to predict the leak, then run a smoke pencil near the attic hatch until the draft appears",
+      "firstImage": "You feel the hallway cool down when the attic hatch opens",
+      "mustInclude": [
+        "smoke pencil",
+        "infrared photo",
+        "attic hatch"
+      ],
+      "mustAvoid": [
+        "utility-bill spreadsheet only"
+      ]
+    },
+    {
+      "domain": "public-library program report",
+      "audience": "a librarian defending a teen program to trustees",
+      "stakes": "the program loses evening staff if impact sounds soft",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Anke pairs attendance numbers with one checkable tutoring schedule and a student work sample so trustees can inspect impact at human scale",
+      "firstImage": "It took Anke one budget cycle to stop saying engagement",
+      "mustInclude": [
+        "tutoring schedule",
+        "attendance tally",
+        "marked essay draft"
+      ],
+      "mustAvoid": [
+        "sentimental teen story without evidence"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose proof appropriate to a skeptical audience",
+      "translate large numbers into human scale",
+      "distinguish anti-authority credibility from mere anecdote",
+      "spot when vivid proof becomes theater rather than evidence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one claim in your message and add the nearest thing your audience can check: a witness, a test, a specific detail, or a human-scale translation.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch15",
+  "number": 15,
+  "title": "Defining the Scale in Performance Ratings",
+  "coreMove": "Anchor each rating level in observable, behaviorally specific descriptions so that scale interpretation does not become its own source of noise layered on top of actual performance differences.",
+  "sourcePressure": "Rating scales without behavioral anchors let each rater supply their own implicit definition of each level. Those implicit definitions differ across raters, producing spread from scale interpretation rather than from genuine performance differences. Better scale design attacks this layer of noise directly.",
+  "chapterSpecificMisunderstanding": "Assuming that adding more scale points improves precision, or that trained raters will apply an unanchored scale consistently because they have experience with the domain.",
+  "sourceAlignmentTerms": ["rating scale", "behavioral anchor", "level definition", "scale noise", "calibration", "performance assessment", "anchor point"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Behaviorally anchored rating scales research",
+      "detail": "Research on behaviorally anchored rating scales (BARS) has consistently shown that rater agreement improves when each scale level is defined by observable behavioral descriptions rather than numbers or generic adjectives, and that the improvement is most pronounced at the middle scale points where interpretation diverges most.",
+      "useIn": "deepRead",
+      "phrasingHint": "A '3 out of 5' for communication could mean anything from 'the employee sends clear emails' to 'the employee presents to clients without a script.' The rater supplies the definition. If five raters supply five different definitions of 3, the spread in their ratings tells you nothing about the employee."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["performance reviews are broken — here's why", "rating scales are lying to you"],
+    "counterintuition": ["more scale points make ratings less reliable", "the best performance review is the shortest one"],
+    "tryThisNow": ["look at your organization's performance rating scale and see if you can define what a 3 means", "rate a colleague using only the scale, with no written descriptors, and notice how uncertain you feel"],
+    "examples": ["a scene where an employee is mistreated because of a poor performance rating — the chapter's focus is on scale design, not rating consequences", "a scene that implies HR scales are inherently arbitrary — the point is that better design is possible"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Scale-design examples risk all reading as 'manager has trouble rating something because the scale is vague.' The formats and domains need to show how scale noise manifests differently in teacher evaluation, police review, code review, credit compliance, and other settings."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "teacher performance review: two principals rating the same classroom observation video using an unanchored 1-5 scale",
+      "audience": "a school district quality manager comparing ratings before and after anchor-definition training",
+      "stakes": "teacher career decisions and professional development allocation — noisy ratings mean support goes to the wrong teachers",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the district manager plays a 15-minute classroom observation video to both principals independently: one rates it a 4 on 'instructional quality'; the other rates it a 2; when asked to explain, they describe the same specific moments in the video with different evaluative frames, and neither has a shared definition of what a 3 looks like",
+      "firstImage": "two rating sheets for the same classroom observation, the scores visible at the top, both principals' written notes referencing the same moments in the video but interpreting them differently",
+      "mustInclude": ["same video, two principals, a 2-point gap on a 5-point scale", "the explanations referencing the same moments with different interpretive frames", "the absence of a shared behavioral anchor as the diagnosis"],
+      "mustAvoid": ["the teacher's identity or demographic", "a union or employment action context"]
+    },
+    {
+      "domain": "nurse peer review: a hospital using a 1-to-5 'clinical competence' scale with no behavioral definitions across three nursing units",
+      "audience": "a nursing director comparing peer review scores across units for the same competency category",
+      "stakes": "consistent professional development support and fair employment decisions — if 'clinical competence' means different things across units, the peer reviews are not comparable",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two nursing managers compare their units' 'clinical competence' distribution: one unit averages 3.8 and the other averages 2.6 for what appear to be comparable nursing populations; when the managers discuss their definitions of a 3, they discover they have been anchoring the scale to completely different observable behaviors — one uses 'follows protocol independently' and the other uses 'teaches protocol to new staff'",
+      "firstImage": "two pages of peer review aggregate scores side by side — the same scale categories but visibly different score distributions across the two units",
+      "mustInclude": ["the 3.8 vs. 2.6 gap for comparable populations", "the two different behavioral definitions of a 3 that each manager had been applying", "the implication: the scale scores are not comparable across units until the anchors are shared"],
+      "mustAvoid": ["a nurse employment outcome story", "implying either unit's nurses are less competent"]
+    },
+    {
+      "domain": "software code review: an engineering team rating code quality on a 1-to-4 scale for six months before discovering the scale means different things to different reviewers",
+      "audience": "an engineering manager who discovers the team's code quality scores are not calibrated across reviewers",
+      "stakes": "technical debt and product quality decisions — code quality scores that do not mean the same thing across reviewers produce inconsistent merge decisions",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the manager realizes the calibration problem when two senior engineers review the same pull request on the same day and score it a 4 and a 2 respectively: comparing their review comments, they both identified the same issues, but one treats unresolved edge case handling as a 4-level concern and the other treats it as a 2-level concern — and neither has a written definition to cite",
+      "firstImage": "two code review submissions for the same pull request, the scores at the top showing a 4 and a 2, the comment sections below showing both reviewers flagging the same issue",
+      "mustInclude": ["the same pull request, same issue identified, scores of 4 and 2", "the absence of a shared definition of what 'edge case coverage' counts as for each level", "the manager's decision to workshop behavioral anchors before the next review cycle"],
+      "mustAvoid": ["a specific technical domain that makes the example opaque to non-engineers", "a product failure story"]
+    },
+    {
+      "domain": "police body-camera footage review: a police department using a 'use-of-force proportionality' scale across three supervisors",
+      "audience": "a police standards officer comparing supervisor ratings of the same footage samples",
+      "stakes": "consistent accountability and officer development — supervisors with different implicit definitions of proportionality produce inconsistent ratings that undermine both accountability and officer trust in the review process",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the standards officer asks the three supervisors to independently rate the same six body-camera clips on the use-of-force proportionality scale: the inter-rater agreement is 0.41 — barely above chance — and when the supervisors discuss their ratings, the disagreements cluster at the middle scale points where the behavioral anchor is most vague",
+      "firstImage": "a calibration table showing three supervisors' ratings of six clips, the agreement visible as mostly different numbers for the same clip, with the middle scale points showing the widest spread",
+      "mustInclude": ["the 0.41 inter-rater agreement", "the middle-scale-point clustering of disagreements", "the standards officer's framing: this is a scale design problem, not a supervisor training problem"],
+      "mustAvoid": ["a police misconduct incident", "implying any supervisor was applying the wrong standard deliberately"]
+    },
+    {
+      "domain": "financial advisor compliance audit: a brokerage reviewing suitability assessment scores across five compliance officers for the same client profiles",
+      "audience": "a compliance director studying inter-officer consistency in suitability ratings",
+      "stakes": "regulatory compliance and client protection — inconsistent suitability ratings mean some clients receive unsuitable product recommendations and others do not, depending on which officer reviewed the file",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you are reviewing the calibration exercise results for your compliance team: across 20 client profiles rated by all five officers, the standard deviation within each profile is 0.9 points on a 5-point scale — large enough to change the compliance verdict (suitable vs. unsuitable) in four of the twenty cases — and the culprit is the 'investment sophistication' category, which has no behavioral anchor",
+      "firstImage": "a calibration results table showing 20 client profiles in rows, five officer scores in columns, and a standard deviation column at the far right — four rows highlighted where the spread crosses the suitable/unsuitable threshold",
+      "mustInclude": ["the 0.9 standard deviation per profile", "the four verdict-changing cases", "the 'investment sophistication' category as the specific unanchored culprit"],
+      "mustAvoid": ["a client investment loss story", "regulatory enforcement implications"]
+    },
+    {
+      "domain": "restaurant critic scoring criteria: a food publication comparing three critics' scores on the same restaurant experience using an unanchored 1-to-10 scale",
+      "audience": "a food publication editor studying whether the critic scoring system is producing comparable scores across writers",
+      "stakes": "publication credibility — if critics are applying different implicit standards to the same scale, a restaurant's final score depends on who reviewed it rather than on the restaurant's quality",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the editor compares the three critics' scores for the same blind tasting: food quality was rated 7, 9, and 6; service was rated 8, 5, and 7; ambiance was rated 9, 6, and 8 — a spread that could produce composite scores ranging from 19 to 26 for the same restaurant visit, and when the editor asks each critic to define a 7 for food quality, they describe three different reference points",
+      "firstImage": "a three-column scoring table with the same restaurant's scores from three critics, the spread visible in the numbers, the overall composite score at the bottom showing a seven-point range",
+      "mustInclude": ["the seven-point range in potential composite scores", "the three different reference points critics use for a 7", "the editor's framing: the scale is not measuring the restaurant; it is measuring each critic's private anchor"],
+      "mustAvoid": ["naming the restaurant", "a restaurant industry critique broader than the scale design problem"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why an unanchored scale generates its own noise independent of rater differences",
+      "identify the specific scale design features that reduce inter-rater variation",
+      "apply behavioral anchor design to improve an unanchored scale in a described context",
+      "analyze why middle scale points are where unanchored scales generate the most noise",
+      "evaluate whether a proposed scale improvement would reduce scale-interpretation noise or only shift it to a different point on the scale"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find a rating scale you use — in performance review, code review, risk assessment, or any repeated judgment. Pick the middle level. Write down in one sentence what observable behavior would distinguish a score of that level from one level above and one level below. If the sentence describes a mindset rather than an observable action, the scale is not anchored and your ratings are adding scale noise on top of performance signal.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (2-3 sentences) stating the scale-as-noise-source point crisply, at least one 5+ sentence paragraph on why middle-scale-point ambiguity is where most rating noise concentrates, at least one one-sentence punch line about what the spread in ratings for the same subject actually tells you about the scale",
+    "fullReadInterludeRequirement": "at least one paragraph on the BARS (behaviorally anchored rating scales) research tradition as a brief aside — showing that this is an empirically validated improvement, not just a design preference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

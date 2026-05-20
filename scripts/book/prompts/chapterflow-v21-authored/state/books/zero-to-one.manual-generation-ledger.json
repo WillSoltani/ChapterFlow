@@ -1,0 +1,668 @@
+{
+  "bookId": "zero-to-one",
+  "updatedAt": "2026-05-14T02:40:52.566Z",
+  "usedProtagonistNames": [
+    "Claire",
+    "Julien",
+    "Hannah",
+    "Marco",
+    "Maja",
+    "Sam",
+    "David",
+    "Ingrid",
+    "Ben",
+    "Sofia",
+    "Thomas",
+    "Aanya",
+    "James",
+    "Camille",
+    "Michael",
+    "Chloe",
+    "Niklas",
+    "Paula",
+    "Rachel",
+    "Lukas",
+    "Anna",
+    "Hugo",
+    "Kasia",
+    "Daniel",
+    "Megan",
+    "Antoine",
+    "Grace",
+    "Henrik",
+    "Laura",
+    "Andrew",
+    "Matthew",
+    "Juliette",
+    "Ryan",
+    "Manon",
+    "Pavel",
+    "Olivia",
+    "Sophie",
+    "Nicolas",
+    "Frida",
+    "Chris",
+    "Isabel",
+    "Jack",
+    "Emily",
+    "Lars",
+    "Marta",
+    "Luca",
+    "Astrid",
+    "Yusuf",
+    "Sarah",
+    "Etienne",
+    "Giulia",
+    "Jonas",
+    "Nina",
+    "Kiran",
+    "Patrick",
+    "Marit",
+    "Tomas",
+    "Mikkel",
+    "Layla",
+    "Matteo",
+    "Robert",
+    "Catarina",
+    "Mathieu",
+    "Adaeze",
+    "Olivier",
+    "Vera",
+    "Min",
+    "Anders",
+    "Chidi",
+    "Anke",
+    "Akira",
+    "Lea",
+    "Nathan",
+    "Julia",
+    "George",
+    "Chiara",
+    "Devon",
+    "Petra",
+    "Rebecca",
+    "Vincent",
+    "Hanna",
+    "Aman",
+    "Margaux",
+    "Pablo"
+  ],
+  "usedExampleDomains": [
+    "medical device triage workflow",
+    "municipal transit planning",
+    "university lab commercialization",
+    "independent bookstore operations",
+    "agricultural sensor startup",
+    "museum accessibility design",
+    "biotech incubator portfolio review",
+    "architecture studio bids",
+    "regional newspaper digital strategy",
+    "specialty coffee roaster expansion",
+    "renewable battery pilot",
+    "children’s language app",
+    "regional airline route strategy",
+    "enterprise cybersecurity tool",
+    "urban greenhouse cooperative",
+    "medical billing service",
+    "independent game studio",
+    "specialty legal practice",
+    "restaurant group menu planning",
+    "school robotics team",
+    "boutique hotel renovation",
+    "open-source developer tool",
+    "independent pharmacy services",
+    "regional theater season selection",
+    "industrial parts marketplace",
+    "specialist veterinary clinic",
+    "language-learning platform for refugees",
+    "machine-tool leasing",
+    "craft brewery distribution",
+    "special education assessment software",
+    "surgical scheduling reform",
+    "independent film financing",
+    "coastal flood insurance startup",
+    "apprenticeship placement program",
+    "specialty insurance claims unit",
+    "rural broadband rollout",
+    "angel investment committee",
+    "pharmaceutical research pipeline",
+    "music label artist roster",
+    "specialty export business",
+    "scholarship foundation allocation",
+    "urban logistics routing software",
+    "geriatric home-care coordination",
+    "construction materials waste",
+    "academic advising software",
+    "specialty food importing",
+    "public library digital access",
+    "industrial safety training",
+    "co-founder equity split",
+    "community clinic launch",
+    "restaurant partnership agreement",
+    "robotics hardware startup",
+    "family-run manufacturing succession",
+    "research consortium governance",
+    "emergency veterinary hospital team",
+    "polar research expedition logistics",
+    "enterprise migration war room",
+    "artisan ceramics studio scaling",
+    "youth mental health hotline",
+    "precision machining shop",
+    "radiology AI procurement",
+    "craft furniture marketplace",
+    "specialist tax software",
+    "local food delivery co-op",
+    "industrial water sensor sales",
+    "independent podcast network",
+    "fraud review operations",
+    "forestry fire detection",
+    "legal discovery review",
+    "oncology trial matching",
+    "warehouse picking optimization",
+    "newsroom verification desk",
+    "solar microgrid startup",
+    "electric ferry retrofit",
+    "compostable packaging manufacturer",
+    "heat-pump installer network",
+    "urban battery recycling plant",
+    "green cement procurement",
+    "founder-led medical startup",
+    "fashion marketplace turnaround",
+    "scientific instrument company",
+    "neighborhood grocery chain",
+    "climate analytics firm",
+    "restaurant technology company"
+  ],
+  "usedExampleAnchors": [
+    "Google Books metadata distinction between 1 to n and 0 to 1",
+    "the contrarian truth question",
+    "the dot-com crash",
+    "Tolstoy",
+    "clean-tech failure diagnosis",
+    "the founder paradox"
+  ],
+  "usedHookFrames": [],
+  "usedCounterFrames": [],
+  "usedTryThisNowFrames": [],
+  "usedQuizExplanationFrames": [],
+  "rejectedFrames": [
+    {
+      "chapterId": "zero-to-one-ch01",
+      "frames": {
+        "hook": [
+          "opening with a definition of 0 to 1",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch02",
+      "frames": {
+        "hook": [
+          "opening with a definition of dot-com crash",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch03",
+      "frames": {
+        "hook": [
+          "opening with a definition of monopoly",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch04",
+      "frames": {
+        "hook": [
+          "opening with a definition of rivalry",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch05",
+      "frames": {
+        "hook": [
+          "opening with a definition of durability",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch06",
+      "frames": {
+        "hook": [
+          "opening with a definition of planning",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch07",
+      "frames": {
+        "hook": [
+          "opening with a definition of power law",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch08",
+      "frames": {
+        "hook": [
+          "opening with a definition of secrets",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch09",
+      "frames": {
+        "hook": [
+          "opening with a definition of foundations",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch10",
+      "frames": {
+        "hook": [
+          "opening with a definition of culture",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch11",
+      "frames": {
+        "hook": [
+          "opening with a definition of distribution",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch12",
+      "frames": {
+        "hook": [
+          "opening with a definition of computer",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch13",
+      "frames": {
+        "hook": [
+          "opening with a definition of clean-tech",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    },
+    {
+      "chapterId": "zero-to-one-ch14",
+      "frames": {
+        "hook": [
+          "opening with a definition of founder paradox",
+          "generic founder staring at a whiteboard",
+          "calendar-time plus name plus decision repeated across examples"
+        ],
+        "counterintuition": [
+          "most people assume X but the truth is Y",
+          "the obvious move is wrong because the opposite is true",
+          "not about being bold, about being smart"
+        ],
+        "tryThisNow": [
+          "set a timer and write three bullets",
+          "ask yourself what matters most",
+          "pick one project and reflect"
+        ],
+        "examples": [
+          "generic startup pitch meeting",
+          "anonymous product team in a glass conference room",
+          "coffee mug and laptop scene shell"
+        ]
+      }
+    }
+  ],
+  "chapterStatuses": {
+    "zero-to-one-ch01": {
+      "shipGatePassed": false,
+      "shipGateBlockers": 2,
+      "shipGateMajors": 2,
+      "patternAuditPassed": false,
+      "patternAuditBlockers": 48,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:40:52.567Z"
+    },
+    "zero-to-one-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 12,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:36:36.621Z"
+    },
+    "zero-to-one-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 13,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:36:39.841Z"
+    },
+    "zero-to-one-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 11,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:27:35.863Z"
+    },
+    "zero-to-one-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 9,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:29:30.423Z"
+    },
+    "zero-to-one-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 9,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:27:42.211Z"
+    },
+    "zero-to-one-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 14,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:27:59.169Z"
+    },
+    "zero-to-one-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 14,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:29:33.950Z"
+    },
+    "zero-to-one-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 9,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:29:37.094Z"
+    },
+    "zero-to-one-ch10": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 10,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:29:40.313Z"
+    },
+    "zero-to-one-ch11": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 13,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:29:43.860Z"
+    },
+    "zero-to-one-ch12": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 11,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:28:41.911Z"
+    },
+    "zero-to-one-ch13": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 13,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:36:44.003Z"
+    },
+    "zero-to-one-ch14": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 14,
+      "checkedAt": "2026-05-14T02:36:49.191Z"
+    }
+  }
+}

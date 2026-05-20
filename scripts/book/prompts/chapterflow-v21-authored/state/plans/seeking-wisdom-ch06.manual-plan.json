@@ -1,0 +1,194 @@
+{
+  "chapterId": "seeking-wisdom-ch06",
+  "number": 6,
+  "title": "Protect Temperament While You Learn",
+  "coreMove": "Preserve a gap between emotional pressure and committed action so the better tool remains reachable.",
+  "sourcePressure": "The source says fear, reward, status, reciprocity, fairness, self-interest, memory, and self-serving distortions can break execution. People can know better and still act poorly when social or emotional pressure takes over. Wisdom is framed as reducing preventable mistakes, not eliminating all error.",
+  "chapterSpecificMisunderstanding": "The weak version is calm-down advice. The chapter must show knowledge becoming unavailable under pressure and the small behavioral gap that lets judgment return before action hardens.",
+  "sourceAlignmentTerms": [
+    "temperament",
+    "fear",
+    "reward",
+    "status",
+    "self-interest",
+    "memory distortion",
+    "self-serving revision",
+    "emotional pressure",
+    "preventable mistake"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Charlie Munger commencement speech",
+      "detail": "The frozen source notes list a Charlie Munger commencement speech in the appendix alongside Munger and Buffett wisdom excerpts and checklist-like reminders; use only as a light book-level reference, not as a quoted source.",
+      "useIn": "fullRead",
+      "phrasingHint": "The Munger appendix points the same direction: wisdom is less about sounding brilliant than becoming harder to rush into ordinary preventable mistakes."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Stay calm under pressure",
+      "Emotion ruins judgment",
+      "Temperament is everything"
+    ],
+    "counterintuition": [
+      "The best thinker is unemotional",
+      "The problem is feelings",
+      "Discipline means no reaction"
+    ],
+    "tryThisNow": [
+      "Take a deep breath",
+      "Pause for 60 seconds",
+      "Control your emotions"
+    ],
+    "examples": [
+      "generic angry email",
+      "trader loses money cliche",
+      "family argument at dinner table",
+      "coach yells at team"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "emergency department handoff after a senior physician snaps at a resident",
+      "audience": "Rachel, a resident who knows the protocol but feels publicly humiliated",
+      "stakes": "whether status threat makes her skip a clarifying question during a risky transfer",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel writes the clarifying question on her glove cuff and asks it before signing the handoff, despite the heat in her face",
+      "firstImage": "the alcohol-wipe smell sharp under fluorescent triage lights",
+      "mustInclude": [
+        "Rachel",
+        "glove cuff",
+        "handoff form"
+      ],
+      "mustAvoid": [
+        "generic hospital heroics",
+        "checklist chapter tray scene"
+      ]
+    },
+    {
+      "domain": "family estate meeting where one sibling frames revision as betrayal",
+      "audience": "Mikkel, an executor trying not to let pride answer first",
+      "stakes": "whether embarrassment over an old promise blocks a fair update after new tax numbers arrive",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mikkel reads the new tax letter aloud, folds his first defensive note in half, and asks for ten minutes to recalculate before replying",
+      "firstImage": "\"You promised Dad,\" across a table with a tax letter between them",
+      "mustInclude": [
+        "Mikkel",
+        "tax letter",
+        "folded defensive note"
+      ],
+      "mustAvoid": [
+        "kitchen table shell",
+        "eldercare text thread from chapter 1"
+      ]
+    },
+    {
+      "domain": "commodity trading desk after a loss breaches the prewritten limit",
+      "audience": "Catarina, a junior trader hearing the room call the dip temporary",
+      "stakes": "whether fear of looking weak makes her ignore the loss limit she wrote while calm",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Catarina touches the printed loss-limit card taped under her monitor and exits the position before explaining herself to the desk lead",
+      "firstImage": "At 9:36 a.m., Catarina watches copper drop through the red line on screen",
+      "mustInclude": [
+        "Catarina",
+        "printed loss-limit card",
+        "copper price screen"
+      ],
+      "mustAvoid": [
+        "generic stock pick",
+        "probability chapter forecast"
+      ]
+    },
+    {
+      "domain": "immigration interview prep when a client panics and wants to embellish",
+      "audience": "Layla, a legal clinic volunteer who knows panic can make truth look insufficient",
+      "stakes": "whether fear turns a fixable omission into a credibility problem",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Layla places the original document gap and the honest explanation on the same folder, then has the client practice the plain answer twice before adding anything",
+      "firstImage": "You watch a client twist a folder corner until the paper fibers split",
+      "mustInclude": [
+        "Layla",
+        "document gap",
+        "practice answer"
+      ],
+      "mustAvoid": [
+        "courtroom drama",
+        "heroic lawyer speech"
+      ]
+    },
+    {
+      "domain": "startup outage response where the founder wants to blame a vendor publicly",
+      "audience": "Andrew, an engineering lead with the incident timeline open",
+      "stakes": "whether status defense corrupts the postmortem before the root cause is known",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Andrew locks the draft public post, adds a twelve-hour no-blame review line, and writes the unknowns under the knowns before Slack outrage becomes the official story",
+      "firstImage": "a status page stuck on amber while Slack messages stack faster than alerts",
+      "mustInclude": [
+        "Andrew",
+        "incident timeline",
+        "locked draft post"
+      ],
+      "mustAvoid": [
+        "generic tech deployment from chapter 5",
+        "PR apology template"
+      ]
+    },
+    {
+      "domain": "orchestra audition feedback after a conductor dismisses a musician too sharply",
+      "audience": "Janek, an assistant conductor asked to deliver feedback without protecting his own authority",
+      "stakes": "whether pride turns a correct technical note into a humiliating exchange that teaches nothing",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Janek crosses out the clever first sentence, names the single bowing issue, and invites one replay instead of defending the conductor's tone",
+      "firstImage": "three crossed-out sentences on the back of an audition score",
+      "mustInclude": [
+        "Janek",
+        "audition score",
+        "one replay"
+      ],
+      "mustAvoid": [
+        "generic performance review",
+        "teacher scolding student"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish steadiness from emotional numbness",
+      "spot status threat hijacking a known rule",
+      "use prewritten limits when emotion rises",
+      "identify self-serving revision after the fact"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one sentence you will use when pride or fear starts talking first: I need ten minutes before I turn this reaction into a decision.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

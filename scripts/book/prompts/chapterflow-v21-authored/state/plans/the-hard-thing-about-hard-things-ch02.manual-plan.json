@@ -1,0 +1,177 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch02",
+  "number": 2,
+  "title": "From Communist to Venture Capitalist",
+  "coreMove": "Use origin stories as diagnostic context without letting them become proof.",
+  "sourcePressure": "The chapter grounds Horowitz's later doctrine in formation: political contradiction, authority, incentives, technical execution, and the move from individual competence to company responsibility.",
+  "chapterSpecificMisunderstanding": "The weak version is treating biography as colorful career background or automatic credential.",
+  "sourceAlignmentTerms": [
+    "formation",
+    "authority",
+    "incentives",
+    "engineering discipline",
+    "startup responsibility",
+    "bias"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "childhood made him different",
+      "every founder has an origin story",
+      "career path from ideology to capitalism"
+    ],
+    "counterintuition": [
+      "your past is your superpower",
+      "contradictions make better leaders",
+      "biography explains everything"
+    ],
+    "tryThisNow": [
+      "list three childhood influences",
+      "write your leadership origin story",
+      "reflect on your values"
+    ],
+    "examples": [
+      "generic immigrant family dinner",
+      "college debate club",
+      "venture capitalist pitch room"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "commercial aviation incident review board",
+      "audience": "a safety chair evaluating a captain whose military habits shaped cockpit decisions",
+      "stakes": "the board must learn from the habit without treating service history as either excuse or proof",
+      "format": "postmortem",
+      "requiredBeat": "the chair separates the captain's formation column from the evidence column on the incident board, then tests which inherited reflex matched the present flight conditions",
+      "firstImage": "a cockpit voice transcript clipped beside a faded squadron photo",
+      "mustInclude": [
+        "incident board",
+        "formation column",
+        "flight conditions"
+      ],
+      "mustAvoid": [
+        "patriotic military lesson"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "museum conservation lab choosing a restoration method",
+      "audience": "a head conservator weighing a technician's old apprenticeship against current pigment data",
+      "stakes": "using the familiar method may permanently alter a painting",
+      "format": "before_after",
+      "requiredBeat": "the conservator labels the technician's apprenticeship as context, then makes the team test a pigment sample before approving the repair",
+      "firstImage": "a tray of blue pigment flakes under a magnifier lamp",
+      "mustInclude": [
+        "pigment flakes",
+        "apprenticeship note",
+        "test swatch"
+      ],
+      "mustAvoid": [
+        "artistic intuition story"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "cybersecurity firm reviewing a breach-response lead",
+      "audience": "a COO deciding whether an ex-intelligence analyst's secrecy reflex fits a commercial client crisis",
+      "stakes": "withholding too much information could preserve control while destroying client trust",
+      "format": "dialogue",
+      "requiredBeat": "the COO asks which part of the secrecy instinct came from prior training and which part is justified by the current client facts, then changes the update cadence",
+      "firstImage": "a breach timeline projected beside a blacked-out incident memo",
+      "mustInclude": [
+        "breach timeline",
+        "client update cadence",
+        "redacted memo"
+      ],
+      "mustAvoid": [
+        "spy thriller tone"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "shipyard apprenticeship program promoting a master welder",
+      "audience": "a yard manager deciding whether craft excellence predicts supervision quality",
+      "stakes": "the wrong promotion could slow a submarine repair contract",
+      "format": "decision_point",
+      "requiredBeat": "the manager marks where the welder's formation helps quality control and where it may miss scheduling, then assigns a trial shift with explicit feedback rules",
+      "firstImage": "a weld coupon stamped with inspection numbers beside a repair schedule",
+      "mustInclude": [
+        "weld coupon",
+        "repair schedule",
+        "trial shift"
+      ],
+      "mustAvoid": [
+        "craft pride as automatic leadership"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "legal aid clinic hiring a director from a protest organization",
+      "audience": "a clinic board assessing mission fire against case-management discipline",
+      "stakes": "clients need both moral urgency and reliable filings",
+      "format": "vignette",
+      "requiredBeat": "the board maps the candidate's organizing instincts to client intake needs, then asks for a filing backlog plan instead of applauding the origin story",
+      "firstImage": "an intake folder with a court deadline stamped in red",
+      "mustInclude": [
+        "intake folder",
+        "organizing background",
+        "backlog plan"
+      ],
+      "mustAvoid": [
+        "activism versus business cliche"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "semiconductor fab line lead moving into plant management",
+      "audience": "a VP assessing whether precision-tool experience scales to cross-shift leadership",
+      "stakes": "a yield drop could cost millions if the wrong reflex governs escalation",
+      "format": "reflection",
+      "requiredBeat": "the VP asks the lead to name which clean-room instincts improve escalation and which one might hide people issues, then writes both into the promotion plan",
+      "firstImage": "a wafer defect chart glowing above a sealed clean-room window",
+      "mustInclude": [
+        "wafer defect chart",
+        "clean-room instinct",
+        "promotion plan"
+      ],
+      "mustAvoid": [
+        "engineering genius mythology"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "use biography as context without treating it as proof",
+      "identify formation-driven bias",
+      "test inherited reflexes against current facts",
+      "distinguish origin credibility from present fit"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one strong instinct you use at work, write where it was learned, then write one current condition that could make that instinct mislead you.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

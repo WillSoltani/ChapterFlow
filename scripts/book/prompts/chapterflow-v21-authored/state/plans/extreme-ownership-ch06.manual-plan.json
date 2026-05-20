@@ -1,0 +1,178 @@
+{
+  "chapterId": "extreme-ownership-ch06",
+  "number": 6,
+  "title": "Cover and Move",
+  "coreMove": "find the adjacent team’s exposed point and support it while preserving clear ownership of the shared mission",
+  "sourcePressure": "Siloed units fail unless mutually dependent teams support one another as parts of one mission.",
+  "chapterSpecificMisunderstanding": "teamwork means everyone helps everyone with everything",
+  "sourceAlignmentTerms": [
+    "cover and move",
+    "silos",
+    "mutual support",
+    "interdependence",
+    "shared mission",
+    "accountability limit"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "emergency department and radiology during a stretcher backlog",
+      "audience": "an ER charge nurse whose team says imaging delays are not their problem",
+      "stakes": "patients wait in hallways while each department protects its own numbers",
+      "format": "scene",
+      "requiredBeat": "the charge nurse sends one tech to clear transport paperwork, frees two hallway bays for returning patients, and tells radiology exactly what support they can count on",
+      "firstImage": "a stretcher tag dangles from a hallway rail beside a full imaging queue",
+      "mustInclude": [
+        "stretcher tag",
+        "transport paperwork",
+        "hallway bays"
+      ],
+      "mustAvoid": [
+        "everyone just pitch in frame"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "independent film shoot where sound and lighting are fighting over generator load",
+      "audience": "a production manager trying to save the final exterior shot",
+      "stakes": "the day can wrap without the critical scene if departments defend only their own setup",
+      "format": "dialogue",
+      "requiredBeat": "the sound lead offers a lower-power recorder setup, lighting gives back one lamp, and the production manager ties both sacrifices to finishing the shot",
+      "firstImage": "You are close enough to see this: humming generator dips as a rain cover snaps over the cable run.",
+      "mustInclude": [
+        "generator load sheet",
+        "lower-power recorder",
+        "one returned lamp"
+      ],
+      "mustAvoid": [
+        "creative-team harmony cliché"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "ecommerce warehouse racing a carrier cutoff",
+      "audience": "a fulfillment lead watching packing blame inventory control",
+      "stakes": "hundreds of paid orders miss pickup if one lane waits for the other to fail",
+      "format": "decision_point",
+      "requiredBeat": "the fulfillment lead moves two packers to scan exception bins, inventory sends a runner to verify substitutions, and both teams protect the carrier cutoff together",
+      "firstImage": "The first thing you register is physical: thermal shipping label peels itself from a printer as the cutoff clock turns red.",
+      "mustInclude": [
+        "thermal label printer",
+        "exception bins",
+        "carrier cutoff clock"
+      ],
+      "mustAvoid": [
+        "silo complaint without visible support"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "soccer team whose midfield leaves the fullback isolated",
+      "audience": "a youth coach teaching team defense without shaming one player",
+      "stakes": "the opponent keeps attacking the same open channel",
+      "format": "predict_reveal",
+      "requiredBeat": "the coach freezes a drill, has the midfielder stand where the fullback needs cover, restarts play, and lets the stopped attack prove the support point",
+      "firstImage": "\"Hold there,\" someone says. Torn corner flag leans while the winger waits alone on the sideline.",
+      "mustInclude": [
+        "torn corner flag",
+        "frozen drill",
+        "supporting angle"
+      ],
+      "mustAvoid": [
+        "generic sports teamwork speech"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "museum exhibition install where security and curators have separate opening priorities",
+      "audience": "an exhibition manager balancing artifact care and visitor flow",
+      "stakes": "the exhibit may open with protected objects but unsafe visitor bottlenecks",
+      "format": "postmortem",
+      "requiredBeat": "after a failed walk-through, the manager pairs one guard and one curator at each fragile case, then changes the stanchion layout from both perspectives",
+      "firstImage": "Later, the team will trace the lesson back to this: glass crate sits unopened beside a coil of black stanchion rope.",
+      "mustInclude": [
+        "glass crate",
+        "stanchion rope",
+        "paired walk-through"
+      ],
+      "mustAvoid": [
+        "culture-war museum frame"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "municipal water main repair next to a mistimed traffic signal",
+      "audience": "a water crew chief and traffic technician working different trouble tickets",
+      "stakes": "repair success still creates gridlock and worker danger if traffic stays unmanaged",
+      "format": "vignette",
+      "requiredBeat": "the water chief radios the signal tech before opening the trench, shares the lane-closure timing, and waits for the signal cycle change before moving the excavator",
+      "firstImage": "What changes once this is in front of everyone: blue utility flag trembles beside a traffic cabinet with its door open?",
+      "mustInclude": [
+        "blue utility flag",
+        "signal cycle change",
+        "excavator hold"
+      ],
+      "mustAvoid": [
+        "construction coordination as paperwork"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when local optimization exposes another team",
+      "choose support that preserves clear ownership",
+      "analyze interdependence without turning it into vague collaboration"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one adjacent team exposed by your team’s choices, then write the smallest support action that protects the shared result without taking over.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

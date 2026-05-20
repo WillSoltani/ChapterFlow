@@ -1,0 +1,181 @@
+{
+  "chapterId": "leaders-eat-last-ch09",
+  "number": 9,
+  "title": "The Courage to Do the Right Thing",
+  "coreMove": "Choose the costly right action that sends burden toward you instead of down the chain.",
+  "sourcePressure": "Turns leadership into cost: courage is accepting discomfort or risk so people, truth, and standards are not abandoned under pressure.",
+  "chapterSpecificMisunderstanding": "Treating courage as personal boldness, dramatic confrontation, or risk for its own sake.",
+  "sourceAlignmentTerms": [
+    "courage",
+    "right thing",
+    "cost",
+    "empathy gave courage",
+    "sacrifice",
+    "truth",
+    "standards"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 9 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "fishery quota hearing",
+      "audience": "regional scientist under political pressure",
+      "stakes": "truth about stock collapse may cost funding",
+      "format": "decision_point",
+      "requiredBeat": "she reads the low-count trawl data into the record before the sponsor speaks",
+      "firstImage": "a trawl sample jar beside a microphone",
+      "mustInclude": [
+        "sample jar",
+        "hearing agenda"
+      ],
+      "mustAvoid": [
+        "moral grandstanding"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "surgical morbidity conference",
+      "audience": "attending surgeon reviewing his own call",
+      "stakes": "admitting error protects future patients but risks status",
+      "format": "scene",
+      "requiredBeat": "he opens with his decision timestamp before discussing the resident's role",
+      "firstImage": "an operative note projected in a dim room",
+      "mustInclude": [
+        "operative note",
+        "laser pointer"
+      ],
+      "mustAvoid": [
+        "public blame office"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "independent bookstore payroll",
+      "audience": "owner facing a cash shortfall",
+      "stakes": "protecting staff pay costs personal savings",
+      "format": "dialogue",
+      "requiredBeat": "the owner shows the payroll envelope and delays her own draw before asking for reduced hours",
+      "firstImage": "a sealed payroll envelope on a receipt spike",
+      "mustInclude": [
+        "payroll envelope",
+        "receipt spike"
+      ],
+      "mustAvoid": [
+        "family honesty"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "wildlife rehab release site",
+      "audience": "director tempted to hide a failed release",
+      "stakes": "donors may pull funds if the truth is visible",
+      "format": "postmortem",
+      "requiredBeat": "she posts the failed tracking result and the revised protocol before the gala",
+      "firstImage": "a broken tracking tag on a clipboard",
+      "mustInclude": [
+        "tracking tag",
+        "protocol sheet"
+      ],
+      "mustAvoid": [
+        "animal sentiment"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "high-school robotics inspection queue",
+      "audience": "team lead discovers an illegal part",
+      "stakes": "fairness means self-reporting before finals",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks what trophy means if the inspector misses it, then walks the part to the table",
+      "firstImage": "an aluminum bracket in a parts bin",
+      "mustInclude": [
+        "aluminum bracket",
+        "inspection sticker"
+      ],
+      "mustAvoid": [
+        "student competition repeat"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "apartment co-op board",
+      "audience": "treasurer finding reserve misuse",
+      "stakes": "revealing the mistake may implicate friends",
+      "format": "reflection",
+      "requiredBeat": "he puts the bank statement on the agenda rather than fixing it quietly after the vote",
+      "firstImage": "a bank statement folded under meeting minutes",
+      "mustInclude": [
+        "bank statement",
+        "meeting minutes"
+      ],
+      "mustAvoid": [
+        "neighbor drama"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify where courage has a cost",
+      "protect truth under pressure",
+      "distinguish sacrifice from spectacle",
+      "evaluate who bears the burden of silence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the sentence you are avoiding because it will cost you comfort, then decide who pays if you keep avoiding it.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Johnny Bravo",
+      "detail": "the package text says his risky weather letdown before being ordered shows empathy becoming courage",
+      "useIn": "fullRead",
+      "phrasingHint": "Johnny Bravo matters here because the right thing costs him comfort before it becomes a principle anyone else can admire."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

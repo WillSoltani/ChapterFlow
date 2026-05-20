@@ -1,0 +1,101 @@
+{
+  "bookId": "seeking-wisdom",
+  "title": "Seeking Wisdom: From Darwin to Munger",
+  "author": "Peter Bevelin",
+  "thesisParagraph": "Better judgment is not presented as brilliance, theory collecting, or immunity from error. It is the practical discipline of reducing preventable mistakes by seeing recurring misjudgment patterns, reading incentives and social pressure, respecting probability and systems, protecting execution with simple checks, and keeping enough temperament to use what you know when fear, status, reward, or ego starts pushing.",
+  "coreIdeas": [
+    {
+      "name": "Recurring error patterns",
+      "oneSentence": "Many bad decisions feel unique while they are forming but follow familiar pressure patterns.",
+      "mentalMove": "Pause before commitment and ask which known trap may already be shaping the judgment.",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Incentives under explanations",
+      "oneSentence": "People may give sincere reasons while reward, reputation, fairness, approval, fear, or status quietly drives the action.",
+      "mentalMove": "Read the stated reason beside the payoff structure instead of choosing one pure motive.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Base-rate humility",
+      "oneSentence": "A vivid case can feel stronger than the broader frequencies that should discipline the forecast.",
+      "mentalMove": "Start with prior probabilities and margin of safety before letting a single case take over.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Second-order cost",
+      "oneSentence": "The first consequence can look attractive while reactions, delays, and displaced burdens make the move worse.",
+      "mentalMove": "Trace who responds, what shifts downstream, and who pays later before calling the first result success.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Omission protection",
+      "oneSentence": "Knowing the right step does not keep it visible under routine, pressure, or overfamiliarity.",
+      "mentalMove": "Turn recurring misses into short, situation-bound checklists that protect judgment without replacing it.",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Temperament under pressure",
+      "oneSentence": "Models and routines only help if emotion does not push them out of reach in the live moment.",
+      "mentalMove": "Create a gap between emotional surge and committed action so better judgment can re-enter.",
+      "sourceAnchors": [
+        "ch06.source"
+      ]
+    }
+  ],
+  "targetReader": "A capable adult who already values thinking clearly but keeps seeing the same avoidable errors at work, in money, in family decisions, and under social pressure. The reader cares because better judgment saves time, money, trust, and self-respect before the lesson becomes expensive.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "let a small operational check carry a large idea",
+      "keep humility visible whenever a label or model could become false certainty"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake famous anecdotes or invented studies",
+      "no wisdom-as-heroic-mastery framing"
+    ]
+  },
+  "voiceSpecimens": [
+    "The meeting does not feel biased while it is happening. It feels efficient.",
+    "A number with no base rate is just confidence wearing a clean shirt.",
+    "Before you admire the first result, ask who has to clean up the second one.",
+    "The checklist is not there because you are stupid. It is there because the room gets fast.",
+    "You do not need a colder personality. You need a small pause before pride signs the order.",
+    "A public promise can make the exit door look like humiliation, even when it is only correction."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches readers to optimize their cognitive toolkit for robust decision architecture.",
+    "The author argues that wisdom is important because people should think more carefully.",
+    "In conclusion, you should apply these ideas to your daily life and be mindful of bias.",
+    "Here is a powerful framework that will transform your mindset instantly.",
+    "People often make mistakes, so the solution is to slow down and be rational.",
+    "Unlock your inner decision genius by mastering mental models."
+  ],
+  "teachingArc": "The book compounds from diagnosis to execution. First the reader learns that many errors recur in recognizable patterns. Then the reader learns to inspect incentives and social motives that keep funding those patterns. Probability disciplines the forecast, systems thinking tests the first result against later consequences, checklists protect known steps from routine omission, and temperament decides whether any of that knowledge remains usable when the room gets emotional.",
+  "forbiddenMoves": [
+    "Do not turn the book into a catalog of bias labels where naming the trap substitutes for judging the case.",
+    "Do not make every lesson sound like generic slow-down advice; each move must change what the reader looks for or does next.",
+    "Do not invent named experiments, famous scenes, or historical props to compensate for sparse source anchors.",
+    "Do not portray wisdom as certainty, coldness, or total control; keep the aim at reducing preventable mistakes.",
+    "Do not reuse the same boardroom forecast, kitchen argument, classroom answer, or investment-club shell across chapters."
+  ]
+}

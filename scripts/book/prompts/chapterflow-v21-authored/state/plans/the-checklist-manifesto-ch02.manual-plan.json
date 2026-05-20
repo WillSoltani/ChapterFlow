@@ -1,0 +1,126 @@
+{
+  "chapterId": "the-checklist-manifesto-ch02",
+  "number": 2,
+  "title": "The Checklist",
+  "coreMove": "Separate vital minimum checks from expert knowledge and make those checks visible at the moment they are skipped.",
+  "sourcePressure": "The source anchors this chapter in the B-17 flight-test story, recurring expert failures of forgetting and skipping, and Pronovost's central-line checklist in the Keystone Initiative.",
+  "chapterSpecificMisunderstanding": "The weak version treats a checklist as a comprehensive task list. The real move is to protect the few basic actions that are deadly when skipped.",
+  "sourceAlignmentTerms": ["B-17", "central line", "Pronovost", "Keystone Initiative", "minimum vital checks", "anti-omission"],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "B-17 flight-test story",
+      "detail": "The source sidecar identifies the B-17 story as the case where one missed basic defeated elite aviation skill.",
+      "useIn": "both",
+      "phrasingHint": "The B-17 story carries the hard lesson: a machine can be too advanced for courage and memory alone."
+    },
+    {
+      "kind": "person",
+      "name": "Pronovost",
+      "detail": "The source sidecar names Pronovost's central-line checklist and the Keystone Initiative as evidence that short lists can cut infections and save lives.",
+      "useIn": "fullRead",
+      "phrasingHint": "Pronovost's list did not teach doctors what a central line was; it made the life-saving basics harder to skip."
+    },
+    {
+      "kind": "study",
+      "name": "Keystone Initiative",
+      "detail": "The source sidecar links the Keystone Initiative to central-line checklist evidence in intensive care.",
+      "useIn": "deepRead",
+      "phrasingHint": "Keystone matters because the checklist made private confidence answer to a shared minimum."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["The checklist is humble but powerful", "A simple list saves lives"],
+    "counterintuition": ["A checklist is not for amateurs", "The basics are what experts forget"],
+    "tryThisNow": ["Write your own checklist before your next task", "Pick three important steps"],
+    "examples": ["generic ICU insertion scene", "airplane cockpit with unnamed pilot", "sticky note on laptop"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Claire, an anesthesia resident at the pre-induction pause",
+      "audience": "medical trainees who know the steps but face rushed rooms",
+      "stakes": "antibiotics and airway backup are assumed complete before incision",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Claire reads only the three non-negotiable checks aloud and catches the missing antibiotic before the drape goes up",
+      "firstImage": "At 7:06 a.m., Claire sees the empty antibiotic line beside the anesthesia cart",
+      "mustInclude": ["anesthesia cart", "antibiotic line", "incision clock"],
+      "mustAvoid": ["general checklist praise", "long procedural lecture"]
+    },
+    {
+      "domain": "Lukas, a community pool operator opening for swim lessons",
+      "audience": "seasonal supervisors who rely on habit after years of routine",
+      "stakes": "children enter the water before chemical levels are verified",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lukas stops the gate opening until the chlorine reading, rescue tube, and drain cover check are marked in front of the lifeguards",
+      "firstImage": "the sharp smell of chlorine hanging over a silent pool deck",
+      "mustInclude": ["test strip vial", "rescue tube", "drain cover"],
+      "mustAvoid": ["clipboard lecture", "summer camp chaos"]
+    },
+    {
+      "domain": "Anya, a mobile blood drive coordinator",
+      "audience": "nursing teams setting up temporary clinical spaces",
+      "stakes": "a donor reaction becomes harder to handle if the emergency kit is still in the van",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Anya asks the team to point to the emergency kit and donor ID scanner before the first donor sits down",
+      "firstImage": "\"Show me the kit before we open,\" Anya says in the church basement",
+      "mustInclude": ["folding cot", "donor ID scanner", "emergency kit"],
+      "mustAvoid": ["hospital ward repetition", "generic volunteer setup"]
+    },
+    {
+      "domain": "David, a commercial bakery allergen-line supervisor",
+      "audience": "food production leads who see repeated cleaning as obvious",
+      "stakes": "an almond residue miss sends mislabeled pastries to a school order",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "David reduces the changeover list to swab, label roll, and bin seal, then makes the line lead verify them before restart",
+      "firstImage": "It took David one returned tray to stop trusting the changeover from memory",
+      "mustInclude": ["allergen swab", "label roll", "sealed ingredient bin"],
+      "mustAvoid": ["restaurant closing list", "generic food safety"]
+    },
+    {
+      "domain": "Camille, a fire station lieutenant checking the truck",
+      "audience": "first responders who prize speed but depend on ready equipment",
+      "stakes": "a missing oxygen cylinder turns up only after the engine is rolling",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Camille asks the crew which three items would stop them cold on a call, then verifies those before letting the full inventory distract them",
+      "firstImage": "Which missing item would make the siren useless?",
+      "mustInclude": ["oxygen cylinder", "thermal camera", "engine bay door"],
+      "mustAvoid": ["heroic rescue", "full truck inventory catalog"]
+    },
+    {
+      "domain": "Akira, a photo lab manager processing film",
+      "audience": "craft workers who think skill protects routine sequence",
+      "stakes": "a wedding roll is ruined if chemical temperature is assumed",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Akira posts a two-check strip at the developer tank and makes temperature and fixer freshness visible before the roll is opened",
+      "firstImage": "red safelight pooling over a stainless developer tank",
+      "mustInclude": ["developer thermometer", "fixer bottle", "sealed film canister"],
+      "mustAvoid": ["digital software workflow", "generic art scene"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["choose minimum vital checks", "distinguish checklist from manual", "spot skipping versus forgetting", "evaluate whether verification is shared and visible"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Choose one repeated task and cross out every item except the three omissions that could cause real harm, delay, or rework.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

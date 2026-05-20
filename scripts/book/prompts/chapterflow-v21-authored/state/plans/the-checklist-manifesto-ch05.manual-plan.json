@@ -1,0 +1,119 @@
+{
+  "chapterId": "the-checklist-manifesto-ch05",
+  "number": 5,
+  "title": "The First Try",
+  "coreMove": "Treat first-use resistance as implementation data and revise the checklist until the vital pause survives real workflow.",
+  "sourcePressure": "The source follows an early WHO surgical-checklist pilot, initial resistance, and refinement, showing that the checklist idea becomes real only when revised into usable practice.",
+  "chapterSpecificMisunderstanding": "The weak version says people resist change and need persuasion. The real chapter says first use exposes design flaws that must be worked through.",
+  "sourceAlignmentTerms": ["WHO surgical-checklist pilot", "first try", "resistance", "refinement", "timing", "usable practice"],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "early WHO surgical-checklist pilot",
+      "detail": "The source sidecar identifies the early WHO surgical-checklist pilot as the chapter's main implementation frame.",
+      "useIn": "both",
+      "phrasingHint": "The first WHO pilot matters because the list had to be changed by the room before the room could trust it."
+    },
+    {
+      "kind": "event",
+      "name": "initial resistance and refinement",
+      "detail": "The source sidecar says the first try surfaces resistance and the need for refinement.",
+      "useIn": "deepRead",
+      "phrasingHint": "Resistance is not only a wall; sometimes it is the room telling you where the tool still does not fit."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["The first draft always fails", "Resistance is feedback"],
+    "counterintuition": ["Pushback is useful", "Implementation matters more than the idea"],
+    "tryThisNow": ["Ask for feedback on your checklist", "Make your checklist shorter"],
+    "examples": ["generic change management rollout", "survey after training", "hospital pilot with fake outcome numbers"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Olivia, a surgical educator rehearsing a first checklist pause",
+      "audience": "clinical leaders introducing a safety pause to skeptical teams",
+      "stakes": "the team performs the pause once, finds it awkward, and may abandon the whole tool",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Olivia marks the exact moment the pause interrupts sterile setup and moves that item later without removing the identity and antibiotic checks",
+      "firstImage": "At 6:52 a.m., Olivia watches two gloved hands freeze over a blue sterile drape",
+      "mustInclude": ["sterile drape", "antibiotic check", "identity band"],
+      "mustAvoid": ["claiming final trial success", "generic buy-in speech"]
+    },
+    {
+      "domain": "Etienne, a dental clinic manager testing sterilization workflow",
+      "audience": "clinic managers refining a routine with assistants and dentists",
+      "stakes": "a too-long checklist makes assistants skip it between patients",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Etienne times the failed first version, cuts the duplicate tray items, and keeps the sterilizer indicator check at the chair turnover point",
+      "firstImage": "It took Etienne six ignored laminated cards to admit the first version was too slow",
+      "mustInclude": ["sterilizer indicator", "tray sleeve", "chair turnover clock"],
+      "mustAvoid": ["hospital ICU", "clipboard scolding"]
+    },
+    {
+      "domain": "Marta, a factory changeover pilot lead",
+      "audience": "manufacturing supervisors trialing a line-start checklist",
+      "stakes": "operators reject a list that asks for confirmations after the machine is already running",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Marta moves two checks to before the guard closes and deletes the items operators can see without help",
+      "firstImage": "metal shavings glittering beneath the stopped press",
+      "mustInclude": ["guard latch", "caliper setting", "first-part bin"],
+      "mustAvoid": ["Boeing design chapter details", "generic lean workshop"]
+    },
+    {
+      "domain": "Jack, a school trip coordinator handling medication handoff",
+      "audience": "teachers piloting a student safety routine outside school",
+      "stakes": "a trip checklist is so long that the inhaler handoff gets lost in paperwork",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Jack rewrites the first try so the bus lead, nurse, and teacher confirm only medication owner, emergency contact, and return count before departure",
+      "firstImage": "Which part of the form would actually save a child on the bus?",
+      "mustInclude": ["inhaler pouch", "bus roster", "emergency contact card"],
+      "mustAvoid": ["classroom lesson", "field-trip permission slip as main object"]
+    },
+    {
+      "domain": "Chiara, a film set stunt safety coordinator",
+      "audience": "creative crews that dislike pauses which break momentum",
+      "stakes": "the first stunt checklist irritates the director and misses the actual harness risk",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chiara listens to the stunt lead's complaint, moves the pause to before camera lock, and keeps the harness tug test visible",
+      "firstImage": "\"You are asking after I am already wired,\" the stunt lead says",
+      "mustInclude": ["harness tug test", "camera lock", "rain bar"],
+      "mustAvoid": ["generic safety meeting", "heroic stunt rescue"]
+    },
+    {
+      "domain": "Yusuf, a refugee clinic intake desk lead",
+      "audience": "frontline service teams adding structure without slowing urgent help",
+      "stakes": "a first draft intake list delays interpreters but still misses consent for document sharing",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Yusuf watches the line stall, then revises the pause to occur only when interpreter, consent, and urgent medical flag can be confirmed together",
+      "firstImage": "You hear three languages in the waiting room and see the interpreter schedule slipping",
+      "mustInclude": ["interpreter sheet", "consent stamp", "medical flag sticker"],
+      "mustAvoid": ["immigration paperwork drama", "generic nonprofit compassion"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["read resistance as design data", "revise timing without losing purpose", "separate awkwardness from essential checks", "evaluate when to cut versus keep an item"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one checklist or routine that irritates people and mark whether the irritation comes from timing, wording, length, or a missing owner.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,199 @@
+{
+  "chapterId": "make-it-stick-ch04",
+  "number": 4,
+  "title": "Embrace Difficulties",
+  "coreMove": "Audit a hard practice moment for the mechanism that makes it desirable: retrieval, generation, spacing, variation, correction, or recovery.",
+  "sourcePressure": "This chapter defines desirable difficulty as challenge that strengthens learning, while excluding overload, random confusion, and errors that never get corrected.",
+  "chapterSpecificMisunderstanding": "The writer must avoid saying hard is better; the chapter asks what the difficulty makes the learner do.",
+  "sourceAlignmentTerms": [
+    "desirable difficulties",
+    "generation",
+    "reloading",
+    "error correction",
+    "spacing",
+    "variation",
+    "overload",
+    "productive friction"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Mia Blundetto",
+      "detail": "First lieutenant in the U.S. Marine Corps, billeted to logistics in Okinawa, who went through jump school despite fearing falling and later had to respond during a C130 parachute jump at 1,250 feet.",
+      "useIn": "both",
+      "phrasingHint": "Mia Blundetto did not need easy jump training when the air went wrong; she needed difficulty that had already taught her what to do."
+    },
+    {
+      "kind": "study",
+      "name": "Cal Poly baseball contextual-interference study",
+      "detail": "Experienced Cal Poly batters took extra practice under different pitch regimens; random pitches felt harder but built better real hitting than blocks of known pitch types.",
+      "useIn": "deepRead",
+      "phrasingHint": "A curveball is a different lesson when you do not know it is coming."
+    },
+    {
+      "kind": "study",
+      "name": "Elizabeth and Robert Bjork desirable-difficulties work",
+      "detail": "The notes cite the Bjorks on making learning hard in a good way and on reloading after delay.",
+      "useIn": "fullRead",
+      "phrasingHint": "The Bjorks gave a name to the friction that helps because it makes memory reload instead of coast."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open by saying learning is harder than it looks",
+      "Do not use a generic desk-and-notes image",
+      "Do not start with a broad claim about students today"
+    ],
+    "counterintuition": [
+      "Do not use the shell easier is not better",
+      "Do not flatten the chapter into struggle is good",
+      "Do not contrast comfort and growth in generic coaching language"
+    ],
+    "tryThisNow": [
+      "Do not write set a timer and reflect",
+      "Do not ask for a vague study audit",
+      "Do not use a reusable close-your-notes prompt without a chapter-specific action"
+    ],
+    "examples": [
+      "No repeated mug, marker, dosing cup, bike helmet, radiator, bus depot, classroom, or narrow-kitchen shells",
+      "No six examples that all start with a timestamp and a named protagonist",
+      "No generic student rereads notes scene unless the visible beat changes the method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Rachel, an emergency-dispatch trainee handling mixed radio calls",
+      "audience": "public-safety trainees whose drills are either too easy or overwhelming",
+      "stakes": "the first real multi-unit call will expose whether the difficulty trained triage",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "the supervisor removes one distraction, keeps two competing calls, and makes Rachel choose the first callback with feedback after the run",
+      "firstImage": "Two radio channels crackle over a dark dispatch console.",
+      "mustInclude": [
+        "radio console",
+        "incident cards",
+        "feedback headset"
+      ],
+      "mustAvoid": [
+        "chaos presented as courage"
+      ]
+    },
+    {
+      "domain": "Thomas, a chess-club coach teaching rook endings",
+      "audience": "coaches who need challenge without drowning beginners",
+      "stakes": "students lose interest if every puzzle is either obvious or impossible",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he hides the engine, gives a position just beyond comfort, lets students generate candidate moves, then replays the correction",
+      "firstImage": "The tournament clock ticks beside three wooden rooks.",
+      "mustInclude": [
+        "wooden board",
+        "covered engine screen",
+        "move slips"
+      ],
+      "mustAvoid": [
+        "generic chess genius scene"
+      ]
+    },
+    {
+      "domain": "Juliette, a surgical-tech instructor practicing sterile breaks",
+      "audience": "health-care trainers designing errorful but safe practice",
+      "stakes": "real procedures require noticing and repairing a contamination break quickly",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she stages a low-stakes sterile-field error, waits for the trainee to catch it, then has him reset the field correctly",
+      "firstImage": "At 10:06 a.m., Juliette folds one blue drape corner the wrong way.",
+      "mustInclude": [
+        "blue drape",
+        "instrument tray",
+        "reset checklist"
+      ],
+      "mustAvoid": [
+        "punishment-heavy correction"
+      ]
+    },
+    {
+      "domain": "Niklas, a firefighter academy instructor adding smoke to search drills",
+      "audience": "instructors balancing realism and overload",
+      "stakes": "too much smoke makes the drill blind panic instead of learning",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "he asks the recruit to predict the route, adds controlled smoke and one blocked doorway, then debriefs the missed hand sweep",
+      "firstImage": "How much smoke teaches before it erases the room?",
+      "mustInclude": [
+        "thermal camera",
+        "blocked doorway",
+        "rope line"
+      ],
+      "mustAvoid": [
+        "heroic rescue ending"
+      ]
+    },
+    {
+      "domain": "Catarina, a language tutor using generation before explanation",
+      "audience": "adult learners who want rules before trying",
+      "stakes": "students need to produce a sentence without waiting for the rule to be served first",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she asks for a guessed past-tense sentence, corrects the error, and has the learner say a new sentence with the repair",
+      "firstImage": "\"Guess first,\" Catarina says, covering the verb table.",
+      "mustInclude": [
+        "covered verb table",
+        "sentence strips",
+        "correction pencil"
+      ],
+      "mustAvoid": [
+        "unsupported guessing"
+      ]
+    },
+    {
+      "domain": "Chidi, a robotics mentor preparing students for sensor failure",
+      "audience": "competition teams that overfit to smooth lab runs",
+      "stakes": "the robot will face uneven light and noisy sensors at regionals",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the postmortem identifies which added obstacles forced recovery and which ones merely broke the practice",
+      "firstImage": "It took Chidi one dead sensor to stop calling every obstacle useful.",
+      "mustInclude": [
+        "sensor log",
+        "black tape maze",
+        "battery cart"
+      ],
+      "mustAvoid": [
+        "difficulty worship"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "judge whether difficulty has a learning mechanism",
+      "distinguish corrected errors from abandoned errors",
+      "set challenge below overload and above easy fluency"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one hard part of your current practice and write the mechanism it serves; if you cannot name one, simplify or redesign it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,335 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch66",
+  "number": 66,
+  "title": "Affect Heuristic",
+  "readingTimeMinutes": 12,
+  "hook": "A warm feeling can make the risk look smaller before the numbers have spoken.",
+  "counterintuition": "A feeling is useful as a signal that something matters, but it is a poor substitute for probability, severity, and exposure. The correction is to separate mood from risk judgment.",
+  "tryThisNow": "Before rating one risk, write the feeling the option gives you, then write probability, severity, and exposure on separate lines.",
+  "keyTakeaway": "Let feeling tell you where to look, not what the risk is.",
+  "breakdown": {
+    "fastRead": "The maintenance tag on Kara's wildfire planning map hangs from a camera that caught a dramatic wall of flame. The room wants to move crews toward the image. Kara marks affect heuristic on the tag and asks for wind, fuel, and evacuation probability.\n\nThe affect heuristic lets a good or bad feeling stand in for risk judgment. A vivid image makes danger feel high. A friendly name makes danger feel low. The feeling may point to something real, but it is not the measure.\n\nFear can point. It cannot count.",
+    "deepRead": "The maintenance tag pulls attention because the fire image is frightening. Nobody is wrong to feel alarm. But the question is where crews reduce risk most. Kara writes probability beside the tag, then asks which ridge has wind shift, dry fuel, road access, and homes in range.\n\nAffect works quickly. It compresses many signals into one bodily answer: good, bad, safe, unsafe, like, dislike. That speed helps when you need to notice danger or care. It misleads when the feeling answers a harder question without doing the work. How likely is the event? How severe would it be? How many people are exposed? The mind may reply with a mood before those questions are even asked.\n\nThe mood arrives first and pretends to be evidence.\n\nRowan sees the same problem on a software beta dashboard. An auction paddle from a charity demo sits beside the bug list because users loved the launch event. The team feels generous toward the product. Rowan marks feeling on the paddle and makes the release call from crash rate, task completion, and support tickets.\n\nThe correction is not to become emotionless. You need emotion to care where risk lands. The move is to slow the conversion from feeling to estimate. Name the feeling, then put numbers in their own boxes. Probability is one box. Harm is another. Exposure is another. Only then should the choice move.",
+    "fullRead": "The waiting-list sheet in Lydia's biotech signal review has a photo of a smiling patient clipped to the top. The treatment story is moving, and investors lean toward funding a larger trial. Lydia marks risk judgment on the sheet. Then she asks for adverse events, response rate, control comparison, and uncertainty before the funding vote.\n\nSheila Murphy, Jennifer Monahan, and R. B. Zajonc studied how nonconscious affect can add up through priming and exposure. In one line of work, small smile or frown primes could shift later judgments of unfamiliar Chinese ideographs. The lesson is not that people are silly. The lesson is that affect can enter judgment before you know it is there.\n\nWhat mood was installed before the estimate?\n\nYou see the same mechanism in safety work. You are beside Aidan at a cycling crash audit, holding a defect photo of a twisted cargo bike fork. The photo is ugly, and the courier company wants to ban the whole model. Aidan marks smilies on the photo because the team had just reviewed a cheerful rider campaign for another model. Both moods are contaminating the risk comparison. He separates crash frequency, rider exposure, and failure mechanism before the ban is written.\n\nThe affect heuristic often pushes risk and benefit in opposite directions. If you like a technology, you may see its benefits as high and its risks as low. If you dislike it, risks swell and benefits shrink. The numbers may not move at all. Your feeling moves the whole scale.\n\nThis matters in budgets too. Ivy reviews a touring theater forecast grid after the cast performs a moving preview for funders. The room feels the tour deserves a chance. The feeling may be right about artistic value. It says less about bus breakdown probability, ticket variance, and venue deposits. Ivy marks probability on the grid and makes the budget show risk reserves beside the glowing notes.\n\nAffect can also make caution disappear. Finn sees it after a pension fund committee meets a charismatic clean-energy founder. A donor pledge card from the event is still on the table, and members call the investment safe because the founder felt sincere. Finn marks affect on the card and forces the same checklist used for less charming proposals: debt, concentration, downside case, and liquidity.\n\nFeelings deserve a seat, not the steering wheel. If a choice concerns human pain, beauty, duty, or trust, feeling may tell you that the stakes are alive. But risk judgment needs its own columns. What can happen? How often? How bad? To whom? What evidence would change the estimate?\n\nLet feeling tell you where to look, not what the risk is.",
+    "whyItMatters": "The affect heuristic makes mood do the work of probability. Readers need to separate feeling from risk, benefit, severity, and exposure before deciding."
+  },
+  "examples": [
+    {
+      "exampleId": "ch66-ex01-kara-maintenance-tag",
+      "title": "Kara Separates Flame Image from Risk",
+      "tags": [
+        "scene",
+        "wildfire",
+        "affect heuristic"
+      ],
+      "planSpec": {
+        "domain": "a wildfire planning room applying Affect Heuristic under operational pressure",
+        "audience": "a reader who has to make a live judgment where affect heuristic could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Affect Heuristic is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the maintenance tag, names the affect heuristic risk, and redirects the crew decision toward wind, fuel, road access, and evacuation probability."
+      },
+      "scenario": "A maintenance tag hangs from Kara's 5:40 a.m. wildfire planning map in Kelowna, beside a camera still of a flame wall. The room wants crews sent toward the image. Kara must choose between the frightening picture and the ridge with the higher evacuation probability.",
+      "whatToDo": "Mark affect heuristic on the tag, name the fear in the room, and rank ridges by wind, fuel, road access, and homes exposed.",
+      "whyItMatters": "The image may be urgent, but the crew decision needs risk drivers, not only alarm."
+    },
+    {
+      "exampleId": "ch66-ex02-rowan-auction-paddle",
+      "title": "Rowan Coolly Reads the Beta Dashboard",
+      "tags": [
+        "vignette",
+        "software",
+        "feeling"
+      ],
+      "planSpec": {
+        "domain": "a software beta dashboard applying Affect Heuristic under operational pressure",
+        "audience": "a reader who has to make a live judgment where feeling could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Affect Heuristic is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the auction paddle, names the feeling risk, and moves release judgment to crash rate, task completion, and support tickets."
+      },
+      "scenario": "\"Users loved the demo night,\" the product lead says during a 10:05 a.m. software beta review in Austin. Rowan holds the charity auction paddle from the launch event while the dashboard shows unresolved crashes. He has to choose: trust the warm feeling or read the beta metrics.",
+      "whatToDo": "Mark feeling on the paddle, set the event glow aside, and judge release readiness from crashes, task completion, and support tickets.",
+      "whyItMatters": "A loved demo can make a weak beta feel safer than it is."
+    },
+    {
+      "exampleId": "ch66-ex03-lydia-waiting-list-sheet",
+      "title": "Lydia Removes the Patient Photo",
+      "tags": [
+        "dialogue",
+        "biotech",
+        "risk judgment"
+      ],
+      "planSpec": {
+        "domain": "a biotech signal review applying Affect Heuristic under operational pressure",
+        "audience": "a reader who has to make a live judgment where risk judgment could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Affect Heuristic is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the waiting-list sheet, names the risk judgment risk, and separates the moving patient story from trial evidence."
+      },
+      "scenario": "The projector fan hums over Lydia's 2:20 p.m. biotech signal review in Basel as a smiling patient photo sits clipped to the waiting-list sheet. The story moves the room. Lydia must decide whether the next trial vote follows affect or adverse events and response data.",
+      "whatToDo": "Mark risk judgment on the sheet, move the photo out of the evidence packet, and vote from response rate, controls, adverse events, and uncertainty.",
+      "whyItMatters": "A moving case can make a treatment feel safer and stronger before the trial data says so."
+    },
+    {
+      "exampleId": "ch66-ex04-aidan-defect-photo",
+      "title": "Aidan Rebuilds the Crash Comparison",
+      "tags": [
+        "decision",
+        "cycling",
+        "smilies"
+      ],
+      "planSpec": {
+        "domain": "a cycling crash audit applying Affect Heuristic under operational pressure",
+        "audience": "a reader who has to make a live judgment where smilies could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Affect Heuristic is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the defect photo, names the smilies risk, and compares crash frequency, exposure, and mechanism."
+      },
+      "scenario": "You are beside Aidan at a Dublin cycling crash audit, looking at a defect photo of a twisted cargo bike fork. The last slide had smiling riders on a different model. Before banning one bike, Aidan must choose between mood and crash-rate comparison.",
+      "whatToDo": "Mark smilies on the photo, separate the campaign mood from the damage image, and compare crash frequency, rider exposure, and failure mechanism.",
+      "whyItMatters": "Good and bad images can both tilt the risk estimate before the data is sorted."
+    },
+    {
+      "exampleId": "ch66-ex05-ivy-forecast-grid",
+      "title": "Ivy Adds the Risk Reserve",
+      "tags": [
+        "predict",
+        "theater",
+        "probability"
+      ],
+      "planSpec": {
+        "domain": "a touring theater budget applying Affect Heuristic under operational pressure",
+        "audience": "a reader who has to make a live judgment where probability could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Affect Heuristic is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the forecast grid, names the probability risk, and adds explicit reserves for bus, ticket, and venue uncertainty."
+      },
+      "scenario": "It took Ivy one 8:40 p.m. preview performance in Manchester, where she was the touring theater finance lead, to see the forecast grid had become a tribute, not a budget. Funders felt the tour deserved a chance. Before approval, she must choose whether probability gets its own line.",
+      "whatToDo": "Mark probability on the grid, keep the artistic case, and add reserves for bus breakdowns, ticket variance, and venue deposits.",
+      "whyItMatters": "A worthy project still needs risk reserves that feeling will not calculate."
+    },
+    {
+      "exampleId": "ch66-ex06-finn-donor-pledge-card",
+      "title": "Finn Rechecks the Charismatic Founder",
+      "tags": [
+        "postmortem",
+        "pension",
+        "affect"
+      ],
+      "planSpec": {
+        "domain": "a pension fund committee applying Affect Heuristic under operational pressure",
+        "audience": "a reader who has to make a live judgment where affect could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Affect Heuristic is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the donor pledge card, names the affect risk, and applies the ordinary downside checklist to the charming founder."
+      },
+      "scenario": "Which pension investment felt safe because the founder seemed sincere? Finn asks at a 4:45 p.m. committee postmortem in Chicago, marking affect on the donor pledge card left from the clean-energy dinner.",
+      "whatToDo": "Apply the same checklist used for dull proposals: debt, concentration, downside case, liquidity, and evidence that could change the estimate.",
+      "whyItMatters": "Sincerity can be real and still have nothing to do with portfolio risk."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a affect-heuristic case, a vivid image makes a danger feel more likely, and a friendly face makes a proposal feel safer, what is the affect heuristic warning?",
+        "choices": [
+          "A feeling may be standing in for probability, severity, or exposure.",
+          "Likely friendly face looks strong enough to guide proposal safer what; affect heuristic warning can wait unless feeling standing probability changes the stakes.",
+          "Face proposal safer gives a practical reason for danger likely friendly; warning feeling standing belongs after what affect heuristic clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "The feeling may point to something worth checking, but risk judgment needs probability, severity, and exposure separated from mood.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Affect Heuristic makes affect-heuristic case feel more decisive than the record supports, and that misprices vivid image in this scene. The correct move keepss the choice by a feeling may be standing in for probability, severity, or exposure."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a affect-heuristic review, a wildfire team wants to send crews toward a dramatic flame image, but another ridge has worse wind, dry fuel, and homes nearby, what should guide deployment?",
+        "choices": [
+          "Affect-heuristic wildfire team looks strong enough to guide wants send crews; toward dramatic flame can wait unless image another ridge changes the stakes.",
+          "Wind, fuel, road access, and evacuation probability.",
+          "Another ridge worse makes send crews toward look credible; use dramatic flame image first and revisit wind fuel homes when nearby what guide shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The image can alert the room, but deployment must follow risk drivers. Fear is not a probability model.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Affect Heuristic works by letting affect-heuristic wildfire crowd out team wants, which can misreads the send crews decision. Wind, fuel, road access, and evacuation probability keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When affect-heuristic pressure appears, a software beta demo night felt wonderful, but the dashboard still shows crashes and failed tasks. What is the best release decision process?",
+        "choices": [
+          "Beta demo night gives a practical reason for pressure appears software; shows crashes failed belongs after felt wonderful dashboard clarifies the result.",
+          "Night felt wonderful makes affect-heuristic pressure appears look credible; use software beta demo first and revisit dashboard shows crashes when failed tasks what shifts.",
+          "Judge readiness from crash rate, task completion, and support tickets."
+        ],
+        "correctIndex": 2,
+        "explanation": "The event glow may show interest, but release risk needs product metrics. Rejecting the feeling entirely would also be too crude.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Affect Heuristic turns appears software into a shortcut, so the room can overweights beta demo while missing night felt. Judge readiness from crash rate, task completion, and support tickets protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After affect-heuristic risk surfaces, a biotech team sees a moving patient photo before a funding vote, the story is real, but the trial packet is thin. What should the reviewer do?",
+        "choices": [
+          "Move the photo out of the evidence packet and review response rate, controls, adverse events, and uncertainty.",
+          "Moving patient photo makes after affect-heuristic surfaces look credible; use biotech team sees first and revisit funding vote story when real trial packet shifts.",
+          "Packet thin what supports a narrower read of sees moving patient; keep photo funding vote central and leave story real trial aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The story explains why the decision matters, but it should not substitute for trial evidence or risk judgment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Affect Heuristic would push the biotech team case toward sees moving, creating a cost when patient photo stays untested. The useful guardrail is to move the photo out of the evidence packet and review response rate, controls, adverse events, and."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If affect-heuristic reasoning takes over, a cycling audit shows a mangled bike fork after a cheerful rider campaign for a different model. What comparison should come before a ban?",
+        "choices": [
+          "Affect-heuristic reasoning cycling looks strong enough to guide audit shows mangled; bike fork after can wait unless cheerful rider campaign changes the stakes.",
+          "Crash frequency, rider exposure, and failure mechanism by model.",
+          "Rider campaign different makes shows mangled bike look credible; use fork after cheerful first and revisit model what comparison when come crash frequency shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "Both positive and negative affect can tilt judgment. The ban needs exposure and mechanism, not image strength.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Affect Heuristic converts audit shows into the loudest signal, which can rushes mangled bike before fork after is checked. The better answer separatess attention on crash frequency, rider exposure, and failure mechanism by model."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While affect-heuristic pressure builds, a theater preview moves funders to tears, and they want to approve the tour budget without reserves, what should the finance lead add?",
+        "choices": [
+          "Affect-heuristic pressure builds looks strong enough to guide theater preview moves; funders tears want can wait unless approve tour budget changes the stakes.",
+          "Want approve tour gives a practical reason for moves funders tears; finance lead explicit belongs after budget reserves what clarifies the result.",
+          "Explicit reserves for bus, ticket, venue, and schedule uncertainty."
+        ],
+        "correctIndex": 2,
+        "explanation": "The artistic feeling can stay in the case for the tour, but probability and cost risk need their own lines.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Affect Heuristic hides inside the affect-heuristic pressure choice because affect-heuristic pressure seems sufficient, yet the cost lands in affect-heuristic pressure. Explicit reserves for bus, ticket, venue, and schedule uncertainty brings the affect-heuristic pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the affect-heuristic call, a pension committee meets a sincere clean-energy founder and starts calling the investment safe. What should the committee do next?",
+        "choices": [
+          "What next apply supports a narrower read of committee meets sincere; keep clean-energy founder starts central and leave calling investment safe aside.",
+          "Apply ordinary downside points toward a quicker call on sincere clean-energy founder; let pension committee meets stand until safe what next contradicts it.",
+          "Apply the ordinary downside checklist for debt, concentration, liquidity, and evidence."
+        ],
+        "correctIndex": 2,
+        "explanation": "Affect may be positive and deserved, but it does not settle downside risk. The standard checklist prevents mood from changing the scale.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Affect Heuristic pressures the call pension decision toward the easy reading of call pension. That can inflates the real cost unless the choice is grounded in apply the ordinary downside checklist for debt, concentration, liquidity, and evidence."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose affect-heuristic risk is present: a proposal makes you feel proud of the organization, and you notice you are rating its risks lower than similar proposals. What is the best correction?",
+        "choices": [
+          "Proud organization notice gives a practical reason for affect-heuristic present proposal; similar proposals what belongs after rating risks lower clarifies the result.",
+          "Name the pride, then rate probability, severity, and exposure using the same template as other proposals.",
+          "Correction name pride supports a narrower read of organization notice rating; keep risks lower similar central and leave proposals what best aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "The correction is not anti-feeling. It names the affect and restores a consistent risk template.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Affect Heuristic is the mechanism here: feeling supplies a quick risk estimate, so present proposal can overpower present proposal. Name the pride, then rate probability, severity, and exposure using the same template as other proposals keeps the scenario from becoming."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two affect-heuristic signals compete: a safety committee dislikes a supplier after a rude call, then rates every supplier risk as higher than before. What should the chair separate?",
+        "choices": [
+          "The dislike from evidence on failure rate, severity, and exposure.",
+          "Supplier after rude makes affect-heuristic signals compete look credible; use safety committee dislikes first and revisit call rates higher when what chair separate shifts.",
+          "Separate dislike failure supports a narrower read of dislikes supplier after; keep rude call rates central and leave higher what chair aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "Dislike may flag a relationship problem, but the risk estimate needs evidence. The affect should not inflate every category.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Affect Heuristic makes the safety committee evidence look cleaner than it is, risking a safety committee mistake in this setting. The answer protects safety committee by asking for the dislike from evidence on failure rate, severity, and exposure."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "A risk feels high because an image is vivid. What base-rate check belongs before deciding?",
+      "back": "Check probability, severity, and exposure before acting on the image. A vivid case can guide attention without measuring risk.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "How can positive affect distort judgment?",
+      "back": "Liking an option can make its benefits feel larger and its risks smaller. Use the same risk template you would use for a dull option.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What did smilies and frownies teach about affect?",
+      "back": "Small affective primes can shift later judgments without the person noticing. Mood can enter the estimate before it is named.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "What is the role of feeling in a serious choice?",
+      "back": "Feeling can tell you the stakes matter. It should not replace the columns for probability, harm, exposure, and evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "A charming founder makes an investment feel safe. What is the move?",
+      "back": "Name the affect and run the ordinary downside checklist anyway: debt, concentration, liquidity, and evidence that could change the estimate.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Separate mood from risk judgment. Name the feeling first, then score probability, severity, exposure, and evidence as separate entries.",
+    "ifThenPlans": [
+      {
+        "context": "Vivid image",
+        "plan": "If an image makes a risk feel obvious, then I will ask for probability, severity, and exposure before ranking it."
+      },
+      {
+        "context": "Loved proposal",
+        "plan": "If I like the option or the person, then I will use the same downside checklist I use for neutral options."
+      },
+      {
+        "context": "Disliked supplier",
+        "plan": "If a bad interaction makes the supplier feel risky, then I will separate relationship concern from failure-rate evidence."
+      },
+      {
+        "context": "Public story",
+        "plan": "If a moving story appears before a vote, then I will move it out of the evidence packet and review the data first."
+      }
+    ],
+    "twentyFourHourChallenge": "Before one risk rating, write one word for the feeling in the room, then fill probability, severity, exposure, and evidence separately.",
+    "weeklyPractice": "Once a week, revisit a decision that felt easy because you liked or disliked the option. Re-score it with a neutral risk template."
+  },
+  "memorableLines": [
+    {
+      "text": "Fear can point. It cannot count.",
+      "location": "breakdown.fastRead",
+      "why": "It separates attention from measurement."
+    },
+    {
+      "text": "The mood arrives first and pretends to be evidence.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the hidden mechanism of the bias."
+    },
+    {
+      "text": "Feelings deserve a seat, not the steering wheel.",
+      "location": "breakdown.fullRead",
+      "why": "It preserves the value of emotion while limiting its role."
+    }
+  ]
+}

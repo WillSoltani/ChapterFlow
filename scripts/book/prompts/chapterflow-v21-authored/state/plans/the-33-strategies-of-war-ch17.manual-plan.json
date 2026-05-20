@@ -1,0 +1,187 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch17",
+  "number": 17,
+  "title": "The Divide-and-Conquer Strategy: Defeat Them in Detail",
+  "coreMove": "Loosen a coalition by finding a real existing disagreement and dealing with the fragments after unity weakens.",
+  "sourcePressure": "A united opponent is stronger than its parts; a divided one is weaker, but a clumsy wedge can create solidarity.",
+  "chapterSpecificMisunderstanding": "Invent division or attack noisily enough to unify the other side.",
+  "sourceAlignmentTerms": [
+    "divide and conquer",
+    "coalition",
+    "wedge",
+    "existing disagreement",
+    "fragment",
+    "solidarity reversal",
+    "delicacy"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for The Divide-and-Conquer Strategy: Defeat Them in Detail.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Amelie",
+      "domain": "city council voting bloc",
+      "audience": "a reader facing city council voting bloc who needs to practice Strategy 17 without reducing it to invent division or attack noisily enough to unify the other side.",
+      "stakes": "a concrete decision in city council voting bloc where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist finds a preexisting policy disagreement, speaks separately to the member carrying the hidden cost, and avoids a public wedge that would unify everyone. The visible action must happen inside city council voting bloc, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" Amelie says, with the coalition vote sheet still unopened.",
+      "mustInclude": [
+        "coalition vote sheet",
+        "private concern list",
+        "one visible deadline tied to divide and conquer"
+      ],
+      "mustAvoid": [
+        "Invent division or attack noisily enough to unify the other side.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Pascal",
+      "domain": "industry standards committee",
+      "audience": "a reader facing industry standards committee who needs to practice Strategy 17 without reducing it to invent division or attack noisily enough to unify the other side.",
+      "stakes": "a concrete decision in industry standards committee where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist finds a preexisting policy disagreement, speaks separately to the member carrying the hidden cost, and avoids a public wedge that would unify everyone. The visible action must happen inside industry standards committee, not as an abstract reflection.",
+      "firstImage": "The private concern list is damp at one corner when Pascal pulls it from the folder.",
+      "mustInclude": [
+        "private concern list",
+        "two-column issue map",
+        "a named counterparty tied to divide and conquer"
+      ],
+      "mustAvoid": [
+        "Invent division or attack noisily enough to unify the other side.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "tenant coalition with split goals",
+      "audience": "a reader facing tenant coalition with split goals who needs to practice Strategy 17 without reducing it to invent division or attack noisily enough to unify the other side.",
+      "stakes": "a concrete decision in tenant coalition with split goals where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist finds a preexisting policy disagreement, speaks separately to the member carrying the hidden cost, and avoids a public wedge that would unify everyone. The visible action must happen inside tenant coalition with split goals, not as an abstract reflection.",
+      "firstImage": "You are beside Lukas as the two-column issue map makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "two-column issue map",
+        "coalition vote sheet",
+        "a public consequence tied to divide and conquer"
+      ],
+      "mustAvoid": [
+        "Invent division or attack noisily enough to unify the other side.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "joint venture partner disagreement",
+      "audience": "a reader facing joint venture partner disagreement who needs to practice Strategy 17 without reducing it to invent division or attack noisily enough to unify the other side.",
+      "stakes": "a concrete decision in joint venture partner disagreement where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist finds a preexisting policy disagreement, speaks separately to the member carrying the hidden cost, and avoids a public wedge that would unify everyone. The visible action must happen inside joint venture partner disagreement, not as an abstract reflection.",
+      "firstImage": "It took Jonas three weeks to notice the coalition vote sheet was the part everyone kept avoiding.",
+      "mustInclude": [
+        "coalition vote sheet",
+        "private concern list",
+        "a resource limit tied to divide and conquer"
+      ],
+      "mustAvoid": [
+        "Invent division or attack noisily enough to unify the other side.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "faculty senate alliance",
+      "audience": "a reader facing faculty senate alliance who needs to practice Strategy 17 without reducing it to invent division or attack noisily enough to unify the other side.",
+      "stakes": "a concrete decision in faculty senate alliance where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist finds a preexisting policy disagreement, speaks separately to the member carrying the hidden cost, and avoids a public wedge that would unify everyone. The visible action must happen inside faculty senate alliance, not as an abstract reflection.",
+      "firstImage": "What changes when Niklas stops arguing and points to the private concern list?",
+      "mustInclude": [
+        "private concern list",
+        "two-column issue map",
+        "a private decision rule tied to divide and conquer"
+      ],
+      "mustAvoid": [
+        "Invent division or attack noisily enough to unify the other side.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "trade association policy split",
+      "audience": "a reader facing trade association policy split who needs to practice Strategy 17 without reducing it to invent division or attack noisily enough to unify the other side.",
+      "stakes": "a concrete decision in trade association policy split where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist finds a preexisting policy disagreement, speaks separately to the member carrying the hidden cost, and avoids a public wedge that would unify everyone. The visible action must happen inside trade association policy split, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the two-column issue map before Henrik says a word.",
+      "mustInclude": [
+        "two-column issue map",
+        "coalition vote sheet",
+        "a reversal check tied to divide and conquer"
+      ],
+      "mustAvoid": [
+        "Invent division or attack noisily enough to unify the other side.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 17 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Loosen a coalition by finding a real existing disagreement and dealing with the fragments after unity weakens.",
+      "explain why the common misread fails: Invent division or attack noisily enough to unify the other side.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name the coalition, then write the one issue where its members already pay different costs. Do not act unless the difference is real.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12,
+  "sourceAnchorNote": "No chapter-specific named person, study, place, artifact, or event is traceable in the frozen source for this strategy; use fictional protagonists and do not invent historical anchors."
+}

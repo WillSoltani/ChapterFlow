@@ -1,0 +1,194 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch11",
+  "number": 11,
+  "title": "The Nonengagement Strategy: Trade Space for Time",
+  "coreMove": "Yield ground you can afford to lose so time, endurance, and overextension begin working against the stronger side.",
+  "sourcePressure": "When the opponent is stronger, standing on their chosen ground wastes force; withdrawal buys time only if there is strategic depth.",
+  "chapterSpecificMisunderstanding": "Retreat from a position that has no survivable ground to trade.",
+  "sourceAlignmentTerms": [
+    "nonengagement",
+    "trade space for time",
+    "strategic depth",
+    "withdrawal",
+    "overextension",
+    "stronger opponent",
+    "no-ground reversal"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Russian campaigns against Napoleon and the Wehrmacht",
+      "detail": "the source says Greene draws nonengagement from Russian campaigns that traded territory for time against Napoleon and later the Wehrmacht.",
+      "useIn": "both",
+      "phrasingHint": "The Russian lesson is not romance about retreat; space only helps when the retreat buys time the other side cannot afford."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for The Nonengagement Strategy: Trade Space for Time.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Joseph",
+      "domain": "startup leaving enterprise segment",
+      "audience": "a reader facing startup leaving enterprise segment who needs to practice Strategy 11 without reducing it to retreat from a position that has no survivable ground to trade.",
+      "stakes": "a concrete decision in startup leaving enterprise segment where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist abandons one contested segment, names what the retreat will preserve, and uses the reclaimed time to build a stronger later position. The visible action must happen inside startup leaving enterprise segment, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" Joseph says, with the market map still unopened.",
+      "mustInclude": [
+        "market map",
+        "deferred product roadmap",
+        "one visible deadline tied to nonengagement"
+      ],
+      "mustAvoid": [
+        "Retreat from a position that has no survivable ground to trade.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Adam",
+      "domain": "artist declining prestige commission",
+      "audience": "a reader facing artist declining prestige commission who needs to practice Strategy 11 without reducing it to retreat from a position that has no survivable ground to trade.",
+      "stakes": "a concrete decision in artist declining prestige commission where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist abandons one contested segment, names what the retreat will preserve, and uses the reclaimed time to build a stronger later position. The visible action must happen inside artist declining prestige commission, not as an abstract reflection.",
+      "firstImage": "The deferred product roadmap is damp at one corner when Adam pulls it from the folder.",
+      "mustInclude": [
+        "deferred product roadmap",
+        "cash runway sheet",
+        "a named counterparty tied to nonengagement"
+      ],
+      "mustAvoid": [
+        "Retreat from a position that has no survivable ground to trade.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Brian",
+      "domain": "publisher pausing a crowded imprint",
+      "audience": "a reader facing publisher pausing a crowded imprint who needs to practice Strategy 11 without reducing it to retreat from a position that has no survivable ground to trade.",
+      "stakes": "a concrete decision in publisher pausing a crowded imprint where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist abandons one contested segment, names what the retreat will preserve, and uses the reclaimed time to build a stronger later position. The visible action must happen inside publisher pausing a crowded imprint, not as an abstract reflection.",
+      "firstImage": "You are beside Brian as the cash runway sheet makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "cash runway sheet",
+        "market map",
+        "a public consequence tied to nonengagement"
+      ],
+      "mustAvoid": [
+        "Retreat from a position that has no survivable ground to trade.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Connor",
+      "domain": "farm cooperative leaving a low-margin buyer",
+      "audience": "a reader facing farm cooperative leaving a low-margin buyer who needs to practice Strategy 11 without reducing it to retreat from a position that has no survivable ground to trade.",
+      "stakes": "a concrete decision in farm cooperative leaving a low-margin buyer where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist abandons one contested segment, names what the retreat will preserve, and uses the reclaimed time to build a stronger later position. The visible action must happen inside farm cooperative leaving a low-margin buyer, not as an abstract reflection.",
+      "firstImage": "It took Connor three weeks to notice the market map was the part everyone kept avoiding.",
+      "mustInclude": [
+        "market map",
+        "deferred product roadmap",
+        "a resource limit tied to nonengagement"
+      ],
+      "mustAvoid": [
+        "Retreat from a position that has no survivable ground to trade.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Evan",
+      "domain": "consultant avoiding a rigged public RFP",
+      "audience": "a reader facing consultant avoiding a rigged public RFP who needs to practice Strategy 11 without reducing it to retreat from a position that has no survivable ground to trade.",
+      "stakes": "a concrete decision in consultant avoiding a rigged public RFP where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist abandons one contested segment, names what the retreat will preserve, and uses the reclaimed time to build a stronger later position. The visible action must happen inside consultant avoiding a rigged public RFP, not as an abstract reflection.",
+      "firstImage": "What changes when Evan stops arguing and points to the deferred product roadmap?",
+      "mustInclude": [
+        "deferred product roadmap",
+        "cash runway sheet",
+        "a private decision rule tied to nonengagement"
+      ],
+      "mustAvoid": [
+        "Retreat from a position that has no survivable ground to trade.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Gavin",
+      "domain": "community group yielding a permit fight",
+      "audience": "a reader facing community group yielding a permit fight who needs to practice Strategy 11 without reducing it to retreat from a position that has no survivable ground to trade.",
+      "stakes": "a concrete decision in community group yielding a permit fight where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist abandons one contested segment, names what the retreat will preserve, and uses the reclaimed time to build a stronger later position. The visible action must happen inside community group yielding a permit fight, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the cash runway sheet before Gavin says a word.",
+      "mustInclude": [
+        "cash runway sheet",
+        "market map",
+        "a reversal check tied to nonengagement"
+      ],
+      "mustAvoid": [
+        "Retreat from a position that has no survivable ground to trade.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 11 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Yield ground you can afford to lose so time, endurance, and overextension begin working against the stronger side.",
+      "explain why the common misread fails: Retreat from a position that has no survivable ground to trade.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Mark what you can give up without ending the campaign, then decide what the gained time must build before you withdraw.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

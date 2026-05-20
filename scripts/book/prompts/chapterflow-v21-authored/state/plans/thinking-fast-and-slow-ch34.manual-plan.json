@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch34",
+  "number": 34,
+  "title": "Frames and Reality",
+  "coreMove": "translate a framed choice into its equivalent wording before deciding",
+  "sourcePressure": "shows that wording and framing change decisions even when the underlying outcomes stay the same",
+  "chapterSpecificMisunderstanding": "treating framing as mere spin rather than equivalent realities feeling different",
+  "sourceAlignmentTerms": [
+    "framing",
+    "equivalence",
+    "gain frame",
+    "loss frame",
+    "description",
+    "decision"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Frames and Reality",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just public relations"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about public relations",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "marine salvage planning facing a decision distorted by framing",
+      "audience": "a lead or reviewer who must translate a framed choice into its equivalent wording before deciding while others want the quick answer",
+      "stakes": "the visible call will go wrong unless framing is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "the scene shows the before call written on the framing tide-table acetate labeled framing, then the after call once the person performs the chapter move instead of trusting the original feeling",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the framing tide-table acetate labeled framing between the two choices.",
+      "mustInclude": [
+        "framing tide-table acetate labeled framing",
+        "framing",
+        "equivalence"
+      ],
+      "mustAvoid": [
+        "turning the scene into public relations",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "college admissions file review facing a decision distorted by framing",
+      "audience": "a lead or reviewer who must translate a framed choice into its equivalent wording before deciding while others want the quick answer",
+      "stakes": "the visible call will go wrong unless framing is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "the protagonist pauses with the admissions scoring grid labeled equivalence in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable",
+      "firstImage": "The decision station is quiet except for the admissions scoring grid labeled equivalence beside the unfinished call.",
+      "mustInclude": [
+        "admissions scoring grid labeled equivalence",
+        "framing",
+        "gain frame"
+      ],
+      "mustAvoid": [
+        "turning the scene into public relations",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "cheese aging cellar facing a decision distorted by framing",
+      "audience": "a lead or reviewer who must translate a framed choice into its equivalent wording before deciding while others want the quick answer",
+      "stakes": "the visible call will go wrong unless framing is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "the reader is asked to imagine signing the frame wax-rind wheel labeled gain frame twice, once from the first impression and once after applying framing, then compare the two commitments",
+      "firstImage": "What would change if the frame wax-rind wheel labeled gain frame stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "frame wax-rind wheel labeled gain frame",
+        "framing",
+        "loss frame"
+      ],
+      "mustAvoid": [
+        "turning the scene into public relations",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "election ballot curing table facing a decision distorted by framing",
+      "audience": "a lead or reviewer who must translate a framed choice into its equivalent wording before deciding while others want the quick answer",
+      "stakes": "the visible call will go wrong unless framing is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the signature cure envelope labeled loss frame, then chooses only after both are visible",
+      "firstImage": "The first thing in the room is the texture of the signature cure envelope labeled loss frame, not the person's opinion about it.",
+      "mustInclude": [
+        "signature cure envelope labeled loss frame",
+        "framing",
+        "description"
+      ],
+      "mustAvoid": [
+        "turning the scene into public relations",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "dental lab crown fitting facing a decision distorted by framing",
+      "audience": "a lead or reviewer who must translate a framed choice into its equivalent wording before deciding while others want the quick answer",
+      "stakes": "the visible call will go wrong unless framing is separated from the tempting but weaker cue",
+      "format": "dialogue",
+      "requiredBeat": "the trainee must move the porcelain shade tab labeled description from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence",
+      "firstImage": "You are looking at the porcelain shade tab labeled description while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "porcelain shade tab labeled description",
+        "framing",
+        "decision"
+      ],
+      "mustAvoid": [
+        "turning the scene into public relations",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "youth soccer referee tent facing a decision distorted by framing",
+      "audience": "a lead or reviewer who must translate a framed choice into its equivalent wording before deciding while others want the quick answer",
+      "stakes": "the visible call will go wrong unless framing is separated from the tempting but weaker cue",
+      "format": "decision_point",
+      "requiredBeat": "the supervisor circles the alluring detail on the touchline warning flag labeled decision, crosses it out, and asks for the boring comparison that the chapter says must come first",
+      "firstImage": "It took three passes before the reviewer saw what the touchline warning flag labeled decision had been making too easy.",
+      "mustInclude": [
+        "touchline warning flag labeled decision",
+        "framing",
+        "decision"
+      ],
+      "mustAvoid": [
+        "turning the scene into public relations",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: translate a framed choice into its equivalent wording before deciding",
+      "choose the correction that fits framing rather than a generic careful-thinking answer",
+      "distinguish Frames and Reality from nearby drift into public relations",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next choice that feels obvious, name the cue making it easy. Then perform the chapter move in one sentence: translate a framed choice into its equivalent wording before deciding.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

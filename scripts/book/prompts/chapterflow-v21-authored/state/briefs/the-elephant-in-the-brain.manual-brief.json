@@ -1,0 +1,98 @@
+{
+  "bookId": "the-elephant-in-the-brain",
+  "title": "The Elephant in the Brain",
+  "author": "Kevin Simler; Robin Hanson",
+  "thesisParagraph": "Human beings spend much of social life managing motives they do not want to inspect directly. The public story says people talk to share information, learn to gain skill, give to help, vote for policy, heal to improve health, and worship because they believe. The sharper account is that these acts often do those things while also signaling status, loyalty, competence, care, coalition value, or moral quality. The book teaches the reader to see mixed motives without collapsing into cynicism: a behavior can be useful, sincere, and socially self-serving at the same time.",
+  "coreIdeas": [
+    {
+      "name": "Surface function and hidden payoff",
+      "oneSentence": "A behavior can solve its official problem while also buying status, alliance, loyalty, or reputation.",
+      "mentalMove": "ask what the act accomplishes publicly and what it makes others believe about the actor",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch10.source",
+        "ch11.source",
+        "ch12.source"
+      ]
+    },
+    {
+      "name": "Social games shape signals",
+      "oneSentence": "People compete for mates, friends, and coalitions, so ordinary behavior becomes evidence about partner quality.",
+      "mentalMove": "sort a behavior by the social market it is addressing before judging the stated reason",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch07.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Norms create concealment",
+      "oneSentence": "Groups enforce rules against selfishness, which creates pressure to hide, soften, or rationalize self-serving moves.",
+      "mentalMove": "look for the rule, the sanction, and the cover story that keeps the motive acceptable",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch04.source",
+        "ch05.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Institutions display virtue",
+      "oneSentence": "Education, medicine, religion, and politics do real work while also making traits and loyalties visible.",
+      "mentalMove": "separate the institution's practical output from the signal it lets people send",
+      "sourceAnchors": [
+        "ch13.source",
+        "ch14.source",
+        "ch15.source",
+        "ch16.source"
+      ]
+    }
+  ],
+  "targetReader": "A thoughtful general reader who suspects polite explanations are incomplete but does not want a cheap cynical theory of everyone else. They care because the book gives them a practical way to read workplaces, families, institutions, politics, and their own motives with more honesty and less self-flattery.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "keep mixed motives alive instead of choosing purity or fraud",
+      "make the social payoff visible in ordinary behavior"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no blanket cynicism that says every good act is fake",
+      "no invented named studies, statistics, or historical anecdotes"
+    ]
+  },
+  "voiceSpecimens": [
+    "The favor may be real, and the audience may still be part of the favor.",
+    "A clean reason often arrives after the messy choice has already found a chair.",
+    "You do not have to sneer at the gift to notice the donor wall behind it.",
+    "The rule holds because the group can remember who made it expensive to break.",
+    "A signal works best when it looks like something else you were doing anyway.",
+    "The uncomfortable question is not whether the motive is ugly. It is what the motive gets to hide behind.",
+    "Once you see the second game, the first game does not disappear; it only stops being alone."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explores the complex psychology of hidden motives in society.",
+    "Kevin Simler and Robin Hanson argue that people are hypocritical in many domains.",
+    "The key takeaway is to be mindful of your biases and improve your self-awareness.",
+    "In today's world, everyone needs to think critically about communication.",
+    "Set a timer for five minutes and journal about your authentic values.",
+    "Human behavior is always selfish, so altruism is basically a lie."
+  ],
+  "teachingArc": "The arc starts by training motive split vision on animals, competition, norms, cheating, and the divided mind. It then moves into everyday signals through bodies, laughter, talk, purchases, art, and charity. The final movement applies the same lens to large institutions: school, medicine, religion, and politics. Each step preserves the same discipline: keep the useful surface, then ask what social signal rides with it.",
+  "forbiddenMoves": [
+    "Do not make hidden motives mean all stated motives are false; the book depends on mixed motives.",
+    "Do not invent famous experiments, historical anecdotes, election figures, medical trials, nonprofit statistics, or artist case studies beyond the frozen source.",
+    "Do not turn the institutional chapters into culture-war arguments; keep the signal mechanism central.",
+    "Do not make the reader feel superior to everyone else; the elephant is also in the reader's own brain.",
+    "Do not reuse the same reveal shell across chapters where a protagonist realizes the official reason was only a mask."
+  ]
+}

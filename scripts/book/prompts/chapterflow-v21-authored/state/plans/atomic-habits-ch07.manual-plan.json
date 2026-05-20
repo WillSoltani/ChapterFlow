@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch07",
+  "number": 7,
+  "title": "The Secret to Self-Control",
+  "coreMove": "Reduce exposure to tempting cues so discipline happens upstream of the urge.",
+  "sourcePressure": "What looks like self-control often reflects encountering tempting cues less often rather than winning constant direct fights against them.",
+  "chapterSpecificMisunderstanding": "Treating self-control as heroic resistance instead of fewer cue collisions.",
+  "sourceAlignmentTerms": [
+    "self-control",
+    "tempting cues",
+    "exposure",
+    "cue removal",
+    "discipline",
+    "avoidance"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of self-control",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a casino security analyst routing employees away from slot-floor shortcuts",
+      "audience": "a manager whose staff gamble after shifts",
+      "stakes": "whether fewer cue encounters beats daily resistance",
+      "format": "postmortem",
+      "requiredBeat": "badge logs show the employees who used the back corridor stopped making after-shift bets",
+      "firstImage": "a staff badge reader beside a service corridor door",
+      "mustInclude": [
+        "badge reader",
+        "service corridor map"
+      ],
+      "mustAvoid": [
+        "moralizing addiction scene"
+      ]
+    },
+    {
+      "domain": "a night baker storing sample pastries in sealed crates outside the prep line",
+      "audience": "a baker who grazes through every overnight shift",
+      "stakes": "whether removing aroma and sight reduces the fight",
+      "format": "scene",
+      "requiredBeat": "she wheels the sealed crate into the walk-in before glazing starts and notices the urge never spikes",
+      "firstImage": "a sealed pastry crate sliding into a walk-in shelf",
+      "mustInclude": [
+        "walk-in shelf",
+        "crate seal"
+      ],
+      "mustAvoid": [
+        "diet willpower lecture"
+      ]
+    },
+    {
+      "domain": "a paramedic deleting the trauma-forum shortcut from the station tablet",
+      "audience": "a medic who doomscrolls between calls",
+      "stakes": "whether less exposure protects recovery time",
+      "format": "reflection",
+      "requiredBeat": "he reaches for the old shortcut after a hard call and finds only the dispatch checklist",
+      "firstImage": "a station tablet locked to a dispatch screen",
+      "mustInclude": [
+        "dispatch checklist",
+        "tablet dock"
+      ],
+      "mustAvoid": [
+        "generic app blocker"
+      ]
+    },
+    {
+      "domain": "a rare-book dealer moving auction alerts to a separate offline laptop",
+      "audience": "a collector who overspends during late auctions",
+      "stakes": "whether frictionless exposure was the real self-control problem",
+      "format": "decision_point",
+      "requiredBeat": "the alert does not appear on the pricing computer, so the bid window passes without a battle",
+      "firstImage": "an auction catalog closed beside a pricing monitor",
+      "mustInclude": [
+        "auction catalog",
+        "offline laptop"
+      ],
+      "mustAvoid": [
+        "budgeting app shell"
+      ]
+    },
+    {
+      "domain": "a college swimmer choosing a route that bypasses the vending alcove",
+      "audience": "an athlete trying to stop late candy runs",
+      "stakes": "whether changing the hallway removes the cue before craving appears",
+      "format": "before_after",
+      "requiredBeat": "she exits through the pool-deck stairwell and realizes no decision happened at all",
+      "firstImage": "wet footprints leading toward a pool-deck stairwell",
+      "mustInclude": [
+        "pool towel",
+        "stairwell door"
+      ],
+      "mustAvoid": [
+        "school cafeteria shell"
+      ]
+    },
+    {
+      "domain": "a freelance editor keeping game controllers in a locked equipment cabinet during deadline week",
+      "audience": "a self-employed worker who loses evenings to short breaks",
+      "stakes": "whether making the cue absent matters more than promising restraint",
+      "format": "dialogue",
+      "requiredBeat": "he tells his roommate where the key is and the 9 p.m. trigger ends at an empty shelf",
+      "firstImage": "an empty TV shelf with only a remote tray",
+      "mustInclude": [
+        "equipment cabinet key",
+        "remote tray"
+      ],
+      "mustAvoid": [
+        "generic home office scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "move discipline upstream by removing cues",
+      "distinguish avoidance design from weak character",
+      "choose exposure changes over heroic resistance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Remove one tempting cue from a place you pass daily, or change the route so you do not meet it today.",
+  "readingTimeMinutes": 12
+}

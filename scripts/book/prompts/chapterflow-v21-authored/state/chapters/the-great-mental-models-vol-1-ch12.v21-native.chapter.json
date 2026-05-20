@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch12",
+  "number": 12,
+  "title": "Hanlon's Razor",
+  "readingTimeMinutes": 12,
+  "hook": "The driveway is blocked again, but the faded marker in the gravel changes the first story.",
+  "counterintuition": "Assigning malice is not the same as accountability, but checking ordinary error first keeps the diagnosis cheaper and more accurate.",
+  "tryThisNow": "For one irritation, write two ordinary-error explanations and the evidence that would make you treat it as intentional instead.",
+  "keyTakeaway": "Check ordinary error before malice, while preserving the evidence needed for accountability.",
+  "breakdown": {
+    "fastRead": "The yellow boundary marker sits half-buried in gravel while Natalie's driveway is blocked again. The angry story is ready: the neighbor is doing it on purpose.\n\nHanlon's razor asks for a slower first move. Ignorance, confusion, or ordinary error may explain enough. Natalie checks the old survey before turning a blocked driveway into a character trial. The car still has to move.\n\nSeparate the harm from the intent.",
+    "deepRead": "Two white medication bins sit on a hospital shelf with labels peeling at the same corner. Sean, the charge nurse, is angry because a mislabeled tray reached the safety report twice. The harm is real, and it needs action. In the postmortem, he traces the tray back to the bins before deciding whether discipline or system repair comes first.\n\nCheck the ordinary mistake first, not because harm is harmless, but because the first story your anger writes may be too expensive. Hanlon's razor is not a pardon. It is a diagnostic order: confusion before malice, error before accusation, evidence before verdict.\n\nThe repair still has teeth when ordinary error explains the first story.\n\nValeria has an unpaid invoice tab open beside a drafted angry email. The client looks like they are stalling. Before she sends it, she asks for the approval screenshot and finds the invoice stuck under the wrong purchase-order field. The portal error does not make late payment fine. It changes the next sentence she sends.\n\nThe limit is where many people misuse the model. If the same person repeats the harm after correction, hides evidence, benefits from the error, or lies about what happened, ordinary mistake may no longer explain enough. Hanlon's razor asks you to check the simple nonmalicious story first. It does not ask you to keep believing it after the evidence breaks it.",
+    "fullRead": "Natalie, the block association lead, stands by a faded yellow property marker half-buried in the gravel. Her neighbor's car blocks the shared driveway for the third time this month. The sharp story arrives first: deliberate disrespect. Then she pulls the old survey from a kitchen drawer and sees how easy the boundary is to misread.\n\nThat discovery does not open the driveway. It changes the opening move.\n\nWhat response protects the practical problem without inventing intent? Natalie can mark the boundary, send the survey, and ask for the car to move. If the neighbor ignores the marker after that, the evidence changes. Accountability remains on the table.\n\nNils learns the same thing with a smoke alarm. The chirping alarm is balanced on a hallway radiator cover, and the maintenance request appears to have vanished. It is tempting to decide the building manager does not care. Then Nils checks the maintenance queue and finds the request filed under the wrong unit number. He still sets a repair deadline. The error explains the silence; it does not fix the alarm.\n\nThis is the discipline: do not confuse intent with impact. A mislabeled tray can endanger a patient whether it came from malice, fatigue, or two identical bins. A blocked driveway can make someone late whether the neighbor meant it or not. Hanlon's razor changes the story you test first, not the seriousness of the outcome.\n\nAda sees the value at a community soccer tournament. A roster printout is creased beside a muddy cleat bag, and her child is missing from the tournament list. The coach looks careless. Ada compares the roster export with the payment receipt and finds that late registrations dropped out of the software. She asks for correction without inventing a hostile motive.\n\nThe model is most useful when anger is about to write the whole report. Anger may be pointing to real harm. Let it point. Then ask what ordinary error could explain the facts: a wrong unit number, a dead phone, a portal field, a confusing property line, a bad export, two bins with labels peeling in the same corner.\n\nYou also need a line that changes your mind. If the wrong unit number is corrected and requests still disappear, escalate. If the payment receipt is shown and the roster is not fixed, press harder. If the dead phone becomes the fifth missed pickup in a month, the problem may be reliability, not a one-time battery failure.\n\nZoe stands under a station clock reflected in a dark phone screen. The first story says she was abandoned. The missed-call log and dead battery tell a smaller story, but she still checks the reliability pattern before deciding how much trust was damaged. Ordinary error can explain an incident. It cannot erase a pattern.\n\nStart with the mistake that could explain enough. Stop there only if the evidence lets you."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-natalie-driveway-marker",
+      "title": "Natalie Checks the Marker",
+      "tags": [
+        "neighbor",
+        "boundary",
+        "survey"
+      ],
+      "planSpec": {
+        "domain": "shared driveway complaint",
+        "audience": "a homeowner whose neighbor keeps blocking a shared driveway",
+        "stakes": "a hostile confrontation could escalate a problem caused by a confusing property line",
+        "format": "decision_point",
+        "requiredBeat": "Natalie checks the faded driveway marker and old survey before accusing the neighbor of deliberate disrespect"
+      },
+      "scenario": "A faded yellow property marker sits beside Natalie, the block association lead, half-buried in gravel near the blocked driveway. The accusation forms before she finds the old survey. Before confronting the neighbor, she must decide whether a confusing boundary explains enough to start with facts instead of malice. She tapes a fresh marker line before deciding whether the next blockage is confusion or refusal.",
+      "whatToDo": "Check the property marker and old survey, then address the blocked driveway with the boundary evidence in hand.",
+      "whyItMatters": "The driveway still needs clearing. But a confusing marker changes the first move from accusation to correction."
+    },
+    {
+      "exampleId": "ch12-ex02-sean-medication-bins",
+      "title": "Sean Traces the Tray",
+      "tags": [
+        "hospital",
+        "labels",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "hospital medication label mix-up",
+        "audience": "a charge nurse reacting to a repeated mislabeled tray",
+        "stakes": "patient safety needs action, but blame may land before the process error is found",
+        "format": "postmortem",
+        "requiredBeat": "Sean traces the mislabeled tray to two nearly identical shelf bins before deciding whether discipline or system repair comes first"
+      },
+      "scenario": "Two white medication bins have labels peeling at the same corner under the shelf light. Sean, the charge nurse, reviews the safety report after a mislabeled tray reaches the floor twice. In the postmortem, he traces the error to the shelf bins before deciding whether discipline or system repair comes first. The safety fix goes in the same day, and the report keeps a line open for discipline if the error repeats.",
+      "whatToDo": "Trace the tray to the process point, repair the labeling system, and preserve discipline if evidence shows neglect after correction.",
+      "whyItMatters": "Patient safety requires action. Hanlon's razor changes the order of diagnosis; it does not minimize the harm."
+    },
+    {
+      "exampleId": "ch12-ex03-valeria-invoice-portal",
+      "title": "Valeria Checks the Field",
+      "tags": [
+        "invoice",
+        "portal",
+        "payment"
+      ],
+      "planSpec": {
+        "domain": "delayed invoice dispute",
+        "audience": "a freelancer who believes a client is stalling payment",
+        "stakes": "a relationship may be damaged if a portal error explains the missing approval",
+        "format": "dialogue",
+        "requiredBeat": "Valeria asks for the approval screenshot and discovers the invoice is stuck under the wrong purchase-order field before sending the angry email"
+      },
+      "scenario": "\"Can you send me the approval screenshot?\" Valeria, the freelance designer, asks while an unpaid invoice tab sits beside a drafted angry email. Before she sends the accusation, she must decide whether the purchase-order field trapped the invoice under the wrong approval route. The drafted email becomes a firm request for payment status rather than a character charge.",
+      "whatToDo": "Ask for the approval screenshot and inspect the purchase-order field before sending the angry email.",
+      "whyItMatters": "The client still owes the money. But a portal error calls for a different first message than a deliberate stall."
+    },
+    {
+      "exampleId": "ch12-ex04-nils-smoke-alarm",
+      "title": "Nils Finds the Wrong Unit",
+      "tags": [
+        "apartment",
+        "repair",
+        "deadline"
+      ],
+      "planSpec": {
+        "domain": "apartment smoke alarm issue",
+        "audience": "a tenant convinced the building manager ignores repairs",
+        "stakes": "the alarm must be fixed while the cause of the silence is still unknown",
+        "format": "before_after",
+        "requiredBeat": "Nils checks the maintenance queue and finds the request filed under the wrong unit, then still sets a deadline for repair"
+      },
+      "scenario": "It took Nils, the tenant association lead, one maintenance queue search to change the accusation. Before, a chirping smoke alarm sat on a hallway radiator cover and the manager looked careless. After he finds the request under the wrong unit number, he still sets a repair deadline and tracks whether the fix happens. If the corrected ticket still stalls, the next message escalates from queue repair to manager accountability.",
+      "whatToDo": "Check the maintenance queue, correct the unit number, and set a concrete repair deadline.",
+      "whyItMatters": "Ordinary error explains the silence, but it does not solve the safety issue. Accountability stays attached to the repair."
+    },
+    {
+      "exampleId": "ch12-ex05-ada-roster-export",
+      "title": "Ada Compares the Receipt",
+      "tags": [
+        "soccer",
+        "roster",
+        "registration"
+      ],
+      "planSpec": {
+        "domain": "community soccer roster error",
+        "audience": "a parent whose child was left off the tournament roster",
+        "stakes": "the parent may accuse the coach before checking whether a registration field failed",
+        "format": "predict_reveal",
+        "requiredBeat": "Ada compares the roster export with the payment receipt and finds the software dropped late registrations, then asks for correction without inventing intent"
+      },
+      "scenario": "Was the coach excluding her child, or did the roster export drop a late registration? Ada, the team parent, holds a creased printout beside a muddy cleat bag. Before accusing anyone, she must decide whether the payment receipt and roster export point to a software error that needs correction. The payment receipt gives her a clean correction request and a clear line if the roster is not fixed.",
+      "whatToDo": "Compare the roster export with the payment receipt, then ask for correction without inventing intent.",
+      "whyItMatters": "The missing name matters. Checking the export keeps the response focused on fixing the error before assigning motive."
+    },
+    {
+      "exampleId": "ch12-ex06-zoe-dead-phone",
+      "title": "Zoe Checks the Pattern",
+      "tags": [
+        "pickup",
+        "phone",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "partner's missed pickup explanation",
+        "audience": "someone angry after being left waiting at a train station",
+        "stakes": "the response must protect trust without turning a phone failure into a character trial",
+        "format": "reflection",
+        "requiredBeat": "You watch Zoe check the missed-call log and dead phone before deciding whether the pattern is ordinary error or a deeper reliability problem"
+      },
+      "scenario": "You watch a station clock reflected in a dark phone screen while Zoe waits under the departure board. The missed-call log and dead phone explain tonight, but she checks the reliability pattern before deciding whether this is ordinary error or a deeper trust problem. The dead phone explains the missed pickup only if the wider pattern does not show the same failure repeating. The station pickup gets discussed as one event and as a pattern.",
+      "whatToDo": "Check the missed-call log, the dead phone, and the wider reliability pattern before turning one pickup failure into a character verdict.",
+      "whyItMatters": "A dead phone can explain one incident. Repeated failures require a different conversation and firmer accountability."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A neighbor blocks a shared driveway again, but the property marker is faded and the old survey shows the boundary is easy to misread. What should happen first?",
+        "choices": [
+          "Use the survey to correct the boundary issue before accusing the neighbor of deliberate disrespect.",
+          "Assume malice because repeated inconvenience proves intent.",
+          "Ignore the blocked driveway because confusion makes accountability unfair."
+        ],
+        "correctIndex": 0,
+        "explanation": "The ordinary-error explanation should be checked first, and the driveway still needs fixing. Ignoring harm and jumping to malice both miss the model's balance.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A mislabeled medication tray appears twice. A charge nurse finds two nearly identical shelf bins with peeling labels. Which response fits Hanlon's razor?",
+        "choices": [
+          "Discipline the first person near the tray because patient safety is serious.",
+          "Repair the labeling system first while preserving accountability if neglect continues.",
+          "Treat the error as harmless because nobody intended it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The bin labels offer an ordinary process explanation, but the safety issue remains serious. The right order is repair first, with accountability if evidence supports it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A freelancer is ready to send an angry email about a late invoice. The client says the approval is stuck under the wrong purchase-order field. What should she do?",
+        "choices": [
+          "Send the angry email anyway because late payment is unacceptable.",
+          "Assume the portal error excuses the delay and stop following up.",
+          "Ask for the approval screenshot and inspect the field before assigning intent."
+        ],
+        "correctIndex": 2,
+        "explanation": "The portal error may explain the delay, but payment still needs follow-up. Asking for evidence checks ordinary error without surrendering accountability.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A smoke alarm repair request vanished. The tenant finds it in the maintenance queue under the wrong unit number. What is the best response?",
+        "choices": [
+          "Correct the unit number and set a repair deadline because the error explains silence, not the unfixed alarm.",
+          "Drop the issue because the manager did not ignore it intentionally.",
+          "Accuse the manager anyway because safety issues should never involve mistakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The wrong unit number explains why nothing happened, but the alarm remains a safety issue. The model checks intent while keeping the repair deadline.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A child is missing from a tournament roster. The parent has a payment receipt and the roster export may have dropped late registrations. What should the parent do?",
+        "choices": [
+          "Accuse the coach of excluding the child so the issue gets attention.",
+          "Compare the receipt with the export and ask for correction before inventing motive.",
+          "Accept the roster because software errors are nobody's fault."
+        ],
+        "correctIndex": 1,
+        "explanation": "The export error is a plausible ordinary explanation. The parent should still seek correction, but not create a hostile motive before checking the evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Someone is left waiting at a station. The missed-call log and dead phone explain tonight, but this is the fifth missed pickup in a month. What should change?",
+        "choices": [
+          "Treat tonight as harmless because the phone died.",
+          "Assume every missed pickup was intentional.",
+          "Separate the one ordinary error from the broader reliability pattern that needs accountability."
+        ],
+        "correctIndex": 2,
+        "explanation": "A dead phone can explain one incident, but repeated failures change the evidence. Hanlon's razor does not require ignoring a pattern.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says Hanlon's razor means people should not be held accountable unless malice is proven. What correction is needed?",
+        "choices": [
+          "The model checks ordinary error before malice, but harm can still require repair, deadlines, or consequences.",
+          "The model means malice never exists in ordinary work.",
+          "The model should be ignored because accountability matters more than accuracy."
+        ],
+        "correctIndex": 0,
+        "explanation": "Hanlon's razor is not an excuse. It improves diagnosis before blame while preserving action when harm, patterns, or evidence call for accountability.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A teammate misses a handoff once and later shows the calendar invite went to an old email. Which evidence would most change the call toward a deeper problem?",
+        "choices": [
+          "The handoff mattered to the project.",
+          "The teammate repeats the miss after the email issue is corrected and hides the second mistake.",
+          "The teammate sounded embarrassed during the follow-up."
+        ],
+        "correctIndex": 1,
+        "explanation": "Repeated harm after correction plus hidden evidence weakens the ordinary-error story. Impact alone matters, but it does not prove intent or unreliability by itself.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A shipping partner sends the wrong boxes twice. The first time was a label template error; the second happened after the template was fixed. What should the team do?",
+        "choices": [
+          "Keep assuming ordinary error because malice is unkind to consider.",
+          "Move from the first innocent explanation to a firmer accountability conversation because the evidence changed.",
+          "Accuse the partner of sabotage without asking what happened."
+        ],
+        "correctIndex": 1,
+        "explanation": "The first error had a sufficient ordinary explanation. Repetition after correction changes the evidence, so accountability should become firmer without leaping to sabotage.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Someone causes a bad outcome. What should you check before assigning malice?",
+      "back": "Check whether ignorance, confusion, or ordinary error explains enough, while keeping the harm visible.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why does Hanlon's razor not excuse harm?",
+      "back": "It changes the diagnostic order, not the seriousness of the outcome. Repairs, deadlines, and consequences may still be needed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What evidence can break an ordinary-error explanation?",
+      "back": "Repeating the harm after correction, hiding evidence, benefiting from the error, or lying about it can require a firmer conclusion.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A mistake happened once, but a pattern is forming. What should you retrieve?",
+      "back": "Separate the single error from the pattern. Ordinary error can explain an incident without erasing a broader reliability problem.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "An irritating mistake has an ordinary explanation. What first sentence should you retrieve?",
+      "back": "Check the ordinary mistake first, then preserve the evidence that would change the call.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to test ordinary-error explanations before assigning malice, while keeping clear evidence thresholds for repair, escalation, and accountability.",
+    "ifThenPlans": [
+      {
+        "context": "neighbor or community conflict",
+        "plan": "If someone's action feels disrespectful, then check boundary, schedule, or communication errors before accusing intent."
+      },
+      {
+        "context": "safety work",
+        "plan": "If an error creates harm, then repair the process cause first and preserve evidence for discipline if neglect appears."
+      },
+      {
+        "context": "payment or admin disputes",
+        "plan": "If a delay feels deliberate, then ask for the screenshot, queue, or field that could reveal ordinary error."
+      },
+      {
+        "context": "relationships and trust",
+        "plan": "If one failure has an ordinary explanation, then check whether the wider pattern still requires a reliability conversation."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one irritation from today. Write two ordinary-error explanations, then write the specific evidence that would make you treat the behavior as intentional or patterned.",
+    "weeklyPractice": "Each week, review one conflict. Note whether you checked ordinary error first and whether your accountability threshold was explicit."
+  },
+  "memorableLines": [
+    {
+      "text": "Separate the harm from the intent.",
+      "location": "breakdown.fastRead",
+      "why": "It keeps accountability and diagnostic restraint together."
+    },
+    {
+      "text": "The repair still has teeth when ordinary error explains the first story.",
+      "location": "breakdown.deepRead",
+      "why": "It prevents the reader from reading the model as excusing harm."
+    },
+    {
+      "text": "Start with the mistake that could explain enough.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the chapter's core move in one line."
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "chapterId": "skin-in-the-game-ch12",
+  "number": 12,
+  "title": "The Facts Are True, the News Is Fake",
+  "readingTimeMinutes": 12,
+  "hook": "A true clip beside a missing spreadsheet can still teach the wrong neighborhood.",
+  "counterintuition": "A fact can be accurate and still mislead when selection, salience, and frame make it feel like the whole reality.",
+  "tryThisNow": "Take one alarming item you saw today. Write the raw fact, the missing denominator or sequence, and the decision you would delay until both appear.",
+  "keyTakeaway": "Before reacting to a packaged story, separate the raw event from the selection and frame that made it feel bigger or cleaner than reality.",
+  "breakdown": {
+    "fastRead": "Manon hears the police scanner while a video clip waits beside the month's incident table. The clip is real. The homepage lead would also make one block feel like the whole neighborhood. The useful tension is that the fact may be true and still leave the reader with a false map of what matters.\n\nFacts matter. Packaging also matters. A selected fact can change danger, blame, urgency, or confidence by hiding the base rate, timeline, denominator, omitted cases, or direct record. The repair is context close enough to change the feeling.",
+    "deepRead": "\"The selloff is already spreading,\" the client says while Lars holds a market note beside a return chart. Every fact in the note is true: one sector fell, one famous investor sold, one index dropped before lunch. The omitted base rate says similar drops happen often and usually reverse. Lars asks what true facts were left out before forwarding the note.\n\nThe Facts Are True, the News Is Fake does not mean facts are disposable. It means a package can turn accurate pieces into a misleading map. Selection decides which facts enter. Salience decides which fact glows. Framing tells the reader what kind of story he is in before he has seen the ground.\n\nTruth can be arranged into distortion.\n\nThat is why direct contact matters. A resident needs the incident table beside the crime clip. A portfolio manager needs base rates beside the market note. A principal needs the timestamp log beside the hallway video. An analyst needs denominators beside the alert. The missing context does not erase the fact. It tells the fact how large it is.\n\nThe weak reaction is to shout that everything is fake. That is lazy and corrosive. The stronger move is slower: keep the raw fact, then rebuild the surrounding reality until the fact no longer carries more meaning than it earned.",
+    "fullRead": "Locker doors flash in the paused hallway video while Paula lines up the timestamp log. The clip shows one student shoving another. It does not show the two minutes before, the teacher's first intervention, or the student's earlier injury report. Parents have seen the fragment. Paula has to draft a letter that confirms the visible fact without letting the fragment become the whole event.\n\nThat is the hard discipline. Do not deny what is visible. Do not surrender the whole map to what is visible. A true clip can be evidence and manipulation at the same time, depending on what it displaces.\n\nAmber cells glow on Jack's dashboard screen while the alert draft says cases have doubled. The numerator is true. The denominator shows the increase came from a tiny base, and the trend line shows a one-day reporting catch-up. Panic would move resources away from a quieter risk that is still larger. Jack adds denominators and trend lines before the alert leaves the dashboard because true numbers can create false urgency.\n\nWhat is missing from the frame? That question should become automatic. Missing denominator. Missing sequence. Missing comparison group. Missing frequency. Missing ordinary cases. Missing maintenance log. Missing direct contact with the people who live the pattern after the clip ends.\n\nMin learns it in the film room. Sneakers squeak under the projector hum while the highlight reel praises one player for a spectacular steal. The clip is true. The rotation chart shows four missed defensive assignments before and after the steal. In the postmortem, Min pauses the reel and adds the missed rotations back into the practice plan. Training follows the whole performance, not the packaged shine.\n\nA fact earns its weight from its neighborhood.\n\nAleksy pins the landlord email beside the maintenance log and the rent notice. The email truthfully says operating costs rose. The log truthfully shows delayed repairs, repeated heat failures, and expenses pushed into future months. Neighbors might accept the rent story if they read only the email. They might overreact if they read only the repair log. The story that survives both records is narrower and more useful.\n\nThe practical move is not cynicism. It is reconstruction. Keep the raw event. Ask why this fact was selected, what surrounding facts would change its size, who benefits from the frame, and who carries the downstream decision. Then delay the response until the fact sits beside the table, log, denominator, timestamp, or direct observation that gives it scale. Reality is not one fact. It is the pattern that remains when the frame is removed."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-manon-crime",
+      "title": "Manon adds the incident table",
+      "tags": [
+        "newsroom",
+        "crime",
+        "salience"
+      ],
+      "planSpec": {
+        "domain": "local newsroom selecting one crime clip that skews neighborhood risk",
+        "audience": "editor separating true fact from false map",
+        "stakes": "residents may misjudge danger because salience has been engineered",
+        "format": "decision_point",
+        "requiredBeat": "Manon places the clip beside the month's incident table before approving the homepage lead."
+      },
+      "scenario": "At 7:08 a.m. Friday, Manon hears the police scanner beside a spreadsheet while a video clip waits for the homepage lead. The clip is real and disturbing. The incident table shows the month is quieter than the same period last year. Manon must choose whether one true clip gets to teach residents the risk of a whole neighborhood.",
+      "whatToDo": "Place the video clip beside the month's incident table, then write the homepage lead only after the clip's frequency and location are visible.",
+      "whyItMatters": "The fact is true, but salience can make one event feel like the map. Context keeps residents from misjudging danger."
+    },
+    {
+      "exampleId": "ch12-ex02-lars-market",
+      "title": "Lars asks what was omitted",
+      "tags": [
+        "investing",
+        "markets",
+        "base rate"
+      ],
+      "planSpec": {
+        "domain": "investor reading a true but cherry-picked market story",
+        "audience": "portfolio manager detecting narrative packaging around facts",
+        "stakes": "clients may sell on a story that hides base context",
+        "format": "dialogue",
+        "requiredBeat": "Lars asks what true facts were left out before forwarding the market note."
+      },
+      "scenario": "\"Should we send this before clients panic?\" the analyst asks as Lars lays the market note beside a return chart. The note's facts are accurate, but the omitted base rate shows similar drops occur several times a year. Lars has to choose whether forwarding the note would inform clients or package true facts into a selling mood.",
+      "whatToDo": "Add the omitted base rate and longer return chart before forwarding, and label which facts are new versus merely salient.",
+      "whyItMatters": "The market story can be true and still distort scale. Base context stops selection from becoming investment advice."
+    },
+    {
+      "exampleId": "ch12-ex03-paula-hallway",
+      "title": "Paula restores the sequence",
+      "tags": [
+        "school",
+        "video",
+        "timeline"
+      ],
+      "planSpec": {
+        "domain": "school parent group reacting to a viral hallway video",
+        "audience": "principal restoring sequence around a true clip",
+        "stakes": "a student could be judged by a fragment without the surrounding event",
+        "format": "scene",
+        "requiredBeat": "Paula lines up the timestamped hallway footage before drafting the parent letter."
+      },
+      "scenario": "Locker doors flash in the paused hallway video while Paula lines up the timestamp log beside the parent letter draft. The hallway clip shows a shove; it does not show the two minutes before or the teacher's first intervention. Paula must decide whether to answer the parent group with the fragment alone or with the sequence that changes its meaning.",
+      "whatToDo": "Line up the timestamped hallway footage, confirm the visible fact, and draft the parent letter around the full sequence instead of the viral fragment.",
+      "whyItMatters": "The clip matters, but sequence matters too. Restoring time prevents one true moment from becoming a false judgment of a student."
+    },
+    {
+      "exampleId": "ch12-ex04-jack-dashboard",
+      "title": "Jack adds denominators",
+      "tags": [
+        "public health",
+        "dashboard",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "public-health dashboard headline missing denominator context",
+        "audience": "analyst preventing true numbers from becoming false urgency",
+        "stakes": "resource allocation could follow panic instead of risk",
+        "format": "before_after",
+        "requiredBeat": "Jack adds denominators and trend lines before the alert leaves the dashboard."
+      },
+      "scenario": "Amber cells glowed on the dashboard screen before Jack rewrote the alert draft. The case count had doubled, but the denominator was tiny and the trend line showed a reporting catch-up. After he added scale and trend, the alert still showed a rise, but it no longer looked like the largest risk on the board.",
+      "whatToDo": "Add the denominator and trend line to the alert draft, then compare the rise with other resource claims before sending it.",
+      "whyItMatters": "True numbers can create false urgency when scale is hidden. Denominators let risk compete honestly for resources."
+    },
+    {
+      "exampleId": "ch12-ex05-min-highlight",
+      "title": "Min adds the missed rotations",
+      "tags": [
+        "sports",
+        "film",
+        "salience"
+      ],
+      "planSpec": {
+        "domain": "sports article praising a player from one highlight while hiding defensive errors",
+        "audience": "coach teaching athletes to resist packaged salience",
+        "stakes": "training choices may chase clips instead of performance",
+        "format": "postmortem",
+        "requiredBeat": "Min pauses the highlight reel and adds the missed rotations back into the review."
+      },
+      "scenario": "It took Min one film session to hear the projector hum under the sneakers squeaking in the highlight reel. The article praised a steal that really happened, but the rotation chart showed missed assignments before and after it. In the postmortem, she paused the clip and rebuilt the practice plan around the whole possession.",
+      "whatToDo": "Pause the highlight reel, add the missed rotations to the review, and design practice from the full possession instead of the shareable clip.",
+      "whyItMatters": "The highlight is true, but training from salience alone rewards the wrong behavior. The rotation chart restores performance context."
+    },
+    {
+      "exampleId": "ch12-ex06-aleksy-log",
+      "title": "Aleksy pins both records",
+      "tags": [
+        "housing",
+        "maintenance",
+        "framing"
+      ],
+      "planSpec": {
+        "domain": "tenant association interpreting a landlord email without maintenance records",
+        "audience": "organizer sorting fact from frame",
+        "stakes": "neighbors may accept a rent story that omits repair history",
+        "format": "reflection",
+        "requiredBeat": "Aleksy pins the email next to the maintenance log and asks what story survives both."
+      },
+      "scenario": "You see pushpins on a cork noticeboard while Aleksy places the landlord email next to the maintenance log and rent notice. The email truthfully says costs rose. The log truthfully shows delayed repairs and heat failures. Aleksy must choose which story survives when both true records are forced into the same frame.",
+      "whatToDo": "Pin the landlord email beside the maintenance log and rent notice, then ask neighbors to respond only to claims that survive all three records.",
+      "whyItMatters": "One true record can frame the whole dispute. Placing records together turns scattered facts into a map neighbors can act on."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A crime clip is real, but the monthly incident table shows the neighborhood is not becoming more dangerous. What is the key distinction?",
+        "choices": [
+          "The fact must be false because it creates a strong feeling.",
+          "The incident table should be ignored because video is vivid.",
+          "The fact is true, but the selected frame can distort risk."
+        ],
+        "correctIndex": 2,
+        "explanation": "The clip can be accurate while overstating danger through salience. The incident table gives the fact scale.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A market note lists true drops but omits how often similar drops reverse. What should a portfolio manager add before sending it?",
+        "choices": [
+          "The omitted base rate and longer return chart.",
+          "A more urgent subject line for clients.",
+          "A disclaimer that facts no longer matter."
+        ],
+        "correctIndex": 0,
+        "explanation": "Base rates tell the facts how large they are. Urgency without context packages true facts into a trading mood.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A viral hallway clip shows a shove, but the minutes before and after are missing. What should the principal do first?",
+        "choices": [
+          "Deny the shove because fragments can mislead.",
+          "Restore the timestamped sequence before writing to parents.",
+          "Punish based only on the most visible moment."
+        ],
+        "correctIndex": 1,
+        "explanation": "The shove remains a fact, but sequence changes judgment. Restoring time avoids both denial and fragment rule.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a dashboard headline says cases doubled, but the denominator is tiny and the trend line shows a reporting catch-up, what is the main risk?",
+        "choices": [
+          "True numbers may create false urgency without scale.",
+          "All dashboards should be distrusted as propaganda.",
+          "Avoid percentage framing here because a low base rate makes the change look larger than it is."
+        ],
+        "correctIndex": 0,
+        "explanation": "The numbers are not meaningless. They need denominator and trend context so resources follow actual risk instead of panic.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "The sports article praises one highlight while hiding several defensive errors from the same stretch. What should the coach add?",
+        "choices": [
+          "More praise so the player stays confident.",
+          "Highlight reels strip away the context needed to judge whether the moments are representative.",
+          "The rotation chart and full possession review."
+        ],
+        "correctIndex": 2,
+        "explanation": "The highlight happened, but training needs the whole possession. The rotation chart restores the performance pattern.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "When the chart is reframed, a landlord email truthfully cites rising costs, while the maintenance log truthfully shows delayed repairs. What should tenants do?",
+        "choices": [
+          "Accept the landlord email because it arrived first.",
+          "Read both records together before accepting either story.",
+          "Ignore all documents because each side has facts."
+        ],
+        "correctIndex": 1,
+        "explanation": "Both records may be true and incomplete alone. Putting them together tests which story survives the broader evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Suppose an article uses accurate details but selects only the most frightening cases from a large dataset, which concept best explains the distortion?",
+        "choices": [
+          "Proof that accurate details are worthless in judgment.",
+          "Salience and selection turning facts into a false map.",
+          "A harmless writing style with no decision consequences."
+        ],
+        "correctIndex": 1,
+        "explanation": "The selected details can be accurate while creating a distorted map. The problem is packaging, not the existence of facts.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Before the headline goes out, a team wants to act on a vivid report before seeing denominators, omitted cases, or direct records. What is the best evaluation?",
+        "choices": [
+          "Act immediately because vivid reports reveal hidden truth.",
+          "Reject the report because mediation makes every fact false.",
+          "Delay the decision until the fact sits beside scale and context."
+        ],
+        "correctIndex": 2,
+        "explanation": "The disciplined move is reconstruction, not panic or denial. Scale and context decide how much weight the fact deserves.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "At the alert rewrite, a reader says, \"The fact is true, so the story must be fair.\" What is the strongest response?",
+        "choices": [
+          "A true fact can still mislead if the surrounding frame is missing.",
+          "Emotional framing distorts the fact's operational weight, so it needs reframing before action.",
+          "A story is fair whenever it avoids invented details."
+        ],
+        "correctIndex": 0,
+        "explanation": "Accuracy is necessary but not sufficient. Selection, omitted context, and framing can make a true fact carry too much meaning.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A fact is true but feels too large. What frame would make the fact useful without distorting its weight?",
+      "back": "Separate raw fact from packaging. Ask for denominator, sequence, base rate, omitted cases, and direct records before reacting.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can a real clip distort neighborhood risk?",
+      "back": "Because salience can make one event feel representative. The incident table gives the clip scale.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A dashboard says cases doubled. What context should come next?",
+      "back": "Denominator and trend line. They show whether the change is large, stable, or a reporting catch-up.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How do you avoid generic media outrage here?",
+      "back": "Keep the fact and rebuild context. The target is misleading packaging, not facts or all reporting.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What should you ask when two true records tell different stories?",
+      "back": "Place them side by side and ask which story survives both. Reality is the pattern after the frame is removed.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Rebuilding the Frame Around True Facts",
+    "coreSkill": "Treat vivid facts as starting points, not full maps. Rebuild scale, sequence, omissions, and direct records before allowing a packaged story to drive action.",
+    "ifThenPlans": [
+      {
+        "context": "news",
+        "plan": "If a clip makes a place feel dangerous, then place it beside incident frequency before sharing or reacting."
+      },
+      {
+        "context": "markets",
+        "plan": "If a note uses selected facts to create urgency, then add base rates before forwarding it."
+      },
+      {
+        "context": "operations",
+        "plan": "If a dashboard headline spikes attention, then add denominator and trend before reallocating resources."
+      },
+      {
+        "context": "conflict",
+        "plan": "If one document frames a dispute, then pin it beside the log or record it omits."
+      }
+    ],
+    "twentyFourHourChallenge": "Take one vivid item you almost shared. Add one missing context line, then decide whether it still deserves the same reaction.",
+    "weeklyPractice": "Once a week, rebuild one story from raw fact, selected frame, omitted context, and the action you would take after reconstruction."
+  },
+  "memorableLines": [
+    {
+      "text": "Truth can be arranged into distortion.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the chapter's central paradox without dismissing facts."
+    },
+    {
+      "text": "A fact earns its weight from its neighborhood.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a memorable context test."
+    },
+    {
+      "text": "Reality is not one fact.",
+      "location": "breakdown.fullRead",
+      "why": "It warns against letting salience become the whole map."
+    }
+  ]
+}

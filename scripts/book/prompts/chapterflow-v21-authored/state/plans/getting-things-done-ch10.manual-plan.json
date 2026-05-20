@@ -1,0 +1,198 @@
+{
+  "chapterId": "getting-things-done-ch10",
+  "number": 10,
+  "title": "Getting Projects Under Control",
+  "coreMove": "Lift from next-action execution to project control by checking each project for a clear outcome, visible moving parts, and a next action.",
+  "sourcePressure": "The chapter returns to project-level control after the daily ground game is reliable, using creative planning and project visibility without replaying the whole planning theory.",
+  "chapterSpecificMisunderstanding": "Reopening every project as a grand planning exercise instead of using ground-level control to recover project visibility.",
+  "sourceAlignmentTerms": [
+    "project control",
+    "ground game",
+    "creative planning",
+    "project visibility",
+    "outcome",
+    "next action",
+    "moving parts"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "ground game",
+      "detail": "The source sidecar links project control to reliable lower-level execution.",
+      "useIn": "both",
+      "phrasingHint": "Project control comes back when the runway is clean enough to show which projects are still airborne."
+    },
+    {
+      "kind": "artifact",
+      "name": "creative planning",
+      "detail": "The source sidecar supports creative planning as part of returning to project-level thinking.",
+      "useIn": "both",
+      "phrasingHint": "Creative planning is useful here only when it reconnects a stuck project to visible movement."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "a regional blood-drive coordinator whose spring campaign has stalled",
+      "audience": "a coordinator managing donor sites, volunteers, and clinical partners",
+      "stakes": "missed site confirmations could shrink the donor pool for the quarter",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The mobile cooler is already serviced when Olivia notices the campaign has no visible outcome, owner list, or next site call.",
+      "firstImage": "a mobile blood cooler with a fresh inspection sticker",
+      "mustInclude": [
+        "inspection sticker",
+        "site list",
+        "partner call"
+      ],
+      "mustAvoid": [
+        "medical emergency drama"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "a board-game publisher preparing a delayed print run",
+      "audience": "a production lead juggling art, factory proofs, and retailer dates",
+      "stakes": "a missed proof approval could push holiday delivery past its sales window",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 11:18 a.m., Ryan stops staring at \"finish print run\" and writes the outcome, three moving parts, and the next factory email.",
+      "firstImage": "a color proof strip beside a production calendar",
+      "mustInclude": [
+        "color proof",
+        "factory email",
+        "retailer date"
+      ],
+      "mustAvoid": [
+        "software launch repeats"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "a municipal tree-planting project after permit delays",
+      "audience": "a parks planner recovering a project that drifted under daily work",
+      "stakes": "saplings could arrive before permits, crews, or neighborhood notices are ready",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Olivier one pallet of early saplings to see that the project existed as a name but not as controlled moving parts.",
+      "firstImage": "a pallet tag tied to bare-root saplings",
+      "mustInclude": [
+        "pallet tag",
+        "permit file",
+        "crew roster"
+      ],
+      "mustAvoid": [
+        "using parks as nature prose"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "an independent documentary editor reviving an unfinished grant cut",
+      "audience": "a creative professional whose project has become emotional fog",
+      "stakes": "the grant deadline could pass while the footage remains only partly sorted",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What part of Anke’s film is actually uncontrolled: the story, the footage bins, or the missing next action?",
+      "firstImage": "a hard drive labeled rough cut on a desk",
+      "mustInclude": [
+        "hard drive",
+        "grant date",
+        "footage bin"
+      ],
+      "mustAvoid": [
+        "making it generic creative block"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "a university dining director fixing a reusable-container rollout",
+      "audience": "an operations director whose daily fixes obscure project control",
+      "stakes": "students may abandon the program if deposits, signage, and washing flow remain vague",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Steam rises from the dish line while Adaeze maps the outcome and separates signage, deposits, and wash flow into owned next actions.",
+      "firstImage": "steam above a dish line with green containers stacked nearby",
+      "mustInclude": [
+        "green containers",
+        "deposit sign",
+        "wash-flow chart"
+      ],
+      "mustAvoid": [
+        "reusing restaurant service shells"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "a youth soccer league treasurer rebuilding a failed registration project",
+      "audience": "a volunteer treasurer dealing with parents, insurance, and field permits",
+      "stakes": "a season start date could slip because everyone thought someone else owned registration",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Who owns the next move?\" Pablo asks, and the room gets quiet because the project was visible only as a shared worry.",
+      "firstImage": "a stack of unsigned registration forms beside field permits",
+      "mustInclude": [
+        "registration forms",
+        "field permits",
+        "insurance note"
+      ],
+      "mustAvoid": [
+        "neighborhood coach command-post repeat"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "repair stuck projects without replaying all planning phases",
+      "connect project visibility to next-action lists",
+      "identify missing outcome or owner"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one project and write three lines: desired outcome, current stuck point, next physical action owned by a real person.",
+  "readingTimeMinutes": 12
+}

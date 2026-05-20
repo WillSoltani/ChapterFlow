@@ -1,0 +1,203 @@
+{
+  "chapterId": "the-lean-startup-ch10",
+  "number": 10,
+  "title": "Grow",
+  "coreMove": "Diagnose the actual growth engine and tune the variable that makes that engine sustainable.",
+  "sourcePressure": "Sustainable growth comes from identifying and tuning the right engine, sticky, viral, or paid, instead of hoping for generic user growth.",
+  "chapterSpecificMisunderstanding": "Treating growth as more marketing, more users, or any upward graph.",
+  "sourceAlignmentTerms": [
+    "sustainable growth",
+    "engines of growth",
+    "sticky engine",
+    "viral engine",
+    "paid engine",
+    "optimize variables",
+    "growth mechanism"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Sticky, viral, and paid growth engines",
+      "detail": "the sidecar names these as the book's growth-engine distinction",
+      "useIn": "both",
+      "phrasingHint": "Growth stops being a wish once the team can say whether retention, referral, or paid acquisition is the machine."
+    },
+    {
+      "kind": "artifact",
+      "name": "Sustainable growth",
+      "detail": "the sidecar says growth must come from engines rather than hope",
+      "useIn": "deepRead",
+      "phrasingHint": "A growth number without a mechanism is just weather reported after the fact."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Grow.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "language app retention engine",
+      "audience": "consumer subscription team",
+      "stakes": "acquisition spend is waste if learners churn after day three",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hannah identifies sticky growth and tunes the day-three return loop",
+      "firstImage": "a streak counter stuck at day two",
+      "mustInclude": [
+        "retention cohort",
+        "streak reminder",
+        "lesson unlock"
+      ],
+      "mustAvoid": [
+        "generic grow office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "community fitness referral loop",
+      "audience": "studio owner",
+      "stakes": "referral dreams fail if members lack a reason to bring friends",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Diego tests a viral engine with one guest-pass moment after class",
+      "firstImage": "a basket of guest-pass cards near sweaty towels",
+      "mustInclude": [
+        "guest pass",
+        "class checkout",
+        "referral tally"
+      ],
+      "mustAvoid": [
+        "generic grow office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "paid newsletter acquisition math",
+      "audience": "solo media founder",
+      "stakes": "paid ads can scale only if subscriber value exceeds acquisition cost",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marit calculates the paid engine before buying another campaign",
+      "firstImage": "an ad dashboard next to a subscriber revenue sheet",
+      "mustInclude": [
+        "ad spend",
+        "subscriber value",
+        "payback window"
+      ],
+      "mustAvoid": [
+        "generic grow office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "B2B inventory software expansion",
+      "audience": "sales leadership team",
+      "stakes": "growth talk is useless until the sales cycle variable is named",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Olivier chooses whether demos booked or implementation success is the engine bottleneck",
+      "firstImage": "a sales pipeline board with sticky notes",
+      "mustInclude": [
+        "pipeline board",
+        "demo metric",
+        "implementation metric"
+      ],
+      "mustAvoid": [
+        "generic grow office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "neighborhood car-share service",
+      "audience": "mobility cooperative",
+      "stakes": "membership growth may depend on retention, not flyers",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Adaeze studies repeat bookings before printing more posters",
+      "firstImage": "a car key locker with unused fobs",
+      "mustInclude": [
+        "booking cohort",
+        "poster budget",
+        "key locker log"
+      ],
+      "mustAvoid": [
+        "generic grow office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "children's dental subscription",
+      "audience": "clinic group",
+      "stakes": "parents may join through paid offers but leave without appointment habit",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Vincent separates paid acquisition from sticky visit behavior",
+      "firstImage": "a toothbrush sample bag beside a membership form",
+      "mustInclude": [
+        "membership form",
+        "visit cohort",
+        "offer code"
+      ],
+      "mustAvoid": [
+        "generic grow office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Grow from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Diagnose the actual growth engine and tune the variable that makes that engine sustainable.",
+      "Diagnose when a team is drifting into the misread: Treating growth as more marketing, more users, or any upward graph."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Diagnose the actual growth engine and tune the variable that makes that engine sustainable. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

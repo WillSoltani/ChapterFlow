@@ -44,6 +44,7 @@ const NAME_STOPWORDS = new Set([
   "Thursday","Friday","Saturday","Sunday","She","He","They","It","This","And","Or",
   "So","Her","His","Then","Because","Before","After","While","Once","During","Without",
   "Within","Even","Only","Often","Now","Whenever","Here","There","Judge","Dr",
+  "For","Under","Inter","Over","About","Between","Through","Beyond","Against","Among",
   "Morning","Evening","Today","Tomorrow","Yesterday",
   // Pronouns that can appear at sentence start with capital letter
   "You","Your","Yours","We","Us","Our","Ours","My","Mine","Their","Theirs",

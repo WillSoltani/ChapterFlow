@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch14",
+  "number": 14,
+  "title": "That Which Concerns a Prince on the Subject of War Study",
+  "coreMove": "Rehearse war in peace until terrain, discipline, precedent, and surprise have already been mentally handled.",
+  "sourcePressure": "The chapter says war is the prince's central art and must be studied more in peace than in war. The ruler drills men, endures hardship, hunts to learn terrain, studies mountains, valleys, plains, rivers, and marshes, reasons through scenarios like Philopoemen, and reads histories to imitate victories and avoid defeats.",
+  "chapterSpecificMisunderstanding": "The wrong version makes the chapter about warmongering, toughness, or lifelong learning. The writer must show practical peacetime preparation: organized soldiers, terrain knowledge, scenario reasoning, historical imitation, and resources ready when fortune strikes.",
+  "sourceAlignmentTerms": [
+    "art of war",
+    "peace",
+    "chase",
+    "terrain",
+    "Philopoemen",
+    "histories",
+    "Scipio",
+    "Cyrus",
+    "hardship",
+    "adversity"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "leader as always aggressive warrior",
+      "fitness and grit routine",
+      "generic study successful people lesson"
+    ],
+    "counterintuition": [
+      "most people assume war is studied in war, but actually in peace",
+      "peace is only preparation for conflict",
+      "reading history makes you strategic"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and visualize a crisis",
+      "go for a walk and think about leadership",
+      "read a biography and copy a habit"
+    ],
+    "examples": [
+      "sports film training montage",
+      "personal fitness challenge",
+      "business scenario planning offsite",
+      "classroom history lesson"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a border prince riding the marsh causeways during peacetime hunts",
+      "audience": "a ruler who thinks marsh maps can wait until invasion season",
+      "stakes": "when enemy carts sink, the prince must already know which reed bank holds weight and which ford disappears at dusk",
+      "format": "scene",
+      "requiredBeat": "He stops the hunt, presses his boot into the reed bank, and makes his captains explain how they would retreat if the enemy held the higher causeway.",
+      "firstImage": "A bootprint fills with marsh water beside a half-sunk reed bank.",
+      "mustInclude": [
+        "reed bank",
+        "higher causeway",
+        "captains on horseback"
+      ],
+      "mustAvoid": [
+        "fitness outing",
+        "nature writing",
+        "generic map study"
+      ]
+    },
+    {
+      "domain": "a desert emir drilling night marches across dry washes before any campaign exists",
+      "audience": "commanders bored by peacetime hardship",
+      "stakes": "soldiers who have not practiced water discipline and silent ranks will collapse when the real retreat crosses the same wash under pursuit",
+      "format": "before_after",
+      "requiredBeat": "Before dawn, the emir turns over the empty water skin and orders the column to reform by touch, then asks who would survive if this were a retreat instead of a drill.",
+      "firstImage": "An empty water skin swings above a moonlit dry wash.",
+      "mustInclude": [
+        "empty water skin",
+        "moonlit dry wash",
+        "silent rank markers"
+      ],
+      "mustAvoid": [
+        "survival adventure",
+        "motivational hardship",
+        "chapter 10 siege supply accounting"
+      ]
+    },
+    {
+      "domain": "an island commander studying old naval defeats before choosing winter anchorages",
+      "audience": "a commander who wants precedent to change where ships sleep, not decorate his library",
+      "stakes": "the same wind gap that ruined an older fleet will trap his ships unless history alters the anchorage order",
+      "format": "postmortem",
+      "requiredBeat": "He lays the old wreck report beside the current anchorage beads and moves three ships before the weather changes.",
+      "firstImage": "Anchorage beads sit beside an old wreck report on a salt-dark table.",
+      "mustInclude": [
+        "anchorage beads",
+        "old wreck report",
+        "wind gap"
+      ],
+      "mustAvoid": [
+        "naval romance",
+        "bookish quotation",
+        "generic history repeats itself"
+      ]
+    },
+    {
+      "domain": "a hill cavalry captain using a harvest ride to quiz officers on enemy positions",
+      "audience": "junior officers who think the ride is social until he turns it into Philopoemen-style reasoning",
+      "stakes": "if they cannot reason through hill, valley, advance, retreat, and pursuit in peace, they will improvise badly under attack",
+      "format": "dialogue",
+      "requiredBeat": "At the vineyard ridge, the captain points with his crop to three slopes and makes each officer choose where to advance, retreat, and pursue before lunch resumes.",
+      "firstImage": "A riding crop points from a vineyard ridge toward three pale slopes.",
+      "mustInclude": [
+        "riding crop",
+        "vineyard ridge",
+        "three slopes"
+      ],
+      "mustAvoid": [
+        "social hunting party",
+        "classroom quiz",
+        "management offsite"
+      ]
+    },
+    {
+      "domain": "a city arsenal master maintaining winter drill even while festivals fill the streets",
+      "audience": "a prince tempted to trade drills for popularity during peace",
+      "stakes": "soldiers who lose discipline in ease become despised and unreliable before armed servants and rivals",
+      "format": "decision_point",
+      "requiredBeat": "The prince hears festival drums outside, then keeps the drill sand raked flat and watches the arsenal master correct the shield line one more time.",
+      "firstImage": "Raked drill sand lies inside the arsenal while festival drums sound outside.",
+      "mustInclude": [
+        "raked drill sand",
+        "festival drums",
+        "shield line"
+      ],
+      "mustAvoid": [
+        "public festival politics from later chapters",
+        "fitness advice",
+        "generic discipline"
+      ]
+    },
+    {
+      "domain": "a northern regent comparing a famous conqueror's river crossing with her own frozen frontier",
+      "audience": "a regent using imitation as adaptation rather than costume",
+      "stakes": "copying the hero's posture means nothing; she must learn the cause of victory and translate it to ice roads and supply sledges",
+      "format": "predict_reveal",
+      "requiredBeat": "She closes the portrait book, pins the river-crossing cause beside the ice-road markers, and rejects the general who only copied the conqueror's cloak.",
+      "firstImage": "Ice-road markers surround a closed portrait book on the council floor.",
+      "mustInclude": [
+        "portrait book",
+        "ice-road markers",
+        "supply sledges"
+      ],
+      "mustAvoid": [
+        "great-man worship",
+        "biography inspiration",
+        "costume imitation"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify peacetime actions that genuinely study war rather than merely signal toughness",
+      "apply terrain reading to choices about quarters, advance, retreat, pursuit, and siege",
+      "analyze Philopoemen-style scenario reasoning in a novel setting",
+      "evaluate whether historical imitation extracts causes of victory and defeat or copies surfaces"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one real terrain problem from a historical campaign. Sketch the high ground, water, road, and retreat line, then ask what decision you would rehearse before an enemy appears.",
+  "readingTimeMinutes": 12
+}

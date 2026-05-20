@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch02",
+  "number": 2,
+  "title": "This Is Your Brain, This Is Your Brain During a Pitch",
+  "coreMove": "Translate dense pitch material into simple, novel, relevant cues that survive the first audience filter.",
+  "sourcePressure": "Practical brain-model chapter: live audiences first filter for novelty, threat, simplicity, and relevance, so dense analytic material gets blocked before deeper reasoning starts.",
+  "chapterSpecificMisunderstanding": "The writer must keep the croc brain as a practical filter, not a license for invented neuroscience or crude emotional manipulation.",
+  "sourceAlignmentTerms": [
+    "croc brain",
+    "mental filter",
+    "novelty",
+    "threat",
+    "simplicity",
+    "relevance",
+    "emotional salience"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The brain hates complexity",
+      "Your audience is primitive",
+      "Facts bounce off the mind"
+    ],
+    "counterintuition": [
+      "Less information always wins",
+      "Emotion beats logic",
+      "Simple is better than smart"
+    ],
+    "tryThisNow": [
+      "Simplify your message in one minute",
+      "Cut your deck in half",
+      "Ask what your audience wants"
+    ],
+    "examples": [
+      "generic investor deck full of charts",
+      "neuroscience lab analogy",
+      "busy executive checking phone"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport operations vendor explaining runway-light outage prediction to a control-tower committee",
+      "audience": "a data-heavy product lead facing pilots and maintenance chiefs",
+      "stakes": "the tool is dismissed as another dashboard while night closures keep costing slots",
+      "format": "predict_reveal",
+      "requiredBeat": "he replaces the failure-rate table with one blinking runway segment on a live airport map and asks which aircraft gets delayed first",
+      "firstImage": "a dark runway diagram glowing on a tablet at 5:40 a.m.",
+      "mustInclude": [
+        "tablet map",
+        "red outage pulse",
+        "two-minute briefing limit"
+      ],
+      "mustAvoid": [
+        "generic SaaS analytics dashboard"
+      ]
+    },
+    {
+      "domain": "wildfire insurance analyst briefing a coastal winery group about smoke-taint risk",
+      "audience": "an analyst whose actuarial model is accurate but invisible to growers",
+      "stakes": "growers ignore mitigation until one smoke week wipes out harvest value",
+      "format": "scene",
+      "requiredBeat": "she sets the model aside and shows a single vineyard row turning from green to amber on the risk map, then names the harvest week it threatens",
+      "firstImage": "a vineyard risk map spread beside a corkscrew on a tasting counter",
+      "mustInclude": [
+        "risk map",
+        "harvest week",
+        "premium notice"
+      ],
+      "mustAvoid": [
+        "generic insurance sales call"
+      ]
+    },
+    {
+      "domain": "cybersecurity trainer onboarding harbor pilots to phishing controls",
+      "audience": "a security trainer facing professionals who distrust corporate modules",
+      "stakes": "one stolen credential can halt vessel scheduling for a day",
+      "format": "dialogue",
+      "requiredBeat": "when the pilots tune out the policy language, she projects one fake tide-change email and asks which word would make them click while on watch",
+      "firstImage": "a projected email above a chart table with tide books open",
+      "mustInclude": [
+        "fake tide-change email",
+        "harbor schedule",
+        "watch shift"
+      ],
+      "mustAvoid": [
+        "generic office phishing seminar"
+      ]
+    },
+    {
+      "domain": "agricultural drone founder pitching crop-stress imaging to almond growers",
+      "audience": "a founder with spectral data that overwhelms practical buyers",
+      "stakes": "water stress spreads for two weeks before the growers visually notice it",
+      "format": "before_after",
+      "requiredBeat": "he swaps the spectral graph for two side-by-side orchard rows, one invisible to the eye and one flagged by the drone, then points to the irrigation valve date",
+      "firstImage": "two orchard aerial prints clipped to a tailgate",
+      "mustInclude": [
+        "aerial prints",
+        "irrigation valve log",
+        "dusty tailgate"
+      ],
+      "mustAvoid": [
+        "generic farming technology demo"
+      ]
+    },
+    {
+      "domain": "rail safety engineer pitching a braking alert to commuter rail supervisors",
+      "audience": "an engineer who keeps opening with equations",
+      "stakes": "supervisors miss why a ten-second warning changes a packed platform morning",
+      "format": "vignette",
+      "requiredBeat": "she writes one number on the board, ten seconds, then plays the station audio instead of explaining the full braking model",
+      "firstImage": "a station audio recorder beside a grease-stained timetable",
+      "mustInclude": [
+        "ten-second warning",
+        "station audio",
+        "braking model appendix"
+      ],
+      "mustAvoid": [
+        "generic safety presentation"
+      ]
+    },
+    {
+      "domain": "specialty pharmacy director explaining cold-chain risk to clinic managers",
+      "audience": "a director who must make handling rules feel immediate without exaggerating danger",
+      "stakes": "one mishandled biologic shipment spoils a week of patient appointments",
+      "format": "decision_point",
+      "requiredBeat": "she holds up the temperature strip from yesterday's shipment and asks whether the clinic would dose from the box before showing the compliance report",
+      "firstImage": "a blue temperature strip sealed in a plastic sleeve",
+      "mustInclude": [
+        "temperature strip",
+        "shipping box",
+        "appointment roster"
+      ],
+      "mustAvoid": [
+        "generic healthcare compliance lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify first-filter overload in a dense pitch",
+      "choose novelty and relevance cues without distorting substance",
+      "separate simplicity from dumbing down",
+      "evaluate when a vivid cue becomes unsupported fear"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one dense claim from your pitch and rewrite it as one visible change, one risk, and one reason the listener should care before any detail.",
+  "readingTimeMinutes": 12
+}

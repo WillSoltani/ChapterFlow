@@ -1,0 +1,140 @@
+{
+  "chapterId": "the-innovators-dilemma-ch04",
+  "number": 4,
+  "title": "What Goes Up, Can't Go Down",
+  "coreMove": "Distinguish 'too small for us' from 'too small to matter' — an entrant's foothold market is strategically real even when it is economically unattractive to the current leader.",
+  "sourcePressure": "Incumbents migrate upmarket because better margins, stronger customers, and cleaner investment cases are there. Low-end segments look smaller, fuzzier, and less profitable. That asymmetry is structural. The steel minimill rebar case shows how a segment too thin for an integrated producer can become the entrant's first real ladder — the integration producer's rational retreat creates the foothold.",
+  "chapterSpecificMisunderstanding": "Reading the chapter as advice to defend every low-end segment or as a warning that upmarket moves are always wrong, when the point is that rational profit discipline can still misread industry danger.",
+  "sourceAlignmentTerms": [
+    "upmarket migration",
+    "low-end foothold",
+    "cost structure",
+    "margin logic",
+    "rebar",
+    "minimill",
+    "integrated producer",
+    "price umbrella",
+    "entrant economics"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "industry",
+      "name": "steel minimills and the rebar segment",
+      "detail": "Integrated steel producers found rebar (low-grade structural bar for concrete reinforcement) unprofitable relative to higher-value steel products and ceded it. Steel minimills, using electric arc furnaces with lower capital requirements and more flexible cost structures, could produce rebar profitably at a scale that made no sense for integrated producers. The rebar foothold let minimills learn and eventually climb into structural steel and other higher-value segments.",
+      "useIn": "deepRead",
+      "phrasingHint": "Rebar looked like a problem the integrated producers were glad to hand off — and each time they moved up, they held the door open a little wider for the mills below."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'don't leave money on the table' framing",
+      "generic 'what if your cheapest customer becomes your biggest threat' framing"
+    ],
+    "counterintuition": [
+      "generic 'go low to go high' counter",
+      "generic 'premium is a trap' counter"
+    ],
+    "tryThisNow": [
+      "generic 'draw your value ladder' prompt",
+      "generic 'interview your lowest-spending customer' prompt"
+    ],
+    "examples": [
+      "any scene built around a startup founder celebrating the incumbent's retreat",
+      "any scene that implies protecting every low-end segment is a universal strategic rule"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The upmarket-retreat pattern is best shown from inside the incumbent's decision, not from the entrant's triumph."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "commercial radio station rationalizing its decision to drop local music programming in favor of syndicated talk",
+      "audience": "a programming director whose ad revenue comes entirely from national syndication accounts",
+      "stakes": "local music programming brings lower CPM rates and more production overhead — the margin math makes it easy to drop",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hannah drops local music programming after a clear margin analysis and moves the slot to national syndication. The local listeners who produced lower CPM revenue are not mourned in the analysis. They become the first reliable audience for a format that begins picking up those listeners instead.",
+      "firstImage": "a radio programming schedule grid with local music blocked out and a national syndication tag written over it",
+      "mustInclude": ["CPM comparison", "production overhead calculation", "the local audience not tracked after the drop"],
+      "mustAvoid": ["any nostalgic framing about local radio being inherently better"]
+    },
+    {
+      "domain": "hotel chain closing its economy-tier properties to concentrate on midscale and above",
+      "audience": "a portfolio director whose RevPAR metrics improve every quarter as economy properties are sold or reflagged",
+      "stakes": "the economy tier produces lower RevPAR and more operational variability — every financial metric rewards the exit",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Matthew's portfolio rationalization is complete, RevPAR is up, and the board approves the results. The market for economy stays has not gone away — it has gone to a different kind of operator with a different cost structure who is now opening where the chain closed.",
+      "firstImage": "a real estate portfolio map with economy properties shown in grey and sold",
+      "mustInclude": ["RevPAR improvement", "economy tier exit rationale", "the market going to a different operator afterward"],
+      "mustAvoid": ["any implication that staying in economy was clearly the right choice"]
+    },
+    {
+      "domain": "broadsheet newspaper rationalizing a decision to move all content behind a premium paywall and abandon free access",
+      "audience": "a publisher whose digital subscriber revenue is growing and whose free page-view revenue was always thin",
+      "stakes": "the free readers produce low advertising yield and the subscriber model has a cleaner margin structure",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Nicolas decides to close free access to protect subscription revenue. The decision is correct inside the subscription economics. The free readers who leave are not tracked after the paywall — until a different outlet begins converting them.",
+      "firstImage": "a paywall screen replacing the open article page",
+      "mustInclude": ["subscription margin structure", "free advertising yield comparison", "the departed readers not tracked"],
+      "mustAvoid": ["taking a position on whether paywalls are good or bad journalism strategy"]
+    },
+    {
+      "domain": "residential real estate agency rationalizing its exit from the rental listing market",
+      "audience": "a regional director whose commission income comes entirely from property sales and whose rental listings produce lower per-transaction revenue",
+      "stakes": "rental listings consume agent time at a much lower commission rate — every analysis shows they should focus on sales",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Paula predicts that the rental market is unattractive and the exit will improve agent productivity metrics. The reveal shows that the landlords who left the agency's rental service became a first customer base for a different platform — one that now knows those landlords better than the agency does.",
+      "firstImage": "an agent dashboard showing rental listing commission rates versus sales commission rates",
+      "mustInclude": ["commission rate comparison", "agent productivity rationale", "landlord customer base going to a different platform"],
+      "mustAvoid": ["any framing that makes rental listings appear inherently inferior as a business"]
+    },
+    {
+      "domain": "commercial printing company rationalizing its decision to exit short-run digital printing in favor of long-run offset",
+      "audience": "a plant manager whose equipment utilization numbers are strongest on the offset presses that run long jobs",
+      "stakes": "short-run digital printing has lower equipment margins and more changeover time per job — the utilization math favors exits",
+      "format": "postmortem",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Mikkel's postmortem on the short-run exit shows every decision was correct inside the offset plant's economics. The postmortem does not include the small-run clients who left, what they are now printing, or what kind of operator serves them.",
+      "firstImage": "a printing plant floor with a row of offset presses running and a corner where the digital press used to be",
+      "mustInclude": ["utilization comparison", "changeover cost rationale", "absent post-exit tracking of short-run clients"],
+      "mustAvoid": ["any implication that digital printing is technologically superior to offset"]
+    },
+    {
+      "domain": "full-service brokerage rationalizing its decision to stop offering small-account discount trading",
+      "audience": "a product director whose advisory revenue comes from clients with over $250,000 in assets",
+      "stakes": "small accounts produce low advisory revenue and high servicing cost — the economics favor a minimum account size",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Before: Chidi's analysis shows clearly that small accounts below the threshold cost more to service than they generate. After: three years later, the accounts that left the brokerage are concentrated at a discount platform that now knows their trading behavior, tax patterns, and growth trajectory.",
+      "firstImage": "an account threshold line on a profitability chart, with a cluster of accounts below it shown in grey",
+      "mustInclude": ["servicing cost below threshold", "account minimum rationale", "the departed accounts at a competitor who now knows them better"],
+      "mustAvoid": ["any implication that small accounts are inherently high-value to the brokerage"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize the structural incentive for upmarket migration in a described business",
+      "distinguish 'unattractive to this organization' from 'unattractive in general'",
+      "identify when an incumbent's rational exit creates an entrant's foothold",
+      "apply the minimill rebar logic to a non-manufacturing scenario",
+      "evaluate whether a low-end exit decision is also a strategic one"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one customer segment your organization has rationalized leaving or underserving because the margins were thin. Write one sentence describing what kind of operator could serve them profitably — and what that operator would learn about your industry in doing so.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that references the minimill rebar case directly in plain prose — not as a citation but as a pressure test for the principle",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch01",
+  "number": 1,
+  "title": "Charisma Demystified",
+  "coreMove": "Translate charisma from a fixed identity verdict into a trainable social signal.",
+  "sourcePressure": "The source frames charisma as learnable behavior, not a personality trait, and uses the public myth around famous charismatic people plus Marilyn Monroe as evidence that the effect can switch on and off.",
+  "chapterSpecificMisunderstanding": "The weak version tells readers that anyone can be confident. The useful version makes them stop treating weak presence as proof of permanent identity.",
+  "sourceAlignmentTerms": ["learnable behavior", "personality trait", "social effect", "signals", "internal state", "Marilyn Monroe", "dial"],
+  "forbiddenFrames": {
+    "hook": ["Some people are born with it", "Charisma is not magic", "You can learn charisma too"],
+    "counterintuition": ["Confidence is everything", "Extroverts do not own the room", "Fake it until you make it"],
+    "tryThisNow": ["Look in the mirror and smile", "Rate your charisma from one to ten", "Think of a charismatic person"],
+    "examples": ["celebrity admiration scene", "generic networking event", "job interview self-doubt", "high-school popularity memory"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a film archive restoration room where a junior archivist watches screen presence change between two test reels",
+      "audience": "a reader who treats charisma as glamour instead of a changeable effect",
+      "stakes": "whether she stops writing herself off before presenting the restored reel to donors",
+      "format": "vignette",
+      "requiredBeat": "she runs the plain rehearsal reel, then the lit take, and points to how the same actor changes the room's attention without becoming a different person",
+      "firstImage": "a strip of acetate film curled beside a light table",
+      "mustInclude": ["cotton gloves", "splice tape", "donor preview list"],
+      "mustAvoid": ["celebrity worship", "acting-class confidence advice"]
+    },
+    {
+      "domain": "a wilderness trailhead where a new guide assumes the senior guide was born calm",
+      "audience": "a quiet professional who confuses practiced signal with natural ease",
+      "stakes": "whether anxious hikers trust the guide before a foggy ridge crossing",
+      "format": "dialogue",
+      "requiredBeat": "the senior guide shows the marked route card he rehearses before every group, proving his steadiness is prepared rather than innate",
+      "firstImage": "a laminated trail card clipped to a rain shell",
+      "mustInclude": ["compass lanyard", "fog warning", "group roster"],
+      "mustAvoid": ["survival heroics", "mountaintop inspiration"]
+    },
+    {
+      "domain": "a specialty coffee cupping lab where a roaster believes one colleague simply has a magical room effect",
+      "audience": "a skilled technician who underestimates social practice",
+      "stakes": "whether she learns to lead buyer tastings instead of hiding behind expertise",
+      "format": "before_after",
+      "requiredBeat": "contrast her first rushed tasting with the second, where she slows her hands, names each cup clearly, and watches buyers lean in",
+      "firstImage": "six ceramic cupping bowls lined beside a digital gram scale",
+      "mustInclude": ["cupping spoon", "roast log", "green-bean sample bag"],
+      "mustAvoid": ["coffee shop stranger charm", "sales pitch polish"]
+    },
+    {
+      "domain": "a neighborhood mediation table where one volunteer assumes charisma belongs to louder people",
+      "audience": "a reader who equates charisma with volume",
+      "stakes": "whether two angry neighbors stay long enough to reach a shared repair plan",
+      "format": "decision_point",
+      "requiredBeat": "the volunteer decides not to copy the loud mediator and instead tracks both names, slows the room, and earns attention through steadier presence",
+      "firstImage": "two printed name placards set on opposite ends of a folding table",
+      "mustInclude": ["parking diagram", "timer bell", "signed ground rules"],
+      "mustAvoid": ["courtroom drama", "generic conflict resolution"]
+    },
+    {
+      "domain": "a usability lab where a product researcher notices her presence changes between observation and readout",
+      "audience": "an analytical reader who needs charisma framed as signal data",
+      "stakes": "whether executives trust her findings enough to delay a flawed launch",
+      "format": "postmortem",
+      "requiredBeat": "she reviews the readout recording and marks the moment her scattered pace made the evidence feel weaker than it was",
+      "firstImage": "an eye-tracking replay paused on a checkout button",
+      "mustInclude": ["timestamp note", "one-way glass", "launch calendar"],
+      "mustAvoid": ["presentation chapter", "software demo scene"]
+    },
+    {
+      "domain": "a music conservatory audition desk where an applicant thinks charisma is talent alone",
+      "audience": "a performer who treats presence as fate",
+      "stakes": "whether the applicant understands why the same piece lands differently after a reset",
+      "format": "predict_reveal",
+      "requiredBeat": "the coach asks him to play the opening phrase twice, once while apologizing with his body and once after claiming the bench, then has him predict which tape the panel will remember",
+      "firstImage": "a tuning fork lying on a black piano bench",
+      "mustInclude": ["audition number", "metronome case", "panel curtain"],
+      "mustAvoid": ["stage charisma chapter", "genius mythology"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish fixed-trait explanations from trainable signal explanations",
+      "use a changing social read as evidence that charisma is movable",
+      "avoid turning learnable charisma into fake performance",
+      "reframe a weak room as feedback about signal and state"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one recent room you labeled as proof of your personality. Rewrite it as three observable signals: attention, ease, and visible goodwill.",
+  "readingTimeMinutes": 12
+}

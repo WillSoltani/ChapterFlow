@@ -1,0 +1,190 @@
+{
+  "chapterId": "measure-what-matters-ch12",
+  "number": 12,
+  "title": "Superpower #4: Stretch for Amazing",
+  "coreMove": "Raise the ceiling without cutting the tether to evidence, effort, and ownership.",
+  "sourcePressure": "The fourth superpower introduces stretch: ambitious reach beyond safe incremental targets, held by effort and accountability.",
+  "chapterSpecificMisunderstanding": "Do not make stretch mean fantasy targets, hustle rhetoric, or reckless overpromising.",
+  "sourceAlignmentTerms": [
+    "stretch",
+    "amazing",
+    "ambitious reach",
+    "safe incrementalism",
+    "disciplined effort",
+    "accountability"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "stretch for amazing",
+      "detail": "The source introduces stretch as the fourth OKR superpower: ambitious reach beyond safe incremental targets with serious effort and accountability.",
+      "useIn": "both",
+      "phrasingHint": "Stretch raises the ceiling, but the score line keeps the bigger ambition from turning into performance theater."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Superpower #4: Stretch for Amazing as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "stretch is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "vision-board optimism",
+      "punishment for missing",
+      "Chrome or YouTube specifics"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "cancer-screening outreach target",
+      "audience": "public-health team",
+      "stakes": "safe incremental gains will not reach underserved neighborhoods fast enough",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Claire sets a reach target beyond last year while pairing it with weekly evidence and owned obstacles",
+      "firstImage": "mobile clinic parked by a community center",
+      "mustInclude": [
+        "screening roster",
+        "neighborhood map",
+        "weekly obstacle list"
+      ],
+      "mustAvoid": [
+        "fantasy moonshot"
+      ]
+    },
+    {
+      "domain": "regional theater audience rebuild",
+      "audience": "artistic and marketing staff",
+      "stakes": "small safe gains will not fill the season after a bad year",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivier names a stretch attendance target and the proof that will show whether new audiences are actually coming",
+      "firstImage": "empty balcony seats in rehearsal light",
+      "mustInclude": [
+        "ticket report",
+        "community partner list",
+        "preview-night plan"
+      ],
+      "mustAvoid": [
+        "arts inspiration only"
+      ]
+    },
+    {
+      "domain": "factory energy-use reduction",
+      "audience": "plant engineers",
+      "stakes": "incremental efficiency misses the cost pressure but a reckless target would be theater",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sam raises the reduction target and ties it to measurable equipment changes rather than slogans",
+      "firstImage": "heat shimmer above compressors",
+      "mustInclude": [
+        "meter log",
+        "compressor schedule",
+        "maintenance ticket"
+      ],
+      "mustAvoid": [
+        "punishment for missing"
+      ]
+    },
+    {
+      "domain": "youth coding scholarship expansion",
+      "audience": "program directors",
+      "stakes": "the team wants to reach more students without diluting support",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anke asks what weekly tutor-capacity evidence must rise for the bigger enrollment goal to stay honest",
+      "firstImage": "laptops stacked in a locked cart",
+      "mustInclude": [
+        "tutor roster",
+        "application list",
+        "attendance sheet"
+      ],
+      "mustAvoid": [
+        "generic school club"
+      ]
+    },
+    {
+      "domain": "independent grocer waste reduction",
+      "audience": "store managers",
+      "stakes": "a modest target would leave too much spoilage untouched",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Isabel changes stretch from a slogan into daily department waste checks and recovery actions",
+      "firstImage": "bruised peaches in a gray bin",
+      "mustInclude": [
+        "waste scale",
+        "department log",
+        "donation crate"
+      ],
+      "mustAvoid": [
+        "romaine/lettuce repeat"
+      ]
+    },
+    {
+      "domain": "cybersecurity patch acceleration",
+      "audience": "IT security leads",
+      "stakes": "the ordinary patch cadence is too slow for the risk window",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Kiran sets a stretch patch target but requires exception review and owner names every afternoon",
+      "firstImage": "server-room badge reader blinking",
+      "mustInclude": [
+        "patch list",
+        "exception queue",
+        "owner column"
+      ],
+      "mustAvoid": [
+        "generic software sprint"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "evaluate stretch targets for grounded ambition",
+      "separate disciplined reach from fantasy",
+      "keep accountability attached to bigger goals"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Raise one safe target by one meaningful step, then write the evidence that would keep the stretch honest.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

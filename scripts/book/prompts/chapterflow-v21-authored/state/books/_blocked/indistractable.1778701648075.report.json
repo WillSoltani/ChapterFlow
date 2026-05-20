@@ -1,0 +1,1612 @@
+{
+  "bookId": "indistractable",
+  "title": "Indistractable",
+  "author": "Nir Eyal",
+  "promotedAt": "2026-05-13T19:47:28.074Z",
+  "chapterCount": 30,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A rosin cloth is folded beside a ticking metronome in Martin's spare room. The first bow stroke squeaks, and heat climbs into his face even though no one else is there. His phone is in the practice c…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A cotton glove rests on a textile crate inspection sheet. Paige, registrar who keeps polishing labels instead of calling a lender about damage, faces museum reg"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A laminated route map curls beside a volunteer grid. Yvonne, race volunteer lead who keeps editing the route map, faces marathon aid-station coordinator avoidin"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A mileage folder with fuel receipts sits apart from neat W-2 packets. Heidi, preparer using tidy W-2 files to avoid one ambiguous client, reviews tax preparer p"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A control surface glows beside a red folder of director notes. Callum, freelancer who tweaks easy scenes rather than opening the hard note set, stands in film c"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"treat a slipped schedule\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "At the next urge, write the body signal in six words or fewer, wait one breath, "
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A courthouse badge lies beside a folded hearing schedule. Keira, interpreter who opens a game whenever nerves rise, faces court interpreter waiting outside a te"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A clearance worksheet is clipped to a yellow customs notice. Violet, broker who checks sports scores when uncertainty spikes, faces customs broker reviewing a f"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A nitrate test vial stands beside a damp logbook. Neil, keeper who wanders into supply shopping when numbers look wrong, reviews aquarium keeper entering water-"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A fountain pen rests on a half-written ceremony page. Avery, officiant who reaches for recipes when the couple's conflict feels delicate, pauses during wedding "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"catch the urge in\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.4 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A tide chart is pinned beside a collision-rules card. Stefan, trainee who hears confusion as evidence she is not built for command, pauses during ferry captain "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A hail-dented apple sits on a sorting scale. Monica, manager tempted to avoid inspection because loss feels personal, faces orchard manager facing weather-damag"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A court order is clipped beneath a blue appeal tab. Ursula, attorney who interprets anger as futility, faces public defender reading a hostile judge's order at "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A cracked porcelain bowl rests beside a kiln log. Bianca, artist who treats a cracked batch as proof she should stop, reviews ceramics studio owner after a kiln"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"rewrite the story attached\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.5 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A foxed bookplate peeks from a donation box ledger. George, cataloger bored by repetitive entries, faces rare-book cataloger processing a donation box at 8:09 p"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A stack of grant forms is held by a copper binder clip. Beatrice, clerk bored by form validation, faces municipal grant clerk checking address fields at 9:42 a."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A tuning fork lies beside a service notebook. Julia, tuner who avoids paperwork after house calls, stands in piano tuner entering service notes at 11:25 a.m.. H"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A hawk weight card sits under a clear clipboard. Paige, volunteer tempted by animal videos during data entry, reviews wildlife rehab volunteer cleaning enclosur"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A seam ripper rests beside a chalked jacket panel. Yvonne, tailor who finds correction work humiliating, pauses during tailor ripping seams from a miscut jacket"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"find the puzzle choice\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 11.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A hive tool rests across a yellow inspection card. Matthias, beekeeper who treats scattered notes as part of being intuitive, faces beekeeper preparing inspecti"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A register envelope sits beside a sauce-splattered menu board. Elliot, owner who says creative operators hate numbers, faces food-truck owner reconciling cash a"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A wind sock diagram lies under a weather worksheet. Keira, student who says she is impulsive under pressure, pauses during flight-school student reviewing weath"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A ticket-roll receipt is flattened beside a grant folder. Violet, volunteer who jokes that artists cannot do records, reviews community theater treasurer organi"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"stop treating distractibility as\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A zoning map is folded under a field-walk pass. Cora, planner who claims neighborhood observation matters, faces urban planner protecting field-walk time before"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "An anatomy atlas is open beside a patient chart rack. Leon, clinician who values skill but lets charting consume every evening, faces physical therapist making "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A song sheet rests beside a small speaker on a hallway bench. Tomas, parent who says music matters at home, stands in neighborhood choir parent protecting rehea"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A stretched drumhead dries beside a wall calendar page. Stefan, craftsperson who says finish quality is sacred, pauses during ceremonial drum maker reserving qu"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"translate a value from\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A budget appendix is clipped beneath a fiber-route map. Adrienne, writer anxious about award decisions, faces grant writer submitting a rural broadband proposal"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A foil mask hangs beside a footwork ladder. Ian, coach who feels responsible for medals, faces youth fencing coach preparing athletes for qualifiers at 2:18 p.m"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A soil core sleeve lies beside an irrigation log. Nathan, scientist facing uncertain field results, reviews soil scientist running drought-resilience trials aft"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A moot-court bench diagram sits beside five question cards. George, student who wants praise from judges, pauses during appellate law student practicing oral ar"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A bearing compass rests on a smoke-log form. Rebecca, lookout who cannot control whether crews find the source, stands in wildfire lookout logging smoke reports"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"define success for a\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A model-kit sprue rests beside a Saturday calendar square. Daniel, step-parent trying to build trust without speeches, faces newly blended family preserving one"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A citrus juicer sits beside a shift rota printout. Tobias, partners who only exchange logistics, faces couple with rotating hospital shifts protecting breakfast"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A shop-sketch portfolio rests under an apprenticeship flyer. Finn, relative who wants to be reliable but reacts late, reviews uncle mentoring a niece through ap"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A park-bench plaque appears on a shared route screenshot. Miriam, friend group that says support matters but relies on crisis texts, pauses during friends maint"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"people protected time before\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A storyboard strip sits beside a render-queue dashboard. Zoe, producer who gets pinged for every tiny status question, faces animation producer aligning directo"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A county heat map is pinned under a correction cutoff note. Harriet, analyst whose commissioners expect instant revisions, faces public-health analyst preparing"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A hull-plate gauge lies beside an estimate window sheet. Rosie, estimator caught between yard questions and client pressure, reviews ship repair estimator worki"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A crane lift diagram is clipped beneath a radio channel card. Leon, officer whose radio keeps pulling him off the lift plan, stands in construction safety offic"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"make your planned work\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A particulate sensor alert flashes beside an inspection report draft. Marta, inspector deciding whether an alert deserves immediate action, faces air-quality in"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A wet varnish brush rests over a violin rib form. Valerie, apprentice with delicate wet varnish on the bench, faces violin repair apprentice hearing the shop be"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A transect tally card is tucked beneath binocular straps. Pavel, volunteer who scheduled a transect count, reviews bird-survey volunteer hearing a rare-sighting"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A stenotype paper strip curls beside an update prompt. Ian, trainee practicing live transcription, pauses during court-reporter trainee seeing a software-update"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"interrogate each external cue\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A red acrylic block sits beside a scale model base. Sam, model maker interrupted during measurements, faces architecture model shop protecting laser-cutter setu"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A snow route board is divided with black magnetic strips. Elsa, dispatcher pulled into side requests before a storm, faces municipal snowplow dispatch during ro"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A defect-card box is bolted beside a loom counter. Lawrence, inspector who gets stopped mid-defect count, reviews textile mill quality team reducing floor inter"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "An anesthesia checklist rests beside a prep-in-progress sign. Daniel, surgical nurse whose prep is interrupted by front-desk questions, stands in veterinary sur"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"make focus and interruptibility\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A reagent expiry sheet lies beside a filtered vendor email. Gemma, administrator whose inbox steals vaccine inventory time, faces rural clinic administrator sor"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A MIDI controller sits beside a score-change folder. Patrick, composer who lets each note pull him out of scoring, faces independent game composer receiving rev"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A hail-damage photo packet sits under an email filter note. Kaitlyn, adjuster buried under claimant messages, reviews property claims adjuster after a hailstorm"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A scoring rubric rests beneath a public-question digest. Zoe, panelist trying to read proposals without constant replies, pauses during city arts grant panelist"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"from a constant cue\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.4 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A fire-marshal checklist sits beside a taped thread label. Natalie, manager whose chat mixes jokes, vendors, and fire-marshal tasks, faces restaurant opening te"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A subtitle timeline glows beneath a two-channel rule card. Xenia, lead translator pulled by every ping during timing review, faces distributed translation team "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A cleat inventory tag lies beside a pinned gear-only list. Hannah, clubhouse manager whose chat mixes requests with travel jokes, reviews minor-league equipment"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A DCP drive case sits beside a file-change code card. Valerie, projectionist juggling booth prep and chat alerts, stands in film festival projection team handli"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"separate chats coordination value\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A roof-leak photo packet sits beside a draft board agenda. Dominic, board chair facing a vague meeting request, faces regional theater board deciding emergency "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A pH strip dries beside a batch-retention sample. Kira, quality lead deciding whether people need a room or a shared note, faces brewery quality team reviewing "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A pallet count sheet rests beside a route-zone magnet. Isaac, logistics lead with too many update meetings, reviews regional food pantry coordinating holiday di"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A polymer swatch ring sits beside a prototype stress chart. Sam, designer receiving a meeting invite with no decision owner, pauses during industrial design fir"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"require a meeting to\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A privacy screen protector reflects a route list. Alana, nurse who needs maps and medication calls but not every alert, faces home-health nurse carrying a phone"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A shutter remote app sits beside a camouflage lens wrap. Imogen, photographer who needs camera controls but not feeds, faces wildlife photographer waiting in a "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A muddy work glove points at a weather radar tile. Gemma, crew lead needing calls but not sports alerts, reviews landscape crew lead coordinating weather and cr"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "An audio-guide lanyard rests beside a folded gallery map. Patrick, parent who wants the guide but not message drift, pauses during museum visitor using audio gu"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"redesign the phone so\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A bridge bearing photo fills one monitor beside a load table. Wendy, engineer whose desktop opens into old bid folders, faces civil engineer reviewing bridge in"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A waveform timeline stretches beside a printed transcript scan. Graham, editor pulled by waveform, chat, and analytics windows, faces podcast editor cutting a w"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A timestamped body-camera frame sits above a case timeline. Thomas, attorney whose desktop mixes messaging and footage, reviews public defender triaging body-ca"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A ship manifest scan sits beside a citation template. Damien, researcher who keeps wandering into family-history forums, pauses during genealogy researcher veri"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A bond amortization table fills the screen beside a sealed reference folder. Natalie, accountant whose desktop carries every prior spreadsheet, stands in munici"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"so the next intended\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A zoning clause printout sits beside a handwritten question sticky. Uri, analyst who needs one clause answer, faces policy analyst reading a housing ordinance e"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A migration chart rests beside a tour folder tab. Bridget, guide who follows every species link, faces birding guide checking an article on migration timing at "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A detour map glows above a clipped transit card. Dominic, commuter who only needs tomorrow's detour, reviews city cyclist reading a road-closure article after 4"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A textile weave diagram sits beside a draft scene note. Kira, writer who reads endlessly instead of drafting one scene, pauses during historical novelist checki"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"turn reading into a\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A kiln-shelf invoice sits beside a marketplace search field. Quinn, seller looking for one kiln-shelf supplier update, faces independent ceramicist checking a m"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A county alert badge appears next to a reporter notebook. Will, reporter who needs verified county posts, faces local journalist monitoring storm updates at 11:"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A pest-alert screenshot lies beside a greenhouse alarm panel. Alana, owner needing one regional pest report, reviews rare-plant nursery owner checking pest aler"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A track log sheet sits beneath a listener correction post. Imogen, host who wants one correction but gets pulled into praise and criticism, pauses during classi"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"convert feed use from\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A sealed password card sits beside a post-call sleep sign. Kara, resident who keeps extending awake time with videos, faces night-shift radiology resident prote"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A bilingual glossary lies beside a timed blocker receipt. Sabine, translator whose current-event checking breaks flow, faces freelance translator avoiding news "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A router timer sits beside an archive index card. Marco, student who has handled triggers but still loses the same hour, reviews graduate archivist protecting t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A venue invoice lies beside a scheduled check-in card. Graham, volunteer who drifts into social chat at the exact review time, pauses during choir treasurer avo"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"make the desired future\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A contour-layer proof sits beside a pledge receipt. Gavin, cartographer who repeatedly opens travel forums during map work, faces freelance cartographer finishi"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "An oarlock bolt tray rests beside a junior-team jar. Phillip, mechanic who keeps watching race clips between repairs, faces rowing-club mechanic rebuilding an o"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A closeout tape curls beside a breakfast voucher. Uri, auditor who opens sports feeds after midnight, reviews boutique hotel night auditor closing accounts afte"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A waveform export panel sits beside a lesson-audio checklist. Bridget, tutor who checks messages during export waits, pauses during language tutor creating less"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"attach a meaningful cost\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A splintered bridge plank photo sits beside a mud scraper. Erin, steward tempted to skip reports after muddy hikes, faces volunteer trail steward maintaining we"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A bilingual glossary card rests on a courthouse bench schedule. Hazel, translator who puts prep off until court morning, faces court-appointed translator prepar"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A seed packet tin sits beside a plot-fee ledger. Quinn, volunteer who avoids money tasks because gardeners are communal, reviews community garden treasurer reco"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A pronunciation list lies beside a pop filter. Will, narrator tempted to wing difficult names, pauses during independent audiobook narrator checking pronunciati"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"that makes the planned\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A denied-claim packet sits beside a response-time praise note. Bastien, billing supervisor watching staff apologize for every delayed reply, reviews regional am"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A render log glows beside a midnight applause thread. Leah, associate who notices all praise goes to visible exhaustion, faces architecture firm celebrating lat"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A scanner metrics printout lies beside a cart-route badge. Valentina, safety lead tracing why pickers answer alerts while driving carts, faces warehouse safety "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "An enrollment intake board stands beside a careful-review pledge. Sabine, director whose advisors are told to be careful and instantly available, pauses during "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is a test of\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 11.5 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 6 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A specimen cassette rack sits beside an escalation code card. Bruno, lab manager turning culture diagnosis into daily practice, faces regional pathology lab bui"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A page proof lies under a close-window rule strip. Ivan, copy chief balancing focus and urgent corrections, faces newspaper copy desk coordinating print close a"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A triage board magnet rests beside a breakdown alarm key. Gavin, maintenance supervisor creating request rituals, reviews manufacturing maintenance team after t"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A donor call sheet sits under a response-window bookmark. Phillip, director making remote norms explicit, pauses during remote nonprofit fundraising team planni"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"turn attentionfriendly culture into\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A recital program rests beside a piano bench cushion. Gabriel, caregiver who sees only defiance, faces eight-year-old avoiding piano practice after a recital mi"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A shop apron hangs beside an unread project thread. Peter, mentor trying to understand avoidance, faces teen apprentice leaving group project messages unread at"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A paper wristband lies next to a handheld game case. Vince, grandparent assuming boredom is the whole story, pauses during child in a hospital waiting room reac"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A chess scoresheet sits beside a captured-piece pouch. Erin, coach helping a child name the trigger, reviews young chess player disappearing into videos after a"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"respond to a childs\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A gear-tooth magnet holds a build-week board. Ethan, caregiver helping without taking over, faces middle-school robotics teammate planning build week at 2:18 p."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A brass watering can sits beside a hand-drawn day strip. Reed, grandparent teaching prior intent through seasonal tasks, faces young gardener planning chores an"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A road-sign flashcard deck rests beside a permit booklet. Bastien, parent turning study into a shared plan, reviews teen preparing for a driver's permit exam af"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A felt drawer sleeve holds a tablet beside two name cards. Leah, caregiver helping kids plan turns before fighting, pauses during siblings sharing a tablet duri"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"plan with them so\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A silver meet medal hangs above an empty tablet stand. Stella, parent helping identify visible cues, faces young gymnast distracted by trophy-shelf videos durin"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A printed muffin recipe is clipped above a flour scale. Noah, grandparent helping keep one recipe visible, faces young baker distracted by recipe video suggesti"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A CPR manikin face shield rests beside a locker tag. Bruno, instructor helping the teen identify cues, reviews teen lifeguard trainee checking messages during C"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A panel sketch page sits beneath a drawing-only tablet screen. Ivan, parent helping preserve creative time, pauses during child drawing comics while notificatio"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"help a child spot\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 28,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A referee whistle rests inside a clear study box. Uma, parent helping the child set a self-chosen barrier, faces young soccer referee studying rules before week"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A hay scoop hangs from a console shelf hook. Leo, caregiver helping make an owned pact for animal care, faces child caring for a rabbit before screen time at 9:"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A passport sleeve sits beside a stack of language cards. Willa, older cousin helping with a pact the teen can revise, reviews teen preparing language flashcards"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A goggles case clips to a backpack zipper pull. Gabriel, parent teaching self-designed constraints, pauses during young swimmer managing early-morning practice "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"guide a child to\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 29,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[1].scenario",
+            "message": "example[1].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A red rescue buoy rests across a bench slat. Petra, trainee group whose boredom spreads through one phone, faces junior lifeguards waiting between drills at 7:1"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A flow sheet sits under a prep-only channel label. Karin, team captain setting norms among peers, faces youth debate team using chat during tournament prep at 1"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A waxed curb ledge holds a compact action camera. Trevor, friend group trying to keep filming from becoming endless scrolling, reviews neighborhood skateboard c"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A page flag sticks from a paperback beside a ceramic phone bowl. Ethan, teen host wanting a gentle social reset, pauses during book-club friends after school dr"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"help young people create\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 30,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A duty pager rests in a blue hallway bowl. Emily, partner who wants presence after days of crisis alerts, faces partners reconnecting after one returns from wil"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A neonatal monitor printout lies beside a soft cotton blanket. Hope, couple whose attention is consumed by monitors, faces new parents handing off a premature i"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[4].scenario",
+            "message": "example[4].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A coil of dock line sits beside a scheduled call card. Stella, couple whose calls collapse into distracted multitasking, reviews partners separated by seasonal "
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[5].scenario",
+            "message": "example[5].scenario contains doubled periods — likely a sentence-boundary error",
+            "evidence": "A bilingual phrase card rests beside a closed grammar app. Zara, partners tempted to turn shared practice into correction, pauses during retired spouses learnin"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"use structure to protect\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 160
+  },
+  "bookGate": {
+    "bookId": "indistractable",
+    "chapterCount": 30,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "5 protagonist name(s) appear as named characters in multiple chapters: Leon(ch7,10), Daniel(ch9,12), Valerie(ch11,14), Natalie(ch14,17), Wendy(ch17,20). Regenerate affected examples with distinct names."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        89,
+        91,
+        90
+      ],
+      "answerPositionPctMax": 0.337037037037037,
+      "totalQuizQuestions": 270,
+      "duplicatedNames": [
+        {
+          "name": "Leon",
+          "chapters": [
+            7,
+            10
+          ]
+        },
+        {
+          "name": "Daniel",
+          "chapters": [
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Valerie",
+          "chapters": [
+            11,
+            14
+          ]
+        },
+        {
+          "name": "Natalie",
+          "chapters": [
+            14,
+            17
+          ]
+        },
+        {
+          "name": "Wendy",
+          "chapters": [
+            17,
+            20
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "indistractable",
+        "chapterCount": 30,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

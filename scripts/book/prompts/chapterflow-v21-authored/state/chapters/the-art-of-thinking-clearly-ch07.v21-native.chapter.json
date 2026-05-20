@@ -1,0 +1,327 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch07",
+  "number": 7,
+  "title": "Confirmation Bias (Part 1)",
+  "readingTimeMinutes": 12,
+  "slug": "confirmation-bias-part-1",
+  "hook": "A tidy incident timeline can make the missing calls look less important than the calls that fit.",
+  "coreIdea": "Once a conclusion feels plausible, confirmation bias makes supporting evidence easier to notice and disconfirming evidence easier to explain away.",
+  "counterintuition": "Good evidence hunting often feels backwards: you protect a promising idea by trying to wound it. The danger is not confidence itself; it is letting one early conclusion decide which facts are allowed to matter.",
+  "tryThisNow": "Pick one current belief and write one sentence that would weaken it if true. Then look for that sentence before collecting more support.",
+  "keyTakeaway": "Before you trust the evidence that agrees with you, ask what would have to be true for your view to be wrong.",
+  "breakdown": {
+    "fastRead": "A tidy incident timeline sits in the dispatch room with every delayed ambulance call highlighted in yellow. Daniel sees the pattern he expected: the new triage script is slowing the team. Then a supervisor points to the blank left column where faster calls were never logged.\n\nConfirmation bias begins after a view has already taken shape. Your attention becomes a customs officer. Supporting facts pass easily. Disconfirming evidence gets delayed, questioned, or treated as a special case.\n\nThe fix is not to become doubtful about everything.\n\nIt is to ask, before deciding, what fact would count against the current explanation and where that fact would be visible.",
+    "deepRead": "The incident timeline in Daniel's dispatch office looks convincing because it has color, sequence, and urgency. Every slow response is easy to see. Every normal response is absent. If the team decides from that sheet, they are not judging the triage script; they are judging the part of the script that already fits the complaint.\n\nConfirmation bias is selective admission. It does not need you to lie. It only needs you to search unevenly. You ask the unhappy crews for examples and forget to ask the crews whose nights improved. You remember the one call where the script sounded clumsy and forget the ten calls where it forced the right question early. A fixed conclusion turns evidence into a supporting cast.\n\nDisconfirming evidence is not an enemy; it is the missing door.\n\nA useful test is simple: if my explanation were wrong, what would I expect to see? Daniel adds a second column to the timeline: calls that became faster after the script. He asks the shift lead to pull both kinds before the review. The point is not to save the script. The point is to stop the complaint from choosing the sample.\n\nA travel insurance pricing desk faces the same problem in a quieter form. Megan sees a warranty label that says adventure coverage and assumes the costly claims must come from mountain trips. Her analyst finds a cheaper pattern in missed ferry connections. Megan circles disconfirming evidence on the warranty label and delays the rate change until the ferry claims sit beside the climbing claims.\n\nSupport is cheap when you only invite supporters.",
+    "fullRead": "Static crackles through the podcast studio monitor while Ivo rereads a press clipping about a host's sold-out live show. The clipping feels like proof that renewing the ad buy is obvious. The producer smiles. The sponsor wants another six months. Ivo has one problem: the download report is open beside the clipping, and the ad code has been flat for eight weeks.\n\nConfirmation bias loves mixed evidence because mixed evidence gives it room to choose. The press clipping is vivid. The download report is dull. The live show feels public and impressive. The ad code feels like a spreadsheet muttering in the corner. If Ivo already wants the renewal, the clipping becomes a signal and the report becomes noise.\n\nThe Wason test made this habit visible in miniature: people tend to check the cards that might confirm a rule instead of the cards that could break it. That small laboratory pattern has a daily business version. You test the happy case first. You ask the friendly customer. You search for the number that would make the pitch look sensible. Then you call the answer balanced because you found evidence.\n\nWhat would you check if your favorite answer were false?\n\nCharles Darwin had a practical defense against this pull. When a fact damaged one of his ideas, he tried to write it down quickly because he knew the mind would forget what it did not want. That habit matters because disconfirming evidence often arrives without drama. It is a quiet exception, a low response rate, a missing comparison group, a customer who left without complaining.\n\nYou do not need a grand theory to use the move. Before Ivo renews the podcast ad, he writes two tests on the press clipping. First, which metric would make renewal look weak? Second, where is that metric already recorded? Then he asks the producer to compare ad-code redemptions with two other channels. The clipping can stay in the file. It just cannot be the file.\n\nA university lab result meeting shows the danger more sharply. You have a voting sheet in front of you, and the principal investigator wants to call the trial promising. The early responders look good. The dropout notes look messy. A junior researcher, Hadiya, marks fixed conclusion at the top of the sheet before the vote and asks for the dropout reasons to be read aloud. The room goes quiet because the missing evidence is no longer missing.\n\nThis is the uncomfortable part: the best question may make your preferred answer less clean.\n\nThat discomfort is useful. Confirmation bias feels smooth because each added fact agrees with the direction you were already moving. Disconfirming evidence creates friction. It slows the story down. It asks whether the conclusion earned its confidence or merely collected flattering witnesses.\n\nSo keep a rule for serious choices. Do not ask only, what supports this? Ask, what would change my mind, and have I looked where that evidence would live? Until that second question has a real answer, the evidence is still being screened by the conclusion.",
+    "whyItMatters": "Confirmation bias turns a first answer into a filter. Decisions improve when the reader knows how to force the missing comparison before support becomes a story."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-daniel-incident-timeline",
+      "title": "Daniel Adds the Missing Calls",
+      "tags": [
+        "scene",
+        "dispatch",
+        "timeline"
+      ],
+      "planSpec": {
+        "domain": "an emergency dispatch script applying Confirmation Bias (Part 1) under operational pressure",
+        "audience": "a reader who has to make a live judgment where confirmation bias could mislead them",
+        "stakes": "safety and credibility get misallocated if confirmation bias is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the incident timeline, names the confirmation bias risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The dispatch room map glows red over the north district while Daniel studies an incident timeline of delayed ambulance calls. The new script looks guilty. Before the 4 p.m. review, he must decide whether to recommend rollback or ask for faster calls too. He writes confirmation bias beside the blank comparison column.",
+      "whatToDo": "Add the calls that improved under the script before judging the script. Compare slow and fast outcomes, not just the complaints that fit the first suspicion.",
+      "whyItMatters": "The delayed calls may be real, but they are not the whole denominator. The correction forces the missing comparison before the conclusion writes the evidence list."
+    },
+    {
+      "exampleId": "ch07-ex02-megan-warranty-label",
+      "title": "Megan Prices Against the Exception",
+      "tags": [
+        "vignette",
+        "insurance",
+        "pricing"
+      ],
+      "planSpec": {
+        "domain": "travel insurance pricing applying Confirmation Bias (Part 1) under operational pressure",
+        "audience": "a reader who has to make a live judgment where disconfirming evidence could mislead them",
+        "stakes": "money and credibility get misallocated if confirmation bias is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the warranty label, names the disconfirming evidence risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"Adventure coverage is bleeding us,\" the pricing lead says as Megan holds the warranty label from the travel policy folder. The mountain-claim examples fit the room's hunch. The deadline for new rates is Friday, and Megan has to choose between raising the adventure premium or checking ferry-delay claims that might weaken the story.",
+      "whatToDo": "Mark the possible disconfirming evidence and price only after the ferry claims and mountain claims are compared side by side.",
+      "whyItMatters": "A vivid category can recruit confirming examples. The rate change needs the claims that do not fit the first story as much as the claims that do."
+    },
+    {
+      "exampleId": "ch07-ex03-chris-press-clipping",
+      "title": "Ivo Tests the Ad Renewal",
+      "tags": [
+        "dialogue",
+        "podcast",
+        "advertising"
+      ],
+      "planSpec": {
+        "domain": "a podcast ad renewal applying Confirmation Bias (Part 1) under operational pressure",
+        "audience": "a reader who has to make a live judgment where Wason test could mislead them",
+        "stakes": "scarce marketing money gets misallocated if confirmation bias is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the press clipping, names the Wason test risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Static pops through the studio monitor as Ivo smooths a press clipping about the podcast's sold-out live show. \"This proves the audience is growing,\" the producer says. Ivo points to the flat ad-code report and pauses before choosing to renew or test the rule like a Wason test: look for the card that could break it. Before the renewal call, Ivo must decide whether the press clipping is enough or whether the flat ad-code report controls the next test.",
+      "whatToDo": "Ask what metric would make renewal weak, then check that metric before approving the buy. Let the press clipping support interest only if conversion evidence survives.",
+      "whyItMatters": "The clipping confirms popularity, not ad performance. The Wason-style correction pushes Ivo toward the evidence that could falsify the renewal story."
+    },
+    {
+      "exampleId": "ch07-ex04-hadiya-voting-sheet",
+      "title": "Hadiya Reads the Dropouts",
+      "tags": [
+        "decision",
+        "lab",
+        "trial"
+      ],
+      "planSpec": {
+        "domain": "a university lab result meeting applying Confirmation Bias (Part 1) under operational pressure",
+        "audience": "a reader who has to make a live judgment where fixed conclusion could mislead them",
+        "stakes": "research credibility gets misallocated if confirmation bias is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the voting sheet, names the fixed conclusion risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are holding the lab's voting sheet when Hadiya circles the blank line for dropout notes. The principal investigator wants to call the trial promising because early responders improved. Before the vote, she must decide whether to accept the fixed conclusion or make the room read the missing dropout reasons.",
+      "whatToDo": "Read the dropout notes before voting. Treat early improvement and missing participants as one evidence set, not as separate stories.",
+      "whyItMatters": "A promising result can be real and still incomplete. Confirmation bias hides in the facts the room is relieved not to discuss."
+    },
+    {
+      "exampleId": "ch07-ex05-anders-permit-folder",
+      "title": "Anders Writes Down the Bad Fact",
+      "tags": [
+        "predict",
+        "charity",
+        "donors"
+      ],
+      "planSpec": {
+        "domain": "a charity donor campaign applying Confirmation Bias (Part 1) under operational pressure",
+        "audience": "a reader who has to make a live judgment where Darwin could mislead them",
+        "stakes": "fundraising credibility gets misallocated if confirmation bias is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the permit folder, names the Darwin risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Anders two donor calls to see the permit folder was being used as proof, not as evidence. The outdoor campaign sounded bold, and the early donors loved it. A city note warned that the park permit might fail. Anders writes Darwin risk on the folder and weighs whether to bury the bad fact or put it in the donor update. Before the next step, Anders has to test the visible claim before the team moves.",
+      "whatToDo": "Record the damaging permit risk before the campaign story hardens. Update donors with the uncertainty instead of collecting only enthusiasm.",
+      "whyItMatters": "The Darwin habit matters here: write down the fact that injures the preferred idea before the mind edits it out."
+    },
+    {
+      "exampleId": "ch07-ex06-paula-inventory-scan",
+      "title": "Paula Rebuilds the Cooling Map",
+      "tags": [
+        "postmortem",
+        "public-health",
+        "heat"
+      ],
+      "planSpec": {
+        "domain": "a heat-response cooling-center map applying Confirmation Bias (Part 1) under operational pressure",
+        "audience": "a reader who has to make a live judgment where confirmation could mislead them",
+        "stakes": "public safety gets misallocated if confirmation bias is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the inventory scan, names the confirmation risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which cooling centers actually had water at 6 p.m.? Paula answers that question after the heat wave by laying the inventory scan beside the map. The team had assumed the west-side centers were stocked because the morning check confirmed it. Paula marks confirmation risk and rebuilds the next map from evening scans too.",
+      "whatToDo": "Use the inventory scan from the decision time, not the scan that confirmed the morning assumption. Update the map from the evidence that could have contradicted it.",
+      "whyItMatters": "Confirmation can freeze an early status into a plan. The postmortem protects the next heat response by asking where the contrary evidence would have appeared."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a confirmation-bias case, a clinic manager believes missed appointments come from reminder texts failing, she collects three complaints about texts but has not checked patients who arrived on time. What is the confirmation bias risk?",
+        "choices": [
+          "She is letting the suspected cause choose which evidence enters the review.",
+          "Checked patients arrived points toward a quicker call on appointments come reminder; let manager believes missed stand until three complaints about contradicts it.",
+          "Arrived time what fits the immediate pressure around reminder texts failing; hold missed appointments come steady and test clinic manager believes later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The problem is uneven search: complaints support the theory, but on-time patients might weaken it. Stopping the texts or getting more confident repeats the same filter.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Confirmation Bias (Part 1) makes confirmation-bias case feel more decisive than the record supports, and that misprices clinic manager in this scene. The correct move keepss the choice by she is letting the suspected cause choose which evidence enters the."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a confirmation-bias review, a product team thinks a new checkout button raised sales because three customers praised it, the dashboard also shows traffic from a holiday email. What should the team do before deciding?",
+        "choices": [
+          "Three customers praised makes team thinks checkout look credible; use button raised sales first and revisit dashboard also shows when traffic holiday email shifts.",
+          "Ask what result would weaken the button story and compare the email traffic before claiming success.",
+          "Also shows traffic points toward a quicker call on thinks checkout button; let confirmation-bias product team stand until customers praised dashboard contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The correction is to look for the evidence that could break the button explanation. Customer praise is useful, but the holiday email may be the missing comparison.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Confirmation Bias (Part 1) works by letting confirmation-bias product crowd out team thinks, which can misreads the checkout button decision. Ask what result would weaken the button story and compare the email traffic before claiming success keeps the practical cost."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When confirmation-bias pressure appears, a hiring panel likes a candidate and starts rereading only the strongest portfolio pieces. One interviewer notices two weak client handoffs in the references. Which move best handles the evidence?",
+        "choices": [
+          "Treat the weak handoffs as disconfirming evidence and discuss them before voting.",
+          "Move best handles fits the immediate pressure around strongest portfolio pieces; hold candidate starts rereading steady and test hiring panel likes later.",
+          "Appears hiring panel looks strong enough to guide likes candidate starts; rereading strongest portfolio can wait unless pieces interviewer notices changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The weak handoffs are exactly the evidence a fixed positive view might screen out. The goal is not automatic rejection; it is allowing contrary evidence into the decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Confirmation Bias (Part 1) turns appears hiring into a shortcut, so the room can overweights panel likes while missing candidate starts. Treat the weak handoffs as disconfirming evidence and discuss them before voting protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After confirmation-bias risk surfaces, a city planner believes a bike lane reduced crashes, she has a map of fewer crashes on the main street but no data from parallel streets where drivers may have moved. What question should come next?",
+        "choices": [
+          "Drivers moved what points toward a quicker call on lane reduced crashes; let planner believes bike stand until data parallel streets contradicts it.",
+          "Where would the evidence appear if crashes had shifted instead of fallen?",
+          "Surfaces city planner looks strong enough to guide believes bike lane; reduced crashes fewer can wait unless main street data changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The missing comparison is where a contrary pattern would live. Photos and defense arguments gather confirmation instead of testing the safer-street claim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Confirmation Bias (Part 1) would push the city planner case toward believes bike, creating a cost when lane reduced stays untested. The useful guardrail is to where would the evidence appear if crashes had shifted instead of fallen."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If confirmation-bias reasoning takes over, a founder believes a pricing increase worked because revenue rose in the first week. The sales lead says renewals due that week were unusually large. What is the best next step?",
+        "choices": [
+          "Next step separate fits the immediate pressure around sales lead says; hold rose first week steady and test increase worked revenue later.",
+          "Pricing increase worked looks strong enough to guide revenue rose first; week sales lead can wait unless says renewals were changes the stakes.",
+          "Separate renewal timing from new-price behavior before claiming the increase worked."
+        ],
+        "correctIndex": 2,
+        "explanation": "Large renewals may disconfirm the pricing story by explaining the revenue rise another way. Asking only favorable customers would keep the search tilted.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Confirmation Bias (Part 1) converts believes pricing into the loudest signal, which can rushes increase worked before revenue rose is checked. The better answer separatess attention on separate renewal timing from new-price behavior before claiming the increase worked."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While confirmation-bias pressure builds, a researcher expects a supplement to improve sleep and highlights five improved participants, four people dropped out after worse sleep. Why does excluding them create confirmation bias?",
+        "choices": [
+          "Confirmation-bias pressure builds looks strong enough to guide researcher expects supplement; improve sleep highlights can wait unless five improved participants changes the stakes.",
+          "It lets the expected conclusion decide which cases count as evidence.",
+          "Improved participants four makes expects supplement improve look credible; use sleep highlights five first and revisit people dropped after when worse excluding create shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The dropout cases may challenge the expected improvement. The bias is not that dropouts automatically dominate, but that the preferred answer excludes them.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Confirmation Bias (Part 1) hides inside the confirmation-bias pressure choice because confirmation-bias pressure seems sufficient, yet the cost lands in confirmation-bias pressure. It lets the expected conclusion decide which cases count as evidence brings the confirmation-bias pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the confirmation-bias call, a sales director believes a training script is failing. She asks only the two reps who dislike it and skips the rep whose conversion rate improved. What has gone wrong?",
+        "choices": [
+          "She has confused dislike with total evidence and avoided a case that could weaken her conclusion.",
+          "Asks reps dislike gives a practical reason for training script failing; rate improved what belongs after skips whose conversion clarifies the result.",
+          "Dislike skips whose makes believes training script look credible; use failing asks reps first and revisit conversion rate improved when what gone wrong shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The disliked script may be failing, but excluding the improved rep protects the first conclusion. Qualitative input can help if it is not selected only for agreement.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Confirmation Bias (Part 1) pressures the call sales decision toward the easy reading of call sales. That can inflates the real cost unless the choice is grounded in she has confused dislike with total evidence and avoided a case that."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose confirmation-bias risk is present: a museum director wants to extend a popular exhibit. Attendance is high on weekends, but weekday school bookings fell after the exhibit opened. How should she test her favored answer?",
+        "choices": [
+          "Answer weekend gains fits the immediate pressure around weekends weekday school; hold exhibit attendance high steady and test wants extend popular later.",
+          "Compare weekend gains with weekday losses before calling the exhibit a success.",
+          "Extend popular exhibit gives a practical reason for museum director wants; weekday school bookings belongs after attendance high weekends clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "Weekday losses could weaken the success story. Positive quotes and weekend-only numbers confirm the extension without testing whether the exhibit displaced another audience.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Confirmation Bias (Part 1) is the mechanism here: friendly evidence gets protected from challenge, so present museum can overpower present museum. Compare weekend gains with weekday losses before calling the exhibit a success keeps the scenario from becoming a costly."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two confirmation-bias signals compete: a hospital board favors a new scheduling system because pilot nurses liked it. Error reports fell in one ward but rose in another. Which recommendation best avoids confirmation bias?",
+        "choices": [
+          "Confirmation-bias signals compete looks strong enough to guide hospital board favors; scheduling system pilot can wait unless nurses liked error changes the stakes.",
+          "Pilot nurses liked gives a practical reason for favors scheduling system; ward rose another belongs after error reports fell clarifies the result.",
+          "Review both wards and define what result would change the board's view before voting."
+        ],
+        "correctIndex": 2,
+        "explanation": "The board needs the evidence that could weaken its preferred answer, not automatic approval or rejection. Defining the mind-changing result keeps the conclusion from filtering the review.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Confirmation Bias (Part 1) makes the hospital board evidence look cleaner than it is, risking a hospital board mistake in this setting. The answer protects hospital board by asking for review both wards and define what result would change the."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "A report supports your first explanation, but one column that might weaken it is blank. What should you ask?",
+      "back": "Ask what evidence would count against the explanation and where that evidence would appear. Fill that column before deciding."
+    },
+    {
+      "front": "A team keeps finding examples that prove its plan is working. What is the confirmation-bias warning sign?",
+      "back": "The search may be tilted toward support. Look for the cases that would break the plan's story, not only the cases that flatter it."
+    },
+    {
+      "front": "A colleague calls contrary evidence a distraction. What is the better frame?",
+      "back": "Disconfirming evidence is the missing door. It tests whether the conclusion earned confidence or merely recruited friendly facts."
+    },
+    {
+      "front": "You like a proposal and want to approve it quickly. What one sentence should you write first?",
+      "back": "Write: 'This proposal would look weak if...' Then check whether that condition is already visible in the evidence."
+    },
+    {
+      "front": "A vivid story and a dull spreadsheet disagree. Which one deserves attention?",
+      "back": "Both, but the dull spreadsheet may be the disconfirming evidence your preferred story wants to ignore."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to test a favored answer by naming the evidence that would weaken it, then checking where that evidence should appear before the decision closes.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If I notice myself collecting only examples that support my current view, then I will write the opposite evidence I would expect to see and check one source where it should appear."
+      },
+      {
+        "context": "meetings",
+        "plan": "If a meeting starts with a favored conclusion already named, then I will ask for the strongest fact that would weaken that conclusion before the group votes."
+      },
+      {
+        "context": "data",
+        "plan": "If a dashboard number confirms what I hoped was true, then I will look for one comparison period, group, or channel that could explain the same number another way."
+      },
+      {
+        "context": "debate",
+        "plan": "If someone dismisses a contrary case as an exception, then I will ask whether we have counted how many similar exceptions exist before treating it as harmless."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, choose one belief you are using to make a decision. Write the one fact that would weaken it, then spend five minutes looking for that fact before collecting more support.",
+    "weeklyPractice": "Once this week, revisit a decision you feel sure about and add a disconfirming-evidence column before you act on it."
+  },
+  "memorableLines": [
+    {
+      "text": "Disconfirming evidence is not an enemy; it is the missing door.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the correction a concrete image and appears in the deep read."
+    },
+    {
+      "text": "Support is cheap when you only invite supporters.",
+      "location": "breakdown.deepRead",
+      "why": "It warns against selective search in a short line that appears in the deep read."
+    },
+    {
+      "text": "This is the uncomfortable part: the best question may make your preferred answer less clean.",
+      "location": "breakdown.fullRead",
+      "why": "It names the discomfort of the method and appears in the full read."
+    }
+  ]
+}

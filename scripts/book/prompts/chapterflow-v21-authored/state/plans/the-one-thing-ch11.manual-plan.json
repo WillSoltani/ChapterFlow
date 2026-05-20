@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch11",
+  "number": 11,
+  "title": "The Success Habit",
+  "coreMove": "Make leverage-seeking a repeated habit so decisions keep narrowing before busyness takes over.",
+  "sourcePressure": "Part 2 turns the Focusing Question into a repeated success habit, centered on asking for leverage often enough that it changes decisions.",
+  "chapterSpecificMisunderstanding": "Treating habit as routine for its own sake or repeating generic habit advice.",
+  "sourceAlignmentTerms": [
+    "success habit",
+    "repeated question",
+    "leverage-seeking",
+    "routine",
+    "decision habit",
+    "empty routine"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "The Success Habit as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "municipal call center opening shift",
+      "audience": "call center supervisor",
+      "stakes": "complaint queues balloon by noon",
+      "format": "scene",
+      "requiredBeat": "she adds one leverage question to the 8:45 queue review and changes the first staffing move before calls flood in",
+      "firstImage": "a headset row with one queue monitor glowing at 8:45 a.m.",
+      "mustInclude": [
+        "queue monitor",
+        "headsets",
+        "staffing sheet"
+      ],
+      "mustAvoid": [
+        "generic customer service tip"
+      ]
+    },
+    {
+      "domain": "community theater rehearsal notes",
+      "audience": "director",
+      "stakes": "actors receive too many notes to improve",
+      "format": "dialogue",
+      "requiredBeat": "before every rehearsal she asks which one note would make the scene easier for everyone and cuts the rest from the call sheet",
+      "firstImage": "a marked script beside a call sheet with five crossed-out notes",
+      "mustInclude": [
+        "marked script",
+        "call sheet",
+        "rehearsal chairs"
+      ],
+      "mustAvoid": [
+        "generic performance feedback"
+      ]
+    },
+    {
+      "domain": "commercial apiary inspection route",
+      "audience": "beekeeper",
+      "stakes": "weak colonies can be missed among routine checks",
+      "format": "vignette",
+      "requiredBeat": "at each truck stop he asks which hive condition would make tomorrow's losses easier to prevent and opens that box first",
+      "firstImage": "a hive tool resting on a truck tailgate beside numbered colony cards",
+      "mustInclude": [
+        "hive tool",
+        "colony cards",
+        "smoker"
+      ],
+      "mustAvoid": [
+        "generic nature routine"
+      ]
+    },
+    {
+      "domain": "public radio newsroom planning board",
+      "audience": "assignment editor",
+      "stakes": "every morning story looks urgent",
+      "format": "decision_point",
+      "requiredBeat": "she uses the question at the top of the budget meeting and assigns the records request before chasing three smaller clips",
+      "firstImage": "a newsroom budget board with one records request underlined",
+      "mustInclude": [
+        "budget board",
+        "records request",
+        "audio recorder"
+      ],
+      "mustAvoid": [
+        "generic media prioritization"
+      ]
+    },
+    {
+      "domain": "physical therapy clinic discharge planning",
+      "audience": "therapist",
+      "stakes": "patients leave with too many exercises",
+      "format": "before_after",
+      "requiredBeat": "he builds a habit of asking which one movement makes the home program easier and removes three nice-to-have drills",
+      "firstImage": "a resistance band looped around a discharge packet on a treatment table",
+      "mustInclude": [
+        "resistance band",
+        "discharge packet",
+        "exercise cards"
+      ],
+      "mustAvoid": [
+        "generic health habit"
+      ]
+    },
+    {
+      "domain": "small press manuscript pipeline",
+      "audience": "managing editor",
+      "stakes": "books stall between copyedit and proof",
+      "format": "postmortem",
+      "requiredBeat": "she realizes the habit worked only after she asked the leverage question at every Friday handoff instead of during crises",
+      "firstImage": "proof pages stacked beside a Friday handoff checklist",
+      "mustInclude": [
+        "proof pages",
+        "handoff checklist",
+        "copyedit notes"
+      ],
+      "mustAvoid": [
+        "generic publishing deadline"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "attach the focusing question to recurring moments",
+      "turn narrowing into default behavior",
+      "keep routine tied to leverage"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Attach the leverage question to one daily trigger you already meet, such as opening your calendar, clearing a tray, or starting a shift.",
+  "readingTimeMinutes": 12
+}

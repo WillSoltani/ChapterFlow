@@ -1,0 +1,182 @@
+{
+  "chapterId": "zero-to-one-ch04",
+  "number": 4,
+  "title": "The Ideology of Competition",
+  "coreMove": "Notice when rivalry has become the frame that decides what you can see.",
+  "sourcePressure": "The chapter asks why competition keeps moral prestige even when rivalry consumes attention and pushes companies into imitation. The frozen source for this chapter contains no chapter-specific named anecdote beyond author/editor metadata, so examples should use fictional protagonists and stay anchored to verified terms.",
+  "chapterSpecificMisunderstanding": "Reducing the idea to avoiding competitors instead of showing how rivalry captures attention.",
+  "sourceAlignmentTerms": [
+    "rivalry",
+    "competition ideology",
+    "imitation",
+    "attention trap",
+    "status contest",
+    "strategy narrowing"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of rivalry",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "restaurant group menu planning",
+      "audience": "a chef-owner realizing the rival bistro is now deciding every menu choice for him",
+      "stakes": "whether the restaurant becomes a mirror with smaller margins",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Rachel closes the competitor menu and plates the dish regulars actually cross town for",
+      "firstImage": "steam rising from a chipped tasting spoon",
+      "mustInclude": [
+        "competitor menu",
+        "tasting spoon",
+        "reservation notes"
+      ],
+      "mustAvoid": [
+        "food rivalry drama"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "school robotics team",
+      "audience": "a coach watching students copy the reigning champion robot instead of solving this year’s field",
+      "stakes": "whether the team spends six weeks building last year’s answer",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lukas turns the old champion video off and makes the team score the new field from scratch",
+      "firstImage": "metal parts sorted beside a silent laptop",
+      "mustInclude": [
+        "field diagram",
+        "aluminum rails",
+        "disabled video replay"
+      ],
+      "mustAvoid": [
+        "generic classroom competition"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "boutique hotel renovation",
+      "audience": "an owner deciding whether chasing a rival hotel’s lobby design has replaced guest insight",
+      "stakes": "whether the renovation buys sameness at luxury prices",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anna pulls guest complaint cards from under the marble sample and changes the design brief",
+      "firstImage": "marble samples stacked on a reception desk",
+      "mustInclude": [
+        "marble samples",
+        "guest complaint cards",
+        "floor-plan roll"
+      ],
+      "mustAvoid": [
+        "interior design trends"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "open-source developer tool",
+      "audience": "a maintainer whose roadmap is full of rival-announcement reactions",
+      "stakes": "whether the project loses its original reason to exist",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hugo labels each backlog item with user pain or rival envy and deletes the second pile",
+      "firstImage": "issue cards scattered across a kanban board",
+      "mustInclude": [
+        "issue cards",
+        "release notes",
+        "stale pull request"
+      ],
+      "mustAvoid": [
+        "software feature parity"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "independent pharmacy services",
+      "audience": "a pharmacist considering whether chain-store rivalry has hidden a home-medication niche",
+      "stakes": "whether the pharmacy competes on discounts or builds a service the chain ignores",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Kasia stops matching coupons and schedules the first in-home pillbox review",
+      "firstImage": "orange prescription bags lined near a delivery tote",
+      "mustInclude": [
+        "prescription bags",
+        "delivery tote",
+        "coupon flyer"
+      ],
+      "mustAvoid": [
+        "healthcare generic"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "regional theater season selection",
+      "audience": "an artistic director realizing another company’s acclaim is steering the season",
+      "stakes": "whether the theater borrows prestige instead of serving its own audience",
+      "format": "reflection",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Daniel removes the rival awards list from the table and rereads subscriber letters",
+      "firstImage": "subscriber letters under a rehearsal-room lamp",
+      "mustInclude": [
+        "subscriber letters",
+        "season grid",
+        "script stack"
+      ],
+      "mustAvoid": [
+        "arts rivalry gossip"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires notice when rivalry has become the frame that decides what you can see.",
+      "separate rivalry from competition ideology in a novel operating case",
+      "diagnose the specific failure mode: reducing the idea to avoiding competitors instead of showing how rivalry captures attention.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open a current roadmap and mark three items driven by a rival rather than by customer truth; cross out one rivalry-driven item before adding anything new.",
+  "readingTimeMinutes": 12
+}

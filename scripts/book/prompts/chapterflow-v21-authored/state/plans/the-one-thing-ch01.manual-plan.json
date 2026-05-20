@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch01",
+  "number": 1,
+  "title": "The One Thing",
+  "coreMove": "Name the single concern or task that carries the most leverage before spending energy anywhere else.",
+  "sourcePressure": "Chapter 1 introduces the governing idea through the City Slickers frame, overextension, uneven focus, and the claim that the most important task makes other work easier or unnecessary.",
+  "chapterSpecificMisunderstanding": "Telling the reader to choose one favorite task and ignore the rest.",
+  "sourceAlignmentTerms": [
+    "City Slickers",
+    "one thing",
+    "overextended",
+    "uneven focus",
+    "leverage",
+    "extraordinary outcomes"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "The One Thing as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "emergency room triage board during a storm surge",
+      "audience": "charge nurse",
+      "stakes": "six waiting patients and one trauma bay left",
+      "format": "scene",
+      "requiredBeat": "the nurse wipes three names off the side board, circles the one patient whose airway decision unlocks the room, and sends the team there first",
+      "firstImage": "a rain-dark ER board with colored magnets sliding under a nurse's thumb",
+      "mustInclude": [
+        "triage board",
+        "wet floor signs",
+        "one open trauma bay"
+      ],
+      "mustAvoid": [
+        "generic hospital efficiency scene"
+      ]
+    },
+    {
+      "domain": "artisan bakery facing a failed wholesale order before dawn",
+      "audience": "owner-baker",
+      "stakes": "a hotel delivery leaves in forty minutes",
+      "format": "decision_point",
+      "requiredBeat": "the baker stops fixing all trays, weighs the rye batch that can save the invoice, and tells the team to leave the pastry defects alone",
+      "firstImage": "flour on a loading-dock scale beside one crate of dark loaves",
+      "mustInclude": [
+        "dock scale",
+        "hotel invoice",
+        "proofing racks"
+      ],
+      "mustAvoid": [
+        "morning routine productivity shell"
+      ]
+    },
+    {
+      "domain": "public defender preparing for a bail docket",
+      "audience": "new attorney",
+      "stakes": "one client may sleep in jail because of a missing record",
+      "format": "vignette",
+      "requiredBeat": "the attorney closes five minor case folders and pulls the one file where a phone call to probation changes the hearing",
+      "firstImage": "a courthouse hallway bench with six manila folders and one red sticky note",
+      "mustInclude": [
+        "manila folders",
+        "probation number",
+        "bench outside courtroom"
+      ],
+      "mustAvoid": [
+        "generic legal deadline scene"
+      ]
+    },
+    {
+      "domain": "theater stage manager before opening night",
+      "audience": "stage manager",
+      "stakes": "a sold-out preview depends on one unsafe fly cue",
+      "format": "before_after",
+      "requiredBeat": "she stops polishing every cue sheet, marks the failing fly cue in tape, and holds the crew on that single move until it runs clean",
+      "firstImage": "black gaffer tape crossing one cue line under a clip light",
+      "mustInclude": [
+        "cue sheet",
+        "gaffer tape",
+        "fly rail"
+      ],
+      "mustAvoid": [
+        "team meeting scene"
+      ]
+    },
+    {
+      "domain": "community garden after a vandalized irrigation line",
+      "audience": "volunteer coordinator",
+      "stakes": "two hundred seedlings will dry out by evening",
+      "format": "postmortem",
+      "requiredBeat": "the coordinator sees that every helpful errand mattered less than locating the cracked valve that starved the beds",
+      "firstImage": "a split irrigation valve hissing beside rows of drooping seedlings",
+      "mustInclude": [
+        "cracked valve",
+        "seedling trays",
+        "repair wrench"
+      ],
+      "mustAvoid": [
+        "generic nonprofit overwhelm"
+      ]
+    },
+    {
+      "domain": "data center outage at a regional bank",
+      "audience": "site reliability lead",
+      "stakes": "payment processing is down while alerts flood the screen",
+      "format": "predict_reveal",
+      "requiredBeat": "the lead predicts which alert controls the cascade, mutes the rest, and watches the payment queue start moving after that one service restarts",
+      "firstImage": "a dark operations room with one alert pinned above a frozen payment queue",
+      "mustInclude": [
+        "alert wall",
+        "payment queue",
+        "restart runbook"
+      ],
+      "mustAvoid": [
+        "generic software prioritization"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate the leverage task from merely visible work",
+      "choose the concern that changes the rest of the day",
+      "notice when scattered effort is protecting comfort"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at the next four hours and write the one result that would make two other tasks easier to handle or unnecessary.",
+  "readingTimeMinutes": 12
+}

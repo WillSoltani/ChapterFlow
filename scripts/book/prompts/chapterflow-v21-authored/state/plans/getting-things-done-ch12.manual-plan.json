@@ -1,0 +1,198 @@
+{
+  "chapterId": "getting-things-done-ch12",
+  "number": 12,
+  "title": "The Power of the Next-Action Decision",
+  "coreMove": "Turn each vague commitment into the next visible physical action so engagement becomes possible.",
+  "sourcePressure": "This principles chapter explains why deciding the concrete next action reduces stuckness and changes how people engage with commitments.",
+  "chapterSpecificMisunderstanding": "Treating next action as a motivational slogan rather than a concrete decision about the body’s next move.",
+  "sourceAlignmentTerms": [
+    "next-action decision",
+    "next action",
+    "concrete move",
+    "physical action",
+    "stuckness",
+    "engagement",
+    "movement"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "next-action decision",
+      "detail": "The source sidecar identifies this as the principle-level power in Chapter 12.",
+      "useIn": "both",
+      "phrasingHint": "The next-action decision is the moment a concern stops being fog and starts asking for a hand, a phone, a document, or a door."
+    },
+    {
+      "kind": "artifact",
+      "name": "concrete move",
+      "detail": "The source sidecar ties concreteness and reduced stuckness to the next-action decision.",
+      "useIn": "both",
+      "phrasingHint": "Concrete means you can see the verb happen from across the room."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Kate",
+      "domain": "a grant consultant with a stalled foundation proposal",
+      "audience": "a consultant managing a high-value proposal alone",
+      "stakes": "a forty-thousand-dollar application could miss the first review cycle",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:32 p.m., Kate rewrites \"follow up on proposal\" as one email asking the program officer about the budget attachment.",
+      "firstImage": "a budget attachment error message on a laptop",
+      "mustInclude": [
+        "budget attachment",
+        "program officer email",
+        "deadline"
+      ],
+      "mustAvoid": [
+        "making it sales follow-up"
+      ]
+    },
+    {
+      "protagonistName": "Peter",
+      "domain": "a school principal handling annual fire-drill documentation",
+      "audience": "a principal juggling mandated work without administrative backup",
+      "stakes": "a compliance review could consume weeks if the form never starts",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The hallway bells are silent when Peter changes \"handle fire drill\" into \"call district safety office for the May form.\"",
+      "firstImage": "a red fire-drill binder under a wall bell",
+      "mustInclude": [
+        "fire-drill binder",
+        "wall bell",
+        "district extension"
+      ],
+      "mustAvoid": [
+        "generic school motivation"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "a four-person architecture firm during facade revision standup",
+      "audience": "a junior architect facilitating without formal project management authority",
+      "stakes": "a permit window could close while everyone discusses the revision",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"What is the actual next action, and who has it?\" Vincent asks, and the team finds the missing two-minute call.",
+      "firstImage": "a facade elevation pinned beside a permit calendar",
+      "mustInclude": [
+        "facade elevation",
+        "permit calendar",
+        "building department call"
+      ],
+      "mustAvoid": [
+        "reusing ch2 architecture markup"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "a homeowner reviving a stalled kitchen renovation without generic home clutter",
+      "audience": "a first-time renovator managing a contractor after work hours",
+      "stakes": "the house could enter winter with exposed subfloor because research never became action",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Frida four months to see that \"research counters\" had never told her what to open, ask, or send.",
+      "firstImage": "a square of countertop sample on exposed subfloor",
+      "mustInclude": [
+        "countertop sample",
+        "contractor text",
+        "supplier website"
+      ],
+      "mustAvoid": [
+        "narrow kitchen shell"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "a legal translator scanning five client contracts on Monday morning",
+      "audience": "a freelancer needing momentum across language projects",
+      "stakes": "client trust could erode if every line item remains an outcome label",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "You compare Hiroshi’s two lists and see why the one with physical actions lets him start in three minutes.",
+      "firstImage": "two printed project lists side by side",
+      "mustInclude": [
+        "printed lists",
+        "client code",
+        "three-minute scan"
+      ],
+      "mustAvoid": [
+        "making translation content the lesson"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "a mobile app team retrospective after missing a press window",
+      "audience": "a product lead guiding engineers and designer through a late launch",
+      "stakes": "a competitor already claimed the release narrative",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which milestone was really actionable when \"beta complete\" never named who would call the QA vendor?",
+      "firstImage": "a launch timeline with a red missed-date sticker",
+      "mustInclude": [
+        "launch timeline",
+        "QA vendor",
+        "missed-date sticker"
+      ],
+      "mustAvoid": [
+        "software productivity generic"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "translate vague tasks into physical next actions",
+      "spot outcomes masquerading as actions",
+      "evaluate whether an action is concrete enough"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Rewrite one vague list item as a physical verb plus object, such as call, email, open, print, ask, or place.",
+  "readingTimeMinutes": 12
+}

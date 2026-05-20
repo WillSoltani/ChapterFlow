@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch03",
+  "number": 3,
+  "title": "Belonging",
+  "coreMove": "Turn inclusion from roster status into durable membership by proving one mistake will not eject someone from the group.",
+  "sourcePressure": "Defines belonging as durable membership inside the Circle of Safety, where people stop treating hard moments as possible exile and become more candid under pressure.",
+  "chapterSpecificMisunderstanding": "Making belonging mean warmth, similarity, or social events rather than secure membership with standards intact.",
+  "sourceAlignmentTerms": [
+    "belonging",
+    "durable membership",
+    "trusted and valued",
+    "Circle of Safety",
+    "infighting",
+    "fragmentation",
+    "social security"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 3 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "search-and-rescue volunteer debrief",
+      "audience": "new volunteer after a missed radio call",
+      "stakes": "one mistake could make him stop reporting uncertainty",
+      "format": "scene",
+      "requiredBeat": "the captain keeps the volunteer inside the circle while replaying the call on the handheld radio",
+      "firstImage": "a muddy handheld radio on a folding table",
+      "mustInclude": [
+        "handheld radio",
+        "muddy boots"
+      ],
+      "mustAvoid": [
+        "corporate belonging"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "bakery apprenticeship bench",
+      "audience": "apprentice burns first batch before dawn",
+      "stakes": "the apprentice may feel one error means exile",
+      "format": "dialogue",
+      "requiredBeat": "the baker slides a fresh proofing tray toward her and says the next batch is still hers",
+      "firstImage": "a scorched tray beside rising dough",
+      "mustInclude": [
+        "proofing tray",
+        "bench scraper"
+      ],
+      "mustAvoid": [
+        "family reassurance"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "youth orchestra sectional",
+      "audience": "second chair violinist comes in early",
+      "stakes": "status anxiety is silencing the whole section",
+      "format": "decision_point",
+      "requiredBeat": "the conductor keeps the student seated in place while asking the section to mark the entrance together",
+      "firstImage": "a pencil tapping a marked score",
+      "mustInclude": [
+        "marked score",
+        "rosin cloth"
+      ],
+      "mustAvoid": [
+        "classroom participation"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "harbor repair cooperative",
+      "audience": "new mechanic mislabels a part order",
+      "stakes": "members may treat him as temporary help",
+      "format": "postmortem",
+      "requiredBeat": "the foreman writes his name on next week's repair board before discussing the mislabeled part",
+      "firstImage": "a brass propeller tag on a pegboard",
+      "mustInclude": [
+        "propeller tag",
+        "pegboard"
+      ],
+      "mustAvoid": [
+        "team ritual"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "community clinic intake desk",
+      "audience": "interpreter corrects a doctor publicly",
+      "stakes": "a contractor may not feel inside the clinical team",
+      "format": "before_after",
+      "requiredBeat": "the doctor thanks the interpreter in front of the patient and asks her to update the intake phrase sheet",
+      "firstImage": "a laminated phrase sheet under a blood-pressure cuff",
+      "mustInclude": [
+        "phrase sheet",
+        "blood-pressure cuff"
+      ],
+      "mustAvoid": [
+        "HR inclusion"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "farmers market weather cancellation",
+      "audience": "new stallholder loses first Saturday",
+      "stakes": "membership in the market feels fragile",
+      "format": "reflection",
+      "requiredBeat": "the market lead adds the stallholder to the rain-date text thread before discussing fees",
+      "firstImage": "a rain-soaked stall permit in a plastic sleeve",
+      "mustInclude": [
+        "stall permit",
+        "cash apron"
+      ],
+      "mustAvoid": [
+        "social event belonging"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish inclusion from belonging",
+      "protect membership while keeping correction real",
+      "diagnose exile fear in group silence",
+      "design a signal that keeps threat outside the group"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In one tense group moment, say what standard still holds and what membership is not at risk before the discussion continues.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

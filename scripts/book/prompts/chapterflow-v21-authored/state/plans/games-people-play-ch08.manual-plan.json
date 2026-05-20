@@ -1,0 +1,213 @@
+{
+  "chapterId": "games-people-play-ch08",
+  "number": 8,
+  "title": "Professional and Therapy-Room Games",
+  "coreMove": "Look at the helper and the helped together, because the professional role can be the cover that keeps the game respectable.",
+  "sourcePressure": "Covers I'm Only Trying to Help You, Wooden Leg, Greenhouse, Stupid, and Psychiatry in helping-profession relationships, with care around disability and accountability.",
+  "chapterSpecificMisunderstanding": "Blaming clients, patients, employees, or students while treating the professional helper as outside the game.",
+  "sourceAlignmentTerms": [
+    "I'm Only Trying to Help You",
+    "Wooden Leg",
+    "Greenhouse",
+    "Stupid",
+    "Psychiatry",
+    "helper role",
+    "professional cover",
+    "accountability"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "I'm Only Trying to Help You",
+      "detail": "the source describes a helper offering help that predictably fails, then using the failure as proof the recipient is hopeless and the helper blameless",
+      "useIn": "both",
+      "phrasingHint": "I'm Only Trying to Help You can make failure useful to the helper because it proves the helper tried."
+    },
+    {
+      "kind": "artifact",
+      "name": "Wooden Leg",
+      "detail": "the source distinguishes real limitation from deploying a limitation as permanent exemption from unrelated accountability",
+      "useIn": "both",
+      "phrasingHint": "The limitation may be real; the game begins when the limitation is used to cover a demand it does not actually touch."
+    },
+    {
+      "kind": "artifact",
+      "name": "Greenhouse",
+      "detail": "the source describes using psychological vocabulary to label feelings while avoiding direct experience and change",
+      "useIn": "deepRead",
+      "phrasingHint": "Greenhouse keeps every feeling behind glass, labeled and watered, never lived."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'Professional and Therapy-Room Games' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rebecca",
+      "domain": "nonprofit case-management meeting with repeated unused referrals",
+      "audience": "a social worker checking whether her rescue plan needs the client to fail",
+      "stakes": "services, dignity, and the helper's self-image are all involved",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Rebecca asks the client which referral he will actually use and what barrier blocked the last one, instead of adding a third impressive option.",
+      "firstImage": "\"I found another program that might help,\" Rebecca says, then hears the old script in her own voice.",
+      "mustInclude": [
+        "referral binder",
+        "bus pass envelope",
+        "case note screen"
+      ],
+      "mustAvoid": [
+        "welfare framing",
+        "savior story"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "corporate coaching package for an executive who collects frameworks",
+      "audience": "a coach recognizing Psychiatry-style vocabulary touring",
+      "stakes": "expensive insight can replace one hard behavior change",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Matteo stops the terminology loop and asks the executive to make one phone call before the next session.",
+      "firstImage": "The leather notebook already has three models boxed in blue ink.",
+      "mustInclude": [
+        "coaching notebook",
+        "calendar invite",
+        "call list"
+      ],
+      "mustAvoid": [
+        "generic executive coaching",
+        "framework worship"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "university accessibility office reviewing missed lab work",
+      "audience": "an adviser separating real accommodation from Wooden Leg deployment",
+      "stakes": "respecting disability while keeping unrelated responsibilities clear",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Frida grants the sensory accommodation and still requires the lab safety quiz by a new date.",
+      "firstImage": "The accessibility office window faces a courtyard full of construction noise.",
+      "mustInclude": [
+        "accommodation letter",
+        "lab safety quiz",
+        "noise-canceling headphones"
+      ],
+      "mustAvoid": [
+        "ableist suspicion",
+        "student laziness trope"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "apprenticeship workshop where a trainee keeps acting helpless around measurements",
+      "audience": "a mentor seeing Stupid as a lowered-expectations pattern",
+      "stakes": "the trainee may lose skill and the mentor may enjoy being indispensable",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ben hands back the calipers and waits for the trainee to read the measurement out loud before stepping in.",
+      "firstImage": "You can rescue a bad measurement so quickly that no one learns who needed the rescue.",
+      "mustInclude": [
+        "digital calipers",
+        "scrap aluminum bar",
+        "measurement worksheet"
+      ],
+      "mustAvoid": [
+        "trade-school stereotype",
+        "humiliation scene"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "therapy group where emotion words replace actual contact",
+      "audience": "a facilitator recognizing Greenhouse in polished self-observation",
+      "stakes": "the group can admire insight while no risk is taken",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Chiara asks the speaker to say the sentence directly to the person named, not about the feeling category.",
+      "firstImage": "What happens when every feeling has a label before anyone has felt it in the room?",
+      "mustInclude": [
+        "circle of chairs",
+        "tissue box",
+        "handwritten feeling list"
+      ],
+      "mustAvoid": [
+        "pop-therapy parody",
+        "mindfulness drift"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "customer-success manager with a client who ignores onboarding then blames the tool",
+      "audience": "a professional helper whose role invites endless rescue",
+      "stakes": "renewal revenue can hide a repeated help-failure game",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Yusuf notices that each unused training session lets both sides keep their story, then moves to a written use criterion.",
+      "firstImage": "Two renewals later, Yusuf sees that the unused onboarding call was not an accident.",
+      "mustInclude": [
+        "onboarding checklist",
+        "screen-share recording",
+        "renewal spreadsheet"
+      ],
+      "mustAvoid": [
+        "generic SaaS scene",
+        "client-bashing"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the helper's payoff",
+      "distinguish real limitation from Wooden Leg deployment",
+      "spot vocabulary-as-avoidance in Greenhouse and Psychiatry",
+      "choose accountability without cruelty"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before offering the next help, ask what would count as the other person using it. If no answer exists, the help may be part of the game.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

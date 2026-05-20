@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch05",
+  "number": 5,
+  "title": "Self-Deception",
+  "coreMove": "Separate felt sincerity from full self-knowledge, then ask what social signal the ignorance protects.",
+  "sourcePressure": "The source presents self-deception as more than inner comfort: hidden truths can be kept from the self to make outward signals more convincing.",
+  "chapterSpecificMisunderstanding": "The writer turns self-deception into therapy talk or conscious lying with a nicer label.",
+  "sourceAlignmentTerms": [
+    "self-deception",
+    "defensive theories",
+    "evolutionary theory",
+    "hidden truths",
+    "modular minds",
+    "self-discretion"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "older defensive theories versus newer evolutionary theories",
+      "detail": "The source compares defensive theories of self-deception with evolutionary accounts of social advantage.",
+      "useIn": "both",
+      "phrasingHint": "Comfort may be one benefit, but the cleaner public signal is another."
+    },
+    {
+      "kind": "artifact",
+      "name": "modular minds",
+      "detail": "The source says modular minds allow inconsistent inner processes without one transparent center.",
+      "useIn": "both",
+      "phrasingHint": "A divided mind can keep one room dark while another room speaks brightly."
+    },
+    {
+      "kind": "artifact",
+      "name": "self-discretion inside the mind",
+      "detail": "The source names self-discretion as a way self-ignorance can become socially useful.",
+      "useIn": "deepRead",
+      "phrasingHint": "Not every part of the mind needs the same file before the face looks sincere."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch05: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch05: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch05: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch05: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch05: no generic timer reflection",
+      "the-elephant-in-the-brain-ch05: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch05: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch05: no coffee shop conversation as the default social proof",
+      "no therapy couch scene",
+      "no childhood trauma invention"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "museum acquisitions committee",
+      "audience": "a curator defending a purchase that boosts her reputation",
+      "stakes": "the acquisition may be sincere and self-serving at once",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia rereads her own memo beside the crate label and underlines every quality claim that also makes her look daring to trustees.",
+      "firstImage": "Pine crate splinters catch on Olivia's sleeve outside the loading bay.",
+      "mustInclude": [
+        "crate label",
+        "trustee memo",
+        "acquisition vote"
+      ],
+      "mustAvoid": [
+        "art chapter overlap about value signaling"
+      ]
+    },
+    {
+      "domain": "charity gala table assignment",
+      "audience": "an organizer who believes she is rewarding dedication",
+      "stakes": "table placement may hide a status alliance from the organizer herself",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Antoine earned that table,\" Frida says, then checks whether earned means volunteered most or flatters the donor she wants next year.",
+      "firstImage": "\"Antoine earned that table,\" Frida says while holding the seating cards.",
+      "mustInclude": [
+        "seating cards",
+        "donor list",
+        "volunteer hours"
+      ],
+      "mustAvoid": [
+        "charity effectiveness debate"
+      ]
+    },
+    {
+      "domain": "hospital residency recommendation letter",
+      "audience": "an attending convinced his praise is purely merit-based",
+      "stakes": "a letter can protect a favored trainee while feeling honest",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took David one rejected resident to notice that his strongest adjectives followed loyalty more than skill, so he compares letters against case logs.",
+      "firstImage": "It took David one rejected resident to reread the adjectives.",
+      "mustInclude": [
+        "case logs",
+        "letter template",
+        "ranking sheet"
+      ],
+      "mustAvoid": [
+        "medical outcome claims"
+      ]
+    },
+    {
+      "domain": "startup equity split conversation",
+      "audience": "a founder explaining an unequal split as fairness",
+      "stakes": "the explanation may conceal fear of losing control",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask Lin to write the fairness reasons before and after seeing the cap table, exposing which reasons appear only when control is threatened.",
+      "firstImage": "You see the cap table projected too large on the conference wall.",
+      "mustInclude": [
+        "cap table",
+        "vesting schedule",
+        "founder notes"
+      ],
+      "mustAvoid": [
+        "generic startup conflict"
+      ]
+    },
+    {
+      "domain": "parent school-choice discussion",
+      "audience": "a parent insisting the decision is only about academics",
+      "stakes": "status anxiety may hide behind sincere concern",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Catarina places test scores and commute notes beside the private-school brochure and notices which facts she stops mentioning around other parents.",
+      "firstImage": "The private-school brochure sits brighter than the bus timetable.",
+      "mustInclude": [
+        "school brochure",
+        "bus timetable",
+        "test score page"
+      ],
+      "mustAvoid": [
+        "education chapter credential argument"
+      ]
+    },
+    {
+      "domain": "professional association award nomination",
+      "audience": "a committee member believing he is objective",
+      "stakes": "the favored nominee strengthens the member's own faction",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which nominee looks most excellent after the faction map is covered?",
+      "firstImage": "Which name remains at the top when the faction colors disappear?",
+      "mustInclude": [
+        "nomination packet",
+        "faction map",
+        "scoring rubric"
+      ],
+      "mustAvoid": [
+        "cartoon nepotism"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish sincerity from motive transparency",
+      "identify when self-ignorance improves social signaling",
+      "use modular-mind logic without inventing clinical claims"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one confident explanation you gave this week. Add one sentence beginning, \"This also makes me look...\" and see what motive appears.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch10",
+  "number": 10,
+  "title": "Terrain",
+  "coreMove": "Match the decision to the ground and to your own condition before blaming fate or the opponent.",
+  "sourcePressure": "The source classifies six kinds of terrain and six calamities caused by the general, then insists that enemy openness, your own readiness, and the nature of the ground all have to align.",
+  "chapterSpecificMisunderstanding": "Treating terrain as external circumstances only, with no responsibility for command failures.",
+  "sourceAlignmentTerms": [
+    "accessible ground",
+    "entangling ground",
+    "temporizing ground",
+    "narrow passes",
+    "precipitous heights",
+    "six calamities",
+    "disorganization",
+    "halfway towards victory"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "six kinds of terrain",
+      "detail": "Accessible, entangling, temporizing, narrow passes, precipitous heights, and distant positions each call for different action.",
+      "useIn": "both",
+      "phrasingHint": "The same courage becomes foolishness on the wrong ground."
+    },
+    {
+      "kind": "artifact",
+      "name": "six calamities of command",
+      "detail": "Flight, insubordination, collapse, ruin, disorganization, and rout are described as faults the general is responsible for, not natural causes.",
+      "useIn": "deepRead",
+      "phrasingHint": "Some defeats arrive wearing the costume of bad luck, but the orders made them possible."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "regional hospital moving a specialty clinic to a smaller building",
+      "audience": "service director balancing access and staffing",
+      "stakes": "a cheap lease could trap patients and staff in a bad flow",
+      "format": "audit",
+      "openingDevice": "environmental",
+      "requiredBeat": "The new clinic corridor narrows at the elevator while Olivia maps patient volume, wheelchair turns, staff authority, and return paths before signing.",
+      "firstImage": "a narrow clinic corridor by an elevator",
+      "mustInclude": [
+        "lease draft",
+        "wheelchair radius",
+        "appointment volume"
+      ],
+      "mustAvoid": [
+        "generic real estate cost saving"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "construction foreman deciding whether to pour concrete before rain",
+      "audience": "site foreman managing a bridge repair",
+      "stakes": "a rushed pour on bad ground wastes materials and delays traffic reopening",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Wet aggregate clings to Jack's boot as he rejects the pour because access, weather, crew readiness, and cure time do not align.",
+      "firstImage": "wet aggregate on a work boot",
+      "mustInclude": [
+        "rain radar",
+        "rebar inspection tag",
+        "lane closure permit"
+      ],
+      "mustAvoid": [
+        "generic construction toughness"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "publisher choosing a launch date against a dominant bestseller",
+      "audience": "marketing director for a nonfiction release",
+      "stakes": "launching into occupied attention could bury the book",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Is this open ground, or are you trying to climb a height already held by someone else?",
+      "firstImage": "a bookstore front table already reserved",
+      "mustInclude": [
+        "catalog slot",
+        "review embargo",
+        "author tour dates"
+      ],
+      "mustAvoid": [
+        "book meta in reader prose"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "regional police unit assigning roles during a major public protest",
+      "audience": "operations commander with mixed-experience teams",
+      "stakes": "unclear duties could turn crowd control into disorganization",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 5:45 a.m., Anke redraws sector duties when she sees senior officers bunched together and new constables exposed at the narrow exit.",
+      "firstImage": "a laminated sector map under a streetlamp",
+      "mustInclude": [
+        "radio channel card",
+        "exit barrier",
+        "medic post"
+      ],
+      "mustAvoid": [
+        "law-and-order sermon"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "marine salvage crew deciding whether to board a listing cargo ship",
+      "audience": "salvage captain after a storm",
+      "stakes": "the ship can be saved only if the boarding path is not a trap",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Catarina circle once more instead of boarding from pride, because the ladder angle and swell turn access into entangling ground.",
+      "firstImage": "a ladder slapping against a listing hull",
+      "mustInclude": [
+        "swell period",
+        "towline",
+        "engine-room flood report"
+      ],
+      "mustAvoid": [
+        "heroic sea rescue cliche"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "food manufacturer handling a contamination test at a satellite plant",
+      "audience": "quality director across three facilities",
+      "stakes": "partial knowledge could trigger a wrong shutdown or miss a real threat",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Aman one unnecessary shutdown to learn that knowing the product risk but not the plant layout was only halfway to victory.",
+      "firstImage": "sealed sample bags in a foam shipper",
+      "mustInclude": [
+        "plant map",
+        "batch code",
+        "hold notice"
+      ],
+      "mustAvoid": [
+        "generic food safety scare"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify terrain-like situations",
+      "separate natural difficulty from command-caused calamity",
+      "require self, enemy, and ground to align"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Classify one decision as open, entangling, narrow, high, distant, or waiting ground, then ask what command failure would make it worse.",
+  "readingTimeMinutes": 12
+}

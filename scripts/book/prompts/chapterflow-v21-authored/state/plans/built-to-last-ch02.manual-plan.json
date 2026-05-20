@@ -1,0 +1,182 @@
+{
+  "chapterId": "built-to-last-ch02",
+  "number": 2,
+  "title": "Clock Building, Not Time Telling",
+  "coreMove": "Turn a brilliant answer into a reusable mechanism that keeps working when the gifted person leaves the room.",
+  "sourcePressure": "The source rejects dependence on charismatic leaders, isolated brilliant ideas, one great program, or one gifted leader; Collins official support contrasts time-telling with clock-building and program-centered thinking with institution-centered thinking.",
+  "chapterSpecificMisunderstanding": "Reducing clock building to delegation or process documentation, while leaving the institution dependent on one person for judgment.",
+  "sourceAlignmentTerms": [
+    "clock building",
+    "time telling",
+    "institution-centered thinking",
+    "program-centered thinking",
+    "great organization",
+    "gifted leader",
+    "keeps ticking"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "clock building",
+      "detail": "the source sidecar supports clock building as building an organization that keeps ticking over time rather than depending on one great program or one gifted leader",
+      "useIn": "both",
+      "phrasingHint": "The clock is the system that keeps answering after the expert has gone home."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the genius consultant finally shares the answer",
+      "one brilliant idea saves the company"
+    ],
+    "counterintuition": [
+      "leadership is not about being smart",
+      "systems matter more than people"
+    ],
+    "tryThisNow": [
+      "document your process in five minutes",
+      "delegate one task today"
+    ],
+    "examples": [
+      "generic founder bottleneck",
+      "whiteboard framework with no handoff test",
+      "heroic manager working late"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "restaurant allergy station converting the head chef's memory into a shift-proof service system",
+      "audience": "Grace, a sous-chef taking over a busy Saturday service",
+      "stakes": "one nut allergy mistake could send a guest to hospital",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Grace replaces the head chef's verbal reminders with colored ticket clips, a prep-bin layout, and a second-person handoff check that a new line cook can run without her",
+      "firstImage": "almond flour dust on a stainless prep table beside red allergy clips",
+      "mustInclude": [
+        "colored ticket clips",
+        "prep-bin layout",
+        "handoff check"
+      ],
+      "mustAvoid": [
+        "chef just gives a better speech"
+      ]
+    },
+    {
+      "domain": "community legal clinic turning one senior lawyer's intake instincts into a triage clock",
+      "audience": "Thomas, clinic director facing a Monday queue",
+      "stakes": "tenants could miss filing deadlines if only the senior lawyer can spot urgency",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 8:10 a.m., Thomas tests whether volunteers can route three sample files correctly using the new triage card before the senior lawyer arrives",
+      "firstImage": "three eviction notices clipped to a blue triage card",
+      "mustInclude": [
+        "eviction notices",
+        "triage card",
+        "senior lawyer absent"
+      ],
+      "mustAvoid": [
+        "lawyer personally rescues every client"
+      ]
+    },
+    {
+      "domain": "university lab replacing a star technician's freezer map with a barcoded sample system",
+      "audience": "Anke, a lab manager after a near-loss of samples",
+      "stakes": "five years of tissue samples can vanish if only one technician knows the freezer logic",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anke locks the freezer for one hour and asks two graduate students to retrieve blind samples from the barcode map, exposing what the old memory system hid",
+      "firstImage": "frost fog rolling out of a minus-eighty freezer",
+      "mustInclude": [
+        "barcode map",
+        "blind sample pull",
+        "freezer lockout"
+      ],
+      "mustAvoid": [
+        "star technician praised for remembering everything"
+      ]
+    },
+    {
+      "domain": "youth orchestra making auditions fair without the retiring conductor's ear",
+      "audience": "David, board chair handling succession",
+      "stakes": "families will lose trust if selection changes with the conductor",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "David predicts the retiring conductor's ranking, then watches a blind rubric produce nearly the same list without naming the students",
+      "firstImage": "Can the orchestra choose well with the conductor behind a closed door?",
+      "mustInclude": [
+        "blind rubric",
+        "student numbers",
+        "retiring conductor"
+      ],
+      "mustAvoid": [
+        "music genius intuition as policy"
+      ]
+    },
+    {
+      "domain": "warehouse returns desk replacing one clerk's knack with a defect-category wall",
+      "audience": "Hanna, operations supervisor covering vacation week",
+      "stakes": "returns pile up and suppliers get wrong chargebacks when the expert clerk is out",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Hanna one vacation week to build a defect wall where any temp could sort returns into supplier action bins by visible cues",
+      "firstImage": "a rolling cart of torn packages parked under fluorescent lights",
+      "mustInclude": [
+        "defect wall",
+        "supplier action bins",
+        "vacation week"
+      ],
+      "mustAvoid": [
+        "the expert clerk trains everyone by storytelling"
+      ]
+    },
+    {
+      "domain": "museum membership desk converting a rainmaker's donor calls into a renewal cadence",
+      "audience": "Julien, development manager after the rainmaker announces retirement",
+      "stakes": "a donor base could collapse when relationships are only in one person's phone",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Who calls them after the private tour?\" Julien asks, then builds a renewal calendar with triggers, scripts, and ownership that three coordinators can use",
+      "firstImage": "a donor phone list printed from one private contact file",
+      "mustInclude": [
+        "renewal calendar",
+        "call triggers",
+        "ownership column"
+      ],
+      "mustAvoid": [
+        "charismatic fundraiser makes one more round of calls"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish a reusable mechanism from a one-off expert answer",
+      "choose handoff tests that reveal dependence",
+      "spot program-centered thinking disguised as impact"
+    ]
+  },
+  "tryThisNowSpec": "Pick one task where people still wait for your answer. Write the handoff test: who can perform it tomorrow, using what artifact, while you stay silent.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

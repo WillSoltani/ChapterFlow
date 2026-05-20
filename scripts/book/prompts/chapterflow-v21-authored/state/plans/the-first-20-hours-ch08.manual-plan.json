@@ -1,0 +1,204 @@
+{
+  "chapterId": "the-first-20-hours-ch08",
+  "number": 8,
+  "title": "Ukulele",
+  "coreMove": "Build a tiny performance subset until it can survive real ears, not just private hope.",
+  "sourcePressure": "The source frames ukulele through deliberate narrowing, isolated repetition, and a small public-performance standard rather than total instrumental breadth.",
+  "chapterSpecificMisunderstanding": "Treating narrowing as making the standard private and easy, when the source points toward a small subset tested by public performance readiness.",
+  "sourceAlignmentTerms": [
+    "ukulele",
+    "isolated repetition",
+    "deliberate narrowing",
+    "public performance readiness",
+    "small repertoire",
+    "performance subset",
+    "real listeners"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "ukulele",
+      "detail": "the frozen support names ukulele as the case and frames it through isolated repetition, deliberate narrowing, and public performance readiness",
+      "useIn": "both",
+      "phrasingHint": "The ukulele case is not about becoming broad; it is about making a small sound reliable enough for someone else to hear."
+    },
+    {
+      "kind": "event",
+      "name": "public performance readiness",
+      "detail": "the source supports public performance readiness as the narrow target that tests whether the isolated repetitions hold",
+      "useIn": "fullRead",
+      "phrasingHint": "A living-room chord is not the same thing as a chord that survives another person listening."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "campfire song opener",
+      "music heals the soul opener",
+      "tiny instrument is easy opener"
+    ],
+    "counterintuition": [
+      "small goals mean low standards",
+      "performance is only confidence",
+      "repetition alone solves music"
+    ],
+    "tryThisNow": [
+      "practice a chord for a minute",
+      "choose a favorite song",
+      "hum a tune"
+    ],
+    "examples": [
+      "bedroom guitar practice",
+      "school recital nerves",
+      "open mic coffee shop"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "wedding toast speaker learning one short harmonica phrase",
+      "audience": "a reader narrowing a performance goal for real listeners",
+      "stakes": "the phrase must land cleanly before her sister's toast, not become a musicianship project",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia reduces the target to eight bars, isolates the breath change, records three takes, and plays it once for the best man before adding flair",
+      "firstImage": "a silver harmonica resting on a folded toast card",
+      "mustInclude": [
+        "eight bars",
+        "breath change",
+        "best man listener"
+      ],
+      "mustAvoid": [
+        "generic wedding sentiment",
+        "full instrument mastery"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "museum educator learning a short puppet manipulation sequence",
+      "audience": "a performer who needs one reliable public-ready slice",
+      "stakes": "a school group will lose the exhibit story if the puppet collapses mid-demonstration",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Luca asks which movement matters, drills only the puppet's turn-and-point until the wrist loop stops tangling, then tests it with two educators watching",
+      "firstImage": "a felt puppet hand caught in a thin wrist loop",
+      "mustInclude": [
+        "turn-and-point",
+        "wrist loop",
+        "two educators"
+      ],
+      "mustAvoid": [
+        "generic children's entertainment",
+        "full theatre lesson"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "amateur magician preparing one coin vanish for a family party",
+      "audience": "a reader who must isolate the move that will be seen",
+      "stakes": "a half-learned routine fails in front of cousins and kills the effect",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marta predicts the whole routine needs work, then discovers the vanish fails at the thumb transfer and repeats that single movement in front of a phone camera",
+      "firstImage": "a worn coin flashing under a phone camera light",
+      "mustInclude": [
+        "thumb transfer",
+        "phone camera",
+        "family party"
+      ],
+      "mustAvoid": [
+        "stage magic glamour",
+        "generic confidence advice"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "language meetup participant preparing a two-minute story in French",
+      "audience": "a learner whose public-ready subset is verbal performance",
+      "stakes": "he wants to speak at the table instead of hiding behind listening",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Chris cuts the story to six sentences, isolates the two verb turns that trip him, and delivers it to one native speaker before the meetup",
+      "firstImage": "six numbered sentences folded beside a metro ticket",
+      "mustInclude": [
+        "six sentences",
+        "two verb turns",
+        "one native speaker"
+      ],
+      "mustAvoid": [
+        "travel fantasy",
+        "generic language app"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "line cook learning one plated dessert finish",
+      "audience": "a craft learner whose subset must face service",
+      "stakes": "the dessert station slows every table when the garnish collapses",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Chiara chooses one quenelle-and-sauce finish, repeats the wrist turn on cold plates, and asks the sous-chef to judge only whether it can go to a guest",
+      "firstImage": "cold dessert plates lined beside a spoon dipped in hot water",
+      "mustInclude": [
+        "quenelle",
+        "cold plates",
+        "guest-ready judgment"
+      ],
+      "mustAvoid": [
+        "generic restaurant rush",
+        "chef rivalry"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "community radio producer learning one live sound-bed fade",
+      "audience": "a technical performer whose small move has public stakes",
+      "stakes": "the interview intro sounds amateur if the music crashes under the first sentence",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Akira narrows practice to the eight-second fade, repeats it with the host's first line, and runs it live only after a colleague hears it twice",
+      "firstImage": "your fingertip resting on a sticky fader labeled BED",
+      "mustInclude": [
+        "eight-second fade",
+        "host first line",
+        "colleague listener"
+      ],
+      "mustAvoid": [
+        "podcast editing repeat from ch1",
+        "generic audio production"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "define a narrow public-ready performance subset",
+      "distinguish private comfort from listener-tested readiness",
+      "choose isolated repetition that stabilizes the key movement",
+      "avoid turning narrowing into a low standard"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one performance skill and write the smallest piece you would be willing to show one real listener after focused repetition.",
+  "readingTimeMinutes": 12
+}

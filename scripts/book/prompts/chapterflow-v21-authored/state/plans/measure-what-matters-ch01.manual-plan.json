@@ -1,0 +1,199 @@
+{
+  "chapterId": "measure-what-matters-ch01",
+  "number": 1,
+  "title": "Google, Meet OKRs",
+  "coreMove": "Separate the ambition from the evidence by naming one objective and the key results that would prove it is moving.",
+  "sourcePressure": "Google has ambition, capital, and technology, but Doerr introduces OKRs as the execution discipline that turns scale pressure into visible priorities and proof.",
+  "chapterSpecificMisunderstanding": "Do not reduce the opening to generic goal setting or startup inspiration.",
+  "sourceAlignmentTerms": [
+    "OKRs",
+    "objectives",
+    "key results",
+    "Google",
+    "Larry Page",
+    "Sergey Brin",
+    "Andy Grove",
+    "transparency"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Larry Page and Sergey Brin",
+      "detail": "Doerr meets the Google founders after a major investment and sees strong technology, big ambition, and weak operating clarity.",
+      "useIn": "both",
+      "phrasingHint": "Larry Page and Sergey Brin already had the room leaning toward the future; the missing piece was a way to keep that future from scattering into every attractive project."
+    },
+    {
+      "kind": "person",
+      "name": "Andy Grove",
+      "detail": "Doerr learned OKRs at Intel under Andy Grove before bringing the discipline to Google.",
+      "useIn": "deepRead",
+      "phrasingHint": "The method arrived at Google with Intel fingerprints on it: Grove had taught Doerr to make ambition answer to proof."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A team discovers OKRs in a conference room and suddenly gets aligned",
+      "A dashboard glows on a Monday morning and reveals the truth",
+      "A leader writes a goal on a whiteboard and everyone understands",
+      "opening with Google, Meet OKRs as a definition rather than a pressure"
+    ],
+    "counterintuition": [
+      "Measurement is not bureaucracy, it is clarity",
+      "Goals are not dreams, they are systems",
+      "Accountability is not punishment, it is ownership",
+      "OKRs is not a mindset, it is a system"
+    ],
+    "tryThisNow": [
+      "Set a timer and write three goals",
+      "Circle your most important priority",
+      "Ask yourself what matters most right now",
+      "write one OKR without checking whether it changes behavior"
+    ],
+    "examples": [
+      "generic startup roadmap meeting with sticky notes",
+      "home chore chart with vague family goals",
+      "student group in a classroom choosing priorities",
+      "team lead reviewing a color-coded dashboard",
+      "CFRs",
+      "culture change",
+      "generic productivity habits"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "municipal transit winter-service reset",
+      "audience": "operations directors",
+      "stakes": "the first snowstorm will expose whether buses arrive or the new route map was theater",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah pins a single on-time-arrival objective beside three proof lines and removes two pet projects from the dispatch board",
+      "firstImage": "salt crust on a bus windshield",
+      "mustInclude": [
+        "route map printout",
+        "radio log",
+        "snow-delay sheet"
+      ],
+      "mustAvoid": [
+        "generic startup planning meeting"
+      ]
+    },
+    {
+      "domain": "hospital discharge improvement sprint",
+      "audience": "nurse managers",
+      "stakes": "patients are waiting in beds while departments chase different definitions of discharge success",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Mathieu asks each unit to name the same objective and one measurable proof line before another checklist is added",
+      "firstImage": "half-erased bed board",
+      "mustInclude": [
+        "bed board",
+        "pager",
+        "pharmacy queue"
+      ],
+      "mustAvoid": [
+        "doctor hero story"
+      ]
+    },
+    {
+      "domain": "regional food bank expansion",
+      "audience": "volunteer coordinators",
+      "stakes": "donated pallets are rising but families served is not moving",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel keeps the ambition but changes the review from pounds collected to families served and pickup wait time",
+      "firstImage": "forklift beeping in a cold warehouse",
+      "mustInclude": [
+        "pallet labels",
+        "clipboard",
+        "pickup window"
+      ],
+      "mustAvoid": [
+        "charity inspiration speech"
+      ]
+    },
+    {
+      "domain": "robotics team competition prep",
+      "audience": "student captains",
+      "stakes": "a polished mission statement is hiding the fact that no one knows what counts as progress",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Jonas separates the season objective from test-run key results and posts both beside the pit schedule",
+      "firstImage": "battery tester blinking red",
+      "mustInclude": [
+        "pit schedule",
+        "practice mat",
+        "battery tester"
+      ],
+      "mustAvoid": [
+        "classroom goal worksheet"
+      ]
+    },
+    {
+      "domain": "independent bookstore launch",
+      "audience": "small-business founders",
+      "stakes": "opening day energy could scatter into events, inventory, cafe buildout, and social posts",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Camille realizes the business needs one launch objective and three proof lines more than another branding session",
+      "firstImage": "brown paper over the front window",
+      "mustInclude": [
+        "cash drawer",
+        "advance-order list",
+        "shelving plan"
+      ],
+      "mustAvoid": [
+        "coffee mug planning scene"
+      ]
+    },
+    {
+      "domain": "Toronto climate-tech demo week",
+      "audience": "founder and advisors",
+      "stakes": "the product sounds promising but traction markers are vague",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Aanya holds the objective steady and asks the room to choose the two customer signals that would prove movement by Friday",
+      "firstImage": "projector cable coiled on the floor",
+      "mustInclude": [
+        "demo script",
+        "pilot signup sheet",
+        "projector cable"
+      ],
+      "mustAvoid": [
+        "generic venture pitch drama"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish objectives from key results in scale-pressure scenarios",
+      "choose proof lines that expose movement rather than activity",
+      "identify when transparency turns private hope into coordination"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one active goal and split it into one objective plus two proof lines you would be willing to show another person this week.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

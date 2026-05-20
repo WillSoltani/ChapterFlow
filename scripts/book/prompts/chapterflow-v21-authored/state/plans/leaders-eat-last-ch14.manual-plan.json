@@ -1,0 +1,175 @@
+{
+  "chapterId": "leaders-eat-last-ch14",
+  "number": 14,
+  "title": "Modern Abstraction",
+  "coreMove": "Use modern systems as lenses while adding a deliberate return path to lived reality.",
+  "sourcePressure": "Extends abstraction into modern scale, metrics, and systems: tools create clarity while widening the gap between authority and consequence.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into anti-technology or anti-scale instead of managing the distance modern tools create.",
+  "sourceAlignmentTerms": [
+    "modern abstraction",
+    "scale",
+    "metrics",
+    "systems",
+    "summary",
+    "authority",
+    "consequence",
+    "disconnect"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 14 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "telemedicine triage platform",
+      "audience": "clinical lead tuning automated routing",
+      "stakes": "scale helps access but hides weak signals",
+      "format": "decision_point",
+      "requiredBeat": "she adds a nurse callback for symptom clusters the platform flattens",
+      "firstImage": "a triage screen with colored severity tiles",
+      "mustInclude": [
+        "severity tiles",
+        "callback list"
+      ],
+      "mustAvoid": [
+        "technology panic"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "warehouse robotics control room",
+      "audience": "operations director watching fleet metrics",
+      "stakes": "robot dashboards create distance from pickers' bodies",
+      "format": "scene",
+      "requiredBeat": "he leaves the control room and times one tote lift before changing the rate target",
+      "firstImage": "a robot path map glowing on a monitor",
+      "mustInclude": [
+        "path map",
+        "tote label"
+      ],
+      "mustAvoid": [
+        "anti-automation"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "online university discussion analytics",
+      "audience": "program chair reviewing engagement scores",
+      "stakes": "participation metrics miss private confusion",
+      "format": "dialogue",
+      "requiredBeat": "the chair calls three low-posting students before changing the course rule",
+      "firstImage": "an engagement heatmap beside an advising note",
+      "mustInclude": [
+        "heatmap",
+        "advising note"
+      ],
+      "mustAvoid": [
+        "education data rant"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "utility outage prediction center",
+      "audience": "grid manager trusting model output",
+      "stakes": "prediction scale can outrun neighborhood consequence",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks which feeder the model deprioritized and checks the clinic backup time first",
+      "firstImage": "a feeder map beside a clinic backup report",
+      "mustInclude": [
+        "feeder map",
+        "backup report"
+      ],
+      "mustAvoid": [
+        "dashboard cliché"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "national retailer return algorithm",
+      "audience": "policy analyst seeing fraud flags",
+      "stakes": "automated rules may punish legitimate edge cases",
+      "format": "postmortem",
+      "requiredBeat": "the analyst reviews one flagged wheelchair repair return before tightening the rule",
+      "firstImage": "a return authorization code on thermal paper",
+      "mustInclude": [
+        "authorization code",
+        "repair invoice"
+      ],
+      "mustAvoid": [
+        "anti-corporate"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "city bike-share rebalancing system",
+      "audience": "mobility planner optimizing stations",
+      "stakes": "system clarity misses who loses access at shift change",
+      "format": "reflection",
+      "requiredBeat": "the planner visits the empty station outside the hospital at 6:40 a.m. before accepting the model",
+      "firstImage": "a docking-station display reading zero bikes",
+      "mustInclude": [
+        "station display",
+        "shift-change note"
+      ],
+      "mustAvoid": [
+        "bike helmet forbidden anchor"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish useful summary from substitute judgment",
+      "design a human return path",
+      "recognize scale-created distance",
+      "decide when to leave the dashboard"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one dashboard or workflow, add the person or place you will check before acting on the summary.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

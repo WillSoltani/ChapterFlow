@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch02",
+  "number": 2,
+  "title": "Don't Keep Score",
+  "coreMove": "Give useful help without turning the relationship into a debt account.",
+  "sourcePressure": "This chapter warns that generosity collapses when every favor becomes a private ledger; the useful relationship move is to help in ways that create trust without demanding immediate repayment.",
+  "chapterSpecificMisunderstanding": "Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+  "sourceAlignmentTerms": [
+    "do not keep score",
+    "adding value",
+    "give and receive",
+    "small favors",
+    "two-way process",
+    "minor contacts"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "freelance design referral chain",
+      "audience": "a reader facing freelance design referral chain where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if freelance design referral chain becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire offers a useful connection and deliberately leaves the private ledger blank in front of invoice stub, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "invoice stub on the edge of freelance design referral chain",
+      "mustInclude": [
+        "invoice stub",
+        "freelance design referral chain constraint",
+        "one named next step tied to do not keep score"
+      ],
+      "mustAvoid": [
+        "Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "hospital nurse shift swap board",
+      "audience": "a reader facing hospital nurse shift swap board where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if hospital nurse shift swap board becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivia offers a useful connection and deliberately leaves the private ledger blank in front of whiteboard shift grid, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "whiteboard shift grid on the edge of hospital nurse shift swap board",
+      "mustInclude": [
+        "whiteboard shift grid",
+        "hospital nurse shift swap board constraint",
+        "one named next step tied to do not keep score"
+      ],
+      "mustAvoid": [
+        "Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "neighborhood tool library signup",
+      "audience": "a reader facing neighborhood tool library signup where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if neighborhood tool library signup becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Sophie offers a useful connection and deliberately leaves the private ledger blank in front of borrowed socket wrench, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "borrowed socket wrench on the edge of neighborhood tool library signup",
+      "mustInclude": [
+        "borrowed socket wrench",
+        "neighborhood tool library signup constraint",
+        "one named next step tied to do not keep score"
+      ],
+      "mustAvoid": [
+        "Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "independent bookstore author night",
+      "audience": "a reader facing independent bookstore author night where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if independent bookstore author night becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Grace offers a useful connection and deliberately leaves the private ledger blank in front of cash drawer slip, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "cash drawer slip on the edge of independent bookstore author night",
+      "mustInclude": [
+        "cash drawer slip",
+        "independent bookstore author night constraint",
+        "one named next step tied to do not keep score"
+      ],
+      "mustAvoid": [
+        "Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "software bug triage channel",
+      "audience": "a reader facing software bug triage channel where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if software bug triage channel becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Margaux offers a useful connection and deliberately leaves the private ledger blank in front of red bug ticket, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "red bug ticket on the edge of software bug triage channel",
+      "mustInclude": [
+        "red bug ticket",
+        "software bug triage channel constraint",
+        "one named next step tied to do not keep score"
+      ],
+      "mustAvoid": [
+        "Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "youth soccer carpool list",
+      "audience": "a reader facing youth soccer carpool list where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if youth soccer carpool list becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Aman offers a useful connection and deliberately leaves the private ledger blank in front of muddy shin guards, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "muddy shin guards on the edge of youth soccer carpool list",
+      "mustInclude": [
+        "muddy shin guards",
+        "youth soccer carpool list constraint",
+        "one named next step tied to do not keep score"
+      ],
+      "mustAvoid": [
+        "Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish do not keep score from Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+      "choose the visible action that performs: Give useful help without turning the relationship into a debt account.",
+      "diagnose when a scenario drifts into Reducing generosity to niceness, vague altruism, or a hidden tactic for collecting future favors.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real do not keep score moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

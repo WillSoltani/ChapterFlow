@@ -1,0 +1,131 @@
+{
+  "chapterId": "the-innovators-dilemma-ch07",
+  "number": 7,
+  "title": "Match the Size of the Organization to the Size of the Market",
+  "coreMove": "Evaluate an emerging market by whether it is large enough for this team, not whether it is large enough for the entire organization.",
+  "sourcePressure": "Large organizations evaluate opportunities against growth thresholds that small emerging markets cannot yet satisfy. A market that is too small to move a large unit's numbers can be commercially real and meaningful to a smaller team. The error is treating 'too small for this organization' as a universal judgment about the market's viability.",
+  "chapterSpecificMisunderstanding": "Reading this chapter as a celebration of small markets or as a warning that large organizations are too bureaucratic to innovate, when the point is relative materiality — the same opportunity can be trivial to one unit and genuinely transformative to another.",
+  "sourceAlignmentTerms": [
+    "relative materiality",
+    "growth threshold",
+    "emerging market",
+    "organizational scale",
+    "small-market fit",
+    "priority setting",
+    "market size",
+    "opportunity size"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'small is beautiful' framing",
+      "generic 'big companies can't innovate' framing"
+    ],
+    "counterintuition": [
+      "generic 'think small to grow big' counter",
+      "generic 'ignore the competition and find your niche' counter"
+    ],
+    "tryThisNow": [
+      "generic 'find your beachhead market' prompt",
+      "generic 'identify your minimum viable segment' prompt"
+    ],
+    "examples": [
+      "any scene that romanticizes small teams as inherently more creative",
+      "any scene where a large organization is portrayed as culturally resistant rather than structurally mismatched"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The scale-fit lesson lands best when the reader sees two different teams looking at the exact same opportunity and reaching different conclusions based on their size."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "corporate innovation lab evaluating a small IoT platform for building maintenance in independent commercial properties",
+      "audience": "an innovation lab director whose pipeline review requires each opportunity to show $50M revenue potential within three years",
+      "stakes": "the IoT platform has credible data from twelve small commercial buildings but the addressable market at the current price point is estimated at $8M in year three",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Megan presents the IoT platform and the pipeline review rejects it on market size — the $8M projection is real but does not move the corporate needle. The building maintenance cooperative that later licenses the same technology considers $8M a meaningful business.",
+      "firstImage": "a pipeline review table with the IoT platform in the bottom row, flagged for market size",
+      "mustInclude": ["$50M revenue threshold", "$8M projection", "the cooperative that finds the same number meaningful"],
+      "mustAvoid": ["implying the $50M threshold is unreasonable for the corporate innovation lab to apply"]
+    },
+    {
+      "domain": "regional craft brewery evaluating a national distribution pilot for its seasonal specialty line",
+      "audience": "a regional brewery director whose board expects 30% annual volume growth and whose main revenue comes from core lager lines",
+      "stakes": "the specialty line sells out in the regional market but a national pilot would add only 4% volume — not enough to justify the distribution investment at the brewery's current scale",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Jack's distribution model shows that the specialty line adds 4% volume nationally, which the board does not consider meaningful enough to invest in. A smaller craft operation, looking at the same 4% as its entire product line, sees a commercially real opportunity and enters the national market the brewery passed on.",
+      "firstImage": "a production floor with the seasonal specialty run — a single small batch — beside the main lager tanks",
+      "mustInclude": ["4% volume addition", "board growth threshold", "the smaller operation finding the same number meaningful"],
+      "mustAvoid": ["any implication that the board's 30% threshold is unreasonable for the brewery's existing model"]
+    },
+    {
+      "domain": "specialty medical device manufacturer evaluating a veterinary market entry for its diagnostic imaging technology",
+      "audience": "a commercial VP whose revenue targets are built on hospital radiology department deals that close at $200K and above",
+      "stakes": "the veterinary market for the same imaging technology has a total addressable market of $12M annually — too small to justify the sales force the company deploys for hospital deals",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Antoine has to decide whether to develop a veterinary sales channel for a $12M market. His existing sales force costs more to redeploy than the market would return. A smaller veterinary equipment distributor, for whom $12M is a significant line, is watching the decision.",
+      "firstImage": "a market size comparison chart: hospital radiology at $480M, veterinary at $12M",
+      "mustInclude": ["sales force deployment cost vs. market return", "$12M total market", "the veterinary distributor as alternate entrant"],
+      "mustAvoid": ["suggesting that the medical device company made an obviously wrong decision"]
+    },
+    {
+      "domain": "independent specialty film distributor evaluating a streaming rights deal for international arthouse titles",
+      "audience": "a distribution director at a mid-size studio whose minimum revenue threshold per title is $2M in domestic theatrical",
+      "stakes": "the arthouse titles under consideration peak at $600K domestic theatrical — well below the studio's minimum, but meaningful to a smaller distributor with lower overhead",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Chiara predicts the arthouse slate will not meet the studio's minimum return threshold and recommends passing. The reveal: a boutique distributor acquires the same slate, releases it through a limited theatrical and streaming hybrid, and builds an audience segment the mid-size studio later spends marketing dollars to reach.",
+      "firstImage": "a title evaluation sheet with all seven arthouse films marked below the $2M threshold line",
+      "mustInclude": ["$2M domestic minimum", "$600K actual for the titles", "boutique distributor's hybrid model in the reveal"],
+      "mustAvoid": ["treating arthouse film as inherently more culturally valuable than commercial film"]
+    },
+    {
+      "domain": "regional software consultancy evaluating a niche SaaS product for small dental practice management",
+      "audience": "a partners group at a consultancy whose existing client engagements average $800K and who measures expansion by partner billable hour utilization",
+      "stakes": "the dental SaaS product would generate $180K in annual recurring revenue — too small to justify partner attention at the consultancy's current pricing structure",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Jonas's postmortem on the dental SaaS decision shows it was correctly rejected by the consultancy's financial model. It also shows that a three-person software team, working on the same problem without billing-hour overhead, built a product that now manages 400 dental offices — a number that would have been meaningful to the consultancy at its earlier stage.",
+      "firstImage": "a partners group decision log with 'dental SaaS — insufficient return for partner time' written in the action column",
+      "mustInclude": ["$180K ARR vs. $800K average engagement", "partner billable overhead", "the three-person team's eventual 400-office scale"],
+      "mustAvoid": ["suggesting that the consultancy's billing model was poorly designed"]
+    },
+    {
+      "domain": "urban land trust developer evaluating a tiny-home pilot for transitional housing",
+      "audience": "a development director at a land trust whose board measures impact by number of permanently affordable units created per year",
+      "stakes": "the tiny-home pilot would create 14 transitional units — too few to justify the board's attention under current impact metrics",
+      "format": "before_after",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Before: Hadiya presents the tiny-home pilot and the board defers it — 14 units is below the threshold of projects that earn dedicated development resources. After: a separate community land trust, using the same model for a different lot, has scaled to 140 units after four pilots. The after shows the same starting number in a different organizational context producing a different result.",
+      "firstImage": "a community meeting room where the pilot's site plan — 14 small structures — is projected beside the land trust's annual goal of 80 permanent units",
+      "mustInclude": ["14-unit pilot vs. 80-unit annual goal", "board resource threshold", "140-unit result in the after from a different organization"],
+      "mustAvoid": ["romanticizing tiny homes or treating them as a universal housing solution"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish 'too small for this organization' from 'too small to matter'",
+      "identify the growth threshold driving a rejection decision in a scenario",
+      "recognize when a different size of organization could find the same market meaningful",
+      "apply relative materiality reasoning to a non-technology emerging market",
+      "evaluate whether a described rejection reveals a scale-mismatch or a genuine market problem"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of one market opportunity your organization has evaluated and passed on because the size was too small. Write down the revenue or impact threshold that ruled it out. Then write one sentence describing what size of organization would find that exact number meaningful.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one direct second-person passage asking the reader to name their organization's current growth threshold and what it makes invisible",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

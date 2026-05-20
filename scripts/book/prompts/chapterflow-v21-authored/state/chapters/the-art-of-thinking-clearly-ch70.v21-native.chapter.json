@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch70",
+  "number": 70,
+  "title": "Sleeper Effect",
+  "readingTimeMinutes": 12,
+  "hook": "The claim sounds familiar weeks later, but the warning label that came with it has gone missing.",
+  "counterintuition": "A weak source may not stay weak in memory; over time, the message can feel more credible as the source fades, so the decision needs the warning attached to the claim, not stored nearby.",
+  "tryThisNow": "Find one claim you are about to use. Write its source beside it, then add one word of source quality before you let it influence the choice.",
+  "keyTakeaway": "Treat familiar claims as unfinished evidence until the source comes back with them.",
+  "breakdown": {
+    "fastRead": "A court clerk sees an old budget number quoted in a custody debate. The number feels known, so it starts to sound true. Only later does she recall that it came from a draft marked weak. That is the sleeper effect: the claim stays while the source note fades. A claim can outlive its source. Protect the next choice by linking the bad-source note with the claim before familiar turns into trusted.",
+    "deepRead": "A rumor arrives with a bad label. You hear it from a person who often exaggerates, or from a report that says the data is preliminary, or from a video clearly made to persuade. At first, the warning works. You discount the claim. Then two weeks pass, the source grows blurry, and the claim remains. It starts to feel like something you have known for a while.\n\nThat is the danger. Source memory is weaker than message memory in many real choices. You may remember that a supplier had defect problems and forget that the number came from a competitor. You may remember that a neighborhood was unsafe and forget that the story was a campaign mailer. You may remember that a treatment was risky and forget that the clip was built to frighten viewers. Familiarity can return wearing the clothes of truth.\n\nMemory often keeps the message and drops the label.\n\nThe correction is to attach the label to the message before the delay does its work. Do not store the claim in one mental box and the source in another. Write them together: defect rate, unverified vendor rumor; rent estimate, landlord lobby sheet; safety concern, edited activist video. The point is not cynicism. Good sources deserve to travel with the claim too. The discipline is pairing.\n\nThis matters when decisions stretch over time. A claim heard on Monday may shape a vote on Friday. A vivid story read in a proposal may reappear in a budget meeting next month. If the source warning is not embedded in the notes, the sleeper effect gets a chance to choose for you. The fix is small and mechanical: keep source quality visible at the moment of decision.",
+    "fullRead": "The warehouse tour smells of dust, new paint, and old forklift oil. A broker says the east loading bay floods twice a year, then shrugs when asked where the figure originated. The team discounts it during the tour. Three weeks later, in the lease meeting, the flooding line returns without the shrug attached. Nobody says, 'broker rumor.' They say, 'We know that bay floods.' The sentence has become cleaner with age.\n\nThis is delayed persuasion at work. A message can be discounted at first because its source is weak, biased, fictional, or openly persuasive. Later, the source tag decays faster than the message. What remains is familiarity, and familiarity is easily mistaken for evidence. The mind does not always retrieve the footnote with the fact. It retrieves the fact-shaped object and lets the room proceed.\n\nCarl Hovland's work with the wartime film Why We Fight helped make this problem visible. The film was propaganda, and viewers could discount it as such, yet persuasion could grow after time had passed because the source and its warning lost force. Gareth Cook later described a similar television version of the problem: misinformation can gain power over time when the dubious origin becomes harder to recall. The mechanism is not mysterious. The label fades. The claim stays.\n\nWhich claims in your head have lost their tags?\n\nA clean decision process treats source labels as part of the content. If a call log says a warehouse floods, the note should also say who said it, what their incentive was, and whether a public record confirms it. If a campaign mailer says a court policy saves money, the budget column should say campaign mailer, unverified, before the number moves into the calendar. If a social post claims a product defect, the review should tie the claim to the poster, the date, and the evidence behind it.\n\nThe hard part is that the sleeper effect does not feel like gullibility. It arrives as memory. You are not saying, 'I believe bad sources.' You are saying, 'I have heard this before.' That sentence can be useful when the source is good and repeated evidence exists. It becomes dangerous when the repetition comes from a weak origin that has been laundered by time. When the source is weak, attach the warning to the claim itself.\n\nThere is a limit. You cannot footnote every casual statement in daily life. Some claims are too small to track, and some sources are obvious enough in the moment. The point is to protect consequential choices: leases, custody schedules, product recalls, public budgets, hiring decisions, health claims, safety reviews. When the cost of being wrong is real, source memory needs help.\n\nThe best help is visible. Put the source in the same row as the claim. Color weak sources differently. Add 'unverified' to the phrase, not just to the document title. Ask, before the vote, 'What is the source on this?' If nobody can answer, the claim should drop back to rumor status until it earns its way forward. Familiarity is not a credential. It is only a feeling that something has passed through your mind before."
+  },
+  "examples": [
+    {
+      "exampleId": "ch70-ex01-elizabeth-budget-column",
+      "title": "The custody calendar with a stale number",
+      "scenario": "A budget column is highlighted in yellow on the family court calendar spreadsheet in a Boston courthouse workroom. Elizabeth, the scheduling coordinator, must decide whether to recommend a cheaper supervised-visit block after hearing the number repeated all week. She writes sleeper effect beside the column, adds 'campaign flyer, unverified' to the note, and asks finance for the source before the judge's clerk sees it.",
+      "whatToDo": "Attach source quality to the number before the familiar claim shapes the calendar.",
+      "whyItMatters": "The repeated budget figure can feel official after the weak source fades from memory.",
+      "tags": [
+        "family court calendar",
+        "budget column",
+        "sleeper effect"
+      ],
+      "planSpec": {
+        "domain": "family court calendar",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch70-ex02-scott-calendar-invite",
+      "title": "The defect review with a remembered rumor",
+      "scenario": "\"Wasn't there a brake-hose issue?\" the plant manager asks while a calendar invite for the auto-parts defect review blinks on the Windsor conference screen. Scott must decide whether to delay shipment based on a familiar claim from last month. He marks source memory risk on the invite, traces the claim to a competitor newsletter, and orders a same-day inspection instead of repeating the rumor as fact.",
+      "whatToDo": "Recover the source before a familiar defect claim becomes the basis for a shipment decision.",
+      "whyItMatters": "Source memory can fade while the defect story keeps its persuasive force.",
+      "tags": [
+        "auto-parts defect review",
+        "calendar invite",
+        "source memory"
+      ],
+      "planSpec": {
+        "domain": "auto-parts defect review",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch70-ex03-madeleine-call-log",
+      "title": "The lease meeting with an orphaned claim",
+      "scenario": "The call log crackles under Madeleine's thumb as she flips through broker notes in a Lyon warehouse office. She must decide between rejecting the east bay lease or checking the flood story that everyone now repeats. She writes Why We Fight beside the unverified broker line, reminds the team how persuasive claims can outlive labels, and requests municipal flood records before the vote.",
+      "whatToDo": "Treat a source-less remembered claim as unverified until it is tied to a record.",
+      "whyItMatters": "The warning attached to a persuasive claim can fade before the lease decision arrives.",
+      "tags": [
+        "warehouse lease choice",
+        "call log",
+        "Why We Fight"
+      ],
+      "planSpec": {
+        "domain": "warehouse lease choice",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch70-ex04-bruce-stamped-form",
+      "title": "The breach room with an old warning",
+      "scenario": "You are standing beside a stamped form in the Dublin breach room while the incident board fills with red initials. Bruce, the security lead, must decide whether to block a vendor because a two-month-old claim says its logs are unsafe. He writes delayed persuasion on the form, asks who made the claim, and changes the action from vendor block to evidence review until the source is recovered.",
+      "whatToDo": "Pause a high-cost response when the claim is familiar but the source is missing.",
+      "whyItMatters": "Delayed persuasion can make an old warning feel solid just when a breach room wants speed.",
+      "tags": [
+        "cybersecurity breach room",
+        "stamped form",
+        "delayed persuasion"
+      ],
+      "planSpec": {
+        "domain": "cybersecurity breach room",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch70-ex05-katarina-policy-draft",
+      "title": "The volunteer plan with a repeated scare",
+      "scenario": "It took Katarina three planning meetings at the Rotterdam urban farm to notice that the same volunteer-safety scare kept returning without a source. The policy draft quoted a story from a neighborhood forum, but the forum post had been flagged as propaganda during the first review. She must decide whether to cut evening shifts. She marks the draft, restores the source warning, and asks for incident reports before changing the rota.",
+      "whatToDo": "Put the propaganda label back beside the story before it changes staffing policy.",
+      "whyItMatters": "A vivid story can keep persuading after the source warning has dropped out of the conversation.",
+      "tags": [
+        "urban farm volunteer plan",
+        "policy draft",
+        "propaganda"
+      ],
+      "planSpec": {
+        "domain": "urban farm volunteer plan",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch70-ex06-aman-floor-sticker",
+      "title": "The warranty desk with a familiar complaint",
+      "scenario": "Why does the same floor sticker make every returned washer seem defective? Aman finds it under the appliance warranty desk in a London service center after the monthly postmortem. The sticker warns staff about one viral complaint from a year ago, but the source was a staged repair video. He writes sleeper on the sticker, removes it from the intake counter, and adds verified failure rates to the next claim review.",
+      "whatToDo": "Remove stale source-less cues from the workspace and replace them with verified rates.",
+      "whyItMatters": "A sleeper cue can keep influencing warranty decisions long after its origin is forgotten.",
+      "tags": [
+        "appliance warranty desk",
+        "floor sticker",
+        "sleeper"
+      ],
+      "planSpec": {
+        "domain": "appliance warranty desk",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a sleeper-effect case, a claim was discounted at first because it came from a biased source, weeks later, people remember the claim but not the source. What is the sleeper effect warning?",
+        "choices": [
+          "The claim may gain influence as the source warning fades.",
+          "What sleeper effect supports a narrower read of claim discounted first; keep came biased source central and leave weeks people remember aside.",
+          "Effect warning gain points toward a quicker call on first came biased; let sleeper-effect claim discounted stand until remember what sleeper contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The danger is delayed persuasion. The message remains familiar while the weak-source label drops away.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Sleeper Effect makes sleeper-effect case feel more decisive than the record supports, and that misprices claim discounted in this scene. The correct move keepss the choice by the claim may gain influence as the source warning fades."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a sleeper-effect review, a city team remembers that a contractor was 'unsafe,' but no one remembers that the claim came from a rival bidder's mailer, what should happen before the vote?",
+        "choices": [
+          "Source seek independent points toward a quicker call on came rival bidder; let contractor unsafe claim stand until vote attach rival-mailer contradicts it.",
+          "Attach the rival-mailer source to the claim and seek independent records.",
+          "Team remembers contractor looks strong enough to guide unsafe claim came; rival bidder mailer can wait unless what happen vote changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The fix pairs source and message before action. Repetition is not proof, while ignoring safety would throw away a claim that still can be checked.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Sleeper Effect works by letting sleeper-effect city crowd out team remembers, which can misreads the contractor unsafe decision. Attach the rival-mailer source to the claim and seek independent records keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When sleeper-effect pressure appears, a product team recalls a dramatic defect story from a video but cannot remember that the video was edited by an advocacy group. Which note best resists the bias?",
+        "choices": [
+          "Defect story, edited advocacy video, unverified until service logs match.",
+          "Team recalls dramatic looks strong enough to guide defect story video; cannot remember edited can wait unless advocacy group note changes the stakes.",
+          "Dramatic defect story gives a practical reason for product team recalls; edited advocacy group belongs after video cannot remember clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "The note keeps the source label attached to the claim. The other options let vivid familiarity substitute for verification.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Sleeper Effect turns appears product into a shortcut, so the room can overweights team recalls while missing dramatic defect. Defect story, edited advocacy video, unverified until service logs match protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After sleeper-effect risk surfaces, a hiring panel remembers that one candidate 'struggles with conflict.' The comment came from a single informal reference who had a known grievance, what should the panel do?",
+        "choices": [
+          "Informal reference known supports a narrower read of hiring panel remembers; keep candidate struggles conflict central and leave comment came single aside.",
+          "Treat the phrase as rumor unless structured references or examples confirm it.",
+          "What treat phrase fits the immediate pressure around struggles conflict comment; hold panel remembers candidate steady and test sleeper-effect surfaces hiring later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The source problem must travel with the claim. Structured confirmation can still rescue useful evidence, but familiarity alone should not decide.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Sleeper Effect would push the hiring panel case toward remembers candidate, creating a cost when struggles conflict stays untested. The useful guardrail is to treat the phrase as rumor unless structured references or examples confirm it."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If sleeper-effect reasoning takes over, a school board member says a reading program failed elsewhere. The sentence has circulated for months, but the original article was a fictional case study. What is the best analysis?",
+        "choices": [
+          "Study what best points toward a quicker call on program failed elsewhere; let member says reading stand until original article fictional contradicts it.",
+          "The source label was lost, so the claim should return to unverified status.",
+          "School board member looks strong enough to guide says reading program; failed elsewhere sentence can wait unless circulated months original changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The sleeper effect makes the fictional origin easy to forget. Returning the claim to unverified status prevents delayed persuasion.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Sleeper Effect converts board member into the loudest signal, which can rushes says reading before program failed is checked. The better answer separatess attention on the source label was lost, so the claim should return to unverified status."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While sleeper-effect pressure builds, a finance committee remembers a grant is 'risky' from a presentation months ago, the presentation was designed by the competing department. What question should the chair ask?",
+        "choices": [
+          "Who was the source, what was the incentive, and what independent evidence confirms it?",
+          "Grant risky presentation makes sleeper-effect pressure builds look credible; use finance committee remembers first and revisit months designed competing when department what chair shifts.",
+          "Chair source incentive supports a narrower read of remembers grant risky; keep presentation months designed central and leave competing department what aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The chair restores source memory and asks for confirmation. Counting familiar feelings would let the sleeper effect keep working.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Sleeper Effect hides inside the sleeper-effect pressure choice because sleeper-effect pressure seems sufficient, yet the cost lands in sleeper-effect pressure. Who was the source, what was the incentive, and what independent evidence confirms it brings the sleeper-effect pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the sleeper-effect call, a safety review contains five claims. Two are verified incident reports, one is a vendor rumor, and two are unlabeled notes from last quarter. What is the best process?",
+        "choices": [
+          "Sleeper-effect call safety looks strong enough to guide contains five claims; verified incident reports can wait unless vendor rumor unlabeled changes the stakes.",
+          "Reports vendor rumor gives a practical reason for claims verified incident; quarter what best belongs after unlabeled notes last clarifies the result.",
+          "Label each claim by source quality and move unlabeled notes back to evidence-gathering."
+        ],
+        "correctIndex": 2,
+        "explanation": "The process protects the choice without discarding everything. Unlabeled notes should not receive the authority of verified reports.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Sleeper Effect pressures the call safety decision toward the easy reading of call safety. That can inflates the real cost unless the choice is grounded in label each claim by source quality and move unlabeled notes back to evidence-gathering."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose sleeper-effect risk is present: a clinic team remembers a rumor that a supplier's syringes jam, but the rumor came from a forum post during a contract dispute. Which action fits the source-memory correction?",
+        "choices": [
+          "Contract dispute action supports a narrower read of clinic team remembers; keep rumor supplier syringes central and leave came forum post aside.",
+          "Add the forum-dispute label to the claim and compare it with defect logs.",
+          "Source-memory correction forum-dispute fits the immediate pressure around supplier syringes came; hold team remembers rumor steady and test sleeper-effect present clinic later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The source label keeps the familiar rumor from becoming a clean fact. Defect logs provide the independent check.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Sleeper Effect is the mechanism here: familiarity outlives source distrust, so present clinic can overpower present clinic. Add the forum-dispute label to the claim and compare it with defect logs keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two sleeper-effect signals compete: a nonprofit repeats a story about donor fraud during budget season. Nobody remembers that the story came from a satirical newsletter. What should happen before cuts are made?",
+        "choices": [
+          "What happen cuts points toward a quicker call on donor fraud budget; let repeats story about stand until came satirical newsletter contradicts it.",
+          "Cuts restore satire fits the immediate pressure around budget season nobody; hold about donor fraud steady and test nonprofit repeats story later.",
+          "Restore the satire label and require verified donor records before using the story."
+        ],
+        "correctIndex": 2,
+        "explanation": "The satire label changes the claim's status. Verified records are needed before a memorable story can shape budget cuts.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Sleeper Effect makes the nonprofit repeats evidence look cleaner than it is, risking a nonprofit repeats mistake in this setting. The answer protects nonprofit repeats by asking for restore the satire label and require verified donor records before using the."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "A claim feels familiar, but the source is missing. What source-quality check should return?",
+      "back": "Find the source and rate its quality again. Familiarity can outlive the warning that made the claim suspect.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "A weak source produced a vivid claim. What note protects the future decision?",
+      "back": "Write the source label in the same line as the claim, such as 'unverified vendor rumor' or 'edited advocacy video.'",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "Why does repetition make sleeper-effect errors worse?",
+      "back": "Repetition strengthens familiarity while the source tag may fade, making the claim feel cleaner than it is.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "When should you spend time tracking sources?",
+      "back": "Track sources for consequential choices where a false claim can move money, safety, reputation, or rights.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "What should happen when nobody can identify a claim's source?",
+      "back": "Move the claim back to rumor or unverified status until evidence earns it a place in the decision.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Attach source quality to claims before time turns familiarity into false authority.",
+    "ifThenPlans": [
+      {
+        "context": "Meeting notes",
+        "plan": "If I write down a claim that may affect a later choice, then I will write the source and source quality in the same line."
+      },
+      {
+        "context": "High-stakes review",
+        "plan": "If a familiar claim appears without a source, then I will downgrade it to unverified until the source is recovered."
+      },
+      {
+        "context": "News or video",
+        "plan": "If a vivid story changes my view, then I will save the source label beside the claim before repeating it."
+      },
+      {
+        "context": "Team decision",
+        "plan": "If someone says 'we know this,' then I will ask what the source is before the claim enters the decision."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one familiar claim in a current decision. Find its source, label its quality, and rewrite the note so the source cannot detach from the claim.",
+    "weeklyPractice": "Once a week, audit one decision document for orphaned claims and add source labels before the next meeting."
+  },
+  "memorableLines": [
+    {
+      "text": "A claim can outlive its source."
+    },
+    {
+      "text": "Memory often keeps the message and drops the label."
+    },
+    {
+      "text": "When the source is weak, attach the warning to the claim itself."
+    }
+  ]
+}

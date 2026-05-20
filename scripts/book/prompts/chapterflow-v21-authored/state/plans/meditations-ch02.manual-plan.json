@@ -1,0 +1,191 @@
+{
+  "chapterId": "meditations-ch02",
+  "number": 2,
+  "title": "Book II",
+  "coreMove": "Expect human difficulty without letting it steal cooperation or inward rule.",
+  "sourcePressure": "Morning begins with difficult people, mortality, flesh, breath, ruling part, opinion, and the need to do each act as if it were the last.",
+  "chapterSpecificMisunderstanding": "avoid difficult people or pretend their behavior does not matter",
+  "sourceAlignmentTerms": [
+    "morning instruction",
+    "busybody",
+    "ungrateful",
+    "ruling part",
+    "flesh and breath",
+    "all is opinion",
+    "inner daemon"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "morning instruction to expect difficult people",
+      "detail": "Book II opens by telling the self to expect the busybody, the ungrateful, the arrogant, the deceitful, the envious, and the unsocial while remembering shared nature.",
+      "useIn": "both",
+      "phrasingHint": "The morning list is not cynicism; it is a way to meet predictable friction without handing it the steering wheel."
+    },
+    {
+      "kind": "artifact",
+      "name": "flesh, breath, and ruling part",
+      "detail": "The source reduces the self to flesh, breath, and the ruling part, then protects the ruling part from enslavement.",
+      "useIn": "both",
+      "phrasingHint": "Flesh and breath can be jostled; the ruling part is where the second injury is either admitted or refused."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "airport gate operations",
+      "audience": "Hannah handling passengers after a cancellation",
+      "stakes": "one abusive traveler could set the tone for the whole queue",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hannah writes three likely behaviors on the back of the gate sheet before opening the microphone.",
+      "firstImage": "At 6:12 a.m., Hannah flips the delayed sign while the line hardens.",
+      "mustInclude": [
+        "gate microphone",
+        "delay sheet",
+        "voucher stack"
+      ],
+      "mustAvoid": [
+        "airport chaos as spectacle"
+      ]
+    },
+    {
+      "domain": "restaurant expo line",
+      "audience": "Lukas managing a slammed dinner service",
+      "stakes": "a rude chef and a late table threaten to make him punish the servers",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lukas names the missing order, not the chef's character, and keeps the pass moving.",
+      "firstImage": "\"We are missing table twelve, not missing our minds.\"",
+      "mustInclude": [
+        "ticket rail",
+        "heat lamp",
+        "sauce spoon"
+      ],
+      "mustAvoid": [
+        "kitchen shouting match"
+      ]
+    },
+    {
+      "domain": "public library desk",
+      "audience": "Camille dealing with a patron who returns damaged books angrily",
+      "stakes": "policy has to hold without contempt",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Camille slides the policy card forward and asks which repair option he wants, without answering the insult.",
+      "firstImage": "Rain taps the library windows while the damaged spine sheds glue on the counter.",
+      "mustInclude": [
+        "policy card",
+        "book spine",
+        "repair envelope"
+      ],
+      "mustAvoid": [
+        "customer service platitudes"
+      ]
+    },
+    {
+      "domain": "software incident channel",
+      "audience": "Andrew leading a production outage bridge",
+      "stakes": "a blame-heavy executive joins and starts naming people",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Andrew restate the shared objective and assign the next diagnostic action without defending anyone's ego.",
+      "firstImage": "You hear the incident chime for the seventh time in four minutes.",
+      "mustInclude": [
+        "status page",
+        "incident bridge",
+        "rollback button"
+      ],
+      "mustAvoid": [
+        "generic tech pressure"
+      ]
+    },
+    {
+      "domain": "youth shelter intake",
+      "audience": "Juliette meeting a hostile teenager at midnight",
+      "stakes": "her first answer decides whether safety or pride governs the room",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Juliette notices her jaw tightening, leaves the insult where it lands, and asks the required safety question.",
+      "firstImage": "The intake room smells of wet wool and vending-machine soup.",
+      "mustInclude": [
+        "clipboard",
+        "plastic chair",
+        "intake bracelet"
+      ],
+      "mustAvoid": [
+        "therapeutic cliche"
+      ]
+    },
+    {
+      "domain": "construction permit counter",
+      "audience": "Ben processing a contractor who has been sent back twice",
+      "stakes": "resentment could turn a fixable form into a feud",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What changes when you expected the anger before the contractor arrived?",
+      "firstImage": "Ben points to the missing stamp, gives the exact desk number, and does not mention the contractor's raised voice.",
+      "mustInclude": [
+        "permit form",
+        "rubber stamp",
+        "queue screen"
+      ],
+      "mustAvoid": [
+        "bureaucracy satire"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate anticipation from cynicism",
+      "choose cooperation without surrendering judgment",
+      "test whether a reaction protects or enslaves the ruling part"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next interaction, name the likely difficult behavior once, then name the cooperative act you will still perform.",
+  "readingTimeMinutes": 12
+}

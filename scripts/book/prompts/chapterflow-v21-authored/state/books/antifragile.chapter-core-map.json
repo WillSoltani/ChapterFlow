@@ -1,0 +1,570 @@
+{
+  "bookId": "antifragile",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "antifragile-ch01",
+      "title": "Between Damocles and Hydra",
+      "sourcePressure": "This chapter installs the missing map: fragile is harmed by volatility, robust resists it, and antifragile gains from bounded stress.",
+      "coreMove": "Sort a system by its response to volatility before deciding whether to shield it, test it, or leave it alone.",
+      "commonMisread": "Treating antifragile as a fancy synonym for resilient toughness.",
+      "mustUseTerms": [
+        "Damocles",
+        "Hydra",
+        "fragile",
+        "robust",
+        "antifragile",
+        "volatility",
+        "bounded stress"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 2,
+      "chapterId": "antifragile-ch02",
+      "title": "Overcompensation and Overreaction Everywhere",
+      "sourcePressure": "This chapter treats rebound, redundancy, and suppression backfire as cases where stress produces extra capacity or attention.",
+      "coreMove": "Recognize when spare capacity and rebound are adaptive reserves rather than waste.",
+      "commonMisread": "Assuming every overreaction is wise or every redundant layer is inefficiency.",
+      "mustUseTerms": [
+        "overcompensation",
+        "overreaction",
+        "redundancy",
+        "reserve",
+        "suppression",
+        "backfire",
+        "spare capacity"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 3,
+      "chapterId": "antifragile-ch03",
+      "title": "The Cat and the Washing Machine",
+      "sourcePressure": "This chapter separates living adaptive systems from mechanical systems that mostly accumulate wear under use.",
+      "coreMove": "Decide whether a system needs protection from wear or bounded challenge that carries useful information.",
+      "commonMisread": "Managing bodies, skills, and machines with one universal smoothness model.",
+      "mustUseTerms": [
+        "cat",
+        "washing machine",
+        "living system",
+        "mechanical wear",
+        "stress as information",
+        "adaptation"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 4,
+      "chapterId": "antifragile-ch04",
+      "title": "What Kills Me Makes Others Stronger",
+      "sourcePressure": "This chapter develops dose and hormesis: low stress can strengthen while higher stress can destroy.",
+      "coreMove": "Read the dose curve before deciding whether a stressor teaches, trains, or simply damages.",
+      "commonMisread": "Turning hormesis into either overprotection or macho more-is-better advice.",
+      "mustUseTerms": [
+        "hormesis",
+        "dose",
+        "threshold",
+        "low-dose harm",
+        "repair",
+        "overload",
+        "nonlinear response"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 5,
+      "chapterId": "antifragile-ch05",
+      "title": "The Souk and the Office Building",
+      "sourcePressure": "This chapter contrasts decentralized local trial-and-error with centralized order that can hide concentrated fragility.",
+      "coreMove": "Prefer error-correcting local feedback when central neatness would spread mistakes silently.",
+      "commonMisread": "Reading the chapter as a simple anti-institution or anti-planning rant.",
+      "mustUseTerms": [
+        "souk",
+        "office building",
+        "decentralization",
+        "local knowledge",
+        "bottom-up correction",
+        "centralized order"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 6,
+      "chapterId": "antifragile-ch06",
+      "title": "Tell Them I Love (Some) Randomness",
+      "sourcePressure": "This chapter argues for selective randomness where downside is limited and upside remains open.",
+      "coreMove": "Invite variation only where losses are clipped and learning or upside can compound.",
+      "commonMisread": "Confusing bounded randomness with liking chaos everywhere.",
+      "mustUseTerms": [
+        "bounded randomness",
+        "variation",
+        "downside",
+        "upside",
+        "selective exposure",
+        "optional learning"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 7,
+      "chapterId": "antifragile-ch07",
+      "title": "Naive Intervention",
+      "sourcePressure": "This chapter critiques interventions that remove visible pain while increasing hidden fragility and blocking feedback.",
+      "coreMove": "Pause before relieving a signal and ask what adaptive feedback the discomfort may be carrying.",
+      "commonMisread": "Treating all help, treatment, or intervention as automatically harmful.",
+      "mustUseTerms": [
+        "naive intervention",
+        "signal suppression",
+        "hidden fragility",
+        "iatrogenic harm",
+        "delayed downside",
+        "feedback"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 8,
+      "chapterId": "antifragile-ch08",
+      "title": "Prediction as a Child of Modernity",
+      "sourcePressure": "This chapter criticizes forecast prestige in opaque domains and shifts attention to payoff, exposure, and humility.",
+      "coreMove": "Replace prediction pride with exposure mapping when the domain is too opaque for clean forecasts.",
+      "commonMisread": "Thinking the lesson is to stop learning or stop estimating altogether.",
+      "mustUseTerms": [
+        "prediction",
+        "modernity",
+        "opacity",
+        "forecast prestige",
+        "payoff",
+        "exposure",
+        "humility"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 9,
+      "chapterId": "antifragile-ch09",
+      "title": "Fat Tony and the Fragilistas",
+      "sourcePressure": "This chapter pits payoff-sensitive practical judgment against polished abstraction that ignores exposure.",
+      "coreMove": "Test an elegant explanation by asking what concrete bet it would accept and who bears the loss.",
+      "commonMisread": "Reducing Fat Tony to anti-learning attitude or street-smart performance.",
+      "mustUseTerms": [
+        "Fat Tony",
+        "fragilistas",
+        "payoff",
+        "exposure",
+        "practical judgment",
+        "abstraction",
+        "consequence"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 10,
+      "chapterId": "antifragile-ch10",
+      "title": "Seneca's Upside and Downside",
+      "sourcePressure": "This chapter frames uncertainty through asymmetry, survival, and clipping downside rather than average-case comfort.",
+      "coreMove": "Judge an uncertain choice by its downside floor and upside opening, not by the average story.",
+      "commonMisread": "Turning Seneca into generic stoic lifestyle advice.",
+      "mustUseTerms": [
+        "Seneca",
+        "upside",
+        "downside",
+        "asymmetry",
+        "survival",
+        "downside clipping",
+        "uncertainty"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 11,
+      "chapterId": "antifragile-ch11",
+      "title": "Never Marry the Rock Star",
+      "sourcePressure": "This chapter argues for the barbell: protect against ruin while keeping selective exposure to large upside.",
+      "coreMove": "Build a barbell by separating protected essentials from small, optional bets with open upside.",
+      "commonMisread": "Reading the rock-star warning as dating advice or timid moderation.",
+      "mustUseTerms": [
+        "barbell",
+        "rock star",
+        "ruin avoidance",
+        "selective upside",
+        "protected base",
+        "extreme mix"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 12,
+      "chapterId": "antifragile-ch12",
+      "title": "Thales' Sweet Grapes",
+      "sourcePressure": "This chapter uses optionality to show how favorable outcomes can be captured without precise prediction.",
+      "coreMove": "Seek rights without obligations when uncertainty is high and upside can be captured cheaply.",
+      "commonMisread": "Calling optionality indecision or passive waiting.",
+      "mustUseTerms": [
+        "Thales",
+        "optionality",
+        "non-obligation",
+        "right not duty",
+        "captured upside",
+        "favorable outcomes"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 13,
+      "chapterId": "antifragile-ch13",
+      "title": "Lecturing Birds on How to Fly",
+      "sourcePressure": "This chapter argues that practice, tinkering, and contact with reality often precede clean theory in complex domains.",
+      "coreMove": "Let reality-tested tinkering produce knowledge before demanding a complete theory.",
+      "commonMisread": "Treating theory as useless or practitioners as automatically wise.",
+      "mustUseTerms": [
+        "tinkering",
+        "practice",
+        "birds",
+        "theory",
+        "trial and error",
+        "reality-tested discovery",
+        "delayed explanation"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 14,
+      "chapterId": "antifragile-ch14",
+      "title": "When Two Things Are Not the 'Same Thing'",
+      "sourcePressure": "This chapter warns that surface similarity and neat labels can hide decisive structural differences.",
+      "coreMove": "Break an apparent equivalence by comparing response structure, downside, and payoff under stress.",
+      "commonMisread": "Turning the lesson into abstract wordplay about labels.",
+      "mustUseTerms": [
+        "same thing",
+        "false equivalence",
+        "surface similarity",
+        "structural difference",
+        "hidden asymmetry",
+        "response structure"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 15,
+      "chapterId": "antifragile-ch15",
+      "title": "History Written by the Losers",
+      "sourcePressure": "This chapter argues that retrospective stories often miss what practitioners actually built and why it worked.",
+      "coreMove": "Distrust neat after-the-fact explanations and recover the practitioner logic that produced the result.",
+      "commonMisread": "Making this a broad anti-history complaint.",
+      "mustUseTerms": [
+        "history",
+        "losers",
+        "retrospective storytelling",
+        "practitioner logic",
+        "observer mismatch",
+        "after-the-fact narrative"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 16,
+      "chapterId": "antifragile-ch16",
+      "title": "A Lesson in Disorder",
+      "sourcePressure": "This chapter treats bounded mess, trial, and self-discovery as informative in uncertain life.",
+      "coreMove": "Use small disorder to discover fit where tidy planning would only preserve assumptions.",
+      "commonMisread": "Celebrating chaos as inherently creative.",
+      "mustUseTerms": [
+        "disorder",
+        "trial",
+        "bounded mess",
+        "self-discovery",
+        "fit discovery",
+        "productive disorder"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 17,
+      "chapterId": "antifragile-ch17",
+      "title": "Fat Tony Debates Socrates",
+      "sourcePressure": "This chapter closes the optionality section by sharpening payoff-grounded practical judgment against abstract interrogation.",
+      "coreMove": "Resolve a reasoning dispute by returning to exposure, consequence, and the payoff of being wrong.",
+      "commonMisread": "Treating Socrates as the villain or practical judgment as anti-thinking.",
+      "mustUseTerms": [
+        "Fat Tony",
+        "Socrates",
+        "practical judgment",
+        "payoff",
+        "exposure",
+        "consequence",
+        "optionality"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 18,
+      "chapterId": "antifragile-ch18",
+      "title": "On the Difference Between a Large Stone and a Thousand Pebbles",
+      "sourcePressure": "This chapter opens nonlinearity by showing that concentrated and distributed impacts are not equivalent.",
+      "coreMove": "Check whether many small hits and one large hit have different consequences before aggregating them.",
+      "commonMisread": "Treating nonlinearity as abstract math rather than a practical damage rule.",
+      "mustUseTerms": [
+        "large stone",
+        "thousand pebbles",
+        "nonlinearity",
+        "concentration",
+        "dose",
+        "aggregation",
+        "distributed effects"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 19,
+      "chapterId": "antifragile-ch19",
+      "title": "The Philosopher's Stone and Its Inverse",
+      "sourcePressure": "This chapter focuses on transformation, inversion, and interventions under hidden response structures.",
+      "coreMove": "Invert the desired transformation and ask what hidden response could turn a fix into its opposite.",
+      "commonMisread": "Getting lost in mystical metaphor instead of practical reversal.",
+      "mustUseTerms": [
+        "philosopher's stone",
+        "inverse",
+        "transformation",
+        "inversion",
+        "intervention",
+        "hidden response",
+        "opacity"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 20,
+      "chapterId": "antifragile-ch20",
+      "title": "Time and Fragility",
+      "sourcePressure": "This chapter begins Via Negativa by treating time as a revealer of hidden fragility and survival information.",
+      "coreMove": "Use survival across time as evidence, while still asking what exposures the thing has actually faced.",
+      "commonMisread": "Turning time into generic patience or nostalgia.",
+      "mustUseTerms": [
+        "time",
+        "fragility",
+        "via negativa",
+        "survival",
+        "endurance",
+        "exposure",
+        "Lindy-like evidence"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 21,
+      "chapterId": "antifragile-ch21",
+      "title": "Medicine, Convexity, and Opacity",
+      "sourcePressure": "This chapter applies asymmetry and opacity to intervention-heavy domains, especially medicine-like systems.",
+      "coreMove": "Intervene more readily when upside is convex and downside limited, and hesitate when hidden harm dominates.",
+      "commonMisread": "Reading the chapter as crude anti-medicine or anti-treatment rhetoric.",
+      "mustUseTerms": [
+        "medicine",
+        "convexity",
+        "opacity",
+        "intervention",
+        "hidden downside",
+        "asymmetry",
+        "iatrogenics"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 22,
+      "chapterId": "antifragile-ch22",
+      "title": "To Live Long, but Not Too Long",
+      "sourcePressure": "This chapter applies Via Negativa to longevity through subtraction, restraint, and avoiding avoidable harm.",
+      "coreMove": "Improve survival odds first by removing fragility-amplifying inputs rather than adding heroic fixes.",
+      "commonMisread": "Turning the lesson into generic health hacks or immortality chasing.",
+      "mustUseTerms": [
+        "longevity",
+        "via negativa",
+        "subtraction",
+        "restraint",
+        "avoidable harm",
+        "fragility-amplifying inputs"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "broad anti-expert rhetoric"
+      ]
+    },
+    {
+      "number": 23,
+      "chapterId": "antifragile-ch23",
+      "title": "Skin in the Game: Antifragility and Optionality at the Expense of Others",
+      "sourcePressure": "This chapter moves into ethics: people should not keep optional upside while exporting downside onto others.",
+      "coreMove": "Reject decisions where the actor keeps upside and transfers the tail risk to someone else.",
+      "commonMisread": "Treating skin in the game as a macho slogan about taking risks.",
+      "mustUseTerms": [
+        "skin in the game",
+        "ethics",
+        "optionality",
+        "exported downside",
+        "accountability",
+        "shared risk",
+        "tail risk"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "abstract ethics without downside channels"
+      ]
+    },
+    {
+      "number": 24,
+      "chapterId": "antifragile-ch24",
+      "title": "Fitting Ethics to a Profession",
+      "sourcePressure": "This chapter applies skin in the game to professional roles, where abstract codes are weak without real exposure.",
+      "coreMove": "Fit an ethical rule to the profession by tracing its real downside channels and incentives.",
+      "commonMisread": "Reducing ethics to written codes, slogans, or reputation management.",
+      "mustUseTerms": [
+        "professional ethics",
+        "exposure",
+        "incentives",
+        "downside channels",
+        "trust",
+        "profession",
+        "consequence"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "abstract ethics without downside channels"
+      ]
+    },
+    {
+      "number": 25,
+      "chapterId": "antifragile-ch25",
+      "title": "Conclusion",
+      "sourcePressure": "The conclusion synthesizes fragility, antifragility, time, optionality, subtraction, and skin in the game through asymmetry and consequence.",
+      "coreMove": "Classify what should be protected, what can be stressed, and where asymmetry or exported downside changes the decision.",
+      "commonMisread": "Ending with chaos worship or a universal formula for every system.",
+      "mustUseTerms": [
+        "fragility",
+        "antifragility",
+        "time",
+        "optionality",
+        "subtraction",
+        "skin in the game",
+        "asymmetry"
+      ],
+      "mustNotDriftInto": [
+        "generic resilience advice",
+        "chaos worship",
+        "motivational hardship story",
+        "abstract ethics without downside channels"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch20",
+  "number": 20,
+  "title": "The Power of Precommitments",
+  "coreMove": "Make the desired future choice before temptation arrives, while the calmer self can still set the rules.",
+  "sourcePressure": "The chapter introduces pacts as future-facing constraints used when present-moment intention repeatedly loses.",
+  "chapterSpecificMisunderstanding": "A weak run would use precommitments as punishment or as the first tool before internal triggers and traction are handled.",
+  "sourceAlignmentTerms": [
+    "precommitments",
+    "pacts",
+    "future behavior",
+    "temptation",
+    "constraint",
+    "prior intent"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The Power of Precommitments as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "night-shift radiology resident protecting sleep after call",
+      "audience": "resident who keeps extending awake time with videos",
+      "stakes": "post-call recovery affects tomorrow's reads",
+      "format": "decision_point",
+      "requiredBeat": "before the shift, she gives her streaming password to a roommate until noon sleep ends",
+      "firstImage": "A sealed password card sits beside a post-call sleep sign.",
+      "mustInclude": [
+        "password card",
+        "sleep sign",
+        "call schedule"
+      ],
+      "mustAvoid": [
+        "self-punishment"
+      ]
+    },
+    {
+      "domain": "freelance translator avoiding news during morning translation",
+      "audience": "translator whose current-event checking breaks flow",
+      "stakes": "client delivery depends on the first uninterrupted page",
+      "format": "scene",
+      "requiredBeat": "the night before, he schedules a site blocker for the first translation block",
+      "firstImage": "A bilingual glossary lies beside a timed blocker receipt.",
+      "mustInclude": [
+        "glossary",
+        "blocker receipt",
+        "delivery clock"
+      ],
+      "mustAvoid": [
+        "anti-news rant"
+      ]
+    },
+    {
+      "domain": "bakery co-owner resisting cash-register snacks after closing",
+      "audience": "owner who eats from leftover trays during cleanup",
+      "stakes": "health goal loses to one tired closing ritual",
+      "format": "before_after",
+      "requiredBeat": "before, she negotiates each night; after, leftovers go into sealed donation crates before cleanup starts",
+      "firstImage": "A donation crate label rests beside a locked pastry case key.",
+      "mustInclude": [
+        "donation label",
+        "pastry case key",
+        "cleanup list"
+      ],
+      "mustAvoid": [
+        "diet moralizing"
+      ]
+    },
+    {
+      "domain": "graduate archivist protecting thesis writing from late-night browsing",
+      "audience": "student who has handled triggers but still loses the same hour",
+      "stakes": "thesis deadline needs a constraint stronger than preference",
+      "format": "postmortem",
+      "requiredBeat": "she sets the router timer before dinner so the writing hour starts without negotiation",
+      "firstImage": "A router timer sits beside an archive index card.",
+      "mustInclude": [
+        "router timer",
+        "index card",
+        "writing hour"
+      ],
+      "mustAvoid": [
+        "student cramming"
+      ]
+    },
+    {
+      "domain": "competitive archer avoiding equipment tinkering before practice",
+      "audience": "athlete who keeps adjusting gear instead of shooting reps",
+      "stakes": "practice becomes ritual maintenance",
+      "format": "dialogue",
+      "requiredBeat": "he locks spare adjustment tools in the coach box before stepping to the line",
+      "firstImage": "An Allen key pouch is sealed beside a target-face roll.",
+      "mustInclude": [
+        "Allen key pouch",
+        "target-face roll",
+        "coach box"
+      ],
+      "mustAvoid": [
+        "sports punishment"
+      ]
+    },
+    {
+      "domain": "choir treasurer avoiding budget review after rehearsals",
+      "audience": "volunteer who drifts into social chat at the exact review time",
+      "stakes": "late invoices damage trust with the venue",
+      "format": "reflection",
+      "requiredBeat": "she arranges a partner check-in call five minutes after rehearsal ends",
+      "firstImage": "A venue invoice lies beside a scheduled check-in card.",
+      "mustInclude": [
+        "venue invoice",
+        "check-in card",
+        "rehearsal schedule"
+      ],
+      "mustAvoid": [
+        "accountability cliche"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Make the desired future choice before temptation arrives, while the calmer self can still set the rules.",
+      "choose the action that stays inside The Power of Precommitments's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would use precommitments as punishment or as the first tool before internal triggers and traction are handled.",
+      "use chapter-specific terms such as precommitments, pacts, future behavior, temptation in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one repeated weak moment and write the rule your calmer self will put in place before that moment begins.",
+  "readingTimeMinutes": 12
+}

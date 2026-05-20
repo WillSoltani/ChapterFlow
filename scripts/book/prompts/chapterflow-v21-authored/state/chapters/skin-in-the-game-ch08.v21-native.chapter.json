@@ -1,0 +1,326 @@
+{
+  "chapterId": "skin-in-the-game-ch08",
+  "number": 8,
+  "title": "An Expert Called Lindy",
+  "readingTimeMinutes": 12,
+  "hook": "Worn cloth spines under the scanner may know more than the glossy new shelf.",
+  "counterintuition": "Launch claims and antique aura both skip the same test: repeated stress. Endurance matters when it records pressure that a fresh pitch has not faced.",
+  "tryThisNow": "Choose one tool you are about to replace. Check its survival record: failures endured, requests repeated, repairs made, and stress the newcomer has not met.",
+  "keyTakeaway": "Use endurance as evidence under uncertainty, but respect old things only when survival shows repeated usefulness instead of antique charm.",
+  "breakdown": {
+    "fastRead": "Megan slides a worn reference volume under the checkout scanner and sees the history before she sees the cover damage. The new-release catalog looks cleaner. The old book keeps leaving the shelf. Repair tape is not nostalgia when patrons keep proving the tool works.\n\nLindy should land as a stress record, not a museum label: what keeps being used has passed tests no launch deck can fake. The right move is not to worship age. It is to ask what survived repeated use, varied conditions, boredom, neglect, and competition.",
+    "deepRead": "\"The new framework is simpler,\" someone says while Olivier looks at incident postmortems pinned beside the whiteboard. The proposal is elegant, and it may be right. The old framework has survived three ugly outages, two bad deploys, a staff turnover, and one emergency patch at 2:00 a.m. That record is data.\n\nLindy treats survival over time as evidence in uncertain domains. A tool, method, question, recipe, routine, or book that keeps being used has not merely existed. It has been selected again and again by people with reasons to abandon it. Durability is not glamour. It is a quiet audit.\n\nEndurance is not proof. It is a prior.\n\nThat one sentence keeps the idea honest. Some old things persist because of monopoly, habit, fear, regulation, or lack of alternatives. Some new things are better because they remove hidden harm. The Lindy move is to slow the replacement decision long enough to ask what stress the old thing has already passed and what stress the new thing has only promised to pass.\n\nThe person carrying downside should care most. A rewrite can cost customers stability. A new triage prompt can mis-sort patients. A viral bakery shortcut can fail when orders triple. If the experiment fails on other people, the survival record deserves more weight than fashion.",
+    "fullRead": "Starter bubbles under a glass lid while Marit lines up three test loaves from the viral method. The video made the shortcut look effortless. The decade-old starter ledger shows rainy weeks, holiday volume, flour substitutions, one broken mixer, and thousands of loaves sold before noon. The old method does not win because it is romantic. It wins if it still beats the shortcut under the bakery's actual order sheet.\n\nThis is the practical use of Lindy. Time is not a philosopher in a chair handing out certainty. Time is a stress machine. It brings boredom, misuse, changing staff, weather, supply shocks, tired operators, cheap rivals, and customers who stop pretending to care. What survives that machine has information inside it.\n\nFrost sits on a steel bridge joint while Thomas checks the inspection dashboard. The dashboard has improved reporting, but the old hammer-sounding walk has caught hairline cracks before. When the dashboard misses one crack visible in the photo, Thomas keeps the walk. He is not rejecting technology. He is keeping the stress record that has protected the public when newer scoring missed a tiny sound.\n\nAsk a hard question before discarding the old thing: what exactly kept it alive? If the answer is usefulness under repeated pressure, be careful. If the answer is monopoly, superstition, status, or nobody bothering to change it, age deserves little respect. Lindy is not a costume for laziness. It is a discipline for uncertain replacement decisions.\n\nLin runs the old triage question and the new app prompt side by side for a week. The app is cleaner. The old clipboard has softened edges from years of waiting-room use. On Thursday, the old question catches the dangerous case because it asks about a symptom patients forget to volunteer. The app may improve later. For now, the case log says the battered question still carries survival evidence.\n\nYou are allowed to like the new thing. You are not allowed to pretend it has already survived what the old thing survived.\n\nDiego learns the same rule with rosin dust on a black music stand. One drill comes from a centuries-old method, another from a trend course. He does not choose the antique drill because it has an aura. He records both under a metronome, listens to the file, and keeps the drill whose result survives the playback. Endurance gave the old drill a reason to be tested seriously. The recording made the final choice.\n\nThat is the balance. Give old survivors a starting advantage when uncertainty is high and failure costs other people. Then make them prove current usefulness. Give new ideas a path in, but do not hand them authority merely because they feel cleaner, faster, or more modern. Lindy is an expert because survival is evidence. It is not a king."
+  },
+  "examples": [
+    {
+      "exampleId": "ch08-ex01-megan-reference",
+      "title": "Megan checks the requests",
+      "tags": [
+        "library",
+        "durability",
+        "replacement"
+      ],
+      "planSpec": {
+        "domain": "library choosing whether to discard worn reference books for flashy new guides",
+        "audience": "librarian using survival as evidence without worshiping age",
+        "stakes": "patrons may lose reliable tools for fashionable replacements",
+        "format": "decision_point",
+        "requiredBeat": "Megan checks which volumes keep being requested before replacing the shelf with new releases."
+      },
+      "scenario": "At 4:36 p.m. Thursday, Megan slides worn cloth spines under the checkout scanner while the new-release catalog waits beside a roll of repair tape. The replacement shelf would look fresher, but three damaged volumes keep circulating. Megan must choose whether cover wear means obsolescence or whether repeated patron requests count as survival evidence.",
+      "whatToDo": "Compare checkout history against the new-release catalog, repair the high-use volumes, and replace only books whose survival record is weak.",
+      "whyItMatters": "The old books do not deserve respect because they look old. They deserve a hearing because patrons keep testing and choosing them."
+    },
+    {
+      "exampleId": "ch08-ex02-olivier-framework",
+      "title": "Olivier asks about outages",
+      "tags": [
+        "software",
+        "framework",
+        "production"
+      ],
+      "planSpec": {
+        "domain": "software team deciding whether to adopt a brand-new framework",
+        "audience": "engineering lead balancing novelty against tools that survived production incidents",
+        "stakes": "a rewrite could trade boring durability for untested elegance",
+        "format": "dialogue",
+        "requiredBeat": "Olivier asks which framework has survived three ugly outages before approving the migration."
+      },
+      "scenario": "\"The new framework removes half the boilerplate,\" the engineer says while incident postmortems hang beside the whiteboard. Olivier reads the migration plan, then opens the outage log. The current stack is boring, but it survived failed deploys and midnight patches. He has to choose whether elegance outranks a tool with scars from production.",
+      "whatToDo": "Ask which framework has survived comparable outages, then run the migration plan through failure drills before approving a rewrite.",
+      "whyItMatters": "Novelty may be better, but it has not yet faced the ugly conditions the old framework has survived. Outage history is credibility evidence."
+    },
+    {
+      "exampleId": "ch08-ex03-marit-starter",
+      "title": "Marit weighs the loaves",
+      "tags": [
+        "bakery",
+        "process",
+        "testing"
+      ],
+      "planSpec": {
+        "domain": "bakery keeping a slow sourdough method despite a viral shortcut",
+        "audience": "owner judging process by endurance under daily use",
+        "stakes": "the shortcut may fail outside video conditions",
+        "format": "scene",
+        "requiredBeat": "Marit compares the decade-old starter ledger with three test loaves from the viral method."
+      },
+      "scenario": "Starter bubbles under a glass lid while Marit opens the decade-old starter ledger beside three test loaves from the viral method. The daily order sheet shows Saturday volume the video never faced. She must decide whether speed in a clip can replace a method that has survived flour changes, holidays, and exhausted mornings.",
+      "whatToDo": "Compare the starter ledger with blind tasting notes and Saturday order pressure, then keep the shortcut only if it survives bakery conditions.",
+      "whyItMatters": "The slow method's age is not the point. Its endurance under real orders is the evidence the shortcut has to beat."
+    },
+    {
+      "exampleId": "ch08-ex04-thomas-bridge",
+      "title": "Thomas keeps the hammer walk",
+      "tags": [
+        "bridge",
+        "inspection",
+        "public safety"
+      ],
+      "planSpec": {
+        "domain": "municipal bridge maintenance favoring old inspection routines over new dashboard scores",
+        "audience": "engineer using time-tested checks as stress records",
+        "stakes": "public safety depends on what has caught cracks before",
+        "format": "before_after",
+        "requiredBeat": "Thomas keeps the hammer-sounding walk after the dashboard misses a hairline crack."
+      },
+      "scenario": "Frost silvered the steel bridge joint before Thomas opened the inspection dashboard. The score was green, but the hammer log sent him to a seam where the crack photo later showed a hairline split. After the review, he kept the dashboard for tracking and kept the hammer walk for the sound the software had not learned.",
+      "whatToDo": "Attach the crack photo to the dashboard record, keep the hammer-sounding walk, and update the inspection rule around what has caught cracks before.",
+      "whyItMatters": "Old routines can be stress records. Keeping the walk is not technology skepticism; it is respect for a check that has found danger."
+    },
+    {
+      "exampleId": "ch08-ex05-lin-triage",
+      "title": "Lin runs both questions",
+      "tags": [
+        "clinic",
+        "triage",
+        "case log"
+      ],
+      "planSpec": {
+        "domain": "medical clinic evaluating an old triage question against a new app prompt",
+        "audience": "nurse manager asking what has survived real waiting-room pressure",
+        "stakes": "patients may be sorted by novelty instead of durable signal",
+        "format": "predict_reveal",
+        "requiredBeat": "Lin runs both tools for a week and keeps the old question where it catches the dangerous case."
+      },
+      "scenario": "Which prompt catches the patient who forgets the dangerous detail? Lin clips a softened old clipboard to the case log and opens the new app prompt on a tablet. The app is clean, but the triage question has survived years of waiting-room pressure. Lin must choose whether to replace it before both tools face the same week.",
+      "whatToDo": "Run the old triage question and the app prompt side by side for a week, then keep whichever catches dangerous cases in the case log.",
+      "whyItMatters": "Age alone should not win. The old question wins only if its survival record still predicts better patient sorting under current pressure."
+    },
+    {
+      "exampleId": "ch08-ex06-diego-drill",
+      "title": "Diego records the drills",
+      "tags": [
+        "music",
+        "practice",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "musician choosing practice drills from a centuries-old method versus a trend course",
+        "audience": "student learning that endurance is evidence but not proof",
+        "stakes": "skill growth depends on tested feedback, not antique aura",
+        "format": "reflection",
+        "requiredBeat": "Diego tests both drills under a metronome and keeps the one whose result survives recording."
+      },
+      "scenario": "You can see rosin dust on the black music stand while Diego writes two drills in his practice notebook. One comes from an old method, one from a trend course. The metronome does not care about pedigree. Diego has to choose by recording both drills and listening for the result that survives playback.",
+      "whatToDo": "Practice both drills under the same metronome setting, save the recording file, and keep the drill that improves the playback instead of the one with better aura.",
+      "whyItMatters": "Endurance earns the old drill a serious test, not automatic victory. Feedback keeps Lindy from turning into classical snobbery."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A worn reference book keeps circulating while a glossy new guide has no request history. What does Lindy suggest the librarian consider?",
+        "choices": [
+          "Repeated use may be evidence of usefulness.",
+          "The older text has survived more critical readings, so its premises have faced more tests.",
+          "New guides should be discarded before anyone tries them."
+        ],
+        "correctIndex": 0,
+        "explanation": "Lindy treats survival as evidence, not proof. The checkout record matters because patrons keep selecting the old tool under real use.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A software team wants a new framework because it is elegant, but the current stack has survived several production outages. What should happen before migration?",
+        "choices": [
+          "Keep the old stack because this team's migrations have cost more cycles than maintenance.",
+          "The new framework should face failure drills like the old stack did.",
+          "The team should ignore outage history because it sounds negative."
+        ],
+        "correctIndex": 1,
+        "explanation": "Endurance gives the current stack credibility. The new framework may still win, but it should face comparable stress before replacing production durability.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A bakery shortcut looks impressive online, while the old sourdough method has survived daily orders for a decade. What is the right test?",
+        "choices": [
+          "The shortcut clears a backlog the old method cannot, so the operational gain offsets reliability concerns.",
+          "Keep the old method because heritage branding sells.",
+          "Compare both under real order volume and quality checks."
+        ],
+        "correctIndex": 2,
+        "explanation": "The old method's endurance is evidence under real pressure, but not automatic victory. Testing both under bakery conditions keeps the standard honest.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a bridge dashboard misses a crack that an old hammer-sounding routine catches, what should the engineer infer?",
+        "choices": [
+          "The dashboard must be destroyed because all technology is suspect.",
+          "The old routine has a stress record the dashboard has not matched.",
+          "The crack should be ignored because the official score was green."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hammer routine has proven itself in a failure mode the dashboard missed. Keeping both may be wiser than worshiping either old or new.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "The clinic app prompt is cleaner than an old triage question, but the old question catches one dangerous case during a weeklong comparison. What should guide the decision?",
+        "choices": [
+          "The app's interface because patients prefer modern tools.",
+          "The old question's current signal in the case log.",
+          "The clipboard may have survived because no one tested a better workflow against it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The case log shows current survival value. The old question wins this round because it catches danger, not because it is old.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Before adopting the new protocol, a musician chooses between an old drill and a trendy course drill. Which process uses Lindy without falling into nostalgia?",
+        "choices": [
+          "Pick the centuries-old drill without listening to results.",
+          "Pick the trendy drill because new methods show progress.",
+          "Record both under the same metronome and keep the better result."
+        ],
+        "correctIndex": 2,
+        "explanation": "The old drill deserves serious attention because it endured, but feedback decides current usefulness. That avoids both nostalgia and novelty bias.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Suppose a manager says, \"If something survived a long time, it must be true.\" What is the best correction?",
+        "choices": [
+          "Survival is evidence under uncertainty, not final proof.",
+          "Survival means nothing because only new tests matter.",
+          "Old things survive only because people are irrational."
+        ],
+        "correctIndex": 0,
+        "explanation": "Lindy gives endurance weight, not certainty. The old thing may have survived through usefulness, monopoly, habit, or lack of alternatives.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "When lab results meet field evidence, a new tool has strong lab results but no record under messy customer conditions. The old tool is dull but has survived years of incidents. How should risk be evaluated?",
+        "choices": [
+          "Treat the old tool's incident survival as credibility until the new tool faces similar stress.",
+          "Controlled tests isolate variables the field cannot, so the field result may reflect noise.",
+          "Reject both tools because uncertainty makes every choice arbitrary."
+        ],
+        "correctIndex": 0,
+        "explanation": "The old tool's survival record matters because it has met the conditions that hurt customers. The new tool needs a path to earn comparable evidence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Before replacing the old tool, an old process persists because no competitor was allowed into the market. How should Lindy be applied?",
+        "choices": [
+          "Give the process full credibility because age is decisive.",
+          "Give no credit for survival that came from protection instead of stress.",
+          "Assume the newest competitor is better before any testing."
+        ],
+        "correctIndex": 1,
+        "explanation": "Protected survival is weak evidence. Lindy counts endurance through stress and selection, not mere age under monopoly.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A worn tool keeps being chosen. What survival evidence should be checked before replacing it?",
+      "back": "Endurance can be evidence under uncertainty. Ask what stress the tool survived and whether that survival came from usefulness instead of protection.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What is the weak misread of Lindy?",
+      "back": "The weak misread is nostalgia: old equals true. The sharper move treats survival as evidence, then tests whether the old thing still works now.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A new framework is elegant but untested in outages. What should happen?",
+      "back": "Run failure drills that resemble the stresses the old stack survived. Novelty needs a way to earn durability before it governs production.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why might an old bridge inspection walk deserve respect?",
+      "back": "If it has caught cracks under real conditions, it carries a stress record. Respect the survival evidence without rejecting newer tools automatically.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "When does age deserve little Lindy credit?",
+      "back": "When survival came from monopoly, habit, status, or lack of alternatives instead of repeated selection under pressure.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Checking Survival Evidence Before Adopting New",
+    "coreSkill": "Use endurance as a credibility signal when uncertainty is high. Separate genuine survival under stress from mere age, monopoly, or nostalgia.",
+    "ifThenPlans": [
+      {
+        "context": "replacement decisions",
+        "plan": "If you want to replace an old tool, then list the stresses it has survived before approving the newcomer."
+      },
+      {
+        "context": "technology",
+        "plan": "If a new system promises elegance, then test it against the worst incident the old system survived."
+      },
+      {
+        "context": "operations",
+        "plan": "If an old routine catches rare failures, then keep it until the replacement catches the same failures."
+      },
+      {
+        "context": "practice",
+        "plan": "If an old method has aura, then test it under feedback and keep only the part that still improves results."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one old process on your desk. Write the last three stresses it survived and one stress the replacement has not yet faced.",
+    "weeklyPractice": "Each week, compare one old method and one new method by survival evidence, not by style, age, or launch excitement."
+  },
+  "memorableLines": [
+    {
+      "text": "Endurance is not proof. It is a prior.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader the precise Lindy balance."
+    },
+    {
+      "text": "Time is a stress machine.",
+      "location": "breakdown.fullRead",
+      "why": "It makes survival feel like evidence instead of nostalgia."
+    },
+    {
+      "text": "Lindy is an expert because survival is evidence.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the source anchor as a usable rule."
+    }
+  ]
+}

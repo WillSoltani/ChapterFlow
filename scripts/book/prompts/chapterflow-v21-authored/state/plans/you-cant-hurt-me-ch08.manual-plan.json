@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch08",
+  "number": 8,
+  "title": "Talent Not Required",
+  "coreMove": "Keep the engine, but fix the route, fuel, timing, and tactics before trying harder.",
+  "sourcePressure": "The source shows larger endurance ambitions after San Diego and the 40% rule, where grit remains necessary but underperformance reveals weak planning, logistics, and execution quality.",
+  "chapterSpecificMisunderstanding": "The writer must not make this anti-grit or imply effort alone solves planning failures.",
+  "sourceAlignmentTerms": ["grit", "planning", "execution quality", "logistics", "underperformance", "strategy", "bigger engine"],
+  "forbiddenFrames": {
+    "hook": ["Talent does not matter", "Hard work beats talent", "Plan better next time"],
+    "counterintuition": ["Effort is not enough", "Strategy beats hustle", "Work smarter not harder"],
+    "tryThisNow": ["Make a better plan", "Review your process", "Write the next step"],
+    "examples": ["generic project-management lesson", "athlete trains harder", "startup hustle mistake"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "mobile vaccination clinic missing rural stops",
+      "audience": "a clinic lead with willing staff but poor route design",
+      "stakes": "whether effort keeps failing families because fuel, timing, and cold storage were not solved",
+      "format": "postmortem",
+      "requiredBeat": "she spreads the missed-stop map beside the cooler-temperature logs and redraws the route before asking anyone to work longer hours",
+      "firstImage": "a county route map pinned under two vaccine cooler logs",
+      "mustInclude": ["missed-stop map", "cooler-temperature logs", "fuel window"],
+      "mustAvoid": ["medical pep talk", "heroic overwork", "generic logistics meeting"]
+    },
+    {
+      "domain": "independent theater opening night with a failed cue sequence",
+      "audience": "a stage manager whose crew has heart but no technical run sheet",
+      "stakes": "whether the second performance fails the same way in front of paying guests",
+      "format": "before_after",
+      "requiredBeat": "after the missed blackout, he rewrites the cue sheet with exact handoffs and runs the hard scene twice instead of praising everyone's effort",
+      "firstImage": "a cue sheet smudged with black gaffer tape residue",
+      "mustInclude": ["cue sheet", "handoff", "blackout"],
+      "mustAvoid": ["actor ego drama", "show-must-go-on cliche", "generic teamwork"]
+    },
+    {
+      "domain": "search-engineering outage response after an all-night scramble",
+      "audience": "an on-call lead whose team worked hard but restored service slowly",
+      "stakes": "whether fatigue hides the missing runbook and bad alert order",
+      "format": "dialogue",
+      "requiredBeat": "the lead thanks the team once, then opens the incident timeline and assigns runbook fixes before anyone celebrates endurance",
+      "firstImage": "an incident timeline glowing on a dark operations screen",
+      "mustInclude": ["runbook", "alert order", "incident timeline"],
+      "mustAvoid": ["startup war room", "blame session", "generic postmortem"]
+    },
+    {
+      "domain": "beekeeping co-op losing hives during a cold snap",
+      "audience": "a co-op that worked constantly but skipped winterization details",
+      "stakes": "whether more labor repeats the same losses next season",
+      "format": "reflection",
+      "requiredBeat": "the lead opens the hive-loss ledger, checks insulation dates against feed weight, and assigns pre-freeze checks before buying more colonies",
+      "firstImage": "a hive-loss ledger dusted with pale wax flakes",
+      "mustInclude": ["feed weight", "insulation date", "pre-freeze checks"],
+      "mustAvoid": ["nature metaphor", "rural virtue", "generic hard-work lesson"]
+    },
+    {
+      "domain": "museum installation crew missing a crate sequence",
+      "audience": "a crew chief proud of muscle but weak on staging order",
+      "stakes": "whether a fragile exhibit gets damaged because power replaced sequence",
+      "format": "decision_point",
+      "requiredBeat": "he stops the lift, reads the crate manifest, and reorders the next three pallets before anyone touches the glass case",
+      "firstImage": "a crate manifest clipped to a foam-lined shipping case",
+      "mustInclude": ["crate manifest", "glass case", "pallet order"],
+      "mustAvoid": ["art-world satire", "strong worker stereotype", "generic checklist tip"]
+    },
+    {
+      "domain": "community orchestra failing a difficult entrance despite practice hours",
+      "audience": "an amateur conductor whose players practiced volume but not entry timing",
+      "stakes": "whether the concert exposes effort without precision",
+      "format": "predict_reveal",
+      "requiredBeat": "the conductor isolates the two-bar entrance, taps the exact count-in with a pencil eraser, and has the section enter soft before adding force",
+      "firstImage": "a score page bristling with colored rehearsal tabs",
+      "mustInclude": ["two-bar entrance", "count-in", "rehearsal tabs"],
+      "mustAvoid": ["inspirational concert", "talent ranking", "generic practice advice"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["spot when more effort would repeat a bad plan", "choose logistics fixes before increased intensity", "analyze underperformance as execution data", "evaluate grit integrated with judgment"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before adding effort to one stuck goal, write the missing route, fuel, timing, or handoff that would make the effort land.",
+  "readingTimeMinutes": 12
+}

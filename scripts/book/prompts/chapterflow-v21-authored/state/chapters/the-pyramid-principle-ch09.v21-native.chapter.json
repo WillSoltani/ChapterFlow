@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-pyramid-principle-ch09",
+  "number": 9,
+  "title": "Questioning the summary statement",
+  "readingTimeMinutes": 12,
+  "hook": "Orange prescription labels show Hugo that “improve adherence” is activity, not the result.",
+  "counterintuition": "A summary line can sound polished and still fail. It must name the effect at the right level, not merely dress a set of actions in strategic language.",
+  "tryThisNow": "Take one heading and add the words “so that” after it. If you cannot name the effect, the summary is probably activity, not conclusion.",
+  "keyTakeaway": "A summary statement should name the specific effect the lower points jointly support, at the right level of action.",
+  "breakdown": {
+    "fastRead": "Orange prescription labels line Hugo's conference table. His slide says improve adherence programs. The refill-rate chart, pilot comparison sheet, and patient-risk segment point to something sharper: reduce missed refills in high-risk patients. He changes the line only after checking that each pilot supports that effect.\n\nA summary statement has to do more than sound good. It should state what the actions produce, use specific wording, and sit at the right level above the support. Activity is not the same as conclusion.",
+    "deepRead": "Which loss did these actions prevent: more claims, or worse claims? Chloé asks beside a loss run, a port inspection record, and a crew training note. The draft heading says loss prevention. It sounds useful and hides the real distinction.\n\nShe splits actions that reduce claim frequency from actions that reduce claim severity. One summary line cannot honestly cover both without becoming vague.\n\nA real summary names the effect the actions jointly create, not just the activity they keep busy with. That is why improve, strengthen, streamline, and support often need interrogation. They may name effort while hiding effect.\n\nThe line above the group should be more abstract than the points below it, but not so abstract that anything can fit.\n\nSpecific wording is a structural test. The sharper the top line becomes, the easier it is to see whether every lower point belongs. If the line cannot survive specificity, the group may be mixed or the inference may be too large.\n\nA loose summary lets every child point claim membership. A specific effect makes each child prove it belongs.\n\nThe discipline is stricter than word choice. If two actions produce different effects, one shared summary has to become two smaller summaries. That split may feel less elegant, but it gives the reader claims that can be tested.",
+    "fullRead": "Matthew needed one retention table to stop calling the actions the result. His athletics report opened with expand academic support. The lower points were advising appointments, tutoring blocks, and progress alerts. Those were actions. The provost needed to know their effect.\n\nMatthew checked the retention table, advising schedule, and progress-alert log, then rewrote the line: raise first-year eligibility retention. The new line was narrower, less grand, and much more useful. It said what the actions were meant to change.\n\nWhen the relationships are sketched, a vague top line has fewer places to hide. Draw the lower points as boxes. Draw what each one changes. If the arrows point to the same effect, the summary may hold. If the arrows point to different effects, one line may be forcing unity onto unlike conclusions.\n\nYou can test level by asking what kind of claim the line makes. Is it a broad outcome, a supporting action, a local task, or an inferred effect? A narrow task should not masquerade as a strategy. A real shared effect should not be reduced to a list of activity.\n\nAnke sees the problem beside a bolt of rejected fabric. Cleaner quality process says almost nothing. Inspection, calibration, and packing changes all point to fewer customer returns. Once she visualizes those relationships, the common effect becomes visible and the summary line changes.\n\nDevon faces the opposite risk in a permit-flow sketch. The team wants citywide modernization. The intake queue report supports a two-day reduction in intake review, not transformation across the whole permit system. Lowering the summary is not weakness. It is structural honesty.\n\nThere is a limit to precision. A summary line can become so narrow that it merely repeats one child point. The line must draw an inference from the lower conclusions without leaping beyond them. It should gather the group, not copy it.\n\nFrida's coffee roaster postmortem makes that balance practical. Strengthen wholesale is too vague. Reduce account churn by improving delivery reliability is specific enough to test against the churn report and delivery miss log. A pricing point that does not fit gets deleted, not smuggled under the headline.\n\nThe best summary statements feel accountable. You can point to the support beneath them and say: these lower points jointly create this effect, at this level, in these words.\n\nSpecific wording is not cosmetic. It is the pressure test that tells you whether the group below has a common effect or only a shared topic.\n\nThe effect of actions is the test: the top line should name the result the lower actions share, not only the work they keep busy. When you visualize the relationships, a vague summary has fewer places to hide.\n\nA useful summary also protects the writer from decorative strategy words. If the support shows a local effect, name the local effect. If the support shows a broader outcome, name that broader outcome and make every child earn its place beneath it."
+  },
+  "examples": [
+    {
+      "exampleId": "ch09-ex01-hugo-refill-effect",
+      "title": "Hugo Names the Missed-Refill Effect",
+      "tags": [
+        "scene",
+        "pharmacy",
+        "outcomes"
+      ],
+      "planSpec": {
+        "domain": "a regional pharmacy chain summarizing medication-adherence pilots",
+        "audience": "healthcare managers writing outcome summaries",
+        "stakes": "executives may fund scattered activities unless the summary names the shared patient effect",
+        "format": "scene",
+        "requiredBeat": "Hugo changes improve adherence programs to reduce missed refills in high-risk patients after checking that each pilot supports that effect."
+      },
+      "scenario": "Orange prescription labels line the edge of Hugo’s conference table beside a refill-rate chart. The pilot comparison sheet covers reminder calls, pharmacist check-ins, and pickup-window texts for one patient-risk segment. Before the executive review, Hugo faces a choice: keep improve adherence programs or name the shared effect. He checks every pilot, then rewrites the summary as reduce missed refills in high-risk patients.",
+      "whatToDo": "Replace the activity label with the patient effect the pilots jointly support. Keep only support that points to missed-refill reduction.",
+      "whyItMatters": "Executives need to know what outcome the pilots create. Activity labels can fund scattered work without showing the shared patient result."
+    },
+    {
+      "exampleId": "ch09-ex02-chloe-loss-prevention",
+      "title": "Chloé Splits Frequency From Severity",
+      "tags": [
+        "decision_point",
+        "insurance",
+        "loss"
+      ],
+      "planSpec": {
+        "domain": "a shipping insurer summarizing three loss-prevention actions",
+        "audience": "claims and underwriting teams needing level control",
+        "stakes": "a vague loss prevention heading will hide which action affects frequency and which affects severity",
+        "format": "decision_point",
+        "requiredBeat": "Chloé asks what effect all three actions actually share, then splits severity-reduction actions from frequency-reduction actions before writing two summary lines."
+      },
+      "scenario": "Which loss did these actions prevent: more claims, or worse claims? Chloé asks as the claims analyst with the loss run, port inspection record, and crew training note open before a 9:00 a.m. claims meeting. The heading says loss prevention. She must decide whether one summary can cover all three actions. The port inspection reduces claim frequency. The crew training reduces severity. Chloé splits the actions and writes two lines.",
+      "whatToDo": "Name the effect each action changes. Separate frequency reduction from severity reduction before writing summary statements.",
+      "whyItMatters": "One vague heading hides level differences. Claims and underwriting teams need to know whether an action changes how often losses happen or how bad they get."
+    },
+    {
+      "exampleId": "ch09-ex03-matthew-retention-table",
+      "title": "Matthew Stops Calling Actions the Result",
+      "tags": [
+        "before_after",
+        "athletics",
+        "retention"
+      ],
+      "planSpec": {
+        "domain": "a university athletics director reporting academic-support changes",
+        "audience": "administrators distinguishing actions from outcomes",
+        "stakes": "the provost will dismiss the plan if the summary says support students without naming the effect",
+        "format": "before_after",
+        "requiredBeat": "Matthew rewrites expand tutoring into raise first-year eligibility retention after checking that advising, tutoring, and progress alerts all point there."
+      },
+      "scenario": "As the athletics director in the compliance office, Matthew needed one retention table to stop calling the actions the result. The athletics report said expand tutoring, while the advising schedule and progress-alert log showed a broader support system. After the provost asked what would change, Matthew checked whether advising, tutoring, and alerts pointed to one outcome. He rewrote the line as raise first-year eligibility retention.",
+      "whatToDo": "Name the measurable change first. Check the table before deciding whether the three programs can sit under one result.",
+      "whyItMatters": "Administrators can fund actions more intelligently when the result is named. Expand tutoring is a task, not the conclusion those supports create."
+    },
+    {
+      "exampleId": "ch09-ex04-anke-quality-effect",
+      "title": "Anke Draws the Return Relationship",
+      "tags": [
+        "dialogue",
+        "textile",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "a textile factory quality team summarizing defect-reduction work",
+        "audience": "manufacturing managers reading action-effect summaries",
+        "stakes": "plant leaders need to know whether the work reduces rework time, customer returns, or scrap",
+        "format": "dialogue",
+        "requiredBeat": "\"Cleaner quality process says nothing,\" Anke says, then visualizes inspection, calibration, and packing relationships until the common effect is fewer customer returns."
+      },
+      "scenario": "\"Cleaner quality process says nothing,\" Anke says beside a bolt of rejected fabric in the textile factory office. The defect board, calibration log, and return report sit under the draft heading. Plant leaders meet in twenty minutes. Anke has to choose between smoother wording and a relationship sketch. She draws inspection, calibration, and packing arrows until the common effect appears: fewer customer returns.",
+      "whatToDo": "Sketch what each action changes before writing the top line. Use fewer customer returns if all three actions point there.",
+      "whyItMatters": "Manufacturing managers need the effect of the work, not a pleasant process label. Visualization shows whether the actions share one result."
+    },
+    {
+      "exampleId": "ch09-ex05-devon-permit-flow",
+      "title": "Devon Lowers the Permit Claim",
+      "tags": [
+        "vignette",
+        "civic-data",
+        "permits"
+      ],
+      "planSpec": {
+        "domain": "a civic-data team naming the result of permit-processing changes",
+        "audience": "government analysts summarizing process improvements",
+        "stakes": "leaders will overclaim transformation if the changes only reduce one queue bottleneck",
+        "format": "vignette",
+        "requiredBeat": "You watch Devon draw the permit stages, locate where each action acts, and lower the summary from citywide modernization to two-day reduction in intake review."
+      },
+      "scenario": "You are looking at a permit-flow sketch with one thick red bottleneck while Devon compares an intake queue report with the service standard. The draft says citywide modernization. The actions touch only intake review. Before the mayor’s briefing, Devon has to choose between the grand line and the level the evidence supports. He locates each action on the permit stages and lowers the summary to two-day reduction in intake review.",
+      "whatToDo": "Match the summary level to the stage the actions affect. Replace citywide modernization with the supported intake-review effect.",
+      "whyItMatters": "Leaders may overclaim when the top line sits above the evidence. Level control keeps a local improvement from pretending to be systemwide change."
+    },
+    {
+      "exampleId": "ch09-ex06-frida-wholesale-churn",
+      "title": "Frida Deletes the Pricing Point",
+      "tags": [
+        "postmortem",
+        "coffee",
+        "wholesale"
+      ],
+      "planSpec": {
+        "domain": "a specialty coffee roaster summarizing wholesale account changes",
+        "audience": "small-business managers connecting actions to effects",
+        "stakes": "the owner may expand discounts when the evidence supports retention through delivery reliability",
+        "format": "postmortem",
+        "requiredBeat": "At 2:15 p.m., Frida replaces strengthen wholesale with reduce account churn by improving delivery reliability, then deletes one pricing point that does not fit."
+      },
+      "scenario": "At 2:15 p.m., Frida places three returned coffee bags beside the churn report in the roastery office. The delivery miss log points toward reliability, but a pricing note has slipped under the same heading. In the postmortem, she replaces strengthen wholesale with reduce account churn by improving delivery reliability. Then she deletes the pricing point because it does not fit the effect.",
+      "whatToDo": "Name churn reduction through delivery reliability, then remove support that points to another effect. Put pricing in a separate analysis if needed.",
+      "whyItMatters": "A small business owner may expand discounts if pricing stays under the wrong heading. The summary should protect the action from mixed evidence."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A manager reads a summary that says improve operations above three actions that all reduce queue wait time in the clinic lobby. What is the main weakness in that summary line?",
+        "choices": [
+          "It uses too many short words.",
+          "It appears before the examples.",
+          "It names activity too vaguely instead of the effect."
+        ],
+        "correctIndex": 2,
+        "explanation": "The summary should name what changes, such as reduced wait time. Vague activity words make it harder to test whether support fits.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A shipping insurer has inspection actions that reduce claim frequency and crew-training actions that reduce claim severity before a renewal meeting. What should the writer do?",
+        "choices": [
+          "Write separate summary lines for the different effects.",
+          "Keep one broad loss prevention heading.",
+          "Delete the severity actions."
+        ],
+        "correctIndex": 0,
+        "explanation": "Frequency and severity are different effects. Separate lines keep level and effect clear instead of hiding both under a vague heading.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A university report says expand tutoring, but advising, tutoring, and progress alerts all aim at eligibility retention. What summary fits best?",
+        "choices": [
+          "Offer more academic services.",
+          "Raise first-year eligibility retention.",
+          "Support students in many ways."
+        ],
+        "correctIndex": 1,
+        "explanation": "The first choice names the effect the actions share. The other choices name activity and remain too broad to test against support.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A factory summary says cleaner quality process. The lower points affect inspection, calibration, and packing, all tied to fewer returns. What should change?",
+        "choices": [
+          "The summary should mention every department name.",
+          "The summary should name fewer customer returns.",
+          "The summary should stay broad for morale."
+        ],
+        "correctIndex": 1,
+        "explanation": "The common effect is fewer returns. Naming departments or staying broad does not tell leaders what the actions jointly produce.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A permit-processing team wants to claim citywide modernization, but its actions affect only intake review time at the front counter. What is the level problem?",
+        "choices": [
+          "The action list should be in reverse order.",
+          "The team needs a more positive phrase.",
+          "The top line overclaims above the level the support reaches."
+        ],
+        "correctIndex": 2,
+        "explanation": "The evidence supports an intake-review effect, not citywide transformation. Level control prevents a local fix from posing as a systemwide outcome.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A coffee roaster summary says strengthen wholesale. The evidence shows delivery misses drive churn, while one pricing note points elsewhere. What is the best repair?",
+        "choices": [
+          "Name churn reduction through delivery reliability and remove the pricing point.",
+          "Keep all points because wholesale is one topic.",
+          "Lead with the pricing point because price is concrete."
+        ],
+        "correctIndex": 0,
+        "explanation": "The supported effect is churn reduction through reliability. The pricing point may matter, but it does not fit that summary and needs another frame.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A writer has three lower points on a whiteboard and cannot tell whether they share one effect or point toward separate results. Which practical aid fits?",
+        "choices": [
+          "Visualize the relationships from each point to its effect.",
+          "Use a more confident adjective in the heading.",
+          "Add a longer introduction before the summary."
+        ],
+        "correctIndex": 0,
+        "explanation": "Sketching relationships exposes whether the lower points converge. Tone and introductions do not prove structural similarity.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "An analyst sees a summary line repeat one child point almost exactly while ignoring two other child points in the support group. What has gone wrong?",
+        "choices": [
+          "The line is too specific to ever be useful.",
+          "The line is too narrow to summarize the group.",
+          "The lower points should be deleted."
+        ],
+        "correctIndex": 1,
+        "explanation": "A summary should gather the group. If it merely repeats one child, it underclaims and leaves the other support without a parent.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A heading says streamline intake so that, and the writer cannot finish the sentence with a measurable effect after reviewing the child points. What does that reveal?",
+        "choices": [
+          "The heading is already specific enough.",
+          "The support is probably too detailed.",
+          "The heading may name activity rather than conclusion."
+        ],
+        "correctIndex": 2,
+        "explanation": "The so that test exposes missing effect. If the writer cannot name the result, the summary likely describes activity rather than what the activity produces.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A heading lists three actions but no result. What should the summary statement name besides activity?",
+      "back": "It should name the effect the lower points jointly create. Activity words like improve or strengthen often need an outcome attached.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "How do you test whether a summary line is at the right level?",
+      "back": "Ask whether it names a broad outcome, a supporting action, a local task, or an inferred effect. Then compare that level with the support beneath it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A vague top line sits above three arrows on a sketch. What does visualizing relationships help you see?",
+      "back": "It shows whether lower points converge on one effect or point in different directions. A vague top line has fewer places to hide once arrows are drawn.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A summary repeats one child point and ignores the other two. What has gone wrong?",
+      "back": "It underclaims. A parent line should gather the group, not copy one child and leave the others unsupported.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How does the so that test help?",
+      "back": "Add so that after a heading. If you cannot name the effect, the heading probably names activity rather than conclusion.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Naming the Effect Not the Activity",
+    "coreSkill": "You learn to make a summary line prove where it sits. The skill is turning activity labels into effect statements while keeping the claim at the right level above the support.",
+    "ifThenPlans": [
+      {
+        "context": "outcome summary",
+        "plan": "If a heading begins with improve, strengthen, or streamline, then add so that and write the effect before keeping it."
+      },
+      {
+        "context": "leadership update",
+        "plan": "If the summary sounds strategic, then check whether the lower points reach that level or only support a local effect."
+      },
+      {
+        "context": "quality report",
+        "plan": "If actions point to different effects, then split the group and write separate summary lines."
+      },
+      {
+        "context": "revision pass",
+        "plan": "If a summary repeats one child point, then rewrite it to infer what all children jointly mean."
+      }
+    ],
+    "twentyFourHourChallenge": "Take one heading and add the words so that after it. If you cannot name the effect, replace the heading with the result the support actually creates.",
+    "weeklyPractice": "Each week, choose three headings from your writing. For each one, mark activity, effect, and level. Rewrite any heading that names only activity or overclaims its support."
+  },
+  "memorableLines": [
+    {
+      "text": "Activity is not the same as conclusion.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the core distinction in one short sentence."
+    },
+    {
+      "text": "The line above the group should be more abstract than the points below it, but not so abstract that anything can fit.",
+      "location": "breakdown.deepRead",
+      "why": "It explains the level test clearly."
+    },
+    {
+      "text": "A loose summary lets every child point claim membership.",
+      "location": "breakdown.deepRead",
+      "why": "It shows why vague summary lines hide weak fit."
+    }
+  ]
+}

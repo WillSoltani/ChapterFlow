@@ -1,0 +1,207 @@
+{
+  "chapterId": "the-courage-to-be-disliked-ch05",
+  "number": 5,
+  "title": "The Fifth Night: To Live in Earnest in the Here and Now",
+  "coreMove": "Act from contribution in the present without demanding certainty, image safety, or a finished life story first.",
+  "sourcePressure": "The source supports this final night as the synthesis: excessive self-consciousness stifles action, trust differs from confidence, work is contribution, workaholism can be a life-lie, life is a series of moments, and meaning is given to seemingly meaningless life.",
+  "chapterSpecificMisunderstanding": "The weak version says live in the moment and trust the process; the real move asks for risk-bearing trust, useful work, and present seriousness without naivete or work worship.",
+  "sourceAlignmentTerms": [
+    "self-consciousness",
+    "trust",
+    "confidence",
+    "work as contribution",
+    "workaholism",
+    "life-lie",
+    "series of moments",
+    "here and now",
+    "meaning"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Difference Between Trust and Confidence",
+      "detail": "The frozen source lists this as a visible fifth-night heading and the sidecar marks trust versus confidence as a safe paraphrase zone.",
+      "useIn": "both",
+      "phrasingHint": "Confidence wants a favorable forecast; trust begins when the forecast cannot do the whole job."
+    },
+    {
+      "kind": "artifact",
+      "name": "Workaholism Is a Life-Lie",
+      "detail": "The frozen source lists this as a visible fifth-night heading and the sidecar says overwork can function as avoidance rather than contribution.",
+      "useIn": "fullRead",
+      "phrasingHint": "A calendar can look full while the life underneath it is hiding."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Live in the here and now",
+      "Trust the process",
+      "Meaning is what you make it"
+    ],
+    "counterintuition": [
+      "Workaholism is not dedication",
+      "Trust is not confidence",
+      "The present is all you have"
+    ],
+    "tryThisNow": [
+      "Take one mindful breath",
+      "Write down your purpose",
+      "Do one meaningful task"
+    ],
+    "examples": [
+      "burned-out laptop worker closes computer",
+      "meditation retreat",
+      "bucket list realization",
+      "entrepreneur learns work-life balance"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospice volunteer schedule",
+      "audience": "a volunteer who waits to feel emotionally ready before visiting a patient whose family cannot come",
+      "stakes": "a real person may spend the afternoon alone while the volunteer demands inner certainty first",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Grace stops evaluating whether she is the right kind of person for the visit and signs in, sits down, and reads the racing results the patient asked for.",
+      "firstImage": "The hallway smells of sanitizer and over-steeped tea.",
+      "mustInclude": [
+        "visitor sign-in sheet",
+        "racing results",
+        "vinyl chair"
+      ],
+      "mustAvoid": [
+        "deathbed wisdom",
+        "saintly volunteer",
+        "meaning-of-life speech"
+      ]
+    },
+    {
+      "domain": "theater understudy trust",
+      "audience": "an understudy who keeps confusing trust with certainty that the lead actor will stay healthy",
+      "stakes": "opening night may require him to step on stage without the guarantee he kept demanding",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Henrik checks the taped marks, admits confidence is impossible, and still walks to the wing when the stage manager calls his name.",
+      "firstImage": "Blue tape marks glow on the black stage floor under the work lights.",
+      "mustInclude": [
+        "taped marks",
+        "stage manager call",
+        "understudy binder"
+      ],
+      "mustAvoid": [
+        "fame dream",
+        "performance anxiety only",
+        "just believe in yourself"
+      ]
+    },
+    {
+      "domain": "freelance translation overwork",
+      "audience": "a translator who fills every evening with extra jobs to avoid sending one honest apology for a missed deadline",
+      "stakes": "busyness may keep protecting her image while damaging the actual client relationship",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 11:07 p.m., Catarina closes the fourth bonus job tab and sends the overdue client a plain repair plan instead of using work to hide.",
+      "firstImage": "At 11:07 p.m., Catarina has four invoice tabs open and the apology email still unsent.",
+      "mustInclude": [
+        "invoice tabs",
+        "translation deadline",
+        "repair plan email"
+      ],
+      "mustAvoid": [
+        "laptop burnout close",
+        "productivity system",
+        "freelancer hustle"
+      ]
+    },
+    {
+      "domain": "rowing crew practice in bad weather",
+      "audience": "a rower whose self-consciousness makes every stroke feel watched after being moved to bow seat",
+      "stakes": "the crew's rhythm fails if he keeps managing his image instead of moving with the boat",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Sam stop checking the coach's face between strokes and give attention to blade timing in the current moment.",
+      "firstImage": "You hear the oarlock click before the rain reaches your collar.",
+      "mustInclude": [
+        "bow seat",
+        "oarlock click",
+        "coach launch"
+      ],
+      "mustAvoid": [
+        "sports grit",
+        "teamwork cliche",
+        "confidence comeback"
+      ]
+    },
+    {
+      "domain": "municipal snow-route dispatch",
+      "audience": "a dispatcher who wants a perfect forecast before trusting crews with an early route call",
+      "stakes": "school buses may be stuck behind untreated hills if certainty remains the price of action",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Maja separates confidence from trust, sends the first two plows to the hill routes, and accepts that the weather may still embarrass the call.",
+      "firstImage": "\"Radar won't give us a promise,\" Maja says, with the salt map pinned under her wrist.",
+      "mustInclude": [
+        "salt map",
+        "school bus hills",
+        "radar screen"
+      ],
+      "mustAvoid": [
+        "emergency heroics",
+        "management forecast",
+        "weather metaphor sermon"
+      ]
+    },
+    {
+      "domain": "diabetes support group present-moment meaning",
+      "audience": "a retired machinist who keeps waiting for life to feel meaningful again before contributing to the group",
+      "stakes": "a newly diagnosed member may leave without the practical help he could give today",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hiroshi stops waiting for a grand reason to return and shows the new member how to pack a testing kit for the bus ride home.",
+      "firstImage": "What if meaning today is the zipper on someone else's testing kit closing correctly?",
+      "mustInclude": [
+        "testing kit",
+        "bus route",
+        "folding chair circle"
+      ],
+      "mustAvoid": [
+        "medical cure narrative",
+        "retirement emptiness cliche",
+        "inspirational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish trust from confidence in decisions under uncertainty",
+      "identify workaholism when busyness protects image instead of contribution",
+      "choose present-tense contribution without collapsing into impulsiveness",
+      "analyze when self-consciousness has turned action into image management"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next task, name the contribution in one plain sentence, then do the first visible action without checking whether it proves anything about you.",
+  "readingTimeMinutes": 12
+}

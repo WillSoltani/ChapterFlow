@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch04",
+  "number": 4,
+  "title": "Overcoming the Obstacles",
+  "coreMove": "Use one small, believable repair to return attention, ease, or goodwill after a charisma break.",
+  "sourcePressure": "This chapter follows diagnosis with operational repair, keeping recovery practical and partial rather than magical.",
+  "chapterSpecificMisunderstanding": "The weak version promises instant calm or perfect confidence. The useful version teaches small recovery moves that keep the interaction alive.",
+  "sourceAlignmentTerms": ["repair", "attention", "recovery", "partial", "state", "visible signal", "obstacle", "believable"],
+  "forbiddenFrames": {
+    "hook": ["You can overcome any obstacle", "Reset your state instantly", "Charisma can be repaired"],
+    "counterintuition": ["Small fixes change everything", "The obstacle is not the problem", "Just pause"],
+    "tryThisNow": ["Take three deep breaths", "Repeat a mantra", "Visualize success"],
+    "examples": ["generic mindfulness reset", "bathroom mirror pep talk", "conference-room apology", "therapy-session breakthrough"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a fire-alarm inspection where an inspector has snapped at a building superintendent",
+      "audience": "a rule-bound professional who needs repair without losing authority",
+      "stakes": "whether the superintendent cooperates before the failed panel is documented",
+      "format": "scene",
+      "requiredBeat": "the inspector stops mid-form, names the specific panel fault again in a lower voice, and gives the superintendent one useful next action",
+      "firstImage": "a red alarm panel blinking above an open inspection binder",
+      "mustInclude": ["zone list", "silence key", "deficiency notice"],
+      "mustAvoid": ["emergency crisis scene", "safety lecture"]
+    },
+    {
+      "domain": "a wholesale bakery call where an owner hears herself becoming defensive about late deliveries",
+      "audience": "a founder whose pride interrupts warmth",
+      "stakes": "whether a grocer renews the pastry contract",
+      "format": "dialogue",
+      "requiredBeat": "she stops explaining the driver shortage, repeats the grocer's date concern, and offers a smaller verified delivery window",
+      "firstImage": "a flour-dusted invoice beside a ringing wall phone",
+      "mustInclude": ["delivery manifest", "proofing rack", "renewal date"],
+      "mustAvoid": ["restaurant kitchen", "generic customer apology"]
+    },
+    {
+      "domain": "a radio producer booth after a guest freezes on air",
+      "audience": "a behind-the-scenes leader who must restore another person's presence",
+      "stakes": "whether the interview recovers before the live segment collapses",
+      "format": "decision_point",
+      "requiredBeat": "the producer chooses a calm handwritten cue on the studio glass instead of flooding the guest's headset with instructions",
+      "firstImage": "a grease pencil note pressed against studio glass",
+      "mustInclude": ["countdown clock", "headset fader", "guest bio"],
+      "mustAvoid": ["media fame", "presentation advice"]
+    },
+    {
+      "domain": "a glassblowing workshop where an instructor's correction has embarrassed a beginner",
+      "audience": "a craft teacher who needs to repair warmth without lowering standards",
+      "stakes": "whether the beginner keeps the pipe steady enough to finish safely",
+      "format": "vignette",
+      "requiredBeat": "the instructor steps beside rather than behind him, points to the molten gather, and gives one physical correction he can do immediately",
+      "firstImage": "an orange gather glowing at the end of a steel blowpipe",
+      "mustInclude": ["marver table", "wet newspaper pad", "annealing oven"],
+      "mustAvoid": ["artistic genius", "safety panic"]
+    },
+    {
+      "domain": "a library reference desk where a librarian realizes she has made a patron feel foolish",
+      "audience": "a knowledgeable reader whose expertise can bruise presence",
+      "stakes": "whether the patron admits the actual search need",
+      "format": "before_after",
+      "requiredBeat": "she rewinds from the jargon answer, turns the monitor so they can look together, and asks which result looks closest",
+      "firstImage": "a catalog screen open beside a paper call-number slip",
+      "mustInclude": ["microfilm drawer", "search term", "library card"],
+      "mustAvoid": ["school research scene", "generic help desk"]
+    },
+    {
+      "domain": "a freight customs inspection where an agent must repair a hostile start with a driver",
+      "audience": "a procedural professional whose power can feel punitive",
+      "stakes": "whether the driver follows the seal-check sequence without escalating",
+      "format": "postmortem",
+      "requiredBeat": "the agent notes that repeating the rule louder failed, then resets by showing the seal number and inviting the driver to verify it with him",
+      "firstImage": "a numbered cargo seal hanging from a blue trailer latch",
+      "mustInclude": ["inspection stamp", "manifest pouch", "orange cones"],
+      "mustAvoid": ["border politics", "law-enforcement dominance"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose a repair matched to the obstacle already identified",
+      "distinguish partial recovery from overexplaining",
+      "restore warmth without abandoning standards",
+      "evaluate whether a reset returns attention to the other person"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "When you hear your tone go flat today, stop before the next sentence, repeat the other person's concrete concern, and give one next move.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-righteous-mind-ch10",
+  "number": 10,
+  "title": "The Hive Switch",
+  "coreMove": "Notice the cues that move people from private calculation into shared-body coordination.",
+  "sourcePressure": "The chapter explains conditions under which people shift into group-minded coordination through the hive switch.",
+  "chapterSpecificMisunderstanding": "The writer makes the hive switch mystical or turns it into ordinary crowd pressure.",
+  "sourceAlignmentTerms": [
+    "hive switch",
+    "coordination",
+    "self-to-group",
+    "shared body",
+    "social mode",
+    "group-minded"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the hive switch",
+      "detail": "the frozen sidecar treats the hive switch as the mechanism for shifting from self to group-minded coordination.",
+      "useIn": "both",
+      "phrasingHint": "The hive switch is the moment the private self loosens and the group starts to feel like the larger body."
+    },
+    {
+      "kind": "artifact",
+      "name": "selfish-versus-groupish tension",
+      "detail": "the frozen sidecar says Chapter 10 builds directly on Chapter 9's selfish-versus-groupish tension.",
+      "useIn": "fullRead",
+      "phrasingHint": "The switch matters because the same person who guards a private advantage can suddenly guard the group as if it were personal."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch10 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "generic concert scene"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "mob panic"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "unsupported brain chemistry"
+    ],
+    "examples": [
+      "generic concert scene",
+      "mob panic",
+      "unsupported brain chemistry"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "rowing crew finding rhythm after weeks of individual correction",
+      "audience": "coaches watching coordination become shared attention",
+      "stakes": "Ben spots the moment eight private efforts become one stroke.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ben stops shouting technique and lets the crew hear the catch timing until they synchronize.",
+      "firstImage": "Oarlocks click out of order across the gray water.",
+      "mustInclude": [
+        "oarlocks",
+        "coxswain mic",
+        "fog line"
+      ],
+      "mustAvoid": [
+        "generic sports victory"
+      ]
+    },
+    {
+      "domain": "warehouse safety team using synchronized shutdown drills",
+      "audience": "operations teams trying to make safety collective",
+      "stakes": "Astrid turns a rule into a shared ritual with a visible group cue.",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Astrid starts the same red-light shutdown drill at every bay and watches workers move together.",
+      "firstImage": "A red light washes over stacked pallets in six loading bays.",
+      "mustInclude": [
+        "red light",
+        "loading bays",
+        "shutdown card"
+      ],
+      "mustAvoid": [
+        "compliance poster"
+      ]
+    },
+    {
+      "domain": "music festival volunteers forming trust before gates open",
+      "audience": "event leads managing strangers under pressure",
+      "stakes": "Aman uses shared timing and call-response to create group readiness.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Aman has volunteers practice the same gate call until strangers answer as one team.",
+      "firstImage": "\"When I say blue gate, you answer clear,\" Aman tells forty strangers.",
+      "mustInclude": [
+        "gate radios",
+        "wristbands",
+        "blue gate sign"
+      ],
+      "mustAvoid": [
+        "generic concert scene"
+      ]
+    },
+    {
+      "domain": "surgical unit preparing for a mass-casualty drill",
+      "audience": "medical teams that need coordinated mode shift",
+      "stakes": "Isabel notices the switch when names give way to roles.",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:40, Isabel calls the role drill and watches private chatter disappear into coordinated tasks.",
+      "firstImage": "At 6:40, Isabel hears the trauma bay go quiet before the drill starts.",
+      "mustInclude": [
+        "role tags",
+        "trauma bay clock",
+        "drill cards"
+      ],
+      "mustAvoid": [
+        "unsupported brain chemistry"
+      ]
+    },
+    {
+      "domain": "tenant association cleaning a neglected courtyard",
+      "audience": "neighbors who barely know each other",
+      "stakes": "Ryan sees shared labor turn complaint into group identity.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ryan compares the meeting minutes with the morning when everyone picked up tools together.",
+      "firstImage": "It took Ryan one Saturday with rented rakes to hear people say our courtyard.",
+      "mustInclude": [
+        "rented rakes",
+        "trash bags",
+        "courtyard gate"
+      ],
+      "mustAvoid": [
+        "neighborhood feel-good montage"
+      ]
+    },
+    {
+      "domain": "software security team during a live breach exercise",
+      "audience": "engineers moving from solo expertise to coordinated defense",
+      "stakes": "Anke creates a common pulse through timed status calls and shared risk.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What changes when Anke makes every defender answer on the same thirty-second cadence?",
+      "firstImage": "What if the fix is not more expertise but a shared pulse?",
+      "mustInclude": [
+        "status cadence",
+        "attack dashboard",
+        "incident bridge"
+      ],
+      "mustAvoid": [
+        "outage scene from ch3"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify cues that activate group-minded coordination",
+      "distinguish hive-switch absorption from simple conformity",
+      "explain why shared motion or risk can change self-boundaries"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one setting where you feel absorbed into a group, then identify the cue: synchronized movement, shared risk, music, chant, or ritual.",
+  "readingTimeMinutes": 12
+}

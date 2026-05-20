@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch09",
+  "number": 9,
+  "title": "The Effect of Expectations",
+  "coreMove": "Blind the cue that is shaping the experience before deciding what you actually perceive.",
+  "sourcePressure": "The source shows that expectations, labels, and prior beliefs alter taste and evaluation, so experience is partly constructed before evidence reaches judgment.",
+  "chapterSpecificMisunderstanding": "The weak version says branding tricks people; the precise lesson is that expectations can change the felt experience itself, not just the report afterward.",
+  "sourceAlignmentTerms": ["expectations", "label", "blind test", "prior belief", "experience", "assimilation"],
+  "forbiddenFrames": {
+    "hook": ["The label reaches your tongue first", "Expectation tastes before you do", "You experience what you expect"],
+    "counterintuition": ["Seeing is neutral", "Labels only change opinions", "Blind tests are trivia"],
+    "tryThisNow": ["Hide the brand", "Test it blind", "Question your expectations"],
+    "examples": ["fancy coffee", "wine label", "brand names at dinner"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "violin shop evaluating two bows behind a curtain",
+      "audience": "an intermediate violinist who expects the older French bow to sound warmer",
+      "stakes": "spending savings on pedigree rather than actual tone and control",
+      "format": "predict_reveal",
+      "requiredBeat": "the shop owner wraps both frog labels and has the player rank balance and tone before revealing which bow was famous",
+      "firstImage": "two violin bows resting on velvet with their labels wrapped in paper",
+      "mustInclude": ["wrapped labels", "tone ranking", "older French bow"],
+      "mustAvoid": ["coffee tasting", "wine snobbery", "price placebo"]
+    },
+    {
+      "domain": "city bus route pilot with a prestige neighborhood label",
+      "audience": "transit planners reviewing rider comments on two identical route maps",
+      "stakes": "misreading service quality because neighborhood reputation changes expectations",
+      "format": "postmortem",
+      "requiredBeat": "the planner swaps route names on the survey packet and sees complaints follow the label more than the timetable",
+      "firstImage": "two bus route maps clipped to a survey board in a transit-planning office",
+      "mustInclude": ["route names swapped", "timetable", "rider comments"],
+      "mustAvoid": ["transit waiting-room shell", "public survey privacy", "commute budgeting"]
+    },
+    {
+      "domain": "bakery sourdough tasting after ingredient rumors",
+      "audience": "a bakery owner testing whether a rumored flour change affected customers",
+      "stakes": "changing a recipe because expectation, not bread quality, drove complaints",
+      "format": "decision_point",
+      "requiredBeat": "the owner serves numbered slices from the same batch after removing the flour supplier sign and watches ratings converge",
+      "firstImage": "numbered sourdough slices on slate boards beside a covered supplier card",
+      "mustInclude": ["numbered slices", "covered supplier card", "same batch"],
+      "mustAvoid": ["price of bakery oven", "free pastry sample", "restaurant special"]
+    },
+    {
+      "domain": "software beta labeled experimental versus stable",
+      "audience": "a product researcher running usability tests on the same build",
+      "stakes": "overcounting bugs because the experimental label makes users search for problems",
+      "format": "vignette",
+      "requiredBeat": "the researcher changes only the build label on identical tablets and logs how many flaws users report before touching any code",
+      "firstImage": "two identical tablets on a testing table, one labeled beta and one labeled stable",
+      "mustInclude": ["identical build", "bug log", "label swap"],
+      "mustAvoid": ["premium software price", "SaaS trial", "pricing page"]
+    },
+    {
+      "domain": "ceramics class judging glaze quality by artist reputation",
+      "audience": "students critiquing cups before seeing maker names",
+      "stakes": "rewarding reputation rather than glaze execution",
+      "format": "dialogue",
+      "requiredBeat": "the instructor turns maker cards facedown and asks students to score pooling, pinholes, and color before names return",
+      "firstImage": "small glazed cups on a critique shelf with maker cards facedown",
+      "mustInclude": ["maker cards", "pinholes", "score sheet"],
+      "mustAvoid": ["ownership of ceramic piece", "art market price", "generic classroom"]
+    },
+    {
+      "domain": "rural clinic comparing two appointment reminder messages",
+      "audience": "a clinic manager who expects the polished message to feel more caring",
+      "stakes": "choosing a reminder based on polish rather than patient comprehension",
+      "format": "before_after",
+      "requiredBeat": "after removing the hospital logo and designer formatting, the manager watches patients explain which reminder they actually understood",
+      "firstImage": "two reminder cards on a clipboard with the logos covered by tape",
+      "mustInclude": ["covered logo", "patient explanation", "designer formatting"],
+      "mustAvoid": ["medical placebo", "price efficacy", "clinic freezer"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["detect expectation cues that alter experience", "design a blind or label-swapped test", "distinguish reporting bias from changed perception", "evaluate when labels should be hidden before judgment"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one evaluation today, hide the label, brand, maker, or reputation cue long enough to record your first judgment before the cue returns.",
+  "readingTimeMinutes": 12
+}

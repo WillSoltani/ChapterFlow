@@ -1,0 +1,203 @@
+{
+  "chapterId": "ego-is-the-enemy-ch02",
+  "number": 2,
+  "title": "To be or to do?",
+  "coreMove": "Choose the task that deepens contribution when status and useful work begin pulling in different directions.",
+  "sourcePressure": "Aspire section: status identity versus contribution. Supported by frozen source sidecar.",
+  "chapterSpecificMisunderstanding": "Turning the choice into anti-career posturing instead of a live test of loyalty when incentives split.",
+  "sourceAlignmentTerms": [
+    "be or do",
+    "status bait",
+    "contribution",
+    "rank",
+    "prestige",
+    "work standard"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "John Boyd",
+      "detail": "The source sidecar identifies Boyd as the central anchor for choosing contribution over rank, prestige, and flattering recognition.",
+      "useIn": "both",
+      "phrasingHint": "Boyd should enter as the fork made visible: be somebody in the room, or do the work that may cost you the room."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of be or do",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple be or do is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "regional fisheries inspection",
+      "audience": "a reader facing regional fisheries inspection pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+      "stakes": "a concrete standard in regional fisheries inspection will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "chooses the slower route that fixes the cargo problem over the visible role on the crisis call in the concrete setting of regional fisheries inspection; make the lesson visible through action, not explanation",
+      "firstImage": "a shipping manifest with the profitable reroute circled sits between Sophie and the easiest explanation in the regional fisheries inspection room.",
+      "mustInclude": [
+        "be or do",
+        "status bait",
+        "regional fisheries"
+      ],
+      "mustAvoid": [
+        "do not turn this into be or do as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "architecture studio critique",
+      "audience": "a reader facing architecture studio critique pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+      "stakes": "a concrete standard in architecture studio critique will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "hands the prestigious speaking slot to the person with the strongest data and takes the unfashionable task that protects the outcome in the concrete setting of architecture studio critique; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Grace hears, with a cracked proof tray beside the certification sheet already on the table.",
+      "mustInclude": [
+        "be or do",
+        "status bait",
+        "architecture studio"
+      ],
+      "mustAvoid": [
+        "do not turn this into be or do as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "freight customs reroute",
+      "audience": "a reader facing freight customs reroute pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+      "stakes": "a concrete standard in freight customs reroute will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "removes the title slide from the proposal and opens with the operational failure the role is supposed to solve in the concrete setting of freight customs reroute; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a rehearsal call sheet with three missing initials makes the pressure in freight customs reroute visible.",
+      "mustInclude": [
+        "be or do",
+        "status bait",
+        "freight customs"
+      ],
+      "mustAvoid": [
+        "do not turn this into be or do as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "museum donor committee",
+      "audience": "a reader facing museum donor committee pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+      "stakes": "a concrete standard in museum donor committee will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "declines the committee chair nameplate when the actual work needs a quiet blocker removed first in the concrete setting of museum donor committee; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Laura's thumb stop over a supplier quote stapled to the wrong invoice before the ego-favoring move happens.",
+      "mustInclude": [
+        "be or do",
+        "status bait",
+        "museum donor"
+      ],
+      "mustAvoid": [
+        "do not turn this into be or do as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "cycling club race selection",
+      "audience": "a reader facing cycling club race selection pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+      "stakes": "a concrete standard in cycling club race selection will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "keeps the credit line small so the standard, not the status, decides the next assignment in the concrete setting of cycling club race selection; make the lesson visible through action, not explanation",
+      "firstImage": "It took Anna until the third review of a rescue drill map folded to the missed checkpoint to see what ego had protected.",
+      "mustInclude": [
+        "be or do",
+        "status bait",
+        "cycling club"
+      ],
+      "mustAvoid": [
+        "do not turn this into be or do as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Emma",
+      "domain": "public radio fundraising drive",
+      "audience": "a reader facing public radio fundraising drive pressure who needs to practice chapter 2's move without turning it into be or do advice in general",
+      "stakes": "a concrete standard in public radio fundraising drive will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "asks which option improves the result if nobody learns who made the call in the concrete setting of public radio fundraising drive; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when an interpreter score sheet with the hesitation marks visible becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "be or do",
+        "status bait",
+        "public radio"
+      ],
+      "mustAvoid": [
+        "do not turn this into be or do as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish be or do from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Choose the task that deepens contribution when status and useful work begin pulling in different directions.",
+      "spot when a scenario has drifted into career minimalism",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves be or do or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

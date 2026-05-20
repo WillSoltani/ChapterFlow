@@ -1,0 +1,93 @@
+{
+  "bookId": "mans-search-for-meaning",
+  "title": "Man's Search for Meaning",
+  "author": "Viktor E. Frankl",
+  "thesisParagraph": "Meaning is not presented as a mood, consolation, or reward for good circumstances. The argument is that human beings remain addressed by life even when control, comfort, and dignity are under attack: first through witness, then through logotherapy's claim that meaning can be found in work, love, and the attitude taken toward unavoidable suffering. The strongest version is narrow and unsentimental. It never makes suffering good, but it refuses to let suffering own the whole person.",
+  "coreIdeas": [
+    {
+      "name": "Witness before explanation",
+      "oneSentence": "A claim about meaning earns trust only after it has faced real cost.",
+      "mentalMove": "Ask what pressure a belief has survived before you let it comfort or guide you.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Shock narrows the mind",
+      "oneSentence": "Early crisis often produces bargaining stories and emotional narrowing before clear judgment returns.",
+      "mentalMove": "Name the shock response before treating the first story you tell yourself as truth.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Narrow inner freedom",
+      "oneSentence": "Even when fate controls outcomes, a small field of response may remain.",
+      "mentalMove": "Separate what cannot be chosen from the one response, decency, or attention that still can be chosen.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Will to meaning",
+      "oneSentence": "The central human drive is not comfort alone but a concrete reason to answer life responsibly.",
+      "mentalMove": "Translate emptiness into the next responsibility offered by work, love, or unavoidable suffering.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Tragic optimism",
+      "oneSentence": "Hope becomes serious when it includes pain, guilt, and death instead of denying them.",
+      "mentalMove": "Turn the tragic fact into a bounded responsibility without pretending it was good.",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    }
+  ],
+  "targetReader": "Adults who are tired of shallow resilience language and need a sober way to think about duty, suffering, responsibility, grief, and purpose without being blamed for pain they did not choose.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "keep agency narrow when suffering is severe",
+      "let moral pressure come from visible facts rather than inspirational claims"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no romanticizing suffering or making pain sound useful by default",
+      "no comparisons that shrink the camps into ordinary inconvenience"
+    ]
+  },
+  "voiceSpecimens": [
+    "A locked door teaches faster than a slogan when the person behind it still has one answer left to give.",
+    "You do not have to call the pain good in order to refuse its final word.",
+    "When the easy story collapses, the first honest task is smaller than courage: name what is still in your hands.",
+    "Meaning becomes real when it changes the next duty, the next sentence, the next person you refuse to abandon.",
+    "The question is not whether you feel brave. The question is what this hour is asking of you.",
+    "Some freedoms are too small to decorate, but large enough to keep a person from being only a victim."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains that Viktor Frankl believes everyone can find purpose if they just choose a positive mindset.",
+    "At the end of the day, meaning is all about having a why and staying resilient no matter what.",
+    "The big takeaway is to optimize your attitude and reframe suffering as a growth opportunity.",
+    "In this section, the author introduces a framework that readers can apply to improve fulfillment.",
+    "Pain is actually a gift because it makes you stronger and teaches important life lessons."
+  ],
+  "teachingArc": "The arc moves from credibility to crisis to freedom to practice to mature hope. First, meaning must be tested by witness rather than announced as a theory. Then shock and apathy show how extremity compresses the person without fully erasing response. Logotherapy turns that response into a practical search for responsibility through work, love, and attitude. The postscript then raises the standard again: optimism is only honest when it can include pain, guilt, and death without denying any of them.",
+  "forbiddenMoves": [
+    "Do not turn concentration-camp testimony into a motivational backdrop for ordinary productivity advice.",
+    "Do not imply that people are responsible for finding meaning quickly in trauma or that failure to do so is weakness.",
+    "Do not make suffering sound necessary, deserved, or secretly beneficial.",
+    "Do not inflate logotherapy into happiness hacking, positive thinking, or self-optimization.",
+    "Do not invent named camp incidents, patients, studies, or quotations beyond the frozen source bundle."
+  ]
+}

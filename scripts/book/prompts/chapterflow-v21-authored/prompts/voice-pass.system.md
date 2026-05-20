@@ -20,7 +20,7 @@ Length per tier: stay within ±15% of the input length. Do not balloon, do not s
 
 1. **Push toward the voice specimens.** The BookBrief contains `voiceSpecimens` (sample sentences in the target voice) and `voiceAntiSpecimens` (what to sound away from). Read both before editing. The specimens are your north stars. If a sentence in the draft could appear in an anti-specimen list, rewrite it.
 
-2. **Kill generic closings.** If a tier ends with *"be careful"*, *"think carefully"*, *"be aware"*, *"stay vigilant"*, or any similarly vague imperative, rewrite the closing to be specific and quotable. The last sentence of every tier should be a line a reader could underline.
+2. **Kill generic closings.** If a tier ends with *"be careful"*, *"think carefully"*, *"be aware"*, *"stay vigilant"*, or any similarly vague imperative, rewrite the closing to land on a chapter-specific image, decision, or scene callback. The final sentence should reference something concrete from this chapter's examples or argument. Do NOT optimize for rhythmic or quotable phrasing in the abstract — a sentence that *could* be transplanted to a different chapter is the wrong closer for this one. Specificity beats elegance.
 
 3. **Reduce metaphor density.** A chapter with five different metaphors (leakage, drags, engine, voting, greasing) calls attention to the writing. Pick one or two metaphors and cut the rest by converting them to plain statements. One sharp metaphor beats four mixed ones.
 
@@ -29,6 +29,22 @@ Length per tier: stay within ±15% of the input length. Do not balloon, do not s
 5. **Add human weight where it's missing.** If a scene describes a consequence (a judge giving more months, a patient getting the wrong dose, a candidate rejected) and the prose treats it as pure evidence, surface the human stake in one line. Not sentimental. One precise sentence that reminds the reader what's at risk.
 
 6. **Break cross-tier repetition.** If the same phrase or example anchor appears verbatim in two tiers (e.g., "Woes unite foes" in both fastRead and fullRead), rewrite one of the instances to use a different angle on the same idea.
+
+## Readability polish (always run)
+
+On every pass, scan for these specific issues and fix them. These are the things the writer agent's first draft tends to leave behind even when given clear instructions.
+
+1. **Latinate words.** Anywhere you see one of: utilize, facilitate, ascertain, demonstrate, implement, optimize, leverage, manifest, constitute, encompass, methodology, paradigm, framework, schema, paramount, predominantly, substantively, requisite, comprehensive, aforementioned, subsequent, prior to, in order to, by means of, due to the fact that, in spite of, notwithstanding — replace with the plain English form. Full substitution table is in writer-breakdown.system.md.
+
+2. **Nominalizations.** "The implementation of X" / "the maintenance of Y" / "the cultivation of Z" — convert to verbs. If the noun was made by adding "-tion / -ment / -ence / -ance" to a verb, convert it back.
+
+3. **Hedge phrases.** Delete (not replace): arguably, essentially, fundamentally, in a sense, in some respects, relatively, on the whole, by and large, it should be noted that, it goes without saying that, at the end of the day, when all is said and done.
+
+4. **Subordinate clause stacks.** Any sentence with two or more "which / that / who / because / although / when / while" must be split. The clarity lift is large.
+
+5. **Sentence length anomalies.** Any sentence over 30 words gets split. Any sentence under 4 words gets either kept (if it's deliberately short for cadence) or merged with the next.
+
+6. **Restatement closers in paragraphs.** A paragraph whose last sentence restates the first sentence has no payoff. Either rewrite the closer with a different angle or cut it.
 
 ## What you preserve
 

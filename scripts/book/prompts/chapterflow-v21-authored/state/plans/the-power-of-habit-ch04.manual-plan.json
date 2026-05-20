@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-power-of-habit-ch04",
+  "number": 4,
+  "title": "Keystone Habits, or The Ballad of Paul O'Neill",
+  "coreMove": "Trace which single routine forces better reporting, handoffs, and accountability downstream.",
+  "sourcePressure": "Paul O'Neill's worker-safety focus at Alcoa shows that a keystone habit matters because it changes the surrounding operating system. The chapter is not about symbolic focus. It is about a habit whose spillover changes communication, accountability, small wins, and trust.",
+  "chapterSpecificMisunderstanding": "The weak version calls any meaningful routine a keystone habit or treats safety as an inspirational slogan. The writer must show why the chosen habit unlocks adjacent systems.",
+  "sourceAlignmentTerms": [
+    "Paul O'Neill",
+    "Alcoa",
+    "worker safety",
+    "keystone habit",
+    "small wins",
+    "spillover",
+    "accountability",
+    "operational change",
+    "communication"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A CEO gives a bold speech and culture changes.",
+      "A personal morning routine becomes a keystone for everything.",
+      "A generic safety poster or slogan on a wall."
+    ],
+    "counterintuition": [
+      "Most people think any important habit can be a keystone, but actually...",
+      "Treating one habit as magic instead of tracing the systems it forces open.",
+      "Confusing crisis reform with keystone leverage."
+    ],
+    "tryThisNow": [
+      "Pick your most important habit and do it every day.",
+      "Set a timer for ninety seconds and list your keystone habits.",
+      "Choose a habit because it feels inspiring, not because it changes handoffs."
+    ],
+    "examples": [
+      "Personal morning routine as keystone habit.",
+      "Worker-safety example that only repeats Alcoa.",
+      "Office productivity dashboard.",
+      "Stress-snacking or phone-checking loops from earlier chapters.",
+      "One habit fixes everything."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "sterile-processing instrument tray checks before first surgery",
+      "audience": "an operating-room charge nurse deciding where to start a quality push",
+      "stakes": "a missing clamp can delay the first case and teach every department to hide its small misses",
+      "format": "scene",
+      "requiredBeat": "The charge nurse points to the empty groove in a gray silicone tray and chooses the pre-op tray readback because it forces sterilization logs, courier timing, surgeon notice, and defect reporting to line up before the patient arrives.",
+      "firstImage": "An empty clamp groove sits in a gray silicone instrument tray.",
+      "mustInclude": [
+        "gray silicone tray",
+        "sterilization log",
+        "courier timestamp"
+      ],
+      "mustAvoid": [
+        "drug dosing or bedside-care story",
+        "generic hospital teamwork",
+        "crisis response after an accident"
+      ]
+    },
+    {
+      "domain": "regional bakery first-batch scale-zero log",
+      "audience": "a bakery operations lead choosing between a branding campaign and a production habit",
+      "stakes": "bad weights are causing wasted dough, customer complaints, and fights between bakers and purchasing",
+      "format": "decision_point",
+      "requiredBeat": "The operations lead watches the digital scale blink 0.0, then chooses the first-batch zero log because that one mark changes flour orders, oven timing, waste boards, and shift handoffs by noon.",
+      "firstImage": "A digital flour scale blinks 0.0 beside a torn proofing schedule.",
+      "mustInclude": [
+        "digital flour scale",
+        "proofing schedule",
+        "waste board"
+      ],
+      "mustAvoid": [
+        "customer-service politeness",
+        "one heroic baker",
+        "morning routine keystone"
+      ]
+    },
+    {
+      "domain": "museum art-shipping crate condition photos",
+      "audience": "a collections director trying to stop blame fights between conservators, shippers, and insurers",
+      "stakes": "one undocumented scratch can freeze a traveling exhibit and damage institutional trust",
+      "format": "before_after",
+      "requiredBeat": "Before the protocol, everyone argues from memory; after it, the first crate-opening photo shows the foam corner block, scratch, and timestamp, making insurance, conservation, and shipper accountability move together.",
+      "firstImage": "A foam corner block falls from a wooden art crate onto a clean table.",
+      "mustInclude": [
+        "foam corner block",
+        "timestamped photo",
+        "cotton gloves"
+      ],
+      "mustAvoid": [
+        "generic documentation advice",
+        "art as inspiration",
+        "crisis-as-opportunity frame"
+      ]
+    },
+    {
+      "domain": "municipal snowplow garage blade-inspection tags before storms",
+      "audience": "a public-works superintendent trying to reduce route delays without another morale speech",
+      "stakes": "one cracked blade can strand a plow and leave side streets iced over during the morning commute",
+      "format": "postmortem",
+      "requiredBeat": "After a stalled route, the superintendent tracks the failure back to a missing blade tag and chooses the tag habit because it forces parts inventory, mechanic escalation, route assignment, and driver trust before snow starts.",
+      "firstImage": "Salt crust flakes from a chipped plow blade under fluorescent lights.",
+      "mustInclude": [
+        "blade tag",
+        "parts shelf",
+        "route board"
+      ],
+      "mustAvoid": [
+        "bus depot or transit shell",
+        "personal grit in bad weather",
+        "emergency reaction without system change"
+      ]
+    },
+    {
+      "domain": "community pool chemical-test board before gates open",
+      "audience": "an aquatics manager deciding which routine will make young lifeguards take safety seriously",
+      "stakes": "a skipped water test can close the pool after families are already lined up outside",
+      "format": "predict_reveal",
+      "requiredBeat": "The manager asks which habit will change the most other behavior, then posts the first water-test reading before unlock; the visible number changes lifeguard rotation, maintenance calls, parent notices, and opening confidence.",
+      "firstImage": "A clear test vial stands beside a locked pool gate.",
+      "mustInclude": [
+        "test vial",
+        "opening clipboard",
+        "maintenance radio"
+      ],
+      "mustAvoid": [
+        "sports practice example",
+        "single safety lecture",
+        "willpower rehearsal"
+      ]
+    },
+    {
+      "domain": "translation agency glossary-change log before client delivery",
+      "audience": "a project lead whose multilingual teams keep fixing the same client terms late",
+      "stakes": "one inconsistent term can force an expensive reprint and make reviewers distrust every page",
+      "format": "dialogue",
+      "requiredBeat": "The lead holds up the marked glossary card and explains that every term change must hit the log first because that one habit updates translators, reviewers, layout, and client approval at the same time.",
+      "firstImage": "A marked glossary card lies across a stack of page proofs.",
+      "mustInclude": [
+        "marked glossary card",
+        "page proofs",
+        "approval stamp"
+      ],
+      "mustAvoid": [
+        "software release standup",
+        "generic communication advice",
+        "one habit magically fixes culture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish a keystone habit from a merely important or symbolic routine",
+      "trace how one habit changes reporting, handoffs, accountability, and small wins",
+      "choose the intervention whose spillover reaches adjacent systems instead of only one behavior",
+      "evaluate whether a proposed keystone habit has visible operational leverage"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one routine in a team or household and draw four arrows from it: what report changes, what handoff changes, what trust changes, and what mistake becomes visible sooner.",
+  "readingTimeMinutes": 12
+}

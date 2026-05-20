@@ -1,0 +1,194 @@
+{
+  "chapterId": "seeking-wisdom-ch05",
+  "number": 5,
+  "title": "Use Checklists to Protect Judgment",
+  "coreMove": "Convert a repeated costly omission into a short situation-bound checklist and keep judgment awake beyond it.",
+  "sourcePressure": "The source says people can know a principle and still skip an obvious step under pressure, routine drift, familiarity, or false confidence. Practical reminders and short, relevant checklist protections keep important checks visible, while judgment still handles context beyond the list.",
+  "chapterSpecificMisunderstanding": "The weak version is productivity advice or process worship. The chapter must show a known step disappearing in live conditions and a short checklist catching it without pretending to think for the person.",
+  "sourceAlignmentTerms": [
+    "omission",
+    "routine drift",
+    "familiarity",
+    "pressure",
+    "false confidence",
+    "short checklist",
+    "repeated situation",
+    "process protection",
+    "judgment still matters"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "checklist framing",
+      "detail": "The source sidecar says checklist framing is a practical defense against recurring misjudgment, especially when the list is short, relevant, and tied to repeated situations.",
+      "useIn": "both",
+      "phrasingHint": "The useful checklist is not impressive; it is the little card that keeps the missed step visible when speed makes memory unreliable."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Make a checklist",
+      "Checklists save lives",
+      "Do not trust your memory"
+    ],
+    "counterintuition": [
+      "A checklist makes you less human",
+      "Process beats judgment",
+      "The checklist does the thinking"
+    ],
+    "tryThisNow": [
+      "Write a checklist for your day",
+      "Set a reminder",
+      "Use a to-do list"
+    ],
+    "examples": [
+      "generic morning routine",
+      "pilot preflight cliche unless grounded in omission",
+      "grocery list",
+      "habit tracker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "sterile processing team preparing orthopedic instrument trays",
+      "audience": "Grace, a lead technician who has seen the same torque handle missing twice",
+      "stakes": "whether a preventable omission delays surgery after everyone thought the tray was complete",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Grace tapes a three-item tray-close checklist beside the washer door and makes the torque handle the final spoken check before sealing the wrap",
+      "firstImage": "steam fogging the small window of the instrument washer",
+      "mustInclude": [
+        "Grace",
+        "torque handle",
+        "tray-close checklist"
+      ],
+      "mustAvoid": [
+        "doctor hero scene",
+        "generic hospital checklist sermon"
+      ]
+    },
+    {
+      "domain": "climbing gym opening inspection after a belay-device recall",
+      "audience": "Julien, a gym manager opening at dawn with a line of members outside",
+      "stakes": "whether familiarity with the wall makes a recalled device stay clipped for another class",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Julien refuses to unlock the bouldering area until the recall card is checked against each rental bin, even though the front desk is crowded",
+      "firstImage": "chalk dust on the latch of a still-locked climbing gate",
+      "mustInclude": [
+        "Julien",
+        "recall card",
+        "rental bin"
+      ],
+      "mustAvoid": [
+        "adventure-risk chapter 3 avalanche shell",
+        "generic fitness opening"
+      ]
+    },
+    {
+      "domain": "local newspaper correction workflow after two misspelled names reach print",
+      "audience": "Frida, a copy chief protecting a Friday obituary page",
+      "stakes": "whether deadline pressure makes the staff skip the phone verification they all agree matters",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Frida circles the two past name errors, then adds a two-person name-read checkpoint before page export",
+      "firstImage": "two clipped obituaries with red circles around family names",
+      "mustInclude": [
+        "Frida",
+        "name-read checkpoint",
+        "page export button"
+      ],
+      "mustAvoid": [
+        "generic editing advice",
+        "school essay proofreading"
+      ]
+    },
+    {
+      "domain": "wedding caterer managing allergy labels during a rushed venue flip",
+      "audience": "Chidi, a catering captain who trusts his team but knows the dessert station changes fastest",
+      "stakes": "whether one unlabeled almond tart reaches the wrong guest during service",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chidi makes the dessert runner touch each tray label and read the allergen aloud before the doors open",
+      "firstImage": "\"Read me the one with almonds,\" beside silver trays under heat lamps",
+      "mustInclude": [
+        "Chidi",
+        "almond tart",
+        "tray labels"
+      ],
+      "mustAvoid": [
+        "generic restaurant from chapter 2",
+        "family kitchen shell"
+      ]
+    },
+    {
+      "domain": "data center migration where the rollback step keeps being assumed",
+      "audience": "Michael, an infrastructure lead facing a 1:00 a.m. cutover",
+      "stakes": "whether a familiar migration skips the rollback verification and traps a payments outage",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Michael asks the team to point to the tested rollback command before the cutover clock starts, then delays when nobody can show the current script hash",
+      "firstImage": "At 12:47 a.m., Michael sees the rollback line blank on the runbook screen",
+      "mustInclude": [
+        "Michael",
+        "runbook screen",
+        "script hash"
+      ],
+      "mustAvoid": [
+        "generic software deployment drama",
+        "startup outage war room from chapter 6"
+      ]
+    },
+    {
+      "domain": "daycare pickup authorization after a substitute teacher joins midweek",
+      "audience": "Paula, a center director who has the names memorized but knows substitutes do not",
+      "stakes": "whether one familiar parent face overrides the written pickup rule",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "requiredBeat": "Paula moves the pickup-card check to the door clipboard and makes every adult show the card before greeting by name",
+      "firstImage": "You hear stroller wheels outside while the substitute reaches for the classroom door",
+      "mustInclude": [
+        "Paula",
+        "pickup card",
+        "door clipboard"
+      ],
+      "mustAvoid": [
+        "generic parenting routine",
+        "school worksheet shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify omission rather than ignorance",
+      "design a short checklist tied to repeated failure",
+      "avoid checklist bloat and compliance theater",
+      "keep judgment active after the list is complete"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one recurring miss and write a three-item checklist that must be completed at the moment the miss usually happens.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch90",
+  "number": 90,
+  "title": "Overthinking",
+  "readingTimeMinutes": 12,
+  "hook": "More thought can become a room with no door and no better answer inside.",
+  "counterintuition": "Thinking harder can lower choice quality after the useful threshold; name the loop, then define the next action that ends it.",
+  "tryThisNow": "Pick one choice you keep reopening. Write the decision threshold in one sentence and the next action that happens when it is met.",
+  "keyTakeaway": "Overthinking begins when analysis no longer changes the action. Set the threshold, choose the next step, and stop feeding the loop.",
+  "breakdown": {
+    "fastRead": "The ticket stub beside the client call reminds Nadine of an event she keeps replaying. She has five versions of the same market note and no clearer advice. Overthinking has become a loop. The call is waiting. She writes the decision threshold on the stub, sends the version that matches the client's risk plan, and books the next action instead of reopening the note.",
+    "deepRead": "Good thinking narrows a choice. Overthinking widens it again. You start with a real question, collect useful facts, then keep circling after the facts have stopped changing the next move.\n\nThe loop often feels responsible. A lead-test team recalculates an average again because one more pass might calm everyone down. A ferry crew delays a maintenance slot because a price card could be interpreted three ways. A film festival table rereads the same borderline submission until the judges no longer trust their first reasons. The work looks careful from the outside. Inside, it has lost its exit.\n\nA loop is not a standard.\n\nThe correction is a decision threshold. Decide what fact, score, range, or risk level is enough to move. Decide the next action before the loop starts again. If new information can change the action, get it. If not, stop calling rumination analysis.\n\nThis matters because overthinking can damage taste, timing, and confidence. Some decisions improve with more data. Others decay when reasons are pulled apart long after the practical choice is clear. The goal is not speed for its own sake. The goal is to know when thinking has done its job.",
+    "fullRead": "The thermometer in the lead-test average review shows the water sample stayed within the same range after the third calculation. Sebastien, the district analyst, still wants to rerun the average because the public meeting is tonight. He is not lazy. He is not careless. He is trapped in a loop that feels safer than a recommendation.\n\nOverthinking often begins as legitimate care. You do not want to miss a detail, offend a client, choose the wrong repair, or send the wrong film forward. But the analysis loop has a tell: each new pass changes your feeling more than it changes the next action.\n\nWhat would have to change for you to choose differently?\n\nWilson and Schooler's work on thinking too much showed that introspection can reduce the quality of preferences and decisions. Pulling reasons apart can make people less able to use the judgment they already have, especially in choices where taste, fit, or pattern recognition matter. Chess players know a related trap as Kotov syndrome: a player studies many lines, burns time, then chooses badly under pressure.\n\nThat does not make analysis the enemy. A ferry maintenance plan needs facts. A lab result needs checks. A wealth adviser needs risk data. The trouble starts when thinking becomes self-protection: another pass, another note, another version, another meeting, all without a new fact that could change the move.\n\nThe next action is the exit sign.\n\nA design review shows the danger. Colette has a trial binder for an award-to-sales page. The team keeps asking whether the award badge should be higher, lower, larger, or paired with a quote. Sales data from the test already crossed the decision threshold. If she keeps the debate open, the team will make the page worse by adjusting for every nervous voice. If she writes the threshold on the binder and ships the tested design, thought turns back into action.\n\nThe practical correction is simple. Write the question. Write the threshold for enough. Write the next action that follows. Then ask whether another hour of thought can change any of those three lines. If yes, think with a target. If no, move.\n\nThe limit is that some loops are warning signs. If a safety question keeps reopening because evidence is missing, do not force closure. If a legal choice needs review, get review. If a patient, passenger, or client could be harmed by a missing fact, get the fact. Overthinking is not the presence of doubt. It is the repetition of thought after the useful test has already been met or the needed fact has already been named.\n\nBefore the choice moves forward, give the loop a door. State what you are deciding, what counts as enough, and what happens next. If the next thought cannot change the threshold or the action, it may be comfort in the costume of care."
+  },
+  "examples": [
+    {
+      "exampleId": "ch90-ex01-nadine-ticket-stub",
+      "title": "Nadine closes the market note",
+      "scenario": "A ticket stub from last night's client event sits beside the wealth-adviser expectation call notes in Geneva at 8:25 a.m. Nadine must decide whether to rewrite the same market note again before calling a nervous client. She marks overthinking on the stub, writes the decision threshold from the client's risk plan, and sends the note while the associate watches.",
+      "whatToDo": "Set the note's threshold from the client's risk plan, then send the version that meets it instead of rewriting again.",
+      "whyItMatters": "Another rewrite changes Nadine's comfort more than the client advice. The threshold turns the loop into a call.",
+      "tags": [
+        "ticket stub",
+        "overthinking",
+        "wealth-adviser expectation call"
+      ],
+      "planSpec": {
+        "domain": "a wealth-adviser expectation call applying Overthinking under operational pressure",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch90-ex02-sebastien-thermometer",
+      "title": "Sebastien stops recalculating the sample",
+      "scenario": "\"One more average might settle it,\" the engineer says during a lead-test review in Lyon. Sebastien must decide whether to rerun the same calculation before the public meeting. He circles analysis loop on the thermometer tag, points to the action range already met, and changes the agenda from recalculation to recommendation.",
+      "whatToDo": "Stop the analysis at the preset range and send the recommendation that range permits.",
+      "whyItMatters": "The same average is not creating new evidence. It is only postponing the discomfort of making the public recommendation.",
+      "tags": [
+        "thermometer",
+        "analysis loop",
+        "lead-test average review"
+      ],
+      "planSpec": {
+        "domain": "a lead-test average review applying Overthinking under operational pressure",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch90-ex03-colette-price-card",
+      "title": "Colette books the ferry slot",
+      "scenario": "The price card sticks slightly to Colette's glove in the ferry maintenance office in Halifax. Colette must decide whether to delay a dry-dock slot while the crew debates three readings of the same quote. She writes next action on the card, asks which new fact could change the booking, and changes the plan to hold the slot before the price expires.",
+      "whatToDo": "Name the missing fact that could change the dry-dock choice, then book the slot if no such fact remains.",
+      "whyItMatters": "The quote debate looks careful, but the expiring slot is the real next action. More talk can create a worse maintenance window.",
+      "tags": [
+        "price card",
+        "next action",
+        "ferry maintenance planning"
+      ],
+      "planSpec": {
+        "domain": "a ferry maintenance planning applying Overthinking under operational pressure",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch90-ex04-stellan-trial-binder",
+      "title": "Stellan ships the tested badge",
+      "scenario": "You are looking at a trial binder in a Stockholm award-to-sales design review, and the winning page has already crossed the sales threshold. Stellan faces a choice: keep debating badge size because the room feels unfinished, or honor the test rule. He writes decision threshold on the binder, reads the rule aloud, and changes the review from redesign to launch checklist.",
+      "whatToDo": "Let the launch threshold govern the choice, then park the badge discussion outside the release call.",
+      "whyItMatters": "The design debate no longer changes the outcome. The threshold protects the tested page from nervous late edits.",
+      "tags": [
+        "trial binder",
+        "decision threshold",
+        "award-to-sales design review"
+      ],
+      "planSpec": {
+        "domain": "a award-to-sales design review applying Overthinking under operational pressure",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch90-ex05-britta-maintenance-tag",
+      "title": "Britta trusts the judging rule",
+      "scenario": "It took Britta one late night in Reykjavik to see that the film festival submissions table was rereading the same borderline documentary into fog. The maintenance tag on the projector showed the room had been there five hours. Before the shortlist locks, she must decide whether rumination means another round of reasons or applying the judging rule already agreed.",
+      "whatToDo": "Apply the agreed judging rule to the borderline film instead of running another open-ended reason round.",
+      "whyItMatters": "The judges are not finding new evidence. They are weakening their own criteria by reopening the same choice.",
+      "tags": [
+        "maintenance tag",
+        "rumination",
+        "film festival submissions table"
+      ],
+      "planSpec": {
+        "domain": "a film festival submissions table applying Overthinking under operational pressure",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch90-ex06-enzo-auction-paddle",
+      "title": "Enzo's booking report postmortem",
+      "scenario": "Which lost more bookings: the eruption risk or the third forecast meeting? Enzo asks that after a volcano tourism booking report in Catania reviews an auction paddle from the canceled excursion package. The team kept reopening the same weather scenarios until wholesalers moved on. He marks overthinking on the paddle and changes the next report so each risk band has a booking action.",
+      "whatToDo": "Attach a booking action to each risk band before the next forecast cycle starts.",
+      "whyItMatters": "Repeated forecast meetings did not reduce risk. They delayed the sales action until the market disappeared.",
+      "tags": [
+        "auction paddle",
+        "overthinking",
+        "volcano tourism booking report"
+      ],
+      "planSpec": {
+        "domain": "a volcano tourism booking report applying Overthinking under operational pressure",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a overthinking case, a team keeps reviewing the same evidence, but no new pass changes the next action, what is overthinking in this setting?",
+        "choices": [
+          "An analysis loop that continues after it stops improving the decision.",
+          "Setting analysis loop gives a practical reason for next action what; improving overthinking baseline belongs after continues after stops clarifies the result.",
+          "Loop continues after makes changes next action look credible; use what setting analysis first and revisit stops improving overthinking when baseline comparison signal shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The problem is not care. The loop keeps running after the evidence has stopped changing the action.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Overthinking makes overthinking case feel more decisive than the record supports, and that misprices team keeps in this scene. The correct move keepss the choice by an analysis loop that continues after it stops improving the decision."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a overthinking review, a wealth adviser has five drafts of the same client note and no new risk data, what should she do before reopening the draft again?",
+        "choices": [
+          "Pressure result sample fits the immediate pressure around again threshold send; hold what reopening draft steady and test client note data later.",
+          "Set the threshold from the client's risk plan and send the draft that meets it.",
+          "Note data what gives a practical reason for five drafts client; threshold send meets belongs after reopening draft again clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The risk-plan threshold turns the loop into a next action. Another draft would mainly reduce the adviser's discomfort.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Overthinking works by letting overthinking wealth crowd out adviser five, which can misreads the drafts client decision. Set the threshold from the client's risk plan and send the draft that meets it keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When overthinking pressure appears, a water team recalculates the same lead-test average before a public meeting. The result remains inside the pre-set action range. What is the best next move?",
+        "choices": [
+          "Team recalculates lead-test gives a practical reason for pressure appears water; result remains inside belongs after average public meeting clarifies the result.",
+          "Lead-test average public makes overthinking pressure appears look credible; use water team recalculates first and revisit meeting result remains when inside pre-set action shifts.",
+          "Move from recalculation to recommendation."
+        ],
+        "correctIndex": 2,
+        "explanation": "The action range has already been met. Repeating the same average is rumination dressed as care.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Overthinking turns appears water into a shortcut, so the room can overweights team recalculates while missing lead-test average. Move from recalculation to recommendation protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After overthinking risk surfaces, a ferry crew has spent forty minutes debating the same dry-dock quote while the last affordable slot is about to expire, which question should lead before the slot is lost?",
+        "choices": [
+          "Debating dry-dock quote makes surfaces ferry crew look credible; use spent forty minutes first and revisit last affordable slot when about expire lead shifts.",
+          "What new fact would change the booking decision?",
+          "Affordable slot about points toward a quicker call on ferry crew spent; let after overthinking surfaces stand until dry-dock quote last contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The new-fact question distinguishes useful analysis from looping. If no new fact can change the booking, the slot should be acted on.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Overthinking would push the ferry crew case toward spent forty, creating a cost when minutes debating stays untested. The useful guardrail is to what new fact would change the booking decision."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If overthinking reasoning takes over, a design team keeps adjusting an award badge after the tested page already crossed the sales threshold. What is the likely error?",
+        "choices": [
+          "The design team should keep polishing the badge because a small visual improvement might lift the already passing page further.",
+          "Keeps adjusting award looks strong enough to guide badge after tested; page already crossed can wait unless sales threshold what changes the stakes.",
+          "The team is reopening a decision after the threshold has been met."
+        ],
+        "correctIndex": 2,
+        "explanation": "The sales threshold should end the debate. Late edits may satisfy nerves while damaging the tested design.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Overthinking converts team keeps into the loudest signal, which can rushes adjusting award before badge after is checked. The better answer separatess attention on the team is reopening a decision after the threshold has been met."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While overthinking pressure builds, a festival panel rereads the same borderline film for hours and trusts its criteria less with every pass, what correction fits?",
+        "choices": [
+          "Apply the agreed judging rule instead of adding another open-ended reason round.",
+          "Borderline film hours makes overthinking pressure builds look credible; use festival panel rereads first and revisit trusts criteria less when pass what correction shifts.",
+          "Correction fits apply supports a narrower read of rereads borderline film; keep hours trusts criteria central and leave less pass what aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The agreed rule is the exit from rumination. More open-ended reasons are weakening the criteria instead of improving the decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Overthinking hides inside the overthinking pressure choice because overthinking pressure seems sufficient, yet the cost lands in overthinking pressure. Apply the agreed judging rule instead of adding another open-ended reason round brings the overthinking pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the overthinking call, a tourism team keeps reopening the same weather scenarios until wholesalers move on. The risk bands already imply different booking actions. What should change?",
+        "choices": [
+          "Actions what change points toward a quicker call on scenarios until wholesalers; let keeps reopening weather stand until imply different booking contradicts it.",
+          "Change attach action fits the immediate pressure around wholesalers move bands; hold weather scenarios until steady and test team keeps reopening later.",
+          "Attach a booking action to each risk band."
+        ],
+        "correctIndex": 2,
+        "explanation": "The risk bands need actions. Reopening the same scenarios delays the market response without reducing the hazard.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Overthinking pressures the call tourism decision toward the easy reading of call tourism. That can inflates the real cost unless the choice is grounded in attach a booking action to each risk band."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose overthinking risk is present: a safety team keeps reopening a decision because one key inspection result is genuinely missing, and that result could change whether equipment is cleared. Is this overthinking?",
+        "choices": [
+          "Not if the missing result could change the action; get the fact.",
+          "Team keeps reopening looks strong enough to guide inspection result genuinely; missing change whether can wait unless equipment cleared action changes the stakes.",
+          "Reopening inspection result gives a practical reason for safety team keeps; whether equipment cleared belongs after genuinely missing change clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "If a missing fact could change the action, more analysis is useful. Overthinking starts after the needed test is met or named.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Overthinking is the mechanism here: analysis loops replace decision criteria, so present safety can overpower present safety. Not if the missing result could change the action; get the fact keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two overthinking signals compete: a manager wants to stop an analysis loop without becoming reckless. Which practice is most precise?",
+        "choices": [
+          "Wants stop analysis gives a practical reason for signals compete manager; practice precise write belongs after loop becoming reckless clarifies the result.",
+          "Write the question, the threshold for enough, and the next action before another pass.",
+          "Next action another supports a narrower read of stop analysis loop; keep becoming reckless practice central and leave precise write threshold aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "The three-line practice ends loops while preserving care. It defines when thought is useful and when action should start.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Overthinking makes the manager wants evidence look cleaner than it is, risking a manager wants mistake in this setting. The answer protects manager wants by asking for write the question, the threshold for enough, and the next action before another."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "The same evidence keeps getting reviewed. What decision rule should stop the loop?",
+      "back": "Set the decision threshold, next action, and stop rule. More analysis helps only if it can change one of those.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What ends the loop?",
+      "back": "A decision threshold and a next action that follows once the threshold is met.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "When is more thinking still useful?",
+      "back": "When a missing fact, review, or test could change the action or prevent real harm.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How do you tell analysis from rumination?",
+      "back": "Analysis changes the action; rumination mostly changes your feeling about the action.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "A team keeps making late edits after a test passes. What should it ask?",
+      "back": "Ask whether any edit changes the threshold result or only relieves nervousness.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Define the decision threshold, then move to the next action when more analysis cannot change it.",
+    "ifThenPlans": [
+      {
+        "context": "Client advice",
+        "plan": "If I have rewritten the same note twice, then I will compare it with the client's threshold and send or name the missing fact."
+      },
+      {
+        "context": "Maintenance planning",
+        "plan": "If a slot or price is expiring, then I will ask what new fact could change the booking before debating again."
+      },
+      {
+        "context": "Design reviews",
+        "plan": "If a tested version meets the rule, then I will move to launch unless a new fact changes the threshold."
+      },
+      {
+        "context": "Risk planning",
+        "plan": "If a scenario has been discussed twice, then I will attach an action to each risk band."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one loop you are in. Write the question, the threshold for enough, and the next action that happens when it is met.",
+    "weeklyPractice": "Once a week, review a delayed decision and ask which repeated thought did not change the next action."
+  },
+  "memorableLines": [
+    {
+      "text": "A loop is not a standard."
+    },
+    {
+      "text": "The next action is the exit sign."
+    },
+    {
+      "text": "If the next thought cannot change the threshold or the action, it may be comfort in the costume of care."
+    }
+  ]
+}

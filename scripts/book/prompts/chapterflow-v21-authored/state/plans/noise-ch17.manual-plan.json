@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch17",
+  "number": 17,
+  "title": "Occasion Noise",
+  "coreMove": "Notice how your own judgment shifts across occasions even when your expertise, your reasoning, and the case facts all remain the same.",
+  "sourcePressure": "Occasion noise is within-judge variability across different occasions — the same person making different judgments on the same or similar cases depending on when the judgment happens. Hunger, mood, weather, the ordering of prior cases, fatigue, and ambient temperature all affect judgment without the judge knowing it. This layer of noise persists even inside improved processes because it operates below awareness.",
+  "chapterSpecificMisunderstanding": "Assuming that within-person judgment variation is trivial compared to between-person variation, or that process improvements that reduce other noise sources automatically eliminate occasion noise.",
+  "sourceAlignmentTerms": ["occasion noise", "within-judge", "temporal variation", "mood effect", "sequence effect", "fatigue", "context shift"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Judicial sentencing and time-of-day research",
+      "detail": "Research on judicial decision-making has found that the same judge sentences more leniently early in a session and less leniently as the session progresses, with a partial reset after a break. This pattern is consistent with depletion effects and the influence of prior decision fatigue on subsequent judgment.",
+      "useIn": "both",
+      "phrasingHint": "The judge who heard your case at 9:00 a.m. and the judge who heard it at 4:45 p.m. were, in a measurable sense, different judges. The robe did not change. The caseload did."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["your decisions depend on what you had for breakfast", "timing is everything — including in your courtroom"],
+    "counterintuition": ["the best judges are the ones who skip lunch", "decision fatigue is real and affects everyone"],
+    "tryThisNow": ["track your decisions by time of day for one week", "notice how you feel before versus after making a difficult decision"],
+    "examples": ["a scene where occasion noise is blamed on a specific external event (bad traffic, difficult morning) — occasion noise is structural, not situational", "a scene that implies the judge or doctor was negligent because of occasion noise — the point is that it is invisible to the person experiencing it"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Occasion noise examples risk all reading as 'person makes worse decisions later in the day.' The temporal effects must vary across domains and mechanisms (not just fatigue) to show the full texture of within-judge temporal variation."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "judicial sentencing: a researcher analyzing whether the same judge's sentence lengths correlate with position in the daily docket",
+      "audience": "a judicial research team studying within-judge sentencing variation across a full year of case records",
+      "stakes": "the integrity of sentence-length decisions — if case position in the docket predicts sentence length independently of case facts, the system is noisier than it appears",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the researcher maps one year of sentencing data for a single judge: the first case after each session break is sentenced an average of 11 percent shorter than the last case before the break, and the pattern holds across crime types, suggesting the variation is driven by case position, not case content",
+      "firstImage": "a time-series chart of sentence lengths across a typical week's docket, with dips visible immediately after each break and a gradual rise before the next break",
+      "mustInclude": ["the 11 percent post-break leniency effect", "the pattern holding across crime types", "the researcher's framing: the case that needed leniency did not arrive after the break — it arrived in the wrong spot in the queue"],
+      "mustAvoid": ["naming a specific court or jurisdiction", "implying the judge acted improperly"]
+    },
+    {
+      "domain": "physician antibiotic prescribing: a primary care clinic measuring whether prescription rates shift across the morning and afternoon appointment slots",
+      "audience": "a clinic medical director analyzing prescribing patterns by time of day",
+      "stakes": "antibiotic stewardship — unnecessary antibiotic prescriptions increase resistance and patient risk, and if prescription rate varies by appointment slot rather than patient need, that is occasion noise",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the medical director presents the clinic's prescribing data: antibiotic prescription rate for guideline-ambiguous respiratory presentations is 22 percent in the first morning appointment hour, 34 percent in the last pre-lunch hour, and 18 percent in the first post-lunch hour — a temporal pattern that resets with the lunch break and cannot be explained by patient population differences across the slots",
+      "firstImage": "a prescribing rate chart with time-of-day on the x-axis and prescription rate on the y-axis, showing the gradual rise through the morning, the drop after lunch, and the rise again through the afternoon",
+      "mustInclude": ["the reset after the lunch break", "the inability of patient population differences to explain the temporal pattern", "the medical director's framing: this is not about individual physicians being inconsistent; it is about the judgment instrument degrading predictably with load"],
+      "mustAvoid": ["a patient antibiotic resistance story", "implying any specific physician was negligent"]
+    },
+    {
+      "domain": "financial auditor vigilance: an audit firm studying whether the quality of findings correlates with position in a long-day review schedule",
+      "audience": "a quality review partner studying whether auditor finding rates decline across a 10-hour review day",
+      "stakes": "audit quality and the firms that depend on accurate audit findings to manage risk exposure",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two audit quality partners compare their teams' findings-per-hour rates across three time blocks in long audit days: findings rates in the first two hours, mid-day two hours, and last two hours of the same files, reviewed by the same teams — the last two hours produce 28 percent fewer material findings per file than the first two, and the gap is larger in complex file reviews than in routine ones",
+      "firstImage": "a findings-rate comparison chart across three time blocks — the first block bar tallest, the last block bar shortest — for the same type of file reviewed by the same team",
+      "mustInclude": ["the 28 percent findings-rate decline in the last time block", "the larger effect in complex files", "the partners' framing: this is not about effort; the auditors are working; their instrument is degrading"],
+      "mustAvoid": ["a specific audit client", "an accounting fraud story"]
+    },
+    {
+      "domain": "customs officer screening: a border agency analyzing whether screening inspection thoroughness varies by position in the shift",
+      "audience": "a border agency operations analyst measuring inspection consistency across shift timing",
+      "stakes": "security and fair treatment — inconsistent inspection thoroughness means some travelers face more scrutiny than others based on when they arrive, not on risk factors",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the analyst asks: if the same passenger profile arrived at the same primary screening station at the start versus the end of an eight-hour shift, would the inspection take the same amount of time and yield the same secondary referral rate? The data from matched profiles shows the answer is no: secondary referral rates are 18 percent lower in the last 90 minutes of a shift than in the first 90 minutes, and inspection duration is shorter",
+      "firstImage": "a bar chart comparing secondary referral rates by shift segment — the first 90 minutes bar notably taller than the last 90 minutes bar",
+      "mustInclude": ["the 18 percent lower secondary referral rate in the last shift segment", "the shorter inspection duration as a corroborating signal", "the analyst's framing: the travelers' risk profiles did not change across the shift; the instrument did"],
+      "mustAvoid": ["a specific security incident", "implying the officers were deliberately cutting corners"]
+    },
+    {
+      "domain": "investment risk tolerance assessment: a financial advisor discovering that clients' stated risk tolerance varies depending on whether the meeting is on a sunny versus overcast day",
+      "audience": "a behavioral finance researcher analyzing client assessment data for a retail advisory firm",
+      "stakes": "portfolio construction — risk tolerance assessments that vary with ambient weather rather than actual preference lead to mismatched portfolios and client dissatisfaction",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast a sunny-day assessment cohort with a cloudy-day assessment cohort using matched client profiles: the sunny-day cohort scores an average of 0.4 points higher on the risk tolerance scale, and the difference persists after controlling for client age, wealth level, and investment experience — meaning ambient mood conditions, not client characteristics, explain part of the scale score variation",
+      "firstImage": "two windows of a financial advisor's meeting room — one showing a sunny street, one showing an overcast one — with client assessment forms visible on the desk below each",
+      "mustInclude": ["the 0.4 point ambient-weather effect on risk tolerance scores", "the effect persisting after controlling for client characteristics", "the advisor's framing: the client did not change; the instrument's sensitivity to context changed"],
+      "mustAvoid": ["a client investment loss story", "a scene focused on the advisor's personal financial advice rather than the assessment tool's noise"]
+    },
+    {
+      "domain": "arbitration award amounts: a legal researcher analyzing whether the size of awards correlates with the arbitrator's prior award in the same session",
+      "audience": "a dispute resolution researcher studying sequence effects in commercial arbitration",
+      "stakes": "commercial dispute fairness — if the prior award anchors subsequent awards, then parties whose cases are heard after a large award face different conditions than parties heard after a small one",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the researcher presents the sequence analysis: after controlling for claim size, industry, and contractual terms, an arbitrator's prior award in the same session predicts the next award — a $500,000 prior award is followed by a somewhat higher next award than a $50,000 prior award, and the effect dissipates after a break; the arbitrator has no awareness of the pattern",
+      "firstImage": "a scatter plot of consecutive award pairs across arbitration sessions, the correlation between a session's first award and its second award visible as a positive slope",
+      "mustInclude": ["the prior-award anchoring effect after controlling for case characteristics", "the effect dissipating after breaks", "the arbitrator's lack of awareness as central to the framing"],
+      "mustAvoid": ["implying any specific arbitration was unfair", "naming a specific legal dispute"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "define occasion noise and distinguish it from between-judge and pattern noise",
+      "identify the types of within-judge temporal variation that qualify as occasion noise versus situationally reasonable judgment shifts",
+      "apply occasion noise awareness to design process safeguards against time-of-day and fatigue effects",
+      "analyze why occasion noise is particularly difficult to detect because the judge experiencing it does not notice it",
+      "evaluate whether a proposed intervention (mandatory breaks, case-load limits) would meaningfully reduce occasion noise or only redistribute it"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one week, write down the time of day you made each significant judgment at work — a hire decision, a rating, a risk assessment, a resource allocation. Note which position in the day's schedule each judgment occupied. At the end of the week, look at whether your scores or assessments varied in any way by time of day or case-queue position. You will not see every pattern, but you will stop believing your judgment is time-independent.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) defining occasion noise and distinguishing it from the other noise types, at least one 5+ sentence paragraph on why breaks reset the instrument and why that is evidence of occasion noise rather than refreshment, at least one one-sentence punch line about what the temporal pattern means for people whose cases arrive in the wrong queue position",
+    "fullReadInterludeRequirement": "at least one paragraph presenting the judicial sentencing research as a brief empirical aside — framing it as evidence that the effect is structural and not specific to any one domain or any one judge",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

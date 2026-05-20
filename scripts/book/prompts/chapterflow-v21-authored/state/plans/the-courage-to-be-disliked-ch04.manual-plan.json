@@ -1,0 +1,206 @@
+{
+  "chapterId": "the-courage-to-be-disliked-ch04",
+  "number": 4,
+  "title": "The Fourth Night: Where the Center of the World Is",
+  "coreMove": "Replace the wish to be central or above with one visible act of horizontal contribution.",
+  "sourcePressure": "The source supports this chapter as relationship reconstruction after task separation: relationships aim toward connection and contribution, the self is not the center of the world, rebuke and praise can preserve vertical posture, value is felt through contribution, and someone has to begin.",
+  "chapterSpecificMisunderstanding": "The weak version says be humble and kind; the real move changes the posture of relationship from evaluator and evaluated to people contributing beside each other.",
+  "sourceAlignmentTerms": [
+    "center of the world",
+    "horizontal relationship",
+    "rebuke",
+    "praise",
+    "contribution",
+    "value",
+    "community feeling",
+    "someone has to start"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Do Not Rebuke or Praise",
+      "detail": "The frozen source lists this as a visible fourth-night heading and the sidecar notes that both can reinforce vertical relationship structure.",
+      "useIn": "both",
+      "phrasingHint": "Rebuke and praise can wear opposite faces while keeping the same ladder in the room."
+    },
+    {
+      "kind": "artifact",
+      "name": "Someone Has to Start",
+      "detail": "The frozen source lists this as a visible fourth-night heading and the sidecar says one person must begin the healthier relational shift.",
+      "useIn": "fullRead",
+      "phrasingHint": "A horizontal room rarely appears by consensus; someone has to stop climbing first."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "You are not the center of the universe",
+      "Real value comes from helping others",
+      "Stop needing praise"
+    ],
+    "counterintuition": [
+      "Praise can be harmful",
+      "Humility is stronger than ego",
+      "Contribution is the real source of worth"
+    ],
+    "tryThisNow": [
+      "Thank someone without praising them",
+      "Do one kind thing",
+      "Ask how you can help"
+    ],
+    "examples": [
+      "manager stops saying good job",
+      "parent praises child less",
+      "team leader learns humility",
+      "community volunteer feels belonging"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "volunteer search-and-rescue debrief",
+      "audience": "a field-team coordinator who usually corrects from above after a missed sweep pattern",
+      "stakes": "the next search may depend on whether tired volunteers can learn without being put below the coordinator",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah puts the map on the hood, kneels beside the volunteers, and asks where the pattern broke instead of rebuking them from the tailgate.",
+      "firstImage": "Rain beads on a laminated grid map spread across the hood of a mud-streaked truck.",
+      "mustInclude": [
+        "laminated grid map",
+        "missed sweep sector",
+        "wet radio"
+      ],
+      "mustAvoid": [
+        "hero rescue story",
+        "military command tone",
+        "generic team debrief"
+      ]
+    },
+    {
+      "domain": "restaurant kitchen station training",
+      "audience": "a sous-chef who uses praise and scolding to keep trainees dependent on his approval",
+      "stakes": "a Saturday service may fail if the new garde-manger cook keeps waiting for evaluation instead of joining the work",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Marco stops saying 'perfect' and instead works beside the trainee to reset the station standard as shared contribution to service.",
+      "firstImage": "\"Don't look at me after every plate,\" Marco says, sliding the squeeze bottle back into the rail.",
+      "mustInclude": [
+        "garde-manger station",
+        "squeeze bottle",
+        "Saturday service"
+      ],
+      "mustAvoid": [
+        "celebrity chef drama",
+        "workplace praise ban",
+        "mentor saves novice"
+      ]
+    },
+    {
+      "domain": "university seminar feedback",
+      "audience": "a teaching assistant who realizes her detailed praise keeps students writing for her approval",
+      "stakes": "the seminar may become a performance for grades instead of a room where students think with each other",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Anya two essay cycles to replace approval labels with questions that put her beside the student in the problem.",
+      "firstImage": "It took Anya two stacks of blue-book essays to notice how often every margin note crowned or corrected.",
+      "mustInclude": [
+        "blue-book essays",
+        "margin questions",
+        "seminar table"
+      ],
+      "mustAvoid": [
+        "anti-grade rant",
+        "teacher praise is abusive",
+        "student confidence arc"
+      ]
+    },
+    {
+      "domain": "neighborhood tool library dispute",
+      "audience": "a coordinator who wants to prove he is the indispensable center whenever borrowers clash",
+      "stakes": "a shared tool library may become one person's kingdom instead of a community practice",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Daniel leaves the broken tile saw on the folding table and asks the two borrowers to design the check-out repair rule with him, not through him.",
+      "firstImage": "The tile saw smells of wet cement and scorched dust.",
+      "mustInclude": [
+        "broken tile saw",
+        "checkout clipboard",
+        "repair jar"
+      ],
+      "mustAvoid": [
+        "neighbor mediation cliche",
+        "hero organizer",
+        "tools as repeated physical anchor later"
+      ]
+    },
+    {
+      "domain": "youth orchestra section leadership",
+      "audience": "a principal violinist who confuses leadership with approving and correcting the second stand",
+      "stakes": "the orchestra's entrance keeps fraying because younger players are watching her face instead of the conductor",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Juliette lower her bow during rehearsal and count the entrance with the section instead of giving a pleased nod after they follow her.",
+      "firstImage": "You see every second violin glance sideways before the downbeat.",
+      "mustInclude": [
+        "bow lift",
+        "second stand",
+        "conductor's cue"
+      ],
+      "mustAvoid": [
+        "soloist ego story",
+        "talent hierarchy",
+        "music as therapy"
+      ]
+    },
+    {
+      "domain": "open-source maintainership handoff",
+      "audience": "a maintainer who keeps reviews vertical by approving, rejecting, and rescuing every patch",
+      "stakes": "a useful project may die when the maintainer burns out as the permanent center",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lin turns one pull request into a shared maintainer checklist and lets a newer contributor merge after the checks pass.",
+      "firstImage": "What if the merge button is not proof that you are still necessary?",
+      "mustInclude": [
+        "pull request",
+        "maintainer checklist",
+        "release branch"
+      ],
+      "mustAvoid": [
+        "tech burnout scene",
+        "benevolent dictator trope",
+        "generic delegation advice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify vertical posture inside both rebuke and praise",
+      "choose horizontal contribution without making the self central",
+      "distinguish value through participation from approval capture",
+      "evaluate when someone is using help to remain above others"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In one relationship today, replace an approving or correcting sentence with a beside-you question about the shared task.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,200 @@
+{
+  "chapterId": "antifragile-ch07",
+  "number": 7,
+  "title": "Naive Intervention",
+  "coreMove": "Pause before relieving a signal and ask what adaptive feedback the discomfort may be carrying.",
+  "sourcePressure": "This chapter critiques interventions that remove visible pain while increasing hidden fragility and blocking feedback.",
+  "chapterSpecificMisunderstanding": "Treating all help, treatment, or intervention as automatically harmful.",
+  "sourceAlignmentTerms": [
+    "naive intervention",
+    "signal suppression",
+    "hidden fragility",
+    "iatrogenic harm",
+    "delayed downside",
+    "feedback"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "naive intervention",
+      "detail": "intervention can remove visible discomfort while increasing hidden fragility",
+      "useIn": "both",
+      "phrasingHint": "The clean fix is suspect when it silences the only alarm the system had."
+    },
+    {
+      "kind": "artifact",
+      "name": "signal suppression",
+      "detail": "the source note names blocked adaptive feedback as the central danger",
+      "useIn": "fullRead",
+      "phrasingHint": "A muted signal can feel like relief while the damage keeps moving underground."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Naive Intervention"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Treating all help, treatment, or intervention as automatically harmful."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pediatric fever visit with Olivier as the decision-maker",
+      "audience": "a reader who handles pediatric fever visit under uncertainty",
+      "stakes": "whether Olivier avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Olivier refuses the quick fix until the team identifies what warning signal would vanish with it.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "pediatric log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic naive intervention paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "riverbank flood barrier with Hugo as the decision-maker",
+      "audience": "a reader who handles riverbank flood barrier under uncertainty",
+      "stakes": "whether Hugo avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hugo refuses the quick fix until the team identifies what warning signal would vanish with it.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "riverbank log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic naive intervention paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "helpdesk auto-close rule with Lukas as the decision-maker",
+      "audience": "a reader who handles helpdesk auto close rule under uncertainty",
+      "stakes": "whether Lukas avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lukas refuses the quick fix until the team identifies what warning signal would vanish with it.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "helpdesk log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic naive intervention paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "painkiller refill policy with Jonas as the decision-maker",
+      "audience": "a reader who handles painkiller refill policy under uncertainty",
+      "stakes": "whether Jonas avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Jonas refuses the quick fix until the team identifies what warning signal would vanish with it.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "painkiller log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic naive intervention paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "classroom over-helping habit with Niklas as the decision-maker",
+      "audience": "a reader who handles classroom over helping habit under uncertainty",
+      "stakes": "whether Niklas avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Niklas refuses the quick fix until the team identifies what warning signal would vanish with it.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "classroom log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic naive intervention paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "wildlife feeding ban with Henrik as the decision-maker",
+      "audience": "a reader who handles wildlife feeding ban under uncertainty",
+      "stakes": "whether Henrik avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Henrik refuses the quick fix until the team identifies what warning signal would vanish with it.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "wildlife log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic naive intervention paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by pause before relieving a signal and ask what adaptive feedback the discomfort may be carrying.",
+      "distinguish naive intervention, signal suppression, hidden fragility in unfamiliar cases",
+      "choose actions that avoid: Treating all help, treatment, or intervention as automatically harmful."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before fixing one irritation, write what warning it might be carrying and what would happen if that warning disappeared.",
+  "readingTimeMinutes": 12
+}

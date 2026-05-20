@@ -1,0 +1,213 @@
+{
+  "chapterId": "talk-like-ted-ch04",
+  "number": 4,
+  "title": "Teach Me Something New",
+  "coreMove": "Give the audience one useful new frame that makes the familiar worth attention again.",
+  "sourcePressure": "The source treats novelty as an attention magnet when it delivers genuinely new information or a novel frame on familiar material. Robert Ballard, James Cameron, and Hans Rosling anchor discovery, exploration, and fresh data presentation.",
+  "chapterSpecificMisunderstanding": "The weak version says surprise people with cleverness. The useful version says teach one fresh, usable thing that clarifies the message.",
+  "sourceAlignmentTerms": [
+    "novelty",
+    "new information",
+    "novel frame",
+    "curiosity",
+    "discovery",
+    "perspective",
+    "learn",
+    "concise idea"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Robert Ballard",
+      "detail": "the source names Ballard as an anchor for curiosity, discovery, and exploration",
+      "useIn": "both",
+      "phrasingHint": "Robert Ballard gives novelty its cleanest form: discovery that makes the room lean forward because the world has opened a little."
+    },
+    {
+      "kind": "person",
+      "name": "James Cameron",
+      "detail": "the source names Cameron as an exploration and discovery anchor in the chapter",
+      "useIn": "fullRead",
+      "phrasingHint": "James Cameron belongs where exploration turns information into a fresh view, not where spectacle tries to replace the idea."
+    },
+    {
+      "kind": "person",
+      "name": "Hans Rosling",
+      "detail": "the source uses Rosling for making dry or familiar data feel new through presentation design and motion over time",
+      "useIn": "both",
+      "phrasingHint": "Hans Rosling made data move, and movement let old facts feel newly visible."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "people love new things",
+      "speaker reveals a surprising fact",
+      "audience phones go down when novelty appears"
+    ],
+    "counterintuition": [
+      "new beats familiar",
+      "novelty grabs the brain",
+      "you always have something new to say"
+    ],
+    "tryThisNow": [
+      "find one surprising fact",
+      "look for a new angle",
+      "make your talk more interesting"
+    ],
+    "examples": [
+      "gadget reveal",
+      "fun fact opener",
+      "generic creative brainstorm",
+      "data visualization as decoration"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "water-utility conservation briefing",
+      "audience": "a utility educator speaking to homeowners who think conservation means shorter showers",
+      "stakes": "whether familiar water advice becomes a new view of hidden outdoor leakage",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she asks which household use wastes the most water, lets the room pick showers, then reveals the night-irrigation meter traces and teaches the leak pattern",
+      "firstImage": "blue meter spikes climbing across a tablet after midnight",
+      "mustInclude": [
+        "night meter trace",
+        "irrigation timer",
+        "leak pattern"
+      ],
+      "mustAvoid": [
+        "climate hearing repeat",
+        "generic save-water advice"
+      ]
+    },
+    {
+      "protagonistName": "Anders",
+      "domain": "archaeology exhibit opening",
+      "audience": "a museum educator introducing a familiar local settlement display",
+      "stakes": "whether visitors learn something fresh about trade rather than seeing old pottery again",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he holds up a shard with foreign clay residue and reframes the exhibit from old objects to a map of travel and exchange",
+      "firstImage": "grainy clay dust catching under a small exhibit lamp",
+      "mustInclude": [
+        "pottery shard",
+        "trade map",
+        "exhibit label"
+      ],
+      "mustAvoid": [
+        "museum accessibility repeat",
+        "artifact trivia"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "payroll training rollout",
+      "audience": "a payroll manager teaching supervisors a new overtime approval rule",
+      "stakes": "whether the rule feels like administrative burden or a fresh way to prevent hidden wage mistakes",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "she replaces the policy summary with one anonymized pay stub that shows the mistake supervisors had never noticed, then teaches the rule",
+      "firstImage": "a blacked-out pay stub with one overtime line circled",
+      "mustInclude": [
+        "pay stub",
+        "approval rule",
+        "supervisor dashboard"
+      ],
+      "mustAvoid": [
+        "generic compliance training",
+        "finance as chapter three repeat"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "rural health screening campaign",
+      "audience": "a public-health nurse trying to increase blood-pressure screening at a county fair",
+      "stakes": "whether residents hear another warning or a new comparison that makes silent risk visible",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "he shows two fair maps, one with food vendors and one with last year's high readings by booth, so the screening tent feels newly relevant",
+      "firstImage": "two county-fair maps clipped to a folding table under a canvas awning",
+      "mustInclude": [
+        "fair map",
+        "screening tent",
+        "blood-pressure readings"
+      ],
+      "mustAvoid": [
+        "medical scare lecture",
+        "statistics without a new frame"
+      ]
+    },
+    {
+      "protagonistName": "Kiran",
+      "domain": "robotics lab demo day",
+      "audience": "a graduate researcher explaining a warehouse robot to visiting manufacturers",
+      "stakes": "whether guests see another automation demo or learn a new way to measure wasted walking",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "when a visitor asks what is new, he tapes yesterday's picker path on the floor and lets the robot's shorter route reveal the idea",
+      "firstImage": "yellow tape zigzagging across a polished lab floor",
+      "mustInclude": [
+        "picker path",
+        "warehouse robot",
+        "route comparison"
+      ],
+      "mustAvoid": [
+        "gadget fascination",
+        "robot as spectacle"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "community nutrition class",
+      "audience": "a dietitian teaching parents who know the usual sugar warnings",
+      "stakes": "whether parents learn a new frame for breakfast satiety rather than another list of forbidden foods",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he sets two breakfast receipts beside a hunger log and reframes the lesson around when children ask for food again, not just grams of sugar",
+      "firstImage": "two crumpled grocery receipts weighted under a clear plastic measuring cup",
+      "mustInclude": [
+        "breakfast receipts",
+        "hunger log",
+        "sugar grams"
+      ],
+      "mustAvoid": [
+        "generic healthy eating tips",
+        "parent scolding"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish useful novelty from spectacle",
+      "choose a new frame for familiar material",
+      "analyze whether a fresh fact clarifies the main idea",
+      "evaluate when novelty distracts from learning"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one familiar point in your next talk, write what the audience already assumes, then add one fact, comparison, or frame that would make them see it differently.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

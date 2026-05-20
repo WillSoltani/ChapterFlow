@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch15",
+  "number": 15,
+  "title": "Hack Back Meetings",
+  "coreMove": "Require a meeting to state the decision, preparation, and time claim before it consumes shared attention.",
+  "sourcePressure": "The chapter treats meetings as synchronous claims on time that must earn their place through coordination design and clear purpose.",
+  "chapterSpecificMisunderstanding": "A weak run would mock meetings or advise fewer meetings without showing how a useful meeting earns its cost.",
+  "sourceAlignmentTerms": [
+    "meetings",
+    "synchronous",
+    "agenda",
+    "decision",
+    "preparation",
+    "time claim"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hack Back Meetings as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional theater board deciding emergency roof repairs",
+      "audience": "board chair facing a vague meeting request",
+      "stakes": "donor funds and rehearsal safety depend on a real decision",
+      "format": "decision_point",
+      "requiredBeat": "she refuses the calendar hold until the invite names the roof decision and attaches the contractor photos",
+      "firstImage": "A roof-leak photo packet sits beside a draft board agenda.",
+      "mustInclude": [
+        "photo packet",
+        "board agenda",
+        "calendar hold"
+      ],
+      "mustAvoid": [
+        "nonprofit committee drift"
+      ]
+    },
+    {
+      "domain": "brewery quality team reviewing a sour batch",
+      "audience": "quality lead deciding whether people need a room or a shared note",
+      "stakes": "a recall choice requires live judgment, but updates do not",
+      "format": "scene",
+      "requiredBeat": "he splits lab updates into a memo and keeps the meeting only for the dump-or-sell decision",
+      "firstImage": "A pH strip dries beside a batch-retention sample.",
+      "mustInclude": [
+        "pH strip",
+        "retention sample",
+        "decision memo"
+      ],
+      "mustAvoid": [
+        "craft beer ambience"
+      ]
+    },
+    {
+      "domain": "city library renovation team aligning on children's wing fixtures",
+      "audience": "project manager whose standing meeting has become habit",
+      "stakes": "procurement deadlines need one fixture choice, not status recitation",
+      "format": "before_after",
+      "requiredBeat": "before, everyone reports; after, the meeting opens with three fixture samples and a vote threshold",
+      "firstImage": "A carpet tile sample lies beside a fixture bid sheet.",
+      "mustInclude": [
+        "carpet tile sample",
+        "bid sheet",
+        "vote threshold"
+      ],
+      "mustAvoid": [
+        "library generic"
+      ]
+    },
+    {
+      "domain": "satellite operations crew planning a maneuver review",
+      "audience": "flight director protecting console time",
+      "stakes": "a bad meeting can crowd out simulation while a good one catches risk",
+      "format": "dialogue",
+      "requiredBeat": "she asks for the maneuver anomaly question in the invite before accepting the live review",
+      "firstImage": "An orbital plot is clipped beneath a maneuver checklist.",
+      "mustInclude": [
+        "orbital plot",
+        "maneuver checklist",
+        "invite question"
+      ],
+      "mustAvoid": [
+        "space drama"
+      ]
+    },
+    {
+      "domain": "regional food pantry coordinating holiday distribution",
+      "audience": "logistics lead with too many update meetings",
+      "stakes": "families wait longer if volunteers trade reports instead of choices",
+      "format": "postmortem",
+      "requiredBeat": "he turns the meeting into three routing decisions and sends warehouse counts beforehand",
+      "firstImage": "A pallet count sheet rests beside a route-zone magnet.",
+      "mustInclude": [
+        "pallet count sheet",
+        "route-zone magnet",
+        "pre-read count"
+      ],
+      "mustAvoid": [
+        "charity meeting fatigue"
+      ]
+    },
+    {
+      "domain": "industrial design firm choosing a prototype material",
+      "audience": "designer receiving a meeting invite with no decision owner",
+      "stakes": "prototype week collapses if the room debates undefined preferences",
+      "format": "reflection",
+      "requiredBeat": "she asks the requester to name the material decision and bring two tested samples",
+      "firstImage": "A polymer swatch ring sits beside a prototype stress chart.",
+      "mustInclude": [
+        "swatch ring",
+        "stress chart",
+        "decision owner"
+      ],
+      "mustAvoid": [
+        "design brainstorming"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Require a meeting to state the decision, preparation, and time claim before it consumes shared attention.",
+      "choose the action that stays inside Hack Back Meetings's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would mock meetings or advise fewer meetings without showing how a useful meeting earns its cost.",
+      "use chapter-specific terms such as meetings, synchronous, agenda, decision in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one upcoming meeting, write the decision it must produce and the item each person must read before it starts.",
+  "readingTimeMinutes": 12
+}

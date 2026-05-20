@@ -1,0 +1,179 @@
+{
+  "chapterId": "extreme-ownership-ch11",
+  "number": 11,
+  "title": "Leading Up and Down the Chain of Command",
+  "coreMove": "move context down and reality up before people act from different maps",
+  "sourcePressure": "Leaders must explain purpose down the chain and communicate friction proactively up the chain so aligned initiative can continue.",
+  "chapterSpecificMisunderstanding": "communicate more and be transparent",
+  "sourceAlignmentTerms": [
+    "chain of command",
+    "lead up",
+    "lead down",
+    "purpose downward",
+    "friction upward",
+    "alignment",
+    "initiative"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "railway maintenance night possession near a busy junction",
+      "audience": "a track supervisor between field crew and operations center",
+      "stakes": "field workers and dispatch can hold different pictures of when the track is safe",
+      "format": "scene",
+      "requiredBeat": "the supervisor tells the crew the dispatch constraint, sends the ballast delay upward before it becomes hidden risk, and confirms the release time in both directions",
+      "firstImage": "a track possession board glows in a trailer while rain dots the window",
+      "mustInclude": [
+        "track possession board",
+        "ballast delay",
+        "release-time confirmation"
+      ],
+      "mustAvoid": [
+        "more meetings or vague transparency"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "zoo carnivore enclosure latch issue before public opening",
+      "audience": "a keeper lead responsible to both keepers and the director",
+      "stakes": "a small field concern can stay invisible above while keepers miss the reason for a closure",
+      "format": "decision_point",
+      "requiredBeat": "the lead explains to keepers why the exhibit stays closed, sends the exact latch risk and visitor-impact estimate upward, and asks for a clear opening decision",
+      "firstImage": "You are close enough to see this: red latch tag hangs from the snow leopard night gate.",
+      "mustInclude": [
+        "red latch tag",
+        "visitor-impact estimate",
+        "opening decision"
+      ],
+      "mustAvoid": [
+        "complaining about management"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "nonprofit canvass team hearing donor confusion about a policy change",
+      "audience": "a field director leading canvassers and reporting to the executive team",
+      "stakes": "the campaign can burn trust if donor confusion never travels upward",
+      "format": "dialogue",
+      "requiredBeat": "the director gives canvassers the purpose sentence, collects three exact donor objections on envelopes, and sends the pattern up with a recommended script change",
+      "firstImage": "The first thing you register is physical: three pledge envelopes carry the same question written in blue pen.",
+      "mustInclude": [
+        "purpose sentence",
+        "pledge envelopes",
+        "recommended script change"
+      ],
+      "mustAvoid": [
+        "office politics about senior leaders"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "hospital cafeteria substituting meals during a supplier shortage",
+      "audience": "a food-service manager between procurement and dietary aides",
+      "stakes": "patients with restrictions can receive wrong meals if purpose and constraints split",
+      "format": "before_after",
+      "requiredBeat": "the manager explains the shortage logic down to tray-line staff, sends allergy-risk concerns up to procurement, and changes the menu placard before lunch service",
+      "firstImage": "\"Hold there,\" someone says. Menu placard lists turkey while the delivery crate holds only chicken.",
+      "mustInclude": [
+        "menu placard",
+        "allergy-risk concern",
+        "tray-line briefing"
+      ],
+      "mustAvoid": [
+        "generic supply-chain complaint"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "civil engineering inspection team finding sinkhole risk under a sidewalk",
+      "audience": "a field engineer linking inspectors, city manager, and repair crew",
+      "stakes": "senior leaders may underestimate risk while the repair crew misses the public-access reason",
+      "format": "vignette",
+      "requiredBeat": "the engineer sends soil-core photos and a closure recommendation upward, then explains to the crew why the detour must protect a senior-center entrance",
+      "firstImage": "Later, the team will trace the lesson back to this: soil core tube comes up hollow at the edge of a cracked sidewalk panel.",
+      "mustInclude": [
+        "soil core tube",
+        "closure recommendation",
+        "senior-center entrance"
+      ],
+      "mustAvoid": [
+        "technical report as the whole communication"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "software compliance deadline with a hidden vendor dependency",
+      "audience": "a program manager between executives and implementation teams",
+      "stakes": "executives see green while teams privately know the vendor export may arrive late",
+      "format": "postmortem",
+      "requiredBeat": "the manager stops smoothing status, sends the vendor dependency upward with decision options, then tells teams which compliance promise still matters most",
+      "firstImage": "What changes once this is in front of everyone: vendor export date sits blank on the audit calendar?",
+      "mustInclude": [
+        "audit calendar",
+        "decision options",
+        "compliance promise"
+      ],
+      "mustAvoid": [
+        "status theater or blame escalation"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "move purpose down and friction up the chain",
+      "recognize status smoothing and complaint framing as failures",
+      "choose the communication that protects aligned initiative"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one purpose sentence that needs to travel down and one uncomfortable fact that needs to travel up before the next decision.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

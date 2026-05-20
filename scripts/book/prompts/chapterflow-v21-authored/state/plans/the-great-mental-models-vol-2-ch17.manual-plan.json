@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch17",
+  "number": 17,
+  "title": "Cooperation",
+  "coreMove": "Make mutual gain easier to coordinate than isolated effort or quiet defection.",
+  "sourcePressure": "Cooperation is framed as coordinated action among multiple actors, including alignment, shared cost, and mutual outcome.",
+  "chapterSpecificMisunderstanding": "turning cooperation into being agreeable or avoiding conflict",
+  "sourceAlignmentTerms": [
+    "cooperation",
+    "coordination",
+    "mutual benefit",
+    "shared cost",
+    "alignment",
+    "defection",
+    "joint outcome"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Cooperation",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "turning cooperation into being agreeable or avoiding conflict",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Alice",
+      "domain": "shared lab equipment calendar",
+      "audience": "readers who face shared lab equipment calendar decisions where cooperation is easy to misread",
+      "stakes": "expensive machines sitting idle",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Alice changes the coordination rule on the equipment calendar, makes contribution visible on the reservation tag, and uses the cleaning log to stop quiet defection. Domain: shared lab equipment calendar.",
+      "firstImage": "equipment calendar visible in the shared lab equipment calendar",
+      "mustInclude": [
+        "equipment calendar",
+        "reservation tag",
+        "cleaning log"
+      ],
+      "mustAvoid": [
+        "turning cooperation into being agreeable or avoiding conflict",
+        "reusing a generic meeting scene instead of the shared lab equipment calendar constraints"
+      ]
+    },
+    {
+      "protagonistName": "Robert",
+      "domain": "childcare co-op pickup plan",
+      "audience": "readers who face childcare co-op pickup plan decisions where cooperation is easy to misread",
+      "stakes": "parents covering unreliable pickups",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Robert changes the coordination rule on the pickup board, makes contribution visible on the snack sign-up, and uses the spare key to stop quiet defection. Domain: childcare co-op pickup plan.",
+      "firstImage": "pickup board visible in the childcare co-op pickup plan",
+      "mustInclude": [
+        "pickup board",
+        "snack sign-up",
+        "spare key"
+      ],
+      "mustAvoid": [
+        "turning cooperation into being agreeable or avoiding conflict",
+        "reusing a generic meeting scene instead of the childcare co-op pickup plan constraints"
+      ]
+    },
+    {
+      "protagonistName": "Henri",
+      "domain": "product launch dependency map",
+      "audience": "readers who face product launch dependency map decisions where cooperation is easy to misread",
+      "stakes": "launch blocked by unowned dependencies",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Henri changes the coordination rule on the dependency map, makes contribution visible on the launch checklist, and uses the owner tag to stop quiet defection. Domain: product launch dependency map.",
+      "firstImage": "dependency map visible in the product launch dependency map",
+      "mustInclude": [
+        "dependency map",
+        "launch checklist",
+        "owner tag"
+      ],
+      "mustAvoid": [
+        "turning cooperation into being agreeable or avoiding conflict",
+        "reusing a generic meeting scene instead of the product launch dependency map constraints"
+      ]
+    },
+    {
+      "protagonistName": "Vera",
+      "domain": "search-and-rescue radio protocol",
+      "audience": "readers who face search-and-rescue radio protocol decisions where cooperation is easy to misread",
+      "stakes": "storm search with patchy radio coverage",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Vera changes the coordination rule on the radio channel card, makes contribution visible on the grid map, and uses the battery meter to stop quiet defection. Domain: search-and-rescue radio protocol.",
+      "firstImage": "radio channel card visible in the search-and-rescue radio protocol",
+      "mustInclude": [
+        "radio channel card",
+        "grid map",
+        "battery meter"
+      ],
+      "mustAvoid": [
+        "turning cooperation into being agreeable or avoiding conflict",
+        "reusing a generic meeting scene instead of the search-and-rescue radio protocol constraints"
+      ]
+    },
+    {
+      "protagonistName": "Peter",
+      "domain": "theater set-build schedule",
+      "audience": "readers who face theater set-build schedule decisions where cooperation is easy to misread",
+      "stakes": "set pieces late because crews collide",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Peter changes the coordination rule on the paint schedule, makes contribution visible on the lumber list, and uses the crew badge to stop quiet defection. Domain: theater set-build schedule.",
+      "firstImage": "paint schedule visible in the theater set-build schedule",
+      "mustInclude": [
+        "paint schedule",
+        "lumber list",
+        "crew badge"
+      ],
+      "mustAvoid": [
+        "turning cooperation into being agreeable or avoiding conflict",
+        "reusing a generic meeting scene instead of the theater set-build schedule constraints"
+      ]
+    },
+    {
+      "protagonistName": "Ignacio",
+      "domain": "farmers market stall rotation",
+      "audience": "readers who face farmers market stall rotation decisions where cooperation is easy to misread",
+      "stakes": "vendors losing fairness in busy season",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ignacio changes the coordination rule on the stall lottery slip, makes contribution visible on the cash box, and uses the market map to stop quiet defection. Domain: farmers market stall rotation.",
+      "firstImage": "stall lottery slip visible in the farmers market stall rotation",
+      "mustInclude": [
+        "stall lottery slip",
+        "cash box",
+        "market map"
+      ],
+      "mustAvoid": [
+        "turning cooperation into being agreeable or avoiding conflict",
+        "reusing a generic meeting scene instead of the farmers market stall rotation constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for cooperation rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Make mutual gain easier to coordinate than isolated effort or quiet defection.",
+      "explain why the tempting misread fails: turning cooperation into being agreeable or avoiding conflict",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving cooperation, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

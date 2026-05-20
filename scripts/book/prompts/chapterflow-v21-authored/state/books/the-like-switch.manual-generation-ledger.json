@@ -1,0 +1,513 @@
+{
+  "bookId": "the-like-switch",
+  "updatedAt": "2026-05-14T02:54:03.858Z",
+  "usedProtagonistNames": [
+    "Laura",
+    "Mathieu",
+    "Ingrid",
+    "Luca",
+    "Aanya",
+    "David",
+    "Grace",
+    "Thomas",
+    "Camille",
+    "Henrik",
+    "Sofia",
+    "Chidi",
+    "Rachel",
+    "James",
+    "Juliette",
+    "Lukas",
+    "Layla",
+    "Akira",
+    "Emily",
+    "Nicolas",
+    "Maja",
+    "Tomas",
+    "Kiran",
+    "Chiara",
+    "Claire",
+    "Daniel",
+    "Chloe",
+    "Anders",
+    "Yusuf",
+    "Marta",
+    "Olivia",
+    "Ben",
+    "Antoine",
+    "Frida",
+    "Lin",
+    "Tomasz",
+    "Megan",
+    "Michael",
+    "Margaux",
+    "Lars",
+    "Hadiya",
+    "Giulia",
+    "Anna",
+    "Andrew",
+    "Etienne",
+    "Marit",
+    "Min",
+    "Diego",
+    "Petra",
+    "Catarina"
+  ],
+  "usedExampleDomains": [
+    "a museum volunteer coordinator trying to revive a thin docent pairing",
+    "a youth hockey assistant coach managing a quiet goalie and a new defender",
+    "a hospice volunteer lead pairing a new visitor with a guarded family caregiver",
+    "a community theater stage manager blending two backstage crews",
+    "a tenant association treasurer cooling an exhausting relationship with an overbearing member",
+    "a rowing club captain integrating a shy novice into a crew",
+    "a hospital wayfinding volunteer approaching worried visitors at a cardiac wing elevator",
+    "a farmers market stall owner trying to invite browsing without pouncing",
+    "a probation office receptionist greeting a tense client arriving late",
+    "a university lab partner joining an established research bench",
+    "a cycling repair shop owner handling a customer embarrassed about a broken commuter bike",
+    "a local election canvasser approaching a porch with a wary homeowner",
+    "a paramedic preceptor debriefing a new EMT after a messy call",
+    "a public library branch manager welcoming a retired engineer to a volunteer tech-help desk",
+    "a climbing gym instructor handling a nervous adult beginner",
+    "a city planning facilitator listening to residents angry about a bus-lane proposal",
+    "a software mentor reviewing a junior developer pull request",
+    "a neighborhood choir director keeping an alto from quitting after missed entrances",
+    "a disaster-relief volunteer roster where two crews cross paths every morning but do not trust each other",
+    "an indie game studio playtest channel with fans who comment often but never feel close to the team",
+    "a neighborhood running group where a newcomer attends every week but remains peripheral",
+    "a small architecture firm pairing a client and project lead over a home renovation",
+    "a parent committee planning a school fundraiser after a tense year",
+    "a freelance photography collective where members trade referrals unevenly",
+    "a veterinary clinic front desk handling a panicked pet owner after surgery delays",
+    "a shipyard apprentice reporting a near miss to a foreman",
+    "a college financial-aid advisor speaking with a student whose form was rejected",
+    "a restaurant host mediating between kitchen delay and anniversary guests",
+    "a municipal snowplow dispatcher taking calls after a missed street",
+    "a theater costume supervisor receiving criticism from an actor before opening night",
+    "a neighborhood emergency-preparedness team pairing an ex-firefighter with a software analyst",
+    "a language-exchange cafe where a confident speaker overwhelms a shy partner",
+    "a product-design research panel with parents of children using medical devices",
+    "a community garden conflict between longtime plot holders and new apartment residents",
+    "a jazz workshop pairing a classical pianist and a drummer",
+    "a remote compliance team onboarding a contractor in another country",
+    "a volunteer search-and-rescue unit where two longtime partners stop checking each other gear",
+    "a university alumni scholarship committee with lopsided follow-through",
+    "a sibling pair managing care for an aging parent from different cities",
+    "a chamber-music quartet after ten years together",
+    "a co-op bakery partnership after the first profitable year",
+    "a neighborhood mutual-aid freezer program entering its third winter",
+    "a freelance illustrator considering a large online commission from a charming new client",
+    "a parent evaluating a private online tutor for a teenager",
+    "a remote nonprofit board vetting a volunteer treasurer met through a forum",
+    "a community language app user invited to move a conversation off-platform",
+    "a small manufacturer approached by a polished distributor at a trade show",
+    "a tenant group receiving urgent messages from a supposed building inspector"
+  ],
+  "usedExampleAnchors": [
+    "the-like-switch-ch01: Friendship = Proximity x (Frequency + Duration) x Intensity",
+    "the-like-switch-ch01: nonthreatening proximity",
+    "the-like-switch-ch02: eyebrow flash",
+    "the-like-switch-ch02: head tilt",
+    "the-like-switch-ch03: The Golden Rule of Friendship",
+    "the-like-switch-ch03: ego override",
+    "the-like-switch-ch04: reciprocal self-disclosure",
+    "the-like-switch-ch04: Beverley Fehr",
+    "the-like-switch-ch05: empathic statements",
+    "the-like-switch-ch05: active listening",
+    "the-like-switch-ch06: common ground",
+    "the-like-switch-ch06: Aristotle",
+    "the-like-switch-ch07: relationship maintenance",
+    "the-like-switch-ch07: repair before distance hardens",
+    "the-like-switch-ch08: truth bias",
+    "the-like-switch-ch08: online misrepresentation"
+  ],
+  "usedHookFrames": [
+    "the-like-switch-ch01: White gloves beside a tray of coins show why contact can stay thin until one moment finally carries weight.",
+    "the-like-switch-ch02: The elevator doors open, and one step too close can turn help into pressure before a word is spoken.",
+    "the-like-switch-ch03: A glove wrapper on an ambulance floor can teach more about liking than a perfect story about yourself.",
+    "the-like-switch-ch04: Mud on shift cards shows why crossing paths every morning can still leave two crews cold.",
+    "the-like-switch-ch05: A ringing phone beside a surgery board can turn empathy into either relief or another script.",
+    "the-like-switch-ch06: Bottled water stacked beside route cards can reveal the quiet ground two strangers already share.",
+    "the-like-switch-ch07: A flickering headlamp on wet gravel can reveal the moment history starts replacing care.",
+    "the-like-switch-ch08: An unsigned contract beside a bright color palette can feel like opportunity before it has earned trust."
+  ],
+  "usedCounterFrames": [
+    "the-like-switch-ch01: A weak bond is rarely fixed by adding vague friendliness. You need to see which lever is missing: access, repetition, time, or emotional weight.",
+    "the-like-switch-ch02: Approachability is not louder warmth. It is lower threat: small signals that let the other person stay in control of the first seconds.",
+    "the-like-switch-ch03: Trying to impress often steals the very feeling that makes people return. The stronger move is to help them feel capable, seen, or useful.",
+    "the-like-switch-ch04: Attraction deepens when contact starts to travel both ways. Repetition begins the path, but reciprocity decides whether it keeps going.",
+    "the-like-switch-ch05: Helpful advice often arrives too early. Rapport grows when the first response proves you heard the feeling before you move toward the fix.",
+    "the-like-switch-ch06: Trust rarely grows from bigger revelations alone. It grows when real similarity and modest disclosure move at a pace both people can match.",
+    "the-like-switch-ch07: A familiar bond can look stable while its upkeep is already thinning. Durability comes from current reciprocity, early repair, and visible care.",
+    "the-like-switch-ch08: Good feeling can outrun proof. The wiser posture is guarded optimism: stay open to connection while letting trust grow only as evidence catches up."
+  ],
+  "usedTryThisNowFrames": [
+    "the-like-switch-ch01: Choose one relationship that feels stalled and write four labels: proximity, frequency, duration, intensity. Circle only the weakest one.",
+    "the-like-switch-ch02: Before your next doorway greeting, stop two steps out, open your stance, give brief recognition, and wait for the other person to meet you.",
+    "the-like-switch-ch03: In your next conversation, ask one follow-up that makes the other person useful or understood, then leave your own matching story unsaid.",
+    "the-like-switch-ch04: Choose one developing bond and mark the active force: repeated contact, reciprocity, disclosure, or support. Then name the weakest piece.",
+    "the-like-switch-ch05: When someone brings you a problem today, make your first sentence name the strain you hear, then ask one follow-up before advice.",
+    "the-like-switch-ch06: Name one real shared constraint with someone you are getting to know, then offer one modest detail at the same depth you would welcome back.",
+    "the-like-switch-ch07: Name one relationship running on history. Within a day, make one act of current repair or reciprocity visible enough to be felt.",
+    "the-like-switch-ch08: Pick one trust decision and make two columns: promising signals and verified facts. Slow only the part that still lives in the first column."
+  ],
+  "usedQuizExplanationFrames": [
+    "the-like-switch-ch01.q01: They already have access and repetition. The thinness comes from contact that carries no useful emotional weight, so intensity is the missing piece.",
+    "the-like-switch-ch01.q02: The review adds duration and meaningful exchange to existing proximity. More seating only repeats nearness without changing the quality of contact.",
+    "the-like-switch-ch01.q03: Cooling means reducing the variables being fed. Coffee and warmer reassurance would add duration and intensity, which is exactly what keeps the bond active.",
+    "the-like-switch-ch01.q04: The setting needs safety before intensity. Short repeated visits build nonthreatening proximity and frequency without forcing emotional weight too early.",
+    "the-like-switch-ch01.q05: Six practices prove repetition, not belonging. The novice may need a shared task that makes the contact matter, not simply more time nearby.",
+    "the-like-switch-ch01.q06: Attendance alone can become background. A cue-reset ritual adds a purposeful exchange, which changes the contact from parallel work into mutual reliance.",
+    "the-like-switch-ch01.q07: The formula describes how bonds strengthen, not whether they deserve to. Intensity around pressure can bind the founder to the wrong influence.",
+    "the-like-switch-ch01.q08: A shared task tests whether contact has weight beyond greeting warmth. Longer greetings may add duration without proving the relationship can carry effort.",
+    "the-like-switch-ch01.q09: The shared task adds duration and modest intensity inside a safe setting. A private confession jumps past earned trust, and ignoring the bond treats the variables as invisible.",
+    "the-like-switch-ch02.q01: Stopping short protects their control while recognition lowers threat. Stepping into their path or calling loudly can turn help into pressure.",
+    "the-like-switch-ch02.q02: A visible palm and calm nod lower threat without making a performance of friendliness. The clock accuses, and the joke can feel dismissive.",
+    "the-like-switch-ch02.q03: The issue is perceived capture, not product clarity. Open posture and choice make browsing safer, while stronger claims or direct questions raise pressure.",
+    "the-like-switch-ch02.q04: The soft cues lower the social risk of the joke and give the group room to respond. Louder delivery or correction makes the newcomer feel intrusive.",
+    "the-like-switch-ch02.q05: The lowered tool and open stance reduce judgment before the story comes out. Technical explanation arrives too early, and blame closes the customer down.",
+    "the-like-switch-ch02.q06: The closed doors do not prove the policy failed. The opening stance likely made homeowners protect the doorway before they considered the content.",
+    "the-like-switch-ch02.q07: The cues may create safer seconds, but later behavior has to match them. Interrupting and pushing breaks the promise the opening made.",
+    "the-like-switch-ch02.q08: The pause, hands, and waiting lower perceived threat while respecting control. Speed, stare, closeness, or forced cheer can make the room feel less safe.",
+    "the-like-switch-ch02.q09: Recovery needs safer opening cues plus matching behavior afterward. A bigger warmth performance can feel like a mask, and arguments do not erase the first scan.",
+    "the-like-switch-ch03.q01: The second response makes the developer feel capable through a real observation. Generic praise is thin, and silent rewriting removes ownership.",
+    "the-like-switch-ch03.q02: The correct patient-care decision gives the trainee a true competence anchor. Starting with the miss may trigger defense, and vague comfort avoids the lesson.",
+    "the-like-switch-ch03.q03: Asking for help turns his observation into useful expertise. Vague gratitude is pleasant but weaker, and defending the form wastes his contribution.",
+    "the-like-switch-ch03.q04: The beginner keeps dignity while learning. A harder demo centers the instructor, and ignoring the mistake sacrifices safety for comfort.",
+    "the-like-switch-ch03.q05: Treating concerns as knowledge gives residents status in the discussion. Authority talk dismisses them, and complimenting passion dodges the substance.",
+    "the-like-switch-ch03.q06: The issue is not praise volume. The good feeling has to be grounded in a real contribution or quality, or it feels like technique.",
+    "the-like-switch-ch03.q07: The singer can hear correction while still feeling valuable to the section. The mistake is still corrected, and distraction is not the mechanism.",
+    "the-like-switch-ch03.q08: The surface question may sound warm, but the structure is self-serving. Outward attention fails when the person feels used as a route to compliance.",
+    "the-like-switch-ch03.q09: The plan protects competence while still correcting reality. Compliment padding feels artificial, and skipping the correction avoids the responsibility.",
+    "the-like-switch-ch04.q01: The group already has repeated contact. The missing piece is mutual exchange: people need to give and receive support, not just hear updates.",
+    "the-like-switch-ch04.q02: The small disclosure humanizes the moment and then returns attention to the client. The full story takes over, while silence may feel remote.",
+    "the-like-switch-ch04.q03: Attraction returns when support becomes reciprocal. Warmer thanks or more modeling can leave the same one-sided burden intact.",
+    "the-like-switch-ch04.q04: The tradeoff plus question creates reciprocal disclosure. More notes increase contact, and public praise asks for loyalty before the exchange deepens.",
+    "the-like-switch-ch04.q05: Attendance proves frequency, not attraction. A small reciprocal exchange tied to the race can make the contact feel mutual and worth repeating.",
+    "the-like-switch-ch04.q06: One-sided support makes the group attractive only for receivers. More meetings or branding would not fix the imbalance in what people give and get.",
+    "the-like-switch-ch04.q07: Disclosure helps when it is paced and reciprocal. A heavy share too early can feel like pressure rather than attraction.",
+    "the-like-switch-ch04.q08: The handoff creates reciprocal support. Same office or longer meetings may add exposure without making the relationship mutual.",
+    "the-like-switch-ch04.q09: Healthy attraction shows reciprocity across contact, disclosure, and support. Fast replies can mislead, and forced disclosure may create pressure.",
+    "the-like-switch-ch05.q01: The second sentence names the felt meaning before logistics. The others may be true, but they answer process before fear.",
+    "the-like-switch-ch05.q02: Setting down the stamp and asking next keeps attention on the apprentice's account. Immediate repair or reassurance can shut down useful details.",
+    "the-like-switch-ch05.q03: The empathic sentence fits the student's fear and then moves to action. Rules first can feel cold, and easy-to-fix reassurance may minimize the stakes.",
+    "the-like-switch-ch05.q04: The guests need the lost moment recognized before options. Kitchen detail skips emotion, and dessert may feel like a payoff without understanding.",
+    "the-like-switch-ch05.q05: Naming the fear keeps the caller engaged and helps gather better data. Schedule repetition and workload defense ignore the reason the call is hot.",
+    "the-like-switch-ch05.q06: Canned empathy points to the technique instead of the person. Length is not the core problem, and validation can support logic when it is specific.",
+    "the-like-switch-ch05.q07: Active listening is not parroting plus advice. The supervisor took control before understanding the emotional meaning.",
+    "the-like-switch-ch05.q08: The actor is risking a complaint that could prevent a stage problem. Acknowledgment keeps the report open; measurements still matter afterward.",
+    "the-like-switch-ch05.q09: The plan validates without getting stuck. A fast solution may miss the real issue, and sending them away can make the person feel dismissed.",
+    "the-like-switch-ch06.q01: The route cards and checks give them a true shared working language. Childhood stories are too personal, and reassurance does not create evidence.",
+    "the-like-switch-ch06.q02: One small mistake each makes disclosure mutual and sized. More performance or pressure would deepen the imbalance.",
+    "the-like-switch-ch06.q03: The shared constraint lets parents enter safely. Worst-night stories are too heavy early, and avoiding all disclosure can make the exchange cold.",
+    "the-like-switch-ch06.q04: Protecting the soil names a real shared stake. Tenure and compromise pressure can harden factions before common ground appears.",
+    "the-like-switch-ch06.q05: Matched imperfection makes the risk reciprocal. A solo first risk exposes one person, and a slogan does not change the power of the moment.",
+    "the-like-switch-ch06.q06: Disclosure helps when paced and mutual. Heavy early sharing can feel like a demand, not an invitation to trust.",
+    "the-like-switch-ch06.q07: A small process disclosure shows that risk can be named safely. Informality alone is not trust, and follow-up is still needed.",
+    "the-like-switch-ch06.q08: Common ground has to be true enough to stand on. Forced likeness can feel like a tactic and weaken trust.",
+    "the-like-switch-ch06.q09: The best test is matched, modest disclosure plus careful response. Forced stories rush trust, and total reserve gives closeness nothing to grow from.",
+    "the-like-switch-ch07.q01: Durability needs current care. Familiarity can hide missing upkeep, while checking only new people treats maintenance as a beginner issue.",
+    "the-like-switch-ch07.q02: Returning named tasks restores reciprocity. Public thanks may soften the imbalance, and delay lets resentment harden.",
+    "the-like-switch-ch07.q03: The second option names the maintenance gap without turning love into a courtroom. Blame escalates, and refusing to track effort hides the pattern.",
+    "the-like-switch-ch07.q04: Rotating work and repairing tone make current care visible. Music quality matters, but it will not fix the one-sided maintenance load.",
+    "the-like-switch-ch07.q05: Returned effort repairs the maintenance gap. Explanation and celebration may be sincere, but they do not change the lopsided pattern.",
+    "the-like-switch-ch07.q06: The empty shelves show maintenance has fallen behind. Storytelling may inspire, but it cannot replace present upkeep.",
+    "the-like-switch-ch07.q07: Durability depends on present reciprocity, not the age of the bond. Personality explanations can hide one-sided effort.",
+    "the-like-switch-ch07.q08: Early repair prevents drift from becoming structure. Waiting for obvious damage makes the fix larger, not smaller.",
+    "the-like-switch-ch07.q09: Current follow-up, reciprocity, and repair show living maintenance. Years and low conflict can hide passivity or avoidance.",
+    "the-like-switch-ch08.q01: The deposit and check preserve opportunity while tying trust to evidence. Starting work trusts too fast, while blanket refusal kills possible connection.",
+    "the-like-switch-ch08.q02: The bounded trial keeps openness while verifying. Friendly messages are signals, and cancellation turns caution into total suspicion.",
+    "the-like-switch-ch08.q03: Bank access needs verified evidence and staged trust. A statement adds more signal, and full access makes the test too costly.",
+    "the-like-switch-ch08.q04: The response preserves connection and safeguards. Immediate movement gives trust too fast, while blocking treats uncertainty as proof of danger.",
+    "the-like-switch-ch08.q05: References and a test order convert rapport into evidence. Exclusivity trusts the booth too much, while blanket avoidance rejects real opportunity.",
+    "the-like-switch-ch08.q06: Truth bias makes a plausible notice feel usable too soon. Checking and then warning keep trust tied to reality.",
+    "the-like-switch-ch08.q07: Verification is compatible with warmth when stakes are real. Good feeling can guide attention, but it should not replace evidence.",
+    "the-like-switch-ch08.q08: High access before verified history creates exposure. Polished samples and fast answers may be positive signals, but they are not enough for admin trust.",
+    "the-like-switch-ch08.q09: The plan keeps connection possible while pacing trust. Quick trust is naive, and withholding all warmth turns caution into suspicion."
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "the-like-switch-ch01",
+      "rejectedHookFrames": [
+        "Chemistry is not magic",
+        "Friendship is a formula",
+        "Some bonds just click"
+      ],
+      "rejectedCounterFrames": [
+        "more time always means more closeness",
+        "relationships are not luck, they are math"
+      ],
+      "rejectedTryThisNowFrames": [
+        "set a timer and think of a friend",
+        "text someone right now without diagnosing the missing variable"
+      ],
+      "rejectedExampleFrames": [
+        "generic office coffee chats",
+        "classroom seatmate becomes friend",
+        "neighbor hallway small talk"
+      ]
+    },
+    {
+      "chapterId": "the-like-switch-ch02",
+      "rejectedHookFrames": [
+        "Your body speaks before you do",
+        "First impressions happen fast",
+        "Smile more"
+      ],
+      "rejectedCounterFrames": [
+        "words do not matter",
+        "body language is everything"
+      ],
+      "rejectedTryThisNowFrames": [
+        "practice smiling in a mirror for one minute"
+      ],
+      "rejectedExampleFrames": [
+        "networking cocktail party opener",
+        "job interview handshake only",
+        "airport stranger chat"
+      ]
+    },
+    {
+      "chapterId": "the-like-switch-ch03",
+      "rejectedHookFrames": [
+        "Make people feel good",
+        "Everyone likes compliments",
+        "Stop talking about yourself"
+      ],
+      "rejectedCounterFrames": [
+        "liking is about them, not you",
+        "flattery is bad"
+      ],
+      "rejectedTryThisNowFrames": [
+        "give someone a compliment today"
+      ],
+      "rejectedExampleFrames": [
+        "generic dinner party praise",
+        "manager says great job",
+        "student asks about weekend"
+      ]
+    },
+    {
+      "chapterId": "the-like-switch-ch04",
+      "rejectedHookFrames": [
+        "Opposites attract",
+        "Attraction is not just romance",
+        "More exposure creates attraction"
+      ],
+      "rejectedCounterFrames": [
+        "frequency is not enough",
+        "oversharing is bad"
+      ],
+      "rejectedTryThisNowFrames": [
+        "share one personal fact with someone"
+      ],
+      "rejectedExampleFrames": [
+        "office crush",
+        "neighbors in elevator",
+        "study group becomes friends"
+      ]
+    },
+    {
+      "chapterId": "the-like-switch-ch05",
+      "rejectedHookFrames": [
+        "Listen more",
+        "Communication is key",
+        "People want to be heard"
+      ],
+      "rejectedCounterFrames": [
+        "empathy is not agreement",
+        "listening is not waiting to talk"
+      ],
+      "rejectedTryThisNowFrames": [
+        "repeat back what someone said"
+      ],
+      "rejectedExampleFrames": [
+        "couple at kitchen table",
+        "manager one-on-one with advice",
+        "student office hours"
+      ]
+    },
+    {
+      "chapterId": "the-like-switch-ch06",
+      "rejectedHookFrames": [
+        "Open up to get close",
+        "Find common ground",
+        "Vulnerability builds trust"
+      ],
+      "rejectedCounterFrames": [
+        "more disclosure is not better",
+        "similarity can be fake"
+      ],
+      "rejectedTryThisNowFrames": [
+        "share a secret with someone"
+      ],
+      "rejectedExampleFrames": [
+        "two coworkers discover same hobby",
+        "classmates bond over hometown",
+        "date overshares at dinner"
+      ]
+    },
+    {
+      "chapterId": "the-like-switch-ch07",
+      "rejectedHookFrames": [
+        "Relationships take work",
+        "Do not take people for granted",
+        "Maintenance matters"
+      ],
+      "rejectedCounterFrames": [
+        "closeness is not enough",
+        "history cannot sustain love"
+      ],
+      "rejectedTryThisNowFrames": [
+        "send a check-in text"
+      ],
+      "rejectedExampleFrames": [
+        "old friends over coffee",
+        "marriage date night",
+        "team retreat trust fall"
+      ]
+    },
+    {
+      "chapterId": "the-like-switch-ch08",
+      "rejectedHookFrames": [
+        "Trust but verify",
+        "Online people can lie",
+        "Relationships are risky"
+      ],
+      "rejectedCounterFrames": [
+        "trust is weakness",
+        "be cynical to stay safe"
+      ],
+      "rejectedTryThisNowFrames": [
+        "Google someone before trusting them"
+      ],
+      "rejectedExampleFrames": [
+        "catfish romance cliche",
+        "generic dating app profile",
+        "phishing email scam"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "the-like-switch-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-14T02:53:51.095Z",
+      "written": true,
+      "writtenPath": "/Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/chapters/the-like-switch-ch01.v21-native.chapter.json",
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "the-like-switch-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-14T02:53:52.527Z",
+      "written": true,
+      "writtenPath": "/Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/chapters/the-like-switch-ch02.v21-native.chapter.json",
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "the-like-switch-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-14T02:53:53.822Z",
+      "written": true,
+      "writtenPath": "/Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/chapters/the-like-switch-ch03.v21-native.chapter.json",
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "the-like-switch-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-14T02:53:55.489Z",
+      "written": true,
+      "writtenPath": "/Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/chapters/the-like-switch-ch04.v21-native.chapter.json",
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "the-like-switch-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-14T02:53:57.800Z",
+      "written": true,
+      "writtenPath": "/Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/chapters/the-like-switch-ch05.v21-native.chapter.json",
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "the-like-switch-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-14T02:53:59.680Z",
+      "written": true,
+      "writtenPath": "/Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/chapters/the-like-switch-ch06.v21-native.chapter.json",
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "the-like-switch-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-14T02:54:01.455Z",
+      "written": true,
+      "writtenPath": "/Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/chapters/the-like-switch-ch07.v21-native.chapter.json",
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    },
+    "the-like-switch-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-14T02:54:03.863Z",
+      "written": true,
+      "writtenPath": "/Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/chapters/the-like-switch-ch08.v21-native.chapter.json",
+      "exampleCount": 6,
+      "quizCount": 9,
+      "reviewCardCount": 5,
+      "memorableLineCount": 3
+    }
+  }
+}

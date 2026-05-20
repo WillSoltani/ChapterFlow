@@ -1,0 +1,186 @@
+{
+  "chapterId": "the-pyramid-principle-ch02",
+  "number": 2,
+  "title": "The substructures within the pyramid",
+  "coreMove": "Test every support set for vertical summary, horizontal sameness, and meaningful order before trusting the hierarchy.",
+  "sourcePressure": "Chapter 2 narrows from why pyramids help to what makes the internal substructure stable: the point above must summarize, siblings must be logically alike, and sibling order must mean something.",
+  "chapterSpecificMisunderstanding": "Assuming parallel bullets or matching grammar make a real group when the lower points are doing different jobs.",
+  "sourceAlignmentTerms": [
+    "substructures",
+    "horizontal relationship",
+    "vertical relationship",
+    "same-kind grouping",
+    "logical order",
+    "summary-above-support",
+    "sibling points"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "horizontal relationship",
+      "detail": "the sidecar says the heading index supports the horizontal relationship as a core subtopic for this chapter",
+      "useIn": "both",
+      "phrasingHint": "The horizontal relationship is the quiet test under a neat list: are these siblings, or only neighbors?"
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The meeting room waits while a slide tries to explain itself",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "The obvious fix is shorter wording; the real fix is better logic",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Find a memo and make it clearer",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "student reorganizes study notes at a library table",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a museum membership team revising reasons for a price increase",
+      "audience": "cultural-sector managers writing member communications",
+      "stakes": "members may cancel if the rationale mixes costs, benefits, and apologies under one vague heading",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hannah writes the job of each bullet in the margin, crosses out the apology bullet, and rebuilds the section as three cost pressures under one honest summary.",
+      "firstImage": "The membership letter smells faintly of toner and coffee when Hannah marks the margin.",
+      "mustInclude": [
+        "member letter proof",
+        "admissions revenue sheet",
+        "margin labels"
+      ],
+      "mustAvoid": [
+        "nonprofit grant board from ch1"
+      ]
+    },
+    {
+      "domain": "a railway safety officer grouping near-miss reports",
+      "audience": "safety readers who need clean classes of evidence",
+      "stakes": "a false group could send investigators toward training when track layout is the issue",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Antoine separates causes from locations and outcomes, then rewrites the parent line after the old one can no longer summarize the new sibling sets.",
+      "firstImage": "Rain taps the depot window while three near-miss forms sit under one bad heading.",
+      "mustInclude": [
+        "near-miss forms",
+        "track-layout sketch",
+        "cause/location/outcome labels"
+      ],
+      "mustAvoid": [
+        "bus depot shells",
+        "generic incident review"
+      ]
+    },
+    {
+      "domain": "a cookbook editor organizing troubleshooting notes for sourdough bakers",
+      "audience": "editors building instructional logic",
+      "stakes": "home bakers will misdiagnose failures if ingredients, timing, and symptoms sit as one group",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sophie moves symptoms into one group and interventions into another, proving that the previous heading had been summarizing unlike items.",
+      "firstImage": "It took Sophie until the third loaf photo to see the list was lying.",
+      "mustInclude": [
+        "proofing photos",
+        "hydration notes",
+        "symptom labels"
+      ],
+      "mustAvoid": [
+        "kitchen-table family budget"
+      ]
+    },
+    {
+      "domain": "a cybersecurity compliance lead preparing audit findings",
+      "audience": "risk officers who need findings that are the same kind",
+      "stakes": "the board could fund the wrong fix if policy gaps, tool failures, and user habits are collapsed",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:10 a.m., David refuses to call all six findings controls, sorts them by policy, system, and behavior, and rewrites the summary to match only one set.",
+      "firstImage": "At 9:10 a.m., David stares at six findings in a red audit binder.",
+      "mustInclude": [
+        "red audit binder",
+        "policy gap list",
+        "access-control screenshot"
+      ],
+      "mustAvoid": [
+        "breach lookup demonstrations"
+      ]
+    },
+    {
+      "domain": "a vineyard operations planner summarizing harvest bottlenecks",
+      "audience": "agricultural managers balancing field and cellar constraints",
+      "stakes": "the harvest crew schedule will fail if weather, equipment, and staffing are treated as one timeline",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Margaux split weather risks from equipment constraints, then choose ranking order only inside the equipment group where one standard applies.",
+      "firstImage": "You can smell crushed grape skins while the bottleneck list hangs beside the crush pad.",
+      "mustInclude": [
+        "harvest roster",
+        "crusher maintenance log",
+        "weather alert sheet"
+      ],
+      "mustAvoid": [
+        "generic operations memo"
+      ]
+    },
+    {
+      "domain": "a university housing director explaining move-in problems",
+      "audience": "administrators writing after-action reports",
+      "stakes": "next year's fix depends on whether the problems are stages, causes, or resources",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ben says the list has three grammatically similar bullets but no shared class, then turns one false group into separate stage and resource groups.",
+      "firstImage": "\"They look parallel, but they are not siblings,\" Ben says over the move-in map.",
+      "mustInclude": [
+        "move-in map",
+        "staffing rota",
+        "key pickup logs"
+      ],
+      "mustAvoid": [
+        "student study-note scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish visual parallelism from logical parallelism",
+      "repair a mixed support group by separating functions",
+      "judge whether a top line overclaims its children",
+      "select an order that carries meaning rather than convenience"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one three-bullet section and write one word beside each bullet naming its job, such as cause, action, risk, or result. If the words differ, split the group.",
+  "readingTimeMinutes": 12
+}

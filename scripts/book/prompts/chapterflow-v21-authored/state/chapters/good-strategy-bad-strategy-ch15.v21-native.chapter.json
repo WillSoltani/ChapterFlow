@@ -1,0 +1,327 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch15",
+  "number": 15,
+  "title": "Putting It Together",
+  "readingTimeMinutes": 10,
+  "hook": "Integration turns scattered good ideas into one hard-to-copy response.",
+  "counterintuition": "A complete-looking plan gets the credit for synthesis. Reinforcement is doing the work when the pieces serve the same diagnosis and response.",
+  "tryThisNow": "Draw four boxes for one decision: diagnosis; policy; first action; reinforcement. Cross out any box that does not support the chain.",
+  "keyTakeaway": "Synthesis is not a recap. It is the discipline of linking strategic parts so each action fits the diagnosis and reinforces the next move.",
+  "breakdown": {
+    "fastRead": "A blue runway phasing chart covers half of Amelia's task-force table. Noise complaints sit on one side and the bond schedule on the other. The easy answer is to treat each file as a separate problem. Amelia draws one line through the chart and asks which runway phase can reduce delays, stay fundable, and keep the loudest neighborhoods from defeating the plan.\n\nPutting a strategy together means making the pieces strengthen one another. Diagnosis points to the real constraint. Policy chooses how to face it. Coherent action concentrates force. Timing and structure keep the work from fighting itself. Integration is the strategy when each part strengthens the next.",
+    "deepRead": "Cedric listens as a district team argues about attendance, bus routes, and staffing. The attendance heat map shows missed days clustered in two outer neighborhoods. The driver vacancy list explains why morning routes break there first. The bus depot roster shows substitute drivers being sent to the wrong side of town. Cedric draws a box around the two neighborhoods and removes a district-wide attendance campaign from the plan.\n\nThe move is synthesis. Attendance is the visible problem, but transport is the constraint and staffing is the lever. A slogan about school culture would scatter effort. A combined response changes routes, fills driver gaps, and targets family outreach where the heat map says absence starts. Pieces count only when they reinforce one another.\n\nFreya sees the same lesson after a medical device launch stalls. The regulatory letter, sales territory map, and clinical evidence table were handled by different teams. Sales wanted broad coverage, regulatory wanted caution, and clinical wanted more proof. When Freya places the letter beside the evidence table, the hidden constraint becomes obvious: the safest regulatory path favors a narrow hospital segment where the evidence is strongest.\n\nA strategy is one response, not a tray of good ideas.\n\nIntegration does not mean every concern gets equal weight. It means the chosen diagnosis decides what belongs. Some sensible actions will be left out because they do not reinforce the main effort. That feels severe, but it is what gives the plan force. Without that discipline, the organization has parts. It does not have a strategy.",
+    "fullRead": "You can see the weak spot before anyone names it: the hotel tax report fell hardest in the shoulder season. Carlos has a festival calendar and visitor survey on the table. One group wants a new brand campaign. Another wants subsidies for winter events. A third wants to court tour buses. Carlos must decide whether to combine the pieces or choose the few that actually reinforce one another.\n\nHe marks the visitor survey first. Families still come in summer, but short adult trips disappear in spring and autumn. The festival calendar has two events with credible food and music partners, not six. The hotel tax report shows midweek rooms empty, not weekends. The integrated move becomes clear: build two shoulder-season midweek packages around the strongest festivals, ask hotels to fund bundled offers, and aim promotion only at nearby cities with easy rail access. The plan is narrower and more complete.\n\nWhat makes the parts reinforce? The diagnosis names the real loss. The policy chooses the kind of visitor to pursue. The actions fit timing, partners, and capacity. The measures track the same problem the diagnosis identified. If one part changes, the others have to be checked again. That is strategic practice, not paperwork.\n\nSana needed the third risk review before the clean cyber plan stopped looking clean. The risk register listed dozens of serious items. The patch backlog was long. The architecture diagram showed one identity service touching nearly every critical system. Sana has to decide whether to spread budget across all high risks or concentrate on the identity service, patch sequence, and operating routine that would reduce the biggest shared exposure. She circles the identity service on the diagram and rewrites the program around it.\n\nThere is a danger in synthesis: it can become decorative complexity. A leader can draw arrows between everything and call the picture integrated. Real synthesis does the opposite. It makes the hard relationship clearer. It says this diagnosis, therefore this policy; this policy, therefore these actions; these actions, therefore this timing and this reinforcement. Anything else is commentary.\n\nRobert uses that stricter test at a water utility. The pipe age map shows failures in two neighborhoods. The crew calendar shows repair capacity is lowest during the same months that road permits are easiest. The rate hearing file shows funding will be challenged unless the utility can explain why these pipes come first. Before, the capital plan ranked projects by age alone. After Robert rearranges the sequence, the plan joins pipe risk, crew availability, permit timing, and public explanation.\n\nA good integrated plan feels almost unfair in its simplicity. Each action has more than one job. Each job supports the diagnosis. Each timing choice preserves force. The parts do not merely coexist; they make one another stronger. That is the point of putting it together."
+  },
+  "examples": [
+    {
+      "exampleId": "ch15-ex01-amelia-runway-phasing",
+      "title": "Amelia Draws the Runway Line",
+      "tags": [
+        "airport",
+        "phasing",
+        "funding"
+      ],
+      "planSpec": {
+        "domain": "airport expansion task force integrating diagnosis and sequence",
+        "audience": "a reader facing airport expansion task force integrating diagnosis and sequence",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "scene",
+        "requiredBeat": "Amelia moves one concrete constraint to the center of the table and crosses out every action that does not address it using runway phasing chart so the lesson happens as a visible action."
+      },
+      "scenario": "Amelia, the expansion director, spreads a blue runway phasing chart across the airport task-force table in the city planning office. has noise complaints and a bond schedule beside it. She must decide whether to treat them as separate workstreams or phase the runway plan around the constraint they share. The bond hearing is already on the council calendar, so Amelia has to make runway phasing, noise risk, and funding logic support one sequence.",
+      "whatToDo": "Use the phasing chart to link delay relief, neighborhood risk, and bond timing into one sequence.",
+      "whyItMatters": "The pieces become strategic only when each one strengthens the same response."
+    },
+    {
+      "exampleId": "ch15-ex02-cedric-attendance-routes",
+      "title": "Cedric Removes the Campaign",
+      "tags": [
+        "schools",
+        "transport",
+        "attendance"
+      ],
+      "planSpec": {
+        "domain": "district superintendent combining attendance, staffing, and transport fixes",
+        "audience": "a reader facing district superintendent combining attendance, staffing, and transport fixes",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "decision_point",
+        "requiredBeat": "Cedric asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using attendance heat map so the lesson happens as a visible action."
+      },
+      "scenario": "\"Which absence does this actually change?\" Cedric, the district superintendent, asks in the transportation office, pointing to the attendance heat map. The driver vacancy list and bus depot roster show the same two neighborhoods. He has to choose between a district-wide campaign and a combined route, staffing, and outreach move. The morning route board is still open behind Cedric, which keeps the attendance diagnosis tied to drivers rather than a district slogan.",
+      "whatToDo": "Delete the broad campaign and focus routes, vacancies, and family outreach on the two neighborhoods where the pattern begins.",
+      "whyItMatters": "The problem is not attendance alone. The effective response links transport, staffing, and outreach around one diagnosis."
+    },
+    {
+      "exampleId": "ch15-ex03-freya-regulatory-letter",
+      "title": "Freya Narrows the Launch",
+      "tags": [
+        "medical-device",
+        "regulatory",
+        "sales"
+      ],
+      "planSpec": {
+        "domain": "medical device launch team linking regulatory path and sales focus",
+        "audience": "a reader facing medical device launch team linking regulatory path and sales focus",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "postmortem",
+        "requiredBeat": "Freya uses the artifact to expose the hidden constraint before anyone proposes another initiative using regulatory letter so the lesson happens as a visible action."
+      },
+      "scenario": "A cold draft slips under the lab door as Freya rereads the regulatory letter. The sales territory map promises broad coverage, but the clinical evidence table is strongest in one hospital segment. The failed launch treated those facts as separate. The launch review is due before the next territory assignment, so Freya has to make regulatory path and sales focus fit now.",
+      "whatToDo": "Use the regulatory letter to narrow the sales focus to the segment where approval logic and evidence reinforce each other.",
+      "whyItMatters": "Synthesis often means narrowing. The launch gains force when regulatory path and sales focus become one move."
+    },
+    {
+      "exampleId": "ch15-ex04-carlos-tourism-season",
+      "title": "Carlos Chooses Two Festivals",
+      "tags": [
+        "tourism",
+        "seasonality",
+        "packages"
+      ],
+      "planSpec": {
+        "domain": "regional tourism board rebuilding after a bad season",
+        "audience": "a reader facing regional tourism board rebuilding after a bad season",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "dialogue",
+        "requiredBeat": "Carlos turns a vague goal into a visible choice by marking the one place effort will land using hotel tax report so the lesson happens as a visible action."
+      },
+      "scenario": "You can see the weak spot in the hotel tax report: midweek spring rooms are empty. Carlos has a festival calendar and visitor survey, and he must decide whether to fund six events or build two packages where hotels, festivals, and nearby rail markets reinforce one another. The hotel partners need an answer before the spring brochure closes, forcing Carlos to choose the two festivals that make the package coherent.",
+      "whatToDo": "Mark the two strongest shoulder-season festivals and build packages that join hotel capacity, visitor demand, and promotion timing.",
+      "whyItMatters": "A regional comeback plan needs linked force. Six loose events would be activity, not synthesis."
+    },
+    {
+      "exampleId": "ch15-ex05-sana-risk-register",
+      "title": "Sana Circles the Identity Service",
+      "tags": [
+        "security",
+        "risk",
+        "architecture"
+      ],
+      "planSpec": {
+        "domain": "enterprise security program tying risk, timing, and operating design",
+        "audience": "a reader facing enterprise security program tying risk, timing, and operating design",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "predict_reveal",
+        "requiredBeat": "Sana tests the proposed move against the object or record that reveals whether it fits the real problem using risk register so the lesson happens as a visible action."
+      },
+      "scenario": "Sana, the enterprise security director, needed three risk reviews in the operations center to distrust the balanced plan. The risk register is crowded, the patch backlog is long, and the architecture diagram shows one identity service touching critical systems. She must decide whether to spread budget evenly or concentrate the program around that shared exposure. The identity service diagram is projected above the risk register, so Sana can show why the patch order and operating routine belong together.",
+      "whatToDo": "Circle the identity service, sequence patches around it, and redesign the operating routine that keeps the exposure alive.",
+      "whyItMatters": "Integration concentrates effort where risk, timing, and operating design meet."
+    },
+    {
+      "exampleId": "ch15-ex06-robert-pipe-age-map",
+      "title": "Robert Reorders the Capital Plan",
+      "tags": [
+        "water-utility",
+        "capital",
+        "crews"
+      ],
+      "planSpec": {
+        "domain": "water utility capital plan joining pipe age, crews, and funding",
+        "audience": "a reader facing water utility capital plan joining pipe age, crews, and funding",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "before_after",
+        "requiredBeat": "Robert stops the meeting and rearranges the sequence of work so the strategic move becomes visible using pipe age map so the lesson happens as a visible action."
+      },
+      "scenario": "Robert asks which pipes come first when age is not the only constraint. In the water utility planning office, he places the pipe age map beside the crew calendar and rate hearing file. Before, the plan ranked old pipes. After, it sequences risk, crew windows, permit timing, and public funding logic together. The rate hearing file is due Friday, giving Robert a public test for whether the capital plan tells one coherent story.",
+      "whatToDo": "Reorder projects where pipe risk, crew capacity, and funding explanation reinforce the same choice.",
+      "whyItMatters": "The capital plan becomes strategic when its pieces support one public, operational, and financial response."
+    }
+  ],
+  "quiz": {
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "An airport task force has runway phasing, noise complaints, and bond timing in separate files. What does synthesis require?",
+        "choices": [
+          "Joining the files into one sequence where each constraint supports the runway choice.",
+          "Letting each team solve its own file independently.",
+          "Writing a summary that mentions all three files equally."
+        ],
+        "correctIndex": 0,
+        "explanation": "Synthesis links constraints into one response. A balanced summary or separate workstreams can leave the pieces fighting each other.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A district has poor attendance in two neighborhoods, driver vacancies, and route failures from the same depot. Which plan best puts the pieces together?",
+        "choices": [
+          "Launch a district-wide attendance slogan.",
+          "Target the two neighborhoods with route fixes, driver staffing, and family outreach together.",
+          "Ask every school to create its own attendance idea."
+        ],
+        "correctIndex": 1,
+        "explanation": "The linked plan matches the shared diagnosis. A slogan or school-by-school activity ignores the way transport and attendance reinforce each other.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A medical device team has broad sales ambitions, cautious regulatory guidance, and strongest evidence in one hospital segment. What is the integrated move?",
+        "choices": [
+          "Pursue the broad sales map so the launch feels ambitious.",
+          "Delay indefinitely until every segment has equal evidence.",
+          "Narrow the launch to the segment where evidence and regulatory path reinforce sales focus."
+        ],
+        "correctIndex": 2,
+        "explanation": "The narrow launch joins evidence, regulation, and sales force. Broad coverage may look bold but separates the pieces that need to work together.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A tourism board wants to recover from a weak season with six events, a brand campaign, and hotel discounts. Data shows midweek shoulder-season rooms are the actual gap. What should leaders do?",
+        "choices": [
+          "Build a focused package where festivals, hotels, visitor demand, and timing reinforce the midweek gap.",
+          "Fund all six events so every partner feels represented.",
+          "Run a brand campaign first and inspect hotel data later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The focused package turns several parts into one response to the diagnosed gap. Funding everything spreads force and avoids the synthesis decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A security program lists dozens of risks, but the architecture diagram shows one identity service touching critical systems. What action best reflects synthesis?",
+        "choices": [
+          "Divide money evenly across every high-risk item.",
+          "Concentrate patches, operating routines, and monitoring around the identity service exposure.",
+          "Postpone action until the risk register is shorter."
+        ],
+        "correctIndex": 1,
+        "explanation": "The identity service connects risk, timing, and operating design. Equal spending feels fair but misses the place where actions reinforce each other.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A water utility ranks projects by pipe age, but crew windows, permit timing, and funding hearings point to a different order. Which response is strongest?",
+        "choices": [
+          "Keep the age ranking because it is easiest to explain.",
+          "Replace the capital plan with emergency repairs only.",
+          "Sequence pipe risk, crew availability, permits, and funding logic as one plan."
+        ],
+        "correctIndex": 2,
+        "explanation": "The integrated sequence respects several constraints at once. Age alone is a partial measure and emergency repairs abandon strategic practice.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A nonprofit strategy document has sections on diagnosis, policy, actions, timing, and measures, but the measures track goals unrelated to the diagnosis. What is the flaw?",
+        "choices": [
+          "The document has too many sections.",
+          "The parts do not reinforce one another, so the strategy is only assembled, not integrated.",
+          "The measures should always be chosen by the finance team."
+        ],
+        "correctIndex": 1,
+        "explanation": "Synthesis requires fit across parts. Measures that track a different problem break the link between diagnosis and action.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A regional clinic plan includes a staffing fix, a scheduling change, and a patient education push. Which evidence would best show the pieces are truly integrated?",
+        "choices": [
+          "Each workstream has a different owner and separate deadline.",
+          "The plan is long enough to include every stakeholder request.",
+          "All three actions address the same bottleneck and make the next action easier."
+        ],
+        "correctIndex": 2,
+        "explanation": "Integration shows up when actions reinforce the same diagnosis. Separate ownership or stakeholder coverage can coexist with fragmentation.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A product team says it has put everything together because its roadmap includes customer research, engineering capacity, and launch dates. What should you test?",
+        "choices": [
+          "Whether the research points to the same constraint the roadmap is designed to attack.",
+          "Whether the roadmap has more features than last quarter.",
+          "Whether every department got one item included."
+        ],
+        "correctIndex": 0,
+        "explanation": "The test is whether the parts fit one diagnosis. More features or equal representation can make a plan look complete while leaving it incoherent.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A plan mentions diagnosis, timing, and actions. What proves they are synthesized?",
+      "back": "Each part supports the same response: the diagnosis selects the policy, the policy selects the actions, and the timing reinforces force.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A team wants to include every good idea. What is the synthesis risk?",
+      "back": "Good ideas can scatter force if they do not reinforce the diagnosis and one another.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A narrow plan leaves out sensible actions. When can that be strategically right?",
+      "back": "When the excluded actions do not reinforce the main diagnosis, policy, or sequence. Focus gives the plan force.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A dashboard tracks measures unrelated to the main constraint. What should be corrected?",
+      "back": "Realign measures with the diagnosis so feedback tells whether the strategy is working.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A roadmap lists many good ideas. What makes them one response?",
+      "back": "A recap lists concepts. Putting it together links choices so each action strengthens the others.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice joining strategy pieces into one response. Check whether diagnosis, guiding policy, actions, timing, and measures reinforce the same constraint.",
+    "ifThenPlans": [
+      {
+        "context": "planning meeting",
+        "plan": "If the plan has separate workstreams, then ask which single diagnosis each one supports."
+      },
+      {
+        "context": "budget allocation",
+        "plan": "If every department gets a little money, then test whether equal distribution scatters force away from the main constraint."
+      },
+      {
+        "context": "project review",
+        "plan": "If measures look disconnected, then rewrite them around the problem the strategy claims to solve."
+      },
+      {
+        "context": "personal decision",
+        "plan": "If several good options compete, then choose the set that reinforces one direction rather than collecting achievements."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, take one plan and draw arrows from diagnosis to policy to action to measure. Remove or rewrite any item without a strong arrow.",
+    "weeklyPractice": "Each week, audit one active plan for reinforcement. Find one action that does not support the main diagnosis and either change it or drop it."
+  },
+  "memorableLines": [
+    {
+      "text": "Integration is the strategy when each part strengthens the next.",
+      "whyItSticks": "It makes synthesis the work itself, not a finishing step.",
+      "why": "It makes synthesis the work itself, not a finishing step.",
+      "location": "fastRead"
+    },
+    {
+      "text": "Pieces count only when they reinforce one another.",
+      "whyItSticks": "It gives a simple test for whether a plan is integrated.",
+      "why": "It gives a simple test for whether a plan is integrated.",
+      "location": "deepRead"
+    },
+    {
+      "text": "A strategy is one response, not a tray of good ideas.",
+      "whyItSticks": "It warns against confusing inclusion with coherence.",
+      "why": "It warns against confusing inclusion with coherence.",
+      "location": "deepRead"
+    }
+  ]
+}

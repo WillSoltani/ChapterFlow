@@ -1,0 +1,199 @@
+{
+  "chapterId": "the-outsiders-ch03",
+  "number": 3,
+  "title": "The Turnaround",
+  "coreMove": "Rank inherited assets by recovery value, then cut even proud pieces when they weaken the company that must survive.",
+  "sourcePressure": "Bill Anders and General Dynamics show outsider discipline inside a damaged enterprise where portfolio triage and rational downsizing matter more than preserving inherited scale.",
+  "chapterSpecificMisunderstanding": "Do not write a generic crisis chapter; every scene must show triage among inherited commitments, with contraction serving recovery rather than image.",
+  "sourceAlignmentTerms": [
+    "Bill Anders",
+    "General Dynamics",
+    "turnaround",
+    "portfolio triage",
+    "rational downsizing",
+    "value preservation",
+    "recovery scorecard"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Bill Anders",
+      "detail": "The source sidecar pairs Chapter 3 with Bill Anders and General Dynamics and says he reset the company through portfolio triage and rational downsizing.",
+      "useIn": "both",
+      "phrasingHint": "Bill Anders walks into the lesson as a reminder that recovery sometimes starts by deciding what the company must stop being."
+    },
+    {
+      "kind": "place",
+      "name": "General Dynamics",
+      "detail": "The sidecar says William A. Anders served as vice chairman and CEO of General Dynamics from 1990 to 1994 after roles in government, General Electric, and Textron.",
+      "useIn": "fullRead",
+      "phrasingHint": "General Dynamics gives the triage problem its weight because inherited scale had to be judged rather than admired."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Sometimes you have to cut",
+      "Crisis reveals leadership",
+      "Less can be more"
+    ],
+    "counterintuition": [
+      "Shrinking is always discipline",
+      "Saving morale means saving every unit",
+      "Tough cuts prove courage"
+    ],
+    "tryThisNow": [
+      "Cut one thing",
+      "Prioritize your tasks",
+      "Make a stop-doing list"
+    ],
+    "examples": [
+      "proud product line from legacy draft",
+      "robotics team with too many builds",
+      "student paper shrinkage",
+      "family budget pay cut"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "No more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'.",
+    "requiredOpenings": "At least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human.",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Thomas",
+      "domain": "ship-repair yard deciding which dock contracts survive after a debt covenant breach",
+      "audience": "a yard president with three legacy service lines and one profitable repair niche",
+      "stakes": "missing the covenant again will put the yard under bank control",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Thomas lays each contract folder under a red, yellow, or green tag and cancels the prestige naval refit bid because it consumes dry-dock days the profitable emergency repair work needs.",
+      "firstImage": "rainwater pooled in a dry-dock inspection groove",
+      "mustInclude": [
+        "covenant letter",
+        "contract folders",
+        "dry-dock schedule"
+      ],
+      "mustAvoid": [
+        "layoff melodrama without portfolio ranking"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "rural clinic network closing one satellite service to save urgent-care coverage",
+      "audience": "a medical director facing three thinly staffed locations",
+      "stakes": "keeping every service open would leave urgent care unsafe by August",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sophie moves colored pins on the staffing map and closes the low-volume dermatology day so nurses can cover urgent care where patients actually arrive.",
+      "firstImage": "colored map pins scattered across a county clinic map",
+      "mustInclude": [
+        "staffing map",
+        "patient volume sheet",
+        "August rota"
+      ],
+      "mustAvoid": [
+        "generic healthcare compassion versus numbers"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "independent games studio after a failed launch",
+      "audience": "a studio founder attached to three prototype expansions",
+      "stakes": "nine weeks of payroll left and one salvageable core game loop",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Lukas one payroll forecast to freeze two admired expansions and assign every remaining developer to the single loop with evidence of player retention.",
+      "firstImage": "a bug board with three colored columns and one column crossed out",
+      "mustInclude": [
+        "payroll forecast",
+        "retention graph",
+        "prototype board"
+      ],
+      "mustAvoid": [
+        "startup pivot without asset triage"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "city arts festival recovering after a sponsor collapse",
+      "audience": "a festival director deciding which venues to keep",
+      "stakes": "trying to preserve the full map would cancel the festival entirely",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What is the smallest festival still worth holding? Aanya cuts the admired waterfront stage first because security costs would drain the whole recovery budget.",
+      "firstImage": "a folded festival map with a blue waterfront circle",
+      "mustInclude": [
+        "sponsor withdrawal email",
+        "security quote",
+        "venue map"
+      ],
+      "mustAvoid": [
+        "event-planning chaos as the lesson"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "regional freight carrier after losing its largest retail account",
+      "audience": "a fleet manager protecting routes that once signaled market reach",
+      "stakes": "empty miles are burning fuel cash needed for core medical deliveries",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "James asks dispatch to name which routes still pay for their trucks, then parks the longest prestige route and reallocates drivers to contracted medical deliveries.",
+      "firstImage": "a diesel receipt curled on top of a route profitability report",
+      "mustInclude": [
+        "route profitability report",
+        "fuel receipt",
+        "medical delivery contract"
+      ],
+      "mustAvoid": [
+        "generic logistics efficiency"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "language school with too many course levels after enrollment drops",
+      "audience": "a director worried parents will read cancellations as failure",
+      "stakes": "keeping every level alive leaves each class too small to teach well",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Marit cross out the least viable intermediate sections, merge students into fewer stronger rooms, and explain that recovery means protecting learning quality rather than preserving the old catalog.",
+      "firstImage": "a course catalog with sticky notes covering half the schedule",
+      "mustInclude": [
+        "enrollment roster",
+        "course catalog",
+        "room schedule"
+      ],
+      "mustAvoid": [
+        "classroom generic; make it a language-school operating decision"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "rank inherited commitments by recovery value",
+      "separate rational downsizing from toughness theater",
+      "spot when preserving scale weakens the core",
+      "choose a contraction that improves future strength rather than optics"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Draw three boxes labeled protect, sell or stop, and undecided for one overloaded system; place one inherited commitment in each box using recovery value only.",
+  "readingTimeMinutes": 12
+}

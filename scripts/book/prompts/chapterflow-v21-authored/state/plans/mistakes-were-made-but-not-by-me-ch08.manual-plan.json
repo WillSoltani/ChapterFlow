@@ -1,0 +1,200 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch08",
+  "number": 8,
+  "title": "Wounds, Rifts, and Wars",
+  "coreMove": "Preserve the reality of a wound without turning innocence into group property that licenses the next harm.",
+  "sourcePressure": "The group-conflict chapter scales self-justification into us-versus-them thinking, selective collective memory, grievance as identity, retaliation loops, and loyalty costs around self-examination.",
+  "chapterSpecificMisunderstanding": "Equating all harms, flattening historical injuries, or jumping to conflict-resolution optimism instead of showing how grievance becomes self-renewing identity.",
+  "sourceAlignmentTerms": [
+    "us-versus-them",
+    "collective memory",
+    "grievance",
+    "retaliation loop",
+    "injury as identity",
+    "group loyalty",
+    "moral permission",
+    "self-examination"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "us-versus-them escalation",
+      "detail": "the source supports the pattern in which each group justifies its own behavior while reading the other side as the real aggressor",
+      "useIn": "both",
+      "phrasingHint": "Each side can call its own blow context and the other side's blow character."
+    },
+    {
+      "kind": "artifact",
+      "name": "injury as identity",
+      "detail": "the source supports grievance becoming central to what a group believes it is",
+      "useIn": "fullRead",
+      "phrasingHint": "A wound can remain true and still become the passport a group uses to cross into retaliation."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a named war or current political conflict.",
+      "Avoid flags, battlefields, and casualty imagery."
+    ],
+    "counterintuition": [
+      "Do not imply real wounds should be forgotten.",
+      "Avoid false equivalence."
+    ],
+    "tryThisNow": [
+      "No broad forgiveness prompt.",
+      "No peace-talk fantasy."
+    ],
+    "examples": [
+      "No international conflict simulation.",
+      "No family argument reused from ch7."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "a union-management safety committee after a bruising lockout",
+      "audience": "workplace groups carrying institutional memory into negotiations",
+      "stakes": "a new guardrail dispute may become proof that the other side never changes",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Megan separates the lockout wound from the current guardrail defect before the committee votes to retaliate procedurally",
+      "firstImage": "a dented safety guard laid across a bargaining-room credenza",
+      "mustInclude": [
+        "lockout memory",
+        "guardrail defect",
+        "committee vote"
+      ],
+      "mustAvoid": [
+        "labor history lecture",
+        "strike melodrama"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "a neighborhood redevelopment forum between long-time residents and new apartment owners",
+      "audience": "civic groups whose identity is built around being harmed or ignored",
+      "stakes": "a zoning meeting becomes a ritual of accusation rather than a decision about one block",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivier maps who lost what in the last project and who would bear costs now, preventing either side from using one wound as the whole map",
+      "firstImage": "a foam-board zoning map propped on a scratched folding table",
+      "mustInclude": [
+        "zoning map",
+        "last project",
+        "current cost"
+      ],
+      "mustAvoid": [
+        "gentrification essay",
+        "city-hall villain"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "an online fan community split after moderators banned a popular contributor",
+      "audience": "community leaders watching grievance turn into identity badges",
+      "stakes": "every moderation decision becomes evidence of betrayal or chaos",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marit predicts both factions' interpretation of the same moderation log, then posts the rule breach and the process miss together",
+      "firstImage": "a moderation queue glowing on a laptop in a dark spare room",
+      "mustInclude": [
+        "moderation log",
+        "rule breach",
+        "process miss"
+      ],
+      "mustAvoid": [
+        "social media pile-on",
+        "free speech debate"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "a regional school merger committee balancing two towns with a long rivalry",
+      "audience": "public officials handling inherited group memory",
+      "stakes": "bus routes and mascot choices become carriers for older humiliation",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Sam reads the old closure minutes and the current enrollment numbers in the same meeting before letting either town claim pure victimhood",
+      "firstImage": "a faded school mascot patch taped beside an enrollment chart",
+      "mustInclude": [
+        "old closure minutes",
+        "enrollment numbers",
+        "mascot patch"
+      ],
+      "mustAvoid": [
+        "sports rivalry comedy",
+        "education funding explainer"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "a museum repatriation working group after a disputed exhibit label",
+      "audience": "institutions and community representatives balancing truth, injury, and defensiveness",
+      "stakes": "one side may treat any admission as betrayal while the other treats any delay as denial",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Javier two drafts to write a label that names the institution's acquisition choice without asking the harmed group to soften the wound",
+      "firstImage": "a blank exhibit label held under a strip of gallery track lighting",
+      "mustInclude": [
+        "acquisition record",
+        "label draft",
+        "community review"
+      ],
+      "mustAvoid": [
+        "named colonial history not sourced",
+        "museum PR spin"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "a refugee association board split between older arrivals and newly arrived families",
+      "audience": "community groups where past survival can become current gatekeeping",
+      "stakes": "aid allocation becomes a moral contest over who suffered correctly",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Adaeze write two true sentences: what the older group endured, and what that history does not entitle them to deny newcomers",
+      "firstImage": "a stack of translated intake forms weighted by a chipped ceramic paperweight",
+      "mustInclude": [
+        "intake forms",
+        "aid allocation",
+        "two true sentences"
+      ],
+      "mustAvoid": [
+        "war backstory",
+        "charity savior frame"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate real injury from identity that licenses retaliation",
+      "analyze how loyalty polices collective memory",
+      "choose moves that name one's own group's aggression without denying the wound"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one group you belong to, write two true sentences: what was done to us, and what that does not give us permission to do now.",
+  "readingTimeMinutes": 12
+}

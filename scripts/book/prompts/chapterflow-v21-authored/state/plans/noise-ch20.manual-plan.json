@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch20",
+  "number": 20,
+  "title": "Judgments and Models",
+  "coreMove": "Use a statistical model as the reference floor before deciding how much human adjustment to layer on top, rather than treating the model as a check on human judgment after the fact.",
+  "sourcePressure": "Statistical models are consistent: they have no occasion noise, no between-model variation, and no pattern drift. Research consistently shows that simple linear models outperform expert clinical and professional judgment in many prediction tasks — not because models are brilliant but because they are consistent. The expert's value is in setting up the model correctly and in handling genuinely novel cases that fall outside the model's training range.",
+  "chapterSpecificMisunderstanding": "Treating model use as a threat to expert autonomy or as relevant only in high-volume data-processing contexts, rather than as a baseline that should inform any prediction before human adjustment is added.",
+  "sourceAlignmentTerms": ["statistical model", "actuarial", "baseline", "override", "consistency", "human adjustment", "model vs. judgment"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Paul Meehl and actuarial vs. clinical judgment research",
+      "detail": "Paul Meehl's landmark 1954 work and subsequent meta-analyses showed that simple actuarial formulas consistently outperform clinical judgment in prediction tasks, and that adding expert override to model outputs typically reduces rather than improves predictive accuracy — because overrides introduce inconsistency (noise) without adding useful information.",
+      "useIn": "deepRead",
+      "phrasingHint": "Paul Meehl called it the 'broken-leg problem': if you have a model that predicts movie attendance and you hear that the subject has a broken leg, you override the model. That override is sensible. Most overrides are not. Most overrides are noise in a suit."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["robots are better at predicting than humans", "your gut is lying to you about predictions"],
+    "counterintuition": ["an algorithm beats an expert almost every time", "models don't need experts — experts need models"],
+    "tryThisNow": ["build a simple scoring model for your next hire decision", "compare your last ten predictions to a baseline rule"],
+    "examples": ["a scene where a model-only decision is shown to be clearly better than human judgment — this collapses the nuanced message that models are better on average, not always", "a scene where the model fails catastrophically in a specific case — that is the exception rather than the rule"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Model-vs.-judgment examples risk all reading as 'model wins.' The examples must show the range of interactions — model as baseline, override dynamics, the broken-leg exception, model construction as the expert's real value-add — to give an honest picture."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "actuarial vs. clinical parole risk assessment: a parole board comparing model-only decisions versus officer-overridden decisions on a two-year outcome lookback",
+      "audience": "a corrections department research team studying whether parole officer overrides improve or hurt recidivism prediction accuracy",
+      "stakes": "public safety and prisoner rehabilitation — overrides that reduce accuracy relative to the actuarial tool are increasing both wrongful incarceration and undetected risk",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the research team presents the two-year outcome analysis: in the 200 cases where parole officers overrode the actuarial tool in the direction of greater leniency, the recidivism rate was 24 percent — 8 points above the tool's 16 percent for the same risk-score band; in the 80 cases where officers overrode toward greater restriction, the difference was smaller and not statistically significant; on average, overrides reduced accuracy",
+      "firstImage": "a two-year outcome comparison chart showing recidivism rates by decision type: tool-only, lenient-override, restrictive-override — the lenient-override bar noticeably taller than the tool-only bar",
+      "mustInclude": ["the 24 vs. 16 percent gap for lenient overrides", "the smaller gap for restrictive overrides", "the research team's framing: the overrides are adding noise, not insight — they introduce inconsistency without improving the information basis"],
+      "mustAvoid": ["a specific incarceration case", "implying parole officers should not exercise any judgment"]
+    },
+    {
+      "domain": "college admissions holistic review: a university comparing the predictive validity of formula-based admission scores versus admissions officer holistic assessment",
+      "audience": "a university admissions research team studying which input better predicts four-year graduation and GPA",
+      "stakes": "admissions quality and educational equity — if holistic assessment adds noise without adding signal, the students admitted through officer judgment graduate at lower rates",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the research team reviews five years of outcomes: the formula score (standardized academic indicators combined into a composite) predicts 4-year GPA with a correlation of 0.44; the admissions officer holistic assessment predicts with a correlation of 0.31; and in the sample of students admitted by holistic override of formula rejection, 4-year completion rates are 7 percent lower than the formula-admitted population at the same score range",
+      "firstImage": "a two-predictor accuracy comparison table: formula composite in one row, holistic assessment in the other, outcome correlations in the final column",
+      "mustInclude": ["the 0.44 vs. 0.31 predictive validity comparison", "the 7 percent lower completion rate for formula-override admits", "the framing: this does not mean holistic assessment adds nothing; it means it adds noise faster than it adds signal in the aggregate"],
+      "mustAvoid": ["a specific student or application story", "implying admissions should be purely algorithmic without human review"]
+    },
+    {
+      "domain": "clinical diagnosis with algorithmic support: a hospital comparing diagnostic accuracy and consistency between physician-only, algorithm-only, and physician-with-algorithm workflows",
+      "audience": "a hospital quality team studying the effect of diagnostic algorithm integration on physician accuracy and variance",
+      "stakes": "diagnostic accuracy and consistent care — if the algorithm floor raises median accuracy, its integration has clear value even if top physicians perform better alone",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two hospital quality leads present the three-way comparison: algorithm-only has the lowest variance and the second-highest accuracy; physician-only has the highest variance and the highest peak accuracy but lowest median; physician-with-algorithm as baseline has the highest median accuracy and reduced variance — the clinical director's takeaway is that the algorithm should set the floor, not replace the ceiling",
+      "firstImage": "a three-panel box-plot comparison on a whiteboard: algorithm-only (tight, moderate), physician-only (wide, variable), physician-with-algorithm baseline (tighter than physician, higher than algorithm)",
+      "mustInclude": ["the three-way comparison", "the physician-with-algorithm condition outperforming both others on median accuracy", "the mechanism: the algorithm removes the worst physician decisions (noise floor), the physician adds value at the high end (genuine outliers and novel cases)"],
+      "mustAvoid": ["a specific diagnostic error story", "implying physicians should only use algorithms"]
+    },
+    {
+      "domain": "fraud detection: a fintech company comparing algorithmic flag rates versus analyst review override rates for the same transaction set",
+      "audience": "a fraud operations manager measuring whether analyst overrides of algorithmic flags improve detection accuracy",
+      "stakes": "fraud losses and customer false-positive rates — analyst overrides that release fraudulent transactions or flag legitimate ones both have direct costs",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the manager asks: across the last 12 months, when analysts overrode the algorithm's fraud flag in the direction of release, what was the subsequent fraud rate on those transactions compared to the algorithm's predicted risk? The answer: analysts who released high-confidence algorithm flags had a fraud rate 3.2 times higher than the algorithm's false-positive rate — meaning analyst releases on high-confidence flags were adding noise, not expertise",
+      "firstImage": "a fraud rate comparison table: algorithm-flagged transactions that were released by analyst override in one row, algorithm-flagged transactions that proceeded to investigation in another — fraud rates visible in the right column",
+      "mustInclude": ["the 3.2x fraud rate in analyst-released transactions versus algorithm false positives", "the high-confidence flag specification (not borderline flags — those are exactly where analyst expertise matters)", "the manager's proposed policy: analyst overrides allowed only for borderline flags, not high-confidence ones"],
+      "mustAvoid": ["a specific fraud case", "implying fraud analysts add no value — the point is that overrides on high-confidence flags add noise, not that analyst judgment is universally valueless"]
+    },
+    {
+      "domain": "surgical scheduling: a hospital comparing model-predicted surgery duration versus surgeon-estimated duration for scheduling accuracy",
+      "audience": "a hospital OR scheduling manager studying over- and under-booking patterns",
+      "stakes": "OR utilization and patient care — systematically over-booked ORs produce overtime costs; under-booked ORs produce wasted capacity; surgeon-estimate variance drives scheduling noise",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you compare two scheduling approaches: surgeon self-estimated duration has a mean absolute error of 23 minutes and a standard deviation of 31 minutes; the model-predicted duration (based on procedure type, patient factors, and surgeon historical data) has a mean absolute error of 18 minutes and a standard deviation of 12 minutes — and the surgeons with the largest estimation errors are also the surgeons who most resist using the model estimate as a starting point",
+      "firstImage": "two scheduling accuracy summaries for the same OR suite: surgeon-estimated durations in one column, model-predicted durations in another, actual durations in a third — the model column tracking closer to actuals",
+      "mustInclude": ["the 23 vs. 18 minute mean absolute error and the 31 vs. 12 minute standard deviation", "the higher resistance from surgeons with the largest errors", "the framing: using the model as a starting point does not eliminate surgeon input; it eliminates the surgeon's idiosyncratic over-confidence in estimating duration"],
+      "mustAvoid": ["a surgical delay patient harm story", "implying surgeons have no useful information to add to scheduling"]
+    },
+    {
+      "domain": "real-estate automated valuation versus appraiser override: a bank comparing model-only versus appraiser-adjusted valuations on a portfolio of residential properties",
+      "audience": "a bank lending quality officer studying whether appraiser adjustments to automated model values improve or hurt loan portfolio quality",
+      "stakes": "lending risk management — appraisers who inflate above the automated value expose the bank to greater collateral risk; appraisers who deflate below suppress creditworthy lending",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the quality officer presents the three-year portfolio analysis: appraiser adjustments above the automated valuation model correlated with higher subsequent default-adjusted-LTV losses; appraiser adjustments below the automated value showed no significant difference from model-only decisions; the largest upward adjustments were made by a subset of appraisers and explained by client-relationship factors rather than property characteristics",
+      "firstImage": "a scatter plot of appraiser adjustment magnitude on the x-axis versus subsequent default-adjusted-LTV loss on the y-axis — a positive slope visible only for upward adjustments",
+      "mustInclude": ["the upward-adjustment loss correlation", "the no-significant-difference for downward adjustments", "the client-relationship explanation for the worst upward adjusters as a noise source, not a quality signal"],
+      "mustAvoid": ["a mortgage crisis narrative", "implying all appraisers adjust inappropriately"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why models outperform expert judgment on average in prediction domains where feedback is available",
+      "identify the conditions under which expert override of a model is likely to add value versus add noise",
+      "apply the model-as-baseline principle to design a human-model workflow for a described prediction task",
+      "analyze why experts resist models even when models outperform them on average",
+      "evaluate whether a described model-override policy would preserve the value of human judgment while reducing its noise contribution"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For your next prediction decision — project risk, hire quality, revenue estimate — build the simplest possible scoring rule: pick the two or three case features that research suggests predict the outcome best, weight them, compute a score. Make your judgment, then look at what the score says. If your judgment is consistently above or below the score, you are overriding in one direction. If you are above sometimes and below other times, you are adding noise. Both are signals worth knowing.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why model consistency beats human peak performance when the population level matters, at least one 5+ sentence paragraph on the Meehl finding and why it has been consistently replicated, at least one one-sentence punch line about what 'human override' adds most of the time",
+    "fullReadInterludeRequirement": "at least one paragraph on the broken-leg exception — the one case where override is clearly correct — to make clear that the argument is about average overrides, not about every override being wrong",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

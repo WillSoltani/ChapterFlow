@@ -1,0 +1,143 @@
+{
+  "chapterId": "superforecasting-ch01",
+  "number": 1,
+  "title": "An Optimistic Skeptic",
+  "coreMove": "Separate prestige signals from track-record evidence, and apply the same skepticism to your own confident explanations.",
+  "sourcePressure": "Tom Friedman's famous commentary versus Bill Flack's obscure but more accurate forecasting establishes that credibility signals and predictive accuracy routinely diverge. Tetlock's 1984–2004 expert study shows average experts performing near chance on long-horizon questions. Bouazizi and the Arab Spring mark where genuine chaos limits prediction regardless of skill.",
+  "chapterSpecificMisunderstanding": "The wrong version is 'experts are always wrong, trust your gut instead.' The chapter argues for measuring accuracy systematically — not replacing expert prestige with populist anti-expertise, but replacing trust-in-status with trust-in-track-record.",
+  "sourceAlignmentTerms": ["optimistic skeptic", "chance-level", "Good Judgment Project", "forecast-measure-revise", "track record", "black swan limit"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Tom Friedman",
+      "detail": "Three-time Pulitzer Prize-winning columnist whose confident geopolitical forecasts, when tracked, showed accuracy near chance — held up by Tetlock and Gardner as the prototype of prestige-without-track-record",
+      "useIn": "deepRead",
+      "phrasingHint": "Tom Friedman's columns filled column inches with confident predictions that, once scored, tracked chance about as well as a coin flip — the fame was real; the foresight was not."
+    },
+    {
+      "kind": "person",
+      "name": "Bill Flack",
+      "detail": "An obscure but high-performing forecaster in Tetlock's Good Judgment Project who consistently outperformed famous experts by checking base rates and updating carefully, rather than crafting compelling narratives",
+      "useIn": "both",
+      "phrasingHint": "Bill Flack had no column, no green room, and no publicist — and a better prediction record than most people who had all three."
+    },
+    {
+      "kind": "person",
+      "name": "Mohamed Bouazizi",
+      "detail": "Tunisian street vendor whose self-immolation in December 2010 triggered the Arab Spring — used in the book to show that some events cascade unpredictably even under intelligent effort, marking a genuine boundary of forecasting",
+      "useIn": "fullRead",
+      "phrasingHint": "Bouazizi's act set off a cascade no one had modeled — not because the forecasters were careless, but because some systems amplify small shocks past anything a prior estimate could reach."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with 'Have you ever wondered why smart people get the future wrong?' — too generic and coaching-register",
+      "opening with a definition of 'superforecasting' — meta-reference that skips the concrete contrast"
+    ],
+    "counterintuition": [
+      "'The more confident someone sounds, the less you should trust them' — too blunt, loses the book's nuance that some expertise IS valid"
+    ],
+    "tryThisNow": [
+      "'Set a timer and reflect on a recent prediction you made' — reusable timer prompt, not chapter-specific",
+      "'Write down three things you think will happen this year' — too generic, skips the track-record measurement mechanism"
+    ],
+    "examples": [
+      "generic 'expert vs outsider' contest without specific track record data — misses the measurement core",
+      "any scene where the protagonist simply distrusts an expert without checking the record — that is anti-expert cynicism, not the book's move"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Chapter 1 sets the tone for the whole book; monotonous openings signal a template was used rather than each scene being built fresh"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital credentialing committee comparing two infectious disease consultants — one celebrated, one little-known",
+      "audience": "a department chief who must decide which consultant to route complex cases to",
+      "stakes": "patient outcomes over the next year; the less-famous consultant's record is significantly better but his manner is less impressive",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the chief pulls two years of case-outcome logs and sees that the celebrated consultant's diagnostic accuracy is 62% while the quieter one's is 81% — the prestige signal and the track record finally sit side by side in the same spreadsheet",
+      "firstImage": "a conversation in a corridor where a colleague recommends the famous consultant 'because everyone trusts him'",
+      "mustInclude": ["two years of outcome logs", "the specific accuracy gap", "the chief's discomfort with what the numbers say"],
+      "mustAvoid": ["villainizing the famous consultant", "generic 'data over intuition' moral"]
+    },
+    {
+      "domain": "a regional winery where the cellar master's vintage predictions compete against a celebrated wine critic's ratings",
+      "audience": "a small winery owner deciding whose predictions to use when setting barrel aging schedules",
+      "stakes": "three-year aging commitments worth six-figure losses if the vintage call is wrong",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the owner compares five years of the critic's 'vintage of the decade' calls against the cellar master's quiet percentage estimates — the critic's 9 out of 10 celebrations translated to 4 genuinely exceptional years; the cellar master's 68% calls were right 71% of the time",
+      "firstImage": "oak barrels stacked floor to ceiling and the smell of a harvest that has not yet been rated by anyone with a column",
+      "mustInclude": ["the specific comparison across 5 vintages", "the critic's public track record number", "the cellar master's number"],
+      "mustAvoid": ["attacking wine critics generically", "making it a snobbery scene rather than a measurement scene"]
+    },
+    {
+      "domain": "a city school board evaluating two reading curriculum consultants — one with a book deal and speaking tour, one with a decade of classroom data",
+      "audience": "a board member responsible for recommending a three-year contract",
+      "stakes": "reading literacy scores for 4,000 students over three years",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the board member discovers the celebrated consultant's five previous district engagements showed no statistically significant gain; the data-dense consultant's last three engagements showed a 14-point reading score improvement",
+      "firstImage": "a stack of glossy brochures from the celebrity consultant next to a plain spreadsheet printout from the other",
+      "mustInclude": ["five previous engagements", "the 14-point improvement figure", "the board member's realization that no one had checked before"],
+      "mustAvoid": ["casting this as consultants-are-bad; the point is measurement, not cynicism"]
+    },
+    {
+      "domain": "a law firm associate tracking partner case-outcome predictions against her own",
+      "audience": "a junior associate at a litigation firm who has been tracking her own forecast accuracy for 18 months",
+      "stakes": "her own professional calibration and whether to trust her judgment when it conflicts with senior partners",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she lays out 18 months of tracked predictions and finds her case-outcome accuracy rate is 74%; the most confident partner's is 58% — she now has to decide what to do with that information in a culture that treats his confidence as data",
+      "firstImage": "a private spreadsheet she has been keeping in a notebook no one else has seen",
+      "mustInclude": ["18 months of data", "the specific accuracy gap between her and the partner", "the social cost of acting on it"],
+      "mustAvoid": ["making the partner a villain", "collapsing into 'junior people know best' — the point is track record, not rank"]
+    },
+    {
+      "domain": "a marathon coaching team where a media-friendly celebrity trainer's method competes against an unglamorous training log analysis",
+      "audience": "an amateur marathon runner choosing between two coaching programs",
+      "stakes": "six months of training before a qualifying race",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the runner finds that athletes who completed the celebrity program improved their finish times by 4 minutes on average; athletes on the less-promoted program improved by 11 minutes — the data sits in publicly available race results no one had thought to compile",
+      "firstImage": "a crowded information session where the celebrity coach has a sponsor backdrop and a slideshow",
+      "mustInclude": ["the 4-minute vs 11-minute gap", "the public race result data source", "the runner's awareness that the presentation quality was what almost decided her"],
+      "mustAvoid": ["making the celebrity coach a fraud — the training may be fine, it just has a weaker track record on this specific metric"]
+    },
+    {
+      "domain": "a financial planning firm where a senior advisor's confident market calls are tracked against a quieter analyst's probabilistic forecasts",
+      "audience": "a firm partner reviewing client outcome data after five years",
+      "stakes": "client returns and the firm's credibility on market timing claims",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "the postmortem shows the senior advisor's confident directional calls (bull/bear, buy/sell) were right 52% of the time — statistically indistinguishable from chance; the analyst's calibrated probability ranges, which seemed less impressive to clients, actually let clients make better portfolio decisions",
+      "firstImage": "an empty boardroom at the end of a five-year client review cycle, printed reports stacked at one end",
+      "mustInclude": ["the 52% figure", "the contrast between the advisor's confident language and its chance-level accuracy", "why probabilistic ranges served clients better"],
+      "mustAvoid": ["generic financial advice", "suggesting the firm is dishonest — the advisor believed his calls"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish prestige signals from track-record evidence in a real scenario",
+      "identify when a claim is too vague to evaluate later",
+      "apply the forecast-measure-revise cycle to a new domain",
+      "recognize when chaos (Bouazizi-type events) limits prediction regardless of skill",
+      "evaluate whether a confident-sounding source has an actual track record to justify the confidence"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one confident prediction you've heard in the last week — a colleague's project timeline, a pundit's forecast, a friend's claim. Search for that person's track record on similar past predictions. Write down what you find in one sentence. If you can't find a track record, write 'no track record available' — that answer is itself the data.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader about how they evaluate sources, or a direct observation about what keeping score would cost socially",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

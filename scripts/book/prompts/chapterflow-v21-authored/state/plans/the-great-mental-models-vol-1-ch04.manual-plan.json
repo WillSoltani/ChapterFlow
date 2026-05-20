@@ -1,0 +1,126 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch04",
+  "number": 4,
+  "title": "First Principles Thinking",
+  "coreMove": "Strip inherited assumptions from a problem and rebuild from what is actually true.",
+  "sourcePressure": "The source contrasts reasoning by analogy with reasoning from first principles, names Socratic questioning and the Five Whys, uses the Lego house example, and anchors practical rebuilding in Elon Musk's battery and SpaceX examples.",
+  "chapterSpecificMisunderstanding": "The weak version says ignore tradition, be disruptive, or start from scratch without constraints.",
+  "sourceAlignmentTerms": ["first principles", "reasoning by analogy", "fundamental truths", "Socratic questioning", "Five Whys", "assumption", "Elon Musk"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Lego house example",
+      "detail": "the source uses disassembling a Lego house to show that taking a thing apart creates new possibility beyond incremental improvement",
+      "useIn": "deepRead",
+      "phrasingHint": "A Lego house stops being a house when the bricks come loose, and that is exactly when new designs become possible."
+    },
+    {
+      "kind": "person",
+      "name": "Elon Musk",
+      "detail": "the source uses Musk's battery and SpaceX examples as anchors for rethinking cost and design through fundamentals",
+      "useIn": "both",
+      "phrasingHint": "Musk's useful move was not optimism; it was asking what the materials and physics cost before accepting the market's price tag."
+    },
+    {
+      "kind": "artifact",
+      "name": "Socratic questioning and the Five Whys",
+      "detail": "the source names these as the two main techniques for reaching first principles",
+      "useIn": "fullRead",
+      "phrasingHint": "The repeated why is not a child's habit here; it is a shovel."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["startup disruption speech", "blank whiteboard as main scene", "genius ignores experts"],
+    "counterintuition": ["tradition is always wrong", "constraints do not matter", "innovation comes from courage"],
+    "tryThisNow": ["think outside the box", "ask why five times with no object", "brainstorm new ideas"],
+    "examples": ["generic app founder", "Tesla biography", "whiteboard innovation workshop"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "municipal battery-cart procurement",
+      "audience": "a facilities manager told electric maintenance carts are too expensive",
+      "stakes": "the city may keep buying gas carts because the vendor bundle looks inevitable",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Matthew separates battery cells, frame, charger, and service contract costs on the bid sheet before accepting the bundled price",
+      "firstImage": "a yellow maintenance cart parked beside a stack of vendor bids",
+      "mustInclude": ["battery cell price", "service contract", "bid sheet"],
+      "mustAvoid": ["Musk imitation", "generic cost cutting"]
+    },
+    {
+      "domain": "bakery packaging redesign",
+      "audience": "a bakery owner whose boxes crush croissants during delivery",
+      "stakes": "delivery growth stalls if the team only buys thicker versions of the same bad box",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Juliette takes the crushed box apart, lists what the pastry actually needs, and rebuilds the package from steam escape and corner pressure instead of copying the old box",
+      "firstImage": "butter flakes stuck to the inside of a collapsed pastry box",
+      "mustInclude": ["crushed box", "steam vent", "corner pressure"],
+      "mustAvoid": ["pretty packaging story", "brand redesign"]
+    },
+    {
+      "domain": "hotel housekeeping staffing model",
+      "audience": "an operations analyst copying a competitor's room-per-attendant target",
+      "stakes": "rooms may be marked clean while attendants skip safety checks",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lars walks one room reset with a timer and breaks the job into physical tasks before accepting the industry benchmark",
+      "firstImage": "a cart wheel squeaking outside room 417",
+      "mustInclude": ["room reset timer", "industry benchmark", "safety checklist"],
+      "mustAvoid": ["generic hotel efficiency", "staff blame"]
+    },
+    {
+      "domain": "robotics club bridge build",
+      "audience": "a student team copying last year's winning robot chassis",
+      "stakes": "the copied design may fail the new terrain requirement",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chiara asks what the robot must actually cross, carry, and turn around, then removes three copied parts from the table",
+      "firstImage": "aluminum brackets scattered across a plywood bridge mockup",
+      "mustInclude": ["terrain rule sheet", "copied chassis", "removed brackets"],
+      "mustAvoid": ["school competition triumph", "kids are more creative trope"]
+    },
+    {
+      "domain": "dental clinic reminder system",
+      "audience": "a clinic manager trying to reduce missed appointments",
+      "stakes": "patients keep missing visits while the clinic buys reminder software by analogy",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hadiya asks five whys on one missed visit and finds the real constraint is shift work and bus timing, not forgetfulness",
+      "firstImage": "an unanswered reminder text beside a bus schedule printout",
+      "mustInclude": ["missed-visit log", "bus schedule", "Five Whys"],
+      "mustAvoid": ["software solves everything", "patient blame"]
+    },
+    {
+      "domain": "community theater lighting rig",
+      "audience": "a volunteer technical director upgrading an old lighting setup",
+      "stakes": "a donated rig may look modern but overload the building's electrical limits",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Pavel list electricity, throw distance, heat, and cue needs before deciding which donated lights are useful and which are just familiar theater gear",
+      "firstImage": "dust bright in a stage beam above a coil of old cable",
+      "mustInclude": ["electrical limit", "throw distance", "donated lights"],
+      "mustAvoid": ["show-must-go-on drama", "generic volunteer hustle"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["separate assumptions from facts", "rebuild from physical or economic constraints", "distinguish analogy from first principles", "use Five Whys or Socratic questioning on a live constraint"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "Write one problem as two columns: facts I can verify and assumptions I inherited. Rebuild one option using only the first column.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

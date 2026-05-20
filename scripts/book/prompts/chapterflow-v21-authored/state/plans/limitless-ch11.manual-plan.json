@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch11",
+  "number": 11,
+  "title": "Focus",
+  "coreMove": "Close the competing pull before it dilutes the learning act.",
+  "sourcePressure": "The methods section opens by treating focus as the selective-attention gate that protects learning from switching and distraction.",
+  "chapterSpecificMisunderstanding": "Making focus a moral glare or a fantasy of perfect control.",
+  "sourceAlignmentTerms": [
+    "focus",
+    "selective attention",
+    "distraction",
+    "switching",
+    "attention gate",
+    "fragmented work",
+    "protected attention"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Focus with a generic unlocked potential claim.",
+      "Do not start with a definition of focus."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "radiology reading room",
+      "audience": "resident studying image patterns amid pager interruptions",
+      "stakes": "missed findings become missed diagnoses",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "protagonistName": "Emma",
+      "requiredBeat": "You silence the nonurgent pager relay, set one image category, and finish the comparison set before reopening messages.",
+      "firstImage": "two grayscale scans side by side in a dim room",
+      "mustInclude": [
+        "scan pair",
+        "pager relay",
+        "comparison checklist"
+      ],
+      "mustAvoid": [
+        "medical claims",
+        "heroic focus myth"
+      ]
+    },
+    {
+      "domain": "high school debate prep",
+      "audience": "coach training students to research without tab hopping",
+      "stakes": "tournament cases must be evidence-backed by Saturday",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Lukas",
+      "requiredBeat": "Lukas closes every tab except the statute database and writes one evidence card before checking chat.",
+      "firstImage": "a statute page reflected in a laptop screen",
+      "mustInclude": [
+        "statute database",
+        "evidence card",
+        "chat window"
+      ],
+      "mustAvoid": [
+        "classroom generic",
+        "internet blame only"
+      ]
+    },
+    {
+      "domain": "customs brokerage desk",
+      "audience": "broker learning new tariff classifications",
+      "stakes": "one wrong code can hold a shipment at the border",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "protagonistName": "Paula",
+      "requiredBeat": "Paula parks the email queue, opens only the classification guide, and completes one code decision end to end.",
+      "firstImage": "a cargo manifest clipped beneath a keyboard",
+      "mustInclude": [
+        "cargo manifest",
+        "classification guide",
+        "email queue"
+      ],
+      "mustAvoid": [
+        "generic office inbox",
+        "trade-policy lecture"
+      ]
+    },
+    {
+      "domain": "choir rehearsal planning",
+      "audience": "director distracted by messages while learning a new score",
+      "stakes": "singers arrive in forty minutes",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Ben",
+      "requiredBeat": "Ben tells the accompanist he needs twelve silent minutes and marks the entrance cues before answering the parent thread.",
+      "firstImage": "pencil marks above a tenor entrance",
+      "mustInclude": [
+        "score pages",
+        "pencil",
+        "parent-message thread"
+      ],
+      "mustAvoid": [
+        "music inspiration",
+        "busyness complaint"
+      ]
+    },
+    {
+      "domain": "farmers market cheese stall",
+      "audience": "vendor studying food-safety rules between customers",
+      "stakes": "inspection is tomorrow morning",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "protagonistName": "Margaux",
+      "requiredBeat": "Margaux sees the failed quiz came from fragmented bursts, then creates one protected fifteen-minute rule block before setup.",
+      "firstImage": "cheese labels weighted under a small stone",
+      "mustInclude": [
+        "cheese labels",
+        "inspection checklist",
+        "stall tarp"
+      ],
+      "mustAvoid": [
+        "foodie scene",
+        "inspection fear only"
+      ]
+    },
+    {
+      "domain": "London product support queue",
+      "audience": "agent learning complex refund exceptions",
+      "stakes": "wrong replies create chargebacks",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "protagonistName": "Kiran",
+      "requiredBeat": "Kiran predicts the exception category after a closed focus block, then checks whether fewer switches improved accuracy.",
+      "firstImage": "a headset resting beside a refund matrix",
+      "mustInclude": [
+        "headset",
+        "refund matrix",
+        "blocked calendar"
+      ],
+      "mustAvoid": [
+        "call-center complaint",
+        "productivity hack"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when close the competing pull before it dilutes the learning act. is needed in a new scenario.",
+      "Choose the visible action that matches Focus rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Remove one competing pull from the room and finish one learning unit before reopening it.",
+  "readingTimeMinutes": 12
+}

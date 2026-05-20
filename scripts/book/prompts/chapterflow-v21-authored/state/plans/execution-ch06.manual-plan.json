@@ -1,0 +1,186 @@
+{
+  "chapterId": "execution-ch06",
+  "number": 6,
+  "title": "The People Process",
+  "coreMove": "Make talent review answer the business plan instead of sitting beside it as a separate ritual.",
+  "sourcePressure": "Core process one: the people process must link people to strategy and operations through pipeline depth, succession, retention risk, nonperformance, HR linkage, and candid dialogue.",
+  "chapterSpecificMisunderstanding": "Make this an HR process chapter about forms and annual reviews.",
+  "sourceAlignmentTerms": [
+    "people process",
+    "strategy and operations",
+    "leadership pipeline",
+    "succession depth",
+    "retention risk",
+    "Honeywell talent review",
+    "nonperformers",
+    "candid dialogue"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Honeywell talent review",
+      "detail": "the source sidecar names Talent Review At Honeywell as a chapter heading but warns not to invent meeting choreography or process scenes beyond that heading",
+      "useIn": "fullRead",
+      "phrasingHint": "A Honeywell talent review belongs as a reminder that people process is operating work, not as permission to invent a corporate ritual."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the the people process that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a hospital network preparing to open a rural oncology clinic with no second trained nurse lead",
+      "audience": "a clinical operations director",
+      "stakes": "the clinic opening depends on succession depth that does not exist yet",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivia places the nurse-lead pipeline sheet beside the clinic launch plan so the people gap becomes a strategy risk",
+      "firstImage": "The oncology clinic floor plan is complete, but the nurse-lead pipeline sheet has one name and no backup.",
+      "mustInclude": [
+        "clinic floor plan",
+        "pipeline sheet",
+        "launch plan"
+      ],
+      "mustAvoid": [
+        "generic staffing shortage"
+      ]
+    },
+    {
+      "domain": "a national parks maintenance division facing retirements before wildfire season",
+      "audience": "a regional superintendent",
+      "stakes": "critical trail and pump expertise can leave before the operations plan begins",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Luke traces last season's breakdown to retention risk that was discussed after the vacancy instead of inside the people process",
+      "firstImage": "It took Luke one closed trail and two retired pump mechanics to see the retention risk column was not decoration.",
+      "mustInclude": [
+        "retention risk column",
+        "pump-maintenance log",
+        "wildfire season calendar"
+      ],
+      "mustAvoid": [
+        "generic succession chart"
+      ]
+    },
+    {
+      "domain": "a specialty insurer linking underwriter development to a new cyber-risk strategy",
+      "audience": "a business-unit head",
+      "stakes": "strategy growth fails if underwriters are not developed for the risk class",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nicolas makes the talent review answer the cyber-risk strategy instead of describing people in isolation",
+      "firstImage": "\"Which underwriter can price this risk in six months?\" Nicolas asks before anyone opens the appraisal packet.",
+      "mustInclude": [
+        "cyber-risk strategy page",
+        "appraisal packet",
+        "development plan"
+      ],
+      "mustAvoid": [
+        "generic annual review"
+      ]
+    },
+    {
+      "domain": "a conservatory choosing replacements for two retiring accompanists before audition season",
+      "audience": "a program director",
+      "stakes": "student auditions can collapse if succession depth is assumed rather than built",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Sam predicts the first audition week failure and uses it to expose shallow succession depth",
+      "firstImage": "What happens to an audition week when both accompanists retire in June?",
+      "mustInclude": [
+        "audition calendar",
+        "accompanist roster",
+        "succession depth note"
+      ],
+      "mustAvoid": [
+        "generic school staffing"
+      ]
+    },
+    {
+      "domain": "a regional food distributor carrying a nonperforming route supervisor through peak season",
+      "audience": "an operations VP",
+      "stakes": "working around one weak performer hides damage in delivery accuracy and driver morale",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Kasia decides whether to keep routing around the supervisor or bring nonperformance into candid dialogue with business results attached",
+      "firstImage": "At 5:18 a.m., Kasia watches drivers rewrite a route sheet the supervisor approved the night before.",
+      "mustInclude": [
+        "route sheet",
+        "delivery accuracy report",
+        "peak-season calendar"
+      ],
+      "mustAvoid": [
+        "generic bad employee scene"
+      ]
+    },
+    {
+      "domain": "a London architecture firm connecting HR data to delayed planning approvals",
+      "audience": "a managing partner",
+      "stakes": "the firm keeps treating missed approvals as project problems when capability gaps are driving them",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hadiya links HR capability notes to planning-approval delays and changes the review from descriptive to business-linked",
+      "firstImage": "You see planning-approval delays in one file and Hadiya sees the same two capability notes in another.",
+      "mustInclude": [
+        "planning approval log",
+        "capability notes",
+        "project-margin sheet"
+      ],
+      "mustAvoid": [
+        "generic HR dashboard"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "link people process choices to live strategy and operations",
+      "spot shallow pipeline and succession depth before crisis",
+      "choose candid dialogue over descriptive talent labels",
+      "analyze nonperformance as business-result damage"
+    ]
+  },
+  "tryThisNowSpec": "Put one critical role beside one live business goal and write the backup depth, retention risk, and development gap in one row.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,1864 @@
+{
+  "bookId": "skin-in-the-game",
+  "updatedAt": "2026-05-18T17:30:34.468Z",
+  "usedProtagonistNames": [
+    "Sarah",
+    "Mathieu",
+    "Grace",
+    "Lukas",
+    "Camille",
+    "Hiroshi",
+    "James",
+    "Sophie",
+    "Anders",
+    "Chiara",
+    "Aanya",
+    "Ben",
+    "Claire",
+    "Marco",
+    "Frida",
+    "Daniel",
+    "Kasia",
+    "Yusuf",
+    "Hannah",
+    "Julien",
+    "Astrid",
+    "Michael",
+    "Layla",
+    "Pavel",
+    "Emily",
+    "Nicolas",
+    "Ingrid",
+    "Sam",
+    "Catarina",
+    "Akira",
+    "Laura",
+    "Etienne",
+    "Maja",
+    "Chris",
+    "Adaeze",
+    "Tomas",
+    "Anna",
+    "Henrik",
+    "Giulia",
+    "David",
+    "Kiran",
+    "Petra",
+    "Megan",
+    "Olivier",
+    "Marit",
+    "Thomas",
+    "Lin",
+    "Diego",
+    "Rachel",
+    "Luca",
+    "Anke",
+    "Andrew",
+    "Hadiya",
+    "Janek",
+    "Olivia",
+    "Vincent",
+    "Sofia",
+    "Matthew",
+    "Chidi",
+    "Marta",
+    "Chloe",
+    "Niklas",
+    "Isabel",
+    "Ryan",
+    "Aman",
+    "Tomasz",
+    "Manon",
+    "Lars",
+    "Paula",
+    "Jack",
+    "Min",
+    "Aleksy",
+    "Juliette",
+    "Mikkel",
+    "Nina",
+    "Luke",
+    "Devon",
+    "Pablo",
+    "Margaux",
+    "Jonas",
+    "Hanna",
+    "Javier",
+    "Nora",
+    "Anya",
+    "Iris",
+    "Antoine",
+    "Lea",
+    "Patrick",
+    "Ava",
+    "Rafael",
+    "Emma",
+    "Noah",
+    "Julia",
+    "Peter",
+    "Amina",
+    "Claudia",
+    "Rebecca",
+    "George",
+    "Clara",
+    "Edward",
+    "Lina",
+    "Martin",
+    "Alice",
+    "Erik",
+    "Mia",
+    "Robert",
+    "Mei",
+    "Teresa",
+    "Laura",
+    "Simon",
+    "Eva",
+    "Aaron",
+    "Ken",
+    "Luis"
+  ],
+  "usedExampleDomains": [
+    "commissioned benefits broker recommending a tax product to a clinic owner",
+    "university procurement committee evaluating a vendor-paid software recommendation",
+    "family investment tip before a condo down payment",
+    "architecture firm disclosing a drainage defect before selling a design package",
+    "student club selling a ski-trip package with hidden cancellation risk",
+    "freelance designer asked to recommend a printer she has never used",
+    "hospital cafeteria menu planning around one strict allergy requirement",
+    "European sales team choosing a meeting language after one non-native speaker joins",
+    "wedding caterer deciding whether to make the whole buffet halal-compatible",
+    "hardware retailer stocking low-VOC paint after a few contractors demand it",
+    "school district merging lunch contracts across towns",
+    "apartment building quiet-hours rule driven by one tenant with a medical constraint",
+    "cybersecurity contractor refusing a retainer that would require full-time obedience",
+    "scholarship student avoiding criticism of a lab protocol",
+    "expat manager with school fees covered by the firm",
+    "startup employee asked to publicly defend a roadmap he doubts",
+    "municipal consultant versus staff planner on flood approvals",
+    "airline pilot asked to accept a risky scheduling shortcut",
+    "pharmaceutical quality analyst considering a safety disclosure",
+    "city inspector pressured to overlook a contractor defect",
+    "research nurse asked to soften adverse-event language",
+    "museum curator deciding whether to return a donor-tainted artifact",
+    "youth coach reporting abuse by a winning volunteer",
+    "software maintainer exposing a security hole in a popular library",
+    "urban traffic model tested against an icy intersection",
+    "warehouse robot rollout based on clean demo-floor paths",
+    "hospital staffing forecast built without night-shift observation",
+    "fisheries quota spreadsheet ignoring dockside discard behavior",
+    "insurance wildfire map drawn by analysts far from the valley",
+    "court scheduling algorithm that ignores childcare constraints",
+    "national panel designing farm policy without growers present",
+    "education consultant prescribing classroom tech after never teaching the pilot group",
+    "public-health memo written by remote advisors about street outreach",
+    "finance professor advising pension allocation with no retiree exposure",
+    "food-safety inspector versus celebrity nutrition expert",
+    "transport board hearing about bike lanes without cyclists or bus drivers",
+    "founder payout after a risky acquisition with no clawback",
+    "restaurant owner who mortgaged her house versus franchisor collecting fees",
+    "venture fund advising layoffs after selling secondary shares",
+    "hospital executive bonus tied to throughput but not readmission cost",
+    "sports league owner demanding public subsidy while privatizing gains",
+    "family business succession between exposed operator and absent heir",
+    "library choosing whether to discard worn reference books for flashy new guides",
+    "software team deciding whether to adopt a brand-new framework",
+    "bakery keeping a slow sourdough method despite a viral shortcut",
+    "municipal bridge maintenance favoring old inspection routines over new dashboard scores",
+    "medical clinic evaluating an old triage question against a new app prompt",
+    "musician choosing practice drills from a centuries-old method versus a trend course",
+    "patient choosing between a polished surgeon and a blunt high-volume specialist",
+    "restaurant hiring a chef after a theatrical tasting",
+    "law firm selecting expert witness with plain manner and strong deposition record",
+    "aircraft mechanic whose overalls look rough but logs are impeccable",
+    "venture pitch from a charming founder with no shipped product",
+    "school choosing a principal from interviews versus hallway evidence",
+    "wine collector buying bottles praised by status circles but never enjoyed at dinner",
+    "executive choosing a private school because peers expect it",
+    "homeowner hiring an interior designer whose choices erase how the family lives",
+    "tech buyer selecting enterprise software because rivals use it",
+    "charity gala committee choosing an expensive venue donors expect",
+    "fitness client buying elite gear before knowing which movement she likes",
+    "company announcing safety values while rushing an untested release",
+    "politician praising transit while never riding the failing route",
+    "nonprofit leader promising transparency but resisting an open ledger",
+    "parent telling a teenager to value reading while phone-scrolling every evening",
+    "manager claiming team health matters while rewarding weekend emails",
+    "friend apologizing repeatedly but never changing a recurring imposition",
+    "local newsroom selecting one crime clip that skews neighborhood risk",
+    "investor reading a true but cherry-picked market story",
+    "school parent group reacting to a viral hallway video",
+    "public-health dashboard headline missing denominator context",
+    "sports article praising a player from one highlight while hiding defensive errors",
+    "tenant association interpreting a landlord email without maintenance records",
+    "fashion brand launching a public ethics campaign while suppliers absorb cost",
+    "university divesting symbolically while increasing student fees",
+    "restaurant posting local-food virtue while wasting edible surplus",
+    "corporate executive condemning emissions while outsourcing dirty work",
+    "neighborhood group demanding affordable housing but opposing one building nearby",
+    "book club choosing ethical consumption rules that burden one low-income member",
+    "labor mediator reviewing a signed agreement after two near-strikes",
+    "neighbors ending a fence dispute with a note but no repair schedule",
+    "school rivalry cooled by a handshake after a fight",
+    "software vendor and client signing an SLA with no penalty path",
+    "co-op board calming a renovation conflict with promises but no access rules",
+    "two departments ending budget conflict by sharing one scarce specialist",
+    "hospital chaplain explaining fasting rules to a medical team",
+    "museum educator interpreting a ritual object without practitioners present",
+    "manager scheduling around a religious holiday she does not understand",
+    "journalist writing about a congregation from one literal quotation",
+    "teacher explaining dietary rules as mere superstition",
+    "product team designing a prayer-space feature from survey text only",
+    "athlete claiming team commitment but skipping the inconvenient volunteer shift",
+    "congregation pledging care for refugees without offering spare rooms or hours",
+    "startup declaring customer obsession while refusing refund pain",
+    "family saying elder care matters but dodging the hardest visits",
+    "environmental club reciting commitments while avoiding the cold cleanup",
+    "executive invoking craft while cutting apprenticeship time",
+    "diocese budget claiming poor-first doctrine while preserving executive travel",
+    "school mission statement on inclusion tested by one costly accessibility need",
+    "charity leader praying publicly but resisting audit transparency",
+    "religious school debating whether to admit a disruptive but needy child",
+    "community group declaring forgiveness while excluding a repaired member forever",
+    "monastery gift shop commercializing austerity language",
+    "emergency planner choosing an evacuation custom that looks irrational on paper",
+    "trader defending a hedge that lowers average return but prevents blowup",
+    "parent keeping a taboo food rule because it prevents allergy confusion",
+    "factory crew following a ritualized checklist that engineers mock",
+    "patient choosing an apparently inconsistent routine that keeps medication adherence high",
+    "community with a costly festival rule that maintains mutual aid",
+    "founder offered leveraged growth financing with personal guarantees",
+    "mountain guide deciding whether to continue in unstable weather for a summit bonus",
+    "hospital pharmacy considering a cheaper single supplier for critical medication",
+    "retiree tempted into high-yield private credit after years of low returns",
+    "city approving one coastal road design with no retreat option",
+    "chef deciding whether to serve a risky preservation experiment at a paid dinner"
+  ],
+  "usedExampleAnchors": [
+    "Sarah circles the broker clause",
+    "Mathieu asks for the refund term",
+    "Grace slides over the co-investment form",
+    "Lukas moves the defect forward",
+    "Camille rewrites the trip sheet",
+    "Hiroshi asks for the guarantee",
+    "James swaps the dessert tray",
+    "Sophie changes the language default",
+    "Anders chooses one buffet",
+    "Chiara relabels the paint aisle",
+    "Aanya maps the nut-free contract",
+    "Ben rewrites the quiet-hours vote",
+    "Claire crosses out exclusivity",
+    "Marco records the failed test",
+    "Frida lists the leash points",
+    "Daniel asks who may refuse",
+    "Kasia marks job fear",
+    "Yusuf rejects the shortcut",
+    "Hannah names the household cost",
+    "Julien removes his brother",
+    "Astrid keeps the hard wording",
+    "Michael separates evidence from payroll",
+    "Layla reconstructs the missed trigger",
+    "Pavel gives the patch a head start",
+    "Emily watches the truck swing wide",
+    "Nicolas stops the clean-floor rollout",
+    "Ingrid assigns a midnight shift",
+    "Sam counts the discarded fish",
+    "Catarina walks the evacuation road",
+    "Akira finds the daycare hour",
+    "Laura asks who loses a crop",
+    "Étienne hands over the roster",
+    "Maja walks the memo",
+    "Chris asks for the personal stake",
+    "Adaeze keeps the temperature log",
+    "Tomás adds rider testimony",
+    "Anna adds the clawback",
+    "Henrik marks who can fall",
+    "Giulia asks the fund to stay in",
+    "David adds readmissions",
+    "Kiran reconstructs the stadium split",
+    "Petra tests the veto",
+    "Megan checks the requests",
+    "Olivier asks about outages",
+    "Marit weighs the loaves",
+    "Thomas keeps the hammer walk",
+    "Lin runs both questions",
+    "Diego records the drills",
+    "Rachel asks for the record",
+    "Luca tests the rush",
+    "Anke reads the transcript",
+    "Andrew follows the torque log",
+    "Hadiya marks the missing customers",
+    "Janek shadows dismissal",
+    "Olivia hides the label",
+    "Vincent ranks the school day second",
+    "Sofia puts the boots back",
+    "Matthew runs the invoice",
+    "Chidi moves the venue line",
+    "Marta borrows first",
+    "Chloé blocks the release",
+    "Niklas asks for the ride",
+    "Isabel waits for the link",
+    "Ryan moves the phone",
+    "Aman rewrites the praise",
+    "Tomasz waits for the next pickup",
+    "Manon adds the incident table",
+    "Lars asks what was omitted",
+    "Paula restores the sequence",
+    "Jack adds denominators",
+    "Min adds the missed rotations",
+    "Aleksy pins both records",
+    "Juliette adds wage impact",
+    "Mikkel records the bill",
+    "Nina weighs the bin",
+    "Luke restores the dirty line",
+    "Devon maps the lost units",
+    "Pablo prices the rule",
+    "Margaux adds the trigger",
+    "Jonas dates the repair",
+    "Hanna gives the handshake a routine",
+    "Javier automates the consequence",
+    "Nora posts the access windows",
+    "Anya makes both sides lose priority",
+    "Iris asks what fasting does",
+    "Antoine asks about handling",
+    "Léa asks what work violates the practice",
+    "Patrick sits through the sequence",
+    "Ava rewrites the dietary lesson",
+    "Rafael observes entry and exit",
+    "Emma waits on the captaincy vote",
+    "Noah asks for names beside nights",
+    "Julia authorizes refunds first",
+    "Peter takes the hard visit",
+    "Amina compares pledges with mud",
+    "Claudia protects apprentice hours",
+    "Rebecca moves the travel line",
+    "George asks what shrinks",
+    "Clara asks for the audit",
+    "Edward records the risk",
+    "Lina marks the empty chair",
+    "Martin watches what silence loses",
+    "Alice keeps the call tree",
+    "Erik checks the bad week",
+    "Mia reads the mistake log",
+    "Robert restores the ritual step",
+    "Mei keeps the saucer routine",
+    "Teresa traces the mutual aid",
+    "Laura circles the game-ending clause",
+    "Simon turns the group around",
+    "Eva prices the stockout",
+    "Aaron shows the frozen month",
+    "Ken adds the retreat option",
+    "Luis cancels the preserved dish"
+  ],
+  "usedHookFrames": [
+    "A bad turtle dinner tells you more about fairness than a hundred polished disclosure forms.",
+    "One tiny mark on a lemonade bottle can move an entire shelf without asking the crowd to care.",
+    "The red pen pauses over one clause because a calendar can become a collar.",
+    "The benefits card sits beside the safety report because courage can spend a family's money first.",
+    "Slush at the curb proves the turn lane only works on the screen.",
+    "Soil on one cuff tells the farm panel what the agenda forgot to ask.",
+    "Bonus schedules look different when the losses have already been handed to everyone else.",
+    "Worn cloth spines under the scanner may know more than the glossy new shelf.",
+    "A paper gown on the chair can make bedside polish feel more important than the hand record.",
+    "A split cork beside a plain plate can expose a desire the label created.",
+    "A red failed-test icon can tell more truth than an hour of safety values.",
+    "A true clip beside a missing spreadsheet can still teach the wrong neighborhood.",
+    "Fabric samples beside an ethics mockup can hide whose paycheck funds the applause.",
+    "Wet ink beside a floor map cannot keep a factory quiet by itself.",
+    "A cooling meal tray can explain a fasting rule better than a paragraph about belief.",
+    "Orange cones before dawn reveal team commitment better than the captaincy speech.",
+    "Two yellow tabs on a budget sheet can test doctrine more sharply than a sermon.",
+    "A laminated call tree can look messy and still beat the elegant evacuation app.",
+    "A personal guarantee can make a growth story end with one bad quarter."
+  ],
+  "usedCounterFrames": [
+    "Helpful advice can be dirtier than open selling. The test is not warmth or honesty in tone; it is whether the person steering your choice will carry the loss with you.",
+    "The strict side does not need to persuade the flexible side. It only needs a default the flexible side can tolerate while the strict side cannot tolerate the alternative.",
+    "A person can be legally free and still be practically owned. The leash is whatever he cannot afford to lose: salary, school fees, references, status, or future work.",
+    "Truth can look like a private choice until the bill reaches a spouse, a grant team, a brother's job, or a child's insurance. The first task is to find those hidden passengers.",
+    "Models become dangerous when their errors are paid by people outside the model. The repair is field contact, visible downside, and permission for reality to overrule the diagram.",
+    "The credential is not the danger. The danger is advice that collects status from being elegant while farmers, nurses, riders, students, or retirees pay for the miss.",
+    "Unequal rewards are not automatically corrupt. The sharper test is whether the people collecting the rewards stayed exposed to the risks that created them.",
+    "Launch claims and antique aura both skip the same test: repeated stress. Endurance matters when it records pressure that a fresh pitch has not faced.",
+    "Polish can be useful manners, but it becomes dangerous when it substitutes for the evidence that matters under risk: volume, records, repairs, trials, and outcomes.",
+    "Money does not poison taste by buying nice things. It poisons taste when status vendors can sell you desires that never came from use.",
+    "Sincerity is easiest to fake where words cost nothing. The better audit asks what changed in behavior when the statement became expensive.",
+    "A fact can be accurate and still mislead when selection, salience, and frame make it feel like the whole reality.",
+    "A moral claim becomes suspect when praise and cost travel in opposite directions. Serious virtue is easier to trust when the claimant pays part of the bill.",
+    "Peace is weakest when it depends on fresh signatures or exhausted tempers. It lasts when each side can see the cost of breaking it tomorrow.",
+    "A belief system can be misread when outsiders treat it as a set of sentences. Practice shows what the rule does when people carry it with cost.",
+    "Belief becomes visible when it asks for surrendered time, comfort, money, status, or output. Otherwise it may be only identity decoration.",
+    "The provocative question works only as a diagnostic. Declared belief becomes readable when an institution must pay to act as if the belief is true.",
+    "Rationality is not always the cleanest explanation. In exposed life, the rational practice is often the one that keeps people from ruin.",
+    "Good risk is not the risk with the most exciting upside. Good risk preserves the right to keep playing after ordinary bad luck arrives."
+  ],
+  "usedTryThisNowFrames": [
+    "Before accepting one live recommendation today, write three names: who gains now, who pays if it fails, and who would have to sign to share the loss.",
+    "Pick one group choice near you and mark which side can accept both options, which side can accept only one, and where a local rule becomes the default.",
+    "Choose one obligation you call voluntary and list the three things you would lose by refusing it. Circle the one that actually governs your choice.",
+    "Take one live objection you are delaying and write three names or groups that would pay first if you spoke. Add the one protection they need before you decide.",
+    "Pick one forecast you trust and name the exact place where it should be watched in use. Add who can halt the plan if reality contradicts it.",
+    "Before taking expert advice today, ask what personal loss would correct the adviser if the advice fails. If none appears, find the nearest practitioner loop.",
+    "Pick one hierarchy you accept or resent. Write who gets the upside, who can fall, and what clause would make reward and loss travel together.",
+    "Choose one tool you are about to replace. Check its survival record: failures endured, requests repeated, repairs made, and stress the newcomer has not met.",
+    "Before trusting one polished signal today, ask for the performance record behind it: volume, error rate, repeat use, customer retention, or field trial.",
+    "Take one expensive preference you are considering and test it in ordinary use. Hide the brand, lower the audience, and ask whether you still want it.",
+    "Choose one value you recently stated. Find the next costly action that would prove it, then schedule or do that action before repeating the words.",
+    "Take one alarming item you saw today. Write the raw fact, the missing denominator or sequence, and the decision you would delay until both appear.",
+    "Take one public moral claim you support. Write who gets praised, who pays, and one change that would move cost back toward the claimant.",
+    "Find one agreement you rely on. Add the missing trigger, owner, consequence, or shared cost that would still work after goodwill fades.",
+    "Before judging one unfamiliar rule, ask what people do with it, when it costs them something, and what function it serves inside the group.",
+    "Choose one belief you claim. Name the next concrete cost it asks from you, then pay a small version of that cost before discussing it again.",
+    "Take one stated belief in an organization you know. Find the budget line, access rule, or risk decision that would reveal whether it is carried as cost.",
+    "Pick one habit that looks inefficient. Ask what error, ruin, or coordination failure it prevents before you replace it with a cleaner rule.",
+    "Pick one attractive risk and write the worst case in one sentence. If that sentence ends future participation, redesign or refuse the deal."
+  ],
+  "usedQuizExplanationFrames": [
+    "The key test is downside ownership. Ease and reputation matter later, but the hidden asymmetry is whether the ",
+    "The turtle rule asks whether the person serving the risk will eat it too. A higher rate may still leave you ca",
+    "The problem is one-sided certainty. Price alone is not the issue; the seller knows relief is near and uses tha",
+    "The action ties the agent to the downside created by the recommendation. Plain language and a lower offer do n",
+    "The strongest concern is disguised advice with shifted downside. Rejecting every vendor is too broad, and work",
+    "Writing the advice forces exposure and disclosure. Driving halfway or seeking a discount leaves the mechanic i",
+    "The defect is exported downside. Hiring may sometimes be reasonable, but not when the person urging it keeps r",
+    "Declared interest can be discounted, and the refund clause shares downside. Neutral language without remedy hi",
+    "Rav Safra pushes fairness beyond product facts into intention. The lesson is not lowest-price selling or anti-",
+    "The mechanism is asymmetric tolerance. The flexible customers do not need conversion; they only need to tolera",
+    "The right question is tolerance asymmetry. A majority vote may hide the fact that one side can adapt and the o",
+    "The strict default spreads only when flexible buyers can absorb it. High cost or strong rejection blocks the p",
+    "Merging units can amplify a local constraint. If one shared system is cheaper and the flexible district accept",
+    "The useful comparison is hard constraint versus mild preference. Seniority and head count can distract from th",
+    "The key change is structural. Separate kitchens contained the rule locally; merged kitchens made one strict co",
+    "The compatible default works because it satisfies the hard constraint without harming flexible diners. Symboli",
+    "The policy turns on asymmetric tolerance. Many weak preferences do not equal a hard constraint when the majori",
+    "Stubbornness alone is the shallow reading. The real mechanism is that the stricter rule was tolerable for othe",
+    "The distinction is not virtue or lawlessness. The employee has more to lose by defecting, so the institution c",
+    "The key is practical dependence. Silence under a threatened placement letter cannot be read as clean agreement",
+    "The executive remains legally free, but the firm holds several losses he cannot easily absorb. That is practic",
+    "The asymmetry is in refusal rights. Employees risk references and equity, so public agreement may be obedience",
+    "The difference is dependence. The staff planner may be reliable to the institution because job consequences ma",
+    "The firm may prefer reduced optionality over pure skill. The salaried lead has more to lose by refusing or lea",
+    "The pilot should locate the real downside. Extra pay or seniority does not fix a structure where the signer al",
+    "The precise reading separates formal freedom from practical freedom. No written ban is needed if future access",
+    "The diagnostic is the hostage point. The package matters because it may become the loss that governs judgment ",
+    "The move is to find transferred downside before acting. Praise and headlines miss the family security that can",
+    "The conflict must be made visible so family employment cannot soften the finding. Private calls and delay let ",
+    "The issue is not that budgets never matter. It is that the team budget is being used to bend language patients",
+    "The memo should keep evidence from being rewritten by payroll fear. Hiding the file or asking the donor lets t",
+    "The trigger exists to stop crowd cost from deciding a child-safety issue. Past help and parent anger are real ",
+    "Targeted exposure reduces bystander harm while still making the danger visible. Silence protects the defect, w",
+    "The spouse's visa is a hostage point. It does not excuse falsehood automatically, but it changes how cleanly o",
+    "The difference is leverage, not moral worth. Fewer exposed obligations make pressure harder to apply, while du",
+    "The narrow point is that penalties must bite where behavior can change. Punishing random nearby people repeats",
+    "The issue is not modeling itself. The missing test is where the abstraction touches reality and where drivers ",
+    "The real aisle is where workers carry error. Testing there corrects the model without turning one failure into",
+    "Averages can erase costly clusters. The stronger model must answer to the surge pattern, since nurses carry th",
+    "The dock tally captures the omitted practice that families and stock health would pay for. A prettier chart le",
+    "The field exception teaches the model where the abstraction ended. Ignoring all maps or blaming homeowners mis",
+    "The tool has flattened a real constraint into nonappearance. The answer is a better rule, not special exemptio",
+    "Authority should move toward people who meet the consequences. Distance may help some analysis, but it cannot ",
+    "The lesson attacks no-consequence models, not models as such. The field case is a correction signal, not proof",
+    "The exposed team meets the error when conditions turn rough. Giving them authority makes the model answer to t",
+    "The test is consequence exposure, not polish. The grower may be less fluent, but crop failure corrects his jud",
+    "The pilot lesson exposes the advice to classroom correction. More slides or less teacher input would increase ",
+    "The danger is no-risk expertise governing people who absorb the consequences. The answer is field correction, ",
+    "The personal stake question tests whether confidence has downside. Speed and vocabulary do not show who pays i",
+    "The log carries the practical correction customers need. Recognition and compromise fail if they leave the haz",
+    "The model needs correction from exposed users. Rejecting all maps or voting on sincerity avoids the consequenc",
+    "The failure is structural insulation. The point is not that abstraction is always bad, but that uncorrected ab",
+    "The first issue is not style or agreement. Advice that has survived floor-level correction deserves more weigh",
+    "The weak misread is generic anti-intellectualism. The sharper test is whether theory faces consequences and pr",
+    "The test is joined upside and downside. Equal pay is not the standard; exposure to the risk that creates the r",
+    "The imbalance is protected fee upside against local ruin. Sharing early failure risk makes hierarchy more defe",
+    "The lockup keeps advice tied to consequence. Speed and reputation do not fix a structure where staff lose inco",
+    "The metric separates reward from harm. Throughput may matter, but it should not pay out while patients and nur",
+    "The structure privatizes upside and moves risk to taxpayers. That is protected privilege, not simply the exist",
+    "Authority should follow consequence. The problem is not inheritance itself, but veto power detached from the c",
+    "The lesson is not blanket equality. It asks whether winners stayed exposed to the risks that produced their re",
+    "A large gap still deserves scrutiny, but real downside makes the hierarchy more legitimate than reward insulat",
+    "Deferred payout reconnects reward with later downside. Titles and secrecy leave the same transfer of loss in p",
+    "Lindy treats survival as evidence, not proof. The checkout record matters because patrons keep selecting the o",
+    "Endurance gives the current stack credibility. The new framework may still win, but it should face comparable ",
+    "The old method's endurance is evidence under real pressure, but not automatic victory. Testing both under bake",
+    "The hammer routine has proven itself in a failure mode the dashboard missed. Keeping both may be wiser than wo",
+    "The case log shows current survival value. The old question wins this round because it catches danger, not bec",
+    "The old drill deserves serious attention because it endured, but feedback decides current usefulness. That avo",
+    "Lindy gives endurance weight, not certainty. The old thing may have survived through usefulness, monopoly, hab",
+    "The old tool's survival record matters because it has met the conditions that hurt customers. The new tool nee",
+    "Protected survival is weak evidence. Lindy counts endurance through stress and selection, not mere age under m",
+    "Bedside manner matters after competence evidence is visible. Volume and complications connect more directly to",
+    "The trial shift connects the signal to restaurant pressure. The tasting may matter, but it cannot substitute f",
+    "Cross-exam is where the witness can fail. A transcript is harder to fake than packet polish and closer to the ",
+    "The logs connect to safety performance. This is not pro-sloppiness; it demotes cosmetic judgment until practic",
+    "Paid retention is field exposure. A better story or demo deepens theater without proving operating competence.",
+    "Dismissal observation tests leadership where staff and students live with the result. More interview theater w",
+    "The issue is shortcut substitution. Looking the part is not disqualifying, but it cannot carry the decision wh",
+    "The balanced rule keeps manners in their place. Comfort can matter, but it cannot outrank outcome evidence whe",
+    "Implementation evidence links advice to performance. Testimonials and costume changes stay at the level of the",
+    "Ordinary use removes much of the audience. If the wine still gives pleasure without the label story, the prefe",
+    "The child carries the daily consequence. Separating shadow-day fit from parent status keeps borrowed preferenc",
+    "Direct use shows what the room must hold. The designer's taste may help, but it should not erase the household",
+    "The invoice test checks use, not status. Rival adoption is weak evidence if the staff workflow carries the cos",
+    "The tradeoff must be visible. Prestige may raise funds, but it should prove that value against services benefi",
+    "Borrowing creates experience before identity purchase. The training log lets use form preference without treat",
+    "The phrase signals possible borrowed desire. It needs a use test, not automatic rejection or automatic obedien",
+    "The lesson is not anti-luxury. A preference that survives ordinary use without audience support is more likely",
+    "Staff carry the daily downside, so their live-use test should come before prestige procurement. Logo and fashi",
+    "The blocked release is the paid action. The slide and tone may be sincere, but customers learn from what ships",
+    "Riding the route creates exposure to the delay commuters feel. More words leave the claim cheap and untested.",
+    "Transparency requires exposure to scrutiny. Private reassurance keeps the social reward of the word without th",
+    "The changed habit costs attention and models the value. Lectures and purchases keep the claim mostly verbal.",
+    "Promotion evidence teaches the real preference. A wellness statement cannot outweigh the behavior that gets re",
+    "The next on-time pickup is the paid correction. Repeated apology language can be warm and still leave behavior",
+    "Costly decisions reveal priority. The answer is not cynicism about all language, but lower confidence when dee",
+    "The lost marketing slot is the cost that makes the claim credible. The deed does not prove perfection, but it ",
+    "The question looks for paid action under consequence. Inspiring phrases and applause do not reveal what the pr",
+    "The clip can be accurate while overstating danger through salience. The incident table gives the fact scale.",
+    "Base rates tell the facts how large they are. Urgency without context packages true facts into a trading mood.",
+    "The shove remains a fact, but sequence changes judgment. Restoring time avoids both denial and fragment rule.",
+    "The numbers are not meaningless. They need denominator and trend context so resources follow actual risk inste",
+    "The highlight happened, but training needs the whole possession. The rotation chart restores the performance p",
+    "Both records may be true and incomplete alone. Putting them together tests which story survives the broader ev",
+    "The selected details can be accurate while creating a distorted map. The problem is packaging, not the existen",
+    "The disciplined move is reconstruction, not panic or denial. Scale and context decide how much weight the fact",
+    "Accuracy is necessary but not sufficient. Selection, omitted context, and framing can make a true fact carry t",
+    "The claim may point to a real good, but supplier wage impact reveals whether applause is being bought with som",
+    "The bill question finds transferred downside. Moral reputation is weaker when students finance the institution",
+    "Weighing surplus ties the claim to kitchen behavior. The decal collects reputation; the donation schedule carr",
+    "The outsourced line restores the true cost of operations. Without it, the company buys praise while contractor",
+    "The comparison shows where virtue meets local cost. General support is cheap until an actual site and unit cou",
+    "The rule may sound moral, but it transfers the cost of belonging to the person least able to carry it.",
+    "The structure separates praise from payment. The point is not blanket cynicism, but tracing who carries the mo",
+    "Carrying margin cost joins reputation to downside. That does not prove perfection, but it makes the claim more",
+    "The three-part question exposes merchandising. Slogans and moral pressure can hide the cost transfer instead o",
+    "The signature is only a declaration. The inspection trigger gives both sides a repeatable way to keep the sett",
+    "The repair schedule attaches peace to action and cost. A warmer note cannot prevent the next storm from reopen",
+    "Shared setup duty creates repeated contact and consequence. The photo records a moment, but routine changes be",
+    "Automatic credits create a credible consequence path. Without it, breach costs remain symbolic and peace depen",
+    "The issue is missing structure. Access windows and fines turn vague consideration into predictable behavior.",
+    "Mutual exposure makes defection costly. A slogan or biased penalty leaves one side with a cheap route around t",
+    "Durable peace needs consequence close to violation. This does not glorify force; it rejects paper assurance wi",
+    "Calm helps, but it fades. Durable peace comes from a structure that works when mood, memory, and goodwill weak",
+    "The practical question looks for enforcement structure. Ceremony and blame do not keep the agreement alive aft",
+    "The first step is function inside practice. Safety still matters, but the team should not reduce a lived rule ",
+    "Handling shows lived use. Symbolism alone can turn practice into dead text, while removal avoids interpretatio",
+    "The work-violation question treats practice as lived constraint. Outsider ranking turns the decision into deta",
+    "The words may be accurate but incomplete. Ritual order and use can change what the phrase does for participant",
+    "The revision removes caricature without banning questions. Function and home practice make the rule intelligib",
+    "Survey text may name the need, but observation reveals function. Literal compliance can still miss the practic",
+    "The issue is interpretive method. Practice, cost, and function should be observed before reducing a rule to a ",
+    "The balanced approach gets embedded knowledge without pretending outsiders can rank the practice. It protects ",
+    "Ritual repetition often carries function beyond the literal statement. The teacher should explore use instead ",
+    "The early shift costs sleep and convenience. That cost makes commitment more legible than another statement.",
+    "Welcome becomes evidence when it costs time and space. Warm minutes do not transport or house a family.",
+    "Refunds put money near the harm. The promise gains credibility when the company surrenders cash to repair dama",
+    "The visit rota makes belief cost-bearing. Appreciation without schedule change leaves the burden where it alre",
+    "The cleanup requires bodily inconvenience near the damaged place. That cost reveals commitment better than sig",
+    "Craft belief costs time and margin. Protected apprentice hours put the statement into production reality.",
+    "The problem is transferred sacrifice. Real commitment asks something from the believer close to the claim.",
+    "The cost does not prove perfection, but it makes commitment more legible than language alone.",
+    "Surrender reveals commitment. Inspiring wording and repetition can decorate a belief without making it costly.",
+    "The budget comparison reveals preference under pressure. Doctrine becomes legible when comfort and aid compete",
+    "Funding access turns the mission into cost-bearing action. Posters cannot carry the student up the stairs.",
+    "The audit file is behavior under exposure. Pious language may be sincere, but scrutiny tests institutional tru",
+    "Recording risk tests whether the creed governs action. The board should not hide implementation cost behind wo",
+    "The seating plan is behavior after doctrine. Forgiveness talk is weaker if every social design preserves exclu",
+    "The collision reveals preference. Austerity language means more if silence is protected when revenue competes ",
+    "The stronger use avoids cheap accusation. It asks what costly behavior would appear if the stated belief were ",
+    "Costly behavior does not prove perfection, but it gives the belief more evidentiary weight than words alone.",
+    "Belief becomes readable where pressure changes behavior. Eloquence and praise can exist without institutional ",
+    "Rationality is judged by survival under correction. The call tree earns trust because it gets exposed people o",
+    "Ruin has veto power. A higher average is not rational if it fails in the week that can end the firm.",
+    "The rule may be instrumentally rational if it prevents errors in a messy household. Precision alone is not the",
+    "The near-miss rise is exposure evidence. The step can be studied further, but it should not be dismissed as ir",
+    "Outcome under constraint matters. The routine may be messy and still rational if it keeps medication adherence",
+    "Cost alone does not prove irrationality. If the rule sustains cooperation that protects people later, the surv",
+    "The survival-function question keeps reason attached to exposure. Mockery and clean explanation without testin",
+    "The exposed survival record should govern. A clean replacement can win later, but only after it survives the r",
+    "The standard is not anti-reason. It requires testing practices by survival, ruin sensitivity, and real-world c",
+    "The personal guarantee turns business volatility into household ruin. That changes the decision more than the ",
+    "A summit is upside; avalanche exposure is ruin. The guide should turn around when the loss cannot be repaired.",
+    "The downside is not linear with the savings. A backup source protects patients from the supplier going to zero",
+    "The house-sale month shows ruin for the person the money serves. Yield cannot compensate for ending independen",
+    "Isolation is a category change. The design should be judged by route survival, not only construction cost.",
+    "Refunds cover disappointment, not health harm or destroyed trust. The experiment should be contained away from",
+    "Future upside requires survival. A game-ending downside belongs in a different category from ordinary volatili",
+    "Average cost is incomplete when a single failure can end participation. Ruin sensitivity must be evaluated fir",
+    "The rule separates risk from ruin. Contained losses can teach; terminal losses end the chance to learn."
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch01",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch02",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch03",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch04",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch05",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch06",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch07",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch08",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch09",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch10",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch11",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch12",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch13",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch14",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch15",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch16",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch17",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch18",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "hook",
+      "frame": "opening with a tidy definition of skin in the game"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "hook",
+      "frame": "starting with a generic meeting room where someone learns accountability"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "hook",
+      "frame": "using a macho risk-taking cold open"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "counterintuition",
+      "frame": "not just X but Y correction shell"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "counterintuition",
+      "frame": "most people think fairness means niceness"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "counterintuition",
+      "frame": "the obvious lesson is wrong because the real lesson is deeper"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "tryThisNow",
+      "frame": "set a timer and think about risk"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "tryThisNow",
+      "frame": "write down three ways to be accountable"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "tryThisNow",
+      "frame": "ask yourself who has skin in the game with no concrete object"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "examples",
+      "frame": "generic office meeting with a slide deck"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "examples",
+      "frame": "kitchen-table family advice with a mug"
+    },
+    {
+      "chapterId": "skin-in-the-game-ch19",
+      "kind": "examples",
+      "frame": "abstract consultant conversation with no downside transfer"
+    }
+  ],
+  "chapterStatuses": {
+    "skin-in-the-game-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "shipGateMajors": 2,
+      "writtenChapterCountAtCheck": 19,
+      "checkedAt": "2026-05-18T17:30:34.449Z"
+    },
+    "skin-in-the-game-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "shipGateMajors": 1,
+      "writtenChapterCountAtCheck": 19,
+      "checkedAt": "2026-05-18T17:30:34.461Z"
+    },
+    "skin-in-the-game-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch10": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch11": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch12": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch13": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch14": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "shipGateMajors": 3,
+      "writtenChapterCountAtCheck": 19,
+      "checkedAt": "2026-05-18T17:24:49.984Z"
+    },
+    "skin-in-the-game-ch15": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch16": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "shipGateMajors": 2,
+      "writtenChapterCountAtCheck": 19,
+      "checkedAt": "2026-05-18T17:26:33.305Z"
+    },
+    "skin-in-the-game-ch17": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0
+    },
+    "skin-in-the-game-ch18": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "shipGateMajors": 2,
+      "writtenChapterCountAtCheck": 19,
+      "checkedAt": "2026-05-18T17:24:49.942Z"
+    },
+    "skin-in-the-game-ch19": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "shipGateMajors": 1,
+      "writtenChapterCountAtCheck": 19,
+      "checkedAt": "2026-05-18T17:30:34.469Z"
+    }
+  }
+}

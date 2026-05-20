@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch09",
+  "number": 9,
+  "title": "Getting a Decision",
+  "coreMove": "Convert live interest into a defined decision or next step before warmth turns into polite delay.",
+  "sourcePressure": "Decision chapter: interest and intrigue must become a concrete commitment, because vague enthusiasm is not a decision and needy overexplaining weakens timing.",
+  "chapterSpecificMisunderstanding": "The writer must avoid generic closing tactics; the chapter is about timing, control, and anti-neediness after the hookpoint has landed.",
+  "sourceAlignmentTerms": [
+    "decision",
+    "commitment",
+    "next step",
+    "timing",
+    "control",
+    "anti-neediness",
+    "vague enthusiasm"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Interest is not a decision",
+      "Always ask for the close",
+      "Do not leave without commitment"
+    ],
+    "counterintuition": [
+      "Warmth can waste the deal",
+      "More explaining can weaken the ask",
+      "A next step is not pressure"
+    ],
+    "tryThisNow": [
+      "Ask for one clear next step",
+      "Write your closing question",
+      "Stop after the ask"
+    ],
+    "examples": [
+      "generic sales close",
+      "investor says send me your deck",
+      "job interview follow-up email"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "clinical trial recruiter pitching a rare-disease site to a hospital research office",
+      "audience": "a recruiter who tends to leave with interest but no enrollment calendar",
+      "stakes": "the study misses its patient window while everyone says the idea is promising",
+      "format": "dialogue",
+      "requiredBeat": "after the director praises the trial, she closes the laptop and asks whether Tuesday or Thursday is the screening-date decision",
+      "firstImage": "a patient-screening calendar on a laptop beside a consent-form packet",
+      "mustInclude": [
+        "screening calendar",
+        "consent packet",
+        "enrollment window"
+      ],
+      "mustAvoid": [
+        "generic healthcare sales close"
+      ]
+    },
+    {
+      "domain": "shipyard automation vendor seeking approval for a welding-cobot pilot",
+      "audience": "a vendor whose demo earns excitement but no pilot owner",
+      "stakes": "the yard delays until the next maintenance shutdown is gone",
+      "format": "decision_point",
+      "requiredBeat": "when supervisors start swapping compliments about the demo, he points to the shutdown calendar and asks who owns the pilot decision by Friday",
+      "firstImage": "a shutdown calendar taped above a steel workbench",
+      "mustInclude": [
+        "shutdown calendar",
+        "pilot owner name",
+        "weld sample plate"
+      ],
+      "mustAvoid": [
+        "generic manufacturing demo"
+      ]
+    },
+    {
+      "domain": "independent bookstore coalition asking a publisher for regional launch exclusivity",
+      "audience": "a coalition lead who confuses friendly enthusiasm with agreement",
+      "stakes": "the publisher gives polite praise and then routes the launch to national chains",
+      "format": "postmortem",
+      "requiredBeat": "she marks the exact line where she accepted sounds great instead of asking for the exclusivity decision date",
+      "firstImage": "a marked-up launch proposal beside a stack of advance reader copies",
+      "mustInclude": [
+        "advance reader copies",
+        "exclusivity date",
+        "marked proposal"
+      ],
+      "mustAvoid": [
+        "generic partnership pitch"
+      ]
+    },
+    {
+      "domain": "emergency-management consultant pitching a tabletop drill to a county hospital network",
+      "audience": "a consultant facing administrators who agree in principle but defer calendar decisions",
+      "stakes": "flu season arrives with no drill owner or date",
+      "format": "before_after",
+      "requiredBeat": "before, she sends a thank-you email; after, she holds up the open incident calendar and asks the COO to choose the drill slot in the room",
+      "firstImage": "an incident calendar printed on legal paper beside a red binder clip",
+      "mustInclude": [
+        "incident calendar",
+        "COO choice",
+        "flu-season deadline"
+      ],
+      "mustAvoid": [
+        "generic consulting close"
+      ]
+    },
+    {
+      "domain": "specialty glass maker pitching museum display cases to a traveling-exhibition producer",
+      "audience": "a maker who overexplains after the producer has already leaned in",
+      "stakes": "the exhibit schedule slips if case specs are not selected this week",
+      "format": "scene",
+      "requiredBeat": "when the producer says this could work, he stops talking, places the case-spec sheet in front of her, and asks for the model selection today",
+      "firstImage": "a glass corner sample throwing a pale reflection onto a case-spec sheet",
+      "mustInclude": [
+        "case-spec sheet",
+        "exhibit schedule",
+        "model selection"
+      ],
+      "mustAvoid": [
+        "generic procurement close"
+      ]
+    },
+    {
+      "domain": "community solar developer pitching roof leases to a warehouse owners' association",
+      "audience": "a developer whose room likes the economics but avoids owner-by-owner commitments",
+      "stakes": "interconnection capacity expires before enough roofs sign letters of intent",
+      "format": "vignette",
+      "requiredBeat": "he lets the savings discussion end, then passes a one-page intent form to the three owners whose roofs meet the load threshold",
+      "firstImage": "a roof-load diagram beside three one-page intent forms",
+      "mustInclude": [
+        "load threshold",
+        "intent forms",
+        "interconnection deadline"
+      ],
+      "mustAvoid": [
+        "generic renewable-energy pitch"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "tell enthusiasm from commitment",
+      "choose a decision ask that fits the moment",
+      "analyze overexplaining after interest has peaked",
+      "evaluate whether a next step is concrete enough to count"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the exact decision your next pitch needs, including who decides, by when, and what concrete object proves it happened.",
+  "readingTimeMinutes": 12
+}

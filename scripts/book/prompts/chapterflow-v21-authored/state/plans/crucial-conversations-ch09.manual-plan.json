@@ -1,0 +1,187 @@
+{
+  "chapterId": "crucial-conversations-ch09",
+  "number": 9,
+  "title": "Move to Action: Turning Crucial Conversations Into Results",
+  "coreMove": "Turn apparent agreement into accountable action by naming the decision mode and the follow-up owner.",
+  "sourcePressure": "Conversation only becomes results when the group chooses an explicit decision method and closes with Who does What by When and Follow-up.",
+  "chapterSpecificMisunderstanding": "Treating the close as productivity task management detached from dialogue.",
+  "sourceAlignmentTerms": [
+    "Command",
+    "Consult",
+    "Vote",
+    "Consensus",
+    "WWWF",
+    "Who",
+    "What",
+    "When",
+    "Follow-up"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard",
+      "generic two-hour meeting with no owner"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional food bank leadership team after debating freezer allocation for partner pantries",
+      "audience": "an operations director closing a heated but constructive allocation debate",
+      "stakes": "families lose fresh food if everyone leaves thinking someone else owns the new routing plan",
+      "format": "postmortem",
+      "requiredBeat": "two weeks after alignment language, the director sees spoiled pallets and traces the miss to no named owner, deadline, or follow-up check",
+      "firstImage": "A pallet of thawing spinach cases leaves a wet square on the warehouse floor.",
+      "mustInclude": [
+        "freezer slot chart",
+        "routing plan",
+        "spoiled pallet"
+      ],
+      "mustAvoid": [
+        "generic action items from meeting"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "independent film crew deciding whether to cut a night shoot",
+      "audience": "a line producer choosing command, consult, vote, or consensus under time pressure",
+      "stakes": "a bad decision either blows the budget or burns out the crew before the final location day",
+      "format": "decision_point",
+      "requiredBeat": "the producer states this is consult, gathers two inputs, then owns the decision instead of pretending the group will choose",
+      "firstImage": "\"Wait,\" someone says, and a call sheet flaps under a sandbag beside a generator cable.",
+      "mustInclude": [
+        "call sheet",
+        "weather app",
+        "generator cable"
+      ],
+      "mustAvoid": [
+        "generic creative consensus"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "dental practice partners choosing a new sterilization vendor",
+      "audience": "a managing partner who needs buy-in but not universal preference",
+      "stakes": "compliance continuity matters more than everyone loving the vendor",
+      "format": "scene",
+      "requiredBeat": "the partner rejects default consensus, names vote as acceptable because all vetted vendors meet the standard, then assigns WWWF",
+      "firstImage": "The first signal is sensory before it is social: a sealed autoclave test strip packet sits on a pricing proposal.",
+      "mustInclude": [
+        "autoclave test strips",
+        "vendor matrix",
+        "follow-up date"
+      ],
+      "mustAvoid": [
+        "generic procurement meeting"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "mountain guide service revising avalanche-course cancellation rules",
+      "audience": "a head guide clarifying decision rights before winter bookings",
+      "stakes": "ambiguous authority could put clients on unsafe terrain or anger them with late cancellations",
+      "format": "dialogue",
+      "requiredBeat": "the guide says weather cancellations are command decisions, course-format changes are consult decisions, then writes who updates clients by what date",
+      "firstImage": "You notice an avalanche beacon blinks beside a laminated route card before anyone names the problem.",
+      "mustInclude": [
+        "avalanche beacon",
+        "route card",
+        "client email draft"
+      ],
+      "mustAvoid": [
+        "generic outdoor leadership lecture"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "public radio pledge-drive team choosing which donor script to keep",
+      "audience": "a campaign producer trying to move from debate to experiment",
+      "stakes": "pledge revenue stalls if the group keeps reopening the same preference argument",
+      "format": "predict_reveal",
+      "requiredBeat": "the producer names vote as wrong for a testable question, assigns one producer to A/B test two scripts by Friday, and schedules the follow-up readout",
+      "firstImage": "Only later does the miss become obvious: two donor scripts are clipped to a studio music stand.",
+      "mustInclude": [
+        "donor scripts",
+        "A/B test sheet",
+        "readout calendar"
+      ],
+      "mustAvoid": [
+        "generic marketing brainstorm"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "veterinary clinic staff agreeing to change after-hours triage",
+      "audience": "a clinic manager making sure the agreement survives the first weekend",
+      "stakes": "patients may be routed incorrectly if we will handle it remains the only owner",
+      "format": "before_after",
+      "requiredBeat": "the manager converts we should update triage into Mira changes the voicemail by Thursday noon and Felix audits Saturday calls Monday morning",
+      "firstImage": "What changes when a voicemail script is taped beside the clinic phone cradle?",
+      "mustInclude": [
+        "voicemail script",
+        "triage flowchart",
+        "Monday audit log"
+      ],
+      "mustAvoid": [
+        "generic clinic workflow"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose command, consult, vote, or consensus before the close",
+      "state decision rights honestly",
+      "convert warm agreement into WWWF commitments",
+      "design follow-up that reveals non-action early"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one open agreement and write four words under it: Who, What, When, Follow-up. Fill each with a name, a visible deliverable, a date, and the check that will prove it happened.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "chapterId": "the-lean-startup-ch14",
+  "number": 14,
+  "title": "Join the Movement",
+  "coreMove": "Turn agreement with the method into one adopted practice that changes how a real team makes uncertain decisions.",
+  "sourcePressure": "The final chapter widens lean startup from tactic to broader innovation practice and asks readers to apply and spread the discipline concretely.",
+  "chapterSpecificMisunderstanding": "Ending with inspiration, movement rhetoric, or admiration without operational adoption.",
+  "sourceAlignmentTerms": [
+    "join the movement",
+    "spread the practice",
+    "broader innovation practice",
+    "disciplined learning",
+    "adoption",
+    "continuation"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "Join the Movement",
+      "detail": "the sidecar names the closing invitation as applying and spreading the discipline",
+      "useIn": "both",
+      "phrasingHint": "Joining the movement starts when one real meeting asks for evidence sooner than it did last week."
+    },
+    {
+      "kind": "artifact",
+      "name": "Broader innovation practice",
+      "detail": "the sidecar says the method should travel beyond one company",
+      "useIn": "fullRead",
+      "phrasingHint": "The method spreads only when ordinary teams change the way they test uncertain work."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Join the Movement.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "product team quarterly ritual",
+      "audience": "SaaS leadership team",
+      "stakes": "the method may remain admired but absent from calendar decisions",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Monica adds one evidence review to the quarterly planning rhythm",
+      "firstImage": "a quarterly planning agenda with one blank evidence column",
+      "mustInclude": [
+        "planning agenda",
+        "evidence column",
+        "owner list"
+      ],
+      "mustAvoid": [
+        "generic join the movement office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "regional entrepreneurship class",
+      "audience": "business-school instructor",
+      "stakes": "students may repeat vocabulary while still grading polished plans",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Amelie changes the rubric so tested learning outranks slide elegance",
+      "firstImage": "a classroom projector showing a pitch rubric",
+      "mustInclude": [
+        "rubric",
+        "test log",
+        "pitch deck"
+      ],
+      "mustAvoid": [
+        "generic join the movement office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "municipal innovation network",
+      "audience": "city managers",
+      "stakes": "pilot wins may stay isolated instead of spreading practice",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Graham turns one successful experiment into a shared decision template",
+      "firstImage": "a council chamber side table with pilot notes",
+      "mustInclude": [
+        "decision template",
+        "pilot notes",
+        "two-city trial"
+      ],
+      "mustAvoid": [
+        "generic join the movement office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "health nonprofit program portfolio",
+      "audience": "executive director",
+      "stakes": "agreement with lean language may not change funding reviews",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aman asks every new program memo to name its riskiest assumption and first test",
+      "firstImage": "a stack of grant memos with yellow tabs",
+      "mustInclude": [
+        "grant memo",
+        "assumption line",
+        "first-test field"
+      ],
+      "mustAvoid": [
+        "generic join the movement office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "founder peer group operating cadence",
+      "audience": "startup mentors",
+      "stakes": "discussion may become inspiration without adopted routines",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Klara ends the session by scheduling one build-measure-learn review for each member",
+      "firstImage": "a cafe table crowded with laptops and empty espresso cups",
+      "mustInclude": [
+        "review date",
+        "member list",
+        "test commitment"
+      ],
+      "mustAvoid": [
+        "generic join the movement office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "corporate procurement innovation policy",
+      "audience": "large-company sponsor",
+      "stakes": "internal teams may admire experimentation while purchasing rules block it",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Pascal rewrites one procurement rule to allow bounded learning buys",
+      "firstImage": "a procurement policy page with one clause highlighted",
+      "mustInclude": [
+        "policy clause",
+        "learning buy cap",
+        "approval path"
+      ],
+      "mustAvoid": [
+        "generic join the movement office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Join the Movement from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Turn agreement with the method into one adopted practice that changes how a real team makes uncertain decisions.",
+      "Diagnose when a team is drifting into the misread: Ending with inspiration, movement rhetoric, or admiration without operational adoption."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Turn agreement with the method into one adopted practice that changes how a real team makes uncertain decisions. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

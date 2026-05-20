@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch12",
+  "number": 12,
+  "title": "The Science of Availability",
+  "readingTimeMinutes": 12,
+  "hook": "One fraud case comes to mind instantly, and the next return starts to look common before anyone counts.",
+  "counterintuition": "The mistake is not noticing memorable examples. The mistake is treating ease of recall as frequency, when memory fluency often measures salience rather than base occurrence.",
+  "tryThisNow": "When an example pops up quickly today, write recall ease on one line and actual frequency on the next. Fill the second line with a count, not a feeling.",
+  "keyTakeaway": "Availability makes easy-to-recall examples feel frequent or important, so check the base occurrence before judging probability.",
+  "breakdown": {
+    "fastRead": "A tax reviewer remembers last week's bold fraud case before opening the next large refund. The memory is vivid, fast, and emotionally tagged. The new case starts to feel like the same kind of event.\n\nEase of recall is not frequency.\n\nAvailability works when memory fluency stands in for how often something happens. If examples come to mind easily, the event feels common, likely, or important. Sometimes that is useful. Often it reflects salience, recency, or drama. The move is to separate the ease of remembering from the base occurrence in the world.",
+    "deepRead": "A bakery supervisor remembers two collapsed sourdough batches and starts to feel that the new starter is unreliable. The failures are easy to retrieve because they were messy, early, and expensive. The uneventful hundreds of ordinary batches are harder to remember because they left no story.\n\nMemory keeps highlights, not denominators.\n\nAvailability is tempting because it feels like evidence from experience. You are not inventing the examples. They happened. The problem is that recall is not a neutral sample. Dramatic, recent, emotional, unusual, and repeated stories become easier to retrieve than ordinary base occurrences. The mind then treats ease of recall as if it were a count.\n\nThis is why availability is not merely media influence. News can make events available, but so can a recent shift, a difficult client, a frightening near miss, a vivid photo, or one case that embarrassed the team. The underlying mechanism is memory fluency: how easily an example comes to mind becomes evidence about how often the event occurs.\n\nAn avalanche forecaster sees the same pressure after a fatal slide on a neighboring ridge. Every unstable layer now comes to mind quickly. The incident command vest labeled frequency is a reminder to ask how many similar slopes, days, and pits actually produced slides, not merely how fast the fatal example appears in memory.\n\nCount the world, not the ease of remembering it.",
+    "fullRead": "Availability is one of the most natural shortcuts because memory often is evidence. If you can easily recall many delivery failures, perhaps the carrier is unreliable. If several near misses come to mind, perhaps the process is dangerous. The shortcut becomes a bias when the ease of recall reflects salience more than frequency.\n\nA factory quality cage shows the distortion. The returns buyback clipboard labeled salience sits beside defect logs after one dramatic failure reached a customer. For the next week, every inspector feels that defect type is everywhere. The base occurrence has not changed much. What changed is memory: the customer photo, the angry call, the supervisor's message, and the rework meeting made that defect easy to retrieve.\n\nHow many times did it happen, and how many chances were there for it to happen?\n\nThat question brings the denominator back. Availability tends to supply examples without exposure. You remember the fraud case, not the number of returns reviewed. You remember the rare-book mishandling, not the number of safe visits. You remember the sign transformer failure, not the number of repairs that had other causes. Probability needs both event count and opportunity count.\n\nA library rare-books desk makes this plain. A prominent folio was mishandled last month, and the story traveled through the staff. Now a loose strap makes the librarian feel mishandling is common. The submarine simulator headset labeled memory fluency, repurposed as a training prop, sits on the table to remind the team that vividness is not a denominator. The right comparison is incidents per handled item, not stories per meeting.\n\nThis is not an argument for cold indifference. Salient cases often deserve attention because they reveal a failure mode. A single severe event may justify containment, training, or redesign. But the question of how often it happens still requires a count. Otherwise the most memorable case becomes the rate.\n\nA neon repair shop has a quieter version. After one frost-damaged sign coil became a costly warranty dispute, every winter flicker now feels like frost damage. The frost alarm sensor labeled base occurrence is on the bench as a reminder: check actual winter repair counts, outdoor exposure, transformer readings, and known fault categories. The vivid warranty case may suggest a hypothesis. It cannot supply the frequency.\n\nThe limit is that counts can be slow or imperfect. When the cost of missing a risk is high, act provisionally while you gather the denominator. But keep the language straight. Say, this case is salient and deserves investigation. Do not say, this happens all the time, unless the count supports it.\n\nA memory can be loud without being common. Probability starts when the denominator enters the room."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-dana-tax",
+      "title": "Dana counts returns before flagging fraud",
+      "tags": [
+        "decision_point",
+        "tax",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "tax fraud review unit facing a decision distorted by ease of recall",
+        "audience": "a lead or reviewer who must separate how easily examples come to mind from how often the event actually happens while others want the quick answer",
+        "stakes": "the visible call will go wrong unless ease of recall is separated from the tempting but weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the scene shows the before call written on the amber vial tray labeled availability, then the after call once the person performs the correction instead of trusting the original feeling"
+      },
+      "scenario": "You are beside Dana at the fraud desk, where an amber vial tray labeled availability holds sticky notes from recent cases. Last week's fake-dependent return comes to mind instantly when a new large refund appears. Dana writes fraud likely, then stops. She must decide whether ease of recall is doing the work, or whether base occurrence among similar refunds supports the flag.",
+      "whatToDo": "Write the vivid remembered case on one line and the rate among similar refunds on the next before deciding how strongly to flag.",
+      "whyItMatters": "A memorable fraud case is evidence that fraud exists, not evidence that this pattern is frequent. The denominator protects the judgment."
+    },
+    {
+      "exampleId": "ch12-ex02-leon-proofing",
+      "title": "Leon compares collapsed batches with total bakes",
+      "tags": [
+        "predict_reveal",
+        "bakery",
+        "operations"
+      ],
+      "planSpec": {
+        "domain": "commercial bakery proofing area facing a decision distorted by ease of recall",
+        "audience": "a lead or reviewer who must separate how easily examples come to mind from how often the event actually happens while others want the quick answer",
+        "stakes": "the visible call will go wrong unless ease of recall is separated from the tempting but weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the protagonist pauses with the rolled site blueprint labeled ease of recall in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable"
+      },
+      "scenario": "Which is more common in Leon's proofing room: starter failure or ordinary good batches that nobody remembers? The rolled site blueprint labeled ease of recall is pinned to the bakery wall after two ugly collapses. Leon predicts the starter is unreliable, then pulls the month log. Two failures sit inside 412 batches. He must decide whether frequency or memory fluency gets the next call.",
+      "whatToDo": "Compare remembered failures with total batches and recent starter changes before changing the process.",
+      "whyItMatters": "The collapsed batches are easy to recall because they were costly. The total batch count reveals whether they are common or simply salient."
+    },
+    {
+      "exampleId": "ch12-ex03-vera-slope",
+      "title": "Vera separates fatal slide from slope rate",
+      "tags": [
+        "postmortem",
+        "avalanche",
+        "forecast"
+      ],
+      "planSpec": {
+        "domain": "avalanche forecasting hut facing a decision distorted by ease of recall",
+        "audience": "a lead or reviewer who must separate how easily examples come to mind from how often the event actually happens while others want the quick answer",
+        "stakes": "the visible call will go wrong unless ease of recall is separated from the tempting but weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "the reader is asked to imagine signing the incident command vest labeled frequency twice, once from the first impression and once after applying availability, then compare the two commitments"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Vera says, with the incident command vest labeled frequency hanging in the avalanche hut. A fatal slide on a neighboring ridge is vivid enough that every similar pit feels ominous. In the debrief, she signs one forecast from memory fluency and another after counting similar slopes, days, and pit results. She must decide which signature belongs in the log.",
+      "whatToDo": "Let the fatal slide trigger caution, then compare it with the count of similar slopes, days, and pit results before estimating frequency.",
+      "whyItMatters": "A fatal event should be salient, but salience is not rate. The forecast needs exposure and occurrence counts, not only memory fluency."
+    },
+    {
+      "exampleId": "ch12-ex04-patrick-folio",
+      "title": "Patrick restores the rare-books denominator",
+      "tags": [
+        "before_after",
+        "library",
+        "preservation"
+      ],
+      "planSpec": {
+        "domain": "library rare-books desk facing a decision distorted by ease of recall",
+        "audience": "a lead or reviewer who must separate how easily examples come to mind from how often the event actually happens while others want the quick answer",
+        "stakes": "the visible call will go wrong unless ease of recall is separated from the tempting but weaker cue",
+        "format": "before_after",
+        "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the submarine simulator headset labeled memory fluency, then chooses only after both are visible"
+      },
+      "scenario": "Patrick saw the shift after the mishandled folio story spread through staff chat. The submarine simulator headset labeled memory fluency sits on the desk as a training prop: vivid story on the left, incident rate on the right. Before, every loose strap felt like visitor mishandling. After checking incidents per handled item, Patrick must decide whether the story or the denominator guides policy.",
+      "whatToDo": "Track incidents per handled item and compare that rate with the vivid mishandling story before changing access rules.",
+      "whyItMatters": "The folio story is easy to retrieve because it embarrassed the team. Policy needs base occurrence across all handling, not only the loud case."
+    },
+    {
+      "exampleId": "ch12-ex05-livia-defect",
+      "title": "Livia keeps the defect log honest",
+      "tags": [
+        "reflection",
+        "factory",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "factory quality cage facing a decision distorted by ease of recall",
+        "audience": "a lead or reviewer who must separate how easily examples come to mind from how often the event actually happens while others want the quick answer",
+        "stakes": "the visible call will go wrong unless ease of recall is separated from the tempting but weaker cue",
+        "format": "reflection",
+        "requiredBeat": "the trainee must move the returns buyback clipboard labeled salience from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence"
+      },
+      "scenario": "The quality cage is quiet except for a returns buyback clipboard labeled salience beside Livia's defect log. One customer photo of a cracked housing has appeared in every morning huddle. Livia feels the defect is spreading, but she keeps the claim in the guess pile until she can say the base occurrence: cracked housings per thousand units, before and after the photo became famous.",
+      "whatToDo": "Move the claim to checked only after comparing defect count per thousand units before and after the salient customer case.",
+      "whyItMatters": "The photo makes recall easy. The base occurrence shows whether the defect became common or only became memorable."
+    },
+    {
+      "exampleId": "ch12-ex06-mina-neon",
+      "title": "Mina tests the frost-damage memory",
+      "tags": [
+        "thought_experiment",
+        "repair",
+        "frequency"
+      ],
+      "planSpec": {
+        "domain": "neon sign repair shop facing a decision distorted by ease of recall",
+        "audience": "a lead or reviewer who must separate how easily examples come to mind from how often the event actually happens while others want the quick answer",
+        "stakes": "the visible call will go wrong unless ease of recall is separated from the tempting but weaker cue",
+        "format": "thought_experiment",
+        "requiredBeat": "the supervisor circles the alluring detail on the frost alarm sensor labeled base occurrence, crosses it out, and asks for the boring comparison that the chapter says must come first"
+      },
+      "scenario": "The ridges on the frost alarm sensor labeled base occurrence are cold under Mina's fingers as a winter sign flickers on the bench. Last year's frost-damaged coil comes to mind fast. Imagine Mina circling that memory, crossing it out, and asking for the boring count: how many winter flickers were actually frost damage? She must decide whether recall or repair records answer the cause.",
+      "whatToDo": "Use the frost case as a hypothesis, then check winter repair counts, outdoor exposure, transformer readings, and other known fault categories.",
+      "whyItMatters": "The warranty dispute is memorable because it was costly. The repair decision needs actual base occurrence across similar winter failures."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A tax reviewer remembers a vivid fake-dependent fraud case when a new large refund appears. She has not checked how common fraud is among similar refunds. What should she do?",
+        "choices": [
+          "Separate recall ease from frequency and check the rate among similar refunds.",
+          "Flag strongly because the recalled case proves the pattern exists.",
+          "Ignore the memory because single cases never matter."
+        ],
+        "correctIndex": 0,
+        "explanation": "The vivid memory is a cue, not a rate. Checking similar refunds supplies base occurrence. Strong flagging overuses salience; ignoring the memory misses a useful hypothesis.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A bakery supervisor remembers two collapsed batches and says the starter is unreliable. The month log shows 412 total batches. What is the key comparison?",
+        "choices": [
+          "How angry the customers were after the collapses.",
+          "Collapsed batches divided by total batches, plus any process changes.",
+          "Whether the two collapses happened on the same weekday."
+        ],
+        "correctIndex": 1,
+        "explanation": "Frequency requires a numerator and denominator. Customer anger explains salience, not occurrence. Weekday may be a clue only after the base rate is known.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "An avalanche forecaster feels risk is high after a fatal slide nearby. Similar slopes and pit results are available. What is the availability risk?",
+        "choices": [
+          "Fatal slides should be ignored because they are emotionally charged.",
+          "All similar slopes should be treated as equally dangerous forever.",
+          "The fatal slide may become a memory-fluent substitute for the actual rate on similar slopes."
+        ],
+        "correctIndex": 2,
+        "explanation": "The fatal slide deserves attention, but memory fluency can overstate frequency. Similar-slope counts and pit results provide the rate. Ignoring or permanently equalizing risk both mishandle salience.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A rare-books team changes access policy after one mishandled folio story spreads through staff chat. Total handled items and incident count are unknown. What should be checked?",
+        "choices": [
+          "Incidents per handled item before changing policy.",
+          "How often staff mention the folio story.",
+          "Whether the visitor apologized."
+        ],
+        "correctIndex": 0,
+        "explanation": "Policy needs base occurrence across handling, not story frequency in staff chat. Apology may matter for one case, but it does not answer how common mishandling is.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A factory team thinks a defect is spreading because one customer photo appears in every huddle. Defect counts per thousand units are flat. What explains the team's feeling?",
+        "choices": [
+          "The count must be wrong because images are stronger evidence.",
+          "Salience made the defect easier to recall, so it felt more frequent than the count showed.",
+          "The defect should be ignored because the rate is flat."
+        ],
+        "correctIndex": 1,
+        "explanation": "The photo increases memory fluency, not necessarily occurrence. Counts can still miss severity, but frequency is not established by image salience. Ignoring the defect would miss a possible severity issue.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A neon repair technician assumes winter flickers are frost damage because last year's frost warranty case was costly. Repair records show many transformer faults. What should she conclude?",
+        "choices": [
+          "Frost damage is the likely cause because the case is vivid.",
+          "Frost damage cannot be considered because memories are biased.",
+          "The vivid frost case is a hypothesis, but repair counts and readings should guide frequency and diagnosis."
+        ],
+        "correctIndex": 2,
+        "explanation": "Availability supplies a hypothesis, not the rate. Repair counts and readings distinguish likely causes. Treating the memory as proof or banning it entirely both skip the base occurrence check.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager says availability bias is just media influence. Which example best shows the mechanism is broader?",
+        "choices": [
+          "A team overestimates a defect after seeing one vivid customer photo repeatedly.",
+          "A person sees many news stories about plane crashes.",
+          "A headline uses dramatic language."
+        ],
+        "correctIndex": 0,
+        "explanation": "The customer photo shows memory fluency created inside work, without media. News can create availability too, but it is not the whole mechanism. Dramatic wording is only one salience source.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A hospital committee remembers three severe medication errors from one unit and wants to label it the highest-risk unit. Total doses by unit are not compared. What should happen?",
+        "choices": [
+          "Rank the unit highest because severe errors must dominate frequency.",
+          "Compare severe errors per total doses across units before ranking risk.",
+          "Drop the issue because rare severe events distort memory."
+        ],
+        "correctIndex": 1,
+        "explanation": "Risk ranking needs event count and exposure. Severity may justify immediate safeguards, but frequency still needs a denominator. Dropping the issue ignores a serious signal.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A product lead hears two memorable complaints about a feature and says users hate it. Survey and support-ticket counts are available. Which move fits best?",
+        "choices": [
+          "Use the complaints because vivid stories contain customer truth.",
+          "Ignore the complaints because anecdotes are not data.",
+          "Check survey and ticket frequency while preserving the complaints as examples to investigate."
+        ],
+        "correctIndex": 2,
+        "explanation": "The complaints may reveal a real issue, but frequency requires counts. Treating anecdotes as the whole truth overuses availability; ignoring them loses qualitative signal.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "An example comes to mind instantly. What question separates availability from frequency?",
+      "back": "Ask how often the event actually happens among all opportunities. Ease of recall is about memory fluency; frequency needs a count and denominator.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A vivid case dominates a team's discussion. What should you write beside it?",
+      "back": "Write the base occurrence: event count divided by total relevant cases. Keep the vivid case as a hypothesis or severity signal, but do not let it become the rate.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why is availability broader than media influence?",
+      "back": "Any salient memory can become fluent: a recent shift, customer photo, near miss, embarrassing case, or repeated internal story. Media is only one source.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "When can a single memorable case justify action?",
+      "back": "It can justify investigation, containment, or redesign if severity is high. But it still does not answer how frequent the event is without a denominator.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A team says an event happens all the time because everyone remembers examples. What is missing?",
+      "back": "The count of occurrences and opportunities. Shared memory fluency can spread through a group without matching the actual base occurrence.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is separating memory fluency from frequency. Treat easy recall as a cue to count, not as the count itself.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a vivid case comes up repeatedly in a meeting, then ask for the event count and denominator before judging frequency."
+      },
+      {
+        "context": "health",
+        "plan": "If a recent severe case makes a risk feel common, then separate severity action from frequency estimation and check the base rate."
+      },
+      {
+        "context": "operations",
+        "plan": "If a defect feels widespread because one example is salient, then compare defects per unit before changing the process."
+      },
+      {
+        "context": "personal",
+        "plan": "If you think something happens all the time, then list the last three examples and then ask how many chances there were for it to happen."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, catch one vivid example shaping your estimate. Write the example, then find or estimate the denominator before using words like common, rare, likely, or frequent.",
+    "weeklyPractice": "Once a week, review a decision driven by a memorable case. Record recall ease, actual count, denominator, and whether the case was signal, severity warning, or noise."
+  },
+  "memorableLines": [
+    {
+      "text": "Ease of recall is not frequency.",
+      "location": "breakdown.fastRead",
+      "why": "It states the core correction without jargon."
+    },
+    {
+      "text": "Memory keeps highlights, not denominators.",
+      "location": "breakdown.deepRead",
+      "why": "It explains why vivid cases mislead frequency judgments."
+    },
+    {
+      "text": "A memory can be loud without being common.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader a durable availability warning."
+    }
+  ]
+}

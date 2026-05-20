@@ -1,0 +1,191 @@
+{
+  "chapterId": "the-righteous-mind-ch06",
+  "number": 6,
+  "title": "Taste Buds of the Righteous Mind",
+  "coreMove": "Name the moral receptor that fired before arguing about whether the reaction is reasonable.",
+  "sourcePressure": "The chapter makes moral plurality concrete through the taste-buds metaphor and several kinds of moral trigger.",
+  "chapterSpecificMisunderstanding": "The writer lists foundations like vocabulary words instead of making moral receptors feel active in scenes.",
+  "sourceAlignmentTerms": [
+    "taste buds",
+    "moral receptors",
+    "moral triggers",
+    "harm",
+    "fairness",
+    "plurality",
+    "framework"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "moral taste buds",
+      "detail": "the frozen sidecar says the chapter makes moral plurality concrete through the taste receptor comparison.",
+      "useIn": "both",
+      "phrasingHint": "The taste-buds image lets a reader hear a rival's concern as another receptor firing, not as a defect in the tongue."
+    },
+    {
+      "kind": "artifact",
+      "name": "moral triggers",
+      "detail": "the frozen sidecar says people respond to several kinds of moral trigger rather than only harm and fairness.",
+      "useIn": "fullRead",
+      "phrasingHint": "A trigger does not have to convince the whole mind first; it only has to touch the receptor built to notice it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch06 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "restaurant taste comparison"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "menu metaphor repeat"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "taxonomy dump"
+    ],
+    "examples": [
+      "restaurant taste comparison",
+      "menu metaphor repeat",
+      "taxonomy dump"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "airport security training after inconsistent passenger judgments",
+      "audience": "trainers teaching staff to name moral triggers",
+      "stakes": "Rachel labels authority, harm, and fairness triggers before correcting officers.",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel replays three lane incidents and has officers tag the receptor before debating the call.",
+      "firstImage": "The training room screen freezes on a suitcase halfway through the scanner.",
+      "mustInclude": [
+        "scanner footage",
+        "tag cards",
+        "lane incident log"
+      ],
+      "mustAvoid": [
+        "generic security theater"
+      ]
+    },
+    {
+      "domain": "sports league discipline panel reviewing taunting, cheating, and injury",
+      "audience": "volunteer panel members with mixed reactions",
+      "stakes": "Nicolas sorts the cases by receptor rather than penalty size.",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nicolas asks whether each outrage comes from harm, fairness, loyalty, or authority before setting sanctions.",
+      "firstImage": "\"Why does the cheap shot feel different from the fake roster?\" Nicolas asks.",
+      "mustInclude": [
+        "discipline folder",
+        "team jerseys",
+        "penalty chart"
+      ],
+      "mustAvoid": [
+        "sportsmanship lecture"
+      ]
+    },
+    {
+      "domain": "nursing home staff deciding whether a family ritual can stay",
+      "audience": "care staff balancing safety and dignity",
+      "stakes": "Giulia names sanctity and care triggers in the same room.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Giulia moves the incense discussion from rule violation to competing moral receptors.",
+      "firstImage": "A thin line of incense smoke curls above the plastic medication cart.",
+      "mustInclude": [
+        "incense holder",
+        "medication cart",
+        "visitor badge"
+      ],
+      "mustAvoid": [
+        "religion debate"
+      ]
+    },
+    {
+      "domain": "online game moderation team judging betrayal inside player guilds",
+      "audience": "moderators who see only rule violations",
+      "stakes": "Kiran distinguishes fairness cheating from loyalty betrayal in player complaints.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Kiran tags the complaints and changes which cases get mediation instead of bans.",
+      "firstImage": "It took Kiran twenty player tickets to see that betrayal had its own taste.",
+      "mustInclude": [
+        "ticket queue",
+        "guild log",
+        "ban button"
+      ],
+      "mustAvoid": [
+        "generic online toxicity"
+      ]
+    },
+    {
+      "domain": "food co-op board debating supplier standards",
+      "audience": "board members whose moral concerns talk past each other",
+      "stakes": "Lars maps purity, harm, and fairness before choosing criteria.",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which receptor is firing when Lars refuses a supplier that meets every safety rule?",
+      "firstImage": "Which concern remains after the lab results come back clean?",
+      "mustInclude": [
+        "supplier sheet",
+        "lab results",
+        "co-op chalkboard"
+      ],
+      "mustAvoid": [
+        "restaurant taste metaphor"
+      ]
+    },
+    {
+      "domain": "architecture firm reviewing a courthouse redesign",
+      "audience": "designers navigating authority, access, and dignity",
+      "stakes": "Paula treats the building complaints as different moral receptors, not aesthetic preferences.",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Paula mark which comments seek openness, which seek dignity, and which seek authority.",
+      "firstImage": "You stand over a model courthouse with removable stone steps.",
+      "mustInclude": [
+        "scale model",
+        "stone steps",
+        "public comment binder"
+      ],
+      "mustAvoid": [
+        "generic design critique"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which moral receptor a scene activates",
+      "distinguish a trigger from a reasoned conclusion",
+      "use the taste-buds metaphor without treating it as literal biology"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When a reaction feels disproportionate, label the receptor it touched before deciding whether the reaction was justified.",
+  "readingTimeMinutes": 12
+}

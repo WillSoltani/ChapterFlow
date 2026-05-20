@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-power-of-habit-ch03",
+  "number": 3,
+  "title": "The Golden Rule of Habit Change",
+  "coreMove": "Keep the cue and payoff visible, then swap the middle action and support it for the moment pressure returns.",
+  "sourcePressure": "The golden rule says to keep the same cue and the same reward while changing the routine. The chapter adds that belief, support, and coaching matter because stress can revive the old path when the replacement is weak.",
+  "chapterSpecificMisunderstanding": "The weak version tells readers to quit through resolve or to pick any healthier alternative. The writer must prove that the new middle action answers the same reward and has support when pressure rises.",
+  "sourceAlignmentTerms": [
+    "golden rule",
+    "same cue",
+    "same reward",
+    "replacement routine",
+    "belief",
+    "AA",
+    "coaching",
+    "support",
+    "pressure",
+    "stress"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A person simply promising never again.",
+      "A fridge, phone, or coffee temptation scene framed as discipline.",
+      "A recovery story that becomes inspiration without cue and reward mechanics."
+    ],
+    "counterintuition": [
+      "Most people think quitting is about willpower, but actually it is substitution.",
+      "Pretending the cue disappears because the person understands it.",
+      "Calling any different action a replacement routine."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and choose a better habit.",
+      "Remove the bad habit and rely on motivation.",
+      "Write an if-then plan without naming the same reward."
+    ],
+    "examples": [
+      "AA retold as generic redemption.",
+      "Athlete tries harder after a loss.",
+      "Office stress-snacking swap.",
+      "Phone-checking replacement routine."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "bartender in early sobriety after last call",
+      "audience": "a person whose highest-risk cue arrives at the end of a shift, not at the start of the day",
+      "stakes": "one automatic pour could become a relapse precisely when the room is quiet and support feels far away",
+      "format": "scene",
+      "requiredBeat": "The neon last-call sign clicks off, her hand moves toward the rail, then she fills the same rocks glass with seltzer and lime while sending the agreed check-in text, preserving the cue and hand-settling reward while changing the middle.",
+      "firstImage": "A neon last-call sign flickers above a polished bar rail.",
+      "mustInclude": [
+        "neon last-call sign",
+        "rocks glass with seltzer",
+        "check-in text"
+      ],
+      "mustAvoid": [
+        "AA retelling",
+        "moral lecture about relapse",
+        "habit deletion without support"
+      ]
+    },
+    {
+      "domain": "seafood restaurant line cook when the ticket printer jams",
+      "audience": "a sous chef trying to stop a skilled cook from snapping at servers under rush pressure",
+      "stakes": "one shouted exchange can freeze the pass and slow every table in the dining room",
+      "format": "dialogue",
+      "requiredBeat": "The printer spits a red ticket, the cook's shoulders rise, then he presses his palm to the steel shelf and calls reset station while the sous chef repeats it back, getting the same sense of control without the old outburst.",
+      "firstImage": "A red ticket curls from a jammed printer above the seafood pass.",
+      "mustInclude": [
+        "red ticket",
+        "steel shelf",
+        "reset station call"
+      ],
+      "mustAvoid": [
+        "generic workplace anger",
+        "customer-service politeness",
+        "willpower-only advice"
+      ]
+    },
+    {
+      "domain": "casino poker player after a bad beat",
+      "audience": "a serious recreational player who keeps chasing losses after one public mistake",
+      "stakes": "the next three minutes can turn one lost hand into a lost rent payment",
+      "format": "decision_point",
+      "requiredBeat": "When the river card lands and the table gasps, he starts to shove chips forward, then moves five chips into a timeout stack and stands for one orbit because the replacement gives him the same regained-control feeling without a revenge bet.",
+      "firstImage": "A river card lands beside a pile of scattered red chips.",
+      "mustInclude": [
+        "river card",
+        "timeout stack",
+        "one orbit"
+      ],
+      "mustAvoid": [
+        "sports comeback story",
+        "money-management lecture",
+        "random calming exercise"
+      ]
+    },
+    {
+      "domain": "public defender after a hostile client voicemail outside court",
+      "audience": "a young lawyer whose old routine is to fire back a defensive message",
+      "stakes": "one reactive reply can damage trust and leave the actual case work untouched",
+      "format": "postmortem",
+      "requiredBeat": "The phone buzzes on the marble bench, she hears the accusation, then writes three verifiable facts in the case notebook before calling her mentor, using the same need to feel prepared and less alone without the old reply.",
+      "firstImage": "A phone vibrates on a marble courthouse bench.",
+      "mustInclude": [
+        "marble courthouse bench",
+        "three facts",
+        "mentor call"
+      ],
+      "mustAvoid": [
+        "free-will legal essay",
+        "generic email etiquette",
+        "solitary self-control"
+      ]
+    },
+    {
+      "domain": "wildland fire crew trainee during a radio-static drill",
+      "audience": "a crew trainer whose trainee overtalks the channel whenever uncertainty spikes",
+      "stakes": "in a live burn, panic on the radio can hide the one update the crew needs",
+      "format": "predict_reveal",
+      "requiredBeat": "The trainer predicts the static burst will trigger overtalk; when it crackles, the trainee touches the laminated radio card, states location once, and waits for confirmation, getting certainty through the new routine under pressure.",
+      "firstImage": "A laminated radio card is clipped to an orange Nomex sleeve.",
+      "mustInclude": [
+        "static burst",
+        "laminated radio card",
+        "confirmation pause"
+      ],
+      "mustAvoid": [
+        "crisis-leverage reform",
+        "heroic emergency scene",
+        "breathing exercise with no same reward"
+      ]
+    },
+    {
+      "domain": "online auction collector outbid seconds before closing",
+      "audience": "a hobby collector whose old routine is revenge bidding after the red banner appears",
+      "stakes": "a ten-second surge can turn a planned purchase into a month of credit-card regret",
+      "format": "reflection",
+      "requiredBeat": "The red outbid banner flashes, his cursor jumps to the bid box, then he checks the max price written on a shipping label and texts the screenshot to a friend, preserving the not-losing-alone reward without the old bid.",
+      "firstImage": "A red outbid banner flashes above a ticking auction clock.",
+      "mustInclude": [
+        "red outbid banner",
+        "shipping-label max price",
+        "friend screenshot"
+      ],
+      "mustAvoid": [
+        "shopping addiction cliche",
+        "budgeting lecture",
+        "habit diagnosis only"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose a replacement routine that keeps the same cue and answers the same reward",
+      "spot substitutes that fail because they satisfy a different payoff than the old routine",
+      "identify when stress, isolation, or pressure requires belief, coaching, or support",
+      "evaluate whether a change plan preserves the loop's outer pieces while rebuilding the middle"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one unwanted routine and write the old cue on the left and the real reward on the right. Put one new middle action between them, then add the person or object that will hold the swap under pressure.",
+  "readingTimeMinutes": 12
+}

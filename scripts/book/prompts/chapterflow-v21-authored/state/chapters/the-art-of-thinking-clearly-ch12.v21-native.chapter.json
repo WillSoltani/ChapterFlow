@@ -1,0 +1,327 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch12",
+  "number": 12,
+  "title": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy",
+  "readingTimeMinutes": 12,
+  "slug": "itll-get-worse-before-it-gets-better-fallacy",
+  "hook": "A falling line can look like proof of progress when someone promised pain first.",
+  "coreIdea": "The fallacy appears when worsening conditions are treated as evidence that a plan is working, without a mechanism or reference point.",
+  "counterintuition": "Some good fixes do hurt at first. The trap is using that pain as proof. A real transition can explain why things get worse, how long it should last, and what early signal should show recovery.",
+  "tryThisNow": "For one struggling plan, write the promised mechanism and expected dip. Add the signal that would prove plain failure.",
+  "keyTakeaway": "Worse before better is a prediction to test, not an excuse to keep believing.",
+  "breakdown": {
+    "fastRead": "A control chart sits beside the hotel overbooking desk, and the red line is moving the wrong way. Nathan hears the consultant's promise again: complaints will get worse before they get better. The sentence makes the drop feel meaningful.\n\nThat is the fallacy. A plan fails, then the failure gets treated as evidence that the plan is entering its hard but necessary phase. The story protects itself by turning bad news into support.\n\nPain is not proof.\n\nThe useful move is to ask what mechanism should turn this pain into later gain, what time window was predicted, and what failure signal would make the plan stop.",
+    "deepRead": "The control chart on Nathan's desk shows five nights of more walk-outs, longer lobby lines, and higher refund costs. The new overbooking model was supposed to improve revenue by accepting more reservations than rooms. The vendor warned that guests might complain at first. Now the warning is becoming a shield.\n\nWorse before better is sometimes real. A store remodel can cut sales during construction and improve them after reopening. A new scheduling system can slow staff while they learn and then reduce errors. A training plan can feel awkward before skill improves. But in those cases, there is a mechanism: the present cost buys a later capability.\n\nA prediction needs a fuse, not a fog bank.\n\nNathan writes three columns under the chart. First: what was supposed to get worse? Second: when was it supposed to turn? Third: what would count as a failure signal? The vendor named complaints but not walk-outs. It named two weeks but not rising refund costs. That gives Nathan a real decision: pause the model in two hotels and compare the old rule against the new one.\n\nA chemicals plant incentive review shows the same excuse in a sharper setting. Fiona is holding an exam sheet for a safety quiz after near misses rise under a new bonus plan. A supervisor says the bad month was predicted. Fiona writes prediction excuse on the exam sheet and asks whether the plan had named near misses as a temporary cost or only lower production as the expected dip.\n\nIf every bad signal counts as expected pain, nothing can fail.",
+    "fullRead": "A pediatric clinic waiting room smells of hand sanitizer and damp coats. Eric has a market memo from the scheduling vendor, a list of missed appointments, and a nurse saying parents are angrier than before. The vendor said the new default booking flow would feel rough at first. Eric writes failure signal across the memo before the next contract call.\n\nThe fallacy works because humans like meaningful pain better than pointless pain. If a difficult plan hurts, we want the hurt to mean something. The phrase worse before better offers that meaning. It turns discomfort into a badge of progress. It lets a leader sound patient, disciplined, and brave while the evidence gets worse.\n\nAsk a harder question: what exactly is the pain buying?\n\nIf the answer is learning, then learning should be visible. If the answer is cleanup, then the backlog should shrink. If the answer is a necessary transition, then the old friction should decrease while the new friction appears. Without that link, the phrase worse before better becomes a prediction excuse. It tells you why not to update when the current evidence says update.\n\nEric tests the clinic memo that way. The vendor predicted more calls during the first week because parents would need help using the new portal. That part happened. But missed appointments also rose, and no one predicted that. The mechanism does not explain the failure signal. Eric keeps the portal open for families using it well, restores phone booking for the missed-appointment group, and asks for a one-week comparison.\n\nYou can feel the pull in any plan you already defended in public. You told staff the change would be hard. Now it is hard. Part of you wants to say, see, this proves we are in the hard part. But a real forecast has edges. It says which metric gets worse, which one should improve early, and when the story expires.\n\nThat expiry date matters.\n\nA farm rainfall projection makes the trap even clearer. You are looking at a closed-door list of seed orders with Anke, the farm manager. A consultant said the new planting schedule would look worse before it gets better because early fields would be left bare. Then rainfall forecasts changed. The bare fields are no longer preparation; they may be lost yield. Anke writes therapy trap on the list and must decide whether the discomfort is still buying resilience or merely hiding a stale plan.\n\nThis is not an argument for quitting at the first sign of trouble. It is an argument for specifying trouble before it arrives. If a plan expects a dip, write the dip down. If the plan expects recovery, write the first recovery signal down. If the dip spreads into areas the plan did not predict, treat that as information.\n\nSo do not ask whether things got worse. Ask whether they got worse in the way the plan predicted, for the reason the plan named, inside the window the plan set. Anything less is a story trying to outrun the evidence.",
+    "whyItMatters": "The fallacy turns bad news into protection for a weak plan. Readers need to separate a real transition dip from an excuse that cannot be falsified."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-nathan-control-chart",
+      "title": "Nathan Adds the Stop Signal",
+      "tags": [
+        "scene",
+        "hotel",
+        "overbooking"
+      ],
+      "planSpec": {
+        "domain": "a hotel overbooking desk applying The It'll-Get-Worse-Before-It-Gets-Better Fallacy under operational pressure",
+        "audience": "a reader who has to make a live judgment where worse before better could mislead them",
+        "stakes": "guest trust and revenue get misallocated if the fallacy is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the control chart, names the worse before better risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The hotel overbooking desk is lit by lobby screens at 11:20 p.m. while Nathan marks a control chart of walk-outs and refunds. A vendor says complaints will get worse before better. Before extending the model, Nathan must decide whether the drop was predicted or whether the chart is a failure signal.",
+      "whatToDo": "Write the expected dip, time window, and stop signal on the chart. Pause the model where the actual damage falls outside the forecast.",
+      "whyItMatters": "The promise of later improvement cannot explain every bad result. The chart has to show whether the pain matches the predicted mechanism."
+    },
+    {
+      "exampleId": "ch12-ex02-fiona-exam-sheet",
+      "title": "Fiona Separates Safety From Excuse",
+      "tags": [
+        "vignette",
+        "chemicals",
+        "incentives"
+      ],
+      "planSpec": {
+        "domain": "a chemicals plant incentive review applying The It'll-Get-Worse-Before-It-Gets-Better Fallacy under operational pressure",
+        "audience": "a reader who has to make a live judgment where prediction excuse could mislead them",
+        "stakes": "safety and credibility get misallocated if the fallacy is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the exam sheet, names the prediction excuse risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"The first month was always going to look rough,\" the plant supervisor says as Fiona holds an exam sheet from the new safety quiz. Near misses rose after the bonus plan changed. Fiona has to choose whether the rough month was predicted learning or a prediction excuse, so she writes the term across the exam sheet.",
+      "whatToDo": "Check whether the plan predicted near misses or only slower production. Stop or revise the bonus if safety worsened outside the forecast.",
+      "whyItMatters": "A rough learning month can be real. A safety decline that was never named is a failure signal, not proof that the plan is working."
+    },
+    {
+      "exampleId": "ch12-ex03-eric-market-memo",
+      "title": "Eric Tests the Booking Dip",
+      "tags": [
+        "dialogue",
+        "clinic",
+        "appointments"
+      ],
+      "planSpec": {
+        "domain": "a pediatric appointment default applying The It'll-Get-Worse-Before-It-Gets-Better Fallacy under operational pressure",
+        "audience": "a reader who has to make a live judgment where failure signal could mislead them",
+        "stakes": "family access and clinic trust get misallocated if the fallacy is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the market memo, names the failure signal risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Hand sanitizer stings the air in the clinic office as Eric circles missed appointments on a market memo for the new booking default. \"Parents just need a week,\" the vendor says. Eric marks failure signal and pauses before choosing to keep the default unchanged or restore phone booking for families the portal is losing. Before the clinic keeps the default, Eric must decide whether missed appointments are a predicted dip or a failure signal.",
+      "whatToDo": "Compare predicted extra calls with unpredicted missed appointments. Keep what works, but stop treating the missed families as necessary pain.",
+      "whyItMatters": "A transition can cause friction, but the mechanism has to explain the harm. Missed appointments may signal failure, not progress."
+    },
+    {
+      "exampleId": "ch12-ex04-anke-closed-door-list",
+      "title": "Anke Reopens the Rain Plan",
+      "tags": [
+        "decision",
+        "farm",
+        "rainfall"
+      ],
+      "planSpec": {
+        "domain": "a farm rainfall projection applying The It'll-Get-Worse-Before-It-Gets-Better Fallacy under operational pressure",
+        "audience": "a reader who has to make a live judgment where therapy trap could mislead them",
+        "stakes": "yield and cash flow get misallocated if the fallacy is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the closed-door list, names the therapy trap risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are in the farm office with Anke as rain ticks against the metal roof and a closed-door list of seed orders sits between you. The consultant said bare early fields were part of the plan. The forecast has shifted. Anke must decide whether to keep calling the bare fields therapy trap pain or replant before the yield window closes.",
+      "whatToDo": "Check whether the new rainfall forecast breaks the plan's mechanism. Replant if the expected pain no longer buys the later gain.",
+      "whyItMatters": "The phrase worse before better can hide a stale plan. The field condition has to match the forecast that justified the discomfort."
+    },
+    {
+      "exampleId": "ch12-ex05-luke-postmortem-note",
+      "title": "Luke Adds a Reference Point",
+      "tags": [
+        "predict",
+        "car-rental",
+        "insurance"
+      ],
+      "planSpec": {
+        "domain": "a car-rental insurance upsell applying The It'll-Get-Worse-Before-It-Gets-Better Fallacy under operational pressure",
+        "audience": "a reader who has to make a live judgment where no reference could mislead them",
+        "stakes": "customer trust and revenue get misallocated if the fallacy is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the postmortem note, names the no reference risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Luke three airport shifts to see that the postmortem note had no reference point. Insurance sales dropped after staff stopped using a hard upsell. The district lead said revenue would get worse before it gets better. Luke marks no reference on the note and must decide whether better means trust, repeat rentals, or sales by Friday.",
+      "whatToDo": "Define the recovery metric and deadline before accepting the revenue dip. If trust is the goal, measure repeat rentals and complaints, not just hope.",
+      "whyItMatters": "Without a reference point, any drop can be called temporary. A prediction needs a named better, not a vague future."
+    },
+    {
+      "exampleId": "ch12-ex06-rose-commitment-card",
+      "title": "Rose Times the Fog Rule",
+      "tags": [
+        "postmortem",
+        "ferry",
+        "delay"
+      ],
+      "planSpec": {
+        "domain": "a ferry fog-delay rule applying The It'll-Get-Worse-Before-It-Gets-Better Fallacy under operational pressure",
+        "audience": "a reader who has to make a live judgment where get could mislead them",
+        "stakes": "safety and passenger trust get misallocated if the fallacy is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the commitment card, names the get risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Did the ferry fog-delay rule get safer or just more chaotic? Rose answers at 9:10 a.m. in the harbor office by laying a commitment card beside delay logs. As operations lead, she sees the team had promised angry passengers it would get worse before it gets better. Rose marks get risk and sets the follow-up to include near misses, wait times, and forecast accuracy.",
+      "whatToDo": "Review whether the rule reduced near misses within the promised window. Keep the safety gain if it exists; revise the rule if delay chaos has no matching safety signal.",
+      "whyItMatters": "Passengers may tolerate a hard transition when safety improves. The phrase cannot protect a rule that only gets worse."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a it-ll case, a software rollout causes more support tickets, the vendor says this was expected but never defined which tickets or how long the spike would last. What is the risk?",
+        "choices": [
+          "Bad evidence is being turned into proof without a testable forecast.",
+          "Defined long spike supports a narrower read of software rollout causes; keep support tickets vendor central and leave says expected often aside.",
+          "Spike last what points toward a quicker call on causes support tickets; let it-ll software rollout stand until often defined long contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "A predicted dip needs a mechanism, time window, and stop signal. Without those, the vendor can treat any bad result as expected pain.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy makes it-ll case feel more decisive than the record supports, and that misprices software rollout in this scene. The correct move keepss the choice by bad evidence is being turned into proof without a testable forecast."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a it-ll review, a warehouse changes its picking system, speed drops for three days, as predicted, but error rates also double, which was not predicted. What should the manager do?",
+        "choices": [
+          "It-ll warehouse changes looks strong enough to guide picking system speed; drops three days can wait unless predicted error rates changes the stakes.",
+          "Separate the predicted speed dip from the unpredicted error spike and review the system.",
+          "Error rates also makes system speed drops look credible; use three days predicted first and revisit double what manager when separate unpredicted spike shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The speed dip may be part of learning, but the error spike is a failure signal if it was not part of the mechanism. The response should separate the two.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy works by letting it-ll warehouse crowd out changes picking, which can misreads the system speed decision. Separate the predicted speed dip from the unpredicted error spike and review the system keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When it-ll pressure appears, a gym member starts a new training plan and feels sore. The coach predicted soreness and also predicted improved form within two weeks. Which evidence matters?",
+        "choices": [
+          "Predicted soreness also makes appears member starts look credible; use training sore coach first and revisit improved form within when weeks matters whether shifts.",
+          "Also improved form supports a narrower read of pressure appears member; keep starts training sore central and leave coach predicted soreness aside.",
+          "Whether form begins improving within the promised window while soreness stays within safe limits."
+        ],
+        "correctIndex": 2,
+        "explanation": "Soreness alone proves little. The plan needs the recovery signal it predicted, not just discomfort that feels meaningful.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy turns appears member into a shortcut, so the room can overweights starts training while missing feels sore. Whether form begins improving within the promised window while soreness stays within safe limits protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After it-ll risk surfaces, a sales director says a new pricing plan will reduce renewals for one month but raise average contract value by the second month, renewals fall and contract value does not move. What follows?",
+        "choices": [
+          "The worse-before-better story has failed its early test and should be revised.",
+          "Raise average contract supports a narrower read of it-ll surfaces sales; keep director says pricing central and leave reduce renewals month aside.",
+          "Contract value second points toward a quicker call on sales director says; let after it-ll surfaces stand until month raise average contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The plan predicted both pain and recovery. If only the pain appears, it is not evidence of progress; it is a reason to update.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy would push the sales director case toward says pricing, creating a cost when reduce renewals stays untested. The useful guardrail is to the worse-before-better story has failed its early test and should be revised."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If it-ll reasoning takes over, a clinic portal causes more calls, as expected, but also more missed appointments among families with limited internet access. Which action best avoids the fallacy?",
+        "choices": [
+          "Limited internet access supports a narrower read of portal causes calls; keep expected also missed central and leave appointments among families aside.",
+          "Restore or add phone booking for the affected group while measuring whether portal use improves elsewhere.",
+          "Best avoids fallacy fits the immediate pressure around also missed appointments; hold causes calls expected steady and test reasoning clinic portal later."
+        ],
+        "correctIndex": 1,
+        "explanation": "More calls may be expected learning friction, but missed appointments show a different harm. The fix preserves evidence-based parts and stops treating every pain as necessary.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy converts portal causes into the loudest signal, which can rushes calls expected before also missed is checked. The better answer separatess attention on restore or add phone booking for the affected group while measuring whether portal use."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While it-ll pressure builds, a leader says morale will get worse before it gets better after a restructuring, no one defined what better morale would look like or when to expect it. Why is that weak?",
+        "choices": [
+          "Because the claim has no reference point, deadline, or measurable recovery signal.",
+          "Worse gets better makes it-ll pressure builds look credible; use leader says morale first and revisit after restructuring defined when what like expect shifts.",
+          "Expect weak claim supports a narrower read of morale worse gets; keep better after restructuring central and leave defined what like aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "A real forecast needs edges. Without a reference point and recovery signal, worsening morale can be excused indefinitely.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy hides inside the it-ll pressure choice because it-ll pressure seems sufficient, yet the cost lands in it-ll pressure. Because the claim has no reference point, deadline, or measurable recovery signal brings the it-ll pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the it-ll call, a consultant predicted that production would slow while workers learned a safer method. Production slowed, but injuries also rose. What is the failure signal?",
+        "choices": [
+          "Production slow workers gives a practical reason for call consultant predicted; slowed injuries also belongs after learned safer method clarifies the result.",
+          "The injury rise, if the safety mechanism was supposed to reduce harm instead of increase it.",
+          "What failure signal supports a narrower read of slow workers learned; keep safer method slowed central and leave injuries also rose aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "The slowdown may match the forecast, but rising injuries contradict the safety mechanism. That is the signal the worse-before-better story cannot absorb.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy pressures the call consultant decision toward the easy reading of call consultant. That can inflates the real cost unless the choice is grounded in the injury rise, if the safety mechanism was supposed to reduce harm instead."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose it-ll risk is present: a retailer removes aggressive warranty scripts. Warranty sales fall, and managers say trust will rise later. Repeat purchases and complaints are not being tracked. What is missing?",
+        "choices": [
+          "A way to measure whether the pain is buying the promised trust outcome.",
+          "Warranty scripts sales makes suppose it-ll present look credible; use retailer removes aggressive first and revisit fall managers trust when rise repeat purchases shifts.",
+          "Purchases complaints tracked supports a narrower read of aggressive warranty scripts; keep sales fall managers central and leave trust rise repeat aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "If trust is the promised better, repeat purchases and complaints are the needed reference points. Without them, the revenue drop can be excused too easily.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy is the mechanism here: worsening gets mistaken for proof of progress, so present retailer can overpower present retailer. A way to measure whether the pain is buying the promised trust outcome keeps the scenario from becoming a."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two it-ll signals compete: a transit agency changes a fog-delay rule. Delays rise, passengers complain, and near misses fall by half within the promised month. How should leaders evaluate it?",
+        "choices": [
+          "Evaluate keep testing fits the immediate pressure around complain near misses; hold delays rise passengers steady and test changes fog-delay rule later.",
+          "Keep testing the rule because the predicted pain came with the named safety gain.",
+          "Fog-delay rule delays gives a practical reason for transit agency changes; near misses fall belongs after rise passengers complain clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "Here the pain is linked to the promised mechanism: fewer near misses. The rule still needs monitoring, but the worse-before-better forecast has real evidence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "The It'll-Get-Worse-Before-It-Gets-Better Fallacy makes the transit agency evidence look cleaner than it is, risking a transit agency mistake in this setting. The answer protects transit agency by asking for keep testing the rule because the predicted pain came with the."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "A plan gets worse and someone says that was expected. What should you ask?",
+      "back": "Ask what mechanism links this pain to later gain, how long the dip should last, and what signal would prove failure."
+    },
+    {
+      "front": "Why is worse before better a dangerous phrase?",
+      "back": "It can turn bad evidence into support for the plan unless the prediction was specific and testable."
+    },
+    {
+      "front": "A transition dip was predicted. What still matters?",
+      "back": "Whether the dip matches the predicted metric, cause, and time window, and whether early recovery signals appear."
+    },
+    {
+      "front": "What is a prediction excuse?",
+      "back": "A claim that absorbs bad results by saying they were expected, without naming what would count as failure."
+    },
+    {
+      "front": "A painful change may be necessary. How do you keep judgment clean?",
+      "back": "Define the expected pain and the recovery signal before the pain arrives. Then update when reality falls outside the forecast."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to separate a real transition dip from an unfalsifiable excuse by naming the mechanism, time window, and failure signal.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If someone says a worsening metric was expected, then I will ask which metric was predicted to worsen and when it should turn."
+      },
+      {
+        "context": "operations",
+        "plan": "If a rollout hurts one group more than expected, then I will treat that as a failure signal until the mechanism explains it."
+      },
+      {
+        "context": "personal change",
+        "plan": "If discomfort feels meaningful, then I will ask what useful capability the discomfort is supposed to create and how I will see it."
+      },
+      {
+        "context": "vendors",
+        "plan": "If a vendor explains bad results as temporary pain, then I will require a dated recovery signal before extending the contract."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, find one plan that is getting worse. Write the predicted dip, the mechanism, and the signal that would make you stop or revise it.",
+    "weeklyPractice": "Once this week, add an expiry date and a failure signal to one ongoing change that has been justified as temporary pain."
+  },
+  "memorableLines": [
+    {
+      "text": "Pain is not proof.",
+      "location": "breakdown.fastRead",
+      "why": "It strips the fallacy down to its core mistake."
+    },
+    {
+      "text": "A prediction needs a fuse, not a fog bank.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the need for a time limit concrete."
+    },
+    {
+      "text": "That expiry date matters.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a crisp operational safeguard."
+    }
+  ]
+}

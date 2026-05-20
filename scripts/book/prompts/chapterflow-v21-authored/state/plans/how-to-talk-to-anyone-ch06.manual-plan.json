@@ -1,0 +1,185 @@
+{
+  "chapterId": "how-to-talk-to-anyone-ch06",
+  "number": 6,
+  "title": "How to Differentiate the Power of Praise from the Folly of Flattery",
+  "coreMove": "Anchor recognition in a concrete observed choice so praise feels earned, portable, and free of obvious motive.",
+  "sourcePressure": "Recognition unit covering techniques 51 through 59: praise, compliments, indirect recognition, repeated small affirmations, and the line between credible admiration and motive-exposing flattery.",
+  "chapterSpecificMisunderstanding": "The weak version is compliment people warmly. The useful version is calibrating praise so specificity, setting, and delivery make it credible instead of oily.",
+  "sourceAlignmentTerms": [
+    "praise",
+    "flattery",
+    "specific recognition",
+    "indirect recognition",
+    "small affirmations",
+    "identity-level",
+    "socially believable"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Everyone likes praise",
+      "Compliments are powerful",
+      "Flattery backfires"
+    ],
+    "counterintuition": [
+      "Praise less to praise more",
+      "Indirect compliments are always stronger",
+      "People know when you mean it"
+    ],
+    "tryThisNow": [
+      "Compliment someone today",
+      "Write down three nice things",
+      "Praise the effort not the person"
+    ],
+    "examples": [
+      "manager praises employee in meeting",
+      "partner compliments dinner",
+      "teacher praises student essay",
+      "friend compliments outfit"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a disaster-relief warehouse lead recognizing a forklift operator after a midnight loadout",
+      "audience": "a logistics lead with exhausted volunteers watching",
+      "stakes": "whether careful pallet checks continue when speed pressure rises",
+      "format": "scene",
+      "requiredBeat": "instead of saying great job, she points to the unbroken insulin cooler seal and names the operator exact slow-down choice in front of the next shift",
+      "firstImage": "an insulin cooler seal intact under the warehouse loading lights",
+      "mustInclude": [
+        "pallet jack",
+        "cooler seal",
+        "shift board"
+      ],
+      "mustAvoid": [
+        "office performance review",
+        "generic teamwork praise"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a choir director giving feedback to a volunteer alto after rehearsal",
+      "audience": "a director avoiding both gush and public embarrassment",
+      "stakes": "whether the singer keeps taking risks on harmony entrances",
+      "format": "dialogue",
+      "requiredBeat": "she waits until folders are closing, then names the exact entrance the alto held steady while the tenor line wobbled",
+      "firstImage": "a penciled breath mark above an alto line in a black folder",
+      "mustInclude": [
+        "folder snap",
+        "measure number",
+        "piano bench"
+      ],
+      "mustAvoid": [
+        "talent-show praise",
+        "generic confidence boost"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a film set script supervisor crediting a prop assistant for continuity",
+      "audience": "a crew member whose work is invisible unless something goes wrong",
+      "stakes": "whether a costly reshoot is avoided and the assistant feels seen without being flattered",
+      "format": "vignette",
+      "requiredBeat": "the supervisor quietly tells the assistant that the chipped saucer placement saved the editor, tying praise to the exact continuity catch",
+      "firstImage": "a chipped saucer aligned beside a take-number slate",
+      "mustInclude": [
+        "continuity photo",
+        "take slate",
+        "prop cart"
+      ],
+      "mustAvoid": [
+        "Hollywood glamor",
+        "generic behind-the-scenes appreciation"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a climbing gym route setter complimenting a novice setter problem design",
+      "audience": "a technical mentor who could easily sound patronizing",
+      "stakes": "whether the novice learns what made the route work instead of just feeling liked",
+      "format": "before_after",
+      "requiredBeat": "he compares the first bland praise with the revised version that names the foot chip placement forcing balance on move four",
+      "firstImage": "a neon foot chip bolted under a steep plywood panel",
+      "mustInclude": [
+        "route tag",
+        "hex key",
+        "move four"
+      ],
+      "mustAvoid": [
+        "sports encouragement",
+        "generic mentorship"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a farmers market manager thanking a beekeeper after a tense health inspection",
+      "audience": "a manager who needs to reinforce calm compliance without sounding strategic",
+      "stakes": "whether vendors copy the same steady behavior at the next inspection",
+      "format": "postmortem",
+      "requiredBeat": "after the inspector leaves, she mentions the beekeeper clean lot-number binder and how it lowered everyone panic, not his personality",
+      "firstImage": "a honey jar lot-number binder resting on a folding table",
+      "mustInclude": [
+        "inspection clipboard",
+        "lot-number binder",
+        "market canopy weight"
+      ],
+      "mustAvoid": [
+        "food business pep talk",
+        "generic vendor relations"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a neonatal unit charge nurse recognizing a resident family explanation",
+      "audience": "a senior nurse teaching credible praise in a high-stakes clinical setting",
+      "stakes": "whether the resident repeats clear family communication during a fragile discharge",
+      "format": "decision_point",
+      "requiredBeat": "she chooses not to praise intelligence and instead names the moment he paused beside the incubator diagram until the grandmother nodded",
+      "firstImage": "a tiny incubator diagram taped to a discharge folder",
+      "mustInclude": [
+        "discharge folder",
+        "incubator diagram",
+        "hand sanitizer pump"
+      ],
+      "mustAvoid": [
+        "doctor hero story",
+        "generic bedside manner"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish specific recognition from flattery",
+      "choose when indirect praise is more credible than direct praise",
+      "tie affirmation to observed behavior and identity without bribery",
+      "spot motive-exposing compliment language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Give one piece of recognition today that names the exact choice you saw, the moment it helped, and then stops before adding a second compliment.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

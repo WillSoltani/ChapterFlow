@@ -1,0 +1,204 @@
+{
+  "chapterId": "the-first-20-hours-ch04",
+  "number": 4,
+  "title": "Yoga",
+  "coreMove": "Strip false difficulty from a body skill so live correction can reach the basic movement.",
+  "sourcePressure": "The source frames the yoga case through simplification, working with an instructor, clearing misconceptions, and not making the body practice harder than it needs to be.",
+  "chapterSpecificMisunderstanding": "Confusing simplification with softness, when the chapter uses simplification to expose the real physical rep and make correction possible.",
+  "sourceAlignmentTerms": [
+    "yoga",
+    "simplification",
+    "instructor",
+    "misconceptions",
+    "false difficulty",
+    "basic movement",
+    "live correction"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "yoga",
+      "detail": "the frozen support names yoga as the first case application and frames it around simplification, instructor feedback, and clearing misconceptions",
+      "useIn": "both",
+      "phrasingHint": "Yoga becomes learnable when the room stops being a costume and the next corrected shape becomes plain enough to feel."
+    },
+    {
+      "kind": "artifact",
+      "name": "working with an instructor",
+      "detail": "the source lists working with an instructor as a core move in the yoga chapter",
+      "useIn": "deepRead",
+      "phrasingHint": "A good instructor takes the mystery out of the pose by moving attention to the one joint that is lying."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "candlelit studio lifestyle opener",
+      "yoga fixes stress opener",
+      "flexible people versus stiff people opener"
+    ],
+    "counterintuition": [
+      "harder poses prove progress",
+      "comfort is the goal",
+      "any instructor will solve it"
+    ],
+    "tryThisNow": [
+      "take a deep breath",
+      "stretch for one minute",
+      "watch a yoga video"
+    ],
+    "examples": [
+      "mat on bedroom floor with tea",
+      "generic gym class",
+      "medical recovery claim"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "adult beginner climbing footwork class",
+      "audience": "a body-skill learner overcomplicating the first movement",
+      "stakes": "she burns out her arms every session and thinks strength is the issue",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire removes the steep-wall goal, lets the instructor tap one quiet foot placement on a slab route, and repeats only that corrected step",
+      "firstImage": "chalk dust clinging to the rubber edge of a rented climbing shoe",
+      "mustInclude": [
+        "slab route",
+        "instructor tap",
+        "quiet foot placement"
+      ],
+      "mustAvoid": [
+        "heroic summit scene",
+        "fitness transformation"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "community tai chi class for balance basics",
+      "audience": "a reader embarrassed by slow visible correction",
+      "stakes": "his rushed weight shifts make each form feel confusing and unsafe",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nicolas asks whether he is doing the form wrong; the instructor removes the arm sequence and corrects only the heel-to-toe weight shift",
+      "firstImage": "soft-soled shoes lined along a polished community-center floor",
+      "mustInclude": [
+        "arm sequence removed",
+        "heel-to-toe shift",
+        "community-center floor"
+      ],
+      "mustAvoid": [
+        "medical fall-prevention claim",
+        "mystical language"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "violin shoulder-rest setup for a returning adult player",
+      "audience": "a learner whose misconception makes the body fight the instrument",
+      "stakes": "neck pain ends every practice before the first scale settles",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Anna stops forcing a dramatic posture, lets the teacher adjust the shoulder rest, and repeats one open-string bow until her neck stops clenching",
+      "firstImage": "a black shoulder rest lying beside a chipped practice mute",
+      "mustInclude": [
+        "shoulder rest",
+        "open-string bow",
+        "teacher adjustment"
+      ],
+      "mustAvoid": [
+        "child prodigy music scene",
+        "therapy claim"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "rowing club novice learning the catch position",
+      "audience": "a learner who mistakes complex sequence for useful difficulty",
+      "stakes": "the boat checks every stroke and frustrates the crew",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marco predicts power is the missing piece, then improves when the coach pauses the erg and corrects only the catch position with the monitor covered",
+      "firstImage": "a rowing-machine chain clicking against a covered performance monitor",
+      "mustInclude": [
+        "erg monitor cover",
+        "catch position",
+        "coach pause"
+      ],
+      "mustAvoid": [
+        "river race drama",
+        "sports grit cliche"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "pottery wheel centering lesson",
+      "audience": "a tactile learner drowning in aesthetic expectations",
+      "stakes": "every clay lump collapses before it becomes a bowl",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Juliette wipes the reference photos off the bench, asks the instructor to correct only hand pressure, and keeps one cylinder ugly but centered",
+      "firstImage": "gray slip drying in crescent streaks around a pottery wheel basin",
+      "mustInclude": [
+        "reference photos removed",
+        "hand pressure",
+        "ugly centered cylinder"
+      ],
+      "mustAvoid": [
+        "artisan lifestyle fantasy",
+        "home decor scene"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "physical theatre workshop learning a neutral walk",
+      "audience": "a performer who hides behind expressive complexity",
+      "stakes": "the audition panel keeps seeing mannerism instead of control",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "Devon drops the dramatic character choice, lets the instructor call out one shoulder lift, and walks the tape line again without adding expression",
+      "firstImage": "your bare foot stopping on a strip of white rehearsal tape",
+      "mustInclude": [
+        "rehearsal tape",
+        "shoulder correction",
+        "neutral walk"
+      ],
+      "mustAvoid": [
+        "generic acting-class emotion scene",
+        "therapy language"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify false difficulty in embodied practice",
+      "choose instructor feedback that changes the basic rep",
+      "distinguish simplifying from lowering the standard",
+      "avoid unsupported health or lifestyle claims"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one physical skill and cross out one difficulty that is mostly costume, then name the one correction you need on the next basic rep.",
+  "readingTimeMinutes": 12
+}

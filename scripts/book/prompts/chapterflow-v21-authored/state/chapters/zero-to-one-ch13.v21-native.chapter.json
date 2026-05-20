@@ -1,0 +1,325 @@
+{
+  "chapterId": "zero-to-one-ch13",
+  "number": 13,
+  "title": "Seeing Green",
+  "readingTimeMinutes": 12,
+  "hook": "A boxed inverter gathering dust can say more about a green bet than the launch brochure ever did.",
+  "counterintuition": "A green promise still has to survive timing and scale, plus distribution and business design. Serious diagnosis honors the mission by testing the machine that must carry it.",
+  "tryThisNow": "Pick one ambitious technology bet and score timing first, then scale, then distribution, then business design before judging whether the mission deserves the next dollar.",
+  "keyTakeaway": "Clean-tech bets need more than a worthy mission; timing and scale must fit, and distribution plus business design must carry the technology.",
+  "breakdown": {
+    "fastRead": "Nathan finds a boxed inverter gathering dust after a solar microgrid pilot. The panels worked. The permit date slipped, the buyer contract lagged, and the service model could not carry the wait. The mission was not the whole business.\n\nClean-tech failure diagnosis asks plain questions: was the timing right, could the plan scale, did distribution work, and could the company fund the path? A green promise still needs a sound machine around it.",
+    "deepRead": "A clean-tech failure diagnosis begins with a green promise that still has to pass the ordinary tests of timing, scale, and a business that can actually carry it.\n\nMany teams treat bold technology as if ambition itself makes the business strong. This idea rejects that shortcut. It argues that major technology bets can still fail when timing, scale, and business design are wrong, even if the technical promise is real.\n\nFor that reason, The idea keeps timing and scale visible. A technology can matter in principle and still be pursued too early, too broadly, or under conditions that make the economics unworkable. The failure is not always that the idea is fake. Sometimes the bet is misjudged at the level of when and how it is being made.\n\nBusiness design matters just as much. A compelling sector story can hide weak sequencing, weak economics, or a poor fit between the plan and the market. The idea therefore separates technical promise from business viability. A technology may be real while the business around it is still built badly enough to fail.\n\nThis is what makes disciplined diagnosis better than hindsight sneering. The idea is trying to understand what broke in the structure of the bet rather than using failure as proof that the whole field was pointless. A serious analysis asks how timing, scale, and design interacted instead of flattening everything into a smug postmortem.\n\nThe idea also keeps an important limit in place. It is not anti-technology rhetoric, and it is not cynical mockery of ambition. It is also not broad prophecy about sectors rising or collapsing. It stays on the practical claim that a large technology story still needs the right business conditions.\n\nThat practical claim gets sharper once The idea turns from slogans to constraints. It asks whether the company can finance the path it imagines, whether the market can absorb the scale being proposed, and whether the operating plan matches the pace of the technology. Those questions are not decorations around the main thesis. They are the mechanism by which the thesis becomes testable.\n\nSeen that way, failure becomes legible without turning into nihilism. The business can break because the launch window was wrong, the rollout was oversized, or the economics demanded patience the company did not have. None of those outcomes require the reader to conclude that the technology was nonsense. They require the reader to distinguish a real invention from an overconfident business argument.\n\nThat is why the bridge to the next chapter works. Once The argument explains why an ambitious technology bet can still fail, it can turn to the founder intensity behind those bets and ask how that intensity becomes both a source of power and a source of risk.",
+    "fullRead": "A common mistake treats ambitious technology as though ambition itself makes the business strong. This idea rejects that shortcut. It argues that major technology bets can still fail when timing, scale, and business design are wrong, even if the technical promise is real.\n\nThe idea keeps timing visible because timing determines whether the market can absorb the bet. A technology can matter in principle and still be pursued too early or under conditions that make the economics unworkable. Timing is not a side note around the real story. It is part of whether the business can carry the technology at all.\n\nScale matters for the same reason. A large vision can be pushed at the wrong size, pace, or cost structure. The idea treats that mismatch as part of the failure mechanism rather than as a small execution error. Ambition may be real while the operating conditions remain completely misjudged.\n\nBusiness design matters just as much. A compelling sector story can hide weak sequencing, weak economics, or a poor fit between the plan and the market. The idea therefore separates technical promise from business viability. A technology may still be real while the business around it is built badly enough to fail.\n\nThis is what makes disciplined diagnosis more valuable than hindsight sneering. The idea is trying to understand what broke in the structure of the bet rather than using failure as proof that the whole field was pointless. A serious analysis asks how timing, scale, and design interacted instead of flattening everything into a smug postmortem.\n\nAt the clean-tech postmortem table, the boundary stays firm. It is not anti-technology rhetoric, and it is not cynical mockery of ambition. It is also not broad prophecy about sectors rising or collapsing. It stays on the practical claim that a large technology story still needs the right business conditions, and that missing those conditions can destroy the bet without destroying the underlying importance of the technology.\n\nThe hard version makes the operational burden explicit. It asks whether the business model can survive the waiting period before adoption, whether the rollout pace outruns what the company can fund, and whether the plan assumes trust or infrastructure that does not exist yet. Those questions explain why a promising technology can still be wrapped in a failing business argument. They also reveal why the same company can be directionally right about technology while still being disastrously wrong about implementation sequence.\n\nThat boundary preserves The idea’s discipline. It allows criticism without forcing the reader into cynicism. Once that point is secure, the next chapter can turn to the founder intensity behind such bets and ask why that same intensity becomes both a source of power and a source of risk.\n\nThe failed launch leaves one final pressure: if the technology sounds ambitious and important, what still decides whether the bet works? The idea’s answer is not bigger rhetoric. It is better judgment about timing, scale, and structure."
+  },
+  "examples": [
+    {
+      "exampleId": "ch13-ex01-nathan-solar-microgrid-startup",
+      "title": "Nathan Decides Whether the Bet Is Ready for This Market Window",
+      "tags": [
+        "postmortem",
+        "solar",
+        "clean-tech"
+      ],
+      "planSpec": {
+        "domain": "solar microgrid startup",
+        "audience": "a founder diagnosing whether the pilot failed from technology, timing, channel, or financing design",
+        "stakes": "whether the next version fixes the business problem rather than blaming the mission",
+        "format": "postmortem",
+        "requiredBeat": "Nathan labels every failed pilot assumption before touching the panel design"
+      },
+      "scenario": "Nathan studies dust on a boxed inverter in a warehouse aisle in solar microgrid startup. The technology looks meaningful, but the launch timing may still be wrong. The role is founder diagnosing whether the pilot failed from technology, timing, channel, or financing design, and the scene turns on boxed inverter. Nathan has to choose beside pilot contract before solar microgrid startup funds the safe option: Nathan labels every failed pilot assumption before touching the panel design.",
+      "whatToDo": "Treat timing as part of the business case instead of as a detail to solve later.",
+      "whyItMatters": "This example shows that ambition does not erase the launch-window problem."
+    },
+    {
+      "exampleId": "ch13-ex02-julia-electric-ferry-retrofit",
+      "title": "Julia's Case Review Separates Sector Promise From Business Design",
+      "tags": [
+        "decision-point",
+        "electric",
+        "clean-tech"
+      ],
+      "planSpec": {
+        "domain": "electric ferry retrofit",
+        "audience": "a port planner testing scale and timing before celebrating a green headline",
+        "stakes": "whether the harbor buys a promise it cannot maintain",
+        "format": "decision_point",
+        "requiredBeat": "Julia asks where the charging window fits into the tide schedule before approving the grant"
+      },
+      "scenario": "Julia studies a tide chart taped beside a charging schematic in electric ferry retrofit. The debate is between impressive technology rhetoric and the structure of the bet itself. charging schematic now carries the electric ferry retrofit tradeoff: whether the harbor buys a promise it cannot maintain. Julia's hand hovers over tide chart while electric ferry retrofit waits for the next step: Julia asks where the charging window fits into the tide schedule before approving the grant.",
+      "whatToDo": "Separate technology promise from the specific business structure being reviewed.",
+      "whyItMatters": "This dialogue turns disciplined diagnosis into a practical evaluation habit."
+    },
+    {
+      "exampleId": "ch13-ex03-george-compostable-packaging-ma",
+      "title": "George Chooses Between Excitement and Feasibility",
+      "tags": [
+        "before-after",
+        "compostable",
+        "clean-tech"
+      ],
+      "planSpec": {
+        "domain": "compostable packaging manufacturer",
+        "audience": "an operations director discovering that factory throughput, not material science, breaks the business",
+        "stakes": "whether a worthy product fails at industrial scale",
+        "format": "before_after",
+        "requiredBeat": "George moves the argument from biodegradability slides to the jammed forming line"
+      },
+      "scenario": "George studies pulp trays stuck inside a steel forming machine in compostable packaging manufacturer. She has to choose between exciting rhetoric and a more disciplined reading of the conditions. forming machine sits next to retailer forecast, so the compostable packaging manufacturer choice stays concrete. In the investor conference room, the founder has to decide whether scale timing belongs in the launch plan before the next check clears.",
+      "whatToDo": "Use feasibility as a test of the bet instead of letting the narrative carry the whole decision.",
+      "whyItMatters": "This dilemma captures the difference between technical appeal and viable structure."
+    },
+    {
+      "exampleId": "ch13-ex04-chiara-heat-pump-installer-netw",
+      "title": "Chiara Realizes the Problem Is the Bet's Structure",
+      "tags": [
+        "dialogue",
+        "heatpump",
+        "clean-tech"
+      ],
+      "planSpec": {
+        "domain": "heat-pump installer network",
+        "audience": "a founder realizing customer acquisition and trained installers matter as much as hardware efficiency",
+        "stakes": "whether demand exists but cannot be served profitably",
+        "format": "dialogue",
+        "requiredBeat": "Chiara asks who installs unit four hundred before ordering unit four hundred"
+      },
+      "scenario": "Chiara studies copper tubing coiled beside a training calendar in heat-pump installer network. He sees that the bet broke at the level of timing and structure rather than at the level of technical aspiration. The heat-pump installer network setting is concrete: training calendar, copper tubing, rebate form are all in reach. Chiara has to choose beside copper tubing before heat-pump installer network funds the safe option: Chiara asks who installs unit four hundred before ordering unit four hundred.",
+      "whatToDo": "Treat failure as a structural diagnosis problem instead of as automatic proof that the field is worthless.",
+      "whyItMatters": "This example shows why disciplined postmortem analysis matters."
+    },
+    {
+      "exampleId": "ch13-ex05-devon-urban-battery-recycling-",
+      "title": "Devon Compares Specific Diagnosis With Generic Hindsight",
+      "tags": [
+        "predict-reveal",
+        "urban",
+        "clean-tech"
+      ],
+      "planSpec": {
+        "domain": "urban battery recycling plant",
+        "audience": "a CFO testing whether permitting, feedstock, and buyer contracts align before expansion",
+        "stakes": "whether scale exposes missing business design",
+        "format": "predict_reveal",
+        "requiredBeat": "Devon predicts capacity wins, then watches the permit date break the whole model"
+      },
+      "scenario": "Devon studies shredded battery casings in a sealed sample jar in urban battery recycling plant. One analysis is disciplined. The other is generic hindsight. The role is CFO testing whether permitting, feedstock, and buyer contracts align before expansion, and the scene turns on sample jar. Devon's hand hovers over sample jar while urban battery recycling plant waits for the next step: Devon predicts capacity wins, then watches the permit date break the whole model.",
+      "whatToDo": "Prefer structural diagnosis over broad retrospective cynicism.",
+      "whyItMatters": "This contrast keeps The idea analytical instead of smug."
+    },
+    {
+      "exampleId": "ch13-ex06-petra-green-cement-procurement",
+      "title": "Petra Learns That a Promising Technology Still Needs Conditions",
+      "tags": [
+        "second-person",
+        "green",
+        "clean-tech"
+      ],
+      "planSpec": {
+        "domain": "green cement procurement",
+        "audience": "a city engineer deciding whether lower-carbon material can meet code, supply, and contractor timing",
+        "stakes": "whether ambition survives contact with procurement constraints",
+        "format": "second_person",
+        "requiredBeat": "You watch Petra place the code sheet over the glossy sustainability brochure"
+      },
+      "scenario": "Petra studies a concrete core sample beside a city code binder in green cement procurement. She learns that technological promise still needs business conditions that can carry it. code binder now carries the green cement procurement tradeoff: whether ambition survives contact with procurement constraints. Petra must choose from the evidence in supplier lead-time chart and make core sample decide the next step: You watch Petra place the code sheet over the glossy sustainability brochure.",
+      "whatToDo": "Treat timing, scale, and business design as part of the bet itself.",
+      "whyItMatters": "This vignette turns the failure analysis into a usable evaluation rule."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a factory floor review, the team can take a comfortable path or act on clean-tech. The documents include boxed inverter, pilot contract, utility email. Which response best fits the specific move here?",
+        "choices": [
+          "Use clean-tech to identify the real constraint, then choose the option that visibly changes scale.",
+          "Pick the plan with the cleanest slide because it will travel faster.",
+          "Run another broad survey before naming the actual constraint."
+        ],
+        "correctIndex": 0,
+        "explanation": "factory floor review needs a choice tied to clean-tech, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes scale in the actual work.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "In a school district pilot, the team can take a comfortable path or act on timing. The documents include tide chart, charging schematic, grant binder. Which response best fits the specific move here?",
+        "choices": [
+          "Treat the vocabulary as proof that the team understood the issue.",
+          "Use timing to identify the real constraint, then choose the option that visibly changes business design.",
+          "Split the budget evenly so no one has to defend a sharper call."
+        ],
+        "correctIndex": 1,
+        "explanation": "school district pilot needs a choice tied to timing, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes business design in the actual work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "In a warehouse renewal meeting, the team can take a comfortable path or act on scale. The documents include forming machine, throughput log, retailer forecast. Which response best fits the specific move here?",
+        "choices": [
+          "Approve the more familiar option because it lowers discussion time.",
+          "Copy the nearest competitor and measure success by resemblance.",
+          "Use scale to identify the real constraint, then choose the option that visibly changes failure diagnosis."
+        ],
+        "correctIndex": 2,
+        "explanation": "warehouse renewal meeting needs a choice tied to scale, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes failure diagnosis in the actual work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "In a research lab planning session, the team can take a comfortable path or act on business design. The documents include training calendar, copper tubing, rebate form. Which response best fits the specific move here?",
+        "choices": [
+          "Use business design to identify the real constraint, then choose the option that visibly changes technology bets.",
+          "Wait until the safer option has enough polish to avoid criticism.",
+          "Reward the plan that makes the fewest people uncomfortable."
+        ],
+        "correctIndex": 0,
+        "explanation": "research lab planning session needs a choice tied to business design, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes technology bets in the actual work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "In a city council work session, the team can take a comfortable path or act on failure diagnosis. The documents include sample jar, permit timeline, buyer contract. Which response best fits the specific move here?",
+        "choices": [
+          "Delay the choice until uncertainty disappears from the project.",
+          "Use failure diagnosis to identify the real constraint, then choose the option that visibly changes clean-tech.",
+          "Follow the loudest stakeholder because consensus lowers risk."
+        ],
+        "correctIndex": 1,
+        "explanation": "city council work session needs a choice tied to failure diagnosis, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes clean-tech in the actual work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "In a clinic budget review, the team can take a comfortable path or act on technology bets. The documents include core sample, code binder, supplier lead-time chart. Which response best fits the specific move here?",
+        "choices": [
+          "Pick the plan with the cleanest slide because it will travel faster.",
+          "Run another broad survey before naming the actual constraint.",
+          "Use technology bets to identify the real constraint, then choose the option that visibly changes timing."
+        ],
+        "correctIndex": 2,
+        "explanation": "clinic budget review needs a choice tied to technology bets, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes timing in the actual work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "In a port authority meeting, the team can take a comfortable path or act on clean-tech. The documents include boxed inverter, pilot contract, utility email. Which response best fits the specific move here?",
+        "choices": [
+          "Use clean-tech to identify the real constraint, then choose the option that visibly changes scale.",
+          "Split the budget evenly so no one has to defend a sharper call.",
+          "Treat the vocabulary as proof that the team understood the issue."
+        ],
+        "correctIndex": 0,
+        "explanation": "port authority meeting needs a choice tied to clean-tech, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes scale in the actual work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "In a software roadmap call, the team can take a comfortable path or act on timing. The documents include tide chart, charging schematic, grant binder. Which response best fits the specific move here?",
+        "choices": [
+          "Copy the nearest competitor and measure success by resemblance.",
+          "Use timing to identify the real constraint, then choose the option that visibly changes business design.",
+          "Approve the more familiar option because it lowers discussion time."
+        ],
+        "correctIndex": 1,
+        "explanation": "software roadmap call needs a choice tied to timing, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes business design in the actual work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "In a grant committee debate, the team can take a comfortable path or act on scale. The documents include forming machine, throughput log, retailer forecast. Which response best fits the specific move here?",
+        "choices": [
+          "Wait until the safer option has enough polish to avoid criticism.",
+          "Reward the plan that makes the fewest people uncomfortable.",
+          "Use scale to identify the real constraint, then choose the option that visibly changes failure diagnosis."
+        ],
+        "correctIndex": 2,
+        "explanation": "grant committee debate needs a choice tied to scale, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes failure diagnosis in the actual work.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A team uses clean-tech language. What should you retrieve first?",
+      "back": "Retrieve the visible move: Diagnose a technology bet through timing, scale, and business design before admiring its ambition. Then ask what object, budget line, or handoff would change if the idea were real.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "The safer plan sounds mature. What test keeps maturity from becoming cover?",
+      "back": "Ask what risk the safe plan truly reduces and what strength it prevents. Good caution names both sides instead of hiding behind respectability.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A plan has the right words but no changed action. What is missing?",
+      "back": "The idea has not reached the decision layer. Tie it to a role, a constraint, and a visible next step, or treat it as vocabulary rather than strategy.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How do you apply timing without turning it into a slogan?",
+      "back": "Force it into a scene. Name who chooses, what they touch, what they reject, and what becomes possible after the choice.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What makes the current pressure different from the previous idea?",
+      "back": "Use the local terms: clean-tech, timing, scale, business design. If the explanation works without those terms, it is too generic.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is to diagnose a technology bet through timing, scale, and business design before admiring its ambition. Use the idea on a real decision, not as a label. The practical test is whether the next action changes when the idea is applied.",
+    "ifThenPlans": [
+      {
+        "context": "product",
+        "plan": "If a roadmap choice invokes clean-tech, then write the user action that changes before approving the work."
+      },
+      {
+        "context": "team",
+        "plan": "If the room rewards the familiar option, then ask which constraint from timing the familiar option avoids."
+      },
+      {
+        "context": "strategy",
+        "plan": "If a plan sounds strong in words, then force it onto one budget line, one owner, and one irreversible next step."
+      },
+      {
+        "context": "learning",
+        "plan": "If you cannot explain the idea through a specific scene, then return to the plan and find the visible beat."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one ambitious technology bet and score it on timing, scale, distribution, and business design before judging whether the mission is inspiring.",
+    "weeklyPractice": "Once this week, choose one decision and score it against clean-tech, timing, scale. Write what you changed after applying the score."
+  },
+  "memorableLines": [
+    {
+      "text": "Nathan finds a boxed inverter gathering dust after a solar microgrid pilot.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a clear sentence to retrieve the chapter move."
+    },
+    {
+      "text": "The permit date slipped, the buyer contract lagged, and the service model could not carry the wait.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a clear sentence to retrieve the chapter move."
+    },
+    {
+      "text": "The mission was not the whole business.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a clear sentence to retrieve the chapter move."
+    }
+  ]
+}

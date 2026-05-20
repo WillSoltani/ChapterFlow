@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch06",
+  "number": 6,
+  "title": "Matters of Judgment",
+  "coreMove": "Distinguish the decisions where human interpretation genuinely determines the outcome from those where it only appears to.",
+  "sourcePressure": "Noise is active specifically in decisions where human interpretation shapes the outcome. Not every decision that involves an expert is a genuine judgment call — some are rule lookups that only feel like judgment because an expert performs them. And some apparent rule lookups contain buried judgment steps where interpretation quietly matters. Identifying where judgment is genuinely active is the precondition for targeting noise reduction.",
+  "chapterSpecificMisunderstanding": "Assuming that any decision involving a credentialed expert is automatically a matter of judgment, or conversely that any decision with a stated formula or algorithm is automatically noise-free.",
+  "sourceAlignmentTerms": ["judgment", "interpretation", "discretion", "scope", "noise-prone", "rule application", "assessment zone"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Domains where judgment is genuinely active",
+      "detail": "Medicine, law, hiring, financial assessment, forecasting, and performance evaluation are the recurring examples: domains where the expert's interpretation shapes the output in ways that a rule alone cannot fully capture.",
+      "useIn": "fullRead",
+      "phrasingHint": "An X-ray has no opinion. The radiologist reading it does. That is where noise enters — not in the physics of the image, but in the interpretation of what the image shows."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["not all decisions are created equal", "when does human judgment actually matter?"],
+    "counterintuition": ["rules are not as reliable as they seem", "experts use more judgment than you realize"],
+    "tryThisNow": ["make a list of decisions you make by rule and by judgment", "think of a decision you thought was automatic but actually involved interpretation"],
+    "examples": ["a scene where the expert explicitly asks themselves 'is this a judgment call?' — makes the distinction too deliberate and easy", "an example where the rule is shown to be superior without acknowledging the trade-off"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The distinction between genuine judgment and apparent judgment requires showing it applied across genuinely different decision types — not just six versions of 'expert uses implicit standard instead of stated one.'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "job interview for a senior product manager role: three interviewers using their own unstated criteria for 'strategic thinking'",
+      "audience": "an HR director reviewing interview panel scorecards for a senior hire",
+      "stakes": "a company filling a critical role and paying a significant search fee — with the outcome depending on which interpretation of 'strategic thinking' each interviewer supplies",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review three interview scorecards for the same candidate on 'strategic thinking': one scored it a 4 (strong), one scored it a 2 (needs development), one scored it a 3 with a note about 'execution focus.' All three heard the same interview; all three applied different implicit standards for the category",
+      "firstImage": "three interview scorecards with identical candidate names but different scores on the same competency line",
+      "mustInclude": ["identical interview, three different standards", "the HR director's realization that the category itself was never defined", "no implication that any interviewer is biased toward or against the candidate"],
+      "mustAvoid": ["revealing whether the candidate was good or bad", "turning the scene into a hiring advice narrative"]
+    },
+    {
+      "domain": "restaurant hygiene inspection: two inspectors applying the same code to the same kitchen on different days",
+      "audience": "a food safety agency manager reviewing an anomaly complaint from a restaurant owner",
+      "stakes": "the restaurant's public-facing score and operating status — the judgment call is not in reading the code but in what counts as 'clean' under a category that allows interpretation",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the manager reviews both inspection reports for the same kitchen and finds that one inspector classified a slightly grimy backsplash as a minor deduction and another classified it as a critical violation — the code allows both readings, and both are defensible under the stated standard",
+      "firstImage": "a kitchen backsplash that shows discoloration but not obvious filth — the kind of surface a reasonable person might describe differently on a different day",
+      "mustInclude": ["a single physical surface that admits two defensible readings", "both inspectors citing the same code section", "the manager's recognition that the code itself is where the noise lives, not the inspector"],
+      "mustAvoid": ["implying either inspector was negligent", "a food safety incident that overshadows the consistency theme"]
+    },
+    {
+      "domain": "academic research grant panel: two reviewers applying 'impact potential' criterion to the same proposal",
+      "audience": "a funding agency panel coordinator collecting reviewer scores before calibration",
+      "stakes": "allocation of limited research funding — the criterion 'impact potential' is the most weighed factor but the least defined",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two reviewers compare their 'impact potential' scores in a pre-calibration meeting and discover they scored the same proposal a 7 and a 3 respectively; when asked to define impact, they describe two legitimately different concepts — scientific impact vs. societal reach — neither of which the panel criteria document specified",
+      "firstImage": "two reviewers at a small table, each holding their scoring sheet, about to discover how far apart their central scores are before the full panel meeting starts",
+      "mustInclude": ["the undefined criterion as the source of divergence", "both reviewers' definitions being internally coherent", "neither reviewer having applied an explicitly wrong standard"],
+      "mustAvoid": ["implying the proposal was a good or bad one", "a scene focused on research politics"]
+    },
+    {
+      "domain": "sports officiating in a semi-professional football match: two assistant referees calling the same offside situation differently",
+      "audience": "a referee assessor reviewing the match video for training purposes",
+      "stakes": "the goal is disallowed by one call and allowed by the other — a match-changing decision based on a genuine judgment call about a moving line",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the assessor freezes the match video at the moment of the offside call, brings it to the next officials training session, and has six assistant referees call it independently — three flag offside, three leave it on, and none of the three-three split is explainable by viewpoint angle because the chapter takes place at a training angle that is always identical",
+      "firstImage": "a frozen video frame of a football pitch, an attacker's position circled in yellow, the defender's line drawn across — a genuinely ambiguous image that professionals will split on",
+      "mustInclude": ["the identical viewing angle for all officials", "the 3-3 split", "the assessor's framing: this is what the rules call a judgment call — meaning noise lives here by design"],
+      "mustAvoid": ["a fan or outcome-focused framing", "implying the officials were poorly trained"]
+    },
+    {
+      "domain": "legal discovery: two paralegals applying a relevance standard to the same document batch",
+      "audience": "a supervising attorney reviewing tagged documents for production",
+      "stakes": "litigation exposure — documents tagged as non-relevant by one paralegal and relevant by the other could determine what gets disclosed",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the attorney asks: if she had two paralegals review the same 1,000-document batch under the same relevance protocol, how many would they tag differently? The answer from a calibration test she ran two weeks ago: 22 percent of documents — a number that surprised her given both paralegals passed the same training",
+      "firstImage": "a document review screen showing a batch of 1,000 documents, the relevance tag toggle in the upper right corner, the protocol document open in a separate window",
+      "mustInclude": ["the same protocol, same batch, two paralegals", "the 22 percent divergence figure", "the attorney's assessment that this is a judgment zone, not a training failure"],
+      "mustAvoid": ["revealing the specific litigation context", "implying either paralegal made professional errors"]
+    },
+    {
+      "domain": "estate valuation: two certified appraisers assessing the same residential property using the market-comparison approach",
+      "audience": "a bank quality officer auditing a random sample of appraisals for consistency",
+      "stakes": "a family's mortgage approval and the bank's risk exposure — both dependent on a valuation figure that varies more than the methodology's stated precision implies",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the quality officer reviews two independent appraisals of the same property: both used the market-comparison approach, both selected three comparable sales, but the comps they chose differed, the adjustments they applied differed, and the resulting values came out $27,000 apart — because the selection of comparable sales and the size of adjustments are where judgment enters the supposedly objective calculation",
+      "firstImage": "two appraisal reports on a desk, both for the same property address, the comparable sales tables showing different properties selected in each",
+      "mustInclude": ["same methodology, different comp selections", "the $27,000 gap arising from judgment within a defined method", "the bank officer's recognition that 'objective method' still contains judgment points"],
+      "mustAvoid": ["implying one appraiser inflated the value", "a scene focused on the family's financial situation"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which elements of a described decision process are genuine judgment calls versus rule applications",
+      "distinguish between a decision that looks like a rule application but contains buried judgment and one that genuinely has no interpretation step",
+      "apply the judgment-zone concept to explain where noise can be targeted and where it cannot",
+      "analyze why defining a criterion more precisely reduces noise on that criterion",
+      "evaluate whether a proposal to algorithmically replace a decision actually removes all judgment or just moves it to the algorithm-design step"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one recurring decision you make that you think of as mostly rule-based. Walk through the last time you made it and write down every step where you supplied a definition, a threshold, or a comparison that the written rules did not explicitly give you. Each of those steps is a judgment zone where your reading and your colleague's reading might diverge.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) crystallizing the difference between rule application and judgment, at least one longer paragraph (5+ sentences) on the buried-judgment problem in apparently algorithmic decisions, at least one one-sentence punch line about where noise actually lives in a process that looks mechanical",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks to directly ask the reader which decisions in their work they would classify as judgment calls and which they would classify as rule lookups — as a setup for the realization that the boundary is less clear than they thought",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

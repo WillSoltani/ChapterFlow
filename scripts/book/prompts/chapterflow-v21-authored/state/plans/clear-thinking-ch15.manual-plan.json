@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch15",
+  "number": 15,
+  "title": "Protecting Yourself with Safeguards",
+  "coreMove": "Put guardrails around a known weakness before the weak condition returns.",
+  "sourcePressure": "After naming weak points, build safeguards: rules, guardrails, premortems, friction, and practical protection that make known failures harder to re-enter.",
+  "chapterSpecificMisunderstanding": "Making safeguards feel fearful, bureaucratic, or abstract rather than practical protection.",
+  "sourceAlignmentTerms": [
+    "safeguards",
+    "guardrails",
+    "premortem",
+    "friction",
+    "protection",
+    "weak points",
+    "rules"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "guardrails, premortem, and friction",
+      "detail": "the heading index supports this chapter through rules, guardrails, premortem, and friction",
+      "useIn": "both",
+      "phrasingHint": "A safeguard is a small inconvenience you choose while clear so the old failure has to climb over it later."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for safeguards",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think safeguards is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Lin",
+      "domain": "a online brokerage account",
+      "audience": "a reader facing safeguards in a concrete online brokerage account decision",
+      "stakes": "whether Lin preserves judgment quality before the situation slides into enterprise risk systems",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lin performs the chapter move by setting the foam model beside the review sheet, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the review sheet in the online brokerage account",
+      "mustInclude": [
+        "foam model",
+        "review sheet"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "enterprise risk systems",
+        "reusing a previous chapter's online brokerage account shell"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "a factory lockout station",
+      "audience": "a reader facing safeguards in a concrete factory lockout station decision",
+      "stakes": "whether Min preserves judgment quality before the situation slides into enterprise risk systems",
+      "format": "reflection",
+      "openingDevice": "environmental",
+      "requiredBeat": "Min performs the chapter move by setting the annotated manuscript beside the referee note, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the annotated manuscript lying beside the referee note in the factory lockout station",
+      "mustInclude": [
+        "annotated manuscript",
+        "referee note"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "enterprise risk systems",
+        "reusing a previous chapter's factory lockout station shell"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "a school field-trip approval",
+      "audience": "a reader facing safeguards in a concrete school field-trip approval decision",
+      "stakes": "whether Hiroshi preserves judgment quality before the situation slides into enterprise risk systems",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hiroshi performs the chapter move by setting the burn-rate slide beside the customer email, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the customer email in the school field-trip approval",
+      "mustInclude": [
+        "burn-rate slide",
+        "customer email"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "enterprise risk systems",
+        "reusing a previous chapter's school field-trip approval shell"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "a nursing home medication cart",
+      "audience": "a reader facing safeguards in a concrete nursing home medication cart decision",
+      "stakes": "whether Akira preserves judgment quality before the situation slides into enterprise risk systems",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Akira performs the chapter move by setting the sign-in sheet beside the folding chairs, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the folding chairs in the nursing home medication cart",
+      "mustInclude": [
+        "sign-in sheet",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "enterprise risk systems",
+        "reusing a previous chapter's nursing home medication cart shell"
+      ]
+    },
+    {
+      "protagonistName": "Emma",
+      "domain": "a retail refund counter",
+      "audience": "a reader facing safeguards in a concrete retail refund counter decision",
+      "stakes": "whether Emma preserves judgment quality before the situation slides into enterprise risk systems",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emma performs the chapter move by setting the case notes beside the scan image, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the case notes against the counter in the retail refund counter",
+      "mustInclude": [
+        "case notes",
+        "scan image"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "enterprise risk systems",
+        "reusing a previous chapter's retail refund counter shell"
+      ]
+    },
+    {
+      "protagonistName": "Abigail",
+      "domain": "a backcountry ski avalanche check",
+      "audience": "a reader facing safeguards in a concrete backcountry ski avalanche check decision",
+      "stakes": "whether Abigail preserves judgment quality before the situation slides into enterprise risk systems",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Abigail performs the chapter move by setting the sheet music beside the audition list, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the backcountry ski avalanche check as Abigail reaches for the sheet music",
+      "mustInclude": [
+        "sheet music",
+        "audition list"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "enterprise risk systems",
+        "reusing a previous chapter's backcountry ski avalanche check shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Put guardrails around a known weakness before the weak condition returns.",
+      "detect the weak generic version: Making safeguards feel fearful, bureaucratic, or abstract rather than practical protection.",
+      "distinguish safeguards from nearby drift into enterprise risk systems"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where safeguards is active, then write the exact next visible move that would perform this chapter's move: put guardrails around a known weakness before the weak condition returns.",
+  "readingTimeMinutes": 12
+}

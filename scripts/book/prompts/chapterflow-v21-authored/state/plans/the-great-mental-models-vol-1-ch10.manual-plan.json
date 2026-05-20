@@ -1,0 +1,198 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch10",
+  "number": 10,
+  "title": "Inversion",
+  "coreMove": "Work backward from failure and remove the causes before chasing success directly.",
+  "sourcePressure": "The official article frames inversion as solving problems backward, avoiding stupidity rather than chasing brilliance directly, and asking what would cause failure, error, or ruin.",
+  "chapterSpecificMisunderstanding": "The weak version says be pessimistic or make a generic risk list.",
+  "sourceAlignmentTerms": [
+    "inversion",
+    "work backward",
+    "failure",
+    "error",
+    "ruin",
+    "avoid stupidity",
+    "remove causes"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "avoiding stupidity",
+      "detail": "the frozen support frames inversion as avoiding stupidity rather than chasing brilliance directly",
+      "useIn": "both",
+      "phrasingHint": "Sometimes the smartest move is not adding brilliance; it is removing the thing that would make success impossible."
+    },
+    {
+      "kind": "artifact",
+      "name": "failure, error, or ruin",
+      "detail": "the model asks what would cause failure, error, or ruin, then works backward from that answer",
+      "useIn": "deepRead",
+      "phrasingHint": "Start with the ruined version and the cause list gets sharper."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "doom and gloom",
+      "disaster movie",
+      "pessimist is smartest person"
+    ],
+    "counterintuition": [
+      "success comes from negativity",
+      "never pursue upside",
+      "risk management is the whole job"
+    ],
+    "tryThisNow": [
+      "do a premortem only",
+      "list your fears",
+      "avoid mistakes"
+    ],
+    "examples": [
+      "generic product launch premortem",
+      "airplane crash drama",
+      "office risk register"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "mountain race safety plan",
+      "audience": "a race director preparing a high-altitude trail event",
+      "stakes": "one preventable route or hydration failure could injure runners",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anna writes the headline she never wants to read, then removes the three causes most likely to put a runner in that story",
+      "firstImage": "orange course flags snapping above a rocky switchback",
+      "mustInclude": [
+        "route flags",
+        "aid station water",
+        "weather cutoff"
+      ],
+      "mustAvoid": [
+        "heroic endurance story",
+        "generic safety checklist"
+      ]
+    },
+    {
+      "domain": "airport baggage meltdown premortem",
+      "audience": "an airline station manager opening a new baggage belt",
+      "stakes": "opening weekend could bury the station in delayed bags",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anders imagines the belt jammed at midnight and removes the scanner handoff failure before praising the new system",
+      "firstImage": "rubber belt smell rising from a silent baggage carousel",
+      "mustInclude": [
+        "scanner handoff",
+        "midnight jam",
+        "opening weekend"
+      ],
+      "mustAvoid": [
+        "travel complaint",
+        "technology villain"
+      ]
+    },
+    {
+      "domain": "restaurant food-poisoning prevention",
+      "audience": "a chef opening a raw-bar special",
+      "stakes": "one missed cold-chain step could harm guests and close the restaurant",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Pablo asks what would have to go wrong for the raw bar to make guests sick, then deletes the weak ice-bin handoff from the service plan",
+      "firstImage": "crushed ice melting around oyster tags",
+      "mustInclude": [
+        "oyster tags",
+        "ice-bin handoff",
+        "cold-chain log"
+      ],
+      "mustAvoid": [
+        "kitchen chaos trope",
+        "chef ego story"
+      ]
+    },
+    {
+      "domain": "film shoot data backup",
+      "audience": "a documentary producer with a three-day remote shoot",
+      "stakes": "lost footage cannot be recreated once the crew leaves",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rita imagines landing home with no usable footage and builds the backup ritual backward from that loss",
+      "firstImage": "two memory cards taped to the inside of a field notebook",
+      "mustInclude": [
+        "memory cards",
+        "backup ritual",
+        "remote shoot"
+      ],
+      "mustAvoid": [
+        "creative burnout",
+        "generic file backup reminder"
+      ]
+    },
+    {
+      "domain": "ferry winter timetable",
+      "audience": "a transit planner adjusting winter ferry service",
+      "stakes": "a missed connection could strand shift workers after the last bus",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Nicole start with the stranded-passenger outcome and remove the timetable gap that would create it",
+      "firstImage": "a dark ferry terminal with the last bus pulling away",
+      "mustInclude": [
+        "winter timetable",
+        "last bus",
+        "crew shift change"
+      ],
+      "mustAvoid": [
+        "commute frustration only",
+        "weather as villain"
+      ]
+    },
+    {
+      "domain": "neighborhood festival crowd control",
+      "audience": "a volunteer marshal planning a street festival entrance",
+      "stakes": "a crowd pinch could turn a family event unsafe",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Martin asks what would cause a crush at the entrance and moves the ticket scan away from the narrow gate before opening",
+      "firstImage": "temporary fencing leaning beside a painted curb",
+      "mustInclude": [
+        "ticket scan",
+        "narrow gate",
+        "temporary fencing"
+      ],
+      "mustAvoid": [
+        "crowd panic scene",
+        "festival logistics generic"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "work backward from a concrete failure",
+      "identify removable causes of failure",
+      "distinguish inversion from pessimism",
+      "choose prevention over more motivational upside"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one failure headline for a current plan. Under it, list three causes, then remove or reduce one before doing anything else.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

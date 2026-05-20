@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch09",
+  "number": 9,
+  "title": "The Ludic Fallacy, or The Uncertainty of the Nerd",
+  "coreMove": "Check whether a formal model's clean boundaries belong to the domain before trusting its precision.",
+  "sourcePressure": "The ludic fallacy mistakes game-like, bounded uncertainty for the open, adaptive, opaque uncertainty of real domains.",
+  "chapterSpecificMisunderstanding": "Saying games or models are useless rather than locally limited.",
+  "sourceAlignmentTerms": [
+    "ludic fallacy",
+    "bounded game",
+    "known rules",
+    "hidden variables",
+    "toy system",
+    "open domain",
+    "formal frame",
+    "precision"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the ludic fallacy",
+      "detail": "the frozen source defines it as treating reality like a bounded game with known rules and manageable uncertainty",
+      "useIn": "both",
+      "phrasingHint": "The board looks honest because its edges are visible; the world keeps moving outside the edges."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "cybersecurity tabletop exercise",
+      "audience": "a CISO trusting a scripted breach game",
+      "stakes": "attackers using a vendor path outside the exercise",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the CISO adds one rule-breaking actor before signing off readiness",
+      "firstImage": "At 8:17 a.m., Astrid faces a red-team envelope unopened on a server rack.",
+      "mustInclude": [
+        "Astrid",
+        "a red-team envelope unopened on a server rack",
+        "ludic fallacy"
+      ],
+      "mustAvoid": [
+        "Saying games or models are useless rather than locally limited.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "urban traffic simulation",
+      "audience": "a planner optimizing lights in a clean model",
+      "stakes": "construction and school pickup breaking every assumption",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the planner walks the corridor at dismissal before accepting the simulation",
+      "firstImage": "A first line of dialogue lands before the reader sees wet leaves stuck to a pedestrian counter.",
+      "mustInclude": [
+        "Maja",
+        "wet leaves stuck to a pedestrian counter",
+        "bounded game"
+      ],
+      "mustAvoid": [
+        "Saying games or models are useless rather than locally limited.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "commodities hedging model",
+      "audience": "a trader pricing risk from exchange rules alone",
+      "stakes": "a port strike moving outside the spreadsheet",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the trader adds political closure scenarios before increasing leverage",
+      "firstImage": "Open on the texture, sound, or light of shipping manifests clipped to a futures screen.",
+      "mustInclude": [
+        "Anke",
+        "shipping manifests clipped to a futures screen",
+        "known rules"
+      ],
+      "mustAvoid": [
+        "Saying games or models are useless rather than locally limited.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "wildfire evacuation drill",
+      "audience": "an emergency manager using a perfect route map",
+      "stakes": "smoke, panic, and livestock trailers blocking exits",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the manager drives the route with volunteer traffic before declaring capacity",
+      "firstImage": "You are looking at ash settled on a county road sign before the choice becomes abstract.",
+      "mustInclude": [
+        "Marit",
+        "ash settled on a county road sign",
+        "hidden variables"
+      ],
+      "mustAvoid": [
+        "Saying games or models are useless rather than locally limited.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "online marketplace fraud scoring",
+      "audience": "a data scientist tuning a bounded fraud game",
+      "stakes": "fraud rings changing behavior after the rule leaks",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the scientist tests adversarial adaptation before deploying the score",
+      "firstImage": "It takes Marco several weeks to understand what flagged accounts blinking on a moderation console was really showing.",
+      "mustInclude": [
+        "Marco",
+        "flagged accounts blinking on a moderation console",
+        "toy system"
+      ],
+      "mustAvoid": [
+        "Saying games or models are useless rather than locally limited.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "school exam analytics",
+      "audience": "a district analyst treating test scores like a closed contest",
+      "stakes": "curriculum changes and tutoring access shifting the population",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the analyst names the moving rules before ranking schools",
+      "firstImage": "scan sheets stacked beside revised lesson plans appears before any human enters the sentence.",
+      "mustInclude": [
+        "Luca",
+        "scan sheets stacked beside revised lesson plans",
+        "open domain"
+      ],
+      "mustAvoid": [
+        "Saying games or models are useless rather than locally limited.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test domain fit before model precision",
+      "identify hidden off-board events",
+      "rank model cleverness below domain belonging"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one model you trust and write the rule, actor, or variable it assumes cannot change.",
+  "readingTimeMinutes": 12
+}

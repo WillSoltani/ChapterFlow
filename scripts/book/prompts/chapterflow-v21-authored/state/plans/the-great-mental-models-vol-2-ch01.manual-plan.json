@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch01",
+  "number": 1,
+  "title": "Relativity",
+  "coreMove": "Change seats, inspect the frame, and widen the clock before trusting your first interpretation.",
+  "sourcePressure": "Relativity is treated as a judgment model about vantage point, framing, incomplete information, and time horizon, not as technical physics.",
+  "chapterSpecificMisunderstanding": "turning relativity into soft empathy or the claim that every viewpoint is equally true",
+  "sourceAlignmentTerms": [
+    "vantage point",
+    "framing",
+    "partial view",
+    "position",
+    "time horizon",
+    "constraints",
+    "interpretation"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Relativity",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "turning relativity into soft empathy or the claim that every viewpoint is equally true",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "municipal grant review",
+      "audience": "readers who face municipal grant review decisions where vantage point is easy to misread",
+      "stakes": "funding deadline and a council split",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah sets the scoring rubric beside the match-fund table, points to the deadline letter, and writes the missing seat at the top before making the judgment. Domain: municipal grant review.",
+      "firstImage": "scoring rubric visible in the municipal grant review",
+      "mustInclude": [
+        "scoring rubric",
+        "match-fund table",
+        "deadline letter"
+      ],
+      "mustAvoid": [
+        "turning relativity into soft empathy or the claim that every viewpoint is equally true",
+        "reusing a generic meeting scene instead of the municipal grant review constraints"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "hospital discharge board",
+      "audience": "readers who face hospital discharge board decisions where vantage point is easy to misread",
+      "stakes": "patient readmissions before weekend discharge",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Thomas sets the bed-status strip beside the discharge checklist, points to the callback list, and writes the missing seat at the top before making the judgment. Domain: hospital discharge board.",
+      "firstImage": "bed-status strip visible in the hospital discharge board",
+      "mustInclude": [
+        "bed-status strip",
+        "discharge checklist",
+        "callback list"
+      ],
+      "mustAvoid": [
+        "turning relativity into soft empathy or the claim that every viewpoint is equally true",
+        "reusing a generic meeting scene instead of the hospital discharge board constraints"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "newsroom correction desk",
+      "audience": "readers who face newsroom correction desk decisions where vantage point is easy to misread",
+      "stakes": "trust after a published correction",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Camille sets the audio transcript beside the correction queue, points to the headline proof, and writes the missing seat at the top before making the judgment. Domain: newsroom correction desk.",
+      "firstImage": "audio transcript visible in the newsroom correction desk",
+      "mustInclude": [
+        "audio transcript",
+        "correction queue",
+        "headline proof"
+      ],
+      "mustAvoid": [
+        "turning relativity into soft empathy or the claim that every viewpoint is equally true",
+        "reusing a generic meeting scene instead of the newsroom correction desk constraints"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "architecture design review",
+      "audience": "readers who face architecture design review decisions where vantage point is easy to misread",
+      "stakes": "client approval before permit filing",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Lukas sets the site plan beside the permit checklist, points to the material sample, and writes the missing seat at the top before making the judgment. Domain: architecture design review.",
+      "firstImage": "site plan visible in the architecture design review",
+      "mustInclude": [
+        "site plan",
+        "permit checklist",
+        "material sample"
+      ],
+      "mustAvoid": [
+        "turning relativity into soft empathy or the claim that every viewpoint is equally true",
+        "reusing a generic meeting scene instead of the architecture design review constraints"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "family estate call",
+      "audience": "readers who face family estate call decisions where vantage point is easy to misread",
+      "stakes": "siblings dividing a fragile estate",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aanya sets the estate ledger beside the sealed envelope, points to the bank letter, and writes the missing seat at the top before making the judgment. Domain: family estate call.",
+      "firstImage": "estate ledger visible in the family estate call",
+      "mustInclude": [
+        "estate ledger",
+        "sealed envelope",
+        "bank letter"
+      ],
+      "mustAvoid": [
+        "turning relativity into soft empathy or the claim that every viewpoint is equally true",
+        "reusing a generic meeting scene instead of the family estate call constraints"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "university lab partnership",
+      "audience": "readers who face university lab partnership decisions where vantage point is easy to misread",
+      "stakes": "grant renewal for shared equipment",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marco sets the equipment calendar beside the grant form, points to the access badge, and writes the missing seat at the top before making the judgment. Domain: university lab partnership.",
+      "firstImage": "equipment calendar visible in the university lab partnership",
+      "mustInclude": [
+        "equipment calendar",
+        "grant form",
+        "access badge"
+      ],
+      "mustAvoid": [
+        "turning relativity into soft empathy or the claim that every viewpoint is equally true",
+        "reusing a generic meeting scene instead of the university lab partnership constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for vantage point rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Change seats, inspect the frame, and widen the clock before trusting your first interpretation.",
+      "explain why the tempting misread fails: turning relativity into soft empathy or the claim that every viewpoint is equally true",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving vantage point, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

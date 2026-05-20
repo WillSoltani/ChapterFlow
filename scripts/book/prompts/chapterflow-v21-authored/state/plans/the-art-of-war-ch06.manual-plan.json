@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch06",
+  "number": 6,
+  "title": "Weak Points and Strong",
+  "coreMove": "Shape the contest so your strength meets their exposed weakness, not their prepared front.",
+  "sourcePressure": "The source teaches arriving fresh, imposing your will, forcing movement, hiding your point of attack, dividing the opponent, and adapting like water to the ground and foe.",
+  "chapterSpecificMisunderstanding": "Treating weakness as personal flaw-spotting or opportunistic bullying.",
+  "sourceAlignmentTerms": [
+    "first in the field",
+    "imposes his will",
+    "undefended places",
+    "high rampart",
+    "deep ditch",
+    "single united body",
+    "van and rear",
+    "water retains no constant shape"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "Yueh",
+      "detail": "The source says the soldiers of Yueh may exceed in number yet gain nothing if their strength is made irrelevant.",
+      "useIn": "deepRead",
+      "phrasingHint": "Even Yueh's greater number fails if the fight happens where number cannot arrive."
+    },
+    {
+      "kind": "artifact",
+      "name": "the high rampart and deep ditch",
+      "detail": "An enemy sheltered behind defenses can still be forced to move if something elsewhere must be relieved.",
+      "useIn": "both",
+      "phrasingHint": "Do not hammer the rampart if a different pressure makes the defender leave it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "specialty grocer competing against a national chain",
+      "audience": "buyer for a local grocer",
+      "stakes": "matching discounts would destroy margin",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "A crate of bruised peaches sits by the cooler while Grace shifts the fight from price to same-morning farm delivery the chain cannot match.",
+      "firstImage": "bruised peaches near a cooler door",
+      "mustInclude": [
+        "farm text thread",
+        "chalkboard special",
+        "margin sheet"
+      ],
+      "mustAvoid": [
+        "generic small business charm"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "legal aid clinic facing a well-funded landlord firm",
+      "audience": "clinic attorney with limited hours",
+      "stakes": "a direct document war would bury the tenant case",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Do not answer their stack with a stack, Andrew says, then files on the one inspection gap the landlord cannot explain.",
+      "firstImage": "a cracked stairwell inspection photo",
+      "mustInclude": [
+        "hearing date",
+        "inspection log",
+        "tenant affidavit"
+      ],
+      "mustAvoid": [
+        "courtroom grandstanding"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "cycling race team planning a mountain stage",
+      "audience": "team director in a support car",
+      "stakes": "attacking on the wrong climb wastes the only strong domestique",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Where does the favorite have to drink, unzip, and look away from the road?",
+      "firstImage": "rain beads on a race radio",
+      "mustInclude": [
+        "feed-zone map",
+        "wind forecast",
+        "final climb profile"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "B2B sales team trying to unseat an incumbent vendor",
+      "audience": "sales lead in a manufacturing account",
+      "stakes": "the incumbent owns procurement but not plant-floor trust",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Astrid one ignored procurement deck to move the conversation to the maintenance crew living with downtime.",
+      "firstImage": "a grease-stained maintenance log",
+      "mustInclude": [
+        "downtime report",
+        "plant visit badge",
+        "replacement-part bin"
+      ],
+      "mustAvoid": [
+        "generic pitch meeting"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "indie game studio launching against a giant franchise",
+      "audience": "studio founder near release",
+      "stakes": "feature parity is impossible with six developers",
+      "format": "decision_memo",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Controller clicks echo in the test room as Luca cuts broad multiplayer and doubles down on the one puzzle mechanic reviewers cannot get elsewhere.",
+      "firstImage": "controllers on a foam-lined table",
+      "mustInclude": [
+        "review embargo",
+        "bug board",
+        "demo build"
+      ],
+      "mustAvoid": [
+        "generic creative underdog"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "city transit maintenance team reducing escalator outages",
+      "audience": "maintenance planner in a rail station network",
+      "stakes": "commuters blame field crews for failures caused by one recurring part",
+      "format": "audit",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:55 a.m., Hadiya maps every outage to a handrail sensor and shifts crews to the hidden weak point instead of the loudest station complaints.",
+      "firstImage": "an escalator panel opened before dawn",
+      "mustInclude": [
+        "sensor batch number",
+        "station heat map",
+        "repair window"
+      ],
+      "mustAvoid": [
+        "bus depot shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "redirect pressure away from strong fronts",
+      "force revelation of vulnerable spots",
+      "apply water-like adaptation without losing aim"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one stuck contest, draw their prepared front and the asset they would have to leave it to protect.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,206 @@
+{
+  "chapterId": "make-it-stick-ch07",
+  "number": 7,
+  "title": "Increase Your Abilities",
+  "coreMove": "Treat ability as improvable within a domain by pairing belief, deliberate practice, feedback, and memory cues with the specific skill being built.",
+  "sourcePressure": "The chapter argues that ability is more expandable than fixed labels suggest, but it keeps improvement grounded in domain-specific practice, strategy, persistence, and feedback rather than broad brain-training promises.",
+  "chapterSpecificMisunderstanding": "The writer must avoid empty growth-mindset optimism; ability expands through concrete strategies and repeated work in the thing being learned.",
+  "sourceAlignmentTerms": [
+    "growth mindset",
+    "neuroplasticity",
+    "deliberate practice",
+    "memory cues",
+    "working memory",
+    "self-efficacy",
+    "feedback",
+    "domain-specific skill"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Carol Dweck",
+      "detail": "Psychologist whose seventh-grade workshops taught brain change and effective study techniques, showing how belief about ability affects effort and learning.",
+      "useIn": "both",
+      "phrasingHint": "Carol Dweck’s point is not that belief replaces work; it is that belief can keep the learner in the work long enough for strategy to matter."
+    },
+    {
+      "kind": "person",
+      "name": "James Paterson",
+      "detail": "Welsh memory competitor who entered a Cambridge contest in 2006 after learning mnemonic techniques and won the beginner category.",
+      "useIn": "deepRead",
+      "phrasingHint": "James Paterson came looking for a shortcut and found that memory tools still demand hours of disciplined practice."
+    },
+    {
+      "kind": "person",
+      "name": "Nelson Dellis",
+      "detail": "2012 U.S. Memory Champion who began memory training after his grandmother’s Alzheimer’s decline and founded Climb for Memory.",
+      "useIn": "fullRead",
+      "phrasingHint": "Nelson Dellis turned fear about memory into a practice system with cues, repetition, and a public purpose."
+    },
+    {
+      "kind": "study",
+      "name": "Swiss working-memory training study",
+      "detail": "Participants practiced increasingly difficult n-back-like tasks up to nineteen days, improved on fluid-intelligence tests, but replication and durability were questioned.",
+      "useIn": "fullRead",
+      "phrasingHint": "The Swiss study is a warning as much as a promise: improvement needs proof that transfers and lasts."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open by saying learning is harder than it looks",
+      "Do not use a generic desk-and-notes image",
+      "Do not start with a broad claim about students today"
+    ],
+    "counterintuition": [
+      "Do not use the shell easier is not better",
+      "Do not flatten the chapter into struggle is good",
+      "Do not contrast comfort and growth in generic coaching language"
+    ],
+    "tryThisNow": [
+      "Do not write set a timer and reflect",
+      "Do not ask for a vague study audit",
+      "Do not use a reusable close-your-notes prompt without a chapter-specific action"
+    ],
+    "examples": [
+      "No repeated mug, marker, dosing cup, bike helmet, radiator, bus depot, classroom, or narrow-kitchen shells",
+      "No six examples that all start with a timestamp and a named protagonist",
+      "No generic student rereads notes scene unless the visible beat changes the method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Olivia, a first-year engineering student who failed the first statics exam",
+      "audience": "students tempted to convert one setback into an identity",
+      "stakes": "dropping the course would close a path she still wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch her replace I am bad at this with a fault log, office-hours feedback, and three targeted retrieval sets",
+      "firstImage": "You see the red exam score and the blank withdrawal form beside it.",
+      "mustInclude": [
+        "fault log",
+        "office-hours notes",
+        "retrieval set"
+      ],
+      "mustAvoid": [
+        "empty affirmation"
+      ]
+    },
+    {
+      "domain": "Andrew, a paramedic practicing difficult intubation technique",
+      "audience": "skill learners who plateau because practice stays comfortable",
+      "stakes": "field performance requires a smoother hand under constraints",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he chooses one measurable weakness, practices it slowly with feedback, then raises the constraint only after correction holds",
+      "firstImage": "The airway mannequin jaw clicks under the lab light.",
+      "mustInclude": [
+        "airway mannequin",
+        "feedback camera",
+        "constraint card"
+      ],
+      "mustAvoid": [
+        "generic grit scene"
+      ]
+    },
+    {
+      "domain": "Anya, a memory-contest novice building a card system",
+      "audience": "learners attracted to mnemonics as shortcuts",
+      "stakes": "the system fails unless cues are practiced until retrieval is reliable",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show the difference between reading about memory palaces and testing a route until missed cards point to repairs",
+      "firstImage": "It took Anya six wrong queens to stop admiring the method and start drilling it.",
+      "mustInclude": [
+        "card deck",
+        "memory route map",
+        "error tally"
+      ],
+      "mustAvoid": [
+        "magic memory trick"
+      ]
+    },
+    {
+      "domain": "Nicolas, a late-career accountant learning Python automation",
+      "audience": "adults who assume age makes new technical skill unreachable",
+      "stakes": "manual reporting is consuming Fridays and younger colleagues are moving faster",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "the postmortem identifies which practice changed his skill: tiny scripts, immediate feedback, and revisiting errors, not a broad brain-training app",
+      "firstImage": "A blinking cursor waits under a failed test message.",
+      "mustInclude": [
+        "terminal window",
+        "test failure",
+        "spreadsheet export"
+      ],
+      "mustAvoid": [
+        "age-defying inspirational arc"
+      ]
+    },
+    {
+      "domain": "Giulia, a youth soccer goalkeeper rebuilding distribution",
+      "audience": "coaches and athletes using deliberate practice rather than praise",
+      "stakes": "her team keeps losing possession after saves",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she predicts her pass target, receives video feedback on foot angle, and repeats with one constraint until the pattern changes",
+      "firstImage": "At 4:22 p.m., Giulia sets three cones near the sideline.",
+      "mustInclude": [
+        "video tablet",
+        "three cones",
+        "pass target"
+      ],
+      "mustAvoid": [
+        "talent-vs-effort cliché"
+      ]
+    },
+    {
+      "domain": "Yusuf, a community-college chemistry student using memory cues",
+      "audience": "learners whose working memory overloads on reaction sequences",
+      "stakes": "passing requires retrieving steps without confusing similar reactions",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "his tutor has him build a cue from mechanism, test it cold, and discard the cue once understanding carries the sequence",
+      "firstImage": "\"What does the cue make you see?\" the tutor asks.",
+      "mustInclude": [
+        "reaction cards",
+        "cue sketch",
+        "practice quiz"
+      ],
+      "mustAvoid": [
+        "mnemonic as substitute for understanding"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "ground growth mindset in concrete strategy",
+      "distinguish domain learning from broad brain-training claims",
+      "use feedback and cues to expand performance without promising unlimited ability"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one ability label you use for yourself, then add the next specific practice rep, feedback source, and cue that would make the label testable.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

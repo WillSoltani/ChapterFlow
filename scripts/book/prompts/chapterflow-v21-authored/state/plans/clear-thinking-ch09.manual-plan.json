@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch09",
+  "number": 9,
+  "title": "Self-Control",
+  "coreMove": "Hold the better standard in place while fear or desire tries to shorten the clock.",
+  "sourcePressure": "Self-control protects the accurate map once fear, desire, and pressure start pushing against it. The lane is discipline, fear, desire, emotional regulation, and pressure resistance.",
+  "chapterSpecificMisunderstanding": "Selling heroic discipline or shame instead of showing restraint as protection for judgment.",
+  "sourceAlignmentTerms": [
+    "self-control",
+    "discipline",
+    "fear",
+    "desire",
+    "emotional regulation",
+    "pressure resistance",
+    "restraint"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "discipline, fear, desire, and emotional regulation",
+      "detail": "the heading index supports self-control through discipline, fear, desire, and emotional regulation",
+      "useIn": "deepRead",
+      "phrasingHint": "Self-control is the hand on the door while fear and desire both ask to leave now."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for self-control",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think self-control is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Astrid",
+      "domain": "a forex trading desk",
+      "audience": "a reader facing self-control in a concrete forex trading desk decision",
+      "stakes": "whether Astrid preserves judgment quality before the situation slides into grit sermon",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Astrid performs the chapter move by setting the foam model beside the review sheet, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the foam model lying beside the review sheet in the forex trading desk",
+      "mustInclude": [
+        "foam model",
+        "review sheet"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "grit sermon",
+        "reusing a previous chapter's forex trading desk shell"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "a emergency room hallway",
+      "audience": "a reader facing self-control in a concrete emergency room hallway decision",
+      "stakes": "whether Maja preserves judgment quality before the situation slides into grit sermon",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Maja performs the chapter move by setting the annotated manuscript beside the referee note, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the referee note in the emergency room hallway",
+      "mustInclude": [
+        "annotated manuscript",
+        "referee note"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "grit sermon",
+        "reusing a previous chapter's emergency room hallway shell"
+      ]
+    },
+    {
+      "protagonistName": "Anke",
+      "domain": "a competitive debate prep room",
+      "audience": "a reader facing self-control in a concrete competitive debate prep room decision",
+      "stakes": "whether Anke preserves judgment quality before the situation slides into grit sermon",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anke performs the chapter move by setting the burn-rate slide beside the customer email, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the burn-rate slide against the counter in the competitive debate prep room",
+      "mustInclude": [
+        "burn-rate slide",
+        "customer email"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "grit sermon",
+        "reusing a previous chapter's competitive debate prep room shell"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "a sea kayak outfitter",
+      "audience": "a reader facing self-control in a concrete sea kayak outfitter decision",
+      "stakes": "whether Marit preserves judgment quality before the situation slides into grit sermon",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Marit performs the chapter move by setting the sign-in sheet beside the folding chairs, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the folding chairs in the sea kayak outfitter",
+      "mustInclude": [
+        "sign-in sheet",
+        "folding chairs"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "grit sermon",
+        "reusing a previous chapter's sea kayak outfitter shell"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "a pastry competition kitchen",
+      "audience": "a reader facing self-control in a concrete pastry competition kitchen decision",
+      "stakes": "whether Marco preserves judgment quality before the situation slides into grit sermon",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marco performs the chapter move by setting the case notes beside the scan image, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the case notes in the pastry competition kitchen",
+      "mustInclude": [
+        "case notes",
+        "scan image"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "grit sermon",
+        "reusing a previous chapter's pastry competition kitchen shell"
+      ]
+    },
+    {
+      "protagonistName": "Luca",
+      "domain": "a city snowplow dispatch",
+      "audience": "a reader facing self-control in a concrete city snowplow dispatch decision",
+      "stakes": "whether Luca preserves judgment quality before the situation slides into grit sermon",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Luca performs the chapter move by setting the sheet music beside the audition list, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the audition list in the city snowplow dispatch",
+      "mustInclude": [
+        "sheet music",
+        "audition list"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "grit sermon",
+        "reusing a previous chapter's city snowplow dispatch shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Hold the better standard in place while fear or desire tries to shorten the clock.",
+      "detect the weak generic version: Selling heroic discipline or shame instead of showing restraint as protection for judgment.",
+      "distinguish self-control from nearby drift into grit sermon"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where self-control is active, then write the exact next visible move that would perform this chapter's move: hold the better standard in place while fear or desire tries to shorten the clock.",
+  "readingTimeMinutes": 12
+}

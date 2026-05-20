@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch28",
+  "number": 28,
+  "title": "Teach Them to Make Their Own Pacts",
+  "coreMove": "Guide a child to design a small pact they understand, own, and can adjust after seeing what happens.",
+  "sourcePressure": "The child section adapts pact-making into guided self-authorship, preserving developmental limits while moving beyond imposed rules.",
+  "chapterSpecificMisunderstanding": "A weak run would make adult rules look like child-made commitments.",
+  "sourceAlignmentTerms": [
+    "children",
+    "pacts",
+    "self-authorship",
+    "precommitment",
+    "guided autonomy",
+    "developmental limits"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Teach Them to Make Their Own Pacts as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "teen ceramic student preparing portfolio pieces",
+      "audience": "mentor helping a teen pact against video breaks",
+      "stakes": "portfolio quality depends on owned studio time",
+      "format": "dialogue",
+      "requiredBeat": "the teen chooses to store earbuds in the glaze cabinet until two handles are attached",
+      "firstImage": "A glaze cabinet tag hangs beside two unfinished cup handles.",
+      "mustInclude": [
+        "glaze cabinet tag",
+        "unfinished handles",
+        "earbuds"
+      ],
+      "mustAvoid": [
+        "adult contract"
+      ]
+    },
+    {
+      "domain": "young soccer referee studying rules before weekend games",
+      "audience": "parent helping the child set a self-chosen barrier",
+      "stakes": "confidence on the field needs review done before Saturday",
+      "format": "scene",
+      "requiredBeat": "the child decides the whistle stays in the study box until three offside cards are explained",
+      "firstImage": "A referee whistle rests inside a clear study box.",
+      "mustInclude": [
+        "referee whistle",
+        "study box",
+        "offside cards"
+      ],
+      "mustAvoid": [
+        "sports pressure"
+      ]
+    },
+    {
+      "domain": "middle-school poet avoiding revision by browsing prompts",
+      "audience": "teacher guiding a pact without taking control",
+      "stakes": "revision ownership matters more than compliance",
+      "format": "before_after",
+      "requiredBeat": "before, prompts replace revision; after, the student seals prompt cards in an envelope until one stanza is revised",
+      "firstImage": "A sealed prompt envelope sits beside a penciled stanza.",
+      "mustInclude": [
+        "prompt envelope",
+        "penciled stanza",
+        "revision mark"
+      ],
+      "mustAvoid": [
+        "writing punishment"
+      ]
+    },
+    {
+      "domain": "child caring for a rabbit before screen time",
+      "audience": "caregiver helping make an owned pact for animal care",
+      "stakes": "the rabbit depends on action before entertainment",
+      "format": "decision_point",
+      "requiredBeat": "the child invents the rule that the hay scoop hangs on the console shelf until the hutch is checked",
+      "firstImage": "A hay scoop hangs from a console shelf hook.",
+      "mustInclude": [
+        "hay scoop",
+        "shelf hook",
+        "hutch checklist"
+      ],
+      "mustAvoid": [
+        "pet guilt"
+      ]
+    },
+    {
+      "domain": "teen preparing language flashcards for a family trip",
+      "audience": "older cousin helping with a pact the teen can revise",
+      "stakes": "travel confidence grows when study happens before scrolling",
+      "format": "postmortem",
+      "requiredBeat": "they review a failed pact and the teen changes it to ten cards before the charger leaves the drawer",
+      "firstImage": "A passport sleeve sits beside a stack of language cards.",
+      "mustInclude": [
+        "passport sleeve",
+        "language cards",
+        "charger drawer"
+      ],
+      "mustAvoid": [
+        "travel fantasy"
+      ]
+    },
+    {
+      "domain": "young swimmer managing early-morning practice packing",
+      "audience": "parent teaching self-designed constraints",
+      "stakes": "forgotten gear creates conflict at dawn",
+      "format": "reflection",
+      "requiredBeat": "the swimmer chooses that goggles clip to the backpack only after the bag is fully packed",
+      "firstImage": "A goggles case clips to a backpack zipper pull.",
+      "mustInclude": [
+        "goggles case",
+        "zipper pull",
+        "packing list"
+      ],
+      "mustAvoid": [
+        "parent nagging"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Guide a child to design a small pact they understand, own, and can adjust after seeing what happens.",
+      "choose the action that stays inside Teach Them to Make Their Own Pacts's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would make adult rules look like child-made commitments.",
+      "use chapter-specific terms such as children, pacts, self-authorship, precommitment in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Ask the child to choose one tiny pact for a repeated drift and explain how they will know it worked.",
+  "readingTimeMinutes": 12
+}

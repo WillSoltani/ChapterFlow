@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch10",
+  "number": 10,
+  "title": "Intimate enemies (domestic violence)",
+  "coreMove": "Give repeated control behavior more weight than apology or closeness when safety is at stake.",
+  "sourcePressure": "Intimacy can distort warning interpretation; control, recurrence, and escalation still matter even when apology, reconciliation, or outside stories soften the read.",
+  "chapterSpecificMisunderstanding": "Offering one-size domestic-violence doctrine or victim-blaming readers for complex constraints.",
+  "sourceAlignmentTerms": [
+    "intimate context",
+    "control",
+    "recurrence",
+    "escalation",
+    "apology",
+    "reconciliation",
+    "behavior pattern"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch10",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "family court parking lot after a hearing",
+      "audience": "a sister supporting a survivor",
+      "stakes": "whether apology should reset a control pattern",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "walks to the marshal station after seeing the same control behavior repeat outside court",
+      "firstImage": "a custody order folded inside a coat sleeve",
+      "mustInclude": [
+        "court order",
+        "marshal desk",
+        "parking ticket"
+      ],
+      "mustAvoid": [
+        "relationship advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "shared apartment move-out weekend",
+      "audience": "a roommate watching an ex-partner control access",
+      "stakes": "whether the soft apology changes the pattern",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "keeps the door closed after apology turns into blocking the hallway again",
+      "firstImage": "a stack of labeled boxes against the wall",
+      "mustInclude": [
+        "moving boxes",
+        "door wedge",
+        "lease copy"
+      ],
+      "mustAvoid": [
+        "relationship advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "rural clinic exam room",
+      "audience": "a nurse hearing a partner answer for the patient",
+      "stakes": "whether concern can look like care",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "creates private time when answers, phone checks, and doorway positioning cluster",
+      "firstImage": "a paper exam sheet crackling under still hands",
+      "mustInclude": [
+        "exam sheet",
+        "patient phone",
+        "privacy curtain"
+      ],
+      "mustAvoid": [
+        "relationship advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "childcare pickup window",
+      "audience": "a director noticing post-separation control",
+      "stakes": "whether familiarity with both parents dulls the signal",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "follows the safety plan when charm shifts to schedule interrogation",
+      "firstImage": "a laminated pickup card under the glass",
+      "mustInclude": [
+        "pickup card",
+        "intercom",
+        "custody note"
+      ],
+      "mustAvoid": [
+        "relationship advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "bank branch loan desk",
+      "audience": "a teller seeing financial control",
+      "stakes": "whether couple status makes pressure private",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "pauses the transaction when one partner monitors every answer and keeps the ID card",
+      "firstImage": "a debit card held under another hand",
+      "mustInclude": [
+        "debit card",
+        "loan form",
+        "privacy booth"
+      ],
+      "mustAvoid": [
+        "relationship advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "community theater green room",
+      "audience": "a stage manager after a cast breakup",
+      "stakes": "whether reconciliation talk erases recurrence",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "moves dressing-room access after flowers arrive with demands and waiting outside",
+      "firstImage": "a bouquet wilting beside a costume rack",
+      "mustInclude": [
+        "bouquet",
+        "call sheet",
+        "dressing-room key"
+      ],
+      "mustAvoid": [
+        "relationship advice",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish intimate context from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits give repeated control behavior more weight than apology or closeness when safety is at stake.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: offering one-size domestic-violence doctrine or victim-blaming readers for complex constraints."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one repeated control behavior without using apology, stress, love, or history to soften it. Decide what boundary would reduce access.",
+  "readingTimeMinutes": 12
+}

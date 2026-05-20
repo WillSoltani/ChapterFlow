@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch12",
+  "number": 12,
+  "title": "Share Your Passions",
+  "coreMove": "Offer a genuine passion as a bridge, then leave room for the other person to enter.",
+  "sourcePressure": "Real interests bring energy and specificity to conversation, as long as enthusiasm does not become a one-person performance.",
+  "chapterSpecificMisunderstanding": "Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+  "sourceAlignmentTerms": [
+    "passions",
+    "genuine interest",
+    "enthusiasm",
+    "specificity",
+    "conversational energy",
+    "small talk"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Daniel",
+      "domain": "trail running meetup route card",
+      "audience": "a reader facing trail running meetup route card where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if trail running meetup route card becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Daniel shares the concrete part of a passion and then asks where it touches the other person in front of hydration pack, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "hydration pack on the edge of trail running meetup route card",
+      "mustInclude": [
+        "hydration pack",
+        "trail running meetup route card constraint",
+        "one named next step tied to passions"
+      ],
+      "mustAvoid": [
+        "Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "community orchestra rehearsal break",
+      "audience": "a reader facing community orchestra rehearsal break where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if community orchestra rehearsal break becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Andrew shares the concrete part of a passion and then asks where it touches the other person in front of violin case, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "violin case on the edge of community orchestra rehearsal break",
+      "mustInclude": [
+        "violin case",
+        "community orchestra rehearsal break constraint",
+        "one named next step tied to passions"
+      ],
+      "mustAvoid": [
+        "Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "open-source hardware demo table",
+      "audience": "a reader facing open-source hardware demo table where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if open-source hardware demo table becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Matthew shares the concrete part of a passion and then asks where it touches the other person in front of circuit board, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "circuit board on the edge of open-source hardware demo table",
+      "mustInclude": [
+        "circuit board",
+        "open-source hardware demo table constraint",
+        "one named next step tied to passions"
+      ],
+      "mustAvoid": [
+        "Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "home-baking swap schedule",
+      "audience": "a reader facing home-baking swap schedule where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if home-baking swap schedule becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ben shares the concrete part of a passion and then asks where it touches the other person in front of recipe card, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "recipe card on the edge of home-baking swap schedule",
+      "mustInclude": [
+        "recipe card",
+        "home-baking swap schedule constraint",
+        "one named next step tied to passions"
+      ],
+      "mustAvoid": [
+        "Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Hugo",
+      "domain": "astronomy club telescope queue",
+      "audience": "a reader facing astronomy club telescope queue where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if astronomy club telescope queue becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Hugo shares the concrete part of a passion and then asks where it touches the other person in front of star chart, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "star chart on the edge of astronomy club telescope queue",
+      "mustInclude": [
+        "star chart",
+        "astronomy club telescope queue constraint",
+        "one named next step tied to passions"
+      ],
+      "mustAvoid": [
+        "Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "urban garden seed exchange",
+      "audience": "a reader facing urban garden seed exchange where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if urban garden seed exchange becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hiroshi shares the concrete part of a passion and then asks where it touches the other person in front of seed envelope, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "seed envelope on the edge of urban garden seed exchange",
+      "mustInclude": [
+        "seed envelope",
+        "urban garden seed exchange constraint",
+        "one named next step tied to passions"
+      ],
+      "mustAvoid": [
+        "Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish passions from Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+      "choose the visible action that performs: Offer a genuine passion as a bridge, then leave room for the other person to enter.",
+      "diagnose when a scenario drifts into Mistaking monologue, hype, or personal branding for shared enthusiasm.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real passions moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

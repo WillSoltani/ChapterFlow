@@ -1,0 +1,202 @@
+{
+  "chapterId": "seven-powers-ch08",
+  "number": 8,
+  "title": "The Path to Power",
+  "coreMove": "Choose the invention or crux move that can create a barrier before optimizing operations around it.",
+  "sourcePressure": "Operational excellence is not strategy. Firms often need invention or a crux directional choice before power can emerge, because me-too positioning leaves no barrier.",
+  "chapterSpecificMisunderstanding": "The path to power is to execute better, innovate vaguely, or become best-in-class at the current model.",
+  "sourceAlignmentTerms": [
+    "path to power",
+    "operational excellence",
+    "strategy",
+    "invention",
+    "crux directional choice",
+    "me-too positioning",
+    "barrier creation",
+    "dynamics"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "me-too positioning",
+      "detail": "the source sidecar says me-too positioning is insufficient because it leaves no barrier",
+      "useIn": "both",
+      "phrasingHint": "Me-too work can be polished and still powerless, because no rival has been forced into a worse position."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of The Path to Power",
+      "A business has power when... repeated opener shell",
+      "any hook that starts with Strategy is... or Power is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter",
+      "generic moat-versus-no-moat contrast without the chapter mechanism"
+    ],
+    "tryThisNow": [
+      "Write down your top three advantages",
+      "Set a timer and reflect on your strategy",
+      "Ask yourself what matters most",
+      "generic benefit/barrier prompt reused without the chapter-specific test"
+    ],
+    "examples": [
+      "founder in a coffee shop reviewing a deck",
+      "generic boardroom whiteboard choice",
+      "classroom project analogy",
+      "spreadsheet-only SaaS pricing scene",
+      "reusing physical anchors from adjacent plans"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "specialty diagnostics startup choosing between faster lab service and a new at-home collection model",
+      "audience": "a reader facing specialty diagnostics startup choosing between faster lab service and a new at-home collection model",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Megan has you sort the two options into better execution and possible barrier creation before moving the launch budget.",
+      "firstImage": "You can make the lab faster tomorrow and still own nothing defensible",
+      "mustInclude": [
+        "launch budget",
+        "sample kit prototype",
+        "lab turnaround chart"
+      ],
+      "mustAvoid": [
+        "generic startup pitch",
+        "medical courier network"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "regional boat-repair company considering a predictive maintenance subscription",
+      "audience": "a reader facing regional boat-repair company considering a predictive maintenance subscription",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Lars pins the repair calendar under the sensor proposal and marks which choice could change the future barrier.",
+      "firstImage": "Salt dries in white lines on the repair calendar above the workbench",
+      "mustInclude": [
+        "repair calendar",
+        "sensor proposal",
+        "customer renewal list"
+      ],
+      "mustAvoid": [
+        "generic harbor resource",
+        "operational excellence sermon"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "education publisher moving from textbook updates to adaptive practice data",
+      "audience": "a reader facing education publisher moving from textbook updates to adaptive practice data",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sofia asks which proposed feature creates a barrier, then removes every feature that merely copies the competitor catalog.",
+      "firstImage": "Which one gets harder to copy after launch? Sofia asks",
+      "mustInclude": [
+        "feature list",
+        "competitor catalog",
+        "practice data mockup"
+      ],
+      "mustAvoid": [
+        "generic classroom app",
+        "language school switching example"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "urban farming supplier choosing between lower-cost deliveries and proprietary crop-planning software",
+      "audience": "a reader facing urban farming supplier choosing between lower-cost deliveries and proprietary crop-planning software",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Lin writes barrier or no barrier next to each initiative and refuses to fund the neatest operational improvement first.",
+      "firstImage": "Which improvement would still matter if every rival copied it next month?",
+      "mustInclude": [
+        "initiative list",
+        "crop-planning mockup",
+        "delivery cost sheet"
+      ],
+      "mustAvoid": [
+        "generic sustainability innovation",
+        "solar install scale example"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "cybersecurity training firm inventing role-specific breach drills",
+      "audience": "a reader facing cybersecurity training firm inventing role-specific breach drills",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Daniel compares the old workshop checklist with the first role-specific drill and circles the client data that could make the second defensible.",
+      "firstImage": "It took Daniel two perfect workshops to admit perfection had no moat",
+      "mustInclude": [
+        "workshop checklist",
+        "role-specific drill",
+        "client data fields"
+      ],
+      "mustAvoid": [
+        "generic training excellence",
+        "privacy email brand"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "specialty insurer deciding whether to underwrite a new climate-risk niche",
+      "audience": "a reader facing specialty insurer deciding whether to underwrite a new climate-risk niche",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Camille lays the flood maps over the claims file and marks the date when the niche stops being early enough to build power.",
+      "firstImage": "The map paper buckles where Camille has spilled coffee on the coastline",
+      "mustInclude": [
+        "flood maps",
+        "claims file",
+        "underwriting calendar"
+      ],
+      "mustAvoid": [
+        "generic climate concern",
+        "city council water example"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate operational excellence from strategy",
+      "identify when invention serves barrier creation rather than novelty",
+      "choose a crux move before optimizing a me-too position"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one initiative, write whether it is operational excellence, invention, or a crux directional choice; fund it only if it can plausibly create a barrier.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "sourceAnchorsNote": "The source sidecar bans remembered founder anecdotes and company stories. Keep this plan anchored in the supported invention, crux, and barrier logic only."
+}

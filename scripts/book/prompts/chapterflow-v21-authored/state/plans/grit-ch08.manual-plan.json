@@ -1,0 +1,197 @@
+{
+  "chapterId": "grit-ch08",
+  "number": 8,
+  "title": "Purpose",
+  "coreMove": "Attach a personal craft to a real beneficiary so effort has a reason on bad days.",
+  "sourcePressure": "Show how interest becomes more durable when tied to benefit beyond the self.",
+  "chapterSpecificMisunderstanding": "Turning purpose into lofty slogans detached from daily work.",
+  "sourceAlignmentTerms": [
+    "purpose",
+    "Alex Scott",
+    "Benjamin Bloom",
+    "Jane Golden",
+    "Mural Arts Program",
+    "Antonio Galloni",
+    "Studs Terkel"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Jane Golden",
+      "detail": "After lupus, Golden returned to Philadelphia and spent decades with the Mural Arts Program as service through art.",
+      "useIn": "both",
+      "phrasingHint": "Jane Golden gives purpose a street address: walls, neighborhoods, and people who see themselves in color."
+    },
+    {
+      "kind": "person",
+      "name": "Alex Scott",
+      "detail": "The childhood cancer patient raised millions for cancer research, illustrating purpose centered on helping others.",
+      "useIn": "deepRead",
+      "phrasingHint": "Alex Scott shows purpose in its clearest form: effort aimed past the self."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for Purpose",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "public mural restoration project",
+      "audience": "readers facing public mural restoration project where grit could be confused with mood or talent",
+      "stakes": "whether Laura treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist names the person served by the work before deciding whether the effort is worth another round",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn public mural restoration project into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "palliative-care volunteer shift",
+      "audience": "readers facing palliative-care volunteer shift where grit could be confused with mood or talent",
+      "stakes": "whether Andrew treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "the protagonist names the person served by the work before deciding whether the effort is worth another round",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn palliative-care volunteer shift into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "open-source accessibility sprint",
+      "audience": "readers facing open-source accessibility sprint where grit could be confused with mood or talent",
+      "stakes": "whether Etienne treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist names the person served by the work before deciding whether the effort is worth another round",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn open-source accessibility sprint into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "wine education tasting room",
+      "audience": "readers facing wine education tasting room where grit could be confused with mood or talent",
+      "stakes": "whether Maja treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist names the person served by the work before deciding whether the effort is worth another round",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn wine education tasting room into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "housing nonprofit intake desk",
+      "audience": "readers facing housing nonprofit intake desk where grit could be confused with mood or talent",
+      "stakes": "whether Yusuf treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist names the person served by the work before deciding whether the effort is worth another round",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn housing nonprofit intake desk into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "school garden program",
+      "audience": "readers facing school garden program where grit could be confused with mood or talent",
+      "stakes": "whether Sofia treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist names the person served by the work before deciding whether the effort is worth another round",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn school garden program into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Attach a personal craft to a real beneficiary so effort has a reason on bad days. from Turning purpose into lofty slogans detached from daily work.",
+      "choose the visible next action in a fresh public mural restoration project scenario",
+      "diagnose when a scene has drifted into grand mission statements"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real purpose decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

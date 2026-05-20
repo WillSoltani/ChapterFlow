@@ -1,0 +1,197 @@
+{
+  "chapterId": "grit-ch06",
+  "number": 6,
+  "title": "Interest",
+  "coreMove": "Convert vague passion hunting into patient sampling, feedback, and repeated return.",
+  "sourcePressure": "Explain that durable passion usually begins as curiosity that is developed, not a lightning strike.",
+  "chapterSpecificMisunderstanding": "Telling readers to quit everything and follow a perfect passion immediately.",
+  "sourceAlignmentTerms": [
+    "interest",
+    "Will Shortz",
+    "Jeff Bezos",
+    "Hester Lacey",
+    "Marc Vetri",
+    "Rowdy Gaines",
+    "Julia Child"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Marc Vetri",
+      "detail": "The chef originally wanted to be a musician before cooking became the durable interest he developed.",
+      "useIn": "both",
+      "phrasingHint": "Vetri’s path makes passion look less like discovery and more like tending a flame that first appeared somewhere else."
+    },
+    {
+      "kind": "person",
+      "name": "Julia Child",
+      "detail": "She discovered French food in adulthood and then explored cooking over years rather than receiving a finished calling all at once.",
+      "useIn": "fullRead",
+      "phrasingHint": "Julia Child’s fish was not the whole career; it was the first door into years of exploration."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for Interest",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "career-change informational interviews",
+      "audience": "readers facing career-change informational interviews where grit could be confused with mood or talent",
+      "stakes": "whether Megan treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "the protagonist samples a real activity long enough to notice a question that keeps pulling attention back",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn career-change informational interviews into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "botanical garden volunteer trial",
+      "audience": "readers facing botanical garden volunteer trial where grit could be confused with mood or talent",
+      "stakes": "whether Ben treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist samples a real activity long enough to notice a question that keeps pulling attention back",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn botanical garden volunteer trial into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "coding bootcamp project sampling",
+      "audience": "readers facing coding bootcamp project sampling where grit could be confused with mood or talent",
+      "stakes": "whether Manon treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist samples a real activity long enough to notice a question that keeps pulling attention back",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn coding bootcamp project sampling into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "culinary staging weekend",
+      "audience": "readers facing culinary staging weekend where grit could be confused with mood or talent",
+      "stakes": "whether Lars treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist samples a real activity long enough to notice a question that keeps pulling attention back",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn culinary staging weekend into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "urban sketching group",
+      "audience": "readers facing urban sketching group where grit could be confused with mood or talent",
+      "stakes": "whether Kiran treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist samples a real activity long enough to notice a question that keeps pulling attention back",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn urban sketching group into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "radio newsroom shadow shift",
+      "audience": "readers facing radio newsroom shadow shift where grit could be confused with mood or talent",
+      "stakes": "whether Chiara treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist samples a real activity long enough to notice a question that keeps pulling attention back",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn radio newsroom shadow shift into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Convert vague passion hunting into patient sampling, feedback, and repeated return. from Telling readers to quit everything and follow a perfect passion immediately.",
+      "choose the visible next action in a fresh career-change informational interviews scenario",
+      "diagnose when a scene has drifted into career romance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real interest decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

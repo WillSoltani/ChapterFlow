@@ -1,0 +1,199 @@
+{
+  "chapterId": "skin-in-the-game-ch04",
+  "number": 4,
+  "title": "The Skin of Others in Your Game",
+  "coreMove": "Before judging courage, map whose security the actor would burn by telling the truth.",
+  "sourcePressure": "People often compromise because institutions can punish dependents, families, colleagues, or reputations around them.",
+  "chapterSpecificMisunderstanding": "Making the lesson generic whistleblower sympathy instead of indirect downside transfer.",
+  "sourceAlignmentTerms": [
+    "whistleblower",
+    "family downside",
+    "mortgage",
+    "reputational coercion",
+    "celibacy",
+    "financial independence",
+    "deterrence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "whistleblower dilemma",
+      "detail": "The authorized excerpt centers the moral conflict of exposing hidden harm when family security and future income may be destroyed.",
+      "useIn": "both",
+      "phrasingHint": "The whistleblower is not only risking a job; the mortgage and school fees are also in the room."
+    },
+    {
+      "kind": "artifact",
+      "name": "celibacy and financial independence",
+      "detail": "The sidecar says Taleb treats lack of attachments and financial independence as partial shields against others carrying your downside.",
+      "useIn": "deepRead",
+      "phrasingHint": "A person with fewer hostage points is harder to own, which is why private obligations can become public leverage."
+    },
+    {
+      "kind": "event",
+      "name": "suicide terrorist deterrence logic",
+      "detail": "The sidecar says the chapter closes by asking how to inject real downside into actors who otherwise face no ordinary deterrent.",
+      "useIn": "fullRead",
+      "phrasingHint": "The extreme case should stay narrow: deterrence fails when the actor has removed ordinary downside from himself."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pharmaceutical quality analyst considering a safety disclosure",
+      "audience": "employee whose spouse and children depend on her benefits",
+      "stakes": "patients are exposed, but her family would absorb retaliation first",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hannah names each dependent cost on a notepad before deciding how to disclose through a protected channel.",
+      "firstImage": "a benefits card beside a deviation report",
+      "mustInclude": [
+        "benefits card",
+        "deviation report",
+        "protected channel form"
+      ],
+      "mustAvoid": [
+        "generic whistleblower movie"
+      ]
+    },
+    {
+      "domain": "city inspector pressured to overlook a contractor defect",
+      "audience": "official whose brother works for the contractor",
+      "stakes": "family employment becomes a lever against public duty",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Julien tells his supervisor to remove his brother from the call and files the defect with a witness present.",
+      "firstImage": "a cracked retaining-wall photo on a tablet",
+      "mustInclude": [
+        "inspection photo",
+        "witness log",
+        "contractor roster"
+      ],
+      "mustAvoid": [
+        "anti-city-hall rant"
+      ]
+    },
+    {
+      "domain": "research nurse asked to soften adverse-event language",
+      "audience": "clinical worker whose team would lose funding after a blunt report",
+      "stakes": "the truth protects patients but injures colleagues nearby",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Astrid writes the adverse-event term in plain language and asks the principal investigator to sign the exact wording.",
+      "firstImage": "cold vinyl armrest under exam lights",
+      "mustInclude": [
+        "adverse-event form",
+        "grant renewal",
+        "signature line"
+      ],
+      "mustAvoid": [
+        "medical melodrama"
+      ]
+    },
+    {
+      "domain": "museum curator deciding whether to return a donor-tainted artifact",
+      "audience": "curator whose small department depends on the donor's next gift",
+      "stakes": "truth could cost jobs for people who made no decision",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Michael drafts a return memo that separates departmental survival from provenance evidence.",
+      "firstImage": "cotton gloves beside a brass label",
+      "mustInclude": [
+        "provenance file",
+        "donor pledge",
+        "return memo"
+      ],
+      "mustAvoid": [
+        "culture-war museum debate"
+      ]
+    },
+    {
+      "domain": "youth coach reporting abuse by a winning volunteer",
+      "audience": "coach who knows families will blame the messenger for a canceled season",
+      "stakes": "children need protection while teammates bear disruption",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Layla reconstructs the week she stayed quiet, then writes the reporting trigger that should have overridden team fallout.",
+      "firstImage": "mud on a folded sideline jacket",
+      "mustInclude": [
+        "incident note",
+        "season schedule",
+        "reporting policy"
+      ],
+      "mustAvoid": [
+        "generic courage praise"
+      ]
+    },
+    {
+      "domain": "software maintainer exposing a security hole in a popular library",
+      "audience": "volunteer whose employer and users may all face backlash",
+      "stakes": "public disclosure protects strangers but harms attached people first",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Pavel delays the blog post long enough to notify maintainers, then publishes with the patch link visible.",
+      "firstImage": "terminal text reflected in a dark window",
+      "mustInclude": [
+        "CVE draft",
+        "patch link",
+        "employer approval"
+      ],
+      "mustAvoid": [
+        "hacker hero fantasy"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify whistleblower in a new concrete scenario",
+      "choose the action that performs the chapter move: Before judging courage, map whose security the actor would burn by telling the truth.",
+      "separate the chapter's mechanism from the weak misread: Making the lesson generic whistleblower sympathy instead of indirect downside transfer.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for The Skin of Others in Your Game.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

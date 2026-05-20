@@ -1,0 +1,106 @@
+{
+  "bookId": "the-pyramid-principle",
+  "title": "The Pyramid Principle",
+  "author": "Barbara Minto",
+  "thesisParagraph": "The book argues that clear business writing is clear thinking made visible. A reader should not be forced to discover the argument while reading. The writer must first work from the bottom up: gather material, group like ideas, test their order, and let an honest higher-level point emerge. Only then should communication run top-down, with the answer first, support beneath it, and detail in a structure the reader can follow, question, and remember. The pyramid is not a formatting trick; it is a discipline for making every claim accountable to the logic underneath it.",
+  "coreIdeas": [
+    {
+      "name": "Answer earned before answer first",
+      "oneSentence": "Lead with the answer only after the support has been grouped and tested.",
+      "mentalMove": "separate discovery from delivery",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Vertical summary",
+      "oneSentence": "A higher point must honestly summarize the points beneath it.",
+      "mentalMove": "test whether a top line is earned by its children",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Horizontal sameness",
+      "oneSentence": "Sibling points must be the same logical kind before they can sit under one claim.",
+      "mentalMove": "name the job each support point performs",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Order carries meaning",
+      "oneSentence": "The sequence of grouped points should reveal time, structure, rank, or cause rather than convenience.",
+      "mentalMove": "choose the ordering rule before presenting a group",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Reasoning pattern fit",
+      "oneSentence": "Deduction and induction ask readers to follow different motions and should not be mixed carelessly.",
+      "mentalMove": "match the section to chain logic or sibling logic",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Readable structure",
+      "oneSentence": "Readable prose should transmit the already-earned structure without blurring relationships.",
+      "mentalMove": "see the relationship first, then write the sentence that preserves it",
+      "sourceAnchors": [
+        "ch06.source",
+        "ch10.source"
+      ]
+    }
+  ],
+  "targetReader": "Professionals, students, analysts, managers, founders, policy writers, and technical specialists who have to turn messy material into written recommendations other people can act on without doing the writer's sorting work.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete document moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make structure feel like visible work, not abstract virtue",
+      "let the reader feel the cost of loose logic before offering the repair"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no claims about neuroscience, cognition research, or business outcomes beyond the frozen support",
+      "no fake case studies, named research, or famous anecdotes not traceable to source sidecars"
+    ]
+  },
+  "voiceSpecimens": [
+    "A heading can look calm while the support beneath it is still arguing with itself.",
+    "The reader should meet the finished shape, not the trail of scraps that produced it.",
+    "If the three bullets do three different jobs, they are not siblings. They are strangers in matching jackets.",
+    "Write the answer last while thinking, then place it first while communicating.",
+    "A sentence gets easier to read when it carries one relationship cleanly.",
+    "Before you polish the line, make the line prove where it sits."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches you how to leverage a powerful communication framework for maximum impact.",
+    "Barbara Minto argues that readers should appreciate the elegance of pyramid thinking.",
+    "The key is to be clear, concise, and compelling in all professional contexts.",
+    "By applying this method, you can unlock transformative communication excellence.",
+    "In today's fast-paced world, structure is more important than ever before."
+  ],
+  "teachingArc": "The book compounds from the reason for structure to the tests that make structure real, then into construction, introductions, reasoning pattern choice, visible hierarchy, ordering tests, problem-solving discipline, summary precision, and final sentence-level readability. Each chapter should feel like a stricter inspection of the same promise: the writer pays the sorting cost so the reader can use attention for judgment.",
+  "forbiddenMoves": [
+    "Do not turn the pyramid into ordinary brevity or executive-summary advice.",
+    "Do not teach MECE as a decorative acronym detached from grouping and summary tests.",
+    "Do not invent famous consulting anecdotes, lab studies, or named executives to compensate for sparse source sidecars.",
+    "Do not let every example be a consultant, slide deck, memo, classroom, or kitchen-table rewrite.",
+    "Do not make formatting devices in Chapter 6 solve logic that the writer has not earned."
+  ]
+}

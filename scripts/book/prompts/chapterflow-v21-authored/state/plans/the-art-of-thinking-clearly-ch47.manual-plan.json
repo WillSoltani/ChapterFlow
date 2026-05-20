@@ -1,0 +1,186 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch47",
+  "number": 47,
+  "title": "Self-Selection Bias",
+  "coreMove": "Detect when the self-selection pattern is tilting the evidence, then force the missing comparison before deciding.",
+  "sourcePressure": "The source sidecar and official source notes frame Self-Selection Bias as a specific decision error around self-selection, sample entry, adverse selection. The frozen bundle has no traceable named anchor for this chapter, so the plan must stay fictional and narrow.",
+  "chapterSpecificMisunderstanding": "Treating Self-Selection Bias as generic advice to be smarter, instead of forcing this exact move: detect when the self-selection pattern is tilting the evidence, then force the missing comparison before deciding.",
+  "sourceAlignmentTerms": [
+    "self-selection",
+    "sample entry",
+    "adverse selection",
+    "incubated funds",
+    "advertised returns",
+    "self",
+    "selection",
+    "bias"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Self-Selection Bias.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Self-Selection Bias sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Self-Selection Bias."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a pension app default rate applying Self-Selection Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where self-selection could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the tasting spoon, names the self-selection risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A tasting spoon sits at the center of the pension app default rate before anyone explains the choice.",
+      "mustInclude": [
+        "tasting spoon",
+        "self-selection",
+        "a visible before-and-after choice tied to Self-Selection Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a ambulance night-shift review applying Self-Selection Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where sample entry could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the scoreboard still, names the sample entry risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A scoreboard still sits at the center of the ambulance night-shift review before anyone explains the choice.",
+      "mustInclude": [
+        "scoreboard still",
+        "sample entry",
+        "a visible before-and-after choice tied to Self-Selection Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a architecture renovation plan applying Self-Selection Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where adverse selection could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the shipping manifest, names the adverse selection risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A shipping manifest sits at the center of the architecture renovation plan before anyone explains the choice.",
+      "mustInclude": [
+        "shipping manifest",
+        "adverse selection",
+        "a visible before-and-after choice tied to Self-Selection Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a watch retailer waitlist applying Self-Selection Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where incubated funds could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the ad mockup, names the incubated funds risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A ad mockup sits at the center of the watch retailer waitlist before anyone explains the choice.",
+      "mustInclude": [
+        "ad mockup",
+        "incubated funds",
+        "a visible before-and-after choice tied to Self-Selection Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a vaccine-statistic framing applying Self-Selection Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where advertised returns could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the dropout table, names the advertised returns risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A dropout table sits at the center of the vaccine-statistic framing before anyone explains the choice.",
+      "mustInclude": [
+        "dropout table",
+        "advertised returns",
+        "a visible before-and-after choice tied to Self-Selection Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a viral chart fact-check applying Self-Selection Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where self could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the organ-donor form, names the self risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A organ-donor form sits at the center of the viral chart fact-check before anyone explains the choice.",
+      "mustInclude": [
+        "organ-donor form",
+        "self",
+        "a visible before-and-after choice tied to Self-Selection Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Self-Selection Bias in a fresh decision scene",
+      "choose the correction that performs this move: detect when the self-selection pattern is tilting the evidence, then force the missing comparison before deciding.",
+      "reject a tempting generic answer that ignores self-selection",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Self-Selection Bias' on a note, list the one self-selection cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

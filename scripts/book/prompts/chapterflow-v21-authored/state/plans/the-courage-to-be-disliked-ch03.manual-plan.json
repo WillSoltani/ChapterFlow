@@ -1,0 +1,206 @@
+{
+  "chapterId": "the-courage-to-be-disliked-ch03",
+  "number": 3,
+  "title": "The Third Night: Discard Other People's Tasks",
+  "coreMove": "Sort choice, effort, outcome, and evaluation until approval and disappointment are no longer smuggled into your jurisdiction.",
+  "sourcePressure": "The source supports this as the boundary chapter: not living to satisfy expectations, separating tasks, reducing interpersonal strain through responsibility clarity, recognition hunger as unfreedom, and holding the cards in relationships.",
+  "chapterSpecificMisunderstanding": "The weak version treats task separation as caring less; the chapter instead asks for care without control and responsibility without approval addiction.",
+  "sourceAlignmentTerms": [
+    "expectations",
+    "separation of tasks",
+    "recognition",
+    "approval",
+    "evaluation",
+    "disappointment",
+    "responsibility",
+    "holding the cards"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "How to Separate Tasks",
+      "detail": "The frozen source lists this as a visible heading in the third night.",
+      "useIn": "both",
+      "phrasingHint": "The clean question is not who feels most anxious, but who owns the choice, the effort, and the verdict."
+    },
+    {
+      "kind": "artifact",
+      "name": "Desire for Recognition Makes You Unfree",
+      "detail": "The frozen source lists this as a visible heading in the third night and the sidecar says recognition hunger produces dependence and unfreedom.",
+      "useIn": "both",
+      "phrasingHint": "When praise becomes permission, your life has already moved into someone else's hands."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Not everything is your responsibility",
+      "Boundaries set you free",
+      "Stop caring what people think"
+    ],
+    "counterintuition": [
+      "Helping can be controlling",
+      "Approval is a prison",
+      "The kind thing is to let go"
+    ],
+    "tryThisNow": [
+      "Draw a circle of control",
+      "Say no to one request",
+      "Text someone a boundary"
+    ],
+    "examples": [
+      "generic email rewrite to please manager",
+      "parent-child homework fight",
+      "friend upset about plans",
+      "romantic partner asks for reassurance"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "college admissions parent and teenager",
+      "audience": "a parent tempted to manage essays, deadlines, and emotional reactions for a seventeen-year-old",
+      "stakes": "the application may be polished while the teenager never owns the choice or the consequences",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mathieu moves the laptop back across the kitchen table and says the deadline reminder is his task, but the essay choice and the admissions verdict belong to his daughter.",
+      "firstImage": "The application portal countdown glows beside an untouched bowl of soup.",
+      "mustInclude": [
+        "application portal",
+        "essay draft",
+        "deadline reminder"
+      ],
+      "mustAvoid": [
+        "helicopter parent caricature",
+        "anti-parent advice",
+        "college success tips"
+      ]
+    },
+    {
+      "domain": "software incident review ownership",
+      "audience": "an engineering lead who wants to control whether executives blame her team after an outage",
+      "stakes": "a useful postmortem may become reputation management if approval and evaluation are not separated",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:42 p.m., Rachel deletes the defensive slide and replaces it with the exact actions her team owns, leaving executive interpretation out of the incident timeline.",
+      "firstImage": "At 9:42 p.m., Rachel is staring at a slide titled 'Context' that is really an apology in disguise.",
+      "mustInclude": [
+        "incident timeline",
+        "defensive slide",
+        "pager log"
+      ],
+      "mustAvoid": [
+        "generic workplace email",
+        "blameless postmortem lecture",
+        "leadership optics"
+      ]
+    },
+    {
+      "domain": "wedding RSVP pressure",
+      "audience": "a bride trying to control relatives' disappointment while keeping a small ceremony",
+      "stakes": "the guest list may expand until the ceremony no longer reflects the couple's real limits",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Giulia tells her aunt the invitation decision is hers and the disappointment is not, while still speaking with warmth and leaving room for the aunt's feeling.",
+      "firstImage": "\"I understand that you're hurt,\" Giulia says, with the seating chart folded under her palm.",
+      "mustInclude": [
+        "seating chart",
+        "thirty-person venue cap",
+        "aunt's voicemail"
+      ],
+      "mustAvoid": [
+        "bridezilla joke",
+        "cut toxic family advice",
+        "cold boundary script"
+      ]
+    },
+    {
+      "domain": "charity board donor response",
+      "audience": "a nonprofit treasurer who keeps softening numbers to protect a major donor's opinion",
+      "stakes": "the board may approve a budget built to satisfy recognition rather than reality",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Thomas highlights the red deficit line, names the donor's reaction as the donor's task, and presents the real number without padding the story for approval.",
+      "firstImage": "The highlighter squeaks over the same red deficit line for the third time.",
+      "mustInclude": [
+        "deficit line",
+        "donor name card",
+        "board packet"
+      ],
+      "mustAvoid": [
+        "charity martyrdom",
+        "fundraising tactics",
+        "public confrontation"
+      ]
+    },
+    {
+      "domain": "apprentice electrician certification evaluation",
+      "audience": "a trades supervisor who wants to rescue an apprentice from failing by negotiating the examiner's judgment",
+      "stakes": "the apprentice may pass this time while never learning which work quality is actually his to own",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Aanya stop herself from arguing with the examiner and instead put the failed conduit bend on the bench so the apprentice can own the next practice run.",
+      "firstImage": "You can see the kink in the conduit before anyone says a word.",
+      "mustInclude": [
+        "conduit bend",
+        "examiner checklist",
+        "practice bench"
+      ],
+      "mustAvoid": [
+        "school grade analogy",
+        "boss rescues employee",
+        "humiliation scene"
+      ]
+    },
+    {
+      "domain": "flatshare chore conflict",
+      "audience": "a roommate who keeps cleaning everyone's mess to avoid being disliked",
+      "stakes": "a shared apartment is becoming a silent recognition bargain rather than a livable agreement",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Pavel leaves the pan unwashed, writes his own task on the fridge chart, and lets his roommates' judgment remain theirs without staging martyrdom.",
+      "firstImage": "Whose opinion are you cleaning for when the pan was never yours?",
+      "mustInclude": [
+        "fridge chart",
+        "unwashed pan",
+        "lease inspection"
+      ],
+      "mustAvoid": [
+        "messy roommate comedy",
+        "passive-aggressive note",
+        "selfish withdrawal"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate choice, effort, outcome, and evaluation in a live conflict",
+      "detect when concern has become control over another person's task",
+      "identify recognition hunger as a freedom problem, not a mood problem",
+      "choose boundary actions that preserve contribution without servility"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one conflict and label four items: my choice, my effort, their response, their judgment. Cross out the item you have been trying to own.",
+  "readingTimeMinutes": 12
+}

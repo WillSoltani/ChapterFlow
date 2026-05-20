@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch07",
+  "number": 7,
+  "title": "Inequality and Skin in the Game",
+  "coreMove": "Judge inequality by whether the winners stayed exposed to the risks that produced their rewards.",
+  "sourcePressure": "Taleb separates inequality earned under shared downside from inequality protected by privilege and loss transfer.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into generic inequality is bad or meritocracy is good.",
+  "sourceAlignmentTerms": [
+    "legitimate inequality",
+    "protected privilege",
+    "shared downside",
+    "loss transfer",
+    "hierarchy",
+    "authority",
+    "reward"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Inequality and Skin in the Game",
+      "detail": "The source sidecar supports the distinction between legitimate hierarchy under exposure and illegitimate hierarchy protected from loss.",
+      "useIn": "deepRead",
+      "phrasingHint": "The visible question is not who has more, but whether the people at the top could fall from the risks they ask others to bear."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "founder payout after a risky acquisition with no clawback",
+      "audience": "board member judging wealth created under protected upside",
+      "stakes": "employees could lose jobs while executives keep bonuses",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Anna moves the payout vote behind a clawback clause tied to integration losses.",
+      "firstImage": "a bonus schedule beside an acquisition deck",
+      "mustInclude": [
+        "clawback clause",
+        "integration risk",
+        "bonus schedule"
+      ],
+      "mustAvoid": [
+        "envy of wealth"
+      ]
+    },
+    {
+      "domain": "restaurant owner who mortgaged her house versus franchisor collecting fees",
+      "audience": "operator comparing exposed and protected hierarchy",
+      "stakes": "local workers absorb failure while headquarters books revenue",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Henrik marks which party loses rent, payroll, and reputation if the new location fails.",
+      "firstImage": "flour dust on a signed lease",
+      "mustInclude": [
+        "franchise fee",
+        "payroll sheet",
+        "lease guarantee"
+      ],
+      "mustAvoid": [
+        "small business romance"
+      ]
+    },
+    {
+      "domain": "venture fund advising layoffs after selling secondary shares",
+      "audience": "startup director testing whether winners stayed exposed",
+      "stakes": "staff lose income while investors already removed downside",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Giulia asks the fund to lock remaining shares before the layoff plan gets authority.",
+      "firstImage": "cap table projected on a wall",
+      "mustInclude": [
+        "secondary sale",
+        "layoff plan",
+        "share lockup"
+      ],
+      "mustAvoid": [
+        "anti-VC riff"
+      ]
+    },
+    {
+      "domain": "hospital executive bonus tied to throughput but not readmission cost",
+      "audience": "quality committee tracking asymmetric reward",
+      "stakes": "patients and nurses pay when speed bonus ignores downstream harm",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "David adds readmissions to the executive scorecard before approving the throughput bonus.",
+      "firstImage": "patient discharge folders stacked in a wire tray",
+      "mustInclude": [
+        "scorecard",
+        "readmission data",
+        "bonus metric"
+      ],
+      "mustAvoid": [
+        "healthcare outrage"
+      ]
+    },
+    {
+      "domain": "sports league owner demanding public subsidy while privatizing gains",
+      "audience": "city analyst judging protected privilege",
+      "stakes": "taxpayers carry stadium risk while owners keep appreciation",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Kiran reconstructs the last subsidy deal and highlights where public downside was hidden.",
+      "firstImage": "old stadium debt schedule on a council desk",
+      "mustInclude": [
+        "subsidy contract",
+        "debt schedule",
+        "revenue split"
+      ],
+      "mustAvoid": [
+        "sports politics"
+      ]
+    },
+    {
+      "domain": "family business succession between exposed operator and absent heir",
+      "audience": "reader seeing hierarchy become illegitimate when risk disappears",
+      "stakes": "employees need authority tied to operational consequence",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Petra asks who answers the phone when the freezer fails before accepting the heir's veto.",
+      "firstImage": "a freezer alarm blinking in the stockroom",
+      "mustInclude": [
+        "succession memo",
+        "maintenance log",
+        "veto right"
+      ],
+      "mustAvoid": [
+        "family drama"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify legitimate inequality in a new concrete scenario",
+      "choose the action that performs the chapter move: Judge inequality by whether the winners stayed exposed to the risks that produced their rewards.",
+      "separate the chapter's mechanism from the weak misread: Turning the chapter into generic inequality is bad or meritocracy is good.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for Inequality and Skin in the Game.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

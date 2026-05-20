@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch05",
+  "number": 5,
+  "title": "Friction and Viscosity",
+  "coreMove": "Separate useful resistance from avoidable drag, then remove the drag before blaming the goal.",
+  "sourcePressure": "Friction and viscosity explain how the surrounding medium slows movement and makes progress heavier than the objective itself.",
+  "chapterSpecificMisunderstanding": "calling every obstacle bad or treating speed as the only value",
+  "sourceAlignmentTerms": [
+    "friction",
+    "viscosity",
+    "drag",
+    "medium",
+    "resistance",
+    "wasted effort",
+    "useful constraint"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Friction and Viscosity",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "calling every obstacle bad or treating speed as the only value",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "customs paperwork counter",
+      "audience": "readers who face customs paperwork counter decisions where friction is easy to misread",
+      "stakes": "truckers losing hours at the window",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivia lifts the customs manifest out of the workflow, keeps the useful constraint on the window token, and checks the inspection seal to see whether movement actually speeds up. Domain: customs paperwork counter.",
+      "firstImage": "customs manifest visible in the customs paperwork counter",
+      "mustInclude": [
+        "customs manifest",
+        "window token",
+        "inspection seal"
+      ],
+      "mustAvoid": [
+        "calling every obstacle bad or treating speed as the only value",
+        "reusing a generic meeting scene instead of the customs paperwork counter constraints"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "mobile phlebotomy route planning",
+      "audience": "readers who face mobile phlebotomy route planning decisions where friction is easy to misread",
+      "stakes": "missed blood draws across suburbs",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Matthew lifts the route sheet out of the workflow, keeps the useful constraint on the specimen cooler, and checks the porch access note to see whether movement actually speeds up. Domain: mobile phlebotomy route planning.",
+      "firstImage": "route sheet visible in the mobile phlebotomy route planning",
+      "mustInclude": [
+        "route sheet",
+        "specimen cooler",
+        "porch access note"
+      ],
+      "mustAvoid": [
+        "calling every obstacle bad or treating speed as the only value",
+        "reusing a generic meeting scene instead of the mobile phlebotomy route planning constraints"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "film post-production handoff",
+      "audience": "readers who face film post-production handoff decisions where friction is easy to misread",
+      "stakes": "deadline slips between editors",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chloe lifts the edit timeline out of the workflow, keeps the useful constraint on the sound cue list, and checks the handoff drive to see whether movement actually speeds up. Domain: film post-production handoff.",
+      "firstImage": "edit timeline visible in the film post-production handoff",
+      "mustInclude": [
+        "edit timeline",
+        "sound cue list",
+        "handoff drive"
+      ],
+      "mustAvoid": [
+        "calling every obstacle bad or treating speed as the only value",
+        "reusing a generic meeting scene instead of the film post-production handoff constraints"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "grocery self-checkout redesign",
+      "audience": "readers who face grocery self-checkout redesign decisions where friction is easy to misread",
+      "stakes": "customers abandoning baskets",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Mikkel lifts the basket sensor readout out of the workflow, keeps the useful constraint on the bagging shelf sign, and checks the receipt roll to see whether movement actually speeds up. Domain: grocery self-checkout redesign.",
+      "firstImage": "basket sensor readout visible in the grocery self-checkout redesign",
+      "mustInclude": [
+        "basket sensor readout",
+        "bagging shelf sign",
+        "receipt roll"
+      ],
+      "mustAvoid": [
+        "calling every obstacle bad or treating speed as the only value",
+        "reusing a generic meeting scene instead of the grocery self-checkout redesign constraints"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "pool lane booking system",
+      "audience": "readers who face pool lane booking system decisions where friction is easy to misread",
+      "stakes": "members fighting over peak lanes",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hadiya lifts the lane grid out of the workflow, keeps the useful constraint on the lifeguard clipboard, and checks the booking tablet to see whether movement actually speeds up. Domain: pool lane booking system.",
+      "firstImage": "lane grid visible in the pool lane booking system",
+      "mustInclude": [
+        "lane grid",
+        "lifeguard clipboard",
+        "booking tablet"
+      ],
+      "mustAvoid": [
+        "calling every obstacle bad or treating speed as the only value",
+        "reusing a generic meeting scene instead of the pool lane booking system constraints"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "remote onboarding permissions",
+      "audience": "readers who face remote onboarding permissions decisions where friction is easy to misread",
+      "stakes": "new hires locked out of needed tools",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Catarina lifts the permission matrix out of the workflow, keeps the useful constraint on the welcome email, and checks the access ticket to see whether movement actually speeds up. Domain: remote onboarding permissions.",
+      "firstImage": "permission matrix visible in the remote onboarding permissions",
+      "mustInclude": [
+        "permission matrix",
+        "welcome email",
+        "access ticket"
+      ],
+      "mustAvoid": [
+        "calling every obstacle bad or treating speed as the only value",
+        "reusing a generic meeting scene instead of the remote onboarding permissions constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for friction rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Separate useful resistance from avoidable drag, then remove the drag before blaming the goal.",
+      "explain why the tempting misread fails: calling every obstacle bad or treating speed as the only value",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving friction, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

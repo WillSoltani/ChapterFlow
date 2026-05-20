@@ -1,0 +1,194 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch05",
+  "number": 5,
+  "title": "The Command-and-Control Strategy: Avoid the Snares of Groupthink",
+  "coreMove": "Give mission, context, and dissent channels instead of over-specifying method when the team is competent enough to adapt.",
+  "sourcePressure": "Groupthink is structural: the cost of speaking up is visible, the cost of silence is hidden, and hierarchy makes silence look safe.",
+  "chapterSpecificMisunderstanding": "Replace leadership with vague autonomy or consensus with no command.",
+  "sourceAlignmentTerms": [
+    "groupthink",
+    "mission command",
+    "Auftragstaktik",
+    "initiative downward",
+    "dissent upward",
+    "purpose not procedure",
+    "novice reversal"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Auftragstaktik",
+      "detail": "the source identifies the German mission-driven command tradition: tell subordinates the purpose, not the method.",
+      "useIn": "both",
+      "phrasingHint": "Auftragstaktik gives the room a cleaner test: can people act from intent when the steps stop fitting the facts?"
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for The Command-and-Control Strategy: Avoid the Snares of Groupthink.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nathan",
+      "domain": "medical device launch meeting",
+      "audience": "a reader facing medical device launch meeting who needs to practice Strategy 5 without reducing it to replace leadership with vague autonomy or consensus with no command.",
+      "stakes": "a concrete decision in medical device launch meeting where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist replaces a step-by-step order with a mission brief and opens one explicit channel for bad news before consensus hardens. The visible action must happen inside medical device launch meeting, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" Nathan says, with the mission card still unopened.",
+      "mustInclude": [
+        "mission card",
+        "anonymous risk note",
+        "one visible deadline tied to groupthink"
+      ],
+      "mustAvoid": [
+        "Replace leadership with vague autonomy or consensus with no command.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Patrick",
+      "domain": "airport operations shift handoff",
+      "audience": "a reader facing airport operations shift handoff who needs to practice Strategy 5 without reducing it to replace leadership with vague autonomy or consensus with no command.",
+      "stakes": "a concrete decision in airport operations shift handoff where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist replaces a step-by-step order with a mission brief and opens one explicit channel for bad news before consensus hardens. The visible action must happen inside airport operations shift handoff, not as an abstract reflection.",
+      "firstImage": "The anonymous risk note is damp at one corner when Patrick pulls it from the folder.",
+      "mustInclude": [
+        "anonymous risk note",
+        "marked-up floor plan",
+        "a named counterparty tied to groupthink"
+      ],
+      "mustAvoid": [
+        "Replace leadership with vague autonomy or consensus with no command.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Sean",
+      "domain": "regional news editorial board",
+      "audience": "a reader facing regional news editorial board who needs to practice Strategy 5 without reducing it to replace leadership with vague autonomy or consensus with no command.",
+      "stakes": "a concrete decision in regional news editorial board where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist replaces a step-by-step order with a mission brief and opens one explicit channel for bad news before consensus hardens. The visible action must happen inside regional news editorial board, not as an abstract reflection.",
+      "firstImage": "You are beside Sean as the marked-up floor plan makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "marked-up floor plan",
+        "mission card",
+        "a public consequence tied to groupthink"
+      ],
+      "mustAvoid": [
+        "Replace leadership with vague autonomy or consensus with no command.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Steven",
+      "domain": "construction safety review",
+      "audience": "a reader facing construction safety review who needs to practice Strategy 5 without reducing it to replace leadership with vague autonomy or consensus with no command.",
+      "stakes": "a concrete decision in construction safety review where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist replaces a step-by-step order with a mission brief and opens one explicit channel for bad news before consensus hardens. The visible action must happen inside construction safety review, not as an abstract reflection.",
+      "firstImage": "It took Steven three weeks to notice the mission card was the part everyone kept avoiding.",
+      "mustInclude": [
+        "mission card",
+        "anonymous risk note",
+        "a resource limit tied to groupthink"
+      ],
+      "mustAvoid": [
+        "Replace leadership with vague autonomy or consensus with no command.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Rebecca",
+      "domain": "public-health field team",
+      "audience": "a reader facing public-health field team who needs to practice Strategy 5 without reducing it to replace leadership with vague autonomy or consensus with no command.",
+      "stakes": "a concrete decision in public-health field team where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist replaces a step-by-step order with a mission brief and opens one explicit channel for bad news before consensus hardens. The visible action must happen inside public-health field team, not as an abstract reflection.",
+      "firstImage": "What changes when Rebecca stops arguing and points to the anonymous risk note?",
+      "mustInclude": [
+        "anonymous risk note",
+        "marked-up floor plan",
+        "a private decision rule tied to groupthink"
+      ],
+      "mustAvoid": [
+        "Replace leadership with vague autonomy or consensus with no command.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Emma",
+      "domain": "software incident command room",
+      "audience": "a reader facing software incident command room who needs to practice Strategy 5 without reducing it to replace leadership with vague autonomy or consensus with no command.",
+      "stakes": "a concrete decision in software incident command room where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist replaces a step-by-step order with a mission brief and opens one explicit channel for bad news before consensus hardens. The visible action must happen inside software incident command room, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the marked-up floor plan before Emma says a word.",
+      "mustInclude": [
+        "marked-up floor plan",
+        "mission card",
+        "a reversal check tied to groupthink"
+      ],
+      "mustAvoid": [
+        "Replace leadership with vague autonomy or consensus with no command.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 5 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Give mission, context, and dissent channels instead of over-specifying method when the team is competent enough to adapt.",
+      "explain why the common misread fails: Replace leadership with vague autonomy or consensus with no command.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Rewrite one instruction as intent plus constraints: outcome, why it matters, what cannot be broken, and where dissent should surface.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch09",
+  "number": 9,
+  "title": "Conclusion",
+  "coreMove": "Treat depth as a life design choice that must be chosen repeatedly, not as a single productivity tactic.",
+  "sourcePressure": "The source frame supports a narrow closing case around Bill Gates and the value of a deep life.",
+  "chapterSpecificMisunderstanding": "The weak version summarizes the rules; the chapter must make the reader decide what a deep life would require in practice.",
+  "sourceAlignmentTerms": ["deep life", "Bill Gates", "deliberate choice", "focused effort", "value", "conclusion"],
+  "forbiddenFrames": {
+    "hook": ["recap the journey", "now you know the rules", "great people focus"],
+    "counterintuition": ["productivity is a life philosophy", "depth changes everything"],
+    "tryThisNow": ["write your ideal day", "commit to deep work"],
+    "examples": ["famous founder montage", "unsupported Gates biography", "generic career transformation"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a senior public-health modeler choosing her next five-year role",
+      "audience": "an experienced professional deciding whether her work life supports depth",
+      "stakes": "she may accept a title-heavy role that removes the modeling work she does best",
+      "format": "decision_point",
+      "requiredBeat": "she compares the prestigious role with the quieter role by counting which one preserves weekly model-building depth",
+      "firstImage": "two offer letters beside a calendar marked with model-building blocks",
+      "mustInclude": ["offer letters", "weekly depth", "public-health model"],
+      "mustAvoid": ["generic promotion dilemma", "follow your passion"]
+    },
+    {
+      "domain": "a small-town newspaper publisher rebuilding the reporting calendar",
+      "audience": "a leader deciding whether the organization can live by depth instead of churn",
+      "stakes": "local accountability reporting dies if every day is filled with quick briefs",
+      "format": "before_after",
+      "requiredBeat": "he removes three low-value recurring briefs and assigns one reporter a protected investigation block every week",
+      "firstImage": "a newsroom budget board with three recurring briefs crossed out",
+      "mustInclude": ["investigation block", "recurring briefs", "local accountability"],
+      "mustAvoid": ["generic media nostalgia", "breaking-news chaos"]
+    },
+    {
+      "domain": "a graduate architecture student designing a thesis year",
+      "audience": "a student turning the rules into a full-year operating choice",
+      "stakes": "the thesis becomes a collage of quick references unless she protects long design sessions",
+      "format": "reflection",
+      "requiredBeat": "she places studio depth, tool limits, boredom training, and shallow-work caps onto one weekly template",
+      "firstImage": "a thesis pin-up wall beside a blank weekly template",
+      "mustInclude": ["weekly template", "studio depth", "shallow-work cap"],
+      "mustAvoid": ["classroom shell", "generic student productivity"]
+    },
+    {
+      "domain": "a union training coordinator redesigning apprenticeship study time",
+      "audience": "a coordinator moving from tips to institutional habits",
+      "stakes": "apprentices pass safety modules but fail complex diagnostic work",
+      "format": "postmortem",
+      "requiredBeat": "after a failed diagnostic exam, he redesigns the schedule so apprentices practice hard fault analysis before routine paperwork",
+      "firstImage": "a failed diagnostic rubric beside an apprenticeship rotation chart",
+      "mustInclude": ["fault analysis", "rotation chart", "routine paperwork"],
+      "mustAvoid": ["generic training class", "safety poster"]
+    },
+    {
+      "domain": "a climate-litigation team planning a year of expert discovery",
+      "audience": "a team lead translating a deep-life principle into team operating norms",
+      "stakes": "expert arguments weaken if the year dissolves into reactive filings",
+      "format": "dialogue",
+      "requiredBeat": "she asks each attorney to name the one deep contribution the case needs, then builds the year around those blocks before deadlines are added",
+      "firstImage": "an expert-discovery timeline printed across a conference table",
+      "mustInclude": ["expert discovery", "deep contribution", "deadline layer"],
+      "mustAvoid": ["generic legal war room", "busy calendar"]
+    },
+    {
+      "domain": "a hospice music therapist deciding what kind of practice to keep",
+      "audience": "a practitioner measuring a deep life by attention quality rather than public status",
+      "stakes": "patients receive thin, familiar routines if she stops learning difficult repertoire",
+      "format": "vignette",
+      "requiredBeat": "she chooses a smaller caseload that preserves daily repertoire study and writes the tradeoff plainly before accepting it",
+      "firstImage": "a marked songbook beside a caseload schedule on a clinic desk",
+      "mustInclude": ["caseload schedule", "daily study", "tradeoff note"],
+      "mustAvoid": ["sentimental hospice story", "generic life-purpose close"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["integrate the four rules into a whole-life choice", "evaluate tradeoffs that preserve or destroy depth", "distinguish a deep life from isolated productivity tactics", "apply the supported Bill Gates closing idea without expanding into unsupported biography"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Write one tradeoff you would have to accept for a deeper work life, then name the concrete weekly block that tradeoff protects.",
+  "readingTimeMinutes": 12
+}

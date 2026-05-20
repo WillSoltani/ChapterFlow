@@ -1,0 +1,156 @@
+{
+  "chapterId": "pre-suasion-ch09",
+  "number": 9,
+  "title": "The Mechanics of Pre-suasion: Causes, Constraints, and Correctives",
+  "coreMove": "Test whether a prepared concept is truly relevant, temporary, and correctable before relying on it.",
+  "sourcePressure": "The source explains mechanisms, constraints, and correctives: concepts fire when readied, not only when ready, and pre-suasion has limits rather than magical force.",
+  "chapterSpecificMisunderstanding": "Priming lets you plant any idea and make it work.",
+  "sourceAlignmentTerms": [
+    "mechanics",
+    "causes",
+    "constraints",
+    "correctives",
+    "readied concepts",
+    "activation",
+    "limits"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "emergency-room triage script",
+      "audience": "a nurse manager checking whether a pain-scale prompt readies the wrong concern",
+      "stakes": "whether a prepared concept helps or distorts the next answer",
+      "format": "postmortem",
+      "requiredBeat": "the manager compares responses when insurance questions come before versus after symptom sorting",
+      "firstImage": "a triage tablet paused on the insurance screen",
+      "mustInclude": [
+        "triage tablet",
+        "symptom card"
+      ],
+      "mustAvoid": [
+        "medical protocol invention"
+      ]
+    },
+    {
+      "domain": "jury questionnaire order",
+      "audience": "a court administrator testing whether early questions bias later fairness ratings",
+      "stakes": "whether readied concepts can be corrected by order changes",
+      "format": "decision_point",
+      "requiredBeat": "the administrator moves neighborhood questions after evidence instructions and tracks what changes",
+      "firstImage": "a questionnaire packet with reordered tabs",
+      "mustInclude": [
+        "tab labels",
+        "instruction sheet"
+      ],
+      "mustAvoid": [
+        "legal manipulation"
+      ]
+    },
+    {
+      "domain": "loan hardship call script",
+      "audience": "a bank compliance officer limiting priming by debt language",
+      "stakes": "whether callers are readied for shame before hearing options",
+      "format": "before_after",
+      "requiredBeat": "the officer replaces the opening balance recitation with a neutral identity check and compares take-up",
+      "firstImage": "a call script with the balance line struck through",
+      "mustInclude": [
+        "call script",
+        "hardship option sheet"
+      ],
+      "mustAvoid": [
+        "finance upsell"
+      ]
+    },
+    {
+      "domain": "science museum exhibit labels",
+      "audience": "an exhibit designer showing uncertainty without making guesses feel like facts",
+      "stakes": "whether readied curiosity stays inside evidence limits",
+      "format": "scene",
+      "requiredBeat": "the designer adds a correction label beside the mystery prompt before visitors press the answer button",
+      "firstImage": "an exhibit button glowing under a question panel",
+      "mustInclude": [
+        "correction label",
+        "answer button"
+      ],
+      "mustAvoid": [
+        "mystery for entertainment"
+      ]
+    },
+    {
+      "domain": "restaurant menu nutrition prompt",
+      "audience": "a menu owner testing if health icons crowd out taste decisions too strongly",
+      "stakes": "whether a cue’s reach exceeds the decision it should inform",
+      "format": "postmortem",
+      "requiredBeat": "the owner checks whether diners avoid balanced dishes with one red icon before changing the icon system",
+      "firstImage": "a menu proof with red icons beside three entrees",
+      "mustInclude": [
+        "menu proof",
+        "sales tally"
+      ],
+      "mustAvoid": [
+        "diet advice"
+      ]
+    },
+    {
+      "domain": "employee feedback survey",
+      "audience": "an HR analyst preventing one word from contaminating all answers",
+      "stakes": "whether readied resentment spreads beyond the target issue",
+      "format": "reflection",
+      "requiredBeat": "the analyst removes the word complaint from the opener and adds a later corrective item",
+      "firstImage": "a survey preview with the first prompt highlighted",
+      "mustInclude": [
+        "survey preview",
+        "response heatmap"
+      ],
+      "mustAvoid": [
+        "corporate culture sermon"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain readied concepts without treating them as control",
+      "identify constraints and correctives",
+      "detect spillover from an early cue",
+      "revise order when a prime contaminates later judgment"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one early cue in a form, script, or meeting and ask what concept it readies, what it might distort, and what correction belongs nearby.",
+  "readingTimeMinutes": 12
+}

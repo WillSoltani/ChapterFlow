@@ -1,0 +1,200 @@
+{
+  "chapterId": "antifragile-ch11",
+  "number": 11,
+  "title": "Never Marry the Rock Star",
+  "coreMove": "Build a barbell by separating protected essentials from small, optional bets with open upside.",
+  "sourcePressure": "This chapter argues for the barbell: protect against ruin while keeping selective exposure to large upside.",
+  "chapterSpecificMisunderstanding": "Reading the rock-star warning as dating advice or timid moderation.",
+  "sourceAlignmentTerms": [
+    "barbell",
+    "rock star",
+    "ruin avoidance",
+    "selective upside",
+    "protected base",
+    "extreme mix"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the rock star",
+      "detail": "the chapter title image for seductive concentrated exposure",
+      "useIn": "both",
+      "phrasingHint": "The rock star looks like upside until you notice the contract has no exit."
+    },
+    {
+      "kind": "artifact",
+      "name": "barbell structure",
+      "detail": "the source-note solution: extreme protection paired with selective upside",
+      "useIn": "fullRead",
+      "phrasingHint": "A barbell is not compromise; it is shelter on one side and carefully chosen risk on the other."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "generic alarm-clock morning",
+      "motivational adversity opener",
+      "opening by explaining Never Marry the Rock Star"
+    ],
+    "counterintuition": [
+      "stress is secretly good",
+      "the real problem is mindset",
+      "chaos always helps",
+      "Reading the rock-star warning as dating advice or timid moderation."
+    ],
+    "tryThisNow": [
+      "set a timer and think",
+      "write three lessons",
+      "make a pros and cons list with no exposure map"
+    ],
+    "examples": [
+      "generic office whiteboard scene",
+      "kitchen table self-improvement scene",
+      "classroom lecture with marker",
+      "coffee mug decision shell",
+      "reusing any prior Antifragile chapter domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "pharma trial portfolio with Giulia as the decision-maker",
+      "audience": "a reader who handles pharma trial portfolio under uncertainty",
+      "stakes": "whether Giulia avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Giulia separates the protected base from the small speculative bet instead of making one blended compromise.",
+      "firstImage": "a red tag on a locked cabinet",
+      "mustInclude": [
+        "pharma log",
+        "marked threshold",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic never marry the rock star paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "cash-and-options savings plan with Chiara as the decision-maker",
+      "audience": "a reader who handles cash and options savings plan under uncertainty",
+      "stakes": "whether Chiara avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Chiara separates the protected base from the small speculative bet instead of making one blended compromise.",
+      "firstImage": "a raincoat dripping beside the sign-in sheet",
+      "mustInclude": [
+        "cash and options log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic never marry the rock star paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "contractor hiring bench with Paula as the decision-maker",
+      "audience": "a reader who handles contractor hiring bench under uncertainty",
+      "stakes": "whether Paula avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Paula separates the protected base from the small speculative bet instead of making one blended compromise.",
+      "firstImage": "a blinking restore bar on an old monitor",
+      "mustInclude": [
+        "contractor log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic never marry the rock star paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "bridge inspection schedule with Isabel as the decision-maker",
+      "audience": "a reader who handles bridge inspection schedule under uncertainty",
+      "stakes": "whether Isabel avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "Isabel separates the protected base from the small speculative bet instead of making one blended compromise.",
+      "firstImage": "a cracked plastic case on a snow bench",
+      "mustInclude": [
+        "bridge log",
+        "sealed note",
+        "phone photo"
+      ],
+      "mustAvoid": [
+        "generic never marry the rock star paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "mountain rescue kit with Catarina as the decision-maker",
+      "audience": "a reader who handles mountain rescue kit under uncertainty",
+      "stakes": "whether Catarina avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Catarina separates the protected base from the small speculative bet instead of making one blended compromise.",
+      "firstImage": "a grease-pencil mark on a delivery invoice",
+      "mustInclude": [
+        "mountain log",
+        "marked threshold",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic never marry the rock star paraphrase",
+        "swap-in office meeting shell"
+      ]
+    },
+    {
+      "domain": "storm-prep pantry with Anya as the decision-maker",
+      "audience": "a reader who handles storm prep pantry under uncertainty",
+      "stakes": "whether Anya avoids the chapter-specific mistake before a small stress becomes expensive",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anya separates the protected base from the small speculative bet instead of making one blended compromise.",
+      "firstImage": "a pair of worn shoes under a folding chair",
+      "mustInclude": [
+        "storm prep log",
+        "sealed note",
+        "printed checklist"
+      ],
+      "mustAvoid": [
+        "generic never marry the rock star paraphrase",
+        "swap-in office meeting shell"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify scenarios by build a barbell by separating protected essentials from small, optional bets with open upside.",
+      "distinguish barbell, rock star, ruin avoidance in unfamiliar cases",
+      "choose actions that avoid: Reading the rock-star warning as dating advice or timid moderation."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Split one plan into what must not fail and what can be risked cheaply for upside.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,129 @@
+{
+  "chapterId": "playing-to-win-ch01",
+  "number": 1,
+  "title": "Strategy Is Choice",
+  "coreMove": "Recognize that a strategy only exists when its five choices cohere and reinforce each other — a list of ambitions, however detailed, is not a strategy.",
+  "sourcePressure": "The chapter establishes the book's master frame: strategy is not a vision statement, a plan, or an optimization of the current business. It exists only when a cascade of five integrated choices — winning aspiration, where to play, how to win, capabilities, management systems — each reinforces the others. The Olay turnaround is the anchor: P&G did not rescue the brand by being more energetic; it made a tighter, coherent set of choices that fit together.",
+  "chapterSpecificMisunderstanding": "Strategy means having a clear vision and a detailed plan — the more thorough the planning document, the more rigorous the strategy.",
+  "sourceAlignmentTerms": ["cascade", "winning aspiration", "where to play", "how to win", "coherent choices", "reinforce", "Olay", "integrated"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Olay's recovery",
+      "detail": "P&G chose reinvention for Olay rather than incremental maintenance — combining a renamed brand, a clearer target customer, a sharper price-positioning logic, and a choice to compete in a more attractive part of the market. The integrated choices created a coherent way to win.",
+      "useIn": "both",
+      "phrasingHint": "Olay did not turn around because P&G invested harder in what Olay already was. It turned around because the choices about who the customer was, where the brand would sit in the market, and what the offer would do all pointed in the same direction at once."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Every team thinks they have a strategy — opening that generalizes about 'most companies'",
+      "Strategy is simple: just make better decisions — generic coaching opener"
+    ],
+    "counterintuition": [
+      "The more choices you make, the less strategic flexibility you have — generic trade-off framing",
+      "Ambition is not enough without execution — execution-first framing"
+    ],
+    "tryThisNow": [
+      "Write down your three most important priorities — generic goal-setting prompt",
+      "Ask yourself whether your team is aligned on the mission — generic alignment check"
+    ],
+    "examples": [
+      "A leader writes a new mission statement and calls it strategy",
+      "A team holds a strategy day and produces a long slide deck"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Avoid the shell of timestamp + named protagonist + prop + decision repeated across all six slots"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "artisan bakery deciding between wholesale accounts and a direct-to-consumer subscription model",
+      "audience": "a small-business owner who has written down three growth goals but cannot decide which way to invest",
+      "stakes": "investing in the wrong channel depletes cash before the busy season and leaves both paths half-built",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the owner lists the three growth goals — more wholesale accounts, a subscription box, a second location — then realizes that each goal requires a different capability and customer relationship, and the three cannot be pursued at once without none of them cohering",
+      "firstImage": "a whiteboard covered in growth ideas, every one of them plausible, none of them connected",
+      "mustInclude": ["a specific resource constraint that forces the choice", "the moment the protagonist sees the three goals pulling in different directions"],
+      "mustAvoid": ["generic 'focus vs growth' framing", "advice to hire more staff as the solution"]
+    },
+    {
+      "domain": "a nonprofit choosing between expanding grant-funded program breadth and deepening a single program's outcomes",
+      "audience": "an executive director facing a board that wants growth and funders who want depth",
+      "stakes": "if the org tries to grow program count and deepen impact at the same time, neither goal will be achieved and the largest funder may walk",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the director sees that every program added in the last two years was chased because of a grant opportunity, not because it fit the org's stated aspiration — the wish list grew while the actual strategy dissolved",
+      "firstImage": "a program list that has doubled in three years, each line with a different funder's logo beside it",
+      "mustInclude": ["the gap between the stated mission and the actual portfolio", "a moment where the director recognizes that choices were reactive, not strategic"],
+      "mustAvoid": ["generic nonprofit funding struggle", "board conflict drama as the main tension"]
+    },
+    {
+      "domain": "a management consulting practice choosing which client industries to serve",
+      "audience": "a partner-level consultant who wants to grow revenue but has taken on projects in six different sectors",
+      "stakes": "the practice cannot build a repeatable capability in any sector if it keeps dispersing into new ones",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the consultant lays out a pipeline of six potential new engagements in six different industries and recognizes that every proposal requires a different credential they don't have — the cascade question forces a choice about which field to own",
+      "firstImage": "six new proposals on a shared drive, each one in a different sector, none building on the last",
+      "mustInclude": ["the specific cost of re-entering a new sector for each proposal", "the realization that the practice has a pipeline but not a strategy"],
+      "mustAvoid": ["generic work-life balance or burnout framing", "advice to simply say no to clients"]
+    },
+    {
+      "domain": "a community radio station choosing between a hyper-local news format and a broad music and talk format",
+      "audience": "a board and programming director deciding where the station's scarce production capacity should go",
+      "stakes": "the station's current format serves no audience especially well, and digital competitors have already taken the casual listener",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the programming director asks the board which listeners they are actually trying to serve and what beating a podcast would require — the question exposes that the current format was inherited, not chosen, and that no capabilities support either potential direction",
+      "firstImage": "a programming schedule that is half local news, half music, and full of unfilled sponsor slots",
+      "mustInclude": ["the inherited format that nobody chose deliberately", "the capability gap that appears when the winning aspiration is named explicitly"],
+      "mustAvoid": ["media-industry nostalgia", "digital disruption lecture"]
+    },
+    {
+      "domain": "an academic department deciding whether to compete for graduate student rankings or deepen undergraduate teaching quality",
+      "audience": "a department chair who has received budget for a new hire and must decide what kind of position to fill",
+      "stakes": "the hire will either reinforce a research identity that attracts PhD students or a teaching identity that attracts strong undergraduates — the two paths require different capabilities and different measures of success",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "before: the chair writes a job description that tries to attract a researcher and a teacher at once; after: the chair realizes the description would produce a mediocre outcome in both directions and must choose which aspiration the department is actually pursuing",
+      "firstImage": "a draft job posting that lists twelve criteria, the first six pointing toward research and the last six toward teaching",
+      "mustInclude": ["the specific capability each path requires that the other does not", "the moment the chair sees that the job description is a symptom of a missing strategic choice"],
+      "mustAvoid": ["academic politics as the main obstacle", "broad higher-education commentary"]
+    },
+    {
+      "domain": "a regional hardware retailer deciding whether to compete on product selection breadth or on contractor-service relationships",
+      "audience": "a second-generation owner whose store has been caught between a big-box home-improvement chain and a specialty supplier",
+      "stakes": "the store cannot match the big-box on price and selection, and cannot match the specialist on depth — the current position wins on nothing",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the owner traces the last three years of inventory decisions and realizes each one was reactive to a competitor move rather than advancing a coherent identity — the store stocked a bit of everything and won exactly the customers nobody else wanted",
+      "firstImage": "a back storeroom with twelve pallets of slow-moving inventory, each one bought to match a competitor's promotion",
+      "mustInclude": ["the specific customer group the store could actually serve with a different capability", "the clear cost of trying to compete in multiple directions at once"],
+      "mustAvoid": ["generic retail survival story", "nostalgia for the pre-Amazon era"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish a genuine strategy cascade from a list of ambitions or priorities",
+      "apply the coherence test to a specific set of choices to identify misalignment",
+      "analyze a real scenario to determine which of the five choices is missing or weak",
+      "evaluate whether a plan actually forces a choice or just documents an intention"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Write down the three biggest priorities you are currently pursuing. For each one, ask: does the second priority require a different customer, field, or capability than the first? If yes, name the specific conflict — that gap is where strategy is missing.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a direct second-person challenge, a brief Olay reference grounded in the principle rather than narrative, or a question that puts the reader in the protagonist's seat",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,765 @@
+{
+  "bookId": "thinking-fast-and-slow",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "thinking-fast-and-slow-ch01",
+      "title": "The Characters of the Story",
+      "sourcePressure": "introduces System 1 and System 2 as fast intuitive suggestion and slow deliberate checking; the mind feels unified even though these modes play different roles",
+      "coreMove": "separate the first answer your mind offers from the slower act of endorsing it",
+      "commonMisread": "turning the two systems into cartoon brain parts or treating slow thought as always better",
+      "mustUseTerms": [
+        "System 1",
+        "System 2",
+        "automatic processing",
+        "effortful control",
+        "first impression",
+        "deliberate checking"
+      ],
+      "mustNotDriftInto": [
+        "left-brain right-brain myth",
+        "generic self-control advice"
+      ]
+    },
+    {
+      "number": 2,
+      "chapterId": "thinking-fast-and-slow-ch02",
+      "title": "Attention and Effort",
+      "sourcePressure": "shows that deliberate thought depends on limited attention and effort that can be stretched, spent, or overloaded",
+      "coreMove": "notice when a judgment requires scarce attention before you trust the first fluent answer",
+      "commonMisread": "calling attention a moral virtue instead of a limited cognitive budget",
+      "mustUseTerms": [
+        "attention",
+        "effort",
+        "mental work",
+        "capacity",
+        "pupil response",
+        "self-monitoring"
+      ],
+      "mustNotDriftInto": [
+        "productivity hacks",
+        "willpower slogans"
+      ]
+    },
+    {
+      "number": 3,
+      "chapterId": "thinking-fast-and-slow-ch03",
+      "title": "The Lazy Controller",
+      "sourcePressure": "argues that System 2 often accepts System 1 suggestions instead of auditing them closely because effort is costly",
+      "coreMove": "catch the moment when your inner reviewer rubber-stamps an easy answer",
+      "commonMisread": "framing laziness as stupidity rather than an effort-saving default",
+      "mustUseTerms": [
+        "lazy controller",
+        "cognitive reflection",
+        "impulse",
+        "monitoring",
+        "endorsement",
+        "effort avoidance"
+      ],
+      "mustNotDriftInto": [
+        "work ethic lectures",
+        "general procrastination"
+      ]
+    },
+    {
+      "number": 4,
+      "chapterId": "thinking-fast-and-slow-ch04",
+      "title": "The Associative Machine",
+      "sourcePressure": "explains how associative memory links ideas quickly and shapes what feels available, threatening, or normal",
+      "coreMove": "trace a judgment back to the cue-chain that activated it before you treat it as independent evidence",
+      "commonMisread": "reducing association to random word games rather than a mechanism that steers perception",
+      "mustUseTerms": [
+        "associative memory",
+        "priming",
+        "cue",
+        "activation",
+        "network",
+        "coherence"
+      ],
+      "mustNotDriftInto": [
+        "creative brainstorming",
+        "simple memory tricks"
+      ]
+    },
+    {
+      "number": 5,
+      "chapterId": "thinking-fast-and-slow-ch05",
+      "title": "Cognitive Ease",
+      "sourcePressure": "shows how fluency, familiarity, and ease make claims feel truer and safer than they deserve",
+      "coreMove": "discount the extra credibility that comes only from a claim feeling easy to process",
+      "commonMisread": "equating ease with comfort or relaxation instead of truth-feeling",
+      "mustUseTerms": [
+        "cognitive ease",
+        "fluency",
+        "familiarity",
+        "truth illusion",
+        "strain",
+        "readability"
+      ],
+      "mustNotDriftInto": [
+        "stress management",
+        "minimalist design advice"
+      ]
+    },
+    {
+      "number": 6,
+      "chapterId": "thinking-fast-and-slow-ch06",
+      "title": "Norms, Surprises, and Causes",
+      "sourcePressure": "shows that the mind notices broken norms quickly and rushes to causal stories that restore order",
+      "coreMove": "pause after surprise and separate the violated expectation from the cause you are tempted to invent",
+      "commonMisread": "treating surprise as curiosity only, rather than a trigger for causal overreach",
+      "mustUseTerms": [
+        "norms",
+        "surprise",
+        "cause",
+        "expectation",
+        "violation",
+        "intentionality"
+      ],
+      "mustNotDriftInto": [
+        "mystery solving",
+        "general curiosity"
+      ]
+    },
+    {
+      "number": 7,
+      "chapterId": "thinking-fast-and-slow-ch07",
+      "title": "A Machine for Jumping to Conclusions",
+      "sourcePressure": "describes the mind as a coherence engine that forms conclusions from thin evidence and treats what is visible as enough",
+      "coreMove": "ask what evidence is absent before letting a coherent story become your verdict",
+      "commonMisread": "making this about rushing in general instead of WYSIATI and missing evidence",
+      "mustUseTerms": [
+        "jumping to conclusions",
+        "WYSIATI",
+        "coherence",
+        "thin evidence",
+        "confidence",
+        "missing information"
+      ],
+      "mustNotDriftInto": [
+        "speed reading",
+        "impulsive behavior"
+      ]
+    },
+    {
+      "number": 8,
+      "chapterId": "thinking-fast-and-slow-ch08",
+      "title": "How Judgments Happen",
+      "sourcePressure": "tracks how quick judgments borrow intensity, substitute dimensions, and convert vague questions into simpler impressions",
+      "coreMove": "identify the hidden scale your mind used when it answered a vague question quickly",
+      "commonMisread": "summarizing judgment as pure emotion instead of intensity-matching and dimension substitution",
+      "mustUseTerms": [
+        "judgment",
+        "intensity matching",
+        "mental shotgun",
+        "prototype",
+        "scale",
+        "accessible impression"
+      ],
+      "mustNotDriftInto": [
+        "personality typing",
+        "generic snap judgments"
+      ]
+    },
+    {
+      "number": 9,
+      "chapterId": "thinking-fast-and-slow-ch09",
+      "title": "Answering an Easier Question",
+      "sourcePressure": "shows that hard questions are often answered by easier ones without the swap being noticed",
+      "coreMove": "name the question you actually answered and compare it with the question you were asked",
+      "commonMisread": "turning substitution into deliberate evasion rather than an unnoticed mental shortcut",
+      "mustUseTerms": [
+        "substitution",
+        "heuristic question",
+        "target question",
+        "affect heuristic",
+        "proxy",
+        "unnoticed swap"
+      ],
+      "mustNotDriftInto": [
+        "political deflection",
+        "test-taking tricks"
+      ]
+    },
+    {
+      "number": 10,
+      "chapterId": "thinking-fast-and-slow-ch10",
+      "title": "The Law of Small Numbers",
+      "sourcePressure": "shows that people expect stable patterns from samples far too small to justify confidence",
+      "coreMove": "withhold pattern claims until the sample is large enough to deserve them",
+      "commonMisread": "calling every small sample useless instead of seeing how noise masquerades as signal",
+      "mustUseTerms": [
+        "law of small numbers",
+        "sample size",
+        "sampling noise",
+        "representativeness",
+        "variance",
+        "random fluctuation"
+      ],
+      "mustNotDriftInto": [
+        "big data enthusiasm",
+        "anecdote dismissal"
+      ]
+    },
+    {
+      "number": 11,
+      "chapterId": "thinking-fast-and-slow-ch11",
+      "title": "Anchors",
+      "sourcePressure": "shows that irrelevant starting points pull estimates and negotiations toward themselves",
+      "coreMove": "strip out the first number in the room before you make your own estimate",
+      "commonMisread": "limiting anchoring to price negotiation rather than any starting value that pulls judgment",
+      "mustUseTerms": [
+        "anchor",
+        "adjustment",
+        "starting point",
+        "estimate",
+        "insufficient adjustment",
+        "reference number"
+      ],
+      "mustNotDriftInto": [
+        "generic bargaining tactics",
+        "goal setting"
+      ]
+    },
+    {
+      "number": 12,
+      "chapterId": "thinking-fast-and-slow-ch12",
+      "title": "The Science of Availability",
+      "sourcePressure": "explains that ease of recall is often mistaken for frequency, importance, or probability",
+      "coreMove": "separate how easily examples come to mind from how often the event actually happens",
+      "commonMisread": "treating availability as mere media influence instead of memory fluency used as evidence",
+      "mustUseTerms": [
+        "availability",
+        "ease of recall",
+        "frequency",
+        "memory fluency",
+        "salience",
+        "base occurrence"
+      ],
+      "mustNotDriftInto": [
+        "news literacy only",
+        "memory improvement"
+      ]
+    },
+    {
+      "number": 13,
+      "chapterId": "thinking-fast-and-slow-ch13",
+      "title": "Availability, Emotion, and Risk",
+      "sourcePressure": "shows that vivid emotion amplifies availability and bends judgments about danger and safety",
+      "coreMove": "measure the risk after naming the image or feeling that made it loom larger",
+      "commonMisread": "telling readers to ignore fear instead of calibrating vivid risk against frequency",
+      "mustUseTerms": [
+        "availability cascade",
+        "risk perception",
+        "emotion",
+        "vivid image",
+        "fear",
+        "public concern"
+      ],
+      "mustNotDriftInto": [
+        "fearlessness coaching",
+        "disaster preparedness"
+      ]
+    },
+    {
+      "number": 14,
+      "chapterId": "thinking-fast-and-slow-ch14",
+      "title": "Tom W's Specialty",
+      "sourcePressure": "uses representativeness to show how stereotype fit can overpower base rates",
+      "coreMove": "put the base rate back on the table before a vivid description sorts someone into a category",
+      "commonMisread": "turning representativeness into prejudice alone instead of stereotype fit overpowering probability",
+      "mustUseTerms": [
+        "representativeness",
+        "base rate",
+        "stereotype fit",
+        "Tom W",
+        "diagnosticity",
+        "description"
+      ],
+      "mustNotDriftInto": [
+        "diversity training",
+        "personality profiling"
+      ]
+    },
+    {
+      "number": 15,
+      "chapterId": "thinking-fast-and-slow-ch15",
+      "title": "Linda: Less Is More",
+      "sourcePressure": "uses the conjunction fallacy to show that richer stories can feel more probable than broader truths",
+      "coreMove": "prefer the broader category when added detail makes a story sound better but mathematically narrower",
+      "commonMisread": "making this about gullibility instead of the probability cost of extra detail",
+      "mustUseTerms": [
+        "Linda",
+        "conjunction fallacy",
+        "less is more",
+        "probability",
+        "plausibility",
+        "detail"
+      ],
+      "mustNotDriftInto": [
+        "storytelling advice",
+        "minimalism"
+      ]
+    },
+    {
+      "number": 16,
+      "chapterId": "thinking-fast-and-slow-ch16",
+      "title": "Causes Trump Statistics",
+      "sourcePressure": "shows that causal stories and stereotypes often overpower clean statistical reasoning",
+      "coreMove": "notice when a causal explanation has displaced the distribution it was supposed to update",
+      "commonMisread": "framing statistics as always cold and stories as always wrong",
+      "mustUseTerms": [
+        "causal story",
+        "statistics",
+        "base rate neglect",
+        "stereotype",
+        "distribution",
+        "explanation"
+      ],
+      "mustNotDriftInto": [
+        "data versus storytelling debate",
+        "anti-anecdote lectures"
+      ]
+    },
+    {
+      "number": 17,
+      "chapterId": "thinking-fast-and-slow-ch17",
+      "title": "Regression to the Mean",
+      "sourcePressure": "shows that extreme outcomes are often followed by more ordinary ones without praise or blame causing the shift",
+      "coreMove": "treat the rebound from an extreme result as regression before assigning credit or blame",
+      "commonMisread": "using regression as a synonym for decline instead of return toward average after extremity",
+      "mustUseTerms": [
+        "regression to the mean",
+        "extreme outcome",
+        "average",
+        "random variation",
+        "talent",
+        "luck"
+      ],
+      "mustNotDriftInto": [
+        "performance management clichés",
+        "personal decline"
+      ]
+    },
+    {
+      "number": 18,
+      "chapterId": "thinking-fast-and-slow-ch18",
+      "title": "Taming Intuitive Predictions",
+      "sourcePressure": "shows how intuitive forecasts improve when base rates and regression are given explicit weight",
+      "coreMove": "shrink an intuitive forecast toward the base rate before acting on it",
+      "commonMisread": "telling readers to abandon intuition instead of correcting it with base rates and regression",
+      "mustUseTerms": [
+        "intuitive prediction",
+        "base rate",
+        "regression",
+        "correlation",
+        "forecast",
+        "shrinkage"
+      ],
+      "mustNotDriftInto": [
+        "forecasting as prophecy",
+        "spreadsheet worship"
+      ]
+    },
+    {
+      "number": 19,
+      "chapterId": "thinking-fast-and-slow-ch19",
+      "title": "The Illusion of Understanding",
+      "sourcePressure": "shows how coherent stories about the past create an exaggerated sense that the world was predictable all along",
+      "coreMove": "break a neat hindsight story by restoring the alternatives and luck it erased",
+      "commonMisread": "calling every success story fake instead of showing how coherence hides uncertainty",
+      "mustUseTerms": [
+        "illusion of understanding",
+        "hindsight",
+        "narrative fallacy",
+        "luck",
+        "uncertainty",
+        "coherence"
+      ],
+      "mustNotDriftInto": [
+        "biographies are bad",
+        "history trivia"
+      ]
+    },
+    {
+      "number": 20,
+      "chapterId": "thinking-fast-and-slow-ch20",
+      "title": "The Illusion of Validity",
+      "sourcePressure": "shows that strong confidence in judgment can survive even when predictive validity is weak",
+      "coreMove": "downgrade confidence when the task gives coherent impressions but weak predictive feedback",
+      "commonMisread": "treating confidence as arrogance only instead of a feeling produced by coherence",
+      "mustUseTerms": [
+        "illusion of validity",
+        "predictive validity",
+        "confidence",
+        "coherence",
+        "feedback",
+        "selection"
+      ],
+      "mustNotDriftInto": [
+        "self-esteem",
+        "fake expertise accusations"
+      ]
+    },
+    {
+      "number": 21,
+      "chapterId": "thinking-fast-and-slow-ch21",
+      "title": "Intuitions vs. Formulas",
+      "sourcePressure": "argues that simple formulas often outperform expert judgment in stable prediction tasks",
+      "coreMove": "use a consistent rule when prediction conditions are stable enough for noise to hurt more than nuance helps",
+      "commonMisread": "presenting formulas as magic or experts as useless across all settings",
+      "mustUseTerms": [
+        "formula",
+        "algorithm",
+        "expert judgment",
+        "consistency",
+        "noise",
+        "prediction rule"
+      ],
+      "mustNotDriftInto": [
+        "AI automation hype",
+        "anti-human judgment"
+      ]
+    },
+    {
+      "number": 22,
+      "chapterId": "thinking-fast-and-slow-ch22",
+      "title": "Expert Intuition: When Can We Trust It?",
+      "sourcePressure": "defines the conditions under which expert intuition deserves trust and when it does not",
+      "coreMove": "grant intuition only when the environment is regular and feedback has trained it",
+      "commonMisread": "trusting credentials or dismissing expertise without checking learning conditions",
+      "mustUseTerms": [
+        "expert intuition",
+        "regular environment",
+        "feedback",
+        "skill",
+        "validity",
+        "practice"
+      ],
+      "mustNotDriftInto": [
+        "credentialism",
+        "gut-instinct slogans"
+      ]
+    },
+    {
+      "number": 23,
+      "chapterId": "thinking-fast-and-slow-ch23",
+      "title": "The Outside View",
+      "sourcePressure": "shows that planning improves when you use reference classes instead of relying on the inside view",
+      "coreMove": "anchor a plan in comparable completed cases before adjusting for your own details",
+      "commonMisread": "treating the outside view as pessimism rather than reference-class discipline",
+      "mustUseTerms": [
+        "outside view",
+        "inside view",
+        "reference class",
+        "planning fallacy",
+        "forecast",
+        "comparable cases"
+      ],
+      "mustNotDriftInto": [
+        "generic project management",
+        "negative thinking"
+      ]
+    },
+    {
+      "number": 24,
+      "chapterId": "thinking-fast-and-slow-ch24",
+      "title": "The Engine of Capitalism",
+      "sourcePressure": "shows that optimism and overconfidence create energy for risk taking even while they also create waste and failure",
+      "coreMove": "use optimism for action while forcing the forecast through independent survival odds",
+      "commonMisread": "celebrating optimism or condemning entrepreneurship instead of holding the double effect",
+      "mustUseTerms": [
+        "optimism",
+        "overconfidence",
+        "entrepreneurship",
+        "risk taking",
+        "competition neglect",
+        "premortem"
+      ],
+      "mustNotDriftInto": [
+        "startup cheerleading",
+        "anti-business critique"
+      ]
+    },
+    {
+      "number": 25,
+      "chapterId": "thinking-fast-and-slow-ch25",
+      "title": "Bernoulli's Errors",
+      "sourcePressure": "shows that classical utility theory misses how people evaluate gains and losses relative to a reference point",
+      "coreMove": "evaluate a choice from the reference point the person actually feels, not only from final wealth",
+      "commonMisread": "reducing this to money math instead of reference-dependent experience",
+      "mustUseTerms": [
+        "Bernoulli",
+        "utility",
+        "reference point",
+        "wealth state",
+        "gain",
+        "loss"
+      ],
+      "mustNotDriftInto": [
+        "economics history",
+        "budgeting advice"
+      ]
+    },
+    {
+      "number": 26,
+      "chapterId": "thinking-fast-and-slow-ch26",
+      "title": "Prospect Theory",
+      "sourcePressure": "introduces prospect theory as a better account of how people value gains, losses, and certainty",
+      "coreMove": "read a decision by its reference point, loss curve, and probability weighting instead of by final outcome alone",
+      "commonMisread": "using prospect theory as a vague label for risk aversion",
+      "mustUseTerms": [
+        "prospect theory",
+        "loss aversion",
+        "value function",
+        "reference dependence",
+        "certainty effect",
+        "probability weighting"
+      ],
+      "mustNotDriftInto": [
+        "investment tips",
+        "risk aversion only"
+      ]
+    },
+    {
+      "number": 27,
+      "chapterId": "thinking-fast-and-slow-ch27",
+      "title": "The Endowment Effect",
+      "sourcePressure": "shows that ownership changes value and makes people demand more to give something up than to acquire it",
+      "coreMove": "notice when ownership has turned a neutral trade into a felt loss",
+      "commonMisread": "making this about greed or sentimental attachment only",
+      "mustUseTerms": [
+        "endowment effect",
+        "ownership",
+        "willingness to accept",
+        "willingness to pay",
+        "loss aversion",
+        "status quo"
+      ],
+      "mustNotDriftInto": [
+        "decluttering advice",
+        "collecting hobbies"
+      ]
+    },
+    {
+      "number": 28,
+      "chapterId": "thinking-fast-and-slow-ch28",
+      "title": "Bad Events",
+      "sourcePressure": "shows that bad events weigh more heavily than equally sized good events across attention, motivation, and choice",
+      "coreMove": "give losses extra weight in your forecast because people respond to them more fiercely than to equal gains",
+      "commonMisread": "turning negativity bias into pessimism rather than asymmetric psychological weight",
+      "mustUseTerms": [
+        "bad events",
+        "loss aversion",
+        "negativity dominance",
+        "threat",
+        "asymmetry",
+        "motivation"
+      ],
+      "mustNotDriftInto": [
+        "toxic positivity",
+        "trauma advice"
+      ]
+    },
+    {
+      "number": 29,
+      "chapterId": "thinking-fast-and-slow-ch29",
+      "title": "The Fourfold Pattern",
+      "sourcePressure": "shows that risk preferences flip depending on whether outcomes are framed as gains or losses and as likely or unlikely",
+      "coreMove": "classify a gamble by gain or loss and high or low probability before predicting risk appetite",
+      "commonMisread": "saying people are simply risk-averse or risk-seeking",
+      "mustUseTerms": [
+        "fourfold pattern",
+        "risk seeking",
+        "risk aversion",
+        "high probability",
+        "low probability",
+        "gains and losses"
+      ],
+      "mustNotDriftInto": [
+        "casino strategy",
+        "insurance sales only"
+      ]
+    },
+    {
+      "number": 30,
+      "chapterId": "thinking-fast-and-slow-ch30",
+      "title": "Rare Events",
+      "sourcePressure": "shows that rare events are overweighted in description and often neglected in experience until they strike",
+      "coreMove": "ask whether you learned the risk from a description or from experience before judging how much it weighs",
+      "commonMisread": "treating rare events as always exaggerated or always ignored",
+      "mustUseTerms": [
+        "rare events",
+        "description",
+        "experience",
+        "overweighting",
+        "neglect",
+        "probability"
+      ],
+      "mustNotDriftInto": [
+        "black swan generalities",
+        "disaster anxiety"
+      ]
+    },
+    {
+      "number": 31,
+      "chapterId": "thinking-fast-and-slow-ch31",
+      "title": "Risk Policies",
+      "sourcePressure": "argues that broad risk policies beat one-off choices because narrow framing invites inconsistency",
+      "coreMove": "replace isolated risk decisions with a standing policy that sees the whole portfolio",
+      "commonMisread": "framing this as courage to take risks rather than broad framing and consistency",
+      "mustUseTerms": [
+        "risk policy",
+        "broad framing",
+        "narrow framing",
+        "portfolio",
+        "repeated bets",
+        "consistency"
+      ],
+      "mustNotDriftInto": [
+        "insurance advice",
+        "personal bravery"
+      ]
+    },
+    {
+      "number": 32,
+      "chapterId": "thinking-fast-and-slow-ch32",
+      "title": "Keeping Score",
+      "sourcePressure": "shows that mental accounting tracks gains and losses in separate ledgers instead of one clean total",
+      "coreMove": "find the mental account that is driving the feeling before accepting the choice it produces",
+      "commonMisread": "equating mental accounting with ordinary budgeting",
+      "mustUseTerms": [
+        "mental accounting",
+        "sunk cost",
+        "separate ledgers",
+        "paper loss",
+        "realized loss",
+        "account closure"
+      ],
+      "mustNotDriftInto": [
+        "household finance tips",
+        "bookkeeping"
+      ]
+    },
+    {
+      "number": 33,
+      "chapterId": "thinking-fast-and-slow-ch33",
+      "title": "Reversals",
+      "sourcePressure": "shows that preferences can reverse when options are compared jointly instead of separately",
+      "coreMove": "test a preference in both single and joint evaluation before trusting it",
+      "commonMisread": "calling reversals inconsistency only instead of seeing evaluation mode change salience",
+      "mustUseTerms": [
+        "preference reversal",
+        "joint evaluation",
+        "single evaluation",
+        "salience",
+        "comparability",
+        "attribute"
+      ],
+      "mustNotDriftInto": [
+        "hypocrisy spotting",
+        "consumer reviews"
+      ]
+    },
+    {
+      "number": 34,
+      "chapterId": "thinking-fast-and-slow-ch34",
+      "title": "Frames and Reality",
+      "sourcePressure": "shows that wording and framing change decisions even when the underlying outcomes stay the same",
+      "coreMove": "translate a framed choice into its equivalent wording before deciding",
+      "commonMisread": "treating framing as mere spin rather than equivalent realities feeling different",
+      "mustUseTerms": [
+        "framing",
+        "equivalence",
+        "gain frame",
+        "loss frame",
+        "description",
+        "decision"
+      ],
+      "mustNotDriftInto": [
+        "public relations",
+        "copywriting tricks"
+      ]
+    },
+    {
+      "number": 35,
+      "chapterId": "thinking-fast-and-slow-ch35",
+      "title": "Two Selves",
+      "sourcePressure": "introduces the experiencing self and the remembering self as partly different judges of life",
+      "coreMove": "ask whether you are optimizing the lived moment or the memory that will later judge it",
+      "commonMisread": "splitting the self into therapy personas instead of two evaluative standpoints",
+      "mustUseTerms": [
+        "experiencing self",
+        "remembering self",
+        "moment utility",
+        "evaluation",
+        "memory",
+        "duration"
+      ],
+      "mustNotDriftInto": [
+        "identity work",
+        "mindfulness only"
+      ]
+    },
+    {
+      "number": 36,
+      "chapterId": "thinking-fast-and-slow-ch36",
+      "title": "Life as a Story",
+      "sourcePressure": "shows that remembered lives are shaped by peaks and endings more than by duration",
+      "coreMove": "design and judge experiences knowing the remembered story will overweight peaks and endings",
+      "commonMisread": "telling readers memories are false instead of showing narrative compression",
+      "mustUseTerms": [
+        "peak-end rule",
+        "duration neglect",
+        "remembered utility",
+        "story",
+        "ending",
+        "peak"
+      ],
+      "mustNotDriftInto": [
+        "scrapbooking nostalgia",
+        "life narrative therapy"
+      ]
+    },
+    {
+      "number": 37,
+      "chapterId": "thinking-fast-and-slow-ch37",
+      "title": "Experienced Well-Being",
+      "sourcePressure": "argues that well-being should be measured in lived time as well as in remembered judgment",
+      "coreMove": "sample how time actually feels before accepting a global life rating",
+      "commonMisread": "turning well-being into happiness slogans instead of measurement of lived episodes",
+      "mustUseTerms": [
+        "experienced well-being",
+        "experience sampling",
+        "U-index",
+        "time use",
+        "affect",
+        "life satisfaction"
+      ],
+      "mustNotDriftInto": [
+        "gratitude journaling",
+        "wellness routines"
+      ]
+    },
+    {
+      "number": 38,
+      "chapterId": "thinking-fast-and-slow-ch38",
+      "title": "Thinking About Life",
+      "sourcePressure": "shows how life satisfaction is vulnerable to focusing illusions and conflict between happiness, memory, and meaning",
+      "coreMove": "defuse the focusing illusion before one salient fact stands in for your whole life",
+      "commonMisread": "making this a generic happiness finale instead of showing attention distorts life judgment",
+      "mustUseTerms": [
+        "focusing illusion",
+        "life satisfaction",
+        "well-being",
+        "attention",
+        "remembering self",
+        "meaning"
+      ],
+      "mustNotDriftInto": [
+        "life advice platitudes",
+        "success metrics"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "chapterId": "never-eat-alone-ch26",
+  "number": 26,
+  "title": "Build Your Brand",
+  "coreMove": "Make your actual usefulness easier for others to recognize and remember.",
+  "sourcePressure": "A brand is a legible reputation around real value, not cosmetic self-invention.",
+  "chapterSpecificMisunderstanding": "Fabricating an image or confusing reputation with visual styling.",
+  "sourceAlignmentTerms": [
+    "brand",
+    "reputation",
+    "real value",
+    "legibility",
+    "consistency",
+    "strengths"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source sidecar gives no named people, studies, places, or artifacts for this chapter beyond title and conceptual support; use fictional examples only.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Graham",
+      "domain": "portfolio review board",
+      "audience": "a reader facing portfolio review board where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if portfolio review board becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Graham names the useful pattern others already trust and aligns the next visible choice to it in front of bio paragraph, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "bio paragraph on the edge of portfolio review board",
+      "mustInclude": [
+        "bio paragraph",
+        "portfolio review board constraint",
+        "one named next step tied to brand"
+      ],
+      "mustAvoid": [
+        "Fabricating an image or confusing reputation with visual styling.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Harry",
+      "domain": "consultant one-page bio",
+      "audience": "a reader facing consultant one-page bio where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if consultant one-page bio becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Harry names the useful pattern others already trust and aligns the next visible choice to it in front of intro card, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "intro card on the edge of consultant one-page bio",
+      "mustInclude": [
+        "intro card",
+        "consultant one-page bio constraint",
+        "one named next step tied to brand"
+      ],
+      "mustAvoid": [
+        "Fabricating an image or confusing reputation with visual styling.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Jacob",
+      "domain": "conference speaker introduction",
+      "audience": "a reader facing conference speaker introduction where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if conference speaker introduction becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Jacob names the useful pattern others already trust and aligns the next visible choice to it in front of candidate summary, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "candidate summary on the edge of conference speaker introduction",
+      "mustInclude": [
+        "candidate summary",
+        "conference speaker introduction constraint",
+        "one named next step tied to brand"
+      ],
+      "mustAvoid": [
+        "Fabricating an image or confusing reputation with visual styling.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Jeremy",
+      "domain": "recruiter candidate note",
+      "audience": "a reader facing recruiter candidate note where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if recruiter candidate note becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Jeremy names the useful pattern others already trust and aligns the next visible choice to it in front of advisory memo, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "advisory memo on the edge of recruiter candidate note",
+      "mustInclude": [
+        "advisory memo",
+        "recruiter candidate note constraint",
+        "one named next step tied to brand"
+      ],
+      "mustAvoid": [
+        "Fabricating an image or confusing reputation with visual styling.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "founder advisory blurb",
+      "audience": "a reader facing founder advisory blurb where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if founder advisory blurb becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marco names the useful pattern others already trust and aligns the next visible choice to it in front of profile photo, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "profile photo on the edge of founder advisory blurb",
+      "mustInclude": [
+        "profile photo",
+        "founder advisory blurb constraint",
+        "one named next step tied to brand"
+      ],
+      "mustAvoid": [
+        "Fabricating an image or confusing reputation with visual styling.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Ravi",
+      "domain": "expert witness profile",
+      "audience": "a reader facing expert witness profile where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if expert witness profile becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ravi names the useful pattern others already trust and aligns the next visible choice to it in front of newsletter proof, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "newsletter proof on the edge of expert witness profile",
+      "mustInclude": [
+        "newsletter proof",
+        "expert witness profile constraint",
+        "one named next step tied to brand"
+      ],
+      "mustAvoid": [
+        "Fabricating an image or confusing reputation with visual styling.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish brand from Fabricating an image or confusing reputation with visual styling.",
+      "choose the visible action that performs: Make your actual usefulness easier for others to recognize and remember.",
+      "diagnose when a scenario drifts into Fabricating an image or confusing reputation with visual styling.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real brand moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

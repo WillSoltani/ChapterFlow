@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch03",
+  "number": 3,
+  "title": "Learn",
+  "readingTimeMinutes": 12,
+  "hook": "Five thank-you emails can feel like proof until the reorder sheet stays blank.",
+  "counterintuition": "A smart story feels like learning, but the real test is whether evidence becomes strong enough to alter the next decision.",
+  "tryThisNow": "Take one lesson your team claims from recent work and write the evidence beneath it. If the evidence would not change the next decision, rename it a hunch.",
+  "keyTakeaway": "Let lessons earn their name: tie every claim to empirical proof and require the next decision to change when the proof changes.",
+  "breakdown": {
+    "fastRead": "Beatrice reads five thank-you emails beside a cooling tray of beans. The roasting team wants to scale the subscription roast next month. The reorder sheet is almost empty.\n\nThe room has a pleasant story and a weak lesson.\n\nValidated learning is stricter. It does not ask whether the team can explain a result in a hopeful way. It asks whether evidence proved something true about the customer, product, or business model. A lesson is not validated because the room can explain it well; it is validated when evidence changes what the room does next.",
+    "deepRead": "Patrick is looking at intake forms marked with skipped fields in blue ink. The front desk says the new mental-health form feels cleaner. Staff frustration is lower. The abandonment tally has barely moved.\n\nThat gap matters.\n\nA team can learn language, preferences, and complaints without learning the thing it needs most. Real learning has a job. It reduces uncertainty enough to guide action. If the clinic keeps the new form because staff like it, the decision rests on comfort. If it keeps the form because fewer patients abandon intake, the decision rests on evidence.\n\nEmpirical proof does not have to be grand. It can be a cohort, a paid reorder, a completed intake, a second run of a developer tool, or a repair tag that turns into a transaction. The point is that the evidence must answer the claim being made. Praise answers one question. Behavior often answers a harder one.\n\nThis is why experimentation matters. It narrows the claim before the result arrives. It says what would count as a lesson and what would merely count as noise. Without that discipline, every launch review becomes a storytelling contest where the most reassuring interpretation wins.\n\nA lesson that changes nothing is still waiting to become evidence.",
+    "fullRead": "Eva watches a terminal window blink beside a star-count dashboard. The open-source beta has a fresh release tag, a friendly issue thread, and more attention than the maintainers expected. Her hand moves toward the announcement draft. Then she opens the usage logs and checks how many starred users returned to run the tool twice.\n\nThe number is smaller than the applause.\n\nValidated learning has an uncomfortable center: the claim must be tied to the behavior it pretends to describe. If the team claims developers find the tool useful, then stars and kind issues may be clues, but repeated use is closer to proof. If the team claims a bakery buyer wants weekly ordering, then one cheerful email is not the same as a weekly order form filled out again. If the team claims riders value repair, then conversations at a tent are not the same as paid tuneups on the payment reader.\n\nWhat would you stop doing if the evidence failed?\n\nThat question protects learning from becoming theater. A claim deserves more trust when the team can name the action that will change if the claim is wrong. Otherwise the result can be admired, discussed, and filed away while the next decision stays exactly as planned.\n\nDavid faces that moment in a bakery packing room. A flour-dusted invoice sits on the table, and the buyer email is warm enough to make the whole team smile. The delivery route note has space for a weekly account. David separates the pleasant message from validated demand. Before the next batch schedule is approved, he needs the buyer to complete the weekly order form, not merely praise the first delivery.\n\nThe same discipline applies when the problem is failure rather than demand. Lars sees three red conflicts on the lab booking calendar. The team has solved each late-return fight as a separate incident. Then he runs the Five Whys and keeps going past the obvious explanation. When the same fault keeps returning, the fifth why often points away from the bug and toward the system that keeps making it. In this case, the equipment cabinet key changes hands without an owner, and the handoff note is optional. The recurring conflict was not a student attitude problem. It was a system with a missing joint.\n\nRoot-cause thinking belongs with validated learning because both refuse easy interpretation. They push past the first satisfying answer. They ask what evidence would prove the claim and what cause would keep the failure from returning.\n\nThere is a limit. Teams should not demand laboratory certainty before making every move. That would turn learning into delay. The standard is practical: evidence strong enough for the decision at hand. A low-risk copy change may need a small signal. A business model change needs more. The proof should match the cost of being wrong.\n\nLearning is not the warm feeling after a useful conversation. It is the moment evidence earns the authority to steer."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-beatrice-roaster",
+      "title": "Beatrice Checks the Reorder Sheet",
+      "tags": [
+        "scene",
+        "coffee",
+        "retention"
+      ],
+      "planSpec": {
+        "domain": "subscription coffee roaster retention test",
+        "audience": "founder and roasting team",
+        "stakes": "friendly comments could be mistaken for proof of repeat demand",
+        "format": "scene",
+        "requiredBeat": "Beatrice compares compliments with reorder behavior before approving a bigger roast"
+      },
+      "scenario": "At 6:35 a.m. Friday, Beatrice stands beside a cooling tray of beans and five thank-you emails taped near the roast calendar. The team wants to approve a bigger subscription roast before lunch. The sample bags drew praise, but the reorder sheet has only two names. Beatrice must choose between scaling the roast and treating the compliments as clues until repeat demand appears. The reorder sheet has to decide the roast schedule before praise turns into extra inventory.",
+      "whatToDo": "Compare the praise with reorder behavior before approving more beans. Make the next roast size depend on actual repeat orders, not on how good the first reactions felt.",
+      "whyItMatters": "Friendly comments can lift morale without proving demand. The reorder sheet connects the claimed lesson to customer behavior that can change the roasting decision."
+    },
+    {
+      "exampleId": "ch03-ex02-patrick-intake",
+      "title": "Patrick Challenges the Cleaner Form",
+      "tags": [
+        "dialogue",
+        "clinic",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "mental-health intake form redesign",
+        "audience": "clinic operations team",
+        "stakes": "lower staff frustration may not prove patient completion improved",
+        "format": "dialogue",
+        "requiredBeat": "Patrick asks whether the changed form reduced abandoned intakes or merely felt cleaner"
+      },
+      "scenario": "\"Did fewer patients finish, or did we just feel better?\" Patrick asks at the front desk, holding a clipboard with skipped fields in blue ink. The intake forms look cleaner, and the front-desk notes are calmer. The abandonment tally is still open on the screen. Before the clinic keeps the redesign, Patrick must decide whether to accept staff comfort as learning or require evidence that more patients complete intake. The skipped-field tally gives Patrick a patient behavior signal that staff comfort cannot replace.",
+      "whatToDo": "Put the abandonment tally beside the staff notes. Keep the form only if patient completion improved, or run a sharper test on the fields patients still skip.",
+      "whyItMatters": "Staff relief is real, but it proves a different claim. The clinic needs evidence that the redesign changed patient behavior, not only the staff's experience."
+    },
+    {
+      "exampleId": "ch03-ex03-eva-developer-tool",
+      "title": "Eva Opens the Usage Logs",
+      "tags": [
+        "vignette",
+        "open source",
+        "usage"
+      ],
+      "planSpec": {
+        "domain": "open-source developer tool beta",
+        "audience": "maintainer group",
+        "stakes": "GitHub stars may flatter the team without proving usage",
+        "format": "vignette",
+        "requiredBeat": "Eva checks whether starred users returned to run the tool twice"
+      },
+      "scenario": "The terminal window glows beside a star-count dashboard while Eva scrolls past a warm issue thread and the latest release tag. The maintainer group is ready to call the beta validated. Her cursor pauses over the usage logs. She has a decision to make: celebrate the stars or check whether starred users came back to run the tool twice. The usage logs decide whether the release tag created actual repeat use or only public attention.",
+      "whatToDo": "Open the usage logs before writing the success note. Treat stars and comments as attention, then test usefulness by repeat runs from the same developers.",
+      "whyItMatters": "Stars can flatter a maintainer group while leaving value unproved. Repeat use is closer to the claim that developers found the tool worth adopting."
+    },
+    {
+      "exampleId": "ch03-ex04-david-bakery",
+      "title": "David Separates Email From Weekly Demand",
+      "tags": [
+        "decision point",
+        "bakery",
+        "orders"
+      ],
+      "planSpec": {
+        "domain": "bakery wholesale portal",
+        "audience": "small manufacturer",
+        "stakes": "one successful order may become a story the team wants too much",
+        "format": "decision_point",
+        "requiredBeat": "David separates a pleasant buyer email from validated demand for weekly ordering"
+      },
+      "scenario": "You are at the packing table with David, where a flour-dusted invoice sits under a warm buyer email. The weekly order form is still blank, and the delivery route note has room for a standing account. Before the oven schedule is expanded, David needs to decide whether one pleasant order proves demand or whether weekly ordering has to earn that claim. The weekly order form is the behavior that earns a bigger oven schedule.",
+      "whatToDo": "Ask for the weekly order form before changing the batch schedule. Keep the buyer email as encouragement, but do not let it stand in for validated demand.",
+      "whyItMatters": "A successful first order can become a story the team wants to believe. Weekly commitment is the evidence that can safely change production."
+    },
+    {
+      "exampleId": "ch03-ex05-manon-bike",
+      "title": "Manon Counts Paid Tuneups After the Rain",
+      "tags": [
+        "postmortem",
+        "transportation",
+        "paid demand"
+      ],
+      "planSpec": {
+        "domain": "city-bike repair pop-up",
+        "audience": "transportation nonprofit",
+        "stakes": "busy foot traffic might hide whether riders value paid repair",
+        "format": "postmortem",
+        "requiredBeat": "Manon counts actual paid tuneups instead of conversations at the tent"
+      },
+      "scenario": "At 5:15 p.m. Saturday, Manon folds the rain tarp behind the city-bike pop-up on Queen Street. Repair tags flutter from the curbside rack, and dozens of riders have chatted about safer cycling. As the program coordinator, she checks the payment reader before the debrief and counts nine paid tuneups instead of treating all those conversations as proof of demand. The payment reader keeps Manon focused on repair demand instead of awareness.",
+      "whatToDo": "Use the payment reader as the proof for paid repair demand. Record conversations as leads, but base the next pop-up on actual tuneups purchased.",
+      "whyItMatters": "Foot traffic can make a nonprofit feel useful while the business question stays open. Paid tuneups show whether riders value the service enough to act."
+    },
+    {
+      "exampleId": "ch03-ex06-lars-lab",
+      "title": "Lars Runs Five Whys on the Booking Calendar",
+      "tags": [
+        "before after",
+        "university lab",
+        "root cause"
+      ],
+      "planSpec": {
+        "domain": "university lab equipment booking system",
+        "audience": "research administrators",
+        "stakes": "solving a visible booking conflict may miss the repeated root cause",
+        "format": "before_after",
+        "requiredBeat": "Lars runs Five Whys until the team sees the ownership gap behind late returns"
+      },
+      "scenario": "At 7:50 a.m. Wednesday, Lars stands in the university lab office with three red microscope-booking conflicts on the calendar and the equipment cabinet key missing again. As lab manager, he has already sent two reminder emails. Before sending a third, he runs Five Whys with the administrators and finds that nobody owns the key handoff between evening users and morning staff. The missing handoff owner gives Lars a system cause to change before another reminder email goes out.",
+      "whatToDo": "Keep asking why until the repeated conflict points to a system cause. Change the key handoff owner instead of sending another reminder about late returns.",
+      "whyItMatters": "Fixing the visible conflict can feel like learning while the cause keeps producing the same failure. Five Whys turns the postmortem into correction."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team says it learned customers love a new service because several pilot users sent kind notes, but none used it again. What is missing?",
+        "choices": [
+          "Evidence tied to the claim, such as repeat use or another behavior that would change the next decision.",
+          "A larger pile of encouraging comments from the same kind of users.",
+          "A longer meeting where the team can discuss what the comments mean."
+        ],
+        "correctIndex": 0,
+        "explanation": "The claim is about customer value, so behavior must support it. More comments and longer interpretation can still leave the decision resting on hope.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A clinic redesign lowers staff complaints, but patient intake abandonment barely changes. Which next move best fits validated learning?",
+        "choices": [
+          "Keep the redesign because staff experience is part of patient care.",
+          "Run a focused test on the fields patients still skip and measure completion.",
+          "Add more explanatory text to every section of the form."
+        ],
+        "correctIndex": 1,
+        "explanation": "The decision should follow evidence about patient completion, the claim being tested. Staff relief matters, but it proves a different outcome.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "An open-source team receives a surge of stars after launch. Which measurement would best test whether the tool is actually useful?",
+        "choices": [
+          "How quickly the star count rose during the launch day.",
+          "How many maintainers felt encouraged by the issue thread.",
+          "How many starred users return and run the tool again within the next week."
+        ],
+        "correctIndex": 2,
+        "explanation": "Repeat use is evidence for usefulness. Star velocity and team morale may be encouraging, but neither proves developers adopted the tool.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A bakery owner has one warm wholesale email on the packing table and a blank recurring-order form beside the flour scale. The team wants to expand next week's production schedule before the buyer commits again. What should happen first?",
+        "choices": [
+          "Ask the buyer to complete a weekly order form or place another recurring order.",
+          "Publish the buyer email on the bakery's website.",
+          "Increase production slightly because enthusiasm is time-sensitive."
+        ],
+        "correctIndex": 0,
+        "explanation": "Recurring ordering tests the demand claim that would justify production changes. Publicity and small expansion still lean on a single pleasant story.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A city-bike nonprofit reports hundreds of friendly tent conversations after a rainy Saturday pop-up, but the payment reader shows only a few tuneups. The board wants to call the event validated. Which lesson is safest?",
+        "choices": [
+          "Cyclists dislike the mission because paid demand was low.",
+          "Conversation volume showed awareness, while paid tuneups are the better test of repair demand.",
+          "The pop-up should be repeated unchanged because foot traffic was high."
+        ],
+        "correctIndex": 1,
+        "explanation": "Conversation and payment answer different questions. The safe lesson separates awareness from willingness to pay instead of overclaiming either signal.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A lab keeps sending reminder emails after late equipment returns, but conflicts keep appearing on the booking calendar. What does Five Whys add?",
+        "choices": [
+          "It creates a neutral way to blame the student who used the equipment last.",
+          "It delays correction until the team has complete certainty about every incident.",
+          "It helps the team find the recurring system cause instead of treating each late return as a separate mistake."
+        ],
+        "correctIndex": 2,
+        "explanation": "Five Whys pushes beyond the visible incident toward the system producing repeats. It is not a blame ritual or an excuse to postpone action.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A product group keeps every planned feature after a launch review, even though the evidence contradicted the team's demand story. What does that reveal?",
+        "choices": [
+          "The team may be discussing results without letting learning change decisions.",
+          "The evidence was not useful unless the team had a perfect experiment.",
+          "The planned features must have strategic value outside customer demand."
+        ],
+        "correctIndex": 0,
+        "explanation": "Validated learning should affect the next move. If the plan stays intact after contradictory evidence, the review may be interpretation theater.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team has interview quotes, a small usage bump, and one paid order. They want to claim the business model works. What is the best analysis?",
+        "choices": [
+          "Any paid order validates the full business model because money changed hands.",
+          "The signals may be useful, but the claim is too broad unless evidence proves the specific business model assumption.",
+          "Interview quotes are more reliable than behavior because customers explain intent."
+        ],
+        "correctIndex": 1,
+        "explanation": "Evidence has to match the claim. One paid order may prove willingness in a narrow case, but it does not automatically validate the whole model.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team must choose between declaring victory from positive demo reactions or running a narrower test that could disprove its favorite assumption. Which is stronger?",
+        "choices": [
+          "Declare victory because confidence helps the team keep momentum.",
+          "Avoid both options until market conditions are easier to interpret.",
+          "Run the narrower test because learning counts when evidence can challenge and redirect the plan."
+        ],
+        "correctIndex": 2,
+        "explanation": "The narrower test gives reality a chance to change the decision. Demo reactions may help morale, but they are weak if they cannot redirect the plan.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A team says it learned something after launch. What must you check before trusting the claim?",
+      "back": "Check whether evidence supports the specific claim and whether the next decision changes because of it. If nothing changes, the team may have a story rather than validated learning.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why are compliments weak proof for customer value?",
+      "back": "Compliments show reaction, not necessarily behavior. Customer value usually needs evidence closer to use, return, payment, completion, or another action tied to the claim.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A repeated failure keeps getting patched. What question should pull the team deeper?",
+      "back": "Ask why the failure keeps returning until the cause points to a system, habit, or handoff the team can change. The goal is correction, not a better incident story.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What makes a launch review become theater instead of learning?",
+      "back": "It becomes theater when people interpret results in a comforting way while preserving the same plan. Learning needs evidence with authority over the next decision.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How much proof does a team need before acting?",
+      "back": "Enough proof for the cost of the decision. Small changes can use smaller signals. Expensive or business-model decisions need stronger evidence because being wrong costs more.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to make claimed lessons answerable. The skill is matching each claim to evidence, then requiring the next decision to respond when the evidence is weak, strong, or surprising.",
+    "ifThenPlans": [
+      {
+        "context": "launch review",
+        "plan": "If someone says we learned that customers want it, then ask which behavior proved that exact claim and what decision will change because of it."
+      },
+      {
+        "context": "customer research",
+        "plan": "If interviews sound encouraging, then separate what people said from what they did before changing the roadmap."
+      },
+      {
+        "context": "operations incident",
+        "plan": "If the same issue returns for the third time, then run Five Whys until the cause points to a system change, not another reminder."
+      },
+      {
+        "context": "team morale",
+        "plan": "If a positive signal arrives after a hard week, then enjoy it briefly and still ask whether it proves the claim the team wants to make."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, pick one claimed lesson from recent work. Under it, write the exact evidence, the decision it affects, and what you would do differently if the evidence were false.",
+    "weeklyPractice": "At the end of each week, choose one result and classify it as encouragement, clue, or validated learning. Promote it only if the evidence is strong enough to steer a real decision."
+  },
+  "memorableLines": [
+    {
+      "text": "The room has a pleasant story and a weak lesson.",
+      "location": "breakdown.fastRead",
+      "why": "It separates morale from evidence in a concrete way."
+    },
+    {
+      "text": "A lesson that changes nothing is still waiting to become evidence.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the chapter's demand that learning alter decisions."
+    },
+    {
+      "text": "The number is smaller than the applause.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the difference between attention and validated behavior instantly visible."
+    }
+  ]
+}

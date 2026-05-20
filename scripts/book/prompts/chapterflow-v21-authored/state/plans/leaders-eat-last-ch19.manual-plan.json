@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch19",
+  "number": 19,
+  "title": "Leadership Lesson 3: Integrity Matters",
+  "coreMove": "Keep the stated principle intact at the first costly exception where everyone is watching.",
+  "sourcePressure": "Defines integrity as coherence under pressure: principles remain real in costly cases or the culture learns that exceptions and excuses outrank standards.",
+  "chapterSpecificMisunderstanding": "Treating integrity as private sincerity, reputation, or honesty in easy cases.",
+  "sourceAlignmentTerms": [
+    "integrity",
+    "coherence",
+    "principle",
+    "costly exception",
+    "trust",
+    "cynicism",
+    "standards"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 19 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "pharmaceutical sample closet",
+      "audience": "clinic manager with a favored doctor request",
+      "stakes": "integrity is tested when bending rules would be convenient",
+      "format": "decision_point",
+      "requiredBeat": "she denies the off-log sample request and records it while the doctor waits",
+      "firstImage": "a sample cabinet key beside a logbook",
+      "mustInclude": [
+        "cabinet key",
+        "sample log"
+      ],
+      "mustAvoid": [
+        "ethics lecture"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "film festival jury room",
+      "audience": "jury chair facing pressure for a sponsor film",
+      "stakes": "principles must hold when money is in the room",
+      "format": "dialogue",
+      "requiredBeat": "the chair reads the scoring rule before sponsor names are discussed",
+      "firstImage": "a ballot stack beside a sponsor placard",
+      "mustInclude": [
+        "ballots",
+        "sponsor placard"
+      ],
+      "mustAvoid": [
+        "reputation management"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "crane inspection platform",
+      "audience": "site supervisor tempted to skip wind limit",
+      "stakes": "coherence matters when delay is expensive",
+      "format": "scene",
+      "requiredBeat": "he locks the crane controls after the wind meter crosses the stated limit",
+      "firstImage": "a wind meter clipped to a control box",
+      "mustInclude": [
+        "wind meter",
+        "lockout tag"
+      ],
+      "mustAvoid": [
+        "rule rigidity"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "private tutoring admissions package",
+      "audience": "director discovering score inflation",
+      "stakes": "exception for a wealthy family teaches cynicism",
+      "format": "postmortem",
+      "requiredBeat": "she compares the advertised standard with the altered evaluation grid and reverses the admission",
+      "firstImage": "an evaluation grid under an embossed folder",
+      "mustInclude": [
+        "evaluation grid",
+        "admissions folder"
+      ],
+      "mustAvoid": [
+        "school fairness repeat"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "community choir audition",
+      "audience": "choir director reviewing friend's weak audition",
+      "stakes": "friendship tests the rule everyone heard",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks the panel to predict member reaction if the exception leaks, then follows the rubric",
+      "firstImage": "a tuning fork beside an audition rubric",
+      "mustInclude": [
+        "tuning fork",
+        "rubric"
+      ],
+      "mustAvoid": [
+        "favoritism drama"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "apartment safety inspection",
+      "audience": "landlord choosing whether to cite own unit",
+      "stakes": "standards split if authority exempts itself",
+      "format": "before_after",
+      "requiredBeat": "he writes the same violation notice for his unit before delivering others",
+      "firstImage": "a smoke alarm battery beside an inspection form",
+      "mustInclude": [
+        "smoke alarm battery",
+        "inspection form"
+      ],
+      "mustAvoid": [
+        "home maintenance cliché"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test principles in costly cases",
+      "spot exception-making that teaches cynicism",
+      "preserve coherence without rigidity",
+      "evaluate trust damage from convenient inconsistency"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one standard you believe in and write the exception that will tempt you to bend it this month.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

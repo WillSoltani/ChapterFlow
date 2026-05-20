@@ -1,0 +1,182 @@
+{
+  "chapterId": "built-to-last-ch06",
+  "number": 6,
+  "title": "Cult-Like Cultures",
+  "coreMove": "Make belonging conditional on lived values, so culture selects for fit instead of merely welcoming talent.",
+  "sourcePressure": "The source supports strong membership defined by shared values and purpose beyond formal activity, with culture organized around real value alignment.",
+  "chapterSpecificMisunderstanding": "Confusing cult-like culture with perks, friendliness, conformity, or blind obedience, rather than clear standards that people freely join or leave.",
+  "sourceAlignmentTerms": [
+    "cult-like cultures",
+    "shared values",
+    "purpose",
+    "strong membership",
+    "value alignment",
+    "standards",
+    "selection pressure"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "shared values and purpose",
+      "detail": "the source sidecar supports strong membership defined by shared values and purpose beyond formal activity",
+      "useIn": "both",
+      "phrasingHint": "A strong culture is warm only to the people willing to live its standards."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "culture eats strategy",
+      "a strong culture is like a family"
+    ],
+    "counterintuition": [
+      "strong cultures exclude people",
+      "culture is not perks"
+    ],
+    "tryThisNow": [
+      "write your team values",
+      "ask who fits your culture"
+    ],
+    "examples": [
+      "startup with hoodies and slogans",
+      "sales star laughs at service oath",
+      "onboarding retreat with trust falls"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "aviation maintenance shop deciding whether to keep its fastest mechanic after skipped signoffs",
+      "audience": "Laura, maintenance chief protecting a safety culture",
+      "stakes": "one skipped signoff can ground aircraft or hide a defect",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Laura places the mechanic's speed metrics beside unsigned inspection cards and removes him from lead rotation until the standard is lived",
+      "firstImage": "unsigned inspection cards clipped to a propeller cart",
+      "mustInclude": [
+        "speed metrics",
+        "inspection cards",
+        "lead rotation"
+      ],
+      "mustAvoid": [
+        "talent versus culture as a speech"
+      ]
+    },
+    {
+      "domain": "software support team hiring a brilliant engineer who mocks customer callbacks",
+      "audience": "Jack, support director filling a painful vacancy",
+      "stakes": "one toxic expert could teach the team that customer patience is optional",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"I do not call users back,\" the candidate says, and Jack ends the interview despite the perfect technical score",
+      "firstImage": "a technical scorecard with one line crossed out in black ink",
+      "mustInclude": [
+        "technical scorecard",
+        "callback norm",
+        "vacant role"
+      ],
+      "mustAvoid": [
+        "generic no-jerks policy"
+      ]
+    },
+    {
+      "domain": "fire station probation process testing whether recruits reset gear for the next crew",
+      "audience": "Lars, captain evaluating a high-performing recruit",
+      "stakes": "individual bravery means little if the next crew inherits missing gear",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lars watches the recruit walk past an empty oxygen slot after a perfect drill and uses that visible miss as the membership test",
+      "firstImage": "the rubber smell of masks drying beside an empty oxygen slot",
+      "mustInclude": [
+        "probation log",
+        "empty oxygen slot",
+        "perfect drill"
+      ],
+      "mustAvoid": [
+        "bravery celebrated without station standards"
+      ]
+    },
+    {
+      "domain": "boutique hotel front desk enforcing guest-recovery rituals for senior hires",
+      "audience": "Juliette, general manager onboarding an industry veteran",
+      "stakes": "a veteran's polish can mask refusal to practice the hotel's recovery standard",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Juliette two complaint cards to see the veteran was charming guests but skipping the handwritten recovery note, so she makes the ritual nonnegotiable",
+      "firstImage": "two complaint cards tucked under a brass desk bell",
+      "mustInclude": [
+        "handwritten recovery note",
+        "complaint cards",
+        "senior hire"
+      ],
+      "mustAvoid": [
+        "hospitality friendliness as culture"
+      ]
+    },
+    {
+      "domain": "mutual-aid kitchen deciding whether a popular volunteer can ignore cleanup duty",
+      "audience": "Sam, shift lead with a line outside",
+      "stakes": "the kitchen's dignity standard frays if celebrity volunteers avoid ordinary work",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Sam reviews the shift after the volunteer left greasy trays, then changes the roster so service and cleanup are paired for everyone",
+      "firstImage": "Who belongs in a kitchen where applause excuses the sink?",
+      "mustInclude": [
+        "greasy trays",
+        "paired roster",
+        "dignity standard"
+      ],
+      "mustAvoid": [
+        "volunteer guilt lecture"
+      ]
+    },
+    {
+      "domain": "design apprenticeship requiring critique participation before portfolio praise",
+      "audience": "Catarina, studio founder choosing the next apprentice cohort",
+      "stakes": "beautiful portfolios can hide people who cannot accept or give exacting critique",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Catarina ignore the prettiest portfolio until the applicant marks up another student's draft with care and precision",
+      "firstImage": "portfolio boards leaning against a wall beside red critique stickers",
+      "mustInclude": [
+        "critique stickers",
+        "portfolio boards",
+        "apprentice cohort"
+      ],
+      "mustAvoid": [
+        "artistic taste as the whole filter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify culture as enforced membership standards",
+      "choose fit tests that show values in action",
+      "separate exclusion for standards from exclusion for sameness"
+    ]
+  },
+  "tryThisNowSpec": "Pick one value your team claims. Write the behavior that proves it, the behavior that violates it, and what will happen the next time either appears.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "chapterId": "pre-suasion-ch10",
+  "number": 10,
+  "title": "Six Main Roads to Change: Broad Boulevards as Smart Shortcuts",
+  "coreMove": "Choose the one influence principle that honestly fits the choice and make it salient before the request.",
+  "sourcePressure": "The source identifies reciprocity, liking, authority, social proof, scarcity, and consistency as broad influence shortcuts that can be frontloaded.",
+  "chapterSpecificMisunderstanding": "Cycle through six persuasion tricks until one gets compliance.",
+  "sourceAlignmentTerms": [
+    "reciprocity",
+    "liking",
+    "authority",
+    "social proof",
+    "scarcity",
+    "consistency",
+    "shortcut"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "community tool library launch",
+      "audience": "a coordinator choosing reciprocity before a membership ask",
+      "stakes": "whether a small useful loan should come before the fee request",
+      "format": "scene",
+      "requiredBeat": "the coordinator hands residents a free blade-sharpening voucher before showing the annual membership card",
+      "firstImage": "a sharpening voucher beside a row of loaner drills",
+      "mustInclude": [
+        "voucher",
+        "membership card"
+      ],
+      "mustAvoid": [
+        "generic free sample"
+      ]
+    },
+    {
+      "domain": "medical conference speaker intro",
+      "audience": "an organizer choosing authority before a clinical guideline session",
+      "stakes": "whether credentials must be salient before the recommendation",
+      "format": "vignette",
+      "requiredBeat": "the organizer places the speaker’s trial role on the badge slide before the protocol ask appears",
+      "firstImage": "a badge slide with one credential line highlighted",
+      "mustInclude": [
+        "badge slide",
+        "protocol card"
+      ],
+      "mustAvoid": [
+        "credential bragging"
+      ]
+    },
+    {
+      "domain": "farm-share renewal window",
+      "audience": "a CSA manager choosing scarcity before late-season renewals",
+      "stakes": "whether limited beds are real and should be named before signup",
+      "format": "decision_point",
+      "requiredBeat": "the manager shows the actual field map with only twelve winter beds left before opening renewals",
+      "firstImage": "a laminated field map with twelve beds circled",
+      "mustInclude": [
+        "field map",
+        "renewal envelope"
+      ],
+      "mustAvoid": [
+        "false urgency"
+      ]
+    },
+    {
+      "domain": "choir attendance pledge",
+      "audience": "a director choosing consistency before asking for rehearsals",
+      "stakes": "whether members should recall their own standard before committing",
+      "format": "reflection",
+      "requiredBeat": "the director asks singers to mark the performance they promised not to miss before handing out the rehearsal calendar",
+      "firstImage": "a rehearsal calendar under a pencil-written performance date",
+      "mustInclude": [
+        "calendar",
+        "attendance pledge"
+      ],
+      "mustAvoid": [
+        "guilt trip"
+      ]
+    },
+    {
+      "domain": "neighborhood solar co-op",
+      "audience": "an organizer choosing social proof before home assessments",
+      "stakes": "whether visible neighbor participation lowers uncertainty",
+      "format": "before_after",
+      "requiredBeat": "the organizer places a map of signed-up roofs beside the assessment form before mentioning rebates",
+      "firstImage": "a neighborhood map dotted with roof stickers",
+      "mustInclude": [
+        "roof stickers",
+        "assessment form"
+      ],
+      "mustAvoid": [
+        "bandwagon pressure"
+      ]
+    },
+    {
+      "domain": "craft fair vendor selection",
+      "audience": "a curator choosing liking before compliance with booth rules",
+      "stakes": "whether shared taste should be visible before a hard constraint",
+      "format": "dialogue",
+      "requiredBeat": "the curator comments on one maker’s material choice from the application before explaining the strict booth footprint",
+      "firstImage": "a sample swatch beside a booth-layout card",
+      "mustInclude": [
+        "sample swatch",
+        "layout card"
+      ],
+      "mustAvoid": [
+        "flattery"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose among the six principles",
+      "frontload only the principle that honestly fits",
+      "tell scarcity from false urgency",
+      "use consistency without guilt pressure"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one request and choose a single principle from reciprocity, liking, authority, social proof, scarcity, or consistency that honestly fits before you frame it.",
+  "readingTimeMinutes": 12
+}

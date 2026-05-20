@@ -1,0 +1,342 @@
+{
+  "bookId": "seven-powers",
+  "updatedAt": "2026-05-16T08:07:27.362Z",
+  "usedProtagonistNames": [
+    "Sarah",
+    "Mathieu",
+    "Ingrid",
+    "Diego",
+    "Aanya",
+    "Thomas",
+    "Claire",
+    "Lukas",
+    "Catarina",
+    "Yusuf",
+    "Marit",
+    "Ben",
+    "Sophie",
+    "Julien",
+    "Anya",
+    "Chidi",
+    "Marco",
+    "Rachel",
+    "Hannah",
+    "Nicolas",
+    "Kasia",
+    "Hadiya",
+    "James",
+    "Astrid",
+    "Olivia",
+    "Etienne",
+    "Giulia",
+    "Kiran",
+    "David",
+    "Maja",
+    "Laura",
+    "Henrik",
+    "Isabel",
+    "Akira",
+    "Sam",
+    "Petra",
+    "Emily",
+    "Matteo",
+    "Frida",
+    "Chloe",
+    "Hiroshi",
+    "Andrew",
+    "Megan",
+    "Lars",
+    "Sofia",
+    "Lin",
+    "Daniel",
+    "Camille",
+    "Grace",
+    "Luca",
+    "Marta",
+    "Adaeze",
+    "Ryan",
+    "Javier"
+  ],
+  "usedExampleDomains": [
+    "regional frozen-meal producer deciding whether to add a second blast freezer",
+    "independent audiobook studio pricing a celebrity-narrated catalog",
+    "urban laundry pickup route redesign in a dense apartment district",
+    "specialty bicycle parts importer negotiating a bulk bearing order",
+    "community solar installer comparing crew learning across repeated roof types",
+    "regional pet-food bakery weighing a national retailer trial",
+    "same-day medical courier marketplace adding hospital labs in one city",
+    "language-exchange app splitting travelers and exam students into separate rooms",
+    "digital sheet-music platform courting arrangers after schools join",
+    "neighborhood tool-lending cooperative adding apartment buildings",
+    "freight-load board for small Nordic fisheries",
+    "open-source design-component library trying to attract plugin makers",
+    "mobile dental clinic selling subscription visits to employers",
+    "used-camera rental service competing with retail camera shops",
+    "low-cost legal forms platform serving uncontested tenant filings",
+    "modular furniture refurbisher offering buy-back credits",
+    "no-commission music venue booking platform",
+    "pay-per-use industrial washer service replacing equipment sales",
+    "veterinary clinic considering a cheaper patient-records system",
+    "commercial print shop moving from one color-calibration workflow to another",
+    "regional food distributor changing warehouse management vendors",
+    "private language school replacing a long-time placement-test provider",
+    "municipal fleet garage switching maintenance parts suppliers",
+    "architecture firm leaving a proprietary model library",
+    "boutique running-shoe maker pricing a plain black training shoe",
+    "regional cheese maker entering hotel breakfast contracts",
+    "medical glove distributor selling to dental practices after a recall scare",
+    "privacy-focused email service renewing small-law-firm accounts",
+    "independent hotel group replacing generic toiletries with a heritage soap supplier",
+    "children's helmet company deciding whether safety history supports a premium",
+    "battery-recycling startup with an exclusive university membrane license",
+    "Arctic construction firm with first call on a seasonal ice-road crew",
+    "specialty coffee roaster with long-term access to a tiny hillside lot",
+    "animation studio with a retained physics-simulation tool creator",
+    "rural broadband cooperative with exclusive pole-attachment rights",
+    "pharmaceutical packaging supplier with a validated sterile-line slot",
+    "custom orthotics lab linking scans, milling, fitting feedback, and reorder data",
+    "fresh-pasta wholesaler coordinating dough humidity, delivery windows, and chef feedback",
+    "repair depot for hospital imaging probes with shared diagnostics and technician memory",
+    "heritage tile maker using kiln placement, glaze mixing, and installer callbacks",
+    "regional blood-sample logistics service with routing, labeling, and lab feedback loops",
+    "outdoor-gear warranty shop turning failure data into design changes",
+    "specialty diagnostics startup choosing between faster lab service and a new at-home collection model",
+    "regional boat-repair company considering a predictive maintenance subscription",
+    "education publisher moving from textbook updates to adaptive practice data",
+    "urban farming supplier choosing between lower-cost deliveries and proprietary crop-planning software",
+    "cybersecurity training firm inventing role-specific breach drills",
+    "specialty insurer deciding whether to underwrite a new climate-risk niche",
+    "robotics startup reviewing whether to chase brand before product-market proof",
+    "meal-kit company entering take-off after local retention improves",
+    "industrial-sensor firm reaching stability after years of installations",
+    "new marketplace for surplus laboratory equipment choosing when to seed buyers and sellers",
+    "craft-tool manufacturer deciding whether a late patent can still corner a resource",
+    "regional payments firm conducting a quarterly power review"
+  ],
+  "usedExampleAnchors": [
+    "Netflix",
+    "Intel",
+    "Facebook",
+    "LinkedIn",
+    "Scylla and Charybdis",
+    "Addiction",
+    "higher willingness to pay",
+    "patents",
+    "operational excellence",
+    "me-too positioning",
+    "origination, take-off, and stability"
+  ],
+  "usedHookFrames": [
+    "definition opener",
+    "Power is opener",
+    "Strategy is opener",
+    "generic moat contrast opener"
+  ],
+  "usedCounterFrames": [
+    "Most people think X, but actually Y",
+    "The paradox is",
+    "not X but Y correction shell"
+  ],
+  "usedTryThisNowFrames": [
+    "write your top three advantages",
+    "set a timer and reflect",
+    "ask what matters most"
+  ],
+  "usedQuizExplanationFrames": [
+    "generic benefit and barrier explanation",
+    "other choices are too generic repeated explanation"
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "seven-powers-ch01",
+      "frames": [
+        "generic Scale Economies definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    },
+    {
+      "chapterId": "seven-powers-ch02",
+      "frames": [
+        "generic Network Economies definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    },
+    {
+      "chapterId": "seven-powers-ch03",
+      "frames": [
+        "generic Counter-Positioning definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    },
+    {
+      "chapterId": "seven-powers-ch04",
+      "frames": [
+        "generic Switching Costs definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    },
+    {
+      "chapterId": "seven-powers-ch05",
+      "frames": [
+        "generic Branding definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    },
+    {
+      "chapterId": "seven-powers-ch06",
+      "frames": [
+        "generic Cornered Resource definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    },
+    {
+      "chapterId": "seven-powers-ch07",
+      "frames": [
+        "generic Process Power definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    },
+    {
+      "chapterId": "seven-powers-ch08",
+      "frames": [
+        "generic The Path to Power definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    },
+    {
+      "chapterId": "seven-powers-ch09",
+      "frames": [
+        "generic The Power Progression definition opener",
+        "conference-room whiteboard example shell",
+        "timestamp plus named protagonist plus prop repeated across all examples",
+        "moat language without chapter-specific mechanism"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "seven-powers-ch01": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch01.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 1,
+      "checkedAt": "2026-05-16T06:49:33.762Z"
+    },
+    "seven-powers-ch02": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch02.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 2,
+      "checkedAt": "2026-05-16T06:51:39.721Z"
+    },
+    "seven-powers-ch03": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch03.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-16T06:55:58.086Z"
+    },
+    "seven-powers-ch04": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch04.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 4,
+      "checkedAt": "2026-05-16T06:57:45.129Z"
+    },
+    "seven-powers-ch05": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch05.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 5,
+      "checkedAt": "2026-05-16T06:59:26.450Z"
+    },
+    "seven-powers-ch06": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch06.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 8,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T08:07:27.363Z"
+    },
+    "seven-powers-ch07": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch07.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 7,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 7,
+      "checkedAt": "2026-05-16T07:03:47.636Z"
+    },
+    "seven-powers-ch08": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch08.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 8,
+      "checkedAt": "2026-05-16T07:05:32.094Z"
+    },
+    "seven-powers-ch09": {
+      "status": "planned",
+      "planPath": "scripts/book/prompts/chapterflow-v21-authored/state/plans/seven-powers-ch09.manual-plan.json",
+      "plannedAt": "2026-05-16T06:45:11.665Z",
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 8,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 9,
+      "checkedAt": "2026-05-16T07:07:17.680Z"
+    }
+  }
+}}

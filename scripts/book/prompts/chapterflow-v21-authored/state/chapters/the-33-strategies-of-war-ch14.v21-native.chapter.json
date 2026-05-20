@@ -1,0 +1,308 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch14",
+  "number": 14,
+  "title": "The Blitzkrieg Strategy: Overwhelm Resistance with Speed and Suddenness",
+  "readingTimeMinutes": 12,
+  "hook": "Speed becomes pressure when the other side is still answering your last position.",
+  "counterintuition": "Motion without orientation only delivers mistakes faster. Tempo works when each cycle sees, interprets, decides, and acts before resistance can settle around the old reality.",
+  "tryThisNow": "For one live decision, remove the slowest handoff in the observe-orient-decide-act loop without removing the judgment check.",
+  "keyTakeaway": "Use speed as a weapon by tightening the loop from observation to action until the other side keeps responding to positions you have already left.",
+  "breakdown": {
+    "fastRead": "Margaux watches a competitor react to yesterday's software release while her team is already shipping today's fix. The release board shows the real edge: fewer handoffs between proof and action. Speed matters only when each cycle learns. Fast motion alone is noise. Operational tempo works when you observe, orient, decide, and act again before the other side can build resistance around the last state.",
+    "deepRead": "Juliette stands over an emergency logistics map while road closures keep changing. The old process sends every route change through a central approval desk. By the time approval returns, the flooded road has moved the problem elsewhere. She has to decide whether to preserve the handoff or give field dispatchers one judgment rule and a direct update channel.\n\nJohn Boyd's OODA loop turns speed into something testable: not haste, but a faster cycle from seeing to acting. Observe what changed. Orient around what it means. Decide with enough judgment to avoid panic. Act before the situation grows stale. The advantage comes from cycling accurately while the other side is still interpreting your previous move.\n\nBoyd's loop turns haste into a testable rhythm.\n\nChloe uses the same rhythm in a fashion brand micro-drop. A larger competitor copies silhouettes slowly because design, merchandising, and legal review sit in separate rooms. Chloe has to choose between waiting for the monthly launch calendar and collapsing one handoff between customer comments and production samples. She reads returns on Tuesday, changes the sleeve shape Wednesday, and posts a limited drop Friday while the competitor's team is still debating the old version.\n\nThe reversal is direction. Moving fast toward the wrong target only compresses error. Tempo needs a live judgment check inside the loop, not after it. If the evidence is bad, the orientation is lazy, or the decision rule is foolish, speed will punish you first.",
+    "fullRead": "Manon does not win the election desk by publishing first once. She wins by making each update shorter, cleaner, and closer to new evidence than the regional network can manage. Early results come in from three wards. Her old process would wait for a full package, route it through two editors, and publish a polished story after the network had already framed the night. The new process posts a verified ward note, updates the map, and assigns one reporter to the next uncertainty before the network finishes reacting.\n\nThe slower side keeps answering rooms you have already left. That is the pressure. They prepare a response to your first release while your second release changes the question. They copy your first message while your third message moves the audience. They challenge yesterday's data while today's data has already made the challenge stale.\n\nBoyd's loop matters because it protects speed from vanity. Observe, orient, decide, act. Then do it again. The loop is not a slogan for rushing. It is a discipline for learning faster than resistance forms. Every pass through the loop should improve contact with reality, not merely increase motion.\n\nAsk where the loop is slowest. Is fresh evidence waiting for a meeting? Is orientation trapped in one person's head? Is decision authority separated from the person seeing the change? Is action delayed by a handoff that adds no judgment? Remove that delay only where the judgment stays intact. A loop made shorter by blindness is not tempo. It is a crash.\n\nEtienne sees the difference in a pharmacy recall postmortem. The private decision rule that worked was simple: if two stores reported the same lot number, the recall desk could issue a regional hold before the full legal summary arrived. The decision log showed fresh evidence, a defined orientation rule, and immediate action. When the manufacturer responded to the first hold, Etienne's team had already identified the second cluster and updated the pharmacist call script.\n\nMathieu applies the same pattern to a film festival programming window. Before, programming notes, filmmaker calls, and sponsor concerns moved through weekly meetings. After, he builds a daily release train board for three open slots, gives programmers authority to hold a film for forty-eight hours, and updates sponsor fit the same afternoon a director confirms availability. A larger festival tries to match the lineup from last week's rumor list. Mathieu has already left that room.\n\nSpeed belongs to the side that can keep judgment close to evidence. It is sudden from the outside because the outside only sees the action. Inside, the work is tighter observation, cleaner orientation, smaller decisions, and faster action. When those pieces lock together, resistance forms around old facts and arrives late."
+  },
+  "examples": [
+    {
+      "exampleId": "ch14-ex01-margaux-release",
+      "title": "Margaux Cuts the Approval Loop",
+      "tags": [
+        "scene",
+        "software",
+        "tempo"
+      ],
+      "planSpec": {
+        "domain": "rapid-response software release",
+        "audience": "a reader trying to move faster without losing judgment",
+        "stakes": "a competitor will answer yesterday's product state unless the release cycle learns faster",
+        "format": "scene",
+        "requiredBeat": "The protagonist collapses one handoff in the decision loop, updates from fresh evidence, and moves again before the incumbent finishes responding to the prior state."
+      },
+      "scenario": "\"The bug report is fresher than the roadmap,\" Margaux says, with the release train board open beside the decision log. She must decide whether to wait for the weekly approval meeting or let the on-call lead ship a narrow fix under a written rollback rule.",
+      "whatToDo": "Give the on-call lead authority for the narrow fix, log the evidence and rollback rule, and ship before the competitor finishes responding to the old defect.",
+      "whyItMatters": "Margaux speeds the observe-orient-decide-act loop without removing judgment. The competitor is left answering yesterday's product."
+    },
+    {
+      "exampleId": "ch14-ex02-juliette-logistics",
+      "title": "Juliette Gives Dispatch the Rule",
+      "tags": [
+        "vignette",
+        "logistics",
+        "emergency"
+      ],
+      "planSpec": {
+        "domain": "emergency logistics routing",
+        "audience": "a reader managing live routing changes under pressure",
+        "stakes": "central approval can make every route decision stale",
+        "format": "vignette",
+        "requiredBeat": "The protagonist collapses one handoff in the decision loop, updates from fresh evidence, and moves again before the incumbent finishes responding to the prior state."
+      },
+      "scenario": "During the emergency logistics routing room at 11:49 a.m. The decision log is smudged with rainwater when Juliette gets the third road-closure update. She has to choose between routing every truck through central approval and giving dispatchers a fuel-and-safety rule for immediate reroutes.",
+      "whatToDo": "Move reroute authority to dispatch, require a live map update after each change, and review exceptions at the next thirty-minute check.",
+      "whyItMatters": "The field team sees reality first. Juliette shortens the loop while keeping a judgment rule attached."
+    },
+    {
+      "exampleId": "ch14-ex03-chloe-fashion",
+      "title": "Chloe Changes the Sleeve",
+      "tags": [
+        "decision_point",
+        "fashion",
+        "micro_drop"
+      ],
+      "planSpec": {
+        "domain": "fashion brand micro-drop cycle",
+        "audience": "a reader facing a larger rival with a slower product cycle",
+        "stakes": "waiting for the calendar may let the incumbent answer the wrong trend too late",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist collapses one handoff in the decision loop, updates from fresh evidence, and moves again before the incumbent finishes responding to the prior state."
+      },
+      "scenario": "You stand beside Chloe as a competitor changelog refreshes beside return photos from yesterday's drop. She has to choose between the monthly calendar and a Friday micro-drop that uses the customer evidence before the larger brand can process it.",
+      "whatToDo": "Collapse the merchandising handoff, approve one sleeve change from the return photos, and release a limited Friday run with a clear stop rule.",
+      "whyItMatters": "Chloe's speed is evidence-driven. The incumbent is still responding to the older silhouette."
+    },
+    {
+      "exampleId": "ch14-ex04-manon-newsroom",
+      "title": "Manon Updates the Map",
+      "tags": [
+        "predict_reveal",
+        "newsroom",
+        "election"
+      ],
+      "planSpec": {
+        "domain": "local newsroom election desk",
+        "audience": "a reader coordinating rapid public updates without losing accuracy",
+        "stakes": "slow packaging may let another outlet define the election night narrative",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist collapses one handoff in the decision loop, updates from fresh evidence, and moves again before the incumbent finishes responding to the prior state."
+      },
+      "scenario": "At the local newsroom election desk room at 9:11 a.m. It took Manon one results drop to see the old election desk was too slow. Before the network posts its first full analysis, she has to decide whether to wait for a package or publish verified ward notes as the map changes.",
+      "whatToDo": "Publish the verified ward note, update the public map, and assign one reporter to the next uncertainty instead of waiting for a complete story package.",
+      "whyItMatters": "The newsroom keeps learning in public without abandoning verification. The regional network responds to a state that has already changed."
+    },
+    {
+      "exampleId": "ch14-ex05-etienne-recall",
+      "title": "Etienne Holds the Lot",
+      "tags": [
+        "postmortem",
+        "pharmacy",
+        "recall"
+      ],
+      "planSpec": {
+        "domain": "pharmacy recall coordination",
+        "audience": "a reader reviewing how to act faster under safety constraints",
+        "stakes": "waiting for a complete legal summary may leave bad lots moving through stores",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist collapses one handoff in the decision loop, updates from fresh evidence, and moves again before the incumbent finishes responding to the prior state."
+      },
+      "scenario": "Near the pharmacy recall coordination room at 10:22 a.m. What changes when Etienne stops arguing and points to the decision log? The recall postmortem shows that two matching lot reports should trigger a regional hold before the full legal summary arrives.",
+      "whatToDo": "Create the two-store trigger, issue the regional hold, and update pharmacist scripts as new clusters appear.",
+      "whyItMatters": "The loop is faster because the judgment rule is prebuilt. Etienne avoids both delay and reckless motion."
+    },
+    {
+      "exampleId": "ch14-ex06-mathieu-festival",
+      "title": "Mathieu Holds the Slot",
+      "tags": [
+        "before_after",
+        "festival",
+        "programming"
+      ],
+      "planSpec": {
+        "domain": "film festival programming window",
+        "audience": "a reader competing for scarce programming commitments",
+        "stakes": "weekly review can lose films to a larger festival moving from rumor to offer",
+        "format": "before_after",
+        "requiredBeat": "The protagonist collapses one handoff in the decision loop, updates from fresh evidence, and moves again before the incumbent finishes responding to the prior state."
+      },
+      "scenario": "A festival calendar curls at the corner under a strip of projector light before Mathieu opens the competitor changelog. Before, slots waited for weekly review; after, programmers can hold a film for forty-eight hours when a director confirms availability.",
+      "whatToDo": "Give programmers limited hold authority, update sponsor fit the same day, and move offers before the larger festival processes last week's rumor list.",
+      "whyItMatters": "Mathieu shortens the loop around fresh evidence. The bigger festival is left aiming at an old lineup."
+    }
+  ],
+  "quiz": {
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A software team sees a live defect but normally waits for a weekly approval meeting. What change best creates useful tempo?",
+        "choices": [
+          "Give the on-call lead narrow release authority with a rollback rule and immediate decision log.",
+          "Ship every idea instantly because speed is always strategy.",
+          "Wait for the meeting because judgment and speed cannot coexist."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first choice shortens the loop while keeping judgment. Instant shipping treats motion as strategy, while waiting preserves a stale handoff.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An emergency routing team gets road updates faster than central approval can process them. Which action best applies operational tempo?",
+        "choices": [
+          "Stop tracking updates because they change too often.",
+          "Give dispatchers a safety-and-fuel reroute rule and require live map updates after each change.",
+          "Send every reroute to a weekly review board."
+        ],
+        "correctIndex": 1,
+        "explanation": "Dispatchers are closest to new evidence, and the rule preserves judgment. A weekly board would guarantee stale action.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A fashion brand wants to release daily changes without reading returns, customer comments, or production limits. What is the danger?",
+        "choices": [
+          "The brand will learn too much from customers.",
+          "The brand will become slow because daily releases are impossible.",
+          "It is moving fast without orientation, so errors will arrive faster too."
+        ],
+        "correctIndex": 2,
+        "explanation": "Tempo requires observation and orientation, not only action. Daily motion without evidence compresses mistakes.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A newsroom can either wait for a complete election-night package or publish verified ward notes and update the map as results arrive. What is the better tempo move?",
+        "choices": [
+          "Publish verified notes, update the map, and assign reporters to the next uncertainty.",
+          "Publish rumors immediately before verification.",
+          "Wait until every ward is final even if the public narrative forms elsewhere."
+        ],
+        "correctIndex": 0,
+        "explanation": "The newsroom keeps verification while cycling faster through new evidence. Rumors remove judgment; waiting loses tempo.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A pharmacy recall desk waits for a full legal summary before holding suspicious lots, even when two stores report the same lot number. What would a better loop include?",
+        "choices": [
+          "No action until every detail is complete.",
+          "A trigger that allows a regional hold after two matching reports, followed by script updates as evidence changes.",
+          "A public announcement about every rumor."
+        ],
+        "correctIndex": 1,
+        "explanation": "The trigger turns repeated evidence into timely action while keeping a judgment check. Waiting too long and announcing rumors both fail the loop.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A festival loses films because weekly programming meetings cannot respond to director availability. Which revision best creates speed with judgment?",
+        "choices": [
+          "Offer every film immediately with no criteria.",
+          "Keep all decisions weekly so no one feels rushed.",
+          "Let programmers hold a film for forty-eight hours under clear criteria, then update sponsor fit the same day."
+        ],
+        "correctIndex": 2,
+        "explanation": "Limited hold authority collapses a handoff without losing criteria. The wrong answers either remove judgment or preserve the delay.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A competitor keeps responding to your old feature while your team has already revised the product based on newer evidence. What does this show?",
+        "choices": [
+          "Your team has created a faster learning loop that leaves the competitor behind the current state.",
+          "The competitor is secretly faster because it is responding at all.",
+          "Speed no longer matters once a product ships."
+        ],
+        "correctIndex": 0,
+        "explanation": "The competitor is reacting to a stale position. The advantage comes from cycling through evidence and action faster.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A leader wants to remove every review step from a safety-critical process to move faster. How should you evaluate the plan?",
+        "choices": [
+          "Accept it because every handoff is waste.",
+          "Reject the blanket cut and identify only delays that add no judgment, while preserving safety checks that orient decisions.",
+          "Add more review layers to prove the team is careful."
+        ],
+        "correctIndex": 1,
+        "explanation": "Useful tempo removes dead handoffs, not judgment. Safety checks that orient decisions may be essential to speed that learns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A product manager says the team should act quickly before understanding what the latest customer data means. What part of the loop is missing?",
+        "choices": [
+          "Observation, because data should be ignored.",
+          "Action, because the team has already moved.",
+          "Orientation, because the team has seen data but has not interpreted its meaning."
+        ],
+        "correctIndex": 2,
+        "explanation": "The team has observed but not oriented. Acting before interpretation is haste, not operational tempo.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "A team wants to move faster. What should it shorten first?",
+      "back": "Shorten the handoff that delays the observe-orient-decide-act loop without adding judgment."
+    },
+    {
+      "front": "Why is speed without orientation dangerous?",
+      "back": "It delivers mistakes faster. Tempo works only when each cycle learns from fresh evidence."
+    },
+    {
+      "front": "What does Boyd's OODA loop test?",
+      "back": "It tests how quickly you can observe, orient, decide, and act again while the other side reacts to old reality."
+    },
+    {
+      "front": "A competitor answers your old move after you have already updated. What advantage do you have?",
+      "back": "You have a faster operational tempo. Resistance is forming around positions you have left."
+    },
+    {
+      "front": "Which review steps should stay in a fast process?",
+      "back": "Keep steps that improve orientation or safety. Remove delays that add no judgment."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to tighten the cycle from observation to action so speed stays connected to fresh evidence and judgment.",
+    "ifThenPlans": [
+      {
+        "context": "software releases",
+        "plan": "If a live defect has a narrow fix, then give the on-call lead release authority with a rollback rule."
+      },
+      {
+        "context": "logistics",
+        "plan": "If field conditions change faster than approval, then move bounded reroute authority to the people seeing the change."
+      },
+      {
+        "context": "media",
+        "plan": "If new verified results arrive, then publish a small accurate update and assign the next uncertainty immediately."
+      },
+      {
+        "context": "safety operations",
+        "plan": "If a handoff delays action, then remove it only if the judgment check survives somewhere closer to the evidence."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one live decision and draw its observe-orient-decide-act path. Remove one handoff that adds delay without adding judgment, then log the result.",
+    "weeklyPractice": "Each week, review one process where a rival, client, or problem keeps moving. Ask which part of your loop is stale."
+  },
+  "memorableLines": [
+    {
+      "text": "Speed matters only when each cycle learns."
+    },
+    {
+      "text": "Boyd's loop turns haste into a testable rhythm."
+    },
+    {
+      "text": "The slower side keeps answering rooms you have already left."
+    }
+  ]
+}

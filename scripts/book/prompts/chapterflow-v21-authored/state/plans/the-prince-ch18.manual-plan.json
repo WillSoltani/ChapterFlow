@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch18",
+  "number": 18,
+  "title": "Concerning the Way in Which Princes Should Keep Faith",
+  "coreMove": "Preserve the state by joining law with force and public virtue with the ability to change conduct when the pledge no longer protects survival.",
+  "sourcePressure": "The source distinguishes contesting by law and by force, man and beast, fox and lion, appearance and non-observance. Keeping faith is praiseworthy, but princes face opponents who break faith and publics who judge mostly by appearance and result, so the ruler must appear merciful, faithful, humane, upright, and religious while retaining the capacity to act otherwise under necessity.",
+  "chapterSpecificMisunderstanding": "The wrong version says lying is smart or brand management is everything. The writer must keep the full mechanism: law is preferred but insufficient, force has two forms, snares and wolves require different capacities, and appearance works because most people judge at a distance by seeming and result.",
+  "sourceAlignmentTerms": [
+    "keep faith",
+    "law",
+    "force",
+    "fox",
+    "lion",
+    "appearance",
+    "Alexander VI",
+    "result",
+    "pretender",
+    "dissembler"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "simple lying advice",
+      "personal brand authenticity",
+      "gotcha hypocrisy story"
+    ],
+    "counterintuition": [
+      "most people think honesty matters, but actually deception wins",
+      "promises are for fools",
+      "appear virtuous and do whatever you want"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and craft a better image",
+      "list promises you can break",
+      "practice strategic lying"
+    ],
+    "examples": [
+      "office negotiation deception",
+      "social media reputation management",
+      "dating honesty dilemma",
+      "salesmanship trick"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a border treaty where the opposing lord keeps the ceremony but secretly mines the ford",
+      "audience": "a prince deciding whether legal faith still binds after the condition behind the pledge is gone",
+      "stakes": "marching under the treaty as written would deliver the army into a prepared snare",
+      "format": "scene",
+      "requiredBeat": "The prince lays the treaty ribbon across the scout's clay mine plugs, then orders a lawful protest read while the army takes the ridge road under guard.",
+      "firstImage": "Clay mine plugs sit under a treaty ribbon on the campaign table.",
+      "mustInclude": [
+        "treaty ribbon",
+        "clay mine plugs",
+        "ridge road order"
+      ],
+      "mustAvoid": [
+        "contract law lesson",
+        "simple promise-breaking",
+        "chapter 15 ferry-chain scenario"
+      ]
+    },
+    {
+      "domain": "a city ruler facing assassins who arrive with court summons stamped by a rival court",
+      "audience": "a ruler who must use both legal answer and forceful trap detection",
+      "stakes": "answering only by law leaves him exposed, while answering only by force makes him look faithless before neutral cities",
+      "format": "decision_point",
+      "requiredBeat": "He seals a formal reply to the summons, then turns the stamped escort token over to reveal the hidden blade slot before doubling the gate watch.",
+      "firstImage": "A stamped escort token lies beside a sealed court reply.",
+      "mustInclude": [
+        "escort token",
+        "sealed reply",
+        "hidden blade slot"
+      ],
+      "mustAvoid": [
+        "spy thriller",
+        "pure paranoia",
+        "personal security gadget"
+      ]
+    },
+    {
+      "domain": "a famine pact among three hill towns after one town diverts the shared mule train at night",
+      "audience": "a mediator-prince deciding whether to keep equal deliveries after another party has broken the basis of equality",
+      "stakes": "continuing the old distribution rewards the breaker and starves the town that kept faith",
+      "format": "predict_reveal",
+      "requiredBeat": "The mediator predicts the original schedule will seem virtuous, then places the mule-bell receipt from the stolen train beside the pact and rewrites the convoy guard order.",
+      "firstImage": "A mule-bell receipt lies on top of a three-town famine pact.",
+      "mustInclude": [
+        "mule-bell receipt",
+        "famine pact",
+        "convoy guard order"
+      ],
+      "mustAvoid": [
+        "chapter 16 fiscal generosity",
+        "moral fable",
+        "village consensus story"
+      ]
+    },
+    {
+      "domain": "a succession council where a prince must speak publicly as faithful heir while privately blocking a cardinal who fears him",
+      "audience": "a new ruler balancing appearance of reverence with the danger of empowering an injured great man",
+      "stakes": "the public sees vows and prayers, but the old injury gives the candidate reason to undo the ruler if elevated",
+      "format": "dialogue",
+      "requiredBeat": "After praising concord aloud, the prince moves the candidate's red voting bead into the blocked tray because new honors will not erase old fear.",
+      "firstImage": "A red voting bead rests between a prayer text and a blocked tray.",
+      "mustInclude": [
+        "red voting bead",
+        "prayer text",
+        "blocked tray"
+      ],
+      "mustAvoid": [
+        "chapter 7 papal-succession retelling",
+        "religion-only frame",
+        "villain scheming"
+      ]
+    },
+    {
+      "domain": "a river customs prince whose public oath promises mercy while smugglers test whether mercy means no force",
+      "audience": "a prince who must appear humane without letting the oath destroy enforcement",
+      "stakes": "subjects judge the speech by sight, but smugglers judge whether the river chain actually closes",
+      "format": "before_after",
+      "requiredBeat": "Before the oath, the river chain hangs loose; after the humane words, he nods once and the chain rises under the lanterns before the smugglers can pass.",
+      "firstImage": "A river chain hangs slack below a lanterned oath platform.",
+      "mustInclude": [
+        "river chain",
+        "oath platform",
+        "smugglers' skiff"
+      ],
+      "mustAvoid": [
+        "chapter 17 smuggling punishment",
+        "public relations",
+        "simple duplicity"
+      ]
+    },
+    {
+      "domain": "a military envoy using ceremony to appear peaceful while preparing against a rival who has broken every truce",
+      "audience": "an envoy-prince whose reputation depends on seeming upright even as he protects the camp",
+      "stakes": "if he abandons the peaceful form, neutral observers turn; if he trusts the form alone, the rival attacks the tents",
+      "format": "postmortem",
+      "requiredBeat": "The envoy leaves the white truce bowl visible at the tent mouth, but the after-action sketch shows the hidden wolf-pit line that stopped the night assault.",
+      "firstImage": "A white truce bowl sits at a tent mouth above a hidden pit-line sketch.",
+      "mustInclude": [
+        "white truce bowl",
+        "pit-line sketch",
+        "neutral observers"
+      ],
+      "mustAvoid": [
+        "battle tactics as main point",
+        "brand management",
+        "peace hypocrisy rant"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish law-only, force-only, and combined responses in scenarios where faith is tested",
+      "identify when the reasons for a pledge no longer exist or the other party has already broken faith",
+      "analyze how appearance of virtue and readiness to change conduct operate together",
+      "evaluate whether a deception claim preserves the state under necessity or collapses into ordinary bad faith"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one broken treaty or public pledge from history. Write the original reason for the promise, what changed, what visible virtue had to be preserved, and what protective action became necessary.",
+  "readingTimeMinutes": 12
+}

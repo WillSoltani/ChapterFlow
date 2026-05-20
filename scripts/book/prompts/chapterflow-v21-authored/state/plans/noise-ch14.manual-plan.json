@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch14",
+  "number": 14,
+  "title": "Guidelines in Medicine",
+  "coreMove": "Treat a structured clinical guideline as the default starting point and require explicit justification for departing from it, rather than treating adherence as optional or guidelines as merely advisory.",
+  "sourcePressure": "Clinical guidelines reduce some avoidable variation in medical decisions. They work best when they establish the default behavior from which departure requires justification, rather than as a ceiling above which good doctors operate. Guidelines help not by replacing judgment but by making variation in judgment visible and requiring it to be named.",
+  "chapterSpecificMisunderstanding": "Treating clinical guidelines as a constraint imposed on expert judgment by administrators or guideline committees, rather than as a consistency anchor that elevates median outcomes across a population of patients.",
+  "sourceAlignmentTerms": ["guideline", "protocol", "adherence", "departure", "variance reduction", "clinical judgment", "default"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Clinical guideline effects on practice variation",
+      "detail": "Research on guideline implementation across sepsis management, antibiotic prescribing, statin therapy, and cancer screening shows that practice variance falls when guidelines are treated as defaults rather than recommendations, and that patient outcomes at the population level improve because the floor is raised even if the ceiling is not.",
+      "useIn": "deepRead",
+      "phrasingHint": "A clinical guideline does not make every doctor better. It makes the worst outcomes rarer. That is a different claim, and it is the one that matters for population health."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["do doctors actually follow guidelines?", "what happens when medicine becomes a formula?"],
+    "counterintuition": ["following guidelines makes you a better doctor", "the best doctors follow guidelines most of the time"],
+    "tryThisNow": ["think of a professional guideline you routinely ignore", "notice the next time you depart from standard practice"],
+    "examples": ["a scene where the guideline is shown to be wrong in a specific case — the chapter's point is not that guidelines are always right, but that departures should be named; a scene that frames guidelines as bureaucratic obstacles to good medicine"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Medical guideline examples risk all reading as 'doctor does or doesn't follow protocol with varying results.' Different clinical domains and formats are needed to show how the default-with-named-departure principle applies across different guideline types."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "sepsis treatment: an ICU measuring whether adherence to the sepsis bundle reduces variation in time-to-antibiotics across physicians",
+      "audience": "an ICU medical director conducting a quality review of sepsis bundle compliance",
+      "stakes": "patient mortality — sepsis is time-critical, and variation in time-to-antibiotics is a direct patient harm driver",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the medical director presents the compliance data: on days when the sepsis bundle was treated as a default (any departure required a documented clinical reason), time-to-antibiotics had a standard deviation of 28 minutes; on days when the bundle was treated as advisory, the standard deviation was 71 minutes — and the average time was also longer on advisory days",
+      "firstImage": "a quality dashboard showing two distributions of time-to-antibiotics: one tighter and centered earlier, one wider and centered later — labeled 'bundle as default' and 'bundle as advisory'",
+      "mustInclude": ["the 28 vs. 71 minute standard deviation comparison", "both the variance reduction and the mean improvement", "the default-versus-advisory framing as the only operationally different variable"],
+      "mustAvoid": ["a patient death narrative", "implying any physician who departed from the bundle was incompetent"]
+    },
+    {
+      "domain": "antibiotic prescribing in primary care: a clinic measuring whether a default-with-justification protocol reduces inappropriate antibiotic use",
+      "audience": "a primary care network quality manager comparing antibiotic prescribing rates before and after protocol introduction",
+      "stakes": "antibiotic stewardship and patient health — inappropriate prescribing varies widely across physicians treating similar presentations and contributes to resistance",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the manager reviews the protocol's first year: inappropriate antibiotic prescribing rate (prescriptions for viral presentations where guidelines recommend watchful waiting) fell from 34 percent to 19 percent after the default protocol was introduced, while the physicians who documented explicit clinical reasons for departing showed only a marginal rate decline — the largest drop came from situations where no justification was easy to write",
+      "firstImage": "a trend chart of inappropriate antibiotic prescribing rate over two years: the line declining sharply at the point the default protocol was introduced",
+      "mustInclude": ["the 34-to-19 percent reduction", "the mechanism: the requirement to name the departure reason is what does the work, not the guideline's content", "the marginal decline in justified departures versus the large decline in unjustified ones"],
+      "mustAvoid": ["a specific patient resistance case", "a scene that implies any physician intentionally overprescribed"]
+    },
+    {
+      "domain": "statin prescribing for cardiovascular risk: a cardiology group comparing prescribing variance before and after a structured shared-decision-making protocol",
+      "audience": "a cardiology quality improvement team studying prescribing consistency for guideline-eligible patients",
+      "stakes": "cardiovascular outcomes — guideline-eligible patients who do not receive statins due to physician preference variation have preventable events",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two cardiologists in a quality review meeting compare their prescribing rates for guideline-eligible patients and find a 28-point difference: one has a 90 percent statin initiation rate for eligible patients, the other 62 percent — and when asked about their decision process, the lower-rate physician describes considering statin benefits versus side effects as an open question, rather than as a question where the guideline has already answered the default",
+      "firstImage": "a prescribing consistency report showing two physicians' statin initiation rates for the same patient population, the gap clearly labeled",
+      "mustInclude": ["the 28-point gap between two physicians with the same patient population", "the lower-rate physician's framing of the decision as open when the guideline treats it as a default", "the quality team's framing: the problem is not that the lower-rate physician is wrong, but that the departure from guideline default is unnamed and unmeasured"],
+      "mustAvoid": ["a cardiovascular event story", "a scene that implies statins are always the right choice"]
+    },
+    {
+      "domain": "cancer screening referral in primary care: a health system comparing referral rate variance across GPs for the same screening-eligible patient population",
+      "audience": "a primary care network analyzing whether a referral decision-support tool reduces variation",
+      "stakes": "early cancer detection — patients who are not referred for guideline-eligible screening miss early detection opportunities that are later detected at advanced stage",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the network director asks the room: for patients who meet every guideline criterion for colorectal cancer screening referral, what is the range of referral rates across our network physicians? The answer from the data is 39 to 97 percent — a 58-point range for patients who according to guidelines should be referred uniformly, with the variation correlating with individual physician beliefs about screening benefit rather than patient characteristics",
+      "firstImage": "a histogram of colorectal cancer referral rates across network physicians for guideline-eligible patients, the bars showing a wide spread from 39 to 97 percent",
+      "mustInclude": ["the 39-to-97 percent range", "the correlation with physician belief rather than patient characteristic", "the director's framing: guideline eligibility should be the default decision; the variation represents departure without naming"],
+      "mustAvoid": ["a patient cancer diagnosis story", "implying that all 58-point variation is due to physician negligence"]
+    },
+    {
+      "domain": "hypertension management: a hospital system comparing variance in blood-pressure targets across cardiologists treating the same patient population",
+      "audience": "a hospital quality committee reviewing prescribing consistency for antihypertensive therapy targets",
+      "stakes": "long-term patient cardiovascular outcomes — systematic variation in treatment targets leads to population-level differences in stroke and kidney disease incidence",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast the pre-protocol period (cardiologists using personal target preferences) with the post-protocol period (guideline BP target as the default, departures documented): prescribing variance for the same patient risk category fell by 45 percent, and the documentation of departures revealed that 80 percent of departures had either sound clinical reasons or were simply habits that had never been examined against the guideline",
+      "firstImage": "a quality review board presentation showing two treatment-target distributions for the same patient population: the pre-protocol distribution wide and bimodal, the post-protocol distribution narrower and centered on the guideline target",
+      "mustInclude": ["the 45 percent variance reduction", "the departure documentation revealing 80 percent were either justified or habitual", "the habitual-departure finding as the important result: named departures become examined departures"],
+      "mustAvoid": ["a stroke or kidney disease outcome story", "implying any cardiologist was practicing below standard"]
+    },
+    {
+      "domain": "stroke triage protocol in an emergency department: a hospital comparing door-to-imaging time variance before and after stroke guideline adoption as default",
+      "audience": "an emergency medicine quality officer studying whether guideline adoption reduces variance in time-critical care",
+      "stakes": "stroke outcomes — the treatment window for stroke is time-critical, and variance in time-to-imaging is a direct driver of patient harm",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the quality officer reviews the first six months after the stroke triage protocol was adopted as a default: door-to-imaging variance fell from a standard deviation of 24 minutes to 9 minutes; the mean also fell from 38 to 22 minutes; and the three departments that showed the smallest improvement were the ones where the protocol was described to staff as a recommendation rather than a default",
+      "firstImage": "an emergency department time-log comparing the pre-protocol and post-protocol distributions of door-to-imaging times, the post-protocol curve tighter and shifted left",
+      "mustInclude": ["the 24-to-9 standard deviation reduction", "the mean also improving (floor raised)", "the three lagging departments as evidence that 'recommendation' framing undermines the default effect"],
+      "mustAvoid": ["a stroke patient outcome narrative", "implying the departments that presented the protocol as a recommendation were negligent"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain how the default-with-named-departure framing differs from treating guidelines as recommendations",
+      "identify what makes a guideline implementation effective versus ineffective at reducing variation",
+      "apply the default-departure logic to a non-medical professional guideline context",
+      "analyze why the departure-documentation requirement is often more powerful than the guideline's content in reducing noise",
+      "evaluate whether a described guideline implementation would raise the floor on outcomes or only formalize existing practice"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find one professional standard or guideline that applies to a decision you make regularly. For your next 10 decisions of that type, treat the guideline as the default and write one sentence when you depart from it. At the end of the 10 cases, read the departure sentences. Some will have sound reasons. Some will describe habits you had not examined. Those are the noise the guideline is meant to reduce.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) distinguishing 'guideline as recommendation' from 'guideline as default', at least one 5+ sentence paragraph on why requiring departure documentation is often more effective than writing better guidelines, at least one one-sentence punch line about what the range of prescribing rates for the same eligible population reveals about unexamined departure",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to present a brief population-health framing: guidelines raise the floor, not the ceiling, and that is why they matter — the top quartile of physicians does not need them; the bottom quartile does",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

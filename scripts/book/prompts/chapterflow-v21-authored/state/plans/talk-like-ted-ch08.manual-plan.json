@@ -1,0 +1,199 @@
+{
+  "chapterId": "talk-like-ted-ch08",
+  "number": 8,
+  "title": "Paint a Mental Picture with Multisensory Experiences",
+  "coreMove": "Translate an abstract idea into concrete sensory images the audience can mentally handle.",
+  "sourcePressure": "The source emphasizes multisensory engagement, vivid mental imagery, and concrete picture-making as ways to help ideas feel easier to imagine and remember. The limit is that vividness should clarify the message, not decorate it.",
+  "chapterSpecificMisunderstanding": "The weak version says add colorful description. The useful version says choose sensory evidence that lets the audience grasp and retain the idea.",
+  "sourceAlignmentTerms": [
+    "multisensory",
+    "mental picture",
+    "vivid",
+    "sensory",
+    "concrete",
+    "imagine",
+    "remember",
+    "clarify"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "multisensory experiences",
+      "detail": "the source names multisensory engagement and vivid mental imagery as the chapter's central support for helping ideas feel imaginable and memorable",
+      "useIn": "both",
+      "phrasingHint": "A multisensory moment gives the audience something to hold in the mind, not just a sentence to admire."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "paint a picture in their minds",
+      "the room can almost taste it",
+      "sensory detail makes ideas stick"
+    ],
+    "counterintuition": [
+      "description is not decoration",
+      "show, do not tell",
+      "the senses persuade"
+    ],
+    "tryThisNow": [
+      "add one sensory detail",
+      "describe what it looks and sounds like",
+      "make the idea vivid"
+    ],
+    "examples": [
+      "decorative food writing",
+      "travel-brochure scene",
+      "generic visualization exercise",
+      "perfume or candle as empty atmosphere"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Chloé",
+      "domain": "transit safety campaign",
+      "audience": "a transit planner explaining platform-edge risk to commuters",
+      "stakes": "whether a safety poster becomes a physical picture people can recall at the platform",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she replaces the abstract distance rule with the sound of the warning strip under a cane and the width of one shoe behind the yellow tile",
+      "firstImage": "raised yellow platform tiles under the rubber tip of a white cane",
+      "mustInclude": [
+        "warning strip",
+        "yellow tile",
+        "commuter poster"
+      ],
+      "mustAvoid": [
+        "generic transit announcement",
+        "fear imagery"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "cookbook technique class",
+      "audience": "a cooking instructor teaching why resting dough matters",
+      "stakes": "whether students remember gluten relaxation as a feel in the hand, not a term",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "he has students press one tight dough ball and one rested ball, then uses that tactile contrast before naming the mechanism",
+      "firstImage": "two flour-dusted dough balls under a striped linen cloth",
+      "mustInclude": [
+        "tight dough",
+        "rested dough",
+        "linen cloth"
+      ],
+      "mustAvoid": [
+        "decorative food description",
+        "recipe lesson"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "marine policy hearing",
+      "audience": "a policy analyst explaining microplastics to municipal leaders",
+      "stakes": "whether invisible pollution becomes concrete without turning into spectacle",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she pours filtered beach sand onto black paper and lets leaders see bright plastic flecks before showing the cleanup policy",
+      "firstImage": "pale sand sliding across black paper under a hearing-room lamp",
+      "mustInclude": [
+        "filtered beach sand",
+        "black paper",
+        "cleanup policy"
+      ],
+      "mustAvoid": [
+        "marine doom imagery",
+        "science fair trick"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "factory onboarding line walk",
+      "audience": "a supervisor teaching new hires how one loose bearing changes product quality",
+      "stakes": "whether a tolerance number becomes something workers can hear and feel",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "when a trainee asks why a small vibration matters, he has the group touch the guard rail and listen before showing the defect sheet",
+      "firstImage": "a steel guard rail humming faintly under a gloved hand",
+      "mustInclude": [
+        "loose bearing",
+        "guard rail",
+        "defect sheet"
+      ],
+      "mustAvoid": [
+        "apprentice safety repeat",
+        "generic factory danger"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "pediatric asthma workshop",
+      "audience": "a respiratory therapist teaching parents about air quality triggers",
+      "stakes": "whether parts-per-million numbers become a memorable picture of a child's breathing room",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch her pass around a clear filter from a window unit and connect its gray film to the child's bedroom before the monitor chart appears",
+      "firstImage": "a gray air-conditioner filter held against a bright clinic window",
+      "mustInclude": [
+        "window-unit filter",
+        "monitor chart",
+        "bedroom trigger list"
+      ],
+      "mustAvoid": [
+        "medical scare",
+        "data without sensory bridge"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "hotel service training",
+      "audience": "a hospitality manager teaching staff what a quiet lobby should feel like after midnight",
+      "stakes": "whether staff remember guest fatigue as a sensory condition, not a policy phrase",
+      "format": "reflection",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he dims the training-room lights, plays the elevator chime once, and asks staff to rewrite the greeting for that sound level",
+      "firstImage": "a silver service bell resting beside a dimmer switch",
+      "mustInclude": [
+        "elevator chime",
+        "dimmer switch",
+        "late-night greeting"
+      ],
+      "mustAvoid": [
+        "hotel first-impression repeat",
+        "atmosphere for atmosphere's sake"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish clarifying sensory imagery from decorative description",
+      "choose a sensory bridge for an abstract idea",
+      "analyze whether an image helps recall the main point",
+      "evaluate when vividness distracts from the message"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one abstract noun in your talk and replace it with the smallest real thing the audience could see, hear, touch, or picture in five seconds.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

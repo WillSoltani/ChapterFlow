@@ -6,7 +6,7 @@
   "hook": "The nurse who charts in real time did not find more discipline, she put the tablet on wheels.",
   "counterintuition": "Most readers assume the gap between people who keep a habit and people who don't is effort or want. It is usually steps. Cut two physical motions out of the start of a behavior and adherence rises without anyone trying harder, which is why moving the shoes beats vowing to walk.",
   "tryThisNow": "Find the app you check most on your phone. Now find the app you wish you used more. Swap their positions. Watch which one your hand reaches for next time you're bored. That's friction.",
-  "keyTakeaway": "Behavior follows friction, so pull the action you want within arm's reach and push the action you do not want one small step away, then let the seconds vote for you.",
+  "keyTakeaway": "Behavior follows friction, so pull the wanted action within arm's reach and push the unwanted one a step away; let seconds vote for you.",
   "breakdown": {
     "fastRead": "A woman keeps her running shoes in the back of the coat closet, behind the vacuum. She runs twice a month. She moves the shoes to a mat by the front door. She runs four times a week. Same goals. Same grit. Four feet of carpet between the couch and the sidewalk.\n\nYou do not do what you most want to do. You do what is easiest to start. Cut three steps off the thing you want. Add one step to the thing you do not. A month later you will call it willpower. It was forty seconds.",
     "deepRead": "It is 6:14 a.m. and an ICU nurse is charting twelve hours of vitals from memory. Her shift ended fourteen minutes ago. The tablet sat at the nurses' station all night, six rooms from her patients, so charting in real time meant a small trip every twenty minutes. She skipped the trips. Now her replacement is waiting, and somewhere in those reconstructed numbers is a dose someone will read tomorrow. A patient will swallow the rounding error.\n\nThe next week she clips the tablet to a wheeled cart and pushes the cart with her. No new policy. No reminder app. The backlog is gone by Thursday.\n\nBehavior follows friction. The action you take next is the one that costs the fewest seconds, the fewest steps, the least fumbling. You can want the harder thing badly. You will still default to the easier one, because a tired brain protects itself the only way it knows how.\n\nSo you do not become a person who beats friction. You redesign it. Pull the desired action close enough that starting it feels like nothing. Push the undesired action one step out, until starting it requires a conscious choice.\n\nA freelance tax preparer in March is losing two billable hours a day to her phone. She has three options. Delete the app, log out each time, or put the phone in a drawer in the next room. Deleting is brittle, she will reinstall by Tuesday. Logging out costs ten seconds, which is the same as nothing when a craving hits. The drawer costs about forty seconds and a chair scrape. She picks the drawer. By the second week, she stops reaching at all, because reaching no longer pays.\n\nNotice what she did not do. She did not promise to be better. She added forty seconds and let the seconds vote for her.",
@@ -85,7 +85,7 @@
         "format": "vignette",
         "requiredBeat": "the coordinator stops sending reminder emails and instead coils the hose at the gate with a chalkboard listing three plots; volunteer turnout doubles without a single new message sent"
       },
-      "scenario": "By 7:40 on a Saturday, Maeve has not sent the email she usually sends. She has coiled the green hose into a flat circle at the garden gate, set a small chalkboard above it, and written three plot numbers in yellow: 14, 22, 31. By 8:30, six volunteers have come and gone. The tomato leaves on plot 22 are no longer curling. Last Saturday, with three emails and a guilt-laced group text, only two people showed.",
+      "scenario": "By 7:40 on a Saturday, Maeve has not sent the email she usually sends. She has coiled the green hose into a flat circle at the garden gate, set a small chalkboard above it, and written three plot numbers in yellow: 14, 22, 31. By 8:30, six volunteers have come and gone. The tomato leaves on plot 22 are no longer curling. Last Saturday, with three emails and a guilt-laced group text, only two people showed. Maeve must decide whether to send another reminder or let the coiled hose become the easier path.",
       "whatToDo": "Stop adding messages. Put the tool, the cue, and the instructions at the threshold volunteers already cross, so picking up the hose takes fewer steps than walking past it.",
       "whyItMatters": "People act on what is already in their path. An email asks them to remember, plan, and travel. A coiled hose at the gate collapses all three into one motion they have already begun."
     },
@@ -123,7 +123,7 @@
         "format": "scene",
         "requiredBeat": "the cook arranges every container within one arm's reach in the order tickets fire, and the reader sees that 'least effort' was engineered hours before the first order printed"
       },
-      "scenario": "At 3:14pm Bartholomew stands at his station with a printed ticket history from last Friday and an empty stainless rail. He places shallots at his left hand because the seared duck fires first at 5:30 and needs them in the pan. Brown butter sits at the back left, ready to spoon. Microgreens go to his right, last touch before plating. By 4:50 every container is within one arm's reach, in the order the tickets will fire. He has not yet cooked a single thing.",
+      "scenario": "At 3:14pm Bartholomew stands at his station with a printed ticket history from last Friday and an empty stainless rail. He places shallots at his left hand because the seared duck fires first at 5:30 and needs them in the pan. Brown butter sits at the back left, ready to spoon. Microgreens go to his right, last touch before plating. By 4:50 every container is within one arm's reach, in the order the tickets will fire. He has not yet cooked a single thing. Bartholomew must decide whether to trust the rail setup before the first ticket prints.",
       "whatToDo": "Stage every component of the night within one arm's reach, ordered by the sequence tickets will fire, hours before service begins. Move bodies, not minds.",
       "whyItMatters": "During service, attention is the bottleneck, not skill. A step saved per ticket compounds across two hundred plates. The night was decided at 3pm, not at 7pm."
     }
@@ -320,9 +320,9 @@
   },
   "memorableLines": [
     {
-      "text": "It is usually steps.",
-      "location": "counterintuition",
-      "why": "Three words that overturn the reader's assumption about effort vs. motivation—the chapter's core insight, specific enough to reshape how they think about habit gaps."
+      "text": "You do not do what you most want to do. You do what is easiest to start.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the least-effort mechanism in plain terms: the easiest opening path often beats the strongest stated preference."
     },
     {
       "text": "A month later you will call it willpower. It was forty seconds.",

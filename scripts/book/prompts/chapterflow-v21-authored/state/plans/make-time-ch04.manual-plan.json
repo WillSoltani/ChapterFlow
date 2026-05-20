@@ -1,0 +1,184 @@
+{
+  "chapterId": "make-time-ch04",
+  "number": 4,
+  "title": "Energize",
+  "coreMove": "Choose one physical support that makes the next focus block easier to enter and sustain.",
+  "sourcePressure": "The source sidecar frames Energize around using the body to recharge the brain through movement, sleep, food, caffeine, recharge, and modest body-default changes.",
+  "chapterSpecificMisunderstanding": "The wrong generic version turns the material into health optimization. The specific move is to make a small physical choice that supports attention for the Highlight and Laser block.",
+  "sourceAlignmentTerms": [
+    "Energize",
+    "movement",
+    "sleep",
+    "food",
+    "caffeine",
+    "recharge",
+    "body defaults"
+  ],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "exhausted worker drinks coffee",
+      "gym transformation",
+      "late-night laptop fatigue"
+    ],
+    "counterintuition": [
+      "health supports productivity",
+      "your body matters too"
+    ],
+    "tryThisNow": [
+      "stand up and stretch",
+      "drink a glass of water",
+      "take a deep breath"
+    ],
+    "examples": [
+      "generic office worker walking at lunch",
+      "parent trying to exercise before work",
+      "student eating better snacks",
+      "biohacker routine"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a court stenographer preparing for a three-hour deposition transcript review",
+      "audience": "a precision worker who treats fatigue as a moral problem",
+      "stakes": "a name error remains in the record if attention drops after lunch",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "she moves the heavy lunch order aside, chooses a lighter meal before review, and schedules a ten-minute courthouse stair loop as the Energize support for the transcript block",
+      "firstImage": "a transcript page with three similar surnames circled in pencil",
+      "mustInclude": [
+        "transcript page",
+        "courthouse stair loop",
+        "lunch order"
+      ],
+      "mustAvoid": [
+        "generic court drama",
+        "diet sermon"
+      ]
+    },
+    {
+      "domain": "a winter road dispatcher managing plow assignments through midnight",
+      "audience": "an operations worker whose focus depends on sleep and caffeine timing",
+      "stakes": "a missed plow route leaves a hill untreated before school traffic",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "he delays the second caffeine bottle until the 10:30 route audit, sets a short nap alarm before the storm peak, and treats those choices as support for the assignment board",
+      "firstImage": "a salt-route board dotted with blue magnets under fluorescent light",
+      "mustInclude": [
+        "caffeine bottle",
+        "nap alarm",
+        "route audit"
+      ],
+      "mustAvoid": [
+        "bus depot",
+        "heroic all-nighter"
+      ]
+    },
+    {
+      "domain": "a pediatric speech therapist preserving energy for afternoon evaluations",
+      "audience": "a clinician whose best attention gets spent before the most delicate session",
+      "stakes": "a child's evaluation notes blur if the therapist arrives depleted",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "before, she fills the lunch gap with paperwork; after, she walks the clinic courtyard, eats before the session, and starts the evaluation with recharge already built in",
+      "firstImage": "picture-card prompts lined up beside a small audio recorder",
+      "mustInclude": [
+        "clinic courtyard",
+        "picture-card prompts",
+        "evaluation notes"
+      ],
+      "mustAvoid": [
+        "classroom therapy scene",
+        "generic self-care break"
+      ]
+    },
+    {
+      "domain": "a jewelry appraiser inspecting estate diamonds under magnification",
+      "audience": "a specialist who needs steady attention for small visual differences",
+      "stakes": "a flawed appraisal changes an inheritance split",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she predicts the second hour will be the danger point, adds a movement reset between trays, and compares the inspection accuracy before and after the reset",
+      "firstImage": "a black velvet tray holding three labeled diamond packets",
+      "mustInclude": [
+        "loupe",
+        "movement reset",
+        "appraisal tray"
+      ],
+      "mustAvoid": [
+        "luxury shopping",
+        "generic fatigue complaint"
+      ]
+    },
+    {
+      "domain": "a wildfire logistics planner rebuilding a crew rotation board",
+      "audience": "a planner who mistakes endurance for attention",
+      "stakes": "a crew gets double-booked if the rotation board is edited while depleted",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "after a double-booking, she traces the error to skipped food and no recharge, then makes the snack crate and shaded walk part of the next board update",
+      "firstImage": "a soot-smudged crew rotation board propped against a folding chair",
+      "mustInclude": [
+        "snack crate",
+        "shaded walk",
+        "crew rotation board"
+      ],
+      "mustAvoid": [
+        "disaster montage",
+        "hustle endurance lesson"
+      ]
+    },
+    {
+      "domain": "a music mastering engineer preparing final playback decisions",
+      "audience": "an audio professional whose ears and attention fatigue together",
+      "stakes": "the final master ships with harsh high end if he reviews while drained",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he marks the point where caffeine stopped helping yesterday, takes a silent walk before the final playback, and returns to the console for one Energize-supported pass",
+      "firstImage": "two waveform peaks frozen above a pair of nearfield monitors",
+      "mustInclude": [
+        "silent walk",
+        "final playback pass",
+        "caffeine note"
+      ],
+      "mustAvoid": [
+        "generic musician inspiration",
+        "headphones-only anchor"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "match movement, sleep, food, caffeine, or recharge support to a specific attention demand",
+      "distinguish modest focus support from broad health optimization",
+      "analyze physical defaults that make a Laser block fail",
+      "evaluate when an Energize move is practical support versus productivity theater"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at the next demanding attention block and choose one body support for it: movement, food, caffeine timing, sleep protection, or recharge. Make the support visible on the schedule.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm -- a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  },
+  "readingTimeMinutes": 12
+}

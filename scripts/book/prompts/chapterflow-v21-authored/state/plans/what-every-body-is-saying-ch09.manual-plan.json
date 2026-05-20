@@ -1,0 +1,177 @@
+{
+  "chapterId": "what-every-body-is-saying-ch09",
+  "number": 9,
+  "title": "Detecting Deception",
+  "coreMove": "When deception is possible, use nonverbal changes to locate pressure points and verification needs, not to declare a lie.",
+  "sourcePressure": "The source sidecar makes this the strongest caution point. It supports pressure points, inconsistency, pacifying, topic-linked change, baseline, clusters, and verification, while explicitly warning against treating behavior as a lie detector.",
+  "chapterSpecificMisunderstanding": "The weak version becomes a lie-detection checklist. The writer must show that stress, inconsistency, or pacifying behavior can guide inquiry but cannot prove deceit.",
+  "sourceAlignmentTerms": [
+    "deception",
+    "pressure",
+    "inconsistency",
+    "stress",
+    "verification",
+    "baseline",
+    "clusters",
+    "pacifying",
+    "topic-linked change",
+    "inquiry"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A detective catches a liar from one gesture.",
+      "A suspect fails an eye-contact test.",
+      "A courtroom witness exposes guilt through fidgeting."
+    ],
+    "counterintuition": [
+      "Most people think lying is hard to spot, but actually the body gives it away.",
+      "Stress equals guilt.",
+      "Pacifying behavior means deception."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and spot lies.",
+      "Ask someone a trick question and watch their body.",
+      "Use three body cues to decide whether someone is lying."
+    ],
+    "examples": [
+      "Police interrogation fantasy.",
+      "Poker tell as deception proof.",
+      "Romantic partner lying about attraction.",
+      "Generic employee theft accusation.",
+      "Pseudo-forensic cue checklist."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "insurance adjuster reviewing a hail-damage roof claim",
+      "audience": "an adjuster trying to decide what needs documentation without accusing the homeowner",
+      "stakes": "a false accusation damages trust, but an unverified timeline can cost thousands",
+      "format": "scene",
+      "requiredBeat": "The homeowner's baseline stays loose while discussing shingles, but at the date of the first leak he grips the gutter photo, rubs his neck, and looks back at the contractor estimate, so the adjuster asks for weather records and repair invoices.",
+      "firstImage": "A glossy gutter photo is clipped to a storm-damage estimate.",
+      "mustInclude": [
+        "gutter photo",
+        "contractor estimate",
+        "weather record"
+      ],
+      "mustAvoid": [
+        "detective reveal",
+        "fraud verdict from rubbing",
+        "roofing technical lecture"
+      ]
+    },
+    {
+      "domain": "research grant office reconciling a missing equipment receipt",
+      "audience": "a grant administrator checking a lab's expense explanation",
+      "stakes": "the office must protect compliance without treating discomfort as proof of misuse",
+      "format": "postmortem",
+      "requiredBeat": "The lab coordinator answers easily about the microscope, but when the shipping date and receipt number diverge, her fingers interlace, the chair shifts back, and her words get more precise than the documents, so the administrator flags the date gap for verification.",
+      "firstImage": "A missing-receipt notice is stapled to a microscope purchase order.",
+      "mustInclude": [
+        "purchase order",
+        "shipping date",
+        "receipt number"
+      ],
+      "mustAvoid": [
+        "university lab chemical spill face scene",
+        "academic misconduct drama",
+        "hand interlacing as guilt"
+      ]
+    },
+    {
+      "domain": "youth sailing club checking a damaged club boat log",
+      "audience": "a program director speaking with three teenagers after a cracked rudder is found",
+      "stakes": "the director needs a reliable sequence for safety and repair, not a shaming confession",
+      "format": "dialogue",
+      "requiredBeat": "All three teens fidget, but only when dock time is compared with the wind log does one stop swinging his foot, hide both hands under the flotation cushion, and correct the minute twice, so the director asks everyone to rebuild the timeline from launch to return.",
+      "firstImage": "A cracked rudder rests beside a wet flotation cushion.",
+      "mustInclude": [
+        "wind log",
+        "flotation cushion",
+        "launch roster"
+      ],
+      "mustAvoid": [
+        "ferry boarding lower-body scene",
+        "teen guilt story",
+        "confession chase"
+      ]
+    },
+    {
+      "domain": "theater box office investigating duplicate refund requests",
+      "audience": "a box office manager reviewing a confusing refund pattern with a season-ticket holder",
+      "stakes": "the manager must distinguish system error from possible misuse without humiliating a loyal patron",
+      "format": "decision_point",
+      "requiredBeat": "The patron stays animated about seat locations, but when the second refund email appears, the smile holds too long, the envelope folds tighter, and the body turns toward the lobby exit; the manager chooses a transaction audit rather than a confrontation.",
+      "firstImage": "Two refund emails are printed beside a torn ticket envelope.",
+      "mustInclude": [
+        "refund emails",
+        "ticket envelope",
+        "transaction audit"
+      ],
+      "mustAvoid": [
+        "coat-check theater line",
+        "face-only lie read",
+        "customer-service politeness shell"
+      ]
+    },
+    {
+      "domain": "food co-op inventory count after a case of saffron goes missing",
+      "audience": "a store manager checking process gaps with a trusted stock clerk",
+      "stakes": "a rushed accusation can destroy a relationship, while a careful read can locate the inventory break",
+      "format": "predict_reveal",
+      "requiredBeat": "The clerk's usual counting rhythm is steady until the locked spice cabinet is mentioned; then his hands leave the clipboard, his arms fold around the count sheet, and he asks whether cameras were checked before answering the delivery question.",
+      "firstImage": "A blank saffron slot shows inside a locked spice cabinet.",
+      "mustInclude": [
+        "locked spice cabinet",
+        "count sheet",
+        "delivery question"
+      ],
+      "mustAvoid": [
+        "generic employee theft accusation",
+        "arms equals guilt",
+        "surveillance panic"
+      ]
+    },
+    {
+      "domain": "art school portfolio review after an image-source concern",
+      "audience": "a faculty panel asking a student about a suspiciously familiar composition",
+      "stakes": "the panel needs to verify process without turning stress into plagiarism proof",
+      "format": "before_after",
+      "requiredBeat": "The student's voice shakes throughout the review, so that alone means little; the useful change comes when the reference-board question lands and she stops touching her own sketches, grips the tablet, and gives a timeline that conflicts with the file dates.",
+      "firstImage": "A tablet file-date panel glows beside a charcoal sketch.",
+      "mustInclude": [
+        "reference board",
+        "file-date panel",
+        "charcoal sketch"
+      ],
+      "mustAvoid": [
+        "art crate condition-photo scene",
+        "stress equals plagiarism",
+        "gotcha critique"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify topic-linked changes that mark pressure points without proving deception",
+      "separate baseline stress from meaningful shifts around documents, dates, sequence, or evidence",
+      "choose verification steps that follow nonverbal pressure without accusation",
+      "evaluate and reject lie-detector shortcuts based on fidgeting, eye contact, pacifying, or inconsistency alone"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Review one recent moment when you suspected a mismatch. Write the exact topic where behavior changed, then write one document, timeline, or neutral question that would verify the issue without naming a lie.",
+  "readingTimeMinutes": 12
+}

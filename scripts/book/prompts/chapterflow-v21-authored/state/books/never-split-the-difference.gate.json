@@ -2,7 +2,7 @@
   "bookId": "never-split-the-difference",
   "title": "Never Split the Difference: Negotiating as if Your Life Depended on It",
   "author": "Chris Voss, Tahl Raz",
-  "promotedAt": "2026-05-12T00:48:17.081Z",
+  "promotedAt": "2026-05-13T20:06:03.636Z",
   "chapterCount": 10,
   "shipGate": {
     "perChapter": [
@@ -10,1091 +10,75 @@
         "chapter": 1,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Isandro twists his headset cord at 10:18 a.m. in the fifth-floor phone room while the renewal form glows on his monitor. \"The price is fine,\" Maren says, then stops breathing into the phone. He has t…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 642 pm in\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 2,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Kalliope has a paper clip bent flat beside her keyboard at 2:13 p.m. in the claims center when the homeowner says, \"That repair date is impossible.\" Her screen shows the approved vendor window, May 1…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Efrat stands at 4:55 p.m. in the middle school hallway with a stack of placement forms against her hip. A parent points at the algebra recommendation and says, \"This feels rushed.\" The principal's do…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "At 5:48 a.m. on the north ferry dock, gulls crying over the ramp, Baptiste hears a deckhand say the plate is \"slick at the hinge.\" The first crossing boards in twelve minutes. He nearly asks whether …"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[5]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Renwick sits at 6:22 p.m. at the basement circulation desk with the rain smell coming through the coat room. A patron slaps a fine notice on the counter and says, \"This is the first I heard of it.\" R…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 213 pm in\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 3,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Lovisa holds a warm blanket at 11:06 a.m. outside imaging room B while a daughter crushes a paper cup in one hand. The scan is forty minutes late. The daughter keeps asking who is in charge. Lovisa c…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Heledd sits at 9:41 p.m. at the dining table, the suspension form under a salt shaker. Her son says, \"Fine,\" and kicks the chair leg. \"You were not fine when the assistant principal called,\" Heledd s…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 1106 am outside\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 4,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Eitan sits at 1:12 p.m. in the clinic scheduling office, appointment card pinched between two fingers. \"Tuesday at nine?\" he asks. The patient says, \"Sure,\" with no weight in it. Eitan almost prints …"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Sasko stands at 5:44 p.m. beside bay two, rain ticking on the metal awning while the vendor scans storm radar on his phone. The shipment is needed by morning. When Sasko asks about the 7 p.m. slot, t…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Jerrick sits at 6:31 a.m. in the freight bullpen with a cold egg sandwich beside the keyboard. A carrier has ignored three yes-seeking emails about a rush lane to Tulsa. Jerrick predicts another dead…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 827 am on\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 5,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Marceline watches a capped marker roll across the folding table at 3:03 p.m. in the union hall basement. Management says the new schedule saves overtime. The stewards say it wrecks childcare. She has…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Zehra stands at 6:38 p.m. in the church basement beside a dented coffee urn. \"Nobody told us the freezer moved,\" one volunteer says. \"Or that the truck comes early,\" says another. A third points at t…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 303 pm in\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 6,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "At 12:19 p.m. in the consignment shop, Maiko hangs two price tags from one brass nail on the back of the antique cabinet. The buyer has called $940 insulting. Maiko does not defend it. She points to …"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Vesna sits at 10:02 a.m. at the benefits desk with two plan cards laid square. The employee reads the specialist copay line twice and covers it with her thumb. The new plan saves twelve dollars a pay…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[3]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Reuben stands at 7:17 p.m. beside the tasting table, lemon tarts cooling on a wire rack. \"A service fee on top of food is unfair,\" the client says. Reuben almost says the fee is standard. Instead he …"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Shula crouches at 9:44 a.m. behind her art fair booth, writing prices on blue tape stuck to crate lids. She predicts that $2,000 will bring the usual \"Would you take fifteen?\" Instead she writes $2,1…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 1219 pm in\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 7,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Belkis sits at 8:36 a.m. in the nonprofit's grant office, binder clips lined beside the phone. The reviewer says, \"Your file is incomplete.\" Belkis wants to argue that the portal crashed. Instead she…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Fenwick stands at 2:47 p.m. behind the repair counter, a cracked tablet between him and a customer asking for a refund. The register key for refunds is in the manager's pocket, and the manager is acr…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "At 7:18 a.m. at the Maple Street curb, Orrick holds a clipboard damp from mist while eight parents point at the new bus stop. He could explain the route software. Instead he asks, \"What would a safe …"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 521 pm in\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 8,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Damari stands at 9:55 a.m. in the dental lab, plaster dust on his sleeve and a rush crown case beside the scanner. The technician says, \"We can fit it in,\" but keeps sorting other trays. The courier …"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Justine stands at 6:04 p.m. in the community gym, van keys on a lanyard beside the sign-up sheet. \"We are good for Saturday,\" three parents say. She smiles, then points at the blank columns. \"Who tak…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Keziah stands at 12:33 p.m. between two farmers market stalls, tomato vines smelling sharp in the heat. A vendor promises to bring twelve extra crates next week. Keziah predicts the answer is thin be…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 412 pm after\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 9,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Bernardo stands at 11:27 a.m. in the gallery storage room with a wrapped painting leaning against his knee. The collector offers $12,000 before the brown paper is even off. Bernardo looks at the labe…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Safwan sits at 7:09 p.m. in the wedding venue office, linen swatches spread like playing cards. The couple asks for waived corkage, cheaper chairs, and an extra hour in one breath. Safwan feels the u…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[5]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "At 6:52 a.m. at the flea market, Yocheved sets a velvet tray of repaired watches on a folding table still wet with dew. A reseller points at the whole tray and offers eighty dollars. Yocheved looks a…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 148 pm in\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       },
       {
         "chapter": 10,
         "passed": true,
         "blockers": [],
-        "majors": [
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[0]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Eugenio stands at 9:33 p.m. behind the corner store counter, a spare key tag under the cash drawer rattling when the landlord says the lease extension is impossible. The milk cooler hums too loudly. …"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[1]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Keturah sits at 6:50 a.m. in the marina office, a tide table curling beside the repair quote. The yard manager says the price is firm. Keturah predicts parts are the reason. Then she asks, \"What happ…"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[2]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Fumiko stands at 3:14 p.m. beside the hospital vending machine, a granola bar stuck behind the glass. Two charge nurses are fighting over weekend staffing with unusual heat. \"What changed this week?\"…"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q01",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A buyer keeps repeating one objection while avoiding details. What is the strongest first move?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q02",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A teammate gives a quick yes but names no owner or next step. What should you treat that yes as?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q04",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A vendor says the price is unfair and points to a cheaper quote with unclear scope. What should you do first?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q05",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A client says no to your proposal but stays on the call. What does that no make possible?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q06",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "You need a sentence that applies the core move in a tense room. Which one fits best?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q07",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A meeting ends with smiles, but no one says who will do the work. What risk is most live?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q08",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A negotiation seems stuck after all visible facts are named. What should you search for next?"
-          },
-          {
-            "catalogId": "D1",
-            "severity": "major",
-            "unit": "quiz.q09",
-            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
-            "evidence": "A colleague uses the technique with a sharp, scripted tone and the room tightens. What went wrong?"
-          }
-        ],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 933 pm in\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "majors": [],
+        "minors": []
       }
     ],
     "totalBlockers": 0,
-    "totalMajors": 138
+    "totalMajors": 0
   },
   "bookGate": {
     "bookId": "never-split-the-difference",
@@ -1103,15 +87,31 @@
     "findings": [],
     "stats": {
       "answerPositionCounts": [
+        37,
         30,
-        30,
-        30
+        23
       ],
-      "answerPositionPctMax": 0.3333333333333333,
+      "answerPositionPctMax": 0.4111111111111111,
       "totalQuizQuestions": 90,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "never-split-the-difference",
+        "chapterCount": 10,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

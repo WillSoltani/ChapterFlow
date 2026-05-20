@@ -1,0 +1,206 @@
+{
+  "chapterId": "games-people-play-ch04",
+  "number": 4,
+  "title": "Why Games Feel So Hard to Stop",
+  "coreMove": "Identify the stroke supply and life-position confirmation a game provides before asking someone to give it up.",
+  "sourcePressure": "Unpacks strokes, time structuring, life positions, and the reason games persist even when they hurt.",
+  "chapterSpecificMisunderstanding": "Assuming a painful pattern continues because someone likes pain or lacks willpower, rather than because it reliably supplies recognition, structure, avoidance, or position proof.",
+  "sourceAlignmentTerms": [
+    "stroke",
+    "positive stroke",
+    "negative stroke",
+    "stroke deprivation",
+    "life position",
+    "I'm OK, you're OK",
+    "time structuring",
+    "replacement before exit"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "stroke",
+      "detail": "the source defines a stroke as a unit of social recognition and emphasizes that negative strokes are often preferred to no strokes",
+      "useIn": "both",
+      "phrasingHint": "A fight can feed a person in the thin way a negative stroke feeds: badly, but on time."
+    },
+    {
+      "kind": "artifact",
+      "name": "four life positions",
+      "detail": "the source lists I'm OK, you're OK; I'm OK, you're not OK; I'm not OK, you're OK; and I'm not OK, you're not OK as positions games can confirm",
+      "useIn": "both",
+      "phrasingHint": "The game does not only create a bad feeling; it proves the old position again."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'Why Games Feel So Hard to Stop' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Heather",
+      "domain": "night-shift warehouse complaint ritual before loading doors open",
+      "audience": "a team lead who wants to stop the daily boss-bashing without removing the only reliable contact workers get",
+      "stakes": "morale, safety checks, and a fragile sense of belonging",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Heather replaces the complaint circle with a two-minute load-risk check that still gives each person a turn and a nod.",
+      "firstImage": "Forklift backup beeps echo before the loading doors rise.",
+      "mustInclude": [
+        "scanner cradle",
+        "pallet wrap roll",
+        "dock schedule board"
+      ],
+      "mustAvoid": [
+        "bus depot shell",
+        "generic bad boss talk"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "freelance invoice chase with a late-paying client",
+      "audience": "a designer who keeps entering a drama that proves clients never respect him",
+      "stakes": "cash flow and a familiar grievance both arrive through the same pattern",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Nicolas sets an automatic deposit rule before the next project instead of sending the fourth angry message that would supply proof.",
+      "firstImage": "At 7:18 p.m., Nicolas refreshes the unpaid invoice for the sixth time.",
+      "mustInclude": [
+        "invoice portal",
+        "deposit clause",
+        "bank app notification"
+      ],
+      "mustAvoid": [
+        "generic freelancer rant",
+        "money mindset advice"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "post-divorce co-parenting pickup at a swimming pool lobby",
+      "audience": "a parent whose small accusations reliably pull the other parent into contact",
+      "stakes": "the child's transition and both adults' stroke hunger are at stake",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Megan answers the pickup time and backpack contents only, then gets social contact elsewhere before the next handoff.",
+      "firstImage": "Chlorine hangs in the lobby while the child ties one wet shoelace.",
+      "mustInclude": [
+        "goggles case",
+        "custody calendar",
+        "snack container"
+      ],
+      "mustAvoid": [
+        "courtroom game",
+        "custody-war melodrama"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "graduate seminar where one student always demolishes drafts",
+      "audience": "a student using critique to confirm he is the only serious thinker in the room",
+      "stakes": "peer trust and his own protection from inadequacy",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivier requires each critique to include one testable revision question, removing the superiority payoff while preserving recognition.",
+      "firstImage": "\"I just think the argument is naive,\" Olivier says, before anyone has opened their notebook.",
+      "mustInclude": [
+        "printed draft packet",
+        "seminar table placards",
+        "revision rubric"
+      ],
+      "mustAvoid": [
+        "generic classroom scene",
+        "Blemish catalog preview"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "family small business rota where one sibling always arrives late",
+      "audience": "a sibling who keeps proving she is the irresponsible one everyone expects",
+      "stakes": "the shop opens short-staffed and the family story stays intact",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sofia sees that scolding supplies the role, so she changes the rota consequence and adds one clean place to earn trust.",
+      "firstImage": "It took Sofia four Saturdays to notice that the lecture was part of the schedule.",
+      "mustInclude": [
+        "bakery keys",
+        "shift rota",
+        "till float envelope"
+      ],
+      "mustAvoid": [
+        "kitchen family fight",
+        "punishment fantasy"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "online language-learning group that rewards self-deprecation",
+      "audience": "a learner who gets attention by announcing failure before trying",
+      "stakes": "practice time is being traded for comforting strokes",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Min posts one specific pronunciation clip and asks for one correction, replacing pity strokes with usable contact.",
+      "firstImage": "You can get ten kind replies by saying you are hopeless before you record a single sentence.",
+      "mustInclude": [
+        "voice memo waveform",
+        "phonetic note card",
+        "group chat thread"
+      ],
+      "mustAvoid": [
+        "generic social media doom",
+        "confidence coaching"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why negative strokes can be sticky",
+      "match game persistence to life-position confirmation",
+      "choose replacement before exit",
+      "distinguish leaving a pattern from losing its supply"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one recurring irritation and ask: what recognition, structure, escape, or position proof does this reliably deliver?",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

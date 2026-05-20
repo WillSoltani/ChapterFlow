@@ -1,0 +1,330 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch37",
+  "number": 37,
+  "title": "False Causality",
+  "readingTimeMinutes": 12,
+  "hook": "Two lines can rise together and still have nothing to do with each other.",
+  "counterintuition": "A pattern can feel like proof because the mind wants a cause. The safer move is to ask what mechanism would make one thing produce the other.",
+  "tryThisNow": "Pick one claim that says X caused Y. Write the timing, the shared third factor, and the mechanism that would have to connect them.",
+  "keyTakeaway": "Do not turn sequence or correlation into cause until a mechanism and a stronger test are visible.",
+  "breakdown": {
+    "fastRead": "The market memo sits on the folding table at a drilling safety huddle while Amber reviews last month's incidents. Injuries fell after a new shift poster went up. The supervisor wants to credit the poster. Amber writes false causality beside the chart.\n\nA cause needs more than timing. One thing can happen before another without producing it. Two numbers can move together because both are pushed by a third force. A story may sound neat while the real link is missing.\n\nA pattern is not yet a cause.\n\nThe correction is to ask for the mechanism. What would make X create Y? What else changed alongside it? What stronger evidence would separate cause from coincidence?",
+    "deepRead": "The market memo in Amber's drilling safety huddle shows fewer incidents after a new poster campaign. The crew also changed supervisors, replaced a faulty torque tool, and delayed the most dangerous maintenance work because of rain. Amber marks false causality risk on the memo because the poster may be innocent praise attached to a better explanation.\n\nFalse causality thrives on tidy timing. A change happens. An outcome follows. The mind draws an arrow between them because arrows feel useful. The arrow may be right, but it has not earned its place until the mechanism can carry weight. If the poster caused safer work, how did it change behavior? Did crews mention it? Did near misses change by task type? Did the effect appear where the poster was seen and not where it was absent?\n\nThe arrow needs a bridge.\n\nAnthony sees the same danger on an orchestra audition panel. After closed-door auditions, more women advanced. A board member says the door caused every improvement. Anthony marks correlation risk on the list before rewriting policy language. The door may have helped by hiding identity from the panel. It may also have coincided with a new applicant pool, different repertoire, or a new scoring sheet. The claim should not be rejected, but it should be tested with the mechanism in view.\n\nThis discipline is not cynicism. It does not say every causal claim is false. It says a cause should do causal work. If you cannot say how the link operates, what else could explain the pattern, and what evidence would make the claim weaker, you are still holding a story, not a cause.\n\nGood explanations survive contact with rival explanations.",
+    "fullRead": "The postmortem note on Donna's water district bid review smells faintly of copier heat. A contractor won three small projects, and customer complaints fell afterward. The room wants to say the contractor improved service quality. Donna points to a second line in the file: those projects were also in neighborhoods where the old pipe maps had just been corrected. She writes mechanism risk on the note before the next contract is renewed.\n\nFalse causality often begins with relief. A result changes, and the mind wants to know why. The first story that fits the order of events becomes the cause. But sequence is only a clue. It tells you where to look, not what happened.\n\nThe old stork example makes the warning plain. Places with more storks once seemed to have more babies. The tempting arrow was absurd: storks do not deliver children. A third factor, rural setting, could explain both more nesting storks and larger families. The numbers moved together, but the cause was elsewhere.\n\nAnother familiar case is the books-at-home story. Reports such as To Read or Not To Read have made reading culture visible, and homes with many books often show stronger reading outcomes. But the shelf itself may not be the active ingredient. Books at home can signal parents who read, time spent with language, income, school expectations, or a household where quiet study is easier. If you treat the shelf as the cause, you may buy books and miss the habits that gave the shelf meaning.\n\nWhat would have to be true for the claimed cause to work?\n\nDonna asks that in the water district room. If the contractor caused the complaint drop, then improvement should be strongest on work the contractor touched, not just in neighborhoods with corrected maps. It should survive after adjusting for call-center staffing and weather. It should show up in the kind of complaints the contractor could affect. The team delays renewal until those checks are done.\n\nYou can feel this in a game studio retention board. You are holding a commitment card from a new player-loyalty campaign while Gabriel reviews a week of higher logins. Someone says the cards caused retention. Gabriel must decide whether this is a stork example risk: a launch event, streamer mention, or school holiday may have lifted logins at the same time.\n\nA practical causal check has three parts. First, name the timing: which came first, and by how much? Second, name the mechanism: what path would carry the effect? Third, name the rival: what third factor, selection effect, or measurement change could explain the same pattern? You do not need a full research lab for every daily decision. You need enough doubt to avoid spending money on a pretty arrow.\n\nDo not turn sequence or correlation into cause until a mechanism and a stronger test are visible.",
+    "whyItMatters": "False causality makes neat stories feel like evidence. Readers need to demand a mechanism and rival explanation before acting on a causal claim."
+  },
+  "examples": [
+    {
+      "exampleId": "ch37-ex01-amber-market-memo",
+      "title": "Amber Tests the Safety Poster Story",
+      "tags": [
+        "scene",
+        "drilling",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "a drilling safety huddle applying False Causality under operational pressure",
+        "audience": "a reader who has to make a live judgment where false causality could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if False Causality is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the market memo, names the false causality risk, and changes the next choice in view of another person."
+      },
+      "scenario": "A market memo sits on a folding table at Amber's 6:20 a.m. drilling safety huddle in Aberdeen after injuries fall during a poster campaign. New tools and a new supervisor arrived the same week, and the night crew changed shift length. Amber must decide whether false causality is hiding in the safety report.",
+      "whatToDo": "Mark false causality risk on the memo, list every change that arrived with the poster, and delay expanding the campaign until the mechanism is visible.",
+      "whyItMatters": "Crediting the poster too quickly could miss the tool repair or supervisor change that actually made the work safer."
+    },
+    {
+      "exampleId": "ch37-ex02-anthony-closed-door-list",
+      "title": "Anthony Tests the Audition Door",
+      "tags": [
+        "vignette",
+        "orchestra",
+        "correlation"
+      ],
+      "planSpec": {
+        "domain": "a orchestra audition panel applying False Causality under operational pressure",
+        "audience": "a reader who has to make a live judgment where correlation could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if False Causality is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the closed-door list, names the correlation risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"The screen fixed it,\" the conductor says as Anthony sets a closed-door list beside the 2 p.m. orchestra audition panel in Vienna. More women advanced this season, but repertoire and applicant mix also changed. Anthony has to choose whether correlation should become policy proof.",
+      "whatToDo": "Mark correlation risk on the list, name the likely mechanism, and compare outcomes by rounds, instruments, and scoring rules before claiming cause.",
+      "whyItMatters": "The screen may matter, but policy should rest on more than two lines moving in the desired direction."
+    },
+    {
+      "exampleId": "ch37-ex03-donna-postmortem-note",
+      "title": "Donna Finds the Pipe-Map Rival",
+      "tags": [
+        "dialogue",
+        "water district",
+        "mechanism"
+      ],
+      "planSpec": {
+        "domain": "a water district bid review applying False Causality under operational pressure",
+        "audience": "a reader who has to make a live judgment where mechanism could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if False Causality is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the postmortem note, names the mechanism risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The postmortem note is warm from the copier in Donna's 11:10 a.m. water district bid review in Halifax. Complaints dropped after one contractor's projects, but pipe maps were corrected too, and call-center staffing changed. Donna must decide whether mechanism risk should slow the renewal vote.",
+      "whatToDo": "Mark mechanism risk on the note, test whether complaint drops match the contractor's actual work, and compare neighborhoods with the same map update.",
+      "whyItMatters": "A contractor should not get credit for a fix that may have come from cleaner maps."
+    },
+    {
+      "exampleId": "ch37-ex04-gabriel-commitment-card",
+      "title": "Gabriel Checks the Stork Risk",
+      "tags": [
+        "decision",
+        "game studio",
+        "retention"
+      ],
+      "planSpec": {
+        "domain": "a game studio retention board applying False Causality under operational pressure",
+        "audience": "a reader who has to make a live judgment where stork example could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if False Causality is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the commitment card, names the stork example risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are in a Montreal game studio at 9:40 a.m., holding a commitment card from the loyalty campaign while Gabriel studies a retention board. Logins rose during a streamer event and school break. Gabriel must decide whether the stork example risk applies before funding the next campaign.",
+      "whatToDo": "Mark stork example risk on the card, separate campaign players from event players, and ask what mechanism would make the card bring people back.",
+      "whyItMatters": "A loyalty card can sit near a retention jump without causing it, just as a stork can sit near a birth rate."
+    },
+    {
+      "exampleId": "ch37-ex05-lisa-open-loop-list",
+      "title": "Lisa Separates Books From Reading Habits",
+      "tags": [
+        "predict",
+        "pharmacy",
+        "layout"
+      ],
+      "planSpec": {
+        "domain": "a pharmacy flu-shot layout applying False Causality under operational pressure",
+        "audience": "a reader who has to make a live judgment where books at home could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if False Causality is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the open-loop list, names the books at home risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Lisa one Saturday clinic in Portland to see the open-loop list was copying the books at home mistake. Flu-shot uptake was higher near shelves of wellness brochures, but staff also guided those customers and offered insurance help. Lisa must decide whether the layout caused the uptake.",
+      "whatToDo": "Mark books at home risk on the list, separate brochure exposure from staff guidance, and test a layout change without extra coaching.",
+      "whyItMatters": "The brochures may signal a stronger support habit instead of cause the flu-shot decision by themselves."
+    },
+    {
+      "exampleId": "ch37-ex06-oliver-news-alert-queue",
+      "title": "Oliver Reopens the Fabric Waitlist",
+      "tags": [
+        "postmortem",
+        "fashion",
+        "waitlist"
+      ],
+      "planSpec": {
+        "domain": "a fashion fabric waitlist applying False Causality under operational pressure",
+        "audience": "a reader who has to make a live judgment where false could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if False Causality is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the news alert queue, names the false risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which waitlist spike was falsely credited to the celebrity news alert? Oliver asks at a 5:15 p.m. fashion fabric review in Milan, placing the news alert queue beside the preorder sheet. He marks false risk, then rewrites the next report to test alerts against price cuts and delivery dates.",
+      "whatToDo": "Compare the alert timing with discount emails, delivery promises, and social posts before calling the news queue the cause.",
+      "whyItMatters": "A celebrity mention can happen near a demand spike while a price or delivery change does the real work."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a false-causality case, a workplace poster appears, and injuries fall the next month, a manager says the poster caused the safety gain, even though tools and supervisors changed too. What is the false-causality risk?",
+        "choices": [
+          "The timing may be treated as proof even though another change may explain the result.",
+          "What timing treated fits the immediate pressure around says caused safety; hold next month manager steady and test appears injuries fall later.",
+          "Poster appears injuries looks strong enough to guide fall next month; manager says caused can wait unless safety gain even changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The poster came before the improvement, but timing alone is not cause. Rival changes and mechanism need to be checked.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "False Causality makes false-causality case feel more decisive than the record supports, and that misprices workplace poster in this scene. The correct move keepss the choice by the timing may be treated as proof even though another change may explain."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a false-causality review, an orchestra uses screened auditions and sees more women advance, while repertoire, applicant pool, and scoring rules also changed, what should the panel do before claiming cause?",
+        "choices": [
+          "Also changed what supports a narrower read of auditions sees women; keep advance repertoire applicant central and leave pool scoring rules aside.",
+          "Name the mechanism and compare outcomes across rounds, instruments, and scoring changes.",
+          "Claiming cause name fits the immediate pressure around repertoire applicant pool; hold sees women advance steady and test orchestra screened auditions later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The screen may matter, but other changes arrived too. A mechanism and comparison help separate cause from a broad pattern.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "False Causality works by letting false-causality orchestra crowd out screened auditions, which can misreads the sees women decision. Name the mechanism and compare outcomes across rounds, instruments, and scoring changes keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When false-causality pressure appears, a water district says a contractor caused complaints to fall after three projects. The same neighborhoods also received corrected pipe maps. Which move best avoids false causality?",
+        "choices": [
+          "Corrected pipe maps points toward a quicker call on caused complaints fall; let district says contractor stand until neighborhoods also received contradicts it.",
+          "Maps move best fits the immediate pressure around fall after three; hold contractor caused complaints steady and test water district says later.",
+          "Compare complaint types and neighborhoods to see whether the contractor's work or the map correction fits the drop."
+        ],
+        "correctIndex": 2,
+        "explanation": "The answer tests rival explanations. The contractor should get credit only if the pattern fits work the contractor could affect.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "False Causality turns appears water into a shortcut, so the room can overweights district says while missing contractor caused. Compare complaint types and neighborhoods to see whether the contractor's work or the map correction fits the drop protects the decision."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After false-causality risk surfaces, a game studio launches loyalty cards during a streamer event and school break, logins rise. What question should guide the next budget decision?",
+        "choices": [
+          "What mechanism would make the card bring players back, and did card users behave differently from event-only users?",
+          "School break logins supports a narrower read of false-causality surfaces game; keep studio launches loyalty central and leave cards streamer event aside.",
+          "Logins rise what points toward a quicker call on game studio launches; let after false-causality surfaces stand until event school break contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The card, streamer, and school break all sit near the outcome. Mechanism and separation by groups test the causal claim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "False Causality would push the game studio case toward launches loyalty, creating a cost when cards during stays untested. The useful guardrail is to what mechanism would make the card bring players back, and did card users behave differently from."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If false-causality reasoning takes over, a pharmacy finds higher flu-shot uptake near shelves with wellness brochures, but staff guided those customers more often. What is the books-at-home style mistake?",
+        "choices": [
+          "Treating the visible object as the cause while missing the habits or support around it.",
+          "Uptake near shelves makes false-causality reasoning pharmacy look credible; use finds higher flu-shot first and revisit wellness brochures staff when guided those customers shifts.",
+          "Customers often what supports a narrower read of flu-shot uptake near; keep shelves wellness brochures central and leave staff guided those aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "Like books at home, the brochures may signal a support environment instead of cause the outcome alone.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "False Causality converts finds higher into the loudest signal, which can rushes flu-shot uptake before near shelves is checked. The better answer separatess attention on treating the visible object as the cause while missing the habits or support around it."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While false-causality pressure builds, a fashion brand credits a celebrity news alert for a waitlist spike, the same hour included a discount email and a shorter delivery promise. What should the postmortem emphasize?",
+        "choices": [
+          "Alert waitlist spike makes builds fashion brand look credible; use credits celebrity news first and revisit hour included discount when email shorter delivery shifts.",
+          "Testing alert timing against price and delivery changes before naming a cause.",
+          "Included discount email points toward a quicker call on fashion brand credits; let false-causality pressure builds stand until waitlist spike hour contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "A vivid alert can steal credit from other changes. The postmortem should compare rival causes that could also move demand.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "False Causality hides inside the false-causality pressure choice because false-causality pressure seems sufficient, yet the cost lands in false-causality pressure. Testing alert timing against price and delivery changes before naming a cause brings the false-causality pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the false-causality call, a nonprofit says mentoring caused higher graduation rates because mentored students graduate more often. Mentored students also had more family support before joining. What is missing?",
+        "choices": [
+          "A causal test that separates mentoring from the prior support that may have selected students into the program.",
+          "Students graduate often supports a narrower read of call nonprofit says; keep mentoring caused higher central and leave graduation rates mentored aside.",
+          "Often also family points toward a quicker call on says mentoring caused; let false-causality call nonprofit stand until mentored students graduate contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The pattern may reflect selection. The program needs evidence that mentoring itself changes outcomes, not only that stronger students joined.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "False Causality pressures the call nonprofit decision toward the easy reading of call nonprofit. That can inflates the real cost unless the choice is grounded in a causal test that separates mentoring from the prior support that may have selected."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose false-causality risk is present: a city analyst sees playground repairs and lower injury calls rise and fall together across four neighborhoods. A colleague says to ignore the pattern because correlation is not causation. Which response is strongest?",
+        "choices": [
+          "Analyst sees playground gives a practical reason for false-causality present city; calls rise fall belongs after repairs lower injury clarifies the result.",
+          "Correlation can be a clue, but it needs mechanism, rival explanations, and stronger evidence before action.",
+          "Across four neighborhoods supports a narrower read of sees playground repairs; keep lower injury calls central and leave rise fall together aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "A pattern can point to a possible cause. It becomes actionable only after the causal bridge and alternatives are tested.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "False Causality is the mechanism here: correlation starts posing as cause, so present city can overpower present city. Correlation can be a clue, but it needs mechanism, rival explanations, and stronger evidence before action keeps the scenario from becoming a."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "You are asked to build a rule for reports that claim a campaign, policy, layout, or vendor caused an improvement. Which rule best prevents false causality?",
+        "choices": [
+          "Asked build rule looks strong enough to guide reports claim campaign; policy layout vendor can wait unless caused improvement best changes the stakes.",
+          "Vendor caused improvement gives a practical reason for campaign policy layout; causality require timing belongs after best prevents false clarifies the result.",
+          "Require timing, mechanism, rival explanations, and one stronger comparison before spending more."
+        ],
+        "correctIndex": 2,
+        "explanation": "This rule is practical without being naive. It turns a neat story into a cause only after the link survives better checks.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "False Causality makes the reports claim evidence look cleaner than it is, risking a reports claim mistake in this setting. The answer protects reports claim by asking for require timing, mechanism, rival explanations, and one stronger comparison before spending more."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch37-card01",
+      "front": "Two numbers rise together. What should you ask before naming cause?",
+      "back": "Ask what mechanism connects them and what third factor could move both."
+    },
+    {
+      "cardId": "ch37-card02",
+      "front": "A change happens before an improvement. What does timing prove?",
+      "back": "Timing shows where to look. It does not prove the change caused the improvement."
+    },
+    {
+      "cardId": "ch37-card03",
+      "front": "What is the stork-example warning?",
+      "back": "A silly causal story can hide a third factor that explains both things moving together."
+    },
+    {
+      "cardId": "ch37-card04",
+      "front": "Why can books at home mislead causal thinking?",
+      "back": "Books may signal reading habits, parental support, income, or school expectations instead of act as the sole cause."
+    },
+    {
+      "cardId": "ch37-card05",
+      "front": "What is the core correction for false causality?",
+      "back": "Demand a mechanism, rival explanation, and stronger comparison before acting on a causal story."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to slow causal stories until they show their work. A useful claim names timing, mechanism, rival explanations, and the evidence that would separate them.",
+    "ifThenPlans": [
+      {
+        "context": "operations reports",
+        "plan": "If a report says one change caused an improvement, then I will list every other change that happened at the same time."
+      },
+      {
+        "context": "marketing decisions",
+        "plan": "If a campaign gets credit for a spike, then I will ask what mechanism moved customers and what other offers were live."
+      },
+      {
+        "context": "policy reviews",
+        "plan": "If a policy is praised from before-and-after numbers, then I will ask for a comparison group or rival explanation."
+      },
+      {
+        "context": "postmortems",
+        "plan": "If a vivid event gets blamed or credited, then I will test whether less vivid changes fit the pattern better."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, find one causal claim in a meeting, article, or dashboard and write the mechanism plus one rival cause before accepting it.",
+    "weeklyPractice": "Once this week, take one before-and-after result and build a three-column check: claimed cause, possible third factor, stronger test."
+  },
+  "memorableLines": [
+    {
+      "text": "A pattern is not yet a cause.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a clean brake on causal overreach."
+    },
+    {
+      "text": "The arrow needs a bridge.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the mechanism requirement visual and memorable."
+    },
+    {
+      "text": "Do not turn sequence or correlation into cause until a mechanism and a stronger test are visible.",
+      "location": "breakdown.fullRead",
+      "why": "It states the operational rule for causal claims."
+    }
+  ]
+}

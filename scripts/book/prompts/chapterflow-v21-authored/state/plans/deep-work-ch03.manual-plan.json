@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch03",
+  "number": 3,
+  "title": "Deep Work Is Rare",
+  "coreMove": "Notice when an organization rewards responsiveness instead of contribution, then stop mistaking the signal for the work.",
+  "sourcePressure": "The source frame says modern organizations often reward shallow behaviors through constant connectivity and visible busyness.",
+  "chapterSpecificMisunderstanding": "The weak version complains about interruption; the chapter must expose the incentive system that makes shallow behavior look valuable.",
+  "sourceAlignmentTerms": ["constant connectivity", "visible busyness", "shallow behaviors", "rare", "organizational defaults", "responsiveness"],
+  "forbiddenFrames": {
+    "hook": ["another useless meeting", "open office distraction", "Slack never stops"],
+    "counterintuition": ["busy is not productive", "meetings are bad"],
+    "tryThisNow": ["decline one meeting", "mute chat for an hour"],
+    "examples": ["generic corporate calendar", "startup standup", "remote worker chat overload"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a hospital quality-improvement team tracking response times",
+      "audience": "a department lead whose dashboard rewards quick replies over resolved defects",
+      "stakes": "infection-control fixes stall while everyone clears messages fast",
+      "format": "postmortem",
+      "requiredBeat": "the lead circles a metric showing twelve-minute reply averages and asks where the actual defect closure measure went",
+      "firstImage": "a quality dashboard projected above a table of unopened audit binders",
+      "mustInclude": ["reply-time metric", "defect closure", "infection-control audit"],
+      "mustAvoid": ["generic hospital meeting", "doctor pager scene"]
+    },
+    {
+      "domain": "a public radio newsroom after a breaking-news drill",
+      "audience": "an editor who rewards frantic channel activity",
+      "stakes": "the station broadcasts a shallow update instead of verified local context",
+      "format": "postmortem",
+      "requiredBeat": "she compares the chat transcript volume with the thin final script and sees the newsroom praised motion instead of reporting",
+      "firstImage": "a printed rundown with three blank source fields highlighted in blue",
+      "mustInclude": ["rundown", "source fields", "chat transcript"],
+      "mustAvoid": ["generic media chaos", "social media outrage"]
+    },
+    {
+      "domain": "an architecture firm using billable status rituals",
+      "audience": "a project architect whose design time keeps losing to visible coordination",
+      "stakes": "a library facade decision remains unresolved before the client review",
+      "format": "decision_point",
+      "requiredBeat": "he refuses to count a day of coordination pings as progress and reserves two uninterrupted hours for the facade section",
+      "firstImage": "a facade elevation pinned beside a stack of coordination notes",
+      "mustInclude": ["client review", "coordination log", "facade section"],
+      "mustAvoid": ["generic design inspiration", "meeting bashing"]
+    },
+    {
+      "domain": "a university lab where availability is treated as mentorship",
+      "audience": "a principal investigator whose open-door norm blocks manuscript thinking",
+      "stakes": "a grant renewal depends on a clear methods argument",
+      "format": "reflection",
+      "requiredBeat": "she counts how many interruptions were praised as helpful and how many moved the renewal argument forward",
+      "firstImage": "a grant draft open to the methods page with four sticky notes across the screen edge",
+      "mustInclude": ["grant renewal", "open-door norm", "methods argument"],
+      "mustAvoid": ["generic academic procrastination", "student classroom scene"]
+    },
+    {
+      "domain": "a logistics dispatch center ranking operators by radio availability",
+      "audience": "a supervisor whose scoreboard favors constant airtime",
+      "stakes": "route redesign work is ignored until fuel costs climb",
+      "format": "before_after",
+      "requiredBeat": "the supervisor adds a route-improvement result column beside the radio-response column and the top performer changes",
+      "firstImage": "a dispatch wallboard flashing response times above a fuel surcharge notice",
+      "mustInclude": ["radio-response column", "route redesign", "fuel cost"],
+      "mustAvoid": ["bus depot", "generic delivery chaos"]
+    },
+    {
+      "domain": "a nonprofit fundraising office measuring donor-touch counts",
+      "audience": "a development director whose staff is rewarded for contact volume",
+      "stakes": "major-donor strategy never gets built because small touches dominate the week",
+      "format": "dialogue",
+      "requiredBeat": "she asks a fundraiser to show which donor insight came from forty logged touches, and the silence reveals the metric problem",
+      "firstImage": "a donor CRM screen sorted by number of touches instead of gift potential",
+      "mustInclude": ["donor-touch count", "major-gift strategy", "CRM sort"],
+      "mustAvoid": ["generic charity appeal", "email complaint"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["diagnose shallow incentives in organizations", "separate responsiveness metrics from actual contribution", "spot visible busyness masquerading as value", "choose a metric or behavior that would protect depth"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Look at one workplace metric or praised behavior and write what deep contribution it might be replacing.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,153 @@
+{
+  "bookId": "super-thinking",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "super-thinking-ch01",
+      "title": "Being Wrong Less",
+      "sourcePressure": "Reducing avoidable error through unforced-error awareness, first-principles reasoning, antifragility, de-risking, and MVP testing.",
+      "coreMove": "Turn a confident idea into a smaller reality test after rebuilding its assumptions from first principles.",
+      "commonMisread": "Be cautious, avoid mistakes, and wait until you are certain.",
+      "mustUseTerms": [
+        "unforced error",
+        "first principles",
+        "antifragile",
+        "de-risking",
+        "minimum viable product",
+        "bounded stress"
+      ],
+      "mustNotDriftInto": [
+        "generic confidence advice",
+        "forecasting accuracy",
+        "neuroscience of bias"
+      ]
+    },
+    {
+      "number": 2,
+      "chapterId": "super-thinking-ch02",
+      "title": "Anything That Can Go Wrong, Will",
+      "sourcePressure": "Plans can fail through Murphy’s Law, perverse incentives, cobra-effect backfire, short-termism, and market failure.",
+      "coreMove": "Before launching a plan, trace what it rewards, how it can be gamed, and which delayed cost it hides.",
+      "commonMisread": "Assume everything fails and become pessimistic.",
+      "mustUseTerms": [
+        "Murphy's Law",
+        "perverse incentives",
+        "cobra effect",
+        "short-termism",
+        "market failure",
+        "Atlanta testing"
+      ],
+      "mustNotDriftInto": [
+        "fatalism",
+        "policy prescriptions",
+        "generic risk management"
+      ]
+    },
+    {
+      "number": 3,
+      "chapterId": "super-thinking-ch03",
+      "title": "Spend Your Time Wisely",
+      "sourcePressure": "Time allocation is governed by compound interest, opportunity cost, and present bias.",
+      "coreMove": "Protect a compounding use of time by naming the best displaced alternative and the near-term bribe that threatens it.",
+      "commonMisread": "Pack the calendar with efficient habits.",
+      "mustUseTerms": [
+        "compound interest",
+        "opportunity cost",
+        "present bias",
+        "procrastination",
+        "fitness goals",
+        "scarcity"
+      ],
+      "mustNotDriftInto": [
+        "hustle culture",
+        "calendar systems",
+        "generic habit stacking"
+      ]
+    },
+    {
+      "number": 4,
+      "chapterId": "super-thinking-ch04",
+      "title": "Becoming One with Nature",
+      "sourcePressure": "Systems change through environmental fit, slow momentum, tipping thresholds, and network reinforcement.",
+      "coreMove": "Read whether a system needs adaptation, flywheel effort, a threshold push, or network density before judging progress.",
+      "commonMisread": "Just go with the flow or wait for momentum.",
+      "mustUseTerms": [
+        "natural selection",
+        "peppered moth",
+        "flywheel",
+        "merry-go-round",
+        "tipping point",
+        "network effects",
+        "critical mass"
+      ],
+      "mustNotDriftInto": [
+        "startup mythology",
+        "biology lecture",
+        "climate or physics speculation"
+      ]
+    },
+    {
+      "number": 5,
+      "chapterId": "super-thinking-ch05",
+      "title": "Lies, Damned Lies, and Statistics",
+      "sourcePressure": "Base-rate discipline keeps vivid cases and narrow frames from masquerading as statistical truth.",
+      "coreMove": "Force a striking number to answer: compared with what usually happens, and what frame is missing?",
+      "commonMisread": "Distrust all statistics or demand formulas.",
+      "mustUseTerms": [
+        "base rate fallacy",
+        "background frequency",
+        "comparison frame",
+        "vivid example",
+        "broader rate",
+        "statistical skepticism"
+      ],
+      "mustNotDriftInto": [
+        "medical statistics lore",
+        "polling history",
+        "blanket cynicism"
+      ]
+    },
+    {
+      "number": 6,
+      "chapterId": "super-thinking-ch06",
+      "title": "Decisions, Decisions",
+      "sourcePressure": "Decision trees tame complexity by splitting a hard choice into options, branches, outcomes, and visible uncertainty.",
+      "coreMove": "Turn one heavy feeling into named branches with consequences and unresolved unknowns marked in place.",
+      "commonMisread": "Draw boxes until the decision feels certain.",
+      "mustUseTerms": [
+        "decision tree",
+        "branches",
+        "outcomes",
+        "consequences",
+        "uncertainty",
+        "decomposition"
+      ],
+      "mustNotDriftInto": [
+        "formal expected value math",
+        "finance optimization",
+        "fake precision"
+      ]
+    },
+    {
+      "number": 7,
+      "chapterId": "super-thinking-ch07",
+      "title": "Dealing With Conflict",
+      "sourcePressure": "Conflict is strategic interaction shaped by game theory, authority, incentives, and selective engagement.",
+      "coreMove": "Read the response loop and legitimacy structure before deciding whether to press, reframe, give ground, or not play.",
+      "commonMisread": "Win arguments by being more strategic than the other person.",
+      "mustUseTerms": [
+        "game theory",
+        "authority",
+        "incentives",
+        "counter-moves",
+        "loss leader strategy",
+        "response loop"
+      ],
+      "mustNotDriftInto": [
+        "manipulation tactics",
+        "military doctrine",
+        "formal payoff matrices"
+      ]
+    }
+  ]
+}

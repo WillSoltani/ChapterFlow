@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch10",
+  "number": 10,
+  "title": "Digital Charisma",
+  "coreMove": "Replace missing physical cues with deliberate timing, specificity, and human signal in digital channels.",
+  "sourcePressure": "The source frames online charisma as a current applied topic where presence, power, warmth, and internal-state carryover must adapt to reduced-channel interaction.",
+  "chapterSpecificMisunderstanding": "The weak version becomes remote-work etiquette or personal branding. The useful version shows how to send presence, credibility, and goodwill when the channel strips away body language.",
+  "sourceAlignmentTerms": ["digital charisma", "reduced channel", "timing", "specificity", "presence", "warmth", "credibility", "online"],
+  "forbiddenFrames": {
+    "hook": ["Charisma matters online too", "Emails need warmth", "Digital communication loses body language"],
+    "counterintuition": ["Short messages feel cold", "Speed is not presence", "Video calls are not enough"],
+    "tryThisNow": ["Rewrite an email warmly", "Turn on your camera", "Use someone's name"],
+    "examples": ["generic Zoom meeting", "LinkedIn personal brand", "Slack etiquette", "social media posting"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a telehealth portal message from a dermatologist to a worried patient",
+      "audience": "a clinician whose brevity can feel like dismissal online",
+      "stakes": "whether the patient follows the patch-test plan instead of spiraling through search results",
+      "format": "scene",
+      "requiredBeat": "the dermatologist opens with the exact concern from the uploaded photo before giving the instruction, showing she has actually looked",
+      "firstImage": "a magnified rash photo beside a blinking portal reply box",
+      "mustInclude": ["patch-test date", "photo timestamp", "pharmacy note"],
+      "mustAvoid": ["generic medical advice", "bedside manner repeat"]
+    },
+    {
+      "domain": "an asynchronous design review for a museum kiosk interface",
+      "audience": "a remote lead whose comments need authority without chill",
+      "stakes": "whether a contractor fixes the navigation problem without feeling ambushed",
+      "format": "decision_point",
+      "requiredBeat": "she chooses a screen-recorded walkthrough with two timestamped notes instead of a blunt paragraph of corrections",
+      "firstImage": "a paused screen recording on a touchscreen floorplan",
+      "mustInclude": ["timestamped note", "kiosk prototype", "handoff deadline"],
+      "mustAvoid": ["usability lab from Chapter 1", "platform optimization"]
+    },
+    {
+      "domain": "a grant-review email to a rural arts collective after a partial rejection",
+      "audience": "an administrator whose message must carry respect through bad news",
+      "stakes": "whether the collective reapplies instead of feeling brushed aside",
+      "format": "before_after",
+      "requiredBeat": "contrast the template rejection with the revised email that names the strongest project detail before explaining the missing budget evidence",
+      "firstImage": "a draft rejection email split beside a scanned mural budget",
+      "mustInclude": ["budget line", "review rubric", "resubmission date"],
+      "mustAvoid": ["bureaucratic apology", "fundraising advice"]
+    },
+    {
+      "domain": "a remote robotics team troubleshooting thread during a regional qualifier",
+      "audience": "a teen captain leading through chat under time pressure",
+      "stakes": "whether scattered teammates stop duplicating fixes before the match",
+      "format": "dialogue",
+      "requiredBeat": "she pins one clear diagnostic step, tags the battery lead by role, and thanks the person who already ruled out the loose cable",
+      "firstImage": "a phone screen smeared with pit grease above a match countdown",
+      "mustInclude": ["pinned message", "battery voltage", "inspection flag"],
+      "mustAvoid": ["robotics pit from Chapter 1", "generic team chat"]
+    },
+    {
+      "domain": "a voice note from a travel nurse to a supervisor she has never met",
+      "audience": "a mobile worker who needs warmth without a long message",
+      "stakes": "whether the supervisor trusts her judgment about an unsafe housing assignment",
+      "format": "vignette",
+      "requiredBeat": "she records a thirty-second note that starts with the shared goal, gives one concrete safety detail, and leaves space for a decision",
+      "firstImage": "a voice-note waveform over a photo of a broken exterior lock",
+      "mustInclude": ["housing address", "shift start", "lock photo"],
+      "mustAvoid": ["complaint rant", "crisis escalation"]
+    },
+    {
+      "domain": "a condolence text from a project manager to a supplier after a family death",
+      "audience": "a professional who wants to be human without overstepping",
+      "stakes": "whether the supplier feels respected while logistics still move",
+      "format": "reflection",
+      "requiredBeat": "he deletes the efficient first draft, names the person's father once, and separates the shipment question into a later message",
+      "firstImage": "an unsent text cursor blinking after a supplier's father's name",
+      "mustInclude": ["shipment hold", "calendar reminder", "short condolence"],
+      "mustAvoid": ["performative empathy", "email etiquette"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "replace missing physical cues with specific evidence of attention",
+      "choose digital timing that signals presence without urgency theater",
+      "distinguish warmth from sugary overexplaining",
+      "evaluate whether a digital message carries credibility and goodwill"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before sending one digital message, add one specific sign that you saw their actual situation, then remove one sentence that only proves you are busy.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,128 @@
+{
+  "bookId": "the-war-of-art",
+  "updatedAt": "2026-05-18T18:10:20.245Z",
+  "usedProtagonistNames": [
+    "the-war-of-art-ch01 | Grace",
+    "the-war-of-art-ch01 | Etienne",
+    "the-war-of-art-ch01 | Rachel",
+    "the-war-of-art-ch01 | Luca",
+    "the-war-of-art-ch01 | Anya",
+    "the-war-of-art-ch01 | James",
+    "the-war-of-art-ch02 | Claire",
+    "the-war-of-art-ch02 | Daniel",
+    "the-war-of-art-ch02 | Sophie",
+    "the-war-of-art-ch02 | Anders",
+    "the-war-of-art-ch02 | Catarina",
+    "the-war-of-art-ch02 | Michael",
+    "the-war-of-art-ch03 | Olivia",
+    "the-war-of-art-ch03 | Thomas",
+    "the-war-of-art-ch03 | Camille",
+    "the-war-of-art-ch03 | Ingrid",
+    "the-war-of-art-ch03 | Javier",
+    "the-war-of-art-ch03 | Aanya"
+  ],
+  "usedExampleDomains": [
+    "the-war-of-art-ch01 | a nonprofit founder avoiding the first grant narrative by polishing the budget appendix",
+    "the-war-of-art-ch01 | an indie game designer delaying a playable demo through endless concept art",
+    "the-war-of-art-ch01 | a choir soloist rehearsing fragments instead of recording the audition file",
+    "the-war-of-art-ch01 | a climate researcher revising figures instead of submitting the paper",
+    "the-war-of-art-ch01 | a hardware inventor cleaning the bench instead of filing the provisional patent",
+    "the-war-of-art-ch01 | a new therapist postponing the first paid intake workshop",
+    "the-war-of-art-ch02 | an emergency department registrar keeping a discharge-summary hour before inbox triage",
+    "the-war-of-art-ch02 | an architecture apprentice returning to model work after a harsh critique",
+    "the-war-of-art-ch02 | a civil-service candidate using a fixed exam block instead of readiness checks",
+    "the-war-of-art-ch02 | a bakery owner running sourdough tests on schedule despite uneven batches",
+    "the-war-of-art-ch02 | a theatre understudy protecting vocal warmups after a missed cue",
+    "the-war-of-art-ch02 | a software maintainer shipping the small patch before debating confidence",
+    "the-war-of-art-ch03 | a legal aid lawyer cutting a clever paragraph that clouds the client's strongest fact",
+    "the-war-of-art-ch03 | a conservation officer rewriting a field report around the marsh, not personal credit",
+    "the-war-of-art-ch03 | a documentary editor removing a showy sequence that weakens the witness's story",
+    "the-war-of-art-ch03 | a hospice coordinator writing a family letter for accuracy rather than praise",
+    "the-war-of-art-ch03 | a public health analyst simplifying a dashboard so nurses can act faster",
+    "the-war-of-art-ch03 | a community arts director rejecting calling-language that lowers revision standards"
+  ],
+  "usedExampleAnchors": [
+    "the-war-of-art-ch01 | an unopened grant narrative with a polished appendix beside it",
+    "the-war-of-art-ch01 | a game controller beside twenty-seven creature sketches",
+    "the-war-of-art-ch01 | a phone voice-memo screen waiting on a red record button",
+    "the-war-of-art-ch01 | a journal submission portal open behind a revised figure legend",
+    "the-war-of-art-ch01 | a patent form under a tray of sorted machine screws",
+    "the-war-of-art-ch01 | twelve empty workshop chairs on a rented studio floor",
+    "the-war-of-art-ch02 | a discharge-summary queue before the message inbox",
+    "the-war-of-art-ch02 | a basswood model split at the corner after critique",
+    "the-war-of-art-ch02 | a sealed practice exam packet on a library desk",
+    "the-war-of-art-ch02 | three labeled dough tubs under a proofing shelf",
+    "the-war-of-art-ch02 | a piano app counting the first vocal scale",
+    "the-war-of-art-ch02 | a failing unit test beside the release checklist",
+    "the-war-of-art-ch03 | a legal brief paragraph circled as clever but confusing",
+    "the-war-of-art-ch03 | a mud-stained field notebook from the marsh",
+    "the-war-of-art-ch03 | a timeline with a beautiful shot dragging the testimony off course",
+    "the-war-of-art-ch03 | a half-written condolence letter beside a factual care note",
+    "the-war-of-art-ch03 | a triage dashboard with one unnecessary animation removed",
+    "the-war-of-art-ch03 | a grant bio that sounds holy but dodges revision"
+  ],
+  "usedHookFrames": [
+    "the-war-of-art-ch01 | concrete support artifact open while exposed sentence remains missing",
+    "the-war-of-art-ch02 | urgent inbox tries to vote before owed work appointment",
+    "the-war-of-art-ch03 | favorite polished paragraph clouds the served person's decisive fact"
+  ],
+  "usedCounterFrames": [
+    "the-war-of-art-ch01 | useful-looking delay judged by timing at exposure threshold",
+    "the-war-of-art-ch02 | readiness as respect versus appointment-led professional posture",
+    "the-war-of-art-ch03 | clean discipline still bent by vanity unless craft serves the task"
+  ],
+  "usedTryThisNowFrames": [
+    "the-war-of-art-ch01 | expose one circled project before improving support material",
+    "the-war-of-art-ch02 | write artifact-producing action into next likely-renegotiated work block",
+    "the-war-of-art-ch03 | remove one impressive-looking choice and replace with task-serving clarity"
+  ],
+  "usedQuizExplanationFrames": [
+    "the-war-of-art-ch01 | timing of support task reveals whether preparation protects exposed work",
+    "the-war-of-art-ch01 | real constraint separated from repeated threshold excuse",
+    "the-war-of-art-ch02 | appointment authority beats readiness, shame, and inbox urgency",
+    "the-war-of-art-ch02 | routine serves calling and becomes suspect when it shelters from exposed task",
+    "the-war-of-art-ch03 | craft choice tested by whether it serves task or worker image",
+    "the-war-of-art-ch03 | higher-purpose language earns trust only by raising precision and revision standards"
+  ],
+  "rejectedFrames": [
+    "all chapters | opening with a definition of Resistance, professionalism, or service",
+    "all chapters | six examples about blocked writers, painters, or musicians only",
+    "all chapters | counter frame that says the obvious problem is not the real problem",
+    "all chapters | tryThisNow as set a timer and start",
+    "the-war-of-art-ch01 | hook shell with blank page plus fear named in the first sentence",
+    "the-war-of-art-ch01 | examples where preparation is always folder cleaning",
+    "the-war-of-art-ch02 | hook shell with professional shows up when amateur waits",
+    "the-war-of-art-ch02 | routine framed as punishment or heroic grind",
+    "the-war-of-art-ch03 | airy Muse language with no visible edit, cut, or craft decision",
+    "the-war-of-art-ch03 | chosen artist language that flatters the worker"
+  ],
+  "chapterStatuses": {
+    "the-war-of-art-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-18T18:10:20.246Z"
+    },
+    "the-war-of-art-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 2,
+      "checkedAt": "2026-05-18T17:22:04.374Z"
+    },
+    "the-war-of-art-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-18T17:24:25.097Z"
+    }
+  }
+}

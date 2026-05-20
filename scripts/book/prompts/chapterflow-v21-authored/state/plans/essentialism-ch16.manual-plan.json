@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch16",
+  "number": 16,
+  "title": "Subtract: Bring Forth More by Removing Obstacles",
+  "coreMove": "Find the obstacle that slows the whole system and remove it before asking people to push harder.",
+  "sourcePressure": "The chapter teaches constraint removal through the slowest hiker idea: identify the bottleneck that controls throughput instead of adding effort everywhere.",
+  "chapterSpecificMisunderstanding": "A weak run would write about simplifying tasks or removing distractions rather than locating the controlling constraint.",
+  "sourceAlignmentTerms": [
+    "slowest hiker",
+    "constraint",
+    "subtract",
+    "obstacle",
+    "throughput",
+    "Lao-tzu"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic subtract: bring forth more by removing obstacles topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "generic simplification frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "generic simplification",
+      "more effort",
+      "random obstacle removal",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "trail crew finding the slowest hiker in a bridge-repair supply chain",
+      "audience": "crew lead seeing everyone work hard",
+      "stakes": "progress is governed by the one missing hinge shipment",
+      "format": "decision_point",
+      "requiredBeat": "She maps three steps, finds hinges as the bottleneck, and stops adding carpenters until delivery changes.",
+      "firstImage": "A bridge plank stack sits beside a missing-hinge list.",
+      "mustInclude": [
+        "plank stack",
+        "hinge list",
+        "crew map"
+      ],
+      "mustAvoid": [
+        "random obstacle removal",
+        "more effort"
+      ]
+    },
+    {
+      "domain": "hospital discharge team locating the pharmacy bottleneck",
+      "audience": "team tempted to hurry every department",
+      "stakes": "one prescription queue controls bed turnover",
+      "format": "scene",
+      "requiredBeat": "He times each handoff and removes duplicate pharmacy approval before asking nurses to move faster.",
+      "firstImage": "A discharge board shows stalled prescription icons.",
+      "mustInclude": [
+        "discharge board",
+        "prescription icons",
+        "handoff timer"
+      ],
+      "mustAvoid": [
+        "blaming slow worker",
+        "generic efficiency"
+      ]
+    },
+    {
+      "domain": "podcast network discovering artwork approval blocks episode releases",
+      "audience": "producer surrounded by busy editors",
+      "stakes": "editing faster will not help if artwork approval controls release",
+      "format": "postmortem",
+      "requiredBeat": "She lays episode cards in order and marks the artwork column where every card stalls.",
+      "firstImage": "Episode cards pile up under an artwork approval column.",
+      "mustInclude": [
+        "episode cards",
+        "approval column",
+        "release calendar"
+      ],
+      "mustAvoid": [
+        "media generic",
+        "work harder everywhere"
+      ]
+    },
+    {
+      "domain": "food co-op checkout line slowed by produce code lookup",
+      "audience": "operations lead seeing the true constraint",
+      "stakes": "adding cashiers misses the repeated lookup delay",
+      "format": "before_after",
+      "requiredBeat": "Before, she schedules more cashiers; after, she moves produce code cards to the scale and the line clears.",
+      "firstImage": "Produce code cards sit beside a checkout scale.",
+      "mustInclude": [
+        "produce code cards",
+        "checkout scale",
+        "line chart"
+      ],
+      "mustAvoid": [
+        "generic retail",
+        "customer blaming"
+      ]
+    },
+    {
+      "domain": "legal clinic intake delayed by missing income documents",
+      "audience": "clinic coordinator finding obstacle before adding appointments",
+      "stakes": "more appointment slots increase backlog if documents remain missing",
+      "format": "dialogue",
+      "requiredBeat": "She points to the missing-doc stack and builds a pre-call checklist before opening new slots.",
+      "firstImage": "A missing-document stack sits beside an appointment grid.",
+      "mustInclude": [
+        "document stack",
+        "appointment grid",
+        "pre-call checklist"
+      ],
+      "mustAvoid": [
+        "form cleanup overlap",
+        "random simplification"
+      ]
+    },
+    {
+      "domain": "boatyard repair project stuck behind one shared lift",
+      "audience": "yard manager identifying controlling equipment",
+      "stakes": "skilled crews wait because the lift schedule is the constraint",
+      "format": "vignette",
+      "requiredBeat": "Five finished hulls wait on stands while one lift key hangs from a pegboard, naming the real delay.",
+      "firstImage": "A single lift key hangs above waiting hull tags.",
+      "mustInclude": [
+        "lift key",
+        "hull tags",
+        "pegboard"
+      ],
+      "mustAvoid": [
+        "generic boat scene",
+        "heroic overtime"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the controlling constraint inside a concrete scenario",
+      "choose the response that removes the bottleneck before adding effort elsewhere",
+      "reject the generic drift: A weak run would write about simplifying tasks or removing distractions rather than locating the controlling constraint.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one stuck project and name the one obstacle that slows every other step. Do not add effort until you choose one removal move.",
+  "readingTimeMinutes": 12
+}

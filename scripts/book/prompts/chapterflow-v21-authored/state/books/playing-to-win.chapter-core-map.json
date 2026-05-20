@@ -1,0 +1,85 @@
+{
+  "bookId": "playing-to-win",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "playing-to-win-ch01",
+      "title": "Strategy Is Choice",
+      "sourcePressure": "Strategy is not a vision statement, a plan, or an optimization of the current business — it exists only when a coherent set of five integrated choices (winning aspiration, where to play, how to win, capabilities, management systems) reinforce each other. The Olay turnaround shows what this looks like: reinvention through a set of aligned choices, not more investment in the existing approach.",
+      "coreMove": "Recognize that a strategy exists only when its choices cohere and reinforce each other — a list of priorities, however ambitious, is not a strategy.",
+      "commonMisread": "Strategy means having a clear vision and ambitious goals; the more detailed the plan, the stronger the strategy.",
+      "mustUseTerms": ["cascade", "winning aspiration", "where to play", "how to win", "coherent choices", "Olay", "reinforce"],
+      "mustNotDriftInto": ["goal-setting frameworks", "execution planning", "operational efficiency", "general ambition advice"]
+    },
+    {
+      "number": 2,
+      "chapterId": "playing-to-win-ch02",
+      "title": "What Is Winning",
+      "sourcePressure": "The first choice in the cascade is a winning aspiration — concrete enough to guide subsequent field and advantage choices and to reject bad options. Saturn illustrates the cost of a participation-level aspiration: 'be a good alternative to imports' did not require choosing a field or building a real advantage, and investment followed without direction.",
+      "coreMove": "Name a winning aspiration specific enough that it can say no to an option — if the aspiration cannot reject anything, it is not yet guiding strategy.",
+      "commonMisread": "Winning means beating competitors on metrics — market share, revenue, ratings — rather than choosing which customers to delight and which alternatives to beat them on.",
+      "mustUseTerms": ["winning aspiration", "playing to win", "playing to play", "specific customers", "alternatives", "guiding", "Saturn"],
+      "mustNotDriftInto": ["OKRs", "SMART goals", "KPIs as strategy", "growth mindset rhetoric", "general ambition coaching"]
+    },
+    {
+      "number": 3,
+      "chapterId": "playing-to-win-ch03",
+      "title": "Where to Play",
+      "sourcePressure": "Where-to-play is an active multi-dimensional choice — across geography, customers, channels, categories, and vertical scope — not an inherited arena. Bounty chose a more attractive field rather than spreading across unattractive markets. The chapter warns against trying to serve everyone and against treating the current field as fixed.",
+      "coreMove": "Actively choose your competitive field by making explicit decisions about which customers, channels, and segments you will and will not pursue.",
+      "commonMisread": "Grow by serving more customers in more places — the safest field is the broadest one.",
+      "mustUseTerms": ["where to play", "field", "segmentation", "geography", "channels", "Bounty", "attractive segments"],
+      "mustNotDriftInto": ["customer personas in a marketing sense", "product-market fit startup framing", "general target-market language"]
+    },
+    {
+      "number": 4,
+      "chapterId": "playing-to-win-ch04",
+      "title": "How to Win",
+      "sourcePressure": "How to win is the choice about what kind of advantage or value equation will beat alternatives on the chosen field. Glad ForceFlex found a different route — solving a problem rivals were not optimizing for — rather than fighting head-to-head on the same terms. The chapter distinguishes competing harder on the rival's terms from finding an alternate path.",
+      "coreMove": "Design an advantage route that beats alternatives through a different value equation, not by matching rivals feature-for-feature with more intensity.",
+      "commonMisread": "Invest more in quality, speed, or service until you are clearly better than the competition at what the competition already does.",
+      "mustUseTerms": ["how to win", "value equation", "advantage", "head-to-head", "alternate path", "Glad ForceFlex", "offer logic"],
+      "mustNotDriftInto": ["Porter's Five Forces taxonomy", "product differentiation in abstract sense", "generic competitive strategy language"]
+    },
+    {
+      "number": 5,
+      "chapterId": "playing-to-win-ch05",
+      "title": "Play to Your Strengths",
+      "sourcePressure": "Capabilities are the specific things the organization must be able to do to deliver its chosen how-to-win choice. They matter as a system, not as a list of generic strengths. Gillette fit P&G's strategic needs because the capability system matched, not because Gillette was a large and well-regarded company. The chapter uses activity-system fit as the test.",
+      "coreMove": "Work backward from your how-to-win choice to identify the specific capability system it requires, then check whether that system exists or must be built.",
+      "commonMisread": "Build on your strengths — a general inventory of what your team does well is sufficient for strategic grounding.",
+      "mustUseTerms": ["capabilities", "activity system", "capability fit", "required capabilities", "Gillette", "capability gap"],
+      "mustNotDriftInto": ["talent management", "HR strategy", "team building rhetoric", "generic leadership strengths frameworks"]
+    },
+    {
+      "number": 6,
+      "chapterId": "playing-to-win-ch06",
+      "title": "Manage What Matters",
+      "sourcePressure": "Management systems are the fifth strategic choice — reviews, measures, routines, and accountability aligned to reinforce the earlier four choices. Strategy fails when systems reward old behavior instead of the new field, edge, and capabilities. The chapter distinguishes strategy reviews that create real dialogue from those that become corporate theater.",
+      "coreMove": "Redesign your reviews, metrics, and accountability so they reinforce the strategy's actual choices rather than reporting the old defaults.",
+      "commonMisread": "Track your KPIs and hold people accountable — any rigorous performance management system will keep a strategy on track.",
+      "mustUseTerms": ["management systems", "strategy review", "measures", "accountability", "dialogue", "corporate theater", "reinforce"],
+      "mustNotDriftInto": ["general performance management", "meeting efficiency advice", "OKR cascades as management systems"]
+    },
+    {
+      "number": 7,
+      "chapterId": "playing-to-win-ch07",
+      "title": "Think Through Strategy",
+      "sourcePressure": "Strategic thinking is iterative rather than linear certainty-seeking. The chapter teaches generating genuine strategic possibilities and analyzing them, rather than waiting for perfect information first. The strategy logic flow matters because the five questions inform each other — analysis is only useful when tied to live possibilities rather than detached abstraction.",
+      "coreMove": "Generate a set of genuinely different strategic possibilities before analyzing any of them — analysis can only test what imagination first created.",
+      "commonMisread": "Do thorough analysis first, then let the data point to the right strategy.",
+      "mustUseTerms": ["possibilities", "strategy logic flow", "iterative", "analysis", "conditions", "strategic thinking", "generate"],
+      "mustNotDriftInto": ["SWOT analysis as a template", "strategic planning as bureaucratic process", "forecasting models", "data-driven strategy in a general sense"]
+    },
+    {
+      "number": 8,
+      "chapterId": "playing-to-win-ch08",
+      "title": "Shorten Your Odds",
+      "sourcePressure": "Strategy should improve the odds under uncertainty rather than pretend certainty is available. Reverse engineering works backward from a desired strategic result to the conditions that would need to hold — 'what would have to be true' — turning debate into testable propositions. Barriers and uncertainties should be surfaced directly rather than buried in optimism.",
+      "coreMove": "Surface the conditions that must hold for each strategic option to succeed, then test the most uncertain conditions first instead of defending the most comfortable option.",
+      "commonMisread": "Reduce risk by choosing the safest option and running more scenarios — more analysis eventually produces enough certainty to act confidently.",
+      "mustUseTerms": ["what would have to be true", "reverse engineering", "conditions", "uncertainty", "barriers", "odds", "testable"],
+      "mustNotDriftInto": ["financial risk management", "scenario planning as forecasting", "risk tolerance frameworks", "probability math detached from strategic action"]
+    }
+  ]
+}

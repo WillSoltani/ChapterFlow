@@ -1,0 +1,66 @@
+{
+  "chapterId": "war-of-art-smoke-ch02",
+  "number": 2,
+  "title": "Resistance: Defining the Enemy",
+  "coreMove": "Name the specific face Resistance is wearing for you today in one short phrase before you try to push through it.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a forty-one-year-old paramedic finishing a night shift who has been almost-writing a memoir about her father's last year for three years",
+      "audience": "a reader who has been carrying an unfinished personal project past the point of comfort",
+      "stakes": "whether she opens the document tonight or files another excuse that sounds like reason",
+      "format": "scene",
+      "requiredBeat": "she catches Resistance speaking in her own voice, mid-sentence, and names it out loud in the parking lot before unlocking the car"
+    },
+    {
+      "domain": "a luthier in a small shop deciding whether to start the difficult inlay on a commissioned guitar or first reorganize the bench for the fourth time this week",
+      "audience": "a craftsperson who confuses preparation with avoidance",
+      "stakes": "a delivery date that is no longer abstract and a customer who has already paid half",
+      "format": "decision_point",
+      "requiredBeat": "the luthier identifies tidying as the day's costume Resistance is wearing and refuses to begin tidying until the inlay is started"
+    },
+    {
+      "domain": "a high school chemistry teacher who has wanted to apply to a doctoral program for six years and keeps redesigning the personal statement instead of submitting",
+      "audience": "a mid-career reader stalled at the edge of a bigger life",
+      "stakes": "a hard application deadline twelve days out and the private knowledge that the statement was good enough in March",
+      "format": "vignette",
+      "requiredBeat": "the teacher writes the sentence \"Resistance is rewriting today\" on a sticky note and submits without another revision"
+    },
+    {
+      "domain": "a defense attorney and her paralegal at 7:42 a.m. before a trial-prep block she has rescheduled four times",
+      "audience": "a reader who outsources their own avoidance to other people's urgencies",
+      "stakes": "a client's case and the attorney's standing with the bench",
+      "format": "dialogue",
+      "requiredBeat": "the paralegal asks what is actually stopping her and the attorney answers in one phrase, not a paragraph"
+    },
+    {
+      "domain": "a retired infantry sergeant trying to start a woodworking YouTube channel after thirty years of saying he would",
+      "audience": "a reader who has wanted to make something public for a long time and has not",
+      "stakes": "his sense of what the rest of his life is for",
+      "format": "reflection",
+      "requiredBeat": "he lists, in his own plain words, the four faces Resistance wore this week and recognizes the one wearing his late father's voice"
+    },
+    {
+      "domain": "a single father of a seven-year-old trying to finish a screenplay during the ninety minutes between drop-off and his shift at the warehouse",
+      "audience": "a reader with thin slivers of time and a real project inside those slivers",
+      "stakes": "the ninety minutes today, not the screenplay in the abstract",
+      "format": "before_after",
+      "requiredBeat": "before, he opens email first and loses the slot; after, he says the phrase \"not today\" to the inbox and opens the script cold"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

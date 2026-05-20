@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch18",
+  "number": 18,
+  "title": "How Groups Amplify Noise",
+  "coreMove": "Recognize when a group's apparent convergence has replaced independent thinking with social influence rather than aggregated it.",
+  "sourcePressure": "Groups do not automatically reduce noise by involving multiple people. Group deliberation tends to amplify variation when the first strong voice anchors the group, when social pressure narrows visible dissent, or when the meeting format collapses the distribution of independent views into a false consensus. The group appears to agree, but the agreement reflects who spoke first or most forcefully, not what the information actually supported.",
+  "chapterSpecificMisunderstanding": "Assuming that group discussion automatically improves judgment because it involves more minds, or that consensus equals correctness.",
+  "sourceAlignmentTerms": ["group deliberation", "amplification", "social influence", "anchoring", "convergence", "independent judgment", "cascade"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Informational cascade and social influence in group judgment",
+      "detail": "Research on group deliberation (including work on informational cascades and Cass Sunstein's analysis of group polarization) shows that groups tend to move in the direction of their initial leanings and amplify individual biases rather than canceling them. The mechanism is that discussion replaces independent information with social information.",
+      "useIn": "deepRead",
+      "phrasingHint": "In a deliberating group, the second person to speak has already heard from the first. That information — the first person's position — is now in the room. It is not data about the case. It is data about what the first person believes. But the second person will weight it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["meetings make you dumber", "stop having brainstorming sessions"],
+    "counterintuition": ["groups are worse at judgment than individuals", "committee decisions are systematically biased toward the loudest voice"],
+    "tryThisNow": ["run your next team meeting without letting anyone speak until they've written down their view", "notice who speaks first in your group meetings"],
+    "examples": ["a scene where a group makes a dramatically bad decision due to groupthink — the classic boardroom disaster — which is a bias story, not primarily a noise story", "a scene that implies all group discussion should be abolished rather than restructured"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Group-amplification examples risk all reading as 'group converges toward the first speaker and loses information.' The domains and formats need to show different amplification mechanisms (anchoring, cascade, polarization, conformity) in different group settings."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "investment committee review: a fund's investment committee measuring how post-discussion consensus compares to the pre-discussion aggregate of individual estimates",
+      "audience": "a fund's investment committee advisor who ran a pre-discussion anonymous polling exercise before the quarterly review meeting",
+      "stakes": "portfolio allocation decisions — if the committee's consensus is driven by who speaks first rather than by the information available, capital is misallocated",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the advisor reveals the pre-meeting poll results on the screen just before the discussion begins: the anonymous estimates span a 22-point range; after 40 minutes of discussion, the committee reaches a consensus within 3 points of the most senior partner's opening statement — and the advisor's chart shows the distribution collapsing toward that statement as each subsequent speaker adjusted their view",
+      "firstImage": "a projected anonymous poll distribution showing a 22-point spread, and below it a timeline showing the committee's stated positions converging toward one point after the first senior partner spoke",
+      "mustInclude": ["the 22-point pre-meeting spread", "the 3-point post-discussion range", "the convergence toward the senior partner's position, not toward the aggregate"],
+      "mustAvoid": ["a specific investment decision or loss", "implying the senior partner was wrong"]
+    },
+    {
+      "domain": "editorial board decision on a controversial article: a journal's editorial board measuring whether publication decisions depend on the sequence of member opinions",
+      "audience": "a journal editor-in-chief studying the effect of discussion order on publication decisions",
+      "stakes": "the integrity and diversity of the published record — if editorial decisions reflect who spoke first rather than the article's merit, the journal's quality filters are noisy",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two editors-in-chief from sister journals compare their boards' decision consistency: the journal that runs sequential oral discussion has 35 percent higher rate of reversals when the initial speaker changes versus the journal that collects written votes before discussion — the sequential-oral journal's decisions track the first speaker's view more than the article's score",
+      "firstImage": "two adjacent stacks of editorial board meeting minutes: one showing vote tallies that closely match individual written pre-scores, one showing final votes that have shifted toward the first speaker's position",
+      "mustInclude": ["the 35 percent higher reversal rate in sequential oral discussion", "the written-vote-first journal's higher stability", "the mechanism: sequential oral discussion converts information diversity into social conformity"],
+      "mustAvoid": ["a specific article or academic controversy", "implying one editorial board was incompetent"]
+    },
+    {
+      "domain": "hospital tumor board: a multidisciplinary cancer team measuring whether treatment recommendations change based on which specialist presents first",
+      "audience": "a cancer center quality officer studying decision consistency across tumor board meeting formats",
+      "stakes": "patient treatment plans — if the specialist who presents first anchors the group's recommendation, patients' treatment depends on meeting format rather than case complexity",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality officer reviews a year of tumor board cases where both a radiologist and an oncologist reviewed the same case: in meetings where the radiologist presented first, the recommended treatment aligned with the radiologist's interpretation in 73 percent of cases; in meetings where the oncologist presented first, alignment flipped — 71 percent with the oncologist; presentation order, not the imaging data, predicted the recommendation",
+      "firstImage": "a two-column comparison of tumor board recommendations: cases where radiologist presented first in one column, cases where oncologist presented first in the other — the recommendation alignment pattern visible",
+      "mustInclude": ["the 73/71 percent presenter-aligned recommendation pattern", "the implication that presentation order, not data, drives the outcome", "the quality officer's proposal: all specialist assessments should be recorded independently before the board meeting"],
+      "mustAvoid": ["a patient outcome story", "implying any specialist's assessment was medically wrong"]
+    },
+    {
+      "domain": "crisis response team decision: an emergency management team running a debriefing exercise on how the group reached a resource allocation decision under time pressure",
+      "audience": "a crisis management trainer analyzing a tabletop exercise debrief",
+      "stakes": "crisis resource allocation — if group decisions under pressure converge on the most senior or most vocal team member's view rather than the full information available, resource misallocation follows",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the trainer asks the team: in the tabletop exercise, six of you had different pieces of information that together pointed toward a different resource allocation than the one the group reached. How many of you had information that contradicted the group's direction but did not share it because the group seemed to be converging? Three hands rise. The group reached a suboptimal allocation because three members self-censored once the apparent consensus formed.",
+      "firstImage": "a crisis tabletop room with team members' hands partially raised after the trainer's question, their unshared information cards visible on the table in front of them",
+      "mustInclude": ["the three members who had contradictory information and self-censored", "the self-censorship as the amplification mechanism (convergence pressure suppresses dissent)", "the trainer's framing: the group did not lack information; it lacked the process to collect information before converging"],
+      "mustAvoid": ["a real emergency scenario", "a scene that implies the self-censoring members were cowardly"]
+    },
+    {
+      "domain": "academic tenure vote: a faculty committee comparing final vote outcomes before versus after introducing anonymous pre-ballot before deliberation",
+      "audience": "a university faculty governance officer studying whether anonymous pre-voting changes deliberation patterns",
+      "stakes": "faculty careers and departmental talent — tenure decisions that reflect who dominated the deliberation rather than the faculty record are unfair and harmful to institutional quality",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you introduce anonymous pre-ballots in tenure deliberations: each committee member casts an initial vote before open discussion; after discussion, they cast a final vote; in 14 of 22 cases over two years, at least one committee member changed their vote from the pre-ballot to the final vote — and the changes are skewed strongly toward the position of the first committee member to speak in open deliberation",
+      "firstImage": "a two-column vote comparison showing pre-deliberation anonymous ballots and final official votes for the same committee members across 22 cases, the arrows between columns showing the direction of changes",
+      "mustInclude": ["the 14-of-22 cases with vote changes", "the changes being skewed toward the first speaker's position", "your framing: these changes are not necessarily people updating on new information; they are people updating on social information"],
+      "mustAvoid": ["a specific faculty member's tenure case", "implying the vote changes were malicious or politically motivated"]
+    },
+    {
+      "domain": "jury deliberation in a civil case: a litigation consultant measuring whether early foreman statements predict final damage awards",
+      "audience": "a litigation consultant reviewing mock jury deliberation recordings for a trial strategy study",
+      "stakes": "the integrity of the jury deliberation process — if the foreman's early framing dominates the verdict, the process is not actually aggregating independent juror views",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the consultant reviews 30 mock jury deliberation recordings: in juries where the foreperson stated a specific damage number in the first five minutes of deliberation, the final award was within 20 percent of that number in 22 of 30 cases; in juries where the foreperson opened with a question rather than a number, the final award showed a wider distribution and was less predictable from any single early statement",
+      "firstImage": "a split-screen of two deliberation room recordings side by side: in one, the foreperson is seen writing a number on a whiteboard early; in the other, the foreperson has written a question — 'what factors should we consider?'",
+      "mustInclude": ["the 22-of-30 foreperson-anchor prediction", "the question-opener condition producing wider, less foreperson-anchored awards", "the mechanism: an early specific number is treated as an anchor even when no one explicitly agrees to it"],
+      "mustAvoid": ["a real civil case", "implying jury deliberation should be abolished or eliminated"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain the mechanism through which group deliberation amplifies rather than reduces judgment noise",
+      "distinguish between information aggregation (which reduces noise) and social conformity (which amplifies it) in a described group process",
+      "apply anti-amplification design to a group judgment process by identifying when independent recording should precede discussion",
+      "analyze why high-status or first-speaking group members produce greater amplification effects",
+      "evaluate whether a described group decision process is more likely to aggregate independent information or amplify the first speaker's view"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before your next team meeting that involves a judgment or rating — performance, investment, hiring — ask everyone to write their view on a slip of paper before anyone speaks. Collect the papers and read the range aloud before discussion begins. That range is the information the meeting has to work with. Track whether the final decision reflects the range or whether it collapses toward whoever spoke most forcefully in the first five minutes.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on why consensus in a group is not the same as accuracy, at least one 5+ sentence paragraph tracing the mechanism from first-speaker to final vote, at least one one-sentence punch line about what the group's apparent agreement actually measured",
+    "fullReadInterludeRequirement": "at least one paragraph on the informational cascade research as a brief aside — showing that this is not about bad faith or groupthink but about the structure of sequential information in deliberating groups",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "bookId": "the-great-mental-models-vol-1",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "the-great-mental-models-vol-1-ch01",
+      "title": "The Map Is Not the Territory",
+      "sourcePressure": "Maps, metrics, statements, plans, and models are useful reductions of reality, but their omissions and makers must be inspected and reality must update them.",
+      "coreMove": "Test a representation against ground truth before letting it govern the decision.",
+      "commonMisread": "Data and models are bad, so trust anecdotes or instinct instead.",
+      "mustUseTerms": ["map", "territory", "reduction", "cartographer", "reality update", "proxy", "Jane Jacobs"],
+      "mustNotDriftInto": ["anti-data sermon", "generic humility", "all models are useless"]
+    },
+    {
+      "number": 2,
+      "chapterId": "the-great-mental-models-vol-1-ch02",
+      "title": "Circle of Competence",
+      "sourcePressure": "The model is about knowing the perimeter of earned knowledge; size matters less than knowing where advantage ends.",
+      "coreMove": "Mark the edge of earned competence before deciding where to play, learn, or defer.",
+      "commonMisread": "Stay comfortable and avoid unfamiliar work.",
+      "mustUseTerms": ["circle of competence", "perimeter", "edge", "earned knowledge", "advantage", "Rose Blumkin", "Charlie Munger"],
+      "mustNotDriftInto": ["fixed mindset", "passion advice", "generic self-confidence"]
+    },
+    {
+      "number": 3,
+      "chapterId": "the-great-mental-models-vol-1-ch03",
+      "title": "Falsifiability",
+      "sourcePressure": "Popper's standard and Wason's work push claims toward risky tests instead of flexible after-the-fact confirmation.",
+      "coreMove": "Turn a claim into a test that could clearly prove it wrong.",
+      "commonMisread": "Collect more confirming evidence until the claim feels safe.",
+      "mustUseTerms": ["falsifiability", "refutable", "risky prediction", "confirmation bias", "Karl Popper", "Wason", "disproof"],
+      "mustNotDriftInto": ["debate tricks", "cynicism", "science trivia"]
+    },
+    {
+      "number": 4,
+      "chapterId": "the-great-mental-models-vol-1-ch04",
+      "title": "First Principles Thinking",
+      "sourcePressure": "The source contrasts inherited analogy with breaking a problem down into fundamental truths, using Lego disassembly, Socratic questioning, Five Whys, and Musk's battery and SpaceX examples.",
+      "coreMove": "Strip inherited assumptions from a problem and rebuild from what is actually true.",
+      "commonMisread": "Be more innovative by ignoring tradition.",
+      "mustUseTerms": ["first principles", "reasoning by analogy", "Socratic questioning", "Five Whys", "assumption", "fundamental truths", "Elon Musk"],
+      "mustNotDriftInto": ["startup hype", "anti-expertise", "blank-slate fantasy"]
+    },
+    {
+      "number": 5,
+      "chapterId": "the-great-mental-models-vol-1-ch05",
+      "title": "Thought Experiment",
+      "sourcePressure": "Thought experiments are structured mental simulations that simplify reality to test implications when physical experimentation is impossible, costly, or premature.",
+      "coreMove": "Run a constrained mental simulation to expose hidden assumptions before reality charges the full price.",
+      "commonMisread": "Imagine freely and call any scenario a thought experiment.",
+      "mustUseTerms": ["thought experiment", "mental simulation", "constraint", "implications", "Ernst Mach", "Einstein", "trolley problem"],
+      "mustNotDriftInto": ["abstract philosophy survey", "fantasy brainstorming", "replacing evidence forever"]
+    },
+    {
+      "number": 6,
+      "chapterId": "the-great-mental-models-vol-1-ch06",
+      "title": "Necessity and Sufficiency",
+      "sourcePressure": "Frozen support is thin; keep to the distinction between conditions that must be present and conditions that are enough to produce the outcome.",
+      "coreMove": "Separate must-have conditions from enough-to-produce conditions before choosing the lever.",
+      "commonMisread": "List every helpful factor and treat them all as equally required.",
+      "mustUseTerms": ["necessary condition", "sufficient condition", "must be present", "enough to produce", "condition", "outcome"],
+      "mustNotDriftInto": ["formal logic lecture", "unsupported named authorities", "root-cause theater"]
+    },
+    {
+      "number": 7,
+      "chapterId": "the-great-mental-models-vol-1-ch07",
+      "title": "Second-Order Thinking",
+      "sourcePressure": "The official framing asks the reader to trace consequence chains past the immediate result with the practical question, And then what?",
+      "coreMove": "Trace what the first result will cause next before choosing the attractive move.",
+      "commonMisread": "Make a longer pros-and-cons list.",
+      "mustUseTerms": ["second-order thinking", "consequence chain", "first-order effect", "downstream", "And then what", "later cost"],
+      "mustNotDriftInto": ["generic long-term thinking", "policy lecture", "complexity buzzwords"]
+    },
+    {
+      "number": 8,
+      "chapterId": "the-great-mental-models-vol-1-ch08",
+      "title": "Probabilistic Thinking",
+      "sourcePressure": "The model asks the reader to replace certainty with likelihoods, multiple possible futures, Bayesian updating, fat-tailed curves, and asymmetries.",
+      "coreMove": "Hold several possible futures with weighted odds and act where the payoff and downside are asymmetric.",
+      "commonMisread": "Say anything could happen and avoid commitment.",
+      "mustUseTerms": ["probability", "likelihood", "Bayesian thinking", "fat-tailed curves", "asymmetry", "range", "update"],
+      "mustNotDriftInto": ["statistics lecture", "false precision", "weather metaphor only"]
+    },
+    {
+      "number": 9,
+      "chapterId": "the-great-mental-models-vol-1-ch09",
+      "title": "Causation vs. Correlation",
+      "sourcePressure": "Frozen support is thin; keep to the practical warning that things moving together do not prove one produced the other.",
+      "coreMove": "Demand a plausible mechanism or test before treating association as cause.",
+      "commonMisread": "Correlation is worthless and should always be ignored.",
+      "mustUseTerms": ["causation", "correlation", "association", "mechanism", "confounder", "movement together", "produce"],
+      "mustNotDriftInto": ["statistical methods survey", "imported famous examples", "anti-data reflex"]
+    },
+    {
+      "number": 10,
+      "chapterId": "the-great-mental-models-vol-1-ch10",
+      "title": "Inversion",
+      "sourcePressure": "The source frames inversion as solving backward: ask what would cause failure, error, or ruin, then remove those causes.",
+      "coreMove": "Work backward from failure and remove the causes before chasing success directly.",
+      "commonMisread": "Be negative or pessimistic.",
+      "mustUseTerms": ["inversion", "work backward", "failure", "error", "ruin", "avoid stupidity", "remove causes"],
+      "mustNotDriftInto": ["fear-based planning", "generic risk register", "doomsday mood"]
+    },
+    {
+      "number": 11,
+      "chapterId": "the-great-mental-models-vol-1-ch11",
+      "title": "Occam's Razor",
+      "sourcePressure": "Frozen support is moderate and narrow; prefer the simpler sufficient explanation or structure, while stating that simplicity is not proof.",
+      "coreMove": "Choose the simplest sufficient explanation first, then add complexity only when the evidence forces it.",
+      "commonMisread": "The simplest story is always true.",
+      "mustUseTerms": ["Occam's razor", "simpler sufficient explanation", "unnecessary complexity", "fits the evidence", "not proof"],
+      "mustNotDriftInto": ["medieval history", "minimalism lifestyle advice", "lazy certainty"]
+    },
+    {
+      "number": 12,
+      "chapterId": "the-great-mental-models-vol-1-ch12",
+      "title": "Hanlon's Razor",
+      "sourcePressure": "Frozen support is moderate and narrow; do not rush to malice when ordinary error, ignorance, or confusion may explain enough, but do not deny real malice.",
+      "coreMove": "Check ordinary error before assigning hostile intent, while preserving the evidence that would change the call.",
+      "commonMisread": "Excuse harmful behavior and never hold anyone accountable.",
+      "mustUseTerms": ["Hanlon's razor", "malice", "ignorance", "confusion", "ordinary error", "sufficient explanation", "accountability"],
+      "mustNotDriftInto": ["forgiveness sermon", "proverb history", "conflict avoidance"]
+    }
+  ]
+}

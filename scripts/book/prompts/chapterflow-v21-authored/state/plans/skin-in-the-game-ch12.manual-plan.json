@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch12",
+  "number": 12,
+  "title": "The Facts Are True, the News Is Fake",
+  "coreMove": "Separate the raw event from the selection, salience, and frame that made it feel like the whole reality.",
+  "sourcePressure": "A narrative can distort judgment while each selected fact remains technically true.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into generic media outrage or claims that facts do not matter.",
+  "sourceAlignmentTerms": [
+    "raw facts",
+    "packaged narrative",
+    "salience",
+    "selection",
+    "framing",
+    "mediated signal",
+    "direct contact"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The Facts Are True, the News Is Fake",
+      "detail": "The frozen title and sidecar support the distinction between true facts and misleading narrative packaging.",
+      "useIn": "both",
+      "phrasingHint": "The useful tension is that the fact may be true and still leave the reader with a false map of what matters."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "local newsroom selecting one crime clip that skews neighborhood risk",
+      "audience": "editor separating true fact from false map",
+      "stakes": "residents may misjudge danger because salience has been engineered",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Manon places the clip beside the month's incident table before approving the homepage lead.",
+      "firstImage": "a police scanner beside a spreadsheet",
+      "mustInclude": [
+        "incident table",
+        "homepage lead",
+        "video clip"
+      ],
+      "mustAvoid": [
+        "media outrage"
+      ]
+    },
+    {
+      "domain": "investor reading a true but cherry-picked market story",
+      "audience": "portfolio manager detecting narrative packaging around facts",
+      "stakes": "clients may sell on a story that hides base context",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lars asks what true facts were left out before forwarding the market note.",
+      "firstImage": "a market note printed beside a return chart",
+      "mustInclude": [
+        "market note",
+        "return chart",
+        "omitted base rate"
+      ],
+      "mustAvoid": [
+        "fake-news slogan"
+      ]
+    },
+    {
+      "domain": "school parent group reacting to a viral hallway video",
+      "audience": "principal restoring sequence around a true clip",
+      "stakes": "a student could be judged by a fragment without the surrounding event",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Paula lines up the timestamped hallway footage before drafting the parent letter.",
+      "firstImage": "locker doors flashing in paused video",
+      "mustInclude": [
+        "timestamp log",
+        "parent letter",
+        "hallway clip"
+      ],
+      "mustAvoid": [
+        "school scandal drama"
+      ]
+    },
+    {
+      "domain": "public-health dashboard headline missing denominator context",
+      "audience": "analyst preventing true numbers from becoming false urgency",
+      "stakes": "resource allocation could follow panic rather than risk",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Jack adds denominators and trend lines before the alert leaves the dashboard.",
+      "firstImage": "amber cells on a dashboard screen",
+      "mustInclude": [
+        "denominator",
+        "trend line",
+        "alert draft"
+      ],
+      "mustAvoid": [
+        "statistics lecture"
+      ]
+    },
+    {
+      "domain": "sports article praising a player from one highlight while hiding defensive errors",
+      "audience": "coach teaching athletes to resist packaged salience",
+      "stakes": "training choices may chase clips instead of performance",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Min pauses the highlight reel and adds the missed rotations back into the review.",
+      "firstImage": "sneakers squeaking under a projector hum",
+      "mustInclude": [
+        "highlight reel",
+        "rotation chart",
+        "practice plan"
+      ],
+      "mustAvoid": [
+        "sports cliché"
+      ]
+    },
+    {
+      "domain": "tenant association interpreting a landlord email without maintenance records",
+      "audience": "organizer sorting fact from frame",
+      "stakes": "neighbors may accept a rent story that omits repair history",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Aleksy pins the email next to the maintenance log and asks what story survives both.",
+      "firstImage": "pushpins on a cork noticeboard",
+      "mustInclude": [
+        "landlord email",
+        "maintenance log",
+        "rent notice"
+      ],
+      "mustAvoid": [
+        "conspiracy tone"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify raw facts in a new concrete scenario",
+      "choose the action that performs the chapter move: Separate the raw event from the selection, salience, and frame that made it feel like the whole reality.",
+      "separate the chapter's mechanism from the weak misread: Turning the chapter into generic media outrage or claims that facts do not matter.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for The Facts Are True, the News Is Fake.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,197 @@
+{
+  "chapterId": "thinking-in-bets-ch05",
+  "number": 5,
+  "title": "The buddy system",
+  "coreMove": "Invite a trusted challenger to audit the story before ego edits it clean.",
+  "sourcePressure": "The chapter shows why solo review bends around ego and why a trusted challenger can test assumptions, confidence, and after-the-fact rewrites.",
+  "chapterSpecificMisunderstanding": "The writer must make challenge feel allied with accuracy; a buddy is not merely the person who makes the protagonist feel better.",
+  "sourceAlignmentTerms": [
+    "buddy system",
+    "truth-seeking correction",
+    "reassurance",
+    "self-serving story",
+    "outside challenge",
+    "assumptions",
+    "postmortem honesty"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the buddy system",
+      "detail": "The source defines the buddy system as an outside correction tool for forecasts, evidence, confidence, and post-outcome revision.",
+      "useIn": "both",
+      "phrasingHint": "The right buddy is a hand on the file before your ego starts cleaning the pages."
+    },
+    {
+      "kind": "event",
+      "name": "outside challenge of self-serving narration",
+      "detail": "The source says solo reflection bends too easily around ego, so another person must test the story.",
+      "useIn": "deepRead",
+      "phrasingHint": "A private explanation can sound clean because no one else has asked where the dirt went."
+    },
+    {
+      "kind": "artifact",
+      "name": "truth-seeking correction",
+      "detail": "The source separates correction from reassurance: real help challenges the comfortable version in service of accuracy.",
+      "useIn": "fullRead",
+      "phrasingHint": "Comfort may settle the nerves; correction makes the estimate answer for itself."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Find someone honest",
+      "You need accountability",
+      "A friend tells the truth"
+    ],
+    "counterintuition": [
+      "Support means criticism",
+      "Comfort is useless"
+    ],
+    "tryThisNow": [
+      "Call a trusted friend",
+      "Ask someone for feedback"
+    ],
+    "examples": [
+      "forecast slide challenged before vote",
+      "kitchen-table notebook rewrite",
+      "practice partner for competition"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "documentary edit room deciding whether a scene is fair",
+      "audience": "creative teams handling real people’s stories",
+      "stakes": "a dramatic scene could mislead viewers and damage a subject’s reputation",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel pauses the timeline and asks her editor to name what footage would weaken her preferred cut before she exports it.",
+      "firstImage": "The edit suite is dark except for a paused frame on a woman’s face.",
+      "mustInclude": [
+        "timeline marker",
+        "release form",
+        "unused footage bin"
+      ],
+      "mustAvoid": [
+        "generic media critique"
+      ]
+    },
+    {
+      "domain": "freelance tax estimate before quarterly filing",
+      "audience": "self-employed professionals",
+      "stakes": "a comforting estimate could become a penalty notice",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask Mikkel to show the invoice stack to the colleague who questions his deductions, not the friend who says it is probably fine.",
+      "firstImage": "You have a shoebox of receipts and one number that feels too painless.",
+      "mustInclude": [
+        "invoice stack",
+        "quarterly voucher",
+        "deduction list"
+      ],
+      "mustAvoid": [
+        "generic money anxiety"
+      ]
+    },
+    {
+      "domain": "surgical resident preparing for a difficult procedure simulation",
+      "audience": "medical trainees",
+      "stakes": "confidence from easy praise could hide a weak handoff before a high-risk simulation",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Laura chooses the attending who will stop the rehearsal at the first vague instruction and make her repeat the handoff until the risk is named.",
+      "firstImage": "The simulation lab smells faintly of disinfectant and warm plastic.",
+      "mustInclude": [
+        "handoff card",
+        "simulation mannequin",
+        "risk checklist"
+      ],
+      "mustAvoid": [
+        "hospital blame review from ch1"
+      ]
+    },
+    {
+      "domain": "patent pitch practice before investor due diligence",
+      "audience": "technical founders",
+      "stakes": "an untested novelty claim could collapse in due diligence",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 11:13 a.m., Henrik invites the engineer who doubts the novelty claim to interrogate slide seven before the investor does.",
+      "firstImage": "At 11:13 a.m., Henrik leaves slide seven on the projector and closes his laptop halfway.",
+      "mustInclude": [
+        "slide seven",
+        "prior-art search",
+        "investor diligence list"
+      ],
+      "mustAvoid": [
+        "startup runway estimate from ch3"
+      ]
+    },
+    {
+      "domain": "mountain rescue route plan before a winter training exercise",
+      "audience": "search-and-rescue volunteers",
+      "stakes": "a team may mistake morale for route safety in worsening weather",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Aanya changes the route review after her partner asks which slope condition would make her abandon the plan before anyone leaves the trailhead.",
+      "firstImage": "It took Aanya one whiteout drill to stop treating morale as evidence.",
+      "mustInclude": [
+        "route card",
+        "avalanche bulletin",
+        "trailhead radio check"
+      ],
+      "mustAvoid": [
+        "adventure hero story"
+      ]
+    },
+    {
+      "domain": "community choir audition selection after a favorite singer stumbles",
+      "audience": "arts boards and volunteer directors",
+      "stakes": "personal affection could distort a fair casting decision",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What would David’s choice look like if his assistant compared the score sheet with the private note he wrote before the audition?",
+      "firstImage": "What does a score sheet know that affection wants to blur?",
+      "mustInclude": [
+        "score sheet",
+        "private note",
+        "callback list"
+      ],
+      "mustAvoid": [
+        "generic friendship dilemma"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose challengers over comfort providers",
+      "detect self-serving postmortem edits",
+      "use buddy questions before and after outcomes",
+      "balance trust with pressure"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next consequential call, write the one assumption carrying the most weight and send only that assumption to a trusted challenger with the question: what would make this false?",
+  "readingTimeMinutes": 12
+}

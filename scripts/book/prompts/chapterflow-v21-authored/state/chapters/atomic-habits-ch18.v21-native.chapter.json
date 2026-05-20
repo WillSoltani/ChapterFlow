@@ -47,7 +47,7 @@
         "format": "vignette",
         "requiredBeat": "the cook redesigns the physical station so the next step is whatever is closest to his left hand, and the checklist becomes the room rather than the paper"
       },
-      "scenario": "It is the Friday dinner rush at a thirty-seat bistro, and Rasul has been written up twice this month for skipping the citrus zest on the trout plates. The laminated checklist is taped above eye level on the hood, where the head chef pinned it. Rasul's eyes slide off it the moment a ticket prints. He stands at his station before service, looking at the cold rail, the speed wells, the small steel pans. His left hand finds the empty space first, every time. He picks up a quart container of microplaned lemon and sets it down where that hand keeps landing.",
+      "scenario": "It is the Friday dinner rush at a thirty-seat bistro, and Rasul has been written up twice this month for skipping the citrus zest on the trout plates. The laminated checklist is taped above eye level on the hood, where the head chef pinned it. Rasul's eyes slide off it the moment a ticket prints. He stands at his station before service, looking at the cold rail, the speed wells, the small steel pans. His left hand finds the empty space first, every time. He picks up a quart container of microplaned lemon and sets it down where that hand keeps landing. Rasul must decide whether to keep reading a list that fails under heat or rebuild the station around his reach.",
       "whatToDo": "Lay out the prep so the next required action is always the closest object to your dominant working hand, and let the station's geometry replace the paper checklist.",
       "whyItMatters": "ADHD attention follows what is physically nearest, not what is written above the line. A station ordered by reach turns the room into the cue, which works with the wiring instead of against it."
     },
@@ -104,13 +104,13 @@
         "format": "dialogue",
         "requiredBeat": "a teacher walks him through where genes have already set his ceiling, where they haven't, and what the next ten thousand hours actually buy at his age"
       },
-      "scenario": "Tycho sits at the upright in Sigourney's basement studio, a tax-season binder still under his arm. 'Charlotte's daughter started at six,' he says. 'I'm fifty-four. What's the point.' Sigourney closes the lid halfway. 'Your reaction time and finger independence at tempo, those have ceilings now. Phrasing, taste, harmonic memory, those don't. Ten thousand hours from here won't buy you Hancock. It buys you the guy people want at the Tuesday session because he actually hears the room.' Tycho looks at his hands.",
+      "scenario": "Tycho sits at the upright in Sigourney's basement studio, a tax-season binder still under his arm. 'Charlotte's daughter started at six,' he says. 'I'm fifty-four. What's the point.' Sigourney closes the lid halfway. 'Your reaction time and finger independence at tempo, those have ceilings now. Phrasing, taste, harmonic memory, those don't. Ten thousand hours from here won't buy you Hancock. It buys you the guy people want at the Tuesday session because he actually hears the room.' Tycho looks at his hands. Tycho has to decide whether the goal is youthful speed or adult musicianship he can practice for years.",
       "whatToDo": "Pick the practice that builds what age hasn't capped: ear training, transcription, voicings, listening. Stop drilling speed runs against a teenager's nervous system and a teenager's clock.",
       "whyItMatters": "Some traits crystallize early and some keep growing for life. Training that fights the first wastes hours. Training that feeds the second compounds. The body sets the ceiling. The ear sets the music."
     },
     {
-      "exampleId": "ch18-ex06-yusra-promotion",
-      "title": "Yusra Picks Between Two Reps for One Territory",
+      "exampleId": "ch18-ex06-marin-promotion",
+      "title": "Marin Picks Between Two Reps for One Territory",
       "tags": [
         "thought_experiment",
         "regional",
@@ -123,7 +123,7 @@
         "format": "thought_experiment",
         "requiredBeat": "the manager imagines designing the role around each rep's grain instead of grading them on the same rubric, and notices that 'best rep' is a question that cannot be answered without naming the territory"
       },
-      "scenario": "Picture this. You are Yusra, regional manager, and two folders sit on your desk for the open territory. Folder one: Dembe, a natural talker who closes warm rooms and lets his expense reports pile up for a month. Folder two: Hadrien, who logs every call in a spreadsheet so clean it looks printed, and goes pale on a cold dial. The rubric says rank them. Before you score, ask a different question. What does this territory actually want from whoever lands in it?",
+      "scenario": "Picture this. You are Marin, regional manager, and two folders sit on your desk for the open territory. Folder one: Dembe, a natural talker who closes warm rooms and lets his expense reports pile up for a month. Folder two: Hadrien, who logs every call in a spreadsheet so clean it looks printed, and goes pale on a cold dial. The rubric says rank them. Before you score, ask a different question. What does this territory actually want from whoever lands in it? Marin must decide which rep fits the territory instead of ranking both folders on one generic scale.",
       "whatToDo": "Name the territory first. Then ask which rep's existing grain the work already fits. Shape the role around that grain, do not score both against one rubric.",
       "whyItMatters": "A rubric assumes one job exists. Two territories with the same title are two different jobs. Match the person to the terrain, and the same habits that looked like flaws become the engine."
     }
@@ -307,7 +307,7 @@
   },
   "memorableLines": [
     {
-      "text": "Genes matter. They answer a different question than the one most people ask. They do not answer can i. They answer where will the work pay back fastest, and what shape of practice will I still be doing in ten years.",
+      "text": "Genes matter. They answer a different question than the one most people ask. They do not answer can I. They answer where will the work pay back fastest, and what shape of practice will I still be doing in ten years.",
       "location": "breakdown.fullRead",
       "why": "Surprising reframe of what genes actually control; quotable on its own with specific language and compressed wisdom"
     },
@@ -317,9 +317,9 @@
       "why": "Perfect punchline that captures the core insight; compressed, voiced, and lands the turn the reader didn't see coming"
     },
     {
-      "text": "The body sets the ceiling. The ear sets the music.",
-      "location": "example[4].whyItMatters",
-      "why": "Poetic compression capturing the balance of genetic limits and growth; uses concrete imagery and sticks as standalone wisdom"
+      "text": "The instruction is not to find your destiny. It is smaller and more useful.",
+      "location": "breakdown.deepRead",
+      "why": "It keeps the talent argument practical, steering the reader away from fixed destiny and toward fit-based design."
     }
   ]
 }

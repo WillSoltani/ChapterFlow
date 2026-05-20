@@ -1,0 +1,190 @@
+{
+  "chapterId": "zero-to-one-ch02",
+  "number": 2,
+  "title": "Party Like It's 1999",
+  "coreMove": "Audit inherited caution to see when a once-useful rule is now shrinking the bet.",
+  "sourcePressure": "The chapter treats the dot-com crash as a real failure that produced an overlearned startup rulebook: move incrementally, stay flexible, copy competitors, and trust product over sales.",
+  "chapterSpecificMisunderstanding": "Turning the crash into either reckless anti-caution or bland lessons-learned wisdom.",
+  "sourceAlignmentTerms": [
+    "dot-com crash",
+    "incremental advances",
+    "lean flexibility",
+    "competition",
+    "product over sales",
+    "overcorrection"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "the dot-com crash",
+      "detail": "the sidecar anchors the chapter in the dot-com bubble and crash as a culture-shaping event",
+      "useIn": "both",
+      "phrasingHint": "After the crash, fear kept teaching long after the lesson had stopped fitting the problem."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of dot-com crash",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "David",
+      "domain": "biotech incubator portfolio review",
+      "audience": "a program director reviewing teams that learned caution from failed hype cycles",
+      "stakes": "whether a promising therapy platform gets reduced to minor line extensions",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "David crosses out the rule stay flexible after it blocks the only test that could prove the platform",
+      "firstImage": "a conference room screen frozen on a failed milestone chart",
+      "mustInclude": [
+        "milestone chart",
+        "red investor comments",
+        "lab-access calendar"
+      ],
+      "mustAvoid": [
+        "generic lessons learned"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "architecture studio bids",
+      "audience": "a studio partner deciding whether post-recession caution has made every proposal timid",
+      "stakes": "whether the firm keeps winning small safe renovations while losing its design edge",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ingrid puts the safe bid and the risky civic concept side by side and asks which fear wrote",
+      "firstImage": "two foam models lit by a desk lamp",
+      "mustInclude": [
+        "foam models",
+        "bid binder",
+        "trace paper"
+      ],
+      "mustAvoid": [
+        "dot-com analogy overexplained"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "regional newspaper digital strategy",
+      "audience": "an editor whose staff treats failed paywall experiments as proof all bold digital bets are foolish",
+      "stakes": "whether the paper keeps patching the website or commits to a distinctive membership model",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ben asks the room which rule came from evidence and which came from embarrassment",
+      "firstImage": "a silent newsroom around an old traffic dashboard",
+      "mustInclude": [
+        "traffic dashboard",
+        "print deadline board",
+        "membership mockup"
+      ],
+      "mustAvoid": [
+        "media nostalgia"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "specialty coffee roaster expansion",
+      "audience": "a founder deciding whether lean flexibility has become refusal to choose a wholesale channel",
+      "stakes": "whether the roaster stays charming and tiny or builds a deliberate route to restaurants",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sofia writes the four inherited rules on kraft paper and tears off the one hiding from sales",
+      "firstImage": "coffee chaff dusting a packing table",
+      "mustInclude": [
+        "kraft paper",
+        "sample bags",
+        "restaurant list"
+      ],
+      "mustAvoid": [
+        "sales as generic hustle"
+      ]
+    },
+    {
+      "protagonistName": "Thomas",
+      "domain": "renewable battery pilot",
+      "audience": "a project lead whose investors remember a failed pilot and now demand only tiny improvements",
+      "stakes": "whether the team proves the hard storage claim or performs incremental safety",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Thomas asks the investors to name the actual risk before shrinking the pilot",
+      "firstImage": "battery modules strapped in a cold test chamber",
+      "mustInclude": [
+        "test chamber",
+        "pilot budget sheet",
+        "thermal camera"
+      ],
+      "mustAvoid": [
+        "clean-tech chapter drift"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "children’s language app",
+      "audience": "a product manager deciding whether product purity is hiding an unwillingness to build school distribution",
+      "stakes": "whether a useful app dies because nobody will sell it into districts",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Aanya contrasts the beautiful unused prototype with one rough district-sales call that changes adoption",
+      "firstImage": "a tablet glowing in an empty after-school room",
+      "mustInclude": [
+        "tablet cart",
+        "district procurement form",
+        "headset bin"
+      ],
+      "mustAvoid": [
+        "product quality alone"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires audit inherited caution to see when a once-useful rule is now shrinking the bet.",
+      "separate dot-com crash from incremental advances in a novel operating case",
+      "diagnose the specific failure mode: turning the crash into either reckless anti-caution or bland lessons-learned wisdom.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the cautious rule your team repeats most often, then add the original failure that taught it and the current bet it may now be shrinking.",
+  "readingTimeMinutes": 12
+}

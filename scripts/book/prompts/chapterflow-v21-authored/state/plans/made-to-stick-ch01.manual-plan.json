@@ -1,0 +1,196 @@
+{
+  "chapterId": "made-to-stick-ch01",
+  "number": 1,
+  "title": "Simple",
+  "coreMove": "Strip a message to the one priority that should guide decisions when details collapse.",
+  "sourcePressure": "The source frames simplicity as core plus compact: Commanders Intent, Southwest Airlines, the Daily Record, proverbs, schemas, and decision-paralysis research all point to forced prioritization that survives real choices.",
+  "chapterSpecificMisunderstanding": "Treating simple as shorter wording, a slogan, or dumbed-down messaging.",
+  "sourceAlignmentTerms": [
+    "core",
+    "compact",
+    "forced prioritization",
+    "Commanders Intent",
+    "Southwest Airlines",
+    "Daily Record",
+    "schemas"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Commanders Intent",
+      "detail": "the sidecar says the chapter begins with the militarys Commanders Intent, where detailed plans fail in the field and one compact mission core must survive changing conditions",
+      "useIn": "both",
+      "phrasingHint": "When the field scrambles the plan, Commanders Intent is the sentence people can still carry."
+    },
+    {
+      "kind": "artifact",
+      "name": "Southwest Airlines",
+      "detail": "the sidecar names Southwest as the core-business example where a single low-fare priority helps employees resolve local tradeoffs without central instruction",
+      "useIn": "fullRead",
+      "phrasingHint": "Southwests low-fare priority works because it settles tradeoffs before the next local question arrives."
+    },
+    {
+      "kind": "person",
+      "name": "Hoover Adams",
+      "detail": "the sidecar names the Daily Record and Hoover Adams as support for a memorable editorial core beating daily decision paralysis",
+      "useIn": "deepRead",
+      "phrasingHint": "Hoover Adams shows the same discipline in a newsroom: the local core tells people what deserves space."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A cluttered meeting opens every simplicity lesson",
+      "The message is buried under too many slides"
+    ],
+    "counterintuition": [
+      "simple is not simplistic as a standalone thesis",
+      "less is more without a decision test"
+    ],
+    "tryThisNow": [
+      "write one sentence about your message",
+      "set a timer and cut words"
+    ],
+    "examples": [
+      "slide deck pruning as the only scene",
+      "generic startup pitch cleanup",
+      "kitchen rule board"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "emergency-room triage board redesign",
+      "audience": "a charge nurse trying to align a rotating night team",
+      "stakes": "a full waiting room and three competing priorities during a storm surge",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah erases four color codes from the board and leaves one red tag rule that tells the float nurse which patient moves first",
+      "firstImage": "rainwater pooled under the ambulance-bay doors while the triage board glows blue",
+      "mustInclude": [
+        "laminated triage board",
+        "red tag stickers",
+        "overflow chairs"
+      ],
+      "mustAvoid": [
+        "generic hospital communication pep talk"
+      ]
+    },
+    {
+      "domain": "municipal snowplow routing",
+      "audience": "a public-works supervisor briefing contractors before first snow",
+      "stakes": "school buses and dialysis pickups depend on the same two-lane roads",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Mathieu circles the school and clinic routes in black and tells every driver that those roads beat complaints from side streets",
+      "firstImage": "a salt-streaked map spread across a folding table at 4:42 a.m.",
+      "mustInclude": [
+        "paper route map",
+        "black grease pencil",
+        "radio call signs"
+      ],
+      "mustAvoid": [
+        "traffic app dashboard"
+      ]
+    },
+    {
+      "domain": "independent bookstore buying list",
+      "audience": "a buyer with limited shelf space before holiday ordering",
+      "stakes": "cash tied up in unsold inventory can decide January payroll",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ingrid pulls every maybe title from the cart and keeps only books that serve the stores local-gift identity",
+      "firstImage": "the smell of cardboard and pine-scented candles behind the register",
+      "mustInclude": [
+        "invoice stack",
+        "rolling book cart",
+        "local-gift table"
+      ],
+      "mustAvoid": [
+        "general retail productivity"
+      ]
+    },
+    {
+      "domain": "community theater safety rehearsal",
+      "audience": "a stage manager coordinating volunteers and teenage actors",
+      "stakes": "a blackout scene can injure someone if everyone follows separate cues",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Daniel stops the cue-by-cue lecture and makes the single rule hands off the stairs until work lights are up",
+      "firstImage": "\"Nobody moves on the stairs until I call white light,\" Daniel says into the empty house",
+      "mustInclude": [
+        "gaffer tape",
+        "headset",
+        "painted stairs"
+      ],
+      "mustAvoid": [
+        "corporate team alignment"
+      ]
+    },
+    {
+      "domain": "family-run cheese counter opening routine",
+      "audience": "a new manager training weekend staff in a crowded market hall",
+      "stakes": "health inspection risk and line speed collide before noon",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Catarina realizes the staff need one priority, keep cold stock cold, before they learn the whole display ritual",
+      "firstImage": "It took Catarina three Saturdays to see why the checklist kept failing",
+      "mustInclude": [
+        "digital thermometer",
+        "wax paper",
+        "cold case drawer"
+      ],
+      "mustAvoid": [
+        "narrow kitchen shell"
+      ]
+    },
+    {
+      "domain": "museum audio-guide redesign",
+      "audience": "a curator cutting an overstuffed tour for first-time visitors",
+      "stakes": "visitors quit after room two if every object gets equal importance",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Akira chooses the one question each gallery should answer and removes every clip that does not serve it",
+      "firstImage": "What should a visitor remember after the headphones come off?",
+      "mustInclude": [
+        "audio transcript",
+        "bronze gallery label",
+        "visitor flow counter"
+      ],
+      "mustAvoid": [
+        "generic education app redesign"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the core that should govern a messy decision",
+      "separate useful compression from distortion",
+      "choose a schema that preserves the real constraint",
+      "diagnose when too many priorities block local action"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one message you need someone to act on and write the tradeoff it should settle, then delete any word that does not help settle that tradeoff.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

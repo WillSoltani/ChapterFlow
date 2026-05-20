@@ -1,0 +1,308 @@
+{
+  "bookId": "the-lean-startup",
+  "chapters": [
+    {
+      "number": 1,
+      "chapterId": "the-lean-startup-ch01",
+      "title": "Start",
+      "sourcePressure": "Startup progress is redefined as learning how to build a sustainable business under extreme uncertainty, not as shipping features or looking busy.",
+      "coreMove": "Replace output theater with a build-measure-learn loop that reduces one real uncertainty about customers or viability.",
+      "commonMisread": "Treating lean startup as permission to move fast, be scrappy, or celebrate productivity without asking what was learned.",
+      "mustUseTerms": [
+        "human institution",
+        "extreme uncertainty",
+        "continuous innovation",
+        "build-measure-learn",
+        "lean manufacturing",
+        "sustainable business",
+        "output theater"
+      ],
+      "mustNotDriftInto": [
+        "generic hustle",
+        "feature velocity",
+        "founder mythology"
+      ]
+    },
+    {
+      "number": 2,
+      "chapterId": "the-lean-startup-ch02",
+      "title": "Define",
+      "sourcePressure": "Entrepreneurship is defined by creating something new under uncertainty, whether the team is in a startup, corporation, nonprofit, government office, or school.",
+      "coreMove": "Classify work by uncertainty rather than by the organization's costume, then choose a management system that fits that condition.",
+      "commonMisread": "Assuming startup means small company, founder identity, venture funding, or loosened discipline.",
+      "mustUseTerms": [
+        "entrepreneurs are everywhere",
+        "startup condition",
+        "uncertainty",
+        "stable environments",
+        "validated learning",
+        "management fit"
+      ],
+      "mustNotDriftInto": [
+        "small-business advice",
+        "career identity",
+        "innovation slogans"
+      ]
+    },
+    {
+      "number": 3,
+      "chapterId": "the-lean-startup-ch03",
+      "title": "Learn",
+      "sourcePressure": "Validated learning becomes the startup's true output, and learning only counts when empirical evidence proves something about the customer, product, or business model.",
+      "coreMove": "Make every claimed lesson earn its status by tying it to evidence strong enough to change the next decision.",
+      "commonMisread": "Calling any thoughtful reflection, positive comment, or team debrief learning.",
+      "mustUseTerms": [
+        "validated learning",
+        "empirical proof",
+        "experimentation",
+        "Five Whys",
+        "root-cause thinking",
+        "business model evidence"
+      ],
+      "mustNotDriftInto": [
+        "morale boosting",
+        "postmortem theater",
+        "research summaries"
+      ]
+    },
+    {
+      "number": 4,
+      "chapterId": "the-lean-startup-ch04",
+      "title": "Experiment",
+      "sourcePressure": "Startup work is treated as hypothesis-driven experimentation, especially around value and growth, because live tests reveal more than market research under uncertainty.",
+      "coreMove": "Turn a hopeful belief into a concrete experiment where customer behavior can answer value or growth directly.",
+      "commonMisread": "Equating research, interviews, surveys, or opinions with experiments that test behavior.",
+      "mustUseTerms": [
+        "startup as experiment",
+        "value hypothesis",
+        "growth hypothesis",
+        "actionable feedback",
+        "market research",
+        "live test"
+      ],
+      "mustNotDriftInto": [
+        "academic research process",
+        "survey design tips",
+        "brainstorming"
+      ]
+    },
+    {
+      "number": 5,
+      "chapterId": "the-lean-startup-ch05",
+      "title": "Leap",
+      "sourcePressure": "The riskiest leap-of-faith assumptions must be named and tested first because their failure can break the entire business.",
+      "coreMove": "Rank assumptions by how much damage their failure would do, then test the most dangerous leap before polishing safer details.",
+      "commonMisread": "Listing assumptions as paperwork while continuing to build around the frightening one.",
+      "mustUseTerms": [
+        "leap-of-faith assumptions",
+        "riskiest assumption first",
+        "value hypothesis",
+        "growth hypothesis",
+        "steering",
+        "business-breaking assumption"
+      ],
+      "mustNotDriftInto": [
+        "risk aversion",
+        "generic prioritization",
+        "confidence exercises"
+      ]
+    },
+    {
+      "number": 6,
+      "chapterId": "the-lean-startup-ch06",
+      "title": "Test",
+      "sourcePressure": "The minimum viable product is a learning instrument that completes one build-measure-learn cycle with minimum waste, including low-fidelity, video, concierge, or manual tests.",
+      "coreMove": "Build the smallest honest learning device that can expose the assumption, even if it looks less like a finished product.",
+      "commonMisread": "Treating MVP as a cheap, sloppy version of the whole product or as a launch shortcut.",
+      "mustUseTerms": [
+        "minimum viable product",
+        "build-measure-learn cycle",
+        "minimum waste",
+        "low-fidelity MVP",
+        "concierge test",
+        "manual MVP",
+        "learning instrument"
+      ],
+      "mustNotDriftInto": [
+        "cheap product advice",
+        "beta launch checklist",
+        "underbuilding as virtue"
+      ]
+    },
+    {
+      "number": 7,
+      "chapterId": "the-lean-startup-ch07",
+      "title": "Measure",
+      "sourcePressure": "Innovation accounting replaces vanity metrics with actionable, accessible, auditable evidence built from baselines, cohorts, and tuning the engine before pivot-or-persevere decisions.",
+      "coreMove": "Convert impressive numbers into decision-ready measurements that show whether a specific engine is improving.",
+      "commonMisread": "Using bigger dashboards, totals, or celebratory growth charts as proof of progress.",
+      "mustUseTerms": [
+        "innovation accounting",
+        "vanity metrics",
+        "actionable metrics",
+        "accessible metrics",
+        "auditable metrics",
+        "baseline",
+        "cohort analysis",
+        "tuning the engine"
+      ],
+      "mustNotDriftInto": [
+        "analytics tooling",
+        "performance reporting",
+        "data aesthetics"
+      ]
+    },
+    {
+      "number": 8,
+      "chapterId": "the-lean-startup-ch08",
+      "title": "Pivot (or Persevere)",
+      "sourcePressure": "A pivot is a structured course correction that tests a new core hypothesis, and the decision should come from validated learning rather than attachment.",
+      "coreMove": "Use evidence to decide whether to persevere or make a specific course correction that preserves learning while changing the hypothesis.",
+      "commonMisread": "Calling any change a pivot, or treating persistence as virtue after the evidence has stopped improving.",
+      "mustUseTerms": [
+        "pivot",
+        "persevere",
+        "structured course correction",
+        "validated learning",
+        "emotional attachment",
+        "runway",
+        "meaningful pivots"
+      ],
+      "mustNotDriftInto": [
+        "quitting advice",
+        "rebranding",
+        "random iteration"
+      ]
+    },
+    {
+      "number": 9,
+      "chapterId": "the-lean-startup-ch09",
+      "title": "Batch",
+      "sourcePressure": "Small batches shorten feedback distance, while large batches hide defects, create inventory-like waste, and delay correction; continuous deployment is one expression of this learning-speed logic.",
+      "coreMove": "Shrink the unit of work until problems surface while they are still cheap enough to fix.",
+      "commonMisread": "Reducing batch size as a productivity hack instead of a way to expose reality earlier.",
+      "mustUseTerms": [
+        "small batches",
+        "large batches",
+        "faster feedback",
+        "inventory-like waste",
+        "continuous deployment",
+        "delayed problem detection"
+      ],
+      "mustNotDriftInto": [
+        "time management",
+        "kanban aesthetics",
+        "shipping more often for optics"
+      ]
+    },
+    {
+      "number": 10,
+      "chapterId": "the-lean-startup-ch10",
+      "title": "Grow",
+      "sourcePressure": "Sustainable growth comes from identifying and tuning the right engine, sticky, viral, or paid, instead of hoping for generic user growth.",
+      "coreMove": "Diagnose the actual growth engine and tune the variable that makes that engine sustainable.",
+      "commonMisread": "Treating growth as more marketing, more users, or any upward graph.",
+      "mustUseTerms": [
+        "sustainable growth",
+        "engines of growth",
+        "sticky engine",
+        "viral engine",
+        "paid engine",
+        "optimize variables",
+        "growth mechanism"
+      ],
+      "mustNotDriftInto": [
+        "marketing tactics",
+        "brand awareness",
+        "fundraising narrative"
+      ]
+    },
+    {
+      "number": 11,
+      "chapterId": "the-lean-startup-ch11",
+      "title": "Adapt",
+      "sourcePressure": "Adaptive organizations use feedback loops and Five Whys to improve quality and process without smothering learning speed, especially when recurring technical problems trace to human systems.",
+      "coreMove": "Trace repeated failures past the visible incident into the human system that keeps producing them, then change the system without freezing the work.",
+      "commonMisread": "Adding process after every mistake until the organization becomes slower but no wiser.",
+      "mustUseTerms": [
+        "adaptive organization",
+        "feedback loops",
+        "Five Whys",
+        "root cause",
+        "human systems",
+        "technical problems",
+        "learning speed"
+      ],
+      "mustNotDriftInto": [
+        "bureaucracy",
+        "blame culture",
+        "quality theater"
+      ]
+    },
+    {
+      "number": 12,
+      "chapterId": "the-lean-startup-ch12",
+      "title": "Innovate",
+      "sourcePressure": "Established organizations need sandboxes, autonomy, protected resources, incentives, protection, and accountability so internal ventures can learn before the core business crushes them.",
+      "coreMove": "Design a bounded innovation space where a new idea has enough autonomy to learn and enough accountability to stay honest.",
+      "commonMisread": "Assuming an innovation program needs only encouragement, budget, or executive slogans.",
+      "mustUseTerms": [
+        "sandbox",
+        "autonomy",
+        "protected resources",
+        "meaningful incentives",
+        "internal entrepreneurship",
+        "core business",
+        "accountability"
+      ],
+      "mustNotDriftInto": [
+        "culture slogans",
+        "intrapreneurship pep talk",
+        "unfunded brainstorming"
+      ]
+    },
+    {
+      "number": 13,
+      "chapterId": "the-lean-startup-ch13",
+      "title": "Epilogue: Waste Not",
+      "sourcePressure": "The closing synthesis frames waste as wasted effort, wasted learning, and wasted opportunity caused by applying old management habits under uncertainty.",
+      "coreMove": "Audit where effort is being spent before learning arrives, then pull the truth earlier so insight is not discarded or bought too late.",
+      "commonMisread": "Reducing the epilogue to thrift, efficiency, or a recap of lean tools.",
+      "mustUseTerms": [
+        "waste not",
+        "wasted effort",
+        "wasted learning",
+        "wasted opportunity",
+        "management under uncertainty",
+        "disciplined experimentation",
+        "preserve insight"
+      ],
+      "mustNotDriftInto": [
+        "cost cutting",
+        "summary recap",
+        "productivity morality"
+      ]
+    },
+    {
+      "number": 14,
+      "chapterId": "the-lean-startup-ch14",
+      "title": "Join the Movement",
+      "sourcePressure": "The final chapter widens lean startup from tactic to broader innovation practice and asks readers to apply and spread the discipline concretely.",
+      "coreMove": "Turn agreement with the method into one adopted practice that changes how a real team makes uncertain decisions.",
+      "commonMisread": "Ending with inspiration, movement rhetoric, or admiration without operational adoption.",
+      "mustUseTerms": [
+        "join the movement",
+        "spread the practice",
+        "broader innovation practice",
+        "disciplined learning",
+        "adoption",
+        "continuation"
+      ],
+      "mustNotDriftInto": [
+        "motivational finale",
+        "community branding",
+        "book-club enthusiasm"
+      ]
+    }
+  ]
+}

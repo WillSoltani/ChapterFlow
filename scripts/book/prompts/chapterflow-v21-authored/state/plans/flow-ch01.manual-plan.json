@@ -1,0 +1,190 @@
+{
+  "chapterId": "flow-ch01",
+  "number": 1,
+  "title": "Happiness Revisited",
+  "coreMove": "Stop treating improved circumstances as the route to happiness and identify where inner order must be built directly.",
+  "sourcePressure": "The opening reset: material progress, comfort, and rising expectations have not secured happiness, so the problem becomes control over experience rather than better circumstances alone.",
+  "chapterSpecificMisunderstanding": "Turn the opening into generic anti-materialism or gratitude advice.",
+  "sourceAlignmentTerms": [
+    "happiness",
+    "control of consciousness",
+    "rising expectations",
+    "cultural shields",
+    "optimal experience",
+    "boredom",
+    "anxiety"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Aristotle",
+      "detail": "the frozen source notes that the book opens with Aristotle and the human question of happiness",
+      "useIn": "both",
+      "phrasingHint": "Aristotle belongs at the doorway because the question is old: people have always wanted happiness, and still keep mistaking its address."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic happiness revisited definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "a product manager after a promotion announcement",
+      "audience": "newly promoted knowledge workers who expected relief",
+      "stakes": "she has the title and the raise but the train ride home feels flatter than before",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "she closes the congratulatory email, leaves the salary tab open, and chooses whether to add another purchase to the wishlist or block a demanding design problem for the morning",
+      "firstImage": "The commuter train window throws office lights back at her face",
+      "mustInclude": [
+        "salary email",
+        "wishlist tab",
+        "Monday design review"
+      ],
+      "mustAvoid": [
+        "another raise automatically solves dissatisfaction"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "a hospital scheduler redesigning his evenings after overtime",
+      "audience": "workers who confuse exhaustion relief with a good life",
+      "stakes": "his free night is rare and can become either passive collapse or a chosen absorbing activity",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "contrast the old evening of scrolling in scrubs with the night he sets up a difficult model kit and notices the hour disappear",
+      "firstImage": "It took Daniel four Thursdays to admit the couch was not restoring him",
+      "mustInclude": [
+        "blue scrub top",
+        "model kit sprues",
+        "muted television"
+      ],
+      "mustAvoid": [
+        "wellness routine advice"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "a first-year student staring at perfect grades and no satisfaction",
+      "audience": "high achievers who mistake outcomes for experience quality",
+      "stakes": "she risks losing the point of study to grade-chasing",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her tutor asks which assignment she would keep doing if nobody posted marks, and Camille has to choose a real project instead of another grade tactic",
+      "firstImage": "\"Which one would you still do without the grade?\"",
+      "mustInclude": [
+        "marked essay",
+        "campus cafe table",
+        "course portal"
+      ],
+      "mustAvoid": [
+        "generic school pressure scene"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "a retired engineer with a paid-off house and empty mornings",
+      "audience": "people who reached a promised milestone and still feel restless",
+      "stakes": "his planned comfort is turning into aimless time",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "ask whether the quiet calendar will feel like freedom or drift, then show him testing one structured woodworking challenge against a blank morning",
+      "firstImage": "What happens when the calendar finally stops demanding anything?",
+      "mustInclude": [
+        "blank wall calendar",
+        "walnut offcut",
+        "dust mask"
+      ],
+      "mustAvoid": [
+        "retirement as automatic bliss"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "a new parent trying to buy her way out of anxiety",
+      "audience": "parents pressured by gear and comparison",
+      "stakes": "another purchase may deepen the same restless loop",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "you stand in a baby store aisle and notice the promised calm moving one shelf farther away, then choose a tiny shared ritual over another item",
+      "firstImage": "You are holding the third sleep gadget and still checking reviews",
+      "mustInclude": [
+        "white-noise machine",
+        "receipt strip",
+        "nursery chair"
+      ],
+      "mustAvoid": [
+        "parenting product rant"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "a museum volunteer replacing passive Sundays with sketching duty",
+      "audience": "older adults and weekend drifters who need structured engagement",
+      "stakes": "his free time is abundant but thin unless attention has a task",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he sharpens one pencil, chooses a single sculpture, and measures its shadow line for forty minutes instead of wandering the galleries",
+      "firstImage": "Graphite dust marks the side of his thumb",
+      "mustInclude": [
+        "sketchbook",
+        "marble sculpture",
+        "volunteer badge"
+      ],
+      "mustAvoid": [
+        "art appreciation as vague inspiration"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separating external improvement from inner order",
+      "spotting when comfort is being asked to do the work of engagement",
+      "keeping structural hardship distinct from the narrower flow claim"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one upgrade you keep expecting to make life feel settled, then write the experience it is supposed to create and one way to practice that experience today.",
+  "readingTimeMinutes": 12
+}

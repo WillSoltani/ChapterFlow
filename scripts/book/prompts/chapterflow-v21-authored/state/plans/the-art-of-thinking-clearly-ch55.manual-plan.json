@@ -1,0 +1,184 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch55",
+  "number": 55,
+  "title": "The Problem with Averages",
+  "coreMove": "Use The Problem with Averages as the warning label, then make the specific correction before the choice moves forward.",
+  "sourcePressure": "The frozen TOC and official source notes frame The Problem with Averages as a specific decision error around averages, distribution, river depth. Traceable support includes PROBLEM WITH AVERAGES Don.",
+  "chapterSpecificMisunderstanding": "Treating The Problem with Averages as generic advice to be smarter, instead of forcing this exact move: use the problem with averages as the warning label, then make the specific correction before the choice moves forward.",
+  "sourceAlignmentTerms": [
+    "averages",
+    "distribution",
+    "river depth",
+    "tails",
+    "Taleb",
+    "problem"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of The Problem with Averages.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make The Problem with Averages sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of The Problem with Averages."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a emergency dispatch script applying The Problem with Averages under operational pressure",
+      "audience": "a reader who has to make a live judgment where averages could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if The Problem with Averages is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the lab notebook, names the averages risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A lab notebook sits at the center of the emergency dispatch script before anyone explains the choice.",
+      "mustInclude": [
+        "lab notebook",
+        "averages",
+        "a visible before-and-after choice tied to The Problem with Averages"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a travel insurance pricing applying The Problem with Averages under operational pressure",
+      "audience": "a reader who has to make a live judgment where distribution could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if The Problem with Averages is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the contract redline, names the distribution risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A contract redline sits at the center of the travel insurance pricing before anyone explains the choice.",
+      "mustInclude": [
+        "contract redline",
+        "distribution",
+        "a visible before-and-after choice tied to The Problem with Averages"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a podcast ad renewal applying The Problem with Averages under operational pressure",
+      "audience": "a reader who has to make a live judgment where river depth could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if The Problem with Averages is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the menu proof, names the river depth risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A menu proof sits at the center of the podcast ad renewal before anyone explains the choice.",
+      "mustInclude": [
+        "menu proof",
+        "river depth",
+        "a visible before-and-after choice tied to The Problem with Averages"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a university lab result meeting applying The Problem with Averages under operational pressure",
+      "audience": "a reader who has to make a live judgment where tails could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if The Problem with Averages is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the case file, names the tails risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A case file sits at the center of the university lab result meeting before anyone explains the choice.",
+      "mustInclude": [
+        "case file",
+        "tails",
+        "a visible before-and-after choice tied to The Problem with Averages"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a charity donor campaign applying The Problem with Averages under operational pressure",
+      "audience": "a reader who has to make a live judgment where Taleb could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if The Problem with Averages is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the sensor graph, names the Taleb risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A sensor graph sits at the center of the charity donor campaign before anyone explains the choice.",
+      "mustInclude": [
+        "sensor graph",
+        "Taleb",
+        "a visible before-and-after choice tied to The Problem with Averages"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a heat-response cooling-center map applying The Problem with Averages under operational pressure",
+      "audience": "a reader who has to make a live judgment where problem could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if The Problem with Averages is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the water sample, names the problem risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A water sample sits at the center of the heat-response cooling-center map before anyone explains the choice.",
+      "mustInclude": [
+        "water sample",
+        "problem",
+        "a visible before-and-after choice tied to The Problem with Averages"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot The Problem with Averages in a fresh decision scene",
+      "choose the correction that performs this move: use the problem with averages as the warning label, then make the specific correction before the choice moves forward.",
+      "reject a tempting generic answer that ignores averages",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'The Problem with Averages' on a note, list the one averages cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

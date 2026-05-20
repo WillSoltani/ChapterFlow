@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-righteous-mind-ch03",
+  "number": 3,
+  "title": "Elephants Rule",
+  "coreMove": "Steer the elephant by changing conditions and incentives before asking the rider for a speech.",
+  "sourcePressure": "The chapter deepens the rider-elephant mechanism by showing why reflective control has limited command over entrenched intuitions and habits.",
+  "chapterSpecificMisunderstanding": "The writer turns the rider and elephant into generic willpower advice.",
+  "sourceAlignmentTerms": [
+    "rider",
+    "elephant",
+    "self-command",
+    "entrenched intuition",
+    "control problem",
+    "momentum"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the rider-elephant image",
+      "detail": "the frozen sidecar says this image is the chapter's primary mechanism for control, self-command, and entrenched intuitions.",
+      "useIn": "both",
+      "phrasingHint": "The rider can make speeches, but the elephant decides how much road the speech actually gets."
+    },
+    {
+      "kind": "person",
+      "name": "David Hume",
+      "detail": "the frozen sidecar keeps Hume in the intuition-first architecture that Chapter 3 deepens.",
+      "useIn": "deepRead",
+      "phrasingHint": "Hume's old warning about passion and reason turns practical when the rider knows the elephant is already leaning."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch03 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "morning routine scene"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "whiteboard habit loop"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "gym discipline anecdote"
+    ],
+    "examples": [
+      "morning routine scene",
+      "whiteboard habit loop",
+      "gym discipline anecdote"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "food delivery dispatcher trying to reduce unsafe rush decisions",
+      "audience": "operations leads whose staff know the rule but ignore it under pressure",
+      "stakes": "Thomas changes the dispatch screen default before giving another safety talk.",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Thomas moves the safest route option to the top and watches riders stop choosing the shortcut.",
+      "firstImage": "Rain beads on the dispatch window while the old shortcut glows green on every screen.",
+      "mustInclude": [
+        "dispatch screen",
+        "rain radar",
+        "route toggle"
+      ],
+      "mustAvoid": [
+        "generic safety poster"
+      ]
+    },
+    {
+      "domain": "public defender managing anger before a sentencing hearing",
+      "audience": "lawyers who cannot outthink a trigger in the moment",
+      "stakes": "Ingrid changes where she waits so the prosecutor's hallway smirk does not steer the whole hearing.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ingrid takes the back stairwell and reviews one client photo before entering court.",
+      "firstImage": "The courthouse stairwell smells like floor wax and wet wool.",
+      "mustInclude": [
+        "client photo",
+        "back stairwell",
+        "sentencing notes"
+      ],
+      "mustAvoid": [
+        "courtroom drama monologue"
+      ]
+    },
+    {
+      "domain": "software incident commander avoiding blame spirals at 2 a.m.",
+      "audience": "engineering leads under outage stress",
+      "stakes": "Luca replaces blame chat with a forced status template that gives the elephant a track.",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 2:17, Luca locks the channel to three fields: symptom, owner, next check.",
+      "firstImage": "At 2:17, Luca watches the outage channel fill with accusations faster than logs.",
+      "mustInclude": [
+        "incident channel",
+        "status template",
+        "pager alert"
+      ],
+      "mustAvoid": [
+        "generic meeting facilitation"
+      ]
+    },
+    {
+      "domain": "diabetes educator helping a patient skip late-night sweets",
+      "audience": "health coaches facing habits stronger than intentions",
+      "stakes": "Hadiya moves the sweets before discussing motivation.",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Hadiya asks where the biscuits live and has the patient choose a different shelf during the call.",
+      "firstImage": "\"Show me where the biscuits are,\" Hadiya says, and the phone camera swings toward the pantry.",
+      "mustInclude": [
+        "phone camera",
+        "pantry shelf",
+        "glucose log"
+      ],
+      "mustAvoid": [
+        "weight-loss pep talk"
+      ]
+    },
+    {
+      "domain": "choir director recovering after a sour rehearsal",
+      "audience": "arts leaders trying to shift group mood",
+      "stakes": "Claire changes the first song and seating pattern before asking singers to be more generous.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Claire sees the lecture failed, then opens rehearsal with the easiest shared harmony and mixed seating.",
+      "firstImage": "It took Claire one recorded rehearsal to hear the elephant refusing her sermon.",
+      "mustInclude": [
+        "folding chairs",
+        "voice memo",
+        "hymn folder"
+      ],
+      "mustAvoid": [
+        "generic team morale"
+      ]
+    },
+    {
+      "domain": "rail maintenance supervisor preventing shortcut inspections",
+      "audience": "field supervisors whose crews know the checklist by heart",
+      "stakes": "Jonas makes skipped steps physically impossible to hide.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What would Jonas change if the crew's hands, not their intentions, were carrying the inspection?",
+      "firstImage": "What if the problem is not the checklist but the path of the clipboard through the yard?",
+      "mustInclude": [
+        "tagged bolts",
+        "inspection clipboard",
+        "yellow track gate"
+      ],
+      "mustAvoid": [
+        "bureaucratic compliance scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose an environmental change over a self-command speech",
+      "spot when the rider is explaining momentum it does not control",
+      "design a small steering move for an entrenched intuition"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Move one cue in your environment before relying on resolve: put the tempting thing out of reach or the better thing in hand.",
+  "readingTimeMinutes": 12
+}

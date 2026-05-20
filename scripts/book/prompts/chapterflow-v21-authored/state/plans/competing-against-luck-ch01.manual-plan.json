@@ -1,0 +1,132 @@
+{
+  "chapterId": "competing-against-luck-ch01",
+  "number": 1,
+  "title": "The Milk Shake Dilemma",
+  "coreMove": "Flip from 'what should we change about the product?' to 'what job does this product get hired to do in this specific circumstance?'",
+  "sourcePressure": "A fast-food chain's team asked the wrong question: what to improve about the milkshake. The right question was what circumstance made the milkshake worth hiring. A morning commuter hired it to survive a boring drive one-handed. A parent hired the same product later as a low-mess treat for a child after a hard practice. Two distinct jobs, same SKU. Feature tweaks and demographic analysis missed both because neither looked at the struggling moment that activated the hire.",
+  "chapterSpecificMisunderstanding": "Treating the milkshake case as a food-industry or fast-food specific insight rather than a diagnostic method applicable to any product in any category where the team has been asking 'what should we improve?' instead of 'what is this being hired to do?'",
+  "sourceAlignmentTerms": ["hire", "circumstance", "job", "progress", "substitute", "moment", "struggling moment", "competing alternative"],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "the milkshake morning commute case",
+      "detail": "A team observed that morning commuters hired a thick milkshake not for the taste but to manage a boring, long drive — one-handed, filling, lasting. The same product was hired later by a parent as a manageable treat for a child after a sports session. Two distinct jobs, one product.",
+      "useIn": "deepRead",
+      "phrasingHint": "A thick shake survived a forty-minute commute one-handed while a banana was gone before the first exit — the category said dessert but the drive said breakfast tool."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "What if the product isn't the real point?",
+      "You've been asking the wrong question about your customers.",
+      "Most companies study the wrong thing."
+    ],
+    "counterintuition": [
+      "The category never tells you why you won.",
+      "Customers don't know what they want."
+    ],
+    "tryThisNow": [
+      "Spend five minutes thinking about a recent purchase.",
+      "Think of a product you buy regularly and ask why.",
+      "Write down three things your customers say they want."
+    ],
+    "examples": [
+      "any food/beverage example that merely restates the milkshake story",
+      "grocery store product comparison as the primary domain"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["sensory_first", "retrospective", "dialogue_first", "second_person", "timestamp_named", "environmental"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "train station grab-and-go kiosk",
+      "audience": "a brand product manager shadowing a commuter observation session for the first time",
+      "stakes": "whether the morning launch of a new 'healthier' drink variant will take share from the thick shake that keeps outselling it despite worse ratings",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hannah watches a commuter bypass the clearly marketed 'better for you' option and take the thick sealed-cup shake — and realizes the commuter is managing a 45-minute ride with one hand, not making a health decision. The survey Hannah has in her bag is measuring the wrong variable.",
+      "firstImage": "warm pastry smell from the case, a row of sealed shake cups below it, the platform clock reading 7:48 before Hannah appears",
+      "mustInclude": ["a laptop bag sliding off one shoulder", "a sealed cup with a thick lid meant to survive a commute", "Hannah's printed survey results in her bag"],
+      "mustAvoid": ["reducing this to 'customers don't always choose healthy' — the beat must show the specific circumstantial job (commute endurance) activating the hire"]
+    },
+    {
+      "domain": "home resistance training equipment marketplace",
+      "audience": "a brand manager reviewing a spike in returns after adding three features users had requested",
+      "stakes": "whether the product update satisfied the buyers who are actually returning it — or served a different group entirely",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Laurent listens to a return call from a physical therapy patient: 'The new guide assumes I already know what I'm doing.' The resistance band was hired for a recovery job — gentle, manageable, expert-free. The improvements answered the performance buyer's request without knowing the recovery buyer existed. Two jobs, one SKU, one catastrophically wrong update.",
+      "firstImage": "a pile of opened return mailers on a warehouse sorting shelf, a tally sheet of reasons clipped to a clipboard",
+      "mustInclude": ["a digital resistance tracker that came with the update", "a return call transcript quote", "two distinct buyer groups visible only when return reasons are separated"],
+      "mustAvoid": ["framing this as 'listen to different customer segments' — the lesson is about distinct jobs, not demographics"]
+    },
+    {
+      "domain": "mountain lodge gift shop",
+      "audience": "a retail manager trying to understand why an item sells at the lodge but not at the same price point elsewhere",
+      "stakes": "whether the lodge should expand the product line or whether the product's success is entirely circumstance-dependent",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "A customer says, 'I'm not even a cocoa person,' while tucking a hot cocoa kit into a paper bag. The product was hired not for the drink but for what it would do for twenty minutes — structured indoor activity for two kids while the adults had wine by the fire. The lodge circumstance created the job; the grocery store two valleys down cannot.",
+      "firstImage": "'Not even a cocoa person,' the woman says, tucking the kit into the paper bag with both handles looped over one finger",
+      "mustInclude": ["a ski rack visible through the gift shop window", "the children who will do the activity (implicit in the dialogue)", "the same product's poor grocery store velocity as a contrast"],
+      "mustAvoid": ["'sensory experience' or 'gifting' framing — the beat must show a specific social job the product is hired to do in this lodge circumstance"]
+    },
+    {
+      "domain": "university late-night print center",
+      "audience": "a print center manager and — through second-person — the reader in the moment of the decision",
+      "stakes": "whether the premium print option gets chosen for quality or because it eliminates a specific nighttime anxiety",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The reader faces two options at 11:30 p.m.: standard print (slower, cheaper) or premium (faster, more expensive). The decision is not about paper quality. It is about certainty of completion before sleep — eliminating the risk of a failed job at 7 a.m. Marco marks the queue and wonders whether the premium option is actually competing with cheaper paper or with the anxiety of a delayed thesis.",
+      "firstImage": "a queue screen showing one standard job and one premium job pending, the room otherwise empty at 11:30 p.m.",
+      "mustInclude": ["a thesis deadline sign above the printer", "the 7 a.m. submission window as the actual constraint", "a choice between two queue options with identical output but different wait times"],
+      "mustAvoid": ["'customers will pay more for quality' — the lesson is about the anxiety-elimination job, not value perception"]
+    },
+    {
+      "domain": "corporate wellness program enrollment",
+      "audience": "an HR manager reviewing benefit-take-up rates after a wellness program launch",
+      "stakes": "whether the most popular benefit reveals something true about what employees are hiring the program to do",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:03 a.m., Astrid reviews enrollment data expecting yoga subsidies to lead (the survey said 'stress relief'). Meal delivery credits outpaced yoga three to one. Three employees who claimed it say the same thing: 'I can't cook during crunch weeks. This keeps the household together.' The job is operational stability, not nutrition. The wellness portal was hired to keep a household functional during the employee's worst months.",
+      "firstImage": "a wellness portal enrollment dashboard at 9:03 a.m., the predicted bar chart beside the actual one",
+      "mustInclude": ["a crunch-week context that makes cooking implausible", "a household-management framing from at least one enrollee's words", "three benefit categories visible in the enrollment data"],
+      "mustAvoid": ["'employees want convenience' — the beat must show the specific situational job (household stability during crunch) as what the meal credit is being hired to deliver"]
+    },
+    {
+      "domain": "artisan soap at a weekend farmers market",
+      "audience": "a market vendor noticing a purchasing pattern he has misread for three seasons",
+      "stakes": "whether Sam's next production run reflects what buyers are actually hiring his soaps to do",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sam has attributed the lavender-to-citrus 3:1 sales ratio to scent preference. A buyer picks up a lavender bar and says, 'This is what my mom's bathroom smelled like.' The product is not hired for cleansing or even scent quality. It is hired to recover a specific emotional state on Sunday mornings. Sam's next run has been solving for the wrong variable for three seasons.",
+      "firstImage": "a wooden market table covered in bars of soap, early morning canvas-tent light on the labels, no human visible yet",
+      "mustInclude": ["a specific scent comparison (lavender vs. citrus)", "a memory reference from a buyer that names the real job", "Sam's incorrect working hypothesis (scent preference) visible before the reveal"],
+      "mustAvoid": ["'sensory marketing' or 'emotional branding' framing — the beat must name the specific emotional job the product is hired to recover, distinct from functional quality"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize that the same product can be hired for two distinct jobs in different circumstances",
+      "distinguish between demographic/feature questions and circumstance-first questions",
+      "identify what the actual substitute set is once the job is named",
+      "apply the job diagnostic to a novel category the chapter never mentioned",
+      "evaluate whether a proposed product change is answering the right question"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one product your team is currently improving. Write one sentence describing the specific circumstance the buyer is in when they hire it — not who they are, but what situation they are in. If you cannot write that sentence in under 30 seconds, the team is working from the wrong question.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — either a direct question to the reader, a contrast using the same product in two completely different circumstances, or a brief moment that names what good diagnosis looks like vs. what feature-chasing looks like",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

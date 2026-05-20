@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch07",
+  "number": 7,
+  "title": "Tails, You Win",
+  "coreMove": "Arrange your behavior so rare big winners can matter while ordinary misses stay survivable.",
+  "sourcePressure": "In lumpy systems, a few outsized outcomes drive most results, so average stretches and many misses are part of the structure.",
+  "chapterSpecificMisunderstanding": "Assuming every choice must work or the strategy is broken.",
+  "sourceAlignmentTerms": [
+    "tail events",
+    "outsized wins",
+    "lumpy distribution",
+    "diversification",
+    "ordinary misses",
+    "heavy lifting"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Tails, You Win with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Tails, You Win to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the tail events move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of tail events and outsized wins"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an independent record label funding ten small artists knowing one breakout keeps the label alive",
+      "audience": "a label manager accepting misses as structure rather than failure",
+      "stakes": "cutting slow acts too early may eliminate the future catalog winner",
+      "format": "vignette",
+      "requiredBeat": "the manager marks which past revenue came from two tracks nobody predicted before setting the new roster budget",
+      "firstImage": "a royalty spreadsheet with two rows highlighted in yellow",
+      "mustInclude": [
+        "royalty spreadsheet",
+        "roster budget",
+        "streaming report"
+      ],
+      "mustAvoid": [
+        "music industry glamour"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a venture philanthropy fund backing many clean-water pilots",
+      "audience": "a program officer explaining why most pilots can be mediocre if one scales cleanly",
+      "stakes": "overreacting to average pilots would kill the outlier that changes thousands of wells",
+      "format": "decision_point",
+      "requiredBeat": "she keeps funding breadth after isolating the one village pilot with repeatable maintenance behavior",
+      "firstImage": "a field report packet stained by rain at the corners",
+      "mustInclude": [
+        "field reports",
+        "maintenance log",
+        "pilot map"
+      ],
+      "mustAvoid": [
+        "tech venture cliche"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a fishing fleet experimenting with several grounds during a strange migration season",
+      "audience": "a captain teaching crew that empty hauls can be the cost of finding the one heavy run",
+      "stakes": "abandoning exploration too soon misses the season's tail catch",
+      "format": "predict_reveal",
+      "requiredBeat": "the captain plots nine poor hauls and the one hold-filling haul on the same chart before changing strategy",
+      "firstImage": "a marine chart with pencil X marks across open water",
+      "mustInclude": [
+        "marine chart",
+        "haul log",
+        "fuel limit"
+      ],
+      "mustAvoid": [
+        "lottery catch tale"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a children's publisher accepting many modest titles because one perennial pays for the list",
+      "audience": "an editor defending a portfolio to finance staff",
+      "stakes": "measuring every manuscript by immediate sales misunderstands the business",
+      "format": "dialogue",
+      "requiredBeat": "the editor pulls ten years of backlist sales and shows the one quiet title still carrying payroll",
+      "firstImage": "a shelf of thin picture-book galleys beside a backlist report",
+      "mustInclude": [
+        "backlist report",
+        "galleys",
+        "payroll note"
+      ],
+      "mustAvoid": [
+        "creative genius story"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a disaster-response warehouse stocking many items rarely used so the one needed item is present",
+      "audience": "a logistics lead explaining unused inventory to auditors",
+      "stakes": "efficiency metrics may remove the exact supply that matters in a rare crisis",
+      "format": "postmortem",
+      "requiredBeat": "after a flood, she shows that one obscure pump adapter made the whole warehouse worthwhile",
+      "firstImage": "a metal adapter tagged with mud from the flood site",
+      "mustInclude": [
+        "pump adapter",
+        "inventory report",
+        "flood request"
+      ],
+      "mustAvoid": [
+        "prepper framing"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a long-term index investor reviewing years where a few days explain most gains",
+      "audience": "a saver tempted to leave after dull returns",
+      "stakes": "missing the handful of surge days damages the whole plan",
+      "format": "before_after",
+      "requiredBeat": "he covers the top five trading days on the chart and watches the long-term line flatten",
+      "firstImage": "a return chart with removable notes covering five dates",
+      "mustInclude": [
+        "return chart",
+        "top-five dates",
+        "account statement"
+      ],
+      "mustAvoid": [
+        "market timing tip"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: arrange your behavior so rare big winners can matter while ordinary misses stay survivable",
+      "distinguish tail events from nearby but weaker advice such as lottery thinking",
+      "diagnose when a character is making the common misread: assuming every choice must work or the strategy is broken.",
+      "evaluate tradeoffs using the chapter-specific pressure around tail events, outsized wins, lumpy distribution"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where tail events is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: arrange your behavior so rare big winners can matter while ordinary misses stay survivable.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

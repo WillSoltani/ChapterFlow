@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch22",
+  "number": 22,
+  "title": "At the Center of All Our Problems Is Us",
+  "coreMove": "Replace system blame with one implicated habit you personally keep feeding.",
+  "sourcePressure": "Argues for implicated participation: systems matter, but ordinary choices for convenience, silence, short-term relief, and compromise keep reproducing the culture people criticize.",
+  "chapterSpecificMisunderstanding": "Collapsing structural critique into personal blame, or using systems as an alibi for passivity.",
+  "sourceAlignmentTerms": [
+    "center of problems",
+    "us",
+    "participation",
+    "convenience",
+    "self-protection",
+    "short-term relief",
+    "rationalized compromise"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 22 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "specialty coffee roastery cupping table",
+      "audience": "head roaster blaming supplier quality",
+      "stakes": "he keeps accepting rush batches that cause the defects",
+      "format": "decision_point",
+      "requiredBeat": "he circles the rush order he approved before complaining about bean inconsistency",
+      "firstImage": "a cupping spoon beside a roast log",
+      "mustInclude": [
+        "cupping spoon",
+        "roast log"
+      ],
+      "mustAvoid": [
+        "self-blame confession"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "neighborhood clinic waiting room",
+      "audience": "doctor blaming no-show patients",
+      "stakes": "the clinic's own reminder system is confusing and ignored",
+      "format": "scene",
+      "requiredBeat": "she reads the reminder text aloud and admits it would have lost her too",
+      "firstImage": "a reminder postcard beside a clinic phone",
+      "mustInclude": [
+        "postcard",
+        "clinic phone"
+      ],
+      "mustAvoid": [
+        "system denial"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "film crew location shoot",
+      "audience": "assistant director blaming crew cynicism",
+      "stakes": "his shortcuts teach the cynicism he dislikes",
+      "format": "postmortem",
+      "requiredBeat": "he maps every ignored meal break to the next day's silence in safety check",
+      "firstImage": "a call sheet beside a meal voucher",
+      "mustInclude": [
+        "call sheet",
+        "meal voucher"
+      ],
+      "mustAvoid": [
+        "Hollywood cliché"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "community garden compost station",
+      "audience": "garden lead complaining about contamination",
+      "stakes": "she keeps avoiding the uncomfortable training talk",
+      "format": "dialogue",
+      "requiredBeat": "she points to the plastic in compost and names the conversation she has postponed",
+      "firstImage": "a compost fork beside a plastic label",
+      "mustInclude": [
+        "compost fork",
+        "plastic label"
+      ],
+      "mustAvoid": [
+        "home habit"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "regional sales forecast call",
+      "audience": "director blaming headquarters pressure",
+      "stakes": "she still rewards sandbagged forecasts when they help her look prudent",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks what she gained from last quarter's padded number before changing the review",
+      "firstImage": "a projection worksheet beside a bonus memo",
+      "mustInclude": [
+        "projection worksheet",
+        "bonus memo"
+      ],
+      "mustAvoid": [
+        "corporate pressure generic"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "youth shelter donation closet",
+      "audience": "coordinator criticizing donor dumping",
+      "stakes": "the shelter keeps thanking unusable donations because it fears conflict",
+      "format": "reflection",
+      "requiredBeat": "she writes the polite refusal script instead of sorting one more broken suitcase",
+      "firstImage": "a broken suitcase beside a donation receipt pad",
+      "mustInclude": [
+        "suitcase",
+        "receipt pad"
+      ],
+      "mustAvoid": [
+        "charity guilt"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify personal participation in a criticized system",
+      "separate agency from equal power",
+      "spot rationalized compromise",
+      "choose an interruption to an easy harmful habit"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one pattern you complain about and the small benefit you get from continuing it.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch08",
+  "number": 8,
+  "title": "Drain the Shallows",
+  "coreMove": "Quantify shallow obligations, cap them deliberately, and redesign communication so depth has room to happen.",
+  "sourcePressure": "The source frame says to reduce shallow obligations, constrain email sprawl, and defend time for deep work.",
+  "chapterSpecificMisunderstanding": "The weak version tells people to ignore email; the chapter must show deliberate constraints that preserve necessary coordination while shrinking shallow spread.",
+  "sourceAlignmentTerms": ["shallow obligations", "email sprawl", "defend time", "constraints", "reduce", "drain"],
+  "forbiddenFrames": {
+    "hook": ["inbox zero", "say no more often", "meetings are stealing your life"],
+    "counterintuition": ["less availability helps everyone", "shallow work must be eliminated"],
+    "tryThisNow": ["unsubscribe from newsletters", "decline a meeting"],
+    "examples": ["generic email overload", "calendar full of meetings", "manager sets office hours"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a city permitting office redesigning applicant questions",
+      "audience": "a public manager whose staff loses depth to repetitive clarification loops",
+      "stakes": "permit reviews slow down when every applicant email becomes custom consulting",
+      "format": "before_after",
+      "requiredBeat": "she replaces open-ended email replies with a checklist and two weekly review windows, then tracks the hours returned to technical review",
+      "firstImage": "a permit inbox sorted beside a marked-up application checklist",
+      "mustInclude": ["review windows", "checklist", "technical review hours"],
+      "mustAvoid": ["generic government bureaucracy", "inbox zero"]
+    },
+    {
+      "domain": "a biotech lab manager protecting experiment-design time",
+      "audience": "a lab manager whose coordination work keeps expanding",
+      "stakes": "poorly designed assays waste expensive samples",
+      "format": "decision_point",
+      "requiredBeat": "he calculates how many hours reagent questions consumed, then creates a request form that prevents same-day scattered pings",
+      "firstImage": "a freezer inventory screen beside a notebook page labeled assay design",
+      "mustInclude": ["request form", "reagent questions", "sample cost"],
+      "mustAvoid": ["generic lab scene", "anti-chat rant"]
+    },
+    {
+      "domain": "a regional airline maintenance planner batching routine approvals",
+      "audience": "a planner whose deep sequencing work is broken by small approvals",
+      "stakes": "aircraft sit idle if maintenance slots are sequenced badly",
+      "format": "postmortem",
+      "requiredBeat": "after a delayed aircraft, she counts approval interruptions and moves routine signoffs into two fixed batches",
+      "firstImage": "a maintenance bay schedule with one aircraft tail number highlighted",
+      "mustInclude": ["routine signoffs", "fixed batches", "maintenance slot"],
+      "mustAvoid": ["airport travel story", "generic operations meeting"]
+    },
+    {
+      "domain": "a university admissions office reducing essay-review interruptions",
+      "audience": "a reviewer whose judgment requires sustained comparison",
+      "stakes": "strong applicants blur together when review is fragmented",
+      "format": "reflection",
+      "requiredBeat": "she logs shallow interruptions during one review block, then sets a question-routing rule before the next batch",
+      "firstImage": "three application essays open beside an interruption tally sheet",
+      "mustInclude": ["question-routing rule", "review batch", "interruption tally"],
+      "mustAvoid": ["classroom shell", "generic student stress"]
+    },
+    {
+      "domain": "a civil engineering firm constraining client revision requests",
+      "audience": "a project lead whose team keeps reworking drawings from scattered comments",
+      "stakes": "stormwater calculations drift when revisions arrive one at a time",
+      "format": "dialogue",
+      "requiredBeat": "she tells the client all comments must arrive in one marked drawing packet by Thursday, then protects Friday for calculation updates",
+      "firstImage": "a stormwater drawing covered with mismatched comment bubbles",
+      "mustInclude": ["marked packet", "Thursday deadline", "calculation updates"],
+      "mustAvoid": ["generic client management", "designer frustration"]
+    },
+    {
+      "domain": "a culinary test kitchen limiting supplier questions",
+      "audience": "a recipe developer whose shallow coordination displaces recipe trials",
+      "stakes": "a national rollout recipe stays unstable without uninterrupted test batches",
+      "format": "vignette",
+      "requiredBeat": "she groups supplier questions into a single midday call and uses the reclaimed morning for three controlled sauce trials",
+      "firstImage": "three labeled sauce cups beside a supplier question sheet",
+      "mustInclude": ["midday call", "controlled trials", "rollout recipe"],
+      "mustAvoid": ["restaurant rush", "foodie atmosphere"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["quantify shallow work before reducing it", "design constraints for email and coordination", "distinguish necessary shallow work from sprawl", "evaluate whether a communication rule defends depth without blocking essential work"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find one recurring shallow exchange and write a single constraint that would batch it, clarify it, or make it unnecessary.",
+  "readingTimeMinutes": 12
+}

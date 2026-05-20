@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch18",
+  "number": 18,
+  "title": "Taming Intuitive Predictions",
+  "readingTimeMinutes": 12,
+  "hook": "The file screams fraud, but the forecast should move only partway from the base rate.",
+  "counterintuition": "The better move is not to throw intuition away. Use it as evidence, then shrink the forecast toward the base rate when the signal is noisy or correlation is weak.",
+  "tryThisNow": "Make one prediction today in three lines: base rate, intuitive adjustment, final shrunken forecast. Force the final number to sit between the first two.",
+  "keyTakeaway": "Improve intuitive predictions by starting with the base rate, estimating signal strength, and shrinking the forecast toward the average.",
+  "breakdown": {
+    "fastRead": "A tax reviewer sees a return that feels fraudulent. The cues are real: odd timing, a new dependent, a mismatched employer record. The base rate for fraud in similar returns is still low.\n\nThe forecast should move, not leap.\n\nAn intuitive prediction often overreacts to vivid case evidence. A better forecast starts with the base rate, then adjusts for how strongly the current evidence predicts the outcome. If the correlation is imperfect, shrink the prediction back toward the base rate before acting.",
+    "deepRead": "A bakery manager sees a starter that smells sharp and predicts tomorrow's batch will fail. Her nose has value. It has also been wrong often enough that the forecast should not jump from ordinary risk to certain failure.\n\nShrinkage is disciplined humility.\n\nThe structure is simple. First, choose the base rate: how often does this outcome happen in comparable cases? Second, make the intuitive prediction from the case details. Third, ask how reliable the cue is. If the cue has strong correlation with the outcome, move farther from the base rate. If the cue is weak or noisy, move only a little. The final forecast should usually sit between the base rate and the first intuitive number.\n\nThis is regression applied before the error happens. Extreme case impressions often contain signal plus noise. If you treat the whole impression as signal, your prediction becomes too extreme. Shrinkage pulls it back toward the average because not every vivid cue repeats in the outcome.\n\nAn avalanche forecaster hears a snowpack crack and feels tomorrow's danger should jump high. The crack matters. But the base rate for similar slopes, recent pits, weather trend, and historical correlation should decide how far the forecast moves. The right answer may still be higher risk. It should not be pure feeling converted into certainty.\n\nIntuition can point. The base rate sets the leash.",
+    "fullRead": "Prediction tempts the mind toward drama. A file looks bad, so fraud feels likely. A smell is sharp, so failure feels near. A trainee looks brilliant, so performance is forecast high. Each case contains cues, and some cues are informative. The error is treating a strong impression as if it had perfect correlation with the outcome.\n\nA rare-books desk offers a clean case. The periscope drill card labeled correlation sits beside a stack of donor files. A donor's letter is elegant, detailed, and historically literate, so the curator predicts the donated collection will be valuable. The base rate says most donated boxes are ordinary. The letter's quality is a positive cue, but past data show only moderate correlation with collection value. The forecast should rise above the base rate, then stop short of the intuitive leap.\n\nHow much does this cue really predict?\n\nThat question controls shrinkage. If a cue is nearly diagnostic, shrink less. If it is noisy, shrink more. If you do not know the cue's reliability, shrink more than your story wants. This is not timidity. It is respect for uncertainty.\n\nA factory quality cage shows the same math without numbers. The publisher return slip labeled forecast, used as a training marker, sits beside a batch with one ugly early defect. The supervisor's gut predicts a bad run. The base rate for bad runs is 8 percent. Similar early defects predict bad runs only about half the time. The final forecast should be above 8, but below the gut's panic. That middle number may still justify inspection or containment. It simply avoids treating noisy evidence as destiny.\n\nThis is different from abandoning intuition. If the intuitive forecast is based on skilled pattern recognition, it should move the estimate. If the evidence is weak, it should move it slightly. If the base rate is strong and the cue weak, the base rate should dominate. The art is not choosing intuition or statistics. It is giving each its weight.\n\nA neon repair shop gives the postmortem version. A flickering sign looked exactly like the frost failures from last winter, so the shop forecast a costly outdoor coil replacement. The orchard wind vane labeled shrinkage hangs over the bench as a reminder from the repair audit. The base rate for that symptom was mostly transformer faults. Frost resemblance moved the forecast up, but not enough to skip a transformer test. The first repair order was too extreme because it did not shrink.\n\nThe limit is that real life rarely supplies perfect correlations. Use rough weights when you must: strong, moderate, weak. A strong cue can move a lot. A weak cue can nudge. An unknown cue should not be allowed to run the forecast.\n\nA shrunken forecast is not less brave. It is less fooled by noise."
+  },
+  "examples": [
+    {
+      "exampleId": "ch18-ex01-ari-return",
+      "title": "Ari shrinks the fraud forecast",
+      "tags": [
+        "scene",
+        "tax",
+        "forecast"
+      ],
+      "planSpec": {
+        "domain": "tax fraud review unit facing a decision distorted by base rate",
+        "audience": "a lead or reviewer who must shrink an intuitive forecast toward the base rate before acting on it while others want the quick answer",
+        "stakes": "the visible call will go wrong unless base rate is separated from the tempting but weaker cue",
+        "format": "scene",
+        "requiredBeat": "the scene shows the before call written on the prediction controlled-substance log labeled intuitive prediction, then the after call once the person performs the correction instead of trusting the original feeling"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Ari says, with the prediction controlled-substance log labeled intuitive prediction between a suspicious return and the review queue. His gut says fraud likely. The comparable base rate is 6 percent. The cues are real but imperfect. Ari must decide whether the final forecast should jump to 70 or shrink to a defensible middle before escalating.",
+      "whatToDo": "Start at the 6 percent base rate, rate the cues for reliability, and choose a forecast between base rate and gut estimate before escalating.",
+      "whyItMatters": "The file may be riskier than average, but noisy cues do not justify the full intuitive leap. Shrinkage keeps the forecast calibrated."
+    },
+    {
+      "exampleId": "ch18-ex02-monica-starter",
+      "title": "Monica pulls the starter prediction back",
+      "tags": [
+        "vignette",
+        "bakery",
+        "prediction"
+      ],
+      "planSpec": {
+        "domain": "commercial bakery proofing area facing a decision distorted by base rate",
+        "audience": "a lead or reviewer who must shrink an intuitive forecast toward the base rate before acting on it while others want the quick answer",
+        "stakes": "the visible call will go wrong unless base rate is separated from the tempting but weaker cue",
+        "format": "vignette",
+        "requiredBeat": "the protagonist pauses with the foundation crack gauge labeled base rate in hand, names the mental shortcut silently, and chooses the one small check that makes the shortcut accountable"
+      },
+      "scenario": "The proofing room is quiet except for a foundation crack gauge labeled base rate beside Monica's starter jar. The smell is sharp, and her intuitive prediction is tomorrow's batch will fail. The log says similar smells failed 20 percent of the time, not 90. Monica must decide whether to adjust staffing from the base rate plus cue strength rather than from the smell alone.",
+      "whatToDo": "Use the starter-failure base rate, then move upward only as far as past sharp-smell cases justify.",
+      "whyItMatters": "The smell carries signal, but not perfect correlation. The forecast needs shrinkage toward the base rate."
+    },
+    {
+      "exampleId": "ch18-ex03-stefan-snow",
+      "title": "Stefan signs the danger forecast twice",
+      "tags": [
+        "dialogue",
+        "avalanche",
+        "forecast"
+      ],
+      "planSpec": {
+        "domain": "avalanche forecasting hut facing a decision distorted by base rate",
+        "audience": "a lead or reviewer who must shrink an intuitive forecast toward the base rate before acting on it while others want the quick answer",
+        "stakes": "the visible call will go wrong unless base rate is separated from the tempting but weaker cue",
+        "format": "dialogue",
+        "requiredBeat": "the reader is asked to imagine signing the evacuation floor map labeled regression twice, once from the first impression and once after applying intuitive prediction, then compare the two commitments"
+      },
+      "scenario": "Which signature should Stefan trust on the evacuation floor map labeled regression: the one after hearing a snowpack crack, or the one after checking similar-slope history and pit results? \"The crack matters,\" Mara says. \"So does correlation.\" Stefan must decide whether the danger forecast rises from the base rate by a measured amount or leaps to the worst image in his head.",
+      "whatToDo": "Raise the forecast for the crack, but shrink it according to similar-slope base rates, pit results, weather trend, and cue reliability.",
+      "whyItMatters": "The crack is informative, not definitive. Correlation decides how far the intuitive prediction should move."
+    },
+    {
+      "exampleId": "ch18-ex04-helena-donation",
+      "title": "Helena weights the elegant donor letter",
+      "tags": [
+        "decision_point",
+        "library",
+        "forecast"
+      ],
+      "planSpec": {
+        "domain": "library rare-books desk facing a decision distorted by base rate",
+        "audience": "a lead or reviewer who must shrink an intuitive forecast toward the base rate before acting on it while others want the quick answer",
+        "stakes": "the visible call will go wrong unless base rate is separated from the tempting but weaker cue",
+        "format": "decision_point",
+        "requiredBeat": "the lead physically separates the quick cue and the corrective evidence on opposite sides of the periscope drill card labeled correlation, then chooses only after both are visible"
+      },
+      "scenario": "The rough corner of the periscope drill card labeled correlation presses into Helena's wrist as she reads an elegant donor letter. Her intuitive prediction is valuable collection. On the other side of the desk are base rate for donated boxes, prior letter-quality correlation, and inventory clues. She must decide whether to forecast high value or shrink the estimate toward ordinary.",
+      "whatToDo": "Start with the donated-box base rate, then adjust for letter quality only as much as past correlation supports.",
+      "whyItMatters": "The letter is a positive cue, but most donations are ordinary. A forecast should rise, then stop before the story's full optimism."
+    },
+    {
+      "exampleId": "ch18-ex05-quentin-defect",
+      "title": "Quentin moves the bad-run forecast to checked",
+      "tags": [
+        "predict_reveal",
+        "factory",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "factory quality cage facing a decision distorted by base rate",
+        "audience": "a lead or reviewer who must shrink an intuitive forecast toward the base rate before acting on it while others want the quick answer",
+        "stakes": "the visible call will go wrong unless base rate is separated from the tempting but weaker cue",
+        "format": "predict_reveal",
+        "requiredBeat": "the trainee must move the publisher return slip labeled forecast from the guess pile to the checked pile only after showing the chapter-specific correction in one sentence"
+      },
+      "scenario": "You are looking at a publisher return slip labeled forecast in Quentin's quality cage while one ugly early defect makes the whole run feel doomed. His first prediction is 80 percent bad run. The base rate is 8 percent, and similar early defects predicted bad runs about half the time. Quentin must decide what shrunken forecast earns the checked pile.",
+      "whatToDo": "Calculate a forecast above the 8 percent base rate but below the gut's 80 percent, then inspect accordingly.",
+      "whyItMatters": "The early defect is signal plus noise. Shrinkage keeps the response serious without treating one cue as destiny."
+    },
+    {
+      "exampleId": "ch18-ex06-louise-neon",
+      "title": "Louise catches the frost-repair overforecast",
+      "tags": [
+        "postmortem",
+        "repair",
+        "diagnosis"
+      ],
+      "planSpec": {
+        "domain": "neon sign repair shop facing a decision distorted by base rate",
+        "audience": "a lead or reviewer who must shrink an intuitive forecast toward the base rate before acting on it while others want the quick answer",
+        "stakes": "the visible call will go wrong unless base rate is separated from the tempting but weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "the supervisor circles the alluring detail on the orchard wind vane labeled shrinkage, crosses it out, and asks for the boring comparison that the chapter says must come first"
+      },
+      "scenario": "Louise saw the overforecast when the bench audit reached the orchard wind vane labeled shrinkage. A winter flicker looked exactly like last year's frost-damaged coil, so the shop ordered an outdoor replacement. The transformer test later showed the common fault. Louise must decide how future frost-like cases start from repair base rates before resemblance moves the diagnosis.",
+      "whatToDo": "Begin with base rates for winter flicker causes, then let frost resemblance move the estimate only after transformer and exposure checks.",
+      "whyItMatters": "The resemblance cue had low enough correlation that it needed shrinkage. The common fault should have stayed near the forecast."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A tax return feels highly fraudulent, but comparable returns have a 6 percent fraud base rate and the cues are only moderately reliable. What should the reviewer do?",
+        "choices": [
+          "Start at 6 percent and move upward only as far as cue reliability supports.",
+          "Jump to the intuitive fraud estimate because the case feels strong.",
+          "Stay at 6 percent because intuition should be ignored."
+        ],
+        "correctIndex": 0,
+        "explanation": "The cues should update the base rate, not replace it. Ignoring them underuses evidence; jumping to the gut forecast overuses noisy case impressions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A bakery starter smells sharp. Similar sharp-smell cases failed 20 percent of the time. The manager's gut says 90 percent failure. What is the best forecast shape?",
+        "choices": [
+          "Exactly 90 percent because the smell is vivid.",
+          "Between the base rate and 90 percent, closer depending on how reliable the smell has been.",
+          "Zero, because smell is subjective."
+        ],
+        "correctIndex": 1,
+        "explanation": "The smell is a cue with imperfect correlation. The forecast should rise but shrink toward the base rate. Zero and 90 both ignore calibration.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "An avalanche forecaster hears a snowpack crack and wants to move danger to the highest level. Similar slopes do not always slide after this cue. What should guide the adjustment?",
+        "choices": [
+          "How frightening the crack sounded.",
+          "The lowest historical danger level.",
+          "Base rate for similar slopes, pit results, weather trend, and cue correlation."
+        ],
+        "correctIndex": 2,
+        "explanation": "The crack matters, but correlation and comparable conditions decide how far to move the forecast. Fear and arbitrary low anchors both mishandle the cue.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A curator predicts a donated collection is valuable because the donor letter is elegant. Most donated boxes are ordinary, and letter quality has moderate correlation with value. What should she do?",
+        "choices": [
+          "Raise the forecast above the donated-box base rate, but shrink it toward ordinary.",
+          "Forecast very high value because the letter is strong.",
+          "Ignore the letter because base rates always dominate."
+        ],
+        "correctIndex": 0,
+        "explanation": "Moderate correlation means the letter should move the forecast, but not all the way to the intuitive high value. Ignoring it and overreacting both misweight evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A factory run has one ugly early defect. The base rate for bad runs is 8 percent, and similar defects predict bad runs about half the time. Which estimate is most reasonable?",
+        "choices": [
+          "The panic estimate, because early defects reveal the run.",
+          "A number above 8 percent but below the first panic estimate.",
+          "Exactly 8 percent, because one defect is noise."
+        ],
+        "correctIndex": 1,
+        "explanation": "The defect is informative but noisy. A shrunken forecast respects both base rate and signal. The other choices treat the cue as either destiny or nothing.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A repair shop sees a winter flicker that resembles last year's frost damage, but most similar flickers are transformer faults. What is the correct move?",
+        "choices": [
+          "Order the frost repair because resemblance is strong.",
+          "Dismiss frost because common faults are always right.",
+          "Start from winter flicker base rates and move toward frost only after exposure and transformer checks."
+        ],
+        "correctIndex": 2,
+        "explanation": "The frost resemblance is a cue, not a final diagnosis. Base rates and checks determine how much to shift. Dismissing frost outright ignores a possible signal.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "During a forecast review, a product team says taming intuitive prediction means abandoning intuition and using only averages. Which response is most accurate?",
+        "choices": [
+          "Intuition should be used as evidence and then corrected with base rates and regression.",
+          "Intuition should be banned from forecasting.",
+          "Base rates should be ignored when intuition is strong."
+        ],
+        "correctIndex": 0,
+        "explanation": "The method combines intuition with base rates and shrinkage. Banning intuition loses signal; ignoring base rates loses calibration.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A hiring panel predicts a candidate will be exceptional after one brilliant interview. The base rate for exceptional hires is low and interview score correlation is moderate. What should they do?",
+        "choices": [
+          "Forecast exceptional performance because the interview was brilliant.",
+          "Move above the base rate, but shrink the prediction toward average performance.",
+          "Use only the base rate and discard the interview."
+        ],
+        "correctIndex": 1,
+        "explanation": "A brilliant interview is positive evidence, but moderate correlation means the forecast should be tempered. The correct estimate sits between base rate and first impression.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "At a hospital hiring panel, a forecaster has no data on cue reliability but feels one candidate is extreme after a vivid interview. What default should she use?",
+        "choices": [
+          "Trust the extreme feeling because unknown reliability means freedom to choose.",
+          "Refuse to forecast at all.",
+          "Shrink more toward the base rate because cue reliability is unknown."
+        ],
+        "correctIndex": 2,
+        "explanation": "Unknown reliability should not give intuition unlimited weight. Shrinking toward the base rate protects against noisy cues. Refusing every forecast is usually impractical.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "An intuitive forecast is much higher than the base rate. What should you do before acting?",
+      "back": "Ask how reliable the cue is and shrink the forecast toward the base rate unless the cue is highly diagnostic.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What are the three lines of a tamed prediction?",
+      "back": "Base rate, intuitive prediction, and shrunken forecast. The final number usually sits between the base rate and the first impression.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why does weak correlation require more shrinkage?",
+      "back": "Weak correlation means the cue contains more noise relative to signal. The forecast should not move far from the base rate on noisy evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "When should a forecast move far from the base rate?",
+      "back": "When the current evidence is strongly correlated with the outcome and the reference class is appropriate. Strong diagnostic cues deserve larger updates.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How is shrinkage related to regression?",
+      "back": "Both recognize that extreme impressions contain noise. Shrinkage pulls the forecast toward average before the next result reveals that noise.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is shrunken forecasting. Start with the base rate, use intuition as an update, then pull the final prediction back toward average according to cue reliability.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a case feels exceptional, then write the base rate and decide whether the cue is strong, moderate, weak, or unknown before forecasting."
+      },
+      {
+        "context": "health",
+        "plan": "If a symptom pattern feels decisive, then start from the condition base rate and move only as far as diagnostic reliability supports."
+      },
+      {
+        "context": "money",
+        "plan": "If an investment or customer looks unusually promising, then shrink the forecast toward the relevant average before sizing the bet."
+      },
+      {
+        "context": "operations",
+        "plan": "If an early defect or success appears, then forecast from base rate plus cue reliability rather than from the first impression alone."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, make one explicit shrunken prediction. Write base rate, gut forecast, cue reliability, and final forecast in that order.",
+    "weeklyPractice": "Once a week, compare predictions with outcomes. Track whether unshrunken forecasts were too extreme and adjust your shrinkage habit."
+  },
+  "memorableLines": [
+    {
+      "text": "The forecast should move, not leap.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the balance between intuition and base rate."
+    },
+    {
+      "text": "Shrinkage is disciplined humility.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the technical correction a memorable phrase."
+    },
+    {
+      "text": "A shrunken forecast is not less brave.",
+      "location": "breakdown.fullRead",
+      "why": "It counters the feeling that calibrated forecasts are timid."
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch54",
+  "number": 54,
+  "title": "Contagion Bias",
+  "coreMove": "Detect when the contagion bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+  "sourcePressure": "The frozen TOC and official source notes frame Contagion Bias as a specific decision error around contagion bias, sympathetic magic, once in contact. Traceable support includes contagion heuristic.",
+  "chapterSpecificMisunderstanding": "Treating Contagion Bias as generic advice to be smarter, instead of forcing this exact move: detect when the contagion bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+  "sourceAlignmentTerms": [
+    "contagion bias",
+    "sympathetic magic",
+    "once in contact",
+    "JFK target",
+    "Saddam air",
+    "contagion",
+    "bias"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "contagion heuristic",
+      "detail": "Contagion bias is also called the ' contagion heuristic ' . The one-line summary of the contagion bias: ' Once in contact, always in contact. ' Thomas Gilovich, Dale Griffin, Daniel Kahneman (editors), Heuristics and Biases: The Psychology of Intuitive Judgment (Cambridge Univers",
+      "useIn": "fullRead",
+      "phrasingHint": "contagion heuristic can appear as a factual pressure point: the reader sees contagion bias through evidence, not a decorative citation."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Contagion Bias.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Contagion Bias sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Contagion Bias."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a family court calendar applying Contagion Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where contagion bias could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Contagion Bias is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the waiting-list sheet, names the contagion bias risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A waiting-list sheet sits at the center of the family court calendar before anyone explains the choice.",
+      "mustInclude": [
+        "waiting-list sheet",
+        "contagion bias",
+        "a visible before-and-after choice tied to Contagion Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a auto-parts defect review applying Contagion Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where sympathetic magic could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Contagion Bias is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the defect photo, names the sympathetic magic risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A defect photo sits at the center of the auto-parts defect review before anyone explains the choice.",
+      "mustInclude": [
+        "defect photo",
+        "sympathetic magic",
+        "a visible before-and-after choice tied to Contagion Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a warehouse lease choice applying Contagion Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where once in contact could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Contagion Bias is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the forecast grid, names the once in contact risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A forecast grid sits at the center of the warehouse lease choice before anyone explains the choice.",
+      "mustInclude": [
+        "forecast grid",
+        "once in contact",
+        "a visible before-and-after choice tied to Contagion Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a cybersecurity breach room applying Contagion Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where JFK target could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Contagion Bias is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the donor pledge card, names the JFK target risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A donor pledge card sits at the center of the cybersecurity breach room before anyone explains the choice.",
+      "mustInclude": [
+        "donor pledge card",
+        "JFK target",
+        "a visible before-and-after choice tied to Contagion Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a urban farm volunteer plan applying Contagion Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where Saddam air could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Contagion Bias is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the shift roster, names the Saddam air risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A shift roster sits at the center of the urban farm volunteer plan before anyone explains the choice.",
+      "mustInclude": [
+        "shift roster",
+        "Saddam air",
+        "a visible before-and-after choice tied to Contagion Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a appliance warranty desk applying Contagion Bias under operational pressure",
+      "audience": "a reader who has to make a live judgment where contagion could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Contagion Bias is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the risk register, names the contagion risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A risk register sits at the center of the appliance warranty desk before anyone explains the choice.",
+      "mustInclude": [
+        "risk register",
+        "contagion",
+        "a visible before-and-after choice tied to Contagion Bias"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Contagion Bias in a fresh decision scene",
+      "choose the correction that performs this move: detect when the contagion bias pattern is tilting the evidence, then force the missing comparison before deciding.",
+      "reject a tempting generic answer that ignores contagion bias",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Contagion Bias' on a note, list the one contagion bias cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

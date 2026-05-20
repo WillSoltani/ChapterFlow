@@ -1,0 +1,112 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch09",
+  "number": 9,
+  "title": "Causation vs. Correlation",
+  "coreMove": "Demand a plausible mechanism or test before treating association as cause.",
+  "sourcePressure": "Frozen support is thin. The safe core is the distinction between things moving together and one thing actually producing the other, with the chapter functioning as a practical warning against mistaking association for mechanism.",
+  "chapterSpecificMisunderstanding": "The weak version says correlation is worthless or that causal reasoning requires technical statistical tools.",
+  "sourceAlignmentTerms": ["causation", "correlation", "association", "mechanism", "confounder", "movement together", "produce"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Causation vs. Correlation",
+      "detail": "the frozen bundle confirms a supporting idea titled Causation vs. Correlation and gives only the narrow factual floor of association versus actual production",
+      "useIn": "fullRead",
+      "phrasingHint": "The safe move is not to throw away the pattern; it is to ask what could actually make one thing produce the other."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["ice cream and drowning imported example", "statistics classroom", "correlation is not causation slogan as whole lesson"],
+    "counterintuition": ["patterns are useless", "causes are unknowable", "only randomized trials count"],
+    "tryThisNow": ["question all correlations", "look for causation", "be skeptical"],
+    "examples": ["famous public-health example not in source", "textbook scatterplot", "generic dashboard chart"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "sleep-tracker productivity claim",
+      "audience": "a product manager tempted to claim that sleep-score nudges cause better work output",
+      "stakes": "marketing may promise a cause when motivated users simply use the tracker more",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Luke writes the possible third factor, already disciplined users, beside the rising sleep and productivity lines before approving the claim",
+      "firstImage": "two rising lines glowing on a tablet in a dark bedroom",
+      "mustInclude": ["sleep-score chart", "productivity survey", "third-factor note"],
+      "mustAvoid": ["wellness tech hype", "all tracking is bad"]
+    },
+    {
+      "domain": "bike-share helmet pickup",
+      "audience": "a city mobility analyst reviewing a link between free helmets and fewer injuries",
+      "stakes": "funds may shift away from intersection fixes if the causal story is wrong",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Eva asks whether safer riders are the ones taking helmets, then requests station-level crash data before claiming the helmets caused the drop",
+      "firstImage": "a row of free helmets clipped to a bike-share kiosk",
+      "mustInclude": ["station crash data", "helmet pickup count", "intersection fix list"],
+      "mustAvoid": ["helmet culture war", "transport policy lecture"]
+    },
+    {
+      "domain": "coffee roaster loyalty campaign",
+      "audience": "a cafe owner seeing loyalty-card users buy more beans",
+      "stakes": "a discount campaign may reward customers who were already loyal",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Vincent compares new loyalty-card customers with prior purchase history before saying the card caused higher bean sales",
+      "firstImage": "warm coffee oil shining on a paper loyalty card",
+      "mustInclude": ["purchase history", "loyalty card", "bean sales"],
+      "mustAvoid": ["coffee shop generic", "discounts always work"]
+    },
+    {
+      "domain": "wildflower planting and bees",
+      "audience": "a parks ecologist reviewing more bees after a planting program",
+      "stakes": "the city may expand a program without checking weather and mowing changes",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Adaeze lays rainfall, mowing schedule, and wildflower acreage beside bee counts before naming the program as the cause",
+      "firstImage": "pollen dust on a bee-count clipboard",
+      "mustInclude": ["rainfall log", "mowing schedule", "bee counts"],
+      "mustAvoid": ["nature feel-good story", "anti-environmental twist"]
+    },
+    {
+      "domain": "app retention dashboard",
+      "audience": "a mobile app team seeing tutorial completions rise with retention",
+      "stakes": "the team may force a longer tutorial and reduce actual use",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Tom asks whether committed users finish tutorials because they already intend to stay, then proposes a test that changes tutorial order for new users",
+      "firstImage": "a funnel chart beside a phone stuck on step seven",
+      "mustInclude": ["tutorial completion", "retention cohort", "order test"],
+      "mustAvoid": ["generic SaaS funnel", "growth hack"]
+    },
+    {
+      "domain": "clinic no-show reminder",
+      "audience": "a clinic administrator linking appointment reminders to lower no-shows",
+      "stakes": "the clinic may overlook same-week scheduling changes that actually caused attendance to rise",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Anya hold the reminder texts and schedule-shortening change apart until she can see which mechanism plausibly explains attendance",
+      "firstImage": "a reminder-text report under a stack of same-week appointment cards",
+      "mustInclude": ["reminder texts", "same-week scheduling", "no-show rate"],
+      "mustAvoid": ["patient blame", "notification miracle"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish association from production", "name a plausible confounder", "ask for mechanism before causal claim", "choose a practical test for a suspected cause"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "Find one pattern you are tempted to call causal. Write one mechanism that could produce it and one third factor that could also explain it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

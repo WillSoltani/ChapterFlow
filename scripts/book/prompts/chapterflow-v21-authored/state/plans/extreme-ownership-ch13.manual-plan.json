@@ -1,0 +1,179 @@
+{
+  "chapterId": "extreme-ownership-ch13",
+  "number": 13,
+  "title": "Discipline Equals Freedom: The Dichotomy of Leadership",
+  "coreMove": "use disciplined basics to free attention for judgment, then balance firmness with humility, speed with care, and control with trust",
+  "sourcePressure": "Disciplined procedures create freedom of action, and leadership requires balancing tensions rather than choosing one extreme.",
+  "chapterSpecificMisunderstanding": "discipline means strictness solves everything",
+  "sourceAlignmentTerms": [
+    "discipline equals freedom",
+    "dichotomy",
+    "structured adaptability",
+    "balanced leadership",
+    "standards",
+    "freedom of action",
+    "judgment"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "arborist crew preparing for storm-damaged tree removals",
+      "audience": "a crew lead balancing strict setup with field judgment",
+      "stakes": "loose preparation can waste daylight and create hazards near power lines",
+      "format": "scene",
+      "requiredBeat": "the lead uses the same morning gear check every day, which frees the crew to adjust the cut plan when the first tree leans differently than expected",
+      "firstImage": "color-coded climbing ropes hang from a rack beside a saw fuel can",
+      "mustInclude": [
+        "color-coded ropes",
+        "morning gear check",
+        "adjusted cut plan"
+      ],
+      "mustAvoid": [
+        "discipline as yelling or control"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "jazz ensemble opening a set with rehearsed cue language",
+      "audience": "a bandleader who wants improvisation without musical drift",
+      "stakes": "freedom onstage can turn into noise if the shared structure is weak",
+      "format": "vignette",
+      "requiredBeat": "the bandleader drills the cue endings in rehearsal, then gives the saxophonist more solo room because everyone knows how to land together",
+      "firstImage": "You are close enough to see this: brass mute rests on a piano while the drummer taps the cue ending softly.",
+      "mustInclude": [
+        "cue endings",
+        "solo room",
+        "shared landing"
+      ],
+      "mustAvoid": [
+        "creativity versus discipline cliché"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "restaurant prep system before an unexpected theater crowd arrives",
+      "audience": "a chef balancing prep discipline with real-time menu judgment",
+      "stakes": "the kitchen needs freedom to adapt without losing food safety or timing",
+      "format": "before_after",
+      "requiredBeat": "because prep labels, station lists, and par counts are done, the chef can cut one menu item and shift cooks without chaos when the crowd hits",
+      "firstImage": "The first thing you register is physical: labeled squeeze bottles line the cold station as theater tickets pile at the host stand.",
+      "mustInclude": [
+        "prep labels",
+        "par counts",
+        "menu cut"
+      ],
+      "mustAvoid": [
+        "rigidity as excellence"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "sailing expedition packing storm lines before leaving harbor",
+      "audience": "a skipper teaching a novice crew why routine matters",
+      "stakes": "loose packing steals attention when weather turns",
+      "format": "predict_reveal",
+      "requiredBeat": "the skipper insists on the same line-stow routine in calm water, then when wind rises the crew can reef quickly and choose a safer heading",
+      "firstImage": "\"Hold there,\" someone says. Coiled storm lines sit clipped under the cockpit bench before departure.",
+      "mustInclude": [
+        "line-stow routine",
+        "reefing choice",
+        "safer heading"
+      ],
+      "mustAvoid": [
+        "adventure bravado"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "software on-call rotation using disciplined incident templates",
+      "audience": "an engineering lead balancing procedure with rapid diagnosis",
+      "stakes": "without basics handled, every incident consumes attention on formatting and ownership",
+      "format": "postmortem",
+      "requiredBeat": "the lead shows how the same incident template let the responder skip status confusion and spend attention deciding whether to roll back or patch forward",
+      "firstImage": "Later, the team will trace the lesson back to this: pager alert opens a prefilled incident template at 2:16 a.m.",
+      "mustInclude": [
+        "prefilled incident template",
+        "status owner",
+        "rollback-or-patch decision"
+      ],
+      "mustAvoid": [
+        "process for process’s sake"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "physical therapy clinic standardizing intake while tailoring treatment",
+      "audience": "a clinic director with therapists worried protocols will flatten patient care",
+      "stakes": "inconsistent basics hide real clinical differences and slow treatment choices",
+      "format": "dialogue",
+      "requiredBeat": "the director standardizes pain scale, range check, and red-flag questions, then shows therapists how that frees them to choose different exercises with better facts",
+      "firstImage": "What changes once this is in front of everyone: row of resistance bands hangs beside a freshly printed intake sheet?",
+      "mustInclude": [
+        "pain scale",
+        "range check",
+        "tailored exercise choice"
+      ],
+      "mustAvoid": [
+        "protocols replacing judgment"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain how disciplined basics create freedom of action",
+      "balance leadership tensions instead of choosing extremes",
+      "recognize when process supports judgment versus replaces it"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one recurring decision that wastes attention and turn it into a standard routine, then write where judgment still belongs.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

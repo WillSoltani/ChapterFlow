@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch01",
+  "number": 1,
+  "title": "Why This Book Can Help You",
+  "coreMove": "Diagnose the gap between hard preparation and live-room uptake before reaching for more facts.",
+  "sourcePressure": "Opening problem chapter: pitch success depends more on method than effort, and common detail-heavy pitches fail because the audience processes status, attention, and novelty before careful analysis.",
+  "chapterSpecificMisunderstanding": "The writer must not present the opening as generic sales motivation; the pressure is the mismatch between more effort and poor room processing.",
+  "sourceAlignmentTerms": [
+    "method",
+    "pitch outcomes",
+    "audience processing",
+    "high-stakes negotiation",
+    "attention",
+    "novelty",
+    "status"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "You have been pitching wrong your whole life",
+      "Everything changes when you learn to sell",
+      "A bad meeting starts before it starts"
+    ],
+    "counterintuition": [
+      "More effort is not always better",
+      "Confidence is not enough",
+      "People are irrational"
+    ],
+    "tryThisNow": [
+      "Write down three pitches you want to improve",
+      "Think of a recent meeting",
+      "Set a timer and reflect"
+    ],
+    "examples": [
+      "generic startup investor meeting",
+      "conference room slide deck with nodding executives",
+      "salary negotiation with vague anxiety"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "municipal grant director pitching a flood-wall application to a state review panel",
+      "audience": "a civic operator who prepared a perfect binder and still lost funding last cycle",
+      "stakes": "a waterfront district loses another storm season if the panel files the project as ordinary maintenance",
+      "format": "postmortem",
+      "requiredBeat": "after the panel thanks her and moves on, she flips through the untouched tabbed binder and circles the first page they never reached",
+      "firstImage": "a blue grant binder lying unopened beside a brass nameplate",
+      "mustInclude": [
+        "tabbed binder",
+        "storm map",
+        "eight-minute agenda slot"
+      ],
+      "mustAvoid": [
+        "generic nonprofit fundraising pitch"
+      ]
+    },
+    {
+      "domain": "industrial bakery equipment vendor presenting a proofing oven to a skeptical plant manager",
+      "audience": "a technical seller who believes the spec sheet should carry the meeting",
+      "stakes": "a six-month production delay if the manager sees only cost and not throughput risk",
+      "format": "decision_point",
+      "requiredBeat": "the seller watches the manager turn to page four of the spec sheet, then closes it and reaches for the rejected batch log instead",
+      "firstImage": "a tray of pale rolls cooling beside a laminated spec sheet",
+      "mustInclude": [
+        "batch log",
+        "oven cycle chart",
+        "plant noise"
+      ],
+      "mustAvoid": [
+        "generic B2B sales call"
+      ]
+    },
+    {
+      "domain": "film-location scout asking a property board to approve a two-night shoot in a historic arcade",
+      "audience": "a creative professional who has rehearsed every permit detail",
+      "stakes": "the production loses the only location that makes the opening sequence work",
+      "format": "scene",
+      "requiredBeat": "the board chair stops her at the insurance paragraph, and she realizes the room is judging disruption before it hears artistic value",
+      "firstImage": "folding chairs facing a glass case of antique ticket stubs",
+      "mustInclude": [
+        "insurance packet",
+        "night-shoot schedule",
+        "security deposit check"
+      ],
+      "mustAvoid": [
+        "generic arts funding appeal"
+      ]
+    },
+    {
+      "domain": "medical device founder pitching a sterilization tray redesign to a hospital procurement committee",
+      "audience": "a founder with strong clinical data but no control over the room mood",
+      "stakes": "nurses keep losing minutes between surgeries while procurement sees only unit price",
+      "format": "before_after",
+      "requiredBeat": "before leaving, she marks the exact moment the committee asked for the discount and never returned to the infection-control data",
+      "firstImage": "a stainless tray insert sitting inside a clear evidence bag",
+      "mustInclude": [
+        "procurement spreadsheet",
+        "operating-room turnover clock",
+        "nurse quote card"
+      ],
+      "mustAvoid": [
+        "generic health startup demo"
+      ]
+    },
+    {
+      "domain": "rural broadband cooperative seeking easement approval from ranch owners",
+      "audience": "an infrastructure team that prepared maps but misread local suspicion",
+      "stakes": "one refused easement cuts twelve miles of fiber out of the build",
+      "format": "dialogue",
+      "requiredBeat": "when the rancher asks who else profits, the presenter stops explaining bandwidth and writes the unanswered trust question on the legal pad",
+      "firstImage": "a dusty plat map pinned under a horseshoe paperweight",
+      "mustInclude": [
+        "plat map",
+        "easement form",
+        "county road number"
+      ],
+      "mustAvoid": [
+        "generic neighborhood meeting"
+      ]
+    },
+    {
+      "domain": "museum conservator pitching a climate-control upgrade to a donor council",
+      "audience": "a specialist who assumes the science of preservation is self-evident",
+      "stakes": "a textile collection keeps fading while donors prefer visible gallery projects",
+      "format": "reflection",
+      "requiredBeat": "she notices the council leaning in only when a sleeve fragment changes color under the viewing lamp, not when she mentions humidity charts",
+      "firstImage": "a faded silk sleeve resting on black archival foam",
+      "mustInclude": [
+        "humidity chart",
+        "viewing lamp",
+        "donor pledge cards"
+      ],
+      "mustAvoid": [
+        "generic nonprofit boardroom"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when extra preparation is solving the wrong failure",
+      "distinguish poor live-room uptake from weak substance",
+      "choose the first redesign move after a detail-heavy pitch fails",
+      "evaluate whether a pitch postmortem identifies audience processing rather than confidence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open the last pitch deck, proposal, or ask you used and mark the first place a listener could stop caring before the strongest fact appears.",
+  "readingTimeMinutes": 12
+}

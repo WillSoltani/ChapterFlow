@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch24",
+  "number": 24,
+  "title": "Why the Princes of Italy Have Lost Their States",
+  "coreMove": "Treat lost rule as evidence of neglected foundations in quiet times, not as proof of unlucky fortune.",
+  "sourcePressure": "The chapter says new princes can become more secure than hereditary rulers when present actions show ability, good laws, good arms, allies, and example. Italian princes lost states through defects already named: bad arms, hostile people or unsecured nobles, sloth in quiet times, flight in bad times, and hope that others would restore them after conquerors became insolent.",
+  "chapterSpecificMisunderstanding": "The wrong version writes about failure, resilience, or bad luck. The writer must keep the indictment precise: arms, people, nobles, quiet-time sloth, flight instead of defense, and dependence on restoration by others.",
+  "sourceAlignmentTerms": [
+    "Italian princes",
+    "King of Naples",
+    "Duke of Milan",
+    "arms",
+    "people",
+    "nobles",
+    "sloth",
+    "fortune",
+    "flight",
+    "restoration"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "failure memoir",
+      "bounce back after loss",
+      "luck versus effort cliche"
+    ],
+    "counterintuition": [
+      "most people blame luck, but actually they failed to prepare",
+      "hard times reveal character",
+      "failure is feedback"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list excuses",
+      "write what you learned from failure",
+      "make a resilience plan"
+    ],
+    "examples": [
+      "startup failure postmortem",
+      "sports team losing season",
+      "personal career setback",
+      "company crisis communication"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a coastal prince blaming storms after losing his harbor state to a small invasion fleet",
+      "audience": "an examiner tracing whether the loss came from weather or neglected arms",
+      "stakes": "the storm opened the hour, but empty watch posts and leased ships made the loss possible",
+      "format": "postmortem",
+      "requiredBeat": "The examiner pins the storm report below the empty watch-post roster and circles the missing local crews before writing sloth, not sea luck.",
+      "firstImage": "A storm report lies below an empty watch-post roster.",
+      "mustInclude": [
+        "storm report",
+        "watch-post roster",
+        "leased ship list"
+      ],
+      "mustAvoid": [
+        "natural disaster lesson",
+        "chapter 25 flood barrier",
+        "generic naval defeat"
+      ]
+    },
+    {
+      "domain": "a valley duke who kept the people friendly but never secured the ridge nobles before an imperial army arrived",
+      "audience": "a counsellor explaining why one foundation was not enough",
+      "stakes": "popular affection cannot hold passes if noble houses control the ridges and switch sides in the first campaign",
+      "format": "decision_point",
+      "requiredBeat": "The counsellor places the full town petition beside the blank ridge-oath column and shows where defense failed before the imperial banner appeared.",
+      "firstImage": "A full town petition sits beside a blank ridge-oath column.",
+      "mustInclude": [
+        "town petition",
+        "ridge-oath column",
+        "imperial banner notice"
+      ],
+      "mustAvoid": [
+        "chapter 9 people versus nobles lesson repeated",
+        "sentimental popularity",
+        "mountain pass renown from chapter 21"
+      ]
+    },
+    {
+      "domain": "an island lord who spent twenty calm years repairing palaces while the militia rolls decayed",
+      "audience": "a chronicler testing the quiet-time sloth charge",
+      "stakes": "the palace repair log is full, but the first alarm finds dead men still listed as captains",
+      "format": "before_after",
+      "requiredBeat": "Before the raid, the marble roof invoice is signed; after the raid, the militia roll opens to three captains buried years ago.",
+      "firstImage": "A marble roof invoice rests on a militia roll listing dead captains.",
+      "mustInclude": [
+        "marble roof invoice",
+        "militia roll",
+        "first alarm bell"
+      ],
+      "mustAvoid": [
+        "chapter 16 magnificence spending",
+        "palace decadence sermon",
+        "simple laziness"
+      ]
+    },
+    {
+      "domain": "a northern march ruler who flees the capital expecting subjects to recall him after the occupiers grow insolent",
+      "audience": "a prince deciding whether restoration by disgust is a plan or a last accident",
+      "stakes": "recall may happen, but the deliverance will depend on others and leave him insecure again",
+      "format": "predict_reveal",
+      "requiredBeat": "He leaves the defense keys on the council table and carries only the exile trunk, then later receives a recall petition signed by the same armed towns he no longer controls.",
+      "firstImage": "Defense keys remain on a council table beside a closed exile trunk.",
+      "mustInclude": [
+        "defense keys",
+        "exile trunk",
+        "recall petition"
+      ],
+      "mustAvoid": [
+        "redemption return story",
+        "refugee sentimentality",
+        "chapter 7 patron restoration"
+      ]
+    },
+    {
+      "domain": "a city prince with good allies but no good arms discovering alliance paper cannot meet a field army",
+      "audience": "a ruler who counted treaties as if they were soldiers",
+      "stakes": "allies hesitate when the attack arrives, and the city cannot keep an army in the field by its own power",
+      "format": "scene",
+      "requiredBeat": "The prince folds the ally letters into his breastplate gap and realizes there is no citizen muster sheet beneath them.",
+      "firstImage": "Ally letters are folded beside an empty breastplate gap.",
+      "mustInclude": [
+        "ally letters",
+        "breastplate gap",
+        "missing citizen muster sheet"
+      ],
+      "mustAvoid": [
+        "chapter 13 auxiliaries",
+        "treaty betrayal",
+        "generic alliance skepticism"
+      ]
+    },
+    {
+      "domain": "a restored heir trying to claim ancient blood after a new administrator has shown better present order",
+      "audience": "subjects weighing past title against current security",
+      "stakes": "ancient blood cannot overcome present good laws, arms, and example if the new prince has failed them in nothing",
+      "format": "dialogue",
+      "requiredBeat": "The heir unfurls the bloodline cloth, and the market elder places it beside the new grain court schedule and asks which one kept winter peace.",
+      "firstImage": "A bloodline cloth hangs beside a new grain court schedule.",
+      "mustInclude": [
+        "bloodline cloth",
+        "grain court schedule",
+        "winter peace docket"
+      ],
+      "mustAvoid": [
+        "chapter 2 hereditary nostalgia",
+        "legitimacy romance",
+        "generic old versus new"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify arms, people, nobles, allies, laws, and example as foundations whose absence explains loss",
+      "distinguish fortune from quiet-time sloth and failure to prepare for change",
+      "analyze why flight and hoped-for restoration are insecure substitutes for defense",
+      "evaluate claims that hereditary title or bad luck explain a loss better than neglected foundations"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one fallen ruler. Write the alleged bad luck, then test four foundations: arms, people, nobles, and quiet-time preparation. Mark which failure existed before the crisis arrived.",
+  "readingTimeMinutes": 12
+}

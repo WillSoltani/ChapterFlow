@@ -1,0 +1,177 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch04",
+  "number": 4,
+  "title": "This Time with Feeling",
+  "coreMove": "Turn repeated emotional load into explicit decision hygiene before fatigue distorts the call.",
+  "sourcePressure": "The next hard decision arrives before recovery; experience sharpens pattern recognition but also adds memory, fatigue, hesitation, and numbness risk.",
+  "chapterSpecificMisunderstanding": "The weak version is about being emotionally balanced or stoic under repeat stress.",
+  "sourceAlignmentTerms": [
+    "recurring strain",
+    "decision hygiene",
+    "tradeoff",
+    "ownership",
+    "review signal",
+    "numbness"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the second crisis hurts more",
+      "you cannot pour from an empty cup",
+      "pressure reveals character"
+    ],
+    "counterintuition": [
+      "experience does not make it easier",
+      "feelings can help decisions",
+      "calm can be dangerous"
+    ],
+    "tryThisNow": [
+      "check in with your emotions",
+      "take five minutes to reset",
+      "name what you feel"
+    ],
+    "examples": [
+      "burned-out manager",
+      "therapy-style reflection",
+      "generic remote team fatigue"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "wildfire incident command after a second wind shift",
+      "audience": "an incident commander whose crew just contained one line and must choose a new evacuation zone",
+      "stakes": "fatigue makes underreaction tempting while homes sit in the changed path",
+      "format": "scene",
+      "requiredBeat": "the commander writes tradeoff, owner, consequence, and review time on the incident log before moving the evacuation boundary",
+      "firstImage": "a wind map curling at the edges on the hood of a command truck",
+      "mustInclude": [
+        "incident log",
+        "evacuation boundary",
+        "review time"
+      ],
+      "mustAvoid": [
+        "bravery under fire"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "airport baggage system recovery after two failures in one holiday week",
+      "audience": "an airport operations chief deciding whether to keep manual sorting overnight",
+      "stakes": "manual sorting protects departures but exhausts crews and hides the system fault",
+      "format": "decision_point",
+      "requiredBeat": "the chief refuses to call the first fix proof, assigns one owner for overnight manual sorting, and sets a dawn trigger for shutting lanes again",
+      "firstImage": "a conveyor belt stopped under a row of unclaimed red-tagged bags",
+      "mustInclude": [
+        "manual sorting",
+        "single owner",
+        "dawn trigger"
+      ],
+      "mustAvoid": [
+        "airport chaos spectacle"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "neonatal ICU staffing after a flu outbreak and a resignation",
+      "audience": "a nurse director managing repeat shortage calls",
+      "stakes": "overusing the same nurses may preserve the schedule while increasing patient risk",
+      "format": "reflection",
+      "requiredBeat": "the director marks which memory from last week's save is helping and which is pushing her toward numb acceptance of unsafe ratios",
+      "firstImage": "a staffing grid with two names circled in thick black pen",
+      "mustInclude": [
+        "staffing ratio",
+        "prior save",
+        "unsafe trigger"
+      ],
+      "mustAvoid": [
+        "nursing vocation story"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "film post-production house after a second corrupted render",
+      "audience": "a post supervisor with a festival deadline and a tired editing team",
+      "stakes": "rushing another export may miss the real fault and ruin delivery",
+      "format": "predict_reveal",
+      "requiredBeat": "the supervisor asks the team to predict the failure source, then requires a fresh owner and check step before another overnight render begins",
+      "firstImage": "a failed render log frozen at 97 percent on a dark edit suite monitor",
+      "mustInclude": [
+        "failed render log",
+        "fresh owner",
+        "check step"
+      ],
+      "mustAvoid": [
+        "creative crunch glamour"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "city water lab after a second contamination alert",
+      "audience": "a lab manager balancing public warning, retest protocol, and staff exhaustion",
+      "stakes": "a false calm risks public health; a panic alert damages trust",
+      "format": "dialogue",
+      "requiredBeat": "the manager has the lead tech state the tradeoff aloud, assigns the retest owner, and sets the public update threshold before samples leave the bench",
+      "firstImage": "sample vials lined beside a laminated boil-water threshold card",
+      "mustInclude": [
+        "retest owner",
+        "public update threshold",
+        "sample vials"
+      ],
+      "mustAvoid": [
+        "science saves the day"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "boutique hotel after a second weekend reservation-system outage",
+      "audience": "a general manager deciding whether to comp rooms, close bookings, or keep improvising",
+      "stakes": "front-desk staff are making inconsistent promises to guests",
+      "format": "before_after",
+      "requiredBeat": "the manager replaces ad hoc apologies with a written decision grid and a noon review signal for reopening bookings",
+      "firstImage": "a lobby printer spitting duplicate reservation slips onto the floor",
+      "mustInclude": [
+        "decision grid",
+        "noon review",
+        "front-desk promises"
+      ],
+      "mustAvoid": [
+        "customer-service politeness lesson"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot recurring strain versus isolated crisis",
+      "apply the tradeoff-owner-consequence-review structure",
+      "distinguish calm judgment from numbness",
+      "evaluate whether past experience is informing or distorting the next call"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next repeated hard call, write four words on the page: tradeoff, owner, consequence, review. Fill one concrete sentence under each before acting.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

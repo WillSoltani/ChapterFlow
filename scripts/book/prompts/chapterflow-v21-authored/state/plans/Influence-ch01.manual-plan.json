@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch01",
+  "number": 1,
+  "title": "Levers of Influence: Power Tools of the Trades",
+  "coreMove": "Spot the trigger feature before you treat the yes as your own full judgment.",
+  "sourcePressure": "The source centers automatic responding, fixed-action patterns, trigger features, click-run behavior, weak because-reasons, learned shortcuts, and contrast effects that skilled persuaders can exploit.",
+  "chapterSpecificMisunderstanding": "Do not write this as a broad warning that people are irrational; the point is the cue that launches an efficient response sequence.",
+  "sourceAlignmentTerms": ["automatic responding", "trigger feature", "click-run", "fixed-action pattern", "because cue", "learned shortcut", "contrast effect"],
+  "forbiddenFrames": {
+    "hook": ["You think you choose freely", "A yes can happen before thought", "Modern life makes everyone distracted"],
+    "counterintuition": ["Shortcuts are always bad", "Thinking slowly solves everything", "Persuasion is manipulation"],
+    "tryThisNow": ["Pause before your next yes", "List three triggers around you", "Think more carefully for one minute"],
+    "examples": ["salesperson closes a customer", "teacher asks for homework because she said so", "generic coffee shop discount contrast"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport standby desk during an oversold regional flight",
+      "audience": "a traveler deciding whether to surrender a seat",
+      "stakes": "missing a funeral connection versus accepting a voucher that sounds larger after a bad first offer",
+      "format": "decision_point",
+      "requiredBeat": "the gate agent names the lowest voucher after first showing a worse hotel-only option, and the traveler catches the contrast effect before agreeing",
+      "firstImage": "a blue boarding pass bent around the traveler's thumb",
+      "mustInclude": ["standby screen", "voucher amount", "connection time"],
+      "mustAvoid": ["generic airline delay complaint"]
+    },
+    {
+      "domain": "pharmacy counter with a refill authorization form",
+      "audience": "a patient being asked to sign one more line",
+      "stakes": "enrolling in a paid reminder program without noticing the cue that made signing automatic",
+      "format": "scene",
+      "requiredBeat": "the clerk says because we keep your refills safe while sliding the paid-program form forward, and the patient points to the actual reason line before signing",
+      "firstImage": "a prescription bag stapled shut under clear tape",
+      "mustInclude": ["signature pad", "monthly fee", "because wording"],
+      "mustAvoid": ["medical authority chapter drift"]
+    },
+    {
+      "domain": "farmers market honey stall with three jar sizes",
+      "audience": "a shopper comparing prices under a striped canopy",
+      "stakes": "buying the middle jar because the display makes it feel sensible",
+      "format": "predict_reveal",
+      "requiredBeat": "the vendor places an oversized premium jar beside the normal jar and the shopper names the contrast before choosing",
+      "firstImage": "sunlight through amber honey in a square jar",
+      "mustInclude": ["three price tags", "sample spoon", "middle jar"],
+      "mustAvoid": ["scarcity limited stock framing"]
+    },
+    {
+      "domain": "museum membership kiosk after a special exhibit",
+      "audience": "a visitor deciding at the exit counter",
+      "stakes": "joining a tier because the suggested option is anchored beside a much costlier donor tier",
+      "format": "before_after",
+      "requiredBeat": "the visitor watches the clerk tap the top donor tier first, then asks to see the benefits without the anchor tier on screen",
+      "firstImage": "a glossy exhibit wristband stuck to a coat sleeve",
+      "mustInclude": ["touchscreen tiers", "donor label", "benefit list"],
+      "mustAvoid": ["charity guilt framing"]
+    },
+    {
+      "domain": "bike repair counter during a brake-pad replacement",
+      "audience": "a commuter approving a repair estimate",
+      "stakes": "adding parts because the mechanic uses a technical cue that sounds like necessity",
+      "format": "dialogue",
+      "requiredBeat": "the mechanic uses a jargon phrase, and the commuter asks which visible symptom proves each added part is needed",
+      "firstImage": "a loose brake pad resting on an oil-stained invoice",
+      "mustInclude": ["repair estimate", "jargon phrase", "worn pad"],
+      "mustAvoid": ["repeated bike helmet anchor"]
+    },
+    {
+      "domain": "county clerk window for permit renewal",
+      "audience": "a small vendor renewing a seasonal permit",
+      "stakes": "paying an optional expedited fee because an official-looking stamp cues compliance",
+      "format": "postmortem",
+      "requiredBeat": "after paying, the vendor compares the receipt to the posted fee sheet and sees that the stamped add-on was optional",
+      "firstImage": "a red stamp drying beside a stack of carbon forms",
+      "mustInclude": ["fee sheet", "optional line", "red stamp"],
+      "mustAvoid": ["authority as the main lesson"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify the specific trigger feature in a live request", "distinguish useful shortcut from exploited shortcut", "detect contrast effects in sequential offers", "choose a response that asks for fuller information without overreacting"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Look at the next form, menu, or offer in front of you and name the single cue that seems designed to make one option feel automatic.",
+  "readingTimeMinutes": 12
+}

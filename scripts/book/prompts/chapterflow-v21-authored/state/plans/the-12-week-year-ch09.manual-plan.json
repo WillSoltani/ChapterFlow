@@ -1,0 +1,207 @@
+{
+  "chapterId": "the-12-week-year-ch09",
+  "number": 9,
+  "title": "Interest versus Commitment",
+  "coreMove": "Test whether a goal is merely interesting or binding enough to command action when it becomes inconvenient.",
+  "sourcePressure": "The chapter separates casual preference from durable commitment when comfort, convenience, or mood no longer cooperate.",
+  "chapterSpecificMisunderstanding": "Treating commitment as stronger enthusiasm instead of a different standard of follow-through.",
+  "sourceAlignmentTerms": [
+    "interest",
+    "commitment",
+    "durable commitment",
+    "comfort",
+    "convenience",
+    "mood",
+    "follow-through"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Interest versus Commitment",
+      "detail": "The verified chapter title establishes the contrast between weaker preference and durable commitment.",
+      "useIn": "both",
+      "phrasingHint": "Interest likes the result until the week asks for a cost; commitment pays the cost."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch09: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch09: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch09: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch09: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rebecca",
+      "domain": "marathon charity team",
+      "audience": "a practitioner in marathon charity team who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rebecca separates liking the marathon story from committing to cold training.",
+      "firstImage": "charity bibs in alphabetical piles",
+      "mustInclude": [
+        "charity bibs in alphabetical piles",
+        "interest",
+        "durable commitment"
+      ],
+      "mustAvoid": [
+        "generic interest versus commitment explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "boutique accounting tax season",
+      "audience": "a decision-maker in boutique accounting tax season choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Antoine chooses the tax-season action after the easy client work is gone.",
+      "firstImage": "tax folders in blue crates",
+      "mustInclude": [
+        "tax folders in blue crates",
+        "interest",
+        "durable commitment"
+      ],
+      "mustAvoid": [
+        "generic interest versus commitment explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Hanna",
+      "domain": "school board policy rollout",
+      "audience": "a team lead in school board policy rollout who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hanna keeps the policy rollout task when the room gets hostile.",
+      "firstImage": "board packets on a folding table",
+      "mustInclude": [
+        "board packets on a folding",
+        "interest",
+        "durable commitment"
+      ],
+      "mustAvoid": [
+        "generic interest versus commitment explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "craft brewery canning line",
+      "audience": "a reflective operator in craft brewery canning line reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marco runs the canning-line check after everyone wants to leave.",
+      "firstImage": "silver cans rolling under fluorescent lights",
+      "mustInclude": [
+        "silver cans rolling under fluorescent",
+        "interest",
+        "durable commitment"
+      ],
+      "mustAvoid": [
+        "generic interest versus commitment explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Janek",
+      "domain": "freelance translation deadline",
+      "audience": "a reader in freelance translation deadline comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Janek sends the translation question before the deadline pressure helps.",
+      "firstImage": "a glossary beside a marked-up contract",
+      "mustInclude": [
+        "a glossary beside a marked-up",
+        "interest",
+        "durable commitment"
+      ],
+      "mustAvoid": [
+        "generic interest versus commitment explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "Copenhagen product support group",
+      "audience": "two colleagues in Copenhagen product support group forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Yusuf keeps the support review after the day turns inconvenient.",
+      "firstImage": "support tickets blinking on a wall screen",
+      "mustInclude": [
+        "support tickets blinking on a",
+        "interest",
+        "durable commitment"
+      ],
+      "mustAvoid": [
+        "generic interest versus commitment explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify behavior as interest or commitment",
+      "identify convenience as the test",
+      "choose a binding action over preference talk"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one goal in two columns: what interest says you will do, and what commitment requires when the week gets inconvenient.",
+  "readingTimeMinutes": 12
+}

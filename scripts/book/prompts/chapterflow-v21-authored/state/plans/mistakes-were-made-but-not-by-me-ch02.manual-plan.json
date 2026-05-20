@@ -1,0 +1,199 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch02",
+  "number": 2,
+  "title": "Cognitive Dissonance: The Engine of Self-justification",
+  "coreMove": "When contradiction hurts, identify whether the person is changing behavior or merely changing the story that makes the behavior livable.",
+  "sourcePressure": "This mechanism chapter explains cognitive dissonance as the pressure created when belief, behavior, and self-image collide; the source supports the smoker contradiction, Leon Festinger's failed-prophecy group, and post-choice hardening.",
+  "chapterSpecificMisunderstanding": "Reducing cognitive dissonance to ordinary discomfort or inconsistency, without showing how relief can outrun truth after commitment.",
+  "sourceAlignmentTerms": [
+    "cognitive dissonance",
+    "dissonance reduction",
+    "contradiction",
+    "rationalization",
+    "commitment",
+    "confirmation bias",
+    "post-choice hardening"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Leon Festinger",
+      "detail": "the source supports Festinger's failed-prophecy group, where a disconfirmed end-of-world expectation was reframed so commitment could survive",
+      "useIn": "both",
+      "phrasingHint": "Festinger's failed-prophecy group shows the trap at full heat: the world did not end, so the story had to work harder."
+    },
+    {
+      "kind": "event",
+      "name": "the smoker contradiction",
+      "detail": "the source uses a person who knows smoking is dangerous and continues smoking as the ordinary entry point for dissonance",
+      "useIn": "deepRead",
+      "phrasingHint": "The smoker already has the fact; what changes is the story that lets the cigarette stay in the hand."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a generic bad habit at a kitchen table.",
+      "Avoid \"everyone knows this feeling\" as the first move."
+    ],
+    "counterintuition": [
+      "Do not say contradiction always leads to learning.",
+      "Avoid treating certainty after commitment as proof of wisdom."
+    ],
+    "tryThisNow": [
+      "No generic pros-and-cons list.",
+      "No broad values exercise."
+    ],
+    "examples": [
+      "No repeated smoker scenes beyond the source anchor.",
+      "No failed prophecy imitation as a fictional cult scene."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Andrew",
+      "domain": "a marathon trainee who keeps running on a sore tendon after buying an expensive race package",
+      "audience": "readers who have invested money and identity in a plan that now hurts",
+      "stakes": "a small injury could become a season-ending tear if rationalization keeps winning",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Andrew takes the printed training plan off the fridge, writes the pain score beside the nonrefundable race receipt, and decides whether the plan or the story changes",
+      "firstImage": "a race receipt tucked under a blue freezer clip",
+      "mustInclude": [
+        "training plan",
+        "pain score",
+        "nonrefundable race"
+      ],
+      "mustAvoid": [
+        "elite athlete comeback",
+        "generic fitness tracking"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "a school district technology committee defending a tablet purchase after teachers report low use",
+      "audience": "leaders who made a public procurement choice",
+      "stakes": "children lose another semester to devices nobody has integrated well",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sophie separates evidence that calms the committee from evidence that tests whether the tablet rollout actually helped",
+      "firstImage": "thirty unopened stylus boxes stacked beside a projector cart",
+      "mustInclude": [
+        "teacher survey",
+        "purchase vote",
+        "unused tablets"
+      ],
+      "mustAvoid": [
+        "anti-technology rant",
+        "budget scandal"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "a neighborhood restaurant owner defending a costly pizza oven that slows service",
+      "audience": "small business owners attached to an expensive choice",
+      "stakes": "Friday revenue keeps falling while pride turns complaints into excuses",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Etienne predicts customers will praise the new crust, then reads the ticket times aloud and marks where the defense starts replacing the evidence",
+      "firstImage": "a stainless peel leaning against a too-hot oven door",
+      "mustInclude": [
+        "ticket times",
+        "customer comments",
+        "oven payment"
+      ],
+      "mustAvoid": [
+        "celebrity chef drama",
+        "foodie description without the decision"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "a family investment club holding a losing clean-energy stock because selling would admit a bad call",
+      "audience": "people whose judgment is publicly attached to a decision",
+      "stakes": "retirement savings shrink while members search only for bullish updates",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Marta asks each member to bring one fact that would make them sell, not one fact that makes holding feel smarter",
+      "firstImage": "a dividend calendar folded beside a cracked tablet case",
+      "mustInclude": [
+        "sell threshold",
+        "quarterly report",
+        "group vote"
+      ],
+      "mustAvoid": [
+        "stock-picking advice",
+        "market forecast"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "a museum membership director defending a failed exhibit theme after donors praised the concept",
+      "audience": "cultural nonprofit staff balancing taste, evidence, and reputation",
+      "stakes": "next season repeats the same attendance miss if praise keeps outranking foot traffic",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Daniel two budget meetings to see that donor compliments soothe dissonance while timed-entry data tells the harder truth",
+      "firstImage": "a box of unused exhibit wristbands under the admissions desk",
+      "mustInclude": [
+        "timed-entry data",
+        "donor compliments",
+        "next season budget"
+      ],
+      "mustAvoid": [
+        "art criticism",
+        "museum elitism"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "an e-bike commuter defending a risky route because she already told friends it was the perfect switch from driving",
+      "audience": "readers whose public identity is tied to a lifestyle change",
+      "stakes": "near-misses accumulate while she keeps calling the route efficient",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Chiara pin a near-miss note to the route map and choose between changing streets and collecting reasons the old route is fine",
+      "firstImage": "a reflective ankle band looped around a folded city bike map",
+      "mustInclude": [
+        "near-miss note",
+        "route map",
+        "public commitment"
+      ],
+      "mustAvoid": [
+        "cycling culture war",
+        "commute optimization only"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify dissonance reduction in a new scenario",
+      "separate evidence that relieves pressure from evidence that tests truth",
+      "evaluate when post-choice certainty signals defense rather than clarity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one choice you defended recently; write one fact that would make you revise it and one excuse that merely makes it feel better.",
+  "readingTimeMinutes": 12
+}

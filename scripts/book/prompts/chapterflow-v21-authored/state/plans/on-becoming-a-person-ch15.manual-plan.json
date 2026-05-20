@@ -1,0 +1,190 @@
+{
+  "chapterId": "on-becoming-a-person-ch15",
+  "number": 15,
+  "title": "Student-Centered Teaching as Experienced by a Participant",
+  "coreMove": "Let the learner's lived participation reshape the teaching plan in real time.",
+  "sourcePressure": "The chapter grounds student-centered teaching in participant experience rather than abstract educational theory. No split source sidecar exists for ch15; frozen TOC and book skeleton support the heading, part placement, and broad intent only, with no chapter-local named anecdotes, studies, or places.",
+  "chapterSpecificMisunderstanding": "Treating student-centered teaching as loose discussion with no rigor.",
+  "sourceAlignmentTerms": [
+    "student-centered teaching",
+    "participant experience",
+    "classroom process",
+    "learner responsibility",
+    "facilitated learning",
+    "shared inquiry"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source exposes no usable chapter-local named person, study, institution, place, date, or anecdotal artifact from Rogers here. Use fictional protagonists only; do not invent named Rogers cases or studies.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of student-centered teaching",
+      "therapist office at the window",
+      "reader-you-are-stuck generic opener"
+    ],
+    "counterintuition": [
+      "Most people think X, but Y",
+      "It is not about being nice",
+      "The paradox is that acceptance changes everything"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you noticed",
+      "pause and breathe before replying"
+    ],
+    "examples": [
+      "anything-goes classrooms",
+      "participation as performance",
+      "teacher abdication",
+      "reused classroom worksheet shell",
+      "coffee mug office feedback shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "student-led seminar circle",
+      "audience": "readers who face student-led seminar circle and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around student-centered teaching; specifically, the outcome turns on whether Hiroshi can make student-centered teaching visible without sliding into treating student-centered teaching as loose discussion with no rigor.",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "In the student-led seminar circle, Hiroshi lets participant responsibility alter the plan in the room, then names the rigor that remains, with the student agenda and the field notebook making the choice visible instead of merely stated.",
+      "firstImage": "the student agenda beside Hiroshi's hand; the opening opens with the practical question the scene has to answer",
+      "mustInclude": [
+        "student agenda",
+        "field notebook"
+      ],
+      "mustAvoid": [
+        "do not turn student-led seminar circle into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Hiroshi lecture"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "field course weather delay",
+      "audience": "readers who face field course weather delay and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around student-centered teaching; specifically, the outcome turns on whether Akira can make student-centered teaching visible without sliding into treating student-centered teaching as loose discussion with no rigor.",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "In the field course weather delay, Akira lets participant responsibility alter the plan in the room, then names the rigor that remains, with the field notebook and the online thread screenshot making the choice visible instead of merely stated.",
+      "firstImage": "a half-finished note on Akira's desk; the opening opens from the texture, sound, or physical pressure of the object before anyone explains it",
+      "mustInclude": [
+        "field notebook",
+        "online thread screenshot"
+      ],
+      "mustAvoid": [
+        "do not turn field course weather delay into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Akira lecture"
+      ]
+    },
+    {
+      "protagonistName": "Emma",
+      "domain": "peer assessment workshop",
+      "audience": "readers who face peer assessment workshop and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around student-centered teaching; specifically, the outcome turns on whether Emma can make student-centered teaching visible without sliding into treating student-centered teaching as loose discussion with no rigor.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "In the peer assessment workshop, Emma lets participant responsibility alter the plan in the room, then names the rigor that remains, with the online thread screenshot and the student agenda making the choice visible instead of merely stated.",
+      "firstImage": "the open doorway before Emma speaks; the opening begins with one line of speech that exposes the relational pressure before the narrator explains it",
+      "mustInclude": [
+        "online thread screenshot",
+        "student agenda"
+      ],
+      "mustAvoid": [
+        "do not turn peer assessment workshop into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Emma lecture"
+      ]
+    },
+    {
+      "protagonistName": "Julia",
+      "domain": "residency case conference",
+      "audience": "readers who face residency case conference and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around student-centered teaching; specifically, the outcome turns on whether Julia can make student-centered teaching visible without sliding into treating student-centered teaching as loose discussion with no rigor.",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "In the residency case conference, Julia lets participant responsibility alter the plan in the room, then names the rigor that remains, with the student agenda and the field notebook making the choice visible instead of merely stated.",
+      "firstImage": "a line on the form that Julia cannot ignore; the opening lets the room or setting carry the first signal before any person is named",
+      "mustInclude": [
+        "student agenda",
+        "field notebook"
+      ],
+      "mustAvoid": [
+        "do not turn residency case conference into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Julia lecture"
+      ]
+    },
+    {
+      "protagonistName": "Charlotte",
+      "domain": "online cohort discussion board",
+      "audience": "readers who face online cohort discussion board and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around student-centered teaching; specifically, the outcome turns on whether Charlotte can make student-centered teaching visible without sliding into treating student-centered teaching as loose discussion with no rigor.",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "In the online cohort discussion board, Charlotte lets participant responsibility alter the plan in the room, then names the rigor that remains, with the field notebook and the online thread screenshot making the choice visible instead of merely stated.",
+      "firstImage": "the quiet after Charlotte stops explaining; the opening puts the reader directly in the moment before naming the choice",
+      "mustInclude": [
+        "field notebook",
+        "online thread screenshot"
+      ],
+      "mustAvoid": [
+        "do not turn online cohort discussion board into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Charlotte lecture"
+      ]
+    },
+    {
+      "protagonistName": "Natalie",
+      "domain": "school newspaper editorial meeting",
+      "audience": "readers who face school newspaper editorial meeting and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around student-centered teaching; specifically, the outcome turns on whether Natalie can make student-centered teaching visible without sliding into treating student-centered teaching as loose discussion with no rigor.",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "In the school newspaper editorial meeting, Natalie lets participant responsibility alter the plan in the room, then names the rigor that remains, with the online thread screenshot and the student agenda making the choice visible instead of merely stated.",
+      "firstImage": "two chairs pulled out from the table; the opening starts after the cost is visible, then backs into the choice that created it",
+      "mustInclude": [
+        "online thread screenshot",
+        "student agenda"
+      ],
+      "mustAvoid": [
+        "do not turn school newspaper editorial meeting into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Natalie lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "analyze participant experience",
+      "distinguish learner responsibility from teacher withdrawal",
+      "choose when to alter a plan around live feedback"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In your next group learning moment, leave one real choice with participants and watch how responsibility changes the room before you intervene.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside where supported, a direct second-person passage, or a brief historical reference to the frozen chapter placement",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

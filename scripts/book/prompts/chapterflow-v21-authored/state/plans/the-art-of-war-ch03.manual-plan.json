@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch03",
+  "number": 3,
+  "title": "Attack by Stratagem",
+  "coreMove": "Break the opposing plan before you collide with the opposing force.",
+  "sourcePressure": "The source ranks outcomes: take intact rather than destroy, break resistance without fighting, block plans and alliances before field battle, avoid sieges, respect force ratios, and protect military judgment from ignorant command.",
+  "chapterSpecificMisunderstanding": "Reducing the idea to avoid conflict or be clever in a vague way.",
+  "sourceAlignmentTerms": [
+    "take whole and intact",
+    "break resistance without fighting",
+    "baulk plans",
+    "prevent junction",
+    "walled cities",
+    "mantlets",
+    "five essentials",
+    "know the enemy and yourself"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "mantlets and movable shelters",
+      "detail": "A siege is condemned partly because preparing shields, shelters, tools, and mounds consumes months before the city is even taken.",
+      "useIn": "both",
+      "phrasingHint": "If your plan begins with building mantlets, ask what plan you failed to break earlier."
+    },
+    {
+      "kind": "artifact",
+      "name": "the five essentials for victory",
+      "detail": "The source names timing, handling unequal forces, shared spirit, preparedness, and freedom from sovereign interference as essentials.",
+      "useIn": "deepRead",
+      "phrasingHint": "A fight is rarely one decision; it is timing, proportion, spirit, readiness, and clean authority meeting at once."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "bookstore negotiating with a landlord over rent increase",
+      "audience": "owner of an independent bookstore",
+      "stakes": "a direct legal fight could drain the store before renewal season",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Dust lifts from the local-history shelf as Emily prepares a joint foot-traffic proposal that gives the landlord a better plan than forcing a rent fight.",
+      "firstImage": "dust lifting from a local-history shelf",
+      "mustInclude": [
+        "footfall counter",
+        "neighbor petitions",
+        "lease calendar"
+      ],
+      "mustAvoid": [
+        "courtroom showdown"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "sports club stopping a rival academy from poaching coaches",
+      "audience": "director of a youth football club",
+      "stakes": "losing two coaches would fracture four teams mid-season",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:05 p.m., David calls the rival director with a shared tournament plan before the poaching offer can become a war for staff.",
+      "firstImage": "a half-lit artificial turf pitch",
+      "mustInclude": [
+        "coach contracts",
+        "tournament bracket",
+        "parent email draft"
+      ],
+      "mustAvoid": [
+        "generic competitive sports pep talk"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "public library facing a budget cut campaign",
+      "audience": "library branch manager",
+      "stakes": "a public fight over cuts may harden council opposition",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rain dots the return bin while Chloe brings the after-school tutoring waitlist to the council aide who wrote the cut memo, changing the aide's plan before the hearing.",
+      "firstImage": "rain on a metal return bin",
+      "mustInclude": [
+        "tutoring waitlist",
+        "branch usage map",
+        "council agenda"
+      ],
+      "mustAvoid": [
+        "sentimental library speech"
+      ]
+    },
+    {
+      "protagonistName": "Anders",
+      "domain": "industrial design firm preventing a patent dispute",
+      "audience": "design director before a trade show",
+      "stakes": "a copied mechanism could trigger injunctions and missed orders",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took one cease-and-desist draft for Anders to learn that a licensing conversation two weeks earlier would have captured the design intact.",
+      "firstImage": "a prototype hinge under a desk lamp",
+      "mustInclude": [
+        "licensing term sheet",
+        "trade show crate",
+        "patent drawing"
+      ],
+      "mustAvoid": [
+        "generic innovation rivalry"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "regional airline handling a competitor fare war",
+      "audience": "revenue manager for short-haul routes",
+      "stakes": "matching every fare would destroy margin across the network",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What if the competitor needs you to match the fare more than customers need the discount?",
+      "firstImage": "a route map with one red pin",
+      "mustInclude": [
+        "fare bucket report",
+        "crew overnight costs",
+        "loyalty data"
+      ],
+      "mustAvoid": [
+        "spreadsheet-only price war"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "community health nonprofit facing an anti-vaccine rumor",
+      "audience": "program lead in a city clinic network",
+      "stakes": "a public rebuttal could spread the rumor further",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Do not fight the post; change the room it feeds on, Chidi says, then recruits church nurses before the rumor page owns the conversation.",
+      "firstImage": "folding chairs in a church basement",
+      "mustInclude": [
+        "nurse roster",
+        "flyer proof",
+        "clinic appointment list"
+      ],
+      "mustAvoid": [
+        "generic misinformation rant"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose plan-disruption over direct contest",
+      "identify when a siege-like effort is wasteful",
+      "judge force ratios without moralizing retreat"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one conflict you expect this week and write the other side's plan in one sentence, then find the earlier place where that plan can be made unnecessary.",
+  "readingTimeMinutes": 12
+}

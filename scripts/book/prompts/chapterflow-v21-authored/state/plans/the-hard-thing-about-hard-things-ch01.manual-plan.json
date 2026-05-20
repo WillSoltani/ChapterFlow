@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch01",
+  "number": 1,
+  "title": "Introduction",
+  "coreMove": "Recognize the struggle as a leadership operating condition and keep responsibility with the decision maker.",
+  "sourcePressure": "Management advice is tested after plans fail, information is partial, morale is fragile, and every available option carries a cost.",
+  "chapterSpecificMisunderstanding": "The weak version is generic resilience: stay positive, embrace difficulty, and keep going.",
+  "sourceAlignmentTerms": [
+    "the struggle",
+    "no painless option",
+    "partial information",
+    "responsibility",
+    "framework limits",
+    "operator judgment"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "every leader faces hard choices",
+      "midnight laptop anxiety",
+      "founder staring at a dashboard"
+    ],
+    "counterintuition": [
+      "hard things make you stronger",
+      "certainty is overrated",
+      "frameworks are useless"
+    ],
+    "tryThisNow": [
+      "write down your top three priorities",
+      "take a deep breath before deciding",
+      "journal about a hard moment"
+    ],
+    "examples": [
+      "generic startup all-hands",
+      "coffee shop founder",
+      "family budget at a kitchen table"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional hospital bed-capacity command center during a flu surge",
+      "audience": "a chief medical officer choosing between patient transfer, elective surgery delays, and staff overload",
+      "stakes": "one decision will anger surgeons, another will crowd the emergency department, and delay will strand patients",
+      "format": "decision_point",
+      "requiredBeat": "the CMO circles three bad options on the capacity board, names who gets hurt by each, and assigns one nurse manager to execute the least damaging path before the next ambulance call",
+      "firstImage": "a red bed-capacity board blinking beside an unattended stack of transfer forms",
+      "mustInclude": [
+        "capacity board",
+        "transfer forms",
+        "ambulance ETA"
+      ],
+      "mustAvoid": [
+        "hero doctor inspiration",
+        "generic hospital teamwork"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "freight railroad dispatch desk after a bridge sensor fault",
+      "audience": "an operations director who must choose between stopping cargo, rerouting perishables, or risking network delays",
+      "stakes": "every route choice costs money, time, or trust with shippers",
+      "format": "predict_reveal",
+      "requiredBeat": "the director asks dispatchers to predict the cost of each route on the live map, then chooses the reroute that preserves safety while owning the late-delivery call herself",
+      "firstImage": "a rail map with one bridge segment flashing amber",
+      "mustInclude": [
+        "sensor fault",
+        "perishable freight",
+        "shipper call"
+      ],
+      "mustAvoid": [
+        "transportation as simple logistics puzzle"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "public radio station deciding whether to cut a local investigative series",
+      "audience": "a station manager facing a donor shortfall and an angry newsroom",
+      "stakes": "saving payroll means canceling work that defines the station's identity",
+      "format": "dialogue",
+      "requiredBeat": "the manager reads the shortfall number aloud, refuses to call any choice harmless, and assigns a decision deadline instead of asking the newsroom to wait for better news",
+      "firstImage": "a printed pledge report clipped to a sound booth door",
+      "mustInclude": [
+        "pledge report",
+        "series calendar",
+        "deadline"
+      ],
+      "mustAvoid": [
+        "media ethics lecture"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "municipal snow-removal depot after two plows fail before a storm",
+      "audience": "a public works lead balancing school routes, hospital access, and residential complaints",
+      "stakes": "the city cannot clear every road before morning and blame will land somewhere",
+      "format": "scene",
+      "requiredBeat": "the lead moves route magnets by hand, states which neighborhoods wait, and calls the mayor before drivers leave the yard",
+      "firstImage": "blue route magnets scattered under a storm warning printout",
+      "mustInclude": [
+        "route magnets",
+        "hospital access road",
+        "storm warning"
+      ],
+      "mustAvoid": [
+        "generic weather emergency"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "independent theater deciding whether to open with a damaged lighting rig",
+      "audience": "a producing director with actors, ticket holders, and safety inspectors pressing for different answers",
+      "stakes": "canceling burns cash and trust, but opening unsafely risks people",
+      "format": "postmortem",
+      "requiredBeat": "the director marks the no-show, partial-open, and cancel choices on the call sheet, then phones ticket holders with the decision before cast rumors spread",
+      "firstImage": "a cracked lighting clamp lying on top of the evening call sheet",
+      "mustInclude": [
+        "lighting clamp",
+        "call sheet",
+        "ticket-holder phone list"
+      ],
+      "mustAvoid": [
+        "show must go on moral"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "specialty pharmacy choosing whether to ship a temperature-exposed biologic",
+      "audience": "a pharmacy director caught between patient urgency, insurer pressure, and safety rules",
+      "stakes": "a rushed shipment may harm a patient, while a delay leaves treatment interrupted",
+      "format": "reflection",
+      "requiredBeat": "the director writes the three harms on the cold-chain log, blocks the shipment, and personally calls the patient with the specific replacement time",
+      "firstImage": "a cold-chain logger showing a temperature spike above the acceptable band",
+      "mustInclude": [
+        "cold-chain logger",
+        "insurer authorization",
+        "replacement time"
+      ],
+      "mustAvoid": [
+        "simple compliance story"
+      ],
+      "openingDevice": "sensory_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a situation is the struggle rather than normal planning",
+      "separate framework usefulness from consequence ownership",
+      "choose action when all options hurt",
+      "detect performative toughness disguised as realism"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live decision with no clean option, write the concrete harm caused by each path, then circle the harm you are willing to own before you ask for more analysis.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

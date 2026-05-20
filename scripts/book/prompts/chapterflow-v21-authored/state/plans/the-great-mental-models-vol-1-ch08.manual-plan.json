@@ -1,0 +1,126 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch08",
+  "number": 8,
+  "title": "Probabilistic Thinking",
+  "coreMove": "Hold several possible futures with weighted odds and act where the payoff and downside are asymmetric.",
+  "sourcePressure": "The official support frames probabilistic thinking as estimating likelihoods rather than pretending to certainty, with Bayesian thinking, fat-tailed curves, and asymmetries as the supported terms.",
+  "chapterSpecificMisunderstanding": "The weak version says anything can happen, so all predictions are equally weak.",
+  "sourceAlignmentTerms": ["probability", "likelihood", "Bayesian thinking", "fat-tailed curves", "asymmetry", "update", "range"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Bayesian thinking",
+      "detail": "the frozen support specifically includes Bayesian thinking as part of probabilistic thinking",
+      "useIn": "both",
+      "phrasingHint": "Bayesian thinking gives you permission to change the weight as new evidence arrives instead of defending the first number."
+    },
+    {
+      "kind": "artifact",
+      "name": "Fat-tailed curves",
+      "detail": "the frozen support specifically includes fat-tailed curves as part of probabilistic thinking",
+      "useIn": "fullRead",
+      "phrasingHint": "A fat tail is the part of the curve that keeps rare events from staying polite."
+    },
+    {
+      "kind": "artifact",
+      "name": "Asymmetries",
+      "detail": "the frozen support specifically includes asymmetries as part of probabilistic thinking",
+      "useIn": "deepRead",
+      "phrasingHint": "The odds matter, but the shape of the payoff can matter more."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["weather forecast as only analogy", "casino table cliche", "crystal ball joke"],
+    "counterintuition": ["certainty is impossible so decide randomly", "probability means indecision", "all risks average out"],
+    "tryThisNow": ["guess percentages for everything", "be comfortable with uncertainty", "think in bets"],
+    "examples": ["stock market prediction", "poker hand", "weather app"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional wildfire evacuation notice",
+      "audience": "an emergency manager deciding when to issue a voluntary evacuation",
+      "stakes": "waiting for certainty could trap residents if winds shift",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rebecca lays three wind scenarios on the map with rough odds and chooses the notice because the low-probability bad outcome is too costly",
+      "firstImage": "ash specks landing on a laminated evacuation map",
+      "mustInclude": ["wind scenarios", "voluntary notice", "evacuation map"],
+      "mustAvoid": ["disaster movie", "certainty before action"]
+    },
+    {
+      "domain": "pharmacy stockout planning",
+      "audience": "a pharmacy manager ordering a scarce antibiotic",
+      "stakes": "overordering wastes supply, underordering leaves patients untreated",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Patrick updates his order after two new clinic alerts change the likelihood of a weekend surge",
+      "firstImage": "orange prescription bottles clicking inside a locked drawer",
+      "mustInclude": ["clinic alerts", "weekend surge", "scarce antibiotic"],
+      "mustAvoid": ["medical heroics", "inventory spreadsheet only"]
+    },
+    {
+      "domain": "orchard frost forecast",
+      "audience": "an orchard manager deciding whether to run frost fans overnight",
+      "stakes": "fuel costs are high, but a hard frost could damage blossoms",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Paula weighs forecast ranges against blossom loss and starts the fans because the downside is asymmetric",
+      "firstImage": "white blossom petals trembling under a portable frost fan",
+      "mustInclude": ["forecast range", "fuel invoice", "blossom loss"],
+      "mustAvoid": ["farm sentimentality", "weather-only lesson"]
+    },
+    {
+      "domain": "venture debt covenant review",
+      "audience": "a finance lead considering a loan with a strict covenant",
+      "stakes": "a likely growth plan may still fail under one plausible revenue miss",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Min writes three revenue cases and notices the medium-bad case triggers a covenant breach before the cash actually runs out",
+      "firstImage": "a loan covenant highlighted beside three revenue cases",
+      "mustInclude": ["covenant breach", "revenue cases", "cash runway"],
+      "mustAvoid": ["startup fundraising hype", "finance jargon fog"]
+    },
+    {
+      "domain": "charity gala weather insurance",
+      "audience": "a nonprofit director deciding whether to insure an outdoor fundraiser",
+      "stakes": "a small premium may protect the year's scholarship budget",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Matteo compare the rain probability with the scholarship loss instead of treating thirty percent as small",
+      "firstImage": "linen tablecloths stacked beside a rain-insurance quote",
+      "mustInclude": ["rain probability", "insurance premium", "scholarship budget"],
+      "mustAvoid": ["event-planning generic", "all insurance is prudent"]
+    },
+    {
+      "domain": "cybersecurity incident response",
+      "audience": "a security lead deciding whether a small anomaly deserves escalation",
+      "stakes": "a rare intrusion path may cause serious damage if dismissed as noise",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Soren updates the intrusion odds after a second log pattern appears and isolates the server before proof is complete",
+      "firstImage": "two red log entries separated by a long quiet hour",
+      "mustInclude": ["second log pattern", "isolated server", "rare intrusion path"],
+      "mustAvoid": ["hacker thriller", "panic as wisdom"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["replace certainty with likelihood ranges", "update beliefs when new evidence arrives", "weigh asymmetrical outcomes", "recognize fat-tail risk without technical formulas"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "Write three possible outcomes for one decision, give each rough odds, then circle the outcome whose cost or upside is most asymmetric.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "chapterId": "playing-to-win-ch03",
+  "number": 3,
+  "title": "Where to Play",
+  "coreMove": "Actively choose your competitive field by making explicit decisions across customers, channels, geographies, and scope — because an inherited or uncommitted field cannot be won.",
+  "sourcePressure": "The chapter treats where-to-play as a multi-dimensional active choice across geography, customers, channels, categories, and vertical scope. Bounty is the anchor: choosing a more attractive segment rather than spreading across weak markets. The chapter warns against trying to serve everyone and against treating the current arena as fixed. Field choice is not just segmentation — it is the decision to stop competing in certain dimensions.",
+  "chapterSpecificMisunderstanding": "The best growth strategy is to serve as many customers as possible in as many channels as possible — breadth equals safety.",
+  "sourceAlignmentTerms": ["where to play", "field", "segmentation", "geography", "channels", "Bounty", "attractive segments", "vertical scope", "categories"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Bounty did not win by being everywhere",
+      "detail": "P&G chose a stronger, more attractive segment for Bounty rather than spreading effort across all retail channels and customer types. The chapter uses Bounty to show that field choice is not one-dimensional — it involves multiple axes — and that trying to win in unattractive parts of the market drains the capacity needed to win in attractive ones.",
+      "useIn": "both",
+      "phrasingHint": "Bounty did not win by being everywhere. It won by identifying where the value equation could actually be earned and concentrating there — which required explicitly leaving other parts of the shelf behind."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "You can't win a game you're not playing — generic sports metaphor opener",
+      "Most businesses compete in markets they never consciously chose — meta-observation opener"
+    ],
+    "counterintuition": [
+      "Narrowing your focus reduces risk — generic niche advice",
+      "The bigger your market, the harder it is to win — size-generalization frame"
+    ],
+    "tryThisNow": [
+      "Draw a 2x2 matrix of your market segments — generic framework prompt",
+      "List all the customer types you currently serve and rank them by revenue — generic triage"
+    ],
+    "examples": [
+      "A startup focuses on a niche market and grows faster — generic niche-focus story",
+      "A retailer closes underperforming locations — cost-cutting framed as strategy"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Avoid the timestamp-protagonist-prop shell repeated across more than two examples"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a specialty food brand choosing between national grocery chain distribution and direct-to-consumer subscription",
+      "audience": "a founder who has been approached by a large grocery chain but whose margins depend on the direct channel",
+      "stakes": "accepting the grocery chain deal requires lower prices, standardized packaging, and a promotion budget the brand does not have; refusing it means slower volume growth but a channel where the brand can actually win",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sophie must answer the chain's proposal and realizes that saying yes means competing in a channel where her brand has no advantage, while saying no means staying in the channel where the customer relationship is actually hers — the field choice forces her to say where she is and is not playing",
+      "firstImage": "a purchase-order draft from a national grocery chain and a subscriber list of eight hundred customers who buy monthly at full price",
+      "mustInclude": ["the specific channel advantage the brand has in direct-to-consumer that it loses in grocery", "the moment Sophie names the field she is choosing rather than defaulting to the bigger channel"],
+      "mustAvoid": ["cash flow crisis framing", "generic small-business vs corporate power dynamic"]
+    },
+    {
+      "domain": "an independent music school deciding which age groups and skill levels to serve",
+      "audience": "a school owner who offers lessons for beginners through advanced students, ages four to adult, across seven instruments",
+      "stakes": "the school's studio time, teacher credentials, and scheduling system are stretched across too many segments — beginner children, adult hobbyists, and advanced teen competitors all require different infrastructure",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Andrew reviews the last three years of enrollment data and sees that the school loses adult beginners to online platforms, beginner children to a competitor with a better parent experience, and advanced teens to a university prep program — by trying to serve all three, the school owns none of them",
+      "firstImage": "a studio schedule with eight time slots per teacher, three of which are used for beginner adults who cancel at twice the rate of other groups",
+      "mustInclude": ["the specific segment the school's teachers and space could actually serve best", "the enrollment data point that reveals the field choice that was never made"],
+      "mustAvoid": ["music education philosophy debate", "teacher hiring as the main tension"]
+    },
+    {
+      "domain": "a physical therapy practice deciding between sports rehabilitation and general post-surgical recovery",
+      "audience": "a clinic director whose patient mix has drifted into both segments but whose staff skills and referral networks are concentrated in one",
+      "stakes": "sports rehabilitation requires weekend hours, sports-medicine partnerships, and performance-oriented marketing; post-surgical recovery requires hospital system relationships, insurance coding expertise, and a different appointment cadence",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Vincent reviews the referral sheet for the week and sees that half the incoming patients come from orthopedic surgeons and half from a sports medicine network — two different referral channels that require two different clinic identities, and the practice is mediocre at building either",
+      "firstImage": "a referral sheet with orthopedic surgeon names on one half and a sports medicine network on the other, and a clinic that is set up for neither relationship especially well",
+      "mustInclude": ["the specific referral channel that the practice's current physical layout and staff certifications actually support", "the moment where the drift into both segments is recognized as an uncommitted field choice"],
+      "mustAvoid": ["insurance reimbursement rates as the main obstacle", "staffing shortage as the reason for the mixed field"]
+    },
+    {
+      "domain": "a craft beverage brand deciding between on-premise bar and restaurant accounts and off-premise retail shelf distribution",
+      "audience": "a co-founder managing distribution relationships in both channels simultaneously with a sales team of two",
+      "stakes": "on-premise accounts require sample visits, staff training, and cocktail menu development; off-premise retail requires slotting fees, promotional compliance, and a shelf-competitive price point — neither can be fully pursued with the current team",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Giulia describes the plan to a potential investor — serve both channels, grow fast — and the investor asks which channel the brand has actually won customers in repeatedly, from nothing. The question reveals that every on-premise win required a personal visit and every retail placement is underperforming because the brand lacks the promotion budget to move product from shelf to basket.",
+      "firstImage": "a map of current accounts split between twenty-two restaurant and bar placements and fourteen retail shelf slots, with average reorder rates for each",
+      "mustInclude": ["the specific customer behavior that signals a genuine channel win in one of the two options", "the investor question that forces the field choice into the open"],
+      "mustAvoid": ["craft beverage industry trend analysis", "personal story about founding the brand"]
+    },
+    {
+      "domain": "a rural veterinary practice choosing between companion animal care and livestock medicine",
+      "audience": "a practice owner whose geography covers both farming communities and a growing suburban fringe",
+      "stakes": "companion animal care requires evening and weekend availability, diagnostic imaging, and boarding facilities; livestock medicine requires farm visits, different medications, and early-morning scheduling — the equipment, staff skills, and scheduling systems for each are incompatible at the practice's current size",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "before: Tomasz accepts every call from every client type and runs a practice where every day includes both farm visits and clinic appointments, neither done as well as a specialist competitor; after: he maps the geographic radius of each client type and realizes the suburban companion-animal base is growing while the farming community is consolidating — the field is changing, and the practice has not yet chosen which half to follow",
+      "firstImage": "a scheduling board with three farm visits before 7 a.m. and a waiting room full of cats and dogs starting at 8 a.m., with one veterinarian trying to do both",
+      "mustInclude": ["the geographic trend that makes the field choice time-sensitive", "the specific equipment or scheduling investment that only makes sense if one field is chosen"],
+      "mustAvoid": ["rural versus suburban values framing", "veterinarian shortage as the main constraint"]
+    },
+    {
+      "domain": "an independent podcast choosing between a wide general-interest audience and a narrow professional listener segment",
+      "audience": "a host who has grown a mid-size audience without a clear positioning and is being pitched both advertiser sponsorships and professional association partnerships",
+      "stakes": "general-interest advertisers require download scale the show does not have; professional association partnerships require content specificity the show has been avoiding; the host must choose a field to be in before either deal makes sense",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Laura reviews the listener survey and finds that two-thirds of her audience describe themselves as working in one specific industry, but her last ten episodes were designed for anyone — she has been playing to the general market she hoped to build rather than the specific field she actually occupies",
+      "firstImage": "a listener survey where the top three self-described occupations cluster tightly around one profession, and a content calendar designed for a much broader audience",
+      "mustInclude": ["the specific listener the show is already winning without trying", "the moment where the gap between the chosen field and the actual field becomes visible"],
+      "mustAvoid": ["social media growth tactics", "podcasting business model tutorial"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the field dimensions (geography, customer, channel, category) that apply to a specific scenario",
+      "apply the 'inherited vs chosen' test to a current competitive position",
+      "analyze what a brand loses by trying to serve two incompatible field segments simultaneously",
+      "evaluate whether a proposed field choice is explicit or still a default"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one customer segment, channel, or geography you are currently serving that you did not consciously choose — it just accumulated. Ask what you would have to stop doing in that segment to compete better where you actually want to win. Write the answer down before the next decision meeting.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that uses the Bounty anchor as a brief illustration of field choice across multiple dimensions simultaneously, not as a historical recap",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

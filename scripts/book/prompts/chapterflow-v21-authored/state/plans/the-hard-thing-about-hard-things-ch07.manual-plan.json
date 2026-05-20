@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch07",
+  "number": 7,
+  "title": "Concerning the Going Concern",
+  "coreMove": "Replace inherited informality with operating architecture that clarifies ownership and cadence.",
+  "sourcePressure": "Scaling turns founder access and ad hoc alignment into coordination debt, requiring mission-linked process, stage-fit executives, escalation paths, and behavior loops.",
+  "chapterSpecificMisunderstanding": "The weak version is adding process because the company is bigger.",
+  "sourceAlignmentTerms": [
+    "going concern",
+    "coordination",
+    "mission-linked process",
+    "ownership",
+    "escalation",
+    "executive fit",
+    "culture loops"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "scaling breaks what made you special",
+      "process is not the enemy",
+      "startups grow up"
+    ],
+    "counterintuition": [
+      "informality becomes politics",
+      "process can preserve speed",
+      "culture is programmed"
+    ],
+    "tryThisNow": [
+      "make an org chart",
+      "document one process",
+      "hold a weekly meeting"
+    ],
+    "examples": [
+      "generic growing SaaS company",
+      "Slack channel confusion",
+      "whiteboard org redesign"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "chain of urgent-care clinics expanding from three sites to twelve",
+      "audience": "a founder whose site leads keep escalating staffing decisions directly to her",
+      "stakes": "patient wait times and nurse turnover rise because ownership is unclear",
+      "format": "decision_point",
+      "requiredBeat": "the founder moves staffing authority from hallway escalation to a weekly site-capacity cadence with named owners and an exception threshold",
+      "firstImage": "twelve clinic schedules spread across a conference table with sticky flags",
+      "mustInclude": [
+        "site-capacity cadence",
+        "exception threshold",
+        "named owners"
+      ],
+      "mustAvoid": [
+        "healthcare bureaucracy defense"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "robotics warehouse integrator adding enterprise customers",
+      "audience": "a COO whose best early engineer is failing as a multi-team executive",
+      "stakes": "installation teams wait for heroic fixes instead of predictable escalation",
+      "format": "postmortem",
+      "requiredBeat": "the COO compares the engineer's early-stage strengths with current enterprise bottlenecks, then redesigns the role instead of honoring reputation",
+      "firstImage": "a stalled robot arm beside an enterprise acceptance checklist",
+      "mustInclude": [
+        "stage-fit role",
+        "escalation path",
+        "acceptance checklist"
+      ],
+      "mustAvoid": [
+        "brilliant engineer falls short trope"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "regional seafood processor coordinating boats, plant, and distributors",
+      "audience": "a general manager whose informal dock conversations no longer align the plant",
+      "stakes": "fresh product spoils when catch timing and distributor pickups conflict",
+      "format": "scene",
+      "requiredBeat": "the manager replaces dockside favors with a daily catch-to-dispatch meeting and marks one person accountable for changing pickup promises",
+      "firstImage": "a crate of unsold scallops sweating beside a pickup manifest",
+      "mustInclude": [
+        "daily cadence",
+        "pickup promises",
+        "accountable owner"
+      ],
+      "mustAvoid": [
+        "supply chain weather story"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "national youth soccer nonprofit adding regional directors",
+      "audience": "an executive director seeing local chapters interpret values differently",
+      "stakes": "scholarship access varies by region while the mission statement stays unchanged",
+      "format": "before_after",
+      "requiredBeat": "the director chooses two behaviors to review monthly, ties grants to those behaviors, and stops treating the mission poster as culture enforcement",
+      "firstImage": "a scholarship approval folder beside a rolled-up mission banner",
+      "mustInclude": [
+        "behavior review",
+        "grant tie",
+        "regional directors"
+      ],
+      "mustAvoid": [
+        "nonprofit values sermon"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "precision agriculture drone company moving from pilots to support contracts",
+      "audience": "a CEO whose customer-success team lacks escalation rules for crop-season outages",
+      "stakes": "farmers lose survey windows when support improvises priorities",
+      "format": "dialogue",
+      "requiredBeat": "the CEO asks which outage gets escalated first, hears three answers, and creates a severity ladder tied to crop windows",
+      "firstImage": "a drone case open beside a crop-stage calendar",
+      "mustInclude": [
+        "severity ladder",
+        "crop windows",
+        "customer-success team"
+      ],
+      "mustAvoid": [
+        "agtech novelty"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "university research center turning into a contract lab",
+      "audience": "a lab director whose academic norms clash with delivery commitments",
+      "stakes": "sponsor deadlines require different review loops than grant-driven research",
+      "format": "reflection",
+      "requiredBeat": "the director identifies one inherited academic habit that now creates decision latency and converts it into a sponsor-review gate",
+      "firstImage": "a sponsor milestone chart pinned over an old grant-review calendar",
+      "mustInclude": [
+        "decision latency",
+        "sponsor-review gate",
+        "inherited habit"
+      ],
+      "mustAvoid": [
+        "academia versus business rant"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when informality has become coordination debt",
+      "design process in service of mission",
+      "evaluate executive fit by company stage",
+      "spot behavior loops that actually program culture"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one recurring escalation that still depends on personal access. Write the owner, cadence, and exception rule that would let the organization handle it without you.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

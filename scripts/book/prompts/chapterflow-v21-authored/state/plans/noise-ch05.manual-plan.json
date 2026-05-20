@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch05",
+  "number": 5,
+  "title": "Your Mind Is a Measuring Instrument",
+  "coreMove": "Treat your own judgment as an instrument whose reliability must be measured, not merely whose intentions must be good.",
+  "sourcePressure": "The judging mind is the instrument producing the reading. An instrument can be accurate on average yet unreliable across readings. Reliability — consistency across repeated measurements of the same thing — matters as much as average accuracy, and expert confidence does not guarantee either.",
+  "chapterSpecificMisunderstanding": "Equating good intentions, expertise, or high average accuracy with consistent output — assuming that because a judge gets most cases right on average, their individual readings are reliable.",
+  "sourceAlignmentTerms": ["instrument", "reliability", "calibration", "consistency", "reading", "measurement error", "within-judge"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Repeated-judgment reliability research across professional domains",
+      "detail": "Studies across radiology, pathology, wine evaluation, and figure skating judging show that the same expert assessing the same case at two different times will often produce different ratings — sometimes differing more than two experts assessing different cases would differ.",
+      "useIn": "deepRead",
+      "phrasingHint": "The same radiologist reading the same film on two different days may mark different findings. Not because the film changed. Because the instrument changed — and the instrument is the reader."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["your brain is not as reliable as you think", "experts make the same mistakes as everyone else"],
+    "counterintuition": ["even experts are inconsistent", "confidence is not the same as accuracy"],
+    "tryThisNow": ["rate your own reliability on a scale of 1 to 10", "think about the last time you second-guessed yourself"],
+    "examples": ["a scene where the expert explicitly admits they are unreliable — undermines the chapter's point that unreliability is invisible to the expert", "an example focused on a mistake outcome rather than a consistency failure"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The instrument metaphor risks producing six examples that all feel like the same 'expert reads same thing twice and gets different answers.' The formats and domains must be distinct enough that each shows a different facet of instrument unreliability."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "diagnostic radiology: a radiologist re-reading her own chest X-rays three months later under a blind protocol",
+      "audience": "a radiologist participating in a departmental quality study",
+      "stakes": "the reliability of her individual diagnosis — and the discovery that her own second read of the same film disagrees with her first read at a clinically meaningful level",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she completes the blind re-read session, the coordinator reveals the match data, and she sees that for six of the films she marked different findings than she had three months earlier — including one film where her first read flagged a finding she now cannot see",
+      "firstImage": "a radiology reading room at 8:15 a.m., the films lit on a lightbox, a locked envelope beside the keyboard containing her original reads that she is not yet allowed to open",
+      "mustInclude": ["the blind re-read protocol", "the discovery of self-disagreement", "her own reaction of surprise rather than defensiveness"],
+      "mustAvoid": ["implying patient harm occurred", "explaining the disagreement by a change in image quality"]
+    },
+    {
+      "domain": "professional wine evaluation: a certified sommelier re-evaluating the same wines in a blind tasting three weeks apart",
+      "audience": "a Master Sommelier conducting a self-calibration exercise",
+      "stakes": "the reliability of the professional judgment that underlies her written assessments published in a trade publication",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "comparing the two score sets, she finds that three wines moved by more than two full points in opposite directions — one she scored 92 the first time and 88 the second, another the reverse — and the notes she wrote each time are individually convincing",
+      "firstImage": "two columns of wine scores on a spreadsheet, the same wine names in the first column, her first scores in one column and her second scores in another, several numbers circled because they diverge",
+      "mustInclude": ["the same wines, same taster, different occasions", "the divergence visible as numbers before any explanation", "the individual tasting notes both being coherent despite contradicting each other"],
+      "mustAvoid": ["implying the wines themselves changed between tastings", "a scene that turns into wine expertise content"]
+    },
+    {
+      "domain": "competitive figure skating judging: a technical specialist scoring the same recorded program twice under experimental conditions",
+      "audience": "a skating federation analyst examining test-retest consistency among certified judges",
+      "stakes": "the fairness of the scoring system and the validity of competitive rankings based on judges' assessments",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the analyst presents the test-retest data to a panel of senior judges: the same certified specialist scored the same program 0.4 points lower on the second viewing than the first, without knowing they had seen it before — and the spread across specialists for the same program is larger than the spread typically determines podium position",
+      "firstImage": "a conference room projection screen showing a scatter plot of first-viewing versus second-viewing scores, the dots scattered away from a perfect diagonal line",
+      "mustInclude": ["same program, same specialist, different viewings", "the competitive significance of the within-specialist variation", "the fact that judges did not know they were being tested for consistency"],
+      "mustAvoid": ["implying the judging system is corrupt rather than noisy", "a scene focused on any specific athletic performance"]
+    },
+    {
+      "domain": "academic essay grading: a university professor grading the same 30 essays six weeks apart without access to the first scores",
+      "audience": "a professor who agreed to participate in a pedagogical research study on grading reliability",
+      "stakes": "the validity of grades as a measure of student performance — and the professional implications if her own grades cannot be replicated",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you compare your two sets of grades after the six-week interval: the correlation is 0.71, lower than you expected, and four essays received grades in different letter-grade categories — two of them in opposite directions, not just off by a fraction",
+      "firstImage": "two grade sheets for the same 30 essays, the student numbers identical down the left column, the two grade columns showing numbers that mostly track but diverge in visible clusters",
+      "mustInclude": ["the grade-correlation number as a concrete data point", "at least two grade reversals", "your reaction: lower correlation than expected, not a result you would have predicted"],
+      "mustAvoid": ["implying the essays were poorly written", "attributing the variation to external distraction rather than instrument unreliability"]
+    },
+    {
+      "domain": "emergency medicine: triage nurses assigning pain severity scores to the same standardized patient actor across different shifts",
+      "audience": "an ER quality researcher running a training program reliability study",
+      "stakes": "the consistency of triage priority decisions that determine how quickly a patient receives care",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two nurses compare their pain severity scores for the same standardized patient actor they both assessed during the training: one scored pain at 7 out of 10 and prioritized for immediate assessment, the other scored it at 4 and recommended monitoring — and neither is uncertain about their own reading",
+      "firstImage": "two triage assessment forms on a training room table, the patient description identical at the top, the pain scores different in the assessment box",
+      "mustInclude": ["identical patient presentation", "the clinical significance of the 3-point score gap for triage priority", "both nurses being confident and coherent in their reasoning"],
+      "mustAvoid": ["implying either nurse is poorly trained", "a patient outcome story"]
+    },
+    {
+      "domain": "private equity portfolio valuation: two analysts valuing the same company stake independently using identical inputs",
+      "audience": "an investment committee reviewing a mandatory independent-valuation exercise",
+      "stakes": "the fund's reported net asset value and investor trust in the reported figures",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the committee chair places the two independent valuations on the whiteboard: both used the same financial model, the same comparable company set, the same discount rate assumption — and arrived at figures $4.8 million apart on a $30 million stake, because judgment enters at each assumption about how to weight the comparable evidence",
+      "firstImage": "a whiteboard in a fund office showing two columns of valuation calculations, the input rows identical, the final valuation rows showing different numbers at the bottom",
+      "mustInclude": ["identical inputs", "the $4.8 million gap despite identical inputs", "judgment entering at weighting steps rather than data steps"],
+      "mustAvoid": ["implying fraud or negligence", "a scene focused on the company being valued rather than the valuation process"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish reliability from accuracy as separate instrument properties",
+      "recognize the test-retest method as the right way to measure judgment reliability",
+      "apply the instrument metaphor to identify what 'calibration' means in a professional judgment context",
+      "analyze why expertise and confidence do not guarantee reliability",
+      "evaluate whether measuring reliability is necessary even in domains where direct feedback is available"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of a recurring judgment you make — grading, rating, pricing, assessing. Without looking back at any prior decisions, write down what score or number you would give a specific case from memory. Then look up what you actually gave that case at the time. The gap — if there is one — is your instrument noise on that case.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (2-3 sentences) that states the instrument concept in the most direct possible terms, at least one longer paragraph tracing why confidence and reliability diverge, at least one one-sentence punch line about what measuring twice actually tells you",
+    "fullReadInterludeRequirement": "at least one direct second-person passage asking the reader to imagine their own professional judgment being put through a test-retest study",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch04",
+  "number": 4,
+  "title": "Survival Signals",
+  "coreMove": "Cluster small signals in context before deciding whether the pattern deserves action.",
+  "sourcePressure": "Survival signals are early warning cues whose meaning comes from clustering and context, not from a single odd detail isolated from the scene.",
+  "chapterSpecificMisunderstanding": "Treating every odd cue as proof of danger.",
+  "sourceAlignmentTerms": [
+    "survival signals",
+    "early warning",
+    "clustering",
+    "context",
+    "oddness",
+    "pressure",
+    "timing"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch04",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "museum coat check before opening",
+      "audience": "a front-desk lead spotting early pressure from a visitor",
+      "stakes": "whether odd friendliness plus access questions should count",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "marks the cluster: gift, private schedule questions, and refusal to stay behind the rope",
+      "firstImage": "a numbered coat tag sliding across marble",
+      "mustInclude": [
+        "coat tag",
+        "velvet rope",
+        "visitor map"
+      ],
+      "mustAvoid": [
+        "body-language gimmicks",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "boarding school dorm lobby",
+      "audience": "a resident adviser reading several small signals",
+      "stakes": "whether one weird comment is enough",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "waits for cluster, then acts when the student repeats room-number questions and blocks the stair door",
+      "firstImage": "the stairwell door clicking shut too slowly",
+      "mustInclude": [
+        "room list",
+        "stair door",
+        "visitor badge"
+      ],
+      "mustAvoid": [
+        "body-language gimmicks",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "mobile phone store after a return dispute",
+      "audience": "a shift lead weighing scattered cues",
+      "stakes": "whether to overreact to a disgruntled customer",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "clusters the fake apology, parking-lot waiting, and interest in closing time",
+      "firstImage": "a cracked screen protector under the counter light",
+      "mustInclude": [
+        "return receipt",
+        "demo phone",
+        "locking gate"
+      ],
+      "mustAvoid": [
+        "body-language gimmicks",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Anders",
+      "domain": "regional train quiet carriage",
+      "audience": "a passenger deciding whether to move seats",
+      "stakes": "whether a single stare should drive action",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "moves only after the cluster forms: seat changes, luggage questions, and blocked aisle",
+      "firstImage": "rain lines streaking the train window",
+      "mustInclude": [
+        "seat reservation card",
+        "overhead bag",
+        "conductor call button"
+      ],
+      "mustAvoid": [
+        "body-language gimmicks",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "animal shelter adoption desk",
+      "audience": "a coordinator noticing early warning behavior",
+      "stakes": "whether charm should cancel oddness",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "pauses the adoption when flattery, staff-route questions, and anger at a routine delay cluster",
+      "firstImage": "a leash looped twice around a chair leg",
+      "mustInclude": [
+        "adoption form",
+        "kennel key",
+        "front buzzer"
+      ],
+      "mustAvoid": [
+        "body-language gimmicks",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "public pool family locker corridor",
+      "audience": "a supervisor reading context around repeated oddness",
+      "stakes": "whether policy should wait for a complaint",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "intervenes when the same adult lingers near three different doors after being redirected",
+      "firstImage": "the wet floor sign reflected in tile",
+      "mustInclude": [
+        "radio clip",
+        "locker corridor",
+        "incident pad"
+      ],
+      "mustAvoid": [
+        "body-language gimmicks",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish survival signals from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits cluster small signals in context before deciding whether the pattern deserves action.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: treating every odd cue as proof of danger."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write down three small cues from one situation, then cross out any cue that has no context. Act only on the cluster that remains.",
+  "readingTimeMinutes": 12
+}

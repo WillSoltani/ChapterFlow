@@ -1,0 +1,160 @@
+{
+  "chapterId": "pitch-anything-ch05",
+  "number": 5,
+  "title": "Telling the Story",
+  "coreMove": "Compress the pitch into a sequence of change, stakes, and point so the room can follow without drowning in detail.",
+  "sourcePressure": "Story chapter: a pitch story transfers meaning quickly and guides attention without rambling, front-loading history, or replacing substance with autobiography.",
+  "chapterSpecificMisunderstanding": "The writer must make story a compressed meaning-transfer tool, not a long origin tale or soft substitute for substance.",
+  "sourceAlignmentTerms": [
+    "story",
+    "meaning transfer",
+    "attention guidance",
+    "sequence",
+    "stakes",
+    "compressed",
+    "clear point"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Everyone loves a story",
+      "Data needs narrative",
+      "A story makes people care"
+    ],
+    "counterintuition": [
+      "Shorter stories can carry more",
+      "The point comes before the history",
+      "Narrative is not decoration"
+    ],
+    "tryThisNow": [
+      "Tell a three-part story",
+      "Write your origin story",
+      "Cut unnecessary details"
+    ],
+    "examples": [
+      "founder childhood origin",
+      "customer journey slide",
+      "generic before-and-after case study"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "marine salvage company pitching a rapid-response contract to a port insurer",
+      "audience": "an operator with dramatic incidents but too much technical backstory",
+      "stakes": "the insurer misses the value of hour-one mobilization after a container spill",
+      "format": "scene",
+      "requiredBeat": "he starts with the first floating container at dawn, then moves straight to the decision clock instead of reciting company history",
+      "firstImage": "a wet orange towline coiled beside a tide-stained claim form",
+      "mustInclude": [
+        "towline",
+        "decision clock",
+        "spill claim form"
+      ],
+      "mustAvoid": [
+        "generic disaster-response pitch"
+      ]
+    },
+    {
+      "domain": "chef-owner pitching a regional frozen-meal line to hospital dietitians",
+      "audience": "a food entrepreneur tempted to tell a full restaurant backstory",
+      "stakes": "dietitians need to see sodium control and patient uptake before they hear brand romance",
+      "format": "before_after",
+      "requiredBeat": "she cuts the family-restaurant opening and begins with one patient tray returning empty after months of untouched meals",
+      "firstImage": "a clean hospital tray beside a freezer-label proof",
+      "mustInclude": [
+        "tray return log",
+        "sodium target",
+        "freezer-label proof"
+      ],
+      "mustAvoid": [
+        "generic restaurant origin story"
+      ]
+    },
+    {
+      "domain": "subsea cable repair planner briefing an island utility board",
+      "audience": "a planner whose chronology can sprawl across storms, ships, and permits",
+      "stakes": "the board must approve pre-positioned repair gear before the next outage",
+      "format": "postmortem",
+      "requiredBeat": "he draws only three moments from the last outage, cable break, waiting vessel, dark clinic, and stops before the technical appendix",
+      "firstImage": "a frayed cable cross-section inside a clear case",
+      "mustInclude": [
+        "cable cross-section",
+        "clinic generator log",
+        "vessel wait time"
+      ],
+      "mustAvoid": [
+        "generic infrastructure timeline"
+      ]
+    },
+    {
+      "domain": "independent game studio pitching a licensing partnership for an educational puzzle game",
+      "audience": "a creative lead with lore, mechanics, and learning science competing for room",
+      "stakes": "the licensor sees a toy instead of a repeatable learning loop",
+      "format": "thought_experiment",
+      "requiredBeat": "she narrates one child failing a puzzle, changing one move, and asking for the next level before showing retention metrics",
+      "firstImage": "a handheld controller resting on a printed level map",
+      "mustInclude": [
+        "level map",
+        "retention metric card",
+        "license style guide"
+      ],
+      "mustAvoid": [
+        "generic app demo"
+      ]
+    },
+    {
+      "domain": "forensic accounting firm pitching fraud detection to a family-owned manufacturer",
+      "audience": "an accountant with too many audit steps in the opening",
+      "stakes": "the owners tune out before seeing how one invoice pattern exposed a leak",
+      "format": "predict_reveal",
+      "requiredBeat": "he shows three invoice dates and asks which one does not belong before revealing the month-end leakage pattern",
+      "firstImage": "three invoice copies fanned across a walnut table",
+      "mustInclude": [
+        "invoice dates",
+        "month-end ledger",
+        "owner signature stamp"
+      ],
+      "mustAvoid": [
+        "generic finance presentation"
+      ]
+    },
+    {
+      "domain": "reef restoration scientist pitching a tourism tax renewal to hotel managers",
+      "audience": "a scientist who usually starts with species names and grant history",
+      "stakes": "hotel managers need the visitor-economy sequence before the ecology details",
+      "format": "vignette",
+      "requiredBeat": "she opens with a snorkel guide refunding a disappointed family, then connects the lost booking to the reef nursery result",
+      "firstImage": "a scratched snorkel mask beside a resort cancellation sheet",
+      "mustInclude": [
+        "snorkel mask",
+        "cancellation sheet",
+        "reef nursery photo"
+      ],
+      "mustAvoid": [
+        "generic environmental appeal"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose story beats that transfer meaning quickly",
+      "remove history that delays stakes",
+      "analyze whether a story guides attention or distracts",
+      "evaluate when narrative has replaced substance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write your pitch story in four beats: moment, change, stakes, point. Delete any beat that only proves you worked hard.",
+  "readingTimeMinutes": 12
+}

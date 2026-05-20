@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-pyramid-principle-ch01",
+  "number": 1,
+  "title": "Why a pyramid structure",
+  "coreMove": "Earn the answer through bottom-up grouping, then lead with it so the reader can judge support instead of assembling it.",
+  "sourcePressure": "Chapter 1 explains why pyramid structure reduces reader burden: the higher point summarizes grouped support, groups must be logical, and communication runs top-down only after bottom-up thinking has earned the answer.",
+  "chapterSpecificMisunderstanding": "Treating the pyramid as a faster executive-summary style or a prettier outline instead of a discipline for deciding what the support adds up to.",
+  "sourceAlignmentTerms": [
+    "pyramid structure",
+    "magical number seven",
+    "top-down communication",
+    "bottom-up thinking",
+    "grouping",
+    "summary point",
+    "MECE",
+    "nine-item grocery list"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "nine-item grocery list",
+      "detail": "the source sidecar says the explainer uses nine grocery items to show why grouped information is easier to hold and communicate than an unstructured list",
+      "useIn": "deepRead",
+      "phrasingHint": "Nine groceries do not become easier because they are fewer; they become easier because the grouping gives the mind something to carry."
+    },
+    {
+      "kind": "artifact",
+      "name": "McKinsey interview notes",
+      "detail": "the source sidecar ties Minto's origin support to frozen McKinsey interview notes and the three logical pyramid rules",
+      "useIn": "fullRead",
+      "phrasingHint": "The consulting origin matters only because it exposed the same failure again and again: finished prose sitting on unfinished order."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A memo opens with background and makes the reader hunt for the point",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "It is not about being concise; it is about being structured",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Set a timer and rewrite the first paragraph",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "consultant revises slide deck before executive review",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a nonprofit grant director turning scattered field reports into a board recommendation",
+      "audience": "program leaders who write updates for trustees",
+      "stakes": "a renewal vote depends on whether trustees can see the one funding decision inside twelve pages of field notes",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah spreads twelve site reports across a folding table, sorts them into three labeled piles, and only then writes the one sentence the board should see first.",
+      "firstImage": "Fluorescent light falls across twelve stapled reports and three empty sticky notes.",
+      "mustInclude": [
+        "folding table",
+        "site reports",
+        "three sticky-note group labels"
+      ],
+      "mustAvoid": [
+        "slide deck cleanup",
+        "generic nonprofit storytelling"
+      ]
+    },
+    {
+      "domain": "a hospital operations analyst summarizing weekend discharge delays",
+      "audience": "clinical managers who distrust abstract dashboards",
+      "stakes": "beds will stay blocked unless the delay sources become one usable operating claim",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Lukas moves each delay note under pharmacy, transport, or family consent, then deletes the headline he wanted because it no longer matches the groups.",
+      "firstImage": "A printer still warm from night shift spits out bed-delay notes.",
+      "mustInclude": [
+        "bed board printout",
+        "pharmacy delay column",
+        "transport call log"
+      ],
+      "mustAvoid": [
+        "doctor lecture",
+        "dashboard vanity metrics"
+      ]
+    },
+    {
+      "domain": "a city climate office preparing a council memo about flood sensors",
+      "audience": "public servants converting technical material for elected officials",
+      "stakes": "the council will postpone sensors if the memo reads like a research dump",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Camille compares the old chronology of findings with a revised answer-first structure that names the decision, then groups cost, risk, and maintenance beneath it.",
+      "firstImage": "It took Camille two drafts to notice the answer was hiding on page seven.",
+      "mustInclude": [
+        "council agenda packet",
+        "sensor maintenance estimate",
+        "flood map printout"
+      ],
+      "mustAvoid": [
+        "generic climate urgency speech"
+      ]
+    },
+    {
+      "domain": "a product support lead translating complaint tickets into a bug-priority note",
+      "audience": "support managers and product owners",
+      "stakes": "engineers will chase anecdotes unless the tickets become grouped evidence",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Daniel asks which bug the tickets prove, predicts the wrong answer, then regroups the tickets by failure mode until the real priority emerges.",
+      "firstImage": "Which problem do 183 angry tickets actually prove?",
+      "mustInclude": [
+        "ticket export",
+        "failure-mode labels",
+        "bug triage board"
+      ],
+      "mustAvoid": [
+        "startup investor pitch"
+      ]
+    },
+    {
+      "domain": "an archaeology lab manager writing a permit renewal report",
+      "audience": "research staff who must justify field access",
+      "stakes": "the permit can be delayed if artifact counts, site risks, and staffing constraints blur together",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Ingrid stop drafting, sort the permit notes into like kinds, and replace a broad top line with a narrower one the grouped evidence can support.",
+      "firstImage": "You are looking at trays of pottery tags and a half-written renewal letter.",
+      "mustInclude": [
+        "artifact tags",
+        "site-access calendar",
+        "permit checklist"
+      ],
+      "mustAvoid": [
+        "classroom note sorting"
+      ]
+    },
+    {
+      "domain": "a logistics coordinator explaining port congestion to a retailer",
+      "audience": "operations readers who need the destination before the detail",
+      "stakes": "a costly rush-shipping decision will be made from the note",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Michael says the first draft is the port's diary, not the retailer's answer, then rebuilds it as one claim with three support groups.",
+      "firstImage": "\"This is a diary, not an answer,\" Michael says beside the dispatch monitor.",
+      "mustInclude": [
+        "dispatch monitor",
+        "container dwell-time sheet",
+        "rush-shipping quote"
+      ],
+      "mustAvoid": [
+        "generic supply chain chaos"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "tell answer-first communication from premature assertion",
+      "recognize when a top point truly summarizes support",
+      "use grouping to lower reader burden without deleting evidence",
+      "spot when bottom-up discovery has not yet earned top-down delivery"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live note stack and draw three boxes: loose facts, possible groups, earned top line. Do not write the top line until at least two groups have names.",
+  "readingTimeMinutes": 12
+}

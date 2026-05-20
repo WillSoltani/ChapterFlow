@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch04",
+  "number": 4,
+  "title": "The Man Who Didn't Look Right",
+  "coreMove": "Catch the automatic routine at the cue level before trying to repair it.",
+  "sourcePressure": "Awareness must come before change because automatic behavior often becomes too familiar to notice clearly.",
+  "chapterSpecificMisunderstanding": "Assuming awareness alone fixes behavior or drifting into vague mindfulness.",
+  "sourceAlignmentTerms": [
+    "awareness",
+    "automatic behavior",
+    "cue visibility",
+    "pointing-and-calling",
+    "habit scorecard",
+    "noticing"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of awareness",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "an air-traffic trainee using callouts to notice skipped radar checks",
+      "audience": "a trainee whose hand moves before his mind catches up",
+      "stakes": "whether a near miss becomes a visible routine instead of a mystery",
+      "format": "scene",
+      "requiredBeat": "he says each screen check aloud and hears himself skip the weather strip before the instructor stops him",
+      "firstImage": "green radar sweep across a dim console",
+      "mustInclude": [
+        "weather strip",
+        "headset cord"
+      ],
+      "mustAvoid": [
+        "neuroscience lecture"
+      ]
+    },
+    {
+      "domain": "a pastry chef marking every automatic spoon taste during service",
+      "audience": "a chef trying to understand late-shift snacking",
+      "stakes": "whether noticing precedes any attempt to change the routine",
+      "format": "reflection",
+      "requiredBeat": "she drops a dried bean into a ramekin for each taste and sees nine beans before dessert service",
+      "firstImage": "a white ramekin with dried beans near the mixer",
+      "mustInclude": [
+        "dried beans",
+        "tasting spoon"
+      ],
+      "mustAvoid": [
+        "diet shame scene"
+      ]
+    },
+    {
+      "domain": "a call-center agent catching the moment she opens a complaints tab",
+      "audience": "a worker who loses ten minutes after hostile calls",
+      "stakes": "whether the cue becomes visible before the browsing spiral starts",
+      "format": "decision_point",
+      "requiredBeat": "she names the shoulder tension cue before clicking the tab and logs the trigger instead",
+      "firstImage": "a headset beside a blinking complaint queue",
+      "mustInclude": [
+        "complaint queue",
+        "browser tab"
+      ],
+      "mustAvoid": [
+        "generic productivity browser blocker"
+      ]
+    },
+    {
+      "domain": "a crane operator using verbal checks before lifting a steel beam",
+      "audience": "a site lead trying to prevent automatic shortcuts",
+      "stakes": "whether the routine becomes audible enough to inspect",
+      "format": "dialogue",
+      "requiredBeat": "the operator calls out load, wind, and signal; the missing word shows where the automatic chain broke",
+      "firstImage": "a yellow hook hovering above a tagged steel beam",
+      "mustInclude": [
+        "load tag",
+        "radio signal"
+      ],
+      "mustAvoid": [
+        "heroic construction drama"
+      ]
+    },
+    {
+      "domain": "a violin repair apprentice noticing when she reaches for the wrong solvent",
+      "audience": "a craft apprentice whose mistake repeats weekly",
+      "stakes": "whether hand movement is caught before the bottle cap turns",
+      "format": "before_after",
+      "requiredBeat": "she labels the reach aloud and stops with two fingers on the cap",
+      "firstImage": "two amber solvent bottles on a cork bench mat",
+      "mustInclude": [
+        "amber bottle",
+        "cork mat"
+      ],
+      "mustAvoid": [
+        "school lab shell"
+      ]
+    },
+    {
+      "domain": "a parent mapping the exact doorway moment that starts late-night scrolling",
+      "audience": "a new parent who thinks exhaustion explains everything",
+      "stakes": "whether the cue is the nursery door closing rather than bedtime itself",
+      "format": "vignette",
+      "requiredBeat": "he puts a tally mark on a sticky label the instant his hand goes to his pocket",
+      "firstImage": "a nursery monitor glowing on a hallway shelf",
+      "mustInclude": [
+        "nursery monitor",
+        "sticky label"
+      ],
+      "mustAvoid": [
+        "generic couch phone scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "notice automatic cues before intervention",
+      "use concrete callouts to expose routines",
+      "avoid treating awareness as a complete fix"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one routine you want to change, say the first visible cue aloud the next time it appears, before your hand moves into the habit.",
+  "readingTimeMinutes": 12
+}

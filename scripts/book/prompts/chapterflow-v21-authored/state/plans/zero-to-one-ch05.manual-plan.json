@@ -1,0 +1,182 @@
+{
+  "chapterId": "zero-to-one-ch05",
+  "number": 5,
+  "title": "Last Mover Advantage",
+  "coreMove": "Evaluate a company by the value it can keep earning after the first excitement fades.",
+  "sourcePressure": "The chapter shifts from escaping competition to asking what kind of business value endures over time, warning against mistaking firstness or novelty for durable strength. The frozen source for this chapter contains no chapter-specific named anecdote beyond author/editor metadata, so examples should use fictional protagonists and stay anchored to verified terms.",
+  "chapterSpecificMisunderstanding": "Turning durability into generic patience or long-term thinking without business mechanics.",
+  "sourceAlignmentTerms": [
+    "durability",
+    "future cash flow",
+    "endurance",
+    "advantage",
+    "last mover",
+    "long-term value"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of durability",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "industrial parts marketplace",
+      "audience": "a founder evaluating whether a fast launch has any defensible ten-year economics",
+      "stakes": "whether early volume hides a business that cannot keep value",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Megan traces the revenue line past launch month and marks where switching costs must appear",
+      "firstImage": "a parts catalog open beside a cash-flow sheet",
+      "mustInclude": [
+        "parts catalog",
+        "cash-flow sheet",
+        "supplier contract"
+      ],
+      "mustAvoid": [
+        "launch excitement"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "specialist veterinary clinic",
+      "audience": "a clinic director deciding whether a first-in-town scanner creates lasting advantage or just temporary attention",
+      "stakes": "whether the clinic can build referrals and expertise around the equipment",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Antoine compares the ribbon-cutting bookings with the five-year referral flywheel",
+      "firstImage": "a new scanner still wrapped in shipping film",
+      "mustInclude": [
+        "scanner crate",
+        "referral map",
+        "maintenance contract"
+      ],
+      "mustAvoid": [
+        "generic patience"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "language-learning platform for refugees",
+      "audience": "a nonprofit product lead testing whether impact survives grant-cycle novelty",
+      "stakes": "whether the tool becomes durable infrastructure or a pilot that fades",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace maps who will still use the platform after the launch grant ends",
+      "firstImage": "translation cards taped around a community center table",
+      "mustInclude": [
+        "grant calendar",
+        "translation cards",
+        "volunteer roster"
+      ],
+      "mustAvoid": [
+        "nonprofit inspiration"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "machine-tool leasing",
+      "audience": "a finance manager deciding whether attractive first-year demand masks weak retention",
+      "stakes": "whether lease economics compound or collapse after repairs and churn",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Henrik moves the model from first sale to year-seven service margin",
+      "firstImage": "oil stains on a maintenance invoice",
+      "mustInclude": [
+        "maintenance invoice",
+        "lease model",
+        "spare-parts shelf"
+      ],
+      "mustAvoid": [
+        "technical fund math"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "craft brewery distribution",
+      "audience": "a founder weighing taproom hype against shelf-space durability",
+      "stakes": "whether early buzz turns into a position competitors cannot quickly copy",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Laura ignores the festival line and asks which accounts will still reorder next winter",
+      "firstImage": "empty tasting glasses beside a distributor map",
+      "mustInclude": [
+        "distributor map",
+        "festival wristbands",
+        "winter reorder list"
+      ],
+      "mustAvoid": [
+        "brand buzz"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "special education assessment software",
+      "audience": "a district consultant deciding whether first adoption means anything without data migration and renewal strength",
+      "stakes": "whether the product keeps value after the pilot year",
+      "format": "second_person",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "You watch Andrew move the sales deck aside and test the renewal path before celebrating",
+      "firstImage": "a renewal calendar beside anonymized student files",
+      "mustInclude": [
+        "renewal calendar",
+        "student file box",
+        "migration checklist"
+      ],
+      "mustAvoid": [
+        "edtech novelty"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires evaluate a company by the value it can keep earning after the first excitement fades.",
+      "separate durability from future cash flow in a novel operating case",
+      "diagnose the specific failure mode: turning durability into generic patience or long-term thinking without business mechanics.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one exciting launch metric and extend the question five years forward: what has to keep earning, compounding, or renewing after the novelty is gone?",
+  "readingTimeMinutes": 12
+}

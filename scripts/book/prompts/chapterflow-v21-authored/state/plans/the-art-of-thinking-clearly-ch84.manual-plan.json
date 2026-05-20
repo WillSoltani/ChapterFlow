@@ -1,0 +1,186 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch84",
+  "number": 84,
+  "title": "House-Money Effect",
+  "coreMove": "Name the house money effect in the room, then redesign the next choice so it cannot choose for you.",
+  "sourcePressure": "The frozen TOC and official source notes frame House-Money Effect as a specific decision error around house money, windfall, real money. Traceable support includes ve just received: Carrie M. Heilman, Kent Nakamoto, Ambar G. Rao.",
+  "chapterSpecificMisunderstanding": "Treating House-Money Effect as generic advice to be smarter, instead of forcing this exact move: name the house money effect in the room, then redesign the next choice so it cannot choose for you.",
+  "sourceAlignmentTerms": [
+    "house money",
+    "windfall",
+    "real money",
+    "risk taking",
+    "casino",
+    "house",
+    "money",
+    "effect"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of House-Money Effect.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make House-Money Effect sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of House-Money Effect."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a restaurant menu test applying House-Money Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where house money could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if House-Money Effect is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the tasting spoon, names the house money risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A tasting spoon sits at the center of the restaurant menu test before anyone explains the choice.",
+      "mustInclude": [
+        "tasting spoon",
+        "house money",
+        "a visible before-and-after choice tied to House-Money Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a legal-aid case triage applying House-Money Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where windfall could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if House-Money Effect is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the scoreboard still, names the windfall risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A scoreboard still sits at the center of the legal-aid case triage before anyone explains the choice.",
+      "mustInclude": [
+        "scoreboard still",
+        "windfall",
+        "a visible before-and-after choice tied to House-Money Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a museum donor exhibit applying House-Money Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where real money could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if House-Money Effect is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the shipping manifest, names the real money risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A shipping manifest sits at the center of the museum donor exhibit before anyone explains the choice.",
+      "mustInclude": [
+        "shipping manifest",
+        "real money",
+        "a visible before-and-after choice tied to House-Money Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a hardware storm inventory applying House-Money Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where risk taking could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if House-Money Effect is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the ad mockup, names the risk taking risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A ad mockup sits at the center of the hardware storm inventory before anyone explains the choice.",
+      "mustInclude": [
+        "ad mockup",
+        "risk taking",
+        "a visible before-and-after choice tied to House-Money Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a startup churn review applying House-Money Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where casino could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if House-Money Effect is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the dropout table, names the casino risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A dropout table sits at the center of the startup churn review before anyone explains the choice.",
+      "mustInclude": [
+        "dropout table",
+        "casino",
+        "a visible before-and-after choice tied to House-Money Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a public-comment policy desk applying House-Money Effect under operational pressure",
+      "audience": "a reader who has to make a live judgment where house could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if House-Money Effect is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the organ-donor form, names the house risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A organ-donor form sits at the center of the public-comment policy desk before anyone explains the choice.",
+      "mustInclude": [
+        "organ-donor form",
+        "house",
+        "a visible before-and-after choice tied to House-Money Effect"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot House-Money Effect in a fresh decision scene",
+      "choose the correction that performs this move: name the house money effect in the room, then redesign the next choice so it cannot choose for you.",
+      "reject a tempting generic answer that ignores house money",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'House-Money Effect' on a note, list the one house money cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

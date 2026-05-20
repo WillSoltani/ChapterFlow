@@ -2,7 +2,7 @@
   "bookId": "pre-suasion",
   "title": "Pre-Suasion",
   "author": "Robert Cialdini",
-  "promotedAt": "2026-05-12T01:18:26.251Z",
+  "promotedAt": "2026-05-13T20:30:19.104Z",
   "chapterCount": 14,
   "shipGate": {
     "perChapter": [
@@ -11,196 +11,98 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 2,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 3,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 4,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 5,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 6,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 7,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 8,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 9,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 10,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 11,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 12,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 13,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 14,
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"keep it if it\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       }
     ],
     "totalBlockers": 0,
@@ -213,15 +115,31 @@
     "findings": [],
     "stats": {
       "answerPositionCounts": [
-        42,
-        42,
-        42
+        40,
+        48,
+        38
       ],
-      "answerPositionPctMax": 0.3333333333333333,
+      "answerPositionPctMax": 0.38095238095238093,
       "totalQuizQuestions": 126,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "pre-suasion",
+        "chapterCount": 14,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

@@ -1,0 +1,119 @@
+{
+  "chapterId": "the-checklist-manifesto-ch09",
+  "number": 9,
+  "title": "The Save",
+  "coreMove": "Transfer checklist discipline to another field by rebuilding it around that field's recurring failure points.",
+  "sourcePressure": "The source turns to investing and Mohnish Pabrai to show checklist logic beyond surgery, while keeping the lesson tied to practical routine discipline rather than generic business process.",
+  "chapterSpecificMisunderstanding": "The weak version says checklists work everywhere. The real chapter says the logic transfers only when rebuilt around a domain's real failure modes.",
+  "sourceAlignmentTerms": ["Mohnish Pabrai", "investing", "transfer", "domain fit", "routine safeguards", "judgment"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Mohnish Pabrai",
+      "detail": "The source sidecar names Mohnish Pabrai as the anchor for checklist logic beyond medicine.",
+      "useIn": "both",
+      "phrasingHint": "Mohnish Pabrai matters because investing turns the checklist from a surgical tool into a guard against repeated judgment errors."
+    },
+    {
+      "kind": "event",
+      "name": "checklist logic outside surgery",
+      "detail": "The source sidecar says the closing chapter centers on practical routine discipline beyond one field.",
+      "useIn": "fullRead",
+      "phrasingHint": "The form changes when the field changes, but the same human vulnerability is still waiting at the decision point."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["Checklists are for every field", "The lesson travels"],
+    "counterintuition": ["Transfer requires fit", "The checklist is universal but not identical"],
+    "tryThisNow": ["Make a checklist for one decision", "Apply this outside work"],
+    "examples": ["generic investor with spreadsheet", "business process transformation", "medical recap as final lesson"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Laura, an investment committee analyst building a decision checklist",
+      "audience": "investors who have enough analysis but repeat the same judgment errors",
+      "stakes": "a tempting acquisition looks cheap while debt covenants and customer concentration repeat a past mistake",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Laura uses the checklist to force covenant, concentration, and downside-case checks before the committee debates upside",
+      "firstImage": "quarterly reports stacked beside a silent speakerphone",
+      "mustInclude": ["debt covenant", "customer concentration chart", "downside case"],
+      "mustAvoid": ["fake Mohnish Pabrai anecdote", "generic spreadsheet wisdom"]
+    },
+    {
+      "domain": "Julien, a restaurant group owner reviewing expansion",
+      "audience": "operators transferring checklist logic without copying medicine",
+      "stakes": "a second location decision fails if lease excitement hides staffing and supplier weaknesses",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Julien rebuilds the checklist around lease terms, chef bench strength, supplier redundancy, and cash runway instead of borrowing a safety form",
+      "firstImage": "What would be stupid to copy from a hospital checklist into a restaurant lease meeting?",
+      "mustInclude": ["lease packet", "supplier map", "cash runway page"],
+      "mustAvoid": ["kitchen closing checklist from ch06", "generic entrepreneur hustle"]
+    },
+    {
+      "domain": "Chloe, an independent school safeguarding lead",
+      "audience": "school leaders adapting verification to child safety decisions",
+      "stakes": "a volunteer approval process depends on memory and goodwill across three offices",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Chloe turns repeated volunteer approval misses into a safeguarding checklist that verifies background check, contact boundaries, and trip role before assignment",
+      "firstImage": "rain tapping against the glass beside a stack of volunteer badges",
+      "mustInclude": ["volunteer badge", "background check receipt", "trip role sheet"],
+      "mustAvoid": ["classroom scene", "generic compliance paperwork"]
+    },
+    {
+      "domain": "Michael, a cybersecurity incident lead",
+      "audience": "technical leaders deciding where a routine safeguard can support judgment",
+      "stakes": "containment choices repeat past misses when the team trusts memory during live attack response",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Michael adapts checklist logic to the recurring failure points: isolate host, preserve evidence, notify legal, and confirm backup integrity before restoration",
+      "firstImage": "\"Do not restore until we know what we are restoring from,\" Michael says",
+      "mustInclude": ["isolated host", "evidence snapshot", "backup integrity report"],
+      "mustAvoid": ["data center live incident card from ch06", "generic cyber panic"]
+    },
+    {
+      "domain": "Catarina, an architecture firm code-review partner",
+      "audience": "professional-service teams who need safeguards without flattening design judgment",
+      "stakes": "a beautiful design repeats a costly accessibility miss from last year",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Catarina builds a code-review checklist only around recurring misses, then leaves aesthetic and site-specific judgment outside the list",
+      "firstImage": "It took Catarina one rejected permit set to stop treating memory as a quality system",
+      "mustInclude": ["accessibility clearance", "permit comment letter", "site section"],
+      "mustAvoid": ["construction coordination from ch03", "design taste debate"]
+    },
+    {
+      "domain": "Chidi, a nonprofit grant approval chair",
+      "audience": "boards deciding whether a checklist fits mission decisions",
+      "stakes": "a beloved project wins approval while conflicts, reporting burden, and reserve risk are missed again",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chidi limits the checklist to recurring blind spots before the vote and refuses to let it score the mission value itself",
+      "firstImage": "You watch the room lean toward the story before anyone asks about the reserve account",
+      "mustInclude": ["conflict disclosure", "reporting calendar", "reserve account"],
+      "mustAvoid": ["generic board governance", "checklist replaces judgment"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["transfer checklist logic without copying form", "identify recurring domain-specific failure points", "preserve judgment outside the list", "evaluate when a checklist would become blind procedure"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one recurring decision outside medicine and write the two failure points experience has already shown you, not the whole decision process.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

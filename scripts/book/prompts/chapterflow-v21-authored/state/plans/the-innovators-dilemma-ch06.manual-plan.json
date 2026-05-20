@@ -1,0 +1,131 @@
+{
+  "chapterId": "the-innovators-dilemma-ch06",
+  "number": 6,
+  "title": "Give Responsibility for Disruptive Technologies to Organizations Whose Customers Need Them",
+  "coreMove": "Place a disruptive effort with the team whose customers actually create pull toward it — not just the team with the relevant technical expertise.",
+  "sourcePressure": "Organizations answer to the customers that fund their legitimacy. If a disruptive effort lives inside a unit whose customers don't need it, that unit will keep prioritizing what those customers reward — even with strong executive support. Placement changes which customers generate urgency and which priorities are real.",
+  "chapterSpecificMisunderstanding": "Treating this chapter as advice to always spin out every new effort into a separate company, when the rule is about customer fit, not corporate structure. An effort can be separate within a division or shared across a subsidiary — what matters is whose customers define success.",
+  "sourceAlignmentTerms": [
+    "customer pull",
+    "organizational placement",
+    "autonomous responsibility",
+    "disruptive effort",
+    "incumbent unit",
+    "legitimacy",
+    "customer base",
+    "priority-setting"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'intrapreneurship is the answer' framing",
+      "generic 'build a startup inside your company' framing"
+    ],
+    "counterintuition": [
+      "generic 'leadership doesn't create culture, customers do' counter",
+      "generic 'incentive structures beat strategy' counter"
+    ],
+    "tryThisNow": [
+      "generic 'identify your internal innovation champion' prompt",
+      "generic 'create a skunkworks team' prompt"
+    ],
+    "examples": [
+      "any scene that portrays separation as automatically winning",
+      "any scene where the wrong placement is simply blamed on a reluctant executive"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Placement decisions are organizational, not heroic — open in the structural moment, not the announcement."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital system placing a telemedicine program inside the inpatient unit versus the urgent-care division",
+      "audience": "a hospital operations director deciding where to house a telemedicine pilot for non-emergency follow-up visits",
+      "stakes": "the inpatient unit's customers are admitted patients who don't need telemedicine; the urgent-care division sees walk-in patients who might prefer remote follow-up",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Laura places the telemedicine pilot inside the inpatient unit because the technical infrastructure is there. Eighteen months later the pilot has produced nothing because no admitted patient needs what it offers — the urgent-care division, which does have patients who would use it, was never asked.",
+      "firstImage": "an empty telemedicine kiosk in a hospital corridor near the inpatient ward",
+      "mustInclude": ["inpatient customer base mismatch", "urgent-care patient fit", "the eighteen-month result from wrong placement"],
+      "mustAvoid": ["implying that telemedicine is inherently better than in-person care"]
+    },
+    {
+      "domain": "retail bank housing its mobile peer-to-peer payment product inside the corporate banking division",
+      "audience": "a product director who placed the mobile payment product under corporate banking because the technical compliance team is there",
+      "stakes": "corporate banking customers have no need for P2P payment features; retail checking customers do, and they are in a different division",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ryan's product roadmap for mobile P2P is shaped entirely by corporate banking requirements — security audit cadence, API compliance, institutional transfer logic — because those are the customers who fund the division's decisions. The retail checking customers who would use P2P daily are in a division that doesn't control the roadmap.",
+      "firstImage": "a mobile payment product roadmap dominated by compliance milestones rather than user features",
+      "mustInclude": ["corporate compliance requirements dominating the roadmap", "retail customer absence from priority-setting", "the structural explanation for why this happened"],
+      "mustAvoid": ["suggesting that compliance requirements are unimportant"]
+    },
+    {
+      "domain": "broadcast media company housing its streaming studio inside the cable programming division",
+      "audience": "a content strategy director whose streaming studio budget is approved by cable programming executives whose renewal metrics are based on cable subscriber counts",
+      "stakes": "the cable programming division's customers are cable operators, not streaming subscribers — so the streaming studio keeps being asked to produce content that looks good on cable metrics",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Julien has to decide whether to produce a streaming-native format that will perform poorly on cable metrics or adapt it to cable's needs and lose the streaming advantage. The decision is structurally forced by which division controls the budget and who their customers are.",
+      "firstImage": "a content brief with two audience targets crossed out, one circled: cable subscribers",
+      "mustInclude": ["cable operator as customer of the division", "streaming subscriber as orphaned customer", "the forced choice between formats"],
+      "mustAvoid": ["treating cable vs. streaming as a technology battle rather than an organizational placement problem"]
+    },
+    {
+      "domain": "commercial insurer housing its usage-based insurance product inside the actuarial division",
+      "audience": "a product innovation director whose usage-based product sits inside actuarial because that's where the pricing models live",
+      "stakes": "actuarial's customers are underwriters and claims directors who need long-run risk data — usage-based requires real-time behavioral data from drivers, which is a different kind of customer relationship",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Astrid predicts the usage-based product will be ready for market in two years based on actuarial's modeling timeline. The reveal shows that actuarial's modeling cycle was built for products whose customers send in one form per year, not products whose customers expect weekly app feedback. The customers the product needs created no pull inside the division that owned it.",
+      "firstImage": "an actuarial model timeline showing annual review cycles beside a driver app that refreshes weekly",
+      "mustInclude": ["actuarial review cycle mismatch", "driver app feedback frequency", "the absence of driver-customer pull inside the actuarial division"],
+      "mustAvoid": ["implying that actuarial modeling is wrong or outdated in general"]
+    },
+    {
+      "domain": "legacy retailer housing its subscription box service inside the merchandising department",
+      "audience": "a merchandising director whose customers are wholesale buyers and store planners, not end consumers ordering personal curated boxes",
+      "stakes": "merchandising's planning cycles are seasonal and bulk-volume; subscription box requires weekly curation and individual-level personalization that wholesale buyers never need",
+      "format": "postmortem",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Luca's postmortem on the failed subscription box pilot finds that the box was curated using wholesale buyer feedback — the only customer signal the merchandising team knew how to collect. The individual subscriber's preference data was never in the room.",
+      "firstImage": "a subscription box on a warehouse packing table beside a bulk wholesale order",
+      "mustInclude": ["wholesale buyer feedback as the only signal", "individual subscriber preference absent", "the postmortem finding the root cause in organizational placement"],
+      "mustAvoid": ["treating subscription boxes as inherently harder than traditional retail"]
+    },
+    {
+      "domain": "commercial printing company housing its on-demand digital printing service inside the offset plant management team",
+      "audience": "a plant manager whose performance is measured by offset press utilization and long-run job efficiency",
+      "stakes": "on-demand digital printing thrives on short-run variety; the plant manager's incentives push toward long-run standardization",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Before: Min's on-demand service is scheduled around offset press priority — it runs when the offset presses don't need the floor space. After: the on-demand service is moved under the customer accounts team whose clients need quick turnaround, and scheduling decisions are now pulled by customer delivery dates rather than press utilization.",
+      "firstImage": "a plant scheduling board with on-demand jobs in the gap between long-run offset jobs",
+      "mustInclude": ["offset utilization metric as the scheduling driver", "customer delivery date as the alternative driver", "the explicit before/after in scheduling logic"],
+      "mustAvoid": ["suggesting that offset printing is obsolete or that digital printing is always preferable"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which customers are generating priority signals in a described organizational unit",
+      "recognize a placement where customer pull is pointing away from the disruptive effort",
+      "evaluate whether a described organizational placement creates customer fit or customer mismatch",
+      "apply the customer-fit principle to a described new product initiative",
+      "distinguish customer-fit placement from structural separation as the key variable"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one new initiative in your organization and identify the team that currently owns it. Write down who that team's three most important customers are. Then write one sentence about whether those customers create pull toward or away from the initiative.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one research-aside or direct second-person paragraph about what 'customer pull' looks like in the reader's own organization",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

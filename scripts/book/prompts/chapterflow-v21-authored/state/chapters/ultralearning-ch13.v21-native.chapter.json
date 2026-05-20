@@ -1,0 +1,319 @@
+{
+  "chapterId": "ultralearning-ch13",
+  "number": 13,
+  "title": "Your first ultralearning project",
+  "hook": "Protected studio hours make a serious goal smaller, sharper, and harder to dodge.",
+  "counterintuition": "The first project has a paradox: it becomes more serious when it becomes narrower, because scope gives time and evidence somewhere to land.",
+  "tryThisNow": "Make a first-project card with five parts: skill; protected block; first session; proof artifact; due date.",
+  "keyTakeaway": "Your first project should be serious enough to matter and narrow enough to begin without pretending the whole future has been solved.",
+  "breakdown": {
+    "fastRead": "A support-ticket export sits beside Emma's hand-drawn dashboard grid. She wants to learn analytics, but that goal is too wide to protect on a calendar. She chooses one report, one weekly block, and one dashboard that will show whether she can turn messy tickets into a useful choice.\n\nA first project needs an edge. If it is too small, it becomes dabbling with a nicer label. If it is too large, it turns into planning theater. Choose a hard thing that deserves real time, then cut it into work with a first session and visible proof. Seriousness needs a container.",
+    "deepRead": "A pipette calibration card lies beside Matthew's taped lab schedule. He wants to become stronger at biology lab work, and his first impulse is to order more materials, watch more technique videos, and wait until he feels ready. Before the next order goes through, he blocks two lab-technique sessions, chooses one calibration routine, and writes the first observable pass: complete the setup without contaminating the sample tray.\n\nThat decision changes the goal from identity to project. A vague goal asks for confidence. A project asks for time, materials, a first attempt, and a standard that can embarrass you early enough to help. Deep self-education starts when the work has a shape you can defend against ordinary life.\n\nThe first project should make avoidance visible.\n\nA serious project competes for time because hard things do not fit politely around everything else. It needs protected hours, not leftover minutes after the day has already spent your attention. It also needs scope, because commitment without scope becomes a trap. If Matthew declares that he is becoming excellent at biology, every weakness can join the list and nothing has to happen today. If he declares a two-session calibration sprint with one visible pass, the next action is no longer mysterious.\n\nThis is not a call to make the first project enormous. A huge project can protect your pride by staying far away. The better first project is close enough to start this week and demanding enough that you would not do it by accident. It should make you arrange your calendar, refuse one easy escape, and produce something that can be seen. That proof might be a dashboard, a lab routine, a short performance, a working deployment, or a reviewed map. The form matters less than the pressure it creates.",
+    "fullRead": "Six blank deckle-edge sheets sit beside Isabel's ink roller when the studio manager asks what she is reserving the press for. Isabel could say she is improving as a printmaker. That answer sounds artistic and leaves her nowhere to begin. Instead, she says she is making a six-print proof set that tests registration, pressure, and ink density, and she books the same two studio hours for the next three Thursdays.\n\nThe difference is not romance. It is engineering. A first ultralearning project turns desire into constraints: what skill, what standard, what first session, what protected time, and what proof. Without those constraints, ambition can keep floating above the week. With them, the work has to meet Tuesday, a locked room, limited materials, and a visible result.\n\nAsk a blunt question before you choose: what evidence would make this project impossible to fake? If the answer is only that you will feel more disciplined, the project is still fog. If the answer is a report someone can use, a routine performed under real limits, a draft corrected by a qualified reviewer, or a small artifact that runs, then the project has teeth.\n\nDevon stands in front of a whiteboard server diagram at 7:40 in the morning with one arrow missing between the storage bucket and the deployment script. He has been reading cloud-admin material for weeks, and every new topic makes the field feel larger. The temptation is to call the reading a project because it takes effort. He writes a different rule on the board: the project has not started until one deployable artifact runs in a test account. That sentence removes three comfortable escapes. He cannot hide in tool comparisons. He cannot collect certificates as a substitute for shipping. He cannot keep moving the starting line because the field is broad.\n\nA first project also needs the right size of seriousness. Too little seriousness and it becomes a weekend curiosity that loses to errands. Too much seriousness and it becomes a fantasy of reinvention that collapses under its own promise. The useful middle is a project you would be annoyed to abandon and still able to start without reorganizing your entire life. It should cost something real: a block on the calendar, a narrower social commitment, a smaller entertainment budget, a few uncomfortable attempts in front of evidence. It should not require a new personality.\n\nMaja learned this after three weeks of collecting climate-data links for a city volunteer group. The folder looked impressive, but the bulletin board at the community centre still had a blank map pin where the flood-risk display was supposed to go. In the postmortem, she crossed out the phrase learn climate data and replaced it with build one neighbourhood map for the June meeting, reviewed by Patrice from the planning office. The project became smaller and more serious at the same time.\n\nThat is the test for a first project: smaller and more serious at the same time. Smaller means the next session is obvious. More serious means the session matters enough to protect. When those two forces meet, self-education stops being a private mood and becomes a piece of work you can return to, inspect, and improve."
+  },
+  "examples": [
+    {
+      "exampleId": "ch13-ex01-emma-support-analytics",
+      "title": "Emma Gives Analytics a Proof",
+      "tags": [
+        "project design",
+        "scope"
+      ],
+      "planSpec": {
+        "domain": "Emma, a customer-support manager choosing a first analytics project",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether the next month produces visible evidence or another private feeling of effort",
+        "format": "scene",
+        "requiredBeat": "Emma chooses one customer-support analytics project with a weekly block and one dashboard that will prove the skill."
+      },
+      "scenario": "A support-ticket export curls beside a hand-drawn dashboard grid. Emma must decide which version of analytics will survive the month: another private study list or one weekly block that ends in a dashboard showing the top three refund causes. Emma writes Friday beside the refund dashboard and names the operations lead who will read it. That small outside check makes the weekly block harder to skip and keeps the report from becoming private spreadsheet practice.",
+      "whatToDo": "Define the first project as one dashboard, one weekly block, and one standard for useful evidence.",
+      "whyItMatters": "The proof artifact keeps analytics from becoming a flattering label with no visible result."
+    },
+    {
+      "exampleId": "ch13-ex02-matthew-lab-sprint",
+      "title": "Matthew Protects the First Lab Sprint",
+      "tags": [
+        "protected time",
+        "first session"
+      ],
+      "planSpec": {
+        "domain": "Matthew, a biology student protecting time for one lab-technique sprint",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether a deadline exposes the weakness early enough to adjust",
+        "format": "decision_point",
+        "requiredBeat": "Matthew protects two lab-technique sessions before buying more biology materials, then names the first observable pass."
+      },
+      "scenario": "You have a pipette calibration card, a taped lab schedule, and a cart full of extra materials waiting online. Matthew has to choose before the order goes through: buy more preparation or protect two sessions that prove one clean calibration routine. Matthew's review slot is 11:32 a.m. He tapes the two sessions onto the lab calendar before buying anything else. The first pass is not mastery; it is a clean setup with no contamination and a note on the step that still breaks.",
+      "whatToDo": "Block the sessions first, then buy only the materials required for the named pass.",
+      "whyItMatters": "Protected time makes the project real before the learner can decorate it with more preparation."
+    },
+    {
+      "exampleId": "ch13-ex03-vincent-supervision-scenario",
+      "title": "Vincent Narrows the Counselling Project",
+      "tags": [
+        "scope",
+        "credibility"
+      ],
+      "planSpec": {
+        "domain": "Vincent, a school counsellor scoping a trauma-informed training project",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
+        "format": "vignette",
+        "requiredBeat": "Vincent scopes trauma-informed training to one supervision scenario instead of an entire counselling identity."
+      },
+      "scenario": "The supervision-room chair faces a printed scenario sheet with one student incident circled. Vincent is about to decide how to define the project, and he drops the impossible goal of becoming trauma-informed in general for one reviewed supervision response. The printed scenario gives Vincent a boundary he can defend. Instead of promising a new professional identity, he will draft one supervision response and ask his clinical lead to mark where safety language turns vague.",
+      "whatToDo": "Choose one scenario, one response format, and one qualified reviewer instead of claiming the whole identity.",
+      "whyItMatters": "A narrow scenario turns a noble goal into a first project that can receive useful correction."
+    },
+    {
+      "exampleId": "ch13-ex04-isabel-six-print-proof",
+      "title": "Isabel Books the Press for Evidence",
+      "tags": [
+        "commitment",
+        "artifact"
+      ],
+      "planSpec": {
+        "domain": "Isabel, a printmaker making the goal serious enough to deserve studio hours",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether the project survives contact with a real schedule and real standards",
+        "format": "dialogue",
+        "requiredBeat": "Isabel makes the printmaking project serious by reserving studio hours and defining a six-print proof set."
+      },
+      "scenario": "\"What are you reserving the press for?\" the studio manager asks as six blank sheets wait beside the ink roller. Isabel must choose between a vague improvement plan and a six-print proof set with three booked sessions. The reservation sheet turns Isabel's idea into a cost. If she misses the press time, the blank deckle-edge sheets will still be waiting, which is exactly why the proof set can teach her faster than another sketchbook plan.",
+      "whatToDo": "Reserve the studio hours and name the six-print proof set before adding any new artistic goals.",
+      "whyItMatters": "The reservation forces the project to compete for real time and produce visible evidence."
+    },
+    {
+      "exampleId": "ch13-ex05-devon-deployable-artifact",
+      "title": "Devon Refuses the Reading Loop",
+      "tags": [
+        "proof",
+        "commitment"
+      ],
+      "planSpec": {
+        "domain": "Devon, a cloud-admin apprentice defining the first deployable artifact",
+        "audience": "a learner who has been mistaking motion for progress",
+        "stakes": "whether comfort keeps protecting the exact skill gap that matters",
+        "format": "predict_reveal",
+        "requiredBeat": "Devon names the first deployable cloud artifact and refuses to call the project started until it runs."
+      },
+      "scenario": "At 7:40 in the morning, Devon studies a whiteboard server diagram with one missing arrow and predicts another tutorial will make him safer. The reveal comes when he has to choose a harsher start: one deployable artifact running in a test account by Friday. Devon writes the test account name under the missing arrow and deletes two tutorial links from the board. By Friday, either the artifact runs or the diagram has shown him the first piece he does not yet understand.",
+      "whatToDo": "Define the project by the first running artifact, not by the amount of cloud material consumed.",
+      "whyItMatters": "A running artifact exposes the gap that reading can keep politely hidden."
+    },
+    {
+      "exampleId": "ch13-ex06-maja-climate-map",
+      "title": "Maja Turns Interest into a Map",
+      "tags": [
+        "postmortem",
+        "reviewer"
+      ],
+      "planSpec": {
+        "domain": "Maja, a city volunteer turning a climate-data interest into a scoped project",
+        "audience": "a practitioner under a near-term performance constraint",
+        "stakes": "whether the next attempt changes the skill instead of decorating the plan",
+        "format": "postmortem",
+        "requiredBeat": "Maja turns climate-data interest into a scoped volunteer map with a due date and a named reviewer."
+      },
+      "scenario": "It took Maja three weeks to see that the community-centre bulletin board still had a blank map pin. Her postmortem crosses out learn climate data and replaces it with one neighbourhood flood-risk map due before the June meeting and reviewed by a city planner. Maja's review slot is 2:49 p.m. The old folder had sources, but no one could use it. The new map has a meeting date, a planning-office reviewer, and one crossed-out escape: adding more links before drawing the first neighbourhood boundary.",
+      "whatToDo": "Rewrite the interest as one map, one due date, and one reviewer with authority to mark weak spots.",
+      "whyItMatters": "The scoped artifact turns an admirable interest into a project that can be finished and judged."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 75,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A support manager says she wants to learn analytics and has been reading dashboards after work, but no one on her team has seen a useful report yet. Which first-project definition gives the goal enough shape?",
+        "choices": [
+          "Build one refund-cause dashboard during a weekly protected block and show it to the operations lead.",
+          "Keep reading analytics articles until the field feels less intimidating.",
+          "Announce that she is becoming a data-driven manager and collect examples from other companies."
+        ],
+        "correctIndex": 0,
+        "explanation": "The dashboard has scope, protected time, and visible proof. Reading more may help later, but here it preserves the vague goal that has already failed to produce evidence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A biology student wants better lab technique before a practical exam. He has two free evenings and a list of equipment he could buy. What should he do first if he is designing a serious but startable project?",
+        "choices": [
+          "Buy all the equipment so every possible technique is available.",
+          "Protect two sessions for one calibration routine and define the first clean pass.",
+          "Wait until he understands the full lab manual before scheduling practice."
+        ],
+        "correctIndex": 1,
+        "explanation": "The protected sessions and clean pass make the project executable. Buying everything broadens the scope before the first skill has met a real standard.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A counsellor wants to become stronger in trauma-informed practice, but the phrase is so broad that every article seems relevant. Which adjustment best turns the ambition into a first project?",
+        "choices": [
+          "Read across the entire field for a month before choosing any scenario.",
+          "Create a personal mission statement about being a more compassionate counsellor.",
+          "Choose one supervision scenario, draft a response, and ask a qualified reviewer to mark it."
+        ],
+        "correctIndex": 2,
+        "explanation": "One scenario plus review gives the learning a concrete direction. A mission statement may sound serious, but it does not create a visible attempt or correction.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A printmaker keeps saying she wants to improve registration, pressure, color, composition, and speed all at once. The studio calendar has limited press time. What is the strongest first-project move?",
+        "choices": [
+          "Book three sessions for a six-print proof set that tests the weakest two technical variables.",
+          "Keep the goal broad so she stays open to every possible improvement.",
+          "Delay booking the press until she feels more confident about all five skills."
+        ],
+        "correctIndex": 0,
+        "explanation": "The proof set is narrow enough to start and serious enough to deserve studio hours. Keeping every variable open makes the project too shapeless for the calendar.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A cloud apprentice has finished several tutorials but has not deployed anything. He wants a first project that will expose the real gap without becoming enormous. Which project definition fits?",
+        "choices": [
+          "Read one more full certification guide before choosing a build.",
+          "Define one deployable artifact in a test account and refuse to count the project started until it runs.",
+          "Compare every major cloud provider so the project begins with the best platform."
+        ],
+        "correctIndex": 1,
+        "explanation": "The running artifact is a concrete proof that can reveal missing skill. Provider comparison and more reading can feel productive while avoiding the deployment weakness.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A city volunteer has a folder of climate-data links and a blank display spot at the community centre. The June meeting is approaching. What should her postmortem change?",
+        "choices": [
+          "Collect more sources so the project feels more authoritative.",
+          "Keep the project unnamed until the data landscape is complete.",
+          "Define one neighbourhood map, one due date, and one reviewer from the planning office."
+        ],
+        "correctIndex": 2,
+        "explanation": "The map, date, and reviewer convert interest into a first project. More sources repeat the old pattern that produced a full folder and an empty display.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A learner writes a first-project card that says, 'Become excellent at public speaking this year.' It has no date, no first session, and no artifact. What is the best critique?",
+        "choices": [
+          "The goal lacks the container that makes seriousness visible: time, scope, first attempt, and proof.",
+          "The goal is not inspiring enough; it should sound larger.",
+          "The goal is too narrow because it names only one skill."
+        ],
+        "correctIndex": 0,
+        "explanation": "The problem is not the ambition but the missing project container. Making the sentence grander would increase fog; naming the proof and first session would create pressure.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A designer wants to learn accessibility and proposes a six-month plan covering audits, screen readers, typography, legal standards, and every product surface. Why might this be a weak first project?",
+        "choices": [
+          "It includes legal standards, which are never useful for learning.",
+          "It is too grand to force a clear first session or a visible early proof.",
+          "It would require protected time, and serious projects should avoid calendar pressure."
+        ],
+        "correctIndex": 1,
+        "explanation": "The scope is so wide that it can delay action. A first project should still matter, but it needs an early artifact such as auditing one checkout flow.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A nurse wants to learn a new patient-education protocol. She has only one reliable block per week and an experienced colleague willing to review her work. Which plan best matches the project-design move?",
+        "choices": [
+          "Wait for a course that covers every patient group so the learning is complete.",
+          "Read protocols casually during breaks because protected time would make the project feel too rigid.",
+          "Use the weekly block to draft one protocol script for one patient scenario and get review before widening the project."
+        ],
+        "correctIndex": 2,
+        "explanation": "The weekly block, one scenario, and reviewer create a serious but bounded project. Waiting for completeness delays the first attempt, and casual reading weakens commitment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A goal says, 'learn analytics,' but nothing on the calendar has changed. What is missing?",
+      "back": "A first project needs protected time, narrow scope, and visible proof, not only a serious-sounding goal.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can an enormous first project become another form of avoidance?",
+      "back": "If the scope is too large, the learner can keep planning the future instead of starting one session that creates evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A project feels small after you define one artifact. What question should you ask before expanding it?",
+      "back": "Ask whether the artifact is serious enough to deserve protected time and clear enough to reveal a real weakness.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What makes a first project different from dabbling?",
+      "back": "Commitment, protected time, concrete direction, and a proof artifact that can be inspected.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A learner wants to buy more material before scheduling practice. What is the better first move?",
+      "back": "Schedule the first constrained session and buy only what that session needs to produce its proof.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is turning a serious learning desire into a first project with enough commitment to matter and enough scope to begin.",
+    "ifThenPlans": [
+      {
+        "context": "career skill",
+        "plan": "If a goal names a broad capability, then choose one proof artifact a colleague could inspect within four weeks."
+      },
+      {
+        "context": "academic practice",
+        "plan": "If the project requires materials, then schedule the first session before buying anything beyond that session's needs."
+      },
+      {
+        "context": "creative work",
+        "plan": "If the skill feels too personal to measure, then define a small set of drafts, proofs, or performances that can be reviewed."
+      },
+      {
+        "context": "community project",
+        "plan": "If the interest has become a research folder, then name one public artifact, one due date, and one reviewer."
+      }
+    ],
+    "twentyFourHourChallenge": "Write a first-project card with one skill, one protected block, one first session, one proof artifact, and one date when that proof must exist.",
+    "weeklyPractice": "At the start of each week, check whether the project still has protected time and a visible next proof. If not, narrow the scope before adding effort."
+  },
+  "memorableLines": [
+    {
+      "text": "Seriousness needs a container.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the chapter's demand for scope and protected time."
+    },
+    {
+      "text": "The first project should make avoidance visible.",
+      "location": "breakdown.deepRead",
+      "why": "It turns project design into a diagnostic tool."
+    },
+    {
+      "text": "That is the test for a first project: smaller and more serious at the same time.",
+      "location": "breakdown.fullRead",
+      "why": "It balances ambition with startable design."
+    }
+  ],
+  "readingTimeMinutes": 12
+}

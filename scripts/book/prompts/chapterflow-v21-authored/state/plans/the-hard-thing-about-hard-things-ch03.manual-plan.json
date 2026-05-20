@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch03",
+  "number": 3,
+  "title": "I Will Survive",
+  "coreMove": "Reset success to disciplined continuation when the market invalidates the old plan.",
+  "sourcePressure": "A collapse forces survival metrics: cash, runway, financing tradeoffs, clear communication, execution, reassessment, and another constrained call.",
+  "chapterSpecificMisunderstanding": "The weak version is perseverance theater: keep believing and refuse to quit.",
+  "sourceAlignmentTerms": [
+    "survival",
+    "runway",
+    "financing",
+    "cash",
+    "rumor",
+    "reassess",
+    "constrained call"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the company almost died",
+      "never give up",
+      "one bad quarter changes everything"
+    ],
+    "counterintuition": [
+      "survival is success",
+      "bad terms can be good",
+      "panic can focus you"
+    ],
+    "tryThisNow": [
+      "calculate your personal runway",
+      "make a survival checklist",
+      "send a motivational update"
+    ],
+    "examples": [
+      "startup fundraising deck",
+      "garage founder",
+      "generic recession plan"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional food distributor after a restaurant shutdown wave",
+      "audience": "a second-generation operator with freezer inventory and collapsing receivables",
+      "stakes": "payroll, spoilage, lender patience, and customer trust all compete for the same cash",
+      "format": "decision_point",
+      "requiredBeat": "the operator erases the growth forecast, writes days of cash on the freezer inventory sheet, and chooses the ugly receivables deal that buys three more delivery cycles",
+      "firstImage": "a freezer inventory sheet smudged with thaw-water marks",
+      "mustInclude": [
+        "days of cash",
+        "receivables deal",
+        "delivery cycles"
+      ],
+      "mustAvoid": [
+        "restaurant pivot inspiration"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "independent dialysis clinic after a reimbursement freeze",
+      "audience": "a clinic administrator deciding how to preserve treatment continuity",
+      "stakes": "patients cannot wait, but staffing and supply contracts no longer fit cash reality",
+      "format": "scene",
+      "requiredBeat": "the administrator crosses out expansion hiring, calls the supply vendor with a staged payment plan, and briefs nurses on the next two-week operating frame",
+      "firstImage": "a treatment chair schedule taped beside an unpaid supply invoice",
+      "mustInclude": [
+        "payment plan",
+        "two-week frame",
+        "nurse briefing"
+      ],
+      "mustAvoid": [
+        "healthcare heroics"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "touring orchestra stranded after a sponsor bankruptcy",
+      "audience": "an executive director balancing musician pay, venue deposits, and audience refunds",
+      "stakes": "canceling too much kills trust, but continuing blindly deepens the loss",
+      "format": "dialogue",
+      "requiredBeat": "the director tells section leaders the exact cash gap, names three tour dates that cannot be saved, and assigns one person to renegotiate travel before rumor spreads",
+      "firstImage": "a sponsor cancellation letter tucked into a violin case",
+      "mustInclude": [
+        "cash gap",
+        "tour dates",
+        "travel renegotiation"
+      ],
+      "mustAvoid": [
+        "art versus commerce speech"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "solar installation company after a tax-credit rule change",
+      "audience": "a founder whose signed backlog no longer covers material costs",
+      "stakes": "each completed job may lose money unless terms are renegotiated fast",
+      "format": "predict_reveal",
+      "requiredBeat": "the founder has project managers predict cash after each backlog batch, then reveals the material-cost gap and reorders jobs by survivable margin",
+      "firstImage": "a pallet of inverters with a revised tariff notice taped to it",
+      "mustInclude": [
+        "signed backlog",
+        "material-cost gap",
+        "survivable margin"
+      ],
+      "mustAvoid": [
+        "green business optimism"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "county animal shelter after a grant is suspended",
+      "audience": "a shelter director deciding how to keep essential care open",
+      "stakes": "intake, medication, foster capacity, and public trust all compress into a cash clock",
+      "format": "before_after",
+      "requiredBeat": "the director converts the annual plan into a fourteen-day care plan, posts the facts for staff, and cuts a popular adoption event to preserve medication supply",
+      "firstImage": "a medicine cabinet count sheet beside a postponed event flyer",
+      "mustInclude": [
+        "fourteen-day plan",
+        "medication supply",
+        "staff fact sheet"
+      ],
+      "mustAvoid": [
+        "animal shelter sentimentality"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "industrial parts importer after a port closure",
+      "audience": "a logistics owner whose customers need parts while containers sit offshore",
+      "stakes": "expedited air freight preserves a few accounts but burns runway",
+      "format": "postmortem",
+      "requiredBeat": "the owner ranks customers by survival impact, approves air freight for only two, and sends the same factual delay note to the rest",
+      "firstImage": "a container-tracking screen stuck on vessel waiting outside harbor",
+      "mustInclude": [
+        "customer ranking",
+        "air freight",
+        "factual delay note"
+      ],
+      "mustAvoid": [
+        "global logistics explainer"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when survival has replaced growth as the metric",
+      "evaluate runway gained against control and execution costs",
+      "choose truthful communication over reassurance",
+      "distinguish active adaptation from passive endurance"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one pressured project, replace the success metric with the next survival interval: cash, time, trust, or capacity needed to reach one more disciplined decision.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

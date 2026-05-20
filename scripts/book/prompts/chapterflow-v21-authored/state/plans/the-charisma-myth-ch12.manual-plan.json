@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch12",
+  "number": 12,
+  "title": "Presenting with Charisma",
+  "coreMove": "Make an audience feel your attention, authority, and goodwill while carrying them through a prepared point.",
+  "sourcePressure": "The source identifies presentations as an applied-charisma setting where room-facing delivery still depends on internal state, body language, presence, power, and warmth.",
+  "chapterSpecificMisunderstanding": "The weak version becomes public-speaking polish. The useful version shows how the presenter makes the room feel held by the message, not entertained by technique.",
+  "sourceAlignmentTerms": ["presenting", "audience", "presence", "power", "warmth", "delivery", "room-facing", "internal state"],
+  "forbiddenFrames": {
+    "hook": ["Great presentations need charisma", "Own the stage", "Present with confidence"],
+    "counterintuition": ["Slides do not matter", "Performance is not charisma", "The audience wants connection"],
+    "tryThisNow": ["Practice your opening", "Stand still before speaking", "Make eye contact with three people"],
+    "examples": ["TED-style keynote", "startup pitch deck", "school presentation", "conference breakout"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a medical device demo in a hospital simulation lab",
+      "audience": "a product educator whose competence can feel like pressure",
+      "stakes": "whether nurses trust a new pump protocol before rollout",
+      "format": "scene",
+      "requiredBeat": "the presenter starts by placing the pump in the nurse's normal workflow, then demonstrates one alarm while watching the audience's hands, not the slide",
+      "firstImage": "an infusion pump clipped to a simulation-bed rail",
+      "mustInclude": ["alarm tone", "laminated protocol", "practice syringe"],
+      "mustAvoid": ["telehealth or bedside scene", "tech sales pitch"]
+    },
+    {
+      "domain": "a courthouse historical society lecture on a restored trial transcript",
+      "audience": "a scholar who must turn expertise into felt attention",
+      "stakes": "whether residents care enough to fund the archive project",
+      "format": "vignette",
+      "requiredBeat": "she holds up the page with the torn margin, pauses until the room sees the handwriting, then gives the legal context",
+      "firstImage": "a torn transcript page under a document camera",
+      "mustInclude": ["archive grant", "jury list", "document camera"],
+      "mustAvoid": ["courtroom witness from Chapter 5", "history trivia"]
+    },
+    {
+      "domain": "a climate adaptation briefing for vineyard owners after a frost season",
+      "audience": "a scientist who needs warmth for people facing loss",
+      "stakes": "whether growers accept a costly canopy change",
+      "format": "decision_point",
+      "requiredBeat": "he decides to begin with a frost-damaged bud from one owner's row before showing the regional model",
+      "firstImage": "a blackened grape bud sealed in a clear specimen sleeve",
+      "mustInclude": ["canopy diagram", "frost date", "row marker"],
+      "mustAvoid": ["public hearing from Chapter 2", "climate sermon"]
+    },
+    {
+      "domain": "a ballet company safety briefing on a new sprung floor",
+      "audience": "an operations director speaking to artists who fear injury",
+      "stakes": "whether dancers adopt the transition rules before rehearsal",
+      "format": "dialogue",
+      "requiredBeat": "she steps onto the floor herself, names the injury worry directly, then gives the rule while facing the dancers rather than the contractor",
+      "firstImage": "a strip of marley tape curling at the edge of a new floor panel",
+      "mustInclude": ["rehearsal call", "injury log", "floor sample"],
+      "mustAvoid": ["stagecraft tricks", "body-language pose lesson"]
+    },
+    {
+      "domain": "a community solar co-op presentation in a church basement",
+      "audience": "a technical organizer whose slides overrun the room",
+      "stakes": "whether neighbors sign letters of intent before the funding window closes",
+      "format": "before_after",
+      "requiredBeat": "contrast the data dump with the reset where she turns off the projector, holds up one utility bill, and asks people to find the line she will change",
+      "firstImage": "a folded utility bill beside a projector remote",
+      "mustInclude": ["letter of intent", "funding window", "roof map"],
+      "mustAvoid": ["generic civic pitch", "sales pressure"]
+    },
+    {
+      "domain": "a culinary school knife-safety demonstration for adult career changers",
+      "audience": "an instructor who needs authority without intimidation",
+      "stakes": "whether students follow the first technique safely for the rest of the course",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts they will watch the blade, then asks them to watch his guide hand and shows how the calm pace keeps everyone safer",
+      "firstImage": "a chef's knife resting on a damp folded towel",
+      "mustInclude": ["guide hand", "cutting board brace", "first-aid kit"],
+      "mustAvoid": ["restaurant pass from Chapter 2", "fear-based safety"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose a presentation opening that sends presence, power, and warmth",
+      "distinguish charismatic presenting from stage polish",
+      "analyze how internal state shapes delivery under audience attention",
+      "evaluate whether a demo or object serves the message rather than the performer"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one prepared point, replace your first explanatory sentence with a concrete object, number, or moment the audience can see before you interpret it.",
+  "readingTimeMinutes": 12
+}

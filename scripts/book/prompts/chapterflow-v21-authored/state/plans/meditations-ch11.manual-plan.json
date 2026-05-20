@@ -1,0 +1,204 @@
+{
+  "chapterId": "meditations-ch11",
+  "number": 11,
+  "title": "Book XI",
+  "coreMove": "Complete the social act without letting anger cut you off from the whole.",
+  "sourcePressure": "The rational soul completes each act, examines pleasures by parts, works for general interest, cuts hatred from the social tree, and trains anger by nine rules.",
+  "chapterSpecificMisunderstanding": "forgiveness means approval or passivity",
+  "sourceAlignmentTerms": [
+    "rational soul",
+    "general interest",
+    "tragedy",
+    "old comedy",
+    "branch and tree",
+    "Phocion",
+    "nine rules"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Sophocles",
+      "detail": "Book XI references tragedy and Sophocles' Oedipus Rex as reminders that human events belong on the larger stage of nature.",
+      "useIn": "fullRead",
+      "phrasingHint": "Sophocles is useful only if the stage trains you not to rage at the larger stage outside it."
+    },
+    {
+      "kind": "person",
+      "name": "Diogenes",
+      "detail": "Book XI says old comedy's plain speech warned against insolence, and Diogenes used material from these writers.",
+      "useIn": "deepRead",
+      "phrasingHint": "Diogenes appears where plain speech is meant to cure pride, not entertain it."
+    },
+    {
+      "kind": "person",
+      "name": "Socrates",
+      "detail": "Book XI later recalls Socrates in several short examples about public opinion, Perdiccas, and Xanthippe.",
+      "useIn": "both",
+      "phrasingHint": "Socrates keeps reappearing as a model for not letting other people's noise own the soul."
+    },
+    {
+      "kind": "person",
+      "name": "Phocion",
+      "detail": "Book XI says correction should be mild and benevolent, like the great Phocion, unless indeed he only assumed it.",
+      "useIn": "both",
+      "phrasingHint": "Phocion marks the difference between calm strength and calm performance."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "emergency department triage",
+      "audience": "Fiona facing a furious family member",
+      "stakes": "anger could sever her from the next correct triage act",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Fiona names the wait, checks the chart, and gives the next update without matching the shout.",
+      "firstImage": "The triage printer jams while a man pounds the counter.",
+      "mustInclude": [
+        "triage printer",
+        "chart screen",
+        "waiting-room wristbands"
+      ],
+      "mustAvoid": [
+        "hospital abuse spectacle"
+      ]
+    },
+    {
+      "domain": "software code review",
+      "audience": "Luca receiving a dismissive review comment",
+      "stakes": "pride could turn a fixable bug into a feud",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"The bug is real even if the sentence is ugly,\" Luca says, then patches the null case.",
+      "firstImage": [
+        "review thread",
+        "test output",
+        "null fixture"
+      ],
+      "mustInclude": [
+        "tech ego drama"
+      ]
+    },
+    {
+      "domain": "neighborhood tree dispute",
+      "audience": "Margaux mediating branches over a fence",
+      "stakes": "two homeowners want victory more than shade or safety",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Margaux draws the property line and the diseased limb separately before either neighbor speaks again.",
+      "firstImage": "Sawdust dots the snow under the leaning maple.",
+      "mustInclude": [
+        "property survey",
+        "arborist note",
+        "orange tape"
+      ],
+      "mustAvoid": [
+        "neighbor feud default"
+      ]
+    },
+    {
+      "domain": "college rowing crew",
+      "audience": "Brennan coaching after a lost race",
+      "stakes": "blame would cut one athlete from the crew's common work",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Brennan replay the missed stroke, then ask each rower for the next synchronized correction.",
+      "firstImage": "You hear eight oarlocks click out of time on the video.",
+      "mustInclude": [
+        "race video",
+        "erg room",
+        "lineup card"
+      ],
+      "mustAvoid": [
+        "sports blame speech"
+      ]
+    },
+    {
+      "domain": "charity kitchen volunteer shift",
+      "audience": "Mina working beside a volunteer who keeps grandstanding",
+      "stakes": "resentment at vanity could become another unsocial act",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What if the vain helper is still helping?",
+      "firstImage": "Mina assigns the volunteer a visible serving task and keeps the food line moving.",
+      "mustInclude": [
+        "serving ladle",
+        "meal tickets",
+        "hairnet box"
+      ],
+      "mustAvoid": [
+        "charity feel-good"
+      ]
+    },
+    {
+      "domain": "family estate meeting",
+      "audience": "Robert hearing an old sibling insult revived",
+      "stakes": "history wants to finish the argument for him",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Robert one breath to see that answering the insult would abandon the actual estate decision.",
+      "firstImage": "It took Robert one breath to leave the old sentence on the table.",
+      "mustInclude": [
+        "estate folder",
+        "photocopied will",
+        "kitchen table"
+      ],
+      "mustAvoid": [
+        "family drama soap"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "apply anger checks without excusing harm",
+      "complete the useful social act despite interruption",
+      "distinguish genuine mildness from performed niceness"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "When anger rises, run one of the nine checks: what do I know, how have I erred, and what correction serves the whole?",
+  "readingTimeMinutes": 12
+}

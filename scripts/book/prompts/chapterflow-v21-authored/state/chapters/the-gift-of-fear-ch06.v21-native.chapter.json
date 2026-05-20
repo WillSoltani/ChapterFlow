@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-gift-of-fear-ch06",
+  "number": 6,
+  "title": "High-stakes predictions",
+  "readingTimeMinutes": 12,
+  "hook": "One snapped dock line can make waiting for perfect weather proof its own risk.",
+  "counterintuition": "High stakes do not erase uncertainty, but they make waiting more costly and call for earlier, narrower action.",
+  "tryThisNow": "Name one high-stakes situation where proof would arrive late. Pair the evidence you already have with one protective step you can take now.",
+  "keyTakeaway": "When the cost of being late is high, act on a strong enough pattern with a narrow protective move instead of waiting for certainty.",
+  "breakdown": {
+    "fastRead": "Hannah stands on the charter dock while a line snaps against the cleat. The weather radio is uncertain, passengers are joking too loudly about the delay, and the life jacket rack is still half full. She does not know the morning will turn dangerous. She knows enough to cancel the short run.\n\nHigh-stakes prediction changes the threshold because waiting has a cost. The answer is not panic. The answer is a narrow action that fits the pattern support and the downside of being late.\n\nUncertainty is not the same as permission to wait.",
+    "deepRead": "Hannah is not proving a storm. She is reading a pattern: wind rising, radio uncertainty, passenger behavior that would make a quick return harder, and a route with little shelter. If the stakes were a picnic, she might wait. With a boat full of passengers, delay has a different price.\n\nThe action still has to stay narrow. Cancel this run. Keep the boat tied. Refund the tickets. Do not turn the whole marina into a catastrophe story. High stakes justify earlier movement, not louder imagination.\n\nEarlier does not mean bigger.\n\nAndrew sees the same rule in a surgery center. A visitor gives two false names, studies the recovery door, and tries to learn which wristband color belongs to post-op patients. He cannot prove harm. He also cannot treat perfect proof as the standard before protecting a sedated patient area. He restricts access and brings another nurse to intake.\n\nThe limit is overreach. The fact that stakes are high does not let you invent pattern support. If the evidence is thin, the action should be light. If the pattern is stronger and the cost of being late is severe, the action can come sooner.",
+    "fullRead": "Diesel exhaust hangs under a row of idling university buses. Etienne holds the bus manifest in one hand and the campus radio in the other. One angry voicemail from a parent would not settle anything. But the voicemail was followed by parking-lot waiting, then demands for student access, then a question about which bus leaves first.\n\nThat is the shape of high-stakes prediction. It is not certainty. It is cost-sensitive judgment. When a wrong delay could put students in the wrong place at the wrong time, the faculty lead does not need to solve the whole future. He needs to add staff at departure, change the boarding order, and keep the radio open.\n\nWhat action would you take if you admitted both truths: you are uncertain, and being late would be expensive?\n\nThat question is useful because it avoids the two common errors. One error says uncertainty means do nothing. The other says high stakes mean assume the worst. The disciplined answer sits between them. It asks how much pattern support exists and what action matches that support.\n\nAstrid faces the same math in an architecture office. A fired contractor has sent bitter emails, appeared twice in the lobby, and left tools in a sample box beside a chipped model stair tread. The bid presentation is tomorrow. She does not need to say he will come to the meeting. She can move the meeting online, cancel his conference pass, and tell security what sequence has already happened.\n\nA narrow action is often more defensible than a dramatic one. It is easier to explain, easier to reverse, and more closely tied to evidence. It also prevents the familiar trap where everyone waits because the only imagined action is huge. If the only option you can picture is calling the police, locking the building, or accusing someone, you may reject action entirely. Smaller protective moves keep timing alive.\n\nDiego learns this during a wedding rehearsal. The seating chart is pinned under glass when a former partner asks staff for the bride's schedule twice. He cannot know whether the person will appear during the ceremony. He can quietly change the service door, put headsets on two ushers, and keep the bride's route private. The action is early because the stakes are high. It is narrow because the evidence is still limited.\n\nThat balance is the hard edge. High stakes do not give you permission to become certain. They give you permission to stop pretending certainty is required for every protective action.\n\nAanya applies it at a food bank after a volunteer removal. A crate of canned tomatoes sits by the loading door while the removed volunteer texts apologies, returns a badge late, and asks about the next shift list. She keeps him off-site. She does not call it prophecy. She calls it a narrow answer to repeated boundary tests around the loading door and schedule."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-hannah-dock-line",
+      "title": "Hannah Cancels the Short Run",
+      "tags": [
+        "scene",
+        "boat",
+        "weather"
+      ],
+      "planSpec": {
+        "domain": "charter boat dock during a weather delay",
+        "audience": "a skipper choosing action under uncertainty",
+        "stakes": "whether to wait for certainty before canceling",
+        "format": "scene",
+        "requiredBeat": "cancels a short run after wind, passenger behavior, and radio reports form enough pattern"
+      },
+      "scenario": "At 7:22 a.m., Hannah hears a dock line snap against the cleat while the weather radio stutters through a small-craft update. The life jacket rack is still half full, and two passengers joke about beating the delay. She cannot prove the short run will turn bad. She must decide whether wind, radio, and passenger behavior are enough to cancel.",
+      "whatToDo": "Cancel the run, keep the boat tied, and explain that the pattern is strong enough for a narrow protective action. Do not wait for perfect weather proof.",
+      "whyItMatters": "The stakes change the threshold. A canceled trip is reversible; a late return with passengers aboard is not."
+    },
+    {
+      "exampleId": "ch06-ex02-andrew-wristband-door",
+      "title": "Andrew Restricts the Recovery Door",
+      "tags": [
+        "dialogue",
+        "surgery",
+        "access"
+      ],
+      "planSpec": {
+        "domain": "surgery center intake morning",
+        "audience": "a charge nurse escalating a visitor concern",
+        "stakes": "whether stronger action needs perfect proof",
+        "format": "dialogue",
+        "requiredBeat": "restricts access after repeated false names and attempts to learn recovery-room doors"
+      },
+      "scenario": "\"I am her brother,\" the visitor says as a plastic wristband curls in the printer tray. Andrew checks the visitor form. The first name was false, then the second. The man keeps glancing at the recovery door and asks what color wristband leaves first. Andrew must decide whether imperfect proof is enough to restrict access.",
+      "whatToDo": "Restrict recovery-room access, keep the visitor in intake, and bring another nurse forward. Tie the action to false names and recovery-door questions.",
+      "whyItMatters": "Sedated patients raise the cost of waiting. The action is narrow: hold access. It does not require Andrew to prove intent."
+    },
+    {
+      "exampleId": "ch06-ex03-etienne-bus-bay",
+      "title": "Etienne Adds Staff at Departure",
+      "tags": [
+        "vignette",
+        "field trip",
+        "departure"
+      ],
+      "planSpec": {
+        "domain": "university field trip bus bay",
+        "audience": "a faculty lead reading an escalating parent conflict",
+        "stakes": "whether one angry voicemail is enough",
+        "format": "vignette",
+        "requiredBeat": "adds staff at departure after voicemails, parking-lot waiting, and access demands align"
+      },
+      "scenario": "Diesel exhaust hangs under the idling buses while Etienne checks the bus manifest against permission slips. One angry voicemail would not be enough. The later parking-lot waiting, campus radio call, and demand to know which bus carries which students form a stronger pattern. He must decide whether to add staff at departure.",
+      "whatToDo": "Add staff at the bus bay, keep student bus assignments private, and use the campus radio for boarding changes. Do not base the plan on the voicemail alone.",
+      "whyItMatters": "The pattern has moved from anger into access. Extra staff at departure matches the stakes without turning one voicemail into certainty."
+    },
+    {
+      "exampleId": "ch06-ex04-astrid-online-meeting",
+      "title": "Astrid Moves the Bid Online",
+      "tags": [
+        "decision",
+        "architecture",
+        "contractor"
+      ],
+      "planSpec": {
+        "domain": "architecture office bid presentation",
+        "audience": "a partner assessing a fired contractor",
+        "stakes": "whether the cost of being wrong changes the threshold",
+        "format": "decision_point",
+        "requiredBeat": "moves the meeting online after tools, emails, and lobby appearances escalate"
+      },
+      "scenario": "You are Astrid, holding a model stair tread chipped in the sample box. Security email shows two lobby appearances by the fired contractor, and the conference pass system still lists him for tomorrow. The bitter emails alone did not settle it. You must decide whether tools, emails, and lobby appearances now justify moving the bid presentation online.",
+      "whatToDo": "Move the meeting online, cancel the conference pass, and send security the sequence. Keep the action focused on access to the office and presentation.",
+      "whyItMatters": "The cost of being wrong is high, but the action is limited. Online presentation reduces access without claiming certainty about what he would do."
+    },
+    {
+      "exampleId": "ch06-ex05-diego-service-door",
+      "title": "Diego Changes the Service Door",
+      "tags": [
+        "postmortem",
+        "wedding",
+        "route"
+      ],
+      "planSpec": {
+        "domain": "wedding venue rehearsal night",
+        "audience": "a planner deciding how much protection fits the pattern",
+        "stakes": "whether uncertainty should freeze action",
+        "format": "postmortem",
+        "requiredBeat": "quietly changes entrances after a former partner asks staff for the bride schedule twice"
+      },
+      "scenario": "It took Diego one look at the seating chart pinned under glass to stop treating uncertainty as a reason to freeze. A former partner had asked two servers for the bride's schedule and watched the service door during rehearsal. Staff headsets were already charged. Diego must decide how much protection fits without making the night a spectacle.",
+      "whatToDo": "Change the bride's entrance, put two staff on headsets, and keep schedule details private. Make the action early but quiet.",
+      "whyItMatters": "The stakes are high enough to act before certainty. The action stays narrow because it changes route and information, not the whole event."
+    },
+    {
+      "exampleId": "ch06-ex06-aanya-loading-door",
+      "title": "Aanya Keeps the Badge Off-Site",
+      "tags": [
+        "before_after",
+        "food bank",
+        "badge"
+      ],
+      "planSpec": {
+        "domain": "food bank distribution line",
+        "audience": "a coordinator handling a volunteer removal",
+        "stakes": "whether narrower action can beat dramatic action",
+        "format": "before_after",
+        "requiredBeat": "keeps the volunteer off-site after repeated boundary tests without calling it prophecy"
+      },
+      "scenario": "A crate of canned tomatoes sits by the loading door as the distribution line forms. Before, Aanya hoped the removed volunteer would cool off after returning his badge. After he asks about the shift list and waits near the loading door, she keeps him off-site and briefs staff. She does not call it prophecy; she calls it repeated boundary testing. It is Saturday afternoon.",
+      "whatToDo": "Keep the volunteer off-site, remove him from the shift list, and staff the loading door. Use the badge delay and door waiting as the evidence.",
+      "whyItMatters": "A narrow action beats dramatic guessing. Aanya changes access to the line and loading door without pretending to know the future."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A skipper has rising wind, uncertain radio reports, and passengers likely to resist a quick return. Why can canceling be justified before proof?",
+        "choices": [
+          "High stakes raise the cost of waiting.",
+          "Weather reports are always accurate.",
+          "Passengers joking means they are unsafe."
+        ],
+        "correctIndex": 0,
+        "explanation": "The action fits the cost of delay and the pattern. Radio and passenger behavior support canceling, but neither provides certainty by itself.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An analyst asks: A surgery visitor gives two false names and studies the recovery-room door. What should the charge nurse do?",
+        "choices": [
+          "Wait until the visitor tries the door.",
+          "Restrict access and bring another nurse forward.",
+          "Ask the visitor to explain why the names changed."
+        ],
+        "correctIndex": 1,
+        "explanation": "The stakes of recovery access justify earlier restriction. Waiting for a door attempt is too late, and explanation can become another delay.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A field trip parent leaves one angry voicemail, then waits by the bus bay and asks which students ride which bus. What action fits?",
+        "choices": [
+          "Ignore the voicemail because parents get angry.",
+          "Cancel the entire trip immediately.",
+          "Add departure staff and keep bus assignments private."
+        ],
+        "correctIndex": 2,
+        "explanation": "The pattern has moved toward student access. Extra staff and private assignments match the evidence without overreacting.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "An office has bitter emails from a fired contractor plus lobby appearances and an active conference pass. What is the narrowest protective move?",
+        "choices": [
+          "Move the meeting online and cancel the pass.",
+          "Tell every client the contractor is dangerous.",
+          "Wait until tomorrow to see if he arrives again."
+        ],
+        "correctIndex": 0,
+        "explanation": "Online meeting and pass cancellation address access. Public accusation overreaches; waiting wastes the chance to lower exposure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "At a wedding rehearsal, a former partner asks staff twice for the bride's schedule and watches the service door. What should the planner do?",
+        "choices": [
+          "Keep the schedule unchanged to avoid drama.",
+          "Change the entrance quietly and put staff on headsets.",
+          "Confront the former partner in front of guests."
+        ],
+        "correctIndex": 1,
+        "explanation": "The route questions and door watching justify a quiet access change. The move is early because stakes are high and narrow because evidence is limited.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A coach asks: What keeps high-stakes prediction from becoming panic?",
+        "choices": [
+          "Always assuming the worst outcome.",
+          "Waiting until all uncertainty disappears.",
+          "Matching action size to pattern support."
+        ],
+        "correctIndex": 2,
+        "explanation": "The disciplined move is proportion. Stronger stakes may move action earlier, but evidence still limits the size of that action.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A removed volunteer returns a badge late, asks about shift lists, and waits near the loading door. What does the sequence support?",
+        "choices": [
+          "Keeping him off-site and staffing the loading door.",
+          "No action because no threat was spoken.",
+          "A dramatic public accusation."
+        ],
+        "correctIndex": 0,
+        "explanation": "The sequence concerns schedule and loading-door access. A narrow off-site rule addresses that pattern without requiring a threat.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "An engineer asks: A supervisor says, “We cannot act because we are not certain.” What response fits high-stakes judgment?",
+        "choices": [
+          "Certain proof is required for every protective step.",
+          "Some protective steps are small enough to take under uncertainty when delay is costly.",
+          "Uncertainty means the worst case is guaranteed."
+        ],
+        "correctIndex": 1,
+        "explanation": "High stakes change the cost of delay. Small protective steps can be justified by pattern support without claiming certainty.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two options are available after a serious access pattern: cancel one badge or accuse the person publicly. Which is better first?",
+        "choices": [
+          "Do neither until intent is known.",
+          "Accuse publicly, because the stakes are high.",
+          "Cancel the badge, because it is tied to the access evidence."
+        ],
+        "correctIndex": 2,
+        "explanation": "Badge cancellation matches the evidence and is reversible. Public accusation is larger than the pattern requires; waiting ignores cost.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What changes when stakes are high?",
+      "back": "The cost of waiting rises. You may act earlier, but the action still has to match the evidence.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "In a tense scene, what is a narrow protective action?",
+      "back": "A step tied directly to the pattern: cancel a badge, add staff, change a route, restrict a door, or keep someone off-site.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why is certainty the wrong threshold for every action?",
+      "back": "Some actions are small and reversible. Waiting for certainty can make the only remaining actions much larger and later.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How do you avoid panic in high-stakes prediction?",
+      "back": "Keep the forecast modest. Name the evidence, the cost of delay, and the exact access or route you are changing.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "When the moment arrives, what should happen when evidence is thin but stakes are severe?",
+      "back": "Use the lightest margin-building action available. Do not invent more evidence, but do not pretend delay has no cost.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Match action to evidence and stakes. The skill is to act early enough when delay is costly while keeping the move as narrow as the pattern allows.",
+    "ifThenPlans": [
+      {
+        "context": "travel",
+        "plan": "If weather, route, and passenger behavior form a risk pattern, then cancel or delay the trip before proof arrives late."
+      },
+      {
+        "context": "healthcare",
+        "plan": "If false names and recovery access questions appear together, then restrict access and add staff immediately."
+      },
+      {
+        "context": "events",
+        "plan": "If schedule questions and route watching involve a protected person, then change the route quietly and limit information."
+      },
+      {
+        "context": "operations",
+        "plan": "If a removed volunteer seeks shift lists or doors, then keep them off-site and staff the access point."
+      }
+    ],
+    "twentyFourHourChallenge": "Name one high-stakes area in your life. Write the pattern support you already have and one narrow action that would lower the cost of being late.",
+    "weeklyPractice": "Once this week, practice the proportion rule: evidence, stakes, narrow action. Do not let any one column do all the work."
+  },
+  "memorableLines": [
+    {
+      "text": "Uncertainty is not the same as permission to wait.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the high-stakes threshold shift."
+    },
+    {
+      "text": "Earlier does not mean bigger.",
+      "location": "breakdown.deepRead",
+      "why": "It keeps action proportionate."
+    },
+    {
+      "text": "A narrow action is often more defensible than a dramatic one.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a practical alternative to panic or passivity."
+    }
+  ]
+}

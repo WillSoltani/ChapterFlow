@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch02",
+  "number": 2,
+  "title": "Competition",
+  "coreMove": "Sort social behavior by the partner market it addresses: mates, friends, or coalition allies.",
+  "sourcePressure": "The source frames human behavior as shaped by intra-group competition across sex, status, and politics, with signaling as the shared logic.",
+  "chapterSpecificMisunderstanding": "The writer reduces competition to ruthless individualism and loses the signal logic that makes cooperation competitive too.",
+  "sourceAlignmentTerms": [
+    "intra-group competition",
+    "sex",
+    "social status",
+    "politics",
+    "signals",
+    "coalition",
+    "partner quality"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the sexual game",
+      "detail": "The source identifies competition for mates as one of the three central games.",
+      "useIn": "both",
+      "phrasingHint": "Some gestures are bids in the mate market before they are anything else."
+    },
+    {
+      "kind": "artifact",
+      "name": "the status game",
+      "detail": "The source identifies competition for friends and social standing as a second central game.",
+      "useIn": "both",
+      "phrasingHint": "The room is often asking whether you would be a good friend or ally, not only whether you are right."
+    },
+    {
+      "kind": "artifact",
+      "name": "the political game",
+      "detail": "The source identifies competition for coalition power as a third central game.",
+      "useIn": "both",
+      "phrasingHint": "A move can look private while quietly counting future allies."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch02: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch02: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch02: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch02: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch02: no generic timer reflection",
+      "the-elephant-in-the-brain-ch02: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch02: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch02: no coffee shop conversation as the default social proof",
+      "no office promotion race as the only model",
+      "no alpha hierarchy shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "graduate lab authorship negotiation",
+      "audience": "a doctoral student reading why everyone volunteers for the conference panel",
+      "stakes": "a publication-credit dispute can damage future coalition options",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Daniel marks each colleague's request as mate, friend, or coalition signaling before deciding whose panel offer is actually a bid for future alliance.",
+      "firstImage": "The seminar room door still has last year's conference poster taped crookedly to it.",
+      "mustInclude": [
+        "authorship spreadsheet",
+        "conference panel slot",
+        "lab Slack thread"
+      ],
+      "mustAvoid": [
+        "generic academic rivalry with no three-game sorting"
+      ]
+    },
+    {
+      "domain": "community orchestra chair auditions",
+      "audience": "a conductor watching how musicians behave before auditions",
+      "stakes": "technical skill is not the only signal shaping who people want beside them",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Camille notices Lukas tune quietly for the weakest violinist and separates skill display from friend-quality display before seating the section.",
+      "firstImage": "Rosin dust hangs in the rehearsal room before the first note.",
+      "mustInclude": [
+        "audition list",
+        "spare tuner",
+        "second-violin chairs"
+      ],
+      "mustAvoid": [
+        "music-as-pure-merit story"
+      ]
+    },
+    {
+      "domain": "neighborhood flood committee",
+      "audience": "a resident deciding which emergency volunteers to trust",
+      "stakes": "the wrong coalition lead can turn sandbagging into status theater",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Put me on the radio team,\" Grace says, and Tomasz asks whether the request signals useful coordination or a grab for the most visible coalition post.",
+      "firstImage": "\"Put me on the radio team,\" Grace says before the rain map refreshes.",
+      "mustInclude": [
+        "rain map",
+        "sandbag pallets",
+        "radio vest"
+      ],
+      "mustAvoid": [
+        "disaster heroics with no partner-market logic"
+      ]
+    },
+    {
+      "domain": "dating app profile photo review",
+      "audience": "a friend helping rewrite a profile without flattening it into pickup advice",
+      "stakes": "a photo can signal mate quality while accidentally weakening friend and coalition signals",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You swap the yacht selfie for a trail-maintenance photo that still signals vitality but also says Layla can cooperate without performing wealth.",
+      "firstImage": "You look at the yacht photo and notice the rented deck shoes first.",
+      "mustInclude": [
+        "profile carousel",
+        "trail gloves",
+        "message draft"
+      ],
+      "mustAvoid": [
+        "shallow attractiveness tips"
+      ]
+    },
+    {
+      "domain": "city council endorsement night",
+      "audience": "a campaign volunteer parsing why endorsements cluster",
+      "stakes": "votes depend on coalitions that read public loyalty signals",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Why does the smallest union endorsement change who returns calls the next morning?",
+      "firstImage": "Why does one small endorsement make six unread messages appear?",
+      "mustInclude": [
+        "endorsement card",
+        "folding chairs",
+        "call sheet"
+      ],
+      "mustAvoid": [
+        "policy-only civics lesson"
+      ]
+    },
+    {
+      "domain": "startup founder dinner seating",
+      "audience": "a founder deciding where to sit at an investor dinner",
+      "stakes": "one seating choice can signal status reach, mate-like charisma, or coalition loyalty",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Hadiya until dessert to see that the seating chart was a signal board, so she moves beside the neglected operator whose allies can actually help.",
+      "firstImage": "It took Hadiya until dessert to read the seating chart as a map.",
+      "mustInclude": [
+        "place cards",
+        "investor badge",
+        "dessert plates"
+      ],
+      "mustAvoid": [
+        "networking advice detached from competition games"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify behavior into sex, status, and coalition games",
+      "explain why cooperation can still be competitive signaling",
+      "spot when partner-quality signals matter more than stated intent"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next social ask, name the partner market in play: mate, friend, or coalition ally. Then check whether your signal matches that market.",
+  "readingTimeMinutes": 12
+}

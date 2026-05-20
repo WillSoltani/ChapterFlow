@@ -1,0 +1,334 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch06",
+  "number": 6,
+  "title": "Reciprocity",
+  "readingTimeMinutes": 12,
+  "hook": "The free sandwich on the tray can start negotiating before the contract is opened.",
+  "counterintuition": "A favor can feel like kindness and still change the price of your next yes. Gratitude becomes risky when it starts deciding questions that need evidence.",
+  "tryThisNow": "Before returning a favor, write the requested return on its own line and judge it as if no gift came first.",
+  "keyTakeaway": "Receive generosity cleanly, but decide the return separately; a gift deserves thanks, not automatic compliance.",
+  "breakdown": {
+    "fastRead": "Sarah is reviewing a family court calendar when a mediator arrives with lunch for the clerks. The sandwiches are harmless. The timing is not. Ten minutes later, he asks for the first slot on Friday.\n\nReciprocity is the pressure to give back after receiving. It keeps communities alive, but it also opens a side door into decisions that should stand on merit. The gift arrives first. The request arrives second. Your mind wants to close the loop.\n\nSay thank you. Then reopen the decision.\n\nThe correction is not suspicion of every generous act. It is separating gratitude from judgment before obligation starts speaking in your voice.",
+    "deepRead": "The menu proof beside Sarah's calendar shows Friday's hearings in black ink. The mediator's lunch sits on the clerk counter in white paper bags. Nobody has done anything openly wrong. That is why the pressure works so well.\n\nA favor creates a small imbalance. Most of the time, that imbalance is healthy. You hold a door, someone holds the next one. A neighbor lends a ladder, you bring it back promptly. The trouble begins when the repayment is no longer the same kind of thing. A sandwich becomes a court slot. A dinner becomes a contract. A private introduction becomes a vote.\n\nDifferent currencies are where reciprocity gets dangerous.\n\nThe useful move is to pay the social debt in the right currency and judge the real request separately. Thank the mediator for lunch. Record the gift if rules require it. Then assign Friday's slots by urgency, fairness, and procedure. Gratitude can have a place without becoming the scheduler.\n\nAn auto-parts defect review makes the same pressure visible. Etienne has a case file on a cracked bracket from a supplier who rushed replacement parts last winter. The supplier now wants a soft review. Etienne writes obligation on the file and asks the engineer to score the defect as if the winter favor belonged in a thank-you note, not in the safety finding.\n\nThe old help can be real and still be irrelevant.",
+    "fullRead": "The warehouse lease tour ends with pastries, a car service back to the office, and a sensor graph showing perfect temperature control. Matteo, the operations lead, knows the building broker is good at hospitality. He also knows the graph has three missing summer weeks. The broker calls the pastries a welcome gift. Matteo writes gift risk across the graph before the lease committee arrives.\n\nThe pressure is subtle because reciprocity is not a fake emotion. It is a real social rule. People who never return favors become hard to trust. Groups run better when help circulates. The problem appears when the rule jumps tracks and starts paying a favor with a decision that belongs to customers, patients, taxpayers, staff, or shareholders.\n\nRobert Cialdini's work on influence gives reciprocity its practical bite, and Robert Trivers's theory of reciprocal altruism points to the deeper social logic: returning benefits is part of cooperation. That is exactly why the pull is strong. The instinct is old, useful, and easy to misuse.\n\nSo the question is not, was the gift kind? The question is, what decision is the gift trying to touch?\n\nIf the return is simple and proportional, pay it. Send thanks. Return the call. Share credit. Buy lunch next time. But if the return changes a lease, a hiring decision, a court calendar, a safety review, a grant score, or a procurement vote, move the gift out of the room. The decision must survive without it.\n\nA cybersecurity breach room can feel this in a more modern shape. Frida is leading incident response when a vendor who once gave her team free emergency support offers a paid monitoring package. The team remembers the favor. They like the vendor. Frida puts a sealed water sample from the affected office kitchen beside the proposal because the breach began with a facilities device. She writes reciprocal altruism on the label and asks for a blind comparison with two other vendors. The old help gets acknowledged. It does not pick the tool.\n\nThis is not coldness. It is clean repayment.\n\nThe best repayment for a real favor is often direct: gratitude, promptness, a fair recommendation, or a favor of similar scale when it is appropriate. The worst repayment is hidden: giving someone a decision they did not earn because you feel uncomfortable owing them.\n\nThere is also a defensive use. When someone gives before asking, slow the sequence down. Name the gift. Name the request. Ask whether you would say yes if the gift had never arrived. If the answer changes, reciprocity is no longer a social grace; it is steering.\n\nKeep the thank-you. Move the yes back onto the evidence."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-sarah-menu-proof",
+      "title": "Sarah Separates Lunch from the Calendar",
+      "tags": [
+        "scene",
+        "court",
+        "calendar"
+      ],
+      "planSpec": {
+        "domain": "a family court calendar applying Reciprocity under operational pressure",
+        "audience": "a reader who has to make a live judgment where reciprocity could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the menu proof, names the reciprocity risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "The family court counter smells like warm bread when Sarah finds a menu proof tucked beside Friday's calendar. A mediator bought lunch for the clerks and now asks for the first hearing slot. Sarah writes reciprocity risk on the proof. Before assigning the slot, she has to choose between feeling grateful and following urgency rules.",
+      "whatToDo": "Thank the mediator, then schedule by the court's criteria. Keep the lunch in the social column and the hearing slot in the procedure column.",
+      "whyItMatters": "The gift creates pressure, but it does not change which family needs the slot most. Separating the currencies protects both gratitude and fairness."
+    },
+    {
+      "exampleId": "ch06-ex02-etienne-case-file",
+      "title": "Etienne Scores the Defect Cold",
+      "tags": [
+        "vignette",
+        "parts",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "a auto-parts defect review applying Reciprocity under operational pressure",
+        "audience": "a reader who has to make a live judgment where obligation could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the case file, names the obligation risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "\"They saved us last winter,\" the plant manager says as Etienne opens the case file on a cracked bracket. The supplier rushed replacement parts back then and now wants a soft defect rating. Etienne writes obligation risk on the file. The rating deadline is noon, and he must decide whether to score the bracket or repay the favor.",
+      "whatToDo": "Score the bracket from failure evidence only. Send a separate thank-you for last winter's help if needed, but keep it out of the safety review.",
+      "whyItMatters": "A past favor can make a weak rating feel rude. The bracket still has to be judged by risk, because gratitude cannot absorb a future failure."
+    },
+    {
+      "exampleId": "ch06-ex03-matteo-sensor-graph",
+      "title": "Matteo Reads Past the Pastries",
+      "tags": [
+        "dialogue",
+        "warehouse",
+        "lease"
+      ],
+      "planSpec": {
+        "domain": "a warehouse lease choice applying Reciprocity under operational pressure",
+        "audience": "a reader who has to make a live judgment where gift could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the sensor graph, names the gift risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "The pastry box leaves butter on Matteo's fingers in Bay 12 at 9:15 a.m. while he tours the warehouse as operations lead. The broker points to a sensor graph of perfect temperatures. \"We like to take care of serious tenants,\" she says. Matteo taps the missing summer weeks. \"Then this gift cannot help the graph.\" He writes gift risk and must decide whether the evidence changes the next step.",
+      "whatToDo": "Ask for the missing weeks and compare the lease without the hospitality. Treat the pastries as a courtesy, not as evidence about temperature control.",
+      "whyItMatters": "The gift makes refusal feel impolite. The missing data still matters, and politeness is a poor substitute for a warehouse that protects inventory."
+    },
+    {
+      "exampleId": "ch06-ex04-frida-water-sample",
+      "title": "Frida Runs a Blind Vendor Check",
+      "tags": [
+        "decision",
+        "security",
+        "vendor"
+      ],
+      "planSpec": {
+        "domain": "a cybersecurity breach room applying Reciprocity under operational pressure",
+        "audience": "a reader who has to make a live judgment where reciprocal altruism could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the water sample, names the reciprocal altruism risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "You are in the breach room when Frida sets a sealed water sample beside the vendor proposals. The vendor who helped for free last year now wants the monitoring contract. Frida writes reciprocal altruism on the label. The procurement call starts in ten minutes, and she has to choose between loyalty to old help and a blind comparison.",
+      "whatToDo": "Run the proposals blind against the breach requirements. Acknowledge last year's help separately, but let current fit, coverage, and cost choose the vendor.",
+      "whyItMatters": "Emergency help can create a real debt. Paying that debt with a security contract may buy the wrong tool for the current breach."
+    },
+    {
+      "exampleId": "ch06-ex05-ada-model-card",
+      "title": "Ada Counts the Volunteer Gifts",
+      "tags": [
+        "predict",
+        "urban-farm",
+        "volunteers"
+      ],
+      "planSpec": {
+        "domain": "a urban farm volunteer plan applying Reciprocity under operational pressure",
+        "audience": "a reader who has to make a live judgment where Cialdini could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the model card, names the Cialdini risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "It took Ada one harvest season to notice that free seedlings were changing the volunteer plan. Donors who received trays in spring were signing up for shifts they could not keep. Ada marks Cialdini risk on the model card. Before the Saturday rota closes, she must decide whether sign-ups belong beside thank-you gifts or beside real availability.",
+      "whatToDo": "Separate gifts from commitments. Let people receive seedlings without taking shifts, then ask for availability after the obligation pressure has cooled.",
+      "whyItMatters": "The free tray creates a yes that may not survive Saturday morning. The farm needs actual labor, not gratitude disguised as a schedule."
+    },
+    {
+      "exampleId": "ch06-ex06-jack-queue-ticket",
+      "title": "Jack Rewrites the Warranty Rule",
+      "tags": [
+        "postmortem",
+        "appliance",
+        "service"
+      ],
+      "planSpec": {
+        "domain": "a appliance warranty desk applying Reciprocity under operational pressure",
+        "audience": "a reader who has to make a live judgment where reciprocity could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Reciprocity is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the queue ticket, names the reciprocity risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "Did the free installation earn a free exception? Jack asks that after the warranty desk approved a repair outside policy because the customer had once praised the store online. He marks reciprocity on the queue ticket and changes the next choice: compliments go in the service log, warranty exceptions go through the same defect test as everyone else's.",
+      "whatToDo": "Keep praise and policy separate. Thank the customer, record the compliment, then approve warranty help only if the defect qualifies.",
+      "whyItMatters": "Reciprocity can turn appreciation into unequal service. The queue ticket has to protect the rule from favors that feel pleasant in the moment."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a reciprocity case, a vendor sends boxed lunches to a review team at 11:45 a.m., then asks whether its safety file can move ahead of two older files before the afternoon meeting, what is the clearest reciprocity risk?",
+        "choices": [
+          "The lunch may make speed feel owed even if the review criteria have not changed.",
+          "Lunch speed owed fits the immediate pressure around file move ahead; hold asks whether safety steady and test boxed lunches team later.",
+          "Sends boxed lunches looks strong enough to guide team asks whether; safety file move can wait unless ahead older files changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The gift can create pressure to repay with speed. The correction is separation, not automatic trust or automatic rejection.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Reciprocity makes reciprocity case feel more decisive than the record supports, and that misprices vendor sends in this scene. The correct move keepss the choice by the lunch may make speed feel owed even if the review criteria have not."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a reciprocity review, a landlord offers to waive a small fee, then asks the tenant to sign a longer lease by Friday, what should the tenant do?",
+        "choices": [
+          "Reciprocity landlord offers looks strong enough to guide waive small asks; tenant sign longer can wait unless lease friday what changes the stakes.",
+          "Judge the lease terms independently and thank the landlord separately.",
+          "Friday what judge makes small asks tenant look credible; use sign longer lease first and revisit terms independently thank when separately reciprocity baseline shifts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The fee waiver and lease length are different decisions. Gratitude can be expressed without letting the favor choose a long contract.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Reciprocity works by letting reciprocity landlord crowd out offers waive, which can misreads the small asks decision. Judge the lease terms independently and thank the landlord separately keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When reciprocity pressure appears, a colleague covered your shift last month and now asks you to support a weak proposal in a planning meeting. Which response best handles reciprocity?",
+        "choices": [
+          "Handles thank help points toward a quicker call on month asks support; let covered shift last stand until meeting response best contradicts it.",
+          "Help assess merits fits the immediate pressure around support weak proposal; hold last month asks steady and test colleague covered shift later.",
+          "Thank the colleague for the shift help, then assess the proposal on its own merits."
+        ],
+        "correctIndex": 2,
+        "explanation": "The old favor deserves thanks or a comparable favor, not a distorted planning vote. Harshness is unnecessary; separation is the key.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Reciprocity turns appears colleague into a shortcut, so the room can overweights covered shift while missing last month. Thank the colleague for the shift help, then assess the proposal on its own merits protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After reciprocity risk surfaces, a broker gives a startup free office furniture during lease talks, the founder feels pulled toward that building. What question matters most?",
+        "choices": [
+          "Would this lease still be best if the furniture had never arrived?",
+          "Furniture lease talks gives a practical reason for startup free office; building what matters belongs after founder pulled toward clarifies the result.",
+          "Talks founder pulled makes gives startup free look credible; use office furniture lease first and revisit toward building what when matters best often shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "Removing the gift tests the lease directly. More furniture and investor optics deepen the gift's influence instead of checking the building.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Reciprocity would push the broker gives case toward startup free, creating a cost when office furniture stays untested. The useful guardrail is to would this lease still be best if the furniture had never arrived."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If reciprocity reasoning takes over, a nonprofit donor gives staff expensive event tickets, then asks for influence over grant scoring. What should the director do?",
+        "choices": [
+          "Tickets asks influence makes nonprofit donor gives look credible; use staff expensive event first and revisit grant scoring what when director disclose return shifts.",
+          "Influence grant scoring supports a narrower read of reasoning nonprofit donor; keep gives staff expensive central and leave event tickets asks aside.",
+          "Disclose or return the gift under policy and keep scoring independent."
+        ],
+        "correctIndex": 2,
+        "explanation": "The gift touches a decision that belongs to the grant process. Policy and independent scoring keep gratitude from becoming hidden influence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep",
+        "whyItMatters": "Reciprocity converts donor gives into the loudest signal, which can rushes staff expensive before event tickets is checked. The better answer separatess attention on disclose or return the gift under policy and keep scoring independent."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While reciprocity pressure builds, a consultant offers a free audit and then presents a paid package based on the findings, why can the free audit bias the buying decision?",
+        "choices": [
+          "Value received first points toward a quicker call on presents paid package; let offers free audit stand until buying buyer obliged contradicts it.",
+          "The buyer may feel obliged to buy because value was received first.",
+          "Builds consultant offers looks strong enough to guide free audit presents; paid package based can wait unless findings bias buying changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "Receiving value first can create an obligation to reciprocate with a purchase. Accuracy still has to be judged separately from that pressure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Reciprocity hides inside the reciprocity pressure choice because reciprocity pressure seems sufficient, yet the cost lands in reciprocity pressure. The buyer may feel obliged to buy because value was received first brings the reciprocity pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the reciprocity call, a supplier rushed emergency parts last year. This year its bid is more expensive and less clear than a competitor's. What is the reciprocity trap?",
+        "choices": [
+          "Treating the prior emergency help as a reason to overlook the weaker current bid.",
+          "Last year expensive makes reciprocity call supplier look credible; use rushed emergency parts first and revisit less clear competitor when what trap treating shifts.",
+          "Treating prior help supports a narrower read of parts last year; keep expensive less clear central and leave competitor what trap aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "Past help is relevant history, but it cannot erase current price and clarity problems. The trap is paying a social debt with a procurement decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Reciprocity pressures the call supplier decision toward the easy reading of call supplier. That can inflates the real cost unless the choice is grounded in treating the prior emergency help as a reason to overlook the weaker current bid."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose reciprocity risk is present: a charity mails personalized address labels to a retired accountant in Halifax, then asks for a donation in the same envelope. She feels wasteful throwing them away. Which analysis best fits reciprocity?",
+        "choices": [
+          "The labels create a small debt that may make donating feel like repayment.",
+          "Retired accountant halifax gives a practical reason for personalized address labels; wasteful throwing away belongs after asks donation envelope clarifies the result.",
+          "Halifax asks donation makes mails personalized address look credible; use labels retired accountant first and revisit envelope wasteful throwing when away analysis best shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The gift arrives before the ask and can create repayment pressure. It says little by itself about efficiency or urgency.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Reciprocity is the mechanism here: a favor creates pressure to repay, so present charity can overpower present charity. The labels create a small debt that may make donating feel like repayment keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two reciprocity signals compete: a hospital must choose a device vendor. Vendor A gave free training during a crisis. Vendor B now has better safety data and lower maintenance costs. What is the best recommendation?",
+        "choices": [
+          "Stronger acknowledging past fits the immediate pressure around safety data lower; hold training crisis better steady and test vendor gave free later.",
+          "Choose Vendor B if its current evidence is stronger, while acknowledging Vendor A's past help separately.",
+          "Gave free training gives a practical reason for hospital device vendor; data lower maintenance belongs after crisis better safety clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "Past help deserves acknowledgment, but the device decision belongs to current safety and cost evidence. Rejecting both is unnecessary if the process is cleaned up.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Reciprocity makes the hospital device evidence look cleaner than it is, risking a hospital device mistake in this setting. The answer protects hospital device by asking for choose Vendor B if its current evidence is stronger, while acknowledging Vendor A's."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What does reciprocity do to a decision?",
+      "back": "It creates pressure to return something after receiving a favor. That pressure is useful in social life but dangerous when it starts deciding contracts, ratings, schedules, or votes.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "You receive a gift before an ask. What is the next move?",
+      "back": "Name the gift and the ask separately. Thank the person for the gift, then judge the ask as if the gift had not arrived.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why is returning a favor with a business decision risky?",
+      "back": "The currencies do not match. A meal, introduction, or emergency favor may deserve thanks, but a business decision belongs to evidence, rules, and future consequences.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How can you repay a genuine favor without distorting judgment?",
+      "back": "Repay directly and proportionally: thanks, credit, prompt help, or a similar favor when appropriate. Do not repay by bending a decision that affects others.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A vendor helped during a crisis and now wants a contract. What should the committee do?",
+      "back": "Acknowledge the help, then run the contract through the same evidence and comparison process as every other bid. The past favor should not select the future tool.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to separate gratitude from compliance. The skill is receiving favors cleanly, repaying them in the right currency, and keeping important decisions tied to evidence.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If someone gives before asking, then write the gift and the request as two separate lines before answering."
+      },
+      {
+        "context": "buying",
+        "plan": "If a salesperson offers a free audit, meal, or extra service, then compare the paid offer against alternatives after the favor is out of view."
+      },
+      {
+        "context": "relationships",
+        "plan": "If you feel you owe someone, then choose a direct repayment instead of bending an unrelated decision."
+      },
+      {
+        "context": "governance",
+        "plan": "If a gift touches a vote, score, schedule, or award, then disclose it, follow policy, and keep the decision independent."
+      }
+    ],
+    "twentyFourHourChallenge": "Notice one favor you received today. Write the clean thank-you you owe, then write one decision that favor should not touch.",
+    "weeklyPractice": "At the end of each week, review one moment where gratitude pulled on a decision. Decide how to repay directly without letting obligation choose for you."
+  },
+  "memorableLines": [
+    {
+      "text": "Say thank you. Then reopen the decision.",
+      "location": "breakdown.fastRead",
+      "why": "It gives readers a simple way to honor generosity without obeying it."
+    },
+    {
+      "text": "Different currencies are where reciprocity gets dangerous.",
+      "location": "breakdown.deepRead",
+      "why": "The currency image clarifies why small favors should not be repaid with serious decisions."
+    },
+    {
+      "text": "Keep the thank-you. Move the yes back onto the evidence.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the balanced correction in a line that is easy to use under pressure."
+    }
+  ]
+}

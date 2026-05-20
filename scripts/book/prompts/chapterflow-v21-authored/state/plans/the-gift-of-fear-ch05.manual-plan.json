@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch05",
+  "number": 5,
+  "title": "Imperfect Strangers",
+  "coreMove": "Shift the safety question from who this person is to what this person is doing right now.",
+  "sourcePressure": "The stranger label is weak; official site guidance moves attention from category to behavior, context, access, and pressure.",
+  "chapterSpecificMisunderstanding": "Teaching naive trust or saying stranger status never matters.",
+  "sourceAlignmentTerms": [
+    "stranger category",
+    "behavior",
+    "context",
+    "familiarity",
+    "false comfort",
+    "access",
+    "label"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain source guidance but no traceable named anecdote, study, place, date, or artifact suitable for natural prose anchoring; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch05",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "urban farmer market stall before sunrise",
+      "audience": "a vendor judging a stranger by behavior, not category",
+      "stakes": "whether to accept help from a familiar-looking man",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "declines the help and watches whether the refusal changes his behavior",
+      "firstImage": "a crate of peaches splitting at one corner",
+      "mustInclude": [
+        "cash apron",
+        "stall weights",
+        "folding table"
+      ],
+      "mustAvoid": [
+        "stranger danger slogans",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "corporate visitor center lobby",
+      "audience": "a receptionist handling a well-dressed unknown visitor",
+      "stakes": "whether status cues should create trust",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "moves from name and suit to behavior: repeated badge requests and elevator-watching",
+      "firstImage": "the visitor badge laminator warming up",
+      "mustInclude": [
+        "temporary badge",
+        "elevator bank",
+        "appointment tablet"
+      ],
+      "mustAvoid": [
+        "stranger danger slogans",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "rural bus shelter in hard rain",
+      "audience": "a passenger reconsidering stranger danger rules",
+      "stakes": "whether the known local or unknown traveler is safer",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "chooses distance from the person pressing for destination details, regardless of familiarity",
+      "firstImage": "rainwater dripping from the timetable frame",
+      "mustInclude": [
+        "bus timetable",
+        "duffel strap",
+        "shelter light"
+      ],
+      "mustAvoid": [
+        "stranger danger slogans",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "hospital volunteer desk",
+      "audience": "a coordinator facing a charming repeat visitor",
+      "stakes": "whether knowing his first name lowers concern",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "blocks ward access after he keeps asking for patient room numbers",
+      "firstImage": "a stack of volunteer smocks in plastic sleeves",
+      "mustInclude": [
+        "ward pass",
+        "visitor log",
+        "smock rack"
+      ],
+      "mustAvoid": [
+        "stranger danger slogans",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "community garden tool shed",
+      "audience": "a garden lead after a neighbor asks for keys",
+      "stakes": "whether neighborhood familiarity should override behavior",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "keeps the shed locked when the neighbor pushes for solo access after refusal",
+      "firstImage": "a padlock cold from morning shade",
+      "mustInclude": [
+        "seed tray",
+        "shed key",
+        "watering roster"
+      ],
+      "mustAvoid": [
+        "stranger danger slogans",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Chidi",
+      "domain": "independent cinema ticket booth",
+      "audience": "a cashier assessing a regular customer",
+      "stakes": "whether regular status should count more than pressure",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "calls the manager when the regular asks when she gets off and waits by the side door",
+      "firstImage": "a roll of ticket stubs curling beside the glass",
+      "mustInclude": [
+        "ticket roll",
+        "side door",
+        "cash drawer"
+      ],
+      "mustAvoid": [
+        "stranger danger slogans",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish stranger category from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits shift the safety question from who this person is to what this person is doing right now.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: teaching naive trust or saying stranger status never matters."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one person you have labeled safe or unsafe, replace the label with two observable behaviors and one access question.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,136 @@
+{
+  "chapterId": "superforecasting-ch03",
+  "number": 3,
+  "title": "Keeping Score",
+  "coreMove": "Turn a vague hedge word into a specific number so the claim can be checked when the outcome arrives — and so you can no longer reinterpret what you meant after the fact.",
+  "sourcePressure": "Verbal probability language (likely, possible, serious possibility) allows different audiences to map different odds onto the same sentence, preventing later accountability. Sherman Kent pushed numerical probability into intelligence work precisely to make predictions auditable. Calibration and resolution make judgment visible over time. Brier scoring gives a single measurable number for forecast quality. Foxes — who gather small clues and tolerate contradiction — outperform hedgehogs once there is a scoreboard.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'quantify everything' or 'never use words, always use numbers.' The real move is narrower: numerical language forces the forecaster to confront their own uncertainty rather than hide inside verbal ambiguity — the number changes the forecaster's cognition, not just the audience's interpretation.",
+  "sourceAlignmentTerms": ["calibration", "resolution", "Brier score", "Sherman Kent", "hedgehog", "fox", "aggregation", "numerical probability"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Sherman Kent",
+      "detail": "CIA analyst and chief of the Office of National Estimates who in the 1960s pushed intelligence community to attach numerical probability ranges to verbal probability language (e.g., 'probable' = 75–85%) to reduce interpretive drift across readers and make intelligence assessments auditable over time",
+      "useIn": "both",
+      "phrasingHint": "Sherman Kent had watched the same intelligence report mean different things to different readers — he wanted the word 'probable' to stop being a mirror for whatever the reader already believed."
+    },
+    {
+      "kind": "person",
+      "name": "Glenn W. Brier",
+      "detail": "Meteorologist who in 1950 developed the Brier score — a mathematical method for evaluating probabilistic forecasts by measuring the mean squared difference between predicted probabilities and actual outcomes, with 0 as perfect and 0.5 as chance-level",
+      "useIn": "deepRead",
+      "phrasingHint": "Brier's scoring rule did something simple: it let you compare the quality of two weather forecasters in a single number, the way a race splits a field into times rather than impressions."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a statistics lesson — this is about accountability, not math",
+      "opening with 'Have you ever said something might happen?' — too vague and coaching-register"
+    ],
+    "counterintuition": [
+      "'Being precise sounds overconfident, but it actually makes you more honest' — true but too neat; miss the deeper point that the number changes your own thinking first"
+    ],
+    "tryThisNow": [
+      "any prompt that says 'estimate the probability of three future events' without explaining how to check them — turns the lesson into a party trick",
+      "'Look up a weather forecast and notice how it uses percentages' — too passive, skips the self-accountability mechanism"
+    ],
+    "examples": [
+      "examples where the only point is 'use a percentage instead of a word' — the required beat must show the forecaster being forced to confront their own uncertainty, not just communicate better",
+      "any example domain shared with ch01 or ch02 (no hospital credentialing, no winery, no structural engineering)"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The chapter is about making the implicit explicit — the examples should feel like they arrive from different angles rather than the same template"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "agricultural weather forecasting co-op where farmers need planting-window predictions",
+      "audience": "a regional crop advisor whose verbal forecasts ('dry spell likely') have been misread differently by different farmers",
+      "stakes": "planting timing for 40 farms; too early means frost risk, too late means yield loss",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the advisor switches from 'dry spell likely next week' to '72% chance of below-average rainfall through day 8' — a farmer who would have heard 'likely' as 90% hears the 72% and decides to hedge with half her fields; the number made the disagreement visible instead of hiding it",
+      "firstImage": "a room of farmers around a table with soil moisture reports spread on it, all leaning in differently on what 'likely' means",
+      "mustInclude": ["the specific probability number (72%)", "the farmer's hedging decision", "the contrast with how the word 'likely' was being heard"],
+      "mustAvoid": ["turning this into a weather forecasting tutorial", "any domain overlap with ch01 or ch02"]
+    },
+    {
+      "domain": "venture capital firm where a partner asks an analyst to put a probability on whether a portfolio company will hit its Series B milestone",
+      "audience": "an analyst who has been saying 'I think it looks good' for three weeks and is now asked for a number",
+      "stakes": "a pro-rata investment decision worth $800K",
+      "format": "dialogue_first",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "when forced to say 65%, the analyst realizes she has been shading her verbal confidence upward to avoid seeming negative — the number forces her to confront that she has not been saying what she actually thinks",
+      "firstImage": "a one-on-one meeting where the partner slides a blank probability column across a deal memo",
+      "mustInclude": ["the analyst's realization that her verbal hedging had been skewing high", "the 65% figure", "the gap between her verbal tone and the number"],
+      "mustAvoid": ["making this about VC jargon", "turning it into a pitch meeting scene"]
+    },
+    {
+      "domain": "oncology team giving a prognosis to a family",
+      "audience": "an oncologist who has been using 'guarded prognosis' and 'challenging case' with a family who is taking those words as near-certain bad news",
+      "stakes": "the family's treatment decisions, which hinge on whether they understand 5-year survival as 20%, 40%, or lower",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the oncologist switches to a number — '38% five-year survival at comparable stage and age' — and the family's response shifts; they had been hearing 'guarded' as single digits, and the 38% opens a different conversation about treatment intensity",
+      "firstImage": "a family consultation room, the family's posture already closed around what they think they heard",
+      "mustInclude": ["the specific 38% figure", "the family's misread of the verbal hedge", "the different conversation the number enables"],
+      "mustAvoid": ["making this a medical communication guide", "any implication the doctor was wrong before"]
+    },
+    {
+      "domain": "software project delivery where an engineering lead is asked for a ship probability before a stakeholder review",
+      "audience": "a lead engineer who has been saying 'we're on track' at every standup for three weeks",
+      "stakes": "a quarterly board presentation where the product announcement has already been scripted",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "when the product VP asks for an actual percentage, the lead says 55% — a number that contradicts the 'on track' signal and forces a conversation that the verbal hedges had been suppressing for three weeks",
+      "firstImage": "a pre-meeting Slack exchange where the lead has typed 'looking good' for the fourth standup in a row",
+      "mustInclude": ["the 55% number", "the three weeks of verbal reassurance that contradicted it", "the conversation the number finally opens"],
+      "mustAvoid": ["generic software project complaints", "making the VP unsympathetic"]
+    },
+    {
+      "domain": "legislative policy analyst at a think tank asked to estimate the probability of a state bill passing",
+      "audience": "a senior analyst whose written brief uses 'strong likelihood' throughout",
+      "stakes": "a nonprofit that is deciding whether to build a pilot program contingent on the bill passing",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "the analyst is asked to put a percentage on 'strong likelihood' for a grant committee — she writes 70%, then reads her brief again and realizes three of her paragraphs imply 90%+ confidence while one caveat implies closer to 50%; the number exposes an inconsistency she had not noticed in her own writing",
+      "firstImage": "a grant committee packet with the brief printed and 'what does strong likelihood mean here?' written in the margin in pencil",
+      "mustInclude": ["the 70% number", "the inconsistency within her own brief that the number reveals", "the grant committee's decision hinging on it"],
+      "mustAvoid": ["political commentary on the specific bill topic", "any domain overlap with other chapters"]
+    },
+    {
+      "domain": "competitive rowing coach tracking athlete split-time improvement predictions before a major regatta",
+      "audience": "a coach who has been describing expected improvements to athletes with phrases like 'you should be stronger by the time we get there'",
+      "stakes": "athlete training intensity decisions for the final six weeks before the regatta",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the coach switches to recording specific predicted split-time improvements for each athlete — the process of writing '1.4 seconds per 500m gain' forces him to notice that two athletes he has been privately confident about have insufficient training data to justify better than a 50% confidence estimate",
+      "firstImage": "a training log with a column for predicted split improvement left blank for ten weeks",
+      "mustInclude": ["the switch from verbal to numerical prediction", "the discovery of his own overclaiming on two athletes", "the six-week decision the numbers now drive"],
+      "mustAvoid": ["turning this into a sports performance coaching scene", "any overlap with marathon coaching in ch01"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "translate a verbal hedge into a numerical probability in a new context",
+      "identify when verbal probability language is being used to avoid accountability",
+      "apply the calibration concept — whether stated confidence matches outcomes over time",
+      "distinguish resolution from calibration and explain why both matter",
+      "analyze whether a numerical forecast exposes internal inconsistency in a reasoning chain"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Find one claim you made in the last 48 hours using a hedge word — likely, probably, good chance, I think. Write down the specific percentage you actually believe. Then ask: could someone reading that percentage check it when the outcome arrives? If you would reinterpret the percentage after the fact, the number is not specific enough yet — narrow it by 10 points.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that explains the psychological mechanism — why writing a number changes the forecaster's own cognition before it changes the audience's — as a direct analytical aside rather than a scene",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch13",
+  "number": 13,
+  "title": "Surprise!",
+  "coreMove": "Build plans that expect the future to contain events your evidence cannot name yet.",
+  "sourcePressure": "History is often steered by shocks, and recent calm makes people underestimate what has not happened lately.",
+  "chapterSpecificMisunderstanding": "Using history as a script for precise prediction.",
+  "sourceAlignmentTerms": [
+    "surprise",
+    "history",
+    "forecasting",
+    "recent bias",
+    "range of outcomes",
+    "humility"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Surprise! with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Surprise! to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the surprise move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of surprise and history"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a port authority planning for cargo shocks after years of steady volume",
+      "audience": "a logistics planner resisting the comfort of recent stability",
+      "stakes": "one unseen disruption can freeze a city's supply chain",
+      "format": "thought_experiment",
+      "requiredBeat": "she removes the last five calm years from the forecast and asks what would still work if the next shock is unlike the last one",
+      "firstImage": "a harbor forecast map dotted with ships waiting offshore",
+      "mustInclude": [
+        "forecast map",
+        "berth schedule",
+        "shock scenario"
+      ],
+      "mustAvoid": [
+        "supply chain buzzwords"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a university endowment committee revising assumptions after a decade of rising markets",
+      "audience": "a treasurer widening expected ranges",
+      "stakes": "tuition support becomes fragile if calm markets are treated as law",
+      "format": "decision_point",
+      "requiredBeat": "he adds a surprise column to the model before approving the spending rate",
+      "firstImage": "a projection model open on a trustee room screen",
+      "mustInclude": [
+        "surprise column",
+        "spending rate",
+        "tuition grant list"
+      ],
+      "mustAvoid": [
+        "market history lecture"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a wildfire insurance analyst refusing to model only recent burn maps",
+      "audience": "an analyst whose data underweights new climate patterns",
+      "stakes": "premiums and coverage may fail households in the next unlike event",
+      "format": "scene",
+      "requiredBeat": "she overlays old fire maps with new wind corridors before signing the pricing memo",
+      "firstImage": "a transparent wind map laid over a county burn map",
+      "mustInclude": [
+        "wind corridor map",
+        "pricing memo",
+        "coverage limits"
+      ],
+      "mustAvoid": [
+        "climate sermon"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a board game publisher ordering inventory after three predictable holiday seasons",
+      "audience": "a production manager planning for surprises in demand and shipping",
+      "stakes": "a rigid order can strand cash or miss sales",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks the team to name the surprise that is absent from the spreadsheet before choosing print quantity",
+      "firstImage": "a prototype box beside a freight quote and holiday calendar",
+      "mustInclude": [
+        "freight quote",
+        "holiday calendar",
+        "print quantity"
+      ],
+      "mustAvoid": [
+        "toy trend guessing"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a public health clinic stocking supplies after a quiet flu season",
+      "audience": "a clinic director avoiding recency bias",
+      "stakes": "low recent use may tempt cuts just before a different outbreak",
+      "format": "postmortem",
+      "requiredBeat": "she reviews which supply ran out during the last unlike surge before reducing anything",
+      "firstImage": "a supply shelf tag with last year's low usage count",
+      "mustInclude": [
+        "usage count",
+        "surge log",
+        "order form"
+      ],
+      "mustAvoid": [
+        "pandemic replay"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "an estate lawyer helping a client plan beyond the family arrangement that currently feels permanent",
+      "audience": "a lawyer making room for future conflict without predicting it",
+      "stakes": "a will based on today's harmony can fail after remarriage, illness, or distance",
+      "format": "dialogue",
+      "requiredBeat": "she asks which relationship change would make the current document unfair before drafting",
+      "firstImage": "a blank beneficiary form under a desk lamp",
+      "mustInclude": [
+        "beneficiary form",
+        "family tree note",
+        "revision clause"
+      ],
+      "mustAvoid": [
+        "legal fear story"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: build plans that expect the future to contain events your evidence cannot name yet",
+      "distinguish surprise from nearby but weaker advice such as doom prep",
+      "diagnose when a character is making the common misread: using history as a script for precise prediction.",
+      "evaluate tradeoffs using the chapter-specific pressure around surprise, history, forecasting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where surprise is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: build plans that expect the future to contain events your evidence cannot name yet.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

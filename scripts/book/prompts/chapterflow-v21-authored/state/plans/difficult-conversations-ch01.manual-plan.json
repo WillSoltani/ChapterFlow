@@ -1,0 +1,186 @@
+{
+  "chapterId": "difficult-conversations-ch01",
+  "number": 1,
+  "title": "Sort Out the Three Conversations",
+  "coreMove": "Separate a recent hard exchange into its facts, feelings, and identity layers before choosing any response.",
+  "sourcePressure": "The chapter is a diagnostic entry point: every difficult exchange contains the what-happened, feelings, and identity conversations, with identity often least visible and most powerful.",
+  "chapterSpecificMisunderstanding": "Treating the three conversations as a tidy checklist or as the solution itself.",
+  "sourceAlignmentTerms": [
+    "three conversations",
+    "what happened conversation",
+    "feelings conversation",
+    "identity conversation",
+    "facts and blame",
+    "what is actually at stake",
+    "diagnostic tool"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the three conversations",
+      "detail": "The source names the what-happened, feelings, and identity conversations as simultaneous layers, with identity often quietest and most powerful.",
+      "useIn": "both",
+      "phrasingHint": "Before you plan the perfect sentence, ask which of the three conversations is already running under it."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch01 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: sensory detail first; dialogue first line; timestamp+name+action; second-person You direct address; retrospective first line; environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional hospital performance review",
+      "audience": "new managers giving feedback to veteran staff",
+      "stakes": "a missed medication-reconciliation deadline could become a patient-safety issue",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the manager puts the printed deadline log beside a blank page labeled feelings and identity, then writes her own identity fear before drafting the first sentence",
+      "firstImage": "a stapled incident log under fluorescent light",
+      "mustInclude": [
+        "incident log",
+        "empty preparation sheet",
+        "14-year tenure gap"
+      ],
+      "mustAvoid": [
+        "generic office feedback with no identity stakes"
+      ]
+    },
+    {
+      "domain": "adult siblings coordinating dementia care",
+      "audience": "readers handling family logistics that carry old roles",
+      "stakes": "the next weekend visit to their father is still unassigned after 47 texts",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "one sibling stops answering the logistics thread and circles the three separate layers on a notepad before calling",
+      "firstImage": "a phone screen still glowing on a kitchen counter",
+      "mustInclude": [
+        "47-message text chain",
+        "father's pill organizer",
+        "Sunday train timetable"
+      ],
+      "mustAvoid": [
+        "a simple scheduling conflict"
+      ]
+    },
+    {
+      "domain": "software co-founders debating a vendor renewal",
+      "audience": "founders and partners whose data argument is stuck",
+      "stakes": "the renewal deadline is Friday and trust between partners is eroding",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the founder points to the same spreadsheet and then says the contract is not the only conversation in the room",
+      "firstImage": "a shared spreadsheet projected in a quiet conference room",
+      "mustInclude": [
+        "renewal spreadsheet",
+        "Friday cutoff",
+        "vendor outage notes"
+      ],
+      "mustAvoid": [
+        "generic budget disagreement"
+      ]
+    },
+    {
+      "domain": "tenant association meeting about elevator outages",
+      "audience": "neighbors in civic conflict with layered stakes",
+      "stakes": "elderly residents feel trapped and the board fears being branded negligent",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch the board chair sort complaint dates, fear, and competence onto three separate sticky-note columns",
+      "firstImage": "three columns of sticky notes on a folding table",
+      "mustInclude": [
+        "elevator outage calendar",
+        "blue tape",
+        "lobby sign-in sheet"
+      ],
+      "mustAvoid": [
+        "landlord villain story only"
+      ]
+    },
+    {
+      "domain": "university lab authorship dispute",
+      "audience": "graduate students facing credit and identity pressure",
+      "stakes": "a poster submission deadline forces unresolved contribution questions into the open",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes the student three weeks to see that the authorship fight is also about belonging in the field",
+      "firstImage": "a half-finished poster on a shared lab drive",
+      "mustInclude": [
+        "poster draft",
+        "shared-drive comments",
+        "conference deadline"
+      ],
+      "mustAvoid": [
+        "classroom grade dispute"
+      ]
+    },
+    {
+      "domain": "community choir solo assignment",
+      "audience": "volunteers in close community groups",
+      "stakes": "a singer believes the director's choice says something about her place in the group",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "the director names facts, hurt, and identity privately before replying to the singer's email",
+      "firstImage": "sheet music stacked on a piano bench",
+      "mustInclude": [
+        "marked score",
+        "email printout",
+        "rehearsal schedule"
+      ],
+      "mustAvoid": [
+        "talent competition story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs separate a recent hard exchange into its facts, feelings, and identity layers before choosing any response.",
+      "distinguish three conversations from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate treating the three conversations as a tidy checklist or as the solution itself."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one avoided conversation and write three labels: what happened, feelings, identity. Put one concrete stake under each label before planning any words.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

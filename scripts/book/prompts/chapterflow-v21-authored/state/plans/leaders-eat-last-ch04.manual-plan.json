@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch04",
+  "number": 4,
+  "title": "Yeah, But...",
+  "coreMove": "Turn a yeah-but objection into a design constraint instead of letting it excuse fear-based behavior.",
+  "sourcePressure": "Tests practical objections to safety-first leadership and separates useful constraints from excuse language that preserves blame, distance, or social threat.",
+  "chapterSpecificMisunderstanding": "Treating every objection as cynicism, or treating pressure as proof that safety is unrealistic.",
+  "sourceAlignmentTerms": [
+    "yeah but",
+    "practical objection",
+    "constraint",
+    "excuse language",
+    "trust and cooperation",
+    "cynicism",
+    "self-interest"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 4 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport ground crew turnaround",
+      "audience": "ramp lead facing a late departure",
+      "stakes": "speed pressure is used to skip a safety cross-check",
+      "format": "decision_point",
+      "requiredBeat": "the lead says the delay is real and moves one loader to verify the cargo pins anyway",
+      "firstImage": "a cargo pin tag snapping in jet wash",
+      "mustInclude": [
+        "cargo pin tag",
+        "ear protection"
+      ],
+      "mustAvoid": [
+        "deadline scapegoat"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "oncology clinic scheduling desk",
+      "audience": "scheduler with an overbooked day",
+      "stakes": "care language is dismissed as impossible under volume",
+      "format": "scene",
+      "requiredBeat": "she marks the chemo patient who needs a chair near the bathroom and then rebuilds the grid",
+      "firstImage": "a printed chair grid under a highlighter",
+      "mustInclude": [
+        "chair grid",
+        "highlighter"
+      ],
+      "mustAvoid": [
+        "generic empathy versus speed"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "minor-league grounds crew",
+      "audience": "head groundskeeper before rain delay",
+      "stakes": "tradition says hurry and hope the tarp holds",
+      "format": "dialogue",
+      "requiredBeat": "he asks which safety step the storm removes and which it only makes inconvenient",
+      "firstImage": "a rolled tarp rope dark with rain",
+      "mustInclude": [
+        "tarp rope",
+        "field rake"
+      ],
+      "mustAvoid": [
+        "sports pep talk"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "public defenders' arraignment room",
+      "audience": "senior defender under docket pressure",
+      "stakes": "case volume tempts a shallow client interview",
+      "format": "postmortem",
+      "requiredBeat": "she logs the three questions skipped because of time and changes the intake order for the next morning",
+      "firstImage": "a docket sheet folded into a jacket pocket",
+      "mustInclude": [
+        "docket sheet",
+        "legal pad"
+      ],
+      "mustAvoid": [
+        "moral lecture"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "museum exhibit installation",
+      "audience": "registrar facing opening-night pressure",
+      "stakes": "fragile artifacts may be rushed into cases",
+      "format": "predict_reveal",
+      "requiredBeat": "the registrar asks the installer to predict what vibration will do to the cracked glaze, then shows the condition photo",
+      "firstImage": "a ceramic bowl on a foam cradle",
+      "mustInclude": [
+        "foam cradle",
+        "condition photo"
+      ],
+      "mustAvoid": [
+        "art-room school scene"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "snowplow dispatch during storm",
+      "audience": "dispatcher balancing roads and driver fatigue",
+      "stakes": "public pressure excuses unsafe shift length",
+      "format": "reflection",
+      "requiredBeat": "the dispatcher moves one route to morning after seeing the same driver initials on the third overnight sheet",
+      "firstImage": "a salt-stained route map pinned under a magnet",
+      "mustInclude": [
+        "route map",
+        "driver initials sheet"
+      ],
+      "mustAvoid": [
+        "weather heroics"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify objections as constraint or excuse",
+      "preserve standards under pressure",
+      "redesign a response without scapegoating",
+      "explain why realism language can hide fear"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one objection you hear today and rewrite it as: how do we keep the standard while reducing the unnecessary threat?",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

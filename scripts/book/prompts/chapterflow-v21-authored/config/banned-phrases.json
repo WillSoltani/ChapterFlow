@@ -1,82 +1,271 @@
 {
   "$schema": "./banned-phrases.schema.json",
   "version": "1.0.0",
-  "description": "Phrases that showed up across many unrelated v13 books, signaling a shared model-voice template. v21 writers receive this list in their system prompt; the critic also programmatically flags hits. Budgets are library-wide lifetime quotas. Once spent, any new occurrence is a blocker.",
-  "policies": {
-    "newBookReceivesStockPhraseBudget": 3,
-    "libraryBlockOncePhrasesExhausted": true,
-    "softWarnOnPerBookCount": 2
-  },
+  "description": "Phrases that recur across books as model-voice tells. v21 writers receive this list in their system prompt; the critic blocks every occurrence.",
   "hardBanned": [
     {
       "phrase": "boundary condition",
-      "reason": "Grad-school-philosophy register. Appeared 201 times across 46 books in v13 — a generator tell.",
-      "libraryBudgetRemaining": 0
+      "reason": "Grad-school-philosophy register. Appeared 201 times across 46 books in v13 — a generator tell."
     },
     {
       "phrase": "keeps the chapter honest",
-      "reason": "111 hits across 36 books. Impossible to appear organically at that rate.",
-      "libraryBudgetRemaining": 0
+      "reason": "111 hits across 36 books. Impossible to appear organically at that rate."
     },
     {
       "phrase": "keeps the chapter from",
-      "reason": "Meta-reference + stock construction. 167 hits across 50 books.",
-      "libraryBudgetRemaining": 0
+      "reason": "Meta-reference + stock construction. 167 hits across 50 books."
     },
     {
       "phrase": "strips away",
-      "reason": "149 hits across 43 books.",
-      "libraryBudgetRemaining": 0
+      "reason": "149 hits across 43 books."
     },
     {
       "phrase": "is not decorative",
-      "reason": "68 hits across 31 books — same rhetorical move.",
-      "libraryBudgetRemaining": 0
+      "reason": "68 hits across 31 books — same rhetorical move."
     },
     {
       "phrase": "is not magic",
-      "reason": "58 hits across 29 books.",
-      "libraryBudgetRemaining": 0
+      "reason": "58 hits across 29 books."
     },
     {
       "phrase": "operating logic",
-      "reason": "60 hits across 15 books — fine occasionally, overused.",
-      "libraryBudgetRemaining": 0
+      "reason": "60 hits across 15 books — fine occasionally, overused."
     },
     {
       "phrase": "tidy explanation",
-      "reason": "10 hits across 6 books — borderline tic.",
-      "libraryBudgetRemaining": 0
+      "reason": "10 hits across 6 books — borderline tic."
     },
     {
       "phrase": "selective suspicion",
-      "reason": "Niche phrase repeated suspiciously.",
-      "libraryBudgetRemaining": 0
+      "reason": "Niche phrase repeated suspiciously."
     },
     {
       "phrase": "diagnostic discipline",
-      "reason": "Tic.",
-      "libraryBudgetRemaining": 0
+      "reason": "Tic."
     },
     {
       "phrase": "durable practice",
-      "reason": "Tic, appears 33 times in just 3 books.",
-      "libraryBudgetRemaining": 0
+      "reason": "Tic, appears 33 times in just 3 books."
     },
     {
       "phrase": "usable lesson",
-      "reason": "Tic.",
-      "libraryBudgetRemaining": 0
+      "reason": "Tic."
     },
     {
       "phrase": "reframes behavior",
-      "reason": "Tic.",
-      "libraryBudgetRemaining": 0
+      "reason": "Tic."
     },
     {
       "phrase": "installs the operational",
-      "reason": "Tic.",
-      "libraryBudgetRemaining": 0
+      "reason": "Tic."
+    },
+    {
+      "phrase": "On a note beside the work, write the reminders plainly",
+      "reason": "Closing-paragraph stock sentence. Shipped 71 times across 7 books in v21 (Clear Thinking 26, Antifragile 25, Seven Powers 9, Atomic Habits 3, Blue Ocean 3, Deep Work 3, Built to Last 2). Model-voice tic, not present in any prompt."
+    },
+    {
+      "phrase": "Most readers assume",
+      "reason": "Counterintuition opener shell. 16 of 20 Atomic Habits chapters opened the counterintuition field with this exact stem; verified the source is a single few-shot example in writer-hook.system.md."
+    },
+    {
+      "phrase": "Most readers think",
+      "reason": "Sibling form of 'Most readers assume'. Same opener shell; banned to prevent the writer from sliding sideways into the alternate verb."
+    },
+    {
+      "phrase": "The paradox is this",
+      "reason": "Paraphrase of the already-banned 'The paradox is that' (same shell, single-word swap). 8 of 19 Laws of Human Nature chapters used this stem to evade the ban before a follow-up patch caught it. Block all occurrences to prevent the same evasion in future regens."
+    },
+    {
+      "phrase": "Most people assume",
+      "reason": "Counter opener shell, used in Crucial Conversations. Same defect class as the already-banned 'Most readers assume'."
+    },
+    {
+      "phrase": "Most people think",
+      "reason": "Counter opener shell, sibling of 'Most people assume'. Used in Crucial Conversations."
+    },
+    {
+      "phrase": "The paradox is that",
+      "reason": "Counter opener shell. Appeared in Make Time (5/5), Good to Great (4/9), Laws of Human Nature (7/19), Almanack of Naval, and others. We banned the 'this' paraphrase earlier — banning the original form too."
+    },
+    {
+      "phrase": "The mistaken move is",
+      "reason": "Paraphrase of 'The mistake is' that emerged in Power of Habit and WEBIS. Same defect class."
+    },
+    {
+      "phrase": "The dangerous move is",
+      "reason": "Variant of 'The mistake is' that emerged in WEBIS Ch9. Same defect class."
+    },
+    {
+      "phrase": "The last mistake is",
+      "reason": "Variant of 'The mistake is' that emerged in WEBIS Ch10. Same defect class."
+    },
+    {
+      "phrase": "The mistake is to",
+      "reason": "Narrower form of 'The mistake is' that captures the counter opener template ('The mistake is to [verb]…') without false-firing on body-prose uses like 'The mistake is at line 47.' Used in The Prince (10/26), Power of Habit (7/9), and others."
+    },
+    {
+      "phrase": "The trap is to",
+      "reason": "Counter opener shell from The One Thing (17 of 18 chapters used 'The trap is [verb]'). Narrow form to avoid false-firing on legitimate 'The trap is set' / 'The trap is here' body uses."
+    },
+    {
+      "phrase": "The trap is not",
+      "reason": "Negation-correction opener from You Can't Hurt Me Ch1 ('The trap is not admitting how bad it was. The trap is letting…'). Combined with B11 audit, fully covers the negation-shell counter template."
+    },
+    {
+      "phrase": "Keep the clue",
+      "reason": "Half of The One Thing's templated closing sentence ('Keep the clue. Leave the costume where it belongs.') that appeared in 16 of 18 chapters before regen. Banning the literal phrase prevents resurrection of this specific shell."
+    },
+    {
+      "phrase": "Leave the costume",
+      "reason": "Other half of The One Thing closing template. Banned in tandem with 'Keep the clue'."
+    },
+    {
+      "phrase": "in three plain moves",
+      "reason": "Indistractable closing-paragraph template fingerprint. Appeared in 24 of 30 chapters in the form 'use [X] in three plain moves: name [Y], set [Z], make [W] point toward the chosen work.'"
+    },
+    {
+      "phrase": "point toward the chosen work",
+      "reason": "Second fingerprint of the Indistractable closing template. Banned in tandem with 'in three plain moves'."
+    },
+    {
+      "phrase": "If the next act is visible",
+      "reason": "Third fingerprint of the Indistractable closing template. Banned in tandem with 'in three plain moves' and 'point toward the chosen work'."
+    },
+    {
+      "phrase": "The easy mistake is",
+      "reason": "Counter opener shell. 27 of 30 Indistractable chapters used this stem before regen. Banned alongside the other 'The [X] mistake is' variants."
+    },
+    {
+      "phrase": "The mistake is treating",
+      "reason": "WEBIS counter opener template ('The mistake is treating [body part] as [Y]…'). 5 of 10 WEBIS chapters used this construction. Narrow form to avoid false-firing on legitimate 'the mistake is treating it as urgent' body uses, while still catching the templating shell."
+    },
+    {
+      "phrase": "the real lever is",
+      "reason": "Counter opener template phrase. 8 of 9 Talk Like Ted chapters used this verbatim before regen. Banned to prevent the same model-voice convergence in future generations."
+    },
+    {
+      "phrase": "The paradox:",
+      "reason": "Counter opener template (colon form). 5 of 12 Righteous Mind chapters opened with this stem. Bans the paraphrase of the already-banned 'The paradox is that/this'."
+    },
+    {
+      "phrase": "It feels like",
+      "reason": "Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem."
+    },
+    {
+      "phrase": "the real move is",
+      "reason": "Counter payoff template. 4 of 8 Like Switch chapters used this stem. Same family as 'the real lever is' (already banned)."
+    },
+    {
+      "phrase": "the hard move is",
+      "reason": "Counter payoff template. Like Switch / 48 Laws variants. Same family as 'the real lever is'."
+    },
+    {
+      "phrase": "the real test is",
+      "reason": "Counter payoff template. Recurs across multiple books. Same family."
+    },
+    {
+      "phrase": "the hidden cost is",
+      "reason": "Counter payoff template. Lean Startup + others. Same family."
+    },
+    {
+      "phrase": "the hidden cause is",
+      "reason": "Counter payoff template. Blue Ocean + others. Same family."
+    },
+    {
+      "phrase": "the deeper cause is",
+      "reason": "Counter payoff template. Lean Startup. Same family."
+    },
+    {
+      "phrase": "the sharper move is",
+      "reason": "Counter payoff template. Talk Like Ted / 48 Laws stubs / others."
+    },
+    {
+      "phrase": "the stronger move is",
+      "reason": "Counter payoff template. 48 Laws stubs + others."
+    },
+    {
+      "phrase": "the visible lever is",
+      "reason": "Counter payoff template. GMM Vol 2 variant. Same family as 'the real lever is'."
+    },
+    {
+      "phrase": "the better move is",
+      "reason": "Counter payoff template. Recurs across books in this audit batch."
+    },
+    {
+      "phrase": "fits the immediate pressure around",
+      "reason": "Quiz distractor tail-clause template. Emerged in ATC Phase 3 regeneration; appeared in ~1,400 distractors across 99 chapters before re-detection. Mirrored in src/critics/quizQuality.ts BANNED_TAIL_CLAUSES."
+    },
+    {
+      "phrase": "could make that choice seem workable",
+      "reason": "Quiz distractor tail-clause template. on-becoming-a-person Phase 1 + never-eat-alone Phase 1 (~50 instances each). Bulk-regeneration boilerplate."
+    },
+    {
+      "phrase": "gives that route a concrete rationale",
+      "reason": "Quiz distractor tail-clause template. Same defect class as 'fits the immediate pressure around'."
+    },
+    {
+      "phrase": "making the tradeoff feel defensible",
+      "reason": "Quiz distractor tail-clause template. Bulk-regeneration boilerplate; same family."
+    },
+    {
+      "phrase": "looks persuasive because the recent evidence is tidy",
+      "reason": "Quiz distractor tail-clause template. Black Swan Phase 2 (114 instances). Bulk-regeneration boilerplate."
+    },
+    {
+      "phrase": "while preserving the spirit of the original",
+      "reason": "Quiz distractor tail-clause template. Generic boilerplate that recurs across distractor regens."
+    },
+    {
+      "phrase": "without disrupting the broader workflow",
+      "reason": "Quiz distractor tail-clause template. Generic boilerplate."
+    },
+    {
+      "phrase": "given the constraints in play",
+      "reason": "Quiz distractor tail-clause template. Generic boilerplate."
+    },
+    {
+      "phrase": "based on the available signal",
+      "reason": "Quiz distractor tail-clause template. Generic boilerplate."
+    },
+    {
+      "phrase": "until the team feels more certain",
+      "reason": "Quiz distractor template. the-12-week-year.v21 'Keep discussing X until the team feels more certain' (102 instances). Template-substitution generator artifact."
+    },
+    {
+      "phrase": "Keep the old message for now",
+      "reason": "Quiz distractor template. execution.v21 'Keep the old message for now so the team does not lose energy' (80 instances). Template-substitution generator artifact."
+    },
+    {
+      "phrase": "so the team does not lose energy",
+      "reason": "Quiz distractor template — execution.v21 tail. Banned in tandem with 'Keep the old message for now'."
+    },
+    {
+      "phrase": "Answer every visible request first",
+      "reason": "Quiz distractor template. deep-work.v21 (9 instances). Template-substitution generator artifact."
+    },
+    {
+      "phrase": "Remove every source of entertainment forever",
+      "reason": "Quiz distractor template. deep-work.v21 q05 #0 in every chapter (9 instances). Verbatim cross-chapter duplicate."
+    },
+    {
+      "phrase": "The memo is thin because strategic work should always be short",
+      "reason": "Quiz distractor template. deep-work.v21 q07 #2 in every chapter (9 instances). Verbatim cross-chapter duplicate."
+    },
+    {
+      "phrase": "Ranking would make action impossible",
+      "reason": "Quiz distractor template. the-one-thing.v21 q05 #2 across Ch10-Ch15 (6 instances). Cross-chapter duplicate."
+    },
+    {
+      "phrase": "It proves easy tasks never matter",
+      "reason": "Quiz distractor template. the-one-thing.v21 q06 #0 across Ch10-Ch15 (6 instances). Cross-chapter duplicate."
+    },
+    {
+      "phrase": "choose the action with consequence over noise",
+      "reason": "Quiz distractor template. the-one-thing.v21 distractor tail (6 instances)."
+    },
+    {
+      "phrase": "delay the decision so",
+      "reason": "Quiz distractor template stem. the-12-week-year.v21 'Delay the decision so X can stay flexible' (102 instances)."
     }
   ],
   "softBanned": [

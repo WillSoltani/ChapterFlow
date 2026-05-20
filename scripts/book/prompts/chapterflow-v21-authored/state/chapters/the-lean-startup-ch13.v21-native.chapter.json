@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-lean-startup-ch13",
+  "number": 13,
+  "title": "Epilogue: Waste Not",
+  "readingTimeMinutes": 12,
+  "hook": "The colored tape on the roadmap can show exactly where truth is scheduled to arrive too late.",
+  "counterintuition": "Planning harder can backfire when learning arrives after commitments harden. Under uncertainty, earlier evidence saves more work than extra polish.",
+  "tryThisNow": "Mark one active plan with two dates: when commitment happens and when evidence arrives. Move one test earlier if the evidence comes too late.",
+  "keyTakeaway": "Pull learning before commitment so effort, insight, and opportunity are not spent around untested certainty.",
+  "breakdown": {
+    "fastRead": "Marta stands before a wall roadmap covered with colored tape. Each feature has a risk label. Each label has an evidence date. The problem is visible at once: the biggest truths arrive after months of work.\n\nWaste Not means protecting effort from old certainty habits when the work still needs proof.\n\nShe moves the evidence dates left. A roadmap that buys truth late is not disciplined. It is expensive confidence. The goal is not thrift for its own sake. The goal is to keep effort close enough to learning that the team does not buy the truth after the budget is gone.",
+    "deepRead": "\"Move the resident test before the rewrite,\" Peter says, with a grant binder beside a neighborhood survey box. The civic office wants polished applications before anyone watches resident behavior. The budget line is ready. The truth is not.\n\nThat order is the waste.\n\nUnder uncertainty, waste has more than one form. There is wasted effort: work that gets thrown away because a basic assumption fails late. There is wasted learning: evidence that arrives but does not change the plan. There is wasted opportunity: a better path that stays invisible because the team committed too soon.\n\nDisciplined experimentation protects all three. It does not make teams timid. It makes them earlier. Earlier evidence keeps effort smaller, learning fresher, and options alive.\n\nThe question is where truth enters the schedule.\n\nMarta uses the same standard on the wall roadmap. Each colored tape strip gets a small evidence date before its spend date. When the riskiest truth arrives in week ten, she moves it to week two or cuts the work that depends on it. The plan becomes less impressive for an hour and far less wasteful for the quarter.\n\nPeter adds a resident test date to the grant binder before the rewrite begins. The office can still write a strong application, but now the budget line has to face behavior first. If residents ignore the service in a small test, the team can change the proposal while the cost is still mostly ink and meeting time.",
+    "fullRead": "Nina's clapboard leans against a laptop showing pledge totals. The producer team wants to hold locations and polish the crowdfunding campaign. She tests a trailer pledge page first, before the location hold turns into a bill. If the audience will not pledge to the trailer, beautiful campaign assets only make the late lesson more expensive.\n\nThe cleanest way to waste less is to make learning arrive before commitment hardens around the wrong answer.\n\nValidated learning and disciplined experimentation make this the anti-waste synthesis. Management under uncertainty cannot rely on old habits that assume the facts are already known. Planning, budgeting, designing, hiring, and building still matter. They become wasteful when they outrun evidence so far that correction arrives as damage rather than guidance.\n\nWhere is your plan most committed and least informed?\n\nLukas faces that in a warehouse automation proposal. Temporary arrows tape a forklift lane, and the machinery quote is waiting. A manual simulation with a cycle timer can teach whether the workflow improves before capital spending buries the cheap lesson. He asks for the simulation first. The manual run is not glamorous. It is the moment where waste gets smaller.\n\nPreserving insight is just as important as avoiding effort. Teams often learn something useful and then discard it because the plan is already too far along to admit the lesson. The cost is not only the work already spent. It is the opportunity to change while change is still cheap.\n\nHadiya sees this after a nursing apprenticeship review. A scrub top lies folded beside an application form, and the curriculum outline is already expanding. In the postmortem, she remembers one candidate saying the shadow shift mattered more than any brochure. The nonprofit interviews candidates and tests one shadow shift before writing the full program. Early insight becomes structure instead of a footnote.\n\nThis is not a call to underbuild everything forever. Some truths require scale. Some commitments are necessary before perfect evidence exists. The discipline is to ask whether a smaller experiment can buy the key lesson before the larger commitment locks in. If not, proceed with eyes open. If yes, buying the lesson late is waste.\n\nAntoine learns the hospitality version. A room key sleeve carries a handwritten checkout offer, and the return booking code is easy to track. Before, the marketing team wanted beautiful loyalty tiers. After one checkout offer shows why guests return, the redesign has a reason to exist. The first small offer prevents a large loyalty program from becoming decoration.\n\nWaste Not is not a slogan about spending less. It is a standard for respecting effort under uncertainty. Pull truth earlier. Preserve what the evidence teaches. Keep opportunity alive until the plan has earned its confidence."
+  },
+  "examples": [
+    {
+      "exampleId": "ch13-ex01-marta-roadmap",
+      "title": "Marta Moves Evidence Dates Left",
+      "tags": [
+        "scene",
+        "roadmap",
+        "waste"
+      ],
+      "planSpec": {
+        "domain": "software roadmap cleanup",
+        "audience": "product leadership team",
+        "stakes": "months of effort could be spent before the riskiest truth arrives",
+        "format": "scene",
+        "requiredBeat": "Marta marks every roadmap item by whether it buys truth early or late"
+      },
+      "scenario": "At 9:05 a.m. Monday, Marta faces a wall roadmap covered with colored tape, risk labels, and one evidence date per item. The leadership team is proud of the quarter plan. The riskiest truth arrives in week ten. Before planning locks, Marta must choose between accepting the sequence and marking every item by whether it buys truth early or late. The evidence date tells Marta whether the quarter plan is buying truth early or delaying it.",
+      "whatToDo": "Label each roadmap item by the date it produces evidence, then move the riskiest tests earlier. Cut work that buys truth only after large commitment.",
+      "whyItMatters": "Months of effort can be wasted when the key lesson arrives late. Evidence dates show where confidence is being bought too expensively."
+    },
+    {
+      "exampleId": "ch13-ex02-peter-grant",
+      "title": "Peter Moves the Resident Test Before the Grant Rewrite",
+      "tags": [
+        "dialogue",
+        "civic",
+        "grant"
+      ],
+      "planSpec": {
+        "domain": "city grant program redesign",
+        "audience": "civic innovation office",
+        "stakes": "public money may fund polished plans before resident behavior is tested",
+        "format": "dialogue",
+        "requiredBeat": "Peter moves one resident test before the grant application rewrite"
+      },
+      "scenario": "\"The binder can wait,\" Peter says, tapping the grant binder beside a neighborhood survey box. The budget line for the rewrite is ready, but no resident test has happened. The civic office has to choose between polishing the application and moving one resident behavior test before public money funds the plan. The survey box must produce a resident behavior signal before the grant language hardens around a guess.",
+      "whatToDo": "Run one resident test before rewriting the grant application. Use the result to shape the budget line instead of funding polished assumptions.",
+      "whyItMatters": "Public money can buy certainty-shaped plans before residents act. One early test protects effort and improves the application."
+    },
+    {
+      "exampleId": "ch13-ex03-nina-film",
+      "title": "Nina Tests the Trailer Pledge Page",
+      "tags": [
+        "vignette",
+        "film",
+        "pledges"
+      ],
+      "planSpec": {
+        "domain": "independent film crowdfunding plan",
+        "audience": "producer team",
+        "stakes": "campaign polish may waste the chance to learn audience demand cheaply",
+        "format": "vignette",
+        "requiredBeat": "Nina tests a trailer pledge page before booking locations"
+      },
+      "scenario": "The clapboard leans against a laptop showing pledge totals while Nina reviews a location hold at a rented production office. The trailer page is rough, but the pledge button works. The producer team is ready to polish campaign assets. Before the deposit deadline, Nina must decide whether to test audience demand now or book locations before the cheap truth arrives. The pledge button gives Nina a cheap demand signal before the location hold becomes a bill.",
+      "whatToDo": "Launch the trailer pledge page before booking locations. Use pledge behavior to decide whether campaign polish deserves the next spend.",
+      "whyItMatters": "Campaign assets can waste the chance to learn demand cheaply. Pledges reveal audience interest before location costs harden."
+    },
+    {
+      "exampleId": "ch13-ex04-lukas-warehouse",
+      "title": "Lukas Runs the Forklift Lane by Hand",
+      "tags": [
+        "decision point",
+        "warehouse",
+        "simulation"
+      ],
+      "planSpec": {
+        "domain": "warehouse automation proposal",
+        "audience": "operations executive",
+        "stakes": "capital spending may bury a cheap workflow lesson",
+        "format": "decision_point",
+        "requiredBeat": "Lukas asks for one manual simulation before the machinery quote"
+      },
+      "scenario": "You are beside Lukas in a forklift lane taped with temporary arrows while the machinery quote sits open. A cycle timer is clipped to his vest. The automation proposal looks serious. Before capital approval, Lukas needs to decide whether to sign off on the quote or ask for one manual simulation that tests the workflow first. The cycle timer lets Lukas test flow before the machinery quote turns into capital spending.",
+      "whatToDo": "Run the manual simulation with the cycle timer before approving machinery. Let the cheap workflow lesson arrive before capital spending locks in.",
+      "whyItMatters": "Automation can bury a lesson that tape and a timer could reveal. Early simulation protects money from a workflow assumption."
+    },
+    {
+      "exampleId": "ch13-ex05-hadiya-nursing",
+      "title": "Hadiya Tests One Shadow Shift",
+      "tags": [
+        "postmortem",
+        "workforce",
+        "apprenticeship"
+      ],
+      "planSpec": {
+        "domain": "regional nursing apprenticeship",
+        "audience": "workforce nonprofit",
+        "stakes": "curriculum buildout may discard early insight from candidates",
+        "format": "postmortem",
+        "requiredBeat": "Hadiya interviews and tests one shadow shift before writing the full program"
+      },
+      "scenario": "It took Hadiya one folded scrub top to remember the candidate's comment. The application form was simple, and the curriculum outline was already growing. In the postmortem, she sees the risk: the nonprofit could write the full program before testing what candidates need to feel ready. She interviews applicants and tests one shadow shift first. The shadow shift turns one candidate insight into program structure before the curriculum expands.",
+      "whatToDo": "Interview candidates and run one shadow shift before writing the full curriculum. Let early applicant insight shape the program structure.",
+      "whyItMatters": "Curriculum buildout can discard the insight that would make the program work. A shadow shift buys truth before the nonprofit commits."
+    },
+    {
+      "exampleId": "ch13-ex06-antoine-hotel",
+      "title": "Antoine Tests the Checkout Offer",
+      "tags": [
+        "before after",
+        "hotel",
+        "loyalty"
+      ],
+      "planSpec": {
+        "domain": "boutique hotel loyalty redesign",
+        "audience": "hospitality marketing team",
+        "stakes": "beautiful loyalty tiers may waste learning about why guests return",
+        "format": "before_after",
+        "requiredBeat": "Antoine tests one checkout offer before redesigning the whole program"
+      },
+      "scenario": "At 11:20 a.m. behind the boutique hotel front desk, Antoine places a room key sleeve with a handwritten checkout offer beside the return booking code. Before, his team sketched beautiful loyalty tiers for the hotel. After one weekend of checkout offers, they learn which guests actually book again and redesign the program around that reason instead of decorative tiers. The return code shows Antoine why guests come back before loyalty tiers become decoration.",
+      "whatToDo": "Test one checkout offer with a return booking code before designing loyalty tiers. Use return behavior to decide what the program should reward.",
+      "whyItMatters": "Beautiful tiers can waste learning about why guests come back. A handwritten offer makes the return reason visible before the whole program is built."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team spends months polishing a service before testing the riskiest assumption, then learns the plan is wrong after contracts and hiring are already in place. What kind of waste is this?",
+        "choices": [
+          "Waste from learning arriving after commitment has already hardened.",
+          "Waste from testing too many assumptions too early.",
+          "Waste from refusing to polish the final product."
+        ],
+        "correctIndex": 0,
+        "explanation": "The waste is timing: effort was spent before evidence arrived. Testing earlier would have protected work from the wrong commitment.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A roadmap shows the most important evidence arriving after most engineering work is complete. What should the product lead do?",
+        "choices": [
+          "Keep the roadmap intact so teams preserve momentum.",
+          "Move the riskiest evidence-producing tests earlier in the roadmap.",
+          "Remove evidence dates because they make planning uncomfortable."
+        ],
+        "correctIndex": 1,
+        "explanation": "The lead should pull truth earlier. Momentum that outruns evidence can turn disciplined work into expensive confidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A civic office wants to rewrite a grant application before testing whether residents will use the service described in the proposal. The budget line is ready, but the behavior is unknown. Which move reduces waste?",
+        "choices": [
+          "Spend the full budget on a clearer application narrative.",
+          "Delay all action until every neighborhood can be surveyed.",
+          "Run one resident test before the rewrite shapes the budget."
+        ],
+        "correctIndex": 2,
+        "explanation": "A resident test can shape the budget before public money funds assumptions. Better narrative and total delay both miss the early learning move.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A producer can hold expensive locations now or test a rough trailer pledge page first. Which choice best preserves opportunity?",
+        "choices": [
+          "Test the pledge page before location costs lock in.",
+          "Hold locations now because visible commitment builds confidence.",
+          "Avoid crowdfunding until the film is finished."
+        ],
+        "correctIndex": 0,
+        "explanation": "The pledge page pulls audience evidence before a costly hold. Commitment may build confidence, but it can also make a late lesson expensive.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A warehouse executive wants to approve machinery before trying a manual simulation of the workflow. What should happen first?",
+        "choices": [
+          "Approve the machinery because automation gives cleaner data.",
+          "Run the manual simulation with a cycle timer.",
+          "Skip the workflow test because operations already knows the floor."
+        ],
+        "correctIndex": 1,
+        "explanation": "A manual simulation can expose the key workflow lesson before capital spending. Machinery may only make the wrong workflow expensive.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A nonprofit writes a full apprenticeship curriculum before testing what candidates need in a shadow shift. What is the risk?",
+        "choices": [
+          "It may learn too much from applicants too soon.",
+          "It may make the application form too simple.",
+          "It may discard early insight that should shape the program."
+        ],
+        "correctIndex": 2,
+        "explanation": "The curriculum can harden before applicant insight arrives. A shadow shift preserves learning while the program is still changeable.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A boutique hotel team designs loyalty tiers before testing a single checkout offer, even though a return booking code could show why guests come back. Why might that waste learning?",
+        "choices": [
+          "The team may build around guesses about why guests return instead of return behavior.",
+          "Loyalty programs can never be tested with checkout offers.",
+          "Guests dislike handwritten offers because they feel informal."
+        ],
+        "correctIndex": 0,
+        "explanation": "Return behavior should shape the program. Beautiful tiers can be built around assumptions if the team skips the cheap checkout test.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team learns a key customer fact early but keeps the original plan because the budget was already approved. What waste appears?",
+        "choices": [
+          "Wasted speed, because the team learned too soon.",
+          "Wasted learning, because evidence arrived but did not change commitment.",
+          "Wasted polish, because customers saw the plan unfinished."
+        ],
+        "correctIndex": 1,
+        "explanation": "Learning is wasted when it cannot influence the plan. The problem is not early evidence; it is commitment refusing to absorb it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team can either keep a polished plan or move one awkward experiment earlier so the central assumption is tested before hiring. Which is better?",
+        "choices": [
+          "Keep the polished plan because confidence helps execution.",
+          "Delay both until next quarter to avoid uncomfortable evidence.",
+          "Move the experiment earlier because it protects effort before hiring hardens the path."
+        ],
+        "correctIndex": 2,
+        "explanation": "The earlier experiment lowers the cost of being wrong. Polished confidence and delay both preserve uncertainty until it becomes more expensive.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A roadmap spends heavily before the first evidence date. What does waste mean under uncertainty?",
+      "back": "It includes effort spent before learning, learning that arrives too late to change the plan, and opportunity lost because commitment hardened around guesses.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "How do you find late-learning waste in a roadmap?",
+      "back": "Mark when commitment happens and when evidence arrives. If the biggest evidence comes after major work, pull the test earlier.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why is a cheap manual simulation sometimes better than capital spending?",
+      "back": "It can buy the key workflow lesson before machinery or infrastructure makes the wrong assumption expensive.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What is wasted learning?",
+      "back": "Evidence that arrives but does not change the plan. The team technically learned something, but commitment was already too rigid to use it.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A team wants to protect effort before hiring and equipment spending. What is the cleanest way to waste less under uncertainty?",
+      "back": "Make learning arrive before commitment. Use disciplined experiments to buy truth while decisions are still flexible.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to audit the timing of learning. The skill is finding where effort, money, or reputation is committed before evidence arrives, then moving the cheapest meaningful test earlier.",
+    "ifThenPlans": [
+      {
+        "context": "roadmap planning",
+        "plan": "If the riskiest evidence arrives after most work is done, then move one test earlier or cut the dependent work."
+      },
+      {
+        "context": "budget review",
+        "plan": "If money is allocated before behavior is tested, then fund the smallest experiment that can shape the budget."
+      },
+      {
+        "context": "capital spending",
+        "plan": "If equipment or automation is proposed, then run a manual simulation before approving the quote."
+      },
+      {
+        "context": "program design",
+        "plan": "If a full curriculum, loyalty program, or campaign is being designed, then test one real user behavior before the structure hardens."
+      }
+    ],
+    "twentyFourHourChallenge": "Tomorrow, take one plan and mark when evidence arrives. Move one experiment earlier so the key lesson lands before a major commitment.",
+    "weeklyPractice": "Each week, review a decision that consumed effort. Ask whether learning arrived early enough to shape it, then redesign one process so next week's evidence arrives sooner."
+  },
+  "memorableLines": [
+    {
+      "text": "Waste Not means protecting effort from old certainty habits when the work still needs proof.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the synthesis a precise anti-waste definition."
+    },
+    {
+      "text": "The question is where truth enters the schedule.",
+      "location": "breakdown.deepRead",
+      "why": "It turns waste into a timing problem readers can audit."
+    },
+    {
+      "text": "The cleanest way to waste less is to make learning arrive before commitment hardens around the wrong answer.",
+      "location": "breakdown.fullRead",
+      "why": "It states the chapter's practical synthesis in one memorable line."
+    }
+  ]
+}

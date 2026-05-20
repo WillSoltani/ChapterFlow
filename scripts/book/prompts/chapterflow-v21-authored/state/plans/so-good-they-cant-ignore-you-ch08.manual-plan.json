@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch08",
+  "number": 8,
+  "title": "The Dream-Job Elixir",
+  "coreMove": "Recognize control as a powerful reward that becomes stable only when backed by career capital.",
+  "sourcePressure": "Control is the next major reward bought by career capital, and it becomes dangerous when pursued without leverage.",
+  "chapterSpecificMisunderstanding": "Equating control with quitting, remote work, or freedom from obligation.",
+  "sourceAlignmentTerms": [
+    "control",
+    "autonomy",
+    "dream-job elixir",
+    "career capital",
+    "leverage",
+    "freedom",
+    "reward"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "The elixir is not escape",
+      "detail": "The locked TOC confirms the chapter as the opening move for Rule 3.",
+      "useIn": "both",
+      "phrasingHint": "The elixir is not escape; it is the felt change when skill gives you more say over the work."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch08: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch08: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch08: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch08: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anke",
+      "domain": "regional pharmacy scheduling",
+      "audience": "a practitioner responsible for regional pharmacy scheduling",
+      "stakes": "regional pharmacy scheduling will either gain a defensible next move or drift into the chapter-specific trap: Equating control with quitting, remote work, or freedom from obligation.",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "draws a line from the control being requested to the proof of value in color-coded shift board, then deletes any part of the ask that is only preference",
+      "firstImage": "color-coded shift board",
+      "mustInclude": [
+        "color-coded shift board",
+        "autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "architecture model shop",
+      "audience": "a practitioner responsible for architecture model shop",
+      "stakes": "architecture model shop will either gain a defensible next move or drift into the chapter-specific trap: Equating control with quitting, remote work, or freedom from obligation.",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "draws a line from the control being requested to the proof of value in material samples beside failure photos, then deletes any part of the ask that is only preference",
+      "firstImage": "material samples beside failure photos",
+      "mustInclude": [
+        "material samples beside",
+        "autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "emergency dispatch protocol design",
+      "audience": "a practitioner responsible for emergency dispatch protocol design",
+      "stakes": "emergency dispatch protocol design will either gain a defensible next move or drift into the chapter-specific trap: Equating control with quitting, remote work, or freedom from obligation.",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "draws a line from the control being requested to the proof of value in call log with highlighted deviations, then deletes any part of the ask that is only preference",
+      "firstImage": "call log with highlighted deviations",
+      "mustInclude": [
+        "call log with",
+        "autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "translation agency project flow",
+      "audience": "a practitioner responsible for translation agency project flow",
+      "stakes": "translation agency project flow will either gain a defensible next move or drift into the chapter-specific trap: Equating control with quitting, remote work, or freedom from obligation.",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "draws a line from the control being requested to the proof of value in tracked-change proof on paper, then deletes any part of the ask that is only preference",
+      "firstImage": "tracked-change proof on paper",
+      "mustInclude": [
+        "tracked-change proof on",
+        "autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "agricultural equipment sales route",
+      "audience": "a practitioner responsible for agricultural equipment sales route",
+      "stakes": "agricultural equipment sales route will either gain a defensible next move or drift into the chapter-specific trap: Equating control with quitting, remote work, or freedom from obligation.",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "draws a line from the control being requested to the proof of value in muddy county route map, then deletes any part of the ask that is only preference",
+      "firstImage": "muddy county route map",
+      "mustInclude": [
+        "muddy county route",
+        "autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "animation studio rigging pipeline",
+      "audience": "a practitioner responsible for animation studio rigging pipeline",
+      "stakes": "animation studio rigging pipeline will either gain a defensible next move or drift into the chapter-specific trap: Equating control with quitting, remote work, or freedom from obligation.",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "draws a line from the control being requested to the proof of value in failed character rig on screen, then deletes any part of the ask that is only preference",
+      "firstImage": "failed character rig on screen",
+      "mustInclude": [
+        "failed character rig",
+        "autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "name control precisely",
+      "link autonomy to leverage",
+      "avoid treating freedom as escape"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one kind of control you want and the proof of value that would make it easier for others to accept.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,204 @@
+{
+  "chapterId": "the-first-20-hours-ch06",
+  "number": 6,
+  "title": "Touch Typing",
+  "coreMove": "Protect the slower corrected motion long enough for it to displace the familiar wrong pattern.",
+  "sourcePressure": "The source frames touch typing as habit repair: replacing an old motor pattern, tolerating frustration, and using consolidation only in service of corrected repetition.",
+  "chapterSpecificMisunderstanding": "Mistaking the temporary speed drop for failure instead of recognizing it as the cost of replacing a comfortable bad pattern.",
+  "sourceAlignmentTerms": [
+    "touch typing",
+    "habit repair",
+    "frustration tolerance",
+    "sleep-linked motor consolidation",
+    "corrected repetition",
+    "old pattern",
+    "temporary regression"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "touch typing",
+      "detail": "the frozen support names touch typing as habit repair rather than pure beginner learning",
+      "useIn": "both",
+      "phrasingHint": "Touch typing hurts pride because the old pattern still works just well enough to keep stealing the keys back."
+    },
+    {
+      "kind": "artifact",
+      "name": "sleep-linked motor consolidation",
+      "detail": "the source supports consolidation only as it serves corrected repetition and warns against detailed neuroscience claims",
+      "useIn": "fullRead",
+      "phrasingHint": "Sleep can only strengthen what the day has actually rehearsed, so sloppy comfort is still sloppy comfort tomorrow."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "typing speed leaderboard opener",
+      "keyboard warrior joke",
+      "new habit in 21 days claim"
+    ],
+    "counterintuition": [
+      "go slower forever",
+      "sleep solves practice",
+      "frustration proves talent"
+    ],
+    "tryThisNow": [
+      "type anything for one minute",
+      "download a typing app",
+      "set a words-per-minute goal only"
+    ],
+    "examples": [
+      "generic laptop at kitchen table",
+      "office email pile",
+      "school essay panic"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "court stenography student repairing finger placement",
+      "audience": "a learner whose old speed fights the new map",
+      "stakes": "mis-keyed words in practice transcripts hide the testimony structure",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Hannah covers the speed display, slows to one testimony phrase, and restarts whenever the old two-finger reach steals a key",
+      "firstImage": "steno paper curling beside a covered speed display",
+      "mustInclude": [
+        "covered speed display",
+        "testimony phrase",
+        "restart mark"
+      ],
+      "mustAvoid": [
+        "generic school typing class",
+        "speed obsession"
+      ]
+    },
+    {
+      "protagonistName": "Anders",
+      "domain": "piano student relearning a faulty left-hand fingering",
+      "audience": "a reader with a comfortable motor shortcut that blocks progress",
+      "stakes": "the shortcut collapses every time the piece reaches performance tempo",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Anders accepts a slower metronome mark, repeats the corrected fingering for four bars, and refuses the old shortcut even when it sounds cleaner once",
+      "firstImage": "a metronome needle ticking beside four penciled bars",
+      "mustInclude": [
+        "metronome mark",
+        "four bars",
+        "old shortcut"
+      ],
+      "mustAvoid": [
+        "concert triumph",
+        "generic music discipline"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "warehouse scanner keypad entry repair",
+      "audience": "a worker whose familiar habit causes small costly errors",
+      "stakes": "wrong bin codes send returned medical supplies to quarantine twice a week",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Megan decides to slow one receiving lane, speak the corrected keypad sequence, and log misses instead of rushing back to the old thumb pattern",
+      "firstImage": "a handheld scanner blinking above a tray of return labels",
+      "mustInclude": [
+        "receiving lane",
+        "keypad sequence",
+        "miss log"
+      ],
+      "mustAvoid": [
+        "generic productivity warehouse",
+        "heroic safety drama"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "espresso bar milk-steaming grip correction",
+      "audience": "a tactile learner whose bad grip feels faster",
+      "stakes": "the morning rush keeps producing scorched milk and wasted pitchers",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Matteo lets the trainer move his wrist, practices three slow pitchers before opening, and resists snapping back when the queue forms",
+      "firstImage": "steam fog beading on a stainless pitcher lip",
+      "mustInclude": [
+        "wrist correction",
+        "three slow pitchers",
+        "morning queue"
+      ],
+      "mustAvoid": [
+        "coffee lifestyle scene",
+        "generic customer rush"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "surgical knot-tying practice board",
+      "audience": "a learner in a precise motor skill who must value corrected reps over relief",
+      "stakes": "a sloppy handoff in simulation keeps loosening the knot",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Astrid predicts speed will make the knot feel natural, then learns the knot holds only after she slows the handoff and sleeps on the corrected sequence",
+      "firstImage": "blue practice cord looped across a foam knot board",
+      "mustInclude": [
+        "practice cord",
+        "handoff",
+        "next-day check"
+      ],
+      "mustAvoid": [
+        "medical procedure detail",
+        "unsupported neuroscience"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "guitar chord-change repair for a busker permit audition",
+      "audience": "a casual performer replacing a messy familiar motion",
+      "stakes": "the chord buzz returns every time a listener walks by",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Julien marks one chord change, lifts fingers in the corrected order for ten slow reps, and stops counting any rep where the old collapse sneaks in",
+      "firstImage": "your fingertip hovering above a penciled chord box on a permit form",
+      "mustInclude": [
+        "chord box",
+        "ten slow reps",
+        "buzz check"
+      ],
+      "mustAvoid": [
+        "street-performance romance",
+        "generic guitar beginner scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "interpret temporary regression correctly",
+      "choose corrected repetition over old-speed relief",
+      "connect consolidation to what was actually practiced",
+      "spot when speed metrics are defending a bad pattern"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one familiar motion you do poorly, slow one rep below comfort, and name the exact old shortcut you are refusing.",
+  "readingTimeMinutes": 12
+}

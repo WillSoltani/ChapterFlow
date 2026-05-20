@@ -1,0 +1,159 @@
+{
+  "chapterId": "the-one-thing-ch08",
+  "number": 8,
+  "title": "A Balanced Life",
+  "coreMove": "Accept deliberate imbalance for a season while naming what must be protected and repaired afterward.",
+  "sourcePressure": "This lie chapter rejects static balance and teaches purposeful, temporary imbalance when one responsibility or season requires extra force.",
+  "chapterSpecificMisunderstanding": "Making a generic work-life balance speech or excusing permanent neglect.",
+  "sourceAlignmentTerms": [
+    "balanced life",
+    "imbalance",
+    "season",
+    "counterbalance",
+    "responsibility",
+    "repair"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A single choice changes the whole day",
+      "The real priority is hiding under the busy work",
+      "A Balanced Life as a generic focus opener"
+    ],
+    "counterintuition": [
+      "Doing less means doing more",
+      "Busy is not productive",
+      "Focus is harder than it looks"
+    ],
+    "tryThisNow": [
+      "Set a timer and list priorities",
+      "Write down your one thing without a concrete context",
+      "Reflect on what matters most"
+    ],
+    "examples": [
+      "generic office worker choosing email or strategy",
+      "kitchen-table family planning scene",
+      "startup founder whiteboard scene",
+      "classroom marker or lecture scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional blood bank shortage week",
+      "audience": "operations director",
+      "stakes": "a storm has cancelled donor drives",
+      "format": "decision_point",
+      "requiredBeat": "she extends donor-call shifts for four days and schedules recovery coverage before approving the push",
+      "firstImage": "a blood inventory screen with O-negative flashing under a storm alert",
+      "mustInclude": [
+        "inventory screen",
+        "storm alert",
+        "coverage calendar"
+      ],
+      "mustAvoid": [
+        "generic overwork story"
+      ]
+    },
+    {
+      "domain": "family-owned orchard during frost nights",
+      "audience": "orchard manager",
+      "stakes": "one cold snap could kill the blossoms",
+      "format": "scene",
+      "requiredBeat": "he sleeps in the truck for two nights to run frost fans, then marks Friday afternoon for payroll and family repair",
+      "firstImage": "frost crystals forming on apple blossoms under fan lights",
+      "mustInclude": [
+        "frost fan",
+        "truck blanket",
+        "payroll envelope"
+      ],
+      "mustAvoid": [
+        "generic farm hardship"
+      ]
+    },
+    {
+      "domain": "museum exhibit installation week",
+      "audience": "curator",
+      "stakes": "loaned artifacts arrive with immovable insurance dates",
+      "format": "before_after",
+      "requiredBeat": "she accepts three late nights for case placement but refuses to skip the daily condition checks that protect the artifacts",
+      "firstImage": "white cotton gloves beside an unopened glass display case",
+      "mustInclude": [
+        "cotton gloves",
+        "case lights",
+        "insurance forms"
+      ],
+      "mustAvoid": [
+        "generic deadline crunch"
+      ]
+    },
+    {
+      "domain": "neonatal unit staffing surge",
+      "audience": "nurse scheduler",
+      "stakes": "two nurses are out during a high-acuity weekend",
+      "format": "dialogue",
+      "requiredBeat": "she tells the team which comforts will wait, which patient-safety routines will not, and when the swapped days off will be restored",
+      "firstImage": "a staffing grid clipped to a NICU hallway cart",
+      "mustInclude": [
+        "staffing grid",
+        "acuity notes",
+        "shift swap slips"
+      ],
+      "mustAvoid": [
+        "generic healthcare burnout"
+      ]
+    },
+    {
+      "domain": "software security patch window for a public library system",
+      "audience": "security engineer",
+      "stakes": "patron data stays exposed until a patch lands",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts weekend balance is possible, then chooses a 30-hour patch push with Monday off-call recovery written into the plan",
+      "firstImage": "a vulnerability notice printed beside a quiet library server rack",
+      "mustInclude": [
+        "vulnerability notice",
+        "server rack",
+        "off-call rota"
+      ],
+      "mustAvoid": [
+        "generic tech overtime"
+      ]
+    },
+    {
+      "domain": "wedding florist during a heat wave",
+      "audience": "floral designer",
+      "stakes": "bouquets will wilt before delivery",
+      "format": "postmortem",
+      "requiredBeat": "she sees the good imbalance was skipping showroom refresh, not skipping cooler checks or driver hydration",
+      "firstImage": "condensation running down a flower cooler door at 5:20 a.m.",
+      "mustInclude": [
+        "flower cooler",
+        "driver water crate",
+        "delivery list"
+      ],
+      "mustAvoid": [
+        "generic small business sacrifice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish purposeful imbalance from drift",
+      "protect non-negotiables during a push",
+      "make the return explicit"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one area that needs extra force this week and one area that must receive a clear repair action when the push ends.",
+  "readingTimeMinutes": 12
+}

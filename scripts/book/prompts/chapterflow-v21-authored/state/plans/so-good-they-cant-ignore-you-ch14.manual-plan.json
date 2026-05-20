@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch14",
+  "number": 14,
+  "title": "Missions Require Little Bets",
+  "coreMove": "Use small, disciplined bets to discover which mission direction survives contact with reality.",
+  "sourcePressure": "Little bets come after mission capital and before marketing, so the focus is experiments rather than invented case studies.",
+  "chapterSpecificMisunderstanding": "Treating little bets as random dabbling or low-stakes procrastination.",
+  "sourceAlignmentTerms": [
+    "little bets",
+    "mission discovery",
+    "small experiments",
+    "feedback",
+    "capital",
+    "direction",
+    "explore"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "A little bet is small enough to survive being wrong",
+      "detail": "The locked TOC confirms the chapter in the Rule 4 progression.",
+      "useIn": "both",
+      "phrasingHint": "Little bets are how mission gets evidence without pretending to know too early."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch14: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch14: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch14: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch14: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Stephen",
+      "domain": "senior-care meal design",
+      "audience": "a practitioner responsible for senior-care meal design",
+      "stakes": "senior-care meal design will either gain a defensible next move or drift into the chapter-specific trap: Treating little bets as random dabbling or low-stakes procrastination.",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "builds a seven-day bet around labeled lunch trays on a cart, names one audience and one feedback signal, then records what the result changes about the next bet",
+      "firstImage": "labeled lunch trays on a cart",
+      "mustInclude": [
+        "labeled lunch trays",
+        "mission discovery",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Nathan",
+      "domain": "cybersecurity training for artists",
+      "audience": "a practitioner responsible for cybersecurity training for artists",
+      "stakes": "cybersecurity training for artists will either gain a defensible next move or drift into the chapter-specific trap: Treating little bets as random dabbling or low-stakes procrastination.",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "builds a seven-day bet around studio sign-in sheet beside laptops, names one audience and one feedback signal, then records what the result changes about the next bet",
+      "firstImage": "studio sign-in sheet beside laptops",
+      "mustInclude": [
+        "studio sign-in sheet",
+        "mission discovery",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Simon",
+      "domain": "urban tree canopy mapping",
+      "audience": "a practitioner responsible for urban tree canopy mapping",
+      "stakes": "urban tree canopy mapping will either gain a defensible next move or drift into the chapter-specific trap: Treating little bets as random dabbling or low-stakes procrastination.",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "builds a seven-day bet around fresh ink on a block map, names one audience and one feedback signal, then records what the result changes about the next bet",
+      "firstImage": "fresh ink on a block map",
+      "mustInclude": [
+        "fresh ink on",
+        "mission discovery",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Robert",
+      "domain": "apprentice mental-health peer group",
+      "audience": "a practitioner responsible for apprentice mental-health peer group",
+      "stakes": "apprentice mental-health peer group will either gain a defensible next move or drift into the chapter-specific trap: Treating little bets as random dabbling or low-stakes procrastination.",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "builds a seven-day bet around paper plates beside steel-toe boots, names one audience and one feedback signal, then records what the result changes about the next bet",
+      "firstImage": "paper plates beside steel-toe boots",
+      "mustInclude": [
+        "paper plates beside",
+        "mission discovery",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Patrick",
+      "domain": "court fine reminder redesign",
+      "audience": "a practitioner responsible for court fine reminder redesign",
+      "stakes": "court fine reminder redesign will either gain a defensible next move or drift into the chapter-specific trap: Treating little bets as random dabbling or low-stakes procrastination.",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "builds a seven-day bet around stamped envelopes in a court tray, names one audience and one feedback signal, then records what the result changes about the next bet",
+      "firstImage": "stamped envelopes in a court tray",
+      "mustInclude": [
+        "stamped envelopes in",
+        "mission discovery",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Colin",
+      "domain": "climbing gym adaptive route night",
+      "audience": "a practitioner responsible for climbing gym adaptive route night",
+      "stakes": "climbing gym adaptive route night will either gain a defensible next move or drift into the chapter-specific trap: Treating little bets as random dabbling or low-stakes procrastination.",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "builds a seven-day bet around colored holds on padded flooring, names one audience and one feedback signal, then records what the result changes about the next bet",
+      "firstImage": "colored holds on padded flooring",
+      "mustInclude": [
+        "colored holds on",
+        "mission discovery",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "design small mission tests",
+      "use feedback to refine direction",
+      "avoid random dabbling"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Turn one mission idea into a seven-day bet with a visible output, one audience, and one feedback signal.",
+  "readingTimeMinutes": 12
+}

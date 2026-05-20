@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch07",
+  "number": 7,
+  "title": "A Machine for Jumping to Conclusions",
+  "coreMove": "ask what evidence is absent before letting a coherent story become your verdict",
+  "sourcePressure": "describes the mind as a coherence engine that forms conclusions from thin evidence and treats what is visible as enough",
+  "chapterSpecificMisunderstanding": "making this about rushing in general instead of WYSIATI and missing evidence",
+  "sourceAlignmentTerms": [
+    "jumping to conclusions",
+    "WYSIATI",
+    "coherence",
+    "thin evidence",
+    "confidence",
+    "missing information"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for A Machine for Jumping to Conclusions",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just speed reading"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about speed reading",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "meteorology desk facing a decision distorted by WYSIATI",
+      "audience": "a lead or reviewer who must ask what evidence is absent before letting a coherent story become your verdict while others want the quick answer",
+      "stakes": "the visible call will go wrong unless WYSIATI is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "the operator places the conclusions storm-cell acetate labeled jumping to conclusions beside the tempting first answer, covers the answer field with a palm, and speaks the correction: ask what evidence is absent before letting a coherent story become your verdict",
+      "firstImage": "The first thing in the room is the texture of the conclusions storm-cell acetate labeled jumping to conclusions, not the person's opinion about it.",
+      "mustInclude": [
+        "conclusions storm-cell acetate labeled jumping to conclusions",
+        "jumping to conclusions",
+        "WYSIATI"
+      ],
+      "mustAvoid": [
+        "turning the scene into speed reading",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "museum conservation lab facing a decision distorted by WYSIATI",
+      "audience": "a lead or reviewer who must ask what evidence is absent before letting a coherent story become your verdict while others want the quick answer",
+      "stakes": "the visible call will go wrong unless WYSIATI is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "the specialist draws a red box around the misleading cue on the pigment swatch folder labeled WYSIATI, then writes the missing check in the margin before anyone votes",
+      "firstImage": "It took three passes before the reviewer saw what the pigment swatch folder labeled WYSIATI had been making too easy.",
+      "mustInclude": [
+        "pigment swatch folder labeled WYSIATI",
+        "jumping to conclusions",
+        "coherence"
+      ],
+      "mustAvoid": [
+        "turning the scene into speed reading",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "freight dispatch room facing a decision distorted by WYSIATI",
+      "audience": "a lead or reviewer who must ask what evidence is absent before letting a coherent story become your verdict while others want the quick answer",
+      "stakes": "the visible call will go wrong unless WYSIATI is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "two people disagree over the coherence loading-bay placard labeled coherence; one points to the fluent story, the other forces the chapter move by asking which evidence would change the call",
+      "firstImage": "The decision station is quiet except for the coherence loading-bay placard labeled coherence beside the unfinished call.",
+      "mustInclude": [
+        "coherence loading-bay placard labeled coherence",
+        "jumping to conclusions",
+        "thin evidence"
+      ],
+      "mustAvoid": [
+        "turning the scene into speed reading",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "pediatric triage desk facing a decision distorted by WYSIATI",
+      "audience": "a lead or reviewer who must ask what evidence is absent before letting a coherent story become your verdict while others want the quick answer",
+      "stakes": "the visible call will go wrong unless WYSIATI is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "at the decision point, the lead slides the oxygen saturation sticker labeled thin evidence into the center of the table and refuses to choose until the jumping to conclusions check is visible",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the oxygen saturation sticker labeled thin evidence between the two choices.",
+      "mustInclude": [
+        "oxygen saturation sticker labeled thin evidence",
+        "jumping to conclusions",
+        "confidence"
+      ],
+      "mustAvoid": [
+        "turning the scene into speed reading",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "restaurant expo line facing a decision distorted by WYSIATI",
+      "audience": "a lead or reviewer who must ask what evidence is absent before letting a coherent story become your verdict while others want the quick answer",
+      "stakes": "the visible call will go wrong unless WYSIATI is separated from the tempting but weaker cue",
+      "format": "dialogue",
+      "requiredBeat": "the team predicts the answer from the quick impression, records it beside the ticket rail spike labeled confidence, then reveals how the chapter correction changes the estimate",
+      "firstImage": "What would change if the ticket rail spike labeled confidence stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "ticket rail spike labeled confidence",
+        "jumping to conclusions",
+        "missing information"
+      ],
+      "mustAvoid": [
+        "turning the scene into speed reading",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "public defender intake facing a decision distorted by WYSIATI",
+      "audience": "a lead or reviewer who must ask what evidence is absent before letting a coherent story become your verdict while others want the quick answer",
+      "stakes": "the visible call will go wrong unless WYSIATI is separated from the tempting but weaker cue",
+      "format": "decision_point",
+      "requiredBeat": "after the miss, the reviewer tapes the plea calendar tab labeled missing information to the postmortem board and traces the exact moment WYSIATI displaced the better judgment",
+      "firstImage": "You are looking at the plea calendar tab labeled missing information while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "plea calendar tab labeled missing information",
+        "jumping to conclusions",
+        "missing information"
+      ],
+      "mustAvoid": [
+        "turning the scene into speed reading",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: ask what evidence is absent before letting a coherent story become your verdict",
+      "choose the correction that fits jumping to conclusions rather than a generic careful-thinking answer",
+      "distinguish A Machine for Jumping to Conclusions from nearby drift into speed reading",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick a decision from today and draw two boxes: fast impression and required check. Put one concrete item in each box, then decide which box has earned more weight.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

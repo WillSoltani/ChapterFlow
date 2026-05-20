@@ -1,0 +1,199 @@
+{
+  "chapterId": "meditations-ch01",
+  "number": 1,
+  "title": "Book I",
+  "coreMove": "Turn gratitude into a practical inventory of standards you are responsible for carrying forward.",
+  "sourcePressure": "The opening ledger names relatives, teachers, governors, rulers, and gods as the sources of learned restraint, simplicity, fairness, endurance, careful reading, and freedom from display.",
+  "chapterSpecificMisunderstanding": "gratitude as soft thankfulness or a sentimental list of influences",
+  "sourceAlignmentTerms": [
+    "moral inheritance",
+    "gratitude ledger",
+    "Rusticus",
+    "Sextus",
+    "Antoninus Pius",
+    "restraint",
+    "anti-display",
+    "correction"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Rusticus",
+      "detail": "Book I ties Rusticus to discipline, simplicity, reconciliation, careful reading, and access to Epictetus.",
+      "useIn": "both",
+      "phrasingHint": "Rusticus matters because he makes philosophy look like disciplined conduct, not a costume."
+    },
+    {
+      "kind": "person",
+      "name": "Sextus",
+      "detail": "Sextus is tied to benevolence, living according to nature, and gravity without affectation.",
+      "useIn": "fullRead",
+      "phrasingHint": "Sextus gives the standard for seriousness that does not need to harden its face."
+    },
+    {
+      "kind": "person",
+      "name": "Antoninus Pius",
+      "detail": "Antoninus Pius is described as mild, steady, economical, careful in deliberation, anti-flattery, and free from display.",
+      "useIn": "both",
+      "phrasingHint": "Antoninus Pius shows power with no hunger to be seen performing power."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital handoff training",
+      "audience": "new charge nurse Claire watching a senior nurse model calm correction",
+      "stakes": "a medication near-miss could become blame instead of inherited standard",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire copies the senior nurse's exact two-question handoff after seeing it prevent a dosage error.",
+      "firstImage": "The label printer spits out a crooked wristband beside the meds cart.",
+      "mustInclude": [
+        "wristband label",
+        "shift-change sheet",
+        "locked medication drawer"
+      ],
+      "mustAvoid": [
+        "generic mentor praise"
+      ]
+    },
+    {
+      "domain": "family business succession",
+      "audience": "Thomas taking over a bakery after his aunt retires",
+      "stakes": "staff expect him to announce his own style by discarding hers",
+      "format": "retrospective",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Thomas keeps the aunt's quiet closing checklist and adds his own initials only after the ovens are clean.",
+      "firstImage": "It took Thomas three Fridays to understand why the old checklist began with the floor drain.",
+      "mustInclude": [
+        "laminated checklist",
+        "cooling racks",
+        "till envelope"
+      ],
+      "mustAvoid": [
+        "founder worship"
+      ]
+    },
+    {
+      "domain": "graduate seminar conduct",
+      "audience": "Emily moderating a tense philosophy seminar",
+      "stakes": "students are rewarding clever interruption over careful reading",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emily quotes no theory, pauses the room, and asks each student to name the strongest line in the text before objecting.",
+      "firstImage": "\"Before we answer him, what did he actually say?\"",
+      "mustInclude": [
+        "marked paperback",
+        "seminar table",
+        "attendance sheet"
+      ],
+      "mustAvoid": [
+        "classroom debate generic"
+      ]
+    },
+    {
+      "domain": "municipal budget review",
+      "audience": "Daniel inheriting a predecessor's fair but unpopular review method",
+      "stakes": "a loud department head wants special treatment",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Daniel opens the prior year's scoring grid and applies it to the loudest request first.",
+      "firstImage": "The council chamber clock clicks louder than the projector fan.",
+      "mustInclude": [
+        "scoring grid",
+        "capital request binder",
+        "nameplate"
+      ],
+      "mustAvoid": [
+        "political grandstanding"
+      ]
+    },
+    {
+      "domain": "youth sports coaching",
+      "audience": "Sophie coaching after the founder leaves",
+      "stakes": "parents want quick wins over the club's old restraint standards",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What do you keep when everyone asks for your own brand?",
+      "firstImage": "Sophie benches her best player for mocking a teammate, then points to the same rule the founder used.",
+      "mustInclude": [
+        "muddy sideline",
+        "substitution card",
+        "club code"
+      ],
+      "mustAvoid": [
+        "sports victory arc"
+      ]
+    },
+    {
+      "domain": "architecture apprenticeship",
+      "audience": "Jack learning site inspection from a retiring architect",
+      "stakes": "a cosmetic fix would hide structural sloppiness",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Jack circle the same hairline crack his mentor always checked before admiring the facade.",
+      "firstImage": "You are standing under scaffolding while dust falls from a limestone joint.",
+      "mustInclude": [
+        "inspection clipboard",
+        "chalk mark",
+        "scaffold tag"
+      ],
+      "mustAvoid": [
+        "generic trade mentor"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish practical gratitude from sentiment",
+      "apply inherited standards to a present decision",
+      "identify when humility becomes an excuse to avoid action"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one trait you inherited from a real person, then write the next visible act that would honor it today.",
+  "readingTimeMinutes": 12
+}

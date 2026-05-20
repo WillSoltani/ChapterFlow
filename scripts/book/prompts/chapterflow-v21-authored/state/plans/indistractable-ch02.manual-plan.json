@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch02",
+  "number": 2,
+  "title": "Time Management Is Pain Management",
+  "coreMove": "Treat a slipped schedule as evidence of avoided discomfort and plan the moment when that discomfort will be faced.",
+  "sourcePressure": "The chapter turns the internal-trigger frame toward calendar behavior, showing that delay and respectable substitute tasks often protect the reader from discomfort.",
+  "chapterSpecificMisunderstanding": "A weak run would teach better scheduling without naming the pain that the schedule is being used to dodge.",
+  "sourceAlignmentTerms": [
+    "pain management",
+    "delay",
+    "avoidance",
+    "timeboxing",
+    "substitute tasks",
+    "prior intent"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Time Management Is Pain Management as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "museum registrar delaying a loan-condition report",
+      "audience": "registrar who keeps polishing labels instead of calling a lender about damage",
+      "stakes": "a fragile textile shipment may be refused because the hard conversation keeps moving",
+      "format": "decision_point",
+      "requiredBeat": "she writes the exact awkward call into the 10:30 block instead of resizing gallery labels again",
+      "firstImage": "A cotton glove rests on a textile crate inspection sheet.",
+      "mustInclude": [
+        "cotton glove",
+        "inspection sheet",
+        "gallery labels"
+      ],
+      "mustAvoid": [
+        "museum as generic setting"
+      ]
+    },
+    {
+      "domain": "marathon aid-station coordinator avoiding volunteer assignments",
+      "audience": "race volunteer lead who keeps editing the route map",
+      "stakes": "unassigned mile posts will leave runners without water",
+      "format": "scene",
+      "requiredBeat": "he marks 'fear of disappointing friends' on the volunteer grid and sends the first hard assignment",
+      "firstImage": "A laminated route map curls beside a volunteer grid.",
+      "mustInclude": [
+        "route map",
+        "volunteer grid",
+        "hydration table list"
+      ],
+      "mustAvoid": [
+        "sports motivation"
+      ]
+    },
+    {
+      "domain": "tax preparer postponing a messy self-employed return",
+      "audience": "preparer using tidy W-2 files to avoid one ambiguous client",
+      "stakes": "the client misses a filing window because uncertainty got renamed efficiency",
+      "format": "postmortem",
+      "requiredBeat": "she blocks forty minutes for the unclear mileage folder and closes the easy return stack",
+      "firstImage": "A mileage folder with fuel receipts sits apart from neat W-2 packets.",
+      "mustInclude": [
+        "mileage folder",
+        "fuel receipts",
+        "W-2 packets"
+      ],
+      "mustAvoid": [
+        "generic procrastination"
+      ]
+    },
+    {
+      "domain": "marine conservation diver delaying equipment inventory",
+      "audience": "field lead who checks grant email to avoid finding broken gear",
+      "stakes": "tomorrow's reef survey depends on tanks and sensors being ready",
+      "format": "before_after",
+      "requiredBeat": "before, he refreshes the inbox; after, he writes 'bad news risk' beside the oxygen checklist and starts counting tanks",
+      "firstImage": "A slate oxygen checklist hangs from a dive crate.",
+      "mustInclude": [
+        "oxygen checklist",
+        "dive crate",
+        "sensor case"
+      ],
+      "mustAvoid": [
+        "adventure scene"
+      ]
+    },
+    {
+      "domain": "film colorist avoiding notes from a demanding director",
+      "audience": "freelancer who tweaks easy scenes rather than opening the hard note set",
+      "stakes": "delivery day gets squeezed by polite avoidance",
+      "format": "vignette",
+      "requiredBeat": "she drags the director notes into the first block and names the dread before touching the color wheels",
+      "firstImage": "A control surface glows beside a red folder of director notes.",
+      "mustInclude": [
+        "control surface",
+        "director notes",
+        "render queue"
+      ],
+      "mustAvoid": [
+        "creative flow cliche"
+      ]
+    },
+    {
+      "domain": "hospital pharmacy technician delaying a controlled-substance count",
+      "audience": "technician doing restocking to avoid the tense double-count",
+      "stakes": "shift handoff becomes unsafe when anxiety is hidden under busyness",
+      "format": "dialogue",
+      "requiredBeat": "she tells the lead, 'I am avoiding the count because I hate being watched,' then opens the vault log",
+      "firstImage": "A vault log sits beside a tamper seal packet.",
+      "mustInclude": [
+        "vault log",
+        "tamper seal packet",
+        "restock cart"
+      ],
+      "mustAvoid": [
+        "medical heroics"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Treat a slipped schedule as evidence of avoided discomfort and plan the moment when that discomfort will be faced.",
+      "choose the action that stays inside Time Management Is Pain Management's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would teach better scheduling without naming the pain that the schedule is being used to dodge.",
+      "use chapter-specific terms such as pain management, delay, avoidance, timeboxing in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Point to one postponed block today and write the discomfort it contains before moving the block or replacing it with a cleaner task.",
+  "readingTimeMinutes": 12
+}

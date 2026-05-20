@@ -1,0 +1,208 @@
+{
+  "chapterId": "mans-search-for-meaning-ch01",
+  "number": 1,
+  "title": "Preface to the 1992 Edition",
+  "coreMove": "Test a claim about meaning against real cost before you let it become comfort.",
+  "sourcePressure": "The opening uses Frankl staying in Vienna with his parents and the memoir-before-theory sequence to make meaning answer to witness before explanation.",
+  "chapterSpecificMisunderstanding": "Do not make this a soft purpose preface. The point is not that life has meaning in general; it is that meaning must be credible under pressure and kept free of cheap consolation.",
+  "sourceAlignmentTerms": [
+    "Vienna",
+    "parents",
+    "America",
+    "duty before safety",
+    "witness before explanation",
+    "logotherapy",
+    "pressure-tested meaning"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "Vienna",
+      "detail": "The frozen source says Frankl could have emigrated to America but stayed with his mother and father in Vienna out of duty to them.",
+      "useIn": "both",
+      "phrasingHint": "Vienna should feel like the first moral pressure point: safety was possible, but duty was already speaking."
+    },
+    {
+      "kind": "person",
+      "name": "Viktor E. Frankl",
+      "detail": "The frozen source frames him as placing memoir before logotherapy so witness arrives before theory.",
+      "useIn": "fullRead",
+      "phrasingHint": "Frankl earns the later theory by making it answer to witness first."
+    },
+    {
+      "kind": "artifact",
+      "name": "Preface to the 1992 Edition",
+      "detail": "The edition metadata confirms the preface stands before the memoir and later theory sections.",
+      "useIn": "deepRead",
+      "phrasingHint": "The preface functions like a threshold: no comfort enters until it has faced cost."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A person faces a hard choice and discovers purpose",
+      "Meaning begins when comfort ends"
+    ],
+    "counterintuition": [
+      "Meaning is not comfort; it is responsibility",
+      "Purpose is not found in ease but in hardship"
+    ],
+    "tryThisNow": [
+      "Name your why in one sentence",
+      "Write down what matters most"
+    ],
+    "examples": [
+      "generic career choice",
+      "hospital waiting room with coffee cup",
+      "student picking a major"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital ethics board deciding whether a pandemic triage policy has earned trust under blackout conditions",
+      "audience": "a physician asked to defend a calm policy after the generator failed overnight",
+      "stakes": "a rule written in conference-room language may fail the first time frightened families meet it",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "the physician places the printed triage policy beside the blackout incident log and strikes the sentence that never survived the night",
+      "firstImage": "The emergency stairwell still smells faintly of diesel from the failed generator.",
+      "mustInclude": [
+        "blackout incident log",
+        "paper triage policy",
+        "stairwell radio"
+      ],
+      "mustAvoid": [
+        "generic hospital heroism",
+        "coffee in a waiting room"
+      ],
+      "protagonistName": "Sarah"
+    },
+    {
+      "domain": "winter shelter director deciding whether to keep a donor-friendly program while turning people away from beds",
+      "audience": "a nonprofit leader who has to choose between public praise and actual night capacity",
+      "stakes": "a glossy program may consume the blankets and staff needed for freezing nights",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "after seeing three names turned away on the weather-night clipboard, she cancels the donor event and moves the staff hours back to intake",
+      "firstImage": "It took Emily two snowstorms to understand what the gala budget was hiding.",
+      "mustInclude": [
+        "weather-night clipboard",
+        "folding cots",
+        "donor program binder"
+      ],
+      "mustAvoid": [
+        "fundraising speech about mission",
+        "generic charity office"
+      ],
+      "protagonistName": "Emily"
+    },
+    {
+      "domain": "graduate fellowship decision colliding with eldercare for a parent after a stroke",
+      "audience": "a doctoral student who wants the prestigious exit but sees a concrete duty at home",
+      "stakes": "the fellowship solves status while leaving a parent without reliable transport to therapy",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The smell of disinfectant on the transfer belt makes him test the fellowship against duty, not ambition, and defer for one term with a care schedule in hand",
+      "firstImage": "The transfer belt is still damp from the rehab aide wiping it down.",
+      "mustInclude": [
+        "fellowship email",
+        "therapy schedule",
+        "transfer belt"
+      ],
+      "mustAvoid": [
+        "martyrdom framing",
+        "airport departure scene"
+      ],
+      "protagonistName": "Andrew"
+    },
+    {
+      "domain": "municipal interpreter deciding whether to testify about asylum office language failures",
+      "audience": "a bilingual city employee asked to risk a quiet job by naming a failure she has seen",
+      "stakes": "families keep missing deadlines because official notices are unreadable in practice",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she reads one mistranslated appointment notice aloud at council, then stops before explaining so the room hears the failure itself",
+      "firstImage": "\"Read the second line exactly as the family received it,\" the council chair says.",
+      "mustInclude": [
+        "mistranslated notice",
+        "council microphone",
+        "case deadline stamp"
+      ],
+      "mustAvoid": [
+        "generic whistleblower scene",
+        "courtroom monologue"
+      ],
+      "protagonistName": "Sophie"
+    },
+    {
+      "domain": "software founder refusing an investor escape clause that would abandon a small support team after launch",
+      "audience": "a founder tempted by a clean acquisition clause while her team carries customer fallout",
+      "stakes": "the legal exit protects her upside while leaving customers and staff with the mess",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "when asked what the clause would require on day one after signing, she writes the names of support staff beside every unresolved ticket and rejects the clause",
+      "firstImage": "What does an escape clause cost on the morning after everyone celebrates?",
+      "mustInclude": [
+        "term sheet",
+        "open support queue",
+        "names on a whiteboard"
+      ],
+      "mustAvoid": [
+        "startup hustle cliche",
+        "pitch-deck triumph"
+      ],
+      "protagonistName": "Megan"
+    },
+    {
+      "domain": "museum curator deciding whether a public statement about restitution is credible before returning the object in storage",
+      "audience": "a curator asked to publish values while the action that would prove them remains delayed",
+      "stakes": "a graceful statement may protect reputation while a family keeps waiting",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch the curator move the draft statement under the repatriation file and schedule the return before approving the language",
+      "firstImage": "You see the cotton gloves first, laid flat beside a statement nobody has signed.",
+      "mustInclude": [
+        "cotton gloves",
+        "draft statement",
+        "repatriation file"
+      ],
+      "mustAvoid": [
+        "generic apology statement",
+        "glass display case as melodrama"
+      ],
+      "protagonistName": "Daniel"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish earned witness from comforting theory",
+      "spot duty before safety without glorifying self-sacrifice",
+      "choose the action that tests a value under cost",
+      "reject romanticized suffering as a false reading"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one belief you have been using for comfort and write the exact cost it has survived, or write not tested yet beside it.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

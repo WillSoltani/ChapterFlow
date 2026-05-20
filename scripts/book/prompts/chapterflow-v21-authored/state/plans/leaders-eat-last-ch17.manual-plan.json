@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch17",
+  "number": 17,
+  "title": "Leadership Lesson 1: So Goes the Culture, So Goes the Company",
+  "coreMove": "Read culture from repeated pressure behaviors, then change the signal people are copying.",
+  "sourcePressure": "Makes culture causal: the company becomes what people learn to repeat under pressure from signals, rewards, tolerated tradeoffs, and protected behavior.",
+  "chapterSpecificMisunderstanding": "Reducing culture to morale, values statements, or atmosphere instead of a repeated learning system.",
+  "sourceAlignmentTerms": [
+    "culture",
+    "company",
+    "signals",
+    "rewards",
+    "tolerated tradeoffs",
+    "under pressure",
+    "values statements"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 17 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "ship chandlery counter",
+      "audience": "owner noticing how returns are handled",
+      "stakes": "culture teaches whether hiding defects is smarter than candor",
+      "format": "scene",
+      "requiredBeat": "he refunds a faulty deck lantern publicly and thanks the clerk who flagged the batch",
+      "firstImage": "a boxed deck lantern beside a refund slip",
+      "mustInclude": [
+        "deck lantern",
+        "refund slip"
+      ],
+      "mustAvoid": [
+        "office values poster"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "dance company rehearsal room",
+      "audience": "artistic director observing injury disclosure",
+      "stakes": "dancers copy whether pain is hidden or surfaced",
+      "format": "decision_point",
+      "requiredBeat": "she praises the dancer who stops at the first ankle warning and adjusts casting",
+      "firstImage": "a taped ankle beside a rehearsal schedule",
+      "mustInclude": [
+        "ankle tape",
+        "rehearsal schedule"
+      ],
+      "mustAvoid": [
+        "sports team culture"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "farm co-op grain scale",
+      "audience": "co-op manager after a moisture dispute",
+      "stakes": "tolerated shortcuts teach the whole co-op what counts",
+      "format": "dialogue",
+      "requiredBeat": "the manager recalibrates the scale in front of waiting farmers instead of waving through friends",
+      "firstImage": "a grain sample cup beside a scale ticket",
+      "mustInclude": [
+        "sample cup",
+        "scale ticket"
+      ],
+      "mustAvoid": [
+        "small-town morality"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "podcast production studio",
+      "audience": "executive producer reviewing missed fact-checks",
+      "stakes": "deadline culture teaches what errors are acceptable",
+      "format": "postmortem",
+      "requiredBeat": "the producer traces the viral episode to the skipped source sheet before celebrating downloads",
+      "firstImage": "a waveform screen beside a source sheet",
+      "mustInclude": [
+        "waveform screen",
+        "source sheet"
+      ],
+      "mustAvoid": [
+        "media cliché"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "community pool swim meet",
+      "audience": "meet director handling lane favoritism",
+      "stakes": "kids learn culture from what adults tolerate",
+      "format": "before_after",
+      "requiredBeat": "the director redraws lane assignments after seeing the coach's daughter moved twice",
+      "firstImage": "a lane card clipped to a wet clipboard",
+      "mustInclude": [
+        "lane card",
+        "clipboard"
+      ],
+      "mustAvoid": [
+        "school club values"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "biotech cleanroom gowning area",
+      "audience": "lab manager seeing rushed gowning",
+      "stakes": "one tolerated shortcut becomes the culture under pressure",
+      "format": "reflection",
+      "requiredBeat": "she stops the batch and regowns first, letting everyone see the real standard",
+      "firstImage": "a torn glove in a cleanroom waste bin",
+      "mustInclude": [
+        "torn glove",
+        "batch tag"
+      ],
+      "mustAvoid": [
+        "generic compliance"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "infer culture from repeated behavior",
+      "connect signals to company outcomes",
+      "choose a cultural signal to change",
+      "distinguish stated values from taught values"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one repeated tradeoff everyone notices and write what it teaches people this place really rewards.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

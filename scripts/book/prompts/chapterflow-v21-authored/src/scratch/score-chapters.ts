@@ -25,6 +25,8 @@
 
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import { formatBookPatternAuditReport, maxScoreCapsByChapter, runBookPatternAudit } from "../critics/bookPatternAudit.js";
+import { getAuthorVoiceProfile } from "../critics/shared.js";
 
 // ── Patterns ──────────────────────────────────────────────────────────────────
 
@@ -37,6 +39,17 @@ const META_PATTERNS: RegExp[] = [
   /\b(Clear|Kahneman|Taleb|Housel|Tetlock|Cialdini|Greene|Machiavelli|Duhigg|Eyal|Covey|Ries|Brown|Kolb|Gladwell|Fogg|Carnegie)\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\b/i,
   /\bChapter\s+\d+\b/,
   /\bChapter\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve)\b/i,
+  // B1-ext — abstract meta-frame ("the idea argues", "this move targets",
+  // "the idea's demand", "It is the idea on secrets"). Zero to One shipped
+  // 130+ instances across 13 of 14 chapters before the scorer caught any.
+  // Narrowed 2026-05-14 to require an essay-verb within 5 tokens of the
+  // noun — same form as the gate-side B1-ext in critics/register.ts, so
+  // legit narration ("the idea worked when museum attendance rose") no
+  // longer false-fires.
+  /\b(?:this|the)\s+idea\s+(?:\w+\s+){0,3}(argues|wants|demands|forces|insists|claims|asks|denies|targets|leads|frees|on)\b/i,
+  /\b(?:this|the)\s+idea(?:'s|s')\s+(demand|argument|claim|point)\b/i,
+  /\b(?:this|the)\s+move\s+(targets|argues|wants|demands|asks|points to|is about)\b/i,
+  /\bIt is (?:the|this) idea\b/i,
 ];
 
 const BANNED_PHRASES: string[] = [
@@ -71,10 +84,26 @@ const PARADOX_SIGNALS = [
   /\bin fact\b/i,
   /\beven though\b/i,
   /\bdespite\b/i,
-  /\bmost (readers|people)\b.{0,80}\b(assume|think|believe|expect)\b/i,
   /\b(it|this) (is|usually is|actually is)\b.*\b(rarely|never|isn't|instead)\b/i,
   /\bit rarely (does|works|is)\b/i,
-  /\bwhat (you|they) (assume|expect|think) is\b/i,
+  // Non-templated paradox structures. Replace the removed
+  // "Most readers assume" / "What you assume is" patterns — those were
+  // banned templating stems in banned-phrases.json, so the rubric was
+  // rewarding what the gate banned. These new signals detect the
+  // rhetorical shape (looks-like, feels-like, gets-the-credit, real-X,
+  // sounds-like) without rewarding any specific opener shell.
+  /\bgets? the credit\b/i,
+  /\bthe (real|actual|hidden|hard|deeper) (lever|cause|move|test|reason|cost) is\b/i,
+  // 2026-05-14 — broaden paradox-signal coverage for semantic patterns the
+  // earlier regexes missed (Righteous Mind "X can Y and still Z", Lean
+  // Startup / Super Thinking "X gets the credit. Y is doing the work").
+  // These complement the existing patterns rather than replace them.
+  /\bcan\b.{0,60}\band still\b/i,                              // Righteous Mind "X can Y and still Z"
+  /\bgets the credit\b.{0,80}\bis doing\b/i,                  // Lean Startup, ST "X gets the credit. Y is doing the work"
+  /\bfeels like\b.{0,40}\bin fact\b/i,                        // "X feels like Y. In fact Z"
+  /\blooks like\b.{0,40}\b(the opposite|the real|the actual|the hidden|is usually|is often|is actually)\b/i,
+  /\bsounds? like\b.{0,40}\b(in fact|the opposite|the real|the actual)\b/i,
+  /\b(the|a) (visible|surface|easy|first) (move|cause|lever|answer|reason) is\b.{0,80}\b(the|a) (real|deeper|hidden|harder|stronger|actual) (move|cause|lever|answer|reason) is\b/i,
 ];
 
 const RECALL_OPENERS = /^(what does|according to|in the chapter|the chapter|this chapter)/i;
@@ -133,11 +162,20 @@ function scoreHook(ch: any): Score {
   }
 
   const meta = countMatches(hook, META_PATTERNS);
-  if (meta === 0) earned += 3;
+  if (meta === 0) earned += 2;
   else notes.push(`hook has ${meta} meta-tell(s)`);
 
-  if (!hook.includes("—")) earned += 2;
+  if (!hook.includes("—")) earned += 1;
   else notes.push("hook has em dash");
+
+  // Integrity: must start with an uppercase letter after stripping leading quotes/whitespace.
+  const trimmed = hook.replace(/^[\s"'“‘«\[\(]+/, "");
+  if (trimmed && /^[A-Z]/.test(trimmed.charAt(0))) earned += 1;
+  else if (trimmed) notes.push("hook starts with lowercase letter");
+
+  // Integrity: looks like a complete sentence (ends with terminal punctuation).
+  if (/[.!?…][”’"']?\s*$/.test(hook.trim())) earned += 1;
+  else if (hook) notes.push("hook does not end with terminal punctuation");
 
   return { earned, max, notes };
 }
@@ -228,6 +266,30 @@ function scoreExamples(ch: any): Score {
   const max = 20;
   const examples = Array.isArray(ch.examples) ? ch.examples : [];
 
+  // Integrity sub-checks computed up front so they can penalize the example block.
+  let lowercaseScenarioCount = 0;
+  let lowercaseTitleCount = 0;
+  for (const ex of examples) {
+    const s = (ex.scenario ?? "").replace(/^[\s"'“‘«\[\(]+/, "");
+    const t = (ex.title ?? "").replace(/^[\s"'“‘«\[\(]+/, "");
+    if (s && /^[a-z]/.test(s.charAt(0))) lowercaseScenarioCount += 1;
+    if (t && /^[a-z]/.test(t.charAt(0))) lowercaseTitleCount += 1;
+  }
+
+  // Verb-shell check: 4+ titles sharing the same second word.
+  let titleVerbShellHits = 0;
+  const secondTokenCounts = new Map<string, number>();
+  for (const ex of examples) {
+    const tokens = (ex.title ?? "").trim().split(/\s+/);
+    if (tokens.length < 2) continue;
+    const second = tokens[1].toLowerCase().replace(/[^a-z]/g, "");
+    if (second.length < 3) continue;
+    secondTokenCounts.set(second, (secondTokenCounts.get(second) ?? 0) + 1);
+  }
+  for (const count of secondTokenCounts.values()) {
+    if (count >= 4) titleVerbShellHits = Math.max(titleVerbShellHits, count);
+  }
+
   // Count
   if (examples.length >= 5) earned += 4;
   else {
@@ -275,6 +337,22 @@ function scoreExamples(ch: any): Score {
   // No v13-pool names: 4 pts (penalty per example using a pool name)
   earned += clamp(4 - v13PoolExamples, 0, 4);
   if (v13PoolExamples > 0) notes.push(`${v13PoolExamples} example(s) use v13-pool name`);
+
+  // Integrity penalties (do not award points; subtract from earned).
+  if (lowercaseScenarioCount > 0) {
+    const penalty = Math.min(lowercaseScenarioCount * 2, 8);
+    earned = Math.max(0, earned - penalty);
+    notes.push(`${lowercaseScenarioCount} scenario(s) start with lowercase letter (-${penalty})`);
+  }
+  if (lowercaseTitleCount > 0) {
+    const penalty = Math.min(lowercaseTitleCount, 4);
+    earned = Math.max(0, earned - penalty);
+    notes.push(`${lowercaseTitleCount} title(s) start with lowercase letter (-${penalty})`);
+  }
+  if (titleVerbShellHits >= 4) {
+    earned = Math.max(0, earned - 6);
+    notes.push(`${titleVerbShellHits} titles share verb shell — "<Name> <verb> <domain>" template (-6)`);
+  }
 
   return { earned, max, notes };
 }
@@ -432,6 +510,20 @@ function scoreSchema(ch: any): Score {
   const missing = required.filter((k) => !ch[k]);
   earned = clamp(5 - missing.length, 0, 5);
   if (missing.length > 0) notes.push(`missing fields: ${missing.join(", ")}`);
+
+  // Integrity penalties on display-critical fields (subtract from earned).
+  const keyTakeawayWords = (ch.keyTakeaway ?? "").trim().split(/\s+/).filter(Boolean).length;
+  if (keyTakeawayWords > 30) {
+    earned = Math.max(0, earned - 1);
+    notes.push(`keyTakeaway ${keyTakeawayWords} words (cap 30) — too long to scan (-1)`);
+  }
+  for (const [field, label] of [["counterintuition", "counterintuition"], ["keyTakeaway", "keyTakeaway"], ["tryThisNow", "tryThisNow"]] as const) {
+    const v = (ch[field] ?? "").replace(/^[\s"'“‘«\[\(]+/, "");
+    if (v && /^[a-z]/.test(v.charAt(0))) {
+      earned = Math.max(0, earned - 1);
+      notes.push(`${label} starts with lowercase letter (-1)`);
+    }
+  }
   return { earned, max, notes };
 }
 
@@ -486,6 +578,14 @@ for (const argPath of args) {
   const path = resolve(repoRoot, argPath);
   const pkg = JSON.parse(readFileSync(path, "utf8"));
   const title = pkg.book?.title ?? pkg.book?.bookId ?? "Unknown";
+  const bookId = pkg.book?.bookId ?? title;
+  const authorVoiceProfile = getAuthorVoiceProfile(bookId);
+  const patternAudit = runBookPatternAudit({
+    bookId,
+    chapters: pkg.chapters ?? [],
+    authorVoiceProfile,
+  });
+  const scoreCaps = maxScoreCapsByChapter(patternAudit);
 
   console.log(`\n## ${title}\n`);
   console.log(`| Ch | Title | Hook | Cntr | Voice | Tiers | Exmpl | Quiz | Cards | Plan | Lines | Schma | Total | Grade |`);
@@ -496,17 +596,21 @@ for (const argPath of args) {
   for (const ch of pkg.chapters) {
     const s = scoreChapter(ch);
     const { earned, max } = totalOf(s);
-    const pct = Math.round((earned / max) * 100);
+    const rawPct = Math.round((earned / max) * 100);
+    const cap = scoreCaps.get(ch.number);
+    const pct = cap ? Math.min(rawPct, cap) : rawPct;
     const grade = letterGrade(pct);
     const titleShort = (ch.title ?? "").length > 40 ? (ch.title ?? "").slice(0, 38) + "…" : ch.title ?? "";
     const allNotes = Object.entries(s).flatMap(([_, v]) => v.notes);
+    if (cap) allNotes.push(`pattern audit score cap applied: raw ${rawPct}% -> capped ${pct}%`);
+    const totalDisplay = cap ? `${earned}/${max} → cap ${pct}%` : `${earned}/${max}`;
 
     console.log(
       `| ${String(ch.number).padStart(2, " ")} | ${titleShort} ` +
       `| ${s.hook.earned}/${s.hook.max} | ${s.counter.earned}/${s.counter.max} | ${s.voice.earned}/${s.voice.max} ` +
       `| ${s.tiers.earned}/${s.tiers.max} | ${s.examples.earned}/${s.examples.max} | ${s.quiz.earned}/${s.quiz.max} ` +
       `| ${s.cards.earned}/${s.cards.max} | ${s.plan.earned}/${s.plan.max} | ${s.lines.earned}/${s.lines.max} ` +
-      `| ${s.schema.earned}/${s.schema.max} | **${earned}/${max}** | **${grade}** |`
+      `| ${s.schema.earned}/${s.schema.max} | **${totalDisplay}** | **${grade}** |`
     );
     allScores.push({ n: ch.number, title: ch.title ?? "", total: pct, pct, grade, notes: allNotes });
   }
@@ -518,6 +622,10 @@ for (const argPath of args) {
   const max = Math.max(...totals);
 
   console.log(`\n**Summary**: ${allScores.length} chapters · avg ${avg} · range ${min}–${max} · grade ${letterGrade(avg)}\n`);
+
+  console.log("**Pattern audit:**");
+  console.log(formatBookPatternAuditReport(patternAudit));
+  console.log("");
 
   // Outliers (lowest 3)
   const lowest = [...allScores].sort((a, b) => a.pct - b.pct).slice(0, 3);

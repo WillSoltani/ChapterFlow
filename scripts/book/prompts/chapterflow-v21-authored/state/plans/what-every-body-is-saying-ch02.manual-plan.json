@@ -1,0 +1,177 @@
+{
+  "chapterId": "what-every-body-is-saying-ch02",
+  "number": 2,
+  "title": "Mastering the Secrets of Nonverbal Communication",
+  "coreMove": "Build a reading method: establish baseline, watch for clusters, and keep each cue inside the situation that produced it.",
+  "sourcePressure": "The source sidecar makes this the responsibility chapter. It must teach context, baseline, clusters, comfort versus discomfort, and restraint around isolated cues as an operational method rather than a list of tricks.",
+  "chapterSpecificMisunderstanding": "The weak version becomes a gesture dictionary. The writer must keep the reader comparing what is normal for this person, what changed, what else changed with it, and what situation triggered the shift.",
+  "sourceAlignmentTerms": [
+    "context",
+    "baseline",
+    "clusters",
+    "comfort",
+    "discomfort",
+    "pattern",
+    "movement",
+    "restraint",
+    "single cue",
+    "situation"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A secret-code opener promising to master body language fast.",
+      "A list of five gestures and what they mean.",
+      "An expert instantly reading a room from the doorway."
+    ],
+    "counterintuition": [
+      "Most people assume one cue is enough, but actually you need clusters.",
+      "The face is useless and the body is always honest.",
+      "Context is a disclaimer instead of the main method."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and scan for clusters.",
+      "Watch strangers in a coffee shop and score their discomfort.",
+      "Write down every gesture you see."
+    ],
+    "examples": [
+      "Generic office meeting baseline.",
+      "Job interview folded-arms scene.",
+      "Romantic attraction cue reading.",
+      "Police interrogation tactic.",
+      "Classroom participation example."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "veterinary oncology consult with a longtime dog owner",
+      "audience": "a veterinarian trying to discuss treatment options without overreading one visible reaction",
+      "stakes": "whether the owner hears the options or shuts down because the conversation outruns her capacity",
+      "format": "scene",
+      "requiredBeat": "The vet remembers that the owner normally talks with both hands on the exam table; when the word chemotherapy lands, her hands vanish into her coat pockets, her shoulders lift, and she stops looking at the treatment sheet, so the vet treats the cluster as discomfort about this topic.",
+      "firstImage": "A laminated treatment estimate lies beside a stainless exam table.",
+      "mustInclude": [
+        "coat pockets",
+        "treatment sheet",
+        "stainless exam table"
+      ],
+      "mustAvoid": [
+        "reading the dog instead of the person",
+        "grief melodrama",
+        "one pocketed hand as proof"
+      ]
+    },
+    {
+      "domain": "chess tournament arbiter handling a clock dispute",
+      "audience": "an arbiter who knows one junior player is usually restless between moves",
+      "stakes": "whether the arbiter mistakes a normal fidget for deception or notices the actual change around the disputed move",
+      "format": "postmortem",
+      "requiredBeat": "On the scoresheet review, the arbiter ignores the player's usual knee bounce and instead marks the new stillness, the covered notation, and the glance at the captured rook that arrived only after move thirty-one.",
+      "firstImage": "A black rook lies on its side beside a ticking chess clock.",
+      "mustInclude": [
+        "scoresheet",
+        "captured rook",
+        "digital chess clock"
+      ],
+      "mustAvoid": [
+        "cheating accusation",
+        "generic game nerves",
+        "single fidget verdict"
+      ]
+    },
+    {
+      "domain": "artisan bakery tasting panel judging a new sourdough",
+      "audience": "a head baker trying to read feedback from regular wholesale buyers",
+      "stakes": "whether the bakery changes the recipe based on polite words or on a shift tied to the crust sample",
+      "format": "predict_reveal",
+      "requiredBeat": "The baker first notes each buyer's relaxed baseline over the rye loaf; when the extra-sour sample arrives, two buyers stop tearing pieces, one turns the plate away, and all three reach for water before speaking.",
+      "firstImage": "Three numbered bread slices sit on a butcher-paper tasting mat.",
+      "mustInclude": [
+        "water glasses",
+        "numbered samples",
+        "crumb tray"
+      ],
+      "mustAvoid": [
+        "restaurant service complaint",
+        "taste preference as personality",
+        "making one grimace decide the recipe"
+      ]
+    },
+    {
+      "domain": "planetarium presenter noticing a sponsor's reaction to a revised show script",
+      "audience": "a science educator balancing donor concerns with factual accuracy",
+      "stakes": "whether a funding conversation gets derailed by a misread expression",
+      "format": "decision_point",
+      "requiredBeat": "The presenter compares the sponsor's usual forward lean during telescope talk with the cluster that appears at the climate segment: chair pushes back, pen cap clicks shut, folder closes over the script, and the first question shifts to audience complaints.",
+      "firstImage": "A draft planetarium script rests under a silver pen cap.",
+      "mustInclude": [
+        "folded script",
+        "pen cap",
+        "reclined chair"
+      ],
+      "mustAvoid": [
+        "culture-war lecture",
+        "donor villain scene",
+        "face-only disagreement read"
+      ]
+    },
+    {
+      "domain": "jewelry repair counter estimating a grandmother's watch",
+      "audience": "a watchmaker explaining repair cost to a customer with sentimental attachment",
+      "stakes": "whether the customer feels trapped by a price or helped through a decision",
+      "format": "dialogue",
+      "requiredBeat": "The watchmaker notes the customer's baseline of touching the watch while telling its history; when the estimate appears, the touching stops, the receipt hand tightens, and her body turns toward the display cases rather than the exit, showing interest mixed with strain.",
+      "firstImage": "A scratched gold watch sits open on a felt repair pad.",
+      "mustInclude": [
+        "felt repair pad",
+        "estimate slip",
+        "display cases"
+      ],
+      "mustAvoid": [
+        "sales-pressure trick",
+        "assuming poverty or deception",
+        "generic customer-service politeness"
+      ]
+    },
+    {
+      "domain": "community theater costume fitting before a period drama",
+      "audience": "a costume designer trying to tell whether an actor objects to the jacket or the scene",
+      "stakes": "a bad read could lead to the wrong alteration and miss a comfort problem before rehearsal",
+      "format": "before_after",
+      "requiredBeat": "The actor jokes easily while pinning the sleeves, but when the director mentions the confrontation scene, his hands stop at the waistcoat buttons, his breathing shortens, and he steps behind the fitting screen without asking for a jacket change.",
+      "firstImage": "A row of brass waistcoat buttons catches the fitting-room light.",
+      "mustInclude": [
+        "pin cushion",
+        "fitting screen",
+        "scene sides"
+      ],
+      "mustAvoid": [
+        "same-stage persuasion beat from HWF",
+        "body-shaming frame",
+        "assuming the costume is the issue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the baseline before interpreting a changed behavior",
+      "distinguish a cluster from an isolated cue in a scenario",
+      "tie a nonverbal shift to the specific topic, object, or moment that produced it",
+      "reject interpretations that ignore context, habit, room constraints, or normal behavior"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one person you already know and write their ordinary baseline for posture, pace, hands, and gaze in a low-stakes moment. Later, note only what changes around a specific topic or task.",
+  "readingTimeMinutes": 12
+}

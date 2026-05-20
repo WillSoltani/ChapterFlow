@@ -28,7 +28,7 @@ Each pending book has a chapter index pre-built at `state/indexes/<bookId>.json`
 | ✓ shipped | How to Win Friends and Influence People | Dale Carnegie | 30 | `how-to-win-friends-and-influence-people` |
 | ✓ shipped | Indistractable | Nir Eyal | 30 | `indistractable` |
 | ✓ shipped | Influence, New and Expanded: The Psychology of Persuasion | Robert B. Cialdini, PhD | 9 | `influence` |
-| ✓ shipped | Leaders Eat Last | Simon Sinek | 27 | `leaders-eat-last` |
+| ○ ready | Leaders Eat Last | Simon Sinek | 27 | `leaders-eat-last` |
 | ✓ shipped | Limitless | Jim Kwik | 15 | `limitless` |
 | ✓ shipped | Made to Stick: Why Some Ideas Survive and Others Die | Chip Heath,Dan Heath | 6 | `made-to-stick` |
 | ✓ shipped | Make It Stick | Peter C. Brown; Henry L. Roediger III; Mark A. McDaniel | 8 | `make-it-stick` |

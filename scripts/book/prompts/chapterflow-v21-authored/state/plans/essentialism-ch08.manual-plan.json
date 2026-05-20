@@ -1,0 +1,166 @@
+{
+  "chapterId": "essentialism-ch08",
+  "number": 8,
+  "title": "Sleep: Protect the Asset",
+  "coreMove": "Treat sleep as strategic protection for judgment instead of the leftover hour after ambition is done spending the body.",
+  "sourcePressure": "The chapter argues that sleep protects the human asset required for discernment, creativity, connection, and contribution.",
+  "chapterSpecificMisunderstanding": "A weak run would give generic sleep hygiene tips or moralize about getting eight hours.",
+  "sourceAlignmentTerms": [
+    "sleep",
+    "asset",
+    "capacity",
+    "judgment",
+    "contribution"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic sleep: protect the asset topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "medical sleep advice frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "medical sleep advice",
+      "wellness routine",
+      "rest as indulgence",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "air-traffic flow manager during a storm reroute evening",
+      "audience": "manager tempted to trade sleep for judgment-heavy overtime",
+      "stakes": "fatigue can become a safety risk disguised as dedication",
+      "format": "decision_point",
+      "requiredBeat": "She places the fatigue log beside the reroute board and hands off before her pattern recognition dulls.",
+      "firstImage": "A fatigue log sits beside a storm reroute board.",
+      "mustInclude": [
+        "fatigue log",
+        "reroute board",
+        "handoff headset"
+      ],
+      "mustAvoid": [
+        "sleep hygiene tips",
+        "heroic exhaustion"
+      ]
+    },
+    {
+      "domain": "semiconductor fab equipment technician after repeated overnight alarms",
+      "audience": "technician praised for always responding",
+      "stakes": "depleted judgment may worsen precision maintenance",
+      "format": "postmortem",
+      "requiredBeat": "He reviews the miscalibrated wafer report beside his alarm history and changes the on-call rotation.",
+      "firstImage": "An alarm history printout lies under a wafer report.",
+      "mustInclude": [
+        "alarm history",
+        "wafer report",
+        "rotation sheet"
+      ],
+      "mustAvoid": [
+        "generic burnout",
+        "wellness routine"
+      ]
+    },
+    {
+      "domain": "mountain guide deciding whether to lead a dawn summit push",
+      "audience": "guide whose tired confidence could endanger clients",
+      "stakes": "sleep protects route judgment more than bravado does",
+      "format": "scene",
+      "requiredBeat": "She sets the sleepless-night note beside the summit plan and cancels the dawn push before clients gear up.",
+      "firstImage": "A summit plan sits beside a sleepless-night note.",
+      "mustInclude": [
+        "summit plan",
+        "night note",
+        "client gear tags"
+      ],
+      "mustAvoid": [
+        "adventure heroics",
+        "vacation rest"
+      ]
+    },
+    {
+      "domain": "neonatal transport nurse before a long-distance transfer",
+      "audience": "nurse with critical care responsibility",
+      "stakes": "capacity is a clinical asset, not personal comfort",
+      "format": "reflection",
+      "requiredBeat": "He reads the transfer checklist twice, sees the skipped item, and calls for a rested second nurse.",
+      "firstImage": "A neonatal transfer checklist lies beside a coffee-stained sleeve.",
+      "mustInclude": [
+        "transfer checklist",
+        "transport isolette tag",
+        "handoff phone"
+      ],
+      "mustAvoid": [
+        "medical advice",
+        "caffeine moralizing"
+      ]
+    },
+    {
+      "domain": "treaty translation team before final wording negotiations",
+      "audience": "translation lead facing cognitive strain",
+      "stakes": "one tired phrase can change legal meaning",
+      "format": "dialogue",
+      "requiredBeat": "She points to the mistranslated clause and moves final wording to morning with rested reviewers.",
+      "firstImage": "A treaty clause is highlighted beside reviewer initials.",
+      "mustInclude": [
+        "treaty clause",
+        "reviewer initials",
+        "morning agenda"
+      ],
+      "mustAvoid": [
+        "generic translation sleep example reuse",
+        "workaholic cliché"
+      ]
+    },
+    {
+      "domain": "restaurant health inspector scheduling post-fire reopening inspections",
+      "audience": "inspector whose overloaded schedule can miss hazards",
+      "stakes": "sleep loss weakens public safety judgment",
+      "format": "before_after",
+      "requiredBeat": "Before, he stacks inspections into midnight; after, he protects sleep before the gas-line review.",
+      "firstImage": "A gas-line checklist rests on a dark inspection clipboard.",
+      "mustInclude": [
+        "gas-line checklist",
+        "inspection clipboard",
+        "schedule grid"
+      ],
+      "mustAvoid": [
+        "generic eight-hours advice",
+        "wellness lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the Sleep: Protect the Asset move inside a concrete scenario",
+      "choose the response that applies: Treat sleep as strategic protection for judgment instead of the leftover hour after ambition is done spending the body.",
+      "reject the generic drift: A weak run would give generic sleep hygiene tips or moralize about getting eight hours.",
+      "explain the trade-off using chapter-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live situation and apply this chapter's move: Treat sleep as strategic protection for judgment instead of the leftover hour after ambition is done spending the body.. Write the visible object, the protected essential, and the first concrete action.",
+  "readingTimeMinutes": 12
+}

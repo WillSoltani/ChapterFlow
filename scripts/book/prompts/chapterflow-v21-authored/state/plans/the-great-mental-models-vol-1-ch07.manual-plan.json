@@ -1,0 +1,112 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch07",
+  "number": 7,
+  "title": "Second-Order Thinking",
+  "coreMove": "Trace what the first result will cause next before choosing the attractive move.",
+  "sourcePressure": "The official framing centers on consequence chains and the question And then what. The plan must stay practical and avoid unsupported systems-theory sprawl.",
+  "chapterSpecificMisunderstanding": "The weak version says think long term or make a bigger pros-and-cons list.",
+  "sourceAlignmentTerms": ["second-order thinking", "first-order effect", "consequence chain", "downstream", "And then what", "later cost"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "And then what",
+      "detail": "the official article frames second-order thinking around consequence chains and the question And then what",
+      "useIn": "both",
+      "phrasingHint": "The first answer is only the door; And then what is how you find the room behind it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["butterfly effect montage", "chess moves cliche", "look before you leap"],
+    "counterintuition": ["short term is always bad", "long term always wins", "complexity makes action impossible"],
+    "tryThisNow": ["think about consequences", "make a pros and cons list", "be patient"],
+    "examples": ["generic office policy", "classroom rule", "family budget lecture"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "coastal town parking-fee change",
+      "audience": "a town manager considering higher beach parking fees",
+      "stakes": "a revenue win may push cars into residential streets and anger year-round residents",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Amelia traces the first-order revenue gain into the second-order spillover of cars filling side streets before the council vote",
+      "firstImage": "sand stuck to a parking meter coin slot",
+      "mustInclude": ["fee schedule", "side-street map", "council vote"],
+      "mustAvoid": ["generic municipal budget", "parking frustration rant"]
+    },
+    {
+      "domain": "restaurant delivery packaging",
+      "audience": "a restaurant owner switching to cheaper delivery containers",
+      "stakes": "unit savings may create soggy food, refunds, and worse reviews",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Aidan follows the cheap container from packing line to twenty-minute delivery and writes the refund chain before approving the order",
+      "firstImage": "steam beading under a clear plastic lid",
+      "mustInclude": ["unit-cost quote", "twenty-minute delivery", "refund log"],
+      "mustAvoid": ["restaurant hustle", "price versus quality cliche"]
+    },
+    {
+      "domain": "university lab safety shortcut",
+      "audience": "a lab manager tempted to waive a glove-change step to save time",
+      "stakes": "one faster protocol may normalize contamination risk",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Astrid asks the team to name what the shortcut teaches next week's interns before signing off",
+      "firstImage": "purple nitrile gloves piled beside a sample rack",
+      "mustInclude": ["sample rack", "intern checklist", "waived step"],
+      "mustAvoid": ["science lab scare story", "compliance lecture"]
+    },
+    {
+      "domain": "mobile blood-drive incentives",
+      "audience": "a blood bank coordinator adding gift cards to increase donations",
+      "stakes": "today's signups may crowd out repeat donors or attract poorly screened donors",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Frida asks what happens after the first surge and checks repeat-donor retention before scaling the incentive",
+      "firstImage": "a stack of gift cards beside a mobile-clinic cooler",
+      "mustInclude": ["gift cards", "repeat-donor list", "screening queue"],
+      "mustAvoid": ["charity marketing", "incentives are bad"]
+    },
+    {
+      "domain": "subscription news trial offer",
+      "audience": "a newsroom growth lead planning a ninety-nine-cent trial",
+      "stakes": "trial growth may train readers to churn before full-price renewal",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Chidi draw the second-order renewal behavior behind the first-order signup spike and change the cancellation timing",
+      "firstImage": "a renewal curve printed beside a half-finished headline budget",
+      "mustInclude": ["signup spike", "renewal curve", "cancellation timing"],
+      "mustAvoid": ["media industry rant", "growth hacking"]
+    },
+    {
+      "domain": "public pool chemical ordering",
+      "audience": "a recreation supervisor buying a cheaper chlorine supply",
+      "stakes": "short-term savings could cause cloudy water, closures, and lost swim lessons",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Javier traces the cheaper order through storage, dosing, water clarity, and parent refunds before changing suppliers",
+      "firstImage": "test strips drying on the pool office counter",
+      "mustInclude": ["chlorine quote", "test strips", "lesson refunds"],
+      "mustAvoid": ["pool nostalgia", "procurement boredom"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["trace first-order benefits into second-order costs", "ask And then what on a concrete choice", "distinguish delay from downstream consequence", "evaluate when later effects reverse an attractive move"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "Pick one attractive action. Ask And then what three times, writing only visible consequences a real person would have to handle.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

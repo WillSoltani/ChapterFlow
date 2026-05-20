@@ -1,0 +1,185 @@
+{
+  "chapterId": "skin-in-the-game-ch18",
+  "number": 18,
+  "title": "How to Be Rational About Rationality",
+  "coreMove": "Ask whether a belief or action preserves the agent under exposure before calling it irrational.",
+  "sourcePressure": "Rationality should be judged by survival and action under real constraints, not only by verbal coherence or formal elegance.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into generic decision theory or anti-reason posturing.",
+  "sourceAlignmentTerms": [
+    "rationality",
+    "survival",
+    "revealed preference",
+    "bounded rationality",
+    "instrumental belief",
+    "formal consistency",
+    "ruin sensitivity"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "How to Be Rational About Rationality",
+      "detail": "The sidecar supports rationality as survival, action, and revealed preference rather than abstract theory alone.",
+      "useIn": "both",
+      "phrasingHint": "The practical test is not whether the sentence sounds clean, but whether the behavior keeps people alive in the world that corrects them."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a tidy definition of skin in the game",
+      "starting with a generic meeting room where someone learns accountability",
+      "using a macho risk-taking cold open"
+    ],
+    "counterintuition": [
+      "not just X but Y correction shell",
+      "most people think fairness means niceness",
+      "the obvious lesson is wrong because the real lesson is deeper"
+    ],
+    "tryThisNow": [
+      "set a timer and think about risk",
+      "write down three ways to be accountable",
+      "ask yourself who has skin in the game with no concrete object"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table family advice with a mug",
+      "abstract consultant conversation with no downside transfer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "emergency planner choosing an evacuation custom that looks irrational on paper",
+      "audience": "planner judging by survival record under flood exposure",
+      "stakes": "formal neatness could break a habit that keeps families alive",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Emily Brooks keeps the messy local call tree after testing which method gets elders out fastest.",
+      "firstImage": "a laminated call tree beside flood maps",
+      "mustInclude": [
+        "call tree",
+        "flood map",
+        "evacuation test"
+      ],
+      "mustAvoid": [
+        "anti-rationality rant"
+      ]
+    },
+    {
+      "domain": "trader defending a hedge that lowers average return but prevents blowup",
+      "audience": "risk officer separating survival rationality from spreadsheet elegance",
+      "stakes": "the firm lives or dies by avoiding terminal loss",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Henrik Dahl asks whether the prettier return line survives the bad week.",
+      "firstImage": "red loss bars on a risk screen",
+      "mustInclude": [
+        "hedge cost",
+        "return chart",
+        "stress test"
+      ],
+      "mustAvoid": [
+        "finance macho"
+      ]
+    },
+    {
+      "domain": "parent keeping a taboo food rule because it prevents allergy confusion",
+      "audience": "doctor seeing instrumental belief inside a messy household rule",
+      "stakes": "child safety may depend on a rule that over-includes danger",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Giulia Conti asks what mistake the rule prevents before calling it irrational.",
+      "firstImage": "lunchbox clasps snapping shut",
+      "mustInclude": [
+        "food rule",
+        "allergy plan",
+        "mistake log"
+      ],
+      "mustAvoid": [
+        "religion overlap"
+      ]
+    },
+    {
+      "domain": "factory crew following a ritualized checklist that engineers mock",
+      "audience": "plant manager testing ritual by error prevention",
+      "stakes": "formal explanation matters less than preserved safety under exposure",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ben Carter removes one ritual step for a week, sees near-misses rise, and restores it.",
+      "firstImage": "paint worn off a checklist button",
+      "mustInclude": [
+        "ritual step",
+        "near-miss log",
+        "checklist board"
+      ],
+      "mustAvoid": [
+        "checklist manifesto repeat"
+      ]
+    },
+    {
+      "domain": "patient choosing an apparently inconsistent routine that keeps medication adherence high",
+      "audience": "clinician judging behavior by outcome under constraint",
+      "stakes": "clean instruction may fail where messy habit works",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Lin Chen reviews missed-dose data before replacing the patient's odd pill ritual.",
+      "firstImage": "foil packets in a teacup saucer",
+      "mustInclude": [
+        "dose log",
+        "pill ritual",
+        "clinic note"
+      ],
+      "mustAvoid": [
+        "medical compliance cliché"
+      ]
+    },
+    {
+      "domain": "community with a costly festival rule that maintains mutual aid",
+      "audience": "sociologist reading rationality through survival of cooperation",
+      "stakes": "a practice may look wasteful while preserving insurance no contract provides",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Catarina Silva asks what support network would vanish if the costly rule disappeared.",
+      "firstImage": "folding tables stacked after a festival meal",
+      "mustInclude": [
+        "festival ledger",
+        "mutual-aid list",
+        "cleanup rota"
+      ],
+      "mustAvoid": [
+        "anthropology abstraction"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify rationality in a new concrete scenario",
+      "choose the action that performs the chapter move: Ask whether a belief or action preserves the agent under exposure before calling it irrational.",
+      "separate the chapter's mechanism from the weak misread: Turning the chapter into generic decision theory or anti-reason posturing.",
+      "evaluate who carries downside, who keeps upside, and what evidence would change the decision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one live decision and mark, in under 90 seconds, who gets the upside, who carries the downside, and what one visible change would align them for How to Be Rational About Rationality.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside if supported, a direct second-person passage, or a brief historical reference from sourceAnchors",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

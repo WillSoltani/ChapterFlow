@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch84",
+  "number": 84,
+  "title": "House-Money Effect",
+  "readingTimeMinutes": 12,
+  "hook": "A lucky gain can make the next loss look less real than it is.",
+  "counterintuition": "Money does not become lighter because it arrived easily; mark the windfall as real money before it invites extra risk.",
+  "tryThisNow": "Choose one recent gain. Write it as ordinary cash, then name the risk you would reject if the same money came from salary.",
+  "keyTakeaway": "The house-money effect makes a windfall feel separate from your real resources. Treat the gain as owned money before choosing the next risk.",
+  "breakdown": {
+    "fastRead": "The tasting spoon in the restaurant menu test sits beside a surprise rebate from the supplier. Neville wants to spend the rebate on a risky oyster special because the cash sounds like house money. The cash is still real money. He writes windfall beside the spoon, moves the rebate into the normal food-cost line, and makes the chef judge the special by margin, waste, and demand.",
+    "deepRead": "A windfall changes the label on money. A bonus, rebate, grant, refund, or early win can feel separate from the money you earned by slower work. Once that label changes, risk starts to look cheaper.\n\nThe house-money effect borrows its name from the casino. After a gambler wins, the next bet may feel less painful because the chips seem to belong to the house. But the moment the chips are in your stack, they are yours to lose. The past win does not insure the next bet.\n\nFound money is not fake money.\n\nThis effect shows up far from casinos. A legal-aid clinic gets an unexpected donation and starts accepting cases outside its triage rule. A startup wins a one-time credit from a platform partner and pours it into a churn experiment it would never fund from operating cash. A family receives a tax refund and treats a long-shot purchase as painless. The source of the money changes the mood, not the loss.\n\nThe correction is to relabel the gain before the next spend. Write it as real money. Put it into the same budget line as earned cash. Then ask whether the risk still makes sense if the windfall has no special glow. Some bold uses of a gain are smart. The mistake is letting the easy arrival of money lower the standard for using it.",
+    "fullRead": "The shipping manifest for the museum donor exhibit lists a crate of fragile glass work and a new rush-delivery surcharge. Patricia, the exhibit manager, hears the development director say, 'The donor covered more than we expected, so we can absorb the risk.' The extra gift is welcome. It does not make cracked glass cheaper. She has to decide whether the manifest should follow the normal risk rule or the mood created by the gift.\n\nHouse money is a mental account with a dangerous smell of permission. You treat the gain as if it sits outside your real budget. Because it arrived from luck, timing, generosity, or a prior win, losing it seems less serious. The account feels temporary, so risk taking feels like play.\n\nWhose money is it once it is in your hand?\n\nCarrie Heilman, Kent Nakamoto, and Ambar Rao studied how money people have just received can change later choices. The point is not that every windfall creates recklessness. The point is that the source and timing of money can alter risk appetite before the numbers are even compared. That is the house-money effect in its cleanest form: the same dollar gets a different risk standard because of its story.\n\nPeter Bernstein's writing on risk and the casino image point to the same trap. A gambler who is up for the night may say he is only playing with the house's money. But the gain has already moved to his side of the ledger. If he would not place the bet from his own wallet, the earlier win is not a reason. It is a disguise.\n\nThe gain already belongs to the decision.\n\nA hardware storm inventory shows the business version. Linda receives a one-time vendor credit after a strong quarter. A storm is forecast, and the ad mockup for premium generators looks exciting. She can spend the credit on a risky extra order and tell herself the house is paying. Or she can put the credit into normal cash planning and ask whether the inventory risk still clears the same test as any other purchase.\n\nThe practical move is not to ban bold spending after good luck. A windfall can fund a smart experiment, repair a weak balance sheet, or speed up a high-return investment. The discipline is to remove the lucky label first. If the project still clears the hurdle after the money is treated as owned cash, use it. If it only looks good because the money feels found, stop.\n\nThe limit is emotional and social. Gifts, grants, and donations sometimes come with purpose. A museum donor may intend the extra money for the exhibit, not the roof fund. A public agency may receive earmarked funds that cannot be used freely. Even then, the money is real. The constraint may be real too, but the risk standard should not vanish.\n\nBefore the next choice moves forward, move the windfall into the real ledger. Ask what you would do if the same amount had arrived through payroll, dues, or last month's sales. If the answer changes, the gain may be choosing for you. Once the money is counted as yours, the risk has to earn its place."
+  },
+  "examples": [
+    {
+      "exampleId": "ch84-ex01-neville-tasting-spoon",
+      "title": "Neville relabels the oyster rebate",
+      "scenario": "A tasting spoon rests on a steel prep tray during a restaurant menu test in Portland at 3:10 p.m. Neville must decide whether to use a supplier rebate on a risky oyster special that could waste half the order. He marks house money on the spoon sleeve, moves the rebate into the normal food-cost sheet, and changes the tasting vote in front of the chef.",
+      "whatToDo": "Move the rebate into the normal food-cost line before judging the oyster special by margin, waste, and demand.",
+      "whyItMatters": "The rebate's easy arrival can make spoilage feel cheaper. Once the gain is owned money, the special has to pass the same test as any menu risk.",
+      "tags": [
+        "tasting spoon",
+        "house money",
+        "restaurant menu test"
+      ],
+      "planSpec": {
+        "domain": "a restaurant menu test applying House-Money Effect under operational pressure",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch84-ex02-linda-scoreboard-still",
+      "title": "Linda stops the victory-case pileup",
+      "scenario": "\"The fundraiser scoreboard still looks incredible,\" the clinic director says during legal-aid case triage in Minneapolis. Linda must decide whether a surprise windfall should let the team take three weak-impact cases outside the triage rule. She circles windfall on the scoreboard still, puts the grant into the regular case-capacity sheet, and changes the intake list with the paralegal watching.",
+      "whatToDo": "Treat the windfall as ordinary capacity money, then choose cases by need, impact, and hours instead of celebration.",
+      "whyItMatters": "A donation can feel like permission to loosen standards. Legal-aid hours are still scarce after the check clears.",
+      "tags": [
+        "scoreboard still",
+        "windfall",
+        "legal-aid case triage"
+      ],
+      "planSpec": {
+        "domain": "a legal-aid case triage applying House-Money Effect under operational pressure",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch84-ex03-patricia-shipping-manifest",
+      "title": "Patricia keeps the glass insured",
+      "scenario": "The shipping manifest smells of fresh toner beside the donor wall mockup at a museum in Boston. Patricia must decide whether a larger-than-expected gift should cover rush shipping for fragile glass without the usual insurance review. She writes real money on the manifest, asks the registrar to price the breakage risk, and changes the shipment plan before the donor call.",
+      "whatToDo": "Count the extra gift as real exhibit money, then run the rush shipment through the normal breakage and insurance review.",
+      "whyItMatters": "A donor surplus can make risk feel prepaid. The glass still breaks at the same cost, no matter how welcome the gift felt.",
+      "tags": [
+        "shipping manifest",
+        "real money",
+        "museum donor exhibit"
+      ],
+      "planSpec": {
+        "domain": "a museum donor exhibit applying House-Money Effect under operational pressure",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch84-ex04-margaret-ad-mockup",
+      "title": "Margaret reins in the generator buy",
+      "scenario": "You are holding an ad mockup for premium generators in a hardware store office in Halifax while a storm alert runs on the radio. Margaret must decide whether a one-time vendor credit should fund an extra truckload of inventory. She writes risk taking on the mockup, moves the credit into the cash forecast, and changes the order only after sell-through and storage costs are visible.",
+      "whatToDo": "Treat the credit as one financing input, then compare cash strain with real storm demand.",
+      "whyItMatters": "The credit can make a large order feel like a free bet. Inventory risk remains real when the storm misses or demand shifts.",
+      "tags": [
+        "ad mockup",
+        "risk taking",
+        "hardware storm inventory"
+      ],
+      "planSpec": {
+        "domain": "a hardware storm inventory applying House-Money Effect under operational pressure",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch84-ex05-victoria-dropout-table",
+      "title": "Victoria leaves the casino language behind",
+      "scenario": "It took Victoria two churn reviews in Austin to see that the startup treated partner credits like casino chips. The dropout table showed that the loudest experiment was not reaching risky accounts, yet she predicted the team would double it because the platform was paying. Before the next sprint, she must decide whether to keep the test or return the credit to the normal growth budget.",
+      "whatToDo": "Strip the casino language from the partner credit, then judge the churn test by account risk, reach, and expected learning.",
+      "whyItMatters": "A platform credit can make a weak experiment feel painless. If it does not reach accounts likely to leave, the spend still wastes a chance to learn.",
+      "tags": [
+        "dropout table",
+        "casino",
+        "startup churn review"
+      ],
+      "planSpec": {
+        "domain": "a startup churn review applying House-Money Effect under operational pressure",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch84-ex06-alan-organ-donor-form",
+      "title": "Alan's public-comment postmortem",
+      "scenario": "Who paid for the extra hearings after the grant arrived? Alan asks that after a public-comment policy desk in Ottawa reviews an organ-donor form and the overtime ledger beside it. The team treated the grant as house money and added sessions that produced little new evidence. He marks house on the form and changes the next grant review so each added hearing needs a normal cost-and-value check.",
+      "whatToDo": "Treat the grant as public money already owned by the process, then require each added hearing to justify its cost and evidence value.",
+      "whyItMatters": "A grant can make extra process feel free. Public time and staff hours remain real even when the cash arrived from outside the usual budget.",
+      "tags": [
+        "organ-donor form",
+        "house",
+        "public-comment policy desk"
+      ],
+      "planSpec": {
+        "domain": "a public-comment policy desk applying House-Money Effect under operational pressure",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a house-money case, a team receives a surprise vendor credit and approves a risky experiment it would have rejected from the normal budget, what is the house-money effect?",
+        "choices": [
+          "Treating a windfall as less real, so extra risk feels cheaper.",
+          "Experiment rejected normal gives a practical reason for credit approves risky; treating windfall less belongs after budget what effect clarifies the result.",
+          "Normal budget what makes vendor credit approves look credible; use risky experiment rejected first and revisit effect treating windfall when less real extra shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The credit is being treated as less real than ordinary cash. The error is not using a windfall, but lowering the risk standard because of its source.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "House-Money Effect makes house-money case feel more decisive than the record supports, and that misprices team receives in this scene. The correct move keepss the choice by treating a windfall as less real, so extra risk feels cheaper."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a house-money review, a chef wants to spend a supplier rebate on a risky menu test because the money feels separate from the restaurant's cash, what should happen first?",
+        "choices": [
+          "Test money separate makes wants spend supplier look credible; use rebate risky menu first and revisit restaurant cash what when happen first move shifts.",
+          "Move the rebate into the food-cost sheet and judge the test by margin, waste, and demand.",
+          "Cash what happen points toward a quicker call on spend supplier rebate; let house-money chef wants stand until money separate restaurant contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "Putting the rebate into the food-cost sheet makes it real money again. The dish may still pass, but not because spoilage feels free.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "House-Money Effect works by letting house-money chef crowd out wants spend, which can misreads the supplier rebate decision. Move the rebate into the food-cost sheet and judge the test by margin, waste, and demand keeps the practical cost tied to."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When house-money pressure appears, a legal-aid clinic receives a surprise donation and starts accepting low-impact cases outside its triage rule. Which correction fits best?",
+        "choices": [
+          "Impact hours effect fits the immediate pressure around cases outside triage; hold starts accepting low-impact steady and test receives surprise donation later.",
+          "Clinic receives surprise looks strong enough to guide donation starts accepting; low-impact cases outside can wait unless triage rule correction changes the stakes.",
+          "Add the donation to the capacity plan and choose cases by need, impact, and hours."
+        ],
+        "correctIndex": 2,
+        "explanation": "The donation increases capacity, but it does not erase triage. Need, impact, and hours still decide whether the cases deserve scarce legal time.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "House-Money Effect turns appears legal-aid into a shortcut, so the room can overweights clinic receives while missing surprise donation. Add the donation to the capacity plan and choose cases by need, impact, and hours protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After house-money risk surfaces, a museum gets a larger gift than expected and wants to rush fragile glass without the normal insurance review, what is the best response?",
+        "choices": [
+          "Wants rush fragile makes surfaces museum gets look credible; use larger gift expected first and revisit glass normal insurance when what best response shifts.",
+          "Fragile glass normal supports a narrower read of house-money surfaces museum; keep gets larger gift central and leave expected wants rush aside.",
+          "Treat the surplus as real exhibit money and run the normal breakage review."
+        ],
+        "correctIndex": 2,
+        "explanation": "The gift does not change the cost of cracked glass. The normal review makes the rush decision answer to risk instead of windfall mood.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "House-Money Effect would push the museum gets case toward larger gift, creating a cost when expected wants stays untested. The useful guardrail is to treat the surplus as real exhibit money and run the normal breakage review."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If house-money reasoning takes over, a hardware store uses a one-time vendor credit to overbuy generators before a storm, even though storage costs and sell-through are unclear. What is the likely error?",
+        "choices": [
+          "The credit is making the inventory bet feel like a free roll.",
+          "One-time vendor credit looks strong enough to guide overbuy generators storm; even though storage can wait unless costs sell-through unclear changes the stakes.",
+          "Credit overbuy generators gives a practical reason for store one-time vendor; storage costs sell-through belongs after storm even though clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "The credit makes the order feel cheaper than it is. The purchase could be rational, but only after demand and downside are checked.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "House-Money Effect converts store one-time into the loudest signal, which can rushes vendor credit before overbuy generators is checked. The better answer separatess attention on the credit is making the inventory bet feel like a free roll."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While house-money pressure builds, a startup calls a partner credit 'casino chips' and doubles a churn test that is not reaching high-risk accounts, which move best resists the bias?",
+        "choices": [
+          "Chips doubles churn makes builds startup calls look credible; use partner credit casino first and revisit test reaching high-risk when accounts move best shifts.",
+          "Return the credit mentally to the normal growth budget and judge expected learning.",
+          "Reaching high-risk accounts points toward a quicker call on startup calls partner; let house-money pressure builds stand until doubles churn test contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The credit needs the same learning standard as other growth money. Expiration may matter, but casino language is lowering the bar.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "House-Money Effect hides inside the house-money pressure choice because house-money pressure seems sufficient, yet the cost lands in house-money pressure. Return the credit mentally to the normal growth budget and judge expected learning brings the house-money pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the house-money call, a public agency grant funds extra comment hearings that produce little new evidence. Staff say outside money paid for them, so the waste does not count. What should the postmortem ask?",
+        "choices": [
+          "Outside money paid supports a narrower read of agency grant funds; keep extra comment hearings central and leave produce little staff aside.",
+          "Would each added hearing have passed a normal cost-and-value test?",
+          "Count what postmortem fits the immediate pressure around comment hearings produce; hold grant funds extra steady and test call public agency later."
+        ],
+        "correctIndex": 1,
+        "explanation": "Outside money is still public money once it is in the process. Each added hearing should justify its staff time and evidence value.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "House-Money Effect pressures the call public decision toward the easy reading of call public. That can inflates the real cost unless the choice is grounded in would each added hearing have passed a normal cost-and-value test."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose house-money risk is present: a committee wants to use a windfall for a bold project that also has high expected value under the normal investment rule. How should it decide?",
+        "choices": [
+          "Wants windfall bold gives a practical reason for house-money present committee; expected value normal belongs after project also high clarifies the result.",
+          "Bold project also makes suppose house-money present look credible; use committee wants windfall first and revisit high expected value when normal investment rule shifts.",
+          "Approve it only if it still clears the normal hurdle after the windfall label is removed."
+        ],
+        "correctIndex": 2,
+        "explanation": "The right test is whether the project clears the normal hurdle after the lucky label is removed. Bold spending can be smart, but not because the money feels found.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "House-Money Effect is the mechanism here: windfalls feel less like real losses, so present committee can overpower present committee. Approve it only if it still clears the normal hurdle after the windfall label is removed keeps the scenario from becoming."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two house-money signals compete: a family treats a tax refund as extra money and buys a long-shot appliance warranty they would never buy from monthly income. What question should they ask?",
+        "choices": [
+          "Would we buy this if the same amount came from salary?",
+          "Income what amount points toward a quicker call on refund extra money; let compete family treats stand until warranty often monthly contradicts it.",
+          "Amount came salary fits the immediate pressure around money buys long-shot; hold treats refund extra steady and test signals compete family later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The salary question relabels the refund as owned cash. If the warranty fails that test, the windfall story was choosing for them.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "House-Money Effect makes the family treats evidence look cleaner than it is, risking a family treats mistake in this setting. The answer protects family treats by asking for would we buy this if the same amount came from salary."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "A surprise gain makes a risky choice feel painless. How should the gain be re-owned?",
+      "back": "Treat the windfall as owned money before the next bet. A loss after a gain is still a loss.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What is the first correction for a windfall?",
+      "back": "Move it into the ordinary budget line before judging the next risk.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "When can a windfall fund a bold choice?",
+      "back": "When the choice still clears the normal hurdle after the lucky label is removed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "Why is casino language dangerous in budgets?",
+      "back": "It makes owned money feel like chips from the house, so the risk standard drops.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "A grant or gift is earmarked. Does the effect still matter?",
+      "back": "Yes. Constraints may be real, but the money and staff time are still real too.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Relabel windfalls as real owned money, then judge the next risk by the normal hurdle.",
+    "ifThenPlans": [
+      {
+        "context": "Refunds and rebates",
+        "plan": "If money arrives unexpectedly, then I will move it into the normal budget before spending it."
+      },
+      {
+        "context": "Work grants or credits",
+        "plan": "If a grant feels like free capacity, then I will require the same cost-and-value test as ordinary funds."
+      },
+      {
+        "context": "Experiments",
+        "plan": "If a credit makes a test feel painless, then I will judge expected learning before approving the spend."
+      },
+      {
+        "context": "Personal purchases",
+        "plan": "If a bonus makes a long-shot purchase tempting, then I will ask whether salary money would buy it."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one recent gain, rebate, credit, or saved cost. Move it into your ordinary ledger and write the risk you would reject if it came from salary.",
+    "weeklyPractice": "Once a week, review any found-money decision and ask whether the lucky label lowered your hurdle."
+  },
+  "memorableLines": [
+    {
+      "text": "Found money is not fake money."
+    },
+    {
+      "text": "The gain already belongs to the decision."
+    },
+    {
+      "text": "Once the money is counted as yours, the risk has to earn its place."
+    }
+  ]
+}

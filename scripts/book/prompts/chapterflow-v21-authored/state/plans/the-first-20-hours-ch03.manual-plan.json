@@ -1,0 +1,207 @@
+{
+  "chapterId": "the-first-20-hours-ch03",
+  "number": 3,
+  "title": "10 Principles of Effective Learning",
+  "coreMove": "Make study earn its place by turning it into a prediction, scaffold, practitioner cue, or test that changes the next rep.",
+  "sourcePressure": "The source lists effective learning principles that bound preparation and feed practice: research but not too much, jump in, mental models and hooks, imagine the opposite, talk to practitioners, eliminate distractions, spaced repetition, scaffolds and checklists, predictions and tests, and honoring biology.",
+  "chapterSpecificMisunderstanding": "Letting effective learning become a respectable delay loop instead of a way to improve the next practice attempt.",
+  "sourceAlignmentTerms": [
+    "bounded research",
+    "jump in",
+    "mental models",
+    "hooks",
+    "imagine the opposite",
+    "talk to practitioners",
+    "spaced repetition",
+    "scaffolds",
+    "predictions and tests",
+    "biology"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "research but not too much",
+      "detail": "the frozen support names bounded research as the first effective learning principle and says the chapter supports practice rather than replacing it",
+      "useIn": "both",
+      "phrasingHint": "Research has to walk you to the first attempt, then get out of the doorway."
+    },
+    {
+      "kind": "artifact",
+      "name": "predictions and tests",
+      "detail": "the frozen support lists predictions and tests as a chapter principle that favors active checking over passive accumulation",
+      "useIn": "fullRead",
+      "phrasingHint": "A prediction makes the lesson answer back; without it, study can stay pleasantly untested."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "browser tab pile opener",
+      "student highlighting textbook opener",
+      "study smarter slogan"
+    ],
+    "counterintuition": [
+      "reading is procrastination",
+      "biology explains everything",
+      "distraction is the only enemy"
+    ],
+    "tryThisNow": [
+      "close all tabs",
+      "take a break",
+      "write three facts you learned"
+    ],
+    "examples": [
+      "generic exam cramming",
+      "coffee-shop laptop scene",
+      "study app streak"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Daniel",
+      "domain": "architectural intern learning site-measure sketches",
+      "audience": "a learner whose prep must change the next field attempt",
+      "stakes": "wrong measurements force a contractor visit to be repeated",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Daniel studies one example sketch, predicts where his first field sketch will fail, then uses a checklist on the actual stairwell landing",
+      "firstImage": "a tape measure hooked on chipped concrete stair nosing",
+      "mustInclude": [
+        "example sketch",
+        "prediction note",
+        "stairwell checklist"
+      ],
+      "mustAvoid": [
+        "generic design school scene",
+        "software drafting lesson"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "community choir member learning sight-singing intervals",
+      "audience": "a reader who needs mental hooks tied to audible reps",
+      "stakes": "she loses her entrance every rehearsal and pulls the alto row with her",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sophie asks the section lead for one interval hook, sings it, predicts the next entrance, and checks the miss against the piano before reading more theory",
+      "firstImage": "a pencil dot above one alto entrance on wrinkled sheet music",
+      "mustInclude": [
+        "interval hook",
+        "piano check",
+        "alto entrance"
+      ],
+      "mustAvoid": [
+        "full music-theory lecture",
+        "generic performance nerves"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "restaurant expeditor learning allergy-ticket checks",
+      "audience": "a learner who needs scaffolds before speed",
+      "stakes": "one missed nut allergy warning can send the wrong plate to table twelve",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Etienne builds a three-box ticket checklist, tests it on five old tickets, and keeps it at the pass only after it catches the hidden allergy note",
+      "firstImage": "a yellow allergy ticket clipped beside the heat lamp",
+      "mustInclude": [
+        "three-box checklist",
+        "five old tickets",
+        "heat lamp"
+      ],
+      "mustAvoid": [
+        "generic kitchen rush",
+        "chef genius scene"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "field ecologist learning bird-call identification",
+      "audience": "a reader whose learning needs spacing and live tests",
+      "stakes": "the dawn survey loses value if she keeps confusing two common calls",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Laura spaces three short call reviews across the day, predicts the species before opening the answer file, and logs which cue actually survived at dawn",
+      "firstImage": "cold mist on a field recorder clipped to a fence post",
+      "mustInclude": [
+        "field recorder",
+        "answer file",
+        "dawn survey sheet"
+      ],
+      "mustAvoid": [
+        "generic nature walk",
+        "memorization without testing"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "apprentice electrician learning breaker-panel labeling",
+      "audience": "a novice in a safety-sensitive trade who must talk to practitioners",
+      "stakes": "bad labels slow an outage response in a retirement building",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Pavel asks a senior electrician what mistake hurts most, imagines the opposite of a clear label, then tests his labels by having another apprentice find one circuit cold",
+      "firstImage": "numbered breaker stickers curled at the edge of a metal panel door",
+      "mustInclude": [
+        "senior electrician",
+        "bad-label opposite",
+        "cold circuit test"
+      ],
+      "mustAvoid": [
+        "unsafe electrical instructions",
+        "generic apprenticeship pride"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "municipal clerk learning emergency-call routing software",
+      "audience": "a learner whose attention quality matters during short training windows",
+      "stakes": "a misrouted storm call sends residents to the wrong department",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hadiya moves training away from the ringing front desk, runs one distraction-free routing drill, and stops when fatigue starts adding false clicks",
+      "firstImage": "your finger hovering above a red storm-call queue tab",
+      "mustInclude": [
+        "routing drill",
+        "storm-call queue",
+        "fatigue cutoff"
+      ],
+      "mustAvoid": [
+        "generic productivity focus",
+        "unsupported brain claims"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate useful preparation from delay",
+      "choose tests and predictions that expose mistakes",
+      "use practitioner cues and scaffolds without outsourcing practice",
+      "spot when biology and attention limits should change the session"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before your next practice block, write one prediction about what will go wrong and one test that will tell you whether you were right.",
+  "readingTimeMinutes": 12
+}

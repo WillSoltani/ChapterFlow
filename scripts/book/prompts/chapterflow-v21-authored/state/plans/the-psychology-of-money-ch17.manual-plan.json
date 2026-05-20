@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch17",
+  "number": 17,
+  "title": "You & Me",
+  "coreMove": "Identify your own game before copying someone else's signal.",
+  "sourcePressure": "Financial behavior can be rational for one horizon and costly for another; advice travels badly across different incentives.",
+  "chapterSpecificMisunderstanding": "Assuming one smart person's move is automatically transferable.",
+  "sourceAlignmentTerms": [
+    "different game",
+    "horizon",
+    "incentives",
+    "scoreboard",
+    "advice",
+    "urgency"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening You & Me with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing You & Me to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the different game move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of different game and horizon"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a long-term saver ignoring a day trader's urgent alert in a group chat",
+      "audience": "an investor whose horizon differs from the loudest voice",
+      "stakes": "copying the trade converts someone else's game into his risk",
+      "format": "decision_point",
+      "requiredBeat": "he writes his holding period above the alert before deciding whether it applies",
+      "firstImage": "a phone buzzing with a trade alert beside a retirement account screen",
+      "mustInclude": [
+        "trade alert",
+        "holding period",
+        "retirement screen"
+      ],
+      "mustAvoid": [
+        "anti-trader rant"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a landlord misreading a developer's cash offer as proof the neighborhood is doomed",
+      "audience": "a property owner separating another player's incentives from her own needs",
+      "stakes": "selling in panic may solve the developer's timeline, not hers",
+      "format": "dialogue",
+      "requiredBeat": "she asks what deadline the buyer faces before treating the offer as information",
+      "firstImage": "a purchase offer slid under a rowhouse door",
+      "mustInclude": [
+        "purchase offer",
+        "buyer deadline",
+        "property tax bill"
+      ],
+      "mustAvoid": [
+        "real estate speculation"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a nonprofit treasurer resisting advice from a tech CFO about cash reserves",
+      "audience": "a treasurer with donor restrictions and payroll obligations unlike a startup",
+      "stakes": "borrowing the CFO's urgency could endanger restricted funds",
+      "format": "scene",
+      "requiredBeat": "she marks which dollars are restricted before applying any outside cash rule",
+      "firstImage": "a grant ledger with colored tabs for restricted funds",
+      "mustInclude": [
+        "restricted ledger",
+        "payroll date",
+        "outside advice note"
+      ],
+      "mustAvoid": [
+        "nonprofit prudence generic"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a retiree filtering financial television through her own income needs",
+      "audience": "a retiree who must distinguish entertainment urgency from spending horizon",
+      "stakes": "acting on someone else's segment could create real bill risk",
+      "format": "before_after",
+      "requiredBeat": "she writes next year's withdrawals on the notepad before the host's prediction matters",
+      "firstImage": "a muted financial channel above a handwritten withdrawal schedule",
+      "mustInclude": [
+        "withdrawal schedule",
+        "TV prediction",
+        "income floor"
+      ],
+      "mustAvoid": [
+        "media literacy boilerplate"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a founder deciding whether to copy a competitor's cash-burning growth plan",
+      "audience": "a founder whose capital stack and investors are different",
+      "stakes": "copying the competitor may import their incentives without their funding",
+      "format": "postmortem",
+      "requiredBeat": "after a rival implodes, she compares investor terms rather than mocking the strategy",
+      "firstImage": "a competitor press release beside her own investor term sheet",
+      "mustInclude": [
+        "term sheet",
+        "press release",
+        "burn-rate table"
+      ],
+      "mustAvoid": [
+        "startup morality tale"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a high school coach declining a training regimen borrowed from an elite academy",
+      "audience": "a coach matching advice to players' bodies, schedules, and goals",
+      "stakes": "copying the regimen could injure students with different constraints",
+      "format": "predict_reveal",
+      "requiredBeat": "he maps academy practice hours against his players' bus schedules before adopting drills",
+      "firstImage": "a practice plan next to an after-school bus timetable",
+      "mustInclude": [
+        "practice plan",
+        "bus timetable",
+        "injury log"
+      ],
+      "mustAvoid": [
+        "sports excellence cliche"
+      ],
+      "openingDevice": "retrospective"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: identify your own game before copying someone else's signal",
+      "distinguish different game from nearby but weaker advice such as personal finance tribes",
+      "diagnose when a character is making the common misread: assuming one smart person's move is automatically transferable.",
+      "evaluate tradeoffs using the chapter-specific pressure around different game, horizon, incentives"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where different game is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: identify your own game before copying someone else's signal.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

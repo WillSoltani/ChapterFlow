@@ -1,0 +1,202 @@
+{
+  "chapterId": "the-lean-startup-ch03",
+  "number": 3,
+  "title": "Learn",
+  "coreMove": "Make every claimed lesson earn its status by tying it to evidence strong enough to change the next decision.",
+  "sourcePressure": "Validated learning becomes the startup's true output, and learning only counts when empirical evidence proves something about the customer, product, or business model.",
+  "chapterSpecificMisunderstanding": "Calling any thoughtful reflection, positive comment, or team debrief learning.",
+  "sourceAlignmentTerms": [
+    "validated learning",
+    "empirical proof",
+    "experimentation",
+    "Five Whys",
+    "root-cause thinking",
+    "business model evidence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Validated learning",
+      "detail": "the sidecar calls it the startup's true progress and real output",
+      "useIn": "both",
+      "phrasingHint": "A lesson is not validated because the room can explain it well; it is validated when evidence changes what the room does next."
+    },
+    {
+      "kind": "artifact",
+      "name": "Five Whys",
+      "detail": "the sidecar names Five Whys as disciplined root-cause correction",
+      "useIn": "fullRead",
+      "phrasingHint": "When the same fault keeps returning, the fifth why often points away from the bug and toward the system that keeps making it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Learn.",
+      "Do not use a generic founder staring at a dashboard hook.",
+      "Do not start with broad claims about modern business."
+    ],
+    "counterintuition": [
+      "Avoid the shell that speed is not the point, learning is the point.",
+      "Avoid a simple not X but Y correction if the same rhythm can be replaced by a concrete tension.",
+      "Avoid making caution sound like timidity."
+    ],
+    "tryThisNow": [
+      "Do not ask the reader to set a timer and reflect.",
+      "Do not tell the reader to make a generic list of assumptions.",
+      "Do not use a reusable audit-your-work prompt without chapter terms."
+    ],
+    "examples": [
+      "No six startup founders in meeting rooms.",
+      "No repeated coffee mug, marker, kitchen, classroom, or bus-stop shells.",
+      "No invented named case studies, famous companies, studies, or founders."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "subscription coffee roaster retention test",
+      "audience": "founder and roasting team",
+      "stakes": "friendly comments could be mistaken for proof of repeat demand",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Beatrice compares compliments with reorder behavior before approving a bigger roast",
+      "firstImage": "a cooling tray of beans beside five thank-you emails",
+      "mustInclude": [
+        "reorder sheet",
+        "sample bags",
+        "roast calendar"
+      ],
+      "mustAvoid": [
+        "generic learn office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "mental-health intake form redesign",
+      "audience": "clinic operations team",
+      "stakes": "lower staff frustration may not prove patient completion improved",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Patrick asks whether the changed form reduced abandoned intakes or merely felt cleaner",
+      "firstImage": "a clipboard with skipped fields in blue ink",
+      "mustInclude": [
+        "intake forms",
+        "abandonment tally",
+        "front-desk notes"
+      ],
+      "mustAvoid": [
+        "generic learn office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "open-source developer tool beta",
+      "audience": "maintainer group",
+      "stakes": "GitHub stars may flatter the team without proving usage",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Eva checks whether starred users returned to run the tool twice",
+      "firstImage": "a terminal window beside a star-count dashboard",
+      "mustInclude": [
+        "usage logs",
+        "issue thread",
+        "release tag"
+      ],
+      "mustAvoid": [
+        "generic learn office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "bakery wholesale portal",
+      "audience": "small manufacturer",
+      "stakes": "one successful order may become a story the team wants too much",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "David separates a pleasant buyer email from validated demand for weekly ordering",
+      "firstImage": "a flour-dusted invoice on a packing table",
+      "mustInclude": [
+        "buyer email",
+        "weekly order form",
+        "delivery route note"
+      ],
+      "mustAvoid": [
+        "generic learn office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "city-bike repair pop-up",
+      "audience": "transportation nonprofit",
+      "stakes": "busy foot traffic might hide whether riders value paid repair",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Manon counts actual paid tuneups instead of conversations at the tent",
+      "firstImage": "a bike stand clamped to a curbside rack",
+      "mustInclude": [
+        "payment reader",
+        "repair tags",
+        "rain tarp"
+      ],
+      "mustAvoid": [
+        "generic learn office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    },
+    {
+      "domain": "university lab equipment booking system",
+      "audience": "research administrators",
+      "stakes": "solving a visible booking conflict may miss the repeated root cause",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Lars runs Five Whys until the team sees the ownership gap behind late returns",
+      "firstImage": "a lab calendar with three red conflicts",
+      "mustInclude": [
+        "booking calendar",
+        "equipment cabinet key",
+        "handoff note"
+      ],
+      "mustAvoid": [
+        "generic learn office scene",
+        "reused startup-team whiteboard shell",
+        "any banned protagonist name or prior-book stock cast"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Distinguish Learn from nearby generic advice in a new scenario.",
+      "Choose the next visible action that performs the chapter move: Make every claimed lesson earn its status by tying it to evidence strong enough to change the next decision.",
+      "Diagnose when a team is drifting into the misread: Calling any thoughtful reflection, positive comment, or team debrief learning."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In 30 to 90 seconds, take one current project and write the chapter-specific question this plan demands: Make every claimed lesson earn its status by tying it to evidence strong enough to change the next decision. Name the concrete evidence or action that would answer it next.",
+  "readingTimeMinutes": 12
+}

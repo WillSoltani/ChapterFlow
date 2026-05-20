@@ -1,0 +1,1144 @@
+{
+  "$schema": "./author-voice-profiles.schema.json",
+  "version": "1.0.0",
+  "description": "Per-book author voice profiles. Used by B13/B14 audits to relax/tighten the hook first-word and counter shape caps for authors who naturally cluster on a particular frame. Each profile keys off bookId (matched in editor-in-chief.ts at brief assembly time). `unconfirmed: true` means the values are best-guess defaults applied because no high-confidence reading of the author's prose is available; revisit when the operator reads a chapter against the source.",
+  "profiles": {
+    "deep-work": {
+      "bookId": "deep-work",
+      "author": "Cal Newport",
+      "register": "researcher-practitioner",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.15,
+        "despite_led": 0.10,
+        "other": 0.25
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "time_anchored": 0.25,
+        "direct_claim": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": ["lean into", "double down", "move the needle"]
+    },
+    "so-good-they-cant-ignore-you": {
+      "bookId": "so-good-they-cant-ignore-you",
+      "author": "Cal Newport",
+      "register": "researcher-practitioner",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.15,
+        "despite_led": 0.10,
+        "other": 0.25
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "time_anchored": 0.25,
+        "direct_claim": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": ["lean into", "double down", "move the needle"]
+    },
+    "indistractable": {
+      "bookId": "indistractable",
+      "author": "Nir Eyal",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "what_looks_like": 0.25,
+        "negation_correction": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "direct_claim": 0.30,
+        "second_person_call": 0.20,
+        "the_noun": 0.10,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "the-48-laws-of-power": {
+      "bookId": "the-48-laws-of-power",
+      "author": "Robert Greene",
+      "register": "philosopher-historian",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.10,
+        "negation_correction": 0.10,
+        "what_looks_like": 0.15,
+        "other": 0.45
+      },
+      "naturalHookShapes": {
+        "historical_named_actor": 0.45,
+        "time_anchored": 0.25,
+        "direct_claim": 0.10,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "signatureFrames": ["historical figure as scene actor"],
+      "avoidFrames": []
+    },
+    "the-laws-of-human-nature": {
+      "bookId": "the-laws-of-human-nature",
+      "author": "Robert Greene",
+      "register": "philosopher-historian",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.10,
+        "negation_correction": 0.10,
+        "what_looks_like": 0.15,
+        "other": 0.45
+      },
+      "naturalHookShapes": {
+        "historical_named_actor": 0.45,
+        "time_anchored": 0.25,
+        "direct_claim": 0.10,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "signatureFrames": ["historical figure as scene actor"],
+      "avoidFrames": []
+    },
+    "the-lean-startup": {
+      "bookId": "the-lean-startup",
+      "author": "Eric Ries",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "what_looks_like": 0.25,
+        "negation_correction": 0.20,
+        "in_fact_reversal": 0.15,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": ["the deeper cause is", "the hidden cost is"]
+    },
+    "the-righteous-mind": {
+      "bookId": "the-righteous-mind",
+      "author": "Jonathan Haidt",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "despite_led": 0.20,
+        "x_can_y_still": 0.20,
+        "in_fact_reversal": 0.15,
+        "what_looks_like": 0.10,
+        "negation_correction": 0.10,
+        "other": 0.25
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.30,
+        "question_led": 0.25,
+        "named_protagonist_action": 0.20,
+        "the_noun": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": ["The paradox:"]
+    },
+    "clear-thinking": {
+      "bookId": "clear-thinking",
+      "author": "Shane Parrish",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.15,
+        "other": 0.45
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.30,
+        "named_protagonist_action": 0.25,
+        "the_noun": 0.20,
+        "second_person_call": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "the-great-mental-models-vol-1": {
+      "bookId": "the-great-mental-models-vol-1",
+      "author": "Shane Parrish",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.15,
+        "other": 0.45
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.30,
+        "named_protagonist_action": 0.25,
+        "the_noun": 0.20,
+        "second_person_call": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "the-great-mental-models-vol-2": {
+      "bookId": "the-great-mental-models-vol-2",
+      "author": "Shane Parrish",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.15,
+        "other": 0.45
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.30,
+        "named_protagonist_action": 0.25,
+        "the_noun": 0.20,
+        "second_person_call": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "atomic-habits": {
+      "bookId": "atomic-habits",
+      "author": "James Clear",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": ["Most readers assume", "Most readers think"]
+    },
+    "tiny-habits": {
+      "bookId": "tiny-habits",
+      "author": "BJ Fogg",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "what_looks_like": 0.25,
+        "negation_correction": 0.20,
+        "in_fact_reversal": 0.15,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "second_person_call": 0.25,
+        "direct_claim": 0.20,
+        "the_noun": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "thinking-fast-and-slow": {
+      "bookId": "thinking-fast-and-slow",
+      "author": "Daniel Kahneman",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "despite_led": 0.15,
+        "negation_correction": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.30,
+        "named_protagonist_action": 0.25,
+        "question_led": 0.20,
+        "time_anchored": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "antifragile": {
+      "bookId": "antifragile",
+      "author": "Nassim Nicholas Taleb",
+      "register": "philosopher-historian",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "historical_named_actor": 0.30,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "named_protagonist_action": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "the-prince": {
+      "bookId": "the-prince",
+      "author": "Niccolo Machiavelli",
+      "register": "philosopher-historian",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.15,
+        "what_looks_like": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "historical_named_actor": 0.35,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "named_protagonist_action": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "the-art-of-war": {
+      "bookId": "the-art-of-war",
+      "author": "Sunzi",
+      "register": "philosopher-historian",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.10,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.40,
+        "the_noun": 0.25,
+        "historical_named_actor": 0.20,
+        "other": 0.15
+      },
+      "avoidFrames": []
+    },
+    "the-psychology-of-money": {
+      "bookId": "the-psychology-of-money",
+      "author": "Morgan Housel",
+      "register": "journalist",
+      "naturalCounterShapes": {
+        "what_looks_like": 0.25,
+        "negation_correction": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "time_anchored": 0.20,
+        "direct_claim": 0.20,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "predictably-irrational": {
+      "bookId": "predictably-irrational",
+      "author": "Dan Ariely",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "negation_correction": 0.15,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "direct_claim": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "you-cant-hurt-me": {
+      "bookId": "you-cant-hurt-me",
+      "author": "David Goggins",
+      "register": "memoirist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "in_fact_reversal": 0.15,
+        "other": 0.55
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.50,
+        "direct_claim": 0.25,
+        "time_anchored": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "extreme-ownership": {
+      "bookId": "extreme-ownership",
+      "author": "Jocko Willink, Leif Babin",
+      "register": "memoirist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "in_fact_reversal": 0.15,
+        "other": 0.55
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.50,
+        "direct_claim": 0.25,
+        "time_anchored": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "leaders-eat-last": {
+      "bookId": "leaders-eat-last",
+      "author": "Simon Sinek",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.30,
+        "the_noun": 0.15,
+        "other": 0.15
+      },
+      "avoidFrames": []
+    },
+    "blue-ocean-strategy": {
+      "bookId": "blue-ocean-strategy",
+      "author": "W. Chan Kim; Renée Mauborgne",
+      "register": "researcher-practitioner",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.35,
+        "direct_claim": 0.30,
+        "time_anchored": 0.15,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "talk-like-ted": {
+      "bookId": "talk-like-ted",
+      "author": "Carmine Gallo",
+      "register": "journalist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.25,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": ["the real lever is"]
+    },
+    "the-like-switch": {
+      "bookId": "the-like-switch",
+      "author": "Jack Schafer, Marvin Karlins",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.25,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": ["the real move is", "the hard move is"]
+    },
+    "games-people-play": {
+      "bookId": "games-people-play",
+      "author": "Eric Berne",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "negation_correction": 0.15,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "other": 0.15
+      },
+      "avoidFrames": []
+    },
+    "super-thinking": {
+      "bookId": "super-thinking",
+      "author": "Gabriel Weinberg; Lauren McCann",
+      "register": "researcher-practitioner",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.30,
+        "named_protagonist_action": 0.25,
+        "the_noun": 0.20,
+        "time_anchored": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "seeking-wisdom": {
+      "bookId": "seeking-wisdom",
+      "author": "Peter Bevelin",
+      "register": "researcher-practitioner",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.20,
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.30,
+        "named_protagonist_action": 0.25,
+        "the_noun": 0.20,
+        "time_anchored": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": ["It feels like"]
+    },
+    "zero-to-one": {
+      "bookId": "zero-to-one",
+      "author": "Peter Thiel",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.15,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.40,
+        "named_protagonist_action": 0.25,
+        "the_noun": 0.20,
+        "other": 0.15
+      },
+      "avoidFrames": ["the idea wants", "the idea argues", "this move targets"]
+    },
+    "the-charisma-myth": {
+      "bookId": "the-charisma-myth",
+      "author": "Olivia Fox Cabane",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.25,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.15,
+        "second_person_call": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "made-to-stick": {
+      "bookId": "made-to-stick",
+      "author": "Chip Heath, Dan Heath",
+      "register": "journalist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.25,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.45,
+        "direct_claim": 0.25,
+        "time_anchored": 0.15,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "smarter-faster-better": {
+      "bookId": "smarter-faster-better",
+      "author": "Charles Duhigg",
+      "register": "journalist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.50,
+        "time_anchored": 0.20,
+        "direct_claim": 0.15,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "the-power-of-habit": {
+      "bookId": "the-power-of-habit",
+      "author": "Charles Duhigg",
+      "register": "journalist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.50,
+        "time_anchored": 0.20,
+        "direct_claim": 0.15,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "make-time": {
+      "bookId": "make-time",
+      "author": "Jake Knapp and John Zeratsky",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "second_person_call": 0.25,
+        "direct_claim": 0.20,
+        "the_noun": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": ["The paradox is that"]
+    },
+    "good-to-great": {
+      "bookId": "good-to-great",
+      "author": "Jim Collins",
+      "register": "researcher-practitioner",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.10,
+        "other": 0.25
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "time_anchored": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": ["The paradox is that"]
+    },
+    "built-to-last": {
+      "bookId": "built-to-last",
+      "author": "Jim Collins; Jerry I. Porras",
+      "register": "researcher-practitioner",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.10,
+        "other": 0.25
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "time_anchored": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "essentialism": {
+      "bookId": "essentialism",
+      "author": "Greg McKeown",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.15,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "direct_claim": 0.25,
+        "second_person_call": 0.20,
+        "the_noun": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "how-to-talk-to-anyone": {
+      "bookId": "how-to-talk-to-anyone",
+      "author": "Leil Lowndes",
+      "register": "practitioner-coach",
+      "unconfirmed": true,
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "direct_claim": 0.25,
+        "second_person_call": 0.20,
+        "the_noun": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "how-to-win-friends-and-influence-people": {
+      "bookId": "how-to-win-friends-and-influence-people",
+      "author": "Dale Carnegie",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.15,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "other": 0.15
+      },
+      "avoidFrames": []
+    },
+    "influence": {
+      "bookId": "influence",
+      "author": "Robert B. Cialdini, PhD",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "negation_correction": 0.15,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "time_anchored": 0.20,
+        "direct_claim": 0.20,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": ["Most readers assume", "Most readers think"]
+    },
+    "pre-suasion": {
+      "bookId": "pre-suasion",
+      "author": "Robert Cialdini",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "negation_correction": 0.15,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "time_anchored": 0.20,
+        "direct_claim": 0.20,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "crucial-conversations": {
+      "bookId": "crucial-conversations",
+      "author": "Joseph Grenny, Kerry Patterson, Ron McMillan, Al Switzler, Emily Gregory",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.45,
+        "direct_claim": 0.20,
+        "the_noun": 0.15,
+        "second_person_call": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": ["Most people assume", "Most people think"]
+    },
+    "difficult-conversations": {
+      "bookId": "difficult-conversations",
+      "author": "Douglas Stone, Bruce Patton, Sheila Heen",
+      "register": "practitioner-coach",
+      "unconfirmed": true,
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "other": 0.15
+      },
+      "avoidFrames": []
+    },
+    "never-split-the-difference": {
+      "bookId": "never-split-the-difference",
+      "author": "Chris Voss, Tahl Raz",
+      "register": "memoirist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.15,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.50,
+        "time_anchored": 0.20,
+        "direct_claim": 0.15,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "pitch-anything": {
+      "bookId": "pitch-anything",
+      "author": "Oren Klaff",
+      "register": "memoirist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.30,
+        "the_noun": 0.20,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "what-every-body-is-saying": {
+      "bookId": "what-every-body-is-saying",
+      "author": "Joe Navarro",
+      "register": "practitioner-coach",
+      "unconfirmed": true,
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "other": 0.15
+      },
+      "avoidFrames": ["The mistake is treating"]
+    },
+    "the-almanack-of-naval-ravikant": {
+      "bookId": "the-almanack-of-naval-ravikant",
+      "author": "Eric Jorgenson",
+      "register": "philosopher-historian",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.40,
+        "the_noun": 0.25,
+        "named_protagonist_action": 0.20,
+        "other": 0.15
+      },
+      "avoidFrames": []
+    },
+    "the-hard-thing-about-hard-things": {
+      "bookId": "the-hard-thing-about-hard-things",
+      "author": "Ben Horowitz",
+      "register": "memoirist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.30,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.15,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.45,
+        "time_anchored": 0.20,
+        "direct_claim": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "the-one-thing": {
+      "bookId": "the-one-thing",
+      "author": "Gary Keller, Jay Papasan",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "direct_claim": 0.30,
+        "second_person_call": 0.20,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": ["The trap is to", "The trap is not", "Keep the clue", "Leave the costume"]
+    },
+    "superforecasting": {
+      "bookId": "superforecasting",
+      "author": "Philip E. Tetlock, Dan Gardner",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "negation_correction": 0.15,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.30,
+        "named_protagonist_action": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.15,
+        "other": 0.10
+      },
+      "avoidFrames": []
+    },
+    "limitless": {
+      "bookId": "limitless",
+      "author": "Jim Kwik",
+      "register": "practitioner-coach",
+      "unconfirmed": true,
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "second_person_call": 0.25,
+        "direct_claim": 0.25,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "make-it-stick": {
+      "bookId": "make-it-stick",
+      "author": "Peter C. Brown; Henry L. Roediger III; Mark A. McDaniel",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "negation_correction": 0.15,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "peak": {
+      "bookId": "peak",
+      "author": "Anders Ericsson, Robert Pool",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "negation_correction": 0.15,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "mistakes-were-made-but-not-by-me": {
+      "bookId": "mistakes-were-made-but-not-by-me",
+      "author": "Carol Tavris; Elliot Aronson",
+      "register": "social-scientist",
+      "naturalCounterShapes": {
+        "in_fact_reversal": 0.25,
+        "what_looks_like": 0.20,
+        "negation_correction": 0.15,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "time_anchored": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "measure-what-matters": {
+      "bookId": "measure-what-matters",
+      "author": "John Doerr",
+      "register": "memoirist",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "in_fact_reversal": 0.20,
+        "what_looks_like": 0.15,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.45,
+        "time_anchored": 0.20,
+        "direct_claim": 0.20,
+        "the_noun": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "execution": {
+      "bookId": "execution",
+      "author": "Larry Bossidy, Ram Charan, Charles Burck",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.35,
+        "direct_claim": 0.30,
+        "the_noun": 0.20,
+        "time_anchored": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "playing-to-win": {
+      "bookId": "playing-to-win",
+      "author": "A.G. Lafley, Roger L. Martin",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.25,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.35
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "time_anchored": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "competing-against-luck": {
+      "bookId": "competing-against-luck",
+      "author": "Clayton M. Christensen, Taddy Hall, Karen Dillon, David S. Duncan",
+      "register": "researcher-practitioner",
+      "unconfirmed": true,
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.40,
+        "direct_claim": 0.25,
+        "the_noun": 0.20,
+        "time_anchored": 0.10,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    },
+    "seven-powers": {
+      "bookId": "seven-powers",
+      "author": "Hamilton Helmer",
+      "register": "researcher-practitioner",
+      "unconfirmed": true,
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "despite_led": 0.10,
+        "other": 0.30
+      },
+      "naturalHookShapes": {
+        "direct_claim": 0.40,
+        "named_protagonist_action": 0.25,
+        "the_noun": 0.20,
+        "other": 0.15
+      },
+      "avoidFrames": []
+    },
+    "Getting-Things-Done": {
+      "bookId": "Getting-Things-Done",
+      "author": "David Allen",
+      "register": "practitioner-coach",
+      "naturalCounterShapes": {
+        "negation_correction": 0.20,
+        "what_looks_like": 0.20,
+        "in_fact_reversal": 0.20,
+        "other": 0.40
+      },
+      "naturalHookShapes": {
+        "named_protagonist_action": 0.30,
+        "direct_claim": 0.25,
+        "second_person_call": 0.25,
+        "the_noun": 0.15,
+        "other": 0.05
+      },
+      "avoidFrames": []
+    }
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "number": 6,
+  "title": "Decisions, Decisions",
+  "coreMove": "Break one overloaded choice into options, branches, consequences, and visible unknowns so each path can be compared without pretending certainty exists.",
+  "sourcePressure": "The source support centers on decision trees as a way to tame complexity and make uncertainty discussable.",
+  "chapterSpecificMisunderstanding": "Thinking a decision tree is valuable because it makes the future precise, rather than because it makes the remaining ambiguity visible.",
+  "sourceAlignmentTerms": [
+    "decision tree",
+    "branches",
+    "outcomes",
+    "consequences",
+    "uncertainty",
+    "complexity",
+    "decomposition"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "decision tree",
+      "detail": "the source confirms the chapter anchor as breaking a choice into branches, outcomes, and consequences instead of one blurred feeling",
+      "useIn": "both",
+      "phrasingHint": "The tree does not remove the fog; it cuts the fog into paths you can name."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Hard choices feel like fog",
+      "Draw a decision tree",
+      "Complexity becomes simple when mapped"
+    ],
+    "counterintuition": [
+      "Structure is not certainty",
+      "Your gut is not enough",
+      "A tree makes uncertainty visible"
+    ],
+    "tryThisNow": [
+      "Draw three branches",
+      "Make a pros and cons list",
+      "Write your options"
+    ],
+    "examples": [
+      "career stay-or-leave choice",
+      "student extracurricular choice",
+      "moving to a new city",
+      "relationship mood branch split"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Thomas, a regional train dispatcher choosing between holding a connection or keeping the line on schedule during a signal fault",
+      "audience": "operators making time-sensitive tradeoffs",
+      "stakes": "one choice strands passengers, the other cascades delays across the network",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Thomas draws three branches on the incident pad, marks which delay is known and which passenger impact is uncertain, then calls the control room",
+      "firstImage": "At 6:43 p.m., Thomas hears the signal alarm and reaches for the incident pad",
+      "mustInclude": [
+        "incident pad",
+        "connection list",
+        "control-room radio"
+      ],
+      "mustAvoid": [
+        "generic work staffing decision",
+        "spreadsheet pro/con list"
+      ]
+    },
+    {
+      "domain": "Camille, a children’s hospital fundraiser deciding whether to run a gala, a smaller donor dinner, or a digital campaign",
+      "audience": "nonprofit leaders choosing under resource uncertainty",
+      "stakes": "staff capacity and donor trust are limited before year end",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Camille separates each fundraising option into cost, staff-load, and donor-risk branches instead of labeling the gala “best” because it is familiar",
+      "firstImage": "folded banquet linens sit beside a half-finished donor-call sheet",
+      "mustInclude": [
+        "banquet quote",
+        "staff calendar",
+        "donor-call sheet"
+      ],
+      "mustAvoid": [
+        "generic nonprofit metric example from chapter 2"
+      ]
+    },
+    {
+      "domain": "Sam, a software reliability engineer deciding whether to patch, roll back, or leave a degraded release while customer traffic is high",
+      "audience": "technical readers managing uncertainty without fake precision",
+      "stakes": "each option carries outage, data, and trust consequences",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sam writes the three options on the war-room glass, adds unknowns under each one, and stops the team from voting on mood alone",
+      "firstImage": "the war-room glass squeaks as the marker hits the word rollback",
+      "mustInclude": [
+        "war-room glass",
+        "traffic graph",
+        "unknowns column"
+      ],
+      "mustAvoid": [
+        "formal expected value math",
+        "generic dashboard crisis"
+      ]
+    },
+    {
+      "domain": "Marta, a tenant organizer choosing whether to accept a partial repair promise, escalate publicly, or wait for legal aid",
+      "audience": "civic readers facing choices with power imbalance",
+      "stakes": "tenants need heat fixed but could lose leverage if they choose the wrong path",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Marta asks the room to stop arguing labels and put likely landlord responses under each path",
+      "firstImage": "“Which branch gets the heat fixed, and which one only feels stronger?”",
+      "mustInclude": [
+        "repair promise letter",
+        "legal-aid voicemail",
+        "tenant sign-in sheet"
+      ],
+      "mustAvoid": [
+        "chapter 7 conflict strategy drift",
+        "generic city council debate"
+      ]
+    },
+    {
+      "domain": "Yusuf, a documentary editor deciding whether to cut a beloved scene that slows the final act",
+      "audience": "creative workers whose choices bundle taste, pacing, and stakeholder risk",
+      "stakes": "the festival cut could become either sharper or flatter",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Yusuf turns one painful creative feeling into branches for pacing, character clarity, and director trust, then tests two cuts",
+      "firstImage": "It took Yusuf six rough cuts to see the scene was three different decisions hiding in one ache",
+      "mustInclude": [
+        "timeline markers",
+        "director note",
+        "festival deadline"
+      ],
+      "mustAvoid": [
+        "generic artist inspiration",
+        "theater preview stats from chapter 5"
+      ]
+    },
+    {
+      "domain": "Giulia, a graduate researcher deciding whether to change methods after an early dataset comes back messy",
+      "audience": "researchers and analysts dealing with unresolved ambiguity",
+      "stakes": "switching too fast wastes months, staying too long can bury the project",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Giulia marks which unknowns belong to sampling, method design, and time budget before choosing the next week’s test",
+      "firstImage": "You can stare at a messy dataset for an hour and still not know which problem it is",
+      "mustInclude": [
+        "messy dataset",
+        "methods notebook",
+        "one-week test plan"
+      ],
+      "mustAvoid": [
+        "advanced statistics lesson",
+        "base-rate chapter overlap"
+      ]
+    }
+  ],
+  "tryThisNowSpec": "Write one hard choice as three branches. Under each branch, add one consequence you can see and one unknown you must not pretend away.",
+  "chapterId": "super-thinking-ch06",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the chapter-specific model in a fresh scenario for Decisions, Decisions",
+      "choose the visible action that performs the core move rather than naming the concept",
+      "explain the failure mode that appears when the model is used generically",
+      "evaluate tradeoffs and limits without sliding into certainty, cynicism, or manipulation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

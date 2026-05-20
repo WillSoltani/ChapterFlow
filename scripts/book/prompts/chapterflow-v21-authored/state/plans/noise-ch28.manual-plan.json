@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch28",
+  "number": 28,
+  "title": "Patterns",
+  "coreMove": "Identify stable recurring patterns in how one judge's assessments differ from peers on specific case types, and treat those patterns as a distinct noise layer rather than random error.",
+  "sourcePressure": "Some judgment variation recurs systematically: one judge consistently over-sentences violent crimes relative to property crimes; one appraiser systematically overvalues recent renovations; one physician under-diagnoses rare conditions because their base-rate estimates are calibrated low. Pattern noise is stable personal bias about specific case types — distinct from both level noise (stable general severity differences) and occasion noise (within-judge temporal variation). It requires different diagnosis and different remediation.",
+  "chapterSpecificMisunderstanding": "Treating all within-person judgment variation as random occasion noise, when some of it is stable, predictable, and traceable to consistent personal tendencies about specific case features or domains.",
+  "sourceAlignmentTerms": ["pattern noise", "stable variation", "personal tendency", "case-type bias", "systematic personal", "between-judge within-type", "signature pattern"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Stable personal judgment patterns in professional assessment contexts",
+      "detail": "Research on performance appraisers, judges, and clinical assessors consistently finds that a portion of inter-judge variability is stable across occasions — the same judge rates the same case-type sub-category consistently higher or lower than peers, and this pattern repeats even when the judge's average severity level is calibrated to match peers. This stable component is pattern noise: different from average-level differences and different from occasion-to-occasion fluctuation.",
+      "useIn": "deepRead",
+      "phrasingHint": "Level noise disappears when you calibrate judges to the same average. Occasion noise shrinks when you impose decision structure. But pattern noise persists: the judge who is easy on property crimes and hard on violent crimes still produces the same pattern after calibration, because the pattern is not about their average — it is about their personal weighting of specific case features."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["every judge has a hidden bias you haven't noticed yet", "the noise pattern that follows you from case to case"],
+    "counterintuition": ["the most consistent judge in your organization still has systematic pattern noise", "a judge who is perfectly calibrated on average still applies their own private weighting to specific case types"],
+    "tryThisNow": ["sort your last 20 decisions by case type and check if your outcomes consistently lean in one direction for specific types", "compare your ratings on two different case sub-categories to those of a peer and see if the gap is consistent"],
+    "examples": ["a scene where a pattern is discovered and the judge is found to be biased in a general way — pattern noise is type-specific, not general", "a scene where eliminating level noise also eliminates pattern noise — the two components are distinct and require separate interventions"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Pattern-noise examples risk reading as personality profiles or character studies of individual judges. The six domains must show pattern noise as a structural property of how any judge interacts with a specific case-type sub-category — not as a character flaw or idiosyncratic exception that invalidates the judge's overall reliability."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "sentencing judge case-type pattern: a court research team identifying stable inter-judge differences in sentencing severity for violent versus property crime categories",
+      "audience": "a sentencing commission research director studying whether judge-to-judge sentencing variation is stable within specific crime categories even when overall level differences are controlled",
+      "stakes": "sentence consistency by offense type — defendants convicted of the same crime category receive different sentences based on which judge's pattern assigns that category more or less weight, even when both judges produce the same average sentence across all cases",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two commission researchers examine five years of sentencing data: after controlling for each judge's average severity level, a stable pattern emerges — three judges consistently sentence violent offenses 14 percent above their own average while sentencing property offenses 11 percent below; two other judges show the reverse pattern; the pattern is stable across years and across case-specific facts within each category, suggesting it reflects each judge's personal weighting of violence as an aggravating factor rather than any case-level variation",
+      "firstImage": "a radar chart for five judges showing their relative sentencing severity for violent versus property crime categories, each judge's profile normalized to their own average — the diverging shapes illustrating the stable personal patterns",
+      "mustInclude": ["the 14 percent above average for violent and 11 percent below for property (or reverse)", "the stability across years as evidence of pattern rather than random variation", "the researchers' framing: this is not level noise — the judges' averages are calibrated. It is pattern noise: their personal weighting of violence within the legal definition persists after calibration"],
+      "mustAvoid": ["a specific criminal case or sentencing outcome", "implying that any one judge's pattern is more legally correct than another's"]
+    },
+    {
+      "domain": "radiology over-read pattern: a hospital radiology quality team identifying stable inter-radiologist differences in finding rates for specific scan types",
+      "audience": "a radiology department quality director studying whether inter-radiologist disagreement in finding rates is consistent within specific imaging modalities after controlling for overall reading severity",
+      "stakes": "diagnostic accuracy by imaging type — a patient whose scan is read by a radiologist with a stable high-find pattern for that scan type receives a different diagnostic pathway than one whose scan is read by a radiologist with a stable low-find pattern, even though both radiologists produce the same overall find rate across all scan types",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality director reviews five radiologists' reading data across three scan types (chest CT, abdominal MRI, bone density) over two years: after controlling for each radiologist's overall finding rate, a stable pattern emerges — one radiologist consistently finds 18 percent more incidental chest CT findings than peers while finding 12 percent fewer abdominal MRI findings; two others show the reverse; the pattern is stable across quarters and across patient demographic subgroups, indicating it reflects each radiologist's calibration to specific scan types rather than any patient-population difference",
+      "firstImage": "a heat map of five radiologists' relative finding rates by scan type, each row normalized to that radiologist's overall rate — the color pattern in each row showing the stable type-specific deviations",
+      "mustInclude": ["the 18 percent above and 12 percent below finding rate differences (or similar magnitudes)", "the stability across quarters as distinguishing pattern noise from occasion noise", "the quality director's framing: this is not about which radiologist reads more carefully overall — it is about each reader's personal calibration to specific imaging modalities"],
+      "mustAvoid": ["a specific patient's diagnostic outcome", "implying any radiologist's pattern is clinically incorrect without calibration data to support that claim"]
+    },
+    {
+      "domain": "performance reviewer case-type pattern: a talent management team identifying stable inter-manager differences in rating severity by job family within the same performance management system",
+      "audience": "a head of talent management studying whether manager leniency patterns vary by job family in ways that persist after overall level differences are controlled",
+      "stakes": "promotion and compensation equity by role — employees in job families where their manager has a stable high-rating pattern receive disproportionate advancement opportunities regardless of performance differences",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the talent management director asks: after calibrating manager rating averages to the same overall mean, do their ratings still differ by job family in stable ways? The answer from the analysis: three managers consistently rate technical contributors 0.4 points higher than operational contributors at the same performance level; two managers show no such pattern; the three managers' technical-favoring pattern is stable across four review cycles, suggesting it reflects a personal valuation of technical work relative to operational work, not a general leniency difference",
+      "firstImage": "a manager pattern chart showing each manager's relative rating severity for technical versus operational job families, with each manager normalized to their own average — the three managers with stable technical-favoring patterns distinguishable from the two without",
+      "mustInclude": ["the 0.4-point technical-versus-operational rating gap", "the four-cycle stability as distinguishing pattern from occasion variation", "the implication: calibrating managers' overall average is not sufficient — the job-family pattern persists after calibration and requires its own correction"],
+      "mustAvoid": ["a specific employee's performance review outcome", "implying the managers with technical-favoring patterns are acting in bad faith"]
+    },
+    {
+      "domain": "teacher grade pattern: a school district studying stable inter-teacher differences in grading severity for essay versus quantitative assessment types",
+      "audience": "a district curriculum director studying whether teacher grading patterns by assessment type are stable across student cohorts after controlling for overall grading severity",
+      "stakes": "student grade consistency by assessment type — a student whose essay is graded by a teacher with a stable essay-generous pattern receives a higher grade than an equivalent student graded by a teacher with an essay-strict pattern, independently of writing quality",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the curriculum director reviews three years of district-wide grading data: after controlling for each teacher's overall grading average, a stable pattern emerges — four teachers consistently grade essays 0.5 grade points above their own average while grading quantitative assignments 0.3 points below; three teachers show the reverse; the pattern is stable across different student cohorts and across different essay prompts, indicating each teacher's personal calibration to the assessment type rather than any student-quality difference",
+      "firstImage": "a teacher grading pattern chart with each teacher's relative severity for essay versus quantitative assessments, each teacher normalized to their own overall average — two clusters of teachers visible: essay-generous and essay-strict",
+      "mustInclude": ["the 0.5-point essay-versus-quantitative pattern difference (or similar magnitudes)", "stability across student cohorts as evidence of teacher-level pattern noise", "the director's framing: this is not about which teachers are grading too leniently overall — it is about each teacher's personal relationship to essay versus quantitative work"],
+      "mustAvoid": ["a specific student's grades or academic outcome", "implying teachers with essay-generous patterns are failing their students"]
+    },
+    {
+      "domain": "real estate appraiser renovation pattern: an appraisal firm studying stable differences in how individual appraisers value recent renovations relative to comparable sale prices",
+      "audience": "a regional appraisal firm quality director studying whether appraiser-level renovation value adjustments are stable across matched property pairs",
+      "stakes": "mortgage lending accuracy — appraisers who systematically over-value renovations produce appraisals that support higher loan amounts than the market would bear; under-valuers suppress creditworthy lending",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the quality director presents the renovation adjustment analysis: across 180 matched property pairs where one property had a recent kitchen renovation and the other was comparable but unrenovated, five appraisers consistently applied a renovation adjustment of 15 percent above the neighborhood average; three appraisers applied adjustments 10 percent below the neighborhood average; both groups' overall appraisal averages were within 1 percent of each other — the renovation pattern was not a general level difference but a stable personal calibration specifically to renovation value that persisted across three years and multiple property types",
+      "firstImage": "a scatter plot of appraiser renovation adjustment percentages versus neighborhood average for the same renovation type — two clusters visible: consistently-high adjusters and consistently-low adjusters, with overall appraiser averages overlapping",
+      "mustInclude": ["the 15 percent above and 10 percent below renovation adjustment patterns", "the explicit finding that overall appraiser averages did not differ — only the renovation-specific adjustment", "the quality director's framing: this is pattern noise, not level noise — it cannot be addressed through general calibration to the appraiser's overall average"],
+      "mustAvoid": ["a specific property or mortgage loan case", "implying appraisers with high renovation adjustments are acting fraudulently"]
+    },
+    {
+      "domain": "environmental inspector permit pattern: a regulatory agency studying stable inter-inspector differences in deficiency finding rates by permit type",
+      "audience": "a state environmental agency quality director studying whether inspector deficiency finding rates by permit category are stable across inspection seasons after controlling for overall inspector stringency",
+      "stakes": "regulatory consistency and compliance burden — facilities inspected by an inspector with a stable high-finding pattern for a specific permit type face higher compliance costs than equivalent facilities inspected by an inspector with a stable low-finding pattern, independently of actual compliance level",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review the inspector calibration analysis: after controlling for each inspector's overall finding rate, a stable pattern emerges — two inspectors consistently cite air-emission permits at a rate 22 percent above their own average while citing water-discharge permits 15 percent below; one inspector shows the reverse; the pattern is stable across three inspection seasons and across facility sizes, indicating each inspector's personal calibration to specific permit categories rather than any facility-quality difference",
+      "firstImage": "an inspector pattern matrix showing each inspector's relative finding rates for air-emission versus water-discharge permits, normalized to their own overall rate — the stable divergence between inspectors visible across three seasons",
+      "mustInclude": ["the 22 percent above average for air-emission and 15 percent below for water-discharge (or similar magnitudes)", "the three-season stability as distinguishing pattern from occasion variation", "the implication: overall inspector calibration is insufficient — the permit-type pattern requires specific cross-training or joint inspections in the high-divergence permit categories"],
+      "mustAvoid": ["a specific facility or enforcement action", "implying inspectors with high air-emission finding rates are targeting specific companies"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain how pattern noise differs from level noise and from occasion noise in its source, its stability, and its remedy",
+      "identify the conditions under which a judge's case-type variation is likely to be pattern noise rather than random occasion noise",
+      "apply a case-type pattern analysis to a described judgment dataset to detect stable individual-level case-type biases",
+      "analyze why calibrating judges' overall average severity fails to address pattern noise even when it successfully reduces level noise",
+      "evaluate whether a described individual judge's variation across case types is more consistent with pattern noise or occasion noise based on the presented evidence"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of a judgment decision you make regularly. Sort your last 30 decisions by case type or category — at least two distinct types you encounter frequently. For each type, calculate your average outcome. Then compare your type-specific averages to a peer's type-specific averages. If your overall averages are similar but your type-specific averages diverge consistently — you rate one case type higher than your peer and another lower — you have found pattern noise. That pattern will not disappear when you calibrate your overall average. It needs its own correction.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) distinguishing pattern noise from level noise and occasion noise by its key property — stability within a specific case type rather than stability in general, at least one 5+ sentence paragraph on how the same judge can be correctly calibrated on average and still produce systematic injustice for specific case types, at least one one-sentence punch line about what a calibration program that ignores case-type patterns actually fixes",
+    "fullReadInterludeRequirement": "at least one paragraph presenting pattern noise as a general empirical finding — present across judicial, clinical, financial, and regulatory assessment systems — not as a quirk of any specific profession or rater type; framing it as what happens when any judge applies their own private weighting to features that the official criteria treat as equally important",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

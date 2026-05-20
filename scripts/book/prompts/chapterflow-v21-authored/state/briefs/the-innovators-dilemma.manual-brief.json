@@ -1,0 +1,82 @@
+{
+  "bookId": "the-innovators-dilemma",
+  "title": "The Innovator's Dilemma: When New Technologies Cause Great Firms to Fail",
+  "author": "Clayton M. Christensen",
+  "thesisParagraph": "Great companies fail during disruption not because they become incompetent, but because they apply the same management discipline that makes them great. Listening to current customers, funding profitable improvements, and rejecting weak unproven markets are all rational moves inside the existing business. The problem is that disruptive innovations begin precisely where those rational moves point away. The book shows why rational customer focus creates a structural blind spot, how value networks shape what looks worth doing, why incumbents migrate upmarket and leave footholds for entrants, and how managers must reorganize their thinking, their teams, and their strategy process to respond rather than simply to understand.",
+  "coreIdeas": [
+    {
+      "name": "The rational trap",
+      "oneSentence": "A company can follow good management practice in every decision and still be structurally positioned to miss the next wave of competition.",
+      "mentalMove": "see your own rational logic as a potential blind spot, not just a protection",
+      "sourceAnchors": ["ch01.source", "ch02.source"]
+    },
+    {
+      "name": "Value networks filter reality",
+      "oneSentence": "What looks weak or irrelevant in one market context can be genuinely compelling in another, and incumbents tend to evaluate everything through a single network's standards.",
+      "mentalMove": "judge a new product by whether it solves a real problem in some real market, not only by whether it matches your current standards",
+      "sourceAnchors": ["ch02.source", "ch03.source"]
+    },
+    {
+      "name": "The low end is not empty",
+      "oneSentence": "An entrant does not need to beat the incumbent everywhere — it only needs one real market where its weaknesses are tolerable and its advantages are genuine.",
+      "mentalMove": "distinguish 'too small for us' from 'too small to matter' when assessing an emerging opportunity",
+      "sourceAnchors": ["ch03.source", "ch04.source"]
+    },
+    {
+      "name": "Organizational design determines outcomes",
+      "oneSentence": "A disruptive effort placed inside the wrong organizational unit will be quietly starved of attention by the customers that unit already serves.",
+      "mentalMove": "ask whether the team's current customers create pull toward or away from this new effort",
+      "sourceAnchors": ["ch06.source", "ch07.source"]
+    },
+    {
+      "name": "Discovery before forecast",
+      "oneSentence": "Early markets cannot be forecast with the certainty mature markets allow, so the first management discipline is learning from contact, not planning from a distance.",
+      "mentalMove": "treat the first stage of a new market as learning work, not proof-of-concept work",
+      "sourceAnchors": ["ch08.source", "ch10.source"]
+    }
+  ],
+  "targetReader": "Managers, strategists, product teams, and founders who want to understand why smart organizations miss disruption — and what organizational, strategic, and resource decisions can change the outcome.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete organizational moment before naming the structural rule",
+      "use industry examples as pressure tests, not as proof by association",
+      "name the rational logic of the wrong move before showing why it fails",
+      "teach through resource allocation decisions the reader recognizes from their own work"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no startup triumphalism or Silicon Valley framing",
+      "no management consultant jargon (paradigm shift, leverage, synergy)",
+      "do not celebrate disruption as inherently good or disrupting companies as inherently smart"
+    ]
+  },
+  "voiceSpecimens": [
+    "The meeting where they killed the project was not a failure of nerve. It was good management applied to the wrong problem.",
+    "Your most profitable customers are not hiding information from you. They are telling you the truth about their world, which is not the same as the truth about the next one.",
+    "A product looks weak until the market that values its tradeoffs grows large enough to matter.",
+    "The low end of the market is not a waiting room for customers who can't afford better. It is where the next version of the industry often begins.",
+    "When the same budget meeting that protects next quarter's margins also kills the only team building for next decade, neither decision feels wrong.",
+    "The organization is not ignoring the new technology. It is listening to the customers who don't need it yet.",
+    "Fit means the market is real enough for this team, not that the market is large enough for the whole company."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, we will explore the disruptive innovation framework and how it can unlock your company's competitive advantage.",
+    "Christensen shows us that the key to avoiding disruption is to embrace a culture of innovation and agility.",
+    "If you want to stay ahead of the curve, you need to constantly ask yourself: am I being disrupted right now?",
+    "Great companies leverage their core competencies while simultaneously disrupting the paradigm.",
+    "The bottom line is that disruption is both a threat and an opportunity — it's all about mindset."
+  ],
+  "teachingArc": "The first four chapters diagnose the structural problem: rational customer focus and value-network logic explain why great firms miss disruption, the excavator case extends the pattern beyond one industry, and the upmarket gravity chapter shows why incumbents keep climbing while entrants find footholds below. The second part (chapters 5 through 10) shifts from diagnosis to managerial response, moving through the criteria problem (ch5), organizational placement (ch6), market-size fit (ch7), discovery-before-forecast (ch8), capability appraisal (ch9), and strategy as a learning process (ch10). Chapter 11 gathers the dilemmas into a pattern — not a checklist, but a map of interacting pressures that must be held together.",
+  "forbiddenMoves": [
+    "Do not invent specific executive names, company statistics, or internal memos not confirmed in the frozen source notes.",
+    "Do not frame the book's lesson as 'incumbents are slow and startups are smart' — Christensen's point is that incumbents are rational, not lazy.",
+    "Do not treat every chapter as a new disruption playbook entry; the second half of the book is about organizational design and learning, not attack strategy.",
+    "Do not use the word 'disruption' as a synonym for any competitive change; the book is precise about what qualifies.",
+    "Do not import named anchors from the disk drive or excavator industries into chapters where those industries are not the source material."
+  ]
+}

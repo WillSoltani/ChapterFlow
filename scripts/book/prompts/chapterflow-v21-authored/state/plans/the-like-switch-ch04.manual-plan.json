@@ -1,0 +1,187 @@
+{
+  "chapterId": "the-like-switch-ch04",
+  "number": 4,
+  "title": "The Laws of Attraction",
+  "coreMove": "Read attraction as a paced system of repeated contact, reciprocity, calibrated self-disclosure, and supportive responsiveness.",
+  "sourcePressure": "The ch04 source widens from immediate liking into attraction through repeated contact, reciprocity, self-disclosure, and support. It warns that frequency cannot fix one-sided support or premature intimacy.",
+  "chapterSpecificMisunderstanding": "Collapsing attraction into romance, frequency, or fast disclosure.",
+  "sourceAlignmentTerms": [
+    "attraction",
+    "repeated contact",
+    "reciprocity",
+    "self-disclosure",
+    "supportiveness",
+    "calibrated disclosure",
+    "identity-confirming"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "reciprocal self-disclosure",
+      "detail": "The ch04 sidecar says the move from acquaintanceship to friendship is marked by reciprocal self-disclosure.",
+      "useIn": "both",
+      "phrasingHint": "Disclosure begins to help only when it travels both ways and the relationship has room to hold it."
+    },
+    {
+      "kind": "person",
+      "name": "Beverley Fehr",
+      "detail": "The structured ch04 source sidecar lists Beverley Fehr among proper nouns in the support bundle for attraction, reciprocity, and friendship research framing.",
+      "useIn": "fullRead",
+      "phrasingHint": "The research tradition around friendship is useful here for one plain reason: attraction grows best when contact becomes reciprocal, not merely frequent."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Opposites attract",
+      "Attraction is not just romance",
+      "More exposure creates attraction"
+    ],
+    "counterintuition": [
+      "frequency is not enough",
+      "oversharing is bad"
+    ],
+    "tryThisNow": [
+      "share one personal fact with someone"
+    ],
+    "examples": [
+      "office crush",
+      "neighbors in elevator",
+      "study group becomes friends"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a disaster-relief volunteer roster where two crews cross paths every morning but do not trust each other",
+      "audience": "a field coordinator reading why repeated contact has stalled",
+      "stakes": "handoffs are slow during flood cleanup",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "the coordinator adds a reciprocal handoff ritual where each crew states one risk and one need, turning contact into mutual support",
+      "firstImage": "mud drying on laminated shift cards",
+      "mustInclude": [
+        "shift cards",
+        "rubber boots",
+        "radio charger"
+      ],
+      "mustAvoid": [
+        "generic coworker proximity"
+      ]
+    },
+    {
+      "domain": "an indie game studio playtest channel with fans who comment often but never feel close to the team",
+      "audience": "a community lead trying to build real attraction to the project",
+      "stakes": "a public beta could lose its core testers",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What changes when the lead shares a small design tradeoff and asks testers to share their own play constraints?",
+      "firstImage": [
+        "bug board",
+        "controller batteries",
+        "private beta link"
+      ],
+      "mustInclude": [
+        "generic social media engagement"
+      ]
+    },
+    {
+      "domain": "a neighborhood running group where a newcomer attends every week but remains peripheral",
+      "audience": "a group organizer who confuses attendance with attraction",
+      "stakes": "the runner may stop showing up before the charity race",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes Emily four Saturdays to see that nobody has traded real information with the newcomer beyond pace and route",
+      "firstImage": "a race bib pinned to a cork board",
+      "mustInclude": [
+        "race bib",
+        "route card",
+        "reflective sash"
+      ],
+      "mustAvoid": [
+        "bike helmet or coffee chat"
+      ]
+    },
+    {
+      "domain": "a small architecture firm pairing a client and project lead over a home renovation",
+      "audience": "a project lead who needs supportiveness without premature intimacy",
+      "stakes": "the client is anxious about spending savings on a rebuild",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"We had the same fear when we opened the west wall,\" Nicolas says, then stops before turning the meeting into his story and asks what risk feels largest to the client",
+      "firstImage": [
+        "sample tile",
+        "floor plan",
+        "load-bearing note"
+      ],
+      "mustInclude": [
+        "romantic attraction frame"
+      ]
+    },
+    {
+      "domain": "a parent committee planning a school fundraiser after a tense year",
+      "audience": "a committee chair rebuilding attraction among volunteers",
+      "stakes": "one-sided support will leave three parents carrying everything",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the chair shifts from broad gratitude to paired reciprocal commitments, so each parent gives and receives support visibly",
+      "firstImage": "the smell of poster paint in the multipurpose room",
+      "mustInclude": [
+        "poster paint",
+        "signup grid",
+        "cash box"
+      ],
+      "mustAvoid": [
+        "classroom lecture shell"
+      ]
+    },
+    {
+      "domain": "a freelance photography collective where members trade referrals unevenly",
+      "audience": "a founder diagnosing why the group feels attractive to some and draining to others",
+      "stakes": "unreciprocated leads could break the collective",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:45 p.m., Chiara maps who shared leads and who only received them, then resets the group around reciprocal support before the next client call",
+      "firstImage": "a wall calendar marked with referral arrows",
+      "mustInclude": [
+        "wall calendar",
+        "lens cap",
+        "client inquiry email"
+      ],
+      "mustAvoid": [
+        "generic networking event"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "diagnose why repeated contact has not become attraction",
+      "choose calibrated disclosure over oversharing",
+      "identify one-sided support as a warning sign",
+      "separate broad human attraction from romance-only framing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one developing bond and write whether repeated contact, reciprocity, disclosure, or support is doing the most work, then name the weakest piece.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

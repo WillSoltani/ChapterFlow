@@ -1,0 +1,111 @@
+{
+  "bookId": "blue-ocean-strategy",
+  "title": "Blue Ocean Strategy",
+  "author": "W. Chan Kim; Renée Mauborgne",
+  "thesisParagraph": "Blue Ocean Strategy argues that lasting growth rarely comes from winning a bloodier fight inside accepted market boundaries. The practical move is value innovation: redesign the factors buyers receive so differentiation and low cost reinforce each other, unlock noncustomers, and create demand competitors are not yet fighting over. The book is not a call to ignore execution or invent for its own sake. It gives a sequence of visual tools, boundary-reconstruction paths, demand tests, commercial gates, and execution disciplines that keep a team from drifting back into imitation.",
+  "coreIdeas": [
+    {
+      "name": "Value innovation",
+      "oneSentence": "Create a leap in buyer value while changing the cost structure, rather than choosing between premium differentiation and low-cost sameness.",
+      "mentalMove": "look for the factor tradeoffs that make the old competitive comparison lose force",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Visible strategy",
+      "oneSentence": "A strategy has to be seen as a value curve before a team can know whether it is distinct or merely well-described sameness.",
+      "mentalMove": "draw the current value curve and challenge inherited factors with eliminate, reduce, raise, and create",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Boundary reconstruction",
+      "oneSentence": "New demand often appears when a team looks across alternatives, buyer groups, complements, emotion, and time instead of staring harder at direct rivals.",
+      "mentalMove": "choose one market boundary and cross it deliberately to search for new value",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Demand beyond customers",
+      "oneSentence": "The most useful growth clues often come from people who are about to leave, refuse to buy, or have never been considered buyers.",
+      "mentalMove": "listen for common barriers across noncustomers instead of segmenting current customers more finely",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Sequence and alignment",
+      "oneSentence": "A promising idea must pass buyer utility, price, cost, adoption, and alignment across value, profit, and people before it can endure.",
+      "mentalMove": "test the whole operating logic before mistaking excitement for viability",
+      "sourceAnchors": [
+        "ch06.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Execution legitimacy",
+      "oneSentence": "Execution becomes part of strategy when leaders tackle key hurdles and use fair process so people understand, accept, and act on the choice.",
+      "mentalMove": "identify the decisive hurdle and earn cooperation through engagement, explanation, and clear expectations",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Renewal discipline",
+      "oneSentence": "A blue ocean ages, so teams must renew before imitation and benchmarking pull them back into red-ocean logic.",
+      "mentalMove": "classify the portfolio as settlers, migrators, and pioneers and protect future-growth bets",
+      "sourceAnchors": [
+        "ch10.source",
+        "ch11.source"
+      ]
+    }
+  ],
+  "targetReader": "Managers, founders, product leads, civic operators, and team leaders who know their current market is crowded but need a concrete way to find new demand without drifting into vague innovation talk.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "turn strategy terms into visible operating decisions"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no battlefield metaphors as the default business register"
+    ]
+  },
+  "voiceSpecimens": [
+    "The copycat move often looks responsible because every number on the page has a rival beside it.",
+    "A value curve is useful when it makes the room uncomfortable enough to stop adding features.",
+    "You do not find noncustomers by asking loyal buyers what else they want.",
+    "The hard part is not naming a blue ocean. The hard part is removing the factors that keep you tied to the red one.",
+    "A useful idea still has to survive price, cost, and adoption before it deserves a launch date.",
+    "When people were not engaged, execution becomes a private referendum on a public decision."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches readers that innovation is important in modern business.",
+    "Blue Ocean Strategy reminds us to think outside the box and leverage disruption.",
+    "In conclusion, the framework is a powerful tool for any organization seeking success.",
+    "The author argues that companies should avoid competition and pursue differentiation.",
+    "Take five minutes to reflect on how you can be more strategic today."
+  ],
+  "teachingArc": "The book begins by replacing rivalry with value innovation, then gives tools for seeing the current curve and reconstructing market boundaries. It moves outward to noncustomers, then inward through sequence, alignment, and execution legitimacy. The closing chapters make renewal and red-ocean relapse the ongoing discipline, so the reader treats market creation as a repeatable strategic practice rather than a one-time flash of creativity.",
+  "forbiddenMoves": [
+    "Do not reduce the book to be different from competitors; the actual claim is simultaneous buyer-value leap and cost logic.",
+    "Do not invent detailed company anecdotes beyond the frozen source anchors.",
+    "Do not treat tools as forms to fill out; they must force tradeoffs visible in buyer value.",
+    "Do not make every chapter a generic anti-competition sermon.",
+    "Do not use technology novelty as a proxy for blue-ocean strategy."
+  ]
+}

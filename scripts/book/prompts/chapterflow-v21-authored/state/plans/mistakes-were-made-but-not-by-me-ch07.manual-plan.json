@@ -1,0 +1,200 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch07",
+  "number": 7,
+  "title": "Love's Assassin: Self-justification in Marriage",
+  "coreMove": "Translate one permanent indictment back into the specific situation before the argument becomes a trial of the other person's character.",
+  "sourcePressure": "The marriage chapter applies self-justification to intimate conflict: people explain their own bad behavior by circumstance and their partner's by character, then store grievance as proof.",
+  "chapterSpecificMisunderstanding": "Turning the chapter into generic relationship advice, apology scripts, or equal-blame smoothing instead of attribution asymmetry and stored grievance.",
+  "sourceAlignmentTerms": [
+    "attribution split",
+    "situational grace",
+    "character proof",
+    "stored grievance",
+    "defended innocence",
+    "repair",
+    "empathy",
+    "apology"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "happy versus unhappy partner framing",
+      "detail": "the source supports the contrast that more stable couples grant situational grace, while unhappy couples treat good acts as flukes and bad acts as character proof",
+      "useIn": "both",
+      "phrasingHint": "A stable couple still sees the bad moment; the difference is that they have not turned every bad moment into a biography."
+    },
+    {
+      "kind": "study",
+      "name": "attribution split",
+      "detail": "the source supports the pattern of excusing one's own behavior through circumstance while reading a partner's behavior as character",
+      "useIn": "deepRead",
+      "phrasingHint": "The assassin is small at first: my sharpness was stress, your sharpness was who you really are."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not start with a generic kitchen fight.",
+      "Avoid wedding-ring symbolism."
+    ],
+    "counterintuition": [
+      "Do not say both sides are equally wrong in every conflict.",
+      "Avoid \"just communicate better\"."
+    ],
+    "tryThisNow": [
+      "No broad gratitude list.",
+      "No generic date-night assignment."
+    ],
+    "examples": [
+      "No repeated dishes-in-sink scenario.",
+      "No infidelity plot."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Emily",
+      "domain": "a breakfast argument over a forgotten allergy-safe school snack",
+      "audience": "parents whose logistical stress turns into character accusations",
+      "stakes": "a preventable miss becomes evidence that one partner does not care",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emily stops before saying \"you never think\" and names the exact calendar handoff that failed",
+      "firstImage": "an unopened sunflower-butter snack bar beside a school permission slip",
+      "mustInclude": [
+        "allergy-safe snack",
+        "calendar handoff",
+        "school bag"
+      ],
+      "mustAvoid": [
+        "generic busy-parent chaos",
+        "food allergy fear story"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "a daycare pickup conflict after a delayed train",
+      "audience": "couples where one partner's lateness becomes a character trial",
+      "stakes": "pickup stress becomes another entry in a permanent unreliability file",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Vincent repeats the accusation in situational terms, train delay plus no backup call, before defending himself",
+      "firstImage": "a paper daycare late-fee slip curled in a coat pocket",
+      "mustInclude": [
+        "late-fee slip",
+        "train delay",
+        "backup call"
+      ],
+      "mustAvoid": [
+        "transportation rant",
+        "custody dispute"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "a renovation budget meeting between spouses after a surprise plumbing bill",
+      "audience": "partners whose money arguments turn one error into identity proof",
+      "stakes": "a shared repair project becomes a file of selfishness and control",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Maja writes \"bad estimate\" and \"secret spending\" in separate columns before choosing which claim the evidence can support",
+      "firstImage": "a cracked ceramic tile balanced on top of a contractor invoice",
+      "mustInclude": [
+        "contractor invoice",
+        "plumbing bill",
+        "two-column list"
+      ],
+      "mustAvoid": [
+        "home makeover scene",
+        "financial advice"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "a holiday visit where one spouse remembers every slight from the other's family",
+      "audience": "readers carrying a grievance archive into recurring family events",
+      "stakes": "the visit will be fought before anyone arrives if old memory becomes current proof",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Jack sort last year's actual incidents from the character verdict he has attached to them before the guest room is made",
+      "firstImage": "a folded guest towel resting on an unopened train timetable",
+      "mustInclude": [
+        "guest room",
+        "last year's incidents",
+        "character verdict"
+      ],
+      "mustAvoid": [
+        "in-law sitcom",
+        "holiday cliche"
+      ]
+    },
+    {
+      "protagonistName": "Kasia",
+      "domain": "new parents arguing over night feeds after three weeks without sleep",
+      "audience": "couples under strain who mistake exhaustion for character evidence",
+      "stakes": "one missed bottle becomes proof of selfishness while both partners are depleted",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Kasia three weeks to see that her partner's worst moment happened after two night shifts, then she changes the repair request",
+      "firstImage": "a sterilized bottle standing in a saucepan of cooling water",
+      "mustInclude": [
+        "night-feed chart",
+        "sleep debt",
+        "repair request"
+      ],
+      "mustAvoid": [
+        "parenting advice",
+        "maternal martyrdom"
+      ]
+    },
+    {
+      "protagonistName": "Aman",
+      "domain": "a retirement-planning disagreement after one spouse hides anxiety about savings",
+      "audience": "long-term partners who turn fear into accusation",
+      "stakes": "a practical money conversation becomes a verdict on courage and trust",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Aman places the pension statement beside the angry text and identifies the fear before either partner argues character",
+      "firstImage": "a pension statement folded into thirds beside reading glasses",
+      "mustInclude": [
+        "pension statement",
+        "angry text",
+        "fear named plainly"
+      ],
+      "mustAvoid": [
+        "investment strategy",
+        "late-life sentimentality"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish situational explanation from character indictment",
+      "choose repair language that preserves accountability without prosecution",
+      "analyze how stored grievance changes the purpose of arguing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one complaint about someone close to you and rewrite it from \"they are\" into \"in that moment, under these conditions, they did...\" without excusing the harm.",
+  "readingTimeMinutes": 12
+}

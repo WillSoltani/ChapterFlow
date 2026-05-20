@@ -1,0 +1,160 @@
+{
+  "chapterId": "indistractable-ch04",
+  "number": 4,
+  "title": "Reimagine the Internal Trigger",
+  "coreMove": "Rewrite the story attached to a bad feeling so it becomes information to work with, not an order to escape.",
+  "sourcePressure": "The chapter deepens the internal-trigger work by changing the meaning assigned to discomfort rather than pretending discomfort should vanish.",
+  "chapterSpecificMisunderstanding": "A weak run would ask the reader to put a positive spin on discomfort instead of changing the story that gives the feeling control.",
+  "sourceAlignmentTerms": [
+    "reimagine",
+    "internal trigger",
+    "interpretation",
+    "meaning",
+    "urge story",
+    "discomfort"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Reimagine the Internal Trigger as a labeled topic opener",
+      "screen-blame cold open",
+      "willpower failure opener"
+    ],
+    "counterintuition": [
+      "most people assume... but actually...",
+      "phones are not the problem by itself",
+      "generic hidden psychology reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and notice your distractions",
+      "write three priorities",
+      "turn off one notification"
+    ],
+    "examples": [
+      "work desk plus phone scene",
+      "parent nags child about screens",
+      "generic meeting interruption",
+      "reused old-package object-anchor shell from earlier Indistractable run"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "patent illustrator staring at rejected drawing notes",
+      "audience": "illustrator who reads criticism as proof of incompetence",
+      "stakes": "a client filing stalls because shame becomes browsing",
+      "format": "before_after",
+      "requiredBeat": "before, she sees rejection; after, she writes the note as a map for the next figure and reopens the grid",
+      "firstImage": "A translucent drafting overlay covers a rejected patent figure.",
+      "mustInclude": [
+        "drafting overlay",
+        "rejected figure",
+        "revision grid"
+      ],
+      "mustAvoid": [
+        "confidence coaching"
+      ]
+    },
+    {
+      "domain": "ferry captain trainee studying collision rules",
+      "audience": "trainee who hears confusion as evidence she is not built for command",
+      "stakes": "licensing prep gets replaced by harbor gossip",
+      "format": "reflection",
+      "requiredBeat": "she changes 'I am bad at this' into 'this is the rule set that needs another pass' and restarts the chart exercise",
+      "firstImage": "A tide chart is pinned beside a collision-rules card.",
+      "mustInclude": [
+        "tide chart",
+        "rules card",
+        "chart exercise"
+      ],
+      "mustAvoid": [
+        "nautical adventure"
+      ]
+    },
+    {
+      "domain": "bakery wholesale rep after a rejected account call",
+      "audience": "sales rep who turns disappointment into online wandering",
+      "stakes": "a neighborhood route loses momentum after one no",
+      "format": "dialogue",
+      "requiredBeat": "he says the sting means the pitch found a weak spot, then revises one sample offer",
+      "firstImage": "A sample invoice lies beside a torn bakery route sheet.",
+      "mustInclude": [
+        "sample invoice",
+        "route sheet",
+        "offer card"
+      ],
+      "mustAvoid": [
+        "sales hustle"
+      ]
+    },
+    {
+      "domain": "orchard manager facing weather-damaged fruit",
+      "audience": "manager tempted to avoid inspection because loss feels personal",
+      "stakes": "sorting choices worsen if the feeling means failure",
+      "format": "scene",
+      "requiredBeat": "she renames dread as a signal to separate saleable bins first and walks the first row",
+      "firstImage": "A hail-dented apple sits on a sorting scale.",
+      "mustInclude": [
+        "dented apple",
+        "sorting scale",
+        "row tag"
+      ],
+      "mustAvoid": [
+        "farm resilience cliche"
+      ]
+    },
+    {
+      "domain": "public defender reading a hostile judge's order",
+      "audience": "attorney who interprets anger as futility",
+      "stakes": "the next filing needs precision, not escape",
+      "format": "decision_point",
+      "requiredBeat": "he writes 'anger means find the narrow opening' and highlights the one procedural line",
+      "firstImage": "A court order is clipped beneath a blue appeal tab.",
+      "mustInclude": [
+        "court order",
+        "appeal tab",
+        "highlight strip"
+      ],
+      "mustAvoid": [
+        "legal drama"
+      ]
+    },
+    {
+      "domain": "ceramics studio owner after a kiln firing fails",
+      "audience": "artist who treats a cracked batch as proof she should stop",
+      "stakes": "a commission deadline tightens while self-judgment takes over",
+      "format": "postmortem",
+      "requiredBeat": "she labels the crack pattern as information and marks the next temperature ramp",
+      "firstImage": "A cracked porcelain bowl rests beside a kiln log.",
+      "mustInclude": [
+        "porcelain bowl",
+        "kiln log",
+        "temperature ramp"
+      ],
+      "mustAvoid": [
+        "artist temperament"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario calls for: Rewrite the story attached to a bad feeling so it becomes information to work with, not an order to escape.",
+      "choose the action that stays inside Reimagine the Internal Trigger's source pressure rather than adjacent productivity advice",
+      "explain why the tempting weak version fails: A weak run would ask the reader to put a positive spin on discomfort instead of changing the story that gives the feeling control.",
+      "use chapter-specific terms such as reimagine, internal trigger, interpretation, meaning in transfer scenarios"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one sentence that starts 'This feeling is a signal that...' and finish it with a useful next action instead of a judgment.",
+  "readingTimeMinutes": 12
+}

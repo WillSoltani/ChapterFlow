@@ -1,0 +1,187 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch20",
+  "number": 20,
+  "title": "The Ripening-for-the-Sickle Strategy: Maneuver Them into Weakness",
+  "coreMove": "Narrow the opponent's future options through deliberate small moves until the final weak position is partly self-made.",
+  "sourcePressure": "The decisive move is often delayed; the setup does the work by making each later option worse.",
+  "chapterSpecificMisunderstanding": "Wait passively and call it maneuver.",
+  "sourceAlignmentTerms": [
+    "ripening",
+    "option shaping",
+    "maneuver into weakness",
+    "delayed strike",
+    "future choices",
+    "patience",
+    "passive fantasy reversal"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for The Ripening-for-the-Sickle Strategy: Maneuver Them into Weakness.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Nils",
+      "domain": "phased real-estate negotiation",
+      "audience": "a reader facing phased real-estate negotiation who needs to practice Strategy 20 without reducing it to wait passively and call it maneuver.",
+      "stakes": "a concrete decision in phased real-estate negotiation where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist makes a small early move that changes the option tree, waits for the counterpart to choose into the narrowing path, and does not strike early. The visible action must happen inside phased real-estate negotiation, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" Nils says, with the deal timeline still unopened.",
+      "mustInclude": [
+        "deal timeline",
+        "option tree",
+        "one visible deadline tied to ripening"
+      ],
+      "mustAvoid": [
+        "Wait passively and call it maneuver.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Erik",
+      "domain": "multi-year competitor positioning",
+      "audience": "a reader facing multi-year competitor positioning who needs to practice Strategy 20 without reducing it to wait passively and call it maneuver.",
+      "stakes": "a concrete decision in multi-year competitor positioning where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist makes a small early move that changes the option tree, waits for the counterpart to choose into the narrowing path, and does not strike early. The visible action must happen inside multi-year competitor positioning, not as an abstract reflection.",
+      "firstImage": "The option tree is damp at one corner when Erik pulls it from the folder.",
+      "mustInclude": [
+        "option tree",
+        "delayed signature page",
+        "a named counterparty tied to ripening"
+      ],
+      "mustAvoid": [
+        "Wait passively and call it maneuver.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Karl",
+      "domain": "licensing deal option path",
+      "audience": "a reader facing licensing deal option path who needs to practice Strategy 20 without reducing it to wait passively and call it maneuver.",
+      "stakes": "a concrete decision in licensing deal option path where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist makes a small early move that changes the option tree, waits for the counterpart to choose into the narrowing path, and does not strike early. The visible action must happen inside licensing deal option path, not as an abstract reflection.",
+      "firstImage": "You are beside Karl as the delayed signature page makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "delayed signature page",
+        "deal timeline",
+        "a public consequence tied to ripening"
+      ],
+      "mustAvoid": [
+        "Wait passively and call it maneuver.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Otto",
+      "domain": "standards-body proposal sequence",
+      "audience": "a reader facing standards-body proposal sequence who needs to practice Strategy 20 without reducing it to wait passively and call it maneuver.",
+      "stakes": "a concrete decision in standards-body proposal sequence where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist makes a small early move that changes the option tree, waits for the counterpart to choose into the narrowing path, and does not strike early. The visible action must happen inside standards-body proposal sequence, not as an abstract reflection.",
+      "firstImage": "It took Otto three weeks to notice the deal timeline was the part everyone kept avoiding.",
+      "mustInclude": [
+        "deal timeline",
+        "option tree",
+        "a resource limit tied to ripening"
+      ],
+      "mustAvoid": [
+        "Wait passively and call it maneuver.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Klara",
+      "domain": "insurance claim settlement path",
+      "audience": "a reader facing insurance claim settlement path who needs to practice Strategy 20 without reducing it to wait passively and call it maneuver.",
+      "stakes": "a concrete decision in insurance claim settlement path where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist makes a small early move that changes the option tree, waits for the counterpart to choose into the narrowing path, and does not strike early. The visible action must happen inside insurance claim settlement path, not as an abstract reflection.",
+      "firstImage": "What changes when Klara stops arguing and points to the option tree?",
+      "mustInclude": [
+        "option tree",
+        "delayed signature page",
+        "a private decision rule tied to ripening"
+      ],
+      "mustAvoid": [
+        "Wait passively and call it maneuver.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Britta",
+      "domain": "festival sponsor renewal track",
+      "audience": "a reader facing festival sponsor renewal track who needs to practice Strategy 20 without reducing it to wait passively and call it maneuver.",
+      "stakes": "a concrete decision in festival sponsor renewal track where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist makes a small early move that changes the option tree, waits for the counterpart to choose into the narrowing path, and does not strike early. The visible action must happen inside festival sponsor renewal track, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the delayed signature page before Britta says a word.",
+      "mustInclude": [
+        "delayed signature page",
+        "deal timeline",
+        "a reversal check tied to ripening"
+      ],
+      "mustAvoid": [
+        "Wait passively and call it maneuver.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 20 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Narrow the opponent's future options through deliberate small moves until the final weak position is partly self-made.",
+      "explain why the common misread fails: Wait passively and call it maneuver.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the three options the other side has today, then choose one legitimate move that removes or worsens exactly one option.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12,
+  "sourceAnchorNote": "No chapter-specific named person, study, place, artifact, or event is traceable in the frozen source for this strategy; use fictional protagonists and do not invent historical anchors."
+}

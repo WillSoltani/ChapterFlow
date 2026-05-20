@@ -1,0 +1,124 @@
+{
+  "bookId": "what-every-body-is-saying",
+  "title": "What Every BODY is Saying",
+  "author": "Joe Navarro",
+  "thesisParagraph": "What Every BODY is Saying teaches nonverbal observation as a disciplined way to notice comfort, discomfort, interest, withdrawal, strain, and readiness before words have fully edited the moment. The book's useful promise is not mind reading and not lie detection. It is a practical habit of reading the whole body in context, comparing cues against baseline and clusters, and using that read to choose a better next question, slower pace, or cleaner response.",
+  "coreIdeas": [
+    {
+      "name": "Whole-body reading",
+      "oneSentence": "The face is only one surface, so feet, legs, torso, arms, hands, timing, and orientation all belong in the read.",
+      "mentalMove": "Widen the lens before deciding what a nonverbal cue means.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch04.source",
+        "ch05.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Cue as clue",
+      "oneSentence": "A gesture or shift is useful because it starts inquiry, not because it proves motive.",
+      "mentalMove": "Hold the first cue open until context, timing, and other channels either strengthen or revise it.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch09.source",
+        "ch10.source"
+      ]
+    },
+    {
+      "name": "Comfort and discomfort",
+      "oneSentence": "The safest read often stays at comfort, discomfort, confidence, stress, engagement, or withdrawal instead of jumping to a hidden story.",
+      "mentalMove": "Name the observable state before reaching for an explanation.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source",
+        "ch05.source",
+        "ch07.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Baseline and clusters",
+      "oneSentence": "Nonverbal behavior becomes more meaningful when a shift is compared with the person's normal pattern and with other cues arriving at the same time.",
+      "mentalMove": "Compare what changed, what joined it, and what situation triggered it.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch09.source",
+        "ch10.source"
+      ]
+    },
+    {
+      "name": "Body-region specificity",
+      "oneSentence": "Each body region gives a different kind of evidence: direction from feet, protection from torso and arms, regulation from hands, and managed expression from the face.",
+      "mentalMove": "Ask what this part of the body is especially good at showing, then keep the claim bounded.",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch05.source",
+        "ch06.source",
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Deception restraint",
+      "oneSentence": "Stress, inconsistency, or pacifying behavior may mark pressure, but no single nonverbal cue proves a lie.",
+      "mentalMove": "Use discomfort to guide verification, not accusation.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch03.source",
+        "ch09.source",
+        "ch10.source"
+      ]
+    }
+  ],
+  "targetReader": "A reader who wants to understand people more accurately in interviews, meetings, classrooms, family conversations, negotiations, and public settings, but who needs guardrails against turning observation into projection, accusation, or cue-dictionary certainty.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "keep physical detail precise enough that the reader can see the cue",
+      "turn each observation into a better next move rather than a dramatic verdict"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic self-improvement coaching language",
+      "no mind-reading promises",
+      "no lie-detector shortcuts",
+      "no unsupported neuroscience or fake precision"
+    ]
+  },
+  "voiceSpecimens": [
+    "A hand can tell you the room is tightening before the speaker is ready to say so.",
+    "Do not ask one foot to carry a whole theory.",
+    "The useful question is not what does this gesture prove, but what changed when it appeared.",
+    "A polite smile can be true, managed, strained, or automatic; the rest of the body decides how much weight it gets.",
+    "When the torso turns away and the words stay friendly, treat the mismatch as timing information, not permission to accuse.",
+    "The better observer leaves people more room, not less.",
+    "Stress is a signal to verify, not a confession waiting to be named."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter will unlock the secret code of every gesture you see.",
+    "If someone crosses their arms, they are defensive and closed off.",
+    "Body language is a superpower that lets you know what people really think.",
+    "The limbic brain always tells the truth before the conscious mind can hide it.",
+    "In today's fast-paced world, communication is more important than ever.",
+    "By mastering these techniques, you can control any interaction."
+  ],
+  "teachingArc": "The book first gives the reader the promise and the rules: observe broadly, compare context, and keep claims modest. It then explains why early protective reactions matter, before moving down the body region by region: legs for direction and readiness, torso for openness and shielding, arms for distance management, hands for confidence and self-regulation, and face for useful but managed expression. The final chapters bring those channels back together around deception caution, verification, and a closing practice of restrained whole-body observation.",
+  "forbiddenMoves": [
+    "Do not turn the book into a cue dictionary where crossed arms, eye contact, or foot direction receives a fixed translation.",
+    "Do not promise that nonverbal behavior reveals exact thoughts, motives, or lies.",
+    "Do not let the body-region chapters collapse into the same generic advice to pay attention.",
+    "Do not overstate limbic or neuroscience claims beyond fast protective response, orientation, and recovery.",
+    "Do not treat discomfort as guilt, deception, hostility, attraction, or agreement without context and verification.",
+    "Do not make the reader sound like a manipulator, interrogator, or guru."
+  ]
+}

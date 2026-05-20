@@ -1,0 +1,325 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch32",
+  "number": 32,
+  "title": "Keeping Score",
+  "readingTimeMinutes": 12,
+  "hook": "The total budget says stop, but one stubborn account still wants its loss repaired.",
+  "counterintuition": "Mental accounting is not ordinary budgeting. It is the habit of putting outcomes into separate ledgers that can make sunk costs, paper losses, and account closure drive the next choice.",
+  "tryThisNow": "Before one choice today, identify the account doing the talking. Then ask what is driving it: spent money, pride, time invested, or a loss you want to close.",
+  "keyTakeaway": "Find the mental account that is driving the feeling before accepting the choice it produces.",
+  "breakdown": {
+    "fastRead": "A retail shop keeps a weak title on the front table because the buyer paid too much for the first shipment. Total store profit says move on. The title's private account says do not close at a loss.\n\nThe ledger is emotional.\n\nMental accounting separates outcomes into buckets. A loss in one bucket can demand repair even when the whole picture says the next dollar or hour should go elsewhere. The danger is not keeping records. The danger is letting a narrow mental account make the decision after the real cost is already sunk.",
+    "deepRead": "A pharmacy team keeps supporting a custom verification workflow because six months of training already went into it. The new system is slower than the old one. The future case is clear. The past investment still feels open.\n\nSunk cost is an account asking to be closed well.\n\nMental accounting creates separate ledgers for projects, purchases, trips, investments, relationships, and reputations. Those ledgers help people organize life. They also distort decisions when each account demands its own emotional ending. A paper loss in a stock account may not feel real until selling closes the account. A failed project may keep receiving money because stopping would make the loss visible. A prepaid ticket may drag someone to an unwanted event because the entertainment account refuses to admit waste.\n\nThe corrective question is simple: Which account is driving this feeling? If the answer is \"the money already spent\" or \"the loss I do not want to realize,\" pause. Past cost may teach, but it should not command future spending. The next choice should be judged by future benefits and future costs, with the old account named rather than obeyed.\n\nA fire command post shows a nonfinancial version. A crew continues a weak search pattern because abandoning it would admit the first hour produced nothing. The safety account and time account disagree. The old hour is gone; the next ten minutes still need the best use.\n\nAn open account can keep spending after the reason is gone.",
+    "fullRead": "Keeping score is useful until the scoreboard becomes the decision maker. People need accounts. They track budgets, effort, promises, performance, and regret. The trouble begins when a separate ledger gets treated as if it were the whole situation. Then a person protects one account while harming the total position.\n\nAnita stands at a pharmacy verification bench after a failed workflow rollout. The amber vial tray labeled mental accounting sits beside the training binder. The old decision was expensive: staff time, vendor calls, and a bruising launch. Keeping the workflow alive would make that account feel less embarrassing. Switching back would realize the loss. Anita's next decision should not be made by the training ledger. It should be made by future speed, safety, and maintenance cost.\n\nWhich account wants the next dollar?\n\nThat question exposes the driver. A sunk-cost account wants vindication. A paper-loss account wants to avoid realization. A pride account wants closure without admitting error. A vacation account wants someone to attend because tickets were prepaid. A project account wants one more sprint because stopping now would make the earlier sprint look wasted.\n\nPaper losses are especially sticky. An investor may hold a bad position because selling would close the account in red ink. A team may keep a feature alive because deleting it would admit months of work did not matter. The loss already exists in economic terms, but the mental account treats realization as a second wound. That distinction can be emotionally real and financially dangerous.\n\nA submarine simulator gives a clean thought experiment. Roger's crew has spent half the exercise following a poor intercept plan. The submarine simulator headset labeled paper loss sits between the old route and a better new route. If they switch, the first half becomes an obvious loss. If they continue, they may waste the second half too. The account wants dignity; the mission needs future value.\n\nThe counter-objection is that accounts can help discipline. True. Separate accounts can protect rent from impulse spending, preserve maintenance budgets, and make long-term goals visible. The problem is not categories. The problem is categories that refuse to update when future value changes. A good account helps you see tradeoffs; a bad account hides the total.\n\nThe practical move is to write three lines: what account is open, what future choice it is pushing, and whether that choice would be best if the old cost had never happened. If the answer changes when you erase the past cost, you are probably obeying the ledger instead of deciding.\n\nClose the account in your notes before it spends more of your future."
+  },
+  "examples": [
+    {
+      "exampleId": "ch32-ex01-anita-pharmacy",
+      "title": "Anita closes the training ledger",
+      "tags": [
+        "postmortem",
+        "pharmacy",
+        "sunk-cost"
+      ],
+      "planSpec": {
+        "domain": "pharmacy verification bench facing a decision distorted by mental accounting",
+        "audience": "a lead or reviewer who must find the mental account before accepting the choice",
+        "stakes": "the visible call will go wrong unless mental accounting is separated from the weaker cue",
+        "format": "postmortem",
+        "requiredBeat": "the before call appears on the labeled tray, then the after call follows once the account is named"
+      },
+      "scenario": "You are looking at the amber vial tray labeled mental accounting while Anita's failed workflow starts to sound too complete. Six months of training make switching back feel like admitting waste. In the postmortem, Anita must decide whether sunk cost is driving the next support contract or whether future safety and speed should decide.",
+      "whatToDo": "Name the training ledger, close it as a lesson, and judge the next contract by future costs and benefits.",
+      "whyItMatters": "The old investment is already gone. Mental accounting can make the workflow spend more because the loss feels unfinished."
+    },
+    {
+      "exampleId": "ch32-ex02-brian-site",
+      "title": "Brian separates the survey account",
+      "tags": [
+        "before_after",
+        "architecture",
+        "separate-ledgers"
+      ],
+      "planSpec": {
+        "domain": "architectural site survey facing a decision distorted by mental accounting",
+        "audience": "a lead or reviewer who must find the mental account before accepting the choice",
+        "stakes": "the visible call will go wrong unless mental accounting is separated from the weaker cue",
+        "format": "before_after",
+        "requiredBeat": "the protagonist names the shortcut and chooses one check that makes it accountable"
+      },
+      "scenario": "Which account is hiding inside the rolled site blueprint labeled sunk cost on Brian's survey table? The firm has already spent heavily testing a poor foundation option, and the client wants one more study to save face. Brian must decide whether separate ledgers are making the foundation account demand more money after the useful evidence has already arrived.",
+      "whatToDo": "Write the past survey cost in one ledger and the future decision in another, then fund only the study that changes the next action.",
+      "whyItMatters": "A sunk account can ask for closure. The next study should earn its place by future information value."
+    },
+    {
+      "exampleId": "ch32-ex03-leila-command",
+      "title": "Leila stops the search pattern from buying dignity",
+      "tags": [
+        "reflection",
+        "fire",
+        "paper-loss"
+      ],
+      "planSpec": {
+        "domain": "fire command post facing a decision distorted by mental accounting",
+        "audience": "a lead or reviewer who must find the mental account before accepting the choice",
+        "stakes": "the visible call will go wrong unless mental accounting is separated from the weaker cue",
+        "format": "reflection",
+        "requiredBeat": "two commitments are compared, one from first impression and one after naming the account"
+      },
+      "scenario": "\"That cannot be the whole answer,\" Leila says, with the incident command vest labeled separate ledgers between the old search grid and the updated heat map. The first hour found nothing. Staying with the grid would keep the old effort from looking wasted. Leila must decide whether the paper loss in the time account is pushing the next ten minutes.",
+      "whatToDo": "Treat the first hour as spent, then choose the next search pattern by current evidence and safety.",
+      "whyItMatters": "The old account wants dignity. The next minutes need the highest expected value."
+    },
+    {
+      "exampleId": "ch32-ex04-roger-simulator",
+      "title": "Roger realizes the bad-route loss",
+      "tags": [
+        "thought-experiment",
+        "simulator",
+        "realized-loss"
+      ],
+      "planSpec": {
+        "domain": "submarine simulator facing a decision distorted by mental accounting",
+        "audience": "a lead or reviewer who must find the mental account before accepting the choice",
+        "stakes": "the visible call will go wrong unless mental accounting is separated from the weaker cue",
+        "format": "thought_experiment",
+        "requiredBeat": "quick cue and corrective evidence are separated before the choice"
+      },
+      "scenario": "It took three passes before Roger saw what the submarine simulator headset labeled paper loss had been making too easy. Imagine his crew has spent half the exercise on a poor intercept route. Switching makes the loss realized; continuing may waste the rest. Roger must decide whether account closure is more important than future mission value.",
+      "whatToDo": "Separate the realized loss from the remaining exercise and choose the route with better future payoff.",
+      "whyItMatters": "Realizing a loss hurts, but refusing to close the account can make the total outcome worse."
+    },
+    {
+      "exampleId": "ch32-ex05-karin-buy",
+      "title": "Karin moves the weak title off the front table",
+      "tags": [
+        "scene",
+        "retail",
+        "account-closure"
+      ],
+      "planSpec": {
+        "domain": "independent retail buy desk facing a decision distorted by mental accounting",
+        "audience": "a lead or reviewer who must find the mental account before accepting the choice",
+        "stakes": "the visible call will go wrong unless mental accounting is separated from the weaker cue",
+        "format": "scene",
+        "requiredBeat": "the trainee moves the labeled clipboard only after stating the correction"
+      },
+      "scenario": "The buy desk before opening is quiet except for the returns buyback clipboard labeled realized loss beside Karin's slow-selling title. She paid too much for the shipment, so keeping it on the front table feels like giving the account one more chance. Karin must decide whether to move the title only after naming the account closure pressure.",
+      "whatToDo": "Judge the front-table space by future sales per slot, not by the loss already sitting in the buying account.",
+      "whyItMatters": "The buying mistake is real, but keeping a weak title prominent may spend more future value to avoid closing the loss."
+    },
+    {
+      "exampleId": "ch32-ex06-daphne-frost",
+      "title": "Daphne crosses out the heater account",
+      "tags": [
+        "vignette",
+        "orchard",
+        "account-closure"
+      ],
+      "planSpec": {
+        "domain": "orchard frost watch facing a decision distorted by mental accounting",
+        "audience": "a lead or reviewer who must find the mental account before accepting the choice",
+        "stakes": "the visible call will go wrong unless mental accounting is separated from the weaker cue",
+        "format": "vignette",
+        "requiredBeat": "the supervisor crosses out the alluring detail and asks for the boring comparison first"
+      },
+      "scenario": "The rough plastic of the frost alarm sensor labeled account closure catches Daphne's glove during the heater review. Last week's expensive heater run saved nothing because frost never came. Tonight's risk is low, but skipping heaters would make last week feel wasteful. Daphne circles last week's bill, crosses it out, and must decide from tonight's forecast.",
+      "whatToDo": "Close last week's heater account as a past decision and compare tonight's frost probability with tonight's heater cost.",
+      "whyItMatters": "Mental accounting can make a past wasted run push a new run, even when the new risk does not justify it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A pharmacy has spent six months training staff on a workflow that is now slower and less safe than the old one. The manager wants one more support contract because the training cost feels too large to waste. What should she identify?",
+        "choices": [
+          "The sunk-cost account pushing the next contract.",
+          "A normal budget category that should always be protected.",
+          "Proof that switching systems is never worthwhile."
+        ],
+        "correctIndex": 0,
+        "explanation": "The training cost is already spent. Naming the sunk-cost account helps judge the next contract by future value.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An architecture firm keeps funding tests on a poor foundation option because earlier surveys were expensive. The next test will not change the recommendation. What is the best move?",
+        "choices": [
+          "Fund it because the survey account needs a better ending.",
+          "Separate past survey cost from future information value and stop if no decision changes.",
+          "Ignore all past data because sunk costs never teach anything."
+        ],
+        "correctIndex": 1,
+        "explanation": "Past costs can teach, but they should not buy another test without future value. The mental account must be separated from the next decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A rescue team keeps searching a weak grid because abandoning it would admit the first hour found nothing. New evidence points elsewhere. Which account is likely driving the choice?",
+        "choices": [
+          "A clean total-value calculation.",
+          "A desire to save money on equipment.",
+          "The account of time already spent, which wants the old effort to look useful."
+        ],
+        "correctIndex": 2,
+        "explanation": "The old hour is gone, but the time account wants dignity. Current evidence should guide the next search pattern.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A simulator crew refuses to switch from a poor route because switching would make the first half of the exercise an obvious loss. What does account closure explain?",
+        "choices": [
+          "Why realizing the loss hurts and can lead the crew to waste the remaining time.",
+          "Why the old route must become correct eventually.",
+          "Why losses disappear if they are not named."
+        ],
+        "correctIndex": 0,
+        "explanation": "Closing the route account in red ink is painful. Avoiding that feeling can damage the future outcome.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A retail shop keeps a slow title on the front table because the buyer overpaid for the shipment. Front-table space could sell stronger titles. What should guide the next choice?",
+        "choices": [
+          "The original purchase price alone.",
+          "Future sales per slot, with the buying loss named as a past account.",
+          "A rule that every bad purchase deserves more display time."
+        ],
+        "correctIndex": 1,
+        "explanation": "The buying loss is real but sunk. The next display choice should be judged by future sales opportunity.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An orchard ran heaters last week and wasted money when frost never came. Tonight's frost probability is low, but skipping heaters would make last week feel foolish. What is the mental-accounting trap?",
+        "choices": [
+          "Using tonight's forecast.",
+          "Admitting that heater costs matter.",
+          "Letting last week's open loss account push tonight's separate decision."
+        ],
+        "correctIndex": 2,
+        "explanation": "Last week's account wants repair, but tonight should be judged by tonight's probability and cost.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "An investor refuses to sell a losing position because the loss is only on paper until sold. The money could move to a better opportunity. What should she ask?",
+        "choices": [
+          "Would I buy this position today with the same money?",
+          "Can I avoid the loss forever by not looking?",
+          "Did the stock once have a higher price?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The buy-today test separates future value from reluctance to realize the paper loss.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A prepaid ticket makes someone attend an event they no longer want to attend, even though staying home would be better. Which account is speaking?",
+        "choices": [
+          "The future enjoyment account only.",
+          "The entertainment account that does not want to close with a wasted ticket.",
+          "A portfolio risk policy."
+        ],
+        "correctIndex": 1,
+        "explanation": "The ticket cost is sunk, but the account wants a use for it. Future enjoyment should decide whether attending is worth more time.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "At a department budget table, a team wants to use mental accounting well instead of being trapped by sunk costs and pride. Which habit is best?",
+        "choices": [
+          "Delete all categories and records.",
+          "Let each account get the ending it wants.",
+          "Name the account, state the future choice it is pushing, and ask whether the choice would change if the old cost had never happened."
+        ],
+        "correctIndex": 2,
+        "explanation": "The habit keeps useful records while preventing old accounts from commanding future value. Deleting all categories loses discipline.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A past cost is pushing a new decision. What should you name?",
+      "back": "Name the mental account that wants repair or closure, then judge the next choice by future costs and benefits.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why are sunk costs powerful in mental accounting?",
+      "back": "They keep an account emotionally open. Spending more can feel like a way to avoid closing the account at a loss.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What is the difference between paper loss and realized loss?",
+      "back": "A paper loss is still open in the mental account. A realized loss closes it, which can feel like a second wound.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How can separate ledgers be useful and dangerous?",
+      "back": "They organize goals and spending, but they can hide the total picture when one account demands repair at future cost.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What test helps escape a bad mental account?",
+      "back": "Ask whether you would make the same future choice if the old cost or loss had never happened.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is account naming: identify the ledger driving the feeling before letting it choose the next action.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a project asks for one more round because so much has been spent, then name the sunk-cost account and judge only future value."
+      },
+      {
+        "context": "money",
+        "plan": "If selling or stopping would realize a loss, then ask whether you would buy or start it today."
+      },
+      {
+        "context": "time",
+        "plan": "If a prepaid or already-started plan feels mandatory, then compare future enjoyment with future time cost."
+      },
+      {
+        "context": "operations",
+        "plan": "If a prior wasted action makes repetition tempting, then close the old account before judging the new forecast."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, find one choice pulled by past spending or effort and write the account name before deciding.",
+    "weeklyPractice": "Once a week, close one stale account in writing by naming what it taught and refusing to let it buy the next action."
+  },
+  "memorableLines": [
+    {
+      "text": "The ledger is emotional.",
+      "location": "breakdown.fastRead",
+      "why": "It captures mental accounting without reducing it to budgeting."
+    },
+    {
+      "text": "An open account can keep spending after the reason is gone.",
+      "location": "breakdown.deepRead",
+      "why": "It explains sunk-cost persistence vividly."
+    },
+    {
+      "text": "Close the account in your notes before it spends more of your future.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the concept into an action."
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "chapterId": "the-almanack-of-naval-ravikant-ch01",
+  "number": 1,
+  "title": "Building Wealth",
+  "coreMove": "Convert ambition from rented effort into owned, leveraged specific knowledge that can compound.",
+  "sourcePressure": "The source says wealth is assets earning while you sleep, not money or status, and insists that getting rich depends on knowing what to do, who to do it with, and when. It stacks specific knowledge, accountability, equity, leverage, long-term games, focus, luck, and patience into one system.",
+  "chapterSpecificMisunderstanding": "The wrong version tells readers to work harder, start a business, invest early, or chase passive income. This chapter must make the reader distinguish rented time from owned leverage and generic skill from specific knowledge.",
+  "sourceAlignmentTerms": [
+    "wealth",
+    "money",
+    "status",
+    "specific knowledge",
+    "accountability",
+    "equity",
+    "leverage",
+    "permissionless leverage",
+    "long-term games",
+    "productize yourself"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "a founder staring at a laptop dashboard at midnight",
+      "an overworked consultant discovering passive income",
+      "a generic contrast between rich and poor people"
+    ],
+    "counterintuition": [
+      "most people think wealth is hard work, but it is leverage",
+      "money cannot buy happiness",
+      "work smarter, not harder"
+    ],
+    "tryThisNow": [
+      "set a timer and calculate your hourly rate",
+      "write down three side hustles",
+      "ask what you are passionate about"
+    ],
+    "examples": [
+      "coffee meeting with a mentor",
+      "startup pitch deck scene",
+      "generic freelance burnout",
+      "budgeting or coupon-saving story"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "independent satellite-imagery analyst turning a repeated crop-risk insight into a subscribed alert product",
+      "audience": "a technical analyst who is paid by the report and keeps seeing the same early drought pattern before clients do",
+      "stakes": "whether her rare judgment stays trapped in custom PDFs or becomes an asset farms can subscribe to before planting decisions",
+      "format": "decision_point",
+      "requiredBeat": "she deletes the custom-report quote, draws the three recurring signal thresholds on a field map, and chooses a subscription alert with her name on the forecast instead of another hourly analysis",
+      "firstImage": "A false-color satellite tile shows one orange strip crossing a green wheat basin.",
+      "mustInclude": [
+        "field map",
+        "three signal thresholds",
+        "subscription alert"
+      ],
+      "mustAvoid": [
+        "generic SaaS dashboard",
+        "passive-income promise",
+        "venture capital pitch"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "small-batch instrument maker deciding whether to sell finished violins or license a bridge-shaping jig",
+      "audience": "a craftsperson whose rare touch is visible but whose income stops every time her hands stop",
+      "stakes": "whether decades of tacit knowledge remain one instrument at a time or become a tool other luthiers pay to use",
+      "format": "before_after",
+      "requiredBeat": "she compares a finished violin invoice with the first ten paid jig licenses and circles the piece of knowledge that can move without her fingers on the wood",
+      "firstImage": "A curled shaving of spruce lies beside a brass bridge template.",
+      "mustInclude": [
+        "spruce shaving",
+        "brass bridge template",
+        "license invoice"
+      ],
+      "mustAvoid": [
+        "generic artist monetization",
+        "craft versus commerce sermon",
+        "online course example"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "port logistics dispatcher building a public delay index from patterns no official dashboard shows",
+      "audience": "an operator who understands vessel queues better than the executives who buy software",
+      "stakes": "whether she stays the person everyone calls at 5 a.m. or owns a trusted signal shippers pay for",
+      "format": "postmortem",
+      "requiredBeat": "after missing a family breakfast for another emergency call, she marks the repeated tide-window, crane-outage, and customs-delay pattern and turns it into a daily index under her own byline",
+      "firstImage": "A laminated berth schedule is stained with rain near the customs column.",
+      "mustInclude": [
+        "berth schedule",
+        "tide-window note",
+        "daily index"
+      ],
+      "mustAvoid": [
+        "generic operations meeting",
+        "shipping container cliche",
+        "time-management lesson"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "open-source maintainer choosing paid cloud hosting over unpaid support threads",
+      "audience": "a developer whose library is widely used but whose reputation is not yet attached to revenue or accountability",
+      "stakes": "whether a respected tool remains a burden or becomes permissionless leverage tied to accountable ownership",
+      "format": "vignette",
+      "requiredBeat": "he pins the hosted-service changelog with his full name, prices the uptime guarantee, and closes the unpaid support tab before answering the next issue",
+      "firstImage": "A terminal window shows three green test checks above a blinking release tag.",
+      "mustInclude": [
+        "release tag",
+        "uptime guarantee",
+        "full-name changelog"
+      ],
+      "mustAvoid": [
+        "generic coding bootcamp",
+        "startup fundraising",
+        "complaining about users"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "specialty seed breeder deciding between salaried lab management and equity in a climate-resilient cultivar venture",
+      "audience": "a scientist with specific knowledge who is being offered comfort on one side and ownership on the other",
+      "stakes": "whether she captures the upside of judgment about saline soil or rents that judgment to someone else's balance sheet",
+      "format": "dialogue",
+      "requiredBeat": "when the CFO says the salary is safer, she points to the germination tray from the failed coastal trial and asks for equity tied to the cultivar she alone knows how to rescue",
+      "firstImage": "Six pale seedlings lean toward the edge of a saline-soil tray.",
+      "mustInclude": [
+        "saline-soil tray",
+        "term sheet",
+        "cultivar code"
+      ],
+      "mustAvoid": [
+        "generic salary negotiation",
+        "corporate promotion scene",
+        "stock-market investing"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "niche regulatory translator turning medical-device compliance judgment into reusable audit software",
+      "audience": "a consultant who knows the gray areas of device approvals but is tired of reselling the same judgment hour by hour",
+      "stakes": "whether expertise stays as billable interpretation or becomes a product that scales through code and reputation",
+      "format": "predict_reveal",
+      "requiredBeat": "before opening another client file, she predicts the same three missing evidence fields, runs her prototype checklist, and watches it flag them in twelve seconds",
+      "firstImage": "A redacted device submission sits beside a prototype checklist screen.",
+      "mustInclude": [
+        "redacted submission",
+        "three evidence fields",
+        "prototype checklist"
+      ],
+      "mustAvoid": [
+        "generic AI automation",
+        "legal drama",
+        "personal productivity shortcut"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish wealth, money, and status in concrete career choices",
+      "identify when specific knowledge is being rented instead of productized",
+      "choose permissionless leverage over permissioned leverage when the situation supports it",
+      "spot whether accountability and ownership are present in a proposed wealth path",
+      "evaluate long-term games by compounding reputation and repeated partners"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open one current project and mark the part that only works because you are personally there. Write the one version that would still create value if you were asleep: code, media, equity, a reusable tool, or a named decision others can trust.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "How to Get Rich (Without Getting Lucky)",
+      "detail": "the source presents the tweetstorm as an information-dense starting point for wealth, built around wealth over money or status, specific knowledge, accountability, and leverage",
+      "useIn": "both",
+      "phrasingHint": "The tweetstorm works like a compressed operating manual: stop chasing status, own something that scales, and attach your name to judgment."
+    },
+    {
+      "kind": "person",
+      "name": "Archimedes",
+      "detail": "the source uses the lever quote to introduce leverage as the force multiplier behind fortunes",
+      "useIn": "deepRead",
+      "phrasingHint": "Archimedes gives the image before the business lesson: a lever only matters when you also have a place to stand."
+    },
+    {
+      "kind": "person",
+      "name": "Warren Buffett",
+      "detail": "the source uses Buffett as an example of public accountability, integrity, and demonstrated judgment attracting massive leverage",
+      "useIn": "fullRead",
+      "phrasingHint": "Buffett is not handed leverage because he looks busy; leverage flows toward judgment that has been right in public for decades."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

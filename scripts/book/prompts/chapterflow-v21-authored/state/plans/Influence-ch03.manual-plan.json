@@ -1,0 +1,87 @@
+{
+  "chapterId": "Influence-ch03",
+  "number": 3,
+  "title": "Liking: The Friendly Thief",
+  "coreMove": "Separate warmth toward the messenger from the merits of the decision.",
+  "sourcePressure": "The source centers liking as compliance leverage through physical attractiveness, halo effect, similarity, praise, contact, cooperation, association, celebrity endorsement, sports identification, and the defense of judging the deal apart from the person.",
+  "chapterSpecificMisunderstanding": "Do not turn this into friendship advice; liking is the cue that can steal judgment from the actual offer.",
+  "sourceAlignmentTerms": ["liking", "halo effect", "similarity", "compliments", "cooperation", "association", "messenger effect"],
+  "forbiddenFrames": {
+    "hook": ["Friendly people can still sell you something", "You like the person, not the deal", "Charm is a thief"],
+    "counterintuition": ["Do not trust people you like", "Compliments are always fake", "Attractive people are manipulative"],
+    "tryThisNow": ["Ask whether you like the deal", "Notice who you like today", "Separate facts from feelings"],
+    "examples": ["Tupperware party replay", "car salesperson compliments buyer", "influencer promotes a product"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "youth orchestra instrument rental night",
+      "audience": "a parent choosing a violin rental plan",
+      "stakes": "overpaying because the rep praises the child's musical ear",
+      "format": "scene",
+      "requiredBeat": "the parent smiles at the compliment, then covers the rep's handwritten note and compares the monthly terms alone",
+      "firstImage": "a half-size violin case with a frayed shoulder strap",
+      "mustInclude": ["rental tiers", "compliment note", "repair fee"],
+      "mustAvoid": ["generic school sales table"]
+    },
+    {
+      "domain": "running shoe fitting at a specialty shop",
+      "audience": "a new marathon trainee who meets a clerk from the same hometown",
+      "stakes": "buying shoes based on similarity instead of fit",
+      "format": "decision_point",
+      "requiredBeat": "after the hometown connection, the runner asks to rerun the gait test with two unlabeled shoes",
+      "firstImage": "a treadmill belt ticking under fluorescent lights",
+      "mustInclude": ["gait video", "hometown mention", "return window"],
+      "mustAvoid": ["scarcity limited sizes"]
+    },
+    {
+      "domain": "cooperative grocery board election",
+      "audience": "a member voting for board candidates",
+      "stakes": "choosing a charming candidate whose budget plan is weaker",
+      "format": "before_after",
+      "requiredBeat": "the member rereads the candidate statements after removing the headshots from the packet",
+      "firstImage": "candidate headshots clipped to a clipboard by the bulk bins",
+      "mustInclude": ["candidate statements", "headshots", "budget plan"],
+      "mustAvoid": ["social proof vote totals"]
+    },
+    {
+      "domain": "film festival badge pickup line",
+      "audience": "a volunteer deciding whether to waive a late fee",
+      "stakes": "letting association with a famous actor override the rules",
+      "format": "dialogue",
+      "requiredBeat": "the guest mentions the actor twice, and the volunteer points back to the same fee policy used for everyone",
+      "firstImage": "laminated festival badges fanned across a folding table",
+      "mustInclude": ["late fee policy", "actor association", "badge stack"],
+      "mustAvoid": ["authority celebrity expertise"]
+    },
+    {
+      "domain": "neighborhood solar co-op meeting",
+      "audience": "a homeowner evaluating a contractor endorsed by a beloved neighbor",
+      "stakes": "signing because neighbor warmth transfers to the contractor",
+      "format": "postmortem",
+      "requiredBeat": "the homeowner writes two columns, what I feel about Lena and what the warranty actually promises",
+      "firstImage": "a roof photo projected onto a church basement wall",
+      "mustInclude": ["warranty page", "neighbor endorsement", "roof photo"],
+      "mustAvoid": ["unity shared identity"]
+    },
+    {
+      "domain": "animal shelter adoption counseling",
+      "audience": "a couple choosing between two dogs",
+      "stakes": "ignoring behavior constraints because the volunteer is warm and reassuring",
+      "format": "reflection",
+      "requiredBeat": "the couple notices the volunteer's warmth calming them and asks to test the dog's leash behavior before deciding",
+      "firstImage": "a nylon leash looped around a kennel latch",
+      "mustInclude": ["behavior notes", "leash test", "volunteer reassurance"],
+      "mustAvoid": ["generic pet adoption sentiment"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["spot when similarity or praise is carrying a request", "separate messenger warmth from offer quality", "detect association effects without becoming cynical", "choose a fair test that preserves the relationship"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take one appealing recommendation you received recently and write two words over it: person and proposal. Judge the proposal under the second word.",
+  "readingTimeMinutes": 12
+}

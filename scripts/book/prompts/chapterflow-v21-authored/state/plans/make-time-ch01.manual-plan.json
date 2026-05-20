@@ -1,0 +1,183 @@
+{
+  "chapterId": "make-time-ch01",
+  "number": 1,
+  "title": "Introduction + How Make Time Works",
+  "coreMove": "Name the default force running the day, then choose which part of the Make Time loop will take command first.",
+  "sourcePressure": "The source sidecar identifies the opening problem as Busy Bandwagon plus Infinity Pools and the answer as the four-part architecture: Highlight, Laser, Energize, Reflect.",
+  "chapterSpecificMisunderstanding": "The wrong generic version says modern life is distracting and people need better discipline. The specific move is to spot default control and answer it with a deliberate counter-default from the framework.",
+  "sourceAlignmentTerms": [
+    "Busy Bandwagon",
+    "Infinity Pools",
+    "defaults",
+    "Highlight",
+    "Laser",
+    "Energize",
+    "Reflect"
+  ],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "alarm-to-phone morning drift",
+      "crowded calendar proves importance",
+      "the whole world is distracting"
+    ],
+    "counterintuition": [
+      "productivity is not about doing more",
+      "you need discipline less than design"
+    ],
+    "tryThisNow": [
+      "write your top priority",
+      "put your phone away for five minutes"
+    ],
+    "examples": [
+      "generic office inbox",
+      "student at kitchen table",
+      "freelancer in a coffee shop",
+      "parent checking phone before breakfast"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a neighborhood film-festival programmer sorting premieres from sponsor demands",
+      "audience": "a cultural organizer whose day gets claimed by visible responsiveness",
+      "stakes": "the opening-night lineup becomes mediocre if sponsor replies consume the screening window",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "she writes Busy Bandwagon beside the sponsor reply queue, circles one film reel evaluation as the Highlight, and pins a two-hour screening block above the registration binder",
+      "firstImage": "a stack of screeners beside a plastic box of red lanyards at 8:18 a.m.",
+      "mustInclude": [
+        "screener list",
+        "sponsor reply queue",
+        "registration binder"
+      ],
+      "mustAvoid": [
+        "generic arts administrator",
+        "email overload as the whole lesson"
+      ]
+    },
+    {
+      "domain": "a food-pantry route coordinator preparing a Saturday delivery map",
+      "audience": "a volunteer lead pulled between urgent texts and route design",
+      "stakes": "three apartment towers miss produce boxes if the route remains improvised",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he labels the group chat an Infinity Pool for the next hour, turns the delivery map face up, and uses Highlight before checking the new message count",
+      "firstImage": "a laminated city map spread under a crate tag marked Building C",
+      "mustInclude": [
+        "delivery map",
+        "group chat",
+        "produce box count"
+      ],
+      "mustAvoid": [
+        "bus depot",
+        "generic nonprofit busyness"
+      ]
+    },
+    {
+      "domain": "an aquarium exhibit technician opening a kelp-tank maintenance shift",
+      "audience": "a hands-on specialist whose day can vanish into visitor alerts and repair pings",
+      "stakes": "the pump inspection slips if the first hour becomes scattered response work",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "before, he follows every alert light; after, he names the alert panel as the day's default and starts the Highlight inspection checklist before Laser limits the pager route",
+      "firstImage": "green tank light rippling across a clipboard clipped to a rail",
+      "mustInclude": [
+        "pump inspection checklist",
+        "visitor alert panel",
+        "pager route"
+      ],
+      "mustAvoid": [
+        "generic maintenance shop",
+        "heroic emergency repair"
+      ]
+    },
+    {
+      "domain": "an immigration paralegal preparing asylum exhibits before a filing cutoff",
+      "audience": "a legal support worker stuck between urgent status calls and careful packet assembly",
+      "stakes": "a client's evidence packet may be rejected if the exhibit order is rushed",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "after a day lost to calls, she marks Busy Bandwagon beside the call log and chooses tomorrow's first Make Time move as a protected exhibit-order Highlight",
+      "firstImage": "color-coded exhibit tabs fanned beside a stamped filing receipt",
+      "mustInclude": [
+        "call log",
+        "exhibit tabs",
+        "filing cutoff"
+      ],
+      "mustAvoid": [
+        "courtroom drama",
+        "generic lawyer inbox"
+      ]
+    },
+    {
+      "domain": "an amateur choir director choosing a rehearsal plan for a memorial service",
+      "audience": "a community leader tempted to answer every singer text first",
+      "stakes": "the choir will stumble through the difficult entrance if rehearsal starts without a chosen center",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she tells the section lead that singer texts are the Busy Bandwagon today, then writes one Highlight on the rehearsal folder before touching the message thread",
+      "firstImage": "a pencil-marked score open to the first alto entrance",
+      "mustInclude": [
+        "rehearsal folder",
+        "singer text thread",
+        "alto entrance"
+      ],
+      "mustAvoid": [
+        "classroom rehearsal",
+        "generic volunteer coordination"
+      ]
+    },
+    {
+      "domain": "a rural vet-clinic receptionist triaging surgery slots and social messages",
+      "audience": "a front-desk operator whose reactive day looks responsible but leaves the real queue untouched",
+      "stakes": "two surgery confirmations drift if the day starts inside the clinic's social feed",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she draws two columns labeled Busy Bandwagon and Infinity Pools, places the appointment confirmations under Highlight, and leaves the clinic feed closed until the confirmations are done",
+      "firstImage": "a yellow surgery schedule taped beside a jar of numbered kennel tags",
+      "mustInclude": [
+        "surgery schedule",
+        "clinic social feed",
+        "kennel tags"
+      ],
+      "mustAvoid": [
+        "generic receptionist calls",
+        "pet-owner sentimentality"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Busy Bandwagon pressure from Infinity Pool pull in unfamiliar scenes",
+      "choose the first framework move after diagnosing a default",
+      "explain why trying harder is weaker than redesigning the opening of the day",
+      "evaluate whether an action creates leverage or merely adds another productivity ritual"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at the next open hour and write one label beside it: Busy Bandwagon, Infinity Pool, or chosen. If it is not chosen, name the first Make Time move that would reclaim it.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm -- a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  },
+  "readingTimeMinutes": 12
+}

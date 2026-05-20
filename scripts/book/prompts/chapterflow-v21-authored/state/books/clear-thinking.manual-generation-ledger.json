@@ -1,0 +1,1374 @@
+{
+  "bookId": "clear-thinking",
+  "updatedAt": "2026-05-15T02:14:13.563Z",
+  "usedProtagonistNames": [
+    "Natalie",
+    "Rebecca",
+    "Heather",
+    "Megan",
+    "Claire",
+    "Olivia",
+    "Sophie",
+    "Grace",
+    "Rachel",
+    "Laura",
+    "Anna",
+    "James",
+    "David",
+    "Michael",
+    "Thomas",
+    "Daniel",
+    "Andrew",
+    "Matthew",
+    "Ben",
+    "Chris",
+    "Nathan",
+    "Ryan",
+    "Jack",
+    "Luke",
+    "Camille",
+    "Lea",
+    "Margaux",
+    "Juliette",
+    "Chloe",
+    "Manon",
+    "Etienne",
+    "Mathieu",
+    "Nicolas",
+    "Antoine",
+    "Vincent",
+    "Julien",
+    "Olivier",
+    "Hugo",
+    "Lukas",
+    "Jonas",
+    "Niklas",
+    "Henrik",
+    "Anders",
+    "Lars",
+    "Mikkel",
+    "Ingrid",
+    "Hanna",
+    "Frida",
+    "Astrid",
+    "Maja",
+    "Anke",
+    "Marit",
+    "Marco",
+    "Luca",
+    "Matteo",
+    "Tomas",
+    "Diego",
+    "Pablo",
+    "Javier",
+    "Sofia",
+    "Giulia",
+    "Chiara",
+    "Paula",
+    "Isabel",
+    "Catarina",
+    "Anya",
+    "Nina",
+    "Kasia",
+    "Marta",
+    "Petra",
+    "Tomasz",
+    "Aleksy",
+    "Pavel",
+    "Mateusz",
+    "Janek",
+    "Aanya",
+    "Aman",
+    "Devon",
+    "Kiran",
+    "Layla",
+    "Hadiya",
+    "Yusuf",
+    "Adaeze",
+    "Chidi",
+    "Lin",
+    "Min",
+    "Hiroshi",
+    "Akira",
+    "Emma",
+    "Abigail",
+    "Charlotte",
+    "Julia",
+    "Eva",
+    "Alice",
+    "Beatrice",
+    "Clara",
+    "Iris",
+    "Nora",
+    "Patrick",
+    "Peter",
+    "George",
+    "William",
+    "Henry",
+    "Joseph",
+    "Simon",
+    "Martin",
+    "Robert",
+    "Richard",
+    "Adam",
+    "Aaron",
+    "Isaac",
+    "Nathan",
+    "Adrian",
+    "Sebastian",
+    "Max",
+    "Erik",
+    "Nils",
+    "Soren",
+    "Freya",
+    "Britta",
+    "Annika",
+    "Elsa",
+    "Matilda",
+    "Bianca",
+    "Lucia",
+    "Carla",
+    "Teresa",
+    "Rosa",
+    "Ines",
+    "Vera",
+    "Joana",
+    "Isabel",
+    "Ana",
+    "Carmen",
+    "Luis",
+    "Rafael",
+    "Gabriel",
+    "Andres",
+    "Miguel",
+    "Lorena",
+    "Jana",
+    "Zofia",
+    "Ewa",
+    "Irena",
+    "Karolina",
+    "Marek",
+    "Anton",
+    "Bogdan",
+    "Daria",
+    "Oksana",
+    "Amara",
+    "Leah",
+    "Fatima",
+    "Hassan",
+    "Miriam",
+    "Samira"
+  ],
+  "usedExampleDomains": [
+    "a hospital triage desk",
+    "a railway operations center",
+    "a independent bookstore returns counter",
+    "a youth hockey bench",
+    "a building inspection walk-through",
+    "a family estate call",
+    "a film production office",
+    "a paramedic station",
+    "a airport customer desk",
+    "a family probate meeting",
+    "a restaurant expo line",
+    "a trail rescue dispatch",
+    "a architecture critique",
+    "a academic peer review",
+    "a startup investor update",
+    "a neighborhood association vote",
+    "a surgical morbidity review",
+    "a choir audition panel",
+    "a climate nonprofit board",
+    "a jury deliberation room",
+    "a software incident channel",
+    "a museum acquisition committee",
+    "a parent council budget vote",
+    "a cycling club safety meeting",
+    "a regional newspaper subscription desk",
+    "a city permit office",
+    "a dental practice scheduling room",
+    "a university lab inventory closet",
+    "a theater rehearsal calendar",
+    "a farm co-op ordering system",
+    "a freight brokerage night shift",
+    "a home health medication route",
+    "a rowing club launch dock",
+    "a tax office intake table",
+    "a hotel housekeeping board",
+    "a library holds shelf",
+    "a community legal clinic",
+    "a construction site handoff",
+    "a pediatric ward discharge desk",
+    "a small manufacturer returns bay",
+    "a radio newsroom correction meeting",
+    "a family care schedule",
+    "a mountain guide roster",
+    "a cardiology consult room",
+    "a grant review panel",
+    "a bakery production trial",
+    "a estate-planning office",
+    "a language school placement desk",
+    "a forex trading desk",
+    "a emergency room hallway",
+    "a competitive debate prep room",
+    "a sea kayak outfitter",
+    "a pastry competition kitchen",
+    "a city snowplow dispatch",
+    "a public health briefing",
+    "a board compensation meeting",
+    "a book festival programming room",
+    "a engineering change review",
+    "a tennis doubles match",
+    "a cooperative housing interview",
+    "a pharmacy pickup window",
+    "a warehouse loading dock",
+    "a sports physiotherapy clinic",
+    "a university advising office",
+    "a brewery quality check",
+    "a immigration intake office",
+    "a firehouse equipment wall",
+    "a charity gift-acceptance committee",
+    "a software release calendar",
+    "a restaurant reservation policy",
+    "a river guide weather cutoff",
+    "a private music studio",
+    "a apprentice electrician training bay",
+    "a court interpreter practice room",
+    "a ceramics kiln log",
+    "a clinical simulation lab",
+    "a basketball film room",
+    "a urban planning site visit",
+    "a executive travel booking",
+    "a diabetes nutrition consult",
+    "a shipping customs desk",
+    "a wedding photography contract",
+    "a live-stream moderation room",
+    "a public defender arraignment queue",
+    "a online brokerage account",
+    "a factory lockout station",
+    "a school field-trip approval",
+    "a nursing home medication cart",
+    "a retail refund counter",
+    "a backcountry ski avalanche check",
+    "a restaurant health inspection follow-up",
+    "a airport baggage claim desk",
+    "a open-source release incident",
+    "a marathon water station",
+    "a local theater ticketing error",
+    "a family text thread after a blowup",
+    "a animal shelter intake",
+    "a college financial aid appeal",
+    "a municipal pothole backlog",
+    "a software support queue",
+    "a orthodontic treatment plan",
+    "a regional train delay review",
+    "a podcast sponsor search",
+    "a landscape nursery redesign",
+    "a community clinic staffing gap",
+    "a manufacturing supplier switch",
+    "a graduate thesis topic",
+    "a small-town transit route",
+    "a vendor contract comparison",
+    "a medical device purchase",
+    "a school curriculum choice",
+    "a fleet vehicle replacement",
+    "a wedding venue selection",
+    "a community grant allocation",
+    "a art gallery opening plan",
+    "a restaurant lease signing",
+    "a research preprint submission",
+    "a boat repair deposit",
+    "a union negotiation deadline",
+    "a cafe menu launch",
+    "a mountain hut reservation",
+    "a hospital oxygen ordering",
+    "a construction crane lift plan",
+    "a festival security staffing",
+    "a home renovation contingency",
+    "a charter boat fuel planning",
+    "a investment club review",
+    "a surgery scheduling audit",
+    "a grant-funded pilot review",
+    "a youth orchestra audition recap",
+    "a product launch retrospective",
+    "a property purchase postmortem",
+    "a law firm partner track",
+    "a stage actor touring contract",
+    "a family business succession",
+    "a municipal mayoral run",
+    "a celebrity chef expansion",
+    "a graduate fellowship choice",
+    "a retirement residence interview circle",
+    "a hospice volunteer training",
+    "a late-career professor office hours",
+    "a empty-nest home sale",
+    "a veterans lunch table",
+    "a long-married couple calendar",
+    "a cemetery plot visit",
+    "a oncology waiting room",
+    "a estate document signing",
+    "a last-minute flight rebooking",
+    "a empty office after a layoff",
+    "a old photo archive table",
+    "a Sunday dinner table",
+    "a school pickup curb",
+    "a unread birthday card drawer",
+    "a morning walk route",
+    "a neighbor porch repair",
+    "a train platform goodbye"
+  ],
+  "usedExampleAnchors": [
+    "clear-thinking-ch01: the angry CEO",
+    "clear-thinking-ch02: Vito Corleone and Sonny Corleone",
+    "clear-thinking-ch03: the four-default map",
+    "clear-thinking-ch04: social pressure rewards conformity before truth",
+    "clear-thinking-ch05: inertia in the four-default map",
+    "clear-thinking-ch06: environment shapes choices more than willpower alone",
+    "clear-thinking-ch07: self-accountability interrupts autopilot",
+    "clear-thinking-ch08: strengths, weaknesses, edge, and limits",
+    "clear-thinking-ch09: discipline, fear, desire, and emotional regulation",
+    "clear-thinking-ch10: independent judgment under social pressure",
+    "clear-thinking-ch11: ordinary moments",
+    "clear-thinking-ch12: rules and standards",
+    "clear-thinking-ch13: role models, practice, calibration, and measurement",
+    "clear-thinking-ch14: blind spots, exposure, and failure patterns",
+    "clear-thinking-ch15: guardrails, premortem, and friction",
+    "clear-thinking-ch16: repair, reflection, learning loop, and recovery",
+    "clear-thinking-ch17: problem framing, obstacles, responsibility, and root cause",
+    "clear-thinking-ch18: open search and avoiding early lock-in",
+    "clear-thinking-ch19: tradeoffs, criteria, information quality, and judgment",
+    "clear-thinking-ch20: execution, commitment, action, and follow-through",
+    "clear-thinking-ch21: slack, buffer, uncertainty, and resilience",
+    "clear-thinking-ch22: feedback, postmortem, reflection, and improvement",
+    "clear-thinking-ch23: Dickens",
+    "clear-thinking-ch24: regret, elder wisdom, life satisfaction, and priorities",
+    "clear-thinking-ch25: Memento Mori",
+    "clear-thinking-ch26: final perspective, tiny moments, priorities, and living well"
+  ],
+  "usedHookFrames": [
+    "clear-thinking-ch01: call bell plus room deciding before named choice",
+    "clear-thinking-ch02: call sheet plus anger taking director role",
+    "clear-thinking-ch03: foam model plus criticism shrinking self-image",
+    "clear-thinking-ch04: pledge card plus five nodding heads before evidence check",
+    "clear-thinking-ch05: red pencil renewing a bundle nobody chose",
+    "clear-thinking-ch06: three dispatch questions taped before night shift",
+    "clear-thinking-ch07: missed file explained versus owned part within reach",
+    "clear-thinking-ch08: mountain roster exposes edge of trusted judgment",
+    "clear-thinking-ch09: green price screen and unearned trade urge",
+    "clear-thinking-ch10: briefing room turns against prepared forecast",
+    "clear-thinking-ch11: pharmacy line tests accuracy as visible behavior",
+    "clear-thinking-ch12: missing gauge tests complete-equipment threshold",
+    "clear-thinking-ch13: master electrician calm tested at breaker panel",
+    "clear-thinking-ch14: late-day red-eye booking exposes travel weakness",
+    "clear-thinking-ch15: instant-buy button removed before next market drop",
+    "clear-thinking-ch16: inspection notice before shame writes the story",
+    "clear-thinking-ch17: barking intake room hides real shelter obstacle",
+    "clear-thinking-ch18: first sponsor offer makes option search feel finished",
+    "clear-thinking-ch19: glossy vendor proposal tries to skip hard comparison",
+    "clear-thinking-ch20: approved gallery plan waits on unsigned call sheet",
+    "clear-thinking-ch21: mountain hut plan has no room for normal variance",
+    "clear-thinking-ch22: winning stock pick threatens to teach weak process",
+    "clear-thinking-ch23: partner-track memo hides private calendar bill",
+    "clear-thinking-ch24: retirement lounge recorder challenges urgent ambition",
+    "clear-thinking-ch25: cemetery visit shrinks work messages into proportion",
+    "clear-thinking-ch26: burning garlic and Sunday table reveal repeated attention"
+  ],
+  "usedCounterFrames": [
+    "clear-thinking-ch01: pressure assigns meaning before goal is named",
+    "clear-thinking-ch02: strong feeling masquerades as information and asks for speed",
+    "clear-thinking-ch03: ego arrives as rank, territory, or competence defense",
+    "clear-thinking-ch04: agreement feels like evidence because it is warm and rewarded",
+    "clear-thinking-ch05: inertia feels responsible and familiar rather than lazy",
+    "clear-thinking-ch06: clarity is engineered in advance rather than summoned as mood",
+    "clear-thinking-ch07: accountability as operational repair rather than self-punishment",
+    "clear-thinking-ch08: self-knowledge as boundary map for trust and support",
+    "clear-thinking-ch09: restraint protects standard from temporary body story",
+    "clear-thinking-ch10: grounded self-trust hears the room without borrowing answer",
+    "clear-thinking-ch11: strength only matters when standard becomes behavior",
+    "clear-thinking-ch12: useful standard as early decision before exception pressure",
+    "clear-thinking-ch13: model becomes useful when admiration turns into practiced behavior",
+    "clear-thinking-ch14: weakness as exposure map of room hour pressure reward",
+    "clear-thinking-ch15: safeguard as practical protection at known weak path",
+    "clear-thinking-ch16: mistake cost grows when defense blocks repair and learning",
+    "clear-thinking-ch17: complaint becomes actionable obstacle before effort",
+    "clear-thinking-ch18: decent answer must compete with real alternatives",
+    "clear-thinking-ch19: every option faces same criteria before charm becomes evidence",
+    "clear-thinking-ch20: judged choice needs first costly commitment action",
+    "clear-thinking-ch21: tight efficiency becomes failure when ordinary variance arrives",
+    "clear-thinking-ch22: outcome can mislead until process and noise are separated",
+    "clear-thinking-ch23: visible prize can still cost the life it promised",
+    "clear-thinking-ch24: elder hindsight tests current urgency against later regret",
+    "clear-thinking-ch25: death awareness scales false urgency against finite life",
+    "clear-thinking-ch26: ordinary repeated attention quietly builds a life"
+  ],
+  "usedTryThisNowFrames": [
+    "clear-thinking-ch01: write live irritation's first action versus actual desired result",
+    "clear-thinking-ch02: label body state before replying to a heated message",
+    "clear-thinking-ch03: write private rank-protection sentence before answering criticism",
+    "clear-thinking-ch04: two-column split between rewarded here and supported by facts",
+    "clear-thinking-ch05: recurring commitment sentence continues because",
+    "clear-thinking-ch06: place one cue at a predictable pressure point",
+    "clear-thinking-ch07: name current frustration, owned part, and independent next action",
+    "clear-thinking-ch08: two-column edge and support mapping for a live decision",
+    "clear-thinking-ch09: write the standard an urge must pass before action",
+    "clear-thinking-ch10: prepared sentence to stand behind under pushback",
+    "clear-thinking-ch11: choose a visible proof of a claimed strength today",
+    "clear-thinking-ch12: write below-above-only-when threshold for recurring decision",
+    "clear-thinking-ch13: choose respected person's observable behavior and rehearse once",
+    "clear-thinking-ch14: failure pattern mapped by when where pressure reward warning",
+    "clear-thinking-ch15: add friction delay review cap checklist or removed shortcut",
+    "clear-thinking-ch16: four-line contain repair learn prevent loop for recent mistake",
+    "clear-thinking-ch17: rewrite complaint as obstacle-for-whom-when-because",
+    "clear-thinking-ch18: put favorite solution above four different candidates",
+    "clear-thinking-ch19: compare two options on real cost evidence quality worst tradeoff",
+    "clear-thinking-ch20: send sign schedule pay assign start or close backup",
+    "clear-thinking-ch21: add time cash capacity backup supply or stop rule buffer",
+    "clear-thinking-ch22: split recent outcome into process result noise and rule update",
+    "clear-thinking-ch23: list prize costs and need underneath the want",
+    "clear-thinking-ch24: ask older-self regret and protect one priority this week",
+    "clear-thinking-ch25: mark calendar item not defendable from hospital bed",
+    "clear-thinking-ch26: treat one ordinary moment as material for the life being built"
+  ],
+  "usedQuizExplanationFrames": [
+    "clear-thinking-ch01: distinguish reaction from goal by naming desired outcome",
+    "clear-thinking-ch02: distinguish emotional command from bodily condition plus extra check",
+    "clear-thinking-ch03: distinguish self-image defense from evidence-governed response",
+    "clear-thinking-ch04: distinguish belonging reward from evidence-supported agreement",
+    "clear-thinking-ch05: distinguish passive carryover from deliberate default review",
+    "clear-thinking-ch06: distinguish environmental cue design from willpower promise",
+    "clear-thinking-ch07: distinguish owned contribution and repair from blame performance",
+    "clear-thinking-ch08: distinguish calibrated edge map from personality labeling",
+    "clear-thinking-ch09: distinguish pressure-resistant standard from grit sermon",
+    "clear-thinking-ch10: distinguish prepared self-trust from ego, certainty, or charisma",
+    "clear-thinking-ch11: distinguish observable strength from motivation self-description",
+    "clear-thinking-ch12: distinguish threshold standards from slogans or rigid identity",
+    "clear-thinking-ch13: distinguish measured practice from inspiration and hero worship",
+    "clear-thinking-ch14: distinguish exposure mapping from confession or self-criticism",
+    "clear-thinking-ch15: distinguish practical guardrails from fear or bureaucracy",
+    "clear-thinking-ch16: distinguish repair-learning loop from resilience slogans or regret",
+    "clear-thinking-ch17: distinguish actionable problem framing from complaint or solution jump",
+    "clear-thinking-ch18: distinguish live candidate set from early lock-in or endless brainstorming",
+    "clear-thinking-ch19: distinguish shared criteria and evidence quality from polished preference",
+    "clear-thinking-ch20: distinguish commitment action from drift review or motivational busyness",
+    "clear-thinking-ch21: distinguish proportionate buffer from pessimism waste or avoidance",
+    "clear-thinking-ch22: distinguish process learning from result worship or panic",
+    "clear-thinking-ch23: distinguish hidden-cost audit from anti-ambition sermon",
+    "clear-thinking-ch24: distinguish hindsight priority test from nostalgia or happiness framework",
+    "clear-thinking-ch25: distinguish mortality proportion from gloom panic or philosophy costume",
+    "clear-thinking-ch26: distinguish repeated-attention life building from vague inspiration"
+  ],
+  "rejectedFrames": [
+    {
+      "chapterId": "clear-thinking-ch01",
+      "rejected": {
+        "hook": [
+          "definition-first opener for recognition failure",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think recognition failure is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch02",
+      "rejected": {
+        "hook": [
+          "definition-first opener for emotion default",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think emotion default is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch03",
+      "rejected": {
+        "hook": [
+          "definition-first opener for ego default",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think ego default is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch04",
+      "rejected": {
+        "hook": [
+          "definition-first opener for social default",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think social default is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch05",
+      "rejected": {
+        "hook": [
+          "definition-first opener for inertia default",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think inertia default is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch06",
+      "rejected": {
+        "hook": [
+          "definition-first opener for default to clarity",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think default to clarity is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch07",
+      "rejected": {
+        "hook": [
+          "definition-first opener for self-accountability",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think self-accountability is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch08",
+      "rejected": {
+        "hook": [
+          "definition-first opener for self-knowledge",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think self-knowledge is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch09",
+      "rejected": {
+        "hook": [
+          "definition-first opener for self-control",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think self-control is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch10",
+      "rejected": {
+        "hook": [
+          "definition-first opener for self-confidence",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think self-confidence is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch11",
+      "rejected": {
+        "hook": [
+          "definition-first opener for strength in action",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think strength in action is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch12",
+      "rejected": {
+        "hook": [
+          "definition-first opener for standards",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think standards is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch13",
+      "rejected": {
+        "hook": [
+          "definition-first opener for exemplars",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think exemplars is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch14",
+      "rejected": {
+        "hook": [
+          "definition-first opener for weaknesses",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think weaknesses is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch15",
+      "rejected": {
+        "hook": [
+          "definition-first opener for safeguards",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think safeguards is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch16",
+      "rejected": {
+        "hook": [
+          "definition-first opener for mistakes",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think mistakes is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch17",
+      "rejected": {
+        "hook": [
+          "definition-first opener for define the problem",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think define the problem is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch18",
+      "rejected": {
+        "hook": [
+          "definition-first opener for possible solutions",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think possible solutions is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch19",
+      "rejected": {
+        "hook": [
+          "definition-first opener for evaluate options",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think evaluate options is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch20",
+      "rejected": {
+        "hook": [
+          "definition-first opener for do it",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think do it is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch21",
+      "rejected": {
+        "hook": [
+          "definition-first opener for margin of safety",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think margin of safety is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch22",
+      "rejected": {
+        "hook": [
+          "definition-first opener for learn from decisions",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think learn from decisions is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch23",
+      "rejected": {
+        "hook": [
+          "definition-first opener for Dickens",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think Dickens is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch24",
+      "rejected": {
+        "hook": [
+          "definition-first opener for happiness experts",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think happiness experts is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch25",
+      "rejected": {
+        "hook": [
+          "definition-first opener for memento mori",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think memento mori is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    },
+    {
+      "chapterId": "clear-thinking-ch26",
+      "rejected": {
+        "hook": [
+          "definition-first opener for life lessons from death",
+          "generic morning alarm pressure scene",
+          "first sentence that says clear thinking is about slowing down"
+        ],
+        "counterintuition": [
+          "the problem is not willpower",
+          "most people think life lessons from death is simple",
+          "not X but Y negation shell"
+        ],
+        "tryThisNow": [
+          "set a timer and reflect",
+          "write down three lessons",
+          "pause before reacting with no concrete trigger"
+        ],
+        "examples": [
+          "conference room whiteboard",
+          "kitchen-counter reflection",
+          "manager staring at a laptop",
+          "same timestamp-name-action opener across all examples"
+        ]
+      }
+    }
+  ],
+  "chapterStatuses": {
+    "clear-thinking-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-14T21:56:06.441Z"
+    },
+    "clear-thinking-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-14T21:40:40.719Z"
+    },
+    "clear-thinking-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 3,
+      "checkedAt": "2026-05-14T05:43:16.656Z"
+    },
+    "clear-thinking-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-14T21:46:56.674Z"
+    },
+    "clear-thinking-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 5,
+      "checkedAt": "2026-05-14T05:49:22.334Z"
+    },
+    "clear-thinking-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-14T21:51:39.125Z"
+    },
+    "clear-thinking-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T01:50:18.338Z"
+    },
+    "clear-thinking-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T01:50:18.350Z"
+    },
+    "clear-thinking-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T01:50:18.289Z"
+    },
+    "clear-thinking-ch10": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T02:03:39.689Z"
+    },
+    "clear-thinking-ch11": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T01:53:23.322Z"
+    },
+    "clear-thinking-ch12": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 2,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-14T21:46:56.825Z"
+    },
+    "clear-thinking-ch13": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T01:53:23.332Z"
+    },
+    "clear-thinking-ch14": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T02:14:13.559Z"
+    },
+    "clear-thinking-ch15": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 7,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 15,
+      "checkedAt": "2026-05-14T06:18:39.972Z"
+    },
+    "clear-thinking-ch16": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-14T21:51:39.090Z"
+    },
+    "clear-thinking-ch17": {
+      "shipGatePassed": false,
+      "shipGateBlockers": 1,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T02:13:35.591Z"
+    },
+    "clear-thinking-ch18": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 3,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T01:56:48.298Z"
+    },
+    "clear-thinking-ch19": {
+      "shipGatePassed": false,
+      "shipGateBlockers": 2,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T02:13:35.588Z"
+    },
+    "clear-thinking-ch20": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 5,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 20,
+      "checkedAt": "2026-05-14T06:37:45.563Z"
+    },
+    "clear-thinking-ch21": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 6,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 21,
+      "checkedAt": "2026-05-14T06:40:24.460Z"
+    },
+    "clear-thinking-ch22": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 22,
+      "checkedAt": "2026-05-14T06:43:08.471Z"
+    },
+    "clear-thinking-ch23": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 1,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-14T21:36:15.486Z"
+    },
+    "clear-thinking-ch24": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 4,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 24,
+      "checkedAt": "2026-05-14T06:48:55.676Z"
+    },
+    "clear-thinking-ch25": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-15T02:14:13.566Z"
+    },
+    "clear-thinking-ch26": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 8,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 26,
+      "checkedAt": "2026-05-14T06:54:55.389Z"
+    }
+  }
+}

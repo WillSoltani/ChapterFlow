@@ -1,0 +1,190 @@
+{
+  "chapterId": "meditations-ch08",
+  "number": 8,
+  "title": "Book VIII",
+  "coreMove": "Replace appearance management and complaint with the next correctable useful act.",
+  "sourcePressure": "Seeming philosophical is rejected in favor of present useful action, correction without blame, dropping complaint, and using hindered plans as material.",
+  "chapterSpecificMisunderstanding": "look authentic while doing the same delayed behavior",
+  "sourceAlignmentTerms": [
+    "seeming philosophical",
+    "good tomorrow",
+    "present act",
+    "fault-finding",
+    "correction",
+    "hindrance",
+    "bitter things"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "stop choosing to be good tomorrow",
+      "detail": "Book VIII names procrastinated goodness as a moral failure: stop choosing to be good tomorrow rather than today.",
+      "useIn": "both",
+      "phrasingHint": "Tomorrow-goodness is attractive because it lets the present self keep its old permissions."
+    },
+    {
+      "kind": "event",
+      "name": "correct the cause or the thing itself",
+      "detail": "Book VIII says fault-finding is useless when one can instead correct the cause or the thing itself.",
+      "useIn": "both",
+      "phrasingHint": "Complaint ends when the hand moves toward the cause instead of polishing the grievance."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic modern-stress opener",
+      "quote-first philosophy opener",
+      "morning alarm in every chapter"
+    ],
+    "counterintuition": [
+      "what looks like control is actually surrender",
+      "the real problem is not outside you",
+      "ancient wisdom still matters today"
+    ],
+    "tryThisNow": [
+      "set a timer and breathe",
+      "write down what you can control",
+      "pause before reacting"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "parent-child bedtime conflict repeated across chapters",
+      "commute irritation as default pressure"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "apartment building heat complaint",
+      "audience": "Sarah dealing with recurring boiler calls",
+      "stakes": "residents need heat, not another group chat speech",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah stops writing the complaint post and tapes the technician's access notice to every door.",
+      "firstImage": "Cold air sits under the lobby doors like water.",
+      "mustInclude": [
+        "access notice",
+        "boiler key",
+        "thermal camera"
+      ],
+      "mustAvoid": [
+        "radiator repeated anchor"
+      ]
+    },
+    {
+      "domain": "college advising office",
+      "audience": "Marco facing a broken appointment system",
+      "stakes": "staff keep blaming students for missed slots",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Marco replaces the confusing sign-up sheet with a numbered queue before the next rush.",
+      "firstImage": "The advising hallway fills before the office lights finish warming up.",
+      "mustInclude": [
+        "numbered queue slips",
+        "appointment binder",
+        "wall clock"
+      ],
+      "mustAvoid": [
+        "administration gripe"
+      ]
+    },
+    {
+      "domain": "restaurant allergen process",
+      "audience": "Beatrice seeing kitchen errors repeat",
+      "stakes": "another angry recap will not fix the missing label step",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"No lecture today,\" Beatrice says, then puts red allergen clips on the pass and rehearses the handoff.",
+      "firstImage": [
+        "red clips",
+        "order tickets",
+        "allergen chart"
+      ],
+      "mustInclude": [
+        "kitchen chaos repeat"
+      ]
+    },
+    {
+      "domain": "museum membership desk",
+      "audience": "Hugo handling a confusing renewal form",
+      "stakes": "visitors keep making the same mistake because the form invites it",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Hugo cross out one misleading line on the sample form before blaming the next visitor.",
+      "firstImage": "You see the same question mark penciled beside the same line.",
+      "mustInclude": [
+        "sample form",
+        "membership cards",
+        "pencil marks"
+      ],
+      "mustAvoid": [
+        "museum as stock setting"
+      ]
+    },
+    {
+      "domain": "dental lab delivery",
+      "audience": "Ada correcting late crown pickups",
+      "stakes": "drivers are blamed for a pickup shelf nobody can read",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Ada four late crowns to label the shelf instead of accusing the courier.",
+      "firstImage": "It took Ada four late crowns to notice the shelf had no morning side.",
+      "mustInclude": [
+        "pickup shelf",
+        "lab slip",
+        "courier scanner"
+      ],
+      "mustAvoid": [
+        "healthcare systems generic"
+      ]
+    },
+    {
+      "domain": "independent bookstore returns",
+      "audience": "Ryan discovering damaged returns from one display",
+      "stakes": "fault-finding at staff would hide the bad shelf angle",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What if the complaint is pointing to carpentry, not character?",
+      "firstImage": "Ryan moves the display six inches, then watches returns stop for a week.",
+      "mustInclude": [
+        "display shelf",
+        "returns box",
+        "paperback stack"
+      ],
+      "mustAvoid": [
+        "retail complaint loop"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "replace self-display with useful action",
+      "distinguish correction from fault-finding",
+      "use hindrance without complaint or passivity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one complaint you have repeated twice and correct the smallest cause you can touch before explaining it again.",
+  "readingTimeMinutes": 12
+}

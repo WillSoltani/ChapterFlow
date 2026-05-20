@@ -2,318 +2,324 @@
   "chapterId": "clear-thinking-ch16",
   "number": 16,
   "title": "How to Handle Mistakes",
-  "readingTimeMinutes": 6,
-  "hook": "A chipped blue mug on the table can reveal the choice before the mind defends the impulse.",
-  "counterintuition": "Most people assume clear thinking begins with a clever analysis, but actually it starts earlier: surface the error fast, repair the damage, and keep the lesson. Without that early catch, hiding buys a quiet minute and sells a bigger problem, and the later analysis becomes cleanup.",
-  "tryThisNow": "Set a timer for ninety seconds. Write one live pressure, the first response it pulls from you, and the result you want. Then choose one action that serves the result.",
-  "keyTakeaway": "Clear thinking improves when you surface the error fast, repair the damage, and keep the lesson, because the first response under pressure usually serves comfort before it serves the outcome you meant to protect.",
+  "readingTimeMinutes": 12,
+  "hook": "Charlotte sees the inspection notice and has three minutes before shame starts writing the story.",
+  "counterintuition": "The mistake itself can feel like the whole cost; the larger backfire comes when shame, defense, or delay prevents repair and leaves the same path open.",
+  "tryThisNow": "Take one recent mistake and write four lines for the harm, the repair, the lesson, and the prevention step. Add the next visible action.",
+  "keyTakeaway": "A handled mistake becomes repair and learning; an unhandled mistake becomes repeatable waste protected by shame or defensiveness.",
   "breakdown": {
-    "fastRead": "Bela has a chipped blue mug in hand at 6:18 a.m. while the room waits for a quick answer. The quick answer is tempting because hiding buys a quiet minute and sells a bigger problem. That is the moment to stop treating speed as proof of judgment. Name the result first. Then ask what the facts support now. The useful move is to make the pressure visible before it becomes the plan. Once the pull is visible, it loses some of its authority. The aim is not to become slow. The aim is to keep the first move from being owned by fear, pride, the crowd, or habit.",
-    "deepRead": "Tamsin hears the same pressure in a different room. A supervisor wants a call, a customer wants certainty, and the clock makes every option feel late. The body wants relief. It wants a sentence that ends the discomfort. Clear thinking asks for one small interruption: what are we trying to protect, and what do we actually know?\n\nThat interruption works because defaults borrow the moment before they announce themselves. Feeling calls itself truth. Ego calls itself principle. The group calls itself wisdom. Inertia calls itself efficiency. Each one may contain a useful signal, but none of them deserves the whole decision without inspection. The useful move is to make the pressure visible before it becomes the plan. When Tamsin writes the aim on the pad, the room can compare actions against a target instead of arguing from heat.\n\nThe limit matters. Some situations need immediate action. A falling shelf, a medical alarm, or a child near traffic does not need a seminar. Even there, the question is the same in miniature: what result needs protection right now? The test is whether the next action protects the result you named before the room got hot. The pause can be one breath, one question, or one hand kept away from the send button. Small space is enough if it changes who owns the next move.",
-    "fullRead": "Renzo sees how the pattern spreads across a day. A small insult at breakfast becomes a sharper text. A familiar process at work becomes a missed defect. A room full of nodding colleagues becomes false confidence. None of these failures begins with a grand declaration. They begin with a tiny transfer of authority. The pressure speaks first, and the person mistakes that first voice for judgment.\n\nAt the desk, the practical answer is not to distrust every instinct. Instinct can carry experience. The problem is letting an instinct win before it has been named. When Renzo touches a chipped blue mug, the object gives the moment a shape. Here is the thing. Here is the pressure. Here is the result at risk. A concrete cue helps the mind leave the fog and return to the job.\n\nUse three questions. What is pulling me right now? What result would I defend tomorrow? What fact would change my next action? The first question identifies the default. The second restores the objective. The third keeps the response connected to reality. Together they turn a hot moment into a workable one.\n\nA common objection is that this sounds too neat for real pressure. Real pressure is messy. People interrupt. Time runs short. Feelings hit hard. The point is not to produce perfect calm. It is to keep one clean line available while the rest of the room is noisy. Even a single named objective can prevent a cheap reaction from becoming policy.\n\nIn the next room, the same move also protects relationships. If hiding buys a quiet minute and sells a bigger problem, people nearby learn to brace for impact. They stop bringing bad news, hide weak signals, or wait for the mood to pass. If speed turns a mistake into a contained event, they learn that pressure can be handled without theater. That lesson compounds inside families, teams, classrooms, and clinics.\n\nAt the moment of action, pause before the next move. The test is whether the next action protects the result you named before the room got hot. Sometimes the next action is to wait. Sometimes it is to apologize, ask for a measurement, put a safeguard in place, or decide and move. The form changes. The sequence stays stable: see the pull, name the result, check the facts, then act. Clear thinking is not a mood. It is a sequence you can run while the room is still warm.\n\nOn a note beside the work, write the reminders plainly. Clear thinking improves when you surface the error fast, repair the damage, and keep the lesson, because the first response under pressure usually serves comfort before it serves the outcome you meant to protect."
+    "fastRead": "\"We failed the follow-up,\" Charlotte says after the restaurant health inspector leaves. Her first impulse is to explain the lunch rush, the new cook, and the broken label printer. Some of that matters. None of it fixes the open cooler log.\n\nFixing a mistake starts with repair, not self-cover. Stop the harm. Fix what can be fixed. Find the path that caused the miss. Change one part of that path before the story hardens.\n\nCharlotte updates the cooler labels, calls the inspector with the correction plan, and moves the log to the prep sink where staff actually work.",
+    "deepRead": "The baggage claim desk hums while Julia looks at the delay code on a lost bag report. The passenger is angry, the queue is long, and the wrong destination was entered by her own hand. Julia can feel the two bad roads: defend the error as understandable or sink into private shame. Neither road gets the bag moving.\n\nA handled mistake becomes information with a repair plan; an unhandled one becomes a subscription.\n\nThe source lane is repair, reflection, learning loop, and recovery. The order matters. First contain: tell the passenger what is known and start the trace. Then repair: reroute the bag and offer the promised delivery window. Then reflect: identify how the wrong destination entered the system. Then prevent: add a second read-back on similar routing codes.\n\nThat sequence keeps the mistake from becoming identity. Julia did make the error. She is also the person who can move the bag, correct the process, and reduce the odds of repetition. Shame freezes attention on the self. Repair moves attention to the damage and the next useful action.\n\nThe limit is speed without learning. Some people are excellent at apologies and quick fixes, then repeat the same mistake because reflection never changes the path. Recovery is incomplete until the next occurrence has a harder route.",
+    "fullRead": "It took Eva three weeks to stop calling the open-source release incident a weird one-off. A package was published with a broken dependency range, and maintainers spent a weekend answering angry issue comments. The first explanation was tempting: volunteer project, thin time, unusual dependency behavior. The explanation contained truth. It also left the release path untouched.\n\nMistakes are expensive enough once.\n\nEva changes the postmortem from a defense brief into a repair plan. Contain: pin the broken version and post the workaround. Repair: publish the patch and reply to the most affected users first. Learn: identify that the release checklist tested local install but not fresh install. Prevent: add a clean-environment test before publish. The incident becomes useful only when each part changes something outside her feelings.\n\nThink about the last mistake you are still rehearsing in your head. What part of that replay is repair, and what part is punishment? Punishment can feel responsible because it keeps the mistake emotionally alive. Repair is quieter. It asks who was harmed, what needs to be corrected, what path created the error, and what will be different next time.\n\nAlice handles a marathon water station miss with that distinction. The station runs out of cups on a warm day, and runners start grabbing half-filled bottles from volunteers. Alice can blame the supply truck or the unexpected heat. Instead, she radios the next station to prepare overflow, posts two volunteers at the approach to warn runners, and marks the supply sheet: cup count now ties to forecast temperature, not registration number alone.\n\nBeatrice sees the public-facing version at a local theater ticketing error. Which matters more, proving the ticketing platform glitched or getting patrons into seats? At the box office, she must decide before the lobby turns angry. She prints a manual seat list, gives staff a script, and promises refunds for duplicates after the show. Later, she traces the error to a seating-map update that was never checked against online inventory. The immediate repair and the later prevention are different jobs.\n\nClara faces the family version after a blowup in a text thread. You can feel your thumb hovering over the message where she wants to explain why everyone misunderstood her. She must decide before sending: defend the intention or repair the effect. Clara writes, \"I spoke sharply. I am sorry. I will call tomorrow about the schedule, and I will not restart the argument tonight.\" The learning comes later, when she realizes group texts after midnight are her failure path.\n\nHandling mistakes can be softened into slogans about resilience. That misses the discipline. A mistake should leave evidence of repair: a corrected file, a changed checklist, a note to the harmed person, a different threshold, a removed shortcut, a new review step. If nothing outside your mood changes, the lesson is still private.\n\nRegret earns its keep only when it funds repair.\n\nUse a short loop. Limit the harm. Fix the damage. Study the path. Prevent the repeat. Then stop paying emotional interest after the useful work is done. Clear thinking does not require you to carry every mistake forever. It requires you to make the next version less likely."
   },
   "examples": [
     {
-      "exampleId": "ch16-ex01-bela",
-      "title": "Bela grips a chipped blue mug beside the waiting crew",
+      "exampleId": "ch16-ex01-charlotte-health-inspection",
+      "title": "The Cooler Log",
       "tags": [
-        "engineer",
-        "pressure",
-        "clear thinking"
+        "restaurant",
+        "inspection",
+        "repair"
       ],
       "planSpec": {
-        "domain": "engineer",
-        "audience": "engineers making a live call",
-        "stakes": "Avoid letting hiding buys a quiet minute and sells a bigger problem drive the next action.",
-        "format": "scene",
-        "requiredBeat": "Bela must use the move to surface the error fast, repair the damage, and keep the lesson."
-      },
-      "scenario": "Bela grips a chipped blue mug at Friday 5:36 a.m. inside the wind-farm control room, engineer for a crew that is already watching the clock. rain ticks against the metal door. A small failure has just exposed hiding buys a quiet minute and sells a bigger problem. Bela can clear the alert because it is familiar, which would feel clean for the next five minutes, or trace the new signal from the start. The choice has to land before Nessa asks for a final call. Bela sees the easy answer first and then catches the cost hiding behind it.",
-      "whatToDo": "Name the live pull first, then make the next action serve the stated result. For Bela, that means slowing the room, checking the visible facts, and choosing the response that helps speed turns a mistake into a contained event.",
-      "whyItMatters": "The first plausible move often serves relief, pride, or habit. The better move changes the sequence before it hardens, so the outcome is shaped by the goal instead of by hiding buys a quiet minute and sells a bigger problem."
-    },
-    {
-      "exampleId": "ch16-ex02-tamsin",
-      "title": "Tamsin asks for one fact before the room moves",
-      "tags": [
-        "coach",
-        "pressure",
-        "clear thinking"
-      ],
-      "planSpec": {
-        "domain": "coach",
-        "audience": "coachs making a live call",
-        "stakes": "Avoid letting hiding buys a quiet minute and sells a bigger problem drive the next action.",
-        "format": "dialogue",
-        "requiredBeat": "Tamsin must use the move to surface the error fast, repair the damage, and keep the lesson."
-      },
-      "scenario": "Tamsin taps a damp towel at Sunday 11:24 a.m. on court two at the municipal tennis dome. \"Leif says we should move,\" a supervisor whispers, while rubber soles squeak behind the curtain. Tamsin, the coach, answers, \"Give me one clean fact first.\" The reply comes back thin. Tamsin must decide whether to follow the pressure in the room or use surface the error fast, repair the damage, and keep the lesson before anyone touches the schedule.",
-      "whatToDo": "Name the live pull first, then make the next action serve the stated result. For Tamsin, that means slowing the room, checking the visible facts, and choosing the response that helps speed turns a mistake into a contained event.",
-      "whyItMatters": "The first plausible move often serves relief, pride, or habit. The better move changes the sequence before it hardens, so the outcome is shaped by the goal instead of by hiding buys a quiet minute and sells a bigger problem."
-    },
-    {
-      "exampleId": "ch16-ex03-renzo",
-      "title": "Renzo reconstructs the mistake after the shift",
-      "tags": [
-        "director",
-        "pressure",
-        "clear thinking"
-      ],
-      "planSpec": {
-        "domain": "director",
-        "audience": "directors making a live call",
-        "stakes": "Avoid letting hiding buys a quiet minute and sells a bigger problem drive the next action.",
-        "format": "postmortem",
-        "requiredBeat": "Renzo must use the move to surface the error fast, repair the damage, and keep the lesson."
-      },
-      "scenario": "Renzo lines up a sharpened pencil, a pencil, and a receipt at Thursday 8:55 p.m. behind the black curtain at the Rialto stage. The shift is over, but dust rises in the work lights. Renzo, the director, is reconstructing the exact minute when the easy response took over. The first move felt reasonable then. Now the damage is visible in the log, and the rule for next time has to be written before memory softens the mistake.",
-      "whatToDo": "Name the live pull first, then make the next action serve the stated result. For Renzo, that means slowing the room, checking the visible facts, and choosing the response that helps speed turns a mistake into a contained event.",
-      "whyItMatters": "The first plausible move often serves relief, pride, or habit. The better move changes the sequence before it hardens, so the outcome is shaped by the goal instead of by hiding buys a quiet minute and sells a bigger problem."
-    },
-    {
-      "exampleId": "ch16-ex04-ishani",
-      "title": "Ishani sets the old answer on the table",
-      "tags": [
-        "manager",
-        "pressure",
-        "clear thinking"
-      ],
-      "planSpec": {
-        "domain": "manager",
-        "audience": "managers making a live call",
-        "stakes": "Avoid letting hiding buys a quiet minute and sells a bigger problem drive the next action.",
-        "format": "before_after",
-        "requiredBeat": "Ishani must use the move to surface the error fast, repair the damage, and keep the lesson."
-      },
-      "scenario": "Ishani found a wrinkled receipt at 6:18 a.m. at loading bay 3 of the Northgate depot, with diesel heat hangs under the awning. Before lunch, the manager let the familiar answer run because it seemed harmless. After the second complaint, Ishani set the object on the table and named what had changed. The room got quieter when everyone saw that speed turns a mistake into a contained event.",
-      "whatToDo": "Name the live pull first, then make the next action serve the stated result. For Ishani, that means slowing the room, checking the visible facts, and choosing the response that helps speed turns a mistake into a contained event.",
-      "whyItMatters": "The first plausible move often serves relief, pride, or habit. The better move changes the sequence before it hardens, so the outcome is shaped by the goal instead of by hiding buys a quiet minute and sells a bigger problem."
-    },
-    {
-      "exampleId": "ch16-ex05-cormac",
-      "title": "Cormac lets the test result beat the prediction",
-      "tags": [
-        "nurse",
-        "pressure",
-        "clear thinking"
-      ],
-      "planSpec": {
-        "domain": "nurse",
-        "audience": "nurses making a live call",
-        "stakes": "Avoid letting hiding buys a quiet minute and sells a bigger problem drive the next action.",
-        "format": "predict_reveal",
-        "requiredBeat": "Cormac must use the move to surface the error fast, repair the damage, and keep the lesson."
-      },
-      "scenario": "Cormac places a metal timer beside a timer at 9:42 p.m. beside bed 12 at St. Agnes. the monitor clicks like a metronome. Before anyone speaks, the nurse predicts the team will choose the old fix because it feels safe. Ten minutes later the test result points the other way. Cormac has to decide whether to defend the prediction or let the reveal teach the room.",
-      "whatToDo": "Name the live pull first, then make the next action serve the stated result. For Cormac, that means slowing the room, checking the visible facts, and choosing the response that helps speed turns a mistake into a contained event.",
-      "whyItMatters": "The first plausible move often serves relief, pride, or habit. The better move changes the sequence before it hardens, so the outcome is shaped by the goal instead of by hiding buys a quiet minute and sells a bigger problem."
-    },
-    {
-      "exampleId": "ch16-ex06-letizia",
-      "title": "Letizia writes the better response on a card",
-      "tags": [
-        "teacher",
-        "pressure",
-        "clear thinking"
-      ],
-      "planSpec": {
-        "domain": "teacher",
-        "audience": "teachers making a live call",
-        "stakes": "Avoid letting hiding buys a quiet minute and sells a bigger problem drive the next action.",
+        "domain": "restaurant health inspection follow-up",
+        "audience": "operators responding to failures that require visible correction",
+        "stakes": "Charlotte can defend the failed follow-up or repair the cooler log path.",
         "format": "reflection",
-        "requiredBeat": "Letizia must use the move to surface the error fast, repair the damage, and keep the lesson."
+        "requiredBeat": "Charlotte updates labels, contacts the inspector, and moves the cooler log to the prep sink."
       },
-      "scenario": "Letizia rubs a thumb across a blue index card at Tuesday 3:07 p.m. at the art-room sink behind Lincoln Middle, listening as turpentine stings the air. The teacher is alone for the first quiet minute of the day, thinking about yesterday's automatic answer. The next call will tempt the old response. Letizia writes one sentence on the back of the card: the outcome gets named before the heat speaks.",
-      "whatToDo": "Name the live pull first, then make the next action serve the stated result. For Letizia, that means slowing the room, checking the visible facts, and choosing the response that helps speed turns a mistake into a contained event.",
-      "whyItMatters": "The first plausible move often serves relief, pride, or habit. The better move changes the sequence before it hardens, so the outcome is shaped by the goal instead of by hiding buys a quiet minute and sells a bigger problem."
+      "scenario": "\"We failed the follow-up,\" Charlotte says while the cooler log sits blank on the prep shelf. The lunch rush was real, the label printer jammed twice, and everyone has a story that could make the miss sound understandable. Before the staff meeting, Charlotte chooses between explaining the rush and repairing the path. Her reflection lands on the visible miss. The log lived where nobody worked. She updates labels, calls the inspector with the correction plan, and moves the log to the prep sink.",
+      "whatToDo": "Contain the issue and change the path. Charlotte should correct the labels, communicate the repair, and place the log where staff actually use it.",
+      "whyItMatters": "The mistake stops being a story about embarrassment and becomes a better workflow that can survive the next lunch rush."
+    },
+    {
+      "exampleId": "ch16-ex02-julia-baggage-claim",
+      "title": "The Wrong Destination",
+      "tags": [
+        "airport",
+        "customer repair",
+        "learning loop"
+      ],
+      "planSpec": {
+        "domain": "airport baggage claim desk",
+        "audience": "service staff handling visible errors with angry customers waiting",
+        "stakes": "Julia can defend the mistake or trace and repair the bag route.",
+        "format": "thought_experiment",
+        "requiredBeat": "Julia starts the bag trace, gives the delivery window, and adds read-back for similar routing codes."
+      },
+      "scenario": "The baggage belt groans empty while Julia reads the wrong destination code on the claim form. The passenger's connection is gone, the stroller tag is missing, and the queue behind the desk is starting to watch. She must decide before the passenger's anger becomes the whole scene: defend the typo or move the bag. Imagine the error already happened. The useful path is trace, reroute, delivery window, then read-back rule for codes that look alike.",
+      "whatToDo": "Work the recovery loop in order. Julia should contain the customer harm, repair the route, then change the read-back step that allowed the wrong code.",
+      "whyItMatters": "The bag does not move because Julia feels bad. It moves because the mistake becomes a sequence of repair actions."
+    },
+    {
+      "exampleId": "ch16-ex03-eva-open-source-release",
+      "title": "The Broken Dependency",
+      "tags": [
+        "open source",
+        "release",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "open-source release incident",
+        "audience": "maintainers turning public mistakes into process changes",
+        "stakes": "Eva can call the release a one-off or add the missing clean-install test.",
+        "format": "scene",
+        "requiredBeat": "Eva pins the broken version, publishes a patch, and adds clean-environment testing before release."
+      },
+      "scenario": "It took Eva, the engineer, three weeks to stop calling the broken dependency range a strange edge case. Before the next release, she has to decide whether to patch the dependency rule or keep calling it rare. The issue thread kept collecting fresh install failures, and the volunteer-maintainer story was starting to hide the part she could control. Ahead of the next release, Eva chooses between another apology and a changed release path. The issue thread is still open. Eva pins the version, publishes the patch, replies to affected users, and adds a clean-environment test before publish.",
+      "whatToDo": "Turn the postmortem into a changed release path. Eva should make the next failure harder by testing from a fresh install.",
+      "whyItMatters": "Public mistakes repeat when explanations replace process changes. The clean-install test is the learning loop made visible."
+    },
+    {
+      "exampleId": "ch16-ex04-alice-marathon-water",
+      "title": "The Empty Cup Table",
+      "tags": [
+        "marathon",
+        "event operations",
+        "recovery"
+      ],
+      "planSpec": {
+        "domain": "marathon water station",
+        "audience": "event volunteers recovering from supply planning misses",
+        "stakes": "Alice can blame the heat and truck timing or repair runner flow and update the supply rule.",
+        "format": "vignette",
+        "requiredBeat": "Alice warns runners, radios the next station, and ties future cup count to forecast temperature."
+      },
+      "scenario": "The water station table is slick with spilled sports drink when Alice sees the last sleeve of cups vanish. The heat has climbed above forecast, a volunteer is apologizing to the wrong person, and the lead runners are already visible around the bend. She has to choose before runners arrive in the next wave: blame the supply truck or contain the problem. She radios the next station, posts two volunteers to warn runners, and marks the supply sheet so cup count follows forecast temperature.",
+      "whatToDo": "Separate immediate recovery from future prevention. Alice should manage runner flow now and change the supply rule later.",
+      "whyItMatters": "The mistake becomes useful only when it protects the next race from the same heat and supply mismatch."
+    },
+    {
+      "exampleId": "ch16-ex05-beatrice-ticketing-error",
+      "title": "The Duplicate Seats",
+      "tags": [
+        "theater",
+        "ticketing",
+        "repair plan"
+      ],
+      "planSpec": {
+        "domain": "local theater ticketing error",
+        "audience": "front-of-house teams handling public operational mistakes",
+        "stakes": "Beatrice can prove the platform glitched or get patrons seated and trace the map error.",
+        "format": "dialogue",
+        "requiredBeat": "Beatrice prints a manual seat list, gives staff a script, and later checks map updates against online inventory."
+      },
+      "scenario": "Which matters first, proving the platform glitched or getting people into seats? Beatrice must decide while duplicate tickets stack at the box office. The curtain is seven minutes away, the lobby is loud, and every explanation would delay the only repair patrons can feel now. \"Manual list now,\" she tells the usher. \"Refund duplicates after curtain.\" After the show, she traces the miss to a seating-map update that never reconciled with online inventory.",
+      "whatToDo": "Repair the customer-facing harm first, then trace the process. Beatrice should not let explanation delay seating or let seating replace prevention.",
+      "whyItMatters": "The mistake has two jobs: protect tonight's patrons and make the next map update safer. Confusing them wastes both."
+    },
+    {
+      "exampleId": "ch16-ex06-clara-family-text",
+      "title": "The Midnight Reply",
+      "tags": [
+        "family",
+        "conflict",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "family text thread after a blowup",
+        "audience": "readers repairing personal mistakes without restarting the argument",
+        "stakes": "Clara can defend her intention or repair the effect and change the failure path.",
+        "format": "decision_point",
+        "requiredBeat": "Clara sends a brief repair message and sets a rule against late-night group-text arguments."
+      },
+      "scenario": "You can feel Clara's thumb hover over the message that would explain why everyone misread her. The group text is already hot, the schedule problem is still unsolved, and the sentence she wants to send would make her feel understood for about ten seconds. Before she sends anything, Clara must choose between defending the intention and repairing the effect. She writes, \"I spoke sharply. I am sorry. I will call tomorrow about the schedule, and I will not restart this tonight.\" Then she sets no group-text decisions after 10.",
+      "whatToDo": "Repair without reopening the fight. Clara should acknowledge the harm, name the next useful action, and change the late-night text path.",
+      "whyItMatters": "The family does not need a better defense brief at midnight. It needs repair now and a different condition next time."
     }
   ],
   "quiz": {
-    "passingScorePercent": 80,
+    "passingScorePercent": 70,
     "questions": [
       {
         "questionId": "q01",
-        "prompt": "A manager at 6:18 a.m. in the warehouse aisle feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
+        "prompt": "A restaurant fails a follow-up because cooler logs were kept where staff rarely worked, and the manager can already list three reasons the lunch rush made it hard. What is the strongest first response?",
         "choices": [
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event.",
-          "Follow the first answer because fast certainty will calm the room.",
-          "Delay without naming a criterion, hoping the pressure fades by itself."
+          "Correct the labels, contact the inspector, and move the log to the prep sink.",
+          "Explain the lunch rush and broken label printer to staff.",
+          "Tell the team everyone should take inspections more seriously."
         ],
         "correctIndex": 0,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
-        "bloomsLevel": "apply",
+        "explanation": "The first response repairs the harm and changes the path. Explanation and seriousness may matter, but they do not fix where the log fails.",
+        "bloomsLevel": "understand",
         "depthLevel": "simple"
       },
       {
         "questionId": "q02",
-        "prompt": "A teacher at 9:42 p.m. in the cafeteria doorway feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
+        "prompt": "An airport agent enters the wrong destination code and a bag is misrouted while the passenger is angry and the desk line is growing. Which response best handles the mistake?",
         "choices": [
-          "Delay without naming a criterion, hoping the pressure fades by itself.",
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event.",
-          "Follow the first answer because fast certainty will calm the room."
+          "Apologize repeatedly so the passenger sees she cares.",
+          "Trace the bag, give a delivery window, and add read-back for similar routing codes.",
+          "Explain that the queue was long and the code looked similar."
         ],
         "correctIndex": 1,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
-        "bloomsLevel": "analyze",
-        "depthLevel": "simple"
+        "explanation": "This answer combines repair and prevention. Repeated apology and context may be sincere, but the bag and future process still need action.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
       },
       {
         "questionId": "q03",
-        "prompt": "A student at Tuesday 3:07 p.m. in the library table feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
+        "prompt": "An open-source maintainer publishes a package with a broken dependency range, then sees new users hit the same clean-install failure. What action turns the incident into learning?",
         "choices": [
-          "Follow the first answer because fast certainty will calm the room.",
-          "Delay without naming a criterion, hoping the pressure fades by itself.",
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event."
+          "Call it an unusual edge case and move on after the patch.",
+          "Write a long apology explaining volunteer constraints.",
+          "Patch the release and add clean-environment testing before publishing."
         ],
         "correctIndex": 2,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
-        "bloomsLevel": "evaluate",
+        "explanation": "The clean-environment test changes the release path. A patch repairs this incident, but without process change the lesson remains private.",
+        "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "q04",
-        "prompt": "A founder at Friday 5:36 a.m. in the repair bay feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
+        "prompt": "A marathon water station runs out of cups during unexpected heat just as another wave of runners appears around the bend. Which response handles both recovery and prevention?",
         "choices": [
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event.",
-          "Follow the first answer because fast certainty will calm the room.",
-          "Delay without naming a criterion, hoping the pressure fades by itself."
+          "Radio the next station, warn runners, and tie future cup count to forecast temperature.",
+          "Tell volunteers the supply truck caused the problem.",
+          "Order a much larger cup surplus for every race regardless of conditions."
         ],
         "correctIndex": 0,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
-        "bloomsLevel": "understand",
+        "explanation": "The response contains harm now and updates the planning rule. Blame does not recover, and unlimited surplus may solve this by creating waste elsewhere.",
+        "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "q05",
-        "prompt": "A parent at Sunday 11:24 a.m. in the kitchen counter feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
+        "prompt": "A theater discovers duplicate tickets minutes before curtain while the lobby fills and patrons need seats more than explanations. What sequence best handles the mistake?",
         "choices": [
-          "Delay without naming a criterion, hoping the pressure fades by itself.",
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event.",
-          "Follow the first answer because fast certainty will calm the room."
+          "Find out who caused the platform error before seating anyone.",
+          "Seat patrons with a manual list, offer refund handling, then trace the map-update failure after the show.",
+          "Tell patrons the platform glitched and ask them to wait for an email."
         ],
         "correctIndex": 1,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
-        "bloomsLevel": "create",
+        "explanation": "The sequence separates immediate customer repair from later prevention. Root cause first would delay seating; explanation alone leaves patrons stranded.",
+        "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "q06",
-        "prompt": "A coach at Thursday 8:55 p.m. in the practice field feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
+        "prompt": "After a family blowup in a late-night group text, someone wants to send a long explanation proving good intentions before the schedule issue is repaired. What analysis best fits mistake handling?",
         "choices": [
-          "Follow the first answer because fast certainty will calm the room.",
-          "Delay without naming a criterion, hoping the pressure fades by itself.",
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event."
+          "Defending intention is the fastest repair because it clears misunderstanding.",
+          "A brief harm acknowledgment plus next useful action repairs more than a defense brief.",
+          "Silence is best because any message will restart the conflict."
         ],
-        "correctIndex": 2,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
-        "bloomsLevel": "apply",
-        "depthLevel": "deep"
-      },
-      {
-        "questionId": "q07",
-        "prompt": "A director at 6:18 a.m. in the budget room feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
-        "choices": [
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event.",
-          "Follow the first answer because fast certainty will calm the room.",
-          "Delay without naming a criterion, hoping the pressure fades by itself."
-        ],
-        "correctIndex": 0,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
+        "correctIndex": 1,
+        "explanation": "Repair addresses effect and next action. A defense brief can restart the argument, while silence may leave harm unaddressed.",
         "bloomsLevel": "analyze",
         "depthLevel": "deep"
       },
       {
-        "questionId": "q08",
-        "prompt": "A engineer at 9:42 p.m. in the server closet feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
+        "questionId": "q07",
+        "prompt": "A team apologizes quickly after mistakes but keeps repeating the same miss because the handoff, checklist, or approval path never changes. What is likely missing?",
         "choices": [
-          "Delay without naming a criterion, hoping the pressure fades by itself.",
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event.",
-          "Follow the first answer because fast certainty will calm the room."
+          "More sincere apology language.",
+          "A process change that makes the next occurrence harder.",
+          "A stronger reminder that mistakes are unacceptable."
         ],
         "correctIndex": 1,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
-        "bloomsLevel": "evaluate",
+        "explanation": "Apology without prevention leaves the path intact. Sincerity and reminders do not complete the learning loop.",
+        "bloomsLevel": "analyze",
         "depthLevel": "standard"
       },
       {
-        "questionId": "q09",
-        "prompt": "A analyst at Tuesday 3:07 p.m. in the claims desk feels the old pull: hiding buys a quiet minute and sells a bigger problem. A decision is due before another person acts on the first answer. Which move best applies surface the error fast, repair the damage, and keep the lesson in this situation?",
+        "questionId": "q08",
+        "prompt": "A person keeps replaying a mistake in their head and calls that accountability, but no one harmed has been contacted and no process has changed. What question best redirects the loop?",
         "choices": [
-          "Follow the first answer because fast certainty will calm the room.",
-          "Delay without naming a criterion, hoping the pressure fades by itself.",
-          "Name the result at risk, check one concrete fact, and choose the action that helps speed turns a mistake into a contained event."
+          "Who was harmed, what needs repair, what path created it, and what changes next time?",
+          "How can I make sure I feel bad enough to remember?",
+          "How can I explain the context so I stop feeling guilty?"
         ],
-        "correctIndex": 2,
-        "explanation": "The right move restores sequence under pressure: name the desired result, test the facts, and act from that target. The other choices either obey the pull or hide inside delay.",
-        "bloomsLevel": "understand",
-        "depthLevel": "simple"
+        "correctIndex": 0,
+        "explanation": "The repair questions turn regret into action. Feeling worse and explaining context keep attention on emotional management rather than correction.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A leader wants mistakes to produce learning without creating defensiveness or shame, so every review needs to leave the room with something observable. Which evaluation is strongest?",
+        "choices": [
+          "Every mistake review should end with a visible repair or prevention change.",
+          "Every mistake review should identify who was responsible.",
+          "Every mistake review should reassure people that errors are normal."
+        ],
+        "correctIndex": 0,
+        "explanation": "A visible change keeps the review operational. Responsibility and reassurance can matter, but either can still leave the failure path unchanged.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
       }
     ]
   },
   "reviewCards": [
     {
-      "cardId": "ch16-rc01",
-      "front": "A tense moment makes hiding buys a quiet minute and sells a bigger problem. What do you retrieve first?",
-      "back": "Retrieve the result you want before choosing the response. The first named result gives the next action a standard that the impulse has to meet.",
+      "cardId": "rc01",
+      "front": "A mistake has happened and people are explaining. What is the basic handling loop?",
+      "back": "Contain the harm, repair the damage, reflect on the path, and prevent the repeat with a visible process change.",
       "difficulty": "easy"
     },
     {
-      "cardId": "ch16-rc02",
-      "front": "You feel pressure to answer now. Which two checks slow the default without stalling?",
-      "back": "Ask what is pulling you, then ask what fact would change the next move. Those two checks keep speed connected to reality.",
+      "cardId": "rc02",
+      "front": "Why is shame a poor mistake handler?",
+      "back": "Shame freezes attention on the self. Repair moves attention to who was harmed, what needs correction, and what path must change.",
       "difficulty": "medium"
     },
     {
-      "cardId": "ch16-rc03",
-      "front": "A group agrees too quickly and hiding buys a quiet minute and sells a bigger problem. What move reopens judgment?",
-      "back": "Put the desired result and the strongest contrary fact in the room. Agreement becomes useful only after it survives contact with evidence.",
+      "cardId": "rc03",
+      "front": "What makes apology incomplete?",
+      "back": "Apology is incomplete when it does not repair harm or change the path that produced the mistake. Sincerity alone does not prevent repetition.",
       "difficulty": "medium"
     },
     {
-      "cardId": "ch16-rc04",
-      "front": "You already acted and the result went wrong. What should the review preserve?",
-      "back": "Preserve the original pressure, the first story, the facts available then, and the rule for next time. That keeps review from becoming self-defense.",
+      "cardId": "rc04",
+      "front": "How do you tell regret from useful reflection?",
+      "back": "Useful reflection produces a change outside your mood: a checklist, threshold, review step, corrected file, or different sequence.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "When should you stop thinking about a mistake?",
+      "back": "After you have repaired what can be repaired and changed the path for next time. Past that point, rumination is emotional interest, not learning.",
       "difficulty": "hard"
     }
   ],
   "implementationPlan": {
-    "coreSkill": "The core skill is to surface the error fast, repair the damage, and keep the lesson. Treat pressure as a cue to run a short sequence: name the pull, state the result, check the facts, then act.",
+    "coreSkill": "The skill is turning mistakes into repair and learning before shame or defense freezes them. You practice moving through contain, repair, reflect, and prevent in that order.",
     "ifThenPlans": [
       {
-        "context": "work",
-        "plan": "If a work message or meeting makes hiding buys a quiet minute and sells a bigger problem, then I will write the result I want on paper before I answer or assign the next task."
+        "context": "customer mistake",
+        "plan": "If I make a public-facing error, then I will repair the customer's immediate harm before preparing the explanation."
       },
       {
-        "context": "health",
-        "plan": "If stress pushes me toward an automatic health choice, then I will wait sixty seconds, check the real constraint, and choose the smallest action that protects tomorrow."
+        "context": "process miss",
+        "plan": "If a process fails, then I will identify the step that allowed the miss and change one visible part of that path."
       },
       {
-        "context": "personal",
-        "plan": "If a personal decision feels urgent but vague, then I will name the tradeoff, list one fact I know, and make only the move that fits those two lines."
+        "context": "personal conflict",
+        "plan": "If I hurt someone in conversation, then I will acknowledge the effect and name one next action before explaining intention."
       },
       {
-        "context": "relationships",
-        "plan": "If a conversation turns hot, then I will say the outcome I want for the relationship before I answer the sentence that stung."
+        "context": "postmortem",
+        "plan": "If a review ends without a changed cue, rule, or support, then I will ask what would make the repeat harder."
       }
     ],
-    "twentyFourHourChallenge": "Within the next 24 hours, catch one live moment when hiding buys a quiet minute and sells a bigger problem. Write the first response you wanted, the result you wanted more, and the action you took after the pause.",
-    "weeklyPractice": "For seven days, keep a three-line decision log: pressure, desired result, next action. Review it once at the end of the week for recurring triggers."
+    "twentyFourHourChallenge": "Pick one recent mistake and complete four lines: contain, repair, learn, prevent. Do the prevent step today.",
+    "weeklyPractice": "Each week, review one mistake and record the repair, the path that created it, and the changed safeguard."
   },
   "memorableLines": [
     {
-      "text": "Clear thinking improves when you surface the error fast, repair the damage, and keep the lesson, because the first response under pressure usually serves comfort before it serves the outcome you meant to protect.",
-      "location": "keyTakeaway",
-      "why": "It carries the core sequence in one sentence."
-    },
-    {
-      "text": "The useful move is to make the pressure visible before it becomes the plan.",
-      "location": "breakdown.fastRead",
-      "why": "It turns a vague warning into an action."
-    },
-    {
-      "text": "The test is whether the next action protects the result you named before the room got hot.",
+      "text": "A handled mistake becomes information with a repair plan; an unhandled one becomes a subscription.",
       "location": "breakdown.deepRead",
-      "why": "It gives pressure a practical standard."
+      "why": "It makes the cost of unprocessed mistakes vivid."
+    },
+    {
+      "text": "Mistakes are expensive enough once.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a compact reason to prevent repeats."
+    },
+    {
+      "text": "Regret earns its keep only when it funds repair.",
+      "location": "breakdown.fullRead",
+      "why": "It distinguishes useful reflection from rumination."
     }
   ]
 }

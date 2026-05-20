@@ -1,0 +1,167 @@
+{
+  "chapterId": "essentialism-ch18",
+  "number": 18,
+  "title": "Flow: The Genius of Routine",
+  "coreMove": "Design a default path that carries the essential action before distractions get a daily vote.",
+  "sourcePressure": "The chapter presents routine as the structure that makes essential work the default and reduces repeated decision fatigue.",
+  "chapterSpecificMisunderstanding": "A weak run would write about morning routines or habit stacking without connecting routine to protected essential work.",
+  "sourceAlignmentTerms": [
+    "routine",
+    "default",
+    "autopilot",
+    "flow",
+    "friction",
+    "W. H. Auden"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic flow: the genius of routine topic opener",
+      "abstract productivity hook",
+      "calendar cleanup hook"
+    ],
+    "counterintuition": [
+      "generic habit advice frame",
+      "most people assume... but actually...",
+      "painless optimization frame"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds...",
+      "make a list of priorities without a trade-off",
+      "generic say no to one thing today"
+    ],
+    "examples": [
+      "generic habit advice",
+      "rigid productivity rituals",
+      "novelty shaming",
+      "work/home generic shell",
+      "reused classroom or kitchen scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "surgical sterilization unit attaching tray check to the first instrument rack handoff",
+      "audience": "unit lead making essential quality automatic",
+      "stakes": "sterility checks fail when they depend on memory at the end",
+      "format": "scene",
+      "requiredBeat": "She clips a clamp card to the first rack so the check happens before trays enter the washer.",
+      "firstImage": "A clamp card hangs from a sterile instrument rack.",
+      "mustInclude": [
+        "clamp card",
+        "instrument rack",
+        "washer tag"
+      ],
+      "mustAvoid": [
+        "generic morning routine",
+        "rigid ritual"
+      ]
+    },
+    {
+      "domain": "bakery scaling sourdough by linking starter check to flour-bin opening",
+      "audience": "baker making the essential action the default",
+      "stakes": "routine prevents rushed guessing later in the bake",
+      "format": "before_after",
+      "requiredBeat": "Before, starter checks are remembered late; after, the scale-zero tag on the flour bin triggers the check.",
+      "firstImage": "A scale-zero tag hangs from the flour bin handle.",
+      "mustInclude": [
+        "scale-zero tag",
+        "flour bin",
+        "starter jar"
+      ],
+      "mustAvoid": [
+        "cafe rush",
+        "5 a.m. advice"
+      ]
+    },
+    {
+      "domain": "housing-assistance hotline attaching callback triage to the tax-map lookup",
+      "audience": "hotline lead reducing decision fatigue",
+      "stakes": "the default path should carry the essential resident call",
+      "format": "dialogue",
+      "requiredBeat": "She places the offer tray with the tax map so triage happens before any file is opened.",
+      "firstImage": "An offer tray sits beside a tax map and resident call sheet.",
+      "mustInclude": [
+        "offer tray",
+        "tax map",
+        "call sheet"
+      ],
+      "mustAvoid": [
+        "generic phone habit",
+        "customer script"
+      ]
+    },
+    {
+      "domain": "metal foundry adding fiber-test strip to brass vat ignition key",
+      "audience": "foundry supervisor preventing skipped safety tests",
+      "stakes": "routine carries safety before production pressure starts",
+      "format": "decision_point",
+      "requiredBeat": "He clips the fiber-test strip to the ignition key so no pour can begin before the check.",
+      "firstImage": "A fiber-test strip is clipped to a brass vat ignition key.",
+      "mustInclude": [
+        "fiber-test strip",
+        "ignition key",
+        "pour log"
+      ],
+      "mustAvoid": [
+        "industrial bravado",
+        "random checklist"
+      ]
+    },
+    {
+      "domain": "rare-book shipping room tying courier booking to locked drawer opening",
+      "audience": "archivist making preservation default",
+      "stakes": "shipping should not begin before condition proof exists",
+      "format": "postmortem",
+      "requiredBeat": "She stores the rare-type pouch beside the courier clipboard so condition photos happen first.",
+      "firstImage": "A rare-type pouch sits in a locked drawer beside a courier clipboard.",
+      "mustInclude": [
+        "rare-type pouch",
+        "locked drawer",
+        "courier clipboard"
+      ],
+      "mustAvoid": [
+        "bookstore overlap",
+        "aesthetic ritual"
+      ]
+    },
+    {
+      "domain": "theater rigging crew attaching inspection tag to paint-key hook",
+      "audience": "crew lead preventing showday forgetfulness",
+      "stakes": "the first handoff should force the essential inspection",
+      "format": "vignette",
+      "requiredBeat": "The rigging inspection tag hangs from the paint-key hook, so the first person unlocking scenery sees the check before color.",
+      "firstImage": "A rigging inspection tag hangs from a paint-key hook.",
+      "mustInclude": [
+        "inspection tag",
+        "paint-key hook",
+        "scenery lock"
+      ],
+      "mustAvoid": [
+        "theater overlap as performance",
+        "routine forever"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify a routine that makes essential action the default inside a concrete scenario",
+      "choose the response that removes repeated decision fatigue before distractions get a daily vote",
+      "reject the generic drift: A weak run would write about morning routines or habit stacking without connecting routine to protected essential work.",
+      "explain the trade-off using source-specific terms rather than generic productivity language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one essential action that keeps losing to daily noise. Attach it to a visible trigger that already happens before the noise starts.",
+  "readingTimeMinutes": 12
+}

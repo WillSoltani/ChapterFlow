@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch12",
+  "number": 12,
+  "title": "Reasonable > Rational",
+  "coreMove": "Prefer the plan you can keep through fear over the plan that wins only on paper.",
+  "sourcePressure": "A money strategy must fit temperament, sleep, attention, and panic limits or its theoretical efficiency will not matter.",
+  "chapterSpecificMisunderstanding": "Mistaking optimization for usefulness.",
+  "sourceAlignmentTerms": [
+    "reasonable",
+    "rational",
+    "temperament",
+    "sleep",
+    "risk tolerance",
+    "durability"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Reasonable > Rational with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Reasonable > Rational to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the reasonable move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of reasonable and rational"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a school pension committee choosing a simpler fund lineup employees will actually use",
+      "audience": "a benefits chair balancing elegance and participation",
+      "stakes": "the optimal menu fails if teachers freeze at enrollment",
+      "format": "decision_point",
+      "requiredBeat": "she removes three marginally superior options after watching staff abandon the form",
+      "firstImage": "an enrollment form with too many tiny fund boxes",
+      "mustInclude": [
+        "enrollment form",
+        "participation rate",
+        "fund lineup"
+      ],
+      "mustAvoid": [
+        "dumbing down framing"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a surgeon choosing a mortgage payment that lets him sleep after night calls",
+      "audience": "a high earner rejecting the maximum approval number",
+      "stakes": "the rational loan limit ignores fatigue, family stress, and error risk",
+      "format": "scene",
+      "requiredBeat": "he writes post-call sleep hours beside the lender's approval before choosing the smaller house",
+      "firstImage": "a mortgage preapproval letter beside a hospital call schedule",
+      "mustInclude": [
+        "preapproval letter",
+        "call schedule",
+        "sleep hours"
+      ],
+      "mustAvoid": [
+        "doctor lifestyle story"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a retiree keeping extra cash despite an advisor's efficient allocation model",
+      "audience": "a retiree who values sleeping through downturns",
+      "stakes": "selling during panic would cost more than the cash drag",
+      "format": "dialogue",
+      "requiredBeat": "she asks the advisor to price the cash against the bad decision it prevents during a 25 percent drawdown",
+      "firstImage": "a portfolio printout with a handwritten sleep note in the margin",
+      "mustInclude": [
+        "portfolio printout",
+        "cash line",
+        "drawdown scenario"
+      ],
+      "mustAvoid": [
+        "advisor villain story"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a food truck owner selecting fixed-rate debt over cheaper variable debt",
+      "audience": "an owner who knows anxiety changes daily decisions",
+      "stakes": "rate surprises could make him cut quality or hours",
+      "format": "predict_reveal",
+      "requiredBeat": "he compares the cheaper loan to the menu changes he would make if rates jumped",
+      "firstImage": "a laminated menu beside two loan term sheets",
+      "mustInclude": [
+        "loan term sheets",
+        "menu cost sheet",
+        "rate scenario"
+      ],
+      "mustAvoid": [
+        "debt bad sermon"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a language learner using a five-minute practice rule instead of an ideal one-hour plan",
+      "audience": "an adult learner with inconsistent evenings",
+      "stakes": "the perfect plan dies when life gets crowded",
+      "format": "before_after",
+      "requiredBeat": "she compares the abandoned hour-long schedule with the streak kept by one tiny daily recording",
+      "firstImage": "a voice memo list with dates in a new language app",
+      "mustInclude": [
+        "voice memo list",
+        "five-minute rule",
+        "old schedule"
+      ],
+      "mustAvoid": [
+        "habit advice detached from money"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a charitable foundation setting a spending rule board members can defend during recessions",
+      "audience": "trustees who need commitment more than theoretical maximum impact",
+      "stakes": "a fragile rule invites cuts when headlines turn bad",
+      "format": "postmortem",
+      "requiredBeat": "after a market dip, they test which policy every trustee can still vote for without panic",
+      "firstImage": "a grant calendar beside a red quarterly portfolio report",
+      "mustInclude": [
+        "grant calendar",
+        "portfolio report",
+        "spending rule"
+      ],
+      "mustAvoid": [
+        "philanthropy abstraction"
+      ],
+      "openingDevice": "dialogue_first"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: prefer the plan you can keep through fear over the plan that wins only on paper",
+      "distinguish reasonable from nearby but weaker advice such as spreadsheet purity",
+      "diagnose when a character is making the common misread: mistaking optimization for usefulness.",
+      "evaluate tradeoffs using the chapter-specific pressure around reasonable, rational, temperament"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where reasonable is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: prefer the plan you can keep through fear over the plan that wins only on paper.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

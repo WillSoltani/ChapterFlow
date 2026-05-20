@@ -1,0 +1,112 @@
+{
+  "bookId": "ego-is-the-enemy",
+  "title": "Ego Is the Enemy",
+  "author": "Ryan Holiday",
+  "thesisParagraph": "Ego Is the Enemy argues that ego is not confidence, ambition, or pride in work. It is the self-protective appetite that wants reward before contribution, certainty before apprenticeship, centrality after success, and grievance after failure. The discipline is to keep ambition attached to reality: quiet work before talk, contribution before status, studenthood before self-certification, self-governance before control, and usable effort before resentment.",
+  "coreIdeas": [
+    {
+      "name": "Reward must follow work",
+      "oneSentence": "Ego grows when speech, status, or early praise pay you before the work has earned anything.",
+      "mentalMove": "Delay the reward signal until there is visible evidence of useful labor.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Contribution outranks identity",
+      "oneSentence": "The central ambition test is whether you choose useful contribution when status offers an easier substitute.",
+      "mentalMove": "Ask whether the next choice serves the task or the image around the task.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch05.source",
+        "ch13.source"
+      ]
+    },
+    {
+      "name": "Studenthood protects ambition",
+      "oneSentence": "Ambition stays clean only while correction can still enter.",
+      "mentalMove": "Put yourself near feedback before achievement turns into self-certification.",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Discipline beats spectacle",
+      "oneSentence": "Ego prefers visible intensity, but serious work needs control, timing, and repetition.",
+      "mentalMove": "Translate charged feeling into a repeatable structure or refuse to trust it.",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch06.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Success distorts proportion",
+      "oneSentence": "Winning can make the self feel central, entitled, and harder to correct.",
+      "mentalMove": "Restore proportion before success becomes a story, a possession, or an intoxicant.",
+      "sourceAnchors": [
+        "ch12.source",
+        "ch14.source",
+        "ch16.source",
+        "ch18.skeleton"
+      ]
+    },
+    {
+      "name": "Failure is a second ego test",
+      "oneSentence": "Setback can become alive time, honest effort, correction, boundaries, and love, or it can become grievance.",
+      "mentalMove": "Turn pain into usable evidence before ego turns it into identity.",
+      "sourceAnchors": [
+        "ch20.skeleton",
+        "ch21.skeleton",
+        "ch22.skeleton",
+        "ch25.skeleton"
+      ]
+    }
+  ],
+  "targetReader": "An ambitious reader who wants achievement without becoming captured by image, applause, entitlement, or bitterness. They care because the same drive that helps them rise can quietly corrupt how they learn, lead, recover, and judge themselves.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make the ego mechanism visible as a substitution or drift",
+      "end with a hard usable sentence rather than uplift"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no invented historical anecdotes when a source sidecar is conceptual only"
+    ]
+  },
+  "voiceSpecimens": [
+    "The applause arrived before the work did, and that was the danger.",
+    "You do not need a louder promise. You need a quieter hour with the task.",
+    "Status feels like proof because other people can see it. Contribution is harder because the work has to see it too.",
+    "The first win is not a certificate. It is a stress test for your judgment.",
+    "When failure hurts, ego asks for a story. The standard asks for evidence.",
+    "The line is simple: protect the work from the version of you that wants to be admired for it."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, Holiday explains why ego can derail personal development.",
+    "To become your best self, embrace humility and unlock your authentic potential.",
+    "The key takeaway is that passion is bad and discipline is good.",
+    "Readers should understand that success requires mindset shifts and consistent habits.",
+    "Ego management is a holistic framework for optimizing leadership outcomes."
+  ],
+  "teachingArc": "The book compounds in three passes. The Aspire section strips away early substitutes for work: talk, status, false authority, passion, self-expression, self-absorption, early pride, and impatience. The Success section shows ego returning in brighter clothing: certainty, flattering stories, priority drift, entitlement, control, paranoia, intoxication, and self-centrality. The Failure section turns the same discipline toward pain: use the time, honor the effort, let the hit teach, draw a line, keep an honest scorecard, and refuse bitterness. Each cycle ends by reminding the reader that ego changes costume rather than disappearing.",
+  "forbiddenMoves": [
+    "Do not turn the book into generic humility advice; every lesson must show what ego substitutes for reality in that moment.",
+    "Do not invent famous anecdotes, studies, or quotations where the frozen sidecar says support is conceptual only.",
+    "Do not make the prose anti-ambition; the book protects ambition by disciplining it.",
+    "Do not reuse the same failure-recovery shell across the final section.",
+    "Do not let interstitial chapters become padded recap essays."
+  ]
+}

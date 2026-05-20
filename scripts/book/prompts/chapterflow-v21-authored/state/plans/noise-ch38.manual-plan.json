@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch38",
+  "number": 38,
+  "title": "A Checklist for a Decision Observer",
+  "coreMove": "Use a structured checklist while observing a live judgment process to notice noise-amplifying conditions before the decision is finalized, not to assess whether the decision was correct afterward.",
+  "sourcePressure": "A decision observer watches a live judgment process and notices conditions that increase noise risk: early sharing of impressions before individual assessments are recorded, anchoring on the first strong opinion, social pressure to converge, failure to elicit all views. The checklist gives the observer concrete things to watch for before the decision is final — not to replace the judgment, but to flag the process conditions that are most likely to amplify noise at the moment when flagging is still useful.",
+  "chapterSpecificMisunderstanding": "Treating decision observation as a quality-control audit of the outcome rather than a real-time process monitor for conditions that increase scatter — the value of observation is before the decision, not after.",
+  "sourceAlignmentTerms": ["decision observer", "checklist", "live judgment", "noise condition", "early anchoring", "real-time", "process monitor"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Process observation and noise detection in group decision-making research",
+      "detail": "Research on group decision-making in medical, legal, and organizational contexts consistently finds that the conditions associated with high noise — early anchoring, status-based convergence, premature closure, failure to elicit independent views — are observable before the final decision is made. An observer with a structured checklist can flag these conditions while they are correctable, producing better decisions than a post-hoc review of whether the outcome was correct.",
+      "useIn": "deepRead",
+      "phrasingHint": "The observer is not there to grade the decision. The observer is there to notice the five things that happen in the thirty minutes before the decision is made that determine whether it will be noisy. Early impression-sharing. The loudest voice going first. Agreement gathering before all views are out. These happen before the decision. After the decision, they are history."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["the secret weapon against group noise — a single observer with a checklist", "what a fly on the wall can tell you about your decision quality"],
+    "counterintuition": ["the best time to assess decision quality is after the decision is made", "an observer with a checklist can judge whether the final decision was correct"],
+    "tryThisNow": ["ask someone to observe your next team meeting and report on whether the decisions were good", "review last month's decisions and identify which ones were noisy"],
+    "examples": ["a scene where the observer flags a noise condition and the group changes its decision to the correct one — the observer reduces noise conditions, not error in any specific case", "a scene where the observer reviews the final decision and says whether it was right — that is outcome evaluation, not process monitoring"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Decision-observer examples risk reading as case studies in catching bad decisions. Each domain must show the observer working before the decision is final — identifying noise-amplifying conditions while they can still be corrected — and explicitly not evaluating whether the final decision was correct."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "criminal sentencing hearing: a court observer watching a sentencing hearing to monitor for conditions that increase noise in the judge's final sentencing decision",
+      "audience": "a sentencing reform project coordinator who has deployed a trained decision observer to monitor sentencing hearing conditions across a sample of 40 cases",
+      "stakes": "sentencing consistency — the observer is not there to assess whether any specific sentence was correct but to document whether the conditions that increase noise (information presented in anchoring order, emotional tone of courtroom, time pressure) are present in the process",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the observer reviews the checklist items for a morning's hearings: item 1 (was the prosecutor's sentencing recommendation stated before the defense's?) — yes in 7 of 8 hearings, creating an anchor; item 2 (was any factual dispute resolved before sentencing?) — two cases had unresolved factual disputes at sentencing; item 3 (was the session running late when the final hearing began?) — yes, by 42 minutes; item 4 (was the defendant's demeanor in the hearing room likely to activate occasion noise?) — possible in one case; the observer's report to the reform project documents these process conditions without characterizing any sentence as correct or incorrect",
+      "firstImage": "a structured decision observer checklist for a sentencing hearing block, with four items and completion marks for each hearing — the column showing prosecutor-before-defense recommendation rate (7/8), factual-dispute rate (2/8), and session-delay measure (42 minutes behind)",
+      "mustInclude": ["the specific checklist items (anchor order, unresolved disputes, time pressure, demeanor)", "the observation that the checklist produces process data without outcome evaluation", "the observer's framing: the conditions documented increase noise risk — the judge's sentence in any specific case may be correct or not, and the checklist does not address that question"],
+      "mustAvoid": ["a specific defendant's sentencing outcome", "implying the observer can or should assess whether any sentence was legally or morally correct"]
+    },
+    {
+      "domain": "hospital tumor board meeting: a clinical quality observer monitoring a tumor board case discussion for noise-amplifying process conditions",
+      "audience": "a hospital clinical quality program placing trained observers in tumor board meetings to document noise conditions before treatment recommendations are finalized",
+      "stakes": "treatment recommendation consistency — the observer is there to flag real-time process conditions that increase noise in treatment recommendations, not to evaluate whether any specific treatment recommendation was clinically correct",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the clinical quality director and an observer discuss the observer's checklist report from a recent tumor board session: item 1 (did the presenting oncologist state a preferred treatment before soliciting other views?) — yes in 3 of 5 cases, creating an anchor; item 2 (were all board members' independent assessments elicited before discussion?) — no in 4 of 5 cases; item 3 (did any one specialist dominate the discussion without rebuttal?) — yes in 2 cases; item 4 (was any board member visibly disengaged or inattentive during a case presentation?) — one case; the observer's report documents conditions, not clinical judgments, and the director's intervention options are specific to each condition rather than to any treatment recommendation",
+      "firstImage": "a tumor board observer checklist report: four process condition items with per-case completion marks for 5 cases — the 3/5 anchor rate and 4/5 pre-discussion-elicitation failure rate highlighted as the most common conditions",
+      "mustInclude": ["the specific checklist items (anchor before solicitation, independent elicitation, discussion dominance, engagement)", "the 3/5 anchor rate and 4/5 elicitation-failure rate as the most common conditions", "the director's framing: the intervention is a process intervention — changing how the board structures its discussion — not an outcome intervention"],
+      "mustAvoid": ["a specific patient's treatment recommendation", "implying the observer should or could assess whether specific tumor board recommendations were clinically correct"]
+    },
+    {
+      "domain": "executive promotion committee meeting: a people operations observer monitoring an executive promotion committee discussion for noise-amplifying process conditions",
+      "audience": "a chief people officer who has trained an observer to monitor executive promotion committee meetings for process conditions that increase inter-member noise in promotion recommendations",
+      "stakes": "promotion consistency and equity — the observer is there to flag conditions that increase noise in promotion decisions before those decisions are recorded, not to evaluate whether any specific promotion decision was correct",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the chief people officer asks what an observer should look for in a promotion committee meeting: the observer's checklist identifies five conditions — (1) did any member share an overall impression before individual dimension scores were recorded? — yes in 2 of 4 candidates; (2) were candidate comparisons made sequentially in the order they appeared on the agenda rather than against fixed criteria? — yes for all 4; (3) did any member's assessment noticeably shift after hearing another member's opinion? — visible in 3 of 4 candidates; (4) was any member silent for an extended period during a discussion? — one member; (5) was time pressure evident near the end of the meeting? — yes, the last candidate was discussed in 4 minutes versus 12 for the first; each condition is observable, actionable, and documentable before the meeting closes",
+      "firstImage": "a five-item decision observer checklist for a promotion committee meeting, with per-candidate completion marks for 4 candidates — the sequential comparison (4/4) and post-sharing assessment shift (3/4) items highlighted as universal conditions in this meeting",
+      "mustInclude": ["the five specific checklist items and their frequencies across 4 candidates", "the time-pressure observation for the last candidate as a process condition not a quality judgment", "the chief people officer's framing: the observer provides actionable process data that can change how future meetings are structured — without the observer making a single judgment about whether any promotion decision was correct"],
+      "mustAvoid": ["a specific executive's promotion outcome", "implying the observer should or could assess whether any promotion decision was the correct one"]
+    },
+    {
+      "domain": "academic tenure vote meeting: a faculty governance observer monitoring a tenure vote meeting for noise-amplifying process conditions",
+      "audience": "a university faculty governance office using a trained observer to monitor tenure committee meeting process conditions that increase noise in tenure vote recommendations",
+      "stakes": "tenure decision consistency and equity — the observer documents process conditions that increase noise risk before the vote is taken, without evaluating whether any specific tenure decision was academically correct",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the faculty governance director presents the observer's report from a recent tenure review cycle: four checklist items were monitored across five tenure cases — (1) were all committee members' independent preliminary assessments collected before the meeting discussion? — no for three cases; (2) did the committee chair summarize an overall impression before inviting committee input? — yes for four cases; (3) was any committee member visibly deferring to a senior member's assessment without stating an independent view? — observed in two cases; (4) were the candidate's application materials presented in a standardized order across all five cases? — no, two candidates' files were presented differently; each finding is a process condition that can be addressed in the next cycle's meeting design",
+      "firstImage": "a four-item observer checklist report for five tenure cases: pre-meeting independent assessment collection (2/5), chair impression-before-input (4/5), deference observation (2/5), non-standardized presentation (2/5)",
+      "mustInclude": ["the four checklist items and their frequencies across 5 cases", "the chair impression-before-input condition at 4/5 as the most common finding", "the director's framing: the observer's report informs next cycle's meeting design — independent assessment collection before discussion, chair neutrality protocols — without any observer comment on whether any tenure decision was correct"],
+      "mustAvoid": ["a specific faculty member's tenure outcome", "implying academic tenure processes are generally unfair or that observer reports should influence individual tenure decisions"]
+    },
+    {
+      "domain": "Olympic athlete selection committee: a sport federation observer monitoring an athlete selection committee meeting for noise-amplifying process conditions",
+      "audience": "a national sport federation technical director who has deployed a trained process observer to monitor athlete selection committee meetings for conditions that increase inter-selector noise",
+      "stakes": "selection consistency and athlete fairness — the observer is there to flag process conditions that increase noise before selections are confirmed, not to evaluate whether any specific athlete should have been selected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the technical director reviews the observer's report from the selection session: checklist item 1 (were selector dimension ratings recorded independently before discussion?) — no, three of five selectors disclosed overall impressions before individual dimension scores were collected; item 2 (was selection discussion initiated with the most recent performance or with career record?) — most-recent-performance for four candidates, creating a recency-availability anchor; item 3 (was any selector's view dismissed without substantive engagement?) — two instances; item 4 (did the session run past its scheduled time, compressing the final candidates' discussion?) — yes, by 18 minutes; the technical director's post-session protocol revision addresses each checklist item without changing the selection criteria or evaluating any individual selection decision",
+      "firstImage": "a four-item observer checklist for an athlete selection session: early impression disclosure (3/5 selectors), recency anchor (4 candidates), dismissal-without-engagement (2 instances), time compression (18 minutes)",
+      "mustInclude": ["the four checklist items and their specific findings", "the post-session protocol revision as the output of the observer's report", "the technical director's framing: every checklist item corresponds to a process change — not a change in who was selected or whether the selection was correct"],
+      "mustAvoid": ["naming a specific athlete or sport", "implying the observer should or could evaluate whether any specific athlete selection was the correct one"]
+    },
+    {
+      "domain": "civil damages jury deliberation: a court-authorized deliberation observer monitoring a civil damages jury deliberation for process conditions that increase noise in the jury's award",
+      "audience": "a legal research team studying deliberation conditions associated with high inter-juror variance in civil damages awards",
+      "stakes": "trial outcome consistency and party fairness — the observer documents deliberation conditions that increase noise risk before the award is finalized, to contribute to research on deliberation design rather than to evaluate any specific award",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you observe the deliberation with a four-item checklist: item 1 (did any juror state a specific dollar figure before the group had completed substantive damages discussion?) — yes, the foreperson named a figure in the first ten minutes; item 2 (were jurors with stronger personalities disproportionately driving the discussion?) — two jurors were responsible for over 60 percent of discussion time; item 3 (was individual pre-deliberation damage estimate collection attempted before group discussion?) — no; item 4 (did the deliberation reach consensus on liability discussion before moving to damages?) — no, the two topics were discussed concurrently; each condition is documented and associated in the research literature with higher inter-juror spread in awards",
+      "firstImage": "a four-item deliberation observer checklist for a civil damages jury: early dollar figure anchor (yes), discussion-time concentration (2 jurors, 60%), pre-discussion individual estimate collection (not done), concurrent liability-damages discussion (yes)",
+      "mustInclude": ["the four checklist items and their findings", "the association of each condition with higher inter-juror spread in the research literature", "your framing: the checklist produces a process record associated with noise risk — it says nothing about whether the award the jury reached was an accurate reflection of the damages"],
+      "mustAvoid": ["a specific trial outcome or award amount", "implying that civil jury deliberations should be restructured to produce lower awards or that any award in the described case was correct or incorrect"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why a decision observer's checklist monitors process conditions rather than decision quality, and what the practical difference is between those two types of observation",
+      "identify the specific process conditions a decision observer should monitor in a described group judgment context",
+      "apply the decision observer checklist design to create a monitoring tool for a described live judgment process",
+      "analyze why real-time process observation produces different information from post-hoc outcome evaluation",
+      "evaluate whether a described decision observation approach is designed to monitor noise conditions or to assess decision correctness"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of the next group judgment decision your team will make — a hiring panel, a project prioritization meeting, a risk assessment session. Before the meeting, write down three specific process conditions you will watch for: the first strong impression being stated before individual assessments are recorded, one voice dominating without rebuttal, and time pressure compressing the final items on the agenda. Observe those three conditions during the meeting without commenting on whether any decision is correct. Report only on whether the three conditions occurred and how often. That report is more useful to your team's decision quality than any assessment of whether the decisions reached were right.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) distinguishing process monitoring from outcome evaluation — the observer says nothing about whether the decision was correct, only whether the process conditions that increase noise were present, at least one 5+ sentence paragraph on the specific conditions that a decision observer with a structured checklist is trained to notice — and why these conditions are observable and actionable before the decision is final but invisible in the outcome record, at least one one-sentence punch line about what it means that the conditions most likely to produce a noisy decision are all present in the thirty minutes before the decision is made",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: in your next important group judgment meeting, who is in the room whose job it is to notice whether individual assessments are collected before discussion? If the answer is no one, the conditions most likely to amplify noise are operating unmonitored — and the only way to know whether they occurred is to look for them in real time, not to evaluate the outcome afterward",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

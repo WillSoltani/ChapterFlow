@@ -1,0 +1,103 @@
+{
+  "bookId": "the-art-of-thinking-clearly",
+  "title": "The Art of Thinking Clearly",
+  "author": "Rolf Dobelli",
+  "thesisParagraph": "Clear thinking is not a personality trait; it is a habit of catching small, repeatable errors before they steer decisions. The book works as a field guide to cognitive traps: survivorship, sunk costs, social proof, scarcity, overconfidence, framing, defaults, and dozens more. Its practical argument is deliberately negative. You improve judgment less by chasing brilliance than by removing predictable mistakes from ordinary choices, one bias at a time.",
+  "coreIdeas": [
+    {
+      "name": "Correct the sample",
+      "oneSentence": "What you see is often the surviving, selected, advertised, or remembered slice.",
+      "mentalMove": "Ask what is missing from the sample before trusting the pattern.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch28.source",
+        "ch47.source"
+      ]
+    },
+    {
+      "name": "Resist emotional arithmetic",
+      "oneSentence": "Vividness, loss, scarcity, ownership, and liking can rewrite value before numbers arrive.",
+      "mentalMove": "Translate the feeling back into frequencies, alternatives, and current costs.",
+      "sourceAnchors": [
+        "ch22.source",
+        "ch26.source",
+        "ch32.source",
+        "ch66.source"
+      ]
+    },
+    {
+      "name": "Check causality",
+      "oneSentence": "A clean story, a sequence, or a correlation is not proof of cause.",
+      "mentalMove": "Demand a mechanism, a base rate, or a competing explanation.",
+      "sourceAnchors": [
+        "ch13.source",
+        "ch24.source",
+        "ch37.source",
+        "ch97.source"
+      ]
+    },
+    {
+      "name": "Prefer outside views",
+      "oneSentence": "Forecasts improve when you start with comparable cases instead of your own attractive plan.",
+      "mentalMove": "Use records, distributions, and premortems before confidence takes over.",
+      "sourceAnchors": [
+        "ch15.source",
+        "ch40.source",
+        "ch91.source"
+      ]
+    },
+    {
+      "name": "Design the environment",
+      "oneSentence": "Defaults, incentives, choice sets, and option costs often decide before intention gets a vote.",
+      "mentalMove": "Change the choice architecture instead of trusting willpower.",
+      "sourceAnchors": [
+        "ch18.source",
+        "ch21.source",
+        "ch53.source",
+        "ch81.source"
+      ]
+    }
+  ],
+  "targetReader": "A working adult who makes decisions under noise: managers, founders, clinicians, teachers, analysts, investors, parents, and students who want fewer preventable errors in daily judgment.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "prefer correction over inspiration",
+      "let examples carry the lesson without lecture"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake named studies or decorative citations"
+    ]
+  },
+  "voiceSpecimens": [
+    "The clean chart is not lying; it is just showing you the slice that survived.",
+    "Before you call it courage, ask what price has already been paid and whether that price can still buy anything.",
+    "A crowd can be useful when it knows the way to the stadium. It is dangerous when it is only following itself.",
+    "The first number on the table is a magnet. Put your own number down before it starts pulling.",
+    "When a story feels too smooth, slow down. Smoothness is often where missing causes hide.",
+    "The question is not whether the option feels scarce. The question is whether scarcity changed its usefulness."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches readers to be more mindful about cognitive bias in everyday life.",
+    "In a world full of distractions, we must cultivate clarity and intentionality.",
+    "The author argues that people should avoid irrational behavior by thinking more carefully.",
+    "Pause for ninety seconds and reflect on three decisions where this idea might apply.",
+    "The key is to become your best self through better mental models."
+  ],
+  "teachingArc": "The book compounds by moving from visible sampling errors to social pressure, probability mistakes, causality errors, forecasting failures, choice architecture, memory distortions, and finally attention hygiene. Each short chapter adds one avoidable mistake to a practical checklist for clearer judgment.",
+  "forbiddenMoves": [
+    "Do not collapse all 99 chapters into one generic anti-bias lesson.",
+    "Do not replace traceable source-note anchors with invented famous anecdotes.",
+    "Do not make every chapter a business decision scene.",
+    "Do not over-explain the psychology when a concrete correction would teach faster."
+  ]
+}

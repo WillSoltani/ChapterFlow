@@ -1,0 +1,201 @@
+{
+  "chapterId": "seeking-wisdom-ch01",
+  "number": 1,
+  "title": "Study Repeated Patterns of Misjudgment",
+  "coreMove": "Treat a persuasive live decision as a pattern candidate before deciding it is a special case.",
+  "sourcePressure": "The source says judgment bends under recurring pressures: fear, reward, status, uncertainty, reciprocity, fairness, conformity, missing information, and the desire to stay consistent after public commitment. Charlie Munger's two-track analysis asks what interests govern the situation and what subconscious influences may be distorting judgment.",
+  "chapterSpecificMisunderstanding": "The weak version is naming biases after the fact or using labels to sound smart. The stronger move is catching a pressure pattern early enough to change the review.",
+  "sourceAlignmentTerms": [
+    "recurring pressure",
+    "public commitment",
+    "conformity",
+    "missing information",
+    "two-track analysis",
+    "subconscious influence",
+    "major psychology models",
+    "reversal threshold"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Charlie Munger",
+      "detail": "The source sidecar names Munger's two-track analysis: one track asks what rational interests govern the situation, and the other asks what subconscious influences may be distorting judgment.",
+      "useIn": "both",
+      "phrasingHint": "Munger's two-track check belongs beside the live decision, while the claim still feels reasonable and before consistency starts protecting it."
+    },
+    {
+      "kind": "artifact",
+      "name": "The Pilot's Checklist to Avoid Fooling Ourselves",
+      "detail": "The source headings include this checklist framing and the notes say Munger recommends major psychology models as a checklist for complex outcomes.",
+      "useIn": "fullRead",
+      "phrasingHint": "A pilot checklist is useful because the familiar step disappears precisely when the cockpit starts to feel routine."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A bad decision looks unique until...",
+      "Most people think mistakes are random...",
+      "You are biased and do not know it"
+    ],
+    "counterintuition": [
+      "Bias labels make you smarter",
+      "The mistake is not the mistake, it is...",
+      "The real problem is not intelligence"
+    ],
+    "tryThisNow": [
+      "List three biases you have",
+      "Pause for 60 seconds and think carefully",
+      "Ask yourself if you are biased"
+    ],
+    "examples": [
+      "generic boardroom forecast",
+      "investment club hype",
+      "family kitchen argument",
+      "student copies the class answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital device purchasing committee reviewing a monitor recall",
+      "audience": "Sarah, a clinical operations director who already defended last quarter's vendor choice in public",
+      "stakes": "whether sunk consistency keeps a weak device contract alive through another patient-safety review",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Sarah draws two columns on the agenda packet, one for interests and one for distortions, then writes the recall rate under evidence instead of letting the room reopen the old defense speech",
+      "firstImage": "a stapled recall notice sliding across a glossy hospital committee table",
+      "mustInclude": [
+        "Sarah",
+        "recall notice",
+        "agenda packet",
+        "vendor contract"
+      ],
+      "mustAvoid": [
+        "generic procurement meeting",
+        "another quarterly forecast scene"
+      ]
+    },
+    {
+      "domain": "municipal flood-risk update after a popular levee promise",
+      "audience": "Mathieu, a deputy mayor facing residents who applauded the original plan",
+      "stakes": "whether public commitment prevents revision before spring melt exposes the weak assumption",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Mathieu circles the snowpack number on the engineer's map and asks what would have to be true for the old promise to remain safe",
+      "firstImage": "wet boot prints drying beside a rolled floodplain map",
+      "mustInclude": [
+        "Mathieu",
+        "floodplain map",
+        "snowpack number"
+      ],
+      "mustAvoid": [
+        "heroic public speech",
+        "generic climate-risk lecture"
+      ]
+    },
+    {
+      "domain": "seed-stage venture memo where one charismatic founder dominates the evidence",
+      "audience": "Anke, an associate who likes the founder and knows the diligence file is thin",
+      "stakes": "whether social admiration turns into an investment memo that hides missing information",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anke asks the partners to predict what evidence would make them pass, then opens the empty customer-reference folder after each prediction",
+      "firstImage": "an empty customer-reference folder on a laptop screen",
+      "mustInclude": [
+        "Anke",
+        "customer-reference folder",
+        "partner vote"
+      ],
+      "mustAvoid": [
+        "generic startup pitch hype",
+        "investment club crowd scene"
+      ]
+    },
+    {
+      "domain": "eldercare scheduling text thread after three repeated sibling fights",
+      "audience": "Diego, an adult son trying not to repeat last month's defensive exchange",
+      "stakes": "whether a familiar conflict loop makes the next medical appointment harder for their father",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Diego prints the last three text threads, marks the same sequence in each one, and sends one reset question before answering the latest accusation",
+      "firstImage": "three printed text threads spread beside a pharmacy receipt",
+      "mustInclude": [
+        "Diego",
+        "printed text threads",
+        "pharmacy receipt"
+      ],
+      "mustAvoid": [
+        "narrow kitchen argument",
+        "generic family drama"
+      ]
+    },
+    {
+      "domain": "university replication lab deciding whether to publish a surprising pilot result",
+      "audience": "Aanya, a doctoral student whose supervisor is excited by the finding",
+      "stakes": "whether a desired result and group excitement hide the missing alternative explanations",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Aanya asks the lab to name two mundane explanations before anyone writes the result into the abstract",
+      "firstImage": "\"What else would make this graph jump?\" written beside a projector glow",
+      "mustInclude": [
+        "Aanya",
+        "projector graph",
+        "draft abstract"
+      ],
+      "mustAvoid": [
+        "fake named study",
+        "generic classroom conformity"
+      ]
+    },
+    {
+      "domain": "nonprofit emergency grant panel after one emotional applicant video",
+      "audience": "Ben, a program officer who feels the room leaning toward the visible case",
+      "stakes": "whether one vivid story crowds out the quieter applications with stronger documented need",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Ben asks each panelist to score the file once with the video hidden and once after viewing it, then compares the swing before a vote",
+      "firstImage": "You watch a thumbnail freeze on a paused applicant video",
+      "mustInclude": [
+        "Ben",
+        "paused video thumbnail",
+        "scoring sheet"
+      ],
+      "mustAvoid": [
+        "generic charity appeal",
+        "courtroom sympathy scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot public commitment before it hardens",
+      "separate evidence from social comfort",
+      "use Munger's two-track review on a live choice",
+      "recognize when a bias label is replacing review"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live decision and draw two columns: interests in the situation and pressures in your own judgment. Put one concrete item in each column before you act.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

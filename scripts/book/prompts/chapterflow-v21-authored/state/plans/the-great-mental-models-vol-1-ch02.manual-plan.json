@@ -1,0 +1,126 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch02",
+  "number": 2,
+  "title": "Circle of Competence",
+  "coreMove": "Mark the edge of earned competence before deciding where to play, learn, or defer.",
+  "sourcePressure": "The source says the size of the circle matters less than knowing the perimeter. It uses Rose Blumkin, Charlie Munger, and the chess grandmaster example to show that advantage does not automatically transfer to adjacent domains.",
+  "chapterSpecificMisunderstanding": "The weak version says stay in your comfort zone or avoid hard unfamiliar learning.",
+  "sourceAlignmentTerms": ["circle of competence", "perimeter", "earned knowledge", "edge", "advantage", "Rose Blumkin", "Charlie Munger"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Rose Blumkin",
+      "detail": "the source uses her focused knowledge of furniture, cash, and real estate, contrasted with not knowing stocks, as an anchor for staying around spots of competence",
+      "useIn": "both",
+      "phrasingHint": "Rose Blumkin's edge was not a halo around every business problem; it was furniture, cash, leases, and the ground she knew by touch."
+    },
+    {
+      "kind": "person",
+      "name": "Charlie Munger",
+      "detail": "the source uses him as the practical voice for playing where you have an edge and avoiding games others understand better",
+      "useIn": "fullRead",
+      "phrasingHint": "Munger's warning is blunt: the other table may look open, but it belongs to people who have paid for knowledge you are only borrowing."
+    },
+    {
+      "kind": "person",
+      "name": "a chess grandmaster",
+      "detail": "the source uses a chess grandmaster example to show that excellence in one domain does not generalize automatically",
+      "useIn": "deepRead",
+      "phrasingHint": "The grandmaster can see sixty-four squares clearly and still be a beginner when the board changes."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["comfort zone poster", "genius at everything", "circle drawn on whiteboard as whole scene"],
+    "counterintuition": ["confidence is bad", "specialization always wins", "never learn outside your field"],
+    "tryThisNow": ["write what you are good at", "list your strengths", "stay in your lane"],
+    "examples": ["generic stock-picking amateur", "startup founder knows everything", "student choosing a major"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "specialty cheese shop product expansion",
+      "audience": "a shop owner who knows aging, suppliers, and local customers but is tempted by online meal kits",
+      "stakes": "a profitable shop could burn cash in a business whose logistics she has not earned",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Andrew places the aged-cheese margin sheet beside the refrigerated meal-kit shipping quote and marks which facts come from direct experience and which are guesses",
+      "firstImage": "the ammoniac bite of washed-rind cheese in the prep room",
+      "mustInclude": ["margin sheet", "shipping quote", "supplier ledger"],
+      "mustAvoid": ["foodie lifestyle scene", "passion advice"]
+    },
+    {
+      "domain": "emergency-room ultrasound shift",
+      "audience": "a senior nurse asked to interpret a scan outside her certification",
+      "stakes": "a fast call could mislead treatment before radiology arrives",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sophie names exactly what she can verify from the bedside protocol and exactly where the radiologist's edge begins",
+      "firstImage": "blue gel drying around the ultrasound probe",
+      "mustInclude": ["bedside protocol", "radiology callback", "triage bay"],
+      "mustAvoid": ["hero nurse overrules everyone", "medical drama"]
+    },
+    {
+      "domain": "chess club coach asked about poker",
+      "audience": "a brilliant chess coach invited into a high-stakes poker stream",
+      "stakes": "his pattern skill may be mistaken for transferable edge",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Nicolas reviews one poker hand aloud, catches himself using chess certainty, and writes 'learn' rather than 'play' beside the invitation",
+      "firstImage": "a paused river card glowing on a laptop beside a wooden chess clock",
+      "mustInclude": ["poker hand replay", "chess clock", "invitation fee"],
+      "mustAvoid": ["gambling morality", "chess master as universal genius"]
+    },
+    {
+      "domain": "furniture warehouse lease negotiation",
+      "audience": "a warehouse operator deciding whether to buy a neighboring building",
+      "stakes": "one familiar lease term hides an unfamiliar zoning fight",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Mikkel circles the parts of the deal his warehouse history covers, then slides the zoning packet to counsel instead of pretending the whole transaction is inside his circle",
+      "firstImage": "a folded zoning packet under a tape measure on a loading dock",
+      "mustInclude": ["zoning packet", "lease ledger", "loading dock"],
+      "mustAvoid": ["generic real estate win", "Rose Blumkin imitation scene"]
+    },
+    {
+      "domain": "indie documentary distribution rights",
+      "audience": "a filmmaker who understands editing but not international licensing",
+      "stakes": "a rights clause could lock the film away from festivals for years",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Layla highlight every clause she can explain unaided and every clause that requires a distribution lawyer before the signature page moves",
+      "firstImage": "a festival lanyard lying across a redlined rights contract",
+      "mustInclude": ["rights contract", "festival lanyard", "signature page"],
+      "mustAvoid": ["artist versus business cliche", "generic contract fear"]
+    },
+    {
+      "domain": "ski guide avalanche forecast handoff",
+      "audience": "a mountain guide strong on route feel but new to a different snowpack",
+      "stakes": "local confidence could outrun unfamiliar avalanche patterns",
+      "format": "reflection",
+      "openingDevice": "environmental",
+      "requiredBeat": "Janek writes the day's route plan only after asking the local forecaster where his home-range knowledge stops applying",
+      "firstImage": "wind-slab crystals skittering across a tailgate map",
+      "mustInclude": ["avalanche bulletin", "tailgate map", "local forecaster"],
+      "mustAvoid": ["extreme survival drama", "outdoors confidence lesson"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify the perimeter of earned knowledge", "distinguish learning outside the circle from pretending", "decide when to defer to a better edge", "spot confidence traveling beyond competence"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "Choose one live decision. Draw three boxes labeled play, learn, and defer, then put each part of the decision where your evidence says it belongs.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "chapterId": "atomic-habits-ch05",
+  "number": 5,
+  "title": "The Best Way to Start a New Habit",
+  "coreMove": "Attach the next habit to a precise existing cue so starting has a visible address.",
+  "sourcePressure": "New habits start better when the cue is highly specific and attached to a stable routine or context.",
+  "chapterSpecificMisunderstanding": "Writing a broad intention instead of choosing an exact cue and location.",
+  "sourceAlignmentTerms": [
+    "implementation intention",
+    "habit stacking",
+    "specific cue",
+    "after I",
+    "stable routine",
+    "start condition"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "starting with a definition of implementation intention",
+      "generic morning alarm opener",
+      "before-and-after transformation promise"
+    ],
+    "counterintuition": [
+      "success is not about willpower",
+      "small things are secretly huge",
+      "the problem is not motivation alone"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you learned",
+      "just make it easier today"
+    ],
+    "examples": [
+      "office meeting with a whiteboard",
+      "kitchen counter resolution",
+      "classroom lecture with a marker"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a courthouse interpreter stacking breathing practice after badge scan",
+      "audience": "a bilingual interpreter facing tense morning hearings",
+      "stakes": "whether a new calming routine starts because the cue is exact",
+      "format": "scene",
+      "requiredBeat": "after the security badge chirps, she steps to the same marble column and takes three measured breaths",
+      "firstImage": "a courthouse badge scanner flashing green",
+      "mustInclude": [
+        "badge scanner",
+        "marble column"
+      ],
+      "mustAvoid": [
+        "generic morning routine"
+      ]
+    },
+    {
+      "domain": "a marine biologist logging salinity after rinsing field boots",
+      "audience": "a field researcher missing data entries",
+      "stakes": "whether the stable boot-rinse cue carries the log habit",
+      "format": "vignette",
+      "requiredBeat": "she writes the salinity number while the boots still drip in the tray",
+      "firstImage": "muddy waders dripping into a blue tray",
+      "mustInclude": [
+        "salinity meter",
+        "wader tray"
+      ],
+      "mustAvoid": [
+        "lab notebook generic"
+      ]
+    },
+    {
+      "domain": "a youth soccer referee doing ankle mobility after setting corner flags",
+      "audience": "a weekend referee with recurring ankle pain",
+      "stakes": "whether the existing setup ritual becomes the start signal",
+      "format": "before_after",
+      "requiredBeat": "he plants the fourth flag, then performs the mobility sequence before leaving the corner",
+      "firstImage": "a red corner flag stuck in wet turf",
+      "mustInclude": [
+        "corner flag",
+        "whistle"
+      ],
+      "mustAvoid": [
+        "athlete motivation shell"
+      ]
+    },
+    {
+      "domain": "a court stenographer starting wrist stretches after plugging in the machine",
+      "audience": "a stenographer entering six-hour testimony blocks",
+      "stakes": "whether a precise equipment cue beats a vague health intention",
+      "format": "decision_point",
+      "requiredBeat": "the cable clicks into the outlet and she starts the stretch before opening the case notes",
+      "firstImage": "a stenotype cable coiled beside a courtroom outlet",
+      "mustInclude": [
+        "stenotype machine",
+        "power cable"
+      ],
+      "mustAvoid": [
+        "generic office ergonomics"
+      ]
+    },
+    {
+      "domain": "a food-truck owner checking propane after hanging the menu board",
+      "audience": "a solo operator whose lunch rush fails when setup gets chaotic",
+      "stakes": "whether a stack prevents missed equipment checks",
+      "format": "postmortem",
+      "requiredBeat": "he reconstructs the failed rush and moves the propane check to the moment the menu board hook closes",
+      "firstImage": "a chalk menu board swinging from a truck window",
+      "mustInclude": [
+        "propane gauge",
+        "menu board hook"
+      ],
+      "mustAvoid": [
+        "restaurant kitchen shell"
+      ]
+    },
+    {
+      "domain": "a ceramics student cleaning the wheel after placing each finished bowl on the ware board",
+      "audience": "a beginner who leaves clay drying overnight",
+      "stakes": "whether the finished-bowl cue starts cleanup automatically",
+      "format": "dialogue",
+      "requiredBeat": "her instructor asks what always happens before the mess is forgotten, and she chooses the ware-board placement as the anchor",
+      "firstImage": "a wet clay bowl lifted onto a ware board",
+      "mustInclude": [
+        "ware board",
+        "sponge bucket"
+      ],
+      "mustAvoid": [
+        "classroom lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "write specific implementation intentions",
+      "choose stable anchors for habit stacking",
+      "reject vague intention language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Attach one new action to a cue that already happens daily. Write it in the form: After I _____, I will _____ at _____.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,124 @@
+{
+  "chapterId": "competing-against-luck-ch06",
+  "number": 6,
+  "title": "Building Your Resume",
+  "coreMove": "Test whether the pattern of repeat hires confirms the job you believe you serve, or reveals a narrower or different job the market has actually trusted you with.",
+  "sourcePressure": "A product's real identity is the record of jobs it repeatedly earns the trust to do. One interpreted hire can suggest a direction; it cannot establish identity. When similar buyers under similar pressures keep rehiring the offering for the same progress, the pattern builds a resume. That resume may confirm the intended identity — or it may reveal the market has trusted the product with something narrower, adjacent, or entirely different from what the team believed. The resume is an analytical tool, not a branding exercise.",
+  "chapterSpecificMisunderstanding": "Treating the product resume as a positioning or branding exercise — constructing the most compelling narrative from one memorable hire — rather than as evidence-based reading of what buyers have repeatedly trusted the product to do across comparable circumstances.",
+  "sourceAlignmentTerms": ["resume", "repeated hiring", "trust", "earned", "circumstance", "pattern", "identity", "rehire"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Your brand is what customers say it is, not what you say it is.",
+      "Trust is built through repetition.",
+      "Your reputation is your most valuable asset."
+    ],
+    "counterintuition": [
+      "The product you think you're selling isn't the product customers are buying.",
+      "Your best case study might be hiding your real job."
+    ],
+    "tryThisNow": [
+      "Ask your best customers why they keep coming back.",
+      "List the jobs you believe your product does.",
+      "Review your best case studies and look for a pattern."
+    ],
+    "examples": [
+      "any example where the resume is revealed through a single memorable testimonial rather than a pattern across multiple hires",
+      "examples that resolve the resume question with a brand audit or positioning workshop rather than by reading actual hiring behavior"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["timestamp_named", "dialogue_first", "retrospective", "second_person", "environmental", "sensory_first"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "crisis text line mental health service",
+      "audience": "a program director reviewing usage metrics expecting crisis intervention to be the dominant job in the data",
+      "stakes": "whether Sophie's next grant proposal describes the service's actual earned job or the intended one",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 8:47 a.m., Sophie reviews repeat-contact rates expecting to see crisis intervention dominate. The pattern is different: most first contacts describe acute distress; most repeat contacts happen outside crisis moments — a hard thought before bed, a preemptive check-in before a stressful week. The service has earned a resume as a trusted place to put a difficult thought before it becomes a crisis. The grant proposal has been selling crisis intervention. The earned resume is pre-crisis maintenance.",
+      "firstImage": "an analytics dashboard at 8:47 a.m., the repeat-contact rate column circled in red marker on a printed sheet",
+      "mustInclude": ["a first-contact vs. repeat-contact behavioral pattern showing the job difference", "a non-crisis check-in message as a representative repeat-contact example", "a mission statement or grant language that doesn't match the data"],
+      "mustAvoid": ["'mission drift' framing — the beat must show the earned resume (trusted pre-crisis check-in space) as a real, valuable job the service genuinely serves — the tension is between the claimed identity and the earned one, not between the right and wrong purpose"]
+    },
+    {
+      "domain": "urban cycling infrastructure planning",
+      "audience": "a city transportation planner presenting usage data to a skeptical city council member",
+      "stakes": "whether Mikkel argues for the earned resume or tries to retrofit the data to fit the original justification",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "'You said commuters,' the council member says, looking at weekend ridership figures. The paths were built for commute use. They are heavily used for weekend recreation. Mikkel has to decide whether to defend the original job claim or argue that the earned resume — recreational use — is a legitimate job worth serving on its own terms. The data makes the case; the original proposal makes the argument harder.",
+      "firstImage": "'You told us commuters,' the council member says, not looking up from the ridership sheet",
+      "mustInclude": ["a commute-vs.-recreation usage split visible in the ridership data", "the original city proposal language that promised commute reduction", "Mikkel's decision moment: retrofit the data or argue for the earned resume"],
+      "mustAvoid": ["'public infrastructure is multifunctional' generality — the beat must show the specific tension between the intended job (commute) and the earned job (recreation) as a resume question, not a planning quality question"]
+    },
+    {
+      "domain": "community college evening program enrollment",
+      "audience": "a college enrollment director analyzing three cohorts of a 'career accelerator' evening program",
+      "stakes": "whether Catarina redesigns the program or changes only the branding to match the earned resume",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The program was built for career skills acceleration. Three cohort enrollment patterns show the same profile: applicants who had already decided to change careers but needed a credible institutional step to show family members. The job is not skills; it is social proof for a household conversation. The branding says 'career accelerator.' The earned resume says 'proof I took a step my family can see.' The next cohort needs different marketing — not a different curriculum.",
+      "firstImage": "enrollment records from three consecutive cohorts, the applicant notes column revealing the same phrase three times in different words",
+      "mustInclude": ["a career-change context that precedes enrollment (the decision was already made)", "a family or household approval framing from applicant notes", "the 'career accelerator' program branding vs. the actual enrollment driver"],
+      "mustAvoid": ["'rebranding will fix enrollment' conclusion — the beat must show the earned resume (social proof for a household conversation) as the job that was being served, and the misalignment between that job and the program's self-description"]
+    },
+    {
+      "domain": "pet boarding facility intake process",
+      "audience": "a boarding facility owner reconsidering the intake survey — through second-person",
+      "stakes": "whether Chris discovers the earned resume before redesigning the intake form",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You are reviewing two years of intake surveys: feeding times, exercise preferences, medication schedules. You are considering adding a 'special notes' field. But when you compare the survey data to the verbal handoff notes your staff takes during check-in, a pattern appears: repeat clients spend almost all their verbal handoff time on one subject — how their dog behaves when anxious, not what it eats or how far it walks. The facility has been hired to manage separation anxiety, not to provide boarding logistics. The survey has been measuring the wrong job for two years.",
+      "firstImage": "a two-year stack of intake surveys on the desk, the second-person reader comparing them to a page of handwritten verbal handoff notes",
+      "mustInclude": ["a verbal handoff vs. survey content comparison", "a separation-anxiety note as the dominant repeat-client topic", "a first-time vs. repeat-client pattern visible in the comparison"],
+      "mustAvoid": ["'surveys miss emotional content' generality — the beat must show the earned resume (separation anxiety management) vs. the claimed resume (boarding logistics) as a specific, provable pattern across multiple repeat hires"]
+    },
+    {
+      "domain": "commercial photography studio booking",
+      "audience": "a studio owner discovering a disconnect between her marketing and her repeat bookings",
+      "stakes": "whether Anke builds on the earned resume or invests in the portfolio the marketing promises",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anke built her studio around architecture and interior photography, expanded into product photography, and marketed both. Repeat bookings don't come from either category. Repeat clients are consistently event coordinators who need post-event documentation for funder reports — images that prove an event happened and looked professional. The studio has earned a resume as a trusted source of documentary evidence. Its strongest job is invisible in the marketing portfolio.",
+      "firstImage": "a camera on a tripod aimed at an empty event hall, chairs still in rows, morning light through high warehouse windows — no event yet, but the room dressed for one",
+      "mustInclude": ["a funder report or grant documentation context that names why the images matter", "a post-event coordinator as the repeat hire profile", "the studio's own portfolio and marketing positioned around architecture/product, not event documentation"],
+      "mustAvoid": ["'pivot your positioning' conclusion — the beat must show the earned resume (trusted documentary evidence for funders) and the gap from the claimed resume (architectural and product photography), leaving the strategic decision open"]
+    },
+    {
+      "domain": "neighborhood tool lending library",
+      "audience": "a tool library coordinator two years into operation reviewing her collection investment decisions",
+      "stakes": "whether Layla's next collection acquisition reflects the earned resume or the intended one",
+      "format": "retrospective",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The tool library was built to reduce household costs by sharing expensive tools. After two years, the highest-repeat borrowers consistently check out the most modest items: caulk guns, pipe wrenches, small tile cutters. And they return them, then borrow the same item again three months later — the same first-time homeowner, the same basic tool. The job is not cheap access to hardware. It is: get permission to start a task you are not sure you know how to do, without committing to owning the tool in case it goes wrong.",
+      "firstImage": "a caulk gun on the return shelf at 8:30 a.m., the checkout log beside it showing the same borrower name three times over eight months",
+      "mustInclude": ["a repeat-rental pattern for a basic tool by the same first-time homeowner", "a 'permission to start' framing from an interview or observation", "the original mission language (cost reduction) vs. the earned resume (task-permission confidence)"],
+      "mustAvoid": ["'sharing economy reduces costs' framing — the beat must show the earned resume (task permission and confidence to attempt) as the actual job being hired, distinct from the functional cost-savings job"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish between a product's claimed identity and its earned resume based on hiring pattern evidence",
+      "identify what constitutes a resume-confirming pattern (comparable buyers, comparable circumstances, same progress) vs. a single memorable hire",
+      "analyze whether a product's current strategy matches the job the market has actually hired it to do",
+      "apply the resume-building concept to a new organizational or service context",
+      "evaluate whether an expansion or redesign decision respects or undermines the earned resume"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "List the last five times your product or service was hired — not purchased, but rehired by someone who had used it before. Write one sentence for each rehire naming the circumstance and the progress the buyer sought. If all five sentences describe the same job, that is your earned resume. If they describe two different jobs, you have two products sharing one identity.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter that names the gap between claimed and earned identity without elaboration; at least one 5+ sentence paragraph that traces the full evidence path from first hire to pattern to resume conclusion; at least one one-sentence punch line that states what the earned resume actually changes about the team's next decision",
+    "fullReadInterludeRequirement": "at least one passage that shows two companies in similar situations — one that reads its earned resume and one that doubles down on its claimed identity — and shows the divergent downstream decision each makes, without moralizing",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "chapterId": "the-hard-thing-about-hard-things-ch08",
+  "number": 8,
+  "title": "How to Lead Even When You Don't Know Where You Are Going",
+  "coreMove": "Give directional clarity while naming uncertainty accurately and assigning the next move.",
+  "sourcePressure": "Ambiguity is normal; leaders need psychological discipline, accurate confidence, behavioral consistency, and a message that names what is known, what is unknown, and who owns the next move.",
+  "chapterSpecificMisunderstanding": "The weak version is confidence, calm presence, or vision when the leader lacks answers.",
+  "sourceAlignmentTerms": [
+    "ambiguity",
+    "psychological discipline",
+    "known",
+    "unknown",
+    "next move",
+    "fake certainty",
+    "behavioral signal"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "leaders must project confidence",
+      "nobody has all the answers",
+      "uncertainty is part of leadership"
+    ],
+    "counterintuition": [
+      "admit what you do not know",
+      "confidence needs limits",
+      "behavior speaks louder than words"
+    ],
+    "tryThisNow": [
+      "say I do not know",
+      "write knowns and unknowns",
+      "practice calm breathing"
+    ],
+    "examples": [
+      "generic product roadmap ambiguity",
+      "CEO town hall",
+      "remote team waiting for direction"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional blood bank during an unexplained test-equipment outage",
+      "audience": "a director whose staff need immediate collection guidance before root cause is known",
+      "stakes": "blood supply drops if collections stop, but unsafe testing cannot continue",
+      "format": "scene",
+      "requiredBeat": "the director states the confirmed outage, the unresolved root cause, and the next two-hour owner for manual verification before donor vans depart",
+      "firstImage": "a testing analyzer with a fault code flashing beside labeled blood coolers",
+      "mustInclude": [
+        "confirmed outage",
+        "unresolved root cause",
+        "two-hour owner"
+      ],
+      "mustAvoid": [
+        "medical certainty lecture"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "regional ferry operator after a hull-sensor anomaly",
+      "audience": "a port manager deciding whether to hold departures while engineers investigate",
+      "stakes": "commuters need movement, but crews read every signal of leader anxiety",
+      "format": "dialogue",
+      "requiredBeat": "the manager tells captains what the sensor proves, what inspection has not proved, and who will make the next departure call at 10:40",
+      "firstImage": "a ferry departure board with one route blinking delayed",
+      "mustInclude": [
+        "sensor anomaly",
+        "inspection boundary",
+        "10:40 call"
+      ],
+      "mustAvoid": [
+        "transport delay frustration"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "online tax filing service during a possible calculation bug",
+      "audience": "a support VP whose agents are inventing answers in live chats",
+      "stakes": "false certainty could create legal exposure and customer panic",
+      "format": "decision_point",
+      "requiredBeat": "the VP freezes improvised scripts, publishes a known-unknown-next-update note, and assigns one engineer to confirm the affected form set",
+      "firstImage": "a live-chat dashboard filling with the same tax-form question",
+      "mustInclude": [
+        "affected form set",
+        "next-update time",
+        "agent script"
+      ],
+      "mustAvoid": [
+        "software incident boilerplate"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "produce co-op after a suspected pesticide drift report",
+      "audience": "a co-op president balancing member farmers, buyers, and lab uncertainty",
+      "stakes": "shipment decisions require action before lab confirmation returns",
+      "format": "predict_reveal",
+      "requiredBeat": "the president asks members to predict buyer reaction to vague silence, then sends a bounded update with test timing and a hold decision for one lot",
+      "firstImage": "sealed berry flats stacked beside a sample cooler",
+      "mustInclude": [
+        "bounded update",
+        "test timing",
+        "lot hold"
+      ],
+      "mustAvoid": [
+        "farm crisis sentiment"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "architecture firm after a zoning reinterpretation threatens a hospital project",
+      "audience": "a project principal whose designers need direction before the city issues final guidance",
+      "stakes": "design work may need to change, but stopping everything wastes critical weeks",
+      "format": "before_after",
+      "requiredBeat": "the principal identifies the known zoning constraint, the uncertain ruling, and two design tracks with owners until the city meeting",
+      "firstImage": "a marked-up zoning letter spread across hospital floor plans",
+      "mustInclude": [
+        "two design tracks",
+        "city meeting",
+        "known constraint"
+      ],
+      "mustAvoid": [
+        "creative design process"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "regional bank fraud desk during a new ATM skimming pattern",
+      "audience": "a fraud director whose analysts want a full pattern before warning branches",
+      "stakes": "waiting for certainty could cost customers, but overclaiming could trigger false alarms",
+      "format": "reflection",
+      "requiredBeat": "the director writes a branch alert with verified transaction features, explicitly excludes unverified theories, and assigns a noon evidence review",
+      "firstImage": "a fraud heat map with three ATM pins lit in yellow",
+      "mustInclude": [
+        "verified features",
+        "unverified theories",
+        "noon review"
+      ],
+      "mustAvoid": [
+        "crime mystery framing"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "build a known-unknown-next-move message",
+      "distinguish honest confidence from fake certainty",
+      "identify behavioral signals that create decision drag",
+      "assign ownership under uncertainty without pretending the answer is complete"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write a three-line update for one uncertain situation: what is known, what is not known yet, and the next move with owner and time boundary.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

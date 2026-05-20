@@ -1,0 +1,288 @@
+{
+  "chapterId": "noise-ch18",
+  "number": 18,
+  "title": "How Groups Amplify Noise",
+  "readingTimeMinutes": 12,
+  "hook": "The group's agreement is not the group's information. It is what the first strong voice made survivable.",
+  "counterintuition": "Group deliberation replaces the independent signal in each person's view with a social signal about what the room will accept. The final verdict is not a summary of all views; it is the first influential view processed through silence and adjustment. More people in the room does not mean more information in the outcome.",
+  "tryThisNow": "Before your next group judgment meeting, ask everyone to write their view before anyone speaks. Read the range aloud first. Notice whether the final decision reflects that range or collapses toward the first speaker.",
+  "keyTakeaway": "Group deliberation amplifies the first influential voice by converting independent information into social conformity. The group's consensus tracks who spoke first, not what the evidence supported.",
+  "breakdown": {
+    "fastRead": "Six advisors hold a range spanning 22 points before the meeting. After 40 minutes of discussion, their consensus falls within 3 points of the senior partner's opening statement. The information in the other 19 points was not aggregated. It was never heard.\n\nEach person in a deliberating group arrives with independent information. The second person to speak has heard from the first: not data about the case, but data about what the first person believes. They weight it. So does the third. By the end, much of what each person brought has been replaced by what the room appears to believe. The group's agreement is not the group's information. It is what the first strong voice made survivable.",
+    "deepRead": "A committee that agrees is not a committee that has aggregated its information. Consensus measures convergence. It does not measure accuracy. The two look identical when the group has finished talking.\n\nEach new speaker in a deliberating group has already heard from the speakers before them. That information is not data about the subject: it is data about what the previous speakers believe. Research on informational cascades in group judgment shows that this makes deliberation amplify the shared leanings of early speakers rather than canceling individual biases through discussion. A person with contradictory information faces a choice at every moment the group converges: speak against the apparent consensus and absorb the social cost of friction, or stay silent and let the convergence continue. In most meetings, the friction cost is immediate and visible. The information cost is invisible and deferred. Silence is the rational local choice, which means the group's final position systematically excludes what would have contradicted it most.\n\nCollecting independent judgments before discussion changes what happens next. The distribution is examined rather than converged upon. The meeting shifts from a convergence engine to a comparison tool.\n\nThe committee's printed consensus is not a summary of all the information in the room. It is a summary of what survived after the first strong voice spoke.",
+    "fullRead": "The anonymous poll results appear on the screen before the committee meeting: a 22-point spread across six investment advisors' individual estimates. Everard steps back from the projector while the senior partner offers the first substantive view of the quarter's allocation question. Forty minutes of discussion later, the committee's consensus falls within 3 points of that opening view. The pre-meeting distribution had shown six distinct positions. The post-discussion consensus reflected one of them, amplified.\n\nResearch on informational cascades in group judgment shows that deliberating groups tend to move in the direction of their initial leanings and amplify shared biases rather than cancel them. The mechanism is structural, not a failure of effort or good faith. Each person who speaks shifts the room's apparent center of gravity. Each subsequent speaker adjusts toward that center rather than toward their independent starting point. A group member with contradictory information faces a simple calculation: friction now, or silence now. The friction is immediate. The information cost is deferred. Most people choose silence. The group's consensus then excludes exactly the information that would have complicated it.\n\n\"Our reversal rate dropped 35 percent after we moved to written pre-votes,\" Leonora said. Crispin's journal used sequential oral discussion: editors heard each other's assessments before submitting their own. Leonora's journal collected written votes before any discussion began. Across matched submissions, Crispin's board's decisions tracked the first speaker's view more than the article's score. Leonora's board's decisions tracked the written votes. Same editors, same articles, different sequence.\n\nPatience reviewed a full year of tumor board case records after the cancer center changed its presentation protocol. In cases where the radiologist presented first, 73 percent of recommendations aligned with the radiologist's interpretation; in cases where the oncologist presented first, 71 percent aligned with the oncologist. The imaging data was the same in both conditions. The treatment recommendation was not. Presentation order predicted the recommendation more reliably than any case-complexity measure.\n\nYou introduce anonymous pre-ballots in faculty tenure deliberations: each member casts an initial vote before discussion, then a final vote after. Over two years and 22 cases, at least one member changes their vote in 14 of them. The changes are not random: they skew toward the first committee member to speak in open deliberation. These changes are not people updating on new evidence. They are people updating on social information: what the first speaker made the room willing to accept.\n\nLavinia reviewed 30 mock jury deliberation recordings and sorted them by one variable: whether the foreperson stated a specific damage number in the first five minutes or opened with a question. In 22 recordings with an early foreperson number, the final award landed within 20 percent of that number. In the 8 with a question-open, the final award ranged more widely. The group did not lack information. It lacked a process that collected that information before an anchor entered the room."
+  },
+  "memorableLines": [
+    {
+      "text": "The group's agreement is not the group's information. It is what the first strong voice made survivable.",
+      "location": "breakdown.fastRead",
+      "why": "Two sentences that collapse the entire amplification mechanism into a concrete test: can you distinguish what the group knew from what the group said? The second sentence names the force that decides the difference."
+    },
+    {
+      "text": "The committee's printed consensus is not a summary of all the information in the room. It is a summary of what survived after the first strong voice spoke.",
+      "location": "breakdown.deepRead",
+      "why": "The juxtaposition between 'all the information in the room' and 'what survived' makes the deletion visible: something was present before the consensus, and something did not make it through."
+    },
+    {
+      "text": "The group did not lack information. It lacked a process that collected that information before an anchor entered the room.",
+      "location": "breakdown.fullRead",
+      "why": "Redirects the diagnosis from the group's knowledge to the group's process, turning the chapter's argument into a concrete design problem rather than a critique of the participants."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "noise-ch18-ex01",
+      "title": "22 Points to 3",
+      "tags": ["investment committee", "pre-meeting polling", "senior partner anchoring", "convergence"],
+      "planSpec": {
+        "domain": "investment committee review: a fund's investment committee measuring how post-discussion consensus compares to the pre-discussion aggregate of individual estimates",
+        "audience": "a fund's investment committee advisor who ran a pre-discussion anonymous polling exercise before the quarterly review meeting",
+        "stakes": "portfolio allocation decisions: if the committee's consensus is driven by who speaks first rather than by available information, capital is misallocated",
+        "format": "scene",
+        "requiredBeat": "anonymous pre-meeting estimates span 22 points; after discussion the committee consensus falls within 3 points of the most senior partner's opening statement; the distribution collapses toward that statement as each subsequent speaker adjusts"
+      },
+      "scenario": "The anonymous poll results projected on the screen before the committee meeting show a 22-point spread across six investment advisors' individual estimates. Everard stands at the projector while the senior partner offers the first substantive assessment of the quarter's allocation decision. Forty minutes of discussion later, the committee's consensus falls within 3 points of that opening assessment. The pre-meeting distribution had shown six distinct views. The post-discussion consensus reflected one of them, amplified.",
+      "whatToDo": "Before any committee judgment discussion, collect anonymous written estimates before discussion begins. Present the distribution range before the first voice speaks. Use the spread as the starting point for discussion.",
+      "whyItMatters": "A consensus within 3 points of the senior partner's opening, from a 22-point pre-meeting range, shows the discussion did not aggregate the group's information. It aggregated the group's deference."
+    },
+    {
+      "exampleId": "noise-ch18-ex02",
+      "title": "Same Editors, Same Articles, Different Sequence",
+      "tags": ["editorial board", "written pre-vote", "sequential oral discussion", "first-speaker effect"],
+      "planSpec": {
+        "domain": "editorial board decision on a controversial article: a journal's editorial board measuring whether publication decisions depend on the sequence of member opinions",
+        "audience": "a journal editor-in-chief studying the effect of discussion order on publication decisions",
+        "stakes": "the integrity and diversity of the published record: if editorial decisions reflect who spoke first rather than article merit, the journal's quality filters are noisy",
+        "format": "dialogue",
+        "requiredBeat": "the sequential-oral-discussion journal has 35 percent higher decision reversal rate than the written-vote-first journal; the sequential journal's decisions track the first speaker's view more than the article's score"
+      },
+      "scenario": "\"Our reversal rate dropped 35 percent after we moved to written pre-votes,\" Leonora said. Crispin's journal used sequential oral discussion: editors heard each other's assessments before submitting their own. Leonora's journal collected written votes before any discussion began. Across matched submissions, Crispin's board's decisions tracked the first speaker's view more than the article's score. Leonora's board's decisions tracked the written votes. Same editors, same articles, different sequence.",
+      "whatToDo": "To reduce first-speaker anchoring in editorial or review board decisions, move to written independent assessments submitted before any discussion. Collect and compare the distribution before discussion begins.",
+      "whyItMatters": "A 35 percent higher reversal rate in sequential oral discussion, with matched submissions and editors, shows the process itself is generating the instability. The article did not change. The sequence did."
+    },
+    {
+      "exampleId": "noise-ch18-ex03",
+      "title": "73 Percent and 71 Percent",
+      "tags": ["tumor board", "presentation order", "specialist anchoring", "treatment recommendation"],
+      "planSpec": {
+        "domain": "hospital tumor board: a multidisciplinary cancer team measuring whether treatment recommendations change based on which specialist presents first",
+        "audience": "a cancer center quality officer studying decision consistency across tumor board meeting formats",
+        "stakes": "patient treatment plans: if the first-presenting specialist anchors the recommendation, patients' treatment depends on meeting format rather than case complexity",
+        "format": "postmortem",
+        "requiredBeat": "recommendations align with the radiologist in 73 percent of cases when the radiologist presents first; with the oncologist in 71 percent when the oncologist presents first; presentation order, not imaging data, predicts the recommendation"
+      },
+      "scenario": "One year of tumor board case records, sorted by which specialist presented first. Patience found the pattern consistent: in cases where the radiologist presented first, 73 percent of recommendations aligned with the radiologist's interpretation; in cases where the oncologist presented first, 71 percent aligned with the oncologist. The imaging data was the same in both conditions. The treatment recommendation was not. Presentation order predicted the recommendation more reliably than any case-complexity measure.",
+      "whatToDo": "Before tumor board or multidisciplinary review meetings, require all specialists to submit written assessments before any specialist presents. The board reviews the distribution of independent assessments before open discussion begins.",
+      "whyItMatters": "When presentation order predicts the recommendation more than case complexity, the meeting is not aggregating independent specialist knowledge. It is amplifying whichever specialist spoke first."
+    },
+    {
+      "exampleId": "noise-ch18-ex04",
+      "title": "Three Hands",
+      "tags": ["crisis response team", "self-censorship", "apparent consensus", "information suppression"],
+      "planSpec": {
+        "domain": "crisis response team decision: an emergency management team running a debriefing exercise on how the group reached a resource allocation decision under time pressure",
+        "audience": "a crisis management trainer analyzing a tabletop exercise debrief",
+        "stakes": "crisis resource allocation: if group decisions under pressure converge on the most vocal member's view rather than the full information available, resource misallocation follows",
+        "format": "thought_experiment",
+        "requiredBeat": "three of six team members had information contradicting the group's direction but self-censored once apparent consensus formed; the group reached a suboptimal allocation because convergence pressure suppressed dissent before all information was collected"
+      },
+      "scenario": "In a tabletop crisis exercise, how many team members hold information that contradicts the emerging group direction but do not share it? The debrief revealed: three of six. Each had a resource allocation recommendation that differed from the group's consensus. All three self-censored once the convergence appeared to be forming. The information was in the room. The process had not collected it before the convergence made speaking up feel costly.",
+      "whatToDo": "In any high-stakes group decision under time pressure, ask each member to state their individual recommendation before the group converges. Written notes collected first preserve information that apparent consensus would suppress.",
+      "whyItMatters": "Self-censorship in the face of apparent consensus is rational from each individual's perspective. It is collectively costly because the group's decision then excludes exactly the information that would have improved it."
+    },
+    {
+      "exampleId": "noise-ch18-ex05",
+      "title": "14 of 22",
+      "tags": ["academic tenure vote", "anonymous pre-ballot", "vote change", "social conformity"],
+      "planSpec": {
+        "domain": "academic tenure vote: a faculty committee comparing final vote outcomes before versus after introducing anonymous pre-ballot before deliberation",
+        "audience": "a university faculty governance officer studying whether anonymous pre-voting changes deliberation patterns",
+        "stakes": "faculty careers and departmental talent: tenure decisions that reflect who dominated deliberation rather than the faculty record are unfair and harmful to institutional quality",
+        "format": "before_after",
+        "requiredBeat": "in 14 of 22 tenure cases over two years, at least one committee member changes their vote between the pre-ballot and final vote; the changes skew toward the first committee member to speak in open deliberation"
+      },
+      "scenario": "You introduce anonymous pre-ballots in faculty tenure deliberations: each member casts an initial vote before discussion, then a final vote after. Over two years and 22 cases, at least one member changes their vote in 14 of them. The changes are not random: they skew toward the first committee member to speak in open deliberation. The pre-ballot records what each member believed before the room's direction became visible. The direction of most changes is toward whoever spoke first.",
+      "whatToDo": "Introduce anonymous pre-ballots before any committee deliberation. Compare initial votes to final votes. Systematic change skewed toward the first speaker is evidence of amplification rather than information aggregation.",
+      "whyItMatters": "Vote changes skewed toward the first speaker across 14 of 22 cases are evidence of social conformity, not new information. The pre-ballot preserves what each member believed before the room's direction became visible."
+    },
+    {
+      "exampleId": "noise-ch18-ex06",
+      "title": "The Foreperson's Number",
+      "tags": ["jury deliberation", "foreperson anchoring", "damage award", "question-open alternative"],
+      "planSpec": {
+        "domain": "jury deliberation in a civil case: a litigation consultant measuring whether early foreperson statements predict final damage awards",
+        "audience": "a litigation consultant reviewing mock jury deliberation recordings for a trial strategy study",
+        "stakes": "the integrity of jury deliberation: if the foreperson's early framing dominates the verdict, the process is not actually aggregating independent juror views",
+        "format": "vignette",
+        "requiredBeat": "in 22 of 30 mock jury deliberations where the foreperson stated a damage number in the first five minutes, the final award landed within 20 percent of that number; the question-opener condition produced wider, less foreperson-anchored awards"
+      },
+      "scenario": "The deliberation rooms in the mock jury recordings look the same: rectangular tables, printed case materials, twelve chairs. Lavinia sorted them by one variable: whether the foreperson stated a damage number in the first five minutes or opened with a question. In 22 of 30 recordings with an early foreperson number, the final award landed within 20 percent of that number. In the 8 with a question-open, the final award ranged more widely. The anchor was not agreed upon. It was simply there first.",
+      "whatToDo": "Before any group deliberation that will produce a number, have the facilitator open with a question about factors rather than a specific value. Collect individual estimates first; post the distribution before discussion begins.",
+      "whyItMatters": "In 22 of 30 juries, the foreperson's early number predicted the final award more reliably than any case characteristic. The number was not a decision. It was an anchor that shaped every adjustment that followed."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "noise-ch18-q01",
+        "prompt": "What is the primary mechanism through which group deliberation amplifies noise rather than reduces it?",
+        "choices": [
+          "Group members with less expertise defer to those with more, systematically downweighting the most independent and accurate information in the group.",
+          "Each speaker shifts the group's apparent center of gravity, and subsequent speakers adjust toward that center rather than revealing their independent view, replacing diverse information with social convergence.",
+          "Groups amplify noise because members with extreme views disproportionately influence deliberation, pulling the group away from the accurate moderate center."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mechanism is sequential: each new speaker's expressed position becomes social information for all subsequent speakers. Independent views are not combined; they are adjusted. The final consensus tracks the first influential voice more than the aggregate of all independent assessments.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "noise-ch18-q02",
+        "prompt": "An investment committee begins with a 22-point pre-meeting estimate range. After 40 minutes of discussion, they agree within 3 points of the senior partner's opening statement. What best explains this outcome?",
+        "choices": [
+          "The pre-meeting estimates contained errors that discussion corrected as members shared relevant case information; the consensus reflects the genuinely aggregated view.",
+          "The senior partner had access to privileged information not in others' estimates, so convergence toward their view represents accurate updating.",
+          "The discussion converted independent estimates into socially coordinated positions, collapsing a 22-point distribution into 3 points through sequential adjustment toward the first influential voice rather than through information exchange."
+        ],
+        "correctIndex": 2,
+        "explanation": "If discussion had aggregated information, the final consensus would reflect the range of available estimates, not one end of it. Convergence to 3 points from 22, centered on the first senior speaker's position, indicates social adjustment rather than information synthesis.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch18-q03",
+        "prompt": "A tumor board's treatment recommendations align with the radiologist in 73 percent of cases when the radiologist presents first, and with the oncologist in 71 percent when the oncologist presents first. What type of noise does this primarily represent?",
+        "choices": [
+          "Level noise: the radiologist and oncologist have systematically different treatment philosophies that produce consistently different recommendations when each leads the meeting.",
+          "System noise created by the meeting's deliberation structure: presentation order is a feature of the process, not the case, so this variation is produced by the format rather than by genuine case complexity differences.",
+          "Pattern noise: each specialist produces different recommendations for different tumor types, and presentation order determines which specialty's framework gets applied to each case type."
+        ],
+        "correctIndex": 1,
+        "explanation": "Level noise would be a stable difference in recommendations between when the radiologist leads versus when the oncologist leads, independent of case. Pattern noise would involve different specialists consistently handling different case types. The 73/71 pattern, flipping predictably with presentation order regardless of case characteristics, is system noise from the meeting structure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch18-q04",
+        "prompt": "An editorial board wants to reduce first-speaker anchoring in publication decisions. Which change most directly targets the root mechanism?",
+        "choices": [
+          "Require all editors to submit written independent assessments before any discussion begins, and share the distribution of those assessments before the first editor speaks.",
+          "Require the most senior editor to speak last, ensuring that the most influential voice does not anchor the initial discussion.",
+          "Limit each editor's speaking time to two minutes to prevent any single voice from dominating the discussion."
+        ],
+        "correctIndex": 0,
+        "explanation": "Speaking-last and time-limiting change when or how long the anchor is expressed but do not prevent the anchor from forming. Collecting independent assessments before any discussion begins is the only change that preserves independent information before social exposure occurs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch18-q05",
+        "prompt": "In a crisis team debriefing, three of six members acknowledge having information that contradicted the group's direction but chose not to share it once consensus appeared to be forming. What is the primary implication?",
+        "choices": [
+          "The crisis team has a culture problem: three members were clearly unwilling to contribute their information when it was needed, and this should be addressed through team-building exercises and structured psychological safety training.",
+          "The three members who withheld their information from the group made a poor and consequential judgment call that would be best corrected through targeted training on the importance of speaking up during decision-making.",
+          "The self-censorship is rational within the group's process structure: when apparent consensus forms before all information is collected, members correctly perceive that the cost of friction exceeds the cost of silence, and the fix is to change the process sequence, not the culture."
+        ],
+        "correctIndex": 2,
+        "explanation": "Framing self-censorship as a culture or training problem treats a structural problem as a personal one. The rational response to apparent consensus is silence unless the process creates a moment before convergence where all information is required. Changing that moment changes the behavior without requiring people to absorb social cost.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch18-q06",
+        "prompt": "In faculty tenure deliberations, vote changes between pre-ballot and final vote are skewed toward the first speaker's position in 14 of 22 cases. What can be inferred about the role of open deliberation?",
+        "choices": [
+          "Deliberation is working appropriately: committee members are updating based on information shared, and the first speaker happens to have the most relevant information.",
+          "Open deliberation is primarily transmitting social information about the first speaker's position rather than new factual information about the tenure case, producing vote changes that track the room's direction rather than the evidence.",
+          "The first speaker in tenure deliberations consistently holds higher-quality assessments, reflecting a selection effect in who speaks first rather than a social influence mechanism."
+        ],
+        "correctIndex": 1,
+        "explanation": "If deliberation transmitted factual information, vote changes would be distributed across the range of new information shared, not concentrated in the direction of the first speaker. The skew toward the first speaker is a signature of social information transmission rather than evidence updating.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch18-q07",
+        "prompt": "A jury foreperson typically opens deliberation by stating a specific damage number. In 22 of 30 mock jury sessions, the final award lands within 20 percent of that opening number. Which alternative opening most directly reduces this effect?",
+        "choices": [
+          "The foreperson opens by asking the jury to list the factors they believe should influence the award amount, collecting individual estimates before any number is stated.",
+          "The foreperson opens by presenting the damage range requested by each party, giving jurors a structured reference frame for deliberation.",
+          "The foreperson opens by reviewing the case facts in the order presented at trial, establishing a shared factual baseline before discussing award amounts."
+        ],
+        "correctIndex": 0,
+        "explanation": "A party-requested range introduces two anchors rather than one. Reviewing case facts in sequence does not prevent the first specific number from anchoring the award discussion when it eventually begins. Collecting individual estimates before any number enters the room is the only intervention that preserves independent information before the anchor can form.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "noise-ch18-q08",
+        "prompt": "A manager proposes replacing individual performance ratings with group discussions to produce 'richer, more nuanced assessments.' What is the primary risk of this approach?",
+        "choices": [
+          "Group discussions will produce more lenient ratings than individual ones because social pressure in groups favors positive assessments over critical ones.",
+          "Group discussions will produce less consistent ratings over time because group composition will change from year to year, introducing level noise into the process.",
+          "Group discussions will amplify the view of whoever speaks most forcefully or first, replacing the independent signal in each member's assessment with social conformity and reducing the information content of the final rating."
+        ],
+        "correctIndex": 2,
+        "explanation": "Group discussions do not combine independent assessments; they replace them sequentially with adjusted positions. The final 'nuanced assessment' produced by discussion is likely to reflect the first influential voice's view rather than the full range of observations each member brought to the room.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "noise-ch18-q09",
+        "prompt": "A committee consistently produces consensus decisions within 5 points of the most senior member's first statement, regardless of the pre-meeting distribution of individual views. Which change most directly addresses this?",
+        "choices": [
+          "Require all committee members to submit their independent assessments before the most senior member speaks, and present the distribution to the full committee before deliberation begins.",
+          "Limit the committee to members of similar seniority so that no single voice has status-based influence over the others.",
+          "Rotate the first-speaking role among committee members so that no single member consistently anchors the discussion."
+        ],
+        "correctIndex": 0,
+        "explanation": "Limiting committee seniority removes one source of status-based anchoring but creates others and does not preserve independent information before social exposure. Rotating the first speaker moves the anchor rather than eliminating it. Collecting independent assessments before anyone speaks is the only change that preserves the pre-social distribution and makes it visible before the senior member's view enters the room.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "What is the difference between information aggregation and social conformity in group judgment?",
+      "back": "Information aggregation: independent views are collected before any social exposure and combined into a distribution that reflects the group's actual knowledge. Social conformity: views are expressed after social exposure, adjusting toward the apparent consensus, so the final output reflects who spoke first more than what the group knew.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "Why does early-speaking position produce greater amplification in group deliberation?",
+      "back": "Early speakers shift the room's apparent center of gravity before others reveal their independent views. Subsequent speakers adjust toward that center rather than toward their independent starting point. The result is that the final consensus systematically over-represents the first influential view and under-represents the range.",
+      "difficulty": "medium"
+    },
+    {
+      "front": "What is an informational cascade in the context of group judgment?",
+      "back": "An informational cascade occurs when each successive group member updates their expressed view based on what previous members said rather than on their own independent information. Once enough people have expressed alignment, the apparent consensus makes it rational for remaining members to align even if they hold contradictory private information.",
+      "difficulty": "hard"
+    },
+    {
+      "front": "Why does pre-discussion anonymous polling reduce group amplification?",
+      "back": "Anonymous polling before discussion records each member's independent assessment before social information enters the room. The distribution of independent assessments becomes the starting point for discussion rather than the first speaker's view. Discussion then interprets the distribution rather than converging on the first anchor.",
+      "difficulty": "easy"
+    },
+    {
+      "front": "Why is consensus a poor proxy for accuracy in group deliberation?",
+      "back": "Consensus measures convergence: the group stopped disagreeing. It does not measure accuracy: the group's shared view corresponded to the right answer. A group can converge confidently on a wrong view through social conformity, producing consensus without any information gain.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Before any group judgment meeting, collect independent written assessments from all participants before the first voice speaks. Present the distribution of those assessments to the full group as the starting point for discussion. Use the spread as information rather than treating the first speaker's view as the anchor. Independent recording before social exposure is the mechanism that preserves the group's actual information.",
+    "ifThenPlans": [
+      {
+        "context": "When you are about to start a group deliberation on a judgment or evaluation decision",
+        "plan": "Before any voice speaks, ask all participants to write their independent assessment. If collecting written notes is not possible, go around the table asking each person to state a specific position before any discussion begins. Record the range. Use it as the explicit starting point for deliberation."
+      },
+      {
+        "context": "When a group's deliberation appears to be converging quickly toward a single view",
+        "plan": "Ask explicitly whether anyone holds information that points in a different direction before accepting the convergence as genuine. Name the question: is this convergence driven by new information from discussion, or by the social cost of maintaining a dissenting position after the apparent consensus formed?"
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next meeting in which your group will reach a judgment or recommendation, ask everyone to write their view on paper before the meeting opens. Collect the papers. Read the range aloud. Then begin the discussion. Notice whether the discussion changes the range or treats it as a starting point.",
+    "weeklyPractice": "For each week that includes a group evaluation or decision meeting, introduce pre-meeting anonymous polling as a standing protocol: distribute a brief written estimate request before the meeting, collect responses before anyone speaks, and open the meeting with the distribution visible. Over four weeks, compare final decisions to pre-meeting distributions to measure how much the discussion aggregated versus how much it converged on the first anchor."
+  }
+}

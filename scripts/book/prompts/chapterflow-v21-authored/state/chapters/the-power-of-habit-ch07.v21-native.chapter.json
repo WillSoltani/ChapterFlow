@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-power-of-habit-ch07",
+  "number": 7,
+  "title": "How Target Knows What You Want Before You Do",
+  "readingTimeMinutes": 12,
+  "hook": "The broth, crackers, and Tuesday pickup slot do not know the diagnosis, but they know enough to tempt the store.",
+  "counterintuition": "The mistake is to treat habit data as either all-knowing surveillance or harmless selling. The better move is to read the trail as partial prediction, then test whether the design helps the person or quietly steers them.",
+  "tryThisNow": "Open one recent trail you leave: receipts, logins, routes, or skips. Circle a repeat, then write one helpful use of that pattern and one manipulative use.",
+  "keyTakeaway": "Habit trails become powerful when organizations read them from the outside, but every use has to pass the test of whether it serves the person or merely steers them.",
+  "breakdown": {
+    "fastRead": "A receipt shows low-sodium broth beside the same Tuesday pickup slot. The grocer cannot know the whole story. It can see a trail: broth, crackers, same day, same basket. That trail may point to a health shift or nothing more than a new recipe.\n\nDo not act as if the store knows everything. Treat buying patterns as partial clues. Target became the famous case because repeated purchases could hint at change before people said it aloud.\n\nA familiar coupon strip lowers the risk. Prediction is useful only when it stays humble. The store can offer general staples in the normal receipt flow, or it can expose and push. The same habit trail can invite care or become a trap.",
+    "deepRead": "A cart holds paint trays, furnace filters, and one roll of pipe insulation. Bram, a hardware analyst, can see the pattern before the customer can name it: first winter in a new house, many small fixes, no clear plan. The weak move is a huge winterization banner that turns doubt into a sales pitch. The better move is familiar placement. Put the winterization shelf tag beside the paint trays and filters already in the project.\n\nHabit trails are readable because routines leave marks outside the person. Purchases, routes, late-night plays, skipped Fridays, and account gaps show repeated action. They do not tell the whole inner story. They give a company enough to guess what might help and enough power to steer.\n\nA replay graph spikes at 2 a.m. beside a glowing sleep-timer button. Cyra, the product lead, can order another endless mix card and keep the listener there. Or she can place the sleep-timer shortcut where the pattern says it may help. The same 2 a.m. cluster supports both choices. The ethical line sits in the interface.\n\nTarget matters because it made the commercial point plain: buying patterns can reveal life-stage change. But the lesson is not that companies know everything. It is that partial prediction at scale can be useful, awkward, and risky all at once.\n\nFamiliar placement lowers resistance, so it also raises responsibility. When novelty rides beside things the person already trusts, the design feels easy. That ease can help a shopper find what fits a new need. It can also hide pressure inside the familiar.",
+    "fullRead": "Single-serving soup cards replace family-size dinners in a meal-kit menu queue. Eleri, the retention manager, watches shared meals give way to skipped Fridays and smaller orders. The churn model can call this a rescue moment. The human reading is less certain. Someone may be traveling, grieving, separating, saving money, or simply tired of leftovers.\n\nThe right move starts with humility. A habit trail is not a confession. It is a line of outside evidence. The company can see order size, timing, skips, basket mix, and add-ons. It cannot see the full private reason. That limit should shape the design.\n\nA bank service designer sees the same problem in harsher form. Payroll dates, grocery debits, and overdraft fees line up on one transaction timeline. Arvid can see that the fee was predictable before it hit. The next design choice is the whole moral test: a fee-warning draft that helps the customer move money in time, or a product that quietly profits from the tightest week.\n\nTarget's buying patterns made this idea hard to ignore. Retail data can hint at life-stage change before someone announces it. The power is not mind reading. The power is scale plus timing: many small purchases, read together, can make a weak signal strong enough to act on.\n\nA running-shoe retailer faces the softer version. Tindra sees worn-shoe timing and a blister-pad receipt. Before the change, the email screams injury risk and pushes new gear. After revision, the same data triggers a normal fitting invitation tucked beside the usual reorder reminder. The insight did not change. The use did.\n\nA fair objection is that any use of habit data can feel invasive. That worry deserves weight. The answer is not to pretend the pattern is invisible. The answer is to ask what the person would reasonably recognize as help if the inference were explained in plain words. \"Your reorder window is here, and a fitting check is available\" feels different from \"Your pain pattern says buy now.\"\n\nThe design test is concrete. Does the message reveal something private in a public or shared place? Does it make the helpful step easy without hiding the choice? Does familiar placement make a new option easier to find, or does it smuggle pressure past the person's guard? Does the company win mainly because the person is confused, tired, or embarrassed?\n\nHabit data has power because it sees repeated action before the person may have named the change. A receipt slot, shelf tag, timer button, fee warning, fitting note, or pause-and-adjust card can all be useful. The same surfaces can also steer too hard. Read the trail. Keep the prediction partial. Then design as if the person on the other side deserves both help and room."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-nessa-low-sodium-strip",
+      "title": "Nessa Chooses the Familiar Coupon Strip",
+      "tags": [
+        "grocery",
+        "loyalty data",
+        "health shift"
+      ],
+      "planSpec": {
+        "domain": "regional grocer detecting a low-sodium cooking shift",
+        "audience": "a loyalty-program manager deciding what to do with a sudden pattern in regular basket data",
+        "stakes": "a helpful nudge could support a health change, while a blunt coupon could expose something private at the checkout",
+        "format": "decision_point",
+        "requiredBeat": "The manager circles low-sodium broth, unsalted crackers, and the same Tuesday pickup slot, then chooses a familiar receipt placement for general heart-healthy staples instead of a message that announces a diagnosis."
+      },
+      "scenario": "A receipt shows low-sodium broth beside the same Tuesday pickup slot at 8:15 a.m. in the regional grocer's loyalty office. Nessa circles broth, unsalted crackers, and the pickup slot on three weeks of baskets. She can send a bold heart-condition coupon, but her pen pauses. She must decide whether to announce a private guess or use the familiar coupon strip for general heart-healthy staples.",
+      "whatToDo": "Use the familiar coupon strip for general heart-healthy staples and avoid any message that names or implies a diagnosis from the low-sodium basket pattern.",
+      "whyItMatters": "The receipt trail is only partial evidence. Familiar placement can support the shift without exposing the shopper at checkout or turning a guess into a label."
+    },
+    {
+      "exampleId": "ch07-ex02-bram-winter-shelf-tag",
+      "title": "Bram Places Winterization Beside the Paint Trays",
+      "tags": [
+        "hardware",
+        "new homeowner",
+        "familiar placement"
+      ],
+      "planSpec": {
+        "domain": "hardware store project purchases revealing a first winter in a new house",
+        "audience": "a merchandising analyst deciding how to place unfamiliar maintenance products",
+        "stakes": "new homeowners need help, but a store can turn uncertainty into overselling",
+        "format": "predict_reveal",
+        "requiredBeat": "The analyst predicts the shopper will resist a big winterization banner, then places pipe insulation beside the paint trays and furnace filters already in the basket so novelty rides with familiar projects."
+      },
+      "scenario": "A cart holds paint trays, furnace filters, and one roll of pipe insulation at 6:30 p.m. near the hardware store checkout. Bram, the merchandising analyst, predicts the shopper will resist a giant winterization banner. He moves the winterization shelf tag beside paint trays and filters instead. The reveal comes in the next basket review: novelty rides with familiar projects, not a scare display.",
+      "whatToDo": "Place the winterization shelf tag beside paint trays and furnace filters already tied to first-home projects, rather than leading with a large warning banner.",
+      "whyItMatters": "The purchase trail suggests a new need, not permission to scare. Familiar placement helps the shopper notice useful maintenance without turning uncertainty into overselling."
+    },
+    {
+      "exampleId": "ch07-ex03-cyra-sleep-timer",
+      "title": "Cyra Points at the Sleep-Timer Button",
+      "tags": [
+        "music app",
+        "interface choice",
+        "late night"
+      ],
+      "planSpec": {
+        "domain": "music streaming app reading late-night replay patterns",
+        "audience": "a product lead reviewing whether to personalize after repeated 2 a.m. listening sessions",
+        "stakes": "the same inference could help a listener wind down or push them deeper into sleepless autoplay",
+        "format": "dialogue",
+        "requiredBeat": "The lead points to the 2 a.m. replay cluster and asks whether the next card should be a sleep-timer shortcut or another endless mix, making the ethical line visible in the interface choice."
+      },
+      "scenario": "A replay graph spikes at 2 a.m. beside a glowing sleep-timer button in the streaming app review room. Cyra points to the cluster. \"We know late repeats are happening,\" she tells Jo, the designer. Jo says an endless mix card would lift minutes. Cyra asks, \"Or should the next card be the sleep-timer shortcut?\" The team must decide which interface use helps and which one deepens the loop.",
+      "whatToDo": "Put the sleep-timer shortcut in the next-card slot for the 2 a.m. replay cluster, and reject the endless mix card when the pattern suggests fatigue.",
+      "whyItMatters": "The same late-night trail supports two designs. The timer uses the inference to help the listener stop; the endless mix uses the weak moment to keep play going."
+    },
+    {
+      "exampleId": "ch07-ex04-arvid-fee-warning",
+      "title": "Arvid Finds the Fee Before It Hits",
+      "tags": [
+        "banking",
+        "fees",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "checking-account transaction pattern before recurring overdrafts",
+        "audience": "a bank service designer deciding between a warning, a fee product, and silence",
+        "stakes": "predictive inference can prevent avoidable fees or quietly monetize a customer's tightest week",
+        "format": "postmortem",
+        "requiredBeat": "After a complaint, the designer lays payroll dates, grocery debits, and overdraft fees on one timeline and sees that the trail was readable before the fee; the next design choice must pass a help-versus-steer test."
+      },
+      "scenario": "A transaction timeline shows payroll dates, grocery debits, and overdraft fees on Arvid's monitor after a complaint call at 10:05 a.m. The pattern was readable before the fee hit. Arvid lays a fee-warning draft beside a short-term credit offer and a do-nothing option. He must decide which design passes a help-versus-steer test for a customer entering the tightest week.",
+      "whatToDo": "Send the fee-warning draft early enough for action, make the no-fee step clear, and separate it from any product offer that profits from the predicted shortfall.",
+      "whyItMatters": "The transaction trail can prevent a fee or monetize stress. The ethical design gives the customer usable warning before selling a product built around the same vulnerability."
+    },
+    {
+      "exampleId": "ch07-ex05-tindra-fitting-invite",
+      "title": "Tindra Tucks the Fitting Invite Beside Reorder",
+      "tags": [
+        "running shoes",
+        "reorder",
+        "before after"
+      ],
+      "planSpec": {
+        "domain": "running-shoe retailer using purchase cadence and blister-pad add-ons",
+        "audience": "a store analyst who wants to personalize without making customers feel watched",
+        "stakes": "the data can prevent injury through a fitting check or exploit anxiety with unnecessary gear",
+        "format": "before_after",
+        "requiredBeat": "Before the change, the email screams injury risk; after revision, the blister-pad add-on and worn-shoe timing trigger a normal fitting invitation tucked beside the usual reorder reminder."
+      },
+      "scenario": "A worn-shoe photo sits beside a blister-pad receipt in Tindra's campaign review at 3:20 p.m. Before revision, the email screams injury risk and pushes three add-ons. After Tindra's edit, the blister-pad receipt and worn-shoe timing trigger a normal fitting invitation tucked beside the usual reorder reminder. The same trail now offers a check instead of fear.",
+      "whatToDo": "Replace the injury-risk email with a fitting invitation placed beside the usual reorder reminder, keyed to worn-shoe timing and the blister-pad receipt.",
+      "whyItMatters": "The cadence and add-on suggest possible fit trouble, not a right to frighten the runner. The revised placement makes help normal and optional."
+    },
+    {
+      "exampleId": "ch07-ex06-eleri-pause-card",
+      "title": "Eleri Adds the Pause-and-Adjust Card",
+      "tags": [
+        "meal kit",
+        "life change",
+        "reflection"
+      ],
+      "planSpec": {
+        "domain": "meal-kit service noticing a shift from shared dinners to single-serving orders",
+        "audience": "a retention manager deciding whether to chase a churn risk or respect a life change",
+        "stakes": "a company can make a hard transition easier or turn a private change into relentless pressure to buy",
+        "format": "reflection",
+        "requiredBeat": "The manager sees family-size dinners give way to single-serving soups and skipped Fridays, then chooses a pause-and-adjust card in the normal menu flow rather than a barrage of win-back discounts."
+      },
+      "scenario": "Single-serving soup cards replace family-size dinners in the meal-kit menu queue on Eleri's dashboard at 7:40 a.m. Skipped Fridays sit in gray along the side. The churn tool wants win-back discounts by noon. Eleri sits with the private weight of the pattern and must decide whether to chase the account or add a pause-and-adjust card in the normal menu flow.",
+      "whatToDo": "Place a pause-and-adjust card inside the normal menu queue and hold back the barrage of win-back discounts triggered by single-serving orders and skipped Fridays.",
+      "whyItMatters": "The order shift may mark a hard life change. A quiet adjustment path respects uncertainty, while aggressive discounts turn a private transition into pressure to keep buying."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A library app sees that a reader checks out large-print mysteries every Thursday and recently added audiobooks. What is the strongest use of that trail?",
+        "choices": [
+          "Place an optional audiobook format note beside the usual Thursday mystery suggestions.",
+          "Send a message saying the reader must be losing vision.",
+          "Ignore the pattern because all personalization is manipulation."
+        ],
+        "correctIndex": 0,
+        "explanation": "The checkout trail is partial, but it can support a useful format option in a familiar place. Naming a health condition overreaches, while ignoring the pattern rejects a possible help.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A commuter pass system sees a rider taking a later train every Tuesday and Thursday for six weeks. A service designer wants to act. Which choice best respects the limits of the trail?",
+        "choices": [
+          "Send a public-facing badge congratulating the rider on a new schedule.",
+          "Offer a quiet schedule-save shortcut in the normal trip planner.",
+          "Assume the rider changed jobs and sell premium office-area ads."
+        ],
+        "correctIndex": 1,
+        "explanation": "The repeated train time supports a quiet shortcut, not a public label or a job inference. The planner placement helps without pretending the system knows the reason.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A pet store sees smaller dog-food bags, stair-ramp browsing, and skipped chew-toy orders. The marketing team wants to send \"senior dog decline\" coupons. What is the better test?",
+        "choices": [
+          "Ask whether the phrase will get higher coupon clicks.",
+          "Treat the pattern as proof that the dog is ill.",
+          "Use a general comfort-care placement near the shopper's normal reorder and avoid naming the private inference."
+        ],
+        "correctIndex": 2,
+        "explanation": "The trail may point to an aging pet, but the private meaning is uncertain. A comfort-care option near reorder can help; a blunt decline label turns inference into exposure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A grocery chain sees midnight snack purchases rise after paydays and wants to push larger bundles at 11:30 p.m. Why is this ethically weak?",
+        "choices": [
+          "It uses a readable weak moment mainly to increase spend, not to serve the shopper.",
+          "Buying patterns can never be used responsibly.",
+          "Night purchases never reveal anything useful."
+        ],
+        "correctIndex": 0,
+        "explanation": "The timing trail is real, but the design exploits a likely weak moment for more spending. The problem is not all pattern use; it is steering that benefits the store against the shopper.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A language app sees a learner repeatedly stopping at the same grammar lesson after ten minutes. Which personalization is strongest?",
+        "choices": [
+          "Send a shame alert saying the learner keeps quitting.",
+          "Offer a shorter review card beside the same lesson start button.",
+          "Hide the lesson because the learner clearly dislikes grammar."
+        ],
+        "correctIndex": 1,
+        "explanation": "The repeated stop point suggests friction, not failure or dislike. A shorter card in the normal lesson flow uses familiar placement to reduce friction without shaming the learner.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A pharmacy's refill data shows a customer picking up medication late every month. The team proposes a checkout screen visible to other shoppers that says \"You are noncompliant.\" What should replace it?",
+        "choices": [
+          "A louder public warning so the customer takes health seriously.",
+          "No reminder, because refill patterns should never guide service design.",
+          "A private refill-timing option in the app or receipt flow that avoids public labels."
+        ],
+        "correctIndex": 2,
+        "explanation": "The refill trail may reveal a useful timing need, but the public screen exposes and shames. A private option helps while respecting how sensitive the inference may be.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A ticketing site notices a family buying accessible seats after years of balcony seats. What design best respects partial prediction?",
+        "choices": [
+          "Make accessible-seat filters easier to find in the usual seating map without stating why.",
+          "Email the account holder asking what disability has occurred.",
+          "Remove balcony offers because the family's needs are now known."
+        ],
+        "correctIndex": 0,
+        "explanation": "The seating trail may signal a need, but the cause is not known. Better filter placement helps in the familiar map; asking for a private reason or removing options overclaims.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A meal app sees a customer skipping dinners on school nights and ordering quick breakfasts instead. Which question should guide the next design choice?",
+        "choices": [
+          "How can we maximize add-on purchases during the busiest morning?",
+          "Would the inferred pattern, if explained plainly, feel like help or pressure?",
+          "Can we prove the customer is a parent before changing anything?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The help-versus-pressure test keeps the design grounded in the customer's interest. Add-on maximization invites manipulation, while demanding proof misses the value of partial prediction.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A bookstore sees a customer move from travel guides to local grief memoirs and then stop buying for three weeks. Which response crosses the line?",
+        "choices": [
+          "Keep ordinary recommendation controls easy to adjust.",
+          "Offer a quiet pause option in the normal account page.",
+          "Send an email headed \"Books for your grief journey\" based only on the pattern."
+        ],
+        "correctIndex": 2,
+        "explanation": "The purchase trail may suggest a private loss, but the store cannot know. A grief-labeled email exposes a guess; quiet controls or a pause option leave room for the person.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A receipt pattern hints at a health change. What should you remember before acting?",
+      "back": "The trail is partial evidence, not a full story. Use it to offer help in a familiar, low-exposure place, and avoid naming a private inference as if it were certain.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A company can predict a user's need and also exploit it. What test separates the two?",
+      "back": "Ask whether the design helps the person make a better choice or uses the inferred weak moment to steer them toward what mainly benefits the company.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why does familiar placement matter when offering something new?",
+      "back": "New options meet less resistance when they sit beside trusted routines. That can make help easier to find, but it can also hide pressure inside a familiar flow.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A 2 a.m. replay cluster could trigger a sleep timer or an endless mix. What does that show?",
+      "back": "The same habit trail can support opposite designs. The ethical choice is in the interface: help the person stop when the pattern suggests fatigue, or deepen the loop.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What does it mean to keep prediction humble?",
+      "back": "Treat repeated outside behavior as a clue with limits. Do not turn it into a label, expose it publicly, or remove the person's room to choose.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is reading repeated external behavior without pretending it tells the whole story. Notice the trail, state the inference as partial, and then test the use: does it help the person, or does it steer them when they are exposed, tired, or uncertain?",
+    "ifThenPlans": [
+      {
+        "context": "personal trail check",
+        "plan": "If I notice a repeated receipt, route, login, or skip, then I will write what it might reveal and add at least one reason the inference could be wrong."
+      },
+      {
+        "context": "product or service design",
+        "plan": "If a pattern suggests a new need, then I will place the helpful option in a familiar flow without naming a private label the person did not give me."
+      },
+      {
+        "context": "commercial targeting",
+        "plan": "If the design works best when the person is tired, embarrassed, or confused, then I will treat that as a warning sign and redesign toward a clearer choice."
+      },
+      {
+        "context": "new recommendation",
+        "plan": "If I use familiar placement to introduce novelty, then I will check whether the placement makes help easier to find or hides pressure inside trust."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, pick one trail you leave outside yourself: purchases, app opens, route choices, skips, or reorders. Write one helpful use, one manipulative use, and the design line between them.",
+    "weeklyPractice": "Once a week, review one recommendation, coupon, or prompt you received. Ask what trail it may have read, how certain that inference really was, and whether the offer helped you or steered you."
+  },
+  "memorableLines": [
+    {
+      "text": "Prediction is useful only when it stays humble.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the difference between partial inference and overclaiming."
+    },
+    {
+      "text": "Familiar placement lowers resistance, so it also raises responsibility.",
+      "location": "breakdown.deepRead",
+      "why": "It shows why a helpful design tactic can also become a manipulation risk."
+    },
+    {
+      "text": "The same habit trail can invite care or become a trap.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the ethical fork memorable without turning the lesson into privacy panic."
+    }
+  ]
+}

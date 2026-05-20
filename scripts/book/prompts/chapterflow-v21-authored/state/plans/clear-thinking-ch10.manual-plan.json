@@ -1,0 +1,196 @@
+{
+  "chapterId": "clear-thinking-ch10",
+  "number": 10,
+  "title": "Self-Confidence",
+  "coreMove": "Trust your prepared judgment long enough to keep thinking when the room presses back.",
+  "sourcePressure": "Self-confidence stabilizes independent judgment after self-knowledge and self-control. It is grounded self-trust under social pressure, not ego, charisma, or performance.",
+  "chapterSpecificMisunderstanding": "Confusing confidence with ego, certainty, charm, or ignoring contrary evidence.",
+  "sourceAlignmentTerms": [
+    "self-confidence",
+    "independent judgment",
+    "social pressure",
+    "trusting yourself",
+    "steadiness",
+    "grounded self-trust"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "independent judgment under social pressure",
+      "detail": "the heading index supports self-confidence through independent judgment, social pressure, trusting yourself, and steadiness",
+      "useIn": "deepRead",
+      "phrasingHint": "Grounded confidence is quiet enough to hear the room and steady enough not to borrow its answer."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for self-confidence",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think self-confidence is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Matteo",
+      "domain": "a public health briefing",
+      "audience": "a reader facing self-confidence in a concrete public health briefing decision",
+      "stakes": "whether Matteo preserves judgment quality before the situation slides into charisma",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Matteo performs the chapter move by setting the call bell beside the triage tag, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the call bell against the counter in the public health briefing",
+      "mustInclude": [
+        "call bell",
+        "triage tag"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "charisma",
+        "reusing a previous chapter's public health briefing shell"
+      ]
+    },
+    {
+      "protagonistName": "Tomas",
+      "domain": "a board compensation meeting",
+      "audience": "a reader facing self-confidence in a concrete board compensation meeting decision",
+      "stakes": "whether Tomas preserves judgment quality before the situation slides into charisma",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Tomas performs the chapter move by setting the track diagram beside the delay code, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the board compensation meeting as Tomas reaches for the track diagram",
+      "mustInclude": [
+        "track diagram",
+        "delay code"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "charisma",
+        "reusing a previous chapter's board compensation meeting shell"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "a book festival programming room",
+      "audience": "a reader facing self-confidence in a concrete book festival programming room decision",
+      "stakes": "whether Diego preserves judgment quality before the situation slides into charisma",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Diego performs the chapter move by setting the return slips beside the price stickers, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the price stickers in the book festival programming room",
+      "mustInclude": [
+        "return slips",
+        "price stickers"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "charisma",
+        "reusing a previous chapter's book festival programming room shell"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "a engineering change review",
+      "audience": "a reader facing self-confidence in a concrete engineering change review decision",
+      "stakes": "whether Pablo preserves judgment quality before the situation slides into charisma",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Pablo performs the chapter move by setting the lineup card beside the ice shavings, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the lineup card lying beside the ice shavings in the engineering change review",
+      "mustInclude": [
+        "lineup card",
+        "ice shavings"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "charisma",
+        "reusing a previous chapter's engineering change review shell"
+      ]
+    },
+    {
+      "protagonistName": "Javier",
+      "domain": "a tennis doubles match",
+      "audience": "a reader facing self-confidence in a concrete tennis doubles match decision",
+      "stakes": "whether Javier preserves judgment quality before the situation slides into charisma",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "Javier performs the chapter move by setting the permit packet beside the cracked tile, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the cracked tile in the tennis doubles match",
+      "mustInclude": [
+        "permit packet",
+        "cracked tile"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "charisma",
+        "reusing a previous chapter's tennis doubles match shell"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "a cooperative housing interview",
+      "audience": "a reader facing self-confidence in a concrete cooperative housing interview decision",
+      "stakes": "whether Sofia preserves judgment quality before the situation slides into charisma",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sofia performs the chapter move by setting the speakerphone beside the probate folder, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the speakerphone in the cooperative housing interview",
+      "mustInclude": [
+        "speakerphone",
+        "probate folder"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "charisma",
+        "reusing a previous chapter's cooperative housing interview shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Trust your prepared judgment long enough to keep thinking when the room presses back.",
+      "detect the weak generic version: Confusing confidence with ego, certainty, charm, or ignoring contrary evidence.",
+      "distinguish self-confidence from nearby drift into charisma"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where self-confidence is active, then write the exact next visible move that would perform this chapter's move: trust your prepared judgment long enough to keep thinking when the room presses back.",
+  "readingTimeMinutes": 12
+}

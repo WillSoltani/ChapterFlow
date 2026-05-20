@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch01",
+  "number": 1,
+  "title": "Finding Noise",
+  "coreMove": "Spot judgment variability as a systemic problem distinct from bias before asking which individual was wrong.",
+  "sourcePressure": "An insurance company tested 48 underwriters on the same cases and found roughly 55 percent variability where it expected around 10 percent. The opening shock works because it makes disagreement visible and costly before any explanation about who is wrong. The chapter distinguishes bias (average error) from noise (variability in error) as fundamentally different problems.",
+  "chapterSpecificMisunderstanding": "Treating noise as just a synonym for bias, or assuming that finding the outlier in any disagreement fully resolves the problem.",
+  "sourceAlignmentTerms": ["noise", "bias", "variability", "underwriter", "spread", "consistency", "judgment"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "The 48-underwriter insurance audit",
+      "detail": "An insurance company tested 48 of its own underwriters on identical cases and found roughly 55 percent variability in their pricing — far above the roughly 10 percent the company expected. This is the book's opening anchor case.",
+      "useIn": "both",
+      "phrasingHint": "Forty-eight underwriters pricing the same risk should not spread their answers by 55 percent. One insurance company discovered they did — and that the company itself had no idea."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["noise is a hidden problem that affects us all", "you think you know how to judge — but do you?"],
+    "counterintuition": ["experts disagree more than you think", "bias is not the only problem in judgment"],
+    "tryThisNow": ["set a timer and write down your first impression", "think of a recent decision you made"],
+    "examples": ["generic 'two experts disagree' scene with no institutional anchor", "a scene that opens with the narrator explaining what noise is"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The opening shock of ch01 needs variety to prevent readers from feeling they are watching the same institutional reveal six times in a row."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "insurance company running an internal quality audit of underwriter pricing",
+      "audience": "a senior risk officer who commissioned the study believing the spread would be around 10 percent",
+      "stakes": "the discovery that the company's pricing is far less consistent than management assumed, and that customers in identical situations are paying very different premiums",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the risk officer spreads the 48 quotes for the same policy on a conference table and the range from lowest to highest becomes visible as a physical object before any explanation is offered",
+      "firstImage": "a row of printed quote sheets laid end to end across a long table, the numbers at the top of each page showing different figures",
+      "mustInclude": ["the physical spread of documents", "the gap between expected and actual variability", "the moment the officer stops explaining and just looks"],
+      "mustAvoid": ["naming the specific insurance company", "implying any underwriter was negligent or dishonest"]
+    },
+    {
+      "domain": "psychiatric asylum determination board reviewing the same case file",
+      "audience": "two psychiatrists who each believe they applied the standard criteria",
+      "stakes": "a person's liberty and safety — an incorrect denial means return to danger, an incorrect approval creates a different risk",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "one psychiatrist reads her written assessment aloud and the other psychiatrist realizes he coded the identical file in the opposite direction, and neither has a clear explanation for why",
+      "firstImage": "the same manila folder open on the table between two people with different handwritten notes on their own copies",
+      "mustInclude": ["identical source material", "opposite conclusions", "no bad faith or negligence from either"],
+      "mustAvoid": ["named countries or specific asylum procedures", "implying one psychiatrist is right"]
+    },
+    {
+      "domain": "food safety inspection of a restaurant kitchen on the same day by two different inspectors",
+      "audience": "a food safety manager trying to understand a complaint from the restaurant owner about inconsistent scoring",
+      "stakes": "the restaurant's operating license and public health accountability, plus the credibility of the inspection system",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the manager places the two inspection reports side by side: the same kitchen, the same morning, one score a 94 and one a 67, and the discrepancy is not a typo",
+      "firstImage": "two printed inspection forms with different scores in the top-right corner, placed face up on a desk",
+      "mustInclude": ["same kitchen, same day", "score gap that cannot be explained by different conditions", "the moment the manager sees both numbers at once"],
+      "mustAvoid": ["implying either inspector was bribed or careless", "explaining the gap before showing it"]
+    },
+    {
+      "domain": "mortgage loan application assessed by two different loan officers at the same bank",
+      "audience": "a bank quality officer reviewing a sample of borderline loan files",
+      "stakes": "whether a family gets a mortgage and at what rate — with downstream consequences for fair lending compliance",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you are reviewing a loan file that two officers have already assessed: one approved it at a standard rate, one denied it, and you are the tiebreaker who realizes your own instinct points in a third direction",
+      "firstImage": "a loan file with two sticky-note assessments in different handwriting, one saying approved and one saying declined",
+      "mustInclude": ["you as the third assessor", "the three-way divergence that makes the systemic problem visible", "identical input documents"],
+      "mustAvoid": ["attributing the divergence to one officer's personal bias", "resolving the tiebreaker — the point is the spread, not the answer"]
+    },
+    {
+      "domain": "pediatric radiology department reviewing diagnostic consistency in bone-age assessments",
+      "audience": "a department chief conducting a routine accuracy review of X-ray reads across five pediatric radiologists",
+      "stakes": "treatment timing decisions for growth disorders that depend on accurate bone-age estimates",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the department chief discovers that for a set of blind reads of the same X-rays, the spread across radiologists is nearly three years — far wider than the clinical decision threshold — and the reading she herself submitted is not at the center of the distribution",
+      "firstImage": "a printed spreadsheet showing five columns of bone-age estimates, with the same X-ray ID in the first column and five different numbers across the row",
+      "mustInclude": ["blind read design (radiologists did not know they were being compared)", "the chief's own estimate as part of the spread", "the clinical significance of the spread relative to treatment decisions"],
+      "mustAvoid": ["implying the radiologists were poorly trained", "skipping to remedies"]
+    },
+    {
+      "domain": "school discipline incident reports reviewed by multiple vice-principals to calibrate suspension decisions",
+      "audience": "a principal trying to understand why suspension rates vary across her three vice-principals for identical types of incident",
+      "stakes": "students' educational continuity and the school's legal compliance with equal-treatment standards",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the principal hands the same anonymized incident report to all three vice-principals separately and asks for a recommended consequence; when she collects the answers, one recommends a verbal warning, one a three-day suspension, and one a five-day suspension — for the same incident",
+      "firstImage": "three sealed envelopes the principal has not yet opened, each containing one vice-principal's written recommendation for the same report",
+      "mustInclude": ["same incident report, three different consequences", "the principal's surprise at the range", "the absence of obvious explanations in the individual answers"],
+      "mustAvoid": ["picking one vice-principal as the correct one", "explaining the spread before showing it"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish noise from bias given a scenario description",
+      "recognize when a pattern of disagreement reveals noise rather than one expert being wrong",
+      "apply the noise concept to an unfamiliar institution (outside insurance or courts)",
+      "analyze why average judgment can look acceptable while individual cases suffer from scatter",
+      "evaluate whether a proposed fix addresses noise or only addresses bias"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of one recurring decision in your work — a hire, a rating, an approval — and write down the number you would give today. Now ask: if you had seen this case last Monday, or if a colleague saw it right now, would the number match? The gap you just imagined is a lower bound on the noise in that decision.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a direct second-person passage asking the reader to picture their own judgment system, or a brief research aside on the size of the underwriter spread relative to industry expectations",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

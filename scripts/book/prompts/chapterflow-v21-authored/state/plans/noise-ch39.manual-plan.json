@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch39",
+  "number": 39,
+  "title": "Correcting Predictions",
+  "coreMove": "Correct a single-point prediction by first anchoring to the base rate distribution of similar past cases, then adjusting for specific case features rather than letting unaided intuition bypass the reference class entirely.",
+  "sourcePressure": "A single-point prediction can be corrected by considering the distribution of outcomes for similar past cases before committing to a number. This is reference class forecasting: the correction replaces unconstrained inside-view intuition with a disciplined integration of the base rate and the specific case features. The outside view — the base rate distribution — is the anchor; the inside view provides the adjustment. Reversing this order, or skipping the base rate entirely, removes the correction and leaves the prediction as noisy as unstructured intuition.",
+  "chapterSpecificMisunderstanding": "Assuming that adjusting a base-rate prediction for case-specific features requires abandoning the base rate, when in fact the base rate is the correction that constrains where the case-specific adjustment can go.",
+  "sourceAlignmentTerms": ["reference class", "base rate", "prediction correction", "distribution", "single-point estimate", "inside view", "outside view"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Reference class forecasting and the outside view in prediction research",
+      "detail": "Research on forecasting accuracy, most prominently developed through the work of Daniel Kahneman and Amos Tversky on the planning fallacy and extended through Philip Tetlock's forecasting research, consistently shows that anchoring to a reference class of similar past outcomes before adjusting for case-specific features substantially improves prediction accuracy. The improvement is largest in domains where inside-view intuition systematically under-estimates uncertainty or over-weights case-specific factors.",
+      "useIn": "deepRead",
+      "phrasingHint": "The planning fallacy is the tendency to predict project outcomes based on the inside view — what we know about this specific project — while ignoring the outside view — how similar projects have actually performed. Reference class forecasting is the correction: start with how similar projects have performed, then adjust for what is genuinely distinctive about this one. The discipline is in starting with the outside view, not in ignoring the inside view."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["the one step that makes every prediction more accurate", "how base rates beat intuition every time"],
+    "counterintuition": ["your prediction is always wrong — use base rates instead", "case-specific information has no value in correcting a prediction"],
+    "tryThisNow": ["replace your next prediction with a base rate", "stop using case-specific information in your predictions and rely on reference classes instead"],
+    "examples": ["a scene where the base rate alone (without case-specific adjustment) produces the correct prediction — that misrepresents the chapter's argument, which is that base rate plus adjusted case-specific information produces the best prediction", "a scene where an expert correctly ignores the reference class because the case is genuinely unprecedented — the chapter addresses ordinary cases, not genuinely unprecedented ones"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Correcting-predictions examples risk reading as arguments for ignoring case-specific information in favor of historical averages. Each domain must show the two-step structure — base rate first, then case-specific adjustment — and must demonstrate that skipping the base rate anchor produces noisier predictions than using it as the starting point."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "venture capital startup exit prediction: two VC analysts comparing reference-class-anchored versus intuition-based startup exit probability estimates for the same portfolio company",
+      "audience": "a venture capital fund managing partner studying whether reference class anchoring improves inter-analyst consistency in startup exit probability estimates",
+      "stakes": "portfolio valuation accuracy and fund management decisions — exit probability estimates that diverge substantially across analysts produce inconsistent portfolio valuations and different carry projections for the same company",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two analysts independently estimate the 5-year exit probability for the same portfolio company: without reference class anchoring, their estimates are 65 and 35 percent — a 30-point gap consistent with unstructured inside-view intuition; with reference class anchoring (both analysts first look up the historical 5-year exit rate for companies in the same stage, sector, and revenue range before adjusting for the specific company's team quality and product differentiation), their estimates are 41 and 47 percent — a 6-point gap; the base rate for the reference class is 38 percent; the individual adjustments for company-specific features are smaller and more consistent when the base rate provides the anchor",
+      "firstImage": "a side-by-side prediction comparison: unanchored estimates (65 and 35 percent, 30-point gap) versus reference-class-anchored estimates (41 and 47 percent, 6-point gap) — the reference class base rate shown as the anchor point",
+      "mustInclude": ["the 30-point unanchored gap versus 6-point anchored gap", "the 38-percent reference class base rate as the anchor", "the managing partner's framing: the reference class does not replace the analysts' case-specific knowledge — it constrains how far each analyst can drift from the historical base rate without specific justification"],
+      "mustAvoid": ["a specific startup or investment fund", "implying that VC exit probability estimates should rely only on base rates and ignore company-specific features"]
+    },
+    {
+      "domain": "refugee resettlement timeline prediction: a resettlement agency comparing reference-class-anchored versus intuition-based duration estimates for cases awaiting processing completion",
+      "audience": "a resettlement agency case management director studying whether reference class anchoring reduces inter-caseworker spread in resettlement timeline estimates for cases at the same processing stage",
+      "stakes": "case planning accuracy and resource allocation — timeline estimates that diverge substantially across caseworkers produce inconsistent case plans and different resource assignments for comparable cases",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the case management director presents the anchoring comparison to the caseworker team: for 30 cases at the same processing stage, caseworkers' unanchored timeline estimates range from 4 to 14 months (a 10-month inter-caseworker spread); when caseworkers are provided with the historical completion time distribution for cases at the same stage, same country-of-origin category, and same documentation completeness level (median 8 months, 80th percentile 12 months) before making their individual estimates, the spread narrows to 7 to 10 months (a 3-month inter-caseworker spread); the base rate does not eliminate individual judgment — it anchors it",
+      "firstImage": "a dot plot of caseworker timeline estimates for 30 matched cases: unanchored estimates (wide spread, 4-to-14 month range) versus reference-class-anchored estimates (narrow spread, 7-to-10 month range) — the historical distribution shown as the reference",
+      "mustInclude": ["the 10-month unanchored spread versus 3-month anchored spread", "the specific reference class elements (processing stage, country-of-origin category, documentation completeness)", "the director's framing: the historical distribution does not tell caseworkers the answer — it tells them where to start, and where to explain if they are departing from it"],
+      "mustAvoid": ["a specific refugee's case", "implying caseworker judgment is irrelevant to timeline estimation or that all cases in the reference class have identical timelines"]
+    },
+    {
+      "domain": "hurricane track forecast base rate correction: a meteorological team studying whether anchoring to climatological track distributions before running dynamic models reduces inter-model spread in operational hurricane forecasts",
+      "audience": "a national hurricane center forecast quality director studying whether pre-committing to a climatological track distribution anchor before dynamic model integration reduces inter-model track spread",
+      "stakes": "forecast accuracy and emergency management planning — inter-model track spread that is wider than the climatological uncertainty range signals that model-specific noise is contributing to spread beyond genuine physical uncertainty",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the forecast quality director reviews a season-long comparison: for 12 tracked storms, the average inter-model track spread at 72 hours was 95 nautical miles when forecasters began with dynamic model output and adjusted for climatological expectations; when the process was reversed (forecasters first established the climatological track distribution for the storm's environmental analogs, then adjusted for current model output), average inter-model spread fell to 68 nautical miles — a 28 percent reduction; the climatological anchor did not reduce the genuine physical uncertainty; it reduced the model-specific noise that had been adding to the inter-model spread",
+      "firstImage": "a hurricane track forecast spread comparison for 12 storms: model-first approach (wider average inter-model spread) versus climatology-first approach (narrower average inter-model spread) — with the physical uncertainty range shown as a reference band",
+      "mustInclude": ["the 95 versus 68 nautical mile spread comparison and 28% reduction", "the mechanism: the climatological anchor reduces model-specific noise without reducing genuine physical uncertainty", "the director's framing: the correction is in the order of operations — outside view first, inside view second — not in replacing model judgment with historical averages"],
+      "mustAvoid": ["a specific hurricane or storm track", "implying that climatological averages should replace dynamic hurricane modeling"]
+    },
+    {
+      "domain": "residential real estate price prediction: a property analyst comparing reference-class-anchored versus intuition-based price estimates for properties being prepared for listing",
+      "audience": "a real estate brokerage quality director studying whether reference class anchoring on comparable sale distributions reduces inter-agent spread in listing price recommendations for the same properties",
+      "stakes": "listing accuracy and seller outcomes — listing price recommendations that diverge substantially across agents produce inconsistent pricing strategies for comparable properties and different expected time-on-market outcomes",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the quality director asks: if we require all listing agents to establish the comparable sale price distribution for properties in the same neighborhood, same size range, and same condition tier before making a listing price recommendation, how much will inter-agent spread in recommendations narrow? The controlled study's answer: unanchored recommendations for 25 matched properties range from $340,000 to $420,000 on average across agents (an $80,000 inter-agent spread); after agents establish the comparable distribution (median $375,000, 10th-to-90th percentile range $350,000 to $400,000) before making their recommendation, recommendations range from $365,000 to $390,000 — a $25,000 inter-agent spread; the base rate does not tell agents the price — it tells them where the burden of proof lies for any recommendation outside the comparable range",
+      "firstImage": "a price recommendation comparison for 25 matched properties: unanchored agent estimates (wide spread with visible outliers) versus comparable-distribution-anchored estimates (narrower spread clustered near the median) — the comparable distribution shown as the reference band",
+      "mustInclude": ["the $80,000 unanchored spread versus $25,000 anchored spread", "the comparable distribution parameters ($375,000 median, $350,000-$400,000 range) as the anchor", "the director's framing: the comparable distribution defines where the explanation burden falls — agents can recommend outside the range if they can explain the case-specific justification, but the base rate is the default"],
+      "mustAvoid": ["a specific property or real estate transaction", "implying listing price recommendations should be purely algorithmic or that agent judgment of property-specific features has no value"]
+    },
+    {
+      "domain": "environmental remediation cost prediction: an environmental engineering firm comparing reference-class-anchored versus intuition-based cost estimates for contaminated site remediation projects",
+      "audience": "a environmental engineering firm project director studying whether reference class anchoring on comparable project cost distributions reduces inter-estimator spread in remediation cost proposals for the same site profile",
+      "stakes": "bid accuracy and project financial performance — remediation cost estimates that diverge substantially across project engineers produce inconsistent proposal figures and different project margin expectations for comparable site profiles",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the project director presents the anchoring study to the firm's estimating team: for 20 site profiles with matched contamination type, site area, and remediation technology, unanchored engineer cost estimates range from $2.1M to $4.8M per project (a $2.7M inter-estimator spread); when estimators first establish the cost distribution for the firm's historical portfolio of projects in the same contamination-technology-area class (median $3.2M, 25th-to-75th percentile $2.8M to $3.7M) before producing their estimate, the spread narrows to $2.9M to $3.8M — a $0.9M inter-estimator spread; the estimators who departed most from the reference class in the anchored condition were able to identify specific site features that justified their departures, while departures in the unanchored condition were largely unexplained",
+      "firstImage": "a cost estimate distribution comparison for 20 matched site profiles: unanchored estimates (wide spread, $2.1M to $4.8M range) versus reference-class-anchored estimates (narrower spread, $2.9M to $3.8M range) — the historical distribution shown as the anchor band",
+      "mustInclude": ["the $2.7M unanchored spread versus $0.9M anchored spread", "the finding that anchored departures from the reference class were explicable while unanchored departures were largely not", "the project director's framing: the reference class does not produce the estimate — it produces the discipline to explain departures from it, and that discipline is what narrows the spread"],
+      "mustAvoid": ["a specific contaminated site or remediation project", "implying remediation cost estimation should rely only on historical averages and ignore site-specific engineering assessment"]
+    },
+    {
+      "domain": "software delivery timeline prediction: a software organization comparing reference-class-anchored versus intuition-based delivery estimates for comparable development projects",
+      "audience": "a software engineering organization portfolio director studying whether reference class anchoring on historical delivery distributions reduces inter-team spread in project timeline estimates for comparable scope projects",
+      "stakes": "delivery planning accuracy and resource commitment — timeline estimates that diverge substantially across project teams produce inconsistent customer commitments and different resource allocation plans for comparable project scope",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you compare two estimation process eras: in the inside-view era (teams estimate delivery time based on their assessment of the current project's specific features), inter-team spread for comparable scope projects averages 6.8 weeks; in the reference-class era (teams first look up the delivery time distribution for the organization's historical projects in the same scope, complexity, and team-size class before making their estimate), inter-team spread averages 3.2 weeks; the reference class median for the relevant project class is 18 weeks; teams in the reference-class era whose estimates departed from that median were required to document the specific feature they believed made the current project different — and that documentation became a resource request record rather than a noise source",
+      "firstImage": "a before-and-after delivery estimate distribution comparison: inside-view era (wide spread across comparable project estimates) versus reference-class era (narrower spread) — the reference class distribution shown as the anchor with departure documentation illustrated as annotated outliers",
+      "mustInclude": ["the 6.8-week versus 3.2-week inter-team spread comparison", "the required departure documentation as the mechanism that converts noise into accountable adjustment", "your framing: the reference class does not replace the team's knowledge of the current project — it requires the team to explain what is genuinely different about the current project rather than allowing intuition to bypass the historical record"],
+      "mustAvoid": ["a specific software project or technology organization", "implying software delivery estimation should rely only on historical averages and ignore project-specific engineering assessment"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain how reference class forecasting uses the outside view as an anchor rather than a replacement for case-specific judgment",
+      "identify the reference class elements that should define the base rate distribution for a prediction in a described professional context",
+      "apply the two-step correction process (base rate anchor then case-specific adjustment) to improve a described single-point prediction",
+      "analyze why unanchored case-specific intuition produces higher inter-predictor spread than reference-class-anchored intuition even when both use the same information",
+      "evaluate whether a described prediction process is using the reference class as the starting point for adjustment or bypassing it in favor of direct intuitive estimation"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Take your next prediction — project duration, revenue estimate, probability of a favorable outcome. Before you commit to a number, answer two questions: What is the historical base rate for similar cases in a reference class you can define right now? How different is the current case from the typical case in that reference class, and in which direction does that difference push the prediction? Your final number should start at the base rate and move toward your intuitive estimate by the amount justified by the case-specific difference. If you cannot articulate what makes this case different from the reference class, that is a signal to stay closer to the base rate than your intuition suggests.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on the two-step structure of reference class forecasting and why the order matters — outside view first, inside view second, at least one 5+ sentence paragraph on the planning fallacy as the canonical demonstration of what happens when the inside view bypasses the outside view entirely, using the book's language of noise and base rates rather than the planning fallacy's original framing, at least one one-sentence punch line about what your prediction is actually measuring when you skip the reference class and estimate directly from case features",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: for the most important prediction your organization makes regularly, does everyone who makes that prediction start from the same base rate distribution? If the answer is no, your organization's predictions are being made from different starting points — and that difference in starting points is producing noise that would disappear if the reference class were agreed upon before anyone picked a number",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

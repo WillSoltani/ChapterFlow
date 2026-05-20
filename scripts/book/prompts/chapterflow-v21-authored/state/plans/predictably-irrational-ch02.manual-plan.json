@@ -1,0 +1,87 @@
+{
+  "chapterId": "predictably-irrational-ch02",
+  "number": 2,
+  "title": "The Fallacy of Supply and Demand",
+  "coreMove": "Build your own estimate before the first visible number turns into the ruler for every later judgment.",
+  "sourcePressure": "The source emphasizes anchoring, arbitrary coherence, and how initial prices shape later demand even when the first number had little real meaning.",
+  "chapterSpecificMisunderstanding": "The weak version treats this as negotiation advice; the real move is to notice how the first number installs a private scale.",
+  "sourceAlignmentTerms": ["anchor", "arbitrary coherence", "first price", "initial number", "demand curve", "self-herding"],
+  "forbiddenFrames": {
+    "hook": ["The first number wins", "A price tag can lie", "Your budget is not yours"],
+    "counterintuition": ["Demand is stable", "People know what things should cost", "The market tells the truth"],
+    "tryThisNow": ["Write down your budget", "Shop around first", "Question the first price"],
+    "examples": ["car lot sticker", "consulting proposal", "textbook price shock"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rare orchid auction preview",
+      "audience": "a hobby grower attending a regional orchid sale for the first time",
+      "stakes": "letting an opening auction estimate make every later plant seem affordable",
+      "format": "predict_reveal",
+      "requiredBeat": "before bidding starts, the grower writes a maximum price based on bloom health and care difficulty, then watches the auctioneer's opening number try to pull it upward",
+      "firstImage": "a greenhouse bench lined with white tags and mist on the glass panes",
+      "mustInclude": ["opening estimate", "handwritten maximum", "bloom health"],
+      "mustAvoid": ["furniture showroom", "housing rent", "electronics"]
+    },
+    {
+      "domain": "independent bakery buying a used deck oven",
+      "audience": "a bakery owner comparing equipment listings with no prior market knowledge",
+      "stakes": "treating a seller's first inflated listing as the center of the market",
+      "format": "decision_point",
+      "requiredBeat": "the owner calls two repair technicians for replacement-part estimates before letting the first listing define the oven's value",
+      "firstImage": "a soot-dark oven listing printed beside a flour-dusted calculator",
+      "mustInclude": ["repair quote", "serial number", "part availability"],
+      "mustAvoid": ["home couch", "software procurement", "restaurant menu"]
+    },
+    {
+      "domain": "minor-league team setting souvenir cap prices",
+      "audience": "a merch manager deciding the first price fans will see on opening weekend",
+      "stakes": "creating an anchor that shapes what fans call reasonable all season",
+      "format": "postmortem",
+      "requiredBeat": "the manager compares two weeks of sales after the first rack displayed the premium cap at eye level before cheaper caps appeared",
+      "firstImage": "a wire cap rack rolling onto the concourse before the gates open",
+      "mustInclude": ["premium cap", "opening weekend", "sales sheet"],
+      "mustAvoid": ["salary negotiation", "luxury retail", "student tickets"]
+    },
+    {
+      "domain": "municipal tree-trimming bid review",
+      "audience": "a town administrator comparing contractor bids for storm cleanup",
+      "stakes": "mistaking the first emergency bid for the normal cost of tree work",
+      "format": "vignette",
+      "requiredBeat": "the administrator writes the cost per block from last year's routine work in the margin before reading the emergency contractor's number aloud",
+      "firstImage": "wet maple limbs stacked beside a council packet after a nor'easter",
+      "mustInclude": ["cost per block", "emergency bid", "council packet"],
+      "mustAvoid": ["consulting redesign", "home repair estimate", "insurance claim"]
+    },
+    {
+      "domain": "wedding photographer package selection at a venue fair",
+      "audience": "a couple comparing packages after seeing a luxury display first",
+      "stakes": "normalizing an expensive package because the first booth made it look moderate",
+      "format": "dialogue",
+      "requiredBeat": "one partner closes the glossy brochure and names the number they would have expected yesterday before they walked into the fair",
+      "firstImage": "a glossy album open under string lights at a venue fair booth",
+      "mustInclude": ["album upgrade", "yesterday estimate", "deposit form"],
+      "mustAvoid": ["general wedding budgeting", "prestige purchase", "subscription decoy"]
+    },
+    {
+      "domain": "used laboratory freezer purchase for a community clinic",
+      "audience": "a clinic operations lead buying equipment with grant money",
+      "stakes": "using the first refurbished freezer quote as the anchor for all later safety judgments",
+      "format": "before_after",
+      "requiredBeat": "after seeing the first quote, the lead builds a requirement sheet around temperature logs and service history, then rechecks whether the quote still looks fair",
+      "firstImage": "a temperature log binder lying beside a dented freezer photo",
+      "mustInclude": ["temperature logs", "service history", "grant cap"],
+      "mustAvoid": ["medical efficacy", "premium price placebo", "office inventory"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify the anchor before comparing later numbers", "create an independent estimate", "explain arbitrary coherence in a new pricing scene", "evaluate whether a later bargain is only distance from a bad first number"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Before opening the next quote, listing, or menu, write the number you would consider fair and the reason for it; then compare the visible price to that note, not to the seller's first anchor.",
+  "readingTimeMinutes": 12
+}

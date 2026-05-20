@@ -1,0 +1,196 @@
+{
+  "chapterId": "clear-thinking-ch11",
+  "number": 11,
+  "title": "Strength in Action",
+  "coreMove": "Turn a private standard into a visible behavior before the situation moves on.",
+  "sourcePressure": "After the four strengths, the chapter moves from internal structure to visible use in ordinary moments: applying strengths, translating them to action, and becoming consistent.",
+  "chapterSpecificMisunderstanding": "Leaving strengths as self-description rather than making them observable under pressure.",
+  "sourceAlignmentTerms": [
+    "strength in action",
+    "ordinary moments",
+    "visible use",
+    "translation to action",
+    "consistency",
+    "applying strengths"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "ordinary moments",
+      "detail": "Farnam Street newsletter snippets and the heading index support the book language around ordinary moments and translating strengths into action",
+      "useIn": "both",
+      "phrasingHint": "A strength becomes real when it shows up in the ordinary moment that would have excused its absence."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for strength in action",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think strength in action is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Giulia",
+      "domain": "a pharmacy pickup window",
+      "audience": "a reader facing strength in action in a concrete pharmacy pickup window decision",
+      "stakes": "whether Giulia preserves judgment quality before the situation slides into motivation essay",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Giulia performs the chapter move by setting the call sheet beside the red pencil, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the red pencil in the pharmacy pickup window",
+      "mustInclude": [
+        "call sheet",
+        "red pencil"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "motivation essay",
+        "reusing a previous chapter's pharmacy pickup window shell"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "a warehouse loading dock",
+      "audience": "a reader facing strength in action in a concrete warehouse loading dock decision",
+      "stakes": "whether Chiara preserves judgment quality before the situation slides into motivation essay",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chiara performs the chapter move by setting the oxygen bag beside the shift board, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the oxygen bag lying beside the shift board in the warehouse loading dock",
+      "mustInclude": [
+        "oxygen bag",
+        "shift board"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "motivation essay",
+        "reusing a previous chapter's warehouse loading dock shell"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "a sports physiotherapy clinic",
+      "audience": "a reader facing strength in action in a concrete sports physiotherapy clinic decision",
+      "stakes": "whether Paula preserves judgment quality before the situation slides into motivation essay",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Paula performs the chapter move by setting the boarding pass beside the complaint card, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the complaint card in the sports physiotherapy clinic",
+      "mustInclude": [
+        "boarding pass",
+        "complaint card"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "motivation essay",
+        "reusing a previous chapter's sports physiotherapy clinic shell"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "a university advising office",
+      "audience": "a reader facing strength in action in a concrete university advising office decision",
+      "stakes": "whether Isabel preserves judgment quality before the situation slides into motivation essay",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Isabel performs the chapter move by setting the will copy beside the notepad, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the notepad in the university advising office",
+      "mustInclude": [
+        "will copy",
+        "notepad"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "motivation essay",
+        "reusing a previous chapter's university advising office shell"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "a brewery quality check",
+      "audience": "a reader facing strength in action in a concrete brewery quality check decision",
+      "stakes": "whether Catarina preserves judgment quality before the situation slides into motivation essay",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Catarina performs the chapter move by setting the order rail beside the ticket spike, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the order rail against the counter in the brewery quality check",
+      "mustInclude": [
+        "order rail",
+        "ticket spike"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "motivation essay",
+        "reusing a previous chapter's brewery quality check shell"
+      ]
+    },
+    {
+      "protagonistName": "Anya",
+      "domain": "a immigration intake office",
+      "audience": "a reader facing strength in action in a concrete immigration intake office decision",
+      "stakes": "whether Anya preserves judgment quality before the situation slides into motivation essay",
+      "format": "reflection",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Anya performs the chapter move by setting the satellite phone beside the route map, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the clock above the immigration intake office as Anya reaches for the satellite phone",
+      "mustInclude": [
+        "satellite phone",
+        "route map"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "motivation essay",
+        "reusing a previous chapter's immigration intake office shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Turn a private standard into a visible behavior before the situation moves on.",
+      "detect the weak generic version: Leaving strengths as self-description rather than making them observable under pressure.",
+      "distinguish strength in action from nearby drift into motivation essay"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where strength in action is active, then write the exact next visible move that would perform this chapter's move: turn a private standard into a visible behavior before the situation moves on.",
+  "readingTimeMinutes": 12
+}

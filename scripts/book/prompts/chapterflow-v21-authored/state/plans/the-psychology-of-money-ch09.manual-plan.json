@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch09",
+  "number": 9,
+  "title": "Man in the Car Paradox",
+  "coreMove": "Notice when a purchase is asking strangers to admire you and redirect the money toward a value you can actually feel.",
+  "sourcePressure": "Status objects often make observers imagine themselves in the object rather than admire the owner.",
+  "chapterSpecificMisunderstanding": "Treating this as a simple warning against nice things.",
+  "sourceAlignmentTerms": [
+    "status objects",
+    "admiration",
+    "projection",
+    "visible symbols",
+    "social meaning",
+    "outside approval"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Man in the Car Paradox with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Man in the Car Paradox to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the status objects move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of status objects and admiration"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a watch collector realizing nobody at the conference notices who owns the rare model",
+      "audience": "a professional tempted to buy admiration through scarcity",
+      "stakes": "the purchase may produce envy for the object, not respect for him",
+      "format": "scene",
+      "requiredBeat": "he watches three people compliment the watch then immediately imagine wearing it themselves",
+      "firstImage": "a velvet watch roll open under hotel conference lighting",
+      "mustInclude": [
+        "watch roll",
+        "conference badge",
+        "price tag"
+      ],
+      "mustAvoid": [
+        "luxury shaming"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a wedding planner steering a couple away from a dramatic entrance designed for social media",
+      "audience": "a couple confusing public spectacle with being cherished",
+      "stakes": "the budget may buy strangers' scrolling attention while adding no meaning to the day",
+      "format": "dialogue",
+      "requiredBeat": "the planner asks which guests will remember their faces instead of the smoke machine",
+      "firstImage": "a venue floor plan marked with a proposed pyrotechnic entrance",
+      "mustInclude": [
+        "floor plan",
+        "guest list",
+        "smoke-machine quote"
+      ],
+      "mustAvoid": [
+        "wedding judgment"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a home renovator choosing between a visible marble foyer and quiet soundproofing",
+      "audience": "a homeowner trying to impress visitors",
+      "stakes": "the impressive feature may serve five seconds of attention while daily life stays noisy",
+      "format": "decision_point",
+      "requiredBeat": "she stands in the hallway during rush-hour traffic and crosses out the marble allowance",
+      "firstImage": "a sample slab of marble beside a decibel reading on a phone",
+      "mustInclude": [
+        "marble sample",
+        "decibel reading",
+        "renovation budget"
+      ],
+      "mustAvoid": [
+        "minimalist decor advice"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a high school senior buying designer sneakers for the first week of class",
+      "audience": "a teen learning the gap between being noticed and being admired",
+      "stakes": "the purchase may amplify self-consciousness rather than belonging",
+      "format": "predict_reveal",
+      "requiredBeat": "he tracks what classmates actually say and sees they talk about wanting the shoes, not knowing him",
+      "firstImage": "a shoebox under a bed with the receipt still inside",
+      "mustInclude": [
+        "shoebox",
+        "receipt",
+        "first-day hallway"
+      ],
+      "mustAvoid": [
+        "teen vanity scold"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a chef plating for critics instead of regular diners",
+      "audience": "a chef who wants recognition more than repeat customers",
+      "stakes": "visual acclaim can pull the menu away from what locals love",
+      "format": "postmortem",
+      "requiredBeat": "after a glowing photo and flat repeat bookings, she compares camera appeal with empty Tuesday tables",
+      "firstImage": "a glossy review clipping beside a half-filled reservation sheet",
+      "mustInclude": [
+        "review clipping",
+        "reservation sheet",
+        "plating sketch"
+      ],
+      "mustAvoid": [
+        "foodie satire"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a nonprofit donor wanting a public wall plaque for a gift",
+      "audience": "a development officer helping separate generosity from image management",
+      "stakes": "recognition can become the point and crowd out the actual cause",
+      "format": "reflection",
+      "requiredBeat": "the officer asks the donor to read the beneficiary waitlist before choosing plaque size",
+      "firstImage": "a brass plaque mockup beside a printed waitlist",
+      "mustInclude": [
+        "plaque mockup",
+        "waitlist",
+        "gift agreement"
+      ],
+      "mustAvoid": [
+        "anti-rich moralizing"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: notice when a purchase is asking strangers to admire you and redirect the money toward a value you can actually feel",
+      "distinguish status objects from nearby but weaker advice such as anti-consumption scolding",
+      "diagnose when a character is making the common misread: treating this as a simple warning against nice things.",
+      "evaluate tradeoffs using the chapter-specific pressure around status objects, admiration, projection"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where status objects is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: notice when a purchase is asking strangers to admire you and redirect the money toward a value you can actually feel.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

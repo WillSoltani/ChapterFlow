@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-art-of-war-ch04",
+  "number": 4,
+  "title": "Tactical Dispositions",
+  "readingTimeMinutes": 12,
+  "hook": "The scale model sits under fluorescent light while Hannah removes the flaw her speech cannot survive.",
+  "counterintuition": "The quiet defensive work may be the active move. You win more easily when the avoidable mistake is already gone and the opening has to come from the other side.",
+  "tryThisNow": "Name the one mistake that would make your next move beatable. Remove or contain that mistake before you improve the pitch, ask, or attack.",
+  "keyTakeaway": "Secure yourself against avoidable defeat first, then wait for the opening that makes action easy.",
+  "breakdown": {
+    "fastRead": "The scale model sits under fluorescent light while Hannah moves a fire-code memo beside the zoning binder. Tomorrow she will defend a housing design in public. Her sharpest argument is ready. One missing code answer could still sink the approval.\n\nShe cuts three clever slides and fixes the defect first. The shadow study gets labeled. The exit-width question gets answered. The plan becomes harder to knock down before it becomes easier to sell.\n\nGood defense is not passivity. It is making defeat difficult before you look for the chance to win.",
+    "deepRead": "Victory starts as measurement long before it looks like force. First measure the ground. Then estimate quantity. Then calculate. Then balance chances. Only after that does victory look sudden to people who skipped the invisible work.\n\nMichael sees this during a pharmacy software change. Two prescription labels with different warning colors sit side by side at 7:22 in the morning. The barcode scanner passes three tests, but the override log shows one path where an old label can print without the new allergy warning. The launch checklist is almost green. He has to choose between speed and blocking the error path before the first store opens.\n\nHe blocks the path.\n\nThis is defense as control. Michael cannot make every pharmacist perfect. He can make the worst mistake harder to commit. He can remove the open door through which defeat would enter.\n\nThe opportunity to win often belongs to the other side. A customer misses a deadline. A subject contradicts a document. A competitor reveals a weak supply line. You cannot command those openings into existence. What you can do is stop giving away easy losses while you wait.\n\nMeasurement to Victory names the path, and the pound weight and single grain remind you that scale must be made before the contest, not hoped for during it.",
+    "fullRead": "\"He only needs one crack,\" Juliette tells the documentary team. A stack of stamped invoices lies on the table, along with a release form, a timeline board, and a source transcript. The interview subject is hostile, practiced, and happy to turn one factual slip into a reason to dismiss the whole film. Juliette has to decide which questions to cut before they walk into the room.\n\nThe tempting move is to prepare the devastating question. The safer move is to remove every question that is not backed by a document. That does not make the interview timid. It makes the subject's easiest escape unavailable.\n\nThis is why the old chain matters: Measurement, Estimation of quantity, Calculation, Balancing of chances, Victory. The chain is not a slogan. It is a sequence. If you jump from desire to action, you ask courage to do the work that measurement should have done.\n\nWhat would it mean to win with ease? It does not mean the work was easy. It means the final move lands after the conditions have been made heavy in your favor. The win should feel heavy before it moves, like the scale already knows which side will drop. A pound weight does not strain against a single grain. It descends because the balance was settled before the motion.\n\nWind-packed snow squeaks under Lukas's skis near the rope line. The avalanche report is borderline. The radio call from the ridge says guests are already asking when the bowl opens. Lukas probes the slope again and watches the top layer shear. He must decide whether opening is the prize or whether keeping people off the slope is the victory condition today.\n\nNot opening can be a win when opening is the avoidable defeat. That sentence feels unsatisfying to people who want visible action. Still, a leader who cannot protect the field has no business chasing credit on it.\n\nDiego learns the same rule from a cracked black gasket on a caliper. The new supplier is cheaper, the peak-season forecast is tight, and the purchase order is waiting. One brittle test batch shows that the supplier has to lose before the order can win. A supplier audit now is not delay; it is the act that makes later production possible.\n\nThere is a limit. Defense can become hiding. You can keep fixing forever because no action can ever be perfectly protected. The test is whether the remaining risk is part of the contest or an avoidable hole in your own position. A hostile interview will always have pressure. An undocumented question is an avoidable hole. A ski slope will always carry some risk. A shearing top layer is an avoidable hole if you pretend not to see it.\n\nYou watch Lin in a studio where rosin dust crosses the floor. The music is too fast, the lift is late, and the lead dancer is landing near the mat edge. Lin lowers the volume, slows the lift, changes the lighting cue, and checks the understudy chart before letting the cast chase speed again. Afterward the sequence looks brave. The courage came from making the fall path smaller first.\n\nMake the loss hard to find. Then the opening can do its work."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-hannah-code",
+      "title": "Hannah removes the code flaw",
+      "tags": [
+        "architecture",
+        "approval",
+        "audit"
+      ],
+      "planSpec": {
+        "domain": "architectural firm preparing a public design review",
+        "audience": "project architect defending a controversial housing design",
+        "stakes": "one missing code answer could sink the whole approval",
+        "format": "audit",
+        "requiredBeat": "The scale model sits under fluorescent light while Hannah removes every avoidable defect from the submission before planning her strongest argument."
+      },
+      "scenario": "The scale model sits under fluorescent light in the conference room while Hannah lines up the fire-code memo, shadow study, and zoning binder. The public design review is tomorrow, and her best housing argument is already strong. Before she rehearses it again, her choice is to hunt for every avoidable defect that could let opponents sink the approval with one unanswered code question.",
+      "whatToDo": "Fix the defects before polishing the case. Label the shadow study, answer the exit-width question, and make the submission hard to knock down.",
+      "whyItMatters": "A strong argument cannot survive a simple missing answer. Removing the easy loss lets the real merits reach the room."
+    },
+    {
+      "exampleId": "ch04-ex02-michael-label-flow",
+      "title": "Michael blocks the label error",
+      "tags": [
+        "pharmacy",
+        "software",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "pharmacy chain preventing dispensing errors during a software change",
+        "audience": "regional pharmacy operations lead",
+        "stakes": "a preventable medication error would outweigh any launch speed",
+        "format": "scene",
+        "requiredBeat": "At 7:22 a.m., Michael locks the old and new label flows side by side and refuses to launch until the error path is blocked."
+      },
+      "scenario": "At 7:22 a.m., Michael locks the old and new prescription label flows side by side in the test pharmacy. The barcode scanner passes, the launch checklist is nearly green, and the override log shows one route where an allergy warning can disappear. Before stores open, he has to decide whether to launch on schedule or block the error path first.",
+      "whatToDo": "Stop the launch until the override route is closed. Keep both label flows visible, rerun scanner tests, and release only when the worst preventable error is blocked.",
+      "whyItMatters": "Speed does not compensate for a known safety hole. The launch becomes stronger when the easy path to defeat is removed."
+    },
+    {
+      "exampleId": "ch04-ex03-juliette-invoices",
+      "title": "Juliette cuts the clever questions",
+      "tags": [
+        "documentary",
+        "interview",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "documentary producer entering a hostile interview",
+        "audience": "producer preparing a corruption interview",
+        "stakes": "a factual slip would let the subject dismiss the whole film",
+        "format": "decision_point",
+        "requiredBeat": "He only needs one crack, Juliette tells the team, then cuts the clever questions until every remaining one is backed by a document."
+      },
+      "scenario": "\"He only needs one crack,\" Juliette tells the team, with stamped invoices spread beside a release form and source transcript. The hostile interview begins in forty minutes, and the timeline board has three questions that sound brilliant but rest on memory. She must choose whether to keep the sharpest lines or cut everything not backed by a document.",
+      "whatToDo": "Cut the unsupported questions. Keep only claims tied to invoices, releases, transcripts, or dates the subject cannot wave away.",
+      "whyItMatters": "The subject does not need to beat the whole film. One factual crack gives him an exit, so the first job is making that exit hard to reach."
+    },
+    {
+      "exampleId": "ch04-ex04-lukas-bowl",
+      "title": "Lukas keeps the bowl closed",
+      "tags": [
+        "ski",
+        "avalanche",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "ski patrol deciding whether to open an avalanche-prone bowl",
+        "audience": "patrol lead after overnight snow",
+        "stakes": "opening too early could put guests below an unstable slope",
+        "format": "predict_reveal",
+        "requiredBeat": "Wind-packed snow squeaks under Lukas's skis as he tests the slope until not opening becomes the victory condition."
+      },
+      "scenario": "Wind-packed snow squeaks under Lukas's skis as he pushes the probe below the rope line. The avalanche report is borderline, the radio call says guests are waiting, and the top layer shears during the second test. In the next ten minutes he must decide whether opening the bowl is the win or whether keeping everyone out is the only victory available.",
+      "whatToDo": "Treat the shearing layer as the deciding fact. Keep the rope line closed, document the test, and let patrol know the win is no guests below the unstable slope.",
+      "whyItMatters": "The mountain offers no credit for bravery. If opening creates the preventable loss, refusing to open is the position that cannot be beaten."
+    },
+    {
+      "exampleId": "ch04-ex05-diego-gasket",
+      "title": "Diego rejects the brittle gasket",
+      "tags": [
+        "supplier",
+        "manufacturing",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "manufacturer qualifying a new supplier before peak season",
+        "audience": "procurement manager under pressure to cut cost",
+        "stakes": "a cheap part could shut down assembly after contracts are signed",
+        "format": "postmortem",
+        "requiredBeat": "It took one brittle gasket from a test batch for Diego to see that the supplier had to lose before the purchase order won."
+      },
+      "scenario": "At the supplier test bench in Toledo, Diego is the procurement manager holding one brittle gasket from the caliper batch and seeing the purchase order clearly. The test batch had arrived cheap, the supplier audit was unfinished, and the peak-season forecast made delay look costly. After the gasket cracked, he had to decide what rule would guide the next discount: the supplier must lose the test before the order can win.",
+      "whatToDo": "Reject the batch and finish the supplier audit before signing. Let the failed gasket decide more than the discount does.",
+      "whyItMatters": "A cheap part can become the route to shutdown. Testing out the supplier first makes later production easier, not slower."
+    },
+    {
+      "exampleId": "ch04-ex06-lin-lift",
+      "title": "Lin narrows the fall path",
+      "tags": [
+        "dance",
+        "rehearsal",
+        "safety"
+      ],
+      "planSpec": {
+        "domain": "dance company preparing an opening-night lift sequence",
+        "audience": "rehearsal director responsible for dancer safety",
+        "stakes": "a missed grip could injure the lead and cancel the run",
+        "format": "before_after",
+        "requiredBeat": "You watch Lin lower the music volume, slow the lift, and make the fall path impossible before she lets the dancers chase speed."
+      },
+      "scenario": "You watch Lin stand in rosin dust beside the mat edge as the lift misses the lighting cue for the third time. The understudy chart is open on a chair, and opening night is close enough to make speed tempting. Before the dancers run it full tempo, Lin must decide to lower the music, slow the lift, and make the fall path impossible first.",
+      "whatToDo": "Slow the sequence and move the mat edge before chasing tempo. Confirm the cue and understudy plan, then let speed return only after the bad fall path is gone.",
+      "whyItMatters": "The impressive lift is only useful if it can be repeated safely. Removing the preventable fall lets the final version look fearless without depending on luck."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A pilot program has a persuasive presentation but one untested data handoff could expose private records. What should the project lead do before pitching expansion?",
+        "choices": [
+          "Pitch first because the benefits are strong.",
+          "Block or test the handoff so the pilot is not beatable by one avoidable flaw.",
+          "Hide the handoff issue until after approval."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strong pitch does not matter if one known flaw can defeat the program. Securing against that loss comes before asking for a larger win.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A lawyer preparing for mediation has six strong claims and one unsupported number in the opening statement. What move fits tactical disposition?",
+        "choices": [
+          "Remove or document the number before leaning on the strong claims.",
+          "Keep the number because the rest of the case is solid.",
+          "Add more emotional language to distract from the weak point."
+        ],
+        "correctIndex": 0,
+        "explanation": "The weak number gives the other side an easy opening. Removing it makes the case harder to defeat before any strong claim has to carry weight.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A retailer wants to launch a sale page tonight, but checkout fails for gift cards in one browser. Which response best applies measurement before commitment?",
+        "choices": [
+          "Launch because most customers do not use gift cards.",
+          "Delay every marketing plan indefinitely.",
+          "Fix or disable the gift-card path before traffic arrives."
+        ],
+        "correctIndex": 2,
+        "explanation": "The browser bug is an avoidable hole in the position. The answer is not endless delay, but removing the known failure before inviting traffic.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A coach wants her team to press hard early, but the players keep losing shape after turnovers. What should she address first?",
+        "choices": [
+          "Make the press louder and more emotional.",
+          "Build the recovery shape until turnovers no longer create easy goals.",
+          "Tell players that risk is part of ambition."
+        ],
+        "correctIndex": 1,
+        "explanation": "The press is attack, but the turnover shape is protection against defeat. Without it, aggression supplies the opponent’s opportunity.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "In a supplier review room, a cheap gasket batch has one brittle failure and the peak-season purchase order is ready. What should decide whether the order goes forward?",
+        "choices": [
+          "Announce and rely on staff to redirect patients.",
+          "Wait until every possible patient question is solved.",
+          "Fix the form before the announcement, because the known error would create the first failure."
+        ],
+        "correctIndex": 2,
+        "explanation": "The wrong referral path is a preventable defeat. Fixing it is not perfectionism; it is removing the mistake that would spoil the launch.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A documentary interviewer wants a dramatic confrontation. The subject has one likely escape: challenging a weak date. What should the team do?",
+        "choices": [
+          "Replace the weak date with documented facts before the interview.",
+          "Keep the question because drama creates pressure.",
+          "Ask the subject to verify the date during filming."
+        ],
+        "correctIndex": 0,
+        "explanation": "The subject’s opportunity comes from the team’s weak date. Documenting or cutting it removes that opening and lets the rest of the interview carry force.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A ski patrol lead closes a popular bowl after tests show a shearing top layer. Guests complain that nothing bad has happened yet. How should that decision be evaluated?",
+        "choices": [
+          "Poorly, because no visible danger means the closure was timid.",
+          "Well, because preventing the avoidable loss is the victory condition that day.",
+          "Poorly, because customer pressure should decide mountain operations."
+        ],
+        "correctIndex": 1,
+        "explanation": "The danger is in the conditions, not in whether harm has already appeared. Closing the bowl makes defeat hard before anyone is exposed.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A supplier offers a cheap component before peak season. The first test batch cracks under pressure. What should procurement do?",
+        "choices": [
+          "Sign now to protect the discount.",
+          "Ask assembly workers to inspect more carefully later.",
+          "Reject the batch and qualify the supplier before purchase."
+        ],
+        "correctIndex": 2,
+        "explanation": "The cracked batch is the measurable warning. Signing would invite a known failure into production, while qualification makes later scale safer.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A founder says, “We will win once the market sees the demo.” The demo depends on a manual back-office step nobody has tested. What is missing?",
+        "choices": [
+          "More confidence in the public story.",
+          "A position that is secure against the obvious operational failure.",
+          "A stronger slogan for investors."
+        ],
+        "correctIndex": 1,
+        "explanation": "The demo may persuade, but the untested manual step is a route to defeat. The founder needs operational security before public victory can be sought.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You have a strong pitch and one known weak spot. What should you retrieve?",
+      "back": "Remove or contain the weak spot first. A good attack fails if the other side can beat you through an avoidable mistake.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What does it mean to make defeat hard before seeking victory?",
+      "back": "It means blocking the obvious error path: bad data, unsafe route, unsupported claim, or fragile handoff. Then the opening can be used without gifting an easy loss.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A team calls caution passive. What distinction should you make?",
+      "back": "Defense is passive only when it hides from action. It is active when it removes the mistake that would make action fail.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "When should a leader wait for opportunity instead of forcing it?",
+      "back": "After the position is secure. You cannot command the other side to make a mistake, but you can stop offering them one.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A visible win looks easy from the outside. What hidden chain often made it possible?",
+      "back": "Measurement, estimation, calculation, and balancing of chances. The final move looks easy because the weight was built before anyone saw motion.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to remove the avoidable loss before seeking the visible win. The skill is defensive in sequence but active in effect: measure, close the easy failure path, then use the opening when it appears.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If you are polishing a pitch, then name the one unsupported claim or handoff that could beat it and fix that first."
+      },
+      {
+        "context": "operations",
+        "plan": "If a launch is nearly ready, then test the known error path before inviting volume."
+      },
+      {
+        "context": "safety",
+        "plan": "If pressure pushes you to open or proceed, then ask whether not proceeding is the actual victory condition."
+      },
+      {
+        "context": "creative",
+        "plan": "If a performance needs speed, then first make the fall path, factual slip, or technical miss harder to trigger."
+      }
+    ],
+    "twentyFourHourChallenge": "Before one ask or launch today, write the sentence: This fails if ____. Fill the blank, then remove or contain that failure before improving anything else.",
+    "weeklyPractice": "Once a week, review a recent win and identify the quiet defensive move that made it possible. Build that check into your next plan before the public push."
+  },
+  "memorableLines": [
+    {
+      "text": "Good defense is not passivity.",
+      "location": "breakdown.fastRead",
+      "why": "It corrects the central misread in a short sentence."
+    },
+    {
+      "text": "Victory starts as measurement long before it looks like force.",
+      "location": "breakdown.deepRead",
+      "why": "It lands the source chain as practical modern guidance."
+    },
+    {
+      "text": "Make the loss hard to find.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a compact rule for securing position."
+    }
+  ]
+}

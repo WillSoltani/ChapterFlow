@@ -1,0 +1,129 @@
+{
+  "chapterId": "superforecasting-ch12",
+  "number": 12,
+  "title": "What's Next?",
+  "coreMove": "Demand outcome scores from every forecast so that accuracy and persuasiveness can finally be told apart — and build the incentive structures that make that distinction matter to the people who give forecasts.",
+  "sourcePressure": "Forecasting improves at scale only when scorekeeping is real, feedback reaches forecasters, and accuracy is rewarded over persuasiveness or loyalty. Political and organizational systems often prefer flattering wrongness. Ernest Amory Codman's outcome-tracking model for surgery demanded visible accountability despite institutional resistance and showed that the obstacle is incentive structure, not technical difficulty. Big questions need decomposition into smaller testable components. Superquestioners who frame questions well are as important as superforecasters who answer them well.",
+  "chapterSpecificMisunderstanding": "The wrong lesson is 'the future of AI prediction' or 'be optimistic about where forecasting is going.' The real argument is institutional and incentive-based: without scorekeeping that is public and that affects reputation, accurate forecasting and performative forecasting are indistinguishable — and institutions will default to rewarding the one that sounds more useful to power.",
+  "sourceAlignmentTerms": ["scorekeeping", "accountability", "superquestioners", "incentive structure", "smaller component questions", "Codman", "improvement"],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Ernest Amory Codman",
+      "detail": "Boston surgeon who at the turn of the 20th century kept an 'End Result System' tracking his own surgical outcomes — following up with patients years later to record complications, failures, and their causes — and presented his own mistakes publicly; his colleagues and hospital found this threatening and he was eventually forced to leave, but his model became the foundation of modern surgical outcome auditing",
+      "useIn": "deepRead",
+      "phrasingHint": "Codman tracked his own failures and presented them in public. The hospital found this less comfortable than prestige, and he was shown the door — which tells you more about how institutions treat accountability than about whether his system worked."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with AI forecasting tools or machine learning predictions — wrong frame for this chapter",
+      "opening with 'The future is bright for forecasting' — generic optimism register"
+    ],
+    "counterintuition": [
+      "'Most institutions don't want accurate forecasts — they want useful ones' — true but need the structural mechanism, not just the critique"
+    ],
+    "tryThisNow": [
+      "any prompt about 'becoming a better forecaster' without the accountability/scorekeeping mechanism",
+      "any prompt that works for a single individual without the institutional dimension"
+    ],
+    "examples": [
+      "any example where individual improvement is the whole lesson without the institutional incentive dimension",
+      "any domain from ch01–11"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "The institutional scorekeeping problem appears in government, nonprofits, corporations, journalism, and academia — the variety of openings should signal that the problem is structural, not sector-specific"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "nonprofit program director implementing outcome tracking that could prove her own flagship program wrong",
+      "audience": "a program director who has been running an employment re-entry program for six years with strong anecdotal success but no longitudinal outcome tracking",
+      "stakes": "the next funding cycle and the organization's credibility with an outcomes-focused foundation funder",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the director implements a 12-month employment retention tracking system — which she knows could show that her program's results are weaker than the testimonials suggest — because the alternative (continuing without tracking) would leave her unable to distinguish her program from a worse one; when the first cohort's 12-month data returns showing 61% employment retention rather than her expected 75%, she presents it publicly and uses the gap to redesign one program component",
+      "firstImage": "a foundation funder meeting where the director is being asked 'what does success look like at 12 months?' for the first time",
+      "mustInclude": ["the 12-month retention tracking system", "the 61% vs. 75% gap", "the public presentation and the redesign decision"],
+      "mustAvoid": ["nonprofit funding jargon", "making the funder the antagonist"]
+    },
+    {
+      "domain": "government policy analyst making her prediction accuracy record public",
+      "audience": "a senior analyst at a government department who has been issuing policy impact forecasts for eight years with no structured review of accuracy",
+      "stakes": "departmental credibility and the analyst's own professional standing in a culture that does not currently track this",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the analyst reviews her last five years of recorded forecasts (which she has kept privately) against outcomes and finds that her directional accuracy is 71% but her confidence calibration is poor — she has been stating 90%+ confidence on forecasts that turned out to be right 71% of the time; she proposes a departmental forecast log with public quarterly accuracy reviews; the proposal is resisted by three colleagues whose verbal forecasts had never been checked",
+      "firstImage": "a personal spreadsheet she has kept in a private folder for five years, never shared, never reviewed",
+      "mustInclude": ["the 71% accuracy vs. 90%+ confidence gap", "the proposal for a departmental forecast log", "the three colleagues' resistance"],
+      "mustAvoid": ["government policy content specifics", "making this a whistleblower narrative"]
+    },
+    {
+      "domain": "corporate strategy team decomposing an oversized annual growth question into auditable component forecasts",
+      "audience": "a strategy team that has been issuing an annual revenue growth forecast as a single number for six years",
+      "stakes": "board credibility when the single number is consistently revised mid-year; the board can no longer tell whether the forecast was wrong or the world changed",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "the strategy lead breaks the annual revenue forecast into five component questions (volume per segment, price realization, new logo conversion, renewal rate, market expansion) — each with its own probability estimate and tracking cadence; when the first quarterly review arrives, two components are on track and three are not; the board can now identify what changed, not just that the number moved",
+      "firstImage": "a board presentation slide with a single revenue number being challenged by a board member who says 'we've seen this revised four times in two years'",
+      "mustInclude": ["the five-component decomposition", "the first quarterly review showing 2/5 on track", "the board's ability to diagnose rather than just observe the miss"],
+      "mustAvoid": ["financial modeling content", "corporate strategy jargon"]
+    },
+    {
+      "domain": "journalism editor tracking reporter prediction accuracy over three years",
+      "audience": "a managing editor whose publication frequently publishes expert predictions on political and economic outcomes",
+      "stakes": "reader trust and the publication's ability to differentiate its expert contributors from competitors'",
+      "format": "retrospective",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the editor reviews three years of archived political and economic predictions published under named expert bylines; of 140 tracked predictions, 68 had specific enough claims to score; the top-performing contributor was right 74% of the time; the worst was 46%; the editor proposes publishing annual contributor accuracy rankings — and faces resistance from the two contributors with the worst records, who argue that their value is analytical depth, not predictive accuracy",
+      "firstImage": "a back-issue archive with 140 tagged predictions highlighted across three years of coverage, most of them never followed up",
+      "mustInclude": ["the 140/68 trackable ratio", "the 74% vs. 46% spread", "the resistance from the low-accuracy contributors"],
+      "mustAvoid": ["journalism industry politics", "media criticism beyond what the scene requires"]
+    },
+    {
+      "domain": "university research review board member asking the obvious but neglected framing question about a study design",
+      "audience": "a committee reviewing an institutional grant application for a behavioral intervention study",
+      "stakes": "$850K in institutional grant funding and a study design that will determine whether the results can be interpreted",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "one committee member asks a question no one else raised: 'What would a negative result look like for this study, and would we be able to detect it?' The study design has no pre-specified threshold for a null result; when the team tries to answer, they realize the study can only report a positive finding — the design is one-sided by accident; the committee sends the application back for redesign, which delays it by a semester but saves the institution from funding an unfalsifiable study",
+      "firstImage": "a grant review committee room with the application folder open to the methodology section, eleven committee members about to vote to approve",
+      "mustInclude": ["the negative-result question as the obviously neglected one", "the discovery that the design is one-sided", "the redesign requirement and the semester delay"],
+      "mustAvoid": ["research methodology jargon", "any specific academic field that could distract from the lesson"]
+    },
+    {
+      "domain": "public health analyst reframing an oversized population health prediction into testable milestones",
+      "audience": "a senior analyst whose department has committed to a five-year chronic disease reduction target with no intermediate checkpoints",
+      "stakes": "a public health initiative with $12M in funding and no mechanism to detect whether it is working before year 5",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the analyst decomposes the five-year target into annual leading indicators (screening uptake rate, treatment initiation rate, follow-up adherence rate) and argues for including these in the published commitment — when the first annual review shows screening uptake on track but treatment initiation 18% below target, the department can intervene in year 1 rather than discovering the miss in year 5; the reframe from a five-year single-number outcome to annual component milestones is what makes accountability real",
+      "firstImage": "a public health department announcement page with a five-year target and no intermediate milestones, about to be published",
+      "mustInclude": ["the three annual leading indicators", "the year-1 screening vs. treatment initiation gap (18%)", "the intervention made possible by the intermediate milestones"],
+      "mustAvoid": ["epidemiology content", "any specific disease type that could distract from the institutional lesson"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the institutional incentives that reward persuasive over accurate forecasting in a given scenario",
+      "apply Codman's outcome-tracking model to a non-medical domain",
+      "analyze what makes a forecast question too large to be accountable — and how to decompose it",
+      "evaluate whether a given accountability system would actually distinguish skill from luck over time",
+      "identify the superquestioner move — the framing question that restructures what kind of forecasting is possible"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one prediction that you or your organization will make publicly in the next six months — a project completion, a sales forecast, a policy outcome. Break it into three component sub-questions, each with its own trackable indicator and checkpoint date. Write these three sub-questions down. These are what accountable forecasting looks like — not the headline number, but the component questions that let you tell the difference between 'we were wrong' and 'the world changed under us.'",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one analytical passage explaining why Codman's lesson is still not institutionalized — why measurement that can prove you wrong is still more threatening to organizations than measurement that can only prove you right — and what that structural resistance tells us about how improvement actually has to happen",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

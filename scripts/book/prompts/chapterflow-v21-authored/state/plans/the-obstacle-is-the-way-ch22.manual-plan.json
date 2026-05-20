@@ -1,0 +1,200 @@
+{
+  "chapterId": "the-obstacle-is-the-way-ch22",
+  "number": 22,
+  "title": "Anticipation (Thinking Negatively)",
+  "coreMove": "Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.",
+  "sourcePressure": "This chapter belongs to Will, so it must teach endurance, acceptance, and inner governance when control is partial. No source sidecar exists for ch22; this plan is grounded in the frozen TOC title and part placement only, with no named anecdotes invented. For \"Anticipation (Thinking Negatively)\", the pressure is to teach this exact move: Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.",
+  "chapterSpecificMisunderstanding": "The weak version turns the chapter into vague toughness or acceptance slogans instead of disciplined endurance under partial control. For \"Anticipation (Thinking Negatively)\", avoid replacing the chapter move with the whole book thesis.",
+  "sourceAlignmentTerms": [
+    "anticipation",
+    "negative visualization",
+    "rehearsal",
+    "risk",
+    "preparation",
+    "surprise"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "A generic obstacle appears and teaches anticipation (thinking negatively)",
+      "The problem is not the problem",
+      "Everything changed when the setback arrived"
+    ],
+    "counterintuition": [
+      "The obstacle is actually a blessing",
+      "The hard part is really your mindset",
+      "Success comes from staying positive"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on adversity",
+      "Write down three things you are grateful for",
+      "Take a breath and choose courage"
+    ],
+    "examples": [
+      "generic office meeting with laptop and coffee",
+      "generic kitchen-table family argument",
+      "generic classroom grade disappointment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective realization, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research-free aside on source limits, a direct second-person passage, or a brief historical reference where sourceAnchors permits it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Bianca",
+      "domain": "expedition planner rehearsing lost-bag contingencies",
+      "audience": "Readers facing expedition planner rehearsing lost-bag contingencies who need to practice \"Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into pessimism.",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "openingDeviceNote": "open on a concrete sound, texture, smell, or visual detail before naming the person",
+      "requiredBeat": "Bianca must visibly perform the chapter move by running the likely failure in advance and preparing the response calmly, so the lesson happens in action rather than explanation.",
+      "firstImage": "a cracked plastic folder with forms slipping out",
+      "mustInclude": [
+        "spreadsheet row",
+        "timestamped note",
+        "one disputed fact"
+      ],
+      "mustAvoid": [
+        "do not turn this into pessimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Ronan",
+      "domain": "wedding caterer pre-cooking failure drills before a summer season",
+      "audience": "Readers facing wedding caterer pre-cooking failure drills before a summer season who need to practice \"Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into pessimism.",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "openingDeviceNote": "open with one line of spoken dialogue that forces the decision into view",
+      "requiredBeat": "Ronan must visibly perform the chapter move by running the likely failure in advance and preparing the response calmly, so the lesson happens in action rather than explanation.",
+      "firstImage": "a measuring tape stretched across a taped floor mark",
+      "mustInclude": [
+        "weather alert",
+        "supply box",
+        "call list"
+      ],
+      "mustAvoid": [
+        "do not turn this into pessimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Helena",
+      "domain": "cybersecurity lead running breach tabletop before launch",
+      "audience": "Readers facing cybersecurity lead running breach tabletop before launch who need to practice \"Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into pessimism.",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "openingDeviceNote": "open with the room, tool, weather, queue, screen, or workplace layout before any person acts",
+      "requiredBeat": "Helena must visibly perform the chapter move by running the likely failure in advance and preparing the response calmly, so the lesson happens in action rather than explanation.",
+      "firstImage": "a phone face-down beside a stamped envelope",
+      "mustInclude": [
+        "practice log",
+        "public result",
+        "private correction"
+      ],
+      "mustAvoid": [
+        "do not turn this into pessimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Dario",
+      "domain": "teacher mapping likely classroom disruptions before term",
+      "audience": "Readers facing teacher mapping likely classroom disruptions before term who need to practice \"Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into pessimism.",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "openingDeviceNote": "open by putting the reader directly in the scene with a precise constraint",
+      "requiredBeat": "Dario must visibly perform the chapter move by running the likely failure in advance and preparing the response calmly, so the lesson happens in action rather than explanation.",
+      "firstImage": "a row of empty chairs after a meeting ends",
+      "mustInclude": [
+        "printed schedule",
+        "one fixed deadline",
+        "one person waiting for a decision"
+      ],
+      "mustAvoid": [
+        "do not turn this into pessimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Ivy",
+      "domain": "pilot trainee practicing instrument failure in simulator",
+      "audience": "Readers facing pilot trainee practicing instrument failure in simulator who need to practice \"Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into pessimism.",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "openingDeviceNote": "open after the fact, with the protagonist realizing what the earlier choice meant",
+      "requiredBeat": "Ivy must visibly perform the chapter move by running the likely failure in advance and preparing the response calmly, so the lesson happens in action rather than explanation.",
+      "firstImage": "a stack of returned envelopes in a mail tray",
+      "mustInclude": [
+        "marked-up form",
+        "visible queue",
+        "one rule that cannot be changed"
+      ],
+      "mustAvoid": [
+        "do not turn this into pessimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    },
+    {
+      "protagonistName": "Graham",
+      "domain": "community clinic preparing scripts for vaccine rumors",
+      "audience": "Readers facing community clinic preparing scripts for vaccine rumors who need to practice \"Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.\" without turning it into a slogan",
+      "stakes": "A concrete decision will either preserve the chapter move or slide into pessimism.",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "openingDeviceNote": "open with a practical question the scene will answer",
+      "requiredBeat": "Graham must visibly perform the chapter move by running the likely failure in advance and preparing the response calmly, so the lesson happens in action rather than explanation.",
+      "firstImage": "a whiteboard corner where the old plan is half erased",
+      "mustInclude": [
+        "locked door",
+        "backup route",
+        "two-minute choice window"
+      ],
+      "mustAvoid": [
+        "do not turn this into pessimism",
+        "no laptop-and-coffee default scene",
+        "no generic brave mindset speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the exact visible action that performs \"Rehearse likely trouble in advance so surprise loses some of its power and preparation becomes calmer.\" in a new scenario",
+      "distinguish \"Anticipation (Thinking Negatively)\" from its common weak drift: pessimism",
+      "choose between two plausible responses where only one preserves the chapter's control boundary",
+      "explain why a concrete beat works without reusing generic resilience language"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real obstacle, write one sentence naming the raw fact, one sentence naming the move under your control, and one sentence naming the first visible action for \"Anticipation (Thinking Negatively)\"; keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

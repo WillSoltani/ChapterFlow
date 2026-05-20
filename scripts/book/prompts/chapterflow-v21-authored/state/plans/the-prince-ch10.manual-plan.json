@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch10",
+  "number": 10,
+  "title": "Concerning the Way in Which the Strength of All Principalities Ought to Be Measured",
+  "coreMove": "Measure strength by what the state can sustain under attack, not by how strong it appears in calm conditions.",
+  "sourcePressure": "The source asks whether a principality can support itself with men and money in the field or must shelter behind walls. For the weaker case, strength means fortified towns, provisions for eating, drinking, and firing, public work that sustains the people, military exercises, ordinances, and avoiding hatred so citizens stay steadfast through siege losses.",
+  "chapterSpecificMisunderstanding": "The wrong version turns this into generic resilience. The writer must keep the concrete measurement: field army or walls, provisions, artillery, work, morale, burned property, and a prince who is not hated.",
+  "sourceAlignmentTerms": [
+    "own resources",
+    "field",
+    "walls",
+    "German cities",
+    "provisions",
+    "artillery",
+    "not hated",
+    "ditches",
+    "public depots",
+    "siege"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "castle imagery without logistics",
+      "personal resilience during hardship",
+      "abstract strength under pressure"
+    ],
+    "counterintuition": [
+      "most people assume strong means brave, but actually it means prepared",
+      "walls always make you safe",
+      "morale alone wins sieges"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list your resources",
+      "write your emergency plan in general terms",
+      "imagine your walls"
+    ],
+    "examples": [
+      "personal savings emergency fund",
+      "company runway metaphor",
+      "sports conditioning",
+      "home bunker prep"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a walled salt city deciding whether it can meet a raider army in the flats or survive behind its gates",
+      "audience": "a prince measuring strength before promising an open-field battle",
+      "stakes": "brave cavalry talk means little if the city has stores, ditches, and workshops but not enough horsemen for the flats",
+      "format": "decision_point",
+      "requiredBeat": "He slides the cavalry tablet away from the battle plan and counts sealed salt-cellar rations, ditch crews, and gate bolts before choosing a siege defense.",
+      "firstImage": "Sealed salt-cellar rations are stacked beside a cavalry tablet.",
+      "mustInclude": [
+        "salt-cellar rations",
+        "cavalry tablet",
+        "gate bolts"
+      ],
+      "mustAvoid": [
+        "castle romance",
+        "chapter 3 garrison debate",
+        "generic courage"
+      ]
+    },
+    {
+      "domain": "a free printing city maintaining public work during a year-long blockade",
+      "audience": "civic wardens who must keep printers, papermakers, and carriers fed and useful behind walls",
+      "stakes": "if labor stops, citizens brood over burned shops outside the walls and may blame the ruler before the blockade breaks",
+      "format": "before_after",
+      "requiredBeat": "The warden moves idle pressmen from the closed trade hall to the ration-label presses, turning public work into siege steadiness.",
+      "firstImage": "Stacks of blank ration labels sit on a silent printing press.",
+      "mustInclude": [
+        "ration labels",
+        "silent press",
+        "burned shop list"
+      ],
+      "mustAvoid": [
+        "free speech frame",
+        "publishing business story",
+        "productivity advice"
+      ]
+    },
+    {
+      "domain": "a fortress monastery calculating fuel, grain, and artillery before winter attackers arrive",
+      "audience": "an abbot-prince tempted to rely on sacred reputation instead of stockpiles",
+      "stakes": "attackers see difficulty only if ditch depth, shot, fuel, and bread are visible realities, and monks will not stay calm on reputation alone",
+      "format": "scene",
+      "requiredBeat": "The abbot sets the relic cover aside, opens the powder measure, and orders the grain loft counted in front of the wall captains.",
+      "firstImage": "A powder measure rests beside a covered relic case in the grain loft.",
+      "mustInclude": [
+        "powder measure",
+        "grain loft tally",
+        "wall captains"
+      ],
+      "mustAvoid": [
+        "theology lesson",
+        "chapter 11 ecclesiastical authority",
+        "faith versus force abstraction"
+      ]
+    },
+    {
+      "domain": "a desert caravan city whose outer gardens will burn during siege",
+      "audience": "a ruler preparing citizens to lose property outside the walls without turning against him",
+      "stakes": "enemy fires will destroy date gardens early, while spirits are still hot; the ruler must hold minds steady after the loss is irreversible",
+      "format": "predict_reveal",
+      "requiredBeat": "He points to the garden-loss tiles already moved inside the wall chart and tells each ward captain which families will receive work and guard duty after the burn line is crossed.",
+      "firstImage": "Garden-loss tiles sit below a red burn line on the wall chart.",
+      "mustInclude": [
+        "garden-loss tiles",
+        "burn line",
+        "ward captain work list"
+      ],
+      "mustAvoid": [
+        "oasis annexation from chapter 3",
+        "stoic acceptance",
+        "property as hatred chapter only"
+      ]
+    },
+    {
+      "domain": "a lake citadel comparing public depot counts with a proud commander's parade numbers",
+      "audience": "council auditors deciding whether the citadel is strong or merely impressive on inspection day",
+      "stakes": "parade numbers impress visitors, but siege strength is bread, water, firing, shot, repairs, and citizens who are not already alienated",
+      "format": "postmortem",
+      "requiredBeat": "The auditor folds the parade roster, opens the public depot seals one by one, and marks the city weak where the firewood bins are empty.",
+      "firstImage": "Public depot seals sit unbroken beside a polished parade roster.",
+      "mustInclude": [
+        "depot seals",
+        "parade roster",
+        "firewood bins"
+      ],
+      "mustAvoid": [
+        "military spectacle",
+        "budget audit only",
+        "morale poster"
+      ]
+    },
+    {
+      "domain": "a snowbound border town deciding whether nearby allies can arrive before its own stores fail",
+      "audience": "a town captain who has always assumed neighboring lords will relieve him",
+      "stakes": "needing others changes the measurement; if relief is delayed, walls without food and citizen work become a trap",
+      "format": "dialogue",
+      "requiredBeat": "When the captain says the allies are three passes away, the quartermaster pours the last oat sacks onto the counting cloth and asks how many days the town owns without them.",
+      "firstImage": "The last oat sacks spill across a counting cloth under a frosted window.",
+      "mustInclude": [
+        "oat sacks",
+        "counting cloth",
+        "three-pass relief note"
+      ],
+      "mustAvoid": [
+        "winter hardship atmosphere",
+        "alliance politics from chapter 3",
+        "personal grit"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify whether a principality can meet an attacker in the field or must defend behind walls",
+      "identify concrete siege-strength evidence: provisions, fortifications, artillery, public work, ordinances, and citizen morale",
+      "analyze how not being hated affects endurance after property outside the city is burned",
+      "evaluate claims of strength that rely on allies, parade force, reputation, or courage without sustainment"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one institution that claims to be strong. Test it under attack by listing what it can do with its own resources, what it must shelter behind, and which supplies or loyalties would fail first.",
+  "readingTimeMinutes": 12
+}

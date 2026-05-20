@@ -1,0 +1,189 @@
+{
+  "chapterId": "peak-ch09",
+  "number": 9,
+  "title": "Where Do We Go from Here?",
+  "coreMove": "Redesign environments so practice, coaching, opportunity, and standards are built into the system rather than left to private luck.",
+  "sourcePressure": "The closing chapter argues that education, workplaces, and institutions should change if human performance is more trainable than static talent stories suggest, with concrete standards and support structures. Frozen sidecar for chapter 9 contains no traceable named figure, study, place, date, or artifact beyond the authors and chapter mechanism; sourceAnchors stays empty rather than inventing one.",
+  "chapterSpecificMisunderstanding": "The weak version becomes generic optimism about human potential or lowers standards in the name of access.",
+  "sourceAlignmentTerms": [
+    "institution",
+    "opportunity",
+    "support structure",
+    "training design",
+    "standard",
+    "potential",
+    "education"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "principal with stopwatch and pep poster from old Peak draft",
+      "future of education optimism opener",
+      "everyone has potential slogan"
+    ],
+    "counterintuition": [
+      "schools just need encouragement",
+      "organizations should be nicer",
+      "standards are elitist"
+    ],
+    "tryThisNow": [
+      "think about how society should change",
+      "encourage someone today",
+      "write your vision for learning"
+    ],
+    "examples": [
+      "generic classroom reform",
+      "poster replacement",
+      "broad workplace learning culture"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "municipal lifeguard certification program redesigned for repeat practice",
+      "audience": "a recreation director who wants safer guards without lowering the test",
+      "stakes": "a one-day pass-fail course misses weak rescue skills until a real swimmer needs help",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anna keeps the final standard, adds weekly timed rescue reps, trains feedback leads, and opens extra pool slots for candidates without private swim-club access",
+      "firstImage": "rescue tubes lined along a wet tile edge before dawn",
+      "mustInclude": [
+        "weekly timed rescue reps",
+        "feedback leads",
+        "extra pool slots"
+      ],
+      "mustAvoid": [
+        "generic public-sector optimism",
+        "lowering standards"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "manufacturing apprenticeship quality station",
+      "audience": "a plant manager replacing sink-or-swim training with visible standards",
+      "stakes": "scrap and injuries rise when novices learn only by being rushed into production",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:05 a.m., Jack moves one machine setup off the live line, installs a practice jig, and requires trained peer feedback before apprentices return to production",
+      "firstImage": "a practice jig bolted to a scratched steel bench",
+      "mustInclude": [
+        "practice jig",
+        "peer feedback",
+        "live-line return"
+      ],
+      "mustAvoid": [
+        "generic factory efficiency",
+        "sink-or-swim nostalgia"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "public library digital-skills lab for job seekers",
+      "audience": "a program lead designing access plus standards",
+      "stakes": "people without home computers are judged as low skill before they get practice conditions",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Nicolas turns open computer time into short resume-upload reps with a visible checklist, volunteer feedback, and repeat slots for anyone who misses the first attempt",
+      "firstImage": "laminated upload checklists stacked beside public keyboard covers",
+      "mustInclude": [
+        "resume-upload reps",
+        "volunteer feedback",
+        "repeat slots"
+      ],
+      "mustAvoid": [
+        "library kindness story",
+        "access without standard"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "hospital residency morbidity-and-mortality practice redesign",
+      "audience": "a training director who wants learning without blame theater",
+      "stakes": "cases get discussed as shame or paperwork instead of becoming practice targets",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Astrid separates system review from one trainable clinical judgment, assigns simulation reps, and tracks whether the corrected cue appears in the next rotation",
+      "firstImage": "a case timeline projected beside a covered simulation mannequin",
+      "mustInclude": [
+        "case timeline",
+        "simulation reps",
+        "next-rotation cue"
+      ],
+      "mustAvoid": [
+        "generic hospital accountability",
+        "blame-free slogan"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "regional journalism fellowship for rural reporters",
+      "audience": "an editor building coaching where talent pipelines used to be thin",
+      "stakes": "promising reporters leave after being judged on final copy without editing practice",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Pablo predicts another fellowship will fail if it only assigns stories, then adds line-edit drills, beat memos, and editor calls before publication deadlines",
+      "firstImage": "marked proofs clipped beside a rural county beat map",
+      "mustInclude": [
+        "line-edit drills",
+        "beat memos",
+        "editor calls"
+      ],
+      "mustAvoid": [
+        "generic media mentorship",
+        "talent pipeline buzzwords"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "city youth orchestra audition-prep access program",
+      "audience": "an arts administrator balancing high standards with fair preparation",
+      "stakes": "auditions reward private lessons unless public prep builds the missing practice environment",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Hiroshi keep the audition excerpt unchanged, publish the rubric, provide coached mock auditions, and measure who improves after feedback",
+      "firstImage": "audition excerpts clipped to black music stands in an empty hall",
+      "mustInclude": [
+        "published rubric",
+        "mock auditions",
+        "improvement after feedback"
+      ],
+      "mustAvoid": [
+        "arts access sentimentality",
+        "lowering audition difficulty"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "design institutions around practice not labels",
+      "keep standards while widening access to preparation",
+      "distinguish support structures from generic encouragement",
+      "evaluate whether a system creates feedback and opportunity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one group you influence. Identify the current final test, then name one protected practice rep, one feedback giver, and one access barrier you could change before that test.",
+  "readingTimeMinutes": 12
+}

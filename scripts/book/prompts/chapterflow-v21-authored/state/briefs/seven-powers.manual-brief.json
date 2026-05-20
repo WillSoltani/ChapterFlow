@@ -1,0 +1,103 @@
+{
+  "bookId": "seven-powers",
+  "title": "7 Powers: The Foundations of Business Strategy",
+  "author": "Hamilton Helmer",
+  "thesisParagraph": "7 Powers teaches that durable strategy is not a list of goals, a better product, or operational competence. A business has Power only when it has both a benefit that improves economics or willingness to pay and a barrier that keeps competitors from arbitraging that benefit away. The seven forms are scale economies, network economies, counter-positioning, switching costs, branding, cornered resource, and process power. The reader learns to test each claimed advantage by asking what benefit it creates, what barrier protects it, and whether the timing of the market allows that power to form.",
+  "coreIdeas": [
+    {
+      "name": "Benefit plus barrier",
+      "oneSentence": "A strategic advantage matters only when it improves economics and blocks rivals from copying away the gain.",
+      "mentalMove": "force every claimed advantage to name its benefit and its barrier",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Seven distinct powers",
+      "oneSentence": "Each power works through a different mechanism, so loose moat language hides the real test.",
+      "mentalMove": "classify the advantage by mechanism before deciding what to build",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch03.source",
+        "ch04.source",
+        "ch05.source",
+        "ch06.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Timing shapes possibility",
+      "oneSentence": "Some powers can form only during origination, take-off, or stability, and missed windows cannot be wished back open.",
+      "mentalMove": "match the power to the stage where it can realistically emerge",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Operational excellence is not enough",
+      "oneSentence": "Better execution can help a business but it does not become strategy until it creates a protected advantage.",
+      "mentalMove": "separate copyable improvement from barrier-forming invention or process",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Do not worship size or novelty",
+      "oneSentence": "Growth, users, invention, patents, and reputation are raw materials, not Power, until their protection logic is visible.",
+      "mentalMove": "test the exact condition that turns a common business asset into durable power",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch02.source",
+        "ch05.source",
+        "ch06.source"
+      ]
+    }
+  ],
+  "targetReader": "Founders, operators, investors, product leaders, and managers who need to tell the difference between a business that merely performs well today and a business protected against future competition. They care because capital, hiring, and product choices change once the actual source of power is named.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete operating choice before naming the power",
+      "use plain sentences with one sharp business object or record",
+      "teach through tradeoffs a founder, operator, or manager would recognize",
+      "keep benefit and barrier visible in the same paragraph"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake company histories or invented source anchors"
+    ]
+  },
+  "voiceSpecimens": [
+    "A bigger order is not power until the next unit costs less to serve.",
+    "The rival does not care that your process is tidy. It cares whether copying one step would still leave the machine broken.",
+    "A network is real when one more user improves the product for the users already there.",
+    "The painful question is not whether the entrant is clever. It is what the incumbent would have to wound in order to copy it.",
+    "Trust becomes strategy only when the buyer pays for it while a similar option sits nearby.",
+    "Timing turns some powers into open doors and others into locked ones."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, readers will learn about the importance of strategic moats.",
+    "Businesses should leverage innovation to maximize sustainable competitive advantage.",
+    "The key takeaway is that strong companies are better positioned to win over time.",
+    "Try to be intentional about creating value and staying ahead of competitors.",
+    "Power is a journey of discovering your unique business strengths."
+  ],
+  "teachingArc": "The first seven chapters teach each power as a separate mechanism, moving from cost and user-value advantages through incumbent traps, customer lock-in, trust premiums, scarce inputs, and embedded processes. The final two chapters turn the list into judgment: first by showing that power must be invented or chosen rather than optimized into existence, then by matching each power to the stage where it can still form.",
+  "forbiddenMoves": [
+    "Do not turn every chapter into generic moat language; each power needs its own benefit, barrier, and failure test.",
+    "Do not treat operational excellence, growth, user count, branding, or patents as Power without proving the protective mechanism.",
+    "Do not invent detailed company case histories beyond Netflix, Intel, Facebook, and LinkedIn as supported in the sidecars.",
+    "Do not let examples collapse into boardroom decks, generic startups, classrooms, kitchens, or repeated spreadsheet scenes."
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch06",
+  "number": 6,
+  "title": "High-stakes predictions",
+  "coreMove": "Match the size of your action to the strength of the pattern and the cost of being late.",
+  "sourcePressure": "Consequential risk assessment requires stronger pattern support, but high stakes can justify earlier protective action before certainty is available.",
+  "chapterSpecificMisunderstanding": "Claiming uncertainty disappears before action is justified.",
+  "sourceAlignmentTerms": [
+    "high stakes",
+    "pattern support",
+    "sequence",
+    "escalation",
+    "protective action",
+    "uncertainty",
+    "narrow action"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch06",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "charter boat dock during a weather delay",
+      "audience": "a skipper choosing action under uncertainty",
+      "stakes": "whether to wait for certainty before canceling",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "cancels a short run after wind, passenger behavior, and radio reports form enough pattern",
+      "firstImage": "a dock line snapping against a cleat",
+      "mustInclude": [
+        "weather radio",
+        "dock line",
+        "life jacket rack"
+      ],
+      "mustAvoid": [
+        "reckless worst-case thinking",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Andrew",
+      "domain": "surgery center intake morning",
+      "audience": "a charge nurse escalating a visitor concern",
+      "stakes": "whether stronger action needs perfect proof",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "restricts access after repeated false names and attempts to learn recovery-room doors",
+      "firstImage": "a plastic wristband curled in a printer tray",
+      "mustInclude": [
+        "wristband printer",
+        "recovery door",
+        "visitor form"
+      ],
+      "mustAvoid": [
+        "reckless worst-case thinking",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "university field trip bus bay",
+      "audience": "a faculty lead reading an escalating parent conflict",
+      "stakes": "whether one angry voicemail is enough",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "adds staff at departure after voicemails, parking-lot waiting, and access demands align",
+      "firstImage": "diesel exhaust under a row of idling buses",
+      "mustInclude": [
+        "bus manifest",
+        "campus radio",
+        "permission slip"
+      ],
+      "mustAvoid": [
+        "reckless worst-case thinking",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "architecture office bid presentation",
+      "audience": "a partner assessing a fired contractor",
+      "stakes": "whether the cost of being wrong changes the threshold",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "moves the meeting online after tools, emails, and lobby appearances escalate",
+      "firstImage": "a model stair tread chipped in the sample box",
+      "mustInclude": [
+        "sample box",
+        "security email",
+        "conference pass"
+      ],
+      "mustAvoid": [
+        "reckless worst-case thinking",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Diego",
+      "domain": "wedding venue rehearsal night",
+      "audience": "a planner deciding how much protection fits the pattern",
+      "stakes": "whether uncertainty should freeze action",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "quietly changes entrances after a former partner asks staff for the bride schedule twice",
+      "firstImage": "a seating chart pinned under glass",
+      "mustInclude": [
+        "seating chart",
+        "service door",
+        "staff headset"
+      ],
+      "mustAvoid": [
+        "reckless worst-case thinking",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "food bank distribution line",
+      "audience": "a coordinator handling a volunteer removal",
+      "stakes": "whether narrower action can beat dramatic action",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "keeps the volunteer off-site after repeated boundary tests without calling it prophecy",
+      "firstImage": "a crate of canned tomatoes by the loading door",
+      "mustInclude": [
+        "volunteer badge",
+        "loading door",
+        "shift list"
+      ],
+      "mustAvoid": [
+        "reckless worst-case thinking",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish high stakes from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits match the size of your action to the strength of the pattern and the cost of being late.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: claiming uncertainty disappears before action is justified."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one high-stakes situation where waiting for proof is costly. Match one protective step to the evidence you already have.",
+  "readingTimeMinutes": 12
+}

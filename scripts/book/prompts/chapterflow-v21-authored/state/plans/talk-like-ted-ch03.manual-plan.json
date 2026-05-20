@@ -1,0 +1,213 @@
+{
+  "chapterId": "talk-like-ted-ch03",
+  "number": 3,
+  "title": "Have a Conversation",
+  "coreMove": "Practice delivery until the talk sounds like one person speaking clearly to one person.",
+  "sourcePressure": "The source says conversational delivery comes after conviction and story shape. It is built through practice, verbal control, and congruent body language: rate, volume, pitch, pauses, gestures, movement, recording review, and hands out of pockets.",
+  "chapterSpecificMisunderstanding": "The weak version says sound casual or wing it. The useful version says rehearse enough that naturalness survives pressure.",
+  "sourceAlignmentTerms": [
+    "conversation",
+    "practice",
+    "presence",
+    "rate",
+    "volume",
+    "pitch",
+    "pauses",
+    "body language"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Amanda Palmer",
+      "detail": "the source lists Palmer among the usable proper nouns for this delivery and presence chapter",
+      "useIn": "fullRead",
+      "phrasingHint": "Amanda Palmer belongs in the conversation about presence because the room has to feel a person, not a recitation."
+    },
+    {
+      "kind": "person",
+      "name": "Colin Powell",
+      "detail": "the source lists Powell among the delivery anchors for conversational public speaking",
+      "useIn": "deepRead",
+      "phrasingHint": "Colin Powell is a reminder that command does not require stiffness; authority can still sound addressed to one listener."
+    },
+    {
+      "kind": "person",
+      "name": "Ernesto Sirolli",
+      "detail": "the source lists Sirolli as one of the chapter's proper-noun supports for presence and conversational delivery",
+      "useIn": "fullRead",
+      "phrasingHint": "Ernesto Sirolli's name can enter as a delivery anchor, but the prose should stay on practiced naturalness rather than biography."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "imagine the audience is one friend",
+      "speaker practices in mirror",
+      "stage fright melts away"
+    ],
+    "counterintuition": [
+      "practice makes perfect",
+      "natural speakers practice more",
+      "body language matters more than words"
+    ],
+    "tryThisNow": [
+      "record yourself and watch it",
+      "practice your talk three times",
+      "slow down and pause"
+    ],
+    "examples": [
+      "generic mirror rehearsal",
+      "conference keynote rehearsal",
+      "toastmaster scene",
+      "class presentation nerves"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "city planning public hearing",
+      "audience": "a planner explaining a rezoning map to residents who expect jargon",
+      "stakes": "whether the room hears a human explanation or a bureaucratic recital",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "she marks three places in the script where she will look up, lower the pitch, and speak directly to the front row instead of reading the parcel codes",
+      "firstImage": "a folded zoning map with yellow tabs sticking from the edges",
+      "mustInclude": [
+        "zoning map",
+        "front-row residents",
+        "marked pause points"
+      ],
+      "mustAvoid": [
+        "policy debate",
+        "generic public speaking nerves"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "surgical handoff workshop",
+      "audience": "a resident leading a five-minute handoff practice for exhausted interns",
+      "stakes": "whether a safety script sounds usable at 3 a.m. or like training theater",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "he rehearses the opening until he can say the checklist like a nurse at the bedrail, then removes the stiff training voice",
+      "firstImage": "a laminated handoff card clipped to a blue scrub pocket",
+      "mustInclude": [
+        "handoff card",
+        "night shift",
+        "bedrail"
+      ],
+      "mustAvoid": [
+        "medical hero scene",
+        "safety checklist as chapter two story"
+      ]
+    },
+    {
+      "protagonistName": "Hannah",
+      "domain": "bank analyst investor update",
+      "audience": "a junior analyst presenting loan-loss exposure to senior partners",
+      "stakes": "whether the partners trust her judgment or hear a memorized spreadsheet tour",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she watches a rehearsal video, catches her hands trapped in her jacket pockets, and rewrites the first minute as a spoken briefing with one clean gesture to the risk column",
+      "firstImage": "a paused rehearsal video showing both hands buried in a navy jacket",
+      "mustInclude": [
+        "loan-loss sheet",
+        "rehearsal video",
+        "risk column"
+      ],
+      "mustAvoid": [
+        "finance jargon lesson",
+        "confidence makeover"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "wedding officiant rehearsal",
+      "audience": "a friend officiating a ceremony for the first time",
+      "stakes": "whether the couple feels seen or trapped inside a polished script",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "he practices the vows aloud until he can lift his eyes on the couple's names and let the pause land without rushing",
+      "firstImage": "thin ceremony pages fluttering in a garden breeze",
+      "mustInclude": [
+        "ceremony pages",
+        "couple's names",
+        "pause before vows"
+      ],
+      "mustAvoid": [
+        "romantic sentimentality",
+        "comedy toast"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "forestry fire-risk briefing",
+      "audience": "a wildfire analyst addressing cabin owners before a dry summer",
+      "stakes": "whether technical risk maps become a calm, credible conversation before evacuation season",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she asks which slope will burn fastest, waits through the guesses, then practices the reveal so the silence after the map does not feel accidental",
+      "firstImage": "red contour lines spreading across a laminated fire map",
+      "mustInclude": [
+        "fire map",
+        "cabin-owner meeting",
+        "practiced silence"
+      ],
+      "mustAvoid": [
+        "climate hearing repeat",
+        "panic speech"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "university orientation keynote",
+      "audience": "a dean welcoming first-generation students and parents",
+      "stakes": "whether the opening feels institutional or like a direct welcome to anxious families",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch him replace the grand auditorium voice with a rehearsed first-row sentence, then use volume only after the welcome has landed personally",
+      "firstImage": "a microphone stand centered under a banner of college crests",
+      "mustInclude": [
+        "first-row sentence",
+        "auditorium microphone",
+        "orientation badges"
+      ],
+      "mustAvoid": [
+        "school assembly cliche",
+        "generic authenticity"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish conversational delivery from casual improvisation",
+      "choose rehearsal moves for rate, volume, pitch, and pauses",
+      "spot incongruent body language",
+      "evaluate whether practice has made delivery more human or more stiff"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Record the first 45 seconds of a live talk, then mark one place to pause, one sentence to lower, and one gesture to remove before rehearsing it once more.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "chapterId": "extreme-ownership-ch01",
+  "number": 1,
+  "title": "Leadership: The Single Most Important Factor",
+  "coreMove": "turn uncertainty into a shared next action by naming the purpose, standard, and immediate move before conditions feel ready",
+  "sourcePressure": "The introduction frames leadership quality as the factor that shapes whether teams perform, survive confusion, and adapt under pressure.",
+  "chapterSpecificMisunderstanding": "leadership is important, so be more inspiring",
+  "sourceAlignmentTerms": [
+    "leadership factor",
+    "Ramadi frame",
+    "high-stakes call",
+    "confusion",
+    "shared action",
+    "adapt under pressure"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Leif Babin",
+      "detail": "the source places him in a dangerous Ramadi situation where a decision has to be made before every fact is known",
+      "useIn": "both",
+      "phrasingHint": "Leif Babin in Ramadi gives the principle its first test: the next move has to be made while the picture is still incomplete."
+    },
+    {
+      "kind": "place",
+      "name": "Ramadi",
+      "detail": "the source uses Ramadi as the pressure setting where leadership has to function inside confusion and immediate danger",
+      "useIn": "fullRead",
+      "phrasingHint": "Ramadi should sit in the prose as pressure, not color: a place where confusion either narrows under leadership or multiplies without it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "harbor ferry control during a morning fog closure",
+      "audience": "a ferry operations supervisor with two crews waiting for direction",
+      "stakes": "commuters are stranded and the captains are hearing different rumors about visibility",
+      "format": "scene",
+      "requiredBeat": "the supervisor stops the radio chatter, points to the tide window and radar sweep, assigns one boat to hold and one to prep, then names the next visibility check time",
+      "firstImage": "condensation beads on the harbor office window while a green radar sweep turns over empty water",
+      "mustInclude": [
+        "tide-window printout",
+        "radar sweep",
+        "two waiting captains"
+      ],
+      "mustAvoid": [
+        "generic crisis meeting or heroic solo call"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "neonatal transport dispatch during a highway pileup",
+      "audience": "a charge nurse coordinating a transport team and a receiving hospital",
+      "stakes": "a premature infant needs movement but the normal route has closed",
+      "format": "decision_point",
+      "requiredBeat": "the charge nurse gathers the partial road report, names the safest staging point, assigns the respiratory therapist to equipment check, and sets a ten-minute update cadence",
+      "firstImage": "You are close enough to see this: tiny transport incubator glows blue beside a half-filled route board.",
+      "mustInclude": [
+        "transport incubator",
+        "road-closure note",
+        "receiving hospital line"
+      ],
+      "mustAvoid": [
+        "medical drama speech or invented treatment detail"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "restaurant lunch rush after a fire alarm trips falsely",
+      "audience": "a floor manager with cooks, servers, and guests frozen mid-service",
+      "stakes": "panic can empty the dining room and leave hot stations unattended",
+      "format": "vignette",
+      "requiredBeat": "the manager sends one server to the exit doors, one cook to kill open flames, and one host to give guests the same calm sentence",
+      "firstImage": "The first thing you register is physical: fryer basket hangs above bubbling oil while the alarm light flashes red.",
+      "mustInclude": [
+        "fryer basket",
+        "alarm light",
+        "host stand"
+      ],
+      "mustAvoid": [
+        "generic customer-service recovery"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "community theater opening night when the lead actor loses his voice",
+      "audience": "a stage manager responsible for volunteers and a paid audience",
+      "stakes": "the production can collapse into blame before the curtain rises",
+      "format": "dialogue",
+      "requiredBeat": "the stage manager cuts off backstage speculation, confirms the understudy plan, assigns costume and cue changes, and tells the cast exactly what happens at curtain",
+      "firstImage": "\"Hold there,\" someone says. Cracked throat lozenge wrapper sits on the props table beside the first act call sheet.",
+      "mustInclude": [
+        "props table",
+        "understudy call sheet",
+        "cue headset"
+      ],
+      "mustAvoid": [
+        "inspirational pep talk about show business"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "storm-relief warehouse sorting supplies after roads reopen",
+      "audience": "a volunteer coordinator with seventy boxes and no clear intake system",
+      "stakes": "the wrong supplies may leave first while shelters wait for critical items",
+      "format": "postmortem",
+      "requiredBeat": "after the first hour goes sideways, the coordinator owns the missing standard, tapes three intake lanes on the floor, and assigns one person to reject unlabeled boxes",
+      "firstImage": "Later, the team will trace the lesson back to this: wet cardboard cartons sag under fluorescent warehouse lights.",
+      "mustInclude": [
+        "intake lane tape",
+        "unlabeled boxes",
+        "shelter request sheet"
+      ],
+      "mustAvoid": [
+        "charity feel-good scene"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "youth sailing regatta as a squall warning arrives",
+      "audience": "a race committee chair responsible for young sailors and anxious parents",
+      "stakes": "hesitation can leave small boats scattered when weather turns",
+      "format": "predict_reveal",
+      "requiredBeat": "the chair asks each safety boat what it will do if the horn sounds, finds two different answers, then gives one recall signal and one harbor route everyone repeats",
+      "firstImage": "What changes once this is in front of everyone: orange storm flag snaps against the committee boat rail?",
+      "mustInclude": [
+        "orange storm flag",
+        "recall horn",
+        "harbor route card"
+      ],
+      "mustAvoid": [
+        "sports motivation or reckless toughness"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which leadership action turns scattered facts into shared movement",
+      "distinguish direct leadership from inspiration-only behavior",
+      "choose the next action when a team is frozen by mixed signals"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the next unclear team moment in one sentence, then add the exact next action, owner, and check time you would say out loud.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

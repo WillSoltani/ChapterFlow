@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch02",
+  "number": 2,
+  "title": "Truth Hurts",
+  "coreMove": "Turn the private ugly fact into a posted task before shame can hide it again.",
+  "sourcePressure": "The source ties Wilmoth Irving's murder, racist hostility, school trouble, an Air Force aptitude failure, and the Accountability Mirror into truth plus disciplined follow-through.",
+  "chapterSpecificMisunderstanding": "The writer must not make the mirror into positive self-talk, confidence, or a mood boost.",
+  "sourceAlignmentTerms": ["Wilmoth Irving", "racism", "Air Force aptitude test", "Accountability Mirror", "posted goals", "study ritual", "truth"],
+  "forbiddenFrames": {
+    "hook": ["The mirror told the truth", "Truth hurts before it heals", "He finally believed in himself"],
+    "counterintuition": ["Be kinder to yourself", "Self-love begins with honesty", "Words create reality"],
+    "tryThisNow": ["Say one affirmation", "Write goals on a sticky note", "Look at yourself for one minute"],
+    "examples": ["bathroom mirror pep talk", "vision board exercise", "generic student studies harder"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "fire academy written-test remediation after a failed entrance score",
+      "audience": "a recruit who blames nerves but cannot read the technical questions fast enough",
+      "stakes": "whether he earns a retest slot or keeps hiding behind a heroic dream",
+      "format": "before_after",
+      "requiredBeat": "he writes the failed score beside the retest date on the dorm door, then blocks the first two chapters of code study on the calendar",
+      "firstImage": "a red failed-score sheet folded inside a turnout-gear locker",
+      "mustInclude": ["failed-score sheet", "retest date", "fire code manual"],
+      "mustAvoid": ["dramatic rescue", "instructor speech", "affirmation mirror"]
+    },
+    {
+      "domain": "hospital unit medication-error review",
+      "audience": "a nurse tempted to call a near miss a systems problem only",
+      "stakes": "whether a patient gets harmed next shift because the personal miss stays unnamed",
+      "format": "postmortem",
+      "requiredBeat": "she writes 'I skipped the barcode scan' on the review form before listing the staffing issue underneath it",
+      "firstImage": "a medication label peeled halfway from a plastic IV bag",
+      "mustInclude": ["barcode scanner", "review form", "shift roster"],
+      "mustAvoid": ["blame culture lecture", "hospital hero scene", "generic accountability meeting"]
+    },
+    {
+      "domain": "community college placement exam retake",
+      "audience": "an adult learner embarrassed by the reading section",
+      "stakes": "whether embarrassment keeps her in a low track another semester",
+      "format": "decision_point",
+      "requiredBeat": "she copies the lowest subscore onto the study plan, circles vocabulary, and signs up for the lab before leaving campus",
+      "firstImage": "a placement printout creased under a vending-machine receipt",
+      "mustInclude": ["subscore", "study lab", "vocabulary list"],
+      "mustAvoid": ["campus inspiration speech", "teacher rescue", "instant academic confidence"]
+    },
+    {
+      "domain": "public defender arraignment prep after a missed deadline",
+      "audience": "a junior attorney protecting his image after a late filing",
+      "stakes": "whether a client pays for his ego next time",
+      "format": "dialogue",
+      "requiredBeat": "he tells the senior defender the exact missed calendar entry, then writes a new filing trigger into the case system while she watches",
+      "firstImage": "a docket sheet with one deadline highlighted in orange",
+      "mustInclude": ["docket sheet", "case system alert", "arraignment folder"],
+      "mustAvoid": ["courtroom confession", "legal thriller drama", "generic mistake ownership"]
+    },
+    {
+      "domain": "youth boxing weigh-in after hidden diet slips",
+      "audience": "an amateur fighter who keeps joking about the scale",
+      "stakes": "whether he misses the bout because joking protects the lie",
+      "format": "predict_reveal",
+      "requiredBeat": "before stepping on, he predicts the number aloud, sees the miss, and writes the exact evening food cut on the gym board",
+      "firstImage": "a digital scale glowing beside unlaced boxing shoes",
+      "mustInclude": ["digital scale", "gym board", "meal log"],
+      "mustAvoid": ["body-shaming", "championship glory", "coach yelling"]
+    },
+    {
+      "domain": "recovery sponsor call after a hidden relapse trigger",
+      "audience": "a person who says everything is fine while rearranging facts",
+      "stakes": "whether secrecy becomes the first step back into the old pattern",
+      "format": "reflection",
+      "requiredBeat": "he reads the exact receipt total into the phone, then pins tomorrow's meeting time above the apartment buzzer",
+      "firstImage": "a crumpled receipt flattened beside a dead phone charger",
+      "mustInclude": ["receipt total", "meeting time", "apartment buzzer"],
+      "mustAvoid": ["sobriety miracle", "confessional monologue", "generic support group"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify truth paired with a visible task", "reject self-talk that avoids follow-through", "choose a correction ritual after a failed standard", "analyze when shame is hiding inside excuses"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Write one sentence that names the private fact you keep softening, then attach a deadline and one visible proof of work to it.",
+  "readingTimeMinutes": 12
+}

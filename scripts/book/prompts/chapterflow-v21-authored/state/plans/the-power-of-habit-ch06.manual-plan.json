@@ -1,0 +1,175 @@
+{
+  "chapterId": "the-power-of-habit-ch06",
+  "number": 6,
+  "title": "The Power of a Crisis",
+  "coreMove": "Use the exposed breakdown to install a new routine before the old institution seals itself again.",
+  "sourcePressure": "Crisis is the moment entrenched organizational routines become negotiable. The chapter only works if possibility and danger stay visible together: accidents expose bad automatic patterns, but leaders still have to design a specific new reporting, escalation, or accountability habit.",
+  "chapterSpecificMisunderstanding": "The weak version glorifies crisis or writes generic change-management prose. The writer must show the narrow window where an accident makes old routines negotiable and a designed habit makes reform stick.",
+  "sourceAlignmentTerms": [
+    "crisis",
+    "institutional habit",
+    "negotiable routines",
+    "leader",
+    "disruption",
+    "accident",
+    "new habit",
+    "re-hardening",
+    "accountability"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A leader says never waste a crisis.",
+      "A personal adversity story.",
+      "An emergency scene with no redesigned routine afterward."
+    ],
+    "counterintuition": [
+      "Most people think crisis is bad, but actually it is opportunity.",
+      "Treating fear as the reform mechanism.",
+      "Confusing a heroic reaction with an institutional habit."
+    ],
+    "tryThisNow": [
+      "Set a timer for ninety seconds and remember a crisis.",
+      "Wait for a crisis before changing anything.",
+      "Write lessons learned without assigning a new reporting path."
+    ],
+    "examples": [
+      "Personal resilience after hardship.",
+      "Emergency response that ends when the alarm stops.",
+      "Keystone habit selection without a breakdown.",
+      "Worker-safety Alcoa retell."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional blood bank freezer alarm failure",
+      "audience": "a lab director facing staff who have ignored small temperature warnings for years",
+      "stakes": "one freezer failure can destroy rare blood units and expose how many warnings had no owner",
+      "format": "postmortem",
+      "requiredBeat": "The director places the thawed inventory sheet beside the amber thermometer strip and installs a two-person alarm signoff before the replacement freezer arrives, while everyone still remembers the loss.",
+      "firstImage": "An amber thermometer strip curls beside a thawed inventory sheet.",
+      "mustInclude": [
+        "amber thermometer strip",
+        "thawed inventory sheet",
+        "two-person signoff"
+      ],
+      "mustAvoid": [
+        "bedside medical drama",
+        "punishing one technician",
+        "keystone habit without crisis"
+      ]
+    },
+    {
+      "domain": "public radio newsroom after a false storm alert",
+      "audience": "a station manager whose team relied on informal hallway checks before broadcasts",
+      "stakes": "a false emergency alert can erode listener trust and crowd out a real warning later",
+      "format": "scene",
+      "requiredBeat": "With the silent studio clock still lit, the manager tapes a new alert-release card to the console and requires producer-engineer readback before the next warning, using the mistake to replace the hallway habit.",
+      "firstImage": "A silent studio clock glows above an alert-release console.",
+      "mustInclude": [
+        "studio clock",
+        "alert-release card",
+        "producer-engineer readback"
+      ],
+      "mustAvoid": [
+        "generic media apology",
+        "one heroic editor",
+        "fear-based reform"
+      ]
+    },
+    {
+      "domain": "construction crane near-miss on a hospital expansion site",
+      "audience": "a project executive who discovers that subcontractors report hazards through favors and whispers",
+      "stakes": "the next missed outrigger warning could injure workers and shut down the site",
+      "format": "decision_point",
+      "requiredBeat": "The executive can fire the signaler and move on, but instead holds up the cracked outrigger pad and creates a stop-work tag that any trade can hang without supervisor permission before the old chain of command returns.",
+      "firstImage": "A cracked outrigger pad lies on a sheet of plywood.",
+      "mustInclude": [
+        "cracked outrigger pad",
+        "stop-work tag",
+        "subcontractor gate"
+      ],
+      "mustAvoid": [
+        "worker-safety slogan",
+        "Alcoa copy",
+        "personal bravery story"
+      ]
+    },
+    {
+      "domain": "food pantry spoiled dairy delivery after a holiday closure",
+      "audience": "a pantry director whose volunteers have been improvising receiving checks for years",
+      "stakes": "families lose food, donors lose trust, and volunteers start blaming each other instead of the receiving routine",
+      "format": "before_after",
+      "requiredBeat": "Before the holiday loss, milk crates go straight to the cooler; after it, the director puts a receiving stamp at the dock and makes every cold delivery show time, temperature, and initials before storage.",
+      "firstImage": "A warm milk crate sweats on a pantry loading dock.",
+      "mustInclude": [
+        "receiving stamp",
+        "cooler door",
+        "time-temperature initials"
+      ],
+      "mustAvoid": [
+        "charity inspiration",
+        "generic inventory checklist",
+        "shaming volunteers"
+      ]
+    },
+    {
+      "domain": "university greenhouse irrigation collapse during a heat wave",
+      "audience": "a research coordinator whose labs assumed facilities would notice failing equipment",
+      "stakes": "months of plant trials can die overnight if no one owns the handoff between research and maintenance",
+      "format": "predict_reveal",
+      "requiredBeat": "The coordinator predicts the team will want a new pump and stop there, then points to the dry soil probes and creates a daily exception board that requires lab and facilities initials before sunset.",
+      "firstImage": "Dry soil probes lean from cracked greenhouse trays.",
+      "mustInclude": [
+        "dry soil probes",
+        "exception board",
+        "facilities initials"
+      ],
+      "mustAvoid": [
+        "classroom or lab-safety lecture",
+        "one equipment purchase as reform",
+        "keystone small-win frame"
+      ]
+    },
+    {
+      "domain": "county clerk ballot-chain gap after a power outage",
+      "audience": "an elections supervisor whose office has trusted memory and seniority during late-night counts",
+      "stakes": "a missing custody mark can make a valid election look careless to the public",
+      "format": "dialogue",
+      "requiredBeat": "The supervisor sets the unmarked custody sleeve on the table and tells the team the outage made the old memory-based routine indefensible, then assigns a scan-and-witness step before the next count night.",
+      "firstImage": "An unmarked custody sleeve rests under a battery lantern.",
+      "mustInclude": [
+        "custody sleeve",
+        "battery lantern",
+        "scan-and-witness step"
+      ],
+      "mustAvoid": [
+        "partisan argument",
+        "legal theory",
+        "apology without new habit"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a crisis has made an old institutional routine negotiable",
+      "choose a specific reporting, escalation, or accountability habit while the window is open",
+      "distinguish crisis leverage from glorifying danger or blaming one person",
+      "evaluate whether a reform will persist after urgency fades and routines re-harden"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Think of one recent breakdown in a group you belong to. Write the old routine it exposed, then name the single new handoff or signoff that should exist before everyone gets comfortable again.",
+  "readingTimeMinutes": 12
+}

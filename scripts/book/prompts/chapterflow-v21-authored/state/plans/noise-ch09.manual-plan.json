@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch09",
+  "number": 9,
+  "title": "Improving Judgments",
+  "coreMove": "Change the process through which judgments are formed, not merely the awareness or intentions of the people forming them.",
+  "sourcePressure": "Visible noise creates pressure for improvement. But improvement means changing the structure of the process — the order of information, who deliberates with whom, what a scale point means — not merely raising awareness or exhorting people to be more consistent. Awareness of noise does not reduce it. Process changes do.",
+  "chapterSpecificMisunderstanding": "Assuming that informing people about noise will reduce it, or that more experienced or more careful judges will automatically produce less noise without structural changes.",
+  "sourceAlignmentTerms": ["process", "improvement", "judgment discipline", "structure", "intervention", "reduction", "awareness gap"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Process-level noise reduction approaches",
+      "detail": "The book's recurring remedy theme is that noise reduction requires process design — sequencing information, structuring aggregation, anchoring scales — rather than character development or awareness training.",
+      "useIn": "deepRead",
+      "phrasingHint": "Telling people about noise makes them wince. It does not make them more consistent. Changing the process they use makes them more consistent whether they winced or not."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["you can improve your judgment starting today", "the best decision-makers have one thing in common"],
+    "counterintuition": ["effort and intention don't improve judgment", "the worst way to fix judgment is to try harder"],
+    "tryThisNow": ["resolve to slow down your next big decision", "write a pre-mortem before your next important choice"],
+    "examples": ["a scene where someone simply decides to try harder and immediately makes better decisions — that is awareness not process", "a scene where the improvement is a personality change or mindset shift rather than a structural process change"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Improvement examples risk all reading as 'team decides to do things differently and things get better.' Different formats and entry points are needed to show the contrast between awareness-only approaches (which fail) and genuine process changes (which work)."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "refugee status determination: a refugee agency comparing outcomes before and after a structured assessment protocol introduction",
+      "audience": "a refugee agency regional director piloting a new case-decision protocol",
+      "stakes": "consistent protection for people fleeing persecution — with outcomes previously varying by 35 percent across officers handling comparable cases",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast the pre-protocol period (awareness training was given; officers were told to be consistent; variation remained at 35 percent) with the post-protocol period (intermediate assessments recorded before final decision; variation fell to 14 percent) — showing that the process change succeeded where the awareness campaign had not",
+      "firstImage": "two lines on a trend chart: an officer-level variation metric over time, the line flat through the awareness-training period, then declining sharply at the point the protocol was introduced",
+      "mustInclude": ["the awareness campaign doing nothing", "the specific process change (intermediate recorded assessments)", "the variation reduction to 14 percent"],
+      "mustAvoid": ["implying the awareness campaign was wasted or pointless — it might have helped acceptance of the protocol; it just did not reduce noise on its own", "a specific refugee's case"]
+    },
+    {
+      "domain": "customs and border screening: comparing officer-level inconsistency before and after restructuring the inspection checklist",
+      "audience": "a border security training officer reviewing inconsistency data from two pilot stations",
+      "stakes": "both security effectiveness and traveler fairness — inconsistent screening means some travelers are burdened more than others for identical profiles",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two training officers compare the screening inconsistency data from the station that received only the awareness briefing versus the station that received the restructured checklist: the awareness station's variation is unchanged after six months; the checklist station's variation is down by 20 percent; the training officers discuss what that difference means for the next rollout",
+      "firstImage": "a side-by-side comparison chart for two stations pinned to a training room corkboard — variation bars for the awareness-only station and the checklist station side by side for six months",
+      "mustInclude": ["the two-station comparison design", "the divergent outcomes (unchanged vs. 20 percent reduction)", "the implication for process design over training alone"],
+      "mustAvoid": ["a security threat narrative", "implying either station's officers were less competent"]
+    },
+    {
+      "domain": "medical claims handling: an insurance company introducing independent assessment before supervisor review to reduce noise",
+      "audience": "a claims quality director piloting a new sequencing rule for complex medical claims",
+      "stakes": "consistent claim decisions and fraud detection — a noisier process produces both unfair denials and undetected fraud",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the director presents the pilot results to the leadership team: under the old process (claims handlers discussed complex cases before recording their assessments) the inter-handler variability for matched claim types was 28 percent; under the new sequencing rule (individual assessment before group discussion) variability fell to 11 percent",
+      "firstImage": "a quality dashboard on a conference room screen showing two variability bars — one for the old process, one for the new — the new bar clearly shorter",
+      "mustInclude": ["the specific process change (sequencing individual before group assessment)", "the 28-to-11 reduction", "the mechanism explanation — individual assessments before discussion prevent the first voice from anchoring everyone else"],
+      "mustAvoid": ["a fraudulent claim story", "attributing the old variability to individual handler carelessness"]
+    },
+    {
+      "domain": "radiology: a hospital requiring second opinions on borderline imaging findings and measuring the effect on overall read variability",
+      "audience": "a radiology department chief who introduced a mandatory second-opinion protocol for borderline findings",
+      "stakes": "diagnostic accuracy and patient safety — borderline findings are exactly where noise is highest and outcomes are most consequential",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "six months after the protocol introduction, the department chief reviews the data: for findings classified as borderline, the discordance rate between initial and second-opinion reads was 18 percent before the protocol and remains 15 percent after it — a smaller reduction than expected — because the second-opinion reader was being briefed on the initial finding before completing their independent read, meaning the independence was contaminated",
+      "firstImage": "a discordance rate chart showing the period before and after protocol introduction, the line dropping slightly but not as much as projected, with an annotation at the expected drop point that says 'independence contaminated'",
+      "mustInclude": ["the protocol being partially effective because independence was not fully preserved", "the contamination mechanism (second reader knew the first result)", "the lesson: process improvement requires process precision, not just process intention"],
+      "mustAvoid": ["a specific misdiagnosis story", "framing the partial improvement as a failure"]
+    },
+    {
+      "domain": "geological survey interpretation: a mining company standardizing the sampling protocol used by two independent survey teams",
+      "audience": "a chief geologist trying to reduce the variation in ore-grade estimates between her two field teams",
+      "stakes": "project investment decisions — ore-grade estimates that vary by 20 percent across teams make feasibility calculations unreliable",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you are reviewing the results of the protocol standardization: the sampling method is now identical across both teams, but the ore-grade estimates still vary by 12 percent, down from 20 percent but still above the investment decision threshold — meaning the process change improved but did not solve the problem, and the remaining noise lives in the interpretation step that was not standardized",
+      "firstImage": "two geological maps of the same site drawn by two different field teams, their ore-grade contour lines showing different patterns despite using the same sampling points",
+      "mustInclude": ["the improvement from 20 to 12 percent", "the remaining 12 percent residing in the unaddressed interpretation step", "your decision about what to standardize next"],
+      "mustAvoid": ["a mining project failure narrative", "implying either team used incorrect geology"]
+    },
+    {
+      "domain": "management performance appraisal: a consultancy firm introducing calibration sessions after initial individual manager ratings are recorded",
+      "audience": "a human resources director building a new performance review cycle",
+      "stakes": "fair compensation decisions and employee retention — appraisal noise creates pay disparities for equivalent performers",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the HR director asks: if managers submitted their ratings before rather than after seeing each other's ratings in the calibration session, would the calibration session produce genuine convergence on accurate ratings or would it simply produce conformity to the first visible ratings? The answer from the pilot is: in 60 percent of calibration conversations, the second manager to speak adjusted their rating toward the first — regardless of who was more accurate",
+      "firstImage": "a calibration session room where the ratings have just been revealed on a shared screen — the second and third managers looking at the first manager's ratings before they have fully committed to their own",
+      "mustInclude": ["the 60 percent first-voice-conformity finding", "the distinction between genuine convergence and social conformity in calibration", "the implication: individual ratings before any comparison, then calibration on divergences only"],
+      "mustAvoid": ["implying any manager intentionally inflated or deflated ratings", "a specific employee's performance story"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why awareness of noise is insufficient to reduce it",
+      "identify which specific process change in a described scenario would reduce noise versus which change would only increase awareness",
+      "apply process-change thinking to design a noise-reduction intervention for a given judgment system",
+      "analyze why partial process improvements (like the contaminated second-opinion case) still leave residual noise",
+      "evaluate whether a proposed intervention targets noise at the process level or only at the awareness level"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Think of one judgment process you run — a hiring panel, a grant review, a weekly rating decision. Write down one specific process rule you could introduce before the next cycle: not an attitude to adopt, but a structural step that would constrain when information is shared or when ratings are recorded. That is the unit of improvement this chapter is about.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (2-3 sentences) making the awareness-vs.-process distinction crisply, at least one 5+ sentence paragraph showing why good intentions in a noisy process produce noisy outcomes, at least one one-sentence punch line about what process change does that intention cannot",
+    "fullReadInterludeRequirement": "at least one direct second-person passage asking the reader to name one process rule in their domain that was designed to reduce noise and whether they actually measured whether it worked",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

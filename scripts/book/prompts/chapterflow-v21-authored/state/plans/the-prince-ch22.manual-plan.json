@@ -1,0 +1,176 @@
+{
+  "chapterId": "the-prince-ch22",
+  "number": 22,
+  "title": "Concerning the Secretaries of Princes",
+  "coreMove": "Read and manage ministers as both proof of the prince's judgment and instruments whose interests must be bound to the state.",
+  "sourcePressure": "The chapter says a prince is first judged by the people around him. Capable and faithful servants signal wise discrimination; bad servants reveal the prince's first error. The central test is whether the servant thinks first of the prince's affairs or of his own profit, and the prince keeps him honest by honor, riches, shared cares, and making clear he cannot stand alone.",
+  "chapterSpecificMisunderstanding": "The wrong version becomes hiring advice or team culture. The writer must show minister choice as a statecraft test: recognizing capacity, keeping fidelity, detecting self-profit, and binding the minister so honor and anxiety both attach him to the prince.",
+  "sourceAlignmentTerms": [
+    "secretaries",
+    "servants",
+    "Pandolfo Petrucci",
+    "Antonio da Venafro",
+    "three classes of intellects",
+    "own interests",
+    "honour",
+    "cares",
+    "faithful",
+    "discrimination"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "HR best practices",
+      "hire smart people and trust them",
+      "team culture or delegation slogans"
+    ],
+    "counterintuition": [
+      "most people assume leaders are judged by themselves, but actually by their team",
+      "good advisers make a weak prince wise",
+      "loyalty is enough"
+    ],
+    "tryThisNow": [
+      "set a timer for ninety seconds and list your team",
+      "write interview questions",
+      "delegate more effectively"
+    ],
+    "examples": [
+      "corporate chief of staff",
+      "startup hiring panel",
+      "sports assistant coach",
+      "office performance review"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a treasury secretary handling war arrears while quietly buying claims through his cousins",
+      "audience": "a prince testing whether a capable servant thinks first of private profit",
+      "stakes": "the secretary can read every arrear account, but if he profits from the delay he holds the state for himself",
+      "format": "postmortem",
+      "requiredBeat": "The prince places the cousin purchase slips under the arrears ledger and watches the secretary explain the state's need before he mentions his family's gain.",
+      "firstImage": "Cousin purchase slips peek from beneath a war arrears ledger.",
+      "mustInclude": [
+        "purchase slips",
+        "arrears ledger",
+        "family seal"
+      ],
+      "mustAvoid": [
+        "generic corruption case",
+        "budget office management",
+        "chapter 16 fiscal thrift"
+      ]
+    },
+    {
+      "domain": "a map secretary whose border reports keep making the prince look wiser than his generals expect",
+      "audience": "observers judging the prince through the quality of a technical servant he chose",
+      "stakes": "if the prince can recognize the mapmaker's good and bad counsel, the servant cannot deceive him with specialized knowledge",
+      "format": "scene",
+      "requiredBeat": "After the map secretary marks two false passes, the prince corrects one and praises the other, proving he can judge what he cannot draft himself.",
+      "firstImage": "Two false-pass pins sit on a waxed border relief map.",
+      "mustInclude": [
+        "false-pass pins",
+        "border relief map",
+        "general's route note"
+      ],
+      "mustAvoid": [
+        "chapter 14 terrain study",
+        "genius adviser saves ruler",
+        "technical expertise worship"
+      ]
+    },
+    {
+      "domain": "a royal seal keeper deciding whether to delay petitions until bribes arrive",
+      "audience": "a ruler designing rewards and constraints that make fidelity more profitable than delay",
+      "stakes": "the seal keeper touches every judgment, so private tolls at his desk become private rule over the state",
+      "format": "decision_point",
+      "requiredBeat": "The ruler lays the honor chain, stipend roll, and public audit tablet beside the seal press, making the keeper rich, watched, and unable to stand alone.",
+      "firstImage": "A seal press sits between an honor chain and a public audit tablet.",
+      "mustInclude": [
+        "seal press",
+        "honor chain",
+        "audit tablet"
+      ],
+      "mustAvoid": [
+        "office compliance program",
+        "bribery morality tale",
+        "chapter 19 court judgment reversals"
+      ]
+    },
+    {
+      "domain": "a naval stores minister who always proposes repairs that enrich his private dockyard",
+      "audience": "a prince learning the never-failing self-interest test",
+      "stakes": "the fleet may rot while the minister confuses his dockyard profit with the prince's need",
+      "format": "predict_reveal",
+      "requiredBeat": "The prince asks for three repair options; the minister turns each hull token toward the same private dockyard mark before naming any naval danger.",
+      "firstImage": "Hull tokens point toward a private dockyard mark on a repair board.",
+      "mustInclude": [
+        "hull tokens",
+        "private dockyard mark",
+        "fleet rot report"
+      ],
+      "mustAvoid": [
+        "chapter 13 fleet dependency",
+        "procurement story only",
+        "business vendor analogy"
+      ]
+    },
+    {
+      "domain": "a chancery translator controlling foreign letters during a succession crisis",
+      "audience": "a prince who cannot personally read every language but must not be ruled by the translator",
+      "stakes": "one altered phrase can move allies, enemies, and marriage terms while appearing to be neutral service",
+      "format": "dialogue",
+      "requiredBeat": "The prince compares the translator's smooth copy with a rough merchant gloss and asks why his own danger disappeared from the polished line.",
+      "firstImage": "A rough merchant gloss lies beside a polished chancery translation.",
+      "mustInclude": [
+        "merchant gloss",
+        "chancery translation",
+        "succession letter"
+      ],
+      "mustAvoid": [
+        "language trivia",
+        "spy thriller",
+        "generic communication advice"
+      ]
+    },
+    {
+      "domain": "a grain-port intendant whose honors are high enough to satisfy him but cares are heavy enough to keep him cautious",
+      "audience": "a ruler building mutual trust with a strong servant instead of merely flattering him",
+      "stakes": "too little honor breeds resentment, too much independent wealth breeds appetite, and no shared care lets him gamble with the prince's state",
+      "format": "before_after",
+      "requiredBeat": "The prince adds the intendant's name to the honor tablet, then hands him the winter shortage key so his prestige rises with the burden he must fear losing.",
+      "firstImage": "A winter shortage key rests below an honor tablet.",
+      "mustInclude": [
+        "honor tablet",
+        "winter shortage key",
+        "grain-port tally"
+      ],
+      "mustAvoid": [
+        "employee recognition",
+        "friendship loyalty",
+        "chapter 16 granary finance"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "infer a prince's judgment from the quality and conduct of his ministers",
+      "apply the self-interest test to a servant who controls another's state",
+      "distinguish a wise prince who can judge advice from one ruled by a prudent servant",
+      "evaluate whether honors, riches, kindnesses, and shared cares bind a minister or enlarge his appetite"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one powerful adviser in a historical court or administration. Write what state matter they control, what private profit could distort them, and what honor or shared burden binds them to the ruler.",
+  "readingTimeMinutes": 12
+}

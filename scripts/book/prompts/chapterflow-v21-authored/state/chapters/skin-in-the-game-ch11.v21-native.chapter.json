@@ -1,0 +1,326 @@
+{
+  "chapterId": "skin-in-the-game-ch11",
+  "number": 11,
+  "title": "Facta non Verba (Deeds Before Words)",
+  "readingTimeMinutes": 12,
+  "hook": "A red failed-test icon can tell more truth than an hour of safety values.",
+  "counterintuition": "Sincerity is easiest to fake where words cost nothing. The better audit asks what changed in behavior when the statement became expensive.",
+  "tryThisNow": "Choose one value you recently stated. Find the next costly action that would prove it, then schedule or do that action before repeating the words.",
+  "keyTakeaway": "When words are cheap, trust the paid action: the test passed, the bus ridden, the ledger opened, the incentive changed.",
+  "breakdown": {
+    "fastRead": "Chloé sees a red failed-test icon on the deployment board while the town-hall slide still says safety first. The release clock is running, the defect is real, and customers would carry the failure. The sentence has reached its price.\n\nFacta non Verba only earns its place if it becomes practical: when words are cheap, the paid action is the evidence. Conviction shows up when someone gives up speed, status, comfort, money, or convenience to make the words true.",
+    "deepRead": "Diesel smell hangs at the winter bus shelter while Niklas folds the route schedule beside the endorsement form. The candidate praises transit at every event. The 6:40 bus is late, crowded, and cold. Niklas asks the candidate to ride it before the endorsement meeting because speeches about transit do not reveal what neglect feels like.\n\nFacta non Verba is useful only when words face exposure. A person may believe what he says in the easy hour. The question is what happens when the belief asks for exposure. Does the product leader stop a release? Does the politician ride the route? Does the nonprofit open the ledger? Does the parent put the phone away before preaching books?\n\nCost is where language becomes evidence.\n\nThis is revealed preference in ordinary clothes. People show what they value by what they protect when tradeoffs arrive. A manager may say team health matters, but a promotion note praising weekend availability teaches the team which behavior actually pays. A friend may apologize with feeling, but the next pickup time says whether the apology bought a change.\n\nThe point is not to demand heroic sacrifice for every sentence. Some words are small and need no trial. The standard rises when a claim governs others, asks for trust, or advertises virtue. Then the deed should be close enough to the claim that everyone can see the cost being paid.",
+    "fullRead": "\"Transparency is one of our values,\" the director says while Isabel turns a board packet clipped with a binder ring. The expense ledger exists, but the public link is always one meeting away. Donors hear assurances. Clients hear promises. Isabel asks which expenses will be visible tomorrow morning and waits for the link because transparency without exposure is only a tone of voice.\n\nThat is the difference between statement and deed. The statement points toward a value. The deed moves something valuable into the open: money, time, convenience, reputation, access, or decision rights. Without that movement, language can become a shield. It lets people enjoy the social reward of conviction without paying the price of conviction.\n\nA paperback lies open beside a charging cable when Ryan catches himself telling his teenager to read. His own phone has been in his hand every evening. He does not need a better lecture. He puts the phone in another room, sets the kitchen timer, and reads at the table before mentioning books again. The cost is small, but it is real. The value becomes visible because it changes his evening.\n\nWhich claim in your life has no price attached? The safety value that never delays a ship date? The wellness policy that never changes promotion evidence? The apology that never protects the next pickup time? The civic speech that never boards the failing bus? A cheap claim is not always false, but it is untested.\n\nAman sees the test after a promotion decision. The packet praises weekend availability while the wellness policy promises sustainable work. In the postmortem, he rewrites the note. The new evidence standard rewards incident prevention, handoff clarity, and weekday planning. Until the promotion pattern changes, team health is not a value. It is office decoration.\n\nDeeds do not need adjectives.\n\nTomasz learns the private version with car keys on a hallway hook. The apology text is warm, but the recurring pickup keeps slipping. He watches the next calendar invite and the next arrival time before accepting another apology as evidence. Trust returns when the paid correction appears, not when the phrase becomes more polished.\n\nThe practical rule is direct: if a claim matters, ask where it costs the claimant something. If the answer is nowhere, lower your confidence. If the answer is a visible change in schedule, money, metrics, access, risk, or habit, give the words more weight. Deeds before words is not a slogan about being busy. It is an evidence rule for sincerity under consequence."
+  },
+  "examples": [
+    {
+      "exampleId": "ch11-ex01-chloe-release",
+      "title": "Chloé blocks the release",
+      "tags": [
+        "product",
+        "safety",
+        "release"
+      ],
+      "planSpec": {
+        "domain": "company announcing safety values while rushing an untested release",
+        "audience": "product lead auditing deeds under launch pressure",
+        "stakes": "customers bear the defect if values stay verbal",
+        "format": "decision_point",
+        "requiredBeat": "Chloé blocks release until the safety test appears in the deployment log, not only in the town-hall slide."
+      },
+      "scenario": "At 6:18 p.m. Thursday, Chloé stares at a red failed-test icon on the deployment board while the town-hall slide still says safety first. The launch window is open, and sales wants the date protected. Customers would carry the defect. Chloé must choose whether safety remains a slide or becomes a blocked release in the deployment log.",
+      "whatToDo": "Block the release until the safety test passes in the deployment log, then update the launch note with the reason for the delay.",
+      "whyItMatters": "The value becomes evidence only when it costs speed. Customers learn from the shipped action, not from the town-hall sentence."
+    },
+    {
+      "exampleId": "ch11-ex02-niklas-bus",
+      "title": "Niklas asks for the ride",
+      "tags": [
+        "transit",
+        "politics",
+        "exposure"
+      ],
+      "planSpec": {
+        "domain": "politician praising transit while never riding the failing route",
+        "audience": "constituent judging commitment through exposure",
+        "stakes": "commuters pay for neglect hidden behind speeches",
+        "format": "scene",
+        "requiredBeat": "Niklas asks the candidate to take the 6:40 bus before the endorsement meeting."
+      },
+      "scenario": "Diesel smell clings to the winter bus shelter while Niklas checks the route schedule against the arrival log. The candidate's transit speech sounds committed, but the 6:40 bus is late again and the endorsement form is due tomorrow. Niklas has to decide whether praise for transit counts before the candidate rides the route commuters actually use.",
+      "whatToDo": "Ask the candidate to take the 6:40 bus before the endorsement meeting, then compare the speech with what the arrival log shows.",
+      "whyItMatters": "Riding the route attaches the claim to discomfort and delay. The speech alone lets commuters keep paying for neglect."
+    },
+    {
+      "exampleId": "ch11-ex03-isabel-ledger",
+      "title": "Isabel waits for the link",
+      "tags": [
+        "nonprofit",
+        "transparency",
+        "ledger"
+      ],
+      "planSpec": {
+        "domain": "nonprofit leader promising transparency but resisting an open ledger",
+        "audience": "board member testing virtue by the paid action",
+        "stakes": "donors and clients need evidence beyond assurances",
+        "format": "dialogue",
+        "requiredBeat": "Isabel asks which expenses will be visible tomorrow morning and waits for the ledger link."
+      },
+      "scenario": "\"We are committed to transparency,\" the director says as Isabel turns the board packet clipped with a binder ring. The expense ledger is internal, and the public link has been delayed twice. Donors and clients keep hearing assurance. Isabel must decide whether to approve the statement before any expense line becomes visible outside the room.",
+      "whatToDo": "Ask which expense categories will be public by tomorrow morning, then wait for the ledger link before approving the transparency claim.",
+      "whyItMatters": "Transparency has a cost: exposure to scrutiny. Without the public link, the word collects trust while the deed is withheld."
+    },
+    {
+      "exampleId": "ch11-ex04-ryan-reading",
+      "title": "Ryan moves the phone",
+      "tags": [
+        "family",
+        "reading",
+        "habit"
+      ],
+      "planSpec": {
+        "domain": "parent telling a teenager to value reading while phone-scrolling every evening",
+        "audience": "family member noticing words have no cost",
+        "stakes": "habit evidence teaches more than parental command",
+        "format": "before_after",
+        "requiredBeat": "Ryan places his phone in another room and reads at the kitchen table before mentioning books again."
+      },
+      "scenario": "A paperback lay open beside a charging cable before Ryan noticed his teenager watching him scroll again. He had spent a week praising books and modeling the opposite habit. After dinner, he put the phone charger in the hall, set a kitchen timer for twenty minutes, and read at the table before saying one more word about reading.",
+      "whatToDo": "Put the phone in another room, set the kitchen timer, and read visibly at the table before asking the teenager to read.",
+      "whyItMatters": "The command was cheap. The changed evening costs attention, which makes the value visible enough for a teenager to believe."
+    },
+    {
+      "exampleId": "ch11-ex05-aman-promotion",
+      "title": "Aman rewrites the praise",
+      "tags": [
+        "management",
+        "wellness",
+        "incentives"
+      ],
+      "planSpec": {
+        "domain": "manager claiming team health matters while rewarding weekend emails",
+        "audience": "team lead auditing incentives instead of slogans",
+        "stakes": "workers learn from promotion patterns, not wellness language",
+        "format": "postmortem",
+        "requiredBeat": "Aman rewrites the promotion note that praised weekend availability and names the new evidence standard."
+      },
+      "scenario": "It took Aman one promotion cycle to see the highlighted email times in the packet as policy, not praise. The wellness policy promised sustainable work, but the winning note admired weekend availability. In the postmortem, he rewrites the note around weekday planning, incident prevention, and handoff clarity.",
+      "whatToDo": "Remove weekend email praise from the promotion note, name the new evidence standard, and align future promotion packets with the wellness policy.",
+      "whyItMatters": "Teams learn from rewards. If weekend availability wins promotion, wellness language becomes decoration instead of conviction."
+    },
+    {
+      "exampleId": "ch11-ex06-tomasz-pickup",
+      "title": "Tomasz waits for the next pickup",
+      "tags": [
+        "friendship",
+        "apology",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "friend apologizing repeatedly but never changing a recurring imposition",
+        "audience": "reader judging apology through next-cost behavior",
+        "stakes": "trust depends on the paid correction, not the phrase",
+        "format": "reflection",
+        "requiredBeat": "Tomasz watches whether the next pickup happens on time before accepting another apology as evidence."
+      },
+      "scenario": "You see car keys on a hallway hook while Tomasz reads another apology text about the missed pickup time. The words are warm, and the calendar invite is already moved again. Tomasz has to choose whether the apology counts as evidence before the next arrival costs his friend any convenience.",
+      "whatToDo": "Accept the tone politely, then wait for the next pickup time and calendar invite to change before treating the apology as repaired trust.",
+      "whyItMatters": "Apologies become evidence when they alter the next costly behavior. Otherwise the phrase spends the listener's patience without paying correction."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A company says safety comes first but ships while a required safety test is failing. What evidence should matter most?",
+        "choices": [
+          "Whether the town-hall slide uses strong safety language.",
+          "Whether leaders sound sincere when asked about customers.",
+          "Whether the release is blocked until the test passes."
+        ],
+        "correctIndex": 2,
+        "explanation": "The blocked release is the paid action. The slide and tone may be sincere, but customers learn from what ships.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A candidate praises transit but has never ridden the unreliable morning route. What action best tests commitment?",
+        "choices": [
+          "Take the 6:40 bus before the endorsement meeting.",
+          "Add more transit language to the campaign website.",
+          "Ask commuters to trust the speech until after election day."
+        ],
+        "correctIndex": 0,
+        "explanation": "Riding the route creates exposure to the delay commuters feel. More words leave the claim cheap and untested.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A nonprofit leader praises transparency while delaying a public expense ledger. What should a board member request?",
+        "choices": [
+          "A warmer paragraph about trust in the annual letter.",
+          "A public ledger link with named expense categories.",
+          "A private assurance that nothing unusual is hidden."
+        ],
+        "correctIndex": 1,
+        "explanation": "Transparency requires exposure to scrutiny. Private reassurance keeps the social reward of the word without the deed.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a parent tells a teenager to read while scrolling every evening, which behavior makes the claim credible?",
+        "choices": [
+          "Giving a longer lecture about attention.",
+          "Reading visibly with the phone in another room.",
+          "Buying more books without changing evening habits."
+        ],
+        "correctIndex": 1,
+        "explanation": "The changed habit costs attention and models the value. Lectures and purchases keep the claim mostly verbal.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "The manager says team health matters but promotion notes praise weekend email availability. What is the revealed preference?",
+        "choices": [
+          "The wellness policy must be strong because it is written down.",
+          "Weekend emails are harmless because they show ambition.",
+          "The company rewards availability more than sustainable work."
+        ],
+        "correctIndex": 2,
+        "explanation": "Promotion evidence teaches the real preference. A wellness statement cannot outweigh the behavior that gets rewarded.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "At the pickup review, a friend apologizes for being late to pickups but keeps missing the next time. What should be treated as evidence?",
+        "choices": [
+          "Treat the next pickup happening on time as the evidence, because apologies cost nothing and behavior has not changed.",
+          "Treat the emotional wording as evidence because remorse may predict better behavior next time.",
+          "Count repeated apologies as evidence because frequency may show the friend understands the harm."
+        ],
+        "correctIndex": 0,
+        "explanation": "The next on-time pickup is the paid correction. Repeated apology language can be warm and still leave behavior unchanged.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Suppose a leader says values matter, but every costly decision protects speed, status, and convenience instead, what should you infer?",
+        "choices": [
+          "The values are untested or contradicted by revealed preference.",
+          "The leader's words should be trusted because they sound ethical.",
+          "Stated values predict behavior poorly without cost, though costly action can still make language informative."
+        ],
+        "correctIndex": 0,
+        "explanation": "Costly decisions reveal priority. The answer is not cynicism about all language, but lower confidence when deeds contradict claims.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "When the marketing slot is missed, a team claims quality matters and delays a launch, losing a marketing slot, until testing is clean. How should you evaluate the claim?",
+        "choices": [
+          "It is empty because all corporate value language is meaningless.",
+          "It has stronger evidence because the team paid a cost for quality.",
+          "The missed slot suggests resources are bottlenecked elsewhere, which strong execution would have addressed."
+        ],
+        "correctIndex": 1,
+        "explanation": "The lost marketing slot is the cost that makes the claim credible. The deed does not prove perfection, but it is stronger than a slogan.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "When the value statement is audited, a board wants to know whether a promise is sincere. Which question best follows deeds-before-words reasoning?",
+        "choices": [
+          "Which phrase in the promise sounded most inspiring?",
+          "How many people applauded after the statement?",
+          "What action changed when keeping the promise became expensive?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The question looks for paid action under consequence. Inspiring phrases and applause do not reveal what the promise costs.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Someone states a value when it costs nothing. What is the cost-paired version of the same value, and is it actually present?",
+      "back": "Ask what action changes when the value becomes expensive. The paid deed is stronger evidence than the polished statement.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why does a blocked release say more than a safety slide?",
+      "back": "Blocking release costs speed and status to protect customers. The slide names the value; the delay pays for it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A nonprofit promises transparency but hides expenses. What is missing?",
+      "back": "Exposure. The public ledger is the deed that gives the word transparency practical content.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How do incentives reveal what a manager really values?",
+      "back": "Promotion patterns teach the team what behavior pays. If weekend availability is rewarded, wellness language loses evidentiary force.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How do you avoid reducing this to a cliché about action?",
+      "back": "Look for action under cost. Busy activity is not evidence; sacrifice, exposure, and changed incentives are.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Auditing the Action That Costs Something",
+    "coreSkill": "Treat words as a claim and costly behavior as evidence. The more trust a claim asks for, the more visible the deed should be.",
+    "ifThenPlans": [
+      {
+        "context": "product",
+        "plan": "If a value would delay a release, then make the deployment log show whether the value actually governed."
+      },
+      {
+        "context": "public promises",
+        "plan": "If a leader praises a service, then ask for one direct exposure to the failing version before endorsing."
+      },
+      {
+        "context": "governance",
+        "plan": "If transparency is claimed, then require the public link or document before approving the statement."
+      },
+      {
+        "context": "relationships",
+        "plan": "If an apology repeats, then judge the next scheduled behavior before treating the words as repair."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one value you have said aloud. Attach one costly behavior to it today, even if the cost is only time, convenience, or public visibility.",
+    "weeklyPractice": "Each week, pick one promise from yourself or an institution and record whether the next costly action confirmed or contradicted it."
+  },
+  "memorableLines": [
+    {
+      "text": "Cost is where language becomes evidence.",
+      "location": "breakdown.deepRead",
+      "why": "It condenses the chapter's sincerity test into a simple rule."
+    },
+    {
+      "text": "Deeds do not need adjectives.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the paid action feel stronger than persuasive language."
+    },
+    {
+      "text": "The sentence has reached its price.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader an image for when values become costly."
+    }
+  ]
+}

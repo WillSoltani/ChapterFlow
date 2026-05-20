@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch09",
+  "number": 9,
+  "title": "Small Simple Steps",
+  "coreMove": "Lower the entry cost until the next visible action can happen now.",
+  "sourcePressure": "The motivation formula becomes behavioral by shrinking the first move so action can begin with less resistance.",
+  "chapterSpecificMisunderstanding": "Confusing a small start with making the whole goal trivial.",
+  "sourceAlignmentTerms": [
+    "small simple step",
+    "entry cost",
+    "resistance",
+    "first move",
+    "momentum",
+    "vague start",
+    "behavioral ease"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Small Simple Steps with a generic unlocked potential claim.",
+      "Do not start with a definition of small simple steps."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "estate paperwork after a death",
+      "audience": "executor avoiding a full box of forms",
+      "stakes": "probate deadlines will trigger fees",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Rebecca",
+      "requiredBeat": "Rebecca chooses only the envelope labeled bank statements and places it on the scanner before touching the rest of the box.",
+      "firstImage": "one cream envelope on a flatbed scanner",
+      "mustInclude": [
+        "cream envelope",
+        "scanner glass",
+        "probate date"
+      ],
+      "mustAvoid": [
+        "paperwork overwhelm",
+        "grief counseling"
+      ]
+    },
+    {
+      "domain": "restaurant prep station knife skills",
+      "audience": "line cook intimidated by a full new menu",
+      "stakes": "service starts in four hours",
+      "format": "question_hook",
+      "openingDevice": "question_hook",
+      "protagonistName": "Julien",
+      "requiredBeat": "Julien reduces the task to one garnish cut, lays out five radishes, and completes the first clean set before reading another recipe.",
+      "firstImage": "five radishes beside a chef knife",
+      "mustInclude": [
+        "radishes",
+        "chef knife",
+        "service clock"
+      ],
+      "mustAvoid": [
+        "culinary heroics",
+        "whole-menu panic"
+      ]
+    },
+    {
+      "domain": "school board candidate canvassing",
+      "audience": "first-time candidate avoids door knocking",
+      "stakes": "ballots mail out in ten days",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Isabel",
+      "requiredBeat": "Isabel writes one street and knocks on the first blue door instead of designing the whole campaign again.",
+      "firstImage": "a blue door with a taped campaign flyer",
+      "mustInclude": [
+        "street list",
+        "campaign flyer",
+        "mail-ballot date"
+      ],
+      "mustAvoid": [
+        "political speechifying",
+        "strategy rabbit hole"
+      ]
+    },
+    {
+      "domain": "home energy retrofit project",
+      "audience": "tenant wants lower bills but avoids the whole apartment checklist",
+      "stakes": "winter rates begin next month",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "protagonistName": "Niklas",
+      "requiredBeat": "Niklas installs one door sweep before pricing windows, proving the first move can be smaller than the entire problem.",
+      "firstImage": "a rolled rubber door sweep on the floor",
+      "mustInclude": [
+        "door sweep",
+        "utility bill",
+        "screwdriver"
+      ],
+      "mustAvoid": [
+        "home generic",
+        "climate sermon"
+      ]
+    },
+    {
+      "domain": "youth coding club",
+      "audience": "mentor helping a shy student start a game project",
+      "stakes": "demo day is close and the blank editor is freezing her",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "protagonistName": "Adaeze",
+      "requiredBeat": "Adaeze asks for one sprite movement, not a whole game, and watches the first arrow key move a square.",
+      "firstImage": "a blank editor with one green square",
+      "mustInclude": [
+        "green square",
+        "arrow key",
+        "demo-day poster"
+      ],
+      "mustAvoid": [
+        "tech genius",
+        "generic classroom"
+      ]
+    },
+    {
+      "domain": "personal finance catch-up",
+      "audience": "freelancer behind on invoices",
+      "stakes": "rent depends on collecting two overdue payments",
+      "format": "retrospective",
+      "openingDevice": "retrospective",
+      "protagonistName": "James",
+      "requiredBeat": "James sees that progress began when he opened only the oldest invoice and wrote the first subject line.",
+      "firstImage": "an overdue invoice highlighted in pale blue",
+      "mustInclude": [
+        "invoice list",
+        "subject line",
+        "rent date"
+      ],
+      "mustAvoid": [
+        "budget advice",
+        "motivation pep"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when lower the entry cost until the next visible action can happen now. is needed in a new scenario.",
+      "Choose the visible action that matches Small Simple Steps rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Shrink the next task until it can be done with one object already in reach.",
+  "readingTimeMinutes": 12
+}

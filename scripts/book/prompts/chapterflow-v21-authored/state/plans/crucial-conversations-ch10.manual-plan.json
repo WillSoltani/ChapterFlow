@@ -1,0 +1,185 @@
+{
+  "chapterId": "crucial-conversations-ch10",
+  "number": 10,
+  "title": "Yeah, But: Tough Cases and Putting It All Together",
+  "coreMove": "Adapt the sequence to the difficult case while staying genuinely open to being changed by what enters the pool.",
+  "sourcePressure": "Tough cases change the order and emphasis of the same framework; the framework fails when used to win, manipulate, or sound reasonable while refusing to be changed.",
+  "chapterSpecificMisunderstanding": "Offering special tricks for difficult personalities or power plays.",
+  "sourceAlignmentTerms": [
+    "tough cases",
+    "restore safety",
+    "speak honestly",
+    "power difference",
+    "text conversation",
+    "chronic complainer",
+    "openness",
+    "scaffolding"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "dictionary definition of a crucial conversation",
+      "boardroom standoff opener",
+      "family dinner blowup opener",
+      "generic clenched-jaw conflict opener"
+    ],
+    "counterintuition": [
+      "just be honest",
+      "conflict is good",
+      "listen more than you talk",
+      "calm down first"
+    ],
+    "tryThisNow": [
+      "think of a difficult conversation",
+      "take three deep breaths",
+      "write down your feelings",
+      "set a timer and reflect",
+      "pick a conversation and journal about it without a chapter-specific test"
+    ],
+    "examples": [
+      "manager feedback in a conference room",
+      "spouse argument at the kitchen counter",
+      "student raising hand in a classroom",
+      "generic Slack misunderstanding",
+      "two executives at a whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "graduate teaching assistant dealing with a tenured professor who changes the subject whenever grading bias comes up",
+      "audience": "a low-power TA planning a conversation upward",
+      "stakes": "student grades and the TA's future recommendation both depend on adapting the sequence carefully",
+      "format": "decision_point",
+      "requiredBeat": "the TA starts with safety and purpose before facts, keeps the first ask narrow, and stays open to information that may change the accusation",
+      "firstImage": "A stack of blue exam booklets sits under a department letterhead envelope.",
+      "mustInclude": [
+        "exam booklets",
+        "rubric spreadsheet",
+        "office-hour note"
+      ],
+      "mustAvoid": [
+        "generic speaking truth to power slogan"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "regional hotel night manager handling a guest who records every exchange on his phone",
+      "audience": "a manager facing hostility, legal risk, and an audience in the lobby",
+      "stakes": "staff safety and the guest's complaint both require dialogue without performative winning",
+      "format": "scene",
+      "requiredBeat": "the manager names the shared purpose, moves to a quieter desk without demanding the phone be put away, and uses facts rather than matching the performance",
+      "firstImage": "\"Wait,\" someone says, and a phone camera light reflects in the brass trim of the hotel front desk.",
+      "mustInclude": [
+        "phone recording",
+        "incident folio",
+        "quiet desk"
+      ],
+      "mustAvoid": [
+        "generic angry customer scene"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "elder-care scheduler having a crucial conversation entirely by text with an exhausted family member",
+      "audience": "a scheduler who cannot get a live call but must repair safety asynchronously",
+      "stakes": "a missed weekend shift could leave a dementia patient without coverage",
+      "format": "before_after",
+      "requiredBeat": "the scheduler replaces a defensive paragraph with a short text that contrasts intent, shares one fact, and asks for the daughter's missing path",
+      "firstImage": "The first signal is sensory before it is social: a text bubble sits unsent above a weekend care roster.",
+      "mustInclude": [
+        "unsent text",
+        "care roster",
+        "shift confirmation"
+      ],
+      "mustAvoid": [
+        "generic texting etiquette"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "warehouse union representative listening to a chronic complainer after a new scanner rollout",
+      "audience": "a representative who must find the real issue without rewarding endless venting",
+      "stakes": "scanner errors may be real, but the group tunes out because the complaint pattern is constant",
+      "format": "dialogue",
+      "requiredBeat": "the rep validates the narrow fact he can agree with, asks for the specific scan failure, and moves from complaint identity to testable data",
+      "firstImage": "You notice a handheld scanner displays error 17 over a pallet label before anyone names the problem.",
+      "mustInclude": [
+        "scanner error",
+        "pallet label",
+        "incident tally"
+      ],
+      "mustAvoid": [
+        "generic difficult personality handling"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "interfaith youth-program coordinator mediating a cultural misunderstanding about meal rules",
+      "audience": "a coordinator working across identity difference where safety is fragile",
+      "stakes": "families may pull out if the conversation becomes who is disrespecting whom",
+      "format": "reflection",
+      "requiredBeat": "the coordinator slows the framework, restores respect first, asks each side's path, and compares only after naming the shared purpose of kids eating safely together",
+      "firstImage": "Only later does the miss become obvious: a tray label with two crossed-out ingredients rests beside a serving spoon.",
+      "mustInclude": [
+        "ingredient label",
+        "parent email",
+        "meal signup sheet"
+      ],
+      "mustAvoid": [
+        "generic diversity training language"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "founder receiving blunt investor criticism and wanting to use the tools to win the room",
+      "audience": "a founder tempted to sound reasonable while defending every decision",
+      "stakes": "the company may miss useful signal because the founder treats dialogue as reputation management",
+      "format": "thought_experiment",
+      "requiredBeat": "the founder catches the manipulation motive, writes what would change his mind, and asks the investor for the data that would test it",
+      "firstImage": "What changes when a cap-table printout lies face down beside an untouched espresso?",
+      "mustInclude": [
+        "cap-table printout",
+        "investor memo",
+        "demo metrics"
+      ],
+      "mustAvoid": [
+        "generic pitch-room comeback"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "adapt order and emphasis without inventing a separate trick",
+      "protect safety across power differences and text media",
+      "handle chronic complaint by narrowing to testable facts",
+      "detect when you are using the framework to win rather than learn"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one tough case and write the first two moves only. First, what safety repair comes before your point? Second, what fact would genuinely change your mind if they offered it?",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

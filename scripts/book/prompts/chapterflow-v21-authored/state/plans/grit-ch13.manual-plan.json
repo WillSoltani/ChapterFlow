@@ -1,0 +1,196 @@
+{
+  "chapterId": "grit-ch13",
+  "number": 13,
+  "title": "Conclusion",
+  "coreMove": "Keep a long commitment while knowing when values, fit, or opportunity cost justify quitting.",
+  "sourcePressure": "Put grit in proportion: develop it, use it, but do not mistake it for all of character.",
+  "chapterSpecificMisunderstanding": "Thinking grit is the only virtue or that quitting is always failure.",
+  "sourceAlignmentTerms": [
+    "inside out and outside in",
+    "happiness correlation",
+    "too much grit",
+    "MacArthur Genius Grant",
+    "Ta-Nehisi Coates",
+    "Duckworth father"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Ta-Nehisi Coates",
+      "detail": "Coates won a MacArthur Genius Grant after years of struggle and describes writing as repeated failure refined over time.",
+      "useIn": "both",
+      "phrasingHint": "Coates makes genius look like revision marks accumulating until the page can finally stand."
+    },
+    {
+      "kind": "artifact",
+      "name": "MacArthur Genius Grant",
+      "detail": "The conclusion returns to the idea of genius through the grant and reframes excellence as sustained improvement rather than effortless brilliance.",
+      "useIn": "fullRead",
+      "phrasingHint": "The grant matters because the label genius arrives after the unglamorous repetitions it hides."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic grit definition for Conclusion",
+      "hero wakes up and decides to push through",
+      "failure montage before the concept is specific"
+    ],
+    "counterintuition": [
+      "grit is not talent but hard work",
+      "the surprising truth is perseverance",
+      "passion plus perseverance beats everything"
+    ],
+    "tryThisNow": [
+      "set a timer and think about your goal",
+      "write down three obstacles",
+      "promise yourself not to quit"
+    ],
+    "examples": [
+      "office project with vague deadline",
+      "student studies harder for exam",
+      "runner simply keeps running"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "magazine draft revision cycle",
+      "audience": "readers facing magazine draft revision cycle where grit could be confused with mood or talent",
+      "stakes": "whether Marit treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the protagonist keeps the long aim while deciding whether this particular path still deserves more effort",
+      "firstImage": "mud on polished boots",
+      "mustInclude": [
+        "laminated schedule",
+        "wet socks",
+        "bunk inspection card"
+      ],
+      "mustAvoid": [
+        "do not turn magazine draft revision cycle into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "medical specialty decision",
+      "audience": "readers facing medical specialty decision where grit could be confused with mood or talent",
+      "stakes": "whether Luke treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the protagonist keeps the long aim while deciding whether this particular path still deserves more effort",
+      "firstImage": "a cooling rack under fluorescent lights",
+      "mustInclude": [
+        "floured bench scraper",
+        "burnt sugar tray",
+        "proofing timer"
+      ],
+      "mustAvoid": [
+        "do not turn medical specialty decision into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "family business succession choice",
+      "audience": "readers facing family business succession choice where grit could be confused with mood or talent",
+      "stakes": "whether Giulia treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the protagonist keeps the long aim while deciding whether this particular path still deserves more effort",
+      "firstImage": "a clipboard with one blank line left",
+      "mustInclude": [
+        "badge reel",
+        "overnight pager",
+        "handoff sheet"
+      ],
+      "mustAvoid": [
+        "do not turn family business succession choice into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "graduate thesis pivot",
+      "audience": "readers facing graduate thesis pivot where grit could be confused with mood or talent",
+      "stakes": "whether Nicolas treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the protagonist keeps the long aim while deciding whether this particular path still deserves more effort",
+      "firstImage": "a rain-dark window beside a training mat",
+      "mustInclude": [
+        "orange rescue rope",
+        "iced gloves",
+        "topographic map"
+      ],
+      "mustAvoid": [
+        "do not turn graduate thesis pivot into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "nonprofit burnout review",
+      "audience": "readers facing nonprofit burnout review where grit could be confused with mood or talent",
+      "stakes": "whether Devon treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the protagonist keeps the long aim while deciding whether this particular path still deserves more effort",
+      "firstImage": "a stack of opened case files",
+      "mustInclude": [
+        "court calendar",
+        "binder clips",
+        "bus transfer"
+      ],
+      "mustAvoid": [
+        "do not turn nonprofit burnout review into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    },
+    {
+      "domain": "long-distance race withdrawal decision",
+      "audience": "readers facing long-distance race withdrawal decision where grit could be confused with mood or talent",
+      "stakes": "whether Petra treats the hard moment as evidence to quit or as the next unit of practice",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the protagonist keeps the long aim while deciding whether this particular path still deserves more effort",
+      "firstImage": "a cracked practice metronome",
+      "mustInclude": [
+        "audition number",
+        "practice mute",
+        "marked score"
+      ],
+      "mustAvoid": [
+        "do not turn long-distance race withdrawal decision into a generic work/home example",
+        "do not resolve the scene with a motivational speech"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish Keep a long commitment while knowing when values, fit, or opportunity cost justify quitting. from Thinking grit is the only virtue or that quitting is always failure.",
+      "choose the visible next action in a fresh magazine draft revision cycle scenario",
+      "diagnose when a scene has drifted into never-quit absolutism"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For the next real conclusion decision, name the exact evidence you would need to keep going for one more honest round, then write the next visible action in 12 words or fewer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

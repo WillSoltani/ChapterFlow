@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch03",
+  "number": 3,
+  "title": "The Impossible Task",
+  "coreMove": "Replace a vague wish with a mission whose deadline and cost force daily behavior to change.",
+  "sourcePressure": "The source centers on an overweight exterminator, dissatisfaction, the Navy SEAL target, massive weight loss under a short deadline, severe sacrifice, and a deliberate attack on drift.",
+  "chapterSpecificMisunderstanding": "The writer must not sell extremity as a general solution or turn the chapter into fitness hype.",
+  "sourceAlignmentTerms": ["exterminator", "overweight", "Navy SEAL", "deadline", "weight cut", "sacrifice", "mission"],
+  "forbiddenFrames": {
+    "hook": ["He chose an impossible goal", "Big dreams require big sacrifice", "The mission changed everything"],
+    "counterintuition": ["Set goals that scare you", "Go all in", "Pain is temporary"],
+    "tryThisNow": ["Pick a huge goal", "Write your why", "Make a plan today"],
+    "examples": ["generic gym transformation", "entrepreneur grind montage", "before-and-after body reveal"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "commercial pest-control route with a certification deadline",
+      "audience": "a night-shift technician tired of the life his route has become",
+      "stakes": "whether the certification application becomes a fantasy or a priced calendar",
+      "format": "decision_point",
+      "requiredBeat": "he sets the certification deadline beside tomorrow's route sheet, cancels the overtime shift, and assigns the first study block before leaving the depot",
+      "firstImage": "a roach trap invoice damp from the truck floor",
+      "mustInclude": ["certification deadline", "route sheet", "cancelled overtime slip"],
+      "mustAvoid": ["heroic quitting scene", "generic career pivot", "weight-loss reveal"]
+    },
+    {
+      "domain": "merchant marine swim qualification",
+      "audience": "an applicant who talks about sea work but avoids the pool test",
+      "stakes": "whether a dream job dies because the required distance stays abstract",
+      "format": "predict_reveal",
+      "requiredBeat": "she writes the required swim distance on a laminated lane card, times her first attempt, and crosses out two evening commitments to buy pool hours",
+      "firstImage": "a laminated lane card beaded with pool water",
+      "mustInclude": ["lane card", "stopwatch lanyard", "pool schedule"],
+      "mustAvoid": ["lifeguard rescue", "beach montage", "generic courage lesson"]
+    },
+    {
+      "domain": "restaurant line cook trying to pass a sous-chef knife trial",
+      "audience": "a cook who says he wants promotion but still leaves early",
+      "stakes": "whether ambition survives the exact cost of prep practice",
+      "format": "scene",
+      "requiredBeat": "he tapes the trial date above the prep sink, weighs the onion waste after practice, and stays until the cut pile meets the standard",
+      "firstImage": "a bin of uneven onion dice under a stainless prep light",
+      "mustInclude": ["trial date", "onion waste", "prep sink"],
+      "mustAvoid": ["celebrity chef drama", "kitchen shouting", "generic hustle"]
+    },
+    {
+      "domain": "rail signal apprentice license exam",
+      "audience": "an apprentice who likes the badge more than the study load",
+      "stakes": "whether a dangerous trade admits someone who only wanted the title",
+      "format": "before_after",
+      "requiredBeat": "after failing a practice circuit diagram, he prices the mission by giving up weekend side jobs and logging two nightly wiring drills",
+      "firstImage": "a circuit diagram smudged with graphite at the kitchen table of the crew house",
+      "mustInclude": ["practice circuit", "license binder", "side-job schedule"],
+      "mustAvoid": ["train accident", "mentor saves him", "generic exam grind"]
+    },
+    {
+      "domain": "county search-and-rescue pack test",
+      "audience": "a volunteer who wants the uniform but not the pack weight",
+      "stakes": "whether she earns field eligibility before flood season",
+      "format": "reflection",
+      "requiredBeat": "she puts the required pack weight on the scale, sees the gap, and schedules hill repeats instead of another planning meeting",
+      "firstImage": "a canvas sandbag resting on a freight scale",
+      "mustInclude": ["pack weight", "field roster", "hill route"],
+      "mustAvoid": ["disaster rescue", "group cheer", "generic volunteerism"]
+    },
+    {
+      "domain": "court interpreter oral exam preparation",
+      "audience": "a bilingual clerk who keeps saying she will apply next year",
+      "stakes": "whether a better post remains imaginary because practice never becomes costly",
+      "format": "dialogue",
+      "requiredBeat": "she tells her supervisor the exam date aloud, trades two lunch shifts for recorded drills, and marks the first failed speed score in the prep log",
+      "firstImage": "a court headset coiled beside a half-filled prep log",
+      "mustInclude": ["exam date", "recorded drills", "speed score"],
+      "mustAvoid": ["courtroom performance", "language talent debate", "generic application anxiety"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["separate a mission from a wish by identifying cost and deadline", "choose sacrifice that changes behavior immediately", "evaluate when an impossible task is reckless versus clarifying", "detect vague inspiration without priced action"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one goal you keep admiring from a distance, then write the first deadline, the first cost, and the thing you must cancel to pay it.",
+  "readingTimeMinutes": 12
+}

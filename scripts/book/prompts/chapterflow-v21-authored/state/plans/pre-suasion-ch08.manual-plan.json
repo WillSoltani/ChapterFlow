@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch08",
+  "number": 8,
+  "title": "Persuasive Geographies: All the Right Places, All the Right Traces",
+  "coreMove": "Move the message into a setting whose traces make the desired meaning easier to receive.",
+  "sourcePressure": "The source says messages are shaped by physical and psychological places, and that placement context can reduce resistance before merits are weighed.",
+  "chapterSpecificMisunderstanding": "Decorate the environment until people feel good.",
+  "sourceAlignmentTerms": [
+    "persuasive geography",
+    "place",
+    "trace",
+    "physical setting",
+    "psychological state",
+    "placement context"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "tax-aid clinic waiting area",
+      "audience": "a nonprofit placing refund-savings prompts where stress is lowest",
+      "stakes": "whether location changes a refund choice before the form is reviewed",
+      "format": "scene",
+      "requiredBeat": "the coordinator moves the savings split card from the exit desk to the calm document-check table",
+      "firstImage": "a numbered waiting-room ticket beside a savings split card",
+      "mustInclude": [
+        "document folder",
+        "split card"
+      ],
+      "mustAvoid": [
+        "generic office layout"
+      ]
+    },
+    {
+      "domain": "hospital discharge pharmacy",
+      "audience": "a pharmacist placing medication questions at bedside rather than checkout",
+      "stakes": "whether the setting lowers resistance to asking for help",
+      "format": "before_after",
+      "requiredBeat": "the pharmacist asks adherence questions while the patient is still seated with discharge papers, not while a line forms behind them",
+      "firstImage": "discharge papers on a rolling bedside table",
+      "mustInclude": [
+        "pill schedule",
+        "privacy curtain"
+      ],
+      "mustAvoid": [
+        "medical advice content"
+      ]
+    },
+    {
+      "domain": "public defender intake hallway",
+      "audience": "an attorney reducing client shutdown before plea discussion",
+      "stakes": "whether a quieter place changes how legal options are heard",
+      "format": "decision_point",
+      "requiredBeat": "the attorney moves the first explanation from the crowded hallway to a small file room with chairs at the same level",
+      "firstImage": "a file room chair pulled beside a metal cabinet",
+      "mustInclude": [
+        "plea form",
+        "door placard"
+      ],
+      "mustAvoid": [
+        "legal strategy"
+      ]
+    },
+    {
+      "domain": "farm-equipment financing booth",
+      "audience": "a lender placing repair-cost comparisons near the service bay",
+      "stakes": "whether the offer is heard as uptime protection rather than debt",
+      "format": "vignette",
+      "requiredBeat": "the lender sets the financing sheet beside a worn bearing pulled from a combine, not beside balloons at the booth",
+      "firstImage": "a worn bearing on a service-bay counter",
+      "mustInclude": [
+        "financing sheet",
+        "service ticket"
+      ],
+      "mustAvoid": [
+        "retail atmosphere"
+      ]
+    },
+    {
+      "domain": "museum climate-control appeal",
+      "audience": "a development officer asking donors for HVAC funds",
+      "stakes": "whether the ask belongs near fragile artifacts rather than a banquet table",
+      "format": "reflection",
+      "requiredBeat": "the officer lets donors feel the cool storage-room air before showing the pledge card",
+      "firstImage": "a storage-room door opening onto wrapped frames",
+      "mustInclude": [
+        "humidity gauge",
+        "pledge card"
+      ],
+      "mustAvoid": [
+        "gala fundraising generic"
+      ]
+    },
+    {
+      "domain": "online course refund policy",
+      "audience": "a platform designer placing support options near the confusion point",
+      "stakes": "whether psychological place matters more than page location",
+      "format": "postmortem",
+      "requiredBeat": "the designer maps refund clicks to the first confusing quiz screen and moves help there",
+      "firstImage": "a quiz results page with one skipped item circled",
+      "mustInclude": [
+        "refund log",
+        "help link"
+      ],
+      "mustAvoid": [
+        "web funnel cliche"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the place or mental state where resistance is lower for a good reason",
+      "move messages away from settings that distort them",
+      "read traces already attached to a setting",
+      "avoid decorative environmental claims"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Move one planned message to the place or mental state where the person can judge it most fairly, then note what traces that setting adds.",
+  "readingTimeMinutes": 12
+}

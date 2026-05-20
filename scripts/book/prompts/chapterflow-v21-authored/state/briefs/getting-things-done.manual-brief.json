@@ -1,0 +1,110 @@
+{
+  "bookId": "getting-things-done",
+  "title": "Getting Things Done",
+  "author": "David Allen",
+  "thesisParagraph": "Getting Things Done argues that stress comes less from the sheer amount of work than from commitments left undefined and stored in the mind. The remedy is a trusted external workflow: capture every open loop, clarify what it means, organize the result into reliable buckets, review the system until it stays current, and then choose actions from a clean menu of context, time, energy, and priority. The book keeps returning to one practical threshold: a commitment does not become manageable until the desired outcome and the next physical action are visible enough that your mind can stop rehearsing it.",
+  "coreIdeas": [
+    {
+      "name": "Open loops need trusted capture",
+      "oneSentence": "Unfinished commitments keep pulling attention until they are captured somewhere you will revisit.",
+      "mentalMove": "Notice mental rehearsal as a sign that an item needs external capture.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch05.source",
+        "ch11.source"
+      ]
+    },
+    {
+      "name": "Clarification creates control",
+      "oneSentence": "A captured item is still noise until you decide what it is and what happens next.",
+      "mentalMove": "Ask whether an item is actionable and define the next physical action or proper non-action bucket.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch06.source",
+        "ch12.source"
+      ]
+    },
+    {
+      "name": "Buckets preserve decisions",
+      "oneSentence": "A decision only stays useful when it lands in the right container for action, waiting, calendar, reference, or incubation.",
+      "mentalMove": "Move clarified items into distinct places instead of one mixed list.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Review renews trust",
+      "oneSentence": "Lists become believable only when they are refreshed often enough to match reality.",
+      "mentalMove": "Use review to remove staleness before choosing work.",
+      "sourceAnchors": [
+        "ch02.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Engagement is filtered choice",
+      "oneSentence": "The best next action depends on current context, time, energy, and priority, not on whichever item feels loudest.",
+      "mentalMove": "Filter a current list by real operating conditions before acting.",
+      "sourceAnchors": [
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Outcomes aim motion",
+      "oneSentence": "A clear desired result gives lower-level actions a standard to serve.",
+      "mentalMove": "Write what done means before deciding whether the next action is useful.",
+      "sourceAnchors": [
+        "ch03.source",
+        "ch10.source",
+        "ch13.source"
+      ]
+    }
+  ],
+  "targetReader": "Busy knowledge workers, managers, clinicians, teachers, freelancers, parents, and operators whose days fill with small promises faster than they can define them. They care because the system gives relief without pretending their work is simple.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "treat relief as earned by a visible decision, not by a mood shift",
+      "keep GTD terms practical and embodied: hand, inbox, calendar, call, folder, list"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake studies, fake named executives, or invented famous anecdotes",
+      "no treating capture as the whole system"
+    ]
+  },
+  "voiceSpecimens": [
+    "The reminder is not heavy because it is hard. It is heavy because it has nowhere reliable to wait.",
+    "A list you do not review becomes another place your mind has to supervise.",
+    "Do not ask your memory to hold a promise that a tray, note, or calendar can hold better.",
+    "The next action should be visible enough that someone across the room could watch you do it.",
+    "When the bucket is right, the item stops pretending every moment is the moment to handle it.",
+    "A clear outcome turns motion into movement toward something.",
+    "The system earns trust in small moments: one captured call, one clarified form, one list made current again."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter teaches readers how to optimize their productivity journey.",
+    "The author argues that modern professionals need a comprehensive framework for intentional action.",
+    "In today’s fast-paced world, everyone must learn to prioritize what matters most.",
+    "The key is to be mindful, proactive, and aligned with your goals.",
+    "By leveraging this powerful strategy, you can unlock your full potential.",
+    "Take five minutes to reflect on your priorities and commit to being consistent."
+  ],
+  "teachingArc": "The book starts by diagnosing why modern work crowds the mind, then teaches the workflow that moves stuff from capture to engagement. The middle chapters install the operating conditions, full collection, clarification, organization, review, and choice mechanics. The final chapters show why three habits carry power beneath the mechanics: capture clears psychic drag, next actions reduce stuckness, and outcome focusing gives practical movement a direction.",
+  "forbiddenMoves": [
+    "Do not reduce GTD to a to-do list makeover.",
+    "Do not collapse capture, clarify, organize, review, and engage into one generic sorting step.",
+    "Do not invent famous GTD anecdotes or studies absent from the source sidecars.",
+    "Do not make every example a laptop, inbox, meeting, and stressed professional.",
+    "Do not turn mind like water into generic calmness or mindfulness."
+  ]
+}

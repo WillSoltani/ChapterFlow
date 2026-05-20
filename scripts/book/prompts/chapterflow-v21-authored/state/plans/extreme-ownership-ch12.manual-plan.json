@@ -1,0 +1,179 @@
+{
+  "chapterId": "extreme-ownership-ch12",
+  "number": 12,
+  "title": "Decisiveness amid Uncertainty",
+  "coreMove": "make a grounded call before perfect clarity arrives, then keep the team ready to revise as facts change",
+  "sourcePressure": "Leaders must make timely decisions with incomplete information, avoiding both hesitation and reckless speed.",
+  "chapterSpecificMisunderstanding": "decisive leaders are certain and fast",
+  "sourceAlignmentTerms": [
+    "uncertainty",
+    "timely decision",
+    "hesitation",
+    "reckless speed",
+    "grounded call",
+    "revise",
+    "ambiguity"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "forbiddenFrames": {
+    "hook": [
+      "abstract leadership definition",
+      "generic pressure-room opener",
+      "battlefield spectacle beyond source support"
+    ],
+    "counterintuition": [
+      "leadership is harder than it looks",
+      "accountability solves everything",
+      "communication is always the answer"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three ways to improve",
+      "ask yourself how to be a better leader"
+    ],
+    "examples": [
+      "generic office meeting",
+      "parent-child chore argument",
+      "classroom lecture shell",
+      "coffee-shop conversation",
+      "repeated battlefield reenactment"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "river regatta with lightning risk and boats already staged",
+      "audience": "a race director balancing safety, fairness, and impatient crews",
+      "stakes": "waiting too long exposes crews, while canceling too early wastes the only race window",
+      "format": "decision_point",
+      "requiredBeat": "the director uses the last reliable radar scan, the lightning distance rule, and rescue-boat readiness to call a thirty-minute hold, then names the update point",
+      "firstImage": "a lightning-distance card flutters beside numbered bow tags on the dock",
+      "mustInclude": [
+        "lightning-distance card",
+        "last radar scan",
+        "thirty-minute hold"
+      ],
+      "mustAvoid": [
+        "pretending the call is certain"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "vineyard frost fan activation before the forecast settles",
+      "audience": "a vineyard manager deciding whether to spend fuel before dawn",
+      "stakes": "waiting for perfect forecast can lose the lower block crop",
+      "format": "predict_reveal",
+      "requiredBeat": "the manager compares leaf temperature, low-block history, and fuel limit, starts fans in the vulnerable rows, and checks again after twenty minutes",
+      "firstImage": "You are close enough to see this: leaf thermometer reads just above freezing under a headlamp.",
+      "mustInclude": [
+        "leaf thermometer",
+        "fuel limit",
+        "twenty-minute recheck"
+      ],
+      "mustAvoid": [
+        "gut instinct as decisiveness"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "airport gate operation when a crew member is missing",
+      "audience": "a gate manager with passengers boarding and dispatch giving partial updates",
+      "stakes": "boarding too soon or too late can both create cascading delays",
+      "format": "scene",
+      "requiredBeat": "the manager decides to hold boarding for twelve minutes, tells passengers the concrete next update, and prepares the aircraft swap if crew timing misses the window",
+      "firstImage": "The first thing you register is physical: crew-status tile stays gray above a line of passengers at gate C17.",
+      "mustInclude": [
+        "crew-status tile",
+        "twelve-minute hold",
+        "aircraft swap option"
+      ],
+      "mustAvoid": [
+        "customer appeasement as the priority"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "pediatric emergency department considering transfer before final lab results",
+      "audience": "an ER attending with a sick child and incomplete diagnostics",
+      "stakes": "delay can close the transfer window, but premature transfer has risks",
+      "format": "dialogue",
+      "requiredBeat": "the attending states what is known, what would change the decision, starts the transfer call now, and leaves room to cancel if the lab returns differently",
+      "firstImage": "\"Hold there,\" someone says. Ambulance bay light reflects across a half-completed lab panel.",
+      "mustInclude": [
+        "transfer call",
+        "decision-changing fact",
+        "cancel option"
+      ],
+      "mustAvoid": [
+        "medical hero certainty"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "elementary school dismissal during wildfire smoke",
+      "audience": "a principal deciding between outdoor pickup and indoor release",
+      "stakes": "families need direction before air-quality data fully stabilizes",
+      "format": "before_after",
+      "requiredBeat": "the principal uses the current air-quality monitor, bus timing, and nurse guidance to switch to indoor pickup, then revises the plan when wind changes",
+      "firstImage": "Later, the team will trace the lesson back to this: air-quality monitor blinks orange beside a stack of dismissal placards.",
+      "mustInclude": [
+        "air-quality monitor",
+        "indoor pickup",
+        "wind-change revision"
+      ],
+      "mustAvoid": [
+        "overly cautious indecision frame"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "mining conveyor line after a vibration spike",
+      "audience": "a site supervisor balancing production pressure and mechanical uncertainty",
+      "stakes": "a bearing failure can injure workers if the line keeps running for proof",
+      "format": "postmortem",
+      "requiredBeat": "the supervisor halts the conveyor on the spike plus noise report, assigns inspection, and sets the restart condition before production leaders press for speed",
+      "firstImage": "What changes once this is in front of everyone: vibration readout jumps red while ore dust settles on the stop cord?",
+      "mustInclude": [
+        "vibration readout",
+        "noise report",
+        "restart condition"
+      ],
+      "mustAvoid": [
+        "reckless production toughness"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "make a timely call from enough evidence without pretending certainty",
+      "spot hesitation and reckless speed as opposite failures",
+      "choose revision triggers after action begins"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For a pending call, write what you know, what would change the call, the latest useful decision time, and the first revision trigger.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

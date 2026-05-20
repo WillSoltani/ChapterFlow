@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-pyramid-principle-ch05",
+  "number": 5,
+  "title": "Deduction and induction: the difference",
+  "coreMove": "Choose the reasoning motion the material can honestly carry: linked chain for deduction, parallel pattern for induction.",
+  "sourcePressure": "Chapter 5 distinguishes deduction and induction, how each works, when to use each, and how inductive reasoning differs inside pyramid logic.",
+  "chapterSpecificMisunderstanding": "Using deduction and induction as impressive labels while mixing chain logic and sibling logic in the same support set.",
+  "sourceAlignmentTerms": [
+    "deduction",
+    "induction",
+    "deductive chain",
+    "inductive grouping",
+    "linked progression",
+    "parallel support",
+    "when to use it"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "deduction and induction",
+      "detail": "the sidecar lists Deduction and induction: the difference, How it works, When to use it, Inductive reasoning, and How it differs",
+      "useIn": "both",
+      "phrasingHint": "The writer has to know whether the reader is following a chain or recognizing a pattern among siblings."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The answer arrives before the frame has earned it",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "A pyramid is not an outline; it is thinking made visible",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Rewrite one sentence so it sounds sharper",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "startup founder pitches investors with a cleaner headline",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a tax policy analyst explaining why a rebate will miss renters",
+      "audience": "policy writers handling cause-and-effect arguments",
+      "stakes": "lawmakers may support a measure that helps the wrong households if the chain is flattened",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Emily draws the statutory eligibility chain step by step and refuses to present it as three independent concerns.",
+      "firstImage": "A highlighter rests across a marked-up rebate statute.",
+      "mustInclude": [
+        "rebate statute",
+        "eligibility flowchart",
+        "renter impact table"
+      ],
+      "mustAvoid": [
+        "city funding request from ch4"
+      ]
+    },
+    {
+      "domain": "a restaurant group comparing three reasons to close one underperforming location",
+      "audience": "operators writing board notes with parallel reasons",
+      "stakes": "the closure case weakens if independent reasons are forced into a causal staircase",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Labor did not cause the lease, and the lease did not cause foot traffic,\" Nicolas says, then turns a fake chain into an inductive group.",
+      "firstImage": "\"Labor did not cause the lease,\" Nicolas says above the profit-and-loss binder.",
+      "mustInclude": [
+        "profit-and-loss binder",
+        "lease renewal notice",
+        "foot-traffic count"
+      ],
+      "mustAvoid": [
+        "generic restaurant special sales"
+      ]
+    },
+    {
+      "domain": "a wildlife refuge manager explaining an invasive-plant spread",
+      "audience": "environmental managers needing real progression",
+      "stakes": "the wrong intervention gets chosen if seed dispersal, mowing, and wetland access are listed as parallel issues",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Grace asks whether the items are siblings, then traces the actual chain from mowing schedule to seed spread to blocked wetland access.",
+      "firstImage": "Why did the reed grass appear first along the service road?",
+      "mustInclude": [
+        "mowing schedule",
+        "seed map",
+        "wetland access gate"
+      ],
+      "mustAvoid": [
+        "vineyard harvest bottlenecks from ch2"
+      ]
+    },
+    {
+      "domain": "an insurance claims trainer writing denial guidance",
+      "audience": "trainers who must show rule application cleanly",
+      "stakes": "new adjusters will deny claims incorrectly if legal conditions and examples are mixed",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Pavel separates the deductive rule path from inductive examples, then writes two different support sections instead of one confused one.",
+      "firstImage": "It took Pavel one appealed claim to see his training page had two motions.",
+      "mustInclude": [
+        "denial checklist",
+        "appeal letter",
+        "example claim packet"
+      ],
+      "mustAvoid": [
+        "marine insurer storm claims from ch3"
+      ]
+    },
+    {
+      "domain": "a ballet company production manager justifying a rehearsal change",
+      "audience": "arts administrators balancing physical constraints and schedule reasons",
+      "stakes": "dancers may reject the change if a real injury-prevention chain is presented as a preference list",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Laura show how floor fatigue leads to technique drift and then to injury risk, preserving the deductive chain instead of flattening it.",
+      "firstImage": "You can hear resin crackle under slippers at the edge of the sprung floor.",
+      "mustInclude": [
+        "rehearsal schedule",
+        "injury log",
+        "floor maintenance note"
+      ],
+      "mustAvoid": [
+        "theater rehearsal-risk scene from ch3"
+      ]
+    },
+    {
+      "domain": "a renewable-energy procurement lead summarizing supplier risks",
+      "audience": "procurement teams comparing parallel risk categories",
+      "stakes": "contract choice changes if shipping, warranty, and inverter compatibility stay as comparable siblings",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 3:35 p.m., Tomás removes causal arrows between unrelated supplier risks and creates an inductive summary that names their shared effect on delivery certainty.",
+      "firstImage": "At 3:35 p.m., Tomás erases three arrows from the supplier-risk board.",
+      "mustInclude": [
+        "supplier-risk board",
+        "warranty clause",
+        "inverter compatibility sheet"
+      ],
+      "mustAvoid": [
+        "storm-damage insurance from ch3"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when support is a chain versus a sibling set",
+      "avoid forcing independent reasons into a fake sequence",
+      "avoid flattening causal progression into bullets",
+      "repair a section that switches reasoning motion midstream"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Mark one support set with C for chain step or S for sibling reason. If both marks appear in one group, split the section before writing the conclusion.",
+  "readingTimeMinutes": 12
+}

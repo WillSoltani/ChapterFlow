@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch12",
+  "number": 12,
+  "title": "Fear of children (violent children)",
+  "coreMove": "Name repeated youth warning signals early enough for intervention, without hiding behind innocence.",
+  "sourcePressure": "Innocence assumptions can delay intervention; repeated signals, access, fixation, and escalation still deserve behavior-first attention in youth danger.",
+  "chapterSpecificMisunderstanding": "Diagnosing children or implying every troubled child is violent.",
+  "sourceAlignmentTerms": [
+    "violent children",
+    "innocence assumption",
+    "repeated signals",
+    "access",
+    "fixation",
+    "intervention",
+    "delayed naming"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch12",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rebecca",
+      "domain": "middle school robotics club",
+      "audience": "a coach seeing fixation in a student",
+      "stakes": "whether innocence means ignoring repeated signals",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "documents access attempts to locked tools and isolates support before the next meeting",
+      "firstImage": "a servo motor spinning on an empty table",
+      "mustInclude": [
+        "tool cabinet",
+        "attendance sheet",
+        "robot chassis"
+      ],
+      "mustAvoid": [
+        "school discipline debates",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "suburban skateboard park",
+      "audience": "a youth worker tracking escalation",
+      "stakes": "whether rough talk is just adolescence",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "compares repeated threats, weapon drawings, and targeted waiting before calling guardians",
+      "firstImage": "a cracked skateboard deck under a bench",
+      "mustInclude": [
+        "incident note",
+        "park map",
+        "phone list"
+      ],
+      "mustAvoid": [
+        "school discipline debates",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "after-school gaming room",
+      "audience": "a program lead reading group fixation",
+      "stakes": "whether online boasting deserves any action",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "acts when threats, access to a rival, and repeated rehearsal language cluster",
+      "firstImage": "a controller cable knotted around a chair leg",
+      "mustInclude": [
+        "sign-in sheet",
+        "console cabinet",
+        "chat printout"
+      ],
+      "mustAvoid": [
+        "school discipline debates",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Hanna",
+      "domain": "private music lesson studio",
+      "audience": "a teacher noticing a child targeting another student",
+      "stakes": "whether talent and youth soften the pattern",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "changes overlap times after fixation, property damage, and hallway blocking repeat",
+      "firstImage": "a violin case with one latch open",
+      "mustInclude": [
+        "lesson roster",
+        "practice-room door",
+        "parent email"
+      ],
+      "mustAvoid": [
+        "school discipline debates",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Pablo",
+      "domain": "summer camp archery shed",
+      "audience": "a counselor weighing youth behavior",
+      "stakes": "whether to wait until intent is clear",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "removes access after repeated rule testing and fascination with a specific cabinmate",
+      "firstImage": "a quiver hung above a locked pegboard",
+      "mustInclude": [
+        "equipment key",
+        "cabin list",
+        "range whistle"
+      ],
+      "mustAvoid": [
+        "school discipline debates",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Hiroshi",
+      "domain": "public library teen room",
+      "audience": "a librarian after repeated hostile drawings",
+      "stakes": "whether reassurance is delaying help",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "brings in a youth specialist when fixation and access questions keep recurring",
+      "firstImage": "a sketchbook left open on a beanbag chair",
+      "mustInclude": [
+        "sketchbook",
+        "desk bell",
+        "branch schedule"
+      ],
+      "mustAvoid": [
+        "school discipline debates",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish violent children from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits name repeated youth warning signals early enough for intervention, without hiding behind innocence.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: diagnosing children or implying every troubled child is violent."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "List one youth warning pattern as behaviors, access, fixation, and escalation. Choose who needs the pattern, not the gossip.",
+  "readingTimeMinutes": 12
+}

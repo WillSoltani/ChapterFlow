@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch20",
+  "number": 20,
+  "title": "Tendency to Minimize Energy Output",
+  "coreMove": "Make the lower-effort path serve the goal, because systems drift toward what costs less energy.",
+  "sourcePressure": "Tendency to Minimize Energy Output is about lower-effort paths, effort conservation, friction, and environmental design.",
+  "chapterSpecificMisunderstanding": "calling low effort laziness or worshiping harder work",
+  "sourceAlignmentTerms": [
+    "energy output",
+    "effort",
+    "path of least resistance",
+    "friction",
+    "conservation trap",
+    "environment design",
+    "default"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Tendency to Minimize Energy Output",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "calling low effort laziness or worshiping harder work",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Louise",
+      "domain": "tax filing default folder",
+      "audience": "readers who face tax filing default folder decisions where energy output is easy to misread",
+      "stakes": "documents scattered at filing time",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Louise moves the better action onto the tax folder, removes the easier bad path from the deduction receipt, and checks the filing checklist to confirm low effort now serves the goal. Domain: tax filing default folder.",
+      "firstImage": "tax folder visible in the tax filing default folder",
+      "mustInclude": [
+        "tax folder",
+        "deduction receipt",
+        "filing checklist"
+      ],
+      "mustAvoid": [
+        "calling low effort laziness or worshiping harder work",
+        "reusing a generic meeting scene instead of the tax filing default folder constraints"
+      ]
+    },
+    {
+      "protagonistName": "Brian",
+      "domain": "warehouse picker route",
+      "audience": "readers who face warehouse picker route decisions where energy output is easy to misread",
+      "stakes": "workers walking extra steps all shift",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Brian moves the better action onto the aisle map, removes the easier bad path from the scanner strap, and checks the step counter to confirm low effort now serves the goal. Domain: warehouse picker route.",
+      "firstImage": "aisle map visible in the warehouse picker route",
+      "mustInclude": [
+        "aisle map",
+        "scanner strap",
+        "step counter"
+      ],
+      "mustAvoid": [
+        "calling low effort laziness or worshiping harder work",
+        "reusing a generic meeting scene instead of the warehouse picker route constraints"
+      ]
+    },
+    {
+      "protagonistName": "Remy",
+      "domain": "meal prep station setup",
+      "audience": "readers who face meal prep station setup decisions where energy output is easy to misread",
+      "stakes": "healthy dinners failing on tired evenings",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Remy moves the better action onto the prep tray, removes the easier bad path from the recipe card, and checks the freezer label to confirm low effort now serves the goal. Domain: meal prep station setup.",
+      "firstImage": "prep tray visible in the meal prep station setup",
+      "mustInclude": [
+        "prep tray",
+        "recipe card",
+        "freezer label"
+      ],
+      "mustAvoid": [
+        "calling low effort laziness or worshiping harder work",
+        "reusing a generic meeting scene instead of the meal prep station setup constraints"
+      ]
+    },
+    {
+      "protagonistName": "Brianna",
+      "domain": "study app notification defaults",
+      "audience": "readers who face study app notification defaults decisions where energy output is easy to misread",
+      "stakes": "study opening displaced by the phone",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Brianna moves the better action onto the notification screen, removes the easier bad path from the practice deck, and checks the lockout setting to confirm low effort now serves the goal. Domain: study app notification defaults.",
+      "firstImage": "notification screen visible in the study app notification defaults",
+      "mustInclude": [
+        "notification screen",
+        "practice deck",
+        "lockout setting"
+      ],
+      "mustAvoid": [
+        "calling low effort laziness or worshiping harder work",
+        "reusing a generic meeting scene instead of the study app notification defaults constraints"
+      ]
+    },
+    {
+      "protagonistName": "Samuel",
+      "domain": "payroll approval shortcut",
+      "audience": "readers who face payroll approval shortcut decisions where energy output is easy to misread",
+      "stakes": "late payments caused by one click",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Samuel moves the better action onto the approval queue, removes the easier bad path from the invoice timestamp, and checks the vendor email to confirm low effort now serves the goal. Domain: payroll approval shortcut.",
+      "firstImage": "approval queue visible in the payroll approval shortcut",
+      "mustInclude": [
+        "approval queue",
+        "invoice timestamp",
+        "vendor email"
+      ],
+      "mustAvoid": [
+        "calling low effort laziness or worshiping harder work",
+        "reusing a generic meeting scene instead of the payroll approval shortcut constraints"
+      ]
+    },
+    {
+      "protagonistName": "Rafael",
+      "domain": "apartment laundry sorting system",
+      "audience": "readers who face apartment laundry sorting system decisions where energy output is easy to misread",
+      "stakes": "neighbors leaving lint traps full",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rafael moves the better action onto the lint sign, removes the easier bad path from the sorting shelf, and checks the laundry token to confirm low effort now serves the goal. Domain: apartment laundry sorting system.",
+      "firstImage": "lint sign visible in the apartment laundry sorting system",
+      "mustInclude": [
+        "lint sign",
+        "sorting shelf",
+        "laundry token"
+      ],
+      "mustAvoid": [
+        "calling low effort laziness or worshiping harder work",
+        "reusing a generic meeting scene instead of the apartment laundry sorting system constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for energy output rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Make the lower-effort path serve the goal, because systems drift toward what costs less energy.",
+      "explain why the tempting misread fails: calling low effort laziness or worshiping harder work",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving energy output, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,181 @@
+{
+  "chapterId": "leaders-eat-last-ch01",
+  "number": 1,
+  "title": "Protection from Above",
+  "coreMove": "Convert authority into visible cover by absorbing the first risk before asking exposed people to be brave.",
+  "sourcePressure": "Uses the Johnny Bravo rescue frame to define leadership as cover from above: power becomes useful when it moves toward exposed people, with empathy making their danger real enough to act on.",
+  "chapterSpecificMisunderstanding": "Treating safety as praise, niceness, or removing standards instead of spending authority to reduce avoidable fear.",
+  "sourceAlignmentTerms": [
+    "Johnny Bravo",
+    "protection from above",
+    "empathy",
+    "Circle of Safety",
+    "cover",
+    "recognition hierarchy",
+    "avoidable fear"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 1 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "air ambulance dispatch in coastal fog",
+      "audience": "flight nurse coordinating a risky pickup",
+      "stakes": "a stranded patient waits while weather closes in",
+      "format": "decision_point",
+      "requiredBeat": "the nurse tells dispatch to put her name on the go call before asking the junior medic to board",
+      "firstImage": "a blinking weather radar beside a sealed trauma kit",
+      "mustInclude": [
+        "weather radar",
+        "trauma kit"
+      ],
+      "mustAvoid": [
+        "generic office escalation"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "night-shift refinery control room",
+      "audience": "control-room lead with a new operator",
+      "stakes": "a pressure alarm may expose the trainee to blame",
+      "format": "scene",
+      "requiredBeat": "the lead steps to the console, takes the radio call himself, then lets the trainee read the gauge aloud",
+      "firstImage": "a red pressure light reflected in safety glass",
+      "mustInclude": [
+        "radio handset",
+        "pressure gauge"
+      ],
+      "mustAvoid": [
+        "factory-floor blame scene"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "community theater rigging inspection",
+      "audience": "stage manager protecting a volunteer",
+      "stakes": "a dropped sandbag could end the production and shame the volunteer",
+      "format": "dialogue",
+      "requiredBeat": "the stage manager announces the rigging check as her call before asking what the volunteer noticed",
+      "firstImage": "a sandbag hanging over taped stage marks",
+      "mustInclude": [
+        "gaffer tape",
+        "sandbag"
+      ],
+      "mustAvoid": [
+        "school presentation"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "wildfire base camp map tent",
+      "audience": "crew boss with rookies on a wind shift",
+      "stakes": "a crew may be sent into a dangerous slope",
+      "format": "predict_reveal",
+      "requiredBeat": "the boss moves his own crew tag off the safe ridge first to show he will take the exposed flank",
+      "firstImage": "a laminated fire map held down by a compass",
+      "mustInclude": [
+        "crew tags",
+        "compass"
+      ],
+      "mustAvoid": [
+        "military rescue copy"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "hospital code-review huddle",
+      "audience": "charge nurse after a medication near miss",
+      "stakes": "a junior nurse may hide future errors",
+      "format": "postmortem",
+      "requiredBeat": "the charge nurse says the huddle starts with her missed double-check and points to the barcode scanner she ignored",
+      "firstImage": "a barcode scanner lying beside an incident form",
+      "mustInclude": [
+        "barcode scanner",
+        "incident form"
+      ],
+      "mustAvoid": [
+        "generic healthcare empathy"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "restaurant freezer outage",
+      "audience": "owner with closing crew",
+      "stakes": "food loss and late-night blame threaten trust",
+      "format": "before_after",
+      "requiredBeat": "the owner puts on gloves and starts hauling spoiled boxes before assigning cleanup rows",
+      "firstImage": "a frost-fogged freezer door propped open by a crate",
+      "mustInclude": [
+        "freezer gloves",
+        "inventory clipboard"
+      ],
+      "mustAvoid": [
+        "home chore scene"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify exposed people before issuing direction",
+      "separate praise from protective cover",
+      "choose a leader action that makes early truth safer",
+      "judge whether safety preserves standards or erases them"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next correction or escalation, name who is most exposed and write the first heat you can absorb before you ask them to act.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Johnny Bravo",
+      "detail": "the package text ties his descent through clouds and enemy fire to the idea of protection from above",
+      "useIn": "both",
+      "phrasingHint": "Johnny Bravo has altitude and options, and the whole lesson turns on what he does with that advantage when men below him are exposed."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "chapterId": "the-pyramid-principle-ch07",
+  "number": 7,
+  "title": "Questioning the order of a grouping",
+  "coreMove": "Name and test the ordering rule of a group, then reject sequences and classes the material cannot honestly support.",
+  "sourcePressure": "Chapter 7 questions group order: time order, confused logic, false grouping, structural order, describing versus imposing structure, ranking order, and improper class groupings.",
+  "chapterSpecificMisunderstanding": "Choosing an order that feels tidy, familiar, or persuasive without proving it belongs to the material.",
+  "sourceAlignmentTerms": [
+    "time order",
+    "confused logic",
+    "false grouping",
+    "structural order",
+    "describing a structure",
+    "imposing a structure",
+    "ranking order",
+    "improper class groupings"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "grouping order",
+      "detail": "the sidecar lists time order, confused logic, false grouping, structural order, describing a structure, imposing a structure, ranking order, and improper class groupings",
+      "useIn": "both",
+      "phrasingHint": "A group earns trust when the writer can name the law that orders it and the class that makes its members belong."
+    },
+    {
+      "kind": "artifact",
+      "name": "ranking order",
+      "detail": "the authorized heading map includes ranking order as a chapter-specific test",
+      "useIn": "deepRead",
+      "phrasingHint": "Ranking is honest only when one ruler measures the whole list."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A memo opens with background and makes the reader hunt for the point",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "The obvious fix is shorter wording; the real fix is better logic",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Find a memo and make it clearer",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "consultant revises slide deck before executive review",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "an airline maintenance planner ordering inspection findings",
+      "audience": "technical operations readers deciding work sequence",
+      "stakes": "maintenance crews may address visible defects before safety-critical dependencies if ranking standards shift",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Andrew labels each finding by safety severity, removes items that are not findings, and rebuilds the list under one ranking standard.",
+      "firstImage": "The hangar floor gleams under the belly of an aircraft on jacks.",
+      "mustInclude": [
+        "inspection findings",
+        "severity scale",
+        "maintenance bay schedule"
+      ],
+      "mustAvoid": [
+        "airport baggage outage from ch4"
+      ]
+    },
+    {
+      "domain": "a children's hospital volunteer coordinator arranging onboarding steps",
+      "audience": "coordinators building process documents",
+      "stakes": "volunteers could reach patient floors before background clearance if time order is wrong",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 11:25 a.m., Giulia catches a training task listed before clearance, then rebuilds the group in real time order rather than convenience order.",
+      "firstImage": "At 11:25 a.m., Giulia points to a badge form dated after the training slot.",
+      "mustInclude": [
+        "volunteer checklist",
+        "background clearance form",
+        "training calendar"
+      ],
+      "mustAvoid": [
+        "hospital analyst from ch1"
+      ]
+    },
+    {
+      "domain": "a home-inspection company describing a roof system",
+      "audience": "inspectors writing reports with structural order",
+      "stakes": "buyers may misunderstand which defects belong to flashing, decking, or drainage if the list follows discovery order",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Pablo replaces the walk-around sequence with roof-system order and marks where he is describing actual structure instead of imposing a tidy tour.",
+      "firstImage": "It took Pablo one wet attic beam to stop ordering the report by his ladder route.",
+      "mustInclude": [
+        "roof sketch",
+        "flashing photos",
+        "attic moisture reading"
+      ],
+      "mustAvoid": [
+        "architecture renovation from ch4"
+      ]
+    },
+    {
+      "domain": "a public-radio editor grouping listener complaints",
+      "audience": "media managers summarizing audience feedback",
+      "stakes": "program changes will be distorted if tone complaints, reception problems, and topic preferences are treated as one class",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Astrid reads each voicemail tag aloud, separates transmission faults from editorial preferences, and deletes the false parent heading.",
+      "firstImage": "A voicemail waveform pulses green on the studio screen.",
+      "mustInclude": [
+        "voicemail tags",
+        "transmission log",
+        "editorial calendar"
+      ],
+      "mustAvoid": [
+        "documentary footage from ch3"
+      ]
+    },
+    {
+      "domain": "a consumer-goods packaging lead ordering causes of cracked jars",
+      "audience": "manufacturing teams ranking root causes",
+      "stakes": "a recall fix may target transport if the ranking mixes frequency, cost, and severity",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Kiran asks what single ruler will rank the causes, chooses defect frequency, and moves high-cost but rare issues out of the ranked group.",
+      "firstImage": "Which cracked jar belongs at the top if frequency is the ruler?",
+      "mustInclude": [
+        "cracked jar samples",
+        "defect-frequency chart",
+        "shipping report"
+      ],
+      "mustAvoid": [
+        "press-guard or safety-prop shells"
+      ]
+    },
+    {
+      "domain": "a community theater board classifying fundraising options",
+      "audience": "volunteer boards deciding what alternatives are truly comparable",
+      "stakes": "the board may compare sponsorships, volunteer tasks, and donor segments as if all were fundraising options",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"A donor segment is not an event,\" Sofia says, then separates audiences, channels, and actions before ranking only the actions.",
+      "firstImage": "\"A donor segment is not an event,\" Sofia says as raffle tickets scatter across the table.",
+      "mustInclude": [
+        "raffle tickets",
+        "sponsor list",
+        "donor segment note"
+      ],
+      "mustAvoid": [
+        "theater production manager from ch3"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish time, structural, and ranking order",
+      "detect false grouping and improper class grouping",
+      "avoid imposing structure on mixed material",
+      "repair a group by naming one ordering principle"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the ordering rule above one group in five words or fewer: time, structure, rank, or cause. If none fits, the order is probably imposed.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,325 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch08",
+  "number": 8,
+  "title": "Proximate Objectives",
+  "readingTimeMinutes": 10,
+  "hook": "Near targets keep a team moving when the far target is still fog.",
+  "counterintuition": "A smaller target is not automatically proximate but still another evasion if it avoids the constraint. The useful target gives people a credible next action.",
+  "tryThisNow": "Name one uncertainty you cannot resolve yet. Then write the nearest objective that would make tomorrow’s action clearer without pretending to solve the whole path.",
+  "keyTakeaway": "Set proximate objectives by choosing a concrete next target close enough to guide action and strong enough to keep force concentrated under uncertainty.",
+  "breakdown": {
+    "fastRead": "Juliette places the attendance ledger beside bus pass envelopes and a family call list. The charter school wants a five-year attendance transformation. The ledger shows ninth graders missing Mondays after bus pass renewals lapse. Juliette crosses out the grand target and writes a ninety-day objective: get Monday ninth-grade attendance above 90 percent by fixing pass renewals and family calls.\n\nA proximate objective is not a smaller dream. It is a target near enough to coordinate action now.\n\nWhen the future is unclear, the team still needs a direction it can act on. The objective should be close enough to test and concrete enough to guide choices.",
+    "deepRead": "Henrik studies an asset inventory while the patch window and risk heat map sit open. The cybersecurity team wants to modernize the entire environment. The heat map shows one exposed payroll system with an open maintenance window next week. Henrik asks whether they need a complete security future or the next system that needs to become visible safe.\n\nUncertainty does not excuse vagueness.\n\nA far objective can inspire and still fail to guide. “Become secure” says too little when every system has some risk. “Patch payroll before the window closes and verify access logs by Friday” gives concentrated action a practical target. It does not claim the whole environment is solved. It makes the next move possible.\n\nChiara reaches the same point after a restaurant lunch service collapses. The prep rail diagram, ticket printer, and line timer show that one sandwich lane falls behind before noon. The owner wants a complete brand reset. The postmortem produces a better near target: stabilize the cold line for two lunch services in a row before changing the menu.\n\nA proximate objective turns fog into footing.\n\nThe objective should also change conversation quality. People stop debating the whole future and start asking who owns the next move, what can be seen by Friday, and which result would justify the following step.",
+    "fullRead": "Javier stands in a public health office with a clinic freezer log, a school calendar, and a dose shipment notice. The unit wants to raise vaccination rates across the district. The freezer log says one clinic loses appointment slots whenever shipments arrive on school testing days. Javier marks the next objective: use the next shipment to fill the Tuesday clinic without spoilage or missed school pickups.\n\nThis is not timid planning when uncertainty still hides the route. It is disciplined proximity. A distant goal can remain true while the next objective changes. Higher vaccination rates may be the aim. The proximate objective is the next target that converts that aim into guided action under current constraints.\n\nYou can ask three questions. Can people tell what to do tomorrow? Can the result be seen soon enough to correct course? Does the target preserve the larger direction without pretending all uncertainty is gone? If the answer is yes, the objective is probably proximate. If the answer is only a slogan, a metric, or a distant aspiration, the team still lacks a practical target.\n\nLin learns this in an architecture firm. Permit comments, a model photo, and a site survey show too many uncertain design choices for a full campus plan. The partners want to sell the whole vision. Lin tests the plan against the permit comments and chooses a nearer objective: produce one permit-ready prototype for the courtyard building, with stormwater and access comments resolved. That target does not solve the campus. It gives the firm a credible next step.\n\nThe danger is mistaking easy for proximate. A target can be close and still useless if it avoids the hard constraint. Cleaning old files, holding listening sessions, or rewriting goals can feel reachable while leaving the real issue untouched. Proximity means actionable closeness to the strategic problem, not comfort.\n\nAndrew sees the distinction at a sports club. Before the review, the club says it wants promotion. After he places the league table beside training bibs and the fixture list, he stops the meeting. Promotion is too far to guide Tuesday practice. The near target is clearer: win points from the next three bottom-half fixtures by fixing set-piece defending. Training changes that afternoon.\n\nA good proximate objective keeps uncertainty honest. It says, we do not know the whole road, but we know the next piece that has to become visible true. That is enough to concentrate effort, learn, and earn the right to choose the next target.\n\nA useful proximate objective has a built-in review point. It names the next visible result and the moment when the team will look again. That prevents the near target from becoming a new hiding place.\n\nWhen the near target works, it earns the next target. That is the discipline: do not pretend to see the whole road, but do not stand still because the whole road is hidden."
+  },
+  "examples": [
+    {
+      "exampleId": "ch08-ex01-juliette-attendance-ledger",
+      "title": "Juliette Sets the Monday Attendance Target",
+      "tags": [
+        "school",
+        "attendance",
+        "proximate"
+      ],
+      "planSpec": {
+        "domain": "charter school setting a ninety-day attendance objective",
+        "audience": "a reader facing charter school setting a ninety-day attendance objective",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "scene",
+        "requiredBeat": "Juliette moves one concrete constraint to the center of the table and crosses out every action that does not address it using attendance ledger so the lesson happens as a visible action."
+      },
+      "scenario": "The attendance ledger is open on the principal’s desk before Tuesday dismissal, beside bus pass envelopes and a family call list. Juliette hears proposals for a five-year attendance culture plan. The ledger shows ninth graders missing Mondays after pass renewals lapse. She has to decide whether to keep the broad transformation target or set a ninety-day Monday attendance objective. In the school office, the assistant principal can check renewed bus passes by Friday, so the target gives staff a visible result before the next Monday absence pattern forms.",
+      "whatToDo": "Set a ninety-day objective for Monday ninth-grade attendance, then align pass renewals and family calls around that target.",
+      "whyItMatters": "The school cannot act on a foggy five-year promise. A near target turns the attendance problem into work staff can test next week."
+    },
+    {
+      "exampleId": "ch08-ex02-henrik-asset-inventory",
+      "title": "Henrik Chooses the Payroll Patch Window",
+      "tags": [
+        "cybersecurity",
+        "patching",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "cybersecurity team choosing the next exposed system",
+        "audience": "a reader facing cybersecurity team choosing the next exposed system",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "decision_point",
+        "requiredBeat": "Henrik asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using asset inventory so the lesson happens as a visible action."
+      },
+      "scenario": "\"Which system can we make safer next week?\" Henrik asks, sliding the asset inventory beside the patch window and risk heat map. The team wants a full modernization program and a phishing campaign. Payroll is exposed and has a maintenance window on Thursday. Henrik must decide whether to protect both broad workstreams or delete one and aim at payroll first. At the security review table, the Thursday maintenance window turns the payroll system from a vague risk into the one target the engineers can verify before the weekend.",
+      "whatToDo": "Choose the payroll patch as the proximate objective, verify access logs by Friday, and postpone work that does not reduce that exposure.",
+      "whyItMatters": "The team needs a target close enough to act on. Modernization can remain the direction, but payroll gives the next move."
+    },
+    {
+      "exampleId": "ch08-ex03-chiara-lunch-lane",
+      "title": "Chiara Stabilizes the Cold Line First",
+      "tags": [
+        "restaurant",
+        "service",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "restaurant group stabilizing one lunch service lane",
+        "audience": "a reader facing restaurant group stabilizing one lunch service lane",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "postmortem",
+        "requiredBeat": "Chiara uses the artifact to expose the hidden constraint before anyone proposes another initiative using prep rail diagram so the lesson happens as a visible action."
+      },
+      "scenario": "The kitchen still smells of fryer oil after the lunch rush misses ticket times again. Chiara spreads the prep rail diagram beside the ticket printer and line timer. The postmortem shows cold sandwiches fell six minutes behind before noon, while the owners were debating a full menu reset. The reachable target is not a new brand; it is two clean lunch services on the cold line.",
+      "whatToDo": "Make two stable cold-line lunches the objective, then change prep, staffing, and timing only for that lane first.",
+      "whyItMatters": "A full reset is too broad to guide tomorrow. The cold line gives the restaurant a practical target that can prove or disprove the fix quickly."
+    },
+    {
+      "exampleId": "ch08-ex04-javier-freezer-log",
+      "title": "Javier Picks the Tuesday Clinic",
+      "tags": [
+        "public health",
+        "vaccination",
+        "bottleneck"
+      ],
+      "planSpec": {
+        "domain": "public health unit targeting one vaccination bottleneck",
+        "audience": "a reader facing public health unit targeting one vaccination bottleneck",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "dialogue",
+        "requiredBeat": "Javier turns a vague goal into a visible choice by marking the one place effort will land using clinic freezer log so the lesson happens as a visible action."
+      },
+      "scenario": "You can see the weak spot in the clinic freezer log before the shipment lands. Javier has the school calendar and dose shipment notice beside it. \"We need district-wide uptake,\" the director says. Javier points to next Tuesday’s testing day. \"Or we make this clinic work without spoiled doses or missed pickups.\" The unit must choose before the shipment is routed.",
+      "whatToDo": "Set the Tuesday clinic as the proximate objective and coordinate dose handling, school pickup times, and staffing around it.",
+      "whyItMatters": "District-wide uptake is too distant to direct the shipment. Tuesday’s clinic is close enough to guide action and reveal the next constraint."
+    },
+    {
+      "exampleId": "ch08-ex05-lin-permit-prototype",
+      "title": "Lin Tests the Courtyard Prototype",
+      "tags": [
+        "architecture",
+        "permits",
+        "prototype"
+      ],
+      "planSpec": {
+        "domain": "architecture firm defining a permit-ready prototype",
+        "audience": "a reader facing architecture firm defining a permit-ready prototype",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "predict_reveal",
+        "requiredBeat": "Lin tests the proposed move against the object or record that reveals whether it fits the real problem using permit comments so the lesson happens as a visible action."
+      },
+      "scenario": "After two client calls, Lin stops trusting the full-campus rendering. Permit comments sit beside a model photo and site survey in the studio. The partners predict the whole vision will unlock approval. Lin has to decide whether to keep selling the full plan or test one courtyard building against stormwater and access comments first. In the studio pin-up area, the prototype also gives the client a permit conversation they can understand instead of another rendering that avoids the agency comments.",
+      "whatToDo": "Define one permit-ready courtyard prototype, resolve the stormwater and access comments, and use that approval to guide the larger plan.",
+      "whyItMatters": "The prototype is a near-enough objective. It does not pretend to solve the campus, but it turns uncertainty into a concrete permit test."
+    },
+    {
+      "exampleId": "ch08-ex06-andrew-fixture-target",
+      "title": "Andrew Turns Promotion Into Three Fixtures",
+      "tags": [
+        "sports club",
+        "fixtures",
+        "target"
+      ],
+      "planSpec": {
+        "domain": "sports club choosing a reachable promotion target",
+        "audience": "a reader facing sports club choosing a reachable promotion target",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "before_after",
+        "requiredBeat": "Andrew stops the meeting and rearranges the sequence of work so the strategic move becomes visible using league table so the lesson happens as a visible action."
+      },
+      "scenario": "How do you train for promotion on a wet Tuesday? Before the review, Andrew’s club talks about going up. After he lays the league table beside training bibs and the fixture list, he stops the meeting. Before practice starts, he changes the target: take points from the next three bottom-half teams by fixing set-piece defending, then reassess the table.",
+      "whatToDo": "Translate promotion into the next three fixtures and train set-piece defending because that is the controllable path to points now.",
+      "whyItMatters": "Promotion is too far away to organize Tuesday. The fixture target makes the larger aim actionable without pretending the season is solved."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A school wants to transform attendance over five years, but records show ninth graders miss Mondays after bus pass renewals. What makes a good proximate objective?",
+        "choices": [
+          "Improve school culture through a five-year attendance vision.",
+          "Raise Monday ninth-grade attendance in ninety days by fixing bus pass renewals and family calls.",
+          "Create a new attendance slogan for every grade level."
+        ],
+        "correctIndex": 1,
+        "explanation": "The ninety-day target is near, concrete, and tied to the obstacle. The vision and slogan are too broad to guide immediate work.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A cybersecurity team says it will modernize everything, but payroll is exposed and has a patch window next week. What should come first?",
+        "choices": [
+          "Patch payroll and verify logs during the available window.",
+          "Begin a full modernization roadmap workshop.",
+          "Launch a general phishing-awareness campaign."
+        ],
+        "correctIndex": 0,
+        "explanation": "Payroll is the practical next target. Modernization and awareness may matter later, but they do not use the immediate window.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A restaurant group wants to reinvent lunch, but line data show the cold sandwich lane falls behind before noon. Which objective is proximate?",
+        "choices": [
+          "Design a new brand for the whole lunch experience.",
+          "Add more specials so customers see variety.",
+          "Run two stable cold-line services in a row by changing prep and staffing for that lane."
+        ],
+        "correctIndex": 2,
+        "explanation": "The cold-line target is close enough to act on and tied to the constraint. Brand and variety are larger than the evidence supports.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A public health unit wants district-wide vaccination gains. A dose shipment conflicts with one school testing day at one clinic. What objective guides action best?",
+        "choices": [
+          "Make the Tuesday clinic work without spoiled doses or missed pickups.",
+          "Write a district-wide communications plan before routing the shipment.",
+          "Wait for more data before choosing a clinic target."
+        ],
+        "correctIndex": 0,
+        "explanation": "The Tuesday clinic turns the broad aim into a near operational target. Communication and waiting do not coordinate the shipment now.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "An architecture firm has a full campus vision, but permit comments focus on stormwater and access for one building. What is the strategic value of a prototype?",
+        "choices": [
+          "It lets the firm avoid the hard campus questions forever.",
+          "It gives a permit-ready next target that can resolve concrete uncertainty.",
+          "It is easier, so it should replace the larger ambition completely."
+        ],
+        "correctIndex": 1,
+        "explanation": "The prototype is useful because it converts uncertainty into a test. It does not erase the larger ambition or avoid future choices.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A sports club wants promotion but has three weak opponents next. Training is scattered across fitness, tactics, morale, and recruitment. What should the coach do?",
+        "choices": [
+          "Set a target for points from the next three fixtures and train the weakness most likely to win those matches.",
+          "Keep training broad because promotion requires improvement everywhere.",
+          "Focus on recruitment because long-term squad quality matters most."
+        ],
+        "correctIndex": 0,
+        "explanation": "The fixture target is close enough to guide Tuesday’s work. Broad training and recruitment may matter later but do not concentrate immediate action.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager calls a target proximate because it is easy: archive old files by Friday. The actual obstacle is delayed customer onboarding. What is wrong?",
+        "choices": [
+          "A proximate objective must be close to the strategic problem, not merely easy to finish.",
+          "Archiving is always a poor use of time.",
+          "The target needs a more ambitious deadline."
+        ],
+        "correctIndex": 0,
+        "explanation": "Proximity means actionable closeness to the obstacle. Easy completion does not make a target strategically useful.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team refuses to set a near target because it cannot see the full path. It keeps discussing the ultimate goal. How should you evaluate this?",
+        "choices": [
+          "The caution is wise because no action should begin until the whole path is known.",
+          "The team needs a proximate objective that guides learning without pretending full certainty.",
+          "The team should abandon the ultimate goal if the path is unclear."
+        ],
+        "correctIndex": 1,
+        "explanation": "Uncertainty is exactly why a near target is needed. It guides action and learning without pretending the full route is visible.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A nonprofit wants to end youth homelessness. Its next constraint is getting ten shelter beds staffed for winter nights. Which target is most proximate?",
+        "choices": [
+          "Announce a ten-year campaign to end homelessness.",
+          "Hold a public forum on the root causes of homelessness.",
+          "Staff ten winter beds by the first freeze and track nightly usage for two weeks."
+        ],
+        "correctIndex": 2,
+        "explanation": "The winter-bed target is concrete, near, and tied to the immediate constraint. Campaigns and forums may be useful, but they do not guide the next operational step.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A team faces fog and needs one near target. What makes the target proximate?",
+      "back": "It is a concrete next target close enough to guide action under uncertainty while still serving the larger direction.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can a distant goal fail even when it is true?",
+      "back": "It may be too far away to decide tomorrow’s work. A proximate objective gives the team a practical target it can test soon.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How do you test whether an objective is proximate or merely easy?",
+      "back": "Ask whether it is close to the strategic obstacle. Easy work that avoids the constraint is not proximate; it is displacement.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What should a team do when the whole path is unclear?",
+      "back": "Choose the nearest objective that makes action clearer and learning possible. Do not wait for total certainty before moving.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A near target feels smaller than the ambition. What must it preserve?",
+      "back": "It preserves direction. The target is smaller than the ambition, but it should still move the team toward the larger aim.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice turning uncertainty into a practical next target. The target should be close enough to act on, visible enough to test, and connected enough to the larger direction.",
+    "ifThenPlans": [
+      {
+        "context": "project planning",
+        "plan": "If the final outcome is unclear, then choose the nearest objective that would make next week’s work concrete."
+      },
+      {
+        "context": "team management",
+        "plan": "If people keep debating the ultimate goal, then ask what must be made true in the next thirty days."
+      },
+      {
+        "context": "operations",
+        "plan": "If an easy task appears, then check whether it touches the active constraint before calling it a proximate objective."
+      },
+      {
+        "context": "personal work",
+        "plan": "If a large goal feels frozen, then define the next observable result that would prove movement without solving everything."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, convert one distant goal into a proximate objective with a deadline, owner, and visible result.",
+    "weeklyPractice": "Each week, review one goal and ask whether the next target is close enough to guide action. If it is not, rewrite it until tomorrow’s work is obvious."
+  },
+  "memorableLines": [
+    {
+      "text": "A proximate objective turns fog into footing.",
+      "location": "deepRead",
+      "why": "The metaphor captures the chapter’s practical value."
+    },
+    {
+      "text": "This is not timid planning when uncertainty still hides the route.",
+      "location": "fullRead",
+      "why": "The line defends proximity from being mistaken for small ambition."
+    },
+    {
+      "text": "A good proximate objective keeps uncertainty honest.",
+      "location": "fullRead",
+      "why": "It summarizes how near targets work without pretending certainty."
+    }
+  ]
+}

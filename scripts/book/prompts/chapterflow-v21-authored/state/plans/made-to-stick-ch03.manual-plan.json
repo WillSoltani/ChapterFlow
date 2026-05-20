@@ -1,0 +1,203 @@
+{
+  "chapterId": "made-to-stick-ch03",
+  "number": 3,
+  "title": "Concrete",
+  "coreMove": "Turn an abstract claim into a shared visible reference people can picture, remember, and use together.",
+  "sourcePressure": "The source uses Aesops sour grapes, the Nature Conservancy, Jane Elliotts classroom exercise, Velcro Theory of Memory, and coordination language to show how abstract ideas need pictureable hooks.",
+  "chapterSpecificMisunderstanding": "Adding vivid detail for decoration while leaving the working idea vague.",
+  "sourceAlignmentTerms": [
+    "concrete",
+    "pictureable",
+    "Aesop",
+    "sour grapes",
+    "Nature Conservancy",
+    "Jane Elliott",
+    "Velcro Theory of Memory"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Aesops sour grapes",
+      "detail": "the sidecar names Aesops sour grapes as support for a concrete story carrying an abstract lesson across time",
+      "useIn": "both",
+      "phrasingHint": "Sour grapes lasts because the abstract lesson has teeth, vines, and a fox attached to it."
+    },
+    {
+      "kind": "artifact",
+      "name": "The Nature Conservancy",
+      "detail": "the sidecar says the Nature Conservancy contrasts abstract acreage language with more pictureable conservation framing",
+      "useIn": "deepRead",
+      "phrasingHint": "The Nature Conservancy example turns acreage into something a person can picture protecting."
+    },
+    {
+      "kind": "person",
+      "name": "Jane Elliott",
+      "detail": "the sidecar says Jane Elliotts classroom exercise made a social dynamic concrete enough to feel instead of merely defining it",
+      "useIn": "fullRead",
+      "phrasingHint": "Jane Elliotts classroom exercise shows how a social idea changes when students can feel the difference in the room."
+    },
+    {
+      "kind": "study",
+      "name": "Velcro Theory of Memory",
+      "detail": "the sidecar names Velcro Theory of Memory as support for the claim that ideas with more hooks are easier to retain",
+      "useIn": "both",
+      "phrasingHint": "Concrete details give memory more hooks, the way Velcro grips because it has many small catches."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "an abstract word becomes a physical object every time",
+      "the room finally sees it"
+    ],
+    "counterintuition": [
+      "concrete is not colorful repeated flatly",
+      "vivid details always help"
+    ],
+    "tryThisNow": [
+      "add a concrete example",
+      "picture it clearly"
+    ],
+    "examples": [
+      "training mascot",
+      "backpack donation prop",
+      "museum erosion display repeated from old package"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "airport baggage-claim signage",
+      "audience": "an operations manager coordinating travelers across languages",
+      "stakes": "missed bags and clogged walkways during a holiday rush",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "James replaces abstract directional text with a floor decal path that every passenger can point to and follow",
+      "firstImage": "Fluorescent arrows flicker above a carousel packed three people deep",
+      "mustInclude": [
+        "yellow floor decals",
+        "carousel number cards",
+        "oversized suitcase icon"
+      ],
+      "mustAvoid": [
+        "generic wayfinding advice"
+      ]
+    },
+    {
+      "domain": "rural broadband grant application",
+      "audience": "a county administrator explaining bandwidth to council members",
+      "stakes": "a grant vote fails if megabits stay invisible",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Juliette asks the council to upload the same farm inspection photo on two connections and watches the slow bar teach the difference",
+      "firstImage": "\"Tell me when the calf photo finishes uploading,\" Juliette says",
+      "mustInclude": [
+        "tablet hotspot",
+        "farm inspection photo",
+        "council timer"
+      ],
+      "mustAvoid": [
+        "abstract digital divide language"
+      ]
+    },
+    {
+      "domain": "restaurant allergen training",
+      "audience": "a chef teaching new servers cross-contact rules",
+      "stakes": "one vague instruction can send a diner to the hospital",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marco sprinkles flour on a black cutting board and lets servers see the invisible trail become visible under a flashlight",
+      "firstImage": "White flour dust hangs in the prep-room light like smoke",
+      "mustInclude": [
+        "black cutting board",
+        "UV flashlight",
+        "allergen ticket"
+      ],
+      "mustAvoid": [
+        "fear-based medical lecture"
+      ]
+    },
+    {
+      "domain": "climate adaptation workshop for farmers",
+      "audience": "an extension officer translating rainfall projections",
+      "stakes": "farmers need to choose drainage upgrades before spring planting",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Astrid pours measured water over two soil trays so the runoff shows what the projection means for one field edge",
+      "firstImage": "At 2:05 p.m., Astrid sets two soil trays on the co-op counter",
+      "mustInclude": [
+        "soil trays",
+        "measuring jug",
+        "runoff pan"
+      ],
+      "mustAvoid": [
+        "climate graph lecture"
+      ]
+    },
+    {
+      "domain": "youth orchestra rhythm rehearsal",
+      "audience": "a conductor helping beginners feel syncopation",
+      "stakes": "the piece falls apart if the pattern stays verbal",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Kiran move the rhythm from notation to claps, steps, and a single tennis ball passed on the offbeat",
+      "firstImage": "You hear twenty bows scrape the same wrong beat again",
+      "mustInclude": [
+        "tennis ball",
+        "music stands",
+        "metronome click"
+      ],
+      "mustAvoid": [
+        "classroom worksheet shell"
+      ]
+    },
+    {
+      "domain": "housing-policy explainer for tenants",
+      "audience": "a legal-aid worker explaining rent escrow rights",
+      "stakes": "tenants miss deadlines when the process stays abstract",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marta turns the process into three envelopes on the table and has the tenant place each document where it belongs",
+      "firstImage": "It took Marta two failed clinics to stop saying procedure out loud",
+      "mustInclude": [
+        "three labeled envelopes",
+        "lease copy",
+        "repair photos"
+      ],
+      "mustAvoid": [
+        "generic legal advice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "convert abstract terms into shared reference points",
+      "judge when vivid detail serves or hijacks the lesson",
+      "choose concrete anchors that help coordination",
+      "diagnose why an audience remembers the image but misses the rule"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Circle the slipperiest noun in your message, then replace it with one object, action, or comparison your audience could point to in the same room.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

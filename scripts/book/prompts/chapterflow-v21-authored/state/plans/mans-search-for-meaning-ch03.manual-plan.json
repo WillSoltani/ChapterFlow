@@ -1,0 +1,209 @@
+{
+  "chapterId": "mans-search-for-meaning-ch03",
+  "number": 3,
+  "title": "Part One: Facts, Fulfillment, and Freedom",
+  "coreMove": "Separate what fate controls from the small response that still belongs to you.",
+  "sourcePressure": "The later memoir unit emphasizes apathy, arbitrary fate, food fantasies, small acts of comfort, beauty, faith, liberation, bitterness, disillusionment, and a narrow claim of inner freedom.",
+  "chapterSpecificMisunderstanding": "Do not turn inner freedom into positive thinking or moral blame. The claim must stay narrow: arbitrary fate remains real, damage remains real, and the remaining response may be small.",
+  "sourceAlignmentTerms": [
+    "apathy",
+    "arbitrary fate",
+    "inner freedom",
+    "food fantasies",
+    "small decencies",
+    "beauty",
+    "liberation",
+    "disillusionment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "liberation",
+      "detail": "The frozen source says liberation is described as unreal and later mixed with bitterness and disillusionment.",
+      "useIn": "both",
+      "phrasingHint": "Freedom outside the gate may arrive before the damaged person can feel free inside it."
+    },
+    {
+      "kind": "artifact",
+      "name": "food fantasies",
+      "detail": "The source notes food fantasies as part of later camp life.",
+      "useIn": "deepRead",
+      "phrasingHint": "A fantasy about food can show both deprivation and the mind trying to remain alive."
+    },
+    {
+      "kind": "event",
+      "name": "small acts of comfort",
+      "detail": "The source says scattered acts of comfort and continuing ability to notice beauty still appear amid apathy.",
+      "useIn": "both",
+      "phrasingHint": "A small decency matters because it is chosen where almost nothing else is."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Freedom is always a choice",
+      "No one can take your attitude"
+    ],
+    "counterintuition": [
+      "Circumstances do not matter as much as response",
+      "Apathy is just numbness"
+    ],
+    "tryThisNow": [
+      "Choose your attitude today",
+      "Find beauty in one thing"
+    ],
+    "examples": [
+      "mindset overcoming hardship",
+      "gratitude journal scene",
+      "mountain sunrise as easy beauty"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "long-term rehabilitation ward after a cyclist learns one hand may not fully return",
+      "audience": "an occupational therapist helping a patient distinguish loss from the next chosen practice",
+      "stakes": "false cheer will insult the injury, but total resignation will steal the reachable skill",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the therapist leaves the prognosis paper visible, then asks the patient to choose which shirt button to practice first with the adaptive hook",
+      "firstImage": "The blue shirt hangs from the therapy peg with every button fastened.",
+      "mustInclude": [
+        "prognosis paper",
+        "adaptive hook",
+        "buttoned shirt"
+      ],
+      "mustAvoid": [
+        "inspirational recovery montage",
+        "sports comeback slogan"
+      ],
+      "protagonistName": "Anna"
+    },
+    {
+      "domain": "immigration detention visitor room where a volunteer can offer only one reliable message",
+      "audience": "a legal volunteer facing arbitrary delays she cannot control",
+      "stakes": "promising hope would be cruel, but one accurate next step can preserve dignity",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "she crosses out the comforting prediction and writes the one verified filing date on the visitor-room form",
+      "firstImage": "\"Do not tell me it will be fine,\" the man says before sitting down.",
+      "mustInclude": [
+        "visitor-room form",
+        "verified filing date",
+        "clear plastic folder"
+      ],
+      "mustAvoid": [
+        "hero lawyer victory",
+        "courtroom drama"
+      ],
+      "protagonistName": "James"
+    },
+    {
+      "domain": "flooded neighborhood cleanup where insurance decisions are arbitrary and uneven",
+      "audience": "a block captain watching neighbors compare who was approved and who was denied",
+      "stakes": "resentment may swallow the one useful act the block can still coordinate",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the captain stops the argument over adjuster luck and assigns the only shared task: photograph every furnace serial plate before debris pickup",
+      "firstImage": "Mud has dried in a brown ring around the furnace door.",
+      "mustInclude": [
+        "furnace serial plate",
+        "phone photos",
+        "debris pickup deadline"
+      ],
+      "mustAvoid": [
+        "community potluck uplift",
+        "generic disaster teamwork"
+      ],
+      "protagonistName": "David"
+    },
+    {
+      "domain": "burnout leave from a public-defender office where a lawyer cannot repair every failed case",
+      "audience": "a lawyer returning from leave without pretending the system became fair",
+      "stakes": "if she treats every loss as personal failure, she will collapse; if she treats none as personal, she will harden",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "after rereading three closed files, she writes one repairable practice on a sticky note and one unfixable fact below it",
+      "firstImage": "It took Olivia six months away to stop calling every bad outcome her verdict.",
+      "mustInclude": [
+        "closed case files",
+        "yellow sticky note",
+        "return-to-work letter"
+      ],
+      "mustAvoid": [
+        "courtroom speech",
+        "self-care checklist"
+      ],
+      "protagonistName": "Olivia"
+    },
+    {
+      "domain": "nursing home dining room where a son visits a mother who no longer recognizes him",
+      "audience": "an adult child deciding whether love depends on being known in return",
+      "stakes": "the visit may become either performance for recognition or a chosen act without reward",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "you watch him stop correcting her and cut the peach into smaller pieces because care is still available even when recognition is not",
+      "firstImage": "You notice the peach first, untouched on the rim of the plate.",
+      "mustInclude": [
+        "peach slices",
+        "name tag",
+        "vinyl dining chair"
+      ],
+      "mustAvoid": [
+        "sentimental memory restoration",
+        "tearful piano scene"
+      ],
+      "protagonistName": "Matthew"
+    },
+    {
+      "domain": "remote weather station crew trapped by a storm after supply flight cancellation",
+      "audience": "a field scientist keeping morale from becoming denial",
+      "stakes": "chance controls the flight window, but not the log entry that may protect the next crew",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "when the supply flight is cancelled, she writes the failed assumption into the station log instead of giving another morale speech",
+      "firstImage": "What remains when the plane turns back and nobody has done anything wrong?",
+      "mustInclude": [
+        "station log",
+        "cancelled flight notice",
+        "barometer printout"
+      ],
+      "mustAvoid": [
+        "polar adventure heroics",
+        "campfire bonding"
+      ],
+      "protagonistName": "Chloe"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "protect the narrowness of inner freedom",
+      "detect victim-blaming versions of agency",
+      "choose a concrete response under arbitrary conditions",
+      "recognize liberation or relief as complicated rather than instantly healing"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Draw two boxes: cannot choose and still can choose. Put one hard fact in the first and one next humane action in the second.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

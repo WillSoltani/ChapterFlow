@@ -1,0 +1,185 @@
+{
+  "chapterId": "limitless-ch15",
+  "number": 15,
+  "title": "Thinking",
+  "coreMove": "Convert gathered information into a usable distinction before deciding.",
+  "sourcePressure": "The book closes by turning learning inputs into judgment, decisions, and connection-making rather than raw accumulation.",
+  "chapterSpecificMisunderstanding": "Treating more information as the same thing as clearer judgment.",
+  "sourceAlignmentTerms": [
+    "thinking",
+    "judgment",
+    "connection-making",
+    "interpretation",
+    "raw accumulation",
+    "decision quality",
+    "usable distinction"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Thinking with a generic unlocked potential claim.",
+      "Do not start with a definition of thinking."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "city planning map review",
+      "audience": "planner turning a stack of reports into a zoning recommendation",
+      "stakes": "a neighborhood vote hinges on one tradeoff",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "protagonistName": "Julia",
+      "requiredBeat": "Julia draws the tradeoff on tracing paper before recommending, forcing facts into a visible distinction.",
+      "firstImage": "transparent tracing paper over a zoning map",
+      "mustInclude": [
+        "tracing paper",
+        "zoning map",
+        "vote memo"
+      ],
+      "mustAvoid": [
+        "civic abstraction",
+        "more data solves it"
+      ]
+    },
+    {
+      "domain": "hospital discharge meeting",
+      "audience": "social worker interpreting mixed notes into a safe plan",
+      "stakes": "a patient may return if the plan misses the real constraint",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Pavel",
+      "requiredBeat": "Pavel asks which fact changes the decision, then separates medical readiness from home support on the whiteboard.",
+      "firstImage": "two columns on a portable whiteboard",
+      "mustInclude": [
+        "portable whiteboard",
+        "discharge notes",
+        "home-support call"
+      ],
+      "mustAvoid": [
+        "medical advice",
+        "compassion only"
+      ]
+    },
+    {
+      "domain": "product pricing review",
+      "audience": "founder drowning in survey results and competitor screenshots",
+      "stakes": "a launch price must be set by Friday",
+      "format": "sensory_first",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Beatrice",
+      "requiredBeat": "Beatrice lays three price cards on the table and removes every data point that does not change the choice.",
+      "firstImage": "three matte price cards under a desk lamp",
+      "mustInclude": [
+        "price cards",
+        "survey stack",
+        "Friday launch"
+      ],
+      "mustAvoid": [
+        "startup noise",
+        "spreadsheet worship"
+      ]
+    },
+    {
+      "domain": "jury consulting mock trial",
+      "audience": "analyst connecting testimony patterns to likely doubts",
+      "stakes": "wrong interpretation can steer the trial team badly",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "protagonistName": "Andrew",
+      "requiredBeat": "Andrew traces each juror reaction to the exact testimony moment before calling it a pattern.",
+      "firstImage": "colored sticky flags on a transcript page",
+      "mustInclude": [
+        "transcript",
+        "sticky flags",
+        "mock-jury notes"
+      ],
+      "mustAvoid": [
+        "legal drama",
+        "mind-reading"
+      ]
+    },
+    {
+      "domain": "heritage building restoration",
+      "audience": "architect weighing old photos against safety codes",
+      "stakes": "one attractive choice could violate code or erase character",
+      "format": "question_hook",
+      "openingDevice": "question_hook",
+      "protagonistName": "Tomasz",
+      "requiredBeat": "Tomasz asks what each source can and cannot prove, then marks the decision boundary on the facade plan.",
+      "firstImage": "a faded facade photo clipped to a code page",
+      "mustInclude": [
+        "facade photo",
+        "code page",
+        "decision boundary"
+      ],
+      "mustAvoid": [
+        "nostalgia",
+        "rules versus art cliche"
+      ]
+    },
+    {
+      "domain": "university lab meeting",
+      "audience": "doctoral student turning readings into an experiment choice",
+      "stakes": "months of work depend on the hypothesis being clear",
+      "format": "second_person",
+      "openingDevice": "second_person",
+      "protagonistName": "Celine",
+      "requiredBeat": "You write the claim, the rival explanation, and the next test on one index card before opening another paper.",
+      "firstImage": "one index card beside a stack of papers",
+      "mustInclude": [
+        "index card",
+        "article stack",
+        "lab calendar"
+      ],
+      "mustAvoid": [
+        "academic abstraction",
+        "reading more forever"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when convert gathered information into a usable distinction before deciding. is needed in a new scenario.",
+      "Choose the visible action that matches Thinking rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before deciding, write the distinction that would make one option different from the other.",
+  "readingTimeMinutes": 12
+}

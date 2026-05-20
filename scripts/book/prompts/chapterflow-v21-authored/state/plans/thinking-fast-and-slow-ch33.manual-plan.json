@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch33",
+  "number": 33,
+  "title": "Reversals",
+  "coreMove": "test a preference in both single and joint evaluation before trusting it",
+  "sourcePressure": "shows that preferences can reverse when options are compared jointly instead of separately",
+  "chapterSpecificMisunderstanding": "calling reversals inconsistency only instead of seeing evaluation mode change salience",
+  "sourceAlignmentTerms": [
+    "preference reversal",
+    "joint evaluation",
+    "single evaluation",
+    "salience",
+    "comparability",
+    "attribute"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Reversals",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just hypocrisy spotting"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about hypocrisy spotting",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport baggage control facing a decision distorted by preference reversal",
+      "audience": "a lead or reviewer who must test a preference in both single and joint evaluation before trusting it while others want the quick answer",
+      "stakes": "the visible call will go wrong unless preference reversal is separated from the tempting but weaker cue",
+      "format": "before_after",
+      "requiredBeat": "the operator places the baggage carousel tag labeled preference reversal beside the tempting first answer, covers the answer field with a palm, and speaks the correction: test a preference in both single and joint evaluation before trusting it",
+      "firstImage": "The decision station is quiet except for the baggage carousel tag labeled preference reversal beside the unfinished call.",
+      "mustInclude": [
+        "baggage carousel tag labeled preference reversal",
+        "preference reversal",
+        "joint evaluation"
+      ],
+      "mustAvoid": [
+        "turning the scene into hypocrisy spotting",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "blood bank scheduling facing a decision distorted by preference reversal",
+      "audience": "a lead or reviewer who must test a preference in both single and joint evaluation before trusting it while others want the quick answer",
+      "stakes": "the visible call will go wrong unless preference reversal is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "the specialist draws a red box around the misleading cue on the blood cooler seal labeled joint evaluation, then writes the missing check in the margin before anyone votes",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the blood cooler seal labeled joint evaluation between the two choices.",
+      "mustInclude": [
+        "blood cooler seal labeled joint evaluation",
+        "preference reversal",
+        "single evaluation"
+      ],
+      "mustAvoid": [
+        "turning the scene into hypocrisy spotting",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "jazz rehearsal room facing a decision distorted by preference reversal",
+      "audience": "a lead or reviewer who must test a preference in both single and joint evaluation before trusting it while others want the quick answer",
+      "stakes": "the visible call will go wrong unless preference reversal is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "two people disagree over the brass metronome pedal labeled single evaluation; one points to the fluent story, the other forces the chapter move by asking which evidence would change the call",
+      "firstImage": "The first thing in the room is the texture of the brass metronome pedal labeled single evaluation, not the person's opinion about it.",
+      "mustInclude": [
+        "brass metronome pedal labeled single evaluation",
+        "preference reversal",
+        "salience"
+      ],
+      "mustAvoid": [
+        "turning the scene into hypocrisy spotting",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "city pothole hotline facing a decision distorted by preference reversal",
+      "audience": "a lead or reviewer who must test a preference in both single and joint evaluation before trusting it while others want the quick answer",
+      "stakes": "the visible call will go wrong unless preference reversal is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "at the decision point, the lead slides the pothole call ledger labeled salience into the center of the table and refuses to choose until the preference reversal check is visible",
+      "firstImage": "You are looking at the pothole call ledger labeled salience while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "pothole call ledger labeled salience",
+        "preference reversal",
+        "comparability"
+      ],
+      "mustAvoid": [
+        "turning the scene into hypocrisy spotting",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "wildlife rescue intake facing a decision distorted by preference reversal",
+      "audience": "a lead or reviewer who must test a preference in both single and joint evaluation before trusting it while others want the quick answer",
+      "stakes": "the visible call will go wrong unless preference reversal is separated from the tempting but weaker cue",
+      "format": "vignette",
+      "requiredBeat": "the team predicts the answer from the quick impression, records it beside the animal carrier latch labeled comparability, then reveals how the chapter correction changes the estimate",
+      "firstImage": "It took three passes before the reviewer saw what the animal carrier latch labeled comparability had been making too easy.",
+      "mustInclude": [
+        "animal carrier latch labeled comparability",
+        "preference reversal",
+        "attribute"
+      ],
+      "mustAvoid": [
+        "turning the scene into hypocrisy spotting",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "hotel night audit facing a decision distorted by preference reversal",
+      "audience": "a lead or reviewer who must test a preference in both single and joint evaluation before trusting it while others want the quick answer",
+      "stakes": "the visible call will go wrong unless preference reversal is separated from the tempting but weaker cue",
+      "format": "dialogue",
+      "requiredBeat": "after the miss, the reviewer tapes the night audit folio labeled attribute to the postmortem board and traces the exact moment joint evaluation displaced the better judgment",
+      "firstImage": "What would change if the night audit folio labeled attribute stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "night audit folio labeled attribute",
+        "preference reversal",
+        "attribute"
+      ],
+      "mustAvoid": [
+        "turning the scene into hypocrisy spotting",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: test a preference in both single and joint evaluation before trusting it",
+      "choose the correction that fits preference reversal rather than a generic careful-thinking answer",
+      "distinguish Reversals from nearby drift into hypocrisy spotting",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one live preference reversal judgment and write the first answer on paper. Add the one fact that would make you slow or change it. Stop after ninety seconds.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

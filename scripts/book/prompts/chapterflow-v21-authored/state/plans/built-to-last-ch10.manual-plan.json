@@ -1,0 +1,183 @@
+{
+  "chapterId": "built-to-last-ch10",
+  "number": 10,
+  "title": "The End of the Beginning",
+  "coreMove": "Translate admiration into architecture: core, progress mechanisms, culture, experiments, leadership pipeline, and standards that can operate after you leave.",
+  "sourcePressure": "The final sidecar supports synthesis of the whole framework around institutions that preserve a core, stimulate progress, build systems, and outlast heroes.",
+  "chapterSpecificMisunderstanding": "Writing a recap of concepts or motivational closing instead of forcing the reader to assemble an institution-building operating system.",
+  "sourceAlignmentTerms": [
+    "end of the beginning",
+    "synthesis",
+    "preserve a core",
+    "stimulate progress",
+    "build systems",
+    "outlast heroes",
+    "institution-building",
+    "application frame"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "end of the beginning",
+      "detail": "the source sidecar says the final chapter should synthesize the established framework as an application frame rather than introduce new anecdotes",
+      "useIn": "both",
+      "phrasingHint": "The work begins when admiration turns into architecture someone else can inherit."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "now go build something that lasts",
+      "this is only the beginning"
+    ],
+    "counterintuition": [
+      "the ending is the start",
+      "ideas matter only when applied"
+    ],
+    "tryThisNow": [
+      "make an action plan",
+      "choose one lesson from the book"
+    ],
+    "examples": [
+      "sticky-note wall with sixty notes",
+      "leader writing values on a blank page",
+      "generic annual retreat synthesis"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "regional home-care agency turning scattered quality fixes into a durable operating architecture",
+      "audience": "Aanya, founder preparing for her first non-founder director",
+      "stakes": "vulnerable clients could receive uneven care once the founder stops personally checking everything",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Aanya sorts every initiative into core promise, progress target, culture standard, experiment, leadership owner, or drift check, then kills the rest",
+      "firstImage": "color-coded care-visit cards covering a conference table",
+      "mustInclude": [
+        "core promise",
+        "leadership owner",
+        "drift check"
+      ],
+      "mustAvoid": [
+        "founder writes inspirational final memo"
+      ]
+    },
+    {
+      "domain": "specialty manufacturing firm preparing a second plant without cloning the founder's habits",
+      "audience": "Peter, plant president before signing the lease",
+      "stakes": "a second plant could copy rituals while missing the architecture that made quality travel",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Peter one failed pilot cell to map which practices preserved the core and which only copied the old building's habits",
+      "firstImage": "a lease packet beside a failed pilot-cell inspection sheet",
+      "mustInclude": [
+        "second plant",
+        "pilot cell",
+        "practice map"
+      ],
+      "mustAvoid": [
+        "expansion equals success"
+      ]
+    },
+    {
+      "domain": "civic technology nonprofit rebuilding after founder burnout",
+      "audience": "Adaeze, board chair deciding whether to hire another charismatic director",
+      "stakes": "public tools could decay if the board replaces a person instead of building a system",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"What did only she know?\" Adaeze asks, then converts the answer into governance, documentation, leadership rotation, and service standards",
+      "firstImage": "a board packet with one empty executive-director page",
+      "mustInclude": [
+        "governance",
+        "documentation",
+        "leadership rotation"
+      ],
+      "mustAvoid": [
+        "another savior hire"
+      ]
+    },
+    {
+      "domain": "regional apprenticeship program moving from pilot success to a repeatable multi-city model",
+      "audience": "Tomas, program designer praised for one flagship cohort",
+      "stakes": "students in new cities will get a weaker program if the pilot cannot be inherited",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What survives when the flagship instructor cannot travel? Tomas tests the model in a second city using the architecture checklist before scaling",
+      "firstImage": "train tickets, instructor notes, and a blank city rollout checklist",
+      "mustInclude": [
+        "flagship cohort",
+        "second-city test",
+        "architecture checklist"
+      ],
+      "mustAvoid": [
+        "pilot celebration as final proof"
+      ]
+    },
+    {
+      "domain": "community health clinic integrating values, improvement goals, hiring filters, experiments, and standards into one board dashboard",
+      "audience": "Mikkel, clinic administrator after a messy accreditation review",
+      "stakes": "the clinic can pass reviews while failing to compound its own learning",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Mikkel replaces a dashboard of isolated metrics with one row for core, progress, culture, experiments, pipeline, and standard checks at each board meeting",
+      "firstImage": "accreditation tabs jutting from a binder with coffee rings on the cover",
+      "mustInclude": [
+        "board dashboard",
+        "accreditation review",
+        "six architecture rows"
+      ],
+      "mustAvoid": [
+        "dashboard as data vanity"
+      ]
+    },
+    {
+      "domain": "digital archive project deciding how to survive grant cycles and founder departure",
+      "audience": "Frida, archive lead with one year of funding left",
+      "stakes": "rare community records may disappear again if the project is only a heroic sprint",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Frida move from rescue sprint to institution design: custody rules, volunteer standards, experiments for access, successor training, and quality checks",
+      "firstImage": "acid-free folders stacked beside a one-year grant calendar",
+      "mustInclude": [
+        "custody rules",
+        "successor training",
+        "quality checks"
+      ],
+      "mustAvoid": [
+        "archives saved by passion alone"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "assemble the full institution-building architecture",
+      "identify missing components in a durability plan",
+      "convert admiration into operating design"
+    ]
+  },
+  "tryThisNowSpec": "Draw six boxes: core, progress, culture, experiments, leadership, standards. Put one current mechanism in each, and leave blank any box you have not really built.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

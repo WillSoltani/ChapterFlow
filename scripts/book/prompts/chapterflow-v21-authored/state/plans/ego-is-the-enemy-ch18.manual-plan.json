@@ -1,0 +1,196 @@
+{
+  "chapterId": "ego-is-the-enemy-ch18",
+  "number": 18,
+  "title": "Maintain your sobriety",
+  "coreMove": "Treat applause, money, and access as intoxicants that require clear rules before judgment changes.",
+  "sourcePressure": "Success section: keeping success from becoming intoxication. Supported by frozen TOC and book skeleton; no per-chapter source sidecar exists in the latest run.",
+  "chapterSpecificMisunderstanding": "Making sobriety only literal, or reducing it to asceticism instead of clear judgment around success rewards.",
+  "sourceAlignmentTerms": [
+    "sobriety",
+    "intoxication",
+    "success",
+    "clear head",
+    "access",
+    "restraint"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "No named person, study, place, or artifact is available in the frozen source sidecar for this chapter; use fictional scenarios only and do not invent source anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of sobriety",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple sobriety is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Mathieu",
+      "domain": "restaurant wine inventory",
+      "audience": "a reader facing restaurant wine inventory pressure who needs to practice chapter 18's move without turning it into sobriety advice in general",
+      "stakes": "a concrete standard in restaurant wine inventory will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "treats the invitation, money, or access as an intoxicant and applies the prewritten rule before accepting it in the concrete setting of restaurant wine inventory; make the lesson visible through action, not explanation",
+      "firstImage": "a wine inventory sheet with the comped bottles totaled sits between Mathieu and the easiest explanation in the restaurant wine inventory room.",
+      "mustInclude": [
+        "sobriety",
+        "intoxication",
+        "restaurant wine"
+      ],
+      "mustAvoid": [
+        "do not turn this into sobriety as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Nicolas",
+      "domain": "university tenure dossier prep",
+      "audience": "a reader facing university tenure dossier prep pressure who needs to practice chapter 18's move without turning it into sobriety advice in general",
+      "stakes": "a concrete standard in university tenure dossier prep will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "waits until the applause fades before making the staffing decision it tried to influence in the concrete setting of university tenure dossier prep; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Nicolas hears, with an intake cot tag clipped to a shelter bin already on the table.",
+      "mustInclude": [
+        "sobriety",
+        "intoxication",
+        "university tenure"
+      ],
+      "mustAvoid": [
+        "do not turn this into sobriety as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Antoine",
+      "domain": "ski rental boot fitting",
+      "audience": "a reader facing ski rental boot fitting pressure who needs to practice chapter 18's move without turning it into sobriety advice in general",
+      "stakes": "a concrete standard in ski rental boot fitting will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "keeps the success reward outside the room where judgment has to stay clear in the concrete setting of ski rental boot fitting; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a tutoring roster marked with every missed hour makes the pressure in ski rental boot fitting visible.",
+      "mustInclude": [
+        "sobriety",
+        "intoxication",
+        "ski rental"
+      ],
+      "mustAvoid": [
+        "do not turn this into sobriety as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "digital archive migration",
+      "audience": "a reader facing digital archive migration pressure who needs to practice chapter 18's move without turning it into sobriety advice in general",
+      "stakes": "a concrete standard in digital archive migration will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "names the first sign of intoxication and removes one privilege from the decision process in the concrete setting of digital archive migration; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Vincent's thumb stop over a rejection letter laid beside the next prep sheet before the ego-favoring move happens.",
+      "mustInclude": [
+        "sobriety",
+        "intoxication",
+        "digital archive"
+      ],
+      "mustAvoid": [
+        "do not turn this into sobriety as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "paramedic scenario exam",
+      "audience": "a reader facing paramedic scenario exam pressure who needs to practice chapter 18's move without turning it into sobriety advice in general",
+      "stakes": "a concrete standard in paramedic scenario exam will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "checks the sober standard against the glamorous option and chooses the standard in the concrete setting of paramedic scenario exam; make the lesson visible through action, not explanation",
+      "firstImage": "It took Julien until the third review of a board update deck with the blame slide deleted to see what ego had protected.",
+      "mustInclude": [
+        "sobriety",
+        "intoxication",
+        "paramedic scenario"
+      ],
+      "mustAvoid": [
+        "do not turn this into sobriety as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Olivier",
+      "domain": "youth sailing regatta protest",
+      "audience": "a reader facing youth sailing regatta protest pressure who needs to practice chapter 18's move without turning it into sobriety advice in general",
+      "stakes": "a concrete standard in youth sailing regatta protest will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "refuses the celebratory exception because the exception would become the new appetite in the concrete setting of youth sailing regatta protest; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when a public statement draft with the retaliatory sentence cut becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "sobriety",
+        "intoxication",
+        "youth sailing"
+      ],
+      "mustAvoid": [
+        "do not turn this into sobriety as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish sobriety from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Treat applause, money, and access as intoxicants that require clear rules before judgment changes.",
+      "spot when a scenario has drifted into addiction memoir",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves sobriety or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

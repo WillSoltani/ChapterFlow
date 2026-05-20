@@ -1,0 +1,197 @@
+{
+  "chapterId": "good-to-great-ch08",
+  "number": 8,
+  "title": "The Flywheel and the Doom Loop",
+  "coreMove": "Protect aligned momentum from the impulse to reset whenever progress is not yet dramatic.",
+  "sourcePressure": "The source contrasts the flywheel with the doom loop: many consistent pushes in one direction create breakthrough, while reactive resets and transformation theater interrupt compounding.",
+  "chapterSpecificMisunderstanding": "The weak version says be patient and never change anything.",
+  "sourceAlignmentTerms": [
+    "flywheel",
+    "doom loop",
+    "cumulative momentum",
+    "aligned pushes",
+    "breakthrough",
+    "reactive resets"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "overnight success reveal",
+      "giant wheel in a warehouse",
+      "just keep pushing slogan"
+    ],
+    "counterintuition": [
+      "change is bad",
+      "patience solves everything",
+      "big launches never work"
+    ],
+    "tryThisNow": [
+      "take one small step",
+      "keep going",
+      "write your long-term goal"
+    ],
+    "examples": [
+      "fitness streak",
+      "startup launch party",
+      "generic sales funnel"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional blood bank mobile-drive scheduling",
+      "audience": "a blood bank director pressured to run a flashy awareness campaign",
+      "stakes": "hospitals need reliable units more than one visible campaign spike",
+      "format": "before_after",
+      "requiredBeat": "the director adds one repeat mobile site each month and refuses the billboard campaign after seeing donor return rates turn the supply wheel",
+      "firstImage": "cooler seals lined in rows inside a mobile donation van",
+      "mustInclude": [
+        "repeat mobile site",
+        "donor return rate",
+        "billboard refusal"
+      ],
+      "mustAvoid": [
+        "generic charity campaign",
+        "patience as passivity"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "subscription roaster wholesale account growth",
+      "audience": "a roaster tempted to rebrand after slow wholesale adoption",
+      "stakes": "constant repositioning would reset trust before cafes see delivery reliability compound",
+      "format": "postmortem",
+      "requiredBeat": "the roaster maps twelve weeks of on-time sample drops and sees the fourth cafe sign because of the prior three, then shelves the rebrand packet",
+      "firstImage": "sample bags lined by roast date beside a delivery manifest",
+      "mustInclude": [
+        "sample bags",
+        "on-time drops",
+        "shelved rebrand packet"
+      ],
+      "mustAvoid": [
+        "coffee lifestyle scene",
+        "branding debate"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "adult language school retention system",
+      "audience": "a language-school director urged to scrap the curriculum after modest enrollment",
+      "stakes": "switching methods every term prevents learners from compounding confidence",
+      "format": "reflection",
+      "requiredBeat": "the director tracks phone-practice completions for six cohorts and keeps the method when retention rises before new enrollment does",
+      "firstImage": "headset cords looped beside a wall of small progress stamps",
+      "mustInclude": [
+        "phone-practice completions",
+        "six cohorts",
+        "retention before enrollment"
+      ],
+      "mustAvoid": [
+        "school classroom scene",
+        "language learning tips"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "city bike-lane maintenance cadence",
+      "audience": "a transportation planner pressured to announce a new mobility initiative",
+      "stakes": "residents need dependable cleared lanes more than a new slogan",
+      "format": "decision_point",
+      "requiredBeat": "the planner points to traffic-counter gains after six months of weekly sweeping and declines the mayor's request to relaunch under a new name",
+      "firstImage": "a paint stencil drying beside a curbside traffic counter",
+      "mustInclude": [
+        "weekly sweeping",
+        "traffic-counter gains",
+        "relaunch request"
+      ],
+      "mustAvoid": [
+        "helmet or cyclist safety cliche",
+        "anti-change frame"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "legal aid eviction-defense referral loop",
+      "audience": "a legal aid director deciding whether to pivot programs after slow early outcomes",
+      "stakes": "tenants benefit when court clerks, shelters, and attorneys trust one repeat path",
+      "format": "scene",
+      "requiredBeat": "the director draws arrows from clerk referrals to shelter intake to hearing representation and shows that each push makes the next referral easier",
+      "firstImage": "pink hearing notices sorted beside a courthouse intake stamp",
+      "mustInclude": [
+        "clerk referrals",
+        "shelter intake",
+        "hearing notices"
+      ],
+      "mustAvoid": [
+        "generic nonprofit perseverance",
+        "courtroom victory drama"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "indie game studio build stability",
+      "audience": "a studio lead facing pressure to rewrite the game after a quiet playtest",
+      "stakes": "a reset would destroy months of tuning that is only now improving player return",
+      "format": "predict_reveal",
+      "requiredBeat": "the lead compares crash reports, tutorial completions, and second-session returns, then keeps the engine and adds the next small tuning pass",
+      "firstImage": "sticky build numbers glowing on a dark QA monitor",
+      "mustInclude": [
+        "crash reports",
+        "tutorial completions",
+        "second-session returns"
+      ],
+      "mustAvoid": [
+        "launch hype",
+        "gamer culture jokes"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish flywheel compounding from generic persistence",
+      "identify doom-loop resets",
+      "evaluate whether a change protects or interrupts momentum",
+      "trace how one aligned push makes the next easier"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write the last three aligned pushes in one effort and the next push that would make the fourth easier. Cross out any reset that only makes progress look new.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "flywheel",
+      "detail": "the source describes repeated aligned pushes that accumulate until momentum becomes visible to outsiders",
+      "useIn": "both",
+      "phrasingHint": "The flywheel looks ordinary while it is gaining weight, then obvious after the turns compound."
+    },
+    {
+      "kind": "artifact",
+      "name": "doom loop",
+      "detail": "the source contrasts the flywheel with reactive resets, dramatic relaunches, and direction changes that interrupt momentum",
+      "useIn": "fullRead",
+      "phrasingHint": "The doom loop is what happens when the organization keeps trading buildup for a fresh story."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

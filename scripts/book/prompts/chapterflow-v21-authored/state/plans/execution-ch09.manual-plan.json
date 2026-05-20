@@ -1,0 +1,178 @@
+{
+  "chapterId": "execution-ch09",
+  "number": 9,
+  "title": "The Operations Process",
+  "coreMove": "Synchronize resources, assumptions, trade-offs, and contingencies so the plan can move under real conditions.",
+  "sourcePressure": "Core process three: operations links strategy and people through fast budgeting, synchronization, sound assumptions, operating plans, trade-offs, contingencies, quarterly reviews, and goals. No chapter-specific operating case is frozen.",
+  "chapterSpecificMisunderstanding": "Reduce operations to scheduling, productivity, or budget administration.",
+  "sourceAlignmentTerms": [
+    "budget in three days",
+    "synchronization",
+    "sound assumptions",
+    "operating plan",
+    "trade-offs",
+    "contingencies",
+    "quarterly reviews",
+    "goals"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "the the operations process that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional home-care provider building the next quarter schedule around nurse availability and referral growth",
+      "audience": "an operations manager",
+      "stakes": "clients can be accepted faster than visits can be staffed",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel synchronizes referral targets, nurse availability, travel time, and budget before accepting the quarter goal",
+      "firstImage": "The wall map shows rural roads in gray while Rachel moves colored pins for nurse visits.",
+      "mustInclude": [
+        "wall map",
+        "nurse availability grid",
+        "quarter referral target"
+      ],
+      "mustAvoid": [
+        "generic scheduling problem"
+      ]
+    },
+    {
+      "domain": "a specialty bicycle manufacturer preparing a spring production run with uncertain component shipments",
+      "audience": "a plant manager",
+      "stakes": "missed assumptions about forks and drivetrains can idle the line",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Julien asks which assumption would break the spring run first and turns it into a contingency trigger",
+      "firstImage": "Which missing part stops the spring run first: forks, drivetrains, or the paint booth slot?",
+      "mustInclude": [
+        "component shipment notice",
+        "paint booth calendar",
+        "contingency trigger list"
+      ],
+      "mustAvoid": [
+        "generic factory dashboard"
+      ]
+    },
+    {
+      "domain": "a city arts festival coordinating permits, security, stage crews, and sponsor obligations",
+      "audience": "a festival operations director",
+      "stakes": "parallel effort can still fail if the dependencies are not synchronized",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Marco makes each department state the dependency it needs from another before the operating plan is approved",
+      "firstImage": "\"Name the handoff you need before you name your task,\" Marco says, closing the permit folder.",
+      "mustInclude": [
+        "permit folder",
+        "security rota",
+        "stage crew schedule"
+      ],
+      "mustAvoid": [
+        "generic event planning"
+      ]
+    },
+    {
+      "domain": "a university research center dividing grant money between lab equipment, fellows, and fieldwork",
+      "audience": "a center director",
+      "stakes": "refusing trade-offs can starve all three priorities",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Mikkel forces the trade-off by moving dollar amounts across the operating plan until one priority has to shrink",
+      "firstImage": "At 3:47 p.m., Mikkel drags the fieldwork line down and watches the equipment quote turn green.",
+      "mustInclude": [
+        "grant budget sheet",
+        "equipment quote",
+        "fieldwork calendar"
+      ],
+      "mustAvoid": [
+        "generic personal budget"
+      ]
+    },
+    {
+      "domain": "a regional grocery distributor planning holiday cold-chain capacity under uncertain demand",
+      "audience": "a supply-chain lead",
+      "stakes": "one warm dock can ruin inventory and customer trust",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Petra traces last holiday's spoilage to assumptions that were not reviewed quarterly and writes a contingency into the new plan",
+      "firstImage": "It took Petra one spoiled pallet of yogurt to respect the old assumption column.",
+      "mustInclude": [
+        "spoiled pallet report",
+        "cold-chain dock schedule",
+        "quarterly review note"
+      ],
+      "mustAvoid": [
+        "generic warehouse scene repeated from culture chapter"
+      ]
+    },
+    {
+      "domain": "a Tokyo game localization team planning release dates across translation, QA, voice pickup, and platform submission",
+      "audience": "a producer managing cross-functional work",
+      "stakes": "a missed platform submission can move the global release by weeks",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Akira turns independent task lists into one synchronized operating calendar with contingencies for voice pickup and QA defects",
+      "firstImage": "You see four task lists, and Akira sees one release date that all four can quietly break.",
+      "mustInclude": [
+        "platform submission window",
+        "voice pickup sheet",
+        "QA defect log"
+      ],
+      "mustAvoid": [
+        "generic software sprint"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot unsynchronized parallel effort",
+      "test assumptions behind budgets and goals",
+      "choose real trade-offs under constraint",
+      "analyze contingency and quarterly-review moves that keep operations alive"
+    ]
+  },
+  "tryThisNowSpec": "Write one operating assumption beside the trigger that would make you revise the plan before the next review.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

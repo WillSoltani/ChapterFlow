@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch13",
+  "number": 13,
+  "title": "Better to be wanted by the police than not to be wanted at all (attacks against public figures)",
+  "coreMove": "Treat public-facing threat behavior as a pattern of recognition, grievance, and access seeking, not as mere drama.",
+  "sourcePressure": "Visibility, recognition motives, grievance, repeated approach behavior, and access can shape attacks against public figures; theatricality does not make a pattern harmless.",
+  "chapterSpecificMisunderstanding": "Treating public-figure attacks as celebrity trivia or agency doctrine.",
+  "sourceAlignmentTerms": [
+    "public figures",
+    "recognition motive",
+    "visibility",
+    "grievance",
+    "approach behavior",
+    "access",
+    "theatricality"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch13",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Julia",
+      "domain": "city hall constituent office",
+      "audience": "a scheduler reading recognition-seeking threats",
+      "stakes": "whether theatrical letters are harmless because they want attention",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "separates spectacle from access attempts and changes the councilor route",
+      "firstImage": "a glossy headshot marked with red pen",
+      "mustInclude": [
+        "constituent letter",
+        "route card",
+        "front desk"
+      ],
+      "mustAvoid": [
+        "fame psychology only",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "public radio station lobby",
+      "audience": "a producer handling a caller obsessed with airtime",
+      "stakes": "whether wanting recognition lowers risk",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "links repeated calls, grievance scripts, and arrival at the studio door",
+      "firstImage": "an on-air light glowing behind frosted glass",
+      "mustInclude": [
+        "call sheet",
+        "studio badge",
+        "guest log"
+      ],
+      "mustAvoid": [
+        "fame psychology only",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Vincent",
+      "domain": "book festival signing line",
+      "audience": "an event manager seeing fixation on an author",
+      "stakes": "whether fan language cancels grievance",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "uses staff escort after gifts, accusations, and hotel questions appear together",
+      "firstImage": "a hardback opened to a blank dedication page",
+      "mustInclude": [
+        "signing wristband",
+        "gift bag",
+        "hotel shuttle list"
+      ],
+      "mustAvoid": [
+        "fame psychology only",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "mayoral campaign field office",
+      "audience": "a volunteer coordinator assessing an angry supporter",
+      "stakes": "whether public loyalty means safety",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "removes access after recognition demands turn into route questions",
+      "firstImage": "a stack of canvassing walk sheets on a folding chair",
+      "mustInclude": [
+        "walk sheet",
+        "route map",
+        "campaign button"
+      ],
+      "mustAvoid": [
+        "fame psychology only",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "university lecture hall for a visiting judge",
+      "audience": "a security lead reading approach behavior",
+      "stakes": "whether theatrical complaints are only protest",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "redirects entry after repeated grievance notes and attempts to reach the green room",
+      "firstImage": "a reserved-seat placard taped to a chair",
+      "mustInclude": [
+        "placard",
+        "green-room pass",
+        "program booklet"
+      ],
+      "mustAvoid": [
+        "fame psychology only",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "television studio audience line",
+      "audience": "a page handling a guest who wants to be noticed",
+      "stakes": "whether spectacle means unseriousness",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "flags the pattern when performance, grievance, and door-testing line up",
+      "firstImage": "a numbered audience card bent in half",
+      "mustInclude": [
+        "audience card",
+        "stage door",
+        "security radio"
+      ],
+      "mustAvoid": [
+        "fame psychology only",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish public figures from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits treat public-facing threat behavior as a pattern of recognition, grievance, and access seeking, not as mere drama.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: treating public-figure attacks as celebrity trivia or agency doctrine."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one public-facing threat, separate spectacle from access: what recognition is sought, what grievance is repeated, and what approach behavior has occurred?",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,185 @@
+{
+  "chapterId": "how-to-talk-to-anyone-ch04",
+  "number": 4,
+  "title": "How to Be an Insider in Any Crowd: What Are They All Talking About?",
+  "coreMove": "Do a small literacy pass before entering an unfamiliar group so your first question starts inside their world, not outside it.",
+  "sourcePressure": "Insider-entry unit covering techniques 38 through 43: learning enough vocabulary, publications, hot-button topics, customs, and bargaining language to avoid sounding lost in an unfamiliar group.",
+  "chapterSpecificMisunderstanding": "The weak version is memorizing jargon to pass as an expert. The useful version is respectful preparation that lets insiders talk at a live level.",
+  "sourceAlignmentTerms": [
+    "insider vocabulary",
+    "publications",
+    "hot-button topics",
+    "customs",
+    "bargaining language",
+    "topic fluency",
+    "safe curiosity"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Every crowd has a secret language",
+      "Do your homework before networking",
+      "Fake it until you make it"
+    ],
+    "counterintuition": [
+      "You only need one insider term",
+      "Experts love teaching basics",
+      "Belonging is mostly vocabulary"
+    ],
+    "tryThisNow": [
+      "Read one article before a meeting",
+      "Learn three terms from a field",
+      "Ask what people are talking about"
+    ],
+    "examples": [
+      "tech conference acronym list",
+      "sports-bar fandom bluff",
+      "wine tasting jargon",
+      "college seminar prep"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a public defender visiting a commercial fishing co-op before a harbor zoning hearing",
+      "audience": "a lawyer entering a tight trade community without marine background",
+      "stakes": "whether fishermen trust her enough to describe the real dock conflict",
+      "format": "scene",
+      "requiredBeat": "before the meeting she circles two terms in the co-op bulletin, then asks about bycatch windows instead of opening with legal categories",
+      "firstImage": "a damp co-op bulletin pinned beside tide tables",
+      "mustInclude": [
+        "tide table",
+        "bycatch window",
+        "rubber deck boots"
+      ],
+      "mustAvoid": [
+        "courtroom advocacy",
+        "generic community listening"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a pastry supplier preparing for a meeting with kosher bakery owners",
+      "audience": "a sales rep who needs cultural and operational literacy, not charm",
+      "stakes": "whether a new ingredient line is even considered for holiday production",
+      "format": "decision_point",
+      "requiredBeat": "she chooses to ask about pareve certification and production timing from the trade circular before mentioning price",
+      "firstImage": "a certification symbol enlarged on a printed spec sheet",
+      "mustInclude": [
+        "trade circular",
+        "pareve label",
+        "holiday order calendar"
+      ],
+      "mustAvoid": [
+        "religion explainer",
+        "generic sales meeting"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "a city librarian joining a tabletop gaming club to design teen programming",
+      "audience": "a librarian unfamiliar with gaming culture but serious about serving teens",
+      "stakes": "whether club members see the program as respectful or corny",
+      "format": "vignette",
+      "requiredBeat": "she opens the session by asking how session zero works at their table, using the phrase from a forum post she read the night before",
+      "firstImage": "polyhedral dice sorted beside a library program clipboard",
+      "mustInclude": [
+        "session zero",
+        "forum printout",
+        "teen room schedule"
+      ],
+      "mustAvoid": [
+        "classroom club sponsorship",
+        "fantasy lore dump"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "an architect attending a hospital infection-control committee before renovating a surgical wing",
+      "audience": "a designer who usually speaks in drawings and finishes",
+      "stakes": "whether nurses flag workflow hazards before construction documents freeze",
+      "format": "dialogue",
+      "requiredBeat": "she asks about clean-to-dirty flow using the committee phrase, then marks the answer on the floor plan instead of defending the layout",
+      "firstImage": "a floor plan weighted by a bottle of hand sanitizer at the committee table",
+      "mustInclude": [
+        "clean-to-dirty flow",
+        "floor plan",
+        "scrub sink"
+      ],
+      "mustAvoid": [
+        "design-review ego battle",
+        "generic stakeholder meeting"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a parent volunteer entering a high-school debate team judging room for the first time",
+      "audience": "a parent who wants to help without slowing the tournament down",
+      "stakes": "whether rounds start on time and students trust the ballot feedback",
+      "format": "predict_reveal",
+      "requiredBeat": "after reading the judge packet, he asks where to mark speaker points before asking what the debate is about, revealing he learned the room basic pressure point",
+      "firstImage": "a ballot packet clipped to a cafeteria tray under a round number sign",
+      "mustInclude": [
+        "speaker points",
+        "judge packet",
+        "round timer"
+      ],
+      "mustAvoid": [
+        "school volunteering memoir",
+        "political debate content"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a small manufacturer visiting a textile mill to discuss dye-lot defects",
+      "audience": "an operations owner outside the mill daily vocabulary",
+      "stakes": "whether the mill manager shares the process constraint behind inconsistent fabric color",
+      "format": "postmortem",
+      "requiredBeat": "after a failed first visit full of vague complaints, she returns using the mill terms for strike-off and lot variance, then asks where the variance enters",
+      "firstImage": "three fabric swatches stapled to a dye-lot report",
+      "mustInclude": [
+        "strike-off",
+        "lot variance",
+        "swatch ring"
+      ],
+      "mustAvoid": [
+        "fashion showroom scene",
+        "supplier blame argument"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate respectful literacy from fake expertise",
+      "choose preparation sources that reveal hot-button topics and terms",
+      "form insider-level beginner questions without bluffing",
+      "detect when jargon use would cross into pretending"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before one unfamiliar meeting this week, find one trade word, one current concern, and one custom people in that room care about, then ask a beginner question using only the word you understand.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

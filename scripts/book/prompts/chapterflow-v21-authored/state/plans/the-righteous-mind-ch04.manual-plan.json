@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-righteous-mind-ch04",
+  "number": 4,
+  "title": "Vote for Me (Here's Why)",
+  "coreMove": "Listen for what a reason is trying to sell and whom it is trying to recruit.",
+  "sourcePressure": "The chapter moves from private moral justification to public persuasion, ally recruitment, reputation defense, and political-style explanation.",
+  "chapterSpecificMisunderstanding": "The writer treats persuasion as manipulation rather than social reasoning aimed at allies, identity, and reputation.",
+  "sourceAlignmentTerms": [
+    "persuasion",
+    "justification",
+    "reputation",
+    "ally",
+    "public reason",
+    "moral rhetoric"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Vote for Me (Here's Why)",
+      "detail": "the official index title frames the chapter's shift from private justification into public persuasion.",
+      "useIn": "both",
+      "phrasingHint": "A reason often behaves like a campaign slogan: it is less a microscope than a handbill for the side already chosen."
+    },
+    {
+      "kind": "artifact",
+      "name": "the social persuasion framing",
+      "detail": "the frozen sidecar says the chapter moves from internal justification to recruiting allies and selling positions.",
+      "useIn": "fullRead",
+      "phrasingHint": "Once the argument enters a room with other people, the reason starts doing reputation work as well as truth work."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch04 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "debate club scene"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "campaign rally cliche"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "sales pitch generic"
+    ],
+    "examples": [
+      "debate club scene",
+      "campaign rally cliche",
+      "sales pitch generic"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "city zoning hearing where neighbors cite safety to protect parking",
+      "audience": "planners reading moral rhetoric in public comments",
+      "stakes": "Megan maps each stated reason to the constituency it reassures.",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Megan groups comment cards by the audience they signal to, not by the literal topic line.",
+      "firstImage": "A stack of comment cards leans against a cracked microphone base.",
+      "mustInclude": [
+        "comment cards",
+        "zoning map",
+        "microphone base"
+      ],
+      "mustAvoid": [
+        "generic town hall shouting"
+      ]
+    },
+    {
+      "domain": "startup founder explaining a pivot to employees and investors",
+      "audience": "founders under reputation pressure",
+      "stakes": "Daniel separates the reason that persuades staff from the reason that reassures investors.",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Daniel draft two versions and circle the sentence that protects his status more than the truth.",
+      "firstImage": "You see the investor deck and the all-hands notes open on the same laptop.",
+      "mustInclude": [
+        "investor deck",
+        "all-hands notes",
+        "runway chart"
+      ],
+      "mustAvoid": [
+        "sales pitch generic"
+      ]
+    },
+    {
+      "domain": "union local choosing language for a contract rejection",
+      "audience": "labor organizers building solidarity",
+      "stakes": "Catarina rewrites a technical wage argument as a loyalty appeal to members.",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Catarina asks which sentence will make a wavering member feel seen by the group.",
+      "firstImage": "\"Nobody chants a spreadsheet,\" Catarina says, tapping the wage table.",
+      "mustInclude": [
+        "wage table",
+        "union hall lectern",
+        "folded flyers"
+      ],
+      "mustAvoid": [
+        "generic labor history"
+      ]
+    },
+    {
+      "domain": "school board candidate responding to a curriculum rumor",
+      "audience": "campaign volunteers tempted by fact dumps",
+      "stakes": "Devon hears the reply as an audition for trust, not only an answer to a rumor.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Devon marks which sentence would recruit anxious parents instead of humiliating them.",
+      "firstImage": "It took Devon one canvassing shift to see that the fact sheet was losing the porch.",
+      "mustInclude": [
+        "fact sheet",
+        "door hanger",
+        "porch light"
+      ],
+      "mustAvoid": [
+        "election-night map"
+      ]
+    },
+    {
+      "domain": "restaurant group defending a service charge policy",
+      "audience": "owners explaining an unpopular fee",
+      "stakes": "Olivier identifies which reason is for guests and which is for staff pride.",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Olivier asks the manager to say the staff-facing reason aloud before writing the menu note.",
+      "firstImage": "The receipt printer spits out a test check with the new service charge circled.",
+      "mustInclude": [
+        "test check",
+        "menu note",
+        "receipt printer"
+      ],
+      "mustAvoid": [
+        "tipping debate essay"
+      ]
+    },
+    {
+      "domain": "research lab deciding how to announce a failed replication",
+      "audience": "scientists balancing truth and reputation",
+      "stakes": "Anya distinguishes the public reason from the status-saving reason in the draft statement.",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which sentence in Anya's draft tells the truth, and which one is campaigning for the lab?",
+      "firstImage": "Which sentence would you keep if nobody knew your name was on the paper?",
+      "mustInclude": [
+        "draft statement",
+        "replication file",
+        "journal email"
+      ],
+      "mustAvoid": [
+        "generic academic integrity lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "infer the audience a reason is trying to recruit",
+      "distinguish private explanation from public persuasion",
+      "see reputation defense inside a moral argument"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before replying to one argument, name the audience the speaker seems to be persuading, even if you are the only visible listener.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,105 @@
+{
+  "bookId": "flow",
+  "title": "Flow: The Psychology of Optimal Experience",
+  "author": "Mihaly Csikszentmihalyi",
+  "categories": [
+    "Psychology",
+    "Self-Help",
+    "Productivity",
+    "Philosophy"
+  ],
+  "tags": [
+    "flow",
+    "attention",
+    "optimal experience",
+    "consciousness",
+    "enjoyment",
+    "meaning",
+    "autotelic",
+    "self-mastery"
+  ],
+  "thesisParagraph": "Flow argues that the quality of a life is shaped less by comfort, status, or favorable circumstances than by the way attention is ordered. Happiness becomes an active achievement: consciousness can scatter into boredom, anxiety, and psychic entropy, or it can gather around challenging goals that give clear feedback and absorb the self. The book moves from the inner architecture of attention to the practical domains where flow can be cultivated, including the body, thought, work, solitude, relationships, adversity, and finally a coherent life theme that turns separate absorbing moments into meaning.",
+  "coreIdeas": [
+    {
+      "name": "Attention orders life",
+      "oneSentence": "The experiences that receive attention become the material from which the self is built.",
+      "mentalMove": "Treat attention as limited psychic energy and choose the object that deserves it now.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Enjoyment is not pleasure",
+      "oneSentence": "Relief can feel good without enlarging the self, while enjoyment usually asks for challenge, goals, feedback, and skill.",
+      "mentalMove": "Add structure and feedback to a merely pleasant activity so it becomes absorbing.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Conditions matter",
+      "oneSentence": "Flow is easier when activities, environments, and social supports provide clear goals and usable feedback.",
+      "mentalMove": "Redesign the situation before blaming motivation or personality.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "The body and mind can be trained",
+      "oneSentence": "Movement, sensation, language, history, science, and philosophy become flow domains when attention has rules and challenge.",
+      "mentalMove": "Give bodily or mental practice a precise next move and a way to know whether it improved.",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Meaning integrates flow",
+      "oneSentence": "Separate moments of absorption do not add up to a life unless a purpose and life theme organize them.",
+      "mentalMove": "Connect recurring flow activities to the larger direction they serve.",
+      "sourceAnchors": [
+        "source-freeze"
+      ]
+    }
+  ],
+  "targetReader": "A reader who has enough comfort, options, and information to feel busy but not necessarily alive, and who wants a practical way to turn attention, work, leisure, relationships, and setbacks into more ordered experience.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language"
+    ]
+  },
+  "voiceSpecimens": [
+    "The better job did not fix the evening because the evening still had no shape.",
+    "Attention is not a mood. It is the tool you spend before you notice it is gone.",
+    "Pleasure lets the pressure out for a while; enjoyment gives your mind something strong enough to hold.",
+    "A task becomes different the moment it can answer back.",
+    "The quiet room helps only if you give it a question worth staying with.",
+    "Meaning begins when the separate good hours start pointing in the same direction."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains that flow is important for modern readers who want happiness.",
+    "Unlock your best life by optimizing your mindset and embracing peak performance.",
+    "The author argues that consciousness is a powerful concept across many domains.",
+    "In today's fast-paced world, everyone needs to find balance and purpose.",
+    "Try to be more mindful and intentional whenever you feel distracted."
+  ],
+  "teachingArc": "The book first breaks the promise that comfort and progress automatically produce happiness, then explains consciousness as the mechanism that makes attention decisive. It then turns the mechanism into practice: enjoyment, flow-friendly conditions, body, thought, work, solitude, relationships, adversity, and finally meaning. The arc compounds from momentary order to repeatable conditions to a whole-life pattern.",
+  "forbiddenMoves": [
+    "Do not turn flow into easy relaxation or passive happiness.",
+    "Do not invent named studies, neuroscience, famous anecdotes, or statistics beyond the frozen source bundle.",
+    "Do not romanticize adversity or imply that structural hardship is solved by attitude.",
+    "Do not make every chapter a focus-productivity lesson; bodily, social, intellectual, work, and meaning chapters need distinct mechanisms.",
+    "Do not let autotelic become a decorative label without showing the activity paying from inside the doing."
+  ]
+}

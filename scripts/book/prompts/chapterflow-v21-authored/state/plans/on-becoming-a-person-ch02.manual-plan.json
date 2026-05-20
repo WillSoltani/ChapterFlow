@@ -1,0 +1,191 @@
+{
+  "chapterId": "on-becoming-a-person-ch02",
+  "number": 2,
+  "title": "Some Hypotheses Regarding the Facilitation of Personal Growth",
+  "coreMove": "Replace pressure to improve someone with the conditions that let the person face themselves more honestly.",
+  "sourcePressure": "The first helping-theory chapter names the relational conditions that make growth more possible: genuineness, acceptance, and empathic understanding. Frozen sidecar ch02 supports the heading, part placement, and broad thematic claims; it exposes no chapter-local named anecdotes, studies, or places.",
+  "chapterSpecificMisunderstanding": "Turning acceptance into permissiveness or empathy into being nice.",
+  "sourceAlignmentTerms": [
+    "facilitation",
+    "personal growth",
+    "genuineness",
+    "warm acceptance",
+    "empathic understanding",
+    "self-direction",
+    "defensiveness"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "The frozen source exposes no usable chapter-local named person, study, institution, place, date, or anecdotal artifact from Rogers here. Use fictional protagonists only; do not invent named Rogers cases or studies.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of facilitation",
+      "therapist office at the window",
+      "reader-you-are-stuck generic opener"
+    ],
+    "counterintuition": [
+      "Most people think X, but Y",
+      "It is not about being nice",
+      "The paradox is that acceptance changes everything"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three things you noticed",
+      "pause and breathe before replying"
+    ],
+    "examples": [
+      "generic empathy advice",
+      "leader-as-coach templates",
+      "guaranteed transformation claims",
+      "reused classroom worksheet shell",
+      "coffee mug office feedback shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sophie",
+      "domain": "startup performance conversation",
+      "audience": "readers who face startup performance conversation and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around facilitation; specifically, the outcome turns on whether Sophie can make facilitation visible without sliding into turning acceptance into permissiveness or empathy into being nice.",
+      "format": "reflection",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "In the startup performance conversation, Sophie removes the pressure to improve, reflects the other person's meaning once, and waits for the first less-defended answer, with the feedback form with three blank lines and the cold coffee carafe making the choice visible instead of merely stated.",
+      "firstImage": "the feedback form with three blank lines beside Sophie's hand; the opening begins with one line of speech that exposes the relational pressure before the narrator explains it",
+      "mustInclude": [
+        "feedback form with three blank lines",
+        "cold coffee carafe"
+      ],
+      "mustAvoid": [
+        "do not turn startup performance conversation into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Sophie lecture"
+      ]
+    },
+    {
+      "protagonistName": "Grace",
+      "domain": "university advising appointment",
+      "audience": "readers who face university advising appointment and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around facilitation; specifically, the outcome turns on whether Grace can make facilitation visible without sliding into turning acceptance into permissiveness or empathy into being nice.",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "In the university advising appointment, Grace removes the pressure to improve, reflects the other person's meaning once, and waits for the first less-defended answer, with the cold coffee carafe and the calendar invite marked optional making the choice visible instead of merely stated.",
+      "firstImage": "a half-finished note on Grace's desk; the opening lets the room or setting carry the first signal before any person is named",
+      "mustInclude": [
+        "cold coffee carafe",
+        "calendar invite marked optional"
+      ],
+      "mustAvoid": [
+        "do not turn university advising appointment into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Grace lecture"
+      ]
+    },
+    {
+      "protagonistName": "Rachel",
+      "domain": "rehab clinic goal review",
+      "audience": "readers who face rehab clinic goal review and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around facilitation; specifically, the outcome turns on whether Rachel can make facilitation visible without sliding into turning acceptance into permissiveness or empathy into being nice.",
+      "format": "dialogue",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "In the rehab clinic goal review, Rachel removes the pressure to improve, reflects the other person's meaning once, and waits for the first less-defended answer, with the calendar invite marked optional and the feedback form with three blank lines making the choice visible instead of merely stated.",
+      "firstImage": "the open doorway before Rachel speaks; the opening uses one clock-time opening only if the time pressure matters",
+      "mustInclude": [
+        "calendar invite marked optional",
+        "feedback form with three blank lines"
+      ],
+      "mustAvoid": [
+        "do not turn rehab clinic goal review into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Rachel lecture"
+      ]
+    },
+    {
+      "protagonistName": "Laura",
+      "domain": "public library teen program",
+      "audience": "readers who face public library teen program and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around facilitation; specifically, the outcome turns on whether Laura can make facilitation visible without sliding into turning acceptance into permissiveness or empathy into being nice.",
+      "format": "dilemma",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "In the public library teen program, Laura removes the pressure to improve, reflects the other person's meaning once, and waits for the first less-defended answer, with the feedback form with three blank lines and the cold coffee carafe making the choice visible instead of merely stated.",
+      "firstImage": "a line on the form that Laura cannot ignore; the opening opens from the texture, sound, or physical pressure of the object before anyone explains it",
+      "mustInclude": [
+        "feedback form with three blank lines",
+        "cold coffee carafe"
+      ],
+      "mustAvoid": [
+        "do not turn public library teen program into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Laura lecture"
+      ]
+    },
+    {
+      "protagonistName": "Anna",
+      "domain": "restaurant shift correction",
+      "audience": "readers who face restaurant shift correction and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around facilitation; specifically, the outcome turns on whether Anna can make facilitation visible without sliding into turning acceptance into permissiveness or empathy into being nice.",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "In the restaurant shift correction, Anna removes the pressure to improve, reflects the other person's meaning once, and waits for the first less-defended answer, with the cold coffee carafe and the calendar invite marked optional making the choice visible instead of merely stated.",
+      "firstImage": "the quiet after Anna stops explaining; the opening starts after the cost is visible, then backs into the choice that created it",
+      "mustInclude": [
+        "cold coffee carafe",
+        "calendar invite marked optional"
+      ],
+      "mustAvoid": [
+        "do not turn restaurant shift correction into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having Anna lecture"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "choir rehearsal conflict",
+      "audience": "readers who face choir rehearsal conflict and need Rogers's chapter-specific move under real pressure",
+      "stakes": "whether the moment becomes another exercise in control or a chance for more honest growth around facilitation; specifically, the outcome turns on whether James can make facilitation visible without sliding into turning acceptance into permissiveness or empathy into being nice.",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "In the choir rehearsal conflict, James removes the pressure to improve, reflects the other person's meaning once, and waits for the first less-defended answer, with the calendar invite marked optional and the feedback form with three blank lines making the choice visible instead of merely stated.",
+      "firstImage": "two chairs pulled out from the table; the opening puts the reader directly in the moment before naming the choice",
+      "mustInclude": [
+        "calendar invite marked optional",
+        "feedback form with three blank lines"
+      ],
+      "mustAvoid": [
+        "do not turn choir rehearsal conflict into generic advice",
+        "do not use a therapist office shell unless the domain explicitly requires it",
+        "do not resolve the scene by having James lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify covert control in a supportive sentence",
+      "apply genuineness without dumping feelings",
+      "separate acceptance from approving every behavior"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one stuck person you are trying to help and remove one covert demand from your next sentence, leaving only what you understand and what you can honestly offer.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside where supported, a direct second-person passage, or a brief historical reference to the frozen chapter placement",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-pyramid-principle-ch01",
+  "number": 1,
+  "title": "Why a pyramid structure",
+  "readingTimeMinutes": 12,
+  "hook": "Twelve field reports on a folding table become useful only after Julia stops writing and starts grouping.",
+  "counterintuition": "The answer-first move looks fast, but speed is earned earlier. Instead of leading with a guess, sort the lower material first and let the reader meet the answer only after the support can carry it.",
+  "tryThisNow": "Take one live note stack and draw three boxes: loose facts, possible groups, earned top line. Do not write the top line until two groups have names.",
+  "keyTakeaway": "Earn the answer from grouped support first, then place it at the top so the reader can judge the logic instead of assembling it.",
+  "breakdown": {
+    "fastRead": "Julia has twelve field reports spread across a folding table and one blank sentence at the top of her board memo. Her first draft starts with background, then site visits, then numbers. Nobody would know the decision until page four. She stops writing and sorts the reports into three piles: demand, staffing, and cost. Only then does the top sentence appear.\n\nA pyramid structure begins there. The reader gets the answer first only after the writer has earned it from below. Group the material, test what it says together, then let the top point carry the rest.",
+    "deepRead": "Lukas watches a warm printer spit out weekend discharge notes outside the bed-management room. Pharmacy delays, transport misses, and family-consent waits are all mixed in one stack. His first headline says weekend discharge is broken. It sounds decisive, but the notes underneath do not yet know what they are proving.\n\nHe moves each note under a different column. Pharmacy becomes one group, transport another, family consent a third. The old headline no longer fits. The real point is narrower: the hospital is losing beds because three handoffs are unmanaged after Friday afternoon.\n\nThat is the work the reader should never have to do.\n\nThe repair starts where Minto found the weakness in weak reports: before the sentence, at the point where the writer has not yet made the thinking usable. A pyramid is not a prettier outline. It asks whether the point above truly summarizes what sits below, whether the lower points are the same kind, and whether their order helps the reader follow the logic.\n\nNine groceries show the same pressure in miniature. Nine loose items are not harder because there are more calories in them. They are harder because each one floats alone. Once the items are grouped, the mind has fewer pieces to carry. A business recommendation works the same way: grouping does not delete detail, it gives the detail a handle.\n\nThe nine-item grocery list shows the same load problem in miniature: loose items strain memory, while grouped items give the mind handles.",
+    "fullRead": "Camille needed two drafts to notice that her flood-sensor memo was hiding its answer on page seven. The first draft moved in discovery order: rainfall records, vendor notes, sensor types, maintenance costs, then one late sentence about the council decision. It was honest about her process and unfair to the reader.\n\nShe rebuilt it in the opposite direction. The top line named the decision: fund six sensors now, not twelve later. Beneath it she grouped the support by risk, cost, and maintenance. The flood map no longer wandered through the memo as interesting context. It became evidence under the risk group. The maintenance estimate stopped interrupting the story and became part of the cost group.\n\nAsk a simple question before you write the top line: what would the reader have to hold in mind if I left this material loose?\n\nThe consulting origin matters only because it exposed the same failure again and again: finished prose sitting on unfinished order. The McKinsey interview notes behind this method describe report problems as thinking problems before language problems. That is why the three logical rules bite so hard. The idea above has to summarize the ideas below. The grouped ideas have to be logically alike. The grouped ideas have to sit in a logical order.\n\nThose rules also protect answer-first communication from becoming a bluff. A top-down opening is useful only after bottom-up thinking has done its job. If Julia writes the board recommendation before sorting the site reports, the sentence may sound clean while the evidence underneath is still mixed. If Lukas declares weekend discharge broken before grouping the delay notes, the claim points everywhere and fixes nothing.\n\nThe word MECE can tempt people into acronym worship, but here it should stay practical. The reader needs groups that do not blur together and do not leave important material outside the frame. The point is not to decorate the memo with consulting language. The point is to make the support usable.\n\nThere is a limit. Not every short note needs a grand hierarchy. The source support stays modest on purpose: use the magical number seven, the grocery-list pressure, and the three logic rules as practical restraints, not as permission to make claims about brain science or guaranteed business results. A two-line answer to a simple factual question can stay simple. But the moment a reader has to judge a recommendation from scattered material, the sorting cost has to be paid by the writer. Pay it early. Let the reader meet the finished shape instead of the trail of scraps that produced it.\n\nThe nine-item grocery list keeps the same lesson small enough to feel. A loose list asks the reader to remember item after item. A grouped list gives them a few handles. A memo follows the same logic: the facts may stay in place, but the burden shifts when the writer groups them before asking for judgment."
+  },
+  "examples": [
+    {
+      "exampleId": "ch01-ex01-sarah-field-reports",
+      "title": "Julia Finds the Board Sentence in Three Piles",
+      "tags": [
+        "scene",
+        "nonprofit",
+        "board"
+      ],
+      "planSpec": {
+        "domain": "a nonprofit grant director turning scattered field reports into a board recommendation",
+        "audience": "program leaders who write updates for trustees",
+        "stakes": "a renewal vote depends on whether trustees can see the one funding decision inside twelve pages of field notes",
+        "format": "scene",
+        "requiredBeat": "Julia spreads twelve site reports across a folding table, sorts them into three labeled piles, and only then writes the one sentence the board should see first."
+      },
+      "scenario": "Julia stands under fluorescent light with twelve stapled site reports and three empty sticky notes on a folding table in the nonprofit office at 7:40 p.m. Julia faces a choice: keep drafting the board update in visit order, or stop and sort the field notes first. She writes demand, staffing, and cost on the sticky notes, slides each report into a pile, and only then starts the one sentence trustees should see first.",
+      "whatToDo": "Sort the reports by the kind of support they provide before writing the board sentence. Let the groups prove what the recommendation can honestly say.",
+      "whyItMatters": "The renewal decision needs a claim the field evidence can carry. Visit order shows how Julia found the material; grouped support shows what the material means."
+    },
+    {
+      "exampleId": "ch01-ex02-lukas-bed-delays",
+      "title": "Lukas Deletes the Weekend Headline",
+      "tags": [
+        "decision_point",
+        "hospital",
+        "operations"
+      ],
+      "planSpec": {
+        "domain": "a hospital operations analyst summarizing weekend discharge delays",
+        "audience": "clinical managers who distrust abstract dashboards",
+        "stakes": "beds will stay blocked unless the delay sources become one usable operating claim",
+        "format": "decision_point",
+        "requiredBeat": "Lukas moves each delay note under pharmacy, transport, or family consent, then deletes the headline he wanted because it no longer matches the groups."
+      },
+      "scenario": "Lukas pulls a warm night-shift printout from the ward printer beside the morning bed board. The bed-delay notes point to pharmacy holds, transport gaps, and discharge-signature waits, but his first headline says weekend discharge is broken. Before the 8:00 a.m. huddle, he has to choose whether to defend the headline or sort the evidence. He deletes the headline, groups the notes, and writes the narrower answer: discharge signatures are the first constraint.",
+      "whatToDo": "Delete the broad headline and write the narrower claim that the grouped notes support. Put transport delay first if that is where the evidence gathers.",
+      "whyItMatters": "A broad complaint gives managers nothing to judge. A grouped claim lets them see which handoff is actually blocking beds and where action belongs."
+    },
+    {
+      "exampleId": "ch01-ex03-camille-flood-sensors",
+      "title": "Camille Moves the Answer Out of Page Seven",
+      "tags": [
+        "before_after",
+        "civic",
+        "memo"
+      ],
+      "planSpec": {
+        "domain": "a city climate office preparing a council memo about flood sensors",
+        "audience": "public servants converting technical material for elected officials",
+        "stakes": "the council will postpone sensors if the memo reads like a research dump",
+        "format": "before_after",
+        "requiredBeat": "Camille compares the old chronology of findings with a revised answer-first structure that names the decision, then groups cost, risk, and maintenance beneath it."
+      },
+      "scenario": "As the council analyst in the municipal clerk office, Camille needed two drafts to notice the answer was hiding on page seven of the council agenda packet. The old memo began with rainfall history, then vendor notes, then flood-map printouts. After the deputy clerk asked what vote it required, Camille rebuilt the first page: fund six sensors now, supported by cost, risk, and maintenance groups. The maintenance estimate finally had a place instead of a paragraph to interrupt.",
+      "whatToDo": "Move the decision sentence to the top only after the support groups are stable. Let risk, cost, and maintenance carry the answer in separate blocks.",
+      "whyItMatters": "Council members need to judge the funding choice, not relive the research path. The grouped structure turns technical material into a decision they can inspect."
+    },
+    {
+      "exampleId": "ch01-ex04-daniel-ticket-export",
+      "title": "Daniel Lets the Tickets Change the Bug",
+      "tags": [
+        "predict_reveal",
+        "support",
+        "product"
+      ],
+      "planSpec": {
+        "domain": "a product support lead translating complaint tickets into a bug-priority note",
+        "audience": "support managers and product owners",
+        "stakes": "engineers will chase anecdotes unless the tickets become grouped evidence",
+        "format": "predict_reveal",
+        "requiredBeat": "Daniel asks which bug the tickets prove, predicts the wrong answer, then regroups the tickets by failure mode until the real priority emerges."
+      },
+      "scenario": "Which problem do 183 angry tickets actually prove? Daniel asks the support team in a small room at 4:15 p.m., with a ticket export open beside the bug triage board. He predicts the mobile login bug will win. Then he groups every complaint by failure mode and must decide whether to defend his favorite answer or accept the grouped result. The largest pile is invoice confusion, not login failure.",
+      "whatToDo": "Let the failure-mode groups pick the priority. Write the bug note around the largest supported pattern, even if it is not the bug Daniel expected.",
+      "whyItMatters": "Anecdotes reward the loudest story. Grouped tickets show what the complaints add up to, so engineers can judge the real pattern instead of the memorable one."
+    },
+    {
+      "exampleId": "ch01-ex05-ingrid-permit-renewal",
+      "title": "Ingrid Narrows the Permit Claim",
+      "tags": [
+        "vignette",
+        "research",
+        "permit"
+      ],
+      "planSpec": {
+        "domain": "an archaeology lab manager writing a permit renewal report",
+        "audience": "research staff who must justify field access",
+        "stakes": "the permit can be delayed if artifact counts, site risks, and staffing constraints blur together",
+        "format": "vignette",
+        "requiredBeat": "You watch Ingrid stop drafting, sort the permit notes into like kinds, and replace a broad top line with a narrower one the grouped evidence can support."
+      },
+      "scenario": "You are the field director looking at trays of pottery tags and a half-written renewal letter in Ingrid's archaeology lab. The site-access calendar is pinned above the permit checklist. Ingrid has to choose: defend the broad claim that the season is ready, or stop before the letter hardens. She sorts artifact counts, site risks, and staffing constraints into like kinds, then replaces the top line with a narrower one the evidence can support.",
+      "whatToDo": "Separate the permit notes by logical kind and lower the top line until it matches the grouped evidence. Do not let readiness cover three different jobs.",
+      "whyItMatters": "A permit reviewer can test a narrow claim. A broad readiness claim makes artifact counts, access risks, and staffing limits blur into confidence without proof."
+    },
+    {
+      "exampleId": "ch01-ex06-michael-port-diary",
+      "title": "Michael Turns the Port Diary Into an Answer",
+      "tags": [
+        "dialogue",
+        "logistics",
+        "retail"
+      ],
+      "planSpec": {
+        "domain": "a logistics coordinator explaining port congestion to a retailer",
+        "audience": "operations readers who need the destination before the detail",
+        "stakes": "a costly rush-shipping decision will be made from the note",
+        "format": "dialogue",
+        "requiredBeat": "Michael says the first draft is the port's diary, not the retailer's answer, then rebuilds it as one claim with three support groups."
+      },
+      "scenario": "\"This is a diary, not an answer,\" Michael says beside the dispatch monitor at 6:05 a.m. The container dwell-time sheet lists berth delays, customs holds, and trucking gaps in the order they happened. His colleague points to a rush-shipping quote and asks what the retailer should do. Michael must decide before the quote expires: send the chronology, or rebuild it as one claim with three support groups.",
+      "whatToDo": "Replace the chronology with the retailer's decision first, then group the port evidence under berth, customs, and trucking support. Keep the quote tied to the claim.",
+      "whyItMatters": "Operations readers do not need the port's diary. They need to know what decision the evidence supports and which delay groups justify the cost."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A department head reads a four-page update that lists interviews, survey data, and budget notes before revealing the recommendation at the end. What is the core problem the pyramid structure is meant to solve?",
+        "choices": [
+          "The reader has to assemble the argument while reading it.",
+          "The document uses too many words for a busy executive.",
+          "The writer has not added enough visual formatting."
+        ],
+        "correctIndex": 0,
+        "explanation": "The issue is outsourced sorting. The reader is forced to infer the claim from loose material. Word count and formatting may matter later, but they do not repair missing hierarchy.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A policy analyst has thirty notes about a housing program and wants to open with, The program is failing residents. What should happen before that line leads the memo?",
+        "choices": [
+          "Polish the sentence so it sounds less harsh.",
+          "Group the notes by like causes and see what claim the groups can actually support.",
+          "Move the sentence to the end so the reader experiences the evidence first."
+        ],
+        "correctIndex": 1,
+        "explanation": "The answer should lead only after grouping earns it. Softer wording keeps the same unsupported leap, while hiding the claim at the end makes the reader repeat the analyst’s sorting work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A sales operations lead groups nine customer complaints into onboarding, billing, and renewal issues. The total information stays the same, but her VP understands the point faster. Why?",
+        "choices": [
+          "The categories make the complaints sound more serious.",
+          "The categories remove the need for evidence.",
+          "The categories reduce the number of separate pieces the VP has to hold."
+        ],
+        "correctIndex": 2,
+        "explanation": "Grouping changes burden without deleting information. The VP carries three meaningful units instead of nine loose items. The seriousness still depends on evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A founder starts an investor update with, We should enter Germany next quarter, then searches the research folder for support. Which failure is most likely?",
+        "choices": [
+          "The support may be arranged to defend an answer that has not been earned.",
+          "The update will be too direct for cautious readers.",
+          "The research folder will contain too much detail for a pyramid."
+        ],
+        "correctIndex": 0,
+        "explanation": "This reverses the discipline. A top line written before bottom-up grouping can become a bluff. Directness is not the problem; unearned support is.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A clinic manager has a list of patient complaints, staffing gaps, and supply shortages. She places all of them under Improve clinic reliability. What should she test first?",
+        "choices": [
+          "Whether the heading is inspiring enough for staff.",
+          "Whether the items are the same kind and can be honestly summarized by one point.",
+          "Whether the list can be shortened to three bullets."
+        ],
+        "correctIndex": 1,
+        "explanation": "A pyramid needs like support under an honest summary. Shortening the list or improving the slogan may make the page cleaner while the logic remains mixed.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A project manager discovered her answer by reading notes chronologically. She now has a stable top line and three support groups. How should the final note be ordered for readers?",
+        "choices": [
+          "Keep the chronology so readers can see the discovery path.",
+          "Begin with all raw notes to prove the work was thorough.",
+          "Start with the answer, then the support groups, then detail."
+        ],
+        "correctIndex": 2,
+        "explanation": "Discovery can be bottom-up, but communication should be top-down once the answer is earned. Chronology and raw notes force readers through the search process.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A marketing lead has a clear recommendation but the support groups overlap: one section covers price, another covers value, and another covers discount sensitivity. What is the best next move?",
+        "choices": [
+          "Regroup the support so the lower points do not blur into each other before presenting the answer.",
+          "Lead with the recommendation anyway because answer-first is the rule.",
+          "Rename the sections with sharper labels and keep moving., while giving the page a cleaner surface without fixing the logic"
+        ],
+        "correctIndex": 0,
+        "explanation": "Answer-first works only with stable groups. Overlapping support makes the top line harder to judge. Better labels do not solve the overlap.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A student says, I put my thesis first, so I used pyramid structure. Her outline below it mixes causes, examples, and next steps. What is the sharpest feedback?",
+        "choices": [
+          "The thesis should be hidden until the end.",
+          "The opening order is fine, but the lower material has to be grouped by logical kind.",
+          "The outline needs more transitions between bullets."
+        ],
+        "correctIndex": 1,
+        "explanation": "Putting the thesis first is not enough. The support beneath it must be logically alike and ordered. Hiding the thesis or adding transitions misses the structural defect.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A supply-chain director has enough evidence to recommend air freight for one product line. Which opening best reflects earned top-down communication?",
+        "choices": [
+          "After reviewing port congestion, customs holds, warehouse staffing, trucking delays, and retailer penalties, this memo considers options.",
+          "Port congestion is an increasingly complex issue affecting many product lines in different ways.",
+          "We should use air freight for the vaccine line this week because port dwell time, spoilage risk, and penalty costs now outweigh the premium."
+        ],
+        "correctIndex": 2,
+        "explanation": "The correct opening gives the decision and names the grouped support that earns it. The other options either replay the research path or stay broad without a usable claim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A draft reveals its recommendation on page four. What burden has the writer pushed onto the reader?",
+      "back": "The reader has to assemble the argument while reading. The writer should group the material, find the earned top line, and lead with that finished structure.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "You have a strong top sentence but the support below it is still mixed. What should happen before the sentence leads?",
+      "back": "Regroup the support by logical kind and test whether the sentence still summarizes it. If the groups change, the top sentence may need to change too.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why does a grouped grocery list explain the pyramid better than a polished memo example?",
+      "back": "It shows the basic burden shift. The same items become easier to carry when grouped, just as the same evidence becomes easier to judge when it sits under a clear claim.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A colleague says answer-first writing means writing the conclusion before doing the analysis. How do you correct that?",
+      "back": "Separate discovery from delivery. Think from the bottom up until the groups produce an answer, then communicate from the top down so the reader gets the finished logic.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A top line sounds decisive, but one support point is a cause, one is an action, and one is a result. What is the repair?",
+      "back": "Do not polish the line. Split the support into like groups, decide what each group actually proves, and write only the summary each group can carry.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Earn the Top Line",
+    "coreSkill": "You learn to separate finding the answer from presenting the answer. First group the lower material until it shows what it can honestly support. Then lead with that earned point so the reader can spend attention judging, not sorting.",
+    "ifThenPlans": [
+      {
+        "context": "work memo",
+        "plan": "If your draft begins with background, then stop after the first page and write the decision it is building toward in one sentence. Keep that sentence only if the lower groups support it."
+      },
+      {
+        "context": "analysis review",
+        "plan": "If your evidence feels scattered, then label each note by job before writing the summary. Use labels such as cause, cost, risk, action, or result."
+      },
+      {
+        "context": "meeting prep",
+        "plan": "If you are tempted to walk people through how you found the answer, then build a top-down agenda instead: answer, three supports, detail only where needed."
+      },
+      {
+        "context": "study or research",
+        "plan": "If your notes are chronological, then regroup them by what they prove. Write the conclusion after the groups have stopped moving."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one note, email, or draft with more than five facts in it. Group the facts into two or three like sets, write the parent sentence last, then move that sentence to the top.",
+    "weeklyPractice": "Once a week, audit one important piece of writing for discovery order. Mark where the real answer first appears, then rebuild the opening so the earned answer comes first and the grouped support follows."
+  },
+  "memorableLines": [
+    {
+      "text": "That is the work the reader should never have to do.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the central reader-burden argument into one plain sentence."
+    },
+    {
+      "text": "A top-down opening is useful only after bottom-up thinking has done its job.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the chapter’s key distinction between discovery and delivery."
+    },
+    {
+      "text": "Let the reader meet the finished shape instead of the trail of scraps that produced it.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the method a concrete image without drifting into generic brevity advice."
+    }
+  ]
+}

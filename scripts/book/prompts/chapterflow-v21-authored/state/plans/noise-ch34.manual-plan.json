@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch34",
+  "number": 34,
+  "title": "Rules or Standards?",
+  "coreMove": "Choose rules when consistency across all cases is the priority; choose standards when tailoring to case particulars matters more, and name which failure mode is acceptable before choosing.",
+  "sourcePressure": "Rules produce consistency across all cases by removing discretion. Standards preserve discretion to tailor outcomes to case particulars but leave more room for noise. The choice between rules and standards is a governance question about which failure mode is more costly: treating different cases the same (rule over-inclusion) or treating comparable cases differently (standard-generated noise). The answer depends on the domain, the stakes, and which failure mode the institution can least afford.",
+  "chapterSpecificMisunderstanding": "Treating rules and standards as a one-size-fits-all choice rather than a domain-specific tradeoff where the correct answer depends on which failure mode the institution finds less tolerable.",
+  "sourceAlignmentTerms": ["rule", "standard", "discretion", "consistency", "individual tailoring", "governance", "failure mode"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Rules versus standards in legal and regulatory governance design",
+      "detail": "The rules-versus-standards tradeoff is a foundational question in legal and regulatory governance. Rules provide ex-ante clarity and consistency but sacrifice responsiveness to case particulars. Standards provide flexibility and individual tailoring but generate noise from the discretion they preserve. The governance literature consistently finds that the right choice depends on the rate of genuinely unusual cases, the cost of systematic wrong answers, and the institution's capacity to monitor and correct noise from discretion.",
+      "useIn": "deepRead",
+      "phrasingHint": "A rule says: if x, then y — always. A standard says: if x, then y — unless the case features make y clearly inappropriate. The rule is noiseless. The standard is adaptive. Neither is superior. The question is which error is cheaper: the rule's systematic wrong answer for unusual cases, or the standard's noise for ordinary ones."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["should you have rules or standards in your organization? Here is the answer", "the definitive guide to choosing between rules and standards"],
+    "counterintuition": ["rules are always better for reducing noise in institutions", "standards always produce more fairness than rules because they allow for individual consideration"],
+    "tryThisNow": ["audit all your current decisions and classify them as rule-bound or standard-based", "replace your most discretionary decisions with bright-line rules"],
+    "examples": ["a scene where a rule is shown to be clearly superior to a standard in the presented domain — the chapter's argument is that the correct choice depends on the failure mode analysis, not that rules are generally superior", "a scene where a standard's individualized result is clearly better than a rule's consistent result — same caveat in the other direction"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Rules-versus-standards examples risk reading as a case for one governance form over the other. Each domain must show the genuine tradeoff — rules' consistency-versus-rigidity and standards' flexibility-versus-noise — and the institution's specific calculation about which failure mode is less costly, without the chapter appearing to resolve the question for them."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bail guidelines versus judicial discretion: a court system studying whether rules-based bail guidelines or standards-based judicial discretion better serves the dual goals of consistent pretrial detention and appropriate individualization",
+      "audience": "a court administration reform director studying the tradeoffs between mandatory bail guidelines and judicial discretion in pretrial detention decisions",
+      "stakes": "pretrial liberty and public safety — rules-based bail guidelines produce consistent pretrial detention outcomes but may systematically over-detain unusual-risk defendants; standards-based discretion allows individualization but produces noise that determines detention based on which judge heard the case",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two reform directors examine the court system's bail decision data: under judicial discretion, inter-judge variance in detention rates for comparable defendants is 21 percentage points (standards-generated noise); under mandatory guidelines, inter-judge variance falls to 4 percentage points (rules-based consistency); but the mandatory guidelines produce systematic over-detention for defendants with unusual employment circumstances that the guidelines do not accommodate (rule over-inclusion); the directors' discussion centers on which failure mode is more costly for the court's constituents — 21 points of detention-rate noise or systematic over-detention for unusual employment cases",
+      "firstImage": "a failure-mode comparison chart for bail decisions: the standards column showing high inter-judge variance with low systematic over-detention; the rules column showing low inter-judge variance with documented systematic over-detention for unusual cases",
+      "mustInclude": ["the 21 vs. 4 percentage point variance comparison", "the specific unusual-employment over-detention case type as the rule's failure mode", "the directors' framing: the right choice depends on which failure mode the court is least able to tolerate — and that answer should be named before choosing the governance form"],
+      "mustAvoid": ["a specific defendant's detention outcome", "implying that either rules or standards are clearly superior for bail decisions in all jurisdictions"]
+    },
+    {
+      "domain": "clinical guidelines as rules versus practice standards: a hospital network studying where in its clinical portfolio rules-based protocols produce better outcomes than standards-based clinical judgment",
+      "audience": "a hospital network clinical governance director studying the tradeoff between mandatory clinical protocols and clinical practice standards that allow physician discretion",
+      "stakes": "care quality and patient safety — mandatory protocols produce consistent care for the case types they are designed for but produce systematic suboptimal care for patients whose presentations fall outside the protocol; practice standards allow appropriate individualization but produce noise from physician discretion",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the clinical governance director presents the protocol portfolio review to the quality committee: for high-volume, well-characterized conditions (sepsis, stroke, acute MI), mandatory protocols produce better outcomes than standards-based discretion because the volume of unusual cases is low and the cost of noise from discretion is high; for low-volume, high-heterogeneity conditions (rare autoimmune disorders, complex multimorbid presentations), standards-based physician discretion produces better outcomes because the frequency of genuinely unusual cases is high and protocol over-inclusion produces systematic suboptimal care; the director's framework: the governance form should follow the unusual-case rate, not a general institutional preference",
+      "firstImage": "a two-by-two matrix with unusual-case rate on one axis and cost of noise from discretion on the other, with the clinical domains plotted in their quadrants — mandatory protocols in the low-unusual-case/high-noise-cost quadrant, standards-based discretion in the high-unusual-case/lower-noise-cost quadrant",
+      "mustInclude": ["the sepsis/stroke/MI versus rare autoimmune disorder contrast", "the unusual-case rate as the key variable in the governance form decision", "the director's framework: the governance form should follow the unusual-case rate and the cost of noise, not institutional preference for consistency or flexibility"],
+      "mustAvoid": ["a specific patient's clinical outcome", "implying that clinical practice should be entirely rule-based or entirely standard-based"]
+    },
+    {
+      "domain": "employee conduct: zero-tolerance rules versus progressive discipline standards: a large organization studying the tradeoffs between zero-tolerance conduct rules and progressive discipline standards for the same conduct categories",
+      "audience": "a chief human resources officer studying the failure-mode tradeoffs of zero-tolerance conduct rules versus progressive discipline standards for a conduct category under policy review",
+      "stakes": "workplace safety and conduct consistency (benefit of rules) and appropriate individualization for first-time minor misconduct and unusual circumstances (benefit of standards) — the choice between them determines which failure mode the organization experiences",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the chief HR officer asks the policy review committee: what is the failure mode we are least willing to accept? Zero-tolerance rules produce consistent penalties and eliminate managerial noise in conduct decisions — but also produce documented cases of termination for first-time minor infractions in unusual circumstances that every reviewer agrees were disproportionate (rule over-inclusion); progressive discipline standards preserve manager discretion to individualize — but produce documented 8-percentage-point disparities in final disciplinary outcomes for comparable conduct between departments (standards-generated noise); the committee must name which failure mode they find less tolerable before the policy choice is legitimate",
+      "firstImage": "a failure-mode comparison table for two conduct governance forms: zero-tolerance rules (low inter-manager variance, documented disproportionate termination rate) versus progressive discipline standards (higher inter-manager variance, appropriate individualization for unusual cases)",
+      "mustInclude": ["the specific failure modes of each governance form (rule: disproportionate terminations for unusual cases; standard: 8-point departmental disparity)", "the committee's obligation to name which failure mode they find less tolerable before choosing", "the CHRO's framing: the policy choice is legitimate only after the failure mode preference is explicit — choosing a governance form without naming the acceptable failure mode is not a policy decision, it is a default"],
+      "mustAvoid": ["a specific employment case or termination outcome", "implying that either zero tolerance or progressive discipline is clearly superior for all conduct categories"]
+    },
+    {
+      "domain": "zoning: rigid use categories versus conditional use permits: a municipal planning department studying the tradeoffs between rigid zoning classifications and conditional use permit standards for a specific use category",
+      "audience": "a city planning director studying the failure-mode tradeoffs of rigid use category rules versus conditional use permit standards for a specific mixed-use zone under revision",
+      "stakes": "land use consistency and predictability (benefit of rules) and appropriate individualization for development proposals that do not fit standard use categories (benefit of standards) — the governance form determines which failure mode the city's property owners and neighbors experience",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the planning director reviews twenty years of land use decision data for the zone under revision: under rigid use category rules, inter-planner variance in use approval rates was 3 percent (rule-based consistency) but 17 percent of denied applications were subsequently approved on appeal after demonstrating genuinely unusual compatibility with surrounding uses that the rule category did not accommodate (rule over-inclusion); under the prior conditional use permit standard period, inter-planner variance was 19 percent (standards-generated noise) but appeal rates for denied applications fell by 31 percent because planners could acknowledge legitimate unusual cases (standards flexibility); the director's recommendation: the city must choose its primary failure mode — 19 percent planner variance or 17 percent systematic over-denial — and then design the zone accordingly",
+      "firstImage": "a two-era land use decision comparison: rigid use category period (low variance, high appeal rate for denied applications) versus conditional use permit period (higher variance, lower appeal rate for denied applications)",
+      "mustInclude": ["the 3 vs. 19 percent inter-planner variance comparison", "the 17% systematic over-denial under rules versus the 31% appeal rate reduction under standards", "the director's recommendation: name the failure mode preference first, then choose the governance form"],
+      "mustAvoid": ["a specific land use case or developer", "implying that either rigid zoning or conditional use permits are clearly superior for all land use decisions"]
+    },
+    {
+      "domain": "emissions limits versus best available technology standards: a regulatory agency studying the failure-mode tradeoffs of hard numerical emission limits versus performance-based best available technology standards for industrial air quality regulation",
+      "audience": "a regional air quality regulatory director studying the failure-mode tradeoffs of hard numerical emission limits versus best available technology standards for a regulated pollutant category",
+      "stakes": "environmental health and regulatory consistency (benefit of rules) and appropriate flexibility for facilities with unusual technical constraints (benefit of standards) — the governance form determines which failure mode the regulated industry and the affected community experience",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the regulatory director presents the rule-versus-standard analysis to the agency's scientific advisory committee: hard numerical emission limits produce consistent enforcement and clear compliance targets — but produce systematic over-compliance burden for facilities with unusual fuel compositions or process constraints that make the limit technically achievable only at disproportionate cost (rule over-inclusion); best available technology standards allow facilities to demonstrate that their specific technology configuration achieves the regulatory goal without meeting the specific numerical threshold — producing appropriate flexibility and a 23 percent lower compliance cost across the regulated sector, but also producing 14-percentage-point inter-inspector variance in what counts as 'best available technology' for the same process type (standards-generated noise); the committee's task is to identify which failure mode the region's communities and regulated facilities can best absorb",
+      "firstImage": "a failure-mode comparison for emissions regulation: hard limits (low variance, documented over-compliance burden for unusual facilities) versus best available technology standards (higher variance, lower average compliance cost, documented inconsistency in technology determinations)",
+      "mustInclude": ["the 23% lower compliance cost under standards alongside the 14-point inspector variance", "the hard limit's systematic over-compliance burden for unusual fuel or process configurations", "the director's framing: the failure mode of rules is borne by unusual-constraint facilities; the failure mode of standards is borne by communities in areas where inspector variance determines actual emission levels"],
+      "mustAvoid": ["a specific industrial facility or pollutant", "implying that either hard limits or best available technology standards are clearly superior for environmental regulation"]
+    },
+    {
+      "domain": "academic integrity: zero tolerance versus case-by-case standards: a university studying the failure-mode tradeoffs of zero-tolerance academic integrity policies versus case-by-case adjudication standards",
+      "audience": "a university dean of students studying the failure-mode tradeoffs of zero-tolerance academic integrity policies versus case-by-case adjudication standards for the same misconduct categories",
+      "stakes": "academic culture and consequence consistency (benefit of rules) and appropriate individualization for first-time or ambiguous infractions (benefit of standards) — the governance form determines which failure mode students and faculty experience",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you review three years of academic integrity decision data before and after switching governance forms: under zero-tolerance rules, inter-panel outcome variance for comparable infractions was 7 percentage points (rule-based consistency) but 18 percent of sanctioned students appealed on grounds that the mandatory sanction was disproportionate to their specific circumstances, and 9 percent of appeals were upheld — documenting the rule over-inclusion rate; under the prior case-by-case adjudication standard, inter-panel variance was 22 percentage points (standards-generated noise) but appeal rates were 9 percent and upheld appeals were 3 percent — because panels could acknowledge unusual circumstances; the university's policy review must name whether consistency or individualization is the primary obligation before legitimately choosing between governance forms",
+      "firstImage": "a before-and-after academic integrity outcome comparison: zero-tolerance era (low variance, high appeal rate, documented disproportionate sanction rate) versus case-by-case era (higher variance, lower appeal rate, lower disproportionate sanction rate)",
+      "mustInclude": ["the 7 vs. 22 percentage point inter-panel variance comparison", "the 18% appeal rate and 9% upheld appeal rate under zero tolerance as the rule's failure mode", "the 9% appeal rate and 3% upheld appeal rate under case-by-case standards as the standard's performance", "the policy review's obligation to name the primary failure mode before choosing"],
+      "mustAvoid": ["a specific student's academic integrity outcome", "implying that either zero tolerance or case-by-case adjudication is clearly superior for all academic integrity categories"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain the fundamental tradeoff between rules and standards as governance forms, using the failure mode concept as the analytical frame",
+      "identify the failure modes associated with each governance form (rule over-inclusion and standards-generated noise) in a described institutional context",
+      "apply the failure mode analysis to recommend a governance form for a described decision category based on the unusual-case rate and the relative cost of each failure mode",
+      "analyze why the choice between rules and standards cannot be made on the basis of a general institutional preference for consistency or flexibility",
+      "evaluate whether a described governance change from rules to standards or vice versa is justified based on the failure mode costs documented in the described context"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick a decision in your organization that is currently governed by either a rule (mandatory outcome for a defined condition) or a standard (discretionary judgment within specified criteria). Identify the last three cases where the current governance form produced an outcome that every reviewer agreed was suboptimal. For rule-governed decisions: were those suboptimal cases unusual-circumstance cases the rule over-included? For standard-governed decisions: were those suboptimal cases comparable cases that received different outcomes based on which person made the call? The pattern in your three cases is your failure mode — and knowing your failure mode is the first step toward choosing whether to switch governance forms.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) defining rules and standards by their failure modes rather than by their mechanisms — the rule's failure mode is systematic wrong answers for unusual cases; the standard's failure mode is noise from discretion, at least one 5+ sentence paragraph on how the unusual-case rate in a specific domain determines which failure mode is more costly — and why that calculation should precede the governance form choice rather than follow it, at least one one-sentence punch line about what an institution is doing when it chooses a governance form without naming the acceptable failure mode",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: in the most consequential decision your institution makes for individuals, have you named the failure mode you are most willing to accept? The governance form you have chosen implies a failure mode preference — and if that preference was never stated, you chose a failure mode by accident rather than by design",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

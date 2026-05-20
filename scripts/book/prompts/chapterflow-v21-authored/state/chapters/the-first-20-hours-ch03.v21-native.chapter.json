@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-first-20-hours-ch03",
+  "number": 3,
+  "title": "10 Principles of Effective Learning",
+  "readingTimeMinutes": 12,
+  "hook": "Cold mist on a recorder teaches more when Laura predicts the bird before she checks the file.",
+  "counterintuition": "Preparation feels responsible. In fact, it earns its keep only when it changes the next attempt.",
+  "tryThisNow": "Before your next practice block, write one prediction about what will go wrong and one test that will tell you whether you were right.",
+  "keyTakeaway": "Effective learning turns study into contact: a prediction, scaffold, practitioner cue, or test that makes the next rep clearer than the last one.",
+  "breakdown": {
+    "fastRead": "Daniel hooks a tape measure on chipped concrete stair nosing and studies one example sketch before entering the stairwell. He could read another drafting guide. Instead, he writes a prediction: I will forget to mark the landing depth. Then he carries a checklist to the actual site.\n\nStudy has to feed the next rep. A model, hook, cue, guess, or quick test earns its place only when it changes what you do next. Study that never reaches the rep is only a quieter kind of delay.",
+    "deepRead": "\"What interval am I missing?\" Sophie asks, pencil dot above the alto entrance on wrinkled sheet music. The section lead gives her one hook, plays the piano note, and makes her predict the next entrance before she sings it. When she misses, the piano answers before another theory page can protect her.\n\nA prediction makes the lesson answer back.\n\nThe strongest learning here is active. The rule is research but not too much: research has to walk you to the first attempt, then get out of the doorway. Mental models help because they simplify what to notice. Hooks help because they make the next cue easier to retrieve. Scaffolds and checklists help because they carry attention through a messy first attempt. Talking to practitioners helps because they can name the mistake that actually hurts in the field.\n\nEtienne learns that at the restaurant pass. Speed is tempting because the heat lamp is bright and table twelve is waiting. But he builds a three-box allergy-ticket checklist, tests it on five old tickets, and keeps it only after it catches the hidden nut warning. The checklist is not paperwork. It is a way to keep the right danger visible while speed is trying to blur the ticket.\n\nUseful study leaves fingerprints on practice.",
+    "fullRead": "Laura clips a field recorder to a fence post before dawn and hears two calls she keeps confusing. The cold mist makes everything feel sharper than her memory. She has listened to the files. She has read the species notes. Today she changes the learning loop: three short reviews spaced through the day, a prediction before opening the answer file, and a dawn survey sheet where she writes which cue survived when the bird was real.\n\nPassive accumulation feels safe because it rarely proves you wrong. You can read another guide, watch another demonstration, and feel more serious without making a public mistake. Predictions and tests take that shelter away; predictions and tests are the hinge between study and contact. Before the answer appears, you have to declare what you think will happen. After the answer appears, you know what the next practice block must fix.\n\nWhat would your next attempt prove? If that question has no answer, the study is floating. Give it a landing place: a sketch to check, a call to identify, a ticket to sort, a label another person can use, a routing drill that shows whether fatigue has started adding false clicks.\n\nPavel gets this from a senior electrician. Numbered breaker stickers curl at the edge of a metal panel door, and bad labels have slowed outage response in the retirement building twice. Instead of memorizing panel terms alone, Pavel asks what mistake hurts most. The answer is simple: labels that make sense to the person who wrote them and nobody else. Pavel imagines the opposite of a clear label, then tests his own by asking another apprentice to find one circuit cold. No unsafe heroics. Just a practitioner cue turned into a test.\n\nThere is a boundary around biology and attention too. Hadiya cannot learn emergency-call routing while the front desk keeps ringing and residents are asking storm questions over her shoulder. She moves the drill to the back terminal, runs one clean route sequence, and stops when false clicks start appearing. Honoring biology does not require a theory lecture. It means the session has to respect the state of the learner enough that reps can still be clean.\n\nThe danger is turning every principle into another excuse to wait. A mental model can become a decorative phrase. A checklist can become a beautiful object nobody uses. Spaced repetition can become a comfort ritual if the learner never risks recall before checking. Talking to practitioners can become outsourcing if their advice replaces the attempt it was supposed to sharpen.\n\nThe test is practical: did preparation change what your hands, eyes, voice, or choices did next? Daniel's checklist changed the stairwell sketch. Sophie's interval hook changed the entrance. Etienne's three boxes changed the pass. Laura's prediction changed what she heard at dawn. Hadiya's fatigue cutoff changed when the drill stopped.\n\nLearning earns its place when practice can feel the difference."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-daniel-stairwell-sketch",
+      "title": "Daniel Predicts the Missing Landing",
+      "tags": [
+        "architecture",
+        "fieldwork",
+        "checklist"
+      ],
+      "planSpec": {
+        "domain": "architectural intern learning site-measure sketches",
+        "audience": "a learner whose prep must change the next field attempt",
+        "stakes": "wrong measurements force a contractor visit to be repeated",
+        "format": "scene",
+        "requiredBeat": "Daniel studies one example sketch, predicts where his first field sketch will fail, then uses a checklist on the actual stairwell landing"
+      },
+      "scenario": "The tape measure hooks on chipped concrete stair nosing while Daniel crouches in the service stairwell at 4:10 p.m. One example sketch is folded in his pocket, and his prediction note says he will miss the landing depth. With the contractor leaving in twenty minutes, Daniel must decide now: office notes later or the stairwell checklist on the actual landing. The building manager waits upstairs, which keeps the prediction tied to the real stairwell.",
+      "whatToDo": "Study one model sketch, predict the likely miss, then use the checklist in the stairwell where the measurement can prove the prediction right or wrong.",
+      "whyItMatters": "The preparation changes the field attempt. Daniel is not collecting drafting knowledge; he is protecting the exact measurement most likely to break the visit."
+    },
+    {
+      "exampleId": "ch03-ex02-sophie-interval-hook",
+      "title": "Sophie Checks the Alto Entrance",
+      "tags": [
+        "choir",
+        "music",
+        "testing"
+      ],
+      "planSpec": {
+        "domain": "community choir member learning sight-singing intervals",
+        "audience": "a reader who needs mental hooks tied to audible reps",
+        "stakes": "she loses her entrance every rehearsal and pulls the alto row with her",
+        "format": "dialogue",
+        "requiredBeat": "Sophie asks the section lead for one interval hook, sings it, predicts the next entrance, and checks the miss against the piano before reading more theory"
+      },
+      "scenario": "\"Give me one hook.\" Sophie stands beside the church piano with wrinkled alto sheet music in one hand. The section lead plays the interval once. Sophie sings it, predicts the next entrance under her breath, and misses by a step. Before rehearsal resumes, she has to choose: printed explanation or the piano check while the miss is fresh. The choir folder stays closed until the note has answered the guess.",
+      "whatToDo": "Use the interval hook, make the next entrance prediction, sing, and let the piano check the miss before adding theory.",
+      "whyItMatters": "The hook helps only when it reaches sound. The piano turns the guess into feedback, so Sophie learns the entrance instead of admiring the explanation."
+    },
+    {
+      "exampleId": "ch03-ex03-etienne-allergy-ticket",
+      "title": "Etienne Lets the Checklist Catch the Nut Warning",
+      "tags": [
+        "restaurant",
+        "allergy",
+        "scaffold"
+      ],
+      "planSpec": {
+        "domain": "restaurant expeditor learning allergy-ticket checks",
+        "audience": "a learner who needs scaffolds before speed",
+        "stakes": "one missed nut allergy warning can send the wrong plate to table twelve",
+        "format": "decision_point",
+        "requiredBeat": "Etienne builds a three-box ticket checklist, tests it on five old tickets, and keeps it at the pass only after it catches the hidden allergy note"
+      },
+      "scenario": "At 5:42 p.m., Etienne clips a yellow allergy ticket beside the heat lamp while the first dinner orders start printing. He has built a three-box checklist and tested it on five old tickets. On the fourth, it caught the hidden nut note he had missed. As the chef calls for speed at the pass, Etienne must choose now: visible checklist or memory tonight. The ticket rail keeps printing, so the checklist must work under dinner pressure.",
+      "whatToDo": "Keep the three-box allergy checklist at the pass until it catches real tickets reliably, then speed up only after the scaffold has proven itself.",
+      "whyItMatters": "The checklist keeps the danger visible while pressure rises. Speed without the scaffold only makes the same miss travel faster to table twelve."
+    },
+    {
+      "exampleId": "ch03-ex04-laura-bird-call",
+      "title": "Laura Predicts Before Opening the Answer File",
+      "tags": [
+        "ecology",
+        "field test",
+        "spacing"
+      ],
+      "planSpec": {
+        "domain": "field ecologist learning bird-call identification",
+        "audience": "a reader whose learning needs spacing and live tests",
+        "stakes": "the dawn survey loses value if she keeps confusing two common calls",
+        "format": "predict_reveal",
+        "requiredBeat": "Laura spaces three short call reviews across the day, predicts the species before opening the answer file, and logs which cue actually survived at dawn"
+      },
+      "scenario": "At dawn, Laura watches cold mist bead on the field recorder clipped to a fence post before the reserve survey. Laura has spaced three short call reviews since yesterday, and the answer file is one tap away. She predicts the species before opening it, then hears she has confused the same two calls again. She has to decide which cue to log on the survey sheet before the next live call. The next bird call will not wait for another page of notes.",
+      "whatToDo": "Predict before checking, open the answer file, and write the cue that survived or failed on the dawn survey sheet.",
+      "whyItMatters": "The prediction exposes the confusion while the sound is fresh. Spacing helps only when the live test shows what Laura can still hear outside."
+    },
+    {
+      "exampleId": "ch03-ex05-pavel-breaker-labels",
+      "title": "Pavel Tests Whether the Label Works for Someone Else",
+      "tags": [
+        "electrical",
+        "labeling",
+        "practitioner"
+      ],
+      "planSpec": {
+        "domain": "apprentice electrician learning breaker-panel labeling",
+        "audience": "a novice in a safety-sensitive trade who must talk to practitioners",
+        "stakes": "bad labels slow an outage response in a retirement building",
+        "format": "reflection",
+        "requiredBeat": "Pavel asks a senior electrician what mistake hurts most, imagines the opposite of a clear label, then tests his labels by having another apprentice find one circuit cold"
+      },
+      "scenario": "Which label fails first during a basement outage at the retirement building? Pavel sits at the bench with the senior electrician's answer in his notebook: the one that makes sense only to the person who wrote it. Numbered breaker stickers curl at the metal panel door. Before the afternoon safety check, Pavel must decide whether to polish his own wording or ask another apprentice to find one cold circuit from it. The apprentice's search will show whether Pavel's words work for anyone else.",
+      "whatToDo": "Turn the senior electrician's warning into a test: write the label, hand it to another apprentice, and see whether the circuit can be found cold.",
+      "whyItMatters": "Practitioner advice becomes useful when it changes the test. Pavel learns whether the label works for the next person, not just for his own memory."
+    },
+    {
+      "exampleId": "ch03-ex06-hadiya-routing-drill",
+      "title": "Hadiya Moves the Drill Away From the Front Desk",
+      "tags": [
+        "municipal",
+        "routing",
+        "attention"
+      ],
+      "planSpec": {
+        "domain": "municipal clerk learning emergency-call routing software",
+        "audience": "a learner whose attention quality matters during short training windows",
+        "stakes": "a misrouted storm call sends residents to the wrong department",
+        "format": "before_after",
+        "requiredBeat": "Hadiya moves training away from the ringing front desk, runs one distraction-free routing drill, and stops when fatigue starts adding false clicks"
+      },
+      "scenario": "You hover over a red storm-call queue tab while Hadiya's front desk phone rings for the sixth time. Before, she trained between resident questions and misrouted two practice calls. After lunch, she moves to the back terminal, runs one clean routing drill, and stops when tired fingers start adding false clicks. The cutoff saves tomorrow's reps from bad practice. The quiet terminal gives Hadiya one clean route before the front desk gets loud again.",
+      "whatToDo": "Move the drill away from the ringing desk, run one clean route sequence, and stop when fatigue starts producing false clicks.",
+      "whyItMatters": "Attention quality is part of the learning design. A tired routing drill can rehearse the wrong clicks as efficiently as the right ones."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A trainee surveyor reads three manuals before measuring a parking lot, but never predicts where his first sketch will fail. What is the main weakness?",
+        "choices": [
+          "His research is not tied to a testable prediction that can improve the field attempt.",
+          "He has chosen a skill that requires too much outdoor practice.",
+          "He should memorize more terms before touching any measuring tool."
+        ],
+        "correctIndex": 0,
+        "explanation": "The missing prediction leaves study detached from the attempt. More terms or avoidance of fieldwork would deepen the delay rather than expose the weak point.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A choir member keeps reading about intervals but still misses the same entrance. Which next step best turns learning into practice?",
+        "choices": [
+          "Read a longer theory article and copy interval names into the margin.",
+          "Pick one hook, predict the entrance, sing it, then check the piano.",
+          "Drop hooks entirely and wait until the note can be found by ear alone."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hook, prediction, and piano check connect study to the sound. Reading longer stays passive, and rejecting hooks throws away a useful bridge.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A clinic volunteer asks an experienced nurse, \"What intake mistake causes the most trouble?\" The nurse names one missed medication question. What should the volunteer do with that cue?",
+        "choices": [
+          "Build a short drill that checks the medication question every time.",
+          "Ask three more nurses so the advice list feels broader before testing.",
+          "Keep studying the full intake manual until the whole packet feels safer."
+        ],
+        "correctIndex": 0,
+        "explanation": "Practitioner advice becomes useful when it changes the next drill. More advice or manual study can be helpful later, but neither tests the named mistake.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A new baker learns lamination by watching videos. Before each dough fold, she writes what layer problem she expects to see, then cuts one sample open afterward. What principle is strongest here?",
+        "choices": [
+          "The baker is honoring biology by working with food rather than screens.",
+          "The videos are replacing hands-on practice with safer preparation.",
+          "Predictions and tests are turning the videos into feedback on the next physical attempt."
+        ],
+        "correctIndex": 2,
+        "explanation": "The prediction and cut sample make the learning answer back. The videos are useful because they feed the fold, not because they replace it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A call-center trainee keeps drilling routing software during the loudest hour at the front desk and repeats the same false clicks. Which adjustment fits the guidance?",
+        "choices": [
+          "Increase the drill length so concentration gets stronger under pressure.",
+          "Ignore the false clicks until live calls make the task feel urgent.",
+          "Move the drill to a quieter window and stop when fatigue starts adding errors."
+        ],
+        "correctIndex": 2,
+        "explanation": "Attention and fatigue shape what gets rehearsed. A quieter window and cutoff protect clean reps, while longer noisy drills may install the errors.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "In a volunteer bike shop, a trainee mechanic creates a wheel-removal checklist after watching two repair videos, but the checklist stays taped above the bench while every actual bike gets handled from memory. Why is the checklist still weak?",
+        "choices": [
+          "A scaffold earns value only when it guides a real attempt and reveals what still fails.",
+          "A checklist should include every possible repair before practice begins.",
+          "Checklists work only for office tasks, not physical tasks."
+        ],
+        "correctIndex": 0,
+        "explanation": "The checklist has to enter the task. If it never guides a real wheel removal, it is an object of preparation rather than a scaffold for practice.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A language learner reviews flashcards every night but never tries to order at the neighborhood bakery. The cards feel productive. What question should she ask?",
+        "choices": [
+          "How can I make the flashcard streak longer so the habit feels stable?",
+          "Which card review will change the next real bakery exchange, and how will I test that?",
+          "Which grammar topic should I add before speaking in public?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The review needs a live test. A longer streak or extra grammar may preserve comfort while leaving the bakery exchange untouched.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A trainee gardener reads about soil, light, and watering, then plants seedlings without any prediction about what might fail. Two weeks later, half die. What would have improved the learning loop?",
+        "choices": [
+          "Read fewer guides so the planting work feels less complicated at first.",
+          "Wait to plant until soil, light, and watering all feel fully understood.",
+          "Predict one likely failure, then check that condition each day."
+        ],
+        "correctIndex": 2,
+        "explanation": "A prediction gives the guide material a test in the planter. Reading less or waiting for full understanding does not create a clearer feedback signal.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "An intern says, \"I read four examples before the site visit, so taking field notes would be extra.\" Is that preparation strong enough?",
+        "choices": [
+          "Yes, because broader exposure makes the first field attempt safer.",
+          "No, because preparation must create a prediction the visit can test.",
+          "Yes, if the examples came from a senior practitioner."
+        ],
+        "correctIndex": 1,
+        "explanation": "Preparation earns its place when it changes the attempt. Field notes and predictions let the site visit answer back; reading alone can still postpone the first useful test.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "How do you know whether research is helping a skill or delaying it?",
+      "back": "Ask what the research changes in the next attempt. If it produces no prediction, cue, checklist, or test, it may be delaying contact.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A learner keeps reading but avoids first attempts. What should happen next?",
+      "back": "Turn one piece of study into a small test. Make a prediction, try the rep, and let the result decide what to study next.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What makes a practitioner cue better than more background reading?",
+      "back": "A practitioner can name the mistake that hurts in the real setting. The cue becomes valuable when it turns into a drill or test.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why can attention and fatigue change the value of a practice block?",
+      "back": "Practice installs what is repeated. If distraction or fatigue creates false clicks, sloppy labels, or missed cues, the session may rehearse the wrong pattern.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A learner keeps asking more experts before making a field attempt. What is the trap?",
+      "back": "More opinions replace the attempt. Consulting another expert feels productive, but it postpones the moment when the task itself gives feedback. The learner stays in preparation without a test to fail.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Make preparation accountable to practice. Every reading session, model, hook, checklist, or expert cue should change what you try next or how you judge the attempt.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If you open a training article, then write the one action it will change before you read past the first useful answer."
+      },
+      {
+        "context": "school",
+        "plan": "If review feels comfortable, then make a prediction and test recall before opening the answer."
+      },
+      {
+        "context": "field practice",
+        "plan": "If a first attempt is coming, then ask a practitioner which mistake hurts most and build that cue into your checklist."
+      },
+      {
+        "context": "personal",
+        "plan": "If tired practice starts producing new errors, then stop the block and schedule a shorter cleaner test."
+      }
+    ],
+    "twentyFourHourChallenge": "Before your next practice block, write one prediction about what will go wrong and one test that will tell you whether you were right.",
+    "weeklyPractice": "Once this week, review your study time and mark each item as prediction, scaffold, practitioner cue, test, or delay. Cut one delay before the next session.",
+    "title": "Make Preparation Answer Practice"
+  },
+  "memorableLines": [
+    {
+      "text": "Study that never reaches the rep is only a quieter kind of delay.",
+      "location": "breakdown.fastRead",
+      "why": "It names the central failure mode in plain language without rejecting study itself."
+    },
+    {
+      "text": "A prediction makes the lesson answer back.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a compact reason to test before checking the answer."
+    },
+    {
+      "text": "Learning earns its place when practice can feel the difference.",
+      "location": "breakdown.fullRead",
+      "why": "It closes the chapter with a concrete standard for useful preparation."
+    }
+  ]
+}

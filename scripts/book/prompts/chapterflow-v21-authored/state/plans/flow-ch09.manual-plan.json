@@ -1,0 +1,197 @@
+{
+  "chapterId": "flow-ch09",
+  "number": 9,
+  "title": "Cheating Chaos",
+  "coreMove": "When disorder arrives, separate the uncontrollable blow from the next controllable ordering move and rebuild attention around that move.",
+  "sourcePressure": "Adversity can sometimes be transformed through disciplined attention, coping, and the power of dissipative structures, but suffering must not be romanticized.",
+  "chapterSpecificMisunderstanding": "Claim tragedy is secretly good or that resilient people simply choose the right attitude.",
+  "sourceAlignmentTerms": [
+    "tragedies transformed",
+    "coping with stress",
+    "dissipative structures",
+    "autotelic self",
+    "adversity",
+    "attention",
+    "order"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "dissipative structures",
+      "detail": "the frozen contents list the power of dissipative structures as a Chapter 9 subheading",
+      "useIn": "both",
+      "phrasingHint": "A dissipative structure does not deny disorder; it uses the pressure of disorder to form a new pattern that was not needed before."
+    },
+    {
+      "kind": "artifact",
+      "name": "tragedies transformed",
+      "detail": "the frozen contents list tragedies transformed as a Chapter 9 subheading",
+      "useIn": "fullRead",
+      "phrasingHint": "Tragedies transformed is a careful phrase: the loss is not praised, but the mind can sometimes refuse to let loss write every remaining line."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic cheating chaos definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Luke",
+      "domain": "a small-theater director after the lead actor breaks an ankle",
+      "audience": "creative teams hit by sudden disruption",
+      "stakes": "opening night is close and panic can scatter the cast",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "the empty rehearsal mark is still taped on the floor, and Luke chooses whether to cancel practice or rebuild blocking around seated delivery",
+      "firstImage": "The center-stage tape mark has no actor on it",
+      "mustInclude": [
+        "stage tape",
+        "folding chair",
+        "revised blocking page"
+      ],
+      "mustAvoid": [
+        "show-must-go-on cliche"
+      ]
+    },
+    {
+      "protagonistName": "Anya",
+      "domain": "a cafe owner after a freezer failure ruins inventory",
+      "audience": "small business owners under material loss",
+      "stakes": "cash is tight and staff are waiting for a lead",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she reviews the morning she yelled at the ruined stock, then the moment she sorted salvage, refunds, and a temporary menu into three visible piles",
+      "firstImage": "Meltwater runs under the freezer door",
+      "mustInclude": [
+        "temporary menu",
+        "refund list",
+        "salvage crate"
+      ],
+      "mustAvoid": [
+        "entrepreneur hustle moral"
+      ]
+    },
+    {
+      "protagonistName": "Chris",
+      "domain": "a university rower rehabbing after being cut from the boat",
+      "audience": "athletes whose identity breaks around a setback",
+      "stakes": "he can either obsess over the roster or turn rehab into measurable control",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "his coach asks what part of the week still belongs to him, and Chris chooses three rehab markers instead of replaying selection day",
+      "firstImage": "\"What still belongs to you this week?\" the coach asks",
+      "mustInclude": [
+        "resistance band",
+        "selection email",
+        "rehab chart"
+      ],
+      "mustAvoid": [
+        "sports comeback montage"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "a public defender after a brutal loss in court",
+      "audience": "professionals carrying moral stress",
+      "stakes": "the next client needs her attention before despair takes the whole day",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "you sit with the file closed and must decide whether grief consumes the afternoon or becomes one corrected intake question for tomorrow",
+      "firstImage": "You close the file and the courthouse hallway keeps moving",
+      "mustInclude": [
+        "case file",
+        "intake form",
+        "courthouse bench"
+      ],
+      "mustAvoid": [
+        "legal drama heroics"
+      ]
+    },
+    {
+      "protagonistName": "Jonas",
+      "domain": "a farmer responding to hail damage",
+      "audience": "people facing uncontrollable physical damage",
+      "stakes": "the crop loss is real and cannot be reframed away",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "ask what order is possible after hail, then show Jonas marking three fields by action instead of staring at every torn leaf",
+      "firstImage": "What can order mean when the field is already hit?",
+      "mustInclude": [
+        "hail dents",
+        "field map",
+        "repair flags"
+      ],
+      "mustAvoid": [
+        "nature as metaphor only"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "a hospital resident after a failed procedure simulation",
+      "audience": "trainees under shame and stress",
+      "stakes": "if shame owns the night, the same mistake may repeat",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Layla first hides in the stairwell, then writes the one failed step on a practice card and repeats it until feedback changes",
+      "firstImage": "Layla spent six minutes in the stairwell before she could name the error",
+      "mustInclude": [
+        "stairwell landing",
+        "practice card",
+        "simulation tray"
+      ],
+      "mustAvoid": [
+        "medical claims beyond scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "avoiding romanticized suffering",
+      "finding a controllable ordering move inside stress",
+      "explaining dissipative structures in practical scenario terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one current disruption, draw two columns for cannot control and can order next, then do the smallest visible item in the second column.",
+  "readingTimeMinutes": 12
+}

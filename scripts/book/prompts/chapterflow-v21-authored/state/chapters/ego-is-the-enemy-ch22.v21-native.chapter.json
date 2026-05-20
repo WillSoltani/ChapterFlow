@@ -1,0 +1,335 @@
+{
+  "chapterId": "ego-is-the-enemy-ch22",
+  "number": 22,
+  "title": "Fight club moments",
+  "readingTimeMinutes": 12,
+  "hook": "Blame deleted from a failed board deck leaves the weak mechanism with nowhere to hide.",
+  "counterintuition": "The hit is not valuable because it hurts. It is valuable only if you use the pain to find the weak point before ego performs or denies.",
+  "tryThisNow": "Name the sting, then write the exact mechanism it exposed and one repair you can begin before defending yourself.",
+  "keyTakeaway": "A fight club moment is a painful reality test: keep the evidence visible long enough to repair the weak point it revealed.",
+  "breakdown": {
+    "fastRead": "Marit opens the failed startup board update and deletes the blame slide. The missed revenue target is still there. The customer pipeline is still thinner than her forecast. The humiliation wants a speech.\n\nShe looks for the weak mechanism first.\n\nPain can become theater quickly. You explain how hard it was, how unfair the room felt, how badly others behaved. Or you collapse and call yourself finished. The useful path is narrower: what did the hit reveal that comfort had hidden?\n\nThe sting is a pointer, not a performance.",
+    "deepRead": "Soren sits on the bench after a boxing gym sparring round, mouthguard in hand, pride bruised more than his cheek. The coach does not give a speech. He asks one question: what did the blow reveal?\n\nSoren watches the clip.\n\nThe answer is not mystical. His right hand drops after the jab. He has been praised for speed, so nobody pressed the guard problem until contact made it obvious. The painful moment is useful only because it points to a repairable mechanism.\n\nHumiliation is not the lesson. Evidence is.\n\nThat distinction keeps the moment clean. If Soren worships the pain, he learns to endure hits. If he avoids the pain, he protects the dropped hand. If he extracts the evidence, he gets a practice target.\n\nErik meets the same force after a failed clinical skills station. The review is embarrassing: he missed the medication allergy question in front of two assessors. His face burns, and he wants to argue about the station design. Instead he writes a repair list and completes one correction immediately, adding the allergy prompt to his opening script and rehearsing it with the next practice chart.",
+    "fullRead": "Johan stands in a restaurant kitchen after a health-code warning, listening to a line cook read the inspector's note aloud. The cold station record is incomplete. The inspector's tone was sharp. Johan's first impulse is revenge: write a complaint, call the inspector inconsistent, make the staff remember how much he has carried.\n\nHe extracts the useful fact from the sting.\n\nThe useful fact is not everything the moment contains. The moment contains embarrassment, tone, fear, anger, and the public feel of being corrected. Ego wants to use those extras to avoid the weak point. If the inspector was rude, the cold log can remain broken. If the room was humiliating, the missing record can become secondary. That is the trap.\n\nWhat fact remains useful after the sting is removed?\n\nGreta practices this in a mountain rescue after-action. The team made a route call that added thirty minutes to an injured hiker's extraction. During review, one member says the map check was rushed. Greta feels the comment as an attack on her field judgment. She keeps the map open anyway. The painful evidence stays visible long enough to show the mechanism: they had no second-person terrain confirmation before committing to the traverse.\n\nThat is the purpose of the fight club moment. Not to make pain noble. Not to turn failure into a dramatic badge. The moment is useful because it defeats your preferred explanation for a few seconds. It interrupts the story where you are misunderstood, unlucky, too good for the room, or too wounded to learn. If you move quickly, you can use that interruption before ego repairs the story.\n\nThe timing matters. Wait too long and the mind builds a legal case. Move too fast and you may only react. The useful middle is one small repair started while the evidence is still uncomfortable.\n\nKlara faces it during thesis defense revisions. A committee member calls her methods chapter under-evidenced, and the comment lands like a slap. You are watching her cursor hover over an email defending the whole project. Instead she opens the blank evidence column in the rejected grant rubric she had ignored for weeks. The exact place ego wanted to protect becomes the place she practices.\n\nFight club moments.\n\nKeep the painful evidence on the table for one more minute than comfort wants. Find the mechanism. Repair one piece before you tell the story of the pain. The hit is not the point. The exposed weak point is."
+  },
+  "examples": [
+    {
+      "exampleId": "ch22-ex01-marit-board-deck",
+      "title": "Marit Deletes the Blame Slide",
+      "tags": [
+        "predict",
+        "startup",
+        "weak-point"
+      ],
+      "planSpec": {
+        "domain": "failed startup board update",
+        "audience": "a reader facing failed startup board update pressure who needs to practice chapter 22's move without turning it into fight club moments advice in general",
+        "stakes": "a concrete standard in failed startup board update will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "predict_reveal",
+        "requiredBeat": "lets the humiliating hit point to the weak mechanism and changes that mechanism before speaking about pain in the concrete setting of failed startup board update; make the lesson visible through action, not explanation"
+      },
+      "scenario": "It took Marit one failed board update to see what the blame slide protected. The missed revenue target was public, and everyone expected her to explain the pain. The reveal was the thin customer pipeline behind the forecast. Before speaking about humiliation, Marit had to let the deck point to the weak mechanism. At 3:58 p.m. inside the failed startup board update setting, Marit must decide: check the board update clock.",
+      "whatToDo": "Delete the blame slide, mark the pipeline mechanism that failed, and change the forecast review before discussing how the meeting felt.",
+      "whyItMatters": "Marit uses the hit as evidence. The painful room reveals the system weakness before ego turns it into performance."
+    },
+    {
+      "exampleId": "ch22-ex02-soren-sparring-clip",
+      "title": "Soren Watches the Dropped Hand",
+      "tags": [
+        "postmortem",
+        "boxing",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "boxing gym sparring debrief",
+        "audience": "a reader facing boxing gym sparring debrief pressure who needs to practice chapter 22's move without turning it into fight club moments advice in general",
+        "stakes": "a concrete standard in boxing gym sparring debrief will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "postmortem",
+        "requiredBeat": "asks what the blow revealed that comfort had hidden in the concrete setting of boxing gym sparring debrief; make the lesson visible through action, not explanation"
+      },
+      "scenario": "What did the blow reveal that comfort had hidden? Soren's sparring postmortem began with a bruised cheek and an urge to explain the matchup. It changed when the coach replayed the clip. After every jab, Soren's right hand dropped. The pain had pointed to a repairable guard problem.",
+      "whatToDo": "Watch the clip once, name the dropped-hand mechanism, and drill the guard reset before discussing the matchup.",
+      "whyItMatters": "Soren keeps the painful evidence useful. Humiliation is not the lesson; the exposed mechanism is."
+    },
+    {
+      "exampleId": "ch22-ex03-erik-skills-station",
+      "title": "Erik Adds the Allergy Prompt",
+      "tags": [
+        "scene",
+        "clinical",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "failed clinical skills station",
+        "audience": "a reader facing failed clinical skills station pressure who needs to practice chapter 22's move without turning it into fight club moments advice in general",
+        "stakes": "a concrete standard in failed clinical skills station will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "scene",
+        "requiredBeat": "turns the embarrassing review into a repair list with one correction done immediately in the concrete setting of failed clinical skills station; make the lesson visible through action, not explanation"
+      },
+      "scenario": "The exam room smells like vinyl gloves when Erik reads the failed clinical skills station review. He missed the medication allergy question in front of two assessors. His first move is to argue about station design. Before the appeal form opens, he must decide whether embarrassment becomes defense or one repair starts immediately. At 7:24 p.m. inside the failed clinical skills station setting, Erik must decide: inspect the skills station appeal.",
+      "whatToDo": "Write the missed allergy question into his opening script and rehearse it with the next practice chart.",
+      "whyItMatters": "Erik turns the sting into a repair list. The station may have flaws, but the exposed weak point gets fixed first."
+    },
+    {
+      "exampleId": "ch22-ex04-johan-cold-log",
+      "title": "Johan Extracts the Useful Fact",
+      "tags": [
+        "vignette",
+        "restaurant",
+        "correction"
+      ],
+      "planSpec": {
+        "domain": "restaurant health-code warning",
+        "audience": "a reader facing restaurant health-code warning pressure who needs to practice chapter 22's move without turning it into fight club moments advice in general",
+        "stakes": "a concrete standard in restaurant health-code warning will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "vignette",
+        "requiredBeat": "refuses both revenge and collapse by extracting the useful fact from the sting in the concrete setting of restaurant health-code warning; make the lesson visible through action, not explanation"
+      },
+      "scenario": "\"Cold station log incomplete,\" the line cook reads from the health-code warning. Johan hears the inspector's tone again and wants revenge. The missing record is still true. Before drafting a complaint, Johan must decide whether the sting or the useful fact gets the first action. At 8:37 a.m. inside the restaurant healthcode warning setting, Johan must decide: compare the healthcode warning mark.",
+      "whatToDo": "Pull the cold log, fix the record process, and leave any tone complaint until after the food-safety mechanism is repaired.",
+      "whyItMatters": "Johan avoids revenge and collapse. The useful fact survives the sting long enough to improve the kitchen."
+    },
+    {
+      "exampleId": "ch22-ex05-greta-map-check",
+      "title": "Greta Keeps the Map Open",
+      "tags": [
+        "dialogue",
+        "rescue",
+        "after-action"
+      ],
+      "planSpec": {
+        "domain": "mountain rescue after-action",
+        "audience": "a reader facing mountain rescue after-action pressure who needs to practice chapter 22's move without turning it into fight club moments advice in general",
+        "stakes": "a concrete standard in mountain rescue after-action will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "dialogue",
+        "requiredBeat": "keeps the painful evidence visible long enough to learn from it in the concrete setting of mountain rescue after-action; make the lesson visible through action, not explanation"
+      },
+      "scenario": "The rescue after-action room is quiet when a teammate says, \"The map check was rushed.\" Greta feels the comment hit her field judgment. The route added thirty minutes to extraction. Before closing the file, she must decide whether the map stays visible long enough to show the missing second-person terrain check. At 9:50 p.m. inside the mountain rescue afteraction setting, Greta must decide: note the rescue afteraction box.",
+      "whatToDo": "Keep the map open, identify the missing confirmation step, and add it to the next route-call protocol.",
+      "whyItMatters": "Greta lets painful evidence remain in view. The weak mechanism becomes clearer than the threat to her pride."
+    },
+    {
+      "exampleId": "ch22-ex06-klara-evidence-column",
+      "title": "Klara Opens the Blank Column",
+      "tags": [
+        "decision",
+        "thesis",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "thesis defense revisions",
+        "audience": "a reader facing thesis defense revisions pressure who needs to practice chapter 22's move without turning it into fight club moments advice in general",
+        "stakes": "a concrete standard in thesis defense revisions will be weakened if ego gets the reward, story, control, or grievance it wants",
+        "format": "decision_point",
+        "requiredBeat": "finds the exact place ego wants to protect and exposes it to practice in the concrete setting of thesis defense revisions; make the lesson visible through action, not explanation"
+      },
+      "scenario": "You are beside Klara after a committee member calls her methods chapter under-evidenced. Her cursor hovers over a defensive email. A blank evidence column sits in the rubric she has avoided for weeks. Before replying, the choice is whether to protect the sore place or expose it to practice.",
+      "whatToDo": "Open the evidence column, add three missing support points, and delay the defensive email until the repair has started.",
+      "whyItMatters": "Klara finds the exact place ego wanted to protect. The painful comment becomes a practice target."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A founder leaves a failed board update embarrassed and wants to explain how unfair the room felt. The forecast pipeline was also thin. What should happen first?",
+        "choices": [
+          "Identify the pipeline mechanism that failed and change the review process.",
+          "Write a long explanation of the emotional tone in the room.",
+          "Blame the sales lead so the board sees accountability"
+        ],
+        "correctIndex": 0,
+        "explanation": "The thin pipeline is the weak mechanism exposed by the hit. Emotional explanation and blame both shift attention away from repair.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Identifying the pipeline mechanism that failed and changing the review process is using the hit. The room's unfairness is real and secondary; the pipeline gap is the lesson the hit exposed."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A trainee fails a clinical station after missing an allergy question. He wants to argue about the station design. What is the useful first correction?",
+        "choices": [
+          "Ignore the miss because public embarrassment already punished him enough.",
+          "Add the allergy prompt to his opening script and rehearse it once.",
+          "File a complaint before reviewing the station notes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The missed allergy question is a repairable mechanism. Complaints may come later, but first action should go to the exposed weak point.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Adding the allergy prompt to his opening script and rehearsing it once is the smallest visible repair tied to the weak mechanism. The station's design is a separate, deferrable question."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A manager receives a harsh inspection note that includes one accurate missing log. Which response avoids both revenge and collapse?",
+        "choices": [
+          "Write a retaliatory complaint so the inspector knows the tone was unfair.",
+          "Extract the accurate log issue, fix it, and postpone any tone complaint.",
+          "Call the whole operation broken because the warning was humiliating."
+        ],
+        "correctIndex": 1,
+        "explanation": "Extracting the useful fact keeps the evidence alive. Revenge and collapse both let pain take over the first move.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Extracting the accurate log issue, fixing it, and postponing any tone complaint is the disciplined move. The accurate part of harsh feedback is the part the work needs; the rest can wait."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a rescue leader feels attacked when a teammate says the map check was rushed. What should she ask? The flawed note is on the table, and the next move decides whether repair starts now.",
+        "choices": [
+          "How can I prove the teammate was disrespectful",
+          "How quickly can we close this review so morale survives?",
+          "What evidence does this painful comment reveal about the route process?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The evidence question lets the hit locate the weak process. Disrespect proof and quick closure both protect ego from learning.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "\"What evidence does this painful comment reveal about the route process?\" is the question that converts the comment into useful information about the map check."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "While reviewing the boundary evidence, a doctoral candidate gets a blunt comment about an under-evidenced methods chapter. Which action uses the moment well? A blue folder remains open at the station; the next choice changes the handoff before noon.",
+        "choices": [
+          "Open the evidence gap and add support before replying.",
+          "Send a defense of the whole project before revising anything.",
+          "Treat the comment as proof the committee is hostile."
+        ],
+        "correctIndex": 0,
+        "explanation": "Opening the evidence gap turns pain into practice. The defensive email and hostility story protect the weak point.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Opening the evidence gap and adding support before replying is using the hit. The methods chapter is improved by the painful comment in a way comfort would not have produced."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "With the judgment record open, a boxer is embarrassed by a clean hit in sparring. The clip shows his hand drops after every jab. What is the lesson? One dated email is still unsent, and the next step will expose the motive behind it.",
+        "choices": [
+          "The pain itself proves he is becoming tougher; judgment record work lacks a checked response",
+          "The hit is useful only if it reveals and repairs the dropped-hand mechanism.",
+          "He should avoid the partner who exposed the flaw"
+        ],
+        "correctIndex": 1,
+        "explanation": "The dropped-hand mechanism is the value of the moment. Pain alone is not wisdom, and avoidance protects the flaw.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "The hit is useful only if it reveals and repairs the dropped-hand mechanism. Embarrassment without the repair is just embarrassment; the hit becomes a teacher only inside the correction."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Facing the hit choice, a team calls a humiliating review their turning point but never changes the process it exposed. What is missing? A waiting colleague has the draft in hand, and the practical choice cannot stay abstract.",
+        "choices": [
+          "A more dramatic story about the humiliation",
+          "A public statement that the review hurt; facing choice practice skips the nameed claim",
+          "A visible repair tied to the weak mechanism the review revealed."
+        ],
+        "correctIndex": 2,
+        "explanation": "Without repair, the moment becomes performance. The value lies in changing the weak mechanism, not retelling pain.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "A visible repair tied to the weak mechanism is what is missing. A turning point narrative without process change is a story; the lesson asks for the change."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Under regard pressure, an engineer receives blunt feedback and says, \"That was just humiliating.\" Which question should follow?",
+        "choices": [
+          "What weak point did the humiliation expose that comfort had hidden?",
+          "Who can reassure me that the reviewer was too harsh",
+          "How can I make sure no one gives feedback that bluntly again?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The second question uses the sting as a pointer. Reassurance and feedback control both move away from the repairable weak point.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "\"What weak point did the humiliation expose that comfort had hidden?\" is the question that turns blunt feedback into a usable signal. Without the question, the humiliation is the whole event."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Before deciding, a project lead wants to keep painful evidence visible for one more minute than comfort allows. Why? The review screenshot is still projected, and the team must choose whether to learn from it or rush past it.",
+        "choices": [
+          "So the team can feel the pain fully; the deciding project answer dodges the detail",
+          "So the person responsible can be shamed accurately.",
+          "So the weak mechanism can be seen before ego repairs the story."
+        ],
+        "correctIndex": 2,
+        "explanation": "The extra minute is for evidence, not suffering or shaming. Ego quickly rebuilds a protective story if the weak point is not named.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Keeping painful evidence visible for one more minute than comfort allows lets the weak mechanism be seen before ego repairs the story. The instinct is to repair the feeling; the lesson is to wait."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What is the purpose of a fight club moment?",
+      "back": "To reveal a weak mechanism that comfort had hidden, then start one repair before ego turns pain into performance or denial.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What is the hit not for?",
+      "back": "It is not for revenge, collapse, drama, proof of toughness, or a story about how much the moment hurt.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What should you extract from a painful correction?",
+      "back": "The useful fact that remains after tone, embarrassment, fear, and defensiveness are removed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why keep painful evidence visible briefly?",
+      "back": "Because ego quickly repairs the self-protective story. One extra minute may reveal the actual mechanism to fix.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What is the first action after humiliation?",
+      "back": "Name the weak point it exposed and complete one small repair before telling the story of the pain.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Using the Hit to Expose the Mechanism",
+    "coreSkill": "You learn to use painful correction as evidence without glamorizing pain. The key is to find the weak mechanism before ego performs, denies, or retaliates.",
+    "ifThenPlans": [
+      {
+        "context": "humiliation",
+        "plan": "If a correction humiliates me, then I will name the useful fact before discussing how the moment felt."
+      },
+      {
+        "context": "defensiveness",
+        "plan": "If I want to defend the whole self, then I will find the exact mechanism the feedback exposed."
+      },
+      {
+        "context": "retaliation",
+        "plan": "If I want revenge for the sting, then I will complete one repair before writing any complaint."
+      },
+      {
+        "context": "postmortem",
+        "plan": "If the review hurts, then I will keep the evidence visible long enough to add one process change."
+      }
+    ],
+    "twentyFourHourChallenge": "Use one painful piece of feedback today by extracting the useful fact and starting a repair before defending yourself.",
+    "weeklyPractice": "Once a week, review a humiliating moment and ask which weak mechanism it exposed and whether you repaired it."
+  },
+  "memorableLines": [
+    {
+      "text": "The sting is a pointer, not a performance.",
+      "location": "breakdown.fastRead",
+      "why": "It keeps the chapter from glamorizing humiliation."
+    },
+    {
+      "text": "Humiliation is not the lesson. Evidence is.",
+      "location": "breakdown.deepRead",
+      "why": "It names the useful part of the painful moment."
+    },
+    {
+      "text": "The hit is not the point. The exposed weak point is.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the chapter's core distinction."
+    }
+  ]
+}

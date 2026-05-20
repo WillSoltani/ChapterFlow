@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch10",
+  "number": 10,
+  "title": "Consumption",
+  "coreMove": "Decode purchases as signals of traits, not only as satisfaction of needs or wealth display.",
+  "sourcePressure": "The source widens conspicuous consumption into consumer signaling, where purchases communicate wealth, conscientiousness, adventurousness, and identity.",
+  "chapterSpecificMisunderstanding": "The writer makes the chapter only about luxury status and misses conscientiousness, adventurousness, and identity signals.",
+  "sourceAlignmentTerms": [
+    "consumption",
+    "conspicuous consumption",
+    "wealth",
+    "conscientiousness",
+    "adventurousness",
+    "identity",
+    "consumer signaling"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "conspicuous consumption as one pattern among several",
+      "detail": "The source says conspicuous consumption is only one signaling pattern in a broader landscape.",
+      "useIn": "both",
+      "phrasingHint": "The expensive object is one dialect, not the whole language."
+    },
+    {
+      "kind": "event",
+      "name": "purchases signaling conscientiousness",
+      "detail": "The source says purchases can signal conscientiousness.",
+      "useIn": "both",
+      "phrasingHint": "The tidy purchase can say I plan, maintain, and notice small duties."
+    },
+    {
+      "kind": "event",
+      "name": "purchases signaling adventurousness and identity",
+      "detail": "The source says purchases can signal adventurousness and identity.",
+      "useIn": "deepRead",
+      "phrasingHint": "A purchase can announce the kind of risk, tribe, or self a person wants others to read."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch10: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch10: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch10: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch10: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch10: no generic timer reflection",
+      "the-elephant-in-the-brain-ch10: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch10: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch10: no coffee shop conversation as the default social proof",
+      "no luxury watch scene",
+      "no personal finance lecture"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "bikepacking gear checkout before a weekend trip",
+      "audience": "a friend reading a purchase beyond price",
+      "stakes": "a rider may be signaling competence and adventurousness more than comfort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Megan watches Olivier lay out the repair kit before the carbon frame and realizes the signal is not wealth but field readiness.",
+      "firstImage": "Chain oil darkens the rag beside an unopened titanium stove.",
+      "mustInclude": [
+        "repair kit",
+        "titanium stove",
+        "route card"
+      ],
+      "mustAvoid": [
+        "bike helmet anchor"
+      ]
+    },
+    {
+      "domain": "daycare parent lunchbox table",
+      "audience": "a parent noticing conscientiousness signals without turning them into moral rank",
+      "stakes": "care can become display through objects children carry",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Anya's labeled containers and separate actual allergy care from the visible signal of being the organized parent.",
+      "firstImage": "You notice the tiny printed labels before the sandwich.",
+      "mustInclude": [
+        "labeled containers",
+        "allergy card",
+        "cubicle shelf"
+      ],
+      "mustAvoid": [
+        "parent shaming"
+      ]
+    },
+    {
+      "domain": "remote-work desk setup video",
+      "audience": "a manager interpreting a contractor's background objects",
+      "stakes": "identity signals may substitute for proof of reliability",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What does the analog notebook say that the task history does not?",
+      "firstImage": "What does the analog notebook announce before Chris answers?",
+      "mustInclude": [
+        "webcam frame",
+        "analog notebook",
+        "task history"
+      ],
+      "mustAvoid": [
+        "generic Zoom call"
+      ]
+    },
+    {
+      "domain": "farmers market tote choice",
+      "audience": "a vendor reading customer identity signals around sustainability",
+      "stakes": "the tote may communicate identity more than carrying capacity",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"No bag, thanks,\" Yusuf says, and Marit notices he holds the old co-op tote label outward while declining one more bag.",
+      "firstImage": "\"No bag, thanks,\" Yusuf says with the faded co-op logo facing the line.",
+      "mustInclude": [
+        "co-op tote",
+        "paper bag stack",
+        "apple crate"
+      ],
+      "mustAvoid": [
+        "virtue signaling rant"
+      ]
+    },
+    {
+      "domain": "law firm recruiting dinner wardrobe",
+      "audience": "a junior associate choosing what competence to signal",
+      "stakes": "a too-expensive suit may signal wealth while weakening conscientious fit",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "The associate chooses the repaired navy jacket because the visible tailoring signals care without making the dinner about money.",
+      "firstImage": "Rain beads on the coat-check tags beside a row of black garment bags.",
+      "mustInclude": [
+        "repaired jacket",
+        "coat-check tag",
+        "recruiting dinner card"
+      ],
+      "mustAvoid": [
+        "fashion advice column"
+      ]
+    },
+    {
+      "domain": "hiking club first trip packing",
+      "audience": "a trip leader reading overpacked gear kindly",
+      "stakes": "novices signal eagerness and identity while creating safety burdens",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Megan one overloaded ridge walk to teach packing as signal management: carry what proves readiness, leave what only performs belonging.",
+      "firstImage": "It took Megan one overloaded ridge walk to weigh every dangling carabiner differently.",
+      "mustInclude": [
+        "carabiners",
+        "pack scale",
+        "ridge map"
+      ],
+      "mustAvoid": [
+        "outdoor hero story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "classify consumption signals beyond wealth",
+      "distinguish trait signaling from need satisfaction",
+      "evaluate when a purchase signal helps or distorts judgment"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one object you chose to make visible today. Name the trait it signals: wealth, care, taste, adventurousness, identity, or discipline.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,201 @@
+{
+  "chapterId": "so-good-they-cant-ignore-you-ch10",
+  "number": 10,
+  "title": "The Second Control Trap",
+  "coreMove": "Reject control moves whose support is too thin to survive the first hard test.",
+  "sourcePressure": "The second control trap is autonomy pursued without enough durable support beneath it.",
+  "chapterSpecificMisunderstanding": "Treating this as generic risk-aversion or never leaving unless success is guaranteed.",
+  "sourceAlignmentTerms": [
+    "second control trap",
+    "fragile autonomy",
+    "durable support",
+    "timing",
+    "support beneath control",
+    "leverage",
+    "risk"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Do not ask autonomy to do the work that evidence has not done.",
+      "detail": "The locked TOC confirms the chapter and sidecar support keeps the focus on fragile support beneath autonomy.",
+      "useIn": "both",
+      "phrasingHint": "The second trap is not wanting freedom; it is asking freedom to stand on a floor that is not there."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic career panic in an inbox",
+      "worker staring at a resignation letter",
+      "heroic founder myth before any evidence test",
+      "so-good-they-cant-ignore-you-ch10: do not open with a generic passion panic"
+    ],
+    "counterintuition": [
+      "Passion is not X but Y",
+      "Most people think meaning comes first",
+      "The problem is not motivation, it is discipline",
+      "so-good-they-cant-ignore-you-ch10: avoid neat passion versus skill reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect on your career",
+      "write your passion and circle it",
+      "ask if your job feels meaningful in general",
+      "so-good-they-cant-ignore-you-ch10: avoid vague purpose journaling"
+    ],
+    "examples": [
+      "generic office worker choosing between passion and paycheck",
+      "startup founder in a glass conference room",
+      "student staring at a blank purpose notebook",
+      "kitchen table, mug, laptop, and life crisis",
+      "so-good-they-cant-ignore-you-ch10: avoid repeated laptop, mug, kitchen, whiteboard, resignation shells"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Aanya",
+      "domain": "freelance medical illustration launch",
+      "audience": "a practitioner responsible for freelance medical illustration launch",
+      "stakes": "freelance medical illustration launch will either gain a defensible next move or drift into the chapter-specific trap: Treating this as generic risk-aversion or never leaving unless success is guaranteed.",
+      "format": "scene",
+      "openingDevice": "retrospective",
+      "requiredBeat": "places praise, paying demand, runway, and repeatable skill beside ribcage sketch under tracing film, then postpones the autonomy leap when only praise is solid",
+      "firstImage": "ribcage sketch under tracing film",
+      "mustInclude": [
+        "ribcage sketch under",
+        "fragile autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "mobile bike repair van",
+      "audience": "a practitioner responsible for mobile bike repair van",
+      "stakes": "mobile bike repair van will either gain a defensible next move or drift into the chapter-specific trap: Treating this as generic risk-aversion or never leaving unless success is guaranteed.",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "places praise, paying demand, runway, and repeatable skill beside repair tally on a clipboard, then postpones the autonomy leap when only praise is solid",
+      "firstImage": "repair tally on a clipboard",
+      "mustInclude": [
+        "repair tally on",
+        "fragile autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Hadiya",
+      "domain": "independent curriculum consulting",
+      "audience": "a practitioner responsible for independent curriculum consulting",
+      "stakes": "independent curriculum consulting will either gain a defensible next move or drift into the chapter-specific trap: Treating this as generic risk-aversion or never leaving unless success is guaranteed.",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "places praise, paying demand, runway, and repeatable skill beside procurement form under download stats, then postpones the autonomy leap when only praise is solid",
+      "firstImage": "procurement form under download stats",
+      "mustInclude": [
+        "procurement form under",
+        "fragile autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "artisan cheese aging room",
+      "audience": "a practitioner responsible for artisan cheese aging room",
+      "stakes": "artisan cheese aging room will either gain a defensible next move or drift into the chapter-specific trap: Treating this as generic risk-aversion or never leaving unless success is guaranteed.",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "places praise, paying demand, runway, and repeatable skill beside humidity gauge on a metal rack, then postpones the autonomy leap when only praise is solid",
+      "firstImage": "humidity gauge on a metal rack",
+      "mustInclude": [
+        "humidity gauge on",
+        "fragile autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Lin",
+      "domain": "app accessibility audit solo practice",
+      "audience": "a practitioner responsible for app accessibility audit solo practice",
+      "stakes": "app accessibility audit solo practice will either gain a defensible next move or drift into the chapter-specific trap: Treating this as generic risk-aversion or never leaving unless success is guaranteed.",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "places praise, paying demand, runway, and repeatable skill beside screen reader log beside invoices, then postpones the autonomy leap when only praise is solid",
+      "firstImage": "screen reader log beside invoices",
+      "mustInclude": [
+        "screen reader log",
+        "fragile autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "youth soccer academy coaching",
+      "audience": "a practitioner responsible for youth soccer academy coaching",
+      "stakes": "youth soccer academy coaching will either gain a defensible next move or drift into the chapter-specific trap: Treating this as generic risk-aversion or never leaving unless success is guaranteed.",
+      "format": "postmortem",
+      "openingDevice": "second_person",
+      "requiredBeat": "places praise, paying demand, runway, and repeatable skill beside rain-soaked cones in a trunk, then postpones the autonomy leap when only praise is solid",
+      "firstImage": "rain-soaked cones in a trunk",
+      "mustInclude": [
+        "rain-soaked cones in",
+        "fragile autonomy",
+        "written evidence"
+      ],
+      "mustAvoid": [
+        "generic career-change shell",
+        "abstract explanation without a visible action"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "stress-test autonomy support",
+      "distinguish boldness from fragility",
+      "time control moves by evidence"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before one autonomy leap, list the support under it: paying demand, repeatable skill, runway, and fallback evidence.",
+  "readingTimeMinutes": 12
+}

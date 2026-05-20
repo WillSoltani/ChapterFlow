@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch11",
+  "number": 11,
+  "title": "How to Look for Bird Poop",
+  "coreMove": "Replace far-seeing claims with small exposures that let reality reveal useful traces.",
+  "sourcePressure": "Under opacity, useful action comes from scouting, probes, traces, experiments, and contact with reality instead of grand long-range prophecy.",
+  "chapterSpecificMisunderstanding": "Treating the chapter as permission for random motion or opportunistic fog manipulation.",
+  "sourceAlignmentTerms": [
+    "bird poop",
+    "scouting",
+    "probes",
+    "experimentation",
+    "optional contact",
+    "traces",
+    "fieldcraft",
+    "false map"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "bird poop",
+      "detail": "the title anchors Taleb's practical move toward looking for traces and opportunities rather than pretending to see far ahead",
+      "useIn": "both",
+      "phrasingHint": "When the sky will not give you a map, the small mark on the ground may still tell you where to look."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "marine biology survey",
+      "audience": "a research lead unable to predict whale paths",
+      "stakes": "missing a migration clue while debating models",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the lead sends cheap acoustic buoys before writing the grant narrative",
+      "firstImage": "At 8:17 a.m., Giulia faces salt crust on a buoy casing.",
+      "mustInclude": [
+        "Giulia",
+        "salt crust on a buoy casing",
+        "bird poop"
+      ],
+      "mustAvoid": [
+        "Treating the chapter as permission for random motion or opportunistic fog manipulation.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "B2B product discovery",
+      "audience": "a founder unsure which workflow matters",
+      "stakes": "building a full platform from conference opinions",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the founder offers three manual concierge trials and watches what customers pull on",
+      "firstImage": "A first line of dialogue lands before the reader sees sticky notes on a borrowed office wall.",
+      "mustInclude": [
+        "Chiara",
+        "sticky notes on a borrowed office wall",
+        "scouting"
+      ],
+      "mustAvoid": [
+        "Treating the chapter as permission for random motion or opportunistic fog manipulation.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "rare-books acquisition",
+      "audience": "a bookseller guessing demand for an estate lot",
+      "stakes": "overpaying based on prestige titles",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the bookseller tests interest with private holds before bidding",
+      "firstImage": "Open on the texture, sound, or light of cotton gloves beside a foxed title page.",
+      "mustInclude": [
+        "Paula",
+        "cotton gloves beside a foxed title page",
+        "probes"
+      ],
+      "mustAvoid": [
+        "Treating the chapter as permission for random motion or opportunistic fog manipulation.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "urban wildlife planning",
+      "audience": "a parks manager debating where coyotes travel",
+      "stakes": "installing fencing in the wrong corridor",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the manager uses track pads for a week before ordering work",
+      "firstImage": "You are looking at paw prints pressed into fine sand before the choice becomes abstract.",
+      "mustInclude": [
+        "Isabel",
+        "paw prints pressed into fine sand",
+        "experimentation"
+      ],
+      "mustAvoid": [
+        "Treating the chapter as permission for random motion or opportunistic fog manipulation.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "career transition search",
+      "audience": "a finance analyst considering climate work",
+      "stakes": "quitting before testing fit or access",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the analyst does two shadow days and one small volunteer model before resigning",
+      "firstImage": "It takes Catarina several weeks to understand what visitor badge clipped to a recycled lanyard was really showing.",
+      "mustInclude": [
+        "Catarina",
+        "visitor badge clipped to a recycled lanyard",
+        "optional contact"
+      ],
+      "mustAvoid": [
+        "Treating the chapter as permission for random motion or opportunistic fog manipulation.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "specialty coffee sourcing",
+      "audience": "a roaster predicting which farm lot will sell",
+      "stakes": "committing inventory before customer taste is known",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the roaster runs paid micro-batches before signing the container order",
+      "firstImage": "green beans rattling in sample tins appears before any human enters the sentence.",
+      "mustInclude": [
+        "Anya",
+        "green beans rattling in sample tins",
+        "traces"
+      ],
+      "mustAvoid": [
+        "Treating the chapter as permission for random motion or opportunistic fog manipulation.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "design low-cost probes",
+      "learn from traces before hardening maps",
+      "stay active without counterfeiting vision"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Run one tiny probe today that can teach you something without requiring a big prediction first.",
+  "readingTimeMinutes": 12
+}

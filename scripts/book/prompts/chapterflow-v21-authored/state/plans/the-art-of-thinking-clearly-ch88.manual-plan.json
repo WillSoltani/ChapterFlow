@@ -1,0 +1,184 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch88",
+  "number": 88,
+  "title": "Illusion of Attention",
+  "coreMove": "Test the appearance created by attention, then replace it with a visible check on reality.",
+  "sourcePressure": "The frozen TOC and official source notes frame Illusion of Attention as a specific decision error around attention, invisible gorilla, cell phone. Traceable support includes Association Between Cellular-Telephone Calls and Motor Vehicle Collisions.",
+  "chapterSpecificMisunderstanding": "Treating Illusion of Attention as generic advice to be smarter, instead of forcing this exact move: test the appearance created by attention, then replace it with a visible check on reality.",
+  "sourceAlignmentTerms": [
+    "attention",
+    "invisible gorilla",
+    "cell phone",
+    "driving",
+    "blindness",
+    "illusion"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Illusion of Attention.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Illusion of Attention sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Illusion of Attention."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a train delay message desk applying Illusion of Attention under operational pressure",
+      "audience": "a reader who has to make a live judgment where attention could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Illusion of Attention is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the dashboard printout, names the attention risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A dashboard printout sits at the center of the train delay message desk before anyone explains the choice.",
+      "mustInclude": [
+        "dashboard printout",
+        "attention",
+        "a visible before-and-after choice tied to Illusion of Attention"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a robotics sensor vendor review applying Illusion of Attention under operational pressure",
+      "audience": "a reader who has to make a live judgment where invisible gorilla could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Illusion of Attention is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the caliper, names the invisible gorilla risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A caliper sits at the center of the robotics sensor vendor review before anyone explains the choice.",
+      "mustInclude": [
+        "caliper",
+        "invisible gorilla",
+        "a visible before-and-after choice tied to Illusion of Attention"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a hospital procurement board applying Illusion of Attention under operational pressure",
+      "audience": "a reader who has to make a live judgment where cell phone could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Illusion of Attention is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the visitor badge, names the cell phone risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A visitor badge sits at the center of the hospital procurement board before anyone explains the choice.",
+      "mustInclude": [
+        "visitor badge",
+        "cell phone",
+        "a visible before-and-after choice tied to Illusion of Attention"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a avalanche risk bulletin applying Illusion of Attention under operational pressure",
+      "audience": "a reader who has to make a live judgment where driving could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Illusion of Attention is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the sample tray, names the driving risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A sample tray sits at the center of the avalanche risk bulletin before anyone explains the choice.",
+      "mustInclude": [
+        "sample tray",
+        "driving",
+        "a visible before-and-after choice tied to Illusion of Attention"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a library overdue notice redesign applying Illusion of Attention under operational pressure",
+      "audience": "a reader who has to make a live judgment where blindness could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Illusion of Attention is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the inspection tag, names the blindness risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A inspection tag sits at the center of the library overdue notice redesign before anyone explains the choice.",
+      "mustInclude": [
+        "inspection tag",
+        "blindness",
+        "a visible before-and-after choice tied to Illusion of Attention"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a warehouse bonus meeting applying Illusion of Attention under operational pressure",
+      "audience": "a reader who has to make a live judgment where illusion could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Illusion of Attention is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the floor plan, names the illusion risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A floor plan sits at the center of the warehouse bonus meeting before anyone explains the choice.",
+      "mustInclude": [
+        "floor plan",
+        "illusion",
+        "a visible before-and-after choice tied to Illusion of Attention"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Illusion of Attention in a fresh decision scene",
+      "choose the correction that performs this move: test the appearance created by attention, then replace it with a visible check on reality.",
+      "reject a tempting generic answer that ignores attention",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Illusion of Attention' on a note, list the one attention cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

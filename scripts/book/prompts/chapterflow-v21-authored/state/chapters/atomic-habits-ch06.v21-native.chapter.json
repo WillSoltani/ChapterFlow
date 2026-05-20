@@ -28,7 +28,7 @@
         "format": "vignette",
         "requiredBeat": "the nurse stops trying to remember and instead moves a labeled water bottle onto the charting cart she touches every forty minutes; the cue does the remembering for her"
       },
-      "scenario": "At 3:14 a.m. on a Tuesday, Svana, the charge nurse on the cardiac ICU, fills a one-liter bottle, writes SVANA in black marker across the side, and clips it to the top tray of the charting cart she rolls between rooms 4 through 11. She does not put it in the breakroom fridge this time. Every forty minutes, when she touches the cart to update vitals, the bottle is at her right hand. By the end of the shift the bottle is empty, and her temple, which usually starts pulsing around hour nine, is quiet.",
+      "scenario": "At 3:14 a.m. Tuesday in the cardiac ICU, charge nurse Svana fills a one-liter bottle, writes SVANA in black marker across the side, and clips it to the top tray of the charting cart she rolls between rooms 4 through 11. She does not put it in the breakroom fridge this time. Every forty minutes, when she touches the cart to update vitals, the bottle is at her right hand. By the end of the shift the bottle is empty, and her temple, which usually starts pulsing around hour nine, is quiet. Svana must decide whether the bottle belongs on the cart or back in the breakroom where she forgets it.",
       "whatToDo": "Attach the water bottle to a tool you already touch on a fixed cycle, so the cue rides on motion you cannot skip without skipping work itself.",
       "whyItMatters": "A twelve-hour shift breaks every reminder app and every personal resolution. The charting cart is checked on a schedule the unit enforces, so the cue inherits that reliability instead of borrowing yours."
     },
@@ -110,7 +110,7 @@
     },
     {
       "exampleId": "ch06-ex06-ines-walk",
-      "title": "Inés and Bram move the fight out of the bedroom",
+      "title": "Ines and Bram move the fight out of the bedroom",
       "tags": [
         "dialogue",
         "couple",
@@ -123,7 +123,7 @@
         "format": "dialogue",
         "requiredBeat": "they discover that moving hard conversations from the bedroom to a walk around the block changes the conversation itself, because the room was carrying old residue the words couldn't escape"
       },
-      "scenario": "It's 11:14 p.m. and Inés is sitting on the edge of the bed with her arms crossed. Bram is in the doorway. They've had this exact fight, in this exact room, maybe forty times in six years. Inés opens her mouth, then closes it. 'Shoes,' she says. 'What?' 'Put your shoes on. We're going around the block.' 'It's raining.' 'I know.' Out on the sidewalk, three houses down, Bram says, 'I wasn't trying to dismiss you earlier.' Inés is quiet for a beat. In the bedroom that sentence would have started a war. Out here it just sits between them, waiting to be answered.",
+      "scenario": "Ines sits at 11:14 p.m. on the edge of the bed with her arms crossed. Bram is in the doorway. They've had this exact fight, in this exact room, maybe forty times in six years. Inés opens her mouth, then closes it. 'Shoes,' she says. 'What?' 'Put your shoes on. We're going around the block.' 'It's raining.' 'I know.' Out on the sidewalk, three houses down, Bram says, 'I wasn't trying to dismiss you earlier.' Inés is quiet for a beat. In the bedroom that sentence would have started a war. Out here it just sits between them, waiting to be answered. Inés must decide with Bram whether to keep fighting in the charged room or move the conversation outside.",
       "whatToDo": "When a hard conversation keeps spiraling in the same room, change the room. Walk it. Let the geography reset the script before the words do.",
       "whyItMatters": "Rooms accumulate cues from every prior fight in them: posture, sightlines, the same pillow. Those cues pull the same response. New space, new associations, new available reply."
     }
@@ -307,9 +307,9 @@
   },
   "memorableLines": [
     {
-      "text": "Move the candy to eye level and watchful parents become impulse buyers; move it away and nothing about them changes but their hands.",
-      "location": "hook",
-      "why": "It shows the paradox that proximity, not preference, decides behavior—parents' values stay intact while their reach betrays them."
+      "text": "You do not need more willpower. You need the next right action sitting in your line of sight.",
+      "location": "breakdown.fastRead",
+      "why": "It states the chapter's practical reversal: change what attention meets before asking motivation to carry the behavior."
     },
     {
       "text": "The eye picks, the hand follows, and the story you tell yourself about your willpower arrives a half-second later, taking credit for whichever move was already underway.",

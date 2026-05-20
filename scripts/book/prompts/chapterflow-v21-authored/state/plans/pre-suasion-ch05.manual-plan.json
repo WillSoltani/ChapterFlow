@@ -1,0 +1,155 @@
+{
+  "chapterId": "pre-suasion-ch05",
+  "number": 5,
+  "title": "Commanders of Attention 1: The Attractors",
+  "coreMove": "Use naturally attention-grabbing cues only when they truthfully belong to the decision.",
+  "sourcePressure": "The source identifies threat, difference, and goal relevance as attractors that seize attention and shape what later persuasion can work with.",
+  "chapterSpecificMisunderstanding": "Make the message louder, scarier, or weirder so people cannot ignore it.",
+  "sourceAlignmentTerms": [
+    "attractors",
+    "threat",
+    "difference",
+    "goal relevance",
+    "captured attention",
+    "cue"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "An abstract claim that attention changes everything",
+      "A generic meeting where someone makes a better pitch",
+      "A clever sentence about persuasion before any concrete object appears"
+    ],
+    "counterintuition": [
+      "You think persuasion happens during the ask, but it happens before it",
+      "The obvious factor is not always the important one",
+      "Influence is not manipulation when used well"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on attention",
+      "Write down three ways to be more persuasive",
+      "Ask yourself what matters most right now"
+    ],
+    "examples": [
+      "generic office presentation",
+      "parent and teenager argument",
+      "classroom lecture",
+      "salesperson overcoming objections",
+      "kitchen table conversation"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "rail-platform safety signs",
+      "audience": "a transit designer deciding how to stop track-edge crowding",
+      "stakes": "whether threat can be made visible without panic",
+      "format": "scene",
+      "requiredBeat": "the designer tests a sign that shows the actual train overhang at ankle height where commuters step",
+      "firstImage": "a yellow platform line beside a scuffed shoe mark",
+      "mustInclude": [
+        "platform stencil",
+        "train overhang gauge"
+      ],
+      "mustAvoid": [
+        "fear poster"
+      ]
+    },
+    {
+      "domain": "food-allergen packaging line",
+      "audience": "a QA lead warning packers about a new sesame run",
+      "stakes": "whether difference from the normal label seizes attention before routine takes over",
+      "format": "decision_point",
+      "requiredBeat": "the lead swaps in a black tray for the sesame labels so packers stop on sight before loading rolls",
+      "firstImage": "a black label tray on a stainless packing table",
+      "mustInclude": [
+        "sesame labels",
+        "barcode scanner"
+      ],
+      "mustAvoid": [
+        "color psychology claim"
+      ]
+    },
+    {
+      "domain": "marathon aid station",
+      "audience": "a race medic preventing heat collapse",
+      "stakes": "whether goal relevance can pull runners toward salt before cramps start",
+      "format": "vignette",
+      "requiredBeat": "the medic places pace-band examples beside salt packets at mile eighteen, tying the cue to finishing time",
+      "firstImage": "a wet pace band stuck to a paper cup",
+      "mustInclude": [
+        "salt packet",
+        "mile marker"
+      ],
+      "mustAvoid": [
+        "sports motivation generic"
+      ]
+    },
+    {
+      "domain": "pharmacy vaccination notice",
+      "audience": "a pharmacist trying to catch caregivers buying school supplies",
+      "stakes": "whether a deadline cue tied to the child goal gets noticed",
+      "format": "before_after",
+      "requiredBeat": "the pharmacist moves the vaccine notice from the wall to the checkout bin with school forms",
+      "firstImage": "a checkout bin full of sharpened pencils and health forms",
+      "mustInclude": [
+        "school form",
+        "appointment sticker"
+      ],
+      "mustAvoid": [
+        "medical scare tactic"
+      ]
+    },
+    {
+      "domain": "data-center outage drill",
+      "audience": "an incident commander waking technicians to a real risk",
+      "stakes": "whether an unusual sound cue cuts through alert fatigue",
+      "format": "predict_reveal",
+      "requiredBeat": "the commander plays the backup-power chirp once before the drill and asks which rack everyone checks first",
+      "firstImage": "a server aisle lit by amber backup lights",
+      "mustInclude": [
+        "power chirp",
+        "rack tag"
+      ],
+      "mustAvoid": [
+        "alarm noise generic"
+      ]
+    },
+    {
+      "domain": "seafood market recall board",
+      "audience": "a fishmonger alerting staff to one dangerous lot",
+      "stakes": "whether threat plus difference prevents the lot number from blending into routine inventory",
+      "format": "dialogue",
+      "requiredBeat": "the manager places a red wax seal on only the recalled crate and asks each clerk to read the lot before opening ice",
+      "firstImage": "a sealed crate sweating on crushed ice",
+      "mustInclude": [
+        "lot tag",
+        "red wax seal"
+      ],
+      "mustAvoid": [
+        "retail display advice"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify threat, difference, and goal relevance as attractors",
+      "use attention-grabbing cues without exaggerating",
+      "choose the cue family that matches the decision",
+      "reject novelty or fear when it does not belong"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one message, choose whether threat, difference, or goal relevance truthfully belongs in the opening cue, and delete the other two.",
+  "readingTimeMinutes": 12
+}

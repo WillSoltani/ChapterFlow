@@ -1,0 +1,330 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch56",
+  "number": 56,
+  "title": "Motivation Crowding",
+  "readingTimeMinutes": 12,
+  "hook": "The bonus arrives, and the work that felt like care starts feeling like a transaction.",
+  "counterintuition": "A reward can buy more of a behavior while weakening the reason people wanted to do it. The check is to protect intrinsic motive before adding payment.",
+  "tryThisNow": "Before adding one reward today, name the existing motive it might replace and the behavior you want after the reward disappears.",
+  "keyTakeaway": "Pay for what needs payment, but do not price a motive that already belongs to the work.",
+  "breakdown": {
+    "fastRead": "The model card sits on a train delay message desk in Utrecht. Callum's team wants to pay agents per apology sent. The metric looks tidy. The risk is that careful passenger care becomes message volume. Callum marks motivation crowding on the card before the bonus goes live.\n\nMotivation crowding happens when an outside reward changes the reason for acting. A person may start by helping, serving, learning, or taking pride in craft. Add payment in the wrong shape, and the behavior can become a transaction. The old motive gets pushed aside.\n\nA price can replace a purpose.\n\nThe correction is to ask what motive is already working. If payment is needed, aim it at support, fairness, or real burden, not at turning care into piecework.",
+    "deepRead": "The model card on Callum's rail desk defines a proposed score: agents get paid extra for each delay apology sent within two minutes. The goal sounds humane. But the payment may shift attention from passenger clarity to message count. Callum writes intrinsic motive beside the card because many agents already take pride in getting stranded passengers clear information.\n\nMotivation crowding is not a claim that money is bad. People deserve pay. Hard work, risk, expertise, and time should be compensated. The problem is a reward that changes the meaning of the act. A volunteer starts feeling like a contractor. A nurse starts optimizing a count instead of a patient need. A reader returns books for the prize instead of the shared shelf. The reward does not merely add force; it can rewrite the story.\n\nThe reward teaches what the act is for.\n\nHugh sees this in a robotics sensor vendor review. A queue ticket shows engineers voluntarily reporting small sensor defects because they care about reliability. A vendor suggests paying per defect report. Hugh marks intrinsic motive risk on the ticket and asks for protected reporting time instead of a per-report reward.\n\nThe question is not whether incentives work. They do. The question is what they work on. If they aim at the wrong surface, they may buy the count while selling off the motive.\n\nSupport the motive before you price it.",
+    "fullRead": "The incident timeline on Maddie's hospital procurement board shows nurses flagging poor glove quality before a large purchase. A finance lead proposes a small payment for every flagged defect. Maddie hears the risk: the payment may turn professional vigilance into a paid errand. She writes payment risk on the timeline before the policy is approved.\n\nBruno Frey argued for taking intrinsic motivation seriously, including the limits of economic incentives. The point lands in ordinary work: when people already act from duty, craft, loyalty, curiosity, or care, a crude reward can crowd out the internal reason. Payment can still be right, but its design matters. Pay can respect the role, or it can make the role feel bought by the unit.\n\nWhat would people still do when the reward stops?\n\nYou are in an avalanche risk bulletin room in Chamonix with Violet, holding a warranty label from a proposed sponsor. Forecasters already update risky slopes late at night because accuracy matters. The sponsor wants to pay a bonus for each extra bulletin. Violet must decide whether crowding out risk will turn careful warnings into volume. She marks the label and changes the deal to fund overnight staffing, not bulletin count.\n\nRewards can crowd out civic motives too. A library overdue notice redesign may offer children a prize for every returned book. It took Damon one term to see the press clipping problem: returns rose during the prize weeks, then fell when prizes stopped, and children began asking what they got for bringing books back. Damon marks reward risk and changes the notice toward shared access and amnesty days instead of trinkets.\n\nThe best incentive often removes friction instead of buying the act. Pay the overtime. Provide tools. Cover transport. Give public credit. Reduce hassle. Make the wanted behavior easier while leaving its meaning intact. If you must attach a reward, avoid making the smallest visible unit the whole point.\n\nWhich motive are you about to replace?\n\nThe voting sheet at Catrin's warehouse bonus meeting shows the cost of missing that question. Workers used to help each other clear difficult aisles because the shift ended together. A per-pick bonus made slow aisles feel like someone else's problem. Catrin marks motivation risk and changes the bonus to team completion plus extra staffing for hard aisles.\n\nPay for what needs payment, but do not price a motive that already belongs to the work.",
+    "whyItMatters": "Motivation crowding shows that rewards can change the meaning of a behavior. Readers need to protect existing motives before adding payment or prizes."
+  },
+  "examples": [
+    {
+      "exampleId": "ch56-ex01-callum-model-card",
+      "title": "Callum Protects Passenger Care",
+      "tags": [
+        "scene",
+        "rail",
+        "messages"
+      ],
+      "planSpec": {
+        "domain": "a train delay message desk applying Motivation Crowding under operational pressure",
+        "audience": "a reader who has to make a live judgment where motivation crowding could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the model card, names the motivation crowding risk, and changes the next choice in view of another person."
+      },
+      "scenario": "A model card sits on Callum's 8:40 a.m. train delay message desk in Utrecht. A proposal pays agents per apology sent within two minutes. Callum must decide whether motivation crowding risk should change the metric.",
+      "whatToDo": "Mark motivation crowding on the card, reward accurate passenger resolution instead of message count, and add staffing for peak delays.",
+      "whyItMatters": "A per-message bonus can buy speed while weakening care."
+    },
+    {
+      "exampleId": "ch56-ex02-hugh-queue-ticket",
+      "title": "Hugh Funds Reporting Time",
+      "tags": [
+        "vignette",
+        "robotics",
+        "intrinsic motive"
+      ],
+      "planSpec": {
+        "domain": "a robotics sensor vendor review applying Motivation Crowding under operational pressure",
+        "audience": "a reader who has to make a live judgment where intrinsic motive could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the queue ticket, names the intrinsic motive risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"Pay engineers per defect report,\" the vendor says during a 1:05 p.m. robotics sensor review in Munich. Hugh holds a queue ticket from the reliability desk and pauses over whether intrinsic motive risk should change the contract. With the file still open, Pay faces a choice: act on the claim now or check the missing evidence first.",
+      "whatToDo": "Mark intrinsic motive risk on the ticket, fund protected reporting time, and avoid turning reliability pride into piecework.",
+      "whyItMatters": "The engineers already care about defects; the reward should support that motive, not replace it."
+    },
+    {
+      "exampleId": "ch56-ex03-maddie-incident-timeline",
+      "title": "Maddie Keeps Defect Flags Professional",
+      "tags": [
+        "dialogue",
+        "hospital",
+        "payment"
+      ],
+      "planSpec": {
+        "domain": "a hospital procurement board applying Motivation Crowding under operational pressure",
+        "audience": "a reader who has to make a live judgment where payment could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the incident timeline, names the payment risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The incident timeline clicks under Maddie's pen during a 3:30 p.m. hospital procurement board in Chicago. Nurses already flag glove defects. A finance lead proposes payment per flag. Maddie must decide whether payment risk should alter the plan.",
+      "whatToDo": "Mark payment risk on the timeline, protect paid review time, and keep defect reporting tied to professional duty instead of per-flag cash.",
+      "whyItMatters": "Pay can support vigilance without making vigilance feel like a side hustle."
+    },
+    {
+      "exampleId": "ch56-ex04-violet-warranty-label",
+      "title": "Violet Rejects Bulletin Piecework",
+      "tags": [
+        "decision",
+        "avalanche",
+        "bulletin"
+      ],
+      "planSpec": {
+        "domain": "a avalanche risk bulletin applying Motivation Crowding under operational pressure",
+        "audience": "a reader who has to make a live judgment where crowding out could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the warranty label, names the crowding out risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are in a Chamonix avalanche bulletin room at 9:15 p.m., where Violet holds a warranty label from a proposed sponsor. The sponsor wants to pay per extra bulletin. Violet must decide whether crowding out risk should change the deal.",
+      "whatToDo": "Mark crowding out risk on the label, ask for overnight staffing funds instead of per-bulletin pay, and keep accuracy as the public motive.",
+      "whyItMatters": "A safety bulletin should not start feeling like a volume target."
+    },
+    {
+      "exampleId": "ch56-ex05-damon-press-clipping",
+      "title": "Damon Drops the Trinket Prize",
+      "tags": [
+        "predict",
+        "library",
+        "reward"
+      ],
+      "planSpec": {
+        "domain": "a library overdue notice redesign applying Motivation Crowding under operational pressure",
+        "audience": "a reader who has to make a live judgment where reward could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the press clipping, names the reward risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Damon, a Brighton children's librarian, one 10:15 a.m. term review to see the press clipping about prize-backed book returns had a second line. Returns rose during prize weeks and fell afterward. Damon must decide whether reward risk should change the overdue notice.",
+      "whatToDo": "Mark reward risk on the clipping, use amnesty days and shared-shelf language, and stop paying children with trinkets for every return.",
+      "whyItMatters": "A prize can teach children to ask what they get for doing the civic act."
+    },
+    {
+      "exampleId": "ch56-ex06-catrin-voting-sheet",
+      "title": "Catrin Redesigns the Pick Bonus",
+      "tags": [
+        "postmortem",
+        "warehouse",
+        "bonus"
+      ],
+      "planSpec": {
+        "domain": "a warehouse bonus meeting applying Motivation Crowding under operational pressure",
+        "audience": "a reader who has to make a live judgment where motivation could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the voting sheet, names the motivation risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which warehouse bonus made the hard aisles feel like someone else's problem? Catrin asks at a 7:50 a.m. postmortem in Cardiff, marking motivation risk on a voting sheet before the next bonus vote.",
+      "whatToDo": "Replace per-pick pay with team completion and extra staffing for hard aisles, then track whether workers resume helping across zones.",
+      "whyItMatters": "The old bonus bought units while crowding out shared finish-line behavior."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a motivation-crowding case, a reward makes people do more of a behavior, but they stop treating it as care, craft, or duty, what is the motivation crowding concern?",
+        "choices": [
+          "The reward may replace an existing motive.",
+          "Care craft duty makes motivation-crowding reward people look credible; use behavior stop treating first and revisit what motivation crowding when concern replace existing shifts.",
+          "Existing motive motivation supports a narrower read of treating care craft; keep duty what motivation central and leave crowding concern replace aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The issue is not payment itself. The reward may buy the count while weakening the reason people cared.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Motivation Crowding makes motivation-crowding case feel more decisive than the record supports, and that misprices reward people in this scene. The correct move keepss the choice by the reward may replace an existing motive."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a motivation-crowding review, a rail desk wants to pay agents for each delay apology sent within two minutes, agents already care about clear passenger information. What should the metric do?",
+        "choices": [
+          "Within minutes already makes desk wants agents look credible; use delay apology sent first and revisit care about clear when passenger information what shifts.",
+          "Reward accurate passenger resolution and add staffing for peak delays.",
+          "About clear passenger points toward a quicker call on wants agents delay; let motivation-crowding rail desk stand until minutes already care contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The design supports the existing service motive instead of turning care into message volume.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Motivation Crowding works by letting motivation-crowding rail crowd out desk wants, which can misreads the agents delay decision. Reward accurate passenger resolution and add staffing for peak delays keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Engineers voluntarily report small sensor defects because reliability matters. A vendor proposes paying per report. What is the best response?",
+        "choices": [
+          "Engineers voluntarily report looks strong enough to guide small sensor defects; reliability matters vendor can wait unless proposes paying what changes the stakes.",
+          "Vendor proposes paying gives a practical reason for defects reliability matters; fund protected reporting belongs after what best response clarifies the result.",
+          "Fund protected reporting time without turning each report into piecework."
+        ],
+        "correctIndex": 2,
+        "explanation": "Protected time removes friction while preserving the intrinsic motive around reliability.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Motivation Crowding turns report small into a shortcut, so the room can overweights sensor defects while missing reliability matters. Fund protected reporting time without turning each report into piecework protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Nurses already flag poor glove quality as part of professional vigilance. Finance proposes cash per defect flag. What should procurement do?",
+        "choices": [
+          "Protect review time and keep reporting tied to professional duty.",
+          "Reporting tied duty fits the immediate pressure around finance proposes cash; hold part professional vigilance steady and test poor glove quality later.",
+          "Flag poor glove looks strong enough to guide quality part professional; vigilance finance proposes can wait unless cash defect what changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The payment may crowd out the duty motive. Time and respect support the behavior without changing its meaning.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Motivation Crowding would push the poor glove case toward quality part, creating a cost when professional vigilance stays untested. The useful guardrail is to protect review time and keep reporting tied to professional duty."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If motivation-crowding reasoning takes over, a sponsor wants to pay avalanche forecasters per extra bulletin. Forecasters already update warnings late because accuracy matters. Which deal is safer?",
+        "choices": [
+          "Avalanche forecasters extra gives a practical reason for reasoning sponsor wants; warnings late accuracy belongs after bulletin already update clarifies the result.",
+          "Fund overnight staffing while keeping accuracy as the motive.",
+          "Deal safer fund supports a narrower read of forecasters extra bulletin; keep already update warnings central and leave late accuracy matters aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "Staffing supports the existing public-safety motive. Per-bulletin pay risks turning warnings into a volume target.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Motivation Crowding converts wants avalanche into the loudest signal, which can rushes forecasters extra before bulletin already is checked. The better answer separatess attention on fund overnight staffing while keeping accuracy as the motive."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While motivation-crowding pressure builds, a library gives prizes for returned books, returns rise during prize weeks, then fall, and children ask what they get for returning books. What happened?",
+        "choices": [
+          "The reward may have crowded out the shared-shelf motive.",
+          "Returns rise prize gives a practical reason for prizes returned books; what returning happened belongs after weeks fall children clarifies the result.",
+          "Prize weeks fall makes gives prizes returned look credible; use books returns rise first and revisit children what returning when happened reward crowded shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The prize taught a transaction frame. The library needs to rebuild the civic motive and reduce friction.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Motivation Crowding hides inside the motivation-crowding pressure choice because motivation-crowding pressure seems sufficient, yet the cost lands in motivation-crowding pressure. The reward may have crowded out the shared-shelf motive brings the motivation-crowding pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the motivation-crowding call, a warehouse pays per pick, and workers stop helping on difficult aisles because the slow work hurts individual counts. What should the bonus design change?",
+        "choices": [
+          "Difficult aisles slow makes warehouse pays pick look credible; use workers stop helping first and revisit work hurts individual when counts what bonus shifts.",
+          "Slow work hurts supports a narrower read of call warehouse pays; keep pick workers stop central and leave helping difficult aisles aside.",
+          "Use team completion and support for hard aisles instead of pure per-unit pay."
+        ],
+        "correctIndex": 2,
+        "explanation": "The per-pick reward crowded out shared finish-line behavior. The new design pays for the outcome the team needs.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Motivation Crowding pressures the call warehouse decision toward the easy reading of call warehouse. That can inflates the real cost unless the choice is grounded in use team completion and support for hard aisles instead of pure per-unit pay."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "At a robotics plant, a lead says, \"If we want more of anything, pay per unit of it.\" The metric is easy to count, but the team also relies on craft pride and careful peer review. What is the strongest objection?",
+        "choices": [
+          "Per-unit rewards can change what the act means and crowd out motives that already work.",
+          "Pride careful peer points toward a quicker call on anything unit metric; let lead says want stand until also relies craft contradicts it.",
+          "Peer what strongest fits the immediate pressure around metric easy count; hold want anything unit steady and test plant lead says later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The objection is about meaning and motive, not whether incentives can increase counts.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Motivation Crowding is the mechanism here: external rewards crowd out internal motives, so lead says can overpower lead says. Per-unit rewards can change what the act means and crowd out motives that already work keeps the scenario from becoming a."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two motivation-crowding signals compete: a pilot requires a rule for adding rewards to work people already care about. Which rule best prevents motivation crowding?",
+        "choices": [
+          "Crowding name existing points toward a quicker call on rewards work people; let requires rule adding stand until best prevents motivation contradicts it.",
+          "Name the existing motive, remove friction first, and reward the broader outcome instead of the smallest visible unit.",
+          "Compete pilot requires looks strong enough to guide rule adding rewards; work people already can wait unless care about best changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The rule preserves the motive while still allowing support, fair pay, and better design.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Motivation Crowding makes the pilot requires evidence look cleaner than it is, risking a pilot requires mistake in this setting. The answer protects pilot requires by asking for name the existing motive, remove friction first, and reward the broader outcome."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch56-card01",
+      "front": "Before adding a reward, what should you identify?",
+      "back": "Identify the motive already driving the behavior and whether the reward could replace it."
+    },
+    {
+      "cardId": "ch56-card02",
+      "front": "Why is per-unit pay risky?",
+      "back": "It can make the visible count the point and crowd out care, craft, duty, or shared ownership."
+    },
+    {
+      "cardId": "ch56-card03",
+      "front": "What is often better than buying the act?",
+      "back": "Remove friction: time, tools, staffing, transport, respect, or simpler process."
+    },
+    {
+      "cardId": "ch56-card04",
+      "front": "Does motivation crowding mean money is bad?",
+      "back": "No. It means incentive design can change the meaning of the work."
+    },
+    {
+      "cardId": "ch56-card05",
+      "front": "What is the core correction for motivation crowding?",
+      "back": "Pay for what needs payment, but do not price a motive that already belongs to the work."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to add support or payment without replacing the intrinsic motive that already drives a useful behavior.",
+    "ifThenPlans": [
+      {
+        "context": "metrics",
+        "plan": "If a reward targets a count, then I will ask what motive or quality the count may crowd out."
+      },
+      {
+        "context": "volunteers",
+        "plan": "If people already contribute from care, then I will remove friction before adding prizes."
+      },
+      {
+        "context": "safety work",
+        "plan": "If a safety behavior is proposed for per-unit pay, then I will protect time and staffing first."
+      },
+      {
+        "context": "team bonuses",
+        "plan": "If individual bonuses weaken cooperation, then I will redesign around shared completion."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, inspect one proposed reward and write the existing motive it might replace.",
+    "weeklyPractice": "This week, redesign one incentive so it removes friction or rewards the broader outcome, not the smallest count."
+  },
+  "memorableLines": [
+    {
+      "text": "A price can replace a purpose.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the crowding-out mechanism."
+    },
+    {
+      "text": "The reward teaches what the act is for.",
+      "location": "breakdown.deepRead",
+      "why": "It shows why design changes meaning."
+    },
+    {
+      "text": "Pay for what needs payment, but do not price a motive that already belongs to the work.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the practical rule."
+    }
+  ]
+}

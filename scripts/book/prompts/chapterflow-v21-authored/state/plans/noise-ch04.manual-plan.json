@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch04",
+  "number": 4,
+  "title": "Singular Decisions",
+  "coreMove": "Accept that singular decisions carry noise even when no comparison set is visible to confirm it.",
+  "sourcePressure": "Singular one-off decisions — a startup valuation, a cancer treatment plan, an immigration asylum ruling — still carry noise even when no second assessor is ever consulted. The invisibility of a comparison set does not mean the comparison set would have agreed. Judgment discipline matters even when the spread cannot be directly observed.",
+  "chapterSpecificMisunderstanding": "Thinking that noise only matters when two people visibly disagree — that a one-off decision made confidently by a single expert is therefore noise-free.",
+  "sourceAlignmentTerms": ["singular decision", "one-off", "invisible spread", "counterfactual", "comparison set", "noise without comparison"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Single-expert high-stakes judgment",
+      "detail": "Many of the most consequential judgments are made by one expert with no second opinion: asylum determinations, investment decisions, treatment planning, architectural approvals. The lack of a visible second assessor does not reduce the noise; it hides it.",
+      "useIn": "deepRead",
+      "phrasingHint": "Nobody checks the asylum officer's decision against a parallel ruling. Nobody asks whether the oncologist's treatment plan would match the plan from the cancer center across town. The absence of that check does not mean the decisions would have agreed — it means we will never know."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["even one-time decisions are noisier than you think", "every choice you make could have been made differently"],
+    "counterintuition": ["lone experts are often less consistent than teams", "the one decision you thought was final was really just one reading"],
+    "tryThisNow": ["think about a major life decision you made alone", "write down a decision you would make differently today"],
+    "examples": ["a scene where the expert explicitly wishes they had a second opinion — that makes the problem too visible and too easily solved", "an example where the singular decision turns out to be badly wrong rather than simply noisy"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Singular decisions risk feeling like solo-expert portraits — all six could feel like 'one expert making one call alone.' Varied entry points and formats prevent this."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "venture capital startup valuation for a Series A investment decision",
+      "audience": "a VC partner making a solo investment call on a single portfolio file during a busy deal period",
+      "stakes": "a $12 million check — and the realization afterward that a partner who saw the same company two weeks later would have valued it differently",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the partner arrives at a $14 million valuation, sends the term sheet, and later discovers that a colleague who reviewed the same materials independently for a different purpose landed at $9 million — and neither can articulate exactly why their numbers diverged",
+      "firstImage": "a startup pitch deck open on a laptop, a handwritten valuation number on a notepad beside the keyboard, the room quiet enough to hear the ventilation",
+      "mustInclude": ["solo decision with no mandate for a second opinion at the time", "the later discovery of divergence from a colleague", "no obvious factual disagreement underlying the $5 million gap"],
+      "mustAvoid": ["implying either valuation was negligent", "a scene that focuses on the startup's actual quality rather than the valuation process"]
+    },
+    {
+      "domain": "oncology treatment planning for a newly diagnosed cancer patient at a community hospital",
+      "audience": "a solo oncologist making a treatment recommendation without a multidisciplinary tumor board review",
+      "stakes": "the patient's treatment course — and the question of whether a tumor board at a larger center would have recommended the same protocol",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the oncologist presents her treatment plan to the patient and is later at a conference where she describes the case to a colleague from a larger hospital; the colleague — who hears only the case facts — describes a different protocol as the obvious choice, and neither is clearly wrong",
+      "firstImage": "a hospital conference badge lanyard draped over a chair as the oncologist sits across from a colleague during a session break",
+      "mustInclude": ["the singular nature of the original decision", "the colleague's divergent view based on the same case facts", "no implication that the patient received wrong treatment — only that another reasonable path existed"],
+      "mustAvoid": ["turning the example into a misdiagnosis story", "a patient outcome narrative that overshadows the noise theme"]
+    },
+    {
+      "domain": "immigration asylum determination by a single officer with no systematic second review",
+      "audience": "a legal aid attorney who tracks asylum outcomes by officer and notices large variation in approval rates",
+      "stakes": "a person's legal status and safety — with the outcome depending partly on which officer processes the case",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the attorney maps six months of her clients' outcomes by officer and finds a 40-point spread in approval rates for cases that her own assessment suggested were legally comparable — but because each case was decided alone, no comparison was ever made at the time",
+      "firstImage": "a notebook with asylum case numbers down the left column, officer initials in the next column, and approved or denied in the final column — the approved rates for different initials showing a large gap",
+      "mustInclude": ["the absence of a comparison set in real time", "the retrospective discovery of the spread", "the structural explanation — decisions made singly mean divergence is never visible until someone aggregates them"],
+      "mustAvoid": ["attributing the variation to any officer's prejudice rather than noise", "a scene focused on any one asylum seeker's story"]
+    },
+    {
+      "domain": "architectural heritage conservation assessment of a single historic building",
+      "audience": "a conservation board member making an individual written assessment before the full board meeting",
+      "stakes": "whether a building receives protected status — which determines whether it can be demolished for a proposed development",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "you write your individual significance assessment, submit it before the meeting, and during the meeting discover that two other members assessed the same building at different significance levels, and that the written reasons for all three assessments are each individually coherent",
+      "firstImage": "three printed significance assessment forms face-down on the board meeting table, about to be turned over simultaneously so no member can be influenced by the others",
+      "mustInclude": ["the singular written assessment process", "the three-way divergence at the reveal", "each assessment individually coherent on its own terms"],
+      "mustAvoid": ["implying the building has an objectively correct significance level", "a scene focused on whether the development is good or bad"]
+    },
+    {
+      "domain": "book acquisition decision at a literary publishing house",
+      "audience": "a senior editor making a solo acquisition call on a manuscript submitted to her imprint alone",
+      "stakes": "a contract offer — and the later discovery that the manuscript was later rejected by a different imprint at the same house after the author renegotiated",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the editor asks herself, after completing her acquisition assessment, whether her counterpart in the adjacent imprint would have reached the same conclusion from the same manuscript — and realizes she has no way to answer that question without creating a comparison she was never asked to make",
+      "firstImage": "a printed manuscript stacked neatly on an editor's desk, an offer letter drafted but not yet sent, the window behind showing the same building the other imprint occupies",
+      "mustInclude": ["the inherently solo structure of the acquisition process", "the counterfactual question about the adjacent imprint", "the impossibility of answering it without a process change"],
+      "mustAvoid": ["implying the manuscript is good or bad", "turning the example into a publishing industry critique"]
+    },
+    {
+      "domain": "geopolitical intelligence risk assessment written by one analyst for a ministerial briefing",
+      "audience": "an intelligence analyst who writes the sole assessment that will reach the minister's desk before a policy decision",
+      "stakes": "the minister's decision to escalate or de-escalate a bilateral negotiation — based on one analyst's reading of ambiguous signals",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "the analyst delivers her written assessment and later sees a parallel assessment written by a colleague in a different division from the same raw intelligence cable — the two assessments reach different probability estimates on the central question, and neither analyst knew the other had written one",
+      "firstImage": "a secure document handling room where two sealed intelligence briefs are being reviewed by a coordinator who realizes both are addressed to the same minister and cover the same event",
+      "mustInclude": ["both analysts worked from the same raw cable", "neither knew the other had written an assessment", "the probability estimates for the central question differ"],
+      "mustAvoid": ["implying either assessment was politically motivated", "revealing which assessment was correct — the point is the divergence, not the answer"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain why noise is present in singular decisions even without a visible comparison set",
+      "identify conditions that make singular decision noise harder to detect and address",
+      "apply the concept of invisible spread to a professional domain the reader knows well",
+      "analyze the difference between a decision that is hard because of objective complexity versus one that is noisy because of judgment variability",
+      "evaluate whether requiring a second opinion on all singular decisions is always the right remedy for this type of noise"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Identify one important singular decision you have made in the past month — a hire, a budget call, a treatment plan, a rating. Imagine a well-qualified colleague who had the same information made that decision instead of you. Write down your honest estimate of how often your number and theirs would have landed within 10 percent of each other.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (2-3 sentences) stating the invisible-spread problem directly, at least one longer paragraph (5+ sentences) exploring why singular-decision noise is harder to tackle than system noise, at least one one-sentence punch line about what confidence in a lone judgment actually proves",
+    "fullReadInterludeRequirement": "at least one research-aside paragraph on how often second opinions on nominally singular decisions diverge from first opinions — without inventing specific study numbers",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

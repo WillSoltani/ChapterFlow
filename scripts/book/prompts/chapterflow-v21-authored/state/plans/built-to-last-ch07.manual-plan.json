@@ -1,0 +1,183 @@
+{
+  "chapterId": "built-to-last-ch07",
+  "number": 7,
+  "title": "Try a Lot of Stuff and Keep What Works",
+  "coreMove": "Run many bounded variations, read the feedback honestly, and keep only what advances the core purpose.",
+  "sourcePressure": "The sidecar supports disciplined experimentation, institutional learning, variation, feedback, retention, and adaptation in methods without surrendering core identity.",
+  "chapterSpecificMisunderstanding": "Treating experimentation as random hustle, trend-chasing, or permission to abandon the core whenever a new tactic looks exciting.",
+  "sourceAlignmentTerms": [
+    "try a lot of stuff",
+    "keep what works",
+    "experimentation",
+    "variation",
+    "feedback",
+    "retention",
+    "institutional learning",
+    "adaptation"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "experimentation",
+      "detail": "the source sidecar supports experimentation as part of preserve-the-core and stimulate-progress logic, emphasizing variation, feedback, and retention",
+      "useIn": "both",
+      "phrasingHint": "The institution does not have to predict the winning method if it can test many methods and keep the one that proves itself."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "fail fast",
+      "experimentation means trying random things"
+    ],
+    "counterintuition": [
+      "planning less can teach more",
+      "mistakes are good"
+    ],
+    "tryThisNow": [
+      "run one small experiment today",
+      "try three ideas and see what works"
+    ],
+    "examples": [
+      "generic A/B test with button colors",
+      "library returned-holds cart",
+      "startup growth hack"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "urban farmers market testing stall layouts while preserving local-producer standards",
+      "audience": "Emily, market manager with declining Wednesday traffic",
+      "stakes": "vendors need footfall, but the market cannot become a flea market to chase crowds",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Emily chalks three stall patterns over three Wednesdays, counts dwell time and vendor sales, then keeps the layout that helps local produce without adding reseller booths",
+      "firstImage": "chalk arrows drying on wet pavement before vendors arrive",
+      "mustInclude": [
+        "three Wednesdays",
+        "dwell-time counts",
+        "local-producer standard"
+      ],
+      "mustAvoid": [
+        "random event gimmicks"
+      ]
+    },
+    {
+      "domain": "physical therapy clinic testing discharge instructions for knee patients",
+      "audience": "Nicolas, clinic owner frustrated by recurring setbacks",
+      "stakes": "patients keep returning with avoidable flare-ups after unclear home routines",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:20 p.m., Nicolas compares three instruction formats by follow-up adherence, then keeps the photo card that patients actually use",
+      "firstImage": "three discharge packets lined along a treatment table",
+      "mustInclude": [
+        "photo card",
+        "follow-up adherence",
+        "knee patients"
+      ],
+      "mustAvoid": [
+        "clinician intuition picks the favorite handout"
+      ]
+    },
+    {
+      "domain": "public radio station experimenting with local news formats without abandoning public-service reporting",
+      "audience": "Anna, program director watching younger listeners leave",
+      "stakes": "chasing attention could dilute the station's civic role",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Which pilot made people show up at the council meeting?\" Anna asks, then cancels the most popular segment because it did not serve the core",
+      "firstImage": "listener notes beside a council-meeting attendance sheet",
+      "mustInclude": [
+        "three pilots",
+        "attendance sheet",
+        "public-service test"
+      ],
+      "mustAvoid": [
+        "ratings alone define what works"
+      ]
+    },
+    {
+      "domain": "bike-share maintenance crew testing repair-routing cards across neighborhoods",
+      "audience": "Diego, field operations lead with uneven bike availability",
+      "stakes": "commuters lose trust when docks are full of broken bikes in the same areas",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Diego tapes different routing cards to mechanic vans for two weeks, then keeps the route that reduces repeat broken-bike pickups",
+      "firstImage": "rainwater beading on a laminated van route card",
+      "mustInclude": [
+        "routing cards",
+        "two-week test",
+        "repeat pickup count"
+      ],
+      "mustAvoid": [
+        "bike helmets or safety lecture"
+      ]
+    },
+    {
+      "domain": "language school trying placement interviews, written tests, and trial classes for adult learners",
+      "audience": "Ingrid, academic coordinator defending student confidence",
+      "stakes": "wrong placement makes adults quit before learning begins",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Ingrid one refund report to keep the trial class method and drop the faster written test for borderline students",
+      "firstImage": "refund forms stacked under three placement rubrics",
+      "mustInclude": [
+        "trial class",
+        "refund report",
+        "borderline students"
+      ],
+      "mustAvoid": [
+        "education innovation buzzwords"
+      ]
+    },
+    {
+      "domain": "specialty pharmacy testing refill reminders for transplant patients under strict adherence rules",
+      "audience": "Lin, pharmacist responsible for missed-dose risk",
+      "stakes": "missed immunosuppressant doses can threaten a transplant",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Lin test phone, postcard, and app reminders on separate refill cohorts, then keep the low-tech call script because it reduces missed pickups",
+      "firstImage": "refill labels sorted into three colored trays",
+      "mustInclude": [
+        "transplant patients",
+        "three reminder cohorts",
+        "missed pickup log"
+      ],
+      "mustAvoid": [
+        "app automatically treated as progress"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "design bounded experiments around the core",
+      "interpret feedback without trend-chasing",
+      "choose what to retain after variation"
+    ]
+  },
+  "tryThisNowSpec": "Write three small variations for one method you use, one measure that tells whether each served the core, and the date you will kill two of them.",
+  "sourceAnchorsNote": "Frozen source sidecars for this book expose concept support and source artifacts, but little chapter-level anecdote detail after chapter 1. Use only the anchors listed here; do not invent company histories, named executives, studies, or dates.",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

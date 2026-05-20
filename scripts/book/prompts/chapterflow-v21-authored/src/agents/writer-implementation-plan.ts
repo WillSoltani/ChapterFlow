@@ -14,6 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
 
 export type ImplementationPlanOutput = {
+  title: string;
   coreSkill: string;
   ifThenPlans: Array<{ context: string; plan: string }>;
   twentyFourHourChallenge: string;
@@ -47,7 +48,7 @@ export async function runWriterImplementationPlan(input: PlanInput): Promise<Imp
   parts.push(`# Chapter breakdown (grounding)`);
   parts.push(input.breakdown.deepRead);
   parts.push("");
-  parts.push(`Write the ImplementationPlanOutput JSON now.`);
+  parts.push(`Write the ImplementationPlanOutput JSON now. Include a "title" field: 4–7 words naming the specific skill this plan teaches, derived from the chapter's coreSkill. The title must be specific enough that it could not be swapped with another chapter's plan title.`);
   const baseUserPrompt = parts.join("\n");
 
   let userPrompt = baseUserPrompt;
@@ -86,6 +87,10 @@ export async function runWriterImplementationPlan(input: PlanInput): Promise<Imp
 
 function validate(p: ImplementationPlanOutput): ImplementationPlanOutput {
   const problems: string[] = [];
+  const titleWords = (p.title ?? "").trim().split(/\s+/).filter(Boolean).length;
+  if (!p.title || titleWords < 4 || titleWords > 7) {
+    problems.push(`title must be 4–7 words (got ${titleWords})`);
+  }
   if (!p.coreSkill || p.coreSkill.length < 80) problems.push("coreSkill too short");
   if (!Array.isArray(p.ifThenPlans) || p.ifThenPlans.length < 3 || p.ifThenPlans.length > 4) {
     problems.push(`ifThenPlans length ${p.ifThenPlans?.length} out of range 3–4`);

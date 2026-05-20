@@ -2,7 +2,7 @@
   "bookId": "good-to-great",
   "title": "Good to Great",
   "author": "Jim Collins",
-  "promotedAt": "2026-05-12T01:27:42.352Z",
+  "promotedAt": "2026-05-13T06:57:11.146Z",
   "chapterCount": 9,
   "shipGate": {
     "perChapter": [
@@ -12,50 +12,27 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "E2",
+            "catalogId": "E1",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.4 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
           },
           {
-            "catalogId": "E2",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Steam fogs the pretzel warmer while the home team comes to bat and Lukas stands behind the register with a pencil stub. The postgame surveys praise the food stands, but the third-inning horn sounds a…"
           },
           {
-            "catalogId": "E2",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Camille hears a guide ask, \"No injuries means the season was clean, right?\" as damp incident cards dry on the paddleboard rack. She predicts the official injury log will match the crew's memory. Then…"
           }
         ],
-        "minors": [
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 2 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"at 618 am derek\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 2,
@@ -66,64 +43,22 @@
             "catalogId": "E1",
             "severity": "major",
             "unit": "breakdown.fastRead",
-            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+            "message": "fastRead ¶2: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
           },
           {
-            "catalogId": "E4",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Friday, 2:48 p.m., Gail grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Gail predicts it will save ten minutes, then watches two charts lan…"
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took James until the debrief to notice how quickly the rescue was becoming a legend. Salt had dried in white streaks on the rail, and the commendation letter still smelled faintly of printer toner…"
           }
         ],
         "minors": [
           {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"through the window and\" appears in both fastRead and deepRead — vary one of them"
           }
         ]
       },
@@ -133,61 +68,19 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "E4",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Friday, 2:48 p.m., Sana grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Sana predicts it will save ten minutes, then watches two charts lan…"
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Freeze-dried meal crates line the wall beneath a station window crusted with ice as Nathan reviews the winter roster. The final field route binder is still blank in two sections. The strongest glacie…"
           }
         ],
         "minors": [
           {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"who then what is\" appears in both fastRead and deepRead — vary one of them"
           }
         ]
       },
@@ -197,61 +90,40 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "E4",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Martin three late farm equipment payments to change the loan review. Red index cards sit beside stamped folders when he tells every lender to raise one when optimism outruns evidence. The fir…"
           },
           {
-            "catalogId": "E2",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Petra lays a snow saw teeth-down across a blue shadow in the pit wall while ticket pressure builds at the lift office and radios crackle with guest complaints. She asks each patroller what evidence w…"
           },
           {
-            "catalogId": "E2",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Diego asks which matters first, who held the torque wrench or why the wrong setting looked right. He stands over a foam tray with one empty cutout while the signoff screen glows behind him. \"What mad…"
           },
           {
-            "catalogId": "E2",
+            "catalogId": "D1",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
-            "severity": "major",
-            "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Friday, 2:48 p.m., Erin grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Erin predicts it will save ten minutes, then watches two charts lan…"
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader believes being candid means saying the harshest sentence in the room. What distinction should you bring back?"
           }
         ],
         "minors": [
           {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"what evidence would change\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -261,61 +133,32 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "E4",
+            "catalogId": "E1",
             "severity": "major",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
           },
           {
             "catalogId": "C3",
             "severity": "major",
-            "unit": "example[4]",
+            "unit": "example[5]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Friday, 2:48 p.m., Jasmine grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Jasmine predicts it will save ten minutes, then watches two char…"
+            "evidence": "Which line in the grant draft will still matter to a family ninety days after the funeral? A call schedule sits under a smooth river stone on Samuel's quiet desk. He matches trained-volunteer calls w…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A studio has six clever growth options, each with a champion. Which fox-versus-hedgehog question should the owner ask?"
           }
         ],
         "minors": [
           {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"bestat truth economic engine\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"referrals per rehab slot\" appears in both fastRead and fullRead — vary one of them"
           }
         ]
       },
@@ -325,61 +168,26 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "E4",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Ben one late trumpet set to stop approving every cable choice. Coiled XLR cables line the plywood stage lip before noon, and five volunteer crews wait for instructions. He sets one fixed boun…"
           },
           {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
+            "catalogId": "C2",
             "severity": "major",
             "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Friday, 2:48 p.m., Howard grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Howard predicts it will save ten minutes, then watches two charts…"
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Add inspectors,\" the supervisor says as foil-sealed trays click under the barcode reader. Isabelle's postmortem follows one mislabeled tray back to a confusing SKU rack, not careless hands. She fixe…"
           }
         ],
         "minors": [
           {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"a clear framework and\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"permission stops being the\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
       },
@@ -389,61 +197,53 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "E4",
+            "catalogId": "E1",
             "severity": "major",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
           },
           {
-            "catalogId": "E2",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Vera two weeks to learn whether the yellow sensor tags were useful. Before sunrise, they clicked against the feed rail while the fresh-cow notebook stayed open on the hood of the utility cart…"
           },
           {
             "catalogId": "C3",
             "severity": "major",
-            "unit": "example[4]",
+            "unit": "example[1]",
             "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Friday, 2:48 p.m., Yvonne grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Yvonne predicts it will save ten minutes, then watches two charts…"
+            "evidence": "It took Vera two weeks to learn whether the yellow sensor tags were useful. Before sunrise, they clicked against the feed rail while the fresh-cow notebook stayed open on the hood of the utility cart…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Powdery deed books lie open under a foam cradle when Chloe starts the timer. A patron asks for one surname, and the handwritten index takes eleven minutes to reach a usable record. Chloe repeats the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which proves the laser cutter belongs, the glossy brochure or the callback file? Peter lays white sailcloth triangles under brass pattern slugs, rejected hand-cut patches on the left and laser-cut sa…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team says, \"We need this platform because everyone in our industry is adopting it.\" Which warning sign is strongest?"
           }
         ],
         "minors": [
           {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"the smaller unit cuts\" appears in both fastRead and fullRead — vary one of them"
           }
         ]
       },
@@ -453,61 +253,40 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "E4",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Andrea twelve weeks of sample bags lined by roast date to see the wheel. The delivery manifest looked boring beside the rebrand packet, but the fourth cafe signed after hearing from the prior…"
           },
           {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
+            "catalogId": "C2",
             "severity": "major",
             "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Friday, 2:48 p.m., Grace grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Grace predicts it will save ten minutes, then watches two charts l…"
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The numbers are still small,\" a board member says while pink hearing notices sit beside a courthouse intake stamp. Yusuf draws arrows from clerk referrals to shelter intake to hearing representation…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Which is more honest, a new engine announcement or the small numbers glowing on the QA monitor? Robert predicts the quiet playtest will pressure him into a rewrite. Then he compares crash reports, tu…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "You can ask one planning question before a team approves a reset. Which question best protects cumulative momentum?"
           }
         ],
         "minors": [
           {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+            "message": "breakdown: \"one repeat mobile site\" appears in both fastRead and fullRead — vary one of them"
           }
         ]
       },
@@ -517,67 +296,73 @@
         "blockers": [],
         "majors": [
           {
-            "catalogId": "E4",
+            "catalogId": "B4",
             "severity": "major",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+            "unit": "counterintuition",
+            "message": "banned phrase \"durable practice\" — Tic, appears 33 times in just 3 books.",
+            "evidence": "The paradox of a leap is that it can weaken the habits that made it possible if success turns into proof, nostalgia, or display. The stronger move is to convert the win into durable practice before c…"
           },
           {
-            "catalogId": "E2",
+            "catalogId": "E1",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
           },
           {
-            "catalogId": "E2",
+            "catalogId": "C2",
             "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Fiona one sealed award box to see the newsroom's next risk. Before the prize, marked source logs made the investigation strong. After the national award arrived, she leaves the box unopened b…"
           },
           {
-            "catalogId": "E2",
-            "severity": "major",
-            "unit": "breakdown",
-            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
-          },
-          {
-            "catalogId": "C3",
+            "catalogId": "C2",
             "severity": "major",
             "unit": "example[4]",
-            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
-            "evidence": "Friday, 2:48 p.m., Douglas grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Douglas predicts it will save ten minutes, then watches two char…"
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"The conservatory photo should open the packet,\" a trustee says while frost crystals cling to the seed-bank freezer handle. Niamh moves the ribbon photo below the germination-failure log and funds th…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Aaron asks which donors will remember in a year, the montage or the proof that their gifts changed care. Unused gala cue cards sit beside patient-outcome binders when he cancels the video edit. The c…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader says, \"We made the leap, so the disciplines are now part of who we are.\" What warning should you bring back?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "You can ask one closing question after a major win. Which question best converts achievement into durable practice?"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "banned phrase \"durable practice\" — Tic, appears 33 times in just 3 books.",
+            "evidence": "You can ask one closing question after a major win. Which question best converts achievement into durable practice? Which routine, review, or boundary must still exist six months from now for this wi…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "implementationPlan.coreSkill",
+            "message": "banned phrase \"durable practice\" — Tic, appears 33 times in just 3 books.",
+            "evidence": "The core skill is converting a win into durable practice. You identify the discipline that created the result, then embed it in a routine, review, training, or boundary that survives attention and co…"
           }
         ],
-        "minors": [
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.deepRead",
-            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B7",
-            "severity": "minor",
-            "unit": "breakdown.fullRead",
-            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
-          },
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"practicing the disciplines that\" appears in both fastRead and deepRead — vary one of them"
-          }
-        ]
+        "minors": []
       }
     ],
     "totalBlockers": 0,
-    "totalMajors": 44
+    "totalMajors": 34
   },
   "bookGate": {
     "bookId": "good-to-great",
@@ -586,15 +371,30 @@
     "findings": [],
     "stats": {
       "answerPositionCounts": [
-        27,
-        27,
-        27
+        34,
+        22,
+        25
       ],
-      "answerPositionPctMax": 0.3333333333333333,
+      "answerPositionPctMax": 0.41975308641975306,
       "totalQuizQuestions": 81,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "good-to-great",
+        "chapterCount": 9,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

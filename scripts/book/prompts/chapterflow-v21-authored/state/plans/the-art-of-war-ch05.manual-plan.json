@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch05",
+  "number": 5,
+  "title": "Energy",
+  "coreMove": "Combine simple direct and indirect moves so the system carries force that no single person has to supply alone.",
+  "sourcePressure": "The source explains command through subdivisions and signals, direct and indirect methods, inexhaustible combinations, simulated disorder backed by discipline, baits, picked men, and momentum like rolling stones.",
+  "chapterSpecificMisunderstanding": "Equating energy with hustle, charisma, or personal intensity.",
+  "sourceAlignmentTerms": [
+    "signs and signals",
+    "direct method",
+    "indirect methods",
+    "combined energy",
+    "simulated disorder",
+    "baits",
+    "picked men",
+    "rolling logs or stones"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "five musical notes and five primary colours",
+      "detail": "A few elements combine into more melodies and hues than can be exhausted, just as direct and indirect moves combine in battle.",
+      "useIn": "both",
+      "phrasingHint": "You do not need many moves; you need a few moves arranged until the combinations multiply."
+    },
+    {
+      "kind": "artifact",
+      "name": "the bent crossbow",
+      "detail": "Energy is compared to a bent crossbow and decision to releasing its trigger.",
+      "useIn": "deepRead",
+      "phrasingHint": "Build the bend before you touch the trigger."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "orchestra rehearsal preparing a difficult entrance after silence",
+      "audience": "principal conductor with ninety players",
+      "stakes": "one mistimed entrance will break the premiere",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The hall goes still as Megan pairs a visible bow cue with a hidden percussion count so the whole orchestra enters as one body.",
+      "firstImage": "a raised bow over a silent stage",
+      "mustInclude": [
+        "percussion click",
+        "marked score",
+        "balcony echo"
+      ],
+      "mustAvoid": [
+        "sports team energy cliche"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "warehouse pick path redesign before holiday volume",
+      "audience": "fulfillment supervisor",
+      "stakes": "workers are blamed for slowness caused by layout friction",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "A yellow tote stalls at the same corner until Daniel changes zones and signals so the flow rolls instead of depending on heroic pickers.",
+      "firstImage": "a yellow tote jammed at a conveyor corner",
+      "mustInclude": [
+        "zone labels",
+        "scanner tones",
+        "holiday forecast"
+      ],
+      "mustAvoid": [
+        "generic productivity hack"
+      ]
+    },
+    {
+      "protagonistName": "Manon",
+      "domain": "theater lighting crew handling a blackout cue",
+      "audience": "stage manager for a touring production",
+      "stakes": "a missed cue leaves actors moving in darkness",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The blackout is direct; the glow tape is indirect, Manon says, then checks that the hidden guide carries the visible effect.",
+      "firstImage": "glow tape on a stage stair",
+      "mustInclude": [
+        "cue sheet",
+        "headset channel",
+        "backup lantern"
+      ],
+      "mustAvoid": [
+        "romantic theater chaos"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "volunteer search team covering a forest grid",
+      "audience": "search coordinator after a missing hiker report",
+      "stakes": "too much individual initiative leaves gaps in the map",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 5:18 a.m., Mikkel divides the team by ravine, assigns radio signals, and holds the fastest walkers back for the one place momentum will matter.",
+      "firstImage": "mist caught in a spruce ravine",
+      "mustInclude": [
+        "grid map",
+        "radio call signs",
+        "thermal drone battery"
+      ],
+      "mustAvoid": [
+        "hero rescuer running alone"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "fashion studio launching a capsule collection with scarce fabric",
+      "audience": "production lead in a Milan atelier",
+      "stakes": "one bottleneck cutter could delay every finished piece",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What happens if the rare fabric waits for the slowest hand instead of the cleanest sequence?",
+      "firstImage": "a bolt of midnight wool on a cutting table",
+      "mustInclude": [
+        "pattern weights",
+        "cutter schedule",
+        "sample rack"
+      ],
+      "mustAvoid": [
+        "generic creative teamwork"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "airport ground crew turning around a delayed aircraft",
+      "audience": "ramp coordinator at a winter airport",
+      "stakes": "a late departure cascades into missed connections",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Yusuf hold the fuel truck, move baggage first, and use one clear hand signal so separate crews become one release of force.",
+      "firstImage": "orange wands flashing on wet tarmac",
+      "mustInclude": [
+        "fuel truck",
+        "baggage belt",
+        "deicing slot"
+      ],
+      "mustAvoid": [
+        "bus depot or commute shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify combined energy rather than individual effort",
+      "use direct and indirect moves in sequence",
+      "tell simulated disorder from real disorder"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "List the direct move and the indirect move in a current project, then decide which one sets tension and which one releases it.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,206 @@
+{
+  "number": 7,
+  "title": "Dealing With Conflict",
+  "coreMove": "Before escalating, identify the game being played, the response your move invites, the authority structure, and whether the smarter move is to reframe or refuse the fight.",
+  "sourcePressure": "The source uses game theory, authority, and loss leader strategy to frame conflict as strategic interaction where incentives, legitimacy, and selective engagement matter.",
+  "chapterSpecificMisunderstanding": "Turning conflict models into manipulative tactics or a mandate to win every visible point.",
+  "sourceAlignmentTerms": [
+    "game theory",
+    "authority",
+    "incentives",
+    "counter-moves",
+    "loss leader strategy",
+    "response loop",
+    "not play"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "game theory",
+      "detail": "the source supports treating conflict as strategic interaction where other people have incentives, responses, and counter-moves",
+      "useIn": "both",
+      "phrasingHint": "The moment the other side can answer back, your move is not a speech anymore; it is part of a game."
+    },
+    {
+      "kind": "artifact",
+      "name": "authority",
+      "detail": "the source supports the role of status, credibility, and perceived legitimacy in shaping compliance or persuasion",
+      "useIn": "deepRead",
+      "phrasingHint": "The same sentence changes weight when the room treats one speaker as legitimate and another as noise."
+    },
+    {
+      "kind": "artifact",
+      "name": "loss leader strategy",
+      "detail": "the source supports giving ground in one place to change the larger strategic position or avoid the wrong fight",
+      "useIn": "fullRead",
+      "phrasingHint": "Sometimes the visible point is cheap enough to let go because the larger game is where the real cost lives."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Conflict is a game",
+      "Do not take the bait",
+      "Pick your battles"
+    ],
+    "counterintuition": [
+      "Winning can be losing",
+      "More force is not better strategy",
+      "Authority matters"
+    ],
+    "tryThisNow": [
+      "Pause before replying",
+      "Ask what game you are in",
+      "Choose whether to engage"
+    ],
+    "examples": [
+      "team dispute with louder pressure",
+      "student leadership authority lesson",
+      "roommate chore fight",
+      "public argument bait"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Laura, a newsroom section editor deciding whether to correct a senior columnist in the open Slack thread or move the exchange private",
+      "audience": "workplace readers facing status-laden disagreement",
+      "stakes": "a public correction could harden the columnist and derail the story deadline",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Laura names the response loop, drafts a private note, and preserves the story correction without turning it into a status contest",
+      "firstImage": "“If I post this here, what game starts?”",
+      "mustInclude": [
+        "Slack thread",
+        "copy deadline",
+        "private note draft"
+      ],
+      "mustAvoid": [
+        "generic team meeting conflict",
+        "public bait example from old draft"
+      ]
+    },
+    {
+      "domain": "Henrik, a neighborhood hockey referee handling two coaches who both want the next penalty call",
+      "audience": "people mediating disputes where authority is fragile",
+      "stakes": "one inconsistent signal can make the whole rink ignore him",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Henrik skates to the boards, uses the same short explanation for both benches, and protects legitimacy by refusing side arguments",
+      "firstImage": "skate spray taps the boards while both benches lean forward",
+      "mustInclude": [
+        "whistle",
+        "penalty sheet",
+        "two benches"
+      ],
+      "mustAvoid": [
+        "sports victory metaphor",
+        "military command language"
+      ]
+    },
+    {
+      "domain": "Isabel, a co-op board treasurer deciding whether to fight a resident’s accusation line by line or publish the repair invoices plainly",
+      "audience": "civic volunteers under reputational pressure",
+      "stakes": "a direct fight could make the accusation the main event",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Isabel gives up the satisfaction of rebutting every sentence and posts the invoices with a narrow meeting agenda",
+      "firstImage": "It took Isabel three drafts to delete the paragraph that felt best to write",
+      "mustInclude": [
+        "repair invoices",
+        "meeting agenda",
+        "resident email"
+      ],
+      "mustAvoid": [
+        "chapter 15 HWF object persuasion shell",
+        "city council water jar"
+      ]
+    },
+    {
+      "domain": "Ben, a film-set assistant director de-escalating a clash between lighting and sound before the crew loses the location",
+      "audience": "project leads under deadline pressure",
+      "stakes": "winning the blame argument costs the last hour of permitted shooting",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Ben reframes the fight around the location deadline, gives each department one concession, and moves the crew back to the shot",
+      "firstImage": "the location permit is clipped to a sandbag beside a dying battery pack",
+      "mustInclude": [
+        "location permit",
+        "battery pack",
+        "shot list"
+      ],
+      "mustAvoid": [
+        "generic office conflict",
+        "relationship chore fight"
+      ]
+    },
+    {
+      "domain": "Kasia, a graduate seminar participant choosing not to crush a weak comment because it would silence the room she needs to learn from",
+      "audience": "students and experts tempted to win small intellectual contests",
+      "stakes": "a visible win could reduce later candor in the seminar",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Kasia writes the correction in her margin, asks a clarifying question instead, and keeps the room open for the larger discussion",
+      "firstImage": "You can feel the perfect correction forming before the speaker reaches the period",
+      "mustInclude": [
+        "margin note",
+        "seminar table",
+        "clarifying question"
+      ],
+      "mustAvoid": [
+        "student leadership dispute",
+        "generic be kind lesson"
+      ]
+    },
+    {
+      "domain": "Hadiya, a community clinic nurse negotiating with a supplier after missed vaccine-fridge deliveries",
+      "audience": "frontline professionals balancing firmness and future dependence",
+      "stakes": "the clinic needs reliability without destroying a supplier relationship it still depends on",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hadiya maps the supplier’s incentives, uses the clinic’s purchasing authority carefully, and asks for a delivery-confirmation change instead of just threatening to leave",
+      "firstImage": "At 7:30 a.m., Hadiya photographs the empty vaccine-fridge shelf before calling the supplier",
+      "mustInclude": [
+        "vaccine-fridge shelf",
+        "delivery log",
+        "confirmation change"
+      ],
+      "mustAvoid": [
+        "generic negotiation tactics",
+        "formal game-theory matrix"
+      ]
+    }
+  ],
+  "tryThisNowSpec": "Before your next reply in a live disagreement, write the response your reply is likely to invite. If that response worsens the game, choose a narrower channel, a different messenger, or no engagement.",
+  "chapterId": "super-thinking-ch07",
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the chapter-specific model in a fresh scenario for Dealing With Conflict",
+      "choose the visible action that performs the core move rather than naming the concept",
+      "explain the failure mode that appears when the model is used generically",
+      "evaluate tradeoffs and limits without sliding into certainty, cynicism, or manipulation"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

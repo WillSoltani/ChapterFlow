@@ -3,317 +3,305 @@
   "number": 5,
   "title": "Supersmart?",
   "readingTimeMinutes": 12,
-  "hook": "The smartest person in the room may still lose to the person who breaks the problem apart.",
-  "counterintuition": "Ylva expects raw intelligence to carry the forecast. The real advantage comes from decomposition, base rates, and the nerve to attack your first answer.",
-  "tryThisNow": "Open a note, write one forecast you already believe about a complex decision, add a percent and a check date, then write what would make you move the number down.",
-  "keyTakeaway": "Do not worship brainpower; break the question into parts, start from comparable cases, test your favorite answer, and revise when a subquestion pushes back.",
+  "hook": "Enrico Fermi did not know how many piano tuners worked in Chicago. He built the number from smaller numbers he could estimate separately, and his answer was usually within a factor of two. That is not genius. That is method.",
+  "counterintuition": "Breaking a big uncertain question into smaller uncertain parts feels like multiplying the uncertainty. It does not. Independent estimation errors partially cancel each other, and naming each component forces you to confront assumptions you would otherwise leave invisible.",
+  "tryThisNow": "Find one number you need to estimate this week: a project cost, a timeline, an audience size, a conversion rate. Before guessing, write three components the total is made of. Look up or estimate each component separately. Multiply or add them. Compare that number to your gut estimate. The gap between them is what decomposition is for.",
+  "keyTakeaway": "Raw intelligence without a method produces brilliant-sounding wrong answers. Decompose the question into estimable parts, anchor each on the reference class, then adjust for what you know specifically.",
   "breakdown": {
-    "fastRead": "At 6:31 p.m., Ylva draws four boxes around the promotion forecast. The boss wants one answer. The boxes show four different bets hiding inside it. He wants the clean answer now. The paper in front of him will not give it.\n\nWrite the odds where the room can see them. Add the date, the question, and the sign that would make you change your mind. Intelligence helps most after the problem has been cut small enough to bite.\n\nA forecast gets useful when it can be checked later. Confidence without a receipt is only weather in someone else's voice. Keep the receipt.",
-    "deepRead": "At 9:50 a.m., Iskra, a hospital scheduler, splits a surgery backlog forecast by surgeon and ward. The average hides the part that will break first. The easy move is to pick the story that feels whole. The better move is to slow down long enough to ask what the record says before this case arrived.\n\nA number is not a costume for certainty. It is a handle. You can move it when the facts move. You can also leave it alone when the new fact is only loud. A base rate is not a cage. It is the floor you stand on before you jump.\n\nPicture Bode opening last year’s summer-camp numbers before guessing this year’s enrollment. The choice is not between swagger and silence. The choice is between a claim that can learn and a claim that can only defend itself.\n\nUse the smallest clean question you can write. Put a date on it. Start from the outside view, the rate for cases like this one, then adjust for what is truly different here. Stop when you can explain the move in plain words.\n\nA limit stays in view. Some events are too tangled, too far out, or too hidden for a sharp answer. The skill is not pretending fog is glass. The skill is knowing when the glass is only dirty enough to wipe.",
-    "fullRead": "At 11:07 p.m., Chandra, a chess coach, studies a student's brilliant but fragile tournament prediction. She asks him to write what would make his favorite line fail. Everyone at the table can feel the pull of a clean story. It lowers stress. It gives the next meeting a script. It also hides the weak joint in the forecast, the part nobody will remember to test unless someone writes it down now.\n\nHand the room a sharper question. Do not ask whether the whole future will go well. Ask whether a named event will happen by a named date. Ask what would count as yes. Ask what rate similar cases have shown before. The room may groan, because the work feels smaller. The smaller work is the point. It gives reality a place to answer.\n\nA forecaster earns trust by leaving tracks. The first track is the base rate. Before you explain why this case is special, look at how often cases like it have turned out that way. The second track is the update. If a new fact arrives, move the odds by the strength of that fact, not by the size of the feeling it creates. The third track is the review. When the result lands, save the old number and ask which assumption broke.\n\nAt 2:42 p.m., Safiya, a food-bank director, estimates holiday demand by family size, school closure, and bus route. The parts make the total less grand and more useful. This is where the craft starts to feel almost physical. The pen pauses. The number changes from 60 to 55, not from 60 to 10, because the new fact is real but not huge. The team can see the move. Nobody has to pretend the old answer was perfect.\n\nThe first answer is a suspect, not a pet. It keeps judgment from turning into a costume. A person can sound brave while hiding from the record. A quieter person with dates, odds, and reviews may be doing the harder thing.\n\nThe limit matters. Long-range shocks, hidden incentives, and fragile systems can make even careful work miss. A good forecaster does not use that as an excuse to blur every claim. She uses it to sort questions. Some deserve a wide range. Some deserve a backup plan. Some deserve no forecast stronger than a shrug.\n\nTry the move on a live claim today. Take one future sentence you hear at work, at home, or in the news. Cut it into a smaller question. Put a probability on it. Write why you chose that number. Then mark the date when you will look again. The act takes two minutes. The habit changes the room because it makes confidence answerable."
+    "fastRead": "Frida had a gut number for the surgery: three hours. She had done similar revisions many times. But this case had an unusual hardware configuration on the CT scan that her gut had not accounted for.\n\nShe broke it down instead. Standard revision time from her last 12 cases: two and a half hours. Additional time for this specific complication pattern: forty minutes. Hardware removal estimate: thirty minutes. Buffer for unexpected findings: fifteen minutes. Total: four hours and five minutes.\n\nThe decomposition is not a substitute for knowing things. It is a structure for not knowing things in a disciplined way.\n\nThe gut estimate was off by more than an hour. Not because Frida's judgment was poor, but because the gut estimate had no components to adjust on their own. The decomposition did. When the hardware estimate changed, only one component changed with it.",
+    "deepRead": "Enrico Fermi did not guess at the number of piano tuners in Chicago. He built the number from smaller guesses that could each be checked separately.\n\nHow many households in Chicago? Around 1.5 million. What fraction own a piano? About one in twenty. How often does a piano need tuning? About once a year. How long does a tuning take, with travel? About two hours. How many working hours does a tuner have in a year? About 2,000. Divide: 1.5 million times 0.05 gives 75,000 pianos. Each requires two hours once a year, so 150,000 hours of demand. Divided by 2,000 hours per tuner: 75 piano tuners. The actual number, when checked, was close.\n\nThe components were uncertain. But they were uncertain in different directions. An overestimate on piano ownership ran against an underestimate on tuning frequency. Independent errors partially cancel. A single gut guess has no such correction mechanism.\n\nWhen Bill Flack looked at the Arafat polonium story (Bill Flack's Arafat polonium case, as it was catalogued in the GJP data), he started somewhere else. The inside-view narrative was compelling: sophisticated actor, state-level capability, politically motivated elimination. Flack went to the outside view first. How often do leaders in comparable political circumstances die by poisoning versus other causes? What is the fraction of high-profile deaths attributed to foul play that are later confirmed as such? The reference class was considerably more skeptical than the headlines implied.\n\nFlack's probability came in lower than the narrative suggested. Not because the polonium story was definitely wrong, but because the reference class for 'compelling assassination narrative' does not confirm at the rate that compelling narratives imply. That is the discipline: reference class first, narrative second. Consulting specific knowledge before the reference class almost always inflates confidence past what the evidence warrants.",
+    "fullRead": "Michael's board deck had 'TAM: $2.8B' on slide four. He had found a market research report that felt right and used its top-level number. The board's first question would be: how did you get to that number?\n\nHe went back to the whiteboard. Target companies in the sector: roughly 6,000 from public databases. Fraction facing the specific regulatory pressure: 30% from industry association data. Fraction currently using any software to manage it: 12% from an analyst estimate. Willingness to pay at his price point: $18,000 per year from three customer interviews. Product: 6,000 times 0.30 times 0.12 times $18,000 equals roughly $3.9 million in reachable annual contract value. His gut number was $2.8 billion. The decomposed number was $3.9 million.\n\nThe 40% adjustment that matters is not from $2.8B to something lower. It is from whatever your gut number is to whatever the decomposition says. Michael's decomposed number was defensible. He used it in the deck with the four components shown.\n\nAman found four analogous cycling infrastructure projects in comparable cities. The cost-per-kilometer numbers ranged from $380K to $470K across the reference class, giving him a midpoint near $425K before examining local conditions. He had the reference class number before he looked at the local project specs.\n\nThe outside view feels like giving up. That feeling is a signal it is working. When you consult the reference class before examining your specific case in detail, the move clears away everything that makes your case feel personal and specific. The reference class number looks like it could have come from anywhere. That abstraction is the point: if the number felt specific before you adjusted for local factors, it would already have been contaminated by inside-view reasoning before the reference class could correct it.\n\nAman then found one local distinguishing factor: union labor rates in his city ran 22% above the reference class average. He adjusted the estimate from $425K per kilometer to $515K. His director had already communicated $410K to the council committee. The conversation before the meeting was uncomfortable. It was also necessary. An estimate that has not been stress-tested against a reference class is only an inside-view number wearing the look of an estimate.\n\nSophie built the conference attendance estimate from components. Total registrants in the client's industry association email list: 12,000. Historical open rate for comparable conference invitations: 28%. Conversion from open to registration: 18%. Expected no-show rate from three analogous events: 22%. The product was roughly 340 attendees. The client had expected 500. Sophie presented 340 with confidence intervals and the rationale behind each component. The client reset their expectations before the venue deposit was paid.\n\nJonas ran the same sequence in a different domain. The question was not attendance but medication buffer: would current supply cover a six-week rural health surge? He decomposed: current census (85 patients), surge multiplier from two years of seasonal data (1.4x), average daily doses per patient for the three highest-demand medications, and days of supply on hand. The answer was 11 days of buffer under surge conditions, below the safe threshold. The emergency order was placed before the surge rather than during it.\n\nDecomposition works even when every component is imprecise. Each component's error is independent of the others', which means they partially cancel. The gut estimate has no such cancellation; its errors flow from a single judgment that can be confidently wrong in one direction by any amount."
   },
   "examples": [
     {
-      "exampleId": "ch05-ex01-ylva-four-boxes",
-      "title": "Ylva draws four boxes around the promotion bet",
-      "tags": [
-        "decision_point",
-        "human",
-        "forecasting"
-      ],
+      "exampleId": "ch05-ex01-michael-startup",
+      "title": "Michael's TAM decomposition comes back 40% below his gut number, and he uses it anyway",
+      "tags": ["scene", "startup-market-sizing", "fermi-decomposition"],
       "planSpec": {
-        "domain": "human resources",
-        "audience": "an HR lead forecasting a promotion outcome",
-        "stakes": "whether one smart hunch hides several subquestions",
-        "format": "decision_point",
-        "requiredBeat": "she decomposes a promotion forecast before advising the VP"
-      },
-      "scenario": "Ylva presses a ruler against a legal pad at 6:31 p.m. in the HR conference nook, drawing four boxes under the name of a manager up for promotion. The VP asked, will he succeed? Ylva's first answer is yes, easy. Then she labels the boxes: team retention, budget skill, peer trust, crisis judgment. The office cleaner is vacuuming by the glass wall. Ylva has to decide whether to send the quick yes or score the four smaller bets first.",
-      "whatToDo": "Score the subquestions before advising the VP. Give each box its own probability, then combine them into a recommendation with the weakest box visible.",
-      "whyItMatters": "A single yes hides where the risk lives. Smaller forecasts show which part of the promotion bet deserves support or doubt."
-    },
-    {
-      "exampleId": "ch05-ex02-iskra-surgery-board",
-      "title": "Iskra splits the surgery backlog by ward",
-      "tags": [
-        "scene",
-        "hospital",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "hospital scheduling",
-        "audience": "a scheduler estimating backlog clearance",
-        "stakes": "whether an average hides the constraint that matters",
+        "domain": "startup founder estimating addressable market for a niche B2B compliance software product",
+        "audience": "a founder preparing a board deck whose market size claim is currently a guess",
+        "stakes": "Series A term sheet discussion where the investor's first question will be 'how did you get to that number?'",
         "format": "scene",
-        "requiredBeat": "she decomposes the backlog instead of trusting one total"
+        "openingDevice": "dialogue_first",
+        "requiredBeat": "the four-component decomposition returns 40% below the gut estimate; the founder uses the defensible number rather than the comfortable one"
       },
-      "scenario": "Iskra lifts a blue magnet from the surgery board at 9:50 a.m., its edge sticky from old tape. The chief wants to know whether the backlog clears by Friday. The total number says maybe. Iskra splits the list by surgeon, ward bed, and recovery nurse, then sees the answer change. Orthopedics can move. Cardiac cannot. Her coffee has gone cold while the average keeps lying politely from the top of the sheet.",
-      "whatToDo": "Break the backlog into bottlenecks. Forecast each constraint separately, then report the total with the tightest constraint named.",
-      "whyItMatters": "The total can look manageable while one ward breaks the plan. Decomposition finds the part that will decide the outcome."
+      "scenario": "'How did you get to that number?' the Series A lead asks, pointing at slide four. 'That's a big market for a pretty specific compliance use case.'\n\nMichael has been dreading this question since he built the slide. He found a large market research report and used its top-level figure. He knows the board will push.\n\nThat evening, he goes back to the whiteboard. Four components: the total number of companies in the target sector (roughly 6,000, from two public databases); the fraction facing the specific regulatory pressure that drives demand for his product (30%, from industry association data); the fraction currently using any software to manage this problem (12%, from an analyst estimate); and the willingness-to-pay range at his price point ($18,000 per year, from three customer interviews). Multiply: 6,000 times 0.30 times 0.12 gives 216 companies. Times $18,000 gives $3.9M in reachable annual contract value.\n\nHis original slide said $2.8B. The decomposed estimate is $3.9M in near-term reachable value. He rewrites the slide. The new version shows all four components and their sources. In the next board meeting, the Series A lead calls it the most defensible TAM analysis she has seen from an early-stage company.",
+      "whatToDo": "Before committing a market size estimate to a board deck or investor meeting, decompose it into three or four components that can each be independently sourced. The decomposed number may be lower than your gut estimate. Use it: a defensible lower number is worth more in a term sheet conversation than an indefensible higher one.",
+      "whyItMatters": "A market size from a single report number has no components an investor can challenge or refine. A decomposed estimate turns the question from 'do you believe this number?' into 'which of these components do you read differently?' That is a conversation the founder can have. The gut number closes that conversation before it opens."
     },
     {
-      "exampleId": "ch05-ex03-bode-camp-ledger",
-      "title": "Bode opens last year’s camp ledger first",
-      "tags": [
-        "vignette",
-        "youth",
-        "forecasting"
-      ],
+      "exampleId": "ch05-ex02-frida-surgeon",
+      "title": "Frida's decomposed estimate runs 25 minutes long and changes the afternoon schedule",
+      "tags": ["decision_point", "surgical-scheduling", "fermi-decomposition"],
       "planSpec": {
-        "domain": "youth programs",
-        "audience": "a camp director estimating summer enrollment",
-        "stakes": "whether enthusiasm beats the base rate",
+        "domain": "orthopedic surgeon estimating operative time for a complex revision hip replacement she has not done in this exact configuration before",
+        "audience": "a surgeon scheduling a surgery list whose time estimate determines whether a second case can be added to the afternoon",
+        "stakes": "OR scheduling efficiency and a second patient's surgery possibly being postponed",
+        "format": "decision_point",
+        "openingDevice": "sensory_first",
+        "requiredBeat": "the four-component decomposition runs 25 minutes longer than the gut estimate; the second case moves rather than being squeezed"
+      },
+      "scenario": "The CT scan printout is pinned to the OR scheduling board with a question mark penciled next to the time slot. Frida has seen the film: unusual acetabular hardware from the original surgery, some bone integration that will complicate the approach. Her gut says three hours. She knows from experience that gut estimates on complex revisions trend short.\n\nShe breaks it down before confirming the schedule. Standard revision time from her last 12 comparable cases: two hours and thirty minutes median. Additional time for the specific complication pattern on this CT scan: forty minutes, based on two similar presentations in her notes. Time for the hardware removal given the integration pattern: thirty minutes, estimated conservatively. Buffer for unexpected intraoperative findings: fifteen minutes.\n\nTotal: four hours and fifteen minutes. Her gut had said three hours. The gap is an hour and fifteen minutes, and the second afternoon case was being counted on a three-hour assumption.\n\nShe must decide before confirming the schedule: move the second case to a separate date and absorb the disruption, or keep both cases and accept the risk of a late finish that could compromise the second patient. She moves the second case. The first surgery runs four hours and ten minutes.",
+      "whatToDo": "When estimating operative time for a complex or novel procedure, decompose into standard time plus adjustments for each distinguishing feature of this specific case. Write each component separately before summing. The sum almost always differs from the gut estimate by enough to matter.",
+      "whyItMatters": "A gut estimate for surgical time collapses the case's complexity into a single judgment. Decomposition forces each distinguishing feature to be assessed separately before it is incorporated into the total. The 25-minute gap (or larger) that surfaces from decomposition is real scheduling information, not excessive caution."
+    },
+    {
+      "exampleId": "ch05-ex03-aman-planner",
+      "title": "Aman anchors on four analogous cities before looking at local conditions, and the local factor shifts the estimate 18% upward",
+      "tags": ["vignette", "city-planning", "outside-view"],
+      "planSpec": {
+        "domain": "city planner estimating cost for a new cycling infrastructure project using analogous projects from other cities",
+        "audience": "a senior planner presenting a budget estimate to a council committee",
+        "stakes": "a $4M budget line item in a capital plan where the estimate will be treated as a commitment",
         "format": "vignette",
-        "requiredBeat": "he uses last year’s comparable numbers before adjusting for new facts"
+        "openingDevice": "second_person",
+        "requiredBeat": "four analogous reference projects establish the reference class; one local factor shifts the estimate 18% above the initially communicated figure, requiring a conversation before the committee meeting"
       },
-      "scenario": "Bode unlocks the metal file cabinet at 7:43 a.m. in the rec center office, sunscreen smell still trapped in the old camp T-shirts. His gut says enrollment will jump because the new climbing wall looks great. Before he tells the board, he opens last year's ledger. Same early-bird week, same school calendar, 118 signups. This year shows 123. The climbing wall may help, but the base rate has already cooled the story.",
-      "whatToDo": "Start with last year's comparable signup curve. Adjust only for specific changes, like the climbing wall or bus route, and show the adjustment separately.",
-      "whyItMatters": "The base rate prevents excitement from becoming the whole forecast. It gives the new feature a fair amount of weight, not all the weight."
+      "scenario": "You are a city planner preparing a budget estimate for a cycling infrastructure project. Your director has already mentioned $410K per kilometer to the council committee as a rough figure. You have not yet done the reference class research.\n\nYou find four analogous projects from comparable cities: three mid-size metros with similar density and street configuration that completed separated bike lane projects in the past four years. The cost-per-kilometer figures are $380K, $415K, $440K, and $455K. The reference class midpoint is approximately $423K.\n\nYou then look at local conditions. One distinguishing factor: union labor rates in your city run 22% above the reference class average. You adjust from $423K per kilometer to roughly $515K. Your director's preliminary figure was $410K. Your adjusted estimate is 25% above it.\n\nYou schedule a conversation with your director before the next committee meeting. The number is uncomfortable. It is also grounded in a reference class, and the local adjustment is documented and defensible. The director revises the committee communication.",
+      "whatToDo": "Before presenting any cost or resource estimate, find three to five analogous completed projects that form a reference class. Calculate the reference class range and midpoint. Only then identify what distinguishes your specific project from the reference class and adjust from the midpoint.",
+      "whyItMatters": "Starting with the specific project and working outward almost always anchors the estimate on inside-view factors that inflate confidence. Starting with the reference class and working inward surfaces the adjustments as explicit additions to a baseline rather than as invisible assumptions baked into a gut number."
     },
     {
-      "exampleId": "ch05-ex04-chandra-chess-line",
-      "title": "Chandra asks what breaks the brilliant chess line",
-      "tags": [
-        "dialogue",
-        "chess",
-        "forecasting"
-      ],
+      "exampleId": "ch05-ex04-sophie-events",
+      "title": "Sophie's Fermi estimate of 340 lands 32% below the client's expectation and above the actual attendance",
+      "tags": ["predict_reveal", "event-management", "fermi-decomposition"],
       "planSpec": {
-        "domain": "chess coaching",
-        "audience": "a coach reviewing a student's tournament forecast",
-        "stakes": "whether talent protects a favorite prediction from attack",
-        "format": "dialogue",
-        "requiredBeat": "she makes the student argue against his best line"
+        "domain": "event management company estimating attendance for a corporate industry conference with no prior history",
+        "audience": "a conference director proposing a venue contract to a corporate client",
+        "stakes": "a venue deposit commitment based on a minimum attendance guarantee",
+        "format": "predict_reveal",
+        "openingDevice": "timestamp_named",
+        "requiredBeat": "four-component Fermi decomposition returns 340 vs. client expectation of 500; Sophie presents 340 with confidence intervals; actual attendance is 328"
       },
-      "scenario": "Chandra taps a black knight against the table at 11:07 p.m. in the chess club, where the vending machine hums through the wall. Her student says he is 80 percent to win Saturday if he reaches his favorite Sicilian line. \"What ruins it?\" Chandra asks. He smiles, then stops. \"If Rowan trades queens early,\" he says. Chandra pushes the scoresheet toward him. \"Write that probability too.\" He has to decide whether his favorite line survives its first enemy.",
-      "whatToDo": "Make the failure mode explicit. Forecast how often the opponent can force it, then lower the win estimate if that path is common.",
-      "whyItMatters": "Smart people protect elegant answers because the answers feel like part of them. Attacking the favorite line turns intelligence into testing instead of defense."
+      "scenario": "At 9:00 on a Tuesday in March, Sophie opens a blank spreadsheet and starts the estimate. The client expects 500 attendees for their first industry conference. She has never run this conference before, and neither has the client.\n\nFour components. Total registrants in the client's industry association email list: 12,000 contacts confirmed by the association. Historical open rate for conference invitation emails from comparable industry events: 28%, from three reference events she has run. Conversion from email open to conference registration: 18%, consistent across her last four comparable projects. Expected no-show rate from confirmed registrations: 22%, based on three analogous one-day industry conferences.\n\nThe estimate: 12,000 times 0.28 times 0.18 gives 605 registrations. Times (1 minus 0.22) gives approximately 472 actual attendees in an optimistic scenario with full email penetration. But the association's list has a 70% deliverability rate, which brings the adjusted estimate to roughly 330 to 350.\n\nSophie presents 340 as the planning estimate with a range of 300 to 380 and the four components behind each number. The client's expectation of 500 needs to be reset before the venue deposit is paid, but she must decide whether to present the 340 figure directly and risk losing the client's confidence, or soften the number first with extensive context. She presents it directly. The client resets expectations. Actual conference attendance: 328.",
+      "whatToDo": "When estimating event attendance for a new conference, build from components: list size, open rate, conversion rate, and no-show rate, each sourced from comparable events. Present the estimate with the components visible so the client can see which assumption they read differently.",
+      "whyItMatters": "An attendance estimate that starts from the client's expectation and works backward tends to confirm the expectation. An estimate built from independently sourced components is anchored on base rates from comparable events. The gap between those two methods is the gap between a defensible estimate and a hoped-for one."
     },
     {
-      "exampleId": "ch05-ex05-safiya-food-bank",
-      "title": "Safiya sorts demand by bus route and school closure",
-      "tags": [
-        "before_after",
-        "food",
-        "forecasting"
-      ],
+      "exampleId": "ch05-ex05-jonas-pharmacy",
+      "title": "Jonas decomposes the supply question and finds 11 days of buffer where he thought he had more",
+      "tags": ["thought_experiment", "rural-pharmacy", "fermi-decomposition"],
       "planSpec": {
-        "domain": "food relief",
-        "audience": "a food-bank director estimating holiday demand",
-        "stakes": "whether one big demand number misses the families who arrive",
+        "domain": "community pharmacist calculating whether a rural clinic's medication supply will cover a projected surge period",
+        "audience": "a head pharmacist at a remote clinic preparing for a six-week rural health surge",
+        "stakes": "whether to place an emergency order now or wait, given limited cold-storage capacity",
+        "format": "thought_experiment",
+        "openingDevice": "question_hook",
+        "requiredBeat": "four-component decomposition returns 11 days of buffer under surge conditions, below safe threshold; emergency order is placed"
+      },
+      "scenario": "What is the right question to ask before a surge period begins?\n\nNot 'do we have enough medication?' That question produces a gut answer based on a general impression of the stockroom. The right question is: at the projected surge census and average dose rates for the three highest-demand medications, how many days of supply do we currently have on hand?\n\nJonas breaks it down. Current census: 85 patients. Expected surge multiplier from the last two years of seasonal data: 1.4, meaning a projected surge census of approximately 119 patients. Average daily doses per patient per day for the three highest-demand medications: 2.3 doses based on the clinic's past four surge periods. Days of supply on hand for the three medications combined: calculated from current inventory divided by projected daily demand under surge conditions. Result: 11.3 days.\n\nHis safe threshold is 21 days. He has 11. The threshold is 21 days. The decomposition says 11. Cold-storage space is available now and unlikely to be once the surge starts. Jonas needs to choose: place the order now while space is available, or wait. He places the order that afternoon.",
+      "whatToDo": "Before any supply or resource adequacy review, write the specific question as a formula: at projected demand rate X, how many days of supply do we have? Build each variable in the formula separately rather than estimating the answer directly.",
+      "whyItMatters": "The gut answer to 'do we have enough?' is almost always produced by a general impression of the stockroom rather than a calculation. The decomposed answer is produced by numbers that can each be checked and updated. The 11-day buffer is not a feeling; it is an output that survives scrutiny."
+    },
+    {
+      "exampleId": "ch05-ex06-isabel-architect",
+      "title": "Isabel's trade-level decomposition comes in $67K above the prior architect's ballpark, and the client scales back before committing",
+      "tags": ["before_after", "architecture-renovation", "reference-class"],
+      "planSpec": {
+        "domain": "residential architect estimating renovation cost for a client whose prior architect gave a ballpark without decomposing",
+        "audience": "an architect who must give a realistic estimate before the client commits to a full design phase fee",
+        "stakes": "the client's construction budget decision and whether they proceed with the full project or scale it back",
         "format": "before_after",
-        "requiredBeat": "she breaks demand into drivers and revises the order"
+        "openingDevice": "retrospective",
+        "requiredBeat": "prior ballpark of $180-220K contrasted with decomposed estimate of $247K; client scales back one scope item before committing"
       },
-      "scenario": "At 2:42 p.m., Safiya stands between pallets of rice in the food-bank warehouse, marker dust on her sleeve. Before, she ordered holiday boxes from one total: last year plus ten percent. Today she draws columns for family size, school closure, bus route, and freezer access. The west route jumps. The east route holds. By Friday the new order looks uneven, which makes the volunteers nervous, until the west line stretches around the block and the extra boxes land where they are needed.",
-      "whatToDo": "Build the demand estimate from drivers, not from one blanket increase. Let each driver change the order where it applies.",
-      "whyItMatters": "A complex need rarely grows evenly. The parts show where extra help belongs, which a single percentage cannot see."
-    },
-    {
-      "exampleId": "ch05-ex06-gethin-bridge-postmortem",
-      "title": "Gethin marks the bridge estimate he loved too much",
-      "tags": [
-        "postmortem",
-        "civil",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "civil engineering",
-        "audience": "an engineer reviewing a repair-cost miss",
-        "stakes": "whether expertise protects a cherished first estimate",
-        "format": "postmortem",
-        "requiredBeat": "he finds the subquestion he skipped because the first estimate felt elegant"
-      },
-      "scenario": "Gethin sits in the trailer at 8:06 p.m., rain ticking on the roof, the bridge repair invoice spread beside a muddy boot print. His first estimate missed by a third. He had nailed the steel cost and guessed the river-access cost from memory. Now the crane rental line glares up at him. He can blame the flood stage, but the gauge history was available. He has to decide whether the next estimate gets a river-access subquestion every time.",
-      "whatToDo": "Add the skipped subquestion to the estimating checklist. Price river access from gauge history before touching the total.",
-      "whyItMatters": "Expertise failed where it stopped looking. A checklist for the weak subquestion turns a painful miss into a better next estimate."
+      "scenario": "A prior estimate had placed the renovation cost between $180K and $220K, labeled as uncertain with no supporting breakdown. The client has been planning around that midpoint.\n\nIsabel gets the project. Before writing a single design line, she builds the cost estimate from five trade categories using her last six comparable renovation projects as the reference class. Structural work for the load-bearing wall removal: $38,000 to $44,000, based on four comparable structural modifications in her records. Plumbing relocation and upgrade: $28,000 to $34,000. Electrical upgrade to bring the panel to current code: $18,000. Finishes at the client's stated quality level: $95,000 to $110,000. Contingency at 12% for a project with this configuration: $22,000.\n\nTotal range: $201,000 to $228,000 before contingency, or $223,000 to $247,000 with it. The prior estimate's upper bound was $220,000. Isabel's lower bound with contingency is $223,000.\n\nShe presents the five-trade breakdown to the client with each component labeled. The client reads the numbers and asks whether the load-bearing wall removal is required for the design. It is not. Removing that scope item brings the estimate to $185,000 to $206,000 with contingency. The client proceeds with the scaled-back scope.",
+      "whatToDo": "Before committing to a construction or renovation cost estimate, decompose by trade category and anchor each trade estimate on comparable completed projects from your own records or from published reference data. Present the components visible so the client can make scope decisions against specific line items.",
+      "whyItMatters": "A ballpark estimate gives the client a number without a structure. A trade-level decomposition gives the client a set of components they can trade off. The client who knows that load-bearing wall removal costs $38-44K can make a different decision than the client who only knows the total is $220K. Decomposition turns a budget into a set of choices."
     }
   ],
   "quiz": {
-    "passingScorePercent": 80,
+    "passingScorePercent": 70,
     "questions": [
       {
         "questionId": "ch05-q01",
-        "prompt": "A manager at 8:10 a.m. hears a polished forecast for a complex decision but sees no written odds or date. Which move best fits the skill of breaking problems into parts?",
+        "prompt": "Frida, a surgeon, estimates an upcoming revision hip replacement will take three hours based on her experience with similar cases. When she instead breaks the procedure into components, standard revision time plus adjustments for specific hardware complications, she arrives at four hours and fifteen minutes. What approach does this example demonstrate?",
         "choices": [
-          "Write a dated probability and ask what result would count as a miss.",
-          "Trust the confident speaker because clear delivery usually means better judgment.",
-          "Wait for perfect proof and refuse to act until uncertainty disappears."
-        ],
-        "correctIndex": 0,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "apply",
-        "depthLevel": "simple"
-      },
-      {
-        "questionId": "ch05-q02",
-        "prompt": "An analyst at 2:35 p.m. finds one vivid story pushing the team toward a complex decision. Which response keeps the estimate tied to evidence?",
-        "choices": [
-          "Collect more fresh stories until one of them feels complete enough to use.",
-          "Start with the base rate, then list what this case adds or subtracts.",
-          "Ignore the story completely because single cases never teach anything."
+          "Using a known expert's estimate as the anchor and adjusting based on local information.",
+          "Breaking a large uncertain question into smaller components that can each be estimated independently, then combining those estimates.",
+          "Consulting historical databases to replace judgment entirely with statistical extrapolation."
         ],
         "correctIndex": 1,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "analyze",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch05-q03",
-        "prompt": "A parent at the kitchen table has to choose after hearing two confident claims about a complex decision. Which question should come first?",
-        "choices": [
-          "Pick the claim that makes the next step feel least awkward.",
-          "Ask which claim is more inspiring and use that as the guide.",
-          "Ask what record, sample, or past rate each claim can point to."
-        ],
-        "correctIndex": 2,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "evaluate",
-        "depthLevel": "deep"
-      },
-      {
-        "questionId": "ch05-q04",
-        "prompt": "A coach before practice is tempted to treat last week's surprise as proof that a complex decision has changed for good. Which move improves the forecast?",
-        "choices": [
-          "Compare the surprise with a longer record before moving the odds.",
-          "Treat the surprise as a new trend and rewrite the whole forecast around it.",
-          "Hold the old forecast unchanged so the record looks steady."
-        ],
-        "correctIndex": 0,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "create",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch05-q05",
-        "prompt": "A founder on a Monday investor call wants to sound certain about a complex decision, but the record is thin. Which line is strongest?",
-        "choices": [
-          "Use firm language so the room feels less anxious about the unknowns.",
-          "Give a range, name the unknowns, and promise a date for checking it.",
-          "Hide the range inside a slogan that sounds more decisive."
-        ],
-        "correctIndex": 1,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "Fermi decomposition works by replacing one large judgment (which can be wrong in any direction) with several smaller judgments whose independent errors partially cancel out. The reference class or base rate anchors each component before inside-view adjustments are added. The result is both more accurate on average and more legible: each component can be challenged separately.",
         "bloomsLevel": "understand",
         "depthLevel": "simple"
       },
       {
-        "questionId": "ch05-q06",
-        "prompt": "An emergency planner at 6:20 a.m. gets a new signal about a complex decision. Which update is sized best?",
+        "questionId": "ch05-q02",
+        "prompt": "An architect estimates renovation cost as a single gut figure of $220K. A decomposed estimate by trade category returns $247K with a 12% contingency built in. Which approach is more reliable, and why?",
         "choices": [
-          "Jump to the new extreme so nobody can accuse the plan of being slow.",
-          "Move nothing because any update before the final outcome is premature.",
-          "Move the number a little unless the new signal is strong and direct."
+          "The gut estimate, because experienced professionals' domain intuition incorporates tacit knowledge from past cases that formal decomposition methods cannot fully capture or replicate.",
+          "Neither approach is demonstrably more reliable until the project is fully complete and actual final costs can be compared against both estimates.",
+          "The decomposed estimate, because each trade estimate is independently sourced and errors in individual components partially offset each other rather than compounding from a single judgment."
         ],
         "correctIndex": 2,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "The gut estimate aggregates all uncertainty into a single number where errors compound without correction. The decomposed estimate distributes the uncertainty across five independent components: an overestimate in structural work may run against an underestimate in finishes, producing partial cancellation. Beyond accuracy, the decomposed estimate is legible: the client can identify which trade category drives scope decisions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q03",
+        "prompt": "A city planner finds a reference class midpoint of $423K per kilometer from four analogous projects and then discovers a local labor rate premium of 22%. In what order should these two pieces of information be used?",
+        "choices": [
+          "The reference class midpoint first as the anchor, then the local premium as an explicit upward adjustment from that anchor.",
+          "The local premium first to establish the city's specific conditions, then the reference class as a sanity check against the adjusted estimate.",
+          "Both simultaneously, weighted by how comparable the reference class projects are to the local project."
+        ],
+        "correctIndex": 0,
+        "explanation": "The reference class comes first because it represents what happens in comparable cases without specific local adjustment (this is the outside view). The local premium is then added as an explicit, documented adjustment to the reference class anchor. Reversing the sequence (local premium first) bakes inside-view factors into the estimate before the reference class can correct for them, which is the source of most anchoring bias in estimation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q04",
+        "prompt": "Why does decomposing a question into uncertain components typically produce a better estimate than a single gut judgment, even when each component is itself uncertain?",
+        "choices": [
+          "Because decomposition forces the estimator to gather more supporting data and examine more sources than a gut judgment alone would typically require.",
+          "Because breaking a large question into components effectively reduces total uncertainty by distributing and averaging it across multiple independent estimation sources.",
+          "Because component errors are independent of each other and tend to partially cancel, while a single judgment's errors can be consistently wrong in one direction with no correction mechanism."
+        ],
+        "correctIndex": 2,
+        "explanation": "Independent estimation errors are not additive; they are partially self-correcting. An overestimate on piano ownership rates may offset an underestimate on tuning frequency. A gut estimate channels all uncertainty through a single judgment that can be overconfident or systematically biased in one direction with nothing to pull it back. The cancellation effect is the mathematical basis for why decomposition outperforms intuition even when every component is imprecise.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q05",
+        "prompt": "Bill Flack approached the Arafat polonium story by consulting base rates for comparable high-profile deaths before engaging with the specific narrative. Why did this sequence produce a more calibrated probability than leading with the narrative?",
+        "choices": [
+          "Because Flack had exclusive access to classified data that made his reference class base rate considerably more precise than any publicly available sources could provide.",
+          "Because starting with the reference class prevented the narrative's coherence from inflating his confidence before the base rate had been consulted, which would have anchored the estimate too high.",
+          "Because the polonium story was a confirmed disinformation campaign at the time, which meant the narrative was unreliable and the base rate was the only credible source."
+        ],
+        "correctIndex": 1,
+        "explanation": "A compelling narrative anchors confidence in its own plausibility rather than in what actually happens in comparable cases. Consulting the base rate first establishes what the evidence says happens in cases like this before the specific narrative adds any additional weight. Leading with the narrative would have set an implicit anchor of near-certainty that the base rate would then struggle to correct downward.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q06",
+        "prompt": "Sophie estimates conference attendance at 340 based on four Fermi components. The client expected 500. What is the correct way to present this finding to the client?",
+        "choices": [
+          "Present 340 with the four components and their sources visible, allowing the client to identify which assumption differs from their expectations.",
+          "Present a range that includes 500 at the upper bound to preserve the client relationship while flagging the uncertainty.",
+          "Present 500 as the planning number but note that actual attendance may vary by up to 30%."
+        ],
+        "correctIndex": 0,
+        "explanation": "Presenting 340 with visible components turns the conversation from a credibility dispute ('why are you lower than I expected?') into an analytical discussion ('which of these components do you read differently?'). A component-visible estimate is also more useful for planning decisions than either a single number or a wide range, because the client can see which variable is driving the gap between their expectation and the estimate.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "ch05-q07",
-        "prompt": "A student reviewing a missed prediction about a complex decision wants to learn without protecting ego. Which action helps most?",
+        "prompt": "Why does consulting the reference class before examining the specific case feel counterintuitive or unsatisfying to experienced analysts?",
         "choices": [
-          "Save the old forecast, mark the missed assumption, and write one rule for next time.",
-          "Rewrite the old prediction in softer words before saving it.",
-          "Blame the outcome on luck and skip the written review."
+          "Because reference classes are typically unreliable when applied to novel situations, and experienced analysts recognize when a class is too broad to be predictive.",
+          "Because the reference class number requires statistical training to calculate accurately, and most professional analysts lack formal probability instruction.",
+          "Because the reference class clears away the case-specific details that make inside-view reasoning feel intelligent, and that loss of specificity registers as intellectual regression rather than discipline."
         ],
-        "correctIndex": 0,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "correctIndex": 2,
+        "explanation": "Inside-view reasoning feels rigorous because it incorporates specific knowledge about the case at hand. The reference class number looks generic and impersonal by comparison, which can feel like a step down in analytical sophistication. This feeling is the inverse of what is actually happening: the reference class corrects for inside-view overconfidence, and the discomfort of using it signals that it is doing its job rather than that it is the wrong move.",
         "bloomsLevel": "analyze",
         "depthLevel": "deep"
       },
       {
         "questionId": "ch05-q08",
-        "prompt": "A team is split over a complex decision, and the loudest person has the cleanest story. Which process makes the group smarter?",
+        "prompt": "Jonas calculates that a clinic has 11 days of medication buffer under surge conditions against a 21-day safe threshold. What does the decomposed estimate provide that a gut impression of 'we have enough' would not?",
         "choices": [
-          "Let the senior person speak last and call that alignment.",
-          "Have each person write private odds first, then compare reasons aloud.",
-          "Vote immediately so disagreement does not slow the meeting."
+          "A specific number that can be compared against a threshold and trigger a documented decision rather than a general impression that varies with whoever is reviewing the stockroom that day.",
+          "Greater accuracy than the gut estimate, because pharmacists as a professional group are demonstrably less reliable than mathematicians when judging supply adequacy.",
+          "A numerical record that satisfies formal regulatory requirements for supply management documentation and audit trail purposes."
         ],
-        "correctIndex": 1,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "evaluate",
+        "correctIndex": 0,
+        "explanation": "The decomposed estimate produces a number (11.3 days) that can be compared against a threshold (21 days) and generate an unambiguous decision rule. A gut impression of 'we have enough' is produced by a general visual assessment that varies with who is looking and on what day. The threshold comparison only works if the estimate is specific enough to be above or below the threshold, which a gut impression typically is not.",
+        "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "ch05-q09",
-        "prompt": "Someone making a three-month plan for a complex decision wants to avoid confident blur. Which plan creates the best feedback?",
+        "prompt": "A senior analyst argues that decomposition is unnecessary for experts with decades of domain experience, because experienced judgment already incorporates the reference class implicitly. Is this argument valid?",
         "choices": [
-          "Keep the plan broad so later outcomes cannot embarrass anyone.",
-          "Make one large forecast and check it only after the whole period ends.",
-          "Split the plan into smaller forecasts with dates for checking each one."
+          "Yes, because highly experienced domain experts have internalized a sufficient number of past cases that their professional intuitions become effectively base-rate calibrated over time.",
+          "Partly, because experience can calibrate intuition in stable, high-feedback domains, but explicit decomposition still reveals component-level errors that integrated intuition obscures, particularly for novel or complex configurations.",
+          "No, because expert intuition is never a reliable source of reference-class information regardless of experience level, specialization, or the number of past cases encountered."
         ],
-        "correctIndex": 2,
-        "explanation": "Smart forecasting uses decomposition and base rates before private insight. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "create",
+        "correctIndex": 1,
+        "explanation": "In stable, high-feedback domains with many repeated cases, experienced intuition does incorporate base rates implicitly, and this is well-established in the expertise literature. The limits appear in novel configurations, complex interactions between variables, or cases that fall outside the expert's usual range. Frida's surgical case had a hardware configuration outside her standard pattern; explicit decomposition surfaced a 25-minute gap her intuition had not incorporated. The argument is correct in its premise and wrong in its conclusion.",
+        "bloomsLevel": "evaluate",
         "depthLevel": "deep"
       }
     ]
   },
   "reviewCards": [
     {
-      "cardId": "ch05-rc01",
-      "front": "You hear a confident claim about a complex decision. What do you ask before trusting it?",
-      "back": "Ask for the dated probability, the base rate, and the outcome that would count as a miss. Forecasts improve when they can be checked, not when they sound smooth.",
+      "cardId": "ch05-card01",
+      "front": "What is a Fermi decomposition, and why does it outperform a single gut estimate even when each component is uncertain?",
+      "back": "A Fermi decomposition breaks a large estimation question into components that can each be estimated independently. It outperforms gut estimates because independent component errors tend to partially cancel each other, while a gut estimate's error has no correction mechanism and can be consistently wrong in one direction.",
       "difficulty": "easy"
     },
     {
-      "cardId": "ch05-rc02",
-      "front": "A fresh story makes your estimate feel wrong. How should you update?",
-      "back": "Move the odds by the strength of the new evidence. A vivid story can matter, but it should not erase the older record unless it directly changes the facts.",
+      "cardId": "ch05-card02",
+      "front": "What is the correct sequence when combining outside-view and inside-view information?",
+      "back": "Reference class (outside view) first, then specific adjustment (inside view) second. Consulting inside-view factors before the reference class anchors the estimate on case-specific details before the base rate can correct them, which is the primary source of anchoring bias in estimation.",
       "difficulty": "medium"
     },
     {
-      "cardId": "ch05-rc03",
-      "front": "A team wants one bold answer. What smaller move protects learning?",
-      "back": "Break the issue into dated subquestions. Smaller forecasts show which assumption failed, so the next estimate can improve instead of becoming a blame session.",
-      "difficulty": "medium"
+      "cardId": "ch05-card03",
+      "front": "How did Enrico Fermi approach an apparently unanswerable question like 'how many piano tuners are in Chicago?'",
+      "back": "Fermi decomposed into components he could estimate independently: number of households, fraction owning pianos, tuning frequency, time per tuning, and annual hours per tuner. The product of these estimates was usually close to the actual number, because independent errors in the components partially cancelled each other.",
+      "difficulty": "easy"
     },
     {
-      "cardId": "ch05-rc04",
-      "front": "A miss is embarrassing. What should the review preserve?",
-      "back": "Keep the original wording and number. Then mark which assumption failed. The record has to sting a little or it will not teach.",
+      "cardId": "ch05-card04",
+      "front": "Why does consulting the reference class before examining the specific case feel uncomfortable for experienced analysts?",
+      "back": "The reference class clears away the case-specific details that make inside-view reasoning feel sophisticated. The resulting number looks generic. That feeling of intellectual regression is a signal that the outside view is doing its job: it is preventing case-specific details from inflating confidence before the base rate has been consulted.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch05-card05",
+      "front": "What did Bill Flack's approach to the Arafat polonium case demonstrate about narrative versus reference class?",
+      "back": "Flack started with the reference class (how often do leaders in comparable situations die by poisoning versus other causes?) rather than with the specific narrative (state-level assassination with polonium). The reference class was more skeptical than the headline implied. Leading with a compelling narrative anchors confidence in the story's plausibility; leading with the reference class anchors on what actually happens in comparable cases.",
       "difficulty": "hard"
     }
   ],
   "implementationPlan": {
-    "coreSkill": "The core skill is cutting a hard question into smaller pieces that can be checked and challenged. Practice means writing the claim before the outcome arrives, then updating it in small, visible steps. The point is not to look cautious. The point is to give reality a way to train you.",
+    "coreSkill": "When estimating any uncertain quantity, break it into three or more components before producing a number. Anchor each component on the reference class (what happens in comparable cases) before adjusting for what you know specifically about this case.",
     "ifThenPlans": [
       {
-        "context": "work",
-        "plan": "If a work meeting turns on a complex decision, then write one dated probability on the agenda and name the result that would prove it wrong."
+        "context": "Before presenting a cost, timeline, or market size estimate",
+        "plan": "If your estimate is currently a single number derived from intuition or a top-level reference, then decompose it into three to five components, source each component separately, and present the components visible alongside the total."
       },
       {
-        "context": "health",
-        "plan": "If you are choosing a health step under uncertainty, then write the base rate you know, the personal fact that changes it, and the next check-in date."
+        "context": "When you have access to a reference class for the type of estimate you are making",
+        "plan": "If comparable past cases exist, then calculate the reference class range and midpoint before examining your specific case, and use the midpoint as your starting anchor before any local adjustments are added."
       },
       {
-        "context": "personal",
-        "plan": "If a personal plan depends on a guess, then split the guess into one small forecast you can check within seven days."
+        "context": "When a decomposed estimate differs significantly from a gut estimate",
+        "plan": "If the decomposed number is lower than your gut number by more than 15%, then investigate which component drove the gap before deciding which number to use; the decomposed number is usually closer, but the gap may reveal a component you have mis-specified."
       },
       {
-        "context": "relationships",
-        "plan": "If someone you care about sounds certain about the future, then ask what evidence would make both of you lower the odds by ten points."
+        "context": "When receiving an estimate from someone else",
+        "plan": "If the estimate is a single number without visible components, then ask for the two or three inputs that were used to produce it. The inability to name them is a signal the estimate was produced by intuition rather than decomposition."
       }
     ],
-    "twentyFourHourChallenge": "Before tomorrow night, write one live forecast about a complex decision with a date, a probability, and two reasons for the number. Put a reminder on the date to check it without rewriting the original line.",
-    "weeklyPractice": "Once this week, review one old forecast before you know the outcome. Move the number only if new evidence deserves it, and write the reason in one sentence."
+    "twentyFourHourChallenge": "Find one estimate you need to make today: a cost, a time, a count, a rate. Before producing the number, write three components it is made of. Estimate each component independently. Multiply or add them. Compare the result to what your gut said before you decomposed.",
+    "weeklyPractice": "Once a week, track one estimate you made using decomposition against its actual outcome when it arrives. Note which component was most wrong and in which direction. Over time, a pattern of systematic errors in specific component types becomes visible and correctable."
   },
   "memorableLines": [
     {
-      "text": "Intelligence helps most after the problem has been cut small enough to bite.",
+      "text": "The decomposition is not a substitute for knowing things. It is a structure for not knowing things in a disciplined way.",
       "location": "breakdown.fastRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It reframes decomposition from a knowledge tool into an uncertainty management tool, which is what makes it useful in precisely the situations where you lack certainty."
     },
     {
-      "text": "A base rate is not a cage. It is the floor you stand on before you jump.",
+      "text": "Enrico Fermi did not guess at the number of piano tuners in Chicago. He built the number from smaller guesses that could each be checked separately.",
       "location": "breakdown.deepRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It names the method in a sentence that shows the move rather than just describing it: building a number from components is different from guessing at the number."
     },
     {
-      "text": "The first answer is a suspect, not a pet.",
+      "text": "The outside view feels like giving up. That feeling is a signal it is working.",
       "location": "breakdown.fullRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It names the specific discomfort that causes analysts to abandon the outside view before it can correct their inside-view anchoring, and reframes it as confirmation rather than warning."
     }
   ]
 }

@@ -1,0 +1,325 @@
+{
+  "chapterId": "good-strategy-bad-strategy-ch03",
+  "number": 3,
+  "title": "Bad Strategy",
+  "readingTimeMinutes": 11,
+  "hook": "The most dangerous plan in the room may be the one with the cleanest verbs.",
+  "counterintuition": "Activity gets the credit when a plan looks serious. Diagnosis is doing the work that separates strategy from a protected pile of initiatives.",
+  "tryThisNow": "Open one current plan and underline every action verb. If the verbs do not point to one named obstacle, write “missing diagnosis” in the margin.",
+  "keyTakeaway": "Bad strategy hides in attractive language when goals, initiatives, and confidence replace diagnosis, tradeoff, and a choice that can actually guide action.",
+  "breakdown": {
+    "fastRead": "Anna props the poster mockup against a stack of budget sheets. The student government slogan says “One Campus, One Voice,” but the petition sheet beside it is empty. Every proposed project sounds friendly. None explains why students stopped attending open meetings. Anna crosses out the spirit week, the video wall, and the branded hoodies until only one question remains: what obstacle are they answering?\n\nBad strategy often wears good manners. It says growth, excellence, transformation, or community while refusing to choose.\n\nThe warning sign is not weakness. It is missing logic. A plan can be loud, polished, and optimistic while still having no diagnosis, no tradeoff, and no leverage.",
+    "deepRead": "Martin stands in the museum’s member office with a wall chart that shows twelve initiatives and one flat renewal line. The donor call list says lapsed members want evening access. The gallery floor plan says the only evening guard slot is already committed to private rentals. Martin asks the team to choose: protect the rental revenue or rebuild membership around one evening each week.\n\nA bad strategy often fails before execution begins.\n\nIt fails because nobody has allowed a real choice to govern the work. The initiative pile offers safety. Each item has a sponsor, a moral appeal, or a plausible metric. Together they make the room feel active without giving anyone a reason to stop doing what does not fit.\n\nFluff is one signal. Goals without policy are another. A third is leverage blindness: the plan talks about effort while missing the specific point where effort could matter most. These failures can appear in one document or in one meeting. They share the same shape. Language is doing work that diagnosis should have done.\n\nSophie sees it after a regional bank’s transformation deck fails. The slides promised simplicity, digital trust, local relationships, and new risk tools. The branch heat map and risk register showed the real problem: small-business loan approvals stalled in two rural branches because compliance review arrived late. The deck had many virtues. It still had no center.",
+    "fullRead": "Jonas sits with a housing coalition that wants to fight evictions, lobby the city, recruit volunteers, publish tenant guides, and prepare a grant proposal. The tenant map shows one neighborhood where notices are clustering. The grant deadline is six days away. A stack of eviction notices sits on the table with names blacked out. Jonas asks which door the coalition will knock on first, and the room goes quiet.\n\nThat quiet is useful. Bad strategy survives in rooms that never go quiet because nobody asks the question that would force exclusion. The softer questions are easier: What should we value? What would look bold? Which initiative deserves mention? The harder question is sharper: what must lose protection because it does not answer the obstacle?\n\nYou can test for bad strategy without being cynical. Look for a missing diagnosis. Look for goals that float above any chosen policy. Look for activity lists that let every department, committee, or faction keep its favorite work. Look for confidence that rises exactly where evidence thins out. Those are not personality flaws. They are structural symptoms of a plan that wants the benefits of strategy without the cost of choice.\n\nLayla’s product team hits the same wall. The roadmap board has twenty-seven feature cards. The bug queue has three failures that account for most refund requests. The launch calendar is full because each account manager added one client promise. Layla runs a quick prediction: if every feature ships, what failure disappears? The answer is none. She removes the client-request pile and marks the three refund bugs as the governing work.\n\nThe temptation is to call this an execution problem. That label is often too generous. Execution can fail a good strategy, but bad strategy can also create execution theater. People work hard on pieces that were never joined by a real diagnosis. They miss deadlines because every deadline survived. They argue about resources because no choice has told the organization what deserves resources first.\n\nThere is also a tone problem. Bad strategy borrows the sound of intelligence. It uses broad nouns, brave adjectives, and enough action verbs to seem managerial. That is why it can pass a first reading. You have to ask what the language is protecting. If it protects everyone’s preferred work, suspect evasion. If it exposes the tradeoff, suspect strategy.\n\nBen learns this in an airport food vendor plan. Before the change, the menu mockups chase business travelers, families, flight crews, and tourists at once. Passenger counts show the real constraint: the terminal lease gives him a narrow breakfast window near two commuter gates. After placing the lease beside the counts, he stops designing for everyone and builds a fast breakfast counter for the passengers already passing in volume.\n\nBad strategy is not a plan that fails. It is a plan that avoids the work a real plan must do. It will not name what hurts. It will not choose what matters. It will not use the leverage already sitting in the situation. It can still sound excellent in a meeting. That is why you need the artifact on the table, the obstacle in plain words, and the courage to remove the verbs that do not belong."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-anna-slogan-plan",
+      "title": "Anna Cuts the Slogan Projects",
+      "tags": [
+        "student government",
+        "slogans",
+        "diagnosis"
+      ],
+      "planSpec": {
+        "domain": "student government annual plan full of slogans",
+        "audience": "a reader facing student government annual plan full of slogans",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "scene",
+        "requiredBeat": "Anna moves one concrete constraint to the center of the table and crosses out every action that does not address it using poster mockup so the lesson happens as a visible action."
+      },
+      "scenario": "The poster mockup leans against the student-union window before Monday lunch, bright with the slogan One Campus, One Voice. Anna, the student president, lays the budget spreadsheet beside an empty petition sheet. The council is about to approve hoodies, a video wall, and spirit week. She has to decide whether to protect the upbeat slate or cross out every item that does not explain why meeting turnout collapsed.",
+      "whatToDo": "Put the empty petition sheet beside the poster, name turnout as the missing diagnosis, and cut the projects that only decorate the slogan.",
+      "whyItMatters": "The council does not need more friendly verbs. It needs one problem that can govern spending and make the remaining actions fit."
+    },
+    {
+      "exampleId": "ch03-ex02-martin-member-chart",
+      "title": "Martin Deletes the Gallery Giveaway",
+      "tags": [
+        "museum",
+        "membership",
+        "choice"
+      ],
+      "planSpec": {
+        "domain": "museum membership team with twelve disconnected initiatives",
+        "audience": "a reader facing museum membership team with twelve disconnected initiatives",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "decision_point",
+        "requiredBeat": "Martin asks the room to choose between two incompatible actions, then deletes the weaker one in front of them using membership wall chart so the lesson happens as a visible action."
+      },
+      "scenario": "\"Which member are we trying to bring back?\" Martin asks in the museum office, pointing to the membership wall chart. The donor call list says lapsed members want evening access; the gallery floor plan shows staff already assigned to a private rental. The team must choose before the budget file closes: fund another giveaway or protect one weekly evening opening for members.",
+      "whatToDo": "Delete the giveaway, choose the lapsed-member obstacle, and move staff time toward a weekly evening that the renewal calls actually support.",
+      "whyItMatters": "Twelve initiatives can hide from one tradeoff. Renewal work needs a choice about access, not more disconnected gestures."
+    },
+    {
+      "exampleId": "ch03-ex03-sophie-bank-deck",
+      "title": "Sophie Finds the Missing Bank Obstacle",
+      "tags": [
+        "banking",
+        "postmortem",
+        "fluff"
+      ],
+      "planSpec": {
+        "domain": "regional bank transformation deck with no obstacle named",
+        "audience": "a reader facing regional bank transformation deck with no obstacle named",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "postmortem",
+        "requiredBeat": "Sophie uses the artifact to expose the hidden constraint before anyone proposes another initiative using slide deck so the lesson happens as a visible action."
+      },
+      "scenario": "The stale smell of reheated coffee hangs in the branch training room after the transformation launch misses its first target. Sophie spreads the slide deck beside a branch heat map and risk register. The deck promised digital trust and local service. The postmortem shows rural small-business loans stalled in two branches because compliance review arrived late. The hidden constraint was never named.",
+      "whatToDo": "Use the heat map and risk register to replace the transformation language with the compliance-review obstacle that actually slowed loan approvals.",
+      "whyItMatters": "The deck sounded strategic because it used confident nouns. The artifacts show the work had no governing problem."
+    },
+    {
+      "exampleId": "ch03-ex04-jonas-tenant-map",
+      "title": "Jonas Forces the Housing Tradeoff",
+      "tags": [
+        "housing",
+        "coalition",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "nonprofit housing coalition avoiding tradeoffs",
+        "audience": "a reader facing nonprofit housing coalition avoiding tradeoffs",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "dialogue",
+        "requiredBeat": "Jonas turns a vague goal into a visible choice by marking the one place effort will land using tenant map so the lesson happens as a visible action."
+      },
+      "scenario": "You can see the weak spot on the tenant map before anyone admits it. Notices cluster around two blocks, while the grant deadline and eviction letters sit on Jonas’s desk. \"We can lobby, canvass, and publish the guide,\" one organizer says. Jonas circles the two blocks. \"Before Friday, which door do we knock on first?\" The coalition must choose between broad concern and one tractable intervention.",
+      "whatToDo": "Circle the notice cluster, choose the first two blocks, and let the grant language follow that intervention instead of every wish the coalition holds.",
+      "whyItMatters": "Avoiding tradeoffs feels generous, but it leaves tenants with scattered help. A marked place turns concern into a choice."
+    },
+    {
+      "exampleId": "ch03-ex05-layla-roadmap-prediction",
+      "title": "Layla Tests the Feature Pile",
+      "tags": [
+        "product",
+        "roadmap",
+        "leverage blindness"
+      ],
+      "planSpec": {
+        "domain": "product team mistaking feature pile for strategy",
+        "audience": "a reader facing product team mistaking feature pile for strategy",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "predict_reveal",
+        "requiredBeat": "Layla tests the proposed move against the object or record that reveals whether it fits the real problem using roadmap board so the lesson happens as a visible action."
+      },
+      "scenario": "By the second refund meeting in the SaaS support room, Layla the product lead has stopped believing the roadmap board. Twenty-seven feature cards fill it, while the bug queue shows three import failures driving the refund spike. She must decide whether to keep the launch calendar or halt feature work until the import path is fixed. The refund queue is still open on the support monitor, so the choice has to change today's import failures before another feature card is added.",
+      "whatToDo": "Run the prediction against the refund queue, then remove feature cards that do not reduce the three import failures.",
+      "whyItMatters": "The roadmap is hiding leverage blindness. If the work does not touch the refund driver, it is activity with product labels."
+    },
+    {
+      "exampleId": "ch03-ex06-ben-terminal-menu",
+      "title": "Ben Narrows the Airport Menu",
+      "tags": [
+        "airport food",
+        "segments",
+        "before-after"
+      ],
+      "planSpec": {
+        "domain": "airport food vendor chasing every passenger segment",
+        "audience": "a reader facing airport food vendor chasing every passenger segment",
+        "stakes": "whether the next decision produces coherent action or another respectable-looking activity pile",
+        "format": "before_after",
+        "requiredBeat": "Ben stops the meeting and rearranges the sequence of work so the strategic move becomes visible using terminal lease so the lesson happens as a visible action."
+      },
+      "scenario": "Which passenger is the menu really built for in the airport terminal office at 6:40 a.m.? Ben, the restaurant designer, has mockups chasing families, tourists, crews, and executives. Then he places the terminal lease beside passenger counts and must decide whether to narrow the menu around the travelers who actually pass the counter before boarding. The terminal lease renewal is due that afternoon, which forces Ben to pick the passenger group before the menu becomes another compromise.",
+      "whatToDo": "Let the terminal lease and passenger counts pick the segment, then design the menu sequence around that traffic instead of every imagined traveler.",
+      "whyItMatters": "Serving everyone keeps the vendor from using its actual location. The constraint gives the menu a center."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A nonprofit plan promises awareness, partnerships, youth engagement, digital reach, and policy change. It never says why donations have fallen. What is the clearest sign of bad strategy?",
+        "choices": [
+          "The plan contains too many nonprofit activities to finish in one year.",
+          "The plan uses goals and initiatives while avoiding the diagnosis that should guide them.",
+          "The plan should have included more aggressive fundraising targets."
+        ],
+        "correctIndex": 1,
+        "explanation": "The failure is not merely length. The plan avoids the reason donations fell, so the actions cannot be judged by fit.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A school improvement plan says every student will thrive, every teacher will innovate, and every family will feel heard. Attendance data show ninth-grade absences drive most failures. What should happen first?",
+        "choices": [
+          "Replace the slogans with a diagnosis of ninth-grade absence and choose actions that directly reduce it.",
+          "Keep the slogans because broad language helps every group feel included.",
+          "Add a morale campaign so teachers feel inspired to act."
+        ],
+        "correctIndex": 0,
+        "explanation": "The attendance problem should govern action. Inclusive slogans and morale work may sound positive, but they leave the controlling obstacle vague.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A product leader presents ten feature launches as the strategy for reducing churn. Support tickets show customers leave after failed data imports. Which critique is strongest?",
+        "choices": [
+          "Ten launches are too many for customers to understand.",
+          "The leader should put the features in a simpler visual format.",
+          "The feature list has no policy for the churn obstacle shown in the support tickets."
+        ],
+        "correctIndex": 2,
+        "explanation": "The feature pile may look active, but it misses the import failure that controls churn. Design clarity would not fix the missing logic.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A city agency calls its plan “A Cleaner, Safer, Smarter Downtown” and funds murals, patrols, bins, cameras, and events. Complaint logs show trash pickup fails after weekend festivals. What action best exposes bad strategy?",
+        "choices": [
+          "Ask which funded actions directly fix post-festival pickup and pause the rest until the obstacle is named.",
+          "Ask communications to make the slogan more concrete for residents.",
+          "Add a sixth initiative focused on volunteer pride."
+        ],
+        "correctIndex": 0,
+        "explanation": "The complaint logs reveal a governing obstacle. The other choices improve language or add activity while leaving the pickup failure in place.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A hospital service line misses targets, and leaders respond with a culture campaign, a patient app, a referral lunch, and new posters. Nurse notes show delays start at one intake desk. What pattern is visible?",
+        "choices": [
+          "Leaders are using strategy-free activity to avoid a specific operational diagnosis.",
+          "The hospital needs a more optimistic vision before staff can act.",
+          "The intake desk should be ignored until the culture campaign has time to work."
+        ],
+        "correctIndex": 0,
+        "explanation": "The activity pile hides from the intake diagnosis. Optimism and patience do not make the scattered actions coherent.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A museum team votes to keep all twelve membership initiatives because each one has a passionate sponsor. Renewal calls point to one missing evening-access option. What should a strategist do?",
+        "choices": [
+          "Rank initiatives by sponsor enthusiasm.",
+          "Keep all twelve to preserve morale during implementation.",
+          "Make evening access the diagnosis and remove initiatives that do not support renewal."
+        ],
+        "correctIndex": 2,
+        "explanation": "Sponsor passion is not a strategic test. The renewal evidence supplies the obstacle, and unfitting work must lose protection.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A startup says its strategy is “win enterprise,” then lists security, onboarding, integrations, brand, conferences, and hiring. Sales losses trace to one procurement security question. What does the phrase “win enterprise” lack?",
+        "choices": [
+          "A longer explanation of the market opportunity.",
+          "A diagnosis and guiding policy that would decide which actions matter first.",
+          "A more memorable internal slogan for the sales team."
+        ],
+        "correctIndex": 1,
+        "explanation": "The phrase names an ambition but not the obstacle or response. More explanation or a better slogan would still leave priority unresolved.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A regional airline cuts snacks, lounge access, and customer service hours after losses. It calls the cuts a strategy. Customer data show losses come from unreliable early flights. How should you evaluate the claim?",
+        "choices": [
+          "The cuts are strategic because they show management is serious.",
+          "The cuts are strategic because they reduce cost quickly.",
+          "The cuts are weak strategy if they do not address early-flight reliability, the obstacle controlling demand."
+        ],
+        "correctIndex": 2,
+        "explanation": "Cost cuts can be useful, but they are not strategy unless they fit the diagnosis. Here the demand problem points to reliability.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A department head avoids choosing between two projects by approving both and calling the result a portfolio strategy. Both require the same specialist. What question should a colleague ask?",
+        "choices": [
+          "Which project best answers the named obstacle, and which one should lose the specialist for now?",
+          "Can the specialist work longer hours during the first month?",
+          "Can both projects be described under a broader theme?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The specialist constraint forces a tradeoff. Longer hours and broader themes preserve the evasion instead of making the strategy choose.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A plan has many initiatives and no diagnosis. What should you ask first?",
+      "back": "Call out the missing diagnosis. Bad strategy often hides behind goals and initiatives when no problem has been allowed to govern action.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What does an initiative pile usually protect?",
+      "back": "It protects people from choosing. Each item may sound reasonable, but the pile lets the room avoid deciding which obstacle matters and which work should stop.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How can fluff differ from a real guiding policy?",
+      "back": "Fluff sounds serious but does not tell anyone what to do or stop doing. A guiding policy narrows action by answering a diagnosis.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A team says execution failed, but every priority survived. What should you retrieve?",
+      "back": "Execution may not be the main issue. If every priority survived, the work may have been bad strategy from the start because no tradeoff governed resources.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A team copies a famous leverage story without finding its own power source. What blindness is showing?",
+      "back": "It is talking about effort while missing the specific point where effort would matter most. The plan stays busy and never uses the advantage or bottleneck already visible.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Learn to hear when strategic language is substituting for strategic logic. The practical skill is to find the missing diagnosis, the avoided tradeoff, and the point of leverage the plan refuses to use.",
+    "ifThenPlans": [
+      {
+        "context": "planning meeting",
+        "plan": "If a plan lists many initiatives without one named obstacle, then ask which problem each initiative answers and remove the ones with no answer."
+      },
+      {
+        "context": "manager review",
+        "plan": "If a team blames execution after every priority was protected, then revisit whether a real tradeoff was ever made."
+      },
+      {
+        "context": "board or committee work",
+        "plan": "If consensus arrives too easily, then ask what attractive option the plan has chosen not to do."
+      },
+      {
+        "context": "product work",
+        "plan": "If the roadmap grows after every customer complaint, then compare the feature cards with the top failure in the bug queue before approving more work."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, mark one plan for three symptoms: missing diagnosis, initiative pile, and refusal to choose. Rewrite one section so a real tradeoff appears.",
+    "weeklyPractice": "Once a week, choose one strategy conversation and record the sentence that actually names the obstacle. If no such sentence appears, write the diagnosis the room avoided."
+  },
+  "memorableLines": [
+    {
+      "text": "Bad strategy often wears good manners.",
+      "location": "fastRead",
+      "why": "The line captures why weak plans can sound respectable."
+    },
+    {
+      "text": "A bad strategy often fails before execution begins.",
+      "location": "deepRead",
+      "why": "It shifts blame away from effort and toward missing logic."
+    },
+    {
+      "text": "Bad strategy borrows the sound of intelligence.",
+      "location": "fullRead",
+      "why": "The sentence makes language itself the warning signal."
+    }
+  ]
+}

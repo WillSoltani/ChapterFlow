@@ -1,0 +1,194 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch23",
+  "number": 23,
+  "title": "Misperception Strategies: Weave a Seamless Blend of Fact and Fiction",
+  "coreMove": "Shape perception by sequencing true facts clearly, while refusing any frame that depends on false belief or hidden distortion.",
+  "sourcePressure": "Misperception strategy sits on the ethical edge between legitimate framing and propaganda; the teaching must make that line explicit.",
+  "chapterSpecificMisunderstanding": "Lie smoothly and call it strategic framing.",
+  "sourceAlignmentTerms": [
+    "misperception",
+    "fact and fiction",
+    "strategic framing",
+    "propaganda line",
+    "emphasis",
+    "informed consent",
+    "ethical boundary"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Otto von Bismarck",
+      "detail": "historical-context.md names Bismarck as a non-military strategist whose diplomatic methods illustrate misperception strategies.",
+      "useIn": "fullRead",
+      "phrasingHint": "Bismarck is useful here only if the prose keeps the moral question open: framing can clarify a field or quietly deform it."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a battlefield metaphor for Misperception Strategies: Weave a Seamless Blend of Fact and Fiction.",
+      "Do not start by saying strategy is not about violence."
+    ],
+    "counterintuition": [
+      "Avoid the reusable correction frame that the move is not X but Y.",
+      "Avoid a bland paradox about strength looking like weakness."
+    ],
+    "tryThisNow": [
+      "No generic timer, pause, breathe, or list-three-options prompt.",
+      "No reusable ask what matters most prompt."
+    ],
+    "examples": [
+      "No conference-table-with-mug scene.",
+      "No generic founder in a pitch deck unless the domain requires it.",
+      "No battlefield reenactment or invented historical anecdote."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sofia",
+      "domain": "public launch narrative",
+      "audience": "a reader facing public launch narrative who needs to practice Strategy 23 without reducing it to lie smoothly and call it strategic framing.",
+      "stakes": "a concrete decision in public launch narrative where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion. The visible action must happen inside public launch narrative, not as an abstract reflection.",
+      "firstImage": "\"We cannot keep pretending this is neutral,\" Sofia says, with the launch narrative board still unopened.",
+      "mustInclude": [
+        "launch narrative board",
+        "fact-check sheet",
+        "one visible deadline tied to misperception"
+      ],
+      "mustAvoid": [
+        "Lie smoothly and call it strategic framing.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "investor update framing",
+      "audience": "a reader facing investor update framing who needs to practice Strategy 23 without reducing it to lie smoothly and call it strategic framing.",
+      "stakes": "a concrete decision in investor update framing where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion. The visible action must happen inside investor update framing, not as an abstract reflection.",
+      "firstImage": "The fact-check sheet is damp at one corner when Giulia pulls it from the folder.",
+      "mustInclude": [
+        "fact-check sheet",
+        "ethics red line",
+        "a named counterparty tied to misperception"
+      ],
+      "mustAvoid": [
+        "Lie smoothly and call it strategic framing.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Chiara",
+      "domain": "campus safety disclosure",
+      "audience": "a reader facing campus safety disclosure who needs to practice Strategy 23 without reducing it to lie smoothly and call it strategic framing.",
+      "stakes": "a concrete decision in campus safety disclosure where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion. The visible action must happen inside campus safety disclosure, not as an abstract reflection.",
+      "firstImage": "You are beside Chiara as the ethics red line makes the room quieter than the agenda ever did.",
+      "mustInclude": [
+        "ethics red line",
+        "launch narrative board",
+        "a public consequence tied to misperception"
+      ],
+      "mustAvoid": [
+        "Lie smoothly and call it strategic framing.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "policy campaign fact sequence",
+      "audience": "a reader facing policy campaign fact sequence who needs to practice Strategy 23 without reducing it to lie smoothly and call it strategic framing.",
+      "stakes": "a concrete decision in policy campaign fact sequence where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion. The visible action must happen inside policy campaign fact sequence, not as an abstract reflection.",
+      "firstImage": "It took Paula three weeks to notice the launch narrative board was the part everyone kept avoiding.",
+      "mustInclude": [
+        "launch narrative board",
+        "fact-check sheet",
+        "a resource limit tied to misperception"
+      ],
+      "mustAvoid": [
+        "Lie smoothly and call it strategic framing.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "customer migration announcement",
+      "audience": "a reader facing customer migration announcement who needs to practice Strategy 23 without reducing it to lie smoothly and call it strategic framing.",
+      "stakes": "a concrete decision in customer migration announcement where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion. The visible action must happen inside customer migration announcement, not as an abstract reflection.",
+      "firstImage": "What changes when Isabel stops arguing and points to the fact-check sheet?",
+      "mustInclude": [
+        "fact-check sheet",
+        "ethics red line",
+        "a private decision rule tied to misperception"
+      ],
+      "mustAvoid": [
+        "Lie smoothly and call it strategic framing.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "foundation impact report",
+      "audience": "a reader facing foundation impact report who needs to practice Strategy 23 without reducing it to lie smoothly and call it strategic framing.",
+      "stakes": "a concrete decision in foundation impact report where the wrong move wastes leverage, reputation, time, or trust before the real strategic moment arrives",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist removes a misleading omission from the narrative board and rebuilds the frame around true sequencing instead of concealed distortion. The visible action must happen inside foundation impact report, not as an abstract reflection.",
+      "firstImage": "Fluorescent light catches the edge of the ethics red line before Catarina says a word.",
+      "mustInclude": [
+        "ethics red line",
+        "launch narrative board",
+        "a reversal check tied to misperception"
+      ],
+      "mustAvoid": [
+        "Lie smoothly and call it strategic framing.",
+        "reusing a generic war-room, classroom, kitchen, or coffee-shop shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when Strategy 23 applies in a novel scenario rather than a surface-similar one",
+      "choose the visible action that enacts: Shape perception by sequencing true facts clearly, while refusing any frame that depends on false belief or hidden distortion.",
+      "explain why the common misread fails: Lie smoothly and call it strategic framing.",
+      "identify the reversal condition that should stop the reader from using this move"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one message and underline which facts are emphasized, which are omitted, and whether the audience could still consent if they saw the frame.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

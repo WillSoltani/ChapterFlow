@@ -1,0 +1,202 @@
+{
+  "chapterId": "seven-powers-ch06",
+  "number": 6,
+  "title": "Cornered Resource",
+  "coreMove": "Check whether privileged access to a scarce input independently raises value and cannot be matched by substitutes.",
+  "sourcePressure": "A cornered resource is preferential access on attractive terms to a coveted resource that independently raises value. The chapter must distinguish true cornering from ordinary strong assets, talent, suppliers, or quality.",
+  "chapterSpecificMisunderstanding": "A cornered resource is any talented team, useful patent, exclusive supplier, or rare-looking asset.",
+  "sourceAlignmentTerms": [
+    "cornered resource",
+    "preferential access",
+    "attractive terms",
+    "coveted resource",
+    "independent value",
+    "scarce assets",
+    "patents",
+    "substitutes"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "patents",
+      "detail": "the source sidecar says examples can involve patents when they provide preferential access to a coveted resource that independently raises value",
+      "useIn": "deepRead",
+      "phrasingHint": "A patent is not magic by itself; it matters only when the protected input raises value and rivals cannot get a close substitute."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Cornered Resource",
+      "A business has power when... repeated opener shell",
+      "any hook that starts with Strategy is... or Power is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter",
+      "generic moat-versus-no-moat contrast without the chapter mechanism"
+    ],
+    "tryThisNow": [
+      "Write down your top three advantages",
+      "Set a timer and reflect on your strategy",
+      "Ask yourself what matters most",
+      "generic benefit/barrier prompt reused without the chapter-specific test"
+    ],
+    "examples": [
+      "founder in a coffee shop reviewing a deck",
+      "generic boardroom whiteboard choice",
+      "classroom project analogy",
+      "spreadsheet-only SaaS pricing scene",
+      "reusing physical anchors from adjacent plans"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "battery-recycling startup with an exclusive university membrane license",
+      "audience": "a reader facing battery-recycling startup with an exclusive university membrane license",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Laura places the license letter beside yield-test jars and crosses out the supplier alternatives that do not match the recovery rate.",
+      "firstImage": "Three cloudy jars sit under the lab hood with different amounts of metal settled at the bottom",
+      "mustInclude": [
+        "license letter",
+        "yield-test jars",
+        "supplier alternatives"
+      ],
+      "mustAvoid": [
+        "generic patent bragging",
+        "battery mine story"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "Arctic construction firm with first call on a seasonal ice-road crew",
+      "audience": "a reader facing Arctic construction firm with first call on a seasonal ice-road crew",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Henrik pins the crew calendar next to the thaw forecast and marks the weeks no rival can staff safely.",
+      "firstImage": "Cold grit squeaks under Henrik's boots as the thaw forecast curls on the wall",
+      "mustInclude": [
+        "crew calendar",
+        "thaw forecast",
+        "safety log"
+      ],
+      "mustAvoid": [
+        "generic excellent team",
+        "truck fleet harbor key"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "specialty coffee roaster with long-term access to a tiny hillside lot",
+      "audience": "a reader facing specialty coffee roaster with long-term access to a tiny hillside lot",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Isabel asks the team to taste the lot blind, then reveals the contract terms that keep the beans unavailable to nearby roasters.",
+      "firstImage": "Taste first, contract second, Isabel says",
+      "mustInclude": [
+        "cupping spoons",
+        "lot contract",
+        "harvest email"
+      ],
+      "mustAvoid": [
+        "generic brand premium",
+        "coffee shop founder shell"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "animation studio with a retained physics-simulation tool creator",
+      "audience": "a reader facing animation studio with a retained physics-simulation tool creator",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Akira replays two render tests and writes the recruiting lead time next to the retained toolmaker contract.",
+      "firstImage": "It took Akira one failed water scene to understand what the contract protected",
+      "mustInclude": [
+        "render tests",
+        "retention contract",
+        "recruiting lead-time note"
+      ],
+      "mustAvoid": [
+        "generic star employee worship",
+        "Hollywood anecdote"
+      ]
+    },
+    {
+      "protagonistName": "Sam",
+      "domain": "rural broadband cooperative with exclusive pole-attachment rights",
+      "audience": "a reader facing rural broadband cooperative with exclusive pole-attachment rights",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Sam has you compare two street maps, one with pole access and one with trenching permits, then count the months saved.",
+      "firstImage": "You see the same road twice, but only one map has usable poles marked in green",
+      "mustInclude": [
+        "pole-access agreement",
+        "street map",
+        "trenching permit list"
+      ],
+      "mustAvoid": [
+        "generic infrastructure monopoly",
+        "city council water jar"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "pharmaceutical packaging supplier with a validated sterile-line slot",
+      "audience": "a reader facing pharmaceutical packaging supplier with a validated sterile-line slot",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Petra writes the validation timeline under the production slot and asks which rival can offer the same launch date.",
+      "firstImage": "What is the scarce thing: the machine, or the already-approved line?",
+      "mustInclude": [
+        "validated line slot",
+        "regulatory file",
+        "launch timeline"
+      ],
+      "mustAvoid": [
+        "unsupported drug patent litigation",
+        "generic factory capacity"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish a cornered resource from a merely good asset",
+      "test independent value and preferential access in the same scenario",
+      "evaluate whether substitutes break the barrier"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name the resource, the special access terms, the independent value it creates, and the closest substitute; if the substitute is easy, do not call it cornered.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "sourceAnchorsNote": "The sidecar gives categories of resources, not named cases. Use patents, unique talent pools, and scarce assets only as framework anchors without invented litigation or industry stories."
+}

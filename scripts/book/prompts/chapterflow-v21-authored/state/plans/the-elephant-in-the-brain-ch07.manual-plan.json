@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch07",
+  "number": 7,
+  "title": "Body Language",
+  "coreMove": "Read nonverbal behavior as costly coordination where words would be cheap, risky, or too explicit.",
+  "sourcePressure": "The source treats body language as honest signaling that coordinates sensitive behavior in sex, politics, and status when words are too easy to fake or too costly to use.",
+  "chapterSpecificMisunderstanding": "The writer drifts into pop microexpression decoding instead of honest signaling in sensitive social games.",
+  "sourceAlignmentTerms": [
+    "body language",
+    "honest signaling",
+    "coordination",
+    "sex",
+    "politics",
+    "status",
+    "nonverbal cues"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "body language as honest signaling",
+      "detail": "The source says much body language works as honest signaling.",
+      "useIn": "both",
+      "phrasingHint": "The body often spends a signal that the mouth could counterfeit too cheaply."
+    },
+    {
+      "kind": "event",
+      "name": "coordination in socially sensitive behavior",
+      "detail": "The source says nonverbal cues help coordinate sensitive behavior.",
+      "useIn": "both",
+      "phrasingHint": "A glance can test the room without forcing the room to answer aloud."
+    },
+    {
+      "kind": "artifact",
+      "name": "sex, politics, and status as key domains",
+      "detail": "The source names sex, politics, and status as domains where body language coordinates behavior.",
+      "useIn": "deepRead",
+      "phrasingHint": "The more delicate the game, the more useful a signal that can move without a speech."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch07: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch07: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch07: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch07: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch07: no generic timer reflection",
+      "the-elephant-in-the-brain-ch07: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch07: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch07: no coffee shop conversation as the default social proof",
+      "no microexpression quiz",
+      "no crossed-arms means defensive formula"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital shift handoff during a family dispute",
+      "audience": "a charge nurse coordinating de-escalation without alarming relatives",
+      "stakes": "one spoken instruction could inflame the room",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hannah catches Julien's step toward the doorway and answers with a palm-down pause, buying time without making the family feel managed.",
+      "firstImage": "The monitors beep under a hallway light that will not stop flickering.",
+      "mustInclude": [
+        "palm-down pause",
+        "handoff board",
+        "family chairs"
+      ],
+      "mustAvoid": [
+        "medical treatment claims"
+      ]
+    },
+    {
+      "domain": "theater audition waiting room",
+      "audience": "a director noticing status sorting before anyone sings",
+      "stakes": "performers are coordinating rank and threat silently",
+      "format": "reflection",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anke watches Ryan leave the center bench open and realizes the waiting room has already assigned status before the first audition.",
+      "firstImage": "Tap shoes click lightly under the bench before names are called.",
+      "mustInclude": [
+        "center bench",
+        "audition numbers",
+        "tap shoes"
+      ],
+      "mustAvoid": [
+        "art chapter costly signaling"
+      ]
+    },
+    {
+      "domain": "labor negotiation hallway break",
+      "audience": "a union negotiator testing whether a private offer is safe",
+      "stakes": "a direct question would expose weakness too early",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Coffee?\" Adaeze asks, and Matteo reads the employer counsel's half-step away from the cameras as permission to continue off record.",
+      "firstImage": "\"Coffee?\" Adaeze asks without looking at the conference room.",
+      "mustInclude": [
+        "security camera",
+        "coffee urn",
+        "draft clause"
+      ],
+      "mustAvoid": [
+        "politics-only coalition example"
+      ]
+    },
+    {
+      "domain": "university lab safety inspection",
+      "audience": "a lab manager coordinating compliance when a senior professor enters",
+      "stakes": "junior staff need a signal that the rule will be enforced despite rank",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see the senior professor skip goggles, then give the technician a visible nod toward the spare rack before anyone has to challenge rank aloud.",
+      "firstImage": "You notice the goggles untouched beside the solvent hood.",
+      "mustInclude": [
+        "goggle rack",
+        "solvent hood",
+        "inspection badge"
+      ],
+      "mustAvoid": [
+        "generic safety lecture"
+      ]
+    },
+    {
+      "domain": "wedding reception seating tension",
+      "audience": "a planner defusing conflict between divorced parents",
+      "stakes": "spoken negotiation would turn tension into spectacle",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Lars two receptions to learn that placing his body between the tables during speeches quieted the competition better than any announcement.",
+      "firstImage": "It took Lars two receptions to trust the value of where he stood.",
+      "mustInclude": [
+        "speech cards",
+        "two family tables",
+        "floor plan"
+      ],
+      "mustAvoid": [
+        "romantic dating advice"
+      ]
+    },
+    {
+      "domain": "city planning public hearing",
+      "audience": "a facilitator reading coalition readiness from the room",
+      "stakes": "neighbors need to know who will stand with them before speaking",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Who speaks after Isabel shifts from the back wall to the microphone line?",
+      "firstImage": "Who moves when Isabel leaves the back wall?",
+      "mustInclude": [
+        "microphone line",
+        "comment cards",
+        "back wall"
+      ],
+      "mustAvoid": [
+        "policy debate content instead of body signal"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish honest nonverbal signals from pop decoding",
+      "choose when a body signal coordinates better than speech",
+      "analyze why sensitive social games favor deniable cues"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In your next group conversation, notice one nonverbal cue that changes who speaks next. Write what it coordinated without saying.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,89 @@
+{
+  "bookId": "influence",
+  "title": "Influence, New and Expanded: The Psychology of Persuasion",
+  "author": "Robert B. Cialdini, PhD",
+  "thesisParagraph": "Influence teaches that much of agreement happens before careful judgment comes online. People rely on learned shortcuts because they save time: a favor should be repaid, a liked person feels safer, a crowd seems to know, a credential deserves deference, a scarce thing feels more valuable, a prior stand asks for loyalty, and a shared identity lowers the guard. Those shortcuts are often useful, but the same cue that helps a person decide quickly can be turned into a lever by someone who knows how automatic consent works.",
+  "coreIdeas": [
+    {
+      "name": "Automatic Triggers",
+      "oneSentence": "A single cue can launch a whole yes-pattern before the reader has inspected the request.",
+      "mentalMove": "Notice the cue that is doing the deciding before you judge the offer.",
+      "sourceAnchors": ["ch01.source", "ch09.source"]
+    },
+    {
+      "name": "Obligation Pressure",
+      "oneSentence": "A favor or concession can create a debt that feels larger than the thing first given.",
+      "mentalMove": "Separate real generosity from a staged debt before repaying.",
+      "sourceAnchors": ["ch02.source"]
+    },
+    {
+      "name": "Borrowed Warmth",
+      "oneSentence": "Liking, similarity, praise, and pleasant association can make the deal feel better than it is.",
+      "mentalMove": "Set your feeling about the person beside the merits of the choice and judge them separately.",
+      "sourceAnchors": ["ch03.source"]
+    },
+    {
+      "name": "Borrowed Certainty",
+      "oneSentence": "Crowds and authorities can lend confidence where the reader has not yet earned it.",
+      "mentalMove": "Ask whether the signal is real, relevant, and qualified for this exact decision.",
+      "sourceAnchors": ["ch04.source", "ch05.source"]
+    },
+    {
+      "name": "Pressure From Loss",
+      "oneSentence": "Fewness and closing access can make an option feel valuable because it may disappear.",
+      "mentalMove": "Test value without the deadline before moving.",
+      "sourceAnchors": ["ch06.source"]
+    },
+    {
+      "name": "Self And We Locks",
+      "oneSentence": "Prior commitments and shared identity can make saying yes feel like loyalty to yourself or your group.",
+      "mentalMove": "Check whether the old stand or shared label still deserves obedience in the present choice.",
+      "sourceAnchors": ["ch07.source", "ch08.source"]
+    }
+  ],
+  "targetReader": "A reader who buys, negotiates, votes, manages, teaches, sells, donates, hires, or says yes under pressure and wants to recognize the cue doing the work before the decision is already gone.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make the ethical line practical rather than preachy",
+      "turn each principle into a small inspection habit"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no cynicism that treats every human exchange as a scam"
+    ]
+  },
+  "voiceSpecimens": [
+    "The mint on the check is small enough to ignore, which is why it works.",
+    "You are not deciding in a quiet room; you are deciding with a cue already leaning on the scale.",
+    "A badge can answer a question before the person wearing it has earned the answer.",
+    "The crowd does not have to be wise to feel useful when you are uncertain.",
+    "A deadline can make a weak offer feel like it grew teeth.",
+    "The first defense is not suspicion. It is naming the lever before you grab it.",
+    "When the request feels easy, ask what made it feel easy."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explores the author's groundbreaking theory of persuasion.",
+    "In today's fast paced world, we must all be mindful of manipulation.",
+    "Use this powerful hack to win every negotiation instantly.",
+    "The key is to be authentic and think critically at all times.",
+    "As discussed above, the principle has many implications for personal growth.",
+    "Persuasion is all about communication, trust, and relationships."
+  ],
+  "teachingArc": "The book starts by teaching the reader to see automatic compliance itself, then walks through the major cues that borrow force from social life: debt, affection, consensus, status, loss, self-consistency, and shared identity. The final move is synthesis: do not memorize a list of tricks, learn to pause at the moment a cue makes agreement feel already settled.",
+  "forbiddenMoves": [
+    "Do not turn the book into sales tactics for getting others to comply.",
+    "Do not flatten the principles into generic bias awareness or broad critical thinking.",
+    "Do not make every example an online dark-pattern or marketing funnel.",
+    "Do not treat liking and unity as the same lever.",
+    "Do not add unsupported named studies or anecdotes beyond the frozen sidecars."
+  ]
+}

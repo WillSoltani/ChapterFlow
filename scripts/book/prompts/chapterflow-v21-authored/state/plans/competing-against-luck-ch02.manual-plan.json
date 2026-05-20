@@ -1,0 +1,124 @@
+{
+  "chapterId": "competing-against-luck-ch02",
+  "number": 2,
+  "title": "Progress, Not Products",
+  "coreMove": "Define what the buyer is trying to move from and toward — including the functional, social, and emotional components — before any design decision.",
+  "sourcePressure": "Progress is the causal target behind every hire. A job is not only a functional task — it includes social and emotional dimensions that can dominate the hiring decision. Products describe the object exchanged; progress describes the movement the buyer is trying to achieve. The same product may be hired for different progress in different circumstances, and very different products may compete for the same progress. Teams that define demand by product category miss why the buyer chose at all.",
+  "chapterSpecificMisunderstanding": "Treating 'progress' as a vague synonym for customer satisfaction or outcome, rather than naming the specific movement from an unsatisfying state to a better one, including which of the three dimensions (functional, social, emotional) is driving the hiring decision in this circumstance.",
+  "sourceAlignmentTerms": ["progress", "functional", "social", "emotional", "circumstance", "unsatisfying state", "competing alternative", "hired", "movement"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Your customers don't want your product — they want a better life.",
+      "Features don't sell. Progress does.",
+      "What does your customer really need?"
+    ],
+    "counterintuition": [
+      "The best product doesn't always win.",
+      "Customers buy feelings, not things."
+    ],
+    "tryThisNow": [
+      "Think of three emotions your product makes customers feel.",
+      "Write down your product's functional, emotional, and social benefits.",
+      "Ask a customer what they really want."
+    ],
+    "examples": [
+      "any example that reduces 'progress' to 'the customer was happy' — must name the specific movement",
+      "examples where the social and emotional job is added as decorative context rather than as what actually drove the hire"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["timestamp_named", "dialogue_first", "retrospective", "second_person", "environmental", "question_hook"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "dog grooming subscription service",
+      "audience": "a subscription founder reviewing post-cancellation interviews expecting to find grooming quality complaints",
+      "stakes": "whether the churn fix is about grooming standards or about a job Claire has not named yet",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:11 a.m., Claire reviews cancellation data expecting the groom quality to be the culprit. Exit interviews say otherwise: 'The groom was fine. Every Friday, he hid under the bed before we left.' The emotional progress job — the dog's experience, the owner's guilt about it — was driving the hire. Claire's cancellation fix has been targeting the wrong variable.",
+      "firstImage": "a cancellation dashboard at 9:11 a.m., groom quality scores pinned green, churn rate pinned red",
+      "mustInclude": ["a specific dog behavior at pickup time (hiding, anxiety)", "the owner's emotional state as the actual progress at stake", "a quality score that contradicts the churn rate"],
+      "mustAvoid": ["reducing this to 'customer service quality matters' — the beat must show the emotional progress dimension (dog's Friday experience) as what drove the cancellation, distinct from functional groom quality"]
+    },
+    {
+      "domain": "yoga studio membership",
+      "audience": "a studio co-owner trying to understand why a long-term member wants to pause rather than cancel",
+      "stakes": "whether a pause negotiation can retain this member or whether the studio has been misidentifying its own job",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "She says, 'It's not the class. It's that when I show up here, it's the one hour where I'm not managing anyone's feelings.' The functional product (yoga class) was hired for a social progress job — being a non-caregiver for a defined, private hour. Étienne has been selling flexibility and instructors when the actual job being hired is relief from a social role.",
+      "firstImage": "'I don't have a scheduling problem,' she says, her hand resting on the pause button on his tablet",
+      "mustInclude": ["a membership pause tablet interface", "a caregiving context the member names (parenting or similar)", "a studio class visible through the glass door behind the reception desk"],
+      "mustAvoid": ["'wellness is about more than exercise' framing — the beat must name the specific social progress job (relief from a defined role) that is being hired"]
+    },
+    {
+      "domain": "independent bookshop with a café",
+      "audience": "a bookshop manager reviewing a traffic increase that hasn't improved transaction size",
+      "stakes": "whether the expansion to café is serving the bookshop's job or a different, competing job",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Giulia added the café to serve book lovers better. Traffic grew; book revenue per visitor fell. Exit observation shows a cohort staying three hours with a laptop, buying two lattes and one book as a 'cover charge.' The café is being hired as a third place — functional (workspace), social (not-home-not-office), emotional (acceptable loitering). The bookshop job and the café job are now competing for the same real estate.",
+      "firstImage": "an unsold bestseller table visible through the rain-streaked window, the café seats behind it full of open laptops",
+      "mustInclude": ["a remote worker's laptop and long stay duration", "a staff picks shelf near the café entrance (underperforming)", "a specific three-hours + two lattes + one book pattern in the exit data"],
+      "mustAvoid": ["'people want an experience in addition to books' framing — the beat must name the distinct progress job (functional third place) being hired from the café, separate from the bookshop's job"]
+    },
+    {
+      "domain": "company offsite venue selection",
+      "audience": "an operations manager choosing between a hotel conference center and a converted farmhouse — through second-person",
+      "stakes": "which venue serves the actual progress job the team hired the offsite to deliver",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You have two venue brochures. The hotel wins on AV, catering, and room count. The farmhouse loses on all three. But the team's real progress job is not presentation — it is forcing people who work remotely to be genuinely present together without the escape hatch of slipping into 'normal work mode.' The farmhouse removes the wifi distraction that lets the hotel offsite fail. Thomas names the job before choosing the venue.",
+      "firstImage": "two venue brochures open side by side on a conference table, a wifi password sticky note on one of them",
+      "mustInclude": ["a remote team that defaults to screen-time during in-person events", "a wifi password that represents the 'normal work escape hatch'", "the specific functional + social progress job (present together, genuinely, for two days)"],
+      "mustAvoid": ["'venue quality' or 'catering matters' framing — the beat must show that naming the social progress job changes which venue is the right hire"]
+    },
+    {
+      "domain": "community radio pledge drive",
+      "audience": "a pledge drive coordinator reviewing conversion rates well below target",
+      "stakes": "whether the campaign message is aligned with the actual progress job donors are hiring the station to deliver",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "The campaign: 'Support local journalism.' Conversion: 40% below target. Exit interviews: donors don't feel like they're preserving journalism. They feel like they're keeping one familiar voice on during morning commutes. The functional job is companionship during a specific daily routine. The emotional job is managing start-of-day anxiety. 'Journalism' is the category; it is not the job being hired.",
+      "firstImage": "a broadcast studio window at 6:58 a.m., the host's coffee mug on the console, the street still dark outside, no human visible yet",
+      "mustInclude": ["a morning commute context where the specific program plays", "a 'local journalism' campaign message that doesn't match the actual hiring reason", "an exit interview quote that reveals the real progress job"],
+      "mustAvoid": ["'donors have different motivations' framing — the beat must name the specific progress job (managing morning routine anxiety) that the station is being hired to deliver"]
+    },
+    {
+      "domain": "driving range membership",
+      "audience": "a sports facility manager deciding between two expansion options",
+      "stakes": "whether Devon builds what members say they want or what they're actually hiring the range to do",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Devon's survey says members want power improvement; he plans premium launch bays. But observation data shows Friday evening arrivals are nearly always pairs, arriving together, staying two hours, buying one beer each. The job is not power development. It is a low-stakes outdoor social activity with a physical prop. The short-game area — which serves the social progress better — would win if Devon named the job first.",
+      "firstImage": "What would you build to keep members coming back? — the question opening before Devon appears with his data",
+      "mustInclude": ["a Friday evening pairing pattern in the occupancy chart", "a social context that makes 'power improvement' the wrong answer", "a specific contrast between the survey data and the observation data"],
+      "mustAvoid": ["'different customer segments use the range differently' — the beat must name the social progress job driving the Friday evening cohort's actual hire"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify which of the three progress dimensions (functional, social, emotional) is primary in a given scenario",
+      "distinguish between the product category and the progress being hired",
+      "recognize when a product update targets the wrong dimension of progress",
+      "apply the progress framing to name the complete job including all active dimensions",
+      "evaluate whether a competitive framing is accurate once the full progress job is named"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name the last product or service your team shipped. In one sentence, write what functional movement it enables. In a second sentence, write the social dimension (how the buyer looks or relates to others). In a third, write the emotional dimension (how the buyer feels about themselves). If the third sentence is blank, you are missing part of the job your product is hired to do.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line naming only the job dimension that dominates",
+    "fullReadInterludeRequirement": "at least one direct second-person passage asking the reader to name the progress dimensions in a product they own — not a generic empathy prompt but a specific 'write the three sentences' exercise embedded in prose",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

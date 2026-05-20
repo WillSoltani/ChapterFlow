@@ -1,0 +1,325 @@
+{
+  "chapterId": "zero-to-one-ch07",
+  "number": 7,
+  "title": "Follow the Money",
+  "readingTimeMinutes": 12,
+  "hook": "Twelve pitch memos can look equal on a table while one of them carries nearly all the weight.",
+  "counterintuition": "Averages feel fair because they smooth the field. Power-law thinking asks which rare outcome can dominate the economics, then refuses to let polite balance hide concentrated value.",
+  "tryThisNow": "List five active opportunities and put a weight beside each one for possible upside, not comfort or busyness; circle the one whose weight changes the portfolio.",
+  "keyTakeaway": "Follow the weight, not the average: when returns follow a power law, a few outliers can matter more than a broad field of ordinary wins.",
+  "breakdown": {
+    "fastRead": "Sophie lays twelve pitch memos on a table. Ten feel tidy. One looks odd, but it could return more than the rest combined. If she gives each memo equal time, the neat average will hide the one heavy bet.\n\nPower-law thinking follows weight, not count. A few outcomes can rule the whole field. That does not excuse wild bets. It asks you to see where rare upside could dominate before polite balance dulls the choice.",
+    "deepRead": "This move targets the average-case habit of thinking about returns as if they were spread somewhat evenly across many outcomes. This idea argues that this intuition breaks down once the distribution is actually concentrated. In a power-law world, a few results dominate while many others matter far less than the average suggests.\n\nThat is the central mechanism: one outlier can outweigh many modest outcomes. A portfolio or strategy can look broad, but its economics may still be driven by a very small number of winners. The idea is not denying that the smaller outcomes exist. It is saying their weight is radically unequal.\n\nThis is why money becomes the right lens. If readers follow the money instead of the headcount of outcomes, they can see where the real concentration lives. Average-looking analysis can miss the dominant driver because it assumes each case contributes in comparable proportion. The idea wants the reader to replace smooth distribution thinking with asymmetry.\n\nThat change affects strategy. If returns are uneven, then disciplined judgment has to ask where the rare upside could come from and why certain choices matter disproportionately. The point is not to become more reckless. It is to stop letting average-case reasoning conceal what the economics are actually doing.\n\nThe limit preserves realism. Power-law logic is not casino logic, and it does not justify random giant bets. It means the distribution is skewed enough that accuracy requires noticing concentration. Once that lands, the next question becomes where those dominant outcomes originate, which opens naturally into The idea on secrets. That also means disciplined readers stop asking only how many outcomes exist and start asking which few results can dominate the total economics. It also means a disciplined thinker has to notice how a few dominant results can carry more of the total than the calmer average ever reveals. That is The idea’s demand: stop letting balanced descriptions overrule concentrated reality. The economics stay uneven anyway. Follow the weight. More clearly.",
+    "fullRead": "The idea’s target is average-case intuition, the habit of analyzing returns as if many outcomes contribute in roughly similar proportion. The argument claims that this intuition breaks down in a power-law distribution, where a small number of results dominate while many others contribute far less than the average implies.\n\nFollow the fund return sheet and the central mechanism becomes hard to miss. One outlier can outweigh many modest results. A portfolio or strategy can look diversified on the surface and still be governed economically by a very small set of winners. The idea is not denying the existence of the lesser outcomes. It is insisting that their weight is radically unequal.\n\nYou can test the claim by following the money. If readers track headcount of outcomes instead of concentration of value, they will misunderstand what the economics are doing. Average-case analysis smooths the distribution into something more balanced than it really is. The idea wants the reader to replace that false balance with an asymmetry lens that reveals where the dominant returns actually live.\n\nThat adjustment has strategic consequences. Once returns are seen as concentrated, judgment has to focus on where dominant upside might come from, why a few cases can matter disproportionately, and how ordinary analytical comfort can conceal the drivers of the total result. The point is not to romanticize volatility. It is to stop letting a weak model of distribution distort decisions.\n\nAt the investment committee table, the limit is easy to forget because power-law thinking is easy to abuse. Uneven returns do not justify careless giant bets, random gambling, or macho talk about swinging big. The idea rejects that corruption directly. Accuracy about concentration should produce better discipline, not sloppier selection. A skewed field requires sharper filters, not weaker ones.\n\nThis leads naturally into secrets. If rare upside dominates the economics, then the next issue is what produces rare upside before it becomes obvious to everyone else. This idea therefore does more than describe uneven returns. It clears away the average-case illusion so the reader can start asking where hidden sources of outlier value actually originate. It also means that a reader who keeps trusting balanced summaries will keep missing how much of the total can be carried by a tiny number of outcomes. It therefore forces a more severe kind of realism. The question is not whether many outcomes exist. The question is how unevenly they matter once money is counted honestly. That is why average-case comfort becomes analytically expensive in this idea rather than merely simplistic. The idea is therefore less about appetite than about accuracy. If a few outcomes dominate the economics, then any strategy that keeps looking at the field as if weight were evenly shared is already distorting what matters most. That is also why the money lens matters so much here. It is the fastest way to see that diversity of cases does not imply equality of importance. Once the weight concentrates, the strategy has to answer to concentration instead of to the comforting symmetry of averages."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-sophie-angel-investment-committ",
+      "title": "Sophie Sees One Account Distort the Whole Quarter",
+      "tags": [
+        "decision-point",
+        "angel",
+        "power-law"
+      ],
+      "planSpec": {
+        "domain": "angel investment committee",
+        "audience": "a small fund partner realizing equal attention to every deal is hiding the one possible fund-returner",
+        "stakes": "whether polite diversification makes the portfolio blind to its actual economics",
+        "format": "decision_point",
+        "requiredBeat": "Sophie weights the memo by possible return rather than calendar order"
+      },
+      "scenario": "Sophie studies twelve pitch memos fanned across a glass table in angel investment committee. Many accounts are present, but one account is doing most of the economic work. pitch memos sits next to red sticky note, so the angel investment committee choice stays concrete. Sophie has to choose beside return model before angel investment committee funds the safe option: Sophie weights the memo by possible return rather than calendar order.",
+      "whatToDo": "Follow the money instead of assuming each account matters in similar proportion.",
+      "whyItMatters": "This is the power-law lens in concrete form: one outlier can dominate many smaller cases."
+    },
+    {
+      "exampleId": "ch07-ex02-nicolas-pharmaceutical-research-",
+      "title": "Nicolas Challenges the Venture Seminar Average",
+      "tags": [
+        "predict-reveal",
+        "pharmaceutical",
+        "power-law"
+      ],
+      "planSpec": {
+        "domain": "pharmaceutical research pipeline",
+        "audience": "a research director seeing that one molecule could outweigh ten minor reformulations",
+        "stakes": "whether budget allocation follows average progress or asymmetric upside",
+        "format": "predict_reveal",
+        "requiredBeat": "Nicolas asks the team to rank projects by total possible company impact, not probability comfort"
+      },
+      "scenario": "Nicolas is arguing that averages smooth away the real driver. The pharmaceutical research pipeline setting is concrete: lab refrigerator, pipeline grid, trial-cost estimate are all in reach. Nicolas's hand hovers over lab refrigerator while pharmaceutical research pipeline waits for the next step: Nicolas asks the team to rank projects by total possible company impact, not probability comfort.",
+      "whatToDo": "Prefer the return model that explains why one winner can dominate the economics.",
+      "whyItMatters": "This is The idea’s distribution-shape argument in a classroom setting."
+    },
+    {
+      "exampleId": "ch07-ex03-frida-music-label-artist-roste",
+      "title": "Frida Chooses Between Smoothness and Upside",
+      "tags": [
+        "vignette",
+        "music",
+        "power-law"
+      ],
+      "planSpec": {
+        "domain": "music label artist roster",
+        "audience": "an A&R lead deciding whether evenly supporting every act ignores where returns concentrate",
+        "stakes": "whether one unusual artist gets the resources needed to break through",
+        "format": "vignette",
+        "requiredBeat": "Frida moves the tour budget from equal slices to the artist with rare audience pull"
+      },
+      "scenario": "Frida studies a rehearsal room floor covered in set lists in music label artist roster. Her decision is shaped by whether she understands asymmetry or only comfort. The role is A&R lead deciding whether evenly supporting every act ignores where returns concentrate, and the scene turns on set lists. Frida must choose from the evidence in tour budget and make set lists decide the next step: Frida moves the tour budget from equal slices to the artist with rare audience pull.",
+      "whatToDo": "Ask what kind of upside concentration each path makes possible.",
+      "whyItMatters": "This is the strategic implication of concentrated returns made personal."
+    },
+    {
+      "exampleId": "ch07-ex04-chris-specialty-export-busines",
+      "title": "Chris Misreads the Memo by Averaging It",
+      "tags": [
+        "postmortem",
+        "specialty",
+        "power-law"
+      ],
+      "planSpec": {
+        "domain": "specialty export business",
+        "audience": "an owner discovering that one product line carries almost all profit despite many busy SKUs",
+        "stakes": "whether activity volume keeps hiding profit concentration",
+        "format": "postmortem",
+        "requiredBeat": "Chris marks every low-margin SKU gray until the outlier product is impossible to ignore"
+      },
+      "scenario": "Chris studies warehouse labels curling on stacked cartons in specialty export business. The memo looks tidy because it hides the concentration. margin report now carries the specialty export business tradeoff: whether activity volume keeps hiding profit concentration. Chris has to choose beside margin report before specialty export business funds the safe option: Chris marks every low-margin SKU gray until the outlier product is impossible to ignore. At the review meeting, the analyst has to decide whether one rare win should change the whole portfolio map.",
+      "whatToDo": "Replace the smooth summary with the concentrated economic story.",
+      "whyItMatters": "This shows how average-case reporting can distort strategic understanding."
+    },
+    {
+      "exampleId": "ch07-ex05-isabel-scholarship-foundation-a",
+      "title": "Isabel Picks the Better Return Model",
+      "tags": [
+        "dialogue",
+        "scholarship",
+        "power-law"
+      ],
+      "planSpec": {
+        "domain": "scholarship foundation allocation",
+        "audience": "a director deciding whether equal grant sizes blunt the one program with transformative outcomes",
+        "stakes": "whether fairness optics suppress concentrated impact",
+        "format": "dialogue",
+        "requiredBeat": "Isabel asks the board to separate equal treatment from equal contribution"
+      },
+      "scenario": "Isabel studies grant folders arranged in identical blue binders in scholarship foundation allocation. The real question is which model matches The idea’s world. grant folders sits next to board placards, so the scholarship foundation allocation choice stays concrete. Isabel's hand hovers over grant folders while scholarship foundation allocation waits for the next step: Isabel asks the board to separate equal treatment from equal contribution.",
+      "whatToDo": "Select the framework that treats concentration as structural rather than accidental.",
+      "whyItMatters": "This is The idea’s model-choice consequence in a classroom setting."
+    },
+    {
+      "exampleId": "ch07-ex06-jack-urban-logistics-routing-",
+      "title": "Jack Realizes the Options Are Not Economically Equal",
+      "tags": [
+        "second-person",
+        "urban",
+        "power-law"
+      ],
+      "planSpec": {
+        "domain": "urban logistics routing software",
+        "audience": "a product analyst noticing that three enterprise customers drive nearly all retention learning",
+        "stakes": "whether roadmap votes get averaged into mediocrity",
+        "format": "second_person",
+        "requiredBeat": "You watch Jack stop counting customers and start weighing which accounts teach the decisive pattern"
+      },
+      "scenario": "Jack studies delivery routes pulsing on a dispatch monitor in urban logistics routing software. He is discovering that equal presentation can hide unequal economics. The urban logistics routing software setting is concrete: dispatch monitor, customer cohort sheet, route exceptions are all in reach. Jack must choose from the evidence in route exceptions and make dispatch monitor decide the next step: You watch Jack stop counting customers and start weighing which accounts teach the decisive pattern. In the lab conference room, the director must decide before the funding vote which experiment has power-law upside.",
+      "whatToDo": "Shift from list-thinking to asymmetry-thinking before choosing.",
+      "whyItMatters": "This is The idea’s asymmetry lens turning into a personal judgment tool."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a research lab planning session, the team can take a comfortable path or act on power law. The documents include pitch memos, return model, red sticky note. Which response best fits the specific move here?",
+        "choices": [
+          "Use power law to identify the real constraint, then choose the option that visibly changes portfolio.",
+          "Follow the loudest stakeholder because consensus lowers risk.",
+          "Copy the nearest competitor and measure success by resemblance."
+        ],
+        "correctIndex": 0,
+        "explanation": "research lab planning session needs a choice tied to power law, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes portfolio in the actual work.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "In a city council work session, the team can take a comfortable path or act on returns. The documents include lab refrigerator, pipeline grid, trial-cost estimate. Which response best fits the specific move here?",
+        "choices": [
+          "Reward the plan that makes the fewest people uncomfortable.",
+          "Use returns to identify the real constraint, then choose the option that visibly changes outliers.",
+          "Pick the plan with the cleanest slide because it will travel faster."
+        ],
+        "correctIndex": 1,
+        "explanation": "city council work session needs a choice tied to returns, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes outliers in the actual work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "In a clinic budget review, the team can take a comfortable path or act on portfolio. The documents include set lists, streaming dashboard, tour budget. Which response best fits the specific move here?",
+        "choices": [
+          "Split the budget evenly so no one has to defend a sharper call.",
+          "Delay the choice until uncertainty disappears from the project.",
+          "Use portfolio to identify the real constraint, then choose the option that visibly changes asymmetry."
+        ],
+        "correctIndex": 2,
+        "explanation": "clinic budget review needs a choice tied to portfolio, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes asymmetry in the actual work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "In a port authority meeting, the team can take a comfortable path or act on outliers. The documents include SKU labels, margin report, forklift lane. Which response best fits the specific move here?",
+        "choices": [
+          "Use outliers to identify the real constraint, then choose the option that visibly changes concentrated value.",
+          "Approve the more familiar option because it lowers discussion time.",
+          "Run another broad survey before naming the actual constraint."
+        ],
+        "correctIndex": 0,
+        "explanation": "port authority meeting needs a choice tied to outliers, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes concentrated value in the actual work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "In a software roadmap call, the team can take a comfortable path or act on asymmetry. The documents include grant folders, impact dashboard, board placards. Which response best fits the specific move here?",
+        "choices": [
+          "Treat the vocabulary as proof that the team understood the issue.",
+          "Use asymmetry to identify the real constraint, then choose the option that visibly changes power law.",
+          "Wait until the safer option has enough polish to avoid criticism."
+        ],
+        "correctIndex": 1,
+        "explanation": "software roadmap call needs a choice tied to asymmetry, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes power law in the actual work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "In a grant committee debate, the team can take a comfortable path or act on concentrated value. The documents include dispatch monitor, customer cohort sheet, route exceptions. Which response best fits the specific move here?",
+        "choices": [
+          "Follow the loudest stakeholder because consensus lowers risk.",
+          "Copy the nearest competitor and measure success by resemblance.",
+          "Use concentrated value to identify the real constraint, then choose the option that visibly changes returns."
+        ],
+        "correctIndex": 2,
+        "explanation": "grant committee debate needs a choice tied to concentrated value, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes returns in the actual work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "In a factory floor review, the team can take a comfortable path or act on power law. The documents include pitch memos, return model, red sticky note. Which response best fits the specific move here?",
+        "choices": [
+          "Use power law to identify the real constraint, then choose the option that visibly changes portfolio.",
+          "Pick the plan with the cleanest slide because it will travel faster.",
+          "Reward the plan that makes the fewest people uncomfortable."
+        ],
+        "correctIndex": 0,
+        "explanation": "factory floor review needs a choice tied to power law, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes portfolio in the actual work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "In a school district pilot, the team can take a comfortable path or act on returns. The documents include lab refrigerator, pipeline grid, trial-cost estimate. Which response best fits the specific move here?",
+        "choices": [
+          "Delay the choice until uncertainty disappears from the project.",
+          "Use returns to identify the real constraint, then choose the option that visibly changes outliers.",
+          "Split the budget evenly so no one has to defend a sharper call."
+        ],
+        "correctIndex": 1,
+        "explanation": "school district pilot needs a choice tied to returns, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes outliers in the actual work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "In a warehouse renewal meeting, the team can take a comfortable path or act on portfolio. The documents include set lists, streaming dashboard, tour budget. Which response best fits the specific move here?",
+        "choices": [
+          "Approve the more familiar option because it lowers discussion time.",
+          "Run another broad survey before naming the actual constraint.",
+          "Use portfolio to identify the real constraint, then choose the option that visibly changes asymmetry."
+        ],
+        "correctIndex": 2,
+        "explanation": "warehouse renewal meeting needs a choice tied to portfolio, not a mood of caution. The tempting wrong answer preserves comfort, while the correct one changes asymmetry in the actual work.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A team uses power law language. What should you retrieve first?",
+      "back": "Retrieve the visible move: Read a field by the weight of its outliers instead of the comfort of its averages. Then ask what object, budget line, or handoff would change if the idea were real.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "The safer plan sounds mature. What test keeps maturity from becoming cover?",
+      "back": "Ask what risk the safe plan truly reduces and what strength it prevents. Good caution names both sides instead of hiding behind respectability.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A plan has the right words but no changed action. What is missing?",
+      "back": "The idea has not reached the decision layer. Tie it to a role, a constraint, and a visible next step, or treat it as vocabulary rather than strategy.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How do you apply returns without turning it into a slogan?",
+      "back": "Force it into a scene. Name who chooses, what they touch, what they reject, and what becomes possible after the choice.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What makes the current pressure different from the previous idea?",
+      "back": "Use the local terms: power law, returns, portfolio, outliers. If the explanation works without those terms, it is too generic.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is to read a field by the weight of its outliers instead of the comfort of its averages. Use the idea on a real decision, not as a label. The practical test is whether the next action changes when the idea is applied.",
+    "ifThenPlans": [
+      {
+        "context": "product",
+        "plan": "If a roadmap choice invokes power law, then write the user action that changes before approving the work."
+      },
+      {
+        "context": "team",
+        "plan": "If the room rewards the familiar option, then ask which constraint from returns the familiar option avoids."
+      },
+      {
+        "context": "strategy",
+        "plan": "If a plan sounds strong in words, then force it onto one budget line, one owner, and one irreversible next step."
+      },
+      {
+        "context": "learning",
+        "plan": "If you cannot explain the idea through a specific scene, then return to the plan and find the visible beat."
+      }
+    ],
+    "twentyFourHourChallenge": "List five active opportunities and put a weight beside each one for possible upside, not comfort or busyness; circle the one whose weight changes the portfolio.",
+    "weeklyPractice": "Once this week, choose one decision and score it against power law, returns, portfolio. Write what you changed after applying the score."
+  },
+  "memorableLines": [
+    {
+      "text": "Sophie lays twelve pitch memos on a table.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a clear sentence to retrieve the chapter move."
+    },
+    {
+      "text": "One looks odd, but it could return more than the rest combined.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a clear sentence to retrieve the chapter move."
+    },
+    {
+      "text": "If she gives each memo equal time, the neat average will hide the one heavy bet.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a clear sentence to retrieve the chapter move."
+    }
+  ]
+}

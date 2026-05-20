@@ -1,0 +1,177 @@
+{
+  "chapterId": "execution-ch04",
+  "number": 4,
+  "title": "Building Block Two: Creating the Framework for Cultural Change",
+  "coreMove": "Redesign the consequences and conversations that teach people what the culture really values.",
+  "sourcePressure": "Second building block: culture changes through operational consequences, rewards tied to performance, social software, robust dialogue, and the behavior leaders exhibit or tolerate. No chapter-specific company case is frozen.",
+  "chapterSpecificMisunderstanding": "Treat culture as slogans, values statements, or morale work.",
+  "sourceAlignmentTerms": [
+    "operationalizing culture",
+    "rewards",
+    "performance",
+    "social software",
+    "robust dialogue",
+    "tolerated behavior",
+    "leader signals"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "the building block two: creating the framework for cultural change that nobody sees until it is too late",
+      "a meeting room where every plan sounds good",
+      "a generic promise colliding with reality"
+    ],
+    "counterintuition": [
+      "Most leaders think X, but the opposite is true",
+      "The problem is not effort, it is discipline",
+      "Execution is not about working harder"
+    ],
+    "tryThisNow": [
+      "set a timer and write three priorities",
+      "audit one goal in your notebook",
+      "ask yourself what matters most today"
+    ],
+    "examples": [
+      "generic project kickoff with vague owners",
+      "student team with a deadline and no specificity",
+      "family calendar scene used as a management analogy"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a public radio newsroom changing what wins airtime after rushed corrections",
+      "audience": "an editor who wants cultural change without slogans",
+      "stakes": "listeners lose trust if speed keeps outranking accuracy",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Megan changes the praise at the editorial meeting from fastest filed segment to cleanest corrected segment and the newsroom starts chasing a different standard",
+      "firstImage": "It took Megan four corrections in one pledge week to see what the applause had been teaching.",
+      "mustInclude": [
+        "correction log",
+        "editorial meeting agenda",
+        "aired segment list"
+      ],
+      "mustAvoid": [
+        "generic office culture"
+      ]
+    },
+    {
+      "domain": "a regional ambulance service where crews avoid reporting equipment faults",
+      "audience": "an operations chief",
+      "stakes": "unreported faults can strand a crew during a call",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ben turns robust dialogue from open talk into the one uncomfortable question about why the fault tags are missing",
+      "firstImage": "\"Why are there no fault tags on a truck everyone complains about?\" Ben asks, and the room goes quiet.",
+      "mustInclude": [
+        "fault tags",
+        "truck bay checklist",
+        "shift huddle"
+      ],
+      "mustAvoid": [
+        "generic team feedback"
+      ]
+    },
+    {
+      "domain": "a university dining hall where lateness is tolerated for popular station leads",
+      "audience": "a dining-services manager",
+      "stakes": "students wait while tolerated behavior rewrites the standard",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Margaux decides whether to excuse the popular lead again or make the tolerated behavior visible as the real rule",
+      "firstImage": "At 10:51 a.m., Margaux sees the omelet station closed while the brunch line curls past the tray return.",
+      "mustInclude": [
+        "omelet station",
+        "tray return",
+        "lateness log"
+      ],
+      "mustAvoid": [
+        "restaurant staffing shell"
+      ]
+    },
+    {
+      "domain": "a software security review team where bonuses favor shipped features over closed vulnerabilities",
+      "audience": "a VP deciding reward criteria",
+      "stakes": "the reward system teaches engineers to leave risk unresolved",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Chris rewrites the bonus note so closed critical vulnerabilities count in the same sentence as shipped features",
+      "firstImage": "You are holding the bonus memo, and the vulnerability column is still treated like a footnote.",
+      "mustInclude": [
+        "bonus memo",
+        "critical vulnerability list",
+        "release notes"
+      ],
+      "mustAvoid": [
+        "generic performance incentive"
+      ]
+    },
+    {
+      "domain": "a regional swim club where parents demand fairness but celebrate only medal counts",
+      "audience": "a club president",
+      "stakes": "young swimmers learn that development talk is less real than podium status",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ingrid predicts which behavior the awards night will teach, then changes the ceremony so improvement and relay discipline carry status",
+      "firstImage": "What does a nine-year-old learn when every speech says effort and every trophy says medals?",
+      "mustInclude": [
+        "awards program",
+        "relay split sheet",
+        "improvement ribbon"
+      ],
+      "mustAvoid": [
+        "generic youth sports lesson"
+      ]
+    },
+    {
+      "domain": "a warehouse safety committee where near-miss forms are treated as blame documents",
+      "audience": "a safety lead",
+      "stakes": "workers hide signals that could prevent the next injury",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Yusuf traces the hidden near miss to the consequence attached to the form and changes the social software around reporting",
+      "firstImage": "The bent pallet jack handle sits behind the loading door with no form attached.",
+      "mustInclude": [
+        "near-miss form",
+        "bent pallet jack",
+        "loading door"
+      ],
+      "mustAvoid": [
+        "generic compliance training"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the actual reward or tolerance shaping culture",
+      "distinguish open talk from robust dialogue",
+      "choose consequences that operationalize a desired behavior",
+      "analyze how leader behavior becomes social software"
+    ]
+  },
+  "tryThisNowSpec": "Find one behavior you tolerate or reward today and write the rule it is teaching, whether or not you intended it.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

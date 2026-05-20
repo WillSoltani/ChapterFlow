@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch25",
+  "number": 25,
+  "title": "Step 12",
+  "coreMove": "Turn insight about a harmful habit into a repeatable recovery process with accountability.",
+  "sourcePressure": "Frames change as recovery process: destructive leadership habits require admission, repeated practice, accountability, and help, not isolated insight.",
+  "chapterSpecificMisunderstanding": "Borrowing recovery language as metaphor only, or treating admission as the whole change.",
+  "sourceAlignmentTerms": [
+    "Step 12",
+    "recovery process",
+    "admission",
+    "practice",
+    "accountability",
+    "help",
+    "visible behavior"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 25 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "brewery cellar safety routine",
+      "audience": "head brewer admitting repeated shortcuts",
+      "stakes": "understanding the shortcut is not recovery",
+      "format": "decision_point",
+      "requiredBeat": "he asks the cellar tech to check his valve seal every Friday for a month",
+      "firstImage": "a valve seal tag beside a tasting glass",
+      "mustInclude": [
+        "valve seal",
+        "tasting glass"
+      ],
+      "mustAvoid": [
+        "willpower promise"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "public school principal office",
+      "audience": "principal repairing blame habit",
+      "stakes": "staff need repeated proof, not one apology",
+      "format": "scene",
+      "requiredBeat": "she brings a printed agenda with the first five minutes reserved for bad news without punishment",
+      "firstImage": "an agenda page beside a school radio",
+      "mustInclude": [
+        "agenda page",
+        "school radio"
+      ],
+      "mustAvoid": [
+        "confession drama"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "family restaurant cash drawer",
+      "audience": "owner asking sibling for help with temper",
+      "stakes": "support strengthens responsibility when the old reflex returns",
+      "format": "dialogue",
+      "requiredBeat": "he gives his sibling a phrase to interrupt him before dinner rush arguments escalate",
+      "firstImage": "a cash drawer key beside a prep ticket",
+      "mustInclude": [
+        "cash key",
+        "prep ticket"
+      ],
+      "mustAvoid": [
+        "family therapy overclaim"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "community radio repair night",
+      "audience": "repair-night coordinator who keeps taking receivers out of volunteers' hands",
+      "stakes": "volunteers never build skill if every hard solder joint gets taken over",
+      "format": "postmortem",
+      "requiredBeat": "the coordinator reviews the sign-up sheet and assigns himself only question-asking shifts while a volunteer solders the next receiver lead",
+      "firstImage": "a solder spool beside a volunteer sign-up sheet",
+      "mustInclude": [
+        "solder spool",
+        "sign-up sheet"
+      ],
+      "mustAvoid": [
+        "hands-on rescue coaching shell"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "museum docent training",
+      "audience": "lead docent recovering from lecture dominance",
+      "stakes": "new behavior must be visible to learners",
+      "format": "before_after",
+      "requiredBeat": "she times her own silence and lets the trainee answer the visitor's question first",
+      "firstImage": "a pocket timer beside a gallery map",
+      "mustInclude": [
+        "pocket timer",
+        "gallery map"
+      ],
+      "mustAvoid": [
+        "generic coaching"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "home hospice sibling schedule",
+      "audience": "oldest sibling admitting control habit",
+      "stakes": "accountability needs others who can name the relapse",
+      "format": "reflection",
+      "requiredBeat": "she sends the medication schedule with edit access instead of a final command",
+      "firstImage": "a medication chart beside a shared login note",
+      "mustInclude": [
+        "medication chart",
+        "login note"
+      ],
+      "mustAvoid": [
+        "medical recovery overreach"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish insight from recovery",
+      "design repeated practice for repair",
+      "ask for help without outsourcing responsibility",
+      "measure change by visible behavior"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one leadership habit you already understand and schedule the next accountable practice that would prove change to someone else.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

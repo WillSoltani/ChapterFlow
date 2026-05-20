@@ -1,0 +1,330 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch47",
+  "number": 47,
+  "title": "Self-Selection Bias",
+  "readingTimeMinutes": 12,
+  "hook": "The survey looks loud because only the people with a reason to shout found the box.",
+  "counterintuition": "A visible sample can be honest and still tilted. The useful move is to ask who entered the sample, who stayed out, and what the missing group might change.",
+  "tryThisNow": "Before trusting one opt-in sample today, write who chose to appear and name one quiet group outside the frame.",
+  "keyTakeaway": "Treat opt-in evidence as a signal about entrants, not proof about the whole group.",
+  "breakdown": {
+    "fastRead": "The tasting spoon lies beside Gareth's pension app default-rate report in Edinburgh. The app's voluntary feedback looks glowing. Gareth writes self-selection risk beside the spoon after noticing that the people who answered may be the people already pleased enough to speak.\n\nSelf-selection bias appears when entry into the evidence is not neutral. People choose to answer, complain, join, renew, review, or advertise themselves. That choice can make the visible group different from the full group you need to understand.\n\nThe sample has a door, and not everyone walked through it.\n\nThe correction is to ask about the door. Who entered? Who had reason to avoid it? What would the decision look like if silent users, dropouts, or rejected cases were counted too?",
+    "deepRead": "The tasting spoon on Gareth's desk came from a retirement fair where the app team served tiny desserts beside a feedback tablet. The ratings were excellent. Gareth does not ignore them. He writes self-selection beside the spoon because the tablet captured people who stopped, tasted, and wanted to respond, not the workers who walked past or opened the app once and never returned.\n\nSelf-selection does not mean people are lying. It means the path into the sample changes what the sample can prove. Happy customers leave glowing reviews. Angry customers file complaints. Ambitious employees join optional training. People with unusual health worries answer a survey. In each case, the evidence may describe the responders well and the whole population poorly. The problem is sample entry, not sincerity.\n\nA loud sample can be a narrow sample.\n\nMonica sees the same pattern in an ambulance night-shift review. A scoreboard still shows that volunteers for a new shift swap program reported better sleep. But the sample entry is selective: the people who volunteered may already have flexible childcare, shorter commutes, or fewer second jobs. Monica marks the still before the operations chief expands the program to every crew.\n\nThe practical test is missing comparison. Compare entrants with non-entrants. Compare reviewers with ordinary buyers. Compare waitlisted fans with people who left without signing up. If you cannot get the whole group, at least name the likely tilt before using the data.\n\nSelf-selection turns a door into a filter.",
+    "fullRead": "The shipping manifest is clipped to Colleen's architecture renovation plan in Rotterdam. Three contractors responded to a rush bid. All three say the renovation budget is too low. Colleen writes adverse selection on the manifest because the firms willing to answer a rushed, underpriced bid may not represent the firms she actually wants on the job.\n\nThis bias hides inside normal evidence. A customer review page is not a census of customers. A public-comment inbox is not a census of residents. A voluntary survey is not a census of employees. A waitlist is not a census of demand if only collectors hear about it. Once the path into evidence is voluntary, the people inside the sample may share a reason for entering.\n\nYou do not fix this by sneering at feedback. Feedback is still information. The question is narrower: information about whom?\n\nYou are in a Geneva watch retailer at 9:15 a.m., looking over an ad mockup with Trevor before a limited-release campaign. The waitlist looks enormous. Trevor calls it proof of general demand. You mark incubated funds risk on the mockup because the list has been grown among collectors who already follow the brand. The next choice changes: before increasing inventory, Trevor has to compare waitlisted collectors with ordinary store traffic and past walk-in conversion.\n\nSelf-selection also works when the visible sample is negative. A vaccine-statistic dashboard may overrepresent people who had side effects and chose to report them. A dropout table may overrepresent families who were frustrated enough to answer an exit form. A complaint file may overrepresent customers with time, confidence, or anger. The missing group is not automatically happier or safer. It is missing, which means the visible share cannot carry the whole conclusion by itself.\n\nNiamh learns that in a public health briefing. The dropout table beside her vaccine-statistic frame shows advertised returns from people who came back for a follow-up survey. The returns look excellent, but the people who came back may be more organized, healthier, or more satisfied than those who ignored the message. Niamh marks advertised returns risk and asks for appointment records, nonresponse counts, and a small call-back sample before approving the headline.\n\nThe hardest cases feel urgent because the visible evidence is vivid. Five furious reviews make a service look broken. Two hundred sign-ups make a product look unstoppable. A packed club makes an event look universally wanted. The missing comparison slows the room down. It asks whether the people who showed up differ in a predictable way from the people you are about to serve.\n\nWhich door did the evidence pass through?\n\nThe organ-donor form on Pascal's desk appears in a viral chart fact-check. A chart claims that everyone who clicks a campaign page supports a policy change. Pascal knows the sample selected itself: only people moved by the campaign clicked. He changes the fact-check from \"public support is high\" to \"support is high among campaign visitors,\" then asks for a broader poll before anyone treats the chart as population evidence.\n\nTreat opt-in evidence as a signal about entrants, not proof about the whole group.",
+    "whyItMatters": "Self-selection bias makes voluntary evidence look more representative than it is. Readers need to identify who entered the sample and force the missing comparison before deciding."
+  },
+  "examples": [
+    {
+      "exampleId": "ch47-ex01-gareth-tasting-spoon",
+      "title": "Gareth Checks Who Rated the App",
+      "tags": [
+        "scene",
+        "pension",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "a pension app default rate applying Self-Selection Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where self-selection could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the tasting spoon, names the self-selection risk, and changes the next choice in view of another person."
+      },
+      "scenario": "A tasting spoon sits beside Gareth's 10:20 a.m. pension app default-rate report in Edinburgh after a retirement fair feedback tablet shows glowing reviews. Gareth must decide whether self-selection risk should stop the team from treating volunteers as all users.",
+      "whatToDo": "Mark self-selection risk on the spoon, compare responders with silent app users, and delay the default change until nonresponders are sampled.",
+      "whyItMatters": "The people who stopped for dessert and feedback may not represent the workers who skipped the table."
+    },
+    {
+      "exampleId": "ch47-ex02-monica-scoreboard-still",
+      "title": "Monica Slows the Shift Swap Rollout",
+      "tags": [
+        "vignette",
+        "ambulance",
+        "sample entry"
+      ],
+      "planSpec": {
+        "domain": "a ambulance night-shift review applying Self-Selection Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where sample entry could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the scoreboard still, names the sample entry risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"The volunteers slept better,\" the operations chief says during a 6 a.m. ambulance night-shift review in Leeds. Monica holds a scoreboard still from the pilot and faces a choice about whether sample entry risk should change the rollout.",
+      "whatToDo": "Mark sample entry risk on the still, compare volunteers with crews who avoided the pilot, and test one mixed roster before expanding.",
+      "whyItMatters": "Volunteers may have different commutes, childcare, or second jobs than the crews who stayed out."
+    },
+    {
+      "exampleId": "ch47-ex03-colleen-shipping-manifest",
+      "title": "Colleen Reopens the Rush Bid",
+      "tags": [
+        "dialogue",
+        "architecture",
+        "adverse selection"
+      ],
+      "planSpec": {
+        "domain": "a architecture renovation plan applying Self-Selection Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where adverse selection could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the shipping manifest, names the adverse selection risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The shipping manifest curls at one corner in Colleen's Rotterdam architecture office at 2:10 p.m. while she reviews three rush-bid contractors as project lead. Each says the renovation budget is too low. Colleen must decide whether adverse selection risk means the responders are the wrong comparison group.",
+      "whatToDo": "Mark adverse selection on the manifest, contact nonresponding qualified firms, and revise the budget only after seeing who skipped the rushed bid.",
+      "whyItMatters": "A rushed bid may attract contractors with spare capacity or pricing problems, not the full market."
+    },
+    {
+      "exampleId": "ch47-ex04-trevor-ad-mockup",
+      "title": "Trevor Tests the Watch Waitlist",
+      "tags": [
+        "decision",
+        "retail",
+        "waitlist"
+      ],
+      "planSpec": {
+        "domain": "a watch retailer waitlist applying Self-Selection Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where incubated funds could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the ad mockup, names the incubated funds risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are at a Geneva watch retailer at 9:15 a.m., where Trevor is holding an ad mockup beside a waitlist built from collector emails. He must decide whether incubated funds risk should stop the list from setting inventory.",
+      "whatToDo": "Mark incubated funds risk on the mockup, compare collector sign-ups with ordinary store traffic, and order inventory from both numbers.",
+      "whyItMatters": "A list grown inside a fan base can exaggerate demand from the wider market."
+    },
+    {
+      "exampleId": "ch47-ex05-niamh-dropout-table",
+      "title": "Niamh Checks the Follow-Up Returns",
+      "tags": [
+        "predict",
+        "public health",
+        "returns"
+      ],
+      "planSpec": {
+        "domain": "a vaccine-statistic framing applying Self-Selection Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where advertised returns could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the dropout table, names the advertised returns risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Niamh one quiet nonresponse column during a 9 a.m. Dublin public health briefing to see the dropout table was flattering the campaign. Advertised returns came from people who answered follow-up forms. Niamh must decide whether that risk should change the vaccine-statistic headline.",
+      "whatToDo": "Mark advertised returns risk on the table, add nonresponse counts and appointment records, and frame the result as follow-up responders only.",
+      "whyItMatters": "People who return forms may differ from people who ignore them."
+    },
+    {
+      "exampleId": "ch47-ex06-pascal-organ-donor-form",
+      "title": "Pascal Narrows the Viral Chart",
+      "tags": [
+        "postmortem",
+        "fact-check",
+        "chart"
+      ],
+      "planSpec": {
+        "domain": "a viral chart fact-check applying Self-Selection Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where self could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Self-Selection Bias is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the organ-donor form, names the self risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which viral chart treated campaign clickers as the whole public? Pascal asks during a 4:40 p.m. fact-check in Lyon, marking self risk on an organ-donor form before the desk publishes the policy summary.",
+      "whatToDo": "Limit the claim to campaign visitors, name the missing nonclickers, and require a broader poll before reporting public support.",
+      "whyItMatters": "A chart about people who clicked is not automatically a chart about everyone."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a self-selection case, a product team says its voluntary feedback proves all users love the app, the responders came from a booth with a giveaway. What is the self-selection problem?",
+        "choices": [
+          "The responders may differ from the users who did not enter the feedback sample.",
+          "Bias pressure result fits the immediate pressure around responders came booth; hold proves users love steady and test says voluntary feedback later.",
+          "Team says voluntary looks strong enough to guide feedback proves users; love responders came can wait unless booth giveaway what changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The issue is sample entry. The booth responders may be sincere, but they may not represent silent or absent users.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Self-Selection Bias makes self-selection case feel more decisive than the record supports, and that misprices product team in this scene. The correct move keepss the choice by the responders may differ from the users who did not enter the feedback."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a self-selection review, an ambulance shift-swap pilot gets strong reviews from volunteers, leaders want to impose it on every crew. What should they compare first?",
+        "choices": [
+          "Leaders want impose makes shift-swap pilot gets look credible; use strong reviews volunteers first and revisit crew what first when volunteer crews enter shifts.",
+          "Volunteer crews with crews that did not enter the pilot.",
+          "What first volunteer points toward a quicker call on pilot gets strong; let self-selection ambulance shift-swap stand until want impose crew contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The missing comparison is non-volunteers. Volunteers may have entered because the program already suited their lives.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Self-Selection Bias works by letting self-selection ambulance crowd out shift-swap pilot, which can misreads the gets strong decision. Volunteer crews with crews that did not enter the pilot keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Only three contractors answer a rushed renovation bid, and all three say the budget is too low. What is the best next move?",
+        "choices": [
+          "Next move whether makes answer rushed renovation look credible; use budget what best first and revisit firms entered differ when qualified skipped self-selection shifts.",
+          "Whether firms entered supports a narrower read of contractors answer rushed; keep renovation budget what central and leave best next move aside.",
+          "Ask whether the firms that entered the rushed bid differ from qualified firms that skipped it."
+        ],
+        "correctIndex": 2,
+        "explanation": "The warning is adverse selection. The responders may not represent the broader contractor market, so nonresponders matter.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Self-Selection Bias turns answer rushed into a shortcut, so the room can overweights renovation budget while missing what best. Ask whether the firms that entered the rushed bid differ from qualified firms that skipped it protects the decision from that."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After self-selection risk surfaces, a watch retailer builds a huge waitlist from collector emails and wants to raise inventory for mainstream buyers. Which check best handles self-selection?",
+        "choices": [
+          "Compare collector sign-ups with ordinary store traffic and past walk-in conversion.",
+          "Buyers check best points toward a quicker call on builds huge waitlist; let surfaces watch retailer stand until raise inventory mainstream contradicts it.",
+          "Best handles sign-ups fits the immediate pressure around waitlist collector emails; hold retailer builds huge steady and test self-selection surfaces watch later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The list is evidence about collectors first. Comparing it with ordinary traffic prevents an opt-in fan sample from setting the whole order.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Self-Selection Bias would push the watch retailer case toward builds huge, creating a cost when waitlist collector stays untested. The useful guardrail is to compare collector sign-ups with ordinary store traffic and past walk-in conversion."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If self-selection reasoning takes over, a health campaign reports excellent follow-up returns from people who answered a form, many people ignored the form. What should the headline say?",
+        "choices": [
+          "Checked bias record fits the immediate pressure around many ignored what; hold people answered form steady and test excellent follow-up returns later.",
+          "The result describes follow-up responders unless nonresponse is checked.",
+          "Follow-up returns people gives a practical reason for campaign reports excellent; ignored what headline belongs after answered form many clarifies the result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The headline should not turn responders into the whole group. Nonresponse may tilt the sample.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Self-Selection Bias converts campaign reports into the loudest signal, which can rushes excellent follow-up before returns people is checked. The better answer separatess attention on the result describes follow-up responders unless nonresponse is checked."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While self-selection pressure builds, a viral chart claims a policy has public support because most visitors to a campaign page clicked yes. What is the strongest analysis?",
+        "choices": [
+          "Clicked what strongest supports a narrower read of viral chart claims; keep policy public support central and leave visitors campaign page aside.",
+          "The chart may show support among visitors, not the wider public.",
+          "Show among wider fits the immediate pressure around public support visitors; hold chart claims policy steady and test pressure builds viral later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The people who visited selected themselves into the evidence. The claim must be narrowed unless a broader sample confirms it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Self-Selection Bias hides inside the self-selection pressure choice because self-selection pressure seems sufficient, yet the cost lands in self-selection pressure. The chart may show support among visitors, not the wider public brings the self-selection pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the self-selection call, a restaurant sees many angry online reviews and concludes every diner is furious. The dining room has steady repeat business. What should the owner do?",
+        "choices": [
+          "Concludes diner furious makes restaurant sees many look credible; use angry online reviews first and revisit dining room steady when repeat business what shifts.",
+          "Furious dining room supports a narrower read of call restaurant sees; keep many angry online central and leave reviews concludes diner aside.",
+          "Compare reviewers with ordinary diners before judging the whole customer base."
+        ],
+        "correctIndex": 2,
+        "explanation": "Reviewers choose to enter the visible sample. The owner should compare them with the quieter group, not dismiss either side.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Self-Selection Bias pressures the call restaurant decision toward the easy reading of call restaurant. That can inflates the real cost unless the choice is grounded in compare reviewers with ordinary diners before judging the whole customer base."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose self-selection risk is present: a club says optional training caused promotions because trainees advanced faster. Employees had to apply for the training. What is the key concern?",
+        "choices": [
+          "The trainees may already have been more ambitious or better connected.",
+          "Promotions trainees advanced gives a practical reason for optional training caused; what concern already belongs after faster employees apply clarifies the result.",
+          "Advanced faster employees makes says optional training look credible; use caused promotions trainees first and revisit apply what concern when already ambitious better shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "Application into the program may filter for people already likely to advance. The comparison needs similar non-applicants.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Self-Selection Bias is the mechanism here: volunteers distort the sample, so present club can overpower present club. The trainees may already have been more ambitious or better connected keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "You are creating a rule for decisions based on reviews, surveys, and waitlists. Which rule best guards against self-selection bias?",
+        "choices": [
+          "What comparison missing points toward a quicker call on best guards against; let reviews surveys waitlists stand until enter likely stayed contradicts it.",
+          "Missing pressure result fits the immediate pressure around against self-selection bias; hold waitlists best guards steady and test based reviews surveys later.",
+          "Name who could enter, who likely stayed out, and what comparison is missing."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rule targets the entry door. It uses voluntary data as a signal while forcing the missing comparison before deciding.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Self-Selection Bias makes the based reviews evidence look cleaner than it is, risking a based reviews mistake in this setting. The answer protects based reviews by asking for name who could enter, who likely stayed out, and what comparison is."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch47-card01",
+      "front": "A survey has strong answers from volunteers. What should you ask first?",
+      "back": "Ask who chose to enter the sample and who stayed out."
+    },
+    {
+      "cardId": "ch47-card02",
+      "front": "A waitlist is huge. Why might it still mislead inventory planning?",
+      "back": "The waitlist may describe fans who opted in, not ordinary buyers."
+    },
+    {
+      "cardId": "ch47-card03",
+      "front": "A complaint file is full of angry cases. What comparison is missing?",
+      "back": "Compare complainants with ordinary customers, silent users, or nonresponders before judging the whole group."
+    },
+    {
+      "cardId": "ch47-card04",
+      "front": "What does sample entry mean?",
+      "back": "It is the path people take into the evidence, and that path can filter who appears."
+    },
+    {
+      "cardId": "ch47-card05",
+      "front": "How should you use opt-in evidence?",
+      "back": "Treat it as evidence about entrants until a missing comparison shows it represents the whole group."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to inspect the path into a sample before treating visible evidence as representative of the whole group.",
+    "ifThenPlans": [
+      {
+        "context": "surveys",
+        "plan": "If I read voluntary survey results, then I will name the likely nonresponders before drawing a conclusion."
+      },
+      {
+        "context": "reviews",
+        "plan": "If reviews look extreme, then I will compare reviewers with ordinary users or buyers."
+      },
+      {
+        "context": "waitlists",
+        "plan": "If a waitlist looks large, then I will ask how people heard about it and who never had a chance to join."
+      },
+      {
+        "context": "pilots",
+        "plan": "If a pilot used volunteers, then I will compare volunteers with eligible non-volunteers before scaling it."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, find one opt-in sample in your work or feed and write the missing group beside it.",
+    "weeklyPractice": "This week, redo one decision based on reviews, survey answers, or a waitlist by adding the missing comparison group."
+  },
+  "memorableLines": [
+    {
+      "text": "The sample has a door, and not everyone walked through it.",
+      "location": "breakdown.fastRead",
+      "why": "It makes self-selection concrete."
+    },
+    {
+      "text": "A loud sample can be a narrow sample.",
+      "location": "breakdown.deepRead",
+      "why": "It warns against mistaking visibility for representativeness."
+    },
+    {
+      "text": "Treat opt-in evidence as a signal about entrants, not proof about the whole group.",
+      "location": "breakdown.fullRead",
+      "why": "It states the chapter's usable decision rule."
+    }
+  ]
+}

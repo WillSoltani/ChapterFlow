@@ -1,0 +1,185 @@
+{
+  "chapterId": "never-split-the-difference-ch01",
+  "number": 1,
+  "title": "The New Rules",
+  "coreMove": "Replace winning the argument with making the other side feel safe enough to reveal what is really driving them.",
+  "sourcePressure": "The source presents a field-tested negotiation approach from FBI hostage-negotiation experience and a shift from pressure-first bargaining toward rapport, tactical empathy, discovery, getting to no, and triggering that's right.",
+  "chapterSpecificMisunderstanding": "The writer must not reduce the new rules to being nice, collaborative, or generally emotionally intelligent.",
+  "sourceAlignmentTerms": [
+    "field-tested",
+    "tactical empathy",
+    "rapport",
+    "discovery",
+    "pressure-first",
+    "defensiveness",
+    "control"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A tense boardroom where someone simply listens better",
+      "A hostage scene with invented FBI details",
+      "Negotiation is everywhere opening"
+    ],
+    "counterintuition": [
+      "Kindness beats force",
+      "Win-win is smarter than win-lose",
+      "Listening is the new talking"
+    ],
+    "tryThisNow": [
+      "Pause before your next hard talk",
+      "Ask one better question",
+      "Notice how the other person feels"
+    ],
+    "examples": [
+      "sales meeting with a generic client",
+      "couple arguing at a kitchen table",
+      "classroom debate",
+      "conference room whiteboard"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital discharge planning after a failed insurance authorization",
+      "audience": "a case manager trying to move a defensive insurer from denial language to actual constraints",
+      "stakes": "a patient may spend an extra night in a hallway bed because the plan keeps getting rejected",
+      "format": "scene",
+      "requiredBeat": "the case manager closes the appeal template, repeats the insurer's stated concern about unsafe discharge, and waits until the reviewer names the missing home-health document",
+      "firstImage": "a rolling vitals cart parked outside bed 12 with a discharge folder clipped to the rail",
+      "mustInclude": [
+        "fax confirmation sheet",
+        "home-health checkbox",
+        "bed board alert"
+      ],
+      "mustAvoid": [
+        "generic hospital empathy",
+        "doctor-patient bedside lesson"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "commercial fishing quota dispute at a harbor office",
+      "audience": "a harbor coordinator facing captains who assume the new allocation is punishment",
+      "stakes": "three boats may ignore the landing schedule and trigger fines for the whole pier",
+      "format": "dialogue",
+      "requiredBeat": "the coordinator stops defending the quota table and names the captains' fear that they are being made to pay for another crew's overrun",
+      "firstImage": "a laminated tide chart curled under a brass paperweight on the harbor counter",
+      "mustInclude": [
+        "landing slips",
+        "ice-house cutoff time",
+        "quota table"
+      ],
+      "mustAvoid": [
+        "generic union meeting",
+        "invented legal rule"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "university lab equipment booking conflict",
+      "audience": "a lab manager dealing with two research teams fighting over the same sequencer slot",
+      "stakes": "a grant milestone may be missed if one group hides sample-prep delays",
+      "format": "decision_point",
+      "requiredBeat": "the manager quits arguing about policy and asks each team what would make the other booking unsafe to swap, drawing out a contamination window nobody had mentioned",
+      "firstImage": "a red reservation tag hanging from the sequencer handle at 6:40 a.m.",
+      "mustInclude": [
+        "sample tray",
+        "grant milestone email",
+        "clean-room log"
+      ],
+      "mustAvoid": [
+        "classroom scheduling",
+        "generic calendar dispute"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "independent theater contract renegotiation with a touring company",
+      "audience": "a venue director who needs the company to admit what term is blocking signature",
+      "stakes": "the season opener may be canceled if both sides keep arguing over headline fee",
+      "format": "vignette",
+      "requiredBeat": "the director stops defending the fee and says it sounds like the real risk is the load-in penalty, prompting the tour manager to show the freight clause",
+      "firstImage": "a folded stage plot taped to the edge of the lighting console",
+      "mustInclude": [
+        "freight clause",
+        "load-in window",
+        "deposit invoice"
+      ],
+      "mustAvoid": [
+        "generic vendor negotiation",
+        "celebrity backstage story"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "municipal snow-removal complaint desk during a storm",
+      "audience": "a dispatcher handling an angry resident who thinks the city forgot his street",
+      "stakes": "plow drivers are being diverted by repeated calls while emergency routes are still blocked",
+      "format": "before_after",
+      "requiredBeat": "instead of insisting on the route map, the dispatcher names the caller's fear that his street is invisible and then asks what he is seeing at the intersection",
+      "firstImage": "a salt-streaked route monitor glowing beside a half-empty thermos lid",
+      "mustInclude": [
+        "route monitor",
+        "priority code",
+        "intersection name"
+      ],
+      "mustAvoid": [
+        "generic customer support",
+        "weather small talk"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "specialty pharmacy prior-authorization call for a rare medication",
+      "audience": "a pharmacist trying to learn why the payer keeps rejecting the same drug",
+      "stakes": "a temperature-controlled shipment will expire if the denial reason stays hidden",
+      "format": "postmortem",
+      "requiredBeat": "the pharmacist reviews the call where pressure produced three scripted denials, then shows how naming the reviewer's audit concern uncovered the missing diagnostic code",
+      "firstImage": "a gel-pack shipping box sweating on the pharmacy intake counter",
+      "mustInclude": [
+        "diagnostic code",
+        "cold-chain label",
+        "appeal queue"
+      ],
+      "mustAvoid": [
+        "generic medicine affordability story",
+        "villain insurer frame"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish tactical empathy from niceness in a high-pressure exchange",
+      "choose a discovery move instead of defending a position",
+      "spot when pressure-first language is making the other side less honest",
+      "evaluate whether a response protects control enough to reveal constraints"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next stalled request, write the position you have been defending, then write the fear or constraint the other side may be protecting; open with that second sentence.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

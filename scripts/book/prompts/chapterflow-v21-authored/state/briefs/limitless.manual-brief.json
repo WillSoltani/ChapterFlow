@@ -1,0 +1,97 @@
+{
+  "bookId": "limitless",
+  "title": "Limitless",
+  "author": "Jim Kwik",
+  "thesisParagraph": "Limitless argues that learning is not a fixed trait you inherit and endure. The book moves from Jim Kwik's early experience of injury, shame, and feeling mentally behind into a practical model: loosen the limiting story, supply a real reason to learn, protect the energy and attention required, then use methods that make reading, study, memory, and thinking more deliberate. The promise is not that belief alone makes the mind unlimited. The promise is that many ceilings lose authority once learning itself becomes the skill under training.",
+  "coreIdeas": [
+    {
+      "name": "Label to training problem",
+      "oneSentence": "A painful learning history can be real without being final.",
+      "mentalMove": "Separate the old identity sentence from the process that can still be trained.",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Modern cognitive pressure",
+      "oneSentence": "Information abundance makes attention, retention, and learning speed practical leverage.",
+      "mentalMove": "Convert overload into a deliberate system instead of another reason to panic.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Mindset before method",
+      "oneSentence": "Beliefs shape whether effort feels possible before methods ever get a fair trial.",
+      "mentalMove": "Catch the belief that is shrinking the test before ability has been tested.",
+      "sourceAnchors": [
+        "ch05.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Motivation needs fuel",
+      "oneSentence": "Purpose starts effort, energy sustains it, and small steps get it moving.",
+      "mentalMove": "Tie effort to meaning, check fuel, then make the first action small enough to start.",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Methods make learning visible",
+      "oneSentence": "Focus, study, memory, speed reading, and thinking improve when the learner does observable work with information.",
+      "mentalMove": "Turn passive exposure into retrieval, association, pacing, and judgment.",
+      "sourceAnchors": [
+        "ch10.source",
+        "ch11.source",
+        "ch12.source",
+        "ch13.source",
+        "ch14.source",
+        "ch15.source"
+      ]
+    }
+  ],
+  "targetReader": "Adults and students in Canada, the US, and Europe who feel flooded by information, behind in a skill, or quietly convinced they are not the kind of person who learns fast. They care because work, school, care responsibilities, and career changes now punish passive learning faster than old habits can absorb.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "keep confidence tied to method, not hype"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no fake neuroscience or miracle-memory claims"
+    ]
+  },
+  "voiceSpecimens": [
+    "The label feels true because it has history behind it, but history is not the same as a verdict.",
+    "You do not need a bigger promise. You need a smaller test that the old story cannot avoid.",
+    "A tired brain can make a good reason look weak, so check the fuel before you accuse the purpose.",
+    "The page is not learned when your eyes reach the bottom. It is learned when you can bring the point back without help.",
+    "Speed matters only when comprehension comes with it. A blur is not a better read.",
+    "Better thinking starts when you stop collecting more facts and ask which distinction changes the choice."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter will show readers how to unlock their limitless potential in every area of life.",
+    "The author argues that the brain is a supercomputer capable of anything if properly programmed.",
+    "In today's fast-paced world, everyone must optimize their mindset to succeed.",
+    "Try this now: set a timer, reflect on your goals, and write down what you learned.",
+    "By using these hacks, you can instantly transform memory, focus, and productivity."
+  ],
+  "teachingArc": "The book compounds in four movements: first it breaks the old identity verdict around learning, then it explains why modern overload makes learning skill urgent, then it builds motivation through purpose, energy, and smaller starts, and finally it teaches methods that protect attention and turn information into retention, reading efficiency, and judgment.",
+  "forbiddenMoves": [
+    "Do not inflate thin frozen source support into named studies, famous anecdotes, or neuroscience details.",
+    "Do not make every lesson sound like unlocking potential. Each chapter must have a visible method move.",
+    "Do not collapse purpose, energy, small steps, flow, and focus into the same generic productivity advice.",
+    "Do not repeat v13 exhausted protagonist names or generic school, kitchen, meeting, and commute examples."
+  ]
+}

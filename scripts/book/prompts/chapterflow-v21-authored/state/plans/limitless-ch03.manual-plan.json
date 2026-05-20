@@ -1,0 +1,184 @@
+{
+  "chapterId": "limitless-ch03",
+  "number": 3,
+  "title": "Your Limitless Brain",
+  "coreMove": "Replace fixed-capacity assumptions with a trainability test while staying honest about limits.",
+  "sourcePressure": "The chapter shifts from urgency to capacity, arguing that present performance is not permanent potential and the brain should be treated as adaptable.",
+  "chapterSpecificMisunderstanding": "Overclaiming neuroscience or promising a magical brain upgrade.",
+  "sourceAlignmentTerms": [
+    "adaptable brain",
+    "trainable capacity",
+    "current performance",
+    "permanent potential",
+    "fixed intelligence",
+    "method and practice"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen sidecar contains no chapter-local named figure, named study, named place, or dated anecdote. Use fictional protagonists and keep source alignment at the concept and title-pressure level.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open Your Limitless Brain with a generic unlocked potential claim.",
+      "Do not start with a definition of your limitless brain."
+    ],
+    "counterintuition": [
+      "Do not use a not X but Y correction shell.",
+      "Do not claim the opposite of common sense in generic coaching language."
+    ],
+    "tryThisNow": [
+      "Do not use set a timer and reflect.",
+      "Do not ask the reader to journal broadly without a visible action."
+    ],
+    "examples": [
+      "No repeated desk, kitchen, classroom, commute, or generic meeting shells.",
+      "No six examples built around timestamp plus named protagonist plus decision."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "piano exam preparation",
+      "audience": "adult beginner who thinks age has closed the skill window",
+      "stakes": "a graded performance arrives in six weeks",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "protagonistName": "Vera",
+      "requiredBeat": "Vera records the left-hand passage on Monday and Friday to prove the current version is not the final version.",
+      "firstImage": "middle C felt through a chipped ivory key",
+      "mustInclude": [
+        "practice recording",
+        "metronome",
+        "six-week exam"
+      ],
+      "mustAvoid": [
+        "talent myth only",
+        "child prodigy contrast"
+      ]
+    },
+    {
+      "domain": "tax office seasonal training",
+      "audience": "new preparer overwhelmed by deduction rules",
+      "stakes": "one wrong assumption can cost clients money",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "protagonistName": "Etienne",
+      "requiredBeat": "Etienne maps each mistake to missing exposure or bad sequence instead of calling his brain full.",
+      "firstImage": "sticky tabs bristling from a tax binder",
+      "mustInclude": [
+        "tax binder",
+        "sticky tabs",
+        "practice return"
+      ],
+      "mustAvoid": [
+        "numbers anxiety",
+        "generic desk scene"
+      ]
+    },
+    {
+      "domain": "climbing gym route setting",
+      "audience": "setter learning spatial route design",
+      "stakes": "members will reject a wall that feels impossible or dull",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "protagonistName": "Maja",
+      "requiredBeat": "Maja changes one hold angle and tests whether better feedback, not fixed spatial talent, improves the route.",
+      "firstImage": "chalk dust on a purple climbing hold",
+      "mustInclude": [
+        "purple hold",
+        "allen key",
+        "feedback clipboard"
+      ],
+      "mustAvoid": [
+        "sports grit",
+        "injury recovery"
+      ]
+    },
+    {
+      "domain": "heritage bakery recipe conversion",
+      "audience": "baker converting family recipes for production",
+      "stakes": "a holiday batch can fail if ratios stay intuitive",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "protagonistName": "Pablo",
+      "requiredBeat": "Pablo compares the failed batch notes with scaled measurements and sees capacity changing through method, not wishful thinking.",
+      "firstImage": "cinnamon stuck to the edge of a scale pan",
+      "mustInclude": [
+        "scale pan",
+        "batch notes",
+        "holiday preorder list"
+      ],
+      "mustAvoid": [
+        "family nostalgia",
+        "generic cooking metaphor"
+      ]
+    },
+    {
+      "domain": "museum audio-guide scripting",
+      "audience": "educator learning to compress complex history",
+      "stakes": "visitors leave if the guide sounds dense",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "protagonistName": "Rachel",
+      "requiredBeat": "Rachel tests two versions with docents and revises by feedback instead of treating clarity as a gift she lacks.",
+      "firstImage": "headphones coiled beside a draft script",
+      "mustInclude": [
+        "coiled headphones",
+        "draft script",
+        "docent feedback"
+      ],
+      "mustAvoid": [
+        "public speaking anxiety",
+        "museum trivia dump"
+      ]
+    },
+    {
+      "domain": "robotics club soldering station",
+      "audience": "teen mentor learning fine-motor repair",
+      "stakes": "a regional qualifier depends on a working sensor",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "protagonistName": "Akira",
+      "requiredBeat": "Akira predicts the solder bridge will fail, repairs one joint, and shows the before-and-after continuity reading.",
+      "firstImage": "a tiny bead of solder shining under a lamp",
+      "mustInclude": [
+        "soldering iron",
+        "continuity meter",
+        "qualifier date"
+      ],
+      "mustAvoid": [
+        "tech genius myth",
+        "robot competition drama"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, using a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "Identify when replace fixed-capacity assumptions with a trainability test while staying honest about limits. is needed in a new scenario.",
+      "Choose the visible action that matches Your Limitless Brain rather than a nearby generic lesson.",
+      "Explain why the weak alternative fails without using recall-only phrasing."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one weak skill and name the training condition you have not tested yet, such as feedback, sequence, or repetition.",
+  "readingTimeMinutes": 12
+}

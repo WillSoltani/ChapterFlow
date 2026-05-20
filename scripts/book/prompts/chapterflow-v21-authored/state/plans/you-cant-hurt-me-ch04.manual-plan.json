@@ -1,0 +1,87 @@
+{
+  "chapterId": "you-cant-hurt-me-ch04",
+  "number": 4,
+  "title": "Taking Souls",
+  "coreMove": "Use visible refusal to quit to change the pressure in a shared ordeal.",
+  "sourcePressure": "The source is BUD/S and Hell Week: exhaustion, public exposure, boat crews, group pressure, and taking souls as psychological edge through relentless effort, not cruelty.",
+  "chapterSpecificMisunderstanding": "The writer must not turn taking souls into bullying, sadism, or solo domination.",
+  "sourceAlignmentTerms": ["BUD/S", "Hell Week", "boat crew", "group pressure", "taking souls", "psychological edge", "relentless effort"],
+  "forbiddenFrames": {
+    "hook": ["Take their soul before they take yours", "Outwork everyone in the room", "Be the last one standing"],
+    "counterintuition": ["Dominance earns respect", "Break others with your will", "Never show weakness"],
+    "tryThisNow": ["Do one more rep", "Outwork someone today", "Refuse to quit for one minute"],
+    "examples": ["office competition", "sports trash talk", "military fantasy scene"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "storm-damaged marina salvage crew hauling soaked dock sections",
+      "audience": "a new crew member watching the foreman and the tide at the same time",
+      "stakes": "whether the crew folds before the tide window closes",
+      "format": "scene",
+      "requiredBeat": "as the strongest worker groans and slows, the smallest crew member silently shoulders the next dock plank and walks first into the waist-deep water",
+      "firstImage": "a splintered dock plank slick with brackish mud",
+      "mustInclude": ["tide chart", "work gloves", "dock plank"],
+      "mustAvoid": ["shouting match", "hero rescue", "generic teamwork"]
+    },
+    {
+      "domain": "hospital disaster drill moving patients down dead elevators",
+      "audience": "a transport team under observation by skeptical senior staff",
+      "stakes": "whether fatigue spreads through the drill and proves the unit unready",
+      "format": "decision_point",
+      "requiredBeat": "when the team pauses at the fourth stairwell landing, one orderly regrips the evacuation sled straps and starts the next descent without waiting for permission",
+      "firstImage": "an evacuation sled wedged against a stairwell door",
+      "mustInclude": ["sled straps", "drill vest", "stairwell landing"],
+      "mustAvoid": ["medical heroics", "patient harm", "generic morale boost"]
+    },
+    {
+      "domain": "rowing club dawn seat race against a favored crew",
+      "audience": "an underdog boat that can feel the other shell waiting for it to fade",
+      "stakes": "whether the favored crew relaxes into victory or starts questioning itself",
+      "format": "predict_reveal",
+      "requiredBeat": "the coxswain calls for a power ten after the blades are already ragged, and the underdog boat holds pace until the favorite's stroke rate breaks first",
+      "firstImage": "a wet oar blade feathering under gray dawn",
+      "mustInclude": ["stroke rate", "cox box", "finish buoy"],
+      "mustAvoid": ["trophy scene", "locker-room speech", "generic endurance race"]
+    },
+    {
+      "domain": "warehouse freezer inventory during a broken loading schedule",
+      "audience": "a night crew working beside a rival shift that expects them to miss count",
+      "stakes": "whether the rival shift's certainty becomes the crew's excuse",
+      "format": "vignette",
+      "requiredBeat": "the lead worker wipes ice from the scanner, calls the next pallet number, and keeps the count moving until the rival supervisor stops joking",
+      "firstImage": "a barcode scanner crusted with freezer frost",
+      "mustInclude": ["pallet number", "thermal sleeves", "inventory seal"],
+      "mustAvoid": ["office rivalry", "productivity hack", "angry confrontation"]
+    },
+    {
+      "domain": "wildland trail crew clearing blowdowns for a medical evacuation route",
+      "audience": "a mixed crew with one member close to quitting",
+      "stakes": "whether the route opens before the rescue team needs it",
+      "format": "dialogue",
+      "requiredBeat": "instead of arguing, the crew lead takes the heavy saw fuel can, steps over the next trunk, and says only the next cut",
+      "firstImage": "a saw fuel can dented against a fallen cedar",
+      "mustInclude": ["trail flagging", "fuel can", "fallen cedar"],
+      "mustAvoid": ["firefighting scene", "macho lecture", "solo wilderness triumph"]
+    },
+    {
+      "domain": "competitive debate team elimination round prep under sleep loss",
+      "audience": "a team whose rival expects them to fold after three late nights",
+      "stakes": "whether fatigue makes them sloppy before the decisive round",
+      "format": "reflection",
+      "requiredBeat": "the captain erases the complaint list, posts the next evidence block, and starts cross-exam drills while the rival room can still hear them",
+      "firstImage": "an evidence tub with tabs bent from overnight use",
+      "mustInclude": ["evidence tub", "round pairing", "cross-exam timer"],
+      "mustAvoid": ["classroom lesson", "social-media clapback", "generic academic stress"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["identify psychological edge created by visible effort", "distinguish shared-standard pressure from cruelty", "choose a beat that changes group morale", "analyze when effort becomes theater instead of leverage"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "In the next shared hard task, pick one visible next action that answers the room's doubt without a speech, then do it first.",
+  "readingTimeMinutes": 12
+}

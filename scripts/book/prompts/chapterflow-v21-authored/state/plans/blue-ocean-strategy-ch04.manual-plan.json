@@ -1,0 +1,193 @@
+{
+  "chapterId": "blue-ocean-strategy-ch04",
+  "number": 4,
+  "title": "Focus on the Big Picture, Not the Numbers",
+  "coreMove": "Step back from local metrics and force the whole value pattern into view before deciding what the numbers mean.",
+  "sourcePressure": "Keep strategy grounded in whole-pattern visual judgment, using the strategy canvas to see strategic sameness and possible divergence instead of drowning in isolated metrics.",
+  "chapterSpecificMisunderstanding": "Treating the chapter as anti-data or as permission to ignore financial discipline.",
+  "sourceAlignmentTerms": [
+    "big picture",
+    "visual strategy",
+    "strategy canvas",
+    "value curve",
+    "whole-pattern comparison",
+    "strategic profile",
+    "numbers"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "strategy canvas",
+      "detail": "official support defines it as a one-page visual analytic for comparing the current state of play and a possible future value curve",
+      "useIn": "both",
+      "phrasingHint": "A single strategy canvas can make scattered numbers behave like one picture, which is the point before the next debate starts."
+    },
+    {
+      "kind": "artifact",
+      "name": "O'Reilly expanded-edition contents",
+      "detail": "authorized contents place this chapter early in Part Two, where formulation shifts from concept to visual strategy work",
+      "useIn": "fullRead",
+      "phrasingHint": "This is early formulation work: before the spreadsheet can decide, the team has to see what kind of offer it is building."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Laura",
+      "domain": "customer support metrics and whole experience mapping",
+      "audience": "a support director whose teams defend separate dashboard wins",
+      "stakes": "whether churn keeps rising despite better local metrics",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she lays refund notes, hold times, and transfer points across the wall and stops another metric defense with the whole pattern",
+      "firstImage": "The tape curls off the painted wall as refund notes reach the doorframe",
+      "mustInclude": [
+        "refund notes",
+        "transfer map",
+        "hold-time strip"
+      ],
+      "mustAvoid": [
+        "generic software dashboard scene"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "bus route data versus hospital appointment journeys",
+      "audience": "a transit planner under pressure to show data-driven progress",
+      "stakes": "whether riders reach appointments or only see improved isolated numbers",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "he realizes route punctuality improved while the hospital journey stayed broken at the transfer point",
+      "firstImage": "It took Henrik three quarterly reports to notice the 8:10 bus was punctual and still useless",
+      "mustInclude": [
+        "transfer token",
+        "appointment letter",
+        "rain shelter photo"
+      ],
+      "mustAvoid": [
+        "bus depot shell"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "catering cost sheets versus office lunch handoff observation",
+      "audience": "an operator choosing which cuts preserve buyer value",
+      "stakes": "whether margin fixes damage the part buyers actually need",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "field observation changes the plan from menu tweaks to labeled team trays when she sees the handoff confusion",
+      "firstImage": "The office pantry fills with identical foil lids and nobody knows which tray belongs to finance",
+      "mustInclude": [
+        "tray labels",
+        "delivery shelf diagram",
+        "allergy flag card"
+      ],
+      "mustAvoid": [
+        "generic restaurant margin example"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "after-school strategy maps and parent reaction",
+      "audience": "a school leader redesigning after-school support",
+      "stakes": "whether families trust the new plan and use it",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a parent points at the map and reveals the missing value factor: predictable pickup, not more enrichment options",
+      "firstImage": "\"Where do I stand at 5:45?\" the parent asks Matteo, ignoring the robotics column",
+      "mustInclude": [
+        "pickup-zone map",
+        "late-bus pass",
+        "activity roster"
+      ],
+      "mustAvoid": [
+        "classroom worksheet scene"
+      ]
+    },
+    {
+      "protagonistName": "Nina",
+      "domain": "hospital lab specimen flow as one visible path",
+      "audience": "a lab supervisor buried in turnaround reports",
+      "stakes": "whether emergency samples arrive fast enough for treatment decisions",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "she sketches the full specimen path and reveals the handoff nobody owns between elevator and accession desk",
+      "firstImage": "At 2:16 p.m., Nina follows a blood tube from trauma bay to the service elevator",
+      "mustInclude": [
+        "specimen tube carrier",
+        "elevator call log",
+        "accession tray"
+      ],
+      "mustAvoid": [
+        "generic hospital staffing complaint"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "airport kiosk sales data versus passenger anxiety",
+      "audience": "a concessions manager choosing kiosk placement",
+      "stakes": "whether travelers buy food or abandon the line before boarding",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "he expects kiosk sales to decide, then field watching reveals the boarding-clock pattern hidden by the data",
+      "firstImage": "What if the lowest-selling kiosk is not bad, just too far from the gate clock?",
+      "mustInclude": [
+        "boarding clock",
+        "sandwich warmer",
+        "gate-distance sketch"
+      ],
+      "mustAvoid": [
+        "generic retail analytics example"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate whole-pattern strategy from isolated metric wins",
+      "use visual comparison before number debate",
+      "detect when local dashboards hide a broken buyer journey"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Put your three favorite metrics aside and sketch the whole buyer path in six boxes before interpreting any one number.",
+  "readingTimeMinutes": 12
+}

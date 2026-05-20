@@ -1,0 +1,199 @@
+{
+  "chapterId": "make-it-stick-ch03",
+  "number": 3,
+  "title": "Mix Up Your Practice",
+  "coreMove": "Design practice so the learner has to discriminate among similar cases and choose the right move before using it.",
+  "sourcePressure": "The chapter attacks blocked repetition: one skill repeated in a row can look strong during practice while leaving the learner weak at selection, discrimination, and transfer.",
+  "chapterSpecificMisunderstanding": "The writer must avoid praising variety for its own sake; the point is structured mixing that forces comparison and choice.",
+  "sourceAlignmentTerms": [
+    "interleaving",
+    "blocked practice",
+    "massed practice",
+    "variation",
+    "discrimination",
+    "transfer",
+    "momentary strength",
+    "habit strength"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Vince Dooley",
+      "detail": "University of Georgia football coach from 1964 to 1988, with 201 wins, six conference titles, and a national championship, described interleaved weekly practice for fundamentals, small-group maneuvers, special plays, and mental rehearsal.",
+      "useIn": "both",
+      "phrasingHint": "Vince Dooley did not make Saturday readiness from one drill repeated straight through; the week mixed fundamentals, plays, adjustments, and mental walk-throughs."
+    },
+    {
+      "kind": "study",
+      "name": "Kerr and Booth beanbag study",
+      "detail": "Children who practiced tossing beanbags at two-foot and four-foot buckets outperformed those who practiced only at the three-foot target when later tested at three feet.",
+      "useIn": "deepRead",
+      "phrasingHint": "The children who never practiced the exact three-foot toss learned the range well enough to own the target in between."
+    },
+    {
+      "kind": "person",
+      "name": "Sebastian Leitner",
+      "detail": "Developer of the Leitner box system, a spaced flashcard method that moves missed cards back to more frequent practice.",
+      "useIn": "fullRead",
+      "phrasingHint": "A Leitner box is a small physical refusal to let every card receive the same treatment forever."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open by saying learning is harder than it looks",
+      "Do not use a generic desk-and-notes image",
+      "Do not start with a broad claim about students today"
+    ],
+    "counterintuition": [
+      "Do not use the shell easier is not better",
+      "Do not flatten the chapter into struggle is good",
+      "Do not contrast comfort and growth in generic coaching language"
+    ],
+    "tryThisNow": [
+      "Do not write set a timer and reflect",
+      "Do not ask for a vague study audit",
+      "Do not use a reusable close-your-notes prompt without a chapter-specific action"
+    ],
+    "examples": [
+      "No repeated mug, marker, dosing cup, bike helmet, radiator, bus depot, classroom, or narrow-kitchen shells",
+      "No six examples that all start with a timestamp and a named protagonist",
+      "No generic student rereads notes scene unless the visible beat changes the method"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective reveal, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Daniel, a civil-engineering student sorting beam-load problems",
+      "audience": "students who complete problem sets by type and cannot identify the type later",
+      "stakes": "the final gives no heading that says which formula belongs",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "he shuffles shear, bending, and deflection problems, names the type first, then solves only after choosing the method",
+      "firstImage": "Three unlabelled diagrams sit under a desk lamp.",
+      "mustInclude": [
+        "unlabelled diagrams",
+        "formula sheet closed",
+        "scratch grid"
+      ],
+      "mustAvoid": [
+        "another all-math drill without visible discrimination"
+      ]
+    },
+    {
+      "domain": "Sophie, a pastry apprentice learning laminated dough faults",
+      "audience": "craft learners who repeat one correction until it feels easy",
+      "stakes": "service depends on identifying butter leakage, underproofing, and overhandling by sight",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she lines up three failed croissants, names the fault before touching the dough, and changes the next fold based on the diagnosis",
+      "firstImage": "Butter beads shine on one croissant seam.",
+      "mustInclude": [
+        "three failed croissants",
+        "bench scraper",
+        "cool marble slab"
+      ],
+      "mustAvoid": [
+        "generic bakery timing scene"
+      ]
+    },
+    {
+      "domain": "Marco, a tennis coach rebuilding serve return practice",
+      "audience": "athletes who look sharp against one predictable feed",
+      "stakes": "match play requires reading slice, kick, and flat serves without warning",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he stops the basket of identical feeds and calls random serve types so the player must read toss and shoulder before moving",
+      "firstImage": "At 5:32 p.m., Marco drags the ball basket away from the baseline.",
+      "mustInclude": [
+        "mixed serve calls",
+        "tape on court",
+        "score notebook"
+      ],
+      "mustAvoid": [
+        "Cal Poly baseball duplicate"
+      ]
+    },
+    {
+      "domain": "Ingrid, a pathology resident comparing look-alike slides",
+      "audience": "medical trainees who memorize classic images but miss neighbors",
+      "stakes": "the exam and the lab both require separating similar patterns",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her attending asks what it is not, forcing Ingrid to contrast two near-neighbor diagnoses before naming the slide",
+      "firstImage": "\"Tell me the mimic first,\" the attending says.",
+      "mustInclude": [
+        "microscope tray",
+        "two look-alike slides",
+        "case history card"
+      ],
+      "mustAvoid": [
+        "simple flashcard recall"
+      ]
+    },
+    {
+      "domain": "Tomás, a jazz guitarist practicing chord substitutions",
+      "audience": "musicians who drill one progression until it collapses in performance",
+      "stakes": "the band modulates unexpectedly during rehearsal",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show his change from twenty identical ii-V-I runs to a shuffled chart stack that makes him choose the substitution by ear",
+      "firstImage": "It took Tomás a month to hear the wrong practice.",
+      "mustInclude": [
+        "shuffled chart stack",
+        "amp footswitch",
+        "pencil on fretboard diagram"
+      ],
+      "mustAvoid": [
+        "practice-more cliché"
+      ]
+    },
+    {
+      "domain": "Adaeze, a customs officer trainee identifying counterfeit documents",
+      "audience": "security trainees who need flexible discrimination under pressure",
+      "stakes": "a false pass or false stop can harm real travelers",
+      "format": "vignette",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she rotates passports, visas, and work permits from different countries and must state the feature that made each suspicious before checking the guide",
+      "firstImage": "Which document is wrong if every seal looks almost right?",
+      "mustInclude": [
+        "passport tray",
+        "UV lamp",
+        "reference guide closed"
+      ],
+      "mustAvoid": [
+        "airport thriller plot"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when blocked practice is flattering immediate performance",
+      "design mixed practice around near-neighbor discrimination",
+      "protect enough structure so interleaving does not become chaos"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take three problem types you usually practice separately, shuffle one example of each, and write the label before solving any of them.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

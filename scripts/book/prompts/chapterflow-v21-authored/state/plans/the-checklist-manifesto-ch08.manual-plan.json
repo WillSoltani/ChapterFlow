@@ -1,0 +1,119 @@
+{
+  "chapterId": "the-checklist-manifesto-ch08",
+  "number": 8,
+  "title": "The Hero in the Age of Checklists",
+  "coreMove": "Redefine professional excellence so shared verification counts as strength rather than insult.",
+  "sourcePressure": "The source turns to resistance to checklist adoption, ego, professional identity, lone-hero mythology, and the need for disciplined teamwork in complex work.",
+  "chapterSpecificMisunderstanding": "The weak version mocks experts for arrogance. The real chapter shows why a proven tool can still threaten the way professionals understand competence.",
+  "sourceAlignmentTerms": ["professional identity", "lone hero", "teamwork", "ego", "adoption", "disciplined verification"],
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "resistance to checklist adoption",
+      "detail": "The source sidecar says this chapter turns to resistance to checklist adoption after evidence exists.",
+      "useIn": "both",
+      "phrasingHint": "Resistance survives proof because the list is asking professionals to change the public shape of competence."
+    },
+    {
+      "kind": "event",
+      "name": "lone-hero mythology",
+      "detail": "The source sidecar identifies lone-hero mythology and teamwork as the chapter's professional identity conflict.",
+      "useIn": "fullRead",
+      "phrasingHint": "The lone hero looks brave on the poster and brittle in a crowded operating room."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["Heroes need checklists too", "Pride gets in the way"],
+    "counterintuition": ["The obstacle is identity", "Proof is not enough"],
+    "tryThisNow": ["Admit one limit", "Ask for help"],
+    "examples": ["arrogant surgeon caricature", "generic humility lesson", "medical team repeats ch07 evidence"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Grace, a cardiac surgery fellow leading timeout adoption",
+      "audience": "high-skill teams where hierarchy makes verification feel embarrassing",
+      "stakes": "a senior surgeon sees the timeout as an insult and the junior team goes silent",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Grace frames the timeout as a team reliability act and asks the senior surgeon to answer the same identity and antibiotic checks as everyone else",
+      "firstImage": "the snap of sterile gloves in a room that has gone quiet",
+      "mustInclude": ["timeout card", "senior surgeon", "antibiotic confirmation"],
+      "mustAvoid": ["villain surgeon", "WHO trial statistics"]
+    },
+    {
+      "domain": "Olivier, a law firm partner debating a closing checklist",
+      "audience": "elite professionals who equate verification with junior work",
+      "stakes": "a financing close depends on signatures, wire instructions, and filing windows that partners assume associates handle",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Olivier stops calling the list administrative and signs the same final verification line before the wire release",
+      "firstImage": "\"I did not spend twenty years to read boxes,\" Olivier says beside the closing binder",
+      "mustInclude": ["closing binder", "wire instructions", "filing window"],
+      "mustAvoid": ["generic office paperwork", "humility sermon"]
+    },
+    {
+      "domain": "Hannah, an orchestra tour manager managing load-in",
+      "audience": "arts leaders coordinating expert performers and technical crews",
+      "stakes": "a principal musician resents equipment checks until the missing case threatens the evening performance",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hannah makes the soloist verify instrument, case tag, and stage position with crew instead of treating the check as beneath artistry",
+      "firstImage": "black instrument cases lined like dominoes behind the concert hall",
+      "mustInclude": ["case tag", "stage plot", "principal chair"],
+      "mustAvoid": ["school concert", "generic travel list"]
+    },
+    {
+      "domain": "Pavel, an emergency department attending during senior surgeon handoff",
+      "audience": "clinical leaders who need status to bend toward team reliability",
+      "stakes": "a high-status consultant skips the handoff pause and leaves blood type verification vague",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Pavel chooses to make the consultant repeat the shared verification in front of the team rather than privately patching the gap",
+      "firstImage": "At 1:27 a.m., Pavel sees the trauma bay doors swing open behind the consultant",
+      "mustInclude": ["blood type label", "handoff pause", "consultant pager"],
+      "mustAvoid": ["ch01 trauma handoff duplicate", "status humiliation"]
+    },
+    {
+      "domain": "Isabel, an aviation maintenance supervisor changing signoff culture",
+      "audience": "maintenance teams where senior mechanics rely on reputation",
+      "stakes": "a veteran mechanic views a second signoff as distrust after twenty years on the line",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Isabel moves the second signoff from a suspicion ritual to a shared standard every mechanic uses on critical fasteners",
+      "firstImage": "You watch a veteran place his torque wrench down without looking at the second-signoff slot",
+      "mustInclude": ["torque wrench", "critical fastener", "second-signoff slot"],
+      "mustAvoid": ["Boeing checklist design repeat", "generic aviation culture"]
+    },
+    {
+      "domain": "Min, a mountain rescue rope-team leader",
+      "audience": "rescue teams whose identity prizes toughness and improvisation",
+      "stakes": "a rope-team knot check feels like novice theater until fatigue and darkness raise the cost of pride",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Min asks the fastest climber to lead the knot callout and makes public verification part of elite behavior",
+      "firstImage": "Who has enough skill to say the knot out loud?",
+      "mustInclude": ["headlamp beam", "anchor knot", "rope-team callout"],
+      "mustAvoid": ["ski patrol from ch06", "heroic cliff rescue"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["separate evidence resistance from identity resistance", "frame verification as excellence", "spot lone-hero mythology", "evaluate adoption moves that preserve dignity and reliability"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one verification you avoid because it feels beneath your skill, then decide how to make it a team standard rather than a personal confession.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

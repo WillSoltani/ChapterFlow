@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch08",
+  "number": 8,
+  "title": "Activation Energy",
+  "coreMove": "Design for the ignition threshold, not just the easier path after a change is already moving.",
+  "sourcePressure": "Activation Energy explains why starting can require a threshold that continuing does not, so triggers and startup barriers matter.",
+  "chapterSpecificMisunderstanding": "telling readers to want the goal more or to start small in a generic way",
+  "sourceAlignmentTerms": [
+    "activation energy",
+    "threshold",
+    "startup barrier",
+    "trigger",
+    "ignition cost",
+    "reaction",
+    "continuation"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Activation Energy",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "telling readers to want the goal more or to start small in a generic way",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "winter commute gear setup",
+      "audience": "readers who face winter commute gear setup decisions where activation energy is easy to misread",
+      "stakes": "leaving home when the road is icy",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Rachel lays out the boot tray before the start, attaches the ice forecast to the first trigger, and removes the lamp timer that kept the reaction below threshold. Domain: winter commute gear setup.",
+      "firstImage": "boot tray visible in the winter commute gear setup",
+      "mustInclude": [
+        "boot tray",
+        "ice forecast",
+        "lamp timer"
+      ],
+      "mustAvoid": [
+        "telling readers to want the goal more or to start small in a generic way",
+        "reusing a generic meeting scene instead of the winter commute gear setup constraints"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "foundation grant kickoff",
+      "audience": "readers who face foundation grant kickoff decisions where activation energy is easy to misread",
+      "stakes": "first meeting delayed for weeks",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Jack lays out the letter-of-intent template before the start, attaches the foundation portal to the first trigger, and removes the signature page that kept the reaction below threshold. Domain: foundation grant kickoff.",
+      "firstImage": "letter-of-intent template visible in the foundation grant kickoff",
+      "mustInclude": [
+        "letter-of-intent template",
+        "foundation portal",
+        "signature page"
+      ],
+      "mustAvoid": [
+        "telling readers to want the goal more or to start small in a generic way",
+        "reusing a generic meeting scene instead of the foundation grant kickoff constraints"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "medication blister-pack routine",
+      "audience": "readers who face medication blister-pack routine decisions where activation energy is easy to misread",
+      "stakes": "first dose missed after discharge",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Mathieu lays out the blister card before the start, attaches the pharmacy label to the first trigger, and removes the nightstand tray that kept the reaction below threshold. Domain: medication blister-pack routine.",
+      "firstImage": "blister card visible in the medication blister-pack routine",
+      "mustInclude": [
+        "blister card",
+        "pharmacy label",
+        "nightstand tray"
+      ],
+      "mustAvoid": [
+        "telling readers to want the goal more or to start small in a generic way",
+        "reusing a generic meeting scene instead of the medication blister-pack routine constraints"
+      ]
+    },
+    {
+      "protagonistName": "Maja",
+      "domain": "quartet first rehearsal",
+      "audience": "readers who face quartet first rehearsal decisions where activation energy is easy to misread",
+      "stakes": "players arriving silent to rehearsal",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Maja lays out the sheet-music folder before the start, attaches the chair map to the first trigger, and removes the tuning note that kept the reaction below threshold. Domain: quartet first rehearsal.",
+      "firstImage": "sheet-music folder visible in the quartet first rehearsal",
+      "mustInclude": [
+        "sheet-music folder",
+        "chair map",
+        "tuning note"
+      ],
+      "mustAvoid": [
+        "telling readers to want the goal more or to start small in a generic way",
+        "reusing a generic meeting scene instead of the quartet first rehearsal constraints"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "tax document sorting table",
+      "audience": "readers who face tax document sorting table decisions where activation energy is easy to misread",
+      "stakes": "returns delayed by one missing folder",
+      "format": "scene",
+      "openingDevice": "second_person",
+      "requiredBeat": "Min lays out the receipt envelope before the start, attaches the deduction checklist to the first trigger, and removes the calendar alert that kept the reaction below threshold. Domain: tax document sorting table.",
+      "firstImage": "receipt envelope visible in the tax document sorting table",
+      "mustInclude": [
+        "receipt envelope",
+        "deduction checklist",
+        "calendar alert"
+      ],
+      "mustAvoid": [
+        "telling readers to want the goal more or to start small in a generic way",
+        "reusing a generic meeting scene instead of the tax document sorting table constraints"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "apartment compost signup",
+      "audience": "readers who face apartment compost signup decisions where activation energy is easy to misread",
+      "stakes": "tenants ignoring the new food bin",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sofia lays out the green-bin sticker before the start, attaches the lobby sign to the first trigger, and removes the pickup calendar that kept the reaction below threshold. Domain: apartment compost signup.",
+      "firstImage": "green-bin sticker visible in the apartment compost signup",
+      "mustInclude": [
+        "green-bin sticker",
+        "lobby sign",
+        "pickup calendar"
+      ],
+      "mustAvoid": [
+        "telling readers to want the goal more or to start small in a generic way",
+        "reusing a generic meeting scene instead of the apartment compost signup constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for activation energy rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Design for the ignition threshold, not just the easier path after a change is already moving.",
+      "explain why the tempting misread fails: telling readers to want the goal more or to start small in a generic way",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving activation energy, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

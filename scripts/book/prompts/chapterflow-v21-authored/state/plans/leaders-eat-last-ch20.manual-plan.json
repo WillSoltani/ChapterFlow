@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch20",
+  "number": 20,
+  "title": "Leadership Lesson 4: Friends Matter",
+  "coreMove": "Build enough real mutual knowledge that candor and sacrifice have a relationship to travel through.",
+  "sourcePressure": "Treats friendship as operational loyalty: people behave differently when known and valued by actual people instead of reduced to roles, metrics, or incentives.",
+  "chapterSpecificMisunderstanding": "Turning friendship into favoritism, forced fun, or social softness detached from fairness and honesty.",
+  "sourceAlignmentTerms": [
+    "friends matter",
+    "loyalty",
+    "known and valued",
+    "actual people",
+    "candor",
+    "sacrifice",
+    "favoritism"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 20 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "remote weather station repair team",
+      "audience": "crew member delivering hard feedback",
+      "stakes": "candor travels because teammates know each other beyond role",
+      "format": "scene",
+      "requiredBeat": "she names the fatigue she has watched all week before challenging the unsafe climb plan",
+      "firstImage": "a satellite phone beside a cracked boot sole",
+      "mustInclude": [
+        "satellite phone",
+        "boot sole"
+      ],
+      "mustAvoid": [
+        "forced fun"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "ceramics cooperative kiln room",
+      "audience": "member noticing another member overfiring work",
+      "stakes": "relationship makes the warning receivable",
+      "format": "dialogue",
+      "requiredBeat": "he references the glaze test they ran together before saying the firing schedule is wrong",
+      "firstImage": "a kiln cone beside a glaze tile",
+      "mustInclude": [
+        "kiln cone",
+        "glaze tile"
+      ],
+      "mustAvoid": [
+        "art hobby friendship"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "rural mail carrier route swap",
+      "audience": "carrier covering a sick colleague",
+      "stakes": "known personal burden changes cooperation",
+      "format": "decision_point",
+      "requiredBeat": "she takes the icy hill route after seeing the colleague's surgery date on the swap note",
+      "firstImage": "a mail satchel beside a route swap card",
+      "mustInclude": [
+        "mail satchel",
+        "swap card"
+      ],
+      "mustAvoid": [
+        "generic coworker help"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "disaster relief supply tent",
+      "audience": "volunteer team after inventory error",
+      "stakes": "loyalty makes a postmortem honest instead of defensive",
+      "format": "postmortem",
+      "requiredBeat": "the team names who was too tired to count and who should have noticed, without turning away",
+      "firstImage": "a supply tally under a headlamp",
+      "mustInclude": [
+        "supply tally",
+        "headlamp"
+      ],
+      "mustAvoid": [
+        "volunteer bonding"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "print newsroom copy desk",
+      "audience": "copy chief onboarding a new editor",
+      "stakes": "being known prevents quiet self-protection",
+      "format": "before_after",
+      "requiredBeat": "the chief learns the editor misses idioms in second-language copy and pairs reviews accordingly",
+      "firstImage": "a stylebook open beside a marked page",
+      "mustInclude": [
+        "stylebook",
+        "marked page"
+      ],
+      "mustAvoid": [
+        "networking advice"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "neighborhood tool library",
+      "audience": "coordinator setting borrowing rules",
+      "stakes": "friendship cannot become favoritism",
+      "format": "reflection",
+      "requiredBeat": "she lends the tile saw by the same rule to her friend and the stranger while staying warm to both",
+      "firstImage": "a tile saw tag beside a borrow card",
+      "mustInclude": [
+        "tool tag",
+        "borrow card"
+      ],
+      "mustAvoid": [
+        "clique behavior"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate friendship from favoritism",
+      "use relationship to carry candor",
+      "build loyalty through being known",
+      "recognize transactional drift"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Ask one person a specific question about the burden they are carrying, then use the answer to change one demand or offer one concrete help.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

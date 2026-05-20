@@ -1,0 +1,112 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch06",
+  "number": 6,
+  "title": "Necessity and Sufficiency",
+  "coreMove": "Separate must-have conditions from enough-to-produce conditions before choosing the lever.",
+  "sourcePressure": "Frozen support is thin and limited to the chapter identity plus the safe distinction between conditions that must be present and conditions that are enough to produce an outcome. Do not import formal logic history or named authorities.",
+  "chapterSpecificMisunderstanding": "The weak version treats every useful factor as necessary or assumes one missing ingredient explains the whole outcome.",
+  "sourceAlignmentTerms": ["necessary condition", "sufficient condition", "must be present", "enough to produce", "condition", "outcome"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Necessity and Sufficiency",
+      "detail": "the frozen bundle confirms only the chapter/supporting idea title and a narrow factual floor for must-be-present versus enough-to-produce conditions",
+      "useIn": "fullRead",
+      "phrasingHint": "The useful distinction is small enough to hold in one hand: some things must be there, and some things are enough to make the result happen."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["logic professor at chalkboard", "Venn diagram lecture", "single root cause miracle"],
+    "counterintuition": ["everything matters equally", "one condition solves all outcomes", "necessary means important"],
+    "tryThisNow": ["make a generic requirements list", "find the root cause", "prioritize tasks"],
+    "examples": ["formal proof symbols", "college logic class", "software dependency graph only"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "allergy clinic trigger investigation",
+      "audience": "a clinic nurse helping a patient identify what produces hives",
+      "stakes": "the patient may cut foods randomly while missing the sufficient trigger combination",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Emma separates foods that were present during every reaction from the one food-medication combination that is enough to reproduce the rash",
+      "firstImage": "red welts circled in pen on an allergy diary page",
+      "mustInclude": ["allergy diary", "medication timing", "food list"],
+      "mustAvoid": ["medical diagnosis certainty", "diet fad"]
+    },
+    {
+      "domain": "harbor dredging permit",
+      "audience": "a port coordinator trying to restart a delayed dredging project",
+      "stakes": "the crew may chase optional paperwork while the missing permit blocks everything",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Louis sorts the checklist into must-be-present approvals and enough-to-start approvals before calling another contractor",
+      "firstImage": "a tide chart taped beside a stack of unsigned permits",
+      "mustInclude": ["tide chart", "permit checklist", "contractor call"],
+      "mustAvoid": ["bureaucracy rant", "construction delay generic"]
+    },
+    {
+      "domain": "youth soccer tournament scheduling",
+      "audience": "a volunteer coordinator assembling a weekend tournament",
+      "stakes": "games cannot start if one required referee condition is absent",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Nina asks which conditions are nice, which are required, and which set is enough to begin the first match safely",
+      "firstImage": "orange corner flags bundled beside an empty referee sign-in table",
+      "mustInclude": ["referee sign-in", "field permit", "first match"],
+      "mustAvoid": ["sports teamwork moral", "schedule chaos comedy"]
+    },
+    {
+      "domain": "microbrewery fermentation fault",
+      "audience": "a head brewer diagnosing a sour batch",
+      "stakes": "another ruined batch will waste tanks during a seasonal release",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hiroshi marks sanitation as necessary for good beer but not sufficient, then finds the temperature spike that is enough to explain this fault",
+      "firstImage": "condensation streaking down a stainless fermenter",
+      "mustInclude": ["temperature log", "sanitation checklist", "seasonal tank"],
+      "mustAvoid": ["craft beer lifestyle", "single-cause overclaim"]
+    },
+    {
+      "domain": "community garden irrigation repair",
+      "audience": "a garden board deciding why seedlings keep dying",
+      "stakes": "volunteers may keep adding mulch when water pressure is the missing condition",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Maja names sunlight and soil as necessary but shows the dry pressure gauge that prevents either from being enough",
+      "firstImage": "a cracked pressure gauge zip-tied to a raised bed",
+      "mustInclude": ["pressure gauge", "mulch pile", "seedling tray"],
+      "mustAvoid": ["gardening metaphor", "generic teamwork"]
+    },
+    {
+      "domain": "legal clinic eligibility screen",
+      "audience": "a clinic intake lead designing criteria for eviction help",
+      "stakes": "eligible tenants could be turned away because helpful signals are confused with required ones",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Luca move income, notice date, county, and hearing date into necessary or sufficient groups before training volunteers",
+      "firstImage": "a stamped eviction notice half-covered by intake sticky notes",
+      "mustInclude": ["eviction notice", "income threshold", "hearing date"],
+      "mustAvoid": ["legal lecture", "poverty melodrama"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {"understand": 1, "apply": 4, "analyze": 3, "evaluate": 1},
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish necessary from sufficient conditions", "avoid treating helpful factors as required", "identify missing blockers", "choose the condition that actually produces the outcome"]
+  },
+  "cardFocus": {"count": 5, "retrievalPractice": true},
+  "tryThisNowSpec": "For one desired outcome, write two lines: what must be present, and what would be enough to make it happen. Cross out anything merely helpful.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,335 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch58",
+  "number": 58,
+  "title": "Will Rogers Phenomenon",
+  "readingTimeMinutes": 12,
+  "hook": "Move one borderline case, and two averages can smile while nothing real improves.",
+  "counterintuition": "A rising average may come from better performance, or from a category shift that moves weak members out of one group and into an even weaker one.",
+  "tryThisNow": "Before accepting one improved average today, mark “Will Rogers Phenomenon” and ask which items moved between groups before the number rose.",
+  "keyTakeaway": "When a reclassification improves both groups, inspect the moved cases before you call the outcome better.",
+  "breakdown": {
+    "fastRead": "The call log on Kasper's wealth-adviser screen shows two portfolios: cautious clients and growth clients. Moving one restless retiree into the growth group raises the average expected return for both groups. Kasper marks Will Rogers beside the call log before the firm celebrates the numbers.\n\nThe Will Rogers Phenomenon appears when a category shift changes group averages without improving the underlying cases. A weak member of a strong group can become a strong member of a weaker group. Both averages rise, yet no client, patient, ferry, or film has changed.\n\nThe number improved because the drawer changed.",
+    "deepRead": "Kasper's desk holds a call log for a client who wants more risk but still holds mostly bonds. If Kasper moves him from conservative to balanced, the conservative group looks steadier because a volatile client left. The balanced group also looks steadier because the new arrival is less risky than its current members. Kasper is not against reclassification; he is against pretending that average movement proves better advice.\n\nThis trick works because averages feel like scoreboards. When the scoreboard rises, people search for progress. But group composition can move the line without changing the world behind it. A school can shift borderline students into a different support category and improve both category averages. A sales team can move small accounts into enterprise and make both customer pools look healthier. A clinic can change diagnostic labels and make outcomes look better inside each label.\n\nNothing has healed just because the label moved.\n\nEvan sees the same problem in a lead-test average review at a municipal lab. A stamped form proposes moving homes with borderline readings into a “watch” category. The old high-risk group improves because some weak cases leave. The watch group improves because the new cases are less severe than its existing members. Evan marks category shift on the form and asks for before-and-after results on the same homes, not only new group averages.\n\nThe correction is simple and demanding. Track the moved items. Compare outcomes before and after for the same cases. Show the old average, the new average, and the transfer list. Averages can still help, but they must be tied to composition.",
+    "fullRead": "The policy draft on Maelle's ferry maintenance table changes the aging fleet categories. Vessels with moderate corrosion will move from “major repair” into “scheduled watch.” The major-repair average gets better because a few troublesome ferries leave. The watch average also gets better because those ferries are still healthier than the worst vessels already in watch. Maelle must decide whether average movement should delay a safety budget, so she marks the draft before the port director signs it.\n\nWill Rogers joked that when people left Oklahoma for California, they raised the average intelligence of both places. The statistical pattern underneath the joke is serious. If the transferred member is below the source-group average and above the destination-group average, both averages rise. That can happen even when the transferred member stays exactly the same. Reclassification can manufacture progress.\n\nAsk the rude-looking question: did any individual unit improve, or did the unit only move?\n\nStage migration in tumour diagnosis shows the pressure clearly. Better scanning can move patients with previously hidden advanced disease into a more severe stage. Survival rates can then appear to improve in both stages: the earlier stage loses some worse cases, and the later stage gains patients who are healthier than those already in it. The staging categories look better on paper, while the patient-level question still has to be answered separately.\n\nYou need this distinction outside medicine too. Riley is in an award-to-sales design review where a floor sticker will redirect “silver” customers into a “gold prospect” path after one large order. Sales leadership says both groups now show higher average value. Riley marks reclassification on the sticker and asks whether the same customers bought more after the move or whether the label simply made the dashboard prettier.\n\nA category shift is not fraud by default. Categories need updating. Better tests reveal hidden differences. A film festival may split submissions by budget, region, or format because comparison becomes fairer. A tourism operator may divide bookings by hazard level because risk management improves. The warning is narrower: do not let the improved average do the job of evidence.\n\nAnnika learns that at a film festival submissions table. The site photo shows two new queues after short documentaries are moved out of the general pool. Both average review scores rise. The general pool loses weak short entries, and the short-doc pool gains entries stronger than its oldest backlog. Annika marks group composition on the photo and changes the report to show the moved films separately.\n\nMatthias sees the postmortem version in a volcano tourism booking report. A blood-test panel from a screening partner moved some hikers from “standard” to “guided medical review.” Completion rates rose in both groups, and the marketing team wanted to call it safer booking. Matthias marks Will Rogers on the panel and asks for incident rates for the same hikers, not just the new category averages.\n\nWhen a reclassification improves both groups, inspect the moved cases before you call the outcome better.",
+    "whyItMatters": "The Will Rogers Phenomenon helps readers spot fake improvement created by moving cases between categories. It protects decisions that depend on averages, rankings, and labels."
+  },
+  "examples": [
+    {
+      "exampleId": "ch58-ex01-kasper-call-log",
+      "title": "Kasper Tracks the Moved Client",
+      "tags": [
+        "scene",
+        "wealth",
+        "Will Rogers"
+      ],
+      "planSpec": {
+        "domain": "a wealth-adviser expectation call applying Will Rogers Phenomenon under operational pressure",
+        "audience": "a reader who has to make a live judgment where Will Rogers could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Will Rogers Phenomenon is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the call log, names the Will Rogers risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "A call log sits open on Kasper's 10:10 a.m. wealth-adviser screen in Zurich, between cautious and growth-client tabs. Moving one restless retiree raises both average return expectations. Kasper must choose between showing the partner call a transfer list or only the prettier averages.",
+      "whatToDo": "Mark Will Rogers on the call log, list the client who moved, and report the same client's expected return before and after the category change.",
+      "whyItMatters": "Both averages can rise because the client moved, not because advice improved."
+    },
+    {
+      "exampleId": "ch58-ex02-evan-stamped-form",
+      "title": "Evan Keeps the Lead Cases Visible",
+      "tags": [
+        "vignette",
+        "public health",
+        "category shift"
+      ],
+      "planSpec": {
+        "domain": "a lead-test average review applying Will Rogers Phenomenon under operational pressure",
+        "audience": "a reader who has to make a live judgment where category shift could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Will Rogers Phenomenon is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the stamped form, names the category shift risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "\"The high-risk average finally dropped,\" the lab director says during a 2:15 p.m. lead-test review in Cleveland. Evan holds the stamped form that moved borderline homes into a watch category and is about to decide if the public memo shows those transferred addresses.",
+      "whatToDo": "Mark category shift on the form, publish the transfer count, and show the same-home readings before claiming cleaner water.",
+      "whyItMatters": "Residents need to know whether exposure changed, not only whether a label made averages look cleaner."
+    },
+    {
+      "exampleId": "ch58-ex03-maelle-policy-draft",
+      "title": "Maelle Protects the Ferry Budget",
+      "tags": [
+        "dialogue",
+        "maintenance",
+        "average movement"
+      ],
+      "planSpec": {
+        "domain": "a ferry maintenance planning applying Will Rogers Phenomenon under operational pressure",
+        "audience": "a reader who has to make a live judgment where average movement could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Will Rogers Phenomenon is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the policy draft, names the average movement risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "The smell of diesel sits in the harbor office at 6:40 a.m. as Maelle reads a ferry maintenance policy draft in Halifax. Moderate corrosion vessels are being moved to “scheduled watch.” She must decide whether the repair-budget slide separates moved ferries from fixed ferries.",
+      "whatToDo": "Mark average movement on the draft, separate moved vessels from genuinely repaired vessels, and keep the safety budget tied to hull condition.",
+      "whyItMatters": "A fleet does not become safer merely because the worst category was emptied into a friendlier one."
+    },
+    {
+      "exampleId": "ch58-ex04-riley-floor-sticker",
+      "title": "Riley Tests the Sales Upgrade",
+      "tags": [
+        "decision",
+        "retail",
+        "reclassification"
+      ],
+      "planSpec": {
+        "domain": "a award-to-sales design review applying Will Rogers Phenomenon under operational pressure",
+        "audience": "a reader who has to make a live judgment where reclassification could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Will Rogers Phenomenon is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the floor sticker, names the reclassification risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "You are in a Copenhagen showroom with Riley, looking at a gold floor sticker that routes one-order customers into the premium sales path. The dashboard average rises in both paths. Riley hovers over the rollout approval until same-customer buying is shown.",
+      "whatToDo": "Mark reclassification on the sticker, compare purchases by the same customers before and after the move, and delay the rollout until that view is clear.",
+      "whyItMatters": "The sales path may look smarter because customers were renamed, not because they bought more."
+    },
+    {
+      "exampleId": "ch58-ex05-annika-site-photo",
+      "title": "Annika Shows the Film Transfers",
+      "tags": [
+        "predict",
+        "festival",
+        "group composition"
+      ],
+      "planSpec": {
+        "domain": "a film festival submissions table applying Will Rogers Phenomenon under operational pressure",
+        "audience": "a reader who has to make a live judgment where group composition could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Will Rogers Phenomenon is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the site photo, names the group composition risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "It took Annika one rainy week at a Glasgow film festival submissions table to notice the site photo hid a category move. Short documentaries left the general pool, and both average scores rose. Before the jury report closes, she must decide how visibly to list the transferred films.",
+      "whatToDo": "Mark group composition on the photo, show the moved films as their own line, and report scores without treating category cleanup as quality improvement.",
+      "whyItMatters": "The jury can learn from a new category only if the transfer is visible."
+    },
+    {
+      "exampleId": "ch58-ex06-matthias-blood-panel",
+      "title": "Matthias Checks the Same Hikers",
+      "tags": [
+        "postmortem",
+        "tourism",
+        "phenomenon"
+      ],
+      "planSpec": {
+        "domain": "a volcano tourism booking report applying Will Rogers Phenomenon under operational pressure",
+        "audience": "a reader who has to make a live judgment where will could mislead them",
+        "stakes": "money, safety, credibility, or scarce attention gets misallocated if Will Rogers Phenomenon is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the blood-test panel, names the will risk, and changes the next choice in view of another person instead of merely promising to think harder."
+      },
+      "scenario": "Which volcano booking report made two risk groups look safer after the screening rules changed? Matthias asks at a 5:30 p.m. Reykjavik postmortem, marking Will Rogers on the blood-test panel before the team chooses next season's safety claim.",
+      "whatToDo": "Track the same hikers across old and new labels, then compare incident rates before using the improved group averages in marketing.",
+      "whyItMatters": "A safety claim should rest on changed outcomes, not on risk labels that were reshuffled."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a will-rogers case, a manager moves a below-average member of a strong group into a weaker group, where that same member is above average, both group averages rise. What is the warning?",
+        "choices": [
+          "The averages may have improved only because of reclassification.",
+          "Above average both gives a practical reason for strong group weaker; warning improved reclassification belongs after averages rise what clarifies the result.",
+          "Both averages rise makes member strong group look credible; use weaker above average first and revisit what warning improved when reclassification rogers phenomenon shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "This is the Will Rogers pattern: one transfer can raise both averages without any underlying case improving. The moved member needs separate inspection.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Will Rogers Phenomenon makes will-rogers case feel more decisive than the record supports, and that misprices manager moves in this scene. The correct move keepss the choice by the averages may have improved only because of reclassification."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a will-rogers review, a wealth firm moves a restless conservative client into a balanced portfolio group, both groups now show better average fit. What should the adviser report before celebrating?",
+        "choices": [
+          "Adviser report celebrating points toward a quicker call on balanced portfolio group; let restless conservative client stand until better average what contradicts it.",
+          "The moved client list and the same client's fit before and after the transfer.",
+          "Firm moves restless looks strong enough to guide conservative client balanced; portfolio group both can wait unless groups show better changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The adviser needs to show whether advice improved for the client or only the category changed. Rejecting all averages would throw away useful context.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Will Rogers Phenomenon works by letting will-rogers wealth crowd out firm moves, which can misreads the restless conservative decision. The moved client list and the same client's fit before and after the transfer keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When will-rogers pressure appears, a city lead-test memo says the high-risk average dropped after borderline homes were moved into a watch category. What evidence best tests the claim of cleaner water?",
+        "choices": [
+          "Lead-test memo says gives a practical reason for pressure appears city; after borderline homes belongs after high-risk average dropped clarifies the result.",
+          "Says high-risk average makes will-rogers pressure appears look credible; use city lead-test memo first and revisit dropped after borderline when homes were moved shifts.",
+          "Same-home readings and a count of homes transferred between categories."
+        ],
+        "correctIndex": 2,
+        "explanation": "Same-home readings test real change. The new average alone may reflect category shift, and a nicer label does not measure exposure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Will Rogers Phenomenon turns appears city into a shortcut, so the room can overweights lead-test memo while missing says high-risk. Same-home readings and a count of homes transferred between categories protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After will-rogers risk surfaces, a ferry agency moves moderately corroded vessels from “major repair” to “scheduled watch.” Both category averages look safer, what should happen to the budget slide?",
+        "choices": [
+          "Separate moved vessels from repaired vessels before reducing the repair budget.",
+          "Happen budget slide fits the immediate pressure around major repair scheduled; hold moderately corroded vessels steady and test ferry agency moves later.",
+          "Surfaces ferry agency looks strong enough to guide moves moderately corroded; vessels major repair can wait unless scheduled watch both changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "The safety decision needs hull condition and transfer status. Improved averages may come from average movement instead of actual repair.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Will Rogers Phenomenon would push the ferry agency case toward moves moderately, creating a cost when corroded vessels stays untested. The useful guardrail is to separate moved vessels from repaired vessels before reducing the repair budget."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If will-rogers reasoning takes over, a retail team says its premium path works because average value rose in both the old and new sales paths after some customers were reclassified. Which analysis is strongest?",
+        "choices": [
+          "Customers were reclassified points toward a quicker call on works average value; let says premium path stand until paths after some contradicts it.",
+          "Reclassified analysis strongest fits the immediate pressure around value rose both; hold path works average steady and test team says premium later.",
+          "Compare the same customers' purchases before and after the move."
+        ],
+        "correctIndex": 2,
+        "explanation": "The same-customer view separates real buying change from renamed categories. Reclassification can be legitimate, but the average cannot prove success alone.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Will Rogers Phenomenon converts team says into the loudest signal, which can rushes premium path before works average is checked. The better answer separatess attention on compare the same customers' purchases before and after the move."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While will-rogers pressure builds, a film festival splits short documentaries out of the general pool, average scores rise in both pools, and the jury wants to claim submissions improved. What is the right caution?",
+        "choices": [
+          "General pool average makes builds film festival look credible; use splits short documentaries first and revisit scores rise both when pools jury wants shifts.",
+          "The higher averages may reflect changed group composition instead of better films.",
+          "Rise both pools points toward a quicker call on film festival splits; let will-rogers pressure builds stand until pool average scores contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The category split may be useful, but the report must show the moved films. Otherwise group composition masquerades as quality improvement.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Will Rogers Phenomenon hides inside the will-rogers pressure choice because will-rogers pressure seems sufficient, yet the cost lands in will-rogers pressure. The higher averages may reflect changed group composition instead of better films brings the will-rogers pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the will-rogers call, a volcano tour operator changes screening rules and moves some hikers into medical review. Completion rates rise in standard and review groups. What question matters most?",
+        "choices": [
+          "Did incident rates improve for the same hikers under the new process?",
+          "Moves some hikers gives a practical reason for changes screening rules; rise standard groups belongs after medical completion rates clarifies the result.",
+          "Hikers medical completion makes operator changes screening look credible; use rules moves some first and revisit rates rise standard when groups what matters shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The safety claim needs outcomes for comparable hikers. Better group averages may be a Will Rogers effect caused by the new screening boundary.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Will Rogers Phenomenon pressures the call volcano decision toward the easy reading of call volcano. That can inflates the real cost unless the choice is grounded in did incident rates improve for the same hikers under the new process."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose will-rogers risk is present: a hospital's stage-specific survival rates improve after better scans move some patients into a more severe stage. Which interpretation is most careful?",
+        "choices": [
+          "Stage-specific survival rates gives a practical reason for will-rogers present hospital; scans move some belongs after improve after better clarifies the result.",
+          "The improvement may partly come from stage migration, so patient-level outcomes must be checked.",
+          "Severe stage interpretation supports a narrower read of survival rates improve; keep after better scans central and leave move some patients aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "Stage migration can raise survival rates in multiple stages by changing composition. The scans may be valuable, but stage averages do not settle the treatment question.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Will Rogers Phenomenon is the mechanism here: reclassification flatters both averages, so present hospital can overpower present hospital. The improvement may partly come from stage migration, so patient-level outcomes must be checked keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two will-rogers signals compete: a software support team moves small business accounts from “enterprise” to “growth.” Satisfaction averages rise in both groups, and leaders want to call the reorg a service win. What should the analyst request?",
+        "choices": [
+          "The transfer list and satisfaction changes for the same accounts across the old and new labels.",
+          "Moves small business makes will-rogers signals compete look credible; use software support team first and revisit accounts enterprise growth when satisfaction averages rise shifts.",
+          "Rise both groups supports a narrower read of team moves small; keep business accounts enterprise central and leave growth satisfaction averages aside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The analyst needs to separate service improvement from reclassification. The tempting dashboard change leaves the Will Rogers risk untouched.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Will Rogers Phenomenon makes the software support evidence look cleaner than it is, risking a software support mistake in this setting. The answer protects software support by asking for the transfer list and satisfaction changes for the same accounts across."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "Two category averages improve after one case moves. What should you check first?",
+      "back": "Inspect the moved case. If it was below the source-group average and above the destination-group average, both averages can rise without real improvement.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "A category update may be legitimate. How do you avoid calling it progress too early?",
+      "back": "Report old averages, new averages, and the transfer list. Then compare outcomes for the same cases before and after the move.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "A medical stage average improves after better diagnosis. What is the Will Rogers risk?",
+      "back": "Stage migration may have changed group composition. The improved stage averages need patient-level outcome checks before they are treated as treatment gains.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "A dashboard looks better after customers are renamed into new tiers. What question exposes the trick?",
+      "back": "Ask whether the same customers changed behavior or only moved labels. The improved average has to be tied to individual-level evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "Why is the Will Rogers Phenomenon not an attack on categories?",
+      "back": "Categories can become more accurate or fair. The warning is about using improved averages as proof before checking the moved cases.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Treat improved group averages as a prompt to inspect movement. Before accepting the win, identify who or what changed categories and compare outcomes for the same units.",
+    "ifThenPlans": [
+      {
+        "context": "Dashboard review",
+        "plan": "If two averages improve after category rules changed, then I will ask for the transfer list before approving the conclusion."
+      },
+      {
+        "context": "Public report",
+        "plan": "If a public memo claims improvement by category, then I will require old category counts, new category counts, and same-unit outcomes."
+      },
+      {
+        "context": "Budget decision",
+        "plan": "If a budget cut is justified by better category averages, then I will separate repaired or improved items from reclassified items."
+      },
+      {
+        "context": "Health or safety metric",
+        "plan": "If diagnostic or screening rules changed, then I will treat stage or risk averages as composition-sensitive until patient or participant outcomes are shown."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one improved average in a dashboard or report. Write down which cases moved categories and whether the same cases actually improved.",
+    "weeklyPractice": "Once a week, audit one metric that changed after labels or thresholds changed. Keep a small transfer table beside the average."
+  },
+  "memorableLines": [
+    {
+      "text": "The number improved because the drawer changed.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the statistical trick concrete and memorable."
+    },
+    {
+      "text": "Nothing has healed just because the label moved.",
+      "location": "breakdown.deepRead",
+      "why": "It anchors the difference between classification and real improvement."
+    },
+    {
+      "text": "Ask the rude-looking question: did any individual unit improve, or did the unit only move?",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers the practical question to ask under pressure."
+    }
+  ]
+}

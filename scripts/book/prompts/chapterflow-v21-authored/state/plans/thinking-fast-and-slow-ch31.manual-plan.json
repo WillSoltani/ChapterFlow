@@ -1,0 +1,202 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch31",
+  "number": 31,
+  "title": "Risk Policies",
+  "coreMove": "replace isolated risk decisions with a standing policy that sees the whole portfolio",
+  "sourcePressure": "argues that broad risk policies beat one-off choices because narrow framing invites inconsistency",
+  "chapterSpecificMisunderstanding": "framing this as courage to take risks rather than broad framing and consistency",
+  "sourceAlignmentTerms": [
+    "risk policy",
+    "broad framing",
+    "narrow framing",
+    "portfolio",
+    "repeated bets",
+    "consistency"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a named bias definition for Risk Policies",
+      "starting in a lecture hall or generic seminar",
+      "announcing that readers make mistakes"
+    ],
+    "counterintuition": [
+      "the obvious advice is simply slow down",
+      "smart people are immune if they know the term",
+      "this is just insurance advice"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three lessons in a journal",
+      "be more mindful next time"
+    ],
+    "examples": [
+      "generic scene about insurance advice",
+      "conference-room debate with slides",
+      "parent-child kitchen conversation",
+      "student in a classroom guessing an answer"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "meteorology desk facing a decision distorted by risk policy",
+      "audience": "a lead or reviewer who must replace isolated risk decisions with a standing policy that sees the whole portfolio while others want the quick answer",
+      "stakes": "the visible call will go wrong unless risk policy is separated from the tempting but weaker cue",
+      "format": "predict_reveal",
+      "requiredBeat": "the operator places the policy barograph strip labeled risk policy beside the tempting first answer, covers the answer field with a palm, and speaks the correction: replace isolated risk decisions with a standing policy that sees the whole portfolio",
+      "firstImage": "The first thing in the room is the texture of the policy barograph strip labeled risk policy, not the person's opinion about it.",
+      "mustInclude": [
+        "policy barograph strip labeled risk policy",
+        "risk policy",
+        "broad framing"
+      ],
+      "mustAvoid": [
+        "turning the scene into insurance advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "museum conservation lab facing a decision distorted by risk policy",
+      "audience": "a lead or reviewer who must replace isolated risk decisions with a standing policy that sees the whole portfolio while others want the quick answer",
+      "stakes": "the visible call will go wrong unless risk policy is separated from the tempting but weaker cue",
+      "format": "postmortem",
+      "requiredBeat": "the specialist draws a red box around the misleading cue on the gilded frame label labeled broad framing, then writes the missing check in the margin before anyone votes",
+      "firstImage": "It took three passes before the reviewer saw what the gilded frame label labeled broad framing had been making too easy.",
+      "mustInclude": [
+        "gilded frame label labeled broad framing",
+        "risk policy",
+        "narrow framing"
+      ],
+      "mustAvoid": [
+        "turning the scene into insurance advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "freight dispatch room facing a decision distorted by risk policy",
+      "audience": "a lead or reviewer who must replace isolated risk decisions with a standing policy that sees the whole portfolio while others want the quick answer",
+      "stakes": "the visible call will go wrong unless risk policy is separated from the tempting but weaker cue",
+      "format": "before_after",
+      "requiredBeat": "two people disagree over the freight seal manifest labeled narrow framing; one points to the fluent story, the other forces the chapter move by asking which evidence would change the call",
+      "firstImage": "The decision station is quiet except for the freight seal manifest labeled narrow framing beside the unfinished call.",
+      "mustInclude": [
+        "freight seal manifest labeled narrow framing",
+        "risk policy",
+        "portfolio"
+      ],
+      "mustAvoid": [
+        "turning the scene into insurance advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "pediatric triage desk facing a decision distorted by risk policy",
+      "audience": "a lead or reviewer who must replace isolated risk decisions with a standing policy that sees the whole portfolio while others want the quick answer",
+      "stakes": "the visible call will go wrong unless risk policy is separated from the tempting but weaker cue",
+      "format": "reflection",
+      "requiredBeat": "at the decision point, the lead slides the portfolio triage wristband labeled portfolio into the center of the table and refuses to choose until the risk policy check is visible",
+      "firstImage": "\"That cannot be the whole answer,\" someone says, with the portfolio triage wristband labeled portfolio between the two choices.",
+      "mustInclude": [
+        "portfolio triage wristband labeled portfolio",
+        "risk policy",
+        "repeated bets"
+      ],
+      "mustAvoid": [
+        "turning the scene into insurance advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "restaurant expo line facing a decision distorted by risk policy",
+      "audience": "a lead or reviewer who must replace isolated risk decisions with a standing policy that sees the whole portfolio while others want the quick answer",
+      "stakes": "the visible call will go wrong unless risk policy is separated from the tempting but weaker cue",
+      "format": "thought_experiment",
+      "requiredBeat": "the team predicts the answer from the quick impression, records it beside the sauce-stained order rail labeled repeated bets, then reveals how the chapter correction changes the estimate",
+      "firstImage": "What would change if the sauce-stained order rail labeled repeated bets stopped feeling like proof and started looking like a cue?",
+      "mustInclude": [
+        "sauce-stained order rail labeled repeated bets",
+        "risk policy",
+        "consistency"
+      ],
+      "mustAvoid": [
+        "turning the scene into insurance advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "public defender intake facing a decision distorted by risk policy",
+      "audience": "a lead or reviewer who must replace isolated risk decisions with a standing policy that sees the whole portfolio while others want the quick answer",
+      "stakes": "the visible call will go wrong unless risk policy is separated from the tempting but weaker cue",
+      "format": "scene",
+      "requiredBeat": "after the miss, the reviewer tapes the arraignment intake sheet labeled consistency to the postmortem board and traces the exact moment broad framing displaced the better judgment",
+      "firstImage": "You are looking at the arraignment intake sheet labeled consistency while the easy answer starts to feel too complete.",
+      "mustInclude": [
+        "arraignment intake sheet labeled consistency",
+        "risk policy",
+        "consistency"
+      ],
+      "mustAvoid": [
+        "turning the scene into insurance advice",
+        "generic office meeting shell",
+        "reused classroom or kitchen setup",
+        "reusing the same touch-the-object beat",
+        "letting the example end as a definition instead of an action"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect whether a scenario requires the move: replace isolated risk decisions with a standing policy that sees the whole portfolio",
+      "choose the correction that fits risk policy rather than a generic careful-thinking answer",
+      "distinguish Risk Policies from nearby drift into insurance advice",
+      "explain why the visible beat changes judgment in a new setting"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick a decision from today and draw two boxes: fast impression and required check. Put one concrete item in each box, then decide which box has earned more weight.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

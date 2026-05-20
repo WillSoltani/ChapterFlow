@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-pyramid-principle-ch03",
+  "number": 3,
+  "title": "How to build a pyramid structure",
+  "coreMove": "Build the hierarchy from raw material upward, letting classification and order create the top sentence instead of forcing a headline early.",
+  "sourcePressure": "Chapter 3 is construction discipline: bottom-up approach, caveats for beginners, grouping raw material, ordering it, and letting the higher-order idea emerge before top-down delivery.",
+  "chapterSpecificMisunderstanding": "Starting with a confident top line and hunting for support afterward.",
+  "sourceAlignmentTerms": [
+    "bottom-up approach",
+    "caveats for beginners",
+    "classification",
+    "raw material",
+    "higher-order idea",
+    "logical order",
+    "top sentence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "bottom-up approach",
+      "detail": "the authorized heading map for Chapter 3 includes The bottom-up approach and Caveats for beginners",
+      "useIn": "fullRead",
+      "phrasingHint": "The beginner caveat is simple: an early headline is often a guess wearing a suit."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A polished heading pretends the structure underneath is solved",
+      "opening with an abstract definition of clarity",
+      "starting with a generic frustrated professional staring at a blank document"
+    ],
+    "counterintuition": [
+      "Most people think formatting solves clarity; actually thinking solves clarity",
+      "clarity is not about writing less; it is about thinking better",
+      "structure sounds rigid but actually creates freedom"
+    ],
+    "tryThisNow": [
+      "Circle the main point and improve the structure",
+      "rewrite one paragraph more clearly",
+      "ask yourself what the point is"
+    ],
+    "examples": [
+      "manager fixes a team memo with colored markers",
+      "same protagonist revises a deck under meeting pressure",
+      "same scene as prior chapter with swapped document type"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective recognition, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a direct second-person passage, a short research/source aside, a reader question, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a pharmaceutical trial coordinator building a site-readiness update",
+      "audience": "clinical operations staff with scattered site data",
+      "stakes": "trial launch dates depend on whether readiness problems are regulatory, staffing, or supply related",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Claire dumps all site notes into one sheet, color-codes them by function, and waits to write the readiness answer until the clusters settle.",
+      "firstImage": "Cold fluorescent light reflects off a binder of site-initiation notes.",
+      "mustInclude": [
+        "site-initiation binder",
+        "IRB approval list",
+        "drug-supply tracker"
+      ],
+      "mustAvoid": [
+        "hospital bed-delay scene from ch1"
+      ]
+    },
+    {
+      "domain": "a documentary producer structuring interview footage for a funding cut",
+      "audience": "creative leads who need argument before edit",
+      "stakes": "a grant renewal reel will fail if it follows shoot chronology instead of the point the footage proves",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"The first interview is not the first point,\" Mathieu says, then groups clips by claim before naming the reel's opening argument.",
+      "firstImage": "\"The first interview is not the first point,\" Mathieu says under the edit-suite hum.",
+      "mustInclude": [
+        "clip transcript wall",
+        "funding criteria sheet",
+        "edit timeline"
+      ],
+      "mustAvoid": [
+        "generic storytelling arc"
+      ]
+    },
+    {
+      "domain": "a food-bank analyst converting donation logs into a capacity request",
+      "audience": "operations analysts writing resource cases",
+      "stakes": "warehouse staffing may be rejected if volume, spoilage, and route constraints stay mixed",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Rachel keeps the old headline visible, groups the logs into volume, spoilage, and route constraints, then replaces the headline with the narrower answer the groups can bear.",
+      "firstImage": "It took Rachel four donation logs to stop defending the first headline.",
+      "mustInclude": [
+        "donation logs",
+        "cold-storage chart",
+        "route constraint map"
+      ],
+      "mustAvoid": [
+        "nonprofit trustee report from ch1"
+      ]
+    },
+    {
+      "domain": "a marine insurer assessing storm-damage claims",
+      "audience": "risk underwriters sorting case evidence",
+      "stakes": "premiums will be mispriced if vessel age, mooring quality, and storm exposure are forced into one story",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Henrik predicts vessel age will govern the answer, then lets the grouped evidence reveal that mooring quality is the stronger parent line.",
+      "firstImage": "What if the oldest boats were not the risky ones?",
+      "mustInclude": [
+        "claim photos",
+        "mooring inspection notes",
+        "storm-track overlay"
+      ],
+      "mustAvoid": [
+        "climate flood sensors from ch1"
+      ]
+    },
+    {
+      "domain": "a telecom service designer building a customer-complaint hierarchy",
+      "audience": "service teams converting call logs into product priorities",
+      "stakes": "the wrong top line could fund app changes while billing confusion causes most calls",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Aanya refuse the product team's preferred headline, group calls by failure type, and let billing confusion rise to the parent claim.",
+      "firstImage": "You are looking at 240 call tags blinking in a service dashboard.",
+      "mustInclude": [
+        "call-tag export",
+        "billing-code sheet",
+        "app-error log"
+      ],
+      "mustAvoid": [
+        "support ticket bug-priority scene from ch1"
+      ]
+    },
+    {
+      "domain": "a theater production manager preparing a rehearsal-risk note",
+      "audience": "arts administrators coordinating sets, cast, and permits",
+      "stakes": "opening night slips if the risk memo follows anecdotes instead of grouped constraints",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 6:45 p.m., Jack pulls notes off the rehearsal-room door, separates permit risks from set risks, and writes the governing warning only after the split.",
+      "firstImage": "At 6:45 p.m., Jack peels curling notes from a black rehearsal-room door.",
+      "mustInclude": [
+        "rehearsal call sheet",
+        "permit email",
+        "set-build checklist"
+      ],
+      "mustAvoid": [
+        "museum membership mailer from ch2"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose bottom-up construction when the answer is not earned",
+      "detect a premature headline",
+      "classify raw material by logical function",
+      "revise the top line after grouping changes"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Dump ten facts from a live draft into a blank note. Group them by logical job, order each group, then write the parent sentence last.",
+  "readingTimeMinutes": 12
+}

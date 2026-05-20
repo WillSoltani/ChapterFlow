@@ -1,0 +1,199 @@
+{
+  "chapterId": "getting-things-done-ch03",
+  "number": 3,
+  "title": "Getting Projects Creatively Under Way: The Five Phases of Project Planning",
+  "coreMove": "Move a project from vague intention through purpose, outcome, raw ideas, structure, and one next physical action.",
+  "sourcePressure": "The chapter teaches natural project planning through purpose and principles, outcome visioning, brainstorming, organizing, and next actions, with a simple dining-out example as supported illustration.",
+  "chapterSpecificMisunderstanding": "Turning planning into a polished project plan before the purpose, desired outcome, and next move are clear.",
+  "sourceAlignmentTerms": [
+    "purpose",
+    "principles",
+    "outcome visioning",
+    "brainstorming",
+    "organizing",
+    "next actions",
+    "natural planning",
+    "dining-out example"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "event",
+      "name": "dining-out example",
+      "detail": "The source sidecar supports a simple dining-out example that demonstrates purpose, standards, desired result, brainstorming, organizing, and next action.",
+      "useIn": "both",
+      "phrasingHint": "Even choosing dinner has a natural plan: why go, what counts as good, what options exist, how to choose, and who makes the reservation."
+    },
+    {
+      "kind": "artifact",
+      "name": "five phases of natural project planning",
+      "detail": "The source sidecar names purpose and principles, outcome visioning, brainstorming, organizing, and next actions.",
+      "useIn": "both",
+      "phrasingHint": "Natural planning expands before it narrows, then it earns closure with a visible next action."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "a community theater lighting plot two weeks before rehearsal",
+      "audience": "a volunteer director moving from enthusiasm to usable production work",
+      "stakes": "opening rehearsal may burn two hours if lighting needs stay vague",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The empty stage is still dark when Claire writes why the first rehearsal matters before touching the lighting spreadsheet.",
+      "firstImage": "an unlit stage with tape marks on the floor",
+      "mustInclude": [
+        "tape marks",
+        "lighting spreadsheet",
+        "rehearsal date"
+      ],
+      "mustAvoid": [
+        "repeating a generic arts-admin inbox"
+      ]
+    },
+    {
+      "protagonistName": "Daniel",
+      "domain": "a dental clinic planning its first Saturday pediatric day",
+      "audience": "a clinic manager balancing service quality and staff limits",
+      "stakes": "families could arrive to a kind idea with no workable flow",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"What would a good Saturday look like at 10:30?\" Daniel asks before the team starts listing supplies.",
+      "firstImage": "a pediatric toothbrush sample beside a blank schedule grid",
+      "mustInclude": [
+        "schedule grid",
+        "toothbrush sample",
+        "staff limit"
+      ],
+      "mustAvoid": [
+        "drifting into persuasion or health education"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "a neighborhood mutual-aid group designing winter coat pickup",
+      "audience": "a coordinator who needs logistics without killing volunteer energy",
+      "stakes": "donated coats may pile up without sizes, pickup flow, or storage rules",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Plastic garment bags rustle as Chloe lets every idea hit the wall before anyone argues about feasibility.",
+      "firstImage": "plastic garment bags on a church basement table",
+      "mustInclude": [
+        "garment bags",
+        "size labels",
+        "pickup map"
+      ],
+      "mustAvoid": [
+        "making brainstorming sound like corporate ideation"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "a software security team planning a password reset after a vendor breach",
+      "audience": "a technical lead who must move fast without skipping standards",
+      "stakes": "a rushed reset could lock out customers or leave exposed accounts open",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What happens if Henrik starts with tasks instead of first naming the successful end state and non-negotiable security principles?",
+      "firstImage": "a breach notification printed beside a laptop",
+      "mustInclude": [
+        "breach notice",
+        "status page",
+        "support queue"
+      ],
+      "mustAvoid": [
+        "inventing breach statistics"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "a city parks crew preparing a one-day playground repair",
+      "audience": "a supervisor coordinating permits, parts, and public notices",
+      "stakes": "children could return Monday to a fenced-off structure because no next action was owned",
+      "format": "before_after",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 7:35 a.m., Yusuf turns \"fix playground\" into outcome, loose parts list, workstreams, and the first call to the parts supplier.",
+      "firstImage": "a locked playground gate with orange mesh",
+      "mustInclude": [
+        "orange mesh",
+        "parts catalog",
+        "permit card"
+      ],
+      "mustAvoid": [
+        "making it just about task breakdown"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "a podcast producer launching a limited interview series for a museum",
+      "audience": "a producer balancing creative promise with release deadlines",
+      "stakes": "recording dates could drift while the concept keeps sounding exciting",
+      "format": "reflection",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Giulia three enthusiastic planning calls to notice that nobody had named the finished show or the next booking email.",
+      "firstImage": "a microphone case open beside a museum floor plan",
+      "mustInclude": [
+        "microphone case",
+        "floor plan",
+        "guest list"
+      ],
+      "mustAvoid": [
+        "copying the dining-out example literally"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "sequence natural planning phases",
+      "distinguish outcome visioning from brainstorming",
+      "turn a brainstorm into organized next action"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one stalled project, write why it matters, one sentence for done, three raw ideas, one grouping, and the next physical action.",
+  "readingTimeMinutes": 12
+}

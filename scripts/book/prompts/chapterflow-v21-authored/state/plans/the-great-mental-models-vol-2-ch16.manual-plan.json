@@ -1,0 +1,189 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch16",
+  "number": 16,
+  "title": "Replication",
+  "coreMove": "Preserve the working structure through transfer, not the surface ritual that merely looks copied.",
+  "sourcePressure": "Replication concerns persistence through copying, transmission, reproduction, or passing structure onward.",
+  "chapterSpecificMisunderstanding": "equating replication with exact repetition or copy-paste sameness",
+  "sourceAlignmentTerms": [
+    "replication",
+    "copy",
+    "transmission",
+    "fidelity",
+    "persistence",
+    "surface decoration",
+    "essential structure"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Replication",
+      "generic boardroom surprise opener",
+      "science-as-metaphor lecture opener"
+    ],
+    "counterintuition": [
+      "equating replication with exact repetition or copy-paste sameness",
+      "simple not-X-but-Y correction shell",
+      "most people assume opener"
+    ],
+    "tryThisNow": [
+      "set a timer and think about it",
+      "write three generic lessons",
+      "audit your life with no chapter-specific object"
+    ],
+    "examples": [
+      "same dashboard meeting with swapped names",
+      "kitchen-table family argument unless the domain requires it",
+      "teacher and student scene used as default proof"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Teresa",
+      "domain": "franchise training binder",
+      "audience": "readers who face franchise training binder decisions where replication is easy to misread",
+      "stakes": "new stores drifting from the original service",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Teresa hands the training binder to a second person, watches them use the mystery-shop note, and revises the store photo where the working structure fails to transfer. Domain: franchise training binder.",
+      "firstImage": "training binder visible in the franchise training binder",
+      "mustInclude": [
+        "training binder",
+        "mystery-shop note",
+        "store photo"
+      ],
+      "mustAvoid": [
+        "equating replication with exact repetition or copy-paste sameness",
+        "reusing a generic meeting scene instead of the franchise training binder constraints"
+      ]
+    },
+    {
+      "protagonistName": "William",
+      "domain": "surgical checklist handoff",
+      "audience": "readers who face surgical checklist handoff decisions where replication is easy to misread",
+      "stakes": "handoff from senior nurse to new team",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "William hands the sterile checklist to a second person, watches them use the handoff tray, and revises the initials grid where the working structure fails to transfer. Domain: surgical checklist handoff.",
+      "firstImage": "sterile checklist visible in the surgical checklist handoff",
+      "mustInclude": [
+        "sterile checklist",
+        "handoff tray",
+        "initials grid"
+      ],
+      "mustAvoid": [
+        "equating replication with exact repetition or copy-paste sameness",
+        "reusing a generic meeting scene instead of the surgical checklist handoff constraints"
+      ]
+    },
+    {
+      "protagonistName": "Gabrielle",
+      "domain": "tutoring method transfer",
+      "audience": "readers who face tutoring method transfer decisions where replication is easy to misread",
+      "stakes": "students copying answers without reasoning",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Gabrielle hands the worked example to a second person, watches them use the reasoning notebook, and revises the student recording where the working structure fails to transfer. Domain: tutoring method transfer.",
+      "firstImage": "worked example visible in the tutoring method transfer",
+      "mustInclude": [
+        "worked example",
+        "reasoning notebook",
+        "student recording"
+      ],
+      "mustAvoid": [
+        "equating replication with exact repetition or copy-paste sameness",
+        "reusing a generic meeting scene instead of the tutoring method transfer constraints"
+      ]
+    },
+    {
+      "protagonistName": "Stellan",
+      "domain": "newsletter editorial playbook",
+      "audience": "readers who face newsletter editorial playbook decisions where replication is easy to misread",
+      "stakes": "guest editor maintaining tone",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Stellan hands the style sheet to a second person, watches them use the newsletter proof, and revises the guest draft where the working structure fails to transfer. Domain: newsletter editorial playbook.",
+      "firstImage": "style sheet visible in the newsletter editorial playbook",
+      "mustInclude": [
+        "style sheet",
+        "newsletter proof",
+        "guest draft"
+      ],
+      "mustAvoid": [
+        "equating replication with exact repetition or copy-paste sameness",
+        "reusing a generic meeting scene instead of the newsletter editorial playbook constraints"
+      ]
+    },
+    {
+      "protagonistName": "Nathan",
+      "domain": "ceramics glaze recipe",
+      "audience": "readers who face ceramics glaze recipe decisions where replication is easy to misread",
+      "stakes": "studio assistant repeating the glaze",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Nathan hands the glaze card to a second person, watches them use the test tile, and revises the kiln shelf where the working structure fails to transfer. Domain: ceramics glaze recipe.",
+      "firstImage": "glaze card visible in the ceramics glaze recipe",
+      "mustInclude": [
+        "glaze card",
+        "test tile",
+        "kiln shelf"
+      ],
+      "mustAvoid": [
+        "equating replication with exact repetition or copy-paste sameness",
+        "reusing a generic meeting scene instead of the ceramics glaze recipe constraints"
+      ]
+    },
+    {
+      "protagonistName": "Eva",
+      "domain": "volunteer onboarding script",
+      "audience": "readers who face volunteer onboarding script decisions where replication is easy to misread",
+      "stakes": "Saturday volunteers onboarding the next crew",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Eva hands the welcome script to a second person, watches them use the name badge, and revises the task card where the working structure fails to transfer. Domain: volunteer onboarding script.",
+      "firstImage": "welcome script visible in the volunteer onboarding script",
+      "mustInclude": [
+        "welcome script",
+        "name badge",
+        "task card"
+      ],
+      "mustAvoid": [
+        "equating replication with exact repetition or copy-paste sameness",
+        "reusing a generic meeting scene instead of the volunteer onboarding script constraints"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot when a scenario calls for replication rather than a nearby generic fix",
+      "choose the visible action that performs the mental move: Preserve the working structure through transfer, not the surface ritual that merely looks copied.",
+      "explain why the tempting misread fails: equating replication with exact repetition or copy-paste sameness",
+      "transfer the model into a new domain without importing unsupported science detail"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next decision involving replication, write one sentence naming the concrete force, constraint, or condition from this model, then change one visible action before the moment passes. Keep it under 90 seconds.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference only if source-supported",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

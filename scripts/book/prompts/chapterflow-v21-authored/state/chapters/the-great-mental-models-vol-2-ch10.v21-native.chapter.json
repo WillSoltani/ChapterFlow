@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-2-ch10",
+  "number": 10,
+  "title": "Alloying",
+  "readingTimeMinutes": 12,
+  "hook": "The exhibit finally worked when Anna stopped choosing between scholarship and a room people could read.",
+  "counterintuition": "A pure option can be too weak for the actual stress. Alloying works when the mixture creates a property neither clean ingredient can supply alone.",
+  "tryThisNow": "Take one choice framed as either-or. Name the missing property, then pair two unlike strengths and test the mixture against that need.",
+  "keyTakeaway": "Alloying teaches combination with discipline: mix unlike strengths only when the result gains a property that purity cannot provide.",
+  "breakdown": {
+    "fastRead": "Anna held the artifact loan tag in one hand and the wall text draft in the other. The curator's version was exact and unreadable. The educator's version was inviting and too thin. The case layout needed both accuracy and reach.\n\nShe combined the expert detail with a visitor path through the room, then tested the mixture against the display case.\n\nAlloying is useful combination. The point is not blending for its own sake. The point is a new property: resilience, flexibility, or usefulness that neither pure element supplies alone.",
+    "deepRead": "\"If we choose the battery plan, what happens at dinner peak?\" Daniel asked during the microgrid postmortem. The battery readout showed stability overnight. The load profile showed strain when heat pumps and stoves came on together. One pure option handled storage; the other handled demand.\n\nAlloying stays inside a simple support: combining elements can create stronger or more useful properties than isolated purity. The lesson is not generic teamwork. Daniel had to ask what property the neighborhood needed. Peak resilience came from pairing battery storage with demand scheduling, then testing the mixture against the breaker labels that had failed during outages. A mixture earns its place by changing what the system can withstand.\n\nUseful mixtures have a job to do under stress.\n\nAntoine saw the same issue at the bilingual support desk. A language queue alone moved customers to the right person but left agents rewriting the same answers. Translated macros alone helped agents who already knew which case they had. Pairing the queue with the macro created a new property: customers could move across language and issue type without falling into callbacks. The mixture beat either pure tool because the problem demanded both routing and phrasing.\n\nThe limit is muddle. A mixture can dilute the strong part of each ingredient. Alloying helps when the combination produces a needed property, not when people are afraid to make a clear choice.",
+    "fullRead": "The equity split sheet looked fair until Marit compared it with the sales deck and the support inbox. One cofounder could sell the vision and freeze when complaints got technical. The other could fix product details and stall when the room needed conviction. Equal shares did not answer the real question: what property did the company need from the pair?\n\nAlloying asks for complementary strength, not polite balance. The combination has to face a named stress: a complaint queue, a peak load, a patient's long shift, a ballot, a first-hour flood response. Without the stress, the mixture can sound sophisticated while adding nothing measurable. With the stress in view, the weak pure option becomes obvious and the useful partner becomes easier to choose. A pure sales founder could win attention and lose trust after the first support crisis. A pure technical founder could build durable software and fail to earn the market's first listen. The useful mixture would have to create a property neither founder supplied alone: a company that could promise clearly and repair honestly.\n\nWhat does the mixture make possible that neither ingredient can do by itself?\n\nThat question keeps the model specific. It is easy to turn alloying into soft language about diversity or collaboration. The sharper test is property. Does the combination add resilience, flexibility, or usefulness? Does it survive a stress that a pure option cannot? Does it carry a tradeoff worth accepting?\n\nYou see the tradeoff clearly in prosthetics work. Akira can choose a socket material that is comfortable and wears quickly, or one that lasts and rubs the patient raw. The patient note matters as much as the wear-test strip. A useful mixture has to preserve comfort under use, not simply average two materials into mediocrity. If the blend loses the comfort and still fails the durability test, purity would have been better.\n\nIsabel learned the same lesson with debate roles. A team of aggressive cross-examiners could win moments and lose structure. A team of careful note-takers could understand the round and never seize it. She paired a role card with the flow sheet and tested the combination against the ballot. The stronger mix did not make every speaker the same. It gave the team contrast that held under pressure.\n\nAlloying has a hidden cost. Mixtures need boundaries. Too many ingredients make behavior unpredictable. A team assembled from every possible strength can become slow, political, or confused. A product that tries to serve every use can serve none well. The model does not worship combination. It asks for the smallest mixture that creates the missing property. That usually means saying no to attractive ingredients that do not serve the constraint. A good alloy is selective before it is blended.\n\nStart with the stress. Name the property the pure option lacks. Pair only what can create that property, then test the result under the constraint that made purity fail. A good alloy is not a compromise. It is a combination with a new strength."
+  },
+  "examples": [
+    {
+      "exampleId": "ch10-ex01-anna-exhibit-blend",
+      "title": "Anna Tests the Case Layout",
+      "tags": [
+        "predict_reveal",
+        "museum",
+        "mixture"
+      ],
+      "planSpec": {
+        "domain": "museum exhibit team blend",
+        "audience": "readers who face museum exhibit team blend decisions where alloying is easy to misread",
+        "stakes": "public opening depending on blended expertise",
+        "format": "predict_reveal",
+        "requiredBeat": "Anna pairs the artifact loan tag with the wall text draft, tests the new property against the case layout, and keeps the mixture only if it beats either pure option. Domain: museum exhibit team blend."
+      },
+      "scenario": "The artifact loan tag smells faintly of packing paper beside Anna's wall text draft, and the display case already has visitors leaning in. She predicts the curator's exact label will satisfy experts, then watches a test visitor stop reading after two lines and miss the object's point. Anna must decide whether to choose purity or combine expert detail with an educator's visitor path and test it against the case layout.",
+      "whatToDo": "Blend the precise artifact detail with a readable visitor sequence, then test the label at the case. Keep the mixture only if it improves accuracy and use.",
+      "whyItMatters": "The exhibit needed a new property, not a truce. The useful alloy preserved truth while making the room legible."
+    },
+    {
+      "exampleId": "ch10-ex02-daniel-microgrid-mix",
+      "title": "Daniel Reads the Peak Load",
+      "tags": [
+        "postmortem",
+        "energy",
+        "resilience"
+      ],
+      "planSpec": {
+        "domain": "neighborhood microgrid mix",
+        "audience": "readers who face neighborhood microgrid mix decisions where alloying is easy to misread",
+        "stakes": "outages during peak demand",
+        "format": "postmortem",
+        "requiredBeat": "Daniel pairs the battery readout with the load profile, tests the new property against the breaker label, and keeps the mixture only if it beats either pure option. Domain: neighborhood microgrid mix."
+      },
+      "scenario": "\"The battery held all night,\" Daniel says, pointing at the readout after the outage review while the dinner-hour graph spikes in red. The load profile tells a different story at peak, where the breaker label failed under heat pumps and stoves running together. In the postmortem, he pairs storage with demand scheduling because he has to choose the mix that survives the actual peak.",
+      "whatToDo": "Combine battery storage with demand timing and test the plan against breaker limits during peak use. Keep the blend if it improves resilience.",
+      "whyItMatters": "A pure storage answer missed the stress point. The alloyed plan created flexibility when the neighborhood needed it most."
+    },
+    {
+      "exampleId": "ch10-ex03-antoine-support-desk",
+      "title": "Antoine Pairs Queue and Macro",
+      "tags": [
+        "scene",
+        "support",
+        "flexibility"
+      ],
+      "planSpec": {
+        "domain": "bilingual support desk pairing",
+        "audience": "readers who face bilingual support desk pairing decisions where alloying is easy to misread",
+        "stakes": "customers lost between languages",
+        "format": "scene",
+        "requiredBeat": "Antoine pairs the language queue with the translated macro, tests the new property against the callback ticket, and keeps the mixture only if it beats either pure option. Domain: bilingual support desk pairing."
+      },
+      "scenario": "The language queue blinks red above Antoine's support desk while a translated macro sits unused in another tab and callbacks pile up after lunch. Customers bounce from agent to agent, and each ticket repeats the same missing phrase in a different language. Antoine has to choose whether to route by language only or combine the queue with macros that carry the answer across languages.",
+      "whatToDo": "Pair language routing with translated issue macros and test the combination on callback tickets. Use the mix only if fewer customers fall between handoffs.",
+      "whyItMatters": "Routing alone and phrasing alone each solved half the stress. Together they created a more flexible support path."
+    },
+    {
+      "exampleId": "ch10-ex04-marit-founder-split",
+      "title": "Marit Checks the Inbox",
+      "tags": [
+        "vignette",
+        "startup",
+        "properties"
+      ],
+      "planSpec": {
+        "domain": "cofounder skill split",
+        "audience": "readers who face cofounder skill split decisions where alloying is easy to misread",
+        "stakes": "company gaps neither founder can cover",
+        "format": "vignette",
+        "requiredBeat": "Marit pairs the equity split sheet with the sales deck, tests the new property against the support inbox, and keeps the mixture only if it beats either pure option. Domain: cofounder skill split."
+      },
+      "scenario": "At 8:10 p.m., Marit lays the equity split sheet beside the sales deck while the support inbox fills with technical complaints from the same pilot accounts. One founder can sell the promise; the other can repair the product after the promise meets reality. She must decide whether equal titles are enough or whether the operating mix has to create a company that can promise and fix.",
+      "whatToDo": "Define the combined property the pair must provide, then assign roles against the sales deck and support inbox. Test whether the split covers both stresses.",
+      "whyItMatters": "Alloying is not vague cofounder harmony. The mixture matters only if it gives the company a property neither founder has alone."
+    },
+    {
+      "exampleId": "ch10-ex05-akira-socket-material",
+      "title": "Akira Tests the Wear Strip",
+      "tags": [
+        "dialogue",
+        "prosthetics",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "prosthetics material choice",
+        "audience": "readers who face prosthetics material choice decisions where alloying is easy to misread",
+        "stakes": "comfort versus durability for patients",
+        "format": "dialogue",
+        "requiredBeat": "Akira pairs the socket mold with the wear-test strip, tests the new property against the patient note, and keeps the mixture only if it beats either pure option. Domain: prosthetics material choice."
+      },
+      "scenario": "You hold the socket mold while Akira reads a patient note about rubbing after long warehouse shifts. \"This one lasts,\" the technician says, tapping the wear-test strip, but the trial sheet shows skin irritation after day three. Akira has to decide whether durability alone is enough or whether a blended material must prove comfort under use before it earns a fitting.",
+      "whatToDo": "Pair the socket mold with wear-test results and patient comfort notes. Keep the material mix only if it survives both durability and comfort tests.",
+      "whyItMatters": "The useful mixture creates a property neither pure option offers. Averaging two weaknesses would not be alloying."
+    },
+    {
+      "exampleId": "ch10-ex06-isabel-debate-roles",
+      "title": "Isabel Splits the Roles",
+      "tags": [
+        "decision_point",
+        "debate",
+        "contrast"
+      ],
+      "planSpec": {
+        "domain": "debate team role mix",
+        "audience": "readers who face debate team role mix decisions where alloying is easy to misread",
+        "stakes": "team wins requiring role contrast",
+        "format": "decision_point",
+        "requiredBeat": "Isabel pairs the role card with the flow sheet, tests the new property against the round ballot, and keeps the mixture only if it beats either pure option. Domain: debate team role mix."
+      },
+      "scenario": "It took Isabel two tournaments to notice the pattern on the round ballot and in the judge's margin notes. The team with only sharp cross-exam dropped structure; the team with only careful flow sheets missed openings when pressure rose. She must decide whether to train everyone alike or pair role cards so contrast becomes a team property.",
+      "whatToDo": "Assign one speaker to pressure and another to structure, then test the blend against ballot feedback. Keep the role mix if it holds under round pressure.",
+      "whyItMatters": "The team did not need sameness. It needed a resilient combination that pure aggression or pure caution could not supply."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A museum label is either precise and unreadable or friendly and inaccurate. What alloying move fits the case layout problem?",
+        "choices": [
+          "Combine expert detail with visitor-sequence writing and test whether the label remains accurate and readable.",
+          "Choose the scholarly label because purity is safer.",
+          "Remove the artifact details so visitors move faster."
+        ],
+        "correctIndex": 0,
+        "explanation": "The goal is a new property: accuracy plus use. Choosing either pure label misses the combination the display actually needs.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A neighborhood backup system works overnight but fails during dinner peak. Which option best applies alloying?",
+        "choices": [
+          "Use batteries only because simple systems are cleaner.",
+          "Pair storage with demand scheduling and test the mix against breaker limits.",
+          "Ignore the load profile until the next outage."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mix creates peak resilience. Storage alone handles one condition but not the actual stress shown by the load profile.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A support desk has a language queue and translated macros, but each tool is used separately. Customers still get callbacks. What should the manager test?",
+        "choices": [
+          "A rule that agents use English only.",
+          "A longer hold message explaining the delay.",
+          "A paired queue-and-macro workflow measured by reduced callback tickets."
+        ],
+        "correctIndex": 2,
+        "explanation": "The paired workflow creates flexibility across language and issue type. Separate pure tools each miss part of the handoff stress.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Two cofounders split titles equally, but one sells well and freezes on support while the other fixes issues and avoids pitching. What is the alloying question?",
+        "choices": [
+          "What operating mixture gives the company both credible promises and honest repair?",
+          "Which founder should win every decision?",
+          "How can both founders become identical as quickly as possible?"
+        ],
+        "correctIndex": 0,
+        "explanation": "Alloying asks what property the combination must create. The tempting pure answers either crown one strength or erase useful contrast.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A prosthetics team can choose a comfortable material that wears out or a durable one that rubs skin raw. What test makes the blend legitimate?",
+        "choices": [
+          "Pick the material that looks more advanced.",
+          "Prove the mixed socket preserves comfort under wear-test conditions.",
+          "Average the two materials and assume compromise is enough."
+        ],
+        "correctIndex": 1,
+        "explanation": "A blend earns its place only by creating the missing property. A simple average can dilute both strengths without solving patient need.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A debate coach says the team needs everyone to speak the same way, but ballots show aggressive speakers lose structure and careful speakers miss openings. What is the best diagnosis?",
+        "choices": [
+          "The team needs role contrast that holds under round pressure.",
+          "The team should abandon preparation and rely on instinct.",
+          "The team should choose only cautious speakers."
+        ],
+        "correctIndex": 0,
+        "explanation": "The desired property is resilient contrast. Making everyone identical throws away one of the strengths the team needs to alloy.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A product team combines every requested feature into one release and calls it alloying. Users find the result slow and confusing. What went wrong?",
+        "choices": [
+          "They failed to mix enough ingredients.",
+          "They treated mixture as automatically good without testing for a needed property.",
+          "They should have avoided all combinations forever."
+        ],
+        "correctIndex": 1,
+        "explanation": "Alloying is disciplined combination. The blend must create usefulness or resilience; adding everything can produce muddle.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A training program mixes live coaching with short practice cards. Completion rises and skill checks improve, though either method alone had weaker results. How should you evaluate it?",
+        "choices": [
+          "The mixture may be a good alloy because it creates a property neither pure method had alone.",
+          "It is invalid because pure methods are easier to describe.",
+          "It should add three more methods before any judgment."
+        ],
+        "correctIndex": 0,
+        "explanation": "The evidence points to a useful combined property. The key is improved performance under test, not purity or endless addition.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A city emergency kit plan has medical supplies in one depot and radio chargers in another. Flood crews need both together. Which response transfers alloying?",
+        "choices": [
+          "Keep depots pure so inventory lists stay simple.",
+          "Ask crews to drive farther during floods.",
+          "Create mixed field kits tested against the first-hour response needs."
+        ],
+        "correctIndex": 2,
+        "explanation": "The mixed kit creates first-hour usefulness under stress. Pure depots may be tidy but fail the condition crews actually face.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Two pure options each fail under the real stress. What should you retrieve?",
+      "back": "Retrieve alloying: combine unlike strengths only if the mixture creates the missing property.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A team calls any collaboration an alloy. What test should you apply?",
+      "back": "Ask what new property the combination produces: resilience, flexibility, or usefulness that neither part provides alone.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A mixture makes both ingredients weaker. What does that signal?",
+      "back": "It is muddle, not useful alloying. The combination must beat the pure options against the target constraint.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "Why start with the stress before mixing strengths?",
+      "back": "The stress names the property needed. Without it, mixture becomes compromise or decoration.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "When is purity still the better choice?",
+      "back": "When the mixture does not create a needed property or adds complexity that weakens performance under the real constraint.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to mix strengths around a specific missing property. The skill is testing combination against the constraint that made purity fail.",
+    "ifThenPlans": [
+      {
+        "context": "project design",
+        "plan": "If two pure approaches each fail under stress, then I will name the missing property before combining them."
+      },
+      {
+        "context": "team roles",
+        "plan": "If people bring unlike strengths, then I will assign roles so contrast creates a useful team property rather than vague balance."
+      },
+      {
+        "context": "product choices",
+        "plan": "If a feature mix grows confusing, then I will test whether each ingredient contributes to the target property."
+      },
+      {
+        "context": "operations",
+        "plan": "If tidy purity slows real work, then I will test the smallest mixed kit, workflow, or handoff that survives the actual constraint."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one either-or decision today. Write the property each side lacks, design one small mix, and test it against the real constraint.",
+    "weeklyPractice": "Each week, review one compromise you accepted. Decide whether it created a new property or merely diluted two pure options."
+  },
+  "memorableLines": [
+    {
+      "text": "Useful mixtures have a job to do under stress.",
+      "location": "breakdown.deepRead",
+      "why": "It keeps combination tied to a needed property."
+    },
+    {
+      "text": "A mixture earns its place by changing what the system can withstand.",
+      "location": "breakdown.deepRead",
+      "why": "It frames alloying through resilience rather than vague harmony."
+    },
+    {
+      "text": "A good alloy is not a compromise. It is a combination with a new strength.",
+      "location": "breakdown.fullRead",
+      "why": "It closes the distinction between diluted compromise and useful mixture."
+    }
+  ]
+}

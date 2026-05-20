@@ -1,0 +1,205 @@
+{
+  "chapterId": "smarter-faster-better-ch08",
+  "number": 8,
+  "title": "Absorbing Data",
+  "coreMove": "Convert raw information into shared knowledge by filtering, framing, and deciding what the pattern changes next.",
+  "sourcePressure": "The chapter closes on turning information into knowledge in Cincinnati's public schools, making data absorption an interpretation and shared-understanding problem rather than a collection problem.",
+  "chapterSpecificMisunderstanding": "Believing more dashboards, reports, or numbers automatically create better understanding.",
+  "sourceAlignmentTerms": [
+    "turning information into knowledge",
+    "Cincinnati public schools",
+    "raw inputs",
+    "shared understanding",
+    "interpretation",
+    "signal",
+    "action"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "Cincinnati's public schools",
+      "detail": "the subtitle directly supports Cincinnati's public schools as the institutional setting for turning information into knowledge",
+      "useIn": "both",
+      "phrasingHint": "Cincinnati's public schools should carry the scale of the problem: a system can collect signals and still need a shared read."
+    },
+    {
+      "kind": "artifact",
+      "name": "turning information into knowledge",
+      "detail": "the sidecar allows this exact phrase as the chapter's central conversion problem",
+      "useIn": "both",
+      "phrasingHint": "Information becomes knowledge only when someone can say what the pattern means and what should change because of it."
+    },
+    {
+      "kind": "study",
+      "name": "public schools",
+      "detail": "the source boundary permits public schools as the institutional anchor but not named administrators or program details",
+      "useIn": "fullRead",
+      "phrasingHint": "The school setting should not become district gossip; it should show why shared interpretation matters when many people must act from the same signals."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Person at a meeting realizes the real lesson",
+      "The day starts with a dashboard",
+      "A simple choice changes everything"
+    ],
+    "counterintuition": [
+      "Productivity is not doing more faster",
+      "The obvious answer is wrong",
+      "The problem is not effort but something deeper"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect",
+      "Write down three priorities",
+      "Pause before your next task"
+    ],
+    "examples": [
+      "generic office stand-up",
+      "kitchen table planning",
+      "classroom marker demonstration",
+      "commuter train epiphany"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Hannah",
+      "domain": "a literacy nonprofit reviewing reading scores across after-school sites",
+      "audience": "a program director facing twenty pages of mixed scores",
+      "stakes": "funding and tutoring hours may go to the wrong site",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Hannah cuts the report to one pattern by grade band, then asks what tutoring allocation must change this week",
+      "firstImage": "Twenty pages of reading scores fan across the conference table",
+      "mustInclude": [
+        "reading scores",
+        "grade band pattern",
+        "tutoring allocation"
+      ],
+      "mustAvoid": [
+        "generic school dashboard"
+      ]
+    },
+    {
+      "protagonistName": "Marco",
+      "domain": "a quality-control lab flooded with sensor readings from a cheese-aging room",
+      "audience": "a food scientist trying to explain spoilage variation",
+      "stakes": "an expensive batch may be discarded for the wrong reason",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Marco ranks humidity swings against temperature and rind notes until the data points to one aging-room pattern",
+      "firstImage": "The aging room smells of salt, milk, and damp wood shelves",
+      "mustInclude": [
+        "humidity log",
+        "rind notes",
+        "batch decision"
+      ],
+      "mustAvoid": [
+        "food craft atmosphere without analysis"
+      ]
+    },
+    {
+      "protagonistName": "Layla",
+      "domain": "a city bike-share team reviewing repair tickets after stations empty too quickly",
+      "audience": "an operations analyst with too many complaints and GPS traces",
+      "stakes": "crews may keep rebalancing bikes without fixing the actual station pattern",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:22 a.m., Layla groups tickets by station behavior rather than complaint wording and finds the morning-transfer pattern",
+      "firstImage": "At 9:22 a.m., the station map shows red dots along one bridge approach",
+      "mustInclude": [
+        "repair tickets",
+        "station map",
+        "morning-transfer pattern"
+      ],
+      "mustAvoid": [
+        "bike helmet or commute epiphany"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "a church finance committee interpreting donation changes after a building campaign",
+      "audience": "a treasurer trying to avoid overreacting to one large gift",
+      "stakes": "the committee could cut outreach based on a misleading total",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "James separates recurring gifts, one-time gifts, and campaign pledges so the committee discusses the pattern instead of the headline total",
+      "firstImage": "\"We are up eight percent,\" someone says, already smiling",
+      "mustInclude": [
+        "pledge spreadsheet",
+        "recurring gifts",
+        "headline total"
+      ],
+      "mustAvoid": [
+        "religious moralizing"
+      ]
+    },
+    {
+      "protagonistName": "Frida",
+      "domain": "a ski patrol reviewing incident reports after three minor crashes on one slope",
+      "audience": "a patrol supervisor deciding whether to change signage or staffing",
+      "stakes": "the wrong fix could leave the real hazard unchanged",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Frida extracts time, snow condition, and turn location from each report until one pattern changes the patrol plan",
+      "firstImage": "What do three separate crash reports know only when you read them together?",
+      "mustInclude": [
+        "incident reports",
+        "snow condition",
+        "turn location"
+      ],
+      "mustAvoid": [
+        "letting the question hook replace the visible action beat"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "a small manufacturer reading warranty returns across three product lines",
+      "audience": "a plant manager buried in customer notes and defect codes",
+      "stakes": "teams may chase the loudest customer complaint while missing the root pattern",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Pavel turn loose complaint notes into a shared one-page read, then change inspection around the defect cluster",
+      "firstImage": "You are holding a torn cardboard return box with three different defect codes",
+      "mustInclude": [
+        "return box",
+        "complaint notes",
+        "one-page read"
+      ],
+      "mustAvoid": [
+        "generic factory floor repetition"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate data collection from interpretation",
+      "choose filtering and framing moves that create a shared read",
+      "evaluate whether a metric changes action or only adds noise"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one report, chart, or note pile and write one sentence that answers: what pattern matters, and what next action changes because of it?",
+  "readingTimeMinutes": 12
+}

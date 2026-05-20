@@ -1,0 +1,233 @@
+{
+  "chapterId": "never-eat-alone-ch01",
+  "number": 1,
+  "title": "Becoming a Member of the Club",
+  "coreMove": "Turn outsider anxiety into a concrete practice of contribution before asking for belonging.",
+  "sourcePressure": "The opening chapter uses class pressure, Harvard Business School outsider anxiety, the blue Nova and fake Docksiders memory, country-club caddying, the Pohland family, and an early Deloitte mismatch to redefine networking as contribution and care.",
+  "chapterSpecificMisunderstanding": "Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+  "sourceAlignmentTerms": [
+    "member of the club",
+    "connecting",
+    "working with people",
+    "reciprocity as care",
+    "class pressure",
+    "caddying",
+    "belonging"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "place",
+      "name": "Harvard Business School",
+      "detail": "Ferrazzi opens from feeling overwhelmed, underqualified, and socially outclassed there.",
+      "useIn": "both",
+      "phrasingHint": "The Harvard room should feel like a place where the door opened but belonging had not arrived yet."
+    },
+    {
+      "kind": "artifact",
+      "name": "the beat-up blue Nova",
+      "detail": "the source sidecar names the blue Nova and fake Docksiders memory as concrete class markers.",
+      "useIn": "deepRead",
+      "phrasingHint": "The blue Nova can carry the sting of class difference without turning the scene into a lecture about class."
+    },
+    {
+      "kind": "artifact",
+      "name": "fake Docksiders",
+      "detail": "the source sidecar ties fake Docksiders to private-school exclusion and status difference.",
+      "useIn": "deepRead",
+      "phrasingHint": "The fake Docksiders should show the reader how a small object can make a young person feel outside the room."
+    },
+    {
+      "kind": "person",
+      "name": "the Pohland family",
+      "detail": "the source sidecar says the Pohland family and country-club caddying shaped Ferrazzi's view of generosity and reciprocity.",
+      "useIn": "both",
+      "phrasingHint": "The Pohland family should land as a lesson in being welcomed, helped, and taught how care circulates."
+    },
+    {
+      "kind": "institution",
+      "name": "Deloitte",
+      "detail": "the source sidecar uses an early Deloitte struggle to show that relationships matter when technical fit is not enough.",
+      "useIn": "fullRead",
+      "phrasingHint": "Deloitte belongs as the early-career room where talent alone did not solve the problem."
+    }
+  ],
+  "sourceAnchorNote": "Use only these frozen anchors and do not add unsupported named anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "You need better networking, not more contacts",
+      "A calendar full of meetings is not a network",
+      "At 8:00 a.m., a professional walks into a room and learns a lesson"
+    ],
+    "counterintuition": [
+      "Networking is not about quantity; it is about quality",
+      "The strongest relationship is not the one with the most status",
+      "Most people think relationships are soft skills"
+    ],
+    "tryThisNow": [
+      "Set a 60-second timer and list three people",
+      "Send one message right now with no context",
+      "Write down your network and rank it"
+    ],
+    "examples": [
+      "generic coffee meeting with mentor",
+      "conference badge swap with no stakes",
+      "LinkedIn message to a famous stranger",
+      "office kitchen small talk"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm through a question to the reader, a research-free aside, a direct second-person passage, or a brief historical/profile reference when a frozen anchor exists",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "scholarship dinner seating plan",
+      "audience": "a reader facing scholarship dinner seating plan where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if scholarship dinner seating plan becomes another generic networking move",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah chooses one useful contribution before trying to prove they belong in front of name card tray, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "name card tray on the edge of scholarship dinner seating plan",
+      "mustInclude": [
+        "name card tray",
+        "scholarship dinner seating plan constraint",
+        "one named next step tied to member of the club"
+      ],
+      "mustAvoid": [
+        "Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Emily",
+      "domain": "campus alumni mixer registration table",
+      "audience": "a reader facing campus alumni mixer registration table where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if campus alumni mixer registration table becomes another generic networking move",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emily chooses one useful contribution before trying to prove they belong in front of lanyard stack, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "lanyard stack on the edge of campus alumni mixer registration table",
+      "mustInclude": [
+        "lanyard stack",
+        "campus alumni mixer registration table constraint",
+        "one named next step tied to member of the club"
+      ],
+      "mustAvoid": [
+        "Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Hannah",
+      "domain": "boutique consulting war room",
+      "audience": "a reader facing boutique consulting war room where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if boutique consulting war room becomes another generic networking move",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hannah chooses one useful contribution before trying to prove they belong in front of dim laptop screen, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "dim laptop screen on the edge of boutique consulting war room",
+      "mustInclude": [
+        "dim laptop screen",
+        "boutique consulting war room constraint",
+        "one named next step tied to member of the club"
+      ],
+      "mustAvoid": [
+        "Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "community arts board orientation",
+      "audience": "a reader facing community arts board orientation where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if community arts board orientation becomes another generic networking move",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Megan chooses one useful contribution before trying to prove they belong in front of folding agenda packet, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "folding agenda packet on the edge of community arts board orientation",
+      "mustInclude": [
+        "folding agenda packet",
+        "community arts board orientation constraint",
+        "one named next step tied to member of the club"
+      ],
+      "mustAvoid": [
+        "Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "law school clinic intake desk",
+      "audience": "a reader facing law school clinic intake desk where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if law school clinic intake desk becomes another generic networking move",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Camille chooses one useful contribution before trying to prove they belong in front of intake clipboard, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "intake clipboard on the edge of law school clinic intake desk",
+      "mustInclude": [
+        "intake clipboard",
+        "law school clinic intake desk constraint",
+        "one named next step tied to member of the club"
+      ],
+      "mustAvoid": [
+        "Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    },
+    {
+      "protagonistName": "Aanya",
+      "domain": "partner family holiday table",
+      "audience": "a reader facing partner family holiday table where relationship quality changes the practical outcome",
+      "stakes": "access, trust, or momentum can be lost if partner family holiday table becomes another generic networking move",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Aanya chooses one useful contribution before trying to prove they belong in front of roasting pan, so the lesson happens as a visible choice rather than as advice.",
+      "firstImage": "roasting pan on the edge of partner family holiday table",
+      "mustInclude": [
+        "roasting pan",
+        "partner family holiday table constraint",
+        "one named next step tied to member of the club"
+      ],
+      "mustAvoid": [
+        "Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+        "coffee-chat default scene",
+        "LinkedIn-only shortcut unless the domain requires it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish member of the club from Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+      "choose the visible action that performs: Turn outsider anxiety into a concrete practice of contribution before asking for belonging.",
+      "diagnose when a scenario drifts into Treating networking as shallow charm, access worship, or proof that competence does not matter.",
+      "evaluate whether a relationship move preserves care and specificity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real member of the club moment, identify one person, one concrete value you can offer, and one sentence that removes pressure from the exchange; do it in under 90 seconds before opening a new app.",
+  "readingTimeMinutes": 12
+}

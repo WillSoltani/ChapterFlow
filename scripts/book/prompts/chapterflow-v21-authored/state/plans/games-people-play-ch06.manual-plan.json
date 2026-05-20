@@ -1,0 +1,213 @@
+{
+  "chapterId": "games-people-play-ch06",
+  "number": 6,
+  "title": "Marital Games",
+  "coreMove": "See how a relationship game protects both partners from direct closeness by making the safer role feel unavoidable.",
+  "sourcePressure": "Covers Corner, Courtroom, If It Weren't For You, Look How Hard I've Tried, Sweetheart, and an unnamed intimacy-avoidance withdrawal variant in gender-neutral form.",
+  "chapterSpecificMisunderstanding": "Treating marital games as tricks one bad partner plays on an innocent other, instead of paired structures that preserve distance.",
+  "sourceAlignmentTerms": [
+    "Corner",
+    "Courtroom",
+    "If It Weren't For You",
+    "Look How Hard I've Tried",
+    "Sweetheart",
+    "intimacy avoidance",
+    "no winning move",
+    "third-party judgment"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "If It Weren't For You",
+      "detail": "the source says one partner blames restrictions on the other, while often choosing the restricting partner because the restriction protects them from trying and failing",
+      "useIn": "both",
+      "phrasingHint": "If It Weren't For You can turn a partner into the locked door the player quietly needed."
+    },
+    {
+      "kind": "artifact",
+      "name": "Courtroom",
+      "detail": "the source describes couples bringing disputes to a third party for judgment so the dispute can continue under the cover of seeking help",
+      "useIn": "deepRead",
+      "phrasingHint": "Courtroom sounds like a search for fairness until the verdict becomes fuel for the next hearing."
+    },
+    {
+      "kind": "artifact",
+      "name": "Sweetheart",
+      "detail": "the source names an affectionate-seeming public story whose punchline hides a veiled insult the partner cannot object to without seeming humorless",
+      "useIn": "fullRead",
+      "phrasingHint": "Sweetheart smiles while it delivers the little cut in front of witnesses."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a dictionary definition of the chapter term",
+      "starting with a generic tense meeting or argument",
+      "using 'Marital Games' as a visible setup phrase"
+    ],
+    "counterintuition": [
+      "X is not Y, it is Z correction shell",
+      "most people think communication is simple but it is complex",
+      "the real issue is hidden under the surface"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about your patterns",
+      "notice your feelings without specifying the transaction",
+      "ask yourself what matters most in this relationship"
+    ],
+    "examples": [
+      "generic office meeting with a slide deck",
+      "kitchen-table disagreement with no chapter-specific beat",
+      "therapy-room diagnosis unless this chapter specifically requires helping-role structure",
+      "protagonist silently realizes the lesson without a visible action"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Anna",
+      "domain": "shared renovation decision over flooring samples",
+      "audience": "a partner trapped in Corner where every choice proves selfishness or passivity",
+      "stakes": "the couple can avoid closeness by debating taste for a month",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Anna names the no-winning setup and asks for the actual shared constraint before choosing a sample.",
+      "firstImage": "Dust from the pulled-up hallway carpet sticks to six flooring samples.",
+      "mustInclude": [
+        "flooring samples",
+        "renovation budget note",
+        "blue painter tape"
+      ],
+      "mustAvoid": [
+        "kitchen argument shell",
+        "interior-design fluff"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "couples therapist intake after three friends have already judged the same fight",
+      "audience": "a partner pulling a third party into Courtroom for vindication",
+      "stakes": "therapy can become the next courtroom instead of contact",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Julien asks what would change if nobody declared a winner, exposing the judgment payoff.",
+      "firstImage": "\"Just tell us who was unreasonable,\" Julien says before taking off his coat.",
+      "mustInclude": [
+        "intake clipboard",
+        "two water glasses",
+        "therapist's wall clock"
+      ],
+      "mustAvoid": [
+        "therapy-room games from ch8",
+        "legal-court metaphor overload"
+      ]
+    },
+    {
+      "protagonistName": "Emily",
+      "domain": "career-change conversation before a nursing-school deadline",
+      "audience": "a spouse blaming the other for not applying while using that restriction as protection",
+      "stakes": "a life decision hides inside marital blame",
+      "format": "decision_point",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Emily sees that the application link has been open for six weeks and the alleged blocker is permission she never actually asked for.",
+      "firstImage": "It took Emily until the application deadline week to notice the browser tab was still open.",
+      "mustInclude": [
+        "application portal",
+        "shift calendar",
+        "tuition estimate"
+      ],
+      "mustAvoid": [
+        "generic follow-your-dreams",
+        "villain spouse"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "dinner party anecdote where affection carries a small public cut",
+      "audience": "a partner deciding whether to laugh along with Sweetheart or name it later",
+      "stakes": "public deniability protects stored grievance",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Henrik lets the room pass, then later quotes the exact punchline and asks what anger it carried.",
+      "firstImage": "Candle wax pools near the bread plate while everyone laughs half a beat too long.",
+      "mustInclude": [
+        "linen napkins",
+        "shared dessert plate",
+        "taxi receipt"
+      ],
+      "mustAvoid": [
+        "party games ch7 drift",
+        "generic rude joke"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "weekend childcare plan where visible effort replaces actual agreement",
+      "audience": "a parent performing Look How Hard I've Tried at an impossible plan",
+      "stakes": "one adult gets moral credit and the other remains abandoned",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Sophie separates effort display from workable care by asking for the one task that will actually happen by noon.",
+      "firstImage": "You can hear effort in the hallway before you can see whether anything changed.",
+      "mustInclude": [
+        "childcare rota",
+        "laundry basket",
+        "packed lunch containers"
+      ],
+      "mustAvoid": [
+        "domestic chore war",
+        "gendered assumptions"
+      ]
+    },
+    {
+      "protagonistName": "Pavel",
+      "domain": "long-distance relationship video call that always ends when closeness appears",
+      "audience": "a partner in an unnamed withdrawal variant using fatigue to dodge direct contact",
+      "stakes": "real tiredness and intimacy avoidance must be distinguished carefully",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Pavel asks for a specific time to continue instead of accusing avoidance, testing whether contact is being deferred or refused.",
+      "firstImage": "How do you tell fatigue from the pattern that borrows fatigue as a door?",
+      "mustInclude": [
+        "video-call freeze frame",
+        "time-zone converter",
+        "unopened voice note"
+      ],
+      "mustAvoid": [
+        "sex-withdrawal framing",
+        "mind-reading accusation"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify intimacy-avoidance function across named marital games",
+      "recognize no-winning Corner structures",
+      "distinguish public joking from Sweetheart",
+      "choose a move that refuses the structure without prosecuting the partner"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name the safer role a relationship argument keeps giving you: judge, defendant, rescuer, restricted one, martyr, or harmless joker.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct reader question, a research-limit aside, a second-person passage, or a brief historical reference to the source concept",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

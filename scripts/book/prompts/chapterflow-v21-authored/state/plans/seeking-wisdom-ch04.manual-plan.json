@@ -1,0 +1,186 @@
+{
+  "chapterId": "seeking-wisdom-ch04",
+  "number": 4,
+  "title": "Think Past the First Consequence",
+  "coreMove": "Follow a decision through reactions, delays, and displaced costs before accepting the first visible win.",
+  "sourcePressure": "The source says actions sit inside systems with intended and unintended consequences. Higher-order effects, reactions from other people, paying too much, pushing too fast, delayed effects, and many-path failure can make the first visible result misleading.",
+  "chapterSpecificMisunderstanding": "The weak version is vague long-term thinking. The chapter must show a visible chain: first effect, second response, delayed cost, displaced burden, then a better move.",
+  "sourceAlignmentTerms": [
+    "system",
+    "intended consequence",
+    "unintended consequence",
+    "higher-order consequence",
+    "reaction",
+    "delayed effect",
+    "paying too much",
+    "pushing too fast",
+    "displaced burden"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Think long term",
+      "Every action has consequences",
+      "The first win can hide the real loss"
+    ],
+    "counterintuition": [
+      "More speed is always better",
+      "Solving one problem creates another",
+      "Short term versus long term generic contrast"
+    ],
+    "tryThisNow": [
+      "Think of second-order effects",
+      "Ask what happens next",
+      "Map consequences"
+    ],
+    "examples": [
+      "generic product discount",
+      "generic policy backfire",
+      "office reorg",
+      "family budget shortcut"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "city scooter parking policy near a commuter rail station",
+      "audience": "Olivia, a transportation planner under pressure to clear sidewalks before Monday",
+      "stakes": "whether a quick ban moves the problem into wheelchair ramps and train exits",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Olivia walks the ban route at 7:40 a.m., marks where riders will drop scooters next, and changes the policy to add corrals before enforcement starts",
+      "firstImage": "a row of scooters leaning against a rain-dark rail-station wall",
+      "mustInclude": [
+        "Olivia",
+        "chalked scooter corral",
+        "commuter rail exit"
+      ],
+      "mustAvoid": [
+        "generic city hall debate",
+        "anti-scooter rant"
+      ]
+    },
+    {
+      "domain": "fisheries co-op negotiating a higher catch quota after a good season",
+      "audience": "Nicolas, a co-op analyst whose members want the immediate revenue bump",
+      "stakes": "whether first-year income damages next year's stock and the buyer relationship",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Nicolas asks the room to predict buyer response and stock response separately, then places both consequences on the same harbor map",
+      "firstImage": "What happens after the first full hold leaves the dock?",
+      "mustInclude": [
+        "Nicolas",
+        "harbor map",
+        "quota sheet"
+      ],
+      "mustAvoid": [
+        "generic environmental morality",
+        "spreadsheet-only scene"
+      ]
+    },
+    {
+      "domain": "SaaS sales team offering an aggressive annual discount to close quarter",
+      "audience": "Chiara, a revenue operations lead watching the deal desk celebrate",
+      "stakes": "whether a first-quarter win resets renewal expectations and traps support capacity",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Chiara adds renewal price, support hours, and competitor expectations under the discount line before approving the contract",
+      "firstImage": "At 5:18 p.m., Chiara sees the discount field flash red in the deal desk",
+      "mustInclude": [
+        "Chiara",
+        "discount approval field",
+        "renewal-price note"
+      ],
+      "mustAvoid": [
+        "generic sales bonus incentive scene from chapter 2",
+        "startup board forecast"
+      ]
+    },
+    {
+      "domain": "middle school cafeteria replacing hot lunch with faster grab-and-go meals",
+      "audience": "Yusuf, a district nutrition coordinator trying to reduce lunch lines",
+      "stakes": "whether shorter lines produce more wasted food and hungry students by last period",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Yusuf weighs the untouched packaged meals after dismissal and traces the first consequence of speed into the delayed consequence of afternoon nurse visits",
+      "firstImage": "cold plastic clamshells stacked beside a humming cafeteria scale",
+      "mustInclude": [
+        "Yusuf",
+        "cafeteria scale",
+        "nurse-visit log"
+      ],
+      "mustAvoid": [
+        "generic school cafeteria complaint",
+        "parent email pile"
+      ]
+    },
+    {
+      "domain": "warehouse automation rollout that speeds picking but jams packing",
+      "audience": "Daniel, an operations manager offered a vendor pilot before holiday peak",
+      "stakes": "whether improving one station shifts congestion and overtime into another",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Daniel follows one order ticket from robot pick to packing table and records where the saved minutes reappear as a queue",
+      "firstImage": "a bent order ticket taped to the side of a stalled packing chute",
+      "mustInclude": [
+        "Daniel",
+        "order ticket",
+        "packing queue counter"
+      ],
+      "mustAvoid": [
+        "generic automation panic",
+        "factory press-guard shell"
+      ]
+    },
+    {
+      "domain": "airline boarding experiment that boards window seats first",
+      "audience": "Ingrid, a gate supervisor testing a faster boarding script on a snowy evening",
+      "stakes": "whether a faster first scan creates overhead-bin fights and missed connections later",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Ingrid stops timing at door closure rather than last scanned pass, then rewrites the metric after seeing the bin conflict delay",
+      "firstImage": "\"We shaved six minutes,\" the gate agent says while a stroller blocks the jet bridge",
+      "mustInclude": [
+        "Ingrid",
+        "boarding timer",
+        "overhead-bin tag"
+      ],
+      "mustAvoid": [
+        "generic travel annoyance",
+        "customer-service rant"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "trace a decision beyond the first visible result",
+      "identify reactions from other people",
+      "spot delayed and displaced costs",
+      "choose action without becoming paralyzed by complexity"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "For one planned move, write the first result, the likely reaction from someone else, and the quiet cost that appears one week later.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

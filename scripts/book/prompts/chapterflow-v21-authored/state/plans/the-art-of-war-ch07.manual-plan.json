@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-art-of-war-ch07",
+  "number": 7,
+  "title": "Maneuvering",
+  "coreMove": "Turn detours, timing, signals, and restraint into advantage without exhausting the force that has to arrive.",
+  "sourcePressure": "The source warns that maneuvering is difficult, weighs forced marches of a hundred, fifty, and thirty li, insists on local guides, signals, mood, strength husbanding, and leaving an outlet for a surrounded foe.",
+  "chapterSpecificMisunderstanding": "Treating maneuver as simply moving fast or outworking the opponent.",
+  "sourceAlignmentTerms": [
+    "artifice of deviation",
+    "flying column",
+    "baggage-train",
+    "local guides",
+    "gongs and drums",
+    "banners and flags",
+    "studying moods",
+    "leave an outlet free"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "gongs and drums, banners and flags",
+      "detail": "The Book of Army Management is cited for using sound and sight to focus a large host where ordinary words and objects fail.",
+      "useIn": "both",
+      "phrasingHint": "When the group is too large for speech, design the signal before you blame the group."
+    },
+    {
+      "kind": "artifact",
+      "name": "the hundred li forced march",
+      "detail": "Forced marching a fully equipped army a hundred li for advantage leaves leaders captured and only a tenth arriving.",
+      "useIn": "deepRead",
+      "phrasingHint": "An advantage that arrives with one-tenth of your strength is not an advantage."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Rachel",
+      "domain": "film crew moving between remote shooting locations",
+      "audience": "line producer on a weather-limited shoot",
+      "stakes": "chasing golden-hour light could strand half the equipment",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 3:12 p.m., Rachel rejects the faster cliff road when the grip truck cannot make it with the camera crane.",
+      "firstImage": "a camera crane strapped to a truck bed",
+      "mustInclude": [
+        "weather window",
+        "road grade",
+        "permit cutoff"
+      ],
+      "mustAvoid": [
+        "generic media scramble"
+      ]
+    },
+    {
+      "protagonistName": "Matthew",
+      "domain": "disaster relief kitchen relocating after a bridge closure",
+      "audience": "field coordinator feeding evacuees",
+      "stakes": "moving fast without propane and water would create an empty kitchen",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The bridge barricade flashes red while Matthew sends scouts for water access before moving the kitchen trucks.",
+      "firstImage": "a red bridge barricade in rain",
+      "mustInclude": [
+        "propane tanks",
+        "water tap map",
+        "meal count"
+      ],
+      "mustAvoid": [
+        "heroic relief convoy"
+      ]
+    },
+    {
+      "protagonistName": "Margaux",
+      "domain": "software incident response across three time zones",
+      "audience": "incident commander during a payment outage",
+      "stakes": "uncoordinated fixes could corrupt transaction records",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "No one touches production until the signal changes, Margaux says, then replaces chat noise with one status color every engineer obeys.",
+      "firstImage": "a single red status tile on a wall screen",
+      "mustInclude": [
+        "rollback key",
+        "audit log",
+        "handoff schedule"
+      ],
+      "mustAvoid": [
+        "generic Slack firefight"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "competitive sailing team deciding whether to chase a wind shift",
+      "audience": "tactician in a coastal regatta",
+      "stakes": "a tempting shift could leave the boat without room at the mark",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What good is the faster line if it delivers you pinned under three boats?",
+      "firstImage": "salt spray over a laminated course chart",
+      "mustInclude": [
+        "tide table",
+        "mark rounding rule",
+        "crew weight"
+      ],
+      "mustAvoid": [
+        "sports speed cliche"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "regional blood bank routing donations during a highway pileup",
+      "audience": "logistics nurse coordinating mobile units",
+      "stakes": "blood units expire and hospitals need different types",
+      "format": "audit",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Ice packs crackle as Isabel reroutes units by hospital need rather than the shortest road on the map.",
+      "firstImage": "ice packs inside a transport cooler",
+      "mustInclude": [
+        "blood-type manifest",
+        "traffic closure",
+        "hospital call list"
+      ],
+      "mustAvoid": [
+        "generic hospital hallway"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "music festival crowd control after a stage delay",
+      "audience": "site operations lead",
+      "stakes": "a frustrated crowd could surge toward closed gates",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Akira open a side lawn, change the banner lights, and release the crowd's pressure without letting the blocked gate become the battle.",
+      "firstImage": "green banner lights above a side lawn",
+      "mustInclude": [
+        "gate clicker",
+        "stage delay notice",
+        "security radio"
+      ],
+      "mustAvoid": [
+        "generic event chaos"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "assess speed against arrival strength",
+      "choose signals for scale",
+      "know when restraint beats pursuit"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before rushing a team toward an opening, identify what must arrive with them: information, supplies, authority, and the signal everyone will follow.",
+  "readingTimeMinutes": 12
+}

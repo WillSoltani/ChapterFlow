@@ -1,0 +1,187 @@
+{
+  "chapterId": "the-like-switch-ch06",
+  "number": 6,
+  "title": "Building Closeness",
+  "coreMove": "Build closeness by finding real common ground and pacing self-disclosure so trust grows through mutual evidence.",
+  "sourcePressure": "The ch06 source centers common ground, reciprocal self-disclosure, and trust pacing. It warns that disclosure alone cannot create closeness if reciprocity is missing or similarity is forced.",
+  "chapterSpecificMisunderstanding": "Assuming closeness comes from telling more, faster, or inventing similarity to speed trust.",
+  "sourceAlignmentTerms": [
+    "common ground",
+    "self-disclosure",
+    "reciprocity",
+    "trust",
+    "closeness",
+    "similarity",
+    "pacing"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "common ground",
+      "detail": "The ch06 sidecar says common ground quickly establishes rapport when it is real.",
+      "useIn": "both",
+      "phrasingHint": "Common ground does not have to be dramatic; it has to be true enough that both people can stand on it."
+    },
+    {
+      "kind": "person",
+      "name": "Aristotle",
+      "detail": "The structured ch06 source sidecar lists Aristotle among proper nouns in the support bundle for similarity and friendship framing.",
+      "useIn": "fullRead",
+      "phrasingHint": "Older friendship thinking and modern rapport work meet on the same plain ground: likeness helps only when it is not faked."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Open up to get close",
+      "Find common ground",
+      "Vulnerability builds trust"
+    ],
+    "counterintuition": [
+      "more disclosure is not better",
+      "similarity can be fake"
+    ],
+    "tryThisNow": [
+      "share a secret with someone"
+    ],
+    "examples": [
+      "two coworkers discover same hobby",
+      "classmates bond over hometown",
+      "date overshares at dinner"
+    ]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a neighborhood emergency-preparedness team pairing an ex-firefighter with a software analyst",
+      "audience": "a team lead who needs trust across different backgrounds",
+      "stakes": "storm season starts in two weeks",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the lead finds real common ground in checklists and after-action notes before asking either person to share more personal history",
+      "firstImage": "cases of bottled water stacked beside a folding table",
+      "mustInclude": [
+        "bottled water cases",
+        "laminated route cards",
+        "battery tester"
+      ],
+      "mustAvoid": [
+        "disaster-relief roster repeat"
+      ]
+    },
+    {
+      "domain": "a language-exchange cafe where a confident speaker overwhelms a shy partner",
+      "audience": "a facilitator pacing disclosure between strangers",
+      "stakes": "one person may stop attending if every session feels exposed",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Let us trade one small mistake, not life stories,\" Olivia says, setting a disclosure size both partners can match",
+      "firstImage": [
+        "vocabulary cards",
+        "espresso spoon",
+        "table number"
+      ],
+      "mustInclude": [
+        "generic coffee shop flirtation"
+      ]
+    },
+    {
+      "domain": "a product-design research panel with parents of children using medical devices",
+      "audience": "a researcher who must build closeness without extracting pain",
+      "stakes": "rushed disclosure could feel like exploitation",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the researcher notices a real shared constraint around nighttime alarms and discloses only enough about the design team to invite reciprocal practical detail",
+      "firstImage": "a soft alarm chirp from a demo monitor",
+      "mustInclude": [
+        "demo monitor",
+        "consent form",
+        "sticky tabs"
+      ],
+      "mustAvoid": [
+        "hospital waiting room repeat"
+      ]
+    },
+    {
+      "domain": "a community garden conflict between longtime plot holders and new apartment residents",
+      "audience": "a volunteer mediator finding authentic similarity",
+      "stakes": "the garden board may split into old and new factions",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "it takes Antoine one failed icebreaker to stop forcing hobbies and ask each side what they are trying to protect in the soil",
+      "firstImage": "tomato twine tied to a splintered stake",
+      "mustInclude": [
+        "tomato twine",
+        "watering schedule",
+        "seed tray"
+      ],
+      "mustAvoid": [
+        "neighbor hallway small talk"
+      ]
+    },
+    {
+      "domain": "a jazz workshop pairing a classical pianist and a drummer",
+      "audience": "a workshop leader building trust through paced musical disclosure",
+      "stakes": "the duo will not improvise if one person feels exposed alone",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What happens when the pianist plays one imperfect phrase first and the drummer answers with one of his own?",
+      "firstImage": [
+        "practice room clock",
+        "lead sheet",
+        "snare brush"
+      ],
+      "mustInclude": [
+        "generic performance anxiety"
+      ]
+    },
+    {
+      "domain": "a remote compliance team onboarding a contractor in another country",
+      "audience": "a team lead who needs closeness across screens without pretending intimacy",
+      "stakes": "the contractor must report risks early instead of hiding confusion",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 10:06 a.m., Lin chooses a small work-process disclosure about a past checklist miss, then waits for the contractor to match at the same level",
+      "firstImage": "a shared screen paused on a redacted audit log",
+      "mustInclude": [
+        "audit log",
+        "video tile",
+        "time-zone note"
+      ],
+      "mustAvoid": [
+        "generic remote standup"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize authentic versus forced common ground",
+      "choose disclosure sized to earned trust",
+      "spot one-sided closeness",
+      "evaluate whether openness is mutual enough to deepen trust"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In one developing relationship, name one real shared constraint or interest, then share one modest detail at the same depth you would welcome in return.",
+  "readingTimeMinutes": 12,
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

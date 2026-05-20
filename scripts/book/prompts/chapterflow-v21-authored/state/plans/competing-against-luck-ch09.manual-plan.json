@@ -1,0 +1,124 @@
+{
+  "chapterId": "competing-against-luck-ch09",
+  "number": 9,
+  "title": "The Jobs-Focused Organization",
+  "coreMove": "Distinguish between an organization that speaks jobs language and one whose recurring decision pattern is actually governed by the job.",
+  "sourcePressure": "A company can learn Jobs Theory vocabulary, apply it in client intake conversations, and present with jobs language in strategy decks — while its recurring decisions are still governed by product categories, functional metrics, and internal convenience. The test is not what the organization says about the job. The test is what actually governs the choices when tradeoffs arise and pressure is on. An organization becomes jobs-focused when the job is the recurring standard decisions are routed back through — not when 'jobs to be done' appears in the mission statement.",
+  "chapterSpecificMisunderstanding": "Assuming that adopting Jobs Theory vocabulary in strategy conversations or training programs changes the decision-making logic of the organization — when the governing logic at decision points may still be product-centered, function-centered, or revenue-centered, with jobs language layered on top.",
+  "sourceAlignmentTerms": ["recurring", "anchored", "product-centered", "jobs language", "decision rights", "vocabulary", "governing", "standard", "orientation"],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Being customer-focused isn't enough — you have to be jobs-focused.",
+      "Language doesn't change behavior. Structure does.",
+      "Culture eats strategy for breakfast."
+    ],
+    "counterintuition": [
+      "Knowing the jobs framework can actually make you worse at serving customers.",
+      "The companies that talk about jobs the most are often the worst at doing it."
+    ],
+    "tryThisNow": [
+      "Audit your last ten decisions through a jobs lens.",
+      "Ask each department to explain their work in jobs language.",
+      "Review your strategy deck for jobs language."
+    ],
+    "examples": [
+      "any example that resolves the language-vs.-behavior gap through better training or a new framework rollout",
+      "examples where the problem is poor jobs understanding rather than jobs language coexisting with product-centered decision governance"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "openingDevicesPlanned": ["timestamp_named", "dialogue_first", "sensory_first", "retrospective", "second_person", "environmental"]
+  },
+  "exampleSpecs": [
+    {
+      "domain": "municipal emergency dispatch center",
+      "audience": "a dispatch director reviewing quarterly performance reports alongside community survey data",
+      "stakes": "whether Megan can show the leadership team that the organization is performing on its internal job while failing the community's job",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 3:22 p.m., Megan reviews quarterly data. Response time averages are down (positive). She opens a second report: community survey. Citizens in three zip codes are calling the non-emergency line in genuine emergencies because they cannot remember which number to use at 2 a.m. The center governs itself by internal response efficiency — the operational job. It does not govern itself by the community's job: reach the right help fast. The language says 'community-centered service.' The recurring decision record says 'internal metrics first.'",
+      "firstImage": "a quarterly performance report at 3:22 p.m., response time averages in green, a second dashboard still unopened below it",
+      "mustInclude": ["a response-time metric performing positively as the internal job signal", "a community survey showing 2 a.m. misdials to the non-emergency line as the community job failure", "a 'community-centered service' mission statement that doesn't match the decision record"],
+      "mustAvoid": ["'public agencies are bureaucratic' framing — the beat must show the language-vs.-decision-pattern gap specifically: the center says jobs language but governs by internal metrics, making the gap testable against the survey data"]
+    },
+    {
+      "domain": "urban planning department",
+      "audience": "a senior planner defending a mixed-use rezoning proposal in a meeting where every department has objected",
+      "stakes": "whether Julien can name the organizational logic governing the meeting before the proposal dies to departmental objections that are each individually correct",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "'Traffic won't support it.' 'Fire access is compromised.' 'We lose the greenspace buffer.' Every department is correct on its own metric. Every objection is internally coherent. Julien has to ask the question none of them has asked: 'What job is this neighborhood hiring the city to deliver here?' The answer — a safe, walkable block near the school — is not present in any department's objection. The organization speaks planning language. It is governed by departmental logic. The community's job has no vote.",
+      "firstImage": "'Traffic won't support it,' the first department head says, folder closed before Julien has finished the context slide",
+      "mustInclude": ["three department objections that are each individually defensible", "a school-proximity and walkability context that names the community's actual job", "Julien's decision: name the job or let the departmental logic govern"],
+      "mustAvoid": ["'planning departments have coordination problems' framing — the beat must show the specific gap: the organization speaks 'planning' language fluently but makes recurring decisions through departmental logic, with the community's job unrepresented in the governing standard"]
+    },
+    {
+      "domain": "independent insurance brokerage renewal process",
+      "audience": "a managing partner six months after deploying a jobs-centered client onboarding process",
+      "stakes": "whether Diego can see the language-vs.-behavior split before the next round of renewal conversations",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Diego's brokerage trained every broker on jobs-centered onboarding. Six months later, the renewal process looks the same as before the training. Renewal conversations open with product comparisons, not job re-confirmation questions. The decision rights for renewals stayed with the product team and the product team's compensation structure. Onboarding speaks jobs language. Renewals are governed by product logic. The training changed vocabulary; it did not change what governs the decisions.",
+      "firstImage": "a broker's desk, a renewal quote printout face-down beside the phone, the client file open to last year's policy, the room quiet before the call",
+      "mustInclude": ["a jobs-centered onboarding process that was sincerely implemented", "a renewal conversation that opens with product comparison rather than job re-confirmation", "a compensation or decision-rights structure that explains why the renewal process didn't change"],
+      "mustAvoid": ["'training doesn't change culture' generality — the beat must show the specific gap: decision rights for renewals stayed product-governed, so jobs language in onboarding and product logic in renewals can coexist — and name what would need to change for the governing standard to shift"]
+    },
+    {
+      "domain": "commercial printing company",
+      "audience": "a plant manager receiving a major client departure nine months after a jobs-language consulting engagement",
+      "stakes": "whether Henrik can trace the language-vs.-behavior gap that the client named in the exit interview",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The consulting engagement worked. Bid win rates improved. The front-end team speaks jobs language fluently. A major client departed nine months later. Exit interview: 'You talked about our job better than anyone. Then the proofs came back wrong three times and you made us prove it was your error.' The front end speaks jobs. The production floor still optimizes proof-cycle cost reduction. Jobs language governed the sale; product logic governed the production. The client experienced the production floor, not the sales conversation.",
+      "firstImage": "a client departure email on screen, a proof-correction invoice for the third rejected proof on the desk below it",
+      "mustInclude": ["a bid win rate improvement as the visible success from the consulting engagement", "a proof-correction process that created the failure — three rounds, dispute about error ownership", "the front-end/production-floor split as the specific language-vs.-decision governance gap"],
+      "mustAvoid": ["'quality control is separate from sales' framing — the beat must show the split between jobs language at the sales function and product-optimization logic at the production function as the structural governance failure, not a quality management problem"]
+    },
+    {
+      "domain": "sports scouting network",
+      "audience": "a scouting director deciding whether to impose five quantitative evaluation metrics across the network",
+      "stakes": "whether Kasia's standardization decision respects the job the scouting network is actually supposed to do",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You are reviewing two proposals: an analytics team proposal for five standard metrics across the network (makes reporting consistent and comparable) and a senior scout's objection. The scout says: 'Five metrics tell you who runs fastest. The job coaches hire scouts to do is: find the player who makes this specific roster better in this specific context. That's not in five numbers.' You have to decide whether the standardization serves the internal reporting job or the coaching job the network was built to deliver.",
+      "firstImage": "five metric names on a whiteboard in the scouting office, the second-person reader about to check or reject each one",
+      "mustInclude": ["five standard metrics as the internal reporting proposal", "a roster-context argument from the senior scout that names the actual job", "the governance question explicitly: which job governs the standardization decision?"],
+      "mustAvoid": ["'sports analytics vs. traditional scouting' framing — the beat must show the jobs-governance question: is the organization going to route this decision through the coaching job or through the internal reporting job?"]
+    },
+    {
+      "domain": "community arts center grants and volunteers",
+      "audience": "an executive director reviewing volunteer exit data six months after a successful rebrand",
+      "stakes": "whether Lin can see that the rebrand served the funder and audience jobs while leaving the volunteer job ungoverned",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "The rebrand worked for what it was aimed at. Program attendance improved. Grant applications improved. Volunteer retention fell. Exit interviews with departing volunteers: 'I didn't sign up to help the community connect creatively. I signed up because I wanted to make something with my hands.' The rebrand language served funders and audiences. The volunteer's job — make something physical, be the person who builds rather than the person who organizes — was never represented in the governing standard. An organization that becomes jobs-focused has to route decisions for every stakeholder through their job, not just the primary audience.",
+      "firstImage": "a ceramics studio, dried clay on work surfaces, volunteer sign-up sheets pinned to the wall beside tools on hooks — the room clean and empty",
+      "mustInclude": ["improved grant and attendance metrics as the rebrand success signals", "a volunteer exit interview quote that names the craft job (making something physical) the rebrand didn't serve", "the specific gap: funder and audience jobs were governed; volunteer job was not"],
+      "mustAvoid": ["'volunteer retention requires different approaches' framing — the beat must show the governance gap as a jobs-focus failure: the organization governed by two jobs (funder + audience) and left the third job (volunteer's craft) out of the governing standard"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish between 'this organization speaks jobs language' and 'this organization's decisions are governed by the job'",
+      "identify which job is actually governing a decision in a given scenario (internal, product-centered, functional, or buyer's job)",
+      "analyze a case where jobs vocabulary coexists with product-centered governance and name the specific place where the split is visible",
+      "apply the jobs-governance test to a proposed organizational change: does this change the governing standard or only the vocabulary?",
+      "evaluate whether an organization's recurring decision pattern qualifies as jobs-focused or is better described as jobs-literate"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name the last decision your organization made under time pressure. Write one sentence on what actually governed the decision — revenue, departmental metric, product roadmap, or the buyer's job. If you write something other than 'the buyer's job,' write a second sentence on what it would have cost the organization to route that decision through the job instead. That cost is what jobs-focused governance actually requires.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter that states the language-vs.-governance gap without softening it; at least one 5+ sentence paragraph that traces what a real jobs-governance standard looks like in a decision under pressure; at least one one-sentence punch line that names what distinguishes a jobs-focused organization from a jobs-literate one",
+    "fullReadInterludeRequirement": "at least one passage that takes the reader inside a real decision — not a hypothetical — where the jobs-governing standard was applied at cost, and shows what the organization had to give up to maintain it, without framing it as a success story or a cautionary tale",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

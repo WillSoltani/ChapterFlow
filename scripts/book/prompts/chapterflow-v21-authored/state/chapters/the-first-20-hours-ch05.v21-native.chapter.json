@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-first-20-hours-ch05",
+  "number": 5,
+  "title": "Programming",
+  "readingTimeMinutes": 12,
+  "hook": "Orange expiry stickers beside a copied sheet make programming smaller than the word sounds.",
+  "counterintuition": "Abstract confidence looks like progress; the real test arrives when code can run and fail in public.",
+  "tryThisNow": "Write the smallest technical output your project could produce today, plus the first thing that might fail when you run it.",
+  "keyTakeaway": "A technical skill becomes learnable when you break it into one runnable slice, run it on a real problem, and let the first error guide the next fix.",
+  "breakdown": {
+    "fastRead": "Orange expiry stickers sit beside a duplicated pharmacy inventory sheet while Thomas writes one tiny script. It does one job: flag dates older than today. The first run fails because two cells use a different date format. That failure is the lesson.\n\nProgramming starts teaching when the idea becomes a small thing that runs, breaks, and points to the next fix. The beginner does not need the whole field before touching the keyboard. The beginner needs a real problem, a small output, and enough breakdown that the error can speak clearly.",
+    "deepRead": "Ingrid printed ten sensor rows and circled one impossible minus sign. Progress began when she stopped comparing libraries and wrote a tiny temperature filter against those ugly rows. The grant report did not need a data-science identity. It needed the impossible readings removed in a way she could test.\n\nThe run button is a teacher with no patience for fantasy.\n\nProgramming is a breakdown-heavy skill because programming hides smaller jobs inside every vague goal. Read the file. Parse the date. Find the bad row. Print the answer. Handle the weird comma. Each small job can run or fail. That is what makes the skill frightening and useful. The machine will not reward the feeling of understanding. It only responds to what the code actually does.\n\nDavid learns this at the community theatre box office. Opening night check-in depends on a ticket CSV import, and the laptop is balanced on playbills. He asks which field must work first. Seat number. He writes the smallest parser for that field, and the rejected comma line becomes the next bug.\n\nA good error narrows the world.\n\nThe small program should leave evidence. A clean run, a red error, a bad row, a wrong time zone: each one tells the learner what the next change must touch.",
+    "fullRead": "At 8:05 a.m., Paula looks at the laminated feeding chart clipped to one wildlife enclosure. Orphaned animals have missed interval checks when paper notes get buried under towels and supply lists. The whole rescue schedule could become software sprawl in an instant: users, dashboards, histories, species settings, reminders, reports. Paula chooses one enclosure, one feeding interval, one test message to her own phone.\n\nThe first test fires an hour late. Wrong time zone. That small failure is better than a beautiful plan because it gives her the next change. She fixes the zone, sends another message, and only then earns the right to ask what feature comes second.\n\nA real problem gives the lesson teeth because the code either changes the output or it does not. That is real-problem iteration in its plainest form. That is why endless research becomes dangerous in technical learning. Reading can answer vocabulary questions and prevent needless confusion, but after a point it starts protecting the learner from the one fact that matters: the program does not run yet.\n\nWhat is the smallest output that would make your technical project honest? A flagged date. A cleaned row. One imported seat number. One reminder text. One normalized archive filename. If you cannot name the output, you are probably still practicing the feeling of preparation.\n\nBen sees the trap in the newspaper archive. Twelve scanned filenames glow in a narrow search pane, and reporters keep losing time because dates sort incorrectly. Ben predicts more regex reading will solve it. Then he runs one date-normalizer against the twelve names and watches two files fall out of order. The failed sort check tells him more than the article did, because the article could not see his actual filenames.\n\nConcepts still matter. A learner who refuses concepts will create a different kind of fog. But concepts should arrive close enough to execution that they have somewhere to land. Date parsing matters when a date breaks. CSV rules matter when a comma rejects a line. Functions matter when Kiran's baggage-desk macro needs one ID-check that catches duplicate damage forms before angry passenger calls start by noon.\n\nKiran stops studying macro syntax broadly and runs one ID-check function on yesterday's forms. It misses one duplicate because the claim ID has a space at the end. That is not a humiliation. It is the exact next fix. Trim the input. Run again. Read the output. Repeat.\n\nThe technical learner earns confidence by making the work falsifiable. A runnable slice can disappoint you, but it can also teach you. A vague study plan can do neither.\n\nCut the problem until the terminal, spreadsheet, macro, or parser can answer back.\n\nThat is why the first runnable tool should stay close to the user who needs it. The closer the error sits to a real form, order, ticket, or claim, the less likely the learner is to turn practice back into theory."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-thomas-expiry-script",
+      "title": "Thomas Runs the Expiry Flag First",
+      "tags": [
+        "pharmacy",
+        "spreadsheet",
+        "script"
+      ],
+      "planSpec": {
+        "domain": "pharmacy inventory spreadsheet automation",
+        "audience": "a workplace learner with one repetitive technical problem",
+        "stakes": "expired stock counts are being copied by hand every Friday",
+        "format": "scene",
+        "requiredBeat": "Thomas reduces the project to one script that flags dates older than today, runs it on a copied sheet, reads the first error, and fixes only that input format"
+      },
+      "scenario": "Orange expiry stickers stack beside a duplicated inventory sheet in the pharmacy office at 7:35 a.m. Thomas wants to automate the whole Friday count, but the copied sheet is waiting with dates in two formats. He writes one script to flag dates older than today, runs it, and sees the first error point to a slash-formatted cell. Before opening the full project plan, he must decide now: whole-system planning or that one input format. The pharmacy manager needs the old-date list before the noon stock check.",
+      "whatToDo": "Keep the script to one date flag, run it on the copied sheet, and fix only the input format named by the first error.",
+      "whyItMatters": "The copied sheet makes the lesson real. A narrow error teaches Thomas what the next line of code must handle."
+    },
+    {
+      "exampleId": "ch05-ex02-ingrid-sensor-filter",
+      "title": "Ingrid Stops Comparing Libraries",
+      "tags": [
+        "lab",
+        "data cleanup",
+        "filter"
+      ],
+      "planSpec": {
+        "domain": "university lab sensor-data cleanup",
+        "audience": "a research assistant who keeps reading libraries instead of testing data",
+        "stakes": "a grant report depends on removing impossible temperature readings",
+        "format": "postmortem",
+        "requiredBeat": "Ingrid sees that progress began when she stopped comparing libraries and wrote a tiny filter against ten ugly sensor rows"
+      },
+      "scenario": "It took Ingrid six tabs to realize the ten sensor rows were the curriculum. One impossible minus sign was circled on the printout, and the grant report needed those readings cleaned before Friday. Progress began when she stopped comparing libraries, wrote a tiny temperature filter against the ten rows, and watched the output remove the ugly values without touching the rest. The dispatch supervisor watches because one wrong comma will send the driver to the wrong dock.",
+      "whatToDo": "Close the library comparison, write the smallest temperature filter, and run it against the ten messy rows until the output matches the grant need.",
+      "whyItMatters": "The real rows expose the right problem. Library research becomes useful only after Ingrid knows what the filter must actually remove."
+    },
+    {
+      "exampleId": "ch05-ex03-david-seat-parser",
+      "title": "David Lets the Comma Break the Parser",
+      "tags": [
+        "theatre",
+        "CSV",
+        "parser"
+      ],
+      "planSpec": {
+        "domain": "community theatre ticket CSV import",
+        "audience": "a volunteer solving a real event problem under a deadline",
+        "stakes": "opening night check-in fails if the ticket list cannot load",
+        "format": "dialogue",
+        "requiredBeat": "David asks what one field must import first, writes the smallest parser for seat number, and lets the rejected comma line reveal the next bug"
+      },
+      "scenario": "\"What field has to work first?\" David asks, the box-office laptop balanced on a stack of playbills. \"Seat number,\" the stage manager says. Opening night is tomorrow, and the CSV import fails on row nineteen. After a rejected comma line flashes red, David has to choose: database design later or the seat-number parser now. The theatre lobby printer is already warming up behind the ticket table.",
+      "whatToDo": "Import seat number first, run the smallest parser, and let the rejected comma line define the next bug before adding fields.",
+      "whyItMatters": "Opening night needs the list to load, not a complete system design. The comma bug turns the real file into the teacher."
+    },
+    {
+      "exampleId": "ch05-ex04-paula-sms-rule",
+      "title": "Paula Tests One Reminder Before Adding Features",
+      "tags": [
+        "wildlife rescue",
+        "SMS",
+        "debugging"
+      ],
+      "planSpec": {
+        "domain": "wildlife rescue volunteer building a feeding-reminder SMS rule",
+        "audience": "a reader who needs code tied to a visible service result",
+        "stakes": "orphaned animals miss interval checks when paper notes get buried",
+        "format": "decision_point",
+        "requiredBeat": "Paula chooses one reminder rule for one enclosure, sends a test message to herself, and debugs the wrong time zone before adding any other feature"
+      },
+      "scenario": "At 8:05 a.m., Paula clips a laminated feeding chart to one wire enclosure door and opens the reminder file. The rescue needs many features, but one enclosure has missed two interval checks. She sends a test message to herself, and it arrives one hour late. Before the volunteer shift starts, Paula must decide now: add feature ideas or debug the wrong time zone. The shelter coordinator checks one enclosure while the reminder delay is still visible.",
+      "whatToDo": "Choose one enclosure, send one reminder to yourself, fix the time zone bug, and delay every other feature until the message arrives correctly.",
+      "whyItMatters": "The test message ties code to the feeding problem. The wrong time zone is not a side issue; it is the next visible failure."
+    },
+    {
+      "exampleId": "ch05-ex05-ben-date-normalizer",
+      "title": "Ben Runs the Archive Names",
+      "tags": [
+        "archive",
+        "search",
+        "dates"
+      ],
+      "planSpec": {
+        "domain": "local newspaper archive search cleanup",
+        "audience": "a learner turning curiosity into one executable tool",
+        "stakes": "reporters waste hours because scanned article dates sort incorrectly",
+        "format": "predict_reveal",
+        "requiredBeat": "Ben predicts more regex reading will solve it, then learns faster by running one date-normalizer against twelve bad archive filenames"
+      },
+      "scenario": "Which teaches the date problem faster for Ben in the archive lab, a regex guide or twelve bad filenames? Ben studies the narrow search pane as scanned archive names glow in the wrong order. He predicts one more article will make the pattern click. After two names still sort badly, Ben must decide now: keep reading or let the failed sort check name the next fix. The file list stays on screen so the wrong order cannot become a vague feeling.",
+      "whatToDo": "Run the date-normalizer against the twelve filenames, inspect the two that still sort badly, and fix that exact pattern next.",
+      "whyItMatters": "The archive filenames are the real problem. A failed sort check gives Ben a sharper next step than more general regex confidence."
+    },
+    {
+      "exampleId": "ch05-ex06-kiran-id-check",
+      "title": "Kiran Finds the Duplicate With a Trailing Space",
+      "tags": [
+        "airport",
+        "macro",
+        "forms"
+      ],
+      "planSpec": {
+        "domain": "airport baggage desk macro for damage-form IDs",
+        "audience": "a reader whose technical problem is small but costly",
+        "stakes": "duplicate claim IDs create angry passenger calls by noon",
+        "format": "before_after",
+        "requiredBeat": "Kiran stops studying macro syntax broadly, builds one ID-check function, runs it on yesterday's forms, and fixes the one duplicate case it misses"
+      },
+      "scenario": "Kiran scans yesterday's claim IDs beside a torn suitcase handle and a stack of damage forms at the airport baggage counter. Before, he studied macro syntax and still missed duplicates by noon. After building one ID-check function, he runs the forms and finds the missed duplicate: a trailing space at the end of the ID. Before the next passenger call, he has to choose between broader macro study and fixing that one visible miss. The baggage lead has the duplicate form in hand, which keeps the bug tied to a real claim.",
+      "whatToDo": "Run one ID-check function on yesterday's forms, inspect the missed duplicate, and fix the trailing-space case before adding any macro features.",
+      "whyItMatters": "The duplicate case gives the macro a real standard. Broad syntax study did not show the exact input that broke the desk's workflow."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A clinic coordinator wants to automate appointment reminders. She starts by designing roles, dashboards, and reports before any message sends. What should she do first?",
+        "choices": [
+          "Send one test reminder for one appointment type and read the first failure.",
+          "Finish the dashboard plan so future features are easier to add.",
+          "Study software architecture until the whole system feels clear."
+        ],
+        "correctIndex": 0,
+        "explanation": "One test message creates a runnable slice. Dashboards and architecture may matter later, but they delay the output that can reveal the first bug.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A school office assistant needs to flag duplicate student IDs in a spreadsheet. Which practice loop best fits technical skill learning?",
+        "choices": [
+          "Watch a long course on spreadsheet automation before opening the student file.",
+          "Copy ten rows, write one duplicate-ID check, run it, and fix the first input it misses.",
+          "Ask someone else to build the tool so the office avoids mistakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The copied rows and duplicate check give the learner a real output and a real error. Watching or outsourcing avoids the run-fix loop.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A volunteer wants to import race registrations from a CSV. The full file has twenty fields, but check-in only needs bib number today. What is the strongest next step?",
+        "choices": [
+          "Write the smallest bib-number importer and let the rejected rows name the next bug.",
+          "Read CSV documentation until edge cases are fully understood.",
+          "Build the full database so every field has a proper home."
+        ],
+        "correctIndex": 0,
+        "explanation": "Bib number is the useful slice for today. Rejected rows make the next fix concrete, while full design and broad reading postpone the working import.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A data trainee runs a filter and gets an error about date format. She feels embarrassed and wants to return to tutorials. What is the better interpretation?",
+        "choices": [
+          "The error is less useful than a clean tutorial because it interrupts confidence.",
+          "The error proves she skipped too much theory and should stop running code.",
+          "The error is feedback from the real data and should guide the next fix."
+        ],
+        "correctIndex": 2,
+        "explanation": "The date error is the practice loop working. Returning to tutorials can become escape if it avoids the exact input the code must handle.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A museum archivist is learning to rename photo files. She has read naming conventions for two hours but has not run a script. What output should she define?",
+        "choices": [
+          "One script that renames twelve copied files and prints the before-after list.",
+          "A written summary of the naming conventions she agrees with.",
+          "A plan for every collection type the museum may digitize later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The copied-file rename creates an output that can be checked. Summaries and broad plans keep the work conceptual.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A repair cafe volunteer wants to learn microcontroller programming. He starts with a simple LED blink, but the board does not respond. What should happen next?",
+        "choices": [
+          "Abandon the tiny project because it is too simple to teach real programming.",
+          "Add sensors and buttons so the project feels more realistic.",
+          "Read the error, check power and pin settings, and make the simple output work before adding parts."
+        ],
+        "correctIndex": 2,
+        "explanation": "The simple output is valuable because it can fail clearly. Adding parts hides the bug, while abandoning the slice throws away useful feedback.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A learner finishes three JavaScript tutorials and can explain loops, arrays, and functions, but freezes when asked to build a tiny lost-luggage duplicate checker for tomorrow's desk shift. Which diagnosis best fits this approach?",
+        "choices": [
+          "The learner needs to watch more tutorials until confidence rises.",
+          "The concepts have not been forced into a runnable slice with output, error, and debugging.",
+          "Programming is mainly memorization, so building too soon is the problem."
+        ],
+        "correctIndex": 1,
+        "explanation": "Understanding has to meet execution. A runnable slice shows what the learner can actually make the machine do.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A newsroom intern normalizes article dates from twelve filenames. Two still sort incorrectly. Why is that better than more reading?",
+        "choices": [
+          "It creates pressure, which makes technical learners more disciplined.",
+          "It identifies the exact remaining pattern the code cannot handle yet.",
+          "It proves the learner already understands the main concept."
+        ],
+        "correctIndex": 1,
+        "explanation": "The failed sort check names the next bug. More reading may be useful after the pattern is visible, but the run made the problem specific.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "You have twenty minutes to practice automation before a baggage-counter shift. Which last practice move best fits runnable-slice learning?",
+        "choices": [
+          "Read one more scripting overview so the whole language feels less strange.",
+          "Sketch the future full system, including every report it may handle later.",
+          "Run one tiny duplicate-ID function on real forms and fix the first miss."
+        ],
+        "correctIndex": 2,
+        "explanation": "A tiny runnable slice gives the learner a real error to debug. More overview or system sketching may feel useful, but neither makes the next line of code answer back.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A technical skill feels huge. What is the first slice you should look for?",
+      "back": "Find the smallest output that can run on a real problem: one flag, one cleaned row, one import, one message, one check.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can an error be useful in early programming practice?",
+      "back": "A real error names the next fix. It turns vague study into a specific input, format, line, or assumption that needs correction.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "When does research become delay in a technical skill?",
+      "back": "Research becomes delay when it keeps the learner from running a small output and seeing what breaks in the real problem.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What makes a runnable slice stronger than a broad technical plan?",
+      "back": "A runnable slice can be judged by output. A broad plan may feel intelligent while hiding whether the code handles the real data or workflow.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How should concepts and execution relate in programming practice?",
+      "back": "Concepts should arrive close to the bug or output they help explain. Execution gives them a place to land and a reason to stick.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Turn a technical goal into one runnable slice. The aim is to create an output small enough to run today and honest enough to fail in a useful way.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a technical work goal keeps expanding, then reduce it to one output tied to one current file, form, or report."
+      },
+      {
+        "context": "school",
+        "plan": "If a tutorial feels clear, then pause and build the smallest version without looking before watching more."
+      },
+      {
+        "context": "volunteering",
+        "plan": "If a service workflow needs automation, then test one message, import, or flag before designing the whole system."
+      },
+      {
+        "context": "personal project",
+        "plan": "If planning feels safer than coding, then write one line of output and use the first error as the next assignment."
+      }
+    ],
+    "twentyFourHourChallenge": "Write the smallest technical output your current learning project could produce today, plus the first thing that could fail when you run it.",
+    "weeklyPractice": "Once this week, review a technical learning block and mark the exact output, error, and fix. If one is missing, shrink the next block.",
+    "title": "Build One Runnable Slice"
+  },
+  "memorableLines": [
+    {
+      "text": "Programming starts teaching when the idea becomes a small thing that runs, breaks, and points to the next fix.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the source-specific programming lesson in one concrete sequence."
+    },
+    {
+      "text": "A good error narrows the world.",
+      "location": "breakdown.deepRead",
+      "why": "It reframes debugging as focus rather than failure."
+    },
+    {
+      "text": "Cut the problem until the terminal, spreadsheet, macro, or parser can answer back.",
+      "location": "breakdown.fullRead",
+      "why": "It gives technical learners a practical standard for shrinking the next attempt."
+    }
+  ]
+}

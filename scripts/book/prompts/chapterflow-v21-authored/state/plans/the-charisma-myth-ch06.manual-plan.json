@@ -1,0 +1,92 @@
+{
+  "chapterId": "the-charisma-myth-ch06",
+  "number": 6,
+  "title": "Different Charisma Styles",
+  "coreMove": "Choose the balance of presence, power, and warmth that fits the room instead of forcing one charisma mold.",
+  "sourcePressure": "The source distinguishes multiple workable charisma styles after mental-state preparation, best treated as different balances of the triad rather than rigid types.",
+  "chapterSpecificMisunderstanding": "The weak version turns styles into a personality quiz or celebrity costume. The useful version makes style a room-fit decision.",
+  "sourceAlignmentTerms": ["style", "balance", "presence", "power", "warmth", "room-fit", "congruence", "mold"],
+  "forbiddenFrames": {
+    "hook": ["There is more than one kind of charisma", "Find your charisma style", "Do not copy someone else"],
+    "counterintuition": ["Authenticity beats style", "Any style can work", "Style is strategy"],
+    "tryThisNow": ["Pick your style", "Ask a friend how you come across", "Try a different persona"],
+    "examples": ["celebrity style comparison", "personality-type quiz", "brand archetype workshop", "generic leadership style"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a venture diligence call where a biotech founder must brief skeptical clinicians",
+      "audience": "a technical founder who defaults to dense authority",
+      "stakes": "whether clinicians believe the trial design without feeling steamrolled",
+      "format": "decision_point",
+      "requiredBeat": "she chooses a focused authority style for the data table, then deliberately adds warmth when asking about patient burden",
+      "firstImage": "a trial-flow diagram open beside a muted video tile",
+      "mustInclude": ["endpoint table", "patient burden question", "mute icon"],
+      "mustAvoid": ["startup pitch scene", "presentation chapter"]
+    },
+    {
+      "domain": "an aquarium diver safety briefing for a glass-tunnel feeding show",
+      "audience": "a performer-educator who must reassure families and direct staff",
+      "stakes": "whether the public sees calm control while the crew follows exact instructions",
+      "format": "scene",
+      "requiredBeat": "she shifts from warm visitor greeting to crisp crew commands at the tank hatch without making either feel fake",
+      "firstImage": "a mesh bag of squid clipped beside a dive slate",
+      "mustInclude": ["tank hatch", "visitor glass", "air check"],
+      "mustAvoid": ["animal spectacle", "crisis rescue"]
+    },
+    {
+      "domain": "a labor ward charge nurse assigning rooms during a full overnight shift",
+      "audience": "a coordinator who needs command without losing tenderness",
+      "stakes": "whether anxious families and tired staff both trust the flow",
+      "format": "dialogue",
+      "requiredBeat": "she uses direct orders at the board, then softens her face before stepping into the waiting area to explain the delay",
+      "firstImage": "a dry-erase bed board crowded with colored magnets",
+      "mustInclude": ["triage bell", "bassinet tag", "staff break sheet"],
+      "mustAvoid": ["medical crisis", "generic manager staffing"]
+    },
+    {
+      "domain": "a public-radio host interviewing a grieving scientist about a destroyed observatory",
+      "audience": "a communicator who must choose between gravity and comfort",
+      "stakes": "whether the interview honors loss while staying useful for listeners",
+      "format": "vignette",
+      "requiredBeat": "the host chooses a quiet presence style, drops the clever transition, and lets the first question hold both expertise and sorrow",
+      "firstImage": "a red on-air light glowing above a marked-up guest card",
+      "mustInclude": ["station clock", "spectrogram printout", "producer hand signal"],
+      "mustAvoid": ["podcast banter", "media training"]
+    },
+    {
+      "domain": "a craft-market stall where a ceramicist must handle browsing tourists and a serious gallery buyer",
+      "audience": "a small maker who needs flexible signal balance",
+      "stakes": "whether she stays approachable without cheapening a major commission conversation",
+      "format": "before_after",
+      "requiredBeat": "contrast her same chatty mode for everyone with the adjusted moment where she keeps warmth but adds quieter weight for the buyer's questions",
+      "firstImage": "a porcelain bowl resting on a square of dark felt",
+      "mustInclude": ["price tag", "kiln note", "gallery card"],
+      "mustAvoid": ["sales charm", "artisan romance"]
+    },
+    {
+      "domain": "a municipal engineer walking a sinkhole site with residents and contractors",
+      "audience": "a practical expert who must move between reassurance and command",
+      "stakes": "whether residents stay back from the hazard while contractors act fast",
+      "format": "predict_reveal",
+      "requiredBeat": "he predicts the residents need warmth first and the crew needs power first, then changes his stance and wording for each group at the barrier",
+      "firstImage": "a spray-painted circle around a cracked stretch of asphalt",
+      "mustInclude": ["survey stake", "temporary barrier", "utility markout"],
+      "mustAvoid": ["disaster response", "public hearing"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "match charisma balance to room needs",
+      "avoid confusing style choice with fake persona",
+      "analyze when a style needs more warmth, power, or presence",
+      "evaluate congruence across audience shifts"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For one upcoming interaction, write the room's likely need in three words: more steadiness, more warmth, or more credibility.",
+  "readingTimeMinutes": 12
+}

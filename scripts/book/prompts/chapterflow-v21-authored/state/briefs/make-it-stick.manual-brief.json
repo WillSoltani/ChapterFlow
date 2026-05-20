@@ -1,0 +1,101 @@
+{
+  "bookId": "make-it-stick",
+  "title": "Make It Stick",
+  "author": "Peter C. Brown; Henry L. Roediger III; Mark A. McDaniel",
+  "thesisParagraph": "Make It Stick argues that durable learning is built by practices that often feel less fluent in the moment: retrieving instead of rereading, spacing instead of cramming, mixing related skills instead of blocking them, generating answers before being shown, checking confidence against performance, and treating setbacks as repair signals. The book’s core discipline is to stop judging learning by immediate ease and start judging it by what can be recalled, explained, selected, and used later under changed conditions.",
+  "coreIdeas": [
+    {
+      "name": "Fluency is a weak signal",
+      "oneSentence": "Material that feels familiar while it is still visible may not be available later.",
+      "mentalMove": "Close the source and make knowledge prove itself through recall, explanation, or transfer.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Retrieval builds access",
+      "oneSentence": "Trying to pull knowledge from memory strengthens later retrieval and exposes what needs repair.",
+      "mentalMove": "Use low-stakes recall, check the answer, fix the miss, and retrieve again.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Practice must train selection",
+      "oneSentence": "Blocked repetition can polish one move while leaving the learner unable to choose the right move later.",
+      "mentalMove": "Mix related cases so the learner has to discriminate before acting.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Difficulty needs a job",
+      "oneSentence": "A difficulty is desirable only when it drives retrieval, generation, variation, correction, or recovery.",
+      "mentalMove": "Ask what the hard part makes learning do before keeping it.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Ability can be expanded with method",
+      "oneSentence": "Belief helps when it keeps the learner in deliberate practice with feedback and usable cues.",
+      "mentalMove": "Convert an ability label into a specific practice loop with feedback.",
+      "sourceAnchors": [
+        "ch06.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "A system beats a tactic",
+      "oneSentence": "The strongest learning comes when retrieval, spacing, interleaving, calibration, and repair repeat together.",
+      "mentalMove": "Build a weekly loop that returns to material, mixes cases, tests honestly, and repairs weak spots.",
+      "sourceAnchors": [
+        "ch08.source"
+      ]
+    }
+  ],
+  "targetReader": "Students, teachers, trainers, professionals, and lifelong learners who already work hard but often trust the wrong evidence of progress: notes that look familiar, practice that feels smooth, and confidence that has not yet survived recall.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "separate useful friction from pointless strain",
+      "make research feel like pressure on a real decision"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no blanket claims that hard is always better"
+    ]
+  },
+  "voiceSpecimens": [
+    "The page can feel friendly because it is doing half the remembering for you.",
+    "A missed answer is not a verdict yet. It becomes useful when you repair it and make memory try again.",
+    "Blocked practice is a clean room with the labels still on the shelves. Real use starts after the labels disappear.",
+    "The hard part has to earn its place. If it does not make you retrieve, choose, generate, or correct, it is just noise.",
+    "A style preference can tell you what you like. It cannot tell you what the material demands.",
+    "Do not ask whether you studied long enough. Ask what you can still do when the help is gone."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explores the fascinating science behind how learners can optimize their outcomes.",
+    "In today’s fast-paced world, everyone needs to unlock their potential through better habits.",
+    "The authors argue that students should stop rereading and embrace evidence-based strategies.",
+    "Try setting a timer, reflecting on your goals, and committing to a growth mindset.",
+    "Learning is a journey, and every challenge is an opportunity to become your best self."
+  ],
+  "teachingArc": "The arc starts by breaking the false scorecard of easy-feeling study, then installs retrieval as the first replacement practice. It next teaches how to arrange practice for discrimination, how to identify productive difficulty, how to calibrate confidence, how to reject simplistic style labels without ignoring learner differences, how to treat ability as trainable within real constraints, and finally how to combine the methods into a repeatable system.",
+  "forbiddenMoves": [
+    "Do not turn the book into generic anti-rereading advice; every method must be judged by durability, transfer, and calibration.",
+    "Do not worship struggle; distinguish desirable difficulty from confusion, overload, and errors without repair.",
+    "Do not invent named studies or anecdotes when the source only supports a principle.",
+    "Do not use the same student-at-desk shell across chapters.",
+    "Do not make learning styles correction sound like learner differences do not matter."
+  ]
+}

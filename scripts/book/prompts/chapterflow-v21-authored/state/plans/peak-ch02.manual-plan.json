@@ -1,0 +1,189 @@
+{
+  "chapterId": "peak-ch02",
+  "number": 2,
+  "title": "Harnessing Adaptability",
+  "coreMove": "Diagnose what a training demand is actually teaching before trusting strain as improvement.",
+  "sourcePressure": "The chapter explains that bodies and minds adapt under repeated demand, so apparent limits can move, but the adaptation follows the training pattern whether useful or harmful. Frozen sidecar for chapter 2 contains no traceable named figure, study, place, date, or artifact beyond the authors and chapter mechanism; sourceAnchors stays empty rather than inventing one.",
+  "chapterSpecificMisunderstanding": "The weak version says discomfort proves growth and limits are just mindset errors.",
+  "sourceAlignmentTerms": [
+    "adaptability",
+    "adaptation",
+    "training demand",
+    "capacity",
+    "limit",
+    "misadaptation",
+    "recovery"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "rock climber on a hard hold from old Peak draft",
+      "pain equals growth opener",
+      "body as limitless machine"
+    ],
+    "counterintuition": [
+      "strain is always useful",
+      "you can adapt to anything",
+      "rest is weakness"
+    ],
+    "tryThisNow": [
+      "push harder for one minute",
+      "do something uncomfortable",
+      "test your limits"
+    ],
+    "examples": [
+      "runner adding mileage with bad form from old modern package",
+      "language lab easy phrases from old package",
+      "generic gym plateau"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "ceramics studio centering clay on a wheel",
+      "audience": "a beginner who confuses sore wrists with progress",
+      "stakes": "bad hand pressure is becoming the normal feel before she notices it",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Claire stops after three collapsed bowls, checks the wobble line in the clay wall, lowers the wheel speed, and trains one centered pull instead of forcing more ruined bowls",
+      "firstImage": "wet clay slapping unevenly against the heel of a hand",
+      "mustInclude": [
+        "wobble line",
+        "wheel speed lever",
+        "collapsed bowls"
+      ],
+      "mustAvoid": [
+        "generic art patience",
+        "pain-as-progress"
+      ]
+    },
+    {
+      "protagonistName": "David",
+      "domain": "pharmacy technician dosage-label accuracy under timed drills",
+      "audience": "a trainee who thinks speed drills are helping because they feel intense",
+      "stakes": "rushing labels could make the wrong dose feel fluent",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 2:42 p.m., David compares the error log, sees that every timed drill trains abbreviation slips, and switches to a slower demand: five perfect labels before speed returns",
+      "firstImage": "orange prescription labels curling from a printer tray",
+      "mustInclude": [
+        "error log",
+        "five perfect labels",
+        "abbreviation slips"
+      ],
+      "mustAvoid": [
+        "dosing cup shell",
+        "generic medical caution"
+      ]
+    },
+    {
+      "protagonistName": "Sophie",
+      "domain": "choir breath-control work for a long phrase",
+      "audience": "a singer who keeps singing louder when the phrase thins out",
+      "stakes": "the choir section is adapting to neck tension instead of supported breath",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Sophie asks the section to sing the phrase at half volume with hands on ribs, then records whether the last note stays steady before adding volume back",
+      "firstImage": "sheet music corners lifting in the draft from an old rehearsal-room fan",
+      "mustInclude": [
+        "half volume",
+        "hands on ribs",
+        "last-note recording"
+      ],
+      "mustAvoid": [
+        "generic music practice",
+        "talent talk"
+      ]
+    },
+    {
+      "protagonistName": "Henrik",
+      "domain": "warehouse hand-scan accuracy during holiday order pressure",
+      "audience": "an operations lead whose team is adapting to speed metrics",
+      "stakes": "the scanner rhythm rewards fast wrong picks that customers return later",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Henrik maps returns to scan pace, removes the speed leaderboard for one aisle, and trains a pause at the SKU suffix before the next shift",
+      "firstImage": "returned shipping labels stacked beside a handheld scanner cradle",
+      "mustInclude": [
+        "SKU suffix",
+        "speed leaderboard",
+        "returned labels"
+      ],
+      "mustAvoid": [
+        "forklift or mezzanine shell",
+        "productivity hack"
+      ]
+    },
+    {
+      "protagonistName": "Isabel",
+      "domain": "court interpreter shadowing rapid testimony",
+      "audience": "a bilingual professional whose fast shadowing is flattening meaning",
+      "stakes": "speed without accuracy could train omissions under pressure",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Isabel replay one minute of testimony, mark every omitted qualifier, and lower the playback speed until accuracy adapts before speed returns",
+      "firstImage": "a transcript margin filled with small circles around qualifiers",
+      "mustInclude": [
+        "playback speed",
+        "omitted qualifiers",
+        "transcript margin"
+      ],
+      "mustAvoid": [
+        "generic language learning",
+        "courtroom drama"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "youth basketball free-throw mechanics after a growth spurt",
+      "audience": "a coach seeing a taller player adapt around new limbs",
+      "stakes": "the player is making awkward compensation feel permanent",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Yusuf predicts misses from elbow flare on video, moves the tape mark under the shooting foot, and requires recovery between sets so the new alignment can settle",
+      "firstImage": "a strip of red tape under one shoe on the foul line",
+      "mustInclude": [
+        "elbow flare video",
+        "red tape mark",
+        "recovery between sets"
+      ],
+      "mustAvoid": [
+        "generic sports hustle",
+        "natural talent debate"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate useful strain from blind strain",
+      "spot misadaptation in a drill",
+      "explain why recovery is part of adaptation",
+      "choose a clean demand that changes capacity without training the wrong habit"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one hard routine you already do. Write the demand it is placing on you, the habit it may be strengthening, and one change that would make the signal cleaner before the next rep.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,98 @@
+{
+  "bookId": "the-lean-startup",
+  "title": "The Lean Startup",
+  "author": "Eric Ries",
+  "thesisParagraph": "The Lean Startup argues that building something new under extreme uncertainty is a management problem before it is a hero story. The central job is not to ship more, plan harder, or look entrepreneurial. The job is to expose the riskiest assumptions quickly, measure behavior rather than vanity, and turn evidence into decisions about whether to build, tune, pivot, or stop. Waste is anything that lets teams spend effort before learning what reality is already ready to tell them.",
+  "coreIdeas": [
+    {
+      "name": "Validated learning",
+      "oneSentence": "Progress means evidence that reduces uncertainty enough to change the next decision.",
+      "mentalMove": "Ask what the work proved, not how much activity it produced.",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source",
+        "ch07.source"
+      ]
+    },
+    {
+      "name": "Hypothesis before build",
+      "oneSentence": "The riskiest belief should be named before the team designs around it.",
+      "mentalMove": "Convert assumptions into value or growth tests before adding polish.",
+      "sourceAnchors": [
+        "ch04.source",
+        "ch05.source",
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Decision-ready measurement",
+      "oneSentence": "Metrics matter when they are actionable, accessible, auditable, and tied to a pivot-or-persevere choice.",
+      "mentalMove": "Replace impressive totals with cohort or baseline evidence that can steer.",
+      "sourceAnchors": [
+        "ch07.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Short feedback distance",
+      "oneSentence": "Small batches and MVPs reduce waste by making mistakes visible sooner.",
+      "mentalMove": "Shrink the build until the world can answer the question cheaply.",
+      "sourceAnchors": [
+        "ch06.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "Organizations that learn",
+      "oneSentence": "Innovation needs structures that preserve autonomy and accountability under uncertainty.",
+      "mentalMove": "Design feedback loops, sandboxes, and incentives so learning survives inside real institutions.",
+      "sourceAnchors": [
+        "ch11.source",
+        "ch12.source",
+        "ch14.source"
+      ]
+    }
+  ],
+  "targetReader": "Builders, product leaders, operators, founders, program managers, and internal innovators who are under pressure to show progress before the real uncertainties have been tested.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make management feel like decisions under pressure, not theory"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no invented famous startup anecdotes"
+    ]
+  },
+  "voiceSpecimens": [
+    "The full roadmap can be a beautiful way to avoid the one question that matters.",
+    "A metric earns trust when it can change what you do next.",
+    "If the assumption can kill the business, it goes first.",
+    "A small test is not a lack of ambition. It is respect for the cost of being wrong.",
+    "The work is only lean when feedback is close enough to interrupt it.",
+    "A team does not need more confidence when the evidence is thin. It needs a cleaner way to be surprised."
+  ],
+  "voiceAntiSpecimens": [
+    "In this chapter, readers will learn why entrepreneurship is important.",
+    "The key takeaway is to optimize innovation through cross-functional strategic alignment.",
+    "You should always be agile and iterate because modern markets change quickly.",
+    "The author argues that startups need to learn, which is a powerful insight.",
+    "Take five minutes to journal about how this applies to your life."
+  ],
+  "teachingArc": "The book begins by replacing output with learning, then defines where that standard applies. It tightens learning into experiments, tests the riskiest assumptions through MVPs, measures with decision-ready accounting, and uses that evidence to pivot or persevere. The back half turns the same discipline into operating practice: smaller batches, growth engines, adaptive root-cause learning, protected innovation structures, anti-waste synthesis, and concrete adoption beyond one team.",
+  "forbiddenMoves": [
+    "Do not turn lean startup into generic speed, agility, or hustle advice.",
+    "Do not invent famous company stories when the frozen source sidecars say no detailed named case studies are available.",
+    "Do not make MVP mean cheap product or low standards.",
+    "Do not let every chapter use the same startup dashboard, founder pitch, or sprint-review scene.",
+    "Do not make the final chapters sound like motivational movement copy."
+  ]
+}

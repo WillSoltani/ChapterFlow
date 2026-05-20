@@ -1,0 +1,192 @@
+{
+  "chapterId": "the-black-swan-ch08",
+  "number": 8,
+  "title": "Giacomo Casanova's Unfailing Luck: The Problem of Silent Evidence",
+  "coreMove": "Reconstruct the missing denominator before treating a survivor as a teacher.",
+  "sourcePressure": "Casanova's visible survival dramatizes silent evidence: vanished failures leave no face, so the survivor gains more instructional authority than the evidence warrants.",
+  "chapterSpecificMisunderstanding": "Dismissing winners instead of asking what invisible comparison set is absent.",
+  "sourceAlignmentTerms": [
+    "Giacomo Casanova",
+    "silent evidence",
+    "survivor",
+    "missing cases",
+    "denominator",
+    "selection",
+    "visible winner",
+    "hidden failures"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Giacomo Casanova",
+      "detail": "the chapter title uses Casanova's unfailing luck to introduce the problem of silent evidence",
+      "useIn": "both",
+      "phrasingHint": "Casanova stands onstage because the people whose luck ran out cannot step up beside him."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A shock arrives and proves everyone wrong",
+      "The future refuses to follow the script",
+      "A quiet morning hides a lesson about uncertainty"
+    ],
+    "counterintuition": [
+      "Certainty is not safety",
+      "The thing that looks rational is actually irrational",
+      "Being careful can be dangerous"
+    ],
+    "tryThisNow": [
+      "Write down one uncertainty",
+      "Pause before your next decision",
+      "Ask what could go wrong"
+    ],
+    "examples": [
+      "generic boardroom forecast debate",
+      "ordinary kitchen budget scene",
+      "same analyst staring at a dashboard",
+      "coffee-shop founder deciding whether to pivot"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage, a research aside, a brief historical reference, or a question to the reader",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "mountaineering route advice",
+      "audience": "a climber copying the only expedition blog that returned",
+      "stakes": "a deadly storm pattern omitted by absent teams",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the climber calls the rescue office for non-return records before choosing the route",
+      "firstImage": "At 8:17 a.m., Anders faces frayed rope coiled beside a permit form.",
+      "mustInclude": [
+        "Anders",
+        "frayed rope coiled beside a permit form",
+        "Giacomo Casanova"
+      ],
+      "mustAvoid": [
+        "Dismissing winners instead of asking what invisible comparison set is absent.",
+        "opening like the prior example instead of using timestamp+name+action"
+      ]
+    },
+    {
+      "domain": "small-business incubator case study",
+      "audience": "a mayor copying one celebrated market hall",
+      "stakes": "public funds missing the ten stalled halls nearby",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the mayor asks for the failures that applied with the same model",
+      "firstImage": "A first line of dialogue lands before the reader sees empty vendor stalls under fluorescent strips.",
+      "mustInclude": [
+        "Lars",
+        "empty vendor stalls under fluorescent strips",
+        "silent evidence"
+      ],
+      "mustAvoid": [
+        "Dismissing winners instead of asking what invisible comparison set is absent.",
+        "opening like the prior example instead of using dialogue first line"
+      ]
+    },
+    {
+      "domain": "self-publishing conference",
+      "audience": "an author following one bestseller's release calendar",
+      "stakes": "spending savings on tactics used by thousands who vanished",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the author asks the platform for median sales by comparable launch size",
+      "firstImage": "Open on the texture, sound, or light of paperback proofs stacked beside postage labels.",
+      "mustInclude": [
+        "Mikkel",
+        "paperback proofs stacked beside postage labels",
+        "survivor"
+      ],
+      "mustAvoid": [
+        "Dismissing winners instead of asking what invisible comparison set is absent.",
+        "opening like the prior example instead of using sensory detail first"
+      ]
+    },
+    {
+      "domain": "clinical device testimonials",
+      "audience": "a hospital buyer moved by recovered patient stories",
+      "stakes": "ignoring patients who did not improve or were not published",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "the buyer requests the full trial attrition table before purchase",
+      "firstImage": "You are looking at a brochure with smiling faces beside a missing appendix before the choice becomes abstract.",
+      "mustInclude": [
+        "Ingrid",
+        "a brochure with smiling faces beside a missing appendix",
+        "missing cases"
+      ],
+      "mustAvoid": [
+        "Dismissing winners instead of asking what invisible comparison set is absent.",
+        "opening like the prior example instead of using second-person direct address"
+      ]
+    },
+    {
+      "domain": "restaurant franchise brochure",
+      "audience": "a couple impressed by top-store revenue",
+      "stakes": "buying a location while failed franchisees stay silent",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the couple searches closed-site records before signing the franchise agreement",
+      "firstImage": "It takes Hanna several weeks to understand what a franchise map with blank pins added by hand was really showing.",
+      "mustInclude": [
+        "Hanna",
+        "a franchise map with blank pins added by hand",
+        "denominator"
+      ],
+      "mustAvoid": [
+        "Dismissing winners instead of asking what invisible comparison set is absent.",
+        "opening like the prior example instead of using retrospective opening"
+      ]
+    },
+    {
+      "domain": "scholarship alumni campaign",
+      "audience": "a dean using star alumni to prove program design",
+      "stakes": "overlooking cohorts that never reached graduation",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the dean asks admissions to show the dropout path beside the gala speeches",
+      "firstImage": "name cards drying after a fundraising dinner appears before any human enters the sentence.",
+      "mustInclude": [
+        "Frida",
+        "name cards drying after a fundraising dinner",
+        "selection"
+      ],
+      "mustAvoid": [
+        "Dismissing winners instead of asking what invisible comparison set is absent.",
+        "opening like the prior example instead of using environmental detail before any human"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "restore missing comparison sets",
+      "discount survivor-only lessons",
+      "test whether a sample was damaged before analysis began"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before copying one survivor, write who had to disappear for that survivor to look like the whole lesson.",
+  "readingTimeMinutes": 12
+}

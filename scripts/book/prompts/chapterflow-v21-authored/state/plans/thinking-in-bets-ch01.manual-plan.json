@@ -1,0 +1,200 @@
+{
+  "chapterId": "thinking-in-bets-ch01",
+  "number": 1,
+  "title": "Introduction: Why this isn't a poker book",
+  "coreMove": "Reconstruct the live decision before letting the final outcome judge it.",
+  "sourcePressure": "The opening contract uses Pete Carroll's Super Bowl XLIX pass and the poker-versus-chess contrast to separate process quality from outcome quality under uncertainty, luck, and hidden information.",
+  "chapterSpecificMisunderstanding": "The writer must not let the failed play become proof that Carroll was right or wrong; the point is that the public skipped the live-information question.",
+  "sourceAlignmentTerms": [
+    "resulting",
+    "outcome quality",
+    "decision quality",
+    "hidden information",
+    "luck",
+    "poker versus chess",
+    "calibrated confidence"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Pete Carroll",
+      "detail": "His Super Bowl XLIX goal-line pass looked foolish after the interception, but the source uses it to show that outcome alone cannot judge the decision.",
+      "useIn": "both",
+      "phrasingHint": "Pete Carroll's pass can sit on the table as the test: once you know the ball was intercepted, can you still ask what the call looked like before the throw?"
+    },
+    {
+      "kind": "event",
+      "name": "Super Bowl XLIX goal-line pass",
+      "detail": "The failed pass is the opening case for resulting, the habit of treating an ending as proof of decision quality.",
+      "useIn": "deepRead",
+      "phrasingHint": "The goal-line interception gives hindsight a loud final scene, which is exactly why the live decision has to be rebuilt separately."
+    },
+    {
+      "kind": "artifact",
+      "name": "poker versus chess",
+      "detail": "Chess stands for near-complete visibility, while poker keeps hidden information and luck in view.",
+      "useIn": "fullRead",
+      "phrasingHint": "Chess flatters the fantasy of a complete board; poker keeps the hidden cards in the room."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A scoreboard lies",
+      "One bad result proves nothing",
+      "Everyone thinks failure means foolishness"
+    ],
+    "counterintuition": [
+      "Uncertainty means nobody can judge",
+      "Bad outcomes are secretly good decisions"
+    ],
+    "tryThisNow": [
+      "Think of one time luck affected you",
+      "Set a timer and reflect on a bad result"
+    ],
+    "examples": [
+      "generic failed product launch postmortem",
+      "debate-team loss with ballots",
+      "relationship breakup regret by text"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "hospital triage review after a missed sepsis warning",
+      "audience": "clinical leads who run morbidity reviews",
+      "stakes": "whether a nurse is blamed for a call that looked different before the lab result came back",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace draws a vertical line on the review board, writes what was known before the lab result on the left, and refuses to let the later number cross the line until process quality has been judged.",
+      "firstImage": "A laminated triage flowchart curled at the corners under fluorescent light.",
+      "mustInclude": [
+        "triage board",
+        "late lab result",
+        "time-stamped notes"
+      ],
+      "mustAvoid": [
+        "doctor hero scene",
+        "generic hospital blame meeting"
+      ]
+    },
+    {
+      "domain": "architecture bid review after a lost museum contract",
+      "audience": "creative directors who review proposals",
+      "stakes": "whether the studio throws out a sound process because the museum chose a flashier rival",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Étienne lays the losing bid packet beside the original scoring sheet and separates the jury surprise from the criteria the team actually had.",
+      "firstImage": "The smell of plotter ink still hanging over the rolled museum drawings.",
+      "mustInclude": [
+        "bid packet",
+        "scoring sheet",
+        "jury surprise"
+      ],
+      "mustAvoid": [
+        "generic pitch loss",
+        "mood-board cliche"
+      ]
+    },
+    {
+      "domain": "charity gala rain plan after an outdoor dinner loses money",
+      "audience": "nonprofit event chairs",
+      "stakes": "whether donors punish the planning team or inspect the weather odds and backup costs available before the storm",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Hannah rewrites the review agenda from final revenue to pre-event weather probabilities, vendor constraints, and the backup-tent quote they declined.",
+      "firstImage": "It took Hannah three weeks to stop seeing only the soaked table linens.",
+      "mustInclude": [
+        "backup-tent quote",
+        "weather probability",
+        "donor refund list"
+      ],
+      "mustAvoid": [
+        "generic event planning regret"
+      ]
+    },
+    {
+      "domain": "youth soccer final after a goalkeeper pass is intercepted",
+      "audience": "parents and volunteer coaches",
+      "stakes": "whether a child learns from process or from adult hindsight shame",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Luca asks the sideline to describe the open defenders before naming the interception, forcing the adults to evaluate the pass before the ending.",
+      "firstImage": "\"Tell me what she could see before the kick,\" Luca says, holding the wet clipboard flat.",
+      "mustInclude": [
+        "wet clipboard",
+        "open defender",
+        "sideline parents"
+      ],
+      "mustAvoid": [
+        "copying the Super Bowl scene too closely"
+      ]
+    },
+    {
+      "domain": "university lab grant review after a rejected equipment proposal",
+      "audience": "graduate researchers",
+      "stakes": "whether a junior scientist abandons a defensible grant strategy because one panel disliked it",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Marta covers the rejection score with a sticky note and first ranks the evidence quality, reviewer fit, and alternate proposals that existed when she submitted.",
+      "firstImage": "What can a rejection letter know that the submission day did not?",
+      "mustInclude": [
+        "reviewer comments",
+        "sticky note",
+        "equipment quote"
+      ],
+      "mustAvoid": [
+        "generic academic disappointment"
+      ]
+    },
+    {
+      "domain": "tenant screening decision after a quiet applicant later damages an apartment",
+      "audience": "small landlords and housing managers",
+      "stakes": "whether a lawful screening process gets replaced by hindsight suspicion",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You place the signed checklist beside the repair invoice and mark which risk signals were actually visible before the lease was offered.",
+      "firstImage": "You are looking at a repair invoice that seems to accuse last month’s checklist.",
+      "mustInclude": [
+        "signed checklist",
+        "repair invoice",
+        "reference call notes"
+      ],
+      "mustAvoid": [
+        "class-coded tenant stereotype",
+        "blame-the-renter frame"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "rebuild the pre-outcome information set",
+      "separate resulting from accountability",
+      "judge process without excusing sloppy process",
+      "recognize calibrated confidence in noisy outcomes"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one recent win or loss and draw a before-after line. On the before side, list only facts available before the outcome; on the after side, list what the ending added.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,183 @@
+{
+  "chapterId": "the-psychology-of-money-ch08",
+  "number": 8,
+  "title": "Freedom",
+  "coreMove": "Measure money by how much control it buys over ordinary time.",
+  "sourcePressure": "The highest return from money is autonomy: less coercion over calendar, attention, relationships, and decisions.",
+  "chapterSpecificMisunderstanding": "Reducing freedom to retirement fantasies or luxury leisure.",
+  "sourceAlignmentTerms": [
+    "freedom",
+    "autonomy",
+    "control over time",
+    "choice",
+    "attention",
+    "coercion"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a market chart",
+      "opening with a generic paycheck scene",
+      "opening with a moral lesson about discipline",
+      "opening Freedom with a swapped-in personal finance anecdote"
+    ],
+    "counterintuition": [
+      "money is not just math",
+      "be smart but humble",
+      "everything depends",
+      "reducing Freedom to common-sense advice"
+    ],
+    "tryThisNow": [
+      "write down your values for ninety seconds",
+      "pause before your next purchase",
+      "review your budget tonight",
+      "asking for a generic money reflection instead of the freedom move"
+    ],
+    "examples": [
+      "coffee-shop budgeting",
+      "generic school lesson",
+      "household bill sorting scene",
+      "luxury car envy",
+      "generic office meeting",
+      "reusing visible anchors from adjacent chapters instead of freedom and autonomy"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a hospice nurse cutting shifts after building a savings cushion",
+      "audience": "a caregiver measuring money by control over the roster",
+      "stakes": "extra income may not beat the regained evenings with her father",
+      "format": "scene",
+      "requiredBeat": "she declines a premium weekend shift and writes her father's appointment into the freed square",
+      "firstImage": "a wall roster with one Saturday square left blank",
+      "mustInclude": [
+        "shift roster",
+        "appointment card",
+        "savings balance"
+      ],
+      "mustAvoid": [
+        "retirement fantasy"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "a warehouse worker using an emergency fund to refuse unsafe overtime",
+      "audience": "a worker whose small reserve changes the power in a conversation",
+      "stakes": "without cash he must trade health for hours",
+      "format": "dialogue",
+      "requiredBeat": "he looks at the emergency balance before telling the supervisor he will not take the unguarded overnight shift",
+      "firstImage": "a locker-room bench with steel-toe boots and a payroll app open",
+      "mustInclude": [
+        "payroll app",
+        "overtime text",
+        "safety notice"
+      ],
+      "mustAvoid": [
+        "anti-boss rant"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "a single parent choosing a lower-paying school calendar job after debt is paid down",
+      "audience": "a parent evaluating freedom in morning logistics",
+      "stakes": "the salary drop buys control over daily chaos",
+      "format": "decision_point",
+      "requiredBeat": "she maps pickup times and sick-day coverage beside the pay difference before accepting",
+      "firstImage": "a child-care pickup sheet beside two job offers",
+      "mustInclude": [
+        "pickup sheet",
+        "job offers",
+        "debt payoff notice"
+      ],
+      "mustAvoid": [
+        "family values sermon"
+      ],
+      "openingDevice": "second_person"
+    },
+    {
+      "domain": "a software support lead saving enough to take a month between roles",
+      "audience": "a professional burned out by constant availability",
+      "stakes": "the buffer creates recovery time without panic applying",
+      "format": "before_after",
+      "requiredBeat": "he compares the old resignation path to the new one where a cash buffer lets him wait for a sane role",
+      "firstImage": "a laptop showing an unsent resignation email and a savings goal met banner",
+      "mustInclude": [
+        "resignation email",
+        "cash buffer",
+        "interview calendar"
+      ],
+      "mustAvoid": [
+        "career optimization"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "a local potter keeping prices modest because paid-off equipment lowers pressure",
+      "audience": "an artist choosing autonomy over maximum growth",
+      "stakes": "higher prices could force production volume she no longer wants",
+      "format": "reflection",
+      "requiredBeat": "she runs her fingers over the kiln paid-in-full receipt before declining a wholesale order",
+      "firstImage": "a kiln receipt clipped above shelves of drying bowls",
+      "mustInclude": [
+        "kiln receipt",
+        "wholesale order",
+        "production schedule"
+      ],
+      "mustAvoid": [
+        "romantic artist trope"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "a retiree buying back quiet mornings by moving closer to transit",
+      "audience": "an older adult measuring wealth as less dependence on rides",
+      "stakes": "the move changes daily dignity more than a fancier condo would",
+      "format": "vignette",
+      "requiredBeat": "he times the walk from his door to the train before comparing square footage",
+      "firstImage": "a folded transit map on the counter of an empty apartment showing",
+      "mustInclude": [
+        "transit map",
+        "walk time",
+        "floor plan"
+      ],
+      "mustAvoid": [
+        "downsizing cliche"
+      ],
+      "openingDevice": "question_hook"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the action that performs this chapter's mental move in a new scenario: measure money by how much control it buys over ordinary time",
+      "distinguish freedom from nearby but weaker advice such as status buying",
+      "diagnose when a character is making the common misread: reducing freedom to retirement fantasies or luxury leisure.",
+      "evaluate tradeoffs using the chapter-specific pressure around freedom, autonomy, control over time"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Find one real decision where freedom is present, write the hidden tradeoff in one sentence, then name the next visible action that protects this chapter's core move: measure money by how much control it buys over ordinary time.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

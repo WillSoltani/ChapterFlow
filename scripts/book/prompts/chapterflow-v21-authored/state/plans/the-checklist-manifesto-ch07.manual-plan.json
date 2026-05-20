@@ -1,0 +1,126 @@
+{
+  "chapterId": "the-checklist-manifesto-ch07",
+  "number": 7,
+  "title": "The Test",
+  "coreMove": "Raise confidence from local promise to field evidence by testing the checklist across different conditions.",
+  "sourcePressure": "The source centers on Do-Confirm versus Read-Do, the WHO 19-item checklist, and an eight-hospital test that validates the tool across different hospitals.",
+  "chapterSpecificMisunderstanding": "The weak version says a pilot worked. The real chapter asks whether the checklist survives variation across sites, habits, and pressures.",
+  "sourceAlignmentTerms": ["Do-Confirm", "Read-Do", "WHO 19-item checklist", "eight-hospital test", "field testing", "variation"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "WHO 19-item checklist",
+      "detail": "The source sidecar identifies the WHO 19-item checklist as the chapter's tested instrument.",
+      "useIn": "both",
+      "phrasingHint": "The nineteen items matter because the list is short enough to enter real surgery and specific enough to be tested."
+    },
+    {
+      "kind": "study",
+      "name": "eight-hospital test",
+      "detail": "The source sidecar says the chapter uses an eight-hospital test as its empirical frame.",
+      "useIn": "fullRead",
+      "phrasingHint": "The eight-hospital test asks whether the pause can work after the room, the country, and the habits change."
+    },
+    {
+      "kind": "artifact",
+      "name": "Do-Confirm versus Read-Do",
+      "detail": "The source sidecar says the chapter turns to Do-Confirm versus Read-Do to clarify how the checklist functions.",
+      "useIn": "deepRead",
+      "phrasingHint": "Do-Confirm protects skilled action after it happens; Read-Do pulls action through a sequence when sequence itself is the risk."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["Proof matters", "The real test is the field"],
+    "counterintuition": ["A checklist must be tested", "Local success is not enough"],
+    "tryThisNow": ["Test your checklist in a new setting", "Ask whether it works elsewhere"],
+    "examples": ["fake hospital statistics", "same WHO pilot from ch05", "generic experiment with no variation"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "Rachel, a multi-site surgical trial coordinator",
+      "audience": "clinical researchers moving from promising design to real evidence",
+      "stakes": "a checklist that worked in one operating room may fail in hospitals with different staffing and habits",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Rachel compares the same pause across three sites and marks which failures come from local habit versus the checklist's structure",
+      "firstImage": "three hospital badges lying beside one marked-up checklist",
+      "mustInclude": ["site binder", "operating room pause", "variation notes"],
+      "mustAvoid": ["inventing trial statistics", "single-hospital victory"]
+    },
+    {
+      "domain": "Tomas, a regional maternity ward rollout lead",
+      "audience": "health-system operators adapting a safety aid across small and large hospitals",
+      "stakes": "a newborn handoff checklist helps the urban ward but slows the rural night shift",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Tomas keeps the same core checks but tests whether Do-Confirm or Read-Do fits each ward's handoff rhythm",
+      "firstImage": "At 3:12 a.m., Tomas watches a rural nurse cover two rooms and the phone",
+      "mustInclude": ["newborn band", "handoff sheet", "night-shift call bell"],
+      "mustAvoid": ["generic hospital ward", "one-size-fits-all rollout"]
+    },
+    {
+      "domain": "Astrid, a mining rescue drill verification lead",
+      "audience": "safety teams deciding whether a checklist works beyond training day",
+      "stakes": "a drill list passes at headquarters but fails underground when radios and dust change the conditions",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Astrid predicts the list will hold, then follows the underground drill and marks the item that cannot be heard over the radio",
+      "firstImage": "grit ticking against the plastic face shield in the mine tunnel",
+      "mustInclude": ["radio check", "escape map", "oxygen cache"],
+      "mustAvoid": ["avalanche rescue from ch06", "generic safety drill"]
+    },
+    {
+      "domain": "Sam, a charity vaccine clinic trial planner",
+      "audience": "public health teams that need proof beyond one successful Saturday",
+      "stakes": "the clinic checklist works in a gym but may break in a mobile van and a senior center",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Sam tests the same minimum checks in three clinic formats and records where layout changes threaten consent, cold chain, or observation time",
+      "firstImage": "What would still work if the room disappeared?",
+      "mustInclude": ["cold-chain cooler", "consent tablet", "observation chairs"],
+      "mustAvoid": ["COVID-specific claims", "generic volunteer clinic"]
+    },
+    {
+      "domain": "Luca, a municipal election recount process owner",
+      "audience": "public administrators validating a process under scrutiny",
+      "stakes": "a recount process must work in different precinct rooms with observers, paper ballots, and tired staff",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Luca asks each precinct to run the same ballot-chain check and compare where observers interrupt the sequence",
+      "firstImage": "\"Run it once with observers talking,\" Luca says over the sealed ballot boxes",
+      "mustInclude": ["sealed ballot boxes", "observer table", "chain-of-custody form"],
+      "mustAvoid": ["partisan politics", "generic audit checklist"]
+    },
+    {
+      "domain": "Kasia, a cross-border freight inspection pilot lead",
+      "audience": "logistics leaders proving a customs handoff works across ports",
+      "stakes": "one border terminal succeeds while another backs up trucks because drivers, brokers, and inspectors use different rhythms",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Kasia separates the checklist's stable checks from local process noise after comparing two terminals and a rail yard",
+      "firstImage": "It took Kasia one dawn queue of idling trucks to distrust the first terminal's easy success",
+      "mustInclude": ["customs seal", "broker packet", "rail-yard gate"],
+      "mustAvoid": ["airport delay from ch04", "generic shipping paperwork"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["distinguish pilot promise from validation", "choose Do-Confirm versus Read-Do", "use variation as evidence", "evaluate whether a checklist's structure survives context changes"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one checklist that seems to work and name the one different setting where it should be tested before you trust it broadly.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

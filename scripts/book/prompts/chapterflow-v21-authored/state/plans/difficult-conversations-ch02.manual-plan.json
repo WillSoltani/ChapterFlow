@@ -1,0 +1,186 @@
+{
+  "chapterId": "difficult-conversations-ch02",
+  "number": 2,
+  "title": "Stop Arguing About Who's Right",
+  "coreMove": "Hold your story as one coherent version and ask what the other person sees that your position cannot see.",
+  "sourcePressure": "The chapter replaces message delivery with the learning stance and stresses that performed openness is not the same as genuine curiosity.",
+  "chapterSpecificMisunderstanding": "Being nicer while still trying to deliver a verdict.",
+  "sourceAlignmentTerms": [
+    "message delivery stance",
+    "learning stance",
+    "your story",
+    "their story",
+    "what am I missing",
+    "performed openness",
+    "internally coherent version"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "message delivery stance and learning stance",
+      "detail": "The source contrasts delivering your version as truth with entering to learn what each person sees and what may be missing.",
+      "useIn": "both",
+      "phrasingHint": "A learning stance begins when your own story stops acting like the room's legal record."
+    }
+  ],
+  "sourceAnchorsNote": "No chapter-specific real named anecdote, study, or researcher was available in the source sidecars for this chapter. Source anchors are traceable framework artifacts or edition/context facts only; do not invent named studies or reuse the source-banned Jack-Michael, Sydney, or author-family examples.",
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch02 with a generic dread-before-meeting frame",
+      "Do not begin with a definition of the chapter term",
+      "Do not use a negotiation-table abstraction as the first image"
+    ],
+    "counterintuition": [
+      "Avoid the shell 'you think X, but actually Y'",
+      "Avoid claiming the idea is simply counterintuitive",
+      "Avoid treating compassion as the surprising twist"
+    ],
+    "tryThisNow": [
+      "No reusable timer prompt",
+      "No generic write-three-things exercise",
+      "No 'pause and reflect on your communication style' action"
+    ],
+    "examples": [
+      "Avoid repeated coffee-table, classroom, narrow-kitchen, bus-depot, marker, mug, or radiator shells",
+      "Avoid six workplace meetings with changed names",
+      "Avoid making every case a manager feedback scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "use these six opening devices in order: question-as-hook; sensory detail first; dialogue first line; timestamp+name+action; environmental detail before any human; retrospective first line",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "startup product roadmap review",
+      "audience": "co-founders stuck in competing true stories",
+      "stakes": "four weeks of delay is threatening a customer pilot",
+      "format": "scene",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Claire closes the feature spreadsheet and asks Jonas what user risk he sees that her dashboard does not show",
+      "firstImage": "a laptop trackpad worn shiny beside a roadmap spreadsheet",
+      "mustInclude": [
+        "pilot contract",
+        "feature spreadsheet",
+        "customer-call notes"
+      ],
+      "mustAvoid": [
+        "proving the better roadmap"
+      ]
+    },
+    {
+      "domain": "museum exhibit label dispute",
+      "audience": "curators revising public interpretation under deadline",
+      "stakes": "the opening preview is in nine days and each curator thinks the other is distorting the exhibit",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "one curator reads the other's annotated label as a complete story rather than a mistake to correct",
+      "firstImage": "a glass case reflecting two different label drafts",
+      "mustInclude": [
+        "gallery mockup",
+        "red pencil marks",
+        "preview invitation"
+      ],
+      "mustAvoid": [
+        "generic creative disagreement"
+      ]
+    },
+    {
+      "domain": "couple dividing night-shift care for a newborn",
+      "audience": "partners exhausted by a fairness argument",
+      "stakes": "sleep deprivation is turning every request into evidence of selfishness",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "one partner asks what the night feels like from the other side before reopening the tally",
+      "firstImage": "\"I am not asking for a scorecard,\" one partner says",
+      "mustInclude": [
+        "feeding log",
+        "dim nursery lamp",
+        "phone alarm"
+      ],
+      "mustAvoid": [
+        "household chore lecture"
+      ]
+    },
+    {
+      "domain": "nonprofit board deciding grant priorities",
+      "audience": "board members with values conflict masquerading as facts",
+      "stakes": "a grant vote could cut either housing support or legal aid",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Andrew writes the sentence he wants to deliver, then crosses it out and writes one question he does not know the answer to",
+      "firstImage": "a grant rubric printed on heavy cream paper",
+      "mustInclude": [
+        "grant rubric",
+        "two budget columns",
+        "community hearing notes"
+      ],
+      "mustAvoid": [
+        "polite persuasion toward predetermined vote"
+      ]
+    },
+    {
+      "domain": "architecture studio critique",
+      "audience": "students receiving conflicting design advice",
+      "stakes": "a model review has become a fight about taste instead of constraints",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Kiran asks which constraint Margaux is optimizing for before defending his facade choice",
+      "firstImage": "cardboard model casting a crooked shadow",
+      "mustInclude": [
+        "foam-core model",
+        "pin-up board",
+        "site wind diagram"
+      ],
+      "mustAvoid": [
+        "teacher-student compliance scene"
+      ]
+    },
+    {
+      "domain": "parents choosing a high school program",
+      "audience": "family members reading the same brochure differently",
+      "stakes": "the child is beginning to treat the parents' argument as a verdict on her future",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Margaux maps each parent's fear beside each claimed fact before the family meeting",
+      "firstImage": "school brochures spread across a dining table",
+      "mustInclude": [
+        "program brochures",
+        "commute map",
+        "tuition worksheet"
+      ],
+      "mustAvoid": [
+        "winning the parenting argument"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify when a scenario needs hold your story as one coherent version and ask what the other person sees that your position cannot see.",
+      "distinguish message delivery stance from the adjacent generic misread",
+      "choose the visible action that demonstrates the chapter move rather than merely naming it",
+      "explain why the wrong option would recreate being nicer while still trying to deliver a verdict."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Rewrite the sentence you most want to deliver as one question whose answer could genuinely alter your view.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

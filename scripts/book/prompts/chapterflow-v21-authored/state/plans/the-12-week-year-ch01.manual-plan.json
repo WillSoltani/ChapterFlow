@@ -1,0 +1,207 @@
+{
+  "chapterId": "the-12-week-year-ch01",
+  "number": 1,
+  "title": "The Challenge",
+  "coreMove": "Treat underperformance as an execution-pattern problem before looking for more ideas or inspiration.",
+  "sourcePressure": "The opening diagnosis is the gap between real capacity and the pattern of execution that ordinary weeks actually produce.",
+  "chapterSpecificMisunderstanding": "Turning the opening into generic motivation about reaching potential instead of a hard diagnosis of weak execution.",
+  "sourceAlignmentTerms": [
+    "execution",
+    "potential",
+    "performance",
+    "capacity",
+    "capable",
+    "challenge",
+    "pattern"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Thomas Edison",
+      "detail": "The source sidecar lists Thomas Edison as a proper noun for the opening challenge chapter, but gives no anecdotal detail.",
+      "useIn": "deepRead",
+      "phrasingHint": "Use Edison only as a light reference to invention talk if needed, not as a fabricated story."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic Monday inbox opener",
+      "person staring at a laptop beside coffee",
+      "abstract definition before a concrete moment",
+      "the-12-week-year-ch01: do not open with a generic execution panic"
+    ],
+    "counterintuition": [
+      "The problem is not X but Y",
+      "Most people think X, but actually Y",
+      "It is not about working harder",
+      "the-12-week-year-ch01: avoid a neat discipline-versus-motivation reversal"
+    ],
+    "tryThisNow": [
+      "set a timer and journal about priorities",
+      "write three goals and circle one",
+      "ask yourself what matters most today",
+      "the-12-week-year-ch01: avoid reusable timer prompts"
+    ],
+    "examples": [
+      "kitchen table planning scene",
+      "generic manager in a conference room",
+      "whiteboard full of sticky notes",
+      "commuter with headphones deciding to be disciplined",
+      "the-12-week-year-ch01: avoid repeated timestamp-name-action openings beyond two examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Sarah",
+      "domain": "specialty medical clinic backlog review",
+      "audience": "a practitioner in specialty medical clinic backlog review who needs the chapter move under real pressure",
+      "stakes": "the visible result will slip while everyone can still explain the effort",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Sarah sorts the week into capacity claims and proof of completed action.",
+      "firstImage": "a stack of unsigned referral forms",
+      "mustInclude": [
+        "a stack of unsigned referral",
+        "execution",
+        "performance"
+      ],
+      "mustAvoid": [
+        "generic the challenge explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Emily",
+      "domain": "independent bookstore expansion choice",
+      "audience": "a decision-maker in independent bookstore expansion choice choosing whether to protect execution or drift",
+      "stakes": "the next 12 weeks will inherit a soft plan unless the decision is made now",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emily stops a planning meeting to mark which work actually shipped.",
+      "firstImage": "a sales map taped beside empty shelves",
+      "mustInclude": [
+        "a sales map taped beside",
+        "execution",
+        "performance"
+      ],
+      "mustAvoid": [
+        "generic the challenge explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Hannah",
+      "domain": "university research grant sprint",
+      "audience": "a team lead in university research grant sprint who needs visible proof before the week softens",
+      "stakes": "the team will mistake motion for progress if the proof stays hidden",
+      "format": "predict_reveal",
+      "openingDevice": "second_person",
+      "requiredBeat": "Hannah compares a grant promise with calendar evidence.",
+      "firstImage": "a grant calendar with three red circles",
+      "mustInclude": [
+        "a grant calendar with three",
+        "execution",
+        "performance"
+      ],
+      "mustAvoid": [
+        "generic the challenge explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Megan",
+      "domain": "municipal permit counter redesign",
+      "audience": "a reflective operator in municipal permit counter redesign reading last week's failure as evidence",
+      "stakes": "a repeat failure will be explained away instead of corrected",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Megan moves the hardest permit file to the top of the counter before opening.",
+      "firstImage": "a ticket window with a line curling outside",
+      "mustInclude": [
+        "a ticket window with a",
+        "execution",
+        "performance"
+      ],
+      "mustAvoid": [
+        "generic the challenge explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Claire",
+      "domain": "youth swim club season planning",
+      "audience": "a reader in youth swim club season planning comparing intention before the move with proof after it",
+      "stakes": "the work will stay aspirational unless the action changes in the room",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "Claire has coaches mark finished training sets instead of potential.",
+      "firstImage": "lane ropes coiled on wet tile",
+      "mustInclude": [
+        "lane ropes coiled on wet",
+        "execution",
+        "performance"
+      ],
+      "mustAvoid": [
+        "generic the challenge explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "Toronto software onboarding team",
+      "audience": "two colleagues in Toronto software onboarding team forcing the commitment into plain speech",
+      "stakes": "a public promise will dissolve unless someone names the proof and owner",
+      "format": "dialogue",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Giulia asks each new hire to show the onboarding step that actually happened.",
+      "firstImage": "a login checklist beside six unopened laptops",
+      "mustInclude": [
+        "a login checklist beside six",
+        "execution",
+        "performance"
+      ],
+      "mustAvoid": [
+        "generic the challenge explanation",
+        "laptop and coffee scene",
+        "name-swap office vignette"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate capacity from repeated performance",
+      "diagnose an execution bottleneck from weekly evidence",
+      "reject potential-talk when no action pattern supports it"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write one result you keep calling important, then name the weekly pattern that keeps proving it is not protected yet.",
+  "readingTimeMinutes": 12
+}

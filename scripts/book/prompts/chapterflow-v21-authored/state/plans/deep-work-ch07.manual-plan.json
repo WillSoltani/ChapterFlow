@@ -1,0 +1,87 @@
+{
+  "chapterId": "deep-work-ch07",
+  "number": 7,
+  "title": "Quit Social Media",
+  "coreMove": "Judge each network tool by whether its concrete benefits substantially outweigh the attention it costs.",
+  "sourcePressure": "The source frame says to use a craftsman mindset and keep only tools that substantially support what matters.",
+  "chapterSpecificMisunderstanding": "The weak version says social media is distracting; the chapter must teach a cost-benefit tool test tied to real values and outcomes.",
+  "sourceAlignmentTerms": ["craftsman mindset", "network tools", "social media", "substantially support", "benefits", "values"],
+  "forbiddenFrames": {
+    "hook": ["delete your accounts", "doomscrolling ruins everything", "the phone steals your life"],
+    "counterintuition": ["some useful tools are still not worth it", "any benefit is not enough"],
+    "tryThisNow": ["delete one app", "take a social media break"],
+    "examples": ["influencer burnout", "teen scrolling", "privacy scandal"]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a freelance cartographer evaluating a professional mapping forum",
+      "audience": "a specialist who gets occasional leads from an online network",
+      "stakes": "attention spent browsing weak threads may crowd out portfolio map production",
+      "format": "decision_point",
+      "requiredBeat": "she lists the two jobs the forum actually produced, compares them with the lost drafting hours, and decides whether the tool substantially supports her craft",
+      "firstImage": "a half-rendered trail map beside a forum thread with twenty unread replies",
+      "mustInclude": ["lead list", "drafting hours", "portfolio map"],
+      "mustAvoid": ["generic LinkedIn complaint", "social media morality"]
+    },
+    {
+      "domain": "a community theater director using event platforms for auditions",
+      "audience": "an organizer whose tool has one real benefit and many tempting side paths",
+      "stakes": "casting suffers if outreach is weak, but rehearsal prep suffers if browsing expands",
+      "format": "before_after",
+      "requiredBeat": "he keeps the event-listing function but drops the feed habit after matching each feature to audition turnout",
+      "firstImage": "an audition sign-up sheet beside an event dashboard",
+      "mustInclude": ["audition turnout", "feature list", "rehearsal notes"],
+      "mustAvoid": ["generic arts marketing", "platform rant"]
+    },
+    {
+      "domain": "a rural veterinarian deciding whether a short-video channel helps client education",
+      "audience": "a practitioner weighing reach against attention cost",
+      "stakes": "farm calls and medical notes slip if content creation becomes a second job",
+      "format": "postmortem",
+      "requiredBeat": "she reviews a month of appointment outcomes and sees which videos changed client behavior versus which only collected views",
+      "firstImage": "a clinic appointment ledger beside a phone mounted on a small tripod",
+      "mustInclude": ["client behavior", "view counts", "farm-call notes"],
+      "mustAvoid": ["influencer story", "generic healthcare content"]
+    },
+    {
+      "domain": "a labor organizer evaluating group chats across three worksites",
+      "audience": "an organizer whose values include trust, turnout, and worker safety",
+      "stakes": "the wrong tool leaks energy into chatter without building turnout",
+      "format": "postmortem",
+      "requiredBeat": "he maps each chat to actual turnout actions and cuts the channel that produces noise without reliable commitments",
+      "firstImage": "three group-chat names written beside a turnout tally sheet",
+      "mustInclude": ["turnout action", "commitment tally", "worksite list"],
+      "mustAvoid": ["generic activism social media", "political sermon"]
+    },
+    {
+      "domain": "a ceramicist selling limited kiln openings online",
+      "audience": "a solo craft business owner deciding whether a platform deserves daily attention",
+      "stakes": "custom orders matter, but glaze testing is the scarce work",
+      "format": "dialogue",
+      "requiredBeat": "she asks which platform activity directly sells kiln slots, then removes the features that only create comparison and browsing",
+      "firstImage": "a kiln schedule card beside a platform analytics page",
+      "mustInclude": ["kiln slots", "glaze test", "analytics page"],
+      "mustAvoid": ["romantic craft nostalgia", "generic online shop"]
+    },
+    {
+      "domain": "a public defender using a professional listserv",
+      "audience": "a lawyer whose network tool can either save research time or become a reflex",
+      "stakes": "client motions need legal substance more than constant thread monitoring",
+      "format": "vignette",
+      "requiredBeat": "she keeps the digest that surfaces rare motion examples and cancels real-time alerts that fracture writing blocks",
+      "firstImage": "a motion draft with a listserv digest printed beside it",
+      "mustInclude": ["digest", "real-time alerts", "motion example"],
+      "mustAvoid": ["generic lawyer inbox", "anti-technology conclusion"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": ["apply the craftsman mindset to network tools", "distinguish any benefit from substantial support", "evaluate tools against specific values", "choose limited use rather than blanket deletion when justified"]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Pick one network tool and write the exact valuable outcome it produced in the last month, then write the attention cost beside it.",
+  "readingTimeMinutes": 12
+}

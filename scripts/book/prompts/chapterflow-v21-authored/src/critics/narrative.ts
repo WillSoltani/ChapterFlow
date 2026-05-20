@@ -243,6 +243,12 @@ const ROLE_ANCHORS = [
   "partner", "trainer", "attorney", "analyst", "producer",
 ];
 
+const CONCRETE_OBJECT_ANCHOR_RE =
+  /\b(?:clipboard|dashboard|counter|table|desk|screen|laptop|whiteboard|memo|memos|chart|folder|binder|briefing|docket|proposal|draft|invoice|worksheet|headset|map|plan|form|report|note|notes|email|inbox|calendar|radio|camera|microscope|slide|spreadsheet|contract|ballot|case file|waiting room|practice room|courtroom|kitchen|warehouse|lab|clinic|hospital|studio|classroom|conference room|hearing room|boardroom|shop floor|control room|break room)\b/;
+
+const PLACE_PHRASE_RE =
+  /\b(?:at|in|on|inside|outside|beside|behind|under|across)\s+(?:the|a|an|her|his|their)\s+[a-z0-9'-]+(?:\s+[a-z0-9'-]+){0,4}\b/;
+
 export function checkSpecificScene(ex: Example): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const texts = allTones(ex.scenario);
@@ -254,7 +260,9 @@ export function checkSpecificScene(ex: Example): CriticFinding[] {
     const lower = text.toLowerCase();
     const hasAnchor = SCENE_ANCHORS.some((a) => lower.includes(a));
     const hasRole = ROLE_ANCHORS.some((r) => lower.includes(r));
-    return hasAnchor || hasRole;
+    const hasConcretePlace = PLACE_PHRASE_RE.test(lower) && CONCRETE_OBJECT_ANCHOR_RE.test(lower);
+    const hasLabeledSceneObject = /\blabeled\b/.test(lower);
+    return hasAnchor || hasRole || hasConcretePlace || hasLabeledSceneObject;
   });
 
   if (!passing) {

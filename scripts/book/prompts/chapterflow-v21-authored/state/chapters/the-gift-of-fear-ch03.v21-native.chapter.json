@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-gift-of-fear-ch03",
+  "number": 3,
+  "title": "The Academy of Prediction",
+  "readingTimeMinutes": 12,
+  "hook": "Three small entries on a sign-out sheet can predict more than one dramatic apology at the door.",
+  "counterintuition": "Prediction is not prophecy but disciplined pattern reading: sequence, repetition, and access pressure show the narrow action to take now.",
+  "tryThisNow": "Pick one uneasy pattern. List the last three behaviors in order, then choose one small protective action that would make the next step safer.",
+  "keyTakeaway": "A safer forecast comes from repeated behavior in sequence, not from certainty; act narrowly on the pattern before delay becomes the risk.",
+  "breakdown": {
+    "fastRead": "Claire looks at the theatre sign-out sheet after rehearsal. One volunteer has arrived late three times, asked private questions twice, and ignored the rule about the stage door. None of those facts is enough alone. Together, they make a forecast.\n\nPrediction is not a gift of certainty. It is the habit of putting behavior in order and asking what the sequence makes more likely. The right answer is usually a narrow action, not a grand accusation.\n\nA pattern beats a performance.",
+    "deepRead": "Claire does not need to know what the volunteer intends. Intent is hidden, and guessing at it can turn a useful forecast into drama. What she has is a sequence: after-hours arrivals, private questions, ignored sign-out rules, a hand on the stage door after everyone else has left.\n\nPrediction gets safer when it stays humble. It says, this pattern raises the chance of more access-seeking, so change access. It does not say, this person will do the worst possible thing. Probability is enough for a smaller move.\n\nThe narrow action is the point.\n\nJames sees the same lesson in his bike repair shop. A customer demands a refund, waits outside after closing, apologizes the next morning, then asks which mechanic closes on Fridays. The apology matters, but it does not erase the sequence. James maps the behaviors before deciding to close the garage shutter early and stop posting the schedule board near the counter.\n\nThe limit is that prediction can become an ego trick. If you decide first and collect facts later, you are not reading a pattern. You are decorating a hunch. Start with the sequence, keep the forecast modest, and let the action fit the evidence.",
+    "fullRead": "Juliette feels the phone handset warm in her palm from repeated calls. The county clinic line has been lighting up every twenty minutes. Half the calls end as hang-ups. The others ask for appointment times, then drift toward staff exits and whether the side entrance stays unlocked after five. No threat has been spoken.\n\nThat absence can fool a busy office. People wait for a sentence that sounds like danger because sentences are easy to quote in a report. Patterns are messier. They require someone to notice timing, repetition, access questions, and the way each call makes the next one less random.\n\nWhat does the sequence make easier for the caller to do next? That is the predictive question. Not what kind of person he is. Not whether you can prove intent. Not whether the staff would feel silly if nothing happened. The answer may be modest: stop giving exit information, move late appointments to the front desk, ask security to stand near the side entrance at closing.\n\nMikkel faces that modesty at a film festival volunteer office. The badge printer spits blank plastic while a rejected applicant sends a third email, appears in the lobby for the second time, and asks whether his badge can be reprinted by mistake. One event could be embarrassment. Two could be disappointment. Three plus a badge request starts to look like pursuit of access.\n\nA prediction is strongest when it can be checked by someone else. Lay the facts out in order. Remove the adjectives. Keep only behavior: arrived after hours, asked private questions, waited outside, requested schedule, wanted a badge. The cleaner the list, the less you need dramatic language.\n\nThere is a kindness in this discipline. Wild prediction turns people into villains too early. No prediction at all leaves everyone waiting for damage. Pattern reading keeps you between those errors. It lets you take the smaller protective step before the larger one is forced.\n\nSofia learns it after a suspended member of the repair co-op apologizes for hoarding equipment. The apology is pleasant. The locked drill case under fluorescent light tells another part of the story. Rule bending, equipment hoarding, door rattling after hours, then apology. The forecast is not that harm is certain. The forecast is that access pressure is likely to continue unless access changes.\n\nThat is enough. Prediction becomes practical when it sharpens earlier action without pretending the future is already known."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-claire-signout",
+      "title": "Claire Lays Out the Sign-Out Sequence",
+      "tags": [
+        "scene",
+        "theatre",
+        "sequence"
+      ],
+      "planSpec": {
+        "domain": "youth theatre backstage after rehearsal",
+        "audience": "a director reading repeated boundary tests from one volunteer",
+        "stakes": "whether to treat each awkward moment as isolated",
+        "format": "scene",
+        "requiredBeat": "lays out the sequence of after-hours arrivals, private questions, and ignored sign-out rules before changing access"
+      },
+      "scenario": "At 9:11 p.m., Claire takes the clipboard from a paint-splattered nail beside the prop trunk. One volunteer has arrived after rehearsal three times, asked two students private ride questions, and skipped the sign-out sheet again near the stage door. Claire must decide whether to treat each moment as awkward or lay the sequence out before changing access.",
+      "whatToDo": "List the behaviors in order and change stage-door access for the next rehearsal. Keep the forecast modest: the pattern predicts more boundary testing, not a certain crime.",
+      "whyItMatters": "The sequence carries more meaning than any single excuse. A narrow access change fits what Claire knows without asking her to prove hidden intent."
+    },
+    {
+      "exampleId": "ch03-ex02-james-repair-shop",
+      "title": "James Maps the Refund Pattern",
+      "tags": [
+        "dialogue",
+        "bike shop",
+        "closing"
+      ],
+      "planSpec": {
+        "domain": "bike repair shop at closing",
+        "audience": "a shop owner deciding whether an angry customer is likely to return",
+        "stakes": "whether apology language should erase repeated behavior",
+        "format": "dialogue",
+        "requiredBeat": "maps the sequence from refund demand to waiting outside to asking employee schedules"
+      },
+      "scenario": "\"He apologized,\" the mechanic says, while a stripped gear cable curls on the counter. James lowers the garage shutter and points to the repair ticket. \"After the refund demand, he waited outside. After that, he asked who closes Friday.\" The schedule board is still visible by the register. James must decide whether the apology erases the sequence.",
+      "whatToDo": "Move the schedule board, close with two staff, and document the sequence. Accept the apology as one data point, not as a reset button.",
+      "whyItMatters": "Prediction depends on order. The apology is less important than refund demand, waiting outside, and staff-schedule questions lining up around access."
+    },
+    {
+      "exampleId": "ch03-ex03-juliette-call-log",
+      "title": "Juliette Marks the Warm Handset Pattern",
+      "tags": [
+        "vignette",
+        "clinic",
+        "calls"
+      ],
+      "planSpec": {
+        "domain": "county clinic appointment line",
+        "audience": "a receptionist forecasting access pressure from repeated calls",
+        "stakes": "whether to wait for an explicit threat",
+        "format": "vignette",
+        "requiredBeat": "marks the pattern of hang-ups, callback timing, and questions about staff exits"
+      },
+      "scenario": "The phone handset is warm from repeated calls when Juliette opens the call log. Three hang-ups sit between two questions about an appointment card and one question about the side entrance. She must decide whether to wait for an explicit threat. Instead, she marks timing, callbacks, and exit questions as a pattern to hand to the clinic manager.",
+      "whatToDo": "Mark the timing and access questions, then stop sharing exit details and ask the manager to cover closing. Do not wait for the caller to supply a quotable threat.",
+      "whyItMatters": "The risk is carried by repetition and access interest. Waiting for ugly words would ignore the behavior already making the next step easier."
+    },
+    {
+      "exampleId": "ch03-ex04-mikkel-badge-reprint",
+      "title": "Mikkel Compares the Badge Requests",
+      "tags": [
+        "decision",
+        "festival",
+        "badge"
+      ],
+      "planSpec": {
+        "domain": "film festival volunteer office",
+        "audience": "a coordinator assessing a rejected applicant",
+        "stakes": "whether to call the pattern disappointment or pursuit",
+        "format": "decision_point",
+        "requiredBeat": "compares three emails, two lobby appearances, and a request for a badge reprint"
+      },
+      "scenario": "You are Mikkel, and the lanyard printer spits blank plastic while the email thread stays open on your screen. A rejected applicant has sent three notes, appeared in the lobby twice, and now asks whether a volunteer badge could be reprinted. The roster is beside your elbow. You must decide whether this is disappointment or pursuit of access.",
+      "whatToDo": "Compare the emails, lobby appearances, and badge request as one access pattern. Notify front-door staff and remove the applicant from badge systems.",
+      "whyItMatters": "Disappointment explains feelings, not behavior. The badge request changes the forecast because it seeks a tool for entering spaces the applicant lost."
+    },
+    {
+      "exampleId": "ch03-ex05-sofia-drill-case",
+      "title": "Sofia Weighs the Locked Drill Case",
+      "tags": [
+        "postmortem",
+        "co-op",
+        "access"
+      ],
+      "planSpec": {
+        "domain": "neighborhood repair co-op",
+        "audience": "a tool-library manager after a member is suspended",
+        "stakes": "whether one apology resets the forecast",
+        "format": "postmortem",
+        "requiredBeat": "weights the pattern of rule bending, equipment hoarding, and door rattling after hours"
+      },
+      "scenario": "It took Sofia one quiet evening under fluorescent light to stop treating the apology as the end. The locked drill case sat inside the tool cage, the suspended membership card clipped to an incident note. Before the apology, there had been rule bending, equipment hoarding, and door rattling after hours. She must decide what forecast to carry forward.",
+      "whatToDo": "Keep the suspension access limits in place and document the full sequence. Let the apology sit beside the behavior, not on top of it.",
+      "whyItMatters": "A pleasant sentence cannot erase repeated access pressure. The pattern predicts what needs changing: keys, cages, and after-hours procedures."
+    },
+    {
+      "exampleId": "ch03-ex06-yusuf-courthouse-exit",
+      "title": "Yusuf Requests a Deputy at the Exit",
+      "tags": [
+        "before_after",
+        "courthouse",
+        "exit"
+      ],
+      "planSpec": {
+        "domain": "small claims courthouse hallway",
+        "audience": "a legal-aid worker planning exit support",
+        "stakes": "whether a litigant will follow after losing",
+        "format": "before_after",
+        "requiredBeat": "uses behavior sequence, not the courtroom speech, to request a deputy at the exit"
+      },
+      "scenario": "A docket sheet is folded into Yusuf's coat pocket as the metal detector line thins. Before the ruling, the litigant stared at his client, waited outside the restroom, and asked which exit corridor she used. After the loss, the speech is calm. Yusuf still asks a deputy to stand by the exit because the behavior sequence matters more.",
+      "whatToDo": "Request deputy support at the exit and use a different corridor. Base the action on the sequence before the ruling, not on the calm tone after it.",
+      "whyItMatters": "A calm speech can mask a continuing access pattern. Yusuf does not need certainty that the litigant will follow; he needs a safer exit plan."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A clinic receives repeated hang-ups followed by questions about staff exits. Why is this more predictive than one rude call?",
+        "choices": [
+          "The repeated calls form a sequence around access.",
+          "Rude calls are always harmless.",
+          "Exit questions only matter after a threat."
+        ],
+        "correctIndex": 0,
+        "explanation": "Prediction comes from repetition and access interest. One rude call may be noise, but timed callbacks and exit questions create a behavior sequence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A theater volunteer keeps arriving after hours and ignoring sign-out rules. What should the director do before naming a forecast?",
+        "choices": [
+          "Ask other volunteers whether he seems dangerous.",
+          "List the behaviors in order and choose a narrow access change.",
+          "Wait until one incident is serious enough to stand alone."
+        ],
+        "correctIndex": 1,
+        "explanation": "The sequence is the evidence. A narrow access change fits the pattern. Reputation checks and waiting for a larger incident both weaken the forecast.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A customer apologizes after waiting outside a shop and asking about employee schedules. What should the owner do with the apology?",
+        "choices": [
+          "Treat it as proof the pattern is over.",
+          "Ignore it completely because apology is always manipulation.",
+          "Include it as one data point without erasing the prior sequence."
+        ],
+        "correctIndex": 2,
+        "explanation": "The apology matters, but it does not cancel waiting outside and schedule questions. Good prediction keeps all the behavior in order.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A festival applicant sends three emails, appears twice in the lobby, and asks for a badge reprint. Which action fits a modest forecast?",
+        "choices": [
+          "Remove badge access and brief front-door staff.",
+          "Accuse the applicant of planning harm.",
+          "Do nothing until a direct threat arrives."
+        ],
+        "correctIndex": 0,
+        "explanation": "The badge request seeks access, so badge control fits. An accusation overreaches, while waiting for a threat ignores the pattern already present.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A legal-aid worker sees a litigant wait near restrooms, ask about exits, then speak calmly after losing. What should guide the exit plan?",
+        "choices": [
+          "The calm speech after the ruling.",
+          "The full behavior sequence around access and following.",
+          "Whether the worker personally dislikes the litigant."
+        ],
+        "correctIndex": 1,
+        "explanation": "The plan should answer the access pattern, not the final tone. Calm words do not erase earlier positioning and exit questions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A manager predicts more boundary testing after three small incidents. What keeps that prediction from becoming prophecy?",
+        "choices": [
+          "Assuming the worst possible outcome.",
+          "Using confident language so everyone listens.",
+          "Keeping the forecast probabilistic and action narrow."
+        ],
+        "correctIndex": 2,
+        "explanation": "A modest forecast tied to a small action stays disciplined. Confidence and worst-case certainty turn pattern reading into theater.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A school office has one odd visitor question about a hallway. The next week brings two more route questions and a request for a temporary badge. What changed?",
+        "choices": [
+          "The school now has a sequence involving access tools and route knowledge.",
+          "The visitor became easier to understand as a personality.",
+          "Nothing changed until the visitor states intent."
+        ],
+        "correctIndex": 0,
+        "explanation": "The route questions and badge request create an access sequence. Intent remains hidden, but action can now focus on badge and hallway control.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A coworker says prediction is impossible because nobody can know the future. What answer best fits disciplined pattern reading?",
+        "choices": [
+          "Prediction means certainty about the future.",
+          "Prediction means choosing a proportionate action from repeated behavior, not claiming certainty.",
+          "Prediction is only useful for experts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The useful forecast is probabilistic. It does not know the future; it narrows present action based on a repeated pattern.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two cases come in: one has a dramatic angry sentence and no prior pattern; the other has repeated access attempts and no ugly words. Which deserves earlier protective planning?",
+        "choices": [
+          "Neither, because prediction without certainty is unfair.",
+          "The angry sentence, because it is easier to quote.",
+          "The access pattern, because behavior sequence predicts more than drama alone."
+        ],
+        "correctIndex": 2,
+        "explanation": "Repeated access behavior has more predictive value than drama by itself. Planning can be narrow and fair without pretending certainty.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "In a tense scene, what is the raw material of prediction here?",
+      "back": "Repeated behavior in sequence. One incident may be noise; a pattern around access, timing, escalation, or refusal gives you something to forecast from.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "How do you keep prediction from becoming prophecy?",
+      "back": "Keep the forecast modest and the action narrow. Say what the pattern makes more likely, then change only the condition the pattern points to.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why does apology not automatically reset a forecast?",
+      "back": "Apology is one data point. It belongs beside the prior behavior, not on top of it. A repeated access pattern may continue even after a pleasant sentence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A person asks for schedules, badges, or exits after a conflict. What should you notice?",
+      "back": "Those are access details. The prediction should focus on whether future access is being prepared, then reduce that access without overclaiming intent.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What action fits a probabilistic forecast?",
+      "back": "A proportionate one: adjust access, brief staff, add a witness, change an exit route, or document the sequence. Do not leap to certainty.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice sequencing before forecasting. The skill is to put behavior in order, remove excuses and adjectives, and choose the smallest protective action the pattern supports.",
+    "ifThenPlans": [
+      {
+        "context": "community group",
+        "plan": "If one person has three small boundary incidents, then list them in order before deciding whether access rules need changing."
+      },
+      {
+        "context": "retail",
+        "plan": "If a customer apologizes after access-seeking behavior, then record the apology and the prior sequence before changing staffing or closing routines."
+      },
+      {
+        "context": "events",
+        "plan": "If a rejected applicant seeks badges, schedules, or entrances, then brief front-door staff and remove access tools."
+      },
+      {
+        "context": "legal support",
+        "plan": "If a conflict includes exit questions or hallway waiting, then plan a staffed exit before the hearing ends."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one uneasy pattern and write three behaviors in order. Then choose one action that changes access, timing, or witness without accusing anyone.",
+    "weeklyPractice": "Once this week, practice a sequence-only note: no motives, no labels, no drama. Just behavior, order, and the narrow action it supports."
+  },
+  "memorableLines": [
+    {
+      "text": "A pattern beats a performance.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader a memorable contrast between sequence and show."
+    },
+    {
+      "text": "The narrow action is the point.",
+      "location": "breakdown.deepRead",
+      "why": "It keeps prediction tied to proportionate action."
+    },
+    {
+      "text": "Wild prediction turns people into villains too early.",
+      "location": "breakdown.fullRead",
+      "why": "It names the ethical limit of forecasting."
+    }
+  ]
+}

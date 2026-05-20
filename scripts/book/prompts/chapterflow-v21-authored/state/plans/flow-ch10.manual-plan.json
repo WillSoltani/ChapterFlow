@@ -1,0 +1,197 @@
+{
+  "chapterId": "flow-ch10",
+  "number": 10,
+  "title": "The Making of Meaning",
+  "coreMove": "Link separate absorbing activities into a life theme by choosing the purpose they serve and the commitments that keep them from scattering.",
+  "sourcePressure": "The final synthesis: isolated flow episodes are not enough unless purpose, resolve, harmony, and a life theme unify experience into meaning.",
+  "chapterSpecificMisunderstanding": "Collapse meaning into vague purpose slogans or personal branding.",
+  "sourceAlignmentTerms": [
+    "meaning",
+    "purpose",
+    "resolve",
+    "harmony",
+    "life themes",
+    "integration",
+    "whole-life order"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "life themes",
+      "detail": "the frozen contents list the unification of meaning in life themes as the final Chapter 10 subheading",
+      "useIn": "both",
+      "phrasingHint": "A life theme gathers separate days into one direction, so each hard choice is not invented from scratch."
+    },
+    {
+      "kind": "artifact",
+      "name": "forging resolve",
+      "detail": "the frozen contents list forging resolve as a Chapter 10 subheading",
+      "useIn": "fullRead",
+      "phrasingHint": "Resolve has to be forged because meaning cannot stay a mood; it needs repeated choices that survive inconvenience."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic the making of meaning definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Julien",
+      "domain": "a climate data analyst deciding whether scattered projects share a theme",
+      "audience": "mission-driven professionals with too many worthy options",
+      "stakes": "without a unifying purpose, every urgent request looks equally central",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he places three project briefs side by side and chooses the one criterion that connects his skill to the public problem he actually serves",
+      "firstImage": "At 7:51 a.m., Julien lays three project briefs across the desk",
+      "mustInclude": [
+        "project briefs",
+        "flood map",
+        "selection criterion"
+      ],
+      "mustAvoid": [
+        "purpose as career branding"
+      ]
+    },
+    {
+      "protagonistName": "Astrid",
+      "domain": "a mid-career nurse connecting small practices into a life direction",
+      "audience": "care workers who see many meaningful moments but little harmony",
+      "stakes": "burnout rises when each act feels isolated",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show the years of disconnected competence beside the day she names patient dignity as the thread linking charting, handoffs, and training juniors",
+      "firstImage": "Astrid had done meaningful work for years without a sentence to hold it",
+      "mustInclude": [
+        "handoff sheet",
+        "training note",
+        "quiet supply room"
+      ],
+      "mustAvoid": [
+        "noble nurse stereotype"
+      ]
+    },
+    {
+      "protagonistName": "Tomas",
+      "domain": "a musician choosing between gigs and teaching",
+      "audience": "artists balancing income, craft, and contribution",
+      "stakes": "the choice affects rent and identity, not just taste",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "his bandmate asks what he is building, and Tomas tests each option against the theme of making difficult music teachable",
+      "firstImage": "\"What are you actually building?\" his bandmate asks",
+      "mustInclude": [
+        "gig calendar",
+        "lesson notebook",
+        "rent envelope"
+      ],
+      "mustAvoid": [
+        "artist destiny cliche"
+      ]
+    },
+    {
+      "protagonistName": "Marta",
+      "domain": "a parent returning to school after years of fragmented goals",
+      "audience": "adults rebuilding purpose under family constraints",
+      "stakes": "time is scarce and another abandoned plan would cost trust at home",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "you look at the course catalog and must decide which class belongs to the same life theme as the bedtime story and the night shift",
+      "firstImage": "You have twenty minutes with the course catalog before pickup",
+      "mustInclude": [
+        "course catalog",
+        "pickup alarm",
+        "library card"
+      ],
+      "mustAvoid": [
+        "self-actualization slogan"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "a civil engineer choosing a boring maintenance specialty",
+      "audience": "professionals tempted by prestige over coherent contribution",
+      "stakes": "the glamorous project may scatter his values while the quiet one fits",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "the maintenance tunnel hums under the street, and Niklas predicts which path will still make sense after ten years of choices",
+      "firstImage": "The maintenance tunnel hums beneath a street nobody notices",
+      "mustInclude": [
+        "inspection lamp",
+        "bridge file",
+        "ten-year note"
+      ],
+      "mustAvoid": [
+        "prestige bad, service good oversimplification"
+      ]
+    },
+    {
+      "protagonistName": "Adaeze",
+      "domain": "a neighborhood organizer turning events into a durable community theme",
+      "audience": "civic volunteers at risk of scattered good deeds",
+      "stakes": "without resolve the group will burn out after three visible wins",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "ask why three successful events still felt scattered, then show Adaeze rewriting the calendar around one purpose and three recurring commitments",
+      "firstImage": "Why can three good events still feel like no direction?",
+      "mustInclude": [
+        "community calendar",
+        "folding tables",
+        "volunteer list"
+      ],
+      "mustAvoid": [
+        "community uplift platitude"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguishing flow episodes from meaning",
+      "building a coherent life theme without slogans",
+      "connecting purpose, resolve, and harmony in choices"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write three activities that absorb you, then finish this sentence: together, these are training me to serve or build what?",
+  "readingTimeMinutes": 12
+}

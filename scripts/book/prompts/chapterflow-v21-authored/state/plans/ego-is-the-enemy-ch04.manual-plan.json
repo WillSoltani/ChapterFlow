@@ -1,0 +1,196 @@
+{
+  "chapterId": "ego-is-the-enemy-ch04",
+  "number": 4,
+  "title": "Don't be passionate",
+  "coreMove": "Separate durable commitment from the dramatic feeling of being all-in.",
+  "sourcePressure": "Aspire section: discipline over ego-heavy intensity. Supported by frozen source sidecar.",
+  "chapterSpecificMisunderstanding": "Reading the warning as anti-care, when the target is performative heat that cannot survive repetition.",
+  "sourceAlignmentTerms": [
+    "passion",
+    "discipline",
+    "intensity",
+    "control",
+    "surge",
+    "durability"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "No named person, study, place, or artifact is available in the frozen source sidecar for this chapter; use fictional scenarios only and do not invent source anecdotes.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic definition of passion",
+      "starting with a neat ambition maxim",
+      "using a crisis-at-8-a.m. shell"
+    ],
+    "counterintuition": [
+      "not a simple passion is good/bad reversal",
+      "not a humble-brag correction",
+      "not a success is secretly dangerous template"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three priorities",
+      "take a deep breath before responding"
+    ],
+    "examples": [
+      "generic office meeting",
+      "startup founder staring at laptop",
+      "family dinner argument",
+      "coach gives locker-room speech"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief historical reference where source anchors allow it",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Katherine",
+      "domain": "community theatre rehearsal",
+      "audience": "a reader facing community theatre rehearsal pressure who needs to practice chapter 4's move without turning it into passion advice in general",
+      "stakes": "a concrete standard in community theatre rehearsal will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "cancels the dramatic kickoff speech and installs the boring follow-through control that will still exist next Thursday in the concrete setting of community theatre rehearsal; make the lesson visible through action, not explanation",
+      "firstImage": "a rehearsal call sheet with three missing initials sits between Katherine and the easiest explanation in the community theatre rehearsal room.",
+      "mustInclude": [
+        "passion",
+        "discipline",
+        "community theatre"
+      ],
+      "mustAvoid": [
+        "do not turn this into passion as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Natalie",
+      "domain": "craft brewery quality log",
+      "audience": "a reader facing craft brewery quality log pressure who needs to practice chapter 4's move without turning it into passion advice in general",
+      "stakes": "a concrete standard in craft brewery quality log will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "lets the excited room cool down before assigning owners, dates, and a review point in the concrete setting of craft brewery quality log; make the lesson visible through action, not explanation",
+      "firstImage": "\"Show me the standard,\" Natalie hears, with a supplier quote stapled to the wrong invoice already on the table.",
+      "mustInclude": [
+        "passion",
+        "discipline",
+        "craft brewery"
+      ],
+      "mustAvoid": [
+        "do not turn this into passion as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Caroline",
+      "domain": "airport ground crew briefing",
+      "audience": "a reader facing airport ground crew briefing pressure who needs to practice chapter 4's move without turning it into passion advice in general",
+      "stakes": "a concrete standard in airport ground crew briefing will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "refuses to call the surge commitment until the ugly middle has a schedule in the concrete setting of airport ground crew briefing; make the lesson visible through action, not explanation",
+      "firstImage": "Before anyone speaks, a rescue drill map folded to the missed checkpoint makes the pressure in airport ground crew briefing visible.",
+      "mustInclude": [
+        "passion",
+        "discipline",
+        "airport ground"
+      ],
+      "mustAvoid": [
+        "do not turn this into passion as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Erin",
+      "domain": "apprentice electrician exam prep",
+      "audience": "a reader facing apprentice electrician exam prep pressure who needs to practice chapter 4's move without turning it into passion advice in general",
+      "stakes": "a concrete standard in apprentice electrician exam prep will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "moves the project from an inspiration board to a maintenance log with consequences in the concrete setting of apprentice electrician exam prep; make the lesson visible through action, not explanation",
+      "firstImage": "You can see Erin's thumb stop over an interpreter score sheet with the hesitation marks visible before the ego-favoring move happens.",
+      "mustInclude": [
+        "passion",
+        "discipline",
+        "apprentice electrician"
+      ],
+      "mustAvoid": [
+        "do not turn this into passion as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Molly",
+      "domain": "charity gala seating plan",
+      "audience": "a reader facing charity gala seating plan pressure who needs to practice chapter 4's move without turning it into passion advice in general",
+      "stakes": "a concrete standard in charity gala seating plan will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "dialogue",
+      "openingDevice": "environmental",
+      "requiredBeat": "separates caring from performing by cutting the theatrical promise and keeping the recurring task in the concrete setting of charity gala seating plan; make the lesson visible through action, not explanation",
+      "firstImage": "It took Molly until the third review of a lane-assignment clipboard with the early win highlighted to see what ego had protected.",
+      "mustInclude": [
+        "passion",
+        "discipline",
+        "charity gala"
+      ],
+      "mustAvoid": [
+        "do not turn this into passion as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    },
+    {
+      "protagonistName": "Kate",
+      "domain": "medical device design review",
+      "audience": "a reader facing medical device design review pressure who needs to practice chapter 4's move without turning it into passion advice in general",
+      "stakes": "a concrete standard in medical device design review will be weakened if ego gets the reward, story, control, or grievance it wants",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "checks what remains of the plan after the emotional high has left the room in the concrete setting of medical device design review; make the lesson visible through action, not explanation",
+      "firstImage": "What changes when a cupping form stained with cooling coffee becomes harder to ignore than the self-protective story?",
+      "mustInclude": [
+        "passion",
+        "discipline",
+        "medical device"
+      ],
+      "mustAvoid": [
+        "do not turn this into passion as a generic moral",
+        "do not reuse a meeting-room whiteboard scene",
+        "do not let the protagonist explain the lesson instead of acting it"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish passion from the chapter's actual ego mechanism",
+      "choose the visible action that performs: Separate durable commitment from the dramatic feeling of being all-in.",
+      "spot when a scenario has drifted into burnout advice",
+      "evaluate whether a response protects the work, the standard, or the self-image"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next real decision, write the ego-favoring move in five words, then perform the smallest visible action that serves passion or the work standard instead. Keep it under 90 seconds.",
+  "readingTimeMinutes": 12
+}

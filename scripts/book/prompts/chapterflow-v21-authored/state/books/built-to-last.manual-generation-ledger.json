@@ -1,0 +1,651 @@
+{
+  "bookId": "built-to-last",
+  "updatedAt": "2026-05-16T08:28:53.788Z",
+  "usedProtagonistNames": [
+    "Sarah",
+    "James",
+    "Camille",
+    "Lukas",
+    "Sofia",
+    "Andrew",
+    "Grace",
+    "Thomas",
+    "Anke",
+    "David",
+    "Hanna",
+    "Julien",
+    "Rachel",
+    "Claire",
+    "Mathieu",
+    "Michael",
+    "Manon",
+    "Nina",
+    "Olivia",
+    "Marco",
+    "Sophie",
+    "Ben",
+    "Kasia",
+    "Daniel",
+    "Megan",
+    "Etienne",
+    "Paula",
+    "Chris",
+    "Isabel",
+    "Aman",
+    "Laura",
+    "Jack",
+    "Lars",
+    "Juliette",
+    "Sam",
+    "Catarina",
+    "Emily",
+    "Nicolas",
+    "Anna",
+    "Diego",
+    "Ingrid",
+    "Lin",
+    "Ryan",
+    "Pavel",
+    "Margaux",
+    "Akira",
+    "Hannah",
+    "Olivier",
+    "Marta",
+    "Matthew",
+    "Giulia",
+    "Devon",
+    "Chloe",
+    "Henrik",
+    "Aanya",
+    "Peter",
+    "Adaeze",
+    "Tomas",
+    "Mikkel",
+    "Frida"
+  ],
+  "usedExampleDomains": [
+    "municipal transit procurement comparing two bus operators across fifteen winter seasons",
+    "regional hospital selecting a sterile-processing vendor after a famous salesperson dazzles the executive team",
+    "independent bookstore chain deciding whether a beloved flagship should define the whole company",
+    "software security team evaluating two incident-response groups after both had one public save",
+    "public library system choosing a literacy partner by matched neighborhood outcomes",
+    "craft manufacturing cooperative comparing two tool suppliers after a production surge",
+    "restaurant allergy station converting the head chef's memory into a shift-proof service system",
+    "community legal clinic turning one senior lawyer's intake instincts into a triage clock",
+    "university lab replacing a star technician's freezer map with a barcoded sample system",
+    "youth orchestra making auditions fair without the retiring conductor's ear",
+    "warehouse returns desk replacing one clerk's knack with a defect-category wall",
+    "museum membership desk converting a rainmaker's donor calls into a renewal cadence",
+    "medical-device startup choosing whether to rush a profitable hospital pilot before usability fixes",
+    "outdoor gear retailer rejecting a high-margin private-label jacket after a repair test fails",
+    "credit union deciding whether to add overdraft fees that competitors use heavily",
+    "vocational school accepting a flashy sponsor whose equipment cannot be maintained by students",
+    "regional newspaper weighing sponsored content that looks like reporting",
+    "childcare cooperative deciding whether to increase enrollment beyond the ratio families were promised",
+    "emergency dispatch center replacing handwritten call cards while preserving caller-first judgment",
+    "heritage bakery moving overnight proofing data from memory to sensors without changing bread standards",
+    "nonprofit crisis hotline adding text chat while preserving immediate human presence",
+    "rural hardware store adding online inventory while preserving neighborly problem-solving",
+    "architecture firm moving from hand sketches to parametric software while preserving critique discipline",
+    "community choir livestreaming services while preserving congregational participation",
+    "regional blood bank committing to same-day emergency supply across remote hospitals",
+    "regional theatre pledging every youth ticket under ten dollars within three seasons",
+    "industrial laundry aiming for zero rewash loads for hospital linens in one year",
+    "open-source mapping nonprofit setting a goal to map every rural clinic in a province before flood season",
+    "hotel group promising every room ready by 3 p.m. for a peak-season month",
+    "urban tree nursery targeting enough native saplings for every heat-island block in five years",
+    "aviation maintenance shop deciding whether to keep its fastest mechanic after skipped signoffs",
+    "software support team hiring a brilliant engineer who mocks customer callbacks",
+    "fire station probation process testing whether recruits reset gear for the next crew",
+    "boutique hotel front desk enforcing guest-recovery rituals for senior hires",
+    "mutual-aid kitchen deciding whether a popular volunteer can ignore cleanup duty",
+    "design apprenticeship requiring critique participation before portfolio praise",
+    "urban farmers market testing stall layouts while preserving local-producer standards",
+    "physical therapy clinic testing discharge instructions for knee patients",
+    "public radio station experimenting with local news formats without abandoning public-service reporting",
+    "bike-share maintenance crew testing repair-routing cards across neighborhoods",
+    "language school trying placement interviews, written tests, and trial classes for adult learners",
+    "specialty pharmacy testing refill reminders for transplant patients under strict adherence rules",
+    "regional dialysis network preparing clinic managers before a retirement wave",
+    "family-owned logistics firm choosing a depot manager after an outside candidate impresses investors",
+    "independent school building department chairs through observed parent-conference practice",
+    "cybersecurity firm creating incident commanders from inside rotating response cells",
+    "regional food bank developing warehouse leads through donor, safety, and volunteer rotations",
+    "city parks department grooming district supervisors through winter, festival, and budget assignments",
+    "blood-test courier network catching small temperature deviations before samples fail",
+    "local newspaper copy desk catching headline corrections that readers never complain about",
+    "craft brewery refusing small packaging scuffs before distributors normalize them",
+    "municipal snow-removal team reviewing blocks that were technically cleared but unsafe for wheelchairs",
+    "meal-kit company tracking recipe substitutions that technically work but weaken trust",
+    "airport cleaning contractor refusing invisible restroom drift during overnight audits",
+    "regional home-care agency turning scattered quality fixes into a durable operating architecture",
+    "specialty manufacturing firm preparing a second plant without cloning the founder's habits",
+    "civic technology nonprofit rebuilding after founder burnout",
+    "regional apprenticeship program moving from pilot success to a repeatable multi-city model",
+    "community health clinic integrating values, improvement goals, hiring filters, experiments, and standards into one board dashboard",
+    "digital archive project deciding how to survive grant cycles and founder departure"
+  ],
+  "usedExampleAnchors": [
+    "salt-streaked maintenance binders spread across a council table",
+    "\"Before we vote, show me the years after your plant manager left,\" James says",
+    "the flagship smells of cedar shelves and new paper while the ledgers sit unopened",
+    "What remains after the famous engineer is erased from the incident timeline?",
+    "two grant folders with identical stickers but different second-year attendance lines",
+    "a caliper, two sample parts, and one empty chair at the supplier visit",
+    "almond flour dust on a stainless prep table beside red allergy clips",
+    "three eviction notices clipped to a blue triage card",
+    "frost fog rolling out of a minus-eighty freezer",
+    "Can the orchestra choose well with the conductor behind a closed door?",
+    "a rolling cart of torn packages parked under fluorescent lights",
+    "a donor phone list printed from one private contact file",
+    "a signed hospital purchase order under a stack of sticky notes from night nurses",
+    "wet nylon bunched under a repair needle",
+    "a fee projection spreadsheet beside anonymized member accounts",
+    "students standing behind a velvet rope around donated equipment",
+    "a mock front page glowing on a newsroom monitor",
+    "small blue nap mats laid inches closer than usual",
+    "laminated call cards stacked beside two glowing dispatch monitors",
+    "flour stuck to a humidity sensor clipped above a proofing rack",
+    "midnight chat transcripts printed with time stamps in the margin",
+    "a curbside pickup shelf with a paper question clipped to each order",
+    "What did the software speed past that the red pencil used to catch?",
+    "a small camera taped to a choir loft rail",
+    "a route board with red magnets for remote hospitals",
+    "colored seat maps spread below a handwritten ten-dollar note",
+    "What would break first if the rewash cart had to stay empty?",
+    "pushpins missing from a damp paper map of river towns",
+    "key cards lined in rows beside a 2:47 p.m. lobby clock",
+    "seed trays numbered against a wall map of red heat blocks",
+    "unsigned inspection cards clipped to a propeller cart",
+    "a technical scorecard with one line crossed out in black ink",
+    "the rubber smell of masks drying beside an empty oxygen slot",
+    "two complaint cards tucked under a brass desk bell",
+    "Who belongs in a kitchen where applause excuses the sink?",
+    "portfolio boards leaning against a wall beside red critique stickers",
+    "chalk arrows drying on wet pavement before vendors arrive",
+    "three discharge packets lined along a treatment table",
+    "listener notes beside a council-meeting attendance sheet",
+    "rainwater beading on a laminated van route card",
+    "refund forms stacked under three placement rubrics",
+    "refill labels sorted into three colored trays",
+    "six retirement dates marked on a clinic coverage map",
+    "route maps and storm-closure logs on a depot table",
+    "empty parent chairs arranged under student art",
+    "Who gives the order when the founder's phone is off?",
+    "pallet tags curling on a warehouse door after a long distribution shift",
+    "snowplow keys, festival permits, and a budget binder on one desk",
+    "pale blue temperature strips curling beside a cooler latch",
+    "a neat pile of correction slips under the newsroom clock",
+    "a label edge sitting three millimeters low under inspection light",
+    "curb-cut photos with snow ridges casting thin shadows",
+    "three recipe cards with different substituted ingredients circled",
+    "a white cotton glove gray at the fingertip under fluorescent restroom light",
+    "color-coded care-visit cards covering a conference table",
+    "a lease packet beside a failed pilot-cell inspection sheet",
+    "a board packet with one empty executive-director page",
+    "train tickets, instructor notes, and a blank city rollout checklist",
+    "accreditation tabs jutting from a binder with coffee rings on the cover",
+    "acid-free folders stacked beside a one-year grant calendar"
+  ],
+  "usedHookFrames": [
+    "built-to-last-ch01: a founder standing on a stage changes everything",
+    "built-to-last-ch02: the genius consultant finally shares the answer",
+    "built-to-last-ch03: profits are bad",
+    "built-to-last-ch04: change everything except your values",
+    "built-to-last-ch05: a moonshot changes everything",
+    "built-to-last-ch06: culture eats strategy",
+    "built-to-last-ch07: fail fast",
+    "built-to-last-ch08: promote from within always wins",
+    "built-to-last-ch09: never settle",
+    "built-to-last-ch10: now go build something that lasts"
+  ],
+  "usedCounterFrames": [
+    "built-to-last-ch01: success is not about profit but about purpose",
+    "built-to-last-ch02: leadership is not about being smart",
+    "built-to-last-ch03: the best companies care about mission, not money",
+    "built-to-last-ch04: preserving the past requires change",
+    "built-to-last-ch05: big goals are not about size",
+    "built-to-last-ch06: strong cultures exclude people",
+    "built-to-last-ch07: planning less can teach more",
+    "built-to-last-ch08: succession starts long before the vacancy",
+    "built-to-last-ch09: good enough is dangerous",
+    "built-to-last-ch10: the ending is the start"
+  ],
+  "usedTryThisNowFrames": [
+    "Choose one organization you admire and write the matched comparison you would need before trusting the lesson: rival, time span, leadership change, and one survival measure.",
+    "Pick one task where people still wait for your answer. Write the handoff test: who can perform it tomorrow, using what artifact, while you stay silent.",
+    "Name one attractive option in front of you and write the value it would bend. If no value bends, it is not a purpose test.",
+    "Take one rule your team defends. Write the core it was meant to protect, then write one different practice that could protect it better now.",
+    "Write one large target, then list the three projects it would force you to stop. If it stops nothing, it is probably a slogan.",
+    "Pick one value your team claims. Write the behavior that proves it, the behavior that violates it, and what will happen the next time either appears.",
+    "Write three small variations for one method you use, one measure that tells whether each served the core, and the date you will kill two of them.",
+    "Choose one role that would hurt if vacant tomorrow. Write the three experiences someone inside must complete before they can inherit it.",
+    "Find one place where the phrase basically fine appears. Replace it with the visible standard, the smallest unacceptable drift, and who checks it next.",
+    "Draw six boxes: core, progress, culture, experiments, leadership, standards. Put one current mechanism in each, and leave blank any box you have not really built."
+  ],
+  "usedQuizExplanationFrames": [],
+  "rejectedFrames": [
+    {
+      "chapterId": "built-to-last-ch01",
+      "type": "hook",
+      "frames": [
+        "a founder standing on a stage changes everything",
+        "a famous brand proves greatness by being famous"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch01",
+      "type": "counterintuition",
+      "frames": [
+        "success is not about profit but about purpose",
+        "the best companies are not the biggest companies"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch01",
+      "type": "tryThisNow",
+      "frames": [
+        "pick a company you admire and write why",
+        "set a timer and list values"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch01",
+      "type": "examples",
+      "frames": [
+        "generic startup pitch deck admiration",
+        "garage founder myth",
+        "boardroom with a coffee mug and a heroic CEO"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch02",
+      "type": "hook",
+      "frames": [
+        "the genius consultant finally shares the answer",
+        "one brilliant idea saves the company"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch02",
+      "type": "counterintuition",
+      "frames": [
+        "leadership is not about being smart",
+        "systems matter more than people"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch02",
+      "type": "tryThisNow",
+      "frames": [
+        "document your process in five minutes",
+        "delegate one task today"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch02",
+      "type": "examples",
+      "frames": [
+        "generic founder bottleneck",
+        "whiteboard framework with no handoff test",
+        "heroic manager working late"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch03",
+      "type": "hook",
+      "frames": [
+        "profits are bad",
+        "purpose always beats money"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch03",
+      "type": "counterintuition",
+      "frames": [
+        "the best companies care about mission, not money",
+        "values are not posters on a wall"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch03",
+      "type": "tryThisNow",
+      "frames": [
+        "write your why",
+        "list three values"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch03",
+      "type": "examples",
+      "frames": [
+        "generic mission statement workshop",
+        "bakery refusing a contract because it feels wrong",
+        "founder speech about meaning"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch04",
+      "type": "hook",
+      "frames": [
+        "change everything except your values",
+        "tradition and innovation must balance"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch04",
+      "type": "counterintuition",
+      "frames": [
+        "preserving the past requires change",
+        "progress is not betrayal"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch04",
+      "type": "tryThisNow",
+      "frames": [
+        "circle what matters and change one thing",
+        "write core versus practice"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch04",
+      "type": "examples",
+      "frames": [
+        "old company updates its logo",
+        "museum with a cracked turnstile",
+        "family recipe modernization"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch05",
+      "type": "hook",
+      "frames": [
+        "a moonshot changes everything",
+        "think bigger than fear"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch05",
+      "type": "counterintuition",
+      "frames": [
+        "big goals are not about size",
+        "audacity is not recklessness"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch05",
+      "type": "tryThisNow",
+      "frames": [
+        "write one impossible goal",
+        "10x your target"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch05",
+      "type": "examples",
+      "frames": [
+        "space-race knockoff",
+        "startup announces a huge user number",
+        "plant manager with a press-line clock"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch06",
+      "type": "hook",
+      "frames": [
+        "culture eats strategy",
+        "a strong culture is like a family"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch06",
+      "type": "counterintuition",
+      "frames": [
+        "strong cultures exclude people",
+        "culture is not perks"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch06",
+      "type": "tryThisNow",
+      "frames": [
+        "write your team values",
+        "ask who fits your culture"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch06",
+      "type": "examples",
+      "frames": [
+        "startup with hoodies and slogans",
+        "sales star laughs at service oath",
+        "onboarding retreat with trust falls"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch07",
+      "type": "hook",
+      "frames": [
+        "fail fast",
+        "experimentation means trying random things"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch07",
+      "type": "counterintuition",
+      "frames": [
+        "planning less can teach more",
+        "mistakes are good"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch07",
+      "type": "tryThisNow",
+      "frames": [
+        "run one small experiment today",
+        "try three ideas and see what works"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch07",
+      "type": "examples",
+      "frames": [
+        "generic A/B test with button colors",
+        "library returned-holds cart",
+        "startup growth hack"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch08",
+      "type": "hook",
+      "frames": [
+        "promote from within always wins",
+        "outsiders cannot understand the culture"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch08",
+      "type": "counterintuition",
+      "frames": [
+        "succession starts long before the vacancy",
+        "loyalty is not enough"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch08",
+      "type": "tryThisNow",
+      "frames": [
+        "make a succession list",
+        "mentor someone this week"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch08",
+      "type": "examples",
+      "frames": [
+        "loading dock clock and outside rescuer",
+        "family business automatically promotes child",
+        "sports team captain succession"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch09",
+      "type": "hook",
+      "frames": [
+        "never settle",
+        "excellence is a habit"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch09",
+      "type": "counterintuition",
+      "frames": [
+        "good enough is dangerous",
+        "high standards are not perfectionism"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch09",
+      "type": "tryThisNow",
+      "frames": [
+        "raise one standard today",
+        "find one thing to improve"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch09",
+      "type": "examples",
+      "frames": [
+        "hotel towel cart",
+        "coach yells at team",
+        "factory defect board with generic red marks"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch10",
+      "type": "hook",
+      "frames": [
+        "now go build something that lasts",
+        "this is only the beginning"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch10",
+      "type": "counterintuition",
+      "frames": [
+        "the ending is the start",
+        "ideas matter only when applied"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch10",
+      "type": "tryThisNow",
+      "frames": [
+        "make an action plan",
+        "choose one lesson from the book"
+      ]
+    },
+    {
+      "chapterId": "built-to-last-ch10",
+      "type": "examples",
+      "frames": [
+        "sticky-note wall with sixty notes",
+        "leader writing values on a blank page",
+        "generic annual retreat synthesis"
+      ]
+    }
+  ],
+  "chapterStatuses": {
+    "built-to-last-ch01": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:26:45.404Z"
+    },
+    "built-to-last-ch02": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:26:46.543Z"
+    },
+    "built-to-last-ch03": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:27:48.557Z"
+    },
+    "built-to-last-ch04": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:27:49.709Z"
+    },
+    "built-to-last-ch05": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:23:17.456Z"
+    },
+    "built-to-last-ch06": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:27:51.079Z"
+    },
+    "built-to-last-ch07": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:28:52.631Z"
+    },
+    "built-to-last-ch08": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:24:23.497Z"
+    },
+    "built-to-last-ch09": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:28:53.789Z"
+    },
+    "built-to-last-ch10": {
+      "shipGatePassed": true,
+      "shipGateBlockers": 0,
+      "shipGateMajors": 0,
+      "patternAuditPassed": true,
+      "patternAuditBlockers": 0,
+      "writtenChapterCountAtCheck": 10,
+      "checkedAt": "2026-05-16T08:26:47.663Z"
+    }
+  }
+}

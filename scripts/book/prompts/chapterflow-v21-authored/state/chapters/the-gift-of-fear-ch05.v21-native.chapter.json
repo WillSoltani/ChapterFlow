@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-gift-of-fear-ch05",
+  "number": 5,
+  "title": "Imperfect Strangers",
+  "readingTimeMinutes": 12,
+  "hook": "The familiar face at the stall is less important than the hand that keeps reaching after no.",
+  "counterintuition": "The label stranger looks like the main fact, but behavior matters more when someone keeps pressing for access after the scene says stop.",
+  "tryThisNow": "Pick one person you have labeled safe or unsafe. Replace the label with two observable behaviors and one access question.",
+  "keyTakeaway": "Labels can lull or alarm you too quickly; behavior, context, and access pressure give a cleaner read than stranger or familiar ever can.",
+  "breakdown": {
+    "fastRead": "Laura is setting stall weights before sunrise when a crate of peaches splits at one corner. A man she has seen around the market reaches for the cash apron after she says she can handle it. He looks familiar, which makes the pressure feel less sharp.\n\nThe useful question is not who he is. It is what he is doing. A stranger label can scare you too fast, and familiarity can calm you too fast. Behavior gives you better evidence.\n\nA known face can still push for access. An unknown face can still respect no.",
+    "deepRead": "Laura's mistake would be to decide from category. Stranger, neighbor, regular, vendor, volunteer: each label invites a shortcut. But safety is not hidden in the label. It is in the behavior unfolding now.\n\nThe sharper question is not whether someone is a stranger; it is whether the behavior keeps pushing for access. That guidance matters because the stranger category alone is too blunt. It can make a respectful unknown person look risky and a familiar pressure test look harmless.\n\nWatch what changes after your answer.\n\nMichael sees this at a corporate visitor center. A well-dressed man gives a plausible name, stands by the elevator bank, and asks for a temporary badge before the appointment tablet confirms him. His suit is a status cue. The badge requests are behavior. When Michael moves attention from polish to access, the next step becomes simple: keep him in the lobby until the host confirms.\n\nThe limit is that stranger status is not meaningless. Context still matters. A stranger at a locked ward door is different from a stranger asking directions in daylight. The point is not to erase categories. It is to stop letting categories replace observation.",
+    "fullRead": "Rainwater drips from the bus timetable frame while Manon waits under the rural shelter light. The local man with the familiar truck asks where she is going, then asks again after she answers vaguely. A traveler she has never seen before asks once if the bus is late, hears her short answer, and steps back under his own umbrella.\n\nOld slogans would push Manon toward the known local and away from the unknown traveler. The behavior points the other way. One person keeps pressing for destination details. The other respects a brief answer. The label is easy; the behavior is useful.\n\nThis is where false comfort enters. Familiarity feels like evidence because the mind confuses recognition with safety. You have seen the person before, so the body relaxes. You know the first name, so the question seems less intrusive. You know he shops here, volunteers here, lives nearby, visits often. None of that tells you what his behavior is doing right now.\n\nAsk yourself a sharper question: what access is being sought?\n\nLukas faces it at a hospital volunteer desk. A charming repeat visitor knows staff names and jokes with everyone by the smock rack. He also keeps asking for patient room numbers, studies the ward pass drawer, and returns to the visitor log after being redirected. Knowing his first name lowers the room's guard. His behavior should raise it.\n\nThe practical test asks if access pressure continues, whatever label the person carries. That sentence protects against two errors at once. It keeps you from treating every unknown person as a threat, and it keeps you from granting familiar people a discount they have not earned.\n\nIsabel learns the same thing at the community garden tool shed. A neighbor asks for the shed key after hours. She says no because the watering roster is closed. He laughs, mentions how long they have lived on the same block, and asks again while standing beside the cold padlock. Familiarity is now being used as pressure. The behavior is not safer because it has a neighborhood story attached.\n\nBehavior-first judgment is not naive trust. It is stricter than category thinking. It asks what happened after refusal, what access is being requested, what context changes the meaning, and whether the person adjusts when a boundary appears.\n\nChidi sees it through the glass of an independent cinema ticket booth. A regular customer knows the staff, buys tickets every Friday, and chats about old films. Then he asks when Chidi gets off, waits by the side door, and watches the cash drawer close. Regular status explains why the interaction started warmly. It does not explain why pressure gathers around time, exit, and money.\n\nSo move your attention from identity to behavior. The person may be familiar or unknown, polished or rough, friendly or awkward. Those details matter less than the live pattern. Are they respecting the boundary, or are they using the story of who they are to get closer?"
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-laura-market-stall",
+      "title": "Laura Watches the Help After No",
+      "tags": [
+        "scene",
+        "market",
+        "behavior"
+      ],
+      "planSpec": {
+        "domain": "urban farmer market stall before sunrise",
+        "audience": "a vendor judging a stranger by behavior, not category",
+        "stakes": "whether to accept help from a familiar-looking man",
+        "format": "scene",
+        "requiredBeat": "declines the help and watches whether the refusal changes his behavior"
+      },
+      "scenario": "At 5:37 a.m., Laura kneels beside a crate of peaches splitting at one corner. Her cash apron hangs from the folding table, and stall weights are still stacked on the curb. A familiar-looking man reaches toward the apron after she says she has it. Laura must decide whether recognition is enough comfort or whether to watch what his hand does after no.",
+      "whatToDo": "Keep the apron on your side of the table, repeat no once, and step where other vendors can see. Judge the hand after refusal, not the familiar face.",
+      "whyItMatters": "The category is vague. The behavior is live. When help turns toward cash and survives no, Laura has a better signal than familiarity."
+    },
+    {
+      "exampleId": "ch05-ex02-michael-visitor-badge",
+      "title": "Michael Holds the Temporary Badge",
+      "tags": [
+        "dialogue",
+        "lobby",
+        "badge"
+      ],
+      "planSpec": {
+        "domain": "corporate visitor center lobby",
+        "audience": "a receptionist handling a well-dressed unknown visitor",
+        "stakes": "whether status cues should create trust",
+        "format": "dialogue",
+        "requiredBeat": "moves from name and suit to behavior: repeated badge requests and elevator-watching"
+      },
+      "scenario": "\"My meeting is upstairs,\" the man says as the visitor badge laminator warms up. Michael checks the appointment tablet. No host has confirmed. The man smiles, asks for a temporary badge again, and keeps watching the elevator bank. Michael must decide whether the suit and name matter more than repeated badge requests. It is Monday night.",
+      "whatToDo": "Hold the badge until the host confirms, and keep the visitor away from the elevator bank. Track the repeated access request, not the polish.",
+      "whyItMatters": "Status cues can soften judgment. The relevant behavior is that he keeps trying to get a tool for access before the appointment is verified."
+    },
+    {
+      "exampleId": "ch05-ex03-manon-bus-shelter",
+      "title": "Manon Chooses Distance From the Local",
+      "tags": [
+        "vignette",
+        "bus",
+        "destination"
+      ],
+      "planSpec": {
+        "domain": "rural bus shelter in hard rain",
+        "audience": "a passenger reconsidering stranger danger rules",
+        "stakes": "whether the known local or unknown traveler is safer",
+        "format": "vignette",
+        "requiredBeat": "chooses distance from the person pressing for destination details, regardless of familiarity"
+      },
+      "scenario": "Rainwater drips from the timetable frame while Manon tightens her duffel strap under the shelter light. The local man asks her destination twice after she gives a short answer. The unknown traveler asks about the bus once and steps away. Manon must decide whether familiar is safer or whether repeated destination pressure deserves distance. It is Tuesday afternoon.",
+      "whatToDo": "Move closer to the traveler who respected the boundary and stop answering destination questions. Let behavior outrank the familiar label.",
+      "whyItMatters": "The known local is the one pressing for access to her route. The unknown traveler adjusted after one answer, which is the safer behavior in context."
+    },
+    {
+      "exampleId": "ch05-ex04-lukas-volunteer-desk",
+      "title": "Lukas Blocks the Ward Pass",
+      "tags": [
+        "decision",
+        "hospital",
+        "ward"
+      ],
+      "planSpec": {
+        "domain": "hospital volunteer desk",
+        "audience": "a coordinator facing a charming repeat visitor",
+        "stakes": "whether knowing his first name lowers concern",
+        "format": "decision_point",
+        "requiredBeat": "blocks ward access after he keeps asking for patient room numbers"
+      },
+      "scenario": "You are Lukas at the hospital volunteer desk, sorting plastic-sleeved smocks beside the visitor log. A charming repeat visitor jokes with you by name, then asks for a ward pass and two patient room numbers. He already received directions to reception. You must decide whether knowing his first name lowers concern or whether the room-number questions control access.",
+      "whatToDo": "Keep the ward pass back, call the nurse station, and direct him to reception only. Treat room-number questions as access behavior.",
+      "whyItMatters": "First-name familiarity does not answer why he keeps seeking patient locations. Behavior-first judgment protects private space without needing a character verdict."
+    },
+    {
+      "exampleId": "ch05-ex05-isabel-shed-key",
+      "title": "Isabel Keeps the Shed Locked",
+      "tags": [
+        "postmortem",
+        "garden",
+        "keys"
+      ],
+      "planSpec": {
+        "domain": "community garden tool shed",
+        "audience": "a garden lead after a neighbor asks for keys",
+        "stakes": "whether neighborhood familiarity should override behavior",
+        "format": "postmortem",
+        "requiredBeat": "keeps the shed locked when the neighbor pushes for solo access after refusal"
+      },
+      "scenario": "It took Isabel one cold morning by the padlock to see how neighborliness had clouded the shed key request. Seed trays sat by the door and the watering roster was closed. She had refused solo access. He mentioned living on the block for years and asked again. She must decide what to remember: the shared street or the pressure after refusal. It is Thursday morning.",
+      "whatToDo": "Keep the shed locked and require scheduled access with another gardener present. Do not let neighborhood familiarity rewrite the second request.",
+      "whyItMatters": "Familiarity explains why trust was easy at first. It does not explain why a key request continued after refusal."
+    },
+    {
+      "exampleId": "ch05-ex06-chidi-ticket-booth",
+      "title": "Chidi Calls the Manager to the Side Door",
+      "tags": [
+        "before_after",
+        "cinema",
+        "regular"
+      ],
+      "planSpec": {
+        "domain": "independent cinema ticket booth",
+        "audience": "a cashier assessing a regular customer",
+        "stakes": "whether regular status should count more than pressure",
+        "format": "before_after",
+        "requiredBeat": "calls the manager when the regular asks when she gets off and waits by the side door"
+      },
+      "scenario": "A roll of ticket stubs curls beside the booth glass. Before, Chidi liked the regular who chatted at the cash drawer every Friday. After the customer asks when Chidi gets off and waits by the side door, the regular label stops doing the work. Chidi calls the manager forward before closing the drawer and leaving the booth.",
+      "whatToDo": "Call the manager, leave through a staffed route, and record the time question plus side-door wait. Do not let regular status erase pressure.",
+      "whyItMatters": "Regular status belongs to the past. The live behavior concerns exit timing and access, so Chidi needs a witness and a different route."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A designer asks: A familiar market regular reaches toward a vendor's cash apron after she refuses help. What matters most?",
+        "choices": [
+          "His hand kept moving toward access after no.",
+          "He is familiar from the market.",
+          "He offered help before sunrise."
+        ],
+        "correctIndex": 0,
+        "explanation": "The behavior after refusal is the signal. Familiarity and timing set context, but they do not outweigh pressure around cash access.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A writer asks: A well-dressed lobby visitor asks twice for a badge before his host confirms. What should the receptionist do?",
+        "choices": [
+          "Give a temporary badge because status cues reduce concern.",
+          "Hold the badge and verify the host before elevator access.",
+          "Ask whether he is usually treated suspiciously."
+        ],
+        "correctIndex": 1,
+        "explanation": "The repeated badge request is access behavior. Verification answers that behavior; status cues are not a substitute for confirmation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "At a bus shelter, a known local presses for destination details while an unknown traveler respects a short answer. Which person deserves more distance?",
+        "choices": [
+          "The unknown traveler because stranger status settles the issue.",
+          "Neither, because all bus shelters are public.",
+          "The local pressing for route details after a boundary."
+        ],
+        "correctIndex": 2,
+        "explanation": "The known local is applying pressure for route information. The unknown traveler adjusted, so stranger status is weaker than behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A manager asks: A hospital visitor knows staff names but keeps asking for patient room numbers. What is the best next move?",
+        "choices": [
+          "Block ward access and route him through reception.",
+          "Relax because repeat visitors are easier to identify.",
+          "Give one room number to see if he calms down."
+        ],
+        "correctIndex": 0,
+        "explanation": "Knowing names does not justify room access. The behavior keeps seeking patient locations, so the response should protect the ward.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A teacher asks: A neighbor asks for the community shed key after being told no. What should the garden lead weigh most?",
+        "choices": [
+          "How long the neighbor has lived nearby.",
+          "The continued solo-access request after refusal.",
+          "Whether the neighbor sounds offended."
+        ],
+        "correctIndex": 1,
+        "explanation": "The key issue is pressure after no around access to the shed. Longevity and offense can distract from the live behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A student asks: Why can stranger labels create both false alarm and false comfort?",
+        "choices": [
+          "They make behavior easier to measure.",
+          "They always contain accurate local knowledge.",
+          "They replace observation with category."
+        ],
+        "correctIndex": 2,
+        "explanation": "A label can scare or soothe before behavior is examined. Observation is stronger because it tracks what the person is doing now.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A coach asks: A cinema regular asks when the cashier leaves and waits by the side door. What makes regular status weak evidence?",
+        "choices": [
+          "The current behavior concerns exit timing and access.",
+          "Regulars never become familiar to staff.",
+          "Cashiers should avoid all customer conversation."
+        ],
+        "correctIndex": 0,
+        "explanation": "The live pattern is about when and where the cashier exits. Familiarity explains history, not the current pressure around access.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A director asks: A coworker says focusing on behavior means stranger status never matters. What correction fits?",
+        "choices": [
+          "Stranger status should always be ignored.",
+          "Stranger status matters only when behavior and context make it relevant.",
+          "Behavior-first thinking means trusting everyone initially."
+        ],
+        "correctIndex": 1,
+        "explanation": "Categories can add context, but they cannot replace observation. The behavior still has to carry the decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two people seek access: an unknown visitor accepts a no, while a familiar volunteer keeps pressing. Which read is stronger?",
+        "choices": [
+          "The unfamiliar person is automatically riskier.",
+          "The familiar volunteer is automatically safe.",
+          "The person who keeps pressing is the one creating the safety issue."
+        ],
+        "correctIndex": 2,
+        "explanation": "The behavior after refusal decides the read. Respecting no lowers concern; pressing no raises it, regardless of familiarity.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What question should replace “is this person a stranger?”",
+      "back": "Ask what the person is doing right now, especially around access, refusal, timing, and pressure.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can familiarity create false comfort?",
+      "back": "Recognition feels like evidence, but it does not tell you whether the person is respecting boundaries in the current scene.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "When does an unknown person become less concerning?",
+      "back": "When their behavior respects the boundary: they ask once, accept the answer, keep distance, and do not seek private access.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A regular asks exit-time questions. What should you track?",
+      "back": "Track the behavior: time question, waiting position, access route, and response to refusal. Regular status does not erase those facts.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "In a tense scene, what is the risk of stranger-danger slogans?",
+      "back": "They overvalue category and undervalue behavior. They may alarm you around respectful strangers while calming you around familiar pressure.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Move from labels to behavior. The skill is to notice what access is being sought and whether the person adjusts when a boundary appears.",
+    "ifThenPlans": [
+      {
+        "context": "public market",
+        "plan": "If a familiar person pushes past no around money or goods, then move the item back and involve another vendor."
+      },
+      {
+        "context": "office lobby",
+        "plan": "If a polished visitor seeks badges or elevators before confirmation, then hold access until the host verifies."
+      },
+      {
+        "context": "neighborhood",
+        "plan": "If a neighbor uses familiarity to press for keys or private access, then require the normal process and another person present."
+      },
+      {
+        "context": "service work",
+        "plan": "If a regular asks about your exit time or waits by a side door, then call a manager and leave through a staffed route."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one person you have mentally labeled safe or unsafe. Write two current behaviors and one access question before trusting the label.",
+    "weeklyPractice": "For a week, replace category words with verbs in your notes: asked, followed, waited, accepted no, pressed for access."
+  },
+  "memorableLines": [
+    {
+      "text": "A known face can still push for access.",
+      "location": "breakdown.fastRead",
+      "why": "It counters the false comfort of familiarity in plain language."
+    },
+    {
+      "text": "Watch what changes after your answer.",
+      "location": "breakdown.deepRead",
+      "why": "It gives a behavioral test the reader can use immediately."
+    },
+    {
+      "text": "The label is easy; the behavior is useful.",
+      "location": "breakdown.fullRead",
+      "why": "It states the chapter distinction in a compact contrast."
+    }
+  ]
+}

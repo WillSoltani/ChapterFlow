@@ -1,0 +1,216 @@
+{
+  "chapterId": "the-almanack-of-naval-ravikant-ch04",
+  "number": 4,
+  "title": "Saving Yourself",
+  "coreMove": "Stop outsourcing responsibility and turn the next neglected area of life into a chosen priority you actually protect.",
+  "sourcePressure": "The source opens with a refusal to let doctors, nutritionists, teachers, gurus, mentors, or trainers save the reader. It then connects being yourself, health priority, diet, exercise, meditation, mental strength, growth, expectations, anger, employment, and uncontrolled thinking to self-responsibility.",
+  "chapterSpecificMisunderstanding": "The wrong version becomes self-care, life hacking, diet advice, or inspirational independence. This chapter must force the reader to stop using experts, systems, and excuses as substitutes for choosing and protecting the priority.",
+  "sourceAlignmentTerms": [
+    "save yourself",
+    "responsibility",
+    "be yourself",
+    "health",
+    "diet",
+    "exercise",
+    "meditation",
+    "mental strength",
+    "freedom",
+    "expectations"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "alarm clock and skipped workout",
+      "gym mirror revelation",
+      "meal prep container as discipline symbol"
+    ],
+    "counterintuition": [
+      "no one can save you except yourself",
+      "health must be your top priority",
+      "self-care is not selfish"
+    ],
+    "tryThisNow": [
+      "drink a glass of water",
+      "do ten pushups",
+      "delete one app"
+    ],
+    "examples": [
+      "wellness app streak",
+      "generic trainer session",
+      "phone detox weekend",
+      "diet identity argument"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "deep-sea research vessel medic who keeps postponing sleep checks until the crew's reaction times slip",
+      "audience": "a competent professional who treats her own exhaustion as exempt from the safety rules",
+      "stakes": "whether her neglected body becomes the weak point in an expensive and dangerous expedition",
+      "format": "decision_point",
+      "requiredBeat": "she moves her own name from the exception column onto the sleep roster, hands the dive schedule to the deputy, and lies down before the next launch alarm",
+      "firstImage": "A dive slate shows her initials written beside three missed sleep blocks.",
+      "mustInclude": [
+        "dive slate",
+        "sleep roster",
+        "launch alarm"
+      ],
+      "mustAvoid": [
+        "generic burnout",
+        "hospital shift scene",
+        "heroic overwork"
+      ],
+      "openingDevice": "timestamp_named"
+    },
+    {
+      "domain": "municipal arborist refusing to let a consultant's report replace walking the damaged tree line herself",
+      "audience": "a public employee tempted to hide behind an outside expert",
+      "stakes": "whether a falling limb is treated as someone else's assessment or her own responsibility",
+      "format": "vignette",
+      "requiredBeat": "she closes the consultant PDF, taps each hollow trunk with a mallet, flags the two dangerous trees herself, and signs the removal order under her own name",
+      "firstImage": "A rubber mallet rests at the base of a hollow street maple.",
+      "mustInclude": [
+        "consultant PDF",
+        "hollow trunk",
+        "removal order"
+      ],
+      "mustAvoid": [
+        "insurance blame",
+        "generic civic duty",
+        "nature metaphor"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "opera costume cutter rebuilding her work around hand pain instead of waiting for a specialist to rescue the season",
+      "audience": "a craft lead who has confused professional pride with ignoring the body",
+      "stakes": "whether a chronic injury ends the season's costumes and her long-term ability to work",
+      "format": "before_after",
+      "requiredBeat": "before cutting the velvet panels, she swaps the shears for a rotary blade, schedules apprentice handoffs, and treats pain as a design constraint instead of a complaint",
+      "firstImage": "Heavy tailor shears lie open beside a strip of midnight velvet.",
+      "mustInclude": [
+        "rotary blade",
+        "apprentice handoff chart",
+        "velvet panels"
+      ],
+      "mustAvoid": [
+        "generic artist suffering",
+        "doctor appointment story",
+        "work-life balance"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "solo polar guide confronting anger after a client ignores rope protocol",
+      "audience": "a guide whose anger feels justified but would make the next crossing less safe",
+      "stakes": "whether punishment replaces clear leadership on a glacier route",
+      "format": "dialogue",
+      "requiredBeat": "he unclips his glove, plants the ice screw, says the rope rule once without heat, and lets the anger pass before resetting the team spacing",
+      "firstImage": "A blue rope runs slack across wind-packed snow.",
+      "mustInclude": [
+        "ice screw",
+        "rope spacing",
+        "wind-packed snow"
+      ],
+      "mustAvoid": [
+        "motivational toughness",
+        "anger as authenticity",
+        "generic outdoor survival"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "taxonomist choosing original fieldwork over copying a famous mentor's classification notes",
+      "audience": "a young scientist trying to become someone else because that path already has prestige",
+      "stakes": "whether her contribution is a pale imitation or a species question only her own eye can pursue",
+      "format": "reflection",
+      "requiredBeat": "she puts the mentor's annotated key back in its folder, sketches the beetle wing variation she keeps noticing, and designs the field count around that obsession",
+      "firstImage": "A beetle wing glints under a microscope beside an annotated classification key.",
+      "mustInclude": [
+        "microscope slide",
+        "annotated key",
+        "field count sheet"
+      ],
+      "mustAvoid": [
+        "generic career passion",
+        "academic rivalry",
+        "copying influencer advice"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "night-market dumpling vendor reducing sugar-fat menu traps after reading his own bloodwork",
+      "audience": "a food business owner who knows nutrition advice but has not made it operational",
+      "stakes": "whether health stays abstract while his daily environment keeps defeating him",
+      "format": "postmortem",
+      "requiredBeat": "he tapes the bloodwork number inside the prep cart, removes the sweet fried sample tray from arm's reach, and changes the first tasting spoon to broth",
+      "firstImage": "A lab result is taped inside a stainless prep cart door.",
+      "mustInclude": [
+        "bloodwork number",
+        "sample tray",
+        "broth spoon"
+      ],
+      "mustAvoid": [
+        "diet certainty",
+        "fat-shaming",
+        "generic restaurant example"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when expert advice is being used as a substitute for responsibility",
+      "choose the action that proves a priority is real under schedule pressure",
+      "distinguish being yourself from copying admired people",
+      "apply subtract-before-add thinking to diet, attention, and mental noise",
+      "evaluate freedom claims by what expectations, anger, employment, or thought loops still control"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one area where you keep citing an expert, app, plan, or other person. Write the next physical action that would make it your responsibility, then do the first visible piece of it before checking anything else.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Jerzy Gregorek",
+      "detail": "the source names Naval’s trainer and gives the hard choices, easy life maxim as a health and values lesson",
+      "useIn": "both",
+      "phrasingHint": "Gregorek’s line is useful because it puts the tradeoff in the present: easy now usually sends the bill forward."
+    },
+    {
+      "kind": "person",
+      "name": "Wim Hof",
+      "detail": "the source describes Wim Hof as the Ice Man, known for extreme cold exposure, and connects his breathing method to Naval trying cold showers",
+      "useIn": "fullRead",
+      "phrasingHint": "Wim Hof matters less as spectacle than as the prompt to test avoidance: the cold is one thing, tiptoeing toward it is another."
+    },
+    {
+      "kind": "artifact",
+      "name": "The Attraction for Drugs Is Spiritual",
+      "detail": "the source names an Osho lecture that frames drug use as an attempt to control mental state and reaction",
+      "useIn": "deepRead",
+      "phrasingHint": "The Osho lecture gives the uncomfortable frame: many escapes are really clumsy attempts to manage consciousness."
+    }
+  ],
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

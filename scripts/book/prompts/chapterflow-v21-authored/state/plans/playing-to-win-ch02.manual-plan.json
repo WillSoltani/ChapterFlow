@@ -1,0 +1,129 @@
+{
+  "chapterId": "playing-to-win-ch02",
+  "number": 2,
+  "title": "What Is Winning",
+  "coreMove": "Name a winning aspiration specific enough that it can reject a bad option — if the aspiration cannot say no to anything, it is not yet guiding strategy.",
+  "sourcePressure": "The chapter sharpens the first cascade choice: winning aspiration. The distinction is between playing to win and playing to play — a participation-level aspiration like Saturn's ('be a good alternative to imports') does not require choosing a field or building a real advantage, so investment follows without direction. A genuine winning aspiration names which customers to delight and which alternatives to beat them on.",
+  "chapterSpecificMisunderstanding": "Winning means beating competitors on aggregate metrics — market share, revenue growth, product ratings — rather than choosing specific customers and specific alternatives to out-serve.",
+  "sourceAlignmentTerms": ["winning aspiration", "playing to win", "playing to play", "specific customers", "alternatives", "guiding", "Saturn", "participation"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Saturn's aspiration",
+      "detail": "GM's aspiration for Saturn — 'be a good alternative to imports' — was participation-level: it did not name which customers, which alternatives, or what advantage would make Saturn the better choice. The result was heavy investment without strategic direction.",
+      "useIn": "both",
+      "phrasingHint": "Saturn's aspiration told the team what to avoid losing — foreign-car buyers — but not what to win and for whom. That difference shows up when you have to decide which capability to build or which customer to prioritize."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Winning is the only goal that matters — motivational-poster opener",
+      "Most organizations don't know what winning means for them — generic meta-observation"
+    ],
+    "counterintuition": [
+      "Wanting to win too much makes you reckless — fear-of-ambition frame",
+      "The real goal is customer satisfaction, not winning — stakeholder-generic frame"
+    ],
+    "tryThisNow": [
+      "Write a mission statement that excites your whole team — branding prompt",
+      "List your top three competitors and rate yourself against them — generic benchmarking"
+    ],
+    "examples": [
+      "A startup decides its mission is 'to change the world' — too abstract, makes the point too easily",
+      "A CEO gives a rousing speech about winning culture"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Avoid the same opening shell repeated across multiple slots"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a regional hospital unit redefining what a successful discharge means for post-surgical patients",
+      "audience": "a department head trying to reduce readmission rates but unsure which metric should guide the unit's work",
+      "stakes": "if winning means low readmission rates, the unit invests in follow-up care coordination; if winning means high patient satisfaction scores, it invests differently — both aspirations are plausible but incompatible in budget terms",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "the department head must choose between two proposed improvements — a discharge follow-up call program or a room-redesign project — and realizes the choice is impossible until the unit names which patients it is trying to serve best and by what measure of success",
+      "firstImage": "two budget proposals on the same desk, each well-argued, each pointing toward a different kind of winning",
+      "mustInclude": ["the specific patient group the unit could realistically serve better than the regional alternative", "the moment the aspiration question forces a real trade-off between the two proposals"],
+      "mustAvoid": ["hospital staffing crisis as the main tension", "insurance billing as the strategic constraint"]
+    },
+    {
+      "domain": "an independent software product deciding between enterprise licensing and a consumer subscription",
+      "audience": "a two-person founding team whose product has users from both segments but cannot support both with its current team",
+      "stakes": "enterprise licensing requires a sales process and deep integrations the team doesn't have; consumer subscription requires volume marketing it cannot afford — the aspiration determines which capability gap to close first",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the founders realize that the product's current 'grow in both markets' aspiration has prevented them from building the sales infrastructure for enterprise or the viral loop for consumer — both segments are medium-unhappy because neither was chosen",
+      "firstImage": "a support ticket queue split evenly between enterprise IT requests and consumer onboarding questions, neither fully answered",
+      "mustInclude": ["the specific capability required for each aspiration that the team lacks", "a clear moment where the vague aspiration is shown to be the source of the stall"],
+      "mustAvoid": ["pivot narrative with a dramatic all-hands moment", "generic startup fundraising pressure"]
+    },
+    {
+      "domain": "a community library deciding whether to serve homeschooling families or remote-working adults as its primary growth audience",
+      "audience": "a library director presenting a new three-year service plan to a board that wants broader community reach",
+      "stakes": "homeschooling families need daytime programming and curriculum resources; remote workers need stable Wi-Fi, quiet zones, and longer loan periods — the building, staff schedule, and digital subscriptions can fully support one, not both",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hannah presents the service plan and a board member asks which of the two audiences the library is trying to delight more — the question reveals that neither group is named in the plan as the primary customer, and the aspiration is broad enough to require nothing specific",
+      "firstImage": "a service plan with a full-page vision statement and no prioritization between six different audience groups",
+      "mustInclude": ["the concrete resource that can only go to one audience", "the board question that surfaces the missing aspiration choice"],
+      "mustAvoid": ["library funding cuts as the main obstacle", "digital versus physical media debate"]
+    },
+    {
+      "domain": "an urban family restaurant repositioning against fast-casual chains and neighborhood fine dining",
+      "audience": "an owner watching average check sizes stagnate while a fast-casual chain opens across the street",
+      "stakes": "competing against the fast-casual chain on value requires different sourcing and pricing than competing against the neighborhood fine dining option on experience — neither is achievable if the restaurant tries to occupy the middle",
+      "format": "before_after",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "before: David runs the restaurant as 'good food for everyone at a fair price' — which means neither the family with a tight budget nor the couple celebrating an anniversary chooses it first; after: he names 'the neighborhood's best table for a weeknight family dinner' as the aspiration, which immediately points toward different staff training, a different menu length, and a different reservation policy",
+      "firstImage": "a menu with forty-two items, three different price tiers, and a decor that is neither casual nor special",
+      "mustInclude": ["the specific customer the aspiration ultimately names", "the immediate downstream choice the new aspiration forces in menu or staffing"],
+      "mustAvoid": ["restaurant industry economics lecture", "chef-owner conflict as the main drama"]
+    },
+    {
+      "domain": "a freelance photographer choosing between wedding clients and commercial brand clients",
+      "audience": "a photographer whose calendar is half weddings and half commercial shoots but whose portfolio is too mixed to win either kind of referral strongly",
+      "stakes": "wedding clients want emotional storytelling and repeat referrals through couples networks; commercial clients want technical consistency and fast turnaround — the equipment, editing workflow, and network for each are different",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a potential commercial client asks to see a portfolio of similar brand work, and Anya realizes the mixed portfolio signals no clear aspiration to either client type — the question of what winning looks like forces a choice she has been avoiding for two years",
+      "firstImage": "a portfolio website with wedding galleries and product shots sharing the same homepage, each category diluting the other",
+      "mustInclude": ["the specific referral network that requires choosing one market", "the moment the mixed portfolio is recognized as a symptom of a missing aspiration"],
+      "mustAvoid": ["artistic identity crisis framing", "social media marketing tactics as the resolution"]
+    },
+    {
+      "domain": "a municipal parks department choosing between serving competitive youth sports leagues and unstructured family green space",
+      "audience": "a parks director with one new capital budget cycle and two competing park redesign proposals",
+      "stakes": "organized sports facilities require lights, scoreboards, and scheduling staff; family green space requires different landscaping, seating, and event infrastructure — the budget can fully deliver one park type across the system, not a hybrid of both",
+      "format": "thought_experiment",
+      "openingDevice": "environmental",
+      "requiredBeat": "the director imagines a parent choosing between this park and the next town's park — and realizes that neither of the two current proposals gives that parent a clear reason to choose here, because both aspire to serve everyone and therefore win on nothing specific",
+      "firstImage": "two park redesign proposals side by side: one with synthetic turf and bleachers, one with meadow grass and picnic pavilions — neither presenting a reason why either group would drive past the other town's park to use this one",
+      "mustInclude": ["the specific user who would actively choose this park over an alternative if the aspiration were clear", "the downstream infrastructure choice that the chosen aspiration immediately forces"],
+      "mustAvoid": ["city budget politics as the main obstacle", "environmental sustainability as the main frame"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish a participation aspiration from a winning aspiration using a real scenario",
+      "apply the 'can it say no' test to determine whether an aspiration is guiding choices",
+      "analyze what downstream choices a specific aspiration does and does not require",
+      "evaluate a stated aspiration to determine whether it names specific customers and alternatives"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Write the aspiration your current project or role is working toward. Then ask it two questions: which specific customer would choose you over the alternative, and what specific alternative are you trying to beat? If neither question has a concrete answer, the aspiration is still playing to play.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that steps outside the narrative to ask the reader a direct question about their own aspiration, or references the Saturn case in a way that lands as principle rather than company history",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "chapterId": "clear-thinking-ch20",
+  "number": 20,
+  "title": "Do it!",
+  "coreMove": "Convert the chosen option into the next irreversible action before doubt reopens the vote.",
+  "sourcePressure": "Judged alternatives still fail without execution. This chapter is about commitment, action, follow-through, and resisting hesitation, reopening, and drift after a choice is made.",
+  "chapterSpecificMisunderstanding": "Motivational exhortation or busyness instead of committed follow-through after judgment.",
+  "sourceAlignmentTerms": [
+    "do it",
+    "execution",
+    "commitment",
+    "action",
+    "follow-through",
+    "hesitation",
+    "drift"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "execution, commitment, action, and follow-through",
+      "detail": "the heading index supports the chapter through execution, commitment, action, and follow-through",
+      "useIn": "deepRead",
+      "phrasingHint": "A choice is not finished when it feels decided; it is finished when the first real action makes retreat costly."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opener for do it",
+      "generic morning alarm pressure scene",
+      "first sentence that says clear thinking is about slowing down"
+    ],
+    "counterintuition": [
+      "the problem is not willpower",
+      "most people think do it is simple",
+      "not X but Y negation shell"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write down three lessons",
+      "pause before reacting with no concrete trigger"
+    ],
+    "examples": [
+      "conference room whiteboard",
+      "kitchen-counter reflection",
+      "manager staring at a laptop",
+      "same timestamp-name-action opener across all examples"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Max",
+      "domain": "a art gallery opening plan",
+      "audience": "a reader facing do it in a concrete art gallery opening plan decision",
+      "stakes": "whether Max preserves judgment quality before the situation slides into productivity systems",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Max performs the chapter move by setting the call sheet beside the red pencil, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a quoted objection hanging over the red pencil in the art gallery opening plan",
+      "mustInclude": [
+        "call sheet",
+        "red pencil"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "productivity systems",
+        "reusing a previous chapter's art gallery opening plan shell"
+      ]
+    },
+    {
+      "protagonistName": "Erik",
+      "domain": "a restaurant lease signing",
+      "audience": "a reader facing do it in a concrete restaurant lease signing decision",
+      "stakes": "whether Erik preserves judgment quality before the situation slides into productivity systems",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Erik performs the chapter move by setting the oxygen bag beside the shift board, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the scrape of the oxygen bag against the counter in the restaurant lease signing",
+      "mustInclude": [
+        "oxygen bag",
+        "shift board"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "productivity systems",
+        "reusing a previous chapter's restaurant lease signing shell"
+      ]
+    },
+    {
+      "protagonistName": "Nils",
+      "domain": "a research preprint submission",
+      "audience": "a reader facing do it in a concrete research preprint submission decision",
+      "stakes": "whether Nils preserves judgment quality before the situation slides into productivity systems",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Nils performs the chapter move by setting the boarding pass beside the complaint card, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a three-week note trail beside the boarding pass in the research preprint submission",
+      "mustInclude": [
+        "boarding pass",
+        "complaint card"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "productivity systems",
+        "reusing a previous chapter's research preprint submission shell"
+      ]
+    },
+    {
+      "protagonistName": "Soren",
+      "domain": "a boat repair deposit",
+      "audience": "a reader facing do it in a concrete boat repair deposit decision",
+      "stakes": "whether Soren preserves judgment quality before the situation slides into productivity systems",
+      "format": "postmortem",
+      "openingDevice": "environmental",
+      "requiredBeat": "Soren performs the chapter move by setting the will copy beside the notepad, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "the will copy lying beside the notepad in the boat repair deposit",
+      "mustInclude": [
+        "will copy",
+        "notepad"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "productivity systems",
+        "reusing a previous chapter's boat repair deposit shell"
+      ]
+    },
+    {
+      "protagonistName": "Freya",
+      "domain": "a union negotiation deadline",
+      "audience": "a reader facing do it in a concrete union negotiation deadline decision",
+      "stakes": "whether Freya preserves judgment quality before the situation slides into productivity systems",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Freya performs the chapter move by setting the order rail beside the ticket spike, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "a single question written above the ticket spike in the union negotiation deadline",
+      "mustInclude": [
+        "order rail",
+        "ticket spike"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "productivity systems",
+        "reusing a previous chapter's union negotiation deadline shell"
+      ]
+    },
+    {
+      "protagonistName": "Britta",
+      "domain": "a cafe menu launch",
+      "audience": "a reader facing do it in a concrete cafe menu launch decision",
+      "stakes": "whether Britta preserves judgment quality before the situation slides into productivity systems",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "Britta performs the chapter move by setting the satellite phone beside the route map, naming the decision the room is actually making, and choosing the visible next step instead of letting the weak generic version take over.",
+      "firstImage": "your hand paused above the route map in the cafe menu launch",
+      "mustInclude": [
+        "satellite phone",
+        "route map"
+      ],
+      "mustAvoid": [
+        "generic office meeting",
+        "productivity systems",
+        "reusing a previous chapter's cafe menu launch shell"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "choose the visible action that performs: Convert the chosen option into the next irreversible action before doubt reopens the vote.",
+      "detect the weak generic version: Motivational exhortation or busyness instead of committed follow-through after judgment.",
+      "distinguish do it from nearby drift into productivity systems"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In the next 30 to 90 seconds, name one current situation where do it is active, then write the exact next visible move that would perform this chapter's move: convert the chosen option into the next irreversible action before doubt reopens the vote.",
+  "readingTimeMinutes": 12
+}

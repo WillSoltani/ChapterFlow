@@ -1,0 +1,101 @@
+{
+  "bookId": "leaders-eat-last",
+  "title": "Leaders Eat Last",
+  "author": "Simon Sinek",
+  "thesisParagraph": "Leaders Eat Last argues that leadership is the disciplined use of power to create safety for people. When those with authority absorb risk, see employees as human beings, and keep abstraction from replacing contact with real consequences, groups become more honest, cooperative, and resilient. When leaders chase quick rewards, hide behind numbers, or export cost downward, trust thins out and people defend themselves instead of the mission. The book teaches readers to notice where fear, distance, incentives, and hidden cost are shaping behavior, then act locally to restore protection, dignity, and shared responsibility.",
+  "coreIdeas": [
+    {
+      "name": "Circle of Safety",
+      "oneSentence": "People do stronger work when the group itself does not feel like the threat.",
+      "mentalMove": "look for the avoidable internal fear that makes people hide, posture, or go silent",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch03.source",
+        "ch08.source"
+      ]
+    },
+    {
+      "name": "Authority as Cover",
+      "oneSentence": "Power earns trust when it moves toward the people most exposed under pressure.",
+      "mentalMove": "spend rank, comfort, or credit before asking others to take risk",
+      "sourceAnchors": [
+        "ch01.source",
+        "ch08.source",
+        "ch09.source"
+      ]
+    },
+    {
+      "name": "People Before Abstractions",
+      "oneSentence": "Rules, metrics, and systems help only while they stay connected to lived human consequence.",
+      "mentalMove": "return from the summary to the person before judgment hardens",
+      "sourceAnchors": [
+        "ch13.source",
+        "ch14.source",
+        "ch15.source",
+        "ch21.source"
+      ]
+    },
+    {
+      "name": "Reward Patterns Shape Culture",
+      "oneSentence": "Cultures become what their systems repeatedly reward, tolerate, and protect.",
+      "mentalMove": "read incentives as training signals, not neutral mechanics",
+      "sourceAnchors": [
+        "ch06.source",
+        "ch16.source",
+        "ch17.source",
+        "ch18.source"
+      ]
+    },
+    {
+      "name": "Shared Burden Builds Trust",
+      "oneSentence": "Commitment becomes believable when leaders and peers visibly carry hard things together.",
+      "mentalMove": "enter the cost instead of displacing it onto quieter people",
+      "sourceAnchors": [
+        "ch20.source",
+        "ch23.source",
+        "ch26.source",
+        "ch27.source"
+      ]
+    }
+  ],
+  "targetReader": "Managers, team leads, founders, teachers, organizers, and informal leaders who can sense trust thinning around them and need practical ways to make groups safer, more candid, and less abstract without lowering standards.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "land examples with protagonist names that read naturally to Canadian, American, and European readers — 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language"
+    ]
+  },
+  "voiceSpecimens": [
+    "The room tells you what it trusts before anyone says the word trust.",
+    "If the first person who brings bad news gets burned, the next person will wait.",
+    "A number can point you toward the truth, but it cannot feel the cost for you.",
+    "People do not become brave because a poster tells them to be brave. They become brave when someone with more power moves first.",
+    "The hard part is not naming the value. The hard part is keeping it alive when it gets expensive.",
+    "When the cost disappears from your view, your judgment gets colder than you meant it to be."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explores the nuanced importance of leadership in organizational contexts.",
+    "Leaders should simply be authentic and inspire everyone to bring their whole selves to work.",
+    "In today's fast-paced world, culture is more important than ever.",
+    "The author argues that managers need to understand neuroscience to optimize team performance.",
+    "Try this now: set a timer for two minutes and journal about your leadership values."
+  ],
+  "teachingArc": "The book starts by making safety concrete: power protects exposed people, dignity changes work, and belonging keeps threat outside the group. It then explains the forces that weaken safety, from quick rewards and chronic alarm to inherited institutional habits. The middle of the book teaches the reader to see abstraction as the major leadership danger: distance, scale, metrics, and process can hide human consequence unless leaders deliberately reconnect them. The leadership lessons translate that diagnosis into culture, modeled behavior, integrity, friendship, and people-first measurement. The final arc makes responsibility personal and local: stop feeding the problem, expose hidden cost, repair habits through accountable practice, share struggle, and act like a leader wherever human cost is close enough to touch.",
+  "forbiddenMoves": [
+    "Do not turn the book into a vague kindness manifesto; the central claim is protection with standards, cost, and responsibility.",
+    "Do not overplay pop-neuroscience certainty; use the chemical language as a practical reward-pattern lens.",
+    "Do not flatten the abstraction chapters into anti-data or anti-technology arguments.",
+    "Do not stereotype generations; treat generational chapters as formation and leadership-environment problems."
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "chapterId": "the-righteous-mind-ch07",
+  "number": 7,
+  "title": "The Moral Foundations of Politics",
+  "coreMove": "Translate a political claim into the moral foundations it is activating before deciding what it means.",
+  "sourcePressure": "The chapter applies multiple moral foundations to political life and treats disagreement as different moral emphases.",
+  "chapterSpecificMisunderstanding": "The writer makes political rivals defective rather than differently tuned across foundations.",
+  "sourceAlignmentTerms": [
+    "moral foundations",
+    "politics",
+    "emphasis",
+    "diagnostic",
+    "interpretive",
+    "moral profile"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "moral foundations",
+      "detail": "the frozen sidecar identifies moral foundations as the bridge from moral psychology into politics.",
+      "useIn": "both",
+      "phrasingHint": "A political slogan can be decoded by asking which foundation it is asking to wake up."
+    },
+    {
+      "kind": "event",
+      "name": "political disagreement",
+      "detail": "the frozen sidecar says disagreement often reflects different moral emphases rather than a total absence of concern.",
+      "useIn": "fullRead",
+      "phrasingHint": "The other side may be protecting a different moral load-bearing wall, not simply ignoring the house."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch07 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "cable-news shouting match"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "election-night map"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "left-right caricature"
+    ],
+    "examples": [
+      "cable-news shouting match",
+      "election-night map",
+      "left-right caricature"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "transportation referendum campaign testing messages",
+      "audience": "civic organizers hearing rival moral languages",
+      "stakes": "Anna decodes each slogan by foundation before rewriting the flyer.",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Anna places commuter safety, taxpayer fairness, and neighborhood loyalty on separate sticky notes.",
+      "firstImage": "A transit map covers the folding table from edge to edge.",
+      "mustInclude": [
+        "transit map",
+        "sticky notes",
+        "flyer proof"
+      ],
+      "mustAvoid": [
+        "election-night map"
+      ]
+    },
+    {
+      "domain": "immigration clinic preparing clients for a hostile council meeting",
+      "audience": "advocates translating claims across moral frames",
+      "stakes": "Javier reframes the appeal so authority and loyalty concerns are acknowledged before contested.",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Javier rehearses a sentence that names residents' order concern before defending the clinic.",
+      "firstImage": "\"Say the word order before they accuse you of ignoring it,\" Javier tells the volunteer.",
+      "mustInclude": [
+        "clinic sign",
+        "council agenda",
+        "rehearsal card"
+      ],
+      "mustAvoid": [
+        "abstract empathy advice"
+      ]
+    },
+    {
+      "domain": "rural broadband coalition uniting farmers and remote workers",
+      "audience": "coalition builders across political identities",
+      "stakes": "Min identifies which foundation each subgroup needs the project to satisfy.",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Min rewrites the pitch so one page speaks fairness and another speaks loyalty to town survival.",
+      "firstImage": "Dust from the grain elevator settles on the laptops after the community meeting.",
+      "mustInclude": [
+        "grain elevator",
+        "pitch packet",
+        "coverage map"
+      ],
+      "mustAvoid": [
+        "generic infrastructure pitch"
+      ]
+    },
+    {
+      "domain": "parent group fighting over school phone rules",
+      "audience": "school leaders diagnosing moral emphasis",
+      "stakes": "Margaux shows that one side hears protection and the other hears autonomy.",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Margaux split the comments into care, authority, and fairness before proposing a trial.",
+      "firstImage": "You see confiscated phones lined up in numbered envelopes.",
+      "mustInclude": [
+        "phone envelopes",
+        "comment spreadsheet",
+        "trial calendar"
+      ],
+      "mustAvoid": [
+        "school discipline lecture"
+      ]
+    },
+    {
+      "domain": "environmental lawsuit communication team choosing public language",
+      "audience": "lawyers explaining a case beyond legal terms",
+      "stakes": "David translates the same river case through harm, loyalty, and sanctity without changing facts.",
+      "format": "predict_reveal",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 9:30, David asks which version each audience will call moral common sense before revealing the split.",
+      "firstImage": "At 9:30, David writes the river's name three times on the glass wall.",
+      "mustInclude": [
+        "glass wall",
+        "river photos",
+        "audience cards"
+      ],
+      "mustAvoid": [
+        "generic climate argument"
+      ]
+    },
+    {
+      "domain": "hospital allocation committee after a scarce-bed decision",
+      "audience": "ethics committee members managing public explanation",
+      "stakes": "Marit separates fairness outrage from care outrage in family complaints.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Marit tags each complaint by moral emphasis before drafting the apology.",
+      "firstImage": "It took Marit one night of voicemails to hear two kinds of pain in the same accusation.",
+      "mustInclude": [
+        "voicemail transcript",
+        "bed board",
+        "apology draft"
+      ],
+      "mustAvoid": [
+        "medical triage thriller"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "decode a political claim into foundation language",
+      "avoid assuming absence of morality in the opposing side",
+      "separate diagnosis of moral emphasis from policy endorsement"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Translate one political sentence into the foundation it protects, then write a reply that names that concern before disagreeing.",
+  "readingTimeMinutes": 12
+}

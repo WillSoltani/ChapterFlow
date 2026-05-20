@@ -1,0 +1,193 @@
+{
+  "chapterId": "blue-ocean-strategy-ch09",
+  "number": 9,
+  "title": "Align Value, Profit, and People Propositions",
+  "coreMove": "Check whether the buyer promise, profit model, and people system reinforce each other before calling a strategy sustainable.",
+  "sourcePressure": "Sustain a blue ocean by aligning the value proposition for buyers, profit proposition for the organization, and people proposition for those who must deliver or support it.",
+  "chapterSpecificMisunderstanding": "Mistaking a loved customer offer for a complete strategy when costs or people incentives cannot support it.",
+  "sourceAlignmentTerms": [
+    "value proposition",
+    "profit proposition",
+    "people proposition",
+    "strategic alignment",
+    "sustainable strategy",
+    "virtuous cycle",
+    "Tata Nano"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "value, profit, and people propositions",
+      "detail": "official strategic-alignment support defines the three propositions and says sustainable strategy requires alignment across all three",
+      "useIn": "both",
+      "phrasingHint": "Buyer love is only one leg; the value, profit, and people propositions have to hold the same weight."
+    },
+    {
+      "kind": "event",
+      "name": "Tata Nano",
+      "detail": "official support is safe for the point that value and profit propositions can face execution setbacks when the people proposition is weak",
+      "useIn": "fullRead",
+      "phrasingHint": "Tata Nano is a useful warning: a striking buyer and profit idea can still stumble when the people side cannot carry the promise cleanly."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a competitor scoreboard, a war metaphor, or a generic market map.",
+      "Do not use A crowded market is not..., The real strategy is..., or What if growth... as reusable shells."
+    ],
+    "counterintuition": [
+      "Avoid Most people assume... but actually... and The opposite is true.",
+      "Avoid turning every chapter into competition bad, creativity good."
+    ],
+    "tryThisNow": [
+      "Avoid Set a timer for 60 seconds and list... as a repeated action.",
+      "Avoid generic reflect on your strategy prompts."
+    ],
+    "examples": [
+      "Avoid conference-room whiteboard workshops as the default scene.",
+      "Avoid repeating mugs, markers, dosing cups, bike helmets, radiators, bus depots, classrooms, narrow kitchens, or generic dashboard scenes."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Olivia",
+      "domain": "grain-bowl lunch counter with buyer demand but kitchen strain",
+      "audience": "a food operator whose popular offer strains the kitchen",
+      "stakes": "whether a successful menu survives the system behind it",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she sees that buyer value alone is not enough when margin and cooks break behind the counter",
+      "firstImage": "Quinoa spills under the prep rail while the lunch line curls past the door",
+      "mustInclude": [
+        "prep rail",
+        "margin sheet",
+        "cook break schedule"
+      ],
+      "mustAvoid": [
+        "generic restaurant popularity story"
+      ]
+    },
+    {
+      "protagonistName": "Mathieu",
+      "domain": "mobile clinic evening visits and route economics",
+      "audience": "a clinic leader excited by demand for evening visits",
+      "stakes": "whether the service scales without losing money or burning out nurses",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "he chooses route clustering and documentation redesign before expanding the valued offer",
+      "firstImage": "At 8:20 p.m., Mathieu watches the last nurse finish notes in a parked clinic van",
+      "mustInclude": [
+        "route cluster map",
+        "nurse note template",
+        "fuel card receipt"
+      ],
+      "mustAvoid": [
+        "generic healthcare access story"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "refill kiosk partner staff burden",
+      "audience": "a sustainability entrepreneur selling through grocery partners",
+      "stakes": "whether partners keep the kiosk after early shopper interest",
+      "format": "postmortem",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "a store manager explains the staff burden, forcing her to redesign the people proposition for partners",
+      "firstImage": "\"Your customers love it,\" the grocery manager tells Petra, \"but my cashiers hate the spill calls.\"",
+      "mustInclude": [
+        "refill kiosk mat",
+        "spill log",
+        "cashier task card"
+      ],
+      "mustAvoid": [
+        "generic green product example"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "family printer value promise and honest profit model",
+      "audience": "a product lead tempted by a popular low-price device",
+      "stakes": "whether a low-friction offer can make money without hidden traps",
+      "format": "dialogue",
+      "openingDevice": "retrospective",
+      "requiredBeat": "he challenges a value proposition that has no honest profit model beyond confusing refill costs",
+      "firstImage": "It took Devon one prototype review to see the cheap printer was borrowing trouble from the ink drawer",
+      "mustInclude": [
+        "ink refill drawer",
+        "price model sheet",
+        "family setup card"
+      ],
+      "mustAvoid": [
+        "copying Canon beyond source limits"
+      ]
+    },
+    {
+      "protagonistName": "Luke",
+      "domain": "library after-hours pickup aligned with staffing",
+      "audience": "a civic manager expanding access after hours",
+      "stakes": "whether after-hours pickup works without unpaid staff strain",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "the first plan gives patrons value but asks staff to absorb hidden work; lockers and shifts align it",
+      "firstImage": "The library lobby is dark except for the holds shelf glowing behind locked glass",
+      "mustInclude": [
+        "pickup locker",
+        "holds shelf",
+        "shift calendar"
+      ],
+      "mustAvoid": [
+        "generic library sorting example from chapter 7"
+      ]
+    },
+    {
+      "protagonistName": "Giulia",
+      "domain": "quiet dog-wash service tested against groomer strain and margin",
+      "audience": "a small business owner testing a quieter grooming format",
+      "stakes": "whether a high-value experience works for owners, groomers, and margins",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "she predicts buyer value is enough, then groomer strain and longer appointments force alignment",
+      "firstImage": "What happens when every nervous dog needs twice the room and twice the time?",
+      "mustInclude": [
+        "noise-dampening mat",
+        "appointment timer",
+        "groomer rotation chart"
+      ],
+      "mustAvoid": [
+        "generic pet-service delight story"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "test alignment among value, profit, and people propositions",
+      "diagnose which proposition is weak in a promising offer",
+      "avoid calling buyer demand sustainable before the operating system works"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Write three columns for one offer: buyer value, profit engine, people burden. Circle the column carrying the hidden strain.",
+  "readingTimeMinutes": 12
+}

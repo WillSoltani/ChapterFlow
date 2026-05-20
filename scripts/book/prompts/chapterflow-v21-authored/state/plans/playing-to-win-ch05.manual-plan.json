@@ -1,0 +1,129 @@
+{
+  "chapterId": "playing-to-win-ch05",
+  "number": 5,
+  "title": "Play to Your Strengths",
+  "coreMove": "Work backward from the how-to-win choice to identify the specific capability system your strategy requires, then check honestly whether that system exists or needs to be built.",
+  "sourcePressure": "Capabilities are the specific things the organization must be able to do to deliver its chosen how-to-win choice. They matter as an activity system — mutually reinforcing practices — not as a generic list of strengths. The Gillette acquisition was the anchor: the capability system fit P&G's strategic needs because it reinforced what the strategy required, not because Gillette was large or well-regarded. Isolated strengths that do not connect to the strategy create cost, not advantage.",
+  "chapterSpecificMisunderstanding": "A capability audit means listing what your team does well and building strategy around those strengths — the things you are already good at are the foundation of your advantage.",
+  "sourceAlignmentTerms": ["capabilities", "activity system", "capability fit", "required capabilities", "Gillette", "capability gap", "mutually reinforcing"],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Gillette fit",
+      "detail": "P&G's acquisition of Gillette made sense strategically because Gillette's capability system — precision manufacturing, deep consumer insight, global distribution — reinforced P&G's how-to-win choices. The acquisition was justified by capability fit, not by Gillette's size or market position alone.",
+      "useIn": "deepRead",
+      "phrasingHint": "Gillette fit because the things Gillette was able to do well were the specific things P&G's strategy needed done — not because they were the largest available acquisition, or because the brand was famous, but because the activity systems pointed in the same direction."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Know your strengths and use them — generic self-help opener",
+      "The most successful organizations build on what they do best — capability-generalization opener"
+    ],
+    "counterintuition": [
+      "Your weaknesses matter more than your strengths — generic improvement framing",
+      "Capabilities are built over years and cannot be shortcut — patience-virtue frame"
+    ],
+    "tryThisNow": [
+      "List your top three core competencies — generic strengths inventory",
+      "Take a team skills assessment — HR tool framing"
+    ],
+    "examples": [
+      "A company hires great people and wins the market — talent-as-strategy story",
+      "An organization identifies a skill gap and runs training — training-program story"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Avoid the timestamp-protagonist-prop shell across more than two examples"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "an architecture studio evaluating a partnership with a construction management firm",
+      "audience": "a studio principal deciding whether to absorb a construction management team to offer design-build services",
+      "stakes": "the partnership would let the studio offer a full design-build service, but construction management requires a scheduling system, site-supervision culture, and contract structure that is fundamentally different from the studio's design capabilities — adding it without fit analysis could dilute both",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Emily's potential partner explains the opportunity: 'We can offer clients everything under one roof.' Emily asks which clients currently choose them for the design and which choose them for the build management — and realizes the two client types are different people who value different things, and her studio's activity system is built entirely around the former",
+      "firstImage": "a term sheet for a design-build partnership and a client list where every referral in the past three years came from project owners who hired a separate construction manager",
+      "mustInclude": ["the specific activity system the studio has built and the specific activity system the construction management firm requires", "the moment where the gap between the two systems is recognized as a capability mismatch, not just a knowledge gap"],
+      "mustAvoid": ["construction industry contract law detail", "creative versus commercial values framing"]
+    },
+    {
+      "domain": "a rural hospital evaluating whether to add an oncology unit",
+      "audience": "a hospital administrator responding to community demand for local cancer care that currently requires patients to travel two hours",
+      "stakes": "an oncology unit requires specialized oncology nurses, a radiation therapy facility, a pharmacy capability, and a patient volume that sustains specialist salaries — the hospital's current capability system was built for primary and emergency care, not for this",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Ryan presents the oncology proposal to the board, and a board member who is also a retired oncologist asks him to list the five activities the unit would need to perform at a consistent quality level — then asks him to check each one against the hospital's current capability system. By the third check, the room understands that the gap is not just funding; it is a different activity system that cannot be grafted onto the existing one without a decade-long build",
+      "firstImage": "a board presentation slide showing rising cancer diagnosis rates in the region and two hours of travel to the nearest oncology center, with no slides about the hospital's current capability in any of the required activities",
+      "mustInclude": ["the specific capabilities the oncology unit requires that are not present in the hospital's current activity system", "the moment where the community demand is separated from the strategic capability question"],
+      "mustAvoid": ["healthcare access policy debate", "rural hospital funding crisis as the main story"]
+    },
+    {
+      "domain": "a coding bootcamp deciding whether to add a part-time online program alongside its existing full-time in-person curriculum",
+      "audience": "a program director responding to demand from employed adults who cannot attend full-time",
+      "stakes": "the bootcamp's how-to-win choice depends on intensive in-person cohort dynamics and job placement through employer relationships — the part-time online format requires a completely different curriculum delivery system, student accountability model, and employer relationship type",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Antoine reviews the graduation and placement rates for a pilot online cohort and sees that completion rates were half the in-person rate and employer partnership calls dropped because the online graduates had not built the same collaborative work habits — the activity system that made the in-person program work did not translate, and the program was not built to deliver the online format's required capabilities",
+      "firstImage": "a side-by-side comparison of in-person and online cohort completion rates and employer placement rates, attached to a request for the next online cohort launch",
+      "mustInclude": ["the specific element of the in-person activity system that drove placement outcomes and cannot be replicated online without rebuilding it", "the recognition that the part-time online format requires its own capability system, not a version of the existing one"],
+      "mustAvoid": ["online versus in-person education debate", "COVID-era remote learning references"]
+    },
+    {
+      "domain": "a specialty food distributor considering moving into direct retail sales",
+      "audience": "a distribution company owner who has been approached by a major retailer to supply product under the company's own brand",
+      "stakes": "distribution capability — logistics, route optimization, supplier relationships — is a different activity system from retail brand capability, which requires packaging, consumer marketing, and shelf placement negotiation; adding the retail path requires building a system the company has never had",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "before: Catarina signs the retail supply agreement, excited about the margin opportunity; after: the first season exposes that her team is brilliant at the logistics of moving product but has no capability in the consumer brand decisions that determine whether the product moves from the shelf to a basket — the activity system mismatch shows up as stagnant sell-through rates",
+      "firstImage": "a warehouse optimized for routing efficiency with a newly printed retail product label taped to a pallet that has not moved in three weeks",
+      "mustInclude": ["the specific activity the company performs well (logistics) and the specific activity the retail path requires (consumer brand decisions)", "the operational moment where the capability gap becomes visible and undeniable"],
+      "mustAvoid": ["supply chain management technical detail", "retail margin pressure as the main frame"]
+    },
+    {
+      "domain": "a museum evaluating whether to build a traveling exhibition capability",
+      "audience": "a curator whose museum has a strong permanent collection but is being asked by a donor to develop touring exhibitions",
+      "stakes": "a traveling exhibition capability requires a different crating and logistics system, insurance framework, installation staff, and partner relationship network than a permanent collection — and the museum's how-to-win choice was built around depth of scholarly interpretation in a fixed setting",
+      "format": "thought_experiment",
+      "openingDevice": "second_person",
+      "requiredBeat": "Pavel imagines the first traveling show arriving at a partner museum and asks what the partner museum's curator would need from his team on-site — and realizes that the answer requires a kind of operational precision and flexibility his team has never needed for a fixed collection, and that training for it would take the curatorial staff away from the deep research that made the museum worth visiting in the first place",
+      "firstImage": "a donor proposal for three touring exhibitions over five years and an operations budget that does not include a traveling exhibition coordinator, custom crating, or partner liaison",
+      "mustInclude": ["the specific activity system the permanent-collection strategy requires that the traveling-exhibition path would draw resources away from", "the concrete capability the traveling path needs that does not currently exist in the museum"],
+      "mustAvoid": ["museum funding or endowment debate", "cultural-prestige framing as the main motivation"]
+    },
+    {
+      "domain": "a sailing club considering whether to add a competitive racing program to its recreational sailing membership",
+      "audience": "a club commodore whose membership is primarily recreational adult sailors and whose facilities are designed for that purpose",
+      "stakes": "a competitive racing program requires a coaching staff with racing credentials, a fleet of racing-specific vessels, and a scheduling system that conflicts with the recreational booking calendar — adding it requires an activity system investment that the recreational club's budget and culture were not built to support",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Ingrid reviews the two-year trial of the racing program and finds that the coaching hire left after the first season because the club's facilities were wrong, the racing fleet was underutilized because recreational members booked the slips, and the competitive members who did join left when the club could not provide the coaching consistency they required — the capability fit was never established before the program launched",
+      "firstImage": "a membership report showing four competitive racing members retained at end of year two and eighteen departure notes citing 'coaching inconsistency' or 'facility conflicts'",
+      "mustInclude": ["the specific activity the recreational club's system does well and the specific activity the racing program required that conflicted with it", "the clear post-mortem finding that reveals the capability mismatch as the root cause"],
+      "mustAvoid": ["sailing as a class or status symbol", "general sports club management advice"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish a general list of strengths from a strategy-specific capability system",
+      "apply the backward-mapping question ('what must we be able to do to deliver this how-to-win choice') to a real scenario",
+      "analyze why adding a new offering without an activity system audit leads to predictable failures",
+      "evaluate whether a proposed capability investment reinforces the existing strategy or dilutes it"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "State your current how-to-win choice in one sentence. Then name the three specific things your organization must be able to do well for that choice to work. For each one, rate honestly: have it, building it, or not yet exists. The gap is where the investment belongs — not at the top of a strengths list.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that uses the Gillette anchor as a brief illustration of capability fit — one or two sentences showing what fit looks like in practice, not a corporate history recap",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

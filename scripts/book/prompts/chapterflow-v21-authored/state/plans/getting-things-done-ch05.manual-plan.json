@@ -1,0 +1,198 @@
+{
+  "chapterId": "getting-things-done-ch05",
+  "number": 5,
+  "title": "Collection: Corralling Your Stuff",
+  "coreMove": "Sweep every loose piece of stuff into visible capture points before deciding what any of it means.",
+  "sourcePressure": "Collection is a full sweep of physical and mental incompletes, not selective note-taking, so loose material stops distracting attention from outside the system.",
+  "chapterSpecificMisunderstanding": "Capturing only important-looking tasks and leaving small scraps, objects, and mental loops outside the system.",
+  "sourceAlignmentTerms": [
+    "collection",
+    "stuff",
+    "capture",
+    "open loops",
+    "incompletes",
+    "full sweep",
+    "collection points"
+  ],
+  "sourceAnchorNote": "The source sidecar contains no chapter-specific named people, named studies, or named places. Use only the listed GTD terms, official metadata, or supported artifacts; do not invent anecdotes.",
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Corralling Your Stuff",
+      "detail": "The locked chapter title and sidecar frame collection as gathering stuff and incompletes into capture.",
+      "useIn": "both",
+      "phrasingHint": "Stuff is whatever has a hook in your attention, even if it looks too small to deserve a task name yet."
+    },
+    {
+      "kind": "artifact",
+      "name": "full sweep of physical and mental incompletes",
+      "detail": "The source sidecar identifies a comprehensive sweep as the chapter pressure.",
+      "useIn": "both",
+      "phrasingHint": "The sweep works because nothing gets to stay half-trusted in a pocket, on a counter, or in your head."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first productivity hook",
+      "stress is not about having too much to do",
+      "a messy desk proves the system is broken"
+    ],
+    "counterintuition": [
+      "the real problem is not time but attention",
+      "this is not about doing more but doing what matters",
+      "the simple move is actually the powerful one"
+    ],
+    "tryThisNow": [
+      "set a timer and write everything down",
+      "pick one task and make it specific",
+      "review your list and choose a priority"
+    ],
+    "examples": [
+      "generic office inbox scene",
+      "timestamp plus name plus laptop plus decision repeated across all six examples",
+      "home kitchen clutter as mental-load shorthand"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Megan",
+      "domain": "a veterinary reception desk after a vaccine clinic",
+      "audience": "a receptionist holding callbacks, forms, and owner questions",
+      "stakes": "a lab result or medication refill could vanish under check-in traffic",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The waiting room is finally quiet when Megan empties coat pockets, sticky flags, and phone scraps into one intake tray without sorting.",
+      "firstImage": "a leash hook swaying by the reception counter",
+      "mustInclude": [
+        "phone scraps",
+        "sticky flags",
+        "intake tray"
+      ],
+      "mustAvoid": [
+        "diagnosing priorities before collection"
+      ]
+    },
+    {
+      "protagonistName": "Jack",
+      "domain": "a commercial fishing boat captain after a harbor inspection",
+      "audience": "a captain with repairs, permits, and crew messages spread across the boat",
+      "stakes": "one uncollected permit note could keep the boat tied up",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Diesel hangs in the wheelhouse as Jack walks stern to bow with a clipboard, gathering every loose repair and permit reminder.",
+      "firstImage": "a damp clipboard on the wheelhouse console",
+      "mustInclude": [
+        "clipboard",
+        "permit note",
+        "repair tag"
+      ],
+      "mustAvoid": [
+        "turning it into rugged adventure"
+      ]
+    },
+    {
+      "protagonistName": "Etienne",
+      "domain": "a bridal alterations shop after a Saturday fitting rush",
+      "audience": "a shop owner surrounded by pins, receipts, and client promises",
+      "stakes": "one hem change could be remembered only after the bride returns",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"Do not fix it yet,\" Etienne tells his assistant, placing every slip and fabric tag into the collection box first.",
+      "firstImage": "silver pins scattered beside a fabric tag",
+      "mustInclude": [
+        "fabric tag",
+        "collection box",
+        "fitting slips"
+      ],
+      "mustAvoid": [
+        "processing alterations too early"
+      ]
+    },
+    {
+      "protagonistName": "Ingrid",
+      "domain": "a regional library system sorting branch requests after a bookmobile route",
+      "audience": "a librarian collecting rural branch needs from many channels",
+      "stakes": "a missing audiobook hold or printer issue could become next week’s complaint",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Ingrid one angry patron call to see that the problem was not the branch request itself; it had never entered collection.",
+      "firstImage": "a bookmobile route sheet folded in quarters",
+      "mustInclude": [
+        "route sheet",
+        "hold slip",
+        "printer note"
+      ],
+      "mustAvoid": [
+        "library quiet as generic calm"
+      ]
+    },
+    {
+      "protagonistName": "Akira",
+      "domain": "a robotics repair bench after a school competition weekend",
+      "audience": "a mentor with spare parts, student requests, and broken components everywhere",
+      "stakes": "a motor replacement could be lost before the next build session",
+      "format": "decision_point",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which pile gets judged first if Akira has not yet gathered the stripped gear, the parent email, and the drivetrain note into one capture path?",
+      "firstImage": "a stripped gear beside a battery tester",
+      "mustInclude": [
+        "stripped gear",
+        "battery tester",
+        "parent email"
+      ],
+      "mustAvoid": [
+        "jumping into troubleshooting"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "a boutique hotel front desk during a shift change",
+      "audience": "a front-desk lead collecting guest promises before handoff",
+      "stakes": "a late checkout or allergy request could remain only in a tired clerk’s memory",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You can feel the handoff change when Sofia writes every loose guest promise onto the shift capture sheet before discussing any solution.",
+      "firstImage": "a brass room key tag beside the shift sheet",
+      "mustInclude": [
+        "room key tag",
+        "shift sheet",
+        "allergy request"
+      ],
+      "mustAvoid": [
+        "making it customer service etiquette"
+      ]
+    }
+  ],
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish collection from clarification",
+      "recognize hidden incompletes in physical objects",
+      "choose fewer reliable capture points"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Do a two-minute sweep of one small area and capture every object or thought that represents an unfinished commitment.",
+  "readingTimeMinutes": 12
+}

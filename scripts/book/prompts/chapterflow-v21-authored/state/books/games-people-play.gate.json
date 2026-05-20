@@ -2,7 +2,7 @@
   "bookId": "games-people-play",
   "title": "Games People Play",
   "author": "Eric Berne",
-  "promotedAt": "2026-05-12T01:18:29.945Z",
+  "promotedAt": "2026-05-14T03:03:15.185Z",
   "chapterCount": 10,
   "shipGate": {
     "perChapter": [
@@ -18,14 +18,7 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": [
-          {
-            "catalogId": "B8",
-            "severity": "minor",
-            "unit": "breakdown",
-            "message": "breakdown: \"empty theater after tech\" appears in both deepRead and fullRead — vary one of them"
-          }
-        ]
+        "minors": []
       },
       {
         "chapter": 3,
@@ -39,10 +32,24 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"it is also the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 6,
         "passed": true,
         "blockers": [],
         "majors": [],
@@ -51,16 +58,9 @@
             "catalogId": "B8",
             "severity": "minor",
             "unit": "breakdown",
-            "message": "breakdown: \"back steps before work\" appears in both deepRead and fullRead — vary one of them"
+            "message": "breakdown: \"if it werent for\" appears in both deepRead and fullRead — vary one of them"
           }
         ]
-      },
-      {
-        "chapter": 6,
-        "passed": true,
-        "blockers": [],
-        "majors": [],
-        "minors": []
       },
       {
         "chapter": 7,
@@ -74,7 +74,14 @@
         "passed": true,
         "blockers": [],
         "majors": [],
-        "minors": []
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"im only trying to\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
       },
       {
         "chapter": 9,
@@ -101,15 +108,32 @@
     "findings": [],
     "stats": {
       "answerPositionCounts": [
-        30,
-        30,
-        30
+        35,
+        35,
+        20
       ],
-      "answerPositionPctMax": 0.3333333333333333,
+      "answerPositionPctMax": 0.3888888888888889,
       "totalQuizQuestions": 90,
       "duplicatedNames": [],
       "duplicatedHookOpeners": [],
-      "schemaInconsistencies": []
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "games-people-play",
+        "chapterCount": 10,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
     }
   }
 }

@@ -1,0 +1,326 @@
+{
+  "chapterId": "meditations-ch09",
+  "number": 9,
+  "title": "Book IX",
+  "readingTimeMinutes": 12,
+  "hook": "An empty sleeve in the consent binder asks Nathan for truth before anyone asks who failed.",
+  "counterintuition": "Anger can look like justice when a lie hurts people. Instead, let truth correct the shared world without adding fever to the injury.",
+  "tryThisNow": "Before correcting someone, write the truthful action needed and the anger you must not add to it.",
+  "keyTakeaway": "Treat lies and injustice as damage to shared reality: correct what can be corrected, speak plainly, and refuse the anger that would make you another wrongdoer.",
+  "breakdown": {
+    "fastRead": "The consent binder has a clean empty sleeve where page six should be. Nathan can protect the lab image by enrolling one more patient and finding blame later, or he can stop enrollment and send the audit email now. The missing page is not only paperwork. It is trust removed from the room.\n\nTruth is not a private preference here. It is the condition that lets rational creatures share a world.\n\nJustice begins by refusing to lie about the fact in front of you.",
+    "deepRead": "Truth is not a private preference here; it is the condition that lets rational creatures share a world. A lie breaks more than a rule. It asks other people to live inside a false map. Injustice does the same by treating rational beings as material for private advantage.\n\nThat is why anger is an unreliable servant. It may notice the wrong quickly, but it also wants display, punishment, and heat. Chloe can show copied essays without humiliating the student. Nathan can stop enrollment before naming a culprit. Rebecca can photograph the prep fridge before staged trays replace the real condition.\n\nMildness is active strength, not weakness.\n\nIt is a method for keeping the fact clean. When heat enters first, the correction starts collecting extra material: guesses about motive, pleasure in exposure, a wish to make the wrongdoer smaller. The fact needs less company than anger wants to give it.\n\nThe hard task is to keep correction clean. If someone lies, tell the truth. If a process hides risk, expose the risk. If a rumor is turning a family into suspects, remove the name from the flyer. None of that requires rage as fuel.\n\nThe limit is not softness toward wrongdoing. Some wrongs need formal consequences. The point is that correction should not become another wrong by adding contempt, exaggeration, or public theater where truth would have been enough.",
+    "fullRead": "Wrongdoing is treated as a break with shared nature because rational creatures are made for one another. Lying is especially grave because it fights the very condition that lets people coordinate: truth. If the map is false, everyone who trusts it walks worse. The consent binder, the repair estimate, the temperature log, the copied code, the printed flyer: each is a small public world. Falsify it, and other people must live in the distortion.\n\nWhat does anger add after the truth is already clear?\n\nSometimes it adds courage. More often, it adds heat that wants to be mistaken for courage. Nathan does not need rage to stop enrollment. He needs the consent binder, the enrollment log, and the audit email. Chloe does not need humiliation to address plagiarism. She needs the printed essays, the similarity report, and a meeting where the truth is spoken without spectacle.\n\nThe phrase universal nature named truth makes lying more than personal preference. The liar damages relation itself. The unjust person does wrong against the other person and also against himself because he makes his own ruling faculty worse. That is a severe claim: every unjust action deforms the actor too.\n\nRebecca's food safety inspection shows the point without drama. The prep fridge smells faintly sour behind a new parsley garnish. A manager is replacing real trays before the inspector arrives. Rebecca photographs the fridge and temperature log before the staged version appears. She is not hunting for a public win. She is preserving the true condition customers depend on.\n\nThe Cicero note reinforces the pressure: justice is not an attitude kept clean in storage. Virtue belongs in action. That action may be a report, a correction, a refusal, a private issue with exact diff links, or a public timeline that removes a family's name from a rumor. The form varies. The standard does not.\n\nAkira's open-source dispute is a useful edge case. A contributor copied code without attribution. Public shaming would feel righteous and might also become its own injustice. Akira opens a private issue first, includes exact diff links, points to the license file, and gives a repair path before any accusation is posted. Truth stays sharp. The fever stays out.\n\nA correction can be severe without becoming theatrical. The missing consent form can stop enrollment. The unsafe prep tray can be photographed. The false flyer can be pulled. Each act protects the shared world more effectively when it does not ask rage to certify its seriousness.\n\nMildness has to remain active. It is not the mildness of looking away, and it is not the mildness of pleasing everyone. It is the strength to correct without needing anger to prove sincerity. Wipe out imagination. Check the appetite for revenge. Put present conduct toward social good. Tell the truth in the form that can repair the shared world."
+  },
+  "examples": [
+    {
+      "exampleId": "ch09-ex01-nathan-consent",
+      "title": "Nathan Stops Enrollment",
+      "tags": [
+        "decision",
+        "research",
+        "consent"
+      ],
+      "planSpec": {
+        "domain": "medical research consent audit",
+        "audience": "Nathan discovering a missing consent form",
+        "stakes": "concealment would protect the lab image and injure trust",
+        "format": "decision_point",
+        "requiredBeat": "Nathan stops enrollment for the day and reports the missing consent before discussing blame."
+      },
+      "scenario": "The consent binder has a clean empty sleeve where page six should be, and Nathan sees the enrollment log already prepared for the afternoon. The audit email is open in a draft window. One more participant would keep the lab on pace, but the missing form has made the next honest action visible. The clinic hallway is full, and the next signature line will affect a real participant.",
+      "whatToDo": "Stop enrollment for the day, report the missing consent in the audit email, and discuss blame only after the truth is recorded.",
+      "whyItMatters": "Concealment would protect the lab image by injuring shared trust. Nathan keeps justice clean by correcting the fact before hunting for a culprit."
+    },
+    {
+      "exampleId": "ch09-ex02-chloe-essays",
+      "title": "Chloe Shows the Matching Paragraphs",
+      "tags": [
+        "dialogue",
+        "school",
+        "plagiarism"
+      ],
+      "planSpec": {
+        "domain": "school plagiarism meeting",
+        "audience": "Chloe confronting copied essays",
+        "stakes": "anger could make correction feel like humiliation",
+        "format": "dialogue",
+        "requiredBeat": "\"We are going to tell the truth without making a spectacle,\" Chloe says before showing the matching paragraphs."
+      },
+      "scenario": "Chloe says, \"The evidence is enough,\" at the conference table. The printed essays sit beside the similarity report, with three matching paragraphs highlighted. The student is staring at the table edge. Chloe's next sentence can humiliate him or show the copied passages and the repair path without spectacle. The essays sit side by side on the desk, with the similarity report clipped to the folder.",
+      "whatToDo": "Show the matching paragraphs, name the plagiarism plainly, and explain the repair consequence without turning the meeting into a public shaming.",
+      "whyItMatters": "Truth does not need humiliation to become clear. Chloe corrects the wrong while refusing to add a second injury for the sake of anger."
+    },
+    {
+      "exampleId": "ch09-ex03-mateusz-estimate",
+      "title": "Mateusz Reads the Full Estimate",
+      "tags": [
+        "scene",
+        "housing",
+        "minutes"
+      ],
+      "planSpec": {
+        "domain": "housing cooperative vote",
+        "audience": "Mateusz hearing a board member hide repair costs",
+        "stakes": "truth affects every resident's future fees",
+        "format": "scene",
+        "requiredBeat": "At 7:03 p.m., Mateusz asks the treasurer to read the full repair estimate into the minutes."
+      },
+      "scenario": "At 7:03 in the evening, Mateusz sees the treasurer fold the repair estimate under her notebook while the reserve fund sheet passes down the table. Mateusz sees the meeting minutes still open. Residents will vote on fees next month, and the hidden number changes every future bill. He asks for the full estimate to be read aloud. The reserve spreadsheet is projected in the room, and every future fee depends on the number.",
+      "whatToDo": "Ask the treasurer to read the full repair estimate into the minutes and attach it to the reserve fund sheet before any vote proceeds.",
+      "whyItMatters": "The cost is not private board discomfort. It belongs to residents' future fees, so the shared record has to carry the whole truth."
+    },
+    {
+      "exampleId": "ch09-ex04-rebecca-fridge",
+      "title": "Rebecca Photographs the Fridge",
+      "tags": [
+        "postmortem",
+        "inspection",
+        "food"
+      ],
+      "planSpec": {
+        "domain": "food safety inspection",
+        "audience": "Rebecca watching a manager stage-clean for the inspector",
+        "stakes": "false appearance could put customers at risk",
+        "format": "postmortem",
+        "requiredBeat": "Rebecca photographs the prep fridge before the staged trays replace the real ones."
+      },
+      "scenario": "The prep fridge smells faintly sour behind the new parsley garnish. Rebecca remembers the manager reaching for staged trays while the temperature log sat unsigned. In her report, the decisive moment is the camera roll: she photographed the real fridge before the cleaner version replaced it. The thermometer is still on the shelf when the garnish tray slides into view.",
+      "whatToDo": "Photograph the prep fridge, record the unsigned temperature log, and preserve the real condition before the staged trays hide it.",
+      "whyItMatters": "A staged appearance would make customers live inside a false safety picture. Rebecca's evidence protects the truth before it can be dressed up."
+    },
+    {
+      "exampleId": "ch09-ex05-akira-diff",
+      "title": "Akira Opens the Private Issue",
+      "tags": [
+        "before_after",
+        "open-source",
+        "attribution"
+      ],
+      "planSpec": {
+        "domain": "open-source maintainer dispute",
+        "audience": "Akira handling a contributor who copied code without attribution",
+        "stakes": "public shaming might become another form of injustice",
+        "format": "before_after",
+        "requiredBeat": "You watch Akira open a private issue with exact diff links and a repair path before posting any accusation."
+      },
+      "scenario": "Akira sees the copied function line up in two browser panes, with the license file open behind the diff links. Akira has a draft public post ready, sharp enough to win the room. Instead, he opens a private issue first, lists the exact lines, and gives the contributor a repair path before any accusation goes public. The license file is open in one pane and the copied function is highlighted in another.",
+      "whatToDo": "Open the private issue, include exact diff links and the license file, and offer a repair path before making a public accusation.",
+      "whyItMatters": "The copying needs correction, but public shaming can become another injustice. Akira keeps truth exact and gives repair a chance before heat takes over."
+    },
+    {
+      "exampleId": "ch09-ex06-lea-rumor",
+      "title": "Lea Removes the Family Name",
+      "tags": [
+        "vignette",
+        "neighborhood",
+        "truth"
+      ],
+      "planSpec": {
+        "domain": "neighborhood safety committee",
+        "audience": "Lea correcting false rumors after a break-in",
+        "stakes": "fear is turning one family into suspects without evidence",
+        "format": "vignette",
+        "requiredBeat": "How do you defend safety without feeding a lie?"
+      },
+      "scenario": "Lea asks, \"How do you defend safety without feeding a lie?\" Lea stands between community hall chairs with the police timeline in one hand and a printed flyer in the other. A family's name appears under suspicious activity with no evidence beside it. She reads the timeline aloud, crosses out the name, and rewrites the warning around confirmed facts. The flyer draft is one click from print, and the family has not been contacted. The flyer stack is still warm from the printer.",
+      "whatToDo": "Read the police timeline aloud, remove the family's name from the flyer, and replace suspicion with confirmed safety information.",
+      "whyItMatters": "Fear wants a target, but a false target injures the shared world. Lea protects safety by refusing to let rumor borrow the voice of truth."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A lab discovers a missing consent form and wants to keep enrolling until someone can explain the mistake. What is the first just act? The waiting room is active, and every new signature would rest on a false record.",
+        "choices": [
+          "Find who misplaced the page before taking action.",
+          "Enroll only low-risk participants until the file is fixed.",
+          "Stop enrollment and report the missing consent."
+        ],
+        "correctIndex": 2,
+        "explanation": "Truth has to enter the record before blame. Continuing enrollment asks participants and staff to live inside a false picture of consent.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A teacher has proof of copied essays and feels angry enough to make the meeting painful. What should guide the correction? The student is already outside the office, and the printed proof is on the desk.",
+        "choices": [
+          "Make the student feel the seriousness through public shame.",
+          "Show the evidence plainly and set a repair consequence without spectacle.",
+          "Avoid direct language so the student does not feel attacked."
+        ],
+        "correctIndex": 1,
+        "explanation": "The wrong needs truth and consequence, not humiliation or vagueness. Public shame adds heat that can become its own injustice.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A co-op board hides the full repair estimate while discussing future fees. What response fits shared truth? The meeting packet will go to residents tonight, so the hidden number will shape real choices.",
+        "choices": [
+          "Wait for the treasurer to disclose it voluntarily.",
+          "Privately warn residents after the meeting.",
+          "Ask for the full estimate to be read into the minutes."
+        ],
+        "correctIndex": 2,
+        "explanation": "The fees affect everyone, so the shared record needs the whole number. Private warning leaves the formal decision inside a partial truth.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "When a restaurant manager starts replacing unsafe prep trays before inspection. What should Rebecca preserve first? The inspector is ten minutes away, and the staged tray would erase the fact customers need.",
+        "choices": [
+          "The manager's motive for staging the trays.",
+          "The inspector's likely reaction.",
+          "The real prep fridge condition and temperature log."
+        ],
+        "correctIndex": 2,
+        "explanation": "The true condition is the fact customers depend on. Motive and reaction may matter later, but the first duty is to preserve reality before staging replaces it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "The open-source maintainer finds copied code and can win public support by shaming the contributor. What is the cleaner first move? The repository is public, but the repair path can still be precise before it becomes spectacle.",
+        "choices": [
+          "Post publicly so others learn not to copy code.",
+          "Ignore it if the copied code improves the project.",
+          "Open a private issue with exact diff links and a repair path."
+        ],
+        "correctIndex": 2,
+        "explanation": "The copying needs correction, but exact private repair keeps truth sharp without adding needless public injury. Ignoring it abandons attribution.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "During a case where safety committee wants to leave an unverified family name on a flyer after a break-in. What is the moral risk? The printer tray is loaded, and the wrong name would travel faster than correction.",
+        "choices": [
+          "Fear can turn a falsehood into public injury.",
+          "Flyers are ineffective during public fear.",
+          "The committee may look less decisive."
+        ],
+        "correctIndex": 0,
+        "explanation": "The unverified name gives fear a target and damages shared truth. Effectiveness and image are secondary to the false accusation.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "In a situation where manager says anger proves she cares about justice. What distinction should she make? The team is watching her face, and the next sentence can be fact or fever.",
+        "choices": [
+          "Care is proven by truthful correction, not by the heat added to it.",
+          "Anger should be hidden so others do not object.",
+          "Justice works best when people fear consequences."
+        ],
+        "correctIndex": 0,
+        "explanation": "Anger may notice wrong, but it does not prove justice. The test is whether truth and correction happen without added contempt or exaggeration.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "After a scenario where false report helps one department avoid embarrassment but causes others to make bad plans. Why is the lie worse than private dishonesty? The false report will become the map for teams that never saw the embarrassment.",
+        "choices": [
+          "It damages the shared map other people use to act.",
+          "It makes the department look unprofessional if discovered.",
+          "It creates more paperwork when corrected."
+        ],
+        "correctIndex": 0,
+        "explanation": "A lie injures common reality. Reputation and paperwork are smaller effects; the deeper harm is that others act inside a false map.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two corrections are possible. One is accurate but humiliating; the other is accurate, firm, and gives a repair path. Which is stronger? The repair meeting is private, but the consequences will become public if truth is bent.",
+        "choices": [
+          "The humiliating one, because pain helps wrongdoers remember.",
+          "The firm repair path, because truth stays active without adding a second injury.",
+          "Neither, because wrongdoing should be left alone when anger is present."
+        ],
+        "correctIndex": 1,
+        "explanation": "The second option keeps truth and correction while refusing private fever. Leaving wrongdoing alone fails justice, and humiliation confuses heat with strength.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "What should come before blame when a serious record is false or incomplete?",
+      "back": "Stop the affected action and put the truth into the record. Blame can wait until shared reality is restored.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why is lying more than private dishonesty?",
+      "back": "A lie damages the shared map other people use to act. It makes rational cooperation happen inside false conditions.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "How can anger corrupt correction?",
+      "back": "It can add humiliation, exaggeration, revenge, or public theater. Truth needs firmness, not private fever.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "What does mildness mean when someone has done wrong?",
+      "back": "It means correcting without becoming another wrongdoer. Mildness can report, stop, refuse, or impose consequences without hatred steering the act.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "Why does justice belong in action?",
+      "back": "An attitude toward truth is not enough. Justice has to enter the record, the meeting, the report, the issue, or the flyer where shared life is being distorted.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Correcting Without the Fever of Anger",
+    "coreSkill": "You practice separating truthful correction from the anger that wants to ride with it. The skill is to record the truth, choose the repair path, and leave out contempt.",
+    "ifThenPlans": [
+      {
+        "context": "research",
+        "plan": "If a consent or safety record is missing, then stop the affected action and report the fact before discussing blame."
+      },
+      {
+        "context": "education",
+        "plan": "If a student has copied work, then show the evidence and consequence without turning the meeting into humiliation."
+      },
+      {
+        "context": "community",
+        "plan": "If fear names a suspect without evidence, then remove the name and replace it with confirmed facts."
+      },
+      {
+        "context": "digital work",
+        "plan": "If attribution is violated, then open a precise repair path before making a public accusation."
+      }
+    ],
+    "twentyFourHourChallenge": "Before one correction today, write the truthful action needed and the anger you must not add. Then make the correction in that order.",
+    "weeklyPractice": "Review one conflict each week. Separate the fact, the repair, the consequence, and the heat you added. Rewrite the next response with the heat removed."
+  },
+  "memorableLines": [
+    {
+      "text": "Justice begins by refusing to lie about the fact in front of you.",
+      "location": "breakdown.fastRead",
+      "why": "It makes justice concrete before blame starts."
+    },
+    {
+      "text": "Mildness is active strength, not weakness.",
+      "location": "breakdown.deepRead",
+      "why": "The short line protects firmness from becoming rage."
+    },
+    {
+      "text": "What does anger add after the truth is already clear?",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a direct diagnostic question for righteous anger."
+    }
+  ]
+}

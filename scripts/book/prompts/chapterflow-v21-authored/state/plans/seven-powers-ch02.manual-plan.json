@@ -1,0 +1,208 @@
+{
+  "chapterId": "seven-powers-ch02",
+  "number": 2,
+  "title": "Network Economies",
+  "coreMove": "Ask whether each added user makes the product more valuable for other users within a bounded network.",
+  "sourcePressure": "Network economies exist when the value to one customer rises as more customers use the product. The source stresses winner-take-all pressure, boundedness, decisive early product, and complement effects without turning every audience or platform into a network.",
+  "chapterSpecificMisunderstanding": "Network economies mean having many users, a community, or a social feature.",
+  "sourceAlignmentTerms": [
+    "network economies",
+    "value to one customer",
+    "more users",
+    "winner take all",
+    "boundedness",
+    "decisive early product",
+    "complements",
+    "indirect network effects"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Facebook",
+      "detail": "the source sidecar uses Facebook to show a personal interaction network whose boundary differs from professional interaction",
+      "useIn": "both",
+      "phrasingHint": "Facebook can grow strong inside personal interaction without proving that every other network must collapse into it."
+    },
+    {
+      "kind": "person",
+      "name": "LinkedIn",
+      "detail": "the source sidecar pairs LinkedIn with Facebook to show that different network character can let strong networks coexist",
+      "useIn": "deepRead",
+      "phrasingHint": "LinkedIn survives as a reminder that the purpose of the network sets the boundary of the power."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of Network Economies",
+      "A business has power when... repeated opener shell",
+      "any hook that starts with Strategy is... or Power is..."
+    ],
+    "counterintuition": [
+      "Most people think X, but actually Y",
+      "The paradox is...",
+      "It is not about working harder; it is about working smarter",
+      "generic moat-versus-no-moat contrast without the chapter mechanism"
+    ],
+    "tryThisNow": [
+      "Write down your top three advantages",
+      "Set a timer and reflect on your strategy",
+      "Ask yourself what matters most",
+      "generic benefit/barrier prompt reused without the chapter-specific test"
+    ],
+    "examples": [
+      "founder in a coffee shop reviewing a deck",
+      "generic boardroom whiteboard choice",
+      "classroom project analogy",
+      "spreadsheet-only SaaS pricing scene",
+      "reusing physical anchors from adjacent plans"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of timestamp + named protagonist + prop + decision that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "same-day medical courier marketplace adding hospital labs in one city",
+      "audience": "a reader facing same-day medical courier marketplace adding hospital labs in one city",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Claire watches two new lab pickups pull idle couriers into the same district and redraws the dispatch radius around the denser loop.",
+      "firstImage": "At 7:18 a.m., Claire sees three courier dots stop drifting apart",
+      "mustInclude": [
+        "dispatch screen",
+        "lab onboarding form",
+        "pickup radius map"
+      ],
+      "mustAvoid": [
+        "generic app marketplace",
+        "taxi stand shell"
+      ]
+    },
+    {
+      "protagonistName": "Lukas",
+      "domain": "language-exchange app splitting travelers and exam students into separate rooms",
+      "audience": "a reader facing language-exchange app splitting travelers and exam students into separate rooms",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "decision_point",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lukas deletes the universal feed from the prototype and draws two bounded networks after reading mismatched chat logs.",
+      "firstImage": "They are both learning Spanish, but not for the same night, Lukas says",
+      "mustInclude": [
+        "chat logs",
+        "prototype feed",
+        "traveler badge"
+      ],
+      "mustAvoid": [
+        "generic social media advice",
+        "Facebook versus LinkedIn retelling"
+      ]
+    },
+    {
+      "protagonistName": "Catarina",
+      "domain": "digital sheet-music platform courting arrangers after schools join",
+      "audience": "a reader facing digital sheet-music platform courting arrangers after schools join",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "predict_reveal",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Catarina spreads three new brass arrangements on the piano and marks which appeared only after the school accounts grew.",
+      "firstImage": "The rehearsal room smells of valve oil and wet wool coats",
+      "mustInclude": [
+        "brass arrangements",
+        "school account list",
+        "arranger payout table"
+      ],
+      "mustAvoid": [
+        "generic content marketplace",
+        "classroom shell"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "neighborhood tool-lending cooperative adding apartment buildings",
+      "audience": "a reader facing neighborhood tool-lending cooperative adding apartment buildings",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Yusuf maps the drill requests that arrived after the third building joined and separates real availability gains from a crowded inventory list.",
+      "firstImage": "It took Yusuf four missing drill bits to stop trusting the member count",
+      "mustInclude": [
+        "drill request log",
+        "building map",
+        "tool cabinet tags"
+      ],
+      "mustAvoid": [
+        "generic community growth",
+        "garage workbench shell"
+      ]
+    },
+    {
+      "protagonistName": "Marit",
+      "domain": "freight-load board for small Nordic fisheries",
+      "audience": "a reader facing freight-load board for small Nordic fisheries",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "vignette",
+      "openingDevice": "environmental",
+      "requiredBeat": "Marit moves the ferry timetable beside the load board and highlights the first week when more boats made the trucks more useful.",
+      "firstImage": "The harbor office window is fogged before the first auction notice prints",
+      "mustInclude": [
+        "ferry timetable",
+        "load board",
+        "refrigerated truck slots"
+      ],
+      "mustAvoid": [
+        "generic freight platform",
+        "harbor key anchor"
+      ]
+    },
+    {
+      "protagonistName": "Ben",
+      "domain": "open-source design-component library trying to attract plugin makers",
+      "audience": "a reader facing open-source design-component library trying to attract plugin makers",
+      "stakes": "whether the decision creates protected business power or only a respectable-looking improvement",
+      "format": "before_after",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Ben compares the issue queue before and after plugin submissions and marks the features users no longer have to build themselves.",
+      "firstImage": "When do downloads become a better product for the next developer?",
+      "mustInclude": [
+        "issue queue",
+        "plugin submissions",
+        "component catalog"
+      ],
+      "mustAvoid": [
+        "generic developer community",
+        "GitHub popularity contest"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish network value from raw user count",
+      "test boundedness by user purpose and multi-homing risk",
+      "recognize direct and indirect network effects in unfamiliar markets"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Name one product you call a network and write the sentence: one more user helps existing users by __. If the blank is weak, it is audience scale, not network power.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  }
+}

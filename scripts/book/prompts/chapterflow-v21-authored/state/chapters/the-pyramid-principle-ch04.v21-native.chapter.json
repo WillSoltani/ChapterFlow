@@ -1,0 +1,326 @@
+{
+  "chapterId": "the-pyramid-principle-ch04",
+  "number": 4,
+  "title": "Fine points of introductions",
+  "readingTimeMinutes": 12,
+  "hook": "Wet bark on Olivia’s desk does more opening work than two pages of municipal history.",
+  "counterintuition": "Despite its polite surface, an introduction is a control point. It gives only the situation and pressure needed to make the live question ready for the key line.",
+  "tryThisNow": "Mark one live opening with three labels: situation, complication, key line. If no sentence creates pressure, add that before polishing the answer.",
+  "keyTakeaway": "Open by giving the reader the settled situation, the change that unsettles it, and the question your key line will answer.",
+  "breakdown": {
+    "fastRead": "Wet bark flakes onto Olivia's desk from a storm-damaged branch sealed in a plastic evidence bag. Her funding request opens with two pages of arborist history, but the council needs a live reason to care. She cuts the history, starts with last week's storm damage, names the school-route closures, and lets the funding key line arrive after the pressure is clear.\n\nA good introduction prepares the answer. Situation tells where the reader stands. Complication shows what changed. The question becomes active. Then the key line can land as an answer, not a stray claim.",
+    "deepRead": "A freezer alarm chirps every twelve seconds in the empty biotech corridor. Julien has a temperature log, a sample inventory, and a capital request sheet for a replacement freezer bank. If he opens with the purchase request, the proposal sounds like preference. If he opens with years of freezer specifications, the reader loses the risk.\n\nHe begins with the current alarm pattern. Then he adds the complication: overnight failures are rising and samples worth years of work now sit inside aging units. Only after that does the replacement ask feel like the answer to a question the reader already holds.\n\nThe opening is the small doorway that tells the reader which question the answer is about to resolve.\n\nThe heading map for this work treats introductory flow, starting point, complication, order, and key-line timing as separate concerns for a reason. Each choice controls reader readiness. Start too early and the opening drags history into the room. Start too late and the complication floats without ground.\n\nLength follows function. Shared situation permits a short opening. A reader who lacks the situation needs more footing. But every sentence should move toward the question the key line will answer.",
+    "fullRead": "Marta found the flaw after a failed midnight handoff. The old runbook opened with steps: open the incident template, assign owner, paste alert link. It was orderly, and it started too late. The on-call engineers did not know what failure the handoff procedure existed to prevent.\n\nShe rebuilt the introduction. First came the situation: a normal handoff moves alert context from one engineer to the next without losing ownership. Then came the complication: the pager log showed two alerts that crossed shifts and disappeared between owners. The implied question finally appeared: how should the handoff preserve ownership when an alert crosses a shift boundary? Only then did the procedure steps belong.\n\nWhere should your situation begin? Begin where the reader can understand the current condition without carrying dead history. A funding request works only when the reader feels the changed condition before the ask appears. A progress review works only when the reader knows the prior plan before hearing what changed. A transition works only when the reader sees why the next group belongs.\n\nJames uses the same discipline over rolled drawings in an architecture office. The library renovation review could begin with everything the firm has done. Instead he frames the prior plan, then the asbestos discovery, then the phasing question that must be answered before contractor bids expire. The update is no longer a diary of activity. It is an answer entering a prepared space.\n\nThe common patterns differ on the surface: requests for funds, how-to documents, letters of proposal, progress reviews, transitions, summaries. The inside job is similar. Give the reader the stable condition, introduce the pressure that disturbs it, and make the question active before the key line arrives.\n\nThere is a limit. Do not turn every opening into a ceremonial story. If the reader already shares the situation, state it quickly. If the complication is obvious, do not dramatize it. The test is whether the answer can now land without the reader silently asking, why now, why this, or what problem does this solve?\n\nA clean introduction does not delay the answer to create suspense. It delays only long enough to make the answer necessary.\n\nA summary opening works the same way at smaller scale. It can remind the reader what has already been settled, name the remaining pressure, and point toward the next answer. That is why transitions between groups belong in the same family as introductions. Each one manages entry into a new piece of the hierarchy.\n\nA proposal letter shows the same rule in a smaller space. If the reader already knows the vendor, old company history only delays the question. If the changed condition is a doubled application queue, the opening should make that pressure visible and then let the recommendation answer it. Background earns its place only when it helps the key line land."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-olivia-tree-funds",
+      "title": "Olivia Lets the Storm Create the Ask",
+      "tags": [
+        "scene",
+        "parks",
+        "funding"
+      ],
+      "planSpec": {
+        "domain": "a parks department request for emergency tree-removal funds",
+        "audience": "municipal writers making public-safety funding asks",
+        "stakes": "council may reject the request if the opening starts with budget mechanics rather than the changed risk",
+        "format": "scene",
+        "requiredBeat": "Olivia cuts the arborist history, starts with last week's storm damage, names the complication of school-route closures, and lets the funding key line land after that pressure is clear."
+      },
+      "scenario": "Wet bark flakes onto Olivia's desk from a sample branch in a plastic evidence bag. The storm damage map and school-route closure list sit beside a funding request form due at 2:00 p.m. Olivia faces a choice: begin with ten years of arborist history, or open with last week's fallen limbs blocking two school routes. She cuts the history, names the closure pressure, and lets the funding ask arrive after the risk is visible.",
+      "whatToDo": "Start with the current tree risk, then name the school-route complication before the funding ask. Move arborist history below the key line or into support.",
+      "whyItMatters": "Council members need to feel the changed condition before voting. Budget mechanics alone make the request sound optional rather than urgent."
+    },
+    {
+      "exampleId": "ch04-ex02-julien-freezer-bank",
+      "title": "Julien Waits Before Asking for Freezers",
+      "tags": [
+        "decision_point",
+        "biotech",
+        "capital"
+      ],
+      "planSpec": {
+        "domain": "a biotech equipment proposal to replace an aging freezer bank",
+        "audience": "lab managers writing capital proposals",
+        "stakes": "samples worth years of work could be lost if the proposal reads like a purchasing preference",
+        "format": "decision_point",
+        "requiredBeat": "Julien begins at the current freezer alarm pattern, adds the complication of rising overnight failures, and delays the replacement ask until the reader expects it."
+      },
+      "scenario": "A freezer alarm chirps every twelve seconds in the empty corridor outside Julien’s lab at 7:15 a.m. The temperature log shows three overnight failures, and the sample inventory lists five years of stored work. His capital request sheet already says replace freezer bank. Before sending it, Julien must decide where the proposal begins: with the purchase ask, or with the alarm pattern that makes the ask expected.",
+      "whatToDo": "Open with the current alarm pattern and rising overnight failures, then place the replacement request after the sample risk is clear.",
+      "whyItMatters": "The same ask feels like a preference or a necessity depending on the frame. Situation and complication make the key line answer a live problem."
+    },
+    {
+      "exampleId": "ch04-ex03-marta-handoff-runbook",
+      "title": "Marta Starts the Runbook Before the Steps",
+      "tags": [
+        "before_after",
+        "software",
+        "how-to"
+      ],
+      "planSpec": {
+        "domain": "a software documentation lead writing a how-to for incident handoff",
+        "audience": "technical writers and on-call engineers",
+        "stakes": "handoffs will remain sloppy if the guide opens with steps before the reader knows what failure it prevents",
+        "format": "before_after",
+        "requiredBeat": "Marta contrasts the old step-first guide with a new opening that states the normal handoff, the missed-alert complication, and the question the procedure answers."
+      },
+      "scenario": "It took Marta one failed midnight handoff to see the guide had started too late. The old incident handoff template opened with steps while the pager alert log showed why the steps mattered. In the revised runbook draft, she first states the normal handoff, then the missed-alert complication, then the question: how do we keep ownership when an alert crosses shifts? The steps finally have a job.",
+      "whatToDo": "Write the opening before the procedure. State the normal handoff, name the missed-alert pressure, and let the procedure answer that question.",
+      "whyItMatters": "A how-to loses force when steps arrive without the failure they prevent. The frame tells engineers why the sequence matters."
+    },
+    {
+      "exampleId": "ch04-ex04-james-library-review",
+      "title": "James Frames the Asbestos Before the Update",
+      "tags": [
+        "dialogue",
+        "architecture",
+        "progress"
+      ],
+      "planSpec": {
+        "domain": "an architecture firm progress review for a delayed library renovation",
+        "audience": "project leads reporting status without burying the issue",
+        "stakes": "the client needs to decide on phasing before contractor bids expire",
+        "format": "dialogue",
+        "requiredBeat": "\"If we begin with everything we did, they will miss what changed,\" James says, then frames the prior plan, the asbestos discovery, and the phasing question before the update."
+      },
+      "scenario": "\"If we start with every task, the change disappears,\" James says over rolled drawings in the project room. The asbestos report lies across the bid expiry calendar. The client meeting starts in forty minutes, and James must decide how the progress review opens. He frames the prior library plan, the asbestos discovery, and the phasing question before any update on completed work.",
+      "whatToDo": "Begin with the prior plan, then the asbestos complication, then the phasing question. Put completed work after the reader knows what changed.",
+      "whyItMatters": "A progress review should orient the decision now required. Activity lists bury the change that makes the update matter."
+    },
+    {
+      "exampleId": "ch04-ex05-layla-transcript-upload",
+      "title": "Layla Moves Platform History Below the Line",
+      "tags": [
+        "vignette",
+        "admissions",
+        "proposal"
+      ],
+      "planSpec": {
+        "domain": "a university admissions office proposing a transcript-upload change",
+        "audience": "administrators writing internal proposal letters",
+        "stakes": "manual review costs will rise unless the reader sees why the current process broke",
+        "format": "vignette",
+        "requiredBeat": "You watch Layla move three paragraphs of platform history below the key line and open instead with the current process, the application-volume complication, and the resulting question."
+      },
+      "scenario": "You can hear the scanner jam behind the admissions desk while Layla studies a transcript queue screenshot and an application-volume chart. The proposal letter draft begins with three paragraphs of platform history. Before the dean reviews it, Layla faces a choice: keep that history upfront, or open with the current manual process, the volume spike, and the question of upload change.",
+      "whatToDo": "Move platform history below the key line. Open with current manual review, application volume pressure, and the decision the upload proposal answers.",
+      "whyItMatters": "Administrators need to see why the process broke before weighing the platform change. History becomes support only after the problem is live."
+    },
+    {
+      "exampleId": "ch04-ex06-thomas-baggage-transition",
+      "title": "Thomas Writes the Missing Transition",
+      "tags": [
+        "postmortem",
+        "airport",
+        "operations"
+      ],
+      "planSpec": {
+        "domain": "a regional airport operations summary after a baggage outage",
+        "audience": "operations leaders transitioning between report groups",
+        "stakes": "the next section will sound abrupt unless the transition creates the right question",
+        "format": "postmortem",
+        "requiredBeat": "At 5:20 a.m., Thomas writes a transition that restates the restored belt service, names the remaining passenger-notification gap, and then introduces the next group."
+      },
+      "scenario": "At 5:20 a.m., Thomas watches delayed bag tags scroll across a dim monitor after the regional airport’s baggage outage. The outage log says belt service is restored. The passenger notification script still has a gap. In the postmortem, his first draft jumps straight to communications. He writes a transition instead: belt service is back, passengers still lacked timing, so the next group explains notification repair.",
+      "whatToDo": "Use the transition to restate the settled belt-service situation, name the passenger-notification gap, and then introduce the communication group.",
+      "whyItMatters": "A transition is a small introduction. It keeps the next section from feeling abrupt by activating the question that section answers."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A director reads a funding memo that opens with five paragraphs of department history before asking for emergency repairs to a leaking clinic roof. What should the introduction do instead?",
+        "choices": [
+          "Create a live situation and complication so the repair ask answers a clear question.",
+          "Hide the ask until the final paragraph to build suspense.",
+          "Add more technical detail to prove expertise."
+        ],
+        "correctIndex": 0,
+        "explanation": "The opening should prepare the answer, not bury it. History and technical detail help only after the changed condition makes the request necessary.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A lab proposal starts with Replace freezer bank, then lists alarm failures, thawed samples, and audit risk only afterward. Why might this opening land badly for the reader?",
+        "choices": [
+          "The phrase freezer bank is unexplained equipment terminology, so a lay budget reviewer may need a brief description before judging the request.",
+          "Leading with the specific action gives reviewers the budget line first, while situational detail can sit in a support section.",
+          "The ask arrives before the reader understands the condition and pressure that make it necessary."
+        ],
+        "correctIndex": 2,
+        "explanation": "The key line is not wrong, but it is early. Situation and complication let the reader expect the ask instead of treating it as a preference.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A how-to guide begins with step one, open the template, but users do not know what failure the procedure prevents. What should be added before the steps?",
+        "choices": [
+          "A longer tool description with screenshots of every field in the handoff form.",
+          "A frame naming the normal handoff, the missed-alert complication, and the procedure question.",
+          "A warning that users should read carefully and confirm each step before shift end."
+        ],
+        "correctIndex": 1,
+        "explanation": "The procedure needs an introductory frame. Tool detail and warnings do not tell readers why the steps matter now.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A progress review for a renovation lists completed tasks before mentioning an asbestos discovery that changes the whole schedule. What is the best opening repair?",
+        "choices": [
+          "Keep the completed tasks first because progress reviews should be chronological.",
+          "Start with the prior plan, then the asbestos complication, then the phasing question.",
+          "Remove all completed tasks from the review."
+        ],
+        "correctIndex": 1,
+        "explanation": "The reader needs the change before the activity list. Completed work still belongs, but after the frame that explains the current decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A proposal letter starts with platform history, then late in the page says application volume has doubled and staff cannot keep up. Why is the starting point weak?",
+        "choices": [
+          "It begins before the decision-relevant situation appears.",
+          "It uses too few statistics about the platform vendor and scanner error rate.",
+          "It should be rewritten as a dialogue between reviewers and applicants."
+        ],
+        "correctIndex": 0,
+        "explanation": "Starting too early imports dead history. The opening should begin where the current process and volume pressure become legible.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An airport report finishes the baggage-belt repair section and jumps to passenger messaging while the outage timeline is still in the reader's head. What should the transition do?",
+        "choices": [
+          "Repeat the entire prior section in shorter form., while giving the page a cleaner surface without fixing the logic",
+          "Start with the final recommendation for all future outages.",
+          "Restate the settled issue, name the remaining complication, and create the question for the next group."
+        ],
+        "correctIndex": 2,
+        "explanation": "A transition works like a small introduction. It orients the reader to what is settled and what question the next section answers.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A writer says every introduction should use three full paragraphs: situation, complication, and question, even for readers who already know the context. What is the better standard?",
+        "choices": [
+          "Use three full paragraphs consistently so readers in a large organization can locate the key line in a familiar place.",
+          "Cut the introduction for expert readers because an audience that knows the context may prefer the governing recommendation first.",
+          "Use only the length needed to orient the reader and activate the question."
+        ],
+        "correctIndex": 2,
+        "explanation": "Length follows function. Shared context can be brief; unfamiliar context needs more footing. Fixed length is less important than reader readiness.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A manager opens a memo with the answer, but readers keep asking why now and what changed since the last review. Which part of the introduction is probably missing?",
+        "choices": [
+          "A more confident key line.",
+          "The complication that makes the answer necessary now.",
+          "A list of all stakeholders."
+        ],
+        "correctIndex": 1,
+        "explanation": "Why now usually points to a missing complication. Confidence and stakeholder lists do not create the pressure that lets the answer land.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A proposal has a clear situation and complication. The writer keeps adding background before the key line because it feels safer. What should guide the cut?",
+        "choices": [
+          "Cut background once the reader can understand the live question the key line answers.",
+          "Keep more background until the full reader list is known, since a senior approver may lack context from earlier discussions.",
+          "Move the key line to the end so the background feels useful."
+        ],
+        "correctIndex": 0,
+        "explanation": "The opening should carry only enough background to activate the question. Extra context delays the answer after the reader is ready for it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Readers understand your answer but keep asking why now. What opening part is probably weak?",
+      "back": "The complication is probably missing or too soft. State the settled situation, name what changed, and let the key line answer the question that change creates.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "What job does the situation perform in an introduction?",
+      "back": "It gives the reader the current condition needed to understand the pressure. It should begin where the decision becomes legible, not with dead history.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "When should the key line appear?",
+      "back": "After the reader has enough situation and complication to expect it. The key line should feel like an answer, not a claim dropped into empty space.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A transition between sections feels abrupt. How do you repair it?",
+      "back": "Treat it as a small introduction. Restate what is settled, name the remaining pressure, and create the question the next group answers.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "How long should an introduction be?",
+      "back": "Only as long as needed to orient the reader and activate the question. Shared context can be short. Unfamiliar context needs more footing.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Frame Before the Key Line",
+    "coreSkill": "You learn to make the answer land by preparing the question first. The skill is choosing the right starting situation, naming the complication, and timing the key line after the reader knows why it matters.",
+    "ifThenPlans": [
+      {
+        "context": "funding request",
+        "plan": "If the ask sounds abrupt, then add the changed condition before it. Name what became unsafe, costly, late, or unstable."
+      },
+      {
+        "context": "how-to document",
+        "plan": "If the steps feel mechanical, then add the failure the steps prevent before the first instruction."
+      },
+      {
+        "context": "progress review",
+        "plan": "If the update reads like a diary, then frame the prior plan and the change before listing activity."
+      },
+      {
+        "context": "section transition",
+        "plan": "If the next group feels sudden, then write one sentence that states what is settled and what question remains."
+      }
+    ],
+    "twentyFourHourChallenge": "Take one live opening and label situation, complication, and key line. If the complication is missing, add one sentence naming what changed before revising anything else.",
+    "weeklyPractice": "Once a week, audit three openings you wrote. For each, mark where the reader first learns why the answer matters now, then cut any background that appears before that point without helping it."
+  },
+  "memorableLines": [
+    {
+      "text": "The opening is the small doorway that tells the reader which question the answer is about to resolve.",
+      "location": "breakdown.deepRead",
+      "why": "It turns introductory framing into a concrete image."
+    },
+    {
+      "text": "The test is whether the answer can now land without the reader silently asking, why now, why this, or what problem does this solve?",
+      "location": "breakdown.fullRead",
+      "why": "It turns length control into a reader-readiness test."
+    },
+    {
+      "text": "A clean introduction does not delay the answer to create suspense.",
+      "location": "breakdown.fullRead",
+      "why": "It distinguishes prepared entry from withholding."
+    }
+  ]
+}

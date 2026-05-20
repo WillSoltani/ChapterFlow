@@ -1,0 +1,191 @@
+{
+  "chapterId": "the-righteous-mind-ch11",
+  "number": 11,
+  "title": "Religion Is a Team Sport",
+  "coreMove": "Evaluate religion by the team behavior it organizes as well as by the beliefs it states.",
+  "sourcePressure": "The chapter interprets religion as a group-binding institution that coordinates ritual, cohesion, and shared moral life without reducing religion to one function.",
+  "chapterSpecificMisunderstanding": "The writer argues for or against religion's truth instead of analyzing its coordinating function.",
+  "sourceAlignmentTerms": [
+    "religion",
+    "team sport",
+    "ritual",
+    "cohesion",
+    "coordination",
+    "group-binding",
+    "shared moral life"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "Religion Is a Team Sport",
+      "detail": "the official index title and sidecar frame religion as group-binding technology rather than only private belief.",
+      "useIn": "both",
+      "phrasingHint": "Religion here is not only a claim in the head; it is a set of shared moves that makes people act like a team."
+    },
+    {
+      "kind": "artifact",
+      "name": "the hive switch",
+      "detail": "the frozen sidecar says Chapter 11 builds on Chapter 10's hive-switch mechanism.",
+      "useIn": "deepRead",
+      "phrasingHint": "Ritual matters because it can reach for the same switch that makes separate people move as one body."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open ch11 with a person discovering that morality is complicated.",
+      "Do not use 'you think X, but actually Y' as the hook shell.",
+      "atheist versus believer debate"
+    ],
+    "counterintuition": [
+      "Avoid the not-this-but-that correction shell.",
+      "Avoid treating the opposing view as stupid before explaining the mechanism.",
+      "ancient history lecture"
+    ],
+    "tryThisNow": [
+      "No reusable timer reflection.",
+      "No generic write down your values prompt.",
+      "religion equals deception"
+    ],
+    "examples": [
+      "atheist versus believer debate",
+      "ancient history lecture",
+      "religion equals deception"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "synagogue meal train after a family funeral",
+      "audience": "readers seeing ritual as coordinated care",
+      "stakes": "Michael notices belief, schedule, food, and duty forming one team response.",
+      "format": "scene",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Michael watches the signup sheet fill before anyone asks whether the grieving family needs help.",
+      "firstImage": "Foil-covered pans line the community room counter beside a handwritten signup sheet.",
+      "mustInclude": [
+        "signup sheet",
+        "foil pans",
+        "yahrzeit candle"
+      ],
+      "mustAvoid": [
+        "truth debate"
+      ]
+    },
+    {
+      "domain": "secular recovery group borrowing ritual structure",
+      "audience": "facilitators building cohesion without doctrine",
+      "stakes": "Lin sees repeated words and chairs create accountability beyond private resolve.",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Lin changes the meeting from advice swapping to a shared opening and commitment round.",
+      "firstImage": "\"Same words, same chairs, every week,\" Lin says, setting the circle.",
+      "mustInclude": [
+        "folding chairs",
+        "commitment cards",
+        "coffee urn"
+      ],
+      "mustAvoid": [
+        "religion equals therapy"
+      ]
+    },
+    {
+      "domain": "church youth group organizing flood cleanup",
+      "audience": "community leaders coordinating service",
+      "stakes": "Chloe treats prayer, vans, and work gloves as one coordination system.",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Chloe pairs the spoken blessing with named crews and departure times so warmth becomes action.",
+      "firstImage": "Work gloves are piled beneath the fellowship hall clock.",
+      "mustInclude": [
+        "work gloves",
+        "van keys",
+        "crew list"
+      ],
+      "mustAvoid": [
+        "generic volunteerism"
+      ]
+    },
+    {
+      "domain": "mosque committee resolving a donation dispute",
+      "audience": "lay leaders protecting trust in sacred giving",
+      "stakes": "Tomas sees the ritual of transparent counting as team trust, not mere accounting.",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Tomas introduces two-person counting in public view after hearing suspicion spread.",
+      "firstImage": "It took Tomas one whispered accusation to see that trust needed a ritual, not a spreadsheet.",
+      "mustInclude": [
+        "donation box",
+        "counting table",
+        "receipt book"
+      ],
+      "mustAvoid": [
+        "financial compliance only"
+      ]
+    },
+    {
+      "domain": "interfaith hospital chaplaincy coordinating bedside coverage",
+      "audience": "care teams supporting families under stress",
+      "stakes": "Nina maps how shared sacred duty makes strangers cover hard hours.",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch Nina read the coverage board as a moral team, not a staffing puzzle.",
+      "firstImage": "You see a chapel light still on after midnight beside the coverage board.",
+      "mustInclude": [
+        "coverage board",
+        "chapel light",
+        "visitor pass"
+      ],
+      "mustAvoid": [
+        "hospital sentimentality"
+      ]
+    },
+    {
+      "domain": "Buddhist meditation center handling a member's illness",
+      "audience": "small spiritual communities converting practice into support",
+      "stakes": "Vincent notices chanting, rides, and meals binding separate households.",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which part of Vincent's community response would disappear if practice stayed private?",
+      "firstImage": "What changes when silence on a cushion becomes a rota on the fridge?",
+      "mustInclude": [
+        "meal rota",
+        "cushions",
+        "ride schedule"
+      ],
+      "mustAvoid": [
+        "ancient history lecture"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "evaluate religion as social coordination without reducing it to that alone",
+      "connect ritual to cohesion and shared moral life",
+      "see both binding and blinding effects of sacred community"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one ritual you know and list the team behaviors it organizes: showing up, giving, singing, eating, mourning, forgiving.",
+  "readingTimeMinutes": 12
+}

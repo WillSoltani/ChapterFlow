@@ -1,0 +1,316 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch94",
+  "number": 94,
+  "title": "Illusion of Skill",
+  "readingTimeMinutes": 12,
+  "hook": "A rising tide can make every rower in the boat look brilliant.",
+  "counterintuition": "Good results may belong to the current, not the captain; test skill against conditions before rewarding or copying it.",
+  "tryThisNow": "Pick one success you are praising. Write the strongest outside condition that helped it. Then name what skill still remains.",
+  "keyTakeaway": "The illusion of skill turns favorable conditions into personal credit. Compare results with the wind, base rate, and counterfactual.",
+  "breakdown": {
+    "fastRead": "The permit folder in the municipal court lunch calendar shows fewer late returns after Darlene changed the schedule. She wants to credit the clerk who proposed it. But the same month also had fewer hearings and a new online reminder. She writes illusion of skill on the folder, compares similar weeks, and changes the praise to match what the clerk actually controlled.",
+    "deepRead": "Skill is real. Some people notice more, practice better, and make cleaner choices. The illusion of skill starts when a good outcome is credited to skill before the conditions around it are checked.\n\nA result can ride a current. A hospice letter may raise more donations because a local story made donors ready to give. A college add-drop policy may look smart because enrollment was already shifting. A bakery test may sell out because the weather put more people on the street. The person in charge may still have done good work, but the result is not clean proof.\n\nThe current can wear a medal.\n\nThe correction is to ask what else moved with the result. What was the market wind? What was the base rate? What happened to comparable teams, stores, courts, or campaigns? What would you expect if the person had done nothing different? A visible check turns praise into evidence.\n\nThis matters because false skill credit spreads bad lessons. You copy the wrong manager, reward the wrong tactic, or blame the wrong person when the tide turns. A good review separates what the person controlled from what the setting supplied.",
+    "fullRead": "The inventory scan in the hospice donation letter review shows a jump in gifts after the new mailing. Terry, the development lead, wants to call the copywriter unusually gifted. The letter may be better. But the same week, a beloved local physician died and the hospice was mentioned in every neighborhood paper. The question is not whether the copy mattered. The question is how much of the lift belonged to the boat.\n\nWarren Buffett's business-boat image is a clean warning. A strong record can come less from heroic rowing than from being in a boat carried by the right business current. Skill still matters, but a favorable current can make ordinary rowing look extraordinary.\n\nWhat would the result look like in a weaker current?\n\nKahneman's treatment of skill and luck presses the same point. Where feedback is noisy and conditions move, confidence can grow faster than evidence. People see a streak and infer ability. They see a manager, trader, designer, or coach near success and forget to ask how many others in the same environment rose too.\n\nA ceramics defect pricing review shows the tradeoff. Tove sees a training still from a kiln operator who cut defects during a month of unusually stable clay. The operator may have improved technique. The stable clay may have done half the work. If Tove marks the market wind and compares defect rates across similar clay batches, she can reward the right part. If she praises the whole drop as skill, the next batch will disappoint everyone.\n\nA rower deserves credit for rowing, not for the river.\n\nA ferry terminal passenger sign gives a public example. Zofia watches complaints fall after a new sign is installed. The design team celebrates. Then the budget column shows the same month had fewer sailings, a simpler route mix, and more staff at the gate. The sign may still help. The check is to compare similar traffic days before calling the design brilliant.\n\nThe practical correction is a skill audit. First, name the claimed skill. Second, list the external conditions that changed at the same time. Third, compare with a reference group that faced the same conditions. Fourth, ask what result would remain if the wind were removed. Only then should you copy, reward, or scale the tactic.\n\nThe limit is that this can become unfair in the other direction. Do not erase skill just because conditions helped. High performers often choose good environments, notice favorable winds, and use them well. The point is not to deny competence. It is to stop treating every good outcome as proof of competence.\n\nBefore the choice moves forward, make the boat visible. Put the tide, timing, market, schedule, traffic, or base rate next to the result. If skill remains after that check, trust it more. If it fades, reward the conditions less loudly and keep learning."
+  },
+  "examples": [
+    {
+      "exampleId": "ch94-ex01-darlene-permit-folder",
+      "title": "Darlene separates clerk skill from calendar wind",
+      "scenario": "A permit folder sits beside the municipal court lunch calendar in Calgary at 12:35 p.m. Darlene must decide whether one clerk's new schedule caused late returns to drop. She marks illusion of skill on the folder, compares similar hearing weeks with and without online reminders, and changes the praise in front of the court administrator.",
+      "whatToDo": "Compare similar calendar weeks before crediting the clerk's schedule with the full improvement.",
+      "whyItMatters": "The clerk may have helped, but lighter hearing volume and reminders could also explain the result.",
+      "tags": [
+        "permit folder",
+        "illusion of skill",
+        "municipal court lunch calendar"
+      ],
+      "planSpec": {
+        "domain": "a municipal court lunch calendar applying Illusion of Skill under operational pressure",
+        "openingDevice": "environmental",
+        "format": "scene"
+      }
+    },
+    {
+      "exampleId": "ch94-ex02-terry-inventory-scan",
+      "title": "Terry checks the donor current",
+      "scenario": "\"The letter must be brilliant,\" the board chair says during a hospice donation review in Albany at 9:50 a.m. Terry, the development lead, must decide whether the inventory scan proves the copywriter's skill or a local news wave helped the gifts arrive. He writes business boat on the scan, adds the news dates and prior response rate, and changes the renewal recommendation while the chair watches.",
+      "whatToDo": "Put news timing and prior response rates beside the donation lift before crediting the copy alone.",
+      "whyItMatters": "A donor wave can carry a good letter. The review needs to know what came from copy and what came from the current.",
+      "tags": [
+        "inventory scan",
+        "business boat",
+        "hospice donation letter"
+      ],
+      "planSpec": {
+        "domain": "a hospice donation letter applying Illusion of Skill under operational pressure",
+        "openingDevice": "dialogue_first",
+        "format": "vignette"
+      }
+    },
+    {
+      "exampleId": "ch94-ex03-suzanne-pilot-checklist",
+      "title": "Suzanne tests the add-drop streak",
+      "scenario": "The pilot checklist smells of copier heat in the college advising office in Portland at 11:25 a.m. Suzanne, the advising dean, must decide whether a new add-drop script deserves credit for fewer late changes. She writes Buffett on the checklist, compares departments with the same enrollment shift, and changes the deadline policy only after the script beats the broader trend.",
+      "whatToDo": "Compare departments facing the same enrollment shift before scaling the add-drop script.",
+      "whyItMatters": "The script may be good, but a broad enrollment trend can make every adviser look more skilled.",
+      "tags": [
+        "pilot checklist",
+        "Buffett",
+        "college add-drop deadline"
+      ],
+      "planSpec": {
+        "domain": "a college add-drop deadline applying Illusion of Skill under operational pressure",
+        "openingDevice": "sensory_first",
+        "format": "dialogue"
+      }
+    },
+    {
+      "exampleId": "ch94-ex04-tove-training-still",
+      "title": "Tove weighs the kiln wind",
+      "scenario": "You are looking at a training still in a ceramics studio in Copenhagen, and one kiln operator's defect rate has fallen for three batches. Tove must decide whether to raise the operator's bonus before checking clay stability. She writes market wind on the still, compares similar clay lots, and changes the pricing credit in front of the studio owner.",
+      "whatToDo": "Compare defect rates across similar clay lots before treating the full drop as operator skill.",
+      "whyItMatters": "Stable clay can make technique look better than it is. The bonus should credit the rower, not the river.",
+      "tags": [
+        "training still",
+        "market wind",
+        "ceramics defect pricing"
+      ],
+      "planSpec": {
+        "domain": "a ceramics defect pricing applying Illusion of Skill under operational pressure",
+        "openingDevice": "second_person",
+        "format": "decision_point"
+      }
+    },
+    {
+      "exampleId": "ch94-ex05-zofia-budget-column",
+      "title": "Zofia retests the passenger sign",
+      "scenario": "It took Zofia one quiet month in Gdansk to see that the ferry terminal passenger sign was getting too much credit. At 4:15 p.m. in the terminal office, Zofia, the passenger-experience lead, reads the budget column showing fewer sailings and more gate staff, yet she predicts the design team will claim the full complaint drop. Before the next rollout, she must decide whether row means testing the sign on similar traffic days.",
+      "whatToDo": "Retest the sign on comparable traffic days before crediting it with the full complaint drop.",
+      "whyItMatters": "The sign may help, but lighter traffic and more staff can also lower complaints. The row has to be separated from the current.",
+      "tags": [
+        "budget column",
+        "row",
+        "ferry terminal passenger sign"
+      ],
+      "planSpec": {
+        "domain": "a ferry terminal passenger sign applying Illusion of Skill under operational pressure",
+        "openingDevice": "retrospective",
+        "format": "predict_reveal"
+      }
+    },
+    {
+      "exampleId": "ch94-ex06-paola-calendar-invite",
+      "title": "Paola's leftover-test postmortem",
+      "scenario": "What sold the croissants: better baking or a sunny office lunch hour? Paola asks that after a bakery noon-leftover test in Turin reviews a calendar invite for the promotion day. The team praised the baker's skill, but the weather and office crowd had changed too. She marks illusion on the invite and changes the next test so weather, foot traffic, and batch size are logged before praise is assigned.",
+      "whatToDo": "Log weather, foot traffic, and batch size before assigning leftover results to baker skill.",
+      "whyItMatters": "A good bake can ride a busy noon. The postmortem should separate craft from conditions before scaling the recipe.",
+      "tags": [
+        "calendar invite",
+        "illusion",
+        "bakery noon-leftover test"
+      ],
+      "planSpec": {
+        "domain": "a bakery noon-leftover test applying Illusion of Skill under operational pressure",
+        "openingDevice": "question_hook",
+        "format": "postmortem"
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In a illusion-skill case, a manager gets praised for strong results during a period when the whole market rose, what is the illusion of skill?",
+        "choices": [
+          "Market rose what makes gets praised strong look credible; use results period whole first and revisit illusion skill mistaking when favorable conditions personal shifts.",
+          "Mistaking favorable conditions for personal ability before checking the wind.",
+          "Skill mistaking favorable points toward a quicker call on praised strong results; let illusion-skill manager gets stand until rose what illusion contradicts it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The manager may have skill, but the rising market must be separated from what the manager controlled.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Illusion of Skill makes illusion-skill case feel more decisive than the record supports, and that misprices manager gets in this scene. The correct move keepss the choice by mistaking favorable conditions for personal ability before checking the wind."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a illusion-skill review, a court clerk's new lunch calendar coincides with fewer late returns, but hearing volume also fell and online reminders started, what should the court do?",
+        "choices": [
+          "Compare similar weeks before assigning the whole gain to the clerk.",
+          "Weeks assigning whole fits the immediate pressure around hearing volume also; hold fewer late returns steady and test lunch calendar coincides later.",
+          "Clerk lunch calendar looks strong enough to guide coincides fewer late; returns hearing volume can wait unless also fell online changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "Similar weeks help separate the clerk's contribution from volume and reminders. The improvement should not be dismissed or fully credited too soon.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Skill works by letting illusion-skill court crowd out clerk lunch, which can misreads the calendar coincides decision. Compare similar weeks before assigning the whole gain to the clerk keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When illusion-skill pressure appears, a hospice board praises a new donation letter after gifts rise sharply, but the mailing landed the same week a local physician's death received heavy coverage. Which check fits best?",
+        "choices": [
+          "After gifts rise makes appears hospice board look credible; use praises donation letter first and revisit sharply mailing landed when week local physician shifts.",
+          "Rise sharply mailing supports a narrower read of pressure appears hospice; keep board praises donation central and leave letter after gifts aside.",
+          "Compare response with prior rates and the news timeline."
+        ],
+        "correctIndex": 2,
+        "explanation": "The news timeline is the current. Comparing it with prior response keeps the copywriter's skill from getting all the credit.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Skill turns appears hospice into a shortcut, so the room can overweights board praises while missing donation letter. Compare response with prior rates and the news timeline protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After illusion-skill risk surfaces, a college add-drop script looks successful, but enrollment was shifting across many departments, what should happen before scaling it?",
+        "choices": [
+          "Compare departments exposed to the same enrollment shift.",
+          "Shifting across many gives a practical reason for script successful enrollment; scaling exposed shift belongs after departments what happen clarifies the result.",
+          "Many departments what makes add-drop script successful look credible; use enrollment shifting across first and revisit happen scaling exposed when shift illusion skill shifts."
+        ],
+        "correctIndex": 0,
+        "explanation": "A comparison group facing the same trend tests whether the script added value beyond the broad shift.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Skill would push the college add-drop case toward script successful, creating a cost when enrollment shifting stays untested. The useful guardrail is to compare departments exposed to the same enrollment shift."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If illusion-skill reasoning takes over, a ceramics studio wants to give a kiln operator a bonus after defects drop for three batches, but the same month had unusually stable clay quality. What is the likely risk?",
+        "choices": [
+          "Illusion-skill reasoning ceramics looks strong enough to guide studio wants give; kiln operator bonus can wait unless after defects drop changes the stakes.",
+          "Bonus after defects gives a practical reason for give kiln operator; month unusually stable belongs after drop three batches clarifies the result.",
+          "Clay stability can make operator skill look larger than it is."
+        ],
+        "correctIndex": 2,
+        "explanation": "Stable clay is a favorable condition that can inflate apparent skill. The operator may still deserve partial credit after comparison.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Skill converts studio wants into the loudest signal, which can rushes give kiln before operator bonus is checked. The better answer separatess attention on clay stability can make operator skill look larger than it is."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While illusion-skill pressure builds, a ferry terminal sign gets credit for fewer complaints during a month with fewer sailings and more gate staff, what should the next review do?",
+        "choices": [
+          "Retest comparable traffic points toward a quicker call on credit fewer complaints; let terminal sign gets stand until staff what next contradicts it.",
+          "Retest the sign on comparable traffic days.",
+          "Builds ferry terminal looks strong enough to guide sign gets credit; fewer complaints month can wait unless sailings gate staff changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "Comparable traffic days test the sign apart from staffing and route mix. Conditions changed too much for full credit.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Skill hides inside the illusion-skill pressure choice because illusion-skill pressure seems sufficient, yet the cost lands in illusion-skill pressure. Retest the sign on comparable traffic days brings the illusion-skill pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the illusion-skill call, a bakery sells out at noon after a recipe change, but the day was sunny and nearby offices held an event. Which postmortem is strongest?",
+        "choices": [
+          "Foot traffic batch points toward a quicker call on change sunny nearby; let noon after recipe stand until postmortem strongest weather contradicts it.",
+          "Batch size assigning fits the immediate pressure around nearby offices held; hold recipe change sunny steady and test sells noon after later.",
+          "Log weather, foot traffic, and batch size before assigning skill."
+        ],
+        "correctIndex": 2,
+        "explanation": "The postmortem should separate craft from conditions. Weather and foot traffic may have carried part of the result.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Skill pressures the call bakery decision toward the easy reading of call bakery. That can inflates the real cost unless the choice is grounded in log weather, foot traffic, and batch size before assigning skill."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose illusion-skill risk is present: a high performer consistently beats peers across different markets, traffic levels, and product mixes. How should this affect the skill judgment?",
+        "choices": [
+          "Levels product mixes supports a narrower read of high performer consistently; keep beats peers across central and leave different markets traffic aside.",
+          "It strengthens the skill claim because performance survives different currents.",
+          "Skill judgment strengthens fits the immediate pressure around peers across different; hold performer consistently beats steady and test illusion-skill present high later."
+        ],
+        "correctIndex": 1,
+        "explanation": "Performance across different currents strengthens the skill claim, though conditions still deserve checking. It does not prove luck alone.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Illusion of Skill is the mechanism here: luck or conditions get credited as ability, so present high can overpower present high. It strengthens the skill claim because performance survives different currents keeps the scenario from becoming a costly shortcut."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two illusion-skill signals compete: a retail chain wants to copy one manager's tactic after a good quarter, but the region also had a demand spike and weaker competitors nearby. Which question best resists the illusion of skill?",
+        "choices": [
+          "What would the result look like after removing market wind, timing, and base rate?",
+          "Nearby best resists fits the immediate pressure around after good quarter; hold copy manager tactic steady and test retail chain wants later.",
+          "Compete retail chain looks strong enough to guide wants copy manager; tactic after good can wait unless quarter region also changes the stakes."
+        ],
+        "correctIndex": 0,
+        "explanation": "Removing wind, timing, and base rate tests what skill remains. Confidence and speed do not separate skill from conditions.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Illusion of Skill makes the retail chain evidence look cleaner than it is, risking a retail chain mistake in this setting. The answer protects retail chain by asking for what would the result look like after removing market wind, timing."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "A person gets credit during favorable conditions. What condition check separates luck from skill?",
+      "back": "Check base conditions, market current, support, and repeatability. Favorable setup can look like personal skill.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What is the first check?",
+      "back": "List the conditions that changed alongside the result, then compare similar cases.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "When does a skill claim get stronger?",
+      "back": "When performance survives different conditions, reference groups, and counterfactual checks.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "Why is the business boat image useful?",
+      "back": "It separates rowing from the current, so skill is not confused with a favorable environment.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "A tactic worked once. What should happen before copying it?",
+      "back": "Check whether the result remains after removing wind, timing, base rate, and setup.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Separate skill from conditions before rewarding, copying, or scaling a success.",
+    "ifThenPlans": [
+      {
+        "context": "Performance reviews",
+        "plan": "If a result improved, then I will list what changed around the person before assigning credit."
+      },
+      {
+        "context": "Campaigns and tests",
+        "plan": "If a test wins, then I will compare it with timing, traffic, and reference groups."
+      },
+      {
+        "context": "Bonuses",
+        "plan": "If a bonus depends on better output, then I will check whether inputs or conditions improved too."
+      },
+      {
+        "context": "Copying tactics",
+        "plan": "If I want to copy a winner, then I will ask whether the winner still wins in a different current."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one recent success. Write the current that helped it and the evidence that skill remains after the current is removed.",
+    "weeklyPractice": "Once a week, review one result you praised and separate rower, boat, river, and wind."
+  },
+  "memorableLines": [
+    {
+      "text": "The current can wear a medal."
+    },
+    {
+      "text": "A rower deserves credit for rowing, not for the river."
+    },
+    {
+      "text": "Before the choice moves forward, make the boat visible."
+    }
+  ]
+}

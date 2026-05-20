@@ -1,0 +1,197 @@
+{
+  "chapterId": "the-art-of-war-ch12",
+  "number": 12,
+  "title": "The Attack by Fire",
+  "coreMove": "Use volatile force only when timing, materials, wind, and advantage line up, because damage cannot be called back.",
+  "sourcePressure": "The source names five fire attacks, insists on ready materials, dry weather, special wind days, five developments after fire starts, windward position, signal fires, and restraint against anger or pique.",
+  "chapterSpecificMisunderstanding": "Reading fire as aggression, escalation, or dramatic action rather than controlled irreversible force.",
+  "sourceAlignmentTerms": [
+    "five ways of attacking with fire",
+    "materials in readiness",
+    "proper season",
+    "Sieve",
+    "Wall",
+    "Wing",
+    "Cross-bar",
+    "windward",
+    "real advantage"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the constellations of the Sieve, the Wall, the Wing, and the Cross-bar",
+      "detail": "The source links special days for fire to these constellations because they are days of rising wind.",
+      "useIn": "deepRead",
+      "phrasingHint": "Fire strategy begins by looking up: not every dry day has the wind for irreversible action."
+    },
+    {
+      "kind": "artifact",
+      "name": "signal-fires and drums",
+      "detail": "Night operations rely on signal-fires and drums, while day fighting relies mainly on banners and flags.",
+      "useIn": "fullRead",
+      "phrasingHint": "Once conditions turn volatile, the signal system matters as much as the spark."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "A battlefield metaphor imported into a modern office before the actual choice is visible",
+      "A generic sentence about strategy being planning under pressure"
+    ],
+    "counterintuition": [
+      "The obvious move is not always best; the opposite move is smarter",
+      "Winning is not about strength but about strategy"
+    ],
+    "tryThisNow": [
+      "Set a timer and think about your next battle",
+      "Write down your goal and one obstacle"
+    ],
+    "examples": [
+      "generic product launch meeting",
+      "family dinner argument",
+      "student cramming before an exam",
+      "manager staring at a spreadsheet with a coffee cup"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches repeated phrases but not the deeper template of timestamp plus named protagonist plus prop plus decision that makes six examples feel like one example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct question, a tactical aside, a second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern concrete anchor sentence -> abstract rule sentence -> elaboration sentence"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Maja",
+      "domain": "food-safety director deciding whether to trigger a public recall",
+      "audience": "director at a national snack brand",
+      "stakes": "a recall protects customers but cannot be quietly reversed",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 5:06 a.m., Maja checks test confirmation, distribution maps, call-center scripts, and retailer readiness before lighting the recall.",
+      "firstImage": "sealed lab results beside a recall draft",
+      "mustInclude": [
+        "lot map",
+        "retailer portal",
+        "call script"
+      ],
+      "mustAvoid": [
+        "generic PR crisis"
+      ]
+    },
+    {
+      "protagonistName": "Ryan",
+      "domain": "labor negotiator considering a strike deadline",
+      "audience": "union negotiator after failed talks",
+      "stakes": "a strike can win terms or drain members if timing is wrong",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Do we have wind, or only anger? Ryan asks, then tests strike fund, public support, picket coverage, and employer inventory before setting the date.",
+      "firstImage": "a strike fund ledger on a folding table",
+      "mustInclude": [
+        "member vote",
+        "inventory report",
+        "picket rota"
+      ],
+      "mustAvoid": [
+        "generic union speech"
+      ]
+    },
+    {
+      "protagonistName": "Julien",
+      "domain": "security team preparing to revoke compromised credentials company-wide",
+      "audience": "security operations manager",
+      "stakes": "mass revocation could stop an attacker or freeze hospital scheduling software",
+      "format": "audit",
+      "openingDevice": "environmental",
+      "requiredBeat": "The access graph glows red while Julien waits for backup accounts and help-desk coverage before cutting every token at once.",
+      "firstImage": "a red access graph on a dark monitor",
+      "mustInclude": [
+        "backup account list",
+        "help-desk staffing",
+        "vendor bridge"
+      ],
+      "mustAvoid": [
+        "generic cyber panic"
+      ]
+    },
+    {
+      "protagonistName": "Petra",
+      "domain": "city parks department planning a controlled prairie burn",
+      "audience": "ecological restoration lead",
+      "stakes": "the burn restores habitat only if wind, crew, and firebreaks hold",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "What turns the same flame from restoration into liability?",
+      "firstImage": "a drip torch beside a mowed firebreak",
+      "mustInclude": [
+        "wind meter",
+        "permit window",
+        "water tender"
+      ],
+      "mustAvoid": [
+        "literal fire used as spectacle only"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "publisher deciding whether to sue a plagiarizing influencer",
+      "audience": "rights director for a mid-size publisher",
+      "stakes": "a lawsuit may stop copying but make the dispute public forever",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Matteo one viral countersuit thread to learn that legal fire needs timing, evidence, and public wind.",
+      "firstImage": "a highlighted comparison packet on a conference table",
+      "mustInclude": [
+        "copyright registration",
+        "demand letter",
+        "press inquiry"
+      ],
+      "mustAvoid": [
+        "generic legal revenge"
+      ]
+    },
+    {
+      "protagonistName": "Min",
+      "domain": "university president weighing campus closure during severe ice",
+      "audience": "president responsible for residential and commuter students",
+      "stakes": "closing too late endangers commuters; closing too early strands labs and clinical placements",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "You see Min hold the closure notice until transit, residence dining, lab animals, and hospital placements can all absorb the spark.",
+      "firstImage": "ice on a campus handrail",
+      "mustInclude": [
+        "transit alert",
+        "dining roster",
+        "clinical placement list"
+      ],
+      "mustAvoid": [
+        "generic snow day scene"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify irreversible tactics requiring conditions",
+      "distinguish decisive advantage from anger",
+      "respond to developments after escalation starts"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before using an irreversible move, check four boxes: material ready, timing right, wind direction known, and advantage real rather than emotional.",
+  "readingTimeMinutes": 12
+}

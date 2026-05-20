@@ -1,0 +1,174 @@
+{
+  "chapterId": "leaders-eat-last-ch07",
+  "number": 7,
+  "title": "The Big C",
+  "coreMove": "Find the chronic threat signal in the room and remove one source of permanent alarm before asking for candor.",
+  "sourcePressure": "Isolates the chronic alarm force that keeps people braced, making truth, trust, and cooperation bend toward self-protection.",
+  "chapterSpecificMisunderstanding": "Treating pressure itself as bad, or diagnosing individual anxiety while ignoring environmental signals.",
+  "sourceAlignmentTerms": [
+    "The Big C",
+    "cortisol",
+    "chronic alarm",
+    "permanent threat",
+    "self-protection",
+    "truth",
+    "trust"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 7 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "marine weather office",
+      "audience": "forecast lead under constant emergency alerts",
+      "stakes": "forecasters stop flagging uncertainty honestly",
+      "format": "scene",
+      "requiredBeat": "the lead changes the alert tone rules so only true escalation gets the red siren",
+      "firstImage": "a wall speaker above a buoy forecast chart",
+      "mustInclude": [
+        "wall speaker",
+        "buoy chart"
+      ],
+      "mustAvoid": [
+        "nightly emergency email"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "bakery health inspection prep",
+      "audience": "owner checking every surface hourly",
+      "stakes": "staff grow guarded and hide small mistakes",
+      "format": "dialogue",
+      "requiredBeat": "the owner removes the surprise checklist and asks for one disclosed risk at the start of prep",
+      "firstImage": "a sanitizer test strip drying near the sink",
+      "mustInclude": [
+        "test strip",
+        "prep checklist"
+      ],
+      "mustAvoid": [
+        "stress wellness"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "juvenile court clerk window",
+      "audience": "clerk supervisor with a volatile docket",
+      "stakes": "clerks treat every family as a threat",
+      "format": "reflection",
+      "requiredBeat": "the supervisor moves security briefings after intake so the first signal is service, not alarm",
+      "firstImage": "a numbered ticket dispenser at a glass window",
+      "mustInclude": [
+        "ticket dispenser",
+        "security memo"
+      ],
+      "mustAvoid": [
+        "generic public service"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "mountain lodge avalanche desk",
+      "audience": "guide team seeing yellow warnings all month",
+      "stakes": "constant caution turns into numbness and silence",
+      "format": "postmortem",
+      "requiredBeat": "the lead separates routine yellow notes from the one slope report that requires a full stop",
+      "firstImage": "an avalanche bulletin clipped to a ski pole",
+      "mustInclude": [
+        "avalanche bulletin",
+        "slope notebook"
+      ],
+      "mustAvoid": [
+        "adventure danger"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "pharmacy verification station",
+      "audience": "pharmacist under nonstop error popups",
+      "stakes": "alert fatigue causes real warnings to blur",
+      "format": "predict_reveal",
+      "requiredBeat": "she asks the team to predict which popups changed action, then turns off duplicate nonactionable alerts",
+      "firstImage": "a prescription scanner flashing amber",
+      "mustInclude": [
+        "prescription scanner",
+        "alert log"
+      ],
+      "mustAvoid": [
+        "healthcare burnout"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "animal rescue transport van",
+      "audience": "transport coordinator texting urgent updates all night",
+      "stakes": "volunteers stop reading because every text feels like crisis",
+      "format": "before_after",
+      "requiredBeat": "she creates a single red-channel rule and moves routine updates to the morning sheet",
+      "firstImage": "a van key clipped to a transport manifest",
+      "mustInclude": [
+        "van key",
+        "transport manifest"
+      ],
+      "mustAvoid": [
+        "community coordination"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "separate useful pressure from chronic alarm",
+      "spot fear-driven silence",
+      "reduce threat without lowering urgency",
+      "predict trust erosion under constant alarm"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one recurring alert, meeting, or metric and ask what threat it keeps broadcasting after the useful signal is gone.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

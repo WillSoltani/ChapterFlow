@@ -1,0 +1,131 @@
+{
+  "chapterId": "the-innovators-dilemma-ch09",
+  "number": 9,
+  "title": "How to Appraise Your Organization's Capabilities and Disabilities",
+  "coreMove": "Assess organizational strengths against the specific requirements of the new task — a strength in one context can become an obstacle when the context changes.",
+  "sourcePressure": "Capabilities are context-dependent. A process or routine that drives success in one market embeds assumptions about what matters that can become active obstacles in another. The self-appraisal problem is not whether the organization is capable in the abstract — it is whether its specific strengths fit the new task at hand.",
+  "chapterSpecificMisunderstanding": "Treating this chapter as a general argument that routines and processes are liabilities, when the point is that the same routine can be a strength or a disability depending on what the new market requires.",
+  "sourceAlignmentTerms": [
+    "capabilities",
+    "disabilities",
+    "routines",
+    "context-dependent",
+    "embedded assumptions",
+    "fit appraisal",
+    "processes",
+    "values"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "generic 'your strengths may be your weakness' framing",
+      "generic 'tear down silos' framing"
+    ],
+    "counterintuition": [
+      "generic 'expertise is overrated' counter",
+      "generic 'beginners outperform experts' counter"
+    ],
+    "tryThisNow": [
+      "generic 'list your top three strengths and weaknesses' prompt",
+      "generic 'do a SWOT analysis' prompt"
+    ],
+    "examples": [
+      "any scene that presents organizational change as the solution without specifying what the mismatch is",
+      "any scene where all company routines are framed as corporate inertia"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Capability-fit examples work best when the reader can see the specific routine that is succeeding in context A and failing in context B."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "law firm entering legal research automation and discovering that billable-hour culture conflicts with the automation model",
+      "audience": "a managing partner leading the firm's investment in a legal research automation platform for associates",
+      "stakes": "the platform reduces research time, which reduces billable hours, which reduces partner revenue under the current billing model — the firm's core economic routine undermines the tool it bought",
+      "format": "scene",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Kathryn discovers that associates are not using the automation platform to its potential because the billable-hour structure rewards time-intensive research over efficient research. The strength — a disciplined billable hour culture that ensures quality — has become the obstacle to the tool's adoption.",
+      "firstImage": "an automation platform dashboard showing low utilization rates beside the firm's billing hours report showing no change",
+      "mustInclude": ["billable-hour culture as the obstacle", "platform utilization rate", "the quality-discipline framing of the original strength"],
+      "mustAvoid": ["implying billable-hour billing is inherently corrupt or outdated"]
+    },
+    {
+      "domain": "pharmaceutical company entering consumer wellness supplements and discovering that drug-development discipline mismatches consumer speed",
+      "audience": "a VP of business development whose division has approved a consumer wellness line using the drug development governance process",
+      "stakes": "the drug-development approval timeline is twelve to eighteen months per product; consumer wellness competitors iterate in three months",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Sam's team produces a supplement line that has been through more safety, regulatory, and quality review than any competitor's product. By the time it reaches market, three competitors have already iterated twice and own the customer relationships. The process that makes the pharmaceutical division excellent is the reason the wellness line arrives late.",
+      "firstImage": "a product timeline comparison: pharma governance process at 18 months vs. competitor iteration cycles at 3 months",
+      "mustInclude": ["18-month vs. 3-month iteration speed", "safety and quality review as the strength", "competitor relationship ownership as the consequence"],
+      "mustAvoid": ["suggesting that pharmaceutical safety review should be shortened"]
+    },
+    {
+      "domain": "automotive OEM entering EV charging network infrastructure and discovering that dealer relationship governance conflicts with direct-to-driver service",
+      "audience": "a VP of digital services whose EV charging network requires direct consumer app relationships that the dealer agreement structure prohibits",
+      "stakes": "the OEM's dealer network is one of its core competitive assets; the EV charging model requires a consumer relationship the dealer agreement prevents",
+      "format": "decision_point",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Hugo has to decide whether to push the charging network through existing dealer relationships — which protects the dealer asset but misshapes the product — or find a structure that routes around it. The decision forces a direct confrontation with which capability is load-bearing and which is context-dependent.",
+      "firstImage": "a charging network app prototype beside a dealer agreement document with a highlighted clause about consumer data",
+      "mustInclude": ["dealer relationship as load-bearing asset", "consumer data clause as the obstacle", "the structural choice Hugo faces"],
+      "mustAvoid": ["portraying dealers as obstructionist rather than contractually protected"]
+    },
+    {
+      "domain": "broadcast journalist entering newsletter journalism and discovering that broadcast sourcing and editorial rhythms misfit newsletter cadence",
+      "audience": "a senior broadcast journalist with thirty years of source relationships and editorial process discipline",
+      "stakes": "newsletter readers expect daily updates; broadcast editorial discipline requires multi-source verification before publication — a rhythm built for accuracy that produces newsletter content too slowly",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Petra predicts her source network and editorial standards will be competitive advantages in newsletter journalism. The reveal: the verification cadence that makes her broadcast work authoritative means her newsletter arrives two days after competitors have already set the conversation. The strength is real. The context changed.",
+      "firstImage": "a newsletter draft timestamped three days after the story broke, still awaiting a third source confirmation",
+      "mustInclude": ["multi-source verification as the strength", "two-day lag as the consequence", "competitor conversation ownership in the reveal"],
+      "mustAvoid": ["suggesting that multi-source verification is journalistically wrong"]
+    },
+    {
+      "domain": "management consultant joining an early-stage company as COO and discovering that consulting deliverable culture mismatches operational ownership",
+      "audience": "a former partner at a consulting firm taking the COO role at a 30-person software company",
+      "stakes": "consulting excellence requires polished analysis and recommendation delivery; COO work requires the owner to implement what they recommend — and implementation requires a different relationship to being wrong",
+      "format": "postmortem",
+      "openingDevice": "environmental_first",
+      "requiredBeat": "Diego's postmortem on the first six months shows that his analysis quality was high and his recommendation precision was excellent. It also shows that every recommendation was written with a consulting exit in mind — who would inherit the work, how to write it for handoff — rather than built to be owned and revised in real time.",
+      "firstImage": "a 40-slide deck delivered at a company all-hands where the implementation team is asking who will execute slide 28",
+      "mustInclude": ["analysis and recommendation quality as genuine strength", "implementation-ownership mismatch", "the consulting-exit posture in the deliverable"],
+      "mustAvoid": ["suggesting that consulting skills are generally inferior to operational skills"]
+    },
+    {
+      "domain": "licensed architect entering prefab modular housing design and discovering that custom-design discipline mismatches manufacturing tolerance requirements",
+      "audience": "a principal architect whose studio has a reputation for bespoke residential design",
+      "stakes": "modular manufacturing requires standardized component tolerances and repeatable specifications; bespoke design expertise produces custom-optimized solutions that manufacturing cannot reproduce consistently at scale",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "Before: Layla designs the modular housing unit with the same attention to site-specific optimization and custom detail that has won her studio commissions. After: the manufacturing partner shows her which design decisions cannot be repeated at the required tolerance — every bespoke detail is a manufacturing variance, and the studio's competitive strength is generating the factory's biggest production problems.",
+      "firstImage": "a design detail drawing marked up with manufacturing variance flags",
+      "mustInclude": ["bespoke design as the studio's competitive strength", "manufacturing variance flag", "the explicit before/after of what the detail means in each context"],
+      "mustAvoid": ["suggesting that bespoke architecture is inherently better or worse than modular design"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "identify the specific organizational capability being tested in a scenario",
+      "recognize when a described strength is a disability in the new context",
+      "apply fit-appraisal reasoning to an organizational strength-mismatch scenario",
+      "distinguish 'strong organization' from 'organization fit for this task'",
+      "evaluate whether a described capability is context-dependent or universally transferable"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Name one organizational routine your team does exceptionally well. Write down the underlying assumption that routine makes about what a good outcome looks like. Then write one sentence about whether a new market you are considering shares that assumption.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that asks the reader directly to name one routine in their organization that is producing the right result in the current context and could produce the wrong result in a different one",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

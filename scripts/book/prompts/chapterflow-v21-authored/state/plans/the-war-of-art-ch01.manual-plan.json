@@ -1,0 +1,207 @@
+{
+  "chapterId": "the-war-of-art-ch01",
+  "number": 1,
+  "title": "Book One: Resistance - Defining the Enemy",
+  "coreMove": "Name the reasonable-sounding delay that appears at the threshold of meaningful work as Resistance before trusting it as caution.",
+  "sourcePressure": "The source sidecar supports a stern framing of avoidance around meaningful work: Resistance is invisible, recurring, strongest around real work, and able to bury a calling if the reader keeps treating delay as innocent.",
+  "chapterSpecificMisunderstanding": "The weak version is generic procrastination advice, as if the problem were laziness instead of intelligent avoidance around work that would expose the self.",
+  "sourceAlignmentTerms": [
+    "Resistance",
+    "calling",
+    "procrastination",
+    "rationalization",
+    "delay",
+    "blank page",
+    "unrecorded song",
+    "buried"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Hitler",
+      "detail": "The sidecar says Hitler wanted to be an artist, moved to Vienna, applied to the Academy of Fine Arts and later the School of Architecture, and Resistance beat him.",
+      "useIn": "fullRead",
+      "phrasingHint": "The Vienna story should land as a severe warning about evasion hardening over time, not as a total explanation of history."
+    },
+    {
+      "kind": "place",
+      "name": "Vienna",
+      "detail": "The sidecar identifies Vienna as the city Hitler moved to while pursuing art school admission.",
+      "useIn": "fullRead",
+      "phrasingHint": "A young man can cross a continent toward art and still refuse the work that would make the calling real."
+    },
+    {
+      "kind": "artifact",
+      "name": "Academy of Fine Arts application",
+      "detail": "The sidecar says Hitler applied to the Academy of Fine Arts before later applying to the School of Architecture.",
+      "useIn": "fullRead",
+      "phrasingHint": "An application can look like commitment while the deeper pattern of refusal is already forming."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The blank page is scary",
+      "Everyone procrastinates",
+      "Resistance is the enemy inside you"
+    ],
+    "counterintuition": [
+      "The problem is not laziness, it is fear",
+      "Preparation can be procrastination",
+      "Your excuses are smarter than you think"
+    ],
+    "tryThisNow": [
+      "Set a timer and write for five minutes",
+      "Name one project you are avoiding",
+      "Do the smallest next step"
+    ],
+    "examples": [
+      "a writer staring at a blank page",
+      "a painter cleaning brushes",
+      "a musician endlessly tuning",
+      "folder-cleaning as the only avoidance image"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person 'You' direct address, retrospective 'It took her three weeks to see', question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a nonprofit founder avoiding the first grant narrative by polishing the budget appendix",
+      "audience": "founders and operators whose mission language hides the exposed ask they have not written",
+      "stakes": "a neighborhood legal clinic loses a matching grant if the narrative is not submitted by Friday",
+      "format": "decision_point",
+      "openingDevice": "environmental",
+      "requiredBeat": "Grace closes the appendix spreadsheet, puts the untouched narrative field full-screen, and types the first ugly sentence before changing another line item.",
+      "firstImage": "an unopened grant narrative with a polished appendix beside it",
+      "mustInclude": [
+        "matching grant deadline",
+        "budget appendix",
+        "online submission field"
+      ],
+      "mustAvoid": [
+        "generic office productivity",
+        "checking email as the main delay"
+      ]
+    },
+    {
+      "domain": "an indie game designer delaying a playable demo through endless concept art",
+      "audience": "creative technologists who keep improving the world around the thing that must be tested",
+      "stakes": "a small festival submission requires a playable build, not more visual polish",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Etienne drags the sketch folder into an archive, connects the controller, and records one clumsy playable loop before drawing another creature.",
+      "firstImage": "a game controller beside twenty-seven creature sketches",
+      "mustInclude": [
+        "festival deadline",
+        "controller",
+        "playable build"
+      ],
+      "mustAvoid": [
+        "artist waiting for inspiration",
+        "blank canvas scene"
+      ]
+    },
+    {
+      "domain": "a choir soloist rehearsing fragments instead of recording the audition file",
+      "audience": "performers who keep protecting the ideal version by refusing a recorded artifact",
+      "stakes": "the audition portal closes at midnight and only one take has to be uploaded",
+      "format": "before_after",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "Rachel says 'one more run-through,' hears the phrase as Resistance, presses record, and uploads the imperfect take while her throat is still warm.",
+      "firstImage": "a phone voice-memo screen waiting on a red record button",
+      "mustInclude": [
+        "audition portal",
+        "one-take file",
+        "warm-up room"
+      ],
+      "mustAvoid": [
+        "stage fright as the whole lesson",
+        "teacher pep talk"
+      ]
+    },
+    {
+      "domain": "a climate researcher revising figures instead of submitting the paper",
+      "audience": "academic and technical workers whose standards can hide from verdict",
+      "stakes": "a special issue closes and the model results will not matter if they stay private",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It takes Luca three weeks to see that every figure revision happened after the submit button became available, so he writes the cover note and sends the manuscript.",
+      "firstImage": "a journal submission portal open behind a revised figure legend",
+      "mustInclude": [
+        "special issue deadline",
+        "figure legend",
+        "cover note"
+      ],
+      "mustAvoid": [
+        "generic perfectionism",
+        "lab-coat stereotype"
+      ]
+    },
+    {
+      "domain": "a hardware inventor cleaning the bench instead of filing the provisional patent",
+      "audience": "builders who keep choosing tidy preparation over a commitment that creates public risk",
+      "stakes": "a competitor demo is scheduled next month and the filing date matters",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Anya predicts the filing form will take all afternoon, starts it anyway, and discovers the real obstacle was pressing submit under her own name.",
+      "firstImage": "a patent form under a tray of sorted machine screws",
+      "mustInclude": [
+        "provisional patent form",
+        "competitor demo",
+        "machine screws"
+      ],
+      "mustAvoid": [
+        "garage genius myth",
+        "messy bench as moral failure"
+      ]
+    },
+    {
+      "domain": "a new therapist postponing the first paid intake workshop",
+      "audience": "new professionals whose care for quality hides fear of being chosen or rejected",
+      "stakes": "a rented studio and twelve registrants will become a loss if the workshop is canceled again",
+      "format": "reflection",
+      "openingDevice": "second_person",
+      "requiredBeat": "You watch James stop rewriting the handout, unlock the studio door, and greet the first registrant instead of sending another postponement note.",
+      "firstImage": "twelve empty workshop chairs on a rented studio floor",
+      "mustInclude": [
+        "rented studio",
+        "intake handout",
+        "postponement note"
+      ],
+      "mustAvoid": [
+        "self-care discourse",
+        "therapy jargon"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish real preparation from threshold displacement",
+      "identify when fear is evidence of meaningful exposure rather than a stop sign",
+      "separate a legitimate obstacle from Resistance borrowing responsible language",
+      "evaluate whether naming Resistance helps or overreaches in a blocked scenario"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Open the project you have been circling and mark the one action that would make it visible to someone else; do that action before improving any support material.",
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a direct second-person passage that asks the reader to inspect the timing of the excuse",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "readingTimeMinutes": 12
+}

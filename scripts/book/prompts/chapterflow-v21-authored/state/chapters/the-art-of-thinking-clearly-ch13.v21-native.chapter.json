@@ -1,0 +1,327 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch13",
+  "number": 13,
+  "title": "Story Bias",
+  "readingTimeMinutes": 12,
+  "slug": "story-bias",
+  "hook": "A clean plot can make missing evidence feel like a finished case.",
+  "coreIdea": "Story bias makes coherent narratives feel truer than incomplete evidence, especially when sequence gets mistaken for causality.",
+  "counterintuition": "A good story can help you remember facts, but it can also smuggle in causes that were never tested. The safer move is to mark the plot, then ask which links are evidence and which links are glue.",
+  "tryThisNow": "Take one neat explanation you believe and draw its three causal links. Put a question mark on any link without evidence.",
+  "keyTakeaway": "Use stories to organize evidence, not to replace the missing parts of it.",
+  "breakdown": {
+    "fastRead": "An open-loop list sits beside the referee ratings after a controversial final. Simon hears the same plot everywhere: the referee lost control early, so the match turned rough, so the score became unfair. The story is smooth. The evidence is not.\n\nStory bias appears when a coherent plot feels more convincing than the raw facts deserve. Events that happened in sequence get tied together as cause and effect. Missing pieces are filled in because the mind dislikes loose ends.\n\nA neat arc is not a proof chain.\n\nThe correction is to mark each causal link, ask what evidence supports it, and leave blanks where the story is only joining dots.",
+    "deepRead": "The open-loop list in Simon's federation file has five unresolved questions: two missed calls, one injured player, a weather delay, a coach's complaint, and a late penalty. The match narrative makes them feel connected. The referee looked nervous, then play got rough, then the losing team blamed the official. Simon writes story bias on the list and separates sequence from cause.\n\nStories are useful because they compress the world. They help memory, explain motives, and make a pile of facts easier to carry. The danger starts when the compression hides uncertainty. A story can turn after into because. It can turn one angry witness into the voice of the whole crowd. It can turn a messy set of causes into a single villain, hero, or lesson.\n\nPlot is where uncertainty often goes to disappear.\n\nA better review asks link by link. Did the early missed call change player behavior, or did the match already have a high foul rate? Did rough play cause the late penalty, or did fatigue and rain matter more? Did the final score become unfair, or did both teams adjust badly? The story may survive those questions. If it does, it will be stronger. If it does not, the rating should not punish a referee for a plot the evidence cannot hold.\n\nAn oncology dropout table makes the stakes more serious. Ruth sees a news alert queue about one patient who left a trial after side effects, and a reporter wants a clear story: the treatment drove patients away. Ruth writes causality on the queue and asks for all dropout reasons before changing the patient-information sheet.\n\nA story that explains everything may have skipped the hard part.",
+    "fullRead": "A clipboard snaps shut in the immigration appeal office while Eva reads a file with three dates highlighted. The applicant lost a job, missed a filing deadline, and received a removal notice. The appeal volunteer has a ready plot: job loss caused the missed filing, which caused the notice. Eva circles plot on the clipboard and asks what each link actually shows.\n\nThis bias has its grip because humans do not like fragments. A fragment asks us to hold tension. A story releases it. Once the story arrives, recall improves, confidence rises, and gaps feel smaller than they are. That is helpful when the story is built from evidence. It is dangerous when the story supplies the evidence.\n\nE. M. Forster drew the classic line with kings and queens: one version gives sequence, another adds grief and turns sequence into plot. The difference is causality. That small literary distinction matters in decisions because adding a cause changes what you do next.\n\nWhich sentence did you add that was not in the file?\n\nEva uses that question on the appeal. The job loss is documented. The missed filing is documented. The emotional state between them is not. The volunteer may be right, but the office cannot treat the missing link as fact. Eva requests pay records, email logs, and clinic notes before ranking the appeal's urgency. The story becomes a hypothesis, not the verdict.\n\nA climate fund pitch carries the same risk in a more polished form. You are holding a sealed envelope with a founder's impact story inside. The pitch says a flood destroyed a village, the founder built a tool, and donations will prevent the next disaster. Leo, the fund analyst, marks Forster risk on the envelope before the investment meeting. He must decide whether the plot proves impact or whether adoption rates, maintenance records, and local partners need to carry that claim.\n\nThis pause can feel like cruelty because stories often contain real pain. A painful story deserves respect. It does not deserve exemption from evidence. If a story is true, the missing links can be checked. If the links cannot be checked, the decision should say so plainly instead of letting the plot finish the work.\n\nStory bias is also a recall machine. The version with motive and consequence is easier to remember than the version with loose facts. That ease of recall then feeds confidence. A call-center complaint script can become the official explanation for churn because everyone remembers the one customer who shouted, left, and posted online. The quiet billing failures vanish because they never became a story.\n\nSo keep stories, but audit them. Underline every because, therefore, led to, proved, and revealed. Ask which words are supported by records and which words are narrative glue. Then decide from the supported links, not from the satisfaction of a clean ending.",
+    "whyItMatters": "Story bias turns coherence into confidence. Readers need a way to keep narrative useful while refusing to let it invent causality."
+  },
+  "examples": [
+    {
+      "exampleId": "ch13-ex01-simon-open-loop-list",
+      "title": "Simon Breaks the Match Plot",
+      "tags": [
+        "scene",
+        "sports",
+        "referee"
+      ],
+      "planSpec": {
+        "domain": "a sports federation referee rating applying Story Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where story bias could mislead them",
+        "stakes": "career ratings and fairness get misallocated if story bias is treated as a slogan",
+        "format": "scene",
+        "requiredBeat": "The protagonist physically marks the open-loop list, names the story bias risk, and changes the next choice in view of another person."
+      },
+      "scenario": "The federation review room is still smelling of turf tape at 8:30 a.m. when Simon opens the referee file and finds an open-loop list beside the match video. Everyone repeats the same plot about lost control. Before rating the referee, Simon must decide whether the story links are proven, so he writes story bias on the list.",
+      "whatToDo": "Separate the timeline from the causal claims. Score only the calls and control choices the video supports.",
+      "whyItMatters": "The match may have a story, but the rating needs evidence for each link. A clean plot should not become a career penalty."
+    },
+    {
+      "exampleId": "ch13-ex02-ruth-news-alert-queue",
+      "title": "Ruth Counts Dropout Reasons",
+      "tags": [
+        "vignette",
+        "oncology",
+        "trial"
+      ],
+      "planSpec": {
+        "domain": "an oncology dropout table applying Story Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where causality could mislead them",
+        "stakes": "patient trust and research quality get misallocated if story bias is treated as a slogan",
+        "format": "vignette",
+        "requiredBeat": "The protagonist physically marks the news alert queue, names the causality risk, and changes the next choice in view of another person."
+      },
+      "scenario": "\"The side effects drove everyone away,\" the reporter says as Ruth watches a news alert queue fill with one patient's story. The dropout table is still incomplete. Ruth must choose: rewrite the patient sheet from the vivid story or count every dropout reason first, so she writes causality on the alert queue.",
+      "whatToDo": "Complete the dropout table before changing the explanation. Let the patient story prompt a check, not become the causal answer.",
+      "whyItMatters": "The story may contain a real warning, but causality needs the full dropout pattern. One narrative cannot carry the whole trial."
+    },
+    {
+      "exampleId": "ch13-ex03-eva-clipboard",
+      "title": "Eva Leaves the Missing Link Blank",
+      "tags": [
+        "dialogue",
+        "appeals",
+        "triage"
+      ],
+      "planSpec": {
+        "domain": "an immigration appeal triage applying Story Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where plot could mislead them",
+        "stakes": "legal urgency and credibility get misallocated if story bias is treated as a slogan",
+        "format": "dialogue",
+        "requiredBeat": "The protagonist physically marks the clipboard, names the plot risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Paper edges rasp under Eva's thumb in the appeal office as she clips three dated forms to a clipboard. \"The job loss caused the missed filing,\" a volunteer says. Eva marks plot and weighs whether to accept the neat chain or request the records that show how the dates connect. Before the room moves on, Paper must decide whether to accept the story or run the marked check.",
+      "whatToDo": "Keep the sequence, but leave the causal link open until records support it. Rank urgency from documented facts and stated uncertainty.",
+      "whyItMatters": "The plot may be true, but the missing link changes the appeal. A neat chain should not outrun the file."
+    },
+    {
+      "exampleId": "ch13-ex04-leo-sealed-envelope",
+      "title": "Leo Opens the Impact Story",
+      "tags": [
+        "decision",
+        "climate",
+        "fund"
+      ],
+      "planSpec": {
+        "domain": "a climate fund pitch review applying Story Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where Forster could mislead them",
+        "stakes": "grant money and credibility get misallocated if story bias is treated as a slogan",
+        "format": "decision_point",
+        "requiredBeat": "The protagonist physically marks the sealed envelope, names the Forster risk, and changes the next choice in view of another person."
+      },
+      "scenario": "You are reading a founder's pitch in a fund office when Leo taps the sealed envelope that held the impact story. The plot is strong: flood, invention, rescue. Before recommending the grant, he must decide whether the story proves impact or whether adoption rates and maintenance logs need to support each causal link.",
+      "whatToDo": "Mark the story's causal links and ask for evidence on adoption, maintenance, and outcomes. Fund the claim only where the links hold.",
+      "whyItMatters": "Forster's distinction matters here: adding causality turns events into a plot. Money should follow tested links, not narrative force."
+    },
+    {
+      "exampleId": "ch13-ex05-marina-route-map",
+      "title": "Marina Tests the Complaint Script",
+      "tags": [
+        "predict",
+        "call-center",
+        "churn"
+      ],
+      "planSpec": {
+        "domain": "a call-center complaint script applying Story Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where recall could mislead them",
+        "stakes": "retention work gets misallocated if story bias is treated as a slogan",
+        "format": "predict_reveal",
+        "requiredBeat": "The protagonist physically marks the route map, names the recall risk, and changes the next choice in view of another person."
+      },
+      "scenario": "It took Marina one route map from the delivery team to see why the call-center churn story was too neat. Everyone remembered the customer who shouted, canceled, and posted online. Billing failures on one delivery route were duller. Marina marks recall on the map and must decide whether the complaint script or billing logs explain churn.",
+      "whatToDo": "Compare remembered complaint stories with billing failures, delivery routes, and cancellation codes before rewriting the script.",
+      "whyItMatters": "Stories are easier to recall than quiet system failures. The churn fix needs the cause, not the most memorable call."
+    },
+    {
+      "exampleId": "ch13-ex06-henrik-invoice-stack",
+      "title": "Henrik Checks the Influencer Arc",
+      "tags": [
+        "postmortem",
+        "outdoor-gear",
+        "influencer"
+      ],
+      "planSpec": {
+        "domain": "an outdoor-gear influencer report applying Story Bias under operational pressure",
+        "audience": "a reader who has to make a live judgment where story could mislead them",
+        "stakes": "marketing money gets misallocated if story bias is treated as a slogan",
+        "format": "postmortem",
+        "requiredBeat": "The protagonist physically marks the invoice stack, names the story risk, and changes the next choice in view of another person."
+      },
+      "scenario": "Which influencer campaign worked, the comeback story or the discount code? Henrik answers after the season by spreading an invoice stack beside the sales report. The athlete's injury comeback had become the campaign legend. Henrik marks story risk and reshapes the review so it will compare code use, margin, and repeat buyers.",
+      "whatToDo": "Respect the story, then test whether it produced profitable buyers. Renew based on sales evidence, not the emotional arc alone.",
+      "whyItMatters": "A good story can make a campaign feel successful before the numbers agree. The postmortem keeps emotion from replacing the invoice stack."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "During a team review, someone says sales fell because a competitor launched a flashy campaign the same week. They have not checked price changes, stockouts, or channel traffic. What is the story-bias risk?",
+        "choices": [
+          "A neat sequence is being treated as causality before other links are checked.",
+          "Checked price changes supports a narrower read of someone says sales; keep fell competitor launched central and leave flashy campaign week aside.",
+          "Changes stockouts channel points toward a quicker call on sales fell competitor; let team someone says stand until week checked price contradicts it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The competitor launch may matter, but sequence alone is not cause. Stockouts, price, and traffic are missing links the story may hide.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple",
+        "whyItMatters": "Story Bias makes during team feel more decisive than the record supports, and that misprices someone says in this scene. The correct move keepss the choice by a neat sequence is being treated as causality before other links are checked."
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a story-bias review, a hospital narrative says a new nurse caused a rise in medication errors because the rise began after her transfer, what should the manager do first?",
+        "choices": [
+          "Shift patient load points toward a quicker call on medication errors began; let nurse caused rise stand until manager first check contradicts it.",
+          "Check shift mix, patient load, handoff records, and error types before assigning cause.",
+          "Narrative says nurse looks strong enough to guide caused rise medication; errors began after can wait unless transfer what manager changes the stakes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The narrative may be tempting because it has a clear character and timing. The manager needs evidence for the causal link before acting.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Story Bias works by letting story-bias hospital crowd out narrative says, which can misreads the nurse caused decision. Check shift mix, patient load, handoff records, and error types before assigning cause keeps the practical cost tied to evidence."
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When story-bias pressure appears, a nonprofit remembers one donor story: a family saw a video, donated, and volunteered, the team wants to move the whole budget to video. Which move fits the core skill?",
+        "choices": [
+          "Ask whether broader donation and volunteer data support the video's causal role.",
+          "Remembers donor story looks strong enough to guide family video donated; volunteered team wants can wait unless move whole budget changes the stakes.",
+          "Story family video gives a practical reason for nonprofit remembers donor; wants move whole belongs after donated volunteered team clarifies the result."
+        ],
+        "correctIndex": 0,
+        "explanation": "The story can guide a hypothesis, but the budget needs broader evidence. Removing all stories is unnecessary; treating one as proof is the risk.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Story Bias turns appears nonprofit into a shortcut, so the room can overweights remembers donor while missing story family. Ask whether broader donation and volunteer data support the video's causal role protects the decision from that drift."
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After story-bias risk surfaces, a school board says test scores rose because a new app made students practice more. Attendance also rose and the test format changed. What should the board do?",
+        "choices": [
+          "After story-bias surfaces looks strong enough to guide school board says; test scores rose can wait unless students practice attendance changes the stakes.",
+          "Rose students practice gives a practical reason for says test scores; changed what separate belongs after attendance also format clarifies the result.",
+          "Separate app use, attendance, and test-format changes before assigning cause."
+        ],
+        "correctIndex": 2,
+        "explanation": "The app story may be true, but other causes are in the file. The board needs to test each causal link before crediting the app.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Story Bias would push the school board case toward says test, creating a cost when scores rose stays untested. The useful guardrail is to separate app use, attendance, and test-format changes before assigning cause."
+      },
+      {
+        "questionId": "q05",
+        "prompt": "If story-bias reasoning takes over, a founder pitches a product with a moving origin story, early users love the story, but usage drops after two weeks. What is the best investor response?",
+        "choices": [
+          "Drops after weeks supports a narrower read of pitches product moving; keep origin story early central and leave users love usage aside.",
+          "Treat the story as marketing context and ask for retention, activation, and support data.",
+          "Best investor response fits the immediate pressure around story early users; hold product moving origin steady and test reasoning founder pitches later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The origin story may help attention, but it does not prove retention. The investor needs the data behind the claimed user behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard",
+        "whyItMatters": "Story Bias converts pitches product into the loudest signal, which can rushes moving origin before story early is checked. The better answer separatess attention on treat the story as marketing context and ask for retention, activation, and support data."
+      },
+      {
+        "questionId": "q06",
+        "prompt": "While story-bias pressure builds, a manager explains a project delay as the result of one engineer's pessimism. Calendar records show vendor approvals were late and requirements changed twice. What has the story likely done?",
+        "choices": [
+          "It has simplified a multi-cause delay into one convenient character.",
+          "Approvals were late points toward a quicker call on project delay result; let builds manager explains stand until records show vendor contradicts it.",
+          "Late requirements changed fits the immediate pressure around result engineer pessimism; hold explains project delay steady and test pressure builds manager later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The story creates a clear cause and character, but the records show other links. Story bias often makes multi-cause events look cleaner than they are.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Story Bias hides inside the story-bias pressure choice because story-bias pressure seems sufficient, yet the cost lands in story-bias pressure. It has simplified a multi-cause delay into one convenient character brings the story-bias pressure comparison back."
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Before the story-bias call, a customer-success team remembers a churn story with a clear villain: a rude agent, churn reports show most cancellations came from billing confusion. What should change?",
+        "choices": [
+          "Remembers churn story gives a practical reason for call customer-success team; agent reports show belongs after clear villain rude clarifies the result.",
+          "The team should compare the story with cancellation codes before rewriting training.",
+          "Came billing confusion supports a narrower read of churn story clear; keep villain rude agent central and leave reports show cancellations aside."
+        ],
+        "correctIndex": 1,
+        "explanation": "The rude-agent story may identify one problem, but the churn cause may be billing. The report tests whether the plot represents the pattern.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard",
+        "whyItMatters": "Story Bias pressures the call customer-success decision toward the easy reading of call customer-success. That can inflates the real cost unless the choice is grounded in the team should compare the story with cancellation codes before rewriting training."
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose story-bias risk is present: a research presentation says a community workshop caused lower emergency visits because visits fell afterward. The same period had a weather change and a clinic expansion. Which critique is strongest?",
+        "choices": [
+          "Fell afterward period supports a narrower read of research presentation says; keep community workshop caused central and leave lower emergency visits aside.",
+          "The presentation has not shown that the workshop, instead of other changes, caused the decline.",
+          "Change clinic expansion fits the immediate pressure around workshop caused lower; hold presentation says community steady and test story-bias present research later."
+        ],
+        "correctIndex": 1,
+        "explanation": "The critique targets causality, not the workshop itself. A story from sequence needs evidence that separates it from other plausible causes.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "whyItMatters": "Story Bias is the mechanism here: a tidy narrative hides missing evidence, so present research can overpower present research. The presentation has not shown that the workshop, instead of other changes, caused the decline keeps the scenario from becoming a."
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Two story-bias signals compete: a board is asked to choose whether to fund a program with a compelling story and weak outcome data. Another program has dull evidence but stronger measured results. What recommendation best avoids story bias?",
+        "choices": [
+          "Asked whether fund gives a practical reason for signals compete board; weak outcome data belongs after program compelling story clarifies the result.",
+          "Fund program compelling makes story-bias signals compete look credible; use board asked whether first and revisit story weak outcome when data another dull shifts.",
+          "Fund the dull program if its outcome evidence is stronger, while asking the story-driven program for tested links."
+        ],
+        "correctIndex": 2,
+        "explanation": "The choice should follow supported outcomes, not narrative appeal. The compelling program can return with evidence for its causal links.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "whyItMatters": "Story Bias makes the board asked evidence look cleaner than it is, risking a board asked mistake in this setting. The answer protects board asked by asking for fund the dull program if its outcome evidence is stronger, while asking."
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "front": "A sequence of events makes a clear story. What should you check?",
+      "back": "Check which causal links are supported by evidence and which links were added to make the story feel complete."
+    },
+    {
+      "front": "Why does story bias feel convincing?",
+      "back": "A coherent plot lowers uncertainty and improves recall, so it can feel truer than the evidence supports."
+    },
+    {
+      "front": "What is the danger of turning after into because?",
+      "back": "It treats timing as causality and may hide other causes, missing data, or unresolved links."
+    },
+    {
+      "front": "A story contains real pain. Does that make it decision-ready?",
+      "back": "No. Respect the pain, then test the causal claims. Real pain can still be attached to an unproven explanation."
+    },
+    {
+      "front": "What words should make you slow down in a narrative?",
+      "back": "Words like because, therefore, led to, proved, and revealed. Each one should point to evidence."
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to keep stories useful by marking causal links and checking which ones are supported before the story drives a decision.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting settles on a neat explanation, then I will write the causal links and ask which links have evidence."
+      },
+      {
+        "context": "research",
+        "plan": "If a presentation says one event caused another, then I will ask what other causes were ruled out."
+      },
+      {
+        "context": "hiring",
+        "plan": "If a candidate story feels decisive, then I will separate the narrative from measured skills, references, and work samples."
+      },
+      {
+        "context": "personal decisions",
+        "plan": "If I keep retelling the same explanation for a problem, then I will name one missing fact that could change the story."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, choose one explanation you have repeated recently. Underline every causal word and mark which links are proven, uncertain, or missing.",
+    "weeklyPractice": "Once this week, take one strong story from a meeting or article and rewrite it as a list of facts plus open questions."
+  },
+  "memorableLines": [
+    {
+      "text": "A neat arc is not a proof chain.",
+      "location": "breakdown.fastRead",
+      "why": "It turns the distinction between story and evidence into a compact rule."
+    },
+    {
+      "text": "Plot is where uncertainty often goes to disappear.",
+      "location": "breakdown.deepRead",
+      "why": "It names the specific danger of narrative smoothing."
+    },
+    {
+      "text": "A story that explains everything may have skipped the hard part.",
+      "location": "breakdown.deepRead",
+      "why": "It warns readers against explanations that feel too complete."
+    }
+  ]
+}

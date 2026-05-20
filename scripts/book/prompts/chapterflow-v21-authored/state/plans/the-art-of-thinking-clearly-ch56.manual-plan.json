@@ -1,0 +1,185 @@
+{
+  "chapterId": "the-art-of-thinking-clearly-ch56",
+  "number": 56,
+  "title": "Motivation Crowding",
+  "coreMove": "Use Motivation Crowding as the warning label, then make the specific correction before the choice moves forward.",
+  "sourcePressure": "The frozen TOC and official source notes frame Motivation Crowding as a specific decision error around motivation crowding, intrinsic motive, payment. Traceable support includes Die Grenzen ö konomischer Anreize.",
+  "chapterSpecificMisunderstanding": "Treating Motivation Crowding as generic advice to be smarter, instead of forcing this exact move: use motivation crowding as the warning label, then make the specific correction before the choice moves forward.",
+  "sourceAlignmentTerms": [
+    "motivation crowding",
+    "intrinsic motive",
+    "payment",
+    "crowding out",
+    "reward",
+    "motivation",
+    "crowding"
+  ],
+  "sourceAnchors": [],
+  "forbiddenFrames": {
+    "hook": [
+      "Do not open with a definition of Motivation Crowding.",
+      "Do not use a generic panic-at-a-meeting opener."
+    ],
+    "counterintuition": [
+      "Avoid the reusable shape where the obvious answer is wrong and the opposite is true.",
+      "Do not make Motivation Crowding sound like ordinary carelessness."
+    ],
+    "tryThisNow": [
+      "No generic timer reflection prompt.",
+      "No reusable list-three-decisions exercise."
+    ],
+    "examples": [
+      "No coffee mug, classroom whiteboard, bus depot, radiator, bike helmet, or narrow kitchen shell.",
+      "No example may skip the specific mechanics of Motivation Crowding."
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm, such as a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "a train delay message desk applying Motivation Crowding under operational pressure",
+      "audience": "a reader who has to make a live judgment where motivation crowding could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "The protagonist physically marks the model card, names the motivation crowding risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A model card sits at the center of the train delay message desk before anyone explains the choice.",
+      "mustInclude": [
+        "model card",
+        "motivation crowding",
+        "a visible before-and-after choice tied to Motivation Crowding"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a robotics sensor vendor review applying Motivation Crowding under operational pressure",
+      "audience": "a reader who has to make a live judgment where intrinsic motive could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+      "format": "vignette",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "The protagonist physically marks the queue ticket, names the intrinsic motive risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A queue ticket sits at the center of the robotics sensor vendor review before anyone explains the choice.",
+      "mustInclude": [
+        "queue ticket",
+        "intrinsic motive",
+        "a visible before-and-after choice tied to Motivation Crowding"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a hospital procurement board applying Motivation Crowding under operational pressure",
+      "audience": "a reader who has to make a live judgment where payment could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+      "format": "dialogue",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "The protagonist physically marks the incident timeline, names the payment risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A incident timeline sits at the center of the hospital procurement board before anyone explains the choice.",
+      "mustInclude": [
+        "incident timeline",
+        "payment",
+        "a visible before-and-after choice tied to Motivation Crowding"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a avalanche risk bulletin applying Motivation Crowding under operational pressure",
+      "audience": "a reader who has to make a live judgment where crowding out could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "The protagonist physically marks the warranty label, names the crowding out risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A warranty label sits at the center of the avalanche risk bulletin before anyone explains the choice.",
+      "mustInclude": [
+        "warranty label",
+        "crowding out",
+        "a visible before-and-after choice tied to Motivation Crowding"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a library overdue notice redesign applying Motivation Crowding under operational pressure",
+      "audience": "a reader who has to make a live judgment where reward could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+      "format": "predict_reveal",
+      "openingDevice": "retrospective",
+      "requiredBeat": "The protagonist physically marks the press clipping, names the reward risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A press clipping sits at the center of the library overdue notice redesign before anyone explains the choice.",
+      "mustInclude": [
+        "press clipping",
+        "reward",
+        "a visible before-and-after choice tied to Motivation Crowding"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    },
+    {
+      "domain": "a warehouse bonus meeting applying Motivation Crowding under operational pressure",
+      "audience": "a reader who has to make a live judgment where motivation could mislead them",
+      "stakes": "money, safety, credibility, or scarce attention gets misallocated if Motivation Crowding is treated as a slogan",
+      "format": "postmortem",
+      "openingDevice": "question_hook",
+      "requiredBeat": "The protagonist physically marks the voting sheet, names the motivation risk, and changes the next choice in view of another person rather than merely promising to think harder.",
+      "firstImage": "A voting sheet sits at the center of the warehouse bonus meeting before anyone explains the choice.",
+      "mustInclude": [
+        "voting sheet",
+        "motivation",
+        "a visible before-and-after choice tied to Motivation Crowding"
+      ],
+      "mustAvoid": [
+        "a generic meeting lesson",
+        "a repeated timestamp-name opening",
+        "a tidy moral with no decision cue"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "spot Motivation Crowding in a fresh decision scene",
+      "choose the correction that performs this move: use motivation crowding as the warning label, then make the specific correction before the choice moves forward.",
+      "reject a tempting generic answer that ignores motivation crowding",
+      "explain the failure of a wrong option in chapter-specific terms"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Before the next relevant choice, write 'Motivation Crowding' on a note, list the one motivation crowding cue that could mislead you, and add the correction in one sentence.",
+  "readingTimeMinutes": 12
+}

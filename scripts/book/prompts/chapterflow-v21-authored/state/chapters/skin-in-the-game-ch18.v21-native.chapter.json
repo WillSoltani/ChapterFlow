@@ -1,0 +1,326 @@
+{
+  "chapterId": "skin-in-the-game-ch18",
+  "number": 18,
+  "title": "How to Be Rational About Rationality",
+  "readingTimeMinutes": 12,
+  "hook": "A laminated call tree can look messy and still beat the elegant evacuation app.",
+  "counterintuition": "Rationality is not always the cleanest explanation, but in exposed life the rational practice is often the one that keeps people from ruin.",
+  "tryThisNow": "Pick one habit that looks inefficient. Ask what error, ruin, or coordination failure it prevents before you replace it with a cleaner rule.",
+  "keyTakeaway": "Judge rationality by survival under real constraints before dismissing messy beliefs, rituals, hedges, or habits as incoherent.",
+  "breakdown": {
+    "fastRead": "Alice Brooks holds a laminated call tree beside flood maps while the evacuation app waits on a tablet. The call tree is messy: cousins, neighbors, church numbers, old landlines, crossed-out names. The evacuation test shows it gets elders out faster.\n\nThe practical test is not whether the sentence sounds clean, but whether the behavior keeps people alive in the world that corrects them. Rationality should answer to exposure. A rule that looks odd on paper may preserve people under flood, stress, allergy, fatigue, or coordination failure.",
+    "deepRead": "\"The hedge drags the average return,\" the analyst says while red loss bars fill the risk screen. Erik Dahl points to the stress test. The unhedged line looks prettier in normal weeks and dies in the bad week. The hedge is expensive until it is the reason the firm still exists.\n\nHow to Be Rational About Rationality starts by treating survival as evidence, not embarrassment. A strategy can be verbally coherent, mathematically clean, and deadly under exposure. Another strategy can look wasteful and preserve the agent long enough to keep playing. Survival is not a small detail added after rationality. It is part of the definition when the agent can be wiped out.\n\nRuin has veto power.\n\nThis does not excuse every superstition, habit, or hedge. Some messy practices survive because nobody tests them. The move is to ask what the behavior prevents, then test that claim where the cost appears. Does the call tree move elders faster? Does the hedge survive the bad week? Does the food rule prevent a dangerous mistake? Does the ritual checklist reduce near-misses?\n\nThe weak version becomes anti-reason theater. The stronger version is more demanding: reason must include the world that punishes error.",
+    "fullRead": "Lunchbox clasps snap shut while Mia Conti reads the family's food rule beside the allergy plan. The rule bans more foods than the allergy strictly requires. On paper, it over-includes danger. The mistake log shows why. One grandparent, two caregivers, and a rotating school schedule make narrow exceptions hard to remember. The broader rule keeps the child safe.\n\nThat is instrumental belief in ordinary life. A rule may not describe reality with perfect precision. It may still preserve the people using it. A clean instruction can fail because the household is tired, multilingual, distracted, or moving between kitchens. A broader taboo can function as a safety rail.\n\nPaint is worn off the checklist button when Robert Carter removes one ritual step for a week. Engineers had mocked it because nobody could explain why the operator touched the panel twice. The near-miss log rises. Robert restores the step. He still wants a better explanation, but he no longer confuses missing explanation with irrationality.\n\nBefore calling a practice irrational, ask what would disappear with it. Fewer mistakes? Faster evacuation? Medication adherence? Cooperation? A memory cue? A costly signal that keeps freeloaders out? A pause that prevents a rushed hand from making an irreversible error?\n\nMei Laurent learns this in the clinic. Foil packets sit in a teacup saucer while the dose log shows the patient almost never misses medication. The routine looks inconsistent: pills after tea on some days, before brushing teeth on others, always beside the saucer. The clean instruction in the clinic note would be easier to explain and worse for adherence. Mei reviews missed-dose data before replacing the odd ritual.\n\nA rule is rational if it survives the correction that matters.\n\nTeresa Silva sees the social version after a festival meal. Folding tables are stacked against the wall while the ledger shows a costly rule that outsiders call wasteful. Every family contributes extra food and hours. The mutual-aid list shows who received help after illness, job loss, and funerals. The rule is not efficient in the narrow sense. It preserves an insurance network no contract provides, and that insurance appears exactly when formal help is slow.\n\nThe practical rule is to respect survival evidence without surrendering judgment. Test the mechanism. Remove one step safely and watch the near-miss log. Compare the app with the call tree. Stress the hedge. Track dose data. Price the festival rule against the mutual-aid network it sustains. Rationality is not a costume of clean sentences. It is behavior that keeps agents alive, solvent, coordinated, and able to continue under the conditions that actually correct them."
+  },
+  "examples": [
+    {
+      "exampleId": "ch18-ex01-alice-calltree",
+      "title": "Alice keeps the call tree",
+      "tags": [
+        "evacuation",
+        "flood",
+        "survival"
+      ],
+      "planSpec": {
+        "domain": "emergency planner choosing an evacuation custom that looks irrational on paper",
+        "audience": "planner judging by survival record under flood exposure",
+        "stakes": "formal neatness could break a habit that keeps families alive",
+        "format": "decision_point",
+        "requiredBeat": "Alice Brooks keeps the messy local call tree after testing which method gets elders out fastest."
+      },
+      "scenario": "At 6:55 a.m. Monday, Alice Brooks lays a laminated call tree beside flood maps and an evacuation test sheet. The app is cleaner, but the call tree reaches elders through cousins, neighbors, church numbers, and old landlines that still ring during outages. Alice must choose whether formal neatness beats the method that got people out fastest in the drill.",
+      "whatToDo": "Run the evacuation test, compare elder exit times, and keep the messy call tree wherever it beats the cleaner app.",
+      "whyItMatters": "The call tree looks irrational only if neatness is the standard. Survival under flood exposure is the standard that matters."
+    },
+    {
+      "exampleId": "ch18-ex02-erik-hedge",
+      "title": "Erik checks the bad week",
+      "tags": [
+        "trading",
+        "hedge",
+        "ruin"
+      ],
+      "planSpec": {
+        "domain": "trader defending a hedge that lowers average return but prevents blowup",
+        "audience": "risk officer separating survival rationality from spreadsheet elegance",
+        "stakes": "the firm lives or dies by avoiding terminal loss",
+        "format": "dialogue",
+        "requiredBeat": "Erik Dahl asks whether the prettier return line survives the bad week."
+      },
+      "scenario": "\"The hedge makes our average look worse,\" the analyst says while red loss bars fill the risk screen. Erik Dahl compares the hedge cost, return chart, and stress test while the investment committee waits for a cleaner story. The unhedged line wins in normal weeks and fails in the bad one. Erik has to decide whether a prettier average matters if it cannot survive ruin.",
+      "whatToDo": "Run the stress test beside the return chart, then keep the hedge if it prevents terminal loss even while lowering average return.",
+      "whyItMatters": "A strategy that dies in the bad week is not rational for an exposed firm. Ruin changes the meaning of performance."
+    },
+    {
+      "exampleId": "ch18-ex03-mia-allergy",
+      "title": "Mia reads the mistake log",
+      "tags": [
+        "allergy",
+        "household",
+        "rule"
+      ],
+      "planSpec": {
+        "domain": "parent keeping a taboo food rule because it prevents allergy confusion",
+        "audience": "doctor seeing instrumental belief inside a messy household rule",
+        "stakes": "child safety may depend on a rule that over-includes danger",
+        "format": "scene",
+        "requiredBeat": "Mia Conti asks what mistake the rule prevents before calling it irrational."
+      },
+      "scenario": "Lunchbox clasps snap shut while Mia Conti reads the food rule beside the allergy plan and mistake log. The rule bans more than the allergy requires, and it sounds excessive in the clinic, especially to a new caregiver. Mia must decide whether to call it irrational before asking which caregiver mistake the overbroad rule prevents.",
+      "whatToDo": "Ask what mistake the food rule prevents, compare it with the allergy plan, and narrow it only if safety survives the change.",
+      "whyItMatters": "A broad taboo can be an instrument, not confusion. The rational question is whether it prevents dangerous errors under household conditions."
+    },
+    {
+      "exampleId": "ch18-ex04-robert-checklist",
+      "title": "Robert restores the ritual step",
+      "tags": [
+        "factory",
+        "checklist",
+        "near miss"
+      ],
+      "planSpec": {
+        "domain": "factory crew following a ritualized checklist that engineers mock",
+        "audience": "plant manager testing ritual by error prevention",
+        "stakes": "formal explanation matters less than preserved safety under exposure",
+        "format": "before_after",
+        "requiredBeat": "Robert Carter removes one ritual step for a week, sees near-misses rise, and restores it."
+      },
+      "scenario": "Paint had worn off the checklist button before Robert Carter removed the ritual step for a week. Engineers had mocked the double-touch as meaningless, and the new shift lead wanted a cleaner board. The near-miss log rose, and operators reported rushed handoffs. After the trial, Robert restored the step and added a test plan for understanding why it worked.",
+      "whatToDo": "Remove only one ritual step in a controlled trial, watch the near-miss log, and restore the step if safety worsens.",
+      "whyItMatters": "Missing explanation is not proof of irrationality. Error prevention under exposure is evidence the ritual deserves respect."
+    },
+    {
+      "exampleId": "ch18-ex05-mei-dose",
+      "title": "Mei keeps the saucer routine",
+      "tags": [
+        "medicine",
+        "adherence",
+        "habit"
+      ],
+      "planSpec": {
+        "domain": "patient choosing an apparently inconsistent routine that keeps medication adherence high",
+        "audience": "clinician judging behavior by outcome under constraint",
+        "stakes": "clean instruction may fail where messy habit works",
+        "format": "postmortem",
+        "requiredBeat": "Mei Laurent reviews missed-dose data before replacing the patient's odd pill ritual."
+      },
+      "scenario": "It took Mei Laurent three visits to stop seeing foil packets in a teacup saucer as disorder. The clinic note wanted a cleaner pill instruction, but the dose log showed almost no misses under the odd ritual, even on weekends when routines shifted. In the postmortem, she kept the saucer routine and changed only the unsafe parts.",
+      "whatToDo": "Review missed-dose data before replacing the pill ritual, then preserve the habit that keeps adherence high.",
+      "whyItMatters": "A clean instruction can fail where a messy routine works. Rationality should answer to the outcome under constraint."
+    },
+    {
+      "exampleId": "ch18-ex06-teresa-festival",
+      "title": "Teresa traces the mutual aid",
+      "tags": [
+        "community",
+        "festival",
+        "cooperation"
+      ],
+      "planSpec": {
+        "domain": "community with a costly festival rule that maintains mutual aid",
+        "audience": "sociologist reading rationality through survival of cooperation",
+        "stakes": "a practice may look wasteful while preserving insurance no contract provides",
+        "format": "reflection",
+        "requiredBeat": "Teresa Silva asks what support network would vanish if the costly rule disappeared."
+      },
+      "scenario": "You see folding tables stacked after a festival meal while Teresa Silva studies the festival ledger, mutual-aid list, and cleanup rota. The rule costs extra food and time, and it looks inefficient to outsiders counting only the meal. Teresa must decide whether the waste disappears alone or whether the support network vanishes with it.",
+      "whatToDo": "Compare the festival ledger with the mutual-aid list, then ask what help would disappear if the costly rule were removed.",
+      "whyItMatters": "The practice may look wasteful while preserving informal insurance. Survival of cooperation is part of the rationality test."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A messy local call tree with cousins, neighbors, and old landlines evacuates elders faster than a clean app during flood drills. What should the planner treat as rational?",
+        "choices": [
+          "The method that preserves people under flood exposure.",
+          "The app because it looks formally cleaner.",
+          "Neither method because emergencies are unpredictable."
+        ],
+        "correctIndex": 0,
+        "explanation": "Rationality is judged by survival under correction. The call tree earns trust because it gets exposed people out faster.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A hedge lowers average return during normal weeks, but the stress test shows it prevents the firm from dying in a bad week. What should the risk officer prioritize?",
+        "choices": [
+          "The prettier unhedged average.",
+          "Survival in the stress test.",
+          "A chart that hides the hedge cost."
+        ],
+        "correctIndex": 1,
+        "explanation": "Ruin has veto power. A higher average is not rational if it fails in the week that can end the firm.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A household food taboo is broader than an allergy technically requires, but a mistake log shows it prevents caregiver confusion across kitchens. How should a clinician evaluate it?",
+        "choices": [
+          "The rule's scope exceeds the harm it prevents, making this cost-benefit trade unfavorable.",
+          "Replace it with a cleaner rule before checking outcomes.",
+          "Ask what dangerous mistake it prevents under household conditions."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rule may be instrumentally rational if it prevents errors in a messy household. Precision alone is not the full standard.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Engineers mock a factory checklist ritual as meaningless, then a controlled removal raises near-misses during rushed handoffs. What should the plant manager infer?",
+        "choices": [
+          "Preserve the ritual steps because they encode tacit knowledge accumulated over decades.",
+          "The ritual has safety value even before its mechanism is fully explained.",
+          "Near-miss logs are irrelevant if engineers dislike the explanation."
+        ],
+        "correctIndex": 1,
+        "explanation": "The near-miss rise is exposure evidence. The step can be studied further, but it should not be dismissed as irrational.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "When a patient's pill routine looks inconsistent, with foil packets beside a teacup saucer, but dose logs show excellent adherence, what should the clinician do before replacing it?",
+        "choices": [
+          "Review missed-dose data and preserve the parts that work.",
+          "Replace it immediately with a cleaner instruction.",
+          "Ignore safety concerns because all personal rituals are valid."
+        ],
+        "correctIndex": 0,
+        "explanation": "Outcome under constraint matters. The routine may be messy and still rational if it keeps medication adherence high.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "The costly festival rule looks wasteful to outsiders counting food and hours, but it maintains a mutual-aid network no contract provides. What is the best analysis?",
+        "choices": [
+          "The rule is irrational because it is costly.",
+          "The mutual-aid list should be ignored because it is informal.",
+          "The rule may be rational if it preserves cooperation under stress."
+        ],
+        "correctIndex": 2,
+        "explanation": "Cost alone does not prove irrationality. If the rule sustains cooperation that protects people later, the survival function matters.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "In this case, a practice sounds incoherent in a meeting, but it has survived repeated exposure to the exact errors that harm people. What question should come next?",
+        "choices": [
+          "Mock it more clearly because weak explanations may be hiding confusion rather than survival value.",
+          "Find a cleaner explanation to replace testing because coherent language may be enough for adoption.",
+          "Ask what survival function the practice serves, since repeated exposure supplies evidence the meeting-room frame cannot."
+        ],
+        "correctIndex": 2,
+        "explanation": "The survival-function question keeps reason attached to exposure. Mockery and clean explanation without testing miss the point.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Suppose a clean rule and a messy habit compete in a safety review. The clean rule is easier to explain; the messy habit prevents ruin in tests, which choice is more rational?",
+        "choices": [
+          "The clean rule, because rationality means simple verbal consistency.",
+          "The messy habit, unless further testing shows a safer clean replacement.",
+          "Neither, because survival data cannot inform rational judgment."
+        ],
+        "correctIndex": 1,
+        "explanation": "The exposed survival record should govern. A clean replacement can win later, but only after it survives the relevant correction.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Before deciding, a critic says this view is anti-reason because it respects messy practices even when their explanations sound weak. What is the strongest reply?",
+        "choices": [
+          "It is more demanding: reason must include the world that punishes error.",
+          "It rejects reason whenever people prefer tradition.",
+          "The position treats old habits as evidence rather than proof, but the speaker collapses that distinction."
+        ],
+        "correctIndex": 0,
+        "explanation": "The standard is not anti-reason. It requires testing practices by survival, ruin sensitivity, and real-world correction.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "A practice looks irrational on paper. What survival function should be tested before discarding it?",
+      "back": "Ask whether it preserves people under exposure. Survival, ruin prevention, and error reduction can be rational even when explanations are messy.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Why can a hedge be rational even when it lowers average return?",
+      "back": "Because avoiding terminal loss matters more than a prettier average. Ruin changes the standard.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "What does an overbroad allergy rule require before dismissal?",
+      "back": "A mistake-prevention test. If the rule prevents dangerous caregiver confusion, it may be instrumentally rational.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "How do you avoid anti-reason posturing here?",
+      "back": "Test mechanisms and outcomes. Respect survival evidence, but keep measuring, pruning, and replacing when safer alternatives survive exposure.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "Why might a costly festival rule be rational?",
+      "back": "It may maintain mutual aid that protects people during illness, job loss, or funerals. Efficiency must include the network it preserves.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Testing Survival Logic Behind Apparent Irrationality",
+    "coreSkill": "Before calling a practice irrational, identify what survival function it may serve. Then test that function where failure would actually hurt.",
+    "ifThenPlans": [
+      {
+        "context": "emergencies",
+        "plan": "If a custom looks messy during emergency planning, then compare its survival record against the clean replacement before removing it."
+      },
+      {
+        "context": "finance",
+        "plan": "If a hedge lowers average return in ordinary weeks, then run the stress week before cutting it."
+      },
+      {
+        "context": "health",
+        "plan": "If a patient routine looks inconsistent in clinic notes, then check adherence data before replacing it."
+      },
+      {
+        "context": "operations",
+        "plan": "If a ritual step lacks explanation, then remove it only in a controlled trial with near-miss tracking."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one messy rule you dislike. Write the ruin, error, or coordination failure it may prevent before proposing a cleaner replacement.",
+    "weeklyPractice": "Each week, test one practice by survival function: what it prevents, what evidence supports it, and what safer substitute could replace it."
+  },
+  "memorableLines": [
+    {
+      "text": "Ruin has veto power.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the survival-first rationality standard."
+    },
+    {
+      "text": "A rule is rational if it survives the correction that matters.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a practical test for messy practices."
+    },
+    {
+      "text": "Rationality is not a costume of clean sentences.",
+      "location": "breakdown.fullRead",
+      "why": "It protects the chapter from formal elegance without exposure."
+    }
+  ]
+}

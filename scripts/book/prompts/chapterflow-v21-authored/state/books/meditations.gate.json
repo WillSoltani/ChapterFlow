@@ -1,0 +1,668 @@
+{
+  "bookId": "meditations",
+  "title": "Meditations",
+  "author": "Marcus Aurelius",
+  "promotedAt": "2026-05-18T21:48:03.599Z",
+  "chapterCount": 12,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Treat good examples as obligations, not souvenirs: name the restraint, fairness,"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"is not decorative\" — 68 hits across 31 books — same rhetorical move.",
+            "evidence": "The opening movement is humble in a hard way. It does not begin by claiming strength. It names people. A grandfather gives self-command. A mother gives simplicity. Teachers and rulers give restraint,…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"The trap is to\" — Counter opener shell from The One Thing (17 of 18 chapters used 'The trap is [verb]'). Narrow form to avoid false-firing on legitimate 'The trap is set' / 'The trap is here' body uses.",
+            "evidence": "The opening movement is humble in a hard way. It does not begin by claiming strength. It names people. A grandfather gives self-command. A mother gives simplicity. Teachers and rulers give restraint,…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The label printer spits out a crooked wristband beside the meds cart at 6:42 a.m., and Claire sees the dosage mismatch before the locked medication drawer opens. Last week, Maren caught the same kind…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Before we answer him, what did he actually say?\" Emily asks, with a marked paperback open on the seminar table and the attendance sheet sliding toward the edge. Two students are ready to interrupt e…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The council chamber clock clicks louder than the projector fan while the parks director leans over Daniel's nameplate and asks for an exception. In the capital request binder, the prior year's scorin…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You are standing under scaffolding while dust falls from a limestone joint and Jack holds the inspection clipboard his retiring mentor left behind. The scaffold tag says final facade review. Before a…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"antoninus pius shows power\" appears in both deepRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[2]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "A thank-you list can stop at memory. A gratitude ledger names standards you now owe in conduct, such"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead: 2/3 (67%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:12 a.m., Laura flips the delayed sign while the line at gate B18 hardens and a voucher stack slides against the gate microphone. On the back of the delay sheet, she writes: shouting, blame, impo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"We are missing table twelve, not missing our minds,\" Lukas says as the ticket rail curls under the heat lamp. The chef snaps that the servers are useless, sauce spoon raised like a pointer. Lukas ca…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rain taps the library windows while the damaged book spine sheds glue on the counter. The patron calls the fee ridiculous and asks if Camille enjoys punishing people. The policy card and repair envel…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The edit bay is dark except for the timeline bar blinking at 01:47:22 and the festival upload portal counting down from the corner monitor. Rachel still has her headphones on, listening to three beau…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The edit bay is dark except for the timeline bar blinking at 01:47:22 and the festival upload portal counting down from the corner monitor. Rachel still has her headphones on, listening to three beau…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A stack of unopened envelopes leans against the sugar bowl, and Mathieu sees the same utility bill paid twice from his father's account. The memory clinic form sits beside his phone calendar. He want…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Pretty skin is not ripeness,\" Mr. Lowell says, handing Grace the paring knife beside a wooden crate. A speckled pear gives under her thumb; a glossy one shines like a catalog photo. The knife waits …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Pretty skin is not ripeness,\" Mr. Lowell says, handing Grace the paring knife beside a wooden crate. A speckled pear gives under her thumb; a glossy one shines like a catalog photo. The knife waits …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You can smell wet rope before the ridge disappears, and Nicolas is reading the weather radio beside the route card. The team wants one more push to the practice marker. Ambition makes the worsening w…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to make haste is\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What remains in the log after the sensor dies? Henrik lifts the cracked housing from rough water and checks the tide table with a wet notebook under his elbow. The instrument will not record salinity…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see the mediator turn the word no into a map. At the folding table, Paula writes each refusal on a legal pad while the settlement draft gathers arrows in the margin. \"No to Tuesday, no to install…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"track is still closed\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Blue monitor light trembles on the plastic incubator walls as Sofia steps into rounds after a sleepless night. A resident hands her a coffee cup, and the rounding sheet is already curling at the corn…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Blue monitor light trembles on the plastic incubator walls as Sofia steps into rounds after a sleepless night. A resident hands her a coffee cup, and the rounding sheet is already curling at the corn…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You feel the foam court headset warm against one ear as Chiara looks at the protective order file and the bench clock. A hard week has made the shift feel unfair, and the witness keeps twisting a tis…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The proofing racks stand in the dark like a quiet accusation, and Luke's phone is already lighting with staff-shortage messages. The flour scoop is still in the bin. Before the first excuse can gathe…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Open at nine,\" Manon tells the delivery driver while snow packs against the pharmacy door. The prescription bins are full, the delivery crate is half buried, and her gloves are still wet from the wa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Open at nine,\" Manon tells the delivery driver while snow packs against the pharmacy door. The prescription bins are full, the delivery crate is half buried, and her gloves are still wet from the wa…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Peter one cancelled rehearsal to stop calling setup invisible work. The chair cart squeaks beside the stage tape, and the conductor stand waits under the work light. He had wanted a musical t…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The sample box sits unopened beside a bid spreadsheet showing six figures in savings, and the committee agenda is already behind. Julien can move the cheaper tubing to a quick vote, or he can open th…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A swing chain clicks wrong in the empty park while Anna unloads a planting tray for the holiday photo. The socket wrench is in the cart, and the inspection tag still hangs from the gate. Cameras arri…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A swing chain clicks wrong in the empty park while Anna unloads a planting tray for the holiday photo. The socket wrench is in the cart, and the inspection tag still hangs from the gate. Cameras arri…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"If we remove that sentence, the report stops being ours,\" Kiran says into the conference phone. The audit memo is open, and the redline file has softened control failure into process note. A partner…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At 7:40 in the evening, rain beads on the engine bay floor while Michael checks the drill timer. The hose pack is slick, and turnout gloves make everyone's fingers clumsy. The crew has already run it…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:40 in the evening, rain beads on the engine bay floor while Michael checks the drill timer. The hose pack is slick, and turnout gloves make everyone's fingers clumsy. The crew has already run it…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The platform loudspeaker crackles before the crowd surges, and Olivia feels the same shove against her canvas tote while the delay screen flashes orange. The grievance arrives faster than the train. …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The platform loudspeaker crackles before the crowd surges, and Olivia feels the same shove against her canvas tote while the delay screen flashes orange. The grievance arrives faster than the train. …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Before we admire the pitch, let us read the rubric,\" Etienne says as name cards tilt around the proposal stack. The famous applicant's slides are cleaner than everyone else's. The panel is leaning t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rosin dust shines on the edge of the audition table when the first violin note cracks behind the screen curtain. Maja sees the score sheet dip in her hand as the room grows impatient. Before the stud…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You hear the bass through the hallway before you hear either story, and Chris holds the decibel meter beside the inspection form. He can already predict the upstairs tenant's denial and the downstair…"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[5].whatToDo",
+            "message": "whatToDo shares 75% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Pause the clip at contact, grade position, timing, and law, and keep crowd anger out of the assessment form."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"the hidden cost is\" — Counter payoff template. Lean Startup + others. Same family.",
+            "evidence": "The hidden cost is that looking serious can preserve delay while the useful action waits for a hand on the cause."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Cold air sits under the lobby doors like water while Claire types another group chat post about the boiler. The access notice is on the desk, the boiler key is in the lockbox, and the thermal camera …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"No lecture today,\" Beatrice says as order tickets curl beside the allergen chart. A missed dairy note has reached the pass again, and the cooks are bracing for the usual recap. The red clips are sti…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see the same question mark penciled beside the same line on the sample form while Hugo stacks membership cards at the desk. Another visitor has filled the renewal wrong. Hugo looks at the pencil …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What if the returns box is blaming the wrong thing? Ryan counts six bent paperbacks from the same display shelf and sees the stack leaning into the aisle. Staff have been warning customers all week. …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "What if the returns box is blaming the wrong thing? Ryan counts six bent paperbacks from the same display shelf and sees the stack leaning into the aisle. Staff have been warning customers all week. …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"when the hand moves\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 4/6 (67%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The consent binder has a clean empty sleeve where page six should be, and Nathan sees the enrollment log already prepared for the afternoon. The audit email is open in a draft window. One more partic…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Chloe says, \"The evidence is enough,\" at the conference table. The printed essays sit beside the similarity report, with three matching paragraphs highlighted. The student is staring at the table edg…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:03 in the evening, Mateusz sees the treasurer fold the repair estimate under her notebook while the reserve fund sheet passes down the table. Mateusz sees the meeting minutes still open. Residen…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Lea asks, \"How do you defend safety without feeding a lie?\" Lea stands between community hall chairs with the police timeline in one hand and a printed flyer in the other. A family's name appears und…"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[4].whatToDo",
+            "message": "whatToDo shares 75% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Open the private issue, include exact diff links and the license file, and offer a repair path before making a public ac"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"truth is not a\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Hold a few names like true, modest, rational, and careful without needing others"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Loose black thread curls from the jacket cuff while Julia lays the measuring tape across the rushed sample. The quality tag is already printed, and the showroom team wants speed. The defect is small …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Loose black thread curls from the jacket cuff while Julia lays the measuring tape across the rushed sample. The quality tag is already printed, and the showroom team wants speed. The defect is small …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Put the correction where readers will see it,\" Patrick says, with the correction note open in the CMS draft and the analytics screen already showing the original story's traffic. Burying it would be…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You see the flood map cover the glossy rendering while Nora keeps one finger on the zoning table. The developer has just praised her practical judgment in front of the room. She nods once, then compa…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"does not require a\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "\"Did you even test the null case?\" the review thread asks above a red test output. Luca's cursor rests over a defensive reply, then moves to the fixture instead. He patches the null case, adds the fa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Did you even test the null case?\" the review thread asks above a red test output. Luca's cursor rests over a defensive reply, then moves to the fixture instead. He patches the null case, adds the fa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sawdust dots the snow under the leaning maple before either neighbor stops talking. Margaux can let the loudest grievance set the agenda, or she can split the problem. She draws the property line fro…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What if the loud helper is still moving the line? Mina watches the volunteer drift toward the donors while the hairnet box sits unopened. She must decide whether to stew over his performance or use t…"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[5].whatToDo",
+            "message": "whatToDo shares 80% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Let the insult sit and return the meeting to the live estate decision."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the useful act is\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Take one live problem and name its matter, form, purpose, and ending window. The"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bridget hears, \"My bag was on the app ten minutes ago,\" as the passenger waves a boarding pass over the claim screen. Bridget's resignation letter is printed in her locker, and she can feel the quitt…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Hadiya checks the indicator strip before the mistake report clipped to the sterilizer log. Hadiya does not need another loop of self-accusation; she needs a clean tray. She divides the next set into …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It took Pierre one final sweep to hear the shop become quiet. The broom leaned against the workbench, the ledger book lay closed, and the key pressed into his palm. He could treat ending as failure; …"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[2].whatToDo",
+            "message": "whatToDo shares 71% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Put the bag tag before the quitting story and complete the trace in the present customer case."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the act in front\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 65
+  },
+  "bookGate": {
+    "bookId": "meditations",
+    "chapterCount": 12,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        40,
+        32,
+        36
+      ],
+      "answerPositionPctMax": 0.37037037037037035,
+      "totalQuizQuestions": 108,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "meditations",
+        "chapterCount": 12,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

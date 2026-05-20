@@ -1,0 +1,198 @@
+{
+  "chapterId": "flow-ch05",
+  "number": 5,
+  "title": "The Body in Flow",
+  "coreMove": "Turn bodily sensation into skilled involvement by giving the body rhythm, challenge, control, and trained attention.",
+  "sourcePressure": "The body becomes a flow arena through movement, disciplined control, sex handled tastefully, yoga, martial arts, seeing, music, and taste, all organized by skill and attention rather than mere stimulation.",
+  "chapterSpecificMisunderstanding": "Reduce the body chapter to fitness motivation, indulgence, or wellness slogans.",
+  "sourceAlignmentTerms": [
+    "movement",
+    "bodily challenge",
+    "yoga",
+    "martial arts",
+    "trained senses",
+    "music",
+    "taste",
+    "control"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "yoga and the martial arts",
+      "detail": "the frozen heading index calls yoga and the martial arts the ultimate control",
+      "useIn": "both",
+      "phrasingHint": "Yoga and martial arts make the point cleanly: the body becomes absorbing when control is practiced one breath, stance, and correction at a time."
+    },
+    {
+      "kind": "artifact",
+      "name": "the flow of music",
+      "detail": "the frozen heading index names music as a bodily and sensory flow channel",
+      "useIn": "fullRead",
+      "phrasingHint": "Music enters through the ear, but the work is bodily too: timing, breath, pressure, and attention learn to move together."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "generic the body in flow definition opener",
+      "open with a named person staring at a phone and realizing the abstract lesson",
+      "start with comfort versus challenge in slogan form"
+    ],
+    "counterintuition": [
+      "Most people assume X, but actually Y",
+      "The real problem is not X, it is Y",
+      "You do not need more discipline, you need better systems"
+    ],
+    "tryThisNow": [
+      "Set a timer and reflect on your life",
+      "Write down three things you learned",
+      "Notice your attention without changing the situation"
+    ],
+    "examples": [
+      "timestamp plus protagonist plus laptop plus decision in every case",
+      "generic office, classroom, kitchen, commute rotation",
+      "same visible beat with different props"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Grace",
+      "domain": "a physical therapist restarting a patient's walking practice",
+      "audience": "rehab patients and clinicians who need challenge without punishment",
+      "stakes": "too much difficulty risks pain, too little gives no involvement",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "she places two tape marks on the clinic floor and asks the patient to choose the stride target that is reachable but not automatic",
+      "firstImage": "The blue tape line curls at one corner of the clinic floor",
+      "mustInclude": [
+        "blue tape marks",
+        "parallel bars",
+        "stride counter"
+      ],
+      "mustAvoid": [
+        "fitness transformation montage"
+      ]
+    },
+    {
+      "protagonistName": "Lars",
+      "domain": "a community choir singer learning breath control",
+      "audience": "adults who think music is passive listening unless they perform professionally",
+      "stakes": "he may quit because he cannot hear progress yet",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "show the flat first rehearsal beside the night he tracks one breath cue through the same phrase and hears the line hold",
+      "firstImage": "Lars nearly left the choir after the second rehearsal",
+      "mustInclude": [
+        "folding chair",
+        "marked lyric sheet",
+        "breath pencil mark"
+      ],
+      "mustAvoid": [
+        "music as talent myth"
+      ]
+    },
+    {
+      "protagonistName": "Olivia",
+      "domain": "a chef training her palate for acidity",
+      "audience": "people who consume taste but rarely train attention",
+      "stakes": "a sauce will fail service unless she can detect the imbalance",
+      "format": "predict_reveal",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "her mentor asks which cup has one extra drop of vinegar, and Olivia must predict before seeing the labels",
+      "firstImage": "\"Tell me which cup changed,\" the sous-chef says",
+      "mustInclude": [
+        "three tasting spoons",
+        "vinegar bottle",
+        "unlabeled cups"
+      ],
+      "mustAvoid": [
+        "foodie indulgence"
+      ]
+    },
+    {
+      "protagonistName": "Matteo",
+      "domain": "a beginner aikido student learning a fall",
+      "audience": "learners who confuse bodily control with force",
+      "stakes": "a stiff landing could injure him and end the class early",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the mat is quiet, and Matteo loosens his shoulder, rolls once, then uses the impact sound as feedback for the next attempt",
+      "firstImage": "The dojo mat holds the print of bare feet",
+      "mustInclude": [
+        "canvas mat",
+        "white belt",
+        "shoulder cue"
+      ],
+      "mustAvoid": [
+        "martial arts mysticism"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "a photographer training sight during a dull commute",
+      "audience": "creative hobbyists who wait for inspiration",
+      "stakes": "the commute can be dead time or a practice in seeing",
+      "format": "vignette",
+      "openingDevice": "second_person",
+      "requiredBeat": "you stand on the tram platform and choose one color reflection to track instead of letting the whole street blur",
+      "firstImage": "You are early for the tram and the pavement is still wet",
+      "mustInclude": [
+        "tram shelter",
+        "red reflection",
+        "camera strap"
+      ],
+      "mustAvoid": [
+        "romantic city wandering"
+      ]
+    },
+    {
+      "protagonistName": "Devon",
+      "domain": "a partner planning a non-graphic intimacy conversation around attention and presence",
+      "audience": "couples who confuse closeness with automatic chemistry",
+      "stakes": "the relationship needs care without turning the lesson into performance pressure",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "ask what would change if the goal were shared attention rather than outcome, then show Devon putting the phone away and naming one boundary",
+      "firstImage": "What changes when closeness is treated as attention, not conquest?",
+      "mustInclude": [
+        "phone in drawer",
+        "bedside lamp",
+        "one spoken boundary"
+      ],
+      "mustAvoid": [
+        "graphic or manipulative sexuality"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguishing stimulation from bodily flow",
+      "using rhythm and feedback in movement",
+      "handling sensory examples with restraint"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Choose one ordinary bodily act, walking, stretching, tasting, or listening, and give it one precise cue to track for sixty seconds.",
+  "readingTimeMinutes": 12
+}

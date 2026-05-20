@@ -1,0 +1,175 @@
+{
+  "chapterId": "leaders-eat-last-ch06",
+  "number": 6,
+  "title": "E.D.S.O.",
+  "coreMove": "Audit which internal reward your system overfeeds and rebalance quick wins with trust-building rewards.",
+  "sourcePressure": "Frames culture as reward design through endorphins, dopamine, serotonin, and oxytocin, warning that fast solo payoff can thin out trust.",
+  "chapterSpecificMisunderstanding": "Overexplaining brain chemistry or treating chemicals as destiny instead of using them as a leadership lens for reward patterns.",
+  "sourceAlignmentTerms": [
+    "E.D.S.O.",
+    "endorphins",
+    "dopamine",
+    "serotonin",
+    "oxytocin",
+    "reward pattern",
+    "quick hit",
+    "trust"
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "definition-first opening",
+      "book-summary opening",
+      "generic pressure-at-work opening",
+      "reused chapter 6 title-as-question opening"
+    ],
+    "counterintuition": [
+      "good leadership is just kindness",
+      "pressure means safety must wait",
+      "numbers versus people as a flat binary"
+    ],
+    "tryThisNow": [
+      "set a timer and reflect",
+      "write three values",
+      "ask yourself what matters"
+    ],
+    "examples": [
+      "generic manager in a meeting",
+      "school group project fallback",
+      "family chore dispute",
+      "dashboard-only office scene"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "espresso bar tip competition",
+      "audience": "cafe owner reviewing daily leaderboard",
+      "stakes": "baristas chase tips and stop helping the slow station",
+      "format": "decision_point",
+      "requiredBeat": "she removes the solo tip crown and posts a shared recovery score for rush periods",
+      "firstImage": "a chalk leaderboard beside a backed-up milk pitcher",
+      "mustInclude": [
+        "chalk leaderboard",
+        "milk pitcher"
+      ],
+      "mustAvoid": [
+        "sales bonus board"
+      ],
+      "openingDevice": "environmental"
+    },
+    {
+      "domain": "radiology reading room",
+      "audience": "chief radiologist designing case targets",
+      "stakes": "fast case counts reduce teaching and trust",
+      "format": "scene",
+      "requiredBeat": "he pairs the case counter with a peer-review block where difficult reads earn shared credit",
+      "firstImage": "a grayscale scan frozen on a diagnostic monitor",
+      "mustInclude": [
+        "scan monitor",
+        "peer-review queue"
+      ],
+      "mustAvoid": [
+        "pop science lecture"
+      ],
+      "openingDevice": "dialogue_first"
+    },
+    {
+      "domain": "rowing club winter erg room",
+      "audience": "coach rewarding personal splits only",
+      "stakes": "athletes hide fatigue and stop pacing teammates",
+      "format": "predict_reveal",
+      "requiredBeat": "the coach asks which boat wins if the fastest rower burns out, then changes the board to boat-average recovery",
+      "firstImage": "an erg screen showing split time",
+      "mustInclude": [
+        "erg screen",
+        "boat roster"
+      ],
+      "mustAvoid": [
+        "fitness family competition"
+      ],
+      "openingDevice": "sensory_first"
+    },
+    {
+      "domain": "open-source release triage",
+      "audience": "maintainer using merged-PR counts",
+      "stakes": "contributors choose easy fixes over hard reviews",
+      "format": "postmortem",
+      "requiredBeat": "the maintainer tags unseen review work in the release notes before counting merged code",
+      "firstImage": "a pull-request queue filtered by review needed",
+      "mustInclude": [
+        "review queue",
+        "release notes"
+      ],
+      "mustAvoid": [
+        "software metric cliché"
+      ],
+      "openingDevice": "retrospective"
+    },
+    {
+      "domain": "hospital volunteer desk",
+      "audience": "coordinator recognizing hours served",
+      "stakes": "volunteers hoard visible shifts and avoid quiet patient support",
+      "format": "before_after",
+      "requiredBeat": "she creates a gratitude log for handoffs that made another volunteer succeed",
+      "firstImage": "a visitor badge printer beside a gratitude log",
+      "mustInclude": [
+        "visitor badges",
+        "gratitude log"
+      ],
+      "mustAvoid": [
+        "service recognition"
+      ],
+      "openingDevice": "question_hook"
+    },
+    {
+      "domain": "city chess club ladder",
+      "audience": "club organizer changing rankings",
+      "stakes": "players chase rating points and stop teaching beginners",
+      "format": "dialogue",
+      "requiredBeat": "he offers ladder credit for annotated practice games with new players",
+      "firstImage": "a chess clock beside a notebook of annotations",
+      "mustInclude": [
+        "chess clock",
+        "annotation notebook"
+      ],
+      "mustAvoid": [
+        "school competition"
+      ],
+      "openingDevice": "second_person"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "map incentives to fast or social rewards",
+      "predict how rewards shape cooperation",
+      "rebalance achievement with trust",
+      "avoid confusing stimulation with culture"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Look at one scoreboard or incentive and mark whether it rewards chase, status, bonding, or care, then change one signal that is crowding out trust.",
+  "readingTimeMinutes": 12,
+  "sourceAnchors": [],
+  "sourceAnchorsNote": "source contains no named anecdote for this chapter",
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "prevents the timestamp+named-protagonist template from dominating the chapter"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm — a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following 'concrete anchor -> abstract rule -> elaboration'"
+  }
+}

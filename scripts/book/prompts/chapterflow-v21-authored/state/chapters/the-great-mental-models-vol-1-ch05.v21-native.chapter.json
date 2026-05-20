@@ -1,0 +1,325 @@
+{
+  "chapterId": "the-great-mental-models-vol-1-ch05",
+  "number": 5,
+  "title": "Thought Experiment",
+  "readingTimeMinutes": 12,
+  "hook": "Three blank case cards under a harsh lamp reveal the rule before any real patient is waiting.",
+  "counterintuition": "Imagination is not useful because it is unconstrained, but because a strong thought experiment fixes the rules and lets the hidden consequence appear early.",
+  "tryThisNow": "Choose one risky action. Run it once in your head with one fixed constraint, then write the first hidden assumption that appears.",
+  "keyTakeaway": "A thought experiment is structured imagination: simplify the scene, fix the constraint, and inspect the consequence before reality makes it expensive.",
+  "breakdown": {
+    "fastRead": "Three blank case cards sit under a harsh meeting-room lamp. Ryan removes every patient name before the ethics board chooses scarce-bed criteria. No ambulance is waiting. No family is crying outside the door. The board has to expose its rule before a real crisis forces the rule onto a person.\n\nThat is a thought experiment. It is not daydreaming. It is a mental simulation with constraints tight enough to teach. You simplify reality on purpose so one hidden assumption or consequence can show itself.\n\nRun the future while the cost is still imaginary.",
+    "deepRead": "Ernst Mach's point gives imagination a job: spend a few minutes in the mind before spending money in the world. A thought experiment is a low-cost test bed. It lets you explore what is costly, impossible, dangerous, or not ready for physical trial.\n\nEinstein belongs here as a reminder that the best mental simulation is not loose fantasy; it is imagination held inside rules. The rules are what make the exercise useful. If anything can happen, nothing can be learned. If the conditions are fixed, the mind can trace implications.\n\nThe constraint does the teaching.\n\nManon uses this at the satellite console. A red sensor flag blinks over the launch-window countdown. Instead of asking whether the team feels ready, she asks them to simulate launch with the sensor fault unresolved and name the first irreversible loss. The vote changes because the mental run exposes what optimism had skipped.\n\nA good simulation also says what has been removed. Ryan strips names from triage cases to test criteria, not to pretend patients are blank cards. Tomas adds rain to the festival plan to reveal crowd flow, not to predict every storm. The simplification is a tool, and tools have edges.\n\nThe limit is just as important. A thought experiment can reveal assumptions; it cannot certify the world. Once the real test becomes possible and safe, reality gets the final say.",
+    "fullRead": "Rainwater pools in the chalk marks for the ticket line. Tomas, the festival organizer, is deciding whether rain-or-shine really means rain-or-shine. He walks the whole festival in his head during a thunderstorm: vendor coolers under thin tents, customers crowding under the brewery awning, parents with strollers stopped at the narrow ticket gate. The simulation is simple, but it is not vague. Weather, crowd flow, and the ticket queue stay fixed.\n\nBy the end, he moves the queue before the first drop falls.\n\nWhat constraint would make your plan reveal its weak point in ninety seconds?\n\nThe trolley problem lineage lasts because a stripped-down scene can make a hidden moral rule show itself. You do not need a full city, a full history, or every emotional detail to learn something. The simplification is the instrument. It removes enough reality for the rule to become visible. Then, if the situation is real, you bring the missing reality back before acting.\n\nAnke does that with discharge paperwork. You watch her pretend to be a tired patient with one bus transfer, a plastic pharmacy bag, and a phone number card buried under two pages of instructions. The packet looks clear from the nurse's station. In the simulation, it fails at the bus stop. The medication list is too dense, the callback number is too hidden, and the packet assumes calm attention the patient will not have.\n\nA weak thought experiment is just a story that protects the preferred answer. A strong one makes the answer work under fixed pressure. It says: keep the launch fault in place; remove the patient names; add rain; make the patient tired; cut the fuel cache by ten percent. Then watch what breaks.\n\nAkira writes the future postmortem from the arctic field camp before the team flies. Frost sits on the fuel drum stencil, and the imagined report says the generator ran short on day nine. That invented failure exposes the hidden assumption: the plan used ideal generator hours, not storm-bound hours. The fuel cache changes before anyone is cold.\n\nIsabel's audition rule shows the softer version. Numbered cards fan beside a piano bench, and the screen hides the performer's face. When she mentally walks the day from hallway to sign-in desk to screen, accompanist access still reveals advantage. The rule had solved one visible bias while leaving another path open. The mental walk found the leak before the audition season began.\n\nThought experiments are powerful because ideas are cheap to move. They are dangerous when their tidiness becomes a substitute for evidence. Use them to find the assumption, the implication, the moral rule, or the failure path. Then, when the world can answer safely, let it answer.\n\nThe mind is a rehearsal room, not the whole stage."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-ryan-blank-cases",
+      "title": "Ryan Removes the Names",
+      "tags": [
+        "ethics",
+        "triage",
+        "simulation"
+      ],
+      "planSpec": {
+        "domain": "ethics board triage exercise",
+        "audience": "a hospital ethics chair preparing for a scarce-bed protocol",
+        "stakes": "the first real crisis will arrive too fast for untested moral rules",
+        "format": "thought_experiment",
+        "requiredBeat": "Ryan removes all patient names from three hypothetical cases and forces the board to choose by stated criteria before any real patient is waiting"
+      },
+      "scenario": "Three blank case cards sit under a harsh meeting-room lamp before Tuesday's ethics board. Ryan, the hospital chair, has removed every patient name from the scarce-bed exercise. The protocol draft lists stated criteria, but the board keeps drifting toward personal sympathy. Before any real patient is waiting, Ryan must decide whether they will choose by the written rule or by the story each card used to carry.",
+      "whatToDo": "Keep the names off the cases and force the board to choose by stated criteria. Use the stripped-down simulation to expose the rule before the crisis arrives.",
+      "whyItMatters": "The missing names remove noise without removing the moral pressure. The board can see whether its rule works before a real patient pays for confusion."
+    },
+    {
+      "exampleId": "ch05-ex02-manon-sensor-fault",
+      "title": "Manon Runs the Fault Forward",
+      "tags": [
+        "space",
+        "risk",
+        "prediction"
+      ],
+      "planSpec": {
+        "domain": "satellite launch delay simulation",
+        "audience": "a mission planner weighing whether to delay a small satellite launch",
+        "stakes": "a rushed launch could waste years of lab work",
+        "format": "predict_reveal",
+        "requiredBeat": "Manon asks the team to simulate the launch with the sensor fault unresolved and name the first irreversible loss before voting"
+      },
+      "scenario": "Manon, the mission lead, points to the red sensor flag as the launch-window countdown glows over the console. \"Assume the fault stays red,\" she says. The team wants to vote, and the satellite has waited years. She asks them to run the launch in their heads and name the first irreversible loss. Before the window closes, she must decide whether a mental simulation is enough to delay a physical launch.",
+      "whatToDo": "Fix the sensor fault inside the simulation and trace the first loss that cannot be undone. Vote only after the team has named that consequence.",
+      "whyItMatters": "The mental run makes optimism face a fixed constraint. If the first irreversible loss appears quickly, the delay has a reason stronger than general caution."
+    },
+    {
+      "exampleId": "ch05-ex03-tomas-rain-queue",
+      "title": "Tomas Moves the Ticket Queue",
+      "tags": [
+        "festival",
+        "weather",
+        "crowd"
+      ],
+      "planSpec": {
+        "domain": "food truck festival rain plan",
+        "audience": "a festival organizer considering a rain-or-shine policy",
+        "stakes": "vendors could lose inventory and customers could crowd unsafe tents",
+        "format": "decision_point",
+        "requiredBeat": "Tomas walks the planned festival in his mind during a thunderstorm and moves the ticket queue after noticing where wet people will bottleneck"
+      },
+      "scenario": "Rainwater pools in the chalk marks for the ticket line while Tomas studies the weather map on his phone. The vendor coolers are already staged under the tents. He walks the whole festival in his mind during a thunderstorm and sees wet customers bottleneck at the narrow gate. His hand hovers over the site map, and he must decide whether to move the ticket queue before the policy is announced.",
+      "whatToDo": "Run the festival once under rain as a fixed condition, then move the queue away from the narrow gate before the crowd arrives.",
+      "whyItMatters": "The simulation exposes the crowd problem while chalk is still easy to redraw. Waiting for real rain would make the same lesson expensive and unsafe."
+    },
+    {
+      "exampleId": "ch05-ex04-anke-discharge-packet",
+      "title": "Anke Takes the Bus Home",
+      "tags": [
+        "hospital",
+        "paperwork",
+        "patient"
+      ],
+      "planSpec": {
+        "domain": "hospital discharge thought experiment",
+        "audience": "a ward manager redesigning discharge paperwork",
+        "stakes": "patients may misunderstand medication instructions after leaving",
+        "format": "before_after",
+        "requiredBeat": "You watch Anke pretend she is a tired patient with one bus transfer and test whether the new packet survives that path"
+      },
+      "scenario": "You watch Anke fold the discharge packet under a plastic pharmacy bag at the nurses' station. Before, the medication list looked clear on the ward desk. After she pretends she is a tired patient with one bus transfer, the callback number disappears under two pages of instructions. She redesigns the packet around the bus ride, not the desk.",
+      "whatToDo": "Run the paperwork through the patient's path: tired body, bus transfer, pharmacy bag, and one small phone screen. Redesign where the packet fails.",
+      "whyItMatters": "The thought experiment imports the constraint the desk view hides. It shows how instructions that look clear in calm conditions break during actual use."
+    },
+    {
+      "exampleId": "ch05-ex05-akira-fuel-postmortem",
+      "title": "Akira Writes the Cold Report",
+      "tags": [
+        "fieldwork",
+        "fuel",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "arctic field camp fuel plan",
+        "audience": "a field researcher planning a remote sampling season",
+        "stakes": "a miscounted fuel cache could strand the team",
+        "format": "postmortem",
+        "requiredBeat": "Akira writes a postmortem from the future where the camp runs short, then identifies the hidden assumption about generator hours"
+      },
+      "scenario": "It took Akira one invented report to see the fuel plan clearly. Frost silvered the drum stencil at the edge of camp in the future postmortem: generator short by day nine, sampling stopped, evacuation delayed. Back at the planning table, Akira finds the hidden assumption. The cache used ideal generator hours, not storm-bound hours, so the fuel order changes before the flight.",
+      "whatToDo": "Write the future failure report before the season starts. Use it to find the assumption about generator hours and change the cache while fuel can still move.",
+      "whyItMatters": "The imagined shortage gives the plan a consequence to inspect. It turns a quiet spreadsheet assumption into a visible failure before the team is remote."
+    },
+    {
+      "exampleId": "ch05-ex06-isabel-audition-path",
+      "title": "Isabel Walks the Audition",
+      "tags": [
+        "music",
+        "fairness",
+        "reflection"
+      ],
+      "planSpec": {
+        "domain": "music conservatory audition rule",
+        "audience": "a conservatory dean testing blind audition procedures",
+        "stakes": "a rule meant to increase fairness may create a new hidden advantage",
+        "format": "reflection",
+        "requiredBeat": "Isabel mentally runs the audition from the hallway, the sign-in desk, and the screen, then spots that accompanist access still reveals privilege"
+      },
+      "scenario": "Which part of the blind audition is still visible? Isabel, the conservatory dean, fans numbered audition cards beside a piano bench and mentally walks the day from hallway to sign-in desk to screen. The screen hides faces. The accompanist access does not. Students who can afford rehearsal time still arrive with an edge the rule had not hidden.",
+      "whatToDo": "Run the audition path from arrival to final note, not only from behind the screen. Add the accompanist step to the fairness test.",
+      "whyItMatters": "A mental simulation can reveal the hidden advantage that the official rule misses. The screen solves one bias while leaving another path open."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A hospital board is preparing a scarce-bed rule and has three hypothetical cases on the table before any real ambulance arrives. What makes the exercise a useful thought experiment?",
+        "choices": [
+          "It removes enough detail to focus the rule, while keeping the moral constraint fixed.",
+          "It includes every possible patient detail so the board feels the full reality.",
+          "It asks each board member to imagine the outcome they hope will happen."
+        ],
+        "correctIndex": 0,
+        "explanation": "A useful thought experiment simplifies deliberately and fixes the constraint. Too much detail can blur the rule, while hopeful imagining avoids the hard test.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A transit planner wants to test a new bus route before committing vehicles for the school year and has only one planning afternoon left. Which simulation is strongest?",
+        "choices": [
+          "Picture opening day with happy riders and no traffic delays.",
+          "Run one fixed morning scenario with school traffic, wheelchair boarding, and a late transfer.",
+          "Ask the public whether the proposed map looks convenient."
+        ],
+        "correctIndex": 1,
+        "explanation": "The fixed constraints make the mental run teach. Happy imagining and map opinions may be pleasant, but they do not pressure the route's hidden assumptions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A mission team mentally launches with a known sensor fault and quickly finds an irreversible loss. What should that reveal?",
+        "choices": [
+          "The team is too anxious to make a launch decision.",
+          "The thought experiment has exposed a consequence worth weighing before action.",
+          "The launch should always be canceled when imagination finds a problem."
+        ],
+        "correctIndex": 1,
+        "explanation": "The simulation does not decide everything by itself, but it surfaces a real consequence for the team to weigh. Anxiety and automatic cancellation miss the point.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A festival organizer mentally runs the event in heavy rain and sees a crowd bottleneck at the ticket gate. Which action best follows?",
+        "choices": [
+          "Move the queue while the layout is still cheap to change.",
+          "Ignore the image because real crowds may behave differently.",
+          "Cancel the event because the simulation revealed a risk."
+        ],
+        "correctIndex": 0,
+        "explanation": "The mental run found a cheap adjustment before the real cost appears. The organizer should not treat the simulation as certainty, but it gives a concrete redesign target.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A manager says a thought experiment is just speculation and refuses to use one before a risky rollout. What is the best reply?",
+        "choices": [
+          "Speculation becomes useful when constrained by fixed conditions and inspected for consequences.",
+          "Speculation is usually more accurate than small physical tests.",
+          "Speculation works only for science and philosophy, not everyday decisions."
+        ],
+        "correctIndex": 0,
+        "explanation": "The structure matters. A constrained mental run is not loose fantasy. It is a way to expose assumptions before a physical test is possible or affordable.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A ward manager tests discharge paperwork by pretending to be a tired patient taking the bus home. What is she most likely to discover?",
+        "choices": [
+          "Whether the packet looks professional to hospital staff.",
+          "Whether the design survives the actual constraints of patient use.",
+          "Whether every patient should receive less information."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mental simulation imports the patient's constraints. It is not judging polish or reducing information blindly; it is testing how the packet works under real pressure.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A field researcher writes a future failure report where the camp runs out of fuel. The report exposes ideal generator-hour assumptions. What did the exercise do?",
+        "choices": [
+          "It made the researcher pessimistic about the field season.",
+          "It replaced the need to check actual fuel use later.",
+          "It made a hidden assumption visible while the plan could still change."
+        ],
+        "correctIndex": 2,
+        "explanation": "The imagined postmortem turned a quiet assumption into a visible failure path. It does not remove the need for later evidence, but it improves the plan early.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A conservatory tests blind auditions only by picturing the performance behind the screen. What is missing from the thought experiment?",
+        "choices": [
+          "A full path from arrival to audition, including sign-in and accompanist access.",
+          "More emotional detail about how each musician feels while waiting.",
+          "A decision to remove all accompanists because fairness requires identical conditions."
+        ],
+        "correctIndex": 0,
+        "explanation": "The simulation is too narrow. Walking the whole path can reveal hidden advantages before the official blind moment begins. More emotion or automatic removal skips the test.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team has run a careful mental simulation and found a likely failure. When should they stop relying on the thought experiment alone?",
+        "choices": [
+          "When the mental run produces an answer everyone likes.",
+          "When a safe, affordable real-world test becomes possible.",
+          "When the simulation includes more than one possible outcome."
+        ],
+        "correctIndex": 1,
+        "explanation": "Thought experiments are previews, not final proof. Once a safe real-world test is possible, reality should update or correct the mental result.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You want to test a risky choice before acting. What turns imagination into a thought experiment?",
+      "back": "Fix the conditions, simplify the scene, and trace the consequence. Loose imagining comforts you; constrained simulation teaches you.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A plan looks strong until you imagine one fixed constraint. What should you retrieve?",
+      "back": "The constraint is doing the work. Keep it fixed and watch what breaks, because that break may reveal the hidden assumption.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Why can simplifying a scenario make judgment sharper rather than weaker?",
+      "back": "Simplification can remove noise so a rule, implication, or failure path becomes visible. The missing complexity must return before final action.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "When does a thought experiment become dangerous?",
+      "back": "It becomes dangerous when its tidy result replaces evidence. Use it to reveal assumptions, then let real tests correct it when testing becomes possible.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "What is the value of a future postmortem inside a thought experiment?",
+      "back": "It lets you inspect failure before the cost is real. The imagined report often exposes the assumption the live plan is hiding.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "You learn to use imagination under discipline. The skill is setting one fixed constraint, mentally running the situation through it, and writing the assumption or consequence that appears.",
+    "ifThenPlans": [
+      {
+        "context": "high-stakes meetings",
+        "plan": "If a decision will be hard to reverse, then run it once in your head with the main constraint fixed and name the first irreversible loss."
+      },
+      {
+        "context": "service design",
+        "plan": "If a process looks clear from your desk, then mentally walk it from the user's tired, distracted, or delayed point of view."
+      },
+      {
+        "context": "planning",
+        "plan": "If a plan depends on ideal conditions, then simulate the same plan with one realistic stressor before approving it."
+      },
+      {
+        "context": "ethics",
+        "plan": "If a rule will be used under pressure, then test it first in a stripped-down hypothetical where the criteria must do the work."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one risky action and run it once with one fixed constraint: rain, delay, fatigue, missing data, or scarce capacity. Write the hidden assumption that appears.",
+    "weeklyPractice": "Each week, pick one upcoming decision and run a two-minute mental simulation. Record the fixed constraint, the first consequence, and whether a real-world test should follow."
+  },
+  "memorableLines": [
+    {
+      "text": "Run the future while the cost is still imaginary.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the value of thought experiments immediate and practical."
+    },
+    {
+      "text": "The constraint does the teaching.",
+      "location": "breakdown.deepRead",
+      "why": "The line distinguishes structured simulation from fantasy."
+    },
+    {
+      "text": "The mind is a rehearsal room, not the whole stage.",
+      "location": "breakdown.fullRead",
+      "why": "It captures both the power and limit of the model."
+    }
+  ]
+}

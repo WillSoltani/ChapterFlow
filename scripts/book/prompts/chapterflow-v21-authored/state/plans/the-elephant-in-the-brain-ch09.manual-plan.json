@@ -1,0 +1,196 @@
+{
+  "chapterId": "the-elephant-in-the-brain-ch09",
+  "number": 9,
+  "title": "Conversation",
+  "coreMove": "Listen for knowledge display inside talk that claims to be only information exchange.",
+  "sourcePressure": "The source argues that conversation is not only information exchange; it also displays the ability to know and learn, including in news and academic research.",
+  "chapterSpecificMisunderstanding": "The writer turns conversation into communication tips and misses status display around knowing and learning.",
+  "sourceAlignmentTerms": [
+    "conversation",
+    "information exchange",
+    "know",
+    "learn",
+    "news",
+    "academic research",
+    "display"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "conversation as more than information exchange",
+      "detail": "The source says people talk not just to exchange information.",
+      "useIn": "both",
+      "phrasingHint": "The fact being shared is often only half the transaction."
+    },
+    {
+      "kind": "event",
+      "name": "showing off ability to know and learn",
+      "detail": "The source says conversation can display the ability to know and learn.",
+      "useIn": "both",
+      "phrasingHint": "A person can be offering news and auditioning as the kind of mind worth having nearby."
+    },
+    {
+      "kind": "place",
+      "name": "news and academic research as display arenas",
+      "detail": "The source connects the theory to news and academic research as social arenas where knowledge display matters.",
+      "useIn": "deepRead",
+      "phrasingHint": "The headline and the seminar question both let people show what kind of knower they are."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "the-elephant-in-the-brain-ch09: do not open with a confession that everyone has hidden motives",
+      "the-elephant-in-the-brain-ch09: avoid the tidy X is not really Y shell"
+    ],
+    "counterintuition": [
+      "the-elephant-in-the-brain-ch09: no blanket cynicism that turns all public reasons into lies",
+      "the-elephant-in-the-brain-ch09: avoid a simple pure-versus-fake contrast"
+    ],
+    "tryThisNow": [
+      "the-elephant-in-the-brain-ch09: no generic timer reflection",
+      "the-elephant-in-the-brain-ch09: no reusable notice your motives prompt"
+    ],
+    "examples": [
+      "the-elephant-in-the-brain-ch09: no office meeting with a whiteboard as the default scene",
+      "the-elephant-in-the-brain-ch09: no coffee shop conversation as the default social proof",
+      "no generic networking small talk",
+      "no fake linguistics study"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "neighborhood mutual-aid briefing",
+      "audience": "a coordinator keeping useful updates from becoming expertise contests",
+      "stakes": "flood information must move without turning every speaker into a status act",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "Laura splits the briefing into facts, needs, and offers after Etienne uses river-level jargon to display expertise instead of move sandbags.",
+      "firstImage": "The river map curls at the corners under a strip of blue tape.",
+      "mustInclude": [
+        "river map",
+        "need board",
+        "sandbag count"
+      ],
+      "mustAvoid": [
+        "disaster example from ch2 repeated as coalition only"
+      ]
+    },
+    {
+      "domain": "book club argument over an essay",
+      "audience": "a host noticing members compete to have read the smarter source",
+      "stakes": "the group may value display over shared understanding",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"That was in the New Yorker piece,\" Devon says, and Kasia asks what decision the reference changes for their local project.",
+      "firstImage": "\"That was in the New Yorker piece,\" Devon says before anyone mentions the essay.",
+      "mustInclude": [
+        "marked essay",
+        "tea tin",
+        "project notes"
+      ],
+      "mustAvoid": [
+        "coffee shop talk"
+      ]
+    },
+    {
+      "domain": "software incident update channel",
+      "audience": "an incident commander separating useful learning from clever commentary",
+      "stakes": "performative expertise slows repair during outage",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Pablo pins a three-field update template after Maja posts the clever root-cause theory before checking the logs.",
+      "firstImage": "The alert tone repeats under a wall of speculative messages.",
+      "mustInclude": [
+        "incident channel",
+        "log link",
+        "three-field template"
+      ],
+      "mustAvoid": [
+        "generic Slack meeting"
+      ]
+    },
+    {
+      "domain": "parent science fair judging",
+      "audience": "a judge distinguishing a child's learning from parent display",
+      "stakes": "knowledge performance can crowd out actual learning",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask the student to explain the failed trial, not the polished poster, and watch whether the learning belongs to the child or the parent.",
+      "firstImage": "You see the glitter title before you see the crossed-out trial notes.",
+      "mustInclude": [
+        "science poster",
+        "failed-trial notebook",
+        "judge sticker"
+      ],
+      "mustAvoid": [
+        "education credential argument"
+      ]
+    },
+    {
+      "domain": "academic seminar question period",
+      "audience": "a visiting scholar hearing questions as status bids",
+      "stakes": "research discussion can become a display arena",
+      "format": "predict_reveal",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Which question changes the paper, and which one only tells the room who read the footnotes?",
+      "firstImage": "Which question leaves the paper different after it lands?",
+      "mustInclude": [
+        "seminar handout",
+        "footnote page",
+        "name placard"
+      ],
+      "mustAvoid": [
+        "invented study details"
+      ]
+    },
+    {
+      "domain": "morning news rundown at a logistics firm",
+      "audience": "a supervisor keeping news talk from becoming tribal display",
+      "stakes": "the shift needs weather and port facts, not prestige through commentary",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "It took Laura one delayed truck to realize the most informed-sounding rundown had skipped the port closure that mattered.",
+      "firstImage": "It took Laura one delayed truck to distrust the cleverest recap.",
+      "mustInclude": [
+        "port notice",
+        "truck board",
+        "weather alert"
+      ],
+      "mustAvoid": [
+        "political news argument from ch16"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "detect knowledge display in information-sharing settings",
+      "separate useful talk from status talk",
+      "apply the know-and-learn signal to news and research contexts"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "In one conversation today, mark each contribution as useful information, ability display, alliance signal, or some mix of the three.",
+  "readingTimeMinutes": 12
+}

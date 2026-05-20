@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch16",
+  "number": 16,
+  "title": "Structure in Hiring",
+  "coreMove": "Compare every candidate against a fixed evaluation structure rather than against each other or against the previous candidate still fresh in the interviewer's mind.",
+  "sourcePressure": "Structured hiring reduces avoidable variability across candidate evaluations by ensuring all candidates are assessed against the same defined criteria rather than against each other or against the interviewer's shifting frame of reference. Unstructured interviews are highly noisy; structured ones are significantly more consistent and more predictive of job performance.",
+  "chapterSpecificMisunderstanding": "Assuming that experienced interviewers using their unstructured instincts produce consistent results, or that structured evaluation misses the interpersonal dimension that unstructured conversation captures.",
+  "sourceAlignmentTerms": ["structured interview", "unstructured interview", "criteria", "inter-rater agreement", "consistency", "candidate evaluation", "job-relevant"],
+  "sourceAnchors": [
+    {
+      "kind": "study",
+      "name": "Structured vs. unstructured interview validity research",
+      "detail": "Meta-analyses of selection research (including work associated with Frank Schmidt and John Hunter) consistently show that structured interviews predict job performance at roughly twice the validity of unstructured interviews, and that structured interviews also produce better inter-rater agreement — meaning they reduce both noise and bias simultaneously.",
+      "useIn": "deepRead",
+      "phrasingHint": "A hiring manager who asks the same behavioral questions in the same order to every candidate and scores each answer against the same rubric is not being robotic. They are being fair. The candidate who gets hired because of a shared love of squash did not beat a better candidate. They beat a less memorable one."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["your hiring process is broken", "stop trusting your gut in interviews"],
+    "counterintuition": ["structure finds better candidates than intuition", "the best hires don't feel like good fits in unstructured interviews"],
+    "tryThisNow": ["write down what you actually assess in interviews", "rate your last three hires against the same rubric and see if the scores predict performance"],
+    "examples": ["a scene where the unstructured interview leads to a clearly bad hire — too simple and too moralistic", "a scene that implies structure is only for HR departments or large companies rather than for any hiring process at any scale"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Hiring examples risk all reading as 'interviewer likes candidate for wrong reasons.' The formats and domains must span software engineering, law, NGO work, military selection, and academic faculty to show how structure applies across very different hiring contexts."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "software engineering hiring: a tech company comparing inter-interviewer agreement before and after structured interview introduction",
+      "audience": "an engineering hiring manager who introduced structured behavioral interviews after noticing inconsistent candidate assessments",
+      "stakes": "engineering team quality and hiring efficiency — inconsistent interview panel scores mean the candidate who gets the offer is not reliably the best candidate",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "contrast the pre-structure period (inter-rater agreement of 0.38 across panel members for the same candidate) with the post-structure period (same panel members, structured behavioral questions with a scoring rubric, inter-rater agreement of 0.71) — and show that the disagreements that remained under structure were substantive and discussable rather than based on different interpretations of the same interaction",
+      "firstImage": "two sets of interview scorecards for the same candidate: the pre-structure versions with different categories checked and different impressionistic notes; the post-structure versions with the same behavioral questions scored on the same scale",
+      "mustInclude": ["the 0.38 vs. 0.71 inter-rater agreement comparison", "the remaining post-structure disagreements being about substantive criteria rather than impressionistic style", "the mechanism: structure makes disagreements discussable because they are based on shared criteria"],
+      "mustAvoid": ["a specific candidate being rejected", "a tech company culture narrative"]
+    },
+    {
+      "domain": "legal associate hiring at a law firm: two hiring partners assessing the same candidate file independently under unstructured versus structured conditions",
+      "audience": "a law firm hiring committee reviewing a calibration exercise run by an external consultant",
+      "stakes": "associate class quality and the firm's long-term competitiveness — noisy hiring produces classes where the admitted associate's quality depends on which partner happened to review the file",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "two partners in the hiring committee debrief compare their unstructured impressions of the same candidate file — one rates the candidate highly on 'instinct for client service,' the other rates them low on the same dimension — and when pressed to describe what they noticed, they describe completely different behaviors as evidence of the trait, behaviors the other partner had not weighted at all",
+      "firstImage": "two assessment summary sheets for the same candidate, 'client service instinct' rated differently, with each partner's supporting notes referencing different parts of the application",
+      "mustInclude": ["same candidate, same criterion, different behaviors used as evidence", "neither partner having noticed they were applying different operational definitions", "the calibration exercise making this visible for the first time"],
+      "mustAvoid": ["a specific legal practice area", "a candidate being unfairly rejected"]
+    },
+    {
+      "domain": "NGO program director recruitment: an international organization comparing inter-panel consistency before and after structured scoring introduction",
+      "audience": "an NGO HR manager studying whether emotional resonance in interviews systematically advantages certain candidates over better-qualified ones",
+      "stakes": "program effectiveness — program directors who are selected for charisma in unstructured interviews may not have the operational competencies the role requires",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the HR manager reviews a year of hiring data after structured scoring was introduced: for the same final-round candidate pool, structured-panel hires showed 60 percent higher one-year retention and better average project delivery scores than unstructured-panel hires — and post-hoc analysis shows that unstructured panels had systematically favored candidates with cross-cultural storytelling facility over candidates with operational track records",
+      "firstImage": "a comparison table of hire outcomes by panel type: retention rate and project delivery scores higher for structured-panel hires across the row",
+      "mustInclude": ["the 60 percent retention improvement", "the storytelling-facility vs. operational-track-record substitution in unstructured panels", "the mechanism: unstructured panels weight what is memorable in the moment rather than what the criteria specify"],
+      "mustAvoid": ["a specific country or humanitarian context", "a scene that dismisses storytelling facility as unimportant"]
+    },
+    {
+      "domain": "military officer selection: a selection board comparing structured panel scoring versus holistic impression scoring for the same candidate pool",
+      "audience": "a military personnel selection researcher studying consistency across board compositions",
+      "stakes": "officer corps quality and equitable career paths — holistic impression scoring is more susceptible to affinity bias in addition to noise",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the researcher asks: if the same candidate pool were evaluated twice by boards with different composition — one structured, one holistic — what percentage of final-select candidates would overlap? The answer from a split-panel study: 82 percent overlap for structured panels; 54 percent overlap for holistic panels — the holistic board's selections are as much a product of who is on the board as they are of who the candidates are",
+      "firstImage": "a Venn diagram of two candidate selection sets — the overlap labeled by selection method type, the non-overlapping sections larger for holistic-panel selections",
+      "mustInclude": ["the 82 vs. 54 percent overlap figures", "the framing: structured panels select the same candidates regardless of board composition; holistic panels do not", "the researcher's framing: the measurement is not of candidate quality but of process consistency"],
+      "mustAvoid": ["a specific military service or combat context", "implying holistic selection is always inappropriate"]
+    },
+    {
+      "domain": "medical residency placement: a teaching hospital comparing structured versus unstructured interview scores' predictions of residency performance",
+      "audience": "a residency program director reviewing three years of interview-score-to-performance correlations",
+      "stakes": "residency program quality and patient care — residents selected on strong unstructured interview impressions who lack clinical reasoning skills create teaching and patient care problems",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "the program director presents the correlation data: structured interview scores correlated 0.48 with three-year residency performance ratings; unstructured interview impressions correlated 0.19 — and the faculty who conducted unstructured interviews showed no ability to predict which of their highly-rated candidates would underperform in residency",
+      "firstImage": "a slide at a faculty meeting showing two scatter plots side by side: interview score vs. residency performance for structured (tight positive correlation) and unstructured (wide, near-zero correlation) interviews",
+      "mustInclude": ["the 0.48 vs. 0.19 correlation difference", "the unstructured interviewers' inability to predict their own highly-rated candidates' performance", "the program director's framing: unstructured interviews are measuring impressionability, not clinical reasoning"],
+      "mustAvoid": ["a specific residency program or specialty", "a patient care failure story"]
+    },
+    {
+      "domain": "academic faculty hiring: a university search committee comparing assessments of the same presentation candidate by members who used versus did not use a scoring rubric",
+      "audience": "a faculty hiring committee coordinator analyzing a calibration study run before the next hiring cycle",
+      "stakes": "department culture and research direction over ten-year faculty tenures — noisy hiring produces departments where hiring decisions are driven by which committee member is most persuasive rather than who best meets criteria",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the coordinator reviews the calibration results: eight committee members watched the same candidate job talk; those who used the scoring rubric showed inter-rater agreement of 0.67; those who submitted impressionistic notes showed agreement of 0.31; and the disagreements in the impressionistic group correlated with committee members' research sub-field proximity to the candidate rather than with the candidate's stated strengths",
+      "firstImage": "a faculty hiring room at the end of a job talk, committee members writing notes — some with a printed rubric on the desk, some with blank paper",
+      "mustInclude": ["the 0.67 vs. 0.31 agreement", "the impressionistic disagreements correlating with research-area affinity", "the coordinator's framing: the rubric makes the committee's judgment the subject; the affinity makes the candidate's field proximity the subject"],
+      "mustAvoid": ["an academic politics narrative", "a candidate rejection story"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain the specific mechanism through which structured interviews reduce hiring noise",
+      "identify what distinguishes a structured interview from simply writing down interview questions in advance",
+      "apply the structure principle to design a less noisy evaluation process for a described hiring context",
+      "analyze why unstructured interviews are more susceptible to both noise and affinity bias simultaneously",
+      "evaluate whether a described interview protocol would reduce noise or only give noise a more structured appearance"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "For your next hiring or selection decision, write the evaluation criteria before you meet any candidate. After each candidate conversation, score each criterion independently before reading anyone else's scores. Compare: do your scores change when you see the other scorers' numbers? If they do, you have just discovered the noise that discussion introduces.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (2-3 sentences) distinguishing 'comparing candidates to each other' from 'comparing each candidate to a fixed standard', at least one 5+ sentence paragraph on why gut instinct in unstructured interviews predicts interview performance (i.e., how likeable the candidate is) rather than job performance, at least one one-sentence punch line about what the shared love of squash actually selects for",
+    "fullReadInterludeRequirement": "at least one brief research-aside paragraph on the Schmidt and Hunter meta-analysis finding — not citing chapter and verse but conveying the core result: structured interviews predict job performance at roughly double the validity of unstructured interviews",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

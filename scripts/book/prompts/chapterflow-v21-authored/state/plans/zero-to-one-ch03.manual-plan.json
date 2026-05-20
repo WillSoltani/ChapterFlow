@@ -1,0 +1,190 @@
+{
+  "chapterId": "zero-to-one-ch03",
+  "number": 3,
+  "title": "All Happy Companies Are Different",
+  "coreMove": "Look for the structural difference that lets a company escape direct comparison.",
+  "sourcePressure": "The chapter contrasts monopoly-created uniqueness with competitive sameness, arguing that direct rivalry erodes profits and narrows strategic imagination.",
+  "chapterSpecificMisunderstanding": "Saying monopoly is always good or competition is always bad as a moral claim.",
+  "sourceAlignmentTerms": [
+    "monopoly",
+    "competition",
+    "profit",
+    "uniqueness",
+    "durability",
+    "competitive sameness"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "person",
+      "name": "Tolstoy",
+      "detail": "the source sidecar lists Tolstoy as a proper noun tied to the chapter title allusion",
+      "useIn": "deepRead",
+      "phrasingHint": "Like the old line about unhappy families, weak companies start to resemble one another when the fight compresses them."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a definition of monopoly",
+      "generic founder staring at a whiteboard",
+      "calendar-time plus name plus decision repeated across examples"
+    ],
+    "counterintuition": [
+      "most people assume X but the truth is Y",
+      "the obvious move is wrong because the opposite is true",
+      "not about being bold, about being smart"
+    ],
+    "tryThisNow": [
+      "set a timer and write three bullets",
+      "ask yourself what matters most",
+      "pick one project and reflect"
+    ],
+    "examples": [
+      "generic startup pitch meeting",
+      "anonymous product team in a glass conference room",
+      "coffee mug and laptop scene shell"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "James",
+      "domain": "regional airline route strategy",
+      "audience": "an operations VP comparing another price war route with an underserved medical travel corridor",
+      "stakes": "whether the airline bleeds margin or owns a route others cannot easily compare",
+      "format": "decision_point",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "James removes the competitor fare column and marks the corridor where comparison breaks",
+      "firstImage": "a route map with one red string crossing the north coast",
+      "mustInclude": [
+        "route map",
+        "fare spreadsheet",
+        "airport slot memo"
+      ],
+      "mustAvoid": [
+        "generic niche advice"
+      ]
+    },
+    {
+      "protagonistName": "Camille",
+      "domain": "enterprise cybersecurity tool",
+      "audience": "a product lead deciding whether to chase every rival feature or own one compliance workflow completely",
+      "stakes": "whether the company becomes a checklist clone with thin margins",
+      "format": "dialogue",
+      "openingDevice": "second_person",
+      "requiredBeat": "Camille asks which feature would make procurement stop comparing line items",
+      "firstImage": "a procurement matrix projected too large on the wall",
+      "mustInclude": [
+        "procurement matrix",
+        "audit checklist",
+        "security console"
+      ],
+      "mustAvoid": [
+        "feature race"
+      ]
+    },
+    {
+      "protagonistName": "Michael",
+      "domain": "urban greenhouse cooperative",
+      "audience": "a founder choosing between commodity lettuce and rare winter herbs for restaurants",
+      "stakes": "whether the co-op competes on price or creates a small monopoly around supply reliability",
+      "format": "vignette",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Michael watches chefs ignore the lettuce sample and fight for the winter basil tray",
+      "firstImage": "condensation running down greenhouse glass",
+      "mustInclude": [
+        "basil tray",
+        "chef order slips",
+        "temperature log"
+      ],
+      "mustAvoid": [
+        "food startup generic"
+      ]
+    },
+    {
+      "protagonistName": "Chloe",
+      "domain": "medical billing service",
+      "audience": "a founder deciding whether to serve every clinic or specialize in one painful oncology billing code set",
+      "stakes": "whether specialization creates uniqueness or general service traps the firm in price comparison",
+      "format": "reflection",
+      "openingDevice": "question_hook",
+      "requiredBeat": "Chloe circles the oncology denial queue and writes different enough to matter",
+      "firstImage": "a denial queue printed across six pages",
+      "mustInclude": [
+        "denial queue",
+        "highlighter",
+        "payer portal screenshot"
+      ],
+      "mustAvoid": [
+        "customer service slogans"
+      ]
+    },
+    {
+      "protagonistName": "Niklas",
+      "domain": "independent game studio",
+      "audience": "a creative director choosing between a trend clone and a strange mechanic only their team can execute",
+      "stakes": "whether the studio gets compared into oblivion or earns its own category",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Niklas cuts the familiar combat demo and lets testers play only the odd mechanic",
+      "firstImage": "a controller cable coiled under a playtest table",
+      "mustInclude": [
+        "playtest form",
+        "controller cable",
+        "whiteboard timer"
+      ],
+      "mustAvoid": [
+        "creative uniqueness fluff"
+      ]
+    },
+    {
+      "protagonistName": "Paula",
+      "domain": "specialty legal practice",
+      "audience": "a partner deciding whether to join a crowded contract market or own cross-border art restitution work",
+      "stakes": "whether the firm keeps billable hours but loses strategic distinction",
+      "format": "postmortem",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "Paula reviews last year’s crowded RFP losses and moves the team toward the one rare case type",
+      "firstImage": "archival photos spread across a legal table",
+      "mustInclude": [
+        "RFP folder",
+        "archival photos",
+        "case chronology"
+      ],
+      "mustAvoid": [
+        "law firm marketing"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "recognize when a scenario requires look for the structural difference that lets a company escape direct comparison.",
+      "separate monopoly from competition in a novel operating case",
+      "diagnose the specific failure mode: saying monopoly is always good or competition is always bad as a moral claim.",
+      "choose the visible action that proves the chapter move rather than restating the idea"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one crowded market you understand and name the comparison axis everyone uses; write the one axis that would make comparison break.",
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,195 @@
+{
+  "chapterId": "the-gift-of-fear-ch03",
+  "number": 3,
+  "title": "The Academy of Prediction",
+  "coreMove": "Build a forecast from repeated behavior and sequence, then choose the narrowest protective action it justifies.",
+  "sourcePressure": "Prediction means disciplined pattern reading: repeated behavior, sequence, and earlier action matter more than excuse-making or absolute certainty.",
+  "chapterSpecificMisunderstanding": "Turning prediction into prophecy or claiming impossible accuracy.",
+  "sourceAlignmentTerms": [
+    "prediction",
+    "pattern reading",
+    "repeated behavior",
+    "sequence",
+    "probability",
+    "excuse-making",
+    "earlier action"
+  ],
+  "sourceAnchors": [],
+  "sourceAnchorNote": "Frozen notes contain no traceable named anecdote, study, place, date, or artifact for this chapter; use fictional protagonists only and keep claims tied to the listed source pressure.",
+  "forbiddenFrames": {
+    "hook": [
+      "opening with a generic alarm-bell sentence for ch03",
+      "starting with a definition of fear, intuition, danger, or prediction"
+    ],
+    "counterintuition": [
+      "the safe move is not always the polite move",
+      "trust your gut instead of overthinking",
+      "what looks harmless is dangerous"
+    ],
+    "tryThisNow": [
+      "set a timer and list your boundaries",
+      "pause and breathe before deciding",
+      "write down three warning signs"
+    ],
+    "examples": [
+      "generic office hallway pressure with no access detail",
+      "late-night parking lot with only atmosphere and no behavior pattern",
+      "reused date or elevator shell without chapter-specific beat"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person You direct address, retrospective It took her three weeks to see, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm: a question to the reader, a research aside only if source-supported, a direct second-person passage, or a brief source-anchor reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "protagonistName": "Claire",
+      "domain": "youth theatre backstage after rehearsal",
+      "audience": "a director reading repeated boundary tests from one volunteer",
+      "stakes": "whether to treat each awkward moment as isolated",
+      "format": "scene",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "lays out the sequence of after-hours arrivals, private questions, and ignored sign-out rules before changing access",
+      "firstImage": "a clipboard hanging from a paint-splattered nail",
+      "mustInclude": [
+        "sign-out sheet",
+        "prop trunk",
+        "stage door"
+      ],
+      "mustAvoid": [
+        "fortune-telling",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "James",
+      "domain": "bike repair shop at closing",
+      "audience": "a shop owner deciding whether an angry customer is likely to return",
+      "stakes": "whether apology language should erase repeated behavior",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "maps the sequence from refund demand to waiting outside to asking employee schedules",
+      "firstImage": "a stripped gear cable curled on the counter",
+      "mustInclude": [
+        "repair ticket",
+        "garage shutter",
+        "schedule board"
+      ],
+      "mustAvoid": [
+        "fortune-telling",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Juliette",
+      "domain": "county clinic appointment line",
+      "audience": "a receptionist forecasting access pressure from repeated calls",
+      "stakes": "whether to wait for an explicit threat",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "marks the pattern of hang-ups, callback timing, and questions about staff exits",
+      "firstImage": "a phone handset warm from repeated calls",
+      "mustInclude": [
+        "call log",
+        "appointment card",
+        "side entrance"
+      ],
+      "mustAvoid": [
+        "fortune-telling",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Mikkel",
+      "domain": "film festival volunteer office",
+      "audience": "a coordinator assessing a rejected applicant",
+      "stakes": "whether to call the pattern disappointment or pursuit",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "compares three emails, two lobby appearances, and a request for a badge reprint",
+      "firstImage": "the lanyard printer spitting out blank plastic",
+      "mustInclude": [
+        "badge printer",
+        "email thread",
+        "volunteer roster"
+      ],
+      "mustAvoid": [
+        "fortune-telling",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Sofia",
+      "domain": "neighborhood repair co-op",
+      "audience": "a tool-library manager after a member is suspended",
+      "stakes": "whether one apology resets the forecast",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "weights the pattern of rule bending, equipment hoarding, and door rattling after hours",
+      "firstImage": "a locked drill case under fluorescent light",
+      "mustInclude": [
+        "membership card",
+        "tool cage",
+        "incident note"
+      ],
+      "mustAvoid": [
+        "fortune-telling",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    },
+    {
+      "protagonistName": "Yusuf",
+      "domain": "small claims courthouse hallway",
+      "audience": "a legal-aid worker planning exit support",
+      "stakes": "whether a litigant will follow after losing",
+      "format": "before_after",
+      "openingDevice": "environmental",
+      "requiredBeat": "uses behavior sequence, not the courtroom speech, to request a deputy at the exit",
+      "firstImage": "a docket sheet folded into a coat pocket",
+      "mustInclude": [
+        "docket sheet",
+        "metal detector",
+        "exit corridor"
+      ],
+      "mustAvoid": [
+        "fortune-telling",
+        "a generic danger vibe without visible behavior",
+        "a recycled boundary scene from another chapter"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "distinguish prediction from a nearby false explanation in a new scenario",
+      "choose a proportionate action that fits build a forecast from repeated behavior and sequence, then choose the narrowest protective action it justifies.",
+      "analyze whether behavior sequence, context, or access pressure is carrying the risk",
+      "reject the weak misread: turning prediction into prophecy or claiming impossible accuracy."
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Pick one uneasy pattern and list the last three behaviors in order. Choose one narrow action that would make the next step safer without pretending certainty.",
+  "readingTimeMinutes": 12
+}

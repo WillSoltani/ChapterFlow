@@ -1,0 +1,197 @@
+{
+  "chapterId": "thinking-in-bets-ch04",
+  "number": 4,
+  "title": "Bet to learn: fielding the unfolding future",
+  "coreMove": "Move confidence only as far as the new evidence earns.",
+  "sourcePressure": "The chapter treats outcomes as staged feedback from an unfolding future, requiring proportional updates rather than snap verdicts or reactive swings.",
+  "chapterSpecificMisunderstanding": "The writer must distinguish a real update from a flinch; the newest result is evidence, not a king.",
+  "sourceAlignmentTerms": [
+    "unfolding future",
+    "noisy feedback",
+    "signal and noise",
+    "proportional updating",
+    "short-run outcome",
+    "process review",
+    "revision"
+  ],
+  "sourceAnchors": [
+    {
+      "kind": "artifact",
+      "name": "the unfolding future",
+      "detail": "The source frames feedback as arriving in pieces over time rather than as one clean answer key.",
+      "useIn": "both",
+      "phrasingHint": "The future does not hand over a verdict; it leaks evidence in pieces."
+    },
+    {
+      "kind": "event",
+      "name": "short-run outcomes mixing signal and noise",
+      "detail": "The source warns that early results can matter without settling the whole case.",
+      "useIn": "deepRead",
+      "phrasingHint": "One early result can deserve attention without deserving the judge's chair."
+    },
+    {
+      "kind": "artifact",
+      "name": "proportional updating",
+      "detail": "The source requires confidence to move in step with evidence quality rather than emotional intensity.",
+      "useIn": "fullRead",
+      "phrasingHint": "The update should be no bigger than the evidence earned."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": [
+      "The future whispers",
+      "Every result teaches",
+      "Do not overreact to noise"
+    ],
+    "counterintuition": [
+      "Never change after one result",
+      "Always trust the latest data"
+    ],
+    "tryThisNow": [
+      "Review your last result",
+      "Ask if it is signal or noise"
+    ],
+    "examples": [
+      "rollout dashboard with mixed metrics",
+      "bad week in a notebook",
+      "finance-class spreadsheet alarm"
+    ]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples, drawn from: timestamp+name+action, dialogue first line, sensory detail first, second-person direct address, retrospective, question-as-hook, environmental detail before any human",
+    "rationale": "C8 catches Cartesian repetition of phrases but not the deeper template of 'timestamp + named protagonist + prop + decision' that makes 6 examples feel like 1 example with name swaps"
+  },
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one paragraph 3 sentences or shorter, at least one paragraph 5+ sentences, at least one one-sentence punch line",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks the scene-then-rule rhythm - a question to the reader, a research aside, a direct second-person passage, or a brief historical reference",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  },
+  "exampleSpecs": [
+    {
+      "domain": "coastal ferry ridership pilot after two foggy weekends",
+      "audience": "transport planners",
+      "stakes": "canceling too early strands island commuters; expanding too fast wastes public funds",
+      "format": "predict_reveal",
+      "openingDevice": "environmental",
+      "requiredBeat": "Claire weights the fog cancellations separately from weekday commuter counts before moving the ridership forecast only a small amount.",
+      "firstImage": "Fog beads on the ferry terminal windows while the ridership chart loads.",
+      "mustInclude": [
+        "ridership chart",
+        "fog cancellation log",
+        "weekday commuter count"
+      ],
+      "mustAvoid": [
+        "municipal snowplow routes from ch2"
+      ]
+    },
+    {
+      "domain": "marathon injury rehab after one painful training run",
+      "audience": "adult athletes and physical therapists",
+      "stakes": "quitting wastes months of recovery; pushing ignores a real warning sign",
+      "format": "decision_point",
+      "openingDevice": "second_person",
+      "requiredBeat": "You ask Anders to compare one painful run with the prior three rehab markers and choose a two-day adjustment rather than a total verdict.",
+      "firstImage": "You are looking at a training watch that seems angrier than your knee feels.",
+      "mustInclude": [
+        "training watch",
+        "rehab markers",
+        "two-day adjustment"
+      ],
+      "mustAvoid": [
+        "generic fitness motivation"
+      ]
+    },
+    {
+      "domain": "neighborhood cafe menu trial after the first lunch rush",
+      "audience": "small restaurant owners",
+      "stakes": "a new menu item may need revision, not burial or blind faith",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "\"How much did the soup teach us?\" Manon asks, then separates weather, signage, and prep time before changing only the serving size.",
+      "firstImage": "\"How much did the soup teach us?\" Manon asks, holding the prep clipboard.",
+      "mustInclude": [
+        "prep clipboard",
+        "chalkboard sign",
+        "serving size"
+      ],
+      "mustAvoid": [
+        "restaurant opening crew from ch6"
+      ]
+    },
+    {
+      "domain": "nonprofit donor email subject-line test",
+      "audience": "communications managers",
+      "stakes": "one early open-rate spike could distort a year-end campaign",
+      "format": "vignette",
+      "openingDevice": "timestamp_named",
+      "requiredBeat": "At 4:06 p.m., Chris labels the first spike as early evidence, waits for donation conversion, and updates the campaign estimate by five points instead of rewriting the plan.",
+      "firstImage": "At 4:06 p.m., Chris watches the open-rate graph jump before the donation column moves.",
+      "mustInclude": [
+        "open-rate graph",
+        "donation conversion",
+        "five-point update"
+      ],
+      "mustAvoid": [
+        "local radio pledge drive from ch3"
+      ]
+    },
+    {
+      "domain": "urban garden seed trial after uneven germination",
+      "audience": "community garden coordinators",
+      "stakes": "abandoning a seed supplier may be premature if shade and watering differed by plot",
+      "format": "postmortem",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "Frida kneels by the patch map and codes shade, watering, and seed batch separately before revising the supplier estimate.",
+      "firstImage": "Wet soil sticks to Frida’s gloves as half the seed row stays bare.",
+      "mustInclude": [
+        "patch map",
+        "watering log",
+        "seed batch label"
+      ],
+      "mustAvoid": [
+        "orchard frost insurance from ch2"
+      ]
+    },
+    {
+      "domain": "robotics team sensor calibration after one failed scrimmage",
+      "audience": "student engineering teams",
+      "stakes": "overreacting could replace a sound sensor setup; denial could cost the regional qualifier",
+      "format": "before_after",
+      "openingDevice": "retrospective",
+      "requiredBeat": "Javier changes the review from \"the sensor failed\" to a three-run evidence table and adjusts the calibration threshold only where repeated errors appear.",
+      "firstImage": "It took Javier three replays to see the same bad bounce in different light.",
+      "mustInclude": [
+        "three-run table",
+        "calibration threshold",
+        "regional qualifier"
+      ],
+      "mustAvoid": [
+        "debate or seminar examples"
+      ]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "weigh evidence proportionally",
+      "separate early signal from noisy vividness",
+      "update without erasing the original decision frame",
+      "spot both stubbornness and wobbling"
+    ]
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "tryThisNowSpec": "Take one new result and write a one-sentence update that includes how much your confidence moved and which evidence earned that movement.",
+  "readingTimeMinutes": 12
+}

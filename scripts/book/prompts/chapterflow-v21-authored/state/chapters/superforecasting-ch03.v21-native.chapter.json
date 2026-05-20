@@ -3,317 +3,305 @@
   "number": 3,
   "title": "Keeping Score",
   "readingTimeMinutes": 12,
-  "hook": "Likely is a hiding place. Seventy percent has nowhere to hide when Friday arrives.",
-  "counterintuition": "Dov wants flexible language because it feels prudent. Real learning begins when the forecast is precise enough to score and honest enough to embarrass him later.",
-  "tryThisNow": "Open a note, write one forecast you already believe about a measurable forecast, add a percent and a check date, then write what would make you move the number down.",
-  "keyTakeaway": "Turn vague future talk into dated probabilities, then score the result, because judgment improves only when reality can compare your number with what happened.",
+  "hook": "When the CIA circulated a 1961 assessment using the phrase 'serious possibility,' Sherman Kent polled his colleagues on what it meant. Their estimates ranged from 20% to 80%. The same two words. The same document. Different numbers that implied completely different responses to the same threat.",
+  "counterintuition": "A numerical probability feels like a communication tool. It is actually a diagnostic. Writing 55% instead of 'likely' forces you to confront what you actually believe before you can obscure it in language.",
+  "tryThisNow": "Find one claim you made in the last 48 hours using a hedge word: likely, probably, good chance, I think. Write down the specific percentage you actually believe. Then ask: could someone reading that percentage check it when the outcome arrives? If you would reinterpret the percentage after the fact, the number is not specific enough yet. Narrow it by 10 points.",
+  "keyTakeaway": "A verbal hedge survives because it can mean anything. A numerical probability forces the forecaster to commit to one claim, changing their own thinking before it changes anyone else's.",
   "breakdown": {
-    "fastRead": "At 5:55 p.m., Dov writes likely on the whiteboard and then crosses it out. The team cannot learn from likely, so he writes 70 percent by Friday instead. He wants the clean answer now. The paper in front of him will not give it.\n\nWrite the odds where the room can see them. Add the date, the question, and the sign that would make you change your mind. A scoreable forecast trades comfort now for learning later.\n\nA forecast gets useful when it can be checked later. Confidence without a receipt is only weather in someone else's voice. Keep the receipt.",
-    "deepRead": "At 12:09 p.m., Hikari, a product analyst, stares at a launch dashboard with six green tiles. The forecast in the slide says strong adoption, but no one knows what score would prove it wrong. The easy move is to pick the story that feels whole. The better move is to slow down long enough to ask what the record says before this case arrived.\n\nA number is not a costume for certainty. It is a handle. You can move it when the facts move. You can also leave it alone when the new fact is only loud. The number gives reality a handle; the date gives it a place to pull.\n\nPicture Risto logging each equipment-failure forecast on a clipboard by the boiler room door. The choice is not between swagger and silence. The choice is between a claim that can learn and a claim that can only defend itself.\n\nUse the smallest clean question you can write. Put a date on it. Start from the outside view, the rate for cases like this one, then adjust for what is truly different here. Stop when you can explain the move in plain words.\n\nA limit stays in view. Some events are too tangled, too far out, or too hidden for a sharp answer. The skill is not pretending fog is glass. The skill is knowing when the glass is only dirty enough to wipe.",
-    "fullRead": "At 8:33 a.m., Nkem, a hospital bed manager, hears three supervisors say the ward will probably clear by noon. She opens a blank score sheet and asks each of them for a number. Everyone at the table can feel the pull of a clean story. It lowers stress. It gives the next meeting a script. It also hides the weak joint in the forecast, the part nobody will remember to test unless someone writes it down now.\n\nHand the room a sharper question. Do not ask whether the whole future will go well. Ask whether a named event will happen by a named date. Ask what would count as yes. Ask what rate similar cases have shown before. The room may groan, because the work feels smaller. The smaller work is the point. It gives reality a place to answer.\n\nA forecaster earns trust by leaving tracks. The first track is the base rate. Before you explain why this case is special, look at how often cases like it have turned out that way. The second track is the update. If a new fact arrives, move the odds by the strength of that fact, not by the size of the feeling it creates. The third track is the review. When the result lands, save the old number and ask which assumption broke.\n\nAt 6:12 p.m., Araceli, a debate coach, makes her students write odds before the tournament bracket is posted. The room gets quieter when the guesses have to survive Saturday. This is where the craft starts to feel almost physical. The pen pauses. The number changes from 60 to 55, not from 60 to 10, because the new fact is real but not huge. The team can see the move. Nobody has to pretend the old answer was perfect.\n\nVague words protect the speaker, while scored claims train the speaker. It keeps judgment from turning into a costume. A person can sound brave while hiding from the record. A quieter person with dates, odds, and reviews may be doing the harder thing.\n\nThe limit matters. Long-range shocks, hidden incentives, and fragile systems can make even careful work miss. A good forecaster does not use that as an excuse to blur every claim. She uses it to sort questions. Some deserve a wide range. Some deserve a backup plan. Some deserve no forecast stronger than a shrug.\n\nTry the move on a live claim today. Take one future sentence you hear at work, at home, or in the news. Cut it into a smaller question. Put a probability on it. Write why you chose that number. Then mark the date when you will look again. The act takes two minutes. The habit changes the room because it makes confidence answerable."
+    "fastRead": "Hannah had been calling dry spells 'likely' for eleven seasons. Farmers nodded and planted. Occasionally they called back to complain. She noted the complaints and filed them somewhere she did not review systematically.\n\nWhen a regional cooperative asked her to switch to probability numbers, she started with 72%. The number felt specific in a way that 'likely' never had. She then noticed something she had not expected: writing 72% made her think harder than writing 'likely' had. 'Likely' could mean anything she needed it to mean after the fact. 72% could not.\n\nThe verbal hedge survives because it can mean anything. The number survives only if it is right.\n\nThat is not mainly a lesson about talking to others. It is a cognition lesson. The forecaster who writes 72% has already done something the forecaster who writes 'likely' has not: committed to a claim that can be scored when the outcome arrives.",
+    "deepRead": "Sherman Kent watched the same intelligence reports mean different things to different readers. A section chief who read 75% from the word 'probable' and an analyst who read 30% from the same word were not having a disagreement about intelligence; they were having a disagreement they could not see, because the word was holding both numbers simultaneously without requiring either reader to surface their actual estimate.\n\nKent's push for numerical probability language inside the intelligence community was not about mathematical precision for its own sake. It was about making assessments auditable. If the report meant something, it should mean the same thing to everyone who read it, and it should leave a record that could be checked when the relevant event either occurred or did not.\n\nGlenn W. Brier had arrived at a closely related problem from a different starting point. Brier was a meteorologist who wanted to compare two weather forecasters fairly, not by impression but by outcome. His scoring rule measured the mean squared error between the stated probability and what actually happened. Zero was perfect. Half was chance-level. The rule did something that had not existed in that form before: it gave forecast quality a single comparable number. A forecaster who says 70% and is right on 70% of those predictions scores better than one who says 90% and is right on 70%. Both have the same hit rate. One is honest about uncertainty. The other is not.\n\nWhat Brier's rule captured was calibration: whether your stated confidence matches your actual accuracy rate over time. Calibration is not the same as being right. A calibrated forecaster who says 60% on a hundred questions will be right on about sixty of them. A forecaster who says 90% on the same hundred questions and is also right on sixty has the same hit rate and badly wrong calibration.\n\nA number does not just communicate. It diagnoses.\n\nWriting 72% instead of 'likely' forces a confrontation that the verbal hedge was designed to avoid. 'Likely' can be reinterpreted after the fact: you can always say you only meant 55%. The 72% cannot be reinterpreted. It stands there waiting for the outcome.",
+    "fullRead": "Diego had been saying the company 'looks good' for three weeks when his partner slid a blank column across the deal memo and asked him to fill it in. He wrote 65%, crossed it out, wrote 68%, crossed that out too. Settled on 65%.\n\nHe sat with the number for a moment. He had been saying 'looks good' as a way of communicating directional positivity without committing to what he actually thought. The process of arriving at 65% had revealed something he had not noticed while using the verbal language: he had been shading his confidence upward to avoid seeming negative about a deal the firm was excited about.\n\nThis is the psychological mechanism worth naming directly. When you write a specific number rather than a verbal hedge, you are not primarily improving communication with your audience. You are forcing a confrontation with your own uncertainty. 'Likely' can be produced without knowing what you actually believe; it fits comfortably inside a wide range of beliefs. '65%' cannot be produced without ruling out 60% and 70% and committing to a specific value. That commitment surfaces what the verbal hedge was allowing you to skip.\n\nMaja had been writing 'strong likelihood' in policy briefs for six years when a grant committee sent one back with a penciled question in the margin: 'What does this mean here?' She wrote 70%. Then she read her own brief again. Three paragraphs implied confidence above 90%. One buried caveat implied something closer to 50%. The 70% could not coexist comfortably with either. The number had exposed an inconsistency that 'strong likelihood' had been holding in place without making visible.\n\nThe inconsistency was not dishonest. It was the product of language elastic enough to hold contradictory beliefs simultaneously without flagging the contradiction. Kent's push inside the intelligence community was to eliminate that elasticity precisely because hidden contradictions produce different decisions from different readers. If the assessment meant two things, it should say two things.\n\nCamille had been using 'guarded prognosis' with the family for three weeks. When she switched to '38% five-year survival at comparable stage and age,' the room shifted. The family had been hearing 'guarded' as somewhere near 10%. The 38% opened a different conversation about treatment intensity, about what the family wanted to optimize for, about the range of outcomes actually on the table. The number had not changed what Camille believed. It had changed what the family could hear.\n\nEtienne began recording predicted split-time improvements for each athlete six weeks before the regatta. Early one Monday morning in October, he wrote specific numbers: 1.4 seconds per 500m for one rower, 0.8 seconds for another. The process of writing '1.4 seconds' for each athlete made him notice that two he had been verbally confident about had only three weeks of consistent training data, not enough to justify better than a coin flip. He had been confident in them as athletes. The number forced him to be honest about the evidence behind the confidence.\n\nWhen the regatta was over, Etienne had predicted improvements next to actual outcomes for every rower. Not a feeling. A record. The forecaster who builds a record gets better at forecasting. Everyone else just gets older at it.\n\nCalibration is built from that record. Resolution, the complementary measure, captures how much your predictions vary from the base rate. A forecaster who predicts 60% on everything is calibrated at a constant level but has low resolution; she has not distinguished the questions where 80% was warranted from the ones where 40% was. Both calibration and resolution require the record. Both require the number."
   },
   "examples": [
     {
-      "exampleId": "ch03-ex01-dov-whiteboard",
-      "title": "Dov crosses likely off the loading-dock board",
-      "tags": [
-        "decision_point",
-        "warehouse",
-        "forecasting"
-      ],
+      "exampleId": "ch03-ex01-hannah-agriculture",
+      "title": "Hannah replaces 'likely' with 72% and finds that the number breaks the room's consensus",
+      "tags": ["scene", "agricultural-forecasting", "numerical-probability"],
       "planSpec": {
-        "domain": "warehouse staffing",
-        "audience": "a shift manager forecasting whether orders clear by Friday",
-        "stakes": "whether staffing is set from vague hope or scoreable odds",
-        "format": "decision_point",
-        "requiredBeat": "he replaces likely with a dated probability before approving overtime"
-      },
-      "scenario": "Dov stands by the loading-dock whiteboard at 5:55 p.m., black marker squeaking under the word likely. Two pallets of returned parts block bay three. The overtime sheet is clipped to his vest, and the floor lead is waiting for a yes. Dov can write orders clear by Friday, likely, and nobody will be able to score it cleanly. His marker hovers over the board. The safe phrase would protect him. The harder mark is 70 percent by Friday at 4:00, and the floor lead is watching the marker.",
-      "whatToDo": "Write the percentage and the date. Approve overtime only after the team can see the forecast that will be checked on Friday.",
-      "whyItMatters": "Likely lets everyone remember the call differently. A number and date create feedback, so the next staffing call can improve."
-    },
-    {
-      "exampleId": "ch03-ex02-hikari-green-tiles",
-      "title": "Hikari pins a score box under the green dashboard",
-      "tags": [
-        "scene",
-        "product",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "product analytics",
-        "audience": "an analyst preparing a launch readout",
-        "stakes": "whether adoption success is defined before anyone celebrates",
+        "domain": "agricultural weather forecasting co-op where farmers need planting-window predictions",
+        "audience": "a regional crop advisor whose verbal forecasts have been misread differently by different farmers",
+        "stakes": "planting timing for 40 farms; too early means frost risk, too late means yield loss",
         "format": "scene",
-        "requiredBeat": "she turns strong adoption into a threshold and deadline"
+        "openingDevice": "sensory_first",
+        "requiredBeat": "the advisor switches from a verbal hedge to a specific probability and discovers that farmers who would have heard 'likely' as 90% treat the 72% as a reason to hedge; the number made a disagreement visible that the verbal hedge had been hiding"
       },
-      "scenario": "Hikari slides a yellow sticky note under the launch dashboard at 12:09 p.m., just below six green tiles. The deck says adoption looks strong. The VP likes that phrase. Hikari has the meeting in twenty minutes and a churn line that will not settle for two weeks. She types a box into slide two: 62 percent of invited teams active by May 30. Her cursor blinks after the percent sign while she decides whether to leave the softer phrase above it.",
-      "whatToDo": "Replace the soft phrase with the score box. Name the user action, threshold, and date before the launch readout leaves the analytics room.",
-      "whyItMatters": "Strong adoption cannot teach anyone if each person defines it later. A threshold makes celebration and correction answer to the same evidence."
+      "scenario": "The soil moisture reports are spread across the table, edges damp from a coffee mug someone put down wrong. Forty farm operators leaning in at different angles, all of them listening for the same word and hearing different numbers inside it.\n\nHannah has been doing this for eleven seasons. Dry spell likely next week, she says. Probable rain event through day six. The operators nod. They go back to their land and plant on whatever they privately thought she meant.\n\nThis season the regional cooperative asked her to switch formats. She tries 72% chance of below-average rainfall through day eight. The room reacts differently. Two operators who would have heard 'likely' as 90%+ and planted everything reconsider. One says she'll split her fields, get half in now and hedge the rest. The number had surfaced a disagreement that the verbal forecast had been suppressing. Some operators had always believed Hannah meant 70-something. Others had been hearing her as near-certain. Now the spread was visible.\n\nHannah realizes she had been giving different answers to different listeners from the same mouth, without meaning to and without knowing it. The number had not changed what she believed. It had made what she believed available for the room to respond to. Now she must decide whether to keep the percentage format for the rest of the season or revert to verbal language for the farmers who have asked for something simpler.",
+      "whatToDo": "When giving a forecast that multiple people will act on differently, state a specific probability. The number makes your belief available to the room at a single value rather than at whatever value each listener brings to it.",
+      "whyItMatters": "Verbal probability language distributes interpretation. A room of ten listeners walks away with ten different numbers from the same word. When those listeners make different decisions, they are not disagreeing with each other; they are responding to different beliefs they projected onto your forecast. A number forces a shared starting point."
     },
     {
-      "exampleId": "ch03-ex03-risto-boiler-clipboard",
-      "title": "Risto tapes the boiler guesses beside the pressure gauge",
-      "tags": [
-        "before_after",
-        "building",
-        "forecasting"
-      ],
+      "exampleId": "ch03-ex02-diego-vc",
+      "title": "Diego fills in the blank column and finds the number contradicts three weeks of meetings",
+      "tags": ["vignette", "venture-capital", "calibration"],
       "planSpec": {
-        "domain": "building maintenance",
-        "audience": "a facilities lead tracking equipment-failure calls",
-        "stakes": "whether maintenance learns from repeated hunches",
-        "format": "before_after",
-        "requiredBeat": "he starts scoring failure odds instead of retelling near misses"
-      },
-      "scenario": "Before January, Risto kept saying the north boiler was due, and after each quiet week the phrase faded into shop talk. At 7:28 a.m. on the first Monday of February, he tapes a clipboard beside the pressure gauge. Each mechanic writes odds of a shutdown by Friday. Grease marks the paper. Three weeks later the boiler fails after only one person had put the risk above 50. The crew stops arguing about who saw it coming and starts asking what she noticed.",
-      "whatToDo": "Post the forecast log where the work happens. Record each person's odds before the outcome, then review the misses and hits after the week closes.",
-      "whyItMatters": "A shared log changes memory. People can no longer claim foresight after the fact, and real signals from the best estimate become easier to study."
-    },
-    {
-      "exampleId": "ch03-ex04-nkem-bed-sheet",
-      "title": "Nkem asks three supervisors for noon probabilities",
-      "tags": [
-        "dialogue",
-        "hospital",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "hospital operations",
-        "audience": "a bed manager forecasting ward capacity",
-        "stakes": "whether discharge planning depends on vague optimism",
-        "format": "dialogue",
-        "requiredBeat": "she makes each supervisor give odds before noon arrives"
-      },
-      "scenario": "Nkem clicks a pen at 8:33 a.m. by the hospital bed board, where red magnets crowd the surgical ward. \"We should probably clear six beds by noon,\" the first supervisor says. \"Probably how much?\" Nkem asks. He sighs. \"Sixty.\" The second says forty-five. The third says eighty, then lowers it when he sees yesterday's delay sheet. Ambulance radio chatter crackles behind them. Nkem looks at the spread of numbers and must choose between averaging the reasons or letting the loudest voice become the plan.",
-      "whatToDo": "Write all three numbers beside the bed board and average them only after each supervisor gives a reason. Check the board at noon.",
-      "whyItMatters": "The numbers expose disagreement early. Scoring them at noon teaches which signals mattered, instead of letting the loudest supervisor become the plan."
-    },
-    {
-      "exampleId": "ch03-ex05-araceli-bracket",
-      "title": "Araceli seals the bracket odds in an envelope",
-      "tags": [
-        "postmortem",
-        "student",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "student debate",
-        "audience": "a debate coach reviewing tournament predictions",
-        "stakes": "whether students learn from pre-round reads",
-        "format": "postmortem",
-        "requiredBeat": "she keeps predictions sealed until outcomes are known"
-      },
-      "scenario": "Araceli sits on the gym bleachers at 6:12 p.m., torn bracket sheets under her water bottle, while the janitor stacks chairs below. Her debaters are already explaining why they knew Eastview would upset the top seed. She holds up the sealed envelope from Friday, the one with their written odds. Nobody had Eastview above 25 percent. A few faces flush. Araceli feels the urge to soften the moment, then leaves the envelope open on her palm and lets it do its work.",
-      "whatToDo": "Open the envelope and compare the written odds with the bracket. Ask what signal they missed before anyone explains the outcome backward.",
-      "whyItMatters": "The sealed forecast protects learning from hindsight. Students can see the gap between what they knew before and what feels obvious after."
-    },
-    {
-      "exampleId": "ch03-ex06-pavel-market-card",
-      "title": "Pavel dates the market call before the bell",
-      "tags": [
-        "vignette",
-        "small",
-        "forecasting"
-      ],
-      "planSpec": {
-        "domain": "small investing",
-        "audience": "a retiree tracking his own market predictions",
-        "stakes": "whether personal investing becomes accountable or anecdotal",
+        "domain": "venture capital firm where a partner asks an analyst to put a probability on a portfolio company's Series B milestone",
+        "audience": "an analyst who has been saying 'I think it looks good' for three weeks and is now asked for a number",
+        "stakes": "a pro-rata investment decision worth $800K",
         "format": "vignette",
-        "requiredBeat": "he writes the claim on an index card before watching prices move"
+        "openingDevice": "dialogue_first",
+        "requiredBeat": "when forced to write a specific percentage, the analyst realizes she has been shading her verbal confidence upward to avoid seeming negative; the number forces her to confront what she actually believes"
       },
-      "scenario": "Pavel sets an index card beside the kitchen radio at 9:27 a.m., three minutes before the market opens. The announcer says bank stocks are headed for a rough week. Pavel has said the same thing twice this month and later remembered himself as more cautious than he was. Today he writes: bank index down 3 percent by Friday, 55 percent. He dates it, drops it into the recipe tin, and turns the radio back up.",
-      "whatToDo": "Write the market call before the market moves. Put the card somewhere you cannot edit it, then check it on the date you named.",
-      "whyItMatters": "Private forecasts still need a scoreboard. The card stops memory from sanding down errors until every old guess feels wiser than it was."
+      "scenario": "'Just put a number in the column,' the partner says, sliding the deal memo across the table. 'Don't overthink it.'\n\nDiego opens his laptop. He has been saying 'looking good' and 'I think they'll get there' in every check-in for three weeks. He types 65%, looks at it, deletes it, types 68%, deletes that, goes back to 65%.\n\nThe number feels different from the words. The words were directional and vague; they conveyed enthusiasm without specifying what he actually thought the odds were. 65% is specific enough that he can feel the gap between it and the upbeat tone he has been projecting. He had been shading his verbal confidence upward to avoid seeming negative about a deal the firm was interested in. The 65% is what he actually believed. It does not match how he has been talking.\n\nThe partner reads the number and nods. 'So we're basically coin-flipping plus a bit.' Diego says yes. They spend the next thirty minutes discussing what would move the estimate in either direction, something they had not done in any of the three weeks of 'looking good' check-ins. Diego must decide by end of week whether to recommend the pro-rata investment on the current terms or push for a milestone condition before the firm commits the $800K.",
+      "whatToDo": "When a significant decision depends on a forward-looking assessment, write a specific probability before the meeting rather than arriving with verbal language. The act of producing the number surfaces what you actually believe rather than what you want the room to hear.",
+      "whyItMatters": "Verbal confidence language is easy to shade upward or downward depending on the social context. A specific number is harder to shade without noticing. Diego's 65% could not be presented as enthusiastic optimism; it required a different conversation. That conversation was the one the $800K decision needed."
+    },
+    {
+      "exampleId": "ch03-ex03-camille-oncology",
+      "title": "Camille replaces 'guarded prognosis' with 38% and finds the family had heard something much worse",
+      "tags": ["decision_point", "oncology", "verbal-vs-numerical"],
+      "planSpec": {
+        "domain": "oncology team giving a prognosis to a family",
+        "audience": "an oncologist who has been using 'guarded prognosis' and 'challenging case' with a family hearing those words as near-certain bad news",
+        "stakes": "the family's treatment decisions, which hinge on whether they understand 5-year survival as 20%, 40%, or lower",
+        "format": "decision_point",
+        "openingDevice": "retrospective",
+        "requiredBeat": "the oncologist switches to a number and the family's response shifts; they had been hearing the verbal hedges as single digits, and the 38% opens a different conversation about treatment intensity"
+      },
+      "scenario": "Three weeks of family consultations in the family conference room, and Camille has been using the same language: guarded prognosis, challenging case, difficult road ahead. Medically accurate. Empathetic in register. She has not said a number because numbers feel stark.\n\nIn the fourth consultation, she asks how the family is processing things. The daughter says they have already begun talking to a hospice coordinator. Their private assumption has been 5-10% survival. Camille had been thinking 38% at comparable stage and age.\n\nShe recalibrates the conversation. Thirty-eight percent five-year survival at this stage and this patient's profile. The room changes. Thirty-eight is not hope in any simple sense, but it is not single digits either. It opens a different set of questions: what does treatment intensity look like at this probability? What does the family want to preserve? What would a partial response mean for quality of life?\n\nThe conversations that followed that session were more specific and more useful than the three weeks of guarded language that preceded them. Camille had not changed what she believed. She had changed what the family could work with. She must decide what treatment intensity to recommend: whether to pursue aggressive therapy, which the 38% survival figure may support, or a more conservative approach the family might prefer given their earlier assumptions.",
+      "whatToDo": "When families or patients are making significant decisions based on a prognosis, name a specific survival or outcome probability rather than a verbal characterization. The number allows a shared starting point for the decisions that follow.",
+      "whyItMatters": "Verbal probability language in clinical settings carries enormous interpretive variance. 'Guarded prognosis' can mean anything from 5% to 50% depending on what the listener brings to it. The gap between the clinician's intended meaning and the family's heard meaning can produce decisions nobody would endorse once the gap is visible."
+    },
+    {
+      "exampleId": "ch03-ex04-andrew-software",
+      "title": "Three weeks of 'on track' ends when the question becomes a percentage",
+      "tags": ["vignette", "software-delivery", "verbal-hedge"],
+      "planSpec": {
+        "domain": "software project delivery where an engineering lead is asked for a ship probability before a stakeholder review",
+        "audience": "a lead engineer who has been saying 'we're on track' at every standup for three weeks",
+        "stakes": "a quarterly board presentation where the product announcement has already been scripted",
+        "format": "vignette",
+        "openingDevice": "second_person",
+        "requiredBeat": "when asked for an actual percentage, the lead says 55% — a number that contradicts the 'on track' signal and forces a conversation that the verbal hedges had been suppressing for three weeks"
+      },
+      "scenario": "You are an engineering lead who has typed 'looking good for Q3' in the standup thread four days running. The product VP asks to meet before the board presentation and says she needs an actual percentage on delivery confidence.\n\nYou say 55%.\n\nThe VP stares at the number for a moment. She had been planning a product announcement around this delivery for six weeks. 'On track' had been her signal that 55% was not the right number to plan around.\n\nYou explain: the core feature is solid, but two dependencies are owned by another team that has been running late on a separate initiative. You had not surfaced this explicitly because 'on track' is what you say when the train has not stopped yet. 55% is what you believe when you actually ask yourself whether the train will arrive.\n\nThe next hour is the most productive planning conversation of the quarter. The VP adjusts the board presentation from an announcement to a preview. Two engineers get redirected to unblock the dependencies. The conversation that 55% opened was not available to 'on track.' You must now decide whether to keep issuing percentage estimates in future standups, even knowing some team members will find them unsettling, or return to status language once this delivery risk is resolved.",
+      "whatToDo": "Before any stakeholder meeting where a project status will inform a downstream decision, write a specific probability on delivery or completion. Translate your internal confidence into a number the decision-maker can act on rather than a phrase they will interpret through their own optimism.",
+      "whyItMatters": "'On track' is a status, not an estimate. It tells the listener the current state without committing to the probability of the future state. The gap between 'on track' and 55% is not a failure of honesty; it is a structural property of status language. A probability forces the honest commitment that status language allows you to defer."
+    },
+    {
+      "exampleId": "ch03-ex05-maja-policy",
+      "title": "Maja writes 70% and finds her own brief argues for three different numbers at once",
+      "tags": ["predict_reveal", "policy-analysis", "internal-inconsistency"],
+      "planSpec": {
+        "domain": "legislative policy analyst at a think tank asked to estimate the probability of a state bill passing",
+        "audience": "a senior analyst whose written brief uses 'strong likelihood' throughout",
+        "stakes": "a nonprofit deciding whether to build a pilot program contingent on the bill passing",
+        "format": "predict_reveal",
+        "openingDevice": "environmental",
+        "requiredBeat": "the analyst writes 70%, reads her brief again, and realizes three paragraphs imply 90%+ confidence while one caveat implies closer to 50%; the number exposes an inconsistency the verbal language had been hiding"
+      },
+      "scenario": "The grant committee packet is sitting on the table, her brief printed and stapled inside it. Someone has written 'what does strong likelihood mean here?' in pencil in the margin of page three and put a question mark after it.\n\nMaja has written the phrase 'strong likelihood of passage' six times in nine pages. She knows what she means by it. The question is whether the committee knows.\n\nShe writes 70% on a notepad. Then she reads her brief again with the 70% in mind. The opening section implies the bill is nearly certain; the coalition analysis in section two implies passage above 90% given the vote count she projects. The risk paragraph near the end, the one she added because she knew the analysis was not airtight, implies something closer to 50% if the floor schedule slips.\n\nSeventy percent cannot coexist comfortably with any of those three readings. The number has revealed that 'strong likelihood' had been doing different work in different parts of the brief. She revises the brief to make the logic consistent with 70%, which means changing two claims in section two and expanding the risk paragraph into a clear statement of the conditions that would shift the estimate downward.\n\nThe grant committee funds the pilot. The brief's estimate of 70% is specific enough that when the bill passes the committee vote six weeks later, the nonprofit knows to treat the revised vote-count as the next checkpoint.",
+      "whatToDo": "Before submitting any analysis that uses verbal probability language, translate your overall probability into a number, then read your document with that number visible. Where the document is inconsistent with the number, revise the document.",
+      "whyItMatters": "Verbal hedges like 'strong likelihood' can hold contradictory beliefs in the same document without flagging the contradiction. A number forces a single commitment that makes internal inconsistency visible. The revision process is part of the forecast quality, not just the communication of it."
+    },
+    {
+      "exampleId": "ch03-ex06-etienne-rowing",
+      "title": "Etienne writes split-time numbers and discovers two athletes he was confident about have no evidence behind that confidence",
+      "tags": ["before_after", "athletic-coaching", "calibration"],
+      "planSpec": {
+        "domain": "competitive rowing coach tracking athlete split-time improvement predictions before a major regatta",
+        "audience": "a coach who has been describing expected improvements with verbal phrases like 'you should be stronger by the time we get there'",
+        "stakes": "athlete training intensity decisions for the final six weeks before the regatta",
+        "format": "before_after",
+        "openingDevice": "timestamp_named",
+        "requiredBeat": "the switch from verbal to numerical predictions forces the coach to notice that two athletes he has been verbally confident about have insufficient training data to support better than 50% confidence; the numbers expose the gap between his confidence as a coach and the evidence behind it"
+      },
+      "scenario": "At 6:00 a.m. on a Monday in October, Etienne opens his training log and begins filling in a new column: predicted split-time improvement per 500m before the November regatta. He has twelve athletes and six weeks.\n\nFor eight of them, he writes numbers without trouble: 1.4 seconds, 0.9 seconds, 1.2 seconds. The training data is consistent and the improvement curves are clear. For two athletes in the middle of the roster, he pauses. He has been telling them 'you're going to be strong by November' in practice. He means it. He believes in them as athletes.\n\nBut when he tries to write a number, he cannot write one that feels grounded. Both athletes have had inconsistent attendance over the six weeks of available data. One had an injury in week three that disrupted the progression. He writes 0.6 seconds for one and 0.5 seconds for the other, then adds a note to himself: less than 50% confidence in these estimates.\n\nThe six weeks that follow are different for those two athletes. He redirects training focus to address the inconsistency in their data rather than assuming the improvement will materialize from belief alone. One of them hits 0.7 seconds at the regatta. The other misses the target but improves enough that the training adjustment was clearly right. The log now has predicted values and actual values for every rower.",
+      "whatToDo": "Before any performance review or projection, write down a specific number for what you expect and note your confidence level in that number separately. The confidence level is the diagnostic: when it is low, the number is telling you something about the evidence, not just the outcome.",
+      "whyItMatters": "Verbal encouragement and a probability estimate are different claims. 'You will be strong by November' is motivational. '0.6 seconds, less than 50% confidence' is an assessment. A coach who conflates the two is running two jobs with one sentence, and neither is done well. The number separates the belief from the evidence behind the belief."
     }
   ],
   "quiz": {
-    "passingScorePercent": 80,
+    "passingScorePercent": 70,
     "questions": [
       {
         "questionId": "ch03-q01",
-        "prompt": "A manager at 8:10 a.m. hears a polished forecast for a measurable forecast but sees no written odds or date. Which move best fits the skill of making claims scoreable?",
+        "prompt": "What is the primary purpose of using a numerical probability instead of a verbal hedge like 'likely' or 'strong likelihood'?",
         "choices": [
-          "Write a dated probability and ask what result would count as a miss.",
-          "Trust the confident speaker because clear delivery usually means better judgment.",
-          "Wait for perfect proof and refuse to act until uncertainty disappears."
-        ],
-        "correctIndex": 0,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "apply",
-        "depthLevel": "simple"
-      },
-      {
-        "questionId": "ch03-q02",
-        "prompt": "An analyst at 2:35 p.m. finds one vivid story pushing the team toward a measurable forecast. Which response keeps the estimate tied to evidence?",
-        "choices": [
-          "Collect more fresh stories until one of them feels complete enough to use.",
-          "Start with the base rate, then list what this case adds or subtracts.",
-          "Ignore the story completely because single cases never teach anything."
-        ],
-        "correctIndex": 1,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "analyze",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch03-q03",
-        "prompt": "A parent at the kitchen table has to choose after hearing two confident claims about a measurable forecast. Which question should come first?",
-        "choices": [
-          "Pick the claim that makes the next step feel least awkward.",
-          "Ask which claim is more inspiring and use that as the guide.",
-          "Ask what record, sample, or past rate each claim can point to."
+          "To signal quantitative rigor and analytical expertise to the reader, improving perceived credibility.",
+          "To reduce the time that audiences need to interpret and act on a forecast in a shared setting.",
+          "To produce a claim specific enough that its accuracy can be checked after the outcome arrives."
         ],
         "correctIndex": 2,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "evaluate",
-        "depthLevel": "deep"
-      },
-      {
-        "questionId": "ch03-q04",
-        "prompt": "A coach before practice is tempted to treat last week's surprise as proof that a measurable forecast has changed for good. Which move improves the forecast?",
-        "choices": [
-          "Compare the surprise with a longer record before moving the odds.",
-          "Treat the surprise as a new trend and rewrite the whole forecast around it.",
-          "Hold the old forecast unchanged so the record looks steady."
-        ],
-        "correctIndex": 0,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "create",
-        "depthLevel": "standard"
-      },
-      {
-        "questionId": "ch03-q05",
-        "prompt": "A founder on a Monday investor call wants to sound certain about a measurable forecast, but the record is thin. Which line is strongest?",
-        "choices": [
-          "Use firm language so the room feels less anxious about the unknowns.",
-          "Give a range, name the unknowns, and promise a date for checking it.",
-          "Hide the range inside a slogan that sounds more decisive."
-        ],
-        "correctIndex": 1,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "The core purpose is accountability. A verbal hedge like 'likely' can be reinterpreted after the fact to fit whatever the outcome was. A numerical probability produces a claim that either holds or does not when the outcome arrives, making the forecaster's accuracy visible over time. Signaling expertise and reducing interpretation time are secondary benefits, not the mechanism.",
         "bloomsLevel": "understand",
         "depthLevel": "simple"
       },
       {
-        "questionId": "ch03-q06",
-        "prompt": "An emergency planner at 6:20 a.m. gets a new signal about a measurable forecast. Which update is sized best?",
+        "questionId": "ch03-q02",
+        "prompt": "An analyst consistently uses 'high confidence' in policy briefs. A review of 40 such briefs finds she was right on 60% of the occasions when she used that phrase. What does this reveal about her calibration?",
         "choices": [
-          "Jump to the new extreme so nobody can accuse the plan of being slow.",
-          "Move nothing because any update before the final outcome is premature.",
-          "Move the number a little unless the new signal is strong and direct."
+          "Her stated confidence is poorly calibrated: 'high confidence' is tracking near 60% accuracy when it should reflect accuracy near 80-90%.",
+          "She is performing adequately at 60%, given the well-documented inherent difficulty of policy forecasting in uncertain domains.",
+          "40 briefs is a sample too small to draw reliable conclusions about calibration from verbal probability language alone."
+        ],
+        "correctIndex": 0,
+        "explanation": "If 'high confidence' in standard usage implies accuracy well above 60%, then a 60% hit rate on those claims is a calibration problem, not adequate performance. Calibration means stated confidence matches actual accuracy. A 60% hit rate on high-confidence claims signals that her stated certainty level is consistently exceeding what her accuracy earns. The sample of 40 is small but sufficient for a working calibration estimate.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch03-q03",
+        "prompt": "A project manager says 'we'll probably hit the Q3 milestone' at a stakeholder meeting. Applying Sherman Kent's argument about verbal probability language, what should she do instead?",
+        "choices": [
+          "Use more specific verbal language such as 'very high probability' or 'nearly certain.'",
+          "State a specific percentage she actually believes and a condition she would check when Q3 arrives.",
+          "Provide a detailed explanation of the obstacles so stakeholders can form their own probability estimate."
+        ],
+        "correctIndex": 1,
+        "explanation": "Kent's argument was that verbal hedges allow different readers to extract different numbers from the same phrase, preventing accountability later. A specific percentage leaves no room for reinterpretation and commits the forecaster to a claim that can be scored when Q3 arrives. More specific verbal language does not solve the problem; it just relocates the ambiguity. Detailed obstacle-sharing transfers interpretation to listeners rather than resolving it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch03-q04",
+        "prompt": "Why is 'strong likelihood' more costly as a forecasting claim than '70% probability,' even when both represent the same underlying belief?",
+        "choices": [
+          "Because 'strong likelihood' can be interpreted as anywhere from 50% to 95% by different readers, making cross-reader coordination and later accountability impossible.",
+          "Because verbal probability language lacks the mathematical precision and specificity required for sound institutional decision-making and post-outcome review.",
+          "Because a stated percentage like '70%' conveys stronger expert credibility and analytical authority than verbal hedges in most professional settings."
+        ],
+        "correctIndex": 0,
+        "explanation": "The problem is not mathematical precision for its own sake; it is interpretive drift. Different readers extract different numbers from 'strong likelihood,' so the same phrase produces different decisions in different parts of an organization. After the outcome, both a reader who heard 90% and one who heard 55% can claim their interpretation matched the analyst's intent. The numerical claim prevents this by locking in a single interpretation that can be checked.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch03-q05",
+        "prompt": "A scientist reports 'elevated risk' of an extreme weather event without specifying a probability. One agency treats it as near-certain; another treats it as routine. What failure does this illustrate?",
+        "choices": [
+          "The scientist communicated irresponsibly by defaulting to specialist technical language when addressing a broad public policy audience.",
+          "Decision-makers in both agencies lack sufficient training to interpret probabilistic claims from scientists without explicit numerical guidance.",
+          "Verbal probability language gives different readers license to assign different numbers to the same phrase, producing different decisions from the same assessment."
         ],
         "correctIndex": 2,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "The failure is structural, not a training problem or a communication style error. When a probability claim is verbal rather than numerical, each reader assigns their own number to it. The scientist's intent becomes irrelevant; the phrase becomes a mirror for pre-existing beliefs. A numerical claim eliminates this by producing a single interpretable estimate that both agencies must respond to.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch03-q06",
+        "prompt": "An oncologist tells a family their loved one faces a 'guarded prognosis.' The family makes treatment decisions based on what they heard. The oncologist later says she meant 35-40% five-year survival. What error occurred?",
+        "choices": [
+          "The family should have asked clarifying questions before making irreversible treatment decisions.",
+          "The verbal phrase allowed a large misread that shaped major decisions, because it carried no single interpretable probability.",
+          "The oncologist's 35-40% range was itself too imprecise to communicate reliably."
+        ],
+        "correctIndex": 1,
+        "explanation": "The gap between the physician's intended 35-40% and the family's heard interpretation was not a failure of listening; it is a structural property of verbal probability language. 'Guarded prognosis' carries no number, so the family supplied their own. A stated numerical probability would have produced a shared starting point. Asking families to seek clarification places the burden on people least equipped to know what question to ask.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "ch03-q07",
-        "prompt": "A student reviewing a missed prediction about a measurable forecast wants to learn without protecting ego. Which action helps most?",
+        "prompt": "Why does writing a specific probability number change the forecaster's own thinking before it changes the audience's understanding?",
         "choices": [
-          "Save the old forecast, mark the missed assumption, and write one rule for next time.",
-          "Rewrite the old prediction in softer words before saving it.",
-          "Blame the outcome on luck and skip the written review."
+          "Because producing a specific number requires the forecaster to commit to a value rather than defaulting to language elastic enough to contain multiple beliefs simultaneously.",
+          "Because numerical estimates take longer to produce, giving the forecaster more time to consider the evidence.",
+          "Because forecasters experience social accountability when colleagues see a specific number that verbal phrases do not trigger."
         ],
         "correctIndex": 0,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "explanation": "A verbal hedge like 'likely' can be produced without knowing what you actually think; it fits inside a wide range of beliefs at once. Writing 65% requires you to rule out 60% and 70% and commit to a specific value. That commitment forces a confrontation with uncertainty that the verbal hedge allows you to skip entirely. The preparation time and social effects are real but secondary to this primary cognitive mechanism.",
         "bloomsLevel": "analyze",
         "depthLevel": "deep"
       },
       {
         "questionId": "ch03-q08",
-        "prompt": "A team is split over a measurable forecast, and the loudest person has the cleanest story. Which process makes the group smarter?",
+        "prompt": "An analyst writes 70% in a brief where three paragraphs imply 90%+ confidence and one caveat implies closer to 50%. The number cannot be reconciled with either. What has the exercise of writing the number achieved?",
         "choices": [
-          "Let the senior person speak last and call that alignment.",
-          "Have each person write private odds first, then compare reasons aloud.",
-          "Vote immediately so disagreement does not slow the meeting."
+          "It revealed that the analyst's evidence base is too thin to support any probability estimate.",
+          "It produced a number that represents the mathematical average of her various internal confidence levels.",
+          "It made an internal inconsistency visible that verbal hedges had been holding in place without revealing."
         ],
-        "correctIndex": 1,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "evaluate",
+        "correctIndex": 2,
+        "explanation": "The inconsistency was present before the number was written. Verbal language ('strong likelihood') is elastic enough to hold contradictory beliefs simultaneously without flagging the contradiction. Writing the number forced a single commitment that could not coexist with both the optimistic paragraphs and the cautious caveat. The number did not average her beliefs; it made the incoherence between them visible and required resolution.",
+        "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "ch03-q09",
-        "prompt": "Someone making a three-month plan for a measurable forecast wants to avoid confident blur. Which plan creates the best feedback?",
+        "prompt": "A manager argues that numerical probabilities suggest false certainty in inherently unpredictable domains, and that verbal hedges more honestly reflect the limits of knowledge. Is this argument valid?",
         "choices": [
-          "Keep the plan broad so later outcomes cannot embarrass anyone.",
-          "Make one large forecast and check it only after the whole period ends.",
-          "Split the plan into smaller forecasts with dates for checking each one."
+          "Yes, because numerical probability claims are only appropriate in domains where there are sufficient historical base rates and stable feedback cycles for meaningful calibration.",
+          "Partly, because the concern about false certainty applies to poorly calibrated numbers, not to numerical probability as a practice; a well-stated range can communicate uncertainty more precisely than a verbal hedge.",
+          "No, because verbal hedges never truly communicate genuine uncertainty to listeners; they always conceal or distort the forecaster's actual underlying beliefs."
         ],
-        "correctIndex": 2,
-        "explanation": "Vague words protect ego, while dated probabilities create feedback. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
-        "bloomsLevel": "create",
+        "correctIndex": 1,
+        "explanation": "A numerical range like '35-65%' communicates the scope of uncertainty more precisely than 'could go either way.' The false certainty concern applies to overconfident point estimates, not to the practice of quantification itself. The manager's objection assumes verbal hedges communicate uncertainty more honestly, but phrases like 'probably' mask a wide range of beliefs that a number would force into the open. Numbers can be wide or narrow; the dishonesty is in calibration, not in the practice.",
+        "bloomsLevel": "evaluate",
         "depthLevel": "deep"
       }
     ]
   },
   "reviewCards": [
     {
-      "cardId": "ch03-rc01",
-      "front": "You hear a confident claim about a measurable forecast. What do you ask before trusting it?",
-      "back": "Ask for the dated probability, the base rate, and the outcome that would count as a miss. Forecasts improve when they can be checked, not when they sound smooth.",
+      "cardId": "ch03-card01",
+      "front": "What is the difference between calibration and resolution in forecasting?",
+      "back": "Calibration is whether your stated confidence level matches your actual accuracy rate over time: a forecaster who says 70% should be right on about 70% of those predictions. Resolution is whether your predictions vary appropriately across different questions, distinguishing the 80% cases from the 40% cases rather than saying 60% on everything.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch03-card02",
+      "front": "What did Sherman Kent argue about verbal probability language in intelligence assessments?",
+      "back": "Kent argued that verbal hedges like 'probable' or 'serious possibility' allow different readers to extract different numbers from the same phrase, preventing coordinated response and making assessments impossible to audit after the fact. He pushed for numerical probability ranges to produce a single interpretable claim that could be checked when events occurred.",
       "difficulty": "easy"
     },
     {
-      "cardId": "ch03-rc02",
-      "front": "A fresh story makes your estimate feel wrong. How should you update?",
-      "back": "Move the odds by the strength of the new evidence. A vivid story can matter, but it should not erase the older record unless it directly changes the facts.",
+      "cardId": "ch03-card03",
+      "front": "Why does writing a specific probability number change the forecaster's own thinking?",
+      "back": "A verbal hedge can hold multiple beliefs simultaneously without forcing a commitment. A specific number requires ruling out nearby values and committing to a single estimate. That commitment forces the forecaster to confront their actual uncertainty level rather than defaulting to language elastic enough to mean whatever the outcome requires.",
       "difficulty": "medium"
     },
     {
-      "cardId": "ch03-rc03",
-      "front": "A team wants one bold answer. What smaller move protects learning?",
-      "back": "Break the issue into dated subquestions. Smaller forecasts show which assumption failed, so the next estimate can improve instead of becoming a blame session.",
-      "difficulty": "medium"
+      "cardId": "ch03-card04",
+      "front": "What does the Brier score measure, and why does it matter?",
+      "back": "The Brier score measures the mean squared error between a forecaster's stated probability and the actual outcome, with zero as perfect and 0.5 as chance-level. It matters because it makes forecast quality comparable across forecasters in a single number, distinguishing a forecaster who says 70% and is right 70% of the time from one who says 90% and is right 70% of the time.",
+      "difficulty": "hard"
     },
     {
-      "cardId": "ch03-rc04",
-      "front": "A miss is embarrassing. What should the review preserve?",
-      "back": "Keep the original wording and number. Then mark which assumption failed. The record has to sting a little or it will not teach.",
+      "cardId": "ch03-card05",
+      "front": "How do you test whether your numerical forecast is specific enough to be held accountable?",
+      "back": "Ask: could you reinterpret this number after the outcome arrives without changing it? If yes, the number is not specific enough. A probability claim that can be reconciled with both the occurrence and non-occurrence of the event is functionally equivalent to a verbal hedge. Narrow the range until only one outcome would confirm it.",
       "difficulty": "hard"
     }
   ],
   "implementationPlan": {
-    "coreSkill": "The core skill is making a claim measurable enough that the later outcome can train the next claim. Practice means writing the claim before the outcome arrives, then updating it in small, visible steps. The point is not to look cautious. The point is to give reality a way to train you.",
+    "coreSkill": "Replace verbal probability language with a specific number before any forecast leaves your hands. The number should be specific enough that you could not comfortably reinterpret it after the fact if the outcome differs from what you expected.",
     "ifThenPlans": [
       {
-        "context": "work",
-        "plan": "If a work meeting turns on a measurable forecast, then write one dated probability on the agenda and name the result that would prove it wrong."
+        "context": "Before sending any written assessment, report, or brief that includes verbal probability language",
+        "plan": "If a phrase like 'likely,' 'probably,' 'strong chance,' or 'good probability' appears in the document, then write the specific percentage you actually mean next to it. Read the document with that number visible. Where the document is inconsistent with the number, revise the document."
       },
       {
-        "context": "health",
-        "plan": "If you are choosing a health step under uncertainty, then write the base rate you know, the personal fact that changes it, and the next check-in date."
+        "context": "Before any meeting where a status update or forward-looking estimate will be shared",
+        "plan": "If you plan to say 'on track,' 'looks good,' or 'I think we'll get there,' then write a specific probability before the meeting and bring that number into the room rather than the verbal phrase."
       },
       {
-        "context": "personal",
-        "plan": "If a personal plan depends on a guess, then split the guess into one small forecast you can check within seven days."
+        "context": "When you receive a forecast or assessment that uses verbal probability language",
+        "plan": "If the assessment uses 'likely,' 'high confidence,' or similar phrases, then ask the person what specific percentage they mean. If they cannot name one, treat the forecast as unverifiable and weight it accordingly."
       },
       {
-        "context": "relationships",
-        "plan": "If someone you care about sounds certain about the future, then ask what evidence would make both of you lower the odds by ten points."
+        "context": "After an outcome arrives that you predicted verbally",
+        "plan": "If you used verbal probability language rather than a specific number, then ask yourself: what percentage would I have written if I had been forced to? Compare that to the outcome. The gap between the number you would have written and how you actually communicated is where your calibration work begins."
       }
     ],
-    "twentyFourHourChallenge": "Before tomorrow night, write one live forecast about a measurable forecast with a date, a probability, and two reasons for the number. Put a reminder on the date to check it without rewriting the original line.",
-    "weeklyPractice": "Once this week, review one old forecast before you know the outcome. Move the number only if new evidence deserves it, and write the reason in one sentence."
+    "twentyFourHourChallenge": "Find one verbal hedge you used today: likely, probably, good chance, I think. Write the specific percentage you actually meant. Then write the date when the outcome of this prediction will be knowable. Keep both numbers somewhere you will find them when that date arrives.",
+    "weeklyPractice": "Once a week, score one past prediction where you stated a specific probability. Note whether your stated number was consistent with the outcome in the right direction and at the right frequency. Over several months, a pattern of whether your 70% calls are actually right 70% of the time will become visible."
   },
   "memorableLines": [
     {
-      "text": "A scoreable forecast trades comfort now for learning later.",
+      "text": "The verbal hedge survives because it can mean anything. The number survives only if it is right.",
       "location": "breakdown.fastRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It collapses the entire accountability argument into two sentences: one on why verbal language persists, one on what forces the alternative to be honest."
     },
     {
-      "text": "The number gives reality a handle; the date gives it a place to pull.",
+      "text": "A number does not just communicate. It diagnoses.",
       "location": "breakdown.deepRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "Six words that capture the psychological mechanism: the number reveals what the forecaster believes rather than just transmitting it."
     },
     {
-      "text": "Vague words protect the speaker, while scored claims train the speaker.",
+      "text": "The forecaster who builds a record gets better at forecasting. Everyone else just gets older at it.",
       "location": "breakdown.fullRead",
-      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+      "why": "It names the asymmetry between learning and experience: experience without feedback just accumulates time, not skill."
     }
   ]
 }

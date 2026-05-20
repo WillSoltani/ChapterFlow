@@ -1,0 +1,118 @@
+{
+  "chapterId": "noise-ch37",
+  "number": 37,
+  "title": "How to Conduct a Noise Audit",
+  "coreMove": "Conduct a noise audit by collecting independent judgments on matched cases, measuring the spread before drawing any conclusions, and resisting the urge to explain individual disagreements as isolated special cases.",
+  "sourcePressure": "A noise audit collects multiple independent judgments on the same cases and measures the spread. Organized comparison is stronger than casual impression. The audit must be designed so that raters do not communicate before recording their judgments, and the metric of spread must be chosen before looking at the data. The temptation to explain each disagreement as an isolated exception is the most common way noise audits produce underestimates.",
+  "chapterSpecificMisunderstanding": "Treating a noise audit as simply asking experts whether they agree rather than measuring the actual distribution of their independent assessments on the same cases, or allowing post-hoc case-by-case explanation to replace the distributional measurement.",
+  "sourceAlignmentTerms": ["noise audit", "independent judgment", "spread", "matched cases", "pre-commitment", "measurement", "audit design"],
+  "sourceAnchors": [
+    {
+      "kind": "institution",
+      "name": "Noise audit methodology in professional assessment research",
+      "detail": "Research on inter-rater reliability measurement in forensic science, clinical assessment, and financial review consistently finds that the most common audit design errors are: allowing raters to communicate before recording assessments (which reduces measured noise without reducing actual noise), measuring only the cases where disagreement is most expected (which underestimates noise in ordinary cases), and explaining individual disagreements after measurement as special cases (which prevents accurate estimation of systemic spread).",
+      "useIn": "deepRead",
+      "phrasingHint": "The audit is not asking whether the raters agree. The audit is measuring how much they disagree, on cases they would have said were ordinary. The ordinary case is exactly the right target. If you audit only the cases you expect to be difficult, you will measure the noise you already suspected and miss the noise that runs through your most routine judgments."
+    }
+  ],
+  "forbiddenFrames": {
+    "hook": ["here is how to find the noise your organization is hiding", "the five-step noise audit every manager should run"],
+    "counterintuition": ["auditing your most difficult cases gives you the best picture of noise in your system", "asking experts whether they agree on a case is equivalent to measuring their actual disagreement"],
+    "tryThisNow": ["run a noise audit on your most controversial cases this month", "ask your team to rate five cases and see if they agree"],
+    "examples": ["a scene where the noise audit reveals perfect agreement — that should prompt questions about audit design, not celebration", "a scene where post-hoc case-by-case explanation is treated as completing the audit — that is the primary audit failure mode the chapter is identifying"]
+  },
+  "exampleCount": 6,
+  "exampleOpeningDiversity": {
+    "rule": "no more than 2 of the 6 examples may open with the pattern 'At HH:MM, <Name> <verb>s'",
+    "requiredOpenings": "at least 4 distinct opening devices across the 6 examples",
+    "rationale": "Noise audit examples risk reading as a methodology checklist. Each domain must show the audit design choices that determine whether the audit measures actual noise or a managed version of it — emphasizing that good audit design produces uncomfortable findings while poor audit design produces comfortable ones."
+  },
+  "exampleSpecs": [
+    {
+      "domain": "investment committee rating audit: a private equity firm conducting a noise audit of investment thesis rating consistency across its investment committee",
+      "audience": "a private equity firm managing partner designing and interpreting a first noise audit of the firm's investment thesis rating process",
+      "stakes": "investment decision quality — an audit that finds no noise despite actual noise gives the firm false confidence; an audit with poor design produces measured noise that underestimates actual spread",
+      "format": "dialogue",
+      "openingDevice": "dialogue_first",
+      "requiredBeat": "the managing partner and the audit designer review two candidate audit designs: design A asks committee members to rate five deals from the last year that the firm passed on — chosen because they were controversial; design B provides 12 anonymized deal memos drawn randomly from the past three years including successful investments and passes, and requires each committee member to record an independent investment thesis quality score before any discussion; the designer explains that design A will measure noise in controversial cases (an underestimate of systemic noise) and allow post-hoc explanation of each disagreement as case-specific; design B will measure noise across the ordinary case distribution and pre-commit the spread metric before any member sees another member's scores",
+      "firstImage": "a side-by-side audit design comparison: design A (selective cases, post-hoc explanation allowed) with its underestimate risk annotated, versus design B (random sample, pre-committed metric, no discussion before recording) with its valid-measurement properties annotated",
+      "mustInclude": ["the specific design flaws in design A (selected difficult cases, post-hoc explanation)", "the specific design requirements of design B (random sample, independent scoring, pre-committed metric)", "the designer's framing: the audit that produces the most comfortable result is almost never the most accurate one"],
+      "mustAvoid": ["a specific investment deal or fund", "implying that finding high noise in an investment committee is evidence of poor judgment rather than of systemic measurement variation"]
+    },
+    {
+      "domain": "refugee resettlement consistency audit: a resettlement agency conducting a noise audit of vulnerability classification consistency across its assessor team",
+      "audience": "a resettlement agency quality director designing a first systematic noise audit of vulnerability classification to measure actual inter-assessor spread on matched case vignettes",
+      "stakes": "classification consistency and resource allocation equity — an audit that produces measured noise lower than actual noise through poor design will underestimate the equity problem and produce inadequate remediation",
+      "format": "scene",
+      "openingDevice": "environmental",
+      "requiredBeat": "the quality director presents the audit design to the regional management team: the design provides each assessor with 15 anonymized case vignettes drawn from the agency's full case distribution — not selected for difficulty — and requires each assessor to record a vulnerability tier classification before discussing any case with any colleague; the spread metric (average absolute deviation from the median classification) was defined before the data collection began; the regional directors' initial request to exclude cases that 'clearly fall at tier boundaries' is identified as the audit's primary failure mode — those cases are exactly where classification noise is highest, and excluding them produces a measurement of noise for easy cases only",
+      "firstImage": "an audit design diagram showing 15 vignettes drawn randomly from the case distribution — with the regional directors' proposed exclusion zone (boundary cases) highlighted as the portion of the distribution that contains the most noise",
+      "mustInclude": ["the pre-committed spread metric as a non-negotiable design element", "the proposed exclusion of boundary cases as the primary audit failure mode the director identifies", "the director's framing: you cannot measure the noise in the cases that matter most by auditing only the cases that are easiest to classify"],
+      "mustAvoid": ["a specific refugee's case", "a political framing of refugee policy or vulnerability assessment standards"]
+    },
+    {
+      "domain": "climate model inter-model comparison audit: a meteorological research consortium auditing inter-model spread in regional precipitation projections as a noise measurement exercise",
+      "audience": "a climate research consortium science director designing an audit of inter-model spread in regional precipitation projections to distinguish noise-driven spread from genuine uncertainty in projection science",
+      "stakes": "climate adaptation planning — understanding which component of projection spread is model-specific noise versus genuine physical uncertainty determines whether adaptation plans should wait for better models or proceed with the current uncertainty range",
+      "format": "thought_experiment",
+      "openingDevice": "question_hook",
+      "requiredBeat": "the science director asks the consortium's modeling leads: if we provide all modeling teams with identical input data and boundary conditions and ask them to produce regional precipitation projections for the same 30-year period independently, how much of the resulting spread is model-specific noise versus unavoidable physical uncertainty? The audit design requires identical inputs, pre-committed spread metrics, and prohibition on model team communication before result submission; the audit reveals that 40 percent of the observed inter-model spread disappears when boundary conditions are standardized — that 40 percent was measurement noise in the input specifications, not genuine physical uncertainty, and it was invisible in the consortium's prior unstructured modeling exercises",
+      "firstImage": "a before-and-after inter-model spread comparison: standard (uncoordinated) modeling exercises with full spread, versus structured identical-input audit with 40% spread reduction — the reduction representing input-specification noise rather than genuine uncertainty",
+      "mustInclude": ["the 40% spread reduction under standardized inputs as the audit's primary finding", "the finding that the reduced spread represents measurement noise invisible in unstructured exercises", "the director's framing: the audit does not reduce the genuine physical uncertainty — it reveals how much of the observed spread was model noise rather than climate signal"],
+      "mustAvoid": ["specific climate projections or policy recommendations", "implying that climate model spread is primarily noise rather than genuine physical uncertainty"]
+    },
+    {
+      "domain": "forensic pathology consistency audit: a medical examiner's office conducting a noise audit of inter-examiner consistency in cause-of-death determination for matched autopsy cases",
+      "audience": "a medical examiner quality director designing a first systematic noise audit of cause-of-death determination consistency to measure actual inter-examiner spread on anonymized case files",
+      "stakes": "forensic accuracy and legal proceedings quality — an audit that underestimates actual inter-examiner disagreement through poor design will produce false confidence in the reliability of medical examiner testimony",
+      "format": "postmortem",
+      "openingDevice": "retrospective",
+      "requiredBeat": "the quality director reviews the audit design retrospectively after the first completed cycle: the audit provided six examiners with 20 anonymized case files drawn randomly from the office's annual caseload; each examiner independently recorded a cause-of-death determination before any case was discussed; the pre-committed spread metric was inter-examiner agreement rate overall and by cause-of-death category; the finding: 67 percent agreement overall, with agreement below 50 percent for cases involving multiple contributing causes — exactly the case type most commonly contested in legal proceedings; the director's retrospective lesson: the office previously discussed cases in teams and measured only disagreements that surfaced in discussion, which produced the false impression of higher agreement than the blind audit revealed",
+      "firstImage": "an audit result summary showing overall agreement rate (67%) and agreement by cause-of-death category — the multiple-contributing-causes category below 50%, highlighted as the case type most commonly appearing in contested legal proceedings",
+      "mustInclude": ["the 67% overall agreement rate and below-50% rate for multiple-contributing-cause cases", "the comparison to the prior discussion-based impression of higher agreement", "the director's lesson: auditing agreement in cases that surfaced disagreement in discussion underestimates the agreement rate in cases that did not surface disagreement — which is most cases"],
+      "mustAvoid": ["a specific autopsy case or legal proceeding", "implying forensic pathology cause-of-death determination is generally unreliable"]
+    },
+    {
+      "domain": "military intelligence assessment audit: a defense intelligence organization auditing inter-analyst consistency in threat probability assessments for the same intelligence reports",
+      "audience": "a defense intelligence quality director designing a noise audit of inter-analyst consistency in threat probability assessment to measure actual spread on identical intelligence products",
+      "stakes": "intelligence accuracy and operational decision quality — unmeasured noise in threat probability assessments produces decision inputs whose reliability is unknown; the audit reveals what that reliability actually is",
+      "format": "vignette",
+      "openingDevice": "sensory_first",
+      "requiredBeat": "the quality director presents the audit design to the analytical leadership: 10 analysts from different teams will receive identical sanitized intelligence reports and produce independent probability assessments for the same threat scenario before any discussion or coordination; the spread metric (standard deviation of probability estimates) is pre-committed; access to colleagues' assessments is prohibited until all assessments are submitted; the audit finds a standard deviation of 18 percentage points across the 10 analysts for identical reports — meaning the same intelligence product produced probability assessments ranging from 28 to 64 percent depending on which analyst reviewed it; the leadership's instinct to explain each analyst's deviation as reflecting their specialized regional expertise is identified as the primary post-audit failure mode",
+      "firstImage": "a dot plot of 10 analyst probability assessments for the same threat scenario from the same intelligence report — a 36-percentage-point range visible, with a standard deviation marker and no clear clustering by regional expertise",
+      "mustInclude": ["the 18-point standard deviation and 36-point range across identical intelligence products", "the leadership's explanation instinct as the post-audit failure mode", "the quality director's framing: regional expertise explains some of the divergence — but it does not explain most of it, and assigning case-specific explanations to each data point is how noise audits produce underestimates"],
+      "mustAvoid": ["a specific military intelligence assessment or threat", "implying military intelligence analysis is generally unreliable or that analysts should stop using contextual expertise"]
+    },
+    {
+      "domain": "software code review consistency audit: a software engineering organization auditing inter-reviewer consistency in code quality assessment across the same code samples",
+      "audience": "a software engineering quality director designing a noise audit of code review consistency to measure actual inter-reviewer spread on the same code samples before implementing a new review process",
+      "stakes": "code quality decision accuracy — understanding how much of the observed inter-reviewer spread is reviewer noise versus genuine code quality ambiguity determines whether the new review process should prioritize clearer criteria or better reviewer selection",
+      "format": "before_after",
+      "openingDevice": "second_person",
+      "requiredBeat": "you design the audit: eight senior reviewers receive the same 20 code samples — a random selection from the organization's actual production codebase from the past year, not samples chosen for known difficulty — and independently rate each on a quality scale with behavioral anchors before submitting; no reviewer sees another's ratings before submitting all 20; the spread metric (average standard deviation across samples) is pre-committed; the audit finds a 0.8-point standard deviation on a 5-point scale — and the samples with the highest inter-reviewer variance are not the samples the reviewers retrospectively identify as most ambiguous; they are ordinary production code samples that each reviewer would have described as 'clear' before seeing the spread",
+      "firstImage": "a noise audit result visualization for code review: 20 samples on the x-axis, inter-reviewer standard deviation on the y-axis — the highest-variance samples shown to be ordinary-looking production code rather than the samples reviewers flagged as ambiguous",
+      "mustInclude": ["the 0.8-point standard deviation as the primary finding", "the counterintuitive location of highest variance (ordinary code rather than flagged-ambiguous code)", "your framing: the audit reveals noise where the reviewers assumed consistency — and that is the audit's most valuable output"],
+      "mustAvoid": ["a specific software product or codebase", "implying code review processes are generally too noisy to be useful"]
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": { "understand": 1, "apply": 4, "analyze": 3, "evaluate": 1 },
+    "transferEmphasis": 0.8,
+    "skillTargets": [
+      "explain the key design requirements of a valid noise audit and what distinguishes them from a discussion-based agreement assessment",
+      "identify the audit design choices that systematically underestimate noise in the described audit context",
+      "apply the noise audit design principles to design a valid audit for a described professional judgment system",
+      "analyze why the post-audit temptation to explain individual disagreements as case-specific exceptions is the primary threat to accurate noise measurement",
+      "evaluate whether a described noise audit design would produce an accurate measure of systemic spread or a managed underestimate"
+    ]
+  },
+  "cardFocus": { "count": 5, "retrievalPractice": true },
+  "tryThisNowSpec": "Design a noise audit for the most important judgment process in your organization. Before you start, answer three questions and write the answers down: What cases will you include — will they be randomly drawn from your actual case distribution, or selected for difficulty? What spread metric will you use — and will you commit to that metric before seeing any data? Will the judges see each other's assessments before recording their own? If your answers are 'randomly drawn,' 'pre-committed,' and 'no,' you have designed a valid audit. If any answer is different, you have identified the specific design choice that will produce an underestimate of your organization's actual noise level.",
+  "readingTimeMinutes": 12,
+  "rhythmVariety": {
+    "deepReadParagraphLengthMix": "at least one short paragraph (3 sentences) on the core design requirement that separates a valid noise audit from a managed impression — independence before measurement, and measurement before explanation, at least one 5+ sentence paragraph on why ordinary cases are the right target for noise auditing, and why auditing only difficult cases produces the most comfortable but least accurate picture of systemic noise, at least one one-sentence punch line about what the temptation to explain each disagreement as a special case is doing to the audit's usefulness",
+    "fullReadInterludeRequirement": "at least one paragraph that breaks scene-then-rule rhythm to address the reader directly: has your organization ever measured inter-judge spread on a random sample of its ordinary cases without allowing raters to discuss first? If the answer is no, your organization's impression of its own consistency is based on the cases that generated visible disagreement — which is a biased sample of the noise your ordinary judgments actually contain",
+    "forbiddenRhythm": "every paragraph following the pattern 'concrete anchor sentence -> abstract rule sentence -> elaboration sentence'"
+  }
+}

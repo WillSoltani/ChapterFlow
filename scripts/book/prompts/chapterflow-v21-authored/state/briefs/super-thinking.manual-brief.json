@@ -1,0 +1,110 @@
+{
+  "bookId": "super-thinking",
+  "title": "Super Thinking",
+  "author": "Gabriel Weinberg; Lauren McCann",
+  "thesisParagraph": "Better judgment is built by collecting durable mental models and using them before a decision hardens. The book teaches readers to reduce avoidable error, inspect incentives and failure paths, protect scarce time, read systems for momentum and thresholds, handle numbers with base-rate discipline, break choices into visible branches, and treat conflict as an interaction rather than a speech. Its argument is practical rather than academic: use the right model at the moment a plan, metric, statistic, or disagreement is about to fool you.",
+  "coreIdeas": [
+    {
+      "name": "Be wrong less",
+      "oneSentence": "Start by cutting self-created mistakes rather than chasing perfect certainty.",
+      "mentalMove": "Name the avoidable error, rebuild the assumption from first principles, and test cheaply before scale makes the error expensive.",
+      "sourceAnchors": [
+        "ch01.source"
+      ]
+    },
+    {
+      "name": "Design against side effects",
+      "oneSentence": "A plan deserves trust only after you ask what behavior it rewards and what failure path it invites.",
+      "mentalMove": "Inspect incentives, backfire paths, delayed costs, and system failures before celebrating the first clean metric.",
+      "sourceAnchors": [
+        "ch02.source"
+      ]
+    },
+    {
+      "name": "Spend the scarce thing deliberately",
+      "oneSentence": "Time choices compound, but every yes displaces another path and present bias keeps stealing from later gains.",
+      "mentalMove": "Ask what repeated action compounds, what alternative gets crowded out, and what immediate comfort is bribing you away from the long game.",
+      "sourceAnchors": [
+        "ch03.source"
+      ]
+    },
+    {
+      "name": "Read system motion",
+      "oneSentence": "Systems often move slowly until fit, momentum, thresholds, or network reinforcement change the pace.",
+      "mentalMove": "Look for selection pressure, flywheel effort, tipping points, and reinforcing loops before judging today’s speed.",
+      "sourceAnchors": [
+        "ch04.source"
+      ]
+    },
+    {
+      "name": "Calibrate numbers",
+      "oneSentence": "A vivid statistic only earns authority after the base rate and comparison frame are visible.",
+      "mentalMove": "Anchor the claim in background frequency and missing context before letting the number change your belief.",
+      "sourceAnchors": [
+        "ch05.source"
+      ]
+    },
+    {
+      "name": "Make choices visible",
+      "oneSentence": "A hard decision gets less foggy when options, branches, consequences, and unknowns are on the page.",
+      "mentalMove": "Split the choice into paths, compare branch-level consequences, and mark uncertainty instead of smoothing it away.",
+      "sourceAnchors": [
+        "ch06.source"
+      ]
+    },
+    {
+      "name": "Play the interaction, not the pose",
+      "oneSentence": "Conflict changes once you account for incentives, responses, authority, and whether the offered fight is worth taking.",
+      "mentalMove": "Read the response loop, legitimacy structure, and larger game before choosing to press, reframe, concede, or refuse.",
+      "sourceAnchors": [
+        "ch07.source"
+      ]
+    }
+  ],
+  "targetReader": "A working adult, student, founder, manager, or team lead who already makes many decisions under pressure and wants sharper checks for plans, metrics, numbers, tradeoffs, and conflict without becoming academic or cynical.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "open ideas in a concrete moment before naming the rule",
+      "use plain sentences with one sharp image",
+      "teach through choices the reader recognizes",
+      "make the model feel like a tool picked up in the middle of a live decision",
+      "close paragraphs on the visible cost of using or missing the model"
+    ],
+    "avoidMoves": [
+      "no chapter/book/author meta references",
+      "no em dashes",
+      "no reusable hook/counter/tryThisNow stems",
+      "no generic coaching language",
+      "no invented researchers, case studies, or historical anecdotes",
+      "no hollow cleverness about being smarter than everyone else"
+    ]
+  },
+  "voiceSpecimens": [
+    "The useful question is not whether the plan sounds clean. It is what the plan will reward after people start living inside it.",
+    "A cheap test is not a timid version of the real move. It is the real move before the bill gets large.",
+    "The number can be true and still be badly aimed. Ask what usually happens before you let the loud case set the room on fire.",
+    "A decision tree does not make you certain. It gives each uncertainty an address.",
+    "When the argument keeps getting hotter, stop polishing the sentence and inspect the game the sentence is feeding.",
+    "The first turn of the flywheel feels unfair because the system has not started helping you yet.",
+    "A yes spends the hour even when it feels generous."
+  ],
+  "voiceAntiSpecimens": [
+    "This chapter explains how readers can leverage robust decision-making frameworks for optimized outcomes.",
+    "In today’s fast-paced world, it is important to be mindful and intentional about your choices.",
+    "The author argues that mental models are powerful tools for improving life and business.",
+    "By applying this concept, you can unlock your full potential and become a super thinker.",
+    "Statistics are everywhere, and this chapter will help you understand them better.",
+    "Conflict is hard, but with the right mindset, you can navigate it successfully."
+  ],
+  "teachingArc": "The book moves from personal error control to wider system reading. It starts with self-created mistakes, then shows how incentives and side effects break plans even when you are careful. It turns to time as the scarce substrate for compounding, then zooms out to system dynamics, zooms back into statistical interpretation, gives a concrete structure for decisions under uncertainty, and closes by applying model-based thinking to social conflict where other people can answer back.",
+  "forbiddenMoves": [
+    "Do not turn mental models into a glossary or name-dropping exercise; every model must change a concrete decision.",
+    "Do not make the book sound like generic productivity advice about working harder or thinking positive.",
+    "Do not overstate thin source support with invented studies, founders, historical cases, equations, or neuroscience.",
+    "Do not collapse all chapters into “think before you act”; each model needs its own visible diagnostic move.",
+    "Do not make skepticism cynical; the book teaches calibrated action, not paralysis."
+  ]
+}
